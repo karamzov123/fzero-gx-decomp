@@ -1,6 +1,92 @@
 #include "types.h"
+#include "rel/pilotpoint/globals.h"
+#include "rel/pilotpoint/pilotpoint.h"
+extern const f32 lbl_14_rodata_0;
+extern u32 lbl_1_bss_6EAB4;
+extern u8 lbl_1_bss_6EAD0[0x708];
+extern s16 lbl_1_bss_8B3A0;
+extern s16 lbl_1_bss_96A;
+extern u8 lbl_1_bss_9F8[0x50];
+extern u8 lbl_1_bss_D58[0x18];
+extern u8 lbl_1_data_1E5C0[0x34];
+extern u32 lbl_1_rodata_26F8;
+extern u32 lbl_801A63C0;
+extern u8 lbl_801A6410[0x4];
+extern s32 lbl_801A66A0;
+extern s32 lbl_801A66B4;
+extern u32 fn_1_3CC4(u32);
+extern u32 fn_1_407C(u32);
+extern u8 lbl_14_data_308[128];
+extern u32 lbl_1_bss_71688;
+extern u32 lbl_1_bss_7168C;
+extern void fn_1_128B60(u8 *, u8 *, u8 *, u8 *, u8 *, u8 *, u8 *, u8 *, u8 *, u8 *);
+extern s16 fn_1_14F19C(s16, s16, u32);
+extern s16 fn_1_14D5CC(s16, u32, u32);
+extern s16 fn_1_14D670(void);
+extern u32 fn_1_14D6D8(s16);
+extern u32 fn_1_151BE8(s16, s16);
+extern void fn_1_12B4EC(s16, s16);
+extern void fn_14_315C(u32);
+extern s16 fn_14_32DC(s16 *out);
+extern s16 fn_14_3384(s16 *out);
+extern s16 fn_14_3334(s16 *out);
+extern s16 fn_14_33DC(s16 *out);
+extern u32 fn_14_342C(void);
+extern u32 fn_14_34A8(void);
+extern void fn_14_3230(u16 *arg0, u16 *arg1, u16 *arg2);
+extern void fn_1_A514C(s32);
+extern u32 lbl_14_bss_8344;
+extern void fn_1_9250C(void *);
+extern u32 fn_14_DC6C(u32, u32);
+extern u32 lbl_1_data_21078;
+extern u32 lbl_1_data_212A8;
+extern void fn_1_14E9E4(int, void *);
+extern void fn_1_4962C(void);
+extern u32 fn_80074188(u32, u32, u32, u32);
+extern char *fn_1_14FEAC(s16, s16, s16, char *, s16);
+extern char *fn_1_14EE00(s16, char *, s16);
+extern char *fn_1_13F72C(f32, s16, char *);
+extern void fn_1_494DC(s32);
+extern void fn_1_49644(void);
+extern void fn_14_58C4(u32 arg0, u32 arg1);
+extern void fn_14_6758(s16 x, s16 y);
+extern u8 lbl_14_bss_91F4[100];
+extern void fn_1_1380F0(void*);
+extern void fn_1_13D02C(void);
+extern void fn_14_2590(void);
+extern u32 lbl_14_data_2F48;
+extern void fn_14_7584(void);
+extern void OSReport(const char *, ...);
+extern int fn_1_F8334(s16);
+extern u32 OSGetTick(void);
+extern u32 fn_1_F83F0(u32);
+extern u32 lbl_14_bss_18;
+extern u32 fn_1_47F74(u32);
+extern void fn_1_F8B50(void);
+extern void fn_14_82E4(s16, s16, s16);
+extern u32 fn_1_48140(u32);
+extern void fn_14_A3DC(void);
+extern s32 fn_1_B7EC4(s32);
+extern s32 fn_1_B7C5C(void);
+extern s32 CARDProbeEx(s32, s32 *, s32 *);
+extern f32 lbl_14_rodata_30;
+extern u16 lbl_1_bss_968;
+extern char *strncpy(char *, const char *, size_t);
+extern size_t strlen(const char *);
+extern u32 __cvt_fp2unsigned(f32);
+extern f32 lbl_14_rodata_364;
+extern const f64 lbl_14_rodata_110;
+extern const f64 lbl_14_rodata_60;
+extern u32 lbl_14_bss_C;
+extern f32 fn_1_4B068(char *);
+extern const char *lbl_14_data_BD4[];
+extern const char *lbl_14_data_C54[];
+extern const char *lbl_14_data_C9C[];
+extern u32 lbl_14_data_6C8;
 
-/* fzgx:begin _prolog */
+/* fzgx:begin _prolog noprologue */
+#include "types.h"
+
 struct _prolog_lbl_14_bss_0 {
     u8 pad_0[0x14];
     u32 unk_14;
@@ -100,13 +186,15 @@ struct _epilog_lbl_801A6410 {
     u32 unk_0;
 };
 
-extern struct _epilog_lbl_14_bss_0 lbl_14_bss_0;
-extern struct _epilog_lbl_801A6410 lbl_801A6410;
+
+
+
 extern u32 fn_1_1596DC(u32);
 extern u32 fn_1_412A0(u32);
 extern u32 fn_1_435C(u32);
 extern u32 fn_1_A0AA4(void);
-extern u32 lbl_14_data_2FB0;
+
+
 extern void fn_1_41A8(void);
 extern void fn_1_46B4(u32, u32, const char *, int);
 extern void fn_1_47A60(s16);
@@ -114,7 +202,7 @@ extern void fn_1_484CC(s32);
 
 void _epilog(void) {
     struct _epilog_lbl_14_bss_0 *p_lbl_14_bss_0;
-    p_lbl_14_bss_0 = (struct _epilog_lbl_14_bss_0 *)&lbl_14_bss_0;
+    p_lbl_14_bss_0 = (struct _epilog_lbl_14_bss_0 *)&(*(struct _epilog_lbl_14_bss_0 *)&lbl_14_bss_0);
     fn_1_435C(p_lbl_14_bss_0->unk_1C);
     fn_1_41A8();
     fn_1_435C(p_lbl_14_bss_0->unk_20);
@@ -125,16 +213,14 @@ void _epilog(void) {
     fn_1_484CC(2);
     fn_1_412A0(1);
     fn_1_A0AA4();
-    fn_1_46B4(lbl_801A6410.unk_0, p_lbl_14_bss_0->unk_14, (const char *)&lbl_14_data_2FB0, 860);
+    fn_1_46B4((*(struct _epilog_lbl_801A6410 *)&lbl_801A6410).unk_0, p_lbl_14_bss_0->unk_14, (const char *)&(*(u32 *)&lbl_14_data_2FB0), 860);
     p_lbl_14_bss_0->unk_14 = 0;
 }
 /* fzgx:end _epilog */
 
 /* fzgx:begin fn_14_220 */
 extern struct fn_14_220_lbl_14_bss_1C lbl_14_bss_1C;
-extern struct fn_14_220_lbl_14_bss_20 lbl_14_bss_20;
-extern u32 fn_1_3CC4(u32);
-extern u32 fn_1_407C(u32);
+
 extern u32 fn_1_435C(u32);
 
 struct fn_14_220_lbl_14_bss_1C {
@@ -149,12 +235,14 @@ void fn_14_220(void) {
     t0 = fn_1_435C(lbl_14_bss_1C.unk_0);
     t1 = fn_1_407C(t0);
     fn_1_3CC4(t1);
-    t3 = fn_1_435C(lbl_14_bss_20.unk_0);
+    t3 = fn_1_435C((*(struct fn_14_220_lbl_14_bss_20 *)&lbl_14_bss_20).unk_0);
     fn_1_407C(t3);
 }
 /* fzgx:end fn_14_220 */
 
-/* fzgx:begin fn_14_268 */
+/* fzgx:begin fn_14_268 noprologue */
+#include "types.h"
+
 struct fn_14_268_lbl_1_bss_8B3A0 {
     u8 pad_0[0x124];
     u32 unk_124;
@@ -189,9 +277,6 @@ struct fn_14_2A0_Entry {
 };
 
 extern s16 lbl_1_bss_962;
-extern u8 lbl_14_data_308[128];
-extern u32 lbl_1_bss_71688;
-extern u32 lbl_1_bss_7168C;
 
 void fn_14_2A0(void) {
     struct fn_14_2A0_Entry *entry;
@@ -205,7 +290,9 @@ void fn_14_2A0(void) {
 }
 /* fzgx:end fn_14_2A0 */
 
-/* fzgx:begin fn_14_2FC */
+/* fzgx:begin fn_14_2FC noprologue */
+#include "types.h"
+
 struct fn_14_2FC_lbl_1_bss_8B3A0 {
     u8 pad_0[0x94];
     u32 unk_94;
@@ -243,7 +330,9 @@ void fn_14_2FC(void) {
 }
 /* fzgx:end fn_14_2FC */
 
-/* fzgx:begin fn_14_380 */
+/* fzgx:begin fn_14_380 noprologue */
+#include "types.h"
+
 #include "font.h"
 
 #pragma section code_type ".fzgxpool"
@@ -519,7 +608,9 @@ void fn_14_900(void) {
 }
 /* fzgx:end fn_14_900 */
 
-/* fzgx:begin fn_14_904 */
+/* fzgx:begin fn_14_904 noprologue */
+#include "types.h"
+
 /* Shared literal pool primer: reproduces retail lbl_14_rodata_0 up to 0x80. */
 #pragma section code_type ".fzgxpool"
 void fzgx_pool_primer(volatile f32 *f, volatile f64 *d, volatile s32 *i) { /* volatile sinks: pool primer */
@@ -1494,7 +1585,9 @@ void fn_14_904(void) {
 }
 /* fzgx:end fn_14_904 */
 
-/* fzgx:begin fn_14_1090 */
+/* fzgx:begin fn_14_1090 noprologue */
+#include "types.h"
+
 #include "font.h"
 #include "rel/pilotpoint/pilotpoint.h"
 
@@ -2205,23 +2298,14 @@ __declspec(section ".fzgxpool") static void fzgx_layout(void) {
 }
 #pragma section code_type ".text"
 
-extern u32 lbl_801A63C0;
 extern void fn_80008BEC(void *, int, u32);
 extern void fn_80008BA8(void *, void *, u32);
-extern void fn_1_128B60(u8 *, u8 *, u8 *, u8 *, u8 *, u8 *, u8 *, u8 *, u8 *, u8 *);
 extern s16 fn_1_14F270(s16, s16, u32);
-extern s16 fn_1_14F19C(s16, s16, u32);
-extern s16 fn_1_14D5CC(s16, u32, u32);
-extern s16 fn_1_14D670(void);
 /* narrower than archive.c's definitions (s32 fn_1_128B00, u32 fn_14_DC2C): retail passes and compares the
  * results without re-extending them, so they are declared as the values they hold */
 extern s16 fn_1_128B00(s16);
-extern u32 fn_1_14D6D8(s16);
-extern u32 fn_1_151BE8(s16, s16);
 extern u8 *fn_1_36AD0(void);
-extern void fn_1_12B4EC(s16, s16);
 extern u8 fn_14_DC2C(void);
-extern void fn_14_315C(u32);
 
 /* fills lbl_14_bss_110's eight entries from .data 0x2AB4: each flag-8 entry gets a random id of its category
  * (fn_1_14D5CC) not among the three fn_1_128B60 returned for it, each flag-0x10 entry a random fn_1_14D670 id;
@@ -2362,17 +2446,9 @@ struct PilotPoint {
     u8 pad_6C2[0x35E];
 };
 
-extern s16 fn_14_32DC(s16 *);
-extern s16 fn_14_3384(s16 *);
-extern struct PilotPoint * lbl_14_bss_8340;
-extern u32 fn_14_3334(s16 *);
-extern u32 fn_14_33DC(s16 *);
-extern u32 fn_14_342C(void);
-extern u32 fn_14_34A8(void);
 extern u32 fn_14_DC2C(void);
 extern u8 * fn_1_36AD0(void);
 extern void * fn_14_316C(void *, void *, void *);
-extern void * fn_14_3230(void *, void *, void *);
 
 void fn_14_2AFC(void) {
     struct PilotPoint *v0;
@@ -2383,20 +2459,20 @@ void fn_14_2AFC(void) {
     s16 loc_8;
     u8 * t9;
     fn_14_316C((void *)loc_C, (void *)&loc_A, (void *)&loc_8);
-    v0 = lbl_14_bss_8340;
+    v0 = (*(struct PilotPoint * *)&lbl_14_bss_8340);
     loc_C[0] = v0[loc_C[0]].unk0;
     loc_A = v0[loc_A].unk360;
     loc_8 = v0[loc_8].unk6C0;
     fn_14_342C();
     fn_14_3230((void *)loc_C, (void *)&loc_A, (void *)&loc_8);
     if (loc_C[0] != 15) {
-        loc_C[0] = lbl_14_bss_8340[loc_C[0]].unk0;
+        loc_C[0] = (*(struct PilotPoint * *)&lbl_14_bss_8340)[loc_C[0]].unk0;
     }
     if (loc_A != 15) {
-        loc_A = lbl_14_bss_8340[loc_A].unk360;
+        loc_A = (*(struct PilotPoint * *)&lbl_14_bss_8340)[loc_A].unk360;
     }
     if (loc_8 != 15) {
-        loc_8 = lbl_14_bss_8340[loc_8].unk6C0;
+        loc_8 = (*(struct PilotPoint * *)&lbl_14_bss_8340)[loc_8].unk6C0;
     }
     fn_14_34A8();
     loc_10[0] = 75;
@@ -2553,7 +2629,7 @@ __declspec(section ".fzgxpool") static void fzgx_layout(void) {
 }
 #pragma section code_type ".text"
 
-extern struct fn_14_2C80_lbl_801A6410 lbl_801A6410;
+
 extern void *fn_1_4630(u32, u32, const char *, int);
 /* narrower than archive.c's s32 definition: retail passes the result on without re-extending it */
 extern s16 fn_1_128B00(s16);
@@ -2589,11 +2665,11 @@ void fn_14_2C80(void) {
     fn_14_2C80_Elem *elem;
 
     mask = lbl_14_data_27B8__fzgx_offset_778;
-    fzgx_obj_lbl_14_bss_8340 = fn_1_4630(lbl_801A6410.unk_0, lbl_14_bss_160__fzgx_offset_4 * 0xA20, fzgx_obj_lbl_14_data_2FB0, 0x888);
-    fzgx_obj_lbl_14_bss_8344 = fn_1_4630(lbl_801A6410.unk_0, lbl_14_bss_160__fzgx_offset_4 * 0xA20, fzgx_obj_lbl_14_data_2FB0, 0x889);
-    fzgx_obj_lbl_14_bss_8348 = fn_1_4630(lbl_801A6410.unk_0, fzgx_obj_lbl_14_bss_160 * 0x12C, fzgx_obj_lbl_14_data_2FB0, 0x88A);
-    fzgx_obj_lbl_14_bss_834C = fn_1_4630(lbl_801A6410.unk_0, lbl_14_bss_160__fzgx_offset_2 * 0x64, fzgx_obj_lbl_14_data_2FB0, 0x88B);
-    fzgx_obj_lbl_14_bss_8350 = fn_1_4630(lbl_801A6410.unk_0, lbl_14_bss_160__fzgx_offset_2 * 0xEA0, fzgx_obj_lbl_14_data_2FB0, 0x88D);
+    fzgx_obj_lbl_14_bss_8340 = fn_1_4630((*(struct fn_14_2C80_lbl_801A6410 *)&lbl_801A6410).unk_0, lbl_14_bss_160__fzgx_offset_4 * 0xA20, fzgx_obj_lbl_14_data_2FB0, 0x888);
+    fzgx_obj_lbl_14_bss_8344 = fn_1_4630((*(struct fn_14_2C80_lbl_801A6410 *)&lbl_801A6410).unk_0, lbl_14_bss_160__fzgx_offset_4 * 0xA20, fzgx_obj_lbl_14_data_2FB0, 0x889);
+    fzgx_obj_lbl_14_bss_8348 = fn_1_4630((*(struct fn_14_2C80_lbl_801A6410 *)&lbl_801A6410).unk_0, fzgx_obj_lbl_14_bss_160 * 0x12C, fzgx_obj_lbl_14_data_2FB0, 0x88A);
+    fzgx_obj_lbl_14_bss_834C = fn_1_4630((*(struct fn_14_2C80_lbl_801A6410 *)&lbl_801A6410).unk_0, lbl_14_bss_160__fzgx_offset_2 * 0x64, fzgx_obj_lbl_14_data_2FB0, 0x88B);
+    fzgx_obj_lbl_14_bss_8350 = fn_1_4630((*(struct fn_14_2C80_lbl_801A6410 *)&lbl_801A6410).unk_0, lbl_14_bss_160__fzgx_offset_2 * 0xEA0, fzgx_obj_lbl_14_data_2FB0, 0x88D);
 
     word = lbl_14_data_2F36__fzgx_offset_2;
     for (j = 0; j < 3; j++) {
@@ -2664,15 +2740,13 @@ void fn_14_2C80(void) {
 /* fzgx:end fn_14_2C80 */
 
 /* fzgx:begin fn_14_315C */
-extern struct fn_14_315C_lbl_14_bss_110 lbl_14_bss_110;
-
 struct fn_14_315C_lbl_14_bss_110 {
     u8 pad_0[0x4C];
     u32 unk_4C;
 };
 
 void fn_14_315C(u32 arg0) {
-    lbl_14_bss_110.unk_4C = arg0;
+    (*(struct fn_14_315C_lbl_14_bss_110 *)&lbl_14_bss_110).unk_4C = arg0;
 }
 /* fzgx:end fn_14_315C */
 
@@ -2690,8 +2764,9 @@ struct fn_14_316C_Ent {
     u32 raw[2];
 };
 
-extern struct fn_14_316C_Ent lbl_14_bss_110[10];
-extern s16 lbl_14_bss_160[16];
+
+
+
 
 #pragma opt_common_subs off
 void fn_14_316C(struct fn_14_316C_Arg0 *arg0, struct fn_14_316C_Arg1 *arg1, struct fn_14_316C_Arg2 *arg2) {
@@ -2705,20 +2780,20 @@ void fn_14_316C(struct fn_14_316C_Arg0 *arg0, struct fn_14_316C_Arg1 *arg1, stru
     s16 v0;
 
     v1 = 0;
-    v0 = ((s16 *)lbl_14_bss_110)[2];
+    v0 = ((s16 *)(*(struct fn_14_316C_Ent (*)[10])&lbl_14_bss_110))[2];
     i = 0;
     arg2->unk_0 = 0;
     arg1->unk_0 = 0;
     arg0->unk_0 = 0;
 
     while ((u32)i < 8) {
-        flags = ((u32 *)&lbl_14_bss_110[i])[3];
+        flags = ((u32 *)&(*(struct fn_14_316C_Ent (*)[10])&lbl_14_bss_110)[i])[3];
         if ((flags & 0x8) != 0) {
             if ((flags & 0x40) != 0 || i == v0) {
                 t = v1;
-                v7 = t / lbl_14_bss_160[0];
+                v7 = t / (*(s16 (*)[16])&lbl_14_bss_160)[0];
                 v8 = v7;
-                v5 = t % lbl_14_bss_160[0] + 1;
+                v5 = t % (*(s16 (*)[16])&lbl_14_bss_160)[0] + 1;
                 switch (v8) {
                 case 0:
                     arg0->unk_0 = v5;
@@ -2740,12 +2815,9 @@ void fn_14_316C(struct fn_14_316C_Arg0 *arg0, struct fn_14_316C_Arg1 *arg1, stru
 /* fzgx:end fn_14_316C */
 
 /* fzgx:begin fn_14_3230 */
-struct PilotPointEntry {
+struct fn_14_3230_PilotPointEntry {
     u32 raw[2];
 };
-
-extern struct PilotPointEntry lbl_14_bss_110[10];
-extern s16 lbl_14_bss_160[16];
 
 void fn_14_3230(u16 *arg0, u16 *arg1, u16 *arg2) {
     s16 count;
@@ -2759,9 +2831,9 @@ void fn_14_3230(u16 *arg0, u16 *arg1, u16 *arg2) {
     *arg0 = 15;
 
     while ((u32)(s16)count < 8) {
-        if ((((u32 *)&lbl_14_bss_110[count])[3] & 0x8) &&
-            (((u32 *)&lbl_14_bss_110[count])[3] & 0x40)) {
-            s16 quotient = index / lbl_14_bss_160[0];
+        if ((((u32 *)&(*(struct fn_14_3230_PilotPointEntry (*)[10])&lbl_14_bss_110)[count])[3] & 0x8) &&
+            (((u32 *)&(*(struct fn_14_3230_PilotPointEntry (*)[10])&lbl_14_bss_110)[count])[3] & 0x40)) {
+            s16 quotient = index / (*(s16 (*)[16])&lbl_14_bss_160)[0];
             switch (quotient) {
             case 0:
                 *arg0 = 0;
@@ -2780,11 +2852,9 @@ void fn_14_3230(u16 *arg0, u16 *arg1, u16 *arg2) {
 /* fzgx:end fn_14_3230 */
 
 /* fzgx:begin fn_14_32DC */
-struct PilotPointEntry {
+struct fn_14_32DC_PilotPointEntry {
     u32 raw[2];
 };
-
-extern struct PilotPointEntry lbl_14_bss_110[10];
 
 s16 fn_14_32DC(s16 *out) {
     s16 i;
@@ -2793,9 +2863,9 @@ s16 fn_14_32DC(s16 *out) {
     count = 0;
     i = 0;
     while ((u32)(s16)i < 8) {
-        if ((((u32 *)&lbl_14_bss_110[i])[3] & 0x8) &&
-            (((u32 *)&lbl_14_bss_110[i])[3] & 0x40)) {
-            out[(s16)count] = ((s16 *)&lbl_14_bss_110[i])[4];
+        if ((((u32 *)&(*(struct fn_14_32DC_PilotPointEntry (*)[10])&lbl_14_bss_110)[i])[3] & 0x8) &&
+            (((u32 *)&(*(struct fn_14_32DC_PilotPointEntry (*)[10])&lbl_14_bss_110)[i])[3] & 0x40)) {
+            out[(s16)count] = ((s16 *)&(*(struct fn_14_32DC_PilotPointEntry (*)[10])&lbl_14_bss_110)[i])[4];
             count++;
         }
         i++;
@@ -2805,8 +2875,6 @@ s16 fn_14_32DC(s16 *out) {
 /* fzgx:end fn_14_32DC */
 
 /* fzgx:begin fn_14_3334 */
-extern u32 lbl_14_bss_110[20];
-
 s16 fn_14_3334(s16 *out) {
     s16 i;
     s16 count;
@@ -2814,8 +2882,8 @@ s16 fn_14_3334(s16 *out) {
     i = 0;
 
     while ((u32)i < 8) {
-        if (((u32 *)&lbl_14_bss_110[i * 2])[3] & 0x8) {
-            out[count++] = ((s16 *)&lbl_14_bss_110[i * 2])[4];
+        if (((u32 *)&(*(u32 (*)[20])&lbl_14_bss_110)[i * 2])[3] & 0x8) {
+            out[count++] = ((s16 *)&(*(u32 (*)[20])&lbl_14_bss_110)[i * 2])[4];
         }
         i++;
     }
@@ -2825,8 +2893,6 @@ s16 fn_14_3334(s16 *out) {
 /* fzgx:end fn_14_3334 */
 
 /* fzgx:begin fn_14_3384 */
-extern u32 lbl_14_bss_110[20];
-
 s16 fn_14_3384(s16 *out) {
     s16 i;
     s16 count;
@@ -2835,9 +2901,9 @@ s16 fn_14_3384(s16 *out) {
     i = 0;
 
     while ((u32)i < 8) {
-        flags = ((u32 *)&lbl_14_bss_110[i * 2])[3];
+        flags = ((u32 *)&(*(u32 (*)[20])&lbl_14_bss_110)[i * 2])[3];
         if ((flags & 0x10) && (flags & 0x40)) {
-            out[count++] = ((s16 *)&lbl_14_bss_110[i * 2])[4];
+            out[count++] = ((s16 *)&(*(u32 (*)[20])&lbl_14_bss_110)[i * 2])[4];
         }
         i++;
     }
@@ -2847,8 +2913,6 @@ s16 fn_14_3384(s16 *out) {
 /* fzgx:end fn_14_3384 */
 
 /* fzgx:begin fn_14_33DC */
-extern u32 lbl_14_bss_110[20];
-
 s16 fn_14_33DC(s16 *out) {
     s16 i;
     s16 count;
@@ -2856,8 +2920,8 @@ s16 fn_14_33DC(s16 *out) {
     i = 0;
 
     while ((u32)i < 8) {
-        if (((u32 *)&lbl_14_bss_110[i * 2])[3] & 0x10) {
-            out[count++] = ((s16 *)&lbl_14_bss_110[i * 2])[4];
+        if (((u32 *)&(*(u32 (*)[20])&lbl_14_bss_110)[i * 2])[3] & 0x10) {
+            out[count++] = ((s16 *)&(*(u32 (*)[20])&lbl_14_bss_110)[i * 2])[4];
         }
         i++;
     }
@@ -2867,10 +2931,6 @@ s16 fn_14_33DC(s16 *out) {
 /* fzgx:end fn_14_33DC */
 
 /* fzgx:begin fn_14_342C */
-extern u32 lbl_14_bss_110[20];
-extern u32 lbl_14_bss_8350;
-extern f32 lbl_14_bss_8354[936];
-
 u32 fn_14_342C(void) {
     u32 result;
     u32 flags;
@@ -2878,15 +2938,15 @@ u32 fn_14_342C(void) {
     s16 count;
     s16 target;
 
-    target = ((s16 *)&lbl_14_bss_110)[2];
-    result = (u32)&lbl_14_bss_8354;
+    target = ((s16 *)&(*(u32 (*)[20])&lbl_14_bss_110))[2];
+    result = (u32)&(*(f32 (*)[936])&lbl_14_bss_8354);
     count = 0;
 
     for (i = 0; (u32)i < 8; i++) {
-        flags = ((u32 *)&lbl_14_bss_110[i * 2])[3];
+        flags = ((u32 *)&(*(u32 (*)[20])&lbl_14_bss_110)[i * 2])[3];
         if (flags & 0x10) {
             if ((flags & 0x40) || (i == target)) {
-                result = lbl_14_bss_8350 + count * 0x4E0;
+                result = (*(u32 *)&lbl_14_bss_8350) + count * 0x4E0;
                 break;
             }
             count++;
@@ -2898,21 +2958,17 @@ u32 fn_14_342C(void) {
 /* fzgx:end fn_14_342C */
 
 /* fzgx:begin fn_14_34A8 */
-extern u32 lbl_14_bss_110[20];
-extern u32 lbl_14_bss_8350;
-extern f32 lbl_14_bss_8354[936];
-
 u32 fn_14_34A8(void) {
     u32 result;
     u32 flags;
     s16 i;
 
-    result = lbl_14_bss_8350;
+    result = (*(u32 *)&lbl_14_bss_8350);
     i = 0;
     while ((u32)i < 8) {
-        flags = ((u32 *)&lbl_14_bss_110[i * 2])[3];
+        flags = ((u32 *)&(*(u32 (*)[20])&lbl_14_bss_110)[i * 2])[3];
         if ((flags & 0x10) && (flags & 0x40)) {
-            result = (u32)&lbl_14_bss_8354;
+            result = (u32)&(*(f32 (*)[936])&lbl_14_bss_8354);
             break;
         }
         i++;
@@ -2921,7 +2977,7 @@ u32 fn_14_34A8(void) {
 }
 /* fzgx:end fn_14_34A8 */
 
-/* fzgx:begin fn_14_34FC noprologue */
+/* fzgx:begin fn_14_34FC */
 #include "types.h"
 #include "rel/pilotpoint/pilotpoint.h"
 
@@ -2936,7 +2992,7 @@ struct fn_14_34FC_lbl_14_rodata_0 {
     f32 unk_120;
     f32 unk_124;
 };
-extern struct fn_14_34FC_lbl_14_rodata_0 lbl_14_rodata_0;
+
 struct Input34 {
     u8 pad[8];
     u16 pressed;
@@ -2944,10 +3000,8 @@ struct Input34 {
     volatile u16 repeat; /* volatile: retail re-reads the word at every test */
     volatile u16 held;   /* volatile: retail re-reads the word at every test */
 };
-extern struct Input34 lbl_1_bss_9F8;
-extern u32 lbl_801A66A0;
+
 extern void fn_1_A2D84(u32);
-extern void fn_1_A514C(s32);
 
 #pragma section code_type ".fzgxpool"
 void fzgx_pool_primer(volatile f32 *f, volatile f64 *d, volatile s32 *i) { /* volatile sinks: pool primer */
@@ -3021,7 +3075,7 @@ u32 fn_14_34FC(void) {
     if ((s32)lbl_14_bss_92C0 == 1) {
         /* The timer is re-read through a different lvalue so the front end keeps
          * it a plain load temporary (the backend still folds it onto one lwz). */
-        if (((lbl_1_bss_9F8.pressed >> 8) & 1) || *(s32 *)&lbl_14_bss_92BC > 300) {
+        if ((((*(struct Input34 *)&lbl_1_bss_9F8).pressed >> 8) & 1) || *(s32 *)&lbl_14_bss_92BC > 300) {
             fn_1_A2D84(0xA9010100);
             lbl_14_bss_92C0 = 0;
             lbl_14_bss_92BC = 0;
@@ -3030,10 +3084,10 @@ u32 fn_14_34FC(void) {
     }
     v3 = __fabs(v1);
     if (v3 <= 1.0 && v3 >= 0.0) return 0;
-    if (((lbl_1_bss_9F8.repeat >> 1) & 1) || ((lbl_1_bss_9F8.held >> 1) & 1)) direction = 1;
-    if ((lbl_1_bss_9F8.repeat & 1) || (lbl_1_bss_9F8.held & 1)) direction--;
-    if (((lbl_1_bss_9F8.repeat >> 3) & 1) || ((lbl_1_bss_9F8.held >> 3) & 1)) horizontal = -1;
-    if (((lbl_1_bss_9F8.repeat >> 2) & 1) || ((lbl_1_bss_9F8.held >> 2) & 1)) horizontal++;
+    if ((((*(struct Input34 *)&lbl_1_bss_9F8).repeat >> 1) & 1) || (((*(struct Input34 *)&lbl_1_bss_9F8).held >> 1) & 1)) direction = 1;
+    if (((*(struct Input34 *)&lbl_1_bss_9F8).repeat & 1) || ((*(struct Input34 *)&lbl_1_bss_9F8).held & 1)) direction--;
+    if ((((*(struct Input34 *)&lbl_1_bss_9F8).repeat >> 3) & 1) || (((*(struct Input34 *)&lbl_1_bss_9F8).held >> 3) & 1)) horizontal = -1;
+    if ((((*(struct Input34 *)&lbl_1_bss_9F8).repeat >> 2) & 1) || (((*(struct Input34 *)&lbl_1_bss_9F8).held >> 2) & 1)) horizontal++;
     sel.value->unk_4 = wrap34(sel.value->unk_4 + direction, 0, 7);
     while ((*flags34(sel.value->unk_4) & 1) || !available34(*flags34(sel.value->unk_4))) {
         if (!direction) direction = 1;
@@ -3060,7 +3114,7 @@ u32 fn_14_34FC(void) {
     }
     lbl_14_bss_110.unk_0 = mode34(flagbase[sel.value->unk_4 * 2]);
     if (sel.value->unk_4 != old) fn_1_A2D84(0xA9010000);
-    if ((lbl_1_bss_9F8.pressed >> 8) & 1) {
+    if (((*(struct Input34 *)&lbl_1_bss_9F8).pressed >> 8) & 1) {
         parent = sel.value->unk_4;
         if (flagbase[parent * 2] & 4) {
             result = 1;
@@ -3069,7 +3123,7 @@ u32 fn_14_34FC(void) {
             flagbase[parent * 2] |= 0x40;
             while (*flags34(parent) & 2) parent--;
             flagbase[parent * 2] |= 1;
-            lbl_14_bss_110.unk_48 = lbl_801A66A0;
+            lbl_14_bss_110.unk_48 = (*(u32 *)&lbl_801A66A0);
             lbl_14_bss_110.unk_0 &= ~0x60000000;
             if (flagbase[sel.value->unk_4 * 2] & 8) {
                 lbl_14_bss_110.unk_0 |= 0x40000000;
@@ -3258,10 +3312,6 @@ typedef struct {
     s16 unk_0;
 } Rp_arg;
 
-extern Rp_data lbl_1_data_1E5C0;
-extern u32 lbl_801A66A0;
-extern u32 lbl_14_bss_8344;
-
 extern void fn_80008BEC(void *, int, u32);
 extern void fn_80008BA8(void *, void *, u32);
 extern void fn_8006F038(Rp_v3 *, Rp_v3 *, s16);
@@ -3327,7 +3377,7 @@ s32 fn_14_3AE8(Rp_arg *arg0) {
     fn_8006F038(va, vb, 0);
     lbl_8006DCDC();
 
-    dt = &lbl_1_data_1E5C0;
+    dt = &(*(Rp_data *)&lbl_1_data_1E5C0);
     sc = 0.699999988079071f;
     loc = *dt;
     m0 = dt->unk_C * sc;
@@ -3339,7 +3389,7 @@ s32 fn_14_3AE8(Rp_arg *arg0) {
     fn_1_151BDC((u8 *)&lbl_14_bss_180);
     lbl_8006DCA4();
     mathutil_mtxA_rotate_x(0x2000);
-    ang = lbl_801A66A0 % 360;
+    ang = (*(u32 *)&lbl_801A66A0) % 360;
     mathutil_mtxA_rotate_y((s32)(182.04444885253906f * (f32)ang));
 
     zc = 0;
@@ -3481,8 +3531,7 @@ typedef struct {
     u32 unk_2C;
     u32 unk_30;
 } Obj_14_3DF0_data;
-extern Obj_14_3DF0_rodata lbl_14_rodata_0;
-extern Obj_14_3DF0_data lbl_1_data_1E5C0;
+
 extern s16 fn_1_12C710(s32);
 extern s16 fn_1_12CB04(s16);
 extern f32 lbl_8006D188(u32);
@@ -3490,7 +3539,6 @@ extern void fn_8006F038(void *, void *, s16);
 extern void lbl_8006DCDC(void);
 extern void fn_1_F7870(void *);
 extern u32 lbl_8006DCA4(void);
-extern void fn_1_9250C(void *);
 
 #pragma opt_loop_invariants off
 typedef struct lbl_14_bss_92C4_t {
@@ -3516,7 +3564,7 @@ static void fzgx_bss_layout(void) {
 #pragma section code_type ".text"
 
 s32 fn_14_3DF0(Arg_fn_14_3DF0 *arg0) {
-    const Obj_14_3DF0_rodata *R = &lbl_14_rodata_0;
+    const Obj_14_3DF0_rodata *R = &(*(Obj_14_3DF0_rodata *)&lbl_14_rodata_0);
     Obj_14_bss_8350_Target *obj;
     Obj_14_bss_8350_Target *o;
     Obj_14_3DF0_data loc;
@@ -3544,12 +3592,12 @@ s32 fn_14_3DF0(Arg_fn_14_3DF0 *arg0) {
     fn_8006F038(&fzgx_obj_lbl_14_bss_92C4.unk_4, &fzgx_obj_lbl_14_bss_92C4.unk_10, 0);
     lbl_8006DCDC();
     sc = (0.699999988f);
-    loc = lbl_1_data_1E5C0;
-    p = *(f32 *)&lbl_1_data_1E5C0.unk_C * sc;
-    q = *(f32 *)&lbl_1_data_1E5C0.unk_10 * sc;
+    loc = (*(Obj_14_3DF0_data *)&lbl_1_data_1E5C0);
+    p = *(f32 *)&(*(Obj_14_3DF0_data *)&lbl_1_data_1E5C0).unk_C * sc;
+    q = *(f32 *)&(*(Obj_14_3DF0_data *)&lbl_1_data_1E5C0).unk_10 * sc;
     *(f32 *)&loc.unk_C = p - q;
     *(f32 *)&loc.unk_10 = p + q;
-    loc.unk_14 = lbl_1_data_1E5C0.unk_14;
+    loc.unk_14 = (*(Obj_14_3DF0_data *)&lbl_1_data_1E5C0).unk_14;
     fn_1_F7870(&loc);
     lbl_8006DCA4();
     z = (0.0f);
@@ -3606,8 +3654,9 @@ typedef struct fn_14_4008_View {
     u32 unk_18[7];
 } fn_14_4008_View;
 
-extern fn_14_4008_View lbl_1_data_1E5C0;
-extern u32 lbl_801A66A0;
+
+
+
 
 extern u32 fn_14_DC2C(void);
 extern void fn_80008BEC(void *, int, u32);
@@ -3717,7 +3766,7 @@ s32 fn_14_4008(void) {
     fn_8006F038((void *)&lbl_14_bss_92C4.unk_4, (void *)&lbl_14_bss_92C4.unk_10, 0);
     lbl_8006DCDC();
 
-    camera.value = &lbl_1_data_1E5C0;
+    camera.value = &(*(fn_14_4008_View *)&lbl_1_data_1E5C0);
     scale = 0.7f;
     x = camera.value->unk_C * scale;
     y = camera.value->unk_10 * scale;
@@ -3729,7 +3778,7 @@ s32 fn_14_4008(void) {
 
     lbl_8006DCA4();
     mathutil_mtxA_rotate_x(0x2000);
-    mathutil_mtxA_rotate_y((s16)(182.04445f * (f32)(lbl_801A66A0 % 360)));
+    mathutil_mtxA_rotate_y((s16)(182.04445f * (f32)((*(u32 *)&lbl_801A66A0) % 360)));
 
     sel0 = 0;
     sel1 = 0;
@@ -3926,12 +3975,6 @@ typedef struct {
     u32 unk_30;
 } Data_1_data_1E5C0;
 
-extern u32 lbl_14_bss_110[20];
-extern u32 lbl_14_bss_8350;
-extern u8 lbl_14_bss_8354[0xEA0];
-extern Bss_14_bss_92C4 lbl_14_bss_92C4;
-extern Data_1_data_1E5C0 lbl_1_data_1E5C0;
-
 extern s16 fn_1_12C710(s32);
 extern s32 fn_1_12CB04(s16);
 extern f32 lbl_8006D188(u32);
@@ -3939,7 +3982,6 @@ extern void fn_8006F038(void *, void *, s16);
 extern void lbl_8006DCDC(void);
 extern u32 lbl_8006DCA4(void);
 extern void fn_1_F7870(void *);
-extern void fn_1_9250C(void *);
 
 static inline f32 fn_14_4460_operand(f32 right, f32 left) { return left * right; }
 static inline f32 fn_14_4460_array_read(s32 index, f32 *array) { return array[index]; }
@@ -3948,13 +3990,13 @@ static inline Bss_14_bss_8350_Target *fn_14_4460_find(void) {
     u32 flags;
     s16 i;
     s16 count = 0;
-    s16 sel = ((s16 *)&lbl_14_bss_110)[2];
+    s16 sel = ((s16 *)&(*(u32 (*)[20])&lbl_14_bss_110))[2];
     Bss_14_bss_8350_Target *target = (Bss_14_bss_8350_Target *)&lbl_14_bss_8354;
     for (i = count; (u32)i < 8; i++) {
-        flags = ((u32 *)&lbl_14_bss_110[i * 2])[3];
+        flags = ((u32 *)&(*(u32 (*)[20])&lbl_14_bss_110)[i * 2])[3];
         if (flags & 0x10) {
             if ((flags & 0x40) || (i == sel)) {
-                return (Bss_14_bss_8350_Target *)(lbl_14_bss_8350 + count * 0x4E0);
+                return (Bss_14_bss_8350_Target *)((*(u32 *)&lbl_14_bss_8350) + count * 0x4E0);
             }
             count++;
         }
@@ -3983,25 +4025,25 @@ s32 fn_14_4460(void) {
     id = fn_1_12C710(target.value->unk_88);
 
     neg1 = -lbl_8006D188(0xEEE);
-    lbl_14_bss_92C4.unk_4 = (f32)((0.55000000000000004) * neg1);
-    lbl_14_bss_92C4.unk_8 = (0.829999983f);
+    (*(Bss_14_bss_92C4 *)&lbl_14_bss_92C4).unk_4 = (f32)((0.55000000000000004) * neg1);
+    (*(Bss_14_bss_92C4 *)&lbl_14_bss_92C4).unk_8 = (0.829999983f);
     neg2 = -lbl_8006D188(0x4EEE);
-    lbl_14_bss_92C4.unk_C = (f32)((0.55000000000000004) * neg2);
-    lbl_14_bss_92C4.unk_10 = (0.0f);
+    (*(Bss_14_bss_92C4 *)&lbl_14_bss_92C4).unk_C = (f32)((0.55000000000000004) * neg2);
+    (*(Bss_14_bss_92C4 *)&lbl_14_bss_92C4).unk_10 = (0.0f);
     if (id == 10) {
-        lbl_14_bss_92C4.unk_10 = (0.0666666701f);
+        (*(Bss_14_bss_92C4 *)&lbl_14_bss_92C4).unk_10 = (0.0666666701f);
     }
-    lbl_14_bss_92C4.unk_14 = (0.829999983f);
-    lbl_14_bss_92C4.unk_18 = (0.0f);
-    fn_8006F038(&lbl_14_bss_92C4.unk_4, &lbl_14_bss_92C4.unk_10, 0);
+    (*(Bss_14_bss_92C4 *)&lbl_14_bss_92C4).unk_14 = (0.829999983f);
+    (*(Bss_14_bss_92C4 *)&lbl_14_bss_92C4).unk_18 = (0.0f);
+    fn_8006F038(&(*(Bss_14_bss_92C4 *)&lbl_14_bss_92C4).unk_4, &(*(Bss_14_bss_92C4 *)&lbl_14_bss_92C4).unk_10, 0);
     lbl_8006DCDC();
 
-    a = fn_14_4460_operand((0.699999988f), fn_14_4460_array_read(0, lbl_1_data_1E5C0.v.f));
-    b = fn_14_4460_operand(((0.699999988f)), (fn_14_4460_array_read(1, lbl_1_data_1E5C0.v.f)));
-    local = lbl_1_data_1E5C0;
+    a = fn_14_4460_operand((0.699999988f), fn_14_4460_array_read(0, (*(Data_1_data_1E5C0 *)&lbl_1_data_1E5C0).v.f));
+    b = fn_14_4460_operand(((0.699999988f)), (fn_14_4460_array_read(1, (*(Data_1_data_1E5C0 *)&lbl_1_data_1E5C0).v.f)));
+    local = (*(Data_1_data_1E5C0 *)&lbl_1_data_1E5C0);
     local.v.f[0] = a - b;
     local.v.f[1] = a + b;
-    local.v.f[2] = fn_14_4460_array_read(2, lbl_1_data_1E5C0.v.f);
+    local.v.f[2] = fn_14_4460_array_read(2, (*(Data_1_data_1E5C0 *)&lbl_1_data_1E5C0).v.f);
     fn_1_F7870(&local);
     lbl_8006DCA4();
 
@@ -4042,9 +4084,9 @@ s32 fn_14_4460(void) {
 
 typedef struct {
     u8 r, g, b, a;
-} PPColor;
+} fn_14_46D4_PPColor;
 
-extern const FontDrawPacket lbl_1_rodata_26F8;
+
 
 #pragma section code_type ".fzgxpool"
 static const u32 fzgx_pool_table_0[24] = {
@@ -4073,85 +4115,85 @@ __declspec(section ".fzgxpool") u32 fzgx_pool_68(void) { return fzgx_pool_table_
 #pragma section code_type ".text"
 void fn_14_46D4(s16 x, s16 y, s16 z, s32 mode) {
     FontDrawPacket pkt;
-    PPColor white = {255, 255, 255, 255};
-    PPColor magenta = {255, 0, 255, 255};
+    fn_14_46D4_PPColor white = {255, 255, 255, 255};
+    fn_14_46D4_PPColor magenta = {255, 0, 255, 255};
 
     if (mode == 0) {
-        pkt = lbl_1_rodata_26F8;
+        pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
         pkt.flags = 0x5;
         pkt.x = x - 52;
         pkt.y = y - 43;
         pkt.z = z;
         pkt.image = 0x8403;
-        *(PPColor *)pkt.color = magenta;
+        *(fn_14_46D4_PPColor *)pkt.color = magenta;
         fn_1_4F734(&pkt);
-        pkt = lbl_1_rodata_26F8;
+        pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
         pkt.flags = 0x5;
         pkt.x = x - 52;
         pkt.y = y - 43;
         pkt.z = z - 1;
         pkt.image = 0x8402;
-        *(PPColor *)pkt.color = white;
+        *(fn_14_46D4_PPColor *)pkt.color = white;
         fn_1_4F734(&pkt);
         pkt.flags = 0x80007;
         pkt.x = x + 52;
         pkt.y = y - 43;
         pkt.z = z;
         pkt.image = 0x8403;
-        *(PPColor *)pkt.color = magenta;
+        *(fn_14_46D4_PPColor *)pkt.color = magenta;
         fn_1_4F734(&pkt);
-        pkt = lbl_1_rodata_26F8;
+        pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
         pkt.flags = 0x80007;
         pkt.x = x + 52;
         pkt.y = y - 43;
         pkt.z = z - 1;
         pkt.image = 0x8402;
-        *(PPColor *)pkt.color = white;
+        *(fn_14_46D4_PPColor *)pkt.color = white;
         fn_1_4F734(&pkt);
-        pkt = lbl_1_rodata_26F8;
+        pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
         pkt.flags = 0x10000D;
         pkt.x = x - 52;
         pkt.y = y + 43;
         pkt.z = z;
         pkt.image = 0x8403;
-        *(PPColor *)pkt.color = magenta;
+        *(fn_14_46D4_PPColor *)pkt.color = magenta;
         fn_1_4F734(&pkt);
-        pkt = lbl_1_rodata_26F8;
+        pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
         pkt.flags = 0x10000D;
         pkt.x = x - 52;
         pkt.y = y + 43;
         pkt.z = z - 1;
         pkt.image = 0x8402;
-        *(PPColor *)pkt.color = white;
+        *(fn_14_46D4_PPColor *)pkt.color = white;
         fn_1_4F734(&pkt);
-        pkt = lbl_1_rodata_26F8;
+        pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
         pkt.flags = 0x18000F;
         pkt.x = x + 52;
         pkt.y = y + 43;
         pkt.z = z;
         pkt.image = 0x8403;
-        *(PPColor *)pkt.color = magenta;
+        *(fn_14_46D4_PPColor *)pkt.color = magenta;
         fn_1_4F734(&pkt);
-        pkt = lbl_1_rodata_26F8;
+        pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
         pkt.flags = 0x18000F;
         pkt.x = x + 52;
         pkt.y = y + 43;
         pkt.z = z - 1;
         pkt.image = 0x8402;
-        *(PPColor *)pkt.color = white;
+        *(fn_14_46D4_PPColor *)pkt.color = white;
         fn_1_4F734(&pkt);
         return;
     }
-        pkt = lbl_1_rodata_26F8;
+        pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
         pkt.image = 0x8403;
         fn_1_51678(&pkt, pkt.image, 0, 0, 24, 20);
         pkt.flags = 0x5;
         pkt.x = x - 111;
         pkt.y = y - 27;
         pkt.z = z;
-        *(PPColor *)pkt.color = magenta;
+        *(fn_14_46D4_PPColor *)pkt.color = magenta;
         fn_1_4F734(&pkt);
-        pkt = lbl_1_rodata_26F8;
+        pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
         pkt.image = 0x8403;
         fn_1_51678(&pkt, pkt.image, 24, 0, 8, 20);
         pkt.flags = 0x5;
@@ -4159,9 +4201,9 @@ void fn_14_46D4(s16 x, s16 y, s16 z, s32 mode) {
         pkt.y = y - 27;
         pkt.z = z;
         pkt.scale_x *= 9.625f;
-        *(PPColor *)pkt.color = magenta;
+        *(fn_14_46D4_PPColor *)pkt.color = magenta;
         fn_1_4F734(&pkt);
-        pkt = lbl_1_rodata_26F8;
+        pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
         pkt.image = 0x8402;
         fn_1_51678(&pkt, pkt.image, 24, 0, 8, 20);
         pkt.flags = 0x5;
@@ -4169,27 +4211,27 @@ void fn_14_46D4(s16 x, s16 y, s16 z, s32 mode) {
         pkt.y = y - 27;
         pkt.z = z - 1;
         pkt.scale_x *= 9.625f;
-        *(PPColor *)pkt.color = white;
+        *(fn_14_46D4_PPColor *)pkt.color = white;
         fn_1_4F734(&pkt);
-        pkt = lbl_1_rodata_26F8;
+        pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
         pkt.image = 0x8402;
         fn_1_51678(&pkt, pkt.image, 0, 0, 24, 20);
         pkt.flags = 0x5;
         pkt.x = x - 111;
         pkt.y = y - 27;
         pkt.z = z - 1;
-        *(PPColor *)pkt.color = white;
+        *(fn_14_46D4_PPColor *)pkt.color = white;
         fn_1_4F734(&pkt);
-        pkt = lbl_1_rodata_26F8;
+        pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
         pkt.image = 0x8403;
         fn_1_51678(&pkt, pkt.image, 0, 0, 24, 20);
         pkt.flags = 0x80007;
         pkt.x = x + 111;
         pkt.y = y - 27;
         pkt.z = z;
-        *(PPColor *)pkt.color = magenta;
+        *(fn_14_46D4_PPColor *)pkt.color = magenta;
         fn_1_4F734(&pkt);
-        pkt = lbl_1_rodata_26F8;
+        pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
         pkt.image = 0x8403;
         fn_1_51678(&pkt, pkt.image, 24, 0, 8, 20);
         pkt.flags = 0x80007;
@@ -4197,9 +4239,9 @@ void fn_14_46D4(s16 x, s16 y, s16 z, s32 mode) {
         pkt.y = y - 27;
         pkt.z = z;
         pkt.scale_x *= 9.625f;
-        *(PPColor *)pkt.color = magenta;
+        *(fn_14_46D4_PPColor *)pkt.color = magenta;
         fn_1_4F734(&pkt);
-        pkt = lbl_1_rodata_26F8;
+        pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
         pkt.image = 0x8402;
         fn_1_51678(&pkt, pkt.image, 24, 0, 8, 20);
         pkt.flags = 0x80007;
@@ -4207,27 +4249,27 @@ void fn_14_46D4(s16 x, s16 y, s16 z, s32 mode) {
         pkt.y = y - 27;
         pkt.z = z - 1;
         pkt.scale_x *= 9.625f;
-        *(PPColor *)pkt.color = white;
+        *(fn_14_46D4_PPColor *)pkt.color = white;
         fn_1_4F734(&pkt);
-        pkt = lbl_1_rodata_26F8;
+        pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
         pkt.image = 0x8402;
         fn_1_51678(&pkt, pkt.image, 0, 0, 24, 20);
         pkt.flags = 0x80007;
         pkt.x = x + 111;
         pkt.y = y - 27;
         pkt.z = z - 1;
-        *(PPColor *)pkt.color = white;
+        *(fn_14_46D4_PPColor *)pkt.color = white;
         fn_1_4F734(&pkt);
-        pkt = lbl_1_rodata_26F8;
+        pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
         pkt.image = 0x8403;
         fn_1_51678(&pkt, pkt.image, 0, 0, 24, 20);
         pkt.flags = 0x10000D;
         pkt.x = x - 111;
         pkt.y = y + 27;
         pkt.z = z;
-        *(PPColor *)pkt.color = magenta;
+        *(fn_14_46D4_PPColor *)pkt.color = magenta;
         fn_1_4F734(&pkt);
-        pkt = lbl_1_rodata_26F8;
+        pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
         pkt.image = 0x8403;
         fn_1_51678(&pkt, pkt.image, 24, 0, 8, 20);
         pkt.flags = 0x10000D;
@@ -4235,9 +4277,9 @@ void fn_14_46D4(s16 x, s16 y, s16 z, s32 mode) {
         pkt.y = y + 27;
         pkt.z = z;
         pkt.scale_x *= 9.625f;
-        *(PPColor *)pkt.color = magenta;
+        *(fn_14_46D4_PPColor *)pkt.color = magenta;
         fn_1_4F734(&pkt);
-        pkt = lbl_1_rodata_26F8;
+        pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
         pkt.image = 0x8402;
         fn_1_51678(&pkt, pkt.image, 24, 0, 8, 20);
         pkt.flags = 0x10000D;
@@ -4245,27 +4287,27 @@ void fn_14_46D4(s16 x, s16 y, s16 z, s32 mode) {
         pkt.y = y + 27;
         pkt.z = z - 1;
         pkt.scale_x *= 9.625f;
-        *(PPColor *)pkt.color = white;
+        *(fn_14_46D4_PPColor *)pkt.color = white;
         fn_1_4F734(&pkt);
-        pkt = lbl_1_rodata_26F8;
+        pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
         pkt.image = 0x8402;
         fn_1_51678(&pkt, pkt.image, 0, 0, 24, 20);
         pkt.flags = 0x10000D;
         pkt.x = x - 111;
         pkt.y = y + 27;
         pkt.z = z - 1;
-        *(PPColor *)pkt.color = white;
+        *(fn_14_46D4_PPColor *)pkt.color = white;
         fn_1_4F734(&pkt);
-        pkt = lbl_1_rodata_26F8;
+        pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
         pkt.image = 0x8403;
         fn_1_51678(&pkt, pkt.image, 0, 0, 24, 20);
         pkt.flags = 0x18000F;
         pkt.x = x + 111;
         pkt.y = y + 27;
         pkt.z = z;
-        *(PPColor *)pkt.color = magenta;
+        *(fn_14_46D4_PPColor *)pkt.color = magenta;
         fn_1_4F734(&pkt);
-        pkt = lbl_1_rodata_26F8;
+        pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
         pkt.image = 0x8403;
         fn_1_51678(&pkt, pkt.image, 24, 0, 8, 20);
         pkt.flags = 0x18000F;
@@ -4273,9 +4315,9 @@ void fn_14_46D4(s16 x, s16 y, s16 z, s32 mode) {
         pkt.y = y + 27;
         pkt.z = z;
         pkt.scale_x *= 9.625f;
-        *(PPColor *)pkt.color = magenta;
+        *(fn_14_46D4_PPColor *)pkt.color = magenta;
         fn_1_4F734(&pkt);
-        pkt = lbl_1_rodata_26F8;
+        pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
         pkt.image = 0x8402;
         fn_1_51678(&pkt, pkt.image, 24, 0, 8, 20);
         pkt.flags = 0x18000F;
@@ -4283,16 +4325,16 @@ void fn_14_46D4(s16 x, s16 y, s16 z, s32 mode) {
         pkt.y = y + 27;
         pkt.z = z - 1;
         pkt.scale_x *= 9.625f;
-        *(PPColor *)pkt.color = white;
+        *(fn_14_46D4_PPColor *)pkt.color = white;
         fn_1_4F734(&pkt);
-        pkt = lbl_1_rodata_26F8;
+        pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
         pkt.image = 0x8402;
         fn_1_51678(&pkt, pkt.image, 0, 0, 24, 20);
         pkt.flags = 0x18000F;
         pkt.x = x + 111;
         pkt.y = y + 27;
         pkt.z = z - 1;
-        *(PPColor *)pkt.color = white;
+        *(fn_14_46D4_PPColor *)pkt.color = white;
         fn_1_4F734(&pkt);
 }
 /* fzgx:end fn_14_46D4 */
@@ -4468,18 +4510,13 @@ const f32 fzgx_pool_lbl_14_rodata_118__fzgx_offset_AC = 0.416666657f;
 const f32 fzgx_pool_lbl_14_rodata_118__fzgx_offset_B0 = 0.833333313f;
 const f32 fzgx_pool_lbl_14_rodata_118__fzgx_offset_B4 = 0.486274511f;
 const u8 fzgx_pool_lbl_14_rodata_118__fzgx_offset_B8[404] = {0xFF,0xFF,0xFF,0xFF,0x3F,0x3F,0x3F,0x3F,0x43,0xF0,0x00,0x00,0x42,0x78,0x00,0x00,0x42,0x48,0x00,0x00,0x40,0xA0,0x00,0x00,0x40,0xE0,0x00,0x00,0x00,0xFF,0x00,0x00,0xFF,0xFF,0xFF,0x00,0x3E,0xF5,0xF5,0xF7,0xFF,0x00,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0x43,0x9D,0x00,0x00,0x42,0xA8,0x00,0x00,0x43,0xA0,0x80,0x00,0x43,0xB2,0x00,0x00,0x3F,0x40,0x00,0x00,0x42,0x4C,0x00,0x00,0x3E,0x99,0x99,0x9A,0x42,0xB0,0x00,0x00,0x40,0x00,0x00,0x00,0xFF,0xFF,0x00,0x00,0xFF,0x00,0x00,0x00,0xFF,0xFF,0x00,0x00,0xFF,0x00,0x00,0x00,0xFF,0xFF,0xFF,0x00,0xFF,0xFF,0x00,0x00,0xFF,0x00,0x00,0x00,0xFF,0xFF,0xFF,0x00,0xFF,0xFF,0x00,0x00,0xFF,0x00,0x00,0x00,0xFF,0xFF,0xFF,0x00,0xFF,0xFF,0x00,0x00,0xFF,0xFF,0xFF,0x00,0x3F,0x6B,0xEB,0xEC,0x3E,0xEA,0xEA,0xEB,0xFF,0x00,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0x43,0xF6,0x00,0x00,0x43,0xA6,0x00,0x00,0x42,0x20,0x00,0x00,0x43,0xA1,0x00,0x00,0x42,0x24,0x00,0x00,0x43,0x6E,0x00,0x00,0x43,0x1C,0x00,0x00,0x3F,0xA5,0x25,0x25,0x3F,0x54,0xD4,0xD5,0x43,0x70,0x00,0x00,0x3C,0x23,0xD7,0x0A,0x41,0x00,0x04,0x19,0x42,0xC8,0x00,0x00,0x3C,0xA3,0xD7,0x0A,0x38,0xD1,0xB7,0x17,0x41,0x80,0x00,0x00,0x41,0xC0,0x00,0x00,0x42,0x92,0x00,0x00,0x43,0xB8,0x00,0x00,0x43,0x41,0x00,0x00,0x43,0x78,0x00,0x00,0x42,0x10,0x00,0x00,0x43,0xBC,0x00,0x00,0x43,0x53,0x00,0x00,0x44,0x18,0x00,0x00,0x43,0x80,0x80,0x00,0x43,0x30,0x00,0x00,0x43,0x6F,0x00,0x00,0x00,0x00,0xFA,0x00,0xFA,0xFA,0xFA,0xFF,0x00,0x00,0xFA,0x00,0x47,0x80,0x00,0x00,0x42,0xF0,0x00,0x00,0x3E,0xCC,0xCC,0xCD,0x41,0x10,0x00,0x00,0x43,0xC9,0x00,0x00,0x44,0x09,0x00,0x00,0x43,0x06,0x00,0x00,0x44,0x12,0x80,0x00,0x43,0xE0,0x80,0x00,0x43,0xA4,0x80,0x00,0x41,0x63,0x5C,0x29,0x40,0x4C,0xCC,0xCD,0x00,0x80,0x80,0xFF,0x3C,0xA3,0xD7,0x0A,0xC1,0x0C,0xCC,0xCD,0xC2,0x70,0x00,0x00,0x3D,0x75,0xC2,0x8F,0x43,0xBB,0x80,0x00,0x3E,0x4C,0xCC,0xCD,0x3F,0x4C,0xCC,0xCD,0x43,0xB9,0x00,0x00,0x43,0xB3,0x00,0x00,0x43,0xB4,0x00,0x00,0x3D,0xCC,0xCC,0xCD,0x42,0x34,0x00,0x00,0x3A,0x83,0x12,0x6F,0x3E,0x6B,0x85,0x1F,0xC1,0x0C,0xCC,0xCD,0xC2,0x70,0x00,0x00,0x3C,0xF5,0xC2,0x8F,0x3D,0xB8,0x51,0xEC,0x43,0xBF,0x80,0x00};
-extern struct fn_14_58C4_lbl_801A66B4 lbl_801A66B4;
-extern u32 fn_14_DC6C(u32, u32);
-extern u32 lbl_1_data_21078;
-extern u32 lbl_1_data_212A8;
-extern void fn_1_14E9E4(int, void *);
+
 extern void fn_1_49410(void);
 extern void fn_1_49514(u32 *);
 extern void fn_1_4955C(f32, f32);
 extern void fn_1_495B0(u32);
 extern void fn_1_495C8(u8);
 extern void fn_1_495FC(void);
-extern void fn_1_4962C(void);
 extern void fn_1_4965C(u8);
 extern void fn_1_496FC(f32, f32);
 extern void fn_1_4AE0C(const char *, ...);
@@ -5377,7 +5414,7 @@ void fn_14_58C4(u32 arg0, u32 arg1) {
         loc_10 = fzgx_pool_table22[0];
         fn_1_49514(&loc_10);
         fn_1_4AE0C((const char *)fzgx_pool_data_lbl_14_data_300C,
-                   fn_1_14EA74(*(s16 *)v26, (char *)&loc_3C, (s16)lbl_801A66B4.unk_0));
+                   fn_1_14EA74(*(s16 *)v26, (char *)&loc_3C, (s16)(*(struct fn_14_58C4_lbl_801A66B4 *)&lbl_801A66B4).unk_0));
         fn_1_496FC((f32)(v1 + 326), (f32)(s32)v27);
         fn_1_4955C(fzgx_pool_lbl_14_rodata_118__fzgx_offset_B4, fzgx_pool_lbl_14_rodata_118__fzgx_offset_A4);
         fn_1_495C8(10);
@@ -5397,7 +5434,7 @@ void fn_14_58C4(u32 arg0, u32 arg1) {
         fn_1_495C8(8);
         loc_8 = fzgx_pool_table24[0];
         fn_1_49514(&loc_8);
-        switch ((s32)lbl_801A66B4.unk_0) {
+        switch ((s32)(*(struct fn_14_58C4_lbl_801A66B4 *)&lbl_801A66B4).unk_0) {
         case 5:
             t65 = fn_1_12C930(((Obj_14_bss_110 *)((u8 *)&lbl_14_bss_110 + tmp_cse1))->unk_8);
             v37 = (s16)t65 << 2;
@@ -5416,9 +5453,6 @@ void fn_14_58C4(u32 arg0, u32 arg1) {
 /* fzgx:end fn_14_58C4 */
 
 /* fzgx:begin fn_14_600C */
-extern struct fn_14_600C_lbl_14_bss_92E8 lbl_14_bss_92E8;
-extern u32 fn_80074188(u32, u32, u32, u32);
-
 struct fn_14_600C_lbl_14_bss_92E8 {
     s16 unk_0;
     s16 unk_2;
@@ -5427,7 +5461,7 @@ struct fn_14_600C_lbl_14_bss_92E8 {
 };
 
 void fn_14_600C(void) {
-    fn_80074188(lbl_14_bss_92E8.unk_0, lbl_14_bss_92E8.unk_2, lbl_14_bss_92E8.unk_4, lbl_14_bss_92E8.unk_6);
+    fn_80074188((*(struct fn_14_600C_lbl_14_bss_92E8 *)&lbl_14_bss_92E8).unk_0, (*(struct fn_14_600C_lbl_14_bss_92E8 *)&lbl_14_bss_92E8).unk_2, (*(struct fn_14_600C_lbl_14_bss_92E8 *)&lbl_14_bss_92E8).unk_4, (*(struct fn_14_600C_lbl_14_bss_92E8 *)&lbl_14_bss_92E8).unk_6);
 }
 /* fzgx:end fn_14_600C */
 
@@ -5544,9 +5578,9 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime17(void) {
 
 typedef struct {
     u8 r, g, b, a;
-} PPColor;
+} fn_14_6044_PPColor;
 
-extern const FontDrawPacket lbl_1_rodata_26F8;
+
 extern u8 *lbl_14_bss_8348;
 extern u8 *lbl_14_bss_834C;
 extern void fn_14_600C(void);
@@ -5592,7 +5626,7 @@ void fn_14_6044(s16 arg0, s16 arg1) {
     lbl_14_bss_92E8.unk_2 = (f32)(arg1 + 16) * scale;
     lbl_14_bss_92E8.unk_4 = 62;
     lbl_14_bss_92E8.unk_6 = 62.0f * scale;
-    spr = lbl_1_rodata_26F8;
+    spr = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
     spr.flags = 10;
     spr.y = arg1 + 0x31;
     for (i = 0; (u32)i < 8; i++) {
@@ -5605,12 +5639,12 @@ void fn_14_6044(s16 arg0, s16 arg1) {
         }
         flags = *(u32 *)((u8 *)&lbl_14_bss_110 + i * 8 + 0xc);
         {
-            PPColor white = {255, 255, 255, 255};
-            *(PPColor *)spr.color = white;
+            fn_14_6044_PPColor white = {255, 255, 255, 255};
+            *(fn_14_6044_PPColor *)spr.color = white;
         }
         if ((flags & 1) || !fn_14_6044_visible(flags)) {
-            PPColor gray = {63, 63, 63, 63};
-            *(PPColor *)spr.color = gray;
+            fn_14_6044_PPColor gray = {63, 63, 63, 63};
+            *(fn_14_6044_PPColor *)spr.color = gray;
         }
         if (*(u32 *)((u8 *)&lbl_14_bss_110 + i * 8 + 0xc) & 8) {
             savedY = spr.y;
@@ -5643,9 +5677,6 @@ void fn_14_6044(s16 arg0, s16 arg1) {
 /* fzgx:end fn_14_6044 */
 
 /* fzgx:begin fn_14_645C */
-extern struct fn_14_645C_lbl_14_bss_92F0 lbl_14_bss_92F0;
-extern u32 fn_80074188(u32, u32, u32, u32);
-
 struct fn_14_645C_lbl_14_bss_92F0 {
     s16 unk_0;
     s16 unk_2;
@@ -5654,11 +5685,13 @@ struct fn_14_645C_lbl_14_bss_92F0 {
 };
 
 void fn_14_645C(void) {
-    fn_80074188(lbl_14_bss_92F0.unk_0, lbl_14_bss_92F0.unk_2, lbl_14_bss_92F0.unk_4, lbl_14_bss_92F0.unk_6);
+    fn_80074188((*(struct fn_14_645C_lbl_14_bss_92F0 *)&lbl_14_bss_92F0).unk_0, (*(struct fn_14_645C_lbl_14_bss_92F0 *)&lbl_14_bss_92F0).unk_2, (*(struct fn_14_645C_lbl_14_bss_92F0 *)&lbl_14_bss_92F0).unk_4, (*(struct fn_14_645C_lbl_14_bss_92F0 *)&lbl_14_bss_92F0).unk_6);
 }
 /* fzgx:end fn_14_645C */
 
-/* fzgx:begin fn_14_6494 */
+/* fzgx:begin fn_14_6494 noprologue */
+#include "types.h"
+
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
     volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
@@ -5932,25 +5965,15 @@ typedef struct fn_14_6758_Info {
 typedef struct fn_14_6758_Color { u8 r, g, b, a; } fn_14_6758_Color;
 typedef struct fn_14_6758_Disp { u8 pad_0[0xB4]; } fn_14_6758_Disp;
 
-extern s32 lbl_801A66B4;
-extern FontDrawPacket lbl_1_rodata_26F8;
-extern u32 fn_14_DC6C(u32, u32);
-extern char *fn_1_14FEAC(s16, s16, s16, char *, s16);
-extern void fn_1_14E9E4(s16, fn_14_6758_Info *);
-extern char *fn_1_14EE00(s16, char *, s16);
-extern char *fn_1_13F72C(f32, s16, char *);
 extern void *fn_1_14F6F8(s16, s16, s16, fn_14_6758_Disp *);
 extern void fn_1_13EF64(s16, s16, s32, void *, u32, fn_14_6758_Color *, s32, f32);
 extern void fn_1_49410(void);
-extern void fn_1_494DC(s16);
 extern void fn_1_49514(fn_14_6758_Color *);
 extern void fn_1_4955C(f32, f32);
 extern void fn_1_49590(f32);
 extern void fn_1_495B0(u32);
 extern void fn_1_495C8(u8);
 extern void fn_1_495FC(void);
-extern void fn_1_4962C(void);
-extern void fn_1_49644(void);
 extern void fn_1_4965C(u8);
 extern void fn_1_496FC(f32, f32);
 
@@ -6040,7 +6063,6 @@ __declspec(section ".fzgxpool") void fzgx_pool_data(void) {
     fn_1_4AE0C("%dpt\n");
 }
 #pragma section RX ".text" ".text"
-
 
 #define COLOR(i) fzgx_pool_color_##i
 
@@ -6238,7 +6260,7 @@ void fn_14_6758(s16 x, s16 y) {
     col1 = COLOR(3);
     fn_1_49514(&col1);
     fn_1_4AE0C("%s", fn_1_14EE00(info1.unk_8, text, lbl_801A66B4));
-    pkt = lbl_1_rodata_26F8;
+    pkt = (*(FontDrawPacket *)&lbl_1_rodata_26F8);
     pkt.image = 0x9A0C;
     pkt.x = x + 0xE6;
     pkt.y = y + 0x3E;
@@ -6265,7 +6287,7 @@ void fn_14_6758(s16 x, s16 y) {
     col4 = COLOR(6);
     fn_1_49514(&col4);
     fn_1_4AE0C("%s", fn_1_14EE00(info1.unk_8, text, lbl_801A66B4));
-    pkt = lbl_1_rodata_26F8;
+    pkt = (*(FontDrawPacket *)&lbl_1_rodata_26F8);
     pkt.image = 0x9A0C;
     pkt.x = x + 0xE6;
     pkt.y = y + 0x4F;
@@ -6292,7 +6314,7 @@ void fn_14_6758(s16 x, s16 y) {
     col7 = COLOR(9);
     fn_1_49514(&col7);
     fn_1_4AE0C("%s", fn_1_14EE00(info1.unk_8, text, lbl_801A66B4));
-    pkt = lbl_1_rodata_26F8;
+    pkt = (*(FontDrawPacket *)&lbl_1_rodata_26F8);
     pkt.image = 0x9A0C;
     pkt.x = x + 0xE6;
     pkt.y = y + 0x60;
@@ -6383,16 +6405,9 @@ struct fn_14_7584_lbl_14_rodata_0 {
     f32 unk_2B0, unk_2B4, unk_2B8, unk_2BC, unk_2C0, unk_2C4, unk_2C8;
     f32 unk_2CC, unk_2D0, unk_2D4;
 };
-extern struct fn_14_7584_lbl_14_rodata_0 lbl_14_rodata_0;
-extern struct fn_14_7584_lbl_801A66B4 lbl_801A66B4;
-extern u32 lbl_801A66A0;
-extern u32 lbl_1_rodata_26F8;
-extern u32 fn_14_DC6C(u32, u32);
-extern u32 fn_14_58C4(u32,u32);
+
 extern void fn_14_6044(s16,s16);
 extern u32 fn_14_6494(void);
-extern u32 fn_14_6758(u32,u32);
-extern u8 lbl_14_bss_91F4[100];
 extern s32 fn_14_4008(void);
 extern void fn_1_50164(void*,f32,f32,f32,f32);
 extern void fn_1_49410(void);
@@ -6408,11 +6423,9 @@ extern void fn_1_495FC(void);
 extern void fn_1_49590(f32);
 extern void fn_1_49514(u32*);
 extern u32 fn_1_8D3F8(void*,void*,s32 (*)(void),u32);
-extern void fn_1_1380F0(void*);
 extern void fn_1_133DBC(void*);
 extern void fn_1_134AD4(void);
 extern void fn_1_13B328(u32,s32);
-extern void fn_1_13D02C(void);
 #define FN_14_7584_CLAMP01(v) ((v) < 0.0f ? 0.0f : ((v) > 1.0f ? 1.0f : (v)))
 struct fn_14_7584_Color { u32 value; };
 /* Prime the module's shared literal pool in retail order. */
@@ -6768,7 +6781,6 @@ static void fzgx_fn_14_7584_pool_2d0(volatile f32 *p) { *p = 176.0f; }
 static void fzgx_fn_14_7584_pool_2d4(volatile f32 *p) { *p = 239.0f; }
 #pragma section code_type ".text"
 
-
 static inline void fn_14_7584_points(s32 points) {
     if (__abs(points) > 1) fn_1_4AE0C((const char *)&lbl_14_data_3028, points);
     else fn_1_4AE0C((const char *)lbl_14_data_3030, points);
@@ -6792,7 +6804,7 @@ static inline void fn_14_7584_setup(s32 *edge, f32 *scale, f32 *barAlpha, f32 *t
     f32 v13;
     *scale = 1.0f;
     *edge = 470;
-    switch ((s32)lbl_801A66B4.unk_0) {
+    switch ((s32)(*(struct fn_14_7584_lbl_801A66B4 *)&lbl_801A66B4).unk_0) {
     case 0:
         initial = 470;
         scaleFactor = 0.8313725590705872f;
@@ -6832,7 +6844,7 @@ void fn_14_7584(void) {
     s32 edge;
     s32 expired;
     u32 flags;
-    p_lbl_14_rodata_0 = (struct fn_14_7584_lbl_14_rodata_0 *)&lbl_14_rodata_0;
+    p_lbl_14_rodata_0 = (struct fn_14_7584_lbl_14_rodata_0 *)&(*(struct fn_14_7584_lbl_14_rodata_0 *)&lbl_14_rodata_0);
     fn_14_7584_setup(&edge, &v0, &v11, &v1, 1.2901960611343384f);
     if (0.0f != v11) {
         loc_C4 = *(struct fn_14_7584_Copy88 *)&lbl_1_rodata_26F8;
@@ -6863,7 +6875,7 @@ void fn_14_7584(void) {
         fn_1_495A0(v1);
         fn_1_4955C((16.0f * v0) / 24.0f, 0.6666666865348816f);
         fn_1_496FC(320.0f, 240.0f);
-        fn_1_4AE0C((const char *)fn_14_DC6C(1,(s16)lbl_801A66B4.unk_0));
+        fn_1_4AE0C((const char *)fn_14_DC6C(1,(s16)(*(struct fn_14_7584_lbl_801A66B4 *)&lbl_801A66B4).unk_0));
     }
     fn_14_58C4(24,73);
     fn_14_6044(24,73);
@@ -6916,12 +6928,12 @@ void fn_14_7584(void) {
     expired = 1;
     if (flags & 0x40000000) {
         if (lbl_14_bss_110.unk_48 == -1) expired = 1;
-        else if (lbl_801A66A0 - lbl_14_bss_110.unk_48 > lbl_14_bss_110.unk_4C) {
+        else if ((*(u32 *)&lbl_801A66A0) - lbl_14_bss_110.unk_48 > lbl_14_bss_110.unk_4C) {
             lbl_14_bss_110.unk_48 = -1;
             expired = 1;
         } else expired = 0;
         if (!expired) {
-            if (lbl_801A66A0 % 3) *(struct fn_14_7584_Color *)&loc_14.a[14] = color3;
+            if ((*(u32 *)&lbl_801A66A0) % 3) *(struct fn_14_7584_Color *)&loc_14.a[14] = color3;
             fn_1_50164(&loc_14,238.0f,156.0f,8.0f,8.0f);
         } else goto secondary; /* retail falls through to the per-slot flag test */
     } else {
@@ -6949,7 +6961,7 @@ secondary:
     *(f32 *)((u8 *)&loc_C4+12) = 90.0f;
     loc_C4.a[12] = 10;
     fn_1_4F734((FontDrawPacket *)&loc_C4);
-    fn_1_1380F0((void *)fn_14_DC6C(0,(s16)lbl_801A66B4.unk_0));
+    fn_1_1380F0((void *)fn_14_DC6C(0,(s16)(*(struct fn_14_7584_lbl_801A66B4 *)&lbl_801A66B4).unk_0));
     fn_1_133DBC(0);
     fn_1_134AD4();
     fn_1_13B328(0x40800000,1);
@@ -6960,10 +6972,6 @@ secondary:
 /* fzgx:end fn_14_7584 */
 
 /* fzgx:begin fn_14_7E04 */
-extern struct fn_14_7E04_lbl_14_bss_20 lbl_14_bss_20;
-extern struct fn_14_7E04_lbl_14_bss_92C0 lbl_14_bss_92C0;
-extern struct fn_14_7E04_lbl_1_bss_6EAD0_T *lbl_1_bss_6EAD0;
-extern u32 fn_14_2590(void);
 extern u32 fn_14_2C80(void);
 extern u32 fn_1_12F1E8(u32);
 extern u32 fn_1_3F8C(u32, u32, u32, u32);
@@ -6971,10 +6979,6 @@ extern u32 fn_1_435C(u32);
 extern u32 fn_1_A1588(u32, u32);
 extern u32 fn_1_A2D84(u32);
 extern u32 lbl_14_bss_92BC;
-extern u32 lbl_14_bss_92F8;
-extern u32 lbl_14_data_2F48;
-extern u32 lbl_14_data_3048;
-extern void fn_14_7584(void);
 
 struct fn_14_7E04_lbl_14_bss_20 {
     u32 unk_0;
@@ -6991,18 +6995,20 @@ void fn_14_7E04(void) {
     fn_14_2590();
     fn_14_2C80();
     fn_1_12F1E8(2400);
-    fn_1_435C(lbl_14_bss_20.unk_0);
-    t4 = fn_1_3F8C((u32)&lbl_14_data_3048, (u32)fn_14_7584, 0, 8);
+    fn_1_435C((*(struct fn_14_7E04_lbl_14_bss_20 *)&lbl_14_bss_20).unk_0);
+    t4 = fn_1_3F8C((u32)&(*(u32 *)&lbl_14_data_3048), (u32)fn_14_7584, 0, 8);
     lbl_14_data_2F48 = t4;
     lbl_14_bss_92F8 = -1;
-    fn_1_A1588(lbl_1_bss_6EAD0->unk_0, 15);
-    lbl_14_bss_92C0.unk_0 = 1;
+    fn_1_A1588((*(struct fn_14_7E04_lbl_1_bss_6EAD0_T * *)&lbl_1_bss_6EAD0)->unk_0, 15);
+    (*(struct fn_14_7E04_lbl_14_bss_92C0 *)&lbl_14_bss_92C0).unk_0 = 1;
     lbl_14_bss_92BC = 0;
     fn_1_A2D84((0xA9070000 + 10752));
 }
 /* fzgx:end fn_14_7E04 */
 
-/* fzgx:begin fn_14_7EAC */
+/* fzgx:begin fn_14_7EAC noprologue */
+#include "types.h"
+
 typedef struct {
     u32 unk_0;
     u32 unk_4;
@@ -7189,7 +7195,7 @@ __declspec(section ".fzgxpool") static void fzgx_layout(void) {
 }
 #pragma section code_type ".text"
 
-extern struct fn_14_80B4_lbl_801A6410 lbl_801A6410;
+
 extern void fn_1_435C(u32);
 extern void fn_1_426C(s32);
 extern void fn_1_14DC68(void *, s16);
@@ -7243,11 +7249,11 @@ void fn_14_80B4(void) {
     fn_1_12C000(fzgx_obj_lbl_14_bss_834C, lbl_14_bss_160__fzgx_offset_2);
     fn_1_12C000(fzgx_obj_lbl_14_bss_91F4, 1);
     fn_1_12C000(fzgx_obj_lbl_14_bss_9258, 1);
-    fn_1_46B4(lbl_801A6410.unk_0, fzgx_obj_lbl_14_bss_8350, fzgx_obj_lbl_14_data_2FB0, 0x90C);
-    fn_1_46B4(lbl_801A6410.unk_0, fzgx_obj_lbl_14_bss_834C, fzgx_obj_lbl_14_data_2FB0, 0x90E);
-    fn_1_46B4(lbl_801A6410.unk_0, fzgx_obj_lbl_14_bss_8348, fzgx_obj_lbl_14_data_2FB0, 0x90F);
-    fn_1_46B4(lbl_801A6410.unk_0, fzgx_obj_lbl_14_bss_8340, fzgx_obj_lbl_14_data_2FB0, 0x910);
-    fn_1_46B4(lbl_801A6410.unk_0, fzgx_obj_lbl_14_bss_8344, fzgx_obj_lbl_14_data_2FB0, 0x911);
+    fn_1_46B4((*(struct fn_14_80B4_lbl_801A6410 *)&lbl_801A6410).unk_0, fzgx_obj_lbl_14_bss_8350, fzgx_obj_lbl_14_data_2FB0, 0x90C);
+    fn_1_46B4((*(struct fn_14_80B4_lbl_801A6410 *)&lbl_801A6410).unk_0, fzgx_obj_lbl_14_bss_834C, fzgx_obj_lbl_14_data_2FB0, 0x90E);
+    fn_1_46B4((*(struct fn_14_80B4_lbl_801A6410 *)&lbl_801A6410).unk_0, fzgx_obj_lbl_14_bss_8348, fzgx_obj_lbl_14_data_2FB0, 0x90F);
+    fn_1_46B4((*(struct fn_14_80B4_lbl_801A6410 *)&lbl_801A6410).unk_0, fzgx_obj_lbl_14_bss_8340, fzgx_obj_lbl_14_data_2FB0, 0x910);
+    fn_1_46B4((*(struct fn_14_80B4_lbl_801A6410 *)&lbl_801A6410).unk_0, fzgx_obj_lbl_14_bss_8344, fzgx_obj_lbl_14_data_2FB0, 0x911);
     fn_14_2AFC();
 }
 /* fzgx:end fn_14_80B4 */
@@ -7452,10 +7458,8 @@ typedef struct {
     u8 a;
 } fn_14_82E4_Color;
 
-extern s32 lbl_801A66A0;
 extern f32 lbl_8006D188(s32);
 extern void fn_1_49410(void);
-extern void fn_1_494DC(s32);
 extern void fn_1_49514(fn_14_82E4_Color *);
 extern void fn_1_4954C(f32);
 extern void fn_1_4955C(f32, f32);
@@ -7464,7 +7468,6 @@ extern void fn_1_495C8(s32);
 extern void fn_1_496FC(f32, f32);
 extern void fn_1_4AE0C(const char *, ...);
 
-extern void OSReport(const char *, ...);
 #pragma section code_type ".fzgxpool"
 static void fzgx_string_layout(void) {
     /* fzgx-allow: S2 layout primer: MWCC emits string literals in first-use order; the section is dropped at integration */
@@ -7540,7 +7543,6 @@ void fn_14_82E4(s16 arg0, s16 arg1, s16 arg2) {
 // The ADXT handle layout recovered from ADXT_Stop's accesses (signature types), shared by game.c and
 // live_camera.c, which carried identical copies. Hand-owned (librarian).
 
-
 typedef struct Sig_ADXT_Stop_AdxSjdHandle Sig_ADXT_Stop_AdxSjdHandle;
 typedef struct Sig_ADXT_Stop_ADXStream Sig_ADXT_Stop_ADXStream;
 typedef struct Sig_ADXT_Stop_AXRNAHandle Sig_ADXT_Stop_AXRNAHandle;
@@ -7574,7 +7576,7 @@ struct Sig_ADXT_Stop_SJ {
 typedef struct Sig_ADXT_Stop_ADX_AMP Sig_ADXT_Stop_ADX_AMP;
 typedef struct Sig_ADXT_Stop_LSCObject Sig_ADXT_Stop_LSCObject;
 
-typedef struct Sig_ADXT_Stop_ADXTHandle {
+typedef struct fn_14_8600_Sig_ADXT_Stop_ADXTHandle {
     s8 used;
     s8 status;
     s8 stream_type;
@@ -7634,7 +7636,7 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     void *pending_directory;
     s32 pending_file_offset;
     s32 pending_file_sectors;
-} Sig_ADXT_Stop_ADXTHandle;
+} fn_14_8600_Sig_ADXT_Stop_ADXTHandle;
 
 #endif  // GAME_MAIN_REL_ADXT_STOP_TYPES_H
 
@@ -7661,7 +7663,6 @@ struct fn_14_8600_Mgr {
     struct fn_14_8600_Obj *unk_14;
 };
 
-extern int fn_1_F8334(s16);
 extern s16 fn_1_14F270(s16, void *, u32);
 extern fn_14_8600_Entry lbl_14_bss_92FC[54];
 extern u8 fn_14_1090__fzgx_offset_0[];
@@ -8378,16 +8379,11 @@ static union { u32 w[10]; u32 v[10]; } fzgx_pool_init_lbl_14_data_2F88 = {{  /* 
     0x8D06, 0x8D07, 0x8D08, 0x8D09, 0x8D0A, 0x8D0B, 0x8D0C, 0x8D0D,
     0x8D0E, 0x8D0F
 }};
-extern Sig_ADXT_Stop_ADXTHandle **lbl_1_bss_6EAD0;
-extern u32 OSGetTick(void);
-extern u32 fn_1_A1588(Sig_ADXT_Stop_ADXTHandle *, u32);
-extern u32 fn_1_F83F0(u32);
-extern u32 lbl_14_bss_18;
+
+extern u32 fn_1_A1588(fn_14_8600_Sig_ADXT_Stop_ADXTHandle *, u32);
 extern struct fn_14_8600_Mgr lbl_1_bss_38460;
-extern s32 lbl_801A66B4;
+
 extern void fn_1_411A4(u32);
-extern void fn_1_47F74(s32);
-extern void fn_1_F8B50(void);
 extern void fn_80008BEC(void *, int, u32);
 
 static inline u8 fn_14_8600_AddGroup(s16 index, u16 type, s32 kind) {
@@ -8459,7 +8455,7 @@ void fn_14_8600(void) {
     lbl_14_bss_92FC[(s16)n + 1].id = 0xFF;
     lbl_14_bss_92FC[(s16)n + 1].val = 0xFFFF;
 
-    fn_1_A1588(*lbl_1_bss_6EAD0, 29);
+    fn_1_A1588(*(*(fn_14_8600_Sig_ADXT_Stop_ADXTHandle ** *)&lbl_1_bss_6EAD0), 29);
 
     if (lbl_801A66B4 == 5) {
         fn_1_411A4(4);
@@ -8497,16 +8493,12 @@ typedef struct fn_14_8A54_Reward {
 } fn_14_8A54_Reward;
 
 extern s32 lbl_801A66B4;
-extern FontDrawPacket lbl_1_rodata_26F8;
-extern fn_14_8A54_Pad lbl_1_bss_D58;
-extern u16 lbl_1_bss_96A[];
-extern fn_14_8A54_Light lbl_1_data_1E5C0;
+
 extern char *lbl_1_data_2BD54[][6];
 extern void fn_1_133DBC(void *);
 extern s32 fn_1_B7E98(s32);
 extern u8 fn_14_DF70(void);
 extern void fn_1_50A90(FontDrawPacket *, s32, s32, s32, s32);
-extern void fn_14_82E4(s16, s16, s16);
 extern void fn_1_5233C(void);
 extern void fn_1_49410(void);
 extern void fn_1_4955C(f32, f32);
@@ -8730,14 +8722,13 @@ __declspec(section ".fzgxpool") void fzgx_pool_data(void) {
 }
 #pragma section RX ".text" ".text"
 
-
 #define MSG(i) fzgx_pool_msgs[i][lbl_801A66B4]
 #define KIND fzgx_pool_rewards[fzgx_pool_reward].kind
 
 static inline void fn_14_8A54_DrawFrame(f32 alpha) {
     FontDrawPacket pkt;
 
-    pkt = lbl_1_rodata_26F8;
+    pkt = (*(FontDrawPacket *)&lbl_1_rodata_26F8);
     pkt.image = 0xC;
     pkt.x = 320.0f;
     pkt.y = 375.0f;
@@ -8753,7 +8744,7 @@ static inline void fn_14_8A54_DrawFrame(f32 alpha) {
 static inline void fn_14_8A54_DrawBar(f32 scale) {
     FontDrawPacket pkt;
 
-    pkt = lbl_1_rodata_26F8;
+    pkt = (*(FontDrawPacket *)&lbl_1_rodata_26F8);
     pkt.image = 0xC;
     pkt.x = 320.0f;
     pkt.y = 402.0f;
@@ -8765,7 +8756,7 @@ static inline void fn_14_8A54_DrawBar(f32 scale) {
 static inline void fn_14_8A54_DrawBox(s16 n) {
     FontDrawPacket pkt;
 
-    pkt = lbl_1_rodata_26F8;
+    pkt = (*(FontDrawPacket *)&lbl_1_rodata_26F8);
     pkt.image = 0xC;
     pkt.x = 449.0f;
     pkt.y = 329.0f;
@@ -8793,7 +8784,7 @@ void fn_14_8A54(void) {
 
     fn_1_133DBC(NULL);
     if ((fzgx_pool_closed == 0 && fn_1_B7E98(1) == 0) || fzgx_pool_timer < 120) {
-        if ((lbl_1_bss_D58.unk_8 >> 8 & 1) && fzgx_pool_timer < 3240 && fzgx_pool_timer >= 120) {
+        if (((*(fn_14_8A54_Pad *)&lbl_1_bss_D58).unk_8 >> 8 & 1) && fzgx_pool_timer < 3240 && fzgx_pool_timer >= 120) {
             fzgx_pool_timer = 119;
             fzgx_pool_title_fade = 1.0f;
         }
@@ -8848,9 +8839,9 @@ void fn_14_8A54(void) {
                 fn_1_4AE0C(MSG(11));
             }
         } else if (fn_14_DF70() == 0) {
-            lbl_1_bss_96A[0] = 0xB2;
+            (*(u16 (*)[])&lbl_1_bss_96A)[0] = 0xB2;
         } else {
-            lbl_1_bss_96A[0] = 0xAF;
+            (*(u16 (*)[])&lbl_1_bss_96A)[0] = 0xAF;
         }
         if (fzgx_pool_timer > 0) {
             fzgx_pool_timer--;
@@ -8877,24 +8868,24 @@ void fn_14_8A54(void) {
             fn_14_8A54_DrawBox(n);
             FN_14_8A54_DRAW_MODEL(&eye, 0.23f * fzgx_pool_fade);
         } else {
-            lbl_1_bss_96A[0] = 0xB1;
+            (*(u16 (*)[])&lbl_1_bss_96A)[0] = 0xB1;
         }
     }
     if (fzgx_pool_closed != 0) {
         fn_14_8A54_Light light;
         fn_14_8A54_Vec eye;
 
-        pkt = lbl_1_rodata_26F8;
-        light = lbl_1_data_1E5C0;
+        pkt = (*(FontDrawPacket *)&lbl_1_rodata_26F8);
+        light = (*(fn_14_8A54_Light *)&lbl_1_data_1E5C0);
         eye.x = 0.02f;
         eye.y = -8.8f;
         eye.z = -60.0f;
         lbl_8006DCDC();
         {
             f32 k = 0.7f;
-            light.unk_C = lbl_1_data_1E5C0.unk_C * k - lbl_1_data_1E5C0.unk_10 * k;
-            light.unk_10 = lbl_1_data_1E5C0.unk_C * k + lbl_1_data_1E5C0.unk_10 * k;
-            light.unk_14 = lbl_1_data_1E5C0.unk_14;
+            light.unk_C = (*(fn_14_8A54_Light *)&lbl_1_data_1E5C0).unk_C * k - (*(fn_14_8A54_Light *)&lbl_1_data_1E5C0).unk_10 * k;
+            light.unk_10 = (*(fn_14_8A54_Light *)&lbl_1_data_1E5C0).unk_C * k + (*(fn_14_8A54_Light *)&lbl_1_data_1E5C0).unk_10 * k;
+            light.unk_14 = (*(fn_14_8A54_Light *)&lbl_1_data_1E5C0).unk_14;
         }
         fn_1_F7870(&light);
         if (fzgx_pool_frame < 10 && fzgx_pool_first != 0) {
@@ -9124,13 +9115,11 @@ void fn_14_8A54(void) {
 
 /* fzgx:begin fn_14_A1F4 */
 extern u32 fn_1_412A0(u32);
-extern u32 fn_1_48140(u32);
-extern u32 lbl_801A66B4;
 
 void fn_14_A1F4(void) {
     fn_1_48140(151);
     fn_1_48140(141);
-    if ((s32)lbl_801A66B4 == 5) {
+    if ((s32)(*(u32 *)&lbl_801A66B4) == 5) {
     fn_1_412A0(4);
     } else {
     fn_1_412A0(5);
@@ -9139,14 +9128,9 @@ void fn_14_A1F4(void) {
 /* fzgx:end fn_14_A1F4 */
 
 /* fzgx:begin fn_14_A244 */
-extern struct fn_14_A244_lbl_14_bss_20 lbl_14_bss_20;
-extern u16 lbl_14_bss_9452;
 extern u32 fn_1_12F1E8(u32);
 extern u32 fn_1_3F8C(u32, u32, u32, u32);
 extern u32 fn_1_435C(u32);
-extern u32 fn_1_47F74(u32);
-extern u32 lbl_14_data_30D4;
-extern void fn_14_A3DC(void);
 
 struct fn_14_A244_lbl_14_bss_20 {
     u32 unk_0;
@@ -9156,9 +9140,9 @@ void fn_14_A244(void) {
     u32 t3;
     fn_1_47F74(151);
     fn_1_12F1E8(4800);
-    fn_1_435C(lbl_14_bss_20.unk_0);
-    t3 = fn_1_3F8C((u32)&lbl_14_data_30D4, (u32)fn_14_A3DC, 0, 8);
-    lbl_14_bss_9452 = t3;
+    fn_1_435C((*(struct fn_14_A244_lbl_14_bss_20 *)&lbl_14_bss_20).unk_0);
+    t3 = fn_1_3F8C((u32)&(*(u32 *)&lbl_14_data_30D4), (u32)fn_14_A3DC, 0, 8);
+    (*(u16 *)&lbl_14_bss_9452) = t3;
 }
 /* fzgx:end fn_14_A244 */
 
@@ -9173,7 +9157,8 @@ extern void fn_1_F7954(void);
 extern u32 fn_1_B7CE4(u32, void *);
 extern u32 fn_1_AA6D8(u32, u32, void *);
 extern u8 fn_1_B7CD4(void);
-extern u16 lbl_1_bss_96A[];
+
+
 extern struct fn_14_A2A4_bss_9454 lbl_14_bss_9454;
 extern u8 lbl_1_bss_718E0;
 
@@ -9201,7 +9186,7 @@ void fn_14_A2A4(void) {
         return;
     }
     if (fn_1_12F228()) {
-        lbl_1_bss_96A[0] = fn_14_DF70() ? 0xaf : 0xb2;
+        (*(u16 (*)[])&lbl_1_bss_96A)[0] = fn_14_DF70() ? 0xaf : 0xb2;
         return;
     }
     if (fn_1_B7E98(1)) {
@@ -9224,11 +9209,8 @@ void fn_14_A2A4(void) {
 /* fzgx:end fn_14_A2A4 */
 
 /* fzgx:begin fn_14_A398 */
-extern struct fn_14_A398_lbl_14_bss_20 lbl_14_bss_20;
-extern struct fn_14_A398_lbl_14_bss_9452 lbl_14_bss_9452;
 extern u32 fn_1_426C(u32);
 extern u32 fn_1_435C(u32);
-extern u32 fn_1_48140(u32);
 
 struct fn_14_A398_lbl_14_bss_20 {
     u32 unk_0;
@@ -9239,8 +9221,8 @@ struct fn_14_A398_lbl_14_bss_9452 {
 
 void fn_14_A398(void) {
     fn_1_48140(151);
-    fn_1_435C(lbl_14_bss_20.unk_0);
-    fn_1_426C(lbl_14_bss_9452.unk_0);
+    fn_1_435C((*(struct fn_14_A398_lbl_14_bss_20 *)&lbl_14_bss_20).unk_0);
+    fn_1_426C((*(struct fn_14_A398_lbl_14_bss_9452 *)&lbl_14_bss_9452).unk_0);
 }
 /* fzgx:end fn_14_A398 */
 
@@ -9249,17 +9231,13 @@ void fn_14_A398(void) {
 #include "rel/pilotpoint/pilotpoint.h"
 
 extern s32 lbl_801A66B4;
-extern FontDrawPacket lbl_1_rodata_26F8;
+
 typedef struct fn_14_A3DC_Pad { u16 unk_0; u16 unk_2; u8 pad_4[4]; u16 unk_8; } fn_14_A3DC_Pad;
-extern fn_14_A3DC_Pad lbl_1_bss_D58;
+
 extern s32 fn_1_B7E98(s32);
-extern s32 fn_1_B7EC4(s32);
 extern u8 fn_1_B7C00(void);
 extern s32 fn_1_B7CD4(void);
-extern s32 fn_1_B7C5C(void);
-extern s32 CARDProbeEx(s32, s32 *, s32 *);
 extern void fn_1_50A90(FontDrawPacket *, s32, s32, s32, s32);
-extern void fn_14_82E4(s16, s16, s16);
 extern void fn_1_12F1E8(s32);
 extern void fn_1_5233C(void);
 extern void fn_1_49410(void);
@@ -9416,13 +9394,12 @@ __declspec(section ".fzgxpool") void fzgx_pool_data(void) {
 }
 #pragma section RX ".text" ".text"
 
-
 #define MSG(i) fzgx_pool_msgs[i][lbl_801A66B4]
 
 static inline void fn_14_A3DC_DrawFrame(f32 alpha) {
     FontDrawPacket pkt;
 
-    pkt = lbl_1_rodata_26F8;
+    pkt = (*(FontDrawPacket *)&lbl_1_rodata_26F8);
     pkt.image = 0xC;
     pkt.x = 320.0f;
     pkt.y = 240.0f;
@@ -9445,7 +9422,7 @@ void fn_14_A3DC(void) {
         }
         fzgx_pool_bss_9459 = 0;
         fzgx_pool_bss_945B = 0;
-        if ((lbl_1_bss_D58.unk_8 >> 8 & 1) && fzgx_pool_delay == 0 && fzgx_pool_timeout > 0) {
+        if (((*(fn_14_A3DC_Pad *)&lbl_1_bss_D58).unk_8 >> 8 & 1) && fzgx_pool_delay == 0 && fzgx_pool_timeout > 0) {
             fzgx_pool_timeout = 0;
         }
         fn_14_A3DC_DrawFrame(fzgx_pool_fade);
@@ -9598,7 +9575,7 @@ void fn_14_A3DC(void) {
             fzgx_pool_card_fade += 0.1f;
         }
         if (fzgx_pool_delay == 0) {
-            if ((lbl_1_bss_D58.unk_8 >> 8 & 1) && fzgx_pool_timeout > 0) {
+            if (((*(fn_14_A3DC_Pad *)&lbl_1_bss_D58).unk_8 >> 8 & 1) && fzgx_pool_timeout > 0) {
                 fzgx_pool_timeout = 0;
             }
         } else {
@@ -9670,7 +9647,9 @@ void fn_14_A3DC(void) {
 }
 /* fzgx:end fn_14_A3DC */
 
-/* fzgx:begin fn_14_B398 */
+/* fzgx:begin fn_14_B398 noprologue */
+#include "types.h"
+
 extern struct fn_14_B398_lbl_14_bss_9460 lbl_14_bss_9460;
 extern struct fn_14_B398_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0;
 extern u32 fn_1_128DD8(u32);
@@ -9708,14 +9687,10 @@ struct fn_14_B400_lbl_1_bss_6EAB4 {
     u32 unk_0;
 };
 
-extern f32 lbl_14_rodata_30;
-extern struct fn_14_B400_lbl_1_bss_6EAB4 lbl_1_bss_6EAB4;
-extern struct fn_14_B400_lbl_1_bss_D58 lbl_1_bss_D58;
-extern u16 lbl_1_bss_96A;
 extern u32 fn_14_B484(void);
 extern u32 fn_14_DC90(f32);
 extern u32 fn_1_13DC54(void);
-extern u32 lbl_14_bss_0;
+
 extern void fn_1_133DBC(void *);
 
 void fn_14_B400(void) {
@@ -9723,9 +9698,9 @@ void fn_14_B400(void) {
     fn_1_13DC54();
     fn_14_B484();
     fn_14_DC90(lbl_14_rodata_30);
-    if ((s32)lbl_14_bss_0 < 420 && (((lbl_1_bss_D58.unk_8 >> 8) & 0x1) != 0 || (s32)lbl_14_bss_0 < 0)) {
-    lbl_1_bss_96A = 178;
-    lbl_1_bss_6EAB4.unk_0 = (lbl_1_bss_6EAB4.unk_0 | 44);
+    if ((s32)(*(u32 *)&lbl_14_bss_0) < 420 && ((((*(struct fn_14_B400_lbl_1_bss_D58 *)&lbl_1_bss_D58).unk_8 >> 8) & 0x1) != 0 || (s32)(*(u32 *)&lbl_14_bss_0) < 0)) {
+    (*(u16 *)&lbl_1_bss_96A) = 178;
+    (*(struct fn_14_B400_lbl_1_bss_6EAB4 *)&lbl_1_bss_6EAB4).unk_0 = ((*(struct fn_14_B400_lbl_1_bss_6EAB4 *)&lbl_1_bss_6EAB4).unk_0 | 44);
     }
 }
 /* fzgx:end fn_14_B400 */
@@ -9736,7 +9711,9 @@ void fn_14_B480(void) {
 }
 /* fzgx:end fn_14_B480 */
 
-/* fzgx:begin fn_14_B484 */
+/* fzgx:begin fn_14_B484 noprologue */
+#include "types.h"
+
 #include "font.h"
 #include "rel/pilotpoint/pilotpoint.h"
 #include "rel/main_rel/globals.h"
@@ -10046,12 +10023,9 @@ void fn_14_B484(void) {
 /* fzgx:end fn_14_B484 */
 
 /* fzgx:begin fn_14_BCDC */
-extern u32 lbl_14_bss_0;
-extern u32 lbl_14_bss_9460;
-
 void fn_14_BCDC(void) {
     lbl_14_bss_9460 = 0;
-    lbl_14_bss_0 = 366;
+    (*(u32 *)&lbl_14_bss_0) = 366;
 }
 /* fzgx:end fn_14_BCDC */
 
@@ -10671,13 +10645,14 @@ struct fn_14_C4F8_lbl_1_bss_6EAB4 {
     u32 unk_0;
 };
 
-extern struct fn_14_C4F8_lbl_1_bss_6EAB4 lbl_1_bss_6EAB4;
-extern u32 lbl_14_bss_0;
+
+
+
 
 u32 fn_14_C4F8(void) {
-    lbl_14_bss_0 = 60;
-    lbl_1_bss_6EAB4.unk_0 = (lbl_1_bss_6EAB4.unk_0 | 44);
-    return (u32)&lbl_1_bss_6EAB4;
+    (*(u32 *)&lbl_14_bss_0) = 60;
+    (*(struct fn_14_C4F8_lbl_1_bss_6EAB4 *)&lbl_1_bss_6EAB4).unk_0 = ((*(struct fn_14_C4F8_lbl_1_bss_6EAB4 *)&lbl_1_bss_6EAB4).unk_0 | 44);
+    return (u32)&(*(struct fn_14_C4F8_lbl_1_bss_6EAB4 *)&lbl_1_bss_6EAB4);
 }
 /* fzgx:end fn_14_C4F8 */
 
@@ -11001,11 +10976,6 @@ struct fn_14_C518_lbl_14_rodata_0 {
     f32 unk_494;
 };
 
-extern struct fn_14_C518_lbl_14_rodata_0 lbl_14_rodata_0;
-extern FontDrawPacket lbl_1_rodata_26F8;
-extern u16 lbl_1_bss_968;
-extern u32 lbl_14_bss_0;
-
 extern int fn_1_4F734(FontDrawPacket *);
 extern u32 fn_1_49410(void);
 extern void fn_1_49514(u32 *);
@@ -11020,8 +10990,8 @@ void fn_14_C518(void) {
     FontDrawPacket pkt;
     u32 val;
 
-    p = (struct fn_14_C518_lbl_14_rodata_0 *)&lbl_14_rodata_0;
-    pkt = lbl_1_rodata_26F8;
+    p = (struct fn_14_C518_lbl_14_rodata_0 *)&(*(struct fn_14_C518_lbl_14_rodata_0 *)&lbl_14_rodata_0);
+    pkt = (*(FontDrawPacket *)&lbl_1_rodata_26F8);
     pkt.x = (320.0f);
     pkt.y = (224.0f);
     pkt.flags = 14;
@@ -11030,7 +11000,7 @@ void fn_14_C518(void) {
     pkt.flags = 6;
     pkt.image = 0x9207;
     fn_1_4F734(&pkt);
-    pkt = lbl_1_rodata_26F8;
+    pkt = (*(FontDrawPacket *)&lbl_1_rodata_26F8);
     pkt.image = 0x9201;
     pkt.x = (320.0f);
     pkt.y = (224.0f);
@@ -11044,8 +11014,8 @@ void fn_14_C518(void) {
     val = fzgx_pool_table40[0];
     fn_1_49514(&val);
     fn_14_DC90((1.0f));
-    if ((s32)lbl_14_bss_0 > 0) {
-        fn_8006CE1C((1.0f) - ((f32)(s32)lbl_14_bss_0 / (60.0f)));
+    if ((s32)(*(u32 *)&lbl_14_bss_0) > 0) {
+        fn_8006CE1C((1.0f) - ((f32)(s32)(*(u32 *)&lbl_14_bss_0) / (60.0f)));
     } else {
         lbl_1_bss_968 = 10;
     }
@@ -11065,47 +11035,37 @@ struct fn_14_C69C_Arg0 {
     s32 unk_8;
 };
 
-extern char *strncpy(char *, const char *, size_t);
 extern int sprintf(char *, const char *, ...);
-extern size_t strlen(const char *);
-extern u32 __cvt_fp2unsigned(f32);
 extern void fn_1_4AE0C(const char *, ...);
-extern f32 lbl_14_rodata_30;
-extern f32 lbl_14_rodata_364;
-extern const f64 lbl_14_rodata_110;
-extern char lbl_14_data_300C[];
-extern char lbl_14_data_3244[];
-extern u32 lbl_801A66A0;
-extern u32 lbl_801A66B4;
 
 void fn_14_C69C(struct fn_14_C69C_Arg0 *arg0, f32 arg1) {
     char buf[256];
 
     if (arg0->unk_8 != 0 || lbl_14_rodata_30 == arg1) {
-        sprintf(buf, lbl_14_data_300C, arg0->unk_0[lbl_801A66B4]);
+        sprintf(buf, (*(char (*)[])&lbl_14_data_300C), arg0->unk_0[(*(u32 *)&lbl_801A66B4)]);
         fn_1_4AE0C(buf);
         return;
     }
     if (arg1 < lbl_14_rodata_364) {
-        f32 lenf = (f32)strlen(arg0->unk_0[lbl_801A66B4]);
+        f32 lenf = (f32)strlen(arg0->unk_0[(*(u32 *)&lbl_801A66B4)]);
         u32 n = __cvt_fp2unsigned(lenf * arg1);
-        strncpy(buf, arg0->unk_0[lbl_801A66B4], n);
-        if ((lbl_801A66A0 & 3) < 2) {
+        strncpy(buf, arg0->unk_0[(*(u32 *)&lbl_801A66B4)], n);
+        if (((*(u32 *)&lbl_801A66A0) & 3) < 2) {
             buf[n] = '_';
             buf[n + 1] = 0;
         } else {
             buf[n] = 0;
         }
-    } else if ((lbl_801A66A0 & 3) < 2) {
-        sprintf(buf, lbl_14_data_3244, arg0->unk_0[lbl_801A66B4]);
+    } else if (((*(u32 *)&lbl_801A66A0) & 3) < 2) {
+        sprintf(buf, (*(char (*)[])&lbl_14_data_3244), arg0->unk_0[(*(u32 *)&lbl_801A66B4)]);
     } else {
-        sprintf(buf, lbl_14_data_300C, arg0->unk_0[lbl_801A66B4]);
+        sprintf(buf, (*(char (*)[])&lbl_14_data_300C), arg0->unk_0[(*(u32 *)&lbl_801A66B4)]);
     }
     fn_1_4AE0C(buf);
 }
 /* fzgx:end fn_14_C69C */
 
-/* fzgx:begin fn_14_C850 noprologue */
+/* fzgx:begin fn_14_C850 */
 #include "types.h"
 
 struct fn_14_C850_Arg0 {
@@ -11122,18 +11082,11 @@ struct fn_14_C850_lbl_801A63C0 {
     u32 unk_0;
 };
 
-extern f32 lbl_14_rodata_0;
-extern f32 lbl_14_rodata_30;
-extern const f64 lbl_14_rodata_60;
-extern const f64 lbl_14_rodata_110;
-extern u32 lbl_14_bss_C;
-extern struct fn_14_C850_lbl_801A63C0 lbl_801A63C0;
 extern u8 lbl_14_data_3060[0x74];
 extern u32 lbl_14_data_3248;
 extern void fn_1_4955C(f32, f32);
 extern void fn_1_496FC(f32, f32);
 extern void fn_1_4AE0C(const char *, ...);
-extern f32 fn_1_4B068(char *);
 extern f64 __fabs(f64);
 
 void fn_14_C850(struct fn_14_C850_Arg0 *arg0, f32 arg1) {
@@ -11148,7 +11101,7 @@ void fn_14_C850(struct fn_14_C850_Arg0 *arg0, f32 arg1) {
     s32 v24;
     s32 v4;
 
-    if (arg0 != 0 && lbl_14_rodata_0 != arg1) {
+    if (arg0 != 0 && (*(f32 *)&lbl_14_rodata_0) != arg1) {
         if (lbl_14_rodata_30 == arg1 || arg0->unk_0 == 0) {
             fn_1_4955C(arg0->unk_14, arg0->unk_18);
             fn_1_4AE0C((const char *)lbl_14_data_3060, arg0->unk_0);
@@ -11188,8 +11141,8 @@ void fn_14_C850(struct fn_14_C850_Arg0 *arg0, f32 arg1) {
             } else if ((f32)v29 / (f32)v31 < v30) {
                 fn_1_496FC((f32)(s32)(arg0->unk_C - v25), (f32)(s32)v24);
                 fn_1_4955C(arg0->unk_14, arg0->unk_18);
-                lbl_801A63C0.unk_0 = lbl_801A63C0.unk_0 * 1735019371 + 13259;
-                v27 = (u8)('0' + ((s32)((lbl_801A63C0.unk_0 >> 16) & 0x7FFF)) % 10);
+                (*(struct fn_14_C850_lbl_801A63C0 *)&lbl_801A63C0).unk_0 = (*(struct fn_14_C850_lbl_801A63C0 *)&lbl_801A63C0).unk_0 * 1735019371 + 13259;
+                v27 = (u8)('0' + ((s32)(((*(struct fn_14_C850_lbl_801A63C0 *)&lbl_801A63C0).unk_0 >> 16) & 0x7FFF)) % 10);
                 fn_1_4AE0C((const char *)&lbl_14_data_3248, (u32)v27);
                 buf[0] = v27;
                 buf[1] = 0;
@@ -11201,7 +11154,7 @@ void fn_14_C850(struct fn_14_C850_Arg0 *arg0, f32 arg1) {
 }
 /* fzgx:end fn_14_C850 */
 
-/* fzgx:begin fn_14_CC70 noprologue */
+/* fzgx:begin fn_14_CC70 */
 #include "types.h"
 #include "types.h"
 #include "font.h"
@@ -11535,8 +11488,10 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime46(void) {
 
 struct fn_14_CC70_Copy88 { union { u32 a[22]; f32 f[22]; }; };
 extern u32 lbl_1_rodata_26F8;
-extern u8 lbl_14_rodata_0[];
-extern s32 lbl_801A66B4;
+
+
+
+
 extern u8 lbl_14_data_B4C[24];
 extern void fn_1_50164(f32, f32, f32, f32, void *);
 extern void fn_1_A2D84(u32);
@@ -11570,7 +11525,7 @@ void fn_14_CC70(u32 arg0) {
     f32 t;
     u32 color1;
     u32 color2;
-    p_lbl_14_rodata_0 = (u8 *)&lbl_14_rodata_0;
+    p_lbl_14_rodata_0 = (u8 *)&(*(u8 (*)[])&lbl_14_rodata_0);
     p_lbl_14_bss_0 = (u8 *)&lbl_14_bss_0;
     COPY();
     loc_C.a[0] = 0x9E2B;
@@ -12009,7 +11964,7 @@ static const u32 fzgx_pool_table46[1] = {0x19FF19FF};  /* fzgx-allow: A1 retail 
 __declspec(section ".fzgxpool") static void fzgx_pool_keep46(void) { const u32 *volatile cp; cp = fzgx_pool_table46; }  /* fzgx-allow: S2 pool primer sink */
 #pragma section code_type ".text"
 
-typedef struct FontDrawPacket {
+typedef struct fn_14_D2EC_FontDrawPacket {
     u32 unk0;
     f32 unk4;
     f32 unk8;
@@ -12020,11 +11975,7 @@ typedef struct FontDrawPacket {
     f32 unk2c;
     u32 unk30;
     u8 pad34[0x24];
-} FontDrawPacket;
-
-extern const FontDrawPacket lbl_1_rodata_26F8;
-extern s32 lbl_801A66B4;
-extern const char *lbl_14_data_BD4[];
+} fn_14_D2EC_FontDrawPacket;
 
 extern void fn_1_50164(f32, f32, f32, f32, void *);
 extern void fn_1_A2D84(u32);
@@ -12039,15 +11990,15 @@ extern void fn_1_4AE0C(const char *, ...);
 extern void fn_1_49738(u32);
 extern void fn_1_49748(f32);
 extern void fn_1_5233C(void);
-extern int fn_1_4F734(FontDrawPacket *);
+extern int fn_1_4F734(fn_14_D2EC_FontDrawPacket *);
 
 static inline const char * *fn_14_D2EC_array_read(const char * *array) { return array; }
 #pragma opt_lifetimes off
 void fn_14_D2EC(s32 arg0) {
-    FontDrawPacket packet;
+    fn_14_D2EC_FontDrawPacket packet;
     u32 lab_t0;
 
-    packet = lbl_1_rodata_26F8;
+    packet = (*(const fn_14_D2EC_FontDrawPacket *)&lbl_1_rodata_26F8);
     packet.unk0 = 0x9e2b;
     packet.unk30 = 10;
     packet.unkc = 0.09f;
@@ -12078,7 +12029,7 @@ void fn_14_D2EC(s32 arg0) {
         fn_1_49738((u32)fn_1_5233C);
         fn_1_49748(5.0f);
 
-        packet = lbl_1_rodata_26F8;
+        packet = (*(const fn_14_D2EC_FontDrawPacket *)&lbl_1_rodata_26F8);
         packet.unk0 = 0x9200;
         packet.unkc = 0.07f;
         packet.unk4 = 320.0f;
@@ -12442,7 +12393,7 @@ static const u32 fzgx_pool_table46[1] = {0x19FF19FF};  /* fzgx-allow: A1 retail 
 __declspec(section ".fzgxpool") static void fzgx_pool_keep46(void) { const u32 *volatile cp; cp = fzgx_pool_table46; }  /* fzgx-allow: S2 pool primer sink */
 #pragma section code_type ".text"
 
-typedef struct FontDrawPacket {
+typedef struct fn_14_D600_FontDrawPacket {
     u32 unk0;
     f32 unk4;
     f32 unk8;
@@ -12453,11 +12404,7 @@ typedef struct FontDrawPacket {
     f32 unk2c;
     u32 unk30;
     u8 pad34[0x24];
-} FontDrawPacket;
-
-extern const FontDrawPacket lbl_1_rodata_26F8;
-extern s32 lbl_801A66B4;
-extern const char *lbl_14_data_C54[];
+} fn_14_D600_FontDrawPacket;
 
 extern void fn_1_50164(f32, f32, f32, f32, void *);
 extern void fn_1_A2D84(u32);
@@ -12472,15 +12419,15 @@ extern void fn_1_4AE0C(const char *, ...);
 extern void fn_1_49738(u32);
 extern void fn_1_49748(f32);
 extern void fn_1_5233C(void);
-extern int fn_1_4F734(FontDrawPacket *);
+extern int fn_1_4F734(fn_14_D600_FontDrawPacket *);
 
 static inline const char * *fn_14_D600_array_read(const char * *array) { return array; }
 #pragma opt_lifetimes off
 void fn_14_D600(s32 arg0) {
-    FontDrawPacket packet;
+    fn_14_D600_FontDrawPacket packet;
     u32 lab_t0;
 
-    packet = lbl_1_rodata_26F8;
+    packet = (*(const fn_14_D600_FontDrawPacket *)&lbl_1_rodata_26F8);
     packet.unk0 = 0x9e2b;
     packet.unk30 = 10;
     packet.unkc = 0.09f;
@@ -12511,7 +12458,7 @@ void fn_14_D600(s32 arg0) {
         fn_1_49738((u32)fn_1_5233C);
         fn_1_49748(5.0f);
 
-        packet = lbl_1_rodata_26F8;
+        packet = (*(const fn_14_D600_FontDrawPacket *)&lbl_1_rodata_26F8);
         packet.unk0 = 0x9206;
         packet.unk4 = 320.0f;
         packet.unk8 = 179.0f;
@@ -12875,7 +12822,7 @@ static const u32 fzgx_pool_table46[1] = {0x19FF19FF};  /* fzgx-allow: A1 retail 
 __declspec(section ".fzgxpool") static void fzgx_pool_keep46(void) { const u32 *volatile cp; cp = fzgx_pool_table46; }  /* fzgx-allow: S2 pool primer sink */
 #pragma section code_type ".text"
 
-typedef struct FontDrawPacket {
+typedef struct fn_14_D914_FontDrawPacket {
     u32 unk0;
     f32 unk4;
     f32 unk8;
@@ -12886,11 +12833,7 @@ typedef struct FontDrawPacket {
     f32 unk2c;
     u32 unk30;
     u8 pad34[0x24];
-} FontDrawPacket;
-
-extern const FontDrawPacket lbl_1_rodata_26F8;
-extern s32 lbl_801A66B4;
-extern const char *lbl_14_data_C9C[];
+} fn_14_D914_FontDrawPacket;
 
 extern void fn_1_50164(f32, f32, f32, f32, void *);
 extern void fn_1_A2D84(u32);
@@ -12905,15 +12848,15 @@ extern void fn_1_4AE0C(const char *, ...);
 extern void fn_1_49738(u32);
 extern void fn_1_49748(f32);
 extern void fn_1_5233C(void);
-extern int fn_1_4F734(FontDrawPacket *);
+extern int fn_1_4F734(fn_14_D914_FontDrawPacket *);
 
 static inline const char * *fn_14_D914_array_read(const char * *array) { return array; }
 #pragma opt_lifetimes off
 void fn_14_D914(s32 arg0) {
-    FontDrawPacket packet;
+    fn_14_D914_FontDrawPacket packet;
     u32 lab_t0;
 
-    packet = lbl_1_rodata_26F8;
+    packet = (*(const fn_14_D914_FontDrawPacket *)&lbl_1_rodata_26F8);
     packet.unk0 = 0x9e2b;
     packet.unk30 = 10;
     packet.unkc = 0.09f;
@@ -12944,7 +12887,7 @@ void fn_14_D914(s32 arg0) {
         fn_1_49738((u32)fn_1_5233C);
         fn_1_49748(5.0f);
 
-        packet = lbl_1_rodata_26F8;
+        packet = (*(const fn_14_D914_FontDrawPacket *)&lbl_1_rodata_26F8);
         packet.unk0 = 0x9206;
         packet.unk4 = 320.0f;
         packet.unk8 = 179.0f;
@@ -13010,14 +12953,14 @@ u32 fn_14_DC2C(void) {
 /* fzgx:end fn_14_DC2C */
 
 /* fzgx:begin fn_14_DC6C */
-extern u32 lbl_14_data_6C8;
-
 u32 fn_14_DC6C(u32 arg0, u32 arg1) {
     return *(u32 *)((u8 *)((u8 *)&lbl_14_data_6C8 + ((s16)arg0 * 24)) + ((s16)arg1 << 2));
 }
 /* fzgx:end fn_14_DC6C */
 
-/* fzgx:begin fn_14_DC90 */
+/* fzgx:begin fn_14_DC90 noprologue */
+#include "types.h"
+
 typedef struct RoData {
     u8 pad_0[0x10];
     f32 unk_10;
@@ -13157,7 +13100,6 @@ void fn_14_DC90(f32 farg0) {
 /* fzgx:end fn_14_DC90 */
 
 /* fzgx:begin fn_14_DF70 */
-extern s16 lbl_1_bss_8B3A0;
 extern u8 fn_1_128DD8(u8);
 extern void fn_1_128E8C(u8, void *);
 
