@@ -135052,6 +135052,32 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/sound/fn_1_A47F4.c",
+    "symbols": [
+      "fn_1_A47F4"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/sound.c",
+    "pool": {
+      "@157": "lbl_1_rodata_4598",
+      "@159": "lbl_1_rodata_45A4",
+      "@160": "lbl_1_rodata_45A8",
+      "@158": "lbl_1_rodata_45A0",
+      "@161": "lbl_1_rodata_45AC",
+      "@162": "lbl_1_rodata_45B0",
+      "@163": "lbl_1_rodata_4470",
+      "@164": "lbl_1_rodata_45B4",
+      "@165": "lbl_1_rodata_45B8",
+      "@166": "lbl_1_rodata_45C0",
+      "@167": "lbl_1_rodata_45C4",
+      "@168": "lbl_1_rodata_45C8",
+      "@169": "lbl_1_rodata_45CC"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/sound/fn_1_A4BC8.c",
     "symbols": [
       "fn_1_A4BC8"

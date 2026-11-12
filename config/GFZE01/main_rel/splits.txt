@@ -21609,3 +21609,6 @@ rel/main_rel/bg_common/fn_1_105CC8.c:
 
 rel/main_rel/stcoli/fn_1_2CBAC.c:
 	.text       start:0x0002CBAC end:0x0002D038 align:4
+
+rel/main_rel/sound/fn_1_A47F4.c:
+	.text       start:0x000A47F4 end:0x000A4BC8 align:4
