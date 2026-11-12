@@ -2658,6 +2658,46 @@ void fn_1_137288(int index, void* value0, void* value1, void* value2, s16 select
 }
 /* fzgx:end fn_1_137288 */
 
+/* fzgx:begin fn_1_137364 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/custom_memcard.h"
+
+extern u32 lbl_801A6410;
+extern u8 fn_1_B7C00(void);
+extern s32 fn_1_B7CD4(void);
+extern s32 fn_1_B7C5C(void);
+extern void OSReport(const char* format, ...);
+extern void fn_1_46B4(u32 arg0, void* arg1, u8* arg2, s32 arg3);
+extern void fn_80008BA8(void*, void*, s32);
+extern u32 lbl_1_bss_8CA6C[1605];
+extern void fn_1_1324C4(void *arg0);
+extern void fn_1_132774(void *arg0);
+
+extern u32 lbl_801A6410;
+extern u8 fn_1_B7C00(void);
+extern s32 fn_1_B7CD4(void);
+extern s32 fn_1_B7C5C(void);
+extern void OSReport(const char* format, ...);
+extern void fn_80008BA8(void*, void*, s32);
+extern void fn_1_46B4(u32 arg0, void* arg1, u8* arg2, s32 arg3);
+
+// Writes the indexed three-byte value, or the fallback value when the index is out of range.
+void fn_1_137364(s16 arg0, u8* arg1, u8* arg2, u8* arg3) {
+    if (arg0 < 0x29) {
+        u32* values = (u32*)&lbl_1_data_416B8;
+
+        *arg1 = values[arg0 * 3];
+        *arg2 = values[arg0 * 3 + 1];
+        *arg3 = values[arg0 * 3 + 2];
+    } else {
+        *arg2 = 2;
+        *arg1 = 2;
+        *arg3 = 2;
+    }
+}
+/* fzgx:end fn_1_137364 */
+
 /* fzgx:begin fn_1_1373B0 */
 void fn_1_1373B0(s16 arg0, u8* arg1, u8* arg2, u8* arg3, s16 arg4) {
     struct { u8* value; } base;
@@ -3629,6 +3669,165 @@ void fn_1_1392E0(Fn1392E0Arg0 *arg0, Fn1392E0Arg1 *arg1) {
                 (s32)(arg1->unk_28 - arg1->unk_4), offset, index);
 }
 /* fzgx:end fn_1_1392E0 */
+
+/* fzgx:begin fn_1_139440 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/burner.h"
+#include "fpscr_trunc.h"
+
+typedef struct {
+    u8 r, g, b, a;
+} Color;
+
+/* 0x81C0-byte machine entry */
+typedef struct {
+    u32 flags;
+    u8 pad_4[0x819C];
+    u8 image_index;
+    u8 pad_81A1[0x1F];
+} MachineEntry;
+
+extern u32 lbl_801A66A0;
+extern const f32 lbl_1_rodata_85F0;
+extern const f32 lbl_1_rodata_861C;
+extern const f32 lbl_1_rodata_8638;
+extern const f32 lbl_1_rodata_863C;
+extern const f32 lbl_1_rodata_87DC;
+extern const f32 lbl_1_rodata_88B8;
+extern const f32 lbl_1_rodata_8B98;
+
+extern int fn_1_139A3C(s16);
+extern MachineEntry *fn_1_36AD0(void);
+extern void fn_1_14FC80(s16, MachineParameterRecord *);
+extern void fn_80008BA8(void *, const void *, u32);
+extern void fn_1_22B10(MachineParameterRecord *, f32);
+extern void fn_1_229EC(MachineParameterRecord *, f32 *, f32 *);
+extern Color fn_1_539CC(Color, Color, f32);
+extern void fn_800728A8(s32, s32, s32, s32);
+extern void fn_1_A9868(void);
+extern void fn_1_AA350(s16 *, s16 *, Color *, u32);
+extern void fn_1_AA538(void);
+extern void fn_800724C8(void);
+extern void fn_8007245C(u32);
+extern void fn_80074788(u32);
+extern void fn_80074660(u32);
+extern void fn_80073678(u32);
+extern void fn_80073898(u32);
+extern void fn_80073C6C(s32);
+extern void fn_800745A4(u32, s32, s32, u32, u32, u32);
+extern void fn_800734A8(u32, s32, s32, s32);
+extern void fn_80072AB0(s32, s32, s32);
+extern void fn_80072C24(s32, s32, s32, s32, s32);
+extern void fn_80072D64(s32, s32, s32, s32, u8, s32);
+extern void fn_80072CC4(s32, s32, s32, s32, s32);
+extern void fn_80072E20(s32, s32, s32, s32, u8, s32);
+extern void fn_800747D0(u32, u32, s32, s32, u32, s32, s32);
+extern void fn_80074918(u8, s32, u8);
+extern void fn_800720B0(s32);
+extern void fn_80072864(u32);
+
+extern Color lbl_1_rodata_8B88;
+extern Color lbl_1_rodata_8B8C;
+extern Color lbl_1_rodata_8B90;
+extern Color lbl_1_rodata_8B94;
+
+#pragma fp_contract off
+void fn_1_139440(f32 value, s32 x, s32 y, s32 w, s32 h, s16 machine, s16 index) {
+    s16 xs[302];
+    s16 ys[302];
+    Color colors[602];
+    MachineParameterRecord params;
+    f32 pos;
+    f32 mag;
+    Color color;
+    s32 i;
+    s16 *px;
+    s16 *py;
+    Color *pc;
+    s32 frame;
+    s32 slot;
+    s32 active;
+    f32 phase;
+    f32 speed;
+
+    pos = lbl_1_rodata_861C;
+    mag = lbl_1_rodata_861C;
+    slot = index;
+    px = xs;
+    py = ys;
+    pc = colors;
+    if (lbl_1_bss_8B3A0.unk_94 & 0x40000000) {
+        slot = 0;
+    }
+    active = fn_1_139A3C(slot);
+    if (machine < 41) {
+        fn_80008BA8(&params, &lbl_1_data_28060.entries[machine], sizeof(params));
+    } else if (!(fn_1_36AD0()[index].flags & 0x40000000)) {
+        fn_80008BA8(&params, &lbl_1_data_28060.entries[fn_1_36AD0()[index].image_index], sizeof(params));
+    } else {
+        fn_1_14FC80(index, &params);
+    }
+    fn_1_22B10(&params, value);
+    for (i = 0; i < 750; i++) {
+        Color c0 = lbl_1_rodata_8B88;
+        Color c1 = lbl_1_rodata_8B8C;
+        Color c2 = lbl_1_rodata_8B90;
+        Color c3 = lbl_1_rodata_8B94;
+        frame = lbl_801A66A0;
+        fn_1_229EC(&params, &pos, &mag);
+        speed = pos;
+        if (i % 10 == 0 || i == 749) {
+            phase = lbl_1_rodata_863C + lbl_1_rodata_85F0 * ((f32)i / lbl_1_rodata_8B98) - (f32)(frame % 220) / lbl_1_rodata_88B8;
+            phase = phase - fpscr_trunc(phase);
+            if (active != 0 && (frame - *(u32 *)((u8 *)&lbl_1_bss_8B3A0 + slot * 4 + 0xF0) > i / 50 || *(s32 *)((u8 *)&lbl_1_bss_8B3A0 + slot * 4 + 0x100) == 9)) {
+                if (phase < lbl_1_rodata_85F0) {
+                    color = fn_1_539CC(c2, c3, lbl_1_rodata_863C - lbl_1_rodata_8638 * phase);
+                } else {
+                    color = fn_1_539CC(c3, c2, lbl_1_rodata_863C - (lbl_1_rodata_8638 * phase - lbl_1_rodata_863C));
+                }
+            } else {
+                if (phase < lbl_1_rodata_85F0) {
+                    color = fn_1_539CC(c0, c1, lbl_1_rodata_863C - lbl_1_rodata_8638 * phase);
+                } else {
+                    color = fn_1_539CC(c1, c0, lbl_1_rodata_863C - (lbl_1_rodata_8638 * phase - lbl_1_rodata_863C));
+                }
+            }
+            color.a = 0xA0;
+            *px++ = x + i * w / 750;
+            *py++ = y + h;
+            *pc++ = color;
+            *px++ = x + i * w / 750;
+            *py++ = (y + h) - (f32)h * speed / lbl_1_rodata_87DC;
+            *pc++ = color;
+        }
+    }
+    fn_800728A8(1, 4, 5, 0);
+    fn_1_A9868();
+    fn_1_AA350(xs, ys, colors, 0x98);
+    fn_1_AA538();
+    fn_800724C8();
+    fn_8007245C(0x2200);
+    fn_80074788(0);
+    fn_80074660(1);
+    fn_80073678(1);
+    fn_80073898(0);
+    fn_80073C6C(0);
+    fn_800745A4(0, 1, 4, 0x3C, 0, 0x7D);
+    fn_800734A8(0, 0, 0, 0xFF);
+    fn_80072AB0(0, 0, 0);
+    fn_80072C24(0, 0xF, 2, 8, 4);
+    fn_80072D64(0, 0, 0, 0, 1, 0);
+    fn_80072CC4(0, 7, 1, 4, 2);
+    fn_80072E20(0, 0, 0, 0, 1, 0);
+    fn_800747D0(4, 0, 0, 0, 0, 2, 2);
+    fn_80074918(1, 7, 0);
+    fn_800728A8(1, 4, 5, 0);
+    fn_800720B0(0);
+    fn_80072864(2);
+}
+#pragma fp_contract reset
+/* fzgx:end fn_1_139440 */
 
 /* fzgx:begin fn_1_139A3C */
 int fn_1_139A3C(int arg0) {
@@ -7108,6 +7307,111 @@ void fn_1_13EDDC(u32 arg0, u32 arg1, u32 arg2, u32 arg3, s32 arg4) {
 }
 /* fzgx:end fn_1_13EDDC */
 
+/* fzgx:begin fn_1_13EE60 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/burner.h"
+
+extern u8 lbl_1_rodata_EB4[124];
+extern void *lbl_801A6410;
+extern void fn_1_46B4(void *, Obj_1_bss_6EA04_Target *, u8 *, u32);
+extern f32 lbl_1_rodata_4104[59];
+extern Obj_1_data_27DE0 *fn_1_986A4(Obj_1_data_27DE0 *obj);
+extern void fn_800794F0(Obj_1_data_27DE0 *arg0, Obj_1_data_27DE0 *arg1, s32 arg2);
+extern void fn_1_98804(Obj_1_data_27DE0 *obj);
+extern void fn_1_9AF80(u32 arg0, u32 arg1, u32 arg2);
+extern u32 lbl_1_rodata_4210;
+extern void fn_80007AB4(u32 *arg0);
+extern void fn_1_9CC6C(void *arg0, s32 arg1);
+extern void lbl_8006D7B0(s32);
+extern s32 lbl_8006D24C(f32, f32);
+extern void mathutil_mtxA_rotate_x(s16);
+extern void mathutil_mtxA_rotate_y(s32);
+extern s32 strlen(const char *);
+extern s32 fn_8006FC5C(const char *, const char *, s32);
+extern s32 fn_8006FC1C(const char *, const char *);
+extern u32 fn_1_9D260(void);
+extern s32 fn_1_3F0C8(void);
+extern u8 lbl_1_bss_8E51D;
+extern u8 fn_1_7B074(void);
+extern void fn_8006FDEC(void);
+extern void fn_80071718(u32);
+extern void fn_800711A8(u32);
+extern void fn_1_55A84(void (*callback)(void), void *arg0, s32 arg1, s32 arg2);
+extern void *fn_1_12F118(void);
+extern void *fn_1_36AD0(void);
+extern void fn_1_14F6F8(u8 arg0, u8 arg1, u8 arg2, void *arg3);
+extern void fn_80008BA8(void *arg0, const void *arg1, int arg2);
+
+extern u32 lbl_1_rodata_4210;
+extern void fn_80007AB4(u32 *arg0);
+extern void fn_1_9CC6C(void *arg0, s32 arg1);
+extern void fn_1_9D360(void);
+extern Obj_1_data_2A7E0_At3C * lbl_801A66CC;
+extern u32 fn_1_4630(u32, u32, u32, u32);
+extern const f32 lbl_1_rodata_4100;
+extern void *memset(void *dest, int value, u32 size);
+extern u32 fn_1_584AC(void);
+extern void lbl_8006D7DC(void *);
+extern void lbl_8006DFC4(void *);
+extern void lbl_8006E1B0(void *, void *);
+extern void fn_1_862D4(u32 arg0, void *arg1);
+extern u32 fn_1_1FB80(void *arg0, s32 arg1);
+extern u32 fn_1_41488(u32 arg0, void *arg1);
+extern void fn_1_4270C(void *arg0, u32 arg1, u32 arg2);
+extern f32 lbl_1_rodata_4260[16];
+extern f32 lbl_8006D0B4(f32);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006D848(f32);
+extern f32 lbl_1_rodata_26F8[22];
+extern u32 lbl_1_rodata_9194[10];
+extern u8 lbl_1_rodata_85AC[60];
+extern const f32 lbl_1_rodata_8658;
+extern const f32 lbl_1_rodata_8BA8;
+extern const f32 lbl_1_rodata_8A4C;
+extern s8 fn_1_A5DC4(void);
+extern const f32 lbl_1_rodata_91BC;
+extern void fn_1_4E724(void *);
+
+typedef struct {
+    u32 flags;
+    u8 pad_4[0x819c];
+    u8 unk_81a0;
+    u8 pad_81a1[3];
+    u8 unk_81a4;
+    u8 pad_81a5[7];
+    u8 unk_81ac;
+    u8 pad_81ad[7];
+    u8 unk_81b4;
+    u8 pad_81b5[0xb];
+} fn_1_13EE60_BurnerEntry;
+
+void fn_1_13EE60(s16 arg0, s16 arg1, void *arg2) {
+    void *base;
+    fn_1_13EE60_BurnerEntry *entry;
+
+    if (arg0 >= 0x29) {
+        base = fn_1_12F118();
+        if (base == fn_1_36AD0()) {
+            entry = &((fn_1_13EE60_BurnerEntry *)base)[arg1];
+        } else {
+            entry = &((fn_1_13EE60_BurnerEntry *)base)[arg0 - 0x29];
+        }
+        if ((entry->flags & 0x40000000) != 0) {
+            fn_1_14F6F8(entry->unk_81a4, entry->unk_81ac,
+                        entry->unk_81b4, arg2);
+        } else {
+            fn_80008BA8(arg2,
+                        &lbl_1_data_28060.entries[entry->unk_81a0],
+                        sizeof(MachineParameterRecord));
+        }
+    } else {
+        fn_80008BA8(arg2, &lbl_1_data_28060.entries[arg0],
+                    sizeof(MachineParameterRecord));
+    }
+}
+/* fzgx:end fn_1_13EE60 */
+
 /* fzgx:begin fn_1_13EF64 noprologue */
 #include "types.h"
 #include "font.h"
@@ -7368,6 +7672,35 @@ u32 fn_1_13F72C(s16 arg0, u32 arg1, f32 farg0) {
     }
 }
 /* fzgx:end fn_1_13F72C */
+
+/* fzgx:begin fn_1_13F7F8 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/custom_memcard.h"
+
+extern u32 lbl_801A6410;
+extern u8 fn_1_B7C00(void);
+extern s32 fn_1_B7CD4(void);
+extern s32 fn_1_B7C5C(void);
+extern void OSReport(const char* format, ...);
+extern void fn_1_46B4(u32 arg0, void* arg1, u8* arg2, s32 arg3);
+extern void fn_80008BA8(void*, void*, s32);
+extern u32 lbl_1_bss_8CA6C[1605];
+extern void fn_1_1324C4(void *arg0);
+extern void fn_1_132774(void *arg0);
+
+extern u32 lbl_801A6410;
+extern u8 fn_1_B7C00(void);
+extern s32 fn_1_B7CD4(void);
+extern s32 fn_1_B7C5C(void);
+extern void OSReport(const char* format, ...);
+extern void fn_80008BA8(void*, void*, s32);
+extern void fn_1_46B4(u32 arg0, void* arg1, u8* arg2, s32 arg3);
+
+u32 fn_1_13F7F8(s16 arg0, s16 arg1) {
+    return ((u32 (*)[6])&lbl_1_data_414D8)[arg0][arg1];
+}
+/* fzgx:end fn_1_13F7F8 */
 
 /* fzgx:begin fn_1_13F81C */
 // Clear the cached display-resource handles before loading a new selection.
@@ -7891,6 +8224,115 @@ void fn_1_14083C(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, f32 arg5, f32
     fn_1_4F734(&loc_8);
 }
 /* fzgx:end fn_1_14083C */
+
+/* fzgx:begin fn_1_140EE8 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/burner.h"
+
+extern u8 lbl_1_rodata_EB4[124];
+extern void *lbl_801A6410;
+extern void fn_1_46B4(void *, Obj_1_bss_6EA04_Target *, u8 *, u32);
+extern f32 lbl_1_rodata_4104[59];
+extern Obj_1_data_27DE0 *fn_1_986A4(Obj_1_data_27DE0 *obj);
+extern void fn_800794F0(Obj_1_data_27DE0 *arg0, Obj_1_data_27DE0 *arg1, s32 arg2);
+extern void fn_1_98804(Obj_1_data_27DE0 *obj);
+extern void fn_1_9AF80(u32 arg0, u32 arg1, u32 arg2);
+extern u32 lbl_1_rodata_4210;
+extern void fn_80007AB4(u32 *arg0);
+extern void fn_1_9CC6C(void *arg0, s32 arg1);
+extern void lbl_8006D7B0(s32);
+extern s32 lbl_8006D24C(f32, f32);
+extern void mathutil_mtxA_rotate_x(s16);
+extern void mathutil_mtxA_rotate_y(s32);
+extern s32 strlen(const char *);
+extern s32 fn_8006FC5C(const char *, const char *, s32);
+extern s32 fn_8006FC1C(const char *, const char *);
+extern u32 fn_1_9D260(void);
+extern s32 fn_1_3F0C8(void);
+extern u8 lbl_1_bss_8E51D;
+extern u8 fn_1_7B074(void);
+extern void fn_8006FDEC(void);
+extern void fn_80071718(u32);
+extern void fn_800711A8(u32);
+extern void fn_1_55A84(void (*callback)(void), void *arg0, s32 arg1, s32 arg2);
+extern void *fn_1_12F118(void);
+extern void *fn_1_36AD0(void);
+extern void fn_1_14F6F8(u8 arg0, u8 arg1, u8 arg2, void *arg3);
+extern void fn_80008BA8(void *arg0, const void *arg1, int arg2);
+
+extern u32 lbl_1_rodata_4210;
+extern void fn_80007AB4(u32 *arg0);
+extern void fn_1_9CC6C(void *arg0, s32 arg1);
+extern void fn_1_9D360(void);
+extern Obj_1_data_2A7E0_At3C * lbl_801A66CC;
+extern u32 fn_1_4630(u32, u32, u32, u32);
+extern const f32 lbl_1_rodata_4100;
+extern void *memset(void *dest, int value, u32 size);
+extern u32 fn_1_584AC(void);
+extern void lbl_8006D7DC(void *);
+extern void lbl_8006DFC4(void *);
+extern void lbl_8006E1B0(void *, void *);
+extern void fn_1_862D4(u32 arg0, void *arg1);
+extern u32 fn_1_1FB80(void *arg0, s32 arg1);
+extern u32 fn_1_41488(u32 arg0, void *arg1);
+extern void fn_1_4270C(void *arg0, u32 arg1, u32 arg2);
+extern f32 lbl_1_rodata_4260[16];
+extern f32 lbl_8006D0B4(f32);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006D848(f32);
+extern f32 lbl_1_rodata_26F8[22];
+extern u32 lbl_1_rodata_9194[10];
+extern u8 lbl_1_rodata_85AC[60];
+extern const f32 lbl_1_rodata_8658;
+extern const f32 lbl_1_rodata_8BA8;
+extern const f32 lbl_1_rodata_8A4C;
+extern s8 fn_1_A5DC4(void);
+extern const f32 lbl_1_rodata_91BC;
+extern void fn_1_4E724(void *);
+
+typedef struct {
+    u32 words[22];
+} LocalObj;
+
+void fn_1_140EE8(u8 arg0, int arg1, int arg2) {
+    u32 choices[10];
+    LocalObj obj = *(LocalObj *)lbl_1_rodata_26F8;
+    int index;
+    if (arg2 != 0) {
+        choices[0] = lbl_1_rodata_9194[0];
+        choices[1] = lbl_1_rodata_9194[1];
+        choices[2] = lbl_1_rodata_9194[2];
+        choices[3] = lbl_1_rodata_9194[3];
+        choices[4] = lbl_1_rodata_9194[4];
+        choices[5] = lbl_1_rodata_9194[5];
+        choices[6] = lbl_1_rodata_9194[6];
+        choices[7] = lbl_1_rodata_9194[7];
+        choices[8] = lbl_1_rodata_9194[8];
+        choices[9] = lbl_1_rodata_9194[9];
+        index = arg0 - 0x24;
+        obj.words[0] = choices[index < 0 ? 0 : index > 9 ? 9 : index];
+    } else {
+        obj.words[0] = ((u32 *)lbl_1_rodata_85AC)[
+            (*(u8 (*)[24])&lbl_1_data_2B144)[((u8 *)&lbl_1_data_2B0D4)[arg0]]
+        ];
+    }
+    *(f32 *)&obj.words[1] = lbl_1_rodata_8658;
+    *(f32 *)&obj.words[2] = lbl_1_rodata_8BA8;
+    if (arg1 == 0) {
+        ((u8 *)&obj)[0x3A] = 0xB4;
+        ((u8 *)&obj)[0x39] = 0xB4;
+        ((u8 *)&obj)[0x38] = 0xB4;
+    }
+    *(f32 *)&obj.words[11] = lbl_1_rodata_8A4C;
+    obj.words[12] = 10;
+    if ((s8)fn_1_A5DC4() || arg1 != 0) {
+        *(f32 *)&obj.words[4] *= lbl_1_rodata_91BC;
+        *(f32 *)&obj.words[5] *= lbl_1_rodata_91BC;
+    }
+    fn_1_4E724(&obj);
+}
+/* fzgx:end fn_1_140EE8 */
 
 /* fzgx:begin fn_1_14108C noprologue */
 #include "types.h"

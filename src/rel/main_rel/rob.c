@@ -130,6 +130,1190 @@ void fn_1_95EF0(void *arg0, s32 arg_sp0) {
 }
 /* fzgx:end fn_1_95EF0 */
 
+/* fzgx:begin fn_1_96130 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/car.h"
+#include "dolphin/hw_regs.h"
+#include "psvec.h"
+
+
+
+
+typedef struct {
+    u8 pad0[0x1c];
+    void *field_1c;
+} CarObject;
+
+typedef struct {
+    u8 pad0[0x12];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    void *field_28;
+    u8 pad2c[0x8];
+    void *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} EventNode;
+
+typedef struct {
+    u8 pad0[0x24];
+    void *field_24;
+} EventData;
+
+typedef struct {
+    u8 pad0[0x8];
+    EventData *field_8;
+    void *field_c;
+} EventObject;
+
+struct fn_1_7F954_lbl_801A6410 {
+    u32 unk_0;
+};
+
+struct fn_1_7FA04_lbl_801A6410 {
+    u32 unk_0;
+};
+
+typedef struct {
+    u8 pad0[0x40];
+    void *value;
+} ResourceHolder;
+
+typedef struct {
+    u32 x;
+    u32 y;
+    u32 z;
+} RawVec3;
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+typedef struct {
+    u8 _pad_000[0x7c];
+    Vec3 field_07c;
+    u8 _pad_088[0xc4];
+    Vec3 field_14c;
+} Fn184644Object;
+
+typedef struct {
+    u32 x;
+    u32 y;
+    u32 z;
+} Triple;
+
+typedef struct Fn195158Object Fn195158Object;
+
+struct Fn195158Object {
+    u8 unk_00[0x0C];
+    f32 unk_0C;
+    u8 unk_10[0x1C];
+    f32 unk_2C;
+    u8 unk_30[0x58];
+    u8 unk_88[0x04];
+};
+
+struct TargetObj {
+    char pad[0x60];
+    char field_0x60[0xc];
+    f32 field_0x6c;
+    char pad2[0xc];
+    f32 field_0x7c;
+};
+
+struct ModelItem {
+    u32 flags;
+    char pad[0x1c];
+};
+
+struct Model {
+    char pad[0x18];
+    u16 count;
+    char pad2[0x26];
+    struct ModelItem items[1];
+};
+
+typedef struct {
+    u32 entries[41];
+} FnTable;
+
+typedef struct {
+    u8 pad_0[0x4];
+    s32 field_4;
+    s32 field_8;
+    s32 field_c;
+    s32 field_10;
+    s32 field_14;
+} Fn1_8F45C_Object;
+
+typedef struct {
+    s32 active;
+    s32 entries[5];
+} Fn1_8F494_Object;
+
+typedef struct {
+    u8 pad_0[0x148];
+    u8 pad_148[0x20];
+    u8 pad_168[0x40];
+    u8 pad_1a8[0x20];
+    u8 pad_1c8[0x20];
+    u8 pad_1e8[0x20];
+    u8 entries[0x14][0x20];
+} Fn1_8F5A4_Object;
+
+typedef struct Fn195158Data Fn195158Data;
+
+struct Fn195158Data {
+    u8 unk_00[0x08];
+    Fn195158Object *unk_08;
+};
+
+typedef struct Fn195158Car Fn195158Car;
+
+struct Fn195158Car {
+    u8 unk_00[0xA0];
+    s16 unk_A0;
+    s16 unk_A2;
+    s16 unk_A4;
+    u8 unk_A6[0x02];
+    f32 unk_A8;
+    f32 unk_AC;
+    f32 unk_B0;
+    f32 unk_B4;
+    f32 unk_B8;
+    u8 unk_BC[0x94];
+    Fn195158Data *unk_150;
+};
+
+typedef struct Fn935E4Slot {
+    u8 pad0[0xa];
+    u16 field_a;
+} Fn935E4Slot;
+
+typedef struct Fn935E4Node {
+    u8 pad0[0xa];
+    u16 field_a;
+    u8 pad_c[6];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    u8 pad27[1];
+    Fn935E4Slot *field_28;
+    u8 pad2c[8];
+    Fn935E4Slot *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} Fn935E4Node;
+
+typedef struct {
+    u8 pad0[0x12];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    void *field_28;
+    u8 pad2c[8];
+    void *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} Node;
+
+typedef struct Fn935E4Car {
+    u8 pad0[0x1c];
+    Fn935E4Node *field_1c;
+} Fn935E4Car;
+
+typedef struct {
+    u8 pad0[0x24];
+    void *field_24;
+    f32 field_28;
+    f32 field_2c;
+} OutData;
+
+typedef struct {
+    u8 pad0[0x1c];
+    Node *field_1c;
+    u8 pad20[0x128];
+    u16 field_148;
+    u8 pad14a[6];
+    OutData *field_150;
+    void *field_154;
+} Owner;
+
+typedef struct Fn1967A8Resource Fn1967A8Resource;
+
+struct Fn1967A8Resource {
+    u8 unk_00;
+    u8 unk_01[0x07];
+    u32 unk_08;
+    u8 unk_0C[0x10];
+    u32 unk_1C;
+};
+
+typedef struct Fn196968Object Fn196968Object;
+
+struct Fn196968Object {
+    u8 unk_00[0x28];
+    u32 unk_28;
+    u8 unk_2C[0x144];
+    void *unk_170;
+    void *unk_174;
+};
+
+typedef struct Fn1969E8Owner Fn1969E8Owner;
+
+struct Fn1969E8Owner {
+    u8 unk_00[0x2C];
+    u32 unk_2c;
+    u8 unk_30[0x180];
+    u32 unk_1b0;
+    void *unk_1b4;
+};
+
+typedef struct Fn196BC0Object Fn196BC0Object;
+
+struct Fn196BC0Object {
+    u8 unk_00[0x30];
+    void *value_30;
+    u8 unk_34[0x19C];
+    void *resource_1D0;
+    void *resource_1D4;
+};
+
+typedef struct Fn196A68Object Fn196A68Object;
+
+struct Fn196A68Object {
+    u8 unk_00[0x34];
+    u32 unk_34;
+    u8 unk_38[0x1B8];
+    void *unk_1F0;
+    void *unk_1F4;
+};
+
+typedef struct CarR29 {
+    u8 unk_00[0x14];
+    f32 unk_14;
+} CarR29;
+
+typedef struct Vec3f {
+    f32 x, y, z;
+} Vec3f;
+
+typedef struct fn_1_8D210_car {
+    f32 position[6];
+    f32 scale_z;
+    f32 scale_y;
+    f32 scale_x;
+    f32 field_24;
+    u16 field_28;
+    u16 field_2a;
+    u16 field_2c;
+    u16 field_2e;
+    u16 field_30;
+    u16 field_32;
+    u32 field_34;
+    u8 field_38;
+    u8 field_39;
+    u8 field_3a;
+    u8 pad_3b;
+    u32 field_3c;
+    u8 field_40;
+    u8 pad_41[3];
+    f32 field_44;
+    f32 field_48;
+    f32 field_4c;
+    f32 field_50;
+    s16 field_54;
+    u8 pad_56[2];
+    s32 field_58;
+    u8 field_5c[4];
+    u32 field_60;
+} fn_1_8D210_car;
+
+typedef s32 (*fn_1_8D210_callback)(u32);
+
+typedef struct {
+    u8 pad[0x15];
+    u8 code;
+} State;
+
+typedef struct {
+    u8 pad[4];
+    State *state;
+} fn_1_8E3A4_Object;
+
+typedef struct Sig_fn_1_41418_Fn41418Data {
+    u32 count;
+    char *strings;
+} Sig_fn_1_41418_Fn41418Data;
+
+typedef struct {
+    u32 w[45];
+} Unk_23800000;
+
+typedef struct {
+    u8 pad_00[0x1C];
+    u16 unk_1C;
+} Sig_fn_1_55628_Fn1_55628Object;
+
+typedef struct fn_1_8D988_CarObject { u8 pad_0[0x40]; void *unk_40; } fn_1_8D988_CarObject;
+
+typedef struct fn_1_8D988_Car {
+    u32 unk_0; s16 unk_4; u8 pad_6[0x46e]; s8 unk_474; u8 pad_475[0xf];
+    fn_1_8D988_CarObject *unk_484; u8 pad_488[0x86]; u8 unk_50e; u8 pad_50f[0x111];
+} fn_1_8D988_Car;
+
+struct Sig_fn_800713E0_fn_800713E0_Entry {
+    u8 pad_0[0x18];
+    u16 count;
+};
+
+struct Sig_fn_800713E0_fn_800713E0_Arg0 {
+    s32 count;
+    u8 pad_4[0x4];
+    struct Sig_fn_800713E0_fn_800713E0_Entry **entries;
+};
+
+typedef struct Sig_fn_1_97174_Fn197174Owner Sig_fn_1_97174_Fn197174Owner;
+
+struct Sig_fn_1_97174_Fn197174Owner {
+    u8 unk_00[0x14];
+    u8 *base;
+};
+
+typedef struct fn_1_95238_lbl_801A6D00 {
+    u32 unk_0;
+} fn_1_95238_lbl_801A6D00;
+
+typedef struct {
+    u8 **unk_00;
+    void *unk_04;
+    u32 pad_08;
+} Fn1_87448_Slot;
+
+typedef struct {
+    u8 pad_00[0x330];
+    u32 unk_330;
+    Fn1_87448_Slot unk_334[1];
+} Fn1_87448_Obj;
+
+typedef struct {
+    u8 pad_00[2];
+    s8 unk_02;
+} Fn1_87448_Arg1;
+extern void fn_1_801F8(s16 arg0, void *arg1);
+extern s32 fn_1_46C70();
+extern s32 fn_1_465D0(s32 arg0, s32 arg1);
+extern char *fn_80083DB0(char *dst, const char *src);
+extern void fn_80006E10(u32 arg0);
+extern int sprintf(char *s, const char *format, ...);
+extern Unk_23800000 lbl_23800000[];
+extern u8* fn_1_36AD0();
+extern void fn_1_14F6F8(u8 arg0, u8 arg1, u8 arg2, void *arg3);
+extern u32 lbl_801A6410;
+extern void fn_1_56858(void *, int);
+extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
+extern void fn_1_12A734(s32 value);
+extern void fn_1_7F658(void *arg0);
+extern void fn_1_591A0(s32 id);
+extern void fn_1_8E1E8(void);
+extern void fn_1_FDFF4(void);
+extern u32 fn_80071718(u32);
+extern void fn_800711A8(u32 value);
+extern void _savegpr_27(void);
+extern void _restgpr_27(void);
+extern void OSReport(const char *format, ...);
+extern f32 lbl_1_rodata_3508[];
+extern int fn_1_20A5C(f32 *, f32 *);
+extern void *fn_1_21644(void *arg0, f32 *arg1, void *arg2);
+extern u8 * fn_1_14F04(void);
+extern void fn_1_17920(int, int, f32);
+extern void lbl_8006D7F4(f32, f32, f32);
+extern void lbl_8006DBAC(Vec3 *a);
+extern void lbl_8006E0A4(void *);
+extern void lbl_8006E0B4(f32 arg0, f32 arg1, f32 arg2);
+extern void fn_1_892FC(void *arg0, int arg1, int arg2);
+extern void fn_1_23500();
+extern f32 lbl_1_rodata_3518[6];
+extern f32 lbl_1_rodata_3530[22];
+extern u32 lbl_8006DBE4(void);
+extern void lbl_8006DFC4(void *arg0);
+extern u8 *fn_80083970(u8 *str, const u8 *needle);
+extern void fn_1_55628(Sig_fn_1_55628_Fn1_55628Object *);
+extern void fn_1_556B8(void *value);
+extern void fn_1_55FF0(f32 value);
+extern void fn_80072558(void);
+extern u32 fn_800793D4(u8 *arg0, u32 arg1, u32 arg2);
+extern void fn_1_8B9B8(void *);
+extern s32 fn_1_8D210(fn_1_8D210_car *car, fn_1_8D210_callback callback, u32 arg, s32 enable);
+extern s32 fn_1_F7BE4();
+extern u8 lbl_1_rodata_3D34[164];
+extern s32 fn_1_45D0();
+extern void fn_1_C487C();
+extern void fn_1_43E8(u32 arg0);
+extern void fn_1_C4ABC(void);
+extern s32 fn_1_3F8C(u32 arg3, u32 arg0, u32 arg1, u32 index);
+extern void fn_1_43F4(void);
+extern void fn_1_8E3A4(fn_1_8E3A4_Object *obj);
+extern u32 fn_80074A7C(u32 arg0);
+extern void fn_800713E0(struct Sig_fn_800713E0_fn_800713E0_Arg0 *, u32);
+extern void fn_1_A8DD4(const char *format, ...);
+extern void fn_1_A8F40(u8 arg0);
+extern s32 fn_1_41418(void *resource, u16 id);
+extern void fn_1_95210(void *arg0);
+extern void fn_1_95158(Fn195158Car *car);
+extern s32 fn_1_97174(EventNode *arg0, s32 arg1, void *arg2);
+extern void fn_1_93734(u32, u32);
+extern void fn_1_4270C(void *arg0, s32 arg1, u32 arg2);
+extern const f32 lbl_1_rodata_3F6C;
+extern u8 *lbl_801A6D00;
+extern void mathutil_mtxA_rotate_y(int value);
+extern void mathutil_mtxA_rotate_z(int value);
+extern void lbl_8006D758(void);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DB30(void);
+extern void lbl_8006E14C(f32 arg0);
+extern void mathutil_mtxA_rotate_x(s16 arg0);
+extern void fn_1_12AB38(void *arg0);
+extern s32 fn_1_12A8A4(u32 arg0, void *arg1);
+extern u32 lbl_1_bss_6E98C;
+extern void fn_1_96AE8(void *base, void *arg1);
+extern Fn1967A8Resource *fn_1_41518(void *arg0);
+extern void fn_1_41C18(Fn1967A8Resource *arg0, void *arg1);
+extern u16 fn_1_96968(Fn196968Object *object, void *arg1);
+extern u16 fn_1_969E8(Fn1969E8Owner *owner, void *arg1);
+extern u16 fn_1_96BC0(Fn196BC0Object *object, void *arg1);
+extern u16 fn_1_96A68(Fn196A68Object *object, void *arg1);
+extern const f32 lbl_1_rodata_3E48[];
+extern void *camera_get_state_object(void);
+extern void camera_update_state(void *);
+extern CarR29 *fn_80071268(void *, void *);
+extern void lbl_8006E1F0(Vec3f *, f32, f32, f32);
+extern void fn_1_A714C(f32 *a, f32 *b, f32 *c, f32 *d);
+extern f32 lbl_8006D21C(s32);
+extern void lbl_8006E2C0(Vec3f *, f32, f32, f32);
+extern void fn_8006E250(Vec3f *, Vec3f *);
+extern void fn_1_B81C(Vec3f *, Vec3f *, s32);
+extern void fn_1_150464(u32 arg0);
+extern void fn_1_810E4(u32 arg0);
+extern u8 lbl_1_rodata_3590[984];
+extern u32 fn_1_12AC00(unsigned char *value);
+extern void fn_1_80294(void *arg0, void *arg1, s32 arg2);
+extern u32 lbl_1_rodata_3A94[7];
+extern void lbl_8006DC6C(void *, u32, u32);
+extern void lbl_8006E1B0(void *, void *);
+extern void lbl_8006DFE8(void *);
+extern f32 fn_1_A71AC(void);
+extern u8 fn_1_5910();
+extern void fn_1_681C(u32 index, u32 *output);
+extern void fn_1_6914(u32 index, u32 *output);
+extern f32 lbl_8006D534(Vec3 *a, Vec3 *b);
+extern u32 lbl_1_rodata_3B20[3];
+extern f32 lbl_1_rodata_3B2C[47];
+extern Triple lbl_1_rodata_3BE8;
+extern u32 fn_80007CDC(f32 *arg0);
+extern u32 fn_80007D58(f32 *arg0);
+extern void lbl_8006D784(void *);
+extern void lbl_8006DD14(void *, void *);
+extern u32 lbl_1_rodata_3BF4[14];
+extern u32 lbl_1_bss_6D8F4[31];
+extern u32 lbl_801A66A0;
+extern u32 fn_1_56018(s32 value);
+extern void fn_1_560F0(s32 index, void *arg);
+extern void fn_1_55210(void *value);
+extern f32 lbl_8006D188(s16);
+extern void fn_1_87448();
+extern void fn_80008BA8(void *dst, const void *src, int size);
+extern void lbl_8006D7DC(void *value);
+extern void lbl_8006DB74(void *value);
+extern f32 lbl_1_rodata_3C2C[33];
+extern u8 lbl_1_bss_8CA28;
+extern void fn_80008BEC(void *dest, int value, u32 size);
+extern u32 GXGetTexBufferSize(u16 width, u16 height, u32 arg2, u32 arg3, u32 arg4);
+extern u32 fn_1_4630();
+extern void fn_1_550A8(void);
+extern void fn_1_545B8(void);
+extern void fn_1_550E0(void);
+extern void fn_80038F10(f32* out);
+extern void GXGetScissor(u32 *left, u32 *top, u32 *width, u32 *height);
+extern void GXGetProjectionv(f32* out);
+extern void C_MTXPerspective(f32 *out, f32 a1, f32 a2, f32 a3, f32 a4);
+extern void fn_800737E4(void *, s32);
+extern u32 fn_80038EEC();
+extern s32 __cvt_fp2unsigned(f32);
+extern u32 fn_80074188(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
+extern void fn_80074918(u8 arg0, s32 arg1, u8 arg2);
+extern void fn_80008204(void *);
+extern void fn_80074300();
+extern void fn_80074438(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
+extern void fn_8003526C(u32, u8);
+extern void GXInvalidateTexAll(void);
+extern void fn_80072270(void *);
+extern void fn_1_4FC50(u32, u32, u16, u16, u32);
+extern u32 fn_80008E84(u32 arg0);
+extern void fn_1_426C(s32 value);
+extern void fn_1_8E7D0(Fn1_8F45C_Object *obj);
+extern void fn_1_12A2B8(u32 value);
+extern void fn_1_12A2D0(s32 value);
+extern void fn_1_9724C();
+extern void fn_1_107C4C(void *arg);
+extern void fn_1_966A0(Fn1_8F494_Object *obj);
+extern void fn_1_95EF0();
+extern void fn_1_8F5A4(Fn1_8F5A4_Object *obj);
+extern void fn_1_968FC(Fn1_8F5A4_Object *obj);
+extern s32 fn_1_41488(void *arg0, void *arg1);
+extern f32 lbl_1_rodata_4010[60];
+extern void fn_1_943F8(Fn935E4Car *, f32, void *);
+extern void fn_1_42AD0(void *, s32, u16, s32, u16);
+extern void fn_1_41328(void *arg0);
+extern void fn_1_426E4(void *arg0, void *arg1);
+extern u32 lbl_1_bss_6D828;
+extern s32 fn_1_3F854(u32 arg0);
+extern s32 fn_1_8171C(s32 value);
+extern u8 lbl_1_rodata_3968[232];
+extern void fn_800712E4(void *arg0, u32 arg1, void *arg2);
+extern u32 lbl_1_bss_6D850;
+extern u32 lbl_1_bss_6D97C;
+extern u32 lbl_1_bss_6D978;
+extern f32 fn_1_86A2C(void *);
+extern void fn_1_85688(void);
+extern void fn_1_854D4(void);
+extern void fn_1_85934();
+extern void fn_1_C489C(Obj_1_bss_6D838_Target *);
+extern void fn_1_C40A0(Obj_1_bss_6D838_Target *);
+extern u8 lbl_1_bss_6DA5C[30];
+extern void fn_1_8A1B4(void *arg0, void *arg1, int arg2);
+extern void fn_1_8B8A4(void *arg);
+extern u8 lbl_1_bss_6DA5C__fzgx_offset_1E;
+extern u8 lbl_1_bss_6DA5C__fzgx_offset_1F[5];
+extern s32 fn_8006FDEC(void);
+extern void fn_8006FEFC(void);
+extern u8 lbl_1_rodata_3DD8[84];
+extern u32 lbl_1_bss_6D86C[34];
+extern u32 fn_1_12ADA0(unsigned char *value, u32 arg);
+extern void fn_1_961F0(void *obj);
+extern u32 lbl_1_bss_6E978[3];
+extern s32 lbl_1_bss_6E984;
+extern u32 lbl_1_rodata_3FA0[28];
+extern void fn_80007AB4(u8 *arg0);
+extern void fn_1_92554(void *arg0, s32 arg1);
+extern f32 lbl_1_rodata_3F70[12];
+extern u8 lbl_1_data_34348[12];
+extern void fn_1_12A2C4(u32 value);
+extern void fn_1_A7B5C(void *arg0, s32 arg1, void *arg2, s8 arg3, void *arg4);
+extern u32 lbl_1_bss_6D970;
+extern u32 lbl_1_bss_6D974;
+extern u32 fn_1_435C(u32 value);
+extern void fn_1_850C4(void);
+
+void fn_1_96130(void *arg0) {
+    fn_1_12AB38(lbl_1_data_27BA4);
+    fn_1_465D0( (s32)(void *)(arg0), 1);
+    fn_1_12AB38(&lbl_1_data_278AC);
+}
+/* fzgx:end fn_1_96130 */
+
+/* fzgx:begin fn_1_9617C noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/car.h"
+#include "dolphin/hw_regs.h"
+#include "psvec.h"
+
+
+
+
+typedef struct {
+    u8 pad0[0x1c];
+    void *field_1c;
+} CarObject;
+
+typedef struct {
+    u8 pad0[0x12];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    void *field_28;
+    u8 pad2c[0x8];
+    void *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} EventNode;
+
+typedef struct {
+    u8 pad0[0x24];
+    void *field_24;
+} EventData;
+
+typedef struct {
+    u8 pad0[0x8];
+    EventData *field_8;
+    void *field_c;
+} EventObject;
+
+struct fn_1_7F954_lbl_801A6410 {
+    u32 unk_0;
+};
+
+struct fn_1_7FA04_lbl_801A6410 {
+    u32 unk_0;
+};
+
+typedef struct {
+    u8 pad0[0x40];
+    void *value;
+} ResourceHolder;
+
+typedef struct {
+    u32 x;
+    u32 y;
+    u32 z;
+} RawVec3;
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+typedef struct {
+    u8 _pad_000[0x7c];
+    Vec3 field_07c;
+    u8 _pad_088[0xc4];
+    Vec3 field_14c;
+} Fn184644Object;
+
+typedef struct {
+    u32 x;
+    u32 y;
+    u32 z;
+} Triple;
+
+typedef struct Fn195158Object Fn195158Object;
+
+struct Fn195158Object {
+    u8 unk_00[0x0C];
+    f32 unk_0C;
+    u8 unk_10[0x1C];
+    f32 unk_2C;
+    u8 unk_30[0x58];
+    u8 unk_88[0x04];
+};
+
+struct TargetObj {
+    char pad[0x60];
+    char field_0x60[0xc];
+    f32 field_0x6c;
+    char pad2[0xc];
+    f32 field_0x7c;
+};
+
+struct ModelItem {
+    u32 flags;
+    char pad[0x1c];
+};
+
+struct Model {
+    char pad[0x18];
+    u16 count;
+    char pad2[0x26];
+    struct ModelItem items[1];
+};
+
+typedef struct {
+    u32 entries[41];
+} FnTable;
+
+typedef struct {
+    u8 pad_0[0x4];
+    s32 field_4;
+    s32 field_8;
+    s32 field_c;
+    s32 field_10;
+    s32 field_14;
+} Fn1_8F45C_Object;
+
+typedef struct {
+    s32 active;
+    s32 entries[5];
+} Fn1_8F494_Object;
+
+typedef struct {
+    u8 pad_0[0x148];
+    u8 pad_148[0x20];
+    u8 pad_168[0x40];
+    u8 pad_1a8[0x20];
+    u8 pad_1c8[0x20];
+    u8 pad_1e8[0x20];
+    u8 entries[0x14][0x20];
+} Fn1_8F5A4_Object;
+
+typedef struct Fn195158Data Fn195158Data;
+
+struct Fn195158Data {
+    u8 unk_00[0x08];
+    Fn195158Object *unk_08;
+};
+
+typedef struct Fn195158Car Fn195158Car;
+
+struct Fn195158Car {
+    u8 unk_00[0xA0];
+    s16 unk_A0;
+    s16 unk_A2;
+    s16 unk_A4;
+    u8 unk_A6[0x02];
+    f32 unk_A8;
+    f32 unk_AC;
+    f32 unk_B0;
+    f32 unk_B4;
+    f32 unk_B8;
+    u8 unk_BC[0x94];
+    Fn195158Data *unk_150;
+};
+
+typedef struct Fn935E4Slot {
+    u8 pad0[0xa];
+    u16 field_a;
+} Fn935E4Slot;
+
+typedef struct Fn935E4Node {
+    u8 pad0[0xa];
+    u16 field_a;
+    u8 pad_c[6];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    u8 pad27[1];
+    Fn935E4Slot *field_28;
+    u8 pad2c[8];
+    Fn935E4Slot *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} Fn935E4Node;
+
+typedef struct {
+    u8 pad0[0x12];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    void *field_28;
+    u8 pad2c[8];
+    void *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} Node;
+
+typedef struct Fn935E4Car {
+    u8 pad0[0x1c];
+    Fn935E4Node *field_1c;
+} Fn935E4Car;
+
+typedef struct {
+    u8 pad0[0x24];
+    void *field_24;
+    f32 field_28;
+    f32 field_2c;
+} OutData;
+
+typedef struct {
+    u8 pad0[0x1c];
+    Node *field_1c;
+    u8 pad20[0x128];
+    u16 field_148;
+    u8 pad14a[6];
+    OutData *field_150;
+    void *field_154;
+} Owner;
+
+typedef struct Fn1967A8Resource Fn1967A8Resource;
+
+struct Fn1967A8Resource {
+    u8 unk_00;
+    u8 unk_01[0x07];
+    u32 unk_08;
+    u8 unk_0C[0x10];
+    u32 unk_1C;
+};
+
+typedef struct Fn196968Object Fn196968Object;
+
+struct Fn196968Object {
+    u8 unk_00[0x28];
+    u32 unk_28;
+    u8 unk_2C[0x144];
+    void *unk_170;
+    void *unk_174;
+};
+
+typedef struct Fn1969E8Owner Fn1969E8Owner;
+
+struct Fn1969E8Owner {
+    u8 unk_00[0x2C];
+    u32 unk_2c;
+    u8 unk_30[0x180];
+    u32 unk_1b0;
+    void *unk_1b4;
+};
+
+typedef struct Fn196BC0Object Fn196BC0Object;
+
+struct Fn196BC0Object {
+    u8 unk_00[0x30];
+    void *value_30;
+    u8 unk_34[0x19C];
+    void *resource_1D0;
+    void *resource_1D4;
+};
+
+typedef struct Fn196A68Object Fn196A68Object;
+
+struct Fn196A68Object {
+    u8 unk_00[0x34];
+    u32 unk_34;
+    u8 unk_38[0x1B8];
+    void *unk_1F0;
+    void *unk_1F4;
+};
+
+typedef struct CarR29 {
+    u8 unk_00[0x14];
+    f32 unk_14;
+} CarR29;
+
+typedef struct Vec3f {
+    f32 x, y, z;
+} Vec3f;
+
+typedef struct fn_1_8D210_car {
+    f32 position[6];
+    f32 scale_z;
+    f32 scale_y;
+    f32 scale_x;
+    f32 field_24;
+    u16 field_28;
+    u16 field_2a;
+    u16 field_2c;
+    u16 field_2e;
+    u16 field_30;
+    u16 field_32;
+    u32 field_34;
+    u8 field_38;
+    u8 field_39;
+    u8 field_3a;
+    u8 pad_3b;
+    u32 field_3c;
+    u8 field_40;
+    u8 pad_41[3];
+    f32 field_44;
+    f32 field_48;
+    f32 field_4c;
+    f32 field_50;
+    s16 field_54;
+    u8 pad_56[2];
+    s32 field_58;
+    u8 field_5c[4];
+    u32 field_60;
+} fn_1_8D210_car;
+
+typedef s32 (*fn_1_8D210_callback)(u32);
+
+typedef struct {
+    u8 pad[0x15];
+    u8 code;
+} State;
+
+typedef struct {
+    u8 pad[4];
+    State *state;
+} fn_1_8E3A4_Object;
+
+typedef struct Sig_fn_1_41418_Fn41418Data {
+    u32 count;
+    char *strings;
+} Sig_fn_1_41418_Fn41418Data;
+
+typedef struct {
+    u32 w[45];
+} Unk_23800000;
+
+typedef struct {
+    u8 pad_00[0x1C];
+    u16 unk_1C;
+} Sig_fn_1_55628_Fn1_55628Object;
+
+typedef struct fn_1_8D988_CarObject { u8 pad_0[0x40]; void *unk_40; } fn_1_8D988_CarObject;
+
+typedef struct fn_1_8D988_Car {
+    u32 unk_0; s16 unk_4; u8 pad_6[0x46e]; s8 unk_474; u8 pad_475[0xf];
+    fn_1_8D988_CarObject *unk_484; u8 pad_488[0x86]; u8 unk_50e; u8 pad_50f[0x111];
+} fn_1_8D988_Car;
+
+struct Sig_fn_800713E0_fn_800713E0_Entry {
+    u8 pad_0[0x18];
+    u16 count;
+};
+
+struct Sig_fn_800713E0_fn_800713E0_Arg0 {
+    s32 count;
+    u8 pad_4[0x4];
+    struct Sig_fn_800713E0_fn_800713E0_Entry **entries;
+};
+
+typedef struct Sig_fn_1_97174_Fn197174Owner Sig_fn_1_97174_Fn197174Owner;
+
+struct Sig_fn_1_97174_Fn197174Owner {
+    u8 unk_00[0x14];
+    u8 *base;
+};
+
+typedef struct fn_1_95238_lbl_801A6D00 {
+    u32 unk_0;
+} fn_1_95238_lbl_801A6D00;
+
+typedef struct {
+    u8 **unk_00;
+    void *unk_04;
+    u32 pad_08;
+} Fn1_87448_Slot;
+
+typedef struct {
+    u8 pad_00[0x330];
+    u32 unk_330;
+    Fn1_87448_Slot unk_334[1];
+} Fn1_87448_Obj;
+
+typedef struct {
+    u8 pad_00[2];
+    s8 unk_02;
+} Fn1_87448_Arg1;
+extern void fn_1_801F8(s16 arg0, void *arg1);
+extern s32 fn_1_46C70();
+extern s32 fn_1_465D0(s32 arg0, s32 arg1);
+extern char *fn_80083DB0(char *dst, const char *src);
+extern void fn_80006E10(u32 arg0);
+extern int sprintf(char *s, const char *format, ...);
+extern Unk_23800000 lbl_23800000[];
+extern u8* fn_1_36AD0();
+extern void fn_1_14F6F8(u8 arg0, u8 arg1, u8 arg2, void *arg3);
+extern u32 lbl_801A6410;
+extern void fn_1_56858(void *, int);
+extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
+extern void fn_1_12A734(s32 value);
+extern void fn_1_7F658(void *arg0);
+extern void fn_1_591A0(s32 id);
+extern void fn_1_8E1E8(void);
+extern void fn_1_FDFF4(void);
+extern u32 fn_80071718(u32);
+extern void fn_800711A8(u32 value);
+extern void _savegpr_27(void);
+extern void _restgpr_27(void);
+extern void OSReport(const char *format, ...);
+extern f32 lbl_1_rodata_3508[];
+extern int fn_1_20A5C(f32 *, f32 *);
+extern void *fn_1_21644(void *arg0, f32 *arg1, void *arg2);
+extern u8 * fn_1_14F04(void);
+extern void fn_1_17920(int, int, f32);
+extern void lbl_8006D7F4(f32, f32, f32);
+extern void lbl_8006DBAC(Vec3 *a);
+extern void lbl_8006E0A4(void *);
+extern void lbl_8006E0B4(f32 arg0, f32 arg1, f32 arg2);
+extern void fn_1_892FC(void *arg0, int arg1, int arg2);
+extern void fn_1_23500();
+extern f32 lbl_1_rodata_3518[6];
+extern f32 lbl_1_rodata_3530[22];
+extern u32 lbl_8006DBE4(void);
+extern void lbl_8006DFC4(void *arg0);
+extern u8 *fn_80083970(u8 *str, const u8 *needle);
+extern void fn_1_55628(Sig_fn_1_55628_Fn1_55628Object *);
+extern void fn_1_556B8(void *value);
+extern void fn_1_55FF0(f32 value);
+extern void fn_80072558(void);
+extern u32 fn_800793D4(u8 *arg0, u32 arg1, u32 arg2);
+extern void fn_1_8B9B8(void *);
+extern s32 fn_1_8D210(fn_1_8D210_car *car, fn_1_8D210_callback callback, u32 arg, s32 enable);
+extern s32 fn_1_F7BE4();
+extern u8 lbl_1_rodata_3D34[164];
+extern s32 fn_1_45D0();
+extern void fn_1_C487C();
+extern void fn_1_43E8(u32 arg0);
+extern void fn_1_C4ABC(void);
+extern s32 fn_1_3F8C(u32 arg3, u32 arg0, u32 arg1, u32 index);
+extern void fn_1_43F4(void);
+extern void fn_1_8E3A4(fn_1_8E3A4_Object *obj);
+extern u32 fn_80074A7C(u32 arg0);
+extern void fn_800713E0(struct Sig_fn_800713E0_fn_800713E0_Arg0 *, u32);
+extern void fn_1_A8DD4(const char *format, ...);
+extern void fn_1_A8F40(u8 arg0);
+extern s32 fn_1_41418(void *resource, u16 id);
+extern void fn_1_95210(void *arg0);
+extern void fn_1_95158(Fn195158Car *car);
+extern s32 fn_1_97174(EventNode *arg0, s32 arg1, void *arg2);
+extern void fn_1_93734(u32, u32);
+extern void fn_1_4270C(void *arg0, s32 arg1, u32 arg2);
+extern const f32 lbl_1_rodata_3F6C;
+extern u8 *lbl_801A6D00;
+extern void mathutil_mtxA_rotate_y(int value);
+extern void mathutil_mtxA_rotate_z(int value);
+extern void lbl_8006D758(void);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DB30(void);
+extern void lbl_8006E14C(f32 arg0);
+extern void mathutil_mtxA_rotate_x(s16 arg0);
+extern void fn_1_12AB38(void *arg0);
+extern s32 fn_1_12A8A4(u32 arg0, void *arg1);
+extern u32 lbl_1_bss_6E98C;
+extern void fn_1_96AE8(void *base, void *arg1);
+extern Fn1967A8Resource *fn_1_41518(void *arg0);
+extern void fn_1_41C18(Fn1967A8Resource *arg0, void *arg1);
+extern u16 fn_1_96968(Fn196968Object *object, void *arg1);
+extern u16 fn_1_969E8(Fn1969E8Owner *owner, void *arg1);
+extern u16 fn_1_96BC0(Fn196BC0Object *object, void *arg1);
+extern u16 fn_1_96A68(Fn196A68Object *object, void *arg1);
+extern const f32 lbl_1_rodata_3E48[];
+extern void *camera_get_state_object(void);
+extern void camera_update_state(void *);
+extern CarR29 *fn_80071268(void *, void *);
+extern void lbl_8006E1F0(Vec3f *, f32, f32, f32);
+extern void fn_1_A714C(f32 *a, f32 *b, f32 *c, f32 *d);
+extern f32 lbl_8006D21C(s32);
+extern void lbl_8006E2C0(Vec3f *, f32, f32, f32);
+extern void fn_8006E250(Vec3f *, Vec3f *);
+extern void fn_1_B81C(Vec3f *, Vec3f *, s32);
+extern void fn_1_150464(u32 arg0);
+extern void fn_1_810E4(u32 arg0);
+extern u8 lbl_1_rodata_3590[984];
+extern u32 fn_1_12AC00(unsigned char *value);
+extern void fn_1_80294(void *arg0, void *arg1, s32 arg2);
+extern u32 lbl_1_rodata_3A94[7];
+extern void lbl_8006DC6C(void *, u32, u32);
+extern void lbl_8006E1B0(void *, void *);
+extern void lbl_8006DFE8(void *);
+extern f32 fn_1_A71AC(void);
+extern u8 fn_1_5910();
+extern void fn_1_681C(u32 index, u32 *output);
+extern void fn_1_6914(u32 index, u32 *output);
+extern f32 lbl_8006D534(Vec3 *a, Vec3 *b);
+extern u32 lbl_1_rodata_3B20[3];
+extern f32 lbl_1_rodata_3B2C[47];
+extern Triple lbl_1_rodata_3BE8;
+extern u32 fn_80007CDC(f32 *arg0);
+extern u32 fn_80007D58(f32 *arg0);
+extern void lbl_8006D784(void *);
+extern void lbl_8006DD14(void *, void *);
+extern u32 lbl_1_rodata_3BF4[14];
+extern u32 lbl_1_bss_6D8F4[31];
+extern u32 lbl_801A66A0;
+extern u32 fn_1_56018(s32 value);
+extern void fn_1_560F0(s32 index, void *arg);
+extern void fn_1_55210(void *value);
+extern f32 lbl_8006D188(s16);
+extern void fn_1_87448();
+extern void fn_80008BA8(void *dst, const void *src, int size);
+extern void lbl_8006D7DC(void *value);
+extern void lbl_8006DB74(void *value);
+extern f32 lbl_1_rodata_3C2C[33];
+extern u8 lbl_1_bss_8CA28;
+extern void fn_80008BEC(void *dest, int value, u32 size);
+extern u32 GXGetTexBufferSize(u16 width, u16 height, u32 arg2, u32 arg3, u32 arg4);
+extern u32 fn_1_4630();
+extern void fn_1_550A8(void);
+extern void fn_1_545B8(void);
+extern void fn_1_550E0(void);
+extern void fn_80038F10(f32* out);
+extern void GXGetScissor(u32 *left, u32 *top, u32 *width, u32 *height);
+extern void GXGetProjectionv(f32* out);
+extern void C_MTXPerspective(f32 *out, f32 a1, f32 a2, f32 a3, f32 a4);
+extern void fn_800737E4(void *, s32);
+extern u32 fn_80038EEC();
+extern s32 __cvt_fp2unsigned(f32);
+extern u32 fn_80074188(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
+extern void fn_80074918(u8 arg0, s32 arg1, u8 arg2);
+extern void fn_80008204(void *);
+extern void fn_80074300();
+extern void fn_80074438(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
+extern void fn_8003526C(u32, u8);
+extern void GXInvalidateTexAll(void);
+extern void fn_80072270(void *);
+extern void fn_1_4FC50(u32, u32, u16, u16, u32);
+extern u32 fn_80008E84(u32 arg0);
+extern void fn_1_426C(s32 value);
+extern void fn_1_8E7D0(Fn1_8F45C_Object *obj);
+extern void fn_1_12A2B8(u32 value);
+extern void fn_1_12A2D0(s32 value);
+extern void fn_1_9724C();
+extern void fn_1_107C4C(void *arg);
+extern void fn_1_966A0(Fn1_8F494_Object *obj);
+extern void fn_1_95EF0();
+extern void fn_1_8F5A4(Fn1_8F5A4_Object *obj);
+extern void fn_1_968FC(Fn1_8F5A4_Object *obj);
+extern s32 fn_1_41488(void *arg0, void *arg1);
+extern f32 lbl_1_rodata_4010[60];
+extern void fn_1_943F8(Fn935E4Car *, f32, void *);
+extern void fn_1_42AD0(void *, s32, u16, s32, u16);
+extern void fn_1_41328(void *arg0);
+extern void fn_1_426E4(void *arg0, void *arg1);
+extern u32 lbl_1_bss_6D828;
+extern s32 fn_1_3F854(u32 arg0);
+extern s32 fn_1_8171C(s32 value);
+extern u8 lbl_1_rodata_3968[232];
+extern void fn_800712E4(void *arg0, u32 arg1, void *arg2);
+extern u32 lbl_1_bss_6D850;
+extern u32 lbl_1_bss_6D97C;
+extern u32 lbl_1_bss_6D978;
+extern f32 fn_1_86A2C(void *);
+extern void fn_1_85688(void);
+extern void fn_1_854D4(void);
+extern void fn_1_85934();
+extern void fn_1_C489C(Obj_1_bss_6D838_Target *);
+extern void fn_1_C40A0(Obj_1_bss_6D838_Target *);
+extern u8 lbl_1_bss_6DA5C[30];
+extern void fn_1_8A1B4(void *arg0, void *arg1, int arg2);
+extern void fn_1_8B8A4(void *arg);
+extern u8 lbl_1_bss_6DA5C__fzgx_offset_1E;
+extern u8 lbl_1_bss_6DA5C__fzgx_offset_1F[5];
+extern s32 fn_8006FDEC(void);
+extern void fn_8006FEFC(void);
+extern u8 lbl_1_rodata_3DD8[84];
+extern u32 lbl_1_bss_6D86C[34];
+extern u32 fn_1_12ADA0(unsigned char *value, u32 arg);
+extern void fn_1_961F0(void *obj);
+extern u32 lbl_1_bss_6E978[3];
+extern s32 lbl_1_bss_6E984;
+extern u32 lbl_1_rodata_3FA0[28];
+extern void fn_80007AB4(u8 *arg0);
+extern void fn_1_92554(void *arg0, s32 arg1);
+extern f32 lbl_1_rodata_3F70[12];
+extern u8 lbl_1_data_34348[12];
+extern void fn_1_12A2C4(u32 value);
+extern void fn_1_A7B5C(void *arg0, s32 arg1, void *arg2, s8 arg3, void *arg4);
+extern u32 lbl_1_bss_6D970;
+extern u32 lbl_1_bss_6D974;
+extern u32 fn_1_435C(u32 value);
+extern void fn_1_850C4(void);
+
+typedef struct CarResourceState CarResourceState;
+
+struct CarResourceState {
+    u8 unk_00[0x08];
+    void *unk_08;
+    void *unk_0C;
+};
+
+// Loads the car resource, updates its model data, and restores shared state.
+void fn_1_9617C(CarResourceState *car, void *resource) {
+    fn_1_12AB38(lbl_1_data_27BA4);
+    if (fn_1_12A8A4( (u32)(void *)(resource), &car->unk_0C) != 0) {
+        fn_1_41328(car->unk_0C);
+        fn_1_426E4(car->unk_08, car->unk_0C);
+    }
+    fn_1_12AB38(&lbl_1_data_278AC);
+}
+/* fzgx:end fn_1_9617C */
+
 /* fzgx:begin fn_1_961F0 */
 typedef struct Fn1961F0Owner Fn1961F0Owner;
 
@@ -1208,6 +2392,71 @@ void fn_1_966A0(Fn1966A0Object *object) {
 }
 /* fzgx:end fn_1_966A0 */
 
+/* fzgx:begin fn_1_967A8 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/car.h"
+
+extern void fn_1_12AB38(void *arg0);
+extern void fn_1_12A8A4(void *arg0, void *arg1);
+extern u32 lbl_1_bss_6E98C;
+extern void fn_1_96AE8(void);
+
+extern void fn_1_12AB38(void *value);
+
+typedef struct Fn1967A8Resource Fn1967A8Resource;
+struct Fn1967A8Resource {
+    u8 unk_00;
+    u8 unk_01[0x07];
+    u32 unk_08;
+    u8 unk_0C[0x10];
+    u32 unk_1C;
+};
+
+typedef struct Fn1967A8Object Fn1967A8Object;
+struct Fn1967A8Object {
+    u8 unk_00[0x1C];
+    Fn1967A8Resource *unk_1C;
+    void *unk_20;
+    u8 unk_24[0x64];
+    u32 unk_88;
+    u8 unk_8C[0xC0];
+    u32 unk_14C;
+    u32 unk_150;
+    void *unk_154;
+};
+
+extern Fn1967A8Resource *fn_1_41518(void *arg0);
+extern void fn_1_41C18(Fn1967A8Resource *arg0, void *arg1);
+extern void fn_1_41F58(Fn1967A8Resource *arg0, s32 arg1, void (*arg2)(void), void *arg3);
+extern void fn_1_96968(void);
+extern void fn_1_969E8(void);
+extern void fn_1_96BC0(void);
+extern void fn_1_96A68(void);
+
+void fn_1_967A8(Fn1967A8Object *arg0, void *arg1) {
+    u32 i;
+
+    fn_1_12AB38(lbl_1_data_27BA4);
+    fn_1_12A8A4(arg1, &arg0->unk_20);
+    arg0->unk_1C = fn_1_41518(arg0->unk_20);
+    arg0->unk_1C->unk_1C = arg0->unk_14C;
+    arg0->unk_1C->unk_08 = arg0->unk_150;
+    arg0->unk_1C->unk_00 = arg0->unk_88;
+    fn_1_41C18(arg0->unk_1C, arg0->unk_154);
+    fn_1_41F58(arg0->unk_1C, 0, fn_1_96968, arg0);
+    fn_1_41F58(arg0->unk_1C, 1, fn_1_96968, arg0);
+    fn_1_41F58(arg0->unk_1C, 2, fn_1_969E8, arg0);
+    fn_1_41F58(arg0->unk_1C, 3, fn_1_96BC0, arg0);
+    fn_1_41F58(arg0->unk_1C, 4, fn_1_96A68, arg0);
+    for (i = 0; i < 0x14; i++) {
+        lbl_1_bss_6E98C = i;
+        fn_1_41F58(arg0->unk_1C, 5, fn_1_96AE8, arg0);
+    }
+    fn_1_12AB38(&lbl_1_data_278AC);
+}
+/* fzgx:end fn_1_967A8 */
+
 /* fzgx:begin fn_1_968FC */
 typedef struct Fn1968FCChild Fn1968FCChild;
 typedef struct Fn1968FCObject Fn1968FCObject;
@@ -1240,11 +2489,2976 @@ void fn_1_968FC(Fn1968FCObject *object) {
 }
 /* fzgx:end fn_1_968FC */
 
+/* fzgx:begin fn_1_96968 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/car.h"
+#include "dolphin/hw_regs.h"
+#include "psvec.h"
+
+
+
+
+typedef struct {
+    u8 pad0[0x1c];
+    void *field_1c;
+} CarObject;
+
+typedef struct {
+    u8 pad0[0x12];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    void *field_28;
+    u8 pad2c[0x8];
+    void *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} EventNode;
+
+typedef struct {
+    u8 pad0[0x24];
+    void *field_24;
+} EventData;
+
+typedef struct {
+    u8 pad0[0x8];
+    EventData *field_8;
+    void *field_c;
+} EventObject;
+
+struct fn_1_7F954_lbl_801A6410 {
+    u32 unk_0;
+};
+
+struct fn_1_7FA04_lbl_801A6410 {
+    u32 unk_0;
+};
+
+typedef struct {
+    u8 pad0[0x40];
+    void *value;
+} ResourceHolder;
+
+typedef struct {
+    u32 x;
+    u32 y;
+    u32 z;
+} RawVec3;
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+typedef struct {
+    u8 _pad_000[0x7c];
+    Vec3 field_07c;
+    u8 _pad_088[0xc4];
+    Vec3 field_14c;
+} Fn184644Object;
+
+typedef struct {
+    u32 x;
+    u32 y;
+    u32 z;
+} Triple;
+
+typedef struct Fn195158Object Fn195158Object;
+
+struct Fn195158Object {
+    u8 unk_00[0x0C];
+    f32 unk_0C;
+    u8 unk_10[0x1C];
+    f32 unk_2C;
+    u8 unk_30[0x58];
+    u8 unk_88[0x04];
+};
+
+struct TargetObj {
+    char pad[0x60];
+    char field_0x60[0xc];
+    f32 field_0x6c;
+    char pad2[0xc];
+    f32 field_0x7c;
+};
+
+struct ModelItem {
+    u32 flags;
+    char pad[0x1c];
+};
+
+struct Model {
+    char pad[0x18];
+    u16 count;
+    char pad2[0x26];
+    struct ModelItem items[1];
+};
+
+typedef struct {
+    u32 entries[41];
+} FnTable;
+
+typedef struct {
+    u8 pad_0[0x4];
+    s32 field_4;
+    s32 field_8;
+    s32 field_c;
+    s32 field_10;
+    s32 field_14;
+} Fn1_8F45C_Object;
+
+typedef struct {
+    s32 active;
+    s32 entries[5];
+} Fn1_8F494_Object;
+
+typedef struct {
+    u8 pad_0[0x148];
+    u8 pad_148[0x20];
+    u8 pad_168[0x40];
+    u8 pad_1a8[0x20];
+    u8 pad_1c8[0x20];
+    u8 pad_1e8[0x20];
+    u8 entries[0x14][0x20];
+} Fn1_8F5A4_Object;
+
+typedef struct Fn195158Data Fn195158Data;
+
+struct Fn195158Data {
+    u8 unk_00[0x08];
+    Fn195158Object *unk_08;
+};
+
+typedef struct Fn195158Car Fn195158Car;
+
+struct Fn195158Car {
+    u8 unk_00[0xA0];
+    s16 unk_A0;
+    s16 unk_A2;
+    s16 unk_A4;
+    u8 unk_A6[0x02];
+    f32 unk_A8;
+    f32 unk_AC;
+    f32 unk_B0;
+    f32 unk_B4;
+    f32 unk_B8;
+    u8 unk_BC[0x94];
+    Fn195158Data *unk_150;
+};
+
+typedef struct Fn935E4Slot {
+    u8 pad0[0xa];
+    u16 field_a;
+} Fn935E4Slot;
+
+typedef struct Fn935E4Node {
+    u8 pad0[0xa];
+    u16 field_a;
+    u8 pad_c[6];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    u8 pad27[1];
+    Fn935E4Slot *field_28;
+    u8 pad2c[8];
+    Fn935E4Slot *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} Fn935E4Node;
+
+typedef struct {
+    u8 pad0[0x12];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    void *field_28;
+    u8 pad2c[8];
+    void *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} Node;
+
+typedef struct Fn935E4Car {
+    u8 pad0[0x1c];
+    Fn935E4Node *field_1c;
+} Fn935E4Car;
+
+typedef struct {
+    u8 pad0[0x24];
+    void *field_24;
+    f32 field_28;
+    f32 field_2c;
+} OutData;
+
+typedef struct {
+    u8 pad0[0x1c];
+    Node *field_1c;
+    u8 pad20[0x128];
+    u16 field_148;
+    u8 pad14a[6];
+    OutData *field_150;
+    void *field_154;
+} Owner;
+
+typedef struct Fn1967A8Resource Fn1967A8Resource;
+
+struct Fn1967A8Resource {
+    u8 unk_00;
+    u8 unk_01[0x07];
+    u32 unk_08;
+    u8 unk_0C[0x10];
+    u32 unk_1C;
+};
+
+typedef struct Fn196968Object Fn196968Object;
+
+struct Fn196968Object {
+    u8 unk_00[0x28];
+    u32 unk_28;
+    u8 unk_2C[0x144];
+    void *unk_170;
+    void *unk_174;
+};
+
+typedef struct Fn1969E8Owner Fn1969E8Owner;
+
+struct Fn1969E8Owner {
+    u8 unk_00[0x2C];
+    u32 unk_2c;
+    u8 unk_30[0x180];
+    u32 unk_1b0;
+    void *unk_1b4;
+};
+
+typedef struct Fn196BC0Object Fn196BC0Object;
+
+struct Fn196BC0Object {
+    u8 unk_00[0x30];
+    void *value_30;
+    u8 unk_34[0x19C];
+    void *resource_1D0;
+    void *resource_1D4;
+};
+
+typedef struct Fn196A68Object Fn196A68Object;
+
+struct Fn196A68Object {
+    u8 unk_00[0x34];
+    u32 unk_34;
+    u8 unk_38[0x1B8];
+    void *unk_1F0;
+    void *unk_1F4;
+};
+
+typedef struct CarR29 {
+    u8 unk_00[0x14];
+    f32 unk_14;
+} CarR29;
+
+typedef struct Vec3f {
+    f32 x, y, z;
+} Vec3f;
+
+typedef struct fn_1_8D210_car {
+    f32 position[6];
+    f32 scale_z;
+    f32 scale_y;
+    f32 scale_x;
+    f32 field_24;
+    u16 field_28;
+    u16 field_2a;
+    u16 field_2c;
+    u16 field_2e;
+    u16 field_30;
+    u16 field_32;
+    u32 field_34;
+    u8 field_38;
+    u8 field_39;
+    u8 field_3a;
+    u8 pad_3b;
+    u32 field_3c;
+    u8 field_40;
+    u8 pad_41[3];
+    f32 field_44;
+    f32 field_48;
+    f32 field_4c;
+    f32 field_50;
+    s16 field_54;
+    u8 pad_56[2];
+    s32 field_58;
+    u8 field_5c[4];
+    u32 field_60;
+} fn_1_8D210_car;
+
+typedef s32 (*fn_1_8D210_callback)(u32);
+
+typedef struct {
+    u8 pad[0x15];
+    u8 code;
+} State;
+
+typedef struct {
+    u8 pad[4];
+    State *state;
+} fn_1_8E3A4_Object;
+
+typedef struct Sig_fn_1_41418_Fn41418Data {
+    u32 count;
+    char *strings;
+} Sig_fn_1_41418_Fn41418Data;
+
+typedef struct {
+    u32 w[45];
+} Unk_23800000;
+
+typedef struct {
+    u8 pad_00[0x1C];
+    u16 unk_1C;
+} Sig_fn_1_55628_Fn1_55628Object;
+
+typedef struct fn_1_8D988_CarObject { u8 pad_0[0x40]; void *unk_40; } fn_1_8D988_CarObject;
+
+typedef struct fn_1_8D988_Car {
+    u32 unk_0; s16 unk_4; u8 pad_6[0x46e]; s8 unk_474; u8 pad_475[0xf];
+    fn_1_8D988_CarObject *unk_484; u8 pad_488[0x86]; u8 unk_50e; u8 pad_50f[0x111];
+} fn_1_8D988_Car;
+
+struct Sig_fn_800713E0_fn_800713E0_Entry {
+    u8 pad_0[0x18];
+    u16 count;
+};
+
+struct Sig_fn_800713E0_fn_800713E0_Arg0 {
+    s32 count;
+    u8 pad_4[0x4];
+    struct Sig_fn_800713E0_fn_800713E0_Entry **entries;
+};
+
+typedef struct Sig_fn_1_97174_Fn197174Owner Sig_fn_1_97174_Fn197174Owner;
+
+struct Sig_fn_1_97174_Fn197174Owner {
+    u8 unk_00[0x14];
+    u8 *base;
+};
+
+typedef struct fn_1_95238_lbl_801A6D00 {
+    u32 unk_0;
+} fn_1_95238_lbl_801A6D00;
+
+typedef struct {
+    u8 **unk_00;
+    void *unk_04;
+    u32 pad_08;
+} Fn1_87448_Slot;
+
+typedef struct {
+    u8 pad_00[0x330];
+    u32 unk_330;
+    Fn1_87448_Slot unk_334[1];
+} Fn1_87448_Obj;
+
+typedef struct {
+    u8 pad_00[2];
+    s8 unk_02;
+} Fn1_87448_Arg1;
+extern void fn_1_801F8(s16 arg0, void *arg1);
+extern s32 fn_1_46C70();
+extern s32 fn_1_465D0(s32 arg0, s32 arg1);
+extern char *fn_80083DB0(char *dst, const char *src);
+extern void fn_80006E10(u32 arg0);
+extern int sprintf(char *s, const char *format, ...);
+extern Unk_23800000 lbl_23800000[];
+extern u8* fn_1_36AD0();
+extern void fn_1_14F6F8(u8 arg0, u8 arg1, u8 arg2, void *arg3);
+extern u32 lbl_801A6410;
+extern void fn_1_56858(void *, int);
+extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
+extern void fn_1_12A734(s32 value);
+extern void fn_1_7F658(void *arg0);
+extern void fn_1_591A0(s32 id);
+extern void fn_1_8E1E8(void);
+extern void fn_1_FDFF4(void);
+extern u32 fn_80071718(u32);
+extern void fn_800711A8(u32 value);
+extern void _savegpr_27(void);
+extern void _restgpr_27(void);
+extern void OSReport(const char *format, ...);
+extern f32 lbl_1_rodata_3508[];
+extern int fn_1_20A5C(f32 *, f32 *);
+extern void *fn_1_21644(void *arg0, f32 *arg1, void *arg2);
+extern u8 * fn_1_14F04(void);
+extern void fn_1_17920(int, int, f32);
+extern void lbl_8006D7F4(f32, f32, f32);
+extern void lbl_8006DBAC(Vec3 *a);
+extern void lbl_8006E0A4(void *);
+extern void lbl_8006E0B4(f32 arg0, f32 arg1, f32 arg2);
+extern void fn_1_892FC(void *arg0, int arg1, int arg2);
+extern void fn_1_23500();
+extern f32 lbl_1_rodata_3518[6];
+extern f32 lbl_1_rodata_3530[22];
+extern u32 lbl_8006DBE4(void);
+extern void lbl_8006DFC4(void *arg0);
+extern u8 *fn_80083970(u8 *str, const u8 *needle);
+extern void fn_1_55628(Sig_fn_1_55628_Fn1_55628Object *);
+extern void fn_1_556B8(void *value);
+extern void fn_1_55FF0(f32 value);
+extern void fn_80072558(void);
+extern u32 fn_800793D4(u8 *arg0, u32 arg1, u32 arg2);
+extern void fn_1_8B9B8(void *);
+extern s32 fn_1_8D210(fn_1_8D210_car *car, fn_1_8D210_callback callback, u32 arg, s32 enable);
+extern s32 fn_1_F7BE4();
+extern u8 lbl_1_rodata_3D34[164];
+extern s32 fn_1_45D0();
+extern void fn_1_C487C();
+extern void fn_1_43E8(u32 arg0);
+extern void fn_1_C4ABC(void);
+extern s32 fn_1_3F8C(u32 arg3, u32 arg0, u32 arg1, u32 index);
+extern void fn_1_43F4(void);
+extern void fn_1_8E3A4(fn_1_8E3A4_Object *obj);
+extern u32 fn_80074A7C(u32 arg0);
+extern void fn_800713E0(struct Sig_fn_800713E0_fn_800713E0_Arg0 *, u32);
+extern void fn_1_A8DD4(const char *format, ...);
+extern void fn_1_A8F40(u8 arg0);
+extern s32 fn_1_41418(void *resource, u16 id);
+extern void fn_1_95210(void *arg0);
+extern void fn_1_95158(Fn195158Car *car);
+extern s32 fn_1_97174(EventNode *arg0, s32 arg1, void *arg2);
+extern void fn_1_93734(u32, u32);
+extern void fn_1_4270C(void *arg0, s32 arg1, u32 arg2);
+extern const f32 lbl_1_rodata_3F6C;
+extern u8 *lbl_801A6D00;
+extern void mathutil_mtxA_rotate_y(int value);
+extern void mathutil_mtxA_rotate_z(int value);
+extern void lbl_8006D758(void);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DB30(void);
+extern void lbl_8006E14C(f32 arg0);
+extern void mathutil_mtxA_rotate_x(s16 arg0);
+extern void fn_1_12AB38(void *arg0);
+extern s32 fn_1_12A8A4(u32 arg0, void *arg1);
+extern u32 lbl_1_bss_6E98C;
+extern void fn_1_96AE8(void *base, void *arg1);
+extern Fn1967A8Resource *fn_1_41518(void *arg0);
+extern void fn_1_41C18(Fn1967A8Resource *arg0, void *arg1);
+extern u16 fn_1_96968(Fn196968Object *object, void *arg1);
+extern u16 fn_1_969E8(Fn1969E8Owner *owner, void *arg1);
+extern u16 fn_1_96BC0(Fn196BC0Object *object, void *arg1);
+extern u16 fn_1_96A68(Fn196A68Object *object, void *arg1);
+extern const f32 lbl_1_rodata_3E48[];
+extern void *camera_get_state_object(void);
+extern void camera_update_state(void *);
+extern CarR29 *fn_80071268(void *, void *);
+extern void lbl_8006E1F0(Vec3f *, f32, f32, f32);
+extern void fn_1_A714C(f32 *a, f32 *b, f32 *c, f32 *d);
+extern f32 lbl_8006D21C(s32);
+extern void lbl_8006E2C0(Vec3f *, f32, f32, f32);
+extern void fn_8006E250(Vec3f *, Vec3f *);
+extern void fn_1_B81C(Vec3f *, Vec3f *, s32);
+extern void fn_1_150464(u32 arg0);
+extern void fn_1_810E4(u32 arg0);
+extern u8 lbl_1_rodata_3590[984];
+extern u32 fn_1_12AC00(unsigned char *value);
+extern void fn_1_80294(void *arg0, void *arg1, s32 arg2);
+extern u32 lbl_1_rodata_3A94[7];
+extern void lbl_8006DC6C(void *, u32, u32);
+extern void lbl_8006E1B0(void *, void *);
+extern void lbl_8006DFE8(void *);
+extern f32 fn_1_A71AC(void);
+extern u8 fn_1_5910();
+extern void fn_1_681C(u32 index, u32 *output);
+extern void fn_1_6914(u32 index, u32 *output);
+extern f32 lbl_8006D534(Vec3 *a, Vec3 *b);
+extern u32 lbl_1_rodata_3B20[3];
+extern f32 lbl_1_rodata_3B2C[47];
+extern Triple lbl_1_rodata_3BE8;
+extern u32 fn_80007CDC(f32 *arg0);
+extern u32 fn_80007D58(f32 *arg0);
+extern void lbl_8006D784(void *);
+extern void lbl_8006DD14(void *, void *);
+extern u32 lbl_1_rodata_3BF4[14];
+extern u32 lbl_1_bss_6D8F4[31];
+extern u32 lbl_801A66A0;
+extern u32 fn_1_56018(s32 value);
+extern void fn_1_560F0(s32 index, void *arg);
+extern void fn_1_55210(void *value);
+extern f32 lbl_8006D188(s16);
+extern void fn_1_87448();
+extern void fn_80008BA8(void *dst, const void *src, int size);
+extern void lbl_8006D7DC(void *value);
+extern void lbl_8006DB74(void *value);
+extern f32 lbl_1_rodata_3C2C[33];
+extern u8 lbl_1_bss_8CA28;
+extern void fn_80008BEC(void *dest, int value, u32 size);
+extern u32 GXGetTexBufferSize(u16 width, u16 height, u32 arg2, u32 arg3, u32 arg4);
+extern u32 fn_1_4630();
+extern void fn_1_550A8(void);
+extern void fn_1_545B8(void);
+extern void fn_1_550E0(void);
+extern void fn_80038F10(f32* out);
+extern void GXGetScissor(u32 *left, u32 *top, u32 *width, u32 *height);
+extern void GXGetProjectionv(f32* out);
+extern void C_MTXPerspective(f32 *out, f32 a1, f32 a2, f32 a3, f32 a4);
+extern void fn_800737E4(void *, s32);
+extern u32 fn_80038EEC();
+extern s32 __cvt_fp2unsigned(f32);
+extern u32 fn_80074188(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
+extern void fn_80074918(u8 arg0, s32 arg1, u8 arg2);
+extern void fn_80008204(void *);
+extern void fn_80074300();
+extern void fn_80074438(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
+extern void fn_8003526C(u32, u8);
+extern void GXInvalidateTexAll(void);
+extern void fn_80072270(void *);
+extern void fn_1_4FC50(u32, u32, u16, u16, u32);
+extern u32 fn_80008E84(u32 arg0);
+extern void fn_1_426C(s32 value);
+extern void fn_1_8E7D0(Fn1_8F45C_Object *obj);
+extern void fn_1_12A2B8(u32 value);
+extern void fn_1_12A2D0(s32 value);
+extern void fn_1_9724C();
+extern void fn_1_107C4C(void *arg);
+extern void fn_1_966A0(Fn1_8F494_Object *obj);
+extern void fn_1_95EF0();
+extern void fn_1_8F5A4(Fn1_8F5A4_Object *obj);
+extern void fn_1_968FC(Fn1_8F5A4_Object *obj);
+extern s32 fn_1_41488(void *arg0, void *arg1);
+extern f32 lbl_1_rodata_4010[60];
+extern void fn_1_943F8(Fn935E4Car *, f32, void *);
+extern void fn_1_42AD0(void *, s32, u16, s32, u16);
+extern void fn_1_41328(void *arg0);
+extern void fn_1_426E4(void *arg0, void *arg1);
+extern u32 lbl_1_bss_6D828;
+extern s32 fn_1_3F854(u32 arg0);
+extern s32 fn_1_8171C(s32 value);
+extern u8 lbl_1_rodata_3968[232];
+extern void fn_800712E4(void *arg0, u32 arg1, void *arg2);
+extern u32 lbl_1_bss_6D850;
+extern u32 lbl_1_bss_6D97C;
+extern u32 lbl_1_bss_6D978;
+extern f32 fn_1_86A2C(void *);
+extern void fn_1_85688(void);
+extern void fn_1_854D4(void);
+extern void fn_1_85934();
+extern void fn_1_C489C(Obj_1_bss_6D838_Target *);
+extern void fn_1_C40A0(Obj_1_bss_6D838_Target *);
+extern u8 lbl_1_bss_6DA5C[30];
+extern void fn_1_8A1B4(void *arg0, void *arg1, int arg2);
+extern void fn_1_8B8A4(void *arg);
+extern u8 lbl_1_bss_6DA5C__fzgx_offset_1E;
+extern u8 lbl_1_bss_6DA5C__fzgx_offset_1F[5];
+extern s32 fn_8006FDEC(void);
+extern void fn_8006FEFC(void);
+extern u8 lbl_1_rodata_3DD8[84];
+extern u32 lbl_1_bss_6D86C[34];
+extern u32 fn_1_12ADA0(unsigned char *value, u32 arg);
+extern void fn_1_961F0(void *obj);
+extern u32 lbl_1_bss_6E978[3];
+extern s32 lbl_1_bss_6E984;
+extern u32 lbl_1_rodata_3FA0[28];
+extern void fn_80007AB4(u8 *arg0);
+extern void fn_1_92554(void *arg0, s32 arg1);
+extern f32 lbl_1_rodata_3F70[12];
+extern u8 lbl_1_data_34348[12];
+extern void fn_1_12A2C4(u32 value);
+extern void fn_1_A7B5C(void *arg0, s32 arg1, void *arg2, s8 arg3, void *arg4);
+extern u32 lbl_1_bss_6D970;
+extern u32 lbl_1_bss_6D974;
+extern u32 fn_1_435C(u32 value);
+extern void fn_1_850C4(void);
+
+// Cache the resource key and return the requested resource sequence number.
+u16 fn_1_96968(Fn196968Object *object, void *arg1) {
+    if (object->unk_170 != 0 && object->unk_174 != 0) {
+        object->unk_28 = fn_1_41488(object->unk_174, lbl_1_data_2785C);
+        return (u16)((u32)fn_1_41488(object->unk_174, arg1) + 1);
+    }
+
+    object->unk_28 = 0;
+    return 0;
+}
+/* fzgx:end fn_1_96968 */
+
+/* fzgx:begin fn_1_969E8 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/car.h"
+#include "dolphin/hw_regs.h"
+#include "psvec.h"
+
+
+
+
+typedef struct {
+    u8 pad0[0x1c];
+    void *field_1c;
+} CarObject;
+
+typedef struct {
+    u8 pad0[0x12];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    void *field_28;
+    u8 pad2c[0x8];
+    void *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} EventNode;
+
+typedef struct {
+    u8 pad0[0x24];
+    void *field_24;
+} EventData;
+
+typedef struct {
+    u8 pad0[0x8];
+    EventData *field_8;
+    void *field_c;
+} EventObject;
+
+struct fn_1_7F954_lbl_801A6410 {
+    u32 unk_0;
+};
+
+struct fn_1_7FA04_lbl_801A6410 {
+    u32 unk_0;
+};
+
+typedef struct {
+    u8 pad0[0x40];
+    void *value;
+} ResourceHolder;
+
+typedef struct {
+    u32 x;
+    u32 y;
+    u32 z;
+} RawVec3;
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+typedef struct {
+    u8 _pad_000[0x7c];
+    Vec3 field_07c;
+    u8 _pad_088[0xc4];
+    Vec3 field_14c;
+} Fn184644Object;
+
+typedef struct {
+    u32 x;
+    u32 y;
+    u32 z;
+} Triple;
+
+typedef struct Fn195158Object Fn195158Object;
+
+struct Fn195158Object {
+    u8 unk_00[0x0C];
+    f32 unk_0C;
+    u8 unk_10[0x1C];
+    f32 unk_2C;
+    u8 unk_30[0x58];
+    u8 unk_88[0x04];
+};
+
+struct TargetObj {
+    char pad[0x60];
+    char field_0x60[0xc];
+    f32 field_0x6c;
+    char pad2[0xc];
+    f32 field_0x7c;
+};
+
+struct ModelItem {
+    u32 flags;
+    char pad[0x1c];
+};
+
+struct Model {
+    char pad[0x18];
+    u16 count;
+    char pad2[0x26];
+    struct ModelItem items[1];
+};
+
+typedef struct {
+    u32 entries[41];
+} FnTable;
+
+typedef struct {
+    u8 pad_0[0x4];
+    s32 field_4;
+    s32 field_8;
+    s32 field_c;
+    s32 field_10;
+    s32 field_14;
+} Fn1_8F45C_Object;
+
+typedef struct {
+    s32 active;
+    s32 entries[5];
+} Fn1_8F494_Object;
+
+typedef struct {
+    u8 pad_0[0x148];
+    u8 pad_148[0x20];
+    u8 pad_168[0x40];
+    u8 pad_1a8[0x20];
+    u8 pad_1c8[0x20];
+    u8 pad_1e8[0x20];
+    u8 entries[0x14][0x20];
+} Fn1_8F5A4_Object;
+
+typedef struct Fn195158Data Fn195158Data;
+
+struct Fn195158Data {
+    u8 unk_00[0x08];
+    Fn195158Object *unk_08;
+};
+
+typedef struct Fn195158Car Fn195158Car;
+
+struct Fn195158Car {
+    u8 unk_00[0xA0];
+    s16 unk_A0;
+    s16 unk_A2;
+    s16 unk_A4;
+    u8 unk_A6[0x02];
+    f32 unk_A8;
+    f32 unk_AC;
+    f32 unk_B0;
+    f32 unk_B4;
+    f32 unk_B8;
+    u8 unk_BC[0x94];
+    Fn195158Data *unk_150;
+};
+
+typedef struct Fn935E4Slot {
+    u8 pad0[0xa];
+    u16 field_a;
+} Fn935E4Slot;
+
+typedef struct Fn935E4Node {
+    u8 pad0[0xa];
+    u16 field_a;
+    u8 pad_c[6];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    u8 pad27[1];
+    Fn935E4Slot *field_28;
+    u8 pad2c[8];
+    Fn935E4Slot *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} Fn935E4Node;
+
+typedef struct {
+    u8 pad0[0x12];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    void *field_28;
+    u8 pad2c[8];
+    void *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} Node;
+
+typedef struct Fn935E4Car {
+    u8 pad0[0x1c];
+    Fn935E4Node *field_1c;
+} Fn935E4Car;
+
+typedef struct {
+    u8 pad0[0x24];
+    void *field_24;
+    f32 field_28;
+    f32 field_2c;
+} OutData;
+
+typedef struct {
+    u8 pad0[0x1c];
+    Node *field_1c;
+    u8 pad20[0x128];
+    u16 field_148;
+    u8 pad14a[6];
+    OutData *field_150;
+    void *field_154;
+} Owner;
+
+typedef struct Fn1967A8Resource Fn1967A8Resource;
+
+struct Fn1967A8Resource {
+    u8 unk_00;
+    u8 unk_01[0x07];
+    u32 unk_08;
+    u8 unk_0C[0x10];
+    u32 unk_1C;
+};
+
+typedef struct Fn196968Object Fn196968Object;
+
+struct Fn196968Object {
+    u8 unk_00[0x28];
+    u32 unk_28;
+    u8 unk_2C[0x144];
+    void *unk_170;
+    void *unk_174;
+};
+
+typedef struct Fn1969E8Owner Fn1969E8Owner;
+
+struct Fn1969E8Owner {
+    u8 unk_00[0x2C];
+    u32 unk_2c;
+    u8 unk_30[0x180];
+    u32 unk_1b0;
+    void *unk_1b4;
+};
+
+typedef struct Fn196BC0Object Fn196BC0Object;
+
+struct Fn196BC0Object {
+    u8 unk_00[0x30];
+    void *value_30;
+    u8 unk_34[0x19C];
+    void *resource_1D0;
+    void *resource_1D4;
+};
+
+typedef struct Fn196A68Object Fn196A68Object;
+
+struct Fn196A68Object {
+    u8 unk_00[0x34];
+    u32 unk_34;
+    u8 unk_38[0x1B8];
+    void *unk_1F0;
+    void *unk_1F4;
+};
+
+typedef struct CarR29 {
+    u8 unk_00[0x14];
+    f32 unk_14;
+} CarR29;
+
+typedef struct Vec3f {
+    f32 x, y, z;
+} Vec3f;
+
+typedef struct fn_1_8D210_car {
+    f32 position[6];
+    f32 scale_z;
+    f32 scale_y;
+    f32 scale_x;
+    f32 field_24;
+    u16 field_28;
+    u16 field_2a;
+    u16 field_2c;
+    u16 field_2e;
+    u16 field_30;
+    u16 field_32;
+    u32 field_34;
+    u8 field_38;
+    u8 field_39;
+    u8 field_3a;
+    u8 pad_3b;
+    u32 field_3c;
+    u8 field_40;
+    u8 pad_41[3];
+    f32 field_44;
+    f32 field_48;
+    f32 field_4c;
+    f32 field_50;
+    s16 field_54;
+    u8 pad_56[2];
+    s32 field_58;
+    u8 field_5c[4];
+    u32 field_60;
+} fn_1_8D210_car;
+
+typedef s32 (*fn_1_8D210_callback)(u32);
+
+typedef struct {
+    u8 pad[0x15];
+    u8 code;
+} State;
+
+typedef struct {
+    u8 pad[4];
+    State *state;
+} fn_1_8E3A4_Object;
+
+typedef struct Sig_fn_1_41418_Fn41418Data {
+    u32 count;
+    char *strings;
+} Sig_fn_1_41418_Fn41418Data;
+
+typedef struct {
+    u32 w[45];
+} Unk_23800000;
+
+typedef struct {
+    u8 pad_00[0x1C];
+    u16 unk_1C;
+} Sig_fn_1_55628_Fn1_55628Object;
+
+typedef struct fn_1_8D988_CarObject { u8 pad_0[0x40]; void *unk_40; } fn_1_8D988_CarObject;
+
+typedef struct fn_1_8D988_Car {
+    u32 unk_0; s16 unk_4; u8 pad_6[0x46e]; s8 unk_474; u8 pad_475[0xf];
+    fn_1_8D988_CarObject *unk_484; u8 pad_488[0x86]; u8 unk_50e; u8 pad_50f[0x111];
+} fn_1_8D988_Car;
+
+struct Sig_fn_800713E0_fn_800713E0_Entry {
+    u8 pad_0[0x18];
+    u16 count;
+};
+
+struct Sig_fn_800713E0_fn_800713E0_Arg0 {
+    s32 count;
+    u8 pad_4[0x4];
+    struct Sig_fn_800713E0_fn_800713E0_Entry **entries;
+};
+
+typedef struct Sig_fn_1_97174_Fn197174Owner Sig_fn_1_97174_Fn197174Owner;
+
+struct Sig_fn_1_97174_Fn197174Owner {
+    u8 unk_00[0x14];
+    u8 *base;
+};
+
+typedef struct fn_1_95238_lbl_801A6D00 {
+    u32 unk_0;
+} fn_1_95238_lbl_801A6D00;
+
+typedef struct {
+    u8 **unk_00;
+    void *unk_04;
+    u32 pad_08;
+} Fn1_87448_Slot;
+
+typedef struct {
+    u8 pad_00[0x330];
+    u32 unk_330;
+    Fn1_87448_Slot unk_334[1];
+} Fn1_87448_Obj;
+
+typedef struct {
+    u8 pad_00[2];
+    s8 unk_02;
+} Fn1_87448_Arg1;
+extern void fn_1_801F8(s16 arg0, void *arg1);
+extern s32 fn_1_46C70();
+extern s32 fn_1_465D0(s32 arg0, s32 arg1);
+extern char *fn_80083DB0(char *dst, const char *src);
+extern void fn_80006E10(u32 arg0);
+extern int sprintf(char *s, const char *format, ...);
+extern Unk_23800000 lbl_23800000[];
+extern u8* fn_1_36AD0();
+extern void fn_1_14F6F8(u8 arg0, u8 arg1, u8 arg2, void *arg3);
+extern u32 lbl_801A6410;
+extern void fn_1_56858(void *, int);
+extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
+extern void fn_1_12A734(s32 value);
+extern void fn_1_7F658(void *arg0);
+extern void fn_1_591A0(s32 id);
+extern void fn_1_8E1E8(void);
+extern void fn_1_FDFF4(void);
+extern u32 fn_80071718(u32);
+extern void fn_800711A8(u32 value);
+extern void _savegpr_27(void);
+extern void _restgpr_27(void);
+extern void OSReport(const char *format, ...);
+extern f32 lbl_1_rodata_3508[];
+extern int fn_1_20A5C(f32 *, f32 *);
+extern void *fn_1_21644(void *arg0, f32 *arg1, void *arg2);
+extern u8 * fn_1_14F04(void);
+extern void fn_1_17920(int, int, f32);
+extern void lbl_8006D7F4(f32, f32, f32);
+extern void lbl_8006DBAC(Vec3 *a);
+extern void lbl_8006E0A4(void *);
+extern void lbl_8006E0B4(f32 arg0, f32 arg1, f32 arg2);
+extern void fn_1_892FC(void *arg0, int arg1, int arg2);
+extern void fn_1_23500();
+extern f32 lbl_1_rodata_3518[6];
+extern f32 lbl_1_rodata_3530[22];
+extern u32 lbl_8006DBE4(void);
+extern void lbl_8006DFC4(void *arg0);
+extern u8 *fn_80083970(u8 *str, const u8 *needle);
+extern void fn_1_55628(Sig_fn_1_55628_Fn1_55628Object *);
+extern void fn_1_556B8(void *value);
+extern void fn_1_55FF0(f32 value);
+extern void fn_80072558(void);
+extern u32 fn_800793D4(u8 *arg0, u32 arg1, u32 arg2);
+extern void fn_1_8B9B8(void *);
+extern s32 fn_1_8D210(fn_1_8D210_car *car, fn_1_8D210_callback callback, u32 arg, s32 enable);
+extern s32 fn_1_F7BE4();
+extern u8 lbl_1_rodata_3D34[164];
+extern s32 fn_1_45D0();
+extern void fn_1_C487C();
+extern void fn_1_43E8(u32 arg0);
+extern void fn_1_C4ABC(void);
+extern s32 fn_1_3F8C(u32 arg3, u32 arg0, u32 arg1, u32 index);
+extern void fn_1_43F4(void);
+extern void fn_1_8E3A4(fn_1_8E3A4_Object *obj);
+extern u32 fn_80074A7C(u32 arg0);
+extern void fn_800713E0(struct Sig_fn_800713E0_fn_800713E0_Arg0 *, u32);
+extern void fn_1_A8DD4(const char *format, ...);
+extern void fn_1_A8F40(u8 arg0);
+extern s32 fn_1_41418(void *resource, u16 id);
+extern void fn_1_95210(void *arg0);
+extern void fn_1_95158(Fn195158Car *car);
+extern s32 fn_1_97174(EventNode *arg0, s32 arg1, void *arg2);
+extern void fn_1_93734(u32, u32);
+extern void fn_1_4270C(void *arg0, s32 arg1, u32 arg2);
+extern const f32 lbl_1_rodata_3F6C;
+extern u8 *lbl_801A6D00;
+extern void mathutil_mtxA_rotate_y(int value);
+extern void mathutil_mtxA_rotate_z(int value);
+extern void lbl_8006D758(void);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DB30(void);
+extern void lbl_8006E14C(f32 arg0);
+extern void mathutil_mtxA_rotate_x(s16 arg0);
+extern void fn_1_12AB38(void *arg0);
+extern s32 fn_1_12A8A4(u32 arg0, void *arg1);
+extern u32 lbl_1_bss_6E98C;
+extern void fn_1_96AE8(void *base, void *arg1);
+extern Fn1967A8Resource *fn_1_41518(void *arg0);
+extern void fn_1_41C18(Fn1967A8Resource *arg0, void *arg1);
+extern u16 fn_1_96968(Fn196968Object *object, void *arg1);
+extern u16 fn_1_969E8(Fn1969E8Owner *owner, void *arg1);
+extern u16 fn_1_96BC0(Fn196BC0Object *object, void *arg1);
+extern u16 fn_1_96A68(Fn196A68Object *object, void *arg1);
+extern const f32 lbl_1_rodata_3E48[];
+extern void *camera_get_state_object(void);
+extern void camera_update_state(void *);
+extern CarR29 *fn_80071268(void *, void *);
+extern void lbl_8006E1F0(Vec3f *, f32, f32, f32);
+extern void fn_1_A714C(f32 *a, f32 *b, f32 *c, f32 *d);
+extern f32 lbl_8006D21C(s32);
+extern void lbl_8006E2C0(Vec3f *, f32, f32, f32);
+extern void fn_8006E250(Vec3f *, Vec3f *);
+extern void fn_1_B81C(Vec3f *, Vec3f *, s32);
+extern void fn_1_150464(u32 arg0);
+extern void fn_1_810E4(u32 arg0);
+extern u8 lbl_1_rodata_3590[984];
+extern u32 fn_1_12AC00(unsigned char *value);
+extern void fn_1_80294(void *arg0, void *arg1, s32 arg2);
+extern u32 lbl_1_rodata_3A94[7];
+extern void lbl_8006DC6C(void *, u32, u32);
+extern void lbl_8006E1B0(void *, void *);
+extern void lbl_8006DFE8(void *);
+extern f32 fn_1_A71AC(void);
+extern u8 fn_1_5910();
+extern void fn_1_681C(u32 index, u32 *output);
+extern void fn_1_6914(u32 index, u32 *output);
+extern f32 lbl_8006D534(Vec3 *a, Vec3 *b);
+extern u32 lbl_1_rodata_3B20[3];
+extern f32 lbl_1_rodata_3B2C[47];
+extern Triple lbl_1_rodata_3BE8;
+extern u32 fn_80007CDC(f32 *arg0);
+extern u32 fn_80007D58(f32 *arg0);
+extern void lbl_8006D784(void *);
+extern void lbl_8006DD14(void *, void *);
+extern u32 lbl_1_rodata_3BF4[14];
+extern u32 lbl_1_bss_6D8F4[31];
+extern u32 lbl_801A66A0;
+extern u32 fn_1_56018(s32 value);
+extern void fn_1_560F0(s32 index, void *arg);
+extern void fn_1_55210(void *value);
+extern f32 lbl_8006D188(s16);
+extern void fn_1_87448();
+extern void fn_80008BA8(void *dst, const void *src, int size);
+extern void lbl_8006D7DC(void *value);
+extern void lbl_8006DB74(void *value);
+extern f32 lbl_1_rodata_3C2C[33];
+extern u8 lbl_1_bss_8CA28;
+extern void fn_80008BEC(void *dest, int value, u32 size);
+extern u32 GXGetTexBufferSize(u16 width, u16 height, u32 arg2, u32 arg3, u32 arg4);
+extern u32 fn_1_4630();
+extern void fn_1_550A8(void);
+extern void fn_1_545B8(void);
+extern void fn_1_550E0(void);
+extern void fn_80038F10(f32* out);
+extern void GXGetScissor(u32 *left, u32 *top, u32 *width, u32 *height);
+extern void GXGetProjectionv(f32* out);
+extern void C_MTXPerspective(f32 *out, f32 a1, f32 a2, f32 a3, f32 a4);
+extern void fn_800737E4(void *, s32);
+extern u32 fn_80038EEC();
+extern s32 __cvt_fp2unsigned(f32);
+extern u32 fn_80074188(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
+extern void fn_80074918(u8 arg0, s32 arg1, u8 arg2);
+extern void fn_80008204(void *);
+extern void fn_80074300();
+extern void fn_80074438(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
+extern void fn_8003526C(u32, u8);
+extern void GXInvalidateTexAll(void);
+extern void fn_80072270(void *);
+extern void fn_1_4FC50(u32, u32, u16, u16, u32);
+extern u32 fn_80008E84(u32 arg0);
+extern void fn_1_426C(s32 value);
+extern void fn_1_8E7D0(Fn1_8F45C_Object *obj);
+extern void fn_1_12A2B8(u32 value);
+extern void fn_1_12A2D0(s32 value);
+extern void fn_1_9724C();
+extern void fn_1_107C4C(void *arg);
+extern void fn_1_966A0(Fn1_8F494_Object *obj);
+extern void fn_1_95EF0();
+extern void fn_1_8F5A4(Fn1_8F5A4_Object *obj);
+extern void fn_1_968FC(Fn1_8F5A4_Object *obj);
+extern s32 fn_1_41488(void *arg0, void *arg1);
+extern f32 lbl_1_rodata_4010[60];
+extern void fn_1_943F8(Fn935E4Car *, f32, void *);
+extern void fn_1_42AD0(void *, s32, u16, s32, u16);
+extern void fn_1_41328(void *arg0);
+extern void fn_1_426E4(void *arg0, void *arg1);
+extern u32 lbl_1_bss_6D828;
+extern s32 fn_1_3F854(u32 arg0);
+extern s32 fn_1_8171C(s32 value);
+extern u8 lbl_1_rodata_3968[232];
+extern void fn_800712E4(void *arg0, u32 arg1, void *arg2);
+extern u32 lbl_1_bss_6D850;
+extern u32 lbl_1_bss_6D97C;
+extern u32 lbl_1_bss_6D978;
+extern f32 fn_1_86A2C(void *);
+extern void fn_1_85688(void);
+extern void fn_1_854D4(void);
+extern void fn_1_85934();
+extern void fn_1_C489C(Obj_1_bss_6D838_Target *);
+extern void fn_1_C40A0(Obj_1_bss_6D838_Target *);
+extern u8 lbl_1_bss_6DA5C[30];
+extern void fn_1_8A1B4(void *arg0, void *arg1, int arg2);
+extern void fn_1_8B8A4(void *arg);
+extern u8 lbl_1_bss_6DA5C__fzgx_offset_1E;
+extern u8 lbl_1_bss_6DA5C__fzgx_offset_1F[5];
+extern s32 fn_8006FDEC(void);
+extern void fn_8006FEFC(void);
+extern u8 lbl_1_rodata_3DD8[84];
+extern u32 lbl_1_bss_6D86C[34];
+extern u32 fn_1_12ADA0(unsigned char *value, u32 arg);
+extern void fn_1_961F0(void *obj);
+extern u32 lbl_1_bss_6E978[3];
+extern s32 lbl_1_bss_6E984;
+extern u32 lbl_1_rodata_3FA0[28];
+extern void fn_80007AB4(u8 *arg0);
+extern void fn_1_92554(void *arg0, s32 arg1);
+extern f32 lbl_1_rodata_3F70[12];
+extern u8 lbl_1_data_34348[12];
+extern void fn_1_12A2C4(u32 value);
+extern void fn_1_A7B5C(void *arg0, s32 arg1, void *arg2, s8 arg3, void *arg4);
+extern u32 lbl_1_bss_6D970;
+extern u32 lbl_1_bss_6D974;
+extern u32 fn_1_435C(u32 value);
+extern void fn_1_850C4(void);
+
+// Resolve the owner's resource values and cache the associated lookup result.
+u16 fn_1_969E8(Fn1969E8Owner *owner, void *arg1) {
+    if (owner->unk_1b0 != 0 && owner->unk_1b4 != 0) {
+        owner->unk_2c = fn_1_41488(owner->unk_1b4, &lbl_1_data_22A24);
+        return (u16)(fn_1_41488(owner->unk_1b4, arg1) + 1);
+    }
+
+    owner->unk_2c = 0;
+    return 0;
+}
+/* fzgx:end fn_1_969E8 */
+
+/* fzgx:begin fn_1_96A68 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/car.h"
+#include "dolphin/hw_regs.h"
+#include "psvec.h"
+
+
+
+
+typedef struct {
+    u8 pad0[0x1c];
+    void *field_1c;
+} CarObject;
+
+typedef struct {
+    u8 pad0[0x12];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    void *field_28;
+    u8 pad2c[0x8];
+    void *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} EventNode;
+
+typedef struct {
+    u8 pad0[0x24];
+    void *field_24;
+} EventData;
+
+typedef struct {
+    u8 pad0[0x8];
+    EventData *field_8;
+    void *field_c;
+} EventObject;
+
+struct fn_1_7F954_lbl_801A6410 {
+    u32 unk_0;
+};
+
+struct fn_1_7FA04_lbl_801A6410 {
+    u32 unk_0;
+};
+
+typedef struct {
+    u8 pad0[0x40];
+    void *value;
+} ResourceHolder;
+
+typedef struct {
+    u32 x;
+    u32 y;
+    u32 z;
+} RawVec3;
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+typedef struct {
+    u8 _pad_000[0x7c];
+    Vec3 field_07c;
+    u8 _pad_088[0xc4];
+    Vec3 field_14c;
+} Fn184644Object;
+
+typedef struct {
+    u32 x;
+    u32 y;
+    u32 z;
+} Triple;
+
+typedef struct Fn195158Object Fn195158Object;
+
+struct Fn195158Object {
+    u8 unk_00[0x0C];
+    f32 unk_0C;
+    u8 unk_10[0x1C];
+    f32 unk_2C;
+    u8 unk_30[0x58];
+    u8 unk_88[0x04];
+};
+
+struct TargetObj {
+    char pad[0x60];
+    char field_0x60[0xc];
+    f32 field_0x6c;
+    char pad2[0xc];
+    f32 field_0x7c;
+};
+
+struct ModelItem {
+    u32 flags;
+    char pad[0x1c];
+};
+
+struct Model {
+    char pad[0x18];
+    u16 count;
+    char pad2[0x26];
+    struct ModelItem items[1];
+};
+
+typedef struct {
+    u32 entries[41];
+} FnTable;
+
+typedef struct {
+    u8 pad_0[0x4];
+    s32 field_4;
+    s32 field_8;
+    s32 field_c;
+    s32 field_10;
+    s32 field_14;
+} Fn1_8F45C_Object;
+
+typedef struct {
+    s32 active;
+    s32 entries[5];
+} Fn1_8F494_Object;
+
+typedef struct {
+    u8 pad_0[0x148];
+    u8 pad_148[0x20];
+    u8 pad_168[0x40];
+    u8 pad_1a8[0x20];
+    u8 pad_1c8[0x20];
+    u8 pad_1e8[0x20];
+    u8 entries[0x14][0x20];
+} Fn1_8F5A4_Object;
+
+typedef struct Fn195158Data Fn195158Data;
+
+struct Fn195158Data {
+    u8 unk_00[0x08];
+    Fn195158Object *unk_08;
+};
+
+typedef struct Fn195158Car Fn195158Car;
+
+struct Fn195158Car {
+    u8 unk_00[0xA0];
+    s16 unk_A0;
+    s16 unk_A2;
+    s16 unk_A4;
+    u8 unk_A6[0x02];
+    f32 unk_A8;
+    f32 unk_AC;
+    f32 unk_B0;
+    f32 unk_B4;
+    f32 unk_B8;
+    u8 unk_BC[0x94];
+    Fn195158Data *unk_150;
+};
+
+typedef struct Fn935E4Slot {
+    u8 pad0[0xa];
+    u16 field_a;
+} Fn935E4Slot;
+
+typedef struct Fn935E4Node {
+    u8 pad0[0xa];
+    u16 field_a;
+    u8 pad_c[6];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    u8 pad27[1];
+    Fn935E4Slot *field_28;
+    u8 pad2c[8];
+    Fn935E4Slot *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} Fn935E4Node;
+
+typedef struct {
+    u8 pad0[0x12];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    void *field_28;
+    u8 pad2c[8];
+    void *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} Node;
+
+typedef struct Fn935E4Car {
+    u8 pad0[0x1c];
+    Fn935E4Node *field_1c;
+} Fn935E4Car;
+
+typedef struct {
+    u8 pad0[0x24];
+    void *field_24;
+    f32 field_28;
+    f32 field_2c;
+} OutData;
+
+typedef struct {
+    u8 pad0[0x1c];
+    Node *field_1c;
+    u8 pad20[0x128];
+    u16 field_148;
+    u8 pad14a[6];
+    OutData *field_150;
+    void *field_154;
+} Owner;
+
+typedef struct Fn1967A8Resource Fn1967A8Resource;
+
+struct Fn1967A8Resource {
+    u8 unk_00;
+    u8 unk_01[0x07];
+    u32 unk_08;
+    u8 unk_0C[0x10];
+    u32 unk_1C;
+};
+
+typedef struct Fn196968Object Fn196968Object;
+
+struct Fn196968Object {
+    u8 unk_00[0x28];
+    u32 unk_28;
+    u8 unk_2C[0x144];
+    void *unk_170;
+    void *unk_174;
+};
+
+typedef struct Fn1969E8Owner Fn1969E8Owner;
+
+struct Fn1969E8Owner {
+    u8 unk_00[0x2C];
+    u32 unk_2c;
+    u8 unk_30[0x180];
+    u32 unk_1b0;
+    void *unk_1b4;
+};
+
+typedef struct Fn196BC0Object Fn196BC0Object;
+
+struct Fn196BC0Object {
+    u8 unk_00[0x30];
+    void *value_30;
+    u8 unk_34[0x19C];
+    void *resource_1D0;
+    void *resource_1D4;
+};
+
+typedef struct Fn196A68Object Fn196A68Object;
+
+struct Fn196A68Object {
+    u8 unk_00[0x34];
+    u32 unk_34;
+    u8 unk_38[0x1B8];
+    void *unk_1F0;
+    void *unk_1F4;
+};
+
+typedef struct CarR29 {
+    u8 unk_00[0x14];
+    f32 unk_14;
+} CarR29;
+
+typedef struct Vec3f {
+    f32 x, y, z;
+} Vec3f;
+
+typedef struct fn_1_8D210_car {
+    f32 position[6];
+    f32 scale_z;
+    f32 scale_y;
+    f32 scale_x;
+    f32 field_24;
+    u16 field_28;
+    u16 field_2a;
+    u16 field_2c;
+    u16 field_2e;
+    u16 field_30;
+    u16 field_32;
+    u32 field_34;
+    u8 field_38;
+    u8 field_39;
+    u8 field_3a;
+    u8 pad_3b;
+    u32 field_3c;
+    u8 field_40;
+    u8 pad_41[3];
+    f32 field_44;
+    f32 field_48;
+    f32 field_4c;
+    f32 field_50;
+    s16 field_54;
+    u8 pad_56[2];
+    s32 field_58;
+    u8 field_5c[4];
+    u32 field_60;
+} fn_1_8D210_car;
+
+typedef s32 (*fn_1_8D210_callback)(u32);
+
+typedef struct {
+    u8 pad[0x15];
+    u8 code;
+} State;
+
+typedef struct {
+    u8 pad[4];
+    State *state;
+} fn_1_8E3A4_Object;
+
+typedef struct Sig_fn_1_41418_Fn41418Data {
+    u32 count;
+    char *strings;
+} Sig_fn_1_41418_Fn41418Data;
+
+typedef struct {
+    u32 w[45];
+} Unk_23800000;
+
+typedef struct {
+    u8 pad_00[0x1C];
+    u16 unk_1C;
+} Sig_fn_1_55628_Fn1_55628Object;
+
+typedef struct fn_1_8D988_CarObject { u8 pad_0[0x40]; void *unk_40; } fn_1_8D988_CarObject;
+
+typedef struct fn_1_8D988_Car {
+    u32 unk_0; s16 unk_4; u8 pad_6[0x46e]; s8 unk_474; u8 pad_475[0xf];
+    fn_1_8D988_CarObject *unk_484; u8 pad_488[0x86]; u8 unk_50e; u8 pad_50f[0x111];
+} fn_1_8D988_Car;
+
+struct Sig_fn_800713E0_fn_800713E0_Entry {
+    u8 pad_0[0x18];
+    u16 count;
+};
+
+struct Sig_fn_800713E0_fn_800713E0_Arg0 {
+    s32 count;
+    u8 pad_4[0x4];
+    struct Sig_fn_800713E0_fn_800713E0_Entry **entries;
+};
+
+typedef struct Sig_fn_1_97174_Fn197174Owner Sig_fn_1_97174_Fn197174Owner;
+
+struct Sig_fn_1_97174_Fn197174Owner {
+    u8 unk_00[0x14];
+    u8 *base;
+};
+
+typedef struct fn_1_95238_lbl_801A6D00 {
+    u32 unk_0;
+} fn_1_95238_lbl_801A6D00;
+
+typedef struct {
+    u8 **unk_00;
+    void *unk_04;
+    u32 pad_08;
+} Fn1_87448_Slot;
+
+typedef struct {
+    u8 pad_00[0x330];
+    u32 unk_330;
+    Fn1_87448_Slot unk_334[1];
+} Fn1_87448_Obj;
+
+typedef struct {
+    u8 pad_00[2];
+    s8 unk_02;
+} Fn1_87448_Arg1;
+extern void fn_1_801F8(s16 arg0, void *arg1);
+extern s32 fn_1_46C70();
+extern s32 fn_1_465D0(s32 arg0, s32 arg1);
+extern char *fn_80083DB0(char *dst, const char *src);
+extern void fn_80006E10(u32 arg0);
+extern int sprintf(char *s, const char *format, ...);
+extern Unk_23800000 lbl_23800000[];
+extern u8* fn_1_36AD0();
+extern void fn_1_14F6F8(u8 arg0, u8 arg1, u8 arg2, void *arg3);
+extern u32 lbl_801A6410;
+extern void fn_1_56858(void *, int);
+extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
+extern void fn_1_12A734(s32 value);
+extern void fn_1_7F658(void *arg0);
+extern void fn_1_591A0(s32 id);
+extern void fn_1_8E1E8(void);
+extern void fn_1_FDFF4(void);
+extern u32 fn_80071718(u32);
+extern void fn_800711A8(u32 value);
+extern void _savegpr_27(void);
+extern void _restgpr_27(void);
+extern void OSReport(const char *format, ...);
+extern f32 lbl_1_rodata_3508[];
+extern int fn_1_20A5C(f32 *, f32 *);
+extern void *fn_1_21644(void *arg0, f32 *arg1, void *arg2);
+extern u8 * fn_1_14F04(void);
+extern void fn_1_17920(int, int, f32);
+extern void lbl_8006D7F4(f32, f32, f32);
+extern void lbl_8006DBAC(Vec3 *a);
+extern void lbl_8006E0A4(void *);
+extern void lbl_8006E0B4(f32 arg0, f32 arg1, f32 arg2);
+extern void fn_1_892FC(void *arg0, int arg1, int arg2);
+extern void fn_1_23500();
+extern f32 lbl_1_rodata_3518[6];
+extern f32 lbl_1_rodata_3530[22];
+extern u32 lbl_8006DBE4(void);
+extern void lbl_8006DFC4(void *arg0);
+extern u8 *fn_80083970(u8 *str, const u8 *needle);
+extern void fn_1_55628(Sig_fn_1_55628_Fn1_55628Object *);
+extern void fn_1_556B8(void *value);
+extern void fn_1_55FF0(f32 value);
+extern void fn_80072558(void);
+extern u32 fn_800793D4(u8 *arg0, u32 arg1, u32 arg2);
+extern void fn_1_8B9B8(void *);
+extern s32 fn_1_8D210(fn_1_8D210_car *car, fn_1_8D210_callback callback, u32 arg, s32 enable);
+extern s32 fn_1_F7BE4();
+extern u8 lbl_1_rodata_3D34[164];
+extern s32 fn_1_45D0();
+extern void fn_1_C487C();
+extern void fn_1_43E8(u32 arg0);
+extern void fn_1_C4ABC(void);
+extern s32 fn_1_3F8C(u32 arg3, u32 arg0, u32 arg1, u32 index);
+extern void fn_1_43F4(void);
+extern void fn_1_8E3A4(fn_1_8E3A4_Object *obj);
+extern u32 fn_80074A7C(u32 arg0);
+extern void fn_800713E0(struct Sig_fn_800713E0_fn_800713E0_Arg0 *, u32);
+extern void fn_1_A8DD4(const char *format, ...);
+extern void fn_1_A8F40(u8 arg0);
+extern s32 fn_1_41418(void *resource, u16 id);
+extern void fn_1_95210(void *arg0);
+extern void fn_1_95158(Fn195158Car *car);
+extern s32 fn_1_97174(EventNode *arg0, s32 arg1, void *arg2);
+extern void fn_1_93734(u32, u32);
+extern void fn_1_4270C(void *arg0, s32 arg1, u32 arg2);
+extern const f32 lbl_1_rodata_3F6C;
+extern u8 *lbl_801A6D00;
+extern void mathutil_mtxA_rotate_y(int value);
+extern void mathutil_mtxA_rotate_z(int value);
+extern void lbl_8006D758(void);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DB30(void);
+extern void lbl_8006E14C(f32 arg0);
+extern void mathutil_mtxA_rotate_x(s16 arg0);
+extern void fn_1_12AB38(void *arg0);
+extern s32 fn_1_12A8A4(u32 arg0, void *arg1);
+extern u32 lbl_1_bss_6E98C;
+extern void fn_1_96AE8(void *base, void *arg1);
+extern Fn1967A8Resource *fn_1_41518(void *arg0);
+extern void fn_1_41C18(Fn1967A8Resource *arg0, void *arg1);
+extern u16 fn_1_96968(Fn196968Object *object, void *arg1);
+extern u16 fn_1_969E8(Fn1969E8Owner *owner, void *arg1);
+extern u16 fn_1_96BC0(Fn196BC0Object *object, void *arg1);
+extern u16 fn_1_96A68(Fn196A68Object *object, void *arg1);
+extern const f32 lbl_1_rodata_3E48[];
+extern void *camera_get_state_object(void);
+extern void camera_update_state(void *);
+extern CarR29 *fn_80071268(void *, void *);
+extern void lbl_8006E1F0(Vec3f *, f32, f32, f32);
+extern void fn_1_A714C(f32 *a, f32 *b, f32 *c, f32 *d);
+extern f32 lbl_8006D21C(s32);
+extern void lbl_8006E2C0(Vec3f *, f32, f32, f32);
+extern void fn_8006E250(Vec3f *, Vec3f *);
+extern void fn_1_B81C(Vec3f *, Vec3f *, s32);
+extern void fn_1_150464(u32 arg0);
+extern void fn_1_810E4(u32 arg0);
+extern u8 lbl_1_rodata_3590[984];
+extern u32 fn_1_12AC00(unsigned char *value);
+extern void fn_1_80294(void *arg0, void *arg1, s32 arg2);
+extern u32 lbl_1_rodata_3A94[7];
+extern void lbl_8006DC6C(void *, u32, u32);
+extern void lbl_8006E1B0(void *, void *);
+extern void lbl_8006DFE8(void *);
+extern f32 fn_1_A71AC(void);
+extern u8 fn_1_5910();
+extern void fn_1_681C(u32 index, u32 *output);
+extern void fn_1_6914(u32 index, u32 *output);
+extern f32 lbl_8006D534(Vec3 *a, Vec3 *b);
+extern u32 lbl_1_rodata_3B20[3];
+extern f32 lbl_1_rodata_3B2C[47];
+extern Triple lbl_1_rodata_3BE8;
+extern u32 fn_80007CDC(f32 *arg0);
+extern u32 fn_80007D58(f32 *arg0);
+extern void lbl_8006D784(void *);
+extern void lbl_8006DD14(void *, void *);
+extern u32 lbl_1_rodata_3BF4[14];
+extern u32 lbl_1_bss_6D8F4[31];
+extern u32 lbl_801A66A0;
+extern u32 fn_1_56018(s32 value);
+extern void fn_1_560F0(s32 index, void *arg);
+extern void fn_1_55210(void *value);
+extern f32 lbl_8006D188(s16);
+extern void fn_1_87448();
+extern void fn_80008BA8(void *dst, const void *src, int size);
+extern void lbl_8006D7DC(void *value);
+extern void lbl_8006DB74(void *value);
+extern f32 lbl_1_rodata_3C2C[33];
+extern u8 lbl_1_bss_8CA28;
+extern void fn_80008BEC(void *dest, int value, u32 size);
+extern u32 GXGetTexBufferSize(u16 width, u16 height, u32 arg2, u32 arg3, u32 arg4);
+extern u32 fn_1_4630();
+extern void fn_1_550A8(void);
+extern void fn_1_545B8(void);
+extern void fn_1_550E0(void);
+extern void fn_80038F10(f32* out);
+extern void GXGetScissor(u32 *left, u32 *top, u32 *width, u32 *height);
+extern void GXGetProjectionv(f32* out);
+extern void C_MTXPerspective(f32 *out, f32 a1, f32 a2, f32 a3, f32 a4);
+extern void fn_800737E4(void *, s32);
+extern u32 fn_80038EEC();
+extern s32 __cvt_fp2unsigned(f32);
+extern u32 fn_80074188(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
+extern void fn_80074918(u8 arg0, s32 arg1, u8 arg2);
+extern void fn_80008204(void *);
+extern void fn_80074300();
+extern void fn_80074438(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
+extern void fn_8003526C(u32, u8);
+extern void GXInvalidateTexAll(void);
+extern void fn_80072270(void *);
+extern void fn_1_4FC50(u32, u32, u16, u16, u32);
+extern u32 fn_80008E84(u32 arg0);
+extern void fn_1_426C(s32 value);
+extern void fn_1_8E7D0(Fn1_8F45C_Object *obj);
+extern void fn_1_12A2B8(u32 value);
+extern void fn_1_12A2D0(s32 value);
+extern void fn_1_9724C();
+extern void fn_1_107C4C(void *arg);
+extern void fn_1_966A0(Fn1_8F494_Object *obj);
+extern void fn_1_95EF0();
+extern void fn_1_8F5A4(Fn1_8F5A4_Object *obj);
+extern void fn_1_968FC(Fn1_8F5A4_Object *obj);
+extern s32 fn_1_41488(void *arg0, void *arg1);
+extern f32 lbl_1_rodata_4010[60];
+extern void fn_1_943F8(Fn935E4Car *, f32, void *);
+extern void fn_1_42AD0(void *, s32, u16, s32, u16);
+extern void fn_1_41328(void *arg0);
+extern void fn_1_426E4(void *arg0, void *arg1);
+extern u32 lbl_1_bss_6D828;
+extern s32 fn_1_3F854(u32 arg0);
+extern s32 fn_1_8171C(s32 value);
+extern u8 lbl_1_rodata_3968[232];
+extern void fn_800712E4(void *arg0, u32 arg1, void *arg2);
+extern u32 lbl_1_bss_6D850;
+extern u32 lbl_1_bss_6D97C;
+extern u32 lbl_1_bss_6D978;
+extern f32 fn_1_86A2C(void *);
+extern void fn_1_85688(void);
+extern void fn_1_854D4(void);
+extern void fn_1_85934();
+extern void fn_1_C489C(Obj_1_bss_6D838_Target *);
+extern void fn_1_C40A0(Obj_1_bss_6D838_Target *);
+extern u8 lbl_1_bss_6DA5C[30];
+extern void fn_1_8A1B4(void *arg0, void *arg1, int arg2);
+extern void fn_1_8B8A4(void *arg);
+extern u8 lbl_1_bss_6DA5C__fzgx_offset_1E;
+extern u8 lbl_1_bss_6DA5C__fzgx_offset_1F[5];
+extern s32 fn_8006FDEC(void);
+extern void fn_8006FEFC(void);
+extern u8 lbl_1_rodata_3DD8[84];
+extern u32 lbl_1_bss_6D86C[34];
+extern u32 fn_1_12ADA0(unsigned char *value, u32 arg);
+extern void fn_1_961F0(void *obj);
+extern u32 lbl_1_bss_6E978[3];
+extern s32 lbl_1_bss_6E984;
+extern u32 lbl_1_rodata_3FA0[28];
+extern void fn_80007AB4(u8 *arg0);
+extern void fn_1_92554(void *arg0, s32 arg1);
+extern f32 lbl_1_rodata_3F70[12];
+extern u8 lbl_1_data_34348[12];
+extern void fn_1_12A2C4(u32 value);
+extern void fn_1_A7B5C(void *arg0, s32 arg1, void *arg2, s8 arg3, void *arg4);
+extern u32 lbl_1_bss_6D970;
+extern u32 lbl_1_bss_6D974;
+extern u32 fn_1_435C(u32 value);
+extern void fn_1_850C4(void);
+
+// Updates the car's resource state and returns the next resource index.
+u16 fn_1_96A68(Fn196A68Object *object, void *arg1) {
+    if (object->unk_1F0 != 0 && object->unk_1F4 != 0) {
+        object->unk_34 = fn_1_41488(object->unk_1F4, &lbl_1_data_27870);
+        return (u16)(fn_1_41488(object->unk_1F4, arg1) + 1);
+    }
+    object->unk_34 = 0;
+    return 0;
+}
+/* fzgx:end fn_1_96A68 */
+
 /* fzgx:begin fn_1_96AE8 */
 void fn_1_96AE8(void *base, void *arg1) {
     fn_1_96B14(base, arg1, lbl_1_bss_6E98C);
 }
 /* fzgx:end fn_1_96AE8 */
+
+/* fzgx:begin fn_1_96B14 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/car.h"
+#include "dolphin/hw_regs.h"
+#include "psvec.h"
+
+
+
+
+typedef struct {
+    u8 pad0[0x1c];
+    void *field_1c;
+} CarObject;
+
+typedef struct {
+    u8 pad0[0x12];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    void *field_28;
+    u8 pad2c[0x8];
+    void *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} EventNode;
+
+typedef struct {
+    u8 pad0[0x24];
+    void *field_24;
+} EventData;
+
+typedef struct {
+    u8 pad0[0x8];
+    EventData *field_8;
+    void *field_c;
+} EventObject;
+
+struct fn_1_7F954_lbl_801A6410 {
+    u32 unk_0;
+};
+
+struct fn_1_7FA04_lbl_801A6410 {
+    u32 unk_0;
+};
+
+typedef struct {
+    u8 pad0[0x40];
+    void *value;
+} ResourceHolder;
+
+typedef struct {
+    u32 x;
+    u32 y;
+    u32 z;
+} RawVec3;
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+typedef struct {
+    u8 _pad_000[0x7c];
+    Vec3 field_07c;
+    u8 _pad_088[0xc4];
+    Vec3 field_14c;
+} Fn184644Object;
+
+typedef struct {
+    u32 x;
+    u32 y;
+    u32 z;
+} Triple;
+
+typedef struct Fn195158Object Fn195158Object;
+
+struct Fn195158Object {
+    u8 unk_00[0x0C];
+    f32 unk_0C;
+    u8 unk_10[0x1C];
+    f32 unk_2C;
+    u8 unk_30[0x58];
+    u8 unk_88[0x04];
+};
+
+struct TargetObj {
+    char pad[0x60];
+    char field_0x60[0xc];
+    f32 field_0x6c;
+    char pad2[0xc];
+    f32 field_0x7c;
+};
+
+struct ModelItem {
+    u32 flags;
+    char pad[0x1c];
+};
+
+struct Model {
+    char pad[0x18];
+    u16 count;
+    char pad2[0x26];
+    struct ModelItem items[1];
+};
+
+typedef struct {
+    u32 entries[41];
+} FnTable;
+
+typedef struct {
+    u8 pad_0[0x4];
+    s32 field_4;
+    s32 field_8;
+    s32 field_c;
+    s32 field_10;
+    s32 field_14;
+} Fn1_8F45C_Object;
+
+typedef struct {
+    s32 active;
+    s32 entries[5];
+} Fn1_8F494_Object;
+
+typedef struct {
+    u8 pad_0[0x148];
+    u8 pad_148[0x20];
+    u8 pad_168[0x40];
+    u8 pad_1a8[0x20];
+    u8 pad_1c8[0x20];
+    u8 pad_1e8[0x20];
+    u8 entries[0x14][0x20];
+} Fn1_8F5A4_Object;
+
+typedef struct Fn195158Data Fn195158Data;
+
+struct Fn195158Data {
+    u8 unk_00[0x08];
+    Fn195158Object *unk_08;
+};
+
+typedef struct Fn195158Car Fn195158Car;
+
+struct Fn195158Car {
+    u8 unk_00[0xA0];
+    s16 unk_A0;
+    s16 unk_A2;
+    s16 unk_A4;
+    u8 unk_A6[0x02];
+    f32 unk_A8;
+    f32 unk_AC;
+    f32 unk_B0;
+    f32 unk_B4;
+    f32 unk_B8;
+    u8 unk_BC[0x94];
+    Fn195158Data *unk_150;
+};
+
+typedef struct Fn935E4Slot {
+    u8 pad0[0xa];
+    u16 field_a;
+} Fn935E4Slot;
+
+typedef struct Fn935E4Node {
+    u8 pad0[0xa];
+    u16 field_a;
+    u8 pad_c[6];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    u8 pad27[1];
+    Fn935E4Slot *field_28;
+    u8 pad2c[8];
+    Fn935E4Slot *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} Fn935E4Node;
+
+typedef struct {
+    u8 pad0[0x12];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    void *field_28;
+    u8 pad2c[8];
+    void *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} Node;
+
+typedef struct Fn935E4Car {
+    u8 pad0[0x1c];
+    Fn935E4Node *field_1c;
+} Fn935E4Car;
+
+typedef struct {
+    u8 pad0[0x24];
+    void *field_24;
+    f32 field_28;
+    f32 field_2c;
+} OutData;
+
+typedef struct {
+    u8 pad0[0x1c];
+    Node *field_1c;
+    u8 pad20[0x128];
+    u16 field_148;
+    u8 pad14a[6];
+    OutData *field_150;
+    void *field_154;
+} Owner;
+
+typedef struct Fn1967A8Resource Fn1967A8Resource;
+
+struct Fn1967A8Resource {
+    u8 unk_00;
+    u8 unk_01[0x07];
+    u32 unk_08;
+    u8 unk_0C[0x10];
+    u32 unk_1C;
+};
+
+typedef struct Fn196968Object Fn196968Object;
+
+struct Fn196968Object {
+    u8 unk_00[0x28];
+    u32 unk_28;
+    u8 unk_2C[0x144];
+    void *unk_170;
+    void *unk_174;
+};
+
+typedef struct Fn1969E8Owner Fn1969E8Owner;
+
+struct Fn1969E8Owner {
+    u8 unk_00[0x2C];
+    u32 unk_2c;
+    u8 unk_30[0x180];
+    u32 unk_1b0;
+    void *unk_1b4;
+};
+
+typedef struct Fn196BC0Object Fn196BC0Object;
+
+struct Fn196BC0Object {
+    u8 unk_00[0x30];
+    void *value_30;
+    u8 unk_34[0x19C];
+    void *resource_1D0;
+    void *resource_1D4;
+};
+
+typedef struct Fn196A68Object Fn196A68Object;
+
+struct Fn196A68Object {
+    u8 unk_00[0x34];
+    u32 unk_34;
+    u8 unk_38[0x1B8];
+    void *unk_1F0;
+    void *unk_1F4;
+};
+
+typedef struct CarR29 {
+    u8 unk_00[0x14];
+    f32 unk_14;
+} CarR29;
+
+typedef struct Vec3f {
+    f32 x, y, z;
+} Vec3f;
+
+typedef struct fn_1_8D210_car {
+    f32 position[6];
+    f32 scale_z;
+    f32 scale_y;
+    f32 scale_x;
+    f32 field_24;
+    u16 field_28;
+    u16 field_2a;
+    u16 field_2c;
+    u16 field_2e;
+    u16 field_30;
+    u16 field_32;
+    u32 field_34;
+    u8 field_38;
+    u8 field_39;
+    u8 field_3a;
+    u8 pad_3b;
+    u32 field_3c;
+    u8 field_40;
+    u8 pad_41[3];
+    f32 field_44;
+    f32 field_48;
+    f32 field_4c;
+    f32 field_50;
+    s16 field_54;
+    u8 pad_56[2];
+    s32 field_58;
+    u8 field_5c[4];
+    u32 field_60;
+} fn_1_8D210_car;
+
+typedef s32 (*fn_1_8D210_callback)(u32);
+
+typedef struct {
+    u8 pad[0x15];
+    u8 code;
+} State;
+
+typedef struct {
+    u8 pad[4];
+    State *state;
+} fn_1_8E3A4_Object;
+
+typedef struct Sig_fn_1_41418_Fn41418Data {
+    u32 count;
+    char *strings;
+} Sig_fn_1_41418_Fn41418Data;
+
+typedef struct {
+    u32 w[45];
+} Unk_23800000;
+
+typedef struct {
+    u8 pad_00[0x1C];
+    u16 unk_1C;
+} Sig_fn_1_55628_Fn1_55628Object;
+
+typedef struct fn_1_8D988_CarObject { u8 pad_0[0x40]; void *unk_40; } fn_1_8D988_CarObject;
+
+typedef struct fn_1_8D988_Car {
+    u32 unk_0; s16 unk_4; u8 pad_6[0x46e]; s8 unk_474; u8 pad_475[0xf];
+    fn_1_8D988_CarObject *unk_484; u8 pad_488[0x86]; u8 unk_50e; u8 pad_50f[0x111];
+} fn_1_8D988_Car;
+
+struct Sig_fn_800713E0_fn_800713E0_Entry {
+    u8 pad_0[0x18];
+    u16 count;
+};
+
+struct Sig_fn_800713E0_fn_800713E0_Arg0 {
+    s32 count;
+    u8 pad_4[0x4];
+    struct Sig_fn_800713E0_fn_800713E0_Entry **entries;
+};
+
+typedef struct Sig_fn_1_97174_Fn197174Owner Sig_fn_1_97174_Fn197174Owner;
+
+struct Sig_fn_1_97174_Fn197174Owner {
+    u8 unk_00[0x14];
+    u8 *base;
+};
+
+typedef struct fn_1_95238_lbl_801A6D00 {
+    u32 unk_0;
+} fn_1_95238_lbl_801A6D00;
+
+typedef struct {
+    u8 **unk_00;
+    void *unk_04;
+    u32 pad_08;
+} Fn1_87448_Slot;
+
+typedef struct {
+    u8 pad_00[0x330];
+    u32 unk_330;
+    Fn1_87448_Slot unk_334[1];
+} Fn1_87448_Obj;
+
+typedef struct {
+    u8 pad_00[2];
+    s8 unk_02;
+} Fn1_87448_Arg1;
+extern void fn_1_801F8(s16 arg0, void *arg1);
+extern s32 fn_1_46C70();
+extern s32 fn_1_465D0(s32 arg0, s32 arg1);
+extern char *fn_80083DB0(char *dst, const char *src);
+extern void fn_80006E10(u32 arg0);
+extern int sprintf(char *s, const char *format, ...);
+extern Unk_23800000 lbl_23800000[];
+extern u8* fn_1_36AD0();
+extern void fn_1_14F6F8(u8 arg0, u8 arg1, u8 arg2, void *arg3);
+extern u32 lbl_801A6410;
+extern void fn_1_56858(void *, int);
+extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
+extern void fn_1_12A734(s32 value);
+extern void fn_1_7F658(void *arg0);
+extern void fn_1_591A0(s32 id);
+extern void fn_1_8E1E8(void);
+extern void fn_1_FDFF4(void);
+extern u32 fn_80071718(u32);
+extern void fn_800711A8(u32 value);
+extern void _savegpr_27(void);
+extern void _restgpr_27(void);
+extern void OSReport(const char *format, ...);
+extern f32 lbl_1_rodata_3508[];
+extern int fn_1_20A5C(f32 *, f32 *);
+extern void *fn_1_21644(void *arg0, f32 *arg1, void *arg2);
+extern u8 * fn_1_14F04(void);
+extern void fn_1_17920(int, int, f32);
+extern void lbl_8006D7F4(f32, f32, f32);
+extern void lbl_8006DBAC(Vec3 *a);
+extern void lbl_8006E0A4(void *);
+extern void lbl_8006E0B4(f32 arg0, f32 arg1, f32 arg2);
+extern void fn_1_892FC(void *arg0, int arg1, int arg2);
+extern void fn_1_23500();
+extern f32 lbl_1_rodata_3518[6];
+extern f32 lbl_1_rodata_3530[22];
+extern u32 lbl_8006DBE4(void);
+extern void lbl_8006DFC4(void *arg0);
+extern u8 *fn_80083970(u8 *str, const u8 *needle);
+extern void fn_1_55628(Sig_fn_1_55628_Fn1_55628Object *);
+extern void fn_1_556B8(void *value);
+extern void fn_1_55FF0(f32 value);
+extern void fn_80072558(void);
+extern u32 fn_800793D4(u8 *arg0, u32 arg1, u32 arg2);
+extern void fn_1_8B9B8(void *);
+extern s32 fn_1_8D210(fn_1_8D210_car *car, fn_1_8D210_callback callback, u32 arg, s32 enable);
+extern s32 fn_1_F7BE4();
+extern u8 lbl_1_rodata_3D34[164];
+extern s32 fn_1_45D0();
+extern void fn_1_C487C();
+extern void fn_1_43E8(u32 arg0);
+extern void fn_1_C4ABC(void);
+extern s32 fn_1_3F8C(u32 arg3, u32 arg0, u32 arg1, u32 index);
+extern void fn_1_43F4(void);
+extern void fn_1_8E3A4(fn_1_8E3A4_Object *obj);
+extern u32 fn_80074A7C(u32 arg0);
+extern void fn_800713E0(struct Sig_fn_800713E0_fn_800713E0_Arg0 *, u32);
+extern void fn_1_A8DD4(const char *format, ...);
+extern void fn_1_A8F40(u8 arg0);
+extern s32 fn_1_41418(void *resource, u16 id);
+extern void fn_1_95210(void *arg0);
+extern void fn_1_95158(Fn195158Car *car);
+extern s32 fn_1_97174(EventNode *arg0, s32 arg1, void *arg2);
+extern void fn_1_93734(u32, u32);
+extern void fn_1_4270C(void *arg0, s32 arg1, u32 arg2);
+extern const f32 lbl_1_rodata_3F6C;
+extern u8 *lbl_801A6D00;
+extern void mathutil_mtxA_rotate_y(int value);
+extern void mathutil_mtxA_rotate_z(int value);
+extern void lbl_8006D758(void);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DB30(void);
+extern void lbl_8006E14C(f32 arg0);
+extern void mathutil_mtxA_rotate_x(s16 arg0);
+extern void fn_1_12AB38(void *arg0);
+extern s32 fn_1_12A8A4(u32 arg0, void *arg1);
+extern u32 lbl_1_bss_6E98C;
+extern void fn_1_96AE8(void *base, void *arg1);
+extern Fn1967A8Resource *fn_1_41518(void *arg0);
+extern void fn_1_41C18(Fn1967A8Resource *arg0, void *arg1);
+extern u16 fn_1_96968(Fn196968Object *object, void *arg1);
+extern u16 fn_1_969E8(Fn1969E8Owner *owner, void *arg1);
+extern u16 fn_1_96BC0(Fn196BC0Object *object, void *arg1);
+extern u16 fn_1_96A68(Fn196A68Object *object, void *arg1);
+extern const f32 lbl_1_rodata_3E48[];
+extern void *camera_get_state_object(void);
+extern void camera_update_state(void *);
+extern CarR29 *fn_80071268(void *, void *);
+extern void lbl_8006E1F0(Vec3f *, f32, f32, f32);
+extern void fn_1_A714C(f32 *a, f32 *b, f32 *c, f32 *d);
+extern f32 lbl_8006D21C(s32);
+extern void lbl_8006E2C0(Vec3f *, f32, f32, f32);
+extern void fn_8006E250(Vec3f *, Vec3f *);
+extern void fn_1_B81C(Vec3f *, Vec3f *, s32);
+extern void fn_1_150464(u32 arg0);
+extern void fn_1_810E4(u32 arg0);
+extern u8 lbl_1_rodata_3590[984];
+extern u32 fn_1_12AC00(unsigned char *value);
+extern void fn_1_80294(void *arg0, void *arg1, s32 arg2);
+extern u32 lbl_1_rodata_3A94[7];
+extern void lbl_8006DC6C(void *, u32, u32);
+extern void lbl_8006E1B0(void *, void *);
+extern void lbl_8006DFE8(void *);
+extern f32 fn_1_A71AC(void);
+extern u8 fn_1_5910();
+extern void fn_1_681C(u32 index, u32 *output);
+extern void fn_1_6914(u32 index, u32 *output);
+extern f32 lbl_8006D534(Vec3 *a, Vec3 *b);
+extern u32 lbl_1_rodata_3B20[3];
+extern f32 lbl_1_rodata_3B2C[47];
+extern Triple lbl_1_rodata_3BE8;
+extern u32 fn_80007CDC(f32 *arg0);
+extern u32 fn_80007D58(f32 *arg0);
+extern void lbl_8006D784(void *);
+extern void lbl_8006DD14(void *, void *);
+extern u32 lbl_1_rodata_3BF4[14];
+extern u32 lbl_1_bss_6D8F4[31];
+extern u32 lbl_801A66A0;
+extern u32 fn_1_56018(s32 value);
+extern void fn_1_560F0(s32 index, void *arg);
+extern void fn_1_55210(void *value);
+extern f32 lbl_8006D188(s16);
+extern void fn_1_87448();
+extern void fn_80008BA8(void *dst, const void *src, int size);
+extern void lbl_8006D7DC(void *value);
+extern void lbl_8006DB74(void *value);
+extern f32 lbl_1_rodata_3C2C[33];
+extern u8 lbl_1_bss_8CA28;
+extern void fn_80008BEC(void *dest, int value, u32 size);
+extern u32 GXGetTexBufferSize(u16 width, u16 height, u32 arg2, u32 arg3, u32 arg4);
+extern u32 fn_1_4630();
+extern void fn_1_550A8(void);
+extern void fn_1_545B8(void);
+extern void fn_1_550E0(void);
+extern void fn_80038F10(f32* out);
+extern void GXGetScissor(u32 *left, u32 *top, u32 *width, u32 *height);
+extern void GXGetProjectionv(f32* out);
+extern void C_MTXPerspective(f32 *out, f32 a1, f32 a2, f32 a3, f32 a4);
+extern void fn_800737E4(void *, s32);
+extern u32 fn_80038EEC();
+extern s32 __cvt_fp2unsigned(f32);
+extern u32 fn_80074188(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
+extern void fn_80074918(u8 arg0, s32 arg1, u8 arg2);
+extern void fn_80008204(void *);
+extern void fn_80074300();
+extern void fn_80074438(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
+extern void fn_8003526C(u32, u8);
+extern void GXInvalidateTexAll(void);
+extern void fn_80072270(void *);
+extern void fn_1_4FC50(u32, u32, u16, u16, u32);
+extern u32 fn_80008E84(u32 arg0);
+extern void fn_1_426C(s32 value);
+extern void fn_1_8E7D0(Fn1_8F45C_Object *obj);
+extern void fn_1_12A2B8(u32 value);
+extern void fn_1_12A2D0(s32 value);
+extern void fn_1_9724C();
+extern void fn_1_107C4C(void *arg);
+extern void fn_1_966A0(Fn1_8F494_Object *obj);
+extern void fn_1_95EF0();
+extern void fn_1_8F5A4(Fn1_8F5A4_Object *obj);
+extern void fn_1_968FC(Fn1_8F5A4_Object *obj);
+extern s32 fn_1_41488(void *arg0, void *arg1);
+extern f32 lbl_1_rodata_4010[60];
+extern void fn_1_943F8(Fn935E4Car *, f32, void *);
+extern void fn_1_42AD0(void *, s32, u16, s32, u16);
+extern void fn_1_41328(void *arg0);
+extern void fn_1_426E4(void *arg0, void *arg1);
+extern u32 lbl_1_bss_6D828;
+extern s32 fn_1_3F854(u32 arg0);
+extern s32 fn_1_8171C(s32 value);
+extern u8 lbl_1_rodata_3968[232];
+extern void fn_800712E4(void *arg0, u32 arg1, void *arg2);
+extern u32 lbl_1_bss_6D850;
+extern u32 lbl_1_bss_6D97C;
+extern u32 lbl_1_bss_6D978;
+extern f32 fn_1_86A2C(void *);
+extern void fn_1_85688(void);
+extern void fn_1_854D4(void);
+extern void fn_1_85934();
+extern void fn_1_C489C(Obj_1_bss_6D838_Target *);
+extern void fn_1_C40A0(Obj_1_bss_6D838_Target *);
+extern u8 lbl_1_bss_6DA5C[30];
+extern void fn_1_8A1B4(void *arg0, void *arg1, int arg2);
+extern void fn_1_8B8A4(void *arg);
+extern u8 lbl_1_bss_6DA5C__fzgx_offset_1E;
+extern u8 lbl_1_bss_6DA5C__fzgx_offset_1F[5];
+extern s32 fn_8006FDEC(void);
+extern void fn_8006FEFC(void);
+extern u8 lbl_1_rodata_3DD8[84];
+extern u32 lbl_1_bss_6D86C[34];
+extern u32 fn_1_12ADA0(unsigned char *value, u32 arg);
+extern void fn_1_961F0(void *obj);
+extern u32 lbl_1_bss_6E978[3];
+extern s32 lbl_1_bss_6E984;
+extern u32 lbl_1_rodata_3FA0[28];
+extern void fn_80007AB4(u8 *arg0);
+extern void fn_1_92554(void *arg0, s32 arg1);
+extern f32 lbl_1_rodata_3F70[12];
+extern u8 lbl_1_data_34348[12];
+extern void fn_1_12A2C4(u32 value);
+extern void fn_1_A7B5C(void *arg0, s32 arg1, void *arg2, s8 arg3, void *arg4);
+extern u32 lbl_1_bss_6D970;
+extern u32 lbl_1_bss_6D974;
+extern u32 fn_1_435C(u32 value);
+extern void fn_1_850C4(void);
+
+typedef struct Fn196B14Entry Fn196B14Entry;
+struct Fn196B14Entry {
+    u8 unk_00[0x210];
+    void *unk_210;
+    void *unk_214;
+};
+
+// Computes the indexed entry value when its backing resource is available.
+u16 fn_1_96B14(void *base, void *arg1, s32 index) {
+    Fn196B14Entry *entry = (Fn196B14Entry *)((u8 *)base + (index << 5));
+
+    if (entry->unk_210 != 0 && entry->unk_214 != 0) {
+        ((u32 *)((u8 *)base + 0x38))[index] =
+            (u32)fn_1_41488(entry->unk_214, lbl_1_data_27874);
+        return (u16)(fn_1_41488(entry->unk_214, arg1) + 1);
+    }
+
+    ((u32 *)((u8 *)base + 0x38))[index] = 0;
+    return 0;
+}
+/* fzgx:end fn_1_96B14 */
+
+/* fzgx:begin fn_1_96BC0 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/car.h"
+#include "dolphin/hw_regs.h"
+#include "psvec.h"
+
+
+
+
+typedef struct {
+    u8 pad0[0x1c];
+    void *field_1c;
+} CarObject;
+
+typedef struct {
+    u8 pad0[0x12];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    void *field_28;
+    u8 pad2c[0x8];
+    void *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} EventNode;
+
+typedef struct {
+    u8 pad0[0x24];
+    void *field_24;
+} EventData;
+
+typedef struct {
+    u8 pad0[0x8];
+    EventData *field_8;
+    void *field_c;
+} EventObject;
+
+struct fn_1_7F954_lbl_801A6410 {
+    u32 unk_0;
+};
+
+struct fn_1_7FA04_lbl_801A6410 {
+    u32 unk_0;
+};
+
+typedef struct {
+    u8 pad0[0x40];
+    void *value;
+} ResourceHolder;
+
+typedef struct {
+    u32 x;
+    u32 y;
+    u32 z;
+} RawVec3;
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+typedef struct {
+    u8 _pad_000[0x7c];
+    Vec3 field_07c;
+    u8 _pad_088[0xc4];
+    Vec3 field_14c;
+} Fn184644Object;
+
+typedef struct {
+    u32 x;
+    u32 y;
+    u32 z;
+} Triple;
+
+typedef struct Fn195158Object Fn195158Object;
+
+struct Fn195158Object {
+    u8 unk_00[0x0C];
+    f32 unk_0C;
+    u8 unk_10[0x1C];
+    f32 unk_2C;
+    u8 unk_30[0x58];
+    u8 unk_88[0x04];
+};
+
+struct TargetObj {
+    char pad[0x60];
+    char field_0x60[0xc];
+    f32 field_0x6c;
+    char pad2[0xc];
+    f32 field_0x7c;
+};
+
+struct ModelItem {
+    u32 flags;
+    char pad[0x1c];
+};
+
+struct Model {
+    char pad[0x18];
+    u16 count;
+    char pad2[0x26];
+    struct ModelItem items[1];
+};
+
+typedef struct {
+    u32 entries[41];
+} FnTable;
+
+typedef struct {
+    u8 pad_0[0x4];
+    s32 field_4;
+    s32 field_8;
+    s32 field_c;
+    s32 field_10;
+    s32 field_14;
+} Fn1_8F45C_Object;
+
+typedef struct {
+    s32 active;
+    s32 entries[5];
+} Fn1_8F494_Object;
+
+typedef struct {
+    u8 pad_0[0x148];
+    u8 pad_148[0x20];
+    u8 pad_168[0x40];
+    u8 pad_1a8[0x20];
+    u8 pad_1c8[0x20];
+    u8 pad_1e8[0x20];
+    u8 entries[0x14][0x20];
+} Fn1_8F5A4_Object;
+
+typedef struct Fn195158Data Fn195158Data;
+
+struct Fn195158Data {
+    u8 unk_00[0x08];
+    Fn195158Object *unk_08;
+};
+
+typedef struct Fn195158Car Fn195158Car;
+
+struct Fn195158Car {
+    u8 unk_00[0xA0];
+    s16 unk_A0;
+    s16 unk_A2;
+    s16 unk_A4;
+    u8 unk_A6[0x02];
+    f32 unk_A8;
+    f32 unk_AC;
+    f32 unk_B0;
+    f32 unk_B4;
+    f32 unk_B8;
+    u8 unk_BC[0x94];
+    Fn195158Data *unk_150;
+};
+
+typedef struct Fn935E4Slot {
+    u8 pad0[0xa];
+    u16 field_a;
+} Fn935E4Slot;
+
+typedef struct Fn935E4Node {
+    u8 pad0[0xa];
+    u16 field_a;
+    u8 pad_c[6];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    u8 pad27[1];
+    Fn935E4Slot *field_28;
+    u8 pad2c[8];
+    Fn935E4Slot *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} Fn935E4Node;
+
+typedef struct {
+    u8 pad0[0x12];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    void *field_28;
+    u8 pad2c[8];
+    void *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} Node;
+
+typedef struct Fn935E4Car {
+    u8 pad0[0x1c];
+    Fn935E4Node *field_1c;
+} Fn935E4Car;
+
+typedef struct {
+    u8 pad0[0x24];
+    void *field_24;
+    f32 field_28;
+    f32 field_2c;
+} OutData;
+
+typedef struct {
+    u8 pad0[0x1c];
+    Node *field_1c;
+    u8 pad20[0x128];
+    u16 field_148;
+    u8 pad14a[6];
+    OutData *field_150;
+    void *field_154;
+} Owner;
+
+typedef struct Fn1967A8Resource Fn1967A8Resource;
+
+struct Fn1967A8Resource {
+    u8 unk_00;
+    u8 unk_01[0x07];
+    u32 unk_08;
+    u8 unk_0C[0x10];
+    u32 unk_1C;
+};
+
+typedef struct Fn196968Object Fn196968Object;
+
+struct Fn196968Object {
+    u8 unk_00[0x28];
+    u32 unk_28;
+    u8 unk_2C[0x144];
+    void *unk_170;
+    void *unk_174;
+};
+
+typedef struct Fn1969E8Owner Fn1969E8Owner;
+
+struct Fn1969E8Owner {
+    u8 unk_00[0x2C];
+    u32 unk_2c;
+    u8 unk_30[0x180];
+    u32 unk_1b0;
+    void *unk_1b4;
+};
+
+typedef struct Fn196BC0Object Fn196BC0Object;
+
+struct Fn196BC0Object {
+    u8 unk_00[0x30];
+    void *value_30;
+    u8 unk_34[0x19C];
+    void *resource_1D0;
+    void *resource_1D4;
+};
+
+typedef struct Fn196A68Object Fn196A68Object;
+
+struct Fn196A68Object {
+    u8 unk_00[0x34];
+    u32 unk_34;
+    u8 unk_38[0x1B8];
+    void *unk_1F0;
+    void *unk_1F4;
+};
+
+typedef struct CarR29 {
+    u8 unk_00[0x14];
+    f32 unk_14;
+} CarR29;
+
+typedef struct Vec3f {
+    f32 x, y, z;
+} Vec3f;
+
+typedef struct fn_1_8D210_car {
+    f32 position[6];
+    f32 scale_z;
+    f32 scale_y;
+    f32 scale_x;
+    f32 field_24;
+    u16 field_28;
+    u16 field_2a;
+    u16 field_2c;
+    u16 field_2e;
+    u16 field_30;
+    u16 field_32;
+    u32 field_34;
+    u8 field_38;
+    u8 field_39;
+    u8 field_3a;
+    u8 pad_3b;
+    u32 field_3c;
+    u8 field_40;
+    u8 pad_41[3];
+    f32 field_44;
+    f32 field_48;
+    f32 field_4c;
+    f32 field_50;
+    s16 field_54;
+    u8 pad_56[2];
+    s32 field_58;
+    u8 field_5c[4];
+    u32 field_60;
+} fn_1_8D210_car;
+
+typedef s32 (*fn_1_8D210_callback)(u32);
+
+typedef struct {
+    u8 pad[0x15];
+    u8 code;
+} State;
+
+typedef struct {
+    u8 pad[4];
+    State *state;
+} fn_1_8E3A4_Object;
+
+typedef struct Sig_fn_1_41418_Fn41418Data {
+    u32 count;
+    char *strings;
+} Sig_fn_1_41418_Fn41418Data;
+
+typedef struct {
+    u32 w[45];
+} Unk_23800000;
+
+typedef struct {
+    u8 pad_00[0x1C];
+    u16 unk_1C;
+} Sig_fn_1_55628_Fn1_55628Object;
+
+typedef struct fn_1_8D988_CarObject { u8 pad_0[0x40]; void *unk_40; } fn_1_8D988_CarObject;
+
+typedef struct fn_1_8D988_Car {
+    u32 unk_0; s16 unk_4; u8 pad_6[0x46e]; s8 unk_474; u8 pad_475[0xf];
+    fn_1_8D988_CarObject *unk_484; u8 pad_488[0x86]; u8 unk_50e; u8 pad_50f[0x111];
+} fn_1_8D988_Car;
+
+struct Sig_fn_800713E0_fn_800713E0_Entry {
+    u8 pad_0[0x18];
+    u16 count;
+};
+
+struct Sig_fn_800713E0_fn_800713E0_Arg0 {
+    s32 count;
+    u8 pad_4[0x4];
+    struct Sig_fn_800713E0_fn_800713E0_Entry **entries;
+};
+
+typedef struct Sig_fn_1_97174_Fn197174Owner Sig_fn_1_97174_Fn197174Owner;
+
+struct Sig_fn_1_97174_Fn197174Owner {
+    u8 unk_00[0x14];
+    u8 *base;
+};
+
+typedef struct fn_1_95238_lbl_801A6D00 {
+    u32 unk_0;
+} fn_1_95238_lbl_801A6D00;
+
+typedef struct {
+    u8 **unk_00;
+    void *unk_04;
+    u32 pad_08;
+} Fn1_87448_Slot;
+
+typedef struct {
+    u8 pad_00[0x330];
+    u32 unk_330;
+    Fn1_87448_Slot unk_334[1];
+} Fn1_87448_Obj;
+
+typedef struct {
+    u8 pad_00[2];
+    s8 unk_02;
+} Fn1_87448_Arg1;
+extern void fn_1_801F8(s16 arg0, void *arg1);
+extern s32 fn_1_46C70();
+extern s32 fn_1_465D0(s32 arg0, s32 arg1);
+extern char *fn_80083DB0(char *dst, const char *src);
+extern void fn_80006E10(u32 arg0);
+extern int sprintf(char *s, const char *format, ...);
+extern Unk_23800000 lbl_23800000[];
+extern u8* fn_1_36AD0();
+extern void fn_1_14F6F8(u8 arg0, u8 arg1, u8 arg2, void *arg3);
+extern u32 lbl_801A6410;
+extern void fn_1_56858(void *, int);
+extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
+extern void fn_1_12A734(s32 value);
+extern void fn_1_7F658(void *arg0);
+extern void fn_1_591A0(s32 id);
+extern void fn_1_8E1E8(void);
+extern void fn_1_FDFF4(void);
+extern u32 fn_80071718(u32);
+extern void fn_800711A8(u32 value);
+extern void _savegpr_27(void);
+extern void _restgpr_27(void);
+extern void OSReport(const char *format, ...);
+extern f32 lbl_1_rodata_3508[];
+extern int fn_1_20A5C(f32 *, f32 *);
+extern void *fn_1_21644(void *arg0, f32 *arg1, void *arg2);
+extern u8 * fn_1_14F04(void);
+extern void fn_1_17920(int, int, f32);
+extern void lbl_8006D7F4(f32, f32, f32);
+extern void lbl_8006DBAC(Vec3 *a);
+extern void lbl_8006E0A4(void *);
+extern void lbl_8006E0B4(f32 arg0, f32 arg1, f32 arg2);
+extern void fn_1_892FC(void *arg0, int arg1, int arg2);
+extern void fn_1_23500();
+extern f32 lbl_1_rodata_3518[6];
+extern f32 lbl_1_rodata_3530[22];
+extern u32 lbl_8006DBE4(void);
+extern void lbl_8006DFC4(void *arg0);
+extern u8 *fn_80083970(u8 *str, const u8 *needle);
+extern void fn_1_55628(Sig_fn_1_55628_Fn1_55628Object *);
+extern void fn_1_556B8(void *value);
+extern void fn_1_55FF0(f32 value);
+extern void fn_80072558(void);
+extern u32 fn_800793D4(u8 *arg0, u32 arg1, u32 arg2);
+extern void fn_1_8B9B8(void *);
+extern s32 fn_1_8D210(fn_1_8D210_car *car, fn_1_8D210_callback callback, u32 arg, s32 enable);
+extern s32 fn_1_F7BE4();
+extern u8 lbl_1_rodata_3D34[164];
+extern s32 fn_1_45D0();
+extern void fn_1_C487C();
+extern void fn_1_43E8(u32 arg0);
+extern void fn_1_C4ABC(void);
+extern s32 fn_1_3F8C(u32 arg3, u32 arg0, u32 arg1, u32 index);
+extern void fn_1_43F4(void);
+extern void fn_1_8E3A4(fn_1_8E3A4_Object *obj);
+extern u32 fn_80074A7C(u32 arg0);
+extern void fn_800713E0(struct Sig_fn_800713E0_fn_800713E0_Arg0 *, u32);
+extern void fn_1_A8DD4(const char *format, ...);
+extern void fn_1_A8F40(u8 arg0);
+extern s32 fn_1_41418(void *resource, u16 id);
+extern void fn_1_95210(void *arg0);
+extern void fn_1_95158(Fn195158Car *car);
+extern s32 fn_1_97174(EventNode *arg0, s32 arg1, void *arg2);
+extern void fn_1_93734(u32, u32);
+extern void fn_1_4270C(void *arg0, s32 arg1, u32 arg2);
+extern const f32 lbl_1_rodata_3F6C;
+extern u8 *lbl_801A6D00;
+extern void mathutil_mtxA_rotate_y(int value);
+extern void mathutil_mtxA_rotate_z(int value);
+extern void lbl_8006D758(void);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DB30(void);
+extern void lbl_8006E14C(f32 arg0);
+extern void mathutil_mtxA_rotate_x(s16 arg0);
+extern void fn_1_12AB38(void *arg0);
+extern s32 fn_1_12A8A4(u32 arg0, void *arg1);
+extern u32 lbl_1_bss_6E98C;
+extern void fn_1_96AE8(void *base, void *arg1);
+extern Fn1967A8Resource *fn_1_41518(void *arg0);
+extern void fn_1_41C18(Fn1967A8Resource *arg0, void *arg1);
+extern u16 fn_1_96968(Fn196968Object *object, void *arg1);
+extern u16 fn_1_969E8(Fn1969E8Owner *owner, void *arg1);
+extern u16 fn_1_96BC0(Fn196BC0Object *object, void *arg1);
+extern u16 fn_1_96A68(Fn196A68Object *object, void *arg1);
+extern const f32 lbl_1_rodata_3E48[];
+extern void *camera_get_state_object(void);
+extern void camera_update_state(void *);
+extern CarR29 *fn_80071268(void *, void *);
+extern void lbl_8006E1F0(Vec3f *, f32, f32, f32);
+extern void fn_1_A714C(f32 *a, f32 *b, f32 *c, f32 *d);
+extern f32 lbl_8006D21C(s32);
+extern void lbl_8006E2C0(Vec3f *, f32, f32, f32);
+extern void fn_8006E250(Vec3f *, Vec3f *);
+extern void fn_1_B81C(Vec3f *, Vec3f *, s32);
+extern void fn_1_150464(u32 arg0);
+extern void fn_1_810E4(u32 arg0);
+extern u8 lbl_1_rodata_3590[984];
+extern u32 fn_1_12AC00(unsigned char *value);
+extern void fn_1_80294(void *arg0, void *arg1, s32 arg2);
+extern u32 lbl_1_rodata_3A94[7];
+extern void lbl_8006DC6C(void *, u32, u32);
+extern void lbl_8006E1B0(void *, void *);
+extern void lbl_8006DFE8(void *);
+extern f32 fn_1_A71AC(void);
+extern u8 fn_1_5910();
+extern void fn_1_681C(u32 index, u32 *output);
+extern void fn_1_6914(u32 index, u32 *output);
+extern f32 lbl_8006D534(Vec3 *a, Vec3 *b);
+extern u32 lbl_1_rodata_3B20[3];
+extern f32 lbl_1_rodata_3B2C[47];
+extern Triple lbl_1_rodata_3BE8;
+extern u32 fn_80007CDC(f32 *arg0);
+extern u32 fn_80007D58(f32 *arg0);
+extern void lbl_8006D784(void *);
+extern void lbl_8006DD14(void *, void *);
+extern u32 lbl_1_rodata_3BF4[14];
+extern u32 lbl_1_bss_6D8F4[31];
+extern u32 lbl_801A66A0;
+extern u32 fn_1_56018(s32 value);
+extern void fn_1_560F0(s32 index, void *arg);
+extern void fn_1_55210(void *value);
+extern f32 lbl_8006D188(s16);
+extern void fn_1_87448();
+extern void fn_80008BA8(void *dst, const void *src, int size);
+extern void lbl_8006D7DC(void *value);
+extern void lbl_8006DB74(void *value);
+extern f32 lbl_1_rodata_3C2C[33];
+extern u8 lbl_1_bss_8CA28;
+extern void fn_80008BEC(void *dest, int value, u32 size);
+extern u32 GXGetTexBufferSize(u16 width, u16 height, u32 arg2, u32 arg3, u32 arg4);
+extern u32 fn_1_4630();
+extern void fn_1_550A8(void);
+extern void fn_1_545B8(void);
+extern void fn_1_550E0(void);
+extern void fn_80038F10(f32* out);
+extern void GXGetScissor(u32 *left, u32 *top, u32 *width, u32 *height);
+extern void GXGetProjectionv(f32* out);
+extern void C_MTXPerspective(f32 *out, f32 a1, f32 a2, f32 a3, f32 a4);
+extern void fn_800737E4(void *, s32);
+extern u32 fn_80038EEC();
+extern s32 __cvt_fp2unsigned(f32);
+extern u32 fn_80074188(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
+extern void fn_80074918(u8 arg0, s32 arg1, u8 arg2);
+extern void fn_80008204(void *);
+extern void fn_80074300();
+extern void fn_80074438(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
+extern void fn_8003526C(u32, u8);
+extern void GXInvalidateTexAll(void);
+extern void fn_80072270(void *);
+extern void fn_1_4FC50(u32, u32, u16, u16, u32);
+extern u32 fn_80008E84(u32 arg0);
+extern void fn_1_426C(s32 value);
+extern void fn_1_8E7D0(Fn1_8F45C_Object *obj);
+extern void fn_1_12A2B8(u32 value);
+extern void fn_1_12A2D0(s32 value);
+extern void fn_1_9724C();
+extern void fn_1_107C4C(void *arg);
+extern void fn_1_966A0(Fn1_8F494_Object *obj);
+extern void fn_1_95EF0();
+extern void fn_1_8F5A4(Fn1_8F5A4_Object *obj);
+extern void fn_1_968FC(Fn1_8F5A4_Object *obj);
+extern s32 fn_1_41488(void *arg0, void *arg1);
+extern f32 lbl_1_rodata_4010[60];
+extern void fn_1_943F8(Fn935E4Car *, f32, void *);
+extern void fn_1_42AD0(void *, s32, u16, s32, u16);
+extern void fn_1_41328(void *arg0);
+extern void fn_1_426E4(void *arg0, void *arg1);
+extern u32 lbl_1_bss_6D828;
+extern s32 fn_1_3F854(u32 arg0);
+extern s32 fn_1_8171C(s32 value);
+extern u8 lbl_1_rodata_3968[232];
+extern void fn_800712E4(void *arg0, u32 arg1, void *arg2);
+extern u32 lbl_1_bss_6D850;
+extern u32 lbl_1_bss_6D97C;
+extern u32 lbl_1_bss_6D978;
+extern f32 fn_1_86A2C(void *);
+extern void fn_1_85688(void);
+extern void fn_1_854D4(void);
+extern void fn_1_85934();
+extern void fn_1_C489C(Obj_1_bss_6D838_Target *);
+extern void fn_1_C40A0(Obj_1_bss_6D838_Target *);
+extern u8 lbl_1_bss_6DA5C[30];
+extern void fn_1_8A1B4(void *arg0, void *arg1, int arg2);
+extern void fn_1_8B8A4(void *arg);
+extern u8 lbl_1_bss_6DA5C__fzgx_offset_1E;
+extern u8 lbl_1_bss_6DA5C__fzgx_offset_1F[5];
+extern s32 fn_8006FDEC(void);
+extern void fn_8006FEFC(void);
+extern u8 lbl_1_rodata_3DD8[84];
+extern u32 lbl_1_bss_6D86C[34];
+extern u32 fn_1_12ADA0(unsigned char *value, u32 arg);
+extern void fn_1_961F0(void *obj);
+extern u32 lbl_1_bss_6E978[3];
+extern s32 lbl_1_bss_6E984;
+extern u32 lbl_1_rodata_3FA0[28];
+extern void fn_80007AB4(u8 *arg0);
+extern void fn_1_92554(void *arg0, s32 arg1);
+extern f32 lbl_1_rodata_3F70[12];
+extern u8 lbl_1_data_34348[12];
+extern void fn_1_12A2C4(u32 value);
+extern void fn_1_A7B5C(void *arg0, s32 arg1, void *arg2, s8 arg3, void *arg4);
+extern u32 lbl_1_bss_6D970;
+extern u32 lbl_1_bss_6D974;
+extern u32 fn_1_435C(u32 value);
+extern void fn_1_850C4(void);
+
+// Updates the car's resource-derived value and returns the converted result.
+u16 fn_1_96BC0(Fn196BC0Object *object, void *arg1) {
+    if (object->resource_1D0 != 0 && object->resource_1D4 != 0) {
+        object->value_30 = (void *)fn_1_41488(
+            object->resource_1D4, &lbl_1_data_2786C);
+        return (u16)(fn_1_41488(object->resource_1D4, arg1) + 1);
+    }
+
+    object->value_30 = 0;
+    return 0;
+}
+/* fzgx:end fn_1_96BC0 */
 
 /* fzgx:begin fn_1_96C40 */
 #include "dolphin/hw_regs.h"
@@ -1410,6 +5624,134 @@ static inline void fn_1_96C40_grid(s32 cx, s32 cz) {
 }
 #pragma defer_codegen reset
 /* fzgx:end fn_1_96C40 */
+
+/* fzgx:begin fn_1_96F20 noprologue */
+#include "types.h"
+#include "rel/main_rel/car.h"
+
+typedef struct Vec3f {
+    f32 x, y, z;
+} Vec3f;
+
+typedef struct CarR29 {
+    u8 unk_00[0x14];
+    f32 unk_14;
+} CarR29;
+
+typedef struct CarSub2 {
+    u8 unk_00[0x88];
+    u8 unk_88[1];
+} CarSub2;
+
+typedef struct CarSub {
+    u8 unk_00[0x8];
+    CarSub2 *unk_8;
+} CarSub;
+
+typedef struct CarData {
+    u8 unk_00[0x8c];
+    s32 unk_8c;
+    u8 unk_90[0x10];
+    s16 unk_a0;
+    s16 unk_a2;
+    s16 unk_a4;
+    u8 unk_a6[2];
+    f32 unk_a8;
+    f32 unk_ac;
+    f32 unk_b0;
+    f32 unk_b4;
+    f32 unk_b8;
+    u8 unk_bc[0x28];
+    void *unk_e4[1];
+    u8 unk_e8[0x150 - 0xe8];
+    CarSub *unk_150;
+} CarData;
+
+extern const f32 lbl_1_rodata_3E48[];
+
+extern void *camera_get_state_object(void);
+extern void camera_update_state(void *);
+extern CarR29 *fn_80071268(void *, void *);
+extern void lbl_8006E1F0(Vec3f *, f32, f32, f32);
+extern void fn_1_A714C(f32 *, s32, s32, f32 *);
+extern f32 lbl_8006D21C(s32);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006E0B4(f32, f32, f32);
+extern void mathutil_mtxA_rotate_z(s16);
+extern void mathutil_mtxA_rotate_y(s16);
+extern void mathutil_mtxA_rotate_x(s16);
+extern void lbl_8006E14C(f32);
+extern void lbl_8006DFC4(void *);
+extern f32 (*lbl_801A6D00)[4];
+extern void lbl_8006DB30(void);
+extern void lbl_8006E2C0(Vec3f *, f32, f32, f32);
+extern void fn_8006E250(Vec3f *, Vec3f *);
+extern void fn_1_B81C(Vec3f *, Vec3f *, s32);
+
+void fn_1_96F20(CarData *car) {
+    const f32 *pool = lbl_1_rodata_3E48;
+    Vec3f sp40;
+    Vec3f sp34;
+    Vec3f sp28;
+    Vec3f sp1C;
+    Vec3f sp10;
+    f32 spC;
+    f32 sp8;
+    CarR29 *r29;
+    void *cam;
+    CarSub2 *sub2;
+    f32 f31_val;
+    f32 mtx_x, mtx_y, mtx_z;
+
+    cam = camera_get_state_object();
+    r29 = fn_80071268(car->unk_e4[car->unk_8c], &lbl_1_data_22A1C);
+    if (!r29) {
+        r29 = fn_80071268(car->unk_e4[car->unk_8c], &lbl_1_data_24EF0);
+    }
+    if (!r29) {
+        return;
+    }
+
+    camera_update_state(cam);
+    lbl_8006E1F0(&sp10, pool[0x49], pool[0x4A], pool[0x49]);
+    fn_1_A714C(&spC, 0, 0, &sp8);
+
+    f31_val = lbl_8006D21C((s32)(pool[0x77] * spC * pool[0x66]));
+
+    lbl_8006DAEC();
+    sub2 = car->unk_150->unk_8;
+    lbl_8006E0B4(car->unk_a8, car->unk_ac + car->unk_b4, car->unk_b0);
+    mathutil_mtxA_rotate_z(car->unk_a4);
+    mathutil_mtxA_rotate_y(car->unk_a0);
+    mathutil_mtxA_rotate_x(car->unk_a2);
+    lbl_8006E14C(car->unk_b8);
+    lbl_8006DFC4(&sub2->unk_88);
+
+    mtx_x = lbl_801A6D00[0][3];
+    mtx_y = lbl_801A6D00[1][3];
+    mtx_z = lbl_801A6D00[2][3];
+    lbl_8006DB30();
+
+    sp28.x = mtx_x;
+    sp28.y = mtx_y;
+    sp28.z = mtx_z + (pool[0x8D] * r29->unk_14) / f31_val;
+    sp28.x *= pool[0x8E];
+    sp28.y *= pool[0x8E];
+    sp28.z *= pool[0x8E];
+    if (sp28.z > sp8 + (mtx_z - r29->unk_14)) {
+        sp28.z = sp8 + (mtx_z - r29->unk_14);
+    }
+
+    lbl_8006E2C0(&sp1C, pool[0x49], pool[0x49], mtx_z - sp28.z);
+    fn_8006E250(&sp28, &sp40);
+
+    sp34.x = sp40.x + sp1C.x;
+    sp34.y = sp40.y + sp1C.y;
+    sp34.z = sp40.z + sp1C.z;
+
+    fn_1_B81C(&sp40, &sp34, 0);
+}
+/* fzgx:end fn_1_96F20 */
 
 /* fzgx:begin fn_1_97174 */
 typedef struct Fn197174Owner Fn197174Owner;
@@ -4053,7 +8395,6 @@ void fn_1_977BC(Rob *rob, RobView *arg1) {
 }
     }
 }
-/* fzgx:end fn_1_977BC */
 /* fzgx:end fn_1_977BC */
 
 /* fzgx:begin fn_1_97F1C */

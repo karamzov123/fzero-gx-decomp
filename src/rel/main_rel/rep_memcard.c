@@ -239,6 +239,46 @@ void fn_1_154BE4(void) {
 }
 /* fzgx:end fn_1_154BE4 */
 
+/* fzgx:begin fn_1_154C84 noprologue */
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/bg_tow.h"
+
+extern void fn_1_B9BE0(void);
+extern void fn_1_B9DE8(Obj_1_bss_8EDA4 *arg0);
+extern void fn_1_48418(s32 arg0);
+extern void fn_1_159440(s32 arg0, s32 arg1);
+extern u8 lbl_1_bss_8EDA0;
+extern s32 fn_1_BA144(Obj_1_bss_8EDA4 *arg0);
+extern void fn_1_1596DC(s32 arg0);
+extern void fn_1_484CC(s32 arg0);
+extern void fn_1_BC310(Obj_1_bss_8EDA4 *arg0);
+extern void fn_1_C0510(u32 *arg0, u32 arg1, u32 arg2);
+extern u32 fn_1_426C(u32);
+extern u32 fn_1_46B4(u32, u32, u32, u32);
+extern u32 fn_1_B9C0C(void);
+extern u32 lbl_801A6410;
+
+#include "types.h"
+
+extern u32 lbl_1_data_49AB0;
+
+
+
+s32 fn_1_154C84(void) {
+    u32 v0;
+    if ((s32)lbl_1_data_49AB0 == 4) {
+    v0 = 0;
+    return v0;
+    }
+    if ((s32)lbl_1_data_49AB0 != -1 || (s32)(*(u32 *)&lbl_1_data_49AB4) != -1) {
+    v0 = 1;
+    return v0;
+    }
+    v0 = 0;
+    return v0;
+}
+/* fzgx:end fn_1_154C84 */
+
 /* fzgx:begin fn_1_154CC4 */
 void fn_1_154CC4(u32 arg0) {
     lbl_1_data_49AB4.unk_0 = arg0;

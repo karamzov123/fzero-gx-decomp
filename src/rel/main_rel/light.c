@@ -47,6 +47,120 @@ void fn_1_7BCCC(Triple_80074D28 *arg0) {
 }
 /* fzgx:end fn_1_7BCCC */
 
+/* fzgx:begin fn_1_7BD6C noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/screen_effect.h"
+
+extern u32 lbl_1_bss_6C8DC[2];
+extern u32 lbl_801A6410;
+extern void fn_1_46B4(u32 arg0, u32 arg1, void *arg2, u32 arg3);
+extern void fn_1_727BC(u32 arg0, u32 arg1, void *arg2);
+extern void fn_1_76A94(void *arg0, u32 arg1);
+extern void fn_1_76DBC(void);
+extern void fn_1_4E500(void);
+extern void fn_1_4E638(int);
+extern void fn_1_4E6F4(void);
+extern void fn_80073778(void *arg0, int arg1);
+extern s32 fn_1_A5D9C(void);
+extern const f32 lbl_1_rodata_31AC;
+extern u32 fn_80008E84(u32 arg);
+extern void fn_1_77238(void);
+extern void fn_1_772E0(void);
+extern void fn_1_77384(void *arg);
+extern void fn_80072864(int arg0);
+extern void fn_800745A4(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5);
+extern void fn_80074660(int arg0);
+extern void fn_80073678(int arg0);
+extern void fn_80073898(int arg0);
+extern void fn_80074788(int arg0);
+extern void fn_800738E0(int arg0, int arg1, int arg2);
+extern void fn_80073D60(int arg0, int arg1, int arg2, int arg3, int arg4);
+extern void fn_800734A8(int arg0, int arg1, int arg2, int arg3);
+extern void fn_80072EDC(int arg0, int arg1);
+extern f32 lbl_1_rodata_31B0[10];
+extern const f64 lbl_1_rodata_31A0;
+extern void lbl_8006D784(f32 *arg);
+extern void fn_80073A58(int arg0, f32 *arg1, int arg2);
+extern void fn_800739E0(int arg0, int arg1, int arg2);
+extern void GXLoadTexMtxImm(f32 *arg0, int arg1, int arg2);
+extern void fn_8006FDEC(void);
+extern void fn_8006FEFC(void);
+extern void fn_8006FD1C(void);
+extern void fn_1_79810(void);
+extern void fn_1_79948(void);
+extern void fn_1_791B0(void);
+extern void fn_1_9A1E8(void);
+extern void fn_1_9A864(void);
+extern u8 fn_1_7B074(void);
+extern void fn_80071718(void *arg);
+extern void fn_800711A8(void *arg);
+extern void fn_1_14CB4(void);
+extern void fn_1_FA84(void);
+extern const f32 lbl_1_rodata_32CC;
+extern void fn_1_79C88(void *arg0, s32 arg1, f32 arg2, s32 arg3);
+extern void lbl_8006DBAC(void *arg0);
+extern void lbl_8006E1B0(void *arg0, void *arg1);
+extern void sprintf(char *dst, const char *format, ...);
+extern void fn_1_465D0(char *text, int arg);
+extern void fn_1_14D5C(void *object, int arg);
+extern void fn_1_46EA8(int value);
+extern void fn_1_12620(void *object);
+extern void fn_1_46DC4(void *obj);
+
+extern void fn_1_727BC();
+extern void fn_8006FDEC(void);
+extern void fn_80071718(void *);
+extern void fn_800711A8(void *);
+extern u32 fn_8003526C(u32, u32);
+extern u32 fn_80074300(u32, u32, u32, u32);
+extern u32 fn_80074438(u32, u32, u32, u32);
+
+extern void OSPanic(const char *, int, const char *, ...);
+extern s32 fn_80074D08(u32);
+
+static inline s32 highest_bit(u32 value, u8 *data) {
+    s32 highest = 31 - __cntlzw(value);
+    if (highest > 7 || highest < 0) {
+        OSPanic((const char *)(data + 0x8ec), 0x30, (const char *)(data + 0x904));
+    }
+    return highest;
+}
+
+u32 fn_1_7BD6C(s32 value) {
+    s32 highest;
+    struct { u16 *value; } map;
+    s32 bit;
+    u16 *entries;
+    u32 result;
+    u8 *data = lbl_1_data_1E558;
+    u8 *state = (u8 *)&lbl_1_bss_6D7A8;
+
+    if (*(u16 *)(state + 0x18) >= lbl_1_bss_6D7A8.unk_4) {
+        OSPanic((const char *)(data + 0x8ec), 0xa5, (const char *)(data + 0x92c));
+    }
+    entries = (u16 *)(*(u32 *)(state + 0x24) + *(u16 *)(state + 0x18) * 0x14);
+    entries[0] = (u16)value;
+    entries[1] = ((Obj_1_bss_6D7A8 *)state)->unk_16 - 1;
+    *(u32 *)(state + 0x38) = value;
+    result = fn_80074D08(value);
+    highest = highest_bit(value, data);
+    bit = highest;
+    map.value = (u16 *)(state + 0x28);
+    highest = 1;
+    while (bit >= 0) {
+        if (map.value[bit] == 0xffff) {
+            OSPanic((const char *)(data + 0x8ec), 0xb1, (const char *)(data + 0x940));
+        }
+        entries[bit + 2] = map.value[bit];
+        value = value & ~(highest << bit);
+        bit = 31 - __cntlzw(value);
+    }
+    *(u16 *)(state + 0x18) += 1;
+    return result;
+}
+/* fzgx:end fn_1_7BD6C */
+
 /* fzgx:begin fn_1_7BE94 */
 u16 fn_1_7BE94(void) {
     return lbl_1_bss_6D7C0[0] - 1;
@@ -171,491 +285,3 @@ void fn_1_7BF9C(void *arg, s8 flag) {
     fn_1_495FC();
 }
 /* fzgx:end fn_1_7BF9C */
-
-/* fzgx:begin fn_1_7C7CC noprologue */
-#include "types.h"
-
-/* the TU's .data ahead of this function, at retail offsets */
-char *fzgx_pool_data_48[6] = {"CAR_TESTTOP", "CAR_SELECT", "CAR_CHECK", "LIGHT_CHG", "BGCOL_CHG", "ALL_DISP"};
-char *fzgx_pool_data_94[6] = {"(Menu:exit)", "(A:Check)\n(B:Top)", "(B:Select)", "(B:Top)", "(B:Top)", "(B:Top)"};
-char fzgx_pool_gap_AC[0xC] = "car_test.c";
-/* the TU creates its .data pool before its .rodata pool (fn_1_7C13C addresses "car_test.c" first); MWCC
- * numbers hoisted section bases in pool-creation order, so retail keeps .data in r29 above .rodata in r28 */
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_data_first(void) {
-    const char *volatile s;  /* fzgx-allow: S2 pool primer sink */
-    s = "CAR_TESTTOP";
-    s = "CAR_SELECT";
-    s = "CAR_CHECK";
-}
-#pragma section code_type ".text"
-
-/* the TU's .rodata ahead of this function: fn_1_7C2A0's literals and colours */
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 1.0f;
-    s = 100.0f;
-    s = 17.320507049560547f;
-}
-static const u32 fzgx_pool_table2[1] = {0x00FF00FF};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
-static const u32 fzgx_pool_table3[1] = {0x00FF00FF};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep3(void) { const u32 *volatile cp; cp = fzgx_pool_table3; }  /* fzgx-allow: S2 pool primer sink */
-static const u32 fzgx_pool_table4[1] = {0x00FF00FF};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = -100.0f;
-    s = 3.0f;
-    s = 6.0f;
-    s = -3.0f;
-    s = 182.04444885253906f;
-    s = 255.0f;
-    d = 4503601774854144.0;
-    d = 4503599627370496.0;
-}
-#pragma section code_type ".text"
-
-typedef struct {
-    u8 r, g, b, a;
-} Color;
-
-typedef struct {
-    f32 x, y, z;
-} Vec;
-
-typedef struct {
-    u8 pad_0[8];
-    Vec center;
-    f32 radius;
-    u16 ntex;
-} CarModel;
-
-typedef struct {
-    u32 unk_0;
-    char *name;
-} CarModelEntry;
-
-typedef struct {
-    s32 count;
-    CarModel *model;
-    CarModelEntry *entries;
-} CarModelInfo;
-
-typedef struct {
-    CarModel **models;
-    CarModelInfo *info;
-    u32 unk_8;
-} CarLod;
-
-typedef struct {
-    u32 flags;
-    u32 unk_4;
-    u16 width;
-    u16 height;
-    u16 max_lod;
-    u16 pad_e;
-} CarTex;
-
-typedef struct {
-    u32 count;
-    CarTex *items;
-} CarTexList;
-
-typedef struct {
-    u8 pad_0[0x328];
-    s8 kind;
-    u8 pad_329[0xB];
-    CarLod lods[6];
-    CarTexList *tex[4];
-    u8 lod_mask;
-    u8 pad_38D[0x2B];
-    s16 cv;
-    u8 pad_3BA[0x86];
-} Car;
-
-typedef struct {
-    Car *cars;
-    s8 sel;
-    s8 channel;
-    s8 mode;
-    s8 car;
-    s8 model;
-    u8 pad_9[3];
-    u32 *disp_masks;
-    char **mode_names;
-    char **mode_help;
-    u8 *bg_color;
-    u8 **light_color;
-    u32 flags;
-    s8 lod;
-    u8 lod_level[5];
-} CarTest;
-
-typedef struct {
-    u8 pad_0[0x14];
-    u16 hold;
-    u16 trig;
-} PadInput;
-
-extern void fn_1_495C8(u8);
-extern void fn_1_4955C(f32, f32);
-extern void fn_1_496FC(f32, f32);
-extern void fn_1_49514(Color *);
-extern void fn_1_4AE0C(const char *, ...);
-extern void fn_1_A8DD4(const char *, ...);
-extern void fn_1_A8EB0(int, int);
-extern void fn_1_8CB78(CarTexList *);
-extern void fn_1_8CC04(CarModel *, u8, s16, s16, u32, f32);
-extern char *fn_80083970(char *, const char *);
-extern u32 fn_80077D40(CarTexList *);
-extern u32 fn_80077BD4(CarModelInfo *);
-
-extern char *lbl_1_data_1F318[];
-extern PadInput lbl_1_bss_9F8;
-extern CarTest *lbl_1_bss_6D7E8;
-
-
-/* model and texture statistics of the selected car (compiled out of line in retail and stripped) */
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void disp_model_info(CarTest *g, CarModelInfo *info) {
-    s8 n;
-    s8 i;
-    s8 m;
-    CarModel *model;
-
-    n = info->count;
-    fn_1_A8EB0(20, 10);
-    if (lbl_1_bss_6D7E8->model == n) {
-        m = info->count;
-        fn_1_A8DD4("nmodel    :%d\n", info->count);
-        for (i = 0; i < m; i++) {
-            fn_1_A8DD4("%s\n", info->entries[i].name);
-        }
-        model = info->model;
-        fn_1_A8DD4("center    :%2.2f %2.2f %2.2f\n", model->center.x, model->center.y, model->center.z);
-        fn_1_A8DD4("radius    :%2.2f\n", model->radius);
-        fn_1_A8DD4("ntex      :%d\n", model->ntex);
-    } else {
-        model = g->cars[g->car].lods[g->lod].models[g->model];
-        fn_1_A8DD4("center    :%2.2f %2.2f %2.2f\n", model->center.x, model->center.y, model->center.z);
-        fn_1_A8DD4("radius    :%2.2f\n", model->radius);
-        fn_1_A8DD4("ntex      :%d\n", model->ntex);
-    }
-}
-
-__declspec(section ".fzgxpool") static void disp_tex_info(CarTexList *tex) {
-    s8 i;
-
-    fn_1_A8EB0(20, 10);
-    fn_1_A8DD4("ntex      :%d\n", tex->count);
-    for (i = 0; i < tex->count; i++) {
-        fn_1_A8DD4("tex[%2d] ", i);
-        fn_1_A8DD4("%3dx%3d mip%d\n", tex->items[i].width, tex->items[i].height, tex->items[i].max_lod);
-    }
-}
-#pragma section code_type ".text"
-
-/* fn_1_7C2A0's two strings */
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_pool_prime_str(void) {
-    const char *volatile s;  /* fzgx-allow: S2 pool primer sink */
-    s = "pos_";
-    s = "cpu:%d\n";
-}
-#pragma section code_type ".text"
-
-/* the TU's .data between fn_1_7C2A0's strings and this function's: the CARLOD/CARCV name strings
- * that lod_names/cv_names point at (retail lbl_1_data_1EFEC..1F074) */
-char fzgx_pool_gap_13C[0x90] = "CARLOD_HI\0\0\0" "CARLOD_MHI\0\0" "CARLOD_MLOW\0" "CARLOD_LOW\0\0"
-                               "CARLOD_CRASH\0\0\0\0" "CARLOD_NODISP\0\0\0"
-                               "CARCV0\0\0" "CARCV1\0\0" "CARCV2\0\0" "CARCV3\0\0"
-                               "CARSV0\0\0" "CARSV1\0\0" "CARSV2\0\0" "CARSV3\0";
-extern char lbl_1_data_1EFEC[];  /* "CARLOD_HI" */
-extern char lbl_1_data_1EFF8[];  /* "CARLOD_MHI" */
-extern char lbl_1_data_1F004[];  /* "CARLOD_MLOW" */
-extern char lbl_1_data_1F010[];  /* "CARLOD_LOW" */
-extern char lbl_1_data_1F01C[];  /* "CARLOD_CRASH" */
-extern char lbl_1_data_1F02C[];  /* "CARLOD_NODISP" */
-extern char lbl_1_data_1F03C[];  /* "CARCV0" */
-extern char lbl_1_data_1F044[];  /* "CARCV1" */
-extern char lbl_1_data_1F04C[];  /* "CARCV2" */
-extern char lbl_1_data_1F054[];  /* "CARCV3" */
-extern char lbl_1_data_1F05C[];  /* "CARSV0" */
-extern char lbl_1_data_1F064[];  /* "CARSV1" */
-extern char lbl_1_data_1F06C[];  /* "CARSV2" */
-extern char lbl_1_data_1F074[];  /* "CARSV3" */
-
-void fn_1_7C7CC(CarTest *g) {
-    s8 car = g->car;
-    s8 i;
-
-    if (g->flags & 0x40000000) {
-        fn_1_496FC(160.0f, 100.0f);
-        fn_1_4AE0C("\x82\xad\x82\xe9\x82\xdc\x83\x54\x83\x43\x83\x59\x82\xaa\x82\xa8\x82\xa8\x82\xab\x82\xb7\x82\xac\x82\xc4\x83\x71\x81\x5b\x83\x76\n"
-                   "\x82\xb1\x82\xa6\x82\xbf\x82\xe1\x82\xa2\x82\xdc\x82\xb5\x82\xbd\x81\x49\n");
-        return;
-    }
-    if ((lbl_1_bss_9F8.hold >> 11) & 1) {
-        s8 lod;
-        u8 level;
-
-        fn_1_A8EB0(20, 3);
-        fn_1_A8DD4("%s\n", lbl_1_data_1F318[g->cars[g->car].kind]);
-        fn_1_8CB78(g->cars[g->car].tex[g->cars[g->car].cv % 4]);
-        for (lod = 0; lod < 5; lod++) {
-            if (lod != g->lod && ((1 << lod) & g->cars[g->car].lod_mask)) {
-                level = g->lod_level[lod];
-                fn_1_8CC04(*g->cars[g->car].lods[lod].models, level, lod * 150 + 10, 300, 0xFFFFFFFF, 0.35f);
-            }
-        }
-        level = g->lod_level[g->lod];
-        fn_1_8CC04(*g->cars[g->car].lods[g->lod].models, level, g->lod * 150 + 10, 300, 0xFF000000, 0.5f);
-        return;
-    }
-    fn_1_495C8(1);
-    fn_1_496FC(320.0f, 30.0f);
-    fn_1_4AE0C("%s\n", g->mode_names[g->mode]);
-    fn_1_495C8(0);
-    fn_1_4955C(0.5f, 1.0f);
-    fn_1_4AE0C("%s\n", g->mode_help[g->mode]);
-    fn_1_4955C(1.0f, 1.0f);
-    switch (lbl_1_bss_6D7E8->mode) {
-    case 0:
-        fn_1_495C8(0);
-        fn_1_496FC(120.0f, 100.0f);
-        for (i = 0; i < 5; i++) {
-            if (i != 0) {
-                if (g->sel == i) {
-                    Color c = {0xFF, 0x00, 0x00, 0x00};
-                    fn_1_49514(&c);
-                } else {
-                    Color c = {0xFF, 0xFF, 0xFF, 0x00};
-                    fn_1_49514(&c);
-                }
-                fn_1_4AE0C("%d %s\n", i, g->mode_names[i]);
-            }
-        }
-        {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
-            fn_1_49514(&c);
-        }
-        fn_1_496FC(120.0f, 300.0f);
-        fn_1_4955C(0.5f, 1.0f);
-        fn_1_4AE0C("[Z]:Reset Car Position\n");
-        fn_1_4955C(1.0f, 1.0f);
-        break;
-    case 2:
-        fn_1_495C8(0);
-        fn_1_496FC(10.0f, 200.0f);
-        fn_1_4955C(0.5f, 1.0f);
-        fn_1_4AE0C("[Spec]\n");
-        fn_1_4AE0C("(Pad2 Didital)\n");
-        {
-            Color c = {0xFF, 0x00, 0x00, 0x00};
-            fn_1_49514(&c);
-        }
-        if (g->channel != 0) {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
-            fn_1_49514(&c);
-        }
-        fn_1_4AE0C("%s:%3d\n", "R", g->light_color[0][0]);
-        {
-            Color c = {0xFF, 0x00, 0x00, 0x00};
-            fn_1_49514(&c);
-        }
-        if (g->channel != 1) {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
-            fn_1_49514(&c);
-        }
-        fn_1_4AE0C("%s:%3d\n", "G", g->light_color[0][1]);
-        {
-            Color c = {0xFF, 0x00, 0x00, 0x00};
-            fn_1_49514(&c);
-        }
-        if (g->channel != 2) {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
-            fn_1_49514(&c);
-        }
-        fn_1_4AE0C("%s:%3d\n", "B", g->light_color[0][2]);
-        {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
-            fn_1_49514(&c);
-        }
-        fn_1_4AE0C("\n[MoveLight]\n");
-        fn_1_4AE0C("Pad2 C-STICK,L,R\n");
-        fn_1_4955C(1.0f, 1.0f);
-        if ((lbl_1_bss_9F8.trig >> 3) & 1) {
-            CarModelInfo *info = g->cars[g->car].lods[g->lod].info;
-            disp_model_info(g, info);
-        }
-        if ((lbl_1_bss_9F8.trig >> 2) & 1) {
-            CarTexList *tex = g->cars[g->car].tex[g->cars[g->car].cv % 4];
-            disp_tex_info(tex);
-        }
-        break;
-    case 3:
-        fn_1_495C8(0);
-        fn_1_496FC(10.0f, 200.0f);
-        fn_1_4955C(0.5f, 1.0f);
-        fn_1_4AE0C("[Spec]\n");
-        {
-            Color c = {0xFF, 0x00, 0x00, 0x00};
-            fn_1_49514(&c);
-        }
-        if (g->channel != 0) {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
-            fn_1_49514(&c);
-        }
-        fn_1_4AE0C("%s:%3d\n", "R", g->light_color[0][0]);
-        {
-            Color c = {0xFF, 0x00, 0x00, 0x00};
-            fn_1_49514(&c);
-        }
-        if (g->channel != 1) {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
-            fn_1_49514(&c);
-        }
-        fn_1_4AE0C("%s:%3d\n", "G", g->light_color[0][1]);
-        {
-            Color c = {0xFF, 0x00, 0x00, 0x00};
-            fn_1_49514(&c);
-        }
-        if (g->channel != 2) {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
-            fn_1_49514(&c);
-        }
-        fn_1_4AE0C("%s:%3d\n", "B", g->light_color[0][2]);
-        {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
-            fn_1_49514(&c);
-        }
-        fn_1_4955C(1.0f, 1.0f);
-        break;
-    case 1: {
-        CarModelInfo *info = g->cars[g->car].lods[g->lod].info;
-        CarTexList *tex = g->cars[g->car].tex[g->cars[g->car].cv % 4];
-
-        fn_1_495C8(0);
-        fn_1_496FC(10.0f, 100.0f);
-        fn_1_4955C(0.5f, 0.5f);
-        if (g->model == info->count) {
-            Color c = {0xFF, 0x00, 0x00, 0x00};
-            fn_1_49514(&c);
-        }
-        fn_1_4AE0C("[DISP OBEY FLAGS]\n");
-        {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
-            fn_1_49514(&c);
-        }
-        fn_1_4AE0C("-----------------\n");
-        for (i = 0; i < info->count; i++) {
-            if (!((1 << i) & g->disp_masks[g->car]) ||
-                fn_80083970(info->entries[i].name, "pos_") == info->entries[i].name) {
-                Color c = {0x7F, 0x7F, 0x7F, 0x00};
-                fn_1_49514(&c);
-            }
-            if (i == g->model) {
-                Color c = {0xFF, 0x00, 0x00, 0x00};
-                fn_1_49514(&c);
-            }
-            if (fn_80083970(info->entries[i].name, "pos_") == info->entries[i].name) {
-                fn_1_4AE0C("PosData\n");
-                {
-                    Color c = {0xFF, 0xFF, 0xFF, 0x00};
-                    fn_1_49514(&c);
-                }
-            } else {
-                fn_1_4AE0C("%s[%s]\n", info->entries[i].name, ((1 << i) & g->disp_masks[g->car]) ? "ON" : "OFF");
-                {
-                    Color c = {0xFF, 0xFF, 0xFF, 0x00};
-                    fn_1_49514(&c);
-                }
-            }
-        }
-        {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
-            fn_1_49514(&c);
-        }
-        fn_1_4AE0C("\n\n\n(Y:Tggle)\n(X:All Tggle)\n");
-        fn_1_4955C(1.0f, 1.0f);
-        fn_1_496FC(410.0f, 100.0f);
-        fn_1_4955C(0.5f, 0.5f);
-        fn_1_4AE0C("TexSize:%7d\n", fn_80077D40(tex));
-        fn_1_4AE0C("VtxNum :%7d\n", fn_80077BD4(info));
-        fn_1_4955C(1.0f, 1.0f);
-        if ((lbl_1_bss_9F8.trig >> 3) & 1) {
-            CarModelInfo *info = g->cars[g->car].lods[g->lod].info;
-            disp_model_info(g, info);
-        }
-        if ((lbl_1_bss_9F8.trig >> 2) & 1) {
-            CarTexList *tex = g->cars[g->car].tex[g->cars[g->car].cv % 4];
-            disp_tex_info(tex);
-        }
-        {
-            char *lod_names[6] = {lbl_1_data_1EFEC, lbl_1_data_1EFF8, lbl_1_data_1F004, lbl_1_data_1F010, lbl_1_data_1F01C, lbl_1_data_1F02C};
-            fn_1_496FC(450.0f, 350.0f);
-            fn_1_4955C(0.5f, 1.0f);
-            fn_1_4AE0C("(LOD:C-Stick)\n\n");
-            fn_1_4AE0C("     %s\n", lod_names[g->lod]);
-            fn_1_4955C(1.0f, 1.0f);
-        }
-        break;
-    }
-    case 4:
-        fn_1_495C8(0);
-        fn_1_496FC(120.0f, 200.0f);
-        {
-            Color c = {0xFF, 0x00, 0x00, 0x00};
-            fn_1_49514(&c);
-        }
-        if (g->channel != 0) {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
-            fn_1_49514(&c);
-        }
-        fn_1_4AE0C("%s:%3d\n", "R", g->bg_color[0]);
-        {
-            Color c = {0xFF, 0x00, 0x00, 0x00};
-            fn_1_49514(&c);
-        }
-        if (g->channel != 1) {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
-            fn_1_49514(&c);
-        }
-        fn_1_4AE0C("%s:%3d\n", "G", g->bg_color[1]);
-        {
-            Color c = {0xFF, 0x00, 0x00, 0x00};
-            fn_1_49514(&c);
-        }
-        if (g->channel != 2) {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
-            fn_1_49514(&c);
-        }
-        fn_1_4AE0C("%s:%3d\n", "B", g->bg_color[2]);
-        {
-            Color c = {0xFF, 0x00, 0x00, 0x00};
-            fn_1_49514(&c);
-        }
-        if (g->channel != 3) {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
-            fn_1_49514(&c);
-        }
-        fn_1_4AE0C("%s:%3d\n", "A", g->bg_color[3]);
-        {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
-            fn_1_49514(&c);
-        }
-        break;
-    case 5:
-        return;
-    }
-    fn_1_495C8(0);
-    fn_1_496FC(120.0f, 420.0f);
-    {
-        char *cv_names[8] = {lbl_1_data_1F03C, lbl_1_data_1F044, lbl_1_data_1F04C, lbl_1_data_1F054,
-                            lbl_1_data_1F05C, lbl_1_data_1F064, lbl_1_data_1F06C, lbl_1_data_1F074};
-        fn_1_4AE0C("%2d/%2d:[%s](%s)\n", car, 40, lbl_1_data_1F318[car], cv_names[g->cars[g->car].cv] + 3);
-    }
-}
-/* fzgx:end fn_1_7C7CC */

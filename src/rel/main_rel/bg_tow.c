@@ -438,25 +438,3 @@ void fn_1_1549B8(void) {
     lbl_1_data_49AB4.unk_0 = 3;
 }
 /* fzgx:end fn_1_1549B8 */
-
-/* fzgx:begin fn_1_154C84 */
-#include "types.h"
-
-extern u32 lbl_1_data_49AB0;
-
-
-
-s32 fn_1_154C84(void) {
-    u32 v0;
-    if ((s32)lbl_1_data_49AB0 == 4) {
-    v0 = 0;
-    return v0;
-    }
-    if ((s32)lbl_1_data_49AB0 != -1 || (s32)(*(u32 *)&lbl_1_data_49AB4) != -1) {
-    v0 = 1;
-    return v0;
-    }
-    v0 = 0;
-    return v0;
-}
-/* fzgx:end fn_1_154C84 */

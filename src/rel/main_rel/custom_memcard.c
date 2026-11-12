@@ -1514,26 +1514,3 @@ void fn_1_132FB4(void) {
 
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_132FB4 */
-
-/* fzgx:begin fn_1_137364 */
-// Writes the indexed three-byte value, or the fallback value when the index is out of range.
-void fn_1_137364(s16 arg0, u8* arg1, u8* arg2, u8* arg3) {
-    if (arg0 < 0x29) {
-        u32* values = (u32*)&lbl_1_data_416B8;
-
-        *arg1 = values[arg0 * 3];
-        *arg2 = values[arg0 * 3 + 1];
-        *arg3 = values[arg0 * 3 + 2];
-    } else {
-        *arg2 = 2;
-        *arg1 = 2;
-        *arg3 = 2;
-    }
-}
-/* fzgx:end fn_1_137364 */
-
-/* fzgx:begin fn_1_13F7F8 */
-u32 fn_1_13F7F8(s16 arg0, s16 arg1) {
-    return ((u32 (*)[6])&lbl_1_data_414D8)[arg0][arg1];
-}
-/* fzgx:end fn_1_13F7F8 */

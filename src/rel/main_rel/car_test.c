@@ -307,6 +307,494 @@ void fn_1_7C2A0(Car *car) {
 }
 /* fzgx:end fn_1_7C2A0 */
 
+/* fzgx:begin fn_1_7C7CC noprologue */
+#include "types.h"
+
+/* the TU's .data ahead of this function, at retail offsets */
+char *fzgx_pool_data_48[6] = {"CAR_TESTTOP", "CAR_SELECT", "CAR_CHECK", "LIGHT_CHG", "BGCOL_CHG", "ALL_DISP"};
+char *fzgx_pool_data_94[6] = {"(Menu:exit)", "(A:Check)\n(B:Top)", "(B:Select)", "(B:Top)", "(B:Top)", "(B:Top)"};
+char fzgx_pool_gap_AC[0xC] = "car_test.c";
+/* the TU creates its .data pool before its .rodata pool (fn_1_7C13C addresses "car_test.c" first); MWCC
+ * numbers hoisted section bases in pool-creation order, so retail keeps .data in r29 above .rodata in r28 */
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_data_first(void) {
+    const char *volatile s;  /* fzgx-allow: S2 pool primer sink */
+    s = "CAR_TESTTOP";
+    s = "CAR_SELECT";
+    s = "CAR_CHECK";
+}
+#pragma section code_type ".text"
+
+/* the TU's .rodata ahead of this function: fn_1_7C2A0's literals and colours */
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 1.0f;
+    s = 100.0f;
+    s = 17.320507049560547f;
+}
+static const u32 fzgx_pool_table2[1] = {0x00FF00FF};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
+static const u32 fzgx_pool_table3[1] = {0x00FF00FF};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep3(void) { const u32 *volatile cp; cp = fzgx_pool_table3; }  /* fzgx-allow: S2 pool primer sink */
+static const u32 fzgx_pool_table4[1] = {0x00FF00FF};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = -100.0f;
+    s = 3.0f;
+    s = 6.0f;
+    s = -3.0f;
+    s = 182.04444885253906f;
+    s = 255.0f;
+    d = 4503601774854144.0;
+    d = 4503599627370496.0;
+}
+#pragma section code_type ".text"
+
+typedef struct {
+    u8 r, g, b, a;
+} Color;
+
+typedef struct {
+    f32 x, y, z;
+} Vec;
+
+typedef struct {
+    u8 pad_0[8];
+    Vec center;
+    f32 radius;
+    u16 ntex;
+} CarModel;
+
+typedef struct {
+    u32 unk_0;
+    char *name;
+} CarModelEntry;
+
+typedef struct {
+    s32 count;
+    CarModel *model;
+    CarModelEntry *entries;
+} CarModelInfo;
+
+typedef struct {
+    CarModel **models;
+    CarModelInfo *info;
+    u32 unk_8;
+} CarLod;
+
+typedef struct {
+    u32 flags;
+    u32 unk_4;
+    u16 width;
+    u16 height;
+    u16 max_lod;
+    u16 pad_e;
+} CarTex;
+
+typedef struct {
+    u32 count;
+    CarTex *items;
+} CarTexList;
+
+typedef struct {
+    u8 pad_0[0x328];
+    s8 kind;
+    u8 pad_329[0xB];
+    CarLod lods[6];
+    CarTexList *tex[4];
+    u8 lod_mask;
+    u8 pad_38D[0x2B];
+    s16 cv;
+    u8 pad_3BA[0x86];
+} Car;
+
+typedef struct {
+    Car *cars;
+    s8 sel;
+    s8 channel;
+    s8 mode;
+    s8 car;
+    s8 model;
+    u8 pad_9[3];
+    u32 *disp_masks;
+    char **mode_names;
+    char **mode_help;
+    u8 *bg_color;
+    u8 **light_color;
+    u32 flags;
+    s8 lod;
+    u8 lod_level[5];
+} CarTest;
+
+typedef struct {
+    u8 pad_0[0x14];
+    u16 hold;
+    u16 trig;
+} PadInput;
+
+extern void fn_1_495C8(u8);
+extern void fn_1_4955C(f32, f32);
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_49514(Color *);
+extern void fn_1_4AE0C(const char *, ...);
+extern void fn_1_A8DD4(const char *, ...);
+extern void fn_1_A8EB0(int, int);
+extern void fn_1_8CB78(CarTexList *);
+extern void fn_1_8CC04(CarModel *, u8, s16, s16, u32, f32);
+extern char *fn_80083970(char *, const char *);
+extern u32 fn_80077D40(CarTexList *);
+extern u32 fn_80077BD4(CarModelInfo *);
+
+extern char *lbl_1_data_1F318[];
+extern PadInput lbl_1_bss_9F8;
+extern CarTest *lbl_1_bss_6D7E8;
+
+
+/* model and texture statistics of the selected car (compiled out of line in retail and stripped) */
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void disp_model_info(CarTest *g, CarModelInfo *info) {
+    s8 n;
+    s8 i;
+    s8 m;
+    CarModel *model;
+
+    n = info->count;
+    fn_1_A8EB0(20, 10);
+    if (lbl_1_bss_6D7E8->model == n) {
+        m = info->count;
+        fn_1_A8DD4("nmodel    :%d\n", info->count);
+        for (i = 0; i < m; i++) {
+            fn_1_A8DD4("%s\n", info->entries[i].name);
+        }
+        model = info->model;
+        fn_1_A8DD4("center    :%2.2f %2.2f %2.2f\n", model->center.x, model->center.y, model->center.z);
+        fn_1_A8DD4("radius    :%2.2f\n", model->radius);
+        fn_1_A8DD4("ntex      :%d\n", model->ntex);
+    } else {
+        model = g->cars[g->car].lods[g->lod].models[g->model];
+        fn_1_A8DD4("center    :%2.2f %2.2f %2.2f\n", model->center.x, model->center.y, model->center.z);
+        fn_1_A8DD4("radius    :%2.2f\n", model->radius);
+        fn_1_A8DD4("ntex      :%d\n", model->ntex);
+    }
+}
+
+__declspec(section ".fzgxpool") static void disp_tex_info(CarTexList *tex) {
+    s8 i;
+
+    fn_1_A8EB0(20, 10);
+    fn_1_A8DD4("ntex      :%d\n", tex->count);
+    for (i = 0; i < tex->count; i++) {
+        fn_1_A8DD4("tex[%2d] ", i);
+        fn_1_A8DD4("%3dx%3d mip%d\n", tex->items[i].width, tex->items[i].height, tex->items[i].max_lod);
+    }
+}
+#pragma section code_type ".text"
+
+/* fn_1_7C2A0's two strings */
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime_str(void) {
+    const char *volatile s;  /* fzgx-allow: S2 pool primer sink */
+    s = "pos_";
+    s = "cpu:%d\n";
+}
+#pragma section code_type ".text"
+
+/* the TU's .data between fn_1_7C2A0's strings and this function's: the CARLOD/CARCV name strings
+ * that lod_names/cv_names point at (retail lbl_1_data_1EFEC..1F074) */
+char fzgx_pool_gap_13C[0x90] = "CARLOD_HI\0\0\0" "CARLOD_MHI\0\0" "CARLOD_MLOW\0" "CARLOD_LOW\0\0"
+                               "CARLOD_CRASH\0\0\0\0" "CARLOD_NODISP\0\0\0"
+                               "CARCV0\0\0" "CARCV1\0\0" "CARCV2\0\0" "CARCV3\0\0"
+                               "CARSV0\0\0" "CARSV1\0\0" "CARSV2\0\0" "CARSV3\0";
+extern char lbl_1_data_1EFEC[];  /* "CARLOD_HI" */
+extern char lbl_1_data_1EFF8[];  /* "CARLOD_MHI" */
+extern char lbl_1_data_1F004[];  /* "CARLOD_MLOW" */
+extern char lbl_1_data_1F010[];  /* "CARLOD_LOW" */
+extern char lbl_1_data_1F01C[];  /* "CARLOD_CRASH" */
+extern char lbl_1_data_1F02C[];  /* "CARLOD_NODISP" */
+extern char lbl_1_data_1F03C[];  /* "CARCV0" */
+extern char lbl_1_data_1F044[];  /* "CARCV1" */
+extern char lbl_1_data_1F04C[];  /* "CARCV2" */
+extern char lbl_1_data_1F054[];  /* "CARCV3" */
+extern char lbl_1_data_1F05C[];  /* "CARSV0" */
+extern char lbl_1_data_1F064[];  /* "CARSV1" */
+extern char lbl_1_data_1F06C[];  /* "CARSV2" */
+extern char lbl_1_data_1F074[];  /* "CARSV3" */
+
+void fn_1_7C7CC(CarTest *g) {
+    s8 car = g->car;
+    s8 i;
+
+    if (g->flags & 0x40000000) {
+        fn_1_496FC(160.0f, 100.0f);
+        fn_1_4AE0C("\x82\xad\x82\xe9\x82\xdc\x83\x54\x83\x43\x83\x59\x82\xaa\x82\xa8\x82\xa8\x82\xab\x82\xb7\x82\xac\x82\xc4\x83\x71\x81\x5b\x83\x76\n"
+                   "\x82\xb1\x82\xa6\x82\xbf\x82\xe1\x82\xa2\x82\xdc\x82\xb5\x82\xbd\x81\x49\n");
+        return;
+    }
+    if ((lbl_1_bss_9F8.hold >> 11) & 1) {
+        s8 lod;
+        u8 level;
+
+        fn_1_A8EB0(20, 3);
+        fn_1_A8DD4("%s\n", lbl_1_data_1F318[g->cars[g->car].kind]);
+        fn_1_8CB78(g->cars[g->car].tex[g->cars[g->car].cv % 4]);
+        for (lod = 0; lod < 5; lod++) {
+            if (lod != g->lod && ((1 << lod) & g->cars[g->car].lod_mask)) {
+                level = g->lod_level[lod];
+                fn_1_8CC04(*g->cars[g->car].lods[lod].models, level, lod * 150 + 10, 300, 0xFFFFFFFF, 0.35f);
+            }
+        }
+        level = g->lod_level[g->lod];
+        fn_1_8CC04(*g->cars[g->car].lods[g->lod].models, level, g->lod * 150 + 10, 300, 0xFF000000, 0.5f);
+        return;
+    }
+    fn_1_495C8(1);
+    fn_1_496FC(320.0f, 30.0f);
+    fn_1_4AE0C("%s\n", g->mode_names[g->mode]);
+    fn_1_495C8(0);
+    fn_1_4955C(0.5f, 1.0f);
+    fn_1_4AE0C("%s\n", g->mode_help[g->mode]);
+    fn_1_4955C(1.0f, 1.0f);
+    switch (lbl_1_bss_6D7E8->mode) {
+    case 0:
+        fn_1_495C8(0);
+        fn_1_496FC(120.0f, 100.0f);
+        for (i = 0; i < 5; i++) {
+            if (i != 0) {
+                if (g->sel == i) {
+                    Color c = {0xFF, 0x00, 0x00, 0x00};
+                    fn_1_49514(&c);
+                } else {
+                    Color c = {0xFF, 0xFF, 0xFF, 0x00};
+                    fn_1_49514(&c);
+                }
+                fn_1_4AE0C("%d %s\n", i, g->mode_names[i]);
+            }
+        }
+        {
+            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+            fn_1_49514(&c);
+        }
+        fn_1_496FC(120.0f, 300.0f);
+        fn_1_4955C(0.5f, 1.0f);
+        fn_1_4AE0C("[Z]:Reset Car Position\n");
+        fn_1_4955C(1.0f, 1.0f);
+        break;
+    case 2:
+        fn_1_495C8(0);
+        fn_1_496FC(10.0f, 200.0f);
+        fn_1_4955C(0.5f, 1.0f);
+        fn_1_4AE0C("[Spec]\n");
+        fn_1_4AE0C("(Pad2 Didital)\n");
+        {
+            Color c = {0xFF, 0x00, 0x00, 0x00};
+            fn_1_49514(&c);
+        }
+        if (g->channel != 0) {
+            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+            fn_1_49514(&c);
+        }
+        fn_1_4AE0C("%s:%3d\n", "R", g->light_color[0][0]);
+        {
+            Color c = {0xFF, 0x00, 0x00, 0x00};
+            fn_1_49514(&c);
+        }
+        if (g->channel != 1) {
+            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+            fn_1_49514(&c);
+        }
+        fn_1_4AE0C("%s:%3d\n", "G", g->light_color[0][1]);
+        {
+            Color c = {0xFF, 0x00, 0x00, 0x00};
+            fn_1_49514(&c);
+        }
+        if (g->channel != 2) {
+            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+            fn_1_49514(&c);
+        }
+        fn_1_4AE0C("%s:%3d\n", "B", g->light_color[0][2]);
+        {
+            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+            fn_1_49514(&c);
+        }
+        fn_1_4AE0C("\n[MoveLight]\n");
+        fn_1_4AE0C("Pad2 C-STICK,L,R\n");
+        fn_1_4955C(1.0f, 1.0f);
+        if ((lbl_1_bss_9F8.trig >> 3) & 1) {
+            CarModelInfo *info = g->cars[g->car].lods[g->lod].info;
+            disp_model_info(g, info);
+        }
+        if ((lbl_1_bss_9F8.trig >> 2) & 1) {
+            CarTexList *tex = g->cars[g->car].tex[g->cars[g->car].cv % 4];
+            disp_tex_info(tex);
+        }
+        break;
+    case 3:
+        fn_1_495C8(0);
+        fn_1_496FC(10.0f, 200.0f);
+        fn_1_4955C(0.5f, 1.0f);
+        fn_1_4AE0C("[Spec]\n");
+        {
+            Color c = {0xFF, 0x00, 0x00, 0x00};
+            fn_1_49514(&c);
+        }
+        if (g->channel != 0) {
+            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+            fn_1_49514(&c);
+        }
+        fn_1_4AE0C("%s:%3d\n", "R", g->light_color[0][0]);
+        {
+            Color c = {0xFF, 0x00, 0x00, 0x00};
+            fn_1_49514(&c);
+        }
+        if (g->channel != 1) {
+            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+            fn_1_49514(&c);
+        }
+        fn_1_4AE0C("%s:%3d\n", "G", g->light_color[0][1]);
+        {
+            Color c = {0xFF, 0x00, 0x00, 0x00};
+            fn_1_49514(&c);
+        }
+        if (g->channel != 2) {
+            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+            fn_1_49514(&c);
+        }
+        fn_1_4AE0C("%s:%3d\n", "B", g->light_color[0][2]);
+        {
+            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+            fn_1_49514(&c);
+        }
+        fn_1_4955C(1.0f, 1.0f);
+        break;
+    case 1: {
+        CarModelInfo *info = g->cars[g->car].lods[g->lod].info;
+        CarTexList *tex = g->cars[g->car].tex[g->cars[g->car].cv % 4];
+
+        fn_1_495C8(0);
+        fn_1_496FC(10.0f, 100.0f);
+        fn_1_4955C(0.5f, 0.5f);
+        if (g->model == info->count) {
+            Color c = {0xFF, 0x00, 0x00, 0x00};
+            fn_1_49514(&c);
+        }
+        fn_1_4AE0C("[DISP OBEY FLAGS]\n");
+        {
+            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+            fn_1_49514(&c);
+        }
+        fn_1_4AE0C("-----------------\n");
+        for (i = 0; i < info->count; i++) {
+            if (!((1 << i) & g->disp_masks[g->car]) ||
+                fn_80083970(info->entries[i].name, "pos_") == info->entries[i].name) {
+                Color c = {0x7F, 0x7F, 0x7F, 0x00};
+                fn_1_49514(&c);
+            }
+            if (i == g->model) {
+                Color c = {0xFF, 0x00, 0x00, 0x00};
+                fn_1_49514(&c);
+            }
+            if (fn_80083970(info->entries[i].name, "pos_") == info->entries[i].name) {
+                fn_1_4AE0C("PosData\n");
+                {
+                    Color c = {0xFF, 0xFF, 0xFF, 0x00};
+                    fn_1_49514(&c);
+                }
+            } else {
+                fn_1_4AE0C("%s[%s]\n", info->entries[i].name, ((1 << i) & g->disp_masks[g->car]) ? "ON" : "OFF");
+                {
+                    Color c = {0xFF, 0xFF, 0xFF, 0x00};
+                    fn_1_49514(&c);
+                }
+            }
+        }
+        {
+            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+            fn_1_49514(&c);
+        }
+        fn_1_4AE0C("\n\n\n(Y:Tggle)\n(X:All Tggle)\n");
+        fn_1_4955C(1.0f, 1.0f);
+        fn_1_496FC(410.0f, 100.0f);
+        fn_1_4955C(0.5f, 0.5f);
+        fn_1_4AE0C("TexSize:%7d\n", fn_80077D40(tex));
+        fn_1_4AE0C("VtxNum :%7d\n", fn_80077BD4(info));
+        fn_1_4955C(1.0f, 1.0f);
+        if ((lbl_1_bss_9F8.trig >> 3) & 1) {
+            CarModelInfo *info = g->cars[g->car].lods[g->lod].info;
+            disp_model_info(g, info);
+        }
+        if ((lbl_1_bss_9F8.trig >> 2) & 1) {
+            CarTexList *tex = g->cars[g->car].tex[g->cars[g->car].cv % 4];
+            disp_tex_info(tex);
+        }
+        {
+            char *lod_names[6] = {lbl_1_data_1EFEC, lbl_1_data_1EFF8, lbl_1_data_1F004, lbl_1_data_1F010, lbl_1_data_1F01C, lbl_1_data_1F02C};
+            fn_1_496FC(450.0f, 350.0f);
+            fn_1_4955C(0.5f, 1.0f);
+            fn_1_4AE0C("(LOD:C-Stick)\n\n");
+            fn_1_4AE0C("     %s\n", lod_names[g->lod]);
+            fn_1_4955C(1.0f, 1.0f);
+        }
+        break;
+    }
+    case 4:
+        fn_1_495C8(0);
+        fn_1_496FC(120.0f, 200.0f);
+        {
+            Color c = {0xFF, 0x00, 0x00, 0x00};
+            fn_1_49514(&c);
+        }
+        if (g->channel != 0) {
+            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+            fn_1_49514(&c);
+        }
+        fn_1_4AE0C("%s:%3d\n", "R", g->bg_color[0]);
+        {
+            Color c = {0xFF, 0x00, 0x00, 0x00};
+            fn_1_49514(&c);
+        }
+        if (g->channel != 1) {
+            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+            fn_1_49514(&c);
+        }
+        fn_1_4AE0C("%s:%3d\n", "G", g->bg_color[1]);
+        {
+            Color c = {0xFF, 0x00, 0x00, 0x00};
+            fn_1_49514(&c);
+        }
+        if (g->channel != 2) {
+            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+            fn_1_49514(&c);
+        }
+        fn_1_4AE0C("%s:%3d\n", "B", g->bg_color[2]);
+        {
+            Color c = {0xFF, 0x00, 0x00, 0x00};
+            fn_1_49514(&c);
+        }
+        if (g->channel != 3) {
+            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+            fn_1_49514(&c);
+        }
+        fn_1_4AE0C("%s:%3d\n", "A", g->bg_color[3]);
+        {
+            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+            fn_1_49514(&c);
+        }
+        break;
+    case 5:
+        return;
+    }
+    fn_1_495C8(0);
+    fn_1_496FC(120.0f, 420.0f);
+    {
+        char *cv_names[8] = {lbl_1_data_1F03C, lbl_1_data_1F044, lbl_1_data_1F04C, lbl_1_data_1F054,
+                            lbl_1_data_1F05C, lbl_1_data_1F064, lbl_1_data_1F06C, lbl_1_data_1F074};
+        fn_1_4AE0C("%2d/%2d:[%s](%s)\n", car, 40, lbl_1_data_1F318[car], cv_names[g->cars[g->car].cv] + 3);
+    }
+}
+/* fzgx:end fn_1_7C7CC */
+
 /* fzgx:begin fn_1_7D694 */
 typedef struct {
     u8 _pad4[4];
@@ -1752,476 +2240,3 @@ void *fn_1_7F254(void *arg0, void *arg1) {
     return result;
 }
 /* fzgx:end fn_1_7F254 */
-
-/* fzgx:begin fn_1_7F518 */
-// Initializes the car test entry and optionally performs its follow-up setup.
-void* fn_1_7F518(s16 car_type, void* car, s32 initialize) {
-    fn_80083DB0(car, ((u32 *)lbl_1_data_1F4FC)[car_type]);
-    if (initialize == 1) {
-        fn_1_801F8(car_type, car);
-    }
-    return car;
-}
-/* fzgx:end fn_1_7F518 */
-
-/* fzgx:begin fn_1_83D28 noprologue */
-#include "dolphin/types.h"
-#include "rel/main_rel/car_test.h"
-
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 3.0f;
-}
-static const u32 fzgx_pool_table2[2] = {0x40000000, 0x40000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 1.5f;
-    s = 0.0f;
-}
-static const u32 fzgx_pool_table4[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    d = 1.1920928955078125e-07;
-    s = 1.4499999284744263f;
-    s = -1.5881868392106856e-23f;
-    s = 1.0f;
-}
-static const u32 fzgx_pool_table6[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep6(void) { const u32 *volatile cp; cp = fzgx_pool_table6; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime7(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    d = 0.15000000074505807;
-    s = 0.05000000074505806f;
-    s = 30.0f;
-    s = 0.00390625f;
-    s = 182.04444885253906f;
-    s = 180.0f;
-    s = 44.0f;
-    s = 89.0f;
-    s = 360.0f;
-    s = 60.0f;
-}
-static const u32 fzgx_pool_table8[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep8(void) { const u32 *volatile cp; cp = fzgx_pool_table8; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime9(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    d = 0.12999999932944775;
-    s = 0.029999999329447746f;
-}
-static const u32 fzgx_pool_table10[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep10(void) { const u32 *volatile cp; cp = fzgx_pool_table10; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime11(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    d = 4503599627370496.0;
-    d = 4503601774854144.0;
-}
-static const u32 fzgx_pool_table12[306] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00330000, 0x00010001, 0x00020002, 0x00030003, 0x0004002F, 0x00050004, 0x00060005, 0x00070006, 0x00080007, 0x00090008, 0x000A002A, 0x000B0009, 0x000C002B, 0x000D000A, 0x000E002C, 0x000F000B, 0x0010002D, 0x0011000C, 0x0012002E, 0x0013000D, 0x0014000E, 0x003D000F, 0x003E0010, 0x003F0011, 0x00400012, 0x00410013, 0x00420014, 0x00430015, 0x00440016, 0x00450017, 0x00460018, 0x00470019, 0x0048001A, 0x0049001B, 0x004A001C, 0x004B001D, 0x004C0034, 0x004D0035, 0x004E0036, 0x004F0037, 0x001F001E, 0x0020001F, 0x00210020, 0x00220021, 0x00230022, 0x00240023, 0x00250024, 0x00260025, 0x00270026, 0x00280027, 0x00290028, 0x002A0029, 0x00500038, 0x00510030, 0x00520031, 0x00530032, 0x00540033, 0xFFFF0000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep12(void) { const u32 *volatile cp; cp = fzgx_pool_table12; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime13(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 100.0f;
-}
-static const u32 fzgx_pool_table14[3] = {0x0032001E, 0x00140004, 0xFFFFFFFF};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep14(void) { const u32 *volatile cp; cp = fzgx_pool_table14; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime15(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    d = 0.5;
-    d = 0.20000000298023224;
-    s = 0.10000000149011612f;
-    s = 0.11999999731779099f;
-    s = -0.10000000149011612f;
-    s = -1.0f;
-    s = 0.8999999761581421f;
-    s = 0.49000000953674316f;
-    d = 0.800000011920929;
-    s = 0.4000000059604645f;
-}
-static const u32 fzgx_pool_table16[3] = {0x00000000, 0x3F000000, 0x3F000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep16(void) { const u32 *volatile cp; cp = fzgx_pool_table16; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime17(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 2.0f;
-    s = -1.1920928955078125e-07f;
-    s = 240.0f;
-    s = 0.75f;
-    s = 0.5f;
-    s = 1000.0f;
-}
-#pragma section code_type ".text"
-
-typedef struct {
-    u8 pad[0x200];
-    f32 value;
-} ProjectionObject;
-typedef struct {
-    u8 pad[8];
-    struct { f32 x, y, z; } vector;
-    f32 radius;
-} DistanceObject;
-typedef struct {
-    u8 pad[0x320];
-    s16 index;
-    u8 pad322[0xA];
-    ProjectionObject *projection;
-    struct {
-        s16 threshold;
-        u8 pad[2];
-        DistanceObject **object;
-        u8 pad8[4];
-    } levels[6];
-    u8 pad378[0x18];
-    u32 flags;
-    u8 pad394[0xC];
-    struct {
-        u8 pad[0x344];
-        struct {
-            u8 pad[8];
-            DistanceObject **object;
-        } *levels[6];
-    } *other;
-} DistanceState;
-extern s8 fn_1_84124(void *, s8, s8, u8 *);
-extern s32 fn_1_54E34(void *, f32);
-extern f32 fn_1_A71AC(void);
-extern s8 fn_1_84644(void *);
-extern u8 lbl_1_bss_6D980[32];
-extern u8 lbl_1_bss_6D9A0[188];
-extern s32 camera_get_values(f32 *, f32 *);
-extern s32 fn_1_A5DC4(void);
-extern void lbl_8006DFE8(void *);
-extern void lbl_8006E1B0(void *, void *);
-
-#pragma opt_lifetimes off
-s8 fn_1_83D28(DistanceState *state, f32 scale)
-{
-    s8 result = -1;
-    s8 level;
-    DistanceObject *object;
-    s8 mode;
-    u8 value;
-    f32 camera_a;
-    f32 camera_b;
-    struct { f32 x, y, z; } vector;
-    f32 diameter;
-    f32 distance;
-    f32 threshold;
-
-    level = fn_1_84124(state, 1, 0, &value);
-    if (state->flags & 0x04000000) {
-        object = *state->other->levels[level]->object;
-    } else {
-        object = *state->levels[level].object;
-    }
-    if (object == 0) {
-        return -1;
-    }
-    diameter = 2.0f * object->radius * scale;
-    lbl_8006DFE8((u8 *)state->projection + 0x14C);
-    if (fn_1_54E34(&object->vector, object->radius) == 0) {
-        return 5;
-    }
-    lbl_8006E1B0((u8 *)object + 8, &vector);
-    if (vector.z > -1.1920928955078125e-7f) {
-        return level;
-    }
-    distance = -vector.z * fn_1_A71AC();
-    mode = fn_1_84644(state->projection);
-    lbl_1_bss_6D980[state->index] = 0;
-    distance = 240.0f * diameter / distance;
-    if (camera_get_values(&camera_a, &camera_b)) {
-        distance *= camera_b;
-    }
-    if ((s8)fn_1_A5DC4()) {
-        distance *= 0.75f;
-    }
-    {
-    s8 fzgx_loop_level_2202;
-for (fzgx_loop_level_2202 = 0; fzgx_loop_level_2202 < 6; fzgx_loop_level_2202++) {
-        threshold = state->levels[fzgx_loop_level_2202 + 1].threshold;
-        if (fzgx_loop_level_2202 == 3) {
-            if (mode == 0) {
-                threshold = 2.0f;
-            } else if (distance < lbl_1_data_1FFE0.unk_0) {
-                lbl_1_bss_6D980[state->index] = 1;
-            }
-        }
-        if (distance > threshold) {
-            if (fzgx_loop_level_2202 > 0) {
-                f32 ratio = distance / (state->levels[fzgx_loop_level_2202].threshold + threshold);
-                if (ratio > 0.5f) {
-                    lbl_1_bss_6D9A0[state->index] = 0;
-                } else {
-                    lbl_1_bss_6D9A0[state->index] = 1;
-                }
-            } else {
-                lbl_1_bss_6D9A0[state->index] = 1;
-            }
-            if (fzgx_loop_level_2202 == 4) {
-                fzgx_loop_level_2202 = 5;
-            }
-            result = fzgx_loop_level_2202;
-            break;
-        }
-        if (threshold < 0.0f) {
-            result = fzgx_loop_level_2202;
-            break;
-        }
-    }
-    level = fzgx_loop_level_2202;
-}
-    if (result == 5 && state->projection != 0 && state->projection->value == 0.0f) {
-        lbl_1_bss_6D980[state->index] = 0;
-        result--;
-    }
-    return result;
-}
-#pragma opt_lifetimes reset
-/* fzgx:end fn_1_83D28 */
-
-/* fzgx:begin fn_1_870BC */
-extern void fn_1_5634C(u32 arg0);
-extern void fn_1_7ECB8(u32 arg0, u32 arg1, u32 arg2);
-extern void *lbl_801A6410;
-extern const f64 lbl_1_rodata_3588;
-extern void fn_1_12AB38(const char *);
-extern void *fn_1_45D0(void *, s32, const char *, s32);
-extern void fn_80008BEC(void *, s32, s32);
-extern void fn_1_80F80(void *, u8, void *);
-extern void fn_1_1502BC(void *, void *, void *);
-
-extern void fn_80083DB0(void* arg0, u32 arg1);
-extern void fn_1_801F8(s16 arg0, void* arg1);
-extern const f32 lbl_1_rodata_33AC;
-extern void *fn_1_4630(void *arg0, u32 arg1, void *arg2, u32 arg3);
-extern const f32 lbl_1_rodata_33B0[84];
-extern void *memset(void *dst, int value, u32 size);
-extern void fn_1_46B4(void *arg0, void *arg1, u8 *arg2, s32 arg3);
-extern void fn_1_7F954(void *arg0, s32 arg1);
-extern void fn_1_49614(void);
-extern const f32 lbl_1_rodata_33A8;
-extern void fn_80071ED4(s32 arg0, f32 arg1, f32 arg2);
-extern void fn_80072014(void *arg0);
-extern void fn_800720B0(s32 arg0);
-
-typedef struct { u8 b[0xE8]; } Blob870BC;
-extern Blob870BC lbl_1_rodata_3968;
-extern u32 lbl_1_bss_6D82C[3];
-extern void fn_1_14E2DC(u32, s32, f32);
-extern void fn_1_8E450(void *);
-extern void fn_1_87610(void *, s32);
-extern void fn_1_875B4(void *, s32, s32, f32);
-extern void fn_1_87238(void *, s32, f32);
-extern void fn_1_8E480(void);
-extern void fn_800713E0(u32, u32);
-extern void fn_800712E4(u32, u32, void *);
-extern u32 lbl_8006DAEC(void);
-extern u32 lbl_8006DBE4(void);
-extern void lbl_8006DB30(void);
-
-typedef struct {
-    u8 pad0[0x328];
-    s8 f328;
-    u8 pad1[0x338 - 0x329];
-    struct { u32 a, b, c; } slot[2];
-    u8 pad2[0x37c - 0x350];
-    u32 tab[4];
-    u8 pad3[0x390 - 0x38c];
-    u32 flags;
-    u8 pad4[0x3a0 - 0x394];
-    u32 f3a0;
-    u8 pad5[0x3b8 - 0x3a4];
-    s16 f3b8;
-    s16 f3ba;
-} Car870BC;
-
-void fn_1_870BC(Car870BC *car, s32 a, s32 b, s16 c, u8 d, f32 x)
-{
-    Blob870BC tbl;
-    s32 i;
-    s8 signed_a = (s8)a;
-    car->f3ba = signed_a;
-    if (car->flags & 0x04000000) {
-        fn_1_14E2DC(car->f3a0, signed_a, x);
-        return;
-    }
-    i = d;
-    if (car->f3b8 != i) {
-        u32 v = car->tab[i % 4];
-        if (v != 0) {
-            Car870BC *q = (Car870BC *)((u8 *)car + signed_a * 12);
-            u32 s;
-            fn_800713E0(q->slot[0].a, v);
-            s = q->slot[0].a;
-            tbl = lbl_1_rodata_3968;
-            fn_800712E4(s, lbl_1_bss_6D82C[0], &tbl);
-        }
-        car->f3b8 = d;
-    }
-    lbl_8006DAEC();
-    fn_1_8E450(car);
-    if (c != 0) {
-        ((void (**)(void *))lbl_1_data_1F5A0)[car->f328](car);
-    } else {
-        fn_1_87610(car, b);
-    }
-    fn_1_875B4(car, b, a, x);
-    lbl_8006DBE4();
-    fn_1_87238(car, a, x);
-    fn_1_8E480();
-    lbl_8006DB30();
-}
-/* fzgx:end fn_1_870BC */
-
-/* fzgx:begin fn_1_8CA00 */
-u32 *fn_1_8CA00(void) {
-    return &lbl_1_data_1FFDC;
-}
-/* fzgx:end fn_1_8CA00 */
-
-/* fzgx:begin fn_1_8DD54 noprologue */
-typedef signed char s8;
-typedef signed short s16;
-typedef signed long s32;
-
-
-typedef unsigned char u8;
-typedef unsigned short u16;
-typedef unsigned long u32;
-
-
-typedef float f32;
-typedef double f64;
-
-
-extern u8 lbl_1_bss_6D820;
-
-
-typedef struct {
-f32 unk_0;
-u8 pad_4[0xC];
-} Obj_1_data_1FFE0;
-extern Obj_1_data_1FFE0 lbl_1_data_1FFE0;
-
-
-typedef struct {
-u32 flags;
-u8 pad_4[0x5];
-u8 count;
-u8 pad_A[0x14AE];
-f64 pad_14B8;
-} CarTestInfo;
-typedef struct {
-u8 pad_0[0x3ba];
-s16 state;
-u8 pad_3BC[0x84];
-} CarTestCar;
-extern s8 fn_1_84408(CarTestCar *);
-extern void fn_1_8E084(CarTestCar *, u32 *, s32);
-
-
-extern void fn_1_3EF14(void *arg1);
-extern s32 fn_1_58C4(void);
-extern s16 fn_1_7B054(void);
-extern s16 fn_1_3F0C8(void);
-extern s32 fn_1_3FC18(void);
-
-
-typedef struct {
-u8 pad_0[0x18];
-u32 unk_18;
-CarTestCar *cars;
-u8 pad_20[0xA];
-u8 car_count;
-u8 pad_2B[0x9];
-u8 unk_34;
-u8 pad_35[0x12B];
-u8 flags[0xEAC];
-u16 costs[0x20][5];
-} CarTestManager;
-static inline CarTestCar *get_car(CarTestManager *mgr, s32 index) {
-if ((s8)index < (s8)mgr->car_count && mgr->cars != ((void *)0) ) {
-return &mgr->cars[(s8)index];
-}
-return ((void *)0) ;
-}
-void fn_1_8DD54(void) {
-struct { CarTestManager *value; u16 (*costs)[5]; u8 *flags; } m;
-s32 i;
-u32 limit;
-CarTestCar *car;
-s16 state;
-CarTestInfo info;
-u32 total;
-m.value = (CarTestManager *)&lbl_1_bss_6D820;
-fn_1_3EF14( (void *)(CarTestInfo *)(&info));
-total = 0;
-switch (fn_1_58C4()) {
-case 1:
-state = fn_1_7B054();
-if (state == 40) {
-limit = 2100;
-} else if (state == 25) {
-limit = 1300;
-} else {
-limit = 1600;
-}
-break;
-case 2:
-limit = 1600;
-break;
-case 3:
-limit = 600;
-break;
-case 4:
-default:
-limit = 600;
-break;
-}
-if ((info.flags & 0x4000) && (fn_1_3F0C8() == 40 || fn_1_3FC18() > 0)) {
-(*((f32 *)&lbl_1_data_1FFE0)) = 8.0f;
-} else {
-(*((f32 *)&lbl_1_data_1FFE0)) = 5.0f;
-}
-m.costs = m.value->costs;
-for (i = 0; i < info.count; i++) {
-car = get_car(m.value, i);
-car->state = (s8)fn_1_84408(car);
-state = car->state;
-if (state != 5 && *(u8 *)(m.value->unk_18 + i * 0x620 + 0x50d) >= 0xf0) {
-car->state = 3;
-total += 50;
-} else if (state != 5) {
-total += m.costs[i][state];
-}
-}
-if (total > limit || m.value->unk_34) {
-m.flags = m.value->flags;
-for (i = 0; i < info.count; m.flags++, i++) {
-car = get_car(m.value, i);
-if (*m.flags) {
-total -= m.costs[i][car->state];
-car->state = 5;
-}
-}
-if (total > limit) {
-for (i = 0; i < info.count; i++) {
-car = get_car(m.value, i);
-if (car->state > 0 && car->state < 3) {
-fn_1_8E084(car, &total, i);
-}
-}
-if (total > limit) {
-for (i = 0; i < info.count; i++) {
-car = get_car(m.value, i);
-if (car->state == 0) {
-fn_1_8E084(car, &total, i);
-}
-}
-}
-}
-}
-}
-/* fzgx:end fn_1_8DD54 */

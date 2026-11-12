@@ -144,6 +144,137 @@ void fn_1_D1848(void) {
 #pragma opt_loop_invariants reset
 /* fzgx:end fn_1_D1848 */
 
+/* fzgx:begin fn_1_D19B8 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/enemy_ctrl.h"
+
+extern u32 lbl_1_bss_7AC48[5];
+extern void *lbl_801A6410;
+extern void fn_1_46B4(void *, u32, void *, u32);
+extern void fn_1_C489C(void);
+extern u32 lbl_1_bss_7AC54[4];
+extern u8 lbl_1_bss_7AC90[12];
+extern u32 lbl_1_rodata_5D40[7];
+extern u32 fn_1_5910(void *);
+extern u8 fn_1_86810(void *);
+extern u32 fn_1_3F7E0(void);
+extern void fn_1_49410(void);
+extern void fn_1_494DC(u32);
+extern const f32 lbl_1_rodata_5C3C;
+extern const f32 lbl_1_rodata_5D18;
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_495C8(u32);
+extern void fn_1_49728(u32);
+extern void fn_1_4AE0C(void *, ...);
+extern const f32 lbl_1_rodata_5D5C;
+extern const f32 lbl_1_rodata_5D60;
+extern f32 lbl_1_rodata_26F8[22];
+extern const f32 lbl_1_rodata_5D64;
+extern const f32 lbl_1_rodata_5D68;
+extern void fn_1_51E60(void *);
+extern const f32 lbl_1_rodata_5D6C;
+extern void fn_1_C8DC0(void);
+extern void fn_80008E84(u32);
+extern const f32 lbl_1_rodata_5D88;
+extern const f32 lbl_1_rodata_5D8C;
+extern void fn_1_4955C(f32, f32);
+extern const f32 lbl_1_rodata_5CD4;
+extern const f32 lbl_1_rodata_5D90;
+extern void fn_1_4966C(f32, f32);
+extern const f64 lbl_1_rodata_5C00;
+extern const f32 lbl_1_rodata_5CFC;
+extern const f32 lbl_1_rodata_5DC8;
+extern const f32 lbl_1_rodata_5E0C;
+extern int sprintf(char *, const char *, ...);
+extern s16 fn_1_12C7B8(s16);
+extern s32 fn_1_465D0(char *, s32);
+extern s8 fn_1_86690(s8);
+extern u32 fn_1_12C930(u32);
+extern u8 fn_1_86624(void);
+extern u8 lbl_1_bss_9C;
+extern void *fn_1_868C0(s8);
+extern void fn_80006E10(u32);
+
+#include "types.h"
+
+#pragma opt_pointer_analysis off
+void fn_1_D19B8(u8 *arg0) {
+    u8 *p_lbl_1_data_3D670;
+    u32 *p_lbl_1_data_20D1C;
+    s32 v2;
+    u32 v1;
+    u8 v3;
+    s8 v6;
+    s32 i;
+    char loc_88[0x80];
+    char loc_8[0x80];
+
+    p_lbl_1_data_3D670 = (u8 *)&(*(u8 (*)[])&lbl_1_data_3D670);
+    fn_80006E10((u32)(p_lbl_1_data_3D670 + 0x2bc));
+
+    fn_1_465D0((char *)(p_lbl_1_data_3D670 + 0x470), 3);
+    fn_1_465D0((char *)(p_lbl_1_data_3D670 + 0x480), 3);
+    i = 0;
+    while (i < (s8)fn_1_86624()) {
+        v1 = ((*(u32 (*)[0x2d])&lbl_1_data_20D1C))[(s16)fn_1_12C930((s8)fn_1_12C7B8((s8)fn_1_86690((s8)i)))];
+        fn_1_868C0((s8)i);
+        v2 = 31 - __cntlzw((s8)*arg0);
+        v3 = (u8)v2;
+        v3 %= 4;
+        if (v3 != 0 && v3 != 4) {
+            sprintf(loc_88, (const char *)(p_lbl_1_data_3D670 + 0x2c4), v1, v3);
+            fn_1_465D0(loc_88, 1);
+        }
+        i++;
+        arg0++;
+    }
+
+    if ((*(s16 *)&lbl_1_bss_960) == 9) {
+        v6 = (s8)lbl_1_bss_9C;
+        switch (v6) {
+        case 3:
+            sprintf(loc_8, (const char *)(p_lbl_1_data_3D670 + 0x3d0));
+            fn_1_465D0(loc_8, 1);
+            sprintf(loc_8, (const char *)(p_lbl_1_data_3D670 + 0x318));
+            fn_1_465D0(loc_8, 1);
+            break;
+        case 5:
+            sprintf(loc_8, (const char *)(p_lbl_1_data_3D670 + 0x3e4));
+            fn_1_465D0(loc_8, 1);
+            sprintf(loc_8, (const char *)(p_lbl_1_data_3D670 + 0x32c));
+            fn_1_465D0(loc_8, 1);
+            break;
+        case 4:
+            sprintf(loc_8, (const char *)(p_lbl_1_data_3D670 + 0x3f8));
+            fn_1_465D0(loc_8, 1);
+            sprintf(loc_8, (const char *)(p_lbl_1_data_3D670 + 0x340));
+            fn_1_465D0(loc_8, 1);
+            sprintf(loc_8, (const char *)(((0x410) + (p_lbl_1_data_3D670))));
+            fn_1_465D0(loc_8, 1);
+            sprintf(loc_8, (const char *)(p_lbl_1_data_3D670 + 0x358));
+            fn_1_465D0(loc_8, 1);
+            sprintf(loc_8, (const char *)(p_lbl_1_data_3D670 + 0x428));
+            fn_1_465D0(loc_8, 1);
+            sprintf(loc_8, (const char *)(p_lbl_1_data_3D670 + 0x370));
+            fn_1_465D0(loc_8, 1);
+            sprintf(loc_8, (const char *)(p_lbl_1_data_3D670 + 0x440));
+            fn_1_465D0(loc_8, 1);
+            sprintf(loc_8, (const char *)(p_lbl_1_data_3D670 + 0x388));
+            fn_1_465D0(loc_8, 1);
+            sprintf(loc_8, (const char *)(p_lbl_1_data_3D670 + 0x458));
+            fn_1_465D0(loc_8, 1);
+            sprintf(loc_8, (const char *)(p_lbl_1_data_3D670 + 0x3a0));
+            fn_1_465D0(loc_8, 1);
+            break;
+        }
+    }
+
+    fn_80006E10((u32)(p_lbl_1_data_3D670 + 0x3b8));
+}
+#pragma opt_pointer_analysis reset
+/* fzgx:end fn_1_D19B8 */
+
 /* fzgx:begin fn_1_D1C94 noprologue */
 #include "types.h"
 
@@ -992,6 +1123,123 @@ s32 fn_1_D2E44(u32 index) {
     return fn_1_86810(index);
 }
 /* fzgx:end fn_1_D2E44 */
+
+/* fzgx:begin fn_1_D2F50 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/enemy_ctrl.h"
+
+extern u32 lbl_1_bss_7AC48[5];
+extern void *lbl_801A6410;
+extern void fn_1_46B4(void *, u32, void *, u32);
+extern void fn_1_C489C(void);
+extern u32 lbl_1_bss_7AC54[4];
+extern u8 lbl_1_bss_7AC90[12];
+extern u32 lbl_1_rodata_5D40[7];
+extern u32 fn_1_5910(void *);
+extern u8 fn_1_86810(void *);
+extern u32 fn_1_3F7E0(void);
+extern void fn_1_49410(void);
+extern void fn_1_494DC(u32);
+extern const f32 lbl_1_rodata_5C3C;
+extern const f32 lbl_1_rodata_5D18;
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_495C8(u32);
+extern void fn_1_49728(u32);
+extern void fn_1_4AE0C(void *, ...);
+extern const f32 lbl_1_rodata_5D5C;
+extern const f32 lbl_1_rodata_5D60;
+extern f32 lbl_1_rodata_26F8[22];
+extern const f32 lbl_1_rodata_5D64;
+extern const f32 lbl_1_rodata_5D68;
+extern void fn_1_51E60(void *);
+extern const f32 lbl_1_rodata_5D6C;
+extern void fn_1_C8DC0(void);
+extern void fn_80008E84(u32);
+extern const f32 lbl_1_rodata_5D88;
+extern const f32 lbl_1_rodata_5D8C;
+extern void fn_1_4955C(f32, f32);
+extern const f32 lbl_1_rodata_5CD4;
+extern const f32 lbl_1_rodata_5D90;
+extern void fn_1_4966C(f32, f32);
+extern const f64 lbl_1_rodata_5C00;
+extern const f32 lbl_1_rodata_5CFC;
+extern const f32 lbl_1_rodata_5DC8;
+extern const f32 lbl_1_rodata_5E0C;
+extern int sprintf(char *, const char *, ...);
+extern s16 fn_1_12C7B8(s16);
+extern s32 fn_1_465D0(char *, s32);
+extern s8 fn_1_86690(s8);
+extern u32 fn_1_12C930(u32);
+extern u8 fn_1_86624(void);
+extern u8 lbl_1_bss_9C;
+extern void *fn_1_868C0(s8);
+extern void fn_80006E10(u32);
+
+// Stores the initialized enemy-control handle for later subsystem updates.
+void fn_1_D2F50(void) {
+    u32 fn_80008E84(u32);
+
+    lbl_1_data_3D928.unk_0 = fn_80008E84(lbl_1_data_3D924);
+}
+/* fzgx:end fn_1_D2F50 */
+
+/* fzgx:begin fn_1_D2F84 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/enemy_ctrl.h"
+
+extern u32 lbl_1_bss_7AC48[5];
+extern void *lbl_801A6410;
+extern void fn_1_46B4(void *, u32, void *, u32);
+extern void fn_1_C489C(void);
+extern u32 lbl_1_bss_7AC54[4];
+extern u8 lbl_1_bss_7AC90[12];
+extern u32 lbl_1_rodata_5D40[7];
+extern u32 fn_1_5910(void *);
+extern u8 fn_1_86810(void *);
+extern u32 fn_1_3F7E0(void);
+extern void fn_1_49410(void);
+extern void fn_1_494DC(u32);
+extern const f32 lbl_1_rodata_5C3C;
+extern const f32 lbl_1_rodata_5D18;
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_495C8(u32);
+extern void fn_1_49728(u32);
+extern void fn_1_4AE0C(void *, ...);
+extern const f32 lbl_1_rodata_5D5C;
+extern const f32 lbl_1_rodata_5D60;
+extern f32 lbl_1_rodata_26F8[22];
+extern const f32 lbl_1_rodata_5D64;
+extern const f32 lbl_1_rodata_5D68;
+extern void fn_1_51E60(void *);
+extern const f32 lbl_1_rodata_5D6C;
+extern void fn_1_C8DC0(void);
+extern void fn_80008E84(u32);
+extern const f32 lbl_1_rodata_5D88;
+extern const f32 lbl_1_rodata_5D8C;
+extern void fn_1_4955C(f32, f32);
+extern const f32 lbl_1_rodata_5CD4;
+extern const f32 lbl_1_rodata_5D90;
+extern void fn_1_4966C(f32, f32);
+extern const f64 lbl_1_rodata_5C00;
+extern const f32 lbl_1_rodata_5CFC;
+extern const f32 lbl_1_rodata_5DC8;
+extern const f32 lbl_1_rodata_5E0C;
+extern int sprintf(char *, const char *, ...);
+extern s16 fn_1_12C7B8(s16);
+extern s32 fn_1_465D0(char *, s32);
+extern s8 fn_1_86690(s8);
+extern u32 fn_1_12C930(u32);
+extern u8 fn_1_86624(void);
+extern u8 lbl_1_bss_9C;
+extern void *fn_1_868C0(s8);
+extern void fn_80006E10(u32);
+
+void fn_1_D2F84(void) {
+    fn_80008E84(lbl_1_data_3D928.unk_0);
+}
+/* fzgx:end fn_1_D2F84 */
 
 /* fzgx:begin fn_1_D2FB0 */
 u32 fn_1_D2FB0(void) {

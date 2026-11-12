@@ -2314,6 +2314,64 @@ void fn_1_F8DC4(s16 index0, s16 index1, void *arg0) {
 }
 /* fzgx:end fn_1_F8DC4 */
 
+/* fzgx:begin fn_1_F8E30 noprologue */
+#include "types.h"
+
+typedef struct {
+    const char *entries[44][6];
+} StringTable;
+
+typedef struct {
+    s16 values[220];
+} ValueTable;
+
+extern const StringTable lbl_1_rodata_7050;
+extern const ValueTable lbl_1_rodata_6E38;
+extern const char *lbl_1_data_2AB54[22];
+extern const char *lbl_1_data_2AA24[22];
+extern const char *lbl_1_data_2BD54[111][6];
+
+extern void fn_80008BA8(s16 *result, const s16 *values, s32 count);
+extern char *sprintf(char *buffer, const char *format, ...);
+extern char *fn_80083DB0(char *buffer, const char *value);
+
+char *fn_1_F8E30(s16 index, s16 category, char *buffer) {
+    StringTable table_a = lbl_1_rodata_7050;
+    ValueTable table_b = lbl_1_rodata_6E38;
+    s16 result[5];
+    int idx = index;
+
+    fn_80008BA8(result, table_b.values + idx * 5, 10);
+
+    switch (result[1]) {
+    case 3:
+        switch (category) {
+        case 5:
+            sprintf(buffer, table_a.entries[idx][category],
+                    lbl_1_data_2AB54[result[3]]);
+            break;
+        default:
+            sprintf(buffer, table_a.entries[idx][category],
+                    lbl_1_data_2AA24[result[3]]);
+            break;
+        }
+        break;
+    case 1:
+        sprintf(buffer, table_a.entries[idx][category],
+                lbl_1_data_2BD54[result[3]][category]);
+        break;
+    case 2:
+        sprintf(buffer, table_a.entries[idx][category],
+                lbl_1_data_2BD54[result[4]][category]);
+        break;
+    default:
+        fn_80083DB0(buffer, table_a.entries[idx][category]);
+        break;
+    }
+    return buffer;
+}
+/* fzgx:end fn_1_F8E30 */
+
 /* fzgx:begin fn_1_F9028 */
 typedef struct {
     s16 unk_0;
@@ -4063,8 +4121,6 @@ void fn_1_FAB40(void) {
     }
 }
 #pragma opt_dead_assignments reset
-
-/* fzgx:end fn_1_FAB40 */
 /* fzgx:end fn_1_FAB40 */
 
 /* fzgx:begin fn_1_FB0A8 */

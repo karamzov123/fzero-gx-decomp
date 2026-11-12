@@ -111,7 +111,7 @@ rel/customize/customize/fn_3_C28C.c:
 rel/customize/emb_memcard/fn_3_C328.c:
 	.text       start:0x0000C328 end:0x0000C3B4
 
-rel/customize/customize/fn_3_C3B4.c:
+rel/customize/emb_memcard/fn_3_C3B4.c:
 	.text       start:0x0000C3B4 end:0x0000C400
 
 rel/customize/emb_paste_editor/fn_3_11974.c:
@@ -126,7 +126,7 @@ rel/customize/emb_paste_editor/fn_3_11FA0.c:
 rel/customize/emb_paste_editor/fn_3_11FB4.c:
 	.text       start:0x00011FB4 end:0x00011FD0
 
-rel/customize/emb_memcard/fn_3_11FD0.c:
+rel/customize/emb_paste_editor/fn_3_11FD0.c:
 	.text       start:0x00011FD0 end:0x00011FF0
 
 rel/customize/fn_3_1304C.c:
@@ -432,7 +432,7 @@ rel/customize/toolkit/fn_3_268D0.c:
 rel/customize/toolkit/fn_3_2A2F8.c:
 	.text       start:0x0002A2F8 end:0x0002AAF4 align:4
 
-rel/customize/emb_memcard/fn_3_12E4C.c:
+rel/customize/emb_paste_editor/fn_3_12E4C.c:
 	.text       start:0x00012E4C end:0x00012FD4 align:4
 
 rel/customize/_prolog/fn_3_6F90.c:
@@ -444,7 +444,7 @@ rel/customize/toolkit/fn_3_2BFB4.c:
 rel/customize/toolkit/fn_3_2C164.c:
 	.text       start:0x0002C164 end:0x0002C290 align:4
 
-rel/customize/emb_memcard/fn_3_12910.c:
+rel/customize/emb_paste_editor/fn_3_12910.c:
 	.text       start:0x00012910 end:0x00012B14 align:4
 
 rel/customize/toolkit/fn_3_1A2EC.c:
@@ -468,7 +468,7 @@ rel/customize/customize/fn_3_B6E4.c:
 rel/customize/toolkit/fn_3_1A488.c:
 	.text       start:0x0001A488 end:0x0001A648 align:4
 
-rel/customize/emb_memcard/fn_3_12FD4.c:
+rel/customize/emb_paste_editor/fn_3_12FD4.c:
 	.text       start:0x00012FD4 end:0x0001304C align:4
 
 rel/customize/editor/fn_3_16FD0.c:
@@ -573,7 +573,7 @@ rel/customize/toolkit/fn_3_1B008.c:
 rel/customize/editor/fn_3_1683C.c:
 	.text       start:0x0001683C end:0x000169B8 align:4
 
-rel/customize/editor/fn_3_18614.c:
+rel/customize/toolkit/fn_3_18614.c:
 	.text       start:0x00018614 end:0x00018960 align:4
 
 rel/customize/toolkit/fn_3_1BF08.c:
@@ -582,7 +582,7 @@ rel/customize/toolkit/fn_3_1BF08.c:
 rel/customize/_prolog/fn_3_4538.c:
 	.text       start:0x00004538 end:0x000048E0 align:4
 
-rel/customize/emb_paste_editor/fn_3_139F0.c:
+rel/customize/emblem/fn_3_139F0.c:
 	.text       start:0x000139F0 end:0x00013D98 align:4
 
 rel/customize/toolkit/fn_3_1EC2C.c:
@@ -708,7 +708,7 @@ rel/customize/editor/fn_3_17098.c:
 rel/customize/toolkit/fn_3_2B778.c:
 	.text       start:0x0002B778 end:0x0002BFB4 align:4
 
-rel/customize/editor/fn_3_18960.c:
+rel/customize/toolkit/fn_3_18960.c:
 	.text       start:0x00018960 end:0x00019C50 align:4
 
 rel/customize/toolkit/fn_3_1C8D0.c:

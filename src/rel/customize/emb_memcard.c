@@ -49,6 +49,54 @@ void fn_3_C328(void) {
 }
 /* fzgx:end fn_3_C328 */
 
+/* fzgx:begin fn_3_C3B4 noprologue */
+#include "types.h"
+extern s32 lbl_3_bss_120;
+extern u32 lbl_3_bss_F0[12];
+extern s32 fn_1_4C10(void);
+extern s16 fn_3_B270(void);
+extern u16 lbl_1_bss_96A;
+extern u32 lbl_3_bss_20850;
+extern u32 lbl_3_bss_243A8[6];
+extern void fn_1_4A00(s32, s32, u32);
+extern u16 lbl_3_bss_20[104];
+extern u32 lbl_3_bss_2C7C0[66624];
+extern void fn_80008BEC(void *, s32, s32);
+extern void fn_1_FDFF4(void);
+extern void fn_1_FC4E0(void *, s32);
+extern u32 lbl_3_bss_7EBA4;
+extern u32 lbl_3_bss_7EBA8;
+extern u8 lbl_3_data_11DC[84];
+extern u32 lbl_801A6410;
+extern void fn_1_7F3AC(u32);
+extern void fn_1_46B4(u32, u32, u8 *, s32);
+extern void fn_1_BC29C(u32 *arg0);
+extern void fn_1_B9C0C(void);
+extern char lbl_3_data_1A1C[17];
+extern u8 fn_1_B7C00(void);
+extern s32 fn_1_B7CD4(void);
+extern s32 fn_1_B7C5C(void);
+extern void OSReport(const char *, ...);
+extern u32 lbl_3_bss_A179C;
+extern u32 lbl_3_data_1A14;
+
+extern u32 lbl_3_bss_7ED58[18];
+extern u32 lbl_3_bss_A179C;
+extern u32 lbl_3_data_1A14;
+extern u32 lbl_3_data_1A18;
+
+extern void fn_1_BC29C(u32 *arg0);
+extern void fn_1_B9C0C(void);
+
+void fn_3_C3B4(void) {
+    fn_1_BC29C(lbl_3_bss_7ED58);
+    fn_1_B9C0C();
+    lbl_3_bss_A179C = 1;
+    lbl_3_data_1A14 = -1;
+    lbl_3_data_1A18 = -1;
+}
+/* fzgx:end fn_3_C3B4 */
+
 /* fzgx:begin fn_3_C400 */
 #include "font.h"
 
@@ -1931,8 +1979,6 @@ void fn_3_E6F8(void) {
     }
 }
 #pragma opt_dead_assignments reset
-
-/* fzgx:end fn_3_E6F8 */
 /* fzgx:end fn_3_E6F8 */
 
 /* fzgx:begin fn_3_F044 */
@@ -2272,181 +2318,3 @@ s16 fn_3_F948(MemCardSlot *slot) {
     return count;
 }
 /* fzgx:end fn_3_F948 */
-
-/* fzgx:begin fn_3_11FD0 */
-u32 fn_3_11FD0(u32 index, u32 value) {
-    return ((u32 *)(lbl_3_data_2F78 + (__cntlzw(value) * 24)))[index];
-}
-/* fzgx:end fn_3_11FD0 */
-
-/* fzgx:begin fn_3_12910 noprologue */
-#include "types.h"
-
-struct fn_3_12910_tbl_ent {
-    u8 pad_0[0x8];
-    u32 unk_8;
-};
-struct fn_3_12910_glb {
-    u8 pad_0[0xC];
-    u32 unk_C;
-    u32 unk_10;
-    u8 pad_14[0xE];
-    s16 unk_22;
-    s16 unk_24;
-};
-
-extern u8 lbl_3_bss_7EDD8[52];
-extern u8 lbl_3_data_3234[168];
-
-#pragma opt_dead_assignments off
-void fn_3_12910(void) {
-    struct fn_3_12910_glb *p;
-    struct fn_3_12910_tbl_ent *t;
-    u32 f;
-    u32 idx;
-
-    t = (struct fn_3_12910_tbl_ent *)lbl_3_data_3234;
-    p = (struct fn_3_12910_glb *)lbl_3_bss_7EDD8;
-    idx = __cntlzw(p->unk_C);
-    ((void (*)(void))(*(u32 *)((u8 *)lbl_3_data_3234 + idx * 12 + 8)))();
-
-    f = p->unk_C;
-    if (!(f & 0x80000000)) {
-        if (f & 0x2000000) {
-            s32 v = ((struct fn_3_12910_glb *)lbl_3_bss_7EDD8)->unk_24 - 1;
-
-            ((struct fn_3_12910_glb *)lbl_3_bss_7EDD8)->unk_24 = (v < -15) ? -15 : ((v > 30) ? 30 : v);
-        } else if (f & 0x1000000) {
-            if (((struct fn_3_12910_glb *)lbl_3_bss_7EDD8)->unk_10 & 0x2000000) {
-                s32 v = ((struct fn_3_12910_glb *)lbl_3_bss_7EDD8)->unk_24 + 1;
-
-                ((struct fn_3_12910_glb *)lbl_3_bss_7EDD8)->unk_24 = (v < -15) ? -15 : ((v > 0) ? 0 : v);
-            } else {
-                s32 v = ((struct fn_3_12910_glb *)lbl_3_bss_7EDD8)->unk_24 - 1;
-
-                ((struct fn_3_12910_glb *)lbl_3_bss_7EDD8)->unk_24 = (v < 0) ? 0 : ((v > 30) ? 30 : v);
-            }
-        } else if (f & 0x400000) {
-            s32 v = ((struct fn_3_12910_glb *)lbl_3_bss_7EDD8)->unk_24 - 1;
-
-            ((struct fn_3_12910_glb *)lbl_3_bss_7EDD8)->unk_24 = (v < 0) ? 0 : ((v > 30) ? 30 : v);
-        } else if (!(f & 0x800000)) {
-            s32 v = ((struct fn_3_12910_glb *)lbl_3_bss_7EDD8)->unk_24 + 1;
-
-            ((struct fn_3_12910_glb *)lbl_3_bss_7EDD8)->unk_24 = (v < -15) ? -15 : ((v > 30) ? 30 : v);
-        }
-
-        f = p->unk_C;
-        if (f & 0x40000000) {
-            s32 v = ((struct fn_3_12910_glb *)lbl_3_bss_7EDD8)->unk_22 - 1;
-
-            ((struct fn_3_12910_glb *)lbl_3_bss_7EDD8)->unk_22 = (v < 0) ? 0 : ((v > 10) ? 10 : v);
-        } else if (f & 0x20000000) {
-            s32 v = ((struct fn_3_12910_glb *)lbl_3_bss_7EDD8)->unk_22 + 1;
-
-            ((struct fn_3_12910_glb *)lbl_3_bss_7EDD8)->unk_22 = (v < 0) ? 0 : ((v > 10) ? 10 : v);
-        }
-    }
-}
-#pragma opt_dead_assignments reset
-/* fzgx:end fn_3_12910 */
-
-/* fzgx:begin fn_3_12E4C */
-typedef struct { u32 x; u32 y; u32 z; } Vec3;
-typedef struct { u32 unused0; u32 unused1; Vec3 first; Vec3 second; } Data;
-typedef struct { u8 pad_000[0x508]; Vec3 first; Vec3 second; } SpecialData;
-typedef struct {
-    u8 pad_000[0x328];
-    s8 state;
-    u8 pad_329[0x67];
-    u32 flags;
-    u8 pad_394[0xc];
-    s16 *indices;
-} Customize;
-
-#pragma opt_strength_reduction off
-#pragma opt_common_subs off
-void fn_3_12E4C(Customize *self, u8 index, Vec3 *first, Vec3 *second) {
-    Data *data;
-    SpecialData *special;
-    u8 state;
-
-    if (self->flags & 0x04000000) {
-        data = (Data *)(*(u8 (*)[2400])&lbl_3_data_246C);
-        data = (Data *)((u8 *)data +
-                        ((u8)((self->indices)[(u32)index * 0x1b0]) << 5));
-        *first = data->first;
-        *second = data->second;
-        return;
-    }
-
-    state = self->state;
-    if (state == 4) {
-        if (index != 0) {
-            data = (Data *)((u8 *)(*(u32 (*)[352])&lbl_3_data_1EEC) + 0x560);
-            *first = data->first;
-            *second = data->second;
-            return;
-        }
-        data = (Data *)((u8 *)(*(u32 (*)[352])&lbl_3_data_1EEC) + ((u8)state << 5));
-        *first = data->first;
-        *second = data->second;
-        return;
-    }
-
-    if ((u8)state == 0x28) {
-        special = (SpecialData *)((u8 *)(*(u32 (*)[352])&lbl_3_data_1EEC) + ((u8)index << 5));
-        *first = special->first;
-        *second = special->second;
-        return;
-    }
-
-    data = (Data *)((u8 *)(*(u32 (*)[352])&lbl_3_data_1EEC) + ((u8)state << 5));
-    *first = data->first;
-    *second = data->second;
-}
-#pragma opt_common_subs reset
-
-#pragma opt_strength_reduction reset
-/* fzgx:end fn_3_12E4C */
-
-/* fzgx:begin fn_3_12FD4 */
-struct fn_3_12FD4_Arg3 {
-    f32 unk_0;
-};
-struct fn_3_12FD4_Arg4 {
-    f32 unk_0;
-};
-
-struct fn_3_12FD4_Record {
-    f32 x;
-    f32 y;
-    u8 pad[24];
-};
-
-void fn_3_12FD4(u32 arg0, u32 arg1, u32 arg2, struct fn_3_12FD4_Arg3 *arg3, struct fn_3_12FD4_Arg4 *arg4) {
-    u32 v1;
-    u32 v2;
-    u32 v3;
-    u32 v4;
-    if (__rlwnm(arg0, 6, 31, 31)) {
-        v1 = ((arg2 & 0xFF) << 5);
-        arg3->unk_0 = *(f32 *)((u8 *)&lbl_3_data_246C + v1);
-        arg4->unk_0 = *(f32 *)((u32)&lbl_3_data_246C + v1 + 4);
-        return;
-    }
-    v2 = (arg2 & 0xFF);
-    v3 = arg2;
-    if (v2 == 4) {
-        v3 = 43;
-    } else {
-        if (v2 == 40) {
-            v3 = ((arg1 + 40) & 0xFF);
-        }
-    }
-    v4 = ((v3 & 0xFF) << 5);
-    arg3->unk_0 = *(f32 *)((u8 *)&lbl_3_data_1EEC + v4);
-    arg4->unk_0 = *(f32 *)((u32)&lbl_3_data_1EEC + v4 + 4);
-    return;
-}
-/* fzgx:end fn_3_12FD4 */

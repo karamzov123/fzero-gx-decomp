@@ -1586,21 +1586,3 @@ void fn_3_C28C(void) {
     data->state = 5;
 }
 /* fzgx:end fn_3_C28C */
-
-/* fzgx:begin fn_3_C3B4 */
-extern u32 lbl_3_bss_7ED58[18];
-extern u32 lbl_3_bss_A179C;
-extern u32 lbl_3_data_1A14;
-extern u32 lbl_3_data_1A18;
-
-extern void fn_1_BC29C(u32 *arg0);
-extern void fn_1_B9C0C(void);
-
-void fn_3_C3B4(void) {
-    fn_1_BC29C(lbl_3_bss_7ED58);
-    fn_1_B9C0C();
-    lbl_3_bss_A179C = 1;
-    lbl_3_data_1A14 = -1;
-    lbl_3_data_1A18 = -1;
-}
-/* fzgx:end fn_3_C3B4 */
