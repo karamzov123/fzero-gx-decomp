@@ -36,12 +36,12 @@ vu32 __DIRegs[16] : FZGX_ADDR___DIRegs;
 
 extern stateFunc lbl_801A6904;
 
-extern DVDCommandBlock *executing_801A68C0;
+extern DVDCommandBlock *executing;
 
 // Hardware or OS state can change asynchronously.
 extern volatile BOOL lbl_801A68D4; // fzgx-allow: S2 SDK asynchronous state
 
-extern DVDCommandBlock DummyCommandBlock_8015CE80;
+extern DVDCommandBlock DummyCommandBlock;
 
 void stateReady();
 
@@ -65,8 +65,8 @@ void stateBusy(DVDCommandBlock *block) {
     case 1:
     case 4:
         if (!block->length) {
-            finished = executing_801A68C0;
-            executing_801A68C0 = &DummyCommandBlock_8015CE80;
+            finished = executing;
+            executing = &DummyCommandBlock;
             finished->state = 0;
             if (finished->callback) {
                 finished->callback(0, finished);
@@ -95,10 +95,10 @@ void stateBusy(DVDCommandBlock *block) {
     case 6:
         __DIRegs[1] = __DIRegs[1];
         if (lbl_801A68D4) {
-            executing_801A68C0->currTransferSize = 0;
+            executing->currTransferSize = 0;
             DVDLowRequestAudioStatus(0, cbForStateBusy);
         } else {
-            executing_801A68C0->currTransferSize = 1;
+            executing->currTransferSize = 1;
             DVDLowAudioStream(0, block->length, block->offset, cbForStateBusy);
         }
         break;

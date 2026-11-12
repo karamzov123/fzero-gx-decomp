@@ -6,24 +6,24 @@ typedef struct OSResetQueue {
     OSResetFunctionInfo *last;
 } OSResetQueue;
 
-extern OSResetQueue ResetFunctionQueue_801A67D0;
+extern OSResetQueue ResetFunctionQueue;
 
 void OSRegisterResetFunction(OSResetFunctionInfo *func) {
     OSResetFunctionInfo *tmp;
     OSResetFunctionInfo *iter;
-    for (iter = ResetFunctionQueue_801A67D0.first; iter && iter->priority <= func->priority;
+    for (iter = ResetFunctionQueue.first; iter && iter->priority <= func->priority;
          iter = iter->next)
         ;
     if (iter == ((void *)0)) {
-        tmp = ResetFunctionQueue_801A67D0.last;
+        tmp = ResetFunctionQueue.last;
         if (tmp == ((void *)0)) {
-            ResetFunctionQueue_801A67D0.first = func;
+            ResetFunctionQueue.first = func;
         } else {
             tmp->next = func;
         }
         func->prev = tmp;
         func->next = ((void *)0);
-        ResetFunctionQueue_801A67D0.last = func;
+        ResetFunctionQueue.last = func;
         return;
     }
     func->next = iter;
@@ -31,7 +31,7 @@ void OSRegisterResetFunction(OSResetFunctionInfo *func) {
     iter->prev = func;
     func->prev = tmp;
     if (tmp == ((void *)0)) {
-        ResetFunctionQueue_801A67D0.first = func;
+        ResetFunctionQueue.first = func;
         return;
     }
     tmp->next = func;

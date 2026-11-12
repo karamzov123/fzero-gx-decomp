@@ -10,15 +10,15 @@ struct OSAlarmQueue {
 extern void* __OSGetExceptionHandler(u32 exception);
 extern void __OSSetExceptionHandler(u32 exception, void* handler);
 extern void DecrementerExceptionHandler_8000B2C4(void);
-extern OSAlarmQueue AlarmQueue_801A6788;
+extern OSAlarmQueue AlarmQueue;
 
 void OSInitAlarm(void) {
     void* handler;
 
     handler = __OSGetExceptionHandler(8);
     if (handler != (void*)DecrementerExceptionHandler_8000B2C4) {
-        AlarmQueue_801A6788.second = 0;
-        AlarmQueue_801A6788.first = 0;
+        AlarmQueue.second = 0;
+        AlarmQueue.first = 0;
         __OSSetExceptionHandler(8, (void*)DecrementerExceptionHandler_8000B2C4);
     }
 }

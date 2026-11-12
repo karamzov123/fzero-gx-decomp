@@ -44,11 +44,11 @@ void *memcpy(void *dest, const void *src, size_t n);
 
 extern s32 lbl_801A6910;
 
-extern u8 bb2Buf_8015CEF8[((((u32)sizeof(DVDBB2) + 31) & ~31)) + 31];
+extern u8 bb2Buf[((((u32)sizeof(DVDBB2) + 31) & ~31)) + 31];
 
-extern DVDBB2 *bb2_801A6914;
+extern DVDBB2 *bb2;
 
-extern DVDDiskID *idTmp_801A6918;
+extern DVDDiskID *idTmp;
 
 void cb(s32 result, DVDCommandBlock *block);
 
@@ -59,19 +59,19 @@ void cb(s32 result, DVDCommandBlock *block) {
         switch (lbl_801A6910) {
         case 0:
             lbl_801A6910 = 1;
-            DVDReadAbsAsyncForBS(block, bb2_801A6914, ((((u32)sizeof(bb2_801A6914) + 31) & ~31)), 0x420, cb);
+            DVDReadAbsAsyncForBS(block, bb2, ((((u32)sizeof(bb2) + 31) & ~31)), 0x420, cb);
             break;
         case 1:
             lbl_801A6910 = 2;
-            DVDReadAbsAsyncForBS(block, bb2_801A6914->FSTAddress,
-                        ((((u32)bb2_801A6914->FSTLength + 31) & ~31)), bb2_801A6914->FSTPosition,
+            DVDReadAbsAsyncForBS(block, bb2->FSTAddress,
+                        ((((u32)bb2->FSTLength + 31) & ~31)), bb2->FSTPosition,
                         cb);
         }
     } else if (result == -1) {
     } else if (result == -4) {
         lbl_801A6910 = 0;
         DVDReset();
-        DVDReadDiskID(block, idTmp_801A6918, cb);
+        DVDReadDiskID(block, idTmp, cb);
     }
 }
 
@@ -83,16 +83,16 @@ void __fstLoad() {
     void *arenaHi;
     arenaHi = OSGetArenaHi();
     bootInfo = (OSBootInfo *)((void *)((u32)(0) + (0x8000 << 16)));
-    idTmp_801A6918 = (DVDDiskID *)(((((u32)idTmpBuf + 31) & ~31)));
-    bb2_801A6914 = (DVDBB2 *)(((((u32)bb2Buf_8015CEF8 + 31) & ~31)));
+    idTmp = (DVDDiskID *)(((((u32)idTmpBuf + 31) & ~31)));
+    bb2 = (DVDBB2 *)(((((u32)bb2Buf + 31) & ~31)));
     DVDReset();
-    DVDReadDiskID(&block, idTmp_801A6918, cb);
+    DVDReadDiskID(&block, idTmp, cb);
     while (DVDGetDriveStatus() != 0)
         ;
-    bootInfo->FSTLocation = bb2_801A6914->FSTAddress;
-    bootInfo->FSTMaxLength = bb2_801A6914->FSTMaxLength;
+    bootInfo->FSTLocation = bb2->FSTAddress;
+    bootInfo->FSTMaxLength = bb2->FSTMaxLength;
     id = &bootInfo->DVDDiskID;
-    memcpy(id, idTmp_801A6918, sizeof(DVDDiskID));
+    memcpy(id, idTmp, sizeof(DVDDiskID));
     OSReport("\n");
     OSReport("  Game Name ... %c%c%c%c\n", id->gameName[0], id->gameName[1], id->gameName[2],
              id->gameName[3]);
@@ -101,5 +101,5 @@ void __fstLoad() {
     OSReport("  Game ver .... %d\n", id->gameVersion);
     OSReport("  Streaming ... %s\n", (id->streaming == 0) ? "OFF" : "ON");
     OSReport("\n");
-    OSSetArenaHi(bb2_801A6914->FSTAddress);
+    OSSetArenaHi(bb2->FSTAddress);
 }

@@ -7,10 +7,10 @@ u32 OSGetConsoleType();
 
 vu32 __EXIRegs[16] : FZGX_ADDR___EXIRegs;
 
-extern EXIControl Ecb_8015CCB0[3];
+extern EXIControl Ecb[3];
 
 static inline void CompleteTransfer(s32 chan) {
-    EXIControl *exi = &Ecb_8015CCB0[chan];
+    EXIControl *exi = &Ecb[chan];
     u8 *buf;
     u32 data;
     int i;
@@ -32,7 +32,7 @@ extern u32 __OSGetDIConfig(void);
 vu16 __OSDeviceCode : FZGX_ADDR___OSDeviceCode;
 
 BOOL EXISync(s32 chan) {
-    EXIControl *exi = &Ecb_8015CCB0[chan];
+    EXIControl *exi = &Ecb[chan];
     BOOL rc = 0;
     BOOL enabled;
     while (exi->state & 0x04) {

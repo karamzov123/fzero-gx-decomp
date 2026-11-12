@@ -3,6 +3,11 @@
 #include "dolphin/dvd/SharedState.h"
 
 extern OSAlarm __DVDLowAlarmForWA;
+extern u8 AlarmForTimeout[40];
+
+
+/* Storage extent is known; element/field types are not recovered. */
+__declspec(section ".data") u8 AlarmForTimeout[40] __attribute__((aligned(8)));
 
 
 

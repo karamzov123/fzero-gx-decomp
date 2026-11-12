@@ -20,8 +20,8 @@
 /* 8008B154 00088154  7C 00 04 AC */	sync
 /* 8008B158 00088158  7C 40 01 24 */	mtmsr r2
 /* 8008B15C 0008815C  7C 00 04 AC */	sync
-/* 8008B160 00088160  3C 40 80 1A */	lis r2, TRK_saved_exceptionID_801A50B8@h
-/* 8008B164 00088164  60 42 50 B8 */	ori r2, r2, TRK_saved_exceptionID_801A50B8@l
+/* 8008B160 00088160  3C 40 80 1A */	lis r2, TRK_saved_exceptionID@h
+/* 8008B164 00088164  60 42 50 B8 */	ori r2, r2, TRK_saved_exceptionID@l
 /* 8008B168 00088168  B0 62 00 00 */	sth r3, 0x0(r2)
 /* 8008B16C 0008816C  2C 03 05 00 */	cmpwi r3, 0x500
 /* 8008B170 00088170  40 82 00 84 */	bne .L_8008B1F4
@@ -59,8 +59,8 @@
 /* 8008B1EC 000881EC  80 42 00 08 */	lwz r2, 0x8(r2)
 /* 8008B1F0 000881F0  4C 00 00 64 */	rfi
 .L_8008B1F4:
-/* 8008B1F4 000881F4  3C 40 80 1A */	lis r2, TRK_saved_exceptionID_801A50B8@h
-/* 8008B1F8 000881F8  60 42 50 B8 */	ori r2, r2, TRK_saved_exceptionID_801A50B8@l
+/* 8008B1F4 000881F4  3C 40 80 1A */	lis r2, TRK_saved_exceptionID@h
+/* 8008B1F8 000881F8  60 42 50 B8 */	ori r2, r2, TRK_saved_exceptionID@l
 /* 8008B1FC 000881FC  A0 62 00 00 */	lhz r3, 0x0(r2)
 /* 8008B200 00088200  3C 40 80 15 */	lis r2, gTRKExceptionStatus@h
 /* 8008B204 00088204  60 42 B8 74 */	ori r2, r2, gTRKExceptionStatus@l

@@ -14,8 +14,8 @@ struct fn_800164A4_CommandList_8015CD70 {
 };
 
 extern struct fn_800164A4_CommandList_8015CD70 CommandList[];
-extern u32 NextCommandNumber_801A689C;
-extern u32 WorkAroundSeekLocation_801A6880;
+extern u32 NextCommandNumber;
+extern u32 WorkAroundSeekLocation;
 extern u32 DVDLowSeek(u32, u32, u32, u32);
 
 void SeekTwiceBeforeRead(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7) {
@@ -27,7 +27,7 @@ void SeekTwiceBeforeRead(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 a
     if (v0 == 0) {
         v0 = 0;
     } else {
-        v0 = v0 + WorkAroundSeekLocation_801A6880;
+        v0 = v0 + WorkAroundSeekLocation;
     }
     cmd->unk_0 = 2;
     cmd->unk_C = v0;
@@ -38,6 +38,6 @@ void SeekTwiceBeforeRead(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 a
     cmd->unk_20 = arg2;
     cmd->unk_24 = arg3;
     cmd->unk_28 = -1;
-    NextCommandNumber_801A689C = 0;
+    NextCommandNumber = 0;
     DVDLowSeek(v0, arg3, arg2, arg3);
 }

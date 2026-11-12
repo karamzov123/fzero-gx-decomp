@@ -1,10 +1,10 @@
 #include <dolphin/exi/EXIPriv.h>
 #pragma scheduling off
 
-extern EXIControl Ecb_8015CCB0[3];
+extern EXIControl Ecb[3];
 
 BOOL EXIDetach(s32 chan) {
-    EXIControl *exi = &Ecb_8015CCB0[chan];
+    EXIControl *exi = &Ecb[chan];
     BOOL enabled;
     enabled = OSDisableInterrupts();
     if (!(exi->state & 0x08)) {

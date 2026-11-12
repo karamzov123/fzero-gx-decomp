@@ -9,15 +9,15 @@ DVDLowCallback DVDLowClearCallback();
 
 BOOL __DVDDequeueWaitingQueue(DVDCommandBlock *block);
 
-extern DVDCommandBlock *executing_801A68C0;
+extern DVDCommandBlock *executing;
 
 extern vu32 lbl_801A68E0;
 
 extern DVDCBCallback lbl_801A68E4;
 
-extern vu32 ResumeFromHere_801A68E8;
+extern vu32 ResumeFromHere;
 
-extern DVDCommandBlock DummyCommandBlock_8015CE80;
+extern DVDCommandBlock DummyCommandBlock;
 
 void stateReady();
 
@@ -88,16 +88,16 @@ BOOL DVDCancelAsync(DVDCommandBlock *block, DVDCBCallback callback) {
             return 0;
         }
         if (block->state == 4)
-            ResumeFromHere_801A68E8 = 3;
+            ResumeFromHere = 3;
         if (block->state == 5)
-            ResumeFromHere_801A68E8 = 4;
+            ResumeFromHere = 4;
         if (block->state == 6)
-            ResumeFromHere_801A68E8 = 1;
+            ResumeFromHere = 1;
         if (block->state == 11)
-            ResumeFromHere_801A68E8 = 2;
+            ResumeFromHere = 2;
         if (block->state == 7)
-            ResumeFromHere_801A68E8 = 7;
-        executing_801A68C0 = &DummyCommandBlock_8015CE80;
+            ResumeFromHere = 7;
+        executing = &DummyCommandBlock;
         block->state = 10;
         if (block->callback) {
             (block->callback)(-3, block);

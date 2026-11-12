@@ -13,7 +13,7 @@ s32 OSEnableScheduler();
 extern struct OSAlarmQueue {
     OSAlarm *head;
     OSAlarm *tail;
-} AlarmQueue_801A6788;
+} AlarmQueue;
 
 static inline void SetTimer(OSAlarm *alarm) {
     OSTime delta;
@@ -36,7 +36,7 @@ void DecrementerExceptionCallback(register __OSException exception, register OSC
     OSTime time;
     OSContext exceptionContext;
     time = __OSGetSystemTime();
-    alarm = AlarmQueue_801A6788.head;
+    alarm = AlarmQueue.head;
     if (alarm == 0) {
         OSLoadContext(context);
     }
@@ -45,9 +45,9 @@ void DecrementerExceptionCallback(register __OSException exception, register OSC
         OSLoadContext(context);
     }
     next = alarm->next;
-    AlarmQueue_801A6788.head = next;
+    AlarmQueue.head = next;
     if (next == 0) {
-        AlarmQueue_801A6788.tail = 0;
+        AlarmQueue.tail = 0;
     } else {
         next->prev = 0;
     }
@@ -56,8 +56,8 @@ void DecrementerExceptionCallback(register __OSException exception, register OSC
     if (0 < alarm->period) {
         InsertAlarm(alarm, 0, handler);
     }
-    if (AlarmQueue_801A6788.head) {
-        SetTimer(AlarmQueue_801A6788.head);
+    if (AlarmQueue.head) {
+        SetTimer(AlarmQueue.head);
     }
     OSDisableScheduler();
     OSClearContext(&exceptionContext);

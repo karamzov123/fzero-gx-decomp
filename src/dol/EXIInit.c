@@ -18,9 +18,9 @@ vu32 __EXIRegs[16] : FZGX_ADDR___EXIRegs;
 
 extern const char *__EXIVersion;
 
-extern EXIControl Ecb_8015CCB0[3];
+extern EXIControl Ecb[3];
 
-extern u32 IDSerialPort1_801A6838;
+extern u32 IDSerialPort1;
 
 s32 __EXIProbeStartTime[2] : FZGX_ADDR___EXIProbeStartTime;
 
@@ -54,10 +54,10 @@ void EXIInit(void) {
     __OSSetInterruptHandler(14, EXTIntrruptHandler);
     __OSSetInterruptHandler(15, EXIIntrruptHandler);
     __OSSetInterruptHandler(16, TCIntrruptHandler);
-    EXIGetID(0, 2, &IDSerialPort1_801A6838);
+    EXIGetID(0, 2, &IDSerialPort1);
     if (__OSInIPL) {
         __EXIProbeStartTime[0] = __EXIProbeStartTime[1] = 0;
-        Ecb_8015CCB0[0].idTime = Ecb_8015CCB0[1].idTime = 0;
+        Ecb[0].idTime = Ecb[1].idTime = 0;
         __EXIProbe(0);
         __EXIProbe(1);
     } else if (EXIGetID(0, 0, &id) && id == 0x07010000) {

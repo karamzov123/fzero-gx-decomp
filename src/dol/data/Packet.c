@@ -8,6 +8,11 @@ extern u8 lbl_8015CB50[32];
 extern u8 lbl_8015CB70[64];
 extern u8 lbl_8015CBB0[96];
 extern u8 lbl_8015CC10[160];
+extern u8 Ecb[192];
+
+
+/* Storage extent is known; element/field types are not recovered. */
+__declspec(section ".data") u8 Ecb[192] __attribute__((aligned(8)));
 
 
 

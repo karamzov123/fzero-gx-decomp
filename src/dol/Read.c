@@ -17,11 +17,11 @@ u32 __OSBusClock : FZGX_ADDR___OSBusClock;
 vu32 __DIRegs[16] : FZGX_ADDR___DIRegs;
 
 // Hardware or OS state can change asynchronously.
-extern volatile BOOL StopAtNextInt_801A6858; // fzgx-allow: S2 SDK asynchronous state
+extern volatile BOOL StopAtNextInt; // fzgx-allow: S2 SDK asynchronous state
 
 extern u32 lbl_801A685C;
 
-extern DVDLowCallback Callback_801A6860;
+extern DVDLowCallback Callback;
 
 extern OSTime lbl_801A6890;
 
@@ -52,9 +52,9 @@ static inline void SetTimeoutAlarm(OSTime timeout) {
 }
 
 void Read(void *addr, u32 length, u32 offset, DVDLowCallback callback) {
-    StopAtNextInt_801A6858 = 0;
+    StopAtNextInt = 0;
     lbl_801A6898 = 1;
-    Callback_801A6860 = callback;
+    Callback = callback;
     lbl_801A6890 = __OSGetSystemTime();
     __DIRegs[2] = 0xa8000000;
     __DIRegs[3] = offset / 4;

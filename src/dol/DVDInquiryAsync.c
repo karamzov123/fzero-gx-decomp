@@ -17,9 +17,9 @@ typedef struct DVDExecuting {
     u8 _pad[1];
 } DVDExecuting;
 
-extern s32 autoInvalidation_801A647C;
-extern DVDExecuting *executing_801A68C0;
-extern s32 PauseFlag_801A68CC;
+extern s32 autoInvalidation;
+extern DVDExecuting *executing;
+extern s32 PauseFlag;
 
 extern void DCInvalidateRange(void *address, u32 length);
 extern u32 OSDisableInterrupts(void);
@@ -39,7 +39,7 @@ u32 DVDInquiryAsync(DVDCommandBlock *block, void *address, void *callback) {
     block->unk20 = 0;
     block->callback = callback;
 
-    if (autoInvalidation_801A647C != 0) {
+    if (autoInvalidation != 0) {
         if (block->state == 1 ||
             (block->state - 4) <= 1 ||
             block->state == 0xe) {
@@ -51,7 +51,7 @@ u32 DVDInquiryAsync(DVDCommandBlock *block, void *address, void *callback) {
     block->status = 2;
     result = __DVDPushWaitingQueue(2, block);
 
-    if (executing_801A68C0 == NULL && PauseFlag_801A68CC == 0) {
+    if (executing == NULL && PauseFlag == 0) {
         stateReady();
     }
 

@@ -2,13 +2,6 @@
 
 #include "types.h"
 
-#define executing executing_801A68C0
-#define PauseFlag PauseFlag_801A68CC
-#define PausingFlag PausingFlag_801A68D0
-#define FatalErrorFlag FatalErrorFlag_801A68D8
-#define CurrCommand CurrCommand_801A68DC
-#define ResumeFromHere ResumeFromHere_801A68E8
-#define CancelLastError CancelLastError_801A68EC
 #define cbForStateMotorStopped cbForStateMotorStopped
 
 // Hardware or OS state can change asynchronously.

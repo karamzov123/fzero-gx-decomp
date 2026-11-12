@@ -5,8 +5,8 @@
 
 typedef void (*__OSExceptionHandler)(__OSException exception, OSContext *context);
 
-extern __OSExceptionHandler *OSExceptionTable_801A676C;
+extern __OSExceptionHandler *OSExceptionTable;
 
 __OSExceptionHandler __OSGetExceptionHandler(__OSException exception) {
-    return OSExceptionTable_801A676C[exception];
+    return OSExceptionTable[exception];
 }

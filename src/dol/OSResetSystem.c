@@ -13,7 +13,7 @@ extern OSSram *__OSLockSram(void);
 extern int OSEnableScheduler(void);
 extern u32 LCDisable(void);
 extern u32 OSDisableScheduler(void);
-extern u32 ResetFunctionQueue_801A67D0;
+extern u32 ResetFunctionQueue;
 extern u32 Reset_8000EEF4(u32);
 extern BOOL __OSSyncSram(void);
 extern void *memset(void *, int, u32);
@@ -32,7 +32,7 @@ extern vu32 __VIRegs[];
 static BOOL CallResetFunctions(BOOL final) {
     u32 v1;
     s32 v2;
-    v1 = ResetFunctionQueue_801A67D0;
+    v1 = ResetFunctionQueue;
     v2 = 0;
     while (v1 != 0 && !v2) {
         v2 |= !((OSResetSystem_Fn0)*(u32 *)v1)(final);

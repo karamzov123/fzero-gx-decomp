@@ -130,7 +130,7 @@ extern volatile u64 lbl_801A6958; // fzgx-allow: S2 SDK asynchronous state
 
 extern VITiming *lbl_801A6960;
 
-extern u32 CurrTvMode_801A6964;
+extern u32 CurrTvMode;
 
 void (*__VIDisableRawPositionInterrupt())(s16, s16);
 
@@ -282,7 +282,7 @@ void VIInit(void) {
     lbl_8015D058__fzgx_offset_0.fzgx_pool_timing = getTiming((tv << 2) + lbl_8015D058__fzgx_offset_0.nonInter);
     lbl_8015CF68[1] = dspCfg;
     lbl_801A6960 = lbl_8015D058__fzgx_offset_0.fzgx_pool_timing;
-    CurrTvMode_801A6964 = lbl_8015D058__fzgx_offset_0.tv;
+    CurrTvMode = lbl_8015D058__fzgx_offset_0.tv;
     lbl_8015D058__fzgx_offset_0.DispSizeX = 640;
     lbl_8015D058__fzgx_offset_0.DispSizeY = lbl_801A6960->acv * 2;
     lbl_8015D058__fzgx_offset_0.DispPosX = (720 - lbl_8015D058__fzgx_offset_0.DispSizeX) / 2;

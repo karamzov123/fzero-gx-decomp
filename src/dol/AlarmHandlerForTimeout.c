@@ -5,7 +5,7 @@
 
 typedef void (*DVDLowCallback)(u32 intType);
 
-extern DVDLowCallback Callback_801A6860;
+extern DVDLowCallback Callback;
 
 void AlarmHandlerForTimeout(OSAlarm *alarm, OSContext *context) {
     OSContext tmpContext;
@@ -13,8 +13,8 @@ void AlarmHandlerForTimeout(OSAlarm *alarm, OSContext *context) {
     __OSMaskInterrupts(0x400);
     OSClearContext(&tmpContext);
     OSSetCurrentContext(&tmpContext);
-    callback = Callback_801A6860;
-    Callback_801A6860 = 0;
+    callback = Callback;
+    Callback = 0;
     if (callback != 0) {
         callback(0x10);
     }

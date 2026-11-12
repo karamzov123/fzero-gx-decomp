@@ -17,7 +17,7 @@ void OSRegisterResetFunction(OSResetFunctionInfo *func);
 
 vu16 __MEMRegs[64] : FZGX_ADDR___MEMRegs;
 
-extern OSResetFunctionInfo ResetFunctionInfo_80123AE0;
+extern OSResetFunctionInfo ResetFunctionInfo;
 
 static inline u32 OSGetPhysicalMemSize() { return *(u32 *)FZGX_ADDR___OSPhysicalMemSize; }
 
@@ -46,7 +46,7 @@ void __OSInitMemoryProtection() {
     __OSSetInterruptHandler(2, MEMIntrruptHandler);
     __OSSetInterruptHandler(3, MEMIntrruptHandler);
     __OSSetInterruptHandler(4, MEMIntrruptHandler);
-    OSRegisterResetFunction(&ResetFunctionInfo_80123AE0);
+    OSRegisterResetFunction(&ResetFunctionInfo);
     if (OSGetConsoleSimulatedMemSize() < OSGetPhysicalMemSize() &&
         OSGetConsoleSimulatedMemSize() == 0x1800000) {
         DCInvalidateRange((void *)FZGX_ADDR___OSUnmappedMemory, 0x1800000);

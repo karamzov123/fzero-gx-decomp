@@ -13,22 +13,22 @@ void __DVDStoreErrorCode(u32 error);
 
 BOOL DVDLowStopMotor(DVDLowCallback callback);
 
-extern DVDCommandBlock *executing_801A68C0;
+extern DVDCommandBlock *executing;
 
-extern vu32 CurrCommand_801A68DC;
+extern vu32 CurrCommand;
 
 extern vu32 lbl_801A68E0;
 
 extern DVDCBCallback lbl_801A68E4;
 
-extern vu32 ResumeFromHere_801A68E8;
+extern vu32 ResumeFromHere;
 
 extern vs32 lbl_801A68F4;
 
 // Hardware or OS state can change asynchronously.
-extern volatile BOOL ResetRequired_801A68F8; // fzgx-allow: S2 SDK asynchronous state
+extern volatile BOOL ResetRequired; // fzgx-allow: S2 SDK asynchronous state
 
-extern DVDCommandBlock DummyCommandBlock_8015CE80;
+extern DVDCommandBlock DummyCommandBlock;
 
 static void stateTimeout();
 
@@ -54,10 +54,10 @@ static inline void stateTimeout() {
 static inline BOOL CheckCancel(u32 resume) {
     DVDCommandBlock *finished;
     if (lbl_801A68E0) {
-        ResumeFromHere_801A68E8 = resume;
+        ResumeFromHere = resume;
         lbl_801A68E0 = 0;
-        finished = executing_801A68C0;
-        executing_801A68C0 = &DummyCommandBlock_8015CE80;
+        finished = executing;
+        executing = &DummyCommandBlock;
         finished->state = 10;
         if (finished->callback)
             (*finished->callback)(-3, finished);
@@ -77,22 +77,22 @@ void DVDReset(void);
 
 void cbForStateGoToRetry(u32 intType) {
     if (intType == 16) {
-        executing_801A68C0->state = -1;
+        executing->state = -1;
         stateTimeout();
         return;
     }
     if (intType & 2) {
-        executing_801A68C0->state = -1;
+        executing->state = -1;
         stateError(0x1234567);
         return;
     }
     lbl_801A68F4 = 0;
-    if ((CurrCommand_801A68DC == 4) || (CurrCommand_801A68DC == 5) ||
-        (CurrCommand_801A68DC == 13) || (CurrCommand_801A68DC == 15)) {
-        ResetRequired_801A68F8 = 1;
+    if ((CurrCommand == 4) || (CurrCommand == 5) ||
+        (CurrCommand == 13) || (CurrCommand == 15)) {
+        ResetRequired = 1;
     }
     if (!CheckCancel(2)) {
-        executing_801A68C0->state = 11;
+        executing->state = 11;
         fn_800186C0();
     }
 }

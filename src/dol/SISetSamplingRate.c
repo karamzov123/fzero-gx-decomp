@@ -16,7 +16,7 @@ void OSReport(const char *msg, ...);
 
 vu16 __VIRegs[59] : FZGX_ADDR___VIRegs;
 
-extern u32 SamplingRate_801A6820;
+extern u32 SamplingRate;
 
 static XY fzgx_pool_XYNTSC[12] = {
     {263 - 17, 2}, {15, 18}, {30, 9}, {44, 6},  {52, 5},  {65, 4},
@@ -35,7 +35,7 @@ void SISetSamplingRate(u32 msec) {
         msec = 11;
     }
     enabled = OSDisableInterrupts();
-    SamplingRate_801A6820 = msec;
+    SamplingRate = msec;
     switch (VIGetTvFormat()) {
     case 0:
     case 2:

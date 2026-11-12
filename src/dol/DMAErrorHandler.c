@@ -21,7 +21,7 @@ struct OSCacheMessages {
     char message_190[25];
 };
 
-extern struct OSCacheMessages OSCacheData_80122828;
+extern struct OSCacheMessages OSCacheData;
 
 void PPCHalt(void);
 
@@ -32,7 +32,7 @@ void PPCMthid2(u32 val);
 void OSReport(const char *msg, ...);
 
 void DMAErrorHandler(OSError error, OSContext *context, ...) {
-    struct OSCacheMessages *messages = &OSCacheData_80122828;
+    struct OSCacheMessages *messages = &OSCacheData;
 
     u32 hid2 = PPCMfhid2();
     OSReport(messages->message_2c);

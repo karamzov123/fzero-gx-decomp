@@ -1,8 +1,8 @@
 #include "types.h"
 
-extern s32 CurrCommand_801A68DC;
+extern s32 CurrCommand;
 extern u32 lbl_801A6904;
-extern void *IDShouldBe_801A68C4;
+extern void *IDShouldBe;
 
 struct fn_80018028_BB2_8015CE40_T {
     u8 pad_0[0x20];
@@ -18,7 +18,7 @@ struct fn_80018028_executing_801A68C0_T {
     void *disk_id;
 };
 
-extern struct fn_80018028_executing_801A68C0_T *executing_801A68C0;
+extern struct fn_80018028_executing_801A68C0_T *executing;
 extern s32 DVDCompareDiskID(void *, void *);
 extern void *memcpy(void *, const void *, u32);
 extern void DCInvalidateRange(void *, u32);
@@ -32,24 +32,24 @@ void stateCheckID(void) {
     struct fn_80018028_BB2_8015CE40_T *bb;
 
     bb = &BB2;
-    switch (CurrCommand_801A68DC) {
+    switch (CurrCommand) {
     case 3:
-        if (DVDCompareDiskID(bb->data, executing_801A68C0->disk_id)) {
-            memcpy(IDShouldBe_801A68C4, BB2.data, 0x20);
-            executing_801A68C0->state = 1;
+        if (DVDCompareDiskID(bb->data, executing->disk_id)) {
+            memcpy(IDShouldBe, BB2.data, 0x20);
+            executing->state = 1;
             DCInvalidateRange(bb, 0x20);
             lbl_801A6904 = (u32)fn_8001813C;
-            fn_8001813C(executing_801A68C0);
+            fn_8001813C(executing);
         } else {
             DVDLowStopMotor((void *)cbForStateCheckID1);
         }
         break;
     default:
-        if (fn_8008023C(BB2.data, IDShouldBe_801A68C4, 0x20)) {
+        if (fn_8008023C(BB2.data, IDShouldBe, 0x20)) {
             DVDLowStopMotor((void *)cbForStateCheckID1);
         } else {
             lbl_801A6904 = (u32)fn_80018108;
-            fn_80018108(executing_801A68C0);
+            fn_80018108(executing);
         }
         break;
     }

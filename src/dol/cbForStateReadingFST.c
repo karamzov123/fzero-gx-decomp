@@ -9,8 +9,8 @@ typedef struct CommandBlock {
     CommandCallback callback;
 } CommandBlock;
 
-extern CommandBlock *executing_801A68C0;
-extern CommandBlock DummyCommandBlock_8015CE80;
+extern CommandBlock *executing;
+extern CommandBlock DummyCommandBlock;
 extern u32 lbl_801A68F4;
 extern void __DVDFSInit(void);
 extern void stateReady(void);
@@ -21,13 +21,13 @@ void cbForStateReadingFST(u32 arg0) {
     CommandBlock *old;
 
     if (arg0 == 16) {
-        executing_801A68C0->status = (u32)-1;
+        executing->status = (u32)-1;
         stateTimeout();
     } else if ((arg0 & 1) != 0) {
         lbl_801A68F4 = 0;
         __DVDFSInit();
-        old = executing_801A68C0;
-        executing_801A68C0 = &DummyCommandBlock_8015CE80;
+        old = executing;
+        executing = &DummyCommandBlock;
         old->status = 0;
         if (old->callback != 0) {
             old->callback(0);

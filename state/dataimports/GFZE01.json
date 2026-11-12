@@ -43082,6 +43082,67 @@
     "unit_size": 64,
     "unit_start": 405840
   },
+  "main:AlarmForTimeout": {
+    "address": 2148912600,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "OSAlarm AlarmForTimeout",
+        "path": "src/dol/DVDLowAudioBufferConfig.c"
+      },
+      {
+        "declaration": "OSAlarm AlarmForTimeout",
+        "path": "src/dol/DVDLowAudioStream.c"
+      },
+      {
+        "declaration": "OSAlarm AlarmForTimeout",
+        "path": "src/dol/DVDLowInquiry.c"
+      },
+      {
+        "declaration": "OSAlarm AlarmForTimeout",
+        "path": "src/dol/DVDLowReadDiskID.c"
+      },
+      {
+        "declaration": "OSAlarm AlarmForTimeout",
+        "path": "src/dol/DVDLowRequestAudioStatus.c"
+      },
+      {
+        "declaration": "OSAlarm AlarmForTimeout",
+        "path": "src/dol/DVDLowRequestError.c"
+      },
+      {
+        "declaration": "OSAlarm AlarmForTimeout",
+        "path": "src/dol/DVDLowSeek.c"
+      },
+      {
+        "declaration": "OSAlarm AlarmForTimeout",
+        "path": "src/dol/DVDLowStopMotor.c"
+      }
+    ],
+    "definition": "u8 AlarmForTimeout[40]",
+    "method": "opaque-bss",
+    "module": "main",
+    "references": [
+      "DVDLowAudioBufferConfig",
+      "DVDLowAudioStream",
+      "DVDLowInquiry",
+      "DVDLowReadDiskID",
+      "DVDLowRequestAudioStatus",
+      "DVDLowRequestError",
+      "DVDLowSeek",
+      "DVDLowStopMotor"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 80,
+    "sha256": "2c34ce1df23b838c5abf2a7f6437cca3d3067ed509ff25f11df6b11b582b51eb",
+    "size": 40,
+    "source": "dol/data/__DVDLowAlarmForWA.c",
+    "symbol": "AlarmForTimeout",
+    "unit_align": 8,
+    "unit_size": 80,
+    "unit_start": 2148912560
+  },
   "main:BB2": {
     "address": 2148912704,
     "align": 8,
@@ -43174,6 +43235,32 @@
     "unit_size": 60,
     "unit_start": 2148912496
   },
+  "main:DSPInitCode": {
+    "address": 2148673448,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u8 DSPInitCode[128]",
+        "path": "src/dol/OSAudioSystem.c"
+      }
+    ],
+    "definition": "u8 DSPInitCode[128]",
+    "method": "typed-data",
+    "module": "main",
+    "references": [
+      "__OSInitAudioSystem"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 3660,
+    "sha256": "5b873ee91f33b0884574b814d7f46d81e283394de91b8b2ea9073ac218dee350",
+    "size": 128,
+    "source": "dol/data/lbl_801220C0.c",
+    "symbol": "DSPInitCode",
+    "unit_align": 32,
+    "unit_size": 3660,
+    "unit_start": 2148671680
+  },
   "main:DriveInfo": {
     "address": 2148908800,
     "align": 8,
@@ -43201,6 +43288,249 @@
     "unit_size": 32,
     "unit_start": 2148908800
   },
+  "main:Ecb": {
+    "address": 2148912304,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "EXIControl Ecb[3]",
+        "path": "src/dol/EXIAttach.c"
+      },
+      {
+        "declaration": "EXIControl Ecb[3]",
+        "path": "src/dol/EXIDeselect.c"
+      },
+      {
+        "declaration": "EXIControl Ecb[3]",
+        "path": "src/dol/EXIDetach.c"
+      },
+      {
+        "declaration": "EXIControl Ecb[3]",
+        "path": "src/dol/EXIDma.c"
+      },
+      {
+        "declaration": "EXIControl Ecb[3]",
+        "path": "src/dol/EXIGetID.c"
+      },
+      {
+        "declaration": "EXIControl Ecb[3]",
+        "path": "src/dol/EXIGetState.c"
+      },
+      {
+        "declaration": "EXIControl Ecb[3]",
+        "path": "src/dol/EXIImm.c"
+      },
+      {
+        "declaration": "EXIControl Ecb[3]",
+        "path": "src/dol/EXIInit.c"
+      },
+      {
+        "declaration": "EXIControl Ecb[3]",
+        "path": "src/dol/EXIIntrruptHandler.c"
+      },
+      {
+        "declaration": "EXIControl Ecb[3]",
+        "path": "src/dol/EXILock.c"
+      },
+      {
+        "declaration": "EXIControl Ecb[3]",
+        "path": "src/dol/EXIProbe.c"
+      },
+      {
+        "declaration": "EXIControl Ecb[3]",
+        "path": "src/dol/EXIProbeEx.c"
+      },
+      {
+        "declaration": "EXIControl Ecb[3]",
+        "path": "src/dol/EXISelect.c"
+      },
+      {
+        "declaration": "EXIControl Ecb[3]",
+        "path": "src/dol/EXISetExiCallback.c"
+      },
+      {
+        "declaration": "EXIControl Ecb[3]",
+        "path": "src/dol/EXISync.c"
+      },
+      {
+        "declaration": "EXIControl Ecb[3]",
+        "path": "src/dol/EXIUnlock.c"
+      },
+      {
+        "declaration": "EXIControl Ecb[3]",
+        "path": "src/dol/EXTIntrruptHandler.c"
+      },
+      {
+        "declaration": "EXIControl Ecb[3]",
+        "path": "src/dol/SetExiInterruptMask.c"
+      },
+      {
+        "declaration": "EXIControl Ecb[3]",
+        "path": "src/dol/TCIntrruptHandler.c"
+      },
+      {
+        "declaration": "EXIControl Ecb[3]",
+        "path": "src/dol/__EXIProbe.c"
+      }
+    ],
+    "definition": "u8 Ecb[192]",
+    "method": "opaque-bss",
+    "module": "main",
+    "references": [
+      "EXIAttach",
+      "EXIDeselect",
+      "EXIDetach",
+      "EXIDma",
+      "EXIGetID",
+      "EXIGetState",
+      "EXIImm",
+      "EXIInit",
+      "EXIIntrruptHandler",
+      "EXILock",
+      "EXIProbe",
+      "EXIProbeEx",
+      "EXISelect",
+      "EXISetExiCallback",
+      "EXISync",
+      "EXIUnlock",
+      "EXTIntrruptHandler",
+      "SetExiInterruptMask",
+      "TCIntrruptHandler",
+      "__EXIProbe"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 864,
+    "sha256": "5d89f056865052bcb89c910d2d62872e029fb273c3db03f8968a52a41593c1b5",
+    "size": 192,
+    "source": "dol/data/Packet.c",
+    "symbol": "Ecb",
+    "unit_align": 8,
+    "unit_size": 864,
+    "unit_start": 2148911632
+  },
+  "main:EndofProgramInstruction": {
+    "address": 2148096968,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u8 EndofProgramInstruction[]",
+        "path": "src/dol/InitMetroTRKCommTable.c"
+      },
+      {
+        "declaration": "u8 EndofProgramInstruction[]",
+        "path": "src/dol/InitializeProgramEndTrap.c"
+      }
+    ],
+    "definition": "const u8 EndofProgramInstruction[]",
+    "method": "typed-data",
+    "module": "main",
+    "references": [
+      "InitMetroTRKCommTable",
+      "InitializeProgramEndTrap"
+    ],
+    "relocations": [],
+    "section": ".rodata",
+    "section_size": 264,
+    "sha256": "11b6cf77f23d822295a091fb9be328b23e01324811fc1b00e366508ebf736ca6",
+    "size": 4,
+    "source": "dol/data/EndofProgramInstruction.c",
+    "symbol": "EndofProgramInstruction",
+    "unit_align": 8,
+    "unit_size": 264,
+    "unit_start": 2148096968
+  },
+  "main:GXResetFuncInfo": {
+    "address": 2148707632,
+    "align": 16,
+    "declarations": [
+      {
+        "declaration": "u32 GXResetFuncInfo[]",
+        "path": "src/dol/GXInit.c"
+      }
+    ],
+    "definition": "Data_GXResetFuncInfo GXResetFuncInfo",
+    "header": {
+      "path": "dol/data/GXResetFuncInfo.h",
+      "text": "#ifndef DATA_GXRESETFUNCINFO_H\n#define DATA_GXRESETFUNCINFO_H\n\n#include \"types.h\"\n\ntypedef struct {\n    void (*at_0)(void);\n    u32 at_4;\n    u32 at_8;\n    u32 at_C;\n} Data_GXResetFuncInfo;\nextern Data_GXResetFuncInfo GXResetFuncInfo;\n\n#endif\n"
+    },
+    "method": "relocated-table",
+    "module": "main",
+    "references": [
+      "GXInit"
+    ],
+    "relocations": [
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "main",
+        "offset": 0,
+        "symbol": "fn_8003086C"
+      }
+    ],
+    "section": ".data",
+    "section_size": 5984,
+    "sha256": "59bcd2e305e1155f2829b6b387effc544514a32e7bf02d4078b2e04557f5c8d5",
+    "size": 16,
+    "source": "dol/data/lbl_801295E0.c",
+    "symbol": "GXResetFuncInfo",
+    "unit_align": 32,
+    "unit_size": 5984,
+    "unit_start": 2148701664
+  },
+  "main:OSCacheData": {
+    "address": 2148673576,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "struct OSCacheMessages OSCacheData",
+        "path": "src/dol/DMAErrorHandler.c"
+      },
+      {
+        "declaration": "struct OSCacheMessages OSCacheData",
+        "path": "src/dol/__OSCacheInit.c"
+      }
+    ],
+    "definition": "char OSCacheData[560]",
+    "method": "string",
+    "module": "main",
+    "references": [
+      "DMAErrorHandler",
+      "L2GlobalInvalidate",
+      "__OSCacheInit"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 3660,
+    "sha256": "075a6bd1145a09d604091530aa4a635bd9398508d4b95111cc5ecb8bb084779b",
+    "size": 560,
+    "source": "dol/data/lbl_801220C0.c",
+    "symbol": "OSCacheData",
+    "unit_align": 32,
+    "unit_size": 3660,
+    "unit_start": 2148671680
+  },
+  "main:OSContextMessage_1b4": {
+    "address": 2148674572,
+    "align": 4,
+    "declarations": [],
+    "definition": "char OSContextMessage_1b4[35]",
+    "method": "string",
+    "module": "main",
+    "references": [
+      "__OSContextInit"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 3660,
+    "sha256": "b7d3b5e22809f18d7fe6e71a567715d16ec1488517424092656515d92a3b69a8",
+    "size": 35,
+    "source": "dol/data/lbl_801220C0.c",
+    "symbol": "OSContextMessage_1b4",
+    "unit_align": 32,
+    "unit_size": 3660,
+    "unit_start": 2148671680
+  },
   "main:OSDataPool": {
     "address": 2148672944,
     "align": 16,
@@ -43219,13 +43549,40 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 1768,
+    "section_size": 3660,
     "sha256": "63769ff6d37727307a0cf354419d5782d82efef25abdadb4dba748b983d45c36",
     "size": 68,
     "source": "dol/data/lbl_801220C0.c",
     "symbol": "OSDataPool",
     "unit_align": 32,
-    "unit_size": 1768,
+    "unit_size": 3660,
+    "unit_start": 2148671680
+  },
+  "main:OSErrorData": {
+    "address": 2148674608,
+    "align": 16,
+    "declarations": [
+      {
+        "declaration": "char OSErrorData[]",
+        "path": "src/dol/__OSUnhandledException.c"
+      }
+    ],
+    "definition": "char OSErrorData[]",
+    "method": "string",
+    "module": "main",
+    "references": [
+      "OSPanic",
+      "__OSUnhandledException"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 3660,
+    "sha256": "2ceadd5e9e7d70de91d36f072aed5da1479dcf749236bd123154dcbb5600ccbb",
+    "size": 732,
+    "source": "dol/data/lbl_801220C0.c",
+    "symbol": "OSErrorData",
+    "unit_align": 32,
+    "unit_size": 3660,
     "unit_start": 2148671680
   },
   "main:Packet": {
@@ -43277,14 +43634,52 @@
     ],
     "relocations": [],
     "section": ".bss",
-    "section_size": 672,
+    "section_size": 864,
     "sha256": "38723a2e5e8a17aa7950dc008209944e898f69a7bd10a23c839d341e935fd5ca",
     "size": 128,
     "source": "dol/data/Packet.c",
     "symbol": "Packet",
     "unit_align": 8,
-    "unit_size": 672,
+    "unit_size": 864,
     "unit_start": 2148911632
+  },
+  "main:ResetFunctionInfo": {
+    "address": 2148678368,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "OSResetFunctionInfo ResetFunctionInfo",
+        "path": "src/dol/__OSInitMemoryProtection.c"
+      }
+    ],
+    "definition": "Data_ResetFunctionInfo ResetFunctionInfo",
+    "header": {
+      "path": "dol/data/ResetFunctionInfo.h",
+      "text": "#ifndef DATA_RESETFUNCTIONINFO_H\n#define DATA_RESETFUNCTIONINFO_H\n\n#include \"types.h\"\n\ntypedef struct {\n    void (*at_0)(void);\n    u32 at_4;\n    u32 at_8;\n    u32 at_C;\n} Data_ResetFunctionInfo;\nextern Data_ResetFunctionInfo ResetFunctionInfo;\n\n#endif\n"
+    },
+    "method": "relocated-table",
+    "module": "main",
+    "references": [
+      "__OSInitMemoryProtection"
+    ],
+    "relocations": [
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "main",
+        "offset": 0,
+        "symbol": "OnReset"
+      }
+    ],
+    "section": ".data",
+    "section_size": 16,
+    "sha256": "59bcd2e305e1155f2829b6b387effc544514a32e7bf02d4078b2e04557f5c8d5",
+    "size": 16,
+    "source": "dol/data/ResetFunctionInfo.c",
+    "symbol": "ResetFunctionInfo",
+    "unit_align": 32,
+    "unit_size": 16,
+    "unit_start": 2148678368
   },
   "main:RunQueue": {
     "address": 2148909080,
@@ -43424,6 +43819,48 @@
     "unit_size": 3432,
     "unit_start": 2149209672
   },
+  "main:TRK_mainError": {
+    "address": 2149209664,
+    "align": 8,
+    "declarations": [],
+    "definition": "u8 TRK_mainError[4]",
+    "method": "opaque-bss",
+    "module": "main",
+    "references": [
+      "TRK_main"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 4,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "dol/data/TRK_mainError.c",
+    "symbol": "TRK_mainError",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149209664
+  },
+  "main:TRK_saved_exceptionID": {
+    "address": 2149208248,
+    "align": 8,
+    "declarations": [],
+    "definition": "u8 TRK_saved_exceptionID[2]",
+    "method": "opaque-bss",
+    "module": "main",
+    "references": [
+      "TRKInterruptHandler"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 168,
+    "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+    "size": 2,
+    "source": "dol/data/TRK_saved_exceptionID.c",
+    "symbol": "TRK_saved_exceptionID",
+    "unit_align": 8,
+    "unit_size": 168,
+    "unit_start": 2149208248
+  },
   "main:Type": {
     "address": 2148678568,
     "align": 8,
@@ -43488,13 +43925,13 @@
     ],
     "relocations": [],
     "section": ".bss",
-    "section_size": 672,
+    "section_size": 864,
     "sha256": "66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925",
     "size": 32,
     "source": "dol/data/Packet.c",
     "symbol": "TypeTime",
     "unit_align": 8,
-    "unit_size": 672,
+    "unit_size": 864,
     "unit_start": 2148911632
   },
   "main:XYNTSC": {
@@ -43533,13 +43970,13 @@
     "references": [],
     "relocations": [],
     "section": ".bss",
-    "section_size": 40,
+    "section_size": 80,
     "sha256": "2c34ce1df23b838c5abf2a7f6437cca3d3067ed509ff25f11df6b11b582b51eb",
     "size": 40,
     "source": "dol/data/__DVDLowAlarmForWA.c",
     "symbol": "__DVDLowAlarmForWA",
     "unit_align": 8,
-    "unit_size": 40,
+    "unit_size": 80,
     "unit_start": 2148912560
   },
   "main:__DVDLowCurr": {
@@ -44324,6 +44761,738 @@
     "unit_align": 8,
     "unit_size": 168,
     "unit_start": 2149209488
+  },
+  "main:gTRKState": {
+    "address": 2149208252,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "struct TRKInitializeTarget_gTRKState gTRKState",
+        "path": "src/dol/TRKInitializeTarget.c"
+      },
+      {
+        "declaration": "TRKState gTRKState",
+        "path": "src/dol/TRKPostInterruptEvent.c"
+      },
+      {
+        "declaration": "struct TRKTargetInterrupt_gTRKState gTRKState",
+        "path": "src/dol/TRKTargetInterrupt.c"
+      },
+      {
+        "declaration": "u32 gTRKState[41]",
+        "path": "src/dol/TRKTargetSetInputPendingPtr.c"
+      },
+      {
+        "declaration": "struct TRKTargetSetStopped_gTRKState gTRKState",
+        "path": "src/dol/TRKTargetSetStopped.c"
+      },
+      {
+        "declaration": "struct TRKTargetStopped_gTRKState gTRKState",
+        "path": "src/dol/TRKTargetStopped.c"
+      },
+      {
+        "declaration": "struct fn_8008B484_gTRKState gTRKState",
+        "path": "src/dol/fn_8008B484.c"
+      },
+      {
+        "declaration": "struct fn_8008B6CC_gTRKState gTRKState",
+        "path": "src/dol/fn_8008B6CC.c"
+      },
+      {
+        "declaration": "struct fn_8008B784_gTRKState gTRKState[]",
+        "path": "src/dol/fn_8008B784.c"
+      }
+    ],
+    "definition": "u32 gTRKState[41]",
+    "method": "declared-bss",
+    "module": "main",
+    "references": [
+      "TRKInitializeTarget",
+      "TRKInterruptHandler",
+      "TRKInterruptHandlerEnableInterrupts",
+      "TRKPostInterruptEvent",
+      "TRKSwapAndGo",
+      "TRKTargetInterrupt",
+      "TRKTargetSetInputPendingPtr",
+      "TRKTargetSetStopped",
+      "TRKTargetStopped",
+      "fn_8008B484",
+      "fn_8008B6CC",
+      "fn_8008B784"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 168,
+    "sha256": "4b22ee6807a2e4ddfd1bf16851609a7a009f4c6bd5aeb78162f121cb89492f02",
+    "size": 164,
+    "source": "dol/data/TRK_saved_exceptionID.c",
+    "symbol": "gTRKState",
+    "unit_align": 8,
+    "unit_size": 168,
+    "unit_start": 2149208248
+  },
+  "main:gx": {
+    "address": 2149216344,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXCPInterruptHandler.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXClearBoundingBox.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXClearVtxDesc.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXDisplayList.c"
+      },
+      {
+        "declaration": "struct fn_80033E20_gx_T *gx",
+        "path": "src/dol/GXFlush.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXGetGPStatus.c"
+      },
+      {
+        "declaration": "GXContext* gx",
+        "path": "src/dol/GXGetProjectionv.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXGetScissor.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXGetVtxAttrFmt.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXGetVtxDesc.c"
+      },
+      {
+        "declaration": "struct GXInit_gx_T * const gx",
+        "path": "src/dol/GXInit.c"
+      },
+      {
+        "declaration": "struct fn_80036388_gx_T *gx",
+        "path": "src/dol/GXLoadTexObj.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetAlphaCompare.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetArray.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetClipMode.c"
+      },
+      {
+        "declaration": "u32 gx",
+        "path": "src/dol/GXSetCoPlanar.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetCopyClear.c"
+      },
+      {
+        "declaration": "GXContext* gx",
+        "path": "src/dol/GXSetCurrentMtx.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetDispCopyFrame2Field.c"
+      },
+      {
+        "declaration": "u32 gx",
+        "path": "src/dol/GXSetDispCopyGamma.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetDispCopySrc.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetDispCopyYScale.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetDrawDone.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetFieldMask.c"
+      },
+      {
+        "declaration": "u32 gx",
+        "path": "src/dol/GXSetFieldMode.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetFogRangeAdj.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetGPFifo.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetGPMetric.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetIndTexCoordScale.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetIndTexOrder.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetLineWidth.c"
+      },
+      {
+        "declaration": "struct GXSetMisc_gx_T *gx",
+        "path": "src/dol/GXSetMisc.c"
+      },
+      {
+        "declaration": "u32 gx",
+        "path": "src/dol/GXSetNumIndStages.c"
+      },
+      {
+        "declaration": "struct fn_800377C8_gx_T *gx",
+        "path": "src/dol/GXSetNumTevStages.c"
+      },
+      {
+        "declaration": "struct fn_80033D4C_gx_T *gx",
+        "path": "src/dol/GXSetNumTexGens.c"
+      },
+      {
+        "declaration": "struct fn_800347EC_gx_T *gx",
+        "path": "src/dol/GXSetPointSize.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetProjection.c"
+      },
+      {
+        "declaration": "GXContext* gx",
+        "path": "src/dol/GXSetProjectionv.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetScissor.c"
+      },
+      {
+        "declaration": "GXContext* gx",
+        "path": "src/dol/GXSetScissorBoxOffset.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetTevIndirect.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetTevKAlphaSel.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetTevKColorSel.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetTevOp.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetTevOrder.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetTevSwapMode.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetTevSwapModeTable.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetTexCoordGen2.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetTexCopySrc.c"
+      },
+      {
+        "declaration": "u32 gx",
+        "path": "src/dol/GXSetTexRegionCallback.c"
+      },
+      {
+        "declaration": "u32 gx",
+        "path": "src/dol/GXSetTlutRegionCallback.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetVtxAttrFmt.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetVtxAttrFmtv.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetVtxDesc.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetVtxDescv.c"
+      },
+      {
+        "declaration": "struct fn_80037BF4_gx_T *gx",
+        "path": "src/dol/GXSetZCompLoc.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/GXSetZTexture.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/__GXCalculateVLim.c"
+      },
+      {
+        "declaration": "struct __GXData_struct *gx",
+        "path": "src/dol/__GXDefaultTexRegionCallback.c"
+      },
+      {
+        "declaration": "GXContext* gx",
+        "path": "src/dol/__GXFifoLink.c"
+      },
+      {
+        "declaration": "GXContext* gx",
+        "path": "src/dol/__GXFifoReadDisable.c"
+      },
+      {
+        "declaration": "GXContext* gx",
+        "path": "src/dol/__GXFifoReadEnable.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/__GXFlushTextureState.c"
+      },
+      {
+        "declaration": "struct __GXData_struct *gx",
+        "path": "src/dol/__GXInitGX.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/__GXSendFlushPrim.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/__GXSetGenMode.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/__GXSetMatrixIndex.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/__GXSetSUTexRegs.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/__GXSetVCD.c"
+      },
+      {
+        "declaration": "GXContext* gx",
+        "path": "src/dol/__GXWriteFifoIntEnable.c"
+      },
+      {
+        "declaration": "GXContext* gx",
+        "path": "src/dol/__GXWriteFifoIntReset.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/__GXXfVtxSpecs.c"
+      },
+      {
+        "declaration": "u32 gx",
+        "path": "src/dol/fn_80030848.c"
+      },
+      {
+        "declaration": "u32 gx",
+        "path": "src/dol/fn_8003086C.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_80033650.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_80033EB0.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_8003401C.c"
+      },
+      {
+        "declaration": "struct fn_8003458C_gx_T *gx",
+        "path": "src/dol/fn_8003458C.c"
+      },
+      {
+        "declaration": "GXState *gx",
+        "path": "src/dol/fn_8003462C.c"
+      },
+      {
+        "declaration": "struct fn_80034834_gx_T *gx",
+        "path": "src/dol/fn_80034834.c"
+      },
+      {
+        "declaration": "u32 gx",
+        "path": "src/dol/fn_80034890.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_80034B7C.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_80034BB8.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_80034D34.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_80034ECC.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_80035110.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_8003526C.c"
+      },
+      {
+        "declaration": "struct fn_800356B8_gx_T *gx",
+        "path": "src/dol/fn_800356B8.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_80035734.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_80035828.c"
+      },
+      {
+        "declaration": "GXContext* gx",
+        "path": "src/dol/fn_8003591C.c"
+      },
+      {
+        "declaration": "GXContext* gx",
+        "path": "src/dol/fn_80035960.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_800361F0.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_800365B4.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_80036AC4.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_80036F24.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_800370A0.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_800370E4.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_80037128.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_80037190.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_800371F8.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_8003726C.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_800372E0.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_800377F8.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_80037B14.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_80037B68.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_80037B94.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_80037BC0.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_80037C2C.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_80037D14.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_80037D40.c"
+      },
+      {
+        "declaration": "GXState *gx",
+        "path": "src/dol/fn_8003887C.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_80038944.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_80038DE8.c"
+      },
+      {
+        "declaration": "GXContext* gx",
+        "path": "src/dol/fn_80038F10.c"
+      },
+      {
+        "declaration": "struct fn_80039954_gx_T *gx",
+        "path": "src/dol/fn_80039954.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_80039B38.c"
+      },
+      {
+        "declaration": "GXData *const gx",
+        "path": "src/dol/fn_80072014.c"
+      },
+      {
+        "declaration": "struct fn_800720B0_gx *gx",
+        "path": "src/dol/fn_800720B0.c"
+      },
+      {
+        "declaration": "struct fn_80072168_gx *gx",
+        "path": "src/dol/fn_80072168.c"
+      },
+      {
+        "declaration": "struct fn_80078D60_gx_T *gx",
+        "path": "src/dol/fn_80078D60.c"
+      }
+    ],
+    "definition": "const Data_gx gx",
+    "header": {
+      "path": "dol/data/gx.h",
+      "text": "#ifndef DATA_GX_H\n#define DATA_GX_H\n\n#include \"types.h\"\n\ntypedef struct {\n    u8 *at_0;\n} Data_gx;\nextern const Data_gx gx;\n\n#endif\n"
+    },
+    "method": "relocated-table",
+    "module": "main",
+    "references": [
+      "GXCPInterruptHandler",
+      "GXClearBoundingBox",
+      "GXClearVtxDesc",
+      "GXCallDisplayList",
+      "GXFlush",
+      "GXGetGPStatus",
+      "GXGetProjectionv",
+      "GXGetScissor",
+      "GXGetVtxAttrFmt",
+      "GXGetVtxDesc",
+      "GXInit",
+      "GXLoadTexObj",
+      "GXSetAlphaCompare",
+      "GXSetArray",
+      "GXSetClipMode",
+      "GXSetCoPlanar",
+      "GXSetCopyClear",
+      "GXSetCurrentMtx",
+      "GXSetDispCopyFrame2Field",
+      "GXSetDispCopyGamma",
+      "GXSetDispCopySrc",
+      "GXSetDispCopyYScale",
+      "GXSetDrawDone",
+      "GXSetFieldMask",
+      "GXSetFieldMode",
+      "GXSetFogRangeAdj",
+      "GXSetGPMetric",
+      "GXSetIndTexCoordScale",
+      "GXSetIndTexOrder",
+      "GXSetLineWidth",
+      "GXSetMisc",
+      "GXSetNumIndStages",
+      "GXSetNumTevStages",
+      "GXSetNumTexGens",
+      "GXSetPointSize",
+      "GXSetProjection",
+      "GXSetProjectionv",
+      "GXSetScissor",
+      "GXSetScissorBoxOffset",
+      "GXSetTevIndirect",
+      "GXSetTevKAlphaSel",
+      "GXSetTevKColorSel",
+      "GXSetTevOp",
+      "GXSetTevOrder",
+      "GXSetTevSwapMode",
+      "GXSetTevSwapModeTable",
+      "GXSetTexCoordGen2",
+      "GXSetTexCopySrc",
+      "GXSetTexRegionCallback",
+      "GXSetTlutRegionCallback",
+      "GXSetVtxAttrFmt",
+      "GXSetVtxAttrFmtv",
+      "GXSetVtxDesc",
+      "GXSetVtxDescv",
+      "GXSetZCompLoc",
+      "GXSetZTexture",
+      "__GXCalculateVLim",
+      "__GXDefaultTexRegionCallback",
+      "__GXFifoLink",
+      "__GXFifoReadDisable",
+      "__GXFifoReadEnable",
+      "__GXFlushTextureState",
+      "__GXInitGX",
+      "__GXSendFlushPrim",
+      "__GXSetGenMode",
+      "__GXSetMatrixIndex",
+      "__GXSetSUTexRegs",
+      "__GXSetVCD",
+      "__GXWriteFifoIntEnable",
+      "__GXWriteFifoIntReset",
+      "__GXXfVtxSpecs",
+      "fn_80030848",
+      "fn_8003086C",
+      "fn_80033650",
+      "fn_80033EB0",
+      "fn_8003401C",
+      "fn_8003458C",
+      "fn_8003462C",
+      "fn_80034834",
+      "fn_80034890",
+      "fn_80034B7C",
+      "fn_80034BB8",
+      "fn_80034D34",
+      "fn_80034ECC",
+      "fn_80035110",
+      "fn_8003526C",
+      "fn_800356B8",
+      "fn_80035734",
+      "fn_80035828",
+      "fn_8003591C",
+      "fn_80035960",
+      "fn_800361F0",
+      "fn_800365B4",
+      "fn_80036AC4",
+      "fn_80036F24",
+      "fn_800370A0",
+      "fn_800370E4",
+      "fn_80037128",
+      "fn_80037190",
+      "fn_800371F8",
+      "fn_8003726C",
+      "fn_800372E0",
+      "fn_800377F8",
+      "fn_80037B14",
+      "fn_80037B68",
+      "fn_80037B94",
+      "fn_80037BC0",
+      "fn_80037C2C",
+      "fn_80037D14",
+      "fn_80037D40",
+      "fn_8003887C",
+      "fn_80038944",
+      "fn_80038DE8",
+      "fn_80038F10",
+      "fn_80039954",
+      "fn_80039B38",
+      "fn_80072014",
+      "fn_800720B0",
+      "fn_80072168",
+      "fn_80078D60"
+    ],
+    "relocations": [
+      {
+        "addend": 0,
+        "kind": 1,
+        "module": "main",
+        "offset": 0,
+        "symbol": "gxData"
+      }
+    ],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "dol/data/gx.c",
+    "symbol": "gx",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216344
+  },
+  "main:gxData": {
+    "address": 2149022624,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u8 gxData[]",
+        "path": "src/dol/GXInit.c"
+      }
+    ],
+    "definition": "u8 gxData[1272]",
+    "method": "opaque-bss-header-mismatch",
+    "module": "main",
+    "references": [
+      "GXInit"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 1272,
+    "sha256": "fbb4fa31c3fa0c14ccb3fe426e39dcad529b17e379309c0adbe27fcc93feba50",
+    "size": 1272,
+    "source": "dol/data/gxData.c",
+    "symbol": "gxData",
+    "unit_align": 8,
+    "unit_size": 1272,
+    "unit_start": 2149022624
   },
   "main:lbl_8008FF40": {
     "address": 2148073280,
@@ -49234,6 +50403,32 @@
     "unit_size": 16,
     "unit_start": 2148096936
   },
+  "main:lbl_80095BCC": {
+    "address": 2148096972,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_80095BCC[]",
+        "path": "src/dol/TRK_board_display.c"
+      }
+    ],
+    "definition": "const u32 lbl_80095BCC[]",
+    "method": "typed-data",
+    "module": "main",
+    "references": [
+      "TRK_board_display"
+    ],
+    "relocations": [],
+    "section": ".rodata",
+    "section_size": 264,
+    "sha256": "6713cbfebcd011a89ccadc6fdf982fc9e20848e8b179f09445c4bd91f8903ae3",
+    "size": 260,
+    "source": "dol/data/EndofProgramInstruction.c",
+    "symbol": "lbl_80095BCC",
+    "unit_align": 8,
+    "unit_size": 264,
+    "unit_start": 2148096968
+  },
   "main:lbl_80095CD0": {
     "address": 2148097232,
     "align": 16,
@@ -50015,13 +51210,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 1768,
+    "section_size": 3660,
     "sha256": "c09665fe893ceb58fcf90e84eb3a31b5d2222e4673ea8acb9524bf127de8fa80",
     "size": 9,
     "source": "dol/data/lbl_801220C0.c",
     "symbol": "lbl_801220C0",
     "unit_align": 32,
-    "unit_size": 1768,
+    "unit_size": 3660,
     "unit_start": 2148671680
   },
   "main:lbl_801220CC": {
@@ -50046,13 +51241,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 1768,
+    "section_size": 3660,
     "sha256": "b59ae8443d427f53596742e40c98cd622cdb5f15019d29d937cc738bae615162",
     "size": 17,
     "source": "dol/data/lbl_801220C0.c",
     "symbol": "lbl_801220CC",
     "unit_align": 32,
-    "unit_size": 1768,
+    "unit_size": 3660,
     "unit_start": 2148671680
   },
   "main:lbl_801220E0": {
@@ -50072,13 +51267,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 1768,
+    "section_size": 3660,
     "sha256": "233d2c981beec99adef68ead3f98bc2eb4af9648a75419c5fd09060b8791eea3",
     "size": 16,
     "source": "dol/data/lbl_801220C0.c",
     "symbol": "lbl_801220E0",
     "unit_align": 32,
-    "unit_size": 1768,
+    "unit_size": 3660,
     "unit_start": 2148671680
   },
   "main:lbl_801220F0": {
@@ -50098,13 +51293,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 1768,
+    "section_size": 3660,
     "sha256": "ea7039a7b81b1e211df6dbb34ffa90fcdc496be75ed1c87d6e66ebc50ec3e9cc",
     "size": 20,
     "source": "dol/data/lbl_801220C0.c",
     "symbol": "lbl_801220F0",
     "unit_align": 32,
-    "unit_size": 1768,
+    "unit_size": 3660,
     "unit_start": 2148671680
   },
   "main:lbl_80122104": {
@@ -50124,13 +51319,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 1768,
+    "section_size": 3660,
     "sha256": "1f27289e16d1d355c1cd7c894e6025e1296e55917e839508ed9f05a6d558f977",
     "size": 156,
     "source": "dol/data/lbl_801220C0.c",
     "symbol": "lbl_80122104",
     "unit_align": 32,
-    "unit_size": 1768,
+    "unit_size": 3660,
     "unit_start": 2148671680
   },
   "main:lbl_801221A0": {
@@ -50155,13 +51350,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 1768,
+    "section_size": 3660,
     "sha256": "1634dfdf9886218c1cd327bf555ac867e0169908e613b23d02b8a061069da687",
     "size": 26,
     "source": "dol/data/lbl_801220C0.c",
     "symbol": "lbl_801221A0",
     "unit_align": 32,
-    "unit_size": 1768,
+    "unit_size": 3660,
     "unit_start": 2148671680
   },
   "main:lbl_801221C0": {
@@ -50176,13 +51371,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 1768,
+    "section_size": 3660,
     "sha256": "b0c3cf620e39393f0e1285b29f038f2190cd6e7e34cea42fd5fb6ee56790e34c",
     "size": 1008,
     "source": "dol/data/lbl_801220C0.c",
     "symbol": "lbl_801221C0",
     "unit_align": 32,
-    "unit_size": 1768,
+    "unit_size": 3660,
     "unit_start": 2148671680
   },
   "main:lbl_801225F4": {
@@ -50195,13 +51390,13 @@
     "references": [],
     "relocations": [],
     "section": ".data",
-    "section_size": 1768,
+    "section_size": 3660,
     "sha256": "bef5268a070a0632464c1cb2296839ea6453806e73e868f0cb0f52babc1d9c19",
     "size": 436,
     "source": "dol/data/lbl_801220C0.c",
     "symbol": "lbl_801225F4",
     "unit_align": 32,
-    "unit_size": 1768,
+    "unit_size": 3660,
     "unit_start": 2148671680
   },
   "main:lbl_80122A58": {
@@ -50216,14 +51411,14 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 436,
+    "section_size": 3660,
     "sha256": "0e37ff76d9d89a8ae4b9f788cf4c43766d4c10de8847fe8b881c01b2c3faf32a",
     "size": 436,
-    "source": "dol/data/lbl_80122A58.c",
+    "source": "dol/data/lbl_801220C0.c",
     "symbol": "lbl_80122A58",
-    "unit_align": 8,
-    "unit_size": 436,
-    "unit_start": 2148674136
+    "unit_align": 32,
+    "unit_size": 3660,
+    "unit_start": 2148671680
   },
   "main:lbl_80122F50": {
     "address": 2148675408,
@@ -50975,13 +52170,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 5968,
+    "section_size": 5984,
     "sha256": "cf3bb78ceba140080c21a22d342114d1aa1830533ac8eabd8efb99eb36764f12",
     "size": 1008,
     "source": "dol/data/lbl_801295E0.c",
     "symbol": "lbl_801295E0",
     "unit_align": 32,
-    "unit_size": 5968,
+    "unit_size": 5984,
     "unit_start": 2148701664
   },
   "main:lbl_801299D0": {
@@ -51011,13 +52206,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 5968,
+    "section_size": 5984,
     "sha256": "17da93d45f53d3149e517746b2295e17d25459bfffb10907666ab9d38ce12856",
     "size": 256,
     "source": "dol/data/lbl_801295E0.c",
     "symbol": "lbl_801299D0",
     "unit_align": 32,
-    "unit_size": 5968,
+    "unit_size": 5984,
     "unit_start": 2148701664
   },
   "main:lbl_80129AD0": {
@@ -51037,13 +52232,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 5968,
+    "section_size": 5984,
     "sha256": "0b832a5b0bf0626e81a0ffa3791780977090cc274d4b99d45115bae7c9e096bd",
     "size": 256,
     "source": "dol/data/lbl_801295E0.c",
     "symbol": "lbl_80129AD0",
     "unit_align": 32,
-    "unit_size": 5968,
+    "unit_size": 5984,
     "unit_start": 2148701664
   },
   "main:lbl_80129BD0": {
@@ -51063,13 +52258,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 5968,
+    "section_size": 5984,
     "sha256": "37804515e38bec8dd5cd4253175e56b44d3f7f328cc17ee22e26fd5069533382",
     "size": 256,
     "source": "dol/data/lbl_801295E0.c",
     "symbol": "lbl_80129BD0",
     "unit_align": 32,
-    "unit_size": 5968,
+    "unit_size": 5984,
     "unit_start": 2148701664
   },
   "main:lbl_80129CD0": {
@@ -51089,13 +52284,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 5968,
+    "section_size": 5984,
     "sha256": "aa6423e78706154f82e52231644d239e10eb3847aa14660784c97ef9c4344781",
     "size": 256,
     "source": "dol/data/lbl_801295E0.c",
     "symbol": "lbl_80129CD0",
     "unit_align": 32,
-    "unit_size": 5968,
+    "unit_size": 5984,
     "unit_start": 2148701664
   },
   "main:lbl_80129DD0": {
@@ -51115,13 +52310,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 5968,
+    "section_size": 5984,
     "sha256": "3d16492306aaa3274fd7861bef8194743049f1e00fed1e7163a59b5f0e137f45",
     "size": 256,
     "source": "dol/data/lbl_801295E0.c",
     "symbol": "lbl_80129DD0",
     "unit_align": 32,
-    "unit_size": 5968,
+    "unit_size": 5984,
     "unit_start": 2148701664
   },
   "main:lbl_80129ED0": {
@@ -51141,13 +52336,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 5968,
+    "section_size": 5984,
     "sha256": "878670b39a83c3b0943ac280f5a03bb0906574bcb982692263b06ad35df2f5f4",
     "size": 256,
     "source": "dol/data/lbl_801295E0.c",
     "symbol": "lbl_80129ED0",
     "unit_align": 32,
-    "unit_size": 5968,
+    "unit_size": 5984,
     "unit_start": 2148701664
   },
   "main:lbl_80129FD0": {
@@ -51167,13 +52362,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 5968,
+    "section_size": 5984,
     "sha256": "4c24a7432b60dec333549d91e407d1ea497d555dfa0305104630443de99bceec",
     "size": 2168,
     "source": "dol/data/lbl_801295E0.c",
     "symbol": "lbl_80129FD0",
     "unit_align": 32,
-    "unit_size": 5968,
+    "unit_size": 5984,
     "unit_start": 2148701664
   },
   "main:lbl_8012A848": {
@@ -51193,13 +52388,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 5968,
+    "section_size": 5984,
     "sha256": "eea9b53dd64a50deac5d4fc524491b9ab95d4f00eeb8c0de8e5c9a46e9357a35",
     "size": 128,
     "source": "dol/data/lbl_801295E0.c",
     "symbol": "lbl_8012A848",
     "unit_align": 32,
-    "unit_size": 5968,
+    "unit_size": 5984,
     "unit_start": 2148701664
   },
   "main:lbl_8012A8C8": {
@@ -51214,13 +52409,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 5968,
+    "section_size": 5984,
     "sha256": "464000bb8cb311ec7444f054bcf1641dadd5b8e5a3703788a992fe193af23e28",
     "size": 320,
     "source": "dol/data/lbl_801295E0.c",
     "symbol": "lbl_8012A8C8",
     "unit_align": 32,
-    "unit_size": 5968,
+    "unit_size": 5984,
     "unit_start": 2148701664
   },
   "main:lbl_8012AA08": {
@@ -51233,13 +52428,13 @@
     "references": [],
     "relocations": [],
     "section": ".data",
-    "section_size": 5968,
+    "section_size": 5984,
     "sha256": "9073014091715a3390ed68e8343f4c83be3850b4956b7611947632f8d0d478b3",
     "size": 70,
     "source": "dol/data/lbl_801295E0.c",
     "symbol": "lbl_8012AA08",
     "unit_align": 32,
-    "unit_size": 5968,
+    "unit_size": 5984,
     "unit_start": 2148701664
   },
   "main:lbl_8012AA50": {
@@ -51271,13 +52466,13 @@
       }
     ],
     "section": ".data",
-    "section_size": 5968,
+    "section_size": 5984,
     "sha256": "59bcd2e305e1155f2829b6b387effc544514a32e7bf02d4078b2e04557f5c8d5",
     "size": 16,
     "source": "dol/data/lbl_801295E0.c",
     "symbol": "lbl_8012AA50",
     "unit_align": 32,
-    "unit_size": 5968,
+    "unit_size": 5984,
     "unit_start": 2148701664
   },
   "main:lbl_8012AA60": {
@@ -51297,13 +52492,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 5968,
+    "section_size": 5984,
     "sha256": "f0fa024252ac9f427df7ea7e871a0e5049d8d7122c65ea862c1ccd2d59d7ceaa",
     "size": 352,
     "source": "dol/data/lbl_801295E0.c",
     "symbol": "lbl_8012AA60",
     "unit_align": 32,
-    "unit_size": 5968,
+    "unit_size": 5984,
     "unit_start": 2148701664
   },
   "main:lbl_8012ABC0": {
@@ -51333,13 +52528,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 5968,
+    "section_size": 5984,
     "sha256": "012b1d347190d53075d2550d36df89ba2c275934d5ea30557ab047e3d5f34be1",
     "size": 32,
     "source": "dol/data/lbl_801295E0.c",
     "symbol": "lbl_8012ABC0",
     "unit_align": 32,
-    "unit_size": 5968,
+    "unit_size": 5984,
     "unit_start": 2148701664
   },
   "main:lbl_8012ABE0": {
@@ -51359,13 +52554,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 5968,
+    "section_size": 5984,
     "sha256": "181dee0ee2bdf637e479904941ed0e932f65d5029d9d3814d4ddf38525ec503e",
     "size": 32,
     "source": "dol/data/lbl_801295E0.c",
     "symbol": "lbl_8012ABE0",
     "unit_align": 32,
-    "unit_size": 5968,
+    "unit_size": 5984,
     "unit_start": 2148701664
   },
   "main:lbl_8012AC00": {
@@ -51378,13 +52573,13 @@
     "references": [],
     "relocations": [],
     "section": ".data",
-    "section_size": 5968,
+    "section_size": 5984,
     "sha256": "c459d8447ce3fdd958b63bbc870d35f3319266c72581c5dee86fa576315ba76b",
     "size": 68,
     "source": "dol/data/lbl_801295E0.c",
     "symbol": "lbl_8012AC00",
     "unit_align": 32,
-    "unit_size": 5968,
+    "unit_size": 5984,
     "unit_start": 2148701664
   },
   "main:lbl_8012AC44": {
@@ -51404,13 +52599,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 5968,
+    "section_size": 5984,
     "sha256": "3d3c376d8d0e74250d7e808f03cea9b6c2350a35496974ab1b134c934582aa68",
     "size": 208,
     "source": "dol/data/lbl_801295E0.c",
     "symbol": "lbl_8012AC44",
     "unit_align": 32,
-    "unit_size": 5968,
+    "unit_size": 5984,
     "unit_start": 2148701664
   },
   "main:lbl_8012AD14": {
@@ -51430,13 +52625,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 5968,
+    "section_size": 5984,
     "sha256": "ea551d149ef9d636514cc6668c3c3c2a76416cc31678460357a0a8b7ebe642cc",
     "size": 28,
     "source": "dol/data/lbl_801295E0.c",
     "symbol": "lbl_8012AD14",
     "unit_align": 32,
-    "unit_size": 5968,
+    "unit_size": 5984,
     "unit_start": 2148701664
   },
   "main:lbl_8012AFB8": {
@@ -54355,13 +55550,13 @@
     ],
     "relocations": [],
     "section": ".bss",
-    "section_size": 672,
+    "section_size": 864,
     "sha256": "b393978842a0fa3d3e1470196f098f473f9678e72463cb65ec4ab5581856c2e4",
     "size": 160,
     "source": "dol/data/Packet.c",
     "symbol": "lbl_8015CA90",
     "unit_align": 8,
-    "unit_size": 672,
+    "unit_size": 864,
     "unit_start": 2148911632
   },
   "main:lbl_8015CB50": {
@@ -54381,13 +55576,13 @@
     ],
     "relocations": [],
     "section": ".bss",
-    "section_size": 672,
+    "section_size": 864,
     "sha256": "66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925",
     "size": 32,
     "source": "dol/data/Packet.c",
     "symbol": "lbl_8015CB50",
     "unit_align": 8,
-    "unit_size": 672,
+    "unit_size": 864,
     "unit_start": 2148911632
   },
   "main:lbl_8015CB70": {
@@ -54407,13 +55602,13 @@
     ],
     "relocations": [],
     "section": ".bss",
-    "section_size": 672,
+    "section_size": 864,
     "sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
     "size": 64,
     "source": "dol/data/Packet.c",
     "symbol": "lbl_8015CB70",
     "unit_align": 8,
-    "unit_size": 672,
+    "unit_size": 864,
     "unit_start": 2148911632
   },
   "main:lbl_8015CBB0": {
@@ -54438,13 +55633,13 @@
     ],
     "relocations": [],
     "section": ".bss",
-    "section_size": 672,
+    "section_size": 864,
     "sha256": "2ea9ab9198d1638007400cd2c3bef1cc745b864b76011a0e1bc52180ac6452d4",
     "size": 96,
     "source": "dol/data/Packet.c",
     "symbol": "lbl_8015CBB0",
     "unit_align": 8,
-    "unit_size": 672,
+    "unit_size": 864,
     "unit_start": 2148911632
   },
   "main:lbl_8015CC10": {
@@ -54489,13 +55684,13 @@
     ],
     "relocations": [],
     "section": ".bss",
-    "section_size": 672,
+    "section_size": 864,
     "sha256": "b393978842a0fa3d3e1470196f098f473f9678e72463cb65ec4ab5581856c2e4",
     "size": 160,
     "source": "dol/data/Packet.c",
     "symbol": "lbl_8015CC10",
     "unit_align": 8,
-    "unit_size": 672,
+    "unit_size": 864,
     "unit_start": 2148911632
   },
   "main:lbl_8015CE60": {
@@ -59366,6 +60561,10 @@
         "path": "src/dol/fn_80071ED4.c"
       },
       {
+        "declaration": "FogState lbl_8019E250",
+        "path": "src/dol/fn_80072014.c"
+      },
+      {
         "declaration": "struct fn_800720B0_lbl_8019E250 lbl_8019E250[]",
         "path": "src/dol/fn_800720B0.c"
       },
@@ -59395,8 +60594,8 @@
     "module": "main",
     "references": [
       "fn_80071D30",
-      "fn_80072014",
       "fn_80071ED4",
+      "fn_80072014",
       "fn_800720B0",
       "fn_80072168",
       "fn_800721FC",
@@ -59536,9 +60735,9 @@
     "method": "opaque-bss",
     "module": "main",
     "references": [
-      "fn_80075240",
       "fn_800749B0",
       "fn_80074D88",
+      "fn_80075240",
       "fn_800756B0"
     ],
     "relocations": [],
@@ -66300,6 +67499,2508 @@
     "unit_align": 8,
     "unit_size": 5,
     "unit_start": 2149215800
+  },
+  "main:lbl_801A6E40": {
+    "address": 2149215808,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "f32 lbl_801A6E40",
+        "path": "src/dol/fn_80005660.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6E40",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80005660"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "92c48f661839dc8f48558a14241920af7dc4ff426e4e662910259bb948971a61",
+    "size": 4,
+    "source": "dol/data/lbl_801A6E40.c",
+    "symbol": "lbl_801A6E40",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149215808
+  },
+  "main:lbl_801A6E44": {
+    "address": 2149215812,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A6E44",
+        "path": "src/dol/fn_80005738.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6E44",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80005738"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "f31ce8750dec8dbdf64187c82a9ca4c9b9c5cfc44c7dae2bda089ef08d002a33",
+    "size": 4,
+    "source": "dol/data/lbl_801A6E40.c",
+    "symbol": "lbl_801A6E44",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149215808
+  },
+  "main:lbl_801A6E48": {
+    "address": 2149215816,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A6E48",
+        "path": "src/dol/fn_80005738.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6E48",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80005738"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "417d4cb9671e0e3bef303348a7e1c0658e033fa267748a802aeefdbd8e6db38a",
+    "size": 4,
+    "source": "dol/data/lbl_801A6E48.c",
+    "symbol": "lbl_801A6E48",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149215816
+  },
+  "main:lbl_801A6E4C": {
+    "address": 2149215820,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A6E4C",
+        "path": "src/dol/fn_80005738.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6E4C",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80005738"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "31cf8391f9bfd8eedef79bcf6b13f2db5f20089185538b317e01e372d5b8b750",
+    "size": 4,
+    "source": "dol/data/lbl_801A6E48.c",
+    "symbol": "lbl_801A6E4C",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149215816
+  },
+  "main:lbl_801A6E50": {
+    "address": 2149215824,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A6E50",
+        "path": "src/dol/fn_80005738.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6E50",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80005738"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "32f13779d6a5dd47e84ff5f75f3fd2c04b141a588f823de4d98ca35567462038",
+    "size": 4,
+    "source": "dol/data/lbl_801A6E50.c",
+    "symbol": "lbl_801A6E50",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149215824
+  },
+  "main:lbl_801A6E54": {
+    "address": 2149215828,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A6E54",
+        "path": "src/dol/fn_80005738.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6E54",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80005738"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "dol/data/lbl_801A6E50.c",
+    "symbol": "lbl_801A6E54",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149215824
+  },
+  "main:lbl_801A6E58": {
+    "address": 2149215832,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Sig_fn_800371F8_GXColor lbl_801A6E58",
+        "path": "src/dol/fn_80005B10.c"
+      }
+    ],
+    "definition": "const u32 lbl_801A6E58",
+    "method": "typed-data",
+    "module": "main",
+    "references": [
+      "fn_80005B10"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "7a7bf454c5f3cb1b9d9a20f81417f98d976fe3b3dd52c1b9968f02e89e7e8a2f",
+    "size": 4,
+    "source": "dol/data/lbl_801A6E58.c",
+    "symbol": "lbl_801A6E58",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149215832
+  },
+  "main:lbl_801A6E5C": {
+    "address": 2149215836,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "f32 lbl_801A6E5C",
+        "path": "src/dol/fn_80005B10.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6E5C",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80005B10"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "dol/data/lbl_801A6E58.c",
+    "symbol": "lbl_801A6E5C",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149215832
+  },
+  "main:lbl_801A6E60": {
+    "address": 2149215840,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "f32 lbl_801A6E60",
+        "path": "src/dol/fn_80005B10.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6E60",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80005B10"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "9dc1b62d60acff118f222dc22cb76a1c7e9f2fcc1ae7d16c56861eb0301bd59a",
+    "size": 4,
+    "source": "dol/data/lbl_801A6E60.c",
+    "symbol": "lbl_801A6E60",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149215840
+  },
+  "main:lbl_801A6E64": {
+    "address": 2149215844,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "f32 lbl_801A6E64",
+        "path": "src/dol/fn_80005B10.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6E64",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80005B10"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "92c48f661839dc8f48558a14241920af7dc4ff426e4e662910259bb948971a61",
+    "size": 4,
+    "source": "dol/data/lbl_801A6E60.c",
+    "symbol": "lbl_801A6E64",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149215840
+  },
+  "main:lbl_801A6E68": {
+    "address": 2149215848,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "f32 lbl_801A6E68",
+        "path": "src/dol/fn_80005B10.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6E68",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80005B10"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "f857863958ecc8a34d913b1a1479c9169a5c6342e334f0c46e3ba98187efdfb9",
+    "size": 4,
+    "source": "dol/data/lbl_801A6E68.c",
+    "symbol": "lbl_801A6E68",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149215848
+  },
+  "main:lbl_801A6E6C": {
+    "address": 2149215852,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "f32 lbl_801A6E6C",
+        "path": "src/dol/fn_80005B10.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6E6C",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80005B10"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "ea49bb9176dd382a3cc4e4778eb3ea90c47fe313b7c186daca4db6b9b237fd25",
+    "size": 4,
+    "source": "dol/data/lbl_801A6E68.c",
+    "symbol": "lbl_801A6E6C",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149215848
+  },
+  "main:lbl_801A6E70": {
+    "address": 2149215856,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "f32 lbl_801A6E70",
+        "path": "src/dol/fn_80005B10.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6E70",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80005B10"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 16,
+    "sha256": "5e9301d9fa4f551d7dc0d53a3e85bf5dcc03125256fabdc1270d28a7b5f8facc",
+    "size": 4,
+    "source": "dol/data/lbl_801A6E70.c",
+    "symbol": "lbl_801A6E70",
+    "unit_align": 8,
+    "unit_size": 16,
+    "unit_start": 2149215856
+  },
+  "main:lbl_801A6E78": {
+    "address": 2149215864,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "f64 lbl_801A6E78",
+        "path": "src/dol/fn_80005B10.c"
+      }
+    ],
+    "definition": "const f64 lbl_801A6E78",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80005B10"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 16,
+    "sha256": "0ec9f8933f9320c2e406659037719c63de34281835007bd2d9c02a8ce919a925",
+    "size": 8,
+    "source": "dol/data/lbl_801A6E70.c",
+    "symbol": "lbl_801A6E78",
+    "unit_align": 8,
+    "unit_size": 16,
+    "unit_start": 2149215856
+  },
+  "main:lbl_801A6E80": {
+    "address": 2149215872,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "f32 lbl_801A6E80",
+        "path": "src/dol/fn_80005B10.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6E80",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80005B10"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 16,
+    "sha256": "c16d540a6fdac642cc9e2aab7713691f54da7bf73861b4dd48c78fb3961eb7c8",
+    "size": 4,
+    "source": "dol/data/lbl_801A6E80.c",
+    "symbol": "lbl_801A6E80",
+    "unit_align": 8,
+    "unit_size": 16,
+    "unit_start": 2149215872
+  },
+  "main:lbl_801A6E88": {
+    "address": 2149215880,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "f64 lbl_801A6E88",
+        "path": "src/dol/fn_80005B10.c"
+      }
+    ],
+    "definition": "const f64 lbl_801A6E88",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80005B10"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 16,
+    "sha256": "fe7819ac86049bcf2afd1ae19765a90b0a204bc184dabe4e368930ba6976614e",
+    "size": 8,
+    "source": "dol/data/lbl_801A6E80.c",
+    "symbol": "lbl_801A6E88",
+    "unit_align": 8,
+    "unit_size": 16,
+    "unit_start": 2149215872
+  },
+  "main:lbl_801A6E90": {
+    "address": 2149215888,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "f32 lbl_801A6E90",
+        "path": "src/dol/fn_80005B10.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6E90",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80005B10"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "d4661c2ebe5a3b9fc5f7f6a5f6273143d954135d35457e90530bf5c0187c18d2",
+    "size": 4,
+    "source": "dol/data/lbl_801A6E90.c",
+    "symbol": "lbl_801A6E90",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149215888
+  },
+  "main:lbl_801A6E94": {
+    "address": 2149215892,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "f32 lbl_801A6E94",
+        "path": "src/dol/fn_80005B10.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6E94",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80005B10"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "de620abd6d3615746360c1d15ce3a56291236d37424124054a49d25e947ffc4d",
+    "size": 4,
+    "source": "dol/data/lbl_801A6E90.c",
+    "symbol": "lbl_801A6E94",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149215888
+  },
+  "main:lbl_801A6E98": {
+    "address": 2149215896,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_801A6E98",
+        "path": "src/dol/fn_80005EDC.c"
+      }
+    ],
+    "definition": "const u32 lbl_801A6E98",
+    "method": "typed-data",
+    "module": "main",
+    "references": [
+      "fn_80005EDC"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "7a7bf454c5f3cb1b9d9a20f81417f98d976fe3b3dd52c1b9968f02e89e7e8a2f",
+    "size": 4,
+    "source": "dol/data/lbl_801A6E98.c",
+    "symbol": "lbl_801A6E98",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149215896
+  },
+  "main:lbl_801A6E9C": {
+    "address": 2149215900,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A6E9C",
+        "path": "src/dol/fn_80005EDC.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6E9C",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80005EDC",
+      "fn_800060D8"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "dol/data/lbl_801A6E98.c",
+    "symbol": "lbl_801A6E9C",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149215896
+  },
+  "main:lbl_801A6EA0": {
+    "address": 2149215904,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A6EA0",
+        "path": "src/dol/fn_80005EDC.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6EA0",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80005EDC"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "9dc1b62d60acff118f222dc22cb76a1c7e9f2fcc1ae7d16c56861eb0301bd59a",
+    "size": 4,
+    "source": "dol/data/lbl_801A6EA0.c",
+    "symbol": "lbl_801A6EA0",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149215904
+  },
+  "main:lbl_801A6EA4": {
+    "address": 2149215908,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A6EA4",
+        "path": "src/dol/fn_80005EDC.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6EA4",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80005EDC"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "92c48f661839dc8f48558a14241920af7dc4ff426e4e662910259bb948971a61",
+    "size": 4,
+    "source": "dol/data/lbl_801A6EA0.c",
+    "symbol": "lbl_801A6EA4",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149215904
+  },
+  "main:lbl_801A6EA8": {
+    "address": 2149215912,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A6EA8",
+        "path": "src/dol/fn_80005EDC.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6EA8",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80005EDC"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 16,
+    "sha256": "f857863958ecc8a34d913b1a1479c9169a5c6342e334f0c46e3ba98187efdfb9",
+    "size": 4,
+    "source": "dol/data/lbl_801A6EA8.c",
+    "symbol": "lbl_801A6EA8",
+    "unit_align": 8,
+    "unit_size": 16,
+    "unit_start": 2149215912
+  },
+  "main:lbl_801A6EB0": {
+    "address": 2149215920,
+    "align": 8,
+    "declarations": [],
+    "definition": "const f64 lbl_801A6EB0",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_800060D8",
+      "fn_8000659C"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 16,
+    "sha256": "f6bf45de126e969a360b997848e1278f4f32c78690946344e6dfae65806386ae",
+    "size": 8,
+    "source": "dol/data/lbl_801A6EA8.c",
+    "symbol": "lbl_801A6EB0",
+    "unit_align": 8,
+    "unit_size": 16,
+    "unit_start": 2149215912
+  },
+  "main:lbl_801A6EB8": {
+    "address": 2149215928,
+    "align": 8,
+    "declarations": [],
+    "definition": "const f64 lbl_801A6EB8",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_800060D8",
+      "fn_8000659C"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "6815e84c7cc1fa7b86345639918e2b9dbc03b3bb113161e1a847663c2b7b2cc6",
+    "size": 8,
+    "source": "dol/data/lbl_801A6EB8.c",
+    "symbol": "lbl_801A6EB8",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149215928
+  },
+  "main:lbl_801A6EC0": {
+    "address": 2149215936,
+    "align": 4,
+    "declarations": [],
+    "definition": "const f32 lbl_801A6EC0",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_800060D8"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 16,
+    "sha256": "de620abd6d3615746360c1d15ce3a56291236d37424124054a49d25e947ffc4d",
+    "size": 4,
+    "source": "dol/data/lbl_801A6EC0.c",
+    "symbol": "lbl_801A6EC0",
+    "unit_align": 8,
+    "unit_size": 16,
+    "unit_start": 2149215936
+  },
+  "main:lbl_801A6EC8": {
+    "address": 2149215944,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "const f64 lbl_801A6EC8",
+        "path": "src/dol/fn_8000691C.c"
+      }
+    ],
+    "definition": "const f64 lbl_801A6EC8",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_800060D8",
+      "fn_8000691C"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 16,
+    "sha256": "2b2979f362d94c89fe17a6e01637f14332de063fe7a544bdc5facfc046f4169f",
+    "size": 8,
+    "source": "dol/data/lbl_801A6EC0.c",
+    "symbol": "lbl_801A6EC8",
+    "unit_align": 8,
+    "unit_size": 16,
+    "unit_start": 2149215936
+  },
+  "main:lbl_801A6ED0": {
+    "address": 2149215952,
+    "align": 8,
+    "declarations": [],
+    "definition": "const f64 lbl_801A6ED0",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_8000659C"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "0ec9f8933f9320c2e406659037719c63de34281835007bd2d9c02a8ce919a925",
+    "size": 8,
+    "source": "dol/data/lbl_801A6ED0.c",
+    "symbol": "lbl_801A6ED0",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149215952
+  },
+  "main:lbl_801A6ED8": {
+    "address": 2149215960,
+    "align": 8,
+    "declarations": [],
+    "definition": "const f64 lbl_801A6ED8",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_8000659C"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "ace5732151a42e3c2ce91e039d0bd2d3a86dce1bccb6b874852b1aaa7f01d3bd",
+    "size": 8,
+    "source": "dol/data/lbl_801A6ED8.c",
+    "symbol": "lbl_801A6ED8",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149215960
+  },
+  "main:lbl_801A6EE0": {
+    "address": 2149215968,
+    "align": 8,
+    "declarations": [],
+    "definition": "const f64 lbl_801A6EE0",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_8000659C"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "fe7819ac86049bcf2afd1ae19765a90b0a204bc184dabe4e368930ba6976614e",
+    "size": 8,
+    "source": "dol/data/lbl_801A6EE0.c",
+    "symbol": "lbl_801A6EE0",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149215968
+  },
+  "main:lbl_801A6EE8": {
+    "address": 2149215976,
+    "align": 4,
+    "declarations": [],
+    "definition": "const f32 lbl_801A6EE8",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_8000659C"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 16,
+    "sha256": "b9e69238a01189ddad0c70c62fc04d362b55ee6eefaa558dd13fc45ac1d665be",
+    "size": 4,
+    "source": "dol/data/lbl_801A6EE8.c",
+    "symbol": "lbl_801A6EE8",
+    "unit_align": 8,
+    "unit_size": 16,
+    "unit_start": 2149215976
+  },
+  "main:lbl_801A6EF0": {
+    "address": 2149215984,
+    "align": 8,
+    "declarations": [],
+    "definition": "const f64 lbl_801A6EF0",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_8000659C"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 16,
+    "sha256": "07af8387624cf8f36152797d2f561246f21237d1d22b5c13006eacfa6f475e43",
+    "size": 8,
+    "source": "dol/data/lbl_801A6EE8.c",
+    "symbol": "lbl_801A6EF0",
+    "unit_align": 8,
+    "unit_size": 16,
+    "unit_start": 2149215976
+  },
+  "main:lbl_801A6EF8": {
+    "address": 2149215992,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "const f64 lbl_801A6EF8",
+        "path": "src/dol/fn_8000691C.c"
+      }
+    ],
+    "definition": "const f64 lbl_801A6EF8",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_8000691C"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "f06997340dc90535457853730d5c6bcae93958557378a1650017b042a834df9e",
+    "size": 8,
+    "source": "dol/data/lbl_801A6EF8.c",
+    "symbol": "lbl_801A6EF8",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149215992
+  },
+  "main:lbl_801A6F00": {
+    "address": 2149216000,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_801A6F00",
+        "path": "src/dol/fn_80007A44.c"
+      }
+    ],
+    "definition": "const u32 lbl_801A6F00",
+    "method": "typed-data",
+    "module": "main",
+    "references": [
+      "fn_80007A44"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "e3820096cb82366b860b8a4e668453a7aaaf423af03bdf289fa308ea03a79332",
+    "size": 4,
+    "source": "dol/data/lbl_801A6F00.c",
+    "symbol": "lbl_801A6F00",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216000
+  },
+  "main:lbl_801A6F04": {
+    "address": 2149216004,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_801A6F04",
+        "path": "src/dol/fn_80007B68.c"
+      }
+    ],
+    "definition": "const u32 lbl_801A6F04",
+    "method": "typed-data",
+    "module": "main",
+    "references": [
+      "fn_80007B68"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "e3820096cb82366b860b8a4e668453a7aaaf423af03bdf289fa308ea03a79332",
+    "size": 4,
+    "source": "dol/data/lbl_801A6F00.c",
+    "symbol": "lbl_801A6F04",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216000
+  },
+  "main:lbl_801A6F08": {
+    "address": 2149216008,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_801A6F08",
+        "path": "src/dol/fn_80007C60.c"
+      }
+    ],
+    "definition": "const u32 lbl_801A6F08[2]",
+    "method": "typed-data",
+    "module": "main",
+    "references": [
+      "fn_80007C60"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "ce91ba268e126ac6e380a3218acd6ea084229097351b203a3f02cd4f04d01cac",
+    "size": 8,
+    "source": "dol/data/lbl_801A6F08.c",
+    "symbol": "lbl_801A6F08",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216008
+  },
+  "main:lbl_801A6F10": {
+    "address": 2149216016,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A6F10",
+        "path": "src/dol/fn_80007F70.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6F10",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80007F70"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "1b9e0fe7b740b4e583727aa1c9d27ff8c01491f911d2de0747f8c997ef6b3498",
+    "size": 4,
+    "source": "dol/data/lbl_801A6F10.c",
+    "symbol": "lbl_801A6F10",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216016
+  },
+  "main:lbl_801A6F14": {
+    "address": 2149216020,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A6F14",
+        "path": "src/dol/fn_80007F70.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6F14",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80007F70",
+      "fn_80008204",
+      "fn_800084E8"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "de620abd6d3615746360c1d15ce3a56291236d37424124054a49d25e947ffc4d",
+    "size": 4,
+    "source": "dol/data/lbl_801A6F10.c",
+    "symbol": "lbl_801A6F14",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216016
+  },
+  "main:lbl_801A6F18": {
+    "address": 2149216024,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "const f64 lbl_801A6F18",
+        "path": "src/dol/fn_80007F70.c"
+      }
+    ],
+    "definition": "const f64 lbl_801A6F18",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80007F70"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "54ade53a579f5389ecae3af42df9e96aa30fcf3fc02a7475afc18c3e4835f6f7",
+    "size": 8,
+    "source": "dol/data/lbl_801A6F18.c",
+    "symbol": "lbl_801A6F18",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216024
+  },
+  "main:lbl_801A6F20": {
+    "address": 2149216032,
+    "align": 8,
+    "declarations": [],
+    "definition": "const f64 lbl_801A6F20",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80007F70"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "07af8387624cf8f36152797d2f561246f21237d1d22b5c13006eacfa6f475e43",
+    "size": 8,
+    "source": "dol/data/lbl_801A6F20.c",
+    "symbol": "lbl_801A6F20",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216032
+  },
+  "main:lbl_801A6F28": {
+    "address": 2149216040,
+    "align": 8,
+    "declarations": [],
+    "definition": "const f64 lbl_801A6F28",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80007F70"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "2b2979f362d94c89fe17a6e01637f14332de063fe7a544bdc5facfc046f4169f",
+    "size": 8,
+    "source": "dol/data/lbl_801A6F28.c",
+    "symbol": "lbl_801A6F28",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216040
+  },
+  "main:lbl_801A6F30": {
+    "address": 2149216048,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A6F30",
+        "path": "src/dol/fn_80008C20.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6F30",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_800084E8",
+      "fn_80008C20"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "dol/data/lbl_801A6F30.c",
+    "symbol": "lbl_801A6F30",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216048
+  },
+  "main:lbl_801A6F34": {
+    "address": 2149216052,
+    "align": 4,
+    "declarations": [],
+    "definition": "const f32 lbl_801A6F34",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80008204"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "b9ed23559a1629204ecd6ef0bb33bd6a3e63ccf8a8c8939a80cbefe2e2a3d080",
+    "size": 4,
+    "source": "dol/data/lbl_801A6F30.c",
+    "symbol": "lbl_801A6F34",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216048
+  },
+  "main:lbl_801A6F38": {
+    "address": 2149216056,
+    "align": 4,
+    "declarations": [],
+    "definition": "const f32 lbl_801A6F38[2]",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80008204",
+      "fn_800084E8"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "b99db51a0c53847d61f80a464ab8a24f6259608c2e5f99e867e5f603086c44a2",
+    "size": 8,
+    "source": "dol/data/lbl_801A6F38.c",
+    "symbol": "lbl_801A6F38",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216056
+  },
+  "main:lbl_801A6F40": {
+    "address": 2149216064,
+    "align": 4,
+    "declarations": [],
+    "definition": "const u32 lbl_801A6F40",
+    "method": "typed-data",
+    "module": "main",
+    "references": [
+      "fn_8000CEBC"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "211bea9b2933ab19aaca24cab1396595c0077c40c60a5376a52e85e7def48941",
+    "size": 4,
+    "source": "dol/data/lbl_801A6F40.c",
+    "symbol": "lbl_801A6F40",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216064
+  },
+  "main:lbl_801A6F44": {
+    "address": 2149216068,
+    "align": 4,
+    "declarations": [],
+    "definition": "const u32 lbl_801A6F44",
+    "method": "typed-data",
+    "module": "main",
+    "references": [
+      "fn_8000CEBC"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "33e58a67c85448f851b65153a5bab5b25483d361d602f64342090c0a04aa3761",
+    "size": 4,
+    "source": "dol/data/lbl_801A6F40.c",
+    "symbol": "lbl_801A6F44",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216064
+  },
+  "main:lbl_801A6F48": {
+    "address": 2149216072,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A6F48",
+        "path": "src/dol/C_MTXLightPerspective.c"
+      },
+      {
+        "declaration": "const f32 lbl_801A6F48",
+        "path": "src/dol/fn_80015C1C.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6F48",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "C_MTXLightPerspective",
+      "PSMTXIdentity",
+      "PSMTXQuat",
+      "fn_80015C1C"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "de620abd6d3615746360c1d15ce3a56291236d37424124054a49d25e947ffc4d",
+    "size": 4,
+    "source": "dol/data/lbl_801A6F48.c",
+    "symbol": "lbl_801A6F48",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216072
+  },
+  "main:lbl_801A6F4C": {
+    "address": 2149216076,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A6F4C",
+        "path": "src/dol/C_MTXLightPerspective.c"
+      },
+      {
+        "declaration": "const f32 lbl_801A6F4C",
+        "path": "src/dol/fn_80015C1C.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6F4C",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "C_MTXLightPerspective",
+      "PSMTXIdentity",
+      "PSMTXScale",
+      "fn_80015C1C"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "dol/data/lbl_801A6F48.c",
+    "symbol": "lbl_801A6F4C",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216072
+  },
+  "main:lbl_801A6F50": {
+    "address": 2149216080,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A6F50",
+        "path": "src/dol/C_MTXLightPerspective.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6F50",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "C_MTXLightPerspective"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "1b9e0fe7b740b4e583727aa1c9d27ff8c01491f911d2de0747f8c997ef6b3498",
+    "size": 4,
+    "source": "dol/data/lbl_801A6F50.c",
+    "symbol": "lbl_801A6F50",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216080
+  },
+  "main:lbl_801A6F54": {
+    "address": 2149216084,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A6F54",
+        "path": "src/dol/fn_80015C1C.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6F54",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80015C1C"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "c31425b44a7ed682a3356bf6820141e1584a15c43b6d6793f552e5d4621586f7",
+    "size": 4,
+    "source": "dol/data/lbl_801A6F50.c",
+    "symbol": "lbl_801A6F54",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216080
+  },
+  "main:lbl_801A6F58": {
+    "address": 2149216088,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A6F58",
+        "path": "src/dol/C_MTXLightPerspective.c"
+      },
+      {
+        "declaration": "const f32 lbl_801A6F58",
+        "path": "src/dol/fn_80015C1C.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6F58",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "C_MTXLightPerspective",
+      "fn_80015C1C"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "b705efea49cb3296c6f0417c21fe14f10adb140333fd79d7cfc3318904f887ea",
+    "size": 4,
+    "source": "dol/data/lbl_801A6F58.c",
+    "symbol": "lbl_801A6F58",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216088
+  },
+  "main:lbl_801A6F5C": {
+    "address": 2149216092,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A6F5C",
+        "path": "src/dol/C_MTXLightPerspective.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6F5C",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "C_MTXLightPerspective"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "7388adb66bc2fb8cdd730d8148adcae18abd8bb48b05b7bd9b9e05efa6c09702",
+    "size": 4,
+    "source": "dol/data/lbl_801A6F58.c",
+    "symbol": "lbl_801A6F5C",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216088
+  },
+  "main:lbl_801A6F60": {
+    "address": 2149216096,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A6F60",
+        "path": "src/dol/C_MTXFrustum.c"
+      },
+      {
+        "declaration": "const f32 lbl_801A6F60",
+        "path": "src/dol/C_MTXOrtho.c"
+      },
+      {
+        "declaration": "const f32 lbl_801A6F60",
+        "path": "src/dol/C_MTXPerspective.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6F60",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "C_MTXFrustum",
+      "C_MTXOrtho",
+      "C_MTXPerspective"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "de620abd6d3615746360c1d15ce3a56291236d37424124054a49d25e947ffc4d",
+    "size": 4,
+    "source": "dol/data/lbl_801A6F60.c",
+    "symbol": "lbl_801A6F60",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216096
+  },
+  "main:lbl_801A6F64": {
+    "address": 2149216100,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A6F64",
+        "path": "src/dol/C_MTXFrustum.c"
+      },
+      {
+        "declaration": "const f32 lbl_801A6F64",
+        "path": "src/dol/C_MTXOrtho.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6F64",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "C_MTXFrustum",
+      "C_MTXOrtho"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "c31425b44a7ed682a3356bf6820141e1584a15c43b6d6793f552e5d4621586f7",
+    "size": 4,
+    "source": "dol/data/lbl_801A6F60.c",
+    "symbol": "lbl_801A6F64",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216096
+  },
+  "main:lbl_801A6F68": {
+    "address": 2149216104,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A6F68",
+        "path": "src/dol/C_MTXFrustum.c"
+      },
+      {
+        "declaration": "const f32 lbl_801A6F68",
+        "path": "src/dol/C_MTXOrtho.c"
+      },
+      {
+        "declaration": "const f32 lbl_801A6F68",
+        "path": "src/dol/C_MTXPerspective.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6F68",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "C_MTXFrustum",
+      "C_MTXOrtho",
+      "C_MTXPerspective"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "dol/data/lbl_801A6F68.c",
+    "symbol": "lbl_801A6F68",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216104
+  },
+  "main:lbl_801A6F6C": {
+    "address": 2149216108,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A6F6C",
+        "path": "src/dol/C_MTXFrustum.c"
+      },
+      {
+        "declaration": "const f32 lbl_801A6F6C",
+        "path": "src/dol/C_MTXOrtho.c"
+      },
+      {
+        "declaration": "const f32 lbl_801A6F6C",
+        "path": "src/dol/C_MTXPerspective.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6F6C",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "C_MTXFrustum",
+      "C_MTXOrtho",
+      "C_MTXPerspective"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "b705efea49cb3296c6f0417c21fe14f10adb140333fd79d7cfc3318904f887ea",
+    "size": 4,
+    "source": "dol/data/lbl_801A6F68.c",
+    "symbol": "lbl_801A6F6C",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216104
+  },
+  "main:lbl_801A6F70": {
+    "address": 2149216112,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A6F70",
+        "path": "src/dol/C_MTXPerspective.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6F70",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "C_MTXPerspective"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "1b9e0fe7b740b4e583727aa1c9d27ff8c01491f911d2de0747f8c997ef6b3498",
+    "size": 4,
+    "source": "dol/data/lbl_801A6F70.c",
+    "symbol": "lbl_801A6F70",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216112
+  },
+  "main:lbl_801A6F74": {
+    "address": 2149216116,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A6F74",
+        "path": "src/dol/C_MTXPerspective.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6F74",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "C_MTXPerspective"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "7388adb66bc2fb8cdd730d8148adcae18abd8bb48b05b7bd9b9e05efa6c09702",
+    "size": 4,
+    "source": "dol/data/lbl_801A6F70.c",
+    "symbol": "lbl_801A6F74",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216112
+  },
+  "main:lbl_801A6F78": {
+    "address": 2149216120,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "f32 lbl_801A6F78[2]",
+        "path": "src/dol/fn_800234D0.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6F78[2]",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_800234D0"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "2c4ce6112174019b01b2578571d6b9a4702f5d5b71f6fb7b0567ffc202189b42",
+    "size": 8,
+    "source": "dol/data/lbl_801A6F78.c",
+    "symbol": "lbl_801A6F78",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216120
+  },
+  "main:lbl_801A6F80": {
+    "address": 2149216128,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "f32 lbl_801A6F80[]",
+        "path": "src/dol/fn_800243C4.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6F80[]",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80023684",
+      "fn_800243C4"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "dol/data/lbl_801A6F80.c",
+    "symbol": "lbl_801A6F80",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216128
+  },
+  "main:lbl_801A6F84": {
+    "address": 2149216132,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "f32 lbl_801A6F84",
+        "path": "src/dol/fn_800243C4.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6F84",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80023684",
+      "fn_800243C4"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "de620abd6d3615746360c1d15ce3a56291236d37424124054a49d25e947ffc4d",
+    "size": 4,
+    "source": "dol/data/lbl_801A6F80.c",
+    "symbol": "lbl_801A6F84",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216128
+  },
+  "main:lbl_801A6F88": {
+    "address": 2149216136,
+    "align": 4,
+    "declarations": [],
+    "definition": "const f32 lbl_801A6F88",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80023684"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "fdccad0b4acccd3e8dcf06db120dd6b23f4573dd96b434af2fb919836a3615d4",
+    "size": 4,
+    "source": "dol/data/lbl_801A6F88.c",
+    "symbol": "lbl_801A6F88",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216136
+  },
+  "main:lbl_801A6F8C": {
+    "address": 2149216140,
+    "align": 4,
+    "declarations": [],
+    "definition": "const f32 lbl_801A6F8C",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80023684"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "b9e69238a01189ddad0c70c62fc04d362b55ee6eefaa558dd13fc45ac1d665be",
+    "size": 4,
+    "source": "dol/data/lbl_801A6F88.c",
+    "symbol": "lbl_801A6F8C",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216136
+  },
+  "main:lbl_801A6F90": {
+    "address": 2149216144,
+    "align": 4,
+    "declarations": [],
+    "definition": "const f32 lbl_801A6F90",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80023684"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "31cf8391f9bfd8eedef79bcf6b13f2db5f20089185538b317e01e372d5b8b750",
+    "size": 4,
+    "source": "dol/data/lbl_801A6F90.c",
+    "symbol": "lbl_801A6F90",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216144
+  },
+  "main:lbl_801A6F94": {
+    "address": 2149216148,
+    "align": 4,
+    "declarations": [],
+    "definition": "const f32 lbl_801A6F94",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80023684"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "da53a6ae0f1fe080d3b45e5e2b201dd7755ecdb5516bc317f40b28280ae4a80b",
+    "size": 4,
+    "source": "dol/data/lbl_801A6F90.c",
+    "symbol": "lbl_801A6F94",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216144
+  },
+  "main:lbl_801A6F98": {
+    "address": 2149216152,
+    "align": 4,
+    "declarations": [],
+    "definition": "const f32 lbl_801A6F98",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80023684"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "6547fdd5a34358ca5188d98386325ae2d18aac0e8eb45da7e5c417074ca19b2c",
+    "size": 4,
+    "source": "dol/data/lbl_801A6F98.c",
+    "symbol": "lbl_801A6F98",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216152
+  },
+  "main:lbl_801A6F9C": {
+    "address": 2149216156,
+    "align": 4,
+    "declarations": [],
+    "definition": "const f32 lbl_801A6F9C",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80023684"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "e438eb35d1d32ca38073bdbfa3fa362f8c9ce030e99f63527943561bd7da1dba",
+    "size": 4,
+    "source": "dol/data/lbl_801A6F98.c",
+    "symbol": "lbl_801A6F9C",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216152
+  },
+  "main:lbl_801A6FA0": {
+    "address": 2149216160,
+    "align": 8,
+    "declarations": [],
+    "definition": "const f64 lbl_801A6FA0",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80023684"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "07af8387624cf8f36152797d2f561246f21237d1d22b5c13006eacfa6f475e43",
+    "size": 8,
+    "source": "dol/data/lbl_801A6FA0.c",
+    "symbol": "lbl_801A6FA0",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216160
+  },
+  "main:lbl_801A6FA8": {
+    "address": 2149216168,
+    "align": 8,
+    "declarations": [],
+    "definition": "const f64 lbl_801A6FA8",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80023B70",
+      "fn_80023D00"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "07af8387624cf8f36152797d2f561246f21237d1d22b5c13006eacfa6f475e43",
+    "size": 8,
+    "source": "dol/data/lbl_801A6FA8.c",
+    "symbol": "lbl_801A6FA8",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216168
+  },
+  "main:lbl_801A6FB0": {
+    "address": 2149216176,
+    "align": 4,
+    "declarations": [],
+    "definition": "const f32 lbl_801A6FB0",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80023B70"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "de620abd6d3615746360c1d15ce3a56291236d37424124054a49d25e947ffc4d",
+    "size": 4,
+    "source": "dol/data/lbl_801A6FB0.c",
+    "symbol": "lbl_801A6FB0",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216176
+  },
+  "main:lbl_801A6FB4": {
+    "address": 2149216180,
+    "align": 4,
+    "declarations": [],
+    "definition": "const f32 lbl_801A6FB4",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80023D00"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "602c0ad4e31620e547048b7233e0666cc3ba1151637458f13c344d0aca90e0f5",
+    "size": 4,
+    "source": "dol/data/lbl_801A6FB0.c",
+    "symbol": "lbl_801A6FB4",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216176
+  },
+  "main:lbl_801A6FB8": {
+    "address": 2149216184,
+    "align": 4,
+    "declarations": [],
+    "definition": "const f32 lbl_801A6FB8",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80023D00"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "4f5b1b3e5f0b473be74717990546526b907180f7a982d372a8ff7abe41996aa3",
+    "size": 4,
+    "source": "dol/data/lbl_801A6FB8.c",
+    "symbol": "lbl_801A6FB8",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216184
+  },
+  "main:lbl_801A6FBC": {
+    "address": 2149216188,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "f32 lbl_801A6FBC",
+        "path": "src/dol/fn_800243C4.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A6FBC",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_800243C4"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "1b9e0fe7b740b4e583727aa1c9d27ff8c01491f911d2de0747f8c997ef6b3498",
+    "size": 4,
+    "source": "dol/data/lbl_801A6FB8.c",
+    "symbol": "lbl_801A6FBC",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216184
+  },
+  "main:lbl_801A6FC0": {
+    "address": 2149216192,
+    "align": 4,
+    "declarations": [],
+    "definition": "const f32 lbl_801A6FC0",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_800244C8"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "dol/data/lbl_801A6FC0.c",
+    "symbol": "lbl_801A6FC0",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216192
+  },
+  "main:lbl_801A6FC4": {
+    "address": 2149216196,
+    "align": 4,
+    "declarations": [],
+    "definition": "const f32 lbl_801A6FC4",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_800244C8"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "de620abd6d3615746360c1d15ce3a56291236d37424124054a49d25e947ffc4d",
+    "size": 4,
+    "source": "dol/data/lbl_801A6FC0.c",
+    "symbol": "lbl_801A6FC4",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216192
+  },
+  "main:lbl_801A6FC8": {
+    "address": 2149216200,
+    "align": 4,
+    "declarations": [],
+    "definition": "const f32 lbl_801A6FC8",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_800244C8"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "fdccad0b4acccd3e8dcf06db120dd6b23f4573dd96b434af2fb919836a3615d4",
+    "size": 4,
+    "source": "dol/data/lbl_801A6FC8.c",
+    "symbol": "lbl_801A6FC8",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216200
+  },
+  "main:lbl_801A6FCC": {
+    "address": 2149216204,
+    "align": 4,
+    "declarations": [],
+    "definition": "const f32 lbl_801A6FCC",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_800244C8"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "b9e69238a01189ddad0c70c62fc04d362b55ee6eefaa558dd13fc45ac1d665be",
+    "size": 4,
+    "source": "dol/data/lbl_801A6FC8.c",
+    "symbol": "lbl_801A6FCC",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216200
+  },
+  "main:lbl_801A6FD0": {
+    "address": 2149216208,
+    "align": 4,
+    "declarations": [],
+    "definition": "const f32 lbl_801A6FD0",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_800244C8"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "31cf8391f9bfd8eedef79bcf6b13f2db5f20089185538b317e01e372d5b8b750",
+    "size": 4,
+    "source": "dol/data/lbl_801A6FD0.c",
+    "symbol": "lbl_801A6FD0",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216208
+  },
+  "main:lbl_801A6FD4": {
+    "address": 2149216212,
+    "align": 4,
+    "declarations": [],
+    "definition": "const f32 lbl_801A6FD4",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_800244C8"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "da53a6ae0f1fe080d3b45e5e2b201dd7755ecdb5516bc317f40b28280ae4a80b",
+    "size": 4,
+    "source": "dol/data/lbl_801A6FD0.c",
+    "symbol": "lbl_801A6FD4",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216208
+  },
+  "main:lbl_801A6FD8": {
+    "address": 2149216216,
+    "align": 4,
+    "declarations": [],
+    "definition": "const f32 lbl_801A6FD8",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_800244C8"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "6547fdd5a34358ca5188d98386325ae2d18aac0e8eb45da7e5c417074ca19b2c",
+    "size": 4,
+    "source": "dol/data/lbl_801A6FD8.c",
+    "symbol": "lbl_801A6FD8",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216216
+  },
+  "main:lbl_801A6FDC": {
+    "address": 2149216220,
+    "align": 4,
+    "declarations": [],
+    "definition": "const f32 lbl_801A6FDC",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_800244C8"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "e438eb35d1d32ca38073bdbfa3fa362f8c9ce030e99f63527943561bd7da1dba",
+    "size": 4,
+    "source": "dol/data/lbl_801A6FD8.c",
+    "symbol": "lbl_801A6FDC",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216216
+  },
+  "main:lbl_801A6FE0": {
+    "address": 2149216224,
+    "align": 8,
+    "declarations": [],
+    "definition": "const f64 lbl_801A6FE0",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_800244C8"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "07af8387624cf8f36152797d2f561246f21237d1d22b5c13006eacfa6f475e43",
+    "size": 8,
+    "source": "dol/data/lbl_801A6FE0.c",
+    "symbol": "lbl_801A6FE0",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216224
+  },
+  "main:lbl_801A6FE8": {
+    "address": 2149216232,
+    "align": 4,
+    "declarations": [],
+    "definition": "const f32 lbl_801A6FE8",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_800248D4"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "602c0ad4e31620e547048b7233e0666cc3ba1151637458f13c344d0aca90e0f5",
+    "size": 4,
+    "source": "dol/data/lbl_801A6FE8.c",
+    "symbol": "lbl_801A6FE8",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216232
+  },
+  "main:lbl_801A6FEC": {
+    "address": 2149216236,
+    "align": 4,
+    "declarations": [],
+    "definition": "const f32 lbl_801A6FEC",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_800248D4"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "4f5b1b3e5f0b473be74717990546526b907180f7a982d372a8ff7abe41996aa3",
+    "size": 4,
+    "source": "dol/data/lbl_801A6FE8.c",
+    "symbol": "lbl_801A6FEC",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216232
+  },
+  "main:lbl_801A6FF0": {
+    "address": 2149216240,
+    "align": 8,
+    "declarations": [],
+    "definition": "const f64 lbl_801A6FF0",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_800248D4"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "07af8387624cf8f36152797d2f561246f21237d1d22b5c13006eacfa6f475e43",
+    "size": 8,
+    "source": "dol/data/lbl_801A6FF0.c",
+    "symbol": "lbl_801A6FF0",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216240
+  },
+  "main:lbl_801A6FF8": {
+    "address": 2149216248,
+    "align": 8,
+    "declarations": [],
+    "definition": "const f64 lbl_801A6FF8",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80024E6C",
+      "fn_80025004"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "07af8387624cf8f36152797d2f561246f21237d1d22b5c13006eacfa6f475e43",
+    "size": 8,
+    "source": "dol/data/lbl_801A6FF8.c",
+    "symbol": "lbl_801A6FF8",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216248
+  },
+  "main:lbl_801A7000": {
+    "address": 2149216256,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "f32 lbl_801A7000",
+        "path": "src/dol/fn_8002805C.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A7000",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_8002805C"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "e8ed90c1eadc4cdc681ef61f06f767afc7043be08ecd94c5c2990ed7e560c8f8",
+    "size": 4,
+    "source": "dol/data/lbl_801A7000.c",
+    "symbol": "lbl_801A7000",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216256
+  },
+  "main:lbl_801A7004": {
+    "address": 2149216260,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "f32 lbl_801A7004",
+        "path": "src/dol/fn_8002805C.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A7004",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_8002805C"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "351a96b7c338b357a0b7c9dfc38cf9cb03edc89aeb18c914de2865dc8526d5a9",
+    "size": 4,
+    "source": "dol/data/lbl_801A7000.c",
+    "symbol": "lbl_801A7004",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216256
+  },
+  "main:lbl_801A7008": {
+    "address": 2149216264,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "f64 lbl_801A7008",
+        "path": "src/dol/fn_80028130.c"
+      }
+    ],
+    "definition": "const f64 lbl_801A7008",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80028130"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "2b2979f362d94c89fe17a6e01637f14332de063fe7a544bdc5facfc046f4169f",
+    "size": 8,
+    "source": "dol/data/lbl_801A7008.c",
+    "symbol": "lbl_801A7008",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216264
+  },
+  "main:lbl_801A7010": {
+    "address": 2149216272,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "f32 lbl_801A7010",
+        "path": "src/dol/fn_80028164.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A7010",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80028164"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 16,
+    "sha256": "da53a6ae0f1fe080d3b45e5e2b201dd7755ecdb5516bc317f40b28280ae4a80b",
+    "size": 4,
+    "source": "dol/data/lbl_801A7010.c",
+    "symbol": "lbl_801A7010",
+    "unit_align": 8,
+    "unit_size": 16,
+    "unit_start": 2149216272
+  },
+  "main:lbl_801A7018": {
+    "address": 2149216280,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "f64 lbl_801A7018",
+        "path": "src/dol/fn_80028164.c"
+      }
+    ],
+    "definition": "const f64 lbl_801A7018",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80028164"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 16,
+    "sha256": "07af8387624cf8f36152797d2f561246f21237d1d22b5c13006eacfa6f475e43",
+    "size": 8,
+    "source": "dol/data/lbl_801A7010.c",
+    "symbol": "lbl_801A7018",
+    "unit_align": 8,
+    "unit_size": 16,
+    "unit_start": 2149216272
+  },
+  "main:lbl_801A7020": {
+    "address": 2149216288,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "f32 lbl_801A7020[2]",
+        "path": "src/dol/fn_800284A0.c"
+      },
+      {
+        "declaration": "f32 lbl_801A7020[2]",
+        "path": "src/dol/fn_800284FC.c"
+      },
+      {
+        "declaration": "f32 lbl_801A7020[2]",
+        "path": "src/dol/fn_80028598.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A7020[2]",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_800284A0",
+      "fn_800284FC",
+      "fn_80028598"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+    "size": 8,
+    "source": "dol/data/lbl_801A7020.c",
+    "symbol": "lbl_801A7020",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216288
+  },
+  "main:lbl_801A7028": {
+    "address": 2149216296,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A7028",
+        "path": "src/dol/fn_800285DC.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A7028",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_800285DC"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 16,
+    "sha256": "da53a6ae0f1fe080d3b45e5e2b201dd7755ecdb5516bc317f40b28280ae4a80b",
+    "size": 4,
+    "source": "dol/data/lbl_801A7028.c",
+    "symbol": "lbl_801A7028",
+    "unit_align": 8,
+    "unit_size": 16,
+    "unit_start": 2149216296
+  },
+  "main:lbl_801A7030": {
+    "address": 2149216304,
+    "align": 8,
+    "declarations": [],
+    "definition": "const f64 lbl_801A7030",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_800285DC"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 16,
+    "sha256": "07af8387624cf8f36152797d2f561246f21237d1d22b5c13006eacfa6f475e43",
+    "size": 8,
+    "source": "dol/data/lbl_801A7028.c",
+    "symbol": "lbl_801A7030",
+    "unit_align": 8,
+    "unit_size": 16,
+    "unit_start": 2149216296
+  },
+  "main:lbl_801A7038": {
+    "address": 2149216312,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "f32 lbl_801A7038[2]",
+        "path": "src/dol/fn_800288C4.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A7038[2]",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_800288C4"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "e416065dd951359ab79d557107324f0f8fb0142494f2523ca9fdac35f1ac3d18",
+    "size": 8,
+    "source": "dol/data/lbl_801A7038.c",
+    "symbol": "lbl_801A7038",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216312
+  },
+  "main:lbl_801A7040": {
+    "address": 2149216320,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "f32 lbl_801A7040",
+        "path": "src/dol/fn_80028A78.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A7040[2]",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80028A78"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "e416065dd951359ab79d557107324f0f8fb0142494f2523ca9fdac35f1ac3d18",
+    "size": 8,
+    "source": "dol/data/lbl_801A7040.c",
+    "symbol": "lbl_801A7040",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216320
+  },
+  "main:lbl_801A7048": {
+    "address": 2149216328,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A7048",
+        "path": "src/dol/fn_80028B3C.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A7048",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80028B3C"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "dol/data/lbl_801A7048.c",
+    "symbol": "lbl_801A7048",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216328
+  },
+  "main:lbl_801A704C": {
+    "address": 2149216332,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A704C",
+        "path": "src/dol/fn_80028B3C.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A704C",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80028B3C"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "1aeadc6fe40c6e83ce89ce6d57ec3cd9f1a30d2f545c978b504293509dc90880",
+    "size": 4,
+    "source": "dol/data/lbl_801A7048.c",
+    "symbol": "lbl_801A704C",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216328
+  },
+  "main:lbl_801A7050": {
+    "address": 2149216336,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A7050",
+        "path": "src/dol/fn_80028B3C.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A7050",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80028B3C"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "8c2f7eb77a4889528b38e234c97ee01a938b0d9d9f951690613c3d9e4aaba6fd",
+    "size": 4,
+    "source": "dol/data/lbl_801A7050.c",
+    "symbol": "lbl_801A7050",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216336
+  },
+  "main:lbl_801A7054": {
+    "address": 2149216340,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const f32 lbl_801A7054",
+        "path": "src/dol/fn_80028B3C.c"
+      }
+    ],
+    "definition": "const f32 lbl_801A7054",
+    "method": "float-pool",
+    "module": "main",
+    "references": [
+      "fn_80028B3C"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "189640ad3a9268f78531ebbffa9e62a1dcc4be80109e8262a1fdd2ed39ecbf42",
+    "size": 4,
+    "source": "dol/data/lbl_801A7050.c",
+    "symbol": "lbl_801A7054",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216336
+  },
+  "main:lbl_801A705C": {
+    "address": 2149216348,
+    "align": 4,
+    "declarations": [],
+    "definition": "const u32 lbl_801A705C",
+    "method": "typed-data",
+    "module": "main",
+    "references": [
+      "__GXInitGX"
+    ],
+    "relocations": [],
+    "section": ".sdata2",
+    "section_size": 8,
+    "sha256": "9628e815241cc05d54f579e472f651b255ff42ad8da0bf3b2a265818555169aa",
+    "size": 4,
+    "source": "dol/data/gx.c",
+    "symbol": "lbl_801A705C",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149216344
   },
   "main:lbl_801A7060": {
     "address": 2149216352,
@@ -74225,6 +77926,188 @@
     "unit_align": 8,
     "unit_size": 8,
     "unit_start": 2149218552
+  },
+  "main:lbl_801A7900": {
+    "address": 2149218560,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_801A7900[2]",
+        "path": "src/dol/fn_80005738.c"
+      }
+    ],
+    "definition": "u32 lbl_801A7900[2]",
+    "method": "declared-bss",
+    "module": "main",
+    "references": [
+      "fn_80005738"
+    ],
+    "relocations": [],
+    "section": ".sbss2",
+    "section_size": 8,
+    "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+    "size": 8,
+    "source": "dol/data/lbl_801A7900.c",
+    "symbol": "lbl_801A7900",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149218560
+  },
+  "main:lbl_801A7908": {
+    "address": 2149218568,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Sig_fn_800371F8_GXColor lbl_801A7908",
+        "path": "src/dol/fn_80005B10.c"
+      }
+    ],
+    "definition": "u8 lbl_801A7908[8]",
+    "method": "opaque-bss",
+    "module": "main",
+    "references": [
+      "fn_80005B10"
+    ],
+    "relocations": [],
+    "section": ".sbss2",
+    "section_size": 8,
+    "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+    "size": 8,
+    "source": "dol/data/lbl_801A7908.c",
+    "symbol": "lbl_801A7908",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149218568
+  },
+  "main:lbl_801A7910": {
+    "address": 2149218576,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Color lbl_801A7910",
+        "path": "src/dol/fn_80008204.c"
+      }
+    ],
+    "definition": "u8 lbl_801A7910[4]",
+    "method": "opaque-bss",
+    "module": "main",
+    "references": [
+      "fn_80008204"
+    ],
+    "relocations": [],
+    "section": ".sbss2",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "dol/data/lbl_801A7910.c",
+    "symbol": "lbl_801A7910",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149218576
+  },
+  "main:lbl_801A7914": {
+    "address": 2149218580,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Color lbl_801A7914",
+        "path": "src/dol/fn_80008204.c"
+      }
+    ],
+    "definition": "u8 lbl_801A7914[4]",
+    "method": "opaque-bss",
+    "module": "main",
+    "references": [
+      "fn_80008204"
+    ],
+    "relocations": [],
+    "section": ".sbss2",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "dol/data/lbl_801A7910.c",
+    "symbol": "lbl_801A7914",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149218576
+  },
+  "main:lbl_801A7918": {
+    "address": 2149218584,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "u32 lbl_801A7918",
+        "path": "src/dol/fn_80070774.c"
+      }
+    ],
+    "definition": "u8 lbl_801A7918[8]",
+    "method": "opaque-bss-header-mismatch",
+    "module": "main",
+    "references": [
+      "fn_80070774"
+    ],
+    "relocations": [],
+    "section": ".sbss2",
+    "section_size": 8,
+    "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+    "size": 8,
+    "source": "dol/data/lbl_801A7918.c",
+    "symbol": "lbl_801A7918",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149218584
+  },
+  "main:lbl_801A7920": {
+    "address": 2149218592,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "Color4 lbl_801A7920",
+        "path": "src/dol/fn_80071D30.c"
+      }
+    ],
+    "definition": "u8 lbl_801A7920[8]",
+    "method": "opaque-bss",
+    "module": "main",
+    "references": [
+      "fn_80071D30"
+    ],
+    "relocations": [],
+    "section": ".sbss2",
+    "section_size": 8,
+    "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+    "size": 8,
+    "source": "dol/data/lbl_801A7920.c",
+    "symbol": "lbl_801A7920",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149218592
+  },
+  "main:lbl_801A7928": {
+    "address": 2149218600,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "const GXColor lbl_801A7928",
+        "path": "src/dol/fn_80075240.c"
+      }
+    ],
+    "definition": "u8 lbl_801A7928[4]",
+    "method": "opaque-bss",
+    "module": "main",
+    "references": [
+      "fn_80075240"
+    ],
+    "relocations": [],
+    "section": ".sbss2",
+    "section_size": 4,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "dol/data/lbl_801A7928.c",
+    "symbol": "lbl_801A7928",
+    "unit_align": 8,
+    "unit_size": 4,
+    "unit_start": 2149218600
   },
   "main_rel:camera_flag_0": {
     "address": 4168,

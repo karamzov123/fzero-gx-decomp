@@ -1,13 +1,13 @@
 #include <types.h>
 #include <dolphin/os/OSInterrupt.h>
 
-extern u32 CurrTvMode_801A6964;
+extern u32 CurrTvMode;
 
 u32 VIGetTvFormat(void) {
     u32 fmt;
     int interrupt;
     interrupt = OSDisableInterrupts();
-    switch (CurrTvMode_801A6964) {
+    switch (CurrTvMode) {
     case 0:
     case 3:
     case 6:
@@ -19,7 +19,7 @@ u32 VIGetTvFormat(void) {
         break;
     case 5:
     case 2:
-        fmt = CurrTvMode_801A6964;
+        fmt = CurrTvMode;
         break;
     }
     OSRestoreInterrupts(interrupt);

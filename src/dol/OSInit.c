@@ -109,11 +109,11 @@ static DVDCommandBlock __OSDriveBlock__fzgx_offset_0;
 
 extern OSBootInfo *BootInfo_801A6748;
 
-extern u32 *BI2DebugFlag_801A674C;
+extern u32 *BI2DebugFlag;
 
-extern u32 *BI2DebugFlagHolder_801A6750;
+extern u32 *BI2DebugFlagHolder;
 
-extern BOOL AreWeInitialized_801A6768;
+extern BOOL AreWeInitialized;
 
 extern OSTime __OSStartTime;
 
@@ -138,8 +138,8 @@ void OSInit(void) {
     void *debugArenaLo;
     u32 inputConsoleType;
     u32 tdev;
-    if ((BOOL)AreWeInitialized_801A6768 == 0) {
-        AreWeInitialized_801A6768 = 1;
+    if ((BOOL)AreWeInitialized == 0) {
+        AreWeInitialized = 1;
         __OSStartTime = __OSGetSystemTime();
         OSDisableInterrupts();
         PPCMtmmcr0(0);
@@ -150,25 +150,25 @@ void OSInit(void) {
         PPCMtpmc4(0);
         PPCDisableSpeculation();
         PPCSetFpNonIEEEMode();
-        BI2DebugFlag_801A674C = 0;
+        BI2DebugFlag = 0;
         BootInfo_801A6748 = (OSBootInfo *)(0x8000 << 16);
         __DVDLongFileNameFlag = (u32)0;
         DebugInfo = (BI2Debug *)*((u32 *)FZGX_ADDR___OSBI2Pointer);
         if (DebugInfo != ((void *)0)) {
-            BI2DebugFlag_801A674C = &DebugInfo->debugFlag;
+            BI2DebugFlag = &DebugInfo->debugFlag;
             __PADSpec = (u32)DebugInfo->padSpec;
-            *((u8 *)FZGX_ADDR___OSBI2DebugFlag) = (u8)*BI2DebugFlag_801A674C;
+            *((u8 *)FZGX_ADDR___OSBI2DebugFlag) = (u8)*BI2DebugFlag;
             *((u8 *)FZGX_ADDR___OSPadSpecByte) = (u8)__PADSpec;
         } else if (BootInfo_801A6748->arenaHi) {
-            BI2DebugFlagHolder_801A6750 = (u32 *)*((u8 *)FZGX_ADDR___OSBI2DebugFlag);
-            BI2DebugFlag_801A674C = (u32 *)&BI2DebugFlagHolder_801A6750;
+            BI2DebugFlagHolder = (u32 *)*((u8 *)FZGX_ADDR___OSBI2DebugFlag);
+            BI2DebugFlag = (u32 *)&BI2DebugFlagHolder;
             __PADSpec = (u32) * ((u8 *)FZGX_ADDR___OSPadSpecByte);
         }
         __DVDLongFileNameFlag = 1;
         OSSetArenaLo((BootInfo_801A6748->arenaLo == ((void *)0)) ? __ArenaLo
                                                                  : BootInfo_801A6748->arenaLo);
-        if ((BootInfo_801A6748->arenaLo == ((void *)0)) && (BI2DebugFlag_801A674C != 0) &&
-            (*BI2DebugFlag_801A674C < 2)) {
+        if ((BootInfo_801A6748->arenaLo == ((void *)0)) && (BI2DebugFlag != 0) &&
+            (*BI2DebugFlag < 2)) {
             debugArenaLo = (char *)(((u32)_stack_addr + 0x1f) & ~0x1f);
             OSSetArenaLo(debugArenaLo);
         }
@@ -232,7 +232,7 @@ void OSInit(void) {
         OSReport(messages->message_fc, (u32)BootInfo_801A6748->memorySize >> 0x14U);
         OSReport(messages->message_10c, OSGetArenaLo(), OSGetArenaHi());
         OSRegisterVersion(__OSVersion);
-        if (BI2DebugFlag_801A674C && ((*BI2DebugFlag_801A674C) >= 2)) {
+        if (BI2DebugFlag && ((*BI2DebugFlag) >= 2)) {
             EnableMetroTRKInterrupts();
         }
         ClearArena();
