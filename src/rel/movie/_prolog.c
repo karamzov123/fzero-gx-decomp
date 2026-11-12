@@ -25,6 +25,15 @@ extern u8 lbl_5_bss_5F;
 extern u8 lbl_5_bss_61;
 extern u32 fn_5_3C44(void);
 extern u8 lbl_5_bss_40;
+extern char lbl_1_bss_198[];
+extern u8 lbl_1_bss_58[0x2c];
+extern u8 lbl_1_bss_6EAD0[0x708];
+extern s16 lbl_1_bss_964;
+extern s16 lbl_1_bss_968;
+extern u8 lbl_5_data_0[20];
+extern u32 lbl_801A6410;
+extern void fn_1_49514(u32 *);
+extern void fn_1_4A0D8(const char *);
 
 /* fzgx:begin _prolog noprologue */
 #include "types.h"
@@ -1435,17 +1444,10 @@ static const u32 fzgx_pool_table9[1] = {0x00000000};  /* fzgx-allow: A1 retail p
 __declspec(section ".fzgxpool") static void fzgx_pool_keep9(void) { const u32 *volatile cp; cp = fzgx_pool_table9; }  /* fzgx-allow: S2 pool primer sink */
 #pragma section code_type ".text"
 
-extern u8 lbl_5_data_0[];
-extern u32 lbl_5_bss_0[8];
-extern struct fn_5_200_lbl_1_bss_970 lbl_1_bss_970;
-extern const f32 lbl_5_rodata_0;
-
 extern void fn_1_49410(void *);
 extern void fn_1_4955C(f32, f32);
-extern void fn_1_49514(u32 *);
 extern void fn_1_496FC(f32, f32);
 extern void fn_1_4AE0C(const char *, ...);
-extern void fn_1_4A0D8(const char *);
 extern void fn_1_4965C(u8);
 
 struct rodata_5 {
@@ -1494,7 +1496,7 @@ void fn_5_1404(u8 *arg0) {
     u32 sp8;
 
     r28 = (struct rodata_5 *)&lbl_5_rodata_0;
-    r29 = lbl_5_data_0;
+    r29 = (*(u8 (*)[])&lbl_5_data_0);
     r30 = (struct bss_5 *)&lbl_5_bss_0;
     fn_1_49410(arg0);
     fn_1_4955C((0.5f), (0.5f));
@@ -1579,7 +1581,35 @@ void fn_5_1404(u8 *arg0) {
 }
 /* fzgx:end fn_5_1404 */
 
-/* fzgx:begin fn_5_169C */
+/* fzgx:begin fn_5_169C noprologue */
+#include "types.h"
+#include "rel/movie/globals.h"
+extern u32 lbl_5_bss_0[8];
+extern struct fn_5_200_lbl_1_bss_970 lbl_1_bss_970;
+extern u32 fn_1_3CC4(u32);
+extern u32 fn_1_407C(u32);
+extern u32 fn_1_435C(u32);
+extern const f32 lbl_5_rodata_0;
+extern void fn_8006CE1C(f32);
+extern void fn_1_3C78(void);
+extern void fn_1_157940(void);
+extern void fn_1_41A8(u32);
+extern void fn_1_A0AA4(void);
+extern void fn_1_47A60(u32);
+extern void fn_800068F4(u32);
+extern void fn_80006904(u32);
+extern void fn_1_A5C98(void *);
+extern s16 lbl_1_bss_962;
+extern struct fn_5_320_lbl_5_data_40 lbl_5_data_40;
+extern u32 lbl_1_bss_71688;
+extern u32 lbl_1_bss_7168C;
+extern u32 fn_1_412A0(u32);
+extern u32 fn_1_48140(u32);
+extern u8 lbl_5_bss_5F;
+extern u8 lbl_5_bss_61;
+extern u32 fn_5_3C44(void);
+extern u8 lbl_5_bss_40;
+
 extern u32 lbl_5_bss_0[8];
 extern struct fn_5_200_lbl_1_bss_970 lbl_1_bss_970;
 extern u32 fn_1_3CC4(u32);
@@ -2435,7 +2465,35 @@ static const u32 fzgx_pool_rodata_lbl_5_rodata_0_4C[33] = {  /* fzgx-allow: A1 r
 };
 /* fzgx:end fn_5_169C */
 
-/* fzgx:begin fn_5_20FC */
+/* fzgx:begin fn_5_20FC noprologue */
+#include "types.h"
+#include "rel/movie/globals.h"
+extern u32 lbl_5_bss_0[8];
+extern struct fn_5_200_lbl_1_bss_970 lbl_1_bss_970;
+extern u32 fn_1_3CC4(u32);
+extern u32 fn_1_407C(u32);
+extern u32 fn_1_435C(u32);
+extern const f32 lbl_5_rodata_0;
+extern void fn_8006CE1C(f32);
+extern void fn_1_3C78(void);
+extern void fn_1_157940(void);
+extern void fn_1_41A8(u32);
+extern void fn_1_A0AA4(void);
+extern void fn_1_47A60(u32);
+extern void fn_800068F4(u32);
+extern void fn_80006904(u32);
+extern void fn_1_A5C98(void *);
+extern s16 lbl_1_bss_962;
+extern struct fn_5_320_lbl_5_data_40 lbl_5_data_40;
+extern u32 lbl_1_bss_71688;
+extern u32 lbl_1_bss_7168C;
+extern u32 fn_1_412A0(u32);
+extern u32 fn_1_48140(u32);
+extern u8 lbl_5_bss_5F;
+extern u8 lbl_5_bss_61;
+extern u32 fn_5_3C44(void);
+extern u8 lbl_5_bss_40;
+
 extern u32 lbl_5_bss_0[8];
 extern struct fn_5_200_lbl_1_bss_970 lbl_1_bss_970;
 extern u32 fn_1_3CC4(u32);
