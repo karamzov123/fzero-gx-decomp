@@ -21612,3 +21612,6 @@ rel/main_rel/stcoli/fn_1_2CBAC.c:
 
 rel/main_rel/sound/fn_1_A47F4.c:
 	.text       start:0x000A47F4 end:0x000A4BC8 align:4
+
+rel/main_rel/sel_static_disp/fn_1_145C6C.c:
+	.text       start:0x00145C6C end:0x001461C8 align:4
