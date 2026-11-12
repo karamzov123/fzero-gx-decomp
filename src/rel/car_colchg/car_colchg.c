@@ -1,46 +1,86 @@
 #include "types.h"
+#include "dolphin/types.h"
 #include "rel/car_colchg/globals.h"
 #include "rel/car_colchg/car_colchg.h"
 
+struct CarColchgEntry {
+    s16 unk0;
+    u16 unk2;
+    u32 unk4;
+    u8 pad8[24];
+};
 
+struct Struct_lbl_1_bss_970
+{
+  u8 pad0[4];
+  u8 unk4;
+};
+
+struct Car {
+    u8 pad_0[0x3b8];
+    s16 unk_3b8;
+};
+
+struct Car_9_1310 {
+    u8 pad_0[0x3b8];
+    s16 unk_3b8;
+};
+
+typedef struct { u32 words[2]; f32 x; f32 y; u32 rest[18]; } SelectionPanel;
+u16 fn_1_3F8C(char *, void (*)(void), s32, s32);
+extern u32 fn_1_435C(u32 value);
+extern void fn_1_4A00(s32 enabled, u8 mode, void *value);
+extern void fn_9_1BCC(void);
+extern void colchg_selcar_disp(void *cars);
+extern int fn_1_4C10(void);
+extern s16 *lbl_1_data_1FB6C[];
+extern void colchg_selmate_disp(u8 *car);
+extern void OSReport(const char *format, ...);
+extern void colchg_chgcol_disp(void *car);
 extern void colchg_menu_disp(void);
-void fn_1_426C(s16);
+extern void fn_1_426C(u32 arg0);
 extern void colchg_ezsel_disp(void);
 extern void colchg_save_disp(void);
 extern u16 lbl_1_bss_968;
-extern struct Struct_lbl_1_bss_D58 lbl_1_bss_D58;
-s32 fn_1_4C10(void);
-void fn_1_A8EB0(s32, s32);
-s32 fn_1_7F49C(s16, s32, void *);
-void fn_1_A8DD4(const char *, ...);
-void fn_1_80058(s8, struct CarColchgEntry *);
-void fn_1_80C18(u32, struct CarColchgEntry *, s32);
-void fn_1_426C(s16);
-s32 fn_1_4C10(void);
-void fn_1_A8EB0(s32, s32);
-s32 fn_1_7F49C(s16, s32, void *);
-void fn_1_A8DD4(const char *, ...);
-void fn_1_80058(s8, struct CarColchgEntry *);
-void fn_1_80C18(u32, struct CarColchgEntry *, s32);
+extern void fn_1_A8EB0(int arg0, int arg1);
+extern void *fn_1_7F49C(s16 arg0, s16 arg1, void *arg2);
+extern void fn_1_A8DD4(const char *format, ...);
+extern void fn_1_80058(s8 arg0, u8 *arg1);
+extern void fn_1_80C18(u8 *arg0, u8 *arg1, s8 arg2);
 extern s16 lbl_1_bss_962;
 extern u32 lbl_1_bss_71688;
 extern u32 lbl_1_bss_7168C;
 extern struct Struct_lbl_1_bss_970 lbl_1_bss_970;
 extern u16 lbl_1_bss_96A;
-extern struct Entry *lbl_1_data_1FB6C[];
 extern u32 lbl_801A6410;
-void fn_1_7FA04(u32);
+extern void fn_1_7FA04(u32 arg0);
 void fn_1_8D168(u32);
-void fn_1_435C(u32);
-void fn_1_41A8(void);
-void fn_1_46B4(u32, u32, void *, s32);
-void fn_1_6400(void);
-u16 fn_1_3F8C(char *, void (*)(void), s32, s32);
-void fn_1_4A00(s32, s32, u32);
-extern void fn_9_1BCC(void);
+extern void fn_1_41A8(void);
+extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
+extern void fn_1_6400(void);
 extern void fn_9_1AC4(void);
 extern u32 lbl_801A66A0;
+extern const f32 lbl_9_rodata_14;
+extern const f32 lbl_9_rodata_18;
+extern void fn_1_496FC(f32 value1, f32 value2);
+extern void fn_1_4AE0C(const char *, ...);
+void lbl_8006D7F4(f32, f32, f32);
+void mathutil_mtxA_rotate_y(s32);
+void mathutil_mtxA_rotate_x(s32);
+void lbl_8006E14C(f32);
+extern void fn_80072558(void);
+extern void fn_1_870BC(struct Car *, s8, struct Car *, s32, u8, f32);
 extern u8 lbl_1_rodata_26F8[88];
+extern u16 lbl_1_bss_D58;
+extern size_t strlen(const char *str);
+extern char *fn_80083DB0(char *dst, const char *src);
+extern void fn_1_4B83C(void *arg0, void *arg1, u32 arg2, const char *arg3);
+extern int sprintf(char *s, const char *format, ...);
+extern void fn_1_4B040(s32 value);
+extern void fn_1_4955C(f32 value1, f32 value2);
+extern s32 fn_9_120C(struct Car *car);
+extern s32 fn_9_1310(struct Car_9_1310 *car);
+void fn_1_8D3F8(void *, void *, void (*)(void), void *);
 extern const f32 lbl_9_rodata_0;
 extern char lbl_9_data_7C[];
 extern char lbl_9_data_80[];
@@ -54,8 +94,8 @@ extern void fn_80035420(void *, f32, s32);
 extern void fn_800356AC(void *, void *);
 extern void GXInitLightDistAttn(void *, s32, f32, f32);
 extern void fn_1_7BB80(void *, s32);
-extern void fn_1_7BD6C(s32);
-extern void fn_80074CF4(f32, f32, f32);
+extern u32 fn_1_7BD6C(s32 value);
+extern void fn_80074CF4(f32 arg0, f32 arg1, f32 arg2);
 
 /* fzgx:begin _epilog */
 struct _epilog_CarColchgState {
@@ -83,9 +123,9 @@ void _epilog(void) {
     fn_1_41A8();
     fn_1_435C(state->unk10);
     fn_1_41A8();
-    fn_1_46B4(lbl_801A6410, state->unk0, lbl_9_data_4, 0xDA);
+    fn_1_46B4(lbl_801A6410, state->unk0, (const char *)(void *)(lbl_9_data_4), 0xDA);
     fn_1_6400();
-    fn_1_46B4(lbl_801A6410, state->unk8, lbl_9_data_4, 0xDC);
+    fn_1_46B4(lbl_801A6410, state->unk8, (const char *)(void *)(lbl_9_data_4), 0xDC);
 }
 /* fzgx:end _epilog */
 
@@ -94,7 +134,7 @@ void colchg_menu_init(void) {
     // Set up the menu callback and activate the initial collision-color selection.
     fn_1_435C(lbl_9_bss_10);
     lbl_9_bss_DC = fn_1_3F8C(lbl_9_data_2C, colchg_menu_disp, 0, 8);
-    fn_1_4A00(1, 15, lbl_9_bss_10);
+    fn_1_4A00(1, 15, (void *)(u32)(lbl_9_bss_10));
 }
 /* fzgx:end colchg_menu_init */
 
@@ -111,18 +151,13 @@ typedef float f32;
 typedef double f64;
 typedef int BOOL;
 typedef unsigned long size_t;
-struct Struct_lbl_1_bss_D58
+struct fn_9_454_Struct_lbl_1_bss_D58
 {
   u8 pad0[8];
   volatile u16 unk8;  // volatile: decomp-permuter found retail keeps this access order; a revise pass should express it without volatile
   u8 padA[6];
   volatile u16 unk10;  // volatile: decomp-permuter found retail keeps this access order; a revise pass should express it without volatile
   volatile u16 unk12;  // volatile: decomp-permuter found retail keeps this access order; a revise pass should express it without volatile
-};
-struct Struct_lbl_1_bss_970
-{
-  u8 pad0[4];
-  u8 unk4;
 };
 void fn_9_454(void)
 {
@@ -131,11 +166,11 @@ void fn_9_454(void)
   if (fn_1_4C10() == 0)
   {
     delta = 0;
-    if (((lbl_1_bss_D58.unk10 >> 3) & 1) || ((long) ((lbl_1_bss_D58.unk12 >> 3) & 1)))
+    if ((((*((struct fn_9_454_Struct_lbl_1_bss_D58 *)&lbl_1_bss_D58)).unk10 >> 3) & 1) || ((long) (((*((struct fn_9_454_Struct_lbl_1_bss_D58 *)&lbl_1_bss_D58)).unk12 >> 3) & 1)))
     {
       delta = -1;
     }
-    if (((lbl_1_bss_D58.unk10 >> 2) & 1) || ((lbl_1_bss_D58.unk12 >> 2) & 1))
+    if ((((*((struct fn_9_454_Struct_lbl_1_bss_D58 *)&lbl_1_bss_D58)).unk10 >> 2) & 1) || (((*((struct fn_9_454_Struct_lbl_1_bss_D58 *)&lbl_1_bss_D58)).unk12 >> 2) & 1))
     {
       delta++;
     }
@@ -143,11 +178,11 @@ void fn_9_454(void)
     {
       value = lbl_1_bss_970.unk4 + delta;
       value = (lbl_1_bss_970.unk4 = (value > 0x73) ? (0x73) : ((value < 0x73) ? (0x73) : (value)));
-      if ((lbl_1_bss_D58.unk8 >> 8) & 1)
+      if (((*((struct fn_9_454_Struct_lbl_1_bss_D58 *)&lbl_1_bss_D58)).unk8 >> 8) & 1)
       {
         lbl_1_bss_96A = value;
       }
-      if ((lbl_1_bss_D58.unk8 >> 9) & 1)
+      if (((*((struct fn_9_454_Struct_lbl_1_bss_D58 *)&lbl_1_bss_D58)).unk8 >> 9) & 1)
       {
         lbl_1_bss_96A = 0x75;
       }
@@ -196,7 +231,18 @@ void colchg_selcar_init(void) {
 }
 /* fzgx:end colchg_selcar_init */
 
-/* fzgx:begin fn_9_5D8 */
+/* fzgx:begin fn_9_5D8 noprologue */
+#include "types.h"
+#include "rel/car_colchg/globals.h"
+#include "rel/car_colchg/car_colchg.h"
+
+
+extern struct Struct_lbl_1_bss_D58 lbl_1_bss_D58;
+s32 fn_1_4C10(void);
+s32 fn_1_4C10(void);
+extern u16 lbl_1_bss_96A;
+extern struct Entry *lbl_1_data_1FB6C[];
+
 #include "types.h"
 #include "rel/car_colchg/globals.h"
 
@@ -355,9 +401,6 @@ void colchg_selmate_init(void) {
 /* fzgx:end colchg_selmate_init */
 
 /* fzgx:begin fn_9_7DC */
-#include "types.h"
-#include "rel/car_colchg/globals.h"
-
 struct InputState {
     u8 pad[8];
     u16 buttons;
@@ -366,7 +409,7 @@ struct InputState {
     u16 buttons3;
 };
 
-struct Entry {
+struct fn_9_7DC_Entry {
     s16 id;
     s16 pad;
     s32 unk;
@@ -380,37 +423,37 @@ struct ColorState {
 };
 
 void fn_9_7DC(void) {
-    struct Entry *entries;
+    struct fn_9_7DC_Entry *entries;
     s8 change;
     s16 count;
     s32 index;
 
-    entries = lbl_1_data_1FB6C[((struct ColorState *)lbl_9_bss_8)->unk0];
+    entries = (((struct fn_9_7DC_Entry * *)&lbl_1_data_1FB6C))[((struct ColorState *)lbl_9_bss_8)->unk0];
     if (fn_1_4C10() == 0) {
-        if ((((struct InputState *)&lbl_1_bss_D58)->buttons >> 8) & 1) {
+        if ((((struct InputState *)&(*((struct Struct_lbl_1_bss_D58 *)&lbl_1_bss_D58)))->buttons >> 8) & 1) {
             lbl_1_bss_96A = 0x77;
         }
-        if ((((struct InputState *)&lbl_1_bss_D58)->buttons >> 9) & 1) {
+        if ((((struct InputState *)&(*((struct Struct_lbl_1_bss_D58 *)&lbl_1_bss_D58)))->buttons >> 9) & 1) {
             lbl_1_bss_96A = 0x73;
         }
 
         change = 0;
         // Direct polling preserves the button-edge reads.
-        if ((((volatile struct InputState *)&lbl_1_bss_D58)->buttons2 & 1) ||
+        if ((((volatile struct InputState *)&(*((struct Struct_lbl_1_bss_D58 *)&lbl_1_bss_D58)))->buttons2 & 1) ||
             // Direct polling preserves the second button-edge source.
-            (((volatile struct InputState *)&lbl_1_bss_D58)->buttons3 & 1)) {
+            (((volatile struct InputState *)&(*((struct Struct_lbl_1_bss_D58 *)&lbl_1_bss_D58)))->buttons3 & 1)) {
             change = -1;
         }
         // Direct polling preserves the button-edge reads.
-        if (((((volatile struct InputState *)&lbl_1_bss_D58)->buttons2 >> 1) & 1) ||
+        if (((((volatile struct InputState *)&(*((struct Struct_lbl_1_bss_D58 *)&lbl_1_bss_D58)))->buttons2 >> 1) & 1) ||
             // Direct polling preserves the second button-edge source.
-            ((((volatile struct InputState *)&lbl_1_bss_D58)->buttons3 >> 1) & 1)) {
+            ((((volatile struct InputState *)&(*((struct Struct_lbl_1_bss_D58 *)&lbl_1_bss_D58)))->buttons3 >> 1) & 1)) {
             change++;
         }
 
         if (change != 0) {
             count = 0;
-            while (lbl_1_data_1FB6C[((struct ColorState *)lbl_9_bss_8)->unk0][count].id != -1) {
+            while ((((struct fn_9_7DC_Entry * *)&lbl_1_data_1FB6C))[((struct ColorState *)lbl_9_bss_8)->unk0][count].id != -1) {
                 count++;
             }
 
@@ -448,7 +491,7 @@ void fn_9_7DC(void) {
 /* fzgx:end fn_9_7DC */
 
 /* fzgx:begin fn_9_A18 */
-struct Entry {
+struct fn_9_A18_Entry {
     u32 unk0;
     u32 unk4;
     u32 unk8;
@@ -466,9 +509,9 @@ struct CarColchgState {
 
 void fn_9_A18(void) {
     struct CarColchgState *state = (struct CarColchgState *)&lbl_9_bss_0;
-    struct Entry *entry;
+    struct fn_9_A18_Entry *entry;
 
-    entry = lbl_1_data_1FB6C[*state->selection];
+    entry = (((struct fn_9_A18_Entry * *)&lbl_1_data_1FB6C))[*state->selection];
     fn_1_435C(state->value10);
     fn_1_426C(state->valueDC);
     entry[state->selection[2]].unk8 = state->valueE0;
@@ -505,7 +548,53 @@ void colchg_chgcol_init(void) {
 }
 /* fzgx:end colchg_chgcol_init */
 
-/* fzgx:begin fn_9_AF0 */
+/* fzgx:begin fn_9_AF0 noprologue */
+#include "types.h"
+#include "rel/car_colchg/globals.h"
+#include "rel/car_colchg/car_colchg.h"
+
+
+extern void colchg_menu_disp(void);
+void fn_1_426C(s16);
+extern void colchg_ezsel_disp(void);
+extern void colchg_save_disp(void);
+extern u16 lbl_1_bss_968;
+extern struct Struct_lbl_1_bss_D58 lbl_1_bss_D58;
+s32 fn_1_4C10(void);
+void fn_1_A8EB0(s32, s32);
+s32 fn_1_7F49C(s16, s32, void *);
+void fn_1_A8DD4(const char *, ...);
+void fn_1_80058(s8, struct CarColchgEntry *);
+void fn_1_80C18(u32, struct CarColchgEntry *, s32);
+void fn_1_426C(s16);
+s32 fn_1_4C10(void);
+void fn_1_A8EB0(s32, s32);
+s32 fn_1_7F49C(s16, s32, void *);
+void fn_1_A8DD4(const char *, ...);
+void fn_1_80058(s8, struct CarColchgEntry *);
+void fn_1_80C18(u32, struct CarColchgEntry *, s32);
+extern s16 lbl_1_bss_962;
+extern u32 lbl_1_bss_71688;
+extern u32 lbl_1_bss_7168C;
+extern struct Struct_lbl_1_bss_970 lbl_1_bss_970;
+extern u16 lbl_1_bss_96A;
+extern struct Entry *lbl_1_data_1FB6C[];
+extern u32 lbl_801A6410;
+void fn_1_7FA04(u32);
+void fn_1_8D168(u32);
+void fn_1_435C(u32);
+void fn_1_41A8(void);
+void fn_1_46B4(u32, u32, void *, s32);
+void fn_1_6400(void);
+u16 fn_1_3F8C(char *, void (*)(void), s32, s32);
+void fn_1_4A00(s32, s32, u32);
+extern void fn_9_1BCC(void);
+extern void fn_9_1AC4(void);
+extern u32 lbl_801A66A0;
+extern char lbl_9_data_7C[];
+extern char lbl_9_data_80[];
+extern char lbl_9_data_84[];
+
 extern void colchg_menu_disp(void);
 void fn_1_426C(s16);
 extern void colchg_ezsel_disp(void);
@@ -653,9 +742,6 @@ void colchg_ezsel_init(void) {
 /* fzgx:end colchg_ezsel_init */
 
 /* fzgx:begin fn_9_E4C */
-#include "types.h"
-#include "rel/car_colchg/globals.h"
-
 struct fn_9_E4C_ColchgState {
     u8 pad[8];
     u16 flags;
@@ -667,23 +753,22 @@ struct fn_9_E4C_ColchgState {
 
 
 
-s32 fn_1_4C10(void);
 
 void fn_9_E4C(void) {
     struct fn_9_E4C_ColchgState *state;
     s8 change;
 
     if (fn_1_4C10() == 0) {
-        state = &(*(struct fn_9_E4C_ColchgState *)&lbl_1_bss_D58);
+        state = &(*(struct fn_9_E4C_ColchgState *)&(*((struct Struct_lbl_1_bss_D58 *)&lbl_1_bss_D58)));
         if ((state->flags >> 9) & 1) {
             lbl_1_bss_96A = 0x72;
         }
         change = 0;
-        if (((*(struct fn_9_E4C_ColchgState *)&lbl_1_bss_D58).input_a & 1) || ((*(struct fn_9_E4C_ColchgState *)&lbl_1_bss_D58).input_b & 1)) {
+        if (((*(struct fn_9_E4C_ColchgState *)&(*((struct Struct_lbl_1_bss_D58 *)&lbl_1_bss_D58))).input_a & 1) || ((*(struct fn_9_E4C_ColchgState *)&(*((struct Struct_lbl_1_bss_D58 *)&lbl_1_bss_D58))).input_b & 1)) {
             change = -1;
         }
-        if ((((*(struct fn_9_E4C_ColchgState *)&lbl_1_bss_D58).input_a >> 1) & 1) ||
-            (((*(struct fn_9_E4C_ColchgState *)&lbl_1_bss_D58).input_b >> 1) & 1)) {
+        if ((((*(struct fn_9_E4C_ColchgState *)&(*((struct Struct_lbl_1_bss_D58 *)&lbl_1_bss_D58))).input_a >> 1) & 1) ||
+            (((*(struct fn_9_E4C_ColchgState *)&(*((struct Struct_lbl_1_bss_D58 *)&lbl_1_bss_D58))).input_b >> 1) & 1)) {
             change++;
         }
         if (change != 0) {
@@ -722,14 +807,14 @@ void colchg_save_init(void) {
 /* fzgx:end colchg_save_init */
 
 /* fzgx:begin fn_9_FD0 */
-struct Struct_lbl_1_bss_D58 {
+struct fn_9_FD0_Struct_lbl_1_bss_D58 {
     u8 pad[8];
     u16 unk8;
 };
 
 void fn_9_FD0(void) {
     if (fn_1_4C10() == 0) {
-        if ((lbl_1_bss_D58.unk8 >> 9) & 1) {
+        if (((*((struct fn_9_FD0_Struct_lbl_1_bss_D58 *)&lbl_1_bss_D58)).unk8 >> 9) & 1) {
             lbl_1_bss_968 = 0xA;
         }
     }
@@ -753,11 +838,21 @@ void fn_9_1054(void) {
     fn_1_435C(lbl_9_bss_10);
     display_mode = fn_1_3F8C((char *)lbl_9_data_C4, fn_9_1AC4, 0, 8);
     lbl_9_bss_DC = display_mode;
-    fn_1_4A00(1, 15, lbl_9_bss_10);
+    fn_1_4A00(1, (s32)(15), (void *)(u32)(lbl_9_bss_10));
 }
 /* fzgx:end fn_9_1054 */
 
-/* fzgx:begin fn_9_10BC */
+/* fzgx:begin fn_9_10BC noprologue */
+#include "types.h"
+#include "rel/car_colchg/globals.h"
+#include "rel/car_colchg/car_colchg.h"
+
+
+extern struct Struct_lbl_1_bss_D58 lbl_1_bss_D58;
+s32 fn_1_4C10(void);
+s32 fn_1_4C10(void);
+extern u16 lbl_1_bss_96A;
+
 typedef signed char s8;
 typedef signed short s16;
 typedef signed long s32;
@@ -813,11 +908,6 @@ void fn_9_1124(void)
 /* fzgx:end fn_9_1124 */
 
 /* fzgx:begin colchg_menu_disp */
-extern const f32 lbl_9_rodata_14;
-extern const f32 lbl_9_rodata_18;
-extern void fn_1_496FC(f32, f32);
-extern void fn_1_4AE0C(const char *, ...);
-extern struct Struct_lbl_1_bss_970 lbl_1_bss_970;
 
 void colchg_menu_disp(void)
 {
@@ -864,18 +954,7 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
 }
 #pragma section code_type ".text"
 
-struct Car {
-    u8 pad_0[0x3b8];
-    s16 unk_3b8;
-};
 
-extern u32 lbl_801A66A0;
-extern void lbl_8006D7F4(void *, f32, f32, f32);
-extern void mathutil_mtxA_rotate_y(s32);
-extern void mathutil_mtxA_rotate_x(s32);
-extern void lbl_8006E14C(f32);
-extern void fn_80072558(void);
-extern void fn_1_870BC(struct Car *, s8, struct Car *, s32, u8, f32);
 
 s32 fn_9_120C(struct Car *car) {
     s16 state_value;
@@ -885,7 +964,7 @@ s32 fn_9_120C(struct Car *car) {
     state = lbl_9_bss_8;
     state_value = state->unk_C;
     self = car;
-    lbl_8006D7F4(state, 0.0f, 0.0f, -10.0f);
+    lbl_8006D7F4( 0.0f, 0.0f, -10.0f);
     mathutil_mtxA_rotate_y(-0x8000);
     mathutil_mtxA_rotate_x(0x10000 - 0x2000);
     mathutil_mtxA_rotate_y((s32)((f32)(lbl_801A66A0 % 360) * 182.04444885253906f));
@@ -921,17 +1000,6 @@ __declspec(section ".fzgxpool") static inline void fzgx_pool_prime5(void) {
     d = 4503599627370496.0;
 }
 #pragma section code_type ".text"
-struct Car_9_1310 {
-    u8 pad_0[0x3b8];
-    s16 unk_3b8;
-};
-extern u32 lbl_801A66A0;
-void lbl_8006D7F4(f32, f32, f32);
-void mathutil_mtxA_rotate_y(s32);
-void mathutil_mtxA_rotate_x(s32);
-void lbl_8006E14C(f32);
-extern void fn_80072558(void);
-void fn_1_870BC(struct Car_9_1310 *, s8, struct Car_9_1310 *, s32, u8, f32);
 #pragma opt_propagation on
 s32 fn_9_1310(struct Car_9_1310 *car) {
     u32 *rng;
@@ -948,7 +1016,7 @@ s32 fn_9_1310(struct Car_9_1310 *car) {
     mathutil_mtxA_rotate_y((s32)angle);
     lbl_8006E14C(2.0f);
     fn_80072558();
-    fn_1_870BC(held_car.value, (s8)color.value, held_car.value, 0, (u8)held_car.value->unk_3b8, 1.0f);
+    fn_1_870BC( (struct Car *)(struct Car_9_1310 *)(held_car.value), (s8)color.value, (struct Car *)(struct Car_9_1310 *)(held_car.value), 0, (u8)held_car.value->unk_3b8, 1.0f);
     return 0;
 }
 /* fzgx:end fn_9_1310 */
@@ -1057,7 +1125,16 @@ for (fzgx_loop_i_1785 = 0; fzgx_loop_i_1785 < 2; fzgx_loop_i_1785++) {
 }
 /* fzgx:end colchg_selcar_disp */
 
-/* fzgx:begin colchg_selmate_disp */
+/* fzgx:begin colchg_selmate_disp noprologue */
+#include "types.h"
+#include "rel/car_colchg/globals.h"
+#include "rel/car_colchg/car_colchg.h"
+
+
+extern struct Entry *lbl_1_data_1FB6C[];
+extern u8 lbl_1_rodata_26F8[88];
+extern const f32 lbl_9_rodata_0;
+
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
@@ -1166,7 +1243,14 @@ void colchg_selmate_disp(u8 *car) {
 }
 /* fzgx:end colchg_selmate_disp */
 
-/* fzgx:begin colchg_chgcol_disp */
+/* fzgx:begin colchg_chgcol_disp noprologue */
+#include "types.h"
+#include "rel/car_colchg/globals.h"
+#include "rel/car_colchg/car_colchg.h"
+
+
+extern u8 lbl_1_rodata_26F8[88];
+
 extern void fn_9_120C(void);
 extern void fn_9_1310(void);
 
@@ -1250,7 +1334,7 @@ void colchg_ezsel_disp(void) {
     s32 value;
 
     fn_1_A8EB0(0x14, 0x14);
-    value = fn_1_7F49C(*(s16 *)lbl_9_bss_8, 0, buffer);
+    value = (s32)fn_1_7F49C(*(s16 *)lbl_9_bss_8, 0, buffer);
     fn_1_A8DD4(lbl_9_data_18C, *(s16 *)lbl_9_bss_8, 0x29, value);
 }
 /* fzgx:end colchg_ezsel_disp */
@@ -1307,23 +1391,17 @@ void fn_9_1AFC(void) {
 /* fzgx:end fn_9_1AFC */
 
 /* fzgx:begin fn_9_1BCC */
-struct CarColchgEntry {
-    s16 unk0;
-    u16 unk2;
-    u32 unk4;
-    u8 pad8[24];
-};
 
 void fn_9_1BCC(void) {
     struct CarColchgEntry entries[0x29];
     s8 i;
 
     for (i = 0; i < 0x29; i++) {
-        fn_1_80058(i, &entries[i]);
+        fn_1_80058(i, (u8 *)(struct CarColchgEntry *)(&entries[i]));
         entries[i].unk4 = 1;
         entries[i].unk0 = i;
     }
-    fn_1_80C18(lbl_9_bss_4, entries, 0x29);
+    fn_1_80C18( (u8 *)(u32)(lbl_9_bss_4), (u8 *)(struct CarColchgEntry *)(entries), 0x29);
 }
 /* fzgx:end fn_9_1BCC */
 

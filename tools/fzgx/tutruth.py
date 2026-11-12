@@ -523,6 +523,9 @@ def resolve(p: Project, tu_source: str, v, apply: bool = True,
                         hdecl.setdefault(n, hl.strip())
     # block typedefs that collide with a header or prologue typedef: an identical definition
     # is dropped (the prologue carries it), a different one gets the block's prefix
+    # block -> private type names it renamed to `<block>_<name>`: a prologue declaration the block
+    # relied on must follow the rename (fn_9_454's view cast named the unrenamed, incomplete tag)
+    block_renames: Dict[str, set] = {}
     prologue_typedefs = set(re.findall(r'\}\s*([A-Za-z_]\w*)\s*;', tf.prologue, re.M)) | set(re.findall(r'^(?:typedef\s+)?struct\s+([A-Za-z_]\w*)\s*\{', tf.prologue, re.M))
     for b in tf.blocks:
         for t in sorted((set(re.findall(r'\}\s*([A-Za-z_]\w*)\s*;', b.body, re.M)) | set(re.findall(r'^(?:typedef\s+)?struct\s+([A-Za-z_]\w*)\s*\{', b.body, re.M))) & (set(header_typedefs) | prologue_typedefs)):
@@ -534,6 +537,7 @@ def resolve(p: Project, tu_source: str, v, apply: bool = True,
             else:
                 b.body = re.sub(r'\b' + re.escape(t) + r'\b', f'{b.name}_{t}', b.body)
                 report.setdefault('renamed_typedefs', []).append((b.name, t))
+                block_renames.setdefault(b.name, set()).add(t)
     # the same private type defined by several blocks: identical text is hoisted once and
     # dropped from the blocks, differing definitions get each block's prefix
     defs_by_type: Dict[str, List[Tuple[str, str]]] = {}
@@ -564,6 +568,7 @@ def resolve(p: Project, tu_source: str, v, apply: bool = True,
             for bname, _ in owners:
                 b = tf.get(bname)
                 b.body = re.sub(r'\b' + re.escape(t) + r'\b', f'{bname}_{t}', b.body)
+                block_renames.setdefault(bname, set()).add(t)
             report.setdefault('renamed_typedefs', []).append(('*', t))
     pdecl: Dict[str, str] = {}
     kept_pro = []
@@ -669,7 +674,14 @@ def resolve(p: Project, tu_source: str, v, apply: bool = True,
     choice: Dict[str, int] = {n: 0 for n in symbols}
 
     def old_decl_for(bname: str, n: str) -> Optional[str]:
-        return where.get(n, {}).get(bname) or pdecl.get(n)
+        own = where.get(n, {}).get(bname)
+        if own:
+            return own
+        decl = pdecl.get(n)
+        for tname in block_renames.get(bname, ()):
+            if decl:
+                decl = re.sub(r'\b' + re.escape(tname) + r'\b', f'{bname}_{tname}', decl)
+        return decl
 
     forced: set = set()
     # definitions whose callers pass fewer arguments than they declare (unused trailing
@@ -878,7 +890,8 @@ def resolve(p: Project, tu_source: str, v, apply: bool = True,
         for u in list(units.values()):
             if isinstance(u.get('pool'), dict):
                 res = oracle.check(p, f"{module}:{u['symbols'][0]}", 20)
-                if res.ok and (res.matched or res.matched_pool) and res.pool_map != u['pool']:
+                # an empty map means the recorded one was already applied: never wipe it (finish.py's guard)
+                if res.ok and (res.matched or res.matched_pool) and res.pool_map and res.pool_map != u['pool']:
                     with oracle.build_lock('units.lock'):
                         all_units = p.load_units()
                         for x in all_units:
