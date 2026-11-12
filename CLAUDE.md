@@ -5,10 +5,16 @@ Targets: `sys/main.dol` plus fifteen RELs (fourteen shipped as `files/fze.*.rel`
 and `main.rel`, which `tools/prepare_orig.py` derives from `enemy_line/line__.bin`).
 `ninja` must always end with `16 files OK`.
 
-## What "done" means (owner, 2026-10-04)
+## What "done" means (owner, 2026-10-04; refined 2026-11-12)
 
-**The project is complete when all 16 targets link with 100% of code written in C.** That is
-the definition and it is not yet met.
+**The project is complete when every function of all 16 targets matches, every function the
+original wrote in C is natural C, assembly appears only where the original was assembly, and no
+compiler-diff devices remain.** That is the definition and it is not yet met. Assembly and devices
+are governed by `docs/ASM_POLICY.md`: asm needs evidence the original was asm (instructions MWCC
+cannot emit, `nofralloc` shape, known SDK/middleware source); whole functions are asm units, small
+kernels live in `include/` headers; anything that only steers MWCC is a marked device
+(`WARNING: compiler-diff device, not original code`), asm-only steering is the worst kind. Report
+three metrics: matched, natural C, devices remaining.
 
 **The active goal is (b): all 16 targets linked, with honest code percentages, main_rel open.**
 main_rel is 56% of the remaining work and its functions do not yield to the current methods, so
@@ -195,7 +201,8 @@ Rules that hold for everyone:
   `fzgx fixup` re-checks every saved body after oracle/header changes (and searches the rest).
 - Matchers edit only their own unit, and only through `write_unit`. Headers,
   names and splits belong to the librarian.
-- No hardcoded addresses (`fzgx lint`), no inline asm in `src/`.
+- No hardcoded addresses (`fzgx lint`), no inline asm in `src/` (lint A3). Asm kernels live only in
+  `include/` headers and only with the evidence `docs/ASM_POLICY.md` requires; matchers never add them.
 - Symbols are addressed by name; the REL entry points `_prolog`/`_epilog`
   exist in every module and must be written `module:name` (e.g. `title:_epilog`).
 - Nothing is carved before it matches. A function gets a split range and a unit (an object

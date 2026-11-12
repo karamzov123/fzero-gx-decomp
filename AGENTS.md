@@ -57,6 +57,7 @@ every hash before committing accepted source. Batches verify every 60 seconds by
 default and drain again on exit; completed matches do not wait for outlier models.
 Rules enforced by tooling:
 no hardcoded addresses, no inline asm, no writes outside the assigned work copy.
+Asm kernels and compiler-diff devices are reviewed changes governed by `docs/ASM_POLICY.md`.
 
 Shared data is integrated independently with `fzgx data-import --apply`, never
 through a matcher claim. Preserve recovered header types. The importer proves

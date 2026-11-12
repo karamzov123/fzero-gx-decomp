@@ -60,6 +60,8 @@ ACCEPTANCE RULES (submit enforces most of them)
 - Natural C only: no inline asm, no hardcoded addresses (use symbols), no `fzgx-allow`
   comments, no allocator scaffolding (lab_pad, dummy fields or locals that exist only to steer
   registers). `volatile` and `goto` only with a truthful one-line justification.
+  Assembly kernels and compiler-diff devices follow `docs/ASM_POLICY.md` (evidence-based asm in
+  `include/` only; devices marked `WARNING: compiler-diff device, not original code`).
 - Edit only your own work copy, through write-unit or patch-unit. Never edit headers
   (include/**), symbols.txt, splits.txt or units.json. A local view struct inside your unit is
   fine when a generated header types a field differently from how the function uses it.
