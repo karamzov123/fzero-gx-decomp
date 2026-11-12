@@ -21210,6 +21210,17 @@
   },
   {
     "module": "main",
+    "source": "dol/data/lbl_80092D40.c",
+    "symbols": [
+      "lbl_80092D40"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
     "source": "dol/data/lbl_80094E10.c",
     "symbols": [
       "lbl_80094E10"

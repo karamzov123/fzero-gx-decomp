@@ -48299,6 +48299,30 @@
     "unit_size": 872,
     "unit_start": 2148084184
   },
+  "main:lbl_80092D40": {
+    "address": 2148085056,
+    "align": 32,
+    "declarations": [
+      {
+        "declaration": "const s16 lbl_80092D40[4200]",
+        "path": "include/dol/osc_waveforms.h"
+      }
+    ],
+    "definition": "const s16 lbl_80092D40[4200]",
+    "method": "typed-data",
+    "module": "main",
+    "references": [],
+    "relocations": [],
+    "section": ".rodata",
+    "section_size": 8400,
+    "sha256": "e92251425769899b65f03881facf98b0d1c46f8fb907b3c31aab8e5289f44526",
+    "size": 8400,
+    "source": "dol/data/lbl_80092D40.c",
+    "symbol": "lbl_80092D40",
+    "unit_align": 32,
+    "unit_size": 8400,
+    "unit_start": 2148085056
+  },
   "main:lbl_80094E10": {
     "address": 2148093456,
     "align": 16,
