@@ -22867,6 +22867,253 @@ s32 fn_1_2C97C(void) {
 }
 /* fzgx:end fn_1_2C97C */
 
+/* fzgx:begin fn_1_2CBAC noprologue */
+#include "types.h"
+
+typedef struct {
+    u8 pad_0[5];
+    u8 unk_5;
+    u8 pad_6[0xA0];
+    u8 unk_A6;
+    u8 unk_A7;
+    u8 pad_A8[0x34];
+    u8 unk_DC;
+    u8 pad_DD[0x79];
+    u8 unk_156;
+} Obj3C30;
+
+typedef struct {
+    u16 unk_0;
+    u8 unk_2;
+    u8 unk_3;
+    u8 unk_4[4];
+    u16 unk_8[0x6C];
+    u8 unk_E0[4];
+    u8 unk_E4;
+    u8 pad_E5;
+    u8 unk_E6[5];
+    u8 unk_EB;
+} Obj5138;
+
+extern Obj3C30 lbl_1_bss_3C30;
+extern Obj5138 lbl_1_bss_5138;
+extern const u16 lbl_1_rodata_DCDC[4][5][2];
+extern const u16 lbl_1_rodata_DD2C[4];
+extern const u16 lbl_1_rodata_DD34[6][3];
+extern const u16 lbl_1_rodata_DBE4[4][5][6];
+
+extern u8 fn_1_3FC9C(void);
+extern void fn_1_3F2A0(void);
+extern void fn_1_FA154(u8, u8);
+extern int fn_1_4017C(void);
+extern void fn_1_FA038(void);
+extern int fn_1_40224(void);
+extern void fn_1_F9FB4(void);
+extern void fn_1_FA67C(s32);
+extern int fn_1_F8A38(u8);
+extern int fn_1_F8334(s16);
+extern s32 fn_1_F7EDC(s16);
+extern int fn_1_FA180(u8, u8);
+extern s16 fn_1_12EF24(s16, s16);
+
+static inline int fn_1_2CBAC_active(void) {
+    if (lbl_1_bss_3C30.unk_5 != 1) {
+        return 0;
+    }
+    if (lbl_1_bss_3C30.unk_A7 < 4) {
+        return 0;
+    }
+    return 1;
+}
+
+static inline void fn_1_2CBAC_clear(u8 cup, u8 diff, u8 course) {
+    fn_1_FA154(cup, diff);
+    if (fn_1_4017C()) {
+        fn_1_FA038();
+    }
+    if (cup == 2 && fn_1_40224()) {
+        fn_1_F9FB4();
+    }
+    if (cup == 3) {
+        fn_1_FA67C(course);
+    }
+    if (diff + 1 == 5 && !fn_1_F8A38(0)) {
+        lbl_1_bss_5138.unk_E6[lbl_1_bss_5138.unk_E4++] = 0;
+    }
+}
+
+static inline void fn_1_2CBAC_bonus(Obj5138 *p, s16 rank, s16 cup, s16 diff) {
+    s32 i;
+    s32 j;
+    s32 level;
+    s32 count;
+    s32 found;
+    const u16 *entry;
+    u16 id;
+
+    level = 1;
+    if (rank == 0) {
+        if (cup == 0) {
+            level = 2;
+        } else if (cup == 1) {
+            level = 4;
+        } else {
+            for (i = 0; i < 3; i++) {
+                int a = fn_1_FA180(2, i);
+                int b = fn_1_FA180(3, i);
+                if (diff != i && !a && !b) {
+                    break;
+                }
+            }
+            if (i == 3) {
+                level = 5;
+            } else {
+                level = 4;
+            }
+        }
+    } else if (cup > 0) {
+        level = 2;
+    }
+    found = 0;
+    for (count = level; count > 0; count--) {
+        if (level == 2 && rank == 0 && count == level) {
+            entry = lbl_1_rodata_DD34[2];
+        } else {
+            entry = lbl_1_rodata_DD34[count - 1];
+        }
+        for (j = 0; j < 3; j++) {
+            id = entry[j];
+            if (!fn_1_F8334(id)) {
+                found = 1;
+                lbl_1_bss_5138.unk_8[p->unk_2++] = id;
+                if (count != 5) {
+                    break;
+                }
+            }
+        }
+        if (found) {
+            break;
+        }
+    }
+}
+
+static inline s32 fn_1_2CBAC_pick(Obj5138 *p) {
+    s32 i;
+    s32 found;
+
+    found = 0;
+    for (i = 0; i < 3; i++) {
+        s16 v = lbl_1_rodata_DD2C[i];
+        if (!fn_1_F8334(v)) {
+            found = 1;
+            lbl_1_bss_5138.unk_8[p->unk_2++] = v;
+        }
+    }
+    return found;
+}
+
+static inline void fn_1_2CBAC_unlock(void) {
+    s32 i;
+
+    for (i = 1; i < 6; i++) {
+        fn_1_12EF24(6, i);
+        if (!fn_1_F8A38(i)) {
+            lbl_1_bss_5138.unk_E6[lbl_1_bss_5138.unk_E4] = i;
+            lbl_1_bss_5138.unk_E4++;
+        }
+    }
+    lbl_1_bss_5138.unk_EB = 1;
+}
+
+#pragma opt_dead_assignments off
+void fn_1_2CBAC(void) {
+    Obj5138 *p;
+    s32 i;
+    s32 count;
+    s32 found;
+    s32 rank;
+    s32 cup;
+    s32 diff;
+    s32 n;
+    s32 id;
+    s32 all;
+    Obj3C30 *g;
+    const u16 (*row)[2];
+
+    g = &lbl_1_bss_3C30;
+    if (!fn_1_2CBAC_active()) {
+        return;
+    }
+    found = 0;
+    cup = fn_1_3FC9C();
+    diff = lbl_1_bss_3C30.unk_A6 - 1;
+    fn_1_3F2A0();
+    rank = g->unk_DC;
+    if (rank == 0) {
+        fn_1_2CBAC_clear(cup, diff, g->unk_156);
+        n = 2;
+    } else {
+        n = 1;
+    }
+    row = lbl_1_rodata_DCDC[cup];
+    p = &lbl_1_bss_5138;
+    for (count = n; count > 0; count--) {
+        id = row[diff][count - 1];
+        /* WARNING: dead store. i is overwritten before any read. It keeps an unused n * 2
+         * alive until register allocation (opt_dead_assignments off), whose deletion of it
+         * makes MWCC reschedule the loop setup into retail's order (n * 2 before diff * 4). */
+        i = (s16)((u32)n * 2);
+        if (id == 0xFFFE) {
+            found = fn_1_2CBAC_pick(p);
+            if (found) {
+                break;
+            }
+        } else if (id != 0xFFFF) {
+            if (!fn_1_F7EDC(id)) {
+                u8 k = p->unk_3++;
+                found = 1;
+                lbl_1_bss_5138.unk_4[k] = id;
+                break;
+            }
+        }
+    }
+    /* WARNING: dead store. i = 0 is never read; it survives until register allocation and
+     * its deletion there leaves retail's second compare of found in place. */
+    if (found) {
+        i = 0;
+    }
+    if (!found) {
+        fn_1_2CBAC_bonus(p, rank, cup, diff);
+    }
+    if (rank == 0) {
+        i = 0;
+    } else if (rank == 1) {
+        i = 1;
+    } else if (rank == 2) {
+        i = 2;
+    } else if (rank < 9) {
+        i = 3;
+    } else if (rank < 19) {
+        i = 4;
+    } else {
+        i = 5;
+    }
+    lbl_1_bss_5138.unk_0 = lbl_1_rodata_DBE4[cup][diff][i];
+    if (cup == 3) {
+        all = 1;
+        for (i = 0; i < 4; i++) {
+            if (!fn_1_FA180(3, i)) {
+                all = 0;
+            }
+        }
+        if (all) {
+            fn_1_2CBAC_unlock();
+        }
+    }
+}
+#pragma opt_dead_assignments reset
+/* fzgx:end fn_1_2CBAC */
+
 /* fzgx:begin fn_1_2D038 noprologue */
 #include "types.h"
 
