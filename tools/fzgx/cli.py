@@ -464,6 +464,11 @@ def cmd_tu_organize(a, p):
     _print(tu.organize(p, a.module), a.json); return 0
 
 
+def cmd_tu_regroup(a, p):
+    r = tu.regroup(p, a.module)
+    _print(r, a.json); return 0 if r.get("ok") else 1
+
+
 def cmd_rename(a, p):
     if a.map:
         r = tu.rename_many(p, json.loads(Path(a.map).read_text()))
@@ -735,6 +740,8 @@ def build_parser() -> argparse.ArgumentParser:
     s = sub.add_parser("lint", help="shiftability/style lint"); s.set_defaults(fn=cmd_lint); s.add_argument("paths", nargs="*")
     s = sub.add_parser("tu-organize", help="move carved units into TU directories from tus.json; relink-verify"); s.set_defaults(fn=cmd_tu_organize)
     s.add_argument("--module", default="main_rel")
+    s = sub.add_parser("tu-regroup", help="move blocks outside their TU's tus.json text range into the TU that contains them (contiguous TUs); relink-verify"); s.set_defaults(fn=cmd_tu_regroup)
+    s.add_argument("--module", required=True)
     s = sub.add_parser("rename", help="rename a symbol everywhere (symbols.txt, src, units.json, ledger, file); relink-verify"); s.set_defaults(fn=cmd_rename)
     s.add_argument("old", nargs="?"); s.add_argument("new", nargs="?"); s.add_argument("--map", help="JSON {old: new} applied with one relink")
     s = sub.add_parser("naming-bundle", help="librarian bundle for one TU"); s.set_defaults(fn=cmd_naming_bundle)

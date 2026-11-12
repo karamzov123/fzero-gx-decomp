@@ -90,9 +90,6 @@ rel/title/fn_8_D020.c:
 rel/title/operation/fn_8_D024.c:
 	.text       start:0x0000D024 end:0x0000D034
 
-rel/title/name_entry/fn_8_100B4.c:
-	.text       start:0x000100B4 end:0x000100C4
-
 rel/title/title/fn_8_6570.c:
 	.text       start:0x00006570 end:0x00006594 align:4
 
@@ -101,9 +98,6 @@ rel/title/operation/fn_8_CF70.c:
 
 rel/title/_prolog/fn_8_754.c:
 	.text       start:0x00000754 end:0x00000784 align:4
-
-rel/title/name_entry/fn_8_10084.c:
-	.text       start:0x00010084 end:0x000100B4 align:4
 
 rel/title/operation/fn_8_9B04.c:
 	.text       start:0x00009B04 end:0x00009B40 align:4
@@ -155,9 +149,6 @@ rel/title/operation/fn_8_68F4.c:
 
 rel/title/title/fn_8_6594.c:
 	.text       start:0x00006594 end:0x0000663C align:4
-
-rel/title/name_entry/fn_8_FF9C.c:
-	.text       start:0x0000FF9C end:0x00010084 align:4
 
 rel/title/operation/fn_8_8C48.c:
 	.text       start:0x00008C48 end:0x00008C80 align:4
@@ -231,10 +222,10 @@ rel/title/title/fn_8_1394.c:
 rel/title/title/fn_8_2660.c:
 	.text       start:0x00002660 end:0x00004E8C align:4
 
-rel/title/title/fn_8_6F1C.c:
+rel/title/operation/fn_8_6F1C.c:
 	.text       start:0x00006F1C end:0x000071A8 align:4
 
-rel/title/title/fn_8_79C0.c:
+rel/title/operation/fn_8_79C0.c:
 	.text       start:0x000079C0 end:0x00007C4C align:4
 
 rel/title/operation/fn_8_C9A8.c:
@@ -243,7 +234,7 @@ rel/title/operation/fn_8_C9A8.c:
 rel/title/title/fn_8_663C.c:
 	.text       start:0x0000663C end:0x000067B0 align:4
 
-rel/title/title/fn_8_6C90.c:
+rel/title/operation/fn_8_6C90.c:
 	.text       start:0x00006C90 end:0x00006F1C align:4
 
 rel/title/title/fn_8_23AC.c:
@@ -279,13 +270,13 @@ rel/title/operation/fn_8_B840.c:
 rel/title/operation/fn_8_ABBC.c:
 	.text       start:0x0000ABBC end:0x0000ADF4 align:4
 
-rel/title/name_entry/fn_8_EFA4.c:
+rel/title/operation/fn_8_EFA4.c:
 	.text       start:0x0000EFA4 end:0x0000F9E4 align:4
 
-rel/title/title/fn_8_7734.c:
+rel/title/operation/fn_8_7734.c:
 	.text       start:0x00007734 end:0x000079C0 align:4
 
-rel/title/title/fn_8_81AC.c:
+rel/title/operation/fn_8_81AC.c:
 	.text       start:0x000081AC end:0x00008440 align:4
 
 rel/title/operation/fn_8_BD08.c:
@@ -572,3 +563,6 @@ rel/title/data/lbl_8_rodata_C28.c:
 
 rel/title/_prolog/fn_8_0.c:
 	.text       start:0x00000000 end:0x000004D8 align:4
+
+rel/title/name_entry.c:
+	.text       start:0x0000FF9C end:0x000100C4 align:4

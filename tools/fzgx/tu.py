@@ -308,3 +308,128 @@ def fix_prologues(p: Project, module: str) -> Dict[str, object]:
         cp = oracle.compile_unit(p, unit, u["source"])
         (fixed if cp.returncode == 0 else failed).append(u["symbols"][0])
     return {"noprologue": fixed, "still_failing": failed}
+
+
+def regroup(p: Project, module: str, verify: bool = True) -> Dict[str, object]:
+    """Make every recovered TU contiguous: a function belongs to the TU whose .text range in
+    tus.json contains its address (CodeWarrior links each TU as one contiguous block).
+
+    tus.json's function lists also carry data-vote assignments that put a function in a TU
+    whose range does not contain it (title: fn_8_EFA4 listed under name_entry.c but inside
+    operation.c's range), which makes the TU uncollapsible. Each such block moves to its
+    range's TU file self-contained, carrying the prologue it matched under, so its object is
+    byte-identical; its unit path, split entry and ledger row follow. On a failed relink every
+    touched file is restored."""
+    tpath = p.module_config_dir(module) / "tus.json"
+    if not tpath.exists():
+        return {"ok": True, "moved": [], "note": "no tus.json"}
+    d = json.loads(tpath.read_text())
+    syms = p.symbols(module)
+    ranges = [(t["text"][0], t["text"][1], t["file"]) for t in d["tus"] if t.get("text")]
+
+    def owner(addr: int) -> Optional[str]:
+        return next((f for a, b, f in ranges if a <= addr < b), None)
+
+    moves: List[Tuple[str, str, str]] = []  # (function, old file, new file)
+    for t in d["tus"]:
+        for f in t["functions"]:
+            s = syms.get(f)
+            if s is None:
+                continue
+            new = owner(s.addr)
+            if new and new != t["file"]:
+                moves.append((f, t["file"], new))
+    if not moves:
+        return {"ok": True, "moved": []}
+    prefix = p.module_src_prefix(module)
+    splits_path = p.module_config_dir(module) / "splits.txt"
+    units_path = p.units_path
+    touched: Dict[Path, Optional[str]] = {}
+
+    def remember(path: Path) -> None:
+        if path not in touched:
+            touched[path] = path.read_text() if path.exists() else None
+
+    for path in (tpath, splits_path, units_path):
+        remember(path)
+    l = Ledger()
+    ledger_old: List[Tuple[str, Optional[str]]] = []
+    moved = []
+    with oracle.build_lock():
+        units = p.load_units()
+        by_sym = {(u["module"], u["symbols"][0]): u for u in units if u.get("symbols")}
+        for f, old_file, new_file in moves:
+            # tus.json: the function changes lists (kept in address order)
+            for t in d["tus"]:
+                if t["file"] == old_file:
+                    t["functions"] = [x for x in t["functions"] if x != f]
+                if t["file"] == new_file:
+                    t["functions"] = sorted(set(t["functions"]) | {f}, key=lambda n: syms[n].addr if n in syms else 1 << 40)
+            u = by_sym.get((module, f))
+            if u is None:
+                moved.append((f, old_file, new_file, "map only"))
+                continue
+            old_stem, new_stem = old_file.rsplit(".", 1)[0], new_file.rsplit(".", 1)[0]
+            new_source = f"{prefix}/{new_stem}/{Path(u['source']).name}"
+            old_source = u["source"]
+            if u.get("tu"):
+                old_tu, new_tu = u["tu"], f"{prefix}/{new_stem}.c"
+                remember(tufile.tu_path(p, old_tu))
+                remember(tufile.tu_path(p, new_tu))
+                otf = tufile.load(p, old_tu)
+                b = otf.get(f)
+                if b is None:
+                    moved.append((f, old_file, new_file, "no block"))
+                    continue
+                if "noprologue" not in b.flags:
+                    b = tufile.Block(b.name, otf.prologue.rstrip("\n") + "\n\n" + b.body, list(b.flags) + ["noprologue"])
+                otf.blocks = [x for x in otf.blocks if x.name != f]
+                tufile._write_atomic(tufile.tu_path(p, old_tu), otf.render())
+                ntf = tufile.load(p, new_tu)
+                if not ntf.prologue.strip() and not ntf.blocks:
+                    ntf.prologue = '#include "types.h"\n'
+                ntf.blocks = [x for x in ntf.blocks if x.name != f] + [b]
+                ntf.blocks.sort(key=lambda x: tufile._addr_of(p, module, x.name))
+                tufile.tu_path(p, new_tu).parent.mkdir(parents=True, exist_ok=True)
+                tufile._write_atomic(tufile.tu_path(p, new_tu), ntf.render())
+                u["tu"] = new_tu
+            else:
+                src_old, src_new = ROOT / "src" / old_source, ROOT / "src" / new_source
+                if src_old.exists():
+                    remember(src_old)
+                    remember(src_new)
+                    src_new.parent.mkdir(parents=True, exist_ok=True)
+                    src_new.write_text(src_old.read_text())
+                    src_old.unlink()
+            u["source"] = new_source
+            s = splits_path.read_text()
+            splits_path.write_text(re.sub(rf"^{re.escape(old_source)}:", f"{new_source}:", s, flags=re.M))
+            row = l.db.execute("SELECT symbol, unit FROM functions WHERE unit=?", (old_source,)).fetchall()
+            ledger_old += [(r[0], r[1]) for r in row]
+            l.db.execute("UPDATE functions SET unit=? WHERE unit=?", (new_source, old_source))
+            moved.append((f, old_file, new_file, "block"))
+        p.save_units(units)
+        tpath.write_text(json.dumps(d, indent=1) + "\n")
+        if hasattr(p, "_tu_maps"):
+            p._tu_maps.pop(module, None)
+        for u in units:
+            if u.get("module") == module and u.get("tu"):
+                tufile.write_gen(p, u)
+        ok = True
+        if verify:
+            ok = oracle.configure(p).returncode == 0 and oracle.relink(p).returncode == 0
+        if not ok:
+            for path, text in touched.items():
+                if text is None:
+                    if path.exists():
+                        path.unlink()
+                else:
+                    path.write_text(text)
+            for sym, unit in ledger_old:
+                l.db.execute("UPDATE functions SET unit=? WHERE symbol=?", (unit, sym))
+            if hasattr(p, "_tu_maps"):
+                p._tu_maps.pop(module, None)
+            tufile.regenerate(p)
+            oracle.configure(p)
+            oracle.relink(p)
+    return {"ok": ok, "moved": moved}
