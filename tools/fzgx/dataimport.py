@@ -375,8 +375,11 @@ def generate(p, sym, recipe=None, opaque_bss=False, scalar_byte=False):
         # Headers carry recovered structs. Do not flatten them into byte arrays.
         known = None if opaque_bss else next((d for d in decls if d['path'].startswith('include/')), None)
         if known is None and not opaque_bss:
+            # This fallback does not check the declared extent, so it keeps to the fixed-width
+            # names: `unsigned char x[128]` in a caller is often a prefix of a larger object.
             known = next((d for d in decls if re.fullmatch(
-                r'(?:volatile\s+)?(?:' + '|'.join(BASIC) + r')\s+\w+\s*(?:\[[0-9a-fA-FxX]+\])*', d['declaration'])), None)
+                r'(?:volatile\s+)?(?:' + '|'.join(k for k in BASIC if k not in ('short', 'unsigned char'))
+                + r')\s+\w+\s*(?:\[[0-9a-fA-FxX]+\])*', d['declaration'])), None)
         if known:
             decl = known['declaration']
             if known['path'].startswith('include/'):
@@ -758,9 +761,12 @@ def import_data(p, names, apply=False, recipes=None, regenerate=False):
                     # A member's alignment is the largest power of two dividing its address (up
                     # to the section default), so a later member can ask for more than the group
                     # start has (lbl_800909C0 at a 32-aligned address after an 8-aligned string)
-                    # and the section would outgrow the start. Cap it at the start's alignment;
+                    # and the section would outgrow the start. Cap it at the alignment the start
+                    # address allows (its lowest set bit, not the first member's own attribute:
+                    # an explicit align:4 on an 8-aligned start must not strip a later member's
+                    # padding); groups that already compiled are unchanged.
                     # validate() below still checks every member's offset against retail.
-                    cap = first['align']
+                    cap = (first['address'] & -first['address']) or 1 << 31   # REL offset 0: any
                     definitions = [(r, source.replace(f'aligned({r["align"]}))', f'aligned({cap}))')
                                     if r['align'] > cap else source) for r, source in definitions]
                     text = '\n'.join(source for _, source in definitions)
