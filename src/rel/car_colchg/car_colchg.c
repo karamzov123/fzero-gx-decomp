@@ -1167,12 +1167,6 @@ void colchg_selmate_disp(u8 *car) {
 /* fzgx:end colchg_selmate_disp */
 
 /* fzgx:begin colchg_chgcol_disp */
-
-
-
-
-
-
 extern void fn_9_120C(void);
 extern void fn_9_1310(void);
 
