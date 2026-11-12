@@ -17521,6 +17521,163 @@ void fn_1_14BFB8(void) {
 }
 /* fzgx:end fn_1_14BFB8 */
 
+/* fzgx:begin fn_1_14BFD8 noprologue */
+#include "types.h"
+
+typedef struct InputButtons {
+    u16 button;
+    u16 unk_2;
+} InputButtons;
+
+typedef struct InputPortButtons {
+    InputButtons unk_0;
+    InputButtons unk_4;
+    InputButtons unk_8;
+    InputButtons unk_C;
+    InputButtons unk_10;
+} InputPortButtons;
+
+typedef struct {
+    u32 unk_0;
+    u8 pad_4[0xC];
+    u32 unk_10;
+    u8 pad_14[4];
+    f32 unk_18;
+    u8 pad_1C[4];
+    s32 unk_20;
+    u8 pad_24[0xC];
+    u8 unk_30;
+    u8 pad_31[0xF];
+    u8 unk_40;
+    u8 unk_41;
+    u8 pad_42[2];
+    u32 unk_44;
+    u32 unk_48;
+} fn_1_14BFD8_Obj;
+
+extern InputPortButtons lbl_1_bss_9F8[];
+extern fn_1_14BFD8_Obj lbl_1_bss_8E518;
+extern const f32 lbl_1_rodata_99A4;
+extern u32 lbl_801A66A0;
+extern u32 lbl_801A66A4;
+extern void fn_1_12EF80(s16, s16 *, s16 *);
+extern s16 fn_1_12EF24(s16, s16);
+extern s32 fn_1_F89E4(u8);
+extern s32 fn_1_1555B0(s32);
+extern void fn_1_1556B4(u8, u8);
+extern void fn_1_A2D84(u32);
+
+static inline s32 clamp(s32 value, u8 unk_30) {
+    if (value < 0) {
+        return 0;
+    }
+    if (value > 10 - unk_30) {
+        value = 10 - unk_30;
+    }
+    return value;
+}
+
+static inline void padPressed(s32 port, InputButtons **out) {
+    *out = (InputButtons *)((u8 *)&lbl_1_bss_9F8[0].unk_8 + port * 20);
+}
+
+#pragma opt_propagation off
+void fn_1_14BFD8(s16 port, u8 *sel, s32 arg2) {
+    s32 right;
+    s32 left;
+    fn_1_14BFD8_Obj *p = &lbl_1_bss_8E518;
+    s32 confirm;
+    s32 blocked;
+    s32 dir;
+    s16 result;
+    s16 row;
+    s16 col;
+    s32 changed;
+    s32 toggled;
+    u32 sound;
+    InputButtons *trig;
+    u8 unk_30;
+
+    blocked = __rlwinm(lbl_1_bss_9F8[port].unk_0.button, 29, 31, 31) || __rlwinm(lbl_1_bss_9F8[port].unk_0.unk_2, 29, 31, 31) || __rlwinm(lbl_1_bss_9F8[port].unk_0.button, 30, 31, 31) || __rlwinm(lbl_1_bss_9F8[port].unk_0.unk_2, 30, 31, 31);
+    padPressed(port, &trig);
+    left = (__rlwinm(lbl_1_bss_9F8[port].unk_10.button, 0, 31, 31) || __rlwinm(lbl_1_bss_9F8[port].unk_10.unk_2, 0, 31, 31)) && !blocked;
+    right = (__rlwinm(lbl_1_bss_9F8[port].unk_10.button, 31, 31, 31) || __rlwinm(lbl_1_bss_9F8[port].unk_10.unk_2, 31, 31, 31)) && !blocked;
+    confirm = (trig->button >> 10) & 1;
+
+    if (sel != NULL) {
+        row = 0;
+        col = 0;
+        dir = 0;
+        result = -1;
+        fn_1_12EF80(*sel, &row, &col);
+        if (left) {
+            dir = -1;
+            p->unk_44 = lbl_801A66A0;
+        } else if (right) {
+            dir = 1;
+            p->unk_48 = lbl_801A66A0;
+        }
+        if (dir != 0) {
+            for (col += dir; col >= 0 && col <= 5; col += dir) {
+                result = fn_1_12EF24(row, col);
+                if (row == 5 && ((col == 5 && !fn_1_F89E4(0)) || (col != 5 && !fn_1_F89E4(col + 1)))) {
+                    result = -1;
+                }
+                if (result != -1) {
+                    break;
+                }
+            }
+            if (result != -1 && *sel != result) {
+                *sel = result;
+                p->unk_20 = 0;
+                unk_30 = p->unk_30;
+                p->unk_20 = -(((unk_30 >> 1) & 0x7F) - 1);
+                p->unk_20 = clamp(p->unk_20, unk_30);
+                p->unk_18 = lbl_1_rodata_99A4;
+                fn_1_1555B0(*sel);
+                fn_1_1556B4(p->unk_40, p->unk_41);
+                p->unk_0 = 0;
+                p->unk_10 = lbl_801A66A4;
+                fn_1_A2D84(0xA9010000);
+            }
+        }
+    }
+
+    if (arg2 != 0) {
+        changed = 0;
+        toggled = 0;
+        if (confirm) {
+            switch (p->unk_41) {
+            case 0:
+                p->unk_41 = 2;
+                sound = 0xA9121900;
+                break;
+            case 2:
+                p->unk_41 = 1;
+                sound = 0xA9121A00;
+                break;
+            case 1:
+                p->unk_41 = 0;
+                sound = 0xA9121800;
+                break;
+            }
+            toggled = 1;
+            fn_1_A2D84(sound);
+        }
+        if (changed || toggled) {
+            fn_1_1556B4(p->unk_40, p->unk_41);
+            p->unk_20 = 0;
+            unk_30 = p->unk_30;
+            p->unk_20 = -(((unk_30 >> 1) & 0x7F) - 1);
+            p->unk_20 = clamp(p->unk_20, unk_30);
+            p->unk_18 = lbl_1_rodata_99A4;
+            p->unk_10 = lbl_801A66A4;
+        }
+    }
+}
+#pragma opt_propagation reset
+/* fzgx:end fn_1_14BFD8 */
+
 /* fzgx:begin fn_1_14C35C noprologue */
 #include "types.h"
 #include "rel/main_rel/globals.h"
