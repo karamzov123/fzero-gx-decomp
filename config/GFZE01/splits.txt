@@ -8223,9 +8223,6 @@ dol/data/lbl_80094E48.c:
 dol/data/Packet.c:
 	.bss        start:0x8015CA10 end:0x8015CD70 align:8
 
-dol/data/__DVDLowAlarmForWA.c:
-	.bss        start:0x8015CDB0 end:0x8015CE00 align:8
-
 dol/data/TRK_saved_exceptionID.c:
 	.bss        start:0x801A50B8 end:0x801A5160 align:8
 
@@ -8483,3 +8480,9 @@ dol/data/lbl_80095A78.c:
 
 dol/data/RunQueue.c:
 	.bss        start:0x8015C018 end:0x8015CA10 align:8
+
+dol/data/__DVDLowAlarmForWA.c:
+	.bss        start:0x8015CDB0 end:0x8015CE28 align:8
+
+dol/data/FifoObj.c:
+	.bss        start:0x80178098 end:0x80178118 align:8

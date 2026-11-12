@@ -20257,6 +20257,17 @@
   },
   {
     "module": "main",
+    "source": "dol/data/FifoObj.c",
+    "symbols": [
+      "FifoObj"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
     "source": "dol/data/Packet.c",
     "symbols": [
       "Packet",
@@ -20365,7 +20376,8 @@
     "source": "dol/data/__DVDLowAlarmForWA.c",
     "symbols": [
       "__DVDLowAlarmForWA",
-      "AlarmForTimeout"
+      "AlarmForTimeout",
+      "AlarmForBreak"
     ],
     "status": "matching",
     "data": true,

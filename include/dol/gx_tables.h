@@ -34,4 +34,12 @@ typedef struct {
 
 extern GXTevData lbl_8012B368;
 
+/* The SDK's GXFifoObj is opaque storage. GXInit.c's static FifoObj follows gxData in .bss
+ * (GXInit passes &gxData + 0x4F8 to GXSetGPFifo), so dtk had no symbol for it. */
+typedef struct {
+    u8 pad[128];
+} GXFifoObj;
+
+extern GXFifoObj FifoObj;
+
 #endif

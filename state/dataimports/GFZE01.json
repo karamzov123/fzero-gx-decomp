@@ -43082,6 +43082,30 @@
     "unit_size": 64,
     "unit_start": 405840
   },
+  "main:AlarmForBreak": {
+    "address": 2148912640,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "OSAlarm AlarmForBreak",
+        "path": "include/dol/dvd_statics.h"
+      }
+    ],
+    "definition": "OSAlarm AlarmForBreak",
+    "method": "declared-bss",
+    "module": "main",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 120,
+    "sha256": "2c34ce1df23b838c5abf2a7f6437cca3d3067ed509ff25f11df6b11b582b51eb",
+    "size": 40,
+    "source": "dol/data/__DVDLowAlarmForWA.c",
+    "symbol": "AlarmForBreak",
+    "unit_align": 8,
+    "unit_size": 120,
+    "unit_start": 2148912560
+  },
   "main:AlarmForTimeout": {
     "address": 2148912600,
     "align": 8,
@@ -43134,13 +43158,13 @@
     ],
     "relocations": [],
     "section": ".bss",
-    "section_size": 80,
+    "section_size": 120,
     "sha256": "2c34ce1df23b838c5abf2a7f6437cca3d3067ed509ff25f11df6b11b582b51eb",
     "size": 40,
     "source": "dol/data/__DVDLowAlarmForWA.c",
     "symbol": "AlarmForTimeout",
     "unit_align": 8,
-    "unit_size": 80,
+    "unit_size": 120,
     "unit_start": 2148912560
   },
   "main:BB2": {
@@ -43463,6 +43487,30 @@
     "unit_align": 8,
     "unit_size": 264,
     "unit_start": 2148096968
+  },
+  "main:FifoObj": {
+    "address": 2149023896,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "GXFifoObj FifoObj",
+        "path": "include/dol/gx_tables.h"
+      }
+    ],
+    "definition": "u8 FifoObj[128]",
+    "method": "opaque-bss-header-mismatch",
+    "module": "main",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 128,
+    "sha256": "38723a2e5e8a17aa7950dc008209944e898f69a7bd10a23c839d341e935fd5ca",
+    "size": 128,
+    "source": "dol/data/FifoObj.c",
+    "symbol": "FifoObj",
+    "unit_align": 8,
+    "unit_size": 128,
+    "unit_start": 2149023896
   },
   "main:GXResetFuncInfo": {
     "address": 2148707632,
@@ -44046,13 +44094,13 @@
     "references": [],
     "relocations": [],
     "section": ".bss",
-    "section_size": 80,
+    "section_size": 120,
     "sha256": "2c34ce1df23b838c5abf2a7f6437cca3d3067ed509ff25f11df6b11b582b51eb",
     "size": 40,
     "source": "dol/data/__DVDLowAlarmForWA.c",
     "symbol": "__DVDLowAlarmForWA",
     "unit_align": 8,
-    "unit_size": 80,
+    "unit_size": 120,
     "unit_start": 2148912560
   },
   "main:__DVDLowCurr": {
