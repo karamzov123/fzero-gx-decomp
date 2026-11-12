@@ -7577,3 +7577,6 @@ dol/data/lbl_80095BA8.c:
 
 dol/data/lbl_80095CD0.c:
 	.rodata     start:0x80095CD0 end:0x80095D98 align:16
+
+dol/fn_8004F00C.c:
+	.text       start:0x8004F00C end:0x8004F26C align:4
