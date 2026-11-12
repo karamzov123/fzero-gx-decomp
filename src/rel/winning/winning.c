@@ -1,6 +1,147 @@
 #include "types.h"
+#include "rel/winning/globals.h"
+#include "rel/winning/winning.h"
+extern f32 lbl_15_rodata_0[25];
+extern u8 lbl_1_bss_5138[];
+extern u8 lbl_1_bss_525C[0x198];
+extern u8 lbl_1_bss_6EAD0[0x708];
+extern u16 lbl_1_bss_96A;
+extern u8 lbl_1_bss_9F8;
+extern u8 lbl_1_bss_D58[0x18];
+extern u8 lbl_1_data_2A7E0[0xf8];
+extern u32 lbl_1_rodata_26F8;
+extern u32 lbl_801A6410;
+extern s32 lbl_801A66B4;
+extern void fn_8006CE1C(f32);
+extern void fn_1_47A60(u32);
+extern void fn_1_48140(u32);
+extern void fn_1_407C(void);
+extern void fn_1_3CC4(void);
+extern s32 fn_1_8DB94(void);
+extern void fn_1_106EB0(void);
+extern s32 camera_get_flags(void);
+extern void camera_update(void);
+extern u32 fn_1_58C4(void);
+extern void fn_1_5948(s32);
+extern void fn_1_9A770(void);
+extern void fn_1_627C(s32);
+extern u8 lbl_15_data_70[32];
+extern u32 lbl_1_bss_71688;
+extern u32 lbl_1_bss_7168C;
+extern u8 lbl_1_bss_25E98;
+extern u32 fn_1_8E728(void *, u32);
+extern u32 lbl_15_bss_9C[13];
+extern void fn_1_8F494(void *);
+extern f32 fn_1_A71AC(void);
+extern u32 fn_1_129D9C(void *, void *, u32, u32, u32, u32, u32, f32);
+extern void lbl_8006D7DC(void *);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006DFC4(void *);
+extern u32 fn_1_7ACDC(u32);
+extern void fn_1_789E8(void);
+extern void fn_1_78EBC(void);
+extern void fn_1_7E9C4(void);
+extern void fn_1_9A5CC(void);
+extern void fn_1_9A7BC(void);
+extern u16 lbl_15_bss_154;
+extern u8 fn_15_1D7C__fzgx_offset_0[];
+extern u8 fn_15_1DF4__fzgx_offset_0[];
+extern u8 fn_15_1EE0__fzgx_offset_0[];
+extern u8 fn_15_2E8C__fzgx_offset_104[];
+extern u8 fn_15_2E8C__fzgx_offset_10C[];
+extern u8 fn_15_2E8C__fzgx_offset_110[];
+extern u8 fn_15_2E8C__fzgx_offset_DC[];
+extern u8 fn_15_2E8C__fzgx_offset_E4[];
+extern u8 fn_15_2E8C__fzgx_offset_EC[];
+extern u8 fn_15_3AC__fzgx_offset_0[];
+extern u8 fn_15_4578__fzgx_offset_864[];
+extern u8 fn_15_4578__fzgx_offset_86C[];
+extern u8 fn_15_4578__fzgx_offset_874[];
+extern u8 fn_15_4578__fzgx_offset_87C[];
+extern u8 fn_15_4578__fzgx_offset_884[];
+extern u8 fn_15_4578__fzgx_offset_88C[];
+extern u8 fn_15_4578__fzgx_offset_894[];
+extern u8 fn_15_4578__fzgx_offset_89C[];
+extern u8 fn_15_4578__fzgx_offset_8A4[];
+extern u8 fn_15_4578__fzgx_offset_8AC[];
+extern u8 fn_15_4578__fzgx_offset_8B4[];
+extern u8 fn_15_4578__fzgx_offset_8BC[];
+extern u8 fn_15_4578__fzgx_offset_8C0[];
+extern u8 fn_15_644__fzgx_offset_0[];
+extern u8 fn_15_B8C__fzgx_offset_0[];
+extern u8 lbl_15_data_0__fzgx_offset_0[];
+extern u8 lbl_15_data_10__fzgx_offset_0[];
+extern u8 lbl_15_data_18__fzgx_offset_0[];
+extern u8 lbl_15_data_1C2C__fzgx_offset_0[];
+extern u8 lbl_15_data_1C34__fzgx_offset_0[];
+extern u8 lbl_15_data_1C40__fzgx_offset_0[];
+extern u8 lbl_15_data_1C50__fzgx_offset_0[];
+extern u8 lbl_15_data_1C5C__fzgx_offset_0[];
+extern u8 lbl_15_data_1C68__fzgx_offset_0[];
+extern u8 lbl_15_data_1C70__fzgx_offset_0[];
+extern u8 lbl_15_data_1C74__fzgx_offset_0[];
+extern u8 lbl_15_data_1C78__fzgx_offset_0[];
+extern u8 lbl_15_data_1C7C__fzgx_offset_0[];
+extern u8 lbl_15_data_1D10__fzgx_offset_0[];
+extern u8 lbl_15_data_1D20__fzgx_offset_0[];
+extern u8 lbl_15_data_1D30__fzgx_offset_0[];
+extern u8 lbl_15_data_1D40__fzgx_offset_0[];
+extern u8 lbl_15_data_1DB0__fzgx_offset_0[];
+extern u8 lbl_15_data_1DCC__fzgx_offset_0[];
+extern u8 lbl_15_data_1DF8__fzgx_offset_0[];
+extern u8 lbl_15_data_1E0C__fzgx_offset_0[];
+extern u8 lbl_15_data_1E24__fzgx_offset_0[];
+extern u8 lbl_15_data_1E3C__fzgx_offset_0[];
+extern u8 lbl_15_data_1E54__fzgx_offset_0[];
+extern u8 lbl_15_data_1E84__fzgx_offset_0[];
+extern u8 lbl_15_data_1E8C__fzgx_offset_0[];
+extern u8 lbl_15_data_1E9C__fzgx_offset_0[];
+extern u8 lbl_15_data_1EAC__fzgx_offset_0[];
+extern u8 lbl_15_data_1EBC__fzgx_offset_0[];
+extern u8 lbl_15_data_30__fzgx_offset_0[];
+extern u8 lbl_15_data_38__fzgx_offset_0[];
+extern u8 lbl_15_data_40__fzgx_offset_0[];
+extern u8 lbl_15_data_48__fzgx_offset_0[];
+extern u8 lbl_15_data_60__fzgx_offset_0[];
+extern u8 lbl_15_data_68__fzgx_offset_0[];
+extern u8 lbl_15_data_8__fzgx_offset_0[];
+extern u8 lbl_1_data_2B0D4[];
+extern char *lbl_1_data_2BD54[][6];
+extern void fn_1_3EF14(void *);
+extern void fn_1_520A0(void);
+extern void fn_1_52070(u32);
+extern void fn_1_141360(u8, s32, s32, s32, f32, f32);
+extern void fn_1_520CC(void);
+extern void fn_1_494DC(s16);
+extern void fn_1_495B0(u32);
+extern void fn_1_495C8(u8);
+extern void fn_1_49590(f32);
+extern void fn_1_495A0(f32);
+extern void fn_1_50A90(void *, s32, s32, s32, s32);
+extern void *memcpy(void *, const void *, u32);
+extern int sprintf(char *, const char *, ...);
+extern s16 fn_1_12EF24(s16, s16);
+extern u16 fn_1_48690(u32);
+extern void fn_1_CFCA4(const char *, f32, f32, f32);
+extern void fn_1_4962C(void);
+extern char *fn_1_5415C(s32, s32);
+extern f64 __fabs(f64);
+extern u8 lbl_15_bss_3F8[136];
+extern u32 lbl_15_rodata_19C[20];
+extern void fn_1_7BCCC(void *);
+extern void fn_80035680(void *, f32, f32, f32);
+extern void fn_80035690(void *, f32, f32, f32);
+extern void fn_80035420(void *, u32, f32);
+extern void fn_800356AC(void *, void *);
+extern void GXInitLightDistAttn(void *, f32, f32, u32);
+extern void fn_1_7BB80(void *, u32);
+extern void fn_1_7BD6C(u32);
+extern u8 lbl_15_bss_35;
+extern s16 lbl_1_bss_960;
 
-/* fzgx:begin _prolog */
+/* fzgx:begin _prolog noprologue */
+#include "types.h"
+
 struct _prolog_lbl_15_bss_0 {
     u8 pad_0[0xC];
     u32 unk_C;
@@ -72,18 +213,12 @@ void _prolog(void) {
 /* fzgx:end _prolog */
 
 /* fzgx:begin _epilog */
-extern f32 lbl_15_rodata_0[25];
 extern u32 lbl_15_bss_C;
 extern u32 lbl_15_bss_10;
 extern u32 lbl_1_bss_6EAB4;
-extern u8 lbl_15_data_A4[176];
-extern u32 lbl_801A6410;
 
-extern void fn_8006CE1C(f32);
 extern void fn_1_435C(u32);
 extern void fn_1_41A8(void);
-extern void fn_1_47A60(u32);
-extern void fn_1_48140(u32);
 extern void fn_1_46B4(u32, u32, u8 *, u32);
 
 void _epilog(void) {
@@ -96,23 +231,24 @@ void _epilog(void) {
     fn_1_47A60(0xE);
     fn_1_48140(0x8C);
     fn_1_48140(0xBB);
-    fn_1_46B4(lbl_801A6410, lbl_15_bss_C, lbl_15_data_A4, 0x192);
-    fn_1_46B4(lbl_801A6410, lbl_15_bss_10, lbl_15_data_A4, 0x193);
+    fn_1_46B4(lbl_801A6410, lbl_15_bss_C, (*(u8 (*)[176])&lbl_15_data_A4), 0x192);
+    fn_1_46B4(lbl_801A6410, lbl_15_bss_10, (*(u8 (*)[176])&lbl_15_data_A4), 0x193);
 }
 /* fzgx:end _epilog */
 
 /* fzgx:begin fn_15_1F4 */
-extern s32 lbl_15_bss_14;
+
+
 extern s32 lbl_15_bss_1C;
 extern void fn_15_B90(void);
 
 void fn_15_1F4(void) {
-    if ((lbl_15_bss_14 & 0x10000000) != 0) {
+    if (((*(s32 *)&lbl_15_bss_14) & 0x10000000) != 0) {
         if (lbl_15_bss_1C != 0) {
             lbl_15_bss_1C -= 1;
         }
         if (lbl_15_bss_1C == 0) {
-            lbl_15_bss_14 &= ~0x10000000;
+            (*(s32 *)&lbl_15_bss_14) &= ~0x10000000;
             fn_15_B90();
         }
     }
@@ -120,19 +256,8 @@ void fn_15_1F4(void) {
 /* fzgx:end fn_15_1F4 */
 
 /* fzgx:begin fn_15_260 */
-extern struct fn_15_260_lbl_15_bss_0 lbl_15_bss_0;
 extern u32 fn_1_435C(u32);
-extern void fn_1_407C(void);
-extern void fn_1_3CC4(void);
-extern s32 fn_1_8DB94(void);
 extern void fn_1_86254(u32);
-extern void fn_1_106EB0(void);
-extern s32 camera_get_flags(void);
-extern void camera_update(void);
-extern u32 fn_1_58C4(void);
-extern void fn_1_5948(s32);
-extern void fn_1_9A770(void);
-extern void fn_1_627C(s32);
 
 struct fn_15_260_lbl_15_bss_0 {
     u8 pad_0[0xC];
@@ -151,7 +276,7 @@ void fn_15_260(void) {
     s32 i;
     s16 index;
 
-    p_lbl_15_bss_0 = (struct fn_15_260_lbl_15_bss_0 *)&lbl_15_bss_0;
+    p_lbl_15_bss_0 = (struct fn_15_260_lbl_15_bss_0 *)&(*(struct fn_15_260_lbl_15_bss_0 *)&lbl_15_bss_0);
     if (p_lbl_15_bss_0->unk_21 != 0) {
         fn_1_435C(p_lbl_15_bss_0->unk_24);
         fn_1_407C();
@@ -194,9 +319,6 @@ struct fn_15_350_lbl_15_data_70_0_E16 {
 };
 
 extern s16 lbl_1_bss_962;
-extern u8 lbl_15_data_70[32];
-extern u32 lbl_1_bss_71688;
-extern u32 lbl_1_bss_7168C;
 
 void fn_15_350(void) {
     u32 v0;
@@ -210,7 +332,9 @@ void fn_15_350(void) {
 }
 /* fzgx:end fn_15_350 */
 
-/* fzgx:begin fn_15_3AC */
+/* fzgx:begin fn_15_3AC noprologue */
+#include "types.h"
+
 struct fn_15_3AC_lbl_15_bss_0 {
     u8 pad_0[0x4];
     u8 unk_4;
@@ -338,7 +462,9 @@ void fn_15_3AC(void) {
 }
 /* fzgx:end fn_15_3AC */
 
-/* fzgx:begin fn_15_644 */
+/* fzgx:begin fn_15_644 noprologue */
+#include "types.h"
+
 struct fn_15_644_Entry {
     u8 pad_0[4];
     u8 unk_4;
@@ -580,7 +706,9 @@ void fn_15_B8C(void) {
 }
 /* fzgx:end fn_15_B8C */
 
-/* fzgx:begin fn_15_B90 */
+/* fzgx:begin fn_15_B90 noprologue */
+#include "types.h"
+
 struct fn_15_B90_Copy160 { u32 a[40]; };
 struct fn_15_B90_lbl_15_bss_0 {
     u8 pad_0[0x10];
@@ -702,7 +830,9 @@ void fn_15_B90(void) {
 }
 /* fzgx:end fn_15_B90 */
 
-/* fzgx:begin fn_15_DD8 */
+/* fzgx:begin fn_15_DD8 noprologue */
+#include "types.h"
+
 struct fn_15_DD8_Copy160 { u32 a[40]; };
 
 struct fn_15_DD8_lbl_15_bss_0 {
@@ -785,7 +915,9 @@ void fn_15_DD8(void) {
 }
 /* fzgx:end fn_15_DD8 */
 
-/* fzgx:begin fn_15_FCC */
+/* fzgx:begin fn_15_FCC noprologue */
+#include "types.h"
+
 typedef struct Sig_fn_1_22E8C_Fn_1_22E8CInput {
     u8 pad[0xB4];
 } Sig_fn_1_22E8C_Fn_1_22E8CInput;
@@ -930,7 +1062,9 @@ void fn_15_FCC(void) {
 }
 /* fzgx:end fn_15_FCC */
 
-/* fzgx:begin fn_15_11DC */
+/* fzgx:begin fn_15_11DC noprologue */
+#include "types.h"
+
 #include "font.h"
 #include "rel/main_rel/camera.h"
 #include "rel/main_rel/sound.h"
@@ -1359,7 +1493,8 @@ void fn_15_11DC(void) {
 /* fzgx:end fn_15_11DC */
 
 /* fzgx:begin fn_15_1D7C */
-extern struct fn_15_1D7C_lbl_15_bss_0 lbl_15_bss_0;
+
+
 extern u32 fn_15_1F28(u32, u32);
 extern u32 fn_15_FCC(void);
 extern u32 fn_1_4A00(u32, u32, u32);
@@ -1377,7 +1512,7 @@ u32 fn_15_1D7C(u32 arg0, u32 arg1, u32 arg2) {
     u32 v1;
     u32 v2;
     u32 t0, t1, t2, t3;
-    p_lbl_15_bss_0 = (struct fn_15_1D7C_lbl_15_bss_0 *)&lbl_15_bss_0;
+    p_lbl_15_bss_0 = (struct fn_15_1D7C_lbl_15_bss_0 *)&(*(struct fn_15_1D7C_lbl_15_bss_0 *)&lbl_15_bss_0);
     v0 = arg2;
     v1 = arg0;
     v2 = arg1;
@@ -1407,10 +1542,6 @@ u32 fn_15_1D7C(u32 arg0, u32 arg1, u32 arg2) {
 /* fzgx:end fn_15_1D7C */
 
 /* fzgx:begin fn_15_1DF4 */
-extern struct fn_15_1DF4_lbl_15_bss_0 lbl_15_bss_0;
-extern u8 lbl_1_bss_25E98;
-extern u8 lbl_1_bss_9F8;
-extern struct fn_15_1DF4_lbl_1_bss_5138 lbl_1_bss_5138;
 extern void fn_15_11DC(void);
 extern u32 fn_1_B7C00(void);
 extern void fn_15_DD8(void);
@@ -1440,7 +1571,7 @@ void fn_15_1DF4(void) {
     s32 e2;
     s32 bit;
 
-    p = (struct fn_15_1DF4_lbl_15_bss_0 *)&lbl_15_bss_0;
+    p = (struct fn_15_1DF4_lbl_15_bss_0 *)&(*(struct fn_15_1DF4_lbl_15_bss_0 *)&lbl_15_bss_0);
     if ((p->unk_14 & 0x1) != 0) {
         fn_15_11DC();
     }
@@ -1453,7 +1584,7 @@ void fn_15_1DF4(void) {
         fn_15_DD8();
     }
 
-    q = (struct fn_15_1DF4_lbl_1_bss_5138 *)&lbl_1_bss_5138;
+    q = (struct fn_15_1DF4_lbl_1_bss_5138 *)&(*(struct fn_15_1DF4_lbl_1_bss_5138 *)&lbl_1_bss_5138);
     e2 = q->unk_E2;
     if (e2 != 0) {
         bit = (*(u16 *)(table + (u32)lbl_1_bss_25E98 * 0x14) >> 8) & 1;
@@ -1465,7 +1596,8 @@ void fn_15_1DF4(void) {
 /* fzgx:end fn_15_1DF4 */
 
 /* fzgx:begin fn_15_1EE0 */
-extern struct fn_15_1EE0_lbl_15_bss_0 lbl_15_bss_0;
+
+
 extern u32 camera_enable_flags(u32);
 extern u32 fn_15_236C(u32, u32);
 
@@ -1479,7 +1611,7 @@ struct fn_15_1EE0_lbl_15_bss_0 {
 void fn_15_1EE0(void) {
     struct fn_15_1EE0_lbl_15_bss_0 *p_lbl_15_bss_0;
     u32 t0;
-    p_lbl_15_bss_0 = (struct fn_15_1EE0_lbl_15_bss_0 *)&lbl_15_bss_0;
+    p_lbl_15_bss_0 = (struct fn_15_1EE0_lbl_15_bss_0 *)&(*(struct fn_15_1EE0_lbl_15_bss_0 *)&lbl_15_bss_0);
     t0 = fn_15_236C(p_lbl_15_bss_0->unk_C, p_lbl_15_bss_0->unk_10);
     if ((p_lbl_15_bss_0->unk_14 & 0x1) != 0) {
     camera_enable_flags(t0);
@@ -1487,7 +1619,9 @@ void fn_15_1EE0(void) {
 }
 /* fzgx:end fn_15_1EE0 */
 
-/* fzgx:begin fn_15_1F28 */
+/* fzgx:begin fn_15_1F28 noprologue */
+#include "types.h"
+
 struct fn_15_1F28_bss {
     u8 pad_0[0x8];
     void *unk_8;
@@ -1652,7 +1786,8 @@ extern u32 fn_15_2CEC(void);
 extern u32 fn_15_3AFC(void);
 extern u32 fn_15_401C(void);
 extern u32 fn_15_4124(void);
-extern u32 lbl_15_bss_14;
+
+
 extern u8 lbl_15_bss_21;
 
 void fn_15_2228(void) {
@@ -1686,8 +1821,9 @@ struct fn_15_2274_lbl_15_rodata_0 {
     u32 unk_B8;
 };
 
-extern struct fn_15_2274_lbl_15_bss_0 lbl_15_bss_0;
-extern struct fn_15_2274_lbl_15_rodata_0 lbl_15_rodata_0;
+
+
+
 extern void fn_15_435C(void);
 extern void fn_15_405C(void);
 extern void fn_15_2D74(void);
@@ -1697,8 +1833,8 @@ void fn_15_2274(void) {
     struct fn_15_2274_lbl_15_rodata_0 *p_lbl_15_rodata_0;
     struct fn_15_2274_lbl_15_bss_0 *p_lbl_15_bss_0;
     u32 v0;
-    p_lbl_15_rodata_0 = &lbl_15_rodata_0;
-    p_lbl_15_bss_0 = &lbl_15_bss_0;
+    p_lbl_15_rodata_0 = &(*(struct fn_15_2274_lbl_15_rodata_0 *)&lbl_15_rodata_0);
+    p_lbl_15_bss_0 = &(*(struct fn_15_2274_lbl_15_bss_0 *)&lbl_15_bss_0);
     if ((p_lbl_15_bss_0->unk_14 & 0x80000000) != 0) {
         fn_15_435C();
     }
@@ -1757,16 +1893,19 @@ struct fn_15_236C_lbl_1_bss_6EAD0 {
     u32 unk_0;
 };
 
-extern struct fn_15_236C_lbl_15_bss_0 lbl_15_bss_0;
-extern struct fn_15_236C_lbl_1_bss_6EAD0 lbl_1_bss_6EAD0;
+
+
+
 extern u32 fn_15_2CF0(u32);
 extern u32 fn_15_38FC(u32);
 extern u32 fn_1_435C(u32);
 extern u32 fn_1_46B4(u32, u32, u32, u32);
 extern u32 fn_1_A0AA4(u32);
 extern u32 ADXT_Stop(u32);
-extern u32 lbl_15_data_A4;
-extern u32 lbl_801A6410;
+
+
+
+
 extern void fn_15_3B00(void);
 extern void fn_15_4060(void);
 extern void fn_1_410A0(void);
@@ -1781,10 +1920,10 @@ void fn_15_236C(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     u32 v2;
     u32 v3;
     u32 t2, t3, t4, t8;
-    p_lbl_15_bss_0 = (struct fn_15_236C_lbl_15_bss_0 *)&lbl_15_bss_0;
+    p_lbl_15_bss_0 = (struct fn_15_236C_lbl_15_bss_0 *)&(*(struct fn_15_236C_lbl_15_bss_0 *)&lbl_15_bss_0);
     fn_1_469BC();
-    ADXT_Stop(*(u32 *)((u8 *)lbl_1_bss_6EAD0.unk_0 + 0));
-    t2 = ADXT_Stop(*(u32 *)((u8 *)lbl_1_bss_6EAD0.unk_0 + 4));
+    ADXT_Stop(*(u32 *)((u8 *)(*(struct fn_15_236C_lbl_1_bss_6EAD0 *)&lbl_1_bss_6EAD0).unk_0 + 0));
+    t2 = ADXT_Stop(*(u32 *)((u8 *)(*(struct fn_15_236C_lbl_1_bss_6EAD0 *)&lbl_1_bss_6EAD0).unk_0 + 4));
     t3 = fn_1_A0AA4(t2);
     t4 = fn_15_2CF0(t3);
     if ((p_lbl_15_bss_0->unk_14 & 0x80) == 0) {
@@ -1798,7 +1937,7 @@ void fn_15_236C(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     v3 = arg3;
     if (v0 != 0) {
     v3 = (u32)&lbl_801A6410;
-    v1 = (u32)&lbl_15_data_A4;
+    v1 = (u32)&(*(u32 *)&lbl_15_data_A4);
     v2 = *(u32 *)((u8 *)v3 + 0);
     v3 = 1768;
     t8 = fn_1_46B4(v2, v0, (u32)v1, v3);
@@ -1857,9 +1996,11 @@ struct fn_15_2458_Car {
 
 typedef void (*fn_15_2458_CB)(void);
 
-extern struct fn_15_2458_bss lbl_15_bss_0;
-extern struct fn_15_2458_data lbl_15_data_0;
-extern u32 lbl_801A6410;
+
+
+
+
+
 extern u32 fn_1_4630(u32, u32, u32, u32);
 extern void fn_1_8F198(struct fn_15_2458_Car *, s16, u32, u32);
 extern void fn_1_8F45C(struct fn_15_2458_Car *, s16, u32, u32);
@@ -1885,8 +2026,8 @@ void fn_15_2458(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
     struct fn_15_2458_Car *car;
     fn_15_2458_CB lab_t1;
 
-    p_data = &lbl_15_data_0;
-    p_bss = &lbl_15_bss_0;
+    p_data = &(*(struct fn_15_2458_data *)&lbl_15_data_0);
+    p_bss = &(*(struct fn_15_2458_bss *)&lbl_15_bss_0);
     v_idx = (s16)arg2;
     v_clz = (0x1F - __cntlzw(p_bss->unk_2C[v_idx].unk_6)) & 3;
     switch ((s32)v_clz) {
@@ -1969,16 +2110,13 @@ struct fn_15_2620_lbl_15_bss_0 {
     u32 unk_58;
 };
 
-extern struct fn_15_2620_lbl_15_bss_0 lbl_15_bss_0;
-extern u32 fn_1_8E728(void *, u32);
-
 void fn_15_2620(struct fn_15_2620_Arg0 *arg0) {
     struct fn_15_2620_lbl_15_bss_0 *p_lbl_15_bss_0;
     u32 v0;
     u32 v1;
     u32 v2;
     u32 v3;
-    p_lbl_15_bss_0 = &lbl_15_bss_0;
+    p_lbl_15_bss_0 = &(*(struct fn_15_2620_lbl_15_bss_0 *)&lbl_15_bss_0);
     v0 = arg0->unk_88;
     switch ((s32)v0) {
     case 33:
@@ -2085,8 +2223,10 @@ u8 pad_0[0x5C]; f32 unk_5C; u8 pad_60[0x24]; f32 unk_84;
 u8 pad_88[0x34]; struct fn_15_27D4_Vec3 unk_BC; f32 unk_C8,unk_CC;
 };
 struct fn_15_27D4_St {u8 pad_0[0x192];u8 unk_192;};
-extern struct fn_15_27D4_lbl_1_data_2A7E0 lbl_1_data_2A7E0;
-extern struct fn_15_27D4_lbl_15_rodata_0 lbl_15_rodata_0;
+
+
+
+
 extern struct fn_15_27D4_St *lbl_15_bss_2C;
 struct fn_15_2620_Arg0;
 extern void fn_15_2620(struct fn_15_2620_Arg0 *);
@@ -2106,8 +2246,8 @@ struct fn_15_27D4_Dst *p_dst;
 struct fn_15_27D4_St *p_st;
 u8 v0;
 v0=arg0->unk_4C4;
-p_ro=&lbl_15_rodata_0;
-fzgx_live_=lbl_1_data_2A7E0.unk_3C;
+p_ro=&(*(struct fn_15_27D4_lbl_15_rodata_0 *)&lbl_15_rodata_0);
+fzgx_live_=(*(struct fn_15_27D4_lbl_1_data_2A7E0 *)&lbl_1_data_2A7E0).unk_3C;
 p_tab=fzgx_live_;
 switch((s32)v0){
 case 0: arg0->unk_A8=p_tab->unk_1C;break;
@@ -2172,7 +2312,9 @@ if(arg0->unk_88==1){arg0->unk_18=arg0->unk_18|0x20000000;}
 #pragma opt_propagation reset
 /* fzgx:end fn_15_27D4 */
 
-/* fzgx:begin fn_15_2AE4 */
+/* fzgx:begin fn_15_2AE4 noprologue */
+#include "types.h"
+
 // lbl_15_bss_0 layout recovered from the accesses in this function.
 struct fn_15_2AE4_bss0 {
     u8 pad_0[0x4];
@@ -2290,10 +2432,6 @@ void fn_15_2CEC(void) {
 /* fzgx:end fn_15_2CEC */
 
 /* fzgx:begin fn_15_2CF0 */
-extern u32 lbl_15_bss_9C[13];
-extern u8 lbl_15_data_A4[176];
-extern u32 lbl_801A6410;
-extern void fn_1_8F494(void *);
 extern u32 fn_1_46B4(u32, u32, const u8 *, int);
 
 void fn_15_2CF0(void) {
@@ -2304,7 +2442,7 @@ void fn_15_2CF0(void) {
     for (i = 0; i < 12; i++) {
         if (p[i] != 0) {
             fn_1_8F494((void *)p[i]);
-            fn_1_46B4(lbl_801A6410, p[i], lbl_15_data_A4, 0x8cf);
+            fn_1_46B4(lbl_801A6410, p[i], (*(u8 (*)[176])&lbl_15_data_A4), 0x8cf);
             p[i] = 0;
         }
     }
@@ -2344,15 +2482,10 @@ struct fn_15_2D74_root {
     struct fn_15_2D74_bss1 *unk_0;
 };
 
-extern f32 fn_1_A71AC(void);
 extern struct fn_15_2D74_D0 lbl_15_rodata_D0;
 extern struct fn_15_2D74_D8 lbl_15_rodata_D8;
-extern struct fn_15_2D74_bss0 lbl_15_bss_0;
+
 extern struct fn_15_2D74_root lbl_1_bss_38458;
-extern u32 fn_1_129D9C(void *, void *, u32, u32, u32, u32, u32, f32);
-extern void lbl_8006D7DC(void *);
-extern void lbl_8006DB74(void *);
-extern void lbl_8006DFC4(void *);
 
 void fn_15_2D74(u32 arg0) {
     u8 *obj;
@@ -2367,7 +2500,7 @@ void fn_15_2D74(u32 arg0) {
     u8 *sub;
     u8 *t;
 
-    p = (struct fn_15_2D74_bss0 *)&lbl_15_bss_0;
+    p = (struct fn_15_2D74_bss0 *)&(*(struct fn_15_2D74_bss0 *)&lbl_15_bss_0);
     tbl[0] = lbl_15_rodata_D0.unk_0;
     tbl[1] = lbl_15_rodata_D0.unk_4;
     vec[0] = lbl_15_rodata_D8.unk_0;
@@ -2393,7 +2526,9 @@ void fn_15_2D74(u32 arg0) {
 }
 /* fzgx:end fn_15_2D74 */
 
-/* fzgx:begin fn_15_2E8C */
+/* fzgx:begin fn_15_2E8C noprologue */
+#include "types.h"
+
 struct fn_15_2E8C_bss0 {
     u8 pad_0[0x2C];
     u8 *unk_2C;
@@ -2407,7 +2542,7 @@ struct fn_15_2E8C_bss0 {
     s16 unk_14C;
 };
 
-extern u8 jumptable_15_data_1DC[100];
+
 extern s32 fn_1_12CB04(s16);
 extern s16 fn_1_12CCB0(s16, s16);
 extern u32 fn_1_8E4A4(u32, u32, u32);
@@ -2583,7 +2718,8 @@ void fn_15_2E8C(void) {
 /* fzgx:end fn_15_2E8C */
 
 /* fzgx:begin fn_15_30E8 */
-extern struct fn_15_30E8_lbl_15_bss_0 lbl_15_bss_0;
+
+
 extern void fn_15_3368(s16);
 
 struct fn_15_30E8_entry {
@@ -2613,7 +2749,7 @@ void fn_15_30E8(void) {
     s32 i;
     s16 value;
 
-    state = &lbl_15_bss_0;
+    state = &(*(struct fn_15_30E8_lbl_15_bss_0 *)&lbl_15_bss_0);
     entry = state->entries;
     i = 0;
     while (i < state->entry_count) {
@@ -2706,10 +2842,7 @@ struct fn_15_3174_lbl_1_data_2A7E0 {
     u32 unk_3C;
 };
 
-extern struct fn_15_3174_lbl_15_rodata_0 lbl_15_rodata_0;
-extern struct fn_15_3174_lbl_1_data_2A7E0 lbl_1_data_2A7E0;
 extern u8 lbl_15_bss_D0;
-extern void lbl_8006D7DC(void *);
 extern void lbl_8006E1B0(void *, void *);
 
 #pragma opt_propagation off
@@ -2733,9 +2866,9 @@ void fn_15_3174(void * arg0) {
     f32 v14;
     f32 v15;
     void * v16;
-    p_lbl_15_rodata_0 = (struct fn_15_3174_lbl_15_rodata_0 *)&lbl_15_rodata_0;
+    p_lbl_15_rodata_0 = (struct fn_15_3174_lbl_15_rodata_0 *)&(*(struct fn_15_3174_lbl_15_rodata_0 *)&lbl_15_rodata_0);
     v0 = *(u8 *)((u8 *)arg0 + 1220);
-    v1 = lbl_1_data_2A7E0.unk_3C;
+    v1 = (*(struct fn_15_3174_lbl_1_data_2A7E0 *)&lbl_1_data_2A7E0).unk_3C;
     v2 = (s16)v0;
     if (v2 < 8) {
     v3 = (0.0f);
@@ -2791,7 +2924,9 @@ void fn_15_3174(void * arg0) {
 #pragma opt_propagation reset
 /* fzgx:end fn_15_3174 */
 
-/* fzgx:begin fn_15_3368 */
+/* fzgx:begin fn_15_3368 noprologue */
+#include "types.h"
+
 struct fn_15_3368_data {
     u8 pad_0[0xa4];
     u8 unk_a4[0x114];
@@ -2906,10 +3041,8 @@ void fn_15_3368(s16 arg0) {
 
 /* fzgx:begin fn_15_38FC */
 extern u32 lbl_15_bss_D4[32];
-extern u8 lbl_15_data_A4[176];
-extern u32 lbl_801A6410;
+
 extern void fn_1_469BC(void);
-extern void fn_1_8F494(void *);
 extern u32 fn_1_46B4(u32, u32, const u8 *, int);
 
 void fn_15_38FC(void) {
@@ -2921,7 +3054,7 @@ void fn_15_38FC(void) {
     for (i = 0; i < 0x1D; i++) {
         if (p[i] != 0) {
             fn_1_8F494((void *)p[i]);
-            fn_1_46B4(lbl_801A6410, p[i], lbl_15_data_A4, 0x9DA);
+            fn_1_46B4(lbl_801A6410, p[i], (*(u8 (*)[176])&lbl_15_data_A4), 0x9DA);
             p[i] = 0;
         }
     }
@@ -2942,7 +3075,7 @@ struct fn_15_398C_state {
     struct fn_15_398C_entry *entries_d4[0x1d];
 };
 
-extern struct fn_15_398C_state lbl_15_bss_0;
+
 
 void fn_15_398C(void) {
     struct fn_15_398C_state *s;
@@ -2950,7 +3083,7 @@ void fn_15_398C(void) {
     struct fn_15_398C_entry *entry;
     s16 i;
 
-    s = &lbl_15_bss_0;
+    s = &(*(struct fn_15_398C_state *)&lbl_15_bss_0);
     s->flags |= 0x04000000;
     p = &s->entries_9c[0];
     for (i = 0; i < 0xc; i++) {
@@ -2976,14 +3109,7 @@ extern struct fn_15_3A14_lbl_15_bss_74 lbl_15_bss_74;
 extern struct fn_15_3A14_lbl_15_bss_78 lbl_15_bss_78;
 extern u32 fn_1_3F8C(u32, u32, u32, u32);
 extern u32 fn_1_435C(u32);
-extern u32 fn_1_7ACDC(u32);
 extern u32 fn_1_7EAE8(void);
-extern u8 lbl_15_data_0[];
-extern void fn_1_789E8(void);
-extern void fn_1_78EBC(void);
-extern void fn_1_7E9C4(void);
-extern void fn_1_9A5CC(void);
-extern void fn_1_9A7BC(void);
 
 struct fn_15_3A14_lbl_15_bss_74 {
     u32 unk_0;
@@ -2994,7 +3120,7 @@ struct fn_15_3A14_lbl_15_bss_78 {
 
 void fn_15_3A14(void) {
     u8 *p_lbl_15_data_0;
-    p_lbl_15_data_0 = (u8 *)&lbl_15_data_0;
+    p_lbl_15_data_0 = (u8 *)&(*(u8 (*)[])&lbl_15_data_0);
     fn_1_435C(lbl_15_bss_74.unk_0);
     fn_1_3F8C((u32)((u8 *)p_lbl_15_data_0 + 608), (u32)fn_1_789E8, 0, 21);
     fn_1_3F8C((u32)((u8 *)p_lbl_15_data_0 + 620), (u32)fn_1_9A5CC, 0, 23);
@@ -3025,7 +3151,9 @@ void fn_15_3B00(void) {
 }
 /* fzgx:end fn_15_3B00 */
 
-/* fzgx:begin fn_15_3B24 */
+/* fzgx:begin fn_15_3B24 noprologue */
+#include "types.h"
+
 typedef struct fn_15_3B24_Machine {
     u32 flags;
     u8 pad_4[0x81A0 - 0x4];
@@ -3325,7 +3453,8 @@ void fn_15_3B24(void) {
 
 /* fzgx:begin fn_15_401C */
 extern u32 fn_1_C6F80(u32);
-extern u32 lbl_15_bss_14;
+
+
 
 u32 fn_15_401C(u32 arg0) {
     u32 v0;
@@ -3351,8 +3480,10 @@ void fn_15_405C(void) {
 /* fzgx:end fn_15_405C */
 
 /* fzgx:begin fn_15_4060 */
-extern struct fn_15_4060_lbl_15_bss_0 lbl_15_bss_0;
-extern struct fn_15_4060_lbl_801A6410 lbl_801A6410;
+
+
+
+
 extern u32 fn_1_41A8(u32);
 extern u32 fn_1_435C(u32);
 extern u32 fn_1_46B4(u32, u32, void *, u32);
@@ -3361,7 +3492,8 @@ extern u32 fn_1_85878(void);
 extern u32 fn_1_982C4(u32);
 extern u32 fn_1_C47B4(u32);
 extern u32 fn_1_C6F80(u32);
-extern u32 lbl_15_data_A4;
+
+
 
 struct fn_15_4060_lbl_15_bss_0 {
     u8 pad_0[0x21];
@@ -3379,24 +3511,26 @@ struct fn_15_4060_lbl_801A6410 {
 void fn_15_4060(void) {
     struct fn_15_4060_lbl_15_bss_0 *p_lbl_15_bss_0;
     u32 t0, t1, t2, t6, t8;
-    p_lbl_15_bss_0 = (struct fn_15_4060_lbl_15_bss_0 *)&lbl_15_bss_0;
+    p_lbl_15_bss_0 = (struct fn_15_4060_lbl_15_bss_0 *)&(*(struct fn_15_4060_lbl_15_bss_0 *)&lbl_15_bss_0);
     t0 = fn_1_85878();
     t1 = fn_1_982C4(t0);
     t2 = fn_1_58854(t1);
     fn_1_C47B4(t2);
     fn_1_C6F80(0);
-    fn_1_46B4(lbl_801A6410.unk_0, p_lbl_15_bss_0->unk_150, &lbl_15_data_A4, 2849);
+    fn_1_46B4((*(struct fn_15_4060_lbl_801A6410 *)&lbl_801A6410).unk_0, p_lbl_15_bss_0->unk_150, &(*(u32 *)&lbl_15_data_A4), 2849);
     t6 = fn_1_435C(p_lbl_15_bss_0->unk_24);
     fn_1_41A8(t6);
     t8 = fn_1_435C(p_lbl_15_bss_0->unk_28);
     fn_1_41A8(t8);
-    fn_1_46B4(lbl_801A6410.unk_0, p_lbl_15_bss_0->unk_24, &lbl_15_data_A4, 2854);
-    fn_1_46B4(lbl_801A6410.unk_0, p_lbl_15_bss_0->unk_28, &lbl_15_data_A4, 2855);
+    fn_1_46B4((*(struct fn_15_4060_lbl_801A6410 *)&lbl_801A6410).unk_0, p_lbl_15_bss_0->unk_24, &(*(u32 *)&lbl_15_data_A4), 2854);
+    fn_1_46B4((*(struct fn_15_4060_lbl_801A6410 *)&lbl_801A6410).unk_0, p_lbl_15_bss_0->unk_28, &(*(u32 *)&lbl_15_data_A4), 2855);
     p_lbl_15_bss_0->unk_21 = 0;
 }
 /* fzgx:end fn_15_4060 */
 
-/* fzgx:begin fn_15_4124 */
+/* fzgx:begin fn_15_4124 noprologue */
+#include "types.h"
+
 typedef struct {
     u8 pad_0[0x38];
     s16 unk_38;
@@ -3507,7 +3641,9 @@ void fn_15_4124(void) {
 }
 /* fzgx:end fn_15_4124 */
 
-/* fzgx:begin fn_15_435C */
+/* fzgx:begin fn_15_435C noprologue */
+#include "types.h"
+
 #include "rel/main_rel/camera.h"
 
 struct fn_15_435C_lbl_15_rodata_0 {
@@ -3661,8 +3797,6 @@ void fn_15_435C(void) {
 /* fzgx:end fn_15_435C */
 
 /* fzgx:begin fn_15_4568 */
-extern u16 lbl_15_bss_154;
-
 void fn_15_4568(void) {
     lbl_15_bss_154 = 0;
 }
@@ -3718,67 +3852,6 @@ static void bss_prime(void) {
 }
 #pragma section code_type ".text"
 
-extern u8 fn_15_1D7C__fzgx_offset_0[];
-extern u8 fn_15_1DF4__fzgx_offset_0[];
-extern u8 fn_15_1EE0__fzgx_offset_0[];
-extern u8 fn_15_2E8C__fzgx_offset_104[];
-extern u8 fn_15_2E8C__fzgx_offset_10C[];
-extern u8 fn_15_2E8C__fzgx_offset_110[];
-extern u8 fn_15_2E8C__fzgx_offset_DC[];
-extern u8 fn_15_2E8C__fzgx_offset_E4[];
-extern u8 fn_15_2E8C__fzgx_offset_EC[];
-extern u8 fn_15_3AC__fzgx_offset_0[];
-extern u8 fn_15_4578__fzgx_offset_864[];
-extern u8 fn_15_4578__fzgx_offset_86C[];
-extern u8 fn_15_4578__fzgx_offset_874[];
-extern u8 fn_15_4578__fzgx_offset_87C[];
-extern u8 fn_15_4578__fzgx_offset_884[];
-extern u8 fn_15_4578__fzgx_offset_88C[];
-extern u8 fn_15_4578__fzgx_offset_894[];
-extern u8 fn_15_4578__fzgx_offset_89C[];
-extern u8 fn_15_4578__fzgx_offset_8A4[];
-extern u8 fn_15_4578__fzgx_offset_8AC[];
-extern u8 fn_15_4578__fzgx_offset_8B4[];
-extern u8 fn_15_4578__fzgx_offset_8BC[];
-extern u8 fn_15_4578__fzgx_offset_8C0[];
-extern u8 fn_15_644__fzgx_offset_0[];
-extern u8 fn_15_B8C__fzgx_offset_0[];
-extern u8 lbl_15_data_0__fzgx_offset_0[];
-extern u8 lbl_15_data_10__fzgx_offset_0[];
-extern u8 lbl_15_data_18__fzgx_offset_0[];
-extern u8 lbl_15_data_1C2C__fzgx_offset_0[];
-extern u8 lbl_15_data_1C34__fzgx_offset_0[];
-extern u8 lbl_15_data_1C40__fzgx_offset_0[];
-extern u8 lbl_15_data_1C50__fzgx_offset_0[];
-extern u8 lbl_15_data_1C5C__fzgx_offset_0[];
-extern u8 lbl_15_data_1C68__fzgx_offset_0[];
-extern u8 lbl_15_data_1C70__fzgx_offset_0[];
-extern u8 lbl_15_data_1C74__fzgx_offset_0[];
-extern u8 lbl_15_data_1C78__fzgx_offset_0[];
-extern u8 lbl_15_data_1C7C__fzgx_offset_0[];
-extern u8 lbl_15_data_1D10__fzgx_offset_0[];
-extern u8 lbl_15_data_1D20__fzgx_offset_0[];
-extern u8 lbl_15_data_1D30__fzgx_offset_0[];
-extern u8 lbl_15_data_1D40__fzgx_offset_0[];
-extern u8 lbl_15_data_1DB0__fzgx_offset_0[];
-extern u8 lbl_15_data_1DCC__fzgx_offset_0[];
-extern u8 lbl_15_data_1DF8__fzgx_offset_0[];
-extern u8 lbl_15_data_1E0C__fzgx_offset_0[];
-extern u8 lbl_15_data_1E24__fzgx_offset_0[];
-extern u8 lbl_15_data_1E3C__fzgx_offset_0[];
-extern u8 lbl_15_data_1E54__fzgx_offset_0[];
-extern u8 lbl_15_data_1E84__fzgx_offset_0[];
-extern u8 lbl_15_data_1E8C__fzgx_offset_0[];
-extern u8 lbl_15_data_1E9C__fzgx_offset_0[];
-extern u8 lbl_15_data_1EAC__fzgx_offset_0[];
-extern u8 lbl_15_data_1EBC__fzgx_offset_0[];
-extern u8 lbl_15_data_30__fzgx_offset_0[];
-extern u8 lbl_15_data_38__fzgx_offset_0[];
-extern u8 lbl_15_data_40__fzgx_offset_0[];
-extern u8 lbl_15_data_48__fzgx_offset_0[];
-extern u8 lbl_15_data_60__fzgx_offset_0[];
-extern u8 lbl_15_data_68__fzgx_offset_0[];
-extern u8 lbl_15_data_8__fzgx_offset_0[];
 static u32 fzgx_pool_data_0x0[219] = {0x57494E5F, 0x31535400, 0x57494E5F, 0x324E4400, 0x57494E5F, 0x33524400, 0x57494E5F, 0x34544800, (u32)lbl_15_data_0__fzgx_offset_0, (u32)lbl_15_data_8__fzgx_offset_0, (u32)lbl_15_data_10__fzgx_offset_0, (u32)lbl_15_data_18__fzgx_offset_0, 0x424C4143, 0x4B000000, 0x47524159, 0x00000000, 0x424C5545, 0x00000000, 0x57484954, 0x453F0000, (u32)lbl_15_data_30__fzgx_offset_0, (u32)lbl_15_data_38__fzgx_offset_0, (u32)lbl_15_data_40__fzgx_offset_0, (u32)lbl_15_data_48__fzgx_offset_0, 0x6D656E75, 0x00000000, 0x77696E6E, 0x696E6700, (u32)lbl_15_data_60__fzgx_offset_0, (u32)fn_15_3AC__fzgx_offset_0, (u32)fn_15_644__fzgx_offset_0, (u32)fn_15_B8C__fzgx_offset_0, (u32)lbl_15_data_68__fzgx_offset_0, (u32)fn_15_1D7C__fzgx_offset_0, (u32)fn_15_1DF4__fzgx_offset_0, (u32)fn_15_1EE0__fzgx_offset_0, 0x00000000, 0x00001248, 0x000012FC, 0x0000137E, 0x000019C8, 0x77696E6E, 0x696E672E, 0x63000000, 0x50757368, 0x203C413E, 0x20746F20, 0x77696E6E, 0x696E6720, 0x72756E20, 0x6D6F6465, 0x210A0000, 0x4341523A, 0x2532642C, 0x20545950, 0x453A2532, 0x64200000, 0x20257328, 0x25732920, 0x0A000000, 0x53454C3A, 0x204F4E0A, 0x00000000, 0x53454C3A, 0x204F4646, 0x0A000000, 0x5345513A, 0x20474320, 0x57494E4E, 0x494E4720, 0x52554E0A, 0x00000000, 0x5345513A, 0x20474320, 0x5653203A, 0x20253164, 0x0A000000, 0x5345513A, 0x20414320, 0x3173740A, 0x00000000, 0x5345513A, 0x20414320, 0x454E440A, 0x00000000, 0x53746166, 0x66526F6C, 0x6C4D6169, 0x6E000000, 0x53746166, 0x66526F6C, 0x6C446973, 0x70000000, 0x57696E6E, 0x696E6743, 0x616C6300, 0x4C696768, 0x744D6169, 0x6E000000, 0x6D6F745F, 0x6C696768, 0x745F6361, 0x6C630000, 0x57696E6E, 0x696E6744, 0x69737000, 0x6D6F745F, 0x6C696768, 0x745F6469, 0x73700000, 0x526F6245, 0x78656300, 0x7365745F, 0x77696E6E, 0x65725F72, 0x616E6B00, 0x526F6244, 0x69737043, 0x6C697000, (u32)fn_15_2E8C__fzgx_offset_10C, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_DC, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_E4, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_EC, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_104, 0x57494E5F, 0x57414954, 0x00000000, 0x7365745F, 0x6F746865, 0x725F726F, 0x625F706F, 0x73000000, 0x53746167, 0x6543616C, 0x63000000, 0x4261636B, 0x47726F75, 0x6E644361, 0x6C630000, 0x466F674D, 0x61696E00, 0x466F674F, 0x66660000, 0x53746167, 0x65446973, 0x70000000, 0x4261636B, 0x47726F75, 0x6E644469, 0x73700000, 0x4275726E, 0x65720000, 0x4275726E, 0x65724469, 0x73700000, 0x456E656D, 0x79546F74, 0x616C436F, 0x6E74726F, 0x6C4D6169, 0x6E000000, 0x25316488, 0xCA203A20, 0x25732825, 0x7329200A, 0x00000000, 0x94778C69, 0x20814620, 0x2573200A, 0x00000000, 0x8370815B, 0x83583A20, 0x25352E32, 0x660A0000, 0x42474D3A, 0x2081F495, 0x5C8FB241, 0x43000000, 0x42474D3A, 0x2081F495, 0x5C8FB247, 0x43208345, 0x8343836A, 0x8393834F, 0x83898393, 0x00000000, 0x42474D3A, 0x2081F483, 0x74834083, 0x8B835283, 0x9382CC83, 0x65815B83, 0x7D816941, 0x43834783, 0x93836683, 0x42839383, 0x4F816A00, 0x44554D4D, 0x590A0000}; /* fzgx-allow: A1 measured retail data and relocations */
 static u32 fzgx_pool_data_0x36C[1008] = {0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF4D55, 0x54454349, 0x54590000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF5241, 0x4E4B0000, 0x00000000, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF5449, 0x4D450000, 0x00000000, 0x00000000, 0x00000000, 0x00003031, 0x27353922, 0x39383000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D99999A, 0x3DCCCCCD, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF4245, 0x5354204C, 0x41500000, 0x00000000, 0x00000000, 0x00003030, 0x27313222, 0x38383200, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D8F5C29, 0x3DE147AE, 0x00000000, 0x442F0000, 0x43160000, 0xFFFF4D41, 0x58205350, 0x45454400, 0x00000000, 0x00000000, 0x00003130, 0x32340000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D851EB8, 0x3E051EB8, 0x00000000, 0x442F0000, 0x43340000, 0xFFFF504F, 0x494E5453, 0x00000000, 0x00000000, 0x00000000, 0x00003938, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x43520000, 0xFFFF4154, 0x5441434B, 0x00000000, 0x00000000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF4D55, 0x54454349, 0x54590000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF5241, 0x4E4B0000, 0x00000000, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF5449, 0x4D450000, 0x00000000, 0x00000000, 0x00000000, 0x00003031, 0x27353922, 0x39383000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D99999A, 0x3DCCCCCD, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF4245, 0x5354204C, 0x41500000, 0x00000000, 0x00000000, 0x00003030, 0x27313222, 0x38383200, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D8F5C29, 0x3DE147AE, 0x00000000, 0x442F0000, 0x43160000, 0xFFFF4D41, 0x58205350, 0x45454400, 0x00000000, 0x00000000, 0x00003130, 0x32340000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D851EB8, 0x3E051EB8, 0x00000000, 0x442F0000, 0x43340000, 0xFFFF504F, 0x494E5453, 0x00000000, 0x00000000, 0x00000000, 0x00003938, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x43520000, 0xFFFF4154, 0x5441434B, 0x00000000, 0x00000000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF4D55, 0x54454349, 0x54590000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF5241, 0x4E4B0000, 0x00000000, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF5449, 0x4D450000, 0x00000000, 0x00000000, 0x00000000, 0x00003031, 0x27353922, 0x39383000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D99999A, 0x3DCCCCCD, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF4245, 0x5354204C, 0x41500000, 0x00000000, 0x00000000, 0x00003030, 0x27313222, 0x38383200, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D8F5C29, 0x3DE147AE, 0x00000000, 0x442F0000, 0x43160000, 0xFFFF4D41, 0x58205350, 0x45454400, 0x00000000, 0x00000000, 0x00003130, 0x32340000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D851EB8, 0x3E051EB8, 0x00000000, 0x442F0000, 0x43340000, 0xFFFF504F, 0x494E5453, 0x00000000, 0x00000000, 0x00000000, 0x00003938, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x43520000, 0xFFFF4154, 0x5441434B, 0x00000000, 0x00000000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF4D55, 0x54454349, 0x54590000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF5241, 0x4E4B0000, 0x00000000, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF5449, 0x4D450000, 0x00000000, 0x00000000, 0x00000000, 0x00003031, 0x27353922, 0x39383000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D99999A, 0x3DCCCCCD, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF4245, 0x5354204C, 0x41500000, 0x00000000, 0x00000000, 0x00003030, 0x27313222, 0x38383200, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D8F5C29, 0x3DE147AE, 0x00000000, 0x442F0000, 0x43160000, 0xFFFF4D41, 0x58205350, 0x45454400, 0x00000000, 0x00000000, 0x00003130, 0x32340000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D851EB8, 0x3E051EB8, 0x00000000, 0x442F0000, 0x43340000, 0xFFFF504F, 0x494E5453, 0x00000000, 0x00000000, 0x00000000, 0x00003938, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x43520000, 0xFFFF4154, 0x5441434B, 0x00000000, 0x00000000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF4D55, 0x54454349, 0x54590000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF5241, 0x4E4B0000, 0x00000000, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF5449, 0x4D450000, 0x00000000, 0x00000000, 0x00000000, 0x00003031, 0x27353922, 0x39383000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D99999A, 0x3DCCCCCD, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF4245, 0x5354204C, 0x41500000, 0x00000000, 0x00000000, 0x00003030, 0x27313222, 0x38383200, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D8F5C29, 0x3DE147AE, 0x00000000, 0x442F0000, 0x43160000, 0xFFFF4D41, 0x58205350, 0x45454400, 0x00000000, 0x00000000, 0x00003130, 0x32340000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D851EB8, 0x3E051EB8, 0x00000000, 0x442F0000, 0x43340000, 0xFFFF504F, 0x494E5453, 0x00000000, 0x00000000, 0x00000000, 0x00003938, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x43520000, 0xFFFF4154, 0x5441434B, 0x00000000, 0x00000000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF4D55, 0x54454349, 0x54590000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF5241, 0x4E4B0000, 0x00000000, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF5449, 0x4D450000, 0x00000000, 0x00000000, 0x00000000, 0x00003031, 0x27353922, 0x39383000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D99999A, 0x3DCCCCCD, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF4245, 0x5354204C, 0x41500000, 0x00000000, 0x00000000, 0x00003030, 0x27313222, 0x38383200, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D8F5C29, 0x3DE147AE, 0x00000000, 0x442F0000, 0x43160000, 0xFFFF4D41, 0x58205350, 0x45454400, 0x00000000, 0x00000000, 0x00003130, 0x32340000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D851EB8, 0x3E051EB8, 0x00000000, 0x442F0000, 0x43340000, 0xFFFF504F, 0x494E5453, 0x00000000, 0x00000000, 0x00000000, 0x00003938, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x43520000, 0xFFFF4154, 0x5441434B, 0x00000000, 0x00000000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000}; /* fzgx-allow: A1 measured retail data and relocations */
 static u32 fzgx_pool_data_0x132C[576] = {0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF5255, 0x42592043, 0x55500000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF544F, 0x54414C20, 0x52414E4B, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF544F, 0x54414C20, 0x504F494E, 0x54530000, 0x00000000, 0x00003233, 0x30000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF544F, 0x54414C20, 0x41545441, 0x434B0000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF5255, 0x42592043, 0x55500000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF544F, 0x54414C20, 0x52414E4B, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF544F, 0x54414C20, 0x504F494E, 0x54530000, 0x00000000, 0x00003233, 0x30000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF544F, 0x54414C20, 0x41545441, 0x434B0000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF5255, 0x42592043, 0x55500000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF544F, 0x54414C20, 0x52414E4B, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF544F, 0x54414C20, 0x504F494E, 0x54530000, 0x00000000, 0x00003233, 0x30000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF544F, 0x54414C20, 0x41545441, 0x434B0000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF5255, 0x42592043, 0x55500000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF544F, 0x54414C20, 0x52414E4B, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF544F, 0x54414C20, 0x504F494E, 0x54530000, 0x00000000, 0x00003233, 0x30000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF544F, 0x54414C20, 0x41545441, 0x434B0000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF5255, 0x42592043, 0x55500000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF544F, 0x54414C20, 0x52414E4B, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF544F, 0x54414C20, 0x504F494E, 0x54530000, 0x00000000, 0x00003233, 0x30000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF544F, 0x54414C20, 0x41545441, 0x434B0000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF5255, 0x42592043, 0x55500000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF544F, 0x54414C20, 0x52414E4B, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF544F, 0x54414C20, 0x504F494E, 0x54530000, 0x00000000, 0x00003233, 0x30000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF544F, 0x54414C20, 0x41545441, 0x434B0000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000}; /* fzgx-allow: A1 measured retail data and relocations */
@@ -3932,34 +4005,10 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime17(void) {
 }
 #pragma section code_type ".text"
 
-extern u8 lbl_15_data_0[0x1F70];
-extern s32 lbl_801A66B4;
-extern u8 lbl_1_data_2B0D4[];
-extern char *lbl_1_data_2BD54[][6];
-extern FontDrawPacket lbl_1_rodata_26F8;
-extern void fn_1_3EF14(void *);
-extern void fn_1_520A0(void);
-extern void fn_1_52070(u32);
-extern void fn_1_141360(u8, s32, s32, s32, f32, f32);
-extern void fn_1_520CC(void);
 extern void fn_1_49410(void);
-extern void fn_1_494DC(s16);
-extern void fn_1_495B0(u32);
-extern void fn_1_495C8(u8);
-extern void fn_1_49590(f32);
 extern void fn_1_4955C(f32, f32);
 extern void fn_1_496FC(f32, f32);
-extern void fn_1_495A0(f32);
-extern void fn_1_50A90(void *, s32, s32, s32, s32);
-extern void *memcpy(void *, const void *, u32);
-extern int sprintf(char *, const char *, ...);
-extern s16 fn_1_12EF24(s16, s16);
-extern u16 fn_1_48690(u32);
-extern void fn_1_CFCA4(const char *, f32, f32, f32);
 extern void fn_1_49514(u32 *);
-extern void fn_1_4962C(void);
-extern char *fn_1_5415C(s32, s32);
-extern f64 __fabs(f64);
 
 static inline f32 clamp_result(f32 value, f32 low, f32 high) {
     if (value < low) return low;
@@ -4033,7 +4082,7 @@ void fn_15_4578(void) {
         }
         fn_1_520A0();
         fn_1_52070(320);
-        packet = lbl_1_rodata_26F8;
+        packet = (*(FontDrawPacket *)&lbl_1_rodata_26F8);
         packet.image = image;
         packet.x = 320.0f;
         packet.y = 234.0f;
@@ -4058,7 +4107,7 @@ void fn_15_4578(void) {
         fn_1_496FC(320.0f, 324.0f);
         fn_1_4955C(0.8f, 0.8f);
         fn_1_4AE0C(TEXT(0x1EFC), NAME(0x1D50,lbl_801A66B4,lbl_15_bss_35__fzgx_offset_7,4));
-        packet = lbl_1_rodata_26F8;
+        packet = (*(FontDrawPacket *)&lbl_1_rodata_26F8);
         packet.x = 320.0f;
         packet.y = 240.0f;
         packet.z = 20.0f;
@@ -4166,7 +4215,7 @@ void fn_15_4578(void) {
                 case 16: icon = 10; break;
                 case 19: icon = 11; break;
                 }
-                course_packet = lbl_1_rodata_26F8;
+                course_packet = (*(FontDrawPacket *)&lbl_1_rodata_26F8);
                 course_packet.image = 0xBB00;
                 fn_1_51678(&course_packet, course_packet.image, 0, icon * 36, fn_1_48690(0xBB00), 36);
                 course_packet.x = height;
@@ -4232,7 +4281,7 @@ void fn_15_4578(void) {
                 fn_1_4AE0C(TEXT(0x1F1C), ((char **)fzgx_pool_data_0x1DB4)[lbl_801A66B4]);
             }
             if ((s16)i == 1) {
-                packet = lbl_1_rodata_26F8;
+                packet = (*(FontDrawPacket *)&lbl_1_rodata_26F8);
                 packet.x = 320.0f;
                 packet.y = 240.0f + offset_2;
                 packet.z = 20.0f;
@@ -4254,7 +4303,7 @@ void fn_15_4578(void) {
                 }
                 fn_1_520A0();
                 fn_1_52070(320);
-                packet = lbl_1_rodata_26F8;
+                packet = (*(FontDrawPacket *)&lbl_1_rodata_26F8);
                 t = 1.56f * alpha;
                 alpha = 0.4f * alpha;
                 packet.image = image;
@@ -4276,22 +4325,9 @@ void fn_15_4578(void) {
 #undef TEXT
 #undef NAME
 /* fzgx:end fn_15_4578 */
-/* fzgx:end fn_15_4578 */
 
 /* fzgx:begin fn_15_537C */
 extern f32 lbl_15_bss_88[5];
-extern u8 lbl_15_bss_3F8[136];
-extern f32 lbl_15_rodata_0[25];
-extern u32 lbl_15_rodata_19C[20];
-
-extern void fn_1_7BCCC(void *);
-extern void fn_80035680(void *, f32, f32, f32);
-extern void fn_80035690(void *, f32, f32, f32);
-extern void fn_80035420(void *, u32, f32);
-extern void fn_800356AC(void *, void *);
-extern void GXInitLightDistAttn(void *, f32, f32, u32);
-extern void fn_1_7BB80(void *, u32);
-extern void fn_1_7BD6C(u32);
 
 void fn_15_537C(void) {
     u8 *p_lbl_15_bss_3F8;
@@ -4338,87 +4374,12 @@ struct fn_15_5460_lbl_15_data_0 {
     char unk_1F78[5];
 };
 
-extern struct fn_15_5460_lbl_15_data_0 lbl_15_data_0;
-extern u32 lbl_801A66B4[1];
-extern u32 lbl_1_rodata_26F8;
-extern u8 lbl_15_bss_35;
-
 extern int fn_1_4F734(FontDrawPacket *);
-extern u32 fn_1_141360(u32, u32, u32, u32, f32, f32);
 extern void fn_1_49410(void);
-extern void fn_1_494DC(s16);
 extern void fn_1_4955C(f32, f32);
-extern void fn_1_49590(f32);
-extern void fn_1_495A0(f32);
-extern void fn_1_495B0(u32);
-extern void fn_1_495C8(u8);
 extern void fn_1_496FC(f32, f32);
 extern void fn_1_4AE0C(const char *, ...);
-extern void fn_1_52070(u32);
-extern void fn_1_520A0(void);
-extern void fn_1_520CC(void);
 
-extern u8 fn_15_1D7C__fzgx_offset_0[];
-extern u8 fn_15_1DF4__fzgx_offset_0[];
-extern u8 fn_15_1EE0__fzgx_offset_0[];
-extern u8 fn_15_2E8C__fzgx_offset_104[];
-extern u8 fn_15_2E8C__fzgx_offset_10C[];
-extern u8 fn_15_2E8C__fzgx_offset_110[];
-extern u8 fn_15_2E8C__fzgx_offset_DC[];
-extern u8 fn_15_2E8C__fzgx_offset_E4[];
-extern u8 fn_15_2E8C__fzgx_offset_EC[];
-extern u8 fn_15_3AC__fzgx_offset_0[];
-extern u8 fn_15_4578__fzgx_offset_864[];
-extern u8 fn_15_4578__fzgx_offset_86C[];
-extern u8 fn_15_4578__fzgx_offset_874[];
-extern u8 fn_15_4578__fzgx_offset_87C[];
-extern u8 fn_15_4578__fzgx_offset_884[];
-extern u8 fn_15_4578__fzgx_offset_88C[];
-extern u8 fn_15_4578__fzgx_offset_894[];
-extern u8 fn_15_4578__fzgx_offset_89C[];
-extern u8 fn_15_4578__fzgx_offset_8A4[];
-extern u8 fn_15_4578__fzgx_offset_8AC[];
-extern u8 fn_15_4578__fzgx_offset_8B4[];
-extern u8 fn_15_4578__fzgx_offset_8BC[];
-extern u8 fn_15_4578__fzgx_offset_8C0[];
-extern u8 fn_15_644__fzgx_offset_0[];
-extern u8 fn_15_B8C__fzgx_offset_0[];
-extern u8 lbl_15_data_0__fzgx_offset_0[];
-extern u8 lbl_15_data_10__fzgx_offset_0[];
-extern u8 lbl_15_data_18__fzgx_offset_0[];
-extern u8 lbl_15_data_1C2C__fzgx_offset_0[];
-extern u8 lbl_15_data_1C34__fzgx_offset_0[];
-extern u8 lbl_15_data_1C40__fzgx_offset_0[];
-extern u8 lbl_15_data_1C50__fzgx_offset_0[];
-extern u8 lbl_15_data_1C5C__fzgx_offset_0[];
-extern u8 lbl_15_data_1C68__fzgx_offset_0[];
-extern u8 lbl_15_data_1C70__fzgx_offset_0[];
-extern u8 lbl_15_data_1C74__fzgx_offset_0[];
-extern u8 lbl_15_data_1C78__fzgx_offset_0[];
-extern u8 lbl_15_data_1C7C__fzgx_offset_0[];
-extern u8 lbl_15_data_1D10__fzgx_offset_0[];
-extern u8 lbl_15_data_1D20__fzgx_offset_0[];
-extern u8 lbl_15_data_1D30__fzgx_offset_0[];
-extern u8 lbl_15_data_1D40__fzgx_offset_0[];
-extern u8 lbl_15_data_1DB0__fzgx_offset_0[];
-extern u8 lbl_15_data_1DCC__fzgx_offset_0[];
-extern u8 lbl_15_data_1DF8__fzgx_offset_0[];
-extern u8 lbl_15_data_1E0C__fzgx_offset_0[];
-extern u8 lbl_15_data_1E24__fzgx_offset_0[];
-extern u8 lbl_15_data_1E3C__fzgx_offset_0[];
-extern u8 lbl_15_data_1E54__fzgx_offset_0[];
-extern u8 lbl_15_data_1E84__fzgx_offset_0[];
-extern u8 lbl_15_data_1E8C__fzgx_offset_0[];
-extern u8 lbl_15_data_1E9C__fzgx_offset_0[];
-extern u8 lbl_15_data_1EAC__fzgx_offset_0[];
-extern u8 lbl_15_data_1EBC__fzgx_offset_0[];
-extern u8 lbl_15_data_30__fzgx_offset_0[];
-extern u8 lbl_15_data_38__fzgx_offset_0[];
-extern u8 lbl_15_data_40__fzgx_offset_0[];
-extern u8 lbl_15_data_48__fzgx_offset_0[];
-extern u8 lbl_15_data_60__fzgx_offset_0[];
-extern u8 lbl_15_data_68__fzgx_offset_0[];
-extern u8 lbl_15_data_8__fzgx_offset_0[];
 static u32 fzgx_pool_native_lbl_15_data_0_gap_0[1824] = {0x57494E5F, 0x31535400, 0x57494E5F, 0x324E4400, 0x57494E5F, 0x33524400, 0x57494E5F, 0x34544800, (u32)lbl_15_data_0__fzgx_offset_0, (u32)lbl_15_data_8__fzgx_offset_0, (u32)lbl_15_data_10__fzgx_offset_0, (u32)lbl_15_data_18__fzgx_offset_0, 0x424C4143, 0x4B000000, 0x47524159, 0x00000000, 0x424C5545, 0x00000000, 0x57484954, 0x453F0000, (u32)lbl_15_data_30__fzgx_offset_0, (u32)lbl_15_data_38__fzgx_offset_0, (u32)lbl_15_data_40__fzgx_offset_0, (u32)lbl_15_data_48__fzgx_offset_0, 0x6D656E75, 0x00000000, 0x77696E6E, 0x696E6700, (u32)lbl_15_data_60__fzgx_offset_0, (u32)fn_15_3AC__fzgx_offset_0, (u32)fn_15_644__fzgx_offset_0, (u32)fn_15_B8C__fzgx_offset_0, (u32)lbl_15_data_68__fzgx_offset_0, (u32)fn_15_1D7C__fzgx_offset_0, (u32)fn_15_1DF4__fzgx_offset_0, (u32)fn_15_1EE0__fzgx_offset_0, 0x00000000, 0x00001248, 0x000012FC, 0x0000137E, 0x000019C8, 0x77696E6E, 0x696E672E, 0x63000000, 0x50757368, 0x203C413E, 0x20746F20, 0x77696E6E, 0x696E6720, 0x72756E20, 0x6D6F6465, 0x210A0000, 0x4341523A, 0x2532642C, 0x20545950, 0x453A2532, 0x64200000, 0x20257328, 0x25732920, 0x0A000000, 0x53454C3A, 0x204F4E0A, 0x00000000, 0x53454C3A, 0x204F4646, 0x0A000000, 0x5345513A, 0x20474320, 0x57494E4E, 0x494E4720, 0x52554E0A, 0x00000000, 0x5345513A, 0x20474320, 0x5653203A, 0x20253164, 0x0A000000, 0x5345513A, 0x20414320, 0x3173740A, 0x00000000, 0x5345513A, 0x20414320, 0x454E440A, 0x00000000, 0x53746166, 0x66526F6C, 0x6C4D6169, 0x6E000000, 0x53746166, 0x66526F6C, 0x6C446973, 0x70000000, 0x57696E6E, 0x696E6743, 0x616C6300, 0x4C696768, 0x744D6169, 0x6E000000, 0x6D6F745F, 0x6C696768, 0x745F6361, 0x6C630000, 0x57696E6E, 0x696E6744, 0x69737000, 0x6D6F745F, 0x6C696768, 0x745F6469, 0x73700000, 0x526F6245, 0x78656300, 0x7365745F, 0x77696E6E, 0x65725F72, 0x616E6B00, 0x526F6244, 0x69737043, 0x6C697000, (u32)fn_15_2E8C__fzgx_offset_10C, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_DC, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_E4, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_EC, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_104, 0x57494E5F, 0x57414954, 0x00000000, 0x7365745F, 0x6F746865, 0x725F726F, 0x625F706F, 0x73000000, 0x53746167, 0x6543616C, 0x63000000, 0x4261636B, 0x47726F75, 0x6E644361, 0x6C630000, 0x466F674D, 0x61696E00, 0x466F674F, 0x66660000, 0x53746167, 0x65446973, 0x70000000, 0x4261636B, 0x47726F75, 0x6E644469, 0x73700000, 0x4275726E, 0x65720000, 0x4275726E, 0x65724469, 0x73700000, 0x456E656D, 0x79546F74, 0x616C436F, 0x6E74726F, 0x6C4D6169, 0x6E000000, 0x25316488, 0xCA203A20, 0x25732825, 0x7329200A, 0x00000000, 0x94778C69, 0x20814620, 0x2573200A, 0x00000000, 0x8370815B, 0x83583A20, 0x25352E32, 0x660A0000, 0x42474D3A, 0x2081F495, 0x5C8FB241, 0x43000000, 0x42474D3A, 0x2081F495, 0x5C8FB247, 0x43208345, 0x8343836A, 0x8393834F, 0x83898393, 0x00000000, 0x42474D3A, 0x2081F483, 0x74834083, 0x8B835283, 0x9382CC83, 0x65815B83, 0x7D816941, 0x43834783, 0x93836683, 0x42839383, 0x4F816A00, 0x44554D4D, 0x590A0000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF4D55, 0x54454349, 0x54590000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF5241, 0x4E4B0000, 0x00000000, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF5449, 0x4D450000, 0x00000000, 0x00000000, 0x00000000, 0x00003031, 0x27353922, 0x39383000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D99999A, 0x3DCCCCCD, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF4245, 0x5354204C, 0x41500000, 0x00000000, 0x00000000, 0x00003030, 0x27313222, 0x38383200, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D8F5C29, 0x3DE147AE, 0x00000000, 0x442F0000, 0x43160000, 0xFFFF4D41, 0x58205350, 0x45454400, 0x00000000, 0x00000000, 0x00003130, 0x32340000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D851EB8, 0x3E051EB8, 0x00000000, 0x442F0000, 0x43340000, 0xFFFF504F, 0x494E5453, 0x00000000, 0x00000000, 0x00000000, 0x00003938, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x43520000, 0xFFFF4154, 0x5441434B, 0x00000000, 0x00000000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF4D55, 0x54454349, 0x54590000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF5241, 0x4E4B0000, 0x00000000, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF5449, 0x4D450000, 0x00000000, 0x00000000, 0x00000000, 0x00003031, 0x27353922, 0x39383000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D99999A, 0x3DCCCCCD, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF4245, 0x5354204C, 0x41500000, 0x00000000, 0x00000000, 0x00003030, 0x27313222, 0x38383200, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D8F5C29, 0x3DE147AE, 0x00000000, 0x442F0000, 0x43160000, 0xFFFF4D41, 0x58205350, 0x45454400, 0x00000000, 0x00000000, 0x00003130, 0x32340000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D851EB8, 0x3E051EB8, 0x00000000, 0x442F0000, 0x43340000, 0xFFFF504F, 0x494E5453, 0x00000000, 0x00000000, 0x00000000, 0x00003938, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x43520000, 0xFFFF4154, 0x5441434B, 0x00000000, 0x00000000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF4D55, 0x54454349, 0x54590000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF5241, 0x4E4B0000, 0x00000000, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF5449, 0x4D450000, 0x00000000, 0x00000000, 0x00000000, 0x00003031, 0x27353922, 0x39383000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D99999A, 0x3DCCCCCD, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF4245, 0x5354204C, 0x41500000, 0x00000000, 0x00000000, 0x00003030, 0x27313222, 0x38383200, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D8F5C29, 0x3DE147AE, 0x00000000, 0x442F0000, 0x43160000, 0xFFFF4D41, 0x58205350, 0x45454400, 0x00000000, 0x00000000, 0x00003130, 0x32340000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D851EB8, 0x3E051EB8, 0x00000000, 0x442F0000, 0x43340000, 0xFFFF504F, 0x494E5453, 0x00000000, 0x00000000, 0x00000000, 0x00003938, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x43520000, 0xFFFF4154, 0x5441434B, 0x00000000, 0x00000000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF4D55, 0x54454349, 0x54590000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF5241, 0x4E4B0000, 0x00000000, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF5449, 0x4D450000, 0x00000000, 0x00000000, 0x00000000, 0x00003031, 0x27353922, 0x39383000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D99999A, 0x3DCCCCCD, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF4245, 0x5354204C, 0x41500000, 0x00000000, 0x00000000, 0x00003030, 0x27313222, 0x38383200, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D8F5C29, 0x3DE147AE, 0x00000000, 0x442F0000, 0x43160000, 0xFFFF4D41, 0x58205350, 0x45454400, 0x00000000, 0x00000000, 0x00003130, 0x32340000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D851EB8, 0x3E051EB8, 0x00000000, 0x442F0000, 0x43340000, 0xFFFF504F, 0x494E5453, 0x00000000, 0x00000000, 0x00000000, 0x00003938, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x43520000, 0xFFFF4154, 0x5441434B, 0x00000000, 0x00000000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF4D55, 0x54454349, 0x54590000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF5241, 0x4E4B0000, 0x00000000, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF5449, 0x4D450000, 0x00000000, 0x00000000, 0x00000000, 0x00003031, 0x27353922, 0x39383000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D99999A, 0x3DCCCCCD, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF4245, 0x5354204C, 0x41500000, 0x00000000, 0x00000000, 0x00003030, 0x27313222, 0x38383200, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D8F5C29, 0x3DE147AE, 0x00000000, 0x442F0000, 0x43160000, 0xFFFF4D41, 0x58205350, 0x45454400, 0x00000000, 0x00000000, 0x00003130, 0x32340000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D851EB8, 0x3E051EB8, 0x00000000, 0x442F0000, 0x43340000, 0xFFFF504F, 0x494E5453, 0x00000000, 0x00000000, 0x00000000, 0x00003938, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x43520000, 0xFFFF4154, 0x5441434B, 0x00000000, 0x00000000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF4D55, 0x54454349, 0x54590000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF5241, 0x4E4B0000, 0x00000000, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF5449, 0x4D450000, 0x00000000, 0x00000000, 0x00000000, 0x00003031, 0x27353922, 0x39383000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D99999A, 0x3DCCCCCD, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF4245, 0x5354204C, 0x41500000, 0x00000000, 0x00000000, 0x00003030, 0x27313222, 0x38383200, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D8F5C29, 0x3DE147AE, 0x00000000, 0x442F0000, 0x43160000, 0xFFFF4D41, 0x58205350, 0x45454400, 0x00000000, 0x00000000, 0x00003130, 0x32340000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D851EB8, 0x3E051EB8, 0x00000000, 0x442F0000, 0x43340000, 0xFFFF504F, 0x494E5453, 0x00000000, 0x00000000, 0x00000000, 0x00003938, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x43520000, 0xFFFF4154, 0x5441434B, 0x00000000, 0x00000000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF5255, 0x42592043, 0x55500000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF544F, 0x54414C20, 0x52414E4B, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF544F, 0x54414C20, 0x504F494E, 0x54530000, 0x00000000, 0x00003233, 0x30000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF544F, 0x54414C20, 0x41545441, 0x434B0000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF5255, 0x42592043, 0x55500000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF544F, 0x54414C20, 0x52414E4B, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF544F, 0x54414C20, 0x504F494E, 0x54530000, 0x00000000, 0x00003233, 0x30000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF544F, 0x54414C20, 0x41545441, 0x434B0000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF5255, 0x42592043, 0x55500000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF544F, 0x54414C20, 0x52414E4B, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF544F, 0x54414C20, 0x504F494E, 0x54530000, 0x00000000, 0x00003233, 0x30000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF544F, 0x54414C20, 0x41545441, 0x434B0000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF5255, 0x42592043, 0x55500000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF544F, 0x54414C20, 0x52414E4B, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF544F, 0x54414C20, 0x504F494E, 0x54530000, 0x00000000, 0x00003233, 0x30000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF544F, 0x54414C20, 0x41545441, 0x434B0000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF5255, 0x42592043, 0x55500000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF544F, 0x54414C20, 0x52414E4B, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF544F, 0x54414C20, 0x504F494E, 0x54530000, 0x00000000, 0x00003233, 0x30000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF544F, 0x54414C20, 0x41545441, 0x434B0000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF5255, 0x42592043, 0x55500000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF544F, 0x54414C20, 0x52414E4B, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF544F, 0x54414C20, 0x504F494E, 0x54530000, 0x00000000, 0x00003233, 0x30000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF544F, 0x54414C20, 0x41545441, 0x434B0000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x414C4C20, 0x43555000, 0x52554259, 0x20435550, 0x00000000, 0x53415050, 0x48495245, 0x20435550, 0x00000000, 0x454D4552, 0x414C4420, 0x43555000, 0x4449414D, 0x4F4E4420, 0x43555000, 0x41582043, 0x55500000, 0x47455200, 0x46524100, 0x53504100, 0x49544100}; /* fzgx-allow: A1 measured pool bytes and bindings */
 static u32 fzgx_pool_native_lbl_15_data_0_unk_1C80[36] = {(u32)lbl_15_data_1C2C__fzgx_offset_0, (u32)lbl_15_data_1C34__fzgx_offset_0, (u32)lbl_15_data_1C40__fzgx_offset_0, (u32)lbl_15_data_1C50__fzgx_offset_0, (u32)lbl_15_data_1C5C__fzgx_offset_0, (u32)lbl_15_data_1C68__fzgx_offset_0, (u32)lbl_15_data_1C70__fzgx_offset_0, (u32)lbl_15_data_1C70__fzgx_offset_0, (u32)lbl_15_data_1C70__fzgx_offset_0, (u32)lbl_15_data_1C70__fzgx_offset_0, (u32)lbl_15_data_1C70__fzgx_offset_0, 0x00000000, (u32)lbl_15_data_1C74__fzgx_offset_0, (u32)lbl_15_data_1C74__fzgx_offset_0, (u32)lbl_15_data_1C74__fzgx_offset_0, (u32)lbl_15_data_1C74__fzgx_offset_0, (u32)lbl_15_data_1C74__fzgx_offset_0, 0x00000000, (u32)lbl_15_data_1C78__fzgx_offset_0, (u32)lbl_15_data_1C78__fzgx_offset_0, (u32)lbl_15_data_1C78__fzgx_offset_0, (u32)lbl_15_data_1C78__fzgx_offset_0, (u32)lbl_15_data_1C78__fzgx_offset_0, 0x00000000, (u32)lbl_15_data_1C7C__fzgx_offset_0, (u32)lbl_15_data_1C7C__fzgx_offset_0, (u32)lbl_15_data_1C7C__fzgx_offset_0, (u32)lbl_15_data_1C7C__fzgx_offset_0, (u32)lbl_15_data_1C7C__fzgx_offset_0, 0x00000000, (u32)lbl_15_data_1C2C__fzgx_offset_0, (u32)lbl_15_data_1C34__fzgx_offset_0, (u32)lbl_15_data_1C40__fzgx_offset_0, (u32)lbl_15_data_1C50__fzgx_offset_0, (u32)lbl_15_data_1C5C__fzgx_offset_0, (u32)lbl_15_data_1C68__fzgx_offset_0}; /* fzgx-allow: A1 measured pool bytes and bindings */
 static u32 fzgx_pool_native_lbl_15_data_0_gap_1D10[16] = {0x4E4F5649, 0x43452043, 0x4C415353, 0x00000000, 0x5354414E, 0x44415244, 0x20434C41, 0x53530000, 0x45585045, 0x52542043, 0x4C415353, 0x00000000, 0x4D415354, 0x45522043, 0x4C415353, 0x00000000}; /* fzgx-allow: A1 measured pool bytes and bindings */
@@ -4599,12 +4560,12 @@ void fn_15_5460(f32 arg0) {
     fn_1_4955C(1.4f, 1.4f);
     fn_1_496FC(320.0f, 146.0f + offset);
     fn_1_495A0(arg0);
-    fn_1_4AE0C(fzgx_pool_native_lbl_15_data_0_unk_1EFC, fzgx_pool_native_lbl_15_data_0_unk_1E6C[lbl_801A66B4[0]]);
+    fn_1_4AE0C(fzgx_pool_native_lbl_15_data_0_unk_1EFC, fzgx_pool_native_lbl_15_data_0_unk_1E6C[(*(u32 (*)[1])&lbl_801A66B4)[0]]);
 
     offset = 303.0f + offset;
     fn_1_496FC(320.0f, offset);
     fn_1_4955C(1.2f, 1.2f);
-    fn_1_4AE0C(fzgx_pool_native_lbl_15_data_0_unk_1EFC, fzgx_pool_native_lbl_15_data_0_unk_1ECC[lbl_801A66B4[0]]);
+    fn_1_4AE0C(fzgx_pool_native_lbl_15_data_0_unk_1EFC, fzgx_pool_native_lbl_15_data_0_unk_1ECC[(*(u32 (*)[1])&lbl_801A66B4)[0]]);
     fn_1_496FC(320.0f, offset);
     fn_1_4955C(1.2f, 1.2f);
 
@@ -4612,15 +4573,15 @@ void fn_15_5460(f32 arg0) {
         fn_1_496FC(320.0f, 308.0f);
         fn_1_4955C(1.5f, 1.5f);
         rows = (struct fn_15_5460_Row *)fzgx_pool_native_lbl_15_data_0_unk_1C80;
-        fn_1_4AE0C(fzgx_pool_native_lbl_15_data_0_unk_1F70, rows[lbl_801A66B4[0]].name);
+        fn_1_4AE0C(fzgx_pool_native_lbl_15_data_0_unk_1F70, rows[(*(u32 (*)[1])&lbl_801A66B4)[0]].name);
         fn_1_496FC(320.0f, 340.0f);
         fn_1_4955C(1.5f, 1.5f);
-        fn_1_4AE0C(fzgx_pool_native_lbl_15_data_0_unk_1F78, fzgx_pool_native_lbl_15_data_0_unk_1D50[lbl_801A66B4[0] * 4 + 3]);
+        fn_1_4AE0C(fzgx_pool_native_lbl_15_data_0_unk_1F78, fzgx_pool_native_lbl_15_data_0_unk_1D50[(*(u32 (*)[1])&lbl_801A66B4)[0] * 4 + 3]);
     } else {
         fn_1_496FC(320.0f, 330.0f);
         fn_1_4955C(1.5f, 1.5f);
         rows = (struct fn_15_5460_Row *)fzgx_pool_native_lbl_15_data_0_unk_1C80;
-        fn_1_4AE0C(fzgx_pool_native_lbl_15_data_0_unk_1F70, rows[lbl_801A66B4[0]].name);
+        fn_1_4AE0C(fzgx_pool_native_lbl_15_data_0_unk_1F70, rows[(*(u32 (*)[1])&lbl_801A66B4)[0]].name);
     }
 }
 /* fzgx:end fn_15_5460 */
@@ -4661,85 +4622,15 @@ struct fn_15_5730_lbl_15_rodata_0 {
     f32 unk_1E8;
 };
 
-extern struct fn_15_5730_lbl_15_data_0 lbl_15_data_0;
-extern struct fn_15_5730_lbl_15_rodata_0 lbl_15_rodata_0;
-extern u32 lbl_801A66B4[1];
-
 extern u32 fn_1_49410(void);
-extern void fn_1_494DC(s16);
-extern void fn_1_495B0(u32);
-extern void fn_1_495C8(u8);
-extern void fn_1_49590(f32);
 extern void fn_1_4955C(f32, f32);
 extern void fn_1_496FC(f32, f32);
-extern void fn_1_495A0(f32);
 extern void fn_1_4AE0C(const char *, ...);
 
 #pragma opt_dead_assignments off
 #pragma opt_lifetimes off
 #pragma opt_strength_reduction off
 #pragma opt_pointer_analysis off
-extern u8 fn_15_1D7C__fzgx_offset_0[];
-extern u8 fn_15_1DF4__fzgx_offset_0[];
-extern u8 fn_15_1EE0__fzgx_offset_0[];
-extern u8 fn_15_2E8C__fzgx_offset_104[];
-extern u8 fn_15_2E8C__fzgx_offset_10C[];
-extern u8 fn_15_2E8C__fzgx_offset_110[];
-extern u8 fn_15_2E8C__fzgx_offset_DC[];
-extern u8 fn_15_2E8C__fzgx_offset_E4[];
-extern u8 fn_15_2E8C__fzgx_offset_EC[];
-extern u8 fn_15_3AC__fzgx_offset_0[];
-extern u8 fn_15_4578__fzgx_offset_864[];
-extern u8 fn_15_4578__fzgx_offset_86C[];
-extern u8 fn_15_4578__fzgx_offset_874[];
-extern u8 fn_15_4578__fzgx_offset_87C[];
-extern u8 fn_15_4578__fzgx_offset_884[];
-extern u8 fn_15_4578__fzgx_offset_88C[];
-extern u8 fn_15_4578__fzgx_offset_894[];
-extern u8 fn_15_4578__fzgx_offset_89C[];
-extern u8 fn_15_4578__fzgx_offset_8A4[];
-extern u8 fn_15_4578__fzgx_offset_8AC[];
-extern u8 fn_15_4578__fzgx_offset_8B4[];
-extern u8 fn_15_4578__fzgx_offset_8BC[];
-extern u8 fn_15_4578__fzgx_offset_8C0[];
-extern u8 fn_15_644__fzgx_offset_0[];
-extern u8 fn_15_B8C__fzgx_offset_0[];
-extern u8 lbl_15_data_0__fzgx_offset_0[];
-extern u8 lbl_15_data_10__fzgx_offset_0[];
-extern u8 lbl_15_data_18__fzgx_offset_0[];
-extern u8 lbl_15_data_1C2C__fzgx_offset_0[];
-extern u8 lbl_15_data_1C34__fzgx_offset_0[];
-extern u8 lbl_15_data_1C40__fzgx_offset_0[];
-extern u8 lbl_15_data_1C50__fzgx_offset_0[];
-extern u8 lbl_15_data_1C5C__fzgx_offset_0[];
-extern u8 lbl_15_data_1C68__fzgx_offset_0[];
-extern u8 lbl_15_data_1C70__fzgx_offset_0[];
-extern u8 lbl_15_data_1C74__fzgx_offset_0[];
-extern u8 lbl_15_data_1C78__fzgx_offset_0[];
-extern u8 lbl_15_data_1C7C__fzgx_offset_0[];
-extern u8 lbl_15_data_1D10__fzgx_offset_0[];
-extern u8 lbl_15_data_1D20__fzgx_offset_0[];
-extern u8 lbl_15_data_1D30__fzgx_offset_0[];
-extern u8 lbl_15_data_1D40__fzgx_offset_0[];
-extern u8 lbl_15_data_1DB0__fzgx_offset_0[];
-extern u8 lbl_15_data_1DCC__fzgx_offset_0[];
-extern u8 lbl_15_data_1DF8__fzgx_offset_0[];
-extern u8 lbl_15_data_1E0C__fzgx_offset_0[];
-extern u8 lbl_15_data_1E24__fzgx_offset_0[];
-extern u8 lbl_15_data_1E3C__fzgx_offset_0[];
-extern u8 lbl_15_data_1E54__fzgx_offset_0[];
-extern u8 lbl_15_data_1E84__fzgx_offset_0[];
-extern u8 lbl_15_data_1E8C__fzgx_offset_0[];
-extern u8 lbl_15_data_1E9C__fzgx_offset_0[];
-extern u8 lbl_15_data_1EAC__fzgx_offset_0[];
-extern u8 lbl_15_data_1EBC__fzgx_offset_0[];
-extern u8 lbl_15_data_30__fzgx_offset_0[];
-extern u8 lbl_15_data_38__fzgx_offset_0[];
-extern u8 lbl_15_data_40__fzgx_offset_0[];
-extern u8 lbl_15_data_48__fzgx_offset_0[];
-extern u8 lbl_15_data_60__fzgx_offset_0[];
-extern u8 lbl_15_data_68__fzgx_offset_0[];
-extern u8 lbl_15_data_8__fzgx_offset_0[];
 static u32 fzgx_pool_native_lbl_15_data_0_gap_0[1876] = {0x57494E5F, 0x31535400, 0x57494E5F, 0x324E4400, 0x57494E5F, 0x33524400, 0x57494E5F, 0x34544800, (u32)lbl_15_data_0__fzgx_offset_0, (u32)lbl_15_data_8__fzgx_offset_0, (u32)lbl_15_data_10__fzgx_offset_0, (u32)lbl_15_data_18__fzgx_offset_0, 0x424C4143, 0x4B000000, 0x47524159, 0x00000000, 0x424C5545, 0x00000000, 0x57484954, 0x453F0000, (u32)lbl_15_data_30__fzgx_offset_0, (u32)lbl_15_data_38__fzgx_offset_0, (u32)lbl_15_data_40__fzgx_offset_0, (u32)lbl_15_data_48__fzgx_offset_0, 0x6D656E75, 0x00000000, 0x77696E6E, 0x696E6700, (u32)lbl_15_data_60__fzgx_offset_0, (u32)fn_15_3AC__fzgx_offset_0, (u32)fn_15_644__fzgx_offset_0, (u32)fn_15_B8C__fzgx_offset_0, (u32)lbl_15_data_68__fzgx_offset_0, (u32)fn_15_1D7C__fzgx_offset_0, (u32)fn_15_1DF4__fzgx_offset_0, (u32)fn_15_1EE0__fzgx_offset_0, 0x00000000, 0x00001248, 0x000012FC, 0x0000137E, 0x000019C8, 0x77696E6E, 0x696E672E, 0x63000000, 0x50757368, 0x203C413E, 0x20746F20, 0x77696E6E, 0x696E6720, 0x72756E20, 0x6D6F6465, 0x210A0000, 0x4341523A, 0x2532642C, 0x20545950, 0x453A2532, 0x64200000, 0x20257328, 0x25732920, 0x0A000000, 0x53454C3A, 0x204F4E0A, 0x00000000, 0x53454C3A, 0x204F4646, 0x0A000000, 0x5345513A, 0x20474320, 0x57494E4E, 0x494E4720, 0x52554E0A, 0x00000000, 0x5345513A, 0x20474320, 0x5653203A, 0x20253164, 0x0A000000, 0x5345513A, 0x20414320, 0x3173740A, 0x00000000, 0x5345513A, 0x20414320, 0x454E440A, 0x00000000, 0x53746166, 0x66526F6C, 0x6C4D6169, 0x6E000000, 0x53746166, 0x66526F6C, 0x6C446973, 0x70000000, 0x57696E6E, 0x696E6743, 0x616C6300, 0x4C696768, 0x744D6169, 0x6E000000, 0x6D6F745F, 0x6C696768, 0x745F6361, 0x6C630000, 0x57696E6E, 0x696E6744, 0x69737000, 0x6D6F745F, 0x6C696768, 0x745F6469, 0x73700000, 0x526F6245, 0x78656300, 0x7365745F, 0x77696E6E, 0x65725F72, 0x616E6B00, 0x526F6244, 0x69737043, 0x6C697000, (u32)fn_15_2E8C__fzgx_offset_10C, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_DC, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_E4, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_EC, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_110, (u32)fn_15_2E8C__fzgx_offset_104, 0x57494E5F, 0x57414954, 0x00000000, 0x7365745F, 0x6F746865, 0x725F726F, 0x625F706F, 0x73000000, 0x53746167, 0x6543616C, 0x63000000, 0x4261636B, 0x47726F75, 0x6E644361, 0x6C630000, 0x466F674D, 0x61696E00, 0x466F674F, 0x66660000, 0x53746167, 0x65446973, 0x70000000, 0x4261636B, 0x47726F75, 0x6E644469, 0x73700000, 0x4275726E, 0x65720000, 0x4275726E, 0x65724469, 0x73700000, 0x456E656D, 0x79546F74, 0x616C436F, 0x6E74726F, 0x6C4D6169, 0x6E000000, 0x25316488, 0xCA203A20, 0x25732825, 0x7329200A, 0x00000000, 0x94778C69, 0x20814620, 0x2573200A, 0x00000000, 0x8370815B, 0x83583A20, 0x25352E32, 0x660A0000, 0x42474D3A, 0x2081F495, 0x5C8FB241, 0x43000000, 0x42474D3A, 0x2081F495, 0x5C8FB247, 0x43208345, 0x8343836A, 0x8393834F, 0x83898393, 0x00000000, 0x42474D3A, 0x2081F483, 0x74834083, 0x8B835283, 0x9382CC83, 0x65815B83, 0x7D816941, 0x43834783, 0x93836683, 0x42839383, 0x4F816A00, 0x44554D4D, 0x590A0000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF4D55, 0x54454349, 0x54590000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF5241, 0x4E4B0000, 0x00000000, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF5449, 0x4D450000, 0x00000000, 0x00000000, 0x00000000, 0x00003031, 0x27353922, 0x39383000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D99999A, 0x3DCCCCCD, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF4245, 0x5354204C, 0x41500000, 0x00000000, 0x00000000, 0x00003030, 0x27313222, 0x38383200, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D8F5C29, 0x3DE147AE, 0x00000000, 0x442F0000, 0x43160000, 0xFFFF4D41, 0x58205350, 0x45454400, 0x00000000, 0x00000000, 0x00003130, 0x32340000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D851EB8, 0x3E051EB8, 0x00000000, 0x442F0000, 0x43340000, 0xFFFF504F, 0x494E5453, 0x00000000, 0x00000000, 0x00000000, 0x00003938, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x43520000, 0xFFFF4154, 0x5441434B, 0x00000000, 0x00000000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF4D55, 0x54454349, 0x54590000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF5241, 0x4E4B0000, 0x00000000, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF5449, 0x4D450000, 0x00000000, 0x00000000, 0x00000000, 0x00003031, 0x27353922, 0x39383000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D99999A, 0x3DCCCCCD, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF4245, 0x5354204C, 0x41500000, 0x00000000, 0x00000000, 0x00003030, 0x27313222, 0x38383200, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D8F5C29, 0x3DE147AE, 0x00000000, 0x442F0000, 0x43160000, 0xFFFF4D41, 0x58205350, 0x45454400, 0x00000000, 0x00000000, 0x00003130, 0x32340000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D851EB8, 0x3E051EB8, 0x00000000, 0x442F0000, 0x43340000, 0xFFFF504F, 0x494E5453, 0x00000000, 0x00000000, 0x00000000, 0x00003938, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x43520000, 0xFFFF4154, 0x5441434B, 0x00000000, 0x00000000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF4D55, 0x54454349, 0x54590000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF5241, 0x4E4B0000, 0x00000000, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF5449, 0x4D450000, 0x00000000, 0x00000000, 0x00000000, 0x00003031, 0x27353922, 0x39383000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D99999A, 0x3DCCCCCD, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF4245, 0x5354204C, 0x41500000, 0x00000000, 0x00000000, 0x00003030, 0x27313222, 0x38383200, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D8F5C29, 0x3DE147AE, 0x00000000, 0x442F0000, 0x43160000, 0xFFFF4D41, 0x58205350, 0x45454400, 0x00000000, 0x00000000, 0x00003130, 0x32340000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D851EB8, 0x3E051EB8, 0x00000000, 0x442F0000, 0x43340000, 0xFFFF504F, 0x494E5453, 0x00000000, 0x00000000, 0x00000000, 0x00003938, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x43520000, 0xFFFF4154, 0x5441434B, 0x00000000, 0x00000000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF4D55, 0x54454349, 0x54590000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF5241, 0x4E4B0000, 0x00000000, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF5449, 0x4D450000, 0x00000000, 0x00000000, 0x00000000, 0x00003031, 0x27353922, 0x39383000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D99999A, 0x3DCCCCCD, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF4245, 0x5354204C, 0x41500000, 0x00000000, 0x00000000, 0x00003030, 0x27313222, 0x38383200, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D8F5C29, 0x3DE147AE, 0x00000000, 0x442F0000, 0x43160000, 0xFFFF4D41, 0x58205350, 0x45454400, 0x00000000, 0x00000000, 0x00003130, 0x32340000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D851EB8, 0x3E051EB8, 0x00000000, 0x442F0000, 0x43340000, 0xFFFF504F, 0x494E5453, 0x00000000, 0x00000000, 0x00000000, 0x00003938, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x43520000, 0xFFFF4154, 0x5441434B, 0x00000000, 0x00000000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF4D55, 0x54454349, 0x54590000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF5241, 0x4E4B0000, 0x00000000, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF5449, 0x4D450000, 0x00000000, 0x00000000, 0x00000000, 0x00003031, 0x27353922, 0x39383000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D99999A, 0x3DCCCCCD, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF4245, 0x5354204C, 0x41500000, 0x00000000, 0x00000000, 0x00003030, 0x27313222, 0x38383200, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D8F5C29, 0x3DE147AE, 0x00000000, 0x442F0000, 0x43160000, 0xFFFF4D41, 0x58205350, 0x45454400, 0x00000000, 0x00000000, 0x00003130, 0x32340000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D851EB8, 0x3E051EB8, 0x00000000, 0x442F0000, 0x43340000, 0xFFFF504F, 0x494E5453, 0x00000000, 0x00000000, 0x00000000, 0x00003938, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x43520000, 0xFFFF4154, 0x5441434B, 0x00000000, 0x00000000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF4D55, 0x54454349, 0x54590000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF5241, 0x4E4B0000, 0x00000000, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF5449, 0x4D450000, 0x00000000, 0x00000000, 0x00000000, 0x00003031, 0x27353922, 0x39383000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D99999A, 0x3DCCCCCD, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF4245, 0x5354204C, 0x41500000, 0x00000000, 0x00000000, 0x00003030, 0x27313222, 0x38383200, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D8F5C29, 0x3DE147AE, 0x00000000, 0x442F0000, 0x43160000, 0xFFFF4D41, 0x58205350, 0x45454400, 0x00000000, 0x00000000, 0x00003130, 0x32340000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D851EB8, 0x3E051EB8, 0x00000000, 0x442F0000, 0x43340000, 0xFFFF504F, 0x494E5453, 0x00000000, 0x00000000, 0x00000000, 0x00003938, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x43520000, 0xFFFF4154, 0x5441434B, 0x00000000, 0x00000000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF5255, 0x42592043, 0x55500000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF544F, 0x54414C20, 0x52414E4B, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF544F, 0x54414C20, 0x504F494E, 0x54530000, 0x00000000, 0x00003233, 0x30000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF544F, 0x54414C20, 0x41545441, 0x434B0000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF5255, 0x42592043, 0x55500000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF544F, 0x54414C20, 0x52414E4B, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF544F, 0x54414C20, 0x504F494E, 0x54530000, 0x00000000, 0x00003233, 0x30000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF544F, 0x54414C20, 0x41545441, 0x434B0000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF5255, 0x42592043, 0x55500000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF544F, 0x54414C20, 0x52414E4B, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF544F, 0x54414C20, 0x504F494E, 0x54530000, 0x00000000, 0x00003233, 0x30000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF544F, 0x54414C20, 0x41545441, 0x434B0000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF5255, 0x42592043, 0x55500000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF544F, 0x54414C20, 0x52414E4B, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF544F, 0x54414C20, 0x504F494E, 0x54530000, 0x00000000, 0x00003233, 0x30000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF544F, 0x54414C20, 0x41545441, 0x434B0000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF5255, 0x42592043, 0x55500000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF544F, 0x54414C20, 0x52414E4B, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF544F, 0x54414C20, 0x504F494E, 0x54530000, 0x00000000, 0x00003233, 0x30000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF544F, 0x54414C20, 0x41545441, 0x434B0000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x006400C8, 0x3DCCCCCD, 0x3D8F5C29, 0x00000000, 0x442F0000, 0x00000000, 0xFFFF5255, 0x42592043, 0x55500000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DB851EC, 0x3DA3D70A, 0x00000000, 0x442F0000, 0x42700000, 0xFFFF544F, 0x54414C20, 0x52414E4B, 0x00000000, 0x00000000, 0x00003100, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3DA3D70A, 0x3DB851EC, 0x00000000, 0x442F0000, 0x42B40000, 0xFFFF544F, 0x54414C20, 0x504F494E, 0x54530000, 0x00000000, 0x00003233, 0x30000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFFFF, 0x3D75C28F, 0x3E23D70A, 0x00000000, 0x442F0000, 0x42F00000, 0xFFFF544F, 0x54414C20, 0x41545441, 0x434B0000, 0x00000000, 0x00004E4F, 0x4E450000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x414C4C20, 0x43555000, 0x52554259, 0x20435550, 0x00000000, 0x53415050, 0x48495245, 0x20435550, 0x00000000, 0x454D4552, 0x414C4420, 0x43555000, 0x4449414D, 0x4F4E4420, 0x43555000, 0x41582043, 0x55500000, 0x47455200, 0x46524100, 0x53504100, 0x49544100, (u32)lbl_15_data_1C2C__fzgx_offset_0, (u32)lbl_15_data_1C34__fzgx_offset_0, (u32)lbl_15_data_1C40__fzgx_offset_0, (u32)lbl_15_data_1C50__fzgx_offset_0, (u32)lbl_15_data_1C5C__fzgx_offset_0, (u32)lbl_15_data_1C68__fzgx_offset_0, (u32)lbl_15_data_1C70__fzgx_offset_0, (u32)lbl_15_data_1C70__fzgx_offset_0, (u32)lbl_15_data_1C70__fzgx_offset_0, (u32)lbl_15_data_1C70__fzgx_offset_0, (u32)lbl_15_data_1C70__fzgx_offset_0, 0x00000000, (u32)lbl_15_data_1C74__fzgx_offset_0, (u32)lbl_15_data_1C74__fzgx_offset_0, (u32)lbl_15_data_1C74__fzgx_offset_0, (u32)lbl_15_data_1C74__fzgx_offset_0, (u32)lbl_15_data_1C74__fzgx_offset_0, 0x00000000, (u32)lbl_15_data_1C78__fzgx_offset_0, (u32)lbl_15_data_1C78__fzgx_offset_0, (u32)lbl_15_data_1C78__fzgx_offset_0, (u32)lbl_15_data_1C78__fzgx_offset_0, (u32)lbl_15_data_1C78__fzgx_offset_0, 0x00000000, (u32)lbl_15_data_1C7C__fzgx_offset_0, (u32)lbl_15_data_1C7C__fzgx_offset_0, (u32)lbl_15_data_1C7C__fzgx_offset_0, (u32)lbl_15_data_1C7C__fzgx_offset_0, (u32)lbl_15_data_1C7C__fzgx_offset_0, 0x00000000, (u32)lbl_15_data_1C2C__fzgx_offset_0, (u32)lbl_15_data_1C34__fzgx_offset_0, (u32)lbl_15_data_1C40__fzgx_offset_0, (u32)lbl_15_data_1C50__fzgx_offset_0, (u32)lbl_15_data_1C5C__fzgx_offset_0, (u32)lbl_15_data_1C68__fzgx_offset_0, 0x4E4F5649, 0x43452043, 0x4C415353, 0x00000000, 0x5354414E, 0x44415244, 0x20434C41, 0x53530000, 0x45585045, 0x52542043, 0x4C415353, 0x00000000, 0x4D415354, 0x45522043, 0x4C415353, 0x00000000}; /* fzgx-allow: A1 measured pool bytes and bindings */
 static u32 fzgx_pool_native_lbl_15_data_0_unk_1D50[24] = {(u32)lbl_15_data_1D10__fzgx_offset_0, (u32)lbl_15_data_1D20__fzgx_offset_0, (u32)lbl_15_data_1D30__fzgx_offset_0, (u32)lbl_15_data_1D40__fzgx_offset_0, (u32)lbl_15_data_1C70__fzgx_offset_0, (u32)lbl_15_data_1C70__fzgx_offset_0, (u32)lbl_15_data_1C70__fzgx_offset_0, (u32)lbl_15_data_1C70__fzgx_offset_0, (u32)lbl_15_data_1C74__fzgx_offset_0, (u32)lbl_15_data_1C74__fzgx_offset_0, (u32)lbl_15_data_1C74__fzgx_offset_0, (u32)lbl_15_data_1C74__fzgx_offset_0, (u32)lbl_15_data_1C78__fzgx_offset_0, (u32)lbl_15_data_1C78__fzgx_offset_0, (u32)lbl_15_data_1C78__fzgx_offset_0, (u32)lbl_15_data_1C78__fzgx_offset_0, (u32)lbl_15_data_1C7C__fzgx_offset_0, (u32)lbl_15_data_1C7C__fzgx_offset_0, (u32)lbl_15_data_1C7C__fzgx_offset_0, (u32)lbl_15_data_1C7C__fzgx_offset_0, (u32)lbl_15_data_1D10__fzgx_offset_0, (u32)lbl_15_data_1D20__fzgx_offset_0, (u32)lbl_15_data_1D30__fzgx_offset_0, (u32)lbl_15_data_1D40__fzgx_offset_0}; /* fzgx-allow: A1 measured pool bytes and bindings */
 static u32 fzgx_pool_native_lbl_15_data_0_gap_1DB0[47] = {0x50545300, (u32)lbl_15_data_1DB0__fzgx_offset_0, (u32)lbl_15_data_1DB0__fzgx_offset_0, (u32)lbl_15_data_1DB0__fzgx_offset_0, (u32)lbl_15_data_1DB0__fzgx_offset_0, (u32)lbl_15_data_1DB0__fzgx_offset_0, (u32)lbl_15_data_1DB0__fzgx_offset_0, 0x4B4D2F48, 0x00000000, (u32)lbl_15_data_1DCC__fzgx_offset_0, (u32)lbl_15_data_1DCC__fzgx_offset_0, (u32)lbl_15_data_1DCC__fzgx_offset_0, (u32)lbl_15_data_1DCC__fzgx_offset_0, (u32)lbl_15_data_1DCC__fzgx_offset_0, (u32)lbl_15_data_1DCC__fzgx_offset_0, 0x02BC044C, 0x05DC076C, 0x08FC0A8C, 0x434F4E47, 0x52415455, 0x4C415449, 0x4F4E5321, 0x21000000, 0x434F4E47, 0x52415455, 0x4C415449, 0x4F4E5321, 0x21284745, 0x52290000, 0x434F4E47, 0x52415455, 0x4C415449, 0x4F4E5321, 0x21284652, 0x41290000, 0x434F4E47, 0x52415455, 0x4C415449, 0x4F4E5321, 0x21285350, 0x41290000, 0x434F4E47, 0x52415455, 0x4C415449, 0x4F4E5321, 0x21284954, 0x41290000}; /* fzgx-allow: A1 measured pool bytes and bindings */
@@ -4754,8 +4645,8 @@ static char fzgx_pool_native_lbl_15_data_0_unk_1F78[5] = {0x25, 0x73, 0x21, 0x21
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_data_base_prime(void) {
     /* data base primer: retail's TU addressed .data off its section base before its literal pool; the section is dropped at integration */
-    fn_1_4AE0C(fzgx_pool_native_lbl_15_data_0_unk_1EFC, fzgx_pool_native_lbl_15_data_0_unk_1E6C[lbl_801A66B4[0]]);
-    fn_1_4AE0C(fzgx_pool_native_lbl_15_data_0_unk_1F78, fzgx_pool_native_lbl_15_data_0_unk_1ECC[lbl_801A66B4[0]]);
+    fn_1_4AE0C(fzgx_pool_native_lbl_15_data_0_unk_1EFC, fzgx_pool_native_lbl_15_data_0_unk_1E6C[(*(u32 (*)[1])&lbl_801A66B4)[0]]);
+    fn_1_4AE0C(fzgx_pool_native_lbl_15_data_0_unk_1F78, fzgx_pool_native_lbl_15_data_0_unk_1ECC[(*(u32 (*)[1])&lbl_801A66B4)[0]]);
 }
 #pragma section code_type ".text"
 #pragma section code_type ".fzgxpool"
@@ -4900,14 +4791,14 @@ void fn_15_5730(f32 arg0) {
     fn_1_4955C(1.4f, 1.4f);
     fn_1_496FC(320.0f, 185.0f);
     fn_1_495A0(arg0);
-    fn_1_4AE0C(fzgx_pool_native_lbl_15_data_0_unk_1EFC, fzgx_pool_native_lbl_15_data_0_unk_1E6C[lbl_801A66B4[0]]);
+    fn_1_4AE0C(fzgx_pool_native_lbl_15_data_0_unk_1EFC, fzgx_pool_native_lbl_15_data_0_unk_1E6C[(*(u32 (*)[1])&lbl_801A66B4)[0]]);
     fn_1_496FC(320.0f, 242.0f);
     fn_1_4955C(1.2f, 1.2f);
-    fn_1_4AE0C(fzgx_pool_native_lbl_15_data_0_unk_1EFC, fzgx_pool_native_lbl_15_data_0_unk_1ECC[lbl_801A66B4[0]]);
+    fn_1_4AE0C(fzgx_pool_native_lbl_15_data_0_unk_1EFC, fzgx_pool_native_lbl_15_data_0_unk_1ECC[(*(u32 (*)[1])&lbl_801A66B4)[0]]);
     fn_1_496FC(320.0f, 270.0f);
     fn_1_4955C(1.5f, 1.5f);
     p_elem = (struct fn_15_5730_elem *)fzgx_pool_native_lbl_15_data_0_unk_1D50;
-    fn_1_4AE0C(fzgx_pool_native_lbl_15_data_0_unk_1F78, p_elem[lbl_801A66B4[0]].unk_C);
+    fn_1_4AE0C(fzgx_pool_native_lbl_15_data_0_unk_1F78, p_elem[(*(u32 (*)[1])&lbl_801A66B4)[0]].unk_C);
 }
 #pragma opt_pointer_analysis reset
 
@@ -4919,7 +4810,6 @@ void fn_15_5730(f32 arg0) {
 /* fzgx:end fn_15_5730 */
 
 /* fzgx:begin fn_15_5864 */
-extern s16 lbl_1_bss_960;
 extern u8 lbl_15_bss_4[8];
 
 #pragma opt_propagation off
