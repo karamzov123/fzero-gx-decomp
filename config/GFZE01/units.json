@@ -141316,6 +141316,17 @@
   },
   {
     "module": "movie_module",
+    "source": "rel/movie_module/fn_12_11F5C.c",
+    "symbols": [
+      "fn_12_11F5C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "pool": {}
+  },
+  {
+    "module": "movie_module",
     "source": "rel/movie_module/fn_12_120E4.c",
     "symbols": [
       "fn_12_120E4"
