@@ -7586,3 +7586,762 @@ dol/fn_8006BCF8.c:
 
 dol/fn_8004F26C.c:
 	.text       start:0x8004F26C end:0x8004F55C align:4
+
+dol/data/lbl_801A7060.c:
+	.sdata2     start:0x801A7060 end:0x801A7068 align:8
+
+dol/data/lbl_801A7068.c:
+	.sdata2     start:0x801A7068 end:0x801A7070 align:8
+
+dol/data/lbl_801A7070.c:
+	.sdata2     start:0x801A7070 end:0x801A7080 align:8
+
+dol/data/lbl_801A7080.c:
+	.sdata2     start:0x801A7080 end:0x801A7088 align:8
+
+dol/data/lbl_801A7088.c:
+	.sdata2     start:0x801A7088 end:0x801A7090 align:8
+
+dol/data/lbl_801A7090.c:
+	.sdata2     start:0x801A7090 end:0x801A7098 align:8
+
+dol/data/lbl_801A7098.c:
+	.sdata2     start:0x801A7098 end:0x801A70A0 align:8
+
+dol/data/lbl_801A70A0.c:
+	.sdata2     start:0x801A70A0 end:0x801A70A8 align:8
+
+dol/data/lbl_801A70A8.c:
+	.sdata2     start:0x801A70A8 end:0x801A70B0 align:8
+
+dol/data/lbl_801A70B0.c:
+	.sdata2     start:0x801A70B0 end:0x801A70B8 align:8
+
+dol/data/lbl_801A70B8.c:
+	.sdata2     start:0x801A70B8 end:0x801A70C8 align:8
+
+dol/data/lbl_801A70C8.c:
+	.sdata2     start:0x801A70C8 end:0x801A70D0 align:8
+
+dol/data/lbl_801A70D0.c:
+	.sdata2     start:0x801A70D0 end:0x801A70D8 align:8
+
+dol/data/lbl_801A70D8.c:
+	.sdata2     start:0x801A70D8 end:0x801A70E0 align:8
+
+dol/data/lbl_801A70E0.c:
+	.sdata2     start:0x801A70E0 end:0x801A70E8 align:8
+
+dol/data/lbl_801A70E8.c:
+	.sdata2     start:0x801A70E8 end:0x801A70F0 align:8
+
+dol/data/lbl_801A70F0.c:
+	.sdata2     start:0x801A70F0 end:0x801A70F8 align:8
+
+dol/data/lbl_801A70F8.c:
+	.sdata2     start:0x801A70F8 end:0x801A7100 align:8
+
+dol/data/lbl_801A7100.c:
+	.sdata2     start:0x801A7100 end:0x801A7110 align:8
+
+dol/data/lbl_801A7110.c:
+	.sdata2     start:0x801A7110 end:0x801A7120 align:8
+
+dol/data/lbl_801A7120.c:
+	.sdata2     start:0x801A7120 end:0x801A7130 align:8
+
+dol/data/lbl_801A7130.c:
+	.sdata2     start:0x801A7130 end:0x801A7138 align:8
+
+dol/data/lbl_801A7138.c:
+	.sdata2     start:0x801A7138 end:0x801A7140 align:8
+
+dol/data/lbl_801A7140.c:
+	.sdata2     start:0x801A7140 end:0x801A7150 align:8
+
+dol/data/lbl_801A7150.c:
+	.sdata2     start:0x801A7150 end:0x801A7158 align:8
+
+dol/data/lbl_801A7158.c:
+	.sdata2     start:0x801A7158 end:0x801A7160 align:8
+
+dol/data/lbl_801A7160.c:
+	.sdata2     start:0x801A7160 end:0x801A7170 align:8
+
+dol/data/lbl_801A7170.c:
+	.sdata2     start:0x801A7170 end:0x801A7178 align:8
+
+dol/data/lbl_801A7178.c:
+	.sdata2     start:0x801A7178 end:0x801A7180 align:8
+
+dol/data/lbl_801A7180.c:
+	.sdata2     start:0x801A7180 end:0x801A7188 align:8
+
+dol/data/lbl_801A7188.c:
+	.sdata2     start:0x801A7188 end:0x801A7190 align:8
+
+dol/data/lbl_801A7190.c:
+	.sdata2     start:0x801A7190 end:0x801A7198 align:8
+
+dol/data/lbl_801A7198.c:
+	.sdata2     start:0x801A7198 end:0x801A71A0 align:8
+
+dol/data/lbl_801A71A0.c:
+	.sdata2     start:0x801A71A0 end:0x801A71A8 align:8
+
+dol/data/lbl_801A71A8.c:
+	.sdata2     start:0x801A71A8 end:0x801A71B0 align:8
+
+dol/data/lbl_801A71B0.c:
+	.sdata2     start:0x801A71B0 end:0x801A71B8 align:8
+
+dol/data/lbl_801A71B8.c:
+	.sdata2     start:0x801A71B8 end:0x801A71C8 align:8
+
+dol/data/lbl_801A71C8.c:
+	.sdata2     start:0x801A71C8 end:0x801A71D8 align:8
+
+dol/data/lbl_801A71D8.c:
+	.sdata2     start:0x801A71D8 end:0x801A71E0 align:8
+
+dol/data/lbl_801A71E0.c:
+	.sdata2     start:0x801A71E0 end:0x801A71E8 align:8
+
+dol/data/lbl_801A71E8.c:
+	.sdata2     start:0x801A71E8 end:0x801A71F0 align:8
+
+dol/data/lbl_801A71F0.c:
+	.sdata2     start:0x801A71F0 end:0x801A71F8 align:8
+
+dol/data/lbl_801A71F8.c:
+	.sdata2     start:0x801A71F8 end:0x801A7200 align:8
+
+dol/data/lbl_801A7200.c:
+	.sdata2     start:0x801A7200 end:0x801A7208 align:8
+
+dol/data/lbl_801A7208.c:
+	.sdata2     start:0x801A7208 end:0x801A7210 align:8
+
+dol/data/lbl_801A7210.c:
+	.sdata2     start:0x801A7210 end:0x801A7220 align:8
+
+dol/data/lbl_801A7220.c:
+	.sdata2     start:0x801A7220 end:0x801A7228 align:8
+
+dol/data/lbl_801A7228.c:
+	.sdata2     start:0x801A7228 end:0x801A7230 align:8
+
+dol/data/lbl_801A7230.c:
+	.sdata2     start:0x801A7230 end:0x801A7238 align:8
+
+dol/data/lbl_801A7238.c:
+	.sdata2     start:0x801A7238 end:0x801A7240 align:8
+
+dol/data/lbl_801A7240.c:
+	.sdata2     start:0x801A7240 end:0x801A7250 align:8
+
+dol/data/lbl_801A7250.c:
+	.sdata2     start:0x801A7250 end:0x801A7258 align:8
+
+dol/data/lbl_801A7258.c:
+	.sdata2     start:0x801A7258 end:0x801A7260 align:8
+
+dol/data/lbl_801A7260.c:
+	.sdata2     start:0x801A7260 end:0x801A7268 align:8
+
+dol/data/lbl_801A7268.c:
+	.sdata2     start:0x801A7268 end:0x801A7270 align:8
+
+dol/data/lbl_801A7270.c:
+	.sdata2     start:0x801A7270 end:0x801A7278 align:8
+
+dol/data/lbl_801A7278.c:
+	.sdata2     start:0x801A7278 end:0x801A7280 align:8
+
+dol/data/lbl_801A7280.c:
+	.sdata2     start:0x801A7280 end:0x801A7288 align:8
+
+dol/data/lbl_801A7288.c:
+	.sdata2     start:0x801A7288 end:0x801A7290 align:8
+
+dol/data/lbl_801A7290.c:
+	.sdata2     start:0x801A7290 end:0x801A7298 align:8
+
+dol/data/lbl_801A7298.c:
+	.sdata2     start:0x801A7298 end:0x801A72A0 align:8
+
+dol/data/lbl_801A72A0.c:
+	.sdata2     start:0x801A72A0 end:0x801A72A8 align:8
+
+dol/data/lbl_801A72A8.c:
+	.sdata2     start:0x801A72A8 end:0x801A72B0 align:8
+
+dol/data/lbl_801A72B0.c:
+	.sdata2     start:0x801A72B0 end:0x801A72B8 align:8
+
+dol/data/lbl_801A72B8.c:
+	.sdata2     start:0x801A72B8 end:0x801A72C0 align:8
+
+dol/data/lbl_801A72C0.c:
+	.sdata2     start:0x801A72C0 end:0x801A72C8 align:8
+
+dol/data/lbl_801A72C8.c:
+	.sdata2     start:0x801A72C8 end:0x801A72D0 align:8
+
+dol/data/lbl_801A72D0.c:
+	.sdata2     start:0x801A72D0 end:0x801A72D8 align:8
+
+dol/data/lbl_801A72D8.c:
+	.sdata2     start:0x801A72D8 end:0x801A72E0 align:8
+
+dol/data/lbl_801A72E0.c:
+	.sdata2     start:0x801A72E0 end:0x801A72E8 align:8
+
+dol/data/lbl_801A72E8.c:
+	.sdata2     start:0x801A72E8 end:0x801A72F0 align:8
+
+dol/data/lbl_801A72F0.c:
+	.sdata2     start:0x801A72F0 end:0x801A7300 align:8
+
+dol/data/lbl_801A7300.c:
+	.sdata2     start:0x801A7300 end:0x801A7308 align:8
+
+dol/data/lbl_801A7308.c:
+	.sdata2     start:0x801A7308 end:0x801A7310 align:8
+
+dol/data/lbl_801A7310.c:
+	.sdata2     start:0x801A7310 end:0x801A7318 align:8
+
+dol/data/lbl_801A7318.c:
+	.sdata2     start:0x801A7318 end:0x801A7328 align:8
+
+dol/data/lbl_801A7328.c:
+	.sdata2     start:0x801A7328 end:0x801A7338 align:8
+
+dol/data/lbl_801A7338.c:
+	.sdata2     start:0x801A7338 end:0x801A7340 align:8
+
+dol/data/lbl_801A7340.c:
+	.sdata2     start:0x801A7340 end:0x801A7348 align:8
+
+dol/data/lbl_801A7348.c:
+	.sdata2     start:0x801A7348 end:0x801A7358 align:8
+
+dol/data/lbl_801A7358.c:
+	.sdata2     start:0x801A7358 end:0x801A7360 align:8
+
+dol/data/lbl_801A7360.c:
+	.sdata2     start:0x801A7360 end:0x801A7368 align:8
+
+dol/data/lbl_801A7368.c:
+	.sdata2     start:0x801A7368 end:0x801A7370 align:8
+
+dol/data/lbl_801A7370.c:
+	.sdata2     start:0x801A7370 end:0x801A7378 align:8
+
+dol/data/lbl_801A7378.c:
+	.sdata2     start:0x801A7378 end:0x801A7380 align:8
+
+dol/data/lbl_801A7380.c:
+	.sdata2     start:0x801A7380 end:0x801A7388 align:8
+
+dol/data/lbl_801A7388.c:
+	.sdata2     start:0x801A7388 end:0x801A7390 align:8
+
+dol/data/lbl_801A7390.c:
+	.sdata2     start:0x801A7390 end:0x801A7398 align:8
+
+dol/data/lbl_801A7398.c:
+	.sdata2     start:0x801A7398 end:0x801A73A8 align:8
+
+dol/data/lbl_801A73A8.c:
+	.sdata2     start:0x801A73A8 end:0x801A73B0 align:8
+
+dol/data/lbl_801A73B0.c:
+	.sdata2     start:0x801A73B0 end:0x801A73D0 align:8
+
+dol/data/lbl_801A73D0.c:
+	.sdata2     start:0x801A73D0 end:0x801A73D8 align:8
+
+dol/data/lbl_801A73D8.c:
+	.sdata2     start:0x801A73D8 end:0x801A73E0 align:8
+
+dol/data/lbl_801A73E0.c:
+	.sdata2     start:0x801A73E0 end:0x801A73E8 align:8
+
+dol/data/lbl_801A73E8.c:
+	.sdata2     start:0x801A73E8 end:0x801A73F0 align:8
+
+dol/data/lbl_801A73F0.c:
+	.sdata2     start:0x801A73F0 end:0x801A73F8 align:8
+
+dol/data/lbl_801A73F8.c:
+	.sdata2     start:0x801A73F8 end:0x801A7400 align:8
+
+dol/data/lbl_801A7400.c:
+	.sdata2     start:0x801A7400 end:0x801A7408 align:8
+
+dol/data/lbl_801A7408.c:
+	.sdata2     start:0x801A7408 end:0x801A7410 align:8
+
+dol/data/lbl_801A7410.c:
+	.sdata2     start:0x801A7410 end:0x801A7418 align:8
+
+dol/data/lbl_801A7418.c:
+	.sdata2     start:0x801A7418 end:0x801A7420 align:8
+
+dol/data/lbl_801A7420.c:
+	.sdata2     start:0x801A7420 end:0x801A7428 align:8
+
+dol/data/lbl_801A7428.c:
+	.sdata2     start:0x801A7428 end:0x801A7438 align:8
+
+dol/data/lbl_801A7438.c:
+	.sdata2     start:0x801A7438 end:0x801A7448 align:8
+
+dol/data/lbl_801A7448.c:
+	.sdata2     start:0x801A7448 end:0x801A7450 align:8
+
+dol/data/lbl_801A7450.c:
+	.sdata2     start:0x801A7450 end:0x801A7458 align:8
+
+dol/data/lbl_801A7458.c:
+	.sdata2     start:0x801A7458 end:0x801A7460 align:8
+
+dol/data/lbl_801A7460.c:
+	.sdata2     start:0x801A7460 end:0x801A7470 align:8
+
+dol/data/lbl_801A7470.c:
+	.sdata2     start:0x801A7470 end:0x801A7478 align:8
+
+dol/data/lbl_801A7478.c:
+	.sdata2     start:0x801A7478 end:0x801A7480 align:8
+
+dol/data/lbl_801A7480.c:
+	.sdata2     start:0x801A7480 end:0x801A7488 align:8
+
+dol/data/lbl_801A7488.c:
+	.sdata2     start:0x801A7488 end:0x801A7490 align:8
+
+dol/data/lbl_801A7490.c:
+	.sdata2     start:0x801A7490 end:0x801A7498 align:8
+
+dol/data/lbl_801A7498.c:
+	.sdata2     start:0x801A7498 end:0x801A74A0 align:8
+
+dol/data/lbl_801A74A0.c:
+	.sdata2     start:0x801A74A0 end:0x801A74A8 align:8
+
+dol/data/lbl_801A74A8.c:
+	.sdata2     start:0x801A74A8 end:0x801A74B0 align:8
+
+dol/data/lbl_801A74B0.c:
+	.sdata2     start:0x801A74B0 end:0x801A74B8 align:8
+
+dol/data/lbl_801A74B8.c:
+	.sdata2     start:0x801A74B8 end:0x801A74C0 align:8
+
+dol/data/lbl_801A74C0.c:
+	.sdata2     start:0x801A74C0 end:0x801A74C8 align:8
+
+dol/data/lbl_801A74C8.c:
+	.sdata2     start:0x801A74C8 end:0x801A74D0 align:8
+
+dol/data/lbl_801A74D0.c:
+	.sdata2     start:0x801A74D0 end:0x801A74D8 align:8
+
+dol/data/lbl_801A74D8.c:
+	.sdata2     start:0x801A74D8 end:0x801A74E0 align:8
+
+dol/data/lbl_801A74E0.c:
+	.sdata2     start:0x801A74E0 end:0x801A74F0 align:8
+
+dol/data/lbl_801A74F0.c:
+	.sdata2     start:0x801A74F0 end:0x801A74F8 align:8
+
+dol/data/lbl_801A74F8.c:
+	.sdata2     start:0x801A74F8 end:0x801A7500 align:8
+
+dol/data/lbl_801A7500.c:
+	.sdata2     start:0x801A7500 end:0x801A7508 align:8
+
+dol/data/lbl_801A7508.c:
+	.sdata2     start:0x801A7508 end:0x801A7510 align:8
+
+dol/data/lbl_801A7510.c:
+	.sdata2     start:0x801A7510 end:0x801A7518 align:8
+
+dol/data/lbl_801A7518.c:
+	.sdata2     start:0x801A7518 end:0x801A7520 align:8
+
+dol/data/lbl_801A7520.c:
+	.sdata2     start:0x801A7520 end:0x801A7528 align:8
+
+dol/data/lbl_801A7528.c:
+	.sdata2     start:0x801A7528 end:0x801A7530 align:8
+
+dol/data/lbl_801A7530.c:
+	.sdata2     start:0x801A7530 end:0x801A7538 align:8
+
+dol/data/lbl_801A7538.c:
+	.sdata2     start:0x801A7538 end:0x801A7540 align:8
+
+dol/data/lbl_801A7540.c:
+	.sdata2     start:0x801A7540 end:0x801A7548 align:8
+
+dol/data/lbl_801A7548.c:
+	.sdata2     start:0x801A7548 end:0x801A7550 align:8
+
+dol/data/lbl_801A7550.c:
+	.sdata2     start:0x801A7550 end:0x801A7558 align:8
+
+dol/data/lbl_801A7558.c:
+	.sdata2     start:0x801A7558 end:0x801A7560 align:8
+
+dol/data/lbl_801A7560.c:
+	.sdata2     start:0x801A7560 end:0x801A7568 align:8
+
+dol/data/lbl_801A7568.c:
+	.sdata2     start:0x801A7568 end:0x801A7570 align:8
+
+dol/data/lbl_801A7570.c:
+	.sdata2     start:0x801A7570 end:0x801A7578 align:8
+
+dol/data/lbl_801A7578.c:
+	.sdata2     start:0x801A7578 end:0x801A7580 align:8
+
+dol/data/lbl_801A7580.c:
+	.sdata2     start:0x801A7580 end:0x801A7588 align:8
+
+dol/data/lbl_801A7588.c:
+	.sdata2     start:0x801A7588 end:0x801A7590 align:8
+
+dol/data/lbl_801A7590.c:
+	.sdata2     start:0x801A7590 end:0x801A7598 align:8
+
+dol/data/lbl_801A7598.c:
+	.sdata2     start:0x801A7598 end:0x801A75A0 align:8
+
+dol/data/lbl_801A75A0.c:
+	.sdata2     start:0x801A75A0 end:0x801A75A8 align:8
+
+dol/data/lbl_801A75A8.c:
+	.sdata2     start:0x801A75A8 end:0x801A75B0 align:8
+
+dol/data/lbl_801A75B0.c:
+	.sdata2     start:0x801A75B0 end:0x801A75B8 align:8
+
+dol/data/lbl_801A75B8.c:
+	.sdata2     start:0x801A75B8 end:0x801A75C0 align:8
+
+dol/data/lbl_801A75C0.c:
+	.sdata2     start:0x801A75C0 end:0x801A75C8 align:8
+
+dol/data/lbl_801A75C8.c:
+	.sdata2     start:0x801A75C8 end:0x801A75D0 align:8
+
+dol/data/lbl_801A75D0.c:
+	.sdata2     start:0x801A75D0 end:0x801A75D8 align:8
+
+dol/data/lbl_801A75D8.c:
+	.sdata2     start:0x801A75D8 end:0x801A75E0 align:8
+
+dol/data/lbl_801A75E0.c:
+	.sdata2     start:0x801A75E0 end:0x801A75E8 align:8
+
+dol/data/lbl_801A75E8.c:
+	.sdata2     start:0x801A75E8 end:0x801A75F0 align:8
+
+dol/data/lbl_801A75F0.c:
+	.sdata2     start:0x801A75F0 end:0x801A75F8 align:8
+
+dol/data/lbl_801A75F8.c:
+	.sdata2     start:0x801A75F8 end:0x801A7600 align:8
+
+dol/data/lbl_801A7600.c:
+	.sdata2     start:0x801A7600 end:0x801A7608 align:8
+
+dol/data/lbl_801A7608.c:
+	.sdata2     start:0x801A7608 end:0x801A7610 align:8
+
+dol/data/lbl_801A7610.c:
+	.sdata2     start:0x801A7610 end:0x801A7618 align:8
+
+dol/data/lbl_801A7618.c:
+	.sdata2     start:0x801A7618 end:0x801A7620 align:8
+
+dol/data/lbl_801A7620.c:
+	.sdata2     start:0x801A7620 end:0x801A7628 align:8
+
+dol/data/lbl_801A7628.c:
+	.sdata2     start:0x801A7628 end:0x801A7630 align:8
+
+dol/data/lbl_801A7630.c:
+	.sdata2     start:0x801A7630 end:0x801A7638 align:8
+
+dol/data/lbl_801A7638.c:
+	.sdata2     start:0x801A7638 end:0x801A7640 align:8
+
+dol/data/lbl_801A7640.c:
+	.sdata2     start:0x801A7640 end:0x801A7648 align:8
+
+dol/data/lbl_801A7648.c:
+	.sdata2     start:0x801A7648 end:0x801A7650 align:8
+
+dol/data/lbl_801A7650.c:
+	.sdata2     start:0x801A7650 end:0x801A7658 align:8
+
+dol/data/lbl_801A7658.c:
+	.sdata2     start:0x801A7658 end:0x801A7660 align:8
+
+dol/data/lbl_801A7660.c:
+	.sdata2     start:0x801A7660 end:0x801A7668 align:8
+
+dol/data/lbl_801A7668.c:
+	.sdata2     start:0x801A7668 end:0x801A7670 align:8
+
+dol/data/lbl_801A7670.c:
+	.sdata2     start:0x801A7670 end:0x801A7678 align:8
+
+dol/data/lbl_801A7678.c:
+	.sdata2     start:0x801A7678 end:0x801A7680 align:8
+
+dol/data/lbl_801A7680.c:
+	.sdata2     start:0x801A7680 end:0x801A7688 align:8
+
+dol/data/lbl_801A7688.c:
+	.sdata2     start:0x801A7688 end:0x801A7690 align:8
+
+dol/data/lbl_801A7690.c:
+	.sdata2     start:0x801A7690 end:0x801A7698 align:8
+
+dol/data/lbl_801A7698.c:
+	.sdata2     start:0x801A7698 end:0x801A76A0 align:8
+
+dol/data/lbl_801A76A0.c:
+	.sdata2     start:0x801A76A0 end:0x801A76A8 align:8
+
+dol/data/lbl_801A76A8.c:
+	.sdata2     start:0x801A76A8 end:0x801A76B0 align:8
+
+dol/data/lbl_801A76B0.c:
+	.sdata2     start:0x801A76B0 end:0x801A76B8 align:8
+
+dol/data/lbl_801A76B8.c:
+	.sdata2     start:0x801A76B8 end:0x801A76C0 align:8
+
+dol/data/lbl_801A76C0.c:
+	.sdata2     start:0x801A76C0 end:0x801A76C8 align:8
+
+dol/data/lbl_801A76C8.c:
+	.sdata2     start:0x801A76C8 end:0x801A76D0 align:8
+
+dol/data/lbl_801A76D0.c:
+	.sdata2     start:0x801A76D0 end:0x801A76D8 align:8
+
+dol/data/lbl_801A76D8.c:
+	.sdata2     start:0x801A76D8 end:0x801A76E0 align:8
+
+dol/data/lbl_801A76E0.c:
+	.sdata2     start:0x801A76E0 end:0x801A76E8 align:8
+
+dol/data/lbl_801A76E8.c:
+	.sdata2     start:0x801A76E8 end:0x801A76F0 align:8
+
+dol/data/lbl_801A76F0.c:
+	.sdata2     start:0x801A76F0 end:0x801A76F8 align:8
+
+dol/data/lbl_801A76F8.c:
+	.sdata2     start:0x801A76F8 end:0x801A7700 align:8
+
+dol/data/lbl_801A7700.c:
+	.sdata2     start:0x801A7700 end:0x801A7708 align:8
+
+dol/data/lbl_801A7708.c:
+	.sdata2     start:0x801A7708 end:0x801A7710 align:8
+
+dol/data/lbl_801A7710.c:
+	.sdata2     start:0x801A7710 end:0x801A7718 align:8
+
+dol/data/lbl_801A7718.c:
+	.sdata2     start:0x801A7718 end:0x801A7720 align:8
+
+dol/data/lbl_801A7720.c:
+	.sdata2     start:0x801A7720 end:0x801A7728 align:8
+
+dol/data/lbl_801A7728.c:
+	.sdata2     start:0x801A7728 end:0x801A7730 align:8
+
+dol/data/lbl_801A7730.c:
+	.sdata2     start:0x801A7730 end:0x801A7738 align:8
+
+dol/data/lbl_801A7738.c:
+	.sdata2     start:0x801A7738 end:0x801A7740 align:8
+
+dol/data/lbl_801A7740.c:
+	.sdata2     start:0x801A7740 end:0x801A7748 align:8
+
+dol/data/lbl_801A7748.c:
+	.sdata2     start:0x801A7748 end:0x801A7750 align:8
+
+dol/data/lbl_801A7750.c:
+	.sdata2     start:0x801A7750 end:0x801A7758 align:8
+
+dol/data/lbl_801A7758.c:
+	.sdata2     start:0x801A7758 end:0x801A7760 align:8
+
+dol/data/lbl_801A7760.c:
+	.sdata2     start:0x801A7760 end:0x801A7768 align:8
+
+dol/data/lbl_801A7768.c:
+	.sdata2     start:0x801A7768 end:0x801A7770 align:8
+
+dol/data/lbl_801A7770.c:
+	.sdata2     start:0x801A7770 end:0x801A7778 align:8
+
+dol/data/lbl_801A7778.c:
+	.sdata2     start:0x801A7778 end:0x801A7780 align:8
+
+dol/data/lbl_801A7780.c:
+	.sdata2     start:0x801A7780 end:0x801A7788 align:8
+
+dol/data/lbl_801A7788.c:
+	.sdata2     start:0x801A7788 end:0x801A7790 align:8
+
+dol/data/lbl_801A7790.c:
+	.sdata2     start:0x801A7790 end:0x801A7798 align:8
+
+dol/data/lbl_801A7798.c:
+	.sdata2     start:0x801A7798 end:0x801A77A0 align:8
+
+dol/data/lbl_801A77A0.c:
+	.sdata2     start:0x801A77A0 end:0x801A77A8 align:8
+
+dol/data/lbl_801A77A8.c:
+	.sdata2     start:0x801A77A8 end:0x801A77B0 align:8
+
+dol/data/lbl_801A77B0.c:
+	.sdata2     start:0x801A77B0 end:0x801A77B8 align:8
+
+dol/data/lbl_801A77B8.c:
+	.sdata2     start:0x801A77B8 end:0x801A77C0 align:8
+
+dol/data/lbl_801A77C0.c:
+	.sdata2     start:0x801A77C0 end:0x801A77C8 align:8
+
+dol/data/lbl_801A77C8.c:
+	.sdata2     start:0x801A77C8 end:0x801A77D0 align:8
+
+dol/data/lbl_801A77D0.c:
+	.sdata2     start:0x801A77D0 end:0x801A77D8 align:8
+
+dol/data/lbl_801A77D8.c:
+	.sdata2     start:0x801A77D8 end:0x801A77E0 align:8
+
+dol/data/lbl_801A77E0.c:
+	.sdata2     start:0x801A77E0 end:0x801A77E8 align:8
+
+dol/data/lbl_801A77E8.c:
+	.sdata2     start:0x801A77E8 end:0x801A77F0 align:8
+
+dol/data/lbl_801A77F0.c:
+	.sdata2     start:0x801A77F0 end:0x801A77F8 align:8
+
+dol/data/lbl_801A77F8.c:
+	.sdata2     start:0x801A77F8 end:0x801A7800 align:8
+
+dol/data/lbl_801A7800.c:
+	.sdata2     start:0x801A7800 end:0x801A7808 align:8
+
+dol/data/lbl_801A7808.c:
+	.sdata2     start:0x801A7808 end:0x801A7810 align:8
+
+dol/data/lbl_801A7810.c:
+	.sdata2     start:0x801A7810 end:0x801A7818 align:8
+
+dol/data/lbl_801A7818.c:
+	.sdata2     start:0x801A7818 end:0x801A7820 align:8
+
+dol/data/lbl_801A7820.c:
+	.sdata2     start:0x801A7820 end:0x801A7828 align:8
+
+dol/data/lbl_801A7828.c:
+	.sdata2     start:0x801A7828 end:0x801A7830 align:8
+
+dol/data/lbl_801A7830.c:
+	.sdata2     start:0x801A7830 end:0x801A7838 align:8
+
+dol/data/lbl_801A7838.c:
+	.sdata2     start:0x801A7838 end:0x801A7840 align:8
+
+dol/data/lbl_801A7840.c:
+	.sdata2     start:0x801A7840 end:0x801A7848 align:8
+
+dol/data/lbl_801A7848.c:
+	.sdata2     start:0x801A7848 end:0x801A7850 align:8
+
+dol/data/lbl_801A7850.c:
+	.sdata2     start:0x801A7850 end:0x801A7858 align:8
+
+dol/data/lbl_801A7858.c:
+	.sdata2     start:0x801A7858 end:0x801A7860 align:8
+
+dol/data/lbl_801A7860.c:
+	.sdata2     start:0x801A7860 end:0x801A7868 align:8
+
+dol/data/lbl_801A7868.c:
+	.sdata2     start:0x801A7868 end:0x801A7870 align:8
+
+dol/data/lbl_801A7870.c:
+	.sdata2     start:0x801A7870 end:0x801A7878 align:8
+
+dol/data/lbl_801A7878.c:
+	.sdata2     start:0x801A7878 end:0x801A7880 align:8
+
+dol/data/lbl_801A7880.c:
+	.sdata2     start:0x801A7880 end:0x801A7888 align:8
+
+dol/data/lbl_801A7888.c:
+	.sdata2     start:0x801A7888 end:0x801A7890 align:8
+
+dol/data/lbl_801A7890.c:
+	.sdata2     start:0x801A7890 end:0x801A7898 align:8
+
+dol/data/lbl_801A7898.c:
+	.sdata2     start:0x801A7898 end:0x801A78A0 align:8
+
+dol/data/lbl_801A78A0.c:
+	.sdata2     start:0x801A78A0 end:0x801A78A8 align:8
+
+dol/data/lbl_801A78A8.c:
+	.sdata2     start:0x801A78A8 end:0x801A78B0 align:8
+
+dol/data/lbl_801A78B0.c:
+	.sdata2     start:0x801A78B0 end:0x801A78B8 align:8
+
+dol/data/lbl_801A78B8.c:
+	.sdata2     start:0x801A78B8 end:0x801A78C0 align:8
+
+dol/data/lbl_801A78C0.c:
+	.sdata2     start:0x801A78C0 end:0x801A78C8 align:8
+
+dol/data/lbl_801A78C8.c:
+	.sdata2     start:0x801A78C8 end:0x801A78D0 align:8
+
+dol/data/lbl_801A78D0.c:
+	.sdata2     start:0x801A78D0 end:0x801A78D8 align:8
+
+dol/data/lbl_801A78D8.c:
+	.sdata2     start:0x801A78D8 end:0x801A78E0 align:8
+
+dol/data/lbl_801A78E0.c:
+	.sdata2     start:0x801A78E0 end:0x801A78E8 align:8
+
+dol/data/lbl_801A78E8.c:
+	.sdata2     start:0x801A78E8 end:0x801A78F0 align:8
+
+dol/data/lbl_801A78F0.c:
+	.sdata2     start:0x801A78F0 end:0x801A78F8 align:8
+
+dol/data/lbl_801A78F8.c:
+	.sdata2     start:0x801A78F8 end:0x801A7900 align:8

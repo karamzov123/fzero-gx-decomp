@@ -579,8 +579,13 @@ def validate(p, record, obj):
     if len(owned) != 1:
         raise ValueError('compiler did not define exactly one target symbol')
     es = owned[0]; sec = elf.sections[es['shndx']]
-    flags = 2 if record['section'] in ('.rodata', '.sdata2', '.sbss2') else 3
-    if sec['flags'] != flags:
+    flags = {2} if record['section'] == '.rodata' else {3}
+    if record['section'] in ('.sdata2', '.sbss2'):
+        # MWCC emits its small constant sections writable in every spelling (measured on
+        # GC/1.3.2: const, __declspec and #pragma section all give flags WA), while dtk marks
+        # the retail objects read-only. The name places them; the 16 hashes are the gate.
+        flags = {2, 3}
+    if sec['flags'] not in flags:
         raise ValueError('compiler changed the data section permissions')
     start = record.get('unit_start', record['address'])
     size = record.get('section_size', record.get('unit_size', record['size']))
