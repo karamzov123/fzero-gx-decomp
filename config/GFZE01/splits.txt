@@ -6516,9 +6516,6 @@ dol/data/__OSErrorTable.c:
 dol/data/lbl_8015BFA0.c:
 	.bss        start:0x8015BFA0 end:0x8015BFC0 align:8
 
-dol/data/RunQueue.c:
-	.bss        start:0x8015C018 end:0x8015C118 align:8
-
 dol/data/CommandList.c:
 	.bss        start:0x8015CD70 end:0x8015CDAC align:8
 
@@ -8483,3 +8480,6 @@ dol/data/lbl_80094FE8.c:
 
 dol/data/lbl_80095A78.c:
 	.rodata     start:0x80095A78 end:0x80095BB8 align:8
+
+dol/data/RunQueue.c:
+	.bss        start:0x8015C018 end:0x8015CA10 align:8

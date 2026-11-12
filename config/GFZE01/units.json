@@ -20288,7 +20288,10 @@
     "module": "main",
     "source": "dol/data/RunQueue.c",
     "symbols": [
-      "RunQueue"
+      "RunQueue",
+      "IdleThread",
+      "DefaultThread",
+      "IdleContext"
     ],
     "status": "matching",
     "data": true,

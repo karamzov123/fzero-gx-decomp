@@ -43261,6 +43261,30 @@
     "unit_size": 3660,
     "unit_start": 2148671680
   },
+  "main:DefaultThread": {
+    "address": 2148910128,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "OSThread DefaultThread",
+        "path": "include/dol/os_thread_statics.h"
+      }
+    ],
+    "definition": "OSThread DefaultThread",
+    "method": "declared-bss",
+    "module": "main",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 2552,
+    "sha256": "52f033ec34066343ced3a1bed745100fe4efe6577154125a6d9483c6b482219a",
+    "size": 792,
+    "source": "dol/data/RunQueue.c",
+    "symbol": "DefaultThread",
+    "unit_align": 8,
+    "unit_size": 2552,
+    "unit_start": 2148909080
+  },
   "main:DriveInfo": {
     "address": 2148908800,
     "align": 8,
@@ -43478,6 +43502,54 @@
     "unit_size": 5984,
     "unit_start": 2148701664
   },
+  "main:IdleContext": {
+    "address": 2148910920,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "OSContext IdleContext",
+        "path": "include/dol/os_thread_statics.h"
+      }
+    ],
+    "definition": "OSContext IdleContext",
+    "method": "declared-bss",
+    "module": "main",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 2552,
+    "sha256": "283de789c3f9ae6115e627ecb921b7b39bdaa1b82289eca5e60da0b76d07a502",
+    "size": 712,
+    "source": "dol/data/RunQueue.c",
+    "symbol": "IdleContext",
+    "unit_align": 8,
+    "unit_size": 2552,
+    "unit_start": 2148909080
+  },
+  "main:IdleThread": {
+    "address": 2148909336,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "OSThread IdleThread",
+        "path": "include/dol/os_thread_statics.h"
+      }
+    ],
+    "definition": "OSThread IdleThread",
+    "method": "declared-bss",
+    "module": "main",
+    "references": [],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 2552,
+    "sha256": "52f033ec34066343ced3a1bed745100fe4efe6577154125a6d9483c6b482219a",
+    "size": 792,
+    "source": "dol/data/RunQueue.c",
+    "symbol": "IdleThread",
+    "unit_align": 8,
+    "unit_size": 2552,
+    "unit_start": 2148909080
+  },
   "main:OSCacheData": {
     "address": 2148673576,
     "align": 8,
@@ -43687,6 +43759,10 @@
     "declarations": [
       {
         "declaration": "OSThreadQueue RunQueue[32]",
+        "path": "include/dol/os_thread_statics.h"
+      },
+      {
+        "declaration": "OSThreadQueue RunQueue[32]",
         "path": "src/dol/OSResumeThread.c"
       },
       {
@@ -43706,8 +43782,8 @@
         "path": "src/dol/__OSThreadInit.c"
       }
     ],
-    "definition": "u8 RunQueue[256]",
-    "method": "opaque-bss",
+    "definition": "OSThreadQueue RunQueue[32]",
+    "method": "declared-bss",
     "module": "main",
     "references": [
       "OSResumeThread",
@@ -43718,13 +43794,13 @@
     ],
     "relocations": [],
     "section": ".bss",
-    "section_size": 256,
+    "section_size": 2552,
     "sha256": "5341e6b2646979a70e57653007a1f310169421ec9bdd9f1a5648f75ade005af1",
     "size": 256,
     "source": "dol/data/RunQueue.c",
     "symbol": "RunQueue",
     "unit_align": 8,
-    "unit_size": 256,
+    "unit_size": 2552,
     "unit_start": 2148909080
   },
   "main:Si": {
