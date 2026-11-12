@@ -47739,6 +47739,23 @@
   },
   {
     "module": "main_rel",
+    "source": "rel/main_rel/bg_common/fn_1_105CC8.c",
+    "symbols": [
+      "fn_1_105CC8"
+    ],
+    "status": "matching",
+    "mw_version": "GC/2.5",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/bg_common.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_78D0",
+      "@12": "lbl_1_rodata_78D8",
+      "@13": "lbl_1_rodata_78E0",
+      "@15": "lbl_1_rodata_78E8"
+    }
+  },
+  {
+    "module": "main_rel",
     "source": "rel/main_rel/bg_common/fn_1_106084.c",
     "symbols": [
       "fn_1_106084"

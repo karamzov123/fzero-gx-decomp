@@ -21603,3 +21603,6 @@ rel/main_rel/rob/fn_1_977BC.c:
 
 rel/main_rel/accessory/fn_1_10B800.c:
 	.text       start:0x0010B800 end:0x0010BA00 align:4
+
+rel/main_rel/bg_common/fn_1_105CC8.c:
+	.text       start:0x00105CC8 end:0x00106084 align:4
