@@ -2273,8 +2273,8 @@ void fn_1_10B7D8(void *accessory) {
 }
 /* fzgx:end fn_1_10B7D8 */
 
-/* fzgx:begin fn_1_10B800 */
 /* fzgx:begin fn_1_10B800 noprologue */
+#include "types.h"
 
 typedef struct { f32 x, y, z; } Vec3;
 
@@ -2354,7 +2354,9 @@ void fn_1_10B800(struct Accessory *acc) {
         angle = -0x800;
         lo = pool->lo;
         n = 100;
-        /* Value-preserving 64-bit round trip: a fresh temp gives p retail's r31 (acc r30, pool r29). */
+        /* WARNING: compiler-diff device, not original code: value-preserving 64-bit round trip. A fresh
+         * codegen temp gives p retail's r31 (acc r30, pool r29). Honest form `p = acc->mgr->inner->p;`
+         * leaves an r29/r30/r31 rotation (17 rows). */
         p = (u8 *)(u32)((u64)acc->mgr->inner->p | 0x100000000ull);
         do {
             c3 = pool->v[2];
@@ -2388,7 +2390,6 @@ void fn_1_10B800(struct Accessory *acc) {
         }
     }
 }
-/* fzgx:end fn_1_10B800 */
 /* fzgx:end fn_1_10B800 */
 
 /* fzgx:begin fn_1_10BA00 noprologue */

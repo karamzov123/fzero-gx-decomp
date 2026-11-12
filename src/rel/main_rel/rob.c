@@ -3984,7 +3984,8 @@ void fn_1_977BC(Rob *rob, RobView *arg1) {
     f32 scale;
     RobPart *parts;
     scale = 1.0f;
-    /* Value-preserving 64-bit round trip: puts view in a fresh temp so it ranks below rob (retail r30/r31). */
+    /* WARNING: compiler-diff device, not original code: value-preserving 64-bit round trip; puts view in a
+     * fresh temp so it ranks below rob (retail r30/r31). Honest form `view = arg1->view;` swaps rob/view (37 rows). */
     view = (u8 *)(u32)((u64)arg1->view | 0x100000000ull);
     model_set = rob->models[rob->active];
     if (fn_80083BCC(rob_name(&rob->anim), fzgx_pool_name0) == 0) {

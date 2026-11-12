@@ -23059,7 +23059,7 @@ void fn_1_2CBAC(void) {
     p = &lbl_1_bss_5138;
     for (count = n; count > 0; count--) {
         id = row[diff][count - 1];
-        /* WARNING: dead store. i is overwritten before any read. It keeps an unused n * 2
+        /* WARNING: compiler-diff device, not original code: dead store. i is overwritten before any read. It keeps an unused n * 2
          * alive until register allocation (opt_dead_assignments off), whose deletion of it
          * makes MWCC reschedule the loop setup into retail's order (n * 2 before diff * 4). */
         i = (s16)((u32)n * 2);
@@ -23077,7 +23077,7 @@ void fn_1_2CBAC(void) {
             }
         }
     }
-    /* WARNING: dead store. i = 0 is never read; it survives until register allocation and
+    /* WARNING: compiler-diff device, not original code: dead store. i = 0 is never read; it survives until register allocation and
      * its deletion there leaves retail's second compare of found in place. */
     if (found) {
         i = 0;
