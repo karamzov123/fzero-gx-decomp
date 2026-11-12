@@ -36538,6 +36538,24 @@
   },
   {
     "module": "main",
+    "source": "dol/fn_8006BCF8.c",
+    "symbols": [
+      "fn_8006BCF8"
+    ],
+    "status": "matching",
+    "mw_version": "GC/2.0p1",
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on"
+    ],
+    "pool": {
+      "@41": "lbl_801A7380",
+      "@38": "lbl_801A7388",
+      "@39": "lbl_801A7370"
+    }
+  },
+  {
+    "module": "main",
     "source": "dol/fn_8006BE0C.c",
     "symbols": [
       "fn_8006BE0C"
