@@ -8982,7 +8982,8 @@
     "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/interview/interview.c"
+    "tu": "rel/interview/interview.c",
+    "pool": null
   },
   {
     "module": "interview",
@@ -8993,7 +8994,8 @@
     "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/interview/interview.c"
+    "tu": "rel/interview/interview.c",
+    "pool": null
   },
   {
     "module": "interview",
@@ -9056,7 +9058,8 @@
     "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/interview/interview.c"
+    "tu": "rel/interview/interview.c",
+    "pool": null
   },
   {
     "module": "interview",
