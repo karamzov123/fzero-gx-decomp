@@ -7586,3 +7586,15 @@ dol/fn_8006BCF8.c:
 
 dol/fn_8004F26C.c:
 	.text       start:0x8004F26C end:0x8004F55C align:4
+
+dol/__save_fpr.c:
+	.text       start:0x800797C0 end:0x8007980C align:4
+
+dol/__restore_fpr.c:
+	.text       start:0x8007980C end:0x80079858 align:4
+
+dol/__save_gpr.c:
+	.text       start:0x80079858 end:0x800798A4 align:4
+
+dol/__restore_gpr.c:
+	.text       start:0x800798A4 end:0x800798F0 align:4
