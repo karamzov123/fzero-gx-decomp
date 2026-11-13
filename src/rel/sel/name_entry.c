@@ -32,6 +32,22 @@ extern void fn_1_1555B0(u8);
 extern void fn_1_47F74(s32);
 extern void fn_1_15555C(void);
 extern void fn_1_14BD74(void);
+extern s32 lbl_801A66B4;
+extern u8 lbl_10_data_68E0[];
+extern u32 lbl_10_rodata_1D64;
+extern char * fn_80083DB0(char *, const char *);
+extern u32 fn_10_2325C(void);
+extern s32 fn_1_3F8C(void *, u32, void *, u32);
+extern void fn_1_49410(void);
+extern void fn_1_4955C(f32, f32);
+extern void fn_1_4954C(f32);
+extern void fn_1_495C8(u8);
+extern void fn_1_495B0(u32);
+extern void fn_1_49590(f32);
+extern void fn_1_496FC(f32, f32);
+extern void fn_1_4D494(void);
+extern void fn_1_4AE0C(const char *, ...);
+extern void fzgx_pool_use(void *);
 
 /* fzgx:begin fn_10_25BC8 */
 typedef struct fn_10_25BC8_NameEntryState {
@@ -86,15 +102,9 @@ typedef struct fn_10_25CB0_Pair {
     u8 unk_1;
 } fn_10_25CB0_Pair;
 
-extern u8 lbl_10_data_68E0[];
-extern u32 lbl_10_rodata_1D64;
-extern s32 lbl_801A66B4;
 extern u32 lbl_801A6410;
-extern char * fn_80083DB0(char *, const char *);
 extern void fn_1_435C(u32 value);
-extern u32 fn_10_2325C(void);
 extern fn_10_25CB0_Entry * fn_1_45D0(u32, u32, const char *, u32);
-extern s32 fn_1_3F8C(void *, u32, void *, u32);
 
 #pragma opt_loop_invariants off
 #pragma opt_propagation on
@@ -324,7 +334,6 @@ extern void fn_1_47F74(s32);
 extern void fn_1_15555C(void);
 extern void fn_1_14BD74(void);
 
-
 extern u8 lbl_10_bss_55CDC;
 extern s16 lbl_1_bss_960;
 extern u32 lbl_801A6410;
@@ -355,23 +364,11 @@ extern void fn_1_47F74(s32);
 extern void fn_1_15555C(void);
 extern void fn_1_14BD74(void);
 
-
 typedef struct { u8 r, g, b, a; } Sig_fn_800081C8_Color;
 typedef Sig_fn_800081C8_Color Color;
 
-extern u32 lbl_801A66B4;
-
 extern Color fn_800081C8(Color, Color, f32);
-extern void fn_1_49410(void);
-extern void fn_1_4955C(f32, f32);
-extern void fn_1_4954C(f32);
-extern void fn_1_495C8(u8);
-extern void fn_1_495B0(u32);
-extern void fn_1_49590(f32);
-extern void fn_1_496FC(f32, f32);
-extern void fn_1_4D494(void);
 extern void fn_1_49514(Color);
-extern void fn_1_4AE0C(const char *, ...);
 extern u32 fn_1_4D4C8(Color, f32, f32);
 extern void fn_1_49528(Color);
 
@@ -408,7 +405,6 @@ static char *fzgx_pool_sEraseNo[6] = {0};
 #pragma explicit_zero_data reset
 
 /* Literal-pool primer: reproduces the order of the TU's shared .rodata pool. */
-extern void fzgx_pool_use(void *);
 #pragma section RX ".fzgxpool"
 __declspec(section ".fzgxpool") void fzgx_pool_fn_10_261E4(s32 x) {
     s16 t0[14] = {0xB5, 0xB6, 0xAD, 0xB3, 0xB8, 0xB2, 0xB1, 0xAE, 0xB4, 0xB9, 0xB0, 0xAF, 0xB7, -1};
@@ -440,23 +436,23 @@ void fn_10_261E4(s32 arg0, u8 arg1) {
     if (!arg1) {
         fn_1_4D494();
         fn_1_49514((Color){0xFF, 0xFF, 0xFF, 0x00});
-        fn_1_4AE0C("%s", fzgx_pool_sEraseYes[lbl_801A66B4]);
+        fn_1_4AE0C("%s", fzgx_pool_sEraseYes[(*(u32 *)&lbl_801A66B4)]);
         fn_1_4D4C8(col, 0.09f, 10.0f);
     } else {
         fn_1_49514((Color){0x70, 0x70, 0x70, 0x00});
         fn_1_49528((Color){0x00, 0x00, 0x00, 0x00});
-        fn_1_4AE0C("%s", fzgx_pool_sEraseYes[lbl_801A66B4]);
+        fn_1_4AE0C("%s", fzgx_pool_sEraseYes[(*(u32 *)&lbl_801A66B4)]);
     }
     fn_1_496FC(352.0f, arg0);
     fn_1_495C8(8);
     if (!arg1) {
         fn_1_49514((Color){0x70, 0x70, 0x70, 0x00});
         fn_1_49528((Color){0x00, 0x00, 0x00, 0x00});
-        fn_1_4AE0C("%s", fzgx_pool_sEraseNo[lbl_801A66B4]);
+        fn_1_4AE0C("%s", fzgx_pool_sEraseNo[(*(u32 *)&lbl_801A66B4)]);
     } else {
         fn_1_4D494();
         fn_1_49514((Color){0xFF, 0xFF, 0xFF, 0x00});
-        fn_1_4AE0C("%s", fzgx_pool_sEraseNo[lbl_801A66B4]);
+        fn_1_4AE0C("%s", fzgx_pool_sEraseNo[(*(u32 *)&lbl_801A66B4)]);
         fn_1_4D4C8(col, 0.09f, 10.0f);
     }
 }

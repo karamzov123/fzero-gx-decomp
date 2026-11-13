@@ -18,10 +18,10 @@ extern struct Fn10834Event lbl_1_bss_9C;
 extern u8 lbl_1_bss_8CA28;
 extern void fn_1_A2D84(u32);
 
-/* fzgx:begin fn_10_0 noprologue */
+/* fzgx:begin fn_10_0 */
 #include "types.h"
 
-extern struct Fn10Data lbl_10_bss_0;
+
 extern int fn_1_152970(int, int, int, int, struct Fn10Data *, int, int);
 
 struct Fn10Data {
@@ -32,8 +32,8 @@ struct Fn10Data {
 
 s16 fn_10_0(int first, int second, int third, int fourth) {
     return (s16)fn_1_152970(second, first, third, fourth,
-        (struct Fn10Data *)((u8 *)&lbl_10_bss_0 + 0x1c),
-        lbl_10_bss_0.value_1a, lbl_10_bss_0.value_18);
+        (struct Fn10Data *)((u8 *)&(*(struct Fn10Data *)&lbl_10_bss_0) + 0x1c),
+        (*(struct Fn10Data *)&lbl_10_bss_0).value_1a, (*(struct Fn10Data *)&lbl_10_bss_0).value_18);
 }
 /* fzgx:end fn_10_0 */
 
