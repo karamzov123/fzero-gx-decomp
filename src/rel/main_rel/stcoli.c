@@ -1141,6 +1141,373 @@ s32 fn_1_15248(Fn183D28Vec3 *pos, Fn183D28Vec3 *arg1, fn_1_15248_Poly *poly, s32
 #pragma opt_lifetimes reset
 /* fzgx:end fn_1_15248 */
 
+/* fzgx:begin fn_1_163BC noprologue */
+#include "types.h"
+#include "psvec.h"
+#include "fpscr_floorf.h"
+
+/* fzgx:begin fn_1_163BC noprologue */
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} V3;
+
+typedef struct {
+    u8 pad_0[0x24];
+    void *polys58;
+    s16 **lists58[11];
+    u8 pad_54[0x60 - 0x54];
+    f32 x0;
+    f32 z0;
+    f32 sx;
+    f32 sz;
+    s32 nx;
+    s32 nz;
+    void *polys70;
+    s16 **lists70[11];
+    u8 pad_a8[0x4B0 - 0xA8];
+} Cell;
+
+typedef struct {
+    u8 pad_0[0x2C];
+    u8 mtx0[0x30];
+    u8 mtx1[0x30];
+    u8 pad_8c[0xA0 - 0x8C];
+} CellMtx;
+
+typedef struct {
+    u32 flags;
+    V3 center;
+    f32 radius;
+    s32 n58;
+    s32 n70;
+    u8 *polys58;
+    u8 *polys70;
+} Model;
+
+typedef struct {
+    u8 pad_0[0xC];
+    Model *model;
+} ModelRef;
+
+typedef struct {
+    u8 pad_0[0x10];
+    V3 pos;
+    s16 rx;
+    s16 ry;
+    s16 rz;
+    u16 pad_22;
+    V3 scale;
+} Xform2;
+
+typedef struct {
+    u32 flags;
+    u8 pad_4[4];
+    ModelRef *ref;
+    V3 pos;
+    s16 rx;
+    s16 ry;
+    s16 rz;
+    u16 mask;
+    V3 scale;
+    u8 pad_2c[8];
+    Xform2 *xf;
+    u8 pad_38[4];
+    void *mtx;
+} Obj;
+
+typedef struct {
+    u8 pad_0[8];
+    s32 unk8;
+    u8 pad_c[0x18 - 0xC];
+    s32 ncells;
+    Cell *cells;
+    u8 pad_20[0x48 - 0x20];
+    s32 nobj;
+    u8 pad_4c[4];
+    s32 firstobj;
+    Obj *objs;
+} Stcoli;
+
+typedef struct {
+    u8 pad_0[0xA0];
+    u16 unkA0;
+} Data2A7E0;
+
+extern Stcoli *lbl_1_bss_3BE0;
+extern CellMtx *lbl_1_bss_3BE4;
+extern Data2A7E0 lbl_1_data_2A7E0;
+extern f32 lbl_1_rodata_6D4;
+extern f32 lbl_1_rodata_6EC;
+
+extern void lbl_8006DBAC(void *);
+extern void lbl_8006D7DC(void *);
+extern void lbl_8006E13C(void *);
+extern void lbl_8006E1B0(void *, void *);
+extern void fn_8006E250(void *, void *);
+extern void fn_8006E2B0(void *, void *);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DB30(void);
+extern void lbl_8006DD7C(void);
+extern void mathutil_mtxA_rotate_x(s32);
+extern void mathutil_mtxA_rotate_y(s32);
+extern void mathutil_mtxA_rotate_z(s32);
+extern s32 fn_1_15248(V3 *, V3 *, void *, s32, f32);
+extern u32 fn_1_9D260(void);
+
+static inline s32 cell_index(Cell *cell, f32 x, f32 z) {
+    s32 ix;
+    s32 iz;
+    s32 idx;
+
+    ix = fpscr_floorf((x - cell->x0) / cell->sx);
+    iz = fpscr_floorf((z - cell->z0) / cell->sz);
+    if (ix < 0 || ix >= cell->nx) {
+        idx = -1;
+    } else if (iz < 0 || iz >= cell->nz) {
+        idx = -1;
+    } else {
+        idx = ix + iz * cell->nx;
+    }
+    return idx;
+}
+
+s32 fn_1_163BC(V3 *arg0, V3 *arg1, s32 mask, s32 arg3) {
+    V3 a;
+    V3 b;
+    V3 pos;
+    V3 save;
+    V3 save2;
+    V3 sp18;
+    s32 idx;
+    s32 i;
+    Cell *cell;
+    s32 result;
+    s32 k;
+    s32 bit;
+    s32 type;
+    s16 ***lists;
+    s16 *p;
+    void *poly;
+    u32 vis;
+    Obj *obj;
+    Model *model;
+    Xform2 *xf;
+    s32 scaled;
+    f32 m;
+    void * lab_t0;
+    void * lab_t0_;
+    f32 dy;
+    f32 dx;
+    f32 dz;
+    f32 sq;
+    s32 j;
+    u8 *pp;
+    s32 start;
+
+    result = 0;
+    /* Retail keeps this bounds check although its result is unused. */
+    if (lbl_1_bss_3BE0->unk8 != 0 && arg3 >= 0 && arg3 < lbl_1_bss_3BE0->unk8) {
+        start = arg3;
+    }
+    pos = *arg0;
+    /* WARNING: compiler-diff device, not original code. Dead load that register allocation
+     * deletes; it shifts the pre-RA schedule so the lbl_1_bss_3BE0 reload lands after the
+     * pos stores, as in retail. Honest form (no load) misses by 10 rows in the prologue. */
+    m = lbl_1_rodata_6D4;
+    cell = lbl_1_bss_3BE0->cells;
+    for (i = 0; i < lbl_1_bss_3BE0->ncells; i++, cell++) {
+        a = pos;
+        b = *arg1;
+        if (i != 0 && i > 0) {
+            CellMtx *cm = &lbl_1_bss_3BE4[i];
+            lbl_8006DBAC(cm->mtx0);
+            /* WARNING: compiler-diff device, not original code. Retail has a dead
+             * `b; bl fn_8006E2B0` here (likely a constant-condition macro choosing between the
+             * two transforms); this constant-true `||` reproduces it. Honest form
+             * `fn_8006E250(&a, &a);` misses the dead pair: 2 words, 3 rows. */
+            (fn_8006E250(&a, &a), 1) || (fn_8006E2B0(&a, &a), 1);
+            lbl_8006DBAC(cm->mtx1);
+            fn_8006E250(&b, &b);
+        }
+        idx = cell_index(cell, b.x, b.z);
+        if (idx >= 0) {
+            for (k = 0; k < 2; k++) {
+                if (k == 0) {
+                    lists = cell->lists70;
+                    type = 4;
+                } else {
+                    type = 3;
+                    lists = cell->lists58;
+                }
+                if (lists) {
+                    save = a;
+                    for (bit = 0; bit < 11; bit++) {
+                        if (mask & (1 << bit)) {
+                            p = lists[bit][idx];
+                            if (p) {
+                                for (; *p >= 0; p++) {
+                                    if (type == 4) {
+                                        poly = (u8 *)cell->polys70 + *p * 0x70;
+                                    } else {
+                                        poly = (u8 *)cell->polys58 + *p * 0x58;
+                                    }
+                                    if (fn_1_15248(&a, &b, poly, type, lbl_1_rodata_6EC)) {
+                                        result |= 1 << bit;
+                                        a = save;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    if (mask & 0x4080) {
+        vis = fn_1_9D260();
+        i = lbl_1_bss_3BE0->firstobj;
+        obj = lbl_1_bss_3BE0->objs + i;
+        for (; i < lbl_1_bss_3BE0->nobj; i++, obj++) {
+            model = obj->ref->model;
+            if (!model) {
+                break;
+            }
+            if (!(model->flags & 0x4000)) {
+                break;
+            }
+            if (!(obj->flags & vis)) {
+                continue;
+            }
+            if (!(obj->mask & lbl_1_data_2A7E0.unkA0)) {
+                continue;
+            }
+            if (obj->flags & 0x40000000) {
+                if (!(mask & 0x80)) {
+                    continue;
+                }
+            } else if (!(mask & 0x4000)) {
+                continue;
+            }
+            xf = obj->xf;
+            scaled = lbl_1_rodata_6D4 != obj->scale.x || lbl_1_rodata_6D4 != obj->scale.y || lbl_1_rodata_6D4 != obj->scale.z;
+            if (obj->mtx) {
+                lbl_8006DBAC(obj->mtx);
+            } else {
+                lbl_8006D7DC(&obj->pos);
+                if (obj->rz != 0) {
+                    mathutil_mtxA_rotate_z(obj->rz);
+                }
+                if (obj->ry != 0) {
+                    mathutil_mtxA_rotate_y(obj->ry);
+                }
+                if (obj->rx != 0) {
+                    mathutil_mtxA_rotate_x(obj->rx);
+                }
+                if (scaled) {
+                    lbl_8006E13C(&obj->scale);
+                }
+            }
+            lbl_8006E1B0(&model->center, &a);
+            if (scaled) {
+                m = obj->scale.x > obj->scale.y ? obj->scale.x : obj->scale.y;
+                m = obj->scale.z > m ? obj->scale.z : m;
+                dx = a.x;
+                dx -= pos.x;
+                dy = a.y;
+                dy -= pos.y;
+                dz = a.z;
+                dz -= pos.z;
+                sq = dx * dx;
+                sq += dy * dy;
+                sq += dz * dz;
+                if (sq > (model->radius * m) * (model->radius * m)) {
+                    continue;
+                }
+                lbl_8006DAEC();
+                lbl_8006DD7C();
+                lbl_8006E1B0(&pos, &a);
+                lbl_8006DB30();
+            } else {
+                lab_t0_ = &pos;
+                lab_t0 = &a;
+                dx = a.x;
+                dx -= pos.x;
+                dy = a.y;
+                dy -= pos.y;
+                dz = a.z;
+                dz -= pos.z;
+                sq = dx * dx;
+                sq += dy * dy;
+                sq += dz * dz;
+                if (sq > (model->radius) * (model->radius)) {
+                    continue;
+                }
+                fn_8006E250(lab_t0_, lab_t0);
+            }
+            lbl_8006DAEC();
+            scaled = lbl_1_rodata_6D4 != xf->scale.x || lbl_1_rodata_6D4 != xf->scale.y || lbl_1_rodata_6D4 != xf->scale.z;
+            if (obj->mtx) {
+                lbl_8006DBAC(obj->mtx);
+            } else {
+                lbl_8006D7DC(&xf->pos);
+                if (xf->rz != 0) {
+                    mathutil_mtxA_rotate_z(xf->rz);
+                }
+                if (xf->ry != 0) {
+                    mathutil_mtxA_rotate_y(xf->ry);
+                }
+                if (xf->rx != 0) {
+                    mathutil_mtxA_rotate_x(xf->rx);
+                }
+                if (scaled) {
+                    lbl_8006E13C(&xf->scale);
+                }
+            }
+            if (scaled) {
+                lbl_8006DD7C();
+                lbl_8006E1B0(arg1, &b);
+            } else {
+                fn_8006E250(arg1, &b);
+            }
+            lbl_8006DB30();
+            save2 = a;
+            psvec_sub(&a, &b, &sp18);
+            pp = model->polys70;
+            for (j = 0; j < model->n70; j++, pp += 0x70) {
+                if (fn_1_15248(&a, &b, pp, 4, lbl_1_rodata_6EC)) {
+                    if (obj->flags & 0x40000000) {
+                        result |= 0x80;
+                    } else {
+                        result |= 0x4000;
+                        *arg0 = obj->pos;
+                        obj->flags |= 0x20000000;
+                    }
+                    a = save2;
+                }
+            }
+            pp = model->polys58;
+            for (j = 0; j < model->n58; j++, pp += 0x58) {
+                if (fn_1_15248(&a, &b, pp, 3, lbl_1_rodata_6EC)) {
+                    if (obj->flags & 0x40000000) {
+                        result |= 0x80;
+                    } else {
+                        result |= 0x4000;
+                        *arg0 = obj->pos;
+                        obj->flags |= 0x20000000;
+                    }
+                    a = save2;
+                }
+            }
+        }
+    }
+    return result;
+}
+/* fzgx:end fn_1_163BC */
+/* fzgx:end fn_1_163BC */
+
 /* fzgx:begin fn_1_16BA0 noprologue */
 #include "types.h"
 #include "types.h"
