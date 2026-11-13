@@ -1200,10 +1200,11 @@ def load_records(engine,args):
         sym=p.resolve(symbol);state=ledger.get(symbol)
         allowed = ('unmatched','matched') if clone_members is not None else ('unmatched',)
         # An explicit read-only source probe must not silently disappear merely
-        # because the function is claimed or blocked. Applying repairs retains
+        # because the function is claimed, blocked, or already matched (for
+        # example, when removing a compiler-diff device). Applying repairs retains
         # the original ownership filter; corpus scans still skip active claims.
         if read_only_body:
-            allowed += ('claimed','blocked')
+            allowed += ('claimed','blocked','matched')
         if not sym or not state or state['status'] not in allowed:
             return
         if clone_members is not None and symbol not in clone_members:
