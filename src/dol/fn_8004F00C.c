@@ -1,5 +1,5 @@
-/* WARNING: compiler-diff device, not original code: keeps the `kept` copy in fn_8004F00C's inner loop alive
- * until register allocation (see there). */
+/* WARNING: compiler-diff device, not original code: retained for the remaining identity-helper and
+ * stack-parameter allocation devices below. The prediction no longer uses a copy-only local. */
 #pragma opt_propagation off
 #include "types.h"
 
@@ -20,6 +20,13 @@ extern const int lbl_800911E0[16];
 static inline short compiler_diff_keep(short x) {
     short kept = x;
     return kept;
+}
+
+/* Two-tap history prediction, converted from the coefficients' twelve fractional bits. */
+static inline int PredictSample(short c0, short c1, int high, int previous) {
+    int value = c0 * high;
+    value += c1 * previous;
+    return value >> 12;
 }
 
 /* WARNING: compiler-diff device, not original code: keeps the dead address compares at the end of
@@ -74,7 +81,6 @@ int fn_8004F00C(const signed char *input, int num_samples, short *output_left,
             int decoded_right;
             int low_left;
             int low_right;
-            int kept;
 
             packed_left = input[0];
             packed_right = input[18];
@@ -90,19 +96,13 @@ int fn_8004F00C(const signed char *input, int num_samples, short *output_left,
             output_right[0] = decoded_right;
             low_right = lbl_800911E0[packed_right & 15];
             previous_left = low_left * gain_left +
-                ((coefficient0 * older_left + coefficient1 * previous_left) >> 12);
+                PredictSample(coefficient0, coefficient1, older_left, previous_left);
             CLAMP_SAMPLE(previous_left);
-            /* WARNING: compiler-diff device, not original code: decoded_right is copied into `kept` (kept alive
-             * by `#pragma opt_propagation off`), which gives the right channel's second-sample products
-             * retail's colour order (coefficient0 * kept is coloured before coefficient1 * previous_right).
-             * Technique (not code) taken from the RE4 decomp's ADX_DecodeSte4AsSte (adonis-singh/re4,
-             * src/lib/adx_dcd5.c). The honest form uses decoded_right below and `older_right = decoded_right;`. */
-            kept = decoded_right;
             previous_right = low_right * gain_right +
-                ((coefficient0 * kept + coefficient1 * previous_right) >> 12);
+                PredictSample(coefficient0, coefficient1, decoded_right, previous_right);
             CLAMP_SAMPLE(previous_right);
             output_left[1] = previous_left;
-            older_right = kept;
+            older_right = decoded_right;
             output_left += 2;
             output_right[1] = previous_right;
             output_right += 2;
