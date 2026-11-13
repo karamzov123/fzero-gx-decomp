@@ -137391,7 +137391,10 @@
     "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "asm": true
+    "tu": "rel/main_rel/stcoli.c",
+    "pool": {
+      "@204": "lbl_1_rodata_6C8"
+    }
   },
   {
     "module": "main_rel",
