@@ -1677,3 +1677,34 @@ def why_link(project: Project, symbol: str) -> Dict[str, object]:
                         "diagnostic and temporary-unit cleanup both failed",
                         [diagnostic_error, cleanup_error]) from None
                 raise
+
+
+def refreshed_pool_map(project: Project, unit: dict) -> Optional[Dict[str, str]]:
+    """A new pool map for a block unit whose recorded one went stale, else None.
+
+    A TU rewrite (hoisted declarations, tidied blocks) can renumber MWCC's anonymous literals
+    (`@18` -> `@19`). The per-function check still matches, because pool rows are accepted as
+    relocation equivalences without any map, so `pool_map` comes back empty, while the build's
+    mwcc_pool step fails on the missing name (story: "@18: no such symbol"). A map is stale when
+    a recorded private name is absent from the freshly compiled object; the replacement comes
+    from the check's own private->retail pairs."""
+    recorded = unit.get("pool")
+    if not isinstance(recorded, dict) or not recorded:
+        return None
+    name = f"{unit['module']}:{unit['symbols'][0]}"
+    res = check(project, name, 20)
+    if not (res.ok and (res.matched or res.matched_pool)):
+        return None
+    fresh = dict(res.pool_map or {}) or {a: b for a, b, _ in getattr(res, "_pool_pairs", [])}
+    if not fresh or fresh == recorded:
+        return None
+    if res.pool_map:
+        return fresh
+    sym = project.find_symbol(unit["symbols"][0], unit["module"])
+    probe = STATE_DIR / "work" / (project.key(sym).replace(":", "__") + ".o") if sym else None
+    try:
+        present = {s["name"] for s in poolfix.Elf(probe.read_bytes()).symbols()} if probe and probe.exists() else set()
+    except (OSError, ValueError):
+        return None
+    stale = [k for k in recorded if k not in present]
+    return fresh if stale else None

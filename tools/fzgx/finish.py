@@ -202,13 +202,13 @@ def finish_tu(p: Project, tu_source: str, do_collapse: bool = True, v: Optional[
     # a tidied block may renumber its private literals: keep the pool mappings current
     for u in p.load_units():
         if u.get("tu") == tu_source and isinstance(u.get("pool"), dict):
-            res = oracle.check(p, u["symbols"][0], 20)
-            if res.ok and res.matched and res.pool_map and res.pool_map != u["pool"]:
+            new_map = oracle.refreshed_pool_map(p, u)
+            if new_map:
                 with oracle.build_lock("units.lock"):
                     units = p.load_units()
                     for x in units:
                         if x["source"] == u["source"]:
-                            x["pool"] = dict(res.pool_map)
+                            x["pool"] = dict(new_map)
                     p.save_units(units)
                 out.setdefault("pool_remapped", []).append(u["symbols"][0])
     if do_collapse and _all_matched(p, tu_source) and not out["queue"]:
@@ -222,6 +222,64 @@ def finish_tu(p: Project, tu_source: str, do_collapse: bool = True, v: Optional[
     return out
 
 
+def _fresh_reverify(p: Project, module: str, tus: List[str]) -> Dict[str, object]:
+    """Re-verify every block of the pass without the verdict cache, before the relink.
+
+    The cache returned `ok` for blocks that do not match (story: fn_7_72C at 92.4%, fn_7_2538 at
+    99.2%), so the relink failed and the whole module rolled back. A block that fails a fresh check
+    goes back to its committed text, self-contained, with its committed pool map; then every
+    remaining pool map whose private literal names went stale is refreshed."""
+    cp = subprocess.run(["git", "show", "HEAD:config/" + p.version + "/units.json"], cwd=ROOT, text=True, capture_output=True)
+    try:
+        head_units = json.loads(cp.stdout) if cp.returncode == 0 else []
+    except ValueError:
+        head_units = []
+    head_units = head_units if isinstance(head_units, list) else head_units.get("units", [])
+    head_pool = {u["source"]: u.get("pool") for u in head_units}
+    restored: List[str] = []
+    remapped: List[str] = []
+    for tu in tus:
+        tf = tufile.load(p, tu)
+        by_sym = {u["symbols"][0]: u for u in p.load_units() if u.get("tu") == tu and u.get("module") == module}
+        names = [b.name for b in tf.blocks if b.name in by_sym]
+        for n in names:
+            tufile.write_gen(p, by_sym[n], tf)
+        if not names:
+            continue
+        res = oracle.check_many(p, [(f"{module}:{n}", None) for n in names], 3)
+        bad = []
+        for n in names:
+            r = res.get(f"{module}:{n}")
+            if not (r and r.ok and (r.matched or r.matched_pool) and oracle.unit_fully_matches(r) is None):
+                bad.append(n)
+        if bad:
+            for n in bad:
+                b = tf.get(n)
+                b.body, b.flags = reconcile._committed_block(p, tu, n, b.body, b.flags)
+            tufile._write_atomic(tufile.tu_path(p, tu), tf.render())
+            with oracle.build_lock("units.lock"):
+                units = p.load_units()
+                for x in units:
+                    if x.get("tu") == tu and x["symbols"][0] in bad and x["source"] in head_pool:
+                        x["pool"] = head_pool[x["source"]]
+                p.save_units(units)
+            for n in bad:
+                tufile.write_gen(p, by_sym[n], tf)
+            restored += bad
+        for u in p.load_units():
+            if u.get("tu") == tu and u["symbols"][0] not in bad and isinstance(u.get("pool"), dict):
+                new_map = oracle.refreshed_pool_map(p, u)
+                if new_map:
+                    with oracle.build_lock("units.lock"):
+                        units = p.load_units()
+                        for x in units:
+                            if x["source"] == u["source"]:
+                                x["pool"] = dict(new_map)
+                        p.save_units(units)
+                    remapped.append(u["symbols"][0])
+    return {"restored": restored, "remapped": remapped}
+
+
 def finish(p: Project, module: str, workers: int = 12) -> Dict[str, object]:
     """The pass over every TU of the module, then one relink. Returns per-TU results, the
     revise queue and whether the tree still hashes."""
@@ -233,6 +291,7 @@ def finish(p: Project, module: str, workers: int = 12) -> Dict[str, object]:
     with ThreadPoolExecutor(max_workers=workers) as ex:
         results = list(ex.map(lambda tu: finish_tu(p, tu, True, v), tus))
     v.save()
+    fresh = _fresh_reverify(p, module, tus)
     queue = [s for r in results for s in r["queue"]]
     diag: Dict[str, object] = {}
     restored: List[str] = []
@@ -336,6 +395,7 @@ def finish(p: Project, module: str, workers: int = 12) -> Dict[str, object]:
         msg = f"tu-finish {module}: {sum(r['hoisted'] for r in results)} declarations hoisted, {sum(r['renamed'] for r in results)} typedefs isolated, " \
               f"{sum(r['contested'] for r in results)} contested, {len(queue)} unresolved" + (f", collapsed {', '.join(Path(t).stem for t in collapsed)}" if collapsed else "")
         subprocess.run(["git", "commit", "-q", "-m", msg], cwd=ROOT, capture_output=True)
+    diag["fresh_reverify"] = fresh
     return {"ok": linked, "module": module, "tus": len(tus), "queue": queue, "collapsed": collapsed,
             "secs": round(time.time() - t0, 1), "cache_hits": v.hits, "cache_misses": v.misses,
             "restored": restored, "diag": diag,
