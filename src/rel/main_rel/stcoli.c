@@ -1141,6 +1141,610 @@ s32 fn_1_15248(Fn183D28Vec3 *pos, Fn183D28Vec3 *arg1, fn_1_15248_Poly *poly, s32
 #pragma opt_lifetimes reset
 /* fzgx:end fn_1_15248 */
 
+/* fzgx:begin fn_1_15578 noprologue */
+#include "types.h"
+#include "psvec.h"
+#include "fpscr_floorf.h"
+
+/* fzgx:begin fn_1_15578 noprologue */
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 4503601774854144.0;
+    s = 0.0f;
+    s = 1.0f;
+    s = -5.0f;
+    s = 10.0f;
+    s = -1.0f;
+    s = 2.0f;
+    s = 0.5f;
+}
+#pragma section code_type ".text"
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} V3;
+
+typedef struct {
+    u8 pad_0[0x24];
+    void *polys58;
+    s16 **lists58[11];
+    u8 pad_54[0x60 - 0x54];
+    f32 x0;
+    f32 z0;
+    f32 sx;
+    f32 sz;
+    s32 nx;
+    s32 nz;
+    void *polys70;
+    s16 **lists70[14];
+    u8 pad_b4[0x4B0 - 0xB4];
+} Cell;
+
+typedef struct {
+    u8 pad_0[0x2C];
+    u8 mtx0[0x30];
+    u8 mtx1[0x30];
+    u8 pad_8c[0xA0 - 0x8C];
+} CellMtx;
+
+typedef struct {
+    u32 flags;
+    V3 center;
+    f32 radius;
+    s32 n58;
+    s32 n70;
+    u8 *polys58;
+    u8 *polys70;
+} Model;
+
+typedef struct {
+    u8 pad_0[0xC];
+    Model *model;
+} ModelRef;
+
+typedef struct {
+    u8 pad_0[0x10];
+    V3 pos;
+    s16 rx;
+    s16 ry;
+    s16 rz;
+    u16 pad_22;
+    V3 scale;
+} Xform2;
+
+typedef struct {
+    u32 flags;
+    u8 pad_4[4];
+    ModelRef *ref;
+    V3 pos;
+    s16 rx;
+    s16 ry;
+    s16 rz;
+    u16 mask;
+    V3 scale;
+    u8 pad_2c[8];
+    Xform2 *xf;
+    u8 pad_38[4];
+    void *mtx;
+} Obj;
+
+typedef struct {
+    u8 pad_0[8];
+    s32 unk8;
+    u8 pad_c[0x18 - 0xC];
+    s32 ncells;
+    Cell *cells;
+    u8 pad_20[0x48 - 0x20];
+    s32 nobj;
+    s32 firstobj;
+    u8 pad_50[4];
+    Obj *objs;
+} Stcoli;
+
+typedef struct {
+    f32 d;
+    V3 n;
+    V3 verts[1];
+} Poly;
+
+typedef struct {
+    u8 pad_0[0xC];
+    u32 flags;
+    f32 t;
+    V3 pos;
+    V3 nrm;
+    V3 push;
+    u8 pad_38[0x48 - 0x38];
+} Hit;
+
+typedef struct {
+    u8 pad_0[0xD4];
+    V3 delta;
+    u8 pad_e0[0x1B0 - 0xE0];
+    f32 radius;
+    f32 unk1B4;
+    u8 pad_1b8[0x1C8 - 0x1B8];
+    s32 unk1C8;
+    s32 unk1CC;
+    s32 unk1D0;
+    s32 unk1D4;
+    u8 pad_1d8[0x1E4 - 0x1D8];
+    Hit hits[5];
+    u8 pad_34c[0x5AC - 0x34C];
+    s32 unk5AC;
+    u8 pad_5b0[0x62C - 0x5B0];
+    s32 unk62C;
+    u8 pad_630[0x8B0 - 0x630];
+    s32 unk8B0;
+} Work;
+
+typedef struct {
+    u8 pad_0[0x584];
+    f32 radius;
+    f32 unk588;
+} Racer;
+
+extern Stcoli *lbl_1_bss_3BE0;
+extern CellMtx *lbl_1_bss_3BE4;
+extern Work *lbl_801A66CC;
+
+extern void lbl_8006DBAC(void *);
+extern void lbl_8006D7DC(void *);
+extern void lbl_8006E13C(void *);
+extern void lbl_8006E1B0(void *, void *);
+extern void lbl_8006E1C0(void *, void *);
+extern void fn_8006E250(void *, void *);
+extern void fn_8006E2B0(void *, void *);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DB30(void);
+extern void lbl_8006DD7C(void);
+extern f32 lbl_8006D6FC(void *, void *);
+extern f32 lbl_8006D0B4(f32);
+extern void mathutil_mtxA_rotate_x(s32);
+extern void mathutil_mtxA_rotate_y(s32);
+extern void mathutil_mtxA_rotate_z(s32);
+extern s32 fn_1_14F18(V3 *, V3 *, V3 *, f32 *, void *, s32, u32, f32);
+extern void fn_1_17098(V3 *, V3 *, u32, s32 *, s32, s32, s32);
+extern s16 fn_1_7B054(void);
+extern u32 fn_1_9D260(void);
+
+static inline s32 cell_index(Cell *cell, f32 x, f32 z) {
+    s32 ix;
+    s32 iz;
+    s32 idx;
+
+    ix = fpscr_floorf((x - cell->x0) / cell->sx);
+    iz = fpscr_floorf((z - cell->z0) / cell->sz);
+    if (ix < 0 || ix >= cell->nx) {
+        idx = -1;
+    } else if (iz < 0 || iz >= cell->nz) {
+        idx = -1;
+    } else {
+        idx = ix + iz * cell->nx;
+    }
+    return idx;
+}
+
+static inline void hit_reset(Hit *h) {
+    h->flags = 0;
+    h->t = -1.0f;
+}
+
+static inline s32 is_nonfinite(f32 f) {
+    return (*(u32 *)&f & 0x7F800000) == 0x7F800000;
+}
+
+static inline f32 dot3(V3 *a, V3 *b) {
+    f32 r;
+    f32 y;
+    f32 z;
+    r = a->x * b->x;
+    y = a->y;
+    z = a->z;
+    r = y * b->y + r;
+    r = z * b->z + r;
+    return r;
+}
+
+/* MWCC colours compiler temporaries before named locals, and an inline's
+ * locals in reverse declaration order. Holding every component in a local
+ * keeps the edge test's registers behind `t` and the 0.0f constant. */
+static inline f32 dot3_cached(V3 *a, V3 *b) {
+    f32 r;
+    f32 ax, ay, az;
+    f32 bx, by, bz;
+    ax = a->x;
+    ay = a->y;
+    az = a->z;
+    bx = b->x;
+    by = b->y;
+    bz = b->z;
+    r = ax * bx;
+    r = ay * by + r;
+    r = az * bz + r;
+    return r;
+}
+
+/* The declaration order is load-bearing (see dot3_cached): retail colours t
+ * first, then d, n, p, denom and dist. */
+static inline s32 ray_poly(V3 *pos, V3 *dir, Poly *poly, s32 count, f32 *outT) {
+    V3 hit;
+    f32 dist;
+    f32 denom;
+    f32 px, py, pz;
+    f32 nx, ny, nz;
+    f32 dx, dy, dz;
+    f32 t;
+    V3 *v;
+    V3 *n;
+    s32 i;
+
+    nx = poly->n.x;
+    ny = poly->n.y;
+    nz = poly->n.z;
+    dx = dir->x;
+    dy = dir->y;
+    dz = dir->z;
+    denom = nx * dx;
+    denom = ny * dy + denom;
+    denom = nz * dz + denom;
+    if (denom > 0.0f) {
+        return 0;
+    }
+    px = pos->x;
+    py = pos->y;
+    pz = pos->z;
+    dist = nx * px;
+    dist = ny * py + dist;
+    dist = nz * pz + dist;
+    t = (poly->d + dist) / denom;
+    if (t < 0.0f || 1.0f < t || is_nonfinite(t)) {
+        return 0;
+    }
+    psvec_scale_add(pos, dir, -t, &hit);
+    v = poly->verts;
+    n = v + count;
+    for (i = 0; i < count; i++, v++, n++) {
+        psvec_sub(&hit, v, &lbl_801A66CC->delta);
+        if (dot3_cached(&lbl_801A66CC->delta, n) < 0.0f) {
+            return 0;
+        }
+    }
+    *pos = hit;
+    *outT = 1.0f - t;
+    return 1;
+}
+
+s32 fn_1_15578(V3 *arg0, V3 *arg1, f32 *outT, V3 *outNrm, u32 flags, s32 *arg5, s32 arg6, s32 arg7, s32 arg8, Racer *racer) {
+    V3 a;
+    V3 b;
+    V3 p0;
+    V3 save;
+    V3 d;
+    V3 save2;
+    V3 d2;
+    f32 t;
+    f32 t2;
+    f32 t3;
+    u32 vis;
+    Hit *w;
+    s32 idx;
+    Cell *cell;
+    s32 i;
+    s32 k;
+    s32 best;
+    V3 *hitPos;
+    V3 *hitNrm;
+    s32 bit;
+    s32 type;
+    s16 ***lists;
+    s16 *p;
+    void *poly;
+    s32 slot;
+    Obj *obj;
+    Xform2 *xf;
+    Model *model;
+    s32 scaled;
+    s32 j;
+    u8 *pp;
+    f32 m;
+    f32 radius;
+    f32 len;
+    Hit *h;
+
+    w = &lbl_801A66CC->hits[4];
+    hitPos = &w->pos;
+    hitNrm = &w->nrm;
+    best = -1;
+    vis = fn_1_9D260();
+    lbl_801A66CC->unk1C8 = 0;
+    lbl_801A66CC->unk1CC = 0;
+    lbl_801A66CC->unk1D0 = 0;
+    lbl_801A66CC->unk1D4 = 0;
+    lbl_801A66CC->unk62C = 0;
+    lbl_801A66CC->unk5AC = 0;
+    hit_reset(&lbl_801A66CC->hits[0]);
+    hit_reset(&lbl_801A66CC->hits[1]);
+    hit_reset(&lbl_801A66CC->hits[2]);
+    hit_reset(&lbl_801A66CC->hits[3]);
+    hit_reset(&lbl_801A66CC->hits[4]);
+    if (racer) {
+        lbl_801A66CC->radius = racer->radius;
+        lbl_801A66CC->unk1B4 = racer->unk588;
+    } else {
+        lbl_801A66CC->radius = 2.0f;
+        lbl_801A66CC->unk1B4 = 0.0f;
+        lbl_801A66CC->unk8B0 = 0;
+    }
+    w->t = 10.0f;
+    p0 = *arg0;
+    cell = lbl_1_bss_3BE0->cells;
+    if (flags & 5) {
+        fn_1_17098(arg0, arg1, flags, arg5, arg6, arg7, arg8);
+    }
+    if ((flags & 0x4000000) && fn_1_7B054() == 15) {
+        flags &= ~4;
+    }
+    if (flags & 0x705) {
+        for (i = 0; i < lbl_1_bss_3BE0->ncells; i++, cell++) {
+            a = p0;
+            b = *arg1;
+            if (i != 0 && i > 0) {
+                CellMtx *cm = &lbl_1_bss_3BE4[i];
+                lbl_8006DBAC(cm->mtx0);
+                /* WARNING: compiler-diff device, not original code. Retail keeps a dead
+                 * `b +8; bl fn_8006E2B0` after this call (same device as fn_1_163BC).
+                 * Honest form: `fn_8006E250(&a, &a);`. */
+                (fn_8006E250(&a, &a), 1) || (fn_8006E2B0(&a, &a), 1);
+                lbl_8006DBAC(cm->mtx1);
+                fn_8006E250(&b, &b);
+            }
+            idx = cell_index(cell, b.x, b.z);
+            if (idx >= 0) {
+                for (k = 0; k < 2; k++) {
+                    if (k == 0) {
+                        lists = cell->lists70;
+                        type = 4;
+                    } else {
+                        type = 3;
+                        lists = cell->lists58;
+                    }
+                    if (lists && best < 0) {
+                        save = a;
+                        psvec_sub(&a, &b, &d);
+                        for (bit = 0; bit < 11; bit++) {
+                            if (flags & (1 << bit)) {
+                                slot = bit;
+                                if (bit == 10) {
+                                    if (vis == 2) {
+                                        slot = bit + 1;
+                                    } else if (vis == 4) {
+                                        slot = bit + 2;
+                                    } else if (vis == 8) {
+                                        slot = bit + 3;
+                                    }
+                                }
+                                p = lists[slot][idx];
+                                if (p) {
+                                    for (; *p >= 0; p++) {
+                                        if (type == 4) {
+                                            poly = (u8 *)cell->polys70 + *p * 0x70;
+                                        } else {
+                                            poly = (u8 *)cell->polys58 + *p * 0x58;
+                                        }
+                                        if ((1 << bit) & 0x700) {
+                                            if (!fn_1_14F18(&a, &b, &d, &t, poly, type, flags, lbl_801A66CC->radius)) {
+                                                continue;
+                                            }
+                                        } else if (!ray_poly(&a, &d, poly, type, &t)) {
+                                            continue;
+                                        }
+                                        {
+                                            if (t <= w->t) {
+                                            *hitPos = a;
+                                            if (type == 4) {
+                                                *hitNrm = ((Poly *)poly)->n;
+                                            } else {
+                                                *hitNrm = ((Poly *)poly)->n;
+                                            }
+                                            w->t = t;
+                                            best = i;
+                                            w->flags = 1 << bit;
+                                            a = save;
+                                            }
+                                        }
+                                    }
+                                    if (best >= 0) {
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    if ((flags & 0x3800) && (fn_1_7B054() != 10 || (*arg5 > 0x7E && *arg5 < 0x8F))) {
+        i = lbl_1_bss_3BE0->firstobj;
+        obj = lbl_1_bss_3BE0->objs + i;
+        for (; i < lbl_1_bss_3BE0->nobj; i++, obj++) {
+            model = obj->ref->model;
+            if (!model) {
+                break;
+            }
+            if (!(obj->flags & vis)) {
+                continue;
+            }
+            if (!(model->flags & flags & 0x3800)) {
+                continue;
+            }
+            xf = obj->xf;
+            scaled = 1.0f != obj->scale.x || 1.0f != obj->scale.y || 1.0f != obj->scale.z;
+            if (obj->mtx) {
+                lbl_8006DBAC(obj->mtx);
+            } else {
+                lbl_8006D7DC(&obj->pos);
+                if (obj->rz != 0) {
+                    mathutil_mtxA_rotate_z(obj->rz);
+                }
+                if (obj->ry != 0) {
+                    mathutil_mtxA_rotate_y(obj->ry);
+                }
+                if (obj->rx != 0) {
+                    mathutil_mtxA_rotate_x(obj->rx);
+                }
+                if (scaled) {
+                    lbl_8006E13C(&obj->scale);
+                }
+            }
+            lbl_8006E1B0(&model->center, &a);
+            if (scaled) {
+                f32 dz, dy, dx, sq;
+                m = obj->scale.x > obj->scale.y ? obj->scale.x : obj->scale.y;
+                m = obj->scale.z > m ? obj->scale.z : m;
+                dx = a.x;
+                dx -= p0.x;
+                dy = a.y;
+                dy -= p0.y;
+                dz = a.z;
+                dz -= p0.z;
+                sq = dx * dx;
+                sq += dy * dy;
+                sq += dz * dz;
+                if (sq > (model->radius * m) * (model->radius * m)) {
+                    continue;
+                }
+                m = obj->scale.x < obj->scale.y ? obj->scale.x : obj->scale.y;
+                m = obj->scale.z < m ? obj->scale.z : m;
+                radius = lbl_801A66CC->radius / m;
+                lbl_8006DAEC();
+                lbl_8006DD7C();
+                lbl_8006E1B0(&p0, &a);
+                lbl_8006DB30();
+            } else {
+                f32 dz, dy, dx, sq;
+                V3 *pp0 = &p0;
+                V3 *pa = &a;
+                dx = a.x;
+                dx -= p0.x;
+                dy = a.y;
+                dy -= p0.y;
+                dz = a.z;
+                dz -= p0.z;
+                sq = dx * dx;
+                sq += dy * dy;
+                sq += dz * dz;
+                if (sq > model->radius * model->radius) {
+                    continue;
+                }
+                radius = lbl_801A66CC->radius;
+                fn_8006E250(pp0, pa);
+            }
+            lbl_8006DAEC();
+            scaled = 1.0f != xf->scale.x || 1.0f != xf->scale.y || 1.0f != xf->scale.z;
+            if (obj->mtx) {
+                lbl_8006DBAC(obj->mtx);
+            } else {
+                lbl_8006D7DC(&xf->pos);
+                if (xf->rz != 0) {
+                    mathutil_mtxA_rotate_z(xf->rz);
+                }
+                if (xf->ry != 0) {
+                    mathutil_mtxA_rotate_y(xf->ry);
+                }
+                if (xf->rx != 0) {
+                    mathutil_mtxA_rotate_x(xf->rx);
+                }
+                if (scaled) {
+                    lbl_8006E13C(&xf->scale);
+                }
+            }
+            if (scaled) {
+                lbl_8006DD7C();
+                lbl_8006E1B0(arg1, &b);
+            } else {
+                fn_8006E250(arg1, &b);
+            }
+            lbl_8006DB30();
+            psvec_sub(&a, &b, &d2);
+            save2 = a;
+            pp = model->polys70;
+            for (j = 0; j < model->n70; j++, pp += 0x70) {
+                if (fn_1_14F18(&a, &b, &d2, &t2, pp, 4, flags, radius) && t2 <= w->t) {
+                    lbl_8006E1B0(&a, hitPos);
+                    lbl_8006E1C0(pp + 4, hitNrm);
+                    best = 0;
+                    w->t = t2;
+                    w->flags = model->flags & 0x3800;
+                    a = save2;
+                }
+            }
+            pp = model->polys58;
+            for (j = 0; j < model->n58; j++, pp += 0x58) {
+                if (fn_1_14F18(&a, &b, &d2, &t3, pp, 3, flags, radius) && t3 <= w->t) {
+                    lbl_8006E1B0(&a, hitPos);
+                    lbl_8006E1C0(pp + 4, hitNrm);
+                    best = 0;
+                    w->t = t3;
+                    w->flags = model->flags & 0x3800;
+                    a = save2;
+                }
+            }
+        }
+    }
+    if (best > 0 && best > 0) {
+        CellMtx *cm = &lbl_1_bss_3BE4[best];
+        lbl_8006DBAC(cm->mtx0);
+        if (hitPos) {
+            lbl_8006E1B0(hitPos, hitPos);
+        }
+        if (hitNrm) {
+            /* WARNING: compiler-diff device, not original code. Retail keeps an
+             * unreachable `bl lbl_8006DBAC; li r3,0; li r4,0; bl lbl_8006E1B0` after
+             * this call. Honest form: `lbl_8006E1C0(hitNrm, hitNrm);` (misses by 5 rows). */
+            (lbl_8006E1C0(hitNrm, hitNrm), 1) || (lbl_8006DBAC(cm->mtx0), lbl_8006E1B0(NULL, NULL), 1);
+        }
+    }
+    if (w->flags) {
+        psvec_sub(&p0, hitPos, &lbl_801A66CC->delta);
+        len = lbl_8006D6FC(&lbl_801A66CC->delta, hitNrm);
+        if (!is_nonfinite(len)) {
+            psvec_scale(&lbl_801A66CC->delta, len, &lbl_801A66CC->delta);
+        }
+        if (w->flags & 0x3804) {
+            len = lbl_8006D0B4(dot3(&lbl_801A66CC->delta, &lbl_801A66CC->delta)) + 0.5f;
+        } else {
+            len = lbl_8006D0B4(dot3(&lbl_801A66CC->delta, &lbl_801A66CC->delta));
+        }
+        psvec_scale(hitNrm, len, &lbl_801A66CC->hits[4].push);
+    }
+    if (lbl_801A66CC->hits[3].flags || lbl_801A66CC->hits[4].flags || lbl_801A66CC->hits[0].flags) {
+        Work *w2 = lbl_801A66CC;
+        if (!w2->hits[3].flags) {
+            h = &w2->hits[4];
+        } else if (!w2->hits[4].flags) {
+            h = &w2->hits[3];
+        } else if (w2->hits[3].t < w2->hits[4].t) {
+            h = &w2->hits[3];
+            w2->hits[4].flags = 0;
+        } else {
+            h = &w2->hits[4];
+        }
+        *arg0 = h->pos;
+        *outNrm = h->nrm;
+        *outT = h->t;
+        return 1;
+    }
+    return 0;
+}
+/* fzgx:end fn_1_15578 */
+/* fzgx:end fn_1_15578 */
+
 /* fzgx:begin fn_1_163BC noprologue */
 #include "types.h"
 #include "psvec.h"
@@ -1505,7 +2109,6 @@ s32 fn_1_163BC(V3 *arg0, V3 *arg1, s32 mask, s32 arg3) {
     }
     return result;
 }
-/* fzgx:end fn_1_163BC */
 /* fzgx:end fn_1_163BC */
 
 /* fzgx:begin fn_1_16BA0 noprologue */
