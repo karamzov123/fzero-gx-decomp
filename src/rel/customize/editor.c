@@ -11,8 +11,38 @@ extern void fn_3_17100(void);
 extern u32 lbl_801A6410;
 extern void fn_1_46B4(u32, u32, char *, int);
 extern const f32 lbl_3_rodata_5FC[3];
+extern u8 lbl_1_bss_9F8[];
+extern u8 lbl_1_bss_BF0[0x80];
+extern s32 lbl_1_rodata_26F8;
+extern u8 lbl_3_rodata_538[];
+extern u8 lbl_3_rodata_5EC[0x4];
+extern u32 lbl_801A66A0;
+extern void fn_3_19CB8(void);
+extern void fn_3_15620(void);
+extern void fn_3_1560C(void);
+extern s32 fn_1_A5DC4(void);
+extern void fn_1_A9868();
+extern u32 fn_1_A9FFC(s16, s16, s16, s16, void *);
+extern void fn_1_AA538(void);
+extern void fn_1_4E0F4(void);
+extern u32 fn_3_14794(u32, s16, s16, void *);
+extern u32 lbl_3_rodata_608[38];
 
-/* fzgx:begin fn_3_1552C */
+/* fzgx:begin fn_3_1552C noprologue */
+#include "types.h"
+#include "rel/customize/globals.h"
+#include "rel/customize/editor.h"
+
+
+extern struct Obj *fn_3_14074(void);
+extern u8 lbl_3_bss_A2408[8];
+extern void *fn_1_45D0(void *, u32, char *, u32);
+extern void fn_80008BEC(void *, u32, u32);
+extern void fn_3_17100(void);
+extern u32 lbl_801A6410;
+extern void fn_1_46B4(u32, u32, char *, int);
+extern const f32 lbl_3_rodata_5FC[3];
+
 struct Obj {
     u8 pad[0x10];
     u16 width;
@@ -71,7 +101,21 @@ void fn_3_156A8(void) {
 }
 /* fzgx:end fn_3_156A8 */
 
-/* fzgx:begin fn_3_156D0 */
+/* fzgx:begin fn_3_156D0 noprologue */
+#include "types.h"
+#include "rel/customize/globals.h"
+#include "rel/customize/editor.h"
+
+
+extern struct Obj *fn_3_14074(void);
+extern u8 lbl_3_bss_A2408[8];
+extern void *fn_1_45D0(void *, u32, char *, u32);
+extern void fn_80008BEC(void *, u32, u32);
+extern void fn_3_17100(void);
+extern u32 lbl_801A6410;
+extern void fn_1_46B4(u32, u32, char *, int);
+extern const f32 lbl_3_rodata_5FC[3];
+
 extern struct Obj *fn_3_14074(void);
 extern u8 lbl_3_bss_A2408[8];
 extern void *fn_1_45D0(void *, u32, char *, u32);
@@ -962,7 +1006,7 @@ static const u32 fzgx_pool_table7[1] = {0x00000000};  /* fzgx-allow: A1 retail p
 __declspec(section ".fzgxpool") static void fzgx_pool_keep7(void) { const u32 *volatile cp; cp = fzgx_pool_table7; }  /* fzgx-allow: S2 pool primer sink */
 #pragma section code_type ".text"
 
-extern s32 lbl_1_rodata_26F8;
+
 extern int fn_1_4F734(FontDrawPacket *);
 
 typedef struct {
@@ -1042,11 +1086,9 @@ for (fzgx_loop_i_3181 = 0; (u8)fzgx_loop_i_3181 < (u8)count; fzgx_loop_i_3181++)
 
 /* fzgx:begin fn_3_16FD0 */
 typedef struct BorderColor { u8 r, g, b, a; } BorderColor;
-extern BorderColor lbl_3_rodata_5EC;
-extern u32 fn_3_14794(u32, s16, s16, void *);
 
 void fn_3_16FD0(u32 arg0) {
-    BorderColor color = lbl_3_rodata_5EC;
+    BorderColor color = (*(BorderColor *)&lbl_3_rodata_5EC);
     u32 i;
     for (i = 0; i < 64; i++) {
         BorderColor top = color;
@@ -1377,8 +1419,6 @@ void fn_3_17100(void) {
 /* fzgx:end fn_3_17100 */
 
 /* fzgx:begin fn_3_177AC */
-extern u32 lbl_3_rodata_608[38];
-
 typedef struct {
     u8 r;
     u8 g;
@@ -1450,8 +1490,9 @@ EditorColor fzgx_obj_lbl_3_data_35C0[16] = {
 };
 #define PALETTE fzgx_obj_lbl_3_data_35C0
 
-extern const FontDrawPacket lbl_1_rodata_26F8;
-extern u32 lbl_801A66A0;
+
+
+
 extern f32 lbl_8006D188(s32);
 extern void fn_1_49410(void);
 extern void fn_1_4954C(f32);
@@ -1479,7 +1520,7 @@ void fn_3_17854(void) {
     }
     EDITOR.unk_1C = CLAMP(EDITOR.unk_1C + 0.1f, 0.0f, 1.0f);
 
-    pkt = lbl_1_rodata_26F8;
+    pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
     pkt.image = 0x8609;
     pkt.x = 456.0f;
     pkt.y = 86.0f;
@@ -1487,7 +1528,7 @@ void fn_3_17854(void) {
     pkt.flags = 5;
     fn_1_4F734(&pkt);
 
-    pkt = lbl_1_rodata_26F8;
+    pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
     pkt.image = 0x860B;
     pkt.x = 474.0f;
     pkt.y = 141.0f;
@@ -1500,7 +1541,7 @@ void fn_3_17854(void) {
     pkt.flags = 5;
     fn_1_4F734(&pkt);
 
-    pkt = lbl_1_rodata_26F8;
+    pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
     pkt.image = 0x860A;
     pkt.x = 474.0f;
     pkt.y = 294.0f;
@@ -1513,7 +1554,7 @@ void fn_3_17854(void) {
     pkt.flags = 5;
     fn_1_4F734(&pkt);
 
-    pkt = lbl_1_rodata_26F8;
+    pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
     pkt.image = 0x8634;
     pkt.x = 564.0f;
     pkt.y = 91.0f;
@@ -1534,7 +1575,7 @@ void fn_3_17854(void) {
     pkt.flags |= 0x80000;
     fn_1_4F734(&pkt);
 
-    pkt = lbl_1_rodata_26F8;
+    pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
     pkt.image = 0x860D;
     pkt.x = 565.0f;
     pkt.y = 152.0f;
@@ -1549,7 +1590,7 @@ void fn_3_17854(void) {
     pkt.flags |= 0x80000;
     fn_1_4F734(&pkt);
 
-    pkt = lbl_1_rodata_26F8;
+    pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
     pkt.image = 0x8600;
     for (i = 0; i < 3; i++) {
         pkt.x = RGB(i) * 124 / 255 + 479;
@@ -1560,7 +1601,7 @@ void fn_3_17854(void) {
     }
 
     if (EDITOR.unk_8 & 0x40000000) {
-        pkt = lbl_1_rodata_26F8;
+        pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
         pkt.image = 0x8635;
         pkt.x = 474 + (EDITOR.unk_C % 4) * 33 + (EDITOR.unk_C % 4) / 2;
         pkt.y = (EDITOR.unk_C / 4) * 24 + 297;
@@ -1571,7 +1612,7 @@ void fn_3_17854(void) {
     }
 
     if ((EDITOR.unk_8 & 0x80000000) && EDITOR.unk_C < 3) {
-        pkt = lbl_1_rodata_26F8;
+        pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
         pkt.image = 0x8636;
         pkt.x = 472.0f;
         pkt.y = EDITOR.unk_C * 40 + 186;
@@ -1585,7 +1626,7 @@ void fn_3_17854(void) {
         fn_1_4F734(&pkt);
     }
 
-    pkt = lbl_1_rodata_26F8;
+    pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
     pkt.image = 0x863A;
     for (i = 0; i < 4; i++) {
         for (j = 0; j < 4; j++) {
@@ -1652,7 +1693,7 @@ void fn_3_17854(void) {
         }
     }
 
-    pkt = lbl_1_rodata_26F8;
+    pkt = (*(const FontDrawPacket *)&lbl_1_rodata_26F8);
     pkt.image = 0x8601;
     pkt.x = 594.0f;
     pkt.y = 92.0f;

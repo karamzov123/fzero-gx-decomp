@@ -1,12 +1,36 @@
 #include "types.h"
-extern u8 lbl_3_bss_A17A0[44];
-extern s16 lbl_3_bss_A17CC;
-extern u32 lbl_3_bss_A176C;
+#include "rel/customize/globals.h"
+#include "rel/customize/emblem.h"
+
+
 extern u32 *lbl_3_bss_A1770;
 extern u32 *lbl_3_bss_A1774;
-extern u8 lbl_3_data_3574[60];
 extern u32 lbl_801A6410;
 extern void fn_1_46B4(u32, u32, u8 *, s32);
+extern u16 lbl_1_bss_96A;
+extern u8 lbl_1_bss_9F8[0x50];
+extern u8 lbl_1_rodata_26F8[0x58];
+extern u8 lbl_3_bss_A17D0[0x2];
+extern void fn_1_4CC0(void);
+extern f32 lbl_3_rodata_4E0[22];
+extern void fn_1_133DBC(void* arg0);
+extern void fn_1_134AD4(void);
+extern u32 fn_1_13ABA8(u32);
+extern s32 fn_1_1318D4(void);
+extern s32 fn_1_B8EDC(u32);
+extern u32 fn_3_18960(u32);
+extern u32 fn_3_15F44(u32);
+extern u32 fn_3_17854(u32);
+extern u32 fn_3_BF1C(void);
+extern s32 fn_1_45730(void *, void *);
+extern u32 fn_1_45B2C(void *);
+extern void fn_1_458A0(void *, void *, u32, u32);
+extern void fn_1_45850(void *);
+extern s32 fn_1_F7BE4(u32);
+extern u16 lbl_3_bss_A23D8__fzgx_offset_2[3];
+extern void *memset(void *, int, u32);
+extern void * memcpy(void *, const void *, u32);
+extern u32 fn_3_149AC(u8 *data, s16 x, s16 y);
 
 /* fzgx:begin fn_3_1338C noprologue */
 #include "types.h"
@@ -110,22 +134,19 @@ void fn_3_1338C(void) {
 }
 /* fzgx:end fn_3_1338C */
 
-/* fzgx:begin fn_3_1349C noprologue */
+/* fzgx:begin fn_3_1349C */
 #include "types.h"
 
-extern void fn_1_4CC0(void);
-extern u32 lbl_3_bss_A17A0;
 extern s16 lbl_3_bss_A17D2;
-extern u16 lbl_1_bss_96A;
 
 void fn_3_1349C(void) {
     fn_1_4CC0();
-    if ((lbl_3_bss_A17A0 & 0x20000000) != 0) {
+    if (((*(u32 *)&lbl_3_bss_A17A0) & 0x20000000) != 0) {
         if (lbl_3_bss_A17D2 > 0) {
             lbl_3_bss_A17D2--;
             if (lbl_3_bss_A17D2 == 0) {
                 lbl_1_bss_96A = 0x5c;
-                lbl_3_bss_A17A0 &= ~0x20000000;
+                (*(u32 *)&lbl_3_bss_A17A0) &= ~0x20000000;
             }
         }
     }
@@ -266,7 +287,7 @@ void fn_3_13508(void) {
 }
 /* fzgx:end fn_3_13508 */
 
-/* fzgx:begin fn_3_137AC noprologue */
+/* fzgx:begin fn_3_137AC */
 #include "types.h"
 #include "font.h"
 #include "rel/customize/emblem.h"
@@ -286,22 +307,9 @@ struct fn_3_137AC_Sel {
     u8 unk_1;
 };
 
-extern struct fn_3_137AC_FontPacket lbl_1_rodata_26F8;
-extern f32 lbl_3_rodata_4E0[22];
-extern struct fn_3_137AC_Sel lbl_3_bss_A17D0;
-
-extern void fn_1_133DBC(void *);
-extern void fn_1_134AD4(void);
-extern u32 fn_1_13ABA8(u32);
 extern int fn_1_4F734(FontDrawPacket *);
-extern s32 fn_1_1318D4(void);
-extern s32 fn_1_B8EDC(u32);
 extern u32 fn_3_19C94(void);
 extern u32 fn_3_19CE0(void);
-extern u32 fn_3_18960(u32);
-extern u32 fn_3_15F44(u32);
-extern u32 fn_3_17854(u32);
-extern u32 fn_3_BF1C(void);
 extern u32 fn_3_139F0(void);
 
 void fn_3_137AC(void) {
@@ -337,7 +345,7 @@ void fn_3_137AC(void) {
         }
     }
 
-    pkt = lbl_1_rodata_26F8;
+    pkt = (*(struct fn_3_137AC_FontPacket *)&lbl_1_rodata_26F8);
     pkt.unk_0 = 0x8606;
     pkt.unk_4 = prodata[1];
     pkt.unk_8 = prodata[2];
@@ -349,13 +357,13 @@ void fn_3_137AC(void) {
         return;
     }
 
-    if (lbl_3_bss_A17D0.unk_0 != 0) {
+    if ((*(struct fn_3_137AC_Sel *)&lbl_3_bss_A17D0).unk_0 != 0) {
         if (fn_1_B8EDC(0) != 0) {
-            lbl_3_bss_A17D0.unk_0 = 0;
+            (*(struct fn_3_137AC_Sel *)&lbl_3_bss_A17D0).unk_0 = 0;
         }
-    } else if (lbl_3_bss_A17D0.unk_1 != 0) {
+    } else if ((*(struct fn_3_137AC_Sel *)&lbl_3_bss_A17D0).unk_1 != 0) {
         if (fn_1_B8EDC(1) != 0) {
-            lbl_3_bss_A17D0.unk_1 = 0;
+            (*(struct fn_3_137AC_Sel *)&lbl_3_bss_A17D0).unk_1 = 0;
         }
     } else {
         n = lbl_3_bss_A17A0.unk_14 - 15;
@@ -599,20 +607,12 @@ fn_1_4AE0C(((const char *)(((u8 *)fzgx_pool_data_lbl_3_data_3360_24C))) , tbl.va
 }
 /* fzgx:end fn_3_139F0 */
 
-/* fzgx:begin fn_3_13D98 noprologue */
+/* fzgx:begin fn_3_13D98 */
 #include "types.h"
 
-extern u8 lbl_3_data_3574[60];
-extern void *lbl_801A6410;
-extern u32 *lbl_3_bss_A176C;
-
-extern int fn_1_45730(void *arg, void *buffer);
-extern u32 fn_1_45B2C(void *buffer);
 extern void *fn_1_45D0(void *source, u32 size, void *data, u32 format);
 extern void fn_80008BEC(void *buffer, u32 offset, u32 size);
-extern void fn_1_458A0(void *buffer, void *output, u32 size, u32 alignment);
 extern void fn_80008BA8(void *texture, void *buffer, u32 size);
-extern void fn_1_45850(void *buffer);
 
 u32 fn_3_13D98(void *arg) {
     u8 header[0x60];
@@ -629,12 +629,12 @@ u32 fn_3_13D98(void *arg) {
         }
         if (size != 0) {
             for (i = 0; i < count; i++) {
-                lbl_3_bss_A176C[(u8)i] = (u32)fn_1_45D0(lbl_801A6410, 0x2000,
-                                                          lbl_3_data_3574, 0x236);
-                fn_80008BEC((void *)lbl_3_bss_A176C[(u8)i], 0, 0x2000);
+                (*(u32 * *)&lbl_3_bss_A176C)[(u8)i] = (u32)fn_1_45D0((*(void * *)&lbl_801A6410), 0x2000,
+                                                          (*(u8 (*)[60])&lbl_3_data_3574), 0x236);
+                fn_80008BEC((void *)(*(u32 * *)&lbl_3_bss_A176C)[(u8)i], 0, 0x2000);
                 fn_1_458A0(header, buffer, 0x2000,
                            ((i << 13) + 0x1f) & ~0x1f);
-                fn_80008BA8((void *)lbl_3_bss_A176C[(u8)i], buffer, 0x2000);
+                fn_80008BA8((void *)(*(u32 * *)&lbl_3_bss_A176C)[(u8)i], buffer, 0x2000);
             }
             fn_1_45850(header);
         }
@@ -643,19 +643,12 @@ u32 fn_3_13D98(void *arg) {
 }
 /* fzgx:end fn_3_13D98 */
 
-/* fzgx:begin fn_3_13EA4 noprologue */
+/* fzgx:begin fn_3_13EA4 */
 #include "types.h"
 
-extern u8 lbl_3_data_3574[60];
-extern void *lbl_801A6410;
-extern s32 fn_1_45730(void *, void *);
-extern u32 fn_1_45B2C(void *);
-extern s32 fn_1_F7BE4(u32);
 extern void *fn_1_45D0(void *, u32, void *, u32);
 extern void fn_80008BEC(void *, u32, u32);
-extern void fn_1_458A0(void *, void *, u32, u32);
 extern void fn_80008BA8(void *, void *, u32);
-extern void fn_1_45850(void *);
 
 u32 fn_3_13EA4(void *arg, u32 *output) {
     u8 header[0x60];
@@ -680,8 +673,8 @@ u32 fn_3_13EA4(void *arg, u32 *output) {
                     (i == limit - 2 && fn_1_F7BE4(0x21) != 0) ||
                     (i == limit - 1 && fn_1_F7BE4(0x21) != 0) ||
                     (fn_1_F7BE4(i) != 0)) {
-                    out[(u8)count] = (u32)fn_1_45D0(lbl_801A6410, 0x2000,
-                                                   lbl_3_data_3574, 0x27b);
+                    out[(u8)count] = (u32)fn_1_45D0((*(void * *)&lbl_801A6410), 0x2000,
+                                                   (*(u8 (*)[60])&lbl_3_data_3574), 0x27b);
                     fn_80008BEC((void *)out[(u8)count], 0, 0x2000);
                     fn_1_458A0(header, buffer, 0x2000,
                                ((i << 13) + 0x1f) & ~0x1f);
@@ -696,14 +689,22 @@ u32 fn_3_13EA4(void *arg, u32 *output) {
 }
 /* fzgx:end fn_3_13EA4 */
 
-/* fzgx:begin fn_3_14008 */
+/* fzgx:begin fn_3_14008 noprologue */
+#include "types.h"
+
+extern u8 lbl_3_bss_A17A0[44];
+
 void fn_3_14008(void) {
     u32 *value = (u32 *)lbl_3_bss_A17A0;
     *value |= 0x40000000;
 }
 /* fzgx:end fn_3_14008 */
 
-/* fzgx:begin fn_3_1401C */
+/* fzgx:begin fn_3_1401C noprologue */
+#include "types.h"
+
+extern u8 lbl_3_bss_A17A0[44];
+
 u32 fn_3_1401C(void) {
     return *(u32 *)(lbl_3_bss_A17A0 + 0x20);
 }
@@ -724,13 +725,27 @@ u32 fn_3_14064(void) {
 }
 /* fzgx:end fn_3_14064 */
 
-/* fzgx:begin fn_3_14074 */
+/* fzgx:begin fn_3_14074 noprologue */
+#include "types.h"
+
+extern u8 lbl_3_bss_A17A0[44];
+
 u8 *fn_3_14074(void) {
     return lbl_3_bss_A17A0;
 }
 /* fzgx:end fn_3_14074 */
 
-/* fzgx:begin fn_3_14080 */
+/* fzgx:begin fn_3_14080 noprologue */
+#include "types.h"
+extern u8 lbl_3_bss_A17A0[44];
+extern s16 lbl_3_bss_A17CC;
+extern u32 lbl_3_bss_A176C;
+extern u32 *lbl_3_bss_A1770;
+extern u32 *lbl_3_bss_A1774;
+extern u8 lbl_3_data_3574[60];
+extern u32 lbl_801A6410;
+extern void fn_1_46B4(u32, u32, u8 *, s32);
+
 extern u8 lbl_3_data_3574[60];
 extern u32 lbl_801A6410;
 
@@ -879,7 +894,11 @@ void fn_3_142C4(void) {
 }
 /* fzgx:end fn_3_142C4 */
 
-/* fzgx:begin fn_3_1441C */
+/* fzgx:begin fn_3_1441C noprologue */
+#include "types.h"
+
+extern u8 lbl_3_bss_A17A0[44];
+
 typedef struct fn_3_1441C_EmblemState {
     u8 pad[0x18];
     s16 field_18;
@@ -892,7 +911,11 @@ u8 fn_3_1441C(void) {
 }
 /* fzgx:end fn_3_1441C */
 
-/* fzgx:begin fn_3_1443C */
+/* fzgx:begin fn_3_1443C noprologue */
+#include "types.h"
+
+extern u8 lbl_3_bss_A17A0[44];
+
 typedef struct {
     u8 pad16[0x16];
     s16 value16;
@@ -1063,7 +1086,6 @@ void fn_3_146BC(void) {
 
 /* fzgx:begin fn_3_146C0 */
 extern u16 lbl_3_bss_A23D8;
-extern u16 lbl_3_bss_A23D8__fzgx_offset_2[3];
 extern void fn_3_14BBC(void *, s16, s16, s16, u32 *);
 
 void fn_3_146C0(void *arg0, s16 x, s16 y, s16 delta, u32 *arg4) {
@@ -1094,10 +1116,10 @@ void fn_3_146C0(void *arg0, s16 x, s16 y, s16 delta, u32 *arg4) {
 }
 /* fzgx:end fn_3_146C0 */
 
-/* fzgx:begin fn_3_14778 noprologue */
+/* fzgx:begin fn_3_14778 */
 #include "rel/customize/emblem.h"
 
-struct EmblemState {
+struct fn_3_14778_EmblemState {
     u16 unk_0;
     u16 unk_2;
     u8 unk_4;
@@ -1106,7 +1128,7 @@ struct EmblemState {
 
 #pragma peephole off
 void fn_3_14778(u16 arg0, u16 arg1, u8 arg2, u32 arg3) {
-    struct EmblemState *state = (struct EmblemState *)&lbl_3_bss_A23D8;
+    struct fn_3_14778_EmblemState *state = (struct fn_3_14778_EmblemState *)&lbl_3_bss_A23D8;
     state->unk_0 = arg0;
     state->unk_2 = arg1;
     state->unk_4 = arg2;
@@ -1117,8 +1139,6 @@ void fn_3_14778(u16 arg0, u16 arg1, u8 arg2, u32 arg3) {
 /* fzgx:begin fn_3_14794 */
 extern u16 lbl_3_bss_A23D8;
 extern u32 lbl_3_bss_A23E0;
-
-extern void *memset(void *, int, u32);
 
 /* colour c (r, g, b, a bytes) as a texel: RGB565, or RGB5A3 (opaque with 5 bits per colour from alpha 0xE0 up,
  * otherwise 3 bits of alpha and 4 bits per colour) */
@@ -1319,14 +1339,12 @@ done:
 extern u16 lbl_3_bss_A23D8;
 extern u32 lbl_3_bss_A23E0;
 
-extern void *memset(void *, int, u32);
-
 typedef struct {
     u8 r;
     u8 g;
     u8 b;
     u8 a;
-} Color;
+} fn_3_14BBC_Color;
 
 /* colour c as a texel: RGB565, or RGB5A3 (opaque with 5 bits per colour from alpha 0xE0 up, otherwise 3 bits of
  * alpha and 4 bits per colour) */
@@ -1337,7 +1355,7 @@ typedef struct {
 
 /* writes colour c into the canvas pixel at (x, y); lbl_3_bss_A23D8 holds the canvas width and lbl_3_bss_A23E0 its
  * texture format (4 RGB565, 5 RGB5A3), pixels in 4 x 4 tiles of 16-bit texels */
-static inline void put_pixel(u8 *canvas, s16 x, s16 y, Color c) {
+static inline void put_pixel(u8 *canvas, s16 x, s16 y, fn_3_14BBC_Color c) {
     s16 offset;
     s16 bx;
     s16 by;
@@ -1375,7 +1393,7 @@ static inline void put_pixel(u8 *canvas, s16 x, s16 y, Color c) {
 }
 
 /* writes *color into n canvas pixels from (x, y) along the row */
-void fn_3_14BBC(u8 *canvas, s16 x, s16 y, s16 n, Color *color) {
+void fn_3_14BBC(u8 *canvas, s16 x, s16 y, s16 n, fn_3_14BBC_Color *color) {
     s16 i;
 
     for (i = 0; i < n; i++) {
@@ -1388,16 +1406,12 @@ void fn_3_14BBC(u8 *canvas, s16 x, s16 y, s16 n, Color *color) {
 extern u16 lbl_3_bss_A23D8;
 extern u32 lbl_3_bss_A23E0;
 
-extern void *memset(void *, int, u32);
-
 typedef struct {
     u8 r;
     u8 g;
     u8 b;
     u8 a;
-} Color;
-
-extern u32 fn_3_149AC(const u8 *canvas, s16 x, s16 y);
+} fn_3_14E18_Color;
 
 /* colour c as a texel: RGB565, or RGB5A3 (opaque with 5 bits per colour from alpha 0xE0 up, otherwise 3 bits of
  * alpha and 4 bits per colour) */
@@ -1408,7 +1422,7 @@ extern u32 fn_3_149AC(const u8 *canvas, s16 x, s16 y);
 
 /* writes colour c into the canvas pixel at (x, y); lbl_3_bss_A23D8 holds the canvas width and lbl_3_bss_A23E0 its
  * texture format (4 RGB565, 5 RGB5A3), pixels in 4 x 4 tiles of 16-bit texels (fn_3_14BBC's helper) */
-static inline void put_pixel(u8 *canvas, s16 x, s16 y, Color c) {
+static inline void put_pixel(u8 *canvas, s16 x, s16 y, fn_3_14E18_Color c) {
     s16 offset;
     s16 bx;
     s16 by;
@@ -1449,8 +1463,8 @@ static inline void put_pixel(u8 *canvas, s16 x, s16 y, Color c) {
 
 /* swaps the canvas pixels at (x0, y0) and (x1, y1) */
 void fn_3_14E18(u8 *canvas, s16 x0, s16 y0, s16 x1, s16 y1) {
-    Color c1;
-    Color c0;
+    fn_3_14E18_Color c1;
+    fn_3_14E18_Color c0;
 
     *(u32 *)&c0 = fn_3_149AC(canvas, x0, y0);
     *(u32 *)&c1 = fn_3_149AC(canvas, x1, y1);
@@ -1485,14 +1499,12 @@ void fn_3_15240(void *arg0, s16 arg1, void *arg2, u16 arg3, s16 arg4, void *arg5
 extern u16 lbl_3_bss_A23D8;
 extern u32 lbl_3_bss_A23E0;
 
-extern void *memset(void *, int, u32);
-
 typedef struct {
     u8 r;
     u8 g;
     u8 b;
     u8 a;
-} Color;
+} fn_3_152BC_Color;
 
 /* colour c as a texel: RGB565, or RGB5A3 (opaque with 5 bits per colour from alpha 0xE0 up, otherwise 3 bits of
  * alpha and 4 bits per colour) */
@@ -1503,7 +1515,7 @@ typedef struct {
 
 /* writes colour c into the canvas pixel at (x, y); lbl_3_bss_A23D8 holds the canvas width and lbl_3_bss_A23E0 its
  * texture format (4 RGB565, 5 RGB5A3), pixels in 4 x 4 tiles of 16-bit texels */
-static inline void put_pixel(u8 *canvas, s16 x, s16 y, Color c) {
+static inline void put_pixel(u8 *canvas, s16 x, s16 y, fn_3_152BC_Color c) {
     s16 offset;
     s16 bx;
     s16 by;
@@ -1541,7 +1553,7 @@ static inline void put_pixel(u8 *canvas, s16 x, s16 y, Color c) {
 }
 
 /* fills the canvas pixels x0 <= x < x1, y0 <= y < y1 with *color, column by column */
-void fn_3_152BC(u8 *canvas, s16 y0, s16 x0, s16 y1, s16 x1, Color *color) {
+void fn_3_152BC(u8 *canvas, s16 y0, s16 x0, s16 y1, s16 x1, fn_3_152BC_Color *color) {
     s16 x;
     s16 y;
 
