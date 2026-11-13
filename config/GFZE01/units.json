@@ -45634,7 +45634,7 @@
     "tu": "rel/main_rel/archive.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_83C0",
-      "@559": "jumptable_1_data_40CC8",
+      "@558": "jumptable_1_data_40CC8",
       "@23": "lbl_1_rodata_83C0",
       "@24": "lbl_1_rodata_83C0+0x4",
       "@25": "lbl_1_rodata_83C0+0x8",

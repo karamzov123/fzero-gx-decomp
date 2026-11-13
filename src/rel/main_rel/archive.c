@@ -4162,14 +4162,14 @@ static inline void cpu_pedals(CpuBlock *ai, f32 brake, f32 accel) {
     ai->throttle = accel;
 }
 
-/* WARNING: compiler-diff device, not original code: returns its argument through a helper local. MWCC keeps
- * a helper local as its own register object, numbered below every expression temporary, so a value passed
- * through here is coloured after the plain temporaries around it. Used twice in the case 5-8 header of
- * fn_1_12F4A8 to give the four early loads retail's registers (f3/f1/f2/f0); the original source of that
- * register order is unknown. */
-static inline f32 compiler_diff_keep(f32 x) {
-    f32 kept = x;
-    return kept;
+static inline void predict_base(Machine *m, Progress *self, f32 factor, Vec *scaled, Vec *out) {
+    psvec_scale(&self->front, factor * m->unk_17C, scaled);
+    psvec_add(&m->pos, scaled, out);
+}
+
+static inline f32 progress_ratio(Progress *self) {
+    f32 position = self->unk_108;
+    return position / self->unk_68;
 }
 
 #pragma opt_propagation off
@@ -4215,7 +4215,6 @@ void fn_1_12F4A8(Machine *m) {
     Vec diff;
     Vec cross;
     f32 lookScale; /* compiler-diff device locals, see the case 5-8 header */
-    f32 speed;
     s32 pedalCmp;
 
     level = lbl_1_bss_9C[1];
@@ -4261,17 +4260,14 @@ void fn_1_12F4A8(Machine *m) {
     case 7:
     case 8:
         found = 0;
-        /* WARNING: compiler-diff device, not original code: the look-ahead constant sits in a local, the speed
-         * and the lateral position go through compiler_diff_keep, and the scale statement is split around the
-         * ratio, only so that MWCC numbers the four values 0.0231 < unk_108 < unk_17C < unk_68 and colours
-         * them f3/f2/f1/f0 as retail does. The honest form is
-         * `psvec_scale(&self->front, 0.023148148f * m->unk_17C, &scaled); selfRatio = self->unk_108 / self->unk_68;`. */
+        /* WARNING: compiler-diff device, not original code: the look-ahead constant remains in a local
+         * to preserve the early-load register order. The identity helper and speed copy are gone;
+         * prediction and the progress ratio now use real arithmetic helpers. Passing the literal
+         * directly or moving it into predict_base still changes the retail register allocation. */
         lookScale = 0.023148148f;
-        speed = compiler_diff_keep(m->unk_17C);
-        selfRatio = compiler_diff_keep(self->unk_108) / self->unk_68;
-        psvec_scale(&self->front, lookScale * speed, &scaled);
+        predict_base(m, self, lookScale, &scaled, &base);
+        selfRatio = progress_ratio(self);
         leaderRatio = leader->unk_108 / leader->unk_68;
-        psvec_add(&m->pos, &scaled, &base);
         ai->unk_10 = 0.0f;
         /* WARNING: compiler-diff device, not original code: a dead float compare between the two pedal stores.
          * Kept alive by `#pragma opt_dead_assignments off`, its mfcr is a scheduling barrier during the first
