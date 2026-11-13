@@ -9,14 +9,17 @@ history samples by their coefficients, accumulates the products and shifts the
 fixed-point result by twelve bits. The right-channel high sample remains in
 `decoded_right`, which also supplies the real `older_right` state update.
 
-This is a partial device removal, not a fully natural-C function. Five primary
-compiler-diff warnings remain in this file for the existing propagation setting,
-identity helper, dead-assignment setting, stack-parameter copies and dead address
-comparisons. None of those mechanisms was added or expanded. The existing
-`opt_propagation off` directive remains marked; its comment now describes the
-remaining mechanisms rather than the removed inner-loop copy. No compiler flags,
-new pragmas, assembly, volatile accesses, widened integers or dead stores were
-introduced by this change.
+The first accepted stage removed the inner-loop copy. A verified follow-up also
+removed the identity helper and the global `opt_propagation off` directive by
+using integer-precision coefficient and RNG arithmetic values. The incoming
+coefficient and RNG parameter types remain unchanged; their signed values are
+preserved. `PredictSample` now accepts the promoted integer coefficients.
+
+This is still a partial device removal, not a fully natural-C function. Three
+primary compiler-diff warnings remain in this file for the dead-assignment
+setting, stack-parameter copies and dead address comparisons. None of those
+mechanisms was added or expanded. No compiler flags, new pragmas, assembly,
+volatile accesses, widened-integer tricks or dead stores were introduced.
 
 The historical removed-copy comment credited the technique, not code, to
 `ADX_DecodeSte4AsSte` in the RE4 decompilation (`adonis-singh/re4`,
@@ -34,8 +37,10 @@ imported.
   `7cbae0a5bd81e07d7fa8975bbc4e969b5dea265cc29c5ee6bae0453a6e25f225`.
 - Previous source SHA-256:
   `7f5c734ccf141e500f1f1140642ff898604ccb24b775cf51d38a52417d8b933b`.
-- Accepted source SHA-256:
+- First accepted stage source SHA-256:
   `20316b7a5c2c7b8a2a18b2238ac9cb13944d49c0e88c4c0d28ea27bad4777b6f`.
+- Current accepted source SHA-256:
+  `c2233bb3707f9eca38fe783c8da0a228dd209564116ced9e9a714a8996e565b6`.
 
 The complete function still matches all 152 retail instruction words. The full
 oracle, not merely a masked word comparison, reports `100.000 MATCH rows=0`.
@@ -53,10 +58,17 @@ With the other existing entry devices unchanged:
    matches exactly, so the accepted source shares genuine decoder arithmetic
    rather than introducing an identity or one-field carrier helper.
 
-Applying the helper to the first-sample calculations, removing the remaining
-identity helper, or removing the existing propagation directive did not match.
-Those experiments were not installed. The same helper did not remove the mono
-mix decoder's prediction device; `fn_8004F26C` remains unchanged.
+Applying the helper to the first-sample calculations did not match. Removing the
+identity helper and propagation directive without integer coefficient promotions
+also failed. A follow-up with `int c0`, `int c1`, and an integer RNG multiplier
+does match, with both of those devices deleted. The coefficients are promoted in
+the order `c1 = coefficient1; c0 = coefficient0;`, and all sample calculations use
+those values. The multiplier is assigned directly from `random_multiplier`, and
+the increment directly from `random_increment`, with no identity wrapper.
+
+Removing the remaining address-escape mechanisms still failed; no such candidate
+was installed. The same predictor helper did not remove the mono mix decoder's
+prediction device; `fn_8004F26C` remains unchanged.
 
 A history-variable reuse experiment must combine the multiply and prediction
 before overwriting the old history. Blindly renaming a two-statement accumulator
@@ -82,7 +94,8 @@ linker warnings; no warning-free compiler claim is made.
 bundled into this focused source cleanup; the function was already matched and
 has no ownership/status transition from this repair.
 
-The source/header marker inventory changes from 36 to 35 primary
+The first stage reduced the primary marker count from 36 to 35; the verified
+follow-up removes two more. The source/header inventory now has 33 primary
 `WARNING: compiler-diff device` occurrences, with two `WARNING: device` references
 still present across the same 12 files. Matched coverage and strict natural-C
 function coverage do not increase: this function is still device-backed until

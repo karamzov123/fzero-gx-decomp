@@ -1,6 +1,3 @@
-/* WARNING: compiler-diff device, not original code: retained for the remaining identity-helper and
- * stack-parameter allocation devices below. The prediction no longer uses a copy-only local. */
-#pragma opt_propagation off
 #include "types.h"
 
 extern const int lbl_800911E0[16];
@@ -14,16 +11,8 @@ extern const int lbl_800911E0[16];
         }                               \
     }
 
-/* WARNING: compiler-diff device, not original code: a value returned through this helper's local is its own
- * register object numbered above MWCC's CSE temporaries, so it is coloured before them. Used for the
- * increment copy of fn_8004F00C (see there). */
-static inline short compiler_diff_keep(short x) {
-    short kept = x;
-    return kept;
-}
-
 /* Two-tap history prediction, converted from the coefficients' twelve fractional bits. */
-static inline int PredictSample(short c0, short c1, int high, int previous) {
+static inline int PredictSample(int c0, int c1, int high, int previous) {
     int value = c0 * high;
     value += c1 * previous;
     return value >> 12;
@@ -36,9 +25,11 @@ int fn_8004F00C(const signed char *input, int num_samples, short *output_left,
                 short delay_left[2], short *output_right, short delay_right[2],
                 short coefficient0, short coefficient1, short *random_state,
                 short random_multiplier, short random_increment) {
-    short multiplier;
+    int multiplier;
     short *state;
     short increment;
+    int c0;
+    int c1;
     int older_left;
     int older_right;
     int previous_right;
@@ -53,12 +44,13 @@ int fn_8004F00C(const signed char *input, int num_samples, short *output_left,
 
     /* WARNING: compiler-diff device, not original code: the three stack-passed parameters are copied into
      * locals because the address compares below make the parameters themselves address-taken; the copies
-     * keep the three loads in the entry block. increment goes through compiler_diff_keep so that increment
-     * is coloured r0 and multiplier r11 as in retail. The honest form uses random_state, random_multiplier
-     * and random_increment directly. */
+     * keep the three loads in the entry block. The honest form uses random_state, random_multiplier and
+     * random_increment directly. */
     state = random_state;
+    c1 = coefficient1;
+    c0 = coefficient0;
     multiplier = random_multiplier;
-    increment = compiler_diff_keep(random_increment);
+    increment = random_increment;
     previous_left = delay_left[0];
     older_left = delay_left[1];
     previous_right = delay_right[0];
@@ -86,20 +78,20 @@ int fn_8004F00C(const signed char *input, int num_samples, short *output_left,
             packed_right = input[18];
             input++;
             older_left = (packed_left >> 4) * gain_left +
-                ((coefficient0 * previous_left + coefficient1 * older_left) >> 12);
+                ((c0 * previous_left + c1 * older_left) >> 12);
             CLAMP_SAMPLE(older_left);
             decoded_right = (packed_right >> 4) * gain_right;
-            decoded_right += (coefficient0 * previous_right + coefficient1 * older_right) >> 12;
+            decoded_right += (c0 * previous_right + c1 * older_right) >> 12;
             CLAMP_SAMPLE(decoded_right);
             output_left[0] = older_left;
             low_left = lbl_800911E0[packed_left & 15];
             output_right[0] = decoded_right;
             low_right = lbl_800911E0[packed_right & 15];
             previous_left = low_left * gain_left +
-                PredictSample(coefficient0, coefficient1, older_left, previous_left);
+                PredictSample(c0, c1, older_left, previous_left);
             CLAMP_SAMPLE(previous_left);
             previous_right = low_right * gain_right +
-                PredictSample(coefficient0, coefficient1, decoded_right, previous_right);
+                PredictSample(c0, c1, decoded_right, previous_right);
             CLAMP_SAMPLE(previous_right);
             output_left[1] = previous_left;
             older_right = decoded_right;
