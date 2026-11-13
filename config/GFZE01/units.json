@@ -147725,6 +147725,19 @@
   },
   {
     "module": "movie_module",
+    "source": "rel/movie_module/fn_12_3C8CC.c",
+    "symbols": [
+      "fn_12_3C8CC"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-O4,p"
+    ],
+    "pool": {}
+  },
+  {
+    "module": "movie_module",
     "source": "rel/movie_module/fn_12_3CB74.c",
     "symbols": [
       "fn_12_3CB74"
