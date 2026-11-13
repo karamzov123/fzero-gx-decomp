@@ -1,4 +1,3 @@
-#pragma opt_propagation off
 #include "types.h"
 
 extern const int lbl_800911E0[16];
@@ -23,7 +22,7 @@ int fn_8004F55C(const signed char *input, int num_blocks, short *output, short d
     int older;
     int previous;
     short gain;
-    short increment;
+    int increment;
     int escaped;
 
     /* WARNING: compiler-diff device, not original code: random_increment is copied into a local because
@@ -44,7 +43,6 @@ int fn_8004F55C(const signed char *input, int num_blocks, short *output, short d
         input += 2;
         for (i = 0; i < 16; i++) {
             int packed = *input;
-            int low;
             int decoded;
 
             input++;
@@ -52,8 +50,8 @@ int fn_8004F55C(const signed char *input, int num_blocks, short *output, short d
                 ((coefficient0 * previous + coefficient1 * older) >> 12);
             CLAMP_SAMPLE(decoded);
             output[0] = decoded;
-            low = lbl_800911E0[packed & 15];
-            previous = low * gain +
+            packed = lbl_800911E0[packed & 15];
+            previous = packed * gain +
                 ((coefficient0 * decoded + coefficient1 * previous) >> 12);
             CLAMP_SAMPLE(previous);
             output[1] = previous;
