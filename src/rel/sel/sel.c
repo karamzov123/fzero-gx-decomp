@@ -5373,10 +5373,10 @@ extern void fn_1_435C(u32 value);
 extern void fn_1_426C(s32 value);
 
 void fn_10_757C(void) {
-    if ((*(volatile s32 *)&lbl_10_bss_51740) != -1) {
+    if ((s32)lbl_10_bss_51740 != -1) {
         fn_1_435C(lbl_10_bss_49388);
-        fn_1_426C((*(volatile s32 *)&lbl_10_bss_51740));
-        (*(volatile s32 *)&lbl_10_bss_51740) = -1;
+        fn_1_426C((s32)lbl_10_bss_51740);
+        lbl_10_bss_51740 = -1;
     }
 }
 /* fzgx:end fn_10_757C */
@@ -10714,10 +10714,10 @@ void fn_10_CE5C(void) {
 
 /* fzgx:begin fn_10_CE6C */
 void fn_10_CE6C(void) {
-    if ((*(volatile s32 *)&lbl_10_bss_51740) != -1) {
+    if ((s32)lbl_10_bss_51740 != -1) {
         fn_1_435C(lbl_10_bss_49388);
-        fn_1_426C((*(volatile s32 *)&lbl_10_bss_51740));
-        (*(volatile s32 *)&lbl_10_bss_51740) = -1;
+        fn_1_426C((s32)lbl_10_bss_51740);
+        lbl_10_bss_51740 = -1;
     }
 }
 /* fzgx:end fn_10_CE6C */
