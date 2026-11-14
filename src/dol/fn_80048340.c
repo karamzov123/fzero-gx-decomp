@@ -54,7 +54,7 @@ extern size_t strlen(const char *);
 extern void *memcpy(void *, const void *, u16);
 
 static inline s32 fn_80048340_put8(struct fn_80048340_stream *arg1,
-                                   const volatile u8 *p) { /* volatile: staged source slot */
+                                   const u8 *p) {
     struct fn_80048340_block blk;
 
     (*(fn_80048340_FnA *)(arg1->vtable + 24))(arg1, 0, 1, &blk);
@@ -135,11 +135,12 @@ s32 fn_80048340(struct fn_80048340_data *arg0, struct fn_80048340_stream *arg1) 
     s32 count;
     s32 i;
     s32 pad;
-    /* The serialized fields are staged in stack slots (as in the original);
-     * volatile keeps each staged value in its own slot across the stream
-     * writes instead of letting the allocator keep it in a register. */
+    /* WARNING: compiler-diff device, not original code: the remaining volatile
+     * block pointer, writer reads and word staging retain retail's stack
+     * allocation and access ordering. Ordinary halfword staging matches without
+     * qualified writes; those qualifiers and address casts are not needed. */
     u8 b;
-    volatile u16 v1; /* volatile: staged slot survives the stream callbacks */
+    u16 v1;
     u16 v;
     volatile s32 d; /* volatile: staged slot survives the stream callbacks */
     u16 vi;
@@ -159,7 +160,7 @@ s32 fn_80048340(struct fn_80048340_data *arg0, struct fn_80048340_stream *arg1) 
         goto fail; /* error: single shared failure exit */
     }
     vi = arg0->unk_48;
-    if (fn_80048340_put16(arg1, (volatile u16 *)&vi) != 1) { /* volatile: staged slot */
+    if (fn_80048340_put16(arg1, &vi) != 1) {
         goto fail; /* error: single shared failure exit */
     }
     b = arg0->unk_4c;
@@ -186,8 +187,8 @@ s32 fn_80048340(struct fn_80048340_data *arg0, struct fn_80048340_stream *arg1) 
     if (fn_80048340_put32(arg1, &d) != 1) {
         goto fail; /* error: single shared failure exit */
     }
-    (*(volatile u16 *)&v) = arg0->unk_64; /* volatile: staged slot */
-    if (fn_80048340_put16(arg1, &(*(volatile u16 *)&v)) != 1) { /* volatile: staged slot */
+    v = arg0->unk_64;
+    if (fn_80048340_put16(arg1, &v) != 1) {
         goto fail; /* error: single shared failure exit */
     }
     b = 4;
@@ -206,30 +207,30 @@ s32 fn_80048340(struct fn_80048340_data *arg0, struct fn_80048340_stream *arg1) 
     if (fn_80048340_put32(arg1, &d) != 1) {
         goto fail; /* error: single shared failure exit */
     }
-    (*(volatile u16 *)&v) = arg0->unk_2c8; /* volatile: staged slot */
-    if (fn_80048340_put16(arg1, &(*(volatile u16 *)&v)) != 1) { /* volatile: staged slot */
+    v = arg0->unk_2c8;
+    if (fn_80048340_put16(arg1, &v) != 1) {
         goto fail; /* error: single shared failure exit */
     }
-    (*(volatile u16 *)&v) = arg0->unk_2cc; /* volatile: staged slot */
-    if (fn_80048340_put16(arg1, &(*(volatile u16 *)&v)) != 1) { /* volatile: staged slot */
+    v = arg0->unk_2cc;
+    if (fn_80048340_put16(arg1, &v) != 1) {
         goto fail; /* error: single shared failure exit */
     }
-    (*(volatile u16 *)&v) = arg0->unk_2ca; /* volatile: staged slot */
-    if (fn_80048340_put16(arg1, &(*(volatile u16 *)&v)) != 1) { /* volatile: staged slot */
+    v = arg0->unk_2ca;
+    if (fn_80048340_put16(arg1, &v) != 1) {
         goto fail; /* error: single shared failure exit */
     }
-    (*(volatile u16 *)&v) = arg0->unk_2ce; /* volatile: staged slot */
-    if (fn_80048340_put16(arg1, &(*(volatile u16 *)&v)) != 1) { /* volatile: staged slot */
+    v = arg0->unk_2ce;
+    if (fn_80048340_put16(arg1, &v) != 1) {
         goto fail; /* error: single shared failure exit */
     }
     count = 0x1c;
     if (arg0->unk_6c > 0) {
-        (*(volatile u16 *)&v) = arg0->unk_68; /* volatile: staged slot */
-        if (fn_80048340_put16(arg1, &(*(volatile u16 *)&v)) != 1) { /* volatile: staged slot */
+        v = arg0->unk_68;
+        if (fn_80048340_put16(arg1, &v) != 1) {
             goto fail; /* error: single shared failure exit */
         }
-        (*(volatile u16 *)&v) = arg0->unk_6c; /* volatile: staged slot */
-        if (fn_80048340_put16(arg1, &(*(volatile u16 *)&v)) != 1) { /* volatile: staged slot */
+        v = arg0->unk_6c;
+        if (fn_80048340_put16(arg1, &v) != 1) {
             goto fail; /* error: single shared failure exit */
         }
         i = 0;
@@ -239,8 +240,8 @@ s32 fn_80048340(struct fn_80048340_data *arg0, struct fn_80048340_stream *arg1) 
             if (fn_80048340_put16n(arg1, &v) != 1) {
                 goto fail; /* error: single shared failure exit */
             }
-            (*(volatile u16 *)&v) = 1; /* volatile: staged slot */
-            if (fn_80048340_put16(arg1, &(*(volatile u16 *)&v)) != 1) { /* volatile: staged slot */
+            v = 1;
+            if (fn_80048340_put16(arg1, &v) != 1) {
                 goto fail; /* error: single shared failure exit */
             }
             d = arg0->unk_70;
@@ -283,20 +284,20 @@ s32 fn_80048340(struct fn_80048340_data *arg0, struct fn_80048340_stream *arg1) 
             sizeof(arg0->unk_2d7)) {
             goto fail; /* error: single shared failure exit */
         }
-        (*(volatile u16 *)&v) = arg0->unk_2e8; /* volatile: staged slot */
-        if (fn_80048340_put16(arg1, &(*(volatile u16 *)&v)) != 1) { /* volatile: staged slot */
+        v = arg0->unk_2e8;
+        if (fn_80048340_put16(arg1, &v) != 1) {
             goto fail; /* error: single shared failure exit */
         }
-        (*(volatile u16 *)&v) = 0; /* volatile: staged slot */
-        if (fn_80048340_put16(arg1, &(*(volatile u16 *)&v)) != 1) { /* volatile: staged slot */
+        v = 0;
+        if (fn_80048340_put16(arg1, &v) != 1) {
             goto fail; /* error: single shared failure exit */
         }
-        (*(volatile u16 *)&v) = arg0->unk_2ea; /* volatile: staged slot */
-        if (fn_80048340_put16(arg1, &(*(volatile u16 *)&v)) != 1) { /* volatile: staged slot */
+        v = arg0->unk_2ea;
+        if (fn_80048340_put16(arg1, &v) != 1) {
             goto fail; /* error: single shared failure exit */
         }
-        (*(volatile u16 *)&v) = arg0->unk_2ec; /* volatile: staged slot */
-        if (fn_80048340_put16(arg1, &(*(volatile u16 *)&v)) != 1) { /* volatile: staged slot */
+        v = arg0->unk_2ec;
+        if (fn_80048340_put16(arg1, &v) != 1) {
             goto fail; /* error: single shared failure exit */
         }
         count += 0x20;

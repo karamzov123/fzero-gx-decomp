@@ -1197,15 +1197,21 @@ def load_records(engine,args):
                          bytes=sum(r['size'] for g in groups for r in g if r['status']=='unmatched')))
     read_only_body = bool(args.symbol and args.body and not getattr(args, 'apply', False))
     def add(symbol,body,mw=None,flags=None,**metadata):
-        sym=p.resolve(symbol);state=ledger.get(symbol)
+        sym=p.resolve(symbol)
+        if sym is None:
+            return
+        symbol=p.key(sym)
+        state=ledger.get(symbol)
+        if read_only_body and state is None:
+            raise ValueError('no ledger entry for explicit source probe: ' + symbol)
         allowed = ('unmatched','matched') if clone_members is not None else ('unmatched',)
         # An explicit read-only source probe must not silently disappear merely
-        # because the function is claimed, blocked, or already matched (for
+        # because the function is claimed, blocked, matched, or assembly-owned (for
         # example, when removing a compiler-diff device). Applying repairs retains
         # the original ownership filter; corpus scans still skip active claims.
         if read_only_body:
-            allowed += ('claimed','blocked','matched')
-        if not sym or not state or state['status'] not in allowed:
+            allowed += ('claimed','blocked','matched','asm')
+        if not state or state['status'] not in allowed:
             return
         if clone_members is not None and symbol not in clone_members:
             return
@@ -1214,11 +1220,13 @@ def load_records(engine,args):
         rows.append(engine.record(symbol,body,mw,flags,**metadata))
     if args.symbol and (args.body or not args.corpus) and (clone_members is None or args.body):
         from . import api
+        sym=p.resolve(args.symbol)
+        if sym is None:
+            raise ValueError('unknown or ambiguous function: ' + args.symbol)
         body=source_text(args.body) if args.body else api._attempt_text(p,args.symbol)
         if body is None:
             raise ValueError('no saved C for '+args.symbol)
-        sym=p.resolve(args.symbol)
-        mw,flags=oracle.version_for(p,sym,Path(args.body) if args.body else p.work_path(args.symbol))
+        mw,flags=oracle.version_for(p,sym,Path(args.body) if args.body else p.work_path(p.key(sym)))
         add(args.symbol,body,mw,flags,label='saved-body')
     elif args.corpus:
         selected = p.resolve(args.symbol) if args.symbol else None
@@ -1273,6 +1281,8 @@ def load_records(engine,args):
     rows=list({r['id']:r for r in rows}.values())
     if args.limit and clone_members is None:
         selected=set(sorted({r['symbol'] for r in rows})[:args.limit]);rows=[r for r in rows if r['symbol'] in selected]
+    if read_only_body and not rows:
+        raise ValueError('explicit source probe selected no functions; check module and size filters')
     return rows
 
 

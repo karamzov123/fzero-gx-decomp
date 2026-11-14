@@ -1,0 +1,66 @@
+{
+  "format": "fzgx-device-cleanup-v1",
+  "base": "ac061a5a130786306e05c988a81bc34b359f9e63",
+  "symbol": "fn_80048340",
+  "source": "src/dol/fn_80048340.c",
+  "compiler": "GC/1.3.2",
+  "extra_cflags": "",
+  "existing_in_source_pragma": "use_lmw_stmw on",
+  "source_sha256": "46d6c2f3721f3c91fce382069b3aa5a073490a4ab3e9014eb7452b7e8ddf9f26",
+  "accepted_cleanup": {
+    "volatile_qualifiers_before_excluding_comments": 32,
+    "volatile_qualifiers_after_excluding_comments": 5,
+    "removed": 27,
+    "changes": [
+      "Remove the unused pointee qualifier on the byte writer's memcpy source.",
+      "Use an ordinary u16 for the initial halfword stage.",
+      "Replace twelve volatile halfword write casts and their address casts with ordinary assignments and addresses.",
+      "Remove the redundant qualifier cast on the size halfword's address."
+    ],
+    "word_errors": 0,
+    "full_object_percent": 100,
+    "new_function_credit": 0,
+    "remaining_debt": "The block destination pointer, qualified writer reads and word-stage local still affect code generation. Keep the explicit compiler-diff warning; this is not a fully natural-C closure."
+  },
+  "rejected_serializer_experiments": {
+    "ordinary_block_pointer_word_errors": 48,
+    "ordinary_halfword_and_word_locals_word_errors": 279,
+    "reason": "Rejected rather than hiding differing instructions behind high fuzzy percentages. The bounded staging cohort ended after the independently removable halfword qualifiers were verified."
+  },
+  "tooling_fix": {
+    "source": "tools/fzgx/fixup.py",
+    "changes": [
+      "Resolve explicit selectors to the project's canonical ledger key before eligibility lookup.",
+      "Permit assembly-owned functions only for explicit read-only source probes.",
+      "Reject unknown or ambiguous explicit functions, missing ledger rows, and empty explicitly selected probes with diagnostics.",
+      "Use the canonical key for an implicit work-copy compiler-settings lookup."
+    ],
+    "measured": "The qualified matched function and the assembly-owned function each went from zero selected rows to one real compiled probe.",
+    "ownership": "Apply eligibility still excludes matched, assembly-owned and actively claimed functions. All symbol/status/claimed_by/link_state rows remained unchanged.",
+    "corpus_policy": "Unchanged: corpus scans still exclude protected statuses. The compiler-profile discrimination experiment used explicit read-only Engine records, not an eligibility bypass for applying repairs."
+  },
+  "unaccepted_frontiers": {
+    "fn_8004F55C": "Two differing instruction words remain for the native baseline and the RNG-advance helper.",
+    "fn_8004EFA8": "Dispatch helper leaves five differing words.",
+    "fn_8004F26C": "Decode helper leaves 64 differing words.",
+    "fn_1_2CBAC": "Pointer, table-lookup helper and byte-walk variants leave 24, 6 and 12 differing words respectively.",
+    "fn_1_4B6D4": "Native font-bounds source leaves the first two instructions in the opposite order. No assembly replacement was installed."
+  },
+  "portable_evidence": "Neighboring .json.gz files are fzgx-source-repairs-v1 archives containing exact C, source digests, compiler settings and measured results, produced by the existing fixup archive exporter.",
+  "replayed_successfully": ["serializer-final.json.gz", "qualified-final.json.gz", "asm-readonly-final.json.gz"],
+  "validation": {
+    "real_mwcc_object_diff": "100%",
+    "ninja": "passed",
+    "retail_hashes": "16 files OK",
+    "lint": "0 finding(s)",
+    "unit_tests_added": false
+  },
+  "reproduce": [
+    "uv run tools/fzgx.py fixup --archive state/repairs/serializer-volatile-staging/serializer-final.json.gz",
+    "uv run tools/fzgx.py fixup --archive state/repairs/serializer-volatile-staging/qualified-final.json.gz",
+    "uv run tools/fzgx.py fixup --archive state/repairs/serializer-volatile-staging/asm-readonly-final.json.gz",
+    "ninja build/GFZE01/ok",
+    "build/tools/dtk shasum -q -c config/GFZE01/build.sha1",
+    "uv run tools/fzgx.py lint"
+  ]
+}
