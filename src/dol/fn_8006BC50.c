@@ -5,7 +5,6 @@ typedef struct Fn8006BC50Data {
     void *items[64];
 } Fn8006BC50Data;
 
-#pragma optimize_for_size on
 s32 fn_8006BC50(Fn8006BC50Data *data) {
     u32 i;
     for (i = 0; i < 64; i++) {

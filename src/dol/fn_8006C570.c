@@ -13,7 +13,6 @@ struct fn_8006C570_Arg1 {
     u8 unk_9;
 };
 
-#pragma optimize_for_size on
 static inline s32 interpolate(s32 start, s32 end, s32 current, s32 duration) {
     s32 round;
     s32 difference;

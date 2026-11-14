@@ -1,5 +1,4 @@
 #include "types.h"
-#pragma optimize_for_size on
 
 typedef struct PadOut {
     u8 pad_0[4];

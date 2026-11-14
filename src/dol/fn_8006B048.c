@@ -46,9 +46,6 @@ typedef struct Fn8006B048Entry {
 
 extern void fn_8006AE90(void *, void *, void *);
 
-#pragma opt_common_subs off
-#pragma opt_propagation off
-#pragma optimize_for_size on
 void fn_8006B048(Fn8006B048Entry *arg, s32 index) {
     s32 value;
     Fn8006B048Entry *entry = arg;
