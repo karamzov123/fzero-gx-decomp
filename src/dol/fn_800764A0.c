@@ -34,7 +34,7 @@ static inline f32 fn_800764A0_read_pointer(struct fn_800764A0_lbl_801A6D00_T *ow
 void fn_800764A0(struct fn_800764A0_Arg0 *arg0, void *arg1, u32 arg2) {
  struct fn_800764A0_lbl_801A3220 *p_lbl_801A3220;
  f32 v2;
- struct { volatile u8 a[8]; } loc_8; /* Preserve the ordered byte stores interleaved with state reads. */
+ struct { u8 a[8]; } loc_8;
  s32 lab_t2;
  u32 color_arg0;
  u32 color_arg1;
@@ -70,11 +70,11 @@ void fn_800764A0(struct fn_800764A0_Arg0 *arg0, void *arg1, u32 arg2) {
  p_lbl_801A3220->unk_40 = 1;
  }
  loc_8.a[4] = arg2;
- color_arg0 = *(volatile u32 *)((u8 *)arg0+0); /* Preserve state read ordering relative to the color byte stores. */
+ color_arg0 = *(u32 *)((u8 *)arg0+0);
  loc_8.a[5] = arg2;
- color_arg1 = *(volatile u32 *)((u8 *)arg0+4); /* Preserve state read ordering relative to the color byte stores. */
+ color_arg1 = *(u32 *)((u8 *)arg0+4);
  loc_8.a[6] = arg2;
- lab_t2 = *(volatile u32 *)((u8 *)arg0+12); /* Preserve state read ordering relative to the color byte stores. */
+ lab_t2 = *(u32 *)((u8 *)arg0+12);
  loc_8.a[7] = arg2;
  fn_800734A8(color_arg0,color_arg1,lab_t2,4);
  *(u32 *)((u8 *)&loc_8+0) = *(u32 *)((u8 *)&loc_8+4);
