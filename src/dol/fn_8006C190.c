@@ -20,19 +20,21 @@ extern u32 fn_8006C570(struct fn_8006C190_Arg0 *, void *, s32);
 extern s32 fn_8006C788(struct fn_8006C190_Arg0 *, void *);
 extern void fn_8006C634(u32, u32, struct Sig_fn_8006C634_fn_8006C634_Arg2 *);
 
-#pragma optimize_for_size on
-#pragma opt_lifetimes off
-#pragma opt_propagation off
-#pragma opt_dead_assignments off
+static inline s32 fn_8006C190_ramp(s32 current, s32 duration, s32 start, s32 end) {
+    s32 round;
+    s32 difference;
+    difference = end - start;
+    round = duration / 2;
+    if (difference < 0) round = -round;
+    difference = difference * current;
+    difference += round;
+    return start + difference / duration;
+}
+
 s32 fn_8006C190(struct fn_8006C190_Arg0 *arg0, u32 arg1) {
-    u32 v2;
     s32 v4;
     u32 v10;
-    s32 v6;
-    s32 duration;
-    u32 elapsed;
     s16 v9;
-    s32 v5;
     s32 v8;
     s32 v17;
     struct Sig_fn_8006C6E8_fn_8006C6E8_Arg1 * lab_t1;
@@ -49,25 +51,15 @@ s32 fn_8006C190(struct fn_8006C190_Arg0 *arg0, u32 arg1) {
     }
     arg0->unk_28 |= 2;
     v4 = 0;
-    v2 = arg0->unk_28;
-    if ((v2 & 1) && ((0) == (arg0->unk_30))) v4 = 1;
+    if ((arg0->unk_28 & 1) && arg0->unk_30 == 0) v4 = 1;
     if (v4) {
-        if (v2 & 0x10) {
+        if (arg0->unk_28 & 0x10) {
             v4 = fn_8006C570(arg0, &arg0->unk_10, arg0->unk_C);
             fn_8006C634(v4, arg0->unk_E, (struct Sig_fn_8006C634_fn_8006C634_Arg2 *)&arg0->unk_34);
-        } else if (v2 & 0x20) {
-            v5 = arg0->unk_C;
-            v4 = *(s16 *)&arg0->unk_E - v5;
-            duration = arg0->unk_4;
-            elapsed = arg0->unk_2C;
-            v6 = duration / 2;
-            if (v4 < 0) v6 = -v6;
-            v4 = v4 * elapsed;
-            v4 += v6;
-            v6 = v4 / duration;
-            v4 = v5 + v6;
+        } else if (arg0->unk_28 & 0x20) {
+            v4 = fn_8006C190_ramp(arg0->unk_2C, arg0->unk_4, arg0->unk_C, *(s16 *)&arg0->unk_E);
             fn_8006C634(v4, arg0->unk_10, (struct Sig_fn_8006C634_fn_8006C634_Arg2 *)&arg0->unk_34);
-        } else if (v2 & 0x40) {
+        } else if (arg0->unk_28 & 0x40) {
             arg1 = (arg1 << 24) / arg0->unk_10;
             arg0->unk_38 += arg1;
             if (arg0->unk_38 >= 0x1000000) arg0->unk_38 -= arg0->unk_38 & ~0xFFFFFF;
@@ -99,13 +91,11 @@ s32 fn_8006C190(struct fn_8006C190_Arg0 *arg0, u32 arg1) {
             }
             v4 = 512;
             if (v8 < 0) v4 = -512;
-            duration = v8 * v9;
-            duration += v4;
-            (void) duration;  /* fzgx: keeps the web at its definition */
-            v17 = duration;
+            v17 = v8 * v9;
+            v17 += v4;
             v4 = v17 / 1024 + arg0->unk_14;
             fn_8006C634(v4, arg0->unk_E, (struct Sig_fn_8006C634_fn_8006C634_Arg2 *)&arg0->unk_34);
-        } else if (v2 & 0x80) {
+        } else if (arg0->unk_28 & 0x80) {
             lab_t1 = (struct Sig_fn_8006C6E8_fn_8006C6E8_Arg1 *)&arg0->unk_C;
             switch (arg0->unk_0) {
             case 7:
@@ -121,9 +111,4 @@ s32 fn_8006C190(struct fn_8006C190_Arg0 *arg0, u32 arg1) {
     } else arg0->unk_34 = 0;
     return 1;
 }
-#pragma opt_dead_assignments reset
-
-#pragma opt_propagation reset
-
-#pragma opt_lifetimes reset
 
