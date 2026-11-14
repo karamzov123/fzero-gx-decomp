@@ -176296,11 +176296,7 @@
     "source": "rel/winning/data/lbl_15_data_68.c",
     "symbols": [
       "lbl_15_data_68",
-      "lbl_15_data_70",
-      "lbl_15_data_90",
-      "lbl_15_data_A4",
-      "lbl_15_data_154",
-      "lbl_15_data_164"
+      "lbl_15_data_70"
     ],
     "status": "matching",
     "data": true,
@@ -176654,7 +176650,6 @@
     "extra_cflags": [],
     "tu": "rel/winning/winning.c",
     "pool": {
-      "@46": "jumptable_15_data_1DC",
       "...bss.0": "lbl_15_bss_0",
       "lbl_15_bss_0": "lbl_15_bss_0",
       "lbl_15_bss_4": "lbl_15_bss_4",
