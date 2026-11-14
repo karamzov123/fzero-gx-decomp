@@ -13,7 +13,6 @@ static inline f32 curve(s32 x) {
     return (f32)fn_80088598((f32)x * lbl_801A7370, lbl_801A7374);
 }
 
-#pragma optimize_for_size on
 void fn_8006B99C(void) {
     s32 v0;
     f32 v1;

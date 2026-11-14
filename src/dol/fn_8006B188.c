@@ -28,8 +28,6 @@ extern void fn_800137C4(s32, void *);
 extern s32 fn_8006AF94(void);
 extern u32 PADSetSamplingCallback(u32);
 
-#pragma opt_strength_reduction off
-#pragma opt_loop_invariants off
 void fn_8006B188(void) {
     s32 off;
     void *handler;
@@ -54,6 +52,3 @@ void fn_8006B188(void) {
         lbl_801A6C88 = 1;
     }
 }
-#pragma opt_loop_invariants reset
-
-#pragma opt_strength_reduction reset

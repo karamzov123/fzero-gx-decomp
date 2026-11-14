@@ -8,7 +8,6 @@ typedef struct Fn8006BC1CData {
     u32 flags;
 } Fn8006BC1CData;
 
-#pragma optimize_for_size on
 s32 fn_8006BC1C(Fn8006BC1CData *data, void *value) {
     u32 i;
     data->flags = 0xff;

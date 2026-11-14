@@ -11,7 +11,6 @@ extern u32 lbl_801A6C8C;
 extern void fn_8006C7E8(void *arg0, void *arg1);
 extern void fn_8006B99C(void);
 
-#pragma optimize_for_size on
 void fn_8006B92C(Fn8006B92CData *arg0) {
     s32 i;
 

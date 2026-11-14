@@ -29,7 +29,6 @@ extern void fn_800137C4(s32, void *);
 extern void fn_8006AE90(void *, void *, void *);
 extern void fn_8006C92C(void *);
 
-#pragma opt_strength_reduction off
 void fn_8006AF94(void) {
     s32 off;
     u8 *base;
@@ -59,5 +58,3 @@ void fn_8006AF94(void) {
         off += 0x1248;
     } while (i < 4);
 }
-#pragma opt_strength_reduction reset
-

@@ -9,7 +9,6 @@ struct fn_8006C634_lbl_8019E014 {
 
 extern struct fn_8006C634_lbl_8019E014 lbl_8019E014[];
 
-#pragma optimize_for_size on
 void fn_8006C634(u32 arg0, u32 arg1, struct fn_8006C634_Arg2 *arg2) {
     u32 v0;
     s32 v1;

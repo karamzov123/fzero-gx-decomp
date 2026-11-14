@@ -36317,8 +36317,12 @@
       "fn_8006AA44"
     ],
     "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
+    "mw_version": "GC/2.0p1",
+    "extra_cflags": [
+      "-O4,s",
+      "-use_lmw_stmw",
+      "on"
+    ]
   },
   {
     "module": "main",
@@ -36351,8 +36355,9 @@
       "fn_8006AF94"
     ],
     "status": "matching",
-    "mw_version": "GC/1.3.2",
+    "mw_version": "GC/2.0p1",
     "extra_cflags": [
+      "-O4,s",
       "-use_lmw_stmw",
       "on"
     ]
@@ -36364,8 +36369,12 @@
       "fn_8006B048"
     ],
     "status": "matching",
-    "mw_version": "GC/1.3",
-    "extra_cflags": []
+    "mw_version": "GC/2.0p1",
+    "extra_cflags": [
+      "-O4,s",
+      "-use_lmw_stmw",
+      "on"
+    ]
   },
   {
     "module": "main",
@@ -36374,8 +36383,9 @@
       "fn_8006B188"
     ],
     "status": "matching",
-    "mw_version": "GC/1.3.2",
+    "mw_version": "GC/2.0p1",
     "extra_cflags": [
+      "-O4,s",
       "-use_lmw_stmw",
       "on"
     ]
@@ -36387,8 +36397,12 @@
       "fn_8006B224"
     ],
     "status": "matching",
-    "mw_version": "GC/1.3",
-    "extra_cflags": []
+    "mw_version": "GC/2.0p1",
+    "extra_cflags": [
+      "-O4,s",
+      "-use_lmw_stmw",
+      "on"
+    ]
   },
   {
     "module": "main",
@@ -36484,8 +36498,12 @@
       "fn_8006B92C"
     ],
     "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
+    "mw_version": "GC/2.0p1",
+    "extra_cflags": [
+      "-O4,s",
+      "-use_lmw_stmw",
+      "on"
+    ]
   },
   {
     "module": "main",
@@ -36494,8 +36512,9 @@
       "fn_8006B99C"
     ],
     "status": "matching",
-    "mw_version": "GC/1.3.2",
+    "mw_version": "GC/2.0p1",
     "extra_cflags": [
+      "-O4,s",
       "-use_lmw_stmw",
       "on"
     ],
@@ -36563,8 +36582,12 @@
       "fn_8006BC1C"
     ],
     "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
+    "mw_version": "GC/2.0p1",
+    "extra_cflags": [
+      "-O4,s",
+      "-use_lmw_stmw",
+      "on"
+    ]
   },
   {
     "module": "main",
@@ -36573,8 +36596,12 @@
       "fn_8006BC50"
     ],
     "status": "matching",
-    "mw_version": "GC/1.3",
-    "extra_cflags": []
+    "mw_version": "GC/2.0p1",
+    "extra_cflags": [
+      "-O4,s",
+      "-use_lmw_stmw",
+      "on"
+    ]
   },
   {
     "module": "main",
@@ -36651,8 +36678,12 @@
       "fn_8006C570"
     ],
     "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
+    "mw_version": "GC/2.0p1",
+    "extra_cflags": [
+      "-O4,s",
+      "-use_lmw_stmw",
+      "on"
+    ]
   },
   {
     "module": "main",
@@ -36661,8 +36692,12 @@
       "fn_8006C634"
     ],
     "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
+    "mw_version": "GC/2.0p1",
+    "extra_cflags": [
+      "-O4,s",
+      "-use_lmw_stmw",
+      "on"
+    ]
   },
   {
     "module": "main",
@@ -36681,8 +36716,12 @@
       "fn_8006C788"
     ],
     "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
+    "mw_version": "GC/2.0p1",
+    "extra_cflags": [
+      "-O4,s",
+      "-use_lmw_stmw",
+      "on"
+    ]
   },
   {
     "module": "main",
@@ -36701,8 +36740,9 @@
       "fn_8006C92C"
     ],
     "status": "matching",
-    "mw_version": "GC/1.3",
+    "mw_version": "GC/2.0p1",
     "extra_cflags": [
+      "-O4,s",
       "-use_lmw_stmw",
       "on"
     ]

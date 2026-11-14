@@ -13,7 +13,6 @@ struct fn_8006C788_Arg1 {
     s16 unk_6;
 };
 
-#pragma optimize_for_size on
 s32 fn_8006C788(struct fn_8006C788_Arg0 *arg0, struct fn_8006C788_Arg1 *arg1) {
     s32 current;
     s32 scale;

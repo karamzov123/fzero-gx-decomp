@@ -18,10 +18,6 @@ extern u8 lbl_80199670[0x4920];
 extern s32 fn_8006B3F0(Fn8006B3F0Data *);
 extern void fn_800139E8(u32, u32, s32);
 
-#pragma opt_strength_reduction off
-#pragma opt_propagation off
-#pragma use_lmw_stmw on
-#pragma optimize_for_size on
 void fn_8006B224(void) {
     s32 i;
     u8 *base;

@@ -47,8 +47,6 @@ extern s32 fn_8006C190(struct fn_8006C92C_Obj *, u32);
 extern u8 lbl_8019DF90[132];
 extern void fn_800139E8(u32, u32, s32);
 
-#pragma optimize_for_size on
-
 /* Pushes (d, dt) into the ring buffers; returns dt. */
 static inline u32 fn_8006C92C_push(struct fn_8006C92C_Arg0 *arg0, s32 d, u32 dt) {
     arg0->unk_E8--;
