@@ -95,6 +95,11 @@ All three still match their real retail objects and passed the supported 16-targ
 These devices were unmarked, so the 34-primary-warning tally is unchanged. See
 [the measured source and rollback evidence](state/repairs/compound-scaling-20261114.json).
 
+A subsequent main_rel TU cleanup removes one additional operand helper from `fn_1_15EC40`:
+a scoped float intensity is computed with ordinary arithmetic before the renderer call. Its
+retail object and 16-target link still match. Two other TU rewrites did not match and were not
+installed; see [the follow-up evidence](state/repairs/tu-native-intensity-20261114.json).
+
 Revision submissions now refresh literal-pool bindings when source changes renumber private
 constants. Failed revisions preserve the previously accepted source, compiler settings, split
 ownership and pool/verified state; a real stale-binding regression verified that fallback.

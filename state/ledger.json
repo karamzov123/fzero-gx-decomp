@@ -1,5 +1,5 @@
 {
- "generated": 1794697607,
+ "generated": 1794698730,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -99799,11 +99799,11 @@
    "size": 940,
    "status": "matched",
    "attempts": 2,
-   "best_percent": 99.15,
+   "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": "20fdc8dc7",
+   "matched_commit": "598c4a97a",
    "blocked_reason": null,
    "prev_status": null,
    "link_state": "verified"
@@ -698080,6 +698080,27 @@
    "cost_usd": 0.0,
    "outcome": "shadow-matched",
    "notes": "revised: devices: remove redundant profile common-subexpression pragma",
+   "best_body_path": null,
+   "stale_checks": 0,
+   "best_in_attempt": 100.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 27289,
+   "symbol": "fn_1_15EC40",
+   "agent": "revise-hermes-wind-intensity-20261114",
+   "harness": null,
+   "model": null,
+   "started": 1794698106,
+   "ended": 1794698261,
+   "checks": 1,
+   "final_percent": 100.0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "shadow-matched",
+   "notes": "revised: devices: natural wind intensity calculation without operand helper",
    "best_body_path": null,
    "stale_checks": 0,
    "best_in_attempt": 100.0,
