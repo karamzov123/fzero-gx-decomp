@@ -6968,6 +6968,7 @@ rel/main_rel/car_test/fn_1_7E8F4.c:
 
 rel/main_rel/alloc/fn_1_5370.c:
 	.text       start:0x00005370 end:0x000056B8 align:4
+	.data       start:0x00003318 end:0x0000341C align:8
 
 rel/main_rel/enemy_ctrl/fn_1_C6F8C.c:
 	.text       start:0x000C6F8C end:0x000C7224 align:4
@@ -18946,9 +18947,6 @@ rel/main_rel/data/lbl_1_data_44070.c:
 
 rel/main_rel/data/lbl_1_data_44090.c:
 	.data       start:0x00044090 end:0x000440B0 align:8
-
-rel/main_rel/data/lbl_1_data_3318.c:
-	.data       start:0x00003318 end:0x000033EC align:8
 
 rel/main_rel/data/lbl_1_data_1C0B8.c:
 	.data       start:0x0001C0B8 end:0x0001C0C0 align:8

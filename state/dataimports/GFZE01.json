@@ -276704,39 +276704,6 @@
     "unit_size": 80,
     "unit_start": 13000
   },
-  "main_rel:lbl_1_data_3318": {
-    "address": 13080,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "u8 lbl_1_data_3318[0xB4]",
-        "path": "include/rel/main_rel/camera.h"
-      }
-    ],
-    "definition": "u8 lbl_1_data_3318[0xB4]",
-    "method": "typed-data",
-    "module": "main_rel",
-    "references": [
-      "fn_1_6400",
-      "fn_1_6D2C",
-      "fn_1_6DD0",
-      "fn_1_8298",
-      "fn_1_8840",
-      "fn_1_8A0C",
-      "game_camera_set_shake",
-      "live_camera_set_shake"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 211,
-    "sha256": "5e2c6710f92dba601ec775266b25a7b2799da6c853c6075c0fab1884ceb0c319",
-    "size": 180,
-    "source": "rel/main_rel/data/lbl_1_data_3318.c",
-    "symbol": "lbl_1_data_3318",
-    "unit_align": 8,
-    "unit_size": 212,
-    "unit_start": 13080
-  },
   "main_rel:lbl_1_data_334": {
     "address": 820,
     "align": 4,
@@ -276793,66 +276760,6 @@
     "unit_align": 8,
     "unit_size": 8,
     "unit_start": 824
-  },
-  "main_rel:lbl_1_data_33CC": {
-    "address": 13260,
-    "align": 4,
-    "declarations": [
-      {
-        "declaration": "u8 lbl_1_data_33CC[0xF]",
-        "path": "include/rel/main_rel/camera.h"
-      },
-      {
-        "declaration": "u8 lbl_1_data_33CC[0xF]",
-        "path": "src/rel/main_rel/camera.c"
-      }
-    ],
-    "definition": "char lbl_1_data_33CC[15]",
-    "method": "string",
-    "module": "main_rel",
-    "references": [
-      "fn_1_5370"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 211,
-    "sha256": "603317f3deac9610e47d00aa136744f8d1a559f5d9074aff46ff5cefc552800c",
-    "size": 15,
-    "source": "rel/main_rel/data/lbl_1_data_3318.c",
-    "symbol": "lbl_1_data_33CC",
-    "unit_align": 8,
-    "unit_size": 212,
-    "unit_start": 13080
-  },
-  "main_rel:lbl_1_data_33DC": {
-    "address": 13276,
-    "align": 4,
-    "declarations": [
-      {
-        "declaration": "u8 lbl_1_data_33DC[0xF]",
-        "path": "include/rel/main_rel/camera.h"
-      },
-      {
-        "declaration": "u8 lbl_1_data_33DC[0xF]",
-        "path": "src/rel/main_rel/camera.c"
-      }
-    ],
-    "definition": "char lbl_1_data_33DC[15]",
-    "method": "string",
-    "module": "main_rel",
-    "references": [
-      "fn_1_5370"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 211,
-    "sha256": "b81f719d24f71abec489c1456bfb01830ce21b794f709586f5c29e98630a1c09",
-    "size": 15,
-    "source": "rel/main_rel/data/lbl_1_data_3318.c",
-    "symbol": "lbl_1_data_33DC",
-    "unit_align": 8,
-    "unit_size": 212,
-    "unit_start": 13080
   },
   "main_rel:lbl_1_data_33E9C": {
     "address": 212636,
