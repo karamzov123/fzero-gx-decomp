@@ -42136,6 +42136,90 @@ void fn_10_1E41C(void) {
 /* fzgx:end fn_10_1E41C */
 
 /* fzgx:begin fn_10_1E57C */
+#include "rel/sel/data/lbl_10_data_6670.h"
+#include "rel/sel/data/lbl_10_data_66AC.h"
+#include "rel/sel/data/lbl_10_data_66DC.h"
+
+extern char lbl_10_data_6380[];
+extern char lbl_10_data_6654[];
+
+Data_lbl_10_data_6670 lbl_10_data_6670 = {
+    0x4E6F2E25U,
+    0x640A0A83U,
+    0x82815B83U,
+    0x68914991U,
+    0xF0928682U,
+    0xC582B781U,
+    0x42000000U,
+    (u8 *)&lbl_10_data_6654,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    (u8 *)&lbl_10_data_6670
+};
+char lbl_10_data_66A4[8] = "No.%d\n\n";
+Data_lbl_10_data_66AC lbl_10_data_66AC = {
+    (u8 *)&lbl_10_data_66A4,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    (u8 *)&lbl_10_data_66A4,
+    (u8 *)&lbl_10_data_66A4,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    (u8 *)&lbl_10_data_66A4
+};
+Data_lbl_10_data_66DC lbl_10_data_66DC = {
+    0x838C815BU,
+    0x83588E51U,
+    0x89C10000U,
+    (u8 *)&lbl_10_data_6380,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    0x00000000U,
+    (u8 *)&lbl_10_data_66DC,
+    0x82D982E8U,
+    0x82B182B5U,
+    0x20836D83U,
+    0x8A82B100U,
+    0x8341838DU,
+    0x837D8365U,
+    0x83898373U,
+    0x815B8260U,
+    0x8B898389U,
+    0x8343835AU,
+    0x83938358U,
+    0x00000000U,
+    0x25642573U,
+    0x00000000U,
+    0x25642573U,
+    0x73000000U,
+    0x2D2D2D00U,
+    0x25326400U,
+    0x25732573U,
+    0x25730000U,
+    0x30000000U,
+    0x25732573U,
+    0x00000000U,
+    0x4E6F2E25U,
+    0x64200000U,
+    0x82C682C4U,
+    0x82E082A0U,
+    0x82F182E7U,
+    0x82C182ABU,
+    0x815B8389U,
+    0x8343835AU,
+    0x83938358U,
+    0x00000000U,
+    0x25336400U,
+    0x25737300U
+};
+
 #pragma peephole off
 int fn_10_1E57C(int arg0, int arg1, int arg2) {
     if (arg2 == 0) {
