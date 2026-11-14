@@ -7251,9 +7251,6 @@ rel/main_rel/sound/fn_1_A24CC.c:
 rel/main_rel/game/fn_1_3F5F8.c:
 	.text       start:0x0003F5F8 end:0x0003F75C align:4
 
-rel/main_rel/sel_static_disp/fn_1_135D7C.c:
-	.text       start:0x00135D7C end:0x00136174 align:4
-
 rel/main_rel/som/fn_1_1384C.c:
 	.text       start:0x0001384C end:0x00013A28 align:4
 
@@ -7276,7 +7273,8 @@ rel/main_rel/game/fn_1_3F8EC.c:
 	.text       start:0x0003F8EC end:0x0003FBF4 align:4
 
 rel/main_rel/sel_static_disp/fn_1_1358BC.c:
-	.text       start:0x001358BC end:0x00135B80 align:4
+	.text       start:0x001358BC end:0x00136174 align:4
+	.data       start:0x00041A30 end:0x00041AB8 align:8
 
 rel/main_rel/load/fn_1_45E98.c:
 	.text       start:0x00045E98 end:0x00046144 align:4
@@ -7287,10 +7285,6 @@ rel/main_rel/effect/fn_1_62E9C.c:
 rel/main_rel/bg_win/fn_1_15B70C.c:
 	.text       start:0x0015B70C end:0x0015B970 align:4
 	.data       start:0x0004C930 end:0x0004C980 align:8
-
-rel/main_rel/sel_static_disp/fn_1_135B80.c:
-	.text       start:0x00135B80 end:0x00135D7C align:4
-	.data       start:0x00041A60 end:0x00041A8C align:8
 
 rel/main_rel/effect/fn_1_61EF4.c:
 	.text       start:0x00061EF4 end:0x000620C4 align:4
@@ -21112,7 +21106,7 @@ rel/main_rel/data/lbl_1_data_41928.c:
 	.data       start:0x00041928 end:0x00041930 align:8
 
 rel/main_rel/data/lbl_1_data_41A10.c:
-	.data       start:0x00041A10 end:0x00041A34 align:8
+	.data       start:0x00041A10 end:0x00041A30 align:8
 
 rel/main_rel/data/lbl_1_data_41AB8.c:
 	.data       start:0x00041AB8 end:0x00041AD0 align:8

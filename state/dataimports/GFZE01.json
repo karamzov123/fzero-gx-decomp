@@ -321322,40 +321322,6 @@
     "unit_size": 36,
     "unit_start": 268816
   },
-  "main_rel:lbl_1_data_41A30": {
-    "address": 268848,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "u32 lbl_1_data_41A30",
-        "path": "include/rel/main_rel/sel_static_disp.h"
-      },
-      {
-        "declaration": "char lbl_1_data_41A30[]",
-        "path": "src/rel/main_rel/sel_static_disp.c"
-      }
-    ],
-    "definition": "char lbl_1_data_41A30[]",
-    "method": "string",
-    "module": "main_rel",
-    "references": [
-      "fn_1_1358BC",
-      "fn_1_135B80",
-      "fn_1_135D7C",
-      "fn_1_136174",
-      "fn_1_13A9B8"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 36,
-    "sha256": "f71e7285d43e4414430f311852dc32b471d8bfba64d01282af7dbc5f26699171",
-    "size": 4,
-    "source": "rel/main_rel/data/lbl_1_data_41A10.c",
-    "symbol": "lbl_1_data_41A30",
-    "unit_align": 8,
-    "unit_size": 36,
-    "unit_start": 268816
-  },
   "main_rel:lbl_1_data_41AB8": {
     "address": 268984,
     "align": 8,

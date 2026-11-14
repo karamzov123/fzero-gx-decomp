@@ -1901,7 +1901,7 @@ void fn_1_1358BC(s16 arg0, s16 arg1, int arg2, s16 arg3, int unused, void* arg5,
         fn_1_4962C();
         {
             const f32* scale = &lbl_1_rodata_8960;
-            fn_1_4CF3C(*scale * arg8, &lbl_1_data_41A30,
+            fn_1_4CF3C(*scale * arg8, "%s\n",
                        fn_1_14FEAC(arg5, arg6, arg7, buf, 0));
         }
     } else {
@@ -1937,7 +1937,6 @@ extern void fn_1_4962C(void);
 extern char* fn_1_14FEAC(void*, void*, void*, void*, int);
 extern char* fn_1_7F49C(s16, int, void*);
 extern void fn_1_4CF3C(f32, void*, ...);
-extern const f32 lbl_1_rodata_8960[];
 
 void fn_1_135B80(f32 scale, f32 arg7, f32 arg8, s16 x, s16 y, u32 mode, s16 index,
                  u32 unused, void* a, void* b, void* c) {
@@ -1982,9 +1981,9 @@ void fn_1_135B80(f32 scale, f32 arg7, f32 arg8, s16 x, s16 y, u32 mode, s16 inde
     fn_1_4962C();
 
     if (index >= 0x29 || index < 0) {
-        fn_1_4CF3C((f32)(lbl_1_rodata_8960[0] * scale), &lbl_1_data_41A30, (str = fn_1_14FEAC(a, b, c, buf1, 0)));
+        fn_1_4CF3C((f32)(lbl_1_rodata_8960 * scale), "%s\n", (str = fn_1_14FEAC(a, b, c, buf1, 0)));
     } else {
-        fn_1_4CF3C((f32)(lbl_1_rodata_8960[0] * scale), &lbl_1_data_41A30, (str = fn_1_7F49C(index, 0, buf2)));
+        fn_1_4CF3C((f32)(lbl_1_rodata_8960 * scale), "%s\n", (str = fn_1_7F49C(index, 0, buf2)));
     }
 }
 /* fzgx:end fn_1_135B80 */
@@ -2034,7 +2033,6 @@ typedef struct SelMachineEntry {
 } SelMachineEntry;
 
 extern SelImageTable lbl_1_rodata_8964;
-extern SelImagePacket lbl_1_rodata_26F8;
 extern const f64 lbl_1_rodata_8600;
 extern const f32 lbl_1_rodata_8960;
 extern void* fn_1_12F118(void);
@@ -2046,7 +2044,6 @@ extern void fn_1_496FC(f32, f32);
 extern void fn_1_4954C(f32);
 extern void fn_1_4955C(f32, f32);
 extern void fn_1_4962C(void);
-extern u32 fn_1_14FEAC(u32, u32, u32, void*, void*);
 extern void fn_1_4CF3C(f32, void*, ...);
 
 void fn_1_135D7C(s16 x, s16 y, u32 format, s16 index, void* arg4, s16 slot, int arg6,
@@ -2072,7 +2069,7 @@ void fn_1_135D7C(s16 x, s16 y, u32 format, s16 index, void* arg4, s16 slot, int 
         }
         if (!(entry->flags & 0x40000000)) {
             index = entry->image_index;
-            packet = lbl_1_rodata_26F8;
+            packet = *(SelImagePacket *)&lbl_1_rodata_26F8;
             i = index < 0 ? 0 : ((u32)index > 40 ? 40 : index);
             packet.image = images.image[i];
             packet.x = (f32)x;
@@ -2102,12 +2099,12 @@ void fn_1_135D7C(s16 x, s16 y, u32 format, s16 index, void* arg4, s16 slot, int 
             fn_1_4962C();
             {
                 const f32* scale = &lbl_1_rodata_8960;
-                fn_1_4CF3C(*scale * scale_x, &lbl_1_data_41A30,
-                           fn_1_14FEAC(entry->body, entry->cockpit, entry->booster, name, arg4));
+                fn_1_4CF3C(*scale * scale_x, "%s\n",
+                           fn_1_14FEAC((void *)entry->body, (void *)entry->cockpit, (void *)entry->booster, name, (int)arg4));
             }
         }
     } else {
-        packet = lbl_1_rodata_26F8;
+        packet = *(SelImagePacket *)&lbl_1_rodata_26F8;
         i = index < 0 ? 0 : ((u32)index > 40 ? 40 : index);
         packet.image = images.image[i];
         packet.x = (f32)x;
@@ -15818,7 +15815,6 @@ void fn_1_14A028(void) {
         }
     }
 }
-
 /* fzgx:end fn_1_14A028 */
 
 /* fzgx:begin fn_1_14A17C noprologue */
@@ -18115,7 +18111,6 @@ void fn_1_14B93C(void) {
         }
     }
 }
-
 /* fzgx:end fn_1_14B93C */
 
 /* fzgx:begin fn_1_14BC3C */
@@ -20470,7 +20465,6 @@ char *fn_1_14EA74(s16 arg0, char *arg1, s16 arg2) {
     }
     return arg1;
 }
-
 /* fzgx:end fn_1_14EA74 */
 
 /* fzgx:begin fn_1_14EBF8 noprologue */
