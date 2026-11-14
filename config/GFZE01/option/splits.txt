@@ -119,6 +119,7 @@ rel/option/_prolog/fn_4_D7C.c:
 
 rel/option/_prolog/fn_4_4B74.c:
 	.text       start:0x00004B74 end:0x00004CB8 align:4
+	.data       start:0x00002870 end:0x00002998 align:8
 
 rel/option/_prolog/fn_4_800.c:
 	.text       start:0x00000800 end:0x00000894 align:4
@@ -467,7 +468,7 @@ rel/option/data/lbl_4_data_1500.c:
 	.data       start:0x00001500 end:0x00001520 align:8
 
 rel/option/data/lbl_4_data_2848.c:
-	.data       start:0x00002848 end:0x00002974 align:8
+	.data       start:0x00002848 end:0x00002870 align:8
 
 rel/option/data/lbl_4_data_2AE8.c:
 	.data       start:0x00002AE8 end:0x00002AFC align:8

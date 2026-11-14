@@ -157061,10 +157061,7 @@
     "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/option/_prolog.c",
-    "pool": {
-      "@22": "jumptable_4_data_2974"
-    }
+    "tu": "rel/option/_prolog.c"
   },
   {
     "module": "option",
@@ -158922,9 +158919,7 @@
     "module": "option",
     "source": "rel/option/data/lbl_4_data_2848.c",
     "symbols": [
-      "lbl_4_data_2848",
-      "lbl_4_data_2870",
-      "lbl_4_data_290C"
+      "lbl_4_data_2848"
     ],
     "status": "matching",
     "data": true,

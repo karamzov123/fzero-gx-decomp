@@ -7800,7 +7800,40 @@ void fn_4_4B10(void) {
 /* fzgx:begin fn_4_4B74 noprologue */
 #include "types.h"
 
-extern u8 jumptable_4_data_2974[36];
+#include "rel/option/data/lbl_4_data_290C.h"
+
+extern u8 lbl_4_data_C[];
+
+char lbl_4_data_2870[155] = "Side Attack:Quickly press the L or R Button\n               twice.\nSpin Attack:Press the L and "
+    "R Buttons\n               simultaneously and turn the wheel. ";
+Data_lbl_4_data_290C lbl_4_data_290C = {
+    0x83548343U,
+    0x83688341U,
+    0x835E8362U,
+    0x834E8163U,
+    0x8367838AU,
+    0x834B815BU,
+    0x825189F1U,
+    0x88F882ABU,
+    0x0A835883U,
+    0x73839383U,
+    0x41835E83U,
+    0x62834E81U,
+    0x63836783U,
+    0x8A834B81U,
+    0x5B826B82U,
+    0x7197BC88U,
+    0xF882AB81U,
+    0x95836E83U,
+    0x93836883U,
+    0x8B000000U,
+    (u8 *)&lbl_4_data_2870,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_C,
+    (u8 *)&lbl_4_data_290C
+};
 
 struct fn_4_4B74_obj {
     u16 unk_0;
