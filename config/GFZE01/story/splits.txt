@@ -117,14 +117,8 @@ rel/story/story_mode/fn_7_3FCC.c:
 rel/story/story_mode/fn_7_4050.c:
 	.text       start:0x00004050 end:0x00004094 align:4
 
-rel/story/story_mode/fn_7_4E28.c:
-	.text       start:0x00004E28 end:0x00004EF8 align:4
-
 rel/story/story_mode/fn_7_388.c:
 	.text       start:0x00000388 end:0x000003E4 align:4
-
-rel/story/story_mode/fn_7_4EF8.c:
-	.text       start:0x00004EF8 end:0x00004FD0 align:4
 
 rel/story/story_mode/fn_7_1BA8.c:
 	.text       start:0x00001BA8 end:0x00001C0C align:4
@@ -165,15 +159,12 @@ rel/story/story_mode/fn_7_1400.c:
 rel/story/story_mode/_prolog.c:
 	.text       start:0x00000000 end:0x00000244 align:4
 
-rel/story/story_mode/fn_7_4FD0.c:
-	.text       start:0x00004FD0 end:0x000065E4 align:4
-
 rel/story/story_mode/fn_7_232C.c:
 	.text       start:0x0000232C end:0x0000235C align:4
 
 rel/story/story_mode/fn_7_41FC.c:
-	.text       start:0x000041FC end:0x00004E28 align:4
-	.data       start:0x00013FE0 end:0x00014054 align:8
+	.text       start:0x000041FC end:0x000065E4 align:4
+	.data       start:0x00013FE0 end:0x00014124 align:8
 
 rel/story/story_mode/fn_7_15BC.c:
 	.text       start:0x000015BC end:0x000016FC align:4

@@ -122132,7 +122132,7 @@
   {
    "symbol": "fn_7_4E28",
    "module": "story",
-   "unit": "rel/story/story_mode/fn_7_4E28.c",
+   "unit": "rel/story/story_mode/fn_7_41FC.c",
    "addr": 20008,
    "size": 208,
    "status": "matched",
@@ -122149,7 +122149,7 @@
   {
    "symbol": "fn_7_4EF8",
    "module": "story",
-   "unit": "rel/story/story_mode/fn_7_4EF8.c",
+   "unit": "rel/story/story_mode/fn_7_41FC.c",
    "addr": 20216,
    "size": 216,
    "status": "matched",
@@ -122166,7 +122166,7 @@
   {
    "symbol": "fn_7_4FD0",
    "module": "story",
-   "unit": "rel/story/story_mode/fn_7_4FD0.c",
+   "unit": "rel/story/story_mode/fn_7_41FC.c",
    "addr": 20432,
    "size": 5652,
    "status": "matched",
