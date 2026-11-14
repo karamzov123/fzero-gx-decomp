@@ -118,20 +118,17 @@ static inline s32 fn_80048340_put32(struct fn_80048340_stream *arg1,
 static inline s32 fn_80048340_putBytes(struct fn_80048340_stream *arg1,
                                        const void *src, u32 n) {
     struct fn_80048340_block blk;
-    u16 lab_t2;
 
     (*(fn_80048340_FnA *)(arg1->vtable + 24))(arg1, 0, n, &blk);
     if ((s32)blk.size < (s32)n) {
         (*(fn_80048340_FnB *)(28 + arg1->vtable))(arg1, 0, &blk);
         return 0;
     }
-    lab_t2 = n;
-    memcpy((void *)blk.ptr, src, lab_t2);
+    memcpy((void *)blk.ptr, src, n & 0xffff);
     (*(fn_80048340_FnC *)(arg1->vtable + 32))(arg1, 1, &blk);
     return n;
 }
 
-#pragma opt_propagation off
 s32 fn_80048340(struct fn_80048340_data *arg0, struct fn_80048340_stream *arg1) {
     s32 len;
     s32 size;
@@ -322,4 +319,3 @@ fail:
     /* every field write funnels into this single shared failure exit */
     return 0;
 }
-#pragma opt_propagation reset
