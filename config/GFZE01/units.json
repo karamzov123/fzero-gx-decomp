@@ -16736,221 +16736,6 @@
   },
   {
     "module": "main",
-    "source": "dol/VIConfigure.c",
-    "symbols": [
-      "VIConfigure"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ],
-    "pool": {
-      "@190": "lbl_80124428",
-      "@196": "lbl_801A64A4",
-      "...data.0": "lbl_801241C8",
-      "...bss.0": "lbl_8015CF68",
-      "lbl_8015CF68": "lbl_8015CF68",
-      "lbl_8015CF68__fzgx_offset_78": "lbl_8015CF68+0x78",
-      "lbl_8015D058__fzgx_offset_0": "lbl_8015D058"
-    }
-  },
-  {
-    "module": "main",
-    "source": "dol/VIFlush.c",
-    "symbols": [
-      "VIFlush"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-nodefaults",
-      "-proc",
-      "gekko",
-      "-align",
-      "powerpc",
-      "-enum",
-      "int",
-      "-fp",
-      "hardware",
-      "-Cpp_exceptions",
-      "off",
-      "-pragma",
-      "'cats",
-      "off'",
-      "-pragma",
-      "'warn_notinlined",
-      "off'",
-      "-use_lmw_stmw",
-      "on",
-      "-maxerrors",
-      "1",
-      "-nosyspath",
-      "-RTTI",
-      "off",
-      "-multibyte",
-      "-DMATCHING=1",
-      "-inline",
-      "auto",
-      "-lang=c",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-str",
-      "reuse",
-      "-common",
-      "off",
-      "-O4,p"
-    ]
-  },
-  {
-    "module": "main",
-    "source": "dol/VIGetCurrentLine.c",
-    "symbols": [
-      "VIGetCurrentLine"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ]
-  },
-  {
-    "module": "main",
-    "source": "dol/VIGetDTVStatus.c",
-    "symbols": [
-      "VIGetDTVStatus"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/VIGetNextField.c",
-    "symbols": [
-      "VIGetNextField"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ]
-  },
-  {
-    "module": "main",
-    "source": "dol/VIGetTvFormat.c",
-    "symbols": [
-      "VIGetTvFormat"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ],
-    "pool": {
-      "@11": "@724"
-    }
-  },
-  {
-    "module": "main",
-    "source": "dol/VIInit.c",
-    "symbols": [
-      "VIInit"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ],
-    "pool": {
-      "...data.0": "lbl_801241C8",
-      "...bss.0": "lbl_8015CF68",
-      "lbl_8015CF68": "lbl_8015CF68",
-      "lbl_8015CF68__fzgx_offset_78": "lbl_8015CF68+0x78",
-      "lbl_8015D058__fzgx_offset_0": "lbl_8015D058"
-    }
-  },
-  {
-    "module": "main",
-    "source": "dol/VISetBlack.c",
-    "symbols": [
-      "VISetBlack"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/VISetNextFrameBuffer.c",
-    "symbols": [
-      "VISetNextFrameBuffer"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/VIWaitForRetrace.c",
-    "symbols": [
-      "VIWaitForRetrace"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
     "source": "dol/WriteCallback.c",
     "symbols": [
       "WriteCallback"
@@ -18937,9 +18722,27 @@
   },
   {
     "module": "main",
-    "source": "dol/__VIInit.c",
+    "source": "dol/VI.c",
     "symbols": [
-      "__VIInit"
+      "__VIRetraceHandler",
+      "fn_8001A78C",
+      "fn_8001A7D0",
+      "getTiming",
+      "__VIInit",
+      "VIInit",
+      "VIWaitForRetrace",
+      "setFbbRegs",
+      "setVerticalRegs",
+      "VIConfigure",
+      "VIFlush",
+      "VISetNextFrameBuffer",
+      "VISetBlack",
+      "fn_8001BE6C",
+      "getCurrentFieldEvenOdd",
+      "VIGetNextField",
+      "VIGetCurrentLine",
+      "VIGetTvFormat",
+      "VIGetDTVStatus"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
@@ -18955,16 +18758,6 @@
       "-common",
       "off"
     ]
-  },
-  {
-    "module": "main",
-    "source": "dol/__VIRetraceHandler.c",
-    "symbols": [
-      "__VIRetraceHandler"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": []
   },
   {
     "module": "main",
@@ -20713,9 +20506,7 @@
     "module": "main",
     "source": "dol/data/idTmp.c",
     "symbols": [
-      "idTmp",
-      "lbl_801A6920",
-      "lbl_801A6924"
+      "idTmp"
     ],
     "status": "matching",
     "data": true,
@@ -22024,19 +21815,7 @@
     "symbols": [
       "lbl_80124110",
       "fstLoad_GameNameFormat",
-      "lbl_80124172",
-      "lbl_801241C8"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_80124428.c",
-    "symbols": [
-      "lbl_80124428"
+      "lbl_80124172"
     ],
     "status": "matching",
     "data": true,
@@ -22532,8 +22311,6 @@
     "module": "main",
     "source": "dol/data/lbl_8015CF68.c",
     "symbols": [
-      "lbl_8015CF68",
-      "lbl_8015D058",
       "lbl_8015D0B0",
       "lbl_8015D0C0",
       "lbl_8015D100",
@@ -23526,8 +23303,6 @@
     "module": "main",
     "source": "dol/data/lbl_801A64A0.c",
     "symbols": [
-      "lbl_801A64A0",
-      "lbl_801A64A4",
       "lbl_801A64B0",
       "lbl_801A64B4",
       "lbl_801A64B8",
@@ -24189,113 +23964,6 @@
     "symbols": [
       "lbl_801A6910",
       "bb2"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_801A6928.c",
-    "symbols": [
-      "lbl_801A6928",
-      "lbl_801A692C",
-      "lbl_801A6934"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_801A6938.c",
-    "symbols": [
-      "lbl_801A6938",
-      "lbl_801A693C"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_801A6940.c",
-    "symbols": [
-      "lbl_801A6940",
-      "lbl_801A6942",
-      "lbl_801A6944"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_801A6948.c",
-    "symbols": [
-      "lbl_801A6948"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_801A6950.c",
-    "symbols": [
-      "lbl_801A6950"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_801A6958.c",
-    "symbols": [
-      "lbl_801A6958"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_801A6960.c",
-    "symbols": [
-      "lbl_801A6960",
-      "CurrTvMode"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_801A6968.c",
-    "symbols": [
-      "lbl_801A6968",
-      "lbl_801A696C"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_801A6970.c",
-    "symbols": [
-      "lbl_801A6970",
-      "lbl_801A6974"
     ],
     "status": "matching",
     "data": true,
@@ -31271,36 +30939,6 @@
     "source": "dol/fn_8001989C.c",
     "symbols": [
       "fn_8001989C"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8001A78C.c",
-    "symbols": [
-      "fn_8001A78C"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8001A7D0.c",
-    "symbols": [
-      "fn_8001A7D0"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8001BE6C.c",
-    "symbols": [
-      "fn_8001BE6C"
     ],
     "status": "matching",
     "mw_version": null,
@@ -46487,40 +46125,6 @@
   },
   {
     "module": "main",
-    "source": "dol/getCurrentFieldEvenOdd.c",
-    "symbols": [
-      "getCurrentFieldEvenOdd"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ]
-  },
-  {
-    "module": "main",
-    "source": "dol/getTiming.c",
-    "symbols": [
-      "getTiming"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "pool": {
-      "@19": "jumptable_801243BC"
-    }
-  },
-  {
-    "module": "main",
     "source": "dol/is_utf8_complete.c",
     "symbols": [
       "is_utf8_complete"
@@ -47346,48 +46950,6 @@
       "8",
       "-use_lmw_stmw",
       "on"
-    ]
-  },
-  {
-    "module": "main",
-    "source": "dol/setFbbRegs.c",
-    "symbols": [
-      "setFbbRegs"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ]
-  },
-  {
-    "module": "main",
-    "source": "dol/setVerticalRegs.c",
-    "symbols": [
-      "setVerticalRegs"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
     ]
   },
   {

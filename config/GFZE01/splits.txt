@@ -155,9 +155,6 @@ dol/DVDReadDiskID.c:
 dol/__DVDDequeueWaitingQueue.c:
 	.text       start:0x80019FFC end:0x8001A05C
 
-dol/fn_8001BE6C.c:
-	.text       start:0x8001BE6C end:0x8001BE74
-
 dol/PADControlMotor.c:
 	.text       start:0x8001D3E4 end:0x8001D488
 
@@ -953,12 +950,6 @@ dol/fn_80074D08.c:
 dol/fn_80077BAC.c:
 	.text       start:0x80077BAC end:0x80077BBC align:4
 
-dol/fn_8001A78C.c:
-	.text       start:0x8001A78C end:0x8001A7D0 align:4
-
-dol/fn_8001A7D0.c:
-	.text       start:0x8001A7D0 end:0x8001A814 align:4
-
 dol/fn_8001DF00.c:
 	.text       start:0x8001DF00 end:0x8001DF44 align:4
 
@@ -1692,9 +1683,6 @@ dol/fn_80039B0C.c:
 dol/fn_80024E3C.c:
 	.text       start:0x80024E3C end:0x80024E6C align:4
 
-dol/VIGetDTVStatus.c:
-	.text       start:0x8001C084 end:0x8001C0C0 align:4
-
 dol/ARGetDMAStatus.c:
 	.text       start:0x8001E828 end:0x8001E864 align:4
 
@@ -1781,9 +1769,6 @@ dol/fn_800133E0.c:
 
 dol/fn_80021FBC.c:
 	.text       start:0x80021FBC end:0x80022014 align:4
-
-dol/VISetNextFrameBuffer.c:
-	.text       start:0x8001BD84 end:0x8001BDF0 align:4
 
 dol/CARDGetResultCode.c:
 	.text       start:0x8002A958 end:0x8002A988 align:4
@@ -1998,9 +1983,6 @@ dol/fn_8004C980.c:
 dol/fn_8006A1F8.c:
 	.text       start:0x8006A1F8 end:0x8006A3DC align:4
 
-dol/getTiming.c:
-	.text       start:0x8001A814 end:0x8001A8B4 align:4
-
 dol/fn_800057F8.c:
 	.text       start:0x800057F8 end:0x80005858 align:4
 
@@ -2067,9 +2049,6 @@ dol/__DVDPrintFatalMessage.c:
 dol/DVDReadAbsAsyncForBS.c:
 	.text       start:0x80019430 end:0x80019500 align:4
 
-dol/VIWaitForRetrace.c:
-	.text       start:0x8001AF64 end:0x8001AFB8 align:4
-
 dol/__DVDPopWaitingQueue.c:
 	.text       start:0x80019F04 end:0x80019FA4 align:4
 
@@ -2081,9 +2060,6 @@ dol/__DVDClearWaitingQueue.c:
 
 dol/DVDReadAbsAsyncPrio.c:
 	.text       start:0x80019354 end:0x80019430 align:4
-
-dol/VISetBlack.c:
-	.text       start:0x8001BDF0 end:0x8001BE6C align:4
 
 dol/__DVDPushWaitingQueue.c:
 	.text       start:0x80019E9C end:0x80019F04 align:4
@@ -3567,21 +3543,6 @@ dol/__OSEnableBarnacle.c:
 dol/WriteUARTN.c:
 	.text       start:0x8001581C end:0x80015A38 align:4
 
-dol/__VIInit.c:
-	.text       start:0x8001A8B4 end:0x8001AAB4 align:4
-
-dol/setFbbRegs.c:
-	.text       start:0x8001AFB8 end:0x8001B28C align:4
-
-dol/getCurrentFieldEvenOdd.c:
-	.text       start:0x8001BE74 end:0x8001BEDC align:4
-
-dol/VIGetNextField.c:
-	.text       start:0x8001BEDC end:0x8001BF84 align:4
-
-dol/VIGetCurrentLine.c:
-	.text       start:0x8001BF84 end:0x8001C01C align:4
-
 dol/AlarmHandlerForTimeout.c:
 	.text       start:0x80016324 end:0x80016394 align:4
 
@@ -3895,9 +3856,6 @@ dol/IsCard.c:
 
 dol/GXSetTevOrder.c:
 	.text       start:0x800375F0 end:0x800377C8 align:4
-
-dol/setVerticalRegs.c:
-	.text       start:0x8001B28C end:0x8001B42C align:4
 
 dol/stateCoverClosed.c:
 	.text       start:0x80018554 end:0x80018620 align:4
@@ -4922,9 +4880,6 @@ dol/fn_80083BCC.c:
 dol/fn_8003B930.c:
 	.text       start:0x8003B930 end:0x8003B9AC align:4
 
-dol/VIGetTvFormat.c:
-	.text       start:0x8001C01C end:0x8001C084 align:4
-
 dol/fn_8004BDD8.c:
 	.text       start:0x8004BDD8 end:0x8004BE90 align:4
 
@@ -5046,11 +5001,12 @@ dol/fn_80048340.c:
 dol/C_MTXFrustum.c:
 	.text       start:0x80015D7C end:0x80015E18 align:4
 
-dol/VIFlush.c:
-	.text       start:0x8001BC54 end:0x8001BD84 align:4
-
-dol/__VIRetraceHandler.c:
-	.text       start:0x8001A55C end:0x8001A78C align:4
+dol/VI.c:
+	.text       start:0x8001A55C end:0x8001C0C0 align:4
+	.data       start:0x801241C8 end:0x80124598 align:8
+	.sdata      start:0x801A64A0 end:0x801A64B0 align:8
+	.sbss       start:0x801A6920 end:0x801A6978 align:8
+	.bss        start:0x8015CF68 end:0x8015D0B0 align:8
 
 dol/GXSetGPMetric.c:
 	.text       start:0x8003910C end:0x80039AFC align:4
@@ -5167,14 +5123,8 @@ dol/PADInit.c:
 dol/PADTypeAndStatusCallback.c:
 	.text       start:0x8001C704 end:0x8001CA30 align:4
 
-dol/VIInit.c:
-	.text       start:0x8001AAB4 end:0x8001AF64 align:4
-
 dol/fn_8007C910.c:
 	.text       start:0x8007C910 end:0x8007CE0C align:4
-
-dol/VIConfigure.c:
-	.text       start:0x8001B42C end:0x8001BC54 align:4
 
 dol/data/__OSDriveBlock.c:
 	.bss        start:0x8015BF20 end:0x8015BF50 align:8
@@ -6565,7 +6515,7 @@ dol/data/__DVDLowPrev.c:
 	.bss        start:0x8015CE28 end:0x8015CE80 align:8
 
 dol/data/lbl_8015CF68.c:
-	.bss        start:0x8015CF68 end:0x80177BA0 align:8
+	.bss        start:0x8015D0B0 end:0x80177BA0 align:8
 
 dol/data/lbl_80178118.c:
 	.bss        start:0x80178118 end:0x801783A0 align:8
@@ -7221,10 +7171,7 @@ dol/data/lbl_80124058.c:
 	.data       start:0x80124058 end:0x801240A8 align:8
 
 dol/data/lbl_80124110.c:
-	.data       start:0x80124110 end:0x801243BC align:16
-
-dol/data/lbl_80124428.c:
-	.data       start:0x80124428 end:0x8012457C align:8
+	.data       start:0x80124110 end:0x801241C8 align:16
 
 dol/data/lbl_8012B548.c:
 	.data       start:0x8012B548 end:0x8012B590 align:8
@@ -8502,7 +8449,7 @@ dol/data/lbl_801A6438.c:
 	.sdata      start:0x801A6438 end:0x801A6490 align:8
 
 dol/data/lbl_801A64A0.c:
-	.sdata      start:0x801A64A0 end:0x801A6630 align:32
+	.sdata      start:0x801A64B0 end:0x801A6630 align:16
 
 dol/data/lbl_801A6818.c:
 	.sbss       start:0x801A6818 end:0x801A6820 align:8
@@ -8592,34 +8539,7 @@ dol/data/lbl_801A6910.c:
 	.sbss       start:0x801A6910 end:0x801A6918 align:16
 
 dol/data/idTmp.c:
-	.sbss       start:0x801A6918 end:0x801A6928 align:8
-
-dol/data/lbl_801A6928.c:
-	.sbss       start:0x801A6928 end:0x801A6938 align:8
-
-dol/data/lbl_801A6938.c:
-	.sbss       start:0x801A6938 end:0x801A6940 align:8
-
-dol/data/lbl_801A6940.c:
-	.sbss       start:0x801A6940 end:0x801A6948 align:32
-
-dol/data/lbl_801A6948.c:
-	.sbss       start:0x801A6948 end:0x801A6950 align:8
-
-dol/data/lbl_801A6950.c:
-	.sbss       start:0x801A6950 end:0x801A6958 align:16
-
-dol/data/lbl_801A6958.c:
-	.sbss       start:0x801A6958 end:0x801A6960 align:8
-
-dol/data/lbl_801A6960.c:
-	.sbss       start:0x801A6960 end:0x801A6968 align:32
-
-dol/data/lbl_801A6968.c:
-	.sbss       start:0x801A6968 end:0x801A6970 align:8
-
-dol/data/lbl_801A6970.c:
-	.sbss       start:0x801A6970 end:0x801A6978 align:16
+	.sbss       start:0x801A6918 end:0x801A6920 align:8
 
 dol/data/lbl_801A6978.c:
 	.sbss       start:0x801A6978 end:0x801A6988 align:8

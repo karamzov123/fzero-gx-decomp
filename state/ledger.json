@@ -14539,7 +14539,7 @@
   {
    "symbol": "__VIRetraceHandler",
    "module": "main",
-   "unit": "dol/__VIRetraceHandler.c",
+   "unit": "dol/VI.c",
    "addr": 2147591516,
    "size": 560,
    "status": "matched",
@@ -14556,7 +14556,7 @@
   {
    "symbol": "fn_8001A78C",
    "module": "main",
-   "unit": "dol/fn_8001A78C.c",
+   "unit": "dol/VI.c",
    "addr": 2147592076,
    "size": 68,
    "status": "matched",
@@ -14573,7 +14573,7 @@
   {
    "symbol": "fn_8001A7D0",
    "module": "main",
-   "unit": "dol/fn_8001A7D0.c",
+   "unit": "dol/VI.c",
    "addr": 2147592144,
    "size": 68,
    "status": "matched",
@@ -14590,7 +14590,7 @@
   {
    "symbol": "getTiming",
    "module": "main",
-   "unit": "dol/getTiming.c",
+   "unit": "dol/VI.c",
    "addr": 2147592212,
    "size": 160,
    "status": "matched",
@@ -14607,7 +14607,7 @@
   {
    "symbol": "__VIInit",
    "module": "main",
-   "unit": "dol/__VIInit.c",
+   "unit": "dol/VI.c",
    "addr": 2147592372,
    "size": 512,
    "status": "matched",
@@ -14624,7 +14624,7 @@
   {
    "symbol": "VIInit",
    "module": "main",
-   "unit": "dol/VIInit.c",
+   "unit": "dol/VI.c",
    "addr": 2147592884,
    "size": 1200,
    "status": "matched",
@@ -14641,7 +14641,7 @@
   {
    "symbol": "VIWaitForRetrace",
    "module": "main",
-   "unit": "dol/VIWaitForRetrace.c",
+   "unit": "dol/VI.c",
    "addr": 2147594084,
    "size": 84,
    "status": "matched",
@@ -14658,7 +14658,7 @@
   {
    "symbol": "setFbbRegs",
    "module": "main",
-   "unit": "dol/setFbbRegs.c",
+   "unit": "dol/VI.c",
    "addr": 2147594168,
    "size": 724,
    "status": "matched",
@@ -14675,7 +14675,7 @@
   {
    "symbol": "setVerticalRegs",
    "module": "main",
-   "unit": "dol/setVerticalRegs.c",
+   "unit": "dol/VI.c",
    "addr": 2147594892,
    "size": 416,
    "status": "matched",
@@ -14692,7 +14692,7 @@
   {
    "symbol": "VIConfigure",
    "module": "main",
-   "unit": "dol/VIConfigure.c",
+   "unit": "dol/VI.c",
    "addr": 2147595308,
    "size": 2088,
    "status": "matched",
@@ -14709,7 +14709,7 @@
   {
    "symbol": "VIFlush",
    "module": "main",
-   "unit": "dol/VIFlush.c",
+   "unit": "dol/VI.c",
    "addr": 2147597396,
    "size": 304,
    "status": "matched",
@@ -14726,7 +14726,7 @@
   {
    "symbol": "VISetNextFrameBuffer",
    "module": "main",
-   "unit": "dol/VISetNextFrameBuffer.c",
+   "unit": "dol/VI.c",
    "addr": 2147597700,
    "size": 108,
    "status": "matched",
@@ -14743,7 +14743,7 @@
   {
    "symbol": "VISetBlack",
    "module": "main",
-   "unit": "dol/VISetBlack.c",
+   "unit": "dol/VI.c",
    "addr": 2147597808,
    "size": 124,
    "status": "matched",
@@ -14760,7 +14760,7 @@
   {
    "symbol": "fn_8001BE6C",
    "module": "main",
-   "unit": "dol/fn_8001BE6C.c",
+   "unit": "dol/VI.c",
    "addr": 2147597932,
    "size": 8,
    "status": "matched",
@@ -14777,7 +14777,7 @@
   {
    "symbol": "getCurrentFieldEvenOdd",
    "module": "main",
-   "unit": "dol/getCurrentFieldEvenOdd.c",
+   "unit": "dol/VI.c",
    "addr": 2147597940,
    "size": 104,
    "status": "matched",
@@ -14794,7 +14794,7 @@
   {
    "symbol": "VIGetNextField",
    "module": "main",
-   "unit": "dol/VIGetNextField.c",
+   "unit": "dol/VI.c",
    "addr": 2147598044,
    "size": 168,
    "status": "matched",
@@ -14811,7 +14811,7 @@
   {
    "symbol": "VIGetCurrentLine",
    "module": "main",
-   "unit": "dol/VIGetCurrentLine.c",
+   "unit": "dol/VI.c",
    "addr": 2147598212,
    "size": 152,
    "status": "matched",
@@ -14828,7 +14828,7 @@
   {
    "symbol": "VIGetTvFormat",
    "module": "main",
-   "unit": "dol/VIGetTvFormat.c",
+   "unit": "dol/VI.c",
    "addr": 2147598364,
    "size": 104,
    "status": "matched",
@@ -14845,7 +14845,7 @@
   {
    "symbol": "VIGetDTVStatus",
    "module": "main",
-   "unit": "dol/VIGetDTVStatus.c",
+   "unit": "dol/VI.c",
    "addr": 2147598468,
    "size": 60,
    "status": "matched",
