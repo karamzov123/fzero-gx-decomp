@@ -995,15 +995,10 @@ extern int fn_1_4C10(void);
 extern u32 fn_1_4A00(u32, u32, u32);
 extern void fn_1_A2D84(u32);
 
-#pragma opt_common_subs off
-static inline void fn_7_1134_store(s32 *destination, s32 value) { *destination = value; }
-#pragma opt_dead_assignments off
 void fn_7_1134(void) {
     struct fn_7_1134_state *p;
     s32 sum;
     u32 val;
-    u32 lab_t2;
-    u32 lab_t1;
 
     p = (struct fn_7_1134_state *)&lbl_7_bss_0;
     fn_7_33F0();
@@ -1017,7 +1012,7 @@ void fn_7_1134(void) {
             p->unk_3C = 360;
             p->unk_40 = -4;
         } else if (sum < 0) {
-            fn_7_1134_store(&(p->unk_28), 0);
+            p->unk_28 = 0;
             p->unk_2C = 0;
         } else {
             return;
@@ -1047,31 +1042,23 @@ void fn_7_1134(void) {
     } else if (p->unk_4 == 0) {
         if (p->unk_3C == -101) {
             if ((lbl_1_bss_9F8[(*((p->unk_10) + (2)))].flags >> 8) & 1) {
-                u32 arg = p->unk_1C;
                 p->unk_4 = 0x20;
                 p->unk_2C = -10;
                 p->unk_30 = 3;
-                lab_t2 = arg;
-                lab_t1 = 0x1e;
-                fn_1_4A00(0, lab_t1, lab_t2);
+                fn_1_4A00(0, 0x1e, p->unk_1C);
                 fn_1_A2D84(0xa9010100);
                 return;
             }
         }
         if ((lbl_1_bss_9F8[(*((p->unk_10) + (2)))].flags >> 9) & 1) {
-            u32 arg = p->unk_1C;
             p->unk_4 = 0x20;
             p->unk_2C = -10;
             p->unk_30 = 4;
-            lab_t1 = 0x1e;
-            fn_1_4A00(0, lab_t1, arg);
+            fn_1_4A00(0, 0x1e, p->unk_1C);
             fn_1_A2D84(0xa9010200);
         }
     }
 }
-#pragma opt_dead_assignments reset
-
-#pragma opt_common_subs reset
 /* fzgx:end fn_7_1134 */
 
 /* fzgx:begin fn_7_12FC */
