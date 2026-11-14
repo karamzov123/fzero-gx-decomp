@@ -595,6 +595,7 @@ rel/sel/sel/fn_10_19F1C.c:
 
 rel/sel/sel/fn_10_D2C.c:
 	.text       start:0x00000D2C end:0x000012D8 align:4
+	.data       start:0x00000578 end:0x00000628 align:8
 
 rel/sel/sel/fn_10_19040.c:
 	.text       start:0x00019040 end:0x00019290 align:4
@@ -766,9 +767,6 @@ rel/sel/data/lbl_10_data_4F0.c:
 
 rel/sel/data/lbl_10_data_538.c:
 	.data       start:0x00000538 end:0x00000578 align:8
-
-rel/sel/data/lbl_10_data_578.c:
-	.data       start:0x00000578 end:0x000005EC align:8
 
 rel/sel/data/lbl_10_data_6F0.c:
 	.data       start:0x000006F0 end:0x00000758 align:8

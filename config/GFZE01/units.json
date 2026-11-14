@@ -166411,20 +166411,6 @@
   },
   {
     "module": "sel",
-    "source": "rel/sel/data/lbl_10_data_578.c",
-    "symbols": [
-      "lbl_10_data_578",
-      "lbl_10_data_57C",
-      "lbl_10_data_59C",
-      "lbl_10_data_5E4"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "sel",
     "source": "rel/sel/data/lbl_10_data_57A0.c",
     "symbols": [
       "lbl_10_data_57A0",
@@ -170894,10 +170880,7 @@
     "status": "matching",
     "mw_version": "GC/1.3",
     "extra_cflags": [],
-    "tu": "rel/sel/sel.c",
-    "pool": {
-      "@107": "jumptable_10_data_5EC"
-    }
+    "tu": "rel/sel/sel.c"
   },
   {
     "module": "sel",
