@@ -1677,10 +1677,6 @@ extern u8 lbl_1_data_1DAC0[0x44];
 extern u8 lbl_1_data_1DC80[0x48];
 extern void OSPanic(const char *, int, const char *, ...);
 
-static inline u32 fn_1_76704_operand(u32 right, u32 left) { left *= right; return left; }
-#pragma opt_propagation off
-static inline u32 fn_1_76704_operand_(u32 right, u32 left) { left *= right; return left; }
-#pragma opt_dead_assignments off
 f32 fn_1_76704(void * arg0, void * arg1) {
     u8 *p = (u8 *)arg0;
     s32 a;
@@ -1718,11 +1714,13 @@ f32 fn_1_76704(void * arg0, void * arg1) {
     *(u16 *)(p + 254) = (s32)(v8 / lbl_1_rodata_31E8);
     v9 = *(s16 *)(p + 252);
     if ((v9 % 8) > 0) {
-        *(u16 *)(p + 252) = fn_1_76704_operand_((8), ((v9 / 8 + 1)));
+        v9 = (v9 / 8 + 1) * 8;
+        *(u16 *)(p + 252) = v9;
     }
     v11 = *(s16 *)(p + 254);
     if ((v11 % 8) > 0) {
-        *(u16 *)(p + 254) = fn_1_76704_operand((8), ((v11 / 8 + 1)));
+        v11 = (v11 / 8 + 1) * 8;
+        *(u16 *)(p + 254) = v11;
     }
     if (*(s32 *)(p + 244) != 0) {
         *(u16 *)(p + 256) = *(s16 *)(p + 252) / 2;
@@ -1733,9 +1731,7 @@ f32 fn_1_76704(void * arg0, void * arg1) {
     }
     return v8;
 }
-#pragma opt_dead_assignments reset
 
-#pragma opt_propagation reset
 /* fzgx:end fn_1_76704 */
 
 /* fzgx:begin fn_1_76964 */
