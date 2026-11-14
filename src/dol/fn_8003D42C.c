@@ -20,8 +20,7 @@ u32 fn_8003D42C(struct fn_8003D42C_Arg0 *arg0, u32 arg1, u32 arg2) {
         v1 = arg0->unk_400;
         {
             u32 state = 26;
-            /* Preserve the ordered input-byte read before updating the state. */
-            v0 = *(volatile u8 *)v1;
+            v0 = *(u8 *)v1;
             arg0->unk_414 = state;
         }
         if (v0 != 255) {
