@@ -19932,6 +19932,17 @@
   },
   {
     "module": "main",
+    "source": "dol/approx_rsqrt.c",
+    "symbols": [
+      "approx_rsqrt"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
     "source": "dol/atoi.c",
     "symbols": [
       "atoi"
@@ -24590,6 +24601,17 @@
       "@182": "lbl_801A74E8",
       "@stringBase0": "@stringBase0_80094FC0"
     }
+  },
+  {
+    "module": "main",
+    "source": "dol/float_return_values.c",
+    "symbols": [
+      "float_return_values"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "main",
@@ -36772,9 +36794,9 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_8006E200.c",
+    "source": "dol/fn_8006D830.c",
     "symbols": [
-      "fn_8006E200"
+      "fn_8006D830"
     ],
     "status": "matching",
     "mw_version": null,
@@ -36786,39 +36808,6 @@
     "source": "dol/fn_8006E250.c",
     "symbols": [
       "fn_8006E250"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8006E294.c",
-    "symbols": [
-      "fn_8006E294"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8006E2B0.c",
-    "symbols": [
-      "fn_8006E2B0"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8006E2D8.c",
-    "symbols": [
-      "fn_8006E2D8"
     ],
     "status": "matching",
     "mw_version": null,
@@ -41370,6 +41359,489 @@
       "-use_lmw_stmw",
       "off"
     ]
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006D0B4.c",
+    "symbols": [
+      "lbl_8006D0B4"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006D0E8.c",
+    "symbols": [
+      "lbl_8006D0E8"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006D118.c",
+    "symbols": [
+      "lbl_8006D118"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006D188.c",
+    "symbols": [
+      "lbl_8006D188"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006D1B8.c",
+    "symbols": [
+      "lbl_8006D1B8"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006D21C.c",
+    "symbols": [
+      "lbl_8006D21C"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006D24C.c",
+    "symbols": [
+      "lbl_8006D24C"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006D3D0.c",
+    "symbols": [
+      "lbl_8006D3D0"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "pool": {
+      "@13": "lbl_801A73B4+0x4",
+      "@14": "lbl_801A73B4+0xC",
+      "@15": "lbl_801A73B4+0x10",
+      "@16": "lbl_801A73B4+0x14"
+    }
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006D46C.c",
+    "symbols": [
+      "lbl_8006D46C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "pool": {
+      "@21": "lbl_801A73B4+0x4",
+      "@22": "lbl_801A73B4+0xC",
+      "@23": "lbl_801A73B4+0x10",
+      "@24": "lbl_801A73B4+0x14"
+    }
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006D534.c",
+    "symbols": [
+      "lbl_8006D534"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006D5A4.c",
+    "symbols": [
+      "lbl_8006D5A4"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "pool": {}
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006D5F0.c",
+    "symbols": [
+      "lbl_8006D5F0"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006D668.c",
+    "symbols": [
+      "lbl_8006D668"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006D6FC.c",
+    "symbols": [
+      "lbl_8006D6FC"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006D758.c",
+    "symbols": [
+      "lbl_8006D758"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006D784.c",
+    "symbols": [
+      "lbl_8006D784"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006D7B0.c",
+    "symbols": [
+      "lbl_8006D7B0"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006D7DC.c",
+    "symbols": [
+      "lbl_8006D7DC"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006D890.c",
+    "symbols": [
+      "lbl_8006D890"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006D8D8.c",
+    "symbols": [
+      "lbl_8006D8D8"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006D91C.c",
+    "symbols": [
+      "lbl_8006D91C"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006D95C.c",
+    "symbols": [
+      "lbl_8006D95C"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006D998.c",
+    "symbols": [
+      "lbl_8006D998"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006D9D8.c",
+    "symbols": [
+      "lbl_8006D9D8"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006DA50.c",
+    "symbols": [
+      "lbl_8006DA50"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006DAEC.c",
+    "symbols": [
+      "lbl_8006DAEC"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006DB30.c",
+    "symbols": [
+      "lbl_8006DB30"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006DB74.c",
+    "symbols": [
+      "lbl_8006DB74"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006DBAC.c",
+    "symbols": [
+      "lbl_8006DBAC"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006DBE4.c",
+    "symbols": [
+      "lbl_8006DBE4"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006DC20.c",
+    "symbols": [
+      "lbl_8006DC20"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006DC34.c",
+    "symbols": [
+      "lbl_8006DC34"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006DC6C.c",
+    "symbols": [
+      "lbl_8006DC6C"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006DCA4.c",
+    "symbols": [
+      "lbl_8006DCA4"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006DCDC.c",
+    "symbols": [
+      "lbl_8006DCDC"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006DD14.c",
+    "symbols": [
+      "lbl_8006DD14"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006DD48.c",
+    "symbols": [
+      "lbl_8006DD48"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006DD7C.c",
+    "symbols": [
+      "lbl_8006DD7C"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006DF44.c",
+    "symbols": [
+      "lbl_8006DF44"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006DFC4.c",
+    "symbols": [
+      "lbl_8006DFC4"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006E0A4.c",
+    "symbols": [
+      "lbl_8006E0A4"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006E13C.c",
+    "symbols": [
+      "lbl_8006E13C"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
+    "source": "dol/lbl_8006E1B0.c",
+    "symbols": [
+      "lbl_8006E1B0"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
   },
   {
     "module": "main",

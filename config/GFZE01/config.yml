@@ -26,6 +26,17 @@ skip_cfa_ranges:
 - start: .text:0x8006D000
   end: .text:0x8006E200
 
+# Inside that range dtk does not follow register bases, so it misses the atan table reference
+# of lbl_8006D24C (`addis r4, r4, lbl_80152860@ha; addi r4, r4, lbl_80152860@l`, an offset into
+# the table already in r4) and lists `subis r4, r4, 0x7feb; addi r4, r4, 0x2860`.
+add_relocations:
+- source: .text:0x8006D31C
+  type: ha
+  target: lbl_80152860
+- source: .text:0x8006D320
+  type: l
+  target: lbl_80152860
+
 # Every REL shipped on the disc plus main.rel, which prepare_orig.py derives
 # from files/enemy_line/line__.bin (decrypt + LZ-decompress). Module ids are
 # globally unique (1..18), so every module links against every other.

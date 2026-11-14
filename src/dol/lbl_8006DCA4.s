@@ -1,0 +1,32 @@
+.include "macros.inc"
+.file "lbl_8006DCA4.c"
+
+# Assembly by evidence (docs/ASM_POLICY.md section 1).
+# mtxA = mtxB.
+# mtxA and mtxB are the locked-cache matrices at 0xE0000000 and 0xE0000030.
+# - Paired-single row copies (psq_l/psq_st), which MWCC emits only from inline assembly; C copies
+#   compile to lfs/stfs or lwz/stw (measured). No frame.
+# - Source: the engine math library (Amusement Vision's mathutil, shared with Super Monkey Ball,
+#   where these routines are nofralloc asm functions).
+
+# 0x8006DCA4..0x8006DCDC | size: 0x38
+.text
+.balign 4
+
+# .text:0x0 | 0x8006DCA4 | size: 0x38
+.fn lbl_8006DCA4, global
+/* 8006DCA4 0006ACA4  3C 60 E0 00 */	lis r3, 0xe000
+/* 8006DCA8 0006ACA8  E0 03 00 30 */	psq_l f0, 0x30(r3), 0, qr0
+/* 8006DCAC 0006ACAC  E0 23 00 38 */	psq_l f1, 0x38(r3), 0, qr0
+/* 8006DCB0 0006ACB0  E0 43 00 40 */	psq_l f2, 0x40(r3), 0, qr0
+/* 8006DCB4 0006ACB4  E0 63 00 48 */	psq_l f3, 0x48(r3), 0, qr0
+/* 8006DCB8 0006ACB8  E0 83 00 50 */	psq_l f4, 0x50(r3), 0, qr0
+/* 8006DCBC 0006ACBC  E0 A3 00 58 */	psq_l f5, 0x58(r3), 0, qr0
+/* 8006DCC0 0006ACC0  F0 03 00 00 */	psq_st f0, 0x0(r3), 0, qr0
+/* 8006DCC4 0006ACC4  F0 23 00 08 */	psq_st f1, 0x8(r3), 0, qr0
+/* 8006DCC8 0006ACC8  F0 43 00 10 */	psq_st f2, 0x10(r3), 0, qr0
+/* 8006DCCC 0006ACCC  F0 63 00 18 */	psq_st f3, 0x18(r3), 0, qr0
+/* 8006DCD0 0006ACD0  F0 83 00 20 */	psq_st f4, 0x20(r3), 0, qr0
+/* 8006DCD4 0006ACD4  F0 A3 00 28 */	psq_st f5, 0x28(r3), 0, qr0
+/* 8006DCD8 0006ACD8  4E 80 00 20 */	blr
+.endfn lbl_8006DCA4
