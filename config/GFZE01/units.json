@@ -129680,7 +129680,7 @@
     "extra_cflags": [],
     "tu": "rel/main_rel/screen_effect.c",
     "pool": {
-      "@40": "lbl_1_rodata_31D8"
+      "@27": "lbl_1_rodata_31D8"
     }
   },
   {
