@@ -18,30 +18,24 @@ typedef struct Calibration {
 } Calibration;
 extern void fn_8006AA44(PadStatus *, PadStatus *, Calibration *);
 extern u32 fn_8006AC44(PadStatus *, PadStatus *, Calibration *);
-#pragma opt_common_subs off
-#pragma optimize_for_size on
-#pragma load_store_multiple on
-#pragma use_lmw_stmw on
-void fn_8006AE90(PadStatus *arg0, PadStatus *arg1, Calibration *arg2) {
- s32 out, range, max;
- s32 min;
- s8 deadByte;
- s8 value;
- s32 dead, signedValue;
- value=arg1->unk_3;
- min=arg2->unk_3;
- max=arg2->unk_D;
- deadByte=arg2->unk_17;
- signedValue=value;
- if(signedValue<min) {arg2->unk_3=value; min=signedValue;}
- if(signedValue>max) {max=value; arg2->unk_D=value;}
- dead=deadByte;
- range=max-min-(dead<<1);
+static inline s8 fn_8006AE90_scale(s8 value, s8 *min, s8 *max, s8 dead) {
+ s32 lo;
+ s32 hi;
+ s32 range;
+ s32 result;
+ lo=*min;
+ hi=*max;
+ if(value<lo) {*min=value; lo=value;}
+ if(value>hi) {hi=value; *max=value;}
+ range=hi-lo-dead*2;
  if(range==0) range=1;
- out=(signedValue-(min+dead))*255/range-127;
- if(out < -128) out=-128;
- if(out > 127) out=127;
- arg0->unk_3=out;
+ result=(value-(lo+dead))*255/range-127;
+ if(result < -128) result=-128;
+ if(result > 127) result=127;
+ return result;
+}
+void fn_8006AE90(PadStatus *arg0, PadStatus *arg1, Calibration *arg2) {
+ arg0->unk_3=fn_8006AE90_scale(arg1->unk_3,&arg2->unk_3,&arg2->unk_D,arg2->unk_17);
  fn_8006AA44(arg0,arg1,arg2);
  fn_8006AC44(arg0,arg1,arg2);
  arg0->unk_0=arg1->unk_0;
