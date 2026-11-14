@@ -42,8 +42,8 @@ functions with a compiled C body. The project is complete when every function is
 | Game ID | Region | Revision | Status |
 |---|---|---|---|
 | `GFZE01` | North America (NTSC-U) | Rev 0 | **Primary target** (all 16 targets verified) |
-| `GFZP01` | Europe (PAL) | Rev 0 | Configuration scaffold |
-| `GFZJ01` | Japan (NTSC-J) | Rev 0 | Configuration scaffold |
+| `GFZP01` | Europe (PAL) | Rev 0 | Builds byte-for-byte (asm baseline, USA names mapped) |
+| `GFZJ01` | Japan (NTSC-J) | Rev 0 | Builds byte-for-byte (asm baseline, USA names mapped) |
 
 ---
 
@@ -72,7 +72,7 @@ fzero-gx-decomp/
 │   │   ├── splits.txt       # Split object boundary definitions
 │   │   ├── symbols.txt      # Global symbol definitions and addresses
 │   │   └── units.json       # Database of matching C units and compiler flags
-│   └── ...                  # PAL (GFZP01) and JPN (GFZJ01) scaffolds
+│   └── ...                  # PAL (GFZP01) and JPN (GFZJ01) configs
 ├── docs/                    # Architectural findings, compiler quirks, and coding rules
 │   ├── CODING_RULES.md      # Code standards (no hardcoded pointers, shiftability)
 │   ├── MWCC_IDIOMS.md       # Documented CodeWarrior register allocation patterns

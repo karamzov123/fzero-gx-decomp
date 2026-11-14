@@ -1,0 +1,4 @@
+_prolog = .text:0x00000000; // type:function size:0x3FC scope:global
+fn_18_3FC = .text:0x000003FC; // type:function size:0x10
+sample_lz_decode = .text:0x0000040C; // type:function size:0x38
+fn_18_444 = .text:0x00000444; // type:function size:0x2EC

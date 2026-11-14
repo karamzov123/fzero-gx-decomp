@@ -1,0 +1,90 @@
+detect_objects: true
+detect_strings: true
+hash: c5038e2646940df528ed7f1b9f315e3069853040
+ldscript_template: config/GFZJ01/ldscript.tpl
+modules:
+- hash: 86959dbd797a7cb77607aa6adb493d9d69c73b55
+  name: main_rel
+  object: files/enemy_line/main.rel
+  splits: config/GFZJ01/main_rel/splits.txt
+  symbols: config/GFZJ01/main_rel/symbols.txt
+- hash: 89597692393e086a3921c9fcf0a3c6c32dd1832d
+  name: sample
+  object: files/fz.sample.rel
+  splits: config/GFZJ01/sample/splits.txt
+  symbols: config/GFZJ01/sample/symbols.txt
+- hash: 04d3c337ed733b31ffe089072f401d14ec06e6ae
+  name: movie_module
+  object: files/fz.movie_module.rel
+  splits: config/GFZJ01/movie_module/splits.txt
+  symbols: config/GFZJ01/movie_module/symbols.txt
+- hash: c18b09c88c692f5c87ab7bcc83ed36193f2553b9
+  name: customize
+  object: files/fz.customize.rel
+  splits: config/GFZJ01/customize/splits.txt
+  symbols: config/GFZJ01/customize/symbols.txt
+- hash: 8898f1694f794b9662341ecd9e4322892b8838de
+  name: sel
+  object: files/fz.sel.rel
+  splits: config/GFZJ01/sel/splits.txt
+  symbols: config/GFZJ01/sel/symbols.txt
+- hash: f6c2a1601e0a896d458da7cbb2212d4461acabf6
+  name: title
+  object: files/fz.title.rel
+  splits: config/GFZJ01/title/splits.txt
+  symbols: config/GFZJ01/title/symbols.txt
+- hash: c4790828acc747549b4a6e8b8bb85d7a4e8cccb2
+  name: pilotpoint
+  object: files/fz.pilotpoint.rel
+  splits: config/GFZJ01/pilotpoint/splits.txt
+  symbols: config/GFZJ01/pilotpoint/symbols.txt
+- hash: 3a976b7d1b96ab18d07510f19e481061b98e8fdd
+  name: option
+  object: files/fz.option.rel
+  splits: config/GFZJ01/option/splits.txt
+  symbols: config/GFZJ01/option/symbols.txt
+- hash: df7b039042f19c7be307f984157c933b2beac2b0
+  name: interview
+  object: files/fz.interview.rel
+  splits: config/GFZJ01/interview/splits.txt
+  symbols: config/GFZJ01/interview/symbols.txt
+- hash: 30267ad9dde6b755c3ebebb9f59480a9e36013a1
+  name: profile
+  object: files/fz.profile.rel
+  splits: config/GFZJ01/profile/splits.txt
+  symbols: config/GFZJ01/profile/symbols.txt
+- hash: 38c3d5e8d042c05cb15b0b89b723c9ddf76cdeb5
+  name: story
+  object: files/fz.story.rel
+  splits: config/GFZJ01/story/splits.txt
+  symbols: config/GFZJ01/story/symbols.txt
+- hash: aeb90a2312e42880f3d754eb886463e0b8ba7f60
+  name: winning
+  object: files/fz.winning.rel
+  splits: config/GFZJ01/winning/splits.txt
+  symbols: config/GFZJ01/winning/symbols.txt
+- hash: 91a03663d3137c5badb9c3158f7e94f3a96d6946
+  name: movie
+  object: files/fz.movie.rel
+  splits: config/GFZJ01/movie/splits.txt
+  symbols: config/GFZJ01/movie/symbols.txt
+- hash: 5860e6abd3220b9eb8f498a5fdcd72ac41671a97
+  name: car_colchg
+  object: files/fz.car_colchg.rel
+  splits: config/GFZJ01/car_colchg/splits.txt
+  symbols: config/GFZJ01/car_colchg/symbols.txt
+- hash: 212a57cdff6bc2a305dbbf70fb7cdf25f8e7efe7
+  name: replay
+  object: files/fz.replay.rel
+  splits: config/GFZJ01/replay/splits.txt
+  symbols: config/GFZJ01/replay/symbols.txt
+mw_comment_version: 8
+object: sys/main.dol
+object_base: orig/GFZJ01
+quick_analysis: false
+skip_cfa_ranges:
+- end: .text:0x8006E1FC
+  start: .text:0x8006CFFC
+splits: config/GFZJ01/splits.txt
+symbols: config/GFZJ01/symbols.txt
+write_asm: true

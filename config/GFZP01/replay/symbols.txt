@@ -1,0 +1,12 @@
+fn_13_0 = .text:0x00000000; // type:function size:0x3FC
+fn_13_3FC = .text:0x000003FC; // type:function size:0x644
+fn_13_A48 = .text:0x00000A48; // type:function size:0x24
+fn_13_A6C = .text:0x00000A6C; // type:function size:0x28
+_prolog = .text:0x00000A94; // type:function size:0x68 scope:global
+fn_13_B08 = .text:0x00000B08; // type:function size:0x5C
+fn_13_B64 = .text:0x00000B64; // type:function size:0x14
+fn_13_B7C = .text:0x00000B7C; // type:function size:0x50
+fn_13_BCC = .text:0x00000BCC; // type:function size:0x110
+fn_13_CDC = .text:0x00000CDC; // type:function size:0x1B0
+fn_13_E8C = .text:0x00000E8C; // type:function size:0x64
+fn_13_EF0 = .text:0x00000EF0; // type:function size:0x10

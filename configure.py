@@ -34,8 +34,8 @@ from tools.project import (
 DEFAULT_VERSION = 0
 VERSIONS = [
     "GFZE01",  # 0: NTSC-U (primary)
-    "GFZP01",  # 1: PAL (scaffold only until a dump exists)
-    "GFZJ01",  # 2: NTSC-J (scaffold only until a dump exists)
+    "GFZP01",  # 1: PAL (asm baseline)
+    "GFZJ01",  # 2: NTSC-J (asm baseline)
 ]
 
 parser = argparse.ArgumentParser()
