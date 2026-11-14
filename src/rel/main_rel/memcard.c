@@ -7113,12 +7113,8 @@ extern void OSPanic(const char *file, int line, const char *fmt, ...);
 extern s32 CARDUnmount(s32);
 extern void fn_1_46B4(u32, u32, const char *, int);
 
-#pragma opt_dead_assignments off
 static inline u8 fn_1_B3900_array_read(u8 *array, s32 index) { return array[index]; }
-#pragma opt_dead_assignments reset
 
-#pragma opt_dead_assignments off
-#pragma opt_propagation off
 void fn_1_B3900(u8 *arg0) {
     u8 *data = (u8 *)&lbl_1_data_35AC8;
     u8 *bss = (u8 *)&lbl_1_bss_716C0;
@@ -7414,9 +7410,6 @@ void fn_1_B3900(u8 *arg0) {
         *(u32 *)(bss + 0x1F4) = *(u32 *)(f + 4);
     }
 }
-#pragma opt_propagation reset
-
-#pragma opt_dead_assignments reset
 /* fzgx:end fn_1_B3900 */
 
 /* fzgx:begin fn_1_B40B4 */
