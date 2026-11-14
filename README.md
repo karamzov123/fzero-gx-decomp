@@ -26,7 +26,7 @@ The goal of this project is to reconstruct readable, maintainable, matching C so
 
 ## Current Status
 
-Verified locally on **2026-11-14**, against source baseline `875524dda` plus the DVD diagnostic-data import below, for **GFZE01**:
+Verified locally on **2026-11-14**, after consolidating merged upstream through PR #376 and the accepted changes below, for **GFZE01**:
 
 - **Diagnostic Object Match:** **100.0%** of code bytes (7,351 / 7,351 functions in the objdiff report). This includes assembly and retail fallback objects; it is not a natural-C completion percentage.
 - **Authored C Credit:** **7,160 / 7,351** functions, **98.7912%** of code bytes (`fzgx sync`, then `fzgx honest`). This includes C with compiler-diff devices and evidenced inline assembly kernels, not just device-free natural C.
@@ -81,6 +81,18 @@ ownership, not a newly matched function or a removed compiler-diff device.
 Next for initialized data: recover mixed layouts for non-finite pools such as
 `lbl_3_rodata_990` and `lbl_1_rodata_2B2C`; do not weaken their existing scalar-array declarations
 to opaque byte storage just to get them through the importer.
+
+### Latest Accepted Source Cleanup
+
+`fn_8003D42C` now reads its input byte without an unnecessary volatile qualifier. The real MWCC
+object still matches retail exactly and the normal submission/verifier path accepted the change.
+Its `opt_propagation off` and `peephole off` directives remain: removing them does not match.
+This removes one unmarked qualifier device, not a whole function's remaining compiler steering;
+authored-function totals and the marked-warning count are unchanged. See
+[the compiler evidence](state/repairs/ordinary-stream-read-20261114.json).
+
+The verifier also now resolves Git's actual index-lock location, so accepted source can be
+committed from linked worktrees whose `.git` is a file. Existing lock-age and process checks remain.
 
 ### Supported Versions
 

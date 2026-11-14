@@ -1,5 +1,5 @@
 {
- "generated": 1794685488,
+ "generated": 1794687406,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -23592,7 +23592,7 @@
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
-   "matched_commit": "1f727de8",
+   "matched_commit": "4fd5884d5",
    "blocked_reason": null,
    "prev_status": null,
    "link_state": "verified"
@@ -697915,6 +697915,27 @@
    "best_body_path": "/home/armandofm/projects/fzgx/.worktrees/natural-device-cleanup/.fzgx/attempts/fn_8004F55C.shadow.1794683821.c",
    "stale_checks": 0,
    "best_in_attempt": 0.0,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0
+  },
+  {
+   "id": 27281,
+   "symbol": "fn_8003D42C",
+   "agent": "revise-hermes-ordinary-input-20261114",
+   "harness": null,
+   "model": null,
+   "started": 1794687124,
+   "ended": 1794687150,
+   "checks": 2,
+   "final_percent": 100.0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0.0,
+   "outcome": "shadow-matched",
+   "notes": "revised: devices: fn_8003D42C read ordinary input without volatile steering",
+   "best_body_path": null,
+   "stale_checks": 1,
+   "best_in_attempt": 100.0,
    "cache_read_tokens": 0,
    "cache_write_tokens": 0
   }

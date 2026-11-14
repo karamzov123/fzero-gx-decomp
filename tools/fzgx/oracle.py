@@ -94,14 +94,17 @@ def build_lock(name: str = "build.lock", timeout_s: float = 120.0):
 
 
 def clear_stale_index_lock(min_age_s: float = 30.0) -> bool:
-    """Remove .git/index.lock left by a git process that died by signal.
+    """Remove the Git-reported index.lock left by a process that died by signal.
 
     Call with submit.lock held (every tooling commit takes it). The lock is stale
     only when it is old and no git process is running in this repository; one
     such leftover made every later `git add` exit 128 and held the whole fleet.
     """
     import time as _time
-    lock = ROOT / ".git" / "index.lock"
+    location = run(["git", "rev-parse", "--git-path", "index.lock"])
+    if location.returncode:
+        raise RuntimeError(f"cannot locate Git index lock: {location.stderr.strip()}")
+    lock = (ROOT / location.stdout.strip()).resolve()
     try:
         if _time.time() - lock.stat().st_mtime < min_age_s:
             return False
@@ -114,7 +117,7 @@ def clear_stale_index_lock(min_age_s: float = 30.0) -> bool:
         except OSError:
             continue
     lock.unlink(missing_ok=True)
-    print(f"  removed stale {lock.relative_to(ROOT)} (no git process in the repository)", file=sys.stderr, flush=True)
+    print(f"  removed stale {os.path.relpath(lock, ROOT)} (no git process in the repository)", file=sys.stderr, flush=True)
     return True
 
 

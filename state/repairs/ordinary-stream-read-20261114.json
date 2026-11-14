@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "base_commit": "a80640e1c777dc08f478c43dfe550ce749921f8e",
+  "accepted_source_commit": "4fd5884d5",
+  "symbol": "fn_8003D42C",
+  "module": "main",
+  "status": "accepted partial compiler-device removal; not fully natural C",
+  "source": "src/dol/fn_8003D42C.c",
+  "source_sha256": "ca61ece2e0470d554e49e780a8ef2a86dc0f4061852b49f5b92de21e9c3e6fbe",
+  "target_sha256": "0f4863acaa69a2f274a3e833beec2c345a9556576d31a613aa4c83b1f2db5b85",
+  "mw_version": "GC/1.2.5n",
+  "extra_cflags": "-O2",
+  "change": "Read the input stream as an ordinary u8 rather than a volatile u8. This is not an MMIO access; the surrounding stream reads are already ordinary. Same exact retail object under the retained unit compiler profile.",
+  "remaining": "opt_propagation off and peephole off remain. Neither individual removal nor both together matches retail; do not claim full naturalization. The removed volatile access was unmarked, so the 34 primary-warning total is unchanged.",
+  "observations": [
+    {
+      "label": "baseline",
+      "mw": "GC/1.2.5n",
+      "flags": "-O2",
+      "sha256": "9a32bd79e2848b2fda3bd14157e71bcefa5832470d05b2ac494fe75f22fcdc27",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "matched": true
+    },
+    {
+      "label": "ordinary-input",
+      "mw": "GC/1.2.5n",
+      "flags": "-O2",
+      "sha256": "ca61ece2e0470d554e49e780a8ef2a86dc0f4061852b49f5b92de21e9c3e6fbe",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "matched": true
+    },
+    {
+      "label": "ordinary-input-default-optimizer",
+      "mw": "GC/1.2.5n",
+      "flags": "-O2",
+      "sha256": "2491e07416bc00f716313e4388ddf1e76d2a5221b14130c6846aa3ed81545648",
+      "word_errors": 10,
+      "shape_errors": 6,
+      "matched": null
+    },
+    {
+      "label": "propagation-default",
+      "mw": "GC/1.2.5n",
+      "flags": "-O2",
+      "sha256": "53e86a50fb28c990f1b496169bfe830668d1ba69d2283fff36eedfc0ebd40b25",
+      "word_errors": 10,
+      "shape_errors": 6,
+      "matched": null
+    },
+    {
+      "label": "peephole-default",
+      "mw": "GC/1.2.5n",
+      "flags": "-O2",
+      "sha256": "e72bf773f60cbb9a443686d55d668f06897980f1fb675ae00063014596b60832",
+      "word_errors": 2,
+      "shape_errors": 2,
+      "matched": null
+    }
+  ],
+  "verifier_repair": "The supported fzgx verify path failed because .git is a file in a linked worktree. oracle.clear_stale_index_lock now asks git rev-parse --git-path index.lock and handles a lock path outside ROOT in diagnostics; age and live-process checks remain. The actual worktree verify CLI subsequently accepted and committed the source.",
+  "acceptance": "Supported claim/write-unit/check/submit/verify path; standalone MWCC 100%; full USA hash and lint gates required before publication."
+}
