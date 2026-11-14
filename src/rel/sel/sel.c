@@ -569,6 +569,11 @@ void fn_10_12D8(void) {
     }
 }
 #pragma opt_dead_assignments reset
+
+u8 lbl_10_data_65C[0x20] = "SelCourseDisp\0\0\0SelCarMapDisp";
+u8 lbl_10_data_67C[0x17] = "SelStartYourEngineDisp";
+u8 lbl_10_data_694[0xE] = "SelRecordDisp";
+u8 lbl_10_data_6A4[0xB] = "SelComDisp";
 /* fzgx:end fn_10_12D8 */
 
 /* fzgx:begin fn_10_1544 noprologue */

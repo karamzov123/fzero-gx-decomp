@@ -443,7 +443,7 @@ rel/sel/sel/fn_10_8600.c:
 
 rel/sel/sel/fn_10_12D8.c:
 	.text       start:0x000012D8 end:0x00001544 align:4
-	.data       start:0x00000628 end:0x0000065C align:8
+	.data       start:0x00000628 end:0x000006AF align:8
 
 rel/sel/sel/fn_10_4790.c:
 	.text       start:0x00004790 end:0x00004838 align:4
