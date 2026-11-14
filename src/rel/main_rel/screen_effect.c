@@ -1504,6 +1504,8 @@ void fn_1_76218(s32 arg0) {
         GXInvalidateTexAll();
     }
 }
+
+char lbl_1_data_1DC54[] = "Error!: ScrefcSetMode   Manager is Full\n";
 /* fzgx:end fn_1_76218 */
 
 /* fzgx:begin fn_1_76448 */
