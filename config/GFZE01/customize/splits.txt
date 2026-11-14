@@ -341,6 +341,7 @@ rel/customize/_prolog/fn_3_9710.c:
 
 rel/customize/_prolog/fn_3_65B0.c:
 	.text       start:0x000065B0 end:0x0000679C align:4
+	.data       start:0x00001698 end:0x00001930 align:8
 
 rel/customize/_prolog/fn_3_60C8.c:
 	.text       start:0x000060C8 end:0x000061B8 align:4
@@ -1039,7 +1040,7 @@ rel/customize/data/lbl_3_data_15D8.c:
 	.data       start:0x000015D8 end:0x000015F0 align:8
 
 rel/customize/data/lbl_3_data_1668.c:
-	.data       start:0x00001668 end:0x000018E4 align:8
+	.data       start:0x00001668 end:0x00001698 align:8
 
 rel/customize/data/lbl_3_data_1930.c:
 	.data       start:0x00001930 end:0x00001958 align:8

@@ -6042,32 +6042,6 @@
     "unit_size": 636,
     "unit_start": 5736
   },
-  "customize:lbl_3_data_1698": {
-    "address": 5784,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "u8 lbl_3_data_1698[380]",
-        "path": "src/rel/customize/_prolog.c"
-      }
-    ],
-    "definition": "u8 lbl_3_data_1698[380]",
-    "method": "typed-data",
-    "module": "customize",
-    "references": [
-      "fn_3_4F08"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 636,
-    "sha256": "9da51f3da1979ea5ca732ba1b421208e1141e25f546e1264df149c2d46ed438b",
-    "size": 380,
-    "source": "rel/customize/data/lbl_3_data_1668.c",
-    "symbol": "lbl_3_data_1698",
-    "unit_align": 8,
-    "unit_size": 636,
-    "unit_start": 5736
-  },
   "customize:lbl_3_data_178": {
     "address": 376,
     "align": 8,
@@ -6086,36 +6060,6 @@
     "unit_align": 8,
     "unit_size": 3864,
     "unit_start": 0
-  },
-  "customize:lbl_3_data_1814": {
-    "address": 6164,
-    "align": 4,
-    "declarations": [
-      {
-        "declaration": "u8 lbl_3_data_1814[208]",
-        "path": "src/rel/customize/_prolog.c"
-      },
-      {
-        "declaration": "u8 lbl_3_data_1814[208]",
-        "path": "src/rel/customize/_prolog.c"
-      }
-    ],
-    "definition": "u8 lbl_3_data_1814[208]",
-    "method": "typed-data",
-    "module": "customize",
-    "references": [
-      "fn_3_5C8C"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 636,
-    "sha256": "2cb6f52f218f786fbad2d4845784b920e7e276d88fabc0bc1218404cc772459f",
-    "size": 208,
-    "source": "rel/customize/data/lbl_3_data_1668.c",
-    "symbol": "lbl_3_data_1814",
-    "unit_align": 8,
-    "unit_size": 636,
-    "unit_start": 5736
   },
   "customize:lbl_3_data_1930": {
     "address": 6448,

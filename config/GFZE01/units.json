@@ -1361,10 +1361,7 @@
     "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/customize/_prolog.c",
-    "pool": {
-      "@32": "jumptable_3_data_18E4"
-    }
+    "tu": "rel/customize/_prolog.c"
   },
   {
     "module": "customize",
@@ -3090,9 +3087,7 @@
     "module": "customize",
     "source": "rel/customize/data/lbl_3_data_1668.c",
     "symbols": [
-      "lbl_3_data_1668",
-      "lbl_3_data_1698",
-      "lbl_3_data_1814"
+      "lbl_3_data_1668"
     ],
     "status": "matching",
     "data": true,
