@@ -1775,33 +1775,28 @@ static void fzgx_bss_layout(void) {
 }
 #pragma section code_type ".text"
 
-#pragma opt_lifetimes off
 u32 fn_1_46BA0(u32 arg0, u32 arg1) {
-    u32 v0;
-    s32 v1;
-    void *v2;
-    
-    v0 = fzgx_obj_lbl_1_bss_384C0;
-    v1 = v0 + 1;
-{
+    u32 index;
+    s32 next;
+    u32 *entry;
     s32 current;
-    current = v0;
-    if (v1 >= 512) {
-        v1 = 0;
+
+    index = fzgx_obj_lbl_1_bss_384C0;
+    next = index + 1;
+    current = index;
+    if (next >= 512) {
+        next = 0;
     }
-    if ((s32)lbl_1_bss_384C4 == v1) {
+    if ((s32)lbl_1_bss_384C4 == next) {
         return -1;
     }
-    v2 = (void *)((u8 *)&lbl_1_bss_384D8__fzgx_offset_4000);
-    v2 = (u8 *)v2 + v0 * 12;
-    fzgx_obj_lbl_1_bss_384C0 = v1;
-    *(u32 *)((u8 *)v2 + 0) = 12;
-    *(u32 *)((u8 *)v2 + 4) = arg0;
-    *(u32 *)((u8 *)v2 + 8) = arg1;
+    entry = (u32 *)((u8 *)&lbl_1_bss_384D8__fzgx_offset_4000 + index * 12);
+    fzgx_obj_lbl_1_bss_384C0 = next;
+    entry[0] = 12;
+    entry[1] = arg0;
+    entry[2] = arg1;
     return current;
 }
-}
-#pragma opt_lifetimes reset
 /* fzgx:end fn_1_46BA0 */
 
 /* fzgx:begin fn_1_46BFC */
