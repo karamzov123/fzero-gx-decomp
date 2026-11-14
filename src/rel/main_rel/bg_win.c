@@ -431,7 +431,6 @@ s32 fn_1_15BCDC(u32 *commands) {
     }
     return 1;
 }
-
 /* fzgx:end fn_1_15BCDC */
 
 /* fzgx:begin fn_1_15BE38 */
@@ -2029,10 +2028,24 @@ void fn_1_15E7F4(void *arg0, s32 arg1) {
         fn_1_4F734((FontDrawPacket *)&loc_58);
     }
 }
-
 /* fzgx:end fn_1_15E7F4 */
 
 /* fzgx:begin fn_1_15EC40 */
+extern u32 lbl_1_bss_8FD60[2];
+extern int fn_1_15BCDC(void *);
+extern void fn_1_4060(void);
+
+extern u32 lbl_1_bss_8FE80[8];
+
+extern void *fn_1_435C(void *);
+extern void fn_1_15E220(u8 *value);
+extern void fn_1_3F8C(void *, void *, u8 *, s32);
+extern u32 lbl_1_bss_8FEA0;
+extern u8 lbl_1_bss_8FE7C;
+extern u32 strlen(const char *str);
+extern s32 fn_8006FC1C(const char *a, const char *b);
+extern void fn_1_15E1E8(u8 *value);
+
 extern u32 lbl_1_bss_8FD60[2];
 extern int fn_1_15BCDC(void *);
 extern void fn_1_4060(void);
@@ -2229,7 +2242,6 @@ static inline u32 time_difference(u32 a, u32 b) {
     if (bv > av) diff = bv - av;
     return ((diff / 60000) << 20) | (((diff / 1000) % 60) << 12) | (diff % 1000);
 }
-static inline f32 fn_1_15EC40_operand(f32 left, f32 right) { left *= right; return left; }
 extern void OSReport(const char *, ...);
 #pragma section code_type ".fzgxpool"
 static void fzgx_string_layout(void) {
@@ -2301,7 +2313,11 @@ void fn_1_15EC40(struct fn_1_15EC40_Arg0 *arg0) {
     tmp_fn_1_58C4 = fn_1_58C4();
     if (tmp_fn_1_58C4 == 1) v31 = fzgx_pool_lbl_1_rodata_DD6C__fzgx_offset_8;
     else v31 = fzgx_pool_lbl_1_rodata_DD6C__fzgx_offset_C;
-    fn_1_4955C(fn_1_15EC40_operand((fzgx_pool_lbl_1_rodata_DE50__fzgx_offset_8C * v2), (v31)), fzgx_pool_lbl_1_rodata_DD98__fzgx_offset_AC * v30);
+    {
+        f32 intensity = fzgx_pool_lbl_1_rodata_DE50__fzgx_offset_8C * v2;
+        intensity *= v31;
+        fn_1_4955C(intensity, fzgx_pool_lbl_1_rodata_DD98__fzgx_offset_AC * v30);
+    }
     v32.value = fn_1_51AC0(fzgx_pool_lbl_1_rodata_DE50__fzgx_offset_94);
     fn_1_496FC(fn_1_519FC(fzgx_pool_lbl_1_rodata_DE50__fzgx_offset_90), v32.value);
     fn_1_4AE0C((const char *)"%c%02d<%02d=%03d", v29 & 0xFF, (v6 >> 20) & 0xFF, (v6 >> 12) & 0xFF, v6 & 0xFFF);
