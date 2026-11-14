@@ -23623,28 +23623,21 @@ extern struct fn_1_2C908_lbl_1_bss_3C00 lbl_1_bss_3C00;
 extern u32 fn_1_4060(void);
 extern void fn_1_EB080(int);
 
-#pragma opt_lifetimes off
 u32 fn_1_2C908(void) {
-    struct fn_1_2C908_lbl_1_bss_3C00 *p_lbl_1_bss_3C00;
-    u32 v0;
-    u32 v1;
-    p_lbl_1_bss_3C00 = (struct fn_1_2C908_lbl_1_bss_3C00 *)&lbl_1_bss_3C00;
-    v0 = fn_1_4C10();
-    if ((s32)v0 == 0) {
-    v0 = p_lbl_1_bss_3C00->unk_30;
-    v1 = (v0 | 4096);
-    p_lbl_1_bss_3C00->unk_14E8 = 42;
-    p_lbl_1_bss_3C00->unk_30 = v1;
-    p_lbl_1_bss_3C00->unk_14EC = 0;
-    p_lbl_1_bss_3C00->unk_14F4 = (p_lbl_1_bss_3C00->unk_14F4 | 1);
-    p_lbl_1_bss_3C00->unk_14F8 = 0;
-    p_lbl_1_bss_3C00->unk_14FC = 0;
-    fn_1_EB080(4);
-    v0 = fn_1_4060();
+    struct fn_1_2C908_lbl_1_bss_3C00 *p = (struct fn_1_2C908_lbl_1_bss_3C00 *)&lbl_1_bss_3C00;
+    u32 result = fn_1_4C10();
+    if ((s32)result == 0) {
+        p->unk_14E8 = 42;
+        p->unk_30 |= 0x1000;
+        p->unk_14EC = 0;
+        p->unk_14F4 |= 1;
+        p->unk_14F8 = 0;
+        p->unk_14FC = 0;
+        fn_1_EB080(4);
+        result = fn_1_4060();
     }
-    return v0;
+    return result;
 }
-#pragma opt_lifetimes reset
 /* fzgx:end fn_1_2C908 */
 
 /* fzgx:begin fn_1_2C97C noprologue */
