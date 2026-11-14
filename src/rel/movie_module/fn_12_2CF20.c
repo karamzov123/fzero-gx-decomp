@@ -16,7 +16,6 @@ typedef struct MovieEntry {
 
 extern s32 fn_12_24A88(void *movie, s32 message);
 
-#pragma opt_dead_assignments on
 s32 fn_12_2CF20(void *movie, s32 index, MovieCmd *cmd) {
     s32 fzgx_value;
     s32 result;
@@ -65,4 +64,3 @@ s32 fn_12_2CF20(void *movie, s32 index, MovieCmd *cmd) {
     }
     return 0;
 }
-#pragma opt_dead_assignments reset

@@ -838,7 +838,6 @@ static inline void fn_1_41CB8_walk(Fn41CB8Entry *entry, int n) {
     }
 }
 
-#pragma opt_lifetimes on
 static inline void * fn_1_41CB8_read_pointer(Fn41CB8Data * owner) { return owner->items_b; }
 void fn_1_41CB8(Fn41CB8Data *data) {
     Fn41CB8Entry *entry;
@@ -883,7 +882,6 @@ void fn_1_41CB8(Fn41CB8Data *data) {
         i++;
     }
 }
-#pragma opt_lifetimes reset
 /* fzgx:end fn_1_41CB8 */
 
 /* fzgx:begin fn_1_41E34 */
@@ -1490,8 +1488,6 @@ struct fn_1_4270C_Arg1 {
 extern const f32 lbl_1_rodata_F54;
 extern const f64 lbl_1_rodata_F58;
 extern s32 fn_1_431B8(Sig_fn_1_431B8_Fn1431B8Object *, Sig_fn_1_431B8_Fn1431B8Object *);
-#pragma opt_dead_assignments on
-#pragma opt_loop_invariants on
 void fn_1_4270C(void *arg0, struct fn_1_4270C_Arg1 *arg1, u32 arg2) {
     u32 v0;
     u16 v1;
@@ -1653,9 +1649,7 @@ for (fzgx_loop_v22_4540 = 3; fzgx_loop_v22_4540 != 0; fzgx_loop_v22_4540--) {
         v6++;
     }
 }
-#pragma opt_loop_invariants reset
 
-#pragma opt_dead_assignments reset
 /* fzgx:end fn_1_4270C */
 
 /* fzgx:begin fn_1_42AD0 */

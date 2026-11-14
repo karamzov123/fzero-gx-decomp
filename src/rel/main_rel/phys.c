@@ -83,7 +83,6 @@ extern u32 fn_1_4630(u32, u32, u8 *, u32);
 extern u32 lbl_801A6410;
 extern u8 lbl_1_data_3DDB4[];
 
-#pragma opt_common_subs off
 void fn_1_E1C10(void) {
     s16 fzgx_value_;
     s16 kind;
@@ -200,7 +199,6 @@ void fn_1_E1C10(void) {
     }
     base->unk_28 = (u32)ptr;
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_E1C10 */
 
 /* fzgx:begin fn_1_E1E9C noprologue */
@@ -2885,7 +2883,6 @@ extern void fn_1_4955C(f32 a, f32 b);
 extern f32 __fabsf(f32);
 
 static inline f32 fn_1_E52F8_read_pointer(Sig_fn_8006F828_Fn8006F828Data * owner) { return owner->value1; }
-#pragma opt_dead_assignments off
 void fn_1_E52F8(Sig_fn_1_E52F8_Arg *arg0, void (*fmt)(const char *, ...))
 {
     Sig_fn_8006F828_Fn8006F828Data v;
@@ -2909,7 +2906,6 @@ void fn_1_E52F8(Sig_fn_1_E52F8_Arg *arg0, void (*fmt)(const char *, ...))
     fmt((const char *)lbl_1_data_3E154, 216.0 * arg0->unk_50);
     fmt((const char *)lbl_1_data_3E160, arg0->unk_50);
 }
-#pragma opt_dead_assignments reset
 /* fzgx:end fn_1_E52F8 */
 
 /* fzgx:begin fn_1_E5430 */
@@ -4198,7 +4194,6 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime23(void) {
 extern f32 lbl_1_rodata_6780[];
 extern u16 lbl_1_bss_7B14C[26];
 
-#pragma opt_strength_reduction on
 static inline f32 fn_1_E733C_operand(f32 right, f32 left) { return left * right; }
 void fn_1_E733C(u8 *obj, s16 count) {
     f32 f;
@@ -4259,7 +4254,6 @@ void fn_1_E733C(u8 *obj, s16 count) {
         obj += 0x1A8;
     }
 }
-#pragma opt_strength_reduction reset
 /* fzgx:end fn_1_E733C */
 
 /* fzgx:begin fn_1_E7524 noprologue */

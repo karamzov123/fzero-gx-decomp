@@ -3008,7 +3008,6 @@ static inline s32 random15(void) {
     lbl_801A63C0.unk_0 = next_seed;
     return (lbl_801A63C0.unk_0 >> 16) & 0x7FFF;
 }
-#pragma opt_strength_reduction off
 s8 fn_1_15906C(u32 arg0, struct RankingEffectObject *arg1, f32 arg2) {
     f32 *z_component;
     s32 *grid_x;
@@ -3080,7 +3079,6 @@ s8 fn_1_15906C(u32 arg0, struct RankingEffectObject *arg1, f32 arg2) {
     }
     return 1;
 }
-#pragma opt_strength_reduction reset
 #pragma fp_contract reset
 /* fzgx:end fn_1_15906C */
 

@@ -1538,7 +1538,6 @@ extern void fn_1_D550C(void *);
 extern f32 lbl_8006D0B4(f32);
 extern f32 lbl_8006D668(u32 *);
 static inline f32 distance_squared_operand(f32 right, f32 left) { return left * right; }
-#pragma opt_dead_assignments off
 static inline f32 distance_squared(f32 *a, f32 *b) {
     f32 dx = (*((a) + (0)));
     f32 dy = a[1];
@@ -1548,11 +1547,9 @@ static inline f32 distance_squared(f32 *a, f32 *b) {
     dx += dy * dy; dx += dz * dz;
     return dx;
 }
-#pragma opt_dead_assignments reset
 
 static inline f32 fn_1_D59A8_operand(f32 left, f32 right) { return left * right; }
 static inline f32 fn_1_D59A8_operand_(f32 right, f32 left) { return left * right; }
-#pragma opt_common_subs on
 static inline f32 fn_1_D59A8_operand__(f32 left, f32 right) { return left * right; }
 static inline f32 fn_1_D59A8_operand___(f32 left, f32 right) { left += right; return left; }
 void fn_1_D59A8(struct fn_1_D59A8_obj *obj) {
@@ -1600,7 +1597,6 @@ void fn_1_D59A8(struct fn_1_D59A8_obj *obj) {
     obj->elems[3].pos[2] = (f32)(v2c[2] + (f32)(fn_1_D59A8_operand__((v14[2]), ((20.0f)))));
     obj->elems[3].unk_24 = (70.0f);
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_D59A8 */
 
 /* fzgx:begin fn_1_D5C68 */

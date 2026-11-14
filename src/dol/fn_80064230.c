@@ -8,8 +8,6 @@ struct fn_80064230_T {
 extern struct fn_80064230_T *lbl_801A6C80;
 
 static inline u8 * fn_80064230_read_pointer(struct fn_80064230_T * owner) { return owner->data; }
-#pragma opt_strength_reduction off
-#pragma opt_dead_assignments off
 void fn_80064230(u32 id, u32 sel) {
     u8 *p;
     u32 k;
@@ -82,7 +80,5 @@ void fn_80064230(u32 id, u32 sel) {
         }
     }
 }
-#pragma opt_dead_assignments reset
 
-#pragma opt_strength_reduction reset
 

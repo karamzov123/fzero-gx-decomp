@@ -27,7 +27,6 @@ static inline s32 reset_state(u32 arg0) {
  *(s32 *)(arg0+0x4c)=1;
  return 0;
 }
-#pragma opt_propagation off
 static inline s32 reset_body(u32 arg0) {
  u32 *p_lbl_12_bss_7C64;
  s32 v0;

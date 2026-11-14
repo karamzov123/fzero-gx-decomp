@@ -2880,7 +2880,6 @@ typedef struct {
     u32 unk_4;
 } Obj_1_FE644_Out;
 
-#pragma opt_propagation off
 void fn_1_FE644(void) {
     Obj_1_data_2A7E0_At3C_Ext *ext;
     u32 *fzgx_value;
@@ -2918,7 +2917,6 @@ void fn_1_FE644(void) {
     *fzgx_value = out.unk_0.unk_0;
     fn_1_9A7A8(&out.unk_4);
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_FE644 */
 
 /* fzgx:begin fn_1_FE780 */
@@ -4936,8 +4934,6 @@ static inline s32 fn_1_FFE7C_less_equal(s32 quota, s32 index) {
     return quota <= index;
 }
 
-#pragma opt_lifetimes on
-#pragma opt_propagation on
 void fn_1_FFE7C(void * arg0) {
     struct fn_1_FFE7C_lbl_1_rodata_76A8 *p_lbl_1_rodata_76A8;
     f32 v0;
@@ -5181,9 +5177,7 @@ active:
     } while (--v13 > 0);
     return;
 }
-#pragma opt_propagation reset
 
-#pragma opt_lifetimes reset
 /* fzgx:end fn_1_FFE7C */
 
 /* fzgx:begin fn_1_10069C noprologue */

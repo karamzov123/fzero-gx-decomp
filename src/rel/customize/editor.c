@@ -869,7 +869,6 @@ extern u8 fn_3_19C94(void);
 #define BUTTON(p, n) ((((u16 *)(lbl_1_bss_9F8 + 0x10))[(p) * 10] >> (n)) & 1)
 #define CLAMP_POS(v) ((v) < 1 ? 1 : ((v) > 62 ? 62 : (v)))
 
-#pragma opt_propagation off
 void fn_3_169B8(void)
 {
     struct fn_3_169B8_lbl_3_rodata_538_pool *pool_lbl_3_rodata_538 = (struct fn_3_169B8_lbl_3_rodata_538_pool *)&lbl_3_rodata_538;

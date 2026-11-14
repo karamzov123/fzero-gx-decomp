@@ -7,8 +7,6 @@ typedef struct GXContext {
 
 extern GXContext* gx;
 
-#pragma opt_propagation off
-#pragma opt_common_subs off
 u32 GXSetScissorBoxOffset(s32 x, s32 y) {
     u32 temp = ((u32)(x + 0x156) >> 1) & 0xfff003ff;
     GXContext* context = gx;
@@ -19,7 +17,5 @@ u32 GXSetScissorBoxOffset(s32 x, s32 y) {
     context->field_2 = 0;
     return (u32)context;
 }
-#pragma opt_common_subs reset
 
-#pragma opt_propagation reset
 

@@ -7,7 +7,6 @@ extern u32 fn_12_847C(void *, u32, void *, void *, void *);
 extern u32 fn_12_80BC(u32, void *, u32);
 
 
-#pragma opt_propagation on
 void fn_12_86B8(void *arg0) {
     u32 temp_r3;
     s32 sp8;
@@ -29,5 +28,4 @@ void fn_12_86B8(void *arg0) {
     (*(u32 *)((u8 *)(arg0) + 596)) = (u32) (temp_r3 + 0x180);
     fn_12_80BC((u32)(temp_r3), (void *)(temp_r30), (u32)(*(u32 *)((u8 *)(arg0) + 788)));
 }
-#pragma opt_propagation reset
 

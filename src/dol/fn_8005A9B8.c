@@ -195,8 +195,6 @@ static inline void axrna_flash(AXRNAHandle *handle) {
     }
 }
 
-#pragma opt_lifetimes off
-#pragma opt_dead_assignments off
 void fn_8005A9B8(AXRNAHandle *handle) {
     if (!(handle)) {
         return;
@@ -212,7 +210,5 @@ void fn_8005A9B8(AXRNAHandle *handle) {
         axrna_flash(handle);
     }
 }
-#pragma opt_dead_assignments reset
 
-#pragma opt_lifetimes reset
 

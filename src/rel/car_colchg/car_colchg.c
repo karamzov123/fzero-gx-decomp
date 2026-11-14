@@ -1000,7 +1000,6 @@ __declspec(section ".fzgxpool") static inline void fzgx_pool_prime5(void) {
     d = 4503599627370496.0;
 }
 #pragma section code_type ".text"
-#pragma opt_propagation on
 s32 fn_9_1310(struct Car_9_1310 *car) {
     u32 *rng;
     f32 angle;

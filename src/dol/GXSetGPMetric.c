@@ -258,7 +258,6 @@ extern u16 *__cpReg;
 // Hardware or OS state can change asynchronously.
 volatile PPCWGPipe GXFIFO : FZGX_ADDR_GXFIFO;
 
-#pragma opt_propagation off
 void GXSetGPMetric(GXPerf0 perf0, GXPerf1 perf1) {
     switch (gx->perf0) {
     case GX_PERF0_VERTICES:
@@ -726,5 +725,4 @@ void GXSetGPMetric(GXPerf0 perf0, GXPerf1 perf1) {
     }
     gx->bpSentNot = ((GXBool)0);
 }
-#pragma opt_propagation reset
 

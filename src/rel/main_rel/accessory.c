@@ -410,7 +410,6 @@ typedef struct {
     fn_1_108A90_Entry *entries;
 } fn_1_108A90_Self;
 
-#pragma opt_dead_assignments off
 void fn_1_108A90(fn_1_108A90_Self *self, s32 idx, f32 radius, f32 cx, f32 cy, f32 cz) {
     fn_1_108A90_Self *s = self;
     f32 r = radius;
@@ -453,7 +452,6 @@ void fn_1_108A90(fn_1_108A90_Self *self, s32 idx, f32 radius, f32 cx, f32 cy, f3
         e = (fn_1_108A90_Entry *)((u8 *)e + 0x44);
     }
 }
-#pragma opt_dead_assignments reset
 /* fzgx:end fn_1_108A90 */
 
 /* fzgx:begin fn_1_108BD0 noprologue */
@@ -678,8 +676,6 @@ extern void mathutil_mtxA_from_quat(void *);
 extern void lbl_8006DB74(void *);
 extern void lbl_8006DFC4(void *);
 
-#pragma opt_propagation off
-#pragma opt_common_subs off
 void fn_1_108EEC(fn_1_108EEC_Arg *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, s32 arg5, s32 arg6) {
     f32 fzgx_live;
     u8 *p;
@@ -755,9 +751,7 @@ void fn_1_108EEC(fn_1_108EEC_Arg *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, 
         n++;
     }
 }
-#pragma opt_common_subs reset
 
-#pragma opt_propagation reset
 /* fzgx:end fn_1_108EEC */
 
 /* fzgx:begin fn_1_109114 */
@@ -3116,7 +3110,6 @@ typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
 #define INDEX(i) (((u32 *)lbl_1_data_3FFBC)[i])
 static inline f32 fn_1_10BE3C_read_pointer(Link * owner) { return owner->length; }
 extern u8 lbl_1_bss_88B50[0xC00];
-#pragma opt_common_subs off
 void fn_1_10BE3C(Work *arg0) {
  const u8 *pool=lbl_1_rodata_7AB8;
  u8 *fmodel;
@@ -3268,7 +3261,6 @@ void fn_1_10BE3C(Work *arg0) {
  }
  }
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_10BE3C */
 
 /* fzgx:begin fn_1_10C4E4 noprologue */
@@ -17641,7 +17633,6 @@ typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
 #define INDEX(i) (((u32 *)lbl_1_data_3FFBC)[i])
 static inline f32 fn_1_11CD3C_read_pointer(Link * owner) { return owner->length; }
 extern u8 lbl_1_bss_88B50[0xC00];
-#pragma opt_common_subs off
 void fn_1_11CD3C(Work *arg0) {
  const u8 *pool=lbl_1_rodata_7AB8;
  u8 *fmodel;
@@ -17749,7 +17740,6 @@ void fn_1_11CD3C(Work *arg0) {
  }
  }
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_11CD3C */
 
 /* fzgx:begin fn_1_11D1FC noprologue */
@@ -21195,7 +21185,6 @@ extern u32 lbl_801A6410;
 extern void fn_1_10846C(Obj1244F0 *);
 extern void fn_1_128884(void *, void *, s32);
 
-#pragma opt_lifetimes on
 void fn_1_1244F0(Obj1244F0 *obj) {
     Group1244F0 *p;
     u32 jRow;
@@ -23941,7 +23930,6 @@ extern u32 lbl_801A63C0;
 extern Vec3f lbl_1_bss_88B40;
 extern f32 lbl_8006D0B4(f32);
 
-#pragma opt_dead_assignments off
 void fn_1_1286F4(Vec3f *out) {
     if ((lbl_801A66A0 & 0xF) == 0) {
         u32 c;

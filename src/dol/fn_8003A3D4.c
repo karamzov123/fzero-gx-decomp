@@ -2,8 +2,6 @@
 
 s32 fn_8003A91C(void *arg0);
 
-#pragma peephole on
-#pragma opt_loop_invariants on
 s32 fn_8003A3D4(u8 *arg0) {
     u8 count;
     u8 i;
@@ -47,6 +45,4 @@ s32 fn_8003A3D4(u8 *arg0) {
     *(u8 **)(arg0 + 0x400) += 3;
     return fn_8003A91C(arg0);
 }
-#pragma opt_loop_invariants reset
 
-#pragma peephole reset

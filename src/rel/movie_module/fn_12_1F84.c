@@ -55,7 +55,6 @@ extern void fn_12_3DCF0(MovieMatrix *matrix, MovieSource *source, u32 arg2);
 extern void fn_12_3DF08(MovieMatrix *matrix, MovieSource *source);
 extern const char lbl_12_rodata_60[];
 
-#pragma opt_lifetimes off
 void fn_12_1F84(MovieArg0 *arg0, MovieArg1 *arg1, s32 arg2)
 {
     register s32 guard;
@@ -149,5 +148,4 @@ void fn_12_1F84(MovieArg0 *arg0, MovieArg1 *arg1, s32 arg2)
         fn_12_3DF08(&m2, &s2);
     }
 }
-#pragma opt_lifetimes reset
 

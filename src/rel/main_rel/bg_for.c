@@ -1628,7 +1628,6 @@ extern void lbl_8006DAEC(void);
 extern void lbl_8006DB30(void);
 extern void lbl_8006E0B4(f32, f32, f32);
 
-#pragma opt_strength_reduction off
 void fn_1_DE9C4(struct fn_1_DE9C4_Arg0 *arg0) {
     f32 fzgx_live;
     u32 *v2 = arg0->unk_160;
@@ -1695,7 +1694,6 @@ void fn_1_DE9C4(struct fn_1_DE9C4_Arg0 *arg0) {
         }
     }
 }
-#pragma opt_strength_reduction reset
 /* fzgx:end fn_1_DE9C4 */
 
 /* fzgx:begin fn_1_DEDC4 */
@@ -3501,8 +3499,6 @@ typedef struct {
     u32 field15C;
 } Fn1E1A00Object;
 
-#pragma opt_common_subs on
-#pragma opt_strength_reduction off
 void fn_1_E1A00(Fn1E1A00Object *obj, u8 *str) {
     struct { const f32 *value; } pool;
     pool.value = lbl_1_rodata_6780;
@@ -3568,7 +3564,5 @@ void fn_1_E1A00(Fn1E1A00Object *obj, u8 *str) {
         str++;
     }
 }
-#pragma opt_strength_reduction reset
 
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_E1A00 */

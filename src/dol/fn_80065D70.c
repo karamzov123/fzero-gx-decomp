@@ -29,7 +29,6 @@ extern u32 fn_8006060C(u32);
 extern u32 fn_80064D4C(u8, u32);
 
 static inline struct fn_80065D70_Entry *fn_80065D70_array_read(struct fn_80065D70_Entry *array) { return array; }
-#pragma opt_lifetimes off
 s32 fn_80065D70(u32 arg0) {
     s32 ret;
     u32 i;
@@ -61,4 +60,3 @@ s32 fn_80065D70(u32 arg0) {
     }
     return ret;
 }
-#pragma opt_lifetimes reset

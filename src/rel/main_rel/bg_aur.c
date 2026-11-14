@@ -1191,8 +1191,6 @@ extern AuroraCam *lbl_801A6D00;
 
 static inline f32 fn_1_153D74_read_pointer(V3 * owner) { return owner->y; }
 static inline f32 fn_1_153D74_operand(f32 right, f32 left) { left *= right; return left; }
-#pragma opt_lifetimes off
-#pragma opt_strength_reduction off
 void fn_1_153D74(void *arg0) {
     f32 fzgx_live;
     u8 *base = (u8 *)arg0 + 0x1108;
@@ -1285,9 +1283,7 @@ void fn_1_153D74(void *arg0) {
         q = q + 0x30;
     }
 }
-#pragma opt_strength_reduction reset
 
-#pragma opt_lifetimes reset
 /* fzgx:end fn_1_153D74 */
 
 /* fzgx:begin fn_1_1540B0 noprologue */

@@ -1556,7 +1556,6 @@ static inline u8 scale_to_byte(f32 value, f32 scale) {
 }
 
 static inline u32 fn_1_D7C44_array_read(s32 index, u32 *array) { return array[index]; }
-#pragma opt_lifetimes off
 void fn_1_D7C44(LigEvt *arg0) {
 	LigObj obj;
 	u32 stackbuf[3];
@@ -1602,7 +1601,6 @@ void fn_1_D7C44(LigEvt *arg0) {
 	lbl_8006D758();
 	fn_1_9EDE8(&obj);
 }
-#pragma opt_lifetimes reset
 /* fzgx:end fn_1_D7C44 */
 
 /* fzgx:begin fn_1_D7EF4 noprologue */

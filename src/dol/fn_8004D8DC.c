@@ -47,11 +47,8 @@ extern void fn_800416DC(AdxSjdHandle *decoder, s32 samples);
 extern void fn_800416CC(AdxSjdHandle *decoder, s32 enabled);
 extern void fn_800416D4(AdxSjdHandle *decoder, s32 length);
 
-#pragma opt_strength_reduction off
 static inline const SJInterface * fn_8004D8DC_read_pointer(SJ * owner) { return owner->interface; }
 static inline const SJInterface * fn_8004D8DC_read_pointer_(SJ * owner) { return owner->interface; }
-#pragma opt_loop_invariants off
-#pragma opt_common_subs off
 void fn_8004D8DC(ADXTHandle *handle) {
     void (* fzgx_live_)(SJ *sj, int channel, int max_size, SJCK *chunk);
     const SJInterface * fzgx_live;
@@ -133,9 +130,6 @@ void fn_8004D8DC(ADXTHandle *handle) {
     fn_800416CC(decoder, 0);
     fn_800416D4(decoder, 0);
 }
-#pragma opt_common_subs reset
 
-#pragma opt_loop_invariants reset
 
-#pragma opt_strength_reduction reset
 

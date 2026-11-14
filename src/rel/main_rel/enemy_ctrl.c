@@ -5686,7 +5686,6 @@ extern u16 fn_1_48690(u32);
 extern void fn_1_51678(FontDrawPacket *, u32, s16, s16, s16, s16);
 extern int fn_1_4F734(FontDrawPacket *);
 
-#pragma opt_common_subs on
 void fn_1_CFB28(f32 value) {
     s32 index;
     f64 cur;
@@ -5757,7 +5756,6 @@ void fn_1_CFB28(f32 value) {
     *(f32 *)((u8 *)&packet + 0x4) = lbl_1_data_3D554;
     fn_1_4F734(&packet);
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_CFB28 */
 
 /* fzgx:begin fn_1_CFCA4 noprologue */

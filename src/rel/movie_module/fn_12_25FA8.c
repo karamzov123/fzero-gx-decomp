@@ -61,8 +61,6 @@ extern void *fn_12_57F0(void *arg0, void *arg1, u32 arg2);
 extern u32 lbl_12_bss_7E88;
 extern void *lbl_12_rodata_BC8[4];
 
-#pragma opt_propagation off
-#pragma opt_lifetimes off
 s32 fn_12_25FA8(MovieModule *arg0, s32 arg1, s32 arg2, s32 *arg3, s32 *arg4) {
     void * fzgx_live;
     s32 rem;
@@ -152,5 +150,4 @@ s32 fn_12_25FA8(MovieModule *arg0, s32 arg1, s32 arg2, s32 *arg3, s32 *arg4) {
     }
     return ret;
 }
-#pragma opt_lifetimes reset
 

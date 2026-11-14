@@ -5,7 +5,6 @@ extern int fn_12_2F1B4(u8 *base, int index);
 extern int fn_12_24990(void);
 extern s32 fn_12_24A88(int, u32);
 
-#pragma opt_propagation off
 int fn_12_2D888(u8 *base, int index, int value) {
     int allowed;
 
@@ -72,5 +71,4 @@ int fn_12_2D888(u8 *base, int index, int value) {
     }
     return 0;
 }
-#pragma opt_propagation reset
 

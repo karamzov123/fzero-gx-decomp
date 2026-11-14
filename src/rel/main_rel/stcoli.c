@@ -7338,8 +7338,6 @@ extern u32 mathutil_mtxA_rotate_z(u32);
 extern void fn_8006E250(void *, Vec_fn_1_1FB80 *);
 extern void lbl_8006D7DC(void *);
 
-#pragma opt_loop_invariants off
-#pragma opt_propagation off
 u32 fn_1_1FB80(void *pos, u32 mask) {
     struct { u32 value; } result;
     struct { s32 value; } i;
@@ -7374,9 +7372,7 @@ u32 fn_1_1FB80(void *pos, u32 mask) {
     }
     return result.value;
 }
-#pragma opt_propagation reset
 
-#pragma opt_loop_invariants reset
 /* fzgx:end fn_1_1FB80 */
 
 /* fzgx:begin fn_1_1FC98 noprologue */
@@ -7410,8 +7406,6 @@ extern u32 mathutil_mtxA_rotate_z(u32);
 extern void fn_8006E250(void *, Vec_fn_1_1FC98 *);
 extern void lbl_8006D7DC(void *);
 
-#pragma opt_loop_invariants off
-#pragma opt_propagation off
 u32 fn_1_1FC98(void *pos, u32 mask) {
     struct { u32 value; } result;
     struct { s32 value; } i;
@@ -7446,9 +7440,7 @@ u32 fn_1_1FC98(void *pos, u32 mask) {
     }
     return result.value;
 }
-#pragma opt_propagation reset
 
-#pragma opt_loop_invariants reset
 /* fzgx:end fn_1_1FC98 */
 
 /* fzgx:begin fn_1_1FDB0 noprologue */
@@ -7491,9 +7483,6 @@ static inline void fn_1_1FDB0_projection(f32 x, f32 y, f32 z, struct Vec *a, f32
  *norm_out = norm.value;
  *dot_out = dot.value;
 }
-#pragma opt_common_subs on
-#pragma opt_propagation on
-#pragma opt_lifetimes off
 f32 fn_1_1FDB0(struct fn_1_1FDB0_Arg0 *arg0, struct fn_1_1FDB0_Arg1 *arg1, struct fn_1_1FDB0_Arg2 *arg2, struct fn_1_1FDB0_Arg3 *arg3) {
  f32 t, norm, dot, ax, ay;
  struct Vec d, a, b;
@@ -7522,8 +7511,6 @@ f32 fn_1_1FDB0(struct fn_1_1FDB0_Arg0 *arg0, struct fn_1_1FDB0_Arg1 *arg1, struc
  *arg3=*(struct fn_1_1FDB0_Arg3 *)arg2;
  return lbl_8006D0B4(m);
 }
-#pragma opt_propagation reset
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_1FDB0 */
 
 /* fzgx:begin fn_1_1FFA0 noprologue */
@@ -7949,7 +7936,6 @@ typedef struct Fn_1_20258 {
     u32 flags;
 } Fn_1_20258;
 
-#pragma opt_strength_reduction on
 f32 fn_1_20258(Fn_1_20258 *self, f32 *out_ratio) {
     u32 flags = self->flags;
     u8 *data = (*(u8 (*)[400])&lbl_1_data_5548);
@@ -7996,7 +7982,6 @@ f32 fn_1_20258(Fn_1_20258 *self, f32 *out_ratio) {
     }
     return scale;
 }
-#pragma opt_strength_reduction reset
 /* fzgx:end fn_1_20258 */
 
 /* fzgx:begin fn_1_203E4 noprologue */
@@ -10060,15 +10045,10 @@ typedef struct {
 } fn_1_229EC_ctrl;
 
 static inline f32 fn_1_229EC_operand(f32 left, f32 right) { return left * right; }
-#pragma peephole on
-#pragma opt_dead_assignments off
 static inline f32 fn_1_229EC_operand_(f32 right, f32 left) { return ((((left)) * ((right)))); }
-#pragma opt_dead_assignments reset
 
-#pragma opt_lifetimes off
 static inline f32 fn_1_229EC_operand__(f32 left, f32 right) { left *= right; return left; }
 static inline f32 fn_1_229EC_operand___(f32 left, f32 right) { left *= right; return left; }
-#pragma opt_loop_invariants off
 void fn_1_229EC(fn_1_229EC_ctrl *ctrl, f32 *out_pos, f32 *out_mag)
 {
     f32 fzgx_live;
@@ -10118,11 +10098,8 @@ void fn_1_229EC(fn_1_229EC_ctrl *ctrl, f32 *out_pos, f32 *out_mag)
         *out_mag = 0.0f;
     }
 }
-#pragma opt_loop_invariants reset
 
-#pragma opt_lifetimes reset
 
-#pragma peephole reset
 /* fzgx:end fn_1_229EC */
 
 /* fzgx:begin fn_1_22B10 noprologue */
@@ -12578,7 +12555,6 @@ typedef struct Fn_1_25004_Result {
     u32 flags390;
 } Fn_1_25004_Result;
 
-#pragma opt_strength_reduction off
 void fn_1_25004(Fn_1_25004_Obj *self) {
     Fn_1_25004_Result *result;
     f32 zero;
@@ -12608,7 +12584,6 @@ void fn_1_25004(Fn_1_25004_Obj *self) {
         result->flags390 |= 0x1000000;
     }
 }
-#pragma opt_strength_reduction reset
 /* fzgx:end fn_1_25004 */
 
 /* fzgx:begin fn_1_250F8 */
@@ -17292,8 +17267,6 @@ static inline void cross_vec(const Vec3 *a, const Vec3 *b, Vec3 *out)
     out->z = z;
 }
 
-#pragma opt_propagation off
-#pragma opt_common_subs off
 void fn_1_29044(Object29044 *self, Vec3 *vec, void *arg2)
 {
     Vec3 result;
@@ -17305,7 +17278,6 @@ void fn_1_29044(Object29044 *self, Vec3 *vec, void *arg2)
     cross_vec(&input, &result, &cross);
     psvec_add(&self->v, &cross, &self->v);
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_29044 */
 
 /* fzgx:begin fn_1_290E8 noprologue */
@@ -19557,7 +19529,6 @@ typedef struct {
 extern float lbl_1_rodata_840[];
 extern double __fabs(double);
 
-#pragma opt_strength_reduction off
 void fn_1_2A214(StColiObj *obj)
 {
     float limit;
@@ -19583,7 +19554,6 @@ void fn_1_2A214(StColiObj *obj)
         }
     }
 }
-#pragma opt_strength_reduction reset
 /* fzgx:end fn_1_2A214 */
 
 /* fzgx:begin fn_1_2A2A4 */
@@ -20062,7 +20032,6 @@ typedef struct N { u8 p[0x98]; u32 v98; u32 v9c; } N;
 typedef struct O { u32 flags; s16 id; u8 p[0x46e]; u8 v474; u8 p2[0x23]; u32 field498; N *field49c; u8 p3[0xec]; u32 field58c; } O;
 typedef struct R { u8 p[0x160]; u32 flags160; u8 p2[0x1c]; u32 v180; u32 v184; u32 v188; } R;
 typedef struct V { f32 x; f32 y; f32 z; } V; typedef struct F { f32 x; f32 y; f32 z; } F; typedef struct P { u32 x; u32 y; } P;
-#pragma opt_propagation off
 int fn_1_2A694(O *self, void *arg1, V *swap, u32 mask, V *out0, V *out1) {
  F local; f32 work[4]; R *result; int status; int actor;
  if ((self->flags&2)==0) mask&=0xfffff8ff;
@@ -20078,7 +20047,6 @@ int fn_1_2A694(O *self, void *arg1, V *swap, u32 mask, V *out0, V *out1) {
    self->field58c&=~0x80;*(u32 *)((u8 *)actor+0x390)&=~0x200000;*(u32 *)((u8 *)actor+0x390)|=0x01000000;}} if((result->flags160&0x100)!=0)self->flags|=0x800;}}
  if(status==0){f32 z=*(const f32 *)(const void *)&lbl_1_rodata_84C;out0->x=z;out0->y=z;out0->z=z;out1->x=z;out1->y=z;out1->z=z;} return status;
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_2A694 */
 
 /* fzgx:begin fn_1_2A8D0 */
@@ -21394,7 +21362,6 @@ typedef struct {
 
 extern u32 fn_8006E2B0(void *, void *);
 
-#pragma opt_propagation off
 static inline f32 fn_1_2B524_add(f32 a, f32 b) {
     return a + b;
 }
@@ -21415,7 +21382,6 @@ static inline void fn_1_2B524_cross(const Fn2B524_Vec *a, const Fn2B524_Vec *b, 
     out->y = y;
     out->z = z;
 }
-#pragma opt_propagation on
 void fn_1_2B524(Fn2B524_Self *self) {
     f32 fzgx_live;
     f32 *fzgx_value;
@@ -24294,7 +24260,6 @@ extern void fn_1_2D524(Obj_1_bss_5138 *obj);
 extern u32 fn_1_4060(void);
 extern void fn_80008BEC(void *dst, int value, u32 size);
 
-#pragma opt_propagation off
 static inline void fn_1_2DB50_transition(Obj_1_bss_5138 *obj, s32 zero, u8 *threshold) {
     s32 condition;
     *threshold = obj->unk_2 + obj->unk_3 + obj->unk_E4 + 4;
@@ -25629,11 +25594,8 @@ void fn_1_2E1B8(void) {
 /* fzgx:end fn_1_2E1B8 */
 
 /* fzgx:begin fn_1_2E268 */
-#pragma opt_lifetimes off
 static inline u8 fn_1_2E268_array_read(u8 *array, s32 index) { u8 *p = array + index; return *p; }
-#pragma opt_lifetimes reset
 
-#pragma opt_common_subs off
 void fn_1_2E268(void) {
     Obj_1_bss_3C30 *state = &lbl_1_bss_3C30;
     u8 *values;
@@ -25669,7 +25631,6 @@ void fn_1_2E268(void) {
         }
     }
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_2E268 */
 
 /* fzgx:begin fn_1_2E3B4 noprologue */

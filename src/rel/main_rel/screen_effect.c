@@ -2493,7 +2493,6 @@ extern void fn_80073C6C(s32);
 extern void fn_800745A4(u32,s32,s32,u32,u32,u32);
 extern void fn_80074660(u32);
 extern void fn_80074788(u32);
-#pragma opt_dead_assignments on
 void fn_1_76EB8(void) {
     Obj_1_data_1D960 *p_lbl_1_data_1D960;
     s32 lab_t1;
@@ -2574,7 +2573,6 @@ void fn_1_76EB8(void) {
     *(volatile f32 *)((u8 *)0xCC010000 + -32768) = v6;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
     fn_80038EEC(loc_C.a[0],loc_C.a[1],loc_C.a[2],loc_C.a[3],loc_C.a[4],loc_C.a[5]);
 }
-#pragma opt_dead_assignments reset
 /* fzgx:end fn_1_76EB8 */
 
 /* fzgx:begin fn_1_77200 */
@@ -3281,7 +3279,6 @@ extern void lbl_8006E13C(void *);
 extern void fn_80072558(void);
 extern u32 fn_800384FC(u32, u32);
 
-#pragma peephole on
 void fn_1_788B0(u32 lab_unused0, u32 lab_unused1, u16 lab_unused2)
 {
     Vec3 pos = { 0.0f, 0.0f, 0.0f };
@@ -3299,7 +3296,6 @@ void fn_1_788B0(u32 lab_unused0, u32 lab_unused1, u16 lab_unused2)
     fn_80072558();
     fn_800384FC(10, 10);
 }
-#pragma peephole reset
 /* fzgx:end fn_1_788B0 */
 
 /* fzgx:begin fn_1_78950 */
@@ -3777,7 +3773,6 @@ extern void fn_1_7A9B8(void);
 extern void fn_1_862D4(int, Triple *);
 
 #pragma push
-#pragma opt_propagation off
 static inline int fade_more(u32 channel, s32 *arg) {
     u32 count = fn_1_58C4();
     *arg = channel;
@@ -4160,8 +4155,6 @@ extern f32 fn_8006F774(f32, f32);
 
 #define fn_1_7926C_color fzgx_pool_table13
 
-#pragma opt_strength_reduction off
-#pragma opt_loop_invariants off
 void fn_1_7926C(s32 arg0) {
     f32 fzgx_live;
     FontDrawPacket packet;
@@ -4261,9 +4254,7 @@ void fn_1_7926C(s32 arg0) {
     fn_1_D07E0(fzgx_live, x, y);
     fn_8006F774(640.0f, 480.0f);
 }
-#pragma opt_loop_invariants reset
 
-#pragma opt_strength_reduction reset
 /* fzgx:end fn_1_7926C */
 
 /* fzgx:begin fn_1_79654 */
@@ -6502,7 +6493,6 @@ __declspec(section ".fzgxpool") void fzgx_pool_primer_6(void) {
 
 #pragma section ".text"
 
-#pragma opt_strength_reduction off
 void fn_1_7B558(s32 arg0, s32 arg1, u32 x, u32 y, u32 w, u32 h, f32 scale) {
     f32 mtx[3][4];
     f32 viewport[6];
@@ -6589,7 +6579,6 @@ void fn_1_7B558(s32 arg0, s32 arg1, u32 x, u32 y, u32 w, u32 h, f32 scale) {
     fn_80038EEC(viewport[0], viewport[1], viewport[2], viewport[3], viewport[4], viewport[5]);
     lbl_8006DD14(mtx, lbl_801A6D00.mtx + 3);
 }
-#pragma opt_strength_reduction reset
 /* fzgx:end fn_1_7B558 */
 
 /* fzgx:begin fn_1_7BA08 */
@@ -6868,7 +6857,6 @@ static void fzgx_bss_layout(void) {
 }
 #pragma section code_type ".text"
 
-#pragma opt_strength_reduction off
 void fn_1_7BAF8(u8 *arg0) {
     u16 *blk;
     u32 v1;
@@ -6889,7 +6877,6 @@ void fn_1_7BAF8(u8 *arg0) {
     blk[7] = v1;
     lbl_1_bss_6D7C0__fzgx_offset_20 = 0;
 }
-#pragma opt_strength_reduction reset
 /* fzgx:end fn_1_7BAF8 */
 
 /* fzgx:begin fn_1_7BB80 */

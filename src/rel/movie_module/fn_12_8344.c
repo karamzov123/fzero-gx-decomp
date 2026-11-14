@@ -6,8 +6,6 @@ typedef struct MovieDecodeContext {
     u8 *data;
 } MovieDecodeContext;
 
-#pragma opt_lifetimes off
-#pragma peephole off
 void fn_12_8344(f64 *output, MovieDecodeContext *context, s32 mask) {
     u8 *data;
     s16 *table;
@@ -48,6 +46,4 @@ void fn_12_8344(f64 *output, MovieDecodeContext *context, s32 mask) {
         count++;
     } while (count < 6);
 }
-#pragma peephole reset
 
-#pragma opt_lifetimes reset

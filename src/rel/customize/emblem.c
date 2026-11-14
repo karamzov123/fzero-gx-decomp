@@ -59,7 +59,6 @@ typedef struct {
 } EmblemState;
 
 
-#pragma opt_propagation off
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u32 fzgx_obj_lbl_3_bss_A1768;
 u32 *fzgx_obj_lbl_3_bss_A176C;

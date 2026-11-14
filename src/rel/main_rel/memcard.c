@@ -14826,8 +14826,6 @@ typedef struct {
     u8 pad_18[0x10];
 } CalTime_1_B7CE4;
 
-#pragma opt_common_subs on
-#pragma opt_loop_invariants off
 static inline u8 fn_1_B7CE4_array_read(u8 *array, s32 index) { return array[index]; }
 
 typedef struct {
@@ -14867,9 +14865,7 @@ void fn_1_B7CE4(s32 arg0, char *arg1) {
         strncpy(arg1, (char *)buf, 8);
     }
 }
-#pragma opt_loop_invariants reset
 
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_B7CE4 */
 
 /* fzgx:begin fn_1_B7E14 */
@@ -27855,7 +27851,6 @@ static void fzgx_data_layout(void) {
     s = fzgx_pool_lbl_1_data_35AC8_7630[0];
 }
 #pragma section code_type ".text"
-#pragma opt_lifetimes off
 void fn_1_C0E00(SaveReq *req, Slot *first, Slot *second) {
     void *icon;
     u32 c;
@@ -28828,7 +28823,6 @@ static inline const char *fn_1_C24A4_string(u32 off) {
 }
 #define STR(off) fn_1_C24A4_string(off)
 
-#pragma opt_common_subs on
 static inline s32 fn_1_C24A4_fzgx_region(void) {
     u8 slot1;
     u8 slot0;

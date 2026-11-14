@@ -19,7 +19,6 @@ extern u32 fn_12_2BAE0(void *, int);
 extern void fn_12_21D40(void *, int, int);
 extern u32 lbl_12_bss_7C64[137];
 
-#pragma opt_propagation on
 static inline void setFlag(int value) { lbl_12_bss_7C64[127]=value; }
 static inline int prepare(u32 arg0) {
  if (*(int *)(arg0+0x48)==4) {

@@ -585,8 +585,6 @@ typedef struct CarFn_1_7F3AC {
 } CarFn_1_7F3AC;
 
 
-#pragma opt_propagation off
-#pragma opt_common_subs off
 void fn_1_7F3AC(CarFn_1_7F3AC *car, u32 lab_unused0, u32 lab_unused1, u32 lab_unused2) {
     u32 *fzgx_value;
     u32 shift;
@@ -604,9 +602,7 @@ void fn_1_7F3AC(CarFn_1_7F3AC *car, u32 lab_unused0, u32 lab_unused1, u32 lab_un
         *fzgx_value = 0;
     }
 }
-#pragma opt_common_subs reset
 
-#pragma opt_propagation reset
 /* fzgx:end fn_1_7F3AC */
 
 /* fzgx:begin fn_1_7F428 */
@@ -5294,7 +5290,6 @@ extern s32 fn_1_3F8C(void *, void (*)(void *), void *, u32);
 extern void fn_1_568EC(void *, void *, void *);
 extern u32 fn_1_82C70(void *, u8, void *, void *, u8);
 
-#pragma opt_propagation on
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u32 fzgx_obj_lbl_1_bss_6D820;
 u32 fzgx_obj_lbl_1_bss_6D824;
@@ -9663,7 +9658,6 @@ typedef struct {
     u8 unk_E2[0xA0];
 } Fn858A8Data;
 
-#pragma opt_common_subs off
 s32 fn_1_858A8(s16 *a, s16 *b) {
     Fn858A8Data *obj;
     Obj_1_bss_6D838_Target *entry_a;
@@ -9684,7 +9678,6 @@ s32 fn_1_858A8(s16 *a, s16 *b) {
     }
     return (s32)(s8)entry_a->unk_474 - (s32)(s8)entry_b->unk_474;
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_858A8 */
 
 /* fzgx:begin fn_1_85934 noprologue */
@@ -10003,7 +9996,6 @@ typedef struct {
 
 static inline void fn_1_85F90_store(u32 *destination, u32 value) { *destination = value; }
 static inline const f32 *fn_1_85F90_array_read(const f32 *array) { return array; }
-#pragma opt_propagation off
 void fn_1_85F90(void *obj, f32 a, f32 b, f32 c, f32 d, int mode) {
     f32 *fzgx_value;
     int active;
@@ -10056,7 +10048,6 @@ void fn_1_85F90(void *obj, f32 a, f32 b, f32 c, f32 d, int mode) {
         child->unk_118 = 0;
     }
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_85F90 */
 
 /* fzgx:begin fn_1_8616C */
@@ -12452,7 +12443,6 @@ extern void fn_1_556B8(void *);
 extern void fn_1_55FF0(f32);
 extern void fn_80072558(void);
 
-#pragma opt_dead_assignments off
 extern void OSReport(const char *, ...);
 #pragma section code_type ".fzgxpool"
 static void fzgx_string_layout(void) {
@@ -12462,7 +12452,6 @@ static void fzgx_string_layout(void) {
 #pragma section code_type ".text"
 
 static inline f32 fn_1_87448_array_read(s32 index, f32 *array) { return array[index]; }
-#pragma opt_lifetimes off
 void fn_1_87448(Fn1_87448_Obj *self, Fn1_87448_Arg1 *arg1, s8 arg2, int flag, f32 f) {
     s32 k;
     u8 **row;
@@ -12509,9 +12498,7 @@ void fn_1_87448(Fn1_87448_Obj *self, Fn1_87448_Arg1 *arg1, s8 arg2, int flag, f3
         }
     }
 }
-#pragma opt_lifetimes reset
 
-#pragma opt_dead_assignments reset
 /* fzgx:end fn_1_87448 */
 
 /* fzgx:begin fn_1_875B4 */

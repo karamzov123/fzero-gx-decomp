@@ -3381,8 +3381,6 @@ __declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
 }
 #pragma section code_type ".text"
 
-#pragma opt_propagation off
-#pragma opt_lifetimes off
 void fn_3_39F0(void) {
     void * lab_t0;
     if ((s32)fn_1_B7F08() == 1 && lbl_3_bss_2437C__fzgx_offset_28 == 0 || lbl_3_bss_2437C__fzgx_offset_24 == 0) {
@@ -3400,9 +3398,7 @@ void fn_3_39F0(void) {
     fn_1_131004();
     fn_3_3438();
 }
-#pragma opt_lifetimes reset
 
-#pragma opt_propagation reset
 /* fzgx:end fn_3_39F0 */
 
 /* fzgx:begin fn_3_3AE8 noprologue */
@@ -4023,7 +4019,6 @@ struct SaveRecord {
     u8 machine;
     u8 pad_81A1[0x1F];
 };
-#pragma opt_common_subs on
 
 s32 fn_3_4538(void) {
     Obj_3_bss_F0 *p_lbl_3_bss_F0;
@@ -4612,7 +4607,6 @@ static inline s32 stepMenuValue(s32 value, s32 delta, s16 lo, s16 hi) {
     return sum < lo ? lo : (sum > hi ? hi : sum);
 }
 
-#pragma opt_common_subs on
 s32 fn_3_5070(void) {
     Obj_3_bss_0 *work = &lbl_3_bss_0;
     s16 v;
@@ -10344,7 +10338,6 @@ extern void fn_1_80F1C(s32, fn_3_AC4C_CustomizeEntry *);
 extern void fn_1_14DBCC(void *);
 extern void fn_80071718(u32);
 
-#pragma opt_propagation off
 void fn_3_AC4C(void) {
     fn_3_AC4C_CustomizeEntry *entries = (*(fn_3_AC4C_CustomizeEntry (*)[4])&lbl_3_bss_20860);
     s16 index = lbl_3_bss_F0.unk_8;
@@ -10361,5 +10354,4 @@ void fn_3_AC4C(void) {
         lbl_1_bss_6D82C = 0;
     }
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_3_AC4C */

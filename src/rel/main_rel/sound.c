@@ -179,7 +179,6 @@ extern void fn_80065890(u32);
 extern void fn_8006589C(u32);
 extern void fn_800658A8(u32);
 
-#pragma opt_propagation off
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u32 fzgx_obj_lbl_1_bss_6EA98;
 u32 fzgx_obj_lbl_1_bss_6EA9C[2];
@@ -315,7 +314,6 @@ void fn_1_9FFD8(void) {
     fzgx_obj_lbl_1_bss_6EA98 = 0;
     lbl_1_bss_6EAB0 = 1;
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_9FFD8 */
 
 /* fzgx:begin fn_1_A0214 */
@@ -4490,7 +4488,6 @@ extern void fn_80067344(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
 extern void fn_80067898(u32 arg0);
 
 static inline SoundEntry * fn_1_A31E4_read_pointer(SoundState * owner) { return owner->unk_74C; }
-#pragma opt_common_subs off
 void fn_1_A31E4(void) {
     SoundState *state = &lbl_1_bss_6EA98;
     SoundEntry *tbl;
@@ -4546,7 +4543,6 @@ void fn_1_A31E4(void) {
         state->unk_7A9 = count2;
     }
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_A31E4 */
 
 /* fzgx:begin fn_1_A33F0 noprologue */

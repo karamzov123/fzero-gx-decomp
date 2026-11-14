@@ -43,7 +43,6 @@ extern u32 fn_80026D70(void *);
 extern void fn_80028424(Sig_fn_80028424_Fn80028424Node *);
 extern void fn_80060BDC(u32);
 
-#pragma opt_lifetimes off
 void fn_8005FCD8(u32 arg0) {
     if (lbl_801A6C80->entries[arg0].unk_0 != 0xFF) {
         fn_80023168((Sig_fn_80023168_Fn80023168State *)
@@ -70,4 +69,3 @@ void fn_8005FCD8(u32 arg0) {
         }
     }
 }
-#pragma opt_lifetimes reset

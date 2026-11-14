@@ -57,11 +57,8 @@ static void FixBlock_construct(FixBlock *ths, FixBlock *prev, FixBlock *next, un
     ths->allocated = 0;
 }
 
-#pragma opt_dead_assignments on
 static inline FixBlock * fn_8007A440_read_pointer(FixStart * owner) { return owner->tail->next; }
-#pragma opt_propagation off
 static inline FixBlock * fn_8007A440_read_pointer_(FixStart * owner) { return owner->head; }
-#pragma opt_propagation reset
 
 void *fn_8007A440(MemPoolObj *pool, unsigned long size) {
     FixBlock * *fzgx_value;
@@ -119,5 +116,4 @@ void *fn_8007A440(MemPoolObj *pool, unsigned long size) {
     }
     return (unsigned char *)p + 4;
 }
-#pragma opt_dead_assignments reset
 

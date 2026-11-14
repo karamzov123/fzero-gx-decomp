@@ -818,11 +818,8 @@ typedef struct InterviewState {
     u8 unk_100;
 } InterviewState;
 
-#pragma opt_propagation off
 static inline u8 * fn_17_C9C_read_pointer(InterviewState * owner) { return owner->unk_14; }
-#pragma opt_common_subs off
 static inline u8 fn_17_C9C_array_read(s32 index, u8 *array) { return array[index]; }
-#pragma opt_strength_reduction off
 void fn_17_C9C(void) {
     InterviewState *state;
     u8 local[0x14c0];
@@ -46293,7 +46290,6 @@ extern void *fn_1_435C(void *);
 extern void fn_1_40E08(u32);
 extern void fn_1_935E4(void *, void *, void *, f32);
 
-#pragma opt_propagation off
 void fn_17_5C24(void) {
     InterviewDesc *desc;
     fn_17_5C24_InterviewObj *obj;
@@ -46424,7 +46420,6 @@ void fn_17_5C24(void) {
         obj->value++;
     }
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_17_5C24 */
 
 /* fzgx:begin fn_17_5FA8 noprologue */
@@ -61738,7 +61733,6 @@ static inline struct Entry *get_entry(s32 mode,s32 kind,s32 index,u32 flags) {
  if(!v3) return 0;
  return v3;
 }
-#pragma opt_propagation off
 static inline struct Details * fn_17_7728_read_pointer(struct Group * owner) { return owner->unk_14; }
 static inline f32 fn_17_7728_read_pointer_(struct Payload * owner) { return owner->unk_24; }
 void fn_17_7728(struct fn_17_7728_Arg0 *arg0, u32 lab_unused0, u32 lab_unused1) {
@@ -61779,7 +61773,6 @@ void fn_17_7728(struct fn_17_7728_Arg0 *arg0, u32 lab_unused0, u32 lab_unused1) 
     lab_v = loc.unk_28;
  arg0->unk_20=lab_v;arg0->unk_0=fn_17_7728_read_pointer_(&loc);arg0->unk_20=lab_v;
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_17_7728 */
 
 /* fzgx:begin fn_17_7A74 */
@@ -63138,7 +63131,6 @@ extern int fn_1_4F734(FontDrawPacket *);
 
 // Places the interview prompt glyph for the given slot: seeds a font packet
 // from the shared template, then fills in the cell position and cell size.
-#pragma opt_common_subs off
 void fn_17_8C7C(s16 arg0) {
     struct Copy88 loc_8;
     u8 *rodata = (u8 *)&(*(struct RoData *)&lbl_17_rodata_0);
@@ -63153,7 +63145,6 @@ void fn_17_8C7C(s16 arg0) {
     loc_8.a[12] = 10;
     fn_1_4F734((FontDrawPacket *)&loc_8);
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_17_8C7C */
 
 /* fzgx:begin fn_17_8D28 noprologue */

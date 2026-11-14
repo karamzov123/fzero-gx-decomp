@@ -177,7 +177,6 @@ extern int sprintf(char *, const char *, ...);
 extern s32 fn_1_45B2C(void *arg0);
 extern void fn_1_458A0(void *arg0, void *arg1, u32 arg2, u32 arg3);
 
-#pragma opt_propagation off
 u8 fn_1_1350C(void *arg0, u8 *arg1) {
     s32 size;
     u8 result;
@@ -203,7 +202,6 @@ u8 fn_1_1350C(void *arg0, u8 *arg1) {
     }
     return result;
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_1350C */
 
 /* fzgx:begin fn_1_1361C noprologue */

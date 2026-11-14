@@ -3540,7 +3540,6 @@ extern void lbl_8006DCDC(void);
 extern void fn_1_F7870(void *);
 extern u32 lbl_8006DCA4(void);
 
-#pragma opt_loop_invariants off
 typedef struct lbl_14_bss_92C4_t {
     u8 fzgx_byte_0;
     u8 pad_1[0x3];
@@ -3626,7 +3625,6 @@ for (; (s16)fzgx_loop_i_6660 < (s16)fn_1_12CB04(t0); fzgx_loop_i_6660++) {
     }
     return 0;
 }
-#pragma opt_loop_invariants reset
 /* fzgx:end fn_14_3DF0 */
 
 /* fzgx:begin fn_14_4008 */
@@ -3985,7 +3983,6 @@ extern void fn_1_F7870(void *);
 
 static inline f32 fn_14_4460_operand(f32 right, f32 left) { return left * right; }
 static inline f32 fn_14_4460_array_read(s32 index, f32 *array) { return array[index]; }
-#pragma opt_lifetimes off
 static inline Bss_14_bss_8350_Target *fn_14_4460_find(void) {
     u32 flags;
     s16 i;
@@ -4075,7 +4072,6 @@ s32 fn_14_4460(void) {
 
     return 0;
 }
-#pragma opt_lifetimes reset
 /* fzgx:end fn_14_4460 */
 
 /* fzgx:begin fn_14_46D4 */
@@ -7475,7 +7471,6 @@ static void fzgx_string_layout(void) {
 }
 #pragma section code_type ".text"
 
-#pragma opt_strength_reduction off
 void fn_14_82E4(s16 arg0, s16 arg1, s16 arg2) {
     f32 x;
     s32 n;
@@ -7530,7 +7525,6 @@ void fn_14_82E4(s16 arg0, s16 arg1, s16 arg2) {
     fn_1_4954C(9.0f);
     fn_1_4AE0C((const char *)"%d", d.value);
 }
-#pragma opt_strength_reduction reset
 /* fzgx:end fn_14_82E4 */
 
 /* fzgx:begin fn_14_8600 */
@@ -11993,7 +11987,6 @@ extern void fn_1_5233C(void);
 extern int fn_1_4F734(fn_14_D2EC_FontDrawPacket *);
 
 static inline const char * *fn_14_D2EC_array_read(const char * *array) { return array; }
-#pragma opt_lifetimes off
 void fn_14_D2EC(s32 arg0) {
     fn_14_D2EC_FontDrawPacket packet;
     u32 lab_t0;
@@ -12062,7 +12055,6 @@ void fn_14_D2EC(s32 arg0) {
         fn_1_50164(300.0f * packet.unk2c, 160.0f * packet.unk2c, 8.0f, 8.0f, &packet);
     }
 }
-#pragma opt_lifetimes reset
 /* fzgx:end fn_14_D2EC */
 
 /* fzgx:begin fn_14_D600 */
@@ -12422,7 +12414,6 @@ extern void fn_1_5233C(void);
 extern int fn_1_4F734(fn_14_D600_FontDrawPacket *);
 
 static inline const char * *fn_14_D600_array_read(const char * *array) { return array; }
-#pragma opt_lifetimes off
 void fn_14_D600(s32 arg0) {
     fn_14_D600_FontDrawPacket packet;
     u32 lab_t0;
@@ -12491,7 +12482,6 @@ void fn_14_D600(s32 arg0) {
         fn_1_50164(300.0f * packet.unk2c, 160.0f * packet.unk2c, 8.0f, 8.0f, &packet);
     }
 }
-#pragma opt_lifetimes reset
 /* fzgx:end fn_14_D600 */
 
 /* fzgx:begin fn_14_D914 */
@@ -12851,7 +12841,6 @@ extern void fn_1_5233C(void);
 extern int fn_1_4F734(fn_14_D914_FontDrawPacket *);
 
 static inline const char * *fn_14_D914_array_read(const char * *array) { return array; }
-#pragma opt_lifetimes off
 void fn_14_D914(s32 arg0) {
     fn_14_D914_FontDrawPacket packet;
     u32 lab_t0;
@@ -12920,7 +12909,6 @@ void fn_14_D914(s32 arg0) {
         fn_1_50164(300.0f * packet.unk2c, 160.0f * packet.unk2c, 8.0f, 8.0f, &packet);
     }
 }
-#pragma opt_lifetimes reset
 /* fzgx:end fn_14_D914 */
 
 /* fzgx:begin fn_14_DC28 */

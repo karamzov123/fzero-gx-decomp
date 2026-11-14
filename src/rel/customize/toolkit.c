@@ -159,7 +159,6 @@ Obj_3_bss_A2438 lbl_3_bss_A2438;
 u32 lbl_3_bss_A2454;
 u8 lbl_3_bss_A2458;
 
-#pragma opt_propagation off
 static inline void InitCustomizeState(Obj_3_bss_A2438 *p) {
     p->unk_4 = 0x80000000;
     p->unk_C = 2;
@@ -1481,8 +1480,6 @@ extern u32 fn_3_152BC(u32, u32, u32, u32, u32, void *);
 
 extern void fn_1_A2D84(u32);
 
-#pragma opt_pointer_analysis on
-#pragma opt_propagation off
 void fn_3_1A488(void) {
     struct fn_3_1A488_lbl_1_bss_9F8_8_E20 *entries;
     s32 v1;
@@ -1538,9 +1535,7 @@ void fn_3_1A488(void) {
     }
 }
 
-#pragma opt_propagation reset
 
-#pragma opt_pointer_analysis reset
 /* fzgx:end fn_3_1A488 */
 
 /* fzgx:begin fn_3_1A648 */
@@ -1566,8 +1561,6 @@ extern void fn_1_A2D84(u32);
 extern void fn_80008BA8(u32, u32, u32);
 extern void fn_80008BEC(void *, int, u32);
 
-#pragma opt_pointer_analysis on
-#pragma opt_propagation off
 void fn_3_1A648(void) {
     struct fn_3_1A648_lbl_1_bss_9F8_8_E20 *entries;
     u32 t3;
@@ -1689,8 +1682,6 @@ void fn_3_1A648(void) {
         }
     }
 }
-#pragma opt_propagation reset
-#pragma opt_pointer_analysis reset
 /* fzgx:end fn_3_1A648 */
 
 /* fzgx:begin fn_3_1AB34 */
@@ -8767,9 +8758,7 @@ extern void fn_1_50164(f32, f32, f32, f32, void *);
 static inline f32 fn_3_23724_clamp(f32 x) {
     return x < 0.0f ? 0.0f : x > 1.0f ? 1.0f : x;
 }
-#pragma opt_lifetimes on
 static inline f32 fn_3_23724_operand(f32 right, f32 left) { left += right; return left; }
-#pragma opt_strength_reduction off
 void fn_3_23724(s16 arg0, s16 arg1, s16 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6) {
     struct fn_3_23724_Unk88 u;
     f32 t0;
@@ -8805,9 +8794,7 @@ void fn_3_23724(s16 arg0, s16 arg1, s16 arg2, f32 arg3, f32 arg4, f32 arg5, f32 
     u.field10[8] = 10;
     fn_1_50164(12.0f, t2, 5.0f, 5.0f, &u);
 }
-#pragma opt_strength_reduction reset
 
-#pragma opt_lifetimes reset
 /* fzgx:end fn_3_23724 */
 
 /* fzgx:begin fn_3_23A1C */
@@ -11333,9 +11320,6 @@ typedef struct Packet {
 
 extern int fn_1_4F734(Packet *);
 
-#pragma opt_strength_reduction off
-#pragma opt_dead_assignments off
-#pragma opt_loop_invariants off
 void fn_3_28378(s16 arg0, s16 arg1, s16 arg2, s32 arg3) {
     u32 fzgx_value;
     s16 c = arg2;
@@ -11396,9 +11380,6 @@ void fn_3_28378(s16 arg0, s16 arg1, s16 arg2, s32 arg3) {
     packet.unk2c = (*(f32 (*)[28])&lbl_3_rodata_8F0)[0];
     fn_1_4F734(&packet);
 }
-#pragma opt_loop_invariants reset
-#pragma opt_dead_assignments reset
-#pragma opt_strength_reduction reset
 /* fzgx:end fn_3_28378 */
 
 /* fzgx:begin fn_3_286BC */

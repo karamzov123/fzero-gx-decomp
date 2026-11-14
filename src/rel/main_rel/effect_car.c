@@ -2215,7 +2215,6 @@ static inline f32 fn_1_6AF70_distance(const fn_1_6AF70_Vec *a, const fn_1_6AF70_
     return lbl_8006D0B4(result);
 }
 
-#pragma opt_common_subs off
 void fn_1_6AF70(u32 arg0, void * arg1) {
     s32 v7;
     const struct fn_1_6AF70_lbl_1_rodata_2D70 *p_lbl_1_rodata_2D70;
@@ -2490,7 +2489,6 @@ next_side:
 done:
     return;
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_6AF70 */
 
 /* fzgx:begin fn_1_6B8A4 noprologue */
@@ -7150,9 +7148,6 @@ extern u32 fn_1_584AC(void);
 extern u32 fn_1_6CF3C(void *, Sig_fn_80008C20_fn_80008C20_Vec *, f32, f32);
 extern void lbl_8006DD14(u32, void *);
 
-#pragma opt_strength_reduction off
-#pragma opt_dead_assignments off
-#pragma opt_lifetimes on
 void fn_1_6FD58(Struct_1_6FD58 *arg0, Sig_fn_80008C20_fn_80008C20_Vec *arg1, f32 arg2, f32 arg3) {
     Struct_1_6FD58 s;
     s32 i;
@@ -7178,11 +7173,8 @@ void fn_1_6FD58(Struct_1_6FD58 *arg0, Sig_fn_80008C20_fn_80008C20_Vec *arg1, f32
         fn_1_6CF3C(&s, arg1, scale, arg3 * (1.4f * (m + 0.5)));
     }
 }
-#pragma opt_lifetimes reset
 
-#pragma opt_dead_assignments reset
 
-#pragma opt_strength_reduction reset
 /* fzgx:end fn_1_6FD58 */
 
 /* fzgx:begin fn_1_6FFA0 noprologue */

@@ -158,7 +158,6 @@ extern int fn_1_4F734(FontDrawPacket *);
 
 
 
-#pragma opt_lifetimes off
 void fn_4_250(void) {
     f32 v0;
     f32 v1;
@@ -174,7 +173,6 @@ void fn_4_250(void) {
     loc_8.flags = 10;
     fn_1_4F734((FontDrawPacket *)&loc_8);
 }
-#pragma opt_lifetimes reset
 /* fzgx:end fn_4_250 */
 
 /* fzgx:begin fn_4_2D4 */

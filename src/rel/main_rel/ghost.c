@@ -300,7 +300,6 @@ static void fzgx_bss_layout(void) {
 }
 #pragma section code_type ".text"
 
-#pragma opt_common_subs on
 static inline void* *fn_1_EB4BC_array_read(void* *array) { return array; }
 #pragma section code_type ".fzgxpool"
 static void fzgx_string_layout(void) {
@@ -323,7 +322,6 @@ static void fzgx_string_layout(void) {
 }
 #pragma section code_type ".text"
 
-#pragma opt_dead_assignments off
 s32 fn_1_EB4BC(void) {
 	s32 j;
 	s32 count;
@@ -395,9 +393,7 @@ s32 fn_1_EB4BC(void) {
 	lbl_1_bss_7E9E8__fzgx_offset_14 = 0;
 	return 1;
 }
-#pragma opt_dead_assignments reset
 
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_EB4BC */
 
 /* fzgx:begin fn_1_EB85C */
@@ -5634,7 +5630,6 @@ typedef struct GhostVec4 {
     f32 w;
 } GhostVec4;
 
-#pragma opt_strength_reduction off
 void fn_1_F1300(u32 count, GhostVec4 *records, const u8 *xbytes,
                 const s16 *values, const u8 *zbytes) {
     f32 fzgx_live_;
@@ -5690,7 +5685,6 @@ void fn_1_F1300(u32 count, GhostVec4 *records, const u8 *xbytes,
         next++;
     }
 }
-#pragma opt_strength_reduction reset
 /* fzgx:end fn_1_F1300 */
 
 /* fzgx:begin fn_1_F143C */
