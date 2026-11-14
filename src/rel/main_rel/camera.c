@@ -5294,8 +5294,6 @@ void camera_report_position(void) {
 extern f64 lbl_1_rodata_4A8[7];
 extern void OSReport(const char *format, ...);
 
-#pragma opt_common_subs off
-#pragma opt_strength_reduction off
 void fn_1_C268(s32 arg) {
     if ((55.0) == lbl_1_bss_10D8.unk_1C) {
         OSReport((char *)lbl_1_data_4144, lbl_1_bss_10D8.unk_4,
@@ -5311,9 +5309,7 @@ void fn_1_C268(s32 arg) {
                  lbl_1_bss_10D8.unk_1C);
     }
 }
-#pragma opt_strength_reduction reset
 
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_C268 */
 
 /* fzgx:begin fn_1_C304 */
