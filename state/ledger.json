@@ -56087,7 +56087,7 @@
   {
    "symbol": "fn_1_499BC",
    "module": "main_rel",
-   "unit": "rel/main_rel/font/fn_1_499BC.c",
+   "unit": "rel/main_rel/font/fn_1_49794.c",
    "addr": 301500,
    "size": 436,
    "status": "matched",
@@ -56104,7 +56104,7 @@
   {
    "symbol": "fn_1_49B70",
    "module": "main_rel",
-   "unit": "rel/main_rel/font/fn_1_49B70.c",
+   "unit": "rel/main_rel/font/fn_1_49794.c",
    "addr": 301936,
    "size": 920,
    "status": "matched",

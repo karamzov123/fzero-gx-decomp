@@ -4796,15 +4796,13 @@ rel/main_rel/cloth/fn_1_101AE8.c:
 rel/main_rel/effect/fn_1_5B30C.c:
 	.text       start:0x0005B30C end:0x0005B3CC align:4
 
-rel/main_rel/font/fn_1_499BC.c:
-	.text       start:0x000499BC end:0x00049B70 align:4
-
 rel/main_rel/car/fn_1_847A8.c:
 	.text       start:0x000847A8 end:0x00084860 align:4
 	.data       start:0x000207F0 end:0x00020894 align:8
 
 rel/main_rel/font/fn_1_49794.c:
-	.text       start:0x00049794 end:0x000499BC align:4
+	.text       start:0x00049794 end:0x00049F08 align:4
+	.data       start:0x0001BCC8 end:0x0001C0B6 align:8
 
 rel/main_rel/_prolog/fn_1_435C.c:
 	.text       start:0x0000435C end:0x00004370 align:4
@@ -6438,9 +6436,6 @@ rel/main_rel/sel_static_disp/fn_1_150464.c:
 
 rel/main_rel/game/fn_1_411D4.c:
 	.text       start:0x000411D4 end:0x000412A0 align:4
-
-rel/main_rel/font/fn_1_49B70.c:
-	.text       start:0x00049B70 end:0x00049F08 align:4
 
 rel/main_rel/_prolog/fn_1_1ACC.c:
 	.text       start:0x00001ACC end:0x00001C00 align:4
@@ -21159,7 +21154,7 @@ rel/main_rel/data/lbl_1_data_32C8.c:
 	.data       start:0x000032C8 end:0x00003318 align:8
 
 rel/main_rel/data/lbl_1_data_1AEA8.c:
-	.data       start:0x0001AEA8 end:0x0001BD84 align:8
+	.data       start:0x0001AEA8 end:0x0001BCC8 align:8
 
 rel/main_rel/data/lbl_1_data_22A18.c:
 	.data       start:0x00022A18 end:0x00022BD8 align:8

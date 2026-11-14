@@ -181501,32 +181501,6 @@
     "unit_size": 3804,
     "unit_start": 110248
   },
-  "main_rel:lbl_1_data_1BCC8": {
-    "address": 113864,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "u8 lbl_1_data_1BCC8[0xBC]",
-        "path": "include/rel/main_rel/font.h"
-      }
-    ],
-    "definition": "u8 lbl_1_data_1BCC8[0xBC]",
-    "method": "typed-data",
-    "module": "main_rel",
-    "references": [
-      "fn_1_48C28"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 3804,
-    "sha256": "619fb08afffd4b1ee7d375606106092d0b2368a92bc9d4c204f76c8ca5bca5f0",
-    "size": 188,
-    "source": "rel/main_rel/data/lbl_1_data_1AEA8.c",
-    "symbol": "lbl_1_data_1BCC8",
-    "unit_align": 8,
-    "unit_size": 3804,
-    "unit_start": 110248
-  },
   "main_rel:lbl_1_data_1C": {
     "address": 28,
     "align": 4,

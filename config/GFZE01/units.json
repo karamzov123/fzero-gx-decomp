@@ -73883,8 +73883,7 @@
       "lbl_1_data_1BC98",
       "lbl_1_data_1BCA4",
       "lbl_1_data_1BCAC",
-      "lbl_1_data_1BCC4",
-      "lbl_1_data_1BCC8"
+      "lbl_1_data_1BCC4"
     ],
     "status": "matching",
     "data": true,
@@ -119961,34 +119960,8 @@
     "module": "main_rel",
     "source": "rel/main_rel/font/fn_1_49794.c",
     "symbols": [
-      "fn_1_49794"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/font.c",
-    "pool": {
-      "@51": "jumptable_1_data_1BD84"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_499BC.c",
-    "symbols": [
-      "fn_1_499BC"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/font.c",
-    "pool": {
-      "@42": "jumptable_1_data_1BEFC"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_49B70.c",
-    "symbols": [
+      "fn_1_49794",
+      "fn_1_499BC",
       "fn_1_49B70"
     ],
     "status": "matching",
@@ -119996,8 +119969,7 @@
     "extra_cflags": [],
     "tu": "rel/main_rel/font.c",
     "pool": {
-      "@61": "jumptable_1_data_1BFD8",
-      "@63": "lbl_1_rodata_10E0"
+      "@150": "lbl_1_rodata_10E0"
     }
   },
   {
