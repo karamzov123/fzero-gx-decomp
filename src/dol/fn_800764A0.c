@@ -28,13 +28,9 @@ extern void fn_80073C6C(s32);
 extern void fn_800736C0(u32,void *);
 extern void fn_800745A4(u32,s32,s32,u32,u32,u32);
 static inline f32 fn_800764A0_operand(f32 left, f32 right) { left *= right; return left; }
-#pragma opt_common_subs off
 static inline f32 fn_800764A0_operand_(f32 right, f32 left) { return left * right; }
-#pragma opt_dead_assignments on
 static inline f32 fn_800764A0_operand__(f32 right, f32 left) { left *= right; return left; }
-#pragma peephole off
 static inline f32 fn_800764A0_read_pointer(struct fn_800764A0_lbl_801A6D00_T *owner) { return owner->unk_10; }
-#pragma peephole reset
 void fn_800764A0(struct fn_800764A0_Arg0 *arg0, void *arg1, u32 arg2) {
  struct fn_800764A0_lbl_801A3220 *p_lbl_801A3220;
  f32 v2;
@@ -101,5 +97,3 @@ void fn_800764A0(struct fn_800764A0_Arg0 *arg0, void *arg1, u32 arg2) {
  fn_80072E20(*(u32 *)((u8 *)arg0+0),0,0,0,1,0);
  { u32 v3; v3=*(u32 *)((u8 *)arg0+0); *(u32 *)((u8 *)arg0+0)=v3+1; }
 }
-#pragma opt_dead_assignments reset
-#pragma opt_common_subs reset
