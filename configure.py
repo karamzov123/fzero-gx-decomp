@@ -390,8 +390,10 @@ def add_pool_rules() -> None:
     if not path.exists():
         return
     # `own` lists retail names whose range the unit's split owns: poolfix renames the private
-    # definition (`=NAME`) instead of turning it into a reference.
-    pool = {u["source"]: {k: ("=" + v if v in (u.get("own") or []) else v) for k, v in u["pool"].items()}
+    # definition (`=NAME`) instead of turning it into a reference; `export` names other units
+    # still reference, so the definition also becomes global (`=+NAME`).
+    pool = {u["source"]: {k: ("=" + ("+" if v in (u.get("export") or []) else "") + v
+                              if v in (u.get("own") or []) else v) for k, v in u["pool"].items()}
             for u in json.loads(path.read_text()) if isinstance(u.get("pool"), dict) and u["pool"]}
     if not pool:
         return

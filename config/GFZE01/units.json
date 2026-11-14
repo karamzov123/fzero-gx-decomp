@@ -55242,14 +55242,7 @@
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/bg_win.c",
-    "pool": {
-      "@46": "jumptable_1_data_4C954",
-      "@43": "lbl_1_data_4C930",
-      "@44": "lbl_1_data_4C930+0xC",
-      "@45": "lbl_1_data_4C930+0x18",
-      "...data.0": "lbl_1_data_4C930"
-    }
+    "tu": "rel/main_rel/bg_win.c"
   },
   {
     "module": "main_rel",
@@ -103173,8 +103166,7 @@
     "source": "rel/main_rel/data/lbl_1_data_4C810.c",
     "symbols": [
       "lbl_1_data_4C810",
-      "lbl_1_data_4C900",
-      "lbl_1_data_4C930"
+      "lbl_1_data_4C900"
     ],
     "status": "matching",
     "data": true,
@@ -103832,17 +103824,6 @@
     "source": "rel/main_rel/data/lbl_1_data_6720.c",
     "symbols": [
       "lbl_1_data_6720"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/data/lbl_1_data_6730.c",
-    "symbols": [
-      "lbl_1_data_6730"
     ],
     "status": "matching",
     "data": true,
@@ -129649,12 +129630,6 @@
     "extra_cflags": [],
     "tu": "rel/main_rel/load.c",
     "pool": {
-      "@105": "jumptable_1_data_677C",
-      "@101": "lbl_1_data_6730",
-      "@102": "lbl_1_data_6730+0x8",
-      "@103": "lbl_1_data_6730+0x1C",
-      "@104": "lbl_1_data_6730+0x30",
-      "...data.0": "lbl_1_data_6730",
       "...bss.0": "lbl_1_bss_384C0",
       "fzgx_obj_lbl_1_bss_384C0": "lbl_1_bss_384C0",
       "lbl_1_bss_384C4__fzgx_offset_0": "lbl_1_bss_384C4",
@@ -129667,8 +129642,15 @@
       "lbl_1_bss_3DD28__fzgx_offset_4": "lbl_1_bss_3DD28+0x4",
       "lbl_1_bss_3DD28__fzgx_offset_8": "lbl_1_bss_3DD28+0x8",
       "lbl_1_bss_3DD28__fzgx_offset_C": "lbl_1_bss_3DD28+0xC",
-      "lbl_1_bss_3DD28__fzgx_offset_6C": "lbl_1_bss_3DD28+0x6C"
-    }
+      "lbl_1_bss_3DD28__fzgx_offset_6C": "lbl_1_bss_3DD28+0x6C",
+      "@101": "lbl_1_data_6730"
+    },
+    "own": [
+      "lbl_1_data_6730"
+    ],
+    "export": [
+      "lbl_1_data_6730"
+    ]
   },
   {
     "module": "main_rel",

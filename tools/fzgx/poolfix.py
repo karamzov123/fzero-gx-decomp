@@ -166,9 +166,10 @@ class Elf:
                 self._write_shdr(symtab)
         return done, skipped
 
-    def rename_defined(self, mapping: Dict[str, str]) -> Tuple[List[str], List[str]]:
+    def rename_defined(self, mapping: Dict[str, str], exported=()) -> Tuple[List[str], List[str]]:
         """Rename private symbols in place (they stay defined in this object): a switch jump
-        table whose retail range the unit owns takes the retail name."""
+        table whose retail range the unit owns takes the retail name. Names in `exported`
+        also become global definitions."""
         symtab = next(s for s in self.sections if s["type"] == SHT_SYMTAB)
         strtab = self.sections[symtab["link"]]
         done, skipped = [], []
@@ -180,6 +181,12 @@ class Elf:
                 continue
             name_off = self.add_string(strtab, retail)
             self.data[s["off"]:s["off"] + 4] = struct.pack(">I", name_off)
+            if private in exported:
+                self.data[s["off"] + 12] = (STB_GLOBAL << 4) | (s["info"] & 0xF)
+                # as in retarget: sh_info is the first non-local index
+                if symtab["info"] > s["index"]:
+                    symtab["info"] = s["index"]
+                    self._write_shdr(symtab)
             done.append(f"{private}->{retail}")
         return done, skipped
 
@@ -278,9 +285,14 @@ def apply(obj: Path, mapping: Dict[str, str]) -> Dict[str, object]:
     private object defined and only renames it: the unit's split owns that retail range, so
     the compiler's function static or string literal (`cmdTypeAndStatus$1`, `@24`) becomes
     the retail definition (`cmdTypeAndStatus$371`, `@35`) instead of a reference to it.
+    A value written `=+NAME` (a units.json `export` entry) also makes the renamed definition
+    global: other units still reference that retail name (a string literal that later functions
+    of the same TU reuse), and the owning unit now defines it.
     """
     elf = Elf(obj.read_bytes())
     owned = {k: v[1:] for k, v in mapping.items() if v.startswith("=")}
+    exported = {k for k, v in owned.items() if v.startswith("+")}
+    owned = {k: v.lstrip("+") for k, v in owned.items()}
     mapping = {k: v for k, v in mapping.items() if k not in owned}
     # Classify and retarget by the compiler's private names before renaming owned objects: a
     # retail name can equal another private name (OSError.c's "\n" is retail `@76`, and MWCC's
@@ -298,7 +310,7 @@ def apply(obj: Path, mapping: Dict[str, str]) -> Dict[str, object]:
     # range keeps the bytes); our private copies are dropped with their section
     elf.drop_section('.fzgxpool')  # the pool primer (see fixup_evidence.shared_pool_primer)
     done, skipped = elf.retarget(mapping)
-    renamed, missing = elf.rename_defined(owned)
+    renamed, missing = elf.rename_defined(owned, exported)
     pending = (['.rodata'] if pooled else []) + (['.data'] if data_names else [])
     for name in sorted(small_sections):
         if name in owned_sections:
