@@ -1,0 +1,243 @@
+{
+  "schema": 1,
+  "base_commit": "875524dda938021729c3f483d214d2b9a755d211",
+  "symbol": "fn_8004F55C",
+  "module": "main",
+  "status": "unaccepted; installed source unchanged",
+  "baseline_source_sha256": "e05a045b8f4f08050f206f872fe9e08ed8686b164fba822f3d6e0005f400e6dc",
+  "target_sha256": "8efc06ea2d9caa937a87bd3ffed6a01961e84dbfc6839c22ef1b26838a24cf65",
+  "mw_version": "GC/1.3.2",
+  "extra_cflags": "-use_lmw_stmw on",
+  "frontier_source_sha256": "48a5678b9b15eb5c0a560e41cd3a186efa223756979ab7114156dd752a6aea32",
+  "observations": [
+    {
+      "label": "baseline",
+      "mw": "GC/1.3.2",
+      "sha256": "e05a045b8f4f08050f206f872fe9e08ed8686b164fba822f3d6e0005f400e6dc",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "score": 100.0,
+      "matched": true
+    },
+    {
+      "label": "natural-local",
+      "mw": "GC/1.3.2",
+      "sha256": "8d1e95759b46825ac8805452fac0b38654e48cd8bb06a007944059ffe1136759",
+      "word_errors": 2,
+      "shape_errors": 2,
+      "score": 97.6470588235294,
+      "matched": null
+    },
+    {
+      "label": "natural-direct",
+      "mw": "GC/1.3.2",
+      "sha256": "48a5678b9b15eb5c0a560e41cd3a186efa223756979ab7114156dd752a6aea32",
+      "word_errors": 2,
+      "shape_errors": 2,
+      "score": 97.6470588235294,
+      "matched": null
+    },
+    {
+      "label": "natural-gain-scope",
+      "mw": "GC/1.3.2",
+      "sha256": "07a9faceba8de2cf899921fbb680d41e83de9e66520e48261d6d9471cd703327",
+      "word_errors": 2,
+      "shape_errors": 2,
+      "score": 97.6470588235294,
+      "matched": null
+    },
+    {
+      "label": "natural-local",
+      "mw": "GC/1.3.2r",
+      "sha256": "8d1e95759b46825ac8805452fac0b38654e48cd8bb06a007944059ffe1136759",
+      "word_errors": 2,
+      "shape_errors": 2,
+      "score": 97.6470588235294,
+      "matched": null
+    },
+    {
+      "label": "natural-direct",
+      "mw": "GC/1.3.2r",
+      "sha256": "48a5678b9b15eb5c0a560e41cd3a186efa223756979ab7114156dd752a6aea32",
+      "word_errors": 2,
+      "shape_errors": 2,
+      "score": 97.6470588235294,
+      "matched": null
+    },
+    {
+      "label": "natural-gain-scope",
+      "mw": "GC/1.3.2r",
+      "sha256": "07a9faceba8de2cf899921fbb680d41e83de9e66520e48261d6d9471cd703327",
+      "word_errors": 2,
+      "shape_errors": 2,
+      "score": 97.6470588235294,
+      "matched": null
+    },
+    {
+      "label": "natural-local",
+      "mw": "GC/1.3",
+      "sha256": "8d1e95759b46825ac8805452fac0b38654e48cd8bb06a007944059ffe1136759",
+      "word_errors": 2,
+      "shape_errors": 2,
+      "score": 97.6470588235294,
+      "matched": null
+    },
+    {
+      "label": "natural-direct",
+      "mw": "GC/1.3",
+      "sha256": "48a5678b9b15eb5c0a560e41cd3a186efa223756979ab7114156dd752a6aea32",
+      "word_errors": 2,
+      "shape_errors": 2,
+      "score": 97.6470588235294,
+      "matched": null
+    },
+    {
+      "label": "natural-gain-scope",
+      "mw": "GC/1.3",
+      "sha256": "07a9faceba8de2cf899921fbb680d41e83de9e66520e48261d6d9471cd703327",
+      "word_errors": 2,
+      "shape_errors": 2,
+      "score": 97.6470588235294,
+      "matched": null
+    },
+    {
+      "label": "natural-local",
+      "mw": "GC/2.0",
+      "sha256": "8d1e95759b46825ac8805452fac0b38654e48cd8bb06a007944059ffe1136759",
+      "word_errors": 2,
+      "shape_errors": 2,
+      "score": 97.6470588235294,
+      "matched": null
+    },
+    {
+      "label": "natural-direct",
+      "mw": "GC/2.0",
+      "sha256": "48a5678b9b15eb5c0a560e41cd3a186efa223756979ab7114156dd752a6aea32",
+      "word_errors": 2,
+      "shape_errors": 2,
+      "score": 97.6470588235294,
+      "matched": null
+    },
+    {
+      "label": "natural-gain-scope",
+      "mw": "GC/2.0",
+      "sha256": "07a9faceba8de2cf899921fbb680d41e83de9e66520e48261d6d9471cd703327",
+      "word_errors": 2,
+      "shape_errors": 2,
+      "score": 97.6470588235294,
+      "matched": null
+    },
+    {
+      "label": "natural-local",
+      "mw": "GC/2.0p1",
+      "sha256": "8d1e95759b46825ac8805452fac0b38654e48cd8bb06a007944059ffe1136759",
+      "word_errors": 2,
+      "shape_errors": 2,
+      "score": 97.6470588235294,
+      "matched": null
+    },
+    {
+      "label": "natural-direct",
+      "mw": "GC/2.0p1",
+      "sha256": "48a5678b9b15eb5c0a560e41cd3a186efa223756979ab7114156dd752a6aea32",
+      "word_errors": 2,
+      "shape_errors": 2,
+      "score": 97.6470588235294,
+      "matched": null
+    },
+    {
+      "label": "natural-gain-scope",
+      "mw": "GC/2.0p1",
+      "sha256": "07a9faceba8de2cf899921fbb680d41e83de9e66520e48261d6d9471cd703327",
+      "word_errors": 2,
+      "shape_errors": 2,
+      "score": 97.6470588235294,
+      "matched": null
+    },
+    {
+      "label": "natural-local",
+      "mw": "GC/2.5",
+      "sha256": "8d1e95759b46825ac8805452fac0b38654e48cd8bb06a007944059ffe1136759",
+      "word_errors": 2,
+      "shape_errors": 2,
+      "score": 97.6470588235294,
+      "matched": null
+    },
+    {
+      "label": "natural-direct",
+      "mw": "GC/2.5",
+      "sha256": "48a5678b9b15eb5c0a560e41cd3a186efa223756979ab7114156dd752a6aea32",
+      "word_errors": 2,
+      "shape_errors": 2,
+      "score": 97.6470588235294,
+      "matched": null
+    },
+    {
+      "label": "natural-gain-scope",
+      "mw": "GC/2.5",
+      "sha256": "07a9faceba8de2cf899921fbb680d41e83de9e66520e48261d6d9471cd703327",
+      "word_errors": 2,
+      "shape_errors": 2,
+      "score": 97.6470588235294,
+      "matched": null
+    },
+    {
+      "label": "natural-local",
+      "mw": "GC/2.7",
+      "sha256": "8d1e95759b46825ac8805452fac0b38654e48cd8bb06a007944059ffe1136759",
+      "word_errors": 2,
+      "shape_errors": 2,
+      "score": 97.6470588235294,
+      "matched": null
+    },
+    {
+      "label": "natural-direct",
+      "mw": "GC/2.7",
+      "sha256": "48a5678b9b15eb5c0a560e41cd3a186efa223756979ab7114156dd752a6aea32",
+      "word_errors": 2,
+      "shape_errors": 2,
+      "score": 97.6470588235294,
+      "matched": null
+    },
+    {
+      "label": "natural-gain-scope",
+      "mw": "GC/2.7",
+      "sha256": "07a9faceba8de2cf899921fbb680d41e83de9e66520e48261d6d9471cd703327",
+      "word_errors": 2,
+      "shape_errors": 2,
+      "score": 97.6470588235294,
+      "matched": null
+    },
+    {
+      "label": "update-reference",
+      "mw": "GC/1.3.2",
+      "sha256": "a00e203a1d8f8d8ed2a15e03de09c23333ed824727f92eb5a29085da6e5d67f0",
+      "word_errors": 2,
+      "shape_errors": 2,
+      "score": 97.6470588235294,
+      "matched": null
+    },
+    {
+      "label": "update-value-reference",
+      "mw": "GC/1.3.2",
+      "sha256": "96cc7e50ac25611b13b47667e08b880cf1ff94ba298ce4974498144bbbf23cc5",
+      "word_errors": 8,
+      "shape_errors": 5,
+      "score": 90.58823529411765,
+      "matched": null
+    },
+    {
+      "label": "update-both-reference",
+      "mw": "GC/1.3.2",
+      "sha256": "798cab9485c2b6b09d7d758b25c1eea9923c45de7e3549addcc21b62b14b5332",
+      "word_errors": 2,
+      "shape_errors": 2,
+      "score": 97.6470588235294,
+      "matched": null
+    }
+  ],
+  "result": "Baseline exact. Three natural forms across seven compiler versions all leave two aligned edits from an early incoming stack load. Reference-based RNG helpers retain that residual; a value-returning RNG helper is worse. No candidate accepted.",
+  "next_evidence": "Recover genuine incoming-parameter alias and scheduler dependencies, not another equivalent arithmetic or compiler sweep.",
+  "frontier_source": "#include \"types.h\"\n\nextern const int lbl_800911E0[16];\n\n#define CLAMP_SAMPLE(x)                 \\\n    if ((x) > 32767 || (x) < -32768) {  \\\n        if ((x) < -32768) {             \\\n            (x) = -32768;               \\\n        } else if ((x) > 32767) {       \\\n            (x) = 32767;                \\\n        }                               \\\n    }\n\nint fn_8004F55C(const signed char *input, int num_blocks, short *output, short delay[2],\n                short coefficient0, short coefficient1, short *random_state,\n                short random_multiplier, short random_increment) {\n    int block;\n    int i;\n    int older;\n    int previous;\n    short gain;\n\n        previous = delay[0];\n    older = delay[1];\n    for (block = 0; block < num_blocks; block++) {\n        short code = *(const short *)input;\n\n        if (code & 0x8000) return block;\n        gain = ((code ^ *random_state) & 0x1fff) + 1;\n        *random_state = random_increment + *random_state * random_multiplier;\n        *random_state &= 0x7fff;\n        input += 2;\n        for (i = 0; i < 16; i++) {\n            int packed = *input;\n            int decoded;\n\n            input++;\n            decoded = (packed >> 4) * gain +\n                ((coefficient0 * previous + coefficient1 * older) >> 12);\n            CLAMP_SAMPLE(decoded);\n            output[0] = decoded;\n            packed = lbl_800911E0[packed & 15];\n            previous = packed * gain +\n                ((coefficient0 * decoded + coefficient1 * previous) >> 12);\n            CLAMP_SAMPLE(previous);\n            output[1] = previous;\n            older = decoded;\n            output += 2;\n        }\n    }\n        delay[0] = previous;\n    delay[1] = older;\n    return num_blocks;\n}\n\n",
+  "replay": "Extract frontier_source to PATH, then uv run tools/fzgx.py fixup fn_8004F55C --body PATH --output SCRATCH_DIRECTORY --rounds 0; the unit retains GC/1.3.2 and -use_lmw_stmw on."
+}

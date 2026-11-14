@@ -127,12 +127,22 @@ def rename(p: Project, old: str, new: str, verify: bool = True) -> Dict[str, obj
         units = p.load_units()
         old_unit = new_unit = None
         for u in units:
-            if old in u["symbols"]:
+            if u["module"] == module and old in u["symbols"]:
                 u["symbols"] = [new if x == old else x for x in u["symbols"]]
                 if Path(u["source"]).stem == old:
                     old_unit, new_unit = u["source"], str(Path(u["source"]).with_name(f"{new}.c"))
                     u["source"] = new_unit
+            # Pool keys are compiler-private labels; only their retail targets
+            # follow a rename. Match the symbol and optional offset exactly,
+            # resolving in the caller's module before the global fallback.
+            anchor = p.find_symbol(old, u["module"]) or p.find_symbol(old)
+            if anchor is not None and anchor.module == module:
+                for private, target in (u.get("pool") or {}).items():
+                    match = re.fullmatch(re.escape(old) + r"(\+0x[0-9A-Fa-f]+)?", target)
+                    if match:
+                        u["pool"][private] = new + (match[1] or "")
         p.save_units(units)
+        changed.append(str(p.units_path.relative_to(ROOT)))
         for template in (ROOT / 'config' / p.version).rglob('ldscript.tpl'):
             text = template.read_text()
             rewritten = pat.sub(new, text)

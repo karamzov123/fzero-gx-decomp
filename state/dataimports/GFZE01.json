@@ -43285,6 +43285,27 @@
     "unit_size": 3660,
     "unit_start": 2148671680
   },
+  "main:DVDLoadFstMessage": {
+    "address": 2148679640,
+    "align": 8,
+    "declarations": [],
+    "definition": "char DVDLoadFstMessage[10]",
+    "method": "string",
+    "module": "main",
+    "references": [
+      "DVDInit"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 64,
+    "sha256": "12be67f79d6c780c71fed65a8278130a322c2a1beed7918c2c46b4145acd93db",
+    "size": 10,
+    "source": "dol/data/DVDLoadFstMessage.c",
+    "symbol": "DVDLoadFstMessage",
+    "unit_align": 8,
+    "unit_size": 64,
+    "unit_start": 2148679640
+  },
   "main:DefaultThread": {
     "address": 2148910128,
     "align": 8,
@@ -52078,6 +52099,37 @@
     "unit_align": 32,
     "unit_size": 728,
     "unit_start": 2148678912
+  },
+  "main:lbl_80123FE4": {
+    "address": 2148679652,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "char lbl_80123FE4[52]",
+        "path": "src/dol/fn_80017838.c"
+      },
+      {
+        "declaration": "char lbl_80123FE4[52]",
+        "path": "src/dol/fn_80018330.c"
+      }
+    ],
+    "definition": "char lbl_80123FE4[52]",
+    "method": "string",
+    "module": "main",
+    "references": [
+      "fn_80017838",
+      "fn_80018330"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 64,
+    "sha256": "08ff4fd54db5cd7997c2f9818b325069992f8ea44a7d838ffa5539d12a851d3f",
+    "size": 52,
+    "source": "dol/data/DVDLoadFstMessage.c",
+    "symbol": "lbl_80123FE4",
+    "unit_align": 8,
+    "unit_size": 64,
+    "unit_start": 2148679640
   },
   "main:lbl_80124058": {
     "address": 2148679768,

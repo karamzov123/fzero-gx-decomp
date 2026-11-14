@@ -26,14 +26,14 @@ The goal of this project is to reconstruct readable, maintainable, matching C so
 
 ## Current Status
 
-Verified locally on **2026-11-14**, against source baseline `e59a734ad`, for **GFZE01**:
+Verified locally on **2026-11-14**, against source baseline `875524dda` plus the DVD diagnostic-data import below, for **GFZE01**:
 
 - **Diagnostic Object Match:** **100.0%** of code bytes (7,351 / 7,351 functions in the objdiff report). This includes assembly and retail fallback objects; it is not a natural-C completion percentage.
 - **Authored C Credit:** **7,160 / 7,351** functions, **98.7912%** of code bytes (`fzgx sync`, then `fzgx honest`). This includes C with compiler-diff devices and evidenced inline assembly kernels, not just device-free natural C.
 - **Assembly-Owned Functions:** **191** current configured functions remain outside authored-C credit. This is an audit inventory, not 191 proven C conversions: original assembly is permitted when supported by evidence.
 - **Compiler-Diff Debt:** **34 primary warning markers across 11 files** in `src/` and `include/` (36 markers when `WARNING: device` cross-references are included). Markers are not a count of distinct devices or affected functions; unmarked constructs still need review.
 - **Target Executables:** **16 / 16** link and match the retail SHA-1 hashes byte for byte (`16 files OK`, followed by an independent checksum check).
-- **Diagnostic Data Match:** **98.63%** (4,999,053 / 5,068,445 bytes in the regenerated report). This is not an asset-reconstruction or source-owned-data percentage.
+- **Diagnostic Data Match:** **98.63%** (4,999,117 / 5,068,445 bytes in the regenerated report). This is not an asset-reconstruction or source-owned-data percentage.
 - **Source Coverage:** **13 / 16** executables have authored-C credit for every configured function. The remaining inventories are listed below.
 - **Lint:** **0 findings** (`fzgx lint`).
 
@@ -63,6 +63,24 @@ inner clamp arm left three differing instruction words. Genuine prediction helpe
 arithmetic-local reuse did not close that residual. No candidate replaced the working match;
 the next investigation needs allocator/liveness evidence rather than more equivalent expression
 rewrites. See [the portable probe evidence](state/repairs/adx-inner-clamp-20261114.json).
+
+The mono decoder `fn_8004F55C` likewise retains an early incoming-stack-load mismatch after
+natural parameter handling across seven compiler versions and real RNG-update helper probes.
+The installed match is unchanged; see [the recorded frontier](state/repairs/adx-mono-stack-20261114.json).
+
+### Latest Accepted Data Ownership
+
+`src/dol/data/DVDLoadFstMessage.c` now owns two DVD/FST diagnostic strings: **62 payload bytes**
+in a **64-byte split** including measured padding. The importer proved MWCC layout and retail
+bytes, retained the existing `char[52]` consumer declarations, and passed all 16 hashes. Running
+`fzgx data-import DVDLoadFstMessage --regenerate --apply` reproduces both objects together.
+The rename tooling now updates symbolic literal-pool targets while retaining compiler-private
+keys, so `DVDInit` continues to bind its literal to the renamed retail string. This adds data
+ownership, not a newly matched function or a removed compiler-diff device.
+
+Next for initialized data: recover mixed layouts for non-finite pools such as
+`lbl_3_rodata_990` and `lbl_1_rodata_2B2C`; do not weaken their existing scalar-array declarations
+to opaque byte storage just to get them through the importer.
 
 ### Supported Versions
 
