@@ -227,7 +227,7 @@ rel/sel/sel/fn_10_4600.c:
 
 rel/sel/sel/fn_10_1FEF4.c:
 	.text       start:0x0001FEF4 end:0x000210F0 align:4
-	.data       start:0x000067E0 end:0x0000684C align:8
+	.data       start:0x000067E0 end:0x000068E0 align:8
 
 rel/sel/_prolog/fn_10_834.c:
 	.text       start:0x00000834 end:0x00000AB8 align:4
