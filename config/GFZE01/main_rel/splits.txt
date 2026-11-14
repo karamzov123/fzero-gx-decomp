@@ -7911,7 +7911,7 @@ rel/main_rel/bg_lig/fn_1_D8878.c:
 
 rel/main_rel/sel_static_disp/fn_1_13D02C.c:
 	.text       start:0x0013D02C end:0x0013D460 align:4
-	.data       start:0x00041DF0 end:0x00041E1C align:8
+	.data       start:0x00041DF0 end:0x00041E50 align:8
 
 rel/main_rel/sel_static_disp/fn_1_138A04.c:
 	.text       start:0x00138A04 end:0x00138E44 align:4
@@ -8928,6 +8928,7 @@ rel/main_rel/bg_lig/fn_1_D6C10.c:
 
 rel/main_rel/sel_static_disp/fn_1_13ABA8.c:
 	.text       start:0x0013ABA8 end:0x0013B24C align:4
+	.data       start:0x00041AF8 end:0x00041B90 align:8
 
 rel/main_rel/stcoli/fn_1_192E8.c:
 	.text       start:0x000192E8 end:0x00019AE0 align:4
@@ -21069,9 +21070,6 @@ rel/main_rel/data/lbl_1_data_41A10.c:
 
 rel/main_rel/data/lbl_1_data_41AB8.c:
 	.data       start:0x00041AB8 end:0x00041AD0 align:8
-
-rel/main_rel/data/lbl_1_data_41AF8.c:
-	.data       start:0x00041AF8 end:0x00041B54 align:8
 
 rel/main_rel/data/lbl_1_data_41B90.c:
 	.data       start:0x00041B90 end:0x00041DF0 align:8

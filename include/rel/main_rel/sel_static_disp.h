@@ -238,7 +238,7 @@ extern u8 jumptable_1_data_42154[0x20];
 extern u8 jumptable_1_data_42134[0x20];
 
 // lbl_1_data_41E1C: .data size 0x8, 1 refs from sel_static_disp.c (own data block)
-extern u32 lbl_1_data_41E1C;
+extern u8 lbl_1_data_41E1C[0x8];
 
 // lbl_1_data_41E24: .data size 0xF, 1 refs from sel_static_disp.c (own data block)
 extern u8 lbl_1_data_41E24[0xF];
@@ -306,7 +306,7 @@ extern u8 lbl_1_data_425D8[0xE];
 extern u8 jumptable_1_data_41AD0[0x28];
 
 // lbl_1_data_41B1C: .data size 0x6, 1 refs from sel_static_disp.c (own data block)
-extern u32 lbl_1_data_41B1C;
+extern u8 lbl_1_data_41B1C[0x6];
 
 // lbl_1_data_41DE8: .data size 0x4, 1 refs from sel_static_disp.c (own data block)
 extern f32 lbl_1_data_41DE8;

@@ -98195,20 +98195,6 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/data/lbl_1_data_41AF8.c",
-    "symbols": [
-      "lbl_1_data_41AF8",
-      "lbl_1_data_41B1C",
-      "lbl_1_data_41B24",
-      "lbl_1_data_41B3C"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main_rel",
     "source": "rel/main_rel/data/lbl_1_data_41B90.c",
     "symbols": [
       "lbl_1_data_41B90",
@@ -137907,10 +137893,7 @@
     "status": "matching",
     "mw_version": "GC/1.3",
     "extra_cflags": [],
-    "tu": "rel/main_rel/sel_static_disp.c",
-    "pool": {
-      "@40": "jumptable_1_data_41B54"
-    }
+    "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
     "module": "main_rel",
