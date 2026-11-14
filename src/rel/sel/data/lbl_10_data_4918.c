@@ -2,9 +2,16 @@
 #include "types.h"
 
 extern char lbl_10_data_4918[17];
+extern char lbl_10_data_492C[28];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_4918[17] __attribute__((aligned(8))) = "Now checking ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_492C[28] __attribute__((aligned(4))) = "\203`\203F\203b\203N\202\265\202\304\202\242\202\334\202\267\201E\201E\201E\n\000\000";
 #pragma explicit_zero_data reset

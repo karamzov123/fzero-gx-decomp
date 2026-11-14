@@ -1,6 +1,11 @@
 .include "macros.inc"
 .file "__OSFPRInit.c"
 
+# Assembly in the original: the Dolphin SDK's OS.c writes this routine as a CodeWarrior `asm`
+# function. Evidence (docs/ASM_POLICY.md section 1):
+# mfmsr/mtmsr and mfspr HID2 (privileged and special-purpose register access MWCC never emits
+# from C), psq_l, and no MWCC prologue or epilogue (a nofralloc body).
+
 # 0x8000A0FC..0x8000A224 | size: 0x128
 .text
 .balign 4

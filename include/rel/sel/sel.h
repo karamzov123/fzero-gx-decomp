@@ -215,9 +215,9 @@ extern Obj_10_data_4AF8 lbl_10_data_4AF8;
 extern s16 lbl_10_data_554;
 
 // lbl_10_data_55C: .data size 0x8, 2 refs from sel.c
-extern u32 lbl_10_data_55C;
+extern s16 lbl_10_data_55C[0x4];
 
-// lbl_10_data_45A: .data size 0x6, 2 refs from sel.c
+// lbl_10_data_45A: .data size 0x2, 2 refs from sel.c
 extern s16 lbl_10_data_45A;
 
 // lbl_10_bss_55B04: .bss size 0x2C, 2 refs from sel.c
@@ -292,7 +292,7 @@ extern u8 lbl_10_data_744[0x12];
 extern u8 lbl_10_data_65C[0x20];
 
 // lbl_10_data_5EBC: .data size 0x2, 1 refs from sel.c (own data block)
-extern u16 lbl_10_data_5EBC;
+extern u8 lbl_10_data_5EBC[0x2];
 
 // jumptable_10_data_5EC: .data size 0x30, 1 refs from sel.c (own data block)
 extern u8 jumptable_10_data_5EC[0x30];
@@ -356,8 +356,8 @@ typedef struct {
 } Obj_10_data_5E24;
 extern Obj_10_data_5E24 lbl_10_data_5E24;
 
-// lbl_10_data_5E4C: .data size 0x70, 1 refs from sel.c (own data block)
-extern u8 lbl_10_data_5E4C[0x70];
+// lbl_10_data_5E4C: .data size 0xF, 1 refs from sel.c (own data block)
+extern u8 lbl_10_data_5E4C[0xF];
 
 // jumptable_10_data_8AC: .data size 0x30, 1 refs from sel.c (own data block)
 extern u8 jumptable_10_data_8AC[0x30];
@@ -368,8 +368,8 @@ extern u8 lbl_10_data_61C[0xC];
 // jumptable_10_data_628: .data size 0x34, 1 refs from sel.c (own data block)
 extern u8 jumptable_10_data_628[0x34];
 
-// lbl_10_data_5E2C: .data size 0x8, 1 refs from sel.c (own data block)
-extern u32 lbl_10_data_5E2C;
+// lbl_10_data_5E2C: .data size 0x4, 1 refs from sel.c (own data block)
+extern u8 lbl_10_data_5E2C[0x4];
 
 // jumptable_10_data_7EC: .data size 0x20, 1 refs from sel.c (own data block)
 extern u8 jumptable_10_data_7EC[0x20];

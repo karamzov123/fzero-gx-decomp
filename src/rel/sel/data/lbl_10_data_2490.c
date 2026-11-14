@@ -6,6 +6,9 @@ extern char lbl_10_data_249C[14];
 extern char lbl_10_data_24AC[14];
 extern char lbl_10_data_24BC[14];
 extern char lbl_10_data_24CC[14];
+extern char lbl_10_data_24DC[16];
+extern char lbl_10_data_24EC[8];
+extern char lbl_10_data_24F4[12];
 
 
 
@@ -35,4 +38,22 @@ __declspec(section ".data") char lbl_10_data_24BC[14] __attribute__((aligned(4))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_24CC[14] __attribute__((aligned(4))) = "Customize ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_24DC[16] __attribute__((aligned(4))) = "\203J\203X\203^\203}\203C\203Y\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_24EC[8] __attribute__((aligned(4))) = "Options";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_24F4[12] __attribute__((aligned(4))) = "Options GER";
 #pragma explicit_zero_data reset

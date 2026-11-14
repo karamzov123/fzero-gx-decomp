@@ -57,12 +57,6 @@ rel/profile/fn_16_607C.c:
 rel/profile/fn_16_B24.c:
 	.text       start:0x00000B24 end:0x00000CAC align:4
 
-rel/profile/data/lbl_16_data_0.c:
-	.data       start:0x00000000 end:0x00082B00 align:8
-
-rel/profile/data/lbl_16_rodata_0.c:
-	.rodata     start:0x00000000 end:0x0000023C align:8
-
 rel/profile/fn_16_23A8.c:
 	.text       start:0x000023A8 end:0x000024A4 align:4
 
@@ -135,9 +129,6 @@ rel/profile/data/lbl_16_bss_0.c:
 rel/profile/data/lbl_16_data_82DC0.c:
 	.data       start:0x00082DC0 end:0x00082DD0 align:8
 
-rel/profile/data/lbl_16_data_82DD0.c:
-	.data       start:0x00082DD0 end:0x00082DEC align:8
-
 rel/profile/data/lbl_16_data_82E70.c:
 	.data       start:0x00082E70 end:0x00082E78 align:8
 
@@ -180,8 +171,17 @@ rel/profile/fn_16_4E90.c:
 rel/profile/_prolog.c:
 	.text       start:0x00000000 end:0x000006E4 align:4
 
+rel/profile/data/lbl_16_data_82F18.c:
+	.data       start:0x00082F18 end:0x0008345C align:8
+
+rel/profile/data/lbl_16_data_83500.c:
+	.data       start:0x00083500 end:0x0008353A align:8
+
+rel/profile/data/lbl_16_data_0.c:
+	.data       start:0x00000000 end:0x00082B00 align:8
+
 rel/profile/data/lbl_16_data_82B00.c:
-	.data       start:0x00082B00 end:0x00082B54 align:8
+	.data       start:0x00082B00 end:0x00082BF8 align:8
 
 rel/profile/data/lbl_16_data_82BF8.c:
 	.data       start:0x00082BF8 end:0x00082D98 align:8
@@ -192,14 +192,14 @@ rel/profile/data/lbl_16_data_82D98.c:
 rel/profile/data/lbl_16_data_82DB8.c:
 	.data       start:0x00082DB8 end:0x00082DC0 align:8
 
+rel/profile/data/lbl_16_data_82DD0.c:
+	.data       start:0x00082DD0 end:0x00082E10 align:8
+
 rel/profile/data/lbl_16_data_82E10.c:
 	.data       start:0x00082E10 end:0x00082E48 align:8
 
 rel/profile/data/lbl_16_data_82E48.c:
 	.data       start:0x00082E48 end:0x00082E70 align:8
 
-rel/profile/data/lbl_16_data_82F18.c:
-	.data       start:0x00082F18 end:0x0008345C align:8
-
-rel/profile/data/lbl_16_data_83500.c:
-	.data       start:0x00083500 end:0x0008353A align:8
+rel/profile/data/lbl_16_rodata_0.c:
+	.rodata     start:0x00000000 end:0x0000023C align:8

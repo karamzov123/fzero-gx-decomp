@@ -56,8 +56,8 @@ typedef struct {
 } Obj_1_data_416B8;
 extern Obj_1_data_416B8 lbl_1_data_416B8;
 
-// lbl_1_data_418D4: .data size 0x54, 1 refs from custom_memcard.c (own data block)
-extern u8 lbl_1_data_418D4[0x54];
+// lbl_1_data_418D4: .data size 0x18, 1 refs from custom_memcard.c (own data block)
+extern const char *lbl_1_data_418D4[0x6];
 
 // lbl_1_data_40F30: .data size 0x22, 1 refs from custom_memcard.c (own data block)
 extern u8 lbl_1_data_40F30[0x22];

@@ -3,9 +3,25 @@
 #include "rel/main_rel/prog.h"
 
 extern Obj_1_data_341B8_Target *lbl_1_data_341B8;
+extern char lbl_1_data_341BC[29];
+extern u8 lbl_1_data_341DC[4];
 
 
 extern u8 lbl_1_bss_6F5F8[];
 #pragma explicit_zero_data on
 __declspec(section ".data") Obj_1_data_341B8_Target *lbl_1_data_341B8 __attribute__((aligned(8))) = (Obj_1_data_341B8_Target *)((u8 *)&lbl_1_bss_6F5F8);
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_341BC[29] __attribute__((aligned(4))) = "Would you like to display in";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_1_data_341DC[4] __attribute__((aligned(4))) = {
+    0x00U, 0x00U, 0x00U, 0x00U
+};
 #pragma explicit_zero_data reset

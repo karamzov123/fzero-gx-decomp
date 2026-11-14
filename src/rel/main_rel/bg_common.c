@@ -2774,15 +2774,15 @@ s32 fn_1_106DB4(u32 arg0, u32 arg1) {
     case 1:
         lbl_1_bss_854B8.unk_0 = arg1;
         break;
-    case 2:
+    case 3:
         lbl_1_bss_854B8.unk_4 = (Obj_1_bss_854B8_At4 *)arg1;
         break;
-    case 3:
+    case 4:
         lbl_1_bss_854B8.unk_8 = (Obj_1_bss_854B8_At8 *)arg1;
         ((Obj_1_bss_3BE0_Target *)arg1)->unk_3C = 0;
         *(u32 *)arg1 &= 0x7FFFFFFF;
         break;
-    case 4:
+    case 5:
         counter = &lbl_1_bss_85288[0];
         entry = (u8 *)lbl_1_bss_3BE0->unk_54;
         *counter = 0;
@@ -2791,7 +2791,7 @@ s32 fn_1_106DB4(u32 arg0, u32 arg1) {
             *counter = *counter + 1;
         }
         break;
-    case 5:
+    case 6:
         counter = &lbl_1_bss_85288[1];
         entry = (u8 *)lbl_1_bss_3BE0->unk_54;
         *counter = 0;
@@ -2799,8 +2799,6 @@ s32 fn_1_106DB4(u32 arg0, u32 arg1) {
             entry += 0x40;
             *counter = *counter + 1;
         }
-        break;
-    case 6:
         break;
     }
     return 1;

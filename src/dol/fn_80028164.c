@@ -79,6 +79,8 @@ void fn_80028164(Fn80028164Arg0 *arg0) {
     while (node != 0) {
         switch (node->type) {
         case 0:
+            break;
+        case 1:
             fn_80028B3C(node);
             total += node->value24;
             red = node->value1c;
@@ -88,58 +90,56 @@ void fn_80028164(Fn80028164Arg0 *arg0) {
             width = node->value22;
             default_blue = node->value1e;
             break;
-        case 1:
+        case 2:
             red = node->value8.byte[0];
             default_alpha = node->value8.byte[1];
             break;
-        case 2:
+        case 3:
             height = node->value8.half[0];
             width = *(u16 *)((u8 *)node + 0xa);
             break;
-        case 3:
+        case 4:
             default_blue = node->value8.byte[0];
             break;
-        case 4:
+        case 5:
             green += node->value8.word;
             break;
-        case 5:
+        case 6:
             green += node->value10;
             break;
-        case 6:
+        case 7:
             random_value = (s32)((f32)(s32)node->value28 * node->value24);
             green += random_value;
             break;
-        case 7:
+        case 8:
             blue += node->value8.word;
             break;
-        case 8:
+        case 9:
             alpha += node->value8.word;
             break;
-        case 9:
+        case 10:
             color += node->value8.word;
             break;
-        case 10:
+        case 11:
             blue += node->value10;
             break;
-        case 11:
+        case 12:
             alpha += node->value10;
             break;
-        case 12:
-            color += node->value10;
-            break;
         case 13:
-            random_value = (s32)((f32)(s32)node->value28 * node->value24);
-            blue += random_value;
+            color += node->value10;
             break;
         case 14:
             random_value = (s32)((f32)(s32)node->value28 * node->value24);
-            alpha += random_value;
+            blue += random_value;
             break;
         case 15:
             random_value = (s32)((f32)(s32)node->value28 * node->value24);
-            color += random_value;
+            alpha += random_value;
             break;
         case 16:
+            random_value = (s32)((f32)(s32)node->value28 * node->value24);
+            color += random_value;
             break;
         }
         node = node->next;

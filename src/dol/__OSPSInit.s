@@ -1,6 +1,11 @@
 .include "macros.inc"
 .file "__OSPSInit.c"
 
+# Assembly in the original: the Dolphin SDK's OS.c writes this routine as a CodeWarrior `asm`
+# function. Evidence (docs/ASM_POLICY.md section 1):
+# mtspr GQR0-GQR7 (special-purpose register writes MWCC never emits from C). The frame is
+# written by hand (nofralloc with an explicit mflr/stw/stwu prologue) around the bl calls.
+
 # 0x8000AB54..0x8000ABA8 | size: 0x54
 .text
 .balign 4

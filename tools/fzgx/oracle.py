@@ -1428,7 +1428,9 @@ def compile_unit(project: Project, unit: str, unit_src: str,
     obj.parent.mkdir(parents=True, exist_ok=True)
     src = source or unit_source_path(project, unit_src)
     cmd = [str(ROOT / "build" / "tools" / "wibo"), str(ROOT / "build" / "compilers" / mw / "mwcceppc.exe")]
-    cmd += shlex.split(flags) + ucfg.get("extra_cflags", []) + ["-c", str(src), "-o", str(obj)]
+    # unit flags are shell fragments ninja joins into one command line (`-pragma 'cats off'`
+    # is stored as two tokens, `-proc 7450` as one): parse them the same way
+    cmd += shlex.split(flags) + shlex.split(" ".join(ucfg.get("extra_cflags") or [])) + ["-c", str(src), "-o", str(obj)]
     return subprocess.run(cmd, cwd=ROOT, text=True, capture_output=True, timeout=120)
 
 

@@ -162,7 +162,7 @@ def unit_text(p: Project, unit: dict) -> str:
         b = tf.get(unit["symbols"][0])
         if b is None:
             return ""
-        return gen_text(tf, unit["symbols"][0])
+        return units_gen_text(tf, unit["symbols"])
     path = ROOT / "src" / unit["source"]
     return path.read_text() if path.exists() else ""
 
@@ -182,11 +182,25 @@ def gen_text(tf: TuFile, name: str) -> str:
     return tf.prologue + "\n" + b.body
 
 
+def units_gen_text(tf: TuFile, names: List[str]) -> str:
+    """A unit of consecutive blocks of one TU (retail order) compiles them as one object, so
+    their .data comes out in the compiler's order: a switch table at 4 mod 8 behind the
+    previous function's table, or the next function's strings, can then be owned. The
+    prologue leads when any block takes it; the blocks follow as written."""
+    if len(names) == 1:
+        return gen_text(tf, names[0])
+    blocks = [tf.get(n) for n in names]
+    if any(b is None for b in blocks):
+        return "".join(STUB.format(name=n) for n in names)
+    head = [tf.prologue] if any("noprologue" not in b.flags for b in blocks) else []
+    return "\n".join(head + [b.body for b in blocks])
+
+
 def write_gen(p: Project, unit: dict, tf: Optional[TuFile] = None) -> Path:
-    """Write the generated per-function unit for one block unit."""
+    """Write the generated unit for one block unit (or one unit of consecutive blocks)."""
     tf = tf or load(p, unit["tu"])
     out = gen_path(p, unit["source"])
-    text = gen_text(tf, unit["symbols"][0])
+    text = units_gen_text(tf, unit["symbols"])
     if not out.exists() or out.read_text() != text:
         _write_atomic(out, text)
     return out

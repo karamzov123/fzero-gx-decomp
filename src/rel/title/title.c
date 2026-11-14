@@ -533,7 +533,7 @@ u8 lbl_8_bss_238__fzgx_offset_4;
 u8 fzgx_obj_lbl_8_bss_23D;
 u16 fzgx_pool_lbl_8_bss_0_gap_23E;
 u8 fzgx_pool_lbl_8_bss_0_gap_23E_fill_240;
-u8 lbl_8_bss_241;
+u8 lbl_8_bss_238__fzgx_offset_9;
 u16 lbl_8_bss_242__fzgx_offset_0;
 s32 lbl_8_bss_242__fzgx_offset_2;
 u8 lbl_8_bss_242__fzgx_offset_6;
@@ -587,7 +587,7 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_8_bss_23D;
     s = *(u8 *)&fzgx_pool_lbl_8_bss_0_gap_23E;
     s = *(u8 *)&fzgx_pool_lbl_8_bss_0_gap_23E_fill_240;
-    s = *(u8 *)&lbl_8_bss_241;
+    s = *(u8 *)&lbl_8_bss_238__fzgx_offset_9;
     s = *(u8 *)&lbl_8_bss_242__fzgx_offset_0;
     s = *(u8 *)&lbl_8_bss_242__fzgx_offset_2;
     s = *(u8 *)&lbl_8_bss_242__fzgx_offset_6;
@@ -660,7 +660,7 @@ void fn_8_EC4(void) {
         }
     }
 
-    if (lbl_8_bss_241) {
+    if (lbl_8_bss_238__fzgx_offset_9) {
         if (fn_1_4C10()) {
             fn_1_52088();
             return;
@@ -707,7 +707,7 @@ void fn_8_EC4(void) {
             return;
         }
         fn_1_4A00(0, 0xf, (void *)fzgx_obj_lbl_8_bss_238);
-        lbl_8_bss_241 = 1;
+        lbl_8_bss_238__fzgx_offset_9 = 1;
         fn_1_52088();
         return;
     }
@@ -734,13 +734,13 @@ void fn_8_EC4(void) {
 /* fzgx:end fn_8_EC4 */
 
 /* fzgx:begin fn_8_1304 */
-extern u8 lbl_8_bss_241;
+extern u8 lbl_8_bss_238__fzgx_offset_9;
 extern u8 lbl_8_bss_2;
 
 void fn_8_1304(void) {
     u32 t1;
     lbl_8_bss_2 = 0;
-    lbl_8_bss_241 = 0;
+    lbl_8_bss_238__fzgx_offset_9 = 0;
     fn_1_A8F78();
     t1 = fn_1_48140(142);
     fn_1_A1364(t1);
@@ -752,12 +752,12 @@ struct fn_8_1344_lbl_8_bss_4 {
     f32 unk_0;
 };
 extern struct fn_8_1344_lbl_8_bss_4 lbl_8_bss_4;
-
+extern u8 lbl_8_bss_238__fzgx_offset_A;
 
 extern u32 fn_1_47F74(u32);
 
 void fn_8_1344(void) {
-    (*(u8 *)&lbl_8_bss_242) = 0;
+    (*(u8 *)&lbl_8_bss_238__fzgx_offset_A) = 0;
     lbl_8_bss_4.unk_0 = 0.0f;
     fn_1_47F74(1);
     fn_1_47F74(3);
@@ -863,7 +863,7 @@ u8 lbl_8_bss_238__fzgx_offset_4;
 u8 fzgx_obj_lbl_8_bss_23D;
 u16 fzgx_pool_lbl_8_bss_0_gap_23E;
 u8 fzgx_pool_lbl_8_bss_0_gap_23E_fill_240;
-u8 lbl_8_bss_241;
+u8 lbl_8_bss_238__fzgx_offset_9;
 u8 fzgx_obj_lbl_8_bss_242;
 u8 lbl_8_bss_242__fzgx_offset_1;
 u32 lbl_8_bss_242__fzgx_offset_2[25];
@@ -893,7 +893,7 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_8_bss_23D;
     s = *(u8 *)&fzgx_pool_lbl_8_bss_0_gap_23E;
     s = *(u8 *)&fzgx_pool_lbl_8_bss_0_gap_23E_fill_240;
-    s = *(u8 *)&lbl_8_bss_241;
+    s = *(u8 *)&lbl_8_bss_238__fzgx_offset_9;
     s = *(u8 *)&fzgx_obj_lbl_8_bss_242;
     s = *(u8 *)&lbl_8_bss_242__fzgx_offset_1;
     s = *(u8 *)&lbl_8_bss_242__fzgx_offset_2;
@@ -3105,7 +3105,7 @@ fn_8_2660_u8 lbl_8_bss_238__fzgx_offset_4;
 fn_8_2660_u8 fzgx_obj_lbl_8_bss_23D;
 fn_8_2660_u16 fzgx_pool_lbl_8_bss_0_gap_23E;
 fn_8_2660_u8 fzgx_pool_lbl_8_bss_0_gap_23E_fill_240;
-fn_8_2660_u8 lbl_8_bss_241;
+fn_8_2660_u8 lbl_8_bss_238__fzgx_offset_9;
 fn_8_2660_u16 lbl_8_bss_242__fzgx_offset_0;
 fn_8_2660_s32 lbl_8_bss_242__fzgx_offset_2;
 fn_8_2660_u8 lbl_8_bss_242__fzgx_offset_6;
@@ -3164,7 +3164,7 @@ static void fzgx_bss_layout(void) {
     s = *(fn_8_2660_u8 *)&fzgx_obj_lbl_8_bss_23D;
     s = *(fn_8_2660_u8 *)&fzgx_pool_lbl_8_bss_0_gap_23E;
     s = *(fn_8_2660_u8 *)&fzgx_pool_lbl_8_bss_0_gap_23E_fill_240;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_241;
+    s = *(fn_8_2660_u8 *)&lbl_8_bss_238__fzgx_offset_9;
     s = *(fn_8_2660_u8 *)&lbl_8_bss_242__fzgx_offset_0;
     s = *(fn_8_2660_u8 *)&lbl_8_bss_242__fzgx_offset_2;
     s = *(fn_8_2660_u8 *)&lbl_8_bss_242__fzgx_offset_6;
@@ -4252,11 +4252,12 @@ void fn_8_5514(void) {
 /* fzgx:end fn_8_5514 */
 
 /* fzgx:begin fn_8_55CC */
-extern u8 lbl_8_bss_23D;
+extern u8 lbl_8_bss_238__fzgx_offset_5;
+extern u8 lbl_8_bss_238__fzgx_offset_A;
 
 void fn_8_55CC(void) {
-    if (lbl_8_bss_23D == 0) {
-    (*(u8 *)&lbl_8_bss_242) = 0;
+    if (lbl_8_bss_238__fzgx_offset_5 == 0) {
+    (*(u8 *)&lbl_8_bss_238__fzgx_offset_A) = 0;
     fn_8_D024();
     }
 }
@@ -4359,10 +4360,10 @@ void fn_8_5608(void) {
 /* fzgx:end fn_8_5608 */
 
 /* fzgx:begin fn_8_5810 */
-extern u8 lbl_8_bss_23D;
+extern u8 lbl_8_bss_238__fzgx_offset_5;
 
 void fn_8_5810(void) {
-    if (lbl_8_bss_23D == 0) {
+    if (lbl_8_bss_238__fzgx_offset_5 == 0) {
     fn_8_D5F4();
     }
 }

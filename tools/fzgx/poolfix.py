@@ -272,8 +272,21 @@ def drop_primer(obj: Path) -> bool:
 
 
 def apply(obj: Path, mapping: Dict[str, str]) -> Dict[str, object]:
-    """Rewrite `obj` in place. mapping: private literal symbol -> pooled retail symbol."""
+    """Rewrite `obj` in place. mapping: private literal symbol -> pooled retail symbol.
+
+    A value written `=NAME` (configure.py emits it for a units.json `own` entry) keeps the
+    private object defined and only renames it: the unit's split owns that retail range, so
+    the compiler's function static or string literal (`cmdTypeAndStatus$1`, `@24`) becomes
+    the retail definition (`cmdTypeAndStatus$371`, `@35`) instead of a reference to it.
+    """
     elf = Elf(obj.read_bytes())
+    owned = {k: v[1:] for k, v in mapping.items() if v.startswith("=")}
+    mapping = {k: v for k, v in mapping.items() if k not in owned}
+    # Classify and retarget by the compiler's private names before renaming owned objects: a
+    # retail name can equal another private name (OSError.c's "\n" is retail `@76`, and MWCC's
+    # own `@76` there is a .data string retargeted elsewhere).
+    owned_sections = {elf.sections[s['shndx']]['name'] for s in elf.symbols()
+                      if s['name'] in owned and 0 < s['shndx'] < len(elf.sections)}
     tables = {k: v for k, v in mapping.items() if v.startswith("jumptable_")}
     pooled = {k: v for k, v in mapping.items() if k not in tables}
     data_section = elf.section('.data')
@@ -285,9 +298,14 @@ def apply(obj: Path, mapping: Dict[str, str]) -> Dict[str, object]:
     # range keeps the bytes); our private copies are dropped with their section
     elf.drop_section('.fzgxpool')  # the pool primer (see fixup_evidence.shared_pool_primer)
     done, skipped = elf.retarget(mapping)
+    renamed, missing = elf.rename_defined(owned)
     pending = (['.rodata'] if pooled else []) + (['.data'] if data_names else [])
     for name in sorted(small_sections):
-        if name in ('.bss', '.sbss'):
+        if name in owned_sections:
+            # An owned object beside a retargeted private copy: the copy's bytes cannot be
+            # dropped without the owned object, so the section stays pending (a failure).
+            pass
+        elif name in ('.bss', '.sbss'):
             section = elf.section(name)
             defined = [s for s in elf.symbols() if s['shndx'] == section['index'] and s['size']]
             # A section-base alias may point back to BSS this unit already
@@ -304,7 +322,7 @@ def apply(obj: Path, mapping: Dict[str, str]) -> Dict[str, object]:
         pending = left
     emptied = not pending
     obj.write_bytes(bytes(elf.data))
-    return {"retargeted": done, "skipped": skipped, "rodata_emptied": emptied}
+    return {"retargeted": done + renamed, "skipped": skipped + missing, "rodata_emptied": emptied}
 
 
 def parse_mapping(text: str) -> Dict[str, str]:

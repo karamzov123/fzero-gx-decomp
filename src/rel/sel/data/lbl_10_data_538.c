@@ -2,10 +2,15 @@
 #include "types.h"
 #include "rel/sel/data/lbl_10_data_538.h"
 #include "rel/sel/data/lbl_10_data_54C.h"
+#include "rel/sel/data/lbl_10_data_574.h"
 
 #include "rel/sel/data/lbl_10_data_538.h"
 #include "rel/sel/data/lbl_10_data_54C.h"
 extern u16 lbl_10_data_554[4];
+extern s16 lbl_10_data_55C[0x4];
+extern u32 lbl_10_data_564[];
+extern char lbl_10_data_56C[8];
+#include "rel/sel/data/lbl_10_data_574.h"
 
 
 extern u8 lbl_10_data_460[];
@@ -37,5 +42,35 @@ __declspec(section ".data") Data_lbl_10_data_54C lbl_10_data_54C __attribute__((
 #pragma explicit_zero_data on
 __declspec(section ".data") u16 lbl_10_data_554[4] __attribute__((aligned(4))) = {
     0x0006U, 0x0002U, 0x0005U, 0x0004U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") s16 lbl_10_data_55C[0x4] __attribute__((aligned(4))) = {
+    6, 2, 5, 4
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u32 lbl_10_data_564[] __attribute__((aligned(4))) = {
+    0xFFFFFFFFU, 0xFFFFFFFFU
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_56C[8] __attribute__((aligned(4))) = "CAR_SEL";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_10_data_574 lbl_10_data_574 __attribute__((aligned(4))) = {
+    (u8 *)&lbl_10_data_56C
 };
 #pragma explicit_zero_data reset

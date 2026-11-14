@@ -1,6 +1,12 @@
 .include "macros.inc"
 .file "OSDefaultExceptionHandler.c"
 
+# Assembly in the original: the Dolphin SDK's OS.c writes this routine as a CodeWarrior `asm`
+# function. Evidence (docs/ASM_POLICY.md section 1):
+# mfspr GQR1-GQR7, mfdsisr/mfdar (special-purpose registers MWCC never emits from C),
+# stores into the context from the incoming registers with no MWCC prologue, and a hand-made
+# stwu frame before the tail branch to __OSUnhandledException.
+
 # 0x8000AAFC..0x8000AB54 | size: 0x58
 .text
 .balign 4

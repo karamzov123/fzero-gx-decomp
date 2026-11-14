@@ -1073,7 +1073,7 @@ void fn_17_DB4(void) {
     } else {
         dir = 0;
     }
-    /* retail stores a halfword at 0xFC (sth), though symbols.txt types lbl_17_bss_FA as byte data */
+    /* retail stores a halfword at 0xFC (sth), though symbols.txt typed the slice lbl_17_bss_FA (now lbl_17_bss_D8+0x22) as byte data */
     lbl_17_bss_FA__fzgx_offset_2 = (lbl_17_bss_FA__fzgx_offset_2 + dir + 5) % 5;
     if (__rlwinm(lbl_1_bss_9F8[lbl_1_bss_25E98].unk_10, 0, 31, 31) ||
         __rlwinm(lbl_1_bss_9F8[lbl_1_bss_25E98].unk_12, 0, 31, 31)) {
@@ -1091,7 +1091,7 @@ void fn_17_DB4(void) {
         } else {
             switch (lbl_17_bss_FA__fzgx_offset_2 - 1) {
             case 0:
-                /* retail stores a halfword at 0xFE (sth), though symbols.txt types lbl_17_bss_FA as byte data */
+                /* retail stores a halfword at 0xFE (sth), though symbols.txt typed the slice lbl_17_bss_FA (now lbl_17_bss_D8+0x22) as byte data */
                 lbl_17_bss_FA__fzgx_offset_4 = (lbl_17_bss_FA__fzgx_offset_4 + dir + 4) % 4;
                 switch (lbl_17_bss_FA__fzgx_offset_4) {
                 case 0:
@@ -1697,7 +1697,7 @@ void fn_17_1DA4(void) {
 
     kind = fzgx_obj_lbl_17_bss_10->unk_4;
     /* retail stores a float at 0x10C (stfs) and a halfword at 0x5C (sth), though symbols.txt types
-     * lbl_17_bss_FA as byte data and lbl_17_bss_58 as 4-byte data */
+     * the slice lbl_17_bss_FA (now lbl_17_bss_D8+0x22) as byte data and lbl_17_bss_58 as 4-byte data */
     if (lbl_17_bss_FA__fzgx_offset_12 < 1.0f && lbl_17_bss_58__fzgx_offset_4 == 4) {
         lbl_17_bss_FA__fzgx_offset_2E = 0;
         lbl_17_bss_FA__fzgx_offset_12 += 0.02;
@@ -1727,14 +1727,14 @@ void fn_17_1DA4(void) {
     } else {
         dir = 0;
     }
-    /* retail stores a halfword at 0x108 (sth), though symbols.txt types lbl_17_bss_FA as byte data */
+    /* retail stores a halfword at 0x108 (sth), though symbols.txt typed the slice lbl_17_bss_FA (now lbl_17_bss_D8+0x22) as byte data */
     lbl_17_bss_FA__fzgx_offset_E =
         (lbl_17_bss_FA__fzgx_offset_E + dir + lbl_17_bss_FA__fzgx_offset_A) % lbl_17_bss_FA__fzgx_offset_A;
     for (i = 0; i < lbl_17_bss_FA__fzgx_offset_A; i++) {
         n = fn_17_1DA4_entry(kind, lbl_17_bss_FA__fzgx_offset_6, lbl_17_bss_D8__fzgx_offset_20, i);
         color = &lbl_17_bss_FA__fzgx_offset_1E[i];
         if (i == lbl_17_bss_FA__fzgx_offset_E) {
-            /* retail copies the colour as one word (stw), though symbols.txt types lbl_17_bss_FA as byte data */
+            /* retail copies the colour as one word (stw), though symbols.txt typed the slice lbl_17_bss_FA (now lbl_17_bss_D8+0x22) as byte data */
             if ((s32)fn_1_FA5E0(fzgx_obj_lbl_17_bss_60.unk_8, n - 1) == 0) {
                 fn_17_1DA4_Color c = {0x82, 0xFF, 0x00, 0x00};
 
@@ -17508,7 +17508,7 @@ s16 lbl_17_bss_60__fzgx_offset_74;
 s16 lbl_17_bss_D6;
 fn_17_456C_InterviewState *lbl_17_bss_D8[8];
 u16 lbl_17_bss_D8__fzgx_offset_20;
-u16 lbl_17_bss_FA;
+u16 lbl_17_bss_D8__fzgx_offset_22;
 u32 lbl_17_bss_FA__fzgx_offset_2[20];
 u32 lbl_17_bss_14C;
 u32 lbl_17_bss_150[4];
@@ -17558,7 +17558,7 @@ static void fzgx_bss_layout(void) {
     fzgx_sink(&lbl_17_bss_D6);
     fzgx_sink(lbl_17_bss_D8);
     fzgx_sink(&lbl_17_bss_D8__fzgx_offset_20);
-    fzgx_sink(&lbl_17_bss_FA);
+    fzgx_sink(&lbl_17_bss_D8__fzgx_offset_22);
     fzgx_sink(lbl_17_bss_FA__fzgx_offset_2);
     fzgx_sink(&lbl_17_bss_14C);
     fzgx_sink(lbl_17_bss_150);
@@ -47382,7 +47382,7 @@ typedef struct lbl_17_bss_D8_t {
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 lbl_17_bss_D8_t fzgx_obj_lbl_17_bss_D8;
 u16 fzgx_pool_lbl_17_bss_D8_tail_F8;
-u16 lbl_17_bss_FA;
+u16 lbl_17_bss_D8__fzgx_offset_22;
 u32 fzgx_pool_lbl_17_bss_FA_fill_FC[20];
 u32 lbl_17_bss_14C;
 u32 lbl_17_bss_150[4];
@@ -47394,7 +47394,7 @@ static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_17_bss_D8;
     s = *(u8 *)&fzgx_pool_lbl_17_bss_D8_tail_F8;
-    s = *(u8 *)&lbl_17_bss_FA;
+    s = *(u8 *)&lbl_17_bss_D8__fzgx_offset_22;
     s = *(u8 *)&fzgx_pool_lbl_17_bss_FA_fill_FC;
     s = *(u8 *)&lbl_17_bss_14C;
     s = *(u8 *)&lbl_17_bss_150;
@@ -62730,8 +62730,8 @@ extern void fn_1_49590(f32);
 extern void fn_1_4955C(f32, f32);
 extern void fn_1_496FC(f32, f32);
 extern void fn_1_495A0(f32);
-/* retail reads one byte (lbz), though symbols.txt types lbl_17_bss_FA as 0x52 bytes */
-extern u8 lbl_17_bss_FA;
+/* retail reads one byte (lbz), though symbols.txt types lbl_17_bss_D8__fzgx_offset_22 as 0x52 bytes */
+extern u8 lbl_17_bss_D8__fzgx_offset_22;
 
 /* the retail TU's .data up to this function's strings, so MWCC addresses them off one section base; the
  * fzgx_pool_ objects stand at their retail offsets for the tables this function reads and the data in between
@@ -62794,7 +62794,7 @@ void fn_17_8870(f32 alpha) {
     f32 offset;
     f32 y;
 
-    offset = lbl_17_bss_FA ? -22.0f : 0.0f;
+    offset = lbl_17_bss_D8__fzgx_offset_22 ? -22.0f : 0.0f;
     fn_1_520A0();
     fn_1_52070(320);
     packet = (*(FontDrawPacket *)&lbl_1_rodata_26F8);
@@ -62824,7 +62824,7 @@ void fn_17_8870(f32 alpha) {
     fn_1_4AE0C("%s", fzgx_pool_data_6288C[lbl_801A66B4]);
     fn_1_496FC(320.0f, y);
     fn_1_4955C(1.2f, 1.2f);
-    if (lbl_17_bss_FA) {
+    if (lbl_17_bss_D8__fzgx_offset_22) {
         fn_1_496FC(320.0f, 308.0f);
         fn_1_4955C(1.5f, 1.5f);
         fn_1_4AE0C("%s!!\n", fzgx_pool_data_628E8[lbl_17_bss_54][4]);

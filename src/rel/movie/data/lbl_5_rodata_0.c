@@ -2,9 +2,347 @@
 #include "types.h"
 
 extern const f32 lbl_5_rodata_0;
+extern const f32 lbl_5_rodata_4;
+extern const f32 lbl_5_rodata_8;
+extern const f32 lbl_5_rodata_C;
+extern const f32 lbl_5_rodata_10;
+extern const f64 lbl_5_rodata_18;
+extern const u32 lbl_5_rodata_20;
+extern const u32 lbl_5_rodata_24;
+extern const u32 lbl_5_rodata_28;
+extern const u32 lbl_5_rodata_2C;
+extern const f32 lbl_5_rodata_30;
+extern const f32 lbl_5_rodata_34;
+extern const f32 lbl_5_rodata_38;
+extern const f32 lbl_5_rodata_3C;
+extern const f32 lbl_5_rodata_40;
+extern const u16 lbl_5_rodata_44;
+extern const f32 lbl_5_rodata_48;
+extern const f32 lbl_5_rodata_4C;
+extern const f32 lbl_5_rodata_50;
+extern const f32 lbl_5_rodata_54;
+extern const f32 lbl_5_rodata_58;
+extern const f32 lbl_5_rodata_5C;
+extern const f32 lbl_5_rodata_60;
+extern const f32 lbl_5_rodata_64;
+extern const f32 lbl_5_rodata_68;
+extern const u32 lbl_5_rodata_6C;
+extern const u16 lbl_5_rodata_70[4];
+extern const u32 lbl_5_rodata_78;
+extern const u32 lbl_5_rodata_7C;
+extern const u32 lbl_5_rodata_80;
+extern const u32 lbl_5_rodata_84;
+extern const u32 lbl_5_rodata_88;
+extern const f32 lbl_5_rodata_8C;
+extern const f32 lbl_5_rodata_90;
+extern const f32 lbl_5_rodata_94;
+extern const f32 lbl_5_rodata_98;
+extern const f32 lbl_5_rodata_9C;
+extern const f32 lbl_5_rodata_A0;
+extern const f32 lbl_5_rodata_A4;
+extern const f32 lbl_5_rodata_A8;
+extern const f32 lbl_5_rodata_AC;
+extern const f32 lbl_5_rodata_B0;
+extern const f32 lbl_5_rodata_B4;
+extern const f32 lbl_5_rodata_B8;
+extern const f32 lbl_5_rodata_BC;
+extern const f32 lbl_5_rodata_C0;
+extern const f32 lbl_5_rodata_C4;
+extern const f32 lbl_5_rodata_C8;
+extern const f32 lbl_5_rodata_CC;
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".rodata") const f32 lbl_5_rodata_0 __attribute__((aligned(4))) = 0.0f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_4 __attribute__((aligned(4))) = 1.0f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_8 __attribute__((aligned(4))) = 0.100000001f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_C __attribute__((aligned(4))) = 8.0f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_10 __attribute__((aligned(4))) = 0.5f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f64 lbl_5_rodata_18 __attribute__((aligned(8))) = 4503601774854144.0;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const u32 lbl_5_rodata_20 __attribute__((aligned(4))) = 0x80FF80FFU;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const u32 lbl_5_rodata_24 __attribute__((aligned(4))) = 0xFF0000FFU;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const u32 lbl_5_rodata_28 __attribute__((aligned(4))) = 0x80FF80FFU;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const u32 lbl_5_rodata_2C __attribute__((aligned(4))) = 0xFFFF80FFU;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_30 __attribute__((aligned(4))) = 12.0f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_34 __attribute__((aligned(4))) = 4.0f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_38 __attribute__((aligned(4))) = 80.0f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_3C __attribute__((aligned(4))) = 360.0f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_40 __attribute__((aligned(4))) = 0.600000024f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const u16 lbl_5_rodata_44 __attribute__((aligned(4))) = 0x0000U;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_48 __attribute__((aligned(4))) = 59.9399986f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_4C __attribute__((aligned(4))) = 0.75f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_50 __attribute__((aligned(4))) = 0.0166666675f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_54 __attribute__((aligned(4))) = 30000.0f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_58 __attribute__((aligned(4))) = 0.03125f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_5C __attribute__((aligned(4))) = 24.0f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_60 __attribute__((aligned(4))) = 320.0f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_64 __attribute__((aligned(4))) = 321.0f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_68 __attribute__((aligned(4))) = 500.0f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const u32 lbl_5_rodata_6C __attribute__((aligned(4))) = 0x000000FFU;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const u16 lbl_5_rodata_70[4] __attribute__((aligned(4))) = {
+    0xFF91U, 0x0000U, 0xFF76U, 0x0044U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const u32 lbl_5_rodata_78 __attribute__((aligned(4))) = 0x6600FF32U;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const u32 lbl_5_rodata_7C __attribute__((aligned(4))) = 0x94009494U;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const u32 lbl_5_rodata_80 __attribute__((aligned(4))) = 0xCB0005CFU;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const u32 lbl_5_rodata_84 __attribute__((aligned(4))) = 0x00FF0000U;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const u32 lbl_5_rodata_88 __attribute__((aligned(4))) = 0x00000000U;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_8C __attribute__((aligned(4))) = 167.0f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_90 __attribute__((aligned(4))) = 38.0f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_94 __attribute__((aligned(4))) = 90.0f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_98 __attribute__((aligned(4))) = 16.0f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_9C __attribute__((aligned(4))) = 464.0f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_A0 __attribute__((aligned(4))) = 0.00999999978f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_A4 __attribute__((aligned(4))) = 616.0f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_A8 __attribute__((aligned(4))) = 424.0f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_AC __attribute__((aligned(4))) = 2.0f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_B0 __attribute__((aligned(4))) = 3.0f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_B4 __attribute__((aligned(4))) = 640.0f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_B8 __attribute__((aligned(4))) = 480.0f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_BC __attribute__((aligned(4))) = 0.125f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_C0 __attribute__((aligned(4))) = 240.0f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_C4 __attribute__((aligned(4))) = 224.0f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_C8 __attribute__((aligned(4))) = 0.000100000005f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_5_rodata_CC __attribute__((aligned(4))) = 0.10001f;
 #pragma explicit_zero_data reset

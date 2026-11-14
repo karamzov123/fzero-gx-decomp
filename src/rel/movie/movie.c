@@ -4,7 +4,7 @@
 extern u32 lbl_5_bss_AF4;
 extern s32 fn_80082928(char *, const char *, ...);
 extern char *strchr(const char *, int);
-extern s8 lbl_5_bss_5D;
+extern s8 lbl_5_bss_40__fzgx_offset_1D;
 extern u32 lbl_5_bss_20;
 
 /* fzgx:begin fn_5_3C44 noprologue */
@@ -70,9 +70,9 @@ u16 lbl_5_bss_40__fzgx_offset_2;
 u32 lbl_5_bss_40__fzgx_offset_4;
 u32 lbl_5_bss_40__fzgx_offset_8[5];
 u8 lbl_5_bss_40__fzgx_offset_1C;
-u8 lbl_5_bss_5D;
+u8 lbl_5_bss_40__fzgx_offset_1D;
 u8 fzgx_pool_lbl_5_bss_0_gap_5E;
-u8 lbl_5_bss_5F;
+u8 lbl_5_bss_40__fzgx_offset_1F;
 u8 fzgx_pool_lbl_5_bss_0_gap_60;
 u8 lbl_5_bss_61__fzgx_offset_0;
 u16 lbl_5_bss_61__fzgx_offset_1;
@@ -115,9 +115,9 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&lbl_5_bss_40__fzgx_offset_4;
     s = *(u8 *)&lbl_5_bss_40__fzgx_offset_8;
     s = *(u8 *)&lbl_5_bss_40__fzgx_offset_1C;
-    s = *(u8 *)&lbl_5_bss_5D;
+    s = *(u8 *)&lbl_5_bss_40__fzgx_offset_1D;
     s = *(u8 *)&fzgx_pool_lbl_5_bss_0_gap_5E;
-    s = *(u8 *)&lbl_5_bss_5F;
+    s = *(u8 *)&lbl_5_bss_40__fzgx_offset_1F;
     s = *(u8 *)&fzgx_pool_lbl_5_bss_0_gap_60;
     s = *(u8 *)&lbl_5_bss_61__fzgx_offset_0;
     s = *(u8 *)&lbl_5_bss_61__fzgx_offset_1;
@@ -245,7 +245,7 @@ u32 fn_5_3E74(struct fn_5_3E74_Arg0 *arg0) {
         arg0->unk_10[i] = 0;
         (*(u32 *)&lbl_5_bss_B90) = (u32)strchr((const char *)(*(u32 *)&lbl_5_bss_B90), '\n') + 1;
     }
-    if (lbl_5_bss_5D == 5) {
+    if (lbl_5_bss_40__fzgx_offset_1D == 5) {
         v1 = (v1 >> 1) & 0x7f;
     }
     return v1;

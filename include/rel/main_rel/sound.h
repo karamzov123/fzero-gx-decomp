@@ -14,20 +14,10 @@ extern u32 lbl_1_bss_6F1DC;
 extern u8 lbl_1_bss_6F1D8;
 
 // lbl_1_data_2D93C: .data size 0xC4, 5 refs from sound.c
-typedef struct {
-    u8 pad_0[0x84];
-    s16 unk_84;  // 5 loads, 0 stores
-    u8 pad_86[0x3E];
-} Obj_1_data_2D93C;
-extern Obj_1_data_2D93C lbl_1_data_2D93C;
+extern s16 lbl_1_data_2D93C[0x62];
 
 // lbl_1_data_2D7B8: .data size 0x184, 5 refs from sound.c
-typedef struct {
-    u8 pad_0[0x108];
-    u32 unk_108;  // 1 loads, 0 stores
-    u8 pad_10C[0x78];
-} Obj_1_data_2D7B8;
-extern Obj_1_data_2D7B8 lbl_1_data_2D7B8;
+extern const char *lbl_1_data_2D7B8[0x61];
 
 // lbl_1_data_33F1C: .data size 0x8, 4 refs from sound.c (own data block)
 extern u32 lbl_1_data_33F1C;

@@ -27,6 +27,7 @@ from typing import Dict, List, Optional, Tuple
 from .project import Project
 
 ACCESS_RE = re.compile(r"^(l|st)(wz|w|hz|ha|h|bz|b|fs|fd)(u|x)?\s+(r|f)(\d+),\s*(-?0x[0-9a-fA-F]+|-?\d+)\((r\d+)\)")
+INDEXED_RE = re.compile(r"^(l|st)(wz|w|hz|ha|h|bz|b|fs|fd)x\s+(r|f)(\d+),\s*(r\d+),\s*(r\d+)$")
 WIDTH = {"wz": 4, "w": 4, "hz": 2, "h": 2, "ha": 2, "bz": 1, "b": 1, "fs": 4, "fd": 8}
 OP_WIDTH = {"lwz": 4, "lhz": 2, "lha": 2, "lbz": 1, "lfs": 4, "lfd": 8, "stw": 4, "sth": 2, "stb": 1, "stfs": 4, "stfd": 8}
 DEF_RE = re.compile(r"^(\w+)\s+r(\d+)")  # first operand register is the destination for most ops
@@ -43,6 +44,7 @@ def analyze(p: Project, module: str, symbol: str) -> Dict[str, object]:
         lambda: {"width": 0, "float": False, "fops": 0, "loads": 0, "stores": 0, "widths": {}, "signed": False})
     users: List[str] = []
     kinds = defaultdict(int)
+    indexed: Dict[int, Dict[str, object]] = defaultdict(lambda: {"n": 0, "signed": False, "fops": 0})
     stride_seen: Dict[str, int] = {}
     for fn in p.function_asm(module).values():
         if symbol not in fn.refs:
@@ -116,6 +118,18 @@ def analyze(p: Project, module: str, symbol: str) -> Dict[str, object]:
                 kinds["object"] += 1
                 used = True
                 continue
+            # register-indexed element of the object itself (`lhax r0, rBase, rIdx`): an array
+            mx = INDEXED_RE.match(ins)
+            if mx:
+                op, w, _, _, ra, rb = mx.groups()
+                hit = [r for r in (ra, rb) if base.get(r) == ("object", 0)]
+                if len(hit) == 1:
+                    e = indexed[WIDTH[w]]
+                    e["n"] += 1
+                    e["signed"] = e["signed"] or w == "ha"
+                    e["fops"] += w in ("fs", "fd")
+                    kinds["object"] += 1
+                    used = True
             m = ACCESS_RE.match(ins)
             if m:
                 op, w, _, rf, rn, off, rb = m.groups()
@@ -236,9 +250,39 @@ def analyze(p: Project, module: str, symbol: str) -> Dict[str, object]:
         else:
             stride = 0
     return {"symbol": symbol, "kind": kind, "fields": dict(sorted(out.items())), "users": users, "shapes": dict(kinds),
-            "stride": stride,
+            "stride": stride, "indexed": {w: dict(e) for w, e in sorted(indexed.items())},
             "pointees": {poff: {o: f for o, f in sorted(fl.items()) if o >= 0}
                          for poff, fl in pointees.items() if sum(x["loads"] + x["stores"] for x in fl.values()) >= 3}}
+
+
+def indexed_array(p: Project, module: str, sd, info: Dict[str, object]) -> Optional[str]:
+    """`extern T name[N];` for an object the code indexes by register at one element width, when
+    every constant-offset access agrees with that element (a struct view would invent padding).
+    A word array whose every retail element is a relocation to a string is a string table."""
+    idx = info.get("indexed") or {}
+    if len(idx) != 1 or info["kind"] != "object" or info.get("pointees") or sd.name.startswith("jumptable_"):
+        return None
+    (w, e), = idx.items()
+    if sd.size <= w or sd.size % w or info.get("stride", 0) not in (0, w):
+        return None
+    fields = info["fields"]
+    if any(off % w or set(f["widths"]) != {w} for off, f in fields.items()):
+        return None
+    signed = e["signed"] or any(f.get("signed") for f in fields.values())
+    fops = e["fops"] + sum(f["fops"] for f in fields.values())
+    accesses = e["n"] + sum(f["loads"] + f["stores"] for f in fields.values())
+    ctype = {1: "u8", 2: "s16" if signed else "u16", 4: "f32" if fops * 2 > accesses else "u32", 8: "f64"}[w]
+    if w == 4 and ctype == "u32" and sd.section != ".bss":
+        from .dataimport import payload
+        try:
+            _, relocs = payload(p, sd)
+        except ValueError:
+            relocs = []
+        targets = [p.find_symbol(r["symbol"], r["module"]) for r in relocs if not r["addend"]]
+        if (len(targets) == sd.size // 4 and len({r["offset"] for r in relocs}) == len(targets)
+                and all(t is not None and t.attrs.get("data") == "string" for t in targets)):
+            ctype = "const char *"
+    return f"extern {ctype}{'' if ctype.endswith('*') else ' '}{sd.name}[0x{sd.size // w:X}];"
 
 
 def typedef_names(p, module: str) -> Dict[str, Dict[str, str]]:
@@ -318,7 +362,11 @@ def header(p: Project, module: str, min_refs: int = 20, sections=(".data", ".bss
         nfields = info["fields"]
         pointee0 = info.get("pointees", {}).get(0) or {}
         scalar_size = sd.size in (1, 2, 4, 8)  # a 7-byte object with no accesses is a string, not a u32
-        if sd.size <= 8 and (info["kind"] == "pointer" or len(nfields) <= 1 and 0 in nfields or (not nfields and scalar_size)):
+        scalar_size &= sd.attrs.get("data") != "string"  # nor is a 4-byte one dtk typed string
+        array = indexed_array(p, module, sd, info)
+        if array:
+            out.append(array)
+        elif sd.size <= 8 and (info["kind"] == "pointer" or len(nfields) <= 1 and 0 in nfields or (not nfields and scalar_size)):
             elem = nfields if info["kind"] == "pointer" else pointee0
             if sd.size == 4 and elem and sum(x["loads"] + x["stores"] for x in elem.values()) >= 3:
                 pt = _tname(names, name, "target", f"{tname}_Target")
@@ -471,7 +519,12 @@ def tu_header(p: Project, module: str, tu: str, min_refs: int = 2) -> str:
         out.append(f"// {name}: {sd.section} size 0x{sd.size:X}, {n} refs from {tu}{' (own data block)' if own else ''}")
         nfields = info["fields"]
         pointee0 = info.get("pointees", {}).get(0) or {}
-        if sd.size <= 8 and (info["kind"] == "pointer" or len(nfields) <= 1 and 0 in nfields or not nfields):
+        array = indexed_array(p, module, sd, info)
+        scalar_size = sd.size in (1, 2, 4, 8)  # a 3-byte object with no accesses is a string, not a u32
+        scalar_size &= sd.attrs.get("data") != "string"  # nor is a 4-byte one dtk typed string
+        if array:
+            out.append(array)
+        elif sd.size <= 8 and (info["kind"] == "pointer" or len(nfields) <= 1 and 0 in nfields or (not nfields and scalar_size)):
             elem = nfields if info["kind"] == "pointer" else pointee0
             if sd.size == 4 and elem and sum(x["loads"] + x["stores"] for x in elem.values()) >= 3:
                 pt = _tname(names, name, "target", f"{tname}_Target")

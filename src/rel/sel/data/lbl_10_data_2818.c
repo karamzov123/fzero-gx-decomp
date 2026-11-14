@@ -6,6 +6,7 @@ extern char lbl_10_data_2824[13];
 extern char lbl_10_data_2834[13];
 extern char lbl_10_data_2844[13];
 extern char lbl_10_data_2854[13];
+extern char lbl_10_data_2864[12];
 
 
 
@@ -35,4 +36,10 @@ __declspec(section ".data") char lbl_10_data_2844[13] __attribute__((aligned(4))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_2854[13] __attribute__((aligned(4))) = "Gachinko ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_2864[12] __attribute__((aligned(4))) = "\203K\203`\203\223\203R\000\000\000";
 #pragma explicit_zero_data reset

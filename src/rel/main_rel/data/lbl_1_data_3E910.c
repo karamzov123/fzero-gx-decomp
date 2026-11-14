@@ -3,6 +3,11 @@
 #include "rel/main_rel/data/lbl_1_data_3EDAC.h"
 #include "rel/main_rel/data/lbl_1_data_3EE90.h"
 #include "rel/main_rel/spline.h"
+#include "rel/main_rel/data/lbl_1_data_3F0F8.h"
+#include "rel/main_rel/data/lbl_1_data_3F1CC.h"
+#include "rel/main_rel/data/lbl_1_data_3F244.h"
+#include "rel/main_rel/data/lbl_1_data_3F28C.h"
+#include "rel/main_rel/data/lbl_1_data_3F2EC.h"
 
 extern u8 lbl_1_data_3E910[0xA0];
 extern char lbl_1_data_3E9B0[6];
@@ -65,6 +70,33 @@ extern Obj_1_data_3EF30 lbl_1_data_3EF30;
 extern char lbl_1_data_3EF90[9];
 extern char lbl_1_data_3EF9C[11];
 extern u32 lbl_1_data_3EFA8[2];
+extern u32 lbl_1_data_3EFB0[2];
+extern u8 lbl_1_data_3EFB8[0x108];
+extern char lbl_1_data_3F0C0[28];
+extern char lbl_1_data_3F0DC[28];
+#include "rel/main_rel/data/lbl_1_data_3F0F8.h"
+extern char lbl_1_data_3F17C[8];
+extern u8 lbl_1_data_3F188[0xC];
+extern char lbl_1_data_3F194[5];
+extern char lbl_1_data_3F19C[9];
+extern char lbl_1_data_3F1A8[8];
+extern char lbl_1_data_3F1B0[11];
+extern char lbl_1_data_3F1BC[6];
+extern char lbl_1_data_3F1C4[5];
+#include "rel/main_rel/data/lbl_1_data_3F1CC.h"
+extern char lbl_1_data_3F1F8[7];
+extern char lbl_1_data_3F200[11];
+extern char lbl_1_data_3F20C[11];
+extern char lbl_1_data_3F218[12];
+extern char lbl_1_data_3F224[12];
+extern char lbl_1_data_3F230[5];
+extern char lbl_1_data_3F238[12];
+#include "rel/main_rel/data/lbl_1_data_3F244.h"
+extern u32 lbl_1_data_3F284[0x2];
+#include "rel/main_rel/data/lbl_1_data_3F28C.h"
+#include "rel/main_rel/data/lbl_1_data_3F2EC.h"
+extern char lbl_1_data_3F34C[12];
+extern u8 lbl_1_data_3F358[0xB0];
 
 
 
@@ -502,5 +534,336 @@ __declspec(section ".data") char lbl_1_data_3EF9C[11] __attribute__((aligned(4))
 #pragma explicit_zero_data on
 __declspec(section ".data") u32 lbl_1_data_3EFA8[2] __attribute__((aligned(8))) = {
     0x00000000U, 0x00000000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u32 lbl_1_data_3EFB0[2] __attribute__((aligned(8))) = {
+    0x00000000U, 0x00000000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_1_data_3EFB8[0x108] __attribute__((aligned(8))) = {
+    0x00U, 0x00U, 0x00U, 0x23U, 0x6DU, 0x5FU, 0x66U, 0x75U, 0x74U, 0x32U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x01U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_3F0C0[28] __attribute__((aligned(8))) = "\202\244\202\313\202\244\202\313\203\202\201[\203h(\202\273\202\244\202\263\202\310\202\265)\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_3F0DC[28] __attribute__((aligned(4))) = "\202\324\202\347\202\361\202\324\202\347\202\361\203\202\201[\203h(PAD0)\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_1_data_3F0F8 lbl_1_data_3F0F8 __attribute__((aligned(8))) = {
+    0x82AE82E9U,
+    0x82AE82E9U,
+    0x8382815BU,
+    0x83682850U,
+    0x41443129U,
+    0x00000000U,
+    (u8 *)&lbl_1_data_3F0C0,
+    (u8 *)&lbl_1_data_3F0DC,
+    (u8 *)&lbl_1_data_3F0F8,
+    0x74657374U,
+    0x5F6D6F64U,
+    0x656C2F25U,
+    0x732F2573U,
+    0x2E74706CU,
+    0x00000000U,
+    0x74657374U,
+    0x5F6D6F64U,
+    0x656C2F25U,
+    0x732F2573U,
+    0x2E676D61U,
+    0x00000000U,
+    0x436C6F74U,
+    0x6843616CU,
+    0x63000000U,
+    0x436C6F74U,
+    0x68446973U,
+    0x70000000U,
+    0x25730000U,
+    0x436C6F74U,
+    0x68205465U,
+    0x7374205BU,
+    0x25735D20U,
+    0x25640A00U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_3F17C[8] __attribute__((aligned(4))) = "cloth.c";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_1_data_3F188[0xC] __attribute__((aligned(8))) = {
+    0x4FU, 0x56U, 0x45U, 0x52U, 0x54U, 0x41U, 0x4BU, 0x45U, 0x00U, 0x00U, 0x00U, 0x00U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_3F194[5] __attribute__((aligned(4))) = "JUMP";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_3F19C[9] __attribute__((aligned(4))) = "ENEMYHIT";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_3F1A8[8] __attribute__((aligned(8))) = "WALLHIT";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_3F1B0[11] __attribute__((aligned(8))) = "SIDEBYSIDE";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_3F1BC[6] __attribute__((aligned(4))) = "START";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_3F1C4[5] __attribute__((aligned(4))) = "GOAL";
+#pragma explicit_zero_data reset
+
+
+
+
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_1_data_3F1CC lbl_1_data_3F1CC __attribute__((aligned(4))) = {
+    0x4C415000U,
+    (u8 *)&lbl_1_data_3F188,
+    (u8 *)&lbl_1_data_3F194,
+    (u8 *)&lbl_1_data_3F19C,
+    (u8 *)&lbl_1_data_3F1A8,
+    (u8 *)&lbl_1_data_3F1B0,
+    (u8 *)&lbl_1_data_3F1BC,
+    (u8 *)&lbl_1_data_3F1C4,
+    (u8 *)&lbl_1_data_3F1CC,
+    0x00000003U,
+    0x00000000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_3F1F8[7] __attribute__((aligned(8))) = "_NOISE";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_3F200[11] __attribute__((aligned(8))) = "GATEWAKU01";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_3F20C[11] __attribute__((aligned(4))) = "GATEWAKU02";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_3F218[12] __attribute__((aligned(8))) = "GATEPANEL01";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_3F224[12] __attribute__((aligned(4))) = "GATEPANEL02";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_3F230[5] __attribute__((aligned(8))) = "FLAG";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_3F238[12] __attribute__((aligned(8))) = "REPAIRPOINT";
+#pragma explicit_zero_data reset
+
+
+
+
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") ClothPartRule lbl_1_data_3F244[8] __attribute__((aligned(4))) = {
+{
+    2,
+    lbl_1_data_3F1F8
+},
+{
+    0,
+    lbl_1_data_3F200
+},
+{
+    0,
+    lbl_1_data_3F20C
+},
+{
+    0,
+    lbl_1_data_3F218
+},
+{
+    0,
+    lbl_1_data_3F224
+},
+{
+    0,
+    lbl_1_data_3F230
+},
+{
+    0,
+    lbl_1_data_3F238
+},
+{
+    3,
+    0
+}
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u32 lbl_1_data_3F284[0x2] __attribute__((aligned(4))) = {
+    0x00000000U, 0x00000000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") ClothBoxFace lbl_1_data_3F28C[6] __attribute__((aligned(4))) = {
+{
+    {0x00U, 0x01U, 0x03U, 0x02U},
+    {1.0f, 0.0f, 0.0f}
+},
+{
+    {0x00U, 0x04U, 0x05U, 0x01U},
+    {0.0f, 1.0f, 0.0f}
+},
+{
+    {0x00U, 0x02U, 0x06U, 0x04U},
+    {0.0f, 0.0f, 1.0f}
+},
+{
+    {0x04U, 0x06U, 0x07U, 0x05U},
+    {-1.0f, 0.0f, 0.0f}
+},
+{
+    {0x02U, 0x03U, 0x07U, 0x06U},
+    {0.0f, -1.0f, 0.0f}
+},
+{
+    {0x01U, 0x05U, 0x07U, 0x03U},
+    {0.0f, 0.0f, -1.0f}
+}
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") ClothBoxVertex lbl_1_data_3F2EC[8] __attribute__((aligned(4))) = {
+{
+    22.2999992f,
+    7.80000019f,
+    14.6000004f
+},
+{
+    22.2999992f,
+    7.80000019f,
+    -6.69999981f
+},
+{
+    22.2999992f,
+    -7.0f,
+    14.6000004f
+},
+{
+    22.2999992f,
+    -7.0f,
+    -6.69999981f
+},
+{
+    -22.2999992f,
+    7.80000019f,
+    14.6000004f
+},
+{
+    -22.2999992f,
+    7.80000019f,
+    -6.69999981f
+},
+{
+    -22.2999992f,
+    -7.0f,
+    14.6000004f
+},
+{
+    -22.2999992f,
+    -7.0f,
+    -6.69999981f
+}
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_3F34C[12] __attribute__((aligned(4))) = "bg_common.c";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_1_data_3F358[0xB0] __attribute__((aligned(8))) = {
+    0x53U, 0x50U, 0x4FU, 0x54U, 0x20U, 0x4CU, 0x49U, 0x47U, 0x48U, 0x54U, 0x20U, 0x44U, 0x49U, 0x53U, 0x50U, 0x20U, 0x4FU, 0x56U, 0x45U, 0x52U, 0x28U, 0x6CU, 0x65U, 0x6EU, 0x67U, 0x74U, 0x68U, 0x2FU, 0x77U, 0x69U, 0x64U, 0x74U, 0x68U, 0x29U, 0x00U, 0x00U, 0x6AU, 0x70U, 0x65U, 0x67U, 0x2FU, 0x63U, 0x6FU, 0x6DU, 0x70U, 0x6FU, 0x2EU, 0x61U, 0x72U, 0x63U, 0x00U, 0x00U, 0x6AU, 0x70U, 0x65U, 0x67U, 0x2FU, 0x63U, 0x6FU, 0x6DU, 0x70U, 0x6FU, 0x2FU, 0x63U, 0x6FU, 0x6DU, 0x70U, 0x6FU, 0x25U, 0x30U, 0x33U, 0x64U, 0x2EU, 0x6AU, 0x70U, 0x67U, 0x00U, 0x00U, 0x00U, 0x00U, 0x66U, 0x69U, 0x6CU, 0x65U, 0x20U, 0x27U, 0x25U, 0x73U, 0x27U, 0x20U, 0x00U, 0x00U, 0x69U, 0x73U, 0x20U, 0x6EU, 0x6FU, 0x74U, 0x20U, 0x69U, 0x6EU, 0x20U, 0x41U, 0x52U, 0x41U, 0x4DU, 0x00U, 0x00U, 0x61U, 0x6CU, 0x72U, 0x65U, 0x61U, 0x64U, 0x79U, 0x20U, 0x61U, 0x6CU, 0x6CU, 0x6FU, 0x63U, 0x61U, 0x74U, 0x65U, 0x64U, 0x20U, 0x6AU, 0x70U, 0x65U, 0x67U, 0x5FU, 0x64U, 0x65U, 0x63U, 0x6FU, 0x64U, 0x65U, 0x5FU, 0x72U, 0x61U, 0x6DU, 0x21U, 0x0AU, 0x00U, 0x61U, 0x6CU, 0x72U, 0x65U, 0x61U, 0x64U, 0x79U, 0x20U, 0x61U, 0x6CU, 0x6CU, 0x6FU, 0x63U, 0x61U, 0x74U, 0x65U, 0x64U, 0x20U, 0x6AU, 0x70U, 0x65U, 0x67U, 0x5FU, 0x62U, 0x75U, 0x66U, 0x66U, 0x21U, 0x0AU, 0x00U, 0x00U, 0x00U
 };
 #pragma explicit_zero_data reset

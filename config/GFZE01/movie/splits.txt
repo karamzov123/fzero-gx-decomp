@@ -69,9 +69,6 @@ rel/movie/_prolog/fn_5_20FC.c:
 rel/movie/_prolog/fn_5_169C.c:
 	.text       start:0x0000169C end:0x000020FC align:4
 
-rel/movie/data/lbl_5_bss_20.c:
-	.bss        start:0x00000020 end:0x00000040 align:8
-
 rel/movie/data/lbl_5_bss_B90.c:
 	.bss        start:0x00000B90 end:0x00000BB8 align:8
 
@@ -81,8 +78,14 @@ rel/movie/_prolog/_prolog.c:
 rel/movie/data/lbl_5_bss_0.c:
 	.bss        start:0x00000000 end:0x00000020 align:8
 
+rel/movie/data/lbl_5_bss_20.c:
+	.bss        start:0x00000020 end:0x00000040 align:8
+
+rel/movie/data/lbl_5_bss_40.c:
+	.bss        start:0x00000040 end:0x00000B90 align:8
+
 rel/movie/data/lbl_5_data_0.c:
 	.data       start:0x00000000 end:0x0000140C align:8
 
 rel/movie/data/lbl_5_rodata_0.c:
-	.rodata     start:0x00000000 end:0x00000004 align:8
+	.rodata     start:0x00000000 end:0x000000D0 align:8

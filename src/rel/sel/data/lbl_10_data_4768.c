@@ -2,9 +2,25 @@
 #include "types.h"
 
 extern char lbl_10_data_4768[19];
+extern char lbl_10_data_477C[72];
+extern char lbl_10_data_47C4[75];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_4768[19] __attribute__((aligned(8))) = "Insert Memcard ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_477C[72] __attribute__((aligned(4))) = "\202e\201|\202y\202d\202q\202n\201@\202f\202w\202\314\203f\201[\203^\202\252\223\374\202\301\202"
+    "\275\203\201\203\202\203\212\201[\203J\201[\203h\202\360\215\267\202\265\202\304\211\272\202\255"
+    "\202\276\202\263\202\242\201B\n\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_47C4[75] __attribute__((aligned(4))) = "Do not insert the Memory Card with an important data. \nIt can get damaged\n";
 #pragma explicit_zero_data reset

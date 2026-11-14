@@ -107,9 +107,6 @@ dol/__init_user.c:
 dol/_ExitProcess.c:
 	.text       start:0x800118FC end:0x8001191C
 
-dol/SIProbe.c:
-	.text       start:0x80013158 end:0x8001317C
-
 dol/SIRefreshSamplingRate.c:
 	.text       start:0x800133B8 end:0x800133DC
 
@@ -346,12 +343,6 @@ dol/fn_80032360.c:
 
 dol/fn_80032368.c:
 	.text       start:0x80032368 end:0x80032370
-
-dol/GXGetVtxAttrFmtv.c:
-	.text       start:0x8003396C end:0x800339E0
-
-dol/GXInvalidateVtxCache.c:
-	.text       start:0x80033A6C end:0x80033A7C
 
 dol/fn_80033E7C.c:
 	.text       start:0x80033E7C end:0x80033EB0
@@ -1013,14 +1004,12 @@ dol/fn_800454E4.c:
 dol/fn_8005BE68.c:
 	.text       start:0x8005BE68 end:0x8005BE80 align:4
 
-dol/SIBusy.c:
-	.text       start:0x8001191C end:0x8001193C align:4
+dol/SIBios.c:
+	.text       start:0x8001191C end:0x800132D4 align:4
+	.sbss       start:0x801A6810 end:0x801A6818 align:8
 
 dol/fn_8004B974.c:
 	.text       start:0x8004B974 end:0x8004B9A4 align:4
-
-dol/fn_80019C48.c:
-	.text       start:0x80019C48 end:0x80019C50 align:4
 
 dol/fn_800288B4.c:
 	.text       start:0x800288B4 end:0x800288C4 align:4
@@ -1271,9 +1260,6 @@ dol/fn_80071CE8.c:
 dol/TRKDestructEvent.c:
 	.text       start:0x80088740 end:0x80088764 align:4
 
-dol/TRKTerminateNub.c:
-	.text       start:0x80088990 end:0x800889B4 align:4
-
 dol/ddh_cc_initinterrupts.c:
 	.text       start:0x8008DDD0 end:0x8008DDF4 align:4
 
@@ -1480,9 +1466,6 @@ dol/fn_80026E84.c:
 
 dol/fn_80026DD4.c:
 	.text       start:0x80026DD4 end:0x80026E04 align:4
-
-dol/SIIsChanBusy.c:
-	.text       start:0x8001193C end:0x80011978 align:4
 
 dol/fn_800589BC.c:
 	.text       start:0x800589BC end:0x80058A20 align:4
@@ -1790,9 +1773,6 @@ dol/fn_800545B0.c:
 dol/fn_800176D8.c:
 	.text       start:0x800176D8 end:0x800176FC align:4
 
-dol/fn_80019C24.c:
-	.text       start:0x80019C24 end:0x80019C48 align:4
-
 dol/cbForCancelAllSync.c:
 	.text       start:0x80021B84 end:0x80021BB0 align:4
 
@@ -2086,9 +2066,6 @@ dol/__DVDPrintFatalMessage.c:
 
 dol/DVDReadAbsAsyncForBS.c:
 	.text       start:0x80019430 end:0x80019500 align:4
-
-dol/DVDCancel.c:
-	.text       start:0x80019B78 end:0x80019C24 align:4
 
 dol/VIWaitForRetrace.c:
 	.text       start:0x8001AF64 end:0x8001AFB8 align:4
@@ -2738,11 +2715,17 @@ dol/PPCSetFpNonIEEEMode.c:
 dol/__OSFPRInit.c:
 	.text       start:0x8000A0FC end:0x8000A224 align:4
 
+dol/OS.c:
+	.text       start:0x8000A224 end:0x8000AA08 align:4
+
 dol/__OSDBIntegrator.c:
 	.text       start:0x8000AA08 end:0x8000AA2C align:4
 
 dol/fn_8000AA2C.c:
 	.text       start:0x8000AA2C end:0x8000AA30 align:4
+
+dol/__OSSetExceptionHandler.c:
+	.text       start:0x8000AA30 end:0x8000AA60 align:4
 
 dol/OSExceptionVector.c:
 	.text       start:0x8000AA60 end:0x8000AAFC align:4
@@ -2752,6 +2735,9 @@ dol/OSDefaultExceptionHandler.c:
 
 dol/__OSPSInit.c:
 	.text       start:0x8000AB54 end:0x8000ABA8 align:4
+
+dol/__OSGetDIConfig.c:
+	.text       start:0x8000ABA8 end:0x8000ABE8 align:4
 
 dol/DecrementerExceptionHandler.c:
 	.text       start:0x8000B2C4 end:0x8000B314 align:4
@@ -2963,12 +2949,6 @@ dol/DBInit.c:
 dol/fn_80057114.c:
 	.text       start:0x80057114 end:0x800571EC align:4
 
-dol/__OSGetDIConfig.c:
-	.text       start:0x8000ABA8 end:0x8000ABBC align:4
-
-dol/SISetCommand.c:
-	.text       start:0x8001254C end:0x80012560 align:4
-
 dol/GXSetProjectionv.c:
 	.text       start:0x80038B3C end:0x80038BFC align:4
 
@@ -3122,17 +3102,15 @@ dol/fn_8008A66C.c:
 dol/fn_800095A4.c:
 	.text       start:0x800095A4 end:0x8000961C align:4
 
-dol/SIGetStatus.c:
-	.text       start:0x800124D0 end:0x8001254C align:4
-
 dol/SeekTwiceBeforeRead.c:
 	.text       start:0x800164A4 end:0x80016524 align:4
 
 dol/OSGetSoundMode.c:
 	.text       start:0x8000FDF8 end:0x8000FE78 align:4
 
-dol/OSReport.c:
-	.text       start:0x8000C41C end:0x8000C49C align:4
+dol/OSError.c:
+	.text       start:0x8000C41C end:0x8000CAC8 align:4
+	.sdata      start:0x801A6430 end:0x801A6438 align:8
 
 dol/fn_80047464.c:
 	.text       start:0x80047464 end:0x800474E4 align:4
@@ -3326,14 +3304,8 @@ dol/CARDCreate.c:
 dol/CARDOpen.c:
 	.text       start:0x8002E954 end:0x8002EDA0 align:4
 
-dol/InquiryCallback.c:
-	.text       start:0x8000A374 end:0x8000A3B0 align:4
-
 dol/L2GlobalInvalidate.c:
 	.text       start:0x8000B8C0 end:0x8000B958 align:4
-
-dol/OSPanic.c:
-	.text       start:0x8000C49C end:0x8000C5C8 align:4
 
 dol/SetInterruptMask.c:
 	.text       start:0x8000D5E4 end:0x8000D8BC align:4
@@ -3486,56 +3458,11 @@ dol/__OSContextInit.c:
 dol/OSGetResetCode.c:
 	.text       start:0x8000F234 end:0x8000F264 align:4
 
-dol/SIRegisterPollingHandler.c:
-	.text       start:0x80012050 end:0x8001211C align:4
-
-dol/SIUnregisterPollingHandler.c:
-	.text       start:0x8001211C end:0x80012210 align:4
-
-dol/__SITransfer.c:
-	.text       start:0x800122C4 end:0x800124D0 align:4
-
-dol/SITransferCommands.c:
-	.text       start:0x80012560 end:0x80012570 align:4
-
-dol/SISetXY.c:
-	.text       start:0x80012570 end:0x800125DC align:4
-
-dol/SIEnablePolling.c:
-	.text       start:0x800125DC end:0x80012678 align:4
-
-dol/SIDisablePolling.c:
-	.text       start:0x80012678 end:0x800126E4 align:4
-
-dol/SIGetResponseRaw.c:
-	.text       start:0x800126E4 end:0x800127B8 align:4
-
-dol/SIGetResponse.c:
-	.text       start:0x800127B8 end:0x8001287C align:4
-
-dol/SIGetTypeAsync.c:
-	.text       start:0x80012ED0 end:0x8001300C align:4
-
-dol/SIDecodeType.c:
-	.text       start:0x8001300C end:0x80013158 align:4
-
-dol/CompleteTransfer.c:
-	.text       start:0x80011978 end:0x80011C74 align:4
-
 dol/__OSInitMemoryProtection.c:
 	.text       start:0x8000E96C end:0x8000EA84 align:4
 
-dol/SIEnablePollingInterrupt.c:
-	.text       start:0x80011FB8 end:0x80012050 align:4
-
 dol/UnlockSram.c:
 	.text       start:0x8000F974 end:0x8000FC7C align:4
-
-dol/AlarmHandler_SIBios.c:
-	.text       start:0x8001287C end:0x80012908 align:4
-
-dol/SITransfer.c:
-	.text       start:0x80012908 end:0x80012A74 align:4
 
 dol/DCInvalidateRange.c:
 	.text       start:0x8000B628 end:0x8000B654 align:4
@@ -3609,12 +3536,6 @@ dol/ARQPostRequest.c:
 dol/__CARDUnlock.c:
 	.text       start:0x8002AF34 end:0x8002BA8C align:4
 
-dol/OSGetConsoleType.c:
-	.text       start:0x8000A224 end:0x8000A24C align:4
-
-dol/__OSGetExceptionHandler.c:
-	.text       start:0x8000AA4C end:0x8000AA60 align:4
-
 dol/InsertAlarm.c:
 	.text       start:0x8000AC44 end:0x8000AE94 align:4
 
@@ -3623,9 +3544,6 @@ dol/OSCancelAlarm.c:
 
 dol/DecrementerExceptionCallback.c:
 	.text       start:0x8000B094 end:0x8000B2C4 align:4
-
-dol/OSSetErrorHandler.c:
-	.text       start:0x8000C5C8 end:0x8000C7E0 align:4
 
 dol/__OSInterruptInit.c:
 	.text       start:0x8000D570 end:0x8000D5E4 align:4
@@ -3688,7 +3606,8 @@ dol/DVDChangeDir.c:
 	.text       start:0x80017470 end:0x800174D0 align:4
 
 dol/DVDInit.c:
-	.text       start:0x8001776C end:0x80017838 align:4
+	.text       start:0x8001776C end:0x800178CC align:4
+	.data       start:0x80123FD8 end:0x80124018 align:8
 
 dol/cbForStateGettingError.c:
 	.text       start:0x80017B14 end:0x80017DA8 align:4
@@ -3704,15 +3623,14 @@ dol/cbForStateCheckID3.c:
 
 dol/stateBusy.c:
 	.text       start:0x800189FC end:0x80018D1C align:4
+	.data       start:0x80124018 end:0x80124058 align:8
 
 dol/DVDReset.c:
 	.text       start:0x80019760 end:0x800197A4 align:4
 
 dol/DVDCancelAsync.c:
-	.text       start:0x800198FC end:0x80019B78 align:4
-
-dol/DVDCheckDisk.c:
-	.text       start:0x80019C50 end:0x80019D48 align:4
+	.text       start:0x800198FC end:0x80019D48 align:4
+	.data       start:0x801240A8 end:0x80124110 align:8
 
 dol/__DVDPrepareResetAsync.c:
 	.text       start:0x80019D48 end:0x80019E64 align:4
@@ -3857,27 +3775,25 @@ dol/__GXXfVtxSpecs.c:
 
 dol/GXSetVtxDesc.c:
 	.text       start:0x800324C8 end:0x80032818 align:4
+	.data       start:0x8012AD40 end:0x8012ADA8 align:32
 
 dol/GXSetVtxDescv.c:
 	.text       start:0x80032818 end:0x80032B8C align:4
+	.data       start:0x8012ADA8 end:0x8012AE10 align:8
 
 dol/__GXSetVCD.c:
 	.text       start:0x80032B8C end:0x80032BE0 align:4
 
 dol/GXGetVtxDesc.c:
 	.text       start:0x80032D04 end:0x80032EB8 align:4
+	.data       start:0x8012AE10 end:0x8012AE78 align:16
 
 dol/GXClearVtxDesc.c:
 	.text       start:0x80032F48 end:0x80032F80 align:4
 
 dol/GXGetVtxAttrFmt.c:
-	.text       start:0x800336EC end:0x8003396C align:4
-
-dol/GXSetArray.c:
-	.text       start:0x800339E0 end:0x80033A6C align:4
-
-dol/GXSetTexCoordGen2.c:
-	.text       start:0x80033A7C end:0x80033D4C align:4
+	.text       start:0x800336EC end:0x80033D4C align:4
+	.data       start:0x8012AF00 end:0x8012AFB8 align:8
 
 dol/GXSetDrawDone.c:
 	.text       start:0x800340D4 end:0x8003416C align:4
@@ -3910,10 +3826,8 @@ dol/GXClearBoundingBox.c:
 	.text       start:0x800353E8 end:0x80035420 align:4
 
 dol/GXGetTexBufferSize.c:
-	.text       start:0x80035A2C end:0x80035B88 align:4
-
-dol/__GetImageTileCount.c:
-	.text       start:0x80035B88 end:0x80035C50 align:4
+	.text       start:0x80035A2C end:0x80035C50 align:4
+	.data       start:0x8012B140 end:0x8012B328 align:32
 
 dol/__GXSetSUTexRegs.c:
 	.text       start:0x8003666C end:0x800367E8 align:4
@@ -4014,9 +3928,6 @@ dol/DVDLowRequestAudioStatus.c:
 dol/DVDLowAudioBufferConfig.c:
 	.text       start:0x80016BF8 end:0x80016C94 align:4
 
-dol/__OSSetExceptionHandler.c:
-	.text       start:0x8000AA30 end:0x8000AA4C align:4
-
 dol/fn_8003458C.c:
 	.text       start:0x8003458C end:0x8003462C align:4
 
@@ -4057,10 +3968,8 @@ dol/fn_80078D60.c:
 	.text       start:0x80078D60 end:0x80078DA8 align:4
 
 dol/GXSetVtxAttrFmt.c:
-	.text       start:0x80032F80 end:0x800332D8 align:4
-
-dol/GXSetVtxAttrFmtv.c:
-	.text       start:0x800332D8 end:0x80033650 align:4
+	.text       start:0x80032F80 end:0x80033650 align:4
+	.data       start:0x8012AE78 end:0x8012AF00 align:8
 
 dol/__DSP_boot_task.c:
 	.text       start:0x80029564 end:0x800296F0 align:4
@@ -4231,10 +4140,8 @@ dol/strtoul.c:
 	.text       start:0x80084FDC end:0x80085088 align:4
 
 dol/__strtoull.c:
-	.text       start:0x80085088 end:0x80085494 align:4
-
-dol/__strtoul.c:
-	.text       start:0x80085494 end:0x8008580C align:4
+	.text       start:0x80085088 end:0x8008580C align:4
+	.data       start:0x8015B738 end:0x8015B7C0 align:8
 
 dol/__ieee754_log.c:
 	.text       start:0x80085C7C end:0x80085EF8 align:4
@@ -4310,6 +4217,7 @@ dol/GXInitLightDistAttn.c:
 
 dol/GXInitTexObj.c:
 	.text       start:0x80035C50 end:0x80035EC4 align:4
+	.data       start:0x8012B328 end:0x8012B368 align:8
 
 dol/TRKPostEvent.c:
 	.text       start:0x8008877C end:0x8008885C align:4
@@ -4343,9 +4251,6 @@ dol/TRK_fill_mem.c:
 
 dol/TRKTargetAccessDefault.c:
 	.text       start:0x8008C5F0 end:0x8008C6E4 align:4
-
-dol/ClearArena.c:
-	.text       start:0x8000A24C end:0x8000A374 align:4
 
 dol/DVDReadPrio.c:
 	.text       start:0x800175C0 end:0x800176D8 align:4
@@ -4469,9 +4374,11 @@ dol/fn_80069AE0.c:
 
 dol/TRK_main.c:
 	.text       start:0x8008D1CC end:0x8008D224 align:4
+	.rodata     start:0x80095BB8 end:0x80095BC8 align:8
 
-dol/TRKNubWelcome.c:
-	.text       start:0x80088968 end:0x80088990 align:4
+dol/nubinit.c:
+	.text       start:0x80088968 end:0x80088B00 align:4
+	.rodata     start:0x80095648 end:0x80095678 align:8
 
 dol/fn_80025C70.c:
 	.text       start:0x80025C70 end:0x80025D00 align:4
@@ -4628,6 +4535,7 @@ dol/fn_8006CE44.c:
 
 dol/TRKDispatchMessage.c:
 	.text       start:0x800896C4 end:0x80089834 align:4
+	.data       start:0x8015B7C0 end:0x8015B82C align:32
 
 dol/fn_800781B8.c:
 	.text       start:0x800781B8 end:0x80078344 align:4
@@ -4655,6 +4563,7 @@ dol/fn_80069B10.c:
 
 dol/fn_80035420.c:
 	.text       start:0x80035420 end:0x800355B0 align:4
+	.data       start:0x8012B120 end:0x8012B13C align:32
 
 dol/fn_8006FDEC.c:
 	.text       start:0x8006FDEC end:0x8006FEFC align:4
@@ -4664,6 +4573,7 @@ dol/fn_8002420C.c:
 
 dol/parse_format.c:
 	.text       start:0x80082298 end:0x8008279C align:4
+	.data       start:0x8015B540 end:0x8015B664 align:32
 
 dol/fn_800087F4.c:
 	.text       start:0x800087F4 end:0x80008A4C align:4
@@ -4673,6 +4583,7 @@ dol/fn_80054354.c:
 
 dol/fn_80028164.c:
 	.text       start:0x80028164 end:0x80028424 align:4
+	.data       start:0x80129550 end:0x80129598 align:16
 
 dol/fn_80006E10.c:
 	.text       start:0x80006E10 end:0x80006FE0 align:4
@@ -4754,9 +4665,6 @@ dol/fn_8007264C.c:
 
 dol/memcpy.c:
 	.init       start:0x80003540 end:0x80003590 align:4
-
-dol/OSRegisterVersion.c:
-	.text       start:0x8000ABBC end:0x8000ABE8 align:4
 
 dol/fn_80007730.c:
 	.text       start:0x80007730 end:0x800077E0 align:4
@@ -4857,9 +4765,6 @@ dol/fn_800565FC.c:
 dol/fn_8008DC10.c:
 	.text       start:0x8008DC10 end:0x8008DCCC align:4
 
-dol/SIInit.c:
-	.text       start:0x80012210 end:0x800122C4 align:4
-
 dol/fn_8004E8F8.c:
 	.text       start:0x8004E8F8 end:0x8004E9A8 align:4
 
@@ -4880,9 +4785,6 @@ dol/fn_800253F0.c:
 
 dol/fn_8008B8B4.c:
 	.text       start:0x8008B8B4 end:0x8008B940 align:4
-
-dol/fn_80017838.c:
-	.text       start:0x80017838 end:0x800178CC align:4
 
 dol/fn_8003E284.c:
 	.text       start:0x8003E284 end:0x8003E344 align:4
@@ -4977,9 +4879,6 @@ dol/fn_800647F0.c:
 dol/fn_8008C730.c:
 	.text       start:0x8008C730 end:0x8008C87C align:4
 
-dol/fn_8001317C.c:
-	.text       start:0x8001317C end:0x800132D4 align:4
-
 dol/fn_800791E8.c:
 	.text       start:0x800791E8 end:0x800793D4 align:4
 
@@ -5013,9 +4912,6 @@ dol/gdev_cc_write.c:
 dol/ddh_cc_write.c:
 	.text       start:0x8008DEAC end:0x8008DF6C align:4
 
-dol/__OSUnhandledException.c:
-	.text       start:0x8000C7E0 end:0x8000CAC8 align:4
-
 dol/fn_80063094.c:
 	.text       start:0x80063094 end:0x800631EC align:4
 
@@ -5027,9 +4923,6 @@ dol/fn_8003B930.c:
 
 dol/VIGetTvFormat.c:
 	.text       start:0x8001C01C end:0x8001C084 align:4
-
-dol/SIGetType.c:
-	.text       start:0x80012D0C end:0x80012ED0 align:4
 
 dol/fn_8004BDD8.c:
 	.text       start:0x8004BDD8 end:0x8004BE90 align:4
@@ -5106,9 +4999,6 @@ dol/fn_80067344.c:
 dol/fn_8000961C.c:
 	.text       start:0x8000961C end:0x80009830 align:4
 
-dol/fn_8008A3C0.c:
-	.text       start:0x8008A3C0 end:0x8008A5AC align:4
-
 dol/fn_80041BF8.c:
 	.text       start:0x80041BF8 end:0x80041E00 align:4
 
@@ -5126,6 +5016,7 @@ dol/fn_8005A9B8.c:
 
 dol/fn_80083428.c:
 	.text       start:0x80083428 end:0x80083970 align:4
+	.data       start:0x8015B668 end:0x8015B738 align:8
 
 dol/fn_8004B1DC.c:
 	.text       start:0x8004B1DC end:0x8004B4E0 align:4
@@ -5161,13 +5052,15 @@ dol/__VIRetraceHandler.c:
 	.text       start:0x8001A55C end:0x8001A78C align:4
 
 dol/GXSetGPMetric.c:
-	.text       start:0x8003910C end:0x80039954 align:4
+	.text       start:0x8003910C end:0x80039AFC align:4
+	.data       start:0x8012B400 end:0x8012B548 align:32
 
 dol/fn_8003E9EC.c:
 	.text       start:0x8003E9EC end:0x8003EAE4 align:4
 
 dol/fn_8007CF18.c:
 	.text       start:0x8007CF18 end:0x8007E69C align:4
+	.data       start:0x8015AFD8 end:0x8015B100 align:8
 
 dol/dvdidutils.c:
 	.text       start:0x8001A1F4 end:0x8001A2EC align:4
@@ -5183,6 +5076,8 @@ dol/GXDisplayList.c:
 
 dol/fstload.c:
 	.text       start:0x8001A31C end:0x8001A55C align:4
+	.sdata      start:0x801A6490 end:0x801A64A0 align:8
+	.bss        start:0x8015CF38 end:0x8015CF68 align:8
 
 dol/OSFont.c:
 	.text       start:0x8000CDD8 end:0x8000CE30 align:4
@@ -5192,9 +5087,6 @@ dol/fn_8004683C.c:
 
 dol/__OSReboot.c:
 	.text       start:0x8000EB10 end:0x8000EE50 align:4
-
-dol/fn_8003086C.c:
-	.text       start:0x8003086C end:0x800309FC align:4
 
 dol/fn_80049BF4.c:
 	.text       start:0x80049BF4 end:0x80049E34 align:4
@@ -5240,15 +5132,6 @@ dol/fn_80008FB0.c:
 
 dol/SISetSamplingRate.c:
 	.text       start:0x800132D4 end:0x800133B8 align:4
-
-dol/OSInit.c:
-	.text       start:0x8000A3B0 end:0x8000A788 align:4
-
-dol/OSExceptionInit.c:
-	.text       start:0x8000A788 end:0x8000AA08 align:4
-
-dol/GetTypeCallback.c:
-	.text       start:0x80012A74 end:0x80012D0C align:4
 
 dol/__DVDInterruptHandler.c:
 	.text       start:0x80015FC0 end:0x800162A0 align:4
@@ -5731,7 +5614,8 @@ dol/fn_8007ADF0.c:
 	.text       start:0x8007ADF0 end:0x8007B028 align:4
 
 dol/fn_8008A1CC.c:
-	.text       start:0x8008A1CC end:0x8008A3C0 align:4
+	.text       start:0x8008A1CC end:0x8008A5AC align:4
+	.data       start:0x8015B830 end:0x8015B868 align:16
 
 dol/fn_8006A9B4.c:
 	.text       start:0x8006A9B4 end:0x8006AA20 align:4
@@ -5742,9 +5626,6 @@ dol/fn_80007AB4.c:
 dol/fn_8003D588.c:
 	.text       start:0x8003D588 end:0x8003D690 align:4
 
-dol/TRKInitializeNub.c:
-	.text       start:0x800889B4 end:0x80088B00 align:4
-
 dol/fn_80025504.c:
 	.text       start:0x80025504 end:0x80025854 align:4
 
@@ -5753,6 +5634,7 @@ dol/fn_80075908.c:
 
 dol/fn_800285DC.c:
 	.text       start:0x800285DC end:0x800288B4 align:4
+	.data       start:0x80129598 end:0x801295E0 align:8
 
 dol/fn_8008E9B4.c:
 	.text       start:0x8008E9B4 end:0x8008EB4C align:4
@@ -5786,9 +5668,6 @@ dol/fn_800084E8.c:
 
 dol/fn_8004FF68.c:
 	.text       start:0x8004FF68 end:0x80050180 align:4
-
-dol/long2str.c:
-	.text       start:0x80082040 end:0x80082298 align:4
 
 dol/fn_8003A1CC.c:
 	.text       start:0x8003A1CC end:0x8003A3D4 align:4
@@ -5830,7 +5709,8 @@ dol/fn_800377F8.c:
 	.text       start:0x800377F8 end:0x80037A14 align:4
 
 dol/longlong2str.c:
-	.text       start:0x80081D2C end:0x80082040 align:4
+	.text       start:0x80081D2C end:0x80082298 align:4
+	.data       start:0x8015B438 end:0x8015B540 align:8
 
 dol/fn_80087C44.c:
 	.text       start:0x80087C44 end:0x80087E58 align:4
@@ -5975,6 +5855,7 @@ dol/fn_8008ED70.c:
 
 dol/__pformatter.c:
 	.text       start:0x80080A38 end:0x800811AC align:4
+	.sdata      start:0x801A6630 end:0x801A6638 align:8
 
 dol/InitMetroTRKCommTable.c:
 	.text       start:0x8008D4D8 end:0x8008D744 align:4
@@ -6162,9 +6043,6 @@ dol/fn_8007B1CC.c:
 dol/fn_80053A84.c:
 	.text       start:0x80053A84 end:0x80053BB4 align:4
 
-dol/SIInterruptHandler.c:
-	.text       start:0x80011C74 end:0x80011FB8 align:4
-
 dol/fn_80047C94.c:
 	.text       start:0x80047C94 end:0x800482B8 align:4
 
@@ -6236,9 +6114,6 @@ dol/fn_80070158.c:
 
 dol/fn_80065390.c:
 	.text       start:0x80065390 end:0x80065528 align:4
-
-dol/fn_80039954.c:
-	.text       start:0x80039954 end:0x80039AFC align:4
 
 dol/fn_8000700C.c:
 	.text       start:0x8000700C end:0x800071B8 align:4
@@ -6421,7 +6296,8 @@ dol/fn_8003B63C.c:
 	.text       start:0x8003B63C end:0x8003B798 align:4
 
 dol/GXInit.c:
-	.text       start:0x800309FC end:0x8003128C align:4
+	.text       start:0x8003086C end:0x8003128C align:4
+	.sbss       start:0x801A6BD8 end:0x801A6BF0 align:8
 
 dol/fn_8003FF88.c:
 	.text       start:0x8003FF88 end:0x800410A4 align:4
@@ -6499,7 +6375,7 @@ dol/data/__OSErrorTable.c:
 	.bss        start:0x8015BF50 end:0x8015BF94 align:8
 
 dol/data/lbl_8015BFA0.c:
-	.bss        start:0x8015BFA0 end:0x8015BFC0 align:8
+	.bss        start:0x8015BFA0 end:0x8015BFC0 align:32
 
 dol/data/CommandList.c:
 	.bss        start:0x8015CD70 end:0x8015CDAC align:8
@@ -6752,6 +6628,7 @@ dol/fn_80071D30.c:
 
 dol/fn_8005FDE0.c:
 	.text       start:0x8005FDE0 end:0x8006060C align:4
+	.data       start:0x801325D8 end:0x80132788 align:8
 
 dol/fn_80078944.c:
 	.text       start:0x80078944 end:0x800789D8 align:4
@@ -7046,9 +6923,6 @@ dol/data/lbl_801A6638.c:
 
 dol/data/lbl_801A6640.c:
 	.sdata      start:0x801A6640 end:0x801A6648 align:32
-
-dol/data/lbl_801A6648.c:
-	.sdata      start:0x801A6648 end:0x801A6650 align:8
 
 dol/data/lbl_801A6650.c:
 	.sdata      start:0x801A6650 end:0x801A6658 align:8
@@ -8625,8 +8499,487 @@ dol/data/gxData.c:
 dol/data/FifoObj.c:
 	.bss        start:0x80178098 end:0x80178118 align:8
 
+dol/data/lbl_801A6438.c:
+	.sdata      start:0x801A6438 end:0x801A6490 align:8
+
+dol/data/lbl_801A64A0.c:
+	.sdata      start:0x801A64A0 end:0x801A6630 align:32
+
+dol/data/lbl_801A6818.c:
+	.sbss       start:0x801A6818 end:0x801A6820 align:8
+
+dol/data/SamplingRate.c:
+	.sbss       start:0x801A6820 end:0x801A6830 align:32
+
+dol/data/lbl_801A6830.c:
+	.sbss       start:0x801A6830 end:0x801A6838 align:16
+
+dol/data/IDSerialPort1.c:
+	.sbss       start:0x801A6838 end:0x801A6848 align:8
+
+dol/data/lbl_801A6848.c:
+	.sbss       start:0x801A6848 end:0x801A6850 align:8
+
+dol/data/__DBInterface.c:
+	.sbss       start:0x801A6850 end:0x801A6858 align:16
+
+dol/data/StopAtNextInt.c:
+	.sbss       start:0x801A6858 end:0x801A6860 align:8
+
+dol/data/Callback.c:
+	.sbss       start:0x801A6860 end:0x801A6868 align:32
+
+dol/data/LastResetEnd.c:
+	.sbss       start:0x801A6868 end:0x801A6870 align:8
+
+dol/data/ResetOccurred.c:
+	.sbss       start:0x801A6870 end:0x801A6878 align:16
+
+dol/data/lbl_801A6878.c:
+	.sbss       start:0x801A6878 end:0x801A6880 align:8
+
+dol/data/WorkAroundSeekLocation.c:
+	.sbss       start:0x801A6880 end:0x801A6890 align:32
+
+dol/data/lbl_801A6890.c:
+	.sbss       start:0x801A6890 end:0x801A6898 align:16
+
+dol/data/lbl_801A6898.c:
+	.sbss       start:0x801A6898 end:0x801A68A0 align:8
+
+dol/data/BootInfo_801A68A0.c:
+	.sbss       start:0x801A68A0 end:0x801A68A8 align:32
+
+dol/data/FstStringStart.c:
+	.sbss       start:0x801A68A8 end:0x801A68B0 align:8
+
+dol/data/lbl_801A68B0.c:
+	.sbss       start:0x801A68B0 end:0x801A68B8 align:16
+
+dol/data/__DVDThreadQueue.c:
+	.sbss       start:0x801A68B8 end:0x801A68C0 align:8
+
+dol/data/executing.c:
+	.sbss       start:0x801A68C0 end:0x801A68C8 align:32
+
+dol/data/bootInfo.c:
+	.sbss       start:0x801A68C8 end:0x801A68D0 align:8
+
+dol/data/PausingFlag.c:
+	.sbss       start:0x801A68D0 end:0x801A68D8 align:16
+
+dol/data/FatalErrorFlag.c:
+	.sbss       start:0x801A68D8 end:0x801A68E0 align:8
+
+dol/data/lbl_801A68E0.c:
+	.sbss       start:0x801A68E0 end:0x801A68E8 align:32
+
+dol/data/ResumeFromHere.c:
+	.sbss       start:0x801A68E8 end:0x801A68F0 align:8
+
+dol/data/lbl_801A68F0.c:
+	.sbss       start:0x801A68F0 end:0x801A68F8 align:16
+
+dol/data/ResetRequired.c:
+	.sbss       start:0x801A68F8 end:0x801A6900 align:8
+
+dol/data/DVDInitialized.c:
+	.sbss       start:0x801A6900 end:0x801A6908 align:32
+
+dol/data/lbl_801A6908.c:
+	.sbss       start:0x801A6908 end:0x801A6910 align:8
+
+dol/data/lbl_801A6910.c:
+	.sbss       start:0x801A6910 end:0x801A6918 align:16
+
+dol/data/idTmp.c:
+	.sbss       start:0x801A6918 end:0x801A6928 align:8
+
+dol/data/lbl_801A6928.c:
+	.sbss       start:0x801A6928 end:0x801A6938 align:8
+
+dol/data/lbl_801A6938.c:
+	.sbss       start:0x801A6938 end:0x801A6940 align:8
+
+dol/data/lbl_801A6940.c:
+	.sbss       start:0x801A6940 end:0x801A6948 align:32
+
+dol/data/lbl_801A6948.c:
+	.sbss       start:0x801A6948 end:0x801A6950 align:8
+
+dol/data/lbl_801A6950.c:
+	.sbss       start:0x801A6950 end:0x801A6958 align:16
+
+dol/data/lbl_801A6958.c:
+	.sbss       start:0x801A6958 end:0x801A6960 align:8
+
+dol/data/lbl_801A6960.c:
+	.sbss       start:0x801A6960 end:0x801A6968 align:32
+
+dol/data/lbl_801A6968.c:
+	.sbss       start:0x801A6968 end:0x801A6970 align:8
+
+dol/data/lbl_801A6970.c:
+	.sbss       start:0x801A6970 end:0x801A6978 align:16
+
+dol/data/lbl_801A6978.c:
+	.sbss       start:0x801A6978 end:0x801A6988 align:8
+
+dol/data/lbl_801A6988.c:
+	.sbss       start:0x801A6988 end:0x801A6990 align:8
+
+dol/data/lbl_801A6990.c:
+	.sbss       start:0x801A6990 end:0x801A6998 align:16
+
+dol/data/lbl_801A6998.c:
+	.sbss       start:0x801A6998 end:0x801A69A0 align:8
+
+dol/data/lbl_801A69A0.c:
+	.sbss       start:0x801A69A0 end:0x801A69A8 align:32
+
+dol/data/lbl_801A69A8.c:
+	.sbss       start:0x801A69A8 end:0x801A69B0 align:8
+
+dol/data/lbl_801A69B0.c:
+	.sbss       start:0x801A69B0 end:0x801A69B8 align:16
+
+dol/data/lbl_801A69B8.c:
+	.sbss       start:0x801A69B8 end:0x801A69C0 align:8
+
+dol/data/lbl_801A69C0.c:
+	.sbss       start:0x801A69C0 end:0x801A69C8 align:32
+
+dol/data/lbl_801A69C8.c:
+	.sbss       start:0x801A69C8 end:0x801A69D0 align:8
+
+dol/data/lbl_801A69D0.c:
+	.sbss       start:0x801A69D0 end:0x801A69D8 align:16
+
+dol/data/lbl_801A69D8.c:
+	.sbss       start:0x801A69D8 end:0x801A69E0 align:8
+
+dol/data/lbl_801A69E0.c:
+	.sbss       start:0x801A69E0 end:0x801A69E8 align:32
+
+dol/data/lbl_801A69E8.c:
+	.sbss       start:0x801A69E8 end:0x801A69F0 align:8
+
+dol/data/lbl_801A69F0.c:
+	.sbss       start:0x801A69F0 end:0x801A69F8 align:16
+
+dol/data/lbl_801A69F8.c:
+	.sbss       start:0x801A69F8 end:0x801A6A00 align:8
+
+dol/data/lbl_801A6A00.c:
+	.sbss       start:0x801A6A00 end:0x801A6A08 align:32
+
+dol/data/lbl_801A6A08.c:
+	.sbss       start:0x801A6A08 end:0x801A6A10 align:8
+
+dol/data/lbl_801A6A10.c:
+	.sbss       start:0x801A6A10 end:0x801A6A18 align:16
+
+dol/data/lbl_801A6A18.c:
+	.sbss       start:0x801A6A18 end:0x801A6A20 align:8
+
+dol/data/lbl_801A6A20.c:
+	.sbss       start:0x801A6A20 end:0x801A6A28 align:32
+
+dol/data/lbl_801A6A28.c:
+	.sbss       start:0x801A6A28 end:0x801A6A30 align:8
+
+dol/data/lbl_801A6A30.c:
+	.sbss       start:0x801A6A30 end:0x801A6A38 align:16
+
+dol/data/lbl_801A6A38.c:
+	.sbss       start:0x801A6A38 end:0x801A6A40 align:8
+
+dol/data/lbl_801A6A40.c:
+	.sbss       start:0x801A6A40 end:0x801A6A48 align:32
+
+dol/data/lbl_801A6A48.c:
+	.sbss       start:0x801A6A48 end:0x801A6A50 align:8
+
+dol/data/lbl_801A6A50.c:
+	.sbss       start:0x801A6A50 end:0x801A6A58 align:16
+
+dol/data/lbl_801A6A58.c:
+	.sbss       start:0x801A6A58 end:0x801A6A60 align:8
+
+dol/data/lbl_801A6A60.c:
+	.sbss       start:0x801A6A60 end:0x801A6A68 align:32
+
+dol/data/lbl_801A6A68.c:
+	.sbss       start:0x801A6A68 end:0x801A6A70 align:8
+
+dol/data/lbl_801A6A70.c:
+	.sbss       start:0x801A6A70 end:0x801A6A78 align:16
+
+dol/data/lbl_801A6A78.c:
+	.sbss       start:0x801A6A78 end:0x801A6A80 align:8
+
+dol/data/lbl_801A6A80.c:
+	.sbss       start:0x801A6A80 end:0x801A6A88 align:32
+
+dol/data/lbl_801A6A88.c:
+	.sbss       start:0x801A6A88 end:0x801A6A90 align:8
+
+dol/data/lbl_801A6A90.c:
+	.sbss       start:0x801A6A90 end:0x801A6A98 align:16
+
+dol/data/lbl_801A6A98.c:
+	.sbss       start:0x801A6A98 end:0x801A6AA0 align:8
+
+dol/data/lbl_801A6AA0.c:
+	.sbss       start:0x801A6AA0 end:0x801A6AA8 align:32
+
+dol/data/lbl_801A6AA8.c:
+	.sbss       start:0x801A6AA8 end:0x801A6AB0 align:8
+
+dol/data/lbl_801A6AB0.c:
+	.sbss       start:0x801A6AB0 end:0x801A6AB8 align:16
+
+dol/data/lbl_801A6AB8.c:
+	.sbss       start:0x801A6AB8 end:0x801A6AC0 align:8
+
+dol/data/lbl_801A6AC0.c:
+	.sbss       start:0x801A6AC0 end:0x801A6AC8 align:32
+
+dol/data/lbl_801A6AC8.c:
+	.sbss       start:0x801A6AC8 end:0x801A6AD0 align:8
+
+dol/data/lbl_801A6AD0.c:
+	.sbss       start:0x801A6AD0 end:0x801A6AE0 align:16
+
+dol/data/lbl_801A6AE0.c:
+	.sbss       start:0x801A6AE0 end:0x801A6AE8 align:32
+
+dol/data/lbl_801A6AE8.c:
+	.sbss       start:0x801A6AE8 end:0x801A6AF0 align:8
+
+dol/data/lbl_801A6AF0.c:
+	.sbss       start:0x801A6AF0 end:0x801A6AF8 align:16
+
+dol/data/lbl_801A6AF8.c:
+	.sbss       start:0x801A6AF8 end:0x801A6B00 align:8
+
+dol/data/lbl_801A6B00.c:
+	.sbss       start:0x801A6B00 end:0x801A6B08 align:32
+
+dol/data/lbl_801A6B08.c:
+	.sbss       start:0x801A6B08 end:0x801A6B10 align:8
+
+dol/data/lbl_801A6B10.c:
+	.sbss       start:0x801A6B10 end:0x801A6B18 align:16
+
+dol/data/lbl_801A6B18.c:
+	.sbss       start:0x801A6B18 end:0x801A6B20 align:8
+
+dol/data/lbl_801A6B20.c:
+	.sbss       start:0x801A6B20 end:0x801A6B28 align:32
+
+dol/data/lbl_801A6B28.c:
+	.sbss       start:0x801A6B28 end:0x801A6B30 align:8
+
+dol/data/lbl_801A6B30.c:
+	.sbss       start:0x801A6B30 end:0x801A6B38 align:16
+
+dol/data/lbl_801A6B38.c:
+	.sbss       start:0x801A6B38 end:0x801A6B40 align:8
+
+dol/data/lbl_801A6B40.c:
+	.sbss       start:0x801A6B40 end:0x801A6B48 align:32
+
+dol/data/lbl_801A6B48.c:
+	.sbss       start:0x801A6B48 end:0x801A6B50 align:8
+
+dol/data/lbl_801A6B50.c:
+	.sbss       start:0x801A6B50 end:0x801A6B58 align:16
+
+dol/data/lbl_801A6B58.c:
+	.sbss       start:0x801A6B58 end:0x801A6B60 align:8
+
+dol/data/lbl_801A6B60.c:
+	.sbss       start:0x801A6B60 end:0x801A6B68 align:32
+
+dol/data/lbl_801A6B68.c:
+	.sbss       start:0x801A6B68 end:0x801A6B70 align:8
+
+dol/data/lbl_801A6B70.c:
+	.sbss       start:0x801A6B70 end:0x801A6B78 align:16
+
+dol/data/lbl_801A6B78.c:
+	.sbss       start:0x801A6B78 end:0x801A6B80 align:8
+
+dol/data/lbl_801A6B80.c:
+	.sbss       start:0x801A6B80 end:0x801A6B88 align:32
+
+dol/data/lbl_801A6B88.c:
+	.sbss       start:0x801A6B88 end:0x801A6B90 align:8
+
+dol/data/lbl_801A6B90.c:
+	.sbss       start:0x801A6B90 end:0x801A6B98 align:16
+
+dol/data/lbl_801A6B98.c:
+	.sbss       start:0x801A6B98 end:0x801A6BA0 align:8
+
+dol/data/lbl_801A6BA0.c:
+	.sbss       start:0x801A6BA0 end:0x801A6BA8 align:32
+
+dol/data/lbl_801A6BA8.c:
+	.sbss       start:0x801A6BA8 end:0x801A6BB0 align:8
+
+dol/data/lbl_801A6BB0.c:
+	.sbss       start:0x801A6BB0 end:0x801A6BB8 align:16
+
+dol/data/lbl_801A6BB8.c:
+	.sbss       start:0x801A6BB8 end:0x801A6BC0 align:8
+
+dol/data/lbl_801A6BC0.c:
+	.sbss       start:0x801A6BC0 end:0x801A6BC8 align:32
+
+dol/data/__piReg.c:
+	.sbss       start:0x801A6BC8 end:0x801A6BD0 align:8
+
+dol/data/__peReg.c:
+	.sbss       start:0x801A6BD0 end:0x801A6BD8 align:16
+
+dol/data/lbl_801A66A0.c:
+	.sbss       start:0x801A66A0 end:0x801A66A8 align:32
+
+dol/data/lbl_801A66A8.c:
+	.sbss       start:0x801A66A8 end:0x801A66B0 align:8
+
+dol/data/lbl_801A66B0.c:
+	.sbss       start:0x801A66B0 end:0x801A66B8 align:16
+
+dol/data/lbl_801A66B8.c:
+	.sbss       start:0x801A66B8 end:0x801A66C0 align:8
+
+dol/data/lbl_801A66C0.c:
+	.sbss       start:0x801A66C0 end:0x801A66C8 align:32
+
+dol/data/lbl_801A66C8.c:
+	.sbss       start:0x801A66C8 end:0x801A66D0 align:8
+
+dol/data/lbl_801A66D0.c:
+	.sbss       start:0x801A66D0 end:0x801A66D8 align:16
+
+dol/data/lbl_801A66D8.c:
+	.sbss       start:0x801A66D8 end:0x801A66E0 align:8
+
+dol/data/lbl_801A66E0.c:
+	.sbss       start:0x801A66E0 end:0x801A66E8 align:32
+
+dol/data/lbl_801A66E8.c:
+	.sbss       start:0x801A66E8 end:0x801A66F0 align:8
+
+dol/data/lbl_801A66F0.c:
+	.sbss       start:0x801A66F0 end:0x801A66F8 align:16
+
+dol/data/lbl_801A66F8.c:
+	.sbss       start:0x801A66F8 end:0x801A6700 align:8
+
+dol/data/lbl_801A6700.c:
+	.sbss       start:0x801A6700 end:0x801A6708 align:32
+
+dol/data/lbl_801A6708.c:
+	.sbss       start:0x801A6708 end:0x801A6710 align:8
+
+dol/data/lbl_801A6710.c:
+	.sbss       start:0x801A6710 end:0x801A6718 align:16
+
+dol/data/lbl_801A6718.c:
+	.sbss       start:0x801A6718 end:0x801A6720 align:8
+
+dol/data/lbl_801A6720.c:
+	.sbss       start:0x801A6720 end:0x801A6728 align:32
+
+dol/data/lbl_801A6728.c:
+	.sbss       start:0x801A6728 end:0x801A6730 align:8
+
+dol/data/lbl_801A6730.c:
+	.sbss       start:0x801A6730 end:0x801A6738 align:16
+
+dol/data/lbl_801A6738.c:
+	.sbss       start:0x801A6738 end:0x801A6740 align:8
+
+dol/data/lbl_801A6740.c:
+	.sbss       start:0x801A6740 end:0x801A6748 align:32
+
+dol/data/BootInfo_801A6748.c:
+	.sbss       start:0x801A6748 end:0x801A6750 align:8
+
+dol/data/BI2DebugFlagHolder.c:
+	.sbss       start:0x801A6750 end:0x801A6758 align:16
+
+dol/data/ZeroF.c:
+	.sbss       start:0x801A6758 end:0x801A6760 align:8
+
+dol/data/ZeroPS.c:
+	.sbss       start:0x801A6760 end:0x801A6768 align:32
+
+dol/data/AreWeInitialized.c:
+	.sbss       start:0x801A6768 end:0x801A6770 align:8
+
+dol/data/__OSSavedRegionEnd.c:
+	.sbss       start:0x801A6770 end:0x801A6778 align:16
+
+dol/data/__OSInIPL.c:
+	.sbss       start:0x801A6778 end:0x801A6788 align:8
+
+dol/data/AlarmQueue.c:
+	.sbss       start:0x801A6788 end:0x801A6790 align:8
+
+dol/data/__OSArenaHi.c:
+	.sbss       start:0x801A6790 end:0x801A67A0 align:16
+
+dol/data/lbl_801A67A0.c:
+	.sbss       start:0x801A67A0 end:0x801A67A8 align:32
+
+dol/data/InterruptHandlerTable.c:
+	.sbss       start:0x801A67A8 end:0x801A67B0 align:8
+
+dol/data/__OSLastInterrupt.c:
+	.sbss       start:0x801A67B0 end:0x801A67C0 align:16
+
+dol/data/lbl_801A67C0.c:
+	.sbss       start:0x801A67C0 end:0x801A67C8 align:32
+
+dol/data/lbl_801A67C8.c:
+	.sbss       start:0x801A67C8 end:0x801A67D0 align:8
+
+dol/data/ResetFunctionQueue.c:
+	.sbss       start:0x801A67D0 end:0x801A67D8 align:16
+
+dol/data/lbl_801A67D8.c:
+	.sbss       start:0x801A67D8 end:0x801A67E0 align:8
+
+dol/data/lbl_801A67E0.c:
+	.sbss       start:0x801A67E0 end:0x801A67E8 align:32
+
+dol/data/lbl_801A67E8.c:
+	.sbss       start:0x801A67E8 end:0x801A67F0 align:8
+
+dol/data/lbl_801A67F0.c:
+	.sbss       start:0x801A67F0 end:0x801A67F8 align:16
+
+dol/data/RunQueueBits.c:
+	.sbss       start:0x801A67F8 end:0x801A6800 align:8
+
+dol/data/Reschedule.c:
+	.sbss       start:0x801A6800 end:0x801A6810 align:32
+
+dol/data/__OSArenaLo.c:
+	.sdata      start:0x801A6428 end:0x801A6430 align:8
+
+dol/data/lbl_801A63C0.c:
+	.sdata      start:0x801A63C0 end:0x801A6418 align:32
+
+dol/data/lbl_801A6648.c:
+	.sdata      start:0x801A6648 end:0x801A6650 align:8
+
+dol/data/DummyCommandBlock.c:
+	.bss        start:0x8015CE80 end:0x8015CF38 align:8
 dol/data/lbl_801A7918.c:
 	.sbss2      start:0x801A7918 end:0x801A7920 align:8
-
-dol/data/DVDLoadFstMessage.c:
-	.data       start:0x80123FD8 end:0x80124018 align:8

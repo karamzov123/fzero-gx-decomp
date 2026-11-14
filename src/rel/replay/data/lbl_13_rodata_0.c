@@ -2,11 +2,27 @@
 #include "types.h"
 
 extern const u32 lbl_13_rodata_0[3];
+extern const u32 lbl_13_rodata_C;
+extern const u32 lbl_13_rodata_10[3];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".rodata") const u32 lbl_13_rodata_0[3] __attribute__((aligned(8))) = {
     0x43270000U, 0x42180000U, 0x42B40000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const u32 lbl_13_rodata_C __attribute__((aligned(4))) = 0xFFFFFFFFU;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const u32 lbl_13_rodata_10[3] __attribute__((aligned(8))) = {
+    0x00000000U, 0x00000000U, 0x00000000U
 };
 #pragma explicit_zero_data reset

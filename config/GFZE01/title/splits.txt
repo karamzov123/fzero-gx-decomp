@@ -540,29 +540,20 @@ rel/title/data/lbl_8_data_7E50.c:
 rel/title/data/lbl_8_data_7E60.c:
 	.data       start:0x00007E60 end:0x00007E78 align:8
 
-rel/title/data/lbl_8_data_8420.c:
-	.data       start:0x00008420 end:0x00009270 align:8
-
-rel/title/data/lbl_8_data_9298.c:
-	.data       start:0x00009298 end:0x000095B8 align:8
-
-rel/title/data/lbl_8_data_9668.c:
-	.data       start:0x00009668 end:0x0000A350 align:8
-
-rel/title/data/lbl_8_rodata_0.c:
-	.rodata     start:0x00000000 end:0x0000000C align:8
-
-rel/title/data/lbl_8_rodata_160.c:
-	.rodata     start:0x00000160 end:0x00000188 align:8
-
-rel/title/data/lbl_8_rodata_368.c:
-	.rodata     start:0x00000368 end:0x00000B64 align:8
-
-rel/title/data/lbl_8_rodata_C28.c:
-	.rodata     start:0x00000C28 end:0x00000C2C align:8
-
 rel/title/_prolog/fn_8_0.c:
 	.text       start:0x00000000 end:0x000004D8 align:4
 
 rel/title/name_entry.c:
 	.text       start:0x0000FF9C end:0x000100C4 align:4
+
+rel/title/data/lbl_8_bss_238.c:
+	.bss        start:0x00000238 end:0x000002A8 align:8
+
+rel/title/data/lbl_8_bss_550.c:
+	.bss        start:0x00000550 end:0x00000556 align:16
+
+rel/title/data/lbl_8_data_8420.c:
+	.data       start:0x00008420 end:0x0000A350 align:8
+
+rel/title/data/lbl_8_rodata_0.c:
+	.rodata     start:0x00000000 end:0x00000C2C align:8

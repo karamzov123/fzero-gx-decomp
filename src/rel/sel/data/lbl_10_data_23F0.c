@@ -6,6 +6,9 @@ extern char lbl_10_data_23FC[13];
 extern char lbl_10_data_240C[13];
 extern char lbl_10_data_241C[13];
 extern char lbl_10_data_242C[13];
+extern char lbl_10_data_243C[16];
+extern char lbl_10_data_244C[6];
+extern char lbl_10_data_2454[10];
 
 
 
@@ -35,4 +38,22 @@ __declspec(section ".data") char lbl_10_data_241C[13] __attribute__((aligned(4))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_242C[13] __attribute__((aligned(4))) = "Practice ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_243C[16] __attribute__((aligned(4))) = "\203v\203\211\203N\203e\203B\203X\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_244C[6] __attribute__((aligned(4))) = "Story";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_2454[10] __attribute__((aligned(4))) = "Story GER";
 #pragma explicit_zero_data reset

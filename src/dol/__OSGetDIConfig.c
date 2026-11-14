@@ -1,4 +1,8 @@
-#include "types.h"
+#include <dolphin/os.h>
+#include <dolphin/types.h>
+#pragma peephole off
+
+void OSReport(const char *msg, ...);
 
 struct DIRegs {
     u8 _pad0[0x24];
@@ -10,3 +14,5 @@ extern struct DIRegs __DIRegs;
 u32 __OSGetDIConfig(void) {
     return __DIRegs.config & 0xff;
 }
+
+void OSRegisterVersion(const char *id) { OSReport("%s\n", id); }

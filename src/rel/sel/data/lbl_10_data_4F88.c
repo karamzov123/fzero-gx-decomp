@@ -6,6 +6,7 @@ extern char lbl_10_data_4FB4[22];
 extern char lbl_10_data_4FCC[22];
 extern char lbl_10_data_4FE4[22];
 extern char lbl_10_data_4FFC[22];
+extern char lbl_10_data_5014[36];
 
 
 
@@ -35,4 +36,11 @@ __declspec(section ".data") char lbl_10_data_4FE4[22] __attribute__((aligned(4))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_4FFC[22] __attribute__((aligned(4))) = "DONT_HAVE_LICENSE ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_5014[36] __attribute__((aligned(4))) = "\203\211\203C\203Z\203\223\203X\203J\201[\203h\202\360\202\250\216\235\202\277\202\305\202\310"
+    "\202\242\225\373\000\000\000";
 #pragma explicit_zero_data reset

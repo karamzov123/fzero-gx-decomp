@@ -2,9 +2,23 @@
 #include "types.h"
 
 extern char lbl_10_data_1548[17];
+extern char lbl_10_data_155C[24];
+extern char lbl_10_data_1574[81];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_1548[17] __attribute__((aligned(8))) = "Time Attack Mode";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_155C[24] __attribute__((aligned(4))) = "\203^\203C\203\200\203A\203^\203b\203N\203\202\201[\203h\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_1574[81] __attribute__((aligned(4))) = "A total of 30 machines in each race. \nRace for the top position on each course. ";
 #pragma explicit_zero_data reset

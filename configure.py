@@ -389,7 +389,10 @@ def add_pool_rules() -> None:
     path = Path("config") / config.version / "units.json"
     if not path.exists():
         return
-    pool = {u["source"]: u["pool"] for u in json.loads(path.read_text()) if isinstance(u.get("pool"), dict) and u["pool"]}
+    # `own` lists retail names whose range the unit's split owns: poolfix renames the private
+    # definition (`=NAME`) instead of turning it into a reference.
+    pool = {u["source"]: {k: ("=" + v if v in (u.get("own") or []) else v) for k, v in u["pool"].items()}
+            for u in json.loads(path.read_text()) if isinstance(u.get("pool"), dict) and u["pool"]}
     if not pool:
         return
     ninja_path = Path("build.ninja")

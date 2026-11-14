@@ -6,6 +6,7 @@ extern char lbl_1_data_3DC50[9];
 extern char lbl_1_data_3DC5C[17];
 extern u32 lbl_1_data_3DC70[2];
 extern char lbl_1_data_3DC78[9];
+extern char lbl_1_data_3DC84[17];
 
 
 
@@ -39,4 +40,10 @@ __declspec(section ".data") u32 lbl_1_data_3DC70[2] __attribute__((aligned(8))) 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_1_data_3DC78[9] __attribute__((aligned(8))) = "bg_for.c";
+#pragma explicit_zero_data reset
+
+
+/* Obj_1_data_3DC84 (header) does not reproduce the retail extent; the layout follows the retail data. */
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_3DC84[17] __attribute__((aligned(4))) = "SPOT LIGHT OVER!";
 #pragma explicit_zero_data reset

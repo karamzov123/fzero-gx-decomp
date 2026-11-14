@@ -2,6 +2,7 @@
 #include "types.h"
 #include "rel/sel/data/lbl_10_rodata_58.h"
 #include "rel/sel/data/lbl_10_rodata_90.h"
+#include "rel/sel/data/lbl_10_rodata_94.h"
 
 extern const u32 lbl_10_rodata_0[12];
 extern const u32 lbl_10_rodata_30[6];
@@ -9,6 +10,7 @@ extern const f64 lbl_10_rodata_48;
 extern const f64 lbl_10_rodata_50;
 #include "rel/sel/data/lbl_10_rodata_58.h"
 #include "rel/sel/data/lbl_10_rodata_90.h"
+#include "rel/sel/data/lbl_10_rodata_94.h"
 
 
 
@@ -64,5 +66,13 @@ extern char lbl_10_data_6F0[];
 #pragma explicit_zero_data on
 __declspec(section ".rodata") const Data_lbl_10_rodata_90 lbl_10_rodata_90 __attribute__((aligned(8))) = {
     (u8 *)&lbl_10_data_6F0
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const Data_lbl_10_rodata_94 lbl_10_rodata_94 __attribute__((aligned(4))) = {
+    {{-1, 4, 1, 2, -1, 3, -1, 7}, {-1, 3, -1, 0, -1, -1, -1, 4}, {-1, 7, 0, -1, -1, 4, -1, -1}, {1, 5, -1, 4, -1, -1, 0, 6}, {0, 6, 3, 7, 1, 5, 2, 8}, {3, -1, -1, 6, -1, -1, 4, -1}, {4, -1, 5, 8, 3, -1, 7, -1}, {2, 8, 4, -1, 0, 6, -1, -1}, {7, -1, 6, -1, 4, -1, -1, -1}, {-1, -1, -1, 10, -1, -1, -1, -1}, {-1, -1, 9, -1, -1, -1, -1, -1}, {-1, -1, -1, -1, -1, -1, -1, -1}}
 };
 #pragma explicit_zero_data reset

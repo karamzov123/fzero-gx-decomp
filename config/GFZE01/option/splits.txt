@@ -140,6 +140,7 @@ rel/option/_prolog/fn_4_4834.c:
 
 rel/option/_prolog/fn_4_4CB8.c:
 	.text       start:0x00004CB8 end:0x00004DF8 align:4
+	.data       start:0x00002998 end:0x000029BC align:8
 
 rel/option/_prolog/fn_4_0.c:
 	.text       start:0x00000000 end:0x00000250 align:4
@@ -462,12 +463,6 @@ rel/option/data/lbl_4_data_1F50.c:
 rel/option/data/lbl_4_data_1F60.c:
 	.data       start:0x00001F60 end:0x00001F78 align:8
 
-rel/option/data/lbl_4_rodata_0.c:
-	.rodata     start:0x00000000 end:0x00000B6C align:8
-
-rel/option/data/lbl_4_data_0.c:
-	.data       start:0x00000000 end:0x000014D0 align:8
-
 rel/option/data/lbl_4_data_1500.c:
 	.data       start:0x00001500 end:0x00001520 align:8
 
@@ -480,29 +475,17 @@ rel/option/data/lbl_4_data_2AE8.c:
 rel/option/data/lbl_4_data_2C00.c:
 	.data       start:0x00002C00 end:0x00002C20 align:8
 
-rel/option/data/lbl_4_data_2D10.c:
-	.data       start:0x00002D10 end:0x00002D5C align:8
-
 rel/option/data/lbl_4_data_2D78.c:
-	.data       start:0x00002D78 end:0x00002F00 align:8
+	.data       start:0x00002D78 end:0x000030E0 align:8
 
-rel/option/data/lbl_4_data_2F20.c:
-	.data       start:0x00002F20 end:0x00002F40 align:8
+rel/option/data/lbl_4_data_0.c:
+	.data       start:0x00000000 end:0x00001500 align:8
 
-rel/option/data/lbl_4_data_2F40.c:
-	.data       start:0x00002F40 end:0x00002F78 align:8
+rel/option/data/lbl_4_data_2D10.c:
+	.data       start:0x00002D10 end:0x00002D78 align:8
 
-rel/option/data/lbl_4_data_2F78.c:
-	.data       start:0x00002F78 end:0x00003018 align:8
+rel/option/data/lbl_4_rodata_B70.c:
+	.rodata     start:0x00000B70 end:0x00000C34 align:8
 
-rel/option/data/lbl_4_data_3018.c:
-	.data       start:0x00003018 end:0x00003058 align:8
-
-rel/option/data/lbl_4_data_3058.c:
-	.data       start:0x00003058 end:0x00003070 align:8
-
-rel/option/data/lbl_4_data_3070.c:
-	.data       start:0x00003070 end:0x000030E0 align:8
-
-rel/option/data/lbl_4_rodata_C30.c:
-	.rodata     start:0x00000C30 end:0x00000C34 align:8
+rel/option/data/lbl_4_rodata_0.c:
+	.rodata     start:0x00000000 end:0x00000B70 align:8

@@ -7,8 +7,8 @@ extern void fn_1_12A350(void *arg0, s32 arg1);
 extern s32 fn_8006A480(void *arg0, void *arg1, void *arg2);
 extern s32 fn_8006A998(void *arg0);
 extern void fn_8006A9AC(void *arg0);
-extern void fn_1_12AC28(void *arg0, s32 arg1, s32 arg2);
-extern void fn_1_12ADC8(void *arg0, void *arg1, s32 arg2, s32 arg3);
+extern void *fn_1_12AC28(void *arg0, void **arg1, void **arg2);
+extern s32 fn_1_12ADC8(void *arg0, void *arg1, void *arg2, void *arg3);
 extern void fn_1_12BB18(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4);
 extern void fn_1_8D168(void *arg);
 extern void fn_1_14DB48(void *arg0, void *arg1, u32 arg2);
@@ -565,8 +565,8 @@ void fn_1_12ABB4(void *archive) {
 /* fzgx:end fn_1_12ABB4 */
 
 /* fzgx:begin fn_1_12AC00 */
-void fn_1_12AC00(void *arg0) {
-    fn_1_12AC28(arg0, 0, 0);
+void *fn_1_12AC00(void *arg0) {
+    return fn_1_12AC28(arg0, 0, 0);
 }
 /* fzgx:end fn_1_12AC00 */
 
@@ -667,8 +667,8 @@ void *fn_1_12AC28(void *arg0, void **arg1, void **arg2) {
 /* fzgx:end fn_1_12AC28 */
 
 /* fzgx:begin fn_1_12ADA0 */
-void fn_1_12ADA0(void *arg0, void *arg1) {
-    fn_1_12ADC8(arg0, arg1, 0, 0);
+s32 fn_1_12ADA0(void *arg0, void *arg1) {
+    return fn_1_12ADC8(arg0, arg1, 0, 0);
 }
 /* fzgx:end fn_1_12ADA0 */
 
@@ -771,8 +771,8 @@ extern void fn_1_12A350(void *arg0, s32 arg1);
 extern s32 fn_8006A480(void *arg0, void *arg1, void *arg2);
 extern s32 fn_8006A998(void *arg0);
 extern void fn_8006A9AC(void *arg0);
-extern void fn_1_12AC28(void *arg0, s32 arg1, s32 arg2);
-extern void fn_1_12ADC8(void *arg0, void *arg1, s32 arg2, s32 arg3);
+extern void *fn_1_12AC28(void *arg0, void **arg1, void **arg2);
+extern s32 fn_1_12ADC8(void *arg0, void *arg1, void *arg2, void *arg3);
 extern void fn_1_12BB18(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4);
 extern void fn_1_8D168(void *arg);
 extern void fn_1_14DB48(void *arg0, void *arg1, u32 arg2);
@@ -3318,8 +3318,8 @@ extern void fn_1_12A350(void *arg0, s32 arg1);
 extern s32 fn_8006A480(void *arg0, void *arg1, void *arg2);
 extern s32 fn_8006A998(void *arg0);
 extern void fn_8006A9AC(void *arg0);
-extern void fn_1_12AC28(void *arg0, s32 arg1, s32 arg2);
-extern void fn_1_12ADC8(void *arg0, void *arg1, s32 arg2, s32 arg3);
+extern void *fn_1_12AC28(void *arg0, void **arg1, void **arg2);
+extern s32 fn_1_12ADC8(void *arg0, void *arg1, void *arg2, void *arg3);
 extern void fn_1_12BB18(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4);
 extern void fn_1_8D168(void *arg);
 extern void fn_1_14DB48(void *arg0, void *arg1, u32 arg2);

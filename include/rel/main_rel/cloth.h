@@ -113,10 +113,6 @@ extern Obj_1_data_3F2EC lbl_1_data_3F2EC;
 extern u8 lbl_1_data_3F244[0x40];
 
 // lbl_1_data_3F284: .data size 0x8, 1 refs from cloth.c (own data block)
-typedef struct {
-    u32 unk_0;  // 1 loads, 1 stores
-    u32 unk_4;  // 1 loads, 1 stores
-} Obj_1_data_3F284;
-extern Obj_1_data_3F284 lbl_1_data_3F284;
+extern u32 lbl_1_data_3F284[0x2];
 
 #endif  // REL_MAIN_REL_CLOTH_H

@@ -36,7 +36,7 @@ extern u32 lbl_1_rodata_4730[];
 extern u32 lbl_1_rodata_47A8[];
 extern u8 lbl_1_bss_6F41C[260];
 extern s32 fn_1_86690(s32 value);
-extern void *lbl_1_rodata_4820[41];
+extern const u32 lbl_1_rodata_4820[41];
 extern int fn_8004C658(u32 obj);
 extern int fn_8004BBCC(u32 obj);
 extern void ADXT_Pause(u32 obj, int arg);
@@ -47,7 +47,7 @@ extern void fn_80008BEC(void *, s32, s32);
 extern s32 fn_1_86690(s32 value);
 extern void fn_80067344(s32 arg0, s32 arg1, u32 arg2, s32 arg3);
 extern void fn_80067898(u32 value);
-extern void *lbl_1_rodata_4820[41];
+extern const u32 lbl_1_rodata_4820[41];
 
 extern void *lbl_801A6410;
 extern void *fn_80008E84();
@@ -351,7 +351,7 @@ extern u32 lbl_1_rodata_4730[];
 extern u32 lbl_1_rodata_47A8[];
 extern u8 lbl_1_bss_6F41C[260];
 extern s32 fn_1_86690(s32 value);
-extern void *lbl_1_rodata_4820[41];
+extern const u32 lbl_1_rodata_4820[41];
 extern int fn_8004C658(u32 obj);
 extern int fn_8004BBCC(u32 obj);
 extern void ADXT_Pause(u32 obj, int arg);
@@ -362,7 +362,7 @@ extern void fn_80008BEC(void *, s32, s32);
 extern s32 fn_1_86690(s32 value);
 extern void fn_80067344(s32 arg0, s32 arg1, u32 arg2, s32 arg3);
 extern void fn_80067898(u32 value);
-extern void *lbl_1_rodata_4820[41];
+extern const u32 lbl_1_rodata_4820[41];
 
 extern void *lbl_801A6410;
 extern void *fn_80008E84();
@@ -922,7 +922,7 @@ extern u32 lbl_1_rodata_4730[];
 extern u32 lbl_1_rodata_47A8[];
 extern u8 lbl_1_bss_6F41C[260];
 extern s32 fn_1_86690(s32 value);
-extern void *lbl_1_rodata_4820[41];
+extern const u32 lbl_1_rodata_4820[41];
 extern int fn_8004C658(u32 obj);
 extern int fn_8004BBCC(u32 obj);
 extern void ADXT_Pause(u32 obj, int arg);
@@ -933,7 +933,7 @@ extern void fn_80008BEC(void *, s32, s32);
 extern s32 fn_1_86690(s32 value);
 extern void fn_80067344(s32 arg0, s32 arg1, u32 arg2, s32 arg3);
 extern void fn_80067898(u32 value);
-extern void *lbl_1_rodata_4820[41];
+extern const u32 lbl_1_rodata_4820[41];
 
 extern void *lbl_801A6410;
 extern void *fn_80008E84();
@@ -1293,7 +1293,7 @@ extern u32 lbl_1_rodata_4730[];
 extern u32 lbl_1_rodata_47A8[];
 extern u8 lbl_1_bss_6F41C[260];
 extern s32 fn_1_86690(s32 value);
-extern void *lbl_1_rodata_4820[41];
+extern const u32 lbl_1_rodata_4820[41];
 extern int fn_8004C658(u32 obj);
 extern int fn_8004BBCC(u32 obj);
 extern void ADXT_Pause(u32 obj, int arg);
@@ -1304,7 +1304,7 @@ extern void fn_80008BEC(void *, s32, s32);
 extern s32 fn_1_86690(s32 value);
 extern void fn_80067344(s32 arg0, s32 arg1, u32 arg2, s32 arg3);
 extern void fn_80067898(u32 value);
-extern void *lbl_1_rodata_4820[41];
+extern const u32 lbl_1_rodata_4820[41];
 
 extern void *lbl_801A6410;
 extern void *fn_80008E84();
@@ -1639,8 +1639,9 @@ typedef struct SoundPair {
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u32 fzgx_obj_lbl_1_bss_6EA98;
 u32 fzgx_obj_lbl_1_bss_6EA9C;
-u32 lbl_1_bss_6EA9C__fzgx_offset_4;
-u8 fzgx_obj_lbl_1_bss_6EAA4;
+/* volatile: the wait loop of fn_1_A1364 polls these; the fn_1_9FF58 callback clears the flag */
+volatile u32 lbl_1_bss_6EA9C__fzgx_offset_4;
+volatile u8 fzgx_obj_lbl_1_bss_6EAA4; /* fzgx-allow: S2 cleared by the fn_1_9FF58 callback */
 u8 lbl_1_bss_6EAA5__fzgx_offset_0;
 u8 fzgx_obj_lbl_1_bss_6EAA6;
 u32 fzgx_obj_lbl_1_bss_6EAA8[2];
@@ -1658,7 +1659,8 @@ u8 lbl_1_bss_6EAC6__fzgx_offset_6;
 u8 lbl_1_bss_6EAC6__fzgx_offset_7;
 u8 lbl_1_bss_6EAC6__fzgx_offset_8;
 u8 lbl_1_bss_6EAC6__fzgx_offset_9;
-u32 fzgx_obj_lbl_1_bss_6EAD0[2];
+void **fzgx_obj_lbl_1_bss_6EAD0;
+u32 fzgx_obj_lbl_1_bss_6EAD4;
 SoundEntry lbl_1_bss_6EAD0__fzgx_offset_8[32];
 u8 fzgx_obj_lbl_1_bss_6F1D8;
 u32 fzgx_obj_lbl_1_bss_6F1DC;
@@ -1713,7 +1715,8 @@ __declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
     s = lbl_1_bss_6EAC6__fzgx_offset_7;
     s = lbl_1_bss_6EAC6__fzgx_offset_8;
     s = lbl_1_bss_6EAC6__fzgx_offset_9;
-    s = fzgx_obj_lbl_1_bss_6EAD0[0];
+    s = (u32)fzgx_obj_lbl_1_bss_6EAD0;
+    s = fzgx_obj_lbl_1_bss_6EAD4;
     s = lbl_1_bss_6EAD0__fzgx_offset_8[0].unk_0;
     s = fzgx_obj_lbl_1_bss_6F1D8;
     s = fzgx_obj_lbl_1_bss_6F1DC;
@@ -1746,9 +1749,14 @@ __declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
 }
 #pragma section code_type ".text"
 
-extern void fn_80008BEC(void *, s32, u32);
-extern void fn_1_A2E24(u32, u32, u32);
-extern void fn_1_A2DF4(u32, u32, u32);
+extern void fn_80008BEC(void *, s32, s32);
+extern void fn_1_A2E24(u32 arg0, u32 arg1, s32 arg2);
+extern void fn_1_A2DF4(s32, void *, s32);
+
+/* fn_1_A2DF4 passes its second argument, a sound command code, on as a pointer */
+static inline void sound_send_command(s32 channel, u32 command, s32 value) {
+    fn_1_A2DF4(channel, (void *)command, value);
+}
 
 void fn_1_A11EC(void) {
     s32 i;
@@ -1779,10 +1787,10 @@ void fn_1_A11EC(void) {
     fzgx_obj_lbl_1_bss_6F243 = 0;
     fzgx_obj_lbl_1_bss_6F244 = 1;
     fn_1_A2E24(0x10, 0xA0000300, 0);
-    fn_1_A2DF4(6, 0xA6000000, 0);
-    fn_1_A2DF4(7, 0xA6000000, 0);
-    fn_1_A2DF4(5, 0xA6000000, 0);
-    fn_1_A2DF4(4, 0xA6000000, 0);
+    sound_send_command(6, 0xA6000000, 0);
+    sound_send_command(7, 0xA6000000, 0);
+    sound_send_command(5, 0xA6000000, 0);
+    sound_send_command(4, 0xA6000000, 0);
     fn_1_A2E24(0x10, 0xA0100000, 0x7F);
     for (i = 0; i < 4; i++) {
         lbl_1_bss_6F244__fzgx_offset_4[i] = 9;
@@ -1815,75 +1823,6 @@ extern void fn_8004CAC8(void *);
 extern void fn_1_A2DF4(s32, void *, s32);
 extern void fn_1_A2E24(u32 arg0, u32 arg1, s32 arg2);
 
-/* fn_1_A2DF4 passes its second argument, a sound command code, on as a pointer */
-static inline void fn_1_A1364_send(s32 channel, u32 command, s32 value) {
-    fn_1_A2DF4(channel, (void *)command, value);
-}
-
-/* the retail TU's .bss objects this function uses, at their retail offsets, so MWCC addresses them off one
- * section base; the fzgx_pool_gap_ objects span the retail objects in between, which this function does not touch */
-u32 fzgx_obj_lbl_1_bss_6EA98;
-u32 fzgx_obj_lbl_1_bss_6EA9C;
-/* volatile: the wait loop's start tick and flag; the flag is cleared by the fn_1_9FF58 callback (fn_1_A04C4 registers it) */
-volatile OSTick lbl_1_bss_6EA9C__fzgx_offset_4;
-volatile u8 fzgx_obj_lbl_1_bss_6EAA4; /* fzgx-allow: S2 cleared by the fn_1_9FF58 callback */
-u8 fzgx_obj_lbl_1_bss_6EAA5;
-u8 fzgx_pool_gap_6EAA6;
-u8 fzgx_pool_gap_6EAA7;
-u8 fzgx_pool_gap_6EAA8[0x1C];
-u8 fzgx_pool_gap_6EAC4;
-u8 fzgx_pool_gap_6EAC5;
-u8 fzgx_obj_lbl_1_bss_6EAC6;
-u8 fzgx_pool_gap_6EAC7;
-u8 fzgx_pool_gap_6EAC8[0x8];
-void **fzgx_obj_lbl_1_bss_6EAD0;
-
-#pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
-    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA98;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA9C;
-    s = *(u8 *)&lbl_1_bss_6EA9C__fzgx_offset_4;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAA4;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAA5;
-    s = *(u8 *)&fzgx_pool_gap_6EAA6;
-    s = *(u8 *)&fzgx_pool_gap_6EAA7;
-    s = *(u8 *)&fzgx_pool_gap_6EAA8;
-    s = *(u8 *)&fzgx_pool_gap_6EAC4;
-    s = *(u8 *)&fzgx_pool_gap_6EAC5;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAC6;
-    s = *(u8 *)&fzgx_pool_gap_6EAC7;
-    s = *(u8 *)&fzgx_pool_gap_6EAC8;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_6EAD0;
-}
-#pragma section code_type ".text"
-
-/* fn_1_A116C, defined above in the retail TU and inlined here */
-static inline void fn_1_A116C(void) {
-    switch ((*(s16 *)&lbl_1_bss_960)) {
-    case 2:
-    case 8:
-    case 9:
-    case 12:
-        fn_80065D70(1);
-        break;
-    case 1:
-    case 5:
-    case 13:
-        fn_80065D70(2);
-        break;
-    case 4:
-        if (lbl_1_bss_962 != 0x3D) {
-            fn_80065D70(3);
-        }
-        break;
-    case 14:
-    case 16:
-        fn_80065D70(3);
-        break;
-    }
-}
-
 /* Waits for the callback to clear the flag; after 100 ms, clears it, sets 0x6EAA5 and calls fn_1_A04C4. */
 static inline void fn_1_A1364_wait(void) {
     lbl_1_bss_6EA9C__fzgx_offset_4 = OSGetTick();
@@ -1891,19 +1830,19 @@ static inline void fn_1_A1364_wait(void) {
     while (fzgx_obj_lbl_1_bss_6EAA4 != 0) {
         if (OSGetTick() - lbl_1_bss_6EA9C__fzgx_offset_4 >= OS_TIMER_CLOCK / 1000 * 100) {
             fzgx_obj_lbl_1_bss_6EAA4 = 0;
-            fzgx_obj_lbl_1_bss_6EAA5 = 1;
+            lbl_1_bss_6EAA5__fzgx_offset_0 = 1;
             fn_1_A04C4();
         }
     }
 }
 
 void fn_1_A1364(void) {
-    if (fzgx_obj_lbl_1_bss_6EAA5 != 0) {
+    if (lbl_1_bss_6EAA5__fzgx_offset_0 != 0) {
         return;
     }
     if (fzgx_obj_lbl_1_bss_6EAC6 != 0) {
-        fn_1_A1364_send(0x10, 0xA6000000, 0);
-        fn_1_A1364_send(0x10, 0xA5100000, 0);
+        sound_send_command(0x10, 0xA6000000, 0);
+        sound_send_command(0x10, 0xA5100000, 0);
         fn_1_A2E24(0x10, 0xA0000300, 0);
         fn_1_A2E24(0x10, 0xA0000400, 0);
         fn_1_A2E24(0x10, 0xA0000100, 0);
@@ -1970,7 +1909,7 @@ extern u32 lbl_1_rodata_4730[];
 extern u32 lbl_1_rodata_47A8[];
 extern u8 lbl_1_bss_6F41C[260];
 extern s32 fn_1_86690(s32 value);
-extern void *lbl_1_rodata_4820[41];
+extern const u32 lbl_1_rodata_4820[41];
 extern int fn_8004C658(u32 obj);
 extern int fn_8004BBCC(u32 obj);
 extern void ADXT_Pause(u32 obj, int arg);
@@ -1981,7 +1920,7 @@ extern void fn_80008BEC(void *, s32, s32);
 extern s32 fn_1_86690(s32 value);
 extern void fn_80067344(s32 arg0, s32 arg1, u32 arg2, s32 arg3);
 extern void fn_80067898(u32 value);
-extern void *lbl_1_rodata_4820[41];
+extern const u32 lbl_1_rodata_4820[41];
 
 extern void *lbl_801A6410;
 extern void *fn_80008E84();
@@ -2175,7 +2114,7 @@ extern u32 lbl_1_rodata_4730[];
 extern u32 lbl_1_rodata_47A8[];
 extern u8 lbl_1_bss_6F41C[260];
 extern s32 fn_1_86690(s32 value);
-extern void *lbl_1_rodata_4820[41];
+extern const u32 lbl_1_rodata_4820[41];
 extern int fn_8004C658(u32 obj);
 extern int fn_8004BBCC(u32 obj);
 extern void ADXT_Pause(u32 obj, int arg);
@@ -2186,7 +2125,7 @@ extern void fn_80008BEC(void *, s32, s32);
 extern s32 fn_1_86690(s32 value);
 extern void fn_80067344(s32 arg0, s32 arg1, u32 arg2, s32 arg3);
 extern void fn_80067898(u32 value);
-extern void *lbl_1_rodata_4820[41];
+extern const u32 lbl_1_rodata_4820[41];
 
 extern void *lbl_801A6410;
 extern void *fn_80008E84();
@@ -2382,7 +2321,7 @@ extern u32 lbl_1_rodata_4730[];
 extern u32 lbl_1_rodata_47A8[];
 extern u8 lbl_1_bss_6F41C[260];
 extern s32 fn_1_86690(s32 value);
-extern void *lbl_1_rodata_4820[41];
+extern const u32 lbl_1_rodata_4820[41];
 extern int fn_8004C658(u32 obj);
 extern int fn_8004BBCC(u32 obj);
 extern void ADXT_Pause(u32 obj, int arg);
@@ -2393,7 +2332,7 @@ extern void fn_80008BEC(void *, s32, s32);
 extern s32 fn_1_86690(s32 value);
 extern void fn_80067344(s32 arg0, s32 arg1, u32 arg2, s32 arg3);
 extern void fn_80067898(u32 value);
-extern void *lbl_1_rodata_4820[41];
+extern const u32 lbl_1_rodata_4820[41];
 
 extern void *lbl_801A6410;
 extern void *fn_80008E84();
@@ -2622,7 +2561,7 @@ extern u32 lbl_1_rodata_4730[];
 extern u32 lbl_1_rodata_47A8[];
 extern u8 lbl_1_bss_6F41C[260];
 extern s32 fn_1_86690(s32 value);
-extern void *lbl_1_rodata_4820[41];
+extern const u32 lbl_1_rodata_4820[41];
 extern int fn_8004C658(u32 obj);
 extern int fn_8004BBCC(u32 obj);
 extern void ADXT_Pause(u32 obj, int arg);
@@ -2633,7 +2572,7 @@ extern void fn_80008BEC(void *, s32, s32);
 extern s32 fn_1_86690(s32 value);
 extern void fn_80067344(s32 arg0, s32 arg1, u32 arg2, s32 arg3);
 extern void fn_80067898(u32 value);
-extern void *lbl_1_rodata_4820[41];
+extern const u32 lbl_1_rodata_4820[41];
 
 extern void *lbl_801A6410;
 extern void *fn_80008E84();
@@ -3377,7 +3316,7 @@ extern u32 lbl_1_rodata_4718[];
 extern u32 lbl_1_rodata_4730[];
 extern u32 lbl_1_rodata_47A8[];
 extern u8 lbl_1_bss_6F41C[260];
-extern void *lbl_1_rodata_4820[41];
+extern const u32 lbl_1_rodata_4820[41];
 extern s32 fn_8004C658(char *arg0);
 extern int fn_8004BBCC(u32 obj);
 extern int fn_1_3FC38(void);
@@ -5854,7 +5793,7 @@ void fn_1_A5470(s32 value) {
 
     sound_id = (s8)value;
     sound_id = fn_1_86690(sound_id);
-    sound_resource = (u32)lbl_1_rodata_4820[(s8)sound_id];
+    sound_resource = lbl_1_rodata_4820[(s8)sound_id];
 
     fn_80067344(1, 0x10, 0xB0270000, 0x7F);
     if (sound_resource != 0 && lbl_1_bss_6F1D8 == 0 &&

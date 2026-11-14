@@ -1,6 +1,12 @@
 .include "macros.inc"
 .file "OSExceptionVector.c"
 
+# Assembly in the original: the Dolphin SDK's OS.c writes this routine as a CodeWarrior `asm`
+# function. Evidence (docs/ASM_POLICY.md section 1):
+# mtsprg/mfsprg, mfsrr0/mfsrr1, mtsrr0/mtsrr1 and rfi (privileged; MWCC never emits them
+# from C), no MWCC prologue or epilogue; OSExceptionInit copies it to every exception vector
+# between the __OSEVStart/__OSEVEnd labels and patches the word at __OSEVSetNumber.
+
 # 0x8000AA60..0x8000AAFC | size: 0x9C
 .text
 .balign 4

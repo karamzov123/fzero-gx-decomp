@@ -309,24 +309,6 @@ rel/pilotpoint/data/lbl_14_data_828.c:
 rel/pilotpoint/data/lbl_14_data_840.c:
 	.data       start:0x00000840 end:0x000008D8 align:8
 
-rel/pilotpoint/data/lbl_14_data_8D8.c:
-	.data       start:0x000008D8 end:0x000008F0 align:8
-
-rel/pilotpoint/data/lbl_14_data_8F0.c:
-	.data       start:0x000008F0 end:0x00000920 align:8
-
-rel/pilotpoint/data/lbl_14_data_920.c:
-	.data       start:0x00000920 end:0x00000938 align:8
-
-rel/pilotpoint/data/lbl_14_data_938.c:
-	.data       start:0x00000938 end:0x00000A28 align:8
-
-rel/pilotpoint/data/lbl_14_data_A28.c:
-	.data       start:0x00000A28 end:0x00000A40 align:8
-
-rel/pilotpoint/data/lbl_14_data_A40.c:
-	.data       start:0x00000A40 end:0x00000A9C align:8
-
 rel/pilotpoint/data/lbl_14_data_2530.c:
 	.data       start:0x00002530 end:0x00002568 align:8
 
@@ -387,9 +369,6 @@ rel/pilotpoint/data/lbl_14_data_3460.c:
 rel/pilotpoint/data/lbl_14_data_3480.c:
 	.data       start:0x00003480 end:0x00003534 align:8
 
-rel/pilotpoint/data/lbl_14_rodata_0.c:
-	.rodata     start:0x00000000 end:0x0000054C align:8
-
 rel/pilotpoint/data/lbl_14_data_2480.c:
 	.data       start:0x00002480 end:0x000024C8 align:8
 
@@ -432,8 +411,17 @@ rel/pilotpoint/data/lbl_5_data_AC0.c:
 rel/pilotpoint/data/lbl_14_data_AD8.c:
 	.data       start:0x00000AD8 end:0x00000AE0 align:8
 
+rel/pilotpoint/data/lbl_14_data_8D8.c:
+	.data       start:0x000008D8 end:0x00000AC0 align:8
+
+rel/pilotpoint/data/lbl_14_data_27B8.c:
+	.data       start:0x000027B8 end:0x00002F48 align:8
+
 rel/pilotpoint/data/lbl_14_data_2F48.c:
 	.data       start:0x00002F48 end:0x00002FB0 align:8
 
 rel/pilotpoint/data/lbl_14_data_2FB0.c:
 	.data       start:0x00002FB0 end:0x00002FC0 align:8
+
+rel/pilotpoint/data/lbl_14_rodata_0.c:
+	.rodata     start:0x00000000 end:0x0000054C align:8

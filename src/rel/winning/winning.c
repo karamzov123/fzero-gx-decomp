@@ -136,7 +136,7 @@ extern void fn_800356AC(void *, void *);
 extern void GXInitLightDistAttn(void *, f32, f32, u32);
 extern void fn_1_7BB80(void *, u32);
 extern void fn_1_7BD6C(u32);
-extern u8 lbl_15_bss_35;
+extern u8 lbl_15_bss_2C__fzgx_offset_9;
 extern s16 lbl_1_bss_960;
 
 /* fzgx:begin _prolog noprologue */
@@ -1788,7 +1788,7 @@ extern u32 fn_15_401C(void);
 extern u32 fn_15_4124(void);
 
 
-extern u8 lbl_15_bss_21;
+extern u8 lbl_15_bss_1C__fzgx_offset_5;
 
 void fn_15_2228(void) {
     if ((lbl_15_bss_14 & ~0x7FFFFFFF) != 0) {
@@ -1796,7 +1796,7 @@ void fn_15_2228(void) {
     }
     fn_15_2CEC();
     fn_15_3AFC();
-    if (lbl_15_bss_21 != 0) {
+    if (lbl_15_bss_1C__fzgx_offset_5 != 0) {
     fn_15_401C();
     }
 }
@@ -2542,7 +2542,7 @@ u32 lbl_15_bss_10;
 u32 lbl_15_bss_14[2];
 u32 lbl_15_bss_1C;
 u8 fzgx_pool_lbl_15_bss_1C_fill_20;
-u8 lbl_15_bss_21;
+u8 lbl_15_bss_1C__fzgx_offset_5;
 u16 fzgx_pool_lbl_15_bss_21_fill_22;
 u32 fzgx_pool_lbl_15_bss_21_fill_24[2];
 u8 *lbl_15_bss_2C;
@@ -2581,7 +2581,7 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&lbl_15_bss_14;
     s = *(u8 *)&lbl_15_bss_1C;
     s = *(u8 *)&fzgx_pool_lbl_15_bss_1C_fill_20;
-    s = *(u8 *)&lbl_15_bss_21;
+    s = *(u8 *)&lbl_15_bss_1C__fzgx_offset_5;
     s = *(u8 *)&fzgx_pool_lbl_15_bss_21_fill_22;
     s = *(u8 *)&fzgx_pool_lbl_15_bss_21_fill_24;
     s = *(u8 *)&lbl_15_bss_2C;
@@ -4520,7 +4520,7 @@ void fn_15_5460(f32 arg0) {
     struct fn_15_5460_Row *rows;
 
     
-    offset = (lbl_15_bss_35 != 0) ? -22.0f : 0.0f;
+    offset = (lbl_15_bss_2C__fzgx_offset_9 != 0) ? -22.0f : 0.0f;
 
     fn_1_520A0();
     fn_1_52070(320);
@@ -4555,7 +4555,7 @@ void fn_15_5460(f32 arg0) {
     fn_1_496FC(320.0f, offset);
     fn_1_4955C(1.2f, 1.2f);
 
-    if (lbl_15_bss_35 != 0) {
+    if (lbl_15_bss_2C__fzgx_offset_9 != 0) {
         fn_1_496FC(320.0f, 308.0f);
         fn_1_4955C(1.5f, 1.5f);
         rows = (struct fn_15_5460_Row *)fzgx_pool_native_lbl_15_data_0_unk_1C80;

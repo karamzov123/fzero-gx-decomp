@@ -2,9 +2,16 @@
 #include "types.h"
 
 extern char lbl_10_data_49A0[18];
+extern char lbl_10_data_49B4[28];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_49A0[18] __attribute__((aligned(8))) = "Read Write OK ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_49B4[28] __attribute__((aligned(4))) = "\203\212\201[\203h\201^\203\211\203C\203g\202\305\202\253\202\334\202\265\202\275\n\000\000";
 #pragma explicit_zero_data reset

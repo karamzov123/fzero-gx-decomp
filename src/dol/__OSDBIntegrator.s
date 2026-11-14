@@ -1,6 +1,12 @@
 .include "macros.inc"
 .file "__OSDBIntegrator.c"
 
+# Assembly in the original: the Dolphin SDK's OS.c writes this routine as a CodeWarrior `asm`
+# function. Evidence (docs/ASM_POLICY.md section 1):
+# mflr/mtlr through a fixed low-memory save slot and mtmsr (privileged), no MWCC prologue
+# or epilogue (a nofralloc body); OSExceptionInit copies it to 0x80000060 between the
+# __OSDBINTSTART/__OSDBINTEND labels, so it is position-independent code, not a C function.
+
 # 0x8000AA08..0x8000AA2C | size: 0x24
 .text
 .balign 4

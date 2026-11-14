@@ -2,9 +2,26 @@
 #include "types.h"
 
 extern char lbl_10_data_3AC0[17];
+extern char lbl_10_data_3AD4[80];
+extern char lbl_10_data_3B24[172];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_3AC0[17] __attribute__((aligned(8))) = "Can not read ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_3AD4[80] __attribute__((aligned(4))) = "\203\201\203\202\203\212\201[\203J\201[\203h\202\314\203f\201[\203^\202\252\223\307\202\337\202"
+    "\334\202\271\202\361\202\305\202\265\202\275\201B\n\203\201\203\202\203\212\201[\203J\201[\203h"
+    "\202\360\224\262\202\242\202\304\202\255\202\276\202\263\202\242\201B\n\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_3B24[172] __attribute__((aligned(4))) = "There is no Memory Card. Please insert\n\t the /bcff0000/original/bcffffff/ Memory Card which st"
+    "arted\n\t the game. Save within the given time. \n\tSave within the given time. \n";
 #pragma explicit_zero_data reset

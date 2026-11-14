@@ -3367,7 +3367,7 @@ u32 fn_10_4AE0(u32 arg0, u32 initial_count) {
     selected = *(slot += 7);
     if (selected == -1) {
         if (*(u32 *)((u8 *)&(*(u8 *)&lbl_1_bss_8B3A0) + 0x94) & 0x40000000)
-            selected = ((s16 *)&lbl_10_data_55C)[v0];
+            selected = lbl_10_data_55C[v0];
         else
             selected = (&lbl_10_data_554)[v0];
     }
@@ -3439,7 +3439,7 @@ u32 unk_10;
 extern Obj_10_bss_0 lbl_10_bss_0;
 
 
-extern u32 lbl_10_data_55C;
+extern s16 lbl_10_data_55C[4];
 extern s16 lbl_10_data_554;
 
 
@@ -3520,7 +3520,7 @@ fn_1_A5330(50,v11);
 v13=(s16 *)&lbl_1_bss_8B3A0;
 v13 += selected * 16;
 if(*(v13 += 7) == -1) {
-if(main_storage.value ->unk_94 & 0x40000000) *v13=((s16 *)&lbl_10_data_55C)[(s16)v0];
+if(main_storage.value ->unk_94 & 0x40000000) *v13=lbl_10_data_55C[(s16)v0];
 else *v13=(&lbl_10_data_554)[(s16)v0];
 *((u8 *)&lbl_1_bss_8B3A0+selected+159)=50;
 fn_1_A5330(50,v0);
@@ -5144,18 +5144,18 @@ void fn_10_7130(void) {
             value = fn_10_7130_array_read_(0x81a0, p);
         }
         off = value * 0x440;
-        if ((*(s16 (*)[3])&lbl_10_data_45A)[0] !=
-            (s16)((*(s16 (*)[3])&lbl_10_data_45A)[0] +
+        if (lbl_10_data_45A !=
+            (s16)(lbl_10_data_45A +
                   *(s16 *)((u8 *)fzgx_obj_lbl_10_bss_49380 + off + 0x3b8) % 4)) {
             fn_800713E0(
                 *(u32 *)((u8 *)fzgx_obj_lbl_10_bss_49380 + off +
                          lbl_10_data_454 * 0xc + 0x338),
                 *(u32 *)((u8 *)fzgx_obj_lbl_10_bss_49380 + off +
-                         (*(s16 (*)[3])&lbl_10_data_45A)[0] % 4 * 4 + 0x37c));
+                         lbl_10_data_45A % 4 * 4 + 0x37c));
             fn_1_8019C(*(u32 *)((u8 *)fzgx_obj_lbl_10_bss_49380 + off +
                                 lbl_10_data_454 * 0xc + 0x338));
             *(s16 *)((u8 *)fzgx_obj_lbl_10_bss_49380 + off + 0x3b8) =
-                (*(s16 (*)[3])&lbl_10_data_45A)[0];
+                lbl_10_data_45A;
         }
 skip:
         offset += 0x81c0;
@@ -13018,7 +13018,7 @@ u8 pad_4[0x384];
 extern Obj_10_data_2CDC lbl_10_data_2CDC;
 
 
-extern u32 lbl_10_data_5E2C;
+extern char lbl_10_data_5E2C[];
 
 
 typedef struct FontDrawPacket FontDrawPacket;
@@ -13092,7 +13092,7 @@ if (i == arg->unk_8) {
 Color c2 = *(const Color *)(pool+0xE8);
 fn_1_49514( (u32 *)(void *)(&c2));
 }
-fn_1_4AE0C((const char *)&lbl_10_data_5E2C, *(const char **)((u8 *)&lbl_10_data_2CDC + options.values[i]*24 + lbl_801A66B4*4));
+fn_1_4AE0C(lbl_10_data_5E2C, *(const char **)((u8 *)&lbl_10_data_2CDC + options.values[i]*24 + lbl_801A66B4*4));
 {
 Color c3 = *(const Color *)(pool+0xEC);
 fn_1_49514( (u32 *)(void *)(&c3));
@@ -13104,14 +13104,14 @@ case 1: {
 const Color c = *(const Color *)(pool+0xF0);
 fn_1_535A0((void *)&c, *(const f32 *)(pool+0x4C), *(const f32 *)(pool+0xF8), *(const f32 *)(pool+0x44), *(const f32 *)(pool+0x104), *(const f32 *)(pool+0x108), *(const f32 *)(pool+0x44));
 sprintf(buf, ((const char **)(lbl_10_data_2CDC.pad_4 + 0x164))[lbl_801A66B4], arg->unk_4);
-fn_1_4AE0C((const char *)&lbl_10_data_5E2C, buf);
+fn_1_4AE0C(lbl_10_data_5E2C, buf);
 break;
 }
 case 2: {
 const Color c = *(const Color *)(pool+0xF4);
 fn_1_535A0((void *)&c, *(const f32 *)(pool+0x4C), *(const f32 *)(pool+0xF8), *(const f32 *)(pool+0x44), *(const f32 *)(pool+0x10C), *(const f32 *)(pool+0x108), *(const f32 *)(pool+0x44));
 sprintf(buf, ((const char **)(lbl_10_data_2CDC.pad_4 + 0x17C))[lbl_801A66B4], arg->unk_6);
-fn_1_4AE0C((const char *)&lbl_10_data_5E2C, buf);
+fn_1_4AE0C(lbl_10_data_5E2C, buf);
 break;
 }
 }
@@ -45112,15 +45112,22 @@ void fn_10_1F688(u32 arg0, u32 arg1, f32 arg2) {
 }
 /* fzgx:end fn_10_1F688 */
 
-/* fzgx:begin fn_10_1FEF4 */
+/* fzgx:begin fn_10_1FEF4 noprologue */
+#include "types.h"
+
+#include "rel/sel/sel.h"
+#include "rel/main_rel/globals.h"
+
+extern const f32 lbl_10_rodata_158[19];
+extern s32 lbl_801A66B4;
 extern void fn_1_49410(void);
-extern void fn_1_495B0(s32 value);
+extern void fn_1_495B0(u32 value);
 extern void fn_1_496FC(f32 arg0, f32 arg1);
 extern void fn_1_4954C(f32 value);
 extern void fn_1_4955C(f32 arg0, f32 arg1);
-extern void fn_1_495C8(s32 value);
+extern void fn_1_495C8(u32 value);
 extern void fn_1_49590(f32 value);
-extern void fn_1_4CE48(u8 *arg0, f32 value);
+extern void fn_1_4CE48(Obj_1_bss_4B9CC *obj, f32 value);
 extern f32 fn_1_4B090(u8 *arg0);
 extern void fn_1_53B14(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5);
 
@@ -45163,13 +45170,13 @@ void fn_10_1FEF4(s32 arg0) {
     inRange = arg0 - 12 > 6 ? 0 : !(arg0 - 12 < 0);
     if (inRange) {
         fn_1_49410();
-        fn_1_495B0(-2147483648);
+        fn_1_495B0(0x80000000);
         fn_1_496FC(constants[22], constants[1160]);
         fn_1_4954C((f32)((f64)constants[1161] - *(f64 *)(constants + 1162)));
         fn_1_4955C(constants[112], constants[112]);
         fn_1_495C8(9);
         fn_1_49590(constants[18]);
-        fn_1_4CE48(value, constants[1164]);
+        fn_1_4CE48((Obj_1_bss_4B9CC *)value, constants[1164]);
         fn_1_53B14(0, constants[22], constants[1160],
             constants[1134], constants[1165] + fn_1_4B090(value),
             constants[1161]);
@@ -52465,7 +52472,6 @@ fn_1_4A0D8((const char *)v0);
 
 /* fzgx:begin fn_10_2406C */
 #include "rel/sel/sel.h"
-#include "rel/sel/data/lbl_10_rodata_1C40.h"
 
 typedef Obj_10_bss_55CD8_Target fn_10_2406C_Obj_4_bss_5680_Target;
 extern u8 lbl_10_bss_55CDD;

@@ -1,6 +1,11 @@
 .include "macros.inc"
 .file "fn_8000AA2C.c"
 
+# Assembly in the original: the Dolphin SDK's OS.c writes this routine as a CodeWarrior `asm`
+# function. Evidence (docs/ASM_POLICY.md section 1):
+# `bla 0x60`, an absolute branch MWCC never emits from C (the SDK's __OSDBJump: a one-word
+# trampoline copied into the exception vectors between __OSDBINTEND and __OSDBJUMPEND).
+
 # 0x8000AA2C..0x8000AA30 | size: 0x4
 .text
 .balign 4

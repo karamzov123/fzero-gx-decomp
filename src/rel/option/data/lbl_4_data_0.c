@@ -137,6 +137,11 @@ extern char lbl_4_data_1434[12];
 extern char lbl_4_data_1440[12];
 #include "rel/option/data/lbl_4_data_144C.h"
 extern char lbl_4_data_14A0[48];
+extern char lbl_4_data_14D0[18];
+extern u8 lbl_4_data_14E2;
+extern u16 lbl_4_data_14E4;
+extern char lbl_4_data_14E8[10];
+extern char lbl_4_data_14F4[9];
 
 
 
@@ -1705,4 +1710,34 @@ __declspec(section ".data") Data_lbl_4_data_144C lbl_4_data_144C __attribute__((
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_4_data_14A0[48] __attribute__((aligned(8))) = "option_menu_disp\000\000\000\000X:%4d\n\000\000Y:%4d\000\000\000%s%4d\000\000\000%4d";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_14D0[18] __attribute__((aligned(8))) = "option_calib_disp";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_4_data_14E2 __attribute__((aligned(2))) = 0xFFU;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u16 lbl_4_data_14E4 __attribute__((aligned(4))) = 0xFFFFU;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_14E8[10] __attribute__((aligned(8))) = "%s%d\201c   ";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_14F4[9] __attribute__((aligned(4))) = "%s%d\201c%s";
 #pragma explicit_zero_data reset

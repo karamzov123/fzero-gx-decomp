@@ -6,6 +6,9 @@ extern char lbl_10_data_273C[13];
 extern char lbl_10_data_274C[13];
 extern char lbl_10_data_275C[13];
 extern char lbl_10_data_276C[13];
+extern char lbl_10_data_277C[16];
+extern char lbl_10_data_278C[7];
+extern char lbl_10_data_2794[11];
 
 
 
@@ -35,4 +38,22 @@ __declspec(section ".data") char lbl_10_data_275C[13] __attribute__((aligned(4))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_276C[13] __attribute__((aligned(4))) = "Standard ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_277C[16] __attribute__((aligned(4))) = "\203X\203^\203\223\203_\201[\203h\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_278C[7] __attribute__((aligned(4))) = "Expert";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_2794[11] __attribute__((aligned(4))) = "Expert GER";
 #pragma explicit_zero_data reset
