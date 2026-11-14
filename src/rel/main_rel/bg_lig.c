@@ -1351,7 +1351,6 @@ typedef struct {
 } LigSeg;
 
 static inline f64 fn_1_D7A10_operand(f64 right, f64 left) { return left * right; }
-#pragma opt_common_subs off
 static inline f64 fn_1_D7A10_operand_(f64 right, f64 left) { return left * right; }
 static inline f64 fn_1_D7A10_operand__(f64 right, f64 left) { return left * right; }
 static inline f64 fn_1_D7A10_operand___(f64 right, f64 left) { return left * right; }
@@ -1381,13 +1380,12 @@ void fn_1_D7A10(LigSeg *obj) {
 				obj->f50 = obj->f50 * t;
 			}
 			if (obj->s5c > 0) {
-				obj->s5c = obj->s5c - 1;
+				obj->s5c--;
 			}
 		}
 		obj = (LigSeg *)((u8 *)obj + 0x30);
 	}
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_D7A10 */
 
 /* fzgx:begin fn_1_D7B7C noprologue */
