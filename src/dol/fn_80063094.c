@@ -3,14 +3,10 @@
 
 extern s32 fn_80067898(u32);
 
-#pragma opt_propagation off
-#pragma opt_lifetimes off
 s32 fn_80063094(s32 arg0, s32 arg1, s32 arg2) {
     u32 v0 = (arg0 & 0xF) << 16;
     u8 *p = (u8 *)(v0 + arg1);
-    u32 hi;
     s32 r;
-    u32 lo;
 
     switch (arg1) {
     case 0xA5000000:
@@ -31,10 +27,7 @@ s32 fn_80063094(s32 arg0, s32 arg1, s32 arg2) {
         p += ((arg2 + 0x40) & 0x7F) << 8;
         break;
     case 0xA6000000:
-        hi = (arg2 << 13) & 0x100000;
-        lo = (arg2 & 0x7F) << 8;
-        p = (u8 *)(hi + (u32)p);
-        p = (u8 *)(lo + (u32)p);
+        p += ((arg2 & 0x7F) << 8) + ((arg2 << 13) & 0x100000);
         break;
     case 0xA7200000: {
         u8 *q = (u8 *)lbl_801A6C80;
@@ -47,7 +40,5 @@ s32 fn_80063094(s32 arg0, s32 arg1, s32 arg2) {
     }
     return fn_80067898((u32)p);
 }
-#pragma opt_lifetimes reset
 
-#pragma opt_propagation reset
 
