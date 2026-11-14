@@ -7712,3 +7712,6 @@ dol/lbl_8006E1B0.c:
 
 dol/fn_8006E250.c:
 	.text       start:0x8006E250 end:0x8006E324 align:4
+
+dol/mathutil_mtxA_from_quat.c:
+	.text       start:0x8006E498 end:0x8006E540 align:4
