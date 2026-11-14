@@ -86,7 +86,6 @@ typedef struct {
 } Obj_1_47AD4_Arg0;
 typedef struct { u32 unk_0; u8 pad_4[0x58]; } Sig_1_47AD4_Info;
 typedef struct { u32 unk_0; u32 unk_4; u16 unk_8; u16 unk_A; } Tex_1_47AD4_Entry;
-#pragma opt_common_subs off
 s32 fn_1_47AD4(Obj_1_47AD4_Arg0 *arg0,s32 arg1,s32 arg2,s32 arg3) {
  Tex_1_47AD4_Entry *entry;
  Sig_1_47AD4_Info info;
@@ -159,7 +158,6 @@ s32 fn_1_47AD4(Obj_1_47AD4_Arg0 *arg0,s32 arg1,s32 arg2,s32 arg3) {
  fn_1_4877C();
  return 1;
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_47AD4 */
 
 /* fzgx:begin fn_1_47E54 */
