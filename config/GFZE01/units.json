@@ -130958,7 +130958,7 @@
     "extra_cflags": [],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
-      "@24": "lbl_1_rodata_8600"
+      "@28": "lbl_1_rodata_8600"
     }
   },
   {
