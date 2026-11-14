@@ -36394,8 +36394,12 @@
       "fn_8006B470"
     ],
     "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
+    "mw_version": "GC/2.0p1",
+    "extra_cflags": [
+      "-O4,s",
+      "-use_lmw_stmw",
+      "on"
+    ]
   },
   {
     "module": "main",

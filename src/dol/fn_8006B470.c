@@ -1,11 +1,12 @@
 #include "types.h"
 
-#pragma use_lmw_stmw on
-
-typedef struct Fn8006B470Pair {
-    u32 unk_0;
-    u32 unk_4;
-} Fn8006B470Pair;
+typedef struct PadStatus {
+    u16 unk_0;
+    u8 unk_2;
+    s8 unk_3;
+    u8 pad_4[5];
+    s8 unk_9;
+} PadStatus;
 
 typedef struct Fn8006B470Data {
     u8 pad_0[4];
@@ -17,21 +18,15 @@ typedef struct Fn8006B470Data {
     u8 pad_5[3];
     u32 unk_8;
     u8 pad_C[0x38];
-    Fn8006B470Pair pair;
-    u16 unk_4C;
+    PadStatus status;
     u8 pad_4E[2];
-    u8 data[1];
+    u8 data[0x1248 - 0x50];
 } Fn8006B470Data;
 
-typedef struct Fn8006B470Out {
-    Fn8006B470Pair pair;
-    u16 unk_8;
-} Fn8006B470Out;
-
-extern u8 lbl_80199670[18720];
+extern Fn8006B470Data lbl_80199670[4];
 extern void fn_8006BC50(void *data);
 
-#pragma opt_propagation off
+/* fn_8006B3F0, defined earlier in this TU; MWCC inlines it here. */
 static inline s32 Fn8006B470Close(Fn8006B470Data *data) {
     if (data == 0 || (u32)data + 0x10000 == 0xffff) {
         return -2;
@@ -46,35 +41,23 @@ static inline s32 Fn8006B470Close(Fn8006B470Data *data) {
     return 0;
 }
 
-s32 fn_8006B470(s8 *out) {
-    struct { u8 *value; } base;
+s32 fn_8006B470(PadStatus *out) {
     s32 i;
     Fn8006B470Data *entry;
-    s8 *dst;
-    s32 outOff;
-    s32 dataOff;
 
-    dst = out;
-    if (dst == 0) {
+    if (out == 0) {
         return -2;
     }
-    base.value = lbl_80199670;
-    for (i = 0, outOff = 0, dataOff = 0; i < 4; i++) {
-        entry = (Fn8006B470Data *)(base.value + dataOff);
+    for (i = 0; i < 4; i++) {
+        entry = &lbl_80199670[i];
         if (entry->flags.flag6) {
             Fn8006B470Close(entry);
         }
         if (entry->flags.flag7) {
-            ((Fn8006B470Out *)(dst + outOff))->pair = entry->pair;
-            ((Fn8006B470Out *)(dst + outOff))->unk_8 = entry->unk_4C;
+            out[i] = entry->status;
         } else {
-            out = (s8 *)-1;
-            dst[outOff + 9] = (s8)(s32)out;
+            out[i].unk_9 = -1;
         }
-        outOff += 10;
-        dataOff += 0x1248;
     }
     return 0;
 }
-#pragma opt_propagation reset
-
