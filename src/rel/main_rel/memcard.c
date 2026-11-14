@@ -2074,8 +2074,6 @@ void fn_1_AD1E4(Fn1AD1E4State *state, Fn1AD1E4Object *object) {
 #include "types.h"
 #include "dolphin/dvd.h"
 
-#pragma opt_propagation off
-
 typedef struct Sig_DVDOpen_DVDFileInfo Sig_DVDOpen_DVDFileInfo;
 typedef void (*Sig_DVDOpen_DVDCallback)(s32 result, Sig_DVDOpen_DVDFileInfo *fileInfo);
 struct Sig_DVDOpen_DVDFileInfo {

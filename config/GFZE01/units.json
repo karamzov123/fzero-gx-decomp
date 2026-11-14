@@ -123789,10 +123789,10 @@
     "extra_cflags": [],
     "tu": "rel/main_rel/memcard.c",
     "pool": {
-      "...data.0": "lbl_1_data_35AC8",
-      "@454": "jumptable_1_data_3C8E0",
+      "@455": "jumptable_1_data_3C8E0",
       "@9": "lbl_1_data_3C7B8",
-      "@453": "lbl_1_rodata_4CA8",
+      "@454": "lbl_1_rodata_4CA8",
+      "...data.0": "lbl_1_data_35AC8",
       "...bss.0": "lbl_1_bss_716C0",
       "lbl_1_bss_716C0": "lbl_1_bss_716C0",
       "lbl_1_bss_716C8": "lbl_1_bss_716C8",
@@ -123802,6 +123802,7 @@
       "lbl_1_bss_718B1": "lbl_1_bss_718B1",
       "lbl_1_bss_718B4": "lbl_1_bss_718B4",
       "lbl_1_bss_718B8": "lbl_1_bss_718B8",
+      "lbl_1_bss_718B8__fzgx_offset_1": "lbl_1_bss_718B8+0x1",
       "lbl_1_bss_718C0": "lbl_1_bss_718C0",
       "lbl_1_bss_718E0": "lbl_1_bss_718E0",
       "lbl_1_bss_772C8": "lbl_1_bss_772C8",
@@ -123810,8 +123811,7 @@
       "lbl_1_bss_772C8__fzgx_offset_4": "lbl_1_bss_772C8+0x4",
       "lbl_1_bss_772C8__fzgx_offset_40": "lbl_1_bss_772C8+0x40",
       "lbl_1_bss_772C8__fzgx_offset_41": "lbl_1_bss_772C8+0x41",
-      "lbl_1_bss_7730A": "lbl_1_bss_7730A",
-      "lbl_1_bss_718B8__fzgx_offset_1": "lbl_1_bss_718B8+0x1"
+      "lbl_1_bss_7730A": "lbl_1_bss_7730A"
     }
   },
   {
