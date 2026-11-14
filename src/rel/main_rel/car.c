@@ -7672,6 +7672,8 @@ s16 fn_1_847A8(s16 value, s16 divisor) {
 
     return (s16)(selected % divisor);
 }
+
+char lbl_1_data_20894[0x14] = "No LOD\n\0%2.2f m/f\n";
 /* fzgx:end fn_1_847A8 */
 
 /* fzgx:begin fn_1_84860 noprologue */

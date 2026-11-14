@@ -4798,7 +4798,7 @@ rel/main_rel/effect/fn_1_5B30C.c:
 
 rel/main_rel/car/fn_1_847A8.c:
 	.text       start:0x000847A8 end:0x00084860 align:4
-	.data       start:0x000207F0 end:0x00020894 align:8
+	.data       start:0x000207F0 end:0x000208A8 align:8
 
 rel/main_rel/font/fn_1_49794.c:
 	.text       start:0x00049794 end:0x00049F08 align:4
