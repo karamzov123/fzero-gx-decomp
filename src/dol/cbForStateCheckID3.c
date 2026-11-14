@@ -13,17 +13,17 @@ void __DVDStoreErrorCode(u32 error);
 
 BOOL DVDLowRequestError(DVDLowCallback callback);
 
-extern DVDCommandBlock *executing_801A68C0;
+extern DVDCommandBlock *executing;
 
 extern vu32 lbl_801A68E0;
 
 extern DVDCBCallback lbl_801A68E4;
 
-extern vu32 ResumeFromHere_801A68E8;
+extern vu32 ResumeFromHere;
 
 extern vs32 lbl_801A68F4;
 
-extern DVDCommandBlock DummyCommandBlock_8015CE80;
+extern DVDCommandBlock DummyCommandBlock;
 
 static void stateTimeout();
 
@@ -50,10 +50,10 @@ static inline void stateGettingError() { DVDLowRequestError(cbForStateGettingErr
 static inline BOOL CheckCancel(u32 resume) {
     DVDCommandBlock *finished;
     if (lbl_801A68E0) {
-        ResumeFromHere_801A68E8 = resume;
+        ResumeFromHere = resume;
         lbl_801A68E0 = 0;
-        finished = executing_801A68C0;
-        executing_801A68C0 = &DummyCommandBlock_8015CE80;
+        finished = executing;
+        executing = &DummyCommandBlock;
         finished->state = 10;
         if (finished->callback)
             (*finished->callback)(-3, finished);
@@ -75,15 +75,15 @@ void DVDReset(void);
 
 void cbForStateCheckID3(u32 intType) {
     if (intType == 16) {
-        executing_801A68C0->state = -1;
+        executing->state = -1;
         stateTimeout();
         return;
     }
     if (intType & 1) {
         lbl_801A68F4 = 0;
         if (!CheckCancel(0)) {
-            executing_801A68C0->state = 1;
-            stateBusy(executing_801A68C0);
+            executing->state = 1;
+            stateBusy(executing);
         }
     } else {
         stateGettingError();

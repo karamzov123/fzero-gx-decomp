@@ -14,7 +14,7 @@ struct InitMetroTRKCommTable_gDBCommTable {
 };
 
 extern struct InitMetroTRKCommTable_gDBCommTable gDBCommTable[];
-extern u8 EndofProgramInstruction_80095BC8[];
+extern u8 EndofProgramInstruction[];
 extern u8 TRK_Use_BBA[];
 extern void OSReport(const char *, ...);
 extern int Hu_IsStub(void);
@@ -52,7 +52,7 @@ extern s32 ddh_cc_initinterrupts(void);
 #pragma opt_dead_assignments off
 s32 InitMetroTRKCommTable(s32 transport) {
     s32 result = 1;
-    u8 *str = (u8 *)EndofProgramInstruction_80095BC8;
+    u8 *str = (u8 *)EndofProgramInstruction;
 
     OSReport((const char *)(str + 8), transport);
     TRK_Use_BBA[0] = 0;

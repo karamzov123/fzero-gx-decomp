@@ -5,12 +5,12 @@
 
 vu32 __EXIRegs[16] : FZGX_ADDR___EXIRegs;
 
-extern EXIControl Ecb_8015CCB0[3];
+extern EXIControl Ecb[3];
 
 BOOL __EXIProbe(s32 chan);
 
 BOOL EXISelect(s32 chan, u32 dev, u32 freq) {
-    EXIControl *exi = &Ecb_8015CCB0[chan];
+    EXIControl *exi = &Ecb[chan];
     u32 cpr;
     BOOL enabled;
     enabled = OSDisableInterrupts();

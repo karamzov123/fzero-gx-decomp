@@ -39,10 +39,10 @@ volatile OSContext *__OSFPUContext : FZGX_ADDR___OSFPUContext; // fzgx-allow: S2
 void OSReport(const char *msg, ...);
 
 // Shared .rodata blob holding this unit's report formats at fixed offsets.
-extern char OSErrorData_80122C30[];
+extern char OSErrorData[];
 
 void __OSUnhandledException(__OSException exception, OSContext *context, u32 dsisr, u32 dar) {
-    const char *data = OSErrorData_80122C30;
+    const char *data = OSErrorData;
     OSTime now;
 
     now = OSGetTime();

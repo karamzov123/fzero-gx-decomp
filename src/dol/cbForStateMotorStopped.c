@@ -24,9 +24,9 @@ void __DVDClearWaitingQueue();
 
 vu32 __DIRegs[16] : FZGX_ADDR___DIRegs;
 
-extern DVDCommandBlock *executing_801A68C0;
+extern DVDCommandBlock *executing;
 
-extern vu32 CurrCommand_801A68DC;
+extern vu32 CurrCommand;
 
 void stateReady();
 
@@ -39,15 +39,15 @@ void cbForStateMotorStopped(u32 intType) {
     DVDCommandBlock *finished;
 
     __DIRegs[1] = 0;
-    executing_801A68C0->state = 3;
-    switch (CurrCommand_801A68DC) {
+    executing->state = 3;
+    switch (CurrCommand) {
     case 5:
     case 4:
     case 13:
     case 15:
         __DVDClearWaitingQueue();
-        finished = executing_801A68C0;
-        executing_801A68C0 = &(bss->DummyCommandBlock);
+        finished = executing;
+        executing = &(bss->DummyCommandBlock);
         if (finished->callback) {
             (finished->callback)(-4, finished);
         }

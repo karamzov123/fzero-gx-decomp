@@ -1,7 +1,7 @@
 #include "types.h"
 
-extern u32 __OSArenaHi_801A6790;
+extern u32 __OSArenaHi;
 
 u32 OSGetArenaHi(void) {
-    return __OSArenaHi_801A6790;
+    return __OSArenaHi;
 }

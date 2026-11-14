@@ -36,12 +36,12 @@ vu32 __DIRegs[16] : FZGX_ADDR___DIRegs;
 extern BOOL lbl_801A6468;
 
 // Hardware or OS state can change asynchronously.
-extern volatile u32 WorkAroundType_801A687C; // fzgx-allow: S2 SDK asynchronous state
+extern volatile u32 WorkAroundType; // fzgx-allow: S2 SDK asynchronous state
 
 // Hardware or OS state can change asynchronously.
 extern volatile OSTime lbl_801A6888; // fzgx-allow: S2 SDK asynchronous state
 
-extern vu32 NextCommandNumber_801A689C;
+extern vu32 NextCommandNumber;
 
 void Read(void *addr, u32 length, u32 offset, DVDLowCallback callback);
 
@@ -84,7 +84,7 @@ static inline BOOL HitCache(DVDBuffer *cur, DVDBuffer *prev) {
 
 static inline void DoJustRead(void *addr, u32 length, u32 offset, DVDLowCallback callback) {
     CommandList[0].cmd = -1;
-    NextCommandNumber_801A689C = 0;
+    NextCommandNumber = 0;
     Read(addr, length, offset, callback);
 }
 
@@ -98,7 +98,7 @@ static inline void WaitBeforeRead(void *addr, u32 length, u32 offset, DVDLowCall
     CommandList[0].offset = offset;
     CommandList[0].callback = callback;
     CommandList[1].cmd = -1;
-    NextCommandNumber_801A689C = 0;
+    NextCommandNumber = 0;
     OSCreateAlarm(&__DVDLowAlarmForWA__fzgx_offset_0);
     OSSetAlarm(&__DVDLowAlarmForWA__fzgx_offset_0, timeout, AlarmHandler_dvdlow);
 }
@@ -110,9 +110,9 @@ BOOL DVDLowRead(void *addr, u32 length, u32 offset, DVDLowCallback callback) {
     __DVDLowCurr__fzgx_offset_0.addr = addr;
     __DVDLowCurr__fzgx_offset_0.length = length;
     __DVDLowCurr__fzgx_offset_0.offset = offset;
-    if (WorkAroundType_801A687C == 0) {
+    if (WorkAroundType == 0) {
         DoJustRead(addr, length, offset, callback);
-    } else if (WorkAroundType_801A687C == 1) {
+    } else if (WorkAroundType == 1) {
         if (lbl_801A6468) {
             SeekTwiceBeforeRead(addr, length, offset, callback);
         } else {

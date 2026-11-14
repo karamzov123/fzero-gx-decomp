@@ -6,9 +6,9 @@
 #include "sdk_addresses.h"
 #pragma scheduling off
 
-extern EXIControl Ecb_8015CCB0[3];
+extern EXIControl Ecb[3];
 
-extern u32 IDSerialPort1_801A6838;
+extern u32 IDSerialPort1;
 
 s32 __EXIProbeStartTime[2] : FZGX_ADDR___EXIProbeStartTime;
 
@@ -17,7 +17,7 @@ void SetExiInterruptMask(s32 chan, EXIControl *exi);
 BOOL __EXIProbe(s32 chan);
 
 static inline BOOL __EXIAttach(s32 chan, EXICallback extCallback) {
-    EXIControl *exi = &Ecb_8015CCB0[chan];
+    EXIControl *exi = &Ecb[chan];
     BOOL enabled;
     enabled = OSDisableInterrupts();
     if ((exi->state & 0x08) || __EXIProbe(chan) == 0) {
@@ -33,7 +33,7 @@ static inline BOOL __EXIAttach(s32 chan, EXICallback extCallback) {
 }
 
 static inline BOOL EXIDetach(s32 chan) {
-    EXIControl *exi = &Ecb_8015CCB0[chan];
+    EXIControl *exi = &Ecb[chan];
     BOOL enabled;
     enabled = OSDisableInterrupts();
     if (!(exi->state & 0x08)) {
@@ -51,7 +51,7 @@ static inline BOOL EXIDetach(s32 chan) {
 }
 
 static inline BOOL EXIUnlock(s32 chan) {
-    EXIControl *exi = &Ecb_8015CCB0[chan];
+    EXIControl *exi = &Ecb[chan];
     BOOL enabled;
     EXICallback unlockedCallback;
     enabled = OSDisableInterrupts();
@@ -75,14 +75,14 @@ static inline BOOL EXIUnlock(s32 chan) {
 void UnlockedHandler(s32 chan, OSContext *context);
 
 s32 EXIGetID(s32 chan, u32 dev, u32 *id) {
-    EXIControl *exi = &Ecb_8015CCB0[chan];
+    EXIControl *exi = &Ecb[chan];
     BOOL err;
     u32 cmd;
     s32 startTime;
     BOOL enabled;
     BOOL interrupt;
-    if (chan == 0 && dev == 2 && IDSerialPort1_801A6838) {
-        *id = IDSerialPort1_801A6838;
+    if (chan == 0 && dev == 2 && IDSerialPort1) {
+        *id = IDSerialPort1;
         return 1;
     }
     if (chan < 2 && dev == 0) {

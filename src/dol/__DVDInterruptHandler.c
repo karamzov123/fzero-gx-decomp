@@ -34,20 +34,20 @@ BOOL DVDLowSeek(u32 offset, DVDLowCallback callback);
 extern BOOL lbl_801A6468;
 
 // Hardware or OS state can change asynchronously.
-extern volatile BOOL StopAtNextInt_801A6858; // fzgx-allow: S2 SDK asynchronous state
+extern volatile BOOL StopAtNextInt; // fzgx-allow: S2 SDK asynchronous state
 
-extern DVDLowCallback Callback_801A6860;
+extern DVDLowCallback Callback;
 
 extern DVDLowCallback lbl_801A6864;
 
 // Hardware or OS state can change asynchronously.
-extern volatile OSTime LastResetEnd_801A6868; // fzgx-allow: S2 SDK asynchronous state
+extern volatile OSTime LastResetEnd; // fzgx-allow: S2 SDK asynchronous state
 
 // Hardware or OS state can change asynchronously.
-extern volatile u32 ResetOccurred_801A6870; // fzgx-allow: S2 SDK asynchronous state
+extern volatile u32 ResetOccurred; // fzgx-allow: S2 SDK asynchronous state
 
 // Hardware or OS state can change asynchronously.
-extern volatile BOOL WaitingCoverClose_801A6874; // fzgx-allow: S2 SDK asynchronous state
+extern volatile BOOL WaitingCoverClose; // fzgx-allow: S2 SDK asynchronous state
 
 extern BOOL lbl_801A6878;
 
@@ -57,7 +57,7 @@ extern volatile OSTime lbl_801A6888; // fzgx-allow: S2 SDK asynchronous state
 // Hardware or OS state can change asynchronously.
 extern volatile BOOL lbl_801A6898; // fzgx-allow: S2 SDK asynchronous state
 
-extern vu32 NextCommandNumber_801A689C;
+extern vu32 NextCommandNumber;
 
 void Read(void *addr, u32 length, u32 offset, DVDLowCallback callback);
 
@@ -87,15 +87,15 @@ static void layout____bss_0(void) {
 #pragma section code_type ".text"
 
 static inline BOOL ProcessNextCommand() {
-    s32 n = NextCommandNumber_801A689C;
+    s32 n = NextCommandNumber;
     ((void)0);
     if (CommandList_8015CD70[n].cmd == 1) {
-        ++NextCommandNumber_801A689C;
+        ++NextCommandNumber;
         Read(CommandList_8015CD70[n].addr, CommandList_8015CD70[n].length,
                     CommandList_8015CD70[n].offset, CommandList_8015CD70[n].callback);
         return 1;
     } else if (CommandList_8015CD70[n].cmd == 2) {
-        ++NextCommandNumber_801A689C;
+        ++NextCommandNumber;
         DVDLowSeek(CommandList_8015CD70[n].offset, CommandList_8015CD70[n].callback);
         return 1;
     }
@@ -115,12 +115,12 @@ void __DVDInterruptHandler(__OSInterrupt interrupt, OSContext *context) {
         __DVDLowPrev__fzgx_offset_0.addr = __DVDLowCurr__fzgx_offset_0.addr;
         __DVDLowPrev__fzgx_offset_0.length = __DVDLowCurr__fzgx_offset_0.length;
         __DVDLowPrev__fzgx_offset_0.offset = __DVDLowCurr__fzgx_offset_0.offset;
-        if (StopAtNextInt_801A6858 == 1) {
+        if (StopAtNextInt == 1) {
             cause |= 8;
         }
     }
     lbl_801A6898 = 0;
-    StopAtNextInt_801A6858 = 0;
+    StopAtNextInt = 0;
     reg = __DIRegs[0];
     mask = reg & 0x2a;
     intr = (reg & 0x54) & (mask << 1);
@@ -134,11 +134,11 @@ void __DVDInterruptHandler(__OSInterrupt interrupt, OSContext *context) {
         cause |= 2;
     }
     if (cause) {
-        ResetOccurred_801A6870 = 0;
+        ResetOccurred = 0;
         OSCancelAlarm(&AlarmForTimeout);
     }
     __DIRegs[0] = intr | mask;
-    if (ResetOccurred_801A6870 && (__OSGetSystemTime() - LastResetEnd_801A6868) <
+    if (ResetOccurred && (__OSGetSystemTime() - LastResetEnd) <
                                       ((200) * (((u32)__OSBusClock / 4) / 1000))) {
         reg = __DIRegs[1];
         mask = reg & 0x2;
@@ -150,7 +150,7 @@ void __DVDInterruptHandler(__OSInterrupt interrupt, OSContext *context) {
             lbl_801A6864 = 0;
         }
         __DIRegs[1] = __DIRegs[1];
-    } else if (WaitingCoverClose_801A6874) {
+    } else if (WaitingCoverClose) {
         reg = __DIRegs[1];
         mask = reg & 2;
         intr = (reg & 4) & (mask << 1);
@@ -158,7 +158,7 @@ void __DVDInterruptHandler(__OSInterrupt interrupt, OSContext *context) {
             cause |= 4;
         }
         __DIRegs[1] = intr | mask;
-        WaitingCoverClose_801A6874 = 0;
+        WaitingCoverClose = 0;
     } else {
         __DIRegs[1] = 0;
     }
@@ -171,13 +171,13 @@ void __DVDInterruptHandler(__OSInterrupt interrupt, OSContext *context) {
         }
     } else {
         CommandList_8015CD70[0].cmd = -1;
-        NextCommandNumber_801A689C = 0;
+        NextCommandNumber = 0;
     }
     OSClearContext(&exceptionContext);
     OSSetCurrentContext(&exceptionContext);
     if (cause) {
-        cb = Callback_801A6860;
-        Callback_801A6860 = 0;
+        cb = Callback;
+        Callback = 0;
         if (cb) {
             cb(cause);
         }

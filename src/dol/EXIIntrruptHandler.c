@@ -11,7 +11,7 @@ void OSSetCurrentContext(OSContext *context);
 
 vu32 __EXIRegs[16] : FZGX_ADDR___EXIRegs;
 
-extern EXIControl Ecb_8015CCB0[3];
+extern EXIControl Ecb[3];
 
 static inline u32 EXIClearInterrupts(s32 chan, BOOL exi, BOOL tc, BOOL ext) {
     u32 cpr;
@@ -33,7 +33,7 @@ void EXIIntrruptHandler(__OSInterrupt interrupt, OSContext *context) {
     EXIControl *exi;
     EXICallback callback;
     chan = (interrupt - 9) / 3;
-    exi = &Ecb_8015CCB0[chan];
+    exi = &Ecb[chan];
     EXIClearInterrupts(chan, 1, 0, 0);
     callback = exi->exiCallback;
     if (callback) {

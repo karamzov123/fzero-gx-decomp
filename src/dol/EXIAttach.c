@@ -4,12 +4,12 @@
 
 s32 EXIGetID(s32 chan, u32 dev, u32 *id);
 
-extern EXIControl Ecb_8015CCB0[3];
+extern EXIControl Ecb[3];
 
 BOOL __EXIProbe(s32 chan);
 
 static inline BOOL EXIProbe(s32 chan) {
-    EXIControl *exi = &Ecb_8015CCB0[chan];
+    EXIControl *exi = &Ecb[chan];
     BOOL rc;
     u32 id;
     rc = __EXIProbe(chan);
@@ -20,7 +20,7 @@ static inline BOOL EXIProbe(s32 chan) {
 }
 
 static inline BOOL __EXIAttach(s32 chan, EXICallback extCallback) {
-    EXIControl *exi = &Ecb_8015CCB0[chan];
+    EXIControl *exi = &Ecb[chan];
     BOOL enabled;
     enabled = OSDisableInterrupts();
     if ((exi->state & 0x08) || __EXIProbe(chan) == 0) {
@@ -36,7 +36,7 @@ static inline BOOL __EXIAttach(s32 chan, EXICallback extCallback) {
 }
 
 BOOL EXIAttach(s32 chan, EXICallback extCallback) {
-    EXIControl *exi = &Ecb_8015CCB0[chan];
+    EXIControl *exi = &Ecb[chan];
     BOOL enabled;
     BOOL rc;
     EXIProbe(chan);

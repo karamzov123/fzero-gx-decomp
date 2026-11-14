@@ -26,23 +26,23 @@ typedef struct BootInfo {
     u32 field3c;
 } BootInfo;
 
-extern ExecutingState *executing_801A68C0;
-extern BootInfo *bootInfo_801A68C8;
+extern ExecutingState *executing;
+extern BootInfo *bootInfo;
 extern u32 BB2[];
 
 void fn_80018330(u32 state) {
     if (state == 0x10) {
-        executing_801A68C0->error = -1;
+        executing->error = -1;
         __DVDStoreErrorCode(0x01234568);
         DVDReset();
         cbForStateError(0);
     } else if (state & 1) {
         lbl_801A68F4 = 0;
         lbl_801A6904 = (u32)fn_80017838;
-        if (bootInfo_801A68C8->field3c < BB2[2]) {
+        if (bootInfo->field3c < BB2[2]) {
             OSPanic(lbl_801A6484, 0x287, lbl_80123FE4);
         }
-        DVDLowRead(bootInfo_801A68C8->field38,
+        DVDLowRead(bootInfo->field38,
                     (BB2[2] + 0x1f) & ~0x1f,
                     BB2[1],
                     (u32)cbForStateReadingFST);

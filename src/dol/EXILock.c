@@ -3,12 +3,12 @@
 #include <dolphin/os/OSRtc.h>
 #pragma scheduling off
 
-extern EXIControl Ecb_8015CCB0[3];
+extern EXIControl Ecb[3];
 
 void SetExiInterruptMask(s32 chan, EXIControl *exi);
 
 BOOL EXILock(s32 chan, u32 dev, EXICallback unlockedCallback) {
-    EXIControl *exi = &Ecb_8015CCB0[chan];
+    EXIControl *exi = &Ecb[chan];
     BOOL enabled;
     int i;
     enabled = OSDisableInterrupts();

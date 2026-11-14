@@ -6,12 +6,12 @@ typedef void (*DVDLowCallback)(u32 intType);
 
 vu32 __DIRegs[16] : FZGX_ADDR___DIRegs;
 
-extern DVDLowCallback Callback_801A6860;
+extern DVDLowCallback Callback;
 
 DVDLowCallback DVDLowClearCallback() {
     DVDLowCallback old;
     __DIRegs[1] = 0;
-    old = Callback_801A6860;
-    Callback_801A6860 = ((void *)0);
+    old = Callback;
+    Callback = ((void *)0);
     return old;
 }

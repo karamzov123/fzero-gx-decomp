@@ -2,6 +2,11 @@
 #include "types.h"
 
 extern const char lbl_80095A78[168];
+extern const u32 lbl_80095B20[4];
+extern const u32 lbl_80095B30[10];
+extern const u32 lbl_80095B58[10];
+extern const u32 lbl_80095B80[10];
+extern const char lbl_80095BA8[16];
 
 
 
@@ -9,4 +14,42 @@ extern const char lbl_80095A78[168];
 __declspec(section ".rodata") const char lbl_80095A78[168] __attribute__((aligned(8))) = "Calling MessageSend\n\000\000\000\000msg_command : 0x%02x hdr->cmdID 0x%02x\n\000msg_error : 0x%"
     "02x\n\000RequestSend : Bad ack or non ack received msg_command : 0x%02x msg_error 0x%02x\n\000"
     "\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const u32 lbl_80095B20[4] __attribute__((aligned(8))) = {
+    0x00000000U, 0xFFFFFFFFU, 0x00000001U, 0x00000001U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const u32 lbl_80095B30[10] __attribute__((aligned(8))) = {
+    0x60000000U, 0x60000000U, 0x60000000U, 0x60000000U, 0x60000000U, 0x60000000U, 0x60000000U, 0x60000000U, 0x60000000U, 0x60000000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const u32 lbl_80095B58[10] __attribute__((aligned(8))) = {
+    0x60000000U, 0x60000000U, 0x60000000U, 0x60000000U, 0x60000000U, 0x60000000U, 0x60000000U, 0x60000000U, 0x60000000U, 0x60000000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const u32 lbl_80095B80[10] __attribute__((aligned(8))) = {
+    0x60000000U, 0x60000000U, 0x60000000U, 0x60000000U, 0x60000000U, 0x60000000U, 0x60000000U, 0x60000000U, 0x60000000U, 0x60000000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const char lbl_80095BA8[16] __attribute__((aligned(8))) = "TargetDoStep()\n";
 #pragma explicit_zero_data reset

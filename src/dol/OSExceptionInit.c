@@ -10,9 +10,9 @@ void *memcpy(void *dest, const void *src, size_t n);
 
 void DBPrintf(char *format, ...);
 
-extern u32 *BI2DebugFlag_801A674C;
+extern u32 *BI2DebugFlag;
 
-extern __OSExceptionHandler *OSExceptionTable_801A676C;
+extern __OSExceptionHandler *OSExceptionTable;
 
 void OSDefaultExceptionHandler(__OSException exception, OSContext *context);
 
@@ -85,7 +85,7 @@ void OSExceptionInit(void) {
         ICInvalidateRange(destAddr, (u32)__OSDBINTEND - (u32)__OSDBINTSTART);
     }
     for (exception = 0; exception < (14 + 1); exception++) {
-        if (BI2DebugFlag_801A674C && (*BI2DebugFlag_801A674C >= 2) &&
+        if (BI2DebugFlag && (*BI2DebugFlag >= 2) &&
             __DBIsExceptionMarked(exception)) {
             DBPrintf(">>> OSINIT: exception %d commandeered by TRK\n", exception);
             continue;
@@ -109,7 +109,7 @@ void OSExceptionInit(void) {
         __sync();
         ICInvalidateRange(destAddr, handlerSize);
     }
-    OSExceptionTable_801A676C = ((void *)((u32)(0x3000) + (0x8000 << 16)));
+    OSExceptionTable = ((void *)((u32)(0x3000) + (0x8000 << 16)));
     for (exception = 0; exception < (14 + 1); exception++) {
         __OSSetExceptionHandler(exception, OSDefaultExceptionHandler);
     }

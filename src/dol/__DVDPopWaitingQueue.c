@@ -5,7 +5,7 @@ typedef struct DVDCommandBlock {
     struct DVDCommandBlock *prev;
 } DVDCommandBlock;
 
-extern DVDCommandBlock WaitingQueue_8015CED8[4];
+extern DVDCommandBlock WaitingQueue[4];
 
 extern u32 OSDisableInterrupts(void);
 extern void OSRestoreInterrupts(u32 interrupts);
@@ -17,12 +17,12 @@ DVDCommandBlock *__DVDPopWaitingQueue(void) {
 
     interrupts = OSDisableInterrupts();
     for (i = 0; i < 4; i++) {
-        if (WaitingQueue_8015CED8[i].next != &WaitingQueue_8015CED8[i]) {
+        if (WaitingQueue[i].next != &WaitingQueue[i]) {
             OSRestoreInterrupts(interrupts);
             interrupts = OSDisableInterrupts();
-            block = WaitingQueue_8015CED8[i].next;
-            WaitingQueue_8015CED8[i].next = block->next;
-            block->next->prev = &WaitingQueue_8015CED8[i];
+            block = WaitingQueue[i].next;
+            WaitingQueue[i].next = block->next;
+            block->next->prev = &WaitingQueue[i];
             OSRestoreInterrupts(interrupts);
             block->next = NULL;
             block->prev = NULL;

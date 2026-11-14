@@ -10,7 +10,7 @@ typedef struct ExecutingState {
     s32 error;
 } ExecutingState;
 
-extern ExecutingState *executing_801A68C0;
+extern ExecutingState *executing;
 typedef struct DVDRegs {
     u8 _pad[0x20];
     u32 status;
@@ -21,12 +21,12 @@ extern volatile DVDRegs __DVDRegs;
 
 void cbForUnrecoveredErrorRetry(u32 state) {
     if (state == 0x10) {
-        executing_801A68C0->error = -1;
+        executing->error = -1;
         __DVDStoreErrorCode(0x01234568);
         DVDReset();
         cbForStateError(0);
     } else {
-        executing_801A68C0->error = -1;
+        executing->error = -1;
         if (state & 2) {
             __DVDStoreErrorCode(0x01234567);
             DVDLowStopMotor((u32)cbForStateError);

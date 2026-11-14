@@ -7,10 +7,10 @@
 
 vu32 __EXIRegs[16] : FZGX_ADDR___EXIRegs;
 
-extern EXIControl Ecb_8015CCB0[3];
+extern EXIControl Ecb[3];
 
 BOOL EXIImm(s32 chan, void *buf, s32 len, u32 type, EXICallback callback) {
-    EXIControl *exi = &Ecb_8015CCB0[chan];
+    EXIControl *exi = &Ecb[chan];
     BOOL enabled;
     enabled = OSDisableInterrupts();
     if ((exi->state & (0x01 | 0x02)) || !(exi->state & 0x04)) {

@@ -22,10 +22,10 @@ struct FSTEntry {
 
 extern FSTEntry *FstStart;
 
-extern u32 MaxEntryNum_801A68AC;
+extern u32 MaxEntryNum;
 
 BOOL DVDFastOpen(s32 entrynum, DVDFileInfo *fileInfo) {
-    if ((entrynum < 0) || (entrynum >= MaxEntryNum_801A68AC) ||
+    if ((entrynum < 0) || (entrynum >= MaxEntryNum) ||
         (((FstStart[entrynum].isDirAndStringOff & 0xff000000) == 0) ? 0 : 1)) {
         return 0;
     }

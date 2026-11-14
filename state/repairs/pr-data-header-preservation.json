@@ -1,0 +1,58 @@
+{
+  "format": "fzgx-investigation-v1",
+  "topic": "PR conflict resolution and recovered BSS header preservation",
+  "base": "ef5f7202d8efecb21ef7d913a9a9d50d2f3eb8e6",
+  "pull_requests": {
+    "333": "90bcc838a8ac83eee6690b5dc632434d2028bda4",
+    "334": "d574a32eb7b8874f469d4e1296806e93622a6210",
+    "336": "790111ce04ca5525599868ff6b32b536674ff4c0"
+  },
+  "conflict_resolution": "Retain the math kernel, quaternion and EABI code splits from current main and the preceding PRs. Retain the data import's regrouped ownership, not duplicate obsolete data splits from the merge base.",
+  "measured_cause": "generate(..., opaque_bss=True) disabled header lookup in the BSS-rescue path before testing the recovered type. The exception retry could also erase a header type.",
+  "rescue_experiment": {
+    "cohort": "One real retail main:FifoObj symbol selected for the importer rescue path; no installation",
+    "compiler": "The normal oracle.compile_source MWCC profile for the main module",
+    "before": {
+      "definition": "u8 FifoObj[128]",
+      "method": "opaque-bss-header-mismatch"
+    },
+    "after": {
+      "definition": "GXFifoObj FifoObj",
+      "method": "declared-bss"
+    },
+    "validated": "128 bytes, .bss NOBITS, alignment 8, exact symbol extent and ownership, no extra allocated storage",
+    "skipped": []
+  },
+  "regeneration_extent_failure": {
+    "symbol": "main:lbl_801A7918",
+    "caller_declaration": "u32 lbl_801A7918",
+    "retail_bytes": 8,
+    "observed_failure": "Compiler emitted 4 bytes for the 8-byte retail object during regeneration.",
+    "repair": "Require the complete fixed-width scalar or array extent to equal retail before using a caller-only declaration; retain opaque storage for partial declarations. Header declarations still require real MWCC validation and are never erased."
+  },
+  "regenerated": {
+    "symbols": ["main:FifoObj", "main:gxData", "main:lbl_801A7918"],
+    "objects": 3,
+    "bytes": 1408,
+    "imported": true,
+    "second_apply_preserves_source_and_full_provenance_bytes": true,
+    "skipped": []
+  },
+  "verification": {
+    "each_cumulative_pr_stage": "configure, MWCC/Ninja build, all 16 retail target hashes, fzgx lint passed",
+    "source_declared_array_regression": {
+      "selected": ["customize:lbl_3_bss_243A8", "customize:lbl_3_bss_2C70C", "customize:lbl_3_bss_7EBB0"],
+      "complete_shared_unit_cohort_objects": 7,
+      "bytes": 686,
+      "skipped": []
+    },
+    "unit_tests": "None added, per AGENTS.md"
+  },
+  "reproduce": [
+    "uv run tools/fzgx.py data-import --regenerate FifoObj gxData lbl_801A7918 --apply",
+    "python3 configure.py && ninja build/GFZE01/ok",
+    "build/tools/dtk shasum -c config/GFZE01/build.sha1",
+    "uv run tools/fzgx.py lint"
+  ],
+  "publication": "Local integration only; no push, contributor branch update, or GitHub merge of the repaired PRs performed."
+}

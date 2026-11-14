@@ -7,7 +7,7 @@ void PPCMtdec(u32 val);
 extern struct OSAlarmQueue {
     OSAlarm *head;
     OSAlarm *tail;
-} AlarmQueue_801A6788;
+} AlarmQueue;
 
 static inline void SetTimer(OSAlarm *alarm) {
     OSTime delta;
@@ -33,7 +33,7 @@ void InsertAlarm(OSAlarm *alarm, OSTime fire, OSAlarmHandler handler) {
     }
     alarm->handler = handler;
     alarm->fire = fire;
-    for (next = AlarmQueue_801A6788.head; next; next = next->next) {
+    for (next = AlarmQueue.head; next; next = next->next) {
         if (next->fire <= fire) {
             continue;
         }
@@ -44,19 +44,19 @@ void InsertAlarm(OSAlarm *alarm, OSTime fire, OSAlarmHandler handler) {
         if (prev) {
             prev->next = alarm;
         } else {
-            AlarmQueue_801A6788.head = alarm;
+            AlarmQueue.head = alarm;
             SetTimer(alarm);
         }
         return;
     }
     alarm->next = 0;
-    prev = AlarmQueue_801A6788.tail;
-    AlarmQueue_801A6788.tail = alarm;
+    prev = AlarmQueue.tail;
+    AlarmQueue.tail = alarm;
     alarm->prev = prev;
     if (prev) {
         prev->next = alarm;
     } else {
-        AlarmQueue_801A6788.head = AlarmQueue_801A6788.tail = alarm;
+        AlarmQueue.head = AlarmQueue.tail = alarm;
         SetTimer(alarm);
     }
 }

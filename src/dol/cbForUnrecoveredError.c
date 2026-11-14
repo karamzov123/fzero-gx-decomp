@@ -12,11 +12,11 @@ typedef struct ExecutingState {
     s32 error;
 } ExecutingState;
 
-extern ExecutingState *executing_801A68C0;
+extern ExecutingState *executing;
 
 void cbForUnrecoveredError(u32 state) {
     if (state == 0x10) {
-        executing_801A68C0->error = -1;
+        executing->error = -1;
         __DVDStoreErrorCode(0x01234568);
         DVDReset();
         cbForStateError(0);

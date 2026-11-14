@@ -4,11 +4,11 @@
 
 __OSInterruptHandler __OSGetInterruptHandler(__OSInterrupt interrupt);
 
-extern EXIControl Ecb_8015CCB0[3];
+extern EXIControl Ecb[3];
 
 void SetExiInterruptMask(s32 chan, EXIControl *exi) {
     EXIControl *exi2;
-    exi2 = &Ecb_8015CCB0[2];
+    exi2 = &Ecb[2];
     switch (chan) {
     case 0:
         if ((exi->exiCallback == 0 && exi2->exiCallback == 0) || (exi->state & 0x10)) {

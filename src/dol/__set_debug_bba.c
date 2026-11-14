@@ -1,7 +1,7 @@
 #include "types.h"
 
-extern u8 Debug_BBA_801A6808;
+extern u8 Debug_BBA;
 
 __declspec(section ".init") void __set_debug_bba(void) {
-    Debug_BBA_801A6808 = 1;
+    Debug_BBA = 1;
 }

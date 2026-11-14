@@ -22,23 +22,23 @@ BOOL DVDLowAudioStream(u32 subcmd, u32 length, u32 offset, DVDLowCallback callba
 
 vu32 __DIRegs[16] : FZGX_ADDR___DIRegs;
 
-extern DVDCommandBlock *executing_801A68C0;
+extern DVDCommandBlock *executing;
 
 // Hardware or OS state can change asynchronously.
 extern volatile BOOL lbl_801A68D4; // fzgx-allow: S2 SDK asynchronous state
 
-extern vu32 CurrCommand_801A68DC;
+extern vu32 CurrCommand;
 
 extern vu32 lbl_801A68E0;
 
 extern DVDCBCallback lbl_801A68E4;
 
-extern vu32 ResumeFromHere_801A68E8;
+extern vu32 ResumeFromHere;
 
 extern vs32 lbl_801A68F4;
 
 // Hardware or OS state can change asynchronously.
-extern volatile BOOL ResetRequired_801A68F8; // fzgx-allow: S2 SDK asynchronous state
+extern volatile BOOL ResetRequired; // fzgx-allow: S2 SDK asynchronous state
 
 static void stateTimeout();
 
@@ -88,10 +88,10 @@ static inline void stateGettingError() { DVDLowRequestError(cbForStateGettingErr
 static inline BOOL CheckCancel(u32 resume) {
     DVDCommandBlock *finished;
     if (lbl_801A68E0) {
-        ResumeFromHere_801A68E8 = resume;
+        ResumeFromHere = resume;
         lbl_801A68E0 = 0;
-        finished = executing_801A68C0;
-        executing_801A68C0 = &DummyCommandBlock;
+        finished = executing;
+        executing = &DummyCommandBlock;
         finished->state = 10;
         if (finished->callback)
             (*finished->callback)(-3, finished);
@@ -139,34 +139,34 @@ void DVDReset(void);
 void cbForStateBusy(u32 intType) {
     DVDCommandBlock *finished;
     if (intType == 16) {
-        executing_801A68C0->state = -1;
+        executing->state = -1;
         stateTimeout();
         return;
     }
-    if ((CurrCommand_801A68DC == 3) || (CurrCommand_801A68DC == 15)) {
+    if ((CurrCommand == 3) || (CurrCommand == 15)) {
         if (intType & 2) {
-            executing_801A68C0->state = -1;
+            executing->state = -1;
             stateError(0x1234567);
             return;
         }
         lbl_801A68F4 = 0;
-        if (CurrCommand_801A68DC == 15) {
-            ResetRequired_801A68F8 = 1;
+        if (CurrCommand == 15) {
+            ResetRequired = 1;
         }
         if (CheckCancel(7)) {
             return;
         }
-        executing_801A68C0->state = 7;
+        executing->state = 7;
         stateMotorStopped();
         return;
     }
-    if (IsDmaCommand(CurrCommand_801A68DC)) {
-        executing_801A68C0->transferredSize += executing_801A68C0->currTransferSize - __DIRegs[6];
+    if (IsDmaCommand(CurrCommand)) {
+        executing->transferredSize += executing->currTransferSize - __DIRegs[6];
     }
     if (intType & 8) {
         lbl_801A68E0 = 0;
-        finished = executing_801A68C0;
-        executing_801A68C0 = &DummyCommandBlock;
+        finished = executing;
+        executing = &DummyCommandBlock;
         finished->state = 10;
         if (finished->callback)
             (*finished->callback)(-3, finished);
@@ -179,37 +179,37 @@ void cbForStateBusy(u32 intType) {
         lbl_801A68F4 = 0;
         if (CheckCancel(0))
             return;
-        if (IsDmaCommand(CurrCommand_801A68DC)) {
-            if (executing_801A68C0->transferredSize != executing_801A68C0->length) {
-                stateBusy(executing_801A68C0);
+        if (IsDmaCommand(CurrCommand)) {
+            if (executing->transferredSize != executing->length) {
+                stateBusy(executing);
                 return;
             }
-            finished = executing_801A68C0;
-            executing_801A68C0 = &DummyCommandBlock;
+            finished = executing;
+            executing = &DummyCommandBlock;
             finished->state = 0;
             if (finished->callback) {
                 (finished->callback)((s32)finished->transferredSize, finished);
             }
             stateReady();
-        } else if (IsImmCommandWithResult(CurrCommand_801A68DC)) {
+        } else if (IsImmCommandWithResult(CurrCommand)) {
             s32 result;
-            if ((CurrCommand_801A68DC == 11) || (CurrCommand_801A68DC == 10)) {
+            if ((CurrCommand == 11) || (CurrCommand == 10)) {
                 result = (s32)(__DIRegs[8] << 2);
             } else {
                 result = (s32)__DIRegs[8];
             }
-            finished = executing_801A68C0;
-            executing_801A68C0 = &DummyCommandBlock;
+            finished = executing;
+            executing = &DummyCommandBlock;
             finished->state = 0;
             if (finished->callback) {
                 (finished->callback)(result, finished);
             }
             stateReady();
-        } else if (CurrCommand_801A68DC == 6) {
-            if (executing_801A68C0->currTransferSize == 0) {
+        } else if (CurrCommand == 6) {
+            if (executing->currTransferSize == 0) {
                 if (__DIRegs[8] & 1) {
-                    finished = executing_801A68C0;
-                    executing_801A68C0 = &DummyCommandBlock;
+                    finished = executing;
+                    executing = &DummyCommandBlock;
                     finished->state = 9;
                     if (finished->callback) {
                         (finished->callback)(-2, finished);
@@ -217,13 +217,13 @@ void cbForStateBusy(u32 intType) {
                     stateReady();
                 } else {
                     lbl_801A68D4 = 0;
-                    executing_801A68C0->currTransferSize = 1;
-                    DVDLowAudioStream(0, executing_801A68C0->length, executing_801A68C0->offset,
+                    executing->currTransferSize = 1;
+                    DVDLowAudioStream(0, executing->length, executing->offset,
                                       cbForStateBusy);
                 }
             } else {
-                finished = executing_801A68C0;
-                executing_801A68C0 = &DummyCommandBlock;
+                finished = executing;
+                executing = &DummyCommandBlock;
                 finished->state = 0;
                 if (finished->callback) {
                     (finished->callback)(0, finished);
@@ -231,8 +231,8 @@ void cbForStateBusy(u32 intType) {
                 stateReady();
             }
         } else {
-            finished = executing_801A68C0;
-            executing_801A68C0 = &DummyCommandBlock;
+            finished = executing;
+            executing = &DummyCommandBlock;
             finished->state = 0;
             if (finished->callback) {
                 (finished->callback)(0, finished);
@@ -240,19 +240,19 @@ void cbForStateBusy(u32 intType) {
             stateReady();
         }
     } else {
-        if (CurrCommand_801A68DC == 14) {
-            executing_801A68C0->state = -1;
+        if (CurrCommand == 14) {
+            executing->state = -1;
             stateError(0x01234567);
             return;
         }
-        if ((CurrCommand_801A68DC == 1 || CurrCommand_801A68DC == 4 || CurrCommand_801A68DC == 5 ||
-             CurrCommand_801A68DC == 14) &&
-            (executing_801A68C0->transferredSize == executing_801A68C0->length)) {
+        if ((CurrCommand == 1 || CurrCommand == 4 || CurrCommand == 5 ||
+             CurrCommand == 14) &&
+            (executing->transferredSize == executing->length)) {
             if (CheckCancel(0)) {
                 return;
             }
-            finished = executing_801A68C0;
-            executing_801A68C0 = &DummyCommandBlock;
+            finished = executing;
+            executing = &DummyCommandBlock;
             finished->state = 0;
             if (finished->callback) {
                 (finished->callback)((s32)finished->transferredSize, finished);

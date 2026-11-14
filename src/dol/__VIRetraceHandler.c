@@ -185,7 +185,7 @@ extern volatile u64 lbl_801A6958;
 
 extern VITiming *lbl_801A6960;
 
-extern u32 CurrTvMode_801A6964;
+extern u32 CurrTvMode;
 
 extern u32 lbl_801A6968;
 
@@ -229,7 +229,7 @@ static inline int VISetRegs(struct viBss *bss) {
         }
         lbl_801A6950 = 0;
         lbl_801A6960 = (bss->HorVer).timing;
-        CurrTvMode_801A6964 = (bss->HorVer).tv;
+        CurrTvMode = (bss->HorVer).tv;
         lbl_801A696C = lbl_801A6968;
         return 1;
     }

@@ -15,7 +15,7 @@ typedef struct DVDCommand {
 
 BOOL DVDLowSeek(u32 offset, DVDLowCallback callback);
 
-extern vu32 NextCommandNumber_801A689C;
+extern vu32 NextCommandNumber;
 
 void Read(void *addr, u32 length, u32 offset, DVDLowCallback callback);
 
@@ -30,15 +30,15 @@ static void layout____bss_0(void) {
 #pragma section code_type ".text"
 
 static inline BOOL ProcessNextCommand() {
-    s32 n = NextCommandNumber_801A689C;
+    s32 n = NextCommandNumber;
     ((void)0);
     if (CommandList_8015CD70[n].cmd == 1) {
-        ++NextCommandNumber_801A689C;
+        ++NextCommandNumber;
         Read(CommandList_8015CD70[n].addr, CommandList_8015CD70[n].length,
                     CommandList_8015CD70[n].offset, CommandList_8015CD70[n].callback);
         return 1;
     } else if (CommandList_8015CD70[n].cmd == 2) {
-        ++NextCommandNumber_801A689C;
+        ++NextCommandNumber;
         DVDLowSeek(CommandList_8015CD70[n].offset, CommandList_8015CD70[n].callback);
         return 1;
     }

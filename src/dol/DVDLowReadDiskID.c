@@ -17,22 +17,22 @@ u32 __OSBusClock : FZGX_ADDR___OSBusClock;
 vu32 __DIRegs[16] : FZGX_ADDR___DIRegs;
 
 // Hardware or OS state can change asynchronously.
-extern volatile BOOL StopAtNextInt_801A6858; // fzgx-allow: S2 SDK asynchronous state
+extern volatile BOOL StopAtNextInt; // fzgx-allow: S2 SDK asynchronous state
 
-extern DVDLowCallback Callback_801A6860;
+extern DVDLowCallback Callback;
 
-extern OSAlarm AlarmForTimeout_8015CDD8;
+extern OSAlarm AlarmForTimeout;
 
 void AlarmHandlerForTimeout(OSAlarm *alarm, OSContext *context);
 
 static inline void SetTimeoutAlarm(OSTime timeout) {
-    OSCreateAlarm(&AlarmForTimeout_8015CDD8);
-    OSSetAlarm(&AlarmForTimeout_8015CDD8, timeout, AlarmHandlerForTimeout);
+    OSCreateAlarm(&AlarmForTimeout);
+    OSSetAlarm(&AlarmForTimeout, timeout, AlarmHandlerForTimeout);
 }
 
 BOOL DVDLowReadDiskID(DVDDiskID *diskID, DVDLowCallback callback) {
-    StopAtNextInt_801A6858 = 0;
-    Callback_801A6860 = callback;
+    StopAtNextInt = 0;
+    Callback = callback;
     __DIRegs[2] = 0xa8000040;
     __DIRegs[3] = 0;
     __DIRegs[4] = sizeof(DVDDiskID);

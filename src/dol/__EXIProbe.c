@@ -10,7 +10,7 @@ OSTime OSGetTime(void);
 
 vu32 __EXIRegs[16] : FZGX_ADDR___EXIRegs;
 
-extern EXIControl Ecb_8015CCB0[3];
+extern EXIControl Ecb[3];
 
 s32 __EXIProbeStartTime[2] : FZGX_ADDR___EXIProbeStartTime;
 
@@ -30,7 +30,7 @@ static inline u32 EXIClearInterrupts(s32 chan, BOOL exi, BOOL tc, BOOL ext) {
 }
 
 BOOL __EXIProbe(s32 chan) {
-    EXIControl *exi = &Ecb_8015CCB0[chan];
+    EXIControl *exi = &Ecb[chan];
     BOOL enabled;
     BOOL rc;
     u32 cpr;

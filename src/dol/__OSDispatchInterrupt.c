@@ -32,12 +32,12 @@ vu32 __EXIRegs[16] : FZGX_ADDR___EXIRegs;
 
 vu32 __AIRegs[8] : FZGX_ADDR___AIRegs;
 
-extern __OSInterruptHandler *InterruptHandlerTable_801A67A8;
+extern __OSInterruptHandler *InterruptHandlerTable;
 
 extern OSInterruptMask lbl_80123A60[];
 
 static inline __OSInterruptHandler __OSGetInterruptHandler(__OSInterrupt interrupt) {
-    return InterruptHandlerTable_801A67A8[interrupt];
+    return InterruptHandlerTable[interrupt];
 }
 
 void __OSDispatchInterrupt(__OSException exception, OSContext *context) {

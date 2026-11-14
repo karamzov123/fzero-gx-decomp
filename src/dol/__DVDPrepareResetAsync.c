@@ -17,13 +17,13 @@ DVDCommandBlock *__DVDPopWaitingQueue();
 
 DVDCommandBlock *__DVDPopWaitingQueue();
 
-extern DVDCommandBlock *executing_801A68C0;
+extern DVDCommandBlock *executing;
 
 // Hardware or OS state can change asynchronously.
-extern volatile BOOL PauseFlag_801A68CC; // fzgx-allow: S2 SDK asynchronous state
+extern volatile BOOL PauseFlag; // fzgx-allow: S2 SDK asynchronous state
 
 // Hardware or OS state can change asynchronously.
-extern volatile BOOL PausingFlag_801A68D0; // fzgx-allow: S2 SDK asynchronous state
+extern volatile BOOL PausingFlag; // fzgx-allow: S2 SDK asynchronous state
 
 extern vu32 lbl_801A68E0;
 
@@ -36,9 +36,9 @@ void stateReady();
 static inline void DVDPause(void) {
     BOOL level;
     level = OSDisableInterrupts();
-    PauseFlag_801A68CC = 1;
-    if (executing_801A68C0 == (DVDCommandBlock *)0) {
-        PausingFlag_801A68D0 = 1;
+    PauseFlag = 1;
+    if (executing == (DVDCommandBlock *)0) {
+        PausingFlag = 1;
     }
     OSRestoreInterrupts(level);
 }
@@ -46,9 +46,9 @@ static inline void DVDPause(void) {
 static inline void DVDResume(void) {
     BOOL level;
     level = OSDisableInterrupts();
-    PauseFlag_801A68CC = 0;
-    if (PausingFlag_801A68D0) {
-        PausingFlag_801A68D0 = 0;
+    PauseFlag = 0;
+    if (PausingFlag) {
+        PausingFlag = 0;
         stateReady();
     }
     OSRestoreInterrupts(level);
@@ -63,8 +63,8 @@ static inline BOOL DVDCancelAllAsync(DVDCBCallback callback) {
     while ((p = __DVDPopWaitingQueue()) != 0) {
         DVDCancelAsync(p, 0);
     }
-    if (executing_801A68C0)
-        retVal = DVDCancelAsync(executing_801A68C0, callback);
+    if (executing)
+        retVal = DVDCancelAsync(executing, callback);
     else {
         retVal = 1;
         if (callback)
@@ -82,8 +82,8 @@ void __DVDPrepareResetAsync(DVDCBCallback callback) {
     if (lbl_801A68E0) {
         lbl_801A68E4 = callback;
     } else {
-        if (executing_801A68C0) {
-            executing_801A68C0->callback = 0;
+        if (executing) {
+            executing->callback = 0;
         }
         DVDCancelAllAsync(callback);
     }

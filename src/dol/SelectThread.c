@@ -33,16 +33,16 @@ extern vu32 RunQueueBits;
 
 extern volatile BOOL RunQueueHint; // fzgx-allow: S2 SDK asynchronous state
 
-extern vs32 Reschedule_801A6800;
+extern vs32 Reschedule;
 
-extern OSSwitchThreadCallback SwitchThreadCallback_801A6440;
+extern OSSwitchThreadCallback SwitchThreadCallback;
 
 OSThread *__OSCurrentThread : FZGX_ADDR___OSCurrentThread;
 
 extern struct SDK_OSThread____bss_0 RunQueue;
 
 static inline void OSSetCurrentThread(OSThread *thread) {
-    SwitchThreadCallback_801A6440(__OSCurrentThread, thread);
+    SwitchThreadCallback(__OSCurrentThread, thread);
     __OSCurrentThread = thread;
 }
 
@@ -62,7 +62,7 @@ OSThread *SelectThread(BOOL yield) {
     OSThread *nextThread;
     OSPriority priority;
     OSThreadQueue *queue;
-    if (0 < Reschedule_801A6800) {
+    if (0 < Reschedule) {
         return 0;
     }
     currentContext = fn_8000BE5C();
@@ -99,7 +99,7 @@ OSThread *SelectThread(BOOL yield) {
         }
     }
     if (RunQueueBits == 0) {
-        SwitchThreadCallback_801A6440(__OSCurrentThread, 0);
+        SwitchThreadCallback(__OSCurrentThread, 0);
         __OSCurrentThread = 0;
         OSSetCurrentContext(&(sdk_storage____bss_0->sdk_IdleContext));
         do {

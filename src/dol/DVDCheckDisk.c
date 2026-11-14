@@ -6,17 +6,17 @@
 
 vu32 __DIRegs[16] : FZGX_ADDR___DIRegs;
 
-extern DVDCommandBlock *executing_801A68C0;
+extern DVDCommandBlock *executing;
 
 // Hardware or OS state can change asynchronously.
-extern volatile BOOL PausingFlag_801A68D0; // fzgx-allow: S2 SDK asynchronous state
+extern volatile BOOL PausingFlag; // fzgx-allow: S2 SDK asynchronous state
 
 // Hardware or OS state can change asynchronously.
-extern volatile BOOL FatalErrorFlag_801A68D8; // fzgx-allow: S2 SDK asynchronous state
+extern volatile BOOL FatalErrorFlag; // fzgx-allow: S2 SDK asynchronous state
 
-extern vu32 ResumeFromHere_801A68E8;
+extern vu32 ResumeFromHere;
 
-extern DVDCommandBlock DummyCommandBlock_8015CE80;
+extern DVDCommandBlock DummyCommandBlock;
 
 BOOL DVDCheckDisk(void) {
     BOOL enabled;
@@ -24,17 +24,17 @@ BOOL DVDCheckDisk(void) {
     s32 state;
     u32 coverReg;
     enabled = OSDisableInterrupts();
-    if (FatalErrorFlag_801A68D8) {
+    if (FatalErrorFlag) {
         state = -1;
-    } else if (PausingFlag_801A68D0) {
+    } else if (PausingFlag) {
         state = 8;
     } else {
-        if (executing_801A68C0 == (DVDCommandBlock *)0) {
+        if (executing == (DVDCommandBlock *)0) {
             state = 0;
-        } else if (executing_801A68C0 == &DummyCommandBlock_8015CE80) {
+        } else if (executing == &DummyCommandBlock) {
             state = 0;
         } else {
-            state = executing_801A68C0->state;
+            state = executing->state;
         }
     }
     switch (state) {
@@ -58,7 +58,7 @@ BOOL DVDCheckDisk(void) {
         coverReg = __DIRegs[1];
         if (((coverReg >> 2) & 1) || (coverReg & 1)) {
             retVal = 0;
-        } else if (ResumeFromHere_801A68E8) {
+        } else if (ResumeFromHere) {
             retVal = 0;
         } else {
             retVal = 1;

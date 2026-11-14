@@ -8,14 +8,14 @@ void *memcpy(void *dest, const void *src, size_t n);
 
 vu16 __DSPRegs[32] : FZGX_ADDR___DSPRegs;
 
-extern u8 DSPInitCode_801227A8[128];
+extern u8 DSPInitCode[128];
 
 void __OSInitAudioSystem(void) {
     u32 r28;
     u16 r3;
     u32 padding;
     memcpy((void *)((u8 *)OSGetArenaHi() - 128), (void *)FZGX_ADDR___OSAudioInitBuffer, 128);
-    memcpy((void *)FZGX_ADDR___OSAudioInitBuffer, (void *)DSPInitCode_801227A8, 128);
+    memcpy((void *)FZGX_ADDR___OSAudioInitBuffer, (void *)DSPInitCode, 128);
     DCFlushRange((void *)FZGX_ADDR___OSAudioInitBuffer, 128);
     __DSPRegs[9] = 0x43;
     __DSPRegs[5] = 0x8AC;

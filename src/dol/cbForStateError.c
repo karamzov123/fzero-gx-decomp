@@ -1,7 +1,7 @@
 #include "types.h"
 
-extern u32 DummyCommandBlock_8015CE80[];
-extern u32 FatalErrorFlag_801A68D8;
+extern u32 DummyCommandBlock[];
+extern u32 FatalErrorFlag;
 extern void __DVDPrintFatalMessage(void);
 extern u32 lbl_801A68E0;
 extern u32 lbl_801A68E4;
@@ -13,27 +13,27 @@ struct Executing {
     void (*callback)(s32, struct Executing *);
 };
 
-extern struct Executing *executing_801A68C0;
+extern struct Executing *executing;
 
 void cbForStateError(u32 arg0, u32 arg1) {
-    struct Executing *executing;
+    struct Executing *block;
 
     if (arg0 == 16) {
-        executing = executing_801A68C0;
-        *(s32 *)((u8 *)executing + 12) = -1;
+        block = executing;
+        *(s32 *)((u8 *)block + 12) = -1;
         stateTimeout();
     } else {
         __DVDPrintFatalMessage();
-        executing = executing_801A68C0;
-        FatalErrorFlag_801A68D8 = 1;
-        executing_801A68C0 = (struct Executing *)&DummyCommandBlock_8015CE80;
-        if (executing->callback != 0) {
-            executing->callback(-1, executing);
+        block = executing;
+        FatalErrorFlag = 1;
+        executing = (struct Executing *)&DummyCommandBlock;
+        if (block->callback != 0) {
+            block->callback(-1, block);
         }
         if (lbl_801A68E0 != 0) {
             lbl_801A68E0 = 0;
             if (lbl_801A68E4 != 0) {
-                ((void (*)(s32, struct Executing *))lbl_801A68E4)(0, executing);
+                ((void (*)(s32, struct Executing *))lbl_801A68E4)(0, block);
             }
         }
         stateReady();

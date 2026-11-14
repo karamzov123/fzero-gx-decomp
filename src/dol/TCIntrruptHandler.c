@@ -11,10 +11,10 @@ void OSSetCurrentContext(OSContext *context);
 
 vu32 __EXIRegs[16] : FZGX_ADDR___EXIRegs;
 
-extern EXIControl Ecb_8015CCB0[3];
+extern EXIControl Ecb[3];
 
 static inline void CompleteTransfer(s32 chan) {
-    EXIControl *exi = &Ecb_8015CCB0[chan];
+    EXIControl *exi = &Ecb[chan];
     u8 *buf;
     u32 data;
     int i;
@@ -52,7 +52,7 @@ void TCIntrruptHandler(__OSInterrupt interrupt, OSContext *context) {
     EXIControl *exi;
     EXICallback callback;
     chan = (interrupt - 10) / 3;
-    exi = &Ecb_8015CCB0[chan];
+    exi = &Ecb[chan];
     __OSMaskInterrupts((0x80000000u >> (interrupt)));
     EXIClearInterrupts(chan, 0, 1, 0);
     callback = exi->tcCallback;

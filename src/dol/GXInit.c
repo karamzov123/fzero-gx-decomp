@@ -87,7 +87,7 @@ struct GXInitStorage {
 };
 extern struct GXInit___cpReg_T *__cpReg;
 extern struct GXInit_gx_T * const gx;
-extern u32 GXResetFuncInfo_8012AD30[];
+extern u32 GXResetFuncInfo[];
 extern u32 GXSetCPUFifo(u32);
 extern u32 PPCMfhid2(void);
 extern u32 __GXFifoInit(void);
@@ -96,7 +96,7 @@ extern u32 __GXVersion;
 extern u32 __memReg;
 extern u32 __peReg;
 extern u32 __piReg;
-extern u8 gxData_80177BA0[];
+extern u8 gxData[];
 extern void GXInitFifoBase(struct Sig_GXInitFifoBase_GXInitFifoBase_Arg0 *, u32, u32);
 extern void GXInitTexCacheRegion(Sig_GXInitTexCacheRegion_GXTexRegion *, u8, u32, s32, u32, s32);
 extern void GXInitTlutRegion(struct Sig_GXInitTlutRegion_GXInitTlutRegion_Arg0 *, u32, u32);
@@ -140,7 +140,7 @@ void * GXInit(u32 arg0, u32 arg1, u32 arg2) {
     u32 v110;
     u32 v111;
     u32 t8;
-    p_gxData_80177BA0 = (u8 *)&gxData_80177BA0;
+    p_gxData_80177BA0 = (u8 *)&gxData;
     OSRegisterVersion((const char *)__GXVersion);
     gx->unk_4F0 = 0;
     gx->unk_4F1 = 1;
@@ -156,9 +156,9 @@ void * GXInit(u32 arg0, u32 arg1, u32 arg2) {
     __GXFifoInit();
     GXInitFifoBase((struct Sig_GXInitFifoBase_GXInitFifoBase_Arg0 *)(p_gxData_80177BA0 + 1272), arg0, arg1);
     GXSetCPUFifo((u32)p_gxData_80177BA0 + 1272);
-    GXSetGPFifo((Sig_GXSetGPFifo_GXFifoObj *)((u32)&gxData_80177BA0 + 1272));
+    GXSetGPFifo((Sig_GXSetGPFifo_GXFifoObj *)((u32)&gxData + 1272));
     if (resetFuncRegistered == 0) {
-        OSRegisterResetFunction((OSResetFunctionInfo *)&GXResetFuncInfo_8012AD30);
+        OSRegisterResetFunction((OSResetFunctionInfo *)&GXResetFuncInfo);
         resetFuncRegistered = 1;
     }
     __GXPEInit();

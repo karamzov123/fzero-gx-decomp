@@ -13,14 +13,14 @@ vu32 __PIRegs[12] : FZGX_ADDR___PIRegs;
 asm void ExternalInterruptHandler_8000DD10(register __OSException exception,
                                            register OSContext *context);
 
-extern __OSInterruptHandler *InterruptHandlerTable_801A67A8;
+extern __OSInterruptHandler *InterruptHandlerTable;
 
 void ExternalInterruptHandler_8000DD10(register __OSException exception,
                                        register OSContext *context);
 
 void __OSInterruptInit(void) {
-    InterruptHandlerTable_801A67A8 = ((void *)((u32)(0x3040) + (0x8000 << 16)));
-    memset(InterruptHandlerTable_801A67A8, 0, 32 * sizeof(__OSInterruptHandler));
+    InterruptHandlerTable = ((void *)((u32)(0x3040) + (0x8000 << 16)));
+    memset(InterruptHandlerTable, 0, 32 * sizeof(__OSInterruptHandler));
     *(OSInterruptMask *)FZGX_ADDR___OSGlobalInterruptMask = 0;
     *(OSInterruptMask *)FZGX_ADDR___OSLocalInterruptMask = 0;
     __PIRegs[1] = 0xf0;

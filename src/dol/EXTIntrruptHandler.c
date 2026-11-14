@@ -7,7 +7,7 @@
 
 void OSSetCurrentContext(OSContext *context);
 
-extern EXIControl Ecb_8015CCB0[3];
+extern EXIControl Ecb[3];
 
 void EXTIntrruptHandler(__OSInterrupt interrupt, OSContext *context) {
     s32 chan;
@@ -15,7 +15,7 @@ void EXTIntrruptHandler(__OSInterrupt interrupt, OSContext *context) {
     EXICallback callback;
     chan = (interrupt - 11) / 3;
     __OSMaskInterrupts(((0x80000000u >> (11)) | (0x80000000u >> (9))) >> (3 * chan));
-    exi = &Ecb_8015CCB0[chan];
+    exi = &Ecb[chan];
     callback = exi->extCallback;
     exi->state &= ~0x08;
     if (callback) {

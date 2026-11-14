@@ -7,7 +7,7 @@ typedef struct {
     DVDCommandBlock *prev;
 } DVDQueue;
 
-extern DVDQueue WaitingQueue_8015CED8[4];
+extern DVDQueue WaitingQueue[4];
 
 BOOL __DVDCheckWaitingQueue(void) {
     u32 i;
@@ -15,7 +15,7 @@ BOOL __DVDCheckWaitingQueue(void) {
     DVDCommandBlock *q;
     enabled = OSDisableInterrupts();
     for (i = 0; i < 4; i++) {
-        q = (DVDCommandBlock *)&(WaitingQueue_8015CED8[i]);
+        q = (DVDCommandBlock *)&(WaitingQueue[i]);
         if (q->next != q) {
             OSRestoreInterrupts(enabled);
             return 1;

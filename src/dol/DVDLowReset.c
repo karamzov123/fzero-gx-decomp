@@ -11,10 +11,10 @@ vu32 __PIRegs[12] : FZGX_ADDR___PIRegs;
 vu32 __DIRegs[16] : FZGX_ADDR___DIRegs;
 
 // Hardware or OS state can change asynchronously.
-extern volatile OSTime LastResetEnd_801A6868; // fzgx-allow: S2 SDK asynchronous state
+extern volatile OSTime LastResetEnd; // fzgx-allow: S2 SDK asynchronous state
 
 // Hardware or OS state can change asynchronously.
-extern volatile u32 ResetOccurred_801A6870; // fzgx-allow: S2 SDK asynchronous state
+extern volatile u32 ResetOccurred; // fzgx-allow: S2 SDK asynchronous state
 
 void DVDLowReset() {
     u32 reg;
@@ -26,6 +26,6 @@ void DVDLowReset() {
     while ((__OSGetSystemTime() - resetStart) < (((12) * (((u32)__OSBusClock / 4) / 125000)) / 8))
         ;
     __PIRegs[9] = reg | 5;
-    ResetOccurred_801A6870 = 1;
-    LastResetEnd_801A6868 = __OSGetSystemTime();
+    ResetOccurred = 1;
+    LastResetEnd = __OSGetSystemTime();
 }

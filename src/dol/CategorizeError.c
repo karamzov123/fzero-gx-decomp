@@ -8,7 +8,7 @@ struct Executing {
     u32 state;
 };
 
-extern struct Executing *executing_801A68C0;
+extern struct Executing *executing;
 
 int CategorizeError(u32 value) {
     u32 masked;
@@ -36,7 +36,7 @@ int CategorizeError(u32 value) {
 
     lbl_801A68F0 = masked;
     if (masked - 0x30000 == 0x1100 ||
-        executing_801A68C0->state == 5) {
+        executing->state == 5) {
         return 2;
     }
     return 3;

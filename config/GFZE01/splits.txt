@@ -6501,9 +6501,6 @@ dol/data/__OSErrorTable.c:
 dol/data/lbl_8015BFA0.c:
 	.bss        start:0x8015BFA0 end:0x8015BFC0 align:8
 
-dol/data/RunQueue.c:
-	.bss        start:0x8015C018 end:0x8015C118 align:8
-
 dol/data/CommandList.c:
 	.bss        start:0x8015CD70 end:0x8015CDAC align:8
 
@@ -6686,12 +6683,6 @@ dol/data/lbl_80095DB0.c:
 
 dol/data/lbl_80095E78.c:
 	.rodata     start:0x80095E78 end:0x80095E90 align:8
-
-dol/data/Packet.c:
-	.bss        start:0x8015CA10 end:0x8015CCB0 align:8
-
-dol/data/__DVDLowAlarmForWA.c:
-	.bss        start:0x8015CDB0 end:0x8015CDD8 align:8
 
 dol/data/__DVDLowPrev.c:
 	.bss        start:0x8015CE28 end:0x8015CE80 align:8
@@ -7314,12 +7305,6 @@ dol/data/gTRKSaveState.c:
 dol/data/lbl_80122030.c:
 	.data       start:0x80122030 end:0x8012208C align:16
 
-dol/data/lbl_801220C0.c:
-	.data       start:0x801220C0 end:0x801227A8 align:32
-
-dol/data/lbl_80122A58.c:
-	.data       start:0x80122A58 end:0x80122C0C align:8
-
 dol/data/lbl_80122F50.c:
 	.data       start:0x80122F50 end:0x801230D0 align:16
 
@@ -7368,48 +7353,6 @@ dol/data/lbl_80124110.c:
 dol/data/lbl_80124428.c:
 	.data       start:0x80124428 end:0x8012457C align:8
 
-dol/data/lbl_80124598.c:
-	.data       start:0x80124598 end:0x801245E0 align:8
-
-dol/data/lbl_801245E0.c:
-	.data       start:0x801245E0 end:0x801245F0 align:32
-
-dol/data/lbl_80124800.c:
-	.data       start:0x80124800 end:0x80126240 align:32
-
-dol/data/lbl_80126240.c:
-	.data       start:0x80126240 end:0x80128160 align:32
-
-dol/data/lbl_80128160.c:
-	.data       start:0x80128160 end:0x80128180 align:32
-
-dol/data/lbl_80128180.c:
-	.data       start:0x80128180 end:0x80128190 align:32
-
-dol/data/lbl_80128190.c:
-	.data       start:0x80128190 end:0x80128990 align:16
-
-dol/data/lbl_80128990.c:
-	.data       start:0x80128990 end:0x80129550 align:16
-
-dol/data/lbl_801295E0.c:
-	.data       start:0x801295E0 end:0x8012AD30 align:32
-
-dol/data/lbl_8012AFB8.c:
-	.data       start:0x8012AFB8 end:0x8012B030 align:8
-
-dol/data/lbl_8012B030.c:
-	.data       start:0x8012B030 end:0x8012B0A8 align:16
-
-dol/data/lbl_8012B0A8.c:
-	.data       start:0x8012B0A8 end:0x8012B0E4 align:8
-
-dol/data/lbl_8012B3B8.c:
-	.data       start:0x8012B3B8 end:0x8012B3E0 align:8
-
-dol/data/lbl_8012B3E0.c:
-	.data       start:0x8012B3E0 end:0x8012B400 align:32
-
 dol/data/lbl_8012B548.c:
 	.data       start:0x8012B548 end:0x8012B590 align:8
 
@@ -7422,50 +7365,8 @@ dol/data/lbl_8012B6E8.c:
 dol/data/lbl_8012B6F0.c:
 	.data       start:0x8012B6F0 end:0x8012B6F8 align:16
 
-dol/data/lbl_8012B8F8.c:
-	.data       start:0x8012B8F8 end:0x8012B900 align:8
-
-dol/data/lbl_8012B900.c:
-	.data       start:0x8012B900 end:0x8012B910 align:32
-
-dol/data/lbl_8012B910.c:
-	.data       start:0x8012B910 end:0x8012B918 align:16
-
-dol/data/lbl_8012B918.c:
-	.data       start:0x8012B918 end:0x8012B930 align:8
-
-dol/data/lbl_8012B930.c:
-	.data       start:0x8012B930 end:0x8012B938 align:16
-
-dol/data/lbl_8012B938.c:
-	.data       start:0x8012B938 end:0x8012D9B8 align:8
-
-dol/data/lbl_801309C0.c:
-	.data       start:0x801309C0 end:0x80130A48 align:32
-
-dol/data/lbl_80130BC0.c:
-	.data       start:0x80130BC0 end:0x801325D8 align:32
-
 dol/data/lbl_8015AD48.c:
 	.data       start:0x8015AD48 end:0x8015AFD8 align:8
-
-dol/data/lbl_8015B100.c:
-	.data       start:0x8015B100 end:0x8015B300 align:32
-
-dol/data/lbl_8015B400.c:
-	.data       start:0x8015B400 end:0x8015B438 align:32
-
-dol/data/gTRKRestoreFlags.c:
-	.data       start:0x8015B868 end:0x8015B898 align:8
-
-dol/data/lbl_8015B898.c:
-	.data       start:0x8015B898 end:0x8015B8D8 align:8
-
-dol/data/gDBCommTable.c:
-	.data       start:0x8015B8D8 end:0x8015B900 align:8
-
-dol/data/lbl_8015B900.c:
-	.data       start:0x8015B900 end:0x8015B919 align:32
 
 dol/data/lbl_80090980.c:
 	.rodata     start:0x80090980 end:0x80090988 align:8
@@ -7491,8 +7392,806 @@ dol/data/lbl_80092340.c:
 dol/data/lbl_800924F8.c:
 	.rodata     start:0x800924F8 end:0x80092528 align:8
 
+dol/data/lbl_80094E80.c:
+	.rodata     start:0x80094E80 end:0x80094ED8 align:32
+
+dol/data/lbl_80094ED8.c:
+	.rodata     start:0x80094ED8 end:0x80094FB8 align:8
+
+dol/data/lbl_80095CD0.c:
+	.rodata     start:0x80095CD0 end:0x80095D98 align:16
+
+dol/fn_8004F00C.c:
+	.text       start:0x8004F00C end:0x8004F26C align:4
+
+dol/fn_8006BCF8.c:
+	.text       start:0x8006BCF8 end:0x8006BE0C align:4
+
+dol/fn_8004F26C.c:
+	.text       start:0x8004F26C end:0x8004F55C align:4
+
+dol/data/lbl_801A7060.c:
+	.sdata2     start:0x801A7060 end:0x801A7068 align:8
+
+dol/data/lbl_801A7068.c:
+	.sdata2     start:0x801A7068 end:0x801A7070 align:8
+
+dol/data/lbl_801A7070.c:
+	.sdata2     start:0x801A7070 end:0x801A7080 align:8
+
+dol/data/lbl_801A7080.c:
+	.sdata2     start:0x801A7080 end:0x801A7088 align:8
+
+dol/data/lbl_801A7088.c:
+	.sdata2     start:0x801A7088 end:0x801A7090 align:8
+
+dol/data/lbl_801A7090.c:
+	.sdata2     start:0x801A7090 end:0x801A7098 align:8
+
+dol/data/lbl_801A7098.c:
+	.sdata2     start:0x801A7098 end:0x801A70A0 align:8
+
+dol/data/lbl_801A70A0.c:
+	.sdata2     start:0x801A70A0 end:0x801A70A8 align:8
+
+dol/data/lbl_801A70A8.c:
+	.sdata2     start:0x801A70A8 end:0x801A70B0 align:8
+
+dol/data/lbl_801A70B0.c:
+	.sdata2     start:0x801A70B0 end:0x801A70B8 align:8
+
+dol/data/lbl_801A70B8.c:
+	.sdata2     start:0x801A70B8 end:0x801A70C8 align:8
+
+dol/data/lbl_801A70C8.c:
+	.sdata2     start:0x801A70C8 end:0x801A70D0 align:8
+
+dol/data/lbl_801A70D0.c:
+	.sdata2     start:0x801A70D0 end:0x801A70D8 align:8
+
+dol/data/lbl_801A70D8.c:
+	.sdata2     start:0x801A70D8 end:0x801A70E0 align:8
+
+dol/data/lbl_801A70E0.c:
+	.sdata2     start:0x801A70E0 end:0x801A70E8 align:8
+
+dol/data/lbl_801A70E8.c:
+	.sdata2     start:0x801A70E8 end:0x801A70F0 align:8
+
+dol/data/lbl_801A70F0.c:
+	.sdata2     start:0x801A70F0 end:0x801A70F8 align:8
+
+dol/data/lbl_801A70F8.c:
+	.sdata2     start:0x801A70F8 end:0x801A7100 align:8
+
+dol/data/lbl_801A7100.c:
+	.sdata2     start:0x801A7100 end:0x801A7110 align:8
+
+dol/data/lbl_801A7110.c:
+	.sdata2     start:0x801A7110 end:0x801A7120 align:8
+
+dol/data/lbl_801A7120.c:
+	.sdata2     start:0x801A7120 end:0x801A7130 align:8
+
+dol/data/lbl_801A7130.c:
+	.sdata2     start:0x801A7130 end:0x801A7138 align:8
+
+dol/data/lbl_801A7138.c:
+	.sdata2     start:0x801A7138 end:0x801A7140 align:8
+
+dol/data/lbl_801A7140.c:
+	.sdata2     start:0x801A7140 end:0x801A7150 align:8
+
+dol/data/lbl_801A7150.c:
+	.sdata2     start:0x801A7150 end:0x801A7158 align:8
+
+dol/data/lbl_801A7158.c:
+	.sdata2     start:0x801A7158 end:0x801A7160 align:8
+
+dol/data/lbl_801A7160.c:
+	.sdata2     start:0x801A7160 end:0x801A7170 align:8
+
+dol/data/lbl_801A7170.c:
+	.sdata2     start:0x801A7170 end:0x801A7178 align:8
+
+dol/data/lbl_801A7178.c:
+	.sdata2     start:0x801A7178 end:0x801A7180 align:8
+
+dol/data/lbl_801A7180.c:
+	.sdata2     start:0x801A7180 end:0x801A7188 align:8
+
+dol/data/lbl_801A7188.c:
+	.sdata2     start:0x801A7188 end:0x801A7190 align:8
+
+dol/data/lbl_801A7190.c:
+	.sdata2     start:0x801A7190 end:0x801A7198 align:8
+
+dol/data/lbl_801A7198.c:
+	.sdata2     start:0x801A7198 end:0x801A71A0 align:8
+
+dol/data/lbl_801A71A0.c:
+	.sdata2     start:0x801A71A0 end:0x801A71A8 align:8
+
+dol/data/lbl_801A71A8.c:
+	.sdata2     start:0x801A71A8 end:0x801A71B0 align:8
+
+dol/data/lbl_801A71B0.c:
+	.sdata2     start:0x801A71B0 end:0x801A71B8 align:8
+
+dol/data/lbl_801A71B8.c:
+	.sdata2     start:0x801A71B8 end:0x801A71C8 align:8
+
+dol/data/lbl_801A71C8.c:
+	.sdata2     start:0x801A71C8 end:0x801A71D8 align:8
+
+dol/data/lbl_801A71D8.c:
+	.sdata2     start:0x801A71D8 end:0x801A71E0 align:8
+
+dol/data/lbl_801A71E0.c:
+	.sdata2     start:0x801A71E0 end:0x801A71E8 align:8
+
+dol/data/lbl_801A71E8.c:
+	.sdata2     start:0x801A71E8 end:0x801A71F0 align:8
+
+dol/data/lbl_801A71F0.c:
+	.sdata2     start:0x801A71F0 end:0x801A71F8 align:8
+
+dol/data/lbl_801A71F8.c:
+	.sdata2     start:0x801A71F8 end:0x801A7200 align:8
+
+dol/data/lbl_801A7200.c:
+	.sdata2     start:0x801A7200 end:0x801A7208 align:8
+
+dol/data/lbl_801A7208.c:
+	.sdata2     start:0x801A7208 end:0x801A7210 align:8
+
+dol/data/lbl_801A7210.c:
+	.sdata2     start:0x801A7210 end:0x801A7220 align:8
+
+dol/data/lbl_801A7220.c:
+	.sdata2     start:0x801A7220 end:0x801A7228 align:8
+
+dol/data/lbl_801A7228.c:
+	.sdata2     start:0x801A7228 end:0x801A7230 align:8
+
+dol/data/lbl_801A7230.c:
+	.sdata2     start:0x801A7230 end:0x801A7238 align:8
+
+dol/data/lbl_801A7238.c:
+	.sdata2     start:0x801A7238 end:0x801A7240 align:8
+
+dol/data/lbl_801A7240.c:
+	.sdata2     start:0x801A7240 end:0x801A7250 align:8
+
+dol/data/lbl_801A7250.c:
+	.sdata2     start:0x801A7250 end:0x801A7258 align:8
+
+dol/data/lbl_801A7258.c:
+	.sdata2     start:0x801A7258 end:0x801A7260 align:8
+
+dol/data/lbl_801A7260.c:
+	.sdata2     start:0x801A7260 end:0x801A7268 align:8
+
+dol/data/lbl_801A7268.c:
+	.sdata2     start:0x801A7268 end:0x801A7270 align:8
+
+dol/data/lbl_801A7270.c:
+	.sdata2     start:0x801A7270 end:0x801A7278 align:8
+
+dol/data/lbl_801A7278.c:
+	.sdata2     start:0x801A7278 end:0x801A7280 align:8
+
+dol/data/lbl_801A7280.c:
+	.sdata2     start:0x801A7280 end:0x801A7288 align:8
+
+dol/data/lbl_801A7288.c:
+	.sdata2     start:0x801A7288 end:0x801A7290 align:8
+
+dol/data/lbl_801A7290.c:
+	.sdata2     start:0x801A7290 end:0x801A7298 align:8
+
+dol/data/lbl_801A7298.c:
+	.sdata2     start:0x801A7298 end:0x801A72A0 align:8
+
+dol/data/lbl_801A72A0.c:
+	.sdata2     start:0x801A72A0 end:0x801A72A8 align:8
+
+dol/data/lbl_801A72A8.c:
+	.sdata2     start:0x801A72A8 end:0x801A72B0 align:8
+
+dol/data/lbl_801A72B0.c:
+	.sdata2     start:0x801A72B0 end:0x801A72B8 align:8
+
+dol/data/lbl_801A72B8.c:
+	.sdata2     start:0x801A72B8 end:0x801A72C0 align:8
+
+dol/data/lbl_801A72C0.c:
+	.sdata2     start:0x801A72C0 end:0x801A72C8 align:8
+
+dol/data/lbl_801A72C8.c:
+	.sdata2     start:0x801A72C8 end:0x801A72D0 align:8
+
+dol/data/lbl_801A72D0.c:
+	.sdata2     start:0x801A72D0 end:0x801A72D8 align:8
+
+dol/data/lbl_801A72D8.c:
+	.sdata2     start:0x801A72D8 end:0x801A72E0 align:8
+
+dol/data/lbl_801A72E0.c:
+	.sdata2     start:0x801A72E0 end:0x801A72E8 align:8
+
+dol/data/lbl_801A72E8.c:
+	.sdata2     start:0x801A72E8 end:0x801A72F0 align:8
+
+dol/data/lbl_801A72F0.c:
+	.sdata2     start:0x801A72F0 end:0x801A7300 align:8
+
+dol/data/lbl_801A7300.c:
+	.sdata2     start:0x801A7300 end:0x801A7308 align:8
+
+dol/data/lbl_801A7308.c:
+	.sdata2     start:0x801A7308 end:0x801A7310 align:8
+
+dol/data/lbl_801A7310.c:
+	.sdata2     start:0x801A7310 end:0x801A7318 align:8
+
+dol/data/lbl_801A7318.c:
+	.sdata2     start:0x801A7318 end:0x801A7328 align:8
+
+dol/data/lbl_801A7328.c:
+	.sdata2     start:0x801A7328 end:0x801A7338 align:8
+
+dol/data/lbl_801A7338.c:
+	.sdata2     start:0x801A7338 end:0x801A7340 align:8
+
+dol/data/lbl_801A7340.c:
+	.sdata2     start:0x801A7340 end:0x801A7348 align:8
+
+dol/data/lbl_801A7348.c:
+	.sdata2     start:0x801A7348 end:0x801A7358 align:8
+
+dol/data/lbl_801A7358.c:
+	.sdata2     start:0x801A7358 end:0x801A7360 align:8
+
+dol/data/lbl_801A7360.c:
+	.sdata2     start:0x801A7360 end:0x801A7368 align:8
+
+dol/data/lbl_801A7368.c:
+	.sdata2     start:0x801A7368 end:0x801A7370 align:8
+
+dol/data/lbl_801A7370.c:
+	.sdata2     start:0x801A7370 end:0x801A7378 align:8
+
+dol/data/lbl_801A7378.c:
+	.sdata2     start:0x801A7378 end:0x801A7380 align:8
+
+dol/data/lbl_801A7380.c:
+	.sdata2     start:0x801A7380 end:0x801A7388 align:8
+
+dol/data/lbl_801A7388.c:
+	.sdata2     start:0x801A7388 end:0x801A7390 align:8
+
+dol/data/lbl_801A7390.c:
+	.sdata2     start:0x801A7390 end:0x801A7398 align:8
+
+dol/data/lbl_801A7398.c:
+	.sdata2     start:0x801A7398 end:0x801A73A8 align:8
+
+dol/data/lbl_801A73A8.c:
+	.sdata2     start:0x801A73A8 end:0x801A73B0 align:8
+
+dol/data/lbl_801A73B0.c:
+	.sdata2     start:0x801A73B0 end:0x801A73D0 align:8
+
+dol/data/lbl_801A73D0.c:
+	.sdata2     start:0x801A73D0 end:0x801A73D8 align:8
+
+dol/data/lbl_801A73D8.c:
+	.sdata2     start:0x801A73D8 end:0x801A73E0 align:8
+
+dol/data/lbl_801A73E0.c:
+	.sdata2     start:0x801A73E0 end:0x801A73E8 align:8
+
+dol/data/lbl_801A73E8.c:
+	.sdata2     start:0x801A73E8 end:0x801A73F0 align:8
+
+dol/data/lbl_801A73F0.c:
+	.sdata2     start:0x801A73F0 end:0x801A73F8 align:8
+
+dol/data/lbl_801A73F8.c:
+	.sdata2     start:0x801A73F8 end:0x801A7400 align:8
+
+dol/data/lbl_801A7400.c:
+	.sdata2     start:0x801A7400 end:0x801A7408 align:8
+
+dol/data/lbl_801A7408.c:
+	.sdata2     start:0x801A7408 end:0x801A7410 align:8
+
+dol/data/lbl_801A7410.c:
+	.sdata2     start:0x801A7410 end:0x801A7418 align:8
+
+dol/data/lbl_801A7418.c:
+	.sdata2     start:0x801A7418 end:0x801A7420 align:8
+
+dol/data/lbl_801A7420.c:
+	.sdata2     start:0x801A7420 end:0x801A7428 align:8
+
+dol/data/lbl_801A7428.c:
+	.sdata2     start:0x801A7428 end:0x801A7438 align:8
+
+dol/data/lbl_801A7438.c:
+	.sdata2     start:0x801A7438 end:0x801A7448 align:8
+
+dol/data/lbl_801A7448.c:
+	.sdata2     start:0x801A7448 end:0x801A7450 align:8
+
+dol/data/lbl_801A7450.c:
+	.sdata2     start:0x801A7450 end:0x801A7458 align:8
+
+dol/data/lbl_801A7458.c:
+	.sdata2     start:0x801A7458 end:0x801A7460 align:8
+
+dol/data/lbl_801A7460.c:
+	.sdata2     start:0x801A7460 end:0x801A7470 align:8
+
+dol/data/lbl_801A7470.c:
+	.sdata2     start:0x801A7470 end:0x801A7478 align:8
+
+dol/data/lbl_801A7478.c:
+	.sdata2     start:0x801A7478 end:0x801A7480 align:8
+
+dol/data/lbl_801A7480.c:
+	.sdata2     start:0x801A7480 end:0x801A7488 align:8
+
+dol/data/lbl_801A7488.c:
+	.sdata2     start:0x801A7488 end:0x801A7490 align:8
+
+dol/data/lbl_801A7490.c:
+	.sdata2     start:0x801A7490 end:0x801A7498 align:8
+
+dol/data/lbl_801A7498.c:
+	.sdata2     start:0x801A7498 end:0x801A74A0 align:8
+
+dol/data/lbl_801A74A0.c:
+	.sdata2     start:0x801A74A0 end:0x801A74A8 align:8
+
+dol/data/lbl_801A74A8.c:
+	.sdata2     start:0x801A74A8 end:0x801A74B0 align:8
+
+dol/data/lbl_801A74B0.c:
+	.sdata2     start:0x801A74B0 end:0x801A74B8 align:8
+
+dol/data/lbl_801A74B8.c:
+	.sdata2     start:0x801A74B8 end:0x801A74C0 align:8
+
+dol/data/lbl_801A74C0.c:
+	.sdata2     start:0x801A74C0 end:0x801A74C8 align:8
+
+dol/data/lbl_801A74C8.c:
+	.sdata2     start:0x801A74C8 end:0x801A74D0 align:8
+
+dol/data/lbl_801A74D0.c:
+	.sdata2     start:0x801A74D0 end:0x801A74D8 align:8
+
+dol/data/lbl_801A74D8.c:
+	.sdata2     start:0x801A74D8 end:0x801A74E0 align:8
+
+dol/data/lbl_801A74E0.c:
+	.sdata2     start:0x801A74E0 end:0x801A74F0 align:8
+
+dol/data/lbl_801A74F0.c:
+	.sdata2     start:0x801A74F0 end:0x801A74F8 align:8
+
+dol/data/lbl_801A74F8.c:
+	.sdata2     start:0x801A74F8 end:0x801A7500 align:8
+
+dol/data/lbl_801A7500.c:
+	.sdata2     start:0x801A7500 end:0x801A7508 align:8
+
+dol/data/lbl_801A7508.c:
+	.sdata2     start:0x801A7508 end:0x801A7510 align:8
+
+dol/data/lbl_801A7510.c:
+	.sdata2     start:0x801A7510 end:0x801A7518 align:8
+
+dol/data/lbl_801A7518.c:
+	.sdata2     start:0x801A7518 end:0x801A7520 align:8
+
+dol/data/lbl_801A7520.c:
+	.sdata2     start:0x801A7520 end:0x801A7528 align:8
+
+dol/data/lbl_801A7528.c:
+	.sdata2     start:0x801A7528 end:0x801A7530 align:8
+
+dol/data/lbl_801A7530.c:
+	.sdata2     start:0x801A7530 end:0x801A7538 align:8
+
+dol/data/lbl_801A7538.c:
+	.sdata2     start:0x801A7538 end:0x801A7540 align:8
+
+dol/data/lbl_801A7540.c:
+	.sdata2     start:0x801A7540 end:0x801A7548 align:8
+
+dol/data/lbl_801A7548.c:
+	.sdata2     start:0x801A7548 end:0x801A7550 align:8
+
+dol/data/lbl_801A7550.c:
+	.sdata2     start:0x801A7550 end:0x801A7558 align:8
+
+dol/data/lbl_801A7558.c:
+	.sdata2     start:0x801A7558 end:0x801A7560 align:8
+
+dol/data/lbl_801A7560.c:
+	.sdata2     start:0x801A7560 end:0x801A7568 align:8
+
+dol/data/lbl_801A7568.c:
+	.sdata2     start:0x801A7568 end:0x801A7570 align:8
+
+dol/data/lbl_801A7570.c:
+	.sdata2     start:0x801A7570 end:0x801A7578 align:8
+
+dol/data/lbl_801A7578.c:
+	.sdata2     start:0x801A7578 end:0x801A7580 align:8
+
+dol/data/lbl_801A7580.c:
+	.sdata2     start:0x801A7580 end:0x801A7588 align:8
+
+dol/data/lbl_801A7588.c:
+	.sdata2     start:0x801A7588 end:0x801A7590 align:8
+
+dol/data/lbl_801A7590.c:
+	.sdata2     start:0x801A7590 end:0x801A7598 align:8
+
+dol/data/lbl_801A7598.c:
+	.sdata2     start:0x801A7598 end:0x801A75A0 align:8
+
+dol/data/lbl_801A75A0.c:
+	.sdata2     start:0x801A75A0 end:0x801A75A8 align:8
+
+dol/data/lbl_801A75A8.c:
+	.sdata2     start:0x801A75A8 end:0x801A75B0 align:8
+
+dol/data/lbl_801A75B0.c:
+	.sdata2     start:0x801A75B0 end:0x801A75B8 align:8
+
+dol/data/lbl_801A75B8.c:
+	.sdata2     start:0x801A75B8 end:0x801A75C0 align:8
+
+dol/data/lbl_801A75C0.c:
+	.sdata2     start:0x801A75C0 end:0x801A75C8 align:8
+
+dol/data/lbl_801A75C8.c:
+	.sdata2     start:0x801A75C8 end:0x801A75D0 align:8
+
+dol/data/lbl_801A75D0.c:
+	.sdata2     start:0x801A75D0 end:0x801A75D8 align:8
+
+dol/data/lbl_801A75D8.c:
+	.sdata2     start:0x801A75D8 end:0x801A75E0 align:8
+
+dol/data/lbl_801A75E0.c:
+	.sdata2     start:0x801A75E0 end:0x801A75E8 align:8
+
+dol/data/lbl_801A75E8.c:
+	.sdata2     start:0x801A75E8 end:0x801A75F0 align:8
+
+dol/data/lbl_801A75F0.c:
+	.sdata2     start:0x801A75F0 end:0x801A75F8 align:8
+
+dol/data/lbl_801A75F8.c:
+	.sdata2     start:0x801A75F8 end:0x801A7600 align:8
+
+dol/data/lbl_801A7600.c:
+	.sdata2     start:0x801A7600 end:0x801A7608 align:8
+
+dol/data/lbl_801A7608.c:
+	.sdata2     start:0x801A7608 end:0x801A7610 align:8
+
+dol/data/lbl_801A7610.c:
+	.sdata2     start:0x801A7610 end:0x801A7618 align:8
+
+dol/data/lbl_801A7618.c:
+	.sdata2     start:0x801A7618 end:0x801A7620 align:8
+
+dol/data/lbl_801A7620.c:
+	.sdata2     start:0x801A7620 end:0x801A7628 align:8
+
+dol/data/lbl_801A7628.c:
+	.sdata2     start:0x801A7628 end:0x801A7630 align:8
+
+dol/data/lbl_801A7630.c:
+	.sdata2     start:0x801A7630 end:0x801A7638 align:8
+
+dol/data/lbl_801A7638.c:
+	.sdata2     start:0x801A7638 end:0x801A7640 align:8
+
+dol/data/lbl_801A7640.c:
+	.sdata2     start:0x801A7640 end:0x801A7648 align:8
+
+dol/data/lbl_801A7648.c:
+	.sdata2     start:0x801A7648 end:0x801A7650 align:8
+
+dol/data/lbl_801A7650.c:
+	.sdata2     start:0x801A7650 end:0x801A7658 align:8
+
+dol/data/lbl_801A7658.c:
+	.sdata2     start:0x801A7658 end:0x801A7660 align:8
+
+dol/data/lbl_801A7660.c:
+	.sdata2     start:0x801A7660 end:0x801A7668 align:8
+
+dol/data/lbl_801A7668.c:
+	.sdata2     start:0x801A7668 end:0x801A7670 align:8
+
+dol/data/lbl_801A7670.c:
+	.sdata2     start:0x801A7670 end:0x801A7678 align:8
+
+dol/data/lbl_801A7678.c:
+	.sdata2     start:0x801A7678 end:0x801A7680 align:8
+
+dol/data/lbl_801A7680.c:
+	.sdata2     start:0x801A7680 end:0x801A7688 align:8
+
+dol/data/lbl_801A7688.c:
+	.sdata2     start:0x801A7688 end:0x801A7690 align:8
+
+dol/data/lbl_801A7690.c:
+	.sdata2     start:0x801A7690 end:0x801A7698 align:8
+
+dol/data/lbl_801A7698.c:
+	.sdata2     start:0x801A7698 end:0x801A76A0 align:8
+
+dol/data/lbl_801A76A0.c:
+	.sdata2     start:0x801A76A0 end:0x801A76A8 align:8
+
+dol/data/lbl_801A76A8.c:
+	.sdata2     start:0x801A76A8 end:0x801A76B0 align:8
+
+dol/data/lbl_801A76B0.c:
+	.sdata2     start:0x801A76B0 end:0x801A76B8 align:8
+
+dol/data/lbl_801A76B8.c:
+	.sdata2     start:0x801A76B8 end:0x801A76C0 align:8
+
+dol/data/lbl_801A76C0.c:
+	.sdata2     start:0x801A76C0 end:0x801A76C8 align:8
+
+dol/data/lbl_801A76C8.c:
+	.sdata2     start:0x801A76C8 end:0x801A76D0 align:8
+
+dol/data/lbl_801A76D0.c:
+	.sdata2     start:0x801A76D0 end:0x801A76D8 align:8
+
+dol/data/lbl_801A76D8.c:
+	.sdata2     start:0x801A76D8 end:0x801A76E0 align:8
+
+dol/data/lbl_801A76E0.c:
+	.sdata2     start:0x801A76E0 end:0x801A76E8 align:8
+
+dol/data/lbl_801A76E8.c:
+	.sdata2     start:0x801A76E8 end:0x801A76F0 align:8
+
+dol/data/lbl_801A76F0.c:
+	.sdata2     start:0x801A76F0 end:0x801A76F8 align:8
+
+dol/data/lbl_801A76F8.c:
+	.sdata2     start:0x801A76F8 end:0x801A7700 align:8
+
+dol/data/lbl_801A7700.c:
+	.sdata2     start:0x801A7700 end:0x801A7708 align:8
+
+dol/data/lbl_801A7708.c:
+	.sdata2     start:0x801A7708 end:0x801A7710 align:8
+
+dol/data/lbl_801A7710.c:
+	.sdata2     start:0x801A7710 end:0x801A7718 align:8
+
+dol/data/lbl_801A7718.c:
+	.sdata2     start:0x801A7718 end:0x801A7720 align:8
+
+dol/data/lbl_801A7720.c:
+	.sdata2     start:0x801A7720 end:0x801A7728 align:8
+
+dol/data/lbl_801A7728.c:
+	.sdata2     start:0x801A7728 end:0x801A7730 align:8
+
+dol/data/lbl_801A7730.c:
+	.sdata2     start:0x801A7730 end:0x801A7738 align:8
+
+dol/data/lbl_801A7738.c:
+	.sdata2     start:0x801A7738 end:0x801A7740 align:8
+
+dol/data/lbl_801A7740.c:
+	.sdata2     start:0x801A7740 end:0x801A7748 align:8
+
+dol/data/lbl_801A7748.c:
+	.sdata2     start:0x801A7748 end:0x801A7750 align:8
+
+dol/data/lbl_801A7750.c:
+	.sdata2     start:0x801A7750 end:0x801A7758 align:8
+
+dol/data/lbl_801A7758.c:
+	.sdata2     start:0x801A7758 end:0x801A7760 align:8
+
+dol/data/lbl_801A7760.c:
+	.sdata2     start:0x801A7760 end:0x801A7768 align:8
+
+dol/data/lbl_801A7768.c:
+	.sdata2     start:0x801A7768 end:0x801A7770 align:8
+
+dol/data/lbl_801A7770.c:
+	.sdata2     start:0x801A7770 end:0x801A7778 align:8
+
+dol/data/lbl_801A7778.c:
+	.sdata2     start:0x801A7778 end:0x801A7780 align:8
+
+dol/data/lbl_801A7780.c:
+	.sdata2     start:0x801A7780 end:0x801A7788 align:8
+
+dol/data/lbl_801A7788.c:
+	.sdata2     start:0x801A7788 end:0x801A7790 align:8
+
+dol/data/lbl_801A7790.c:
+	.sdata2     start:0x801A7790 end:0x801A7798 align:8
+
+dol/data/lbl_801A7798.c:
+	.sdata2     start:0x801A7798 end:0x801A77A0 align:8
+
+dol/data/lbl_801A77A0.c:
+	.sdata2     start:0x801A77A0 end:0x801A77A8 align:8
+
+dol/data/lbl_801A77A8.c:
+	.sdata2     start:0x801A77A8 end:0x801A77B0 align:8
+
+dol/data/lbl_801A77B0.c:
+	.sdata2     start:0x801A77B0 end:0x801A77B8 align:8
+
+dol/data/lbl_801A77B8.c:
+	.sdata2     start:0x801A77B8 end:0x801A77C0 align:8
+
+dol/data/lbl_801A77C0.c:
+	.sdata2     start:0x801A77C0 end:0x801A77C8 align:8
+
+dol/data/lbl_801A77C8.c:
+	.sdata2     start:0x801A77C8 end:0x801A77D0 align:8
+
+dol/data/lbl_801A77D0.c:
+	.sdata2     start:0x801A77D0 end:0x801A77D8 align:8
+
+dol/data/lbl_801A77D8.c:
+	.sdata2     start:0x801A77D8 end:0x801A77E0 align:8
+
+dol/data/lbl_801A77E0.c:
+	.sdata2     start:0x801A77E0 end:0x801A77E8 align:8
+
+dol/data/lbl_801A77E8.c:
+	.sdata2     start:0x801A77E8 end:0x801A77F0 align:8
+
+dol/data/lbl_801A77F0.c:
+	.sdata2     start:0x801A77F0 end:0x801A77F8 align:8
+
+dol/data/lbl_801A77F8.c:
+	.sdata2     start:0x801A77F8 end:0x801A7800 align:8
+
+dol/data/lbl_801A7800.c:
+	.sdata2     start:0x801A7800 end:0x801A7808 align:8
+
+dol/data/lbl_801A7808.c:
+	.sdata2     start:0x801A7808 end:0x801A7810 align:8
+
+dol/data/lbl_801A7810.c:
+	.sdata2     start:0x801A7810 end:0x801A7818 align:8
+
+dol/data/lbl_801A7818.c:
+	.sdata2     start:0x801A7818 end:0x801A7820 align:8
+
+dol/data/lbl_801A7820.c:
+	.sdata2     start:0x801A7820 end:0x801A7828 align:8
+
+dol/data/lbl_801A7828.c:
+	.sdata2     start:0x801A7828 end:0x801A7830 align:8
+
+dol/data/lbl_801A7830.c:
+	.sdata2     start:0x801A7830 end:0x801A7838 align:8
+
+dol/data/lbl_801A7838.c:
+	.sdata2     start:0x801A7838 end:0x801A7840 align:8
+
+dol/data/lbl_801A7840.c:
+	.sdata2     start:0x801A7840 end:0x801A7848 align:8
+
+dol/data/lbl_801A7848.c:
+	.sdata2     start:0x801A7848 end:0x801A7850 align:8
+
+dol/data/lbl_801A7850.c:
+	.sdata2     start:0x801A7850 end:0x801A7858 align:8
+
+dol/data/lbl_801A7858.c:
+	.sdata2     start:0x801A7858 end:0x801A7860 align:8
+
+dol/data/lbl_801A7860.c:
+	.sdata2     start:0x801A7860 end:0x801A7868 align:8
+
+dol/data/lbl_801A7868.c:
+	.sdata2     start:0x801A7868 end:0x801A7870 align:8
+
+dol/data/lbl_801A7870.c:
+	.sdata2     start:0x801A7870 end:0x801A7878 align:8
+
+dol/data/lbl_801A7878.c:
+	.sdata2     start:0x801A7878 end:0x801A7880 align:8
+
+dol/data/lbl_801A7880.c:
+	.sdata2     start:0x801A7880 end:0x801A7888 align:8
+
+dol/data/lbl_801A7888.c:
+	.sdata2     start:0x801A7888 end:0x801A7890 align:8
+
+dol/data/lbl_801A7890.c:
+	.sdata2     start:0x801A7890 end:0x801A7898 align:8
+
+dol/data/lbl_801A7898.c:
+	.sdata2     start:0x801A7898 end:0x801A78A0 align:8
+
+dol/data/lbl_801A78A0.c:
+	.sdata2     start:0x801A78A0 end:0x801A78A8 align:8
+
+dol/data/lbl_801A78A8.c:
+	.sdata2     start:0x801A78A8 end:0x801A78B0 align:8
+
+dol/data/lbl_801A78B0.c:
+	.sdata2     start:0x801A78B0 end:0x801A78B8 align:8
+
+dol/data/lbl_801A78B8.c:
+	.sdata2     start:0x801A78B8 end:0x801A78C0 align:8
+
+dol/data/lbl_801A78C0.c:
+	.sdata2     start:0x801A78C0 end:0x801A78C8 align:8
+
+dol/data/lbl_801A78C8.c:
+	.sdata2     start:0x801A78C8 end:0x801A78D0 align:8
+
+dol/data/lbl_801A78D0.c:
+	.sdata2     start:0x801A78D0 end:0x801A78D8 align:8
+
+dol/data/lbl_801A78D8.c:
+	.sdata2     start:0x801A78D8 end:0x801A78E0 align:8
+
+dol/data/lbl_801A78E0.c:
+	.sdata2     start:0x801A78E0 end:0x801A78E8 align:8
+
+dol/data/lbl_801A78E8.c:
+	.sdata2     start:0x801A78E8 end:0x801A78F0 align:8
+
+dol/data/lbl_801A78F0.c:
+	.sdata2     start:0x801A78F0 end:0x801A78F8 align:8
+
+dol/data/lbl_801A78F8.c:
+	.sdata2     start:0x801A78F8 end:0x801A7900 align:8
+
+dol/data/lbl_8012B8F8.c:
+	.data       start:0x8012B8F8 end:0x8012B900 align:8
+
+dol/data/lbl_8012B900.c:
+	.data       start:0x8012B900 end:0x8012B910 align:32
+
+dol/data/lbl_8012B910.c:
+	.data       start:0x8012B910 end:0x8012B918 align:16
+
+dol/data/lbl_8012B918.c:
+	.data       start:0x8012B918 end:0x8012B930 align:8
+
+dol/data/lbl_8012B930.c:
+	.data       start:0x8012B930 end:0x8012B938 align:16
+
+dol/data/lbl_8012B938.c:
+	.data       start:0x8012B938 end:0x8012D9B8 align:8
+
 dol/data/lbl_800929D8.c:
 	.rodata     start:0x800929D8 end:0x80092D40 align:8
+
+dol/data/lbl_80092D40.c:
+	.rodata     start:0x80092D40 end:0x80094E10 align:32
 
 dol/data/lbl_80094E10.c:
 	.rodata     start:0x80094E10 end:0x80094E20 align:16
@@ -7506,71 +8205,269 @@ dol/data/lbl_80094E30.c:
 dol/data/lbl_80094E48.c:
 	.rodata     start:0x80094E48 end:0x80094E80 align:8
 
-dol/data/lbl_80094E80.c:
-	.rodata     start:0x80094E80 end:0x80094ED8 align:32
+dol/data/Packet.c:
+	.bss        start:0x8015CA10 end:0x8015CD70 align:8
 
-dol/data/lbl_80094ED8.c:
-	.rodata     start:0x80094ED8 end:0x80094FB8 align:8
+dol/data/TRK_saved_exceptionID.c:
+	.bss        start:0x801A50B8 end:0x801A5160 align:8
+
+dol/data/TRK_mainError.c:
+	.bss        start:0x801A5640 end:0x801A5648 align:8
+
+dol/data/lbl_801220C0.c:
+	.data       start:0x801220C0 end:0x80122F0C align:32
+
+dol/data/ResetFunctionInfo.c:
+	.data       start:0x80123AE0 end:0x80123AF0 align:32
+
+dol/data/lbl_801295E0.c:
+	.data       start:0x801295E0 end:0x8012AD40 align:32
+
+dol/data/EndofProgramInstruction.c:
+	.rodata     start:0x80095BC8 end:0x80095CD0 align:8
+
+dol/data/lbl_801A7900.c:
+	.sbss2      start:0x801A7900 end:0x801A7908 align:8
+
+dol/data/lbl_801A7908.c:
+	.sbss2      start:0x801A7908 end:0x801A7910 align:8
+
+dol/data/lbl_801A7910.c:
+	.sbss2      start:0x801A7910 end:0x801A7918 align:8
+
+dol/data/lbl_801A7918.c:
+	.sbss2      start:0x801A7918 end:0x801A7920 align:8
+
+dol/data/lbl_801A7920.c:
+	.sbss2      start:0x801A7920 end:0x801A7928 align:8
+
+dol/data/lbl_801A7928.c:
+	.sbss2      start:0x801A7928 end:0x801A792C align:8
+
+dol/data/lbl_801A6E40.c:
+	.sdata2     start:0x801A6E40 end:0x801A6E48 align:8
+
+dol/data/lbl_801A6E48.c:
+	.sdata2     start:0x801A6E48 end:0x801A6E50 align:8
+
+dol/data/lbl_801A6E50.c:
+	.sdata2     start:0x801A6E50 end:0x801A6E58 align:8
+
+dol/data/lbl_801A6E58.c:
+	.sdata2     start:0x801A6E58 end:0x801A6E60 align:8
+
+dol/data/lbl_801A6E60.c:
+	.sdata2     start:0x801A6E60 end:0x801A6E68 align:8
+
+dol/data/lbl_801A6E68.c:
+	.sdata2     start:0x801A6E68 end:0x801A6E70 align:8
+
+dol/data/lbl_801A6E70.c:
+	.sdata2     start:0x801A6E70 end:0x801A6E80 align:8
+
+dol/data/lbl_801A6E80.c:
+	.sdata2     start:0x801A6E80 end:0x801A6E90 align:8
+
+dol/data/lbl_801A6E90.c:
+	.sdata2     start:0x801A6E90 end:0x801A6E98 align:8
+
+dol/data/lbl_801A6E98.c:
+	.sdata2     start:0x801A6E98 end:0x801A6EA0 align:8
+
+dol/data/lbl_801A6EA0.c:
+	.sdata2     start:0x801A6EA0 end:0x801A6EA8 align:8
+
+dol/data/lbl_801A6EA8.c:
+	.sdata2     start:0x801A6EA8 end:0x801A6EB8 align:8
+
+dol/data/lbl_801A6EB8.c:
+	.sdata2     start:0x801A6EB8 end:0x801A6EC0 align:8
+
+dol/data/lbl_801A6EC0.c:
+	.sdata2     start:0x801A6EC0 end:0x801A6ED0 align:8
+
+dol/data/lbl_801A6ED0.c:
+	.sdata2     start:0x801A6ED0 end:0x801A6ED8 align:8
+
+dol/data/lbl_801A6ED8.c:
+	.sdata2     start:0x801A6ED8 end:0x801A6EE0 align:8
+
+dol/data/lbl_801A6EE0.c:
+	.sdata2     start:0x801A6EE0 end:0x801A6EE8 align:8
+
+dol/data/lbl_801A6EE8.c:
+	.sdata2     start:0x801A6EE8 end:0x801A6EF8 align:8
+
+dol/data/lbl_801A6EF8.c:
+	.sdata2     start:0x801A6EF8 end:0x801A6F00 align:8
+
+dol/data/lbl_801A6F00.c:
+	.sdata2     start:0x801A6F00 end:0x801A6F08 align:8
+
+dol/data/lbl_801A6F08.c:
+	.sdata2     start:0x801A6F08 end:0x801A6F10 align:8
+
+dol/data/lbl_801A6F10.c:
+	.sdata2     start:0x801A6F10 end:0x801A6F18 align:8
+
+dol/data/lbl_801A6F18.c:
+	.sdata2     start:0x801A6F18 end:0x801A6F20 align:8
+
+dol/data/lbl_801A6F20.c:
+	.sdata2     start:0x801A6F20 end:0x801A6F28 align:8
+
+dol/data/lbl_801A6F28.c:
+	.sdata2     start:0x801A6F28 end:0x801A6F30 align:8
+
+dol/data/lbl_801A6F30.c:
+	.sdata2     start:0x801A6F30 end:0x801A6F38 align:8
+
+dol/data/lbl_801A6F38.c:
+	.sdata2     start:0x801A6F38 end:0x801A6F40 align:8
+
+dol/data/lbl_801A6F40.c:
+	.sdata2     start:0x801A6F40 end:0x801A6F48 align:8
+
+dol/data/lbl_801A6F48.c:
+	.sdata2     start:0x801A6F48 end:0x801A6F50 align:8
+
+dol/data/lbl_801A6F50.c:
+	.sdata2     start:0x801A6F50 end:0x801A6F58 align:8
+
+dol/data/lbl_801A6F58.c:
+	.sdata2     start:0x801A6F58 end:0x801A6F60 align:8
+
+dol/data/lbl_801A6F60.c:
+	.sdata2     start:0x801A6F60 end:0x801A6F68 align:8
+
+dol/data/lbl_801A6F68.c:
+	.sdata2     start:0x801A6F68 end:0x801A6F70 align:8
+
+dol/data/lbl_801A6F70.c:
+	.sdata2     start:0x801A6F70 end:0x801A6F78 align:8
+
+dol/data/lbl_801A6F78.c:
+	.sdata2     start:0x801A6F78 end:0x801A6F80 align:8
+
+dol/data/lbl_801A6F80.c:
+	.sdata2     start:0x801A6F80 end:0x801A6F88 align:8
+
+dol/data/lbl_801A6F88.c:
+	.sdata2     start:0x801A6F88 end:0x801A6F90 align:8
+
+dol/data/lbl_801A6F90.c:
+	.sdata2     start:0x801A6F90 end:0x801A6F98 align:8
+
+dol/data/lbl_801A6F98.c:
+	.sdata2     start:0x801A6F98 end:0x801A6FA0 align:8
+
+dol/data/lbl_801A6FA0.c:
+	.sdata2     start:0x801A6FA0 end:0x801A6FA8 align:8
+
+dol/data/lbl_801A6FA8.c:
+	.sdata2     start:0x801A6FA8 end:0x801A6FB0 align:8
+
+dol/data/lbl_801A6FB0.c:
+	.sdata2     start:0x801A6FB0 end:0x801A6FB8 align:8
+
+dol/data/lbl_801A6FB8.c:
+	.sdata2     start:0x801A6FB8 end:0x801A6FC0 align:8
+
+dol/data/lbl_801A6FC0.c:
+	.sdata2     start:0x801A6FC0 end:0x801A6FC8 align:8
+
+dol/data/lbl_801A6FC8.c:
+	.sdata2     start:0x801A6FC8 end:0x801A6FD0 align:8
+
+dol/data/lbl_801A6FD0.c:
+	.sdata2     start:0x801A6FD0 end:0x801A6FD8 align:8
+
+dol/data/lbl_801A6FD8.c:
+	.sdata2     start:0x801A6FD8 end:0x801A6FE0 align:8
+
+dol/data/lbl_801A6FE0.c:
+	.sdata2     start:0x801A6FE0 end:0x801A6FE8 align:8
+
+dol/data/lbl_801A6FE8.c:
+	.sdata2     start:0x801A6FE8 end:0x801A6FF0 align:8
+
+dol/data/lbl_801A6FF0.c:
+	.sdata2     start:0x801A6FF0 end:0x801A6FF8 align:8
+
+dol/data/lbl_801A6FF8.c:
+	.sdata2     start:0x801A6FF8 end:0x801A7000 align:8
+
+dol/data/lbl_801A7000.c:
+	.sdata2     start:0x801A7000 end:0x801A7008 align:8
+
+dol/data/lbl_801A7008.c:
+	.sdata2     start:0x801A7008 end:0x801A7010 align:8
+
+dol/data/lbl_801A7010.c:
+	.sdata2     start:0x801A7010 end:0x801A7020 align:8
+
+dol/data/lbl_801A7020.c:
+	.sdata2     start:0x801A7020 end:0x801A7028 align:8
+
+dol/data/lbl_801A7028.c:
+	.sdata2     start:0x801A7028 end:0x801A7038 align:8
+
+dol/data/lbl_801A7038.c:
+	.sdata2     start:0x801A7038 end:0x801A7040 align:8
+
+dol/data/lbl_801A7040.c:
+	.sdata2     start:0x801A7040 end:0x801A7048 align:8
+
+dol/data/lbl_801A7048.c:
+	.sdata2     start:0x801A7048 end:0x801A7050 align:8
+
+dol/data/lbl_801A7050.c:
+	.sdata2     start:0x801A7050 end:0x801A7058 align:8
+
+dol/data/gx.c:
+	.sdata2     start:0x801A7058 end:0x801A7060 align:8
+
+dol/data/gxData.c:
+	.bss        start:0x80177BA0 end:0x80178098 align:8
+
+dol/data/lbl_80124598.c:
+	.data       start:0x80124598 end:0x80129550 align:8
+
+dol/data/lbl_8012AFB8.c:
+	.data       start:0x8012AFB8 end:0x8012B120 align:8
+
+dol/data/lbl_8012B368.c:
+	.data       start:0x8012B368 end:0x8012B400 align:8
+
+dol/data/lbl_8012B6F8.c:
+	.data       start:0x8012B6F8 end:0x8012B8F8 align:8
+
+dol/data/lbl_8012D9B8.c:
+	.data       start:0x8012D9B8 end:0x801325D8 align:8
+
+dol/data/lbl_8015B100.c:
+	.data       start:0x8015B100 end:0x8015B438 align:32
+
+dol/data/gTRKRestoreFlags.c:
+	.data       start:0x8015B868 end:0x8015B919 align:8
+
+dol/data/lbl_80090990.c:
+	.rodata     start:0x80090990 end:0x80090A20 align:16
+
+dol/data/lbl_800922F0.c:
+	.rodata     start:0x800922F0 end:0x80092330 align:16
 
 dol/data/lbl_80094FE8.c:
-	.rodata     start:0x80094FE8 end:0x80095010 align:8
-
-dol/data/lbl_80095010.c:
-	.rodata     start:0x80095010 end:0x80095030 align:16
-
-dol/data/lbl_80095030.c:
-	.rodata     start:0x80095030 end:0x800953A0 align:16
-
-dol/data/lbl_800953A0.c:
-	.rodata     start:0x800953A0 end:0x800953D8 align:32
-
-dol/data/lbl_800953D8.c:
-	.rodata     start:0x800953D8 end:0x80095408 align:8
-
-dol/data/lbl_80095408.c:
-	.rodata     start:0x80095408 end:0x80095510 align:8
-
-dol/data/lbl_80095510.c:
-	.rodata     start:0x80095510 end:0x80095590 align:16
-
-dol/data/lbl_80095590.c:
-	.rodata     start:0x80095590 end:0x800955A0 align:16
-
-dol/data/lbl_800955A0.c:
-	.rodata     start:0x800955A0 end:0x800955E0 align:8
-
-dol/data/lbl_800955E0.c:
-	.rodata     start:0x800955E0 end:0x80095648 align:8
+	.rodata     start:0x80094FE8 end:0x80095648 align:8
 
 dol/data/lbl_80095A78.c:
-	.rodata     start:0x80095A78 end:0x80095B20 align:8
+	.rodata     start:0x80095A78 end:0x80095BB8 align:8
 
-dol/data/lbl_80095B20.c:
-	.rodata     start:0x80095B20 end:0x80095B30 align:32
+dol/data/RunQueue.c:
+	.bss        start:0x8015C018 end:0x8015CA10 align:8
 
-dol/data/lbl_80095B30.c:
-	.rodata     start:0x80095B30 end:0x80095B58 align:16
-
-dol/data/lbl_80095B58.c:
-	.rodata     start:0x80095B58 end:0x80095B80 align:8
-
-dol/data/lbl_80095B80.c:
-	.rodata     start:0x80095B80 end:0x80095BA8 align:32
-
-dol/data/lbl_80095BA8.c:
-	.rodata     start:0x80095BA8 end:0x80095BB8 align:8
-
-dol/data/lbl_80095CD0.c:
-	.rodata     start:0x80095CD0 end:0x80095D98 align:16
-
-dol/fn_8004F00C.c:
-	.text       start:0x8004F00C end:0x8004F26C align:4
-
-dol/fn_8006BCF8.c:
-	.text       start:0x8006BCF8 end:0x8006BE0C align:4
-
-dol/fn_8004F26C.c:
-	.text       start:0x8004F26C end:0x8004F55C align:4
+dol/data/__DVDLowAlarmForWA.c:
+	.bss        start:0x8015CDB0 end:0x8015CE28 align:8
 
 dol/lbl_8006D3D0.c:
 	.text       start:0x8006D3D0 end:0x8006D46C align:4
@@ -7728,3 +8625,5 @@ dol/__save_gpr.c:
 dol/__restore_gpr.c:
 	.text       start:0x800798A4 end:0x800798F0 align:4
 
+dol/data/FifoObj.c:
+	.bss        start:0x80178098 end:0x80178118 align:8

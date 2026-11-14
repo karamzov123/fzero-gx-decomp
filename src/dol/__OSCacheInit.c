@@ -14,7 +14,7 @@ struct OSCacheMessages {
     char message_1fc[46];
 };
 
-extern struct OSCacheMessages OSCacheData_80122828;
+extern struct OSCacheMessages OSCacheData;
 
 u32 PPCMfmsr(void);
 
@@ -60,7 +60,7 @@ static inline void L2Enable(void) {
 void DMAErrorHandler(OSError error, OSContext *context, ...);
 
 void __OSCacheInit() {
-    struct OSCacheMessages *messages = &OSCacheData_80122828;
+    struct OSCacheMessages *messages = &OSCacheData;
 
     if (!(PPCMfhid0() & (1 << (31 - 16)))) {
         ICEnable();

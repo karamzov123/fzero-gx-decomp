@@ -8,7 +8,7 @@ void PPCMtdec(u32 val);
 extern struct OSAlarmQueue {
     OSAlarm *head;
     OSAlarm *tail;
-} AlarmQueue_801A6788;
+} AlarmQueue;
 
 static inline void SetTimer(OSAlarm *alarm) {
     OSTime delta;
@@ -32,14 +32,14 @@ void OSCancelAlarm(OSAlarm *alarm) {
     }
     next = alarm->next;
     if (next == 0) {
-        AlarmQueue_801A6788.tail = alarm->prev;
+        AlarmQueue.tail = alarm->prev;
     } else {
         next->prev = alarm->prev;
     }
     if (alarm->prev) {
         alarm->prev->next = next;
     } else {
-        AlarmQueue_801A6788.head = next;
+        AlarmQueue.head = next;
         if (next) {
             SetTimer(next);
         }

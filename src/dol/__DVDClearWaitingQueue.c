@@ -12,13 +12,13 @@ typedef struct DVDWaitingQueue {
     DVDCommandBlock block3;
 } DVDWaitingQueue;
 
-extern DVDWaitingQueue WaitingQueue_8015CED8;
+extern DVDWaitingQueue WaitingQueue;
 
 void __DVDClearWaitingQueue(void) {
-    DVDCommandBlock *queue = &WaitingQueue_8015CED8.head;
-    DVDCommandBlock *block2 = &WaitingQueue_8015CED8.block2;
-    DVDCommandBlock *block1 = &WaitingQueue_8015CED8.block1;
-    DVDCommandBlock *block3 = &WaitingQueue_8015CED8.block3;
+    DVDCommandBlock *queue = &WaitingQueue.head;
+    DVDCommandBlock *block2 = &WaitingQueue.block2;
+    DVDCommandBlock *block1 = &WaitingQueue.block1;
+    DVDCommandBlock *block3 = &WaitingQueue.block3;
 
     queue->next = queue;
     queue->prev = queue;

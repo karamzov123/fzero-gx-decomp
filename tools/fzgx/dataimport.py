@@ -24,7 +24,8 @@ SECTIONS = BSS | {'.data', '.rodata', '.sdata', '.sdata2'}
 BASIC = {'u8': (1, 'B'), 's8': (1, 'b'), 'char': (1, 'B'),
          'u16': (2, 'H'), 's16': (2, 'h'), 'u32': (4, 'I'), 's32': (4, 'i'),
          'u64': (8, 'Q'), 's64': (8, 'q'), 'f32': (4, 'f'), 'float': (4, 'f'),
-         'f64': (8, 'd'), 'double': (8, 'd'), 'int': (4, 'i')}
+         'f64': (8, 'd'), 'double': (8, 'd'), 'int': (4, 'i'),
+         'short': (2, 'h'), 'unsigned char': (1, 'B')}
 
 
 def regions(p, module, section):
@@ -372,10 +373,22 @@ def generate(p, sym, recipe=None, opaque_bss=False, scalar_byte=False):
             init, method = None, 'string-buffer'
     elif sym.section in BSS:
         # Headers carry recovered structs. Do not flatten them into byte arrays.
-        known = None if opaque_bss else next((d for d in decls if d['path'].startswith('include/')), None)
+        known = next((d for d in decls if d['path'].startswith('include/')), None)
         if known is None and not opaque_bss:
-            known = next((d for d in decls if re.fullmatch(
-                r'(?:volatile\s+)?(?:' + '|'.join(BASIC) + r')\s+\w+\s*(?:\[[0-9a-fA-FxX]+\])*', d['declaration'])), None)
+            # Caller declarations can describe only a prefix of the retail object.
+            # Accept a fixed-width scalar/array only when its full extent agrees;
+            # otherwise retain opaque storage, including during regeneration.
+            for d in decls:
+                match = re.fullmatch(
+                    r'(?:volatile\s+)?(' + '|'.join(k for k in BASIC if k not in ('short', 'unsigned char'))
+                    + r')\s+\w+\s*((?:\[(?:0[xX][0-9a-fA-F]+|[0-9]+)\]\s*)*)', d['declaration'])
+                if match:
+                    dimensions = re.findall(r'\[([^\]]+)\]', match[2])
+                    extent = BASIC[match[1]][0] * math.prod(
+                        int(n, 16) if n.lower().startswith('0x') else int(n) for n in dimensions)
+                    if extent == sym.size:
+                        known = d
+                        break
         if known:
             decl = known['declaration']
             if known['path'].startswith('include/'):
@@ -385,9 +398,6 @@ def generate(p, sym, recipe=None, opaque_bss=False, scalar_byte=False):
             # MWCC 4-aligns every array, even u8[1]; a lone byte or halfword is a scalar.
             decl, method = f'{"u8" if sym.size == 1 else "u16"} {sym.name}', 'opaque-bss-scalar'
             extras.append('/* Storage extent is known; element/field types are not recovered. */')
-        elif opaque_bss:
-            decl, method = f'u8 {sym.name}[{sym.size}]', 'opaque-bss-header-mismatch'
-            extras.append('/* Storage extent is known; the header type does not reproduce the retail layout. */')
         else:
             decl, method = f'u8 {sym.name}[{sym.size}]', 'opaque-bss'
             extras.append('/* Storage extent is known; element/field types are not recovered. */')
@@ -479,16 +489,17 @@ def generate(p, sym, recipe=None, opaque_bss=False, scalar_byte=False):
         known = None
         from .sdkimport import integer_expression
         for d in decls:
-            match = re.fullmatch(r'(?:const\s+)?(' + '|'.join(BASIC) + r')\s+' + re.escape(sym.name) + r'\s*(\[[^\]]*\])?', d['declaration'])
+            match = re.fullmatch(r'(?:const\s+)?(' + '|'.join(BASIC) + r')\s+' + re.escape(sym.name) + r'\s*((?:\[[^\]]*\]\s*)*)', d['declaration'])
             if not match or (kind in ('f32', 'f64', 'char') and match[1] != kind):
                 continue
             width = BASIC[match[1]][0]
-            bound = match[2][1:-1].strip() if match[2] else None
             try:
-                count = 1
-                if match[2]:
-                    count = integer_expression(bound) if bound else sym.size // width
-            except (ValueError, SyntaxError):
+                # Every bound counts (s32 rates[2][4]); only the first may be left empty.
+                dims = [b.strip() for b in re.findall(r'\[([^\]]*)\]', match[2])]
+                inner = math.prod(integer_expression(b) for b in dims[1:])
+                count = inner * (integer_expression(dims[0]) if dims and dims[0]
+                                 else sym.size // width // inner if dims else 1)
+            except (ValueError, SyntaxError, ZeroDivisionError):
                 continue
             # Inferred externs may cover only a prefix or an oversized view,
             # neither of which defines this retail object's measured extent.
@@ -579,8 +590,13 @@ def validate(p, record, obj):
     if len(owned) != 1:
         raise ValueError('compiler did not define exactly one target symbol')
     es = owned[0]; sec = elf.sections[es['shndx']]
-    flags = 2 if record['section'] in ('.rodata', '.sdata2', '.sbss2') else 3
-    if sec['flags'] != flags:
+    flags = {2} if record['section'] == '.rodata' else {3}
+    if record['section'] in ('.sdata2', '.sbss2'):
+        # MWCC emits its small constant sections writable in every spelling (measured on
+        # GC/1.3.2: const, __declspec and #pragma section all give flags WA), while dtk marks
+        # the retail objects read-only. The name places them; the 16 hashes are the gate.
+        flags = {2, 3}
+    if sec['flags'] not in flags:
         raise ValueError('compiler changed the data section permissions')
     start = record.get('unit_start', record['address'])
     size = record.get('section_size', record.get('unit_size', record['size']))
@@ -661,7 +677,8 @@ def import_data(p, names, apply=False, recipes=None, regenerate=False):
         rescued = set()
         def rescue():
             # An unowned BSS run boxed in by owned splits would be dropped by DTK
-            # with its symbols; import it too, as opaque storage of its retail extent.
+            # with its symbols; import it too, retaining recovered header types.
+            # Only objects without a header declaration use opaque storage.
             added = False
             for run in isolated_runs(p, records):
                 key = tuple(sym.name for sym in run)
@@ -748,6 +765,17 @@ def import_data(p, names, apply=False, recipes=None, regenerate=False):
                     # reverse their definitions while retaining the retail layout
                     # for validation and split ownership.
                     definitions = reversed(group) if first['section'] in BSS else group
+                    # A member's alignment is the largest power of two dividing its address (up
+                    # to the section default), so a later member can ask for more than the group
+                    # start has (lbl_800909C0 at a 32-aligned address after an 8-aligned string)
+                    # and the section would outgrow the start. Cap it at the alignment the start
+                    # address allows (its lowest set bit, not the first member's own attribute:
+                    # an explicit align:4 on an 8-aligned start must not strip a later member's
+                    # padding); groups that already compiled are unchanged.
+                    # validate() below still checks every member's offset against retail.
+                    cap = (first['address'] & -first['address']) or 1 << 31   # REL offset 0: any
+                    definitions = [(r, source.replace(f'aligned({r["align"]}))', f'aligned({cap}))')
+                                    if r['align'] > cap else source) for r, source in definitions]
                     text = '\n'.join(source for _, source in definitions)
                     # The group now owns some relocation targets. Their real
                     # declarations replace the address-only external fallback.
@@ -794,12 +822,15 @@ def import_data(p, names, apply=False, recipes=None, regenerate=False):
                     cuts = [i for i, (r, _) in enumerate(group) if i and r['address'] % 8 == 0
                             and ((group[i - 1][0]['address'] + group[i - 1][0]['size'] + 3) & -4) == r['address']
                             and (_owner(r) is None or _owner(r) != _owner(group[i - 1][0]))]
-                    if not cuts and not regenerate and any(r['method'] == 'declared-bss' for r, _ in group):
-                        # A header type that does not reproduce the retail extent: keep the
-                        # storage as an opaque byte array of the retail size instead.
+                    retryable = {r['symbol'] for r, _ in group if r['method'] == 'declared-bss'
+                                 and not any(d['path'].startswith('include/') for d in r['declarations'])}
+                    if not cuts and not regenerate and retryable:
+                        # Source-only scalar declarations may have an incorrect extent.
+                        # Recovered header types must pass the real layout checks; never
+                        # erase them, or retry an unchanged header definition forever.
                         retry = []
                         for r, src in group:
-                            if r['method'] == 'declared-bss':
+                            if r['symbol'] in retryable:
                                 src, r = generate(p, p.find_symbol(r['symbol'], r['module']), opaque_bss=True)
                             retry.append((r, src))
                         pending.insert(0, retry)
