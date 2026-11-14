@@ -5160,7 +5160,6 @@ static inline void fn_8_B138_set_layer(struct fn_8_B138_layer *layer, f32 a, f32
     layer->unk_10 = c;
 }
 
-#pragma opt_propagation off
 void fn_8_B138(void) {
     u8 *pool;
     s32 current;
@@ -5187,9 +5186,8 @@ void fn_8_B138(void) {
         }
     }
 
-    alpha = (1.0f) - blend;
     {
-        f32 d = alpha;
+        f32 d = (1.0f) - blend;
         alpha = d * d;
     }
     fn_1_49410();
@@ -5212,8 +5210,6 @@ void fn_8_B138(void) {
     fn_8_B138_set_layer(&lbl_8_bss_2C0__fzgx_offset_C[0], (1.0f), (0.0f), (90.0f));
     fn_8_C9A8(0, 0, (1.0f));
 }
-
-#pragma opt_propagation reset
 /* fzgx:end fn_8_B138 */
 
 /* fzgx:begin fn_8_B380 */
