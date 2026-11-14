@@ -95,6 +95,17 @@ void ClearArena(void);
 
 void InquiryCallback(s32 result, DVDCommandBlock *block);
 
+void ICFlashInvalidate(void);
+
+void __OSUnhandledException(__OSException exception, OSContext *context, u32 dsisr, u32 dar);
+
+struct DIRegs {
+    u8 _pad0[0x24];
+    volatile u32 config;  /* fzgx-allow: S2 memory-mapped register */
+};
+
+extern struct DIRegs __DIRegs;
+
 extern unsigned char OSDataPool[];
 
 extern OSBootInfo *BootInfo_801A6748;
@@ -356,3 +367,153 @@ void OSExceptionInit(void) {
     *opCodeAddr = oldOpCode;
     DBPrintf("Exceptions initialized...\n");
 }
+
+/* Assembly in the original: the SDK's os.c writes this routine as a CodeWarrior asm
+ * function. Evidence (docs/ASM_POLICY.md section 1): mflr/mtlr through a fixed low-memory
+ * save slot and mtmsr (privileged), no MWCC prologue or epilogue (nofralloc).
+ * OSExceptionInit copies it to 0x60 between the __OSDBINTSTART/__OSDBINTEND labels, so it
+ * is position-independent code, not a C function. */
+static asm void __OSDBIntegrator(void) {
+    nofralloc
+entry __OSDBINTSTART
+    li      r5, 0x40
+    mflr    r3
+    stw     r3, 0xC(r5)
+    lwz     r3, 0x8(r5)
+    oris    r3, r3, 0x8000
+    mtlr    r3
+    li      r3, 0x30
+    mtmsr   r3
+    blr
+entry __OSDBINTEND
+}
+
+/* __OSDBJump. Assembly in the original: `bla 0x60` is an absolute branch that MWCC never
+ * emits from C. It is a one-word trampoline that OSExceptionInit copies into the exception
+ * vectors between __OSDBINTEND and __OSDBJUMPEND. */
+asm void fn_8000AA2C(void) {
+    nofralloc
+    bla     0x60
+entry __OSDBJUMPEND
+}
+
+__OSExceptionHandler __OSSetExceptionHandler(__OSException exception, __OSExceptionHandler handler) {
+    __OSExceptionHandler oldHandler;
+    oldHandler = OSExceptionTable[exception];
+    OSExceptionTable[exception] = handler;
+    return oldHandler;
+}
+
+__OSExceptionHandler __OSGetExceptionHandler(__OSException exception) {
+    return OSExceptionTable[exception];
+}
+
+/* Assembly in the original: the SDK's os.c writes this routine as a CodeWarrior asm
+ * function. Evidence (docs/ASM_POLICY.md section 1): mtsprg/mfsprg, mfsrr0/mfsrr1,
+ * mtsrr0/mtsrr1 and rfi (privileged; MWCC never emits them from C), no MWCC prologue or
+ * epilogue. OSExceptionInit copies it to every exception vector between the
+ * __OSEVStart/__OSEVEnd labels and patches the word at __OSEVSetNumber. */
+static asm void OSExceptionVector(void) {
+    nofralloc
+entry __OSEVStart
+    mtsprg  0, r4
+    lwz     r4, 0xC0(r0)       /* OS_CURRENTCONTEXT_PADDR */
+    stw     r3, 0xC(r4)        /* context->gpr[3] */
+    mfsprg  r3, 0
+    stw     r3, 0x10(r4)       /* context->gpr[4] */
+    stw     r5, 0x14(r4)       /* context->gpr[5] */
+    lhz     r3, 0x1A2(r4)      /* context->state */
+    ori     r3, r3, 0x2        /* OS_CONTEXT_STATE_EXC */
+    sth     r3, 0x1A2(r4)
+    mfcr    r3
+    stw     r3, 0x80(r4)       /* context->cr */
+    mflr    r3
+    stw     r3, 0x84(r4)       /* context->lr */
+    mfctr   r3
+    stw     r3, 0x88(r4)       /* context->ctr */
+    mfxer   r3
+    stw     r3, 0x8C(r4)       /* context->xer */
+    mfsrr0  r3
+    stw     r3, 0x198(r4)      /* context->srr0 */
+    mfsrr1  r3
+    stw     r3, 0x19C(r4)      /* context->srr1 */
+    mr      r5, r3
+entry __DBVECTOR
+    nop
+    mfmsr   r3
+    ori     r3, r3, 0x30       /* MSR_IR | MSR_DR */
+    mtsrr1  r3
+entry __OSEVSetNumber
+    li      r3, 0
+    lwz     r4, 0xD4(r0)       /* OS_CURRENTCONTEXT */
+    rlwinm. r5, r5, 0, 30, 30  /* MSR_RI */
+    bne     recoverable
+    lis     r5, OSDefaultExceptionHandler@ha
+    addi    r5, r5, OSDefaultExceptionHandler@l
+    mtsrr0  r5
+    rfi
+recoverable:
+    rlwinm  r5, r3, 2, 22, 29
+    lwz     r5, 0x3000(r5)     /* OSExceptionTable[exception] */
+    mtsrr0  r5
+    rfi
+entry __OSEVEnd
+    nop
+}
+
+/* Assembly in the original: the SDK's os.c writes this routine as a CodeWarrior asm
+ * function. Evidence (docs/ASM_POLICY.md section 1): mfspr GQR1-GQR7, mfdsisr/mfdar
+ * (special-purpose registers MWCC never emits from C), stores into the context from the
+ * incoming registers with no MWCC prologue (nofralloc), and a hand-made stwu frame before
+ * the tail branch to __OSUnhandledException. */
+asm void OSDefaultExceptionHandler(register __OSException exception, register OSContext *context) {
+    nofralloc
+    stw     r0, 0x0(context)
+    stw     r1, 0x4(context)
+    stw     r2, 0x8(context)
+    stmw    r6, 0x18(context)
+    mfspr   r0, 913            /* GQR1 */
+    stw     r0, 0x1A8(context)
+    mfspr   r0, 914            /* GQR2 */
+    stw     r0, 0x1AC(context)
+    mfspr   r0, 915            /* GQR3 */
+    stw     r0, 0x1B0(context)
+    mfspr   r0, 916            /* GQR4 */
+    stw     r0, 0x1B4(context)
+    mfspr   r0, 917            /* GQR5 */
+    stw     r0, 0x1B8(context)
+    mfspr   r0, 918            /* GQR6 */
+    stw     r0, 0x1BC(context)
+    mfspr   r0, 919            /* GQR7 */
+    stw     r0, 0x1C0(context)
+    mfdsisr r5
+    mfdar   r6
+    stwu    r1, -8(r1)
+    b       __OSUnhandledException
+}
+
+/* The SDK writes this function in C with an asm block. Evidence for the block
+ * (docs/ASM_POLICY.md section 1): mtspr GQR0-GQR7, special-purpose register writes that
+ * MWCC never emits from C. */
+void __OSPSInit(void) {
+    PPCMthid2(PPCMfhid2() | 0xA0000000);
+    ICFlashInvalidate();
+    __sync();
+    asm {
+        li      r3, 0
+        mtspr   912, r3        /* GQR0 */
+        mtspr   913, r3        /* GQR1 */
+        mtspr   914, r3        /* GQR2 */
+        mtspr   915, r3        /* GQR3 */
+        mtspr   916, r3        /* GQR4 */
+        mtspr   917, r3        /* GQR5 */
+        mtspr   918, r3        /* GQR6 */
+        mtspr   919, r3        /* GQR7 */
+    }
+}
+
+u32 __OSGetDIConfig(void) {
+    return __DIRegs.config & 0xff;
+}
+
+void OSRegisterVersion(const char *id) { OSReport("%s\n", id); }

@@ -56927,7 +56927,7 @@
       },
       {
         "declaration": "__OSExceptionHandler *OSExceptionTable",
-        "path": "src/dol/__OSSetExceptionHandler.c"
+        "path": "src/dol/OS.c"
       }
     ],
     "definition": "u8 OSExceptionTable[4]",
