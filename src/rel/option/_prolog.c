@@ -9534,6 +9534,8 @@ static inline void opt_cfg_set_bit(PadCfg *cfg, s32 type, u8 item, u32 bit) {
     }
 }
 
+char lbl_4_data_2AE8[18] = "option_pcust_disp";
+
 void fn_4_6720(void) {
     u32 i;
     u8 port;
@@ -9801,6 +9803,8 @@ void fn_4_6720(void) {
         break;
     }
 }
+
+char lbl_4_data_2BF4[0xC] = "Calibration";
 /* fzgx:end fn_4_6720 */
 
 /* fzgx:begin fn_4_78E0 */

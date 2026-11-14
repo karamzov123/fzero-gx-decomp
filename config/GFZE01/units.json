@@ -157120,13 +157120,6 @@
     "extra_cflags": [],
     "tu": "rel/option/_prolog.c",
     "pool": {
-      "@426": "jumptable_4_data_2BD4",
-      "@427": "jumptable_4_data_2BB0",
-      "@428": "jumptable_4_data_2B8C",
-      "@429": "jumptable_4_data_2B68",
-      "@430": "jumptable_4_data_2B44",
-      "@431": "jumptable_4_data_2B20",
-      "@432": "jumptable_4_data_2AFC",
       "...bss.0": "lbl_4_bss_0",
       "fzgx_obj_lbl_4_bss_0": "lbl_4_bss_0",
       "fzgx_obj_lbl_4_bss_2": "lbl_4_bss_2",
@@ -158897,17 +158890,6 @@
     "source": "rel/option/data/lbl_4_data_2848.c",
     "symbols": [
       "lbl_4_data_2848"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_2AE8.c",
-    "symbols": [
-      "lbl_4_data_2AE8"
     ],
     "status": "matching",
     "data": true,
