@@ -299721,32 +299721,6 @@
     "unit_size": 276,
     "unit_start": 249312
   },
-  "main_rel:lbl_1_data_3CE58": {
-    "address": 249432,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "u8 lbl_1_data_3CE58[]",
-        "path": "src/rel/main_rel/driver.c"
-      }
-    ],
-    "definition": "u8 lbl_1_data_3CE58[]",
-    "method": "typed-data",
-    "module": "main_rel",
-    "references": [
-      "fn_1_C24A4"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 276,
-    "sha256": "c480a08282255301c72ae79c9575e6f7de5f2f9b56115e32eebe279b537a4b53",
-    "size": 156,
-    "source": "rel/main_rel/data/lbl_1_data_3CDE0.c",
-    "symbol": "lbl_1_data_3CE58",
-    "unit_align": 8,
-    "unit_size": 276,
-    "unit_start": 249312
-  },
   "main_rel:lbl_1_data_3CF18": {
     "address": 249624,
     "align": 8,

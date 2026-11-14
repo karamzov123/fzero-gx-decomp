@@ -94947,8 +94947,7 @@
     "source": "rel/main_rel/data/lbl_1_data_3CDE0.c",
     "symbols": [
       "lbl_1_data_3CDE0",
-      "lbl_1_data_3CE48",
-      "lbl_1_data_3CE58"
+      "lbl_1_data_3CE48"
     ],
     "status": "matching",
     "data": true,
@@ -131719,7 +131718,6 @@
     "extra_cflags": [],
     "tu": "rel/main_rel/memcard.c",
     "pool": {
-      "@602": "jumptable_1_data_3CEF4",
       "...bss.0": "lbl_1_bss_716C0",
       "fzgx_obj_lbl_1_bss_716C0": "lbl_1_bss_716C0"
     }
