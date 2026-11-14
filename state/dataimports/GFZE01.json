@@ -57005,33 +57005,6 @@
     "unit_size": 3660,
     "unit_start": 2148671680
   },
-  "main:OSErrorData": {
-    "address": 2148674608,
-    "align": 16,
-    "declarations": [
-      {
-        "declaration": "char OSErrorData[]",
-        "path": "src/dol/__OSUnhandledException.c"
-      }
-    ],
-    "definition": "char OSErrorData[]",
-    "method": "string",
-    "module": "main",
-    "references": [
-      "OSPanic",
-      "__OSUnhandledException"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 3660,
-    "sha256": "2ceadd5e9e7d70de91d36f072aed5da1479dcf749236bd123154dcbb5600ccbb",
-    "size": 732,
-    "source": "dol/data/lbl_801220C0.c",
-    "symbol": "OSErrorData",
-    "unit_align": 32,
-    "unit_size": 3660,
-    "unit_start": 2148671680
-  },
   "main:OSExceptionTable": {
     "address": 2149214060,
     "align": 4,

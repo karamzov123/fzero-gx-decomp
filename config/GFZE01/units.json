@@ -14329,23 +14329,6 @@
       "off"
     ],
     "pool": {
-      "...data.0": "OSErrorData",
-      "@10": "OSErrorData",
-      "@11": "OSErrorData+0x18",
-      "@12": "OSErrorData+0x40",
-      "@71": "OSErrorData+0x5C",
-      "@72": "OSErrorData+0x7C",
-      "@74": "OSErrorData+0x94",
-      "@75": "OSErrorData+0xC8",
-      "@76": "OSErrorData+0xD8",
-      "@77": "OSErrorData+0x138",
-      "@78": "OSErrorData+0x184",
-      "@79": "OSErrorData+0x1E8",
-      "@80": "OSErrorData+0x248",
-      "@81": "OSErrorData+0x268",
-      "@82": "OSErrorData+0x288",
-      "@83": "OSErrorData+0x2A4",
-      "@84": "@87",
       "...bss.0": "__OSErrorTable",
       "__OSErrorTable": "__OSErrorTable",
       "__OSFpscrEnableBits": "lbl_801A6430",
@@ -21902,8 +21885,7 @@
       "DSPInitCode",
       "OSCacheData",
       "lbl_80122A58",
-      "OSContextMessage_1b4",
-      "OSErrorData"
+      "OSContextMessage_1b4"
     ],
     "status": "matching",
     "data": true,

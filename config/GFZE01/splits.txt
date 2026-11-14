@@ -3111,6 +3111,7 @@ dol/OSGetSoundMode.c:
 dol/OSError.c:
 	.text       start:0x8000C41C end:0x8000CAC8 align:4
 	.sdata      start:0x801A6430 end:0x801A6438 align:8
+	.data       start:0x80122C30 end:0x80122F50 align:8
 
 dol/fn_80047464.c:
 	.text       start:0x80047464 end:0x800474E4 align:4
@@ -8089,7 +8090,7 @@ dol/data/TRK_mainError.c:
 	.bss        start:0x801A5640 end:0x801A5648 align:8
 
 dol/data/lbl_801220C0.c:
-	.data       start:0x801220C0 end:0x80122F0C align:32
+	.data       start:0x801220C0 end:0x80122C30 align:32
 
 dol/data/ResetFunctionInfo.c:
 	.data       start:0x80123AE0 end:0x80123AF0 align:32
