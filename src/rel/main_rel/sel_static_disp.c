@@ -4201,7 +4201,6 @@ extern void fn_1_131C08(void);
 extern void _savegpr_27(void);
 extern void _restgpr_27(void);
 
-#pragma opt_loop_invariants off
 void fn_1_13A038(Car *car)
 {
     f32 *fzgx_value;
@@ -4258,7 +4257,6 @@ void fn_1_13A038(Car *car)
         off += 100;
     }
 }
-#pragma opt_loop_invariants reset
 /* fzgx:end fn_1_13A038 */
 
 /* fzgx:begin fn_1_13A21C noprologue */
