@@ -424,30 +424,17 @@ static void fzgx_bss_layout(void) {
 #pragma section code_type ".text"
 
 void fn_1_F2E50(u32 arg0) {
-#pragma opt_propagation off
-    
-    struct fn_1_F2E50_rec *rec;
-    u32 v0;
-    u8 v1;
-
-    if ((fzgx_obj_lbl_1_bss_7EFD4 & 1) == 0) { return; }
-    v1 = 1;
-    fzgx_obj_lbl_1_bss_7EFD4 = v1;
-    if (arg0 == 0) {
-        v1 |= 42;
-        rec = (struct fn_1_F2E50_rec *)((u8 *)&fzgx_obj_lbl_1_bss_7EFD8.fzgx_byte_8);
-        fzgx_obj_lbl_1_bss_7EFD4 = v1;
-        v0 = rec->unk_40;
-        *(u16 *)((u8 *)v0 + 160) = 0;
-        fzgx_obj_lbl_1_bss_7F01C = 0;
+    if ((fzgx_obj_lbl_1_bss_7EFD4 & 1) == 0) {
         return;
     }
-    if (arg0 == 1) {
-        v1 |= 44;
-        rec = (struct fn_1_F2E50_rec *)((u8 *)&fzgx_obj_lbl_1_bss_7EFD8.fzgx_byte_8);
-        fzgx_obj_lbl_1_bss_7EFD4 = v1;
-        v0 = rec->unk_40;
-        *(u16 *)((u8 *)v0 + 160) = 0;
+    fzgx_obj_lbl_1_bss_7EFD4 = 1;
+    if (arg0 == 0) {
+        fzgx_obj_lbl_1_bss_7EFD4 |= 42;
+        *(u16 *)(((struct fn_1_F2E50_rec *)&fzgx_obj_lbl_1_bss_7EFD8)->unk_40 + 160) = 0;
+        fzgx_obj_lbl_1_bss_7F01C = 0;
+    } else if (arg0 == 1) {
+        fzgx_obj_lbl_1_bss_7EFD4 |= 44;
+        *(u16 *)(((struct fn_1_F2E50_rec *)&fzgx_obj_lbl_1_bss_7EFD8)->unk_40 + 160) = 0;
     }
 }
 /* fzgx:end fn_1_F2E50 */
