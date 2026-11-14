@@ -5932,9 +5932,6 @@ extern void DCInvalidateRange(void *, u32);
 extern void ARQPostRequest(void *, u32, u32, u32, u32, void *, u32, void (*)(void));
 extern void OSReport(const char *, ...);
 
-#pragma opt_common_subs off
-#pragma opt_loop_invariants off
-#pragma opt_strength_reduction off
 static inline void fn_1_F1A24_read(u8 *bss, void *buf, u32 addr, u32 len) {
     s8 work[0x18];
     u32 old;
@@ -5946,7 +5943,8 @@ static inline void fn_1_F1A24_read(u8 *bss, void *buf, u32 addr, u32 len) {
     }
     DCInvalidateRange(buf, len);
     ARQPostRequest(work, 1, 1, 1, addr, buf, len, fn_1_F1950);
-    while (*(s32 *)(bss + 0x3b7c) == 0) {
+    // The completion flag is set asynchronously by fn_1_F1950.
+    while (*(volatile s32 *)(bss + 0x3b7c) == 0) {
     }
     fn_800206FC(old);
 }
@@ -5979,9 +5977,6 @@ void fn_1_F1A24(void) {
         i++;
     }
 }
-#pragma opt_strength_reduction reset
-#pragma opt_loop_invariants reset
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_F1A24 */
 
 /* fzgx:begin fn_1_F1B78 */
