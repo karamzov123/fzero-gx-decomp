@@ -1118,20 +1118,17 @@ void fn_3_146C0(void *arg0, s16 x, s16 y, s16 delta, u32 *arg4) {
 /* fzgx:begin fn_3_14778 */
 #include "rel/customize/emblem.h"
 
-struct fn_3_14778_EmblemState {
-    u16 unk_0;
-    u16 unk_2;
-    u8 unk_4;
-    u32 unk_8;
-};
+/* canvas state: file-scope objects of this TU (width, height, a flag byte, texture format) */
+u16 lbl_3_bss_A23D8;
+u16 lbl_3_bss_A23DA;
+u8 lbl_3_bss_A23DC;
+u32 lbl_3_bss_A23E0;
 
-#pragma peephole off
 void fn_3_14778(u16 arg0, u16 arg1, u8 arg2, u32 arg3) {
-    struct fn_3_14778_EmblemState *state = (struct fn_3_14778_EmblemState *)&lbl_3_bss_A23D8;
-    state->unk_0 = arg0;
-    state->unk_2 = arg1;
-    state->unk_4 = arg2;
-    state->unk_8 = arg3;
+    lbl_3_bss_A23D8 = arg0;
+    lbl_3_bss_A23DA = arg1;
+    lbl_3_bss_A23DC = arg2;
+    lbl_3_bss_A23E0 = arg3;
 }
 /* fzgx:end fn_3_14778 */
 
