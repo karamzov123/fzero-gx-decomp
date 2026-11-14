@@ -26,21 +26,18 @@ struct MovieModule {
 extern void fn_12_24970(u32 *);
 extern void fn_12_24950(u32 *);
 
-#pragma opt_propagation off
-
-
 int fn_12_21C00(MovieModule *modules, int index) {
     int (*fzgx_live)(MovieObject *, int);
     u32 state;
     int out2[2];
     int out1[2];
-    int result = 0;
+    int result;
     MovieObject *movie;
     u32 extra;
     MovieModule *module;
 
     module = (MovieModule *)((u8 *)modules + index * 0x74);
-    extra = result;
+    extra = result = 0;
     movie = module->movie;
     if (module->enabled != 0 && movie != 0) {
         fn_12_24970(&state);
@@ -61,6 +58,5 @@ int fn_12_21C00(MovieModule *modules, int index) {
     }
     return result + (int)extra;
 }
-#pragma opt_propagation reset
 
 
