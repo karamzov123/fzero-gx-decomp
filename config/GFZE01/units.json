@@ -75034,12 +75034,6 @@
     "module": "main_rel",
     "source": "rel/main_rel/data/lbl_1_data_1C5D8.c",
     "symbols": [
-      "lbl_1_data_1C5D8",
-      "lbl_1_data_1C5DC",
-      "lbl_1_data_1C5E0",
-      "lbl_1_data_1C5E4",
-      "lbl_1_data_1C5E8",
-      "lbl_1_data_1C5EC",
       "lbl_1_data_1C650",
       "lbl_1_data_1C660",
       "lbl_1_data_1C670",
@@ -121743,8 +121737,17 @@
     "extra_cflags": [],
     "tu": "rel/main_rel/font.c",
     "pool": {
-      "@18": "jumptable_1_data_1C578"
-    }
+      "@21": "lbl_1_data_1C5DC",
+      "font_ordinal_suffix": "lbl_1_data_1C5EC"
+    },
+    "own": [
+      "lbl_1_data_1C5DC",
+      "lbl_1_data_1C5EC"
+    ],
+    "export": [
+      "lbl_1_data_1C5DC",
+      "lbl_1_data_1C5EC"
+    ]
   },
   {
     "module": "main_rel",

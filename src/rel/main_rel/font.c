@@ -6913,6 +6913,14 @@ f32 fn_1_519AC(u32 value) {
         return base->unk_58;
     }
 }
+
+/* ordinal suffixes: rows 1st, 2nd, 3rd, nth; one column per language */
+char *font_ordinal_suffix[4][6] = {
+    {"st", ".", ".", ".", ".", ""},
+    {"nd", ".", ".", ".", ".", ""},
+    {"rd", ".", ".", ".", ".", ""},
+    {"th", ".", ".", ".", ".", ""},
+};
 /* fzgx:end fn_1_519AC */
 
 /* fzgx:begin fn_1_519FC */
