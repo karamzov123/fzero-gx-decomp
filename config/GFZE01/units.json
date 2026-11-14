@@ -41447,6 +41447,17 @@
   },
   {
     "module": "main",
+    "source": "dol/mathutil_mtxA_from_quat.c",
+    "symbols": [
+      "mathutil_mtxA_from_quat"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "asm": true
+  },
+  {
+    "module": "main",
     "source": "dol/mathutil_mtxA_rotate_x.c",
     "symbols": [
       "mathutil_mtxA_rotate_x"

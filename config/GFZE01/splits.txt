@@ -7586,3 +7586,6 @@ dol/fn_8006BCF8.c:
 
 dol/fn_8004F26C.c:
 	.text       start:0x8004F26C end:0x8004F55C align:4
+
+dol/mathutil_mtxA_from_quat.c:
+	.text       start:0x8006E498 end:0x8006E540 align:4
