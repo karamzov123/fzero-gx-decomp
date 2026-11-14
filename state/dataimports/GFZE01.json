@@ -59112,7 +59112,7 @@
       },
       {
         "declaration": "u8 __files[320]",
-        "path": "src/dol/vprintf.c"
+        "path": "src/dol/printf.c"
       }
     ],
     "definition": "Data___files __files",
@@ -70530,7 +70530,7 @@
       },
       {
         "declaration": "unsigned char lbl_8015B100[]",
-        "path": "src/dol/float2str.c"
+        "path": "src/dol/printf.c"
       },
       {
         "declaration": "unsigned char lbl_8015B100[]",
@@ -70550,7 +70550,7 @@
       },
       {
         "declaration": "unsigned char lbl_8015B100[]",
-        "path": "src/dol/parse_format.c"
+        "path": "src/dol/printf.c"
       },
       {
         "declaration": "unsigned char lbl_8015B100[]",
@@ -70688,107 +70688,6 @@
     "size": 256,
     "source": "dol/data/lbl_8015B100.c",
     "symbol": "lbl_8015B300",
-    "unit_align": 32,
-    "unit_size": 824,
-    "unit_start": 2148905216
-  },
-  "main:lbl_8015B400": {
-    "address": 2148905984,
-    "align": 32,
-    "declarations": [
-      {
-        "declaration": "struct lconv lbl_8015B400",
-        "path": "src/dol/fn_80083F10.c"
-      }
-    ],
-    "definition": "Data_lbl_8015B400 lbl_8015B400",
-    "header": {
-      "path": "dol/data/lbl_8015B400.h",
-      "text": "#ifndef DATA_LBL_8015B400_H\n#define DATA_LBL_8015B400_H\n\n#include \"types.h\"\n\ntypedef struct {\n    u8 *at_0;\n    u8 *at_4;\n    u8 *at_8;\n    u8 *at_C;\n    u8 *at_10;\n    u8 *at_14;\n    u8 *at_18;\n    u8 *at_1C;\n    u8 *at_20;\n    u32 at_24;\n    u32 at_28;\n    u8 *at_2C;\n    u32 at_30;\n    u32 at_34;\n} Data_lbl_8015B400;\nextern Data_lbl_8015B400 lbl_8015B400;\n\n#endif\n"
-    },
-    "method": "relocated-table",
-    "module": "main",
-    "references": [
-      "fn_80083F10"
-    ],
-    "relocations": [
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "main",
-        "offset": 0,
-        "symbol": "lbl_80094FB8"
-      },
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "main",
-        "offset": 4,
-        "symbol": "lbl_80094FBA"
-      },
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "main",
-        "offset": 8,
-        "symbol": "lbl_80094FBA"
-      },
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "main",
-        "offset": 12,
-        "symbol": "lbl_80094FBA"
-      },
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "main",
-        "offset": 16,
-        "symbol": "lbl_80094FBA"
-      },
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "main",
-        "offset": 20,
-        "symbol": "lbl_80094FBA"
-      },
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "main",
-        "offset": 24,
-        "symbol": "lbl_80094FBA"
-      },
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "main",
-        "offset": 28,
-        "symbol": "lbl_80094FBA"
-      },
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "main",
-        "offset": 32,
-        "symbol": "lbl_80094FBA"
-      },
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "main",
-        "offset": 44,
-        "symbol": "lbl_80094FBA"
-      }
-    ],
-    "section": ".data",
-    "section_size": 824,
-    "sha256": "1d1e432dd410e57673fa8dcbabe987d7ec4a43dfba4bda5afb8b1abd521d0f29",
-    "size": 56,
-    "source": "dol/data/lbl_8015B100.c",
-    "symbol": "lbl_8015B400",
     "unit_align": 32,
     "unit_size": 824,
     "unit_start": 2148905216
@@ -104849,27 +104748,6 @@
     "size": 4,
     "source": "dol/data/lbl_801A74E0.c",
     "symbol": "lbl_801A74E0",
-    "unit_align": 8,
-    "unit_size": 16,
-    "unit_start": 2149217504
-  },
-  "main:lbl_801A74E8": {
-    "address": 2149217512,
-    "align": 8,
-    "declarations": [],
-    "definition": "const f64 lbl_801A74E8",
-    "method": "float-pool",
-    "module": "main",
-    "references": [
-      "float2str"
-    ],
-    "relocations": [],
-    "section": ".sdata2",
-    "section_size": 16,
-    "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
-    "size": 8,
-    "source": "dol/data/lbl_801A74E0.c",
-    "symbol": "lbl_801A74E8",
     "unit_align": 8,
     "unit_size": 16,
     "unit_start": 2149217504

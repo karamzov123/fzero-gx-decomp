@@ -40566,7 +40566,7 @@
   {
    "symbol": "sprintf",
    "module": "main",
-   "unit": "dol/sprintf.c",
+   "unit": "dol/printf.c",
    "addr": 2148009628,
    "size": 224,
    "status": "matched",
@@ -40583,7 +40583,7 @@
   {
    "symbol": "fn_8008077C",
    "module": "main",
-   "unit": "dol/fn_8008077C.c",
+   "unit": "dol/printf.c",
    "addr": 2148009852,
    "size": 120,
    "status": "matched",
@@ -40600,7 +40600,7 @@
   {
    "symbol": "vprintf",
    "module": "main",
-   "unit": "dol/vprintf.c",
+   "unit": "dol/printf.c",
    "addr": 2148009972,
    "size": 152,
    "status": "matched",
@@ -40634,7 +40634,7 @@
   {
    "symbol": "fn_80080974",
    "module": "main",
-   "unit": "dol/fn_80080974.c",
+   "unit": "dol/printf.c",
    "addr": 2148010356,
    "size": 108,
    "status": "matched",
@@ -40651,7 +40651,7 @@
   {
    "symbol": "__FileWrite",
    "module": "main",
-   "unit": "dol/__FileWrite.c",
+   "unit": "dol/printf.c",
    "addr": 2148010464,
    "size": 88,
    "status": "matched",
@@ -40668,7 +40668,7 @@
   {
    "symbol": "__pformatter",
    "module": "main",
-   "unit": "dol/__pformatter.c",
+   "unit": "dol/printf.c",
    "addr": 2148010552,
    "size": 1908,
    "status": "matched",
@@ -40685,7 +40685,7 @@
   {
    "symbol": "float2str",
    "module": "main",
-   "unit": "dol/float2str.c",
+   "unit": "dol/printf.c",
    "addr": 2148012460,
    "size": 1820,
    "status": "matched",
@@ -40702,7 +40702,7 @@
   {
    "symbol": "fn_800818C8",
    "module": "main",
-   "unit": "dol/fn_800818C8.c",
+   "unit": "dol/printf.c",
    "addr": 2148014280,
    "size": 300,
    "status": "matched",
@@ -40719,7 +40719,7 @@
   {
    "symbol": "double2hex",
    "module": "main",
-   "unit": "dol/double2hex.c",
+   "unit": "dol/printf.c",
    "addr": 2148014580,
    "size": 824,
    "status": "matched",
@@ -40736,7 +40736,7 @@
   {
    "symbol": "longlong2str",
    "module": "main",
-   "unit": "dol/longlong2str.c",
+   "unit": "dol/printf.c",
    "addr": 2148015404,
    "size": 788,
    "status": "matched",
@@ -40753,7 +40753,7 @@
   {
    "symbol": "long2str",
    "module": "main",
-   "unit": "dol/longlong2str.c",
+   "unit": "dol/printf.c",
    "addr": 2148016192,
    "size": 600,
    "status": "matched",
@@ -40770,7 +40770,7 @@
   {
    "symbol": "parse_format",
    "module": "main",
-   "unit": "dol/parse_format.c",
+   "unit": "dol/printf.c",
    "addr": 2148016792,
    "size": 1284,
    "status": "matched",

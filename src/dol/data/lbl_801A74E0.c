@@ -2,16 +2,9 @@
 #include "types.h"
 
 extern const u32 lbl_801A74E0;
-extern const f64 lbl_801A74E8;
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".sdata2") const u32 lbl_801A74E0 __attribute__((aligned(4))) = 0x0000C0E0U;
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".sdata2") const f64 lbl_801A74E8 __attribute__((aligned(8))) = 0.0;
 #pragma explicit_zero_data reset

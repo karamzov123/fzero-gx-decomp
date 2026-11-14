@@ -1419,9 +1419,6 @@ dol/fn_8006FCB4.c:
 dol/fn_80051DC4.c:
 	.text       start:0x80051DC4 end:0x80051E30 align:4
 
-dol/fn_80080974.c:
-	.text       start:0x80080974 end:0x800809E0 align:4
-
 dol/fn_800777D4.c:
 	.text       start:0x800777D4 end:0x80077848 align:4
 
@@ -2494,9 +2491,6 @@ dol/fn_800885DC.c:
 dol/fn_800885B8.c:
 	.text       start:0x800885B8 end:0x800885DC align:4
 
-dol/vprintf.c:
-	.text       start:0x800807F4 end:0x8008088C align:4
-
 dol/fn_80087E58.c:
 	.text       start:0x80087E58 end:0x80087E80 align:4
 
@@ -2902,9 +2896,6 @@ dol/fn_80072A50.c:
 dol/fn_80087BA4.c:
 	.text       start:0x80087BA4 end:0x80087C44 align:4
 
-dol/__FileWrite.c:
-	.text       start:0x800809E0 end:0x80080A38 align:4
-
 dol/GXGetProjectionv.c:
 	.text       start:0x80038BFC end:0x80038C5C align:4
 
@@ -3066,9 +3057,6 @@ dol/OSGetProgressiveMode.c:
 
 dol/fn_8008EC78.c:
 	.text       start:0x8008EC78 end:0x8008ECE0 align:4
-
-dol/fn_8008077C.c:
-	.text       start:0x8008077C end:0x800807F4 align:4
 
 dol/fn_8005174C.c:
 	.text       start:0x8005174C end:0x800517C0 align:4
@@ -4084,11 +4072,12 @@ dol/__copy_longs_rev_unaligned.c:
 dol/__copy_longs_unaligned.c:
 	.text       start:0x80080458 end:0x80080518 align:4
 
-dol/sprintf.c:
-	.text       start:0x8008069C end:0x8008077C align:4
-
 dol/printf.c:
-	.text       start:0x8008088C end:0x80080974 align:4
+	.text       start:0x8008069C end:0x8008279C align:4
+	.rodata     start:0x80094FC0 end:0x80094FE8 align:8
+	.data       start:0x8015B438 end:0x8015B664 align:8
+	.sdata      start:0x801A6630 end:0x801A6638 align:8
+	.sdata2     start:0x801A74E8 end:0x801A74F0 align:8
 
 dol/qsort.c:
 	.text       start:0x8008279C end:0x80082908 align:4
@@ -4247,9 +4236,6 @@ dol/stateReady.c:
 
 dol/fn_8004C794.c:
 	.text       start:0x8004C794 end:0x8004C980 align:4
-
-dol/fn_800818C8.c:
-	.text       start:0x800818C8 end:0x800819F4 align:4
 
 dol/fn_8003526C.c:
 	.text       start:0x8003526C end:0x800353E8 align:4
@@ -4530,10 +4516,6 @@ dol/fn_8006FDEC.c:
 
 dol/fn_8002420C.c:
 	.text       start:0x8002420C end:0x80024308 align:4
-
-dol/parse_format.c:
-	.text       start:0x80082298 end:0x8008279C align:4
-	.data       start:0x8015B540 end:0x8015B664 align:32
 
 dol/fn_800087F4.c:
 	.text       start:0x800087F4 end:0x80008A4C align:4
@@ -5660,10 +5642,6 @@ dol/fn_8000D1F0.c:
 dol/fn_800377F8.c:
 	.text       start:0x800377F8 end:0x80037A14 align:4
 
-dol/longlong2str.c:
-	.text       start:0x80081D2C end:0x80082298 align:4
-	.data       start:0x8015B438 end:0x8015B540 align:8
-
 dol/fn_80087C44.c:
 	.text       start:0x80087C44 end:0x80087E58 align:4
 
@@ -5804,10 +5782,6 @@ dol/fn_8008F8B0.c:
 
 dol/fn_8008ED70.c:
 	.text       start:0x8008ED70 end:0x8008EDB0 align:4
-
-dol/__pformatter.c:
-	.text       start:0x80080A38 end:0x800811AC align:4
-	.sdata      start:0x801A6630 end:0x801A6638 align:8
 
 dol/InitMetroTRKCommTable.c:
 	.text       start:0x8008D4D8 end:0x8008D744 align:4
@@ -6106,9 +6080,6 @@ dol/fn_80008204.c:
 dol/fn_8006BE0C.c:
 	.text       start:0x8006BE0C end:0x8006C134 align:4
 
-dol/double2hex.c:
-	.text       start:0x800819F4 end:0x80081D2C align:4
-
 dol/fn_8007698C.c:
 	.text       start:0x8007698C end:0x80076CD4 align:4
 
@@ -6201,9 +6172,6 @@ dol/__div2i.c:
 
 dol/__mod2u.c:
 	.text       start:0x80079B14 end:0x80079BF8 align:4
-
-dol/float2str.c:
-	.text       start:0x800811AC end:0x800818C8 align:4
 
 dol/fn_80046D94.c:
 	.text       start:0x80046D94 end:0x80046F7C align:4
@@ -7598,7 +7566,7 @@ dol/data/lbl_801A74D8.c:
 	.sdata2     start:0x801A74D8 end:0x801A74E0 align:8
 
 dol/data/lbl_801A74E0.c:
-	.sdata2     start:0x801A74E0 end:0x801A74F0 align:8
+	.sdata2     start:0x801A74E0 end:0x801A74E8 align:8
 
 dol/data/lbl_801A74F0.c:
 	.sdata2     start:0x801A74F0 end:0x801A74F8 align:8
@@ -8261,7 +8229,11 @@ dol/data/lbl_8012D9B8.c:
 	.data       start:0x8012D9B8 end:0x801325D8 align:8
 
 dol/data/lbl_8015B100.c:
-	.data       start:0x8015B100 end:0x8015B438 align:32
+	.data       start:0x8015B100 end:0x8015B400 align:32
+
+dol/locale.c:
+	.rodata     start:0x80094FB8 end:0x80094FC0 align:8
+	.data       start:0x8015B400 end:0x8015B438 align:8
 
 dol/data/gTRKRestoreFlags.c:
 	.data       start:0x8015B868 end:0x8015B919 align:8
