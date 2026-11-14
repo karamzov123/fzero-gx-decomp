@@ -844,7 +844,6 @@ extern void GXInitTexObj(void *, void *, u16, u16, u32, u32, u32, u8);
 extern void GXInitTexObjLOD(void *, u32, u32, f32, f32, f32, u8, u8, u32);
 extern void DCFlushRange(void *, u32);
 
-#pragma opt_common_subs off
 void fn_1_FC60C(void) {
     u8 *tex;
     u8 *buf;
@@ -865,11 +864,9 @@ void fn_1_FC60C(void) {
     }
 
     GXInitTexObj(tex, buf, 0x10, 0x10, 1, 0, 1, 0);
-    GXInitTexObjLOD(tex, 0, 0, (*(f32 (*)[2])&lbl_1_rodata_760C)[0], (*(f32 (*)[2])&lbl_1_rodata_760C)[0],
-                    (*(f32 (*)[2])&lbl_1_rodata_760C)[0], 0, 0, 0);
+    GXInitTexObjLOD(tex, 0, 0, 0.0f, 0.0f, 0.0f, 0, 0, 0);
     DCFlushRange(buf, size);
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_FC60C */
 
 /* fzgx:begin fn_1_FC760 */
