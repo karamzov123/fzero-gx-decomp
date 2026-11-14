@@ -30740,10 +30740,6 @@ typedef struct {
     f32 value;
 } Config;
 
-
-
-#pragma opt_common_subs off
-#pragma opt_dead_assignments off
 void fn_1_9550C(Owner *owner, Config *config) {
     s32 tmp_ra2;
     f32 value;
@@ -30804,9 +30800,7 @@ void fn_1_9550C(Owner *owner, Config *config) {
         }
     }
 }
-#pragma opt_dead_assignments reset
 
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_9550C */
 
 /* fzgx:begin fn_1_956B8 */
