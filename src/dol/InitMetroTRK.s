@@ -1,11 +1,11 @@
 .include "macros.inc"
 .file "InitMetroTRK.c"
 
-# 0x8008CEB0..0x8008CF44 | size: 0x94
+# 0x8008CEB0..0x8008CF48 | size: 0x98
 .text
 .balign 4
 
-# .text:0x0 | 0x8008CEB0 | size: 0x94
+# .text:0x0 | 0x8008CEB0 | size: 0x98
 .fn InitMetroTRK, global
 /* 8008CEB0 00089EB0  38 21 FF FC */	subi r1, r1, 0x4
 /* 8008CEB4 00089EB4  90 61 00 00 */	stw r3, 0x0(r1)
@@ -45,4 +45,5 @@
 /* 8008CF3C 00089F3C  4E 80 00 20 */	blr
 .L_8008CF40:
 /* 8008CF40 00089F40  48 00 02 8C */	b TRK_main
+/* 8008CF44 00089F44  4E 80 00 20 */	blr
 .endfn InitMetroTRK
