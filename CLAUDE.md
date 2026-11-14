@@ -16,9 +16,14 @@ kernels live in `include/` headers; anything that only steers MWCC is a marked d
 (`WARNING: compiler-diff device, not original code`), asm-only steering is the worst kind. Report
 three metrics: matched, natural C, devices remaining.
 
-**The active goal is (b): all 16 targets linked, with honest code percentages, main_rel open.**
-main_rel is 56% of the remaining work and its functions do not yield to the current methods, so
-(b) is the milestone worth steering by while (a) stays the finish line.
+**The active goal is full USA (GFZE01) completion under the definition above (owner, 2026-11-14).**
+All 16 targets already link byte-exactly; that milestone is not completion. Prioritize accepted
+natural-C/device removal, evidenced assembly classification and typed data ownership. The owner
+gives standing authorization to commit and publish every verified progress batch without asking
+again, through the approved `tools/fleet_integrator.py` publisher and its unchanged gates. First
+consolidate already-merged approved GitHub main changes with accepted local work. Preserve dirty
+user checkouts, do not merge open PRs without authorization, and independently read back the exact
+published SHA. See AGENTS.md and PROJECT_MEMORY.md for the durable delivery contract.
 
 Two metrics, and the difference between them matters:
 
@@ -28,7 +33,7 @@ Two metrics, and the difference between them matters:
 The soft number credits functions that were never written in C, because a function inside a
 retail auto object matches by construction (docs/findings/280). Giving such a function its own
 split *lowers* both counters with nothing regressing, so the soft number cannot answer "did
-that change help". `fzgx honest --closure` is the steering table for goal (b): per module, what
+that change help". `fzgx honest --closure` is the authored-source steering table: per module, what
 is authored and what each module still costs.
 
 ## Measured dead ends -- do not re-propose these

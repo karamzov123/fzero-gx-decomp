@@ -15,6 +15,20 @@ clean, hash/lint-verified pinned local `main` commit to the approved fork using
 a normal fast-forward push. It must never accept candidates, merge, rebase,
 force-push, or change worker ownership.
 
+## Standing delivery authorization and target (owner, 2026-11-14)
+
+The owner authorizes and expects every completed, verified progress batch to be
+committed and published without asking again. Consolidate work already merged
+into the approved GitHub main before continuing, preserving both upstream and
+local accepted work. The active completion target is the USA version, GFZE01.
+Publication must still use the approved publisher above, with its clean pinned
+main, full 16-target hash/lint gates, fast-forward-only push and exact remote
+readback. Do not weaken guards, change tool approval configuration, merge open
+PRs without authorization, or treat nonmatching experiments as publishable source
+progress. Preserve dirty user checkouts through isolated integration/publication.
+Completion is governed by docs/ASM_POLICY.md: natural C where the original was C,
+evidenced original assembly where appropriate, and no compiler-diff devices.
+
 ## Permanent source-import restriction (owner, 2026-10-26)
 
 Do not directly harvest, cherry-pick, or manually copy further code, tooling, data,
