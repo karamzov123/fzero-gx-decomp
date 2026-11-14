@@ -346,11 +346,10 @@ typedef struct Object {
 
 extern Object *fn_1_41BDC(Object *obj);
 
-#pragma opt_propagation off
 void *fn_1_41B18(Object *obj, s32 unused, s32 index) {
     Object *result;
     Node *node;
-    s32 i;
+    int i;
 
     result = fn_1_41BDC(obj);
     if ((obj->flags & 1) != 0) {
@@ -358,14 +357,11 @@ void *fn_1_41B18(Object *obj, s32 unused, s32 index) {
     }
 
     node = result->data;
-    i = 0;
-    while (i < index) {
+    for (i = 0; i < index; i++) {
         node = node->next;
-        i++;
     }
     return node;
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_41B18 */
 
 /* fzgx:begin fn_1_41BDC */
