@@ -6395,7 +6395,8 @@ typedef struct {
     u8 padBC[0x28]; void *models[5];
     u8 padF8[0x50]; RobAnim anim;
 } Rob;
-typedef struct { u8 pad[8]; u8 *view; } RobView;
+typedef struct { u8 pad[0x88]; f32 matrix[3][4]; u8 padB8[0x18C - 0xB8]; } RobJoint;
+typedef struct { u8 pad[8]; RobJoint *joints; } RobView;
 typedef struct { RobVec pos; const char *name; } RobPart;
 typedef struct { u8 pad[0x7330]; RobPart parts[8]; char names[4][8]; } RobData;
 typedef struct { u32 flags; u8 pad[0x1C]; } RobMaterial;
@@ -8285,14 +8286,14 @@ static inline s32 rob_rand(void) {
     lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
     return (lbl_801A63C0 >> 16) & 0x7FFF;
 }
-static inline void rob_transform(Rob *rob, u8 *view) {
+static inline void rob_transform(Rob *rob, RobJoint *joint) {
     lbl_8006DCA4();
     lbl_8006E0B4(rob->pos.x, rob->pos.y + rob->height, rob->pos.z);
     mathutil_mtxA_rotate_z(rob->rot_z);
     mathutil_mtxA_rotate_y(rob->rot_y);
     mathutil_mtxA_rotate_x(rob->rot_x);
     lbl_8006E14C(rob->scale);
-    lbl_8006DFC4(view + 0x3A0);
+    lbl_8006DFC4(joint->matrix);
 }
 static inline void fn_1_977BC_loop4(RobModel *model) {
     RobMaterial *material;
@@ -8322,13 +8323,11 @@ void fn_1_977BC(Rob *rob, RobView *arg1) {
     u32 draw_i;
     u32 index;
     void *model_set;
-    u8 *view;
+    RobJoint *joint;
     f32 scale;
     RobPart *parts;
     scale = 1.0f;
-    /* WARNING: compiler-diff device, not original code: value-preserving 64-bit round trip; puts view in a
-     * fresh temp so it ranks below rob (retail r30/r31). Honest form `view = arg1->view;` swaps rob/view (37 rows). */
-    view = (u8 *)(u32)((u64)arg1->view | 0x100000000ull);
+    joint = &arg1->joints[2];
     model_set = rob->models[rob->active];
     if (fn_80083BCC(rob_name(&rob->anim), fzgx_pool_name0) == 0) {
         f32 t = rob->anim.motion->frame;
@@ -8357,7 +8356,7 @@ void fn_1_977BC(Rob *rob, RobView *arg1) {
         order[i] = i;
         {
         RobVec pos = { 0.0f, 0.0f, 0.0f };
-        rob_transform(rob, view);
+        rob_transform(rob, joint);
         lbl_8006E0A4(&parts[i]);
         fn_80072558();
         lbl_8006E1B0(&pos, &pos);
@@ -8381,7 +8380,7 @@ void fn_1_977BC(Rob *rob, RobView *arg1) {
     RobModel *model;
         model = fn_80071268(model_set, fzgx_pool_parts[order[draw_i]].name);
         fn_1_977BC_loop4(model);
-        rob_transform(rob, view);
+        rob_transform(rob, joint);
         {
             RobPart *p = fzgx_pool_parts;
             lbl_8006E0A4(p + order[draw_i]);
