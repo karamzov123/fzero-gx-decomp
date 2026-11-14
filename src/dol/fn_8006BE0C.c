@@ -53,10 +53,7 @@ typedef struct Fn8006BE0CLight {
 /* angle in degrees to a 0..255 fraction of a turn */
 #define WRAP_ANGLE(a) ((((a) % 360) << 8) / 360)
 
-#pragma optimize_for_size on
-#pragma scheduling on
-
-s32 fn_8006BE0C(Fn8006BE0CLight *__restrict dst, Fn8006BE0CLight *__restrict src) {
+s32 fn_8006BE0C(Fn8006BE0CLight *dst, const Fn8006BE0CLight *src) {
     s32 result;
     s32 type;
     s32 t;
@@ -126,5 +123,3 @@ s32 fn_8006BE0C(Fn8006BE0CLight *__restrict dst, Fn8006BE0CLight *__restrict src
     }
     return result;
 }
-
-#pragma optimize_for_size reset
