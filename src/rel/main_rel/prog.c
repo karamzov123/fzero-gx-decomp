@@ -339,8 +339,6 @@ extern f32 lbl_8006D21C(u32);
 extern const f32 lbl_1_rodata_49F8;
 extern void fn_800721FC(f32, f32, f32, f32);
 
-#pragma opt_propagation off
-#pragma opt_common_subs off
 void fn_1_A7024(f32 arg0, f32 arg1, f32 arg2, f32 arg3) {
     const struct fn_1_A7024_lbl_1_rodata_49F8 *p_lbl_1_rodata_49F8;
     f64 v0;

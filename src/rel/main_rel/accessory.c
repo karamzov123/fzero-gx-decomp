@@ -13818,7 +13818,6 @@ extern f32 fn_1_1289BC(RopeNode *, RopeNode *);
 extern int sprintf(char *, const char *, ...);
 extern void OSPanic(const char *, int, const char *, ...);
 
-#pragma opt_common_subs off
 /* (a - b) . (a - b): Super Monkey Ball's mathutil_vec_distance kernel without the sqrt. */
 
 static inline f32 link_length(RopeLink *l) {
@@ -13937,7 +13936,6 @@ void fn_1_1177C4(Rope *rope) {
         }
     }
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_1177C4 */
 
 /* fzgx:begin fn_1_117D5C */

@@ -20170,11 +20170,7 @@ static inline void fn_1_B9DE8_unmount(u32 data, s32 chan) {
     } \
     fn_1_B9DE8_unmount(data, chan); \
 } while (0)
-#pragma peephole off
 static inline u32 fn_1_B9DE8_language(u32 *language) { return *language; }
-#pragma peephole reset
-#pragma opt_dead_assignments off
-#pragma opt_lifetimes off
 void fn_1_B9DE8(MemcardArg *arg0) {
     u32 data = (u32)&lbl_1_data_35AC8;
     u32 *lang = &lbl_801A66B4;
@@ -20193,8 +20189,6 @@ void fn_1_B9DE8(MemcardArg *arg0) {
     fn_1_B9DE8_slot(data, 0);
     fn_1_B9DE8_slot(data, 1);
 }
-#pragma opt_lifetimes reset
-#pragma opt_dead_assignments reset
 /* fzgx:end fn_1_B9DE8 */
 
 /* fzgx:begin fn_1_BA144 noprologue */
