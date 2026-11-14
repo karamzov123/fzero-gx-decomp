@@ -172582,17 +172582,6 @@
   },
   {
     "module": "title",
-    "source": "rel/title/data/lbl_8_data_478.c",
-    "symbols": [
-      "lbl_8_data_478"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "title",
     "source": "rel/title/data/lbl_8_data_4D0.c",
     "symbols": [
       "lbl_8_data_4D0",
@@ -176107,10 +176096,7 @@
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/title/title.c",
-    "pool": {
-      "@36": "jumptable_8_data_494"
-    }
+    "tu": "rel/title/title.c"
   },
   {
     "module": "title",

@@ -203,6 +203,7 @@ rel/title/title/fn_8_530C.c:
 
 rel/title/title/fn_8_BE4.c:
 	.text       start:0x00000BE4 end:0x00000EC4 align:4
+	.data       start:0x00000478 end:0x000004D0 align:8
 
 rel/title/operation/fn_8_988C.c:
 	.text       start:0x0000988C end:0x00009B04 align:4
@@ -377,9 +378,6 @@ rel/title/data/lbl_8_data_310.c:
 
 rel/title/data/lbl_8_data_318.c:
 	.data       start:0x00000318 end:0x00000478 align:8
-
-rel/title/data/lbl_8_data_478.c:
-	.data       start:0x00000478 end:0x00000494 align:8
 
 rel/title/data/lbl_8_data_7E78.c:
 	.data       start:0x00007E78 end:0x00007EB0 align:8

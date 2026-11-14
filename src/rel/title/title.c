@@ -305,6 +305,8 @@ void fn_8_BE0(void) {
 /* fzgx:end fn_8_BE0 */
 
 /* fzgx:begin fn_8_BE4 */
+u8 lbl_8_data_478[0x1B] = "vehicle/vehicle_sel.arc.lz";
+
 struct fn_8_BE4_TitleState {
     u8 unk0[0x2];
     u8 unk2;

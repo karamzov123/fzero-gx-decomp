@@ -580894,32 +580894,6 @@
     "unit_size": 30564,
     "unit_start": 1232
   },
-  "title:lbl_8_data_478": {
-    "address": 1144,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "u8 lbl_8_data_478[0x1B]",
-        "path": "include/rel/title/title.h"
-      }
-    ],
-    "definition": "char lbl_8_data_478[27]",
-    "method": "string",
-    "module": "title",
-    "references": [
-      "fn_8_1394"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 27,
-    "sha256": "8b52a412808834bd7a3a461d9d135226272cfa5c2f0f06940bfa85ca22f9f2ca",
-    "size": 27,
-    "source": "rel/title/data/lbl_8_data_478.c",
-    "symbol": "lbl_8_data_478",
-    "unit_align": 8,
-    "unit_size": 28,
-    "unit_start": 1144
-  },
   "title:lbl_8_data_47A0": {
     "address": 18336,
     "align": 8,
