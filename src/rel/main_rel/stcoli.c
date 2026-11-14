@@ -8892,6 +8892,299 @@ int fn_1_20994(void *arg, f32 *out) {
 }
 /* fzgx:end fn_1_20994 */
 
+/* fzgx:begin fn_1_20A5C noprologue */
+#include "types.h"
+#include "psvec.h"
+#include "fpscr_floorf.h"
+
+/* fzgx:begin fn_1_20A5C noprologue */
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    d = 4503601774854144.0;
+    s = 0.0f;
+    s = 1.0f;
+    s = -5.0f;
+    s = 10.0f;
+    s = -1.0f;
+    s = 2.0f;
+    s = 0.5f;
+    s = 2.5f;
+    s = 1.7f;
+    s = 0.001f;
+}
+#pragma section code_type ".text"
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} fn_1_20A5C_Vec;
+
+typedef struct {
+    u8 pad_0[0x8];
+    f32 d0;
+    fn_1_20A5C_Vec n0;
+    fn_1_20A5C_Vec a;
+    f32 d1;
+    fn_1_20A5C_Vec n1;
+    fn_1_20A5C_Vec b;
+    u8 pad_40[0x8];
+    f32 w;
+    u8 pad_4c[0x4];
+} fn_1_20A5C_Rec;
+
+typedef struct {
+    s32 count;
+    fn_1_20A5C_Rec *recs;
+    void *unk_8;
+} fn_1_20A5C_Seg;
+
+typedef struct {
+    u8 pad_0[0x8];
+    s32 count;
+    fn_1_20A5C_Seg *segs;
+    u8 pad_10[0x7D - 0x10];
+    u8 single;
+    u8 pad_7e[0xBC - 0x7E];
+    s16 **grid;
+    f32 x0;
+    f32 z0;
+    f32 sx;
+    f32 sz;
+    s32 nx;
+    s32 nz;
+} fn_1_20A5C_Course;
+
+typedef struct {
+    u8 pad_0[0x8];
+    f32 zero;
+    f32 one;
+    u8 pad_10[0x10];
+    f32 unk_20;
+    u8 pad_24[0x4];
+    f32 unk_28;
+    f32 unk_2C;
+} fn_1_20A5C_Pool;
+
+typedef struct {
+    u8 pad_0[0xD4];
+    fn_1_20A5C_Vec delta;
+} fn_1_20A5C_Work;
+
+extern fn_1_20A5C_Course *lbl_1_bss_3BE0;
+extern fn_1_20A5C_Work *lbl_801A66CC;
+extern s16 fn_1_7B054(void);
+extern f32 lbl_8006D0B4(f32);
+
+static inline f32 fn_1_20A5C_dot(fn_1_20A5C_Vec *a, fn_1_20A5C_Vec *b) {
+    f32 r;
+    f32 ax, ay, az;
+    f32 bx, by, bz;
+    ax = a->x;
+    ay = a->y;
+    az = a->z;
+    bx = b->x;
+    by = b->y;
+    bz = b->z;
+    r = ax * bx;
+    r = ay * by + r;
+    r = az * bz + r;
+    return r;
+}
+
+s32 fn_1_20A5C(fn_1_20A5C_Vec *pos, f32 *out_t) {
+    fn_1_20A5C_Vec closest;
+    fn_1_20A5C_Vec f;
+    fn_1_20A5C_Vec e;
+    fn_1_20A5C_Vec d;
+    s32 single;
+    s32 count;
+    s32 best;
+    s16 *list;
+    s32 n;
+    s32 excl;
+    s32 weighted;
+    s32 id;
+    s32 i;
+    s32 end;
+    s32 start;
+    fn_1_20A5C_Rec *rec;
+    s32 in0;
+    s32 in1;
+    fn_1_20A5C_Seg *seg;
+    s32 cnt;
+    s32 ix;
+    s32 iz;
+    s16 mode;
+    f32 thr;
+    f32 best_dist;
+    f32 d0;
+    f32 d1;
+    f32 dist;
+    f32 t;
+    f32 ee;
+    f32 ff;
+    f32 dd;
+    f32 de;
+    f32 wt;
+    f32 dx, dy, dz, ex, ey, ez;
+
+    thr = (fn_1_7B054() == 25) ? 1.7f : 0.001f;
+    *out_t = 0.0f;
+    if (!lbl_1_bss_3BE0) {
+        return -1;
+    }
+    count = lbl_1_bss_3BE0->count;
+    if (count == 0) {
+        return -1;
+    }
+    best_dist = 0.0f;
+    single = lbl_1_bss_3BE0->single;
+    best = -1;
+    if (lbl_1_bss_3BE0->grid) {
+        ix = fpscr_floorf((pos->x - lbl_1_bss_3BE0->x0) / lbl_1_bss_3BE0->sx);
+        iz = fpscr_floorf((pos->z - lbl_1_bss_3BE0->z0) / lbl_1_bss_3BE0->sz);
+        if (ix < 0) {
+            ix = 0;
+        } else if (ix > lbl_1_bss_3BE0->nx - 1) {
+            ix = lbl_1_bss_3BE0->nx - 1;
+        }
+        if (iz < 0) {
+            iz = 0;
+        } else if (iz > lbl_1_bss_3BE0->nz - 1) {
+            iz = lbl_1_bss_3BE0->nz - 1;
+        }
+        list = lbl_1_bss_3BE0->grid[ix + iz * lbl_1_bss_3BE0->nx];
+        if (!list) {
+            return -1;
+        }
+    }
+    mode = fn_1_7B054();
+    excl = mode == 29;
+    weighted = mode != 8;
+    n = 0;
+    for (;;) {
+        if (lbl_1_bss_3BE0->grid) {
+            id = list[n];
+            if (id < 0) {
+                break;
+            }
+        } else {
+            id = n;
+            if (n >= count) {
+                break;
+            }
+        }
+        n++;
+        if (excl && ((id >= 0x6B && id <= 0xDE) || (id >= 0xF2 && id <= 0x131) ||
+                     (id >= 0x13 && id <= 0x24) || id == 0x25 || id == 0xF1)) {
+            continue;
+        }
+        seg = &lbl_1_bss_3BE0->segs[id];
+        cnt = seg->count;
+        if (cnt > 1) {
+            end = cnt - 1;
+            start = 1;
+        } else {
+            start = 0;
+            end = 0;
+        }
+        rec = seg->recs;
+        for (i = start; i <= end; i++, rec++) {
+            f32 n1z;
+            f32 n1y;
+            f32 n1x;
+            f32 z;
+            f32 y;
+            f32 x;
+            f32 n2z;
+            f32 n2y;
+            f32 n2x;
+            f32 p0;
+            f32 p1;
+            x = pos->x;
+            y = pos->y;
+            z = pos->z;
+            n1x = rec->n0.x;
+            n1y = rec->n0.y;
+            n1z = rec->n0.z;
+            n2x = rec->n1.x;
+            n2y = rec->n1.y;
+            n2z = rec->n1.z;
+            p0 = x * n1x;
+            p1 = x * n2x;
+            p0 += y * n1y;
+            p1 += y * n2y;
+            p0 += z * n1z;
+            p1 += z * n2z;
+            d0 = rec->d0 + p0;
+            d1 = rec->d1 + p1;
+            if (id == 0) {
+                in1 = -thr <= d1;
+                in0 = z < 0.0f;
+                if (single) {
+                    in0 = 1;
+                }
+            } else if (id == count - 1) {
+                in1 = z >= 0.0f;
+                in0 = -thr <= d0;
+                if (single && fn_1_7B054() != 41) {
+                    in1 = 1;
+                }
+            } else {
+                in1 = -thr <= d1;
+                in0 = -thr <= d0;
+            }
+            if (in0 && in1) {
+                psvec_sub(&rec->b, &rec->a, &d);
+                psvec_sub(&rec->a, pos, &e);
+                de = fn_1_20A5C_dot(&d, &e);
+                dd = fn_1_20A5C_dot(&d, &d);
+                t = -de / dd;
+                if ((*(u32 *)&t & 0x7F800000) == 0x7F800000) {
+                    closest = rec->a;
+                    ee = fn_1_20A5C_dot(&e, &e);
+                    dist = lbl_8006D0B4(ee);
+                } else if (0.0f <= t && t <= 1.0f) {
+                    register f32 s = t;
+                    psvec_scale(&d, s, &lbl_801A66CC->delta);
+                    psvec_add(&e, &lbl_801A66CC->delta, &e);
+                    psvec_add(&rec->a, &lbl_801A66CC->delta, &closest);
+                    ee = e.x * e.x;
+                    ee = e.y * e.y + ee;
+                    ee = e.z * e.z + ee;
+                    dist = lbl_8006D0B4(ee);
+                } else {
+                    psvec_sub(&rec->b, pos, &f);
+                    ee = fn_1_20A5C_dot(&e, &e);
+                    ff = fn_1_20A5C_dot(&f, &f);
+                    if (ee < ff) {
+                        closest = rec->a;
+                        dist = lbl_8006D0B4(ee);
+                    } else {
+                        closest = rec->b;
+                        dist = lbl_8006D0B4(ff);
+                    }
+                }
+                if (weighted) {
+                    wt = 0.5f * rec->w;
+                    dist -= wt;
+                }
+                if (best < 0 || dist < best_dist) {
+                    best = id;
+                    best_dist = dist;
+                    *out_t = d0 / (d0 + d1);
+                }
+            }
+        }
+    }
+    return best;
+}
+/* fzgx:end fn_1_20A5C */
+/* fzgx:end fn_1_20A5C */
+
 /* fzgx:begin fn_1_210A8 noprologue */
 #include "types.h"
 #include "rel/main_rel/globals.h"
