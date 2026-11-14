@@ -5018,7 +5018,12 @@
     "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/customize/emblem.c"
+    "tu": "rel/customize/emblem.c",
+    "pool": {
+      "...bss.0": "lbl_3_bss_A23D8",
+      "lbl_3_bss_A23D8": "lbl_3_bss_A23D8",
+      "lbl_3_bss_A23E0": "lbl_3_bss_A23E0"
+    }
   },
   {
     "module": "customize",
