@@ -26,16 +26,43 @@ The goal of this project is to reconstruct readable, maintainable, matching C so
 
 ## Current Status
 
-- **Code Matched:** **99.37%** of code bytes (7,289 / 7,312 functions match retail; objdiff)
-- **Written in C:** **7,137** functions, **97.99%** of code bytes (`fzgx honest`); 153 matched functions are still assembly units
-- **Target Executables:** **16 / 16** link cleanly and match the retail SHA-1 hashes byte for byte (`16 files OK`)
-- **DOL Core:** **98.84%** code matched (2,195 / 2,206 functions)
-- **Relocatable Modules:** **99.49%** code matched (5,094 / 5,106 functions)
-- **Data Matched:** **94.57%** (game assets such as textures are extracted from your disc at build time, never committed)
+Verified locally on **2026-11-14**, against source baseline `e59a734ad`, for **GFZE01**:
 
-The two code numbers measure different things: objdiff counts every function whose object bytes
-match, including hand-written or not-yet-converted assembly units; `fzgx honest` counts only
-functions with a compiled C body. The project is complete when every function is C.
+- **Diagnostic Object Match:** **100.0%** of code bytes (7,351 / 7,351 functions in the objdiff report). This includes assembly and retail fallback objects; it is not a natural-C completion percentage.
+- **Authored C Credit:** **7,160 / 7,351** functions, **98.7912%** of code bytes (`fzgx sync`, then `fzgx honest`). This includes C with compiler-diff devices and evidenced inline assembly kernels, not just device-free natural C.
+- **Assembly-Owned Functions:** **191** current configured functions remain outside authored-C credit. This is an audit inventory, not 191 proven C conversions: original assembly is permitted when supported by evidence.
+- **Compiler-Diff Debt:** **34 primary warning markers across 11 files** in `src/` and `include/` (36 markers when `WARNING: device` cross-references are included). Markers are not a count of distinct devices or affected functions; unmarked constructs still need review.
+- **Target Executables:** **16 / 16** link and match the retail SHA-1 hashes byte for byte (`16 files OK`, followed by an independent checksum check).
+- **Diagnostic Data Match:** **98.63%** (4,999,053 / 5,068,445 bytes in the regenerated report). This is not an asset-reconstruction or source-owned-data percentage.
+- **Source Coverage:** **13 / 16** executables have authored-C credit for every configured function. The remaining inventories are listed below.
+- **Lint:** **0 findings** (`fzgx lint`).
+
+These are separate gates. A green object report or retail checksum does not prove natural-C
+completion, and `fzgx honest` is not a device-free-source audit. Under
+[the assembly and device policy](docs/ASM_POLICY.md), completion requires every function to match,
+natural C wherever the original was C, assembly only with original-assembly evidence, and zero
+compiler-diff devices. A separate audited device-free natural-C total is not yet established.
+
+### Remaining Work and Next Steps
+
+| Executable | Authored C / known functions | Outside C credit | Authored code bytes |
+|---|---:|---:|---:|
+| `main.dol` | 2,064 / 2,245 | 181 | 94.6328% |
+| `main_rel` | 3,227 / 3,230 | 3 | 99.9469% |
+| `movie_module` | 784 / 791 | 7 | 98.5292% |
+| Other 13 executables | All configured functions | 0 | 100% |
+
+1. **Remove compiler-diff devices without losing exactness.** Start with the dead assembly writes in `include/adx_compiler_diff.h` and their remaining caller, `src/dol/fn_8004F26C.c`. Continue through the ADX decoder scheduling/stack-escape devices, stream-writer volatile staging, and gameplay helpers. Require real MWCC object evidence and all 16 hashes for each accepted cleanup; a better near-match is not a completed repair.
+2. **Audit the 191 assembly-owned functions against original-assembly evidence.** Preserve genuine SDK/runtime/MetroTRK and middleware assembly; convert only code that was plausibly C. The three `main_rel` entries are `fn_1_4B6D4`, `fn_1_4B788`, and `fn_1_9DFB8`. The seven `movie_module` entries are `fn_12_52E8`, `fn_12_D0B8`, `fn_12_12564`, `fn_12_33664`, `fn_12_33698`, `fn_12_3CB74`, and `fn_12_3D144`.
+3. **Keep metrics synchronized and reproducible.** Run `fzgx sync` after updating source/configuration, then regenerate progress and report authored C, evidenced assembly, and device debt separately. Ledger totals can include retired symbols; use the current configured-function denominator rather than adding raw ledger statuses. Data ownership and readable shared types remain separate work; executable hash parity does not prove complete source-owned data.
+4. **Preserve the acceptance gate.** Rebuild with `python3 configure.py && ninja`, independently run `build/tools/dtk shasum -c config/GFZE01/build.sha1`, run `fzgx lint`, and snapshot provenance before committing accepted changes. Do not replace a working match with an unverified naturalization attempt.
+5. **Extend regional source coverage after the primary cleanup.** PAL and Japanese configurations have landed assembly baselines, not primary-target C coverage. Verify each region separately with legally obtained inputs; the USA checksum result above does not certify either regional build.
+
+The first ADX probe reproduced the installed `fn_8004F26C` exactly, but removing its dead
+inner clamp arm left three differing instruction words. Genuine prediction helpers and
+arithmetic-local reuse did not close that residual. No candidate replaced the working match;
+the next investigation needs allocator/liveness evidence rather than more equivalent expression
+rewrites. See [the portable probe evidence](state/repairs/adx-inner-clamp-20261114.json).
 
 ### Supported Versions
 

@@ -1,0 +1,188 @@
+{
+  "schema": 1,
+  "date": "2026-11-14",
+  "base_commit": "e59a734ade668417003838ca6b190beb59a3b622",
+  "symbol": "fn_8004F26C",
+  "module": "main",
+  "status": "unaccepted compiler experiment; installed source unchanged",
+  "mw_version": "GC/1.3.2",
+  "extra_cflags": "-use_lmw_stmw on",
+  "target_sha256": "5b881228ce13f84f61d89aa62d7f8ded7ce27a15ae9156f381be4f33e2cc5ec9",
+  "baseline_source_sha256": "324eacc3a5a6f234e6313653a6a1caa87cd79ef7046cd9081ba805c39bb6bd34",
+  "frontier_source_sha256": "2b7b34edb4be5059ae434e39f9a4ebb3d1140af3ff9455c6c9ad3ee6285b27a7",
+  "metric": "fixup Engine aligned instruction-word edit distance, not raw objdiff percentage",
+  "observations": [
+    {
+      "label": "baseline",
+      "sha256": "324eacc3a5a6f234e6313653a6a1caa87cd79ef7046cd9081ba805c39bb6bd34",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "score": 100.0,
+      "matched": true
+    },
+    {
+      "label": "natural-left",
+      "sha256": "050be3437eb18a6b0e8a9feecd75252ad0e5c92e40b0dd69c83f2de0dba4f9ce",
+      "word_errors": 52,
+      "shape_errors": 0,
+      "score": 72.34042553191489,
+      "matched": null
+    },
+    {
+      "label": "natural-both",
+      "sha256": "f54b0492f4befc9ea178d68df50e1969b813b73332ac985eb31e94574820c923",
+      "word_errors": 52,
+      "shape_errors": 0,
+      "score": 72.34042553191489,
+      "matched": null
+    },
+    {
+      "label": "natural-plain",
+      "sha256": "2b7b34edb4be5059ae434e39f9a4ebb3d1140af3ff9455c6c9ad3ee6285b27a7",
+      "word_errors": 3,
+      "shape_errors": 0,
+      "score": 98.40425531914893,
+      "matched": null
+    },
+    {
+      "label": "propagation-on",
+      "sha256": "e0dc93148e49c9dcc10309147fc76bb31392524e19157c0a714122fea4eba744",
+      "word_errors": 141,
+      "shape_errors": 8,
+      "score": 25.0,
+      "matched": null
+    },
+    {
+      "label": "arithmetic-propagation-on",
+      "sha256": "004e79fca06fd2e3d1553bd0313ee492397422f28715005651631f431abe1d0c",
+      "word_errors": 135,
+      "shape_errors": 5,
+      "score": 28.19148936170213,
+      "matched": null
+    },
+    {
+      "label": "natural-arithmetic",
+      "sha256": "0be6ea704b561705b476a8ec2d899e79216d4c4c9f15b8e8f8710b2dfd360448",
+      "word_errors": 52,
+      "shape_errors": 0,
+      "score": 72.34042553191489,
+      "matched": null
+    },
+    {
+      "label": "natural-arithmetic-propagation-on",
+      "sha256": "3b28d46e5e6dc88cf3721338d5603b5169b915bd22f9d2a018666beeb94841b4",
+      "word_errors": 142,
+      "shape_errors": 5,
+      "score": 24.46808510638298,
+      "matched": null
+    },
+    {
+      "label": "product-then-prediction",
+      "sha256": "6aaa670c92183771d44e9889a5375c78d2a87bdbff34459801cd434b25d5fd67",
+      "word_errors": 3,
+      "shape_errors": 0,
+      "score": 98.40425531914893,
+      "matched": null
+    },
+    {
+      "label": "split-prediction",
+      "sha256": "db75657118d6e2e3ab804167104044a6da6ceb192f679c9ea3853adab3f7c84b",
+      "word_errors": 3,
+      "shape_errors": 0,
+      "score": 98.40425531914893,
+      "matched": null
+    },
+    {
+      "label": "reuse-sample-residual",
+      "sha256": "2609b965c412b7aa1e344fcc2fa67c6cc449677a1362694527766e511b4d13f6",
+      "word_errors": 3,
+      "shape_errors": 0,
+      "score": 98.40425531914893,
+      "matched": null
+    },
+    {
+      "label": "prediction-accumulate",
+      "sha256": "70a1b52bf59bfaac975480bf8257350c533509944d36828bc345960e31e5fb18",
+      "word_errors": 4,
+      "shape_errors": 0,
+      "score": 97.87234042553192,
+      "matched": null
+    },
+    {
+      "label": "sample-term",
+      "sha256": "e9878cd5958393b1f05f2a2f3d9017534ffd70a7fc4966259a3a2eea47cd420c",
+      "word_errors": 3,
+      "shape_errors": 0,
+      "score": 98.40425531914893,
+      "matched": null
+    },
+    {
+      "label": "remove-escaped_address",
+      "sha256": "3a0939537d5b97c6cd020a8b2559c9e2d52cc3c5ba29a04959e3f61fa5d5e878",
+      "word_errors": 48,
+      "shape_errors": 5,
+      "score": 74.46808510638297,
+      "matched": null
+    },
+    {
+      "label": "remove-dead_sum",
+      "sha256": "79abc393ba4a5a7897a3b95eb69b3d2f36f20668ed4ce161f0667234f9a3c0e3",
+      "word_errors": 9,
+      "shape_errors": 2,
+      "score": 95.2127659574468,
+      "matched": null
+    },
+    {
+      "label": "remove-num_blocks",
+      "sha256": "b820affc19c02c0d4a0f202af461b8d0d3db068ff0216624c2609a53336d9526",
+      "word_errors": 6,
+      "shape_errors": 3,
+      "score": 96.80851063829788,
+      "matched": null
+    },
+    {
+      "label": "remove-increment",
+      "sha256": "0d3c596f0db1070e0fb26982bb51733c6b853e2351d9d178c56f788900939a33",
+      "word_errors": 2,
+      "shape_errors": 0,
+      "score": 98.93617021276596,
+      "matched": null
+    },
+    {
+      "label": "remove-coefficient1",
+      "sha256": "0818459914d93ea0256df37486ceed9e12a375b46b328166e3b0f9b4f6bdb8c4",
+      "word_errors": 4,
+      "shape_errors": 0,
+      "score": 97.87234042553192,
+      "matched": null
+    },
+    {
+      "label": "remove-dead-arm-only",
+      "sha256": "03b93c6f2be4b00bb2129d27fc6f115b42d709173101eada2a96ef1287370fa0",
+      "word_errors": 3,
+      "shape_errors": 0,
+      "score": 98.40425531914893,
+      "matched": null
+    }
+  ],
+  "differing_instructions": [
+    {
+      "retail": "mullw r27, r20, r25",
+      "candidate": "mullw r20, r20, r25"
+    },
+    {
+      "retail": "srawi r20, r26, 12",
+      "candidate": "srawi r26, r26, 12"
+    },
+    {
+      "retail": "add r29, r27, r20",
+      "candidate": "add r29, r20, r26"
+    }
+  ],
+  "hypothesis": "Natural fixed-point prediction and residual arithmetic can replace the dead inner clamp arm.",
+  "result": "Baseline exact. Natural expression and split/reuse variants remain three words off; predictor helpers remain 52 words off. Individual dead entry-read removals also fail. No accepted cleanup and no new C credit.",
+  "next_evidence": "Capture/replay actual stock compiler allocation for the natural-plain body; prove a source-realizable lifetime or compiler-profile change before further expression batches.",
+  "frontier_source_note": "Exactly the tested unaccepted source. Inherited warnings about other devices remain; the top comment still describes the original baseline dead arm. This is not a device-free native reconstruction.",
+  "frontier_source": "/* WARNING: compiler-diff device, not original code: keeps the dead arm in fn_8004F26C's inner loop and the\n * copies of its stack-passed parameters alive until register allocation (see there). */\n#pragma opt_propagation off\n#include \"types.h\"\n#include \"adx_compiler_diff.h\"\n\nextern const int lbl_800911E0[16];\n\n#define CLAMP_SAMPLE(x)                 \\\n    if ((x) > 32767 || (x) < -32768) {  \\\n        if ((x) < -32768) {             \\\n            (x) = -32768;               \\\n        } else if ((x) > 32767) {       \\\n            (x) = 32767;                \\\n        }                               \\\n    }\n\n\n/* WARNING: compiler-diff device, not original code: coefficient1 is `register` only so that it can be the\n * operand of a dead register write (see the entry block). The honest declaration is `short coefficient1`. */\nint fn_8004F26C(const signed char *input, int num_samples, short *output_left,\n                short delay_left[2], short *output_right, short delay_right[2],\n                short coefficient0, register short coefficient1, short *random_state,\n                short random_multiplier, short random_increment) {\n    int multiplier;\n    short *state;\n    register short increment;\n    int c0;\n    int c1;\n    int older_left;\n    int older_right;\n    int previous_right;\n    int previous_left;\n    int block;\n    int packed_left;\n    int packed_right;\n    short gain_left;\n    short gain_right;\n    int i;\n    register int num_blocks;\n    register int dead_sum;\n    register void *escaped_address;\n\n    num_blocks = num_samples / 2;\n    /* WARNING: compiler-diff device, not original code: the three stack-passed parameters are copied into\n     * locals because the dead writes below make the parameters themselves address-taken; the copies keep\n     * the three loads in the entry block. The honest form uses random_state, random_multiplier and\n     * random_increment directly. */\n    state = random_state;\n    c1 = coefficient1;\n    c0 = coefficient0;\n    multiplier = random_multiplier;\n    increment = random_increment;\n    /* WARNING: compiler-diff device, not original code: dead writes of the three stack-parameter addresses\n     * (ADX_COMPILER_DIFF_DEAD_WRITE, adx_compiler_diff.h); nothing of them reaches the object code. They make\n     * MWCC treat the parameter slots as escaped, so the final scheduler orders the three parameter loads\n     * after the prologue's stmw, as retail does. */\n    escaped_address = &random_state;\n    ADX_COMPILER_DIFF_DEAD_WRITE(escaped_address);\n    escaped_address = &random_multiplier;\n    ADX_COMPILER_DIFF_DEAD_WRITE(escaped_address);\n    escaped_address = &random_increment;\n    ADX_COMPILER_DIFF_DEAD_WRITE(escaped_address);\n    /* WARNING: compiler-diff device, not original code: dead_sum and the four dead writes are dead readers\n     * of entry-block values; nothing of them reaches the object code. They make the first scheduling issue\n     * the state, multiplier and increment loads before the `srawi` of num_samples / 2 and the four delay\n     * loads after it, which is retail's colouring: the `add` temporary of the division is r12 (it no longer\n     * overlaps older_left), the 0x66666667 high half is r20 and the table's is r21. The coefficient1 write\n     * keeps that parameter's entry copy until register allocation. Without them the function is 10 rows\n     * off, all in the entry block. */\n    dead_sum = (int)state + multiplier;\n    ADX_COMPILER_DIFF_DEAD_WRITE(dead_sum);\n    ADX_COMPILER_DIFF_DEAD_WRITE(num_blocks);\n    ADX_COMPILER_DIFF_DEAD_WRITE(increment);\n    ADX_COMPILER_DIFF_DEAD_WRITE(coefficient1);\n    previous_left = delay_left[0];\n    older_left = delay_left[1];\n    previous_right = delay_right[0];\n    older_right = delay_right[1];\n    for (block = 0; block < num_blocks; block++) {\n        short code;\n\n        code = *(const short *)input;\n        if (code & 0x8000) return block * 2;\n        gain_left = ((code ^ *state) & 0x1fff) + 1;\n        *state = increment + *state * multiplier;\n        *state &= 0x7fff;\n        code = *(const short *)(input + 18);\n        if (code & 0x8000) return block * 2;\n        gain_right = ((code ^ *state) & 0x1fff) + 1;\n        *state = increment + *state * multiplier;\n        *state &= 0x7fff;\n        input += 2;\n        for (i = 0; i < 16; i++) {\n            int decoded_right;\n            int low_left;\n            int low_right;\n            int mixed;\n\n            packed_left = input[0];\n            packed_right = input[18];\n            input++;\n            older_left = (packed_left >> 4) * gain_left +\n                ((c0 * previous_left + c1 * older_left) >> 12);\n            CLAMP_SAMPLE(older_left);\n            decoded_right = (packed_right >> 4) * gain_right +\n                ((c0 * previous_right + c1 * older_right) >> 12);\n            CLAMP_SAMPLE(decoded_right);\n            older_right = decoded_right;\n            mixed = (older_left + decoded_right) * 7 / 10;\n            CLAMP_SAMPLE(mixed);\n            output_right[0] = mixed;\n            output_left[0] = mixed;\n            low_left = lbl_800911E0[packed_left & 15];\n            low_right = lbl_800911E0[packed_right & 15];\n            previous_left = low_left * gain_left +\n                ((c0 * older_left + c1 * previous_left) >> 12);\n            CLAMP_SAMPLE(previous_left);\n\n            previous_right = low_right * gain_right +\n                ((c0 * older_right + c1 * previous_right) >> 12);\n            CLAMP_SAMPLE(previous_right);\n            mixed = (previous_left + previous_right) * 7 / 10;\n            CLAMP_SAMPLE(mixed);\n            output_right[1] = mixed;\n            output_left[1] = mixed;\n            output_left += 2;\n            output_right += 2;\n        }\n        input += 18;\n    }\n    delay_left[0] = previous_left;\n    delay_left[1] = older_left;\n    delay_right[0] = previous_right;\n    delay_right[1] = older_right;\n    return num_samples;\n}\n",
+  "replay": "Extract frontier_source to a scratch .c file, then run uv run tools/fzgx.py fixup fn_8004F26C --body PATH --output SCRATCH_DIRECTORY --rounds 0. Retain the recorded GC/1.3.2 compiler and -use_lmw_stmw on unit profile. Baseline source is src/dol/fn_8004F26C.c at base_commit."
+}
