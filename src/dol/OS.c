@@ -407,6 +407,7 @@ __OSExceptionHandler __OSSetExceptionHandler(__OSException exception, __OSExcept
 __OSExceptionHandler __OSGetExceptionHandler(__OSException exception) {
     return OSExceptionTable[exception];
 }
+#pragma peephole reset
 
 /* Assembly in the original: the SDK's os.c writes this routine as a CodeWarrior asm
  * function. Evidence (docs/ASM_POLICY.md section 1): mtsprg/mfsprg, mfsrr0/mfsrr1,
