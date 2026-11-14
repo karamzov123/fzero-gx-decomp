@@ -24,6 +24,9 @@ PTR_CAST_RE = re.compile(r"\(\s*[\w\s]+\*\s*\)\s*0[xX][0-9A-Fa-f]+")
 ALLOW_RE = re.compile(r"fzgx-allow:\s*(\w+(?:,\w+)*)")
 RANGES = [(0x80000000, 0x817FFFFF), (0xC0000000, 0xC17FFFFF), (0xCC000000, 0xCC00FFFF)]
 EXEMPT = {"include/dolphin/hw_regs.h"}
+# A3 does not apply to these files. Owner decision (2026-11-14): os.c is one unit as in the
+# Dolphin SDK, with the SDK's asm functions and the asm block of __OSPSInit in the C file.
+A3_EXEMPT = {"src/dol/OS.c"}
 
 
 def _rel(path: Path) -> str:
@@ -58,7 +61,7 @@ def lint_file(path: Path) -> List[Tuple[str, int, str]]:
                 findings.append(("A1", i, f"hardcoded address 0x{v:08X}; use a symbol"))
         if PTR_CAST_RE.search(code) and "A2" not in allow:
             findings.append(("A2", i, "literal cast to pointer; declare an extern symbol"))
-        if re.search(r'\b(?:asm|__asm__)\s*(?:volatile\s*)?\{', code):
+        if re.search(r'\b(?:asm|__asm__)\s*(?:volatile\s*)?\{', code) and _rel(path) not in A3_EXEMPT:
             findings.append(("A3", i, "inline assembly body in reconstructed C"))
         if re.search(r"\bgoto\b", code) and not justified and "S1" not in allow:
             findings.append(("S1", i, "goto without a justification comment"))
