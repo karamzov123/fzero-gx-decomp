@@ -74369,8 +74369,7 @@
       "lbl_1_data_1C2F0",
       "lbl_1_data_1C2F4",
       "lbl_1_data_1C2F8",
-      "lbl_1_data_1C2FC",
-      "lbl_1_data_1C300"
+      "lbl_1_data_1C2FC"
     ],
     "status": "matching",
     "data": true,
@@ -119984,8 +119983,7 @@
     "tu": "rel/main_rel/font.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_FD0",
-      "@5": "lbl_1_rodata_10E0",
-      "@62": "jumptable_1_data_1C304"
+      "@5": "lbl_1_rodata_10E0"
     }
   },
   {

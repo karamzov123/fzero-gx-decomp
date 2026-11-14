@@ -81,7 +81,6 @@ extern char lbl_1_data_1C2F0[2];
 extern char lbl_1_data_1C2F4[2];
 extern char lbl_1_data_1C2F8[2];
 extern char lbl_1_data_1C2FC[2];
-extern char lbl_1_data_1C300[2];
 
 
 
@@ -563,10 +562,4 @@ __declspec(section ".data") char lbl_1_data_1C2F8[2] __attribute__((aligned(8)))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_1_data_1C2FC[2] __attribute__((aligned(4))) = "+";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_1_data_1C300[2] __attribute__((aligned(8))) = "\"";
 #pragma explicit_zero_data reset

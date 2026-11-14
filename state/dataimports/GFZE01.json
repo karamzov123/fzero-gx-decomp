@@ -184294,25 +184294,6 @@
     "unit_size": 324,
     "unit_start": 115136
   },
-  "main_rel:lbl_1_data_1C300": {
-    "address": 115456,
-    "align": 8,
-    "declarations": [],
-    "definition": "char lbl_1_data_1C300[2]",
-    "method": "string",
-    "module": "main_rel",
-    "references": [],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 322,
-    "sha256": "37aa3970b6801c9d286464f7d86e50bf41c88e54c7b4d08f3ff61935b3f59c3c",
-    "size": 2,
-    "source": "rel/main_rel/data/lbl_1_data_1C1C0.c",
-    "symbol": "lbl_1_data_1C300",
-    "unit_align": 8,
-    "unit_size": 324,
-    "unit_start": 115136
-  },
   "main_rel:lbl_1_data_1C500": {
     "address": 115968,
     "align": 8,
