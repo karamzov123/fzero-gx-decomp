@@ -3251,8 +3251,6 @@ typedef struct {
     s16 *indices;
 } Customize;
 
-#pragma opt_strength_reduction off
-#pragma opt_common_subs off
 void fn_3_12E4C(Customize *self, u8 index, Vec3 *first, Vec3 *second) {
     Data *data;
     SpecialData *special;
@@ -3288,13 +3286,10 @@ void fn_3_12E4C(Customize *self, u8 index, Vec3 *first, Vec3 *second) {
         return;
     }
 
-    data = (Data *)((u8 *)(*(u32 (*)[352])&lbl_3_data_1EEC) + ((u8)state << 5));
+    data = (Data *)((u8 *)(*(u32 (*)[352])&lbl_3_data_1EEC) + (state << 5));
     *first = data->first;
     *second = data->second;
 }
-#pragma opt_common_subs reset
-
-#pragma opt_strength_reduction reset
 /* fzgx:end fn_3_12E4C */
 
 /* fzgx:begin fn_3_12FD4 noprologue */
