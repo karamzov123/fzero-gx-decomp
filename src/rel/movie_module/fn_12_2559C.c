@@ -26,12 +26,10 @@ extern u32 fn_12_21D30(struct Sig_fn_12_21D30_fn_12_21D30_Arg0 *, u32);
 extern u32 fn_12_23250(u32);
 extern u32 fn_12_67A4(const u8 *);
 extern void fn_12_21D40(void *, int, int);
-#pragma opt_propagation off
 s32 fn_12_2559C(struct fn_12_2559C_Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3) {
     u32 v2;
     u32 v0;
     u32 v1;
-    struct { u32 value; } code;
     s32 v4;
     u32 v3;
     u32 t0;
@@ -41,9 +39,8 @@ s32 fn_12_2559C(struct fn_12_2559C_Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3) {
     v1 = arg0->unk_1AF4;
     v2 = arg0->unk_28;
     if ((s32)arg2 >= 4) {
-        code.value = fn_12_67A4((const u8 *)arg1);
-        v3 = code.value;
-        if ((v3 - 0x80000) == 0) {
+        v3 = fn_12_67A4((const u8 *)arg1);
+        if (v3 == 0x80000) {
             if ((s32)*(u32 *)((u8 *)arg0 + 6916) < 0) {
                 t1 = fn_12_21F28((struct Sig_fn_12_21F28_MovieModule *)arg0, v1);
                 *(u32 *)((u8 *)arg0 + 6916) = t1 + 4;
@@ -55,7 +52,7 @@ s32 fn_12_2559C(struct fn_12_2559C_Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3) {
     } else {
         v3 = 0;
     }
-    if ((v3 - 0x80000) != 0) {
+    if (v3 != 0x80000) {
         v4 = 0;
     } else if ((s32)fn_12_23250((u32)arg0) != 0 || fn_12_231F8((u32)arg0) != 0) {
         v4 = 0;
