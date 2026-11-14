@@ -10411,57 +10411,6 @@
   },
   {
     "module": "main",
-    "source": "dol/ClearArena.c",
-    "symbols": [
-      "ClearArena"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-nodefaults",
-      "-proc",
-      "gekko",
-      "-align",
-      "powerpc",
-      "-enum",
-      "int",
-      "-fp",
-      "hardware",
-      "-Cpp_exceptions",
-      "off",
-      "-pragma",
-      "'cats",
-      "off'",
-      "-pragma",
-      "'warn_notinlined",
-      "off'",
-      "-use_lmw_stmw",
-      "on",
-      "-maxerrors",
-      "1",
-      "-nosyspath",
-      "-RTTI",
-      "off",
-      "-multibyte",
-      "-DMATCHING=1",
-      "-inline",
-      "auto",
-      "-lang=c",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-str",
-      "reuse",
-      "-common",
-      "off",
-      "-O4,p"
-    ]
-  },
-  {
-    "module": "main",
     "source": "dol/CompleteTransfer.c",
     "symbols": [
       "CompleteTransfer"
@@ -13633,27 +13582,6 @@
   },
   {
     "module": "main",
-    "source": "dol/InquiryCallback.c",
-    "symbols": [
-      "InquiryCallback"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ]
-  },
-  {
-    "module": "main",
     "source": "dol/InsertAlarm.c",
     "symbols": [
       "InsertAlarm"
@@ -13993,17 +13921,6 @@
   },
   {
     "module": "main",
-    "source": "dol/OSDefaultExceptionHandler.c",
-    "symbols": [
-      "OSDefaultExceptionHandler"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
     "source": "dol/OSDisableInterrupts.c",
     "symbols": [
       "OSDisableInterrupts"
@@ -14068,41 +13985,6 @@
     "status": "matching",
     "mw_version": null,
     "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/OSExceptionInit.c",
-    "symbols": [
-      "OSExceptionInit"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ],
-    "pool": {
-      "...data.0": "OSDataPool"
-    }
-  },
-  {
-    "module": "main",
-    "source": "dol/OSExceptionVector.c",
-    "symbols": [
-      "OSExceptionVector"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
   },
   {
     "module": "main",
@@ -14172,10 +14054,6 @@
   },
   {
     "module": "main",
-    "source": "dol/OSGetConsoleType.c",
-    "symbols": [
-      "OSGetConsoleType"
-    ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
     "extra_cflags": [
@@ -14189,7 +14067,49 @@
       "signed",
       "-common",
       "off"
-    ]
+    ],
+    "source": "dol/OS.c",
+    "symbols": [
+      "OSGetConsoleType",
+      "ClearArena",
+      "InquiryCallback",
+      "OSInit",
+      "OSExceptionInit",
+      "__OSDBIntegrator",
+      "fn_8000AA2C",
+      "__OSSetExceptionHandler",
+      "__OSGetExceptionHandler",
+      "OSExceptionVector",
+      "OSDefaultExceptionHandler",
+      "__OSPSInit",
+      "__OSGetDIConfig",
+      "OSRegisterVersion"
+    ],
+    "pool": {
+      "...data.0": "OSDataPool",
+      "@1": "OSDataPool",
+      "@75": "lbl_801225F4",
+      "@76": "lbl_801225F4+0x10",
+      "@77": "lbl_801225F4+0x28",
+      "@78": "lbl_801225F4+0x34",
+      "@79": "lbl_801225F4+0x40",
+      "@80": "lbl_801225F4+0x50",
+      "@81": "lbl_801225F4+0x5C",
+      "@82": "lbl_801225F4+0x6C",
+      "@83": "lbl_801225F4+0x7C",
+      "@84": "lbl_801225F4+0x8C",
+      "@85": "lbl_801225F4+0x9C",
+      "@87": "lbl_801225F4+0xB8",
+      "@88": "lbl_801225F4+0xC8",
+      "__OSExceptionLocations": "lbl_801225F4+0xE0",
+      "@122": "lbl_801225F4+0x11C",
+      "@123": "lbl_801225F4+0x138",
+      "@124": "lbl_801225F4+0x168",
+      "@125": "lbl_801225F4+0x198",
+      "...bss.0": "DriveInfo",
+      "DriveInfo": "DriveInfo",
+      "__OSDriveBlock": "__OSDriveBlock"
+    }
   },
   {
     "module": "main",
@@ -14294,33 +14214,6 @@
       "-common",
       "off"
     ]
-  },
-  {
-    "module": "main",
-    "source": "dol/OSInit.c",
-    "symbols": [
-      "OSInit"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ],
-    "pool": {
-      "@51": "@97",
-      "...bss.0": "DriveInfo",
-      "DriveInfo_8015BF00": "DriveInfo",
-      "__OSDriveBlock__fzgx_offset_0": "__OSDriveBlock"
-    }
   },
   {
     "module": "main",
@@ -14450,30 +14343,6 @@
       "-common",
       "off"
     ]
-  },
-  {
-    "module": "main",
-    "source": "dol/OSRegisterVersion.c",
-    "symbols": [
-      "OSRegisterVersion"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ],
-    "pool": {
-      "@2": "lbl_801A6424"
-    }
   },
   {
     "module": "main",
@@ -18620,17 +18489,6 @@
   },
   {
     "module": "main",
-    "source": "dol/__OSDBIntegrator.c",
-    "symbols": [
-      "__OSDBIntegrator"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
     "source": "dol/__OSDispatchInterrupt.c",
     "symbols": [
       "__OSDispatchInterrupt"
@@ -18694,16 +18552,6 @@
   },
   {
     "module": "main",
-    "source": "dol/__OSGetDIConfig.c",
-    "symbols": [
-      "__OSGetDIConfig"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
     "source": "dol/__OSGetEffectivePriority.c",
     "symbols": [
       "__OSGetEffectivePriority"
@@ -18711,27 +18559,6 @@
     "status": "matching",
     "mw_version": null,
     "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/__OSGetExceptionHandler.c",
-    "symbols": [
-      "__OSGetExceptionHandler"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ]
   },
   {
     "module": "main",
@@ -18926,17 +18753,6 @@
   },
   {
     "module": "main",
-    "source": "dol/__OSPSInit.c",
-    "symbols": [
-      "__OSPSInit"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
     "source": "dol/__OSReadROM.c",
     "symbols": [
       "__OSReadROM"
@@ -19011,27 +18827,6 @@
     "mw_version": null,
     "extra_cflags": [],
     "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/__OSSetExceptionHandler.c",
-    "symbols": [
-      "__OSSetExceptionHandler"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ]
   },
   {
     "module": "main",
@@ -29213,17 +29008,6 @@
     "source": "dol/fn_8000A0B8.c",
     "symbols": [
       "fn_8000A0B8"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8000AA2C.c",
-    "symbols": [
-      "fn_8000AA2C"
     ],
     "status": "matching",
     "mw_version": null,

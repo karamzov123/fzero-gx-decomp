@@ -1,0 +1,520 @@
+#include <dolphin/os.h>
+#include <dolphin/dvd.h>
+#include <dolphin/os/OSCache.h>
+#include <dolphin/os/OSContext.h>
+#include <dolphin/os/OSError.h>
+#include <dolphin/os/OSInterrupt.h>
+#include <dolphin/os/OSTime.h>
+#include <dolphin/types.h>
+#include "sdk_addresses.h"
+#pragma peephole off
+
+
+typedef void (*__OSExceptionHandler)(__OSException exception, OSContext *context);
+
+typedef struct OSBootInfo {
+    DVDDiskID DVDDiskID;
+    u32 magic;
+    u32 version;
+    u32 memorySize;
+    u32 consoleType;
+    void *arenaLo;
+    void *arenaHi;
+    void *FSTLocation;
+    u32 FSTMaxLength;
+} OSBootInfo;
+
+typedef struct DVDDriveInfo {
+    u16 revisionLevel;
+    u16 deviceCode;
+    u32 releaseDate;
+    u8 padding[24];
+} DVDDriveInfo;
+
+typedef struct BI2Debug {
+    s32 debugMonSize;
+    s32 simMemSize;
+    u32 argOffset;
+    u32 debugFlag;
+    int trackLocation;
+    int trackSize;
+    u32 countryCode;
+    u8 unk[8];
+    u32 padSpec;
+} BI2Debug;
+
+void *memcpy(void *dest, const void *src, size_t n);
+
+void OSReport(const char *msg, ...);
+
+void DBPrintf(char *format, ...);
+
+void *OSGetArenaLo(void);
+
+void OSSetArenaHi(void *newHi);
+
+void OSSetArenaLo(void *newLo);
+
+void OSRegisterVersion(const char *id);
+
+void OSInitAlarm(void);
+
+__OSInterruptHandler __OSSetInterruptHandler(__OSInterrupt interrupt, __OSInterruptHandler handler);
+
+void DVDInit();
+
+BOOL DVDInquiryAsync(DVDCommandBlock *block, DVDDriveInfo *info, DVDCBCallback callback);
+
+extern BOOL __DBIsExceptionMarked(__OSException);
+
+u32 PPCMfhid2(void);
+
+void PPCMthid2(u32 val);
+
+void __OSEVStart(void);
+
+void __OSEVEnd(void);
+
+void __OSEVSetNumber(void);
+
+void __DBVECTOR(void);
+
+void __OSDBINTSTART(void);
+
+void __OSDBINTEND(void);
+
+void __OSDBJUMPEND(void);
+
+__OSExceptionHandler __OSSetExceptionHandler(__OSException exception, __OSExceptionHandler handler);
+
+void OSDefaultExceptionHandler(register __OSException exception, register OSContext *context);
+
+void OSExceptionInit(void);
+
+void ClearArena(void);
+
+void InquiryCallback(s32 result, DVDCommandBlock *block);
+
+void ICFlashInvalidate(void);
+
+void __OSUnhandledException(__OSException exception, OSContext *context, u32 dsisr, u32 dar);
+
+struct DIRegs {
+    u8 _pad0[0x24];
+    volatile u32 config;  /* fzgx-allow: S2 memory-mapped register */
+};
+
+extern struct DIRegs __DIRegs;
+
+extern unsigned char OSDataPool[];
+
+extern OSBootInfo *BootInfo_801A6748;
+
+extern u32 *BI2DebugFlag;
+
+extern u32 *BI2DebugFlagHolder;
+
+extern BOOL __OSIsGcam;
+
+extern BOOL AreWeInitialized;
+
+extern __OSExceptionHandler *OSExceptionTable;
+
+extern void *__OSSavedRegionStart;
+
+extern void *__OSSavedRegionEnd;
+
+extern BOOL __OSInIPL;
+
+extern OSTime __OSStartTime;
+
+extern u8 __ArenaHi[];
+
+extern u8 __ArenaLo[];
+
+extern char _stack_addr[];
+
+extern char *__OSResetSWInterruptHandler[];
+
+extern u32 __DVDLongFileNameFlag;
+
+extern u32 __PADSpec;
+
+extern u32 BOOT_REGION_START : FZGX_ADDR_BOOT_REGION_START;
+
+extern u32 BOOT_REGION_END : FZGX_ADDR_BOOT_REGION_END;
+
+vu16 __OSDeviceCode : FZGX_ADDR___OSDeviceCode;
+
+static DVDDriveInfo DriveInfo;
+
+static DVDCommandBlock __OSDriveBlock;
+
+const char *__OSVersion = "<< Dolphin SDK - OS\trelease build: Mar 17 2003 04:20:41 (0x2301) >>";
+
+u32 OSGetConsoleType() {
+    if (BootInfo_801A6748 == ((void *)0) || BootInfo_801A6748->consoleType == 0) {
+        return 0x10000002;
+    }
+    return BootInfo_801A6748->consoleType;
+}
+
+void ClearArena(void) {
+    if ((u32)(OSGetResetCode() + 0x80000000) != 0U) {
+        __OSSavedRegionStart = 0U;
+        __OSSavedRegionEnd = 0U;
+        memset(OSGetArenaLo(), 0U, (u32)OSGetArenaHi() - (u32)OSGetArenaLo());
+        return;
+    }
+    __OSSavedRegionStart = (void *)BOOT_REGION_START;
+    __OSSavedRegionEnd = (void *)BOOT_REGION_END;
+    if (BOOT_REGION_START == 0U) {
+        memset(OSGetArenaLo(), 0U, (u32)OSGetArenaHi() - (u32)OSGetArenaLo());
+        return;
+    }
+    if ((u32)OSGetArenaLo() < (u32)__OSSavedRegionStart) {
+        if ((u32)OSGetArenaHi() <= (u32)__OSSavedRegionStart) {
+            memset((u32)OSGetArenaLo(), 0U, (u32)OSGetArenaHi() - (u32)OSGetArenaLo());
+            return;
+        }
+        memset(OSGetArenaLo(), 0U, (u32)__OSSavedRegionStart - (u32)OSGetArenaLo());
+        if ((u32)OSGetArenaHi() > (u32)__OSSavedRegionEnd) {
+            memset((u32)__OSSavedRegionEnd, 0, (u32)OSGetArenaHi() - (u32)__OSSavedRegionEnd);
+        }
+    }
+}
+
+void InquiryCallback(s32 result, DVDCommandBlock *block) {
+    switch (block->state) {
+    case 0:
+        __OSDeviceCode = (u16)(0x8000 | DriveInfo.deviceCode);
+        break;
+    default:
+        __OSDeviceCode = 1;
+        break;
+    }
+}
+
+void OSInit(void) {
+    BI2Debug *DebugInfo;
+    void *debugArenaLo;
+    u32 inputConsoleType;
+    u32 tdev;
+    if ((BOOL)AreWeInitialized == 0) {
+        AreWeInitialized = 1;
+        __OSStartTime = __OSGetSystemTime();
+        OSDisableInterrupts();
+        PPCMtmmcr0(0);
+        PPCMtmmcr1(0);
+        PPCMtpmc1(0);
+        PPCMtpmc2(0);
+        PPCMtpmc3(0);
+        PPCMtpmc4(0);
+        PPCDisableSpeculation();
+        PPCSetFpNonIEEEMode();
+        BI2DebugFlag = 0;
+        BootInfo_801A6748 = (OSBootInfo *)(0x8000 << 16);
+        __DVDLongFileNameFlag = (u32)0;
+        DebugInfo = (BI2Debug *)*((u32 *)FZGX_ADDR___OSBI2Pointer);
+        if (DebugInfo != ((void *)0)) {
+            BI2DebugFlag = &DebugInfo->debugFlag;
+            __PADSpec = (u32)DebugInfo->padSpec;
+            *((u8 *)FZGX_ADDR___OSBI2DebugFlag) = (u8)*BI2DebugFlag;
+            *((u8 *)FZGX_ADDR___OSPadSpecByte) = (u8)__PADSpec;
+        } else if (BootInfo_801A6748->arenaHi) {
+            BI2DebugFlagHolder = (u32 *)*((u8 *)FZGX_ADDR___OSBI2DebugFlag);
+            BI2DebugFlag = (u32 *)&BI2DebugFlagHolder;
+            __PADSpec = (u32) * ((u8 *)FZGX_ADDR___OSPadSpecByte);
+        }
+        __DVDLongFileNameFlag = 1;
+        OSSetArenaLo((BootInfo_801A6748->arenaLo == ((void *)0)) ? __ArenaLo
+                                                                 : BootInfo_801A6748->arenaLo);
+        if ((BootInfo_801A6748->arenaLo == ((void *)0)) && (BI2DebugFlag != 0) &&
+            (*BI2DebugFlag < 2)) {
+            debugArenaLo = (char *)(((u32)_stack_addr + 0x1f) & ~0x1f);
+            OSSetArenaLo(debugArenaLo);
+        }
+        OSSetArenaHi((BootInfo_801A6748->arenaHi == ((void *)0)) ? __ArenaHi
+                                                                 : BootInfo_801A6748->arenaHi);
+        OSExceptionInit();
+        __OSInitSystemCall();
+        OSInitAlarm();
+        __OSModuleInit();
+        __OSInterruptInit();
+        __OSSetInterruptHandler(22, (void *)__OSResetSWInterruptHandler);
+        __OSContextInit();
+        __OSCacheInit();
+        EXIInit();
+        SIInit();
+        __OSInitSram();
+        __OSThreadInit();
+        __OSInitAudioSystem();
+        PPCMthid2(PPCMfhid2() & 0xBFFFFFFF);
+        if ((BOOL)__OSInIPL == 0) {
+            __OSInitMemoryProtection();
+        }
+        OSReport("\nDolphin OS\n");
+        OSReport("Kernel built : %s %s\n", "Mar 17 2003", "04:20:41");
+        OSReport("Console Type : ");
+        if (BootInfo_801A6748 == ((void *)0) ||
+            (inputConsoleType = BootInfo_801A6748->consoleType) == 0) {
+            inputConsoleType = 0x10000002;
+        } else {
+            inputConsoleType = BootInfo_801A6748->consoleType;
+        }
+        switch (inputConsoleType & 0xF0000000) {
+        case 0x00000000:
+            OSReport("Retail %d\n", inputConsoleType);
+            break;
+        case 0x10000000:
+        case 0x20000000:
+            switch (inputConsoleType & 0x0FFFFFFF) {
+            case 0x10000000:
+                OSReport("Mac Emulator\n");
+                break;
+            case 0x10000001:
+                OSReport("PC Emulator\n");
+                break;
+            case 0x10000002:
+                OSReport("EPPC Arthur\n");
+                break;
+            case 0x10000003:
+                OSReport("EPPC Minnow\n");
+                break;
+            default:
+                tdev = (u32)inputConsoleType & 0x0FFFFFFF;
+                OSReport("Development HW%d (%08x)\n", tdev - 3, inputConsoleType);
+                break;
+            }
+            break;
+        default:
+            OSReport("%08x\n", inputConsoleType);
+            break;
+        }
+        OSReport("Memory %d MB\n", (u32)BootInfo_801A6748->memorySize >> 0x14U);
+        OSReport("Arena : 0x%x - 0x%x\n", OSGetArenaLo(), OSGetArenaHi());
+        OSRegisterVersion(__OSVersion);
+        if (BI2DebugFlag && ((*BI2DebugFlag) >= 2)) {
+            EnableMetroTRKInterrupts();
+        }
+        ClearArena();
+        OSEnableInterrupts();
+        if ((BOOL)__OSInIPL == 0) {
+            DVDInit();
+            if ((BOOL)__OSIsGcam) {
+                __OSDeviceCode = 0x9000;
+                return;
+            }
+            DCInvalidateRange(&DriveInfo, sizeof(DriveInfo));
+            DVDInquiryAsync(&__OSDriveBlock, &DriveInfo, InquiryCallback);
+        }
+    }
+}
+
+static u32 __OSExceptionLocations[] = {
+    0x00000100, 0x00000200, 0x00000300, 0x00000400, 0x00000500, 0x00000600, 0x00000700, 0x00000800,
+    0x00000900, 0x00000C00, 0x00000D00, 0x00000F00, 0x00001300, 0x00001400, 0x00001700,
+};
+
+void OSExceptionInit(void) {
+    __OSException exception;
+    void *destAddr;
+    u32 *opCodeAddr;
+    u32 oldOpCode;
+    u8 *handlerStart;
+    u32 handlerSize;
+    opCodeAddr = (u32 *)__OSEVSetNumber;
+    oldOpCode = *opCodeAddr;
+    handlerStart = (u8 *)__OSEVStart;
+    handlerSize = (u32)((u8 *)__OSEVEnd - (u8 *)__OSEVStart);
+    destAddr = (void *)((void *)((u32)(0x60) + (0x8000 << 16)));
+    if (*(u32 *)destAddr == 0) {
+        DBPrintf("Installing OSDBIntegrator\n");
+        memcpy(destAddr, (void *)__OSDBINTSTART, (u32)__OSDBINTEND - (u32)__OSDBINTSTART);
+        DCFlushRangeNoSync(destAddr, (u32)__OSDBINTEND - (u32)__OSDBINTSTART);
+        __sync();
+        ICInvalidateRange(destAddr, (u32)__OSDBINTEND - (u32)__OSDBINTSTART);
+    }
+    for (exception = 0; exception < (14 + 1); exception++) {
+        if (BI2DebugFlag && (*BI2DebugFlag >= 2) &&
+            __DBIsExceptionMarked(exception)) {
+            DBPrintf(">>> OSINIT: exception %d commandeered by TRK\n", exception);
+            continue;
+        }
+        *opCodeAddr = oldOpCode | exception;
+        if (__DBIsExceptionMarked(exception)) {
+            DBPrintf(">>> OSINIT: exception %d vectored to debugger\n", exception);
+            memcpy((void *)__DBVECTOR, (void *)__OSDBINTEND,
+                   (u32)__OSDBJUMPEND - (u32)__OSDBINTEND);
+        } else {
+            u32 *ops = (u32 *)__DBVECTOR;
+            int cb;
+            for (cb = 0; cb < (u32)__OSDBJUMPEND - (u32)__OSDBINTEND; cb += sizeof(u32)) {
+                *ops++ = 0x60000000;
+            }
+        }
+        destAddr =
+            (void *)((void *)((u32)(__OSExceptionLocations[(u32)exception]) + (0x8000 << 16)));
+        memcpy(destAddr, handlerStart, handlerSize);
+        DCFlushRangeNoSync(destAddr, handlerSize);
+        __sync();
+        ICInvalidateRange(destAddr, handlerSize);
+    }
+    OSExceptionTable = ((void *)((u32)(0x3000) + (0x8000 << 16)));
+    for (exception = 0; exception < (14 + 1); exception++) {
+        __OSSetExceptionHandler(exception, OSDefaultExceptionHandler);
+    }
+    *opCodeAddr = oldOpCode;
+    DBPrintf("Exceptions initialized...\n");
+}
+
+/* Assembly in the original: the SDK's os.c writes this routine as a CodeWarrior asm
+ * function. Evidence (docs/ASM_POLICY.md section 1): mflr/mtlr through a fixed low-memory
+ * save slot and mtmsr (privileged), no MWCC prologue or epilogue (nofralloc).
+ * OSExceptionInit copies it to 0x60 between the __OSDBINTSTART/__OSDBINTEND labels, so it
+ * is position-independent code, not a C function. */
+static asm void __OSDBIntegrator(void) {
+    nofralloc
+entry __OSDBINTSTART
+    li      r5, 0x40
+    mflr    r3
+    stw     r3, 0xC(r5)
+    lwz     r3, 0x8(r5)
+    oris    r3, r3, 0x8000
+    mtlr    r3
+    li      r3, 0x30
+    mtmsr   r3
+    blr
+entry __OSDBINTEND
+}
+
+/* __OSDBJump. Assembly in the original: `bla 0x60` is an absolute branch that MWCC never
+ * emits from C. It is a one-word trampoline that OSExceptionInit copies into the exception
+ * vectors between __OSDBINTEND and __OSDBJUMPEND. */
+asm void fn_8000AA2C(void) {
+    nofralloc
+    bla     0x60
+entry __OSDBJUMPEND
+}
+
+__OSExceptionHandler __OSSetExceptionHandler(__OSException exception, __OSExceptionHandler handler) {
+    __OSExceptionHandler oldHandler;
+    oldHandler = OSExceptionTable[exception];
+    OSExceptionTable[exception] = handler;
+    return oldHandler;
+}
+
+__OSExceptionHandler __OSGetExceptionHandler(__OSException exception) {
+    return OSExceptionTable[exception];
+}
+#pragma peephole reset
+
+/* Assembly in the original: the SDK's os.c writes this routine as a CodeWarrior asm
+ * function. Evidence (docs/ASM_POLICY.md section 1): mtsprg/mfsprg, mfsrr0/mfsrr1,
+ * mtsrr0/mtsrr1 and rfi (privileged; MWCC never emits them from C), no MWCC prologue or
+ * epilogue. OSExceptionInit copies it to every exception vector between the
+ * __OSEVStart/__OSEVEnd labels and patches the word at __OSEVSetNumber. */
+static asm void OSExceptionVector(void) {
+    nofralloc
+entry __OSEVStart
+    mtsprg  0, r4
+    lwz     r4, 0xC0(r0)       /* OS_CURRENTCONTEXT_PADDR */
+    stw     r3, 0xC(r4)        /* context->gpr[3] */
+    mfsprg  r3, 0
+    stw     r3, 0x10(r4)       /* context->gpr[4] */
+    stw     r5, 0x14(r4)       /* context->gpr[5] */
+    lhz     r3, 0x1A2(r4)      /* context->state */
+    ori     r3, r3, 0x2        /* OS_CONTEXT_STATE_EXC */
+    sth     r3, 0x1A2(r4)
+    mfcr    r3
+    stw     r3, 0x80(r4)       /* context->cr */
+    mflr    r3
+    stw     r3, 0x84(r4)       /* context->lr */
+    mfctr   r3
+    stw     r3, 0x88(r4)       /* context->ctr */
+    mfxer   r3
+    stw     r3, 0x8C(r4)       /* context->xer */
+    mfsrr0  r3
+    stw     r3, 0x198(r4)      /* context->srr0 */
+    mfsrr1  r3
+    stw     r3, 0x19C(r4)      /* context->srr1 */
+    mr      r5, r3
+entry __DBVECTOR
+    nop
+    mfmsr   r3
+    ori     r3, r3, 0x30       /* MSR_IR | MSR_DR */
+    mtsrr1  r3
+entry __OSEVSetNumber
+    li      r3, 0
+    lwz     r4, 0xD4(r0)       /* OS_CURRENTCONTEXT */
+    rlwinm. r5, r5, 0, 30, 30  /* MSR_RI */
+    bne     recoverable
+    lis     r5, OSDefaultExceptionHandler@ha
+    addi    r5, r5, OSDefaultExceptionHandler@l
+    mtsrr0  r5
+    rfi
+recoverable:
+    rlwinm  r5, r3, 2, 22, 29
+    lwz     r5, 0x3000(r5)     /* OSExceptionTable[exception] */
+    mtsrr0  r5
+    rfi
+entry __OSEVEnd
+    nop
+}
+
+/* Assembly in the original: the SDK's os.c writes this routine as a CodeWarrior asm
+ * function. Evidence (docs/ASM_POLICY.md section 1): mfspr GQR1-GQR7, mfdsisr/mfdar
+ * (special-purpose registers MWCC never emits from C), stores into the context from the
+ * incoming registers with no MWCC prologue (nofralloc), and a hand-made stwu frame before
+ * the tail branch to __OSUnhandledException. */
+asm void OSDefaultExceptionHandler(register __OSException exception, register OSContext *context) {
+    nofralloc
+    stw     r0, 0x0(context)
+    stw     r1, 0x4(context)
+    stw     r2, 0x8(context)
+    stmw    r6, 0x18(context)
+    mfspr   r0, 913            /* GQR1 */
+    stw     r0, 0x1A8(context)
+    mfspr   r0, 914            /* GQR2 */
+    stw     r0, 0x1AC(context)
+    mfspr   r0, 915            /* GQR3 */
+    stw     r0, 0x1B0(context)
+    mfspr   r0, 916            /* GQR4 */
+    stw     r0, 0x1B4(context)
+    mfspr   r0, 917            /* GQR5 */
+    stw     r0, 0x1B8(context)
+    mfspr   r0, 918            /* GQR6 */
+    stw     r0, 0x1BC(context)
+    mfspr   r0, 919            /* GQR7 */
+    stw     r0, 0x1C0(context)
+    mfdsisr r5
+    mfdar   r6
+    stwu    r1, -8(r1)
+    b       __OSUnhandledException
+}
+
+/* The SDK writes this function in C with an asm block. Evidence for the block
+ * (docs/ASM_POLICY.md section 1): mtspr GQR0-GQR7, special-purpose register writes that
+ * MWCC never emits from C. */
+void __OSPSInit(void) {
+    PPCMthid2(PPCMfhid2() | 0xA0000000);
+    ICFlashInvalidate();
+    __sync();
+    asm {
+        li      r3, 0
+        mtspr   912, r3        /* GQR0 */
+        mtspr   913, r3        /* GQR1 */
+        mtspr   914, r3        /* GQR2 */
+        mtspr   915, r3        /* GQR3 */
+        mtspr   916, r3        /* GQR4 */
+        mtspr   917, r3        /* GQR5 */
+        mtspr   918, r3        /* GQR6 */
+        mtspr   919, r3        /* GQR7 */
+    }
+}
+
+u32 __OSGetDIConfig(void) {
+    return __DIRegs.config & 0xff;
+}
+
+void OSRegisterVersion(const char *id) { OSReport("%s\n", id); }

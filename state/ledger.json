@@ -8946,7 +8946,7 @@
   {
    "symbol": "OSGetConsoleType",
    "module": "main",
-   "unit": "dol/OSGetConsoleType.c",
+   "unit": "dol/OS.c",
    "addr": 2147525156,
    "size": 40,
    "status": "matched",
@@ -8963,7 +8963,7 @@
   {
    "symbol": "ClearArena",
    "module": "main",
-   "unit": "dol/ClearArena.c",
+   "unit": "dol/OS.c",
    "addr": 2147525196,
    "size": 296,
    "status": "matched",
@@ -8980,7 +8980,7 @@
   {
    "symbol": "InquiryCallback",
    "module": "main",
-   "unit": "dol/InquiryCallback.c",
+   "unit": "dol/OS.c",
    "addr": 2147525492,
    "size": 60,
    "status": "matched",
@@ -8997,7 +8997,7 @@
   {
    "symbol": "OSInit",
    "module": "main",
-   "unit": "dol/OSInit.c",
+   "unit": "dol/OS.c",
    "addr": 2147525552,
    "size": 984,
    "status": "matched",
@@ -9014,7 +9014,7 @@
   {
    "symbol": "OSExceptionInit",
    "module": "main",
-   "unit": "dol/OSExceptionInit.c",
+   "unit": "dol/OS.c",
    "addr": 2147526536,
    "size": 640,
    "status": "matched",
@@ -9031,7 +9031,7 @@
   {
    "symbol": "__OSDBIntegrator",
    "module": "main",
-   "unit": "dol/__OSDBIntegrator.c",
+   "unit": "dol/OS.c",
    "addr": 2147527176,
    "size": 36,
    "status": "asm",
@@ -9048,7 +9048,7 @@
   {
    "symbol": "fn_8000AA2C",
    "module": "main",
-   "unit": "dol/fn_8000AA2C.c",
+   "unit": "dol/OS.c",
    "addr": 2147527212,
    "size": 4,
    "status": "asm",
@@ -9065,7 +9065,7 @@
   {
    "symbol": "__OSSetExceptionHandler",
    "module": "main",
-   "unit": "dol/__OSSetExceptionHandler.c",
+   "unit": "dol/OS.c",
    "addr": 2147527216,
    "size": 28,
    "status": "matched",
@@ -9082,7 +9082,7 @@
   {
    "symbol": "__OSGetExceptionHandler",
    "module": "main",
-   "unit": "dol/__OSGetExceptionHandler.c",
+   "unit": "dol/OS.c",
    "addr": 2147527244,
    "size": 20,
    "status": "matched",
@@ -9099,7 +9099,7 @@
   {
    "symbol": "OSExceptionVector",
    "module": "main",
-   "unit": "dol/OSExceptionVector.c",
+   "unit": "dol/OS.c",
    "addr": 2147527264,
    "size": 156,
    "status": "asm",
@@ -9116,7 +9116,7 @@
   {
    "symbol": "OSDefaultExceptionHandler",
    "module": "main",
-   "unit": "dol/OSDefaultExceptionHandler.c",
+   "unit": "dol/OS.c",
    "addr": 2147527420,
    "size": 88,
    "status": "asm",
@@ -9133,24 +9133,24 @@
   {
    "symbol": "__OSPSInit",
    "module": "main",
-   "unit": "dol/__OSPSInit.c",
+   "unit": "dol/OS.c",
    "addr": 2147527508,
    "size": 84,
-   "status": "asm",
+   "status": "matched",
    "attempts": 1,
    "best_percent": 100.0,
    "claimed_by": null,
    "claimed_at": null,
    "claim_ttl": null,
    "matched_commit": null,
-   "blocked_reason": "asm-only: privileged instruction (mtspr/mfspr/cache/sync); not expressible in C without inline asm",
+   "blocked_reason": null,
    "prev_status": null,
    "link_state": "verified"
   },
   {
    "symbol": "__OSGetDIConfig",
    "module": "main",
-   "unit": "dol/__OSGetDIConfig.c",
+   "unit": "dol/OS.c",
    "addr": 2147527592,
    "size": 20,
    "status": "matched",
@@ -9167,7 +9167,7 @@
   {
    "symbol": "OSRegisterVersion",
    "module": "main",
-   "unit": "dol/OSRegisterVersion.c",
+   "unit": "dol/OS.c",
    "addr": 2147527612,
    "size": 44,
    "status": "matched",
