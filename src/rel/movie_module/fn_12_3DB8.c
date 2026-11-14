@@ -1,9 +1,6 @@
 
 #include "types.h"
 
-#pragma opt_lifetimes off
-#pragma opt_lifetimes off
-
 typedef struct SFXZObject SFXZObject;
 
 extern const f32 lbl_12_rodata_570;
