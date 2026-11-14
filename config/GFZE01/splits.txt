@@ -6648,6 +6648,7 @@ dol/fn_80065F34.c:
 
 dol/fn_8000659C.c:
 	.text       start:0x8000659C end:0x800068F4 align:4
+	.data       start:0x80122030 end:0x801220C0 align:8
 
 dol/fn_8005C478.c:
 	.text       start:0x8005C478 end:0x8005C5C8 align:4
@@ -7176,9 +7177,6 @@ dol/data/lbl_8019E140.c:
 
 dol/data/gTRKSaveState.c:
 	.bss        start:0x801A5590 end:0x801A5638 align:8
-
-dol/data/lbl_80122030.c:
-	.data       start:0x80122030 end:0x8012208C align:16
 
 dol/data/lbl_80122F50.c:
 	.data       start:0x80122F50 end:0x801230D0 align:16
