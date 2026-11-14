@@ -61,7 +61,7 @@ def read_disc_file(orig: Path, rel_path: str) -> bytes:
     extracted = orig / rel_path
     if extracted.exists():
         return extracted.read_bytes()
-    images = sorted(p for p in orig.parent.iterdir() if p.suffix.lower() in DISC_EXTS)
+    images = sorted(p for p in orig.parent.iterdir() if p.is_file() and p.suffix.lower() in DISC_EXTS)
     # With several versions' images in orig/, prefer the raw image whose header
     # game ID (first 6 bytes) is this version; compressed formats are kept as fallback.
     def header_id(p: Path) -> str:

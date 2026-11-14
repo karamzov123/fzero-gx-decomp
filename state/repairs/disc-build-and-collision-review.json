@@ -1,0 +1,69 @@
+{
+  "format": "fzgx-pr-integration-proof-v1",
+  "base": "15729eaa6070e12291941704a8b7e51fb2495012",
+  "pull_requests": {
+    "373": "0048210b5e70e226a072d69f98554a3863e3e71c",
+    "374": "c07aeb5d6891bbb8d534d29bbd79151d98b5f2e6"
+  },
+  "repairs": [
+    "Reject an output resolving to, or hard-linked to, the input disc image before reading or writing the full image.",
+    "Keep outputs outside the orig input boundary.",
+    "Check an explicit input image's game ID against the requested version.",
+    "Skip directories with image-like suffixes in both image-discovery paths.",
+    "Remove the duplicate fn_1_20A5C block markers without changing its C logic or pool map."
+  ],
+  "collision_function": {
+    "module": "main_rel",
+    "symbol": "fn_1_20A5C",
+    "retail_bytes": 1612,
+    "full_object_diff_percent": 100,
+    "matching": true,
+    "block_markers": "one begin, one end",
+    "source_admission": "Uses the already approved paired-single and FPSCR-floor helpers; the discarded literal-pool primer stays in .fzgxpool and restores .text before the function."
+  },
+  "compressor": {
+    "standalone_cases": 61,
+    "roundtrip": true,
+    "deterministic": true,
+    "headers_verified": true,
+    "real_main_rel_bytes": 2221812,
+    "real_lz_bytes": 1038355,
+    "real_lz_sha1": "d2f29a0993d88b1582f285b3d8632073a62ff8af",
+    "encrypted_line_bin_sha1": "fd10cf070b2ece0b97033bb099cc66a68f62d9f1",
+    "real_prepare_orig_reproduction": true
+  },
+  "disc": {
+    "version": "GFZE01",
+    "bytes": 1459978240,
+    "input_sha1": "c83fd6c2eca14955b3a87a6416a5ac1705c2de7e",
+    "rebuilt_sha1": "c83fd6c2eca14955b3a87a6416a5ac1705c2de7e",
+    "byte_identical": true,
+    "separate_output_file": true,
+    "input_unchanged": true,
+    "scope": "Identity to the user's supplied raw image, not certification against a separate disc catalog.",
+    "pal_and_japanese_full_disc_rebuilds_independently_run": false
+  },
+  "negative_controls": {
+    "input_output_same_path": "rejected, exit 2",
+    "output_symlink_to_input": "rejected, exit 2",
+    "output_hardlink_to_input": "rejected, exit 2",
+    "output_under_orig": "rejected, exit 2",
+    "explicit_wrong_region_image": "rejected, exit 2",
+    "directory_with_iso_suffix": "skipped by both discovery paths",
+    "multi_region_selection": "Real USA image selected over an earlier synthetic six-byte wrong-region header fixture; real DTK DOL extraction matches the build."
+  },
+  "validation": {
+    "mwcc_and_ninja": "passed",
+    "retail_target_hashes": "16 files OK",
+    "fzgx_lint": "0 finding(s)",
+    "github_ci": "build skipped; no CI-success claim",
+    "unit_tests_added": false
+  },
+  "reproduce": [
+    "python3 configure.py && ninja build/GFZE01/ok",
+    "build/tools/dtk shasum -q -c config/GFZE01/build.sha1",
+    "uv run tools/fzgx.py lint",
+    "uv run tools/build_disc.py --version GFZE01 --out build/GFZE01/disc.iso"
+  ],
+  "private_inputs": "No image, executable, compressed game payload, or compiler is committed."
+}

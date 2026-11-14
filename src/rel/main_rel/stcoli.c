@@ -8897,8 +8897,6 @@ int fn_1_20994(void *arg, f32 *out) {
 #include "psvec.h"
 #include "fpscr_floorf.h"
 
-/* fzgx:begin fn_1_20A5C noprologue */
-
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
     volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
@@ -9182,7 +9180,6 @@ s32 fn_1_20A5C(fn_1_20A5C_Vec *pos, f32 *out_t) {
     }
     return best;
 }
-/* fzgx:end fn_1_20A5C */
 /* fzgx:end fn_1_20A5C */
 
 /* fzgx:begin fn_1_210A8 noprologue */

@@ -57,7 +57,7 @@ def find_image(version: str) -> Path:
     for base in (orig, orig / version):
         if base.is_dir():
             for p in sorted(base.iterdir()):
-                if p.suffix.lower() in RAW_EXTS and _game_id(p) == version:
+                if p.is_file() and p.suffix.lower() in RAW_EXTS and _game_id(p) == version:
                     return p
     raise SystemExit(f"no raw {version} disc image ({', '.join(RAW_EXTS)}) under {orig}; pass --image")
 
@@ -105,12 +105,20 @@ def dol_extent(img: bytes) -> tuple[int, int]:
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--version", default="GFZE01", choices=sorted(REGION_BY_VERSION))
-    ap.add_argument("--image", type=Path, help="raw retail disc image (default: first .iso/.gcm under orig/)")
+    ap.add_argument("--image", type=Path, help="raw retail disc image (default: matching .iso/.gcm under orig/)")
     ap.add_argument("--out", type=Path, help="output image (default: build/<VERSION>/disc.iso)")
     args = ap.parse_args(argv)
 
     image = args.image or find_image(args.version)
     out = args.out or ROOT / "build" / args.version / "disc.iso"
+    if not image.is_file():
+        ap.error(f"input disc image is not a file: {image}")
+    if _game_id(image) != args.version:
+        ap.error(f"input disc image does not match version {args.version}")
+    if out.resolve() == image.resolve() or (out.exists() and out.samefile(image)):
+        ap.error("output must not overwrite the input disc image")
+    if out.resolve().is_relative_to((ROOT / "orig").resolve()):
+        ap.error("output must be outside the orig input directory")
     build = ROOT / "build" / args.version
     region = REGION_BY_VERSION[args.version]
     prefix = REL_PREFIX[args.version]
