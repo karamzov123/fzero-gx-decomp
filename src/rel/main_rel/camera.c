@@ -216,7 +216,6 @@ struct fn_1_66B8_Vec {
 	f32 z;
 };
 
-#pragma opt_propagation off
 s32 fn_1_66B8(void *arg0, f32 arg1) {
 	struct fn_1_66B8_Vec v;
 	u8 *a;
@@ -225,13 +224,12 @@ s32 fn_1_66B8(void *arg0, f32 arg1) {
 	u32 i;
 	u8 *sel;
 	s32 ret = 0;
-	void *p = arg0;
 
 	if (g->unk_0 == 0) {
 		return 0;
 	}
-	if (p == 0) {
-		p = &v;
+	if (arg0 == 0) {
+		arg0 = &v;
 		psvec_set(&v, *(f32 *)(0xE0000000 + 0x2C), *(f32 *)(0xE0000000 + 0x1C),
 				 *(f32 *)(0xE0000000 + 0xC));
 	}
@@ -252,7 +250,7 @@ s32 fn_1_66B8(void *arg0, f32 arg1) {
 		}
 		fn_1_54E00(a);
 		lbl_8006DBAC(sel);
-		if (fn_1_54E34(p, arg1) != 0) {
+		if (fn_1_54E34(arg0, arg1) != 0) {
 			ret = 1;
 			break;
 		}
@@ -262,7 +260,6 @@ s32 fn_1_66B8(void *arg0, f32 arg1) {
 	fn_1_550E0();
 	return ret;
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_66B8 */
 
 /* fzgx:begin fn_1_681C */
