@@ -50065,7 +50065,11 @@
     "module": "main_rel",
     "source": "rel/main_rel/accessory/fn_1_12907C.c",
     "symbols": [
-      "fn_1_12907C"
+      "fn_1_12907C",
+      "fn_1_12999C",
+      "fn_1_129D9C",
+      "fn_1_12A080",
+      "fn_1_12A0E0"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
@@ -50073,55 +50077,37 @@
     "tu": "rel/main_rel/accessory.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_8068",
-      "@23": "lbl_1_rodata_8068"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/accessory/fn_1_12999C.c",
-    "symbols": [
-      "fn_1_12999C"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/accessory.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/accessory/fn_1_129D9C.c",
-    "symbols": [
-      "fn_1_129D9C"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/accessory.c",
-    "pool": {
+      "@233": "lbl_1_rodata_8074",
+      "@23": "lbl_1_rodata_8068",
+      "@235": "lbl_1_rodata_807C",
+      "@234": "lbl_1_rodata_8078",
+      "@236": "lbl_1_rodata_8080",
+      "@237": "lbl_1_rodata_8084",
+      "@238": "lbl_1_rodata_8088",
+      "@239": "lbl_1_rodata_808C",
+      "@241": "lbl_1_rodata_8094",
+      "@240": "lbl_1_rodata_8090",
+      "@242": "lbl_1_rodata_8098",
+      "@243": "lbl_1_rodata_809C",
+      "@244": "lbl_1_rodata_80A0",
+      "@245": "lbl_1_rodata_80A4",
+      "@246": "lbl_1_rodata_80A8",
+      "@247": "lbl_1_rodata_80AC",
+      "@248": "lbl_1_rodata_80B0",
+      "@249": "lbl_1_rodata_80B4",
+      "@250": "lbl_1_rodata_80B8",
+      "@251": "lbl_1_rodata_80BC",
+      "@252": "lbl_1_rodata_80C0",
+      "@253": "lbl_1_rodata_80C4",
+      "@254": "lbl_1_rodata_80C8",
+      "@255": "lbl_1_rodata_80CC",
+      "@256": "lbl_1_rodata_80D0",
+      "@257": "lbl_1_rodata_80D4",
+      "@259": "lbl_1_rodata_80DC",
+      "@258": "lbl_1_rodata_80D8",
+      "color$133": "lbl_1_rodata_8070",
       "mathutil_mtxA_rotate_z__fzgx_offset_C": "mathutil_mtxA_rotate_z+0xC"
     }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/accessory/fn_1_12A080.c",
-    "symbols": [
-      "fn_1_12A080"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/accessory.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/accessory/fn_1_12A0E0.c",
-    "symbols": [
-      "fn_1_12A0E0"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/accessory.c"
   },
   {
     "module": "main_rel",
