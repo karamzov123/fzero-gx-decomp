@@ -164,7 +164,6 @@ extern u32 fn_1_8D3F8(void *, void *, s32 (*)(u32), void *);
 extern int fn_1_4F734(void *);
 
 static inline f32 fn_16_61D4_operand(f32 right, f32 left) { return left * right; }
-#pragma opt_common_subs off
 
 void fn_16_61D4(void) {
     f32 *fzgx_value;
@@ -225,4 +224,4 @@ void fn_16_61D4(void) {
     pkt.unk_14 *= 1.6f;
     fn_1_4F734(&pkt);
 }
-#pragma opt_common_subs reset
+
