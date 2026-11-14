@@ -161863,8 +161863,7 @@
       "lbl_16_data_82F28",
       "lbl_16_data_830C0",
       "lbl_16_data_83380",
-      "lbl_16_data_83430",
-      "lbl_16_data_83440"
+      "lbl_16_data_83430"
     ],
     "status": "matching",
     "data": true,
@@ -162370,10 +162369,7 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
-    "pool": {
-      "@48": "jumptable_16_data_8345C"
-    }
+    "extra_cflags": []
   },
   {
     "module": "profile",

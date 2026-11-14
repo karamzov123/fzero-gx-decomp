@@ -528517,32 +528517,6 @@
     "unit_size": 1348,
     "unit_start": 536344
   },
-  "profile:lbl_16_data_83440": {
-    "address": 537664,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "u8 lbl_16_data_83440[]",
-        "path": "src/rel/profile/fn_16_4490.c"
-      }
-    ],
-    "definition": "u8 lbl_16_data_83440[]",
-    "method": "typed-data",
-    "module": "profile",
-    "references": [
-      "fn_16_4490"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 1348,
-    "sha256": "6e37bc162f33886e23c37275ad7596bc84e4073e65b8b5705a0a231854161049",
-    "size": 28,
-    "source": "rel/profile/data/lbl_16_data_82F18.c",
-    "symbol": "lbl_16_data_83440",
-    "unit_align": 8,
-    "unit_size": 1348,
-    "unit_start": 536344
-  },
   "profile:lbl_16_data_83500": {
     "address": 537856,
     "align": 8,
