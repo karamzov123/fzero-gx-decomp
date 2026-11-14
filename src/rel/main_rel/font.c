@@ -5298,9 +5298,6 @@ extern void fn_80073C6C(s32);
 extern GXTexObj lbl_1_bss_4E688;
 
 static inline f32 fn_1_4E220_operand(f32 left, f32 right) { left *= right; return left; }
-#pragma opt_common_subs on
-#pragma opt_lifetimes off
-#pragma opt_strength_reduction off
 static inline void fn_1_4E220_call_GXInitTexObj(GXTexObj * a0, void * a1, u16 a2, u16 a3, GXTexFmt a4, GXTexWrapMode a5, GXTexWrapMode a6, u8 a7) { GXInitTexObj(a0, a1, a2, a3, a4, a5, a6, a7); }
 static inline f32 fn_1_4E220_operand_(f32 right, f32 left) { return left * right; }
 void fn_1_4E220(struct Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
@@ -5376,11 +5373,6 @@ void fn_1_4E220(struct Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
         fn_80072E20(v7, 14, 0, lab_t3, 1, 0);
     }
 }
-#pragma opt_strength_reduction reset
-
-#pragma opt_lifetimes reset
-
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_4E220 */
 
 /* fzgx:begin fn_1_4E500 */
