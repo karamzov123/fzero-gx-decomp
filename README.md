@@ -84,6 +84,21 @@ to opaque byte storage just to get them through the importer.
 
 ### Latest Accepted Source Cleanup
 
+The compound-scaling batch removed **four volatile declarations/casts, six operand/read helper
+definitions, and two pragma pairs** across three current functions:
+
+- `fn_800764A0`: ordinary state/color accesses and direct matrix `*=` assignments; no inline helpers, volatile qualifiers or pragmas remain in its source.
+- `C_MTXFrustum`: a normal local vertical scale replaces the operand helper; no helper or pragma is needed.
+- `fn_16_61D4`: normal packet scale assignments replace one helper, and helper-only dead-assignment and redundant common-subexpression pragmas are gone. One denominator helper remains; this function is not fully naturalized.
+
+All three still match their real retail objects and passed the supported 16-target verifier.
+These devices were unmarked, so the 34-primary-warning tally is unchanged. See
+[the measured source and rollback evidence](state/repairs/compound-scaling-20261114.json).
+
+Revision submissions now refresh literal-pool bindings when source changes renumber private
+constants. Failed revisions preserve the previously accepted source, compiler settings, split
+ownership and pool/verified state; a real stale-binding regression verified that fallback.
+
 `fn_8003D42C` now reads its input byte without an unnecessary volatile qualifier. The real MWCC
 object still matches retail exactly and the normal submission/verifier path accepted the change.
 Its `opt_propagation off` and `peephole off` directives remain: removing them does not match.
