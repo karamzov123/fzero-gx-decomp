@@ -9,7 +9,12 @@ extern u8 lbl_1_bss_8B3A0[];
 extern s16 lbl_1_bss_968;
 extern s16 lbl_1_bss_96A;
 extern s8 lbl_1_bss_9C[];
-extern u8 lbl_1_bss_9F8[];
+typedef struct {
+    u8 pad_0[8];
+    u16 unk_8;
+    u8 pad_A[0xA];
+} StoryInput;
+extern StoryInput lbl_1_bss_9F8[];
 extern u16 lbl_1_data_414;
 extern u32 lbl_1_rodata_26F8;
 extern f32 lbl_7_rodata_0[330];
@@ -4005,7 +4010,7 @@ typedef struct fn_7_41FC_StoryTrigger {
     u8 pad_2[0x16];
 } fn_7_41FC_StoryTrigger;
 
-extern s32 fn_7_4648(u32 *, fn_7_41FC_StoryTrigger *);
+extern s32 fn_7_4648();
 extern u32 fn_7_4FD0(u32 *, fn_7_41FC_StoryTrigger *);
 extern void OSReport(const char *, ...);
 
@@ -4179,7 +4184,7 @@ void fn_7_44DC(void) {
 #pragma opt_propagation reset
 /* fzgx:end fn_7_44DC */
 
-/* fzgx:begin fn_7_4648 noprologue */
+/* fzgx:begin fn_7_4648 */
 #include "types.h"
 
 #include "rel/story/story_mode.h"
@@ -4236,12 +4241,6 @@ typedef struct {
 } StoryPlayerList;
 typedef struct {
     u8 pad_0[8];
-    u16 unk_8;
-    u8 pad_A[0xA];
-} StoryInput;
-extern StoryInput lbl_1_bss_9F8[];
-typedef struct {
-    u8 pad_0[8];
     u16 hi : 6;
     u16 b9 : 1;
     u16 b8 : 1;
@@ -4294,17 +4293,15 @@ static inline f32 storyDistanceSquared(const StoryVec *a, const StoryVec *b) {
 #pragma opt_propagation off
 #pragma opt_lifetimes off
 #pragma opt_common_subs off
-s32 fn_7_4648(StoryTriggerContext *context, StoryTrigger *arg1, f32 arg2) {
+s32 fn_7_4648(StoryTriggerContext *context, StoryTrigger *arg1) {
     Obj_7_bss_1960 *p_lbl_7_bss_1960;
     u16 v0;
     s32 v1;
-    f32 v2;
     StoryTrigger *trigger;
     trigger = arg1;
     v0 = arg1->unk_2;
     p_lbl_7_bss_1960 = &lbl_7_bss_1960;
     v1 = 0;
-    v2 = arg2;
     switch (v0) {
     case 0: {
         u32 *flags = (u32 *)trigger->unk_4;
@@ -4349,7 +4346,7 @@ s32 fn_7_4648(StoryTriggerContext *context, StoryTrigger *arg1, f32 arg2) {
             if (fn_1_86254(p_lbl_7_bss_1960->unk_34)->unk_482 >= value) v1 = 1;
             break;
         default:
-            OSReport((char *)lbl_7_data_13FFC);
+            OSReport("Trigger Error\n");
             break;
         }
         break;
@@ -4432,7 +4429,7 @@ s32 fn_7_4648(StoryTriggerContext *context, StoryTrigger *arg1, f32 arg2) {
             break;
         }
         default:
-            OSReport((char *)lbl_7_data_13FFC);
+            OSReport("Trigger Error\n");
             break;
         }
         break;
@@ -4483,7 +4480,7 @@ s32 fn_7_4648(StoryTriggerContext *context, StoryTrigger *arg1, f32 arg2) {
             break;
         }
         default:
-            OSReport((char *)lbl_7_data_13FFC);
+            OSReport("Trigger Error\n");
             break;
         }
         break;
@@ -4503,7 +4500,7 @@ s32 fn_7_4648(StoryTriggerContext *context, StoryTrigger *arg1, f32 arg2) {
         switch (kind) {
         case 0: current = vehicle->unk_184; break;
         case 1: current = (f32)fn_1_86810(id); break;
-        default: OSReport((char *)lbl_7_data_13FFC); break;
+        default: OSReport("Trigger Error\n"); break;
         }
         v1 = fn_7_4EF8(op, current, value);
         break;

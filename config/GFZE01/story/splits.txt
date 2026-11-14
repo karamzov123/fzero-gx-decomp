@@ -168,14 +168,12 @@ rel/story/story_mode/_prolog.c:
 rel/story/story_mode/fn_7_4FD0.c:
 	.text       start:0x00004FD0 end:0x000065E4 align:4
 
-rel/story/story_mode/fn_7_44DC.c:
-	.text       start:0x000044DC end:0x00004648 align:4
-
 rel/story/story_mode/fn_7_232C.c:
 	.text       start:0x0000232C end:0x0000235C align:4
 
 rel/story/story_mode/fn_7_41FC.c:
-	.text       start:0x000041FC end:0x000044DC align:4
+	.text       start:0x000041FC end:0x00004E28 align:4
+	.data       start:0x00013FE0 end:0x00014054 align:8
 
 rel/story/story_mode/fn_7_15BC.c:
 	.text       start:0x000015BC end:0x000016FC align:4
@@ -191,9 +189,6 @@ rel/story/story_mode/fn_7_3AB0.c:
 
 rel/story/story_mode/fn_7_FB4.c:
 	.text       start:0x00000FB4 end:0x00001134 align:4
-
-rel/story/story_mode/fn_7_4648.c:
-	.text       start:0x00004648 end:0x00004E28 align:4
 
 rel/story/story_mode/fn_7_520.c:
 	.text       start:0x00000520 end:0x0000072C align:4
@@ -241,7 +236,7 @@ rel/story/data/lbl_7_data_13A58.c:
 	.data       start:0x00013A58 end:0x00013DE0 align:8
 
 rel/story/data/lbl_7_data_13DE0.c:
-	.data       start:0x00013DE0 end:0x0001400C align:8
+	.data       start:0x00013DE0 end:0x00013FE0 align:8
 
 rel/story/data/lbl_7_rodata_0.c:
 	.rodata     start:0x00000000 end:0x000007C8 align:8

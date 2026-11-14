@@ -122098,7 +122098,7 @@
   {
    "symbol": "fn_7_44DC",
    "module": "story",
-   "unit": "rel/story/story_mode/fn_7_44DC.c",
+   "unit": "rel/story/story_mode/fn_7_41FC.c",
    "addr": 17628,
    "size": 364,
    "status": "matched",
@@ -122115,7 +122115,7 @@
   {
    "symbol": "fn_7_4648",
    "module": "story",
-   "unit": "rel/story/story_mode/fn_7_4648.c",
+   "unit": "rel/story/story_mode/fn_7_41FC.c",
    "addr": 17992,
    "size": 2016,
    "status": "matched",
