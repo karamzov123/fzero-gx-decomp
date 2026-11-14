@@ -554894,36 +554894,6 @@
     "unit_size": 16,
     "unit_start": 1952
   },
-  "sel:lbl_10_data_7B0": {
-    "address": 1968,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "Obj_10_data_7B0 lbl_10_data_7B0",
-        "path": "include/rel/sel/sel.h"
-      },
-      {
-        "declaration": "s32 lbl_10_data_7B0[15]",
-        "path": "src/rel/sel/sel.c"
-      }
-    ],
-    "definition": "Obj_10_data_7B0 lbl_10_data_7B0",
-    "method": "declared-record",
-    "module": "sel",
-    "references": [
-      "fn_10_9154"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 60,
-    "sha256": "aa4b0d3cbd14c0d6175230030da18c8409a27c948e24bcc30901d134472448d7",
-    "size": 60,
-    "source": "rel/sel/data/lbl_10_data_7B0.c",
-    "symbol": "lbl_10_data_7B0",
-    "unit_align": 8,
-    "unit_size": 60,
-    "unit_start": 1968
-  },
   "sel:lbl_10_data_80": {
     "address": 128,
     "align": 8,
