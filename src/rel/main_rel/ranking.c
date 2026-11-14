@@ -23,7 +23,6 @@ extern void fn_1_157950(void);
 extern void fn_1_157FC8(void);
 extern u32 fn_1_157920(void);
 extern void fn_1_4060(void);
-extern u32 lbl_1_bss_8F57C[3];
 extern void fn_1_9AD88(void);
 extern void fn_1_1594AC(int index, int flag);
 extern void OSReport(const char *format, ...);
@@ -2015,100 +2014,75 @@ void fn_1_1576B4(RankingState *state) {
 /* fzgx:end fn_1_1576B4 */
 
 /* fzgx:begin fn_1_1577D0 noprologue */
-#include "types.h"
-
 extern f32 lbl_1_rodata_D920;
-extern struct fn_1_1577D0_lbl_1_bss_8F568 lbl_1_bss_8F568;
-extern u32 lbl_1_data_4C788;
+extern u8 lbl_1_data_4A430[];
+extern u8 lbl_1_data_4B368[];
+extern u8 lbl_1_data_4BDCC[];
 
-struct fn_1_1577D0_lbl_1_bss_8F568 {
-    u8 unk_0;
-    u8 pad_1[0x3];
-    f32 unk_4;
-    f32 unk_8;
-    u32 unk_C;
+typedef struct {
+    u8 pad_0[0x2];
+    s16 unk_2;
+    s16 unk_4;
+    s16 unk_6;
+    u32 unk_8;
+    s16 unk_C;
+    s16 unk_E;
     u32 unk_10;
     u32 unk_14;
     u32 unk_18;
-};
+    s16 unk_1C;
+    u8 pad_1E[0x2];
+    s16 unk_20;
+    s16 unk_22;
+} Obj_1_bss_8F574_At0;
+
+u8 lbl_1_bss_8F568;
+f32 lbl_1_bss_8F56C;
+f32 lbl_1_bss_8F570;
+Obj_1_bss_8F574_At0 *lbl_1_bss_8F574;
+u32 lbl_1_bss_8F578;
+s32 lbl_1_bss_8F57C;
+s32 lbl_1_bss_8F580;
+
+u32 lbl_1_data_4C788[3] = {(u32)lbl_1_data_4A430, (u32)lbl_1_data_4B368, (u32)lbl_1_data_4BDCC};
 
 f32 fn_1_1577D0(u32 arg0, u32 arg1, f32 arg2) {
-    lbl_1_bss_8F568.unk_0 = arg0;
-    lbl_1_bss_8F568.unk_4 = lbl_1_rodata_D920;
-    lbl_1_bss_8F568.unk_8 = arg2;
-    lbl_1_bss_8F568.unk_C = *(u32 *)((u8 *)&lbl_1_data_4C788 + ((s8)arg1 << 2));
-    lbl_1_bss_8F568.unk_10 = 1;
-    lbl_1_bss_8F568.unk_14 = 0;
-    lbl_1_bss_8F568.unk_18 = 600;
+    lbl_1_bss_8F568 = arg0;
+    lbl_1_bss_8F56C = lbl_1_rodata_D920;
+    lbl_1_bss_8F570 = arg2;
+    lbl_1_bss_8F574 = (Obj_1_bss_8F574_At0 *)lbl_1_data_4C788[(s8)arg1];
+    lbl_1_bss_8F578 = 1;
+    lbl_1_bss_8F57C = 0;
+    lbl_1_bss_8F580 = 600;
     return arg2;
 }
 /* fzgx:end fn_1_1577D0 */
 
 /* fzgx:begin fn_1_157820 noprologue */
-#include "types.h"
-
-typedef struct {
-    u8 pad_0[0x4];
-    f32 unk_4;
-    f32 unk_8;
-    u8 pad_C[0x4];
-    s32 unk_10;
-    s32 unk_14;
-    s32 unk_18;
-} Obj_1_bss_8F568;
-
-typedef struct {
-    u8 pad_0[0x9e];
-    u8 unk_9e;
-} Obj_1_bss_8B3A0;
-
-typedef struct {
-    u8 pad_0[0x8];
-    u16 unk_8;
-    u8 pad_A[0xa];
-} Obj_1_bss_9F8;
-
-extern Obj_1_bss_8F568 lbl_1_bss_8F568;
-extern Obj_1_bss_8B3A0 lbl_1_bss_8B3A0;
-extern Obj_1_bss_9F8 lbl_1_bss_9F8[];
-extern s32 fn_1_157920(void);
-extern void fn_1_4060(void);
-
 void fn_1_157820(void) {
-    Obj_1_bss_8F568 *p;
     u8 index;
 
-    p = &lbl_1_bss_8F568;
-
-    if (p->unk_14 == 0) {
-        p->unk_4 += p->unk_8;
+    if (lbl_1_bss_8F57C == 0) {
+        lbl_1_bss_8F56C += lbl_1_bss_8F570;
     } else {
-        if (p->unk_18 > 0) {
-            p->unk_18 -= 1;
+        if (lbl_1_bss_8F580 > 0) {
+            lbl_1_bss_8F580 -= 1;
         }
 
-        index = lbl_1_bss_8B3A0.unk_9e;
-        if (((lbl_1_bss_9F8[index].unk_8 >> 8) & 1) ||
-            p->unk_18 == 0) {
-            p->unk_10 = 0;
+        index = lbl_1_bss_8B3A0.unk_9E;
+        if (((*(&lbl_1_bss_9F8.unk_8 + index * 10) >> 8) & 1) ||
+            lbl_1_bss_8F580 == 0) {
+            lbl_1_bss_8F578 = 0;
         }
     }
 
-    if (fn_1_157920() == 0) {
+    if ((s32)fn_1_157920() == 0) {
         fn_1_4060();
     }
 }
 /* fzgx:end fn_1_157820 */
 
 /* fzgx:begin fn_1_1578C4 noprologue */
-#include "types.h"
-
-extern u32 fn_1_157920(void);
-extern u32 fn_1_157950(void);
-extern u32 fn_1_157FC8(void);
-extern u32 fn_1_4060(void);
-extern u8 lbl_1_bss_8F568;
-
 void fn_1_1578C4(void) {
     s8 v0;
     u32 t2;
@@ -2136,7 +2110,7 @@ u32 fn_1_157920(void) {
 
 /* fzgx:begin fn_1_157930 */
 u32 fn_1_157930(void) {
-    return lbl_1_bss_8F57C[0];
+    return lbl_1_bss_8F57C;
 }
 /* fzgx:end fn_1_157930 */
 
@@ -2170,7 +2144,6 @@ extern void fn_1_157950(void);
 extern void fn_1_157FC8(void);
 extern u32 fn_1_157920(void);
 extern void fn_1_4060(void);
-extern u32 lbl_1_bss_8F57C[3];
 extern void fn_1_9AD88(void);
 extern void fn_1_1594AC(int index, int flag);
 extern void OSReport(const char *format, ...);
@@ -2221,30 +2194,28 @@ extern void fn_1_4CF3C(const char*,f32,...);
 extern void fn_1_4AE0C(const char*,...);
 
 void fn_1_157950(void) {
-    Obj_1_bss_8F568 *p_lbl_1_bss_8F568;
     f32 v0;
-    Obj_1_bss_8F568_AtC *v1;
+    Obj_1_bss_8F574_At0 *v1;
     f32 v3;
     f32 v2;
-    Obj_1_bss_8F568_AtC *v4;
+    Obj_1_bss_8F574_At0 *v4;
     f32 pos;
     f32 alpha;
-    p_lbl_1_bss_8F568 = (Obj_1_bss_8F568*)&lbl_1_bss_8F568;
-    v0 = p_lbl_1_bss_8F568->unk_4;
-    v1 = p_lbl_1_bss_8F568->unk_C;
+    v0 = lbl_1_bss_8F56C;
+    v1 = lbl_1_bss_8F574;
     v4 = v1;
     v3 = 0.0f;
-    v2 = (f32)(v0 - (f32)(448.0f / p_lbl_1_bss_8F568->unk_8));
+    v2 = (f32)(v0 - (f32)(448.0f / lbl_1_bss_8F570));
     while (*(s16 *)v4 != -2) {
-        v3 += (f32)*(s16*)v4 / p_lbl_1_bss_8F568->unk_8;
-        if (v3 >= v2 && v3 <= p_lbl_1_bss_8F568->unk_4) {
-            pos = p_lbl_1_bss_8F568->unk_8 * (v3-v2);
+        v3 += (f32)*(s16*)v4 / lbl_1_bss_8F570;
+        if (v3 >= v2 && v3 <= lbl_1_bss_8F56C) {
+            pos = lbl_1_bss_8F570 * (v3-v2);
             alpha = 1.0f;
             fn_1_49410();
             if (pos < v4->unk_E) alpha = pos / v4->unk_E;
             else if (pos > 448.0f-v4->unk_E) alpha = (448.0f-pos) / v4->unk_E;
-            if (*(s32*)((u8*)p_lbl_1_bss_8F568+0x18) < 30)
-                alpha = (f32)*(s32*)((u8*)p_lbl_1_bss_8F568+0x18) / 30.0f;
+            if (lbl_1_bss_8F580 < 30)
+                alpha = (f32)lbl_1_bss_8F580 / 30.0f;
             switch (v4->unk_10) {
             case 0: {
                 u32 color;
@@ -2331,10 +2302,10 @@ void fn_1_157950(void) {
             if ((s32)v4->unk_10 != 6) fn_1_4CF3C((const char*)v4->unk_18,284.0f-v4->unk_4);
             else fn_1_4AE0C((const char*)v4->unk_18);
         }
-        v4 = (Obj_1_bss_8F568_AtC*)((u8*)v4+0x1c);
+        v4 = (Obj_1_bss_8F574_At0*)((u8*)v4+0x1c);
     }
-    if ((f32)v4->unk_2 < p_lbl_1_bss_8F568->unk_4)
-        *(s32*)((u8*)p_lbl_1_bss_8F568+0x14) = 1;
+    if ((f32)v4->unk_2 < lbl_1_bss_8F56C)
+        lbl_1_bss_8F57C = 1;
 }
 /* fzgx:end fn_1_157950 */
 
@@ -2362,7 +2333,6 @@ extern void fn_1_157950(void);
 extern void fn_1_157FC8(void);
 extern u32 fn_1_157920(void);
 extern void fn_1_4060(void);
-extern u32 lbl_1_bss_8F57C[3];
 extern void fn_1_9AD88(void);
 extern void fn_1_1594AC(int index, int flag);
 extern void OSReport(const char *format, ...);
@@ -2385,16 +2355,11 @@ extern u32 lbl_1_rodata_DAF8[16];
 extern void fn_1_9A508(void);
 
 
-struct fn_1_157FC8_Copy88 { u32 a[22]; };
-extern struct fn_1_157FC8_Copy88 lbl_1_rodata_26F8;
 extern void fn_1_49410(void);
 extern void fn_1_496FC(f32, f32);
 extern void fn_1_495B0(u32);
 #define FONT_DRAW_TEXT_FLAGS ((1U << 31) | (1U << 30))
-extern void fn_1_5233C(void *, void *);
-extern void fn_1_49738(void (*)(void *, void *));
 extern void fn_1_49748(f32);
-extern void fn_1_495C8(s8);
 extern void fn_1_49590(f32);
 extern void fn_1_4955C(f32, f32);
 extern void fn_1_49514(u32 *);
@@ -2405,25 +2370,9 @@ extern int fn_1_4F734(FontDrawPacket *);
 extern void fn_1_495A0(f32);
 extern void fn_1_4A0D8(const char *);
 
-#pragma section code_type ".fzgxpool"
-void fzgx_pool_primer_157FC8(f32 *p) {
-    p[0] = 0.0f;
-    p[1] = 448.0f;
-    p[2] = 1.0f;
-    p[3] = 30.0f;
-    p[4] = 5.0f;
-    p[5] = 0.5f;
-    p[6] = 24.0f;
-    p[7] = 18.0f;
-    p[8] = 3.0f;
-    p[9] = 0.1f;
-    p[10] = 284.0f;
-}
-#pragma section code_type ".text"
 
 void fn_1_157FC8(void) {
-    Obj_1_bss_8F568 *p_lbl_1_bss_8F568;
-    Obj_1_bss_8F568_AtC *v2;
+    Obj_1_bss_8F574_At0 *v2;
     s32 v3;
     f32 v4;
     s16 x;
@@ -2432,10 +2381,9 @@ void fn_1_157FC8(void) {
     s32 end;
     f32 elapsed;
     f32 remaining;
-    p_lbl_1_bss_8F568 = (Obj_1_bss_8F568 *)&lbl_1_bss_8F568;
-    v2 = p_lbl_1_bss_8F568->unk_C;
+    v2 = lbl_1_bss_8F574;
     while ((v3 = *(s16 *)v2->pad_0) != -2) {
-        v4 = p_lbl_1_bss_8F568->unk_4;
+        v4 = lbl_1_bss_8F56C;
         if ((f32)v3 <= v4 && (f32)(end = v3 + v2->unk_2) > v4) {
             x = v2->unk_4;
             y = v2->unk_6;
@@ -2504,7 +2452,7 @@ void fn_1_157FC8(void) {
                     break;
                 }
                 case 3: {
-                    struct fn_1_157FC8_Copy88 packet = lbl_1_rodata_26F8;
+                    struct fn_1_157950_Copy88 packet = lbl_1_rodata_26F8;
                     *(f32 *)&packet.a[1] = (f32)x;
                     *(f32 *)&packet.a[2] = (f32)y;
                     *(f32 *)&packet.a[3] = 0.1f;
@@ -2516,7 +2464,7 @@ void fn_1_157FC8(void) {
                     break;
                 }
                 case 4: {
-                    struct fn_1_157FC8_Copy88 packet = lbl_1_rodata_26F8;
+                    struct fn_1_157950_Copy88 packet = lbl_1_rodata_26F8;
                     *(f32 *)&packet.a[1] = (f32)x;
                     *(f32 *)&packet.a[2] = (f32)y;
                     *(f32 *)&packet.a[3] = 0.1f;
@@ -2528,7 +2476,7 @@ void fn_1_157FC8(void) {
                     break;
                 }
                 case 5: {
-                    struct fn_1_157FC8_Copy88 packet = lbl_1_rodata_26F8;
+                    struct fn_1_157950_Copy88 packet = lbl_1_rodata_26F8;
                     *(f32 *)&packet.a[1] = (f32)x;
                     *(f32 *)&packet.a[2] = (f32)y;
                     *(f32 *)&packet.a[3] = 0.1f;
@@ -2543,14 +2491,14 @@ void fn_1_157FC8(void) {
                 fn_1_4A0D8((const char *)v2->unk_18);
                 x += v2->unk_20;
                 y += v2->unk_22;
-                v2 = (Obj_1_bss_8F568_AtC *)((u8 *)v2 + 0x1C);
+                v2 = (Obj_1_bss_8F574_At0 *)((u8 *)v2 + 0x1C);
             } while (*(s16 *)v2->pad_0 == -1);
         } else {
-            v2 = (Obj_1_bss_8F568_AtC *)((u8 *)v2 + 0x1C);
+            v2 = (Obj_1_bss_8F574_At0 *)((u8 *)v2 + 0x1C);
         }
     }
-    if ((f32)v2->unk_2 < p_lbl_1_bss_8F568->unk_4) {
-        *(u32 *)(p_lbl_1_bss_8F568 + 1) = 0;
+    if ((f32)v2->unk_2 < lbl_1_bss_8F56C) {
+        lbl_1_bss_8F578 = 0;
     }
 }
 /* fzgx:end fn_1_157FC8 */
@@ -2637,7 +2585,6 @@ extern void fn_1_157950(void);
 extern void fn_1_157FC8(void);
 extern u32 fn_1_157920(void);
 extern void fn_1_4060(void);
-extern u32 lbl_1_bss_8F57C[3];
 extern void fn_1_9AD88(void);
 extern void fn_1_1594AC(int index, int flag);
 extern void OSReport(const char *format, ...);
@@ -3390,7 +3337,6 @@ extern void fn_1_157950(void);
 extern void fn_1_157FC8(void);
 extern u32 fn_1_157920(void);
 extern void fn_1_4060(void);
-extern u32 lbl_1_bss_8F57C[3];
 extern void fn_1_9AD88(void);
 extern void fn_1_1594AC(int index, int flag);
 extern void OSReport(const char *format, ...);
@@ -3591,7 +3537,6 @@ extern void fn_1_157950(void);
 extern void fn_1_157FC8(void);
 extern u32 fn_1_157920(void);
 extern void fn_1_4060(void);
-extern u32 lbl_1_bss_8F57C[3];
 extern void fn_1_9AD88(void);
 extern void fn_1_1594AC(int index, int flag);
 extern void OSReport(const char *format, ...);

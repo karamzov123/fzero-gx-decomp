@@ -4347,15 +4347,6 @@ rel/main_rel/ranking/fn_1_1569E8.c:
 rel/main_rel/ranking/fn_1_156B18.c:
 	.text       start:0x00156B18 end:0x00156C08
 
-rel/main_rel/ranking/fn_1_157920.c:
-	.text       start:0x00157920 end:0x00157930
-
-rel/main_rel/ranking/fn_1_157930.c:
-	.text       start:0x00157930 end:0x00157940
-
-rel/main_rel/ranking/fn_1_157940.c:
-	.text       start:0x00157940 end:0x00157950
-
 rel/main_rel/ranking/fn_1_1586A8.c:
 	.text       start:0x001586A8 end:0x001586AC
 
@@ -4498,7 +4489,9 @@ rel/main_rel/sel_static_disp/fn_1_149C64.c:
 	.text       start:0x00149C64 end:0x00149CA4 align:4
 
 rel/main_rel/ranking/fn_1_1577D0.c:
-	.text       start:0x001577D0 end:0x00157820 align:4
+	.text       start:0x001577D0 end:0x001586A8 align:4
+	.data       start:0x0004C788 end:0x0004C7D0 align:8
+	.bss        start:0x0008F568 end:0x0008F588 align:8
 
 rel/main_rel/_prolog/fn_1_3C78.c:
 	.text       start:0x00003C78 end:0x00003C98 align:4
@@ -4775,9 +4768,6 @@ rel/main_rel/spline/fn_1_FA154.c:
 
 rel/main_rel/car/fn_1_80C18.c:
 	.text       start:0x00080C18 end:0x00080CC4 align:4
-
-rel/main_rel/ranking/fn_1_1578C4.c:
-	.text       start:0x001578C4 end:0x00157920 align:4
 
 rel/main_rel/bg_win/fn_1_15E1D0.c:
 	.text       start:0x0015E1D0 end:0x0015E1E8 align:4
@@ -5358,9 +5348,6 @@ rel/main_rel/car/fn_1_8D7C8.c:
 
 rel/main_rel/sel_static_disp/fn_1_14D8DC.c:
 	.text       start:0x0014D8DC end:0x0014D994 align:4
-
-rel/main_rel/ranking/fn_1_157820.c:
-	.text       start:0x00157820 end:0x001578C4 align:4
 
 rel/main_rel/spline/fn_1_FA6C0.c:
 	.text       start:0x000FA6C0 end:0x000FA75C align:4
@@ -8013,9 +8000,6 @@ rel/main_rel/sel_static_disp/fn_1_151054.c:
 rel/main_rel/enemy_ctrl/fn_1_CBC24.c:
 	.text       start:0x000CBC24 end:0x000CC27C align:4
 
-rel/main_rel/ranking/fn_1_157950.c:
-	.text       start:0x00157950 end:0x00157FC8 align:4
-
 rel/main_rel/phys/fn_1_E1E9C.c:
 	.text       start:0x000E1E9C end:0x000E252C align:4
 
@@ -8024,10 +8008,6 @@ rel/main_rel/ranking/fn_1_158984.c:
 
 rel/main_rel/accessory/fn_1_128038.c:
 	.text       start:0x00128038 end:0x001286F4 align:4
-
-rel/main_rel/ranking/fn_1_157FC8.c:
-	.text       start:0x00157FC8 end:0x001586A8 align:4
-	.data       start:0x0004C7B0 end:0x0004C7D0 align:8
 
 rel/main_rel/effect_car/fn_1_702A0.c:
 	.text       start:0x000702A0 end:0x0007099C align:4
@@ -15348,12 +15328,6 @@ rel/main_rel/data/lbl_1_bss_8F420.c:
 rel/main_rel/data/lbl_1_bss_8F428.c:
 	.bss        start:0x0008F428 end:0x0008F568 align:8
 
-rel/main_rel/data/lbl_1_bss_8F568.c:
-	.bss        start:0x0008F568 end:0x0008F578 align:8
-
-rel/main_rel/data/lbl_1_bss_8F578.c:
-	.bss        start:0x0008F578 end:0x0008F588 align:8
-
 rel/main_rel/data/lbl_1_bss_8F588.c:
 	.bss        start:0x0008F588 end:0x0008F878 align:8
 
@@ -21227,7 +21201,7 @@ rel/main_rel/data/lbl_1_data_33FF0.c:
 	.data       start:0x00033FF0 end:0x000341B8 align:8
 
 rel/main_rel/data/lbl_1_data_49B08.c:
-	.data       start:0x00049B08 end:0x0004C794 align:8
+	.data       start:0x00049B08 end:0x0004C788 align:8
 
 rel/main_rel/data/lbl_1_data_341B8.c:
 	.data       start:0x000341B8 end:0x000341E0 align:8

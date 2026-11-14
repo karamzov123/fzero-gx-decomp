@@ -3,7 +3,6 @@
 #include "rel/main_rel/data/lbl_1_data_4A430.h"
 #include "rel/main_rel/data/lbl_1_data_4B368.h"
 #include "rel/main_rel/data/lbl_1_data_4BDCC.h"
-#include "rel/main_rel/data/lbl_1_data_4C788.h"
 
 extern char lbl_1_data_49B08[10];
 extern char lbl_1_data_49B14[9];
@@ -149,7 +148,6 @@ extern char lbl_1_data_4B314[14];
 extern char lbl_1_data_4B324[66];
 #include "rel/main_rel/data/lbl_1_data_4B368.h"
 #include "rel/main_rel/data/lbl_1_data_4BDCC.h"
-#include "rel/main_rel/data/lbl_1_data_4C788.h"
 
 
 
@@ -3468,17 +3466,5 @@ __declspec(section ".data") Data_lbl_1_data_4BDCC lbl_1_data_4BDCC __attribute__
     0x00000000U,
     0x00FFFFFFU,
     0x00000000U
-};
-#pragma explicit_zero_data reset
-
-
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") Data_lbl_1_data_4C788 lbl_1_data_4C788 __attribute__((aligned(8))) = {
-    (u8 *)&lbl_1_data_4A430,
-    (u8 *)&lbl_1_data_4B368,
-    (u8 *)&lbl_1_data_4BDCC
 };
 #pragma explicit_zero_data reset
