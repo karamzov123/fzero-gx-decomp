@@ -165,15 +165,6 @@ extern char lbl_1_data_46280[13];
 extern char lbl_1_data_46290[16];
 extern char lbl_1_data_462A0[2];
 extern u8 lbl_1_data_462A4[0x14];
-extern char lbl_1_data_462B8[3];
-extern char lbl_1_data_462BC[2];
-extern char lbl_1_data_462C0[3];
-extern char lbl_1_data_462C4[2];
-extern char lbl_1_data_462C8[3];
-extern char lbl_1_data_462CC[3];
-extern char lbl_1_data_462D0[2];
-extern char lbl_1_data_462D4[3];
-extern char lbl_1_data_462D8[2];
 
 
 
@@ -1196,58 +1187,4 @@ __declspec(section ".data") char lbl_1_data_462A0[2] __attribute__((aligned(8)))
 __declspec(section ".data") u8 lbl_1_data_462A4[0x14] __attribute__((aligned(4))) = {
     0x25U, 0x73U, 0x00U, 0x00U, 0x25U, 0x73U, 0x25U, 0x73U, 0x00U, 0x00U, 0x00U, 0x00U, 0x25U, 0x73U, 0x20U, 0x25U, 0x73U, 0x00U, 0x00U, 0x00U
 };
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_1_data_462B8[3] __attribute__((aligned(8))) = "A+";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_1_data_462BC[2] __attribute__((aligned(4))) = "A";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_1_data_462C0[3] __attribute__((aligned(8))) = "B+";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_1_data_462C4[2] __attribute__((aligned(4))) = "B";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_1_data_462C8[3] __attribute__((aligned(8))) = "C+";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_1_data_462CC[3] __attribute__((aligned(4))) = "D+";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_1_data_462D0[2] __attribute__((aligned(8))) = "D";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_1_data_462D4[3] __attribute__((aligned(4))) = "E+";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_1_data_462D8[2] __attribute__((aligned(8))) = "E";
 #pragma explicit_zero_data reset

@@ -20534,6 +20534,16 @@ typedef struct {
     u32 word[60];
 } Table240;
 
+char lbl_1_data_462B8[3] = "A+";
+char lbl_1_data_462BC[2] = "A";
+char lbl_1_data_462C0[3] = "B+";
+char lbl_1_data_462C4[2] = "B";
+char lbl_1_data_462C8[3] = "C+";
+char lbl_1_data_462CC[3] = "D+";
+char lbl_1_data_462D0[2] = "D";
+char lbl_1_data_462D4[3] = "E+";
+char lbl_1_data_462D8[2] = "E";
+
 int fn_1_14EE00(s16 arg0, void *arg1, s16 arg2) {
     u32 table[60];
 

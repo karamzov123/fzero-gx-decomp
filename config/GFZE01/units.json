@@ -101701,16 +101701,7 @@
       "lbl_1_data_46280",
       "lbl_1_data_46290",
       "lbl_1_data_462A0",
-      "lbl_1_data_462A4",
-      "lbl_1_data_462B8",
-      "lbl_1_data_462BC",
-      "lbl_1_data_462C0",
-      "lbl_1_data_462C4",
-      "lbl_1_data_462C8",
-      "lbl_1_data_462CC",
-      "lbl_1_data_462D0",
-      "lbl_1_data_462D4",
-      "lbl_1_data_462D8"
+      "lbl_1_data_462A4"
     ],
     "status": "matching",
     "data": true,
@@ -140211,10 +140202,7 @@
     "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/sel_static_disp.c",
-    "pool": {
-      "@12": "jumptable_1_data_462DC"
-    }
+    "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
     "module": "main_rel",

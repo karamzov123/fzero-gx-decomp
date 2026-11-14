@@ -5489,6 +5489,7 @@ rel/main_rel/sel_static_disp/fn_1_13FA88.c:
 
 rel/main_rel/sel_static_disp/fn_1_14EE00.c:
 	.text       start:0x0014EE00 end:0x0014EEC4 align:4
+	.data       start:0x000462B8 end:0x00046300 align:8
 
 rel/main_rel/bg_cas/fn_1_1013A0.c:
 	.text       start:0x001013A0 end:0x001013C0 align:4
@@ -21112,7 +21113,7 @@ rel/main_rel/data/lbl_1_data_43030.c:
 	.data       start:0x00043030 end:0x00043038 align:8
 
 rel/main_rel/data/lbl_1_data_45230.c:
-	.data       start:0x00045230 end:0x000462DC align:8
+	.data       start:0x00045230 end:0x000462B8 align:8
 
 rel/main_rel/data/lbl_1_data_46300.c:
 	.data       start:0x00046300 end:0x00046308 align:8
