@@ -993,7 +993,6 @@ extern void fn_1_7F934(Sig_fn_1_A7728_FnA7728Object *);
 extern void fn_1_F8030(void);
 extern void fn_80071718(struct Sig_fn_80071718_fn_80071718_Arg0 *);
 
-#pragma opt_propagation on
 
 void fn_3_B6E4(void) {
     struct { s32 value; } v1;

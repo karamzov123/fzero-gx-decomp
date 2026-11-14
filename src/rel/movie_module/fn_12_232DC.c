@@ -15,8 +15,6 @@ typedef struct MovieInfo {
     u32 field_024;
 } MovieInfo;
 
-#pragma opt_common_subs on
-#pragma opt_loop_invariants off
 int fn_12_232DC(u8 *data, int size, MovieInfo *info) {
     u8 *entry;
     u8 b4;
@@ -72,6 +70,4 @@ int fn_12_232DC(u8 *data, int size, MovieInfo *info) {
     }
     return 1;
 }
-#pragma opt_loop_invariants reset
 
-#pragma opt_common_subs reset

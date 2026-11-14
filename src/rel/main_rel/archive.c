@@ -88,7 +88,6 @@ extern void OSPanic(const char *, int, const char *, ...);
 extern size_t strlen(const char *);
 extern s32 strncmp(const char *, const char *, size_t);
 
-#pragma opt_dead_assignments off
 u32 fn_1_12A350(char *name, u32 arg1)
 {
     int i;
@@ -125,7 +124,6 @@ found:
         return slot;
     }
 }
-#pragma opt_dead_assignments reset
 /* fzgx:end fn_1_12A350 */
 
 /* fzgx:begin fn_1_12A4B0 */
@@ -321,7 +319,6 @@ extern void fn_1_458A0(void *arg0, void *arg1, u32 arg2, u32 arg3);
 extern void fn_1_45850(void *arg0);
 extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
 
-#pragma opt_propagation on
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 s32 fzgx_obj_lbl_1_bss_897A0;
 s32 lbl_1_bss_897A4;
@@ -380,7 +377,6 @@ s32 fn_1_12A7C4(void *arg0, void *arg1, void *arg2) {
 
     return 1;
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_12A7C4 */
 
 /* fzgx:begin fn_1_12A8A4 noprologue */
@@ -602,7 +598,6 @@ typedef struct ArchiveState {
 } ArchiveState;
 
 static inline ArchiveEntry *fn_1_12AC28_array_read(ArchiveEntry *array) { return array; }
-#pragma opt_loop_invariants off
 typedef struct lbl_1_bss_897AC_t {
     ArchiveEntry entries[1];
     u8 pad_6C[0x1ac8];
@@ -669,7 +664,6 @@ void *fn_1_12AC28(void *arg0, void **arg1, void **arg2) {
     }
     return ret;
 }
-#pragma opt_loop_invariants reset
 /* fzgx:end fn_1_12AC28 */
 
 /* fzgx:begin fn_1_12ADA0 */
@@ -2441,7 +2435,6 @@ void fn_1_12CEA8(u32 arg0, u32 arg1, void *arg2, u32 arg3, s32 arg4) {
 /* fzgx:begin fn_1_12D254 */
 #include "types.h"
 
-#pragma opt_propagation off
 u8 *fn_1_12D254(s32 arg0, s32 arg1) {
     char *base;
     void *value;
@@ -2467,7 +2460,6 @@ u8 *fn_1_12D254(s32 arg0, s32 arg1) {
     strcat(lbl_1_bss_8B4EC, base + 0x350);
     return lbl_1_bss_8B4EC;
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_12D254 */
 
 /* fzgx:begin fn_1_12D354 */
@@ -3507,7 +3499,6 @@ typedef struct {
 extern fn_1_12ECA8_FnEntry *fn_1_12F118(void);
 extern fn_1_12ECA8_FnEntry *fn_1_36AD0(void);
 
-#pragma opt_common_subs off
 static inline s16 fn_1_12ECA8_lookup(s16 arg) {
     fn_1_12ECA8_FnEntry *table;
     s16 i;
@@ -3541,7 +3532,6 @@ static inline s16 fn_1_12ECA8_lookup(s16 arg) {
 
     return 6;
 }
-#pragma opt_common_subs reset
 
 
 static inline s16 fn_1_12ECA8_map(s16 arg) {
@@ -3555,7 +3545,6 @@ static inline s16 fn_1_12ECA8_map(s16 arg) {
     return 0;
 }
 
-#pragma opt_common_subs on
 void fn_1_12ECA8(s16 arg0, s16 arg1, void *arg2, void *arg3, void *arg4) {
     struct { void * value; } scan;
     s16 index;
@@ -3594,7 +3583,6 @@ void fn_1_12ECA8(s16 arg0, s16 arg1, void *arg2, void *arg3, void *arg4) {
     *(u8 *)((u8 *)arg4 + 8) = 1;
     *(u32 *)((u8 *)arg4 + 4) = 0;
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_12ECA8 */
 
 /* fzgx:begin fn_1_12EF24 */
@@ -3853,18 +3841,12 @@ __declspec(section ".fzgxpool") static void prime_native_selection_bss(void) {
     sink = &fzgx_obj_lbl_1_bss_8B5F1;
 }
 #pragma section code_type ".text"
-#pragma opt_propagation off
-#pragma opt_strength_reduction off
 static inline u32 fn_1_12F358_flags(struct fn_1_12F358_state *state) {
     struct fn_1_12F358_entry *inputs = (void *)&lbl_1_bss_9F8;
     u32 index = state->unk_9E;
     return (inputs[index].unk_8 >> 4) & 1;
 }
 
-#pragma opt_propagation on
-#pragma opt_loop_invariants on
-#pragma opt_strength_reduction on
-#pragma opt_common_subs off
 void fn_1_12F358(u16 arg0) {
     u8 *selection_types;
     s32 v0;
@@ -3899,11 +3881,8 @@ void fn_1_12F358(u16 arg0) {
     }
     return;
 }
-#pragma opt_common_subs reset
 
-#pragma opt_strength_reduction reset
 
-#pragma opt_loop_invariants reset
 /* fzgx:end fn_1_12F358 */
 
 /* fzgx:begin fn_1_12F4A8 noprologue */
@@ -4979,7 +4958,6 @@ struct Object {
  u8 pad0[4]; s16 id; u8 pad6[0xd6]; f32 dc; u8 pade0[0x3a4]; struct State *state;
 };
 extern void *fn_1_8627C(s32);
-#pragma opt_propagation on
 void fn_1_130C84(struct Object *obj) {
     f32 fzgx_live_;
     f32 fzgx_live;
@@ -5026,7 +5004,6 @@ void fn_1_130C84(struct Object *obj) {
  if (((1) & ((state->flags >> 1)))) state->steering = state->steering + (f32)(0.2f * (angle - state->steering));
  else state->steering = angle;
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_130C84 */
 
 /* fzgx:begin fn_1_130EE8 noprologue */

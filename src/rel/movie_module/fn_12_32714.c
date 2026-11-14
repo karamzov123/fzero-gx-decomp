@@ -11,7 +11,6 @@ static inline s16 swap_movie_value(s16 value) {
     return (s16)(u16)(((((value << 8) & 0xff00)) | (((value >> 8) & 0xff))));
 }
 
-#pragma peephole on
 int fn_12_32714(MovieContext *self, s32 *result) {
     s32 kind_ok;
     int kind;
@@ -51,4 +50,3 @@ int fn_12_32714(MovieContext *self, s32 *result) {
     *result = swap_movie_value(value);
     return 1;
 }
-#pragma peephole reset

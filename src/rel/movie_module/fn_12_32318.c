@@ -13,7 +13,6 @@ static inline u32 swap_movie_word(u32 value) {
     return (low << 24) | ((low << 8) & 0xff0000) | ((value >> 8) & 0xff00) | (value >> 24);
 }
 
-#pragma peephole on
 int fn_12_32318(MovieContext *self, u32 *result) {
     int kind_ok;
     int kind;
@@ -51,4 +50,3 @@ int fn_12_32318(MovieContext *self, u32 *result) {
     *result = swap_movie_word(*(u32 *)(movie + 0xb8));
     return 1;
 }
-#pragma peephole reset

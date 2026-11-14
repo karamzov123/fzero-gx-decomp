@@ -3728,7 +3728,6 @@ static void fzgx_data_layout_lbl_1_data_3F510(void) {
 }
 #pragma section code_type ".text"
 
-#pragma opt_common_subs off
 
 static const u32 fzgx_pool_rodata_lbl_1_rodata_7AB8[3] = {  /* fzgx-allow: A1 retail data bytes and bindings */
     0x0, 0x0, 0x0
@@ -3819,7 +3818,6 @@ void fn_1_107C74(BgOwner *owner) {
         }
     }
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_107C74 */
 
 /* fzgx:begin fn_1_107E90 */

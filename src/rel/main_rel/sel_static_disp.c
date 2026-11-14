@@ -1244,9 +1244,7 @@ f32 fzgx_pool_conversions(s32 a, u32 b) {
 }
 #pragma section code_type ".text"
 
-#pragma opt_common_subs on
 #pragma pool_data off
-#pragma opt_dead_assignments on
 void fn_1_133E04(s32 arg0, s32 arg1) {
     u32 *p_lbl_1_bss_38460;
     u32 *p_lbl_801A66A0;
@@ -1580,9 +1578,7 @@ void fn_1_133E04(s32 arg0, s32 arg1) {
     fn_1_52070(320);
     }
 }
-#pragma opt_dead_assignments reset
 
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_133E04 */
 
 /* fzgx:begin fn_1_134A4C */
@@ -1698,7 +1694,6 @@ void fn_1_134AD4(void) {
 /* fzgx:end fn_1_134AD4 */
 
 /* fzgx:begin fn_1_134EE4 */
-#pragma opt_strength_reduction on
 void fn_1_134EE4(s32 arg0, s32 arg1, s32 arg2, f32 farg0) {
     FontDrawPacket packet;
     s16 temp_r21;
@@ -1850,7 +1845,6 @@ void fn_1_134EE4(s32 arg0, s32 arg1, s32 arg2, f32 farg0) {
         fn_1_52070(0x140);
     }
 }
-#pragma opt_strength_reduction reset
 /* fzgx:end fn_1_134EE4 */
 
 /* fzgx:begin fn_1_135894 */
@@ -5324,7 +5318,6 @@ static inline s32 fn_1_13ABA8_spacing(s32 *table, s32 index) {
     return *(s32 *)((u8 *)table + off);
 }
 
-#pragma opt_lifetimes off
 void fn_1_13ABA8(u32 arg0) {
     struct fn_1_13ABA8_packet loc_38;
     struct fn_1_13ABA8_lbl_1_rodata_8C14 loc_20;
@@ -15166,7 +15159,6 @@ static void fzgx_data_layout_lbl_1_data_42198(void) {
 }
 #pragma section code_type ".text"
 
-#pragma opt_propagation on
 static inline s32 fn_1_1492E0_range(s32 mode) {
     s32 result = 1;
     if (!((u32)(mode - 4) <= 1)) result = 0;
@@ -15781,8 +15773,6 @@ extern Obj9F8 lbl_1_bss_9F8;
 
 extern void fn_1_14A1AC(u8);
 
-#pragma opt_dead_assignments off
-#pragma opt_common_subs off
 void fn_1_14A028(void) {
     u32 fzgx_value;
     Obj518 *s = &lbl_1_bss_8E518;
@@ -15830,9 +15820,7 @@ void fn_1_14A028(void) {
         }
     }
 }
-#pragma opt_common_subs reset
 
-#pragma opt_dead_assignments reset
 /* fzgx:end fn_1_14A028 */
 
 /* fzgx:begin fn_1_14A17C noprologue */
@@ -18056,8 +18044,6 @@ extern void fn_1_14CA4C(void);
 extern int fn_1_8623C(void);
 extern u32 lbl_801A66A4;
 
-#pragma opt_loop_invariants off
-#pragma opt_strength_reduction off
 void fn_1_14B93C(void) {
     u32 v0;
     s32 *v4;
@@ -18131,9 +18117,7 @@ void fn_1_14B93C(void) {
         }
     }
 }
-#pragma opt_strength_reduction reset
 
-#pragma opt_loop_invariants reset
 /* fzgx:end fn_1_14B93C */
 
 /* fzgx:begin fn_1_14BC3C */
@@ -19362,7 +19346,6 @@ u32 fn_1_14D6D8(s16 index) {
 typedef struct { u32 values[75]; } InitTable;
 
 static inline u32 fn_1_14D728_array_read(u32 *array, s32 index) { return array[index]; }
-#pragma opt_dead_assignments on
 static inline u8 fn_1_14D728_array_read_(u8 *array, s32 index) { return array[index]; }
 void fn_1_14D728(Source *source, Display *displays) {
     char * data = (((char *)&lbl_1_data_43E78));
@@ -19409,7 +19392,6 @@ void fn_1_14D728(Source *source, Display *displays) {
         current.value = (Display *)((u8 *)current.value + 0x360);
     }
 }
-#pragma opt_dead_assignments reset
 /* fzgx:end fn_1_14D728 */
 
 /* fzgx:begin fn_1_14D8DC */
@@ -20459,8 +20441,6 @@ typedef struct {
 } Fn1_14EA74Blob;
 
 
-#pragma opt_propagation off
-#pragma opt_lifetimes off
 char *fn_1_14EA74(s16 arg0, char *arg1, s16 arg2) {
     char first[0x40];
     u8 second[0x40];
@@ -20492,9 +20472,7 @@ char *fn_1_14EA74(s16 arg0, char *arg1, s16 arg2) {
     }
     return arg1;
 }
-#pragma opt_lifetimes reset
 
-#pragma opt_propagation reset
 /* fzgx:end fn_1_14EA74 */
 
 /* fzgx:begin fn_1_14EBF8 noprologue */
@@ -21287,8 +21265,6 @@ typedef struct {
 
 /* The TU's string literals are addressed off one data base in retail; keep each
    base + offset address recomputed at its use instead of CSE'd into a register. */
-#pragma opt_loop_invariants off
-#pragma opt_common_subs off
 extern u8 fn_1_14E8A4__fzgx_offset_0[];
 extern u8 fn_1_14E8CC__fzgx_offset_0[];
 extern u8 fn_1_14E8F4__fzgx_offset_0[];

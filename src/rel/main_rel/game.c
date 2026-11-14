@@ -1379,11 +1379,9 @@ extern struct fn_1_2FDBC_G *lbl_801A66CC;
 extern void fn_1_82EDC(s32, s32, void *);
 extern void fn_1_22B10(void *, f32);
 
-#pragma opt_propagation off
 static inline void fn_1_2FDBC_set(struct fn_1_2FDBC_flags *f) {
     f->unk_5 = 6;
 }
-#pragma opt_propagation reset
 
 void fn_1_2FDBC(struct fn_1_2FDBC_arg *arg0) {
     s32 sum;
@@ -4796,11 +4794,8 @@ extern u16 lbl_1_bss_25B80;
 extern u8 lbl_1_bss_26B18__fzgx_offset_5;
 
 #pragma optpointer_analysis off
-#pragma opt_strength_reduction off
 static inline const f32 fn_1_32600_array_read(const f32 *array, s32 index) { return array[index]; }
-#pragma opt_strength_reduction reset
 
-#pragma opt_loop_invariants off
 typedef struct lbl_1_bss_3C30_t {
     u32 unk_0;
     u8 pad_4[0x1];
@@ -4892,8 +4887,6 @@ int fn_1_32600(FnObj_1_32600* obj) {
     }
     return 0;
 }
-#pragma opt_loop_invariants reset
-#pragma opt_pointer_analysis reset
 /* fzgx:end fn_1_32600 */
 
 /* fzgx:begin fn_1_327F8 */

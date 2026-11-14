@@ -3408,7 +3408,6 @@ typedef struct ListManager {
 
 
 
-#pragma opt_propagation off
 void fn_1_43A4(void) {
     ListNode *next;
     ListNode *prev;
@@ -3432,7 +3431,6 @@ void fn_1_43A4(void) {
     node->reserved = 0;
     manager->head = node;
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_43A4 */
 
 /* fzgx:begin fn_1_43E8 */

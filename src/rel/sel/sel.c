@@ -2359,7 +2359,6 @@ __declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
 }
 #pragma section code_type ".text"
 
-#pragma opt_loop_invariants off
 void fn_10_3B44(void) {
     s16 i;
     s16 row;
@@ -2380,7 +2379,6 @@ void fn_10_3B44(void) {
         }
     }
 }
-#pragma opt_loop_invariants reset
 /* fzgx:end fn_10_3B44 */
 
 /* fzgx:begin fn_10_3C14 */
@@ -5118,9 +5116,7 @@ typedef struct {
 } fn_10_7130_SelGlobals;
 
 static inline u8 *fn_10_7130_array_read(u8 *array) { return array; }
-#pragma opt_loop_invariants off
 static inline u8 fn_10_7130_array_read_(s32 index, u8 *array) { return array[index]; }
-#pragma opt_dead_assignments off
 void fn_10_7130(void) {
     struct { fn_10_7130_SelEntry *value; } entry;
     s16 value;
@@ -5187,9 +5183,7 @@ skip:
         }
     }
 }
-#pragma opt_dead_assignments reset
 
-#pragma opt_loop_invariants reset
 /* fzgx:end fn_10_7130 */
 
 /* fzgx:begin fn_10_7320 */
@@ -6311,7 +6305,6 @@ extern s32 fn_1_12F228(void);
 extern void fn_1_4A00(u32, u32, u32);
 extern u8 fn_10_8780(void);
 
-#pragma opt_propagation on
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u32 fzgx_obj_lbl_10_bss_0[5];
 s32 fzgx_obj_lbl_10_bss_14;
@@ -7282,7 +7275,6 @@ typedef struct {
     u8 pad[0x118];
 } SelCell;
 
-#pragma opt_loop_invariants off
 void fn_10_924C(u8 *arg0) {
     u8 *archive_path;
     s16 i;
@@ -7353,7 +7345,6 @@ void fn_10_924C(u8 *arg0) {
         }
     }
 }
-#pragma opt_loop_invariants reset
 /* fzgx:end fn_10_924C */
 
 /* fzgx:begin fn_10_948C */
@@ -13878,7 +13869,6 @@ extern void fn_1_51678(FontDrawPacket *, u32, s16, s16, s16, s16);
 extern f32 lbl_8006D188(u32);
 
 struct fn_10_F050_FzgxCopy_88 { u32 words[22]; };
-#pragma opt_dead_assignments on
 void fn_10_F050(s32 arg0, s32 arg1) {
     u32 * fzgx_live_;
     u32 * fzgx_live;
@@ -13942,7 +13932,6 @@ void fn_10_F050(s32 arg0, s32 arg1) {
     var_r22 = fzgx_loop_var_r22_4659;
 }
 }
-#pragma opt_dead_assignments reset
 /* fzgx:end fn_10_F050 */
 
 /* fzgx:begin fn_10_F57C */
@@ -14155,7 +14144,6 @@ extern s32 fn_1_EC900(void);
 extern s32 fn_1_EB85C(void);
 extern void fn_1_EB8F4(void);
 
-#pragma opt_common_subs on
 void fn_10_F57C(void) {
     s16 mode;
     u8 font_index;
@@ -14282,7 +14270,6 @@ void fn_10_F57C(void) {
     }
     if (((*(fn_10_F57C_SelState *)&lbl_1_bss_8B3A0).unk_0 == 2 || (*(fn_10_F57C_SelState *)&lbl_1_bss_8B3A0).unk_0 == 0xa) && mode == 1) fn_1_EB8F4();
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_10_F57C */
 
 /* fzgx:begin fn_10_FBEC */
@@ -16484,7 +16471,6 @@ extern u32 fn_10_139E4(void);
 
 
 extern void fn_1_508C4(FontDrawPacket *, f32, f32);
-#pragma opt_propagation on
 void fn_10_107D4(void) {
     u32 * fzgx_live;
  struct fn_10_107D4_Copy88 loc_8;
@@ -16578,7 +16564,6 @@ void fn_10_107D4(void) {
  v13 += 150; v12++;
  }
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_10_107D4 */
 
 /* fzgx:begin fn_10_10C24 noprologue */
@@ -20238,7 +20223,6 @@ static inline void fn_10_14C84_init(FontDrawPacket *packet, u32 mode, u32 image)
     *(fn_10_14C84_Color *)packet->color = color;
 }
 
-#pragma peephole on
 void fn_10_14C84(s32 x, s32 y, s32 w, s32 h, f32 alpha) {
     FontDrawPacket packet;
     s32 top;
@@ -20292,7 +20276,6 @@ void fn_10_14C84(s32 x, s32 y, s32 w, s32 h, f32 alpha) {
     packet.flags = 0x180005;
     fn_1_4F734(&packet);
 }
-#pragma peephole reset
 /* fzgx:end fn_10_14C84 */
 
 /* fzgx:begin fn_10_14FDC */
@@ -25170,9 +25153,7 @@ const u32 fzgx_pool_table_478[7] = {0x43AE0000, 0x00000000, 0xFF000000, 0x43A880
 #pragma section code_type ".fzgxpool"
 void fzgx_pool_primer_494(void) { fzgx_pool_sink_f32(0.8f); }
 #pragma section code_type ".text"
-#pragma opt_propagation off
 #pragma schedule_unk_mem_refs off
-#pragma scheduling on
 void fn_10_175F0(Panel175F0 * __restrict arg0, s32 arg1) {
     s16 index = arg0->unk_90;
     if ((s8)lbl_10_data_2B4[index] != 0) {
@@ -29249,7 +29230,6 @@ extern char *fn_80083DB0(char *dst, const char *src);
 extern void fn_10_2325C(struct fn_8_D630_obj *arg0);
 extern void ADXT_Stop(ADXTHandle *handle);
 
-#pragma scheduling on
 void fn_10_18A50(struct fn_10_18A50_Arg0 *param0, u32 param1) {
     struct fn_10_18A50_Arg0 *arg0 = param0;
     s16 v10;
@@ -29263,7 +29243,6 @@ void fn_10_18A50(struct fn_10_18A50_Arg0 *param0, u32 param1) {
     s16 id = *(volatile s16 *)&arg0->unk_8C; /* Read the selection ID before polling. */
     struct { u32 value; } saved;
     saved.value = param1;
-#pragma opt_propagation on
     if (fn_1_12F028(id) >= 2) {
         v10 = arg0->unk_E0[arg0->unk_9E];
         for (v6 = 0; v6 < 4; v6++) {
@@ -31789,7 +31768,6 @@ extern void fn_10_0(s16 *, s16 *, s32, s32);
 extern s32 fn_1_4E724(SelTextParams *);
 extern void fn_1_13198C(s16, Vec3 *, Vec3 *, u8 *, u8 *, s32);
 
-#pragma opt_propagation off
 s32 fn_10_19924(s16 *id) {
     SelTextParams params;
     Vec3 dir;
@@ -32009,7 +31987,6 @@ typedef struct {
     f32 value;
 } fn_10_19EC8_Fn10_19EC8Object;
 
-#pragma scheduling 750
 void fn_10_19EC8(fn_10_19EC8_Fn10_19EC8Object * __restrict obj, u32 unused) {
     Obj_10_bss_55AE4 *entry = &lbl_10_bss_55AE4;
     f32 value = obj->value;
@@ -32027,7 +32004,6 @@ typedef struct {
 u8 pad_00[0x54];
 f32 value;
 } fn_10_19F1C_Fn10_19EC8Object;
-#pragma scheduling 750
 void fn_10_19F1C(fn_10_19F1C_Fn10_19EC8Object * __restrict obj, u32 unused) {
 Obj_10_bss_55B04 *entry = &lbl_10_bss_55B04;
 f32 raw = obj->value;
@@ -36205,10 +36181,7 @@ typedef struct {
 
 
 static inline f32 fn_10_1B2F4_operand(f32 right, f32 left) { return left * right; }
-#pragma peephole on
-#pragma opt_strength_reduction off
 static inline f32 fn_10_1B2F4_operand_(f32 left, f32 right) { return left * right; }
-#pragma opt_common_subs off
 void fn_10_1B2F4(void) {
     f32 fzgx_value;
     DrawPacketLocal p;
@@ -36251,11 +36224,8 @@ void fn_10_1B2F4(void) {
     p.id = 40708;
     fn_1_4F734((FontDrawPacket *)&p);
 }
-#pragma opt_common_subs reset
 
-#pragma opt_strength_reduction reset
 
-#pragma peephole reset
 /* fzgx:end fn_10_1B2F4 */
 
 /* fzgx:begin fn_10_1B658 */
@@ -38207,7 +38177,6 @@ struct fn_10_1BFC4_arg2 {
     const char *unk_8;
 };
 
-#pragma opt_lifetimes off
 static inline const char * fn_10_1BFC4_read_pointer(struct fn_10_1BFC4_arg2 * owner) { return owner->unk_4; }
 void fn_10_1BFC4(u32 arg0, u32 arg1, struct fn_10_1BFC4_arg2 arg2, ...) {
     char loc_D0[512];
@@ -38261,7 +38230,6 @@ void fn_10_1BFC4(u32 arg0, u32 arg1, struct fn_10_1BFC4_arg2 arg2, ...) {
     fn_1_4954C((10.0f));
     fn_1_4CE48((Obj_1_bss_4B9CC *)loc_D0, (176.0f));
 }
-#pragma opt_lifetimes reset
 /* fzgx:end fn_10_1BFC4 */
 
 /* fzgx:begin fn_10_1C2D8 noprologue */
@@ -42555,7 +42523,6 @@ static inline f32 fn_10_1E9CC_clamp(s32 x0) {
  return x;
 }
 #define FZ_CLAMP01(x) ((x) < 0.0f ? 0.0f : ((x) > 1.0f ? 1.0f : (x)))
-#pragma opt_propagation off
 void fn_10_1E9CC(s32 arg0, u32 arg1, s32 arg2, f32 arg3) {
     f32 fzgx_live;
     f32 fzgx_live_;
@@ -42629,7 +42596,6 @@ void fn_10_1E9CC(s32 arg0, u32 arg1, s32 arg2, f32 arg3) {
  loc_C.a[12]=160; loc_C.a[17]=214; fn_10_1EF04(&loc_C.a[11],arg3);
  }
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_10_1E9CC */
 
 /* fzgx:begin fn_10_1EF04 noprologue */
@@ -46528,7 +46494,6 @@ extern s32 fn_10_C694;
 extern u16 lbl_801A66C4;
 
 static inline const char *fn_10_210F0_array_read(u32 index, const u32 *array, s32 row) { return ((const char *(*)[6])array)[row][index]; }
-#pragma opt_loop_invariants off
 #pragma fp_contract off
 void fn_10_210F0(void) {
     const f32 *cp;
@@ -46711,7 +46676,6 @@ void fn_10_210F0(void) {
         { u32 language = (*(u32 *)&lbl_801A66B4); const char **text = (const char **)&lbl_10_data_4AF8.unk_0; fn_1_4AE0C(text[language + 114]); }
     }
 }
-#pragma opt_loop_invariants reset
 /* fzgx:end fn_10_210F0 */
 
 /* fzgx:begin fn_10_21978 */
@@ -49260,7 +49224,6 @@ extern void fn_1_12EF80(u8 value, s16 *arg0, s16 *arg1);
 extern s16 fn_1_12EF24(s16 parsed, s16 current);
 extern s32 fn_1_F89E4(u8 value);
 
-#pragma opt_strength_reduction off
 s32 fn_10_22760(s32 arg0) {
     s16 parsed;
     s16 current;
@@ -49298,7 +49261,6 @@ s32 fn_10_22760(s32 arg0) {
     }
     return 0;
 }
-#pragma opt_strength_reduction reset
 /* fzgx:end fn_10_22760 */
 
 /* fzgx:begin fn_10_2287C */
@@ -51354,8 +51316,6 @@ static inline void draw_emblem(f64 x, f64 y, s16 id, u8 *obj) {
 /* gauge needle offset: maps 0..100 onto -15..+15 */
 static inline f32 gauge_offset(s32 v) { return (f32)(((v - 50) * 15) / 50); }
 
-#pragma opt_dead_assignments on
-#pragma opt_lifetimes on
 void fn_10_22998(u32 * arg0) {
     u32 v2;
     s32 v0;
@@ -51585,7 +51545,6 @@ void fn_10_22998(u32 * arg0) {
     draw_emblem((*(f32 *)(((u8 *)fzgx_pool_rodata_lbl_10_rodata_158_13EC))), (*(f32 *)(((u8 *)fzgx_pool_rodata_lbl_10_rodata_158_1278))), (s16)v2, (u8 *)arg0);
     }
 }
-#pragma opt_dead_assignments reset
 /* fzgx:end fn_10_22998 */
 
 /* fzgx:begin fn_10_2323C */

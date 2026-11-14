@@ -2176,7 +2176,6 @@ void fzgx_pool_primer_3(volatile f32 *f, volatile f64 *d) { /* volatile: sinks k
     f[16] = 384.000000f;
 }
 #pragma section code_type ".text"
-#pragma opt_pointer_analysis on
 void fn_3_F044(void) {
     u8 *p_lbl_3_rodata_288;
     s16 v0;

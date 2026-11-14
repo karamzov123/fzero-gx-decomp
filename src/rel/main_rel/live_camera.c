@@ -2350,10 +2350,7 @@ extern void camera_set_result(s16);
 extern void camera_set_selected_value(u8);
 extern void fn_1_5370(s8, u32);
 
-#pragma opt_strength_reduction off
 static inline u8 * fn_1_FCB0_read_pointer(Sig_fn_1_101D0_Fn_1_101D0_State * owner) { return owner->pad_0; }
-#pragma opt_loop_invariants on
-#pragma opt_schedule off
 void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
     s16 *fzgx_value__;
     u32 fzgx_value_;
@@ -2478,9 +2475,7 @@ void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
     }
 }
 
-#pragma opt_loop_invariants reset
 
-#pragma opt_strength_reduction reset
 /* fzgx:end fn_1_FCB0 */
 
 /* fzgx:begin fn_1_10138 */

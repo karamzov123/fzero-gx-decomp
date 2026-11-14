@@ -1,7 +1,6 @@
 #include "types.h"
 #include "dol/globals.h"
 #pragma use_lmw_stmw on
-#pragma opt_propagation on
 
 extern u8 lbl_80192D68[1344];
 extern void fn_8005FBDC(u8 value);

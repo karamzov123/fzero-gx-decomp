@@ -141,7 +141,6 @@ extern void fn_12_39A18(MwsPlayer *player);
 
 extern void mwSfdPause(MwsPlayer *player, int paused);
 
-#pragma peephole on
 static inline SfdHandle * fn_12_3AE84_read_pointer(MwsPlayer * owner) { return owner->sfd; }
 int fn_12_3AE84(MwsPlayer *player) {
     const char * fzgx_live;
@@ -236,5 +235,4 @@ int fn_12_3AE84(MwsPlayer *player) {
     fn_12_3500C(player);
     return 0;
 }
-#pragma peephole reset
 

@@ -67,7 +67,6 @@ extern int fn_12_2D74C(SfdHandle *handle, int condition, int *value);
 extern int fn_12_2AF5C(SfdHandle *handle, int paused);
 extern void fn_12_3858C(MovieModule *module);
 
-#pragma opt_strength_reduction off
 void fn_12_393F0(MovieModule *module, void *arg0, void *arg1) {
     SfdHandle * fzgx_live;
     struct MovieModuleMessages *messages = &lbl_12_rodata_2480;
@@ -157,5 +156,4 @@ start_sound:
 finish:
     fn_12_3858C(module);
 }
-#pragma opt_strength_reduction reset
 

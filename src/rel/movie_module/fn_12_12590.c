@@ -14,7 +14,6 @@ typedef struct {
     s16 field_272;
 } MovieCtx;
 
-#pragma opt_lifetimes off
 void fn_12_12590(MovieCtx *m, u32 lab_unused0) {
     s16 *fzgx_value;
     s32 w0;
@@ -56,5 +55,4 @@ void fn_12_12590(MovieCtx *m, u32 lab_unused0) {
         m->field_268 = m->field_264 + (((csum) * (w32)));
     }
 }
-#pragma opt_lifetimes reset
 

@@ -74,9 +74,7 @@ static inline MovieEntry *fn_12_6B28_find(MovieModule *module) {
 }
 
 
-#pragma opt_common_subs on
 static inline u32 fn_12_6B28_array_read(u32 *array, s32 index) { return array[index]; }
-#pragma opt_pointer_analysis off
 MovieEntry *fn_12_6B28(void) {
     s32 i;
     MovieModule *module;
@@ -138,7 +136,5 @@ MovieEntry *fn_12_6B28(void) {
     entry->unkbc = -1;
     return entry;
 }
-#pragma opt_pointer_analysis reset
 
-#pragma opt_common_subs reset
 

@@ -25,7 +25,6 @@ static inline int get_block(struct Movie *movie, u32 *address, int *size, int *e
     *end = *size + block.extra;
     return 0;
 }
-#pragma opt_propagation on
 #pragma use_lmw_stmw on
 static inline int process_blocks(struct Movie *arg0, int limit) {
     int size;

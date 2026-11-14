@@ -29,7 +29,6 @@ extern u32 lbl_12_bss_4DB0;
 extern void fn_12_6704(void);
 extern void fn_12_6A88(void);
 
-#pragma opt_propagation off
 static inline s32 fn_12_6C78(MovieItem *item) {
     lbl_12_bss_4DB0 = (u32)item;
     if (item == NULL) {
@@ -60,7 +59,6 @@ static inline s32 fn_12_6D5C(MovieObject *movie, s32 value) {
     }
     return value;
 }
-#pragma opt_propagation reset
 
 static inline void report_error(s32 unused, s32 error) {
     MovieError *handler = (MovieError *)lbl_12_bss_4DB8;

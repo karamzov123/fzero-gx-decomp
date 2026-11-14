@@ -235,7 +235,6 @@ extern u8 lbl_1_bss_3E060[];
 extern u32 lbl_801A6410;
 extern void fn_1_46B4(u32, u32, void *, int);
 
-#pragma opt_lifetimes off
 void fn_1_48C28(int index) {
     u32 offset;
     u16 *scan;
@@ -279,7 +278,6 @@ void fn_1_48C28(int index) {
         scan = scan + 1;
     }
 }
-#pragma opt_lifetimes reset
 /* fzgx:end fn_1_48C28 */
 
 /* fzgx:begin fn_1_48D80 noprologue */
@@ -1068,7 +1066,6 @@ struct fn_1_49410_lbl_1_bss_4B9CC {
 
 
 
-#pragma opt_propagation off
 void fn_1_49410(void) {
     f32 fzgx_live;
     struct fn_1_49410_lbl_1_rodata_FD0 *q = &(*(struct fn_1_49410_lbl_1_rodata_FD0 *)&lbl_1_rodata_FD0);
@@ -1104,7 +1101,6 @@ void fn_1_49410(void) {
     (*(struct fn_1_49410_lbl_1_bss_4B9CC *)&lbl_1_bss_4B9CC).unk_4E = 480;
     (*(struct fn_1_49410_lbl_1_bss_4B9CC *)&lbl_1_bss_4B9CC).unk_58 = 5;
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_49410 */
 
 /* fzgx:begin fn_1_494CC */
@@ -5763,7 +5759,6 @@ static inline void draw_reset(void) {
     fn_80072864(2);
 }
 
-#pragma opt_lifetimes on
 static inline u32 draw_perspective(FontDrawPacket *packet) {
     u32 result = (packet->flags >> 18) & 1;
     return result;
@@ -7040,10 +7035,6 @@ typedef struct {
     f32 w;
 } fn_1_51C74_FontData;
 
-#pragma opt_common_subs off
-#pragma opt_propagation off
-#pragma opt_dead_assignments off
-#pragma opt_lifetimes on
 void fn_1_51C74(fn_1_51C74_FontData *obj) {
     f32 a0;
     f32 fzgx_live;
@@ -7094,13 +7085,9 @@ void fn_1_51C74(fn_1_51C74_FontData *obj) {
     b2 = t3.value.w;
     obj->w = w * b2 / (f32)((u32)fn_1_A5DB0() & 0xffff);
 }
-#pragma opt_lifetimes reset
 
-#pragma opt_dead_assignments reset
 
-#pragma opt_propagation reset
 
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_51C74 */
 
 /* fzgx:begin fn_1_51E60 noprologue */
@@ -9254,7 +9241,6 @@ typedef struct {
 
 
 
-#pragma opt_common_subs on
 static inline f32 fn_1_5448C_read_pointer(FontGlobals * owner) { return owner->value_4c; }
 u32 fn_1_5448C(arg, lab_unused0, lab_unused1, lab_unused2)
 void *arg;
@@ -9308,7 +9294,6 @@ u32 lab_unused2;
     }
     return (u32)entry;
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_5448C */
 
 /* fzgx:begin fn_1_545B8 */
@@ -9896,7 +9881,6 @@ typedef struct {
 } Fn1_55210_Object;
 
 static inline void * fn_1_55210_array_read(void * *array, s32 index) { return array[index]; }
-#pragma opt_common_subs off
 void fn_1_55210(void *value) {
     s32 offset;
     Fn1_55210_Object *obj;
@@ -9943,7 +9927,6 @@ void fn_1_55210(void *value) {
         fn_1_557C4(value);
     }
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_55210 */
 
 /* fzgx:begin fn_1_553C4 noprologue */
@@ -9978,7 +9961,6 @@ typedef struct {
 } Fn1_553C4_Object;
 
 static inline void * fn_1_553C4_array_read(void * *array, s32 index) { return array[index]; }
-#pragma opt_common_subs off
 void fn_1_553C4(void *value, void *arg) {
     s32 offset;
     Fn1_553C4_Object *obj;
@@ -10026,7 +10008,6 @@ void fn_1_553C4(void *value, void *arg) {
         fn_1_55924(value, arg);
     }
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_553C4 */
 
 /* fzgx:begin fn_1_5557C */
@@ -10169,7 +10150,6 @@ typedef struct {
     void *unk_68[4];
 } Fn1_557C4Object;
 
-#pragma opt_lifetimes off
 void fn_1_557C4(void *value) {
     s32 offset;
     Fn1_557C4Object *object;
@@ -10208,7 +10188,6 @@ void fn_1_557C4(void *value) {
     }
     fn_1_56530();
 }
-#pragma opt_lifetimes reset
 /* fzgx:end fn_1_557C4 */
 
 /* fzgx:begin fn_1_55924 */
@@ -10361,14 +10340,9 @@ typedef struct {
     void *unk_68;
 } Fn1_55C48Object;
 
-#pragma opt_common_subs off
 static inline void * fn_1_55C48_read_pointer(Fn1_55C48Object * owner) { return owner->unk_68; }
-#pragma opt_common_subs reset
 
-#pragma opt_propagation off
-#pragma opt_pointer_analysis off
 static inline void * fn_1_55C48_read_pointer_(Fn1_55C48Object * owner) { return owner->unk_08; }
-#pragma opt_common_subs off
 void fn_1_55C48(Fn1_55C48Object *value) {
     Fn1_55C48Object * entry;
     s32 lab_t0__2;
@@ -10424,11 +10398,8 @@ void fn_1_55C48(Fn1_55C48Object *value) {
         }
     }
 }
-#pragma opt_common_subs reset
 
-#pragma opt_pointer_analysis reset
 
-#pragma opt_propagation reset
 /* fzgx:end fn_1_55C48 */
 
 /* fzgx:begin fn_1_55D6C noprologue */
@@ -10454,14 +10425,9 @@ typedef struct {
     void (*unk_80)(void *, u32, u32);
 } Fn1_55D6CObject;
 
-#pragma opt_common_subs off
 static inline void * fn_1_55D6C_read_pointer(Fn1_55D6CObject * owner) { return owner->unk_68; }
-#pragma opt_common_subs reset
 
-#pragma opt_propagation off
-#pragma opt_pointer_analysis off
 static inline void * fn_1_55D6C_read_pointer_(Fn1_55D6CObject * owner) { return owner->unk_08; }
-#pragma opt_common_subs off
 void fn_1_55D6C(Fn1_55D6CObject *value) {
     Fn1_55D6CObject * entry;
     s32 lab_t0__2;
@@ -10517,11 +10483,8 @@ void fn_1_55D6C(Fn1_55D6CObject *value) {
         }
     }
 }
-#pragma opt_common_subs reset
 
-#pragma opt_pointer_analysis reset
 
-#pragma opt_propagation reset
 /* fzgx:end fn_1_55D6C */
 
 /* fzgx:begin fn_1_55EA0 noprologue */
@@ -10544,14 +10507,9 @@ typedef struct {
     void *unk_68;
 } Fn1_55EA0Object;
 
-#pragma opt_common_subs off
 static inline void * fn_1_55EA0_read_pointer(Fn1_55EA0Object * owner) { return owner->unk_68; }
-#pragma opt_common_subs reset
 
-#pragma opt_propagation off
-#pragma opt_pointer_analysis off
 static inline void * fn_1_55EA0_read_pointer_(Fn1_55EA0Object * owner) { return owner->unk_08; }
-#pragma opt_common_subs off
 void fn_1_55EA0(Fn1_55EA0Object *value) {
     Fn1_55EA0Object * entry;
     s32 lab_t0__2;
@@ -10607,11 +10565,8 @@ void fn_1_55EA0(Fn1_55EA0Object *value) {
         }
     }
 }
-#pragma opt_common_subs reset
 
-#pragma opt_pointer_analysis reset
 
-#pragma opt_propagation reset
 /* fzgx:end fn_1_55EA0 */
 
 /* fzgx:begin fn_1_55FC4 */

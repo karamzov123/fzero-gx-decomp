@@ -64,8 +64,6 @@ extern u32 lbl_801873DC[4];
 extern u32 fn_800589BC(u32, u32, struct Sig_fn_800589BC_Arg2 *, struct Sig_fn_800589BC_Arg3 *);
 extern u32 fn_800501EC(struct Sig_fn_800501EC_Arg0 *);
 
-#pragma opt_lifetimes off
-#pragma peephole on
 void fn_80053F38(struct fn_80053F38_Arg0 *arg0) {
     struct Sig_fn_800589BC_Arg2 items[2];
     struct Sig_fn_800589BC_Arg3 temps[2];
@@ -155,6 +153,4 @@ void fn_80053F38(struct fn_80053F38_Arg0 *arg0) {
     }
     ((fn_80053F38_Fn5)arg0->unk_3C)(arg0->unk_40);
 }
-#pragma peephole reset
 
-#pragma opt_lifetimes reset

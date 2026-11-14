@@ -16,7 +16,6 @@ typedef struct Node {
 } Node;
 
 static inline struct Node * fn_80009830_read_pointer(Node * owner) { return owner->f4; }
-#pragma opt_strength_reduction off
 void *fn_80009830(s32 arg0, s32 arg1) {
     struct Node * fzgx_value;
     struct Node * fzgx_live;
@@ -132,4 +131,3 @@ void *fn_80009830(s32 arg0, s32 arg1) {
 
     return (u8 *)cur + 0x20;
 }
-#pragma opt_strength_reduction reset

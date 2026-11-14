@@ -18,7 +18,6 @@ void GetTypeCallback(s32 chan, u32 error, OSContext *context);
 
 void GetTypeCallback(s32 chan, u32 error, OSContext *context);
 
-#pragma opt_propagation off
 u32 SIGetType(s32 chan) {
     static u32 cmdTypeAndStatus;
     BOOL enabled;
@@ -49,5 +48,4 @@ u32 SIGetType(s32 chan) {
     OSRestoreInterrupts(enabled);
     return type;
 }
-#pragma opt_propagation reset
 

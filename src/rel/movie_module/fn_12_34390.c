@@ -44,7 +44,6 @@ typedef struct MovieObject {
     MovieVTable *vtable;
 } MovieObject;
 
-#pragma opt_loop_invariants on
 static inline void * fn_12_34390_read_pointer(MovieModule * owner) { return owner->movies; }
 void fn_12_34390(MovieModule *module, void *arg1, void *arg2) {
     void * fzgx_live_;
@@ -111,5 +110,4 @@ void fn_12_34390(MovieModule *module, void *arg1, void *arg2) {
     }
     fn_12_3858C(current);
 }
-#pragma opt_loop_invariants reset
 

@@ -7,7 +7,6 @@ typedef struct MovieContext {
     int kind;
 } MovieContext;
 
-#pragma peephole off
 int fn_12_327AC(MovieContext *self, u32 *result) {
     int kind_ok;
     int kind;
@@ -49,4 +48,3 @@ default: {
     *result = movie[0x84];
     return 1;
 }
-#pragma peephole reset

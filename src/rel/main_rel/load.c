@@ -944,7 +944,6 @@ typedef struct {
     char message[0x14];
     char path[0x10];
 } fn_1_45E98_Data;
-#pragma opt_common_subs off
 static inline int is_busy(u8 *base) {
     s8 n;
     if (*(s32 *)(base + 0x10) != 0) return 1;
@@ -953,7 +952,6 @@ static inline int is_busy(u8 *base) {
     }
     return 0;
 }
-#pragma opt_common_subs reset
 
 extern u8 fn_1_451E4__fzgx_offset_104[];
 extern u8 fn_1_451E4__fzgx_offset_110[];
@@ -1388,7 +1386,6 @@ typedef struct {
     u32 unk_C;
 } LoadQueueEntry;
 
-#pragma opt_lifetimes off
 u32 fn_1_466B0(u32 arg0, s32 arg1) {
     struct { u32 value; } result;
     s32 start;
@@ -1427,7 +1424,6 @@ u32 fn_1_466B0(u32 arg0, s32 arg1) {
         return out;
     }
 }
-#pragma opt_lifetimes reset
 /* fzgx:end fn_1_466B0 */
 
 /* fzgx:begin fn_1_467F4 */
@@ -1500,7 +1496,6 @@ __declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
 }
 #pragma section code_type ".text"
 
-#pragma opt_propagation off
 s32 fn_1_46838(u32 arg0) {
     u32 *fzgx_value;
     s32 *state = (s32 *)lbl_1_bss_384D8__fzgx_offset_4000;
@@ -1539,7 +1534,6 @@ s32 fn_1_46838(u32 arg0) {
     }
     return 1;
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_46838 */
 
 /* fzgx:begin fn_1_469BC noprologue */
@@ -2097,7 +2091,6 @@ __declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
 
 extern void fn_8000659C(void);
 
-#pragma opt_common_subs off
 void fn_1_4706C(void) {
     struct { u32 value; } i;
     fn_1_4706C_entry *entry;
@@ -2120,7 +2113,6 @@ void fn_1_4706C(void) {
     }
     lbl_1_bss_3DCDC__fzgx_offset_4 = 0;
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_4706C */
 
 /* fzgx:begin fn_1_47184 */

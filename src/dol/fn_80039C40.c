@@ -32,8 +32,6 @@ static inline s32 divUp(s32 a, s32 b) {
     return (a - 1) / b;
 }
 
-#pragma opt_dead_assignments on
-#pragma opt_loop_invariants on
 static inline Comp * fn_80039C40_read_pointer(Dec * owner) { return owner->comps; }
 s32 fn_80039C40(Dec *d) {
     u8 i;
@@ -88,6 +86,4 @@ for (fzgx_loop_i_1473 = 0; fzgx_loop_i_1473 < d->numComp; fzgx_loop_i_1473++) {
 }
     return 0;
 }
-#pragma opt_loop_invariants reset
 
-#pragma opt_dead_assignments reset

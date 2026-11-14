@@ -486,7 +486,6 @@ typedef struct {
 
 extern u32 lbl_8006DD14(u32, void *);
 
-#pragma peephole on
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 Obj_1_bss_F68_Target *fzgx_obj_lbl_1_bss_F68;
 u8 *fzgx_obj_game_camera_entries;
@@ -601,8 +600,6 @@ typedef struct {
 } CameraGlobals;
 
 
-#pragma opt_common_subs off
-#pragma peephole on
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 CameraState *fzgx_obj_lbl_1_bss_F68;
 CameraEntry *fzgx_obj_game_camera_entries;
@@ -649,8 +646,6 @@ s16 fn_1_6B48(s32 index) {
 }
     }
 }
-#pragma peephole reset
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_6B48 */
 
 /* fzgx:begin fn_1_6BC0 */
@@ -993,7 +988,6 @@ typedef struct {
     s16 unk_6;
 } fn_1_707C_Flag;
 
-#pragma peephole on
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 Obj_1_bss_F68_Target *fzgx_obj_lbl_1_bss_F68;
 u8 *fzgx_obj_game_camera_entries;
@@ -1009,7 +1003,6 @@ static void fzgx_bss_layout(void) {
 #pragma section code_type ".text"
 
 static inline fn_1_707C_Flag * fn_1_707C_read_pointer(void) { return (fn_1_707C_Flag *)(void *)fzgx_obj_live_camera; }
-#pragma opt_dead_assignments off
 s32 fn_1_707C(u8 arg0) {
     u32 i;
     s32 value;
@@ -1053,9 +1046,7 @@ for (fzgx_loop_i_1063 = 0; fzgx_loop_i_1063 < count; fzgx_loop_i_1063++) {
 }
     return 0;
 }
-#pragma opt_dead_assignments reset
 
-#pragma peephole reset
 /* fzgx:end fn_1_707C */
 
 /* fzgx:begin camera_set_entry_field_0xa8 */
@@ -1878,7 +1869,6 @@ extern void fn_1_435C(u32);
 extern s16 fn_1_3F8C(char *, void *, void *, int);
 extern void fn_1_DCED0(void);
 
-#pragma opt_propagation off
 void fn_1_857C(void) {
     s16 index;
     s16 result;
@@ -1896,7 +1886,6 @@ void fn_1_857C(void) {
         camera->entries[index] = result;
     }
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_857C */
 
 /* fzgx:begin camera_get_entry_field_0x2 */
@@ -3942,7 +3931,6 @@ typedef struct {
     u8 decrease:1;
 } ABACByteFlags;
 
-#pragma opt_strength_reduction off
 void fn_1_ABAC(ABACObject *arg0) {
     u16 controller;
     ABACState *state;
@@ -3997,7 +3985,6 @@ void fn_1_ABAC(ABACObject *arg0) {
         }
     }
 }
-#pragma opt_strength_reduction reset
 /* fzgx:end fn_1_ABAC */
 
 /* fzgx:begin camera_get_position_delta */
@@ -4569,8 +4556,6 @@ extern const LiveCameraPool lbl_1_rodata_200;
 extern u32 lbl_1_bss_F5C;
 extern void fn_1_8840(void);
 
-#pragma opt_loop_invariants off
-#pragma opt_lifetimes off
 void fn_1_B4D4(LiveCamera *camera) {
     const LiveCameraPool *pool = &lbl_1_rodata_200;
     f64 damping;
@@ -4635,9 +4620,7 @@ for (fzgx_loop_i_7616 = 0; fzgx_loop_i_7616 < 3; fzgx_loop_i_7616++) {
         }
     }
 }
-#pragma opt_lifetimes reset
 
-#pragma opt_loop_invariants reset
 /* fzgx:end fn_1_B4D4 */
 
 /* fzgx:begin fn_1_B724 noprologue */
@@ -5098,7 +5081,6 @@ typedef struct CameraUpdateState {
     u8 unk_38;
 } CameraUpdateState;
 
-#pragma opt_propagation off
 static inline void update_camera_transform(u8 *value) {
     lbl_8006D9D8(value + 0x10);
 }

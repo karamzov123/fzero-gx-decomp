@@ -1,7 +1,6 @@
 #include <dolphin/exi/EXIPriv.h>
 #include <dolphin/types.h>
 #include "sdk_addresses.h"
-#pragma scheduling off
 
 vu32 __EXIRegs[16] : FZGX_ADDR___EXIRegs;
 

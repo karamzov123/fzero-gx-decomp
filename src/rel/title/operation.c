@@ -506,7 +506,6 @@ extern void fn_1_5233C(void);
 #define PD(o) ((o)==0x00 ? 15.0 : 1.0)
 #define PU(o) (*(const u32 *)(pool + (o)))
 
-#pragma opt_common_subs off
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u32 fzgx_obj_lbl_8_bss_3D0;
 u32 fzgx_pool_lbl_8_bss_3D0_fill_3D4[91];
@@ -579,7 +578,6 @@ void fn_8_6C90(void) {
     p = u.w;
     fn_1_4D0D4(&p, PF(0x20));
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_8_6C90 */
 
 /* fzgx:begin fn_8_6F1C noprologue */
@@ -4344,7 +4342,6 @@ extern void fn_1_49514(u32 *);
 extern s32 fn_1_5233C;
 extern s32 fn_8_CC2C;
 
-#pragma opt_propagation off
 
 void fn_8_A3A4(void) {
     s32 pos;
@@ -4439,7 +4436,6 @@ void fn_8_A3A4(void) {
     bss->unk_24 = 0;
     bss->unk_9C = (*(u32 *)&lbl_801A66A0) << 9;
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_8_A3A4 */
 
 /* fzgx:begin fn_8_A954 */
@@ -4936,7 +4932,6 @@ extern void fn_1_4AE0C(const char *, ...);
 extern void fn_1_4D0D4(fn_8_ADF4_Color *, f32);
 extern void fn_1_5233C(void);
 
-#pragma opt_propagation off
 
 void fn_8_ADF4(u32 lab_unused0) {
     s32 cb;
@@ -7154,7 +7149,6 @@ extern void fn_1_4AE0C(const char *, ...);
 
 struct TitlePool { f32 values[123]; };
 
-#pragma opt_strength_reduction off
 void fn_8_C9A8(s32 x, s32 y, f32 alpha) {
     u32 copy;
     u32 color;
@@ -7188,7 +7182,6 @@ void fn_8_C9A8(s32 x, s32 y, f32 alpha) {
     fn_1_496FC((f32)(x + 520), (f32)(y + 240));
     fn_1_4AE0C((char *)data + 0x2268);
 }
-#pragma opt_strength_reduction reset
 /* fzgx:end fn_8_C9A8 */
 
 /* fzgx:begin fn_8_CC2C */

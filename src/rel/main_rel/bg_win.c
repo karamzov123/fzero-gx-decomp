@@ -43,9 +43,6 @@ typedef struct {
 } fn_1_15B70C_Entry;
 extern void OSPanic(const char *file, int line, const char *expr, ...);
 
-#pragma opt_strength_reduction off
-#pragma opt_propagation off
-#pragma opt_loop_invariants off
 s32 fn_1_15B70C(s32 kind, fn_1_15B70C_Entry *entry) {
     fn_1_15B70C_Obj *obj;
 
@@ -122,9 +119,6 @@ s32 fn_1_15B70C(s32 kind, fn_1_15B70C_Entry *entry) {
     }
     return 1;
 }
-#pragma opt_loop_invariants reset
-#pragma opt_propagation reset
-#pragma opt_strength_reduction reset
 /* fzgx:end fn_1_15B70C */
 
 /* fzgx:begin fn_1_15B970 */
@@ -184,7 +178,6 @@ typedef struct {
     u32 results_offset;
 } StringTable;
 
-#pragma opt_common_subs off
 char *fn_1_15BA78(char *name) {
     struct { StringTable * value; } table;
     u32 index;
@@ -211,7 +204,6 @@ char *fn_1_15BA78(char *name) {
     }
     return name;
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_15BA78 */
 
 /* fzgx:begin fn_1_15BB34 noprologue */
@@ -387,10 +379,6 @@ u16 fn_1_15BBC4(void) {
 extern u16 lbl_1_bss_8F980[16];
 extern u16 lbl_1_bss_8F9A0[480];
 
-#pragma opt_common_subs on
-#pragma opt_dead_assignments on
-#pragma opt_strength_reduction off
-#pragma opt_lifetimes off
 s32 fn_1_15BCDC(u32 *commands) {
     s32 command_index;
     s32 history_index;
@@ -443,11 +431,7 @@ s32 fn_1_15BCDC(u32 *commands) {
     }
     return 1;
 }
-#pragma opt_lifetimes reset
 
-#pragma opt_strength_reduction reset
-#pragma opt_dead_assignments reset
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_15BCDC */
 
 /* fzgx:begin fn_1_15BE38 */
@@ -570,7 +554,6 @@ typedef struct {
     u16 unk_6;
 } WinEntry;
 
-#pragma opt_loop_invariants off
 void fn_1_15C0AC(void) {
     u8 *in;
     struct { WinEntry * value; } out;
@@ -683,7 +666,6 @@ void fn_1_15C0AC(void) {
         in += 0x14;
     } while (--i);
 }
-#pragma opt_loop_invariants reset
 /* fzgx:end fn_1_15C0AC */
 
 /* fzgx:begin fn_1_15C35C */
@@ -705,7 +687,6 @@ extern void fn_1_49410(void);
 extern void fn_1_49728(s32 value);
 extern void fn_1_1420A4(void);
 
-#pragma opt_dead_assignments off
 void fn_1_15C36C(void) {
     s32 index;
     u8 mask;
@@ -769,7 +750,6 @@ void fn_1_15C36C(void) {
     fn_1_1420A4();
     fn_1_49728(0);
 }
-#pragma opt_dead_assignments reset
 /* fzgx:end fn_1_15C36C */
 
 /* fzgx:begin fn_1_15C4EC noprologue */
@@ -1910,9 +1890,7 @@ extern s32 fn_1_3F864(void);
 extern u32 fn_1_58C4(void);
 extern void fn_1_A2D84(u32);
 
-#pragma opt_strength_reduction off
 static inline u32 * fn_1_15E7F4_read_pointer(struct fn_1_15E7F4_Copy88 * owner) { return owner->a; }
-#pragma opt_lifetimes off
 void fn_1_15E7F4(void *arg0, s32 arg1) {
     struct fn_1_15E7F4_lbl_1_rodata_DD58 *p_lbl_1_rodata_DD58;
     f32 v0;
@@ -2051,9 +2029,7 @@ void fn_1_15E7F4(void *arg0, s32 arg1) {
         fn_1_4F734((FontDrawPacket *)&loc_58);
     }
 }
-#pragma opt_lifetimes reset
 
-#pragma opt_strength_reduction reset
 /* fzgx:end fn_1_15E7F4 */
 
 /* fzgx:begin fn_1_15EC40 */

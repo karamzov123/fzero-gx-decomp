@@ -424,7 +424,6 @@ static inline void initialize_entry(PasteSlot *slot, EditorSave *state, u8 *char
     fn_3_12FD4(0, (u8)state->unk_1C, character[0x328], &slot->e[0].unk_10, &slot->e[0].unk_14);
 }
 
-#pragma opt_loop_invariants off
 void fn_3_FD30(void) {
     struct { EditorSave *value; } pw;
 #define p pw.value
@@ -539,7 +538,6 @@ void fn_3_FD30(void) {
         lbl_3_bss_7EDD8.unk_18 = 0;
     }
 }
-#pragma opt_loop_invariants reset
 /* fzgx:end fn_3_FD30 */
 
 /* fzgx:begin fn_3_10260 noprologue */

@@ -1610,7 +1610,6 @@ struct Fn159CC8Object {
     s32 unk_10;
 };
 
-#pragma opt_lifetimes off
 void fn_1_59CC8(struct Fn159CC8Object *arg0) {
     if (arg0->unk_10 == 0) {
         u32 seed = (0x41C64E6D * lbl_1_data_1D628) + 0x3039;
@@ -1624,7 +1623,6 @@ void fn_1_59CC8(struct Fn159CC8Object *arg0) {
         arg0->unk_10 = (s32)(60.0f * (0.08f + scaled));
     }
 }
-#pragma opt_lifetimes reset
 /* fzgx:end fn_1_59CC8 */
 
 /* fzgx:begin fn_1_59D54 */
@@ -2647,9 +2645,6 @@ typedef struct {
 
 extern u32 lbl_1_data_1D628;
 
-#pragma opt_loop_invariants off
-#pragma opt_common_subs off
-#pragma opt_pointer_analysis off
 void fn_1_5ABCC(Fn1_5ABCCOutput *out) {
     f32 t;
     f32 scaled;
@@ -2663,11 +2658,8 @@ void fn_1_5ABCC(Fn1_5ABCCOutput *out) {
     scaled = (0.25f) * (t / (32767.0f));
     out->unk_10 = (s32)((60.0f) * ((0.25f) + scaled));
 }
-#pragma opt_pointer_analysis reset
 
-#pragma opt_common_subs reset
 
-#pragma opt_loop_invariants reset
 /* fzgx:end fn_1_5ABCC */
 
 /* fzgx:begin fn_1_5AC48 noprologue */
@@ -3035,7 +3027,6 @@ extern void fn_1_5621C(f32, f32, f32, f32);
 extern void fn_1_56000(u8, u8, u8);
 extern void fn_1_557C4(void *);
 
-#pragma opt_common_subs on
 static inline f32 fn_1_5AF28_read_pointer(SelfObj * owner) { return owner->f28; }
 void fn_1_5AF28(SelfObj *arg0) {
     f32 fzgx_live_;
@@ -3069,7 +3060,6 @@ void fn_1_5AF28(SelfObj *arg0) {
         fn_1_56000(1, 3, 1);
     }
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_5AF28 */
 
 /* fzgx:begin fn_1_5B074 */
@@ -3392,9 +3382,6 @@ struct fn_1_5B3D0_State {
 
 extern struct fn_1_5B3D0_State lbl_1_data_1D628;
 
-#pragma opt_common_subs off
-#pragma opt_lifetimes on
-#pragma opt_strength_reduction off
 void fn_1_5B3D0(struct fn_1_5B3D0_Arg0 *arg0) {
     u32 next;
     struct fn_1_5B3D0_State *state;
@@ -3410,11 +3397,8 @@ void fn_1_5B3D0(struct fn_1_5B3D0_Arg0 *arg0) {
     state->unk_0 = next;
     arg0->unk_10 = (s32)((60.0f) * ((0.125f) + r.value));
 }
-#pragma opt_strength_reduction reset
 
-#pragma opt_lifetimes reset
 
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_5B3D0 */
 
 /* fzgx:begin fn_1_5B450 noprologue */
@@ -4493,7 +4477,6 @@ typedef struct EffectWork {
     u8 unk_b8;
 } EffectWork;
 
-#pragma opt_loop_invariants off
 void fn_1_5C784(EffectWork *self) {
     struct fn_1_5C784_lbl_1_rodata_2950_pool *pool_lbl_1_rodata_2950 = (struct fn_1_5C784_lbl_1_rodata_2950_pool *)&lbl_1_rodata_2950;
     if (self->unk_10 == 0) {
@@ -4505,7 +4488,6 @@ void fn_1_5C784(EffectWork *self) {
     self->unk_3c = self->unk_94;
     fn_1_8636C(self->unk_18, &self->unk_b8);
 }
-#pragma opt_loop_invariants reset
 /* fzgx:end fn_1_5C784 */
 
 /* fzgx:begin fn_1_5C83C noprologue */
@@ -5564,7 +5546,6 @@ typedef struct {
     u8 pad_28[0x14];
     u8 unk_3C[3];
 } EffectUpdate;
-#pragma opt_lifetimes off
 void fn_1_5D500(EffectUpdate *arg0)
 {
     f32 fzgx_live;
@@ -5602,7 +5583,6 @@ void fn_1_5D500(EffectUpdate *arg0)
         arg0->unk_24 *= 1.0f - scale;
     }
 }
-#pragma opt_lifetimes reset
 /* fzgx:end fn_1_5D500 */
 
 /* fzgx:begin fn_1_5D718 noprologue */
@@ -6830,7 +6810,6 @@ extern u32 mathutil_mtxA_rotate_z(u32);
 #define RF(p,o) (*(f32 *)((u8 *)(p)+(o)))
 #define RS(p,o) (*(s16 *)((u8 *)(p)+(o)))
 #define RB(p,o) (*(s8 *)((u8 *)(p)+(o)))
-#pragma opt_unroll_count 8
 static inline Obj_1_bss_6C84C_Target *find_effect(Obj_1_bss_6C84C_Target *p, s32 count, s32 key) {
     for (; count != 0; count--, p++) {
         if (RB(p,0) && p->unk_4 == key) break;
@@ -8888,7 +8867,6 @@ static inline void fn_1_5F654_set_translate(f32 x, f32 y, f32 z) {
     *(f32 *)(0xE0000000 + 0x2C) = z;
 }
 
-#pragma opt_propagation on
 void fn_1_5F654(fn_1_5F654_Effect *effect) {
     f32 mtx[12];
     Fn183D28Vec3 pos;
@@ -8979,7 +8957,6 @@ void fn_1_5F654(fn_1_5F654_Effect *effect) {
         effect->color[2] *= fade;
     }
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_5F654 */
 
 /* fzgx:begin fn_1_5F9B8 noprologue */
@@ -12723,7 +12700,6 @@ typedef struct {
     u32 unk_130;
 } EffectInner;
 
-#pragma opt_common_subs off
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
@@ -12943,7 +12919,6 @@ fn_1_61D08_EffectObject *obj;
     obj->unk_34 = ((EffectInner *)(u8 *)lbl_1_bss_38458->unk_8)->unk_130;
     return 1;
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_61D08 */
 
 /* fzgx:begin fn_1_61E60 */
@@ -14896,12 +14871,10 @@ static inline f32 eff_dist_to(struct Eff62E9C *e, EffVec3 *p) {
     return lbl_8006D0B4(sq);
 }
 
-#pragma opt_propagation off
 static inline void eff_finish_packet(struct EffPacket62E9C *pkt, f32 size, f32 a) {
     pkt->unk_4 = size;
     pkt->color[3] = (u8)(s32)a;
 }
-#pragma opt_propagation on
 
 void fn_1_62E9C(struct Eff62E9C *e) {
     struct EffPacket62E9C pkt;
@@ -16417,13 +16390,10 @@ extern void lbl_8006DFC4(void *);
 
 extern f32 __fmadds(f32, f32, f32);
 
-#pragma opt_propagation off
 static inline void fn_1_638E8_locked_cache(f32 **ptr) {
     *ptr = (f32 *)LC_BASE;
 }
 
-#pragma opt_propagation on
-#pragma opt_lifetimes off
 void fn_1_638E8(struct fn_1_638E8_Arg0 *arg0) {
     f32 *locked_ptr;
     u32 v33;
@@ -20989,12 +20959,9 @@ f32 fzgx_pool_primer_404(void) { return 3.0f; }
 #pragma section code_type ".text"
 #define effect_random() ((f32)effect_rand() / 32767.0f)
 #define effect_random2() ((f32)effect_rand2() / 32767.0f)
-#pragma opt_propagation off
 static inline f32 effect_saved_random(void) {
     return effect_random();
 }
-#pragma opt_fp_constants off
-#pragma opt_deadstores off
 static inline void effect_cross_store(const Fn183D28Vec3 *a, const Fn183D28Vec3 *b, Fn183D28Vec3 *out) {
     f32 ax, ay, az;
     f32 x, y, z;
@@ -21029,12 +20996,10 @@ static inline u32 effect_aux_jitter(Fn183D28Vec3 *v) {
     z = effect_rand();
     return z;
 }
-#pragma opt_propagation on
 static inline f32 effect_size_random(u32 sample) {
     f32 z = (f32)sample / 32767.0f;
     return z;
 }
-#pragma opt_propagation on
 static inline s32 effect_slot(void) {
     s32 i;
     Fn662D8Effect *p = *(Fn662D8Effect **)&lbl_1_bss_6C848;
@@ -21070,7 +21035,6 @@ typedef Fn662D8Effect Fn662D8Source;
 #define velocity anchor
 
 #pragma fp_contract on
-#pragma opt_propagation off
 static inline f32 effect_madd(f32 c, f32 a, f32 b) {
     return a * b + c;
 }
@@ -21091,9 +21055,6 @@ static inline f32 effect_sqnorm(const Fn183D28Vec3 *v) {
     result = z * z + result;
     return result;
 }
-#pragma opt_propagation on
-#pragma opt_deadstores off
-#pragma opt_propagation on
 #pragma fp_contract on
 void fn_1_662D8(Fn662D8Source *arg0) {
     s16 angle_y;

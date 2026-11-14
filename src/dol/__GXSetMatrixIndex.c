@@ -1,6 +1,5 @@
 #include <types.h>
 #include "sdk_addresses.h"
-#pragma peephole off
 
 typedef u8 GXBool;
 

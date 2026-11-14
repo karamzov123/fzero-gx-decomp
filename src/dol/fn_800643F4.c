@@ -43,7 +43,6 @@ typedef struct {
 
 extern void fn_8005DCEC(u16 *arg0, u32 arg1);
 
-#pragma opt_strength_reduction off
 static inline u8 *fn_800643F4_skip(u8 *base, u32 n) {
     u32 j;
     u8 *q = base;
@@ -170,5 +169,4 @@ void fn_800643F4(u16 cmd) {
         }
     }
 }
-#pragma opt_strength_reduction reset
 

@@ -392,7 +392,6 @@ static inline int rand_next(void) {
     return (lbl_801A63C0 >> 16) & 0x7FFF;
 }
 
-#pragma opt_lifetimes off
 void fn_1_F5B88(Obj_1_data_2A7E0_At3C *arg0) {
     s32 i;
     SplineNode *node;
@@ -427,7 +426,6 @@ void fn_1_F5B88(Obj_1_data_2A7E0_At3C *arg0) {
         node->unk_30 = (s32)(15.0f * ((f32)rand_next() / 32767.0f));
     }
 }
-#pragma opt_lifetimes reset
 /* fzgx:end fn_1_F5B88 */
 
 /* fzgx:begin fn_1_F5D94 */
@@ -510,8 +508,6 @@ static inline f32 fn_1_F5D94_clamp(f32 value, f32 low, f32 high) {
     return value;
 }
 
-#pragma opt_floatingpoint off
-#pragma opt_propagation on
 static inline f32 fn_1_F5D94_reciprocal(f32 value) {
     return 1.0f / (1.0f + (f32)(2.5f * value));
 }
@@ -1615,7 +1611,6 @@ static void fzgx_bss_layout(void) {
 }
 #pragma section code_type ".text"
 
-#pragma opt_common_subs off
 void fn_1_F7A20(void) {
 	
 	s32 i;
@@ -1645,7 +1640,6 @@ void fn_1_F7A20(void) {
 	fn_1_FA4D4();
 	fn_1_FA61C();
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_F7A20 */
 
 /* fzgx:begin fn_1_F7B2C */
@@ -1800,7 +1794,6 @@ s32 fn_1_F7EDC(s16 value) {
 /* fzgx:begin fn_1_F7F48 */
 extern int fn_1_8D5F0(s16 value);
 
-#pragma opt_common_subs off
 void fn_1_F7F48(s16 value) {
     Obj_1_bss_7F0C0 *p;
     u64 mask;
@@ -1821,7 +1814,6 @@ void fn_1_F7F48(s16 value) {
     }
     *(u64 *)&p->unk_18 |= bit;
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_F7F48 */
 
 /* fzgx:begin fn_1_F8030 */
@@ -3963,7 +3955,6 @@ typedef struct {
     u32 image;
 } DrawList;
 
-#pragma opt_dead_assignments on
 /* Preserve the retail multiply operand order after inlining. */
 static inline f32 fn_1_FAB40_operand(f32 right, f32 left) { return left * right; }
 #pragma inline_max_size(10000)
@@ -4120,7 +4111,6 @@ void fn_1_FAB40(void) {
         fn_1_627C(i);
     }
 }
-#pragma opt_dead_assignments reset
 /* fzgx:end fn_1_FAB40 */
 
 /* fzgx:begin fn_1_FB0A8 */

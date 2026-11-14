@@ -1,6 +1,5 @@
 #include "types.h"
 
-#pragma opt_propagation off
 char *fn_80083DB0(char *dst, const char *src) {
     u8 *d = (u8 *)dst;
     const u8 *s = (const u8 *)src;
@@ -39,4 +38,3 @@ char *fn_80083DB0(char *dst, const char *src) {
     return dst;
 }
 
-#pragma opt_propagation reset

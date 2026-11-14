@@ -327,7 +327,6 @@ static inline int mpvhdec_IsWantedDelim(int delimiter_type, int wanted_mask) {
 }
 
 static inline const SJInterface * fn_12_AE70_read_pointer(SJ * owner) { return owner->fields.view_interface.interface; }
-#pragma opt_lifetimes off
 int fn_12_AE70(MPVContext *context, SJ *stream) {
     unsigned char * fzgx_live;
     SJCK header;
@@ -411,5 +410,4 @@ int fn_12_AE70(MPVContext *context, SJ *stream) {
         }
     }
 }
-#pragma opt_lifetimes reset
 

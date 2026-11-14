@@ -908,7 +908,6 @@ static void fzgx_string_layout(void) {
 }
 #pragma section code_type ".text"
 
-#pragma opt_common_subs off
 u32 fn_8_1394(void) {
     f32 fn_8_1394_zero;
     u32 v1;
@@ -1226,7 +1225,6 @@ u32 fn_8_1394(void) {
     }
     return v45;
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_8_1394 */
 
 /* fzgx:begin fn_8_1C08 */
@@ -1274,7 +1272,6 @@ extern u32 fn_1_9A958(u32, u32);
 extern void fn_1_7B084(void *, int);
 extern void fn_8006CE1C(f32);
 
-#pragma opt_loop_invariants off
 void fn_8_1C18(void) {
     struct fn_8_1C18_lbl_8_bss_0 *p_lbl_8_bss_0;
     p_lbl_8_bss_0 = (struct fn_8_1C18_lbl_8_bss_0 *)&(*(struct fn_8_1C18_lbl_8_bss_0 *)&lbl_8_bss_0);
@@ -1286,7 +1283,6 @@ void fn_8_1C18(void) {
     fn_1_9A958(p_lbl_8_bss_0->unk_224, 0);
     p_lbl_8_bss_0->unk_2 = 1;
 }
-#pragma opt_loop_invariants reset
 /* fzgx:end fn_8_1C18 */
 
 /* fzgx:begin fn_8_1C90 noprologue */
@@ -2193,8 +2189,6 @@ extern void *fn_8_5840(void *);
 extern void fn_8_2124(fn_8_2660_u32, void *, fn_8_2660_f32);
 extern void fn_8_784(fn_8_2660_u32);
 static inline void *fn_8_2660_array_read(void **array, fn_8_2660_s32 *index) { return array[*index]; }
-#pragma opt_propagation on
-#pragma opt_lifetimes on
 extern fn_8_2660_u8 fn_8_1304__fzgx_offset_0[];
 extern fn_8_2660_u8 fn_8_1344__fzgx_offset_0[];
 extern fn_8_2660_u8 fn_8_1394__fzgx_offset_0[];
@@ -3814,8 +3808,6 @@ break;
 fn_1_54278(0, 0);
 fn_1_5428C((1.0f));
 }
-#pragma opt_lifetimes on
-#pragma opt_propagation reset
 /* fzgx:end fn_8_2660 */
 
 /* fzgx:begin fn_8_4E8C */

@@ -1,4 +1,3 @@
-#pragma peephole on
 #include "types.h"
 
 typedef int DSError;
