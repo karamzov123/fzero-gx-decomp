@@ -9556,9 +9556,6 @@ extern u32 mathutil_mtxA_rotate_z(s32);
 extern void lbl_8006D1B8(s16, Vec2 *);
 extern void lbl_8006E1C0(Vec3 *, Vec3 *);
 
-#pragma opt_common_subs off
-#pragma opt_loop_invariants off
-#pragma opt_strength_reduction off
 void fn_1_549F4(Vec3 *arg0, Angles *arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
     f32 fzgx_live_;
     f32 fzgx_live;
@@ -9636,11 +9633,8 @@ void fn_1_549F4(Vec3 *arg0, Angles *arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5
     lbl_801A66CC->dir[3].z = -v.c;
     lbl_8006E1C0(&lbl_801A66CC->dir[3], &lbl_801A66CC->aim[3]);
 }
-#pragma opt_strength_reduction reset
 
-#pragma opt_loop_invariants reset
 
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_549F4 */
 
 /* fzgx:begin fn_1_54DCC */

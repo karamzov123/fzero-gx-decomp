@@ -356,7 +356,6 @@ typedef struct {
 } InterviewCfg;
 extern InterviewCfg lbl_1_bss_58;
 typedef struct { u8 pad_0[5]; u8 unk_5; } InterviewInfo;
-#pragma opt_dead_assignments off
 void fn_17_3F0(void) {
     const u8 *base;
     InterviewInfo *info;
@@ -420,7 +419,6 @@ void fn_17_3F0(void) {
     cfg->unk_3 = 1;
     lbl_1_bss_968 = 8;
 }
-#pragma opt_dead_assignments reset
 /* fzgx:end fn_17_3F0 */
 
 /* fzgx:begin fn_17_6C8 noprologue */

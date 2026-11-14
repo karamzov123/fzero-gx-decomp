@@ -43733,7 +43733,7 @@
       "@51": "lbl_1_rodata_7B08",
       "@8": "lbl_1_data_40530",
       "@55": "lbl_1_rodata_7B20",
-      "@416": "lbl_1_data_4059C",
+      "@417": "lbl_1_data_4059C",
       "...data.0": "lbl_1_data_3F510",
       "fzgx_obj_lbl_1_data_3F510": "lbl_1_data_3F510",
       "fzgx_obj_lbl_1_data_3F9CC": "lbl_1_data_3F9CC",
@@ -114628,12 +114628,12 @@
     "tu": "rel/main_rel/font.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_2880",
-      "@14": "lbl_1_rodata_2880",
-      "@15": "lbl_1_rodata_2880+0x4",
-      "@16": "lbl_1_rodata_2880+0x8",
-      "@17": "lbl_1_rodata_2880+0x10",
-      "@19": "lbl_1_rodata_2880+0x20",
-      "@18": "lbl_1_rodata_2880+0x18"
+      "@19": "lbl_1_rodata_2880",
+      "@20": "lbl_1_rodata_2880+0x4",
+      "@21": "lbl_1_rodata_2880+0x8",
+      "@22": "lbl_1_rodata_2880+0x10",
+      "@24": "lbl_1_rodata_2880+0x20",
+      "@23": "lbl_1_rodata_2880+0x18"
     }
   },
   {
@@ -133708,10 +133708,10 @@
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_CF40",
-      "@26": "lbl_1_rodata_CF40+0x18",
-      "@24": "lbl_1_rodata_CF40+0x14",
-      "@23": "lbl_1_rodata_CF40+0x10",
-      "@22": "lbl_1_rodata_CF40+0xC",
+      "@25": "lbl_1_rodata_CF40+0x18",
+      "@23": "lbl_1_rodata_CF40+0x14",
+      "@22": "lbl_1_rodata_CF40+0x10",
+      "@21": "lbl_1_rodata_CF40+0xC",
       "@16": "lbl_1_rodata_CF40"
     }
   },

@@ -22111,7 +22111,6 @@ extern u32 lbl_801A63C0;
 extern s16 fn_1_3F0C8(Obj_1_data_2A7E0 *);
 extern void fn_1_1507C4(Entry24 *, Vec3 *);
 
-#pragma opt_propagation off
 static inline s32 *fn_1_150654_array_read(s32 *array) { return array; }
 void fn_1_150654(void) {
     s32 *counters;
@@ -22157,7 +22156,6 @@ void fn_1_150654(void) {
         entries = (Entry24 *)((u8 *)entries + 0x24);
     }
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_150654 */
 
 /* fzgx:begin fn_1_1507C4 noprologue */

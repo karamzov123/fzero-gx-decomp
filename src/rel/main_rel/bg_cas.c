@@ -1311,7 +1311,6 @@ static void fzgx_pool_layout_2(void) {
 }
 #pragma section code_type ".text"
 
-#pragma opt_common_subs off
 void fn_1_FCA10(void) {
     CasColor color = {0xFF, 0xFF, 0xFF, 0xFF};
     u16 j;
@@ -1404,7 +1403,6 @@ void fn_1_FCA10(void) {
     fn_80072CC4(3, 7, 4, 0, 7);
     fn_80072E20(3, 0, 0, 0, 1, 0);
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_FCA10 */
 
 /* fzgx:begin fn_1_FCF50 */
