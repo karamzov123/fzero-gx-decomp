@@ -2463,9 +2463,15 @@ struct Rec {
     u32 pad_2[4];
 };
 
+struct Joint {
+    u8 pad_0[0x88];
+    f32 matrix[3][4];
+    u8 pad_1[0x18C - 0xB8];
+};
+
 struct MgrInner {
     u8 pad_0[8];
-    u8 *p;
+    struct Joint *joints;
 };
 
 struct Mgr {
@@ -2497,7 +2503,7 @@ void fn_1_10B800(struct Accessory *acc) {
     s16 angle;
     s16 d = 0x100;
     u8 *base;
-    u8 *p;
+    struct Joint *joint;
     u32 n;
     f32 f1;
     f32 lo;
@@ -2512,23 +2518,20 @@ void fn_1_10B800(struct Accessory *acc) {
 
     if (acc != 0 && acc->arg != 0) {
         base = (u8 *)fn_80077B14(acc->arg);
-        p = acc->mgr->inner->p;
+        joint = &acc->mgr->inner->joints[18];
 
-        lbl_8006DBAC(p + 0x1C60);
+        lbl_8006DBAC(joint->matrix);
         lbl_8006E1B0(&c1, &c1);
-        lbl_8006DBAC(p + 0x1C60);
+        lbl_8006DBAC(joint->matrix);
         lbl_8006E1B0(&c2, &c2);
 
         angle = -0x800;
         lo = pool->lo;
         n = 100;
-        /* WARNING: compiler-diff device, not original code: value-preserving 64-bit round trip. A fresh
-         * codegen temp gives p retail's r31 (acc r30, pool r29). Honest form `p = acc->mgr->inner->p;`
-         * leaves an r29/r30/r31 rotation (17 rows). */
-        p = (u8 *)(u32)((u64)acc->mgr->inner->p | 0x100000000ull);
+        joint = &acc->mgr->inner->joints[16];
         do {
             c3 = pool->v[2];
-            lbl_8006DBAC(p + 0x1948);
+            lbl_8006DBAC(joint->matrix);
             mathutil_mtxA_rotate_y(angle);
             lbl_8006E1B0(&c3, &c3);
             f1 = fn_1_1289F0(&c1, &c2, &c3);
