@@ -7765,6 +7765,7 @@ rel/main_rel/bg_san/fn_1_DAF94.c:
 
 rel/main_rel/spline/fn_1_F73A8.c:
 	.text       start:0x000F73A8 end:0x000F755C align:4
+	.data       start:0x0003E8F0 end:0x0003E910 align:8
 
 rel/main_rel/sel_static_disp/fn_1_14D994.c:
 	.text       start:0x0014D994 end:0x0014DB48 align:4
@@ -20334,7 +20335,7 @@ rel/main_rel/data/lbl_1_data_3D138.c:
 	.data       start:0x0003D138 end:0x0003D158 align:8
 
 rel/main_rel/data/lbl_1_data_3E8E0.c:
-	.data       start:0x0003E8E0 end:0x0003E8F4 align:8
+	.data       start:0x0003E8E0 end:0x0003E8F0 align:8
 
 rel/main_rel/data/lbl_1_data_41930.c:
 	.data       start:0x00041930 end:0x00041940 align:8

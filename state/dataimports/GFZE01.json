@@ -308693,34 +308693,6 @@
     "unit_size": 20,
     "unit_start": 256224
   },
-  "main_rel:lbl_1_data_3E8F0": {
-    "address": 256240,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "u8 lbl_1_data_3E8F0",
-        "path": "include/rel/main_rel/spline.h"
-      }
-    ],
-    "definition": "u8 lbl_1_data_3E8F0",
-    "method": "typed-data",
-    "module": "main_rel",
-    "references": [
-      "fn_1_F73A8",
-      "fn_1_F755C",
-      "fn_1_F7568"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 17,
-    "sha256": "dc0e9c3658a1a3ed1ec94274d8b19925c93e1abb7ddba294923ad9bde30f8cb8",
-    "size": 1,
-    "source": "rel/main_rel/data/lbl_1_data_3E8E0.c",
-    "symbol": "lbl_1_data_3E8F0",
-    "unit_align": 8,
-    "unit_size": 20,
-    "unit_start": 256224
-  },
   "main_rel:lbl_1_data_3E910": {
     "address": 256272,
     "align": 8,
