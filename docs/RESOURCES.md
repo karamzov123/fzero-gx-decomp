@@ -12,6 +12,7 @@
 
 - [Line__Crypt](https://github.com/CosmoCortney/Line__Crypt) by CosmoCortney — documented the cipher over `enemy_line/line__.bin` and its per-region keys. `tools/linecrypt.py` is a reimplementation of the 32-bit LCG XOR stream, cross-checked against the retail loader stub's disassembly.
 - [SMB_LZ_Tool](https://github.com/bobjrsenior/SMB_LZ_Tool) by bobjrsenior (Unlicense) — the Amusement Vision FF7-style LZSS shared with Super Monkey Ball. `tools/avlz.py` reimplements the decoder to mirror the retail routine.
+- LZSS.C by Haruhiko Okumura (1989, public domain) — the binary-tree LZSS encoder. `tools/avlz.py`'s compressor is a Python port of it with a zero-filled ring; it reproduces the retail compressed `main.rel` byte for byte.
 
 ## Reference decompilations
 

@@ -10,7 +10,7 @@ Steps:
   2. Pull files/enemy_line/line__.bin (via dtk's VFS when a disc image is present).
   3. Decrypt (linecrypt) -> main.rel.lz, decompress (avlz) -> main.rel.
   4. Assert the cipher round-trips byte-exact and report whether our
-     compressor reproduces the original .lz (only `ninja disc` cares).
+     compressor reproduces the original .lz (tools/build_disc.py needs it).
   5. Write orig/<VERSION>/files/enemy_line/main.rel and print the SHA-1 of
      every matching target for config/<VERSION>/build.sha1.
 
@@ -32,6 +32,8 @@ import linecrypt
 ROOT = Path(__file__).resolve().parent.parent
 DISC_EXTS = (".rvz", ".iso", ".gcm", ".wia", ".ciso", ".gcz", ".nfs", ".tgc")
 REGION_BY_VERSION = {"GFZE01": "INT", "GFZP01": "INT", "GFZJ01": "JPN"}
+# REL file prefix on each disc: fze.*.rel (USA), fzp.*.rel (PAL), fz.*.rel (JPN).
+REL_PREFIX = {"GFZE01": "fze", "GFZP01": "fzp", "GFZJ01": "fz"}
 REL_NAMES = [
     "car_colchg", "customize", "interview", "movie", "movie_module", "option",
     "pilotpoint", "profile", "replay", "sample", "sel", "story", "title", "winning",
@@ -60,6 +62,16 @@ def read_disc_file(orig: Path, rel_path: str) -> bytes:
     if extracted.exists():
         return extracted.read_bytes()
     images = sorted(p for p in orig.parent.iterdir() if p.suffix.lower() in DISC_EXTS)
+    # With several versions' images in orig/, prefer the raw image whose header
+    # game ID (first 6 bytes) is this version; compressed formats are kept as fallback.
+    def header_id(p: Path) -> str:
+        if p.suffix.lower() not in (".iso", ".gcm"):
+            return ""
+        with p.open("rb") as f:
+            return f.read(6).decode("ascii", "replace")
+    raw = {p: header_id(p) for p in images}
+    if any(raw.values()):
+        images = [p for p in images if raw[p] == orig.name] + [p for p in images if not raw[p]]
     if not images:
         raise SystemExit(f"{rel_path} not found under {orig} and no disc image in {orig.parent}")
     extracted.parent.mkdir(parents=True, exist_ok=True)
@@ -96,7 +108,7 @@ def main(argv: list[str] | None = None) -> int:
     print()
     print("targets:")
     print(f"  {sha1(read_disc_file(orig, 'sys/main.dol'))}  sys/main.dol")
-    prefix = "fz" if region == "JPN" else "fze"
+    prefix = REL_PREFIX[args.version]
     for name in REL_NAMES:
         p = f"files/{prefix}.{name}.rel"
         try:
