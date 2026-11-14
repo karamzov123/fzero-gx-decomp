@@ -151799,6 +151799,17 @@
   },
   {
     "module": "movie_module",
+    "source": "rel/movie_module/fn_12_3C4A8.c",
+    "symbols": [
+      "fn_12_3C4A8"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "pool": {}
+  },
+  {
+    "module": "movie_module",
     "source": "rel/movie_module/fn_12_3C8CC.c",
     "symbols": [
       "fn_12_3C8CC"
@@ -173286,16 +173297,5 @@
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
     "tu": "rel/winning/winning.c"
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/fn_12_3C4A8.c",
-    "symbols": [
-      "fn_12_3C4A8"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "pool": {}
   }
 ]
