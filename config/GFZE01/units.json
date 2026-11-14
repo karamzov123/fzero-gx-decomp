@@ -59713,8 +59713,8 @@
     "extra_cflags": [],
     "tu": "rel/main_rel/car.c",
     "pool": {
-      "@46": "lbl_1_rodata_3F6C",
-      "@47": "lbl_1_rodata_4010"
+      "@47": "lbl_1_rodata_3F6C",
+      "@48": "lbl_1_rodata_4010"
     }
   },
   {
