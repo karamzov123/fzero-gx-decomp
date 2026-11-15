@@ -1,100 +1,367 @@
 #include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/prog.h"
+#include "dolphin/hw_regs.h"
+#include "dolphin/os/OSTime.h"
+#include "dol/gx_tables.h"
 
-extern u32 lbl_1_bss_6F5F4;
-extern void fn_1_4A00(s32, s32, u32);
-extern s8 fn_1_A5DC4(void);
-extern const f32 lbl_1_rodata_49F8;
-extern f32 lbl_1_rodata_49FC[11];
-extern f32 fn_1_A6FE8(void);
-extern void fn_1_A714C(f32 *, f32 *, f32 *, f32 *);
-extern u32 lbl_1_bss_6F5F0;
+/* The progressive scan prompt. */
+typedef struct {
+    u32 enabled;
+    s8 state;
+    u8 progressive;
+    s16 timer;
+} ProgScan;
 
-/* fzgx:begin fn_1_A6870 */
-typedef enum {
-    Sig_GXAdjustForOverscan_VI_TVMODE_NTSC_INT = ((((0)) << 2) + ((0))),
-    Sig_GXAdjustForOverscan_VI_TVMODE_NTSC_DS = ((((0)) << 2) + ((1))),
-    Sig_GXAdjustForOverscan_VI_TVMODE_NTSC_PROG = ((((0)) << 2) + ((2))),
-    Sig_GXAdjustForOverscan_VI_TVMODE_NTSC_3D = ((((0)) << 2) + ((3))),
-    Sig_GXAdjustForOverscan_VI_TVMODE_PAL_INT = ((((1)) << 2) + ((0))),
-    Sig_GXAdjustForOverscan_VI_TVMODE_PAL_DS = ((((1)) << 2) + ((1))),
-    Sig_GXAdjustForOverscan_VI_TVMODE_MPAL_INT = ((((2)) << 2) + ((0))),
-    Sig_GXAdjustForOverscan_VI_TVMODE_MPAL_DS = ((((2)) << 2) + ((1))),
-    Sig_GXAdjustForOverscan_VI_TVMODE_DEBUG_INT = ((((3)) << 2) + ((0))),
-    Sig_GXAdjustForOverscan_VI_TVMODE_DEBUG_PAL_INT = ((((4)) << 2) + ((0))),
-    Sig_GXAdjustForOverscan_VI_TVMODE_DEBUG_PAL_DS = ((((4)) << 2) + ((1))),
-    Sig_GXAdjustForOverscan_VI_TVMODE_EURGB60_INT = ((((5)) << 2) + ((0))),
-    Sig_GXAdjustForOverscan_VI_TVMODE_EURGB60_DS = ((((5)) << 2) + ((1))),
-    Sig_GXAdjustForOverscan_VI_TVMODE_GCA_INT = ((((6)) << 2) + ((0))),
-    Sig_GXAdjustForOverscan_VI_TVMODE_GCA_DS = ((((6)) << 2) + ((1))),
-    Sig_GXAdjustForOverscan_VI_TVMODE_GCA_PROG = ((((6)) << 2) + ((2))),
-} Sig_GXAdjustForOverscan_VITVMode;
-typedef enum {
-    Sig_GXAdjustForOverscan_VI_XFBMODE_SF = 0,
-    Sig_GXAdjustForOverscan_VI_XFBMODE_DF = 1,
-} Sig_GXAdjustForOverscan_VIXFBMode;
-typedef struct Sig_GXAdjustForOverscan__GXRenderModeObj {
-    Sig_GXAdjustForOverscan_VITVMode viTVmode;
-    u16 fbWidth;
-    u16 efbHeight;
-    u16 xfbHeight;
-    u16 viXOrigin;
-    u16 viYOrigin;
-    u16 viWidth;
-    u16 viHeight;
-    Sig_GXAdjustForOverscan_VIXFBMode xFBmode;
-    u8 field_rendering;
-    u8 aa;
-    u8 sample_pattern[12][2];
-    u8 vfilter[7];
-} Sig_GXAdjustForOverscan_GXRenderModeObj;
-typedef u8 Sig_fn_80035110_GXBool;
-typedef u8 Sig_fn_80034ECC_GXBool;
+/* A controller state (0x14 bytes). */
+typedef struct {
+    u16 button;
+    u16 unk_2;
+    u8 pad_4[0x4];
+    u16 down;
+    u16 unk_A;
+    u8 pad_C[0x8];
+} ProgPad;
 
-extern Sig_GXAdjustForOverscan_GXRenderModeObj *lbl_801A6CF4;
-extern Sig_GXAdjustForOverscan_GXRenderModeObj lbl_8012B030;
-extern Sig_GXAdjustForOverscan_GXRenderModeObj lbl_8012AFB8;
-extern Sig_GXAdjustForOverscan_GXRenderModeObj lbl_8012B0A8;
-extern Sig_GXAdjustForOverscan_GXRenderModeObj lbl_8012B06C;
-extern Sig_GXAdjustForOverscan_GXRenderModeObj lbl_8019E150;
-
-struct fn_1_A6870_lbl_801A6D30_obj {
+typedef struct {
     u32 unk_0;
     u32 unk_4;
     u32 unk_8;
-};
-struct fn_1_A6870_lbl_801A6D30 {
-    struct fn_1_A6870_lbl_801A6D30_obj *unk_0;
-};
-extern struct fn_1_A6870_lbl_801A6D30 lbl_801A6D30;
+} ProgDisplay;
 
-extern const f32 lbl_1_rodata_49D8;
-extern const f32 lbl_1_rodata_49DC;
-extern const f64 lbl_1_rodata_49E0;
+typedef struct {
+    u8 r;
+    u8 g;
+    u8 b;
+    u8 a;
+} ProgColor;
 
-extern void fn_1_54DCC(u8 *);
-extern void fn_1_549F4(void *, void *, f32, f32, f32, f32);
-extern void fn_1_A7024(f32, f32, f32, f32);
-extern u32 VIGetTvFormat(void);
+extern GXRenderModeObj *lbl_801A6CF4;
+extern GXRenderModeObj lbl_8012B030;
+extern GXRenderModeObj lbl_8012AFB8;
+extern GXRenderModeObj lbl_8012B0A8;
+extern GXRenderModeObj lbl_8012B06C;
+extern GXRenderModeObj lbl_8019E150;
+extern ProgDisplay *lbl_801A6D30;
+extern u8 lbl_801A66B0[];
+extern s32 lbl_801A66B4;
+extern ProgPad lbl_1_bss_9F8[4];
+extern s16 lbl_1_bss_962;
+extern ProgPad lbl_1_bss_D58;
+
+extern void OSPanic(const char *file, int line, const char *msg, ...);
+extern s32 OSGetResetCode(void);
 extern u32 OSGetProgressiveMode(void);
-extern void OSPanic(const char *, int, const char *, ...);
-extern void GXAdjustForOverscan(Sig_GXAdjustForOverscan_GXRenderModeObj *, Sig_GXAdjustForOverscan_GXRenderModeObj *, u16, u16);
-extern s32 VIConfigure(u32);
+extern void OSSetProgressiveMode(s32 mode);
+extern u32 VIGetDTVStatus(void);
+extern u32 VIGetTvFormat(void);
+extern void VIConfigure(GXRenderModeObj *rmode);
 extern void VIWaitForRetrace(void);
 extern void VIFlush(void);
-extern void fn_8007423C(u32, u32, u32, u32);
-extern void fn_800743C4(s32, u32);
-extern void fn_80035110(void *, Sig_fn_80035110_GXBool);
-extern u32 fn_80038EEC(f32, f32, f32, f32, f32, f32);
-extern void fn_80074188(u32, u32, u32, u32);
-extern void fn_80034ECC(Sig_fn_80034ECC_GXBool, void *, Sig_fn_80034ECC_GXBool, void *);
-extern u32 lbl_1_data_3431C;
-extern u8 lbl_1_data_34324[0x20];
-extern u8 lbl_801A66B0[];
+extern void GXAdjustForOverscan(GXRenderModeObj *rmIn, GXRenderModeObj *rmOut, u16 hor, u16 ver);
+extern void fn_80034ECC(u8 aa, u8 *pattern, u8 vf, u8 *filter);
+extern void fn_80035110(void *buf, u8 flag);
+extern void fn_80038EEC(f32 x, f32 y, f32 w, f32 h, f32 nearZ, f32 farZ);
+extern void fn_8006CE1C(f32 value);
+extern void fn_80070620(s32 value);
+extern void fn_80074188(u32 x, u32 y, u32 w, u32 h);
+extern void fn_8007423C(u32 x, u32 y, u32 w, u32 h);
+extern void fn_800743C4(s32 w, u32 h);
+extern void fn_1_3308(void);
+extern void fn_1_4A00(s32 arg0, s32 arg1, u32 arg2);
+extern s32 fn_1_4C10(void);
+extern void fn_1_49410(void);
+extern void fn_1_494DC(s16 size);
+extern void fn_1_49514(ProgColor *color);
+extern void fn_1_4954C(f32 value);
+extern void fn_1_495B0(u32 flags);
+extern void fn_1_495C8(u8 value);
+extern void fn_1_4965C(u8 value);
+extern void fn_1_496FC(f32 x, f32 y);
+extern void fn_1_4A0D8(const char *text);
+extern void fn_1_4AF10(const char *text);
+extern void fn_1_549F4(void *mtx, void *pos, f32 arg2, f32 arg3, f32 arg4, f32 arg5);
+extern void fn_1_54DCC(u8 *buf);
+extern void fn_1_A9868(void);
+extern void fn_1_A9A28(int x0, int y0, int x1, int y1, ProgColor *color);
+extern void fn_1_AA538(void);
 
-void fn_1_A6870(u32 *arg0) {
-    Sig_GXAdjustForOverscan_GXRenderModeObj *rmode;
+extern f32 fn_1_A6FE8(void);
+extern void fn_1_A7024(f32 fovy, f32 aspect, f32 near, f32 far);
+extern void fn_1_A714C(f32 *fovy, f32 *aspect, f32 *near, f32 *far);
+
+void fn_1_A5F44(void);
+s32 fn_1_A6480(void);
+void fn_1_A6870(u32 *mode);
+
+u32 lbl_1_bss_6F5F0;
+u32 lbl_1_bss_6F5F4;
+s32 lbl_1_bss_6F600;
+static ProgScan lbl_1_bss_6F5F8;
+ProgScan *lbl_1_data_341B8 = &lbl_1_bss_6F5F8;
+
+/* fzgx:begin fn_1_A5D88 */
+u16 fn_1_A5D88(void) {
+    return lbl_801A6CF4->fbWidth;
+}
+/* fzgx:end fn_1_A5D88 */
+
+/* fzgx:begin fn_1_A5D9C */
+u16 fn_1_A5D9C(void) {
+    return lbl_801A6CF4->efbHeight;
+}
+/* fzgx:end fn_1_A5D9C */
+
+/* fzgx:begin fn_1_A5DB0 */
+u16 fn_1_A5DB0(void) {
+    return lbl_801A6CF4->xfbHeight;
+}
+/* fzgx:end fn_1_A5DB0 */
+
+/* fzgx:begin fn_1_A5DC4 */
+// Return whether relocation processing is in one of the active states.
+s8 fn_1_A5DC4(void) {
+    if ((s32)lbl_1_bss_6F5F0 == 1 || (s32)lbl_1_bss_6F5F0 == 2) {
+        return 1;
+    }
+    return 0;
+}
+/* fzgx:end fn_1_A5DC4 */
+
+/* fzgx:begin fn_1_A5DEC */
+void fn_1_A5DEC(void) {
+    u32 ticks;
+    u32 start;
+
+    if (VIGetDTVStatus() != 0) {
+        fn_1_3308();
+        start = OSGetTick();
+        do {
+            ticks = (OS_BUS_CLOCK >> 2) / 1000;
+        } while ((u32)((OSGetTick() / ticks) - (start / ticks)) < 500);
+        fn_1_3308();
+        if (((lbl_1_bss_9F8[0].button >> 9) & 1) || ((lbl_1_bss_9F8[1].button >> 9) & 1) ||
+            ((lbl_1_bss_9F8[2].button >> 9) & 1) || ((lbl_1_bss_9F8[3].button >> 9) & 1) ||
+            OSGetProgressiveMode() != 0) {
+            lbl_1_data_341B8->enabled = 1;
+            return;
+        }
+        lbl_1_data_341B8->enabled = 0;
+        return;
+    }
+    lbl_1_data_341B8->enabled = 0;
+}
+/* fzgx:end fn_1_A5DEC */
+
+/* fzgx:begin fn_1_A5EFC */
+void fn_1_A5EFC(void) {
+    lbl_1_bss_6F5F0 = 0;
+    if ((s32)lbl_1_data_341B8->enabled != 0) {
+        lbl_1_data_341B8->state = 0;
+        lbl_1_data_341B8->progressive = 1;
+        lbl_1_data_341B8->timer = 600;
+    }
+}
+/* fzgx:end fn_1_A5EFC */
+
+/* fzgx:begin fn_1_A5F44 */
+void fn_1_A5F44(void) {
+    char *displayIn[6] = {"Would you like to display in", "", "", "", "",
+                          "\203v\203\215\203O\203\214\203b\203V\203u\203\202\201[\203h\202\305"};
+    char *progQuestion[6] = {"Progressive Scan Mode?", "", "", "", "",
+                             "\225\\[\202\320\202\345\202\244]\216\246[\202\266]\202\265\202\334\202\267\202\251\201H"};
+    char *yes[6] = {"YES", "", "", "", "", "\202\315\202\242"};
+    char *no[6] = {"NO", "", "", "", "", "\202\242\202\242\202\246"};
+    char *cursorYes[6] = {"<     >", "", "", "", "", "[\201@\201@]"};
+    char *cursorNo[6] = {"<    >", "", "", "", "", "[\201@\201@\201@]"};
+    char *setTo[6] = {"Screen display has been set to", "", "", "", "",
+                      "\211\346[\202\252]\226\312[\202\337\202\361 ]\225\\[\202\320\202\345\202\244]\216\246[\202\266]\203\202\201[\203h\202\315"};
+    char *progMode[6] = {"Progressive Scan Mode.", "", "", "", "",
+                         "\203v\203\215\203O\203\214\203b\203V\203u\203\202\201[\203h\202\311"};
+    char *interlace[6] = {"Interlace Mode.", "", "", "", "",
+                          "\203C\203\223\203^\201[\203\214\201[\203X\203\202\201[\203h\202\311"};
+    char *wasSet[6] = {"", "", "", "", "", "\203Z\203b\203g\202\263\202\352\202\334\202\265\202\275\201B"};
+    ProgColor color;
+
+    fn_1_49410();
+    fn_1_494DC(42);
+    fn_1_495B0(0x80000000);
+    fn_1_4965C(0);
+    color = (ProgColor){0xFF, 0xFF, 0xFF, 0x00};
+    fn_1_49514(&color);
+    fn_1_4954C(0.1f);
+    fn_1_495C8(9);
+    switch (lbl_1_data_341B8->state) {
+    case 0:
+    case 5:
+        fn_1_496FC(320.0f, 184.0f);
+        fn_1_4AF10(displayIn[lbl_801A66B4]);
+        fn_1_496FC(320.0f, 221.0f);
+        fn_1_4AF10(progQuestion[lbl_801A66B4]);
+        fn_1_496FC(256.0f, 258.0f);
+        fn_1_4AF10(yes[lbl_801A66B4]);
+        if ((s32)lbl_1_data_341B8->progressive == 1 && (s32)lbl_1_data_341B8->state != 5) {
+            fn_1_496FC(256.0f, 258.0f);
+            fn_1_4A0D8(cursorYes[lbl_801A66B4]);
+        }
+        fn_1_496FC(384.0f, 258.0f);
+        fn_1_4AF10(no[lbl_801A66B4]);
+        if ((s32)lbl_1_data_341B8->progressive != 1 && (s32)lbl_1_data_341B8->state != 5) {
+            fn_1_496FC(384.0f, 258.0f);
+            fn_1_4A0D8(cursorNo[lbl_801A66B4]);
+        }
+        break;
+    case 4:
+        fn_1_496FC(320.0f, 184.0f);
+        fn_1_4AF10(setTo[lbl_801A66B4]);
+        fn_1_496FC(320.0f, 221.0f);
+        if ((s32)lbl_1_data_341B8->progressive == 1) {
+            fn_1_4AF10(progMode[lbl_801A66B4]);
+        } else {
+            fn_1_4AF10(interlace[lbl_801A66B4]);
+        }
+        if ((s32)lbl_801A66B4 != 5) {
+            fn_1_496FC(320.0f, 258.0f);
+            fn_1_4AF10(wasSet[lbl_801A66B4]);
+        }
+        break;
+    case 1:
+        return;
+    }
+}
+/* fzgx:end fn_1_A5F44 */
+
+/* fzgx:begin fn_1_A6480 */
+s32 fn_1_A6480(void) {
+    s32 buttonA;
+    s32 buttonB;
+    s32 start;
+    s8 state;
+    ProgPad *pad;
+
+    pad = &lbl_1_bss_D58;
+    buttonA = 1;
+    /* WARNING: compiler-diff device, not original code. Retail reloads this field (volatile view). */
+    if (!((*(u16 volatile *)&lbl_1_bss_D58.down) & 1) && !(lbl_1_bss_D58.unk_A & 1)) {
+        buttonA = 0;
+    }
+    buttonB = 1;
+    if (!((lbl_1_bss_D58.down >> 1) & 1) && !((lbl_1_bss_D58.unk_A >> 1) & 1)) {
+        buttonB = 0;
+    }
+    start = (pad->down >> 8) & 1;
+    state = lbl_1_data_341B8->state;
+    switch (state) {
+    case 0:
+        fn_8006CE1C(0.0f);
+        if (((u32)__cntlzw((u32)((-2147483647 - 1) - OSGetResetCode())) >> 5) != 0) {
+            lbl_1_data_341B8->state = 2;
+        } else {
+            if (buttonA != 0) {
+                lbl_1_data_341B8->progressive = 1;
+            } else if (buttonB != 0) {
+                lbl_1_data_341B8->progressive = 0;
+            }
+            if ((--lbl_1_data_341B8->timer) <= 0 || start != 0) {
+                lbl_1_data_341B8->state = 2;
+            }
+        }
+        break;
+    case 2:
+        if ((s32)lbl_1_data_341B8->progressive == 1) {
+            lbl_1_data_341B8->timer = 100;
+            OSSetProgressiveMode(1);
+        } else {
+            lbl_1_data_341B8->timer = 1;
+            OSSetProgressiveMode(0);
+        }
+        lbl_1_data_341B8->state = 3;
+        break;
+    case 3:
+        if (--lbl_1_data_341B8->timer <= 0) {
+            lbl_1_data_341B8->state = 4;
+            lbl_1_data_341B8->timer = 300;
+        } else if (lbl_1_data_341B8->timer == 70) {
+            fn_80070620(1);
+        }
+        break;
+    case 4:
+        if ((--lbl_1_data_341B8->timer) <= 0 || start != 0) {
+            return 1;
+        }
+        break;
+    case 5:
+        if (fn_1_4C10() == 0) {
+            lbl_1_data_341B8->state = 0;
+            lbl_1_data_341B8->progressive = 1;
+            lbl_1_data_341B8->timer = 600;
+        }
+        break;
+    }
+    return 0;
+}
+/* fzgx:end fn_1_A6480 */
+
+/* fzgx:begin fn_1_A66FC */
+// Records the reset state and performs the appropriate relocation startup or recovery.
+s32 fn_1_A66FC(s32 value) {
+    s32 result;
+
+    lbl_1_bss_6F5F4 = value;
+    if (((u32)__cntlzw((u32)((-2147483647 - 1) - OSGetResetCode())) >> 5) != 0) {
+        if (OSGetProgressiveMode() != 0) {
+            result = 1;
+        } else {
+            OSSetProgressiveMode(0);
+            lbl_1_data_341B8->enabled = 0;
+            result = 1;
+        }
+        if (lbl_801A66B0[3] != 0) {
+            lbl_1_bss_6F5F0 = 1;
+            fn_1_A6870(&lbl_1_bss_6F5F0);
+        }
+    } else if ((s32)lbl_1_data_341B8->enabled != 0) {
+        fn_1_A5F44();
+        result = fn_1_A6480();
+    } else {
+        OSSetProgressiveMode(0);
+        lbl_1_data_341B8->enabled = 0;
+        result = 1;
+    }
+    return result;
+}
+/* fzgx:end fn_1_A66FC */
+
+/* fzgx:begin fn_1_A67E8 */
+void fn_1_A67E8(void) {
+    s32 mode;
+    s32 next;
+
+    next = lbl_1_bss_6F5F0 + 1;
+    if (next > 3) {
+        mode = 0;
+    } else {
+        mode = 3;
+        if (next >= 0) {
+            mode = next;
+        }
+    }
+    lbl_1_bss_6F5F0 = mode;
+    fn_1_A6870(&lbl_1_bss_6F5F0);
+}
+/* fzgx:end fn_1_A67E8 */
+
+/* fzgx:begin fn_1_A6840 */
+void fn_1_A6840(u32 value) {
+    u32 *value_ptr;
+
+    value_ptr = &lbl_1_bss_6F5F0;
+    *value_ptr = value & 0xff;
+    fn_1_A6870(value_ptr);
+}
+/* fzgx:end fn_1_A6840 */
+
+/* fzgx:begin fn_1_A6870 */
+void fn_1_A6870(u32 *mode) {
+    GXRenderModeObj *rmode;
     s32 tv;
     s8 flag;
     struct {
@@ -121,28 +388,28 @@ void fn_1_A6870(u32 *arg0) {
         *lbl_801A6CF4 = lbl_8012B06C;
         break;
     default:
-        OSPanic((const char *)&lbl_1_data_3431C, 557, (const char *)&lbl_1_data_34324);
+        OSPanic("prog.c", 557, "init_system: invalid TV format\n");
         break;
     }
 
-    switch (*arg0) {
+    switch (*mode) {
     case 0:
         GXAdjustForOverscan(lbl_801A6CF4, &lbl_8019E150, 0, 16);
         lbl_801A6CF4 = &lbl_8019E150;
-        VIConfigure((u32)&lbl_8019E150);
+        VIConfigure(&lbl_8019E150);
         VIWaitForRetrace();
         VIWaitForRetrace();
         VIFlush();
-        *arg0 = 0;
+        *mode = 0;
         break;
     case 1:
         GXAdjustForOverscan(lbl_801A6CF4, &lbl_8019E150, 0, 16);
         lbl_801A6CF4 = &lbl_8019E150;
-        VIConfigure((u32)&lbl_8019E150);
+        VIConfigure(&lbl_8019E150);
         VIWaitForRetrace();
         VIWaitForRetrace();
         VIFlush();
-        *arg0 = 1;
+        *mode = 1;
         break;
     case 2:
         lbl_801A6CF4->xfbHeight = 360;
@@ -151,28 +418,28 @@ void fn_1_A6870(u32 *arg0) {
         lbl_801A6CF4->viYOrigin = 60;
         GXAdjustForOverscan(lbl_801A6CF4, &lbl_8019E150, 0, 12);
         lbl_801A6CF4 = &lbl_8019E150;
-        VIConfigure((u32)&lbl_8019E150);
+        VIConfigure(&lbl_8019E150);
         VIWaitForRetrace();
         VIWaitForRetrace();
         VIFlush();
-        *arg0 = 2;
+        *mode = 2;
         break;
     case 3:
         GXAdjustForOverscan(lbl_801A6CF4, &lbl_8019E150, 0, 0);
         lbl_801A6CF4 = &lbl_8019E150;
-        VIConfigure((u32)&lbl_8019E150);
+        VIConfigure(&lbl_8019E150);
         VIWaitForRetrace();
         VIWaitForRetrace();
         VIFlush();
-        *arg0 = 3;
+        *mode = 3;
         break;
     }
 
     fn_8007423C(0, 0, lbl_801A6CF4->fbWidth, lbl_801A6CF4->efbHeight);
     fn_800743C4(lbl_801A6CF4->fbWidth, lbl_801A6CF4->xfbHeight);
-    fn_80035110((void *)lbl_801A6D30.unk_0->unk_4, 1);
-    fn_80035110((void *)lbl_801A6D30.unk_0->unk_8, 0);
-    fn_80035110((void *)lbl_801A6D30.unk_0->unk_4, 0);
+    fn_80035110((void *)lbl_801A6D30->unk_4, 1);
+    fn_80035110((void *)lbl_801A6D30->unk_8, 0);
+    fn_80035110((void *)lbl_801A6D30->unk_4, 0);
 
     fn_1_54DCC(loc_18.unk_0);
     fn_1_549F4(loc_18.unk_0, loc_18.unk_6c, loc_18.unk_6c[2], fn_1_A6FE8(), loc_18.unk_6c[4], loc_18.unk_6c[5]);
@@ -182,7 +449,7 @@ void fn_1_A6870(u32 *arg0) {
     rmode = lbl_801A6CF4;
     fn_80038EEC(0.0f, 0.0f, (f32)rmode->fbWidth, (f32)rmode->efbHeight, 0.0f, 1.0f);
     fn_80074188(0, 0, lbl_801A6CF4->fbWidth, lbl_801A6CF4->efbHeight);
-    fn_80034ECC(lbl_801A6CF4->aa, lbl_801A6CF4->sample_pattern, 1, lbl_801A6CF4->vfilter);
+    fn_80034ECC(lbl_801A6CF4->aa, lbl_801A6CF4->sample_pattern[0], 1, lbl_801A6CF4->vfilter);
 
     tv = lbl_1_bss_6F5F0;
     if (tv == 1 || tv == 2) {
@@ -199,56 +466,17 @@ void fn_1_A6870(u32 *arg0) {
 /* fzgx:end fn_1_A6870 */
 
 /* fzgx:begin fn_1_A6E68 */
-#pragma section code_type ".fzgxpool"
-static const u32 fzgx_pool_table1[61] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFFFFFF00};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 0.10000000149011612f;
-    s = 320.0f;
-    s = 184.0f;
-    s = 221.0f;
-    s = 256.0f;
-    s = 258.0f;
-    s = 384.0f;
-    s = 0.0f;
-    s = 1.0f;
-    d = 4503599627370496.0;
-}
-static const u32 fzgx_pool_table3[1] = {0xFF0000FF};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep3(void) { const u32 *volatile cp; cp = fzgx_pool_table3; }  /* fzgx-allow: S2 pool primer sink */
-static const u32 fzgx_pool_table4[1] = {0xFF0000FF};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 448.0f;
-}
-static const u32 fzgx_pool_table6[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep6(void) { const u32 *volatile cp; cp = fzgx_pool_table6; }  /* fzgx-allow: S2 pool primer sink */
-#pragma section code_type ".text"
-
-extern u32 lbl_801A6CF4;
-extern u8 lbl_1_rodata_48C8[];
-extern void fn_1_A9868(void);
-extern void fn_1_A9A28(int, int, int, int, u32 *);
-extern void fn_1_AA538(void);
-
 void fn_1_A6E68(void) {
-    u8 *rodata;
-    u8 *state;
-    u32 first;
-    u32 second;
-    u16 value;
-
-    rodata = lbl_1_rodata_48C8;
-    state = *(u8 **)&lbl_801A6CF4;
-    value = *(u16 *)(state + 8);
-    if ((448.0f) == (f32)value) {
+    if (448.0f == (f32)lbl_801A6CF4->xfbHeight) {
         fn_1_A9868();
-        first = fzgx_pool_table3[0];
-        fn_1_A9A28(0, 25, 640, 25, &first);
-        second = fzgx_pool_table4[0];
-        fn_1_A9A28(0, 454, 640, 454, &second);
+        {
+            ProgColor color = {0xFF, 0x00, 0x00, 0xFF};
+            fn_1_A9A28(0, 25, 640, 25, &color);
+        }
+        {
+            ProgColor color = {0xFF, 0x00, 0x00, 0xFF};
+            fn_1_A9A28(0, 454, 640, 454, &color);
+        }
         fn_1_AA538();
     }
 }
@@ -269,11 +497,11 @@ u32 fn_1_A6F1C(void) {
 /* fzgx:begin fn_1_A6F2C */
 s32 fn_1_A6F2C(void) {
     s32 result = 0;
-    s32 state;
+    s8 state;
 
     if (lbl_1_bss_962 == 0x99) {
-        state = lbl_1_data_341B8->unk_4;
-        if ((s8)state == 0 || (s8)state == 5) {
+        state = lbl_1_data_341B8->state;
+        if (state == 0 || state == 5) {
             result = 1;
         }
     }
@@ -287,7 +515,7 @@ s32 fn_1_A6F6C(void) {
     s32 result = 0;
 
     if (lbl_1_bss_962 == 0x99) {
-        if (*(s8 *)((u8 *)lbl_1_data_341B8 + 4) == 5) {
+        if (lbl_1_data_341B8->state == 5) {
             result = 1;
         }
     }
@@ -299,11 +527,24 @@ s32 fn_1_A6F6C(void) {
 /* fzgx:begin fn_1_A6FA0 */
 void fn_1_A6FA0(void) {
     fn_1_4A00(0, 0x3c, lbl_1_bss_6F5F4);
-    lbl_1_data_341B8->unk_4 = 5;
+    lbl_1_data_341B8->state = 5;
 }
 /* fzgx:end fn_1_A6FA0 */
 
-/* fzgx:begin fn_1_A6FE8 */
+/* fzgx:begin fn_1_A6FE8 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/prog.h"
+
+extern u32 lbl_1_bss_6F5F4;
+extern void fn_1_4A00(s32, s32, u32);
+extern s8 fn_1_A5DC4(void);
+extern const f32 lbl_1_rodata_49F8;
+extern f32 lbl_1_rodata_49FC[11];
+extern f32 fn_1_A6FE8(void);
+extern void fn_1_A714C(f32 *, f32 *, f32 *, f32 *);
+extern u32 lbl_1_bss_6F5F0;
+
 f32 fn_1_A6FE8(void) {
     if (fn_1_A5DC4()) {
         return lbl_1_rodata_49F8;
@@ -313,7 +554,20 @@ f32 fn_1_A6FE8(void) {
 }
 /* fzgx:end fn_1_A6FE8 */
 
-/* fzgx:begin fn_1_A7024 */
+/* fzgx:begin fn_1_A7024 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/prog.h"
+
+extern u32 lbl_1_bss_6F5F4;
+extern void fn_1_4A00(s32, s32, u32);
+extern s8 fn_1_A5DC4(void);
+extern const f32 lbl_1_rodata_49F8;
+extern f32 lbl_1_rodata_49FC[11];
+extern f32 fn_1_A6FE8(void);
+extern void fn_1_A714C(f32 *, f32 *, f32 *, f32 *);
+extern u32 lbl_1_bss_6F5F0;
+
 extern u32 lbl_1_bss_6F5F4;
 extern void fn_1_4A00(s32, s32, u32);
 extern s8 fn_1_A5DC4(void);
@@ -369,7 +623,20 @@ void fn_1_A7024(f32 arg0, f32 arg1, f32 arg2, f32 arg3) {
 }
 /* fzgx:end fn_1_A7024 */
 
-/* fzgx:begin fn_1_A714C */
+/* fzgx:begin fn_1_A714C noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/prog.h"
+
+extern u32 lbl_1_bss_6F5F4;
+extern void fn_1_4A00(s32, s32, u32);
+extern s8 fn_1_A5DC4(void);
+extern const f32 lbl_1_rodata_49F8;
+extern f32 lbl_1_rodata_49FC[11];
+extern f32 fn_1_A6FE8(void);
+extern void fn_1_A714C(f32 *, f32 *, f32 *, f32 *);
+extern u32 lbl_1_bss_6F5F0;
+
 void fn_1_A714C(f32 *a, f32 *b, f32 *c, f32 *d) {
     if (a != 0) {
         *a = *(f32 *)&lbl_1_bss_6F608.unk_0;
@@ -386,19 +653,58 @@ void fn_1_A714C(f32 *a, f32 *b, f32 *c, f32 *d) {
 }
 /* fzgx:end fn_1_A714C */
 
-/* fzgx:begin fn_1_A71AC */
+/* fzgx:begin fn_1_A71AC noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/prog.h"
+
+extern u32 lbl_1_bss_6F5F4;
+extern void fn_1_4A00(s32, s32, u32);
+extern s8 fn_1_A5DC4(void);
+extern const f32 lbl_1_rodata_49F8;
+extern f32 lbl_1_rodata_49FC[11];
+extern f32 fn_1_A6FE8(void);
+extern void fn_1_A714C(f32 *, f32 *, f32 *, f32 *);
+extern u32 lbl_1_bss_6F5F0;
+
 f32 fn_1_A71AC(void) {
     return *(f32 *)&lbl_1_bss_6F608.unk_10;
 }
 /* fzgx:end fn_1_A71AC */
 
-/* fzgx:begin fn_1_A71BC */
+/* fzgx:begin fn_1_A71BC noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/prog.h"
+
+extern u32 lbl_1_bss_6F5F4;
+extern void fn_1_4A00(s32, s32, u32);
+extern s8 fn_1_A5DC4(void);
+extern const f32 lbl_1_rodata_49F8;
+extern f32 lbl_1_rodata_49FC[11];
+extern f32 fn_1_A6FE8(void);
+extern void fn_1_A714C(f32 *, f32 *, f32 *, f32 *);
+extern u32 lbl_1_bss_6F5F0;
+
 f32 fn_1_A71BC(void) {
     return *(f32 *)((u8 *)&lbl_1_bss_6F608 + 0x14);
 }
 /* fzgx:end fn_1_A71BC */
 
-/* fzgx:begin fn_1_A71CC */
+/* fzgx:begin fn_1_A71CC noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/prog.h"
+
+extern u32 lbl_1_bss_6F5F4;
+extern void fn_1_4A00(s32, s32, u32);
+extern s8 fn_1_A5DC4(void);
+extern const f32 lbl_1_rodata_49F8;
+extern f32 lbl_1_rodata_49FC[11];
+extern f32 fn_1_A6FE8(void);
+extern void fn_1_A714C(f32 *, f32 *, f32 *, f32 *);
+extern u32 lbl_1_bss_6F5F0;
+
 extern void fn_80072344(void);
 
 typedef struct {
@@ -418,7 +724,20 @@ void fn_1_A71CC(void) {
 }
 /* fzgx:end fn_1_A71CC */
 
-/* fzgx:begin fn_1_A722C */
+/* fzgx:begin fn_1_A722C noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/prog.h"
+
+extern u32 lbl_1_bss_6F5F4;
+extern void fn_1_4A00(s32, s32, u32);
+extern s8 fn_1_A5DC4(void);
+extern const f32 lbl_1_rodata_49F8;
+extern f32 lbl_1_rodata_49FC[11];
+extern f32 fn_1_A6FE8(void);
+extern void fn_1_A714C(f32 *, f32 *, f32 *, f32 *);
+extern u32 lbl_1_bss_6F5F0;
+
 #include "types.h"
 
 
@@ -443,7 +762,20 @@ void fn_1_A722C(void) {
 }
 /* fzgx:end fn_1_A722C */
 
-/* fzgx:begin fn_1_A728C */
+/* fzgx:begin fn_1_A728C noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/prog.h"
+
+extern u32 lbl_1_bss_6F5F4;
+extern void fn_1_4A00(s32, s32, u32);
+extern s8 fn_1_A5DC4(void);
+extern const f32 lbl_1_rodata_49F8;
+extern f32 lbl_1_rodata_49FC[11];
+extern f32 fn_1_A6FE8(void);
+extern void fn_1_A714C(f32 *, f32 *, f32 *, f32 *);
+extern u32 lbl_1_bss_6F5F0;
+
 // fn_1_A728C: returns a constant.
 int fn_1_A728C(void) {
     return 0;
