@@ -121327,48 +121327,15 @@
     "module": "main_rel",
     "source": "rel/main_rel/memcard/fn_1_B171C.c",
     "symbols": [
-      "fn_1_B171C"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/memcard.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/memcard/fn_1_B22AC.c",
-    "symbols": [
-      "fn_1_B22AC"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/memcard.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/memcard/fn_1_B2770.c",
-    "symbols": [
-      "fn_1_B2770"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/memcard.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/memcard/fn_1_B277C.c",
-    "symbols": [
+      "fn_1_B171C",
+      "fn_1_B22AC",
+      "fn_1_B2770",
       "fn_1_B277C"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/memcard.c",
-    "pool": {
-      "@325": "jumptable_1_data_3CC0C"
-    }
+    "tu": "rel/main_rel/memcard.c"
   },
   {
     "module": "main_rel",

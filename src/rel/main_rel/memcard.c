@@ -9862,20 +9862,20 @@ void fn_1_B1710(int unused, void *ptr) {
 /* fzgx:begin fn_1_B171C noprologue */
 #include "types.h"
 #include "rel/main_rel/memcard.h"
+#include "rel/main_rel/data/lbl_1_rodata_4AE0.h"
 
 extern void OSReport(const char *, ...);
 extern void OSPanic(const char *, int, const char *, ...);
 extern s32 CARDUnmount(s32);
-extern void fn_1_46B4(u32, void *, const char *, int);
+extern void fn_1_46B4(u32, u32, const char *, int);
 extern u32 lbl_801A6410;
 extern s32 lbl_801A66B4;
-extern f32 lbl_1_rodata_4AE0[114];
 extern const f32 lbl_1_rodata_4CA8;
 extern const char *fn_80019C48(void);
-extern u32 strlen(const char *);
+extern size_t strlen(const char *);
 extern char *fn_80083970(char *, const char *);
-extern s32 strncmp(const char *, const char *, u32);
-extern char *strncpy(char *, const char *, u32);
+extern s32 strncmp(const char *, const char *, size_t);
+extern char *strncpy(char *, const char *, size_t);
 typedef struct FileEntry {
  u8 unk_0, unk_1; char name[0x22]; u32 unk_24, unk_28; u8 pad[4];
 } FileEntry;
@@ -9927,7 +9927,7 @@ void fn_1_B171C(void *arg0) {
  else if (((input->unk_8 >> 11) & 1) && !(flags & 2)) {
  if (p->unk_5 == 3 && p->unk_C != 0) {
  do {} while (CARDUnmount(p->unk_0) == -1);
- fn_1_46B4(lbl_801A6410, p->unk_C, (char *)p_lbl_1_data_35AC8 + 0x6CF0, 0x152E);
+ fn_1_46B4(lbl_801A6410, (u32)p->unk_C, (char *)p_lbl_1_data_35AC8 + 0x6CF0, 0x152E);
  p->unk_7 = 0; p->unk_C = 0;
  { CardState *s = p->unk_24; s->unk_1C = 0; s->unk_18 = 0; }
  }
@@ -10031,7 +10031,7 @@ void fn_1_B171C(void *arg0) {
  const char *game;
  char *end;
  game = fn_80019C48();
- prefix = (char *)lbl_1_rodata_4AE0 + 0x98;
+ prefix = (char *)lbl_1_rodata_4AE0[2].name;
  len = strlen(prefix);
  end = fn_80083970(p->unk_24->unk_20, (char *)p_lbl_1_data_35AC8 + 0x6CFC);
  if (!strncmp(p->unk_24->unk_48, game, 4) &&
@@ -10053,7 +10053,7 @@ void fn_1_B171C(void *arg0) {
  const char *game;
  char *end;
  game = fn_80019C48();
- prefix = (char *)lbl_1_rodata_4AE0 + 0x130;
+ prefix = (char *)lbl_1_rodata_4AE0[4].name;
  len = strlen(prefix);
  end = fn_80083970(p->unk_24->unk_20, (char *)p_lbl_1_data_35AC8 + 0x6CFC);
  if (!strncmp(p->unk_24->unk_48, game, 4) &&
@@ -10076,7 +10076,7 @@ void fn_1_B171C(void *arg0) {
  const char *game;
  char *end;
  game = fn_80019C48();
- prefix = (char *)lbl_1_rodata_4AE0 + 0x17C;
+ prefix = (char *)lbl_1_rodata_4AE0[5].name;
  len = strlen(prefix);
  end = fn_80083970(p->unk_24->unk_20, (char *)p_lbl_1_data_35AC8 + 0x6CFC);
  if (!strncmp(p->unk_24->unk_48, game, 4) &&
@@ -10110,12 +10110,12 @@ void fn_1_B171C(void *arg0) {
  else done = 1;
  if (done) {
  *(s32 *)(p_lbl_1_bss_716C0 + 0x1F4) = p->unk_24->unk_4;
- fn_1_46B4(lbl_801A6410, p->unk_24, (char *)p_lbl_1_data_35AC8 + 0x6CF0, 0x3EC);
+ fn_1_46B4(lbl_801A6410, (u32)p->unk_24, (char *)p_lbl_1_data_35AC8 + 0x6CF0, 0x3EC);
  reset_context(p, p_lbl_1_bss_716C0);
  }
  } else if ((lbl_1_bss_9F8.unk_8 >> 8) & 1) {
  *(s32 *)(p_lbl_1_bss_716C0 + 0x1F4) = p->unk_24->unk_4;
- fn_1_46B4(lbl_801A6410, p->unk_24, (char *)p_lbl_1_data_35AC8 + 0x6CF0, 0x3EC);
+ fn_1_46B4(lbl_801A6410, (u32)p->unk_24, (char *)p_lbl_1_data_35AC8 + 0x6CF0, 0x3EC);
  reset_context(p, p_lbl_1_bss_716C0);
  }
  break;
@@ -10126,12 +10126,7 @@ void fn_1_B171C(void *arg0) {
 
 /* fzgx:begin fn_1_B22AC noprologue */
 #include "rel/main_rel/memcard.h"
-
-typedef struct {
-    char name[0x40];
-    u32 unk_40;
-    u8 pad_44[0x8];
-} MemcardKind;
+#include "rel/main_rel/data/lbl_1_rodata_4AE0.h"
 
 typedef struct {
     u8 unk_0;
@@ -10166,7 +10161,6 @@ typedef struct {
     u8 unk_2D;
 } MemcardCtx;
 
-extern MemcardKind lbl_1_rodata_4AE0[];
 extern u32 lbl_801A6410;
 extern void fn_1_46B4(u32, u32, const char *, int);
 extern u32 fn_1_4630(u32, u32, const char *, int);
@@ -10199,7 +10193,7 @@ void fn_1_B22AC(MemcardCtx *ctx, s32 kind) {
     char *base;
     MemcardEntry *entry;
     const char *code;
-    MemcardKind *info;
+    const MemcardKind *info;
     size_t len;
     char *p1;
     size_t n_2;
@@ -10274,11 +10268,16 @@ void fn_1_B22AC(MemcardCtx *ctx, s32 kind) {
     }
     ctx->unk_24->unk_DC = fn_1_4630(lbl_801A6410, ctx->unk_24->unk_0C, base + 0x6cf0, 0x16fc);
 }
+
+/* the sprintf format above (base + 0x713C) */
+char lbl_1_data_3CC04[] = "%s%s";
 /* fzgx:end fn_1_B22AC */
 
-/* fzgx:begin fn_1_B2770 */
+/* fzgx:begin fn_1_B2770 noprologue */
 // fn_1_B2770: main_rel .text:0x000B2770 size 0xC
 // Store byte 0x3 at offset 3 of the pointer argument
+
+#include "types.h"
 
 void fn_1_B2770(int unused, void *ptr) {
     *(u8 *)((u8 *)ptr + 3) = 0x3;
@@ -10287,6 +10286,8 @@ void fn_1_B2770(int unused, void *ptr) {
 
 /* fzgx:begin fn_1_B277C noprologue */
 #include "types.h"
+#include "rel/main_rel/memcard.h"
+#include "rel/main_rel/data/lbl_1_rodata_4AE0.h"
 
 typedef struct UnkWork_1_B277C {
     u8 pad_00[0x04];
@@ -10346,11 +10347,6 @@ typedef struct Unk716C0_1_B277C {
     u8 unk_5C49;
 } Unk716C0_1_B277C;
 
-typedef struct Unk9F8_1_B277C {
-    u8 pad_00[0x08];
-    u16 unk_08;
-} Unk9F8_1_B277C;
-
 typedef struct UnkBuf8_1_B277C {
     u8 m0;
     u8 m1;
@@ -10390,21 +10386,15 @@ typedef struct UnkOut16_1_B277C {
     u8 m15;
 } UnkOut16_1_B277C;
 
-extern u8 lbl_1_data_35AC8[];
-extern Unk716C0_1_B277C lbl_1_bss_716C0;
-extern Unk9F8_1_B277C lbl_1_bss_9F8;
-extern s16 lbl_1_bss_960;
 extern const f32 lbl_1_rodata_4CA8;
-extern u8 lbl_1_rodata_4AE0[];
 extern u32 lbl_801A6410;
 extern s32 lbl_801A66B4;
 
-extern void OSReport(const char *fmt, ...);
-extern void OSPanic(const char *file, u32 line, const char *msg, ...);
-extern s32 CARDUnmount(s32 chan);
-extern void fn_1_46B4(u32 heap, u32 ptr, const char *file, int line);
-extern u32 fn_1_4630(u32 heap, u32 size, const char *file, int line);
-extern u32 fn_1_B22AC(void *ctx, u32 arg);
+extern void OSReport(const char *, ...);
+extern void OSPanic(const char *, int, const char *, ...);
+extern s32 CARDUnmount(s32);
+extern void fn_1_46B4(u32, u32, const char *, int);
+extern u32 fn_1_4630(u32, u32, const char *, int);
 extern u32 fn_1_1563E8(u32 a, u32 b);
 extern u32 fn_1_F4810(void *a0, void *a1, void *a2, void *a3, void *a4, void *a5, void *a6, void *a7, void *a8);
 extern void fn_80008BA8(u32 dst, u32 src, u32 size);
@@ -10441,8 +10431,8 @@ void fn_1_B277C(UnkCtx_1_B277C *ctx) {
             if ((w->unk_08 & 0x8000) != 0) {
                 ctx->unk_03 = 0x1b;
             } else {
-                Unk9F8_1_B277C *s9 = &lbl_1_bss_9F8;
-                u32 t9 = (u16)((s9->unk_08));
+                Obj_1_bss_9F8 *s9 = &lbl_1_bss_9F8;
+                u32 t9 = (u16)((s9->unk_8));
                 if (((t9 >> 8) & 1) != 0) {
                 ctx->unk_03 = 0x1b;
             } else if (((t9 >> 11) & 1) != 0 && (w->unk_08 & 2) == 0) {
@@ -10475,7 +10465,7 @@ void fn_1_B277C(UnkCtx_1_B277C *ctx) {
                 } else if ((u8 *)ctx == self + 0xa0) {
                     p->unk_1F1 = 1;
                 }
-            } else if (((s9->unk_08 >> 10) & 1) != 0) {
+            } else if (((s9->unk_8 >> 10) & 1) != 0) {
                 UnkWork_1_B277C *w3 = ctx->unk_24;
                 if ((w3->unk_08 & 0x400) != 0) {
                     ctx->unk_03 = 5;
@@ -10645,7 +10635,7 @@ void fn_1_B277C(UnkCtx_1_B277C *ctx) {
                 if (flag != 0) {
                     ctx->unk_03 = 0x1b;
                 }
-            } else if (((lbl_1_bss_9F8.unk_08 >> 8) & 1) != 0) {
+            } else if (((lbl_1_bss_9F8.unk_8 >> 8) & 1) != 0) {
                 ctx->unk_03 = 0x1b;
             }
             ctx->unk_24->unk_04 = -0x79;
@@ -10686,13 +10676,13 @@ void fn_1_B277C(UnkCtx_1_B277C *ctx) {
             case 0:
                 if (ctx->unk_2C < 0x7f) {
                     if ((ctx->unk_24->unk_E8 & 4) != 0) {
-                        fn_1_B22AC(ctx, 2);
+                        fn_1_B22AC((MemcardCtx *)ctx, 2);
                     }
                     if ((ctx->unk_24->unk_E8 & 0x10) != 0) {
-                        fn_1_B22AC(ctx, 4);
+                        fn_1_B22AC((MemcardCtx *)ctx, 4);
                     }
                     if ((ctx->unk_24->unk_E8 & 0x20) != 0) {
-                        fn_1_B22AC(ctx, 5);
+                        fn_1_B22AC((MemcardCtx *)ctx, 5);
                     }
                     ctx->unk_2C++;
                 }
@@ -10846,13 +10836,13 @@ void fn_1_B277C(UnkCtx_1_B277C *ctx) {
                 r = (u16)fn_1_1563E8((u32)w->unk_94 + 2, w->unk_0C - 2);
                 if (*(u16 *)ctx->unk_24->unk_94 != r ||
                     (((u8 *)ctx->unk_24->unk_94)[2] == 5 &&
-                     ((u8 *)ctx->unk_24->unk_94)[3] != lbl_1_rodata_4AE0[0x1ba])) {
+                     ((u8 *)ctx->unk_24->unk_94)[3] != ((const u8 *)lbl_1_rodata_4AE0)[0x1ba])) {
                     ctx->unk_03 = 0x21;
 off = ctx->unk_2D;
 off *= 0x30;
 fzgx_live = ctx->unk_24;
 rec = record_address((u8 *)fzgx_live->unk_DC, off);
-                    if (lbl_1_bss_960 != 1) {
+                    if (*(s16 *)&lbl_1_bss_960 != 1) {
                         rec[0] = 1;
                     } else {
                         fn_1_46B4(lbl_801A6410, *(u32 *)(rec + 0x2c), data + 0x6cf0, 0x1933);
@@ -10928,7 +10918,7 @@ rec = record_address((u8 *)fzgx_live->unk_DC, off);
                 rec = fn_1_B277C_address_18218((u8 *)w->unk_94, (off * 0x30 - 0x30));
                 ctx->unk_03 = 0x21;
                 dc = ctx->unk_24->unk_DC;
-                if (lbl_1_bss_960 == 2) {
+                if (*(s16 *)&lbl_1_bss_960 == 2) {
                     if (rec[1] == 2) {
                         hdr10.m0 = dc[0x2060];
                         hdr10.m1 = dc[0x2061];
@@ -11045,7 +11035,7 @@ rec = record_address((u8 *)fzgx_live->unk_DC, off);
                     p->unk_5C08 = 0;
                     p->unk_1F8 = 1;
                 }
-            } else if (((lbl_1_bss_9F8.unk_08 >> 8) & 1) != 0) {
+            } else if (((lbl_1_bss_9F8.unk_8 >> 8) & 1) != 0) {
                 (*(u32 volatile *)&(p->unk_1F4)) /* Retail stores before the call reload. */ = ctx->unk_24->unk_04;
                 fn_1_46B4(lbl_801A6410, (u32)(*(UnkWork_1_B277C * volatile *)&(ctx->unk_24)) /* Retail reloads after the store. */, data + 0x6cf0, 0x3ec);
                 ctx->unk_24 = 0;
@@ -18847,7 +18837,6 @@ void fn_1_B7CE4(s32 arg0, char *arg1) {
         strncpy(arg1, (char *)buf, 8);
     }
 }
-
 /* fzgx:end fn_1_B7CE4 */
 
 /* fzgx:begin fn_1_B7E14 */
