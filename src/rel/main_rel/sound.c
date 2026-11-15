@@ -1487,7 +1487,17 @@ extern s32 fn_800658B4(s32, u32);
 extern struct fn_1_A0D7C_lbl_801A6410 lbl_801A6410;
 extern u32 fn_80006354(Sig_fn_800174D0_Fn800174D0Object *, void *, u32, u32);
 extern u32 fn_80066C14(void *, u32);
-extern char lbl_1_data_33F1C[8];
+extern char lbl_1_data_33E9C[];
+extern char lbl_1_data_33EB8[];
+extern char lbl_1_data_33ED4[];
+char lbl_1_data_33EF0[25] = "/snd/normal_se/PACK3.bin";
+Obj_1_data_33F0C lbl_1_data_33F0C = {
+    (u32)lbl_1_data_33E9C,
+    (u32)lbl_1_data_33EB8,
+    (u32)lbl_1_data_33ED4,
+    (u32)lbl_1_data_33EF0
+};
+char lbl_1_data_33F1C[8] = "sound.c";
 extern void *fn_1_45D0(u32, u32, const char *, int);
 extern void fn_1_46B4(u32, void *, const char *, int);
 void fn_1_A0D7C(void) {
