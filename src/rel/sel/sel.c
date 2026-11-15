@@ -5199,7 +5199,6 @@ skip:
         }
     }
 }
-
 /* fzgx:end fn_10_7130 */
 
 /* fzgx:begin fn_10_7320 */
@@ -35552,6 +35551,58 @@ void fn_10_1AD5C(void) {
 /* fzgx:begin fn_10_1B2F4 */
 #include "font.h"
 
+extern u32 lbl_10_bss_51788[25];
+extern f32 lbl_10_bss_55B3C[];
+extern u8 lbl_10_rodata_1548[0x8];
+extern const f32 lbl_10_rodata_158[19];
+extern u8 lbl_10_rodata_1D64[0x4];
+extern u8 lbl_10_rodata_1D68[0x8];
+extern u8 lbl_10_rodata_94[0xc4];
+extern u32 lbl_1_bss_6D82C;
+extern u32 lbl_1_bss_6EAB4;
+extern u32 * lbl_1_bss_6EAD0;
+extern int lbl_1_bss_7180C;
+extern u32 lbl_1_bss_718E0;
+extern s16 lbl_1_bss_8B3A0;
+extern s16 lbl_1_bss_8CA26;
+extern s16 lbl_1_bss_960;
+extern s16 lbl_1_bss_962;
+extern s16 lbl_1_bss_966;
+extern s16 lbl_1_bss_96A;
+extern s32 lbl_1_bss_980[4];
+extern s8 lbl_1_bss_9C;
+extern u8 lbl_1_bss_9C8[];
+extern u8 lbl_1_bss_9F8[];
+extern const char * lbl_1_data_2AA24[];
+extern const char * lbl_1_data_2BD54[][6];
+extern char * lbl_1_data_418D4[];
+extern char lbl_1_rodata_26F8;
+extern const u8 lbl_1_rodata_D5B8[];
+extern const u32 lbl_1_rodata_D870[];
+extern u32 lbl_801A6410;
+extern u32 lbl_801A66A0;
+extern u32 lbl_801A66A8;
+extern s32 lbl_801A66B4;
+extern u16 lbl_801A66C0;
+extern void fn_800713E0(u32, u32);
+extern void fn_1_8019C(u32);
+extern void fn_1_12B3F8(void *, u32, u32, void *, void *, void *);
+extern void fn_1_12C6BC(u32);
+extern void fn_10_1B658(void);
+extern void fn_1_8F494(void *value);
+extern void fn_10_1B65C(void);
+extern void fn_10_1B6A8(void);
+extern void OSReport(const char *, ...);
+extern void fn_1_12F358(s16);
+extern s32 fn_1_1310E0(void);
+extern void fn_1_131084(u32, s32);
+extern void fn_10_1B660(void);
+extern void fn_1_7B558(u32, u32, u32, u32, u32, u32, f32);
+extern void fzgx_pool_sink_f32(f32);
+extern void fzgx_pool_sink_f64(f64);
+extern void fn_80074188(s16, s16, s16, s16);
+
+
 #pragma section code_type ".fzgxpool"
 static const u32 fzgx_pool_table1[17] = {0x00000000, 0x0000B500, 0x0000B600, 0x0000AD00, 0x0000B300, 0x0000B800, 0x0000B200, 0x0000B100, 0x0000AE00, 0x0000B400, 0x0000B900, 0x0000B000, 0x0000AF00, 0x0000B700, 0x00000000, 0x00000000, 0x00F0F0FF};  /* fzgx-allow: A1 retail pool bytes */
 __declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
@@ -36209,7 +36260,7 @@ typedef struct {
 
 
 static inline f32 fn_10_1B2F4_operand(f32 right, f32 left) { return left * right; }
-static inline f32 fn_10_1B2F4_operand_(f32 left, f32 right) { return left * right; }
+
 void fn_10_1B2F4(void) {
     f32 fzgx_value;
     DrawPacketLocal p;
@@ -36233,7 +36284,7 @@ void fn_10_1B2F4(void) {
     p.x = 172.0f;
     p.y = 298.0f;
     p.z = 80.0f;
-    p.r = fn_10_1B2F4_operand(0.5f, 255.0f * (1.0f + lbl_8006D188((s32)(fn_10_1B2F4_operand_((65536.0f), ((lbl_801A66A0 % 60))) / 60.0f))));
+    p.r = fn_10_1B2F4_operand(0.5f, 255.0f * (1.0f + lbl_8006D188((s32)((f32)(65536.0f * (f32)(lbl_801A66A0 % 60)) / 60.0f))));
     p.g = fn_10_1B2F4_operand(0.5f, 255.0f * (1.0f + lbl_8006D188((s32)(65536.0f * (lbl_801A66A0 % 60) / 60.0f))));
     p.b = fn_10_1B2F4_operand(0.5f, 255.0f * (1.0f + lbl_8006D188((s32)(fn_10_1B2F4_operand(((lbl_801A66A0 % 60)), (65536.0f)) / 60.0f))));
     fn_1_4F734((FontDrawPacket *)&p);
@@ -36252,8 +36303,6 @@ void fn_10_1B2F4(void) {
     p.id = 40708;
     fn_1_4F734((FontDrawPacket *)&p);
 }
-
-
 /* fzgx:end fn_10_1B2F4 */
 
 /* fzgx:begin fn_10_1B658 */

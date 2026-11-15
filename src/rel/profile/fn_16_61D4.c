@@ -164,10 +164,6 @@ extern u32 fn_1_8D3F8(void *, void *, s32 (*)(u32), void *);
 extern int fn_1_4F734(void *);
 
 static inline f32 fn_16_61D4_operand(f32 right, f32 left) { return left * right; }
-#pragma opt_common_subs off
-#pragma opt_dead_assignments off
-static inline f32 fn_16_61D4_operand_(f32 left, f32 right) { return left * right; }
-#pragma opt_dead_assignments reset
 
 void fn_16_61D4(void) {
     f32 *fzgx_value;
@@ -201,8 +197,8 @@ void fn_16_61D4(void) {
         fzgx_value = &(pkt.unk_2c);
         *fzgx_value = 1.0f - val.value;
         pkt.unk_30 = 14;
-        pkt.unk_10 = fn_16_61D4_operand((1.6f), (pkt.unk_10));
-        pkt.unk_14 = fn_16_61D4_operand_((pkt.unk_14), (1.6f));
+        pkt.unk_10 *= 1.6f;
+        pkt.unk_14 *= 1.6f;
         fn_1_4F734(&pkt);
         return;
     }
@@ -224,8 +220,8 @@ void fn_16_61D4(void) {
     pkt.unk_0c = 2.0f;
     pkt.unk_2c = 1.0f;
     pkt.unk_30 = 14;
-    pkt.unk_10 = fn_16_61D4_operand((1.6f), (pkt.unk_10));
-    pkt.unk_14 = fn_16_61D4_operand_((pkt.unk_14), (1.6f));
+    pkt.unk_10 *= 1.6f;
+    pkt.unk_14 *= 1.6f;
     fn_1_4F734(&pkt);
 }
-#pragma opt_common_subs reset
+

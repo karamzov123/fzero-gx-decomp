@@ -1,0 +1,418 @@
+{
+  "schema": 1,
+  "base_commit": "baa609b78fb2cb91d7d2966284c7c388676a5454",
+  "family": "tools/fzgx/fixup_source.py:native_operand_helpers",
+  "engine": "Existing Engine candidate stream; no additional repair/search runner",
+  "selection": "Twelve largest currently registered functions with supported pure two-argument f32 operand wrappers; frozen baseline and compiler profile per record.",
+  "summary": {
+    "baseline_functions": 12,
+    "generated_candidates": 24,
+    "compile_failures": 0,
+    "exact_candidate_functions": 4,
+    "accepted_function_cleanups": 2,
+    "admission_blocked_functions": 2
+  },
+  "safety": "Preserves f32 parameter/result rounding and single evaluation. Scoped candidates exclude conditional/short-circuit statements, increments/decrements, extra nested calls not enclosing the helper, non-call helper references and overlapping same-helper calls. These are candidates only; compiler/oracle/source and full retail gates remain required.",
+  "validation": "Real frozen C_MTXFrustum and fn_1_15EC40 reproduce exact removals; derived real-function conditional/ternary guard checks reject unsafe hoisting. Actual fn_10_1B2F4 nested same-helper calls are excluded while an independent inner helper remains eligible. Python compilation, actual 12-function MWCC cohort and complete USA gates passed. No repository unit tests added.",
+  "accepted": [
+    {
+      "symbol": "fn_10_1B2F4",
+      "source": "/home/armandofm/.hermes/cache/scratch/fzgx-native-family-readable-20261114/sources/f5708c1de8ab5a68e1b37bdd.c",
+      "sha256": "f4fc4e97cfe455b7dcc62c217a7a36c668de0239b5b5e6c2295bec53156aa48c",
+      "commit": "de9ab30e6",
+      "label": "readable inline float operand fn_10_1B2F4_operand_"
+    },
+    {
+      "symbol": "fn_3_23724",
+      "source": "/home/armandofm/.hermes/cache/scratch/fzgx-native-family-readable-20261114/sources/ffbef1c0f0e624e764b1654c.c",
+      "sha256": "3f5a93ea3bf7d5c912e844bdd7bcb06688c9a5c01a7e537619fe95ffe117f218",
+      "commit": "f73e08809",
+      "label": "readable inline float operand fn_3_23724_operand"
+    }
+  ],
+  "blocked_frontiers": [
+    {
+      "symbol": "fn_3_1D338",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "a34b6beced489f467dc3f747ff1261ac324f99d7b5192d93048c472cc4e72c18",
+      "label": "readable scoped float arithmetic fn_3_1D338_operand_",
+      "error": "PROLOGUE CONFLICT (fix the declaration, then submit again):\n### mwcceppc.exe Compiler:\n#     284: extern struct fn_3_1D338_bss_F0 lbl_3_bss_F0;\n#   Error:                                             ^\n#   identifier 'lbl_3_bss_F0' redeclared\n#   was declared as: 'struct '\n#   now declared as: 'struct fn_3_1D338_bss_F0'",
+      "source": "#include \"types.h\"\n\n#pragma section code_type \".fzgxpool\"\n__declspec(section \".fzgxpool\") static void fzgx_pool_prime1(void) {\n    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */\n    s = 0.699999988079071f;\n}\nstatic const u32 fzgx_pool_table2[6] = {0xFFFFFF00, 0xFFFF0000, 0xFF000000, 0x0000FF00, 0xFFF200FF, 0xFFFF0000};  /* fzgx-allow: A1 retail pool bytes */\n__declspec(section \".fzgxpool\") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */\n__declspec(section \".fzgxpool\") static void fzgx_pool_prime3(void) {\n    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */\n    s = 0.4583333432674408f;\n    s = 284.0f;\n    s = 329.0f;\n    s = 100.0f;\n    s = 0.9166666865348816f;\n    s = 360.0f;\n    s = 0.5416666865348816f;\n    s = 441.0f;\n    s = 332.0f;\n    s = 345.0f;\n    s = 358.0f;\n    s = 0.48749998211860657f;\n    s = 395.0f;\n    s = 331.0f;\n    s = 359.0f;\n    s = 320.0f;\n    s = 362.0f;\n    s = 200.0f;\n    s = 323.0f;\n    s = 381.0f;\n    s = 13.0f;\n    s = 0.007843137718737125f;\n    s = 6.0f;\n    s = 7.0f;\n    s = 0.14901961386203766f;\n    s = 0.12941177189350128f;\n    s = 132.0f;\n    s = 150.0f;\n    s = 0.800000011920929f;\n    s = 0.30000001192092896f;\n}\nstatic const u32 fzgx_pool_table4[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */\n__declspec(section \".fzgxpool\") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */\n__declspec(section \".fzgxpool\") static void fzgx_pool_prime5(void) {\n    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */\n    d = 4503601774854144.0;\n}\nstatic const u32 fzgx_pool_table6[43] = {0x00004A00, 0x00005400, 0x00003800, 0x00003E00, 0x00003700, 0x00005500, 0x00003000, 0x00003500, 0x00003A00, 0x00004000, 0x00004400, 0x00005000, 0x00003300, 0x00002E00, 0x00003100, 0x00004F00, 0x00003900, 0x00003D00, 0x00004C00, 0x00003F00, 0x00004800, 0x00005200, 0x00004500, 0x00005300, 0x00003C00, 0x00005600, 0x00004300, 0x00004200, 0x00003200, 0x00002F00, 0x00003400, 0x00003600, 0x00004D00, 0x00004600, 0x00004100, 0x00005100, 0x00004E00, 0x00004700, 0x00003B00, 0x00004B00, 0x00004900, 0xFFF200FF, 0xFFFF0000};  /* fzgx-allow: A1 retail pool bytes */\n__declspec(section \".fzgxpool\") static void fzgx_pool_keep6(void) { const u32 *volatile cp; cp = fzgx_pool_table6; }  /* fzgx-allow: S2 pool primer sink */\n__declspec(section \".fzgxpool\") static void fzgx_pool_prime7(void) {\n    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */\n    s = 380.0f;\n    s = 334.0f;\n    s = 0.40625f;\n}\nstatic const u32 fzgx_pool_color0[1] = {0x00000000};\nstatic const u32 fzgx_pool_color1[1] = {0x00000000};\nstatic const u32 fzgx_pool_color2[1] = {0x00000000};\nstatic const u32 fzgx_pool_color3[1] = {0x00000000};\nstatic const u32 fzgx_pool_color4[1] = {0x00000000};\nstatic const u32 fzgx_pool_color5[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */\n__declspec(section \".fzgxpool\") static void fzgx_pool_keep8(void) { const u32 *volatile cp; cp = fzgx_pool_color0; }  /* fzgx-allow: S2 pool primer sink */\n__declspec(section \".fzgxpool\") static void fzgx_pool_prime9(void) {\n    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */\n    s = 480.0f;\n    s = 640.0f;\n    s = 62.0f;\n    s = 1.3411765098571777f;\n    s = 8.0f;\n    s = 0.125f;\n    s = 1.0f;\n    s = 0.5f;\n    s = 215.0f;\n    s = 3.0f;\n    s = 180.0f;\n    s = 90.0f;\n    s = 240.0f;\n    s = 44.0f;\n    s = 89.9000015258789f;\n    s = 40.0f;\n    s = 16384.0f;\n    s = 65536.0f;\n    s = 60.0f;\n    s = 80.0f;\n    s = 460.0f;\n    s = 0.6666666865348816f;\n    s = 0.6078431606292725f;\n    s = -3.0f;\n    s = 0.0f;\n    s = 0.6196078658103943f;\n    s = 0.5058823823928833f;\n    s = 216.0f;\n    s = 0.20000000298023224f;\n    s = 140.0f;\n    s = 250.0f;\n    s = 400.0f;\n    s = 550.0f;\n    s = 0.46666666865348816f;\n    d = 4503599627370496.0;\n}\n#pragma section code_type \".text\"\n\nstruct fn_3_1D338_sprite {\n    u32 unk0;\n    f32 x;\n    f32 y;\n    f32 z;\n    u8 pad10[0x1C];\n    f32 unk2C;\n    u32 unk30;\n    u8 pad34[4];\n    u8 color[4];\n    u8 pad3C[0x14];\n    void (*draw)(void *, void *);\n    u8 pad54[4];\n};\n\nstruct fn_3_1D338_bss_F0 {\n    u8 pad0[0xA];\n    s16 unkA;\n    s16 unkC;\n    s16 unkE[11];\n    u32 unk24;\n    u8 pad28[2];\n    s16 unk2A;\n};\n\nstruct fn_3_1D338_a2460 {\n    s16 unk0;\n    s16 unk2;\n    s16 unk4;\n    s16 unk6;\n};\n\nextern struct fn_3_1D338_bss_F0 lbl_3_bss_F0;\nextern struct fn_3_1D338_a2460 lbl_3_bss_A2460;\nextern struct fn_3_1D338_sprite lbl_1_rodata_26F8;\nextern u32 lbl_801A66A8;\n\nextern u16 fn_1_A5DB0(void);\nextern s8 fn_1_A5DC4(void);\nextern f32 lbl_8006D188(s32);\nextern void fn_1_50164(f32, f32, f32, f32, void *);\nextern void fn_1_49410(void);\nextern void fn_1_4954C(f32);\nextern void fn_1_4955C(f32, f32);\nextern void fn_1_49590(f32);\nextern void fn_1_495A0(f32);\nextern void fn_1_495C8(s32);\nextern void fn_1_4966C(f32, f32);\nextern void fn_1_496FC(f32, f32);\nextern void fn_1_49738(void (*)(void *, void *));\nextern void fn_1_4AE0C(const char *, ...);\nextern u32 fn_3_2B750(s16, s16);\nextern void fn_3_2406C(void *, void *);\nextern void fn_3_240DC(void *, void *);\nextern void fn_1_5233C(void *, void *);\n\n\n\n#define SETUP_SPRITE(id, xv, yv, zv)                                          \\\n    do {                                                                      \\\n        sprite = lbl_1_rodata_26F8;                                           \\\n        sprite.unk0 = (id);                                                   \\\n        sprite.x = (xv);                                                      \\\n        sprite.y = (yv);                                                      \\\n        sprite.z = (zv);                                                      \\\n        sprite.unk30 = 10;                                                    \\\n        if (!fn_1_A5DC4()) {                                                  \\\n            sprite.draw = fn_3_2406C;                                         \\\n            sprite.unk30 |= 0x04000000;                                       \\\n        }                                                                     \\\n    } while (0)\n\n#define SET_COLOR()                                                           \\\n    do {                                                                      \\\n        v = lbl_8006D188((s32)(16384.0f + 65536.0f *                          \\\n            (f32)(u32)(lbl_801A66A8 % 60) / 60.0f));                          \\\n        sprite.color[0] = 40.0f + (f32)(40.0f * v);                                          \\\n        v = lbl_8006D188((s32)(16384.0f + 65536.0f *                          \\\n            (f32)(u32)(lbl_801A66A8 % 60) / 60.0f));                          \\\n        sprite.color[1] = 80.0f + (f32)(80.0f * v);                                          \\\n        v = lbl_8006D188((s32)(16384.0f + 65536.0f *                          \\\n            (f32)(u32)(lbl_801A66A8 % 60) / 60.0f));                          \\\n        sprite.color[2] = 80.0f + (f32)(80.0f * v);                                          \\\n    } while (0)\n\n\n\n#pragma opt_propagation off\nstatic inline f32 fn_3_1D338_operand(f32 right, f32 left) { return left * right; }\n\n#pragma opt_loop_invariants on\nstatic inline f32 fn_3_1D338_operand__(f32 right, f32 left) { return left * right; }\n#pragma opt_strength_reduction on\nstatic inline f32 fn_3_1D338_operand___(f32 left, f32 right) { return left * right; }\nvoid fn_3_1D338(s16 kind) {\n    s16 fzgx_value;\n    struct fn_3_1D338_sprite sprite;\n    u32 v29;\n    f32 f31;\n    f32 f30;\n    f32 f29;\n    f32 v;\n    f32 w;\n    f32 clamped;\n    f32 lab_t0;\n\n    v29 = 640;\n    f31 = (f32)(u16)fn_1_A5DB0() / 480.0f;\n    f30 = 640.0f;\n    f29 = 62.0f;\n    if (fn_1_A5DC4()) {\n        s32 w = 640;\n        w *= 1.3411765098571777f; v29 = w; f30 *= 1.3411765098571777f;\n    }\n    if ((lbl_3_bss_F0.unk24 & 0x80000000) &&\n        (lbl_3_bss_F0.unk24 & 0x20000000)) {\n        if ((f32)lbl_3_bss_F0.unk2A < 8.0f) {\n            f29 = 8.0f;\n            {\n                f32 product = (f32)(s16)v29 * (f32)lbl_3_bss_F0.unk2A;\n                product *= 0.125f;\n                v = product;\n            }\nclamped = 8.0f;\nclamped = (v < clamped) ? clamped : (((v) > ( (f32)(s16)v29)) ? ( (f32)(s16)v29) : (v));\nf30 = clamped;\n        } else if (lbl_3_bss_F0.unk2A < 16) {\n            v = fn_3_1D338_operand((0.125f), ((62.0f * ((f32)lbl_3_bss_F0.unk2A - 8.0f))));\nclamped = ((v) < ( 8.0f)) ? ( 8.0f) : (((v) > ( 62.0f)) ? ( 62.0f) : (v));\nf29 = clamped;\n            f30 = (f32)(s16)v29;\n        } else {\n            f29 = 62.0f;\n            f30 = (f32)(s16)v29;\n        }\n    } else if ((lbl_3_bss_F0.unk24 & 0x80000000) &&\n               (lbl_3_bss_F0.unk24 & 0x10000000)) {\n        if ((f32)lbl_3_bss_F0.unk2A < 8.0f) {\n            v = 62.0f * (1.0f - (f32)((f32)lbl_3_bss_F0.unk2A / 8.0f));\nclamped = ((v) < ( 8.0f)) ? ( 8.0f) : (((v) > ( 62.0f)) ? ( 62.0f) : (v));\nf29 = clamped;\n            f30 = (f32)(s16)v29;\n        } else if (lbl_3_bss_F0.unk2A < 16) {\n            f29 = 8.0f;\n            v = (f32)(s16)v29 * (1.0f - (f32)(((f32)lbl_3_bss_F0.unk2A - 8.0f) / 8.0f));\nclamped = ((v) < ( 8.0f)) ? ( 8.0f) : (((v) > ( (f32)(s16)v29)) ? ( (f32)(s16)v29) : (v));\nf30 = clamped;\n        } else {\n            f30 = 8.0f;\n            f29 = 8.0f;\n        }\n    }\n    lbl_3_bss_A2460.unk0 = (s16)(320.0f - (f32)(f30 / 2.0f));\n    lbl_3_bss_A2460.unk4 = (s16)f30;\n    lbl_3_bss_A2460.unk2 = (s16)((215.0f - (f32)(f29 / 2.0f)) * f31);\n    lbl_3_bss_A2460.unk6 = (s16)(f29 * f31);\n\n    sprite = lbl_1_rodata_26F8;\n    sprite.unk0 = 0x8929;\n    sprite.x = 320.0f;\n    sprite.y = 215.0f;\n    sprite.z = 100.0f;\n    sprite.unk30 = 10;\n    fn_1_50164(f30, f29, 3.0f, 3.0f, &sprite);\n\n    if (fn_1_A5DC4()) {\n        if (lbl_3_bss_F0.unk24 & 0x80000000) {\n            if (lbl_3_bss_F0.unk24 & 0x20000000) {\n                return;\n            }\n            if (lbl_3_bss_F0.unk24 & 0x10000000) {\n                return;\n            }\n        }\n    } else if (f30 != (f32)(s16)v29) {\n        return;\n    }\n\n    switch (kind) {\n    case 0:\n        SETUP_SPRITE(0x8920, 180.0f, 215.0f, 90.0f);\n        fn_1_50164(240.0f, 44.0f, 8.0f, 8.0f, &sprite);\n\n        SETUP_SPRITE(0x8913, 180.0f, 215.0f, 89.9f);\n        sprite.unk2C = 0.5f;\n        if ((*((lbl_3_bss_F0.unkC) + (lbl_3_bss_F0.unkE))) == 0) {\n            SET_COLOR();\n        } else {\n            *(u32 *)sprite.color = (*((0) + (fzgx_pool_color0)));\n        }\n        fn_1_50164(240.0f, 44.0f, 7.0f, 7.0f, &sprite);\n\n        SETUP_SPRITE(0x8920, 460.0f, 215.0f, 90.0f);\n        fn_1_50164(240.0f, 44.0f, 8.0f, 8.0f, &sprite);\n\n        SETUP_SPRITE(0x8913, 460.0f, 215.0f, 89.9f);\n        sprite.unk2C = 0.5f;\n        if ((*((lbl_3_bss_F0.unkC) + (lbl_3_bss_F0.unkE))) == 1) {\n            SET_COLOR();\n        } else {\n            *(u32 *)sprite.color = (*((0) + (fzgx_pool_color1)));\n        }\n        fn_1_50164(240.0f, 44.0f, 7.0f, 7.0f, &sprite);\n\n        fn_1_49410();\n        fn_1_495C8(9);\n        fn_1_4955C(0.6666666865348816f, 0.6666666865348816f);\n        switch (lbl_3_bss_F0.unkA) {\n        case 5:\n            fn_1_4955C(0.6078431606292725f, 0.6078431606292725f);\n            break;\n        case 0:\n        default:\n            fn_1_4966C(-3.0f, 0.0f);\n            lab_t0 = 0.5f;\n            fn_1_49590(lab_t0);\n            fn_1_4955C(0.6196078658103943f, 0.5058823823928833f);\n            break;\n        }\n        fn_1_496FC(180.0f, 215.0f);\n        fn_1_4954C(80.0f);\n        if (!fn_1_A5DC4()) {\n            fn_1_49738(fn_3_240DC);\n        } else {\n            fn_1_49738(fn_1_5233C);\n        }\n        fn_1_4AE0C((const char *)fn_3_2B750(16, lbl_3_bss_F0.unkA));\n        fn_1_496FC(460.0f, 215.0f);\n        fn_1_4954C(80.0f);\n        if (!fn_1_A5DC4()) {\n            fn_1_49738(fn_3_240DC);\n        } else {\n            fn_1_49738(fn_1_5233C);\n        }\n        fn_1_4AE0C((const char *)fn_3_2B750(17, lbl_3_bss_F0.unkA));\n        break;\n    case 1:\n    case 2:\n        SETUP_SPRITE(0x8920, 100.0f, 216.0f, 90.0f);\n        if (kind == 2) {\n            sprite.unk2C = 0.20000000298023224f;\n        }\n        fn_1_50164(140.0f, 44.0f, 8.0f, 8.0f, &sprite);\n\n        SETUP_SPRITE(0x8913, 100.0f, 216.0f, 89.9f);\n        sprite.unk2C = 0.5f;\n        if (kind == 2) {\n            sprite.unk2C = 0.20000000298023224f;\n        }\n        if ((*((lbl_3_bss_F0.unkC) + (lbl_3_bss_F0.unkE))) == 0) {\n            SET_COLOR();\n        } else {\n            *(u32 *)sprite.color = (*((0) + (fzgx_pool_color2)));\n        }\n        fn_1_50164(140.0f, 44.0f, 7.0f, 7.0f, &sprite);\n\n        SETUP_SPRITE(0x8920, 250.0f, 216.0f, 90.0f);\n        if (kind == 2) {\n            sprite.unk2C = 0.20000000298023224f;\n        }\n        fn_1_50164(140.0f, 44.0f, 8.0f, 8.0f, &sprite);\n\n        SETUP_SPRITE(0x8913, 250.0f, 216.0f, 89.9f);\n        sprite.unk2C = 0.5f;\n        if (kind == 2) {\n            sprite.unk2C = 0.20000000298023224f;\n        }\n        if ((*((lbl_3_bss_F0.unkC) + (lbl_3_bss_F0.unkE))) == 1) {\n            SET_COLOR();\n        } else {\n            *(u32 *)sprite.color = (*((0) + (fzgx_pool_color3)));\n        }\n        fn_1_50164(140.0f, 44.0f, 7.0f, 7.0f, &sprite);\n\n        SETUP_SPRITE(0x8920, 400.0f, 216.0f, 90.0f);\n        fn_1_50164(140.0f, 44.0f, 8.0f, 8.0f, &sprite);\n\n        SETUP_SPRITE(0x8913, 400.0f, 216.0f, 89.9f);\n        sprite.unk2C = 0.5f;\n        if ((*((lbl_3_bss_F0.unkC) + (lbl_3_bss_F0.unkE))) == 2) {\n            SET_COLOR();\n        } else {\n            *(u32 *)sprite.color = (*((0) + (fzgx_pool_color4)));\n        }\n        fn_1_50164(140.0f, 44.0f, 7.0f, 7.0f, &sprite);\n\n        SETUP_SPRITE(0x8920, 550.0f, 216.0f, 90.0f);\n        fn_1_50164(140.0f, 44.0f, 8.0f, 8.0f, &sprite);\n\n        SETUP_SPRITE(0x8913, 550.0f, 216.0f, 89.9f);\n        sprite.unk2C = 0.5f;\n        if ((*((lbl_3_bss_F0.unkC) + (lbl_3_bss_F0.unkE))) == 3) {\n            SET_COLOR();\n        } else {\n            *(u32 *)sprite.color = (*((0) + (fzgx_pool_color5)));\n        }\n        fn_1_50164(140.0f, 44.0f, 7.0f, 7.0f, &sprite);\n\n        fn_1_49410();\n        fn_1_495C8(9);\n        fn_1_4955C(0.6666666865348816f, 0.6666666865348816f);\n        switch (lbl_3_bss_F0.unkA) {\n        case 5:\n            break;\n        case 0:\n        default:\n            fn_1_49590(0.5f);\n            fn_1_4955C(0.46666666865348816f, 0.6666666865348816f);\n            break;\n        }\n        fn_1_496FC(100.0f, 216.0f);\n        fn_1_4954C(80.0f);\n        if (!fn_1_A5DC4()) {\n            fn_1_49738(fn_3_240DC);\n        } else {\n            fn_1_49738(fn_1_5233C);\n        }\n        if (kind == 2) {\n            fn_1_495A0(0.20000000298023224f);\n        }\n        fn_1_4AE0C((const char *)fn_3_2B750(11, lbl_3_bss_F0.unkA));\n        if (!fn_1_A5DC4()) {\n            fn_1_49738(fn_3_240DC);\n        } else {\n            fn_1_49738(fn_1_5233C);\n        }\n        fn_1_496FC(250.0f, 216.0f);\n        fn_1_4954C(80.0f);\n        if (kind == 2) {\n            fn_1_495A0(0.20000000298023224f);\n        }\n        fn_1_4AE0C((const char *)fn_3_2B750(12, lbl_3_bss_F0.unkA));\n        if (!fn_1_A5DC4()) {\n            fn_1_49738(fn_3_240DC);\n        } else {\n            fn_1_49738(fn_1_5233C);\n        }\n        fn_1_496FC(400.0f, 216.0f);\n        fn_1_4954C(80.0f);\n        fn_1_495A0(1.0f);\n        fn_1_4AE0C((const char *)fn_3_2B750(13, lbl_3_bss_F0.unkA));\n        if (!fn_1_A5DC4()) {\n            fn_1_49738(fn_3_240DC);\n        } else {\n            fn_1_49738(fn_1_5233C);\n        }\n        fn_1_496FC(550.0f, 216.0f);\n        fn_1_4954C(80.0f);\n        fn_1_495A0(1.0f);\n        fn_1_4AE0C((const char *)fn_3_2B750(14, lbl_3_bss_F0.unkA));\n    }\n}\n#pragma opt_strength_reduction reset\n\n#pragma opt_loop_invariants reset\n\n#pragma opt_propagation reset\n",
+      "status": "not admitted; previous accepted canonical source retained"
+    },
+    {
+      "symbol": "fn_1_2D038",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "747d65483ec9b132d56f472d316c9fafbf4dd4ceacdaf46c47dfd8415800af1c",
+      "label": "readable inline float operand fn_1_2D038_operand",
+      "error": "PROLOGUE CONFLICT (fix the declaration, then submit again):\n### mwcceppc.exe Compiler:\n#     391: extern struct fn_1_2D038_lbl_1_rodata_BD8 lbl_1_rodata_BD8;\n#   Error:                                                           ^\n#   identifier 'lbl_1_rodata_BD8' redeclared\n#   was declared as: 'struct fn_1_2D524_lbl_1_rodata_BD8'\n#   now declared as: 'struct fn_1_2D038_lbl_1_rodata_BD8'",
+      "source": "#include \"types.h\"\n\nstruct fn_1_2D038_hdr { u32 unk_0; u8 pad_4[1]; u8 unk_5; u8 pad_6[2]; };\nstruct fn_1_2D038_lbl_1_bss_3C00 {\nu8 pad_0[0x2A]; s16 unk_2A; u8 pad_2C[4]; struct fn_1_2D038_hdr unk_30; u8 pad_38[0x15EC];\nu8 unk_1624; u8 pad_1625[3]; u32 unk_1628; u32 unk_162C; u32 unk_1630; u8 unk_1634; u8 pad_1635[3]; u32 unk_1638;\n};\nstruct fn_1_2D038_lbl_1_rodata_BD8 { u8 pad_0[4]; f32 unk_4,unk_8,unk_C,unk_10,unk_14,unk_18,unk_1C,unk_20,unk_24,unk_28,unk_2C,unk_30,unk_34,unk_38,unk_3C,unk_40,unk_44,unk_48; u8 pad_4C[4]; f64 unk_50; };\nstruct fn_1_2D038_obj_3C30 { struct fn_1_2D038_hdr hdr; u8 pad_8[0x14BC - 8]; };\nstruct fn_1_2D038_obj_5138 { u8 pad_0[0xEC]; u8 unk_EC; u8 pad_ED[3]; u32 unk_F0; u32 unk_F4; u32 unk_F8; u8 unk_FC; u8 pad_FD[3]; u32 unk_100; };\n/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */\nu32 fzgx_obj_lbl_1_bss_3C00;\nu32 fzgx_obj_lbl_1_bss_3C04;\nu8 lbl_1_bss_3C08[8];\nu8 lbl_1_bss_3C10;\nu8 fzgx_obj_lbl_1_bss_3C11;\ns16 fzgx_obj_lbl_1_bss_3C12;\ns16 lbl_1_bss_3C12__fzgx_offset_2;\ns16 lbl_1_bss_3C12__fzgx_offset_4;\ns16 lbl_1_bss_3C12__fzgx_offset_6;\ns16 lbl_1_bss_3C12__fzgx_offset_8;\nu8 fzgx_obj_lbl_1_bss_3C1C[0xE];\ns16 fzgx_obj_lbl_1_bss_3C2A;\ns16 lbl_1_bss_3C2A__fzgx_offset_2;\ns16 lbl_1_bss_3C2A__fzgx_offset_4;\nstruct fn_1_2D038_obj_3C30 fzgx_obj_lbl_1_bss_3C30;\nu8 fzgx_obj_lbl_1_bss_50EC[0x14];\nu32 fzgx_obj_lbl_1_bss_5100;\nu8 fzgx_obj_lbl_1_bss_5104[0x34];\nu8 fzgx_obj_lbl_1_bss_5138[0xEC];\nu8 lbl_1_bss_5138__fzgx_offset_EC;\nu32 lbl_1_bss_5138__fzgx_offset_F0;\nu32 lbl_1_bss_5138__fzgx_offset_F4;\nu32 lbl_1_bss_5138__fzgx_offset_F8;\nu8 lbl_1_bss_5138__fzgx_offset_FC;\nu32 lbl_1_bss_5138__fzgx_offset_100;\n\n#pragma section code_type \".fzgxpool\"\nstatic void fzgx_bss_layout(void) {\n    volatile u8 s; /* fzgx-allow: S2 BSS primer ordering */\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_3C00;\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_3C04;\n    s = *(u8 *)&lbl_1_bss_3C08;\n    s = *(u8 *)&lbl_1_bss_3C10;\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_3C11;\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_3C12;\n    s = *(u8 *)&lbl_1_bss_3C12__fzgx_offset_2;\n    s = *(u8 *)&lbl_1_bss_3C12__fzgx_offset_4;\n    s = *(u8 *)&lbl_1_bss_3C12__fzgx_offset_6;\n    s = *(u8 *)&lbl_1_bss_3C12__fzgx_offset_8;\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_3C1C;\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_3C2A;\n    s = *(u8 *)&lbl_1_bss_3C2A__fzgx_offset_2;\n    s = *(u8 *)&lbl_1_bss_3C2A__fzgx_offset_4;\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_3C30;\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_50EC;\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_5100;\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_5104;\n    s = *(u8 *)&fzgx_obj_lbl_1_bss_5138;\n    s = *(u8 *)&lbl_1_bss_5138__fzgx_offset_EC;\n    s = *(u8 *)&lbl_1_bss_5138__fzgx_offset_F0;\n    s = *(u8 *)&lbl_1_bss_5138__fzgx_offset_F4;\n    s = *(u8 *)&lbl_1_bss_5138__fzgx_offset_F8;\n    s = *(u8 *)&lbl_1_bss_5138__fzgx_offset_FC;\n    s = *(u8 *)&lbl_1_bss_5138__fzgx_offset_100;\n}\n#pragma section code_type \".text\"\n#pragma section code_type \".fzgxpool\"\nstatic const u32 fzgx_pool_table1[1] = {0xFFFFFF00};\n__declspec(section \".fzgxpool\") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; } /* fzgx-allow: S2 pool primer sink keeps the literal pool order */\n__declspec(section \".fzgxpool\") static void fzgx_pool_prime2(void) { volatile f32 s; s=0.0f; s=15.0f; s=1.0f; s=10.0f; s=1.25f; s=0.100000001f; s=0.899999976f; s=0.000600000028f; s=0.400000006f; s=0.75f; s=70.0f; s=0.5f; s=36.0f; s=16.0f; s=45.0f; s=0.00079999998f; s=18.0f; s=50.0f; } /* fzgx-allow: S2 pool primer sink keeps the literal pool order */\nstatic const u32 fzgx_pool_table3[1]={0};\n__declspec(section \".fzgxpool\") static void fzgx_pool_keep3(void) { const u32 *volatile cp; cp=fzgx_pool_table3; } /* fzgx-allow: S2 pool primer sink keeps the literal pool order */\n__declspec(section \".fzgxpool\") static void fzgx_pool_prime4(void) { volatile f64 d; d=4503599627370496.0; } /* fzgx-allow: S2 pool primer sink keeps the literal pool order */\n#pragma section code_type \".text\"\nextern struct fn_1_2D038_lbl_1_rodata_BD8 lbl_1_rodata_BD8;\nextern u32 lbl_1_data_5BF8;\nextern u32 lbl_1_rodata_26F8;\nextern u8 lbl_1_bss_8E51D;\nextern u32 fn_1_F45B4(void);\nextern s32 fn_1_F22D4(void *);\nextern int fn_1_EB248(void);\nextern s32 fn_1_154C84(void);\nextern u32 fn_1_49410(void);\nextern void fn_1_495FC(void);\nextern void fn_1_4954C(f32);\nextern void fn_1_49590(f32);\nextern void fn_1_4955C(f32,f32);\nextern void fn_1_495C8(u8);\nextern void fn_1_495A0(f32);\nextern void fn_1_495B0(u32);\nextern const char *fn_1_15BA78(u32);\nextern f32 fn_1_4B068(const char *);\nextern f32 fn_1_4B090(const char *);\nextern void fn_1_496FC(f32,f32);\nextern void fn_1_4A0D8(const char *);\nextern u32 fn_1_50A90(void *,u32,u32,u32,u32);\nstruct FzgxCopy_88 { u32 words[22]; };\n\nstatic inline u32 *fn_1_2D038_read_pointer(struct FzgxCopy_88 *owner) { return owner->words; }\n#pragma opt_dead_assignments off\n#pragma opt_propagation off\nvoid fn_1_2D038(void) {\nstruct FzgxCopy_88 loc_8;\nstruct { struct fn_1_2D038_hdr *value; } hdr;\ns32 var_r29;\nf32 var_f31;\nf32 var_f30;\nf32 var_f29;\nf32 temp_f28;\nf32 temp_f27;\nf32 var_f26;\nf32 temp_f26;\nf32 temp_f7;\ns32 var_r28;\nf32 lab_t1;\nconst char *lab_t0;\nvar_r29=0; var_r28=-1;\nif (!(fzgx_obj_lbl_1_bss_3C30.hdr.unk_0 & 0x800000) || (((u8)fn_1_F45B4()!=0) && ((u8)lbl_1_bss_5138__fzgx_offset_EC==0))) {\nlbl_1_bss_5138__fzgx_offset_F0=0;\n} else {\nif ((u32)lbl_1_bss_5138__fzgx_offset_F4==0) { var_r29=1; lbl_1_bss_5138__fzgx_offset_F0=1; }\nelse if (((s32)lbl_1_bss_5138__fzgx_offset_F0==0) && ((u32)lbl_1_bss_5138__fzgx_offset_F4>=0xB4U)) { lbl_1_bss_5138__fzgx_offset_F0=1; lbl_1_bss_5138__fzgx_offset_F4=0; lbl_1_bss_5138__fzgx_offset_F8=0; }\nif (((u32)lbl_1_bss_5138__fzgx_offset_F4==0) && ((s32)lbl_1_bss_5138__fzgx_offset_F0!=0)) var_r28=1;\n}\nif (((u8)lbl_1_bss_5138__fzgx_offset_FC!=0) || ((hdr.value = &fzgx_obj_lbl_1_bss_3C30.hdr, hdr.value->unk_5 == 2) && fn_1_F22D4(hdr.value)!=0)) {\nif ((u32)lbl_1_bss_5138__fzgx_offset_F4==0) { var_r29+=1; lbl_1_bss_5138__fzgx_offset_100=1; }\nelse if (((s32)lbl_1_bss_5138__fzgx_offset_100==0) && ((u32)lbl_1_bss_5138__fzgx_offset_F4>=0xB4U)) { lbl_1_bss_5138__fzgx_offset_100=1; lbl_1_bss_5138__fzgx_offset_F4=0; lbl_1_bss_5138__fzgx_offset_F8=0; }\nif (var_r29==2) { var_r28=0; lbl_1_bss_5138__fzgx_offset_F8=0; }\nelse if (((u32)lbl_1_bss_5138__fzgx_offset_F4==0) && ((s32)lbl_1_bss_5138__fzgx_offset_100!=0) && var_r28==-1) var_r28=2;\n} else lbl_1_bss_5138__fzgx_offset_100=0;\nif (((s32)lbl_1_bss_5138__fzgx_offset_F0==0) && ((s32)lbl_1_bss_5138__fzgx_offset_100==0)) { lbl_1_bss_5138__fzgx_offset_F4=0; lbl_1_bss_5138__fzgx_offset_F8=0; return; }\nif (fn_1_EB248()!=0 || fn_1_154C84()!=0) {\nif ((u32)lbl_1_bss_5138__fzgx_offset_F4==0) return;\nif ((u32)lbl_1_bss_5138__fzgx_offset_F4>0xFU) lbl_1_bss_5138__fzgx_offset_F4=0xF;\nelse lbl_1_bss_5138__fzgx_offset_F4=(u32)((s32)lbl_1_bss_5138__fzgx_offset_F4-1);\ngoto block_43; /* fzgx-allow: S1 retail shares this tail block between both branches */\n} else {\nif ((s16)fzgx_obj_lbl_1_bss_3C2A>=0x2A) {\nif ((u8)lbl_1_bss_8E51D==0xA) {\nif ((u32)lbl_1_bss_5138__fzgx_offset_F4==0) var_r28+=3;\nlbl_1_bss_5138__fzgx_offset_F4+=(u32)lbl_1_bss_5138__fzgx_offset_F4<0x3CU;\ngoto block_43; /* fzgx-allow: S1 retail shares this tail block between both branches */\n}\nlbl_1_bss_5138__fzgx_offset_F4=0; return;\n}\nlbl_1_bss_5138__fzgx_offset_F4=0; lbl_1_bss_5138__fzgx_offset_F8=0; return;\n}\nblock_43:;\nif ((u32)lbl_1_bss_5138__fzgx_offset_F4<0xFU) var_f31=(f32)lbl_1_bss_5138__fzgx_offset_F4/15.0f;\nelse if ((u32)lbl_1_bss_5138__fzgx_offset_F4>0xA5U) var_f31=1.0f-((f32)(lbl_1_bss_5138__fzgx_offset_F4-0xA5)/15.0f);\nelse var_f31=1.0f;\nvar_f30=10.0f*var_f31; if (var_f30>1.0f) var_f30=1.0f;\nvar_f29=1.25f*(var_f31-0.100000001f); if (var_f29<0.0f) var_f29=0.0f;\nvar_f26=10.0f*(var_f31-0.899999976f); if (var_f26<0.0f) var_f26=0.0f;\nfn_1_49410(); fn_1_495FC(); fn_1_4954C(0.000600000028f); fn_1_49590(0.400000006f); fn_1_4955C(0.75f,0.75f); fn_1_495C8(1); fn_1_495A0(var_f26); fn_1_495B0(0x80000000U);\nif ((u32)lbl_1_bss_5138__fzgx_offset_F8==0) lbl_1_bss_5138__fzgx_offset_F8=(u32)fn_1_15BA78((&lbl_1_data_5BF8)[var_r28]);\nlab_t0=(const char *)lbl_1_bss_5138__fzgx_offset_F8;\ntemp_f27=fn_1_4B068(lab_t0); temp_f28=fn_1_4B090((const char *)lbl_1_bss_5138__fzgx_offset_F8);\ntemp_f26=temp_f27; temp_f26*=0.5f; lab_t1=70.0f; temp_f26=lab_t1 + temp_f26;\nfn_1_496FC(temp_f26,36.0f); fn_1_4A0D8((const char *)lbl_1_bss_5138__fzgx_offset_F8);\nloc_8=*(const struct FzgxCopy_88 *)((((s32)(((u8 *)(&lbl_1_rodata_26F8)+-4)))+4));\ntemp_f7=45.0f+temp_f28;\n(*(f32 *)((u8 *)&loc_8+4))=temp_f26;\n(*(f32 *)((u8 *)&loc_8+8))=16.0f+(f32)(0.5f*temp_f7);\n(*(f32 *)((u8 *)&loc_8+12))=0.00079999998f;\nfn_1_2D038_read_pointer(&loc_8)[0xC]=0xA;\n(*(f32 *)((u8 *)&loc_8+44))=var_f31;\nfn_1_2D038_read_pointer(&loc_8)[0]=2;\nfn_1_50A90(&loc_8,(u32)(s32)(18.0f*var_f30),(u32)(s32)(45.0f*var_f30),(u32)(s32)((50.0f+temp_f27)*var_f29),(u32)(s32)(temp_f7*var_f29));\n}\n#pragma opt_propagation reset\n#pragma opt_dead_assignments reset\n",
+      "status": "not admitted; previous accepted canonical source retained"
+    }
+  ],
+  "observations": [
+    {
+      "symbol": "fn_3_1D338",
+      "label": "baseline",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "6f7dc16196b84dae4cba23992dbf5f2f7d476d654844885234bf616673648041",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "matched": true
+    },
+    {
+      "symbol": "fn_3_1D338",
+      "label": "inline float operand fn_3_1D338_operand",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "a2e4752ab1cc8e9d6bda081cae7c54cd9e0bf0f228c147f709296ac8e43260bb",
+      "word_errors": 9,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_3_1D338",
+      "label": "scoped float arithmetic fn_3_1D338_operand",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "37ec1eddd2c6499c51d9ee7e4c819635bbeb15d399b11128d9be43d09c530793",
+      "word_errors": 4,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_3_1D338",
+      "label": "inline float operand fn_3_1D338_operand_",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "58073b21183d861e7cc47c066ec959c6bd04dd2673c980080d157457dfaa5d5b",
+      "word_errors": 7,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_3_1D338",
+      "label": "scoped float arithmetic fn_3_1D338_operand_",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "95afea39a56500cdb3adb82128f1b80b7cc541d3be65ed16d8378d289fa41b73",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "matched": true
+    },
+    {
+      "symbol": "fn_1_11677C",
+      "label": "baseline",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "8c14604fe028d45e38f0aab8419201a9420ea4bb7d8508cd6d80eaa276e66fd7",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "matched": true
+    },
+    {
+      "symbol": "fn_1_11677C",
+      "label": "inline float operand fn_1_11677C_operand",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "a5707a9c704677ec1b00eeea8874f1dee71161241f6cf7a796eedf7649b733b7",
+      "word_errors": 3,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_1_11677C",
+      "label": "scoped float arithmetic fn_1_11677C_operand",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "243f93dff8b6aabd8bc970c9feb332157498f10f771a500d583a04f4e6d371e9",
+      "word_errors": 2,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_1_103264",
+      "label": "baseline",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "cb7dacbc7537450718a4de7afcd9037dde5f80a0b51be636a1fabce0ca3e3593",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "matched": true
+    },
+    {
+      "symbol": "fn_1_103264",
+      "label": "inline float operand fn_1_103264_operand",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "fd76d3d63308a8cbb84cc89e22045b44b13ee838f875fac6bac2fb78f2f6a0b5",
+      "word_errors": 5,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_1_103264",
+      "label": "scoped float arithmetic fn_1_103264_operand",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "3c6aa9644482d0e7972697e3ae0aed0d2ff20706e2d89980b67c7888c8fb81c5",
+      "word_errors": 4,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_1_103264",
+      "label": "inline float operand fn_1_103264_operand_",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "d8ff29875308b33b28054a256826dbbdc5166805a50a5a7181cb9d48d1adb277",
+      "word_errors": 3,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_1_103264",
+      "label": "scoped float arithmetic fn_1_103264_operand_",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "d1ad7bcaed392afc1bbd13a7b1e666584761c38f3f5a93f8522278a7ad67ad9f",
+      "word_errors": 4,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_1_FAB40",
+      "label": "baseline",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "e63ac27460a89c29571acab301676d6fc5d433e677150105e7f4aa898a5f900d",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "matched": true
+    },
+    {
+      "symbol": "fn_1_FAB40",
+      "label": "inline float operand fn_1_FAB40_operand",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "59b54d204987242a1bc27c2d230857140f1e55c80d7290df39165cef21a50c71",
+      "word_errors": 3,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_1_FAB40",
+      "label": "scoped float arithmetic fn_1_FAB40_operand",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "a80d9634442a044a60463a2c33d1a2f35c1e8ded8244c5305f7c07bd320d9550",
+      "word_errors": 4,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_1_2D038",
+      "label": "baseline",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "10abd8df4a11bb39afc15fdc84a4cee43d12f05682cb1a974807c703ad765cf0",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "matched": true
+    },
+    {
+      "symbol": "fn_1_2D038",
+      "label": "inline float operand fn_1_2D038_operand",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "fd121fd3be16e4ecfd2d72c6ddd2f78fffd0a2785d02405c2df681d9752cae36",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "matched": true
+    },
+    {
+      "symbol": "fn_1_BF198",
+      "label": "baseline",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "d165941c112a4eecfe99b5ea31e3d5760a3de4082f642a4308ebf8fdfa0e1120",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "matched": true
+    },
+    {
+      "symbol": "fn_1_BF198",
+      "label": "inline float operand fn_1_BF198_operand",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "b7cd6731b964a1e72fe8c56b49466b2daf9f036a2c1616c4b2e188eacd3ec912",
+      "word_errors": 4,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_1_BF198",
+      "label": "scoped float arithmetic fn_1_BF198_operand",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "be71c3c656794076b7ebbbbae77cc646fbc3b82f08c45b3898184b789cb5c034",
+      "word_errors": 78,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_10_1B2F4",
+      "label": "baseline",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "abf74468812f3a1ce652532e611757736fd9778c94e5333a2d3f2a03a1209710",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "matched": true
+    },
+    {
+      "symbol": "fn_10_1B2F4",
+      "label": "inline float operand fn_10_1B2F4_operand_",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "8f828b23230c1271734e2fb8d86c8dea8b53a4425ea7202ef9ba51da27bd70a8",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "matched": true
+    },
+    {
+      "symbol": "fn_10_1B2F4",
+      "label": "scoped float arithmetic fn_10_1B2F4_operand_",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "83874026d4ad3a8c9f7987889e8acbec6e3bf4587db52261fc9c936c6b13c532",
+      "word_errors": 7,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_1_153D74",
+      "label": "baseline",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "5ce1d9ea072a32a526658cbf2ebd2181a63e9ab15cb0b856801e4f1d50a8aea2",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "matched": true
+    },
+    {
+      "symbol": "fn_1_153D74",
+      "label": "inline float operand fn_1_153D74_operand",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "b0f52eecc03e2eaf741db99674164dd951c183ead1d21c035c556ddd84aab747",
+      "word_errors": 6,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_1_153D74",
+      "label": "scoped float arithmetic fn_1_153D74_operand",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "315ffd169a69790ddcde7d0e4a65d80807254e8bb21cd8e6ac1bef31e1f0cfd3",
+      "word_errors": 4,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_16_61D4",
+      "label": "baseline",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "54c3a7c921a02063fa9aca008e523f3d37cafe9b62b8c47c51ae884e70603f31",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "matched": true
+    },
+    {
+      "symbol": "fn_16_61D4",
+      "label": "inline float operand fn_16_61D4_operand",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "f04f26d1f40370acf82f4cff8bf4123f474b7c12ba1be803dd3a227a6b1c6990",
+      "word_errors": 3,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_16_61D4",
+      "label": "scoped float arithmetic fn_16_61D4_operand",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "5bc918aab8c70655b3de59c836648ca3d7aa20774e2cef722b51b7a9c37cdca5",
+      "word_errors": 20,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_15_27D4",
+      "label": "baseline",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "20271a9ba22f03a9bd7a0d6dfc53c1961c1401ccfbd18573e59c55581db3dc50",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "matched": true
+    },
+    {
+      "symbol": "fn_15_27D4",
+      "label": "inline float operand fn_15_27D4_operand",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "b3c6d5c9f28a0f2735fb9ce5c75fa9e2d982a80a2988b5f6120a54ad8ce6e660",
+      "word_errors": 2,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_1_FED34",
+      "label": "baseline",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "f96df01616498d571500649925ed23fa324ea17be5045c2ccf4d1b5dffd1fd51",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "matched": true
+    },
+    {
+      "symbol": "fn_1_FED34",
+      "label": "inline float operand fn_1_FED34_operand",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "8c4620ff097a78edd052f3be2b1f54111941e19a36c124b3a3b8f4b24bb8f754",
+      "word_errors": 1,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_3_23724",
+      "label": "baseline",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "14072d083b66047778507d8dc84038caf4a0079206f0db704fe8294e0c782462",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "matched": true
+    },
+    {
+      "symbol": "fn_3_23724",
+      "label": "inline float operand fn_3_23724_operand",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "e82f833fa3dae09c878c4ea873c30c7638602652dc144ee2d2ae6ecef9dc4800",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "matched": true
+    }
+  ],
+  "admission_lesson": "Do not count the four exact object candidates as four accepted closures. Two inherited TU prologue declaration conflicts prevent admission. Submit rejection restores/ends those revision claims; inspect ownership before attempting a redundant release."
+}

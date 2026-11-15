@@ -1,0 +1,350 @@
+{
+  "schema": 1,
+  "base_commit": "875d32594d0a1c686beddb816f34715efae42a75",
+  "scope": "USA GFZE01 device removal and revision safety",
+  "accepted_sources": [
+    {
+      "kind": "texture",
+      "symbol": "fn_800764A0",
+      "source": "src/dol/fn_800764A0.c",
+      "sha256": "ebb3084e9f36123eb42b40b2edc7d5da21982021d2122e97cb1d742a41d04124",
+      "mw_version": "GC/1.3.2",
+      "extra_cflags": [],
+      "pool": {
+        "@11": "lbl_801A7480",
+        "@12": "lbl_801A748C",
+        "@13": "lbl_801A749C",
+        "@14": "lbl_801A7488"
+      }
+    },
+    {
+      "kind": "frustum",
+      "symbol": "C_MTXFrustum",
+      "source": "src/dol/C_MTXFrustum.c",
+      "sha256": "ad2877d9bfec87e48e80c6265d06cb0aabbd058ae1b305f5a886829fa9601ffa",
+      "mw_version": "GC/1.2.5n",
+      "extra_cflags": [],
+      "pool": null
+    },
+    {
+      "kind": "profile",
+      "symbol": "fn_16_61D4",
+      "source": "src/rel/profile/fn_16_61D4.c",
+      "sha256": "54c3a7c921a02063fa9aca008e523f3d37cafe9b62b8c47c51ae884e70603f31",
+      "mw_version": null,
+      "extra_cflags": [],
+      "pool": {
+        "...rodata.0": "lbl_16_rodata_58",
+        "@33": "lbl_16_rodata_58+0x48",
+        "@19": "lbl_16_rodata_58+0x2C",
+        "@42": "lbl_16_rodata_AC",
+        "@16": "lbl_16_rodata_58+0x20",
+        "@12": "lbl_16_rodata_58+0x10"
+      }
+    }
+  ],
+  "accepted_source_commits": [
+    "e4744be3f",
+    "d9f7a23ea",
+    "af86f0438",
+    "ed72d7c87",
+    "7ecd23bba"
+  ],
+  "removed_constructs": {
+    "volatile_state_casts": 3,
+    "volatile_local_buffer_declarations": 1,
+    "operand_or_pointer_helpers": 6,
+    "helper_only_dead_assignment_pragma_pairs": 1,
+    "common_subexpression_pragma_pairs": 1
+  },
+  "remaining_profile_debt": "One scalar denominator operand helper remains in fn_16_61D4. Native denominator expressions leave three aligned word edits; a new local or coherent progress helper leaves twenty. No complete profile naturalization is claimed.",
+  "source_checks": "fn_800764A0 and C_MTXFrustum have no volatile qualifiers, inline helper definitions, asm or pragmas in their function source. Retail compiler settings are retained. Authored-function counters do not increase. Primary warning total is unchanged because removed devices were unmarked.",
+  "revision_tooling": {
+    "literal_metadata": "Both normal and revise submissions update the unit literal map from the successful object check. Removed helpers renumbered texture constants; normal canonical compilation uses @11..@14, unlike the prior @38..@41. Frozen probe private labels need not be the canonical compile labels.",
+    "rollback_regression": "Submitted a real exact texture candidate, then deliberately restored the previously observed stale pool map before verification. The actual build rejected it. The revised verifier retained the e4744be3f source byte-for-byte (sha256 bede89fcf8845bf465f516df71ec9cc10a40bb3e9f52203ba73d03afc579755a), compiler settings, split, map and verified ledger state. Retried with fresh metadata and verified/committed d9f7a23ea.",
+    "no_test_files": "Regression exercised the real function, MWCC build, retail link gate and supported CLI; no repository unit tests added."
+  },
+  "observations": [
+    {
+      "symbol": "fn_800764A0",
+      "label": "baseline",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "bede89fcf8845bf465f516df71ec9cc10a40bb3e9f52203ba73d03afc579755a",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "matched": true
+    },
+    {
+      "symbol": "fn_800764A0",
+      "label": "coherent-matrix-first",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "f3faad1181087873ecf8d2929a9c665e968d541ff7df7a57824801d453de78c8",
+      "word_errors": 42,
+      "shape_errors": 4,
+      "matched": null
+    },
+    {
+      "symbol": "fn_800764A0",
+      "label": "coherent-factor-first",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "b0b749657c57a30f1a5c66b9e731d7c6128a969cb658cbf9478f66ef070c1952",
+      "word_errors": 45,
+      "shape_errors": 4,
+      "matched": null
+    },
+    {
+      "symbol": "fn_800764A0",
+      "label": "coherent-accumulate",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "58a0c55d9382a6c34306ccbbc1043484e03d532a6164d17a45a05c87af5a5c76",
+      "word_errors": 42,
+      "shape_errors": 4,
+      "matched": null
+    },
+    {
+      "symbol": "fn_800764A0",
+      "label": "direct-constant-left",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "d9709f7cb3770b06f71f6427649793b9f94b32326b9652a3c398e48db2fa2aea",
+      "word_errors": 3,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_800764A0",
+      "label": "direct-constant-right",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "c9cb6ea55dc9e203f71c5020768ee40ef5990ab286cbd17107574c53404f8b1e",
+      "word_errors": 3,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_800764A0",
+      "label": "global-row-scale",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "20a4e21ac1a164306ffe9946bb1142b25f1f43b83821b760137c0cab6dc49cbf",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "matched": true
+    },
+    {
+      "symbol": "fn_800764A0",
+      "label": "global-row-scale-reverse",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "b67b46006f587e8d4394aad0819e627665fda811ba517cc0e41e54205d414b99",
+      "word_errors": 3,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_800764A0",
+      "label": "global-row-compound",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "c6bc265f5070b3831f31ae985a451d011cf4564e0b9518bbfae68a5b2c160680",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "matched": true
+    },
+    {
+      "symbol": "fn_800764A0",
+      "label": "global-row-mirror",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "a65537ac395dd3340436a3a91b21ea65ac9d03cb2cfc0c1b2b5cdeaaf583d8f5",
+      "word_errors": 3,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_800764A0",
+      "label": "direct-compound",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "ebb3084e9f36123eb42b40b2edc7d5da21982021d2122e97cb1d742a41d04124",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "matched": true
+    },
+    {
+      "symbol": "fn_16_61D4",
+      "label": "baseline",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "d5741cd97502c18d336fd80da65b4a6a0296200649cf6273d42dde4cfb27b466",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "matched": true
+    },
+    {
+      "symbol": "fn_16_61D4",
+      "label": "compound-packet-scales",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "6de2b978ded6b9a69f37b1828a94ba8eba320b4c10c4c657a4511acb6f91dca9",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "matched": true
+    },
+    {
+      "symbol": "fn_16_61D4",
+      "label": "native-denominator",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "6617f0ee7769bd302164a459b7db2c4067b8c2af4d6bf45467e61e2148d167bc",
+      "word_errors": 3,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_16_61D4",
+      "label": "native-half-interval",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "2ce5fa9024938439b87fae406197352129688ee8fdc493f2e5dc3161226b788c",
+      "word_errors": 20,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_16_61D4",
+      "label": "native-default-cse",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "1c0616fb84e9e7d94209573f925369b8763b682a146ce357b7cad0065b5c1f27",
+      "word_errors": 3,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "C_MTXFrustum",
+      "label": "baseline",
+      "mw": "GC/1.2.5n",
+      "flags": "",
+      "sha256": "babb65a5594ca89d589ccbefdbce1aff1d590974dd8fe24119ae8849db0ba308",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "matched": true
+    },
+    {
+      "symbol": "C_MTXFrustum",
+      "label": "direct-product",
+      "mw": "GC/1.2.5n",
+      "flags": "",
+      "sha256": "bfd8961697a6c7988262b2745384122cd485cb96229874c21f38b47446918c94",
+      "word_errors": 1,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "C_MTXFrustum",
+      "label": "compound-output",
+      "mw": "GC/1.2.5n",
+      "flags": "",
+      "sha256": "a12eccca30288baf71f1699aa273eae090ed2044778b7442847d0ce8cbf9f600",
+      "word_errors": 17,
+      "shape_errors": 7,
+      "matched": null
+    },
+    {
+      "symbol": "C_MTXFrustum",
+      "label": "compound-factor",
+      "mw": "GC/1.2.5n",
+      "flags": "",
+      "sha256": "6a05cd793bb94087a90a0dcd3a9de43992013c72b72959d2ae9fe878396bf854",
+      "word_errors": 10,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "C_MTXFrustum",
+      "label": "reuse-near-scale",
+      "mw": "GC/1.2.5n",
+      "flags": "",
+      "sha256": "f9dcb39370c57af1d0b987314af1c705e7d1f0b32c9b61867f29e7da2599aee2",
+      "word_errors": 10,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_16_61D4",
+      "label": "baseline",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "6de2b978ded6b9a69f37b1828a94ba8eba320b4c10c4c657a4511acb6f91dca9",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "matched": true
+    },
+    {
+      "symbol": "fn_16_61D4",
+      "label": "compound-denominator-reuse",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "c7c727f8e812908a1447547d0e2c2a869eddedf7285d72a58a46b84523db0dcf",
+      "word_errors": 20,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_16_61D4",
+      "label": "compound-denominator-default-cse",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "2d754968292a8810316ba982c0a11ee41374843b8eec4ba99ac49b1d79d2cbf4",
+      "word_errors": 20,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "C_MTXFrustum",
+      "label": "direct-product-commuted",
+      "mw": "GC/1.2.5n",
+      "flags": "",
+      "sha256": "f17142d34fad05910d917f1cac5110d94f5230b525eb837dd6b6dbcc289e3a8a",
+      "word_errors": 1,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "C_MTXFrustum",
+      "label": "vertical-scale-compound",
+      "mw": "GC/1.2.5n",
+      "flags": "",
+      "sha256": "ad2877d9bfec87e48e80c6265d06cb0aabbd058ae1b305f5a886829fa9601ffa",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "matched": true
+    },
+    {
+      "symbol": "C_MTXFrustum",
+      "label": "vertical-reciprocal-compound",
+      "mw": "GC/1.2.5n",
+      "flags": "",
+      "sha256": "139cb6cb67803e61b442399eabb7274d8ddb1677068b66b5646485a66254187f",
+      "word_errors": 1,
+      "shape_errors": 0,
+      "matched": null
+    },
+    {
+      "symbol": "fn_16_61D4",
+      "label": "default-cse-with-retained-denominator-helper",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "sha256": "54c3a7c921a02063fa9aca008e523f3d37cafe9b62b8c47c51ae884e70603f31",
+      "word_errors": 0,
+      "shape_errors": 0,
+      "matched": true
+    }
+  ],
+  "cohort_filter": "Obsolete standalone effect source was not canonical; unchanged candidate hashes for fn_1_61EF4 were excluded from findings and never counted as closures."
+}
