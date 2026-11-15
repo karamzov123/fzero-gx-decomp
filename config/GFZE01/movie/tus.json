@@ -1,40 +1,38 @@
 {
  "module": "movie",
- "unassigned_prefix": [
-  "_prolog",
-  "fn_5_200",
-  "fn_5_220",
-  "_epilog",
-  "fn_5_320",
-  "fn_5_37C",
-  "fn_5_4C8",
-  "fn_5_684",
-  "fn_5_6E8",
-  "fn_5_7A0",
-  "fn_5_13B0",
-  "fn_5_1404",
-  "fn_5_169C",
-  "fn_5_20FC",
-  "fn_5_2C54",
-  "fn_5_2E00",
-  "fn_5_3BF8"
- ],
  "tus": [
   {
    "file": "movie.c",
    "text": [
-    15428,
+    0,
     16468
    ],
    "data_sec": 5,
    "data": [
-    20,
+    0,
     6038
    ],
    "anchor_refs": [
     15428
    ],
    "functions": [
+    "_prolog",
+    "fn_5_200",
+    "fn_5_220",
+    "_epilog",
+    "fn_5_320",
+    "fn_5_37C",
+    "fn_5_4C8",
+    "fn_5_684",
+    "fn_5_6E8",
+    "fn_5_7A0",
+    "fn_5_13B0",
+    "fn_5_1404",
+    "fn_5_169C",
+    "fn_5_20FC",
+    "fn_5_2C54",
+    "fn_5_2E00",
+    "fn_5_3BF8",
     "fn_5_3C44",
     "fn_5_3E54",
     "fn_5_3E74",
