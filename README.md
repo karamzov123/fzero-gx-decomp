@@ -52,7 +52,7 @@ compiler-diff devices. A separate audited device-free natural-C total is not yet
 | `movie_module` | 784 / 791 | 7 | 98.5292% |
 | Other 13 executables | All configured functions | 0 | 100% |
 
-1. **Remove compiler-diff devices without losing exactness.** Start with the dead assembly writes in `include/adx_compiler_diff.h` and their remaining caller, `src/dol/fn_8004F26C.c`. Continue through the ADX decoder scheduling/stack-escape devices, stream-writer volatile staging, and gameplay helpers. Require real MWCC object evidence and all 16 hashes for each accepted cleanup; a better near-match is not a completed repair.
+1. **Remove compiler-diff devices without losing exactness.** Start with the dead assembly writes in `include/adx_compiler_diff.h` and their remaining caller, `src/dol/fn_8004F26C.c`. Continue through the ADX decoder scheduling/stack-escape devices, stream-writer volatile staging, and gameplay helpers. While merging a completed cleanup into `main` requires real MWCC object evidence and all 16 hashes, **pull requests with better near-matches are welcome and encouraged**: submitting improved near-matches, cleaner candidate structures, or partial cleanups allows the community to collaborate, inspect compiler evidence, and help close the remaining diffs.
 2. **Audit the 191 assembly-owned functions against original-assembly evidence.** Preserve genuine SDK/runtime/MetroTRK and middleware assembly; convert only code that was plausibly C. The three `main_rel` entries are `fn_1_4B6D4`, `fn_1_4B788`, and `fn_1_9DFB8`. The seven `movie_module` entries are `fn_12_52E8`, `fn_12_D0B8`, `fn_12_12564`, `fn_12_33664`, `fn_12_33698`, `fn_12_3CB74`, and `fn_12_3D144`.
 3. **Keep metrics synchronized and reproducible.** Run `fzgx sync` after updating source/configuration, then regenerate progress and report authored C, evidenced assembly, and device debt separately. Ledger totals can include retired symbols; use the current configured-function denominator rather than adding raw ledger statuses. Data ownership and readable shared types remain separate work; executable hash parity does not prove complete source-owned data.
 4. **Preserve the acceptance gate.** Rebuild with `python3 configure.py && ninja`, independently run `build/tools/dtk shasum -c config/GFZE01/build.sha1`, run `fzgx lint`, and snapshot provenance before committing accepted changes. Do not replace a working match with an unverified naturalization attempt.
@@ -313,6 +313,7 @@ uv run tools/fzgx.py verify
 We welcome contributions from everyone! Whether you are an experienced decompiler or matching your very first function:
 
 - Review [CONTRIBUTING.md](CONTRIBUTING.md) for full pull request and workflow guidelines.
+- **Near-matches & PRs:** Pull requests with improved near-matches, cleaner candidate structures, or partial cleanups are welcome and encouraged! Submitting near-matches helps the community collaborate on closing difficult functions.
 - Review [docs/CODING_RULES.md](docs/CODING_RULES.md) for code structure standards (no hardcoded pointer literals, shiftability requirements, proper struct typing).
 - Consult [docs/MWCC_IDIOMS.md](docs/MWCC_IDIOMS.md) for patterns and CodeWarrior compiler quirks discovered across the project.
 - Join the discussion on the [GameCube / Wii Decompilation Discord][discord] in `#dtk`.

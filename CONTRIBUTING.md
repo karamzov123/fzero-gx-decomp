@@ -5,6 +5,10 @@ every function in it assembles to the retail bytes, the data sections are equal,
 passes, and the full link of all sixteen targets still hashes identical. That is true
 for people and for agents alike, and the tooling is the same for both.
 
+Pull requests featuring better near-matches or cleaner candidate structures for difficult functions
+are welcome and encouraged—sharing incremental progress helps the community collaborate on closing
+the remaining differences.
+
 ## The loop
 
 ```sh
