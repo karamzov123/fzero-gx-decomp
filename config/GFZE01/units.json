@@ -146817,11 +146817,11 @@
       "@28": "lbl_4_rodata_0+0x30",
       "@27": "lbl_4_rodata_0+0x28",
       "...data.0": "lbl_4_data_0",
-      "lbl_4_data_11AC__fzgx_offset_60": "lbl_4_data_11AC+0x60",
-      "lbl_4_data_11AC__fzgx_offset_62": "lbl_4_data_11AC+0x62",
-      "lbl_4_data_11AC__fzgx_offset_64": "lbl_4_data_11AC+0x64",
-      "lbl_4_data_11AC__fzgx_offset_67": "lbl_4_data_11AC+0x67",
-      "lbl_4_data_11AC__fzgx_offset_68": "lbl_4_data_11AC+0x68"
+      "lbl_4_data_11AC__fzgx_offset_60": "lbl_4_data_120C",
+      "lbl_4_data_11AC__fzgx_offset_62": "lbl_4_data_120E",
+      "lbl_4_data_11AC__fzgx_offset_64": "lbl_4_data_1210",
+      "lbl_4_data_11AC__fzgx_offset_67": "lbl_4_data_1213",
+      "lbl_4_data_11AC__fzgx_offset_68": "lbl_4_data_1214"
     }
   },
   {
@@ -146957,10 +146957,10 @@
       "lbl_4_bss_10__fzgx_offset_AC": "lbl_4_bss_10+0xAC",
       "...data.0": "lbl_4_data_0",
       "fzgx_obj_lbl_4_data_0": "lbl_4_data_0",
-      "lbl_4_data_10__fzgx_offset_10": "lbl_4_data_10+0x10",
-      "lbl_4_data_8D8__fzgx_offset_8": "lbl_4_data_8D8+0x8",
-      "lbl_4_data_8F8__fzgx_offset_8": "lbl_4_data_8F8+0x8",
-      "lbl_4_data_11AC__fzgx_offset_64": "lbl_4_data_11AC+0x64",
+      "lbl_4_data_10__fzgx_offset_10": "lbl_4_data_20",
+      "lbl_4_data_8D8__fzgx_offset_8": "lbl_4_data_8E0",
+      "lbl_4_data_8F8__fzgx_offset_8": "lbl_4_data_900",
+      "lbl_4_data_11AC__fzgx_offset_64": "lbl_4_data_1210",
       "lbl_4_data_14D0__fzgx_offset_12": "lbl_4_data_14E2",
       "lbl_4_data_14D0__fzgx_offset_14": "lbl_4_data_14E4",
       "lbl_4_data_14D0__fzgx_offset_18": "lbl_4_data_14E8",
@@ -146979,8 +146979,8 @@
     "tu": "rel/option/_prolog.c",
     "pool": {
       "...data.0": "lbl_4_data_0",
-      "lbl_4_data_11AC__fzgx_offset_60": "lbl_4_data_11AC+0x60",
-      "lbl_4_data_11AC__fzgx_offset_62": "lbl_4_data_11AC+0x62",
+      "lbl_4_data_11AC__fzgx_offset_60": "lbl_4_data_120C",
+      "lbl_4_data_11AC__fzgx_offset_62": "lbl_4_data_120E",
       "...bss.0": "lbl_4_bss_0",
       "fzgx_obj_lbl_4_bss_0": "lbl_4_bss_0",
       "fzgx_obj_lbl_4_bss_2": "lbl_4_bss_2",
@@ -147035,58 +147035,9 @@
     "module": "option",
     "source": "rel/option/_prolog/fn_4_4B74.c",
     "symbols": [
-      "fn_4_4B74"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/option/_prolog.c"
-  },
-  {
-    "module": "option",
-    "source": "rel/option/_prolog/fn_4_4CB8.c",
-    "symbols": [
-      "fn_4_4CB8"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/option/_prolog.c"
-  },
-  {
-    "module": "option",
-    "source": "rel/option/_prolog/fn_4_4DF8.c",
-    "symbols": [
-      "fn_4_4DF8"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/option/_prolog.c",
-    "pool": {
-      "...rodata.0": "lbl_4_rodata_0",
-      "@54": "lbl_4_rodata_0+0x48",
-      "@9": "lbl_4_rodata_0+0x8",
-      "@22": "lbl_4_rodata_0+0x18",
-      "@36": "lbl_4_rodata_0+0x30",
-      "@31": "lbl_4_rodata_0+0x28",
-      "@45": "lbl_4_rodata_0+0x3C",
-      "@623": "jumptable_4_data_2AA4",
-      "@559": "lbl_4_data_29BC",
-      "@130": "lbl_4_rodata_100",
-      "@625": "jumptable_4_data_2A80",
-      "@626": "jumptable_4_data_2A28",
-      "@627": "jumptable_4_data_29D0",
-      "...bss.0": "lbl_4_bss_0",
-      "fzgx_obj_lbl_4_bss_0": "lbl_4_bss_0",
-      "...data.0": "lbl_4_data_0",
-      "fzgx_obj_lbl_4_data_0": "lbl_4_data_0"
-    }
-  },
-  {
-    "module": "option",
-    "source": "rel/option/_prolog/fn_4_63D4.c",
-    "symbols": [
+      "fn_4_4B74",
+      "fn_4_4CB8",
+      "fn_4_4DF8",
       "fn_4_63D4"
     ],
     "status": "matching",
@@ -147094,11 +147045,454 @@
     "extra_cflags": [],
     "tu": "rel/option/_prolog.c",
     "pool": {
-      "@32": "jumptable_4_data_2AC8",
-      "...data.0": "lbl_4_data_0",
+      "...rodata.0": "lbl_4_rodata_0",
       "...bss.0": "lbl_4_bss_0",
-      "fzgx_obj_lbl_4_bss_0": "lbl_4_bss_0"
-    }
+      "fzgx_obj_lbl_4_bss_0": "lbl_4_bss_0",
+      "@1": "lbl_4_data_0",
+      "@2": "lbl_4_data_C",
+      "@3": "lbl_4_data_10",
+      "@4": "lbl_4_data_38",
+      "@5": "lbl_4_data_4C",
+      "@6": "lbl_4_data_78",
+      "@7": "lbl_4_data_7C",
+      "@8": "lbl_4_data_B0",
+      "@9": "lbl_4_data_C8",
+      "@10": "lbl_4_data_100",
+      "@11": "lbl_4_data_130",
+      "@12": "lbl_4_data_170",
+      "@13": "lbl_4_data_188",
+      "@14": "lbl_4_data_1BC",
+      "@15": "lbl_4_data_210",
+      "@16": "lbl_4_data_254",
+      "@17": "lbl_4_data_284",
+      "@18": "lbl_4_data_2CC",
+      "@19": "lbl_4_data_2F0",
+      "@20": "lbl_4_data_32C",
+      "@21": "lbl_4_data_34C",
+      "@22": "lbl_4_data_37C",
+      "@23": "lbl_4_data_3B8",
+      "@24": "lbl_4_data_400",
+      "@25": "lbl_4_data_438",
+      "@26": "lbl_4_data_480",
+      "@27": "lbl_4_data_4F0",
+      "@28": "lbl_4_data_578",
+      "@29": "lbl_4_data_57C",
+      "@30": "lbl_4_data_59C",
+      "@31": "lbl_4_data_5A0",
+      "@32": "lbl_4_data_5C0",
+      "@33": "lbl_4_data_5D8",
+      "@34": "lbl_4_data_610",
+      "@35": "lbl_4_data_660",
+      "@36": "lbl_4_data_6D4",
+      "@37": "lbl_4_data_724",
+      "@38": "lbl_4_data_790",
+      "@39": "lbl_4_data_7DC",
+      "@40": "lbl_4_data_85C",
+      "@41": "lbl_4_data_86C",
+      "@42": "lbl_4_data_89C",
+      "@43": "lbl_4_data_8A8",
+      "@44": "lbl_4_data_8D8",
+      "@45": "lbl_4_data_8F8",
+      "@46": "lbl_4_data_918",
+      "@47": "lbl_4_data_934",
+      "@48": "lbl_4_data_970",
+      "@49": "lbl_4_data_984",
+      "@50": "lbl_4_data_9C0",
+      "@51": "lbl_4_data_9D8",
+      "@52": "lbl_4_data_A10",
+      "@53": "lbl_4_data_A30",
+      "@54": "lbl_4_data_A70",
+      "@55": "lbl_4_data_A78",
+      "@56": "lbl_4_data_AA0",
+      "@57": "lbl_4_data_AAC",
+      "@58": "lbl_4_data_AD4",
+      "@59": "lbl_4_data_B90",
+      "@60": "lbl_4_data_C18",
+      "@61": "lbl_4_data_CB0",
+      "@62": "lbl_4_data_D50",
+      "@63": "lbl_4_data_D64",
+      "@64": "lbl_4_data_D84",
+      "@65": "lbl_4_data_D98",
+      "@66": "lbl_4_data_DB8",
+      "@67": "lbl_4_data_DF0",
+      "@68": "lbl_4_data_E48",
+      "@69": "lbl_4_data_E58",
+      "@70": "lbl_4_data_E88",
+      "@71": "lbl_4_data_E98",
+      "@72": "lbl_4_data_EC8",
+      "@73": "lbl_4_data_F08",
+      "@74": "lbl_4_data_F64",
+      "@75": "lbl_4_data_FD8",
+      "@76": "lbl_4_data_107C",
+      "@77": "lbl_4_data_10A0",
+      "@78": "lbl_4_data_10E8",
+      "@79": "lbl_4_data_111C",
+      "@80": "lbl_4_data_116C",
+      "@81": "lbl_4_data_11AC",
+      "@82": "lbl_4_data_1418",
+      "@83": "lbl_4_data_1424",
+      "@84": "lbl_4_data_1434",
+      "@85": "lbl_4_data_1440",
+      "@86": "lbl_4_data_1534",
+      "@87": "lbl_4_data_1544",
+      "@88": "lbl_4_data_154C",
+      "@89": "lbl_4_data_1558",
+      "@90": "lbl_4_data_156C",
+      "@91": "lbl_4_data_1588",
+      "@92": "lbl_4_data_15AC",
+      "@93": "lbl_4_data_15B4",
+      "@94": "lbl_4_data_1660",
+      "@95": "lbl_4_data_1678",
+      "@96": "lbl_4_data_1688",
+      "@97": "lbl_4_data_168C",
+      "@98": "lbl_4_data_16A0",
+      "@99": "lbl_4_data_16FC",
+      "@100": "lbl_4_data_1704",
+      "@101": "lbl_4_data_1718",
+      "@102": "lbl_4_data_172C",
+      "@103": "lbl_4_data_1740",
+      "@104": "lbl_4_data_175C",
+      "@105": "lbl_4_data_1770",
+      "@106": "lbl_4_data_177C",
+      "@107": "lbl_4_data_1790",
+      "@108": "lbl_4_data_179C",
+      "@109": "lbl_4_data_17B0",
+      "@110": "lbl_4_data_17BC",
+      "@111": "lbl_4_data_17D0",
+      "@112": "lbl_4_data_17DC",
+      "@113": "lbl_4_data_17F0",
+      "@114": "lbl_4_data_17FC",
+      "@115": "lbl_4_data_1810",
+      "@116": "lbl_4_data_1818",
+      "@117": "lbl_4_data_1904",
+      "@118": "lbl_4_data_1924",
+      "@119": "lbl_4_data_192C",
+      "@120": "lbl_4_data_193C",
+      "@121": "lbl_4_data_1958",
+      "@122": "lbl_4_data_1960",
+      "@123": "lbl_4_data_1970",
+      "@124": "lbl_4_data_1980",
+      "@125": "lbl_4_data_1988",
+      "@126": "lbl_4_data_1998",
+      "@127": "lbl_4_data_19A8",
+      "@128": "lbl_4_data_19B0",
+      "@129": "lbl_4_data_19C0",
+      "@130": "lbl_4_data_19E0",
+      "@131": "lbl_4_data_19E8",
+      "@132": "lbl_4_data_1A04",
+      "@133": "lbl_4_data_1A24",
+      "@134": "lbl_4_data_1A2C",
+      "@135": "lbl_4_data_1A48",
+      "@136": "lbl_4_data_1A64",
+      "@137": "lbl_4_data_1A6C",
+      "@138": "lbl_4_data_1A80",
+      "@139": "lbl_4_data_1A98",
+      "@140": "lbl_4_data_1AA0",
+      "@141": "lbl_4_data_1AB4",
+      "@142": "lbl_4_data_1AC4",
+      "@143": "lbl_4_data_1ADC",
+      "@144": "lbl_4_data_1AE8",
+      "@145": "lbl_4_data_1C78",
+      "@146": "lbl_4_data_1C98",
+      "@147": "lbl_4_data_1CA8",
+      "@148": "lbl_4_data_1CC4",
+      "@149": "lbl_4_data_1E60",
+      "@150": "lbl_4_data_1E74",
+      "@151": "lbl_4_data_1E7C",
+      "@152": "lbl_4_data_1E8C",
+      "@153": "lbl_4_data_1EA4",
+      "@154": "lbl_4_data_1EB0",
+      "@155": "lbl_4_data_1EC0",
+      "@156": "lbl_4_data_1ED4",
+      "@157": "lbl_4_data_1EDC",
+      "@158": "lbl_4_data_1EEC",
+      "@159": "lbl_4_data_1F00",
+      "@160": "lbl_4_data_1F08",
+      "@161": "lbl_4_data_1F18",
+      "@162": "lbl_4_data_1F24",
+      "@163": "lbl_4_data_1F28",
+      "@164": "lbl_4_data_1F34",
+      "@165": "lbl_4_data_1F40",
+      "@166": "lbl_4_data_1F44",
+      "@167": "lbl_4_data_1F50",
+      "@168": "lbl_4_data_1F5C",
+      "@169": "lbl_4_data_1F60",
+      "@170": "lbl_4_data_1F6C",
+      "@171": "lbl_4_data_1F78",
+      "@172": "lbl_4_data_1F7C",
+      "@173": "lbl_4_data_1F88",
+      "@174": "lbl_4_data_1F94",
+      "@175": "lbl_4_data_1F98",
+      "@176": "lbl_4_data_1FA4",
+      "@177": "lbl_4_data_1FBC",
+      "@178": "lbl_4_data_1FD8",
+      "@179": "lbl_4_data_1FF0",
+      "@180": "lbl_4_data_1FFC",
+      "@181": "lbl_4_data_2018",
+      "@182": "lbl_4_data_2030",
+      "@183": "lbl_4_data_2038",
+      "@184": "lbl_4_data_2054",
+      "@185": "lbl_4_data_2068",
+      "@186": "lbl_4_data_2070",
+      "@187": "lbl_4_data_208C",
+      "@188": "lbl_4_data_209C",
+      "@189": "lbl_4_data_20A4",
+      "@190": "lbl_4_data_20B4",
+      "@191": "lbl_4_data_20C8",
+      "@192": "lbl_4_data_20D4",
+      "@193": "lbl_4_data_20E4",
+      "@194": "lbl_4_data_20F4",
+      "@195": "lbl_4_data_20FC",
+      "@196": "lbl_4_data_210C",
+      "@197": "lbl_4_data_211C",
+      "@198": "lbl_4_data_2124",
+      "@199": "lbl_4_data_2134",
+      "@200": "lbl_4_data_2140",
+      "@201": "lbl_4_data_2144",
+      "@202": "lbl_4_data_2158",
+      "@203": "lbl_4_data_2164",
+      "@204": "lbl_4_data_216C",
+      "@205": "lbl_4_data_2480",
+      "@206": "lbl_4_data_2494",
+      "@207": "lbl_4_data_24A0",
+      "@208": "lbl_4_data_24B8",
+      "@209": "lbl_4_data_24C4",
+      "@210": "lbl_4_data_24D8",
+      "@211": "lbl_4_data_24E8",
+      "@212": "lbl_4_data_24F4",
+      "@213": "lbl_4_data_2804",
+      "@214": "lbl_4_data_2810",
+      "@215": "lbl_4_data_2834",
+      "@216": "lbl_4_data_2848",
+      "@217": "lbl_4_data_2870",
+      "@218": "lbl_4_data_290C",
+      "@822": "lbl_4_data_29BC"
+    },
+    "own": [
+      "lbl_4_data_0",
+      "lbl_4_data_C",
+      "lbl_4_data_10",
+      "lbl_4_data_38",
+      "lbl_4_data_4C",
+      "lbl_4_data_78",
+      "lbl_4_data_7C",
+      "lbl_4_data_B0",
+      "lbl_4_data_C8",
+      "lbl_4_data_100",
+      "lbl_4_data_130",
+      "lbl_4_data_170",
+      "lbl_4_data_188",
+      "lbl_4_data_1BC",
+      "lbl_4_data_210",
+      "lbl_4_data_254",
+      "lbl_4_data_284",
+      "lbl_4_data_2CC",
+      "lbl_4_data_2F0",
+      "lbl_4_data_32C",
+      "lbl_4_data_34C",
+      "lbl_4_data_37C",
+      "lbl_4_data_3B8",
+      "lbl_4_data_400",
+      "lbl_4_data_438",
+      "lbl_4_data_480",
+      "lbl_4_data_4F0",
+      "lbl_4_data_578",
+      "lbl_4_data_57C",
+      "lbl_4_data_59C",
+      "lbl_4_data_5A0",
+      "lbl_4_data_5C0",
+      "lbl_4_data_5D8",
+      "lbl_4_data_610",
+      "lbl_4_data_660",
+      "lbl_4_data_6D4",
+      "lbl_4_data_724",
+      "lbl_4_data_790",
+      "lbl_4_data_7DC",
+      "lbl_4_data_85C",
+      "lbl_4_data_86C",
+      "lbl_4_data_89C",
+      "lbl_4_data_8A8",
+      "lbl_4_data_8D8",
+      "lbl_4_data_8F8",
+      "lbl_4_data_918",
+      "lbl_4_data_934",
+      "lbl_4_data_970",
+      "lbl_4_data_984",
+      "lbl_4_data_9C0",
+      "lbl_4_data_9D8",
+      "lbl_4_data_A10",
+      "lbl_4_data_A30",
+      "lbl_4_data_A70",
+      "lbl_4_data_A78",
+      "lbl_4_data_AA0",
+      "lbl_4_data_AAC",
+      "lbl_4_data_AD4",
+      "lbl_4_data_B90",
+      "lbl_4_data_C18",
+      "lbl_4_data_CB0",
+      "lbl_4_data_D50",
+      "lbl_4_data_D64",
+      "lbl_4_data_D84",
+      "lbl_4_data_D98",
+      "lbl_4_data_DB8",
+      "lbl_4_data_DF0",
+      "lbl_4_data_E48",
+      "lbl_4_data_E58",
+      "lbl_4_data_E88",
+      "lbl_4_data_E98",
+      "lbl_4_data_EC8",
+      "lbl_4_data_F08",
+      "lbl_4_data_F64",
+      "lbl_4_data_FD8",
+      "lbl_4_data_107C",
+      "lbl_4_data_10A0",
+      "lbl_4_data_10E8",
+      "lbl_4_data_111C",
+      "lbl_4_data_116C",
+      "lbl_4_data_11AC",
+      "lbl_4_data_1418",
+      "lbl_4_data_1424",
+      "lbl_4_data_1434",
+      "lbl_4_data_1440",
+      "lbl_4_data_1534",
+      "lbl_4_data_1544",
+      "lbl_4_data_154C",
+      "lbl_4_data_1558",
+      "lbl_4_data_156C",
+      "lbl_4_data_1588",
+      "lbl_4_data_15AC",
+      "lbl_4_data_15B4",
+      "lbl_4_data_1660",
+      "lbl_4_data_1678",
+      "lbl_4_data_1688",
+      "lbl_4_data_168C",
+      "lbl_4_data_16A0",
+      "lbl_4_data_16FC",
+      "lbl_4_data_1704",
+      "lbl_4_data_1718",
+      "lbl_4_data_172C",
+      "lbl_4_data_1740",
+      "lbl_4_data_175C",
+      "lbl_4_data_1770",
+      "lbl_4_data_177C",
+      "lbl_4_data_1790",
+      "lbl_4_data_179C",
+      "lbl_4_data_17B0",
+      "lbl_4_data_17BC",
+      "lbl_4_data_17D0",
+      "lbl_4_data_17DC",
+      "lbl_4_data_17F0",
+      "lbl_4_data_17FC",
+      "lbl_4_data_1810",
+      "lbl_4_data_1818",
+      "lbl_4_data_1904",
+      "lbl_4_data_1924",
+      "lbl_4_data_192C",
+      "lbl_4_data_193C",
+      "lbl_4_data_1958",
+      "lbl_4_data_1960",
+      "lbl_4_data_1970",
+      "lbl_4_data_1980",
+      "lbl_4_data_1988",
+      "lbl_4_data_1998",
+      "lbl_4_data_19A8",
+      "lbl_4_data_19B0",
+      "lbl_4_data_19C0",
+      "lbl_4_data_19E0",
+      "lbl_4_data_19E8",
+      "lbl_4_data_1A04",
+      "lbl_4_data_1A24",
+      "lbl_4_data_1A2C",
+      "lbl_4_data_1A48",
+      "lbl_4_data_1A64",
+      "lbl_4_data_1A6C",
+      "lbl_4_data_1A80",
+      "lbl_4_data_1A98",
+      "lbl_4_data_1AA0",
+      "lbl_4_data_1AB4",
+      "lbl_4_data_1AC4",
+      "lbl_4_data_1ADC",
+      "lbl_4_data_1AE8",
+      "lbl_4_data_1C78",
+      "lbl_4_data_1C98",
+      "lbl_4_data_1CA8",
+      "lbl_4_data_1CC4",
+      "lbl_4_data_1E60",
+      "lbl_4_data_1E74",
+      "lbl_4_data_1E7C",
+      "lbl_4_data_1E8C",
+      "lbl_4_data_1EA4",
+      "lbl_4_data_1EB0",
+      "lbl_4_data_1EC0",
+      "lbl_4_data_1ED4",
+      "lbl_4_data_1EDC",
+      "lbl_4_data_1EEC",
+      "lbl_4_data_1F00",
+      "lbl_4_data_1F08",
+      "lbl_4_data_1F18",
+      "lbl_4_data_1F24",
+      "lbl_4_data_1F28",
+      "lbl_4_data_1F34",
+      "lbl_4_data_1F40",
+      "lbl_4_data_1F44",
+      "lbl_4_data_1F50",
+      "lbl_4_data_1F5C",
+      "lbl_4_data_1F60",
+      "lbl_4_data_1F6C",
+      "lbl_4_data_1F78",
+      "lbl_4_data_1F7C",
+      "lbl_4_data_1F88",
+      "lbl_4_data_1F94",
+      "lbl_4_data_1F98",
+      "lbl_4_data_1FA4",
+      "lbl_4_data_1FBC",
+      "lbl_4_data_1FD8",
+      "lbl_4_data_1FF0",
+      "lbl_4_data_1FFC",
+      "lbl_4_data_2018",
+      "lbl_4_data_2030",
+      "lbl_4_data_2038",
+      "lbl_4_data_2054",
+      "lbl_4_data_2068",
+      "lbl_4_data_2070",
+      "lbl_4_data_208C",
+      "lbl_4_data_209C",
+      "lbl_4_data_20A4",
+      "lbl_4_data_20B4",
+      "lbl_4_data_20C8",
+      "lbl_4_data_20D4",
+      "lbl_4_data_20E4",
+      "lbl_4_data_20F4",
+      "lbl_4_data_20FC",
+      "lbl_4_data_210C",
+      "lbl_4_data_211C",
+      "lbl_4_data_2124",
+      "lbl_4_data_2134",
+      "lbl_4_data_2140",
+      "lbl_4_data_2144",
+      "lbl_4_data_2158",
+      "lbl_4_data_2164",
+      "lbl_4_data_216C",
+      "lbl_4_data_2480",
+      "lbl_4_data_2494",
+      "lbl_4_data_24A0",
+      "lbl_4_data_24B8",
+      "lbl_4_data_24C4",
+      "lbl_4_data_24D8",
+      "lbl_4_data_24E8",
+      "lbl_4_data_24F4",
+      "lbl_4_data_2804",
+      "lbl_4_data_2810",
+      "lbl_4_data_2834",
+      "lbl_4_data_2848",
+      "lbl_4_data_2870",
+      "lbl_4_data_290C",
+      "lbl_4_data_29BC"
+    ],
+    "export": [
+      "lbl_4_data_0",
+      "lbl_4_data_C"
+    ]
   },
   {
     "module": "option",
@@ -147203,8 +147597,8 @@
       "@28": "lbl_4_rodata_0+0x30",
       "@27": "lbl_4_rodata_0+0x28",
       "...data.0": "lbl_4_data_0",
-      "lbl_4_data_11AC__fzgx_offset_60": "lbl_4_data_11AC+0x60",
-      "lbl_4_data_11AC__fzgx_offset_62": "lbl_4_data_11AC+0x62"
+      "lbl_4_data_11AC__fzgx_offset_60": "lbl_4_data_120C",
+      "lbl_4_data_11AC__fzgx_offset_62": "lbl_4_data_120E"
     }
   },
   {
@@ -147261,8 +147655,8 @@
       "@28": "lbl_4_rodata_0+0x30",
       "@27": "lbl_4_rodata_0+0x28",
       "...data.0": "lbl_4_data_0",
-      "lbl_4_data_11AC__fzgx_offset_60": "lbl_4_data_11AC+0x60",
-      "lbl_4_data_11AC__fzgx_offset_62": "lbl_4_data_11AC+0x62"
+      "lbl_4_data_11AC__fzgx_offset_60": "lbl_4_data_120C",
+      "lbl_4_data_11AC__fzgx_offset_62": "lbl_4_data_120E"
     }
   },
   {
@@ -147606,8 +148000,8 @@
       "@28": "lbl_4_rodata_0+0x30",
       "@27": "lbl_4_rodata_0+0x28",
       "...data.0": "lbl_4_data_0",
-      "lbl_4_data_11AC__fzgx_offset_60": "lbl_4_data_11AC+0x60",
-      "lbl_4_data_11AC__fzgx_offset_62": "lbl_4_data_11AC+0x62"
+      "lbl_4_data_11AC__fzgx_offset_60": "lbl_4_data_120C",
+      "lbl_4_data_11AC__fzgx_offset_62": "lbl_4_data_120E"
     }
   },
   {
@@ -147980,918 +148374,6 @@
       "lbl_4_bss_8",
       "lbl_4_bss_C",
       "lbl_4_bss_D"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_0.c",
-    "symbols": [
-      "lbl_4_data_0",
-      "lbl_4_data_C",
-      "lbl_4_data_10",
-      "lbl_4_data_38",
-      "lbl_4_data_4C",
-      "lbl_4_data_78",
-      "lbl_4_data_7C",
-      "lbl_13_data_80",
-      "lbl_4_data_B0",
-      "lbl_4_data_C8",
-      "lbl_4_data_100",
-      "lbl_4_data_130",
-      "lbl_4_data_170",
-      "lbl_4_data_188",
-      "lbl_4_data_1A4",
-      "lbl_4_data_1BC",
-      "lbl_4_data_210",
-      "lbl_4_data_254",
-      "lbl_4_data_284",
-      "lbl_4_data_2CC",
-      "lbl_4_data_2F0",
-      "lbl_4_data_32C",
-      "lbl_4_data_34C",
-      "lbl_4_data_37C",
-      "lbl_4_data_3B8",
-      "lbl_4_data_400",
-      "lbl_4_data_438",
-      "lbl_4_data_480",
-      "lbl_4_data_4F0",
-      "lbl_4_data_578",
-      "lbl_4_data_57C",
-      "lbl_4_data_59C",
-      "lbl_4_data_5A0",
-      "lbl_4_data_5C0",
-      "lbl_4_data_5D8",
-      "lbl_4_data_610",
-      "lbl_4_data_660",
-      "lbl_4_data_6D4",
-      "lbl_4_data_724",
-      "lbl_4_data_790",
-      "lbl_4_data_7DC",
-      "lbl_4_data_85C",
-      "lbl_4_data_86C",
-      "lbl_4_data_89C",
-      "lbl_4_data_8A8",
-      "lbl_4_data_8D8",
-      "lbl_4_data_8F8",
-      "lbl_4_data_918",
-      "lbl_4_data_934",
-      "lbl_4_data_970",
-      "lbl_4_data_984",
-      "lbl_4_data_9C0",
-      "lbl_4_data_9D8",
-      "lbl_4_data_A10",
-      "lbl_4_data_A30",
-      "lbl_4_data_A70",
-      "lbl_4_data_A78",
-      "lbl_4_data_AA0",
-      "lbl_4_data_AAC",
-      "lbl_4_data_AD4",
-      "lbl_4_data_B90",
-      "lbl_4_data_C18",
-      "lbl_4_data_CB0",
-      "lbl_4_data_D50",
-      "lbl_4_data_D64",
-      "lbl_4_data_D6C",
-      "lbl_4_data_D84",
-      "lbl_4_data_D98",
-      "lbl_4_data_DA0",
-      "lbl_4_data_DB8",
-      "lbl_4_data_DF0",
-      "lbl_4_data_E48",
-      "lbl_4_data_E58",
-      "lbl_4_data_E88",
-      "lbl_4_data_E98",
-      "lbl_4_data_EC8",
-      "lbl_4_data_F08",
-      "lbl_4_data_F64",
-      "lbl_4_data_FD8",
-      "lbl_4_data_107C",
-      "lbl_4_data_10A0",
-      "lbl_4_data_10E8",
-      "lbl_4_data_111C",
-      "lbl_4_data_116C",
-      "lbl_4_data_11AC",
-      "lbl_4_data_1260",
-      "lbl_4_data_1418",
-      "lbl_4_data_1424",
-      "lbl_4_data_1434",
-      "lbl_4_data_1440",
-      "lbl_4_data_144C",
-      "lbl_4_data_14A0",
-      "lbl_4_data_14D0",
-      "lbl_4_data_14E2",
-      "lbl_4_data_14E4",
-      "lbl_4_data_14E8",
-      "lbl_4_data_14F4"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1500.c",
-    "symbols": [
-      "lbl_4_data_1500",
-      "lbl_4_data_150C"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1520.c",
-    "symbols": [
-      "lbl_4_data_1520"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1528.c",
-    "symbols": [
-      "lbl_4_data_1528",
-      "lbl_4_data_1534",
-      "lbl_4_data_1544",
-      "lbl_4_data_154C"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1558.c",
-    "symbols": [
-      "lbl_4_data_1558",
-      "lbl_4_data_156C"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1588.c",
-    "symbols": [
-      "lbl_4_data_1588",
-      "lbl_4_data_15AC",
-      "lbl_4_data_15B4"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1660.c",
-    "symbols": [
-      "lbl_4_data_1660"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1678.c",
-    "symbols": [
-      "lbl_4_data_1678"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1688.c",
-    "symbols": [
-      "lbl_4_data_1688",
-      "lbl_4_data_168C"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_16A0.c",
-    "symbols": [
-      "lbl_4_data_16A0",
-      "lbl_4_data_16FC",
-      "lbl_4_data_1704"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1718.c",
-    "symbols": [
-      "lbl_4_data_1718",
-      "lbl_4_data_172C"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1740.c",
-    "symbols": [
-      "lbl_4_data_1740",
-      "lbl_4_data_175C"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1770.c",
-    "symbols": [
-      "lbl_4_data_1770",
-      "lbl_4_data_177C"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1790.c",
-    "symbols": [
-      "lbl_4_data_1790",
-      "lbl_4_data_179C"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_17B0.c",
-    "symbols": [
-      "lbl_4_data_17B0",
-      "lbl_4_data_17BC"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_17D0.c",
-    "symbols": [
-      "lbl_4_data_17D0",
-      "lbl_4_data_17DC"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_17F0.c",
-    "symbols": [
-      "lbl_4_data_17F0",
-      "lbl_4_data_17FC"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1810.c",
-    "symbols": [
-      "lbl_4_data_1810"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1818.c",
-    "symbols": [
-      "lbl_4_data_1818",
-      "lbl_4_data_1904",
-      "lbl_4_data_1924",
-      "lbl_4_data_192C",
-      "lbl_4_data_193C"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1958.c",
-    "symbols": [
-      "lbl_4_data_1958"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1960.c",
-    "symbols": [
-      "lbl_4_data_1960"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1970.c",
-    "symbols": [
-      "lbl_4_data_1970"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1980.c",
-    "symbols": [
-      "lbl_4_data_1980"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1988.c",
-    "symbols": [
-      "lbl_4_data_1988"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1998.c",
-    "symbols": [
-      "lbl_4_data_1998"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_19A8.c",
-    "symbols": [
-      "lbl_4_data_19A8"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_19B0.c",
-    "symbols": [
-      "lbl_4_data_19B0"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_19C0.c",
-    "symbols": [
-      "lbl_4_data_19C0"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_19E0.c",
-    "symbols": [
-      "lbl_4_data_19E0"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_19E8.c",
-    "symbols": [
-      "lbl_4_data_19E8",
-      "lbl_4_data_1A04",
-      "lbl_4_data_1A24",
-      "lbl_4_data_1A2C"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1A48.c",
-    "symbols": [
-      "lbl_4_data_1A48",
-      "lbl_4_data_1A64",
-      "lbl_4_data_1A6C"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1A80.c",
-    "symbols": [
-      "lbl_4_data_1A80"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1A98.c",
-    "symbols": [
-      "lbl_4_data_1A98"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1AA0.c",
-    "symbols": [
-      "lbl_4_data_1AA0",
-      "lbl_4_data_1AB4",
-      "lbl_4_data_1AC4",
-      "lbl_4_data_1ADC"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1AE8.c",
-    "symbols": [
-      "lbl_4_data_1AE8"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1C78.c",
-    "symbols": [
-      "lbl_4_data_1C78"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1C98.c",
-    "symbols": [
-      "lbl_4_data_1C98"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1CA8.c",
-    "symbols": [
-      "lbl_4_data_1CA8",
-      "lbl_4_data_1CC4"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1E60.c",
-    "symbols": [
-      "lbl_4_data_1E60",
-      "lbl_4_data_1E74",
-      "lbl_4_data_1E7C",
-      "lbl_4_data_1E8C",
-      "lbl_4_data_1EA4"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1EB0.c",
-    "symbols": [
-      "lbl_4_data_1EB0"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1EC0.c",
-    "symbols": [
-      "lbl_4_data_1EC0",
-      "lbl_4_data_1ED4",
-      "lbl_4_data_1EDC",
-      "lbl_4_data_1EEC"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1F00.c",
-    "symbols": [
-      "lbl_4_data_1F00"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1F08.c",
-    "symbols": [
-      "lbl_4_data_1F08"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1F18.c",
-    "symbols": [
-      "lbl_4_data_1F18",
-      "lbl_4_data_1F24"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1F28.c",
-    "symbols": [
-      "lbl_4_data_1F28",
-      "lbl_4_data_1F34"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1F40.c",
-    "symbols": [
-      "lbl_4_data_1F40",
-      "lbl_4_data_1F44"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1F50.c",
-    "symbols": [
-      "lbl_4_data_1F50",
-      "lbl_4_data_1F5C"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1F60.c",
-    "symbols": [
-      "lbl_4_data_1F60",
-      "lbl_4_data_1F6C"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1F78.c",
-    "symbols": [
-      "lbl_4_data_1F78",
-      "lbl_4_data_1F7C"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1F88.c",
-    "symbols": [
-      "lbl_4_data_1F88",
-      "lbl_4_data_1F94"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1F98.c",
-    "symbols": [
-      "lbl_4_data_1F98",
-      "lbl_4_data_1FA4",
-      "lbl_4_data_1FBC"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1FD8.c",
-    "symbols": [
-      "lbl_4_data_1FD8"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_1FF0.c",
-    "symbols": [
-      "lbl_4_data_1FF0",
-      "lbl_4_data_1FFC"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_2018.c",
-    "symbols": [
-      "lbl_4_data_2018"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_2030.c",
-    "symbols": [
-      "lbl_4_data_2030"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_2038.c",
-    "symbols": [
-      "lbl_4_data_2038",
-      "lbl_4_data_2054"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_2068.c",
-    "symbols": [
-      "lbl_4_data_2068"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_2070.c",
-    "symbols": [
-      "lbl_4_data_2070",
-      "lbl_4_data_208C",
-      "lbl_4_data_209C",
-      "lbl_4_data_20A4",
-      "lbl_4_data_20B4"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_20C8.c",
-    "symbols": [
-      "lbl_4_data_20C8",
-      "lbl_4_data_20D4",
-      "lbl_4_data_20E4",
-      "lbl_4_data_20F4",
-      "lbl_4_data_20FC",
-      "lbl_4_data_210C",
-      "lbl_4_data_211C",
-      "lbl_4_data_2124",
-      "lbl_4_data_2134"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_2140.c",
-    "symbols": [
-      "lbl_4_data_2140",
-      "lbl_4_data_2144"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_2158.c",
-    "symbols": [
-      "lbl_4_data_2158",
-      "lbl_4_data_2164",
-      "lbl_4_data_216C"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_2480.c",
-    "symbols": [
-      "lbl_4_data_2480",
-      "lbl_4_data_2494"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_24A0.c",
-    "symbols": [
-      "lbl_4_data_24A0"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_24B8.c",
-    "symbols": [
-      "lbl_4_data_24B8",
-      "lbl_4_data_24C4"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_24D8.c",
-    "symbols": [
-      "lbl_4_data_24D8"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_24E8.c",
-    "symbols": [
-      "lbl_4_data_24E8",
-      "lbl_4_data_24F4",
-      "lbl_4_data_2804"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_2810.c",
-    "symbols": [
-      "lbl_4_data_2810",
-      "lbl_4_data_2834"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_2848.c",
-    "symbols": [
-      "lbl_4_data_2848"
     ],
     "status": "matching",
     "data": true,

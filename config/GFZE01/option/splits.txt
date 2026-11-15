@@ -118,8 +118,8 @@ rel/option/_prolog/fn_4_D7C.c:
 	.text       start:0x00000D7C end:0x00000EA0 align:4
 
 rel/option/_prolog/fn_4_4B74.c:
-	.text       start:0x00004B74 end:0x00004CB8 align:4
-	.data       start:0x00002870 end:0x00002998 align:8
+	.text       start:0x00004B74 end:0x00006678 align:4
+	.data       start:0x00000000 end:0x00002AE8 align:8
 
 rel/option/_prolog/fn_4_800.c:
 	.text       start:0x00000800 end:0x00000894 align:4
@@ -139,9 +139,6 @@ rel/option/_prolog/fn_4_250.c:
 rel/option/_prolog/fn_4_4834.c:
 	.text       start:0x00004834 end:0x00004B10 align:4
 
-rel/option/_prolog/fn_4_4CB8.c:
-	.text       start:0x00004CB8 end:0x00004DF8 align:4
-	.data       start:0x00002998 end:0x000029BC align:8
 
 rel/option/_prolog/fn_4_0.c:
 	.text       start:0x00000000 end:0x00000250 align:4
@@ -149,8 +146,6 @@ rel/option/_prolog/fn_4_0.c:
 rel/option/_prolog/fn_4_D420.c:
 	.text       start:0x0000D420 end:0x0000D760 align:4
 
-rel/option/_prolog/fn_4_4DF8.c:
-	.text       start:0x00004DF8 end:0x000063D4 align:4
 
 rel/option/_prolog/fn_4_6720.c:
 	.text       start:0x00006720 end:0x000078E0 align:4
@@ -219,8 +214,6 @@ rel/option/_prolog/fn_4_2D4.c:
 rel/option/_prolog/fn_4_3568.c:
 	.text       start:0x00003568 end:0x0000406C align:4
 
-rel/option/_prolog/fn_4_63D4.c:
-	.text       start:0x000063D4 end:0x00006678 align:4
 
 rel/option/_prolog/fn_4_40C4.c:
 	.text       start:0x000040C4 end:0x0000467C align:4
@@ -261,143 +254,51 @@ rel/option/data/lbl_4_bss_5678.c:
 rel/option/data/lbl_4_bss_5680.c:
 	.bss        start:0x00005680 end:0x00005686 align:8
 
-rel/option/data/lbl_4_data_1818.c:
-	.data       start:0x00001818 end:0x00001958 align:8
 
-rel/option/data/lbl_4_data_1958.c:
-	.data       start:0x00001958 end:0x00001960 align:8
 
-rel/option/data/lbl_4_data_1960.c:
-	.data       start:0x00001960 end:0x00001970 align:8
 
-rel/option/data/lbl_4_data_1970.c:
-	.data       start:0x00001970 end:0x00001980 align:8
 
-rel/option/data/lbl_4_data_1980.c:
-	.data       start:0x00001980 end:0x00001988 align:8
 
-rel/option/data/lbl_4_data_1988.c:
-	.data       start:0x00001988 end:0x00001998 align:8
 
-rel/option/data/lbl_4_data_1998.c:
-	.data       start:0x00001998 end:0x000019A8 align:8
 
-rel/option/data/lbl_4_data_19A8.c:
-	.data       start:0x000019A8 end:0x000019B0 align:8
 
-rel/option/data/lbl_4_data_19B0.c:
-	.data       start:0x000019B0 end:0x000019C0 align:8
 
-rel/option/data/lbl_4_data_19C0.c:
-	.data       start:0x000019C0 end:0x000019E0 align:8
 
-rel/option/data/lbl_4_data_19E0.c:
-	.data       start:0x000019E0 end:0x000019E8 align:8
 
-rel/option/data/lbl_4_data_19E8.c:
-	.data       start:0x000019E8 end:0x00001A48 align:8
 
-rel/option/data/lbl_4_data_1A48.c:
-	.data       start:0x00001A48 end:0x00001A80 align:8
 
-rel/option/data/lbl_4_data_1A80.c:
-	.data       start:0x00001A80 end:0x00001A98 align:8
 
-rel/option/data/lbl_4_data_1A98.c:
-	.data       start:0x00001A98 end:0x00001AA0 align:8
 
-rel/option/data/lbl_4_data_1AA0.c:
-	.data       start:0x00001AA0 end:0x00001AE8 align:8
 
-rel/option/data/lbl_4_data_1AE8.c:
-	.data       start:0x00001AE8 end:0x00001C78 align:8
 
-rel/option/data/lbl_4_data_1C78.c:
-	.data       start:0x00001C78 end:0x00001C98 align:8
 
-rel/option/data/lbl_4_data_1C98.c:
-	.data       start:0x00001C98 end:0x00001CA8 align:8
 
-rel/option/data/lbl_4_data_1CA8.c:
-	.data       start:0x00001CA8 end:0x00001E60 align:8
 
-rel/option/data/lbl_4_data_1E60.c:
-	.data       start:0x00001E60 end:0x00001EB0 align:8
 
-rel/option/data/lbl_4_data_1EB0.c:
-	.data       start:0x00001EB0 end:0x00001EC0 align:8
 
-rel/option/data/lbl_4_data_1EC0.c:
-	.data       start:0x00001EC0 end:0x00001F00 align:8
 
-rel/option/data/lbl_4_data_1F00.c:
-	.data       start:0x00001F00 end:0x00001F08 align:8
 
-rel/option/data/lbl_4_data_1F08.c:
-	.data       start:0x00001F08 end:0x00001F18 align:8
 
-rel/option/data/lbl_4_data_1F18.c:
-	.data       start:0x00001F18 end:0x00001F28 align:8
 
-rel/option/data/lbl_4_data_1F28.c:
-	.data       start:0x00001F28 end:0x00001F40 align:8
 
-rel/option/data/lbl_4_data_1F78.c:
-	.data       start:0x00001F78 end:0x00001F88 align:8
 
-rel/option/data/lbl_4_data_1F88.c:
-	.data       start:0x00001F88 end:0x00001F98 align:8
 
-rel/option/data/lbl_4_data_1F98.c:
-	.data       start:0x00001F98 end:0x00001FD8 align:8
 
-rel/option/data/lbl_4_data_1FD8.c:
-	.data       start:0x00001FD8 end:0x00001FF0 align:8
 
-rel/option/data/lbl_4_data_1FF0.c:
-	.data       start:0x00001FF0 end:0x00002018 align:8
 
-rel/option/data/lbl_4_data_2018.c:
-	.data       start:0x00002018 end:0x00002030 align:8
 
-rel/option/data/lbl_4_data_2030.c:
-	.data       start:0x00002030 end:0x00002038 align:8
 
-rel/option/data/lbl_4_data_2038.c:
-	.data       start:0x00002038 end:0x00002068 align:8
 
-rel/option/data/lbl_4_data_2068.c:
-	.data       start:0x00002068 end:0x00002070 align:8
 
-rel/option/data/lbl_4_data_2070.c:
-	.data       start:0x00002070 end:0x000020C8 align:8
 
-rel/option/data/lbl_4_data_20C8.c:
-	.data       start:0x000020C8 end:0x00002140 align:8
 
-rel/option/data/lbl_4_data_2140.c:
-	.data       start:0x00002140 end:0x00002158 align:8
 
-rel/option/data/lbl_4_data_2158.c:
-	.data       start:0x00002158 end:0x00002480 align:8
 
-rel/option/data/lbl_4_data_2480.c:
-	.data       start:0x00002480 end:0x000024A0 align:8
 
-rel/option/data/lbl_4_data_24A0.c:
-	.data       start:0x000024A0 end:0x000024B8 align:8
 
-rel/option/data/lbl_4_data_24B8.c:
-	.data       start:0x000024B8 end:0x000024D8 align:8
 
-rel/option/data/lbl_4_data_24D8.c:
-	.data       start:0x000024D8 end:0x000024E8 align:8
 
-rel/option/data/lbl_4_data_24E8.c:
-	.data       start:0x000024E8 end:0x00002810 align:8
 
-rel/option/data/lbl_4_data_2810.c:
-	.data       start:0x00002810 end:0x00002848 align:8
 
 rel/option/data/lbl_4_data_2C20.c:
 	.data       start:0x00002C20 end:0x00002C30 align:8
@@ -408,68 +309,26 @@ rel/option/data/lbl_4_data_2C30.c:
 rel/option/data/lbl_4_data_2C58.c:
 	.data       start:0x00002C58 end:0x00002D10 align:8
 
-rel/option/data/lbl_4_data_1520.c:
-	.data       start:0x00001520 end:0x00001528 align:8
 
-rel/option/data/lbl_4_data_1528.c:
-	.data       start:0x00001528 end:0x00001558 align:8
 
-rel/option/data/lbl_4_data_1558.c:
-	.data       start:0x00001558 end:0x00001588 align:8
 
-rel/option/data/lbl_4_data_1588.c:
-	.data       start:0x00001588 end:0x00001660 align:8
 
-rel/option/data/lbl_4_data_1660.c:
-	.data       start:0x00001660 end:0x00001678 align:8
 
-rel/option/data/lbl_4_data_1678.c:
-	.data       start:0x00001678 end:0x00001688 align:8
 
-rel/option/data/lbl_4_data_1688.c:
-	.data       start:0x00001688 end:0x000016A0 align:8
 
-rel/option/data/lbl_4_data_16A0.c:
-	.data       start:0x000016A0 end:0x00001718 align:8
 
-rel/option/data/lbl_4_data_1718.c:
-	.data       start:0x00001718 end:0x00001740 align:8
 
-rel/option/data/lbl_4_data_1740.c:
-	.data       start:0x00001740 end:0x00001770 align:8
 
-rel/option/data/lbl_4_data_1770.c:
-	.data       start:0x00001770 end:0x00001790 align:8
 
-rel/option/data/lbl_4_data_1790.c:
-	.data       start:0x00001790 end:0x000017B0 align:8
 
-rel/option/data/lbl_4_data_17B0.c:
-	.data       start:0x000017B0 end:0x000017D0 align:8
 
-rel/option/data/lbl_4_data_17D0.c:
-	.data       start:0x000017D0 end:0x000017F0 align:8
 
-rel/option/data/lbl_4_data_17F0.c:
-	.data       start:0x000017F0 end:0x00001810 align:8
 
-rel/option/data/lbl_4_data_1810.c:
-	.data       start:0x00001810 end:0x00001818 align:8
 
-rel/option/data/lbl_4_data_1F40.c:
-	.data       start:0x00001F40 end:0x00001F50 align:8
 
-rel/option/data/lbl_4_data_1F50.c:
-	.data       start:0x00001F50 end:0x00001F60 align:8
 
-rel/option/data/lbl_4_data_1F60.c:
-	.data       start:0x00001F60 end:0x00001F78 align:8
 
-rel/option/data/lbl_4_data_1500.c:
-	.data       start:0x00001500 end:0x00001520 align:8
 
-rel/option/data/lbl_4_data_2848.c:
-	.data       start:0x00002848 end:0x00002870 align:8
 
 rel/option/data/lbl_4_data_2C00.c:
 	.data       start:0x00002C00 end:0x00002C20 align:8
@@ -477,8 +336,6 @@ rel/option/data/lbl_4_data_2C00.c:
 rel/option/data/lbl_4_data_2D78.c:
 	.data       start:0x00002D78 end:0x000030E0 align:8
 
-rel/option/data/lbl_4_data_0.c:
-	.data       start:0x00000000 end:0x00001500 align:8
 
 rel/option/data/lbl_4_data_2D10.c:
 	.data       start:0x00002D10 end:0x00002D78 align:8

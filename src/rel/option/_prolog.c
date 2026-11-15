@@ -7800,39 +7800,425 @@ void fn_4_4B10(void) {
 /* fzgx:begin fn_4_4B74 noprologue */
 #include "types.h"
 
-#include "rel/option/data/lbl_4_data_290C.h"
+/* option .data 0x0-0x2974: the message tables (English, four empty languages,
+   Japanese), the scene table and the strings and statics of the functions
+   before this one. The retail TU defines them above these functions. */
+typedef struct OptionScene {
+    char name[32];
+    void (*func[3])(void);
+} OptionScene;
 
-extern u8 lbl_4_data_C[];
+typedef struct OptionMenuItem {
+    u16 id;
+    char *name[6];
+} OptionMenuItem;
 
-char lbl_4_data_2870[155] = "Side Attack:Quickly press the L or R Button\n               twice.\nSpin Attack:Press the L and "
-    "R Buttons\n               simultaneously and turn the wheel. ";
-Data_lbl_4_data_290C lbl_4_data_290C = {
-    0x83548343U,
-    0x83688341U,
-    0x835E8362U,
-    0x834E8163U,
-    0x8367838AU,
-    0x834B815BU,
-    0x825189F1U,
-    0x88F882ABU,
-    0x0A835883U,
-    0x73839383U,
-    0x41835E83U,
-    0x62834E81U,
-    0x63836783U,
-    0x8A834B81U,
-    0x5B826B82U,
-    0x7197BC88U,
-    0xF882AB81U,
-    0x95836E83U,
-    0x93836883U,
-    0x8B000000U,
-    (u8 *)&lbl_4_data_2870,
-    (u8 *)&lbl_4_data_C,
-    (u8 *)&lbl_4_data_C,
-    (u8 *)&lbl_4_data_C,
-    (u8 *)&lbl_4_data_C,
-    (u8 *)&lbl_4_data_290C
+/* Where a binding row's prompt is printed, and its text. */
+typedef struct OptionLabel {
+    s16 x, y;
+    char *text;
+} OptionLabel;
+
+extern void fn_4_347C(void);
+extern void fn_4_3568(void);
+extern void fn_4_406C(void);
+extern void fn_4_4784(void);
+extern void fn_4_4834(void);
+extern void fn_4_4B10(void);
+extern void fn_4_6678(void);
+extern void fn_4_6720(void);
+extern void fn_4_78E0(void);
+extern void fn_4_7C38(void);
+extern void fn_4_7CA4(void);
+extern void fn_4_7D94(void);
+extern void fn_4_80EC(void);
+extern void fn_4_8158(void);
+extern void fn_4_8248(void);
+extern void fn_4_869C(void);
+extern void fn_4_8720(void);
+extern void fn_4_898C(void);
+extern void fn_4_89E4(void);
+extern void fn_4_8A54(void);
+extern void fn_4_8AE0(void);
+extern void fn_4_8DC0(void);
+extern void fn_4_8E38(void);
+extern void fn_4_9A78(void);
+extern s32 fn_4_9B20(void);
+extern void fn_4_9C14(f32);
+extern void fn_4_A734(void);
+extern void fn_4_D10(void);
+extern void fn_4_D7C(void);
+extern void fn_4_EA0(void);
+
+char *lbl_4_data_20[6] = {
+    "Controller", "", "", "", "", "\203R\203\223\203g\203\215\201[\203\211",
+};
+
+char *lbl_4_data_60[6] = {
+    "Controller Socket", "", "", "", "", "\203R\203\223\203g\203\215\201[\203\211\203|\201[\203g",
+};
+
+char *lbl_4_data_80[2][6] = {
+    {"ON", "", "", "", "", "ON"},
+    {"OFF", "", "", "", "OFF"},
+};
+
+char *lbl_4_data_E8[6] = {
+    "Use \203\255 or \203\265 to choose.", "", "", "", "", "\203\255\202\251\203\265\202\305\215\200\226\332\202\360\221I\202\361\202\305\202\255\202\276\202\263\202\242\201B",
+};
+
+char *lbl_4_data_158[6] = {
+    "Move \203\255 or \203\265 Left or Right to change controls.", "", "", "", "", "\203\255\202\251\203\265\202\314\215\266\211E\202\305\221\200\215\354\202\360\225\317\215X\202\265\202\304\202\255\202\276\202\263\202\242\201B",
+};
+
+char *lbl_4_data_1A4[6] = {
+    "Please wait a moment...", "", "", "", "", "\202\265\202\316\202\347\202\255\202\250\221\322\202\277\202\255\202\276\202\263\202\242\201B",
+};
+
+char *lbl_4_data_23C[6] = {
+    "Press the A Button on the Controller to be adjusted. Press the B Button to finish.", "", "", "", "", "\225\317\215X\202\267\202\351\203R\203\223\203g\203\215\201[\203\211\202\305\203\237\202\360\211\237\202\265\202\304\202\255\202\276\202\263\202\242\201B",
+};
+
+char *lbl_4_data_2B4[6] = {
+    "Rotate the Control Stick one full revolution.", "", "", "", "", "\203R\203\223\203g\203\215\201[\203\213\203X\203e\203B\203b\203N\202\360\210\352\224t\202\311\211\361\202\265\202\304\202\255\202\276\202\263\202\242\201B",
+};
+
+char *lbl_4_data_314[6] = {
+    "Please adjust the steering wheel.", "", "", "", "", "\203n\203\223\203h\203\213\202\314\222\262\220\256\202\360\215s\202\310\202\301\202\304\202\255\202\276\202\263\202\242\201B",
+};
+
+char *lbl_4_data_364[6] = {
+    "Return to the default settings?", "", "", "", "", "\217\211\212\372\220\335\222\350\202\311\226\337\202\265\202\334\202\267\202\251\201H",
+};
+
+char *lbl_4_data_3E8[6] = {
+    "Select the Controller to be changed using either \203\255 or \203\265.", "", "", "", "", "\203\255\202\251\203\265\202\305\225\317\215X\202\267\202\351\203R\203\223\203g\203\215\201[\203\211\202\360\221I\202\361\202\305\202\255\202\276\202\263\202\242\201B",
+};
+
+char *lbl_4_data_468[6] = {
+    "Move \203\255 or \203\265 Left or Right to change Rumble settings.", "", "", "", "", "\203\255\202\251\203\265\202\314\215\266\211E\202\305\220U\223\256\202\314\220\335\222\350\202\360\225\317\215X\202\265\202\304\202\255\202\276\202\263\202\242\201B",
+};
+
+char *lbl_4_data_560[6] = {
+    "The Controller has been disconnected.\n Reconnect the Controller in Socket %d or\n press the A Button on another.", "", "", "", "", "\203R\203\223\203g\203\215\201[\203\211\202\252\212O\202\263\202\352\202\334\202\265\202\275\201B\n\203R\203\223\203g\203\215\201[\203\211\203|\201[\203g%d\202\311\202\263\202\265\202\310\202\250\202\267\202\251\201A\n\221\274\202\314\203R\203\223\203g\203\215\201[\203\211\202\305\203\237\203{\203^\203\223\202\360\211\237\202\265\202\304\202\255\202\276\202\263\202\242\201B",
+};
+
+char *lbl_4_data_584[6] = {
+    "YES", "", "", "", "", "\202\315\202\242",
+};
+
+char *lbl_4_data_5A8[6] = {
+    "NO", "", "", "", "", "\202\242\202\242\202\246",
+};
+
+char *lbl_4_data_5F8[6] = {
+    "Change Option Settings", "", "", "", "", "\203I\203v\203V\203\207\203\223\220\335\222\350\202\360\215s\202\310\202\242\202\334\202\267\201B",
+};
+
+char *lbl_4_data_6BC[6] = {
+    "Adjust the Calibration.\nPress the A Button on the Controller\nyou want adjusted.", "", "", "", "", "\203R\203\223\203g\203\215\201[\203\211\202\314\203L\203\203\203\212\203u\203\214\201[\203V\203\207\203\223\202\360\215s\202\310\202\242\202\334\202\267\201B\n\225\317\215X\202\267\202\351\203R\203\223\203g\203\215\201[\203\211\202\305\203\237\202\360\211\237\202\265\202\304\202\255\202\276\202\263\202\242\201B",
+};
+
+char *lbl_4_data_778[6] = {
+    "Customize the Controller.\nPress the A Button on the Controller to be adjusted.", "", "", "", "", "\203R\203\223\203g\203\215\201[\203\211\202\314\203J\203X\203^\203}\203C\203Y\202\360\215s\202\310\202\242\202\334\202\267\201B\n\225\317\215X\202\267\202\351\203R\203\223\203g\203\215\201[\203\211\202\305\203\237\202\360\211\237\202\265\202\304\202\255\202\276\202\263\202\242\201B",
+};
+
+char *lbl_4_data_82C[2][6] = {
+    {"Controller Rumble Settings.\n Press the A Button to select the Controller.", "", "", "", "", "\203R\203\223\203g\203\215\201[\203\211\202\314\220U\223\256\202\314\220\335\222\350\202\360\215s\202\310\202\242\202\334\202\267\201B\n\203R\203\223\203g\203\215\201[\203\211\202\360\221I\202\361\202\305\203\237\202\360\211\237\202\265\202\304\202\255\202\276\202\263\202\242\201B"},
+    {"Move \203\255 or \203\265 Left or Right to change Rumble settings.", "", "", "", "", "\203\255\202\251\203\265\202\314\215\266\211E\202\305\220U\223\256\202\314\220\335\222\350\202\360\225\317\215X\202\265\202\304\202\255\202\276\202\263\202\242\201B"},
+};
+
+char *lbl_4_data_884[6] = {
+    "Save changes?", "", "", "", "", "\225\317\215X\202\360\225\333\221\266\202\265\202\334\202\267\202\251\201H",
+};
+
+char *lbl_4_data_8C0[6] = {
+    "Is this OK?", "", "", "", "", "\202\261\202\352\202\305\202\346\202\353\202\265\202\242\202\305\202\267\202\251\201H",
+};
+
+char *lbl_4_data_8E0[6] = {
+    "\201c\202n\202m", "", "", "", "", "\201c\202n\202m",
+};
+
+char *lbl_4_data_900[6] = {
+    "\202n\202e\202e", "", "", "", "", "\202n\202e\202e",
+};
+
+char *lbl_4_data_958[6] = {
+    "Change Controller Settings", "", "", "", "", "\203R\203\223\203g\203\215\201[\203\211\202\314\220\335\222\350\202\360\215s\202\310\202\242\202\334\202\267\201B",
+};
+
+char *lbl_4_data_9A8[6] = {
+    "Manage Memory Card", "", "", "", "", "\203\201\203\202\203\212\201[\203J\201[\203h\202\314\212\307\227\235\202\360\215s\202\310\202\242\202\334\202\267\201B",
+};
+
+char *lbl_4_data_9F8[6] = {
+    "Select Screen Settings ", "", "", "", "", "\211\346\226\312\203\202\201[\203h\202\314\220\335\222\350\202\360\215s\202\310\202\242\202\334\202\267\201B",
+};
+
+char *lbl_4_data_A58[6] = {
+    "Use \203\255 or \203\265 to choose a mode ", "", "", "", "", "\203\255\202\251\203\265\202\314\215\266\211E\202\305\203\202\201[\203h\202\360\221I\202\361\202\305\202\255\202\276\202\263\202\242\201B",
+};
+
+char *lbl_4_data_A88[6] = {
+    "Normal", "", "", "", "", "\203m\201[\203}\203\213\203e\203\214\203r",
+};
+
+char *lbl_4_data_ABC[6] = {
+    "Wide Screen", "", "", "", "", "\203\217\203C\203h\203e\203\214\203r",
+};
+
+char *lbl_4_data_C00[6] = {
+    "Move the Control Stick around in a circle until the figures on the\n left side do not change. Adjust play using the \203\265 Control Pad.\n Press the X Button to return to the default settings.", "", "", "", "", "\215\266\221\244\202\314\220}\214`\202\252\225\317\211\273\202\265\202\310\202\255\202\310\202\351\202\334\202\305\203\255\202\360\210\352\224t\202\311\211\361\202\265\202\304\202\255\202\276\202\263\202\242\201B\n\203\265\202\305\227V\202\321\202\360\222\262\220\256\202\265\202\304\202\255\202\276\202\263\202\242\201B\n\203\264\202\305\217\211\212\372\220\335\222\350\202\311\226\337\202\271\202\334\202\267\201B",
+};
+
+char *lbl_4_data_D38[6] = {
+    "Turn the steering wheel Left and Right and press\nthe A Button at the point you want to set as the\n limit. Use the L and R Buttons to adjust game play. ", "", "", "", "", "\203n\203\223\203h\203\213\202\360\215\266\211E\202\311\211\361\202\265\201A\214\300\212E\202\306\202\265\202\275\202\242\210\312\222u\202\305\203\237\202\360\211\237\202\265\202\304\202\255\202\276\202\263\202\242\201B\n\202k\201\225\202q\203g\203\212\203K\201[\203{\203^\203\223\202\305\227V\202\321\202\360\222\262\220\256\202\265\202\304\202\255\202\276\202\263\202\242\201B\n\203\264\202\305\217\211\212\372\220\335\222\350\202\311\226\337\202\271\202\334\202\267\201B",
+};
+
+char *lbl_4_data_D6C[6] = {
+    "Before correction", "", "", "", "", "\225\342\220\263\221O",
+};
+
+char *lbl_4_data_DA0[6] = {
+    "After correction", "", "", "", "", "\225\342\220\263\214\343",
+};
+
+char *lbl_4_data_E30[6] = {
+    "Game Data Controls\nInsert a Memory Card into Slot A.", "", "", "", "", "\203Q\201[\203\200\203f\201[\203^\202\314\221\200\215\354\n\203\201\203\202\203\212\201[\203J\201[\203h\202\360\203X\203\215\203b\203g\202`\202\311\223\374\202\352\202\304\202\255\202\276\202\263\202\242\201B",
+};
+
+char *lbl_4_data_E70[6] = {
+    "Load Game Data", "", "", "", "", "\203Q\201[\203\200\203f\201[\203^\202\314\203\215\201[\203h",
+};
+
+char *lbl_4_data_EB0[6] = {
+    "Save Game Data", "", "", "", "", "\203Q\201[\203\200\203f\201[\203^\202\314\203Z\201[\203u",
+};
+
+char *lbl_4_data_F4C[6] = {
+    "There is no Game Data on this Memory Card.\n Saving new data.", "", "", "", "", "\203\201\203\202\203\212\201[\203J\201[\203h\202\311\n\203Q\201[\203\200\203f\201[\203^\202\252\214\251\202\302\202\251\202\350\202\334\202\271\202\361\201B\n\220V\213K\203Z\201[\203u\202\265\202\334\202\267\201B",
+};
+
+char *lbl_4_data_1064[6] = {
+    "There is no Game Data on the Memory Card.\nIf you save, the Game Data currently loaded\nwill all be lost. Is that OK?", "", "", "", "", "\203\201\203\202\203\212\201[\203J\201[\203h\202\311\203Q\201[\203\200\203f\201[\203^\202\252\214\251\202\302\202\251\202\350\202\334\202\271\202\361\201B\n\220V\213K\203Z\201[\203u\202\267\202\351\202\306\214\273\215\335\203\215\201[\203h\202\263\202\352\202\304\202\242\202\351\203Q\201[\203\200\203f\201[\203^\202\252\n\221S\202\304\217\301\202\246\202\304\202\265\202\334\202\242\202\334\202\267\202\252\201A\202\346\202\353\202\265\202\242\202\305\202\267\202\251?",
+};
+
+char *lbl_4_data_10D0[6] = {
+    "There is no Memory Card in Slot A.", "", "", "", "", "\203X\203\215\203b\203g\202`\202\311\n\203\201\203\202\203\212\201[\203J\201[\203h\202\252\214\251\202\302\202\251\202\350\202\334\202\271\202\361\201B",
+};
+
+char *lbl_4_data_1154[6] = {
+    "Register this name on the Memory Card in Slot A.", "", "", "", "", "\202\261\202\314\226\274\221O\202\305\203\201\203\202\203\212\201[\203J\201[\203h\202\311\n\223o\230^\202\265\202\304\202\340\202\346\202\353\202\265\202\242\202\305\202\267\202\251?",
+};
+
+char *lbl_4_data_11F4[6] = {
+    "There is no Memory Card in Slot A.\n The game cannot be saved.", "", "", "", "", "\203X\203\215\203b\203g\202`\202\311\203\201\203\202\203\212\201[\203J\201[\203h\202\252\214\251\202\302\202\251\202\350\202\334\202\271\202\361\201B\n\203Z\201[\203u\202\305\202\253\202\334\202\271\202\361\202\305\202\265\202\275\201B",
+};
+
+u8 lbl_4_data_120C = 0xFFU;
+u16 lbl_4_data_120E = 0xFFFFU;
+char lbl_4_data_1210[3] = "%s";
+u8 lbl_4_data_1213 = 0xFFU;
+u16 lbl_4_data_1214 = 0xFFFFU;
+char lbl_4_data_1218[9] = "option.c";
+char lbl_4_data_1224[19] = "SelS_DispPolygonBG";
+char lbl_4_data_1238[18] = "SelS_DispSpriteBG";
+char lbl_4_data_124C[19] = "option_common_disp";
+
+OptionScene lbl_4_data_1260[10] = {
+    {"SMD_OPTION_MENU", {fn_4_D10, fn_4_D7C, fn_4_EA0}},
+    {"SMD_OPTION_SAVE_WAIT", {(void (*)(void))fn_4_9B20, (void (*)(void))fn_4_9C14, fn_4_A734}},
+    {"SMD_OPTION_CTRL_MENU", {fn_4_7C38, fn_4_7CA4, fn_4_7D94}},
+    {"SMD_OPTION_CARD_MENU", {fn_4_80EC, fn_4_8158, fn_4_8248}},
+    {"SMD_OPTION_WIDE", {fn_4_869C, fn_4_8720, fn_4_898C}},
+    {"SMD_OPTION_CALIB", {fn_4_347C, fn_4_3568, fn_4_406C}},
+    {"SMD_OPTION_RUMBLE", {fn_4_4784, fn_4_4834, fn_4_4B10}},
+    {"SMD_OPTION_PCUST", {fn_4_6678, fn_4_6720, fn_4_78E0}},
+    {"SMD_OPTION_CARD_MANAGE", {fn_4_89E4, fn_4_8A54, fn_4_8AE0}},
+    {"SMD_OPTION_CARD_GDATA", {fn_4_8DC0, fn_4_8E38, fn_4_9A78}},
+};
+
+OptionMenuItem lbl_4_data_144C[3] = {
+    {0x4D, {"Controller", "", "", "", "", "\203R\203\223\203g\203\215\201[\203\211"}},
+    {0x4E, {"Memory Card", "", "", "", "", "\203\201\203\202\203\212\201[\203J\201[\203h"}},
+    {0x4F, {"Screen Mode", "", "", "", "", "\211\346\226\312\203\202\201[\203h"}},
+};
+
+char lbl_4_data_14A0[48] = "option_menu_disp\000\000\000\000X:%4d\n\000\000Y:%4d\000\000\000%s%4d\000\000\000%4d";
+
+char lbl_4_data_14D0[18] = "option_calib_disp";
+
+u8 lbl_4_data_14E2 = 0xFFU;
+
+u16 lbl_4_data_14E4 = 0xFFFFU;
+
+char lbl_4_data_14E8[10] = "%s%d\201c   ";
+
+char lbl_4_data_14F4[9] = "%s%d\201c%s";
+
+char lbl_4_data_1500[11] = "RumbleMain";
+
+char lbl_4_data_150C[19] = "option_rumble_disp";
+
+u16 lbl_4_data_1520[4] = {
+    0x81FFU, 0x811FU, 0x831FU, 0x0000U
+};
+
+u32 lbl_4_data_1528[3] = {
+    0x803FFF1FU, 0x80303F1FU, 0x80F03F1FU
+};
+
+char *lbl_4_data_15E8[5][6] = {
+    {"Not Connected", "\226\242\220\332\221\261", "\226\242\220\332\221\261", "\226\242\220\332\221\261", "\226\242\220\332\221\261", "\226\242\220\332\221\261"},
+    {"Controller", "\203R\203\223\203g\203\215\201[\203\211", "\203R\203\223\203g\203\215\201[\203\211", "\203R\203\223\203g\203\215\201[\203\211", "\203R\203\223\203g\203\215\201[\203\211", "\203R\203\223\203g\203\215\201[\203\211"},
+    {"Speed Force", "\203X\203s\201[\203h\203t\203H\201[\203X", "\203X\203s\201[\203h\203t\203H\201[\203X", "\203X\203s\201[\203h\203t\203H\201[\203X", "\203X\203s\201[\203h\203t\203H\201[\203X", "\203X\203s\201[\203h\203t\203H\201[\203X"},
+    {"Speed Force and Pedal Unit", "\203X\203s\201[\203h\203t\203H\201[\203X\201\225\203y\203_\203\213\203\206\203j\203b\203g", "\203X\203s\201[\203h\203t\203H\201[\203X\201\225\203y\203_\203\213\203\206\203j\203b\203g", "\203X\203s\201[\203h\203t\203H\201[\203X\201\225\203y\203_\203\213\203\206\203j\203b\203g", "\203X\203s\201[\203h\203t\203H\201[\203X\201\225\203y\203_\203\213\203\206\203j\203b\203g", "\203X\203s\201[\203h\203t\203H\201[\203X\201\225\203y\203_\203\213\203\206\203j\203b\203g"},
+    {"Arcade", "\203A\201[\203P\201[\203h" "\203A\201[\203P\201[\203h" "\203A\201[\203P\201[\203h" "\203A\201[\203P\201[\203h" "\203A\201[\203P\201[\203h"},
+};
+
+OptionLabel lbl_4_data_16B4[9] = {
+    {164, 160, "\201c\201c\201c\201c\201c\201c\201c\201c\201c\201c\201c"},
+    {248, 180, "\201c\201c\201c\201c\201c\201c"},
+    {332, 200, "\201c"},
+    {214, 220, "\201c\201c\201c\201c\201c\201c\201c\201c"},
+    {214, 240, "\201c\201c\201c\201c\201c\201c\201c\201c"},
+    {198, 260, "\201c\201c\201c\201c\201c\201c\201c\201c\201c"},
+    {214, 280, "\201c\201c\201c\201c\201c\201c\201c\201c"},
+    {214, 300, "\201c\201c\201c\201c\201c\201c\201c\201c"},
+    {164, 320, "\201c\201c\201c\201c\201c\201c\201c\201c\201c\201c\201c"},
+};
+
+char *lbl_4_data_182C[9][6] = {
+    {"Steer", "", "", "", "", "\203X\203e\203A\203\212\203\223\203O\215\266\211E\201c"},
+    {"Slide Left Right", "", "", "", "", "\203X\203\211\203C\203h\215\266\211E\201c\201c\201c"},
+    {"Adjust Center of Gravity", "", "", "", "", "\203W\203\203\203\223\203v\217d\220S\210\332\223\256\201c"},
+    {"Adjust View", "", "", "", "", "\216\213\223_\225\317\215X\201c\201c\201c\201c\201c"},
+    {"Accelerate", "", "", "", "", "\203A\203N\203Z\203\213\201c\201c\201c\201c\201c"},
+    {"Air Brake", "", "", "", "", "\203G\203A\203u\203\214\201[\203L\201c\201c\201c"},
+    {"Side Attack", "", "", "", "", "\203T\203C\203h\203A\203^\203b\203N\201c\201c"},
+    {"Spin Attack", "", "", "", "", "\203X\203s\203\223\203A\203^\203b\203N\201c\201c"},
+    {"Boost", "", "", "", "", "\203u\201[\203X\203^\201[\201c\201c\201c\201c"},
+};
+
+char *lbl_4_data_1AF8[16][6] = {
+    {"\203\265 Control Pad Left and Right", "\203\265 \203\320", "\203\265 \203\320", "\203\265 \203\320", "\203\265 \203\320", "\217\\\216\232\203{\203^\203\223\215\266\211E"},
+    {"\203\265 Control Pad Up and Down", "\203\265 \203\317", "\203\265 \203\317", "\203\265 \203\317", "\203\265 \203\317", "\217\\\216\232\203{\203^\203\223\217\343\211\272"},
+    {"A and B Button", "\203\237 \203\240", "\203\237 \203\240", "\203\237 \203\240", "\203\237 \203\240", "\202`\201\225\202a\203{\203^\203\223"},
+    {"X and Y Button", "\203\264 \203\262", "\203\264 \203\262", "\203\264 \203\262", "\203\264 \203\262", "\202w\201\225\202x\203{\203^\203\223"},
+    {"\203\255 Control Stick Left and Right", "\203\255 \203\320", "\203\255 \203\320", "\203\255 \203\320", "\203\255 \203\320", "\203R\203\223\203g\203\215\201[\203\213\203X\203e\203B\203b\203N\215\266\211E"},
+    {"\203\255 Control Stick Up and Down", "\203\255 \203\317", "\203\255 \203\317", "\203\255 \203\317", "\203\255 \203\317", "\203R\203\223\203g\203\215\201[\203\213\203X\203e\203B\203b\203N\217\343\211\272"},
+    {"\203\246 C Stick Left and Right", "\203\246 \203\320", "\203\246 \203\320", "\203\246 \203\320", "\203\246 \203\320", "\202b\203X\203e\203B\203b\203N\215\266\211E"},
+    {"\203\246 C Stick Up and Down", "\203\246 \203\317", "\203\246 \203\317", "\203\246 \203\317", "\203\246 \203\317", "\202b\203X\203e\203B\203b\203N\217\343\211\272"},
+    {"L and R Button", "", "", "", "", "\202k\201\225\202q\203g\203\212\203K\201[\203{\203^\203\223"},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"No Quotas", "", "", "", "", "\212\204\202\350\223\226\202\304\202\310\202\265"},
+};
+
+char *lbl_4_data_1CE0[16][6] = {
+    {"\203\265 Control Pad Left and Right", "\203\265 \203\320", "\203\265 \203\320", "\203\265 \203\320", "\203\265 \203\320", "\217\\\216\232\203{\203^\203\223\215\266\211E"},
+    {"\203\265 Control Pad Up and Down", "\203\265 \203\317", "\203\265 \203\317", "\203\265 \203\317", "\203\265 \203\317", "\217\\\216\232\203{\203^\203\223\217\343\211\272"},
+    {"A and B Button", "\203\237 \203\240", "\203\237 \203\240", "\203\237 \203\240", "\203\237 \203\240", "\202`\201\225\202a\203{\203^\203\223"},
+    {"X and Y Button", "\203\264 \203\262", "\203\264 \203\262", "\203\264 \203\262", "\203\264 \203\262", "\202w\201\225\202x\203{\203^\203\223"},
+    {"Steering Wheel Left and Right", "", "", "", "", "\203n\203\223\203h\203\213\215\266\211E"},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"L and R Button", "", "", "", "", "\202k\201\225\202q\203g\203\212\203K\201[\203{\203^\203\223"},
+    {"Accelerator and Break Pedal", "", "", "", "", "\203A\203N\203Z\203\213\201\225\203u\203\214\201[\203L\203y\203_\203\213"},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"No Quotas", "", "", "", "", "\212\204\202\350\223\226\202\304\202\310\202\265"},
+};
+
+char *lbl_4_data_2180[32][6] = {
+    {"\203\265 Control Pad Left", "\203\265 Left", "\203\265 Left", "\203\265 Left", "\203\265 Left", "\217\\\216\232\203{\203^\203\223\215\266"},
+    {"\203\265 Control Pad Right", "\203\265 Right", "\203\265 Right", "\203\265 Right", "\203\265 Right", "\217\\\216\232\203{\203^\203\223\211E"},
+    {"\203\265 Control Pad Down", "\203\265 Down", "\203\265 Down", "\203\265 Down", "\203\265 Down", "\217\\\216\232\203{\203^\203\223\211\272"},
+    {"\203\265 Control Pad Up", "\203\265 Up", "\203\265 Up", "\203\265 Up", "\203\265 Up", "\217\\\216\232\203{\203^\203\223\217\343"},
+    {"Z Button", "\203\244 ", "\203\244 ", "\203\244 ", "\203\244 ", "\202y\203{\203^\203\223"},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"A Button", "\203\237", "\203\237", "\203\237", "\203\237", "\202`\203{\203^\203\223"},
+    {"B Button", "\203\240 ", "\203\240 ", "\203\240 ", "\203\240 ", "\202a\203{\203^\203\223"},
+    {"X Button", "\203\264 ", "\203\264 ", "\203\264 ", "\203\264 ", "\202w\203{\203^\203\223"},
+    {"Y Button", "\203\262 ", "\203\262 ", "\203\262 ", "\203\262 ", "\202x\203{\203^\203\223"},
+    {"\203\255 Control Stick Left", "", "", "", "", "\203R\203\223\203g\203\215\201[\203\213\203X\203e\203B\203b\203N\215\266"},
+    {"\203\255 Control Stick Right", "\203\255 Right", "\203\255 Right", "\203\255 Right", "\203\255 Right", "\203R\203\223\203g\203\215\201[\203\213\203X\203e\203B\203b\203N\211E"},
+    {"\203\255 Control Stick Down", "\203\255 Down", "\203\255 Down", "\203\255 Down", "\203\255 Down", "\203R\203\223\203g\203\215\201[\203\213\203X\203e\203B\203b\203N\211\272"},
+    {"\203\255 Control Stick Up", "\203\255 Up", "\203\255 Up", "\203\255 Up", "\203\255 Up", "\203R\203\223\203g\203\215\201[\203\213\203X\203e\203B\203b\203N\217\343"},
+    {"\203\246 C Stick Left", "\203\255 Left", "\203\255 Left", "\203\255 Left", "\203\255 Left", "\202b\203X\203e\203B\203b\203N\215\266"},
+    {"\203\246 C Stick Right", "\203\246 Right", "\203\246 Right", "\203\246 Right", "\203\246 Right", "\202b\203X\203e\203B\203b\203N\211E"},
+    {"\203\246 C Stick Down", "\203\246 Down", "\203\246 Down", "\203\246 Down", "\203\246 Down", "\202b\203X\203e\203B\203b\203N\211\272"},
+    {"\203\246 C Stick Up", "\203\246 Up", "\203\246 Up", "\203\246 Up", "\203\246 Up", "\202b\203X\203e\203B\203b\203N\217\343"},
+    {"L Button", "\203\241 ", "\203\241 ", "\203\241 ", "\203\241 ", "\202k\203g\203\212\203K\201[\203{\203^\203\223"},
+    {"R Button", " \203\257 ", " \203\257 ", " \203\257 ", " \203\257 ", "\202q\203g\203\212\203K\201[\203{\203^\203\223"},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"No Quotas", "", "", "", "", "\212\204\202\350\223\226\202\304\202\310\202\265"},
+};
+
+char *lbl_4_data_2504[32][6] = {
+    {"\203\265 Control Pad Left", "\203\265 Left", "\203\265 Left", "\203\265 Left", "\203\265 Left", "\217\\\216\232\203{\203^\203\223\215\266"},
+    {"\203\265 Control Pad Right", "\203\265 Right", "\203\265 Right", "\203\265 Right", "\203\265 Right", "\217\\\216\232\203{\203^\203\223\211E"},
+    {"\203\265 Control Pad Down", "\203\265 Down", "\203\265 Down", "\203\265 Down", "\203\265 Down", "\217\\\216\232\203{\203^\203\223\211\272"},
+    {"\203\265 Control Pad Up", "\203\265 Up", "\203\265 Up", "\203\265 Up", "\203\265 Up", "\217\\\216\232\203{\203^\203\223\217\343"},
+    {"Z Button", "\203\244 ", "\203\244 ", "\203\244 ", "\203\244 ", "\202y\203{\203^\203\223"},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"A Button", "\203\237", "\203\237", "\203\237", "\203\237", "\202`\203{\203^\203\223"},
+    {"B Button", "\203\240 ", "\203\240 ", "\203\240 ", "\203\240 ", "\202a\203{\203^\203\223"},
+    {"X Button", "\203\264 ", "\203\264 ", "\203\264 ", "\203\264 ", "\202w\203{\203^\203\223"},
+    {"Y Button", "\203\262 ", "\203\262 ", "\203\262 ", "\203\262 ", "\202x\203{\203^\203\223"},
+    {"Steering Wheel Left", "", "", "", "", "\203n\203\223\203h\203\213\215\266"},
+    {"Steering Wheel Right", "", "", "", "", "\203n\203\223\203h\203\213\211E"},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"L Button", "\203\241 ", "\203\241 ", "\203\241 ", "\203\241 ", "\202k\203g\203\212\203K\201[\203{\203^\203\223"},
+    {"R Button", " \203\257 ", " \203\257 ", " \203\257 ", " \203\257 ", "\202q\203g\203\212\203K\201[\203{\203^\203\223"},
+    {"Accelerator Pedal", "", "", "", "", "\203A\203N\203Z\203\213\203y\203_\203\213"},
+    {"Brake Pedal", "", "", "", "", "\203u\203\214\201[\203L\203y\203_\203\213"},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"", "", "", "", "", ""},
+    {"No Quotas", "", "", "", "", "\212\204\202\350\223\226\202\304\202\310\202\265"},
+};
+
+char *lbl_4_data_281C[6] = {
+    "AX Controls", "", "", "", "", "\202`\202w\202\314\221\200\215\354",
+};
+
+char *lbl_4_data_2858[6] = {
+    "Default Settings", "", "", "", "", "\217\211\212\372\220\335\222\350\202\311\226\337\202\267",
+};
+
+char *lbl_4_data_295C[6] = {
+    "Side Attack:Quickly press the L or R Button\n               twice.\nSpin Attack:Press the L and R Buttons\n               simultaneously and turn the wheel. ", "", "", "", "", "\203T\203C\203h\203A\203^\203b\203N\201c\203g\203\212\203K\201[\202Q\211\361\210\370\202\253\n\203X\203s\203\223\203A\203^\203b\203N\201c\203g\203\212\203K\201[\202k\202q\227\274\210\370\202\253\201\225\203n\203\223\203h\203\213",
 };
 
 struct fn_4_4B74_obj {
@@ -7903,24 +8289,7 @@ s32 fn_4_4B74(u32 arg0, u32 arg1) {
     return 31 - __cntlzw(v);
 }
 /* fzgx:end fn_4_4B74 */
-
 /* fzgx:begin fn_4_4CB8 noprologue */
-#include "types.h"
-
-struct fn_4_4CB8_elt {
-    u16 unk_0;
-    u16 unk_2;
-    u16 unk_4;
-    u16 unk_6;
-    u32 unk_8;
-    u32 unk_C;
-    u32 unk_10;
-    u32 unk_14;
-    u32 unk_18;
-};
-
-extern struct fn_4_4CB8_elt lbl_4_bss_C4[];
-
 void fn_4_4CB8(s32 arg0, u32 arg1, u32 arg2) {
     u32 v0;
     struct { s32 value; } v1;
@@ -7975,8 +8344,7 @@ void fn_4_4CB8(s32 arg0, u32 arg1, u32 arg2) {
     }
 }
 /* fzgx:end fn_4_4CB8 */
-
-/* fzgx:begin fn_4_4DF8 */
+/* fzgx:begin fn_4_4DF8 noprologue */
 typedef struct fn_4_4DF8_Color { u8 r, g, b, a; } fn_4_4DF8_Color;
 
 /* The font module's draw packet (font.h's FontDrawPacket with typed colors). */
@@ -8004,11 +8372,6 @@ typedef struct fn_4_4DF8_Bind {
     u32 stick[5];
 } fn_4_4DF8_Bind;
 
-/* Where a binding row's prompt is printed, and its text. */
-typedef struct fn_4_4DF8_Label {
-    s16 x, y;
-    char *text;
-} fn_4_4DF8_Label;
 
 
 
@@ -8022,7 +8385,7 @@ extern void fn_1_49748(f32);
 extern void fn_1_495B0(u32);
 extern void fn_1_49590(f32);
 extern int sprintf(char *, const char *, ...);
-extern void fn_1_53E40(fn_4_4DF8_Color *, const char *, f32, f32, f32, f32, f32);
+extern void fn_1_53E40(fn_4_4DF8_Color *, f32, f32, f32, f32, f32, const char *);
 extern f32 lbl_8006D188(s16);
 extern int fn_1_4F734(fn_4_4DF8_Packet *);
 extern void fn_1_496FC(f32, f32);
@@ -8034,6 +8397,8 @@ extern void fn_1_4A0D8(const char *);
 extern void fn_1_4DC6C(void);
 extern u32 fn_80007F70(fn_4_4DF8_Color *, fn_4_4DF8_Color *, u8, f32);
 extern void fn_1_5233C(void);
+extern s32 lbl_801A66B4;
+extern u32 lbl_1_rodata_26F8;
 #pragma section RX ".fzgxpool" ".fzgxpool"
 static const u32 fzgx_pool_table_0[2] = {
     0x43270000, 0x42180000, /* fzgx-allow: A1 float bits */
@@ -8158,70 +8523,12 @@ __declspec(section ".fzgxpool") void fzgx_pool_rodata_base(volatile f32 *f) {  /
     *f = 320.0f;
 }
 #pragma section RX ".text" ".text"
-/* .data: string tables of the controller screen, at their retail offsets */
-u8 fzgx_obj_lbl_4_data_0[0xC] = {1};
-static u8 fzgx_pool_data_gap_C[0x54] = {1};
-static char *fzgx_pool_title[6] = {(char *)1};
-static u8 fzgx_pool_data_gap_78[0x8] = {1};
-static char *fzgx_pool_onoff[2][6] = {{(char *)1}};
-static u8 fzgx_pool_data_gap_B0[0x1160] = {1};
-static char fzgx_pool_fmt_s[4] = "%s";
-static u8 fzgx_pool_data_gap_1214[0x2E0] = {1};
-static char fzgx_pool_fmt_title[0xC] = "%s%d\x81\x63%s";
-static u8 fzgx_pool_data_gap_1500[0xE8] = {1};
-static char *fzgx_pool_kind_name[5][6] = {{(char *)1}};
-static u8 fzgx_pool_data_gap_1660[0x54] = {1};
-static fn_4_4DF8_Label fzgx_pool_label[9] = {{1}};
-static u8 fzgx_pool_data_gap_16FC[0x130] = {1};
-static char *fzgx_pool_row_name[9][6] = {{(char *)1}};
-static u8 fzgx_pool_data_gap_1904[0x1F4] = {1};
-static char *fzgx_pool_button_gc[16][6] = {{(char *)1}};
-static u8 fzgx_pool_data_gap_1C78[0x68] = {1};
-static char *fzgx_pool_button[16][6] = {{(char *)1}};
-static u8 fzgx_pool_data_gap_1E60[0x320] = {1};
-static char *fzgx_pool_stick_gc[32][6] = {{(char *)1}};
-static u8 fzgx_pool_data_gap_2480[0x84] = {1};
-static char *fzgx_pool_stick[32][6] = {{(char *)1}};
-static u8 fzgx_pool_data_gap_2804[0x18] = {1};
-static char *fzgx_pool_rumble_name[6] = {(char *)1};
-static u8 fzgx_pool_data_gap_2834[0x24] = {1};
-static char *fzgx_pool_default_name[6] = {(char *)1};
-static u8 fzgx_pool_data_gap_2870[0xEC] = {1};
-static char *fzgx_pool_rumble_off[6] = {(char *)1};
-static u8 fzgx_pool_data_gap_2974[0x48] = {1};
 #pragma section RX ".fzgxpool" ".fzgxpool"
-__declspec(section ".fzgxpool") void fzgx_pool_data(void) {
-    volatile s32 v;  /* fzgx-allow: S2 data primer sink: fixes the .data order */
-    v = fzgx_obj_lbl_4_data_0[0];
-    v = fzgx_pool_data_gap_C[0];
-    v = (s32)fzgx_pool_title[0];
-    v = fzgx_pool_data_gap_78[0];
-    v = (s32)fzgx_pool_onoff[0][0];
-    v = fzgx_pool_data_gap_B0[0];
-    v = fzgx_pool_fmt_s[0];
-    v = fzgx_pool_data_gap_1214[0];
-    v = fzgx_pool_fmt_title[0];
-    v = fzgx_pool_data_gap_1500[0];
-    v = (s32)fzgx_pool_kind_name[0][0];
-    v = fzgx_pool_data_gap_1660[0];
-    v = fzgx_pool_label[0].x;
-    v = fzgx_pool_data_gap_16FC[0];
-    v = (s32)fzgx_pool_row_name[0][0];
-    v = fzgx_pool_data_gap_1904[0];
-    v = (s32)fzgx_pool_button_gc[0][0];
-    v = fzgx_pool_data_gap_1C78[0];
-    v = (s32)fzgx_pool_button[0][0];
-    v = fzgx_pool_data_gap_1E60[0];
-    v = (s32)fzgx_pool_stick_gc[0][0];
-    v = fzgx_pool_data_gap_2480[0];
-    v = (s32)fzgx_pool_stick[0][0];
-    v = fzgx_pool_data_gap_2804[0];
-    v = (s32)fzgx_pool_rumble_name[0];
-    v = fzgx_pool_data_gap_2834[0];
-    v = (s32)fzgx_pool_default_name[0];
-    v = fzgx_pool_data_gap_2870[0];
-    v = (s32)fzgx_pool_rumble_off[0];
-    v = fzgx_pool_data_gap_2974[0];
+__declspec(section ".fzgxpool") void fzgx_data_base(void) {
+    volatile s32 v;  /* fzgx-allow: S2 data primer sink: earlier functions of the retail TU addressed the .data base after the .rodata base and before the .bss base */
+    v = (s32)lbl_4_data_60[0];
+    v = (s32)lbl_4_data_80[0][0];
+    v = lbl_4_data_1210[0];
 }
 #pragma section RX ".text" ".text"
 /* .bss: the controller-settings screen's state, one object per field (retail addresses each off the section base) */
@@ -8380,9 +8687,9 @@ void fn_4_4DF8(void) {
         fn_1_495B0(0x80000000);
         fn_1_49590(0.5f);
     }
-    sprintf(buf, fzgx_pool_fmt_title, fzgx_pool_title[lbl_801A66B4], fzgx_pool_port + 1,
-            fzgx_pool_kind_name[kind][lbl_801A66B4]);
-    fn_1_53E40(NULL, buf, 320.0f, 100.0f, 0.05f, 48.0f, 0.8333333f);
+    sprintf(buf, lbl_4_data_14F4, lbl_4_data_60[lbl_801A66B4], fzgx_pool_port + 1,
+            lbl_4_data_15E8[kind][lbl_801A66B4]);
+    fn_1_53E40(NULL, 320.0f, 100.0f, 0.05f, 48.0f, 0.8333333f, buf);
     fn_1_49410();
     if (lbl_801A66B4 != 5) {
         fn_1_4955C(0.7f, 0.8333333f);
@@ -8440,14 +8747,14 @@ void fn_4_4DF8(void) {
             bit = 31 - __cntlzw(v);
             if (i < 4) {
                 if (kind == 1) {
-                    name = fzgx_pool_button_gc[bit][lbl_801A66B4];
+                    name = lbl_4_data_1AF8[bit][lbl_801A66B4];
                 } else {
-                    name = fzgx_pool_button[bit][lbl_801A66B4];
+                    name = lbl_4_data_1CE0[bit][lbl_801A66B4];
                 }
             } else if (kind == 1) {
-                name = fzgx_pool_stick_gc[bit][lbl_801A66B4];
+                name = lbl_4_data_2180[bit][lbl_801A66B4];
             } else {
-                name = fzgx_pool_stick[bit][lbl_801A66B4];
+                name = lbl_4_data_2504[bit][lbl_801A66B4];
             }
             if (fzgx_pool_state == 3 && fzgx_pool_field == i) {
                 fn_1_49748(3.0f);
@@ -8457,11 +8764,11 @@ void fn_4_4DF8(void) {
                 }
             }
             if (lbl_801A66B4 == 5) {
-                fn_1_4AE0C("%s%s\n", fzgx_pool_row_name[i][lbl_801A66B4], name);
+                fn_1_4AE0C("%s%s\n", lbl_4_data_182C[i][lbl_801A66B4], name);
             } else {
-                fn_1_4AE0C(fzgx_pool_fmt_s, fzgx_pool_row_name[i][lbl_801A66B4], name);
-                fn_1_496FC(fzgx_pool_label[i].x - 43, fzgx_pool_label[i].y);
-                fn_1_4AE0C(fzgx_pool_fmt_s, fzgx_pool_label[i].text);
+                fn_1_4AE0C(lbl_4_data_1210, lbl_4_data_182C[i][lbl_801A66B4], name);
+                fn_1_496FC(lbl_4_data_16B4[i].x - 43, lbl_4_data_16B4[i].y);
+                fn_1_4AE0C(lbl_4_data_1210, lbl_4_data_16B4[i].text);
                 fn_1_4955C(0.7f, 0.8333333f);
                 fn_1_4AE0C("%s\n", name);
                 fn_1_4955C(0.7f, 0.8333333f);
@@ -8498,7 +8805,7 @@ void fn_4_4DF8(void) {
                     fn_1_49514(&c);
                 }
             }
-            fn_1_4AE0C("%s\x81\x63%s", fzgx_pool_rumble_name[lbl_801A66B4], fzgx_pool_onoff[sel][lbl_801A66B4]);
+            fn_1_4AE0C("%s\x81\x63%s", lbl_4_data_281C[lbl_801A66B4], lbl_4_data_80[sel][lbl_801A66B4]);
             if (kind == 1 || (fzgx_pool_state == 4 && fzgx_pool_field == i)) {
                 fn_1_49748(5.0f);
                 {
@@ -8515,7 +8822,7 @@ void fn_4_4DF8(void) {
                     fn_1_4955C(0.63666666f, 0.8333333f);
                 }
                 fn_1_4954C(0.005f);
-                fn_1_4A0D8(fzgx_pool_rumble_off[lbl_801A66B4]);
+                fn_1_4A0D8(lbl_4_data_295C[lbl_801A66B4]);
                 fn_1_53BD8(NULL, 434.0f, 377.0f, 400.0f, 75.0f, 0.025f);
                 fn_1_4DC6C();
             }
@@ -8528,7 +8835,7 @@ void fn_4_4DF8(void) {
                     fn_1_49514(&c);
                 }
             }
-            fn_1_4A0D8(fzgx_pool_default_name[lbl_801A66B4]);
+            fn_1_4A0D8(lbl_4_data_2858[lbl_801A66B4]);
             if (fzgx_pool_state == 5 && fzgx_pool_field == i) {
                 fn_1_49748(5.0f);
                 {
@@ -8917,15 +9224,7 @@ void fn_4_4DF8(void) {
 }
 #pragma fp_contract reset
 /* fzgx:end fn_4_4DF8 */
-
 /* fzgx:begin fn_4_63D4 noprologue */
-typedef signed long s32;
-
-typedef unsigned char u8;
-
-typedef unsigned long u32;
-
-typedef float f32;
 
 struct fn_4_63D4_bss {
 u8 pad_0[0x118];
@@ -8953,239 +9252,10 @@ f32 unk_C4;
 extern struct fn_4_63D4_bss lbl_4_bss_0;
 extern struct fn_4_63D4_rodata lbl_4_rodata_0;
 extern s32 lbl_801A66B4;
-extern void fn_1_49410(void);
 extern void fn_1_495C8(u8);
-extern void fn_1_495B0(u32);
-extern void fn_1_49590(f32);
-extern void fn_1_49738(u32);
-extern void fn_1_49748(f32);
-extern void fn_1_5233C(void);
-typedef struct Sig_fn_1_53E40_FontColor {
-    u8 r, g, b, a;
-} Sig_fn_1_53E40_FontColor;
-extern void fn_1_53E40(Sig_fn_1_53E40_FontColor *, f32, f32, f32, f32, f32, const char *);
-#define fn_1_53E40(color, text, x, y, scale, width, alpha) fn_1_53E40(color, x, y, scale, width, alpha, text)
 extern void fn_4_2D4(u8, char *);
-extern void fn_4_4DF8(void);
-extern int sprintf(char *, const char *, ...);
 extern void fn_1_1380F0(char *);
 extern void fn_1_13ABA8(u32);
-/* String tables in the module's data, indexed by the current language. */
-extern u8 lbl_4_data_0__fzgx_offset_0[];
-extern u8 lbl_4_data_100__fzgx_offset_0[];
-extern u8 lbl_4_data_10__fzgx_offset_0[];
-extern u8 lbl_4_data_130__fzgx_offset_0[];
-extern u8 lbl_4_data_170__fzgx_offset_0[];
-extern u8 lbl_4_data_188__fzgx_offset_0[];
-extern u8 lbl_4_data_1BC__fzgx_offset_0[];
-extern u8 lbl_4_data_210__fzgx_offset_0[];
-extern u8 lbl_4_data_254__fzgx_offset_0[];
-extern u8 lbl_4_data_284__fzgx_offset_0[];
-extern u8 lbl_4_data_2CC__fzgx_offset_0[];
-extern u8 lbl_4_data_2F0__fzgx_offset_0[];
-extern u8 lbl_4_data_32C__fzgx_offset_0[];
-extern u8 lbl_4_data_34C__fzgx_offset_0[];
-extern u8 lbl_4_data_37C__fzgx_offset_0[];
-extern u8 lbl_4_data_38__fzgx_offset_0[];
-extern u8 lbl_4_data_3B8__fzgx_offset_0[];
-extern u8 lbl_4_data_400__fzgx_offset_0[];
-extern u8 lbl_4_data_438__fzgx_offset_0[];
-extern u8 lbl_4_data_480__fzgx_offset_0[];
-extern u8 lbl_4_data_4C__fzgx_offset_0[];
-extern u8 lbl_4_data_4F0__fzgx_offset_0[];
-extern u8 lbl_4_data_578__fzgx_offset_0[];
-extern u8 lbl_4_data_57C__fzgx_offset_0[];
-extern u8 lbl_4_data_59C__fzgx_offset_0[];
-extern u8 lbl_4_data_5A0__fzgx_offset_0[];
-extern u8 lbl_4_data_5C0__fzgx_offset_0[];
-extern u8 lbl_4_data_5D8__fzgx_offset_0[];
-extern u8 lbl_4_data_610__fzgx_offset_0[];
-extern u8 lbl_4_data_660__fzgx_offset_0[];
-extern u8 lbl_4_data_6D4__fzgx_offset_0[];
-extern u8 lbl_4_data_724__fzgx_offset_0[];
-extern u8 lbl_4_data_78__fzgx_offset_0[];
-extern u8 lbl_4_data_790__fzgx_offset_0[];
-extern u8 lbl_4_data_7C__fzgx_offset_0[];
-extern u8 lbl_4_data_7DC__fzgx_offset_0[];
-extern u8 lbl_4_data_85C__fzgx_offset_0[];
-extern u8 lbl_4_data_86C__fzgx_offset_0[];
-extern u8 lbl_4_data_89C__fzgx_offset_0[];
-extern u8 lbl_4_data_8A8__fzgx_offset_0[];
-extern u8 lbl_4_data_B0__fzgx_offset_0[];
-extern u8 lbl_4_data_C8__fzgx_offset_0[];
-extern u8 lbl_4_data_C__fzgx_offset_0[];
-static u32 fzgx_pool_data_lbl_4_data_0[3] = {  /* fzgx-allow: A1 retail data bytes and bindings */
-    0x436F6E74, 0x726F6C6C, 0x65720000
-};
-static u32 fzgx_pool_data_lbl_4_data_C[1] = {  /* fzgx-allow: A1 retail data bytes and bindings */
-    0x0
-};
-static u32 fzgx_pool_data_lbl_4_data_10[54] = {  /* fzgx-allow: A1 retail data bytes and bindings */
-    0x83528393, 0x8367838D, 0x815B8389, 0x0, (u32)lbl_4_data_0__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0,  /* fzgx-allow: A1 retail data bytes */
-    (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_10__fzgx_offset_0, 0x436F6E74, 0x726F6C6C, 0x65722053, 0x6F636B65, 0x74000000, 0x83528393,
-    0x8367838D, 0x815B8389, 0x837C815B, 0x83670000, (u32)lbl_4_data_38__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0,  /* fzgx-allow: A1 retail data bytes */
-    (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_4C__fzgx_offset_0, 0x4F4E0000, 0x4F464600, (u32)lbl_4_data_78__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0,
-    (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_78__fzgx_offset_0, (u32)lbl_4_data_7C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_7C__fzgx_offset_0, 0x0,
-    0x55736520, 0x83AD206F, 0x722083B5, 0x20746F20, 0x63686F6F, 0x73652E00, 0x83AD82A9, 0x83B582C5,
-    0x8D8096DA, 0x82F09149, 0x82F182C5, 0x82AD82BE, 0x82B382A2, 0x81420000  /* fzgx-allow: A1 retail data bytes */
-};
-static u32 fzgx_pool_data_lbl_4_data_0_E8[6] = {  /* fzgx-allow: A1 retail data bytes and bindings */
-    (u32)lbl_4_data_B0__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C8__fzgx_offset_0
-};
-static u32 fzgx_pool_data_lbl_4_data_100[22] = {  /* fzgx-allow: A1 retail data bytes and bindings */
-    0x4D6F7665, 0x2083AD20, 0x6F722083, 0xB5204C65, 0x6674206F, 0x72205269, 0x67687420, 0x746F2063,
-    0x68616E67, 0x6520636F, 0x6E74726F, 0x6C732E00, 0x83AD82A9, 0x83B582CC, 0x8DB68945, 0x82C59180,
-    0x8DEC82F0, 0x95CF8D58, 0x82B582C4, 0x82AD82BE, 0x82B382A2, 0x81420000  /* fzgx-allow: A1 retail data bytes */
-};
-static u32 fzgx_pool_data_lbl_4_data_0_158[6] = {  /* fzgx-allow: A1 retail data bytes and bindings */
-    (u32)lbl_4_data_100__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_130__fzgx_offset_0
-};
-static u32 fzgx_pool_data_lbl_4_data_170[13] = {  /* fzgx-allow: A1 retail data bytes and bindings */
-    0x506C6561, 0x73652077, 0x61697420, 0x61206D6F, 0x6D656E74, 0x2E2E2E00, 0x82B582CE, 0x82E782AD,
-    0x82A891D2, 0x82BF82AD, 0x82BE82B3, 0x82A28142, 0x0
-};
-static u32 fzgx_pool_data_lbl_4_data_1A4[6] = {  /* fzgx-allow: A1 retail data bytes and bindings */
-    (u32)lbl_4_data_170__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_188__fzgx_offset_0
-};
-static u32 fzgx_pool_data_lbl_4_data_1BC[32] = {  /* fzgx-allow: A1 retail data bytes and bindings */
-    0x50726573, 0x73207468, 0x65204120, 0x42757474, 0x6F6E206F, 0x6E207468, 0x6520436F, 0x6E74726F,
-    0x6C6C6572, 0x20746F20, 0x62652061, 0x646A7573, 0x7465642E, 0x20507265, 0x73732074, 0x68652042,
-    0x20427574, 0x746F6E20, 0x746F2066, 0x696E6973, 0x682E0000, 0x95CF8D58, 0x82B782E9, 0x83528393,
-    0x8367838D, 0x815B8389, 0x82C5839F, 0x82F0899F, 0x82B582C4, 0x82AD82BE, 0x82B382A2, 0x81420000  /* fzgx-allow: A1 retail data bytes */
-};
-static u32 fzgx_pool_data_lbl_4_data_0_23C[6] = {  /* fzgx-allow: A1 retail data bytes and bindings */
-    (u32)lbl_4_data_1BC__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_210__fzgx_offset_0
-};
-static u32 fzgx_pool_data_lbl_4_data_254[68] = {  /* fzgx-allow: A1 retail data bytes and bindings */
-    0x526F7461, 0x74652074, 0x68652043, 0x6F6E7472, 0x6F6C2053, 0x7469636B, 0x206F6E65, 0x2066756C,
-    0x6C207265, 0x766F6C75, 0x74696F6E, 0x2E000000, 0x83528393, 0x8367838D, 0x815B838B, 0x83588365,  /* fzgx-allow: A1 retail data bytes */
-    0x83428362, 0x834E82F0, 0x88EA9474, 0x82C989F1, 0x82B582C4, 0x82AD82BE, 0x82B382A2, 0x81420000,  /* fzgx-allow: A1 retail data bytes */
-    (u32)lbl_4_data_254__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_284__fzgx_offset_0, 0x506C6561, 0x73652061,
-    0x646A7573, 0x74207468, 0x65207374, 0x65657269, 0x6E672077, 0x6865656C, 0x2E000000, 0x836E8393,
-    0x8368838B, 0x82CC92B2, 0x90AE82F0, 0x8D7382C8, 0x82C182C4, 0x82AD82BE, 0x82B382A2, 0x81420000,  /* fzgx-allow: A1 retail data bytes */
-    (u32)lbl_4_data_2CC__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_2F0__fzgx_offset_0, 0x52657475, 0x726E2074,
-    0x6F207468, 0x65206465, 0x6661756C, 0x74207365, 0x7474696E, 0x67733F00, 0x8F898AFA, 0x90DD92E8,
-    0x82C996DF, 0x82B582DC, 0x82B782A9, 0x81480000  /* fzgx-allow: A1 retail data bytes */
-};
-static u32 fzgx_pool_data_lbl_4_data_0_364[6] = {  /* fzgx-allow: A1 retail data bytes and bindings */
-    (u32)lbl_4_data_32C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_34C__fzgx_offset_0
-};
-static u32 fzgx_pool_data_lbl_4_data_37C[121] = {  /* fzgx-allow: A1 retail data bytes and bindings */
-    0x53656C65, 0x63742074, 0x68652043, 0x6F6E7472, 0x6F6C6C65, 0x7220746F, 0x20626520, 0x6368616E,
-    0x67656420, 0x7573696E, 0x67206569, 0x74686572, 0x2083AD20, 0x6F722083, 0xB52E0000, 0x83AD82A9,
-    0x83B582C5, 0x95CF8D58, 0x82B782E9, 0x83528393, 0x8367838D, 0x815B8389, 0x82F09149, 0x82F182C5,  /* fzgx-allow: A1 retail data bytes */
-    0x82AD82BE, 0x82B382A2, 0x81420000, (u32)lbl_4_data_37C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0,  /* fzgx-allow: A1 retail data bytes */
-    (u32)lbl_4_data_3B8__fzgx_offset_0, 0x4D6F7665, 0x2083AD20, 0x6F722083, 0xB5204C65, 0x6674206F, 0x72205269, 0x67687420,
-    0x746F2063, 0x68616E67, 0x65205275, 0x6D626C65, 0x20736574, 0x74696E67, 0x732E0000, 0x83AD82A9,
-    0x83B582CC, 0x8DB68945, 0x82C59055, 0x93AE82CC, 0x90DD92E8, 0x82F095CF, 0x8D5882B5, 0x82C482AD,
-    0x82BE82B3, 0x82A28142, 0x0, (u32)lbl_4_data_400__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0,
-    (u32)lbl_4_data_438__fzgx_offset_0, 0x54686520, 0x436F6E74, 0x726F6C6C, 0x65722068, 0x61732062, 0x65656E20, 0x64697363,
-    0x6F6E6E65, 0x63746564, 0x2E0A2052, 0x65636F6E, 0x6E656374, 0x20746865, 0x20436F6E, 0x74726F6C,
-    0x6C657220, 0x696E2053, 0x6F636B65, 0x74202564, 0x206F720A, 0x20707265, 0x73732074, 0x68652041,
-    0x20427574, 0x746F6E20, 0x6F6E2061, 0x6E6F7468, 0x65722E00, 0x83528393, 0x8367838D, 0x815B8389,  /* fzgx-allow: A1 retail data bytes */
-    0x82AA8A4F, 0x82B382EA, 0x82DC82B5, 0x82BD8142, 0xA835283, 0x93836783, 0x8D815B83, 0x89837C81,
-    0x5B836725, 0x6482C982, 0xB382B582, 0xC882A882, 0xB782A981, 0x410A91BC, 0x82CC8352, 0x83938367,
-    0x838D815B, 0x838982C5, 0x839F837B, 0x835E8393, 0x82F0899F, 0x82B582C4, 0x82AD82BE, 0x82B382A2,
-    0x81420000  /* fzgx-allow: A1 retail data bytes */
-};
-static u32 fzgx_pool_data_lbl_4_data_0_560[6] = {  /* fzgx-allow: A1 retail data bytes and bindings */
-    (u32)lbl_4_data_480__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_4F0__fzgx_offset_0
-};
-static u32 fzgx_pool_data_lbl_4_data_578[128] = {  /* fzgx-allow: A1 retail data bytes and bindings */
-    0x59455300, 0x82CD82A2, 0x0, (u32)lbl_4_data_578__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0,
-    (u32)lbl_4_data_57C__fzgx_offset_0, 0x4E4F0000, 0x82A282A2, 0x82A60000, (u32)lbl_4_data_59C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0,
-    (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_5A0__fzgx_offset_0, 0x4368616E, 0x6765204F, 0x7074696F, 0x6E205365, 0x7474696E, 0x67730000,
-    0x83498376, 0x83568387, 0x839390DD, 0x92E882F0, 0x8D7382C8, 0x82A282DC, 0x82B78142, 0x0,
-    (u32)lbl_4_data_5C0__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_5D8__fzgx_offset_0, 0x41646A75, 0x73742074,
-    0x68652043, 0x616C6962, 0x72617469, 0x6F6E2E0A, 0x50726573, 0x73207468, 0x65204120, 0x42757474,
-    0x6F6E206F, 0x6E207468, 0x6520436F, 0x6E74726F, 0x6C6C6572, 0xA796F75, 0x2077616E, 0x74206164,
-    0x6A757374, 0x65642E00, 0x83528393, 0x8367838D, 0x815B8389, 0x82CC834C, 0x8383838A, 0x8375838C,  /* fzgx-allow: A1 retail data bytes */
-    0x815B8356, 0x83878393, 0x82F08D73, 0x82C882A2, 0x82DC82B7, 0x81420A95, 0xCF8D5882, 0xB782E983,  /* fzgx-allow: A1 retail data bytes */
-    0x52839383, 0x67838D81, 0x5B838982, 0xC5839F82, 0xF0899F82, 0xB582C482, 0xAD82BE82, 0xB382A281,
-    0x42000000, (u32)lbl_4_data_610__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_660__fzgx_offset_0, 0x43757374,
-    0x6F6D697A, 0x65207468, 0x6520436F, 0x6E74726F, 0x6C6C6572, 0x2E0A5072, 0x65737320, 0x74686520,
-    0x41204275, 0x74746F6E, 0x206F6E20, 0x74686520, 0x436F6E74, 0x726F6C6C, 0x65722074, 0x6F206265,
-    0x2061646A, 0x75737465, 0x642E0000, 0x83528393, 0x8367838D, 0x815B8389, 0x82CC834A, 0x8358835E,  /* fzgx-allow: A1 retail data bytes */
-    0x837D8343, 0x835982F0, 0x8D7382C8, 0x82A282DC, 0x82B78142, 0xA95CF8D, 0x5882B782, 0xE9835283,
-    0x93836783, 0x8D815B83, 0x8982C583, 0x9F82F089, 0x9F82B582, 0xC482AD82, 0xBE82B382, 0xA2814200
-};
-static u32 fzgx_pool_data_lbl_4_data_0_778[6] = {  /* fzgx-allow: A1 retail data bytes and bindings */
-    (u32)lbl_4_data_6D4__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_724__fzgx_offset_0
-};
-static u32 fzgx_pool_data_lbl_4_data_790[61] = {  /* fzgx-allow: A1 retail data bytes and bindings */
-    0x436F6E74, 0x726F6C6C, 0x65722052, 0x756D626C, 0x65205365, 0x7474696E, 0x67732E0A, 0x20507265,
-    0x73732074, 0x68652041, 0x20427574, 0x746F6E20, 0x746F2073, 0x656C6563, 0x74207468, 0x6520436F,
-    0x6E74726F, 0x6C6C6572, 0x2E000000, 0x83528393, 0x8367838D, 0x815B8389, 0x82CC9055, 0x93AE82CC,  /* fzgx-allow: A1 retail data bytes */
-    0x90DD92E8, 0x82F08D73, 0x82C882A2, 0x82DC82B7, 0x81420A83, 0x52839383, 0x67838D81, 0x5B838982,  /* fzgx-allow: A1 retail data bytes */
-    0xF0914982, 0xF182C583, 0x9F82F089, 0x9F82B582, 0xC482AD82, 0xBE82B382, 0xA2814200, (u32)lbl_4_data_790__fzgx_offset_0,
-    (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_7DC__fzgx_offset_0, (u32)lbl_4_data_400__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0,
-    (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_438__fzgx_offset_0, 0x53617665, 0x20636861, 0x6E676573, 0x3F000000, 0x95CF8D58,
-    0x82F095DB, 0x91B682B5, 0x82DC82B7, 0x82A98148, 0x0
-};
-static u32 fzgx_pool_data_lbl_4_data_0_884[6] = {  /* fzgx-allow: A1 retail data bytes and bindings */
-    (u32)lbl_4_data_85C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_86C__fzgx_offset_0
-};
-static u32 fzgx_pool_data_lbl_4_data_89C[9] = {  /* fzgx-allow: A1 retail data bytes and bindings */
-    0x49732074, 0x68697320, 0x4F4B3F00, 0x82B182EA, 0x82C582E6, 0x82EB82B5, 0x82A282C5, 0x82B782A9,
-    0x81480000  /* fzgx-allow: A1 retail data bytes */
-};
-static u32 fzgx_pool_data_lbl_4_data_0_8C0[6] = {  /* fzgx-allow: A1 retail data bytes and bindings */
-    (u32)lbl_4_data_89C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_C__fzgx_offset_0, (u32)lbl_4_data_8A8__fzgx_offset_0
-};
-#pragma section code_type ".fzgxpool"
-static void fzgx_data_layout_lbl_4_data_0(void) {
-    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: keeps the retail .data objects in retail order */
-    s = *(u8 *)fzgx_pool_data_lbl_4_data_0;
-    s = *(u8 *)fzgx_pool_data_lbl_4_data_C;
-    s = *(u8 *)fzgx_pool_data_lbl_4_data_10;
-    s = *(u8 *)fzgx_pool_data_lbl_4_data_0_E8;
-    s = *(u8 *)fzgx_pool_data_lbl_4_data_100;
-    s = *(u8 *)fzgx_pool_data_lbl_4_data_0_158;
-    s = *(u8 *)fzgx_pool_data_lbl_4_data_170;
-    s = *(u8 *)fzgx_pool_data_lbl_4_data_1A4;
-    s = *(u8 *)fzgx_pool_data_lbl_4_data_1BC;
-    s = *(u8 *)fzgx_pool_data_lbl_4_data_0_23C;
-    s = *(u8 *)fzgx_pool_data_lbl_4_data_254;
-    s = *(u8 *)fzgx_pool_data_lbl_4_data_0_364;
-    s = *(u8 *)fzgx_pool_data_lbl_4_data_37C;
-    s = *(u8 *)fzgx_pool_data_lbl_4_data_0_560;
-    s = *(u8 *)fzgx_pool_data_lbl_4_data_578;
-    s = *(u8 *)fzgx_pool_data_lbl_4_data_0_778;
-    s = *(u8 *)fzgx_pool_data_lbl_4_data_790;
-    s = *(u8 *)fzgx_pool_data_lbl_4_data_0_884;
-    s = *(u8 *)fzgx_pool_data_lbl_4_data_89C;
-    s = *(u8 *)fzgx_pool_data_lbl_4_data_0_8C0;
-}
-#pragma section code_type ".text"
-
-static u8 fzgx_obj_lbl_4_bss_0[2];
-static u8 fzgx_pool_bss_lbl_4_bss_0_2;
-static u8 fzgx_pool_bss_lbl_4_bss_0_3;
-static u8 fzgx_pool_bss_lbl_4_bss_0_4[0x114];
-static u8 fzgx_pool_bss_lbl_4_bss_0_118;
-static u8 fzgx_pool_bss_lbl_4_bss_0_119;
-static u8 fzgx_pool_bss_lbl_4_bss_0_11A;
-static u8 fzgx_pool_bss_lbl_4_bss_0_11B;
-static u8 fzgx_pool_bss_lbl_4_bss_0_11C;
-static u8 fzgx_pool_bss_lbl_4_bss_0_11D;
-static u8 fzgx_pool_bss_lbl_4_bss_0_11E;
-#pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout_lbl_4_bss_0(void) {
-    volatile u8 s; /* fzgx-allow: S2 layout primer sink: retains retail .bss order */
-    s = fzgx_obj_lbl_4_bss_0[0];
-    s = fzgx_pool_bss_lbl_4_bss_0_2;
-    s = fzgx_pool_bss_lbl_4_bss_0_3;
-    s = fzgx_pool_bss_lbl_4_bss_0_4[0];
-    s = fzgx_pool_bss_lbl_4_bss_0_118;
-    s = fzgx_pool_bss_lbl_4_bss_0_119;
-    s = fzgx_pool_bss_lbl_4_bss_0_11A;
-    s = fzgx_pool_bss_lbl_4_bss_0_11B;
-    s = fzgx_pool_bss_lbl_4_bss_0_11C;
-    s = fzgx_pool_bss_lbl_4_bss_0_11D;
-    s = fzgx_pool_bss_lbl_4_bss_0_11E;
-}
-#pragma section code_type ".text"
-
 void fn_4_63D4(void) {
 struct fn_4_63D4_rodata *ro;
 char *str;
@@ -9194,7 +9264,7 @@ u8 count;
 char buf[512];
 f32 x, y, scale, width, alpha;
 ro = &lbl_4_rodata_0;
-str = (*(char *(*)[8])(((u8 *)fzgx_pool_data_lbl_4_data_1A4))) [lbl_801A66B4];
+str = lbl_4_data_1A4[lbl_801A66B4];
 flags = 0x20000000;
 fn_1_49410();
 fn_1_495C8(1);
@@ -9202,65 +9272,65 @@ if (lbl_801A66B4 != 5) {
 fn_1_495B0(0x80000000);
 fn_1_49590(ro->unk_8);
 }
-switch (fzgx_pool_bss_lbl_4_bss_0_11B) {
+switch (fzgx_pool_state) {
 case 0:
 flags = 0x28000000;
-str = (*(char *(*)[8])(((u8 *)fzgx_pool_data_lbl_4_data_0_23C))) [lbl_801A66B4];
-fn_1_49738((u32)fn_1_5233C);
+str = lbl_4_data_23C[lbl_801A66B4];
+fn_1_49738(fn_1_5233C);
 fn_1_49748(ro->unk_48);
 x = ro->unk_50;
 y = ro->unk_58;
 scale = ro->unk_BC;
 width = ro->unk_C0;
 alpha = ro->unk_C4;
-fn_1_53E40(0, (*(char *(*)[8])(((u8 *)fzgx_pool_data_lbl_4_data_0_778))) [lbl_801A66B4], x, y, scale, width, alpha);
+fn_1_53E40(0, x, y, scale, width, alpha, lbl_4_data_778[lbl_801A66B4]);
 break;
 case 1:
-if (fzgx_pool_bss_lbl_4_bss_0_11E == 0) {
+if (fzgx_pool_dirty == 0) {
 flags = 0;
-str = (*(char *(*)[8])(((u8 *)fzgx_pool_data_lbl_4_data_1A4))) [lbl_801A66B4];
+str = lbl_4_data_1A4[lbl_801A66B4];
 } else {
 flags = 0x48000000;
-str = (*(char *(*)[8])(((u8 *)fzgx_pool_data_lbl_4_data_0_E8))) [lbl_801A66B4];
-fn_4_2D4(fzgx_pool_bss_lbl_4_bss_0_11C & 1, (*(char *(*)[8])(((u8 *)fzgx_pool_data_lbl_4_data_0_884))) [lbl_801A66B4]);
+str = lbl_4_data_E8[lbl_801A66B4];
+fn_4_2D4(fzgx_pool_choice & 1, lbl_4_data_884[lbl_801A66B4]);
 }
 break;
 case 2:
 flags = 0x28000000;
-str = (*(char *(*)[8])(((u8 *)fzgx_pool_data_lbl_4_data_0_E8))) [lbl_801A66B4];
+str = lbl_4_data_E8[lbl_801A66B4];
 fn_4_4DF8();
 break;
 case 3:
 case 4:
 flags = 0x48000000;
-str = (*(char *(*)[8])(((u8 *)fzgx_pool_data_lbl_4_data_0_158))) [lbl_801A66B4];
+str = lbl_4_data_158[lbl_801A66B4];
 fn_4_4DF8();
 break;
 case 5:
 flags = 0x48000000;
-str = (*(char *(*)[8])(((u8 *)fzgx_pool_data_lbl_4_data_0_E8))) [lbl_801A66B4];
-fn_4_2D4(fzgx_pool_bss_lbl_4_bss_0_11C, (*(char *(*)[8])(((u8 *)fzgx_pool_data_lbl_4_data_0_364))) [lbl_801A66B4]);
+str = lbl_4_data_E8[lbl_801A66B4];
+fn_4_2D4(fzgx_pool_choice, lbl_4_data_364[lbl_801A66B4]);
 fn_4_4DF8();
 break;
 case 6:
 flags = 0x48000000;
-str = (*(char *(*)[8])(((u8 *)fzgx_pool_data_lbl_4_data_0_E8))) [lbl_801A66B4];
-fn_4_2D4(fzgx_pool_bss_lbl_4_bss_0_11C, (*(char *(*)[8])(((u8 *)fzgx_pool_data_lbl_4_data_0_8C0))) [lbl_801A66B4]);
+str = lbl_4_data_E8[lbl_801A66B4];
+fn_4_2D4(fzgx_pool_choice, lbl_4_data_8C0[lbl_801A66B4]);
 fn_4_4DF8();
 break;
 case 7:
-count = fzgx_pool_bss_lbl_4_bss_0_118;
-str = (char *)(((u8 *)fzgx_pool_data_lbl_4_data_C));
+count = fzgx_pool_port;
+str = "";
 flags = 0;
 fn_1_49410();
-fn_1_49738((u32)fn_1_5233C);
+fn_1_49738(fn_1_5233C);
 fn_1_49748(ro->unk_48);
 if (lbl_801A66B4 != 5) {
 fn_1_495B0(0x80000000);
 fn_1_49590(ro->unk_8);
 }
-sprintf(buf, (*(char *(*)[8])(((u8 *)fzgx_pool_data_lbl_4_data_0_560))) [lbl_801A66B4], count + 1);
-fn_1_53E40(0, buf, ro->unk_50, ro->unk_58, ro->unk_BC, ro->unk_C0, ro->unk_C4);
+sprintf(buf, lbl_4_data_560[lbl_801A66B4], count + 1);
+fn_1_53E40(0, ro->unk_50, ro->unk_58, ro->unk_BC, ro->unk_C0, ro->unk_C4, buf);
 break;
 }
 fn_1_1380F0(str);
