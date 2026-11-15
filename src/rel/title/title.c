@@ -15,7 +15,7 @@ extern u32 lbl_801A63C0;
 extern void * lbl_801A6410;
 extern u32 lbl_801A66A0;
 extern s32 lbl_801A66B4;
-extern u8 lbl_8_rodata_0[0x8];
+extern u8 lbl_8_rodata_0[0xC2C];
 extern u8 lbl_8_rodata_160[0x28];
 extern f32 lbl_8_rodata_C;
 extern u32 lbl_1_bss_7167C;
@@ -305,6 +305,667 @@ void fn_8_BE0(void) {
 /* fzgx:end fn_8_BE0 */
 
 /* fzgx:begin fn_8_BE4 */
+typedef struct TitleColor {
+    u8 r, g, b, a;
+} TitleColor;
+/* one declaration per callee for the whole unit */
+extern void fn_1_3EB78(u32, u32, u32, u32);
+extern void fn_1_3ED8C(u32, u32, u32, u32, u32, u32, u32);
+extern void fn_1_3EF08(u8);
+extern void fn_1_3EF8C(u8);
+extern void fn_1_3EFF0(u32, u8);
+extern void fn_1_41104(u32);
+extern s32 fn_1_465D0(char *, s32);
+extern void fn_1_47F74(s32);
+extern void fn_1_49514(TitleColor);
+extern void fn_1_49528(TitleColor);
+extern void fn_1_495C8(u8);
+extern void fn_1_4A00(s32, u8, void *);
+extern u32 fn_1_4D4C8(TitleColor, f32, f32);
+extern void fn_1_4FEC(void);
+extern f32 fn_1_52070(u32);
+extern u32 fn_1_52088(void);
+extern void fn_1_7B084(void *, int);
+extern void fn_1_9A958(int, int);
+extern void fn_1_C3378(void);
+extern void fn_1_F7A20(void);
+extern u32 fn_800081C8(TitleColor, TitleColor, f32);
+extern void fn_8006CE1C(f32);
+extern u32 fn_8_1394(void);
+extern f32 fn_8_1FB0(f32 arg0);
+extern void fn_8_2124(u32 arg0, u8 *arg1, f32 arg2);
+extern void fn_8_2660(f32 arg0, f32 arg1, f32 arg2);
+#include "rel/title/data/lbl_8_data_200.h"
+#include "rel/title/data/lbl_8_data_318.h"
+#include "rel/title/data/lbl_8_data_6C4.h"
+#include "font.h"
+
+extern char lbl_8_data_0[4];
+extern char lbl_8_data_4[12];
+extern char lbl_8_data_10[12];
+extern char lbl_8_data_1C[11];
+extern char lbl_8_data_28[11];
+extern char lbl_8_data_34[5];
+extern char lbl_8_data_3C[5];
+extern char lbl_8_data_44[8];
+extern char lbl_8_data_4C[6];
+extern char lbl_8_data_54[11];
+extern char lbl_8_data_60[14];
+extern char lbl_8_data_70[15];
+extern char lbl_8_data_80[7];
+extern char lbl_8_data_88[5];
+extern char lbl_8_data_90[11];
+extern char lbl_8_data_9C[11];
+extern char lbl_8_data_A8[14];
+extern char lbl_8_data_B8[6];
+extern char lbl_8_data_C0[9];
+extern char lbl_8_data_CC[12];
+extern char lbl_8_data_D8[15];
+extern char lbl_8_data_E8[7];
+extern char lbl_8_data_F0[10];
+extern char lbl_8_data_FC[12];
+extern char lbl_8_data_108[15];
+extern char lbl_8_data_118[8];
+extern char lbl_8_data_120[11];
+extern char lbl_8_data_12C[7];
+extern char lbl_8_data_134[10];
+extern char lbl_8_data_140[14];
+extern char lbl_8_data_150[9];
+extern char lbl_8_data_15C[11];
+extern char lbl_8_data_168[8];
+extern char lbl_8_data_170[18];
+extern char lbl_8_data_184[13];
+extern char lbl_8_data_194[15];
+extern char lbl_8_data_1A4[10];
+extern char lbl_8_data_1B0[11];
+extern char lbl_8_data_1BC[14];
+extern char lbl_8_data_1CC[8];
+extern char lbl_8_data_1D4[12];
+extern char lbl_8_data_1E0[7];
+extern char lbl_8_data_1E8[5];
+extern char lbl_8_data_1F0[6];
+extern char lbl_8_data_1F8[6];
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_0[4] __attribute__((aligned(8))) = "NON";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4[12] __attribute__((aligned(4))) = "MASTER RECV";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_10[12] __attribute__((aligned(8))) = "MASTER SEND";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1C[11] __attribute__((aligned(4))) = "SLAVE SEND";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_28[11] __attribute__((aligned(8))) = "SLAVE RECV";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_34[5] __attribute__((aligned(4))) = "INIT";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3C[5] __attribute__((aligned(4))) = "TEST";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_44[8] __attribute__((aligned(4))) = "TESTEND";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4C[6] __attribute__((aligned(4))) = "SETUP";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_54[11] __attribute__((aligned(4))) = "SETUP_DONE";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_60[14] __attribute__((aligned(8))) = "SETUP_COUNTER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_70[15] __attribute__((aligned(8))) = "SETUP_CNT_DONE";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_80[7] __attribute__((aligned(8))) = "UNLINK";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_88[5] __attribute__((aligned(8))) = "COIN";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_90[11] __attribute__((aligned(8))) = "ENTRY_WAIT";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_9C[11] __attribute__((aligned(4))) = "CHALLENGER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_A8[14] __attribute__((aligned(8))) = "CHALLENGER_OK";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_B8[6] __attribute__((aligned(8))) = "ENTRY";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_C0[9] __attribute__((aligned(8))) = "ENTRY_OK";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_CC[12] __attribute__((aligned(4))) = "SINGLECHECK";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_D8[15] __attribute__((aligned(8))) = "SINGLECHECK_OK";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_E8[7] __attribute__((aligned(8))) = "COURSE";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_F0[10] __attribute__((aligned(8))) = "COURSE_OK";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_FC[12] __attribute__((aligned(4))) = "COURSE_DATA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_108[15] __attribute__((aligned(8))) = "COURSE_DATA_OK";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_118[8] __attribute__((aligned(8))) = "MACHINE";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_120[11] __attribute__((aligned(8))) = "MACHINE_OK";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_12C[7] __attribute__((aligned(4))) = "CONFIG";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_134[10] __attribute__((aligned(4))) = "CONFIG_OK";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_140[14] __attribute__((aligned(8))) = "COUNTERADJUST";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_150[9] __attribute__((aligned(8))) = "LINKWAIT";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_15C[11] __attribute__((aligned(4))) = "LINKWAITOK";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_168[8] __attribute__((aligned(8))) = "LINKSEL";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_170[18] __attribute__((aligned(8))) = "LINKDELIVERYSTART";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_184[13] __attribute__((aligned(4))) = "LINKDELIVERY";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_194[15] __attribute__((aligned(4))) = "LINKDELIVERYOK";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1A4[10] __attribute__((aligned(4))) = "LINKSELOK";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1B0[11] __attribute__((aligned(8))) = "COURSEVIEW";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1BC[14] __attribute__((aligned(4))) = "COURSEVIEW_OK";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1CC[8] __attribute__((aligned(4))) = "LINKREQ";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1D4[12] __attribute__((aligned(4))) = "LINKSTANDBY";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1E0[7] __attribute__((aligned(8))) = "LINKOK";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1E8[5] __attribute__((aligned(8))) = "LINK";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1F0[6] __attribute__((aligned(8))) = "PAUSE";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1F8[6] __attribute__((aligned(8))) = "ERROR";
+#pragma explicit_zero_data reset
+extern char lbl_8_data_2B4[5];
+extern char lbl_8_data_2BC[8];
+extern char lbl_8_data_2C4[6];
+extern char lbl_8_data_2CC[5];
+extern char lbl_8_data_2D4[5];
+extern char lbl_8_data_2DC[5];
+extern char lbl_8_data_2E4[8];
+extern char lbl_8_data_2EC[10];
+
+
+extern char lbl_8_data_108[];
+extern char lbl_8_data_10[];
+extern char lbl_8_data_118[];
+extern char lbl_8_data_120[];
+extern char lbl_8_data_12C[];
+extern char lbl_8_data_134[];
+extern char lbl_8_data_140[];
+extern char lbl_8_data_150[];
+extern char lbl_8_data_15C[];
+extern char lbl_8_data_168[];
+extern char lbl_8_data_170[];
+extern char lbl_8_data_184[];
+extern char lbl_8_data_194[];
+extern char lbl_8_data_1A4[];
+extern char lbl_8_data_1B0[];
+extern char lbl_8_data_1BC[];
+extern char lbl_8_data_1CC[];
+extern char lbl_8_data_1C[];
+extern char lbl_8_data_1D4[];
+extern char lbl_8_data_1E0[];
+extern char lbl_8_data_1E8[];
+extern char lbl_8_data_1F0[];
+extern char lbl_8_data_1F8[];
+extern char lbl_8_data_28[];
+extern char lbl_8_data_34[];
+extern char lbl_8_data_3C[];
+extern char lbl_8_data_44[];
+extern char lbl_8_data_4C[];
+extern char lbl_8_data_4[];
+extern char lbl_8_data_54[];
+extern char lbl_8_data_60[];
+extern char lbl_8_data_70[];
+extern char lbl_8_data_80[];
+extern char lbl_8_data_88[];
+extern char lbl_8_data_90[];
+extern char lbl_8_data_9C[];
+extern char lbl_8_data_A8[];
+extern char lbl_8_data_B8[];
+extern char lbl_8_data_C0[];
+extern char lbl_8_data_CC[];
+extern char lbl_8_data_D8[];
+extern char lbl_8_data_E8[];
+extern char lbl_8_data_F0[];
+extern char lbl_8_data_FC[];
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_8_data_200 lbl_8_data_200 __attribute__((aligned(8))) = {
+    (u8 *)&lbl_8_data_0,
+    (u8 *)&lbl_8_data_4,
+    (u8 *)&lbl_8_data_10,
+    (u8 *)&lbl_8_data_1C,
+    (u8 *)&lbl_8_data_28,
+    (u8 *)&lbl_8_data_34,
+    (u8 *)&lbl_8_data_3C,
+    (u8 *)&lbl_8_data_44,
+    (u8 *)&lbl_8_data_4C,
+    (u8 *)&lbl_8_data_54,
+    (u8 *)&lbl_8_data_60,
+    (u8 *)&lbl_8_data_70,
+    (u8 *)&lbl_8_data_80,
+    (u8 *)&lbl_8_data_88,
+    (u8 *)&lbl_8_data_90,
+    (u8 *)&lbl_8_data_9C,
+    (u8 *)&lbl_8_data_A8,
+    (u8 *)&lbl_8_data_B8,
+    (u8 *)&lbl_8_data_C0,
+    (u8 *)&lbl_8_data_CC,
+    (u8 *)&lbl_8_data_D8,
+    (u8 *)&lbl_8_data_E8,
+    (u8 *)&lbl_8_data_F0,
+    (u8 *)&lbl_8_data_FC,
+    (u8 *)&lbl_8_data_108,
+    (u8 *)&lbl_8_data_118,
+    (u8 *)&lbl_8_data_120,
+    (u8 *)&lbl_8_data_12C,
+    (u8 *)&lbl_8_data_134,
+    (u8 *)&lbl_8_data_140,
+    (u8 *)&lbl_8_data_150,
+    (u8 *)&lbl_8_data_15C,
+    (u8 *)&lbl_8_data_168,
+    (u8 *)&lbl_8_data_170,
+    (u8 *)&lbl_8_data_184,
+    (u8 *)&lbl_8_data_194,
+    (u8 *)&lbl_8_data_1A4,
+    (u8 *)&lbl_8_data_1B0,
+    (u8 *)&lbl_8_data_1BC,
+    (u8 *)&lbl_8_data_1CC,
+    (u8 *)&lbl_8_data_1D4,
+    (u8 *)&lbl_8_data_1E0,
+    (u8 *)&lbl_8_data_1E8,
+    (u8 *)&lbl_8_data_1F0,
+    (u8 *)&lbl_8_data_1F8
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2B4[5] __attribute__((aligned(4))) = "prog";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2BC[8] __attribute__((aligned(4))) = "memcard";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2C4[6] __attribute__((aligned(4))) = "title";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2CC[5] __attribute__((aligned(4))) = "demo";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2D4[5] __attribute__((aligned(4))) = "menu";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2DC[5] __attribute__((aligned(4))) = "logo";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2E4[8] __attribute__((aligned(4))) = "warning";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2EC[10] __attribute__((aligned(4))) = "operation";
+#pragma explicit_zero_data reset
+extern char lbl_8_data_2F8[7];
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2F8[7] __attribute__((aligned(8))) = "rating";
+#pragma explicit_zero_data reset
+extern char lbl_8_data_300[5];
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_300[5] __attribute__((aligned(8))) = "card";
+#pragma explicit_zero_data reset
+extern char lbl_8_data_308[8];
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_308[8] __attribute__((aligned(8))) = "ranking";
+#pragma explicit_zero_data reset
+extern char lbl_8_data_310[6];
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_310[6] __attribute__((aligned(8))) = "movie";
+#pragma explicit_zero_data reset
+extern u8 lbl_8_data_434[0x44];
+
+
+extern char lbl_8_data_2B4[];
+extern char lbl_8_data_2BC[];
+extern char lbl_8_data_2C4[];
+extern char lbl_8_data_2CC[];
+extern char lbl_8_data_2D4[];
+extern char lbl_8_data_2DC[];
+extern char lbl_8_data_2E4[];
+extern char lbl_8_data_2EC[];
+extern char lbl_8_data_2F8[];
+extern char lbl_8_data_300[];
+extern char lbl_8_data_308[];
+extern char lbl_8_data_310[];
+extern void fn_8_1304(void);
+extern void fn_8_1344(void);
+extern void fn_8_1C08(void);
+extern void fn_8_1C0C(void);
+extern void fn_8_1C10(void);
+extern void fn_8_1C14(void);
+extern void fn_8_1C18(void);
+extern void fn_8_1C90(void);
+extern void fn_8_1F64(void);
+extern void fn_8_1F74(void);
+extern void fn_8_2120(void);
+extern void fn_8_25F8(void);
+extern void fn_8_4E8C(void);
+extern void fn_8_4E90(void);
+extern void fn_8_4F64(void);
+extern void fn_8_516C(void);
+extern void fn_8_520C(void);
+extern void fn_8_5210(void);
+extern void fn_8_5214(void);
+extern void fn_8_5218(void);
+extern void fn_8_530C(void);
+extern void fn_8_5514(void);
+extern void fn_8_55CC(void);
+extern void fn_8_5608(void);
+extern void fn_8_5810(void);
+extern void fn_8_5B44(void);
+extern void fn_8_5C4C(void);
+extern void fn_8_5C50(void);
+extern void fn_8_BD8(void);
+extern void fn_8_BDC(void);
+extern void fn_8_BE0(void);
+extern void fn_8_BE4(void);
+extern void fn_8_EC4(void);
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_8_data_318 lbl_8_data_318 __attribute__((aligned(8))) = {
+    (u8 *)&lbl_8_data_2B4,
+    fn_8_1F74,
+    (void (*)(void))fn_8_1FB0,
+    fn_8_2120,
+    (u8 *)&lbl_8_data_2BC,
+    fn_8_25F8,
+    (void (*)(void))fn_8_2660,
+    fn_8_4E8C,
+    (u8 *)&lbl_8_data_2C4,
+    fn_8_1C18,
+    fn_8_1C90,
+    fn_8_1F64,
+    (u8 *)&lbl_8_data_2CC,
+    fn_8_1344,
+    (void (*)(void))fn_8_1394,
+    fn_8_1C08,
+    (u8 *)&lbl_8_data_2D4,
+    fn_8_1C0C,
+    fn_8_1C10,
+    fn_8_1C14,
+    (u8 *)&lbl_8_data_2DC,
+    fn_8_BE4,
+    fn_8_EC4,
+    fn_8_1304,
+    (u8 *)&lbl_8_data_2E4,
+    fn_8_BD8,
+    fn_8_BDC,
+    fn_8_BE0,
+    (u8 *)&lbl_8_data_2EC,
+    fn_8_4E90,
+    fn_8_4F64,
+    fn_8_516C,
+    (u8 *)&lbl_8_data_2F8,
+    fn_8_520C,
+    fn_8_5210,
+    fn_8_5214,
+    (u8 *)&lbl_8_data_300,
+    fn_8_5218,
+    fn_8_530C,
+    fn_8_5514,
+    (u8 *)&lbl_8_data_308,
+    fn_8_55CC,
+    fn_8_5608,
+    fn_8_5810,
+    (u8 *)&lbl_8_data_310,
+    fn_8_5B44,
+    fn_8_5C4C,
+    fn_8_5C50,
+    0x2B200000U,
+    0x012C0006U,
+    0x4E494E54U,
+    0x454E444FU,
+    0x00000000U,
+    0x414D5553U,
+    0x454D454EU,
+    0x54205649U,
+    0x53494F4EU,
+    0x00000000U,
+    0x462D5A45U,
+    0x524F2066U,
+    0x6F722047U,
+    0x43000000U,
+    0x57454C43U,
+    0x4F4D4520U,
+    0x544F0000U,
+    0x4F564552U,
+    0x20323030U,
+    0x306B6D2FU,
+    0x6820574FU,
+    0x524C4421U,
+    0x00000000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_8_data_434[0x44] __attribute__((aligned(4))) = {
+    0x74U, 0x69U, 0x74U, 0x6CU, 0x65U, 0x2EU, 0x63U, 0x00U, 0x76U, 0x65U, 0x68U, 0x69U, 0x63U, 0x6CU, 0x65U, 0x2FU, 0x25U, 0x73U, 0x5FU, 0x65U, 0x2EU, 0x61U, 0x72U, 0x63U, 0x2EU, 0x6CU, 0x7AU, 0x00U, 0x6DU, 0x6FU, 0x76U, 0x69U, 0x65U, 0x2FU, 0x73U, 0x74U, 0x6FU, 0x72U, 0x79U, 0x30U, 0x30U, 0x2EU, 0x74U, 0x78U, 0x74U, 0x00U, 0x00U, 0x00U, 0x6DU, 0x6FU, 0x76U, 0x69U, 0x65U, 0x2FU, 0x73U, 0x74U, 0x6FU, 0x72U, 0x79U, 0x30U, 0x31U, 0x41U, 0x2EU, 0x74U, 0x78U, 0x74U, 0x00U, 0x00U
+};
+#pragma explicit_zero_data reset
+
 u8 lbl_8_data_478[0x1B] = "vehicle/vehicle_sel.arc.lz";
 
 struct fn_8_BE4_TitleState {
@@ -340,20 +1001,14 @@ extern u8 lbl_801A66BA;
 
 
 
-extern void fn_1_47F74(s32);
 extern u32 fn_1_4706C(void);
 extern void fn_1_46A60(void);
 extern u32 fn_1_47E54(u32);
-extern void fn_1_7B084(s16, s32);
-extern void fn_1_9A958(s16, s32);
 extern void fn_1_7FFF0(void);
 extern void fn_1_8001C(void);
 extern void *fn_1_7F518(s16, void *, s32);
 extern int sprintf(char *, const char *, ...);
-extern s32 fn_1_465D0(char *, s32);
 extern void fn_1_4100C(void);
-extern void fn_1_41104(s32);
-extern void fn_8006CE1C(f32);
 extern void fn_1_A1340(void);
 
 void fn_8_BE4(void) {
@@ -415,7 +1070,7 @@ void fn_8_BE4(void) {
         fn_1_46A60();
         fn_1_47E54(1);
         fn_1_47E54(3);
-        fn_1_7B084(state->unk224, 0);
+        fn_1_7B084((void *)state->unk224, 0);
         fn_1_9A958(state->unk224, 0);
         fn_1_7FFF0();
         fn_1_8001C();
@@ -445,26 +1100,6485 @@ void fn_8_BE4(void) {
     fn_8006CE1C((*(f32 (*)[85])&lbl_8_rodata_C)[0]);
     fn_1_A1340();
 }
-/* fzgx:end fn_8_BE4 */
 
-/* fzgx:begin fn_8_EC4 */
-#include "font.h"
+extern char lbl_8_data_4D0[12];
+extern char lbl_8_data_4DC[32];
+extern char lbl_8_data_4FC[12];
+extern char lbl_8_data_508[28];
+extern char lbl_8_data_524[12];
+extern char lbl_8_data_530[24];
+extern char lbl_8_data_548[16];
+extern char lbl_8_data_558[20];
+extern char lbl_8_data_56C[16];
+extern char lbl_8_data_57C[28];
+extern char lbl_8_data_598[20];
+extern char lbl_8_data_5AC[20];
+extern char lbl_8_data_5C0[20];
+extern char lbl_8_data_5D4[32];
+extern char lbl_8_data_5F4[12];
+extern char lbl_8_data_600[24];
+extern char lbl_8_data_618[12];
+extern char lbl_8_data_624[24];
+extern char lbl_8_data_63C[20];
+extern char lbl_8_data_650[28];
+extern char lbl_8_data_66C[16];
+extern char lbl_8_data_67C[12];
+extern char lbl_8_data_688[20];
+extern char lbl_8_data_69C[24];
+extern char lbl_8_data_6B4[16];
+extern char lbl_8_data_778[77];
+extern char lbl_8_data_7C8[11];
+extern char lbl_8_data_7D4[11];
+extern char lbl_8_data_7E0[11];
+extern char lbl_8_data_7EC[11];
+extern char lbl_8_data_7F8[108];
+extern char lbl_8_data_864[66];
+extern char lbl_8_data_8A8[16];
+extern char lbl_8_data_8B8[16];
+extern char lbl_8_data_8C8[16];
+extern char lbl_8_data_8D8[16];
+extern char lbl_8_data_8E8[96];
+extern char lbl_8_data_948[111];
+extern char lbl_8_data_9B8[10];
+extern char lbl_8_data_9C4[10];
+extern char lbl_8_data_9D0[10];
+extern char lbl_8_data_9DC[10];
+extern char lbl_8_data_9E8[232];
+extern char lbl_8_data_AD0[88];
+extern char lbl_8_data_B28[12];
+extern char lbl_8_data_B34[12];
+extern char lbl_8_data_B40[12];
+extern char lbl_8_data_B4C[12];
+extern char lbl_8_data_B58[104];
+extern char lbl_8_data_BC0[52];
+extern char lbl_8_data_BF4[23];
+extern char lbl_8_data_C0C[23];
+extern char lbl_8_data_C24[23];
+extern char lbl_8_data_C3C[23];
+extern char lbl_8_data_C54[40];
+extern char lbl_8_data_C7C[48];
+extern char lbl_8_data_CAC[23];
+extern char lbl_8_data_CC4[23];
+extern char lbl_8_data_CDC[23];
+extern char lbl_8_data_CF4[23];
+extern char lbl_8_data_D0C[40];
+extern char lbl_8_data_D34[48];
+extern char lbl_8_data_D64[23];
+extern char lbl_8_data_D7C[23];
+extern char lbl_8_data_D94[23];
+extern char lbl_8_data_DAC[23];
+extern char lbl_8_data_DC4[48];
+extern char lbl_8_data_DF4[48];
+extern char lbl_8_data_E24[25];
+extern char lbl_8_data_E40[25];
+extern char lbl_8_data_E5C[25];
+extern char lbl_8_data_E78[25];
+extern char lbl_8_data_E94[40];
+extern char lbl_8_data_EBC[52];
+extern char lbl_8_data_EF0[25];
+extern char lbl_8_data_F0C[25];
+extern char lbl_8_data_F28[25];
+extern char lbl_8_data_F44[25];
+extern char lbl_8_data_F60[44];
+extern char lbl_8_data_F8C[68];
+extern char lbl_8_data_FD0[30];
+extern char lbl_8_data_FF0[30];
+extern char lbl_8_data_1010[30];
+extern char lbl_8_data_1030[30];
+extern char lbl_8_data_1050[68];
+extern char lbl_8_data_1094[68];
+extern char lbl_8_data_10D8[30];
+extern char lbl_8_data_10F8[30];
+extern char lbl_8_data_1118[30];
+extern char lbl_8_data_1138[30];
+extern char lbl_8_data_1158[68];
+extern char lbl_8_data_119C[48];
+extern char lbl_8_data_11CC[30];
+extern char lbl_8_data_11EC[30];
+extern char lbl_8_data_120C[30];
+extern char lbl_8_data_122C[30];
+extern char lbl_8_data_124C[48];
+extern char lbl_8_data_127C[68];
+extern char lbl_8_data_12C0[32];
+extern char lbl_8_data_12E0[32];
+extern char lbl_8_data_1300[32];
+extern char lbl_8_data_1320[32];
+extern char lbl_8_data_1340[68];
+extern char lbl_8_data_1384[68];
+extern char lbl_8_data_13C8[32];
+extern char lbl_8_data_13E8[32];
+extern char lbl_8_data_1408[32];
+extern char lbl_8_data_1428[32];
+extern char lbl_8_data_1448[68];
+extern char lbl_8_data_148C[32];
+extern char lbl_8_data_14AC[14];
+extern char lbl_8_data_14BC[14];
+extern char lbl_8_data_14CC[14];
+extern char lbl_8_data_14DC[14];
+extern char lbl_8_data_14EC[28];
+extern char lbl_8_data_1508[20];
+extern char lbl_8_data_151C[14];
+extern char lbl_8_data_152C[14];
+extern char lbl_8_data_153C[14];
+extern char lbl_8_data_154C[14];
+extern char lbl_8_data_155C[16];
+extern char lbl_8_data_156C[52];
+extern char lbl_8_data_15A0[24];
+extern char lbl_8_data_15B8[24];
+extern char lbl_8_data_15D0[24];
+extern char lbl_8_data_15E8[24];
+extern char lbl_8_data_1600[52];
+extern char lbl_8_data_1634[52];
+extern char lbl_8_data_1668[24];
+extern char lbl_8_data_1680[24];
+extern char lbl_8_data_1698[24];
+extern char lbl_8_data_16B0[24];
+extern char lbl_8_data_16C8[52];
+extern char lbl_8_data_16FC[32];
+extern char lbl_8_data_171C[24];
+extern char lbl_8_data_1734[24];
+extern char lbl_8_data_174C[24];
+extern char lbl_8_data_1764[24];
+extern char lbl_8_data_177C[36];
+extern char lbl_8_data_17A0[52];
+extern char lbl_8_data_17D4[26];
+extern char lbl_8_data_17F0[26];
+extern char lbl_8_data_180C[26];
+extern char lbl_8_data_1828[26];
+extern char lbl_8_data_1844[48];
+extern char lbl_8_data_1874[56];
+extern char lbl_8_data_18AC[26];
+extern char lbl_8_data_18C8[26];
+extern char lbl_8_data_18E4[26];
+extern char lbl_8_data_1900[26];
+extern char lbl_8_data_191C[56];
+extern char lbl_8_data_1954[64];
+extern char lbl_8_data_1994[30];
+extern char lbl_8_data_19B4[30];
+extern char lbl_8_data_19D4[30];
+extern char lbl_8_data_19F4[30];
+extern char lbl_8_data_1A14[64];
+extern char lbl_8_data_1A54[60];
+extern char lbl_8_data_1A90[30];
+extern char lbl_8_data_1AB0[30];
+extern char lbl_8_data_1AD0[30];
+extern char lbl_8_data_1AF0[30];
+extern char lbl_8_data_1B10[64];
+extern char lbl_8_data_1B50[60];
+extern char lbl_8_data_1B8C[30];
+extern char lbl_8_data_1BAC[30];
+extern char lbl_8_data_1BCC[30];
+extern char lbl_8_data_1BEC[30];
+extern char lbl_8_data_1C0C[68];
+extern char lbl_8_data_1C50[64];
+extern char lbl_8_data_1C90[32];
+extern char lbl_8_data_1CB0[32];
+extern char lbl_8_data_1CD0[32];
+extern char lbl_8_data_1CF0[32];
+extern char lbl_8_data_1D10[60];
+extern char lbl_8_data_1D4C[64];
+extern char lbl_8_data_1D8C[32];
+extern char lbl_8_data_1DAC[32];
+extern char lbl_8_data_1DCC[32];
+extern char lbl_8_data_1DEC[32];
+extern char lbl_8_data_1E0C[64];
+extern char lbl_8_data_1E4C[44];
+extern char lbl_8_data_1E78[23];
+extern char lbl_8_data_1E90[23];
+extern char lbl_8_data_1EA8[23];
+extern char lbl_8_data_1EC0[23];
+extern char lbl_8_data_1ED8[44];
+extern char lbl_8_data_1F04[92];
+extern char lbl_8_data_1F60[23];
+extern char lbl_8_data_1F78[23];
+extern char lbl_8_data_1F90[23];
+extern char lbl_8_data_1FA8[23];
+extern char lbl_8_data_1FC0[108];
+extern char lbl_8_data_202C[48];
+extern char lbl_8_data_205C[16];
+extern char lbl_8_data_206C[16];
+extern char lbl_8_data_207C[16];
+extern char lbl_8_data_208C[16];
+extern char lbl_8_data_209C[56];
+extern char lbl_8_data_20D4[84];
+extern char lbl_8_data_2128[19];
+extern char lbl_8_data_213C[19];
+extern char lbl_8_data_2150[19];
+extern char lbl_8_data_2164[19];
+extern char lbl_8_data_2178[72];
+extern char lbl_8_data_21C0[66];
+extern char lbl_8_data_2204[16];
+extern char lbl_8_data_2214[16];
+extern char lbl_8_data_2224[16];
+extern char lbl_8_data_2234[16];
+extern char lbl_8_data_2244[68];
+extern char lbl_8_data_2288[55];
+extern char lbl_8_data_22C0[17];
+extern char lbl_8_data_22D4[17];
+extern char lbl_8_data_22E8[17];
+extern char lbl_8_data_22FC[17];
+extern char lbl_8_data_2310[68];
+extern char lbl_8_data_2354[55];
+extern char lbl_8_data_238C[15];
+extern char lbl_8_data_239C[15];
+extern char lbl_8_data_23AC[15];
+extern char lbl_8_data_23BC[15];
+extern char lbl_8_data_23CC[68];
+extern char lbl_8_data_2410[94];
+extern char lbl_8_data_2470[13];
+extern char lbl_8_data_2480[13];
+extern char lbl_8_data_2490[13];
+extern char lbl_8_data_24A0[13];
+extern char lbl_8_data_24B0[88];
+extern char lbl_8_data_2508[60];
+extern char lbl_8_data_2544[13];
+extern char lbl_8_data_2554[13];
+extern char lbl_8_data_2564[13];
+extern char lbl_8_data_2574[13];
+extern char lbl_8_data_2584[88];
+extern char lbl_8_data_25DC[94];
+extern char lbl_8_data_263C[17];
+extern char lbl_8_data_2650[17];
+extern char lbl_8_data_2664[17];
+extern char lbl_8_data_2678[17];
+extern char lbl_8_data_268C[108];
+extern char lbl_8_data_26F8[38];
+extern char lbl_8_data_2720[18];
+extern char lbl_8_data_2734[18];
+extern char lbl_8_data_2748[18];
+extern char lbl_8_data_275C[18];
+extern char lbl_8_data_2770[60];
+extern char lbl_8_data_27AC[7];
+extern char lbl_8_data_27B4[11];
+extern char lbl_8_data_27C0[11];
+extern char lbl_8_data_27CC[11];
+extern char lbl_8_data_27D8[11];
+extern char lbl_8_data_27E4[12];
+extern char lbl_8_data_27F0[7];
+extern char lbl_8_data_27F8[11];
+extern char lbl_8_data_2804[11];
+extern char lbl_8_data_2810[11];
+extern char lbl_8_data_281C[11];
+extern char lbl_8_data_2828[12];
+extern char lbl_8_data_2834[4];
+extern char lbl_8_data_2838[8];
+extern char lbl_8_data_2840[8];
+extern char lbl_8_data_2848[8];
+extern char lbl_8_data_2850[8];
+extern char lbl_8_data_2858[8];
+extern char lbl_8_data_2860[3];
+extern char lbl_8_data_2864[8];
+extern char lbl_8_data_286C[8];
+extern char lbl_8_data_2874[8];
+extern char lbl_8_data_287C[8];
+extern char lbl_8_data_2884[8];
+extern char lbl_8_data_288C[58];
+extern char lbl_8_data_28C8[18];
+extern char lbl_8_data_28DC[18];
+extern char lbl_8_data_28F0[18];
+extern char lbl_8_data_2904[18];
+extern char lbl_8_data_2918[64];
+extern char lbl_8_data_2958[400];
+extern char lbl_8_data_2AE8[10];
+extern char lbl_8_data_2AF4[10];
+extern char lbl_8_data_2B00[10];
+extern char lbl_8_data_2B0C[10];
+extern char lbl_8_data_2B18[592];
+extern char lbl_8_data_2D68[228];
+extern char lbl_8_data_2E4C[10];
+extern char lbl_8_data_2E58[10];
+extern char lbl_8_data_2E64[10];
+extern char lbl_8_data_2E70[10];
+extern char lbl_8_data_2E7C[348];
+extern char lbl_8_data_2FD8[400];
+extern char lbl_8_data_3168[13];
+extern char lbl_8_data_3178[13];
+extern char lbl_8_data_3188[13];
+extern char lbl_8_data_3198[13];
+extern char lbl_8_data_31A8[592];
+extern char lbl_8_data_33F8[227];
+extern char lbl_8_data_34DC[20];
+extern char lbl_8_data_34F0[20];
+extern char lbl_8_data_3504[20];
+extern char lbl_8_data_3518[20];
+extern char lbl_8_data_352C[348];
+extern char lbl_8_data_3688[82];
+extern char lbl_8_data_36DC[20];
+extern char lbl_8_data_36F0[20];
+extern char lbl_8_data_3704[20];
+extern char lbl_8_data_3718[20];
+extern char lbl_8_data_372C[96];
+extern char lbl_8_data_378C[38];
+extern char lbl_8_data_37B4[21];
+extern char lbl_8_data_37CC[21];
+extern char lbl_8_data_37E4[21];
+extern char lbl_8_data_37FC[21];
+extern char lbl_8_data_3814[60];
+extern char lbl_8_data_3850[49];
+extern char lbl_8_data_3884[13];
+extern char lbl_8_data_3894[13];
+extern char lbl_8_data_38A4[13];
+extern char lbl_8_data_38B4[13];
+extern char lbl_8_data_38C4[64];
+extern char lbl_8_data_3904[21];
+extern char lbl_8_data_391C[18];
+extern char lbl_8_data_3930[18];
+extern char lbl_8_data_3944[18];
+extern char lbl_8_data_3958[18];
+extern char lbl_8_data_396C[28];
+extern char lbl_8_data_3988[8];
+extern char lbl_8_data_3990[11];
+extern char lbl_8_data_399C[11];
+extern char lbl_8_data_39A8[11];
+extern char lbl_8_data_39B4[11];
+extern char lbl_8_data_39C0[12];
+extern char lbl_8_data_39CC[55];
+extern char lbl_8_data_3A04[16];
+extern char lbl_8_data_3A14[16];
+extern char lbl_8_data_3A24[16];
+extern char lbl_8_data_3A34[16];
+extern char lbl_8_data_3A44[68];
+extern char lbl_8_data_3A88[44];
+extern char lbl_8_data_3AB4[15];
+extern char lbl_8_data_3AC4[15];
+extern char lbl_8_data_3AD4[15];
+extern char lbl_8_data_3AE4[15];
+extern char lbl_8_data_3AF4[56];
+extern char lbl_8_data_3B2C[61];
+extern char lbl_8_data_3B6C[13];
+extern char lbl_8_data_3B7C[13];
+extern char lbl_8_data_3B8C[13];
+extern char lbl_8_data_3B9C[13];
+extern char lbl_8_data_3BAC[68];
+extern char lbl_8_data_3BF0[85];
+extern char lbl_8_data_3C48[16];
+extern char lbl_8_data_3C58[16];
+extern char lbl_8_data_3C68[16];
+extern char lbl_8_data_3C78[16];
+extern char lbl_8_data_3C88[68];
+extern char lbl_8_data_3CCC[70];
+extern char lbl_8_data_3D14[11];
+extern char lbl_8_data_3D20[11];
+extern char lbl_8_data_3D2C[11];
+extern char lbl_8_data_3D38[11];
+extern char lbl_8_data_3D44[84];
+extern char lbl_8_data_3D98[51];
+extern char lbl_8_data_3DCC[11];
+extern char lbl_8_data_3DD8[11];
+extern char lbl_8_data_3DE4[11];
+extern char lbl_8_data_3DF0[11];
+extern char lbl_8_data_3DFC[52];
+extern char lbl_8_data_3E30[53];
+extern char lbl_8_data_3E68[11];
+extern char lbl_8_data_3E74[11];
+extern char lbl_8_data_3E80[11];
+extern char lbl_8_data_3E8C[11];
+extern char lbl_8_data_3E98[52];
+extern char lbl_8_data_3ECC[52];
+extern char lbl_8_data_3F00[11];
+extern char lbl_8_data_3F0C[11];
+extern char lbl_8_data_3F18[11];
+extern char lbl_8_data_3F24[11];
+extern char lbl_8_data_3F30[52];
+extern char lbl_8_data_3F64[53];
+extern char lbl_8_data_3F9C[11];
+extern char lbl_8_data_3FA8[11];
+extern char lbl_8_data_3FB4[11];
+extern char lbl_8_data_3FC0[11];
+extern char lbl_8_data_3FCC[52];
+extern char lbl_8_data_4000[57];
+extern char lbl_8_data_403C[16];
+extern char lbl_8_data_404C[16];
+extern char lbl_8_data_405C[16];
+extern char lbl_8_data_406C[16];
+extern char lbl_8_data_407C[40];
+extern char lbl_8_data_40A4[46];
+extern char lbl_8_data_40D4[18];
+extern char lbl_8_data_40E8[18];
+extern char lbl_8_data_40FC[18];
+extern char lbl_8_data_4110[18];
+extern char lbl_8_data_4124[60];
+extern char lbl_8_data_4160[58];
+extern char lbl_8_data_419C[13];
+extern char lbl_8_data_41AC[13];
+extern char lbl_8_data_41BC[13];
+extern char lbl_8_data_41CC[13];
+extern char lbl_8_data_41DC[60];
+extern char lbl_8_data_4218[39];
+extern char lbl_8_data_4240[14];
+extern char lbl_8_data_4250[14];
+extern char lbl_8_data_4260[14];
+extern char lbl_8_data_4270[14];
+extern char lbl_8_data_4280[68];
+extern char lbl_8_data_42C4[61];
+extern char lbl_8_data_4304[15];
+extern char lbl_8_data_4314[15];
+extern char lbl_8_data_4324[15];
+extern char lbl_8_data_4334[15];
+extern char lbl_8_data_4344[64];
+extern char lbl_8_data_4384[53];
+extern char lbl_8_data_43BC[15];
+extern char lbl_8_data_43CC[15];
+extern char lbl_8_data_43DC[15];
+extern char lbl_8_data_43EC[15];
+extern char lbl_8_data_43FC[40];
+extern char lbl_8_data_4424[15];
+extern char lbl_8_data_4434[15];
+extern char lbl_8_data_4444[15];
+extern char lbl_8_data_4454[15];
+extern char lbl_8_data_4464[15];
+extern char lbl_8_data_4474[15];
+extern char lbl_8_data_4484[11];
+extern char lbl_8_data_4490[13];
+extern char lbl_8_data_44A0[13];
+extern char lbl_8_data_44B0[13];
+extern char lbl_8_data_44C0[13];
+extern char lbl_8_data_44D0[11];
+extern char lbl_8_data_44DC[16];
+extern char lbl_8_data_44EC[13];
+extern char lbl_8_data_44FC[13];
+extern char lbl_8_data_450C[13];
+extern char lbl_8_data_451C[13];
+extern char lbl_8_data_452C[16];
+extern char lbl_8_data_453C[13];
+extern char lbl_8_data_454C[13];
+extern char lbl_8_data_455C[13];
+extern char lbl_8_data_456C[13];
+extern char lbl_8_data_457C[13];
+extern char lbl_8_data_458C[13];
+extern char lbl_8_data_459C[81];
+extern char lbl_8_data_45F0[11];
+extern char lbl_8_data_45FC[11];
+extern char lbl_8_data_4608[11];
+extern char lbl_8_data_4614[11];
+extern char lbl_8_data_4620[104];
+extern char lbl_8_data_4688[81];
+extern char lbl_8_data_46DC[11];
+extern char lbl_8_data_46E8[11];
+extern char lbl_8_data_46F4[11];
+extern char lbl_8_data_4700[11];
+extern char lbl_8_data_470C[104];
+extern char lbl_8_data_4774[44];
+extern char lbl_8_data_47A0[15];
+extern char lbl_8_data_47B0[15];
+extern char lbl_8_data_47C0[15];
+extern char lbl_8_data_47D0[15];
+extern char lbl_8_data_47E0[44];
+extern char lbl_8_data_480C[48];
+extern char lbl_8_data_483C[16];
+extern char lbl_8_data_484C[16];
+extern char lbl_8_data_485C[16];
+extern char lbl_8_data_486C[16];
+extern char lbl_8_data_487C[52];
+extern char lbl_8_data_48B0[152];
+extern char lbl_8_data_4948[23];
+extern char lbl_8_data_4960[23];
+extern char lbl_8_data_4978[23];
+extern char lbl_8_data_4990[23];
+extern char lbl_8_data_49A8[140];
+extern char lbl_8_data_4A34[66];
+extern char lbl_8_data_4A78[23];
+extern char lbl_8_data_4A90[23];
+extern char lbl_8_data_4AA8[23];
+extern char lbl_8_data_4AC0[23];
+extern char lbl_8_data_4AD8[80];
+extern char lbl_8_data_4B28[116];
+extern char lbl_8_data_4B9C[4];
+extern char lbl_8_data_4BA0[4];
+extern char lbl_8_data_4BA4[4];
+extern char lbl_8_data_4BA8[4];
+extern char lbl_8_data_4BAC[188];
+extern char lbl_8_data_4C68[117];
+extern char lbl_8_data_4CE0[4];
+extern char lbl_8_data_4CE4[4];
+extern char lbl_8_data_4CE8[4];
+extern char lbl_8_data_4CEC[4];
+extern char lbl_8_data_4CF0[92];
+extern char lbl_8_data_4D4C[5];
+extern char lbl_8_data_4D54[9];
+extern char lbl_8_data_4D60[9];
+extern char lbl_8_data_4D6C[9];
+extern char lbl_8_data_4D78[9];
+extern char lbl_8_data_4D84[8];
+extern char lbl_8_data_4D8C[5];
+extern char lbl_8_data_4D94[11];
+extern char lbl_8_data_4DA0[11];
+extern char lbl_8_data_4DAC[11];
+extern char lbl_8_data_4DB8[11];
+extern char lbl_8_data_4DC4[8];
+extern char lbl_8_data_4DCC[6];
+extern char lbl_8_data_4DD4[10];
+extern char lbl_8_data_4DE0[10];
+extern char lbl_8_data_4DEC[10];
+extern char lbl_8_data_4DF8[10];
+extern char lbl_8_data_4E04[12];
+extern char lbl_8_data_4E10[7];
+extern char lbl_8_data_4E18[11];
+extern char lbl_8_data_4E24[11];
+extern char lbl_8_data_4E30[11];
+extern char lbl_8_data_4E3C[11];
+extern char lbl_8_data_4E48[12];
+extern char lbl_8_data_4E54[7];
+extern char lbl_8_data_4E5C[11];
+extern char lbl_8_data_4E68[11];
+extern char lbl_8_data_4E74[11];
+extern char lbl_8_data_4E80[11];
+extern char lbl_8_data_4E8C[12];
+extern char lbl_8_data_4E98[6];
+extern char lbl_8_data_4EA0[10];
+extern char lbl_8_data_4EAC[10];
+extern char lbl_8_data_4EB8[10];
+extern char lbl_8_data_4EC4[10];
+extern char lbl_8_data_4ED0[12];
+extern char lbl_8_data_4EDC[7];
+extern char lbl_8_data_4EE4[11];
+extern char lbl_8_data_4EF0[11];
+extern char lbl_8_data_4EFC[11];
+extern char lbl_8_data_4F08[11];
+extern char lbl_8_data_4F14[12];
+extern char lbl_8_data_4F20[5];
+extern char lbl_8_data_4F28[9];
+extern char lbl_8_data_4F34[9];
+extern char lbl_8_data_4F40[9];
+extern char lbl_8_data_4F4C[9];
+extern char lbl_8_data_4F58[8];
+extern char lbl_8_data_4F60[323];
+extern char lbl_8_data_50A4[4];
+extern char lbl_8_data_50A8[4];
+extern char lbl_8_data_50AC[4];
+extern char lbl_8_data_50B0[4];
+extern char lbl_8_data_50B4[368];
+extern char lbl_8_data_5224[67];
+extern char lbl_8_data_5268[4];
+extern char lbl_8_data_526C[4];
+extern char lbl_8_data_5270[4];
+extern char lbl_8_data_5274[4];
+extern char lbl_8_data_5278[68];
+extern char lbl_8_data_52BC[68];
+extern char lbl_8_data_5300[4];
+extern char lbl_8_data_5304[4];
+extern char lbl_8_data_5308[4];
+extern char lbl_8_data_530C[4];
+extern char lbl_8_data_5310[72];
+extern char lbl_8_data_5358[53];
+extern char lbl_8_data_5390[4];
+extern char lbl_8_data_5394[4];
+extern char lbl_8_data_5398[4];
+extern char lbl_8_data_539C[4];
+extern char lbl_8_data_53A0[88];
+extern char lbl_8_data_53F8[5];
+extern char lbl_8_data_5400[4];
+extern char lbl_8_data_5404[4];
+extern char lbl_8_data_5408[4];
+extern char lbl_8_data_540C[4];
+extern char lbl_8_data_5410[8];
+extern char lbl_8_data_5418[5];
+extern char lbl_8_data_5420[4];
+extern char lbl_8_data_5424[4];
+extern char lbl_8_data_5428[4];
+extern char lbl_8_data_542C[4];
+extern char lbl_8_data_5430[8];
+extern char lbl_8_data_5438[5];
+extern char lbl_8_data_5440[4];
+extern char lbl_8_data_5444[4];
+extern char lbl_8_data_5448[4];
+extern char lbl_8_data_544C[4];
+extern char lbl_8_data_5450[8];
+extern char lbl_8_data_5458[6];
+extern char lbl_8_data_5460[4];
+extern char lbl_8_data_5464[4];
+extern char lbl_8_data_5468[4];
+extern char lbl_8_data_546C[4];
+extern char lbl_8_data_5470[8];
+extern char lbl_8_data_5478[52];
+extern char lbl_8_data_54AC[4];
+extern char lbl_8_data_54B0[4];
+extern char lbl_8_data_54B4[4];
+extern char lbl_8_data_54B8[4];
+extern char lbl_8_data_54BC[84];
+extern char lbl_8_data_5510[83];
+extern char lbl_8_data_5564[4];
+extern char lbl_8_data_5568[4];
+extern char lbl_8_data_556C[4];
+extern char lbl_8_data_5570[4];
+extern char lbl_8_data_5574[76];
+extern char lbl_8_data_55C0[7];
+extern char lbl_8_data_55C8[4];
+extern char lbl_8_data_55CC[4];
+extern char lbl_8_data_55D0[4];
+extern char lbl_8_data_55D4[4];
+extern char lbl_8_data_55D8[12];
+extern char lbl_8_data_55E4[64];
+extern char lbl_8_data_5624[18];
+extern char lbl_8_data_5638[18];
+extern char lbl_8_data_564C[18];
+extern char lbl_8_data_5660[18];
+extern char lbl_8_data_5674[220];
+extern char lbl_8_data_5750[121];
+extern char lbl_8_data_57CC[13];
+extern char lbl_8_data_57DC[13];
+extern char lbl_8_data_57EC[13];
+extern char lbl_8_data_57FC[13];
+extern char lbl_8_data_580C[224];
+extern char lbl_8_data_58EC[111];
+extern char lbl_8_data_595C[18];
+extern char lbl_8_data_5970[18];
+extern char lbl_8_data_5984[18];
+extern char lbl_8_data_5998[18];
+extern u8 lbl_8_data_59AC[4];
+extern char lbl_8_data_59B0[166];
+extern char lbl_8_data_5A58[13];
+extern char lbl_8_data_5A68[13];
+extern char lbl_8_data_5A78[13];
+extern char lbl_8_data_5A88[13];
+extern u8 lbl_8_data_5A98[4];
+extern char lbl_8_data_5A9C[168];
+extern char lbl_8_data_5B44[13];
+extern char lbl_8_data_5B54[13];
+extern char lbl_8_data_5B64[13];
+extern char lbl_8_data_5B74[13];
+extern char lbl_8_data_5B84[184];
+extern char lbl_8_data_5C3C[38];
+extern char lbl_8_data_5C64[13];
+extern char lbl_8_data_5C74[13];
+extern char lbl_8_data_5C84[13];
+extern char lbl_8_data_5C94[13];
+extern char lbl_8_data_5CA4[48];
+extern char lbl_8_data_5CD4[70];
+extern char lbl_8_data_5D1C[13];
+extern char lbl_8_data_5D2C[13];
+extern char lbl_8_data_5D3C[13];
+extern char lbl_8_data_5D4C[13];
+extern char lbl_8_data_5D5C[104];
+extern char lbl_8_data_5DC4[53];
+extern char lbl_8_data_5DFC[13];
+extern char lbl_8_data_5E0C[13];
+extern char lbl_8_data_5E1C[13];
+extern char lbl_8_data_5E2C[13];
+extern char lbl_8_data_5E3C[72];
+extern char lbl_8_data_5E84[42];
+extern char lbl_8_data_5EB0[20];
+extern char lbl_8_data_5EC4[20];
+extern char lbl_8_data_5ED8[20];
+extern char lbl_8_data_5EEC[20];
+extern char lbl_8_data_5F00[48];
+extern char lbl_8_data_5F30[18];
+extern char lbl_8_data_5F44[15];
+extern char lbl_8_data_5F54[15];
+extern char lbl_8_data_5F64[15];
+extern char lbl_8_data_5F74[15];
+extern char lbl_8_data_5F84[12];
+extern char lbl_8_data_5F90[19];
+extern char lbl_8_data_5FA4[18];
+extern char lbl_8_data_5FB8[18];
+extern char lbl_8_data_5FCC[18];
+extern char lbl_8_data_5FE0[18];
+extern char lbl_8_data_5FF4[32];
+extern char lbl_8_data_6014[26];
+extern char lbl_8_data_6030[20];
+extern char lbl_8_data_6044[20];
+extern char lbl_8_data_6058[20];
+extern char lbl_8_data_606C[20];
+extern char lbl_8_data_6080[36];
+extern char lbl_8_data_60A4[32];
+extern char lbl_8_data_60C4[15];
+extern char lbl_8_data_60D4[15];
+extern char lbl_8_data_60E4[15];
+extern char lbl_8_data_60F4[15];
+extern char lbl_8_data_6104[20];
+extern char lbl_8_data_6118[49];
+extern char lbl_8_data_614C[20];
+extern char lbl_8_data_6160[20];
+extern char lbl_8_data_6174[20];
+extern char lbl_8_data_6188[20];
+extern char lbl_8_data_619C[36];
+extern char lbl_8_data_61C0[13];
+extern char lbl_8_data_61D0[16];
+extern char lbl_8_data_61E0[16];
+extern char lbl_8_data_61F0[16];
+extern char lbl_8_data_6200[16];
+extern char lbl_8_data_6210[16];
+extern char lbl_8_data_6220[44];
+extern char lbl_8_data_624C[20];
+extern char lbl_8_data_6260[20];
+extern char lbl_8_data_6274[20];
+extern char lbl_8_data_6288[20];
+extern char lbl_8_data_629C[52];
+extern Obj_8_data_62D0 lbl_8_data_62D0;
+extern char lbl_8_data_6D68[79];
+extern u8 lbl_8_data_6DB8[4];
+extern char lbl_8_data_6E48[64];
+extern char lbl_8_data_6EDC[29];
+extern char lbl_8_data_6F3C[484];
+extern char lbl_8_data_7218[59];
+extern char lbl_8_data_7288[58];
+extern char lbl_8_data_7330[42];
+extern char lbl_8_data_73B0[68];
+extern char lbl_8_data_7494[54];
+extern char lbl_8_data_7524[54];
+extern char lbl_8_data_75B4[101];
+extern char lbl_8_data_76B8[98];
+extern char lbl_8_data_77B8[145];
+extern char lbl_8_data_7918[44];
+extern char lbl_8_data_7998[72];
+extern char lbl_8_data_7A30[68];
+extern char lbl_8_data_7AC8[40];
+extern char lbl_8_data_7B40[32];
+extern char lbl_8_data_7B90[50];
 
-typedef struct fn_8_EC4_TitleEntry {
-    s32 image;
-    u8 flags;
-    u8 pad;
-    u16 y;
-} fn_8_EC4_TitleEntry;
 
-typedef struct TitleColor {
-    u8 r, g, b, a;
-} TitleColor;
 
-struct fn_8_EC4_Bss58 {
-    u8 unk0[0x15];
-    s8 unk15;
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4D0[12] __attribute__((aligned(8))) = "\203Z\203\214\203N\203^\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4DC[32] __attribute__((aligned(4))) = "\203f\203t\203H\203\213\203g\203Z\203\214\203N\203^\202\311\223\374\202\350\202\334\202\267\000"
+    "\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4FC[12] __attribute__((aligned(4))) = "\203Z\203\214\203N\203^2\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_508[28] __attribute__((aligned(8))) = "\203Z\203J\203\223\203h\203Z\203\214\203N\203^\202\311\223\374\202\350\202\334\202\267\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_524[12] __attribute__((aligned(4))) = "AC\203Z\203\214\203N\203^\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_530[24] __attribute__((aligned(8))) = "AC\203Z\203\214\203N\203^\202\311\223\374\202\350\202\334\202\267\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_548[16] __attribute__((aligned(8))) = "\203\200\201[\203r\201[\203e\203X\203g\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_558[20] __attribute__((aligned(8))) = "\203\200\201[\203r\201[\202\360\202\335\202\334\202\267\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_56C[16] __attribute__((aligned(4))) = "\203J\203X\203^\203}\203C\203Y\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_57C[28] __attribute__((aligned(4))) = "\203J\203X\203^\203}\203C\203Y\202\360\202\250\202\261\202\310\202\242\202\334\202\267\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_598[20] __attribute__((aligned(8))) = "\202\255\202\351\202\334\202\242\202\353Change\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5AC[20] __attribute__((aligned(4))) = "\216\324\202\314\220F\202\360\225\317\202\246\202\334\202\267\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5C0[20] __attribute__((aligned(8))) = "\203X\203g\201[\203\212\201[\203\202\201[\203h\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5D4[32] __attribute__((aligned(4))) = "\203X\203g\201[\203\212\201[\203\202\201[\203h\202\360\202\315\202\266\202\337\202\334\202\267"
+    "\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5F4[12] __attribute__((aligned(4))) = "\203\212\203v\203\214\203C\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_600[24] __attribute__((aligned(8))) = "\203\212\203v\203\214\203C\212\323\217\334\203\202\201[\203h\202\305\202\267\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_618[12] __attribute__((aligned(8))) = "\203I\203v\203V\203\207\203\223\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_624[24] __attribute__((aligned(4))) = "\203Q\201[\203\200\202\314\220\335\222\350\202\360\225\317\202\246\202\334\202\267\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_63C[20] __attribute__((aligned(4))) = "\203p\203C\203\215\203b\203g\203\202\201[\203h\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_650[28] __attribute__((aligned(8))) = "\203p\203C\203\215\203b\203g\203\202\201[\203h\202\311\223\374\202\350\202\334\202\267\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_66C[16] __attribute__((aligned(4))) = "\225\\\217\262\221\344\203\202\201[\203h\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_67C[12] __attribute__((aligned(4))) = "\225\\\217\262\221\344\202\305\202\267\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_688[20] __attribute__((aligned(8))) = "\203C\203\223\203^\203r\203\205\201[\203\202\201[\203h\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_69C[24] __attribute__((aligned(4))) = "\203C\203\223\203^\203r\203\205\201[\203\202\201[\203h\202\305\202\267\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_6B4[16] __attribute__((aligned(4))) = "\203e\203X\203g\203\202\201[\203h\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_8_data_6C4 lbl_8_data_6C4 __attribute__((aligned(4))) = {
+    0x83658358U,
+    0x83678382U,
+    0x815B8368U,
+    0x82C993FCU,
+    0x82E882DCU,
+    0x82B70000U,
+    (u8 *)&lbl_8_data_4D0,
+    (u8 *)&lbl_8_data_4DC,
+    0x00000001U,
+    (u8 *)&lbl_8_data_4FC,
+    (u8 *)&lbl_8_data_508,
+    0xFFFFFFFEU,
+    (u8 *)&lbl_8_data_524,
+    (u8 *)&lbl_8_data_530,
+    0xFFFFFFFCU,
+    (u8 *)&lbl_8_data_548,
+    (u8 *)&lbl_8_data_558,
+    0x00000008U,
+    (u8 *)&lbl_8_data_56C,
+    (u8 *)&lbl_8_data_57C,
+    0x00000005U,
+    (u8 *)&lbl_8_data_598,
+    (u8 *)&lbl_8_data_5AC,
+    0x00000006U,
+    (u8 *)&lbl_8_data_5C0,
+    (u8 *)&lbl_8_data_5D4,
+    0x00000009U,
+    (u8 *)&lbl_8_data_5F4,
+    (u8 *)&lbl_8_data_600,
+    0x0000000CU,
+    (u8 *)&lbl_8_data_618,
+    (u8 *)&lbl_8_data_624,
+    0x00000003U,
+    (u8 *)&lbl_8_data_63C,
+    (u8 *)&lbl_8_data_650,
+    0x0000000DU,
+    (u8 *)&lbl_8_data_66C,
+    (u8 *)&lbl_8_data_67C,
+    0x0000000EU,
+    (u8 *)&lbl_8_data_688,
+    (u8 *)&lbl_8_data_69C,
+    0x00000010U,
+    (u8 *)&lbl_8_data_6B4,
+    (u8 *)&lbl_8_data_6C4,
+    0x00000004U
 };
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_778[77] __attribute__((aligned(8))) = "A Memory Card is not inserted in SLOT.\nPlease properly insert a Memory Card.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_7C8[11] __attribute__((aligned(8))) = "NOCARD GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_7D4[11] __attribute__((aligned(4))) = "NOCARD FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_7E0[11] __attribute__((aligned(8))) = "NOCARD SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_7EC[11] __attribute__((aligned(4))) = "NOCARD ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_7F8[108] __attribute__((aligned(8))) = "SLOT\202\311\203\201\203\202\203\212\201[\203J\201[\203h\202\252\214\251[\202\335]\202\302\202"
+    "\251\202\350\202\334\202\271\202\361\201B\n\203\201\203\202\203\212\201[\203J\201[\203h\202\314"
+    "\220\332[\202\271\202\302]\221\261[\202\274\202\255]\202\360\212m[\202\251\202\255]\224F[\202"
+    "\311\202\361]\202\265\202\304\202\255\202\276\202\263\202\242\201B";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_864[66] __attribute__((aligned(4))) = "The device in SLOT is not supported.\nPlease insert a Memory Card.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_8A8[16] __attribute__((aligned(8))) = "WRONGDEVICE GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_8B8[16] __attribute__((aligned(8))) = "WRONGDEVICE FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_8C8[16] __attribute__((aligned(8))) = "WRONGDEVICE SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_8D8[16] __attribute__((aligned(8))) = "WRONGDEVICE ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_8E8[96] __attribute__((aligned(8))) = "SLOT\202\311\202\315\n\203\201\203\202\203\212\201[\203J\201[\203h\210\310[\202\242]\212O[\202"
+    "\252\202\242]\202\314\202\340\202\314\202\252\202\263\202\263\202\301\202\304\202\242\202\334"
+    "\202\267\201B\n\203\201\203\202\203\212\201[\203J\201[\203h\202\360\202\263\202\265\202\304\202"
+    "\255\202\276\202\263\202\242\201B\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_948[111] __attribute__((aligned(8))) = "A fatal error has occured.\nTurn the power off and refer to the Nintendo GameCube\nhardware manu"
+    "al for details. ";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_9B8[10] __attribute__((aligned(8))) = "FATAL GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_9C4[10] __attribute__((aligned(4))) = "FATAL FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_9D0[10] __attribute__((aligned(8))) = "FATAL SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_9DC[10] __attribute__((aligned(4))) = "FATAL ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_9E8[232] __attribute__((aligned(8))) = "\222v[\202\277]\226\275[\202\337\202\242]\223I[\202\304\202\253]\202\310\203G\203\211\201[\202"
+    "\252\213N[\202\250]\202\261\202\350\202\334\202\265\202\275\201B\n\n\226{[\202\331\202\361]\221"
+    "\314[\202\275\202\242]\202\314\203p\203\217\201[\203{\203^\203\223\202\360\211\237[\202\250]\202"
+    "\265\202\304\n\223d[\202\305\202\361]\214\271[\202\260\202\361]\202\360\202n\202e\202e\202\311"
+    "\202\265\201A\n\226{[\202\331\202\361]\221\314[\202\275\202\242]\202\314\216\346[\202\306]\202"
+    "\350\210\265[\202\240\202\302\202\251]\202\242\220\340[\202\271\202\302]\226\276[\202\337\202"
+    "\242]\217\221[\202\265\202\345]\202\314\n\216w[\202\265]\216\246[\202\266]\202\311\217][\202\265"
+    "\202\275\202\252]\202\301\202\304\202\255\202\276\202\263\202\242\201B\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_AD0[88] __attribute__((aligned(8))) = "This data version is incorrect.\nSave game data again in the Game Data menu in Options. ";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_B28[12] __attribute__((aligned(8))) = "VERSION GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_B34[12] __attribute__((aligned(4))) = "VERSION FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_B40[12] __attribute__((aligned(8))) = "VERSION SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_B4C[12] __attribute__((aligned(4))) = "VERSION ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_B58[104] __attribute__((aligned(8))) = "\203f\201[\203^\202\314\203o\201[\203W\203\207\203\223\202\252\210\341[\202\277\202\252]\202\242"
+    "\202\334\202\267\201B\n\203I\203v\203V\203\207\203\223\202\314\203Q\201[\203\200\203f\201[\203^"
+    "\202\305\n\203f\201[\203^\202\360\203Z\201[\203u\202\265\222\274[\202\310\202\250]\202\265\202"
+    "\304\202\255\202\276\202\263\202\242\201B\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_BC0[52] __attribute__((aligned(8))) = "\203\237 \201c Continue without loading\n  \203\262 \201c Try again \000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_BF4[23] __attribute__((aligned(4))) = "CAPTION_LOAD_RETRY GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_C0C[23] __attribute__((aligned(4))) = "CAPTION_LOAD_RETRY FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_C24[23] __attribute__((aligned(4))) = "CAPTION_LOAD_RETRY SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_C3C[23] __attribute__((aligned(4))) = "CAPTION_LOAD_RETRY ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_C54[40] __attribute__((aligned(4))) = "\203\237\201c\203\215\201[\203h\202\271\202\270\202\311\217I[\202\250]\202\355\202\351 \203\262"
+    "\201c\203\212\203g\203\211\203C";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_C7C[48] __attribute__((aligned(4))) = "\203\237 \201c Continue without saving\n\203\262 \201c Try again \000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_CAC[23] __attribute__((aligned(4))) = "CAPTION_SAVE_RETRY GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_CC4[23] __attribute__((aligned(4))) = "CAPTION_SAVE_RETRY FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_CDC[23] __attribute__((aligned(4))) = "CAPTION_SAVE_RETRY SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_CF4[23] __attribute__((aligned(4))) = "CAPTION_SAVE_RETRY ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_D0C[40] __attribute__((aligned(4))) = "\203\237\201c\203Z\201[\203u\202\271\202\270\202\311\217I[\202\250]\202\355\202\351 \203\262\201"
+    "c\203\212\203g\203\211\203C";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_D34[48] __attribute__((aligned(4))) = "\203\237 \201c Continue without saving\n\203\262 \201c Try again\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_D64[23] __attribute__((aligned(4))) = "CAPTION_LIST_RETRY GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_D7C[23] __attribute__((aligned(4))) = "CAPTION_LIST_RETRY FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_D94[23] __attribute__((aligned(4))) = "CAPTION_LIST_RETRY SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_DAC[23] __attribute__((aligned(4))) = "CAPTION_LIST_RETRY ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_DC4[48] __attribute__((aligned(4))) = "\203\237\201c\203\212\203X\203g\202\360\216\346[\202\306]\202\347\202\270\202\311\217I[\202\250]"
+    "\202\355\202\351 \203\262\201c\203\212\203g\203\211\203C";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_DF4[48] __attribute__((aligned(4))) = "\203\237 \201c Continue without erasing\n\203\262 \201c Try again ";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_E24[25] __attribute__((aligned(4))) = "CAPTION_DELETE_RETRY GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_E40[25] __attribute__((aligned(8))) = "CAPTION_DELETE_RETRY FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_E5C[25] __attribute__((aligned(4))) = "CAPTION_DELETE_RETRY SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_E78[25] __attribute__((aligned(8))) = "CAPTION_DELETE_RETRY ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_E94[40] __attribute__((aligned(4))) = "\203\237\201c\217\301[\202\257]\202\263\202\270\202\311\217I[\202\250]\202\355\202\351 \203\262"
+    "\201c\203\212\203g\203\211\203C";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_EBC[52] __attribute__((aligned(4))) = "\203\237 \201c Continue without checking\n\203\262 \201c Try again \000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_EF0[25] __attribute__((aligned(8))) = "CAPTION_DELETE_RETRY GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_F0C[25] __attribute__((aligned(4))) = "CAPTION_DELETE_RETRY FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_F28[25] __attribute__((aligned(8))) = "CAPTION_DELETE_RETRY SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_F44[25] __attribute__((aligned(4))) = "CAPTION_DELETE_RETRY ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_F60[44] __attribute__((aligned(8))) = "\203\237\201c\203`\203F\203b\203N\202\271\202\270\202\311\217I[\202\250]\202\355\202\351 \203"
+    "\262\201c\203\212\203g\203\211\203C\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_F8C[68] __attribute__((aligned(4))) = "\203\237 \201c Continue without loading\n\203\262 \201c Try again\n\203\264 \201c Choose Slot "
+    "\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_FD0[30] __attribute__((aligned(8))) = "CAPTION_LOAD_RETRY_CHOICE GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_FF0[30] __attribute__((aligned(8))) = "CAPTION_LOAD_RETRY_CHOICE FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1010[30] __attribute__((aligned(8))) = "CAPTION_LOAD_RETRY_CHOICE SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1030[30] __attribute__((aligned(8))) = "CAPTION_LOAD_RETRY_CHOICE ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1050[68] __attribute__((aligned(8))) = "\203\237\201c\203\215\201[\203h\202\271\202\270\202\311\217I[\202\250]\202\355\202\351\n\203\262"
+    "\201c\203\212\203g\203\211\203C \203\264\201c\203X\203\215\203b\203g\202\360\221I[\202\246\202"
+    "\347]\202\324\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1094[68] __attribute__((aligned(4))) = "\203\237 \201c Continue without saving\n\203\262 \201c Try again\n\203\264 \201c Choose Slot "
+    "\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_10D8[30] __attribute__((aligned(8))) = "CAPTION_SAVE_RETRY_CHOICE GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_10F8[30] __attribute__((aligned(8))) = "CAPTION_SAVE_RETRY_CHOICE FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1118[30] __attribute__((aligned(8))) = "CAPTION_SAVE_RETRY_CHOICE SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1138[30] __attribute__((aligned(8))) = "CAPTION_SAVE_RETRY_CHOICE ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1158[68] __attribute__((aligned(8))) = "\203\237\201c\203Z\201[\203u\202\271\202\270\202\311\217I[\202\250]\202\355\202\351\n\203\262"
+    "\201c\203\212\203g\203\211\203C \203\264\201c\203X\203\215\203b\203g\202\360\221I[\202\246\202"
+    "\347]\202\324\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_119C[48] __attribute__((aligned(4))) = "\203\237 \201c Continue without saving\n\203\262 \201c Try again \000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_11CC[30] __attribute__((aligned(4))) = "CAPTION_LIST_RETRY_CHOICE GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_11EC[30] __attribute__((aligned(4))) = "CAPTION_LIST_RETRY_CHOICE FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_120C[30] __attribute__((aligned(4))) = "CAPTION_LIST_RETRY_CHOICE SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_122C[30] __attribute__((aligned(4))) = "CAPTION_LIST_RETRY_CHOICE ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_124C[48] __attribute__((aligned(4))) = "\203\237\201c\203\212\203X\203g\202\360\216\346[\202\306]\202\347\202\270\202\311\217I[\202\250]"
+    "\202\355\202\351\n\203\262\201c\203\212\203g\203\211\203C";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_127C[68] __attribute__((aligned(4))) = "\203\237 \201c Continue without erasing\n\203\262 \201c Try again\n\203\264 \201c Choose Slot "
+    "\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_12C0[32] __attribute__((aligned(8))) = "CAPTION_DELETE_RETRY_CHOICE GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_12E0[32] __attribute__((aligned(8))) = "CAPTION_DELETE_RETRY_CHOICE FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1300[32] __attribute__((aligned(8))) = "CAPTION_DELETE_RETRY_CHOICE SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1320[32] __attribute__((aligned(8))) = "CAPTION_DELETE_RETRY_CHOICE ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1340[68] __attribute__((aligned(8))) = "\203\237\201c\217\301[\202\257]\202\263\202\270\202\311\217I[\202\250]\202\355\202\351\n\203\262"
+    "\201c\203\212\203g\203\211\203C \203\264\201c\203X\203\215\203b\203g\202\360\221I[\202\246\202"
+    "\347]\202\324\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1384[68] __attribute__((aligned(4))) = "\203\237 \201c Continue without checking\n\203\262 \201c Try again\n\203\264 \201c Choose Slot "
+    "\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_13C8[32] __attribute__((aligned(8))) = "CAPTION_DELETE_RETRY_CHOICE GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_13E8[32] __attribute__((aligned(8))) = "CAPTION_DELETE_RETRY_CHOICE FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1408[32] __attribute__((aligned(8))) = "CAPTION_DELETE_RETRY_CHOICE SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1428[32] __attribute__((aligned(8))) = "CAPTION_DELETE_RETRY_CHOICE ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1448[68] __attribute__((aligned(8))) = "\203\237\201c\203`\203F\203b\203N\202\271\202\270\202\311\217I[\202\250]\202\355\202\351\n\203"
+    "\262\201c\203\212\203g\203\211\203C \203\264\201c\203X\203\215\203b\203g\202\360\221I[\202\246"
+    "\202\347]\202\324\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_148C[32] __attribute__((aligned(4))) = "Please press the \203\237 Button. \000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_14AC[14] __attribute__((aligned(4))) = "CAPTION_A GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_14BC[14] __attribute__((aligned(4))) = "CAPTION_A FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_14CC[14] __attribute__((aligned(4))) = "CAPTION_A SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_14DC[14] __attribute__((aligned(4))) = "CAPTION_A ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_14EC[28] __attribute__((aligned(4))) = "\203\237\202\360\211\237[\202\250]\202\265\202\304\202\255\202\276\202\263\202\242\201B\000\000"
+    "\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1508[20] __attribute__((aligned(8))) = "\203\237 \201c Delete file\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_151C[14] __attribute__((aligned(4))) = "CAPTION_A GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_152C[14] __attribute__((aligned(4))) = "CAPTION_A FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_153C[14] __attribute__((aligned(4))) = "CAPTION_A SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_154C[14] __attribute__((aligned(4))) = "CAPTION_A ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_155C[16] __attribute__((aligned(4))) = "\203\237\201c\217\301[\202\257]\202\267\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_156C[52] __attribute__((aligned(4))) = "\203\237 \201c Continue without loading\n\203\264 \201c Choose a Slot ";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_15A0[24] __attribute__((aligned(8))) = "CAPTION_LOAD_CHOICE GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_15B8[24] __attribute__((aligned(8))) = "CAPTION_LOAD_CHOICE FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_15D0[24] __attribute__((aligned(8))) = "CAPTION_LOAD_CHOICE SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_15E8[24] __attribute__((aligned(8))) = "CAPTION_LOAD_CHOICE ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1600[52] __attribute__((aligned(8))) = "\203\237\201c\203\215\201[\203h\202\271\202\270\202\311\217I[\202\250]\202\355\202\351\n\203\264"
+    "\201c\203X\203\215\203b\203g\202\360\221I[\202\246\202\347]\202\324";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1634[52] __attribute__((aligned(4))) = "\203\237 \201c Continue without saving\n\203\264 \201c Choose a Slot \000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1668[24] __attribute__((aligned(8))) = "CAPTION_SAVE_CHOICE GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1680[24] __attribute__((aligned(8))) = "CAPTION_SAVE_CHOICE FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1698[24] __attribute__((aligned(8))) = "CAPTION_SAVE_CHOICE SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_16B0[24] __attribute__((aligned(8))) = "CAPTION_SAVE_CHOICE ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_16C8[52] __attribute__((aligned(8))) = "\203\237\201c\203Z\201[\203u\202\271\202\270\202\311\217I[\202\250]\202\355\202\351\n\203\264"
+    "\201c\203X\203\215\203b\203g\202\360\221I[\202\246\202\347]\202\324";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_16FC[32] __attribute__((aligned(4))) = "\203\237 \201c Continue without saving\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_171C[24] __attribute__((aligned(4))) = "CAPTION_LIST_CHOICE GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1734[24] __attribute__((aligned(4))) = "CAPTION_LIST_CHOICE FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_174C[24] __attribute__((aligned(4))) = "CAPTION_LIST_CHOICE SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1764[24] __attribute__((aligned(4))) = "CAPTION_LIST_CHOICE ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_177C[36] __attribute__((aligned(4))) = "\203\237\201c\203\212\203X\203g\202\360\216\346[\202\306]\202\347\202\270\202\311\217I[\202\250]"
+    "\202\355\202\351\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_17A0[52] __attribute__((aligned(8))) = "\203\237 \201c Continue without erasing\n\203\264 \201c Choose a Slot ";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_17D4[26] __attribute__((aligned(4))) = "CAPTION_DELETE_CHOICE GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_17F0[26] __attribute__((aligned(8))) = "CAPTION_DELETE_CHOICE FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_180C[26] __attribute__((aligned(4))) = "CAPTION_DELETE_CHOICE SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1828[26] __attribute__((aligned(8))) = "CAPTION_DELETE_CHOICE ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1844[48] __attribute__((aligned(4))) = "\203\237\201c\202\257\202\263\202\270\202\311\217I[\202\250]\202\355\202\351\n\203\264\201c\203X"
+    "\203\215\203b\203g\202\360\221I[\202\246\202\347]\202\324";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1874[56] __attribute__((aligned(4))) = "\203\237 \201c Continue without checking\n\203\264 \201c Choose a Slot \000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_18AC[26] __attribute__((aligned(4))) = "CAPTION_DELETE_CHOICE GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_18C8[26] __attribute__((aligned(8))) = "CAPTION_DELETE_CHOICE FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_18E4[26] __attribute__((aligned(4))) = "CAPTION_DELETE_CHOICE SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1900[26] __attribute__((aligned(8))) = "CAPTION_DELETE_CHOICE ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_191C[56] __attribute__((aligned(4))) = "\203\237\201c\203`\203F\203b\203N\202\271\202\270\202\311\217I[\202\250]\202\355\202\351\n\203"
+    "\264\201c\203X\203\215\203b\203g\202\360\221I[\202\246\202\347]\202\324\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1954[64] __attribute__((aligned(4))) = "\203\237 \201c Continue without loading\n\203\262 \201c Try again\n\203\264 \201c Format \000"
+    "\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1994[30] __attribute__((aligned(4))) = "CAPTION_LOAD_RETRY_FORMAT GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_19B4[30] __attribute__((aligned(4))) = "CAPTION_LOAD_RETRY_FORMAT FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_19D4[30] __attribute__((aligned(4))) = "CAPTION_LOAD_RETRY_FORMAT SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_19F4[30] __attribute__((aligned(4))) = "CAPTION_LOAD_RETRY_FORMAT ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1A14[64] __attribute__((aligned(4))) = "\203\237\201c\203\215\201[\203h\202\271\202\270\202\311\217I[\202\250]\202\355\202\351\n\203\262"
+    "\201c\203\212\203g\203\211\203C \203\264\201c\203t\203H\201[\203}\203b\203g\202\267\202\351\000"
+    "\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1A54[60] __attribute__((aligned(4))) = "\203\237 \201c Continue without saving\n\203\262 \201c Try again\n\203\264 \201c Format ";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1A90[30] __attribute__((aligned(8))) = "CAPTION_SAVE_RETRY_FORMAT GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1AB0[30] __attribute__((aligned(8))) = "CAPTION_SAVE_RETRY_FORMAT FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1AD0[30] __attribute__((aligned(8))) = "CAPTION_SAVE_RETRY_FORMAT SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1AF0[30] __attribute__((aligned(8))) = "CAPTION_SAVE_RETRY_FORMAT ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1B10[64] __attribute__((aligned(8))) = "\203\237\201c\203Z\201[\203u\202\271\202\270\202\311\217I[\202\250]\202\355\202\351\n\203\262"
+    "\201c\203\212\203g\203\211\203C \203\264\201c\203t\203H\201[\203}\203b\203g\202\267\202\351\000"
+    "\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1B50[60] __attribute__((aligned(8))) = "\203\237 \201c Continue without saving\n\203\262 \201c Try again\n\203\264 \201c Format ";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1B8C[30] __attribute__((aligned(4))) = "CAPTION_LIST_RETRY_FORMAT GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1BAC[30] __attribute__((aligned(4))) = "CAPTION_LIST_RETRY_FORMAT FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1BCC[30] __attribute__((aligned(4))) = "CAPTION_LIST_RETRY_FORMAT SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1BEC[30] __attribute__((aligned(4))) = "CAPTION_LIST_RETRY_FORMAT ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1C0C[68] __attribute__((aligned(4))) = "\203\237\201c\203\212\203X\203g\202\360\202\306\202\347\202\270\202\311\217I[\202\250]\202\355"
+    "\202\351\n\203\262\201c\203\212\203g\203\211\203C \203\264\201c\203t\203H\201[\203}\203b\203g"
+    "\202\267\202\351\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1C50[64] __attribute__((aligned(8))) = "\203\237 \201c Continue without erasing\n\203\262 \201c Try again\n\203\264 \201c Format \000"
+    "\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1C90[32] __attribute__((aligned(8))) = "CAPTION_DELETE_RETRY_FORMAT GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1CB0[32] __attribute__((aligned(8))) = "CAPTION_DELETE_RETRY_FORMAT FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1CD0[32] __attribute__((aligned(8))) = "CAPTION_DELETE_RETRY_FORMAT SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1CF0[32] __attribute__((aligned(8))) = "CAPTION_DELETE_RETRY_FORMAT ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1D10[60] __attribute__((aligned(8))) = "\203\237\201c\202\257\202\263\202\270\202\311\217I[\202\250]\202\355\202\351\n\203\262\201c\203"
+    "\212\203g\203\211\203C \203\264\201c\203t\203H\201[\203}\203b\203g\202\267\202\351\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1D4C[64] __attribute__((aligned(4))) = "\203\237 \201c Continue without checking\n\203\262 \201c Try again\n\203\264 \201c Format \000"
+    "\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1D8C[32] __attribute__((aligned(4))) = "CAPTION_DELETE_RETRY_FORMAT GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1DAC[32] __attribute__((aligned(4))) = "CAPTION_DELETE_RETRY_FORMAT FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1DCC[32] __attribute__((aligned(4))) = "CAPTION_DELETE_RETRY_FORMAT SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1DEC[32] __attribute__((aligned(4))) = "CAPTION_DELETE_RETRY_FORMAT ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1E0C[64] __attribute__((aligned(4))) = "\203\237\201c\203`\203F\203b\203N\202\271\202\270\202\311\217I[\202\250]\202\355\202\351\n\203"
+    "\262\201c\203\212\203g\203\211\203C \203\264\201c\203t\203H\201[\203}\203b\203g\202\267\202\351"
+    "\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1E4C[44] __attribute__((aligned(4))) = "\203\237 \201c Begin without saveing\n\203\262 \201c Try again";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1E78[23] __attribute__((aligned(8))) = "CAPTION_SAVE_RETRY GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1E90[23] __attribute__((aligned(8))) = "CAPTION_SAVE_RETRY FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1EA8[23] __attribute__((aligned(8))) = "CAPTION_SAVE_RETRY SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1EC0[23] __attribute__((aligned(8))) = "CAPTION_SAVE_RETRY ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1ED8[44] __attribute__((aligned(8))) = "\203\237\201c\203Z\201[\203u\202\271\202\270\202\311\216n[\202\315\202\266]\202\337\202\351 \203"
+    "\262\201c\203\212\203g\203\211\203C\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1F04[92] __attribute__((aligned(4))) = "\203\237 \201c Begin without saving\n\203\262 \201c Try again\n\203\264 \201c Reset and access s"
+    "ystem Memory Card screen";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1F60[23] __attribute__((aligned(8))) = "CAPTION_SAVE_RETRY GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1F78[23] __attribute__((aligned(8))) = "CAPTION_SAVE_RETRY FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1F90[23] __attribute__((aligned(8))) = "CAPTION_SAVE_RETRY SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1FA8[23] __attribute__((aligned(8))) = "CAPTION_SAVE_RETRY ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_1FC0[108] __attribute__((aligned(8))) = "\203\237\201c\203Z\201[\203u\202\271\202\270\202\311\216n[\202\315\202\266]\202\337\202\351 \203"
+    "\262\201c\203\212\203g\203\211\203C\n\203\264\201c\203\212\203Z\203b\203g\202\265\202\304\226{["
+    "\202\331\202\361]\221\314[\202\275\202\242]\203\201\203\202\203\212\201[\203J\201[\203h\211\346["
+    "\202\252]\226\312[\202\337\202\361]\202\326\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_202C[48] __attribute__((aligned(4))) = "Choose the Slot with the Memory Card inserted. ";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_205C[16] __attribute__((aligned(4))) = "CHOICE_SLOT GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_206C[16] __attribute__((aligned(4))) = "CHOICE_SLOT FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_207C[16] __attribute__((aligned(4))) = "CHOICE_SLOT SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_208C[16] __attribute__((aligned(4))) = "CHOICE_SLOT ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_209C[56] __attribute__((aligned(4))) = "\203\201\203\202\203\212\201[\203J\201[\203h\202\360\202\263\202\265\202\275\203X\203\215\203b"
+    "\203g\202\360\n\221I[\202\246\202\347]\202\361\202\305\202\255\202\276\202\263\202\242\201B";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_20D4[84] __attribute__((aligned(4))) = "Use  \203\255 or \203\265to select.\nPress the \203\237 Button to confirm and the \203\240 Butto"
+    "n cancel. \000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2128[19] __attribute__((aligned(8))) = "CAPTION_CHOICE GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_213C[19] __attribute__((aligned(4))) = "CAPTION_CHOICE FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2150[19] __attribute__((aligned(8))) = "CAPTION_CHOICE SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2164[19] __attribute__((aligned(4))) = "CAPTION_CHOICE ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2178[72] __attribute__((aligned(8))) = "\203\255\202\251\203\265\202\305\221I[\202\246\202\347]\202\361\202\305\201A\203\237\202\305\214"
+    "\210[\202\253]\202\337\202\304\202\255\202\276\202\263\202\242\201B\n\203\240\202\305\203L\203"
+    "\203\203\223\203Z\203\213\202\265\202\334\202\267\201B\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_21C0[66] __attribute__((aligned(8))) = "The FILE Data save to the Memory Card\nin SLOT has been cancelled.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2204[16] __attribute__((aligned(4))) = "NOSAVE_EXIT GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2214[16] __attribute__((aligned(4))) = "NOSAVE_EXIT FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2224[16] __attribute__((aligned(4))) = "NOSAVE_EXIT SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2234[16] __attribute__((aligned(4))) = "NOSAVE_EXIT ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2244[68] __attribute__((aligned(4))) = "FILE\203f\201[\203^\202\314\n\203\201\203\202\203\212\201[\203J\201[\203h\202\326\202\314\203Z"
+    "\201[\203u\202\360\222\206[\202\277\202\343\202\244]\216~[\202\265]\202\265\202\334\202\265\202"
+    "\275\201B\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2288[55] __attribute__((aligned(8))) = "The Memory Card in SLOT\nis damaged and cannot be used.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_22C0[17] __attribute__((aligned(8))) = "WRONG_SECTOR GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_22D4[17] __attribute__((aligned(4))) = "WRONG_SECTOR FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_22E8[17] __attribute__((aligned(8))) = "WRONG_SECTOR SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_22FC[17] __attribute__((aligned(4))) = "WRONG_SECTOR ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2310[68] __attribute__((aligned(8))) = "SLOT\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\315\n\202\261\202\355\202\352\202"
+    "\304\202\242\202\351\202\314\202\305\216g[\202\265]\227p[\202\346\202\244]\202\305\202\253\202"
+    "\334\202\271\202\361\201B\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2354[55] __attribute__((aligned(4))) = "The Memory Card in SLOT\nis damaged and cannot be used.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_238C[15] __attribute__((aligned(4))) = "WRONG_CARD GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_239C[15] __attribute__((aligned(4))) = "WRONG_CARD FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_23AC[15] __attribute__((aligned(4))) = "WRONG_CARD SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_23BC[15] __attribute__((aligned(4))) = "WRONG_CARD ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_23CC[68] __attribute__((aligned(4))) = "SLOT\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\315\n\202\261\202\355\202\352\202"
+    "\304\202\242\202\351\202\314\202\305\216g[\202\265]\227p[\202\346\202\244]\202\305\202\253\202"
+    "\334\202\271\202\361\201B\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2410[94] __attribute__((aligned(8))) = "The Memory Card in SLOT\nis corrupted and must be formatted.\nOK to format the Memory Card now"
+    "\077";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2470[13] __attribute__((aligned(8))) = "ENCODING GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2480[13] __attribute__((aligned(8))) = "ENCODING FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2490[13] __attribute__((aligned(8))) = "ENCODING SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_24A0[13] __attribute__((aligned(8))) = "ENCODING ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_24B0[88] __attribute__((aligned(8))) = "SLOT\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\315\216g[\202\302\202\251]\202\246"
+    "\202\334\202\271\202\361\201B\n\203\201\203\202\203\212\201[\203J\201[\203h\202\360\223\374[\202"
+    "\242]\202\352\222\274[\202\310\202\250]\202\265\202\304\202\255\202\276\202\263\202\242\201B";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2508[60] __attribute__((aligned(8))) = "The Memory Card in SLOT\nis corrupted and must be formatted.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2544[13] __attribute__((aligned(4))) = "ENCODING GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2554[13] __attribute__((aligned(4))) = "ENCODING FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2564[13] __attribute__((aligned(4))) = "ENCODING SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2574[13] __attribute__((aligned(4))) = "ENCODING ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2584[88] __attribute__((aligned(4))) = "SLOT\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\315\216g[\202\302\202\251]\202\246"
+    "\202\334\202\271\202\361\201B\n\203\201\203\202\203\212\201[\203J\201[\203h\202\360\223\374[\202"
+    "\242]\202\352\222\274[\202\310\202\250]\202\265\202\304\202\255\202\276\202\263\202\242\201B";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_25DC[94] __attribute__((aligned(4))) = "The Memory Card in SLOT\nis corrupted and must be formatted.\nOK to format the Memory Card now"
+    "\077";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_263C[17] __attribute__((aligned(4))) = "FORMAT_QUERY GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2650[17] __attribute__((aligned(8))) = "FORMAT_QUERY FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2664[17] __attribute__((aligned(4))) = "FORMAT_QUERY SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2678[17] __attribute__((aligned(8))) = "FORMAT_QUERY ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_268C[108] __attribute__((aligned(4))) = "SLOT\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\315\203f\201[\203^\202\252\n\202"
+    "\261\202\355\202\352\202\304\202\242\202\351\202\314\202\305\203t\203H\201[\203}\203b\203g\202"
+    "\252\225K\227v\202\305\202\267\201B\n\203t\203H\201[\203}\203b\203g\202\265\202\304\202\340\202"
+    "\346\202\353\202\265\202\242\202\305\202\267\202\251\201H\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_26F8[38] __attribute__((aligned(8))) = "OK to format the\nMemory Card in SLOT\077";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2720[18] __attribute__((aligned(8))) = "FORMAT_QUERY2 GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2734[18] __attribute__((aligned(4))) = "FORMAT_QUERY2 FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2748[18] __attribute__((aligned(8))) = "FORMAT_QUERY2 SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_275C[18] __attribute__((aligned(4))) = "FORMAT_QUERY2 ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2770[60] __attribute__((aligned(8))) = "SLOT\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\360\n\203t\203H\201[\203}\203b\203g"
+    "\202\265\202\304\202\340\202\346\202\353\202\265\202\242\202\305\202\267\202\251\201H\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_27AC[7] __attribute__((aligned(4))) = "Slot A";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_27B4[11] __attribute__((aligned(4))) = "SLOT_A GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_27C0[11] __attribute__((aligned(8))) = "SLOT_A FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_27CC[11] __attribute__((aligned(4))) = "SLOT_A SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_27D8[11] __attribute__((aligned(8))) = "SLOT_A ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_27E4[12] __attribute__((aligned(4))) = "\203X\203\215\203b\203g\202`\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_27F0[7] __attribute__((aligned(8))) = "Slot B";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_27F8[11] __attribute__((aligned(8))) = "SLOT_B GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2804[11] __attribute__((aligned(4))) = "SLOT_B FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2810[11] __attribute__((aligned(8))) = "SLOT_B SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_281C[11] __attribute__((aligned(4))) = "SLOT_B ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2828[12] __attribute__((aligned(8))) = "\203X\203\215\203b\203g\202a\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2834[4] __attribute__((aligned(4))) = "YES";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2838[8] __attribute__((aligned(8))) = "HAI GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2840[8] __attribute__((aligned(8))) = "HAI FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2848[8] __attribute__((aligned(8))) = "HAI SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2850[8] __attribute__((aligned(8))) = "HAI ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2858[8] __attribute__((aligned(8))) = "\202\315\202\242\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2860[3] __attribute__((aligned(8))) = "NO";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2864[8] __attribute__((aligned(4))) = "IIE GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_286C[8] __attribute__((aligned(4))) = "IIE FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2874[8] __attribute__((aligned(4))) = "IIE SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_287C[8] __attribute__((aligned(4))) = "IIE ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2884[8] __attribute__((aligned(4))) = "\202\242\202\242\202\246\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_288C[58] __attribute__((aligned(4))) = "Formatting of the Memory Card in SLOT\nhas been cancelled.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_28C8[18] __attribute__((aligned(8))) = "FORMAT_CANCEL GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_28DC[18] __attribute__((aligned(4))) = "FORMAT_CANCEL FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_28F0[18] __attribute__((aligned(8))) = "FORMAT_CANCEL SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2904[18] __attribute__((aligned(4))) = "FORMAT_CANCEL ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2918[64] __attribute__((aligned(8))) = "SLOT\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\314\n\203t\203H\201[\203}\203b\203g"
+    "\202\360\222\206[\202\277\202\343]\216~[\202\244\202\265]\202\265\202\334\202\265\202\275\201B";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2958[400] __attribute__((aligned(8))) = "The Memory Card in SLOT does not have\nenough free space. F-ZERO GX requires the\nfollowing to s"
+    "ave its different types of data:\n(To manage files on the Memory Card,\nplease go to the Nintend"
+    "o GameCube\nMemory Card management screen.)\nGame Data: 1 File and 4 Blocks\nGarage Data: 1 File"
+    " and 18 Blocks\nGhost Data: 1 File and 3 Blocks\nEmblem Data: 1 File and 3 Blocks\nReplay Data: "
+    "1 File and 3\201`13 Blocks\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2AE8[10] __attribute__((aligned(8))) = "NOENT GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2AF4[10] __attribute__((aligned(4))) = "NOENT FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2B00[10] __attribute__((aligned(8))) = "NOENT SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2B0C[10] __attribute__((aligned(4))) = "NOENT ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2B18[592] __attribute__((aligned(8))) = "SLOT\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\311\213\363[\202\240]\202\253\227e["
+    "\202\346\202\244 ]\227\312[\202\350\202\345\202\244]\202\252\202\310\202\242\202\251\201A\n\203t"
+    "\203@\203C\203\213\220\224[\202\267\202\244]\202\314\220\247[\202\271\202\242]\214\300[\202\260"
+    "\202\361]\202\360\211z[\202\261]\202\246\202\304\202\265\202\334\202\242\202\334\202\267\201B\nF"
+    "-ZERO GX\202\314\212e[\202\251\202\255]\203t\203@\203C\203\213\202\360\203Z\201[\203u\202\267"
+    "\202\351\202\311\202\315\n\217\255[\202\267\202\255]\202\310\202\255\202\306\202\340\210\310["
+    "\202\242]\211\272[\202\251]\202\314\213\363[\202\240]\202\253\227e[\202\346\202\244 ]\227\312["
+    "\202\350\202\345\202\244]\202\252\225K[\202\320\202\302]\227v[\202\346\202\244]\202\305\202\267"
+    "\201B\n(\203\201\203\202\203\212\201[\203J\201[\203h\202\314\223\340[\202\310\202\242]\227e[\202"
+    "\346\202\244]\202\360\220\256[\202\271\202\242]\227\235[\202\350]\202\267\202\351\202\311\202"
+    "\315\201A\n\226{[\202\331\202\361]\221\314[\202\275\202\242]\202\314\203\201\203\202\203\212\201"
+    "[\203J\201[\203h\211\346[\202\252]\226\312[\202\337\202\361]\202\305\215s[\202\250\202\261]\202"
+    "\310\202\301\202\304\202\255\202\276\202\263\202\242)\n  \203Q\201[\203\200\203f\201[\203^:\203t"
+    "\203@\203C\203\213\202P\202\302\202\306\202S\203u\203\215\203b\203N\n \203K\203\214\201[\203W"
+    "\203f\201[\203^:\203t\203@\203C\203\213\202P\202\302\202\306\202P\202W\203u\203\215\203b\203N\n "
+    "\203S\201[\203X\203g\203f\201[\203^:\203t\203@\203C\203\213\202P\202\302\202\306\202R\203u\203"
+    "\215\203b\203N\n\203G\203\223\203u\203\214\203\200\203f\201[\203^:\203t\203@\203C\203\213\202P"
+    "\202\302\202\306\202R\203u\203\215\203b\203N\n  \203\212\203v\203\214\203C\203f\201[\203^:\203t"
+    "\203@\203C\203\213\202P\202\302\202\306\202R\201`\202P\202R\203u\203\215\203b\203N\n";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2D68[228] __attribute__((aligned(8))) = "There is not enough free space on the\nMemory Card in SLOT. To save FILE Data,\nyou need at leas"
+    "t 1 file and REQUIRED blocks.\n(To manage files on the Memory Card,\nplease go to the Nintendo G"
+    "ameCube\nMemory Card management screen.)";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2E4C[10] __attribute__((aligned(4))) = "NOENT GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2E58[10] __attribute__((aligned(8))) = "NOENT FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2E64[10] __attribute__((aligned(4))) = "NOENT SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2E70[10] __attribute__((aligned(8))) = "NOENT ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2E7C[348] __attribute__((aligned(4))) = "SLOT\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\311\213\363[\202\240]\202\253\227e["
+    "\202\346\202\244 ]\227\312[\202\350\202\345\202\244]\202\252\202\310\202\242\202\251\201A\n\203t"
+    "\203@\203C\203\213\220\224[\202\267\202\244]\202\314\220\247[\202\271\202\242]\214\300[\202\260"
+    "\202\361]\202\360\211z[\202\261]\202\246\202\304\202\265\202\334\202\242\202\334\202\267\201B\nF"
+    "ILE\203f\201[\203^\202\360\203Z\201[\203u\202\267\202\351\202\311\202\315\n\217\255[\202\267\202"
+    "\255]\202\310\202\255\202\306\202\340\203t\203@\203C\203\2131\202\302\202\306REQUIRED\203u\203"
+    "\215\203b\203N\225K[\202\320\202\302]\227v[\202\346\202\244]\202\305\202\267\201B\n(\203\201\203"
+    "\202\203\212\201[\203J\201[\203h\202\314\223\340[\202\310\202\242]\227e[\202\346\202\244]\202"
+    "\360\220\256[\202\271\202\242]\227\235[\202\350]\202\267\202\351\202\311\202\315\201A\n\226{["
+    "\202\331\202\361]\221\314[\202\275\202\242]\202\314\203\201\203\202\203\212\201[\203J\201[\203h"
+    "\211\346[\202\252]\226\312[\202\337\202\361]\202\305\215s[\202\250\202\261]\202\310\202\301\202"
+    "\304\202\255\202\276\202\263\202\242)\n\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_2FD8[400] __attribute__((aligned(8))) = "The Memory Card in SLOT does not have\nenough free space. F-ZERO GX requires the\nfollowing to s"
+    "ave its different types of data:\n(To manage files on the Memory Card,\nplease go to the Nintend"
+    "o GameCube\nMemory Card management screen.)\nGame Data: 1 File and 4 Blocks\nGarage Data: 1 File"
+    " and 18 Blocks\nGhost Data: 1 File and 3 Blocks\nEmblem Data: 1 File and 3 Blocks\nReplay Data: "
+    "1 File and 3\201`13 Blocks\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3168[13] __attribute__((aligned(8))) = "INSSPACE GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3178[13] __attribute__((aligned(8))) = "INSSPACE FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3188[13] __attribute__((aligned(8))) = "INSSPACE SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3198[13] __attribute__((aligned(8))) = "INSSPACE ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_31A8[592] __attribute__((aligned(8))) = "SLOT\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\311\213\363[\202\240]\202\253\227e["
+    "\202\346\202\244 ]\227\312[\202\350\202\345\202\244]\202\252\202\310\202\242\202\251\201A\n\203t"
+    "\203@\203C\203\213\220\224[\202\267\202\244]\202\314\220\247[\202\271\202\242]\214\300[\202\260"
+    "\202\361]\202\360\211z[\202\261]\202\246\202\304\202\265\202\334\202\242\202\334\202\267\201B\nF"
+    "-ZERO GX\202\314\212e[\202\251\202\255]\203t\203@\203C\203\213\202\360\203Z\201[\203u\202\267"
+    "\202\351\202\311\202\315\n\217\255[\202\267\202\255]\202\310\202\255\202\306\202\340\210\310["
+    "\202\242]\211\272[\202\251]\202\314\213\363[\202\240]\202\253\227e[\202\346\202\244 ]\227\312["
+    "\202\350\202\345\202\244]\202\252\225K[\202\320\202\302]\227v[\202\346\202\244]\202\305\202\267"
+    "\201B\n(\203\201\203\202\203\212\201[\203J\201[\203h\202\314\223\340[\202\310\202\242]\227e[\202"
+    "\346\202\244]\202\360\220\256[\202\271\202\242]\227\235[\202\350]\202\267\202\351\202\311\202"
+    "\315\201A\n\226{[\202\331\202\361]\221\314[\202\275\202\242]\202\314\203\201\203\202\203\212\201"
+    "[\203J\201[\203h\211\346[\202\252]\226\312[\202\337\202\361]\202\305\215s[\202\250\202\261]\202"
+    "\310\202\301\202\304\202\255\202\276\202\263\202\242)\n  \203Q\201[\203\200\203f\201[\203^:\203t"
+    "\203@\203C\203\213\202P\202\302\202\306\202S\203u\203\215\203b\203N\n \203K\203\214\201[\203W"
+    "\203f\201[\203^:\203t\203@\203C\203\213\202P\202\302\202\306\202P\202W\203u\203\215\203b\203N\n "
+    "\203S\201[\203X\203g\203f\201[\203^:\203t\203@\203C\203\213\202P\202\302\202\306\202R\203u\203"
+    "\215\203b\203N\n\203G\203\223\203u\203\214\203\200\203f\201[\203^:\203t\203@\203C\203\213\202P"
+    "\202\302\202\306\202R\203u\203\215\203b\203N\n  \203\212\203v\203\214\203C\203f\201[\203^:\203t"
+    "\203@\203C\203\213\202P\202\302\202\306\202R\201`\202P\202R\203u\203\215\203b\203N\n";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_33F8[227] __attribute__((aligned(8))) = "The Memory Card in SLOT does not\nhave enough free space. At least 1 file\nand REQUIRED blocks a"
+    "re needed to save\nFILE Data. (To manage files on the Memory\nCard, please go to the Nintendo Ga"
+    "meCube\nMemory Card management screen.)";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_34DC[20] __attribute__((aligned(4))) = "INSSPACE_REPLAY GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_34F0[20] __attribute__((aligned(8))) = "INSSPACE_REPLAY FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3504[20] __attribute__((aligned(4))) = "INSSPACE_REPLAY SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3518[20] __attribute__((aligned(8))) = "INSSPACE_REPLAY ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_352C[348] __attribute__((aligned(4))) = "SLOT\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\311\213\363[\202\240]\202\253\227e["
+    "\202\346\202\244 ]\227\312[\202\350\202\345\202\244]\202\252\202\310\202\242\202\251\201A\n\203t"
+    "\203@\203C\203\213\220\224[\202\267\202\244]\202\314\220\247[\202\271\202\242]\214\300[\202\260"
+    "\202\361]\202\360\211z[\202\261]\202\246\202\304\202\265\202\334\202\242\202\334\202\267\201B\nF"
+    "ILE\203f\201[\203^\202\360\203Z\201[\203u\202\267\202\351\202\311\202\315\n\217\255[\202\267\202"
+    "\255]\202\310\202\255\202\306\202\340\203t\203@\203C\203\2131\202\302\202\306REQUIRED\203u\203"
+    "\215\203b\203N\225K[\202\320\202\302]\227v[\202\346\202\244]\202\305\202\267\201B\n(\203\201\203"
+    "\202\203\212\201[\203J\201[\203h\202\314\223\340[\202\310\202\242]\227e[\202\346\202\244]\202"
+    "\360\220\256[\202\271\202\242]\227\235[\202\350]\202\267\202\351\202\311\202\315\201A\n\226{["
+    "\202\331\202\361]\221\314[\202\275\202\242]\202\314\203\201\203\202\203\212\201[\203J\201[\203h"
+    "\211\346[\202\252]\226\312[\202\337\202\361]\202\305\215s[\202\250\202\261]\202\310\202\301\202"
+    "\304\202\255\202\276\202\263\202\242)\n\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3688[82] __attribute__((aligned(8))) = "There is already FILE Data\non the Memory Card in SLOT.\nOK to save over this data\077";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_36DC[20] __attribute__((aligned(4))) = "OVERWRITE_QUERY GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_36F0[20] __attribute__((aligned(8))) = "OVERWRITE_QUERY FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3704[20] __attribute__((aligned(4))) = "OVERWRITE_QUERY SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3718[20] __attribute__((aligned(8))) = "OVERWRITE_QUERY ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_372C[96] __attribute__((aligned(4))) = "SLOT\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\311\202\315\n\202\267\202\305\202"
+    "\311FILE\203f\201[\203^\202\252\202\240\202\350\202\334\202\267\201B\n\217\343[\202\244\202\355]"
+    "\217\221[\202\252]\202\253\202\265\202\304\202\340\202\346\202\353\202\265\202\242\202\305\202"
+    "\267\202\251\201H\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_378C[38] __attribute__((aligned(4))) = "The FILE Data overwrite\nwas canceled.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_37B4[21] __attribute__((aligned(4))) = "OVERWRITE_CANCEL GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_37CC[21] __attribute__((aligned(4))) = "OVERWRITE_CANCEL FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_37E4[21] __attribute__((aligned(4))) = "OVERWRITE_CANCEL SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_37FC[21] __attribute__((aligned(4))) = "OVERWRITE_CANCEL ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3814[60] __attribute__((aligned(4))) = "FILE\203f\201[\203^\202\314\n\217\343[\202\244\202\355]\217\221[\202\252]\202\253\202\360\222"
+    "\206[\202\277\202\343]\216~[\202\244\202\265]\202\265\202\334\202\265\202\275\201B\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3850[49] __attribute__((aligned(8))) = "FILE Data was saved to\nthe Memory Card in SLOT. ";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3884[13] __attribute__((aligned(4))) = "SAVE_END GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3894[13] __attribute__((aligned(4))) = "SAVE_END FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_38A4[13] __attribute__((aligned(4))) = "SAVE_END SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_38B4[13] __attribute__((aligned(4))) = "SAVE_END ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_38C4[64] __attribute__((aligned(4))) = "SLOT\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\326\nFILE\203f\201[\203^\202\314"
+    "\203Z\201[\203u\202\252\217I[\202\250]\202\355\202\350\202\334\202\265\202\275\201B\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3904[21] __attribute__((aligned(4))) = "Free blocks in SLOT:";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_391C[18] __attribute__((aligned(4))) = "REMAIN_BLOCKS GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3930[18] __attribute__((aligned(8))) = "REMAIN_BLOCKS FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3944[18] __attribute__((aligned(4))) = "REMAIN_BLOCKS SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3958[18] __attribute__((aligned(8))) = "REMAIN_BLOCKS ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_396C[28] __attribute__((aligned(4))) = "SLOT\202\314\213\363[\202\240]\202\253\203u\203\215\203b\203N\201F\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3988[8] __attribute__((aligned(8))) = "Blocks:";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3990[11] __attribute__((aligned(8))) = "BLOCKS GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_399C[11] __attribute__((aligned(4))) = "BLOCKS FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_39A8[11] __attribute__((aligned(8))) = "BLOCKS SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_39B4[11] __attribute__((aligned(4))) = "BLOCKS ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_39C0[12] __attribute__((aligned(8))) = "\203u\203\215\203b\203N\201F\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_39CC[55] __attribute__((aligned(4))) = "Loading FILE Data from\nthe Memory Card was cancelled. ";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3A04[16] __attribute__((aligned(4))) = "NOLOAD_EXIT GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3A14[16] __attribute__((aligned(4))) = "NOLOAD_EXIT FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3A24[16] __attribute__((aligned(4))) = "NOLOAD_EXIT SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3A34[16] __attribute__((aligned(4))) = "NOLOAD_EXIT ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3A44[68] __attribute__((aligned(4))) = "FILE\203f\201[\203^\202\314\n\203\201\203\202\203\212\201[\203J\201[\203h\202\251\202\347\202"
+    "\314\203\215\201[\203h\202\360\222\206[\202\277\202\343\202\244]\216~[\202\265]\202\265\202\334"
+    "\202\265\202\275\201B";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3A88[44] __attribute__((aligned(8))) = "The Memory Card in SLOT has been formatted.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3AB4[15] __attribute__((aligned(4))) = "FORMAT_END GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3AC4[15] __attribute__((aligned(4))) = "FORMAT_END FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3AD4[15] __attribute__((aligned(4))) = "FORMAT_END SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3AE4[15] __attribute__((aligned(4))) = "FORMAT_END ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3AF4[56] __attribute__((aligned(4))) = "SLOT\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\314\n\203t\203H\201[\203}\203b\203g"
+    "\202\252\217I[\202\250]\202\355\202\350\202\334\202\265\202\275\201B";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3B2C[61] __attribute__((aligned(4))) = "The FILE Data has been loaded\nfrom the Memory Card in SLOT. ";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3B6C[13] __attribute__((aligned(4))) = "LOAD_END GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3B7C[13] __attribute__((aligned(4))) = "LOAD_END FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3B8C[13] __attribute__((aligned(4))) = "LOAD_END SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3B9C[13] __attribute__((aligned(4))) = "LOAD_END ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3BAC[68] __attribute__((aligned(4))) = "SLOT\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\251\202\347\202\314\nFILE\203f\201["
+    "\203^\202\314\203\215\201[\203h\202\252\217I[\202\250]\202\355\202\350\202\334\202\265\202\275"
+    "\201B\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3BF0[85] __attribute__((aligned(8))) = "The F-ZERO GX FILE Data on\nthe Memory Card in SLOT\nis corrupted and must be deleted.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3C48[16] __attribute__((aligned(8))) = "DATA_BROKEN GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3C58[16] __attribute__((aligned(8))) = "DATA_BROKEN FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3C68[16] __attribute__((aligned(8))) = "DATA_BROKEN SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3C78[16] __attribute__((aligned(8))) = "DATA_BROKEN ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3C88[68] __attribute__((aligned(8))) = "FILE\203f\201[\203^\202\252\202\261\202\355\202\352\202\304\202\242\202\334\202\267\201B\n\203t"
+    "\203@\203C\203\213\202\360\217\301[\202\265\202\345\202\244]\213\216[ \202\253\202\345]\202\265"
+    "\202\334\202\267\201B\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3CCC[70] __attribute__((aligned(4))) = "The Memory Card in SLOT was removed.\nMemory Card access was stopped. ";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3D14[11] __attribute__((aligned(4))) = "DETACH GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3D20[11] __attribute__((aligned(8))) = "DETACH FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3D2C[11] __attribute__((aligned(4))) = "DETACH SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3D38[11] __attribute__((aligned(8))) = "DETACH ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3D44[84] __attribute__((aligned(4))) = "SLOT\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\252\224\262[\202\312]\202\251\202"
+    "\352\202\334\202\265\202\275\201B\n\215\354[\202\263\202\254]\213\306[\202\345\202\244]\202\360"
+    "\222\206[\202\277\202\343]\216~[\202\244\202\265]\202\265\202\334\202\267\201B";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3D98[51] __attribute__((aligned(8))) = "There is no FILE Data on\nthe Memory Card in SLOT. ";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3DCC[11] __attribute__((aligned(4))) = "NOFILE GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3DD8[11] __attribute__((aligned(8))) = "NOFILE FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3DE4[11] __attribute__((aligned(4))) = "NOFILE SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3DF0[11] __attribute__((aligned(8))) = "NOFILE ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3DFC[52] __attribute__((aligned(4))) = "SLOT\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\311\202\315\nFILE\203f\201[\203^"
+    "\202\252\202\240\202\350\202\334\202\271\202\361\201B\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3E30[53] __attribute__((aligned(8))) = "There is no Replay Data on\nthe Memory Card in SLOT. ";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3E68[11] __attribute__((aligned(8))) = "NOFILE GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3E74[11] __attribute__((aligned(4))) = "NOFILE FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3E80[11] __attribute__((aligned(8))) = "NOFILE SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3E8C[11] __attribute__((aligned(4))) = "NOFILE ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3E98[52] __attribute__((aligned(8))) = "SLOT\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\311\202\315\nFILE\203f\201[\203^"
+    "\202\252\202\240\202\350\202\334\202\271\202\361\201B\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3ECC[52] __attribute__((aligned(4))) = "There is no Ghost Data on\nthe Memory Card in SLOT. ";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3F00[11] __attribute__((aligned(8))) = "NOFILE GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3F0C[11] __attribute__((aligned(4))) = "NOFILE FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3F18[11] __attribute__((aligned(8))) = "NOFILE SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3F24[11] __attribute__((aligned(4))) = "NOFILE ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3F30[52] __attribute__((aligned(8))) = "SLOT\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\311\202\315\nFILE\203f\201[\203^"
+    "\202\252\202\240\202\350\202\334\202\271\202\361\201B\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3F64[53] __attribute__((aligned(4))) = "There is no Emblem Data on\nthe Memory Card in SLOT. ";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3F9C[11] __attribute__((aligned(4))) = "NOFILE GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3FA8[11] __attribute__((aligned(8))) = "NOFILE FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3FB4[11] __attribute__((aligned(4))) = "NOFILE SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3FC0[11] __attribute__((aligned(8))) = "NOFILE ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_3FCC[52] __attribute__((aligned(4))) = "SLOT\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\311\202\315\nFILE\203f\201[\203^"
+    "\202\252\202\240\202\350\202\334\202\271\202\361\201B\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4000[57] __attribute__((aligned(8))) = "Unable to get the data list\non the Memory Card in SLOT. ";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_403C[16] __attribute__((aligned(4))) = "NOLIST_EXIT GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_404C[16] __attribute__((aligned(4))) = "NOLIST_EXIT FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_405C[16] __attribute__((aligned(4))) = "NOLIST_EXIT SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_406C[16] __attribute__((aligned(4))) = "NOLIST_EXIT ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_407C[40] __attribute__((aligned(4))) = "SLOT\202\314\203f\201[\203^\203\212\203X\203g\202\252\n\202\306\202\352\202\334\202\271\202\361"
+    "\202\305\202\265\202\275\201B";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_40A4[46] __attribute__((aligned(4))) = "There is no data on\nthe Memory Card in SLOT. ";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_40D4[18] __attribute__((aligned(4))) = "LIST_NO_EXIST GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_40E8[18] __attribute__((aligned(8))) = "LIST_NO_EXIST FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_40FC[18] __attribute__((aligned(4))) = "LIST_NO_EXIST SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4110[18] __attribute__((aligned(8))) = "LIST_NO_EXIST ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4124[60] __attribute__((aligned(4))) = "SLOT\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\311\202\315\n\203f\201[\203^\202"
+    "\2521\202\302\202\340\202\240\202\350\202\334\202\271\202\361\202\305\202\265\202\275\201B\000"
+    "\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4160[58] __attribute__((aligned(8))) = "The data list on the Memory Card\nin SLOT has been loaded.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_419C[13] __attribute__((aligned(4))) = "LIST_END GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_41AC[13] __attribute__((aligned(4))) = "LIST_END FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_41BC[13] __attribute__((aligned(4))) = "LIST_END SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_41CC[13] __attribute__((aligned(4))) = "LIST_END ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_41DC[60] __attribute__((aligned(4))) = "SLOT\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\314\n\203f\201[\203^\203\212\203X"
+    "\203g\202\360\223\307[\202\346]\202\335\202\261\202\335\202\334\202\265\202\275\201B\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4218[39] __attribute__((aligned(8))) = "Done checking the Memory Card in SLOT.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4240[14] __attribute__((aligned(8))) = "CHECK_END GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4250[14] __attribute__((aligned(8))) = "CHECK_END FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4260[14] __attribute__((aligned(8))) = "CHECK_END SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4270[14] __attribute__((aligned(8))) = "CHECK_END ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4280[68] __attribute__((aligned(8))) = "SLOT\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\314\n\203`\203F\203b\203N\202\252["
+    "\202\265]\217I[\202\343\202\244]\227\271[\202\350\202\345]\202\265[\202\244]\202\334\202\265\202"
+    "\275\201B";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_42C4[61] __attribute__((aligned(4))) = "FILE Data deletion on the Memory Card\nin SLOT was cancelled.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4304[15] __attribute__((aligned(4))) = "NODEL_EXIT GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4314[15] __attribute__((aligned(4))) = "NODEL_EXIT FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4324[15] __attribute__((aligned(4))) = "NODEL_EXIT SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4334[15] __attribute__((aligned(4))) = "NODEL_EXIT ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4344[64] __attribute__((aligned(4))) = "SLOT\202\314FILE\203f\201[\203^\202\314\215\355[\202\263\202\255]\217\234[\202\266\202\345]\202"
+    "\360\222\206[\202\277\202\343\202\244]\216~[\202\265]\202\265\202\334\202\265\202\275\201B\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4384[53] __attribute__((aligned(4))) = "1 FILE Data was erased from the Memory Card in SLOT.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_43BC[15] __attribute__((aligned(4))) = "DELETE_END GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_43CC[15] __attribute__((aligned(4))) = "DELETE_END FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_43DC[15] __attribute__((aligned(4))) = "DELETE_END SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_43EC[15] __attribute__((aligned(4))) = "DELETE_END ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_43FC[40] __attribute__((aligned(4))) = "SLOT\202\314FILE\203f\201[\203^\202\360\202P\202\302\217\301[\202\257]\202\265\202\334\202\265"
+    "\202\275\201B\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4424[15] __attribute__((aligned(4))) = "NOW FORMATTING";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4434[15] __attribute__((aligned(4))) = "FORMAT_NOW GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4444[15] __attribute__((aligned(4))) = "FORMAT_NOW FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4454[15] __attribute__((aligned(4))) = "FORMAT_NOW SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4464[15] __attribute__((aligned(4))) = "FORMAT_NOW ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4474[15] __attribute__((aligned(4))) = "NOW FORMATTING";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4484[11] __attribute__((aligned(4))) = "NOW SAVING";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4490[13] __attribute__((aligned(8))) = "SAVE_NOW GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_44A0[13] __attribute__((aligned(8))) = "SAVE_NOW FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_44B0[13] __attribute__((aligned(8))) = "SAVE_NOW SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_44C0[13] __attribute__((aligned(8))) = "SAVE_NOW ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_44D0[11] __attribute__((aligned(8))) = "NOW SAVING";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_44DC[16] __attribute__((aligned(4))) = "NOW MAKING LIST";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_44EC[13] __attribute__((aligned(4))) = "LIST_NOW GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_44FC[13] __attribute__((aligned(4))) = "LIST_NOW FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_450C[13] __attribute__((aligned(4))) = "LIST_NOW SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_451C[13] __attribute__((aligned(4))) = "LIST_NOW ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_452C[16] __attribute__((aligned(4))) = "NOW MAKING LIST";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_453C[13] __attribute__((aligned(4))) = "NOW CHECKING";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_454C[13] __attribute__((aligned(4))) = "LIST_NOW GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_455C[13] __attribute__((aligned(4))) = "LIST_NOW FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_456C[13] __attribute__((aligned(4))) = "LIST_NOW SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_457C[13] __attribute__((aligned(4))) = "LIST_NOW ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_458C[13] __attribute__((aligned(4))) = "NOW CHECKING";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_459C[81] __attribute__((aligned(4))) = "Accessing the Memory Card in SLOT.\nDo not touch the Memory Card or POWER Button.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_45F0[11] __attribute__((aligned(8))) = "ACCESS GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_45FC[11] __attribute__((aligned(4))) = "ACCESS FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4608[11] __attribute__((aligned(8))) = "ACCESS SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4614[11] __attribute__((aligned(4))) = "ACCESS ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4620[104] __attribute__((aligned(8))) = "\203\201\203\202\203\212\201[\203J\201[\203h\202\311\203A\203N\203Z\203X\222\206[\202\277\202"
+    "\343\202\244]\202\305\202\267\201B\n\203\201\203\202\203\212\201[\203J\201[\203h\202\342\223d["
+    "\202\305\202\361]\214\271[\202\260\202\361]\202\311\220G[\202\263\202\355]\202\347\202\310\202"
+    "\242\202\305\202\255\202\276\202\263\202\242\201B\n\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4688[81] __attribute__((aligned(8))) = "Accessing the Memory Card in SLOT.\nDo not touch the Memory Card or POWER Button.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_46DC[11] __attribute__((aligned(4))) = "ACCESS GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_46E8[11] __attribute__((aligned(8))) = "ACCESS FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_46F4[11] __attribute__((aligned(4))) = "ACCESS SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4700[11] __attribute__((aligned(8))) = "ACCESS ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_470C[104] __attribute__((aligned(4))) = "\203\201\203\202\203\212\201[\203J\201[\203h\202\311\203A\203N\203Z\203X\222\206[\202\277\202"
+    "\343\202\244]\202\305\202\267\201B\n\203\201\203\202\203\212\201[\203J\201[\203h\202\342\223d["
+    "\202\305\202\361]\214\271[\202\260\202\361]\202\311\220G[\202\263\202\355]\202\347\202\310\202"
+    "\242\202\305\202\255\202\276\202\263\202\242\201B\n\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4774[44] __attribute__((aligned(4))) = "OK to save FILE to the Memory Card in SLOT\077";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_47A0[15] __attribute__((aligned(8))) = "SAVE_QUERY GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_47B0[15] __attribute__((aligned(8))) = "SAVE_QUERY FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_47C0[15] __attribute__((aligned(8))) = "SAVE_QUERY SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_47D0[15] __attribute__((aligned(8))) = "SAVE_QUERY ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_47E0[44] __attribute__((aligned(8))) = "SLOT\202\311FILE\202\360\203Z\201[\203u\202\265\202\304\202\340\n\202\346\202\353\202\265\202"
+    "\242\202\305\202\267\202\251\201H\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_480C[48] __attribute__((aligned(4))) = "If you start now,\nyou will not be able to save.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_483C[16] __attribute__((aligned(4))) = "CANNOT_SAVE GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_484C[16] __attribute__((aligned(4))) = "CANNOT_SAVE FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_485C[16] __attribute__((aligned(4))) = "CANNOT_SAVE SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_486C[16] __attribute__((aligned(4))) = "CANNOT_SAVE ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_487C[52] __attribute__((aligned(4))) = "\202\261\202\314\202\334\202\334\216n[\202\315\202\266]\202\337\202\275\217\352[\202\316]\215"
+    "\207[\202\240\202\242]\n\203Z\201[\203u\202\305\202\253\202\334\202\271\202\361";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_48B0[152] __attribute__((aligned(8))) = "There are no Memory Cards inserted properly.\nPlease check connections or insert a Memory Card."
+    "\nIf you start now, you will not be able to save the game.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4948[23] __attribute__((aligned(8))) = "CANNOT_SAVE_NOCARD GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4960[23] __attribute__((aligned(8))) = "CANNOT_SAVE_NOCARD FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4978[23] __attribute__((aligned(8))) = "CANNOT_SAVE_NOCARD SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4990[23] __attribute__((aligned(8))) = "CANNOT_SAVE_NOCARD ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_49A8[140] __attribute__((aligned(8))) = "\203\201\203\202\203\212\201[\203J\201[\203h\202\252\214\251[\202\335]\202\302\202\251\202\350"
+    "\202\334\202\271\202\361\201B\n\220\332[\202\271\202\302]\221\261[\202\274\202\255]\202\360\212m"
+    "[\202\251\202\255]\224F[\202\311\202\361]\202\265\202\304\202\255\202\276\202\263\202\242\201B\n"
+    "\202\261\202\314\202\334\202\334\216n[\202\315\202\266]\202\337\202\275\217\352[\202\316]\215"
+    "\207[\202\240\202\242]\n\203Z\201[\203u\202\305\202\253\202\334\202\271\202\361\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4A34[66] __attribute__((aligned(4))) = "The device in SLOT is not supported.\nPlease insert a Memory Card.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4A78[23] __attribute__((aligned(8))) = "CANNOT_SAVE_NOCARD GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4A90[23] __attribute__((aligned(8))) = "CANNOT_SAVE_NOCARD FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4AA8[23] __attribute__((aligned(8))) = "CANNOT_SAVE_NOCARD SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4AC0[23] __attribute__((aligned(8))) = "CANNOT_SAVE_NOCARD ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4AD8[80] __attribute__((aligned(8))) = "\203\201\203\202\203\212\201[\203J\201[\203h\210\310\212O\202\314\202\340\202\314\202\252\214"
+    "\251[\202\335]\202\302\202\251\202\350\202\334\202\265\202\275\201B\n\203\201\203\202\203\212"
+    "\201[\203J\201[\203h\202\360\202\263\202\265\202\304\202\255\202\276\202\263\202\242\201B";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4B28[116] __attribute__((aligned(8))) = "Either Game Data was not loaded\nor the original Memory Card,\nfrom which the Game data was load"
+    "ed,\nhas been removed.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4B9C[4] __attribute__((aligned(4))) = "GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4BA0[4] __attribute__((aligned(8))) = "FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4BA4[4] __attribute__((aligned(4))) = "SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4BA8[4] __attribute__((aligned(8))) = "ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4BAC[188] __attribute__((aligned(4))) = "\203Q\201[\203\200\203f\201[\203^\202\252\203\215\201[\203h\202\263\202\352\202\304\202\242\202"
+    "\310\202\242\202\251\n\203Q\201[\203\200\203f\201[\203^\202\360\203\215\201[\203h\202\265\202"
+    "\275\203\201\203\202\203\212\201[\203J\201[\203h\n\202\305\202\315\202\240\202\350\202\334\202"
+    "\271\202\361\201B(\203Q\201[\203\200\203f\201[\203^\202\314\203Z\201[\203u\201A\n\203\215\201["
+    "\203h\202\315\201A\203I\203v\203V\203\207\203\223\202\314\203\201\203\202\203\212\201[\203J\201["
+    "\203h\n\203\201\203j\203\205\201[\202\251\202\347\211\302[\202\251]\224\\[\202\314\202\244]\202"
+    "\305\202\267\201B)\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4C68[117] __attribute__((aligned(8))) = "Either Game Data was not loaded\nor the original Memory Card,\nfrom which the Game data was load"
+    "ed,\n has been removed.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4CE0[4] __attribute__((aligned(8))) = "GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4CE4[4] __attribute__((aligned(4))) = "FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4CE8[4] __attribute__((aligned(8))) = "SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4CEC[4] __attribute__((aligned(4))) = "ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4CF0[92] __attribute__((aligned(8))) = "\203Q\201[\203\200\203f\201[\203^\202\252\203\215\201[\203h\202\263\202\352\202\304\202\242\202"
+    "\310\202\242\202\251\n\203Q\201[\203\200\203f\201[\203^\202\360\203\215\201[\203h\202\265\202"
+    "\275\203\201\203\202\203\212\201[\203J\201[\203h\n\202\305\202\315\202\240\202\350\202\334\202"
+    "\271\202\361\201B\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4D4C[5] __attribute__((aligned(4))) = "Data";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4D54[9] __attribute__((aligned(4))) = "File GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4D60[9] __attribute__((aligned(8))) = "File FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4D6C[9] __attribute__((aligned(4))) = "File SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4D78[9] __attribute__((aligned(8))) = "File ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4D84[8] __attribute__((aligned(4))) = "\203f\201[\203^\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4D8C[5] __attribute__((aligned(4))) = "Game";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4D94[11] __attribute__((aligned(4))) = "System GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4DA0[11] __attribute__((aligned(8))) = "System FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4DAC[11] __attribute__((aligned(4))) = "System SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4DB8[11] __attribute__((aligned(8))) = "System ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4DC4[8] __attribute__((aligned(4))) = "\203Q\201[\203\200\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4DCC[6] __attribute__((aligned(4))) = "Debug";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4DD4[10] __attribute__((aligned(4))) = "Debug GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4DE0[10] __attribute__((aligned(8))) = "Debug FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4DEC[10] __attribute__((aligned(4))) = "Debug SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4DF8[10] __attribute__((aligned(8))) = "Debug ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4E04[12] __attribute__((aligned(4))) = "\203f\203o\203b\203O\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4E10[7] __attribute__((aligned(8))) = "Replay";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4E18[11] __attribute__((aligned(8))) = "Replay GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4E24[11] __attribute__((aligned(4))) = "Replay FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4E30[11] __attribute__((aligned(8))) = "Replay SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4E3C[11] __attribute__((aligned(4))) = "Replay ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4E48[12] __attribute__((aligned(8))) = "\203\212\203v\203\214\203C\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4E54[7] __attribute__((aligned(4))) = "Emblem";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4E5C[11] __attribute__((aligned(4))) = "Emblem GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4E68[11] __attribute__((aligned(8))) = "Emblem FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4E74[11] __attribute__((aligned(4))) = "Emblem SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4E80[11] __attribute__((aligned(8))) = "Emblem ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4E8C[12] __attribute__((aligned(4))) = "\203G\203\223\203u\203\214\203\200\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4E98[6] __attribute__((aligned(8))) = "Ghost";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4EA0[10] __attribute__((aligned(8))) = "Ghost GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4EAC[10] __attribute__((aligned(4))) = "Ghost FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4EB8[10] __attribute__((aligned(8))) = "Ghost SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4EC4[10] __attribute__((aligned(4))) = "Ghost ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4ED0[12] __attribute__((aligned(8))) = "\203S\201[\203X\203g\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4EDC[7] __attribute__((aligned(4))) = "Garage";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4EE4[11] __attribute__((aligned(4))) = "Custom GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4EF0[11] __attribute__((aligned(8))) = "Custom FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4EFC[11] __attribute__((aligned(4))) = "Custom SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4F08[11] __attribute__((aligned(8))) = "Custom ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4F14[12] __attribute__((aligned(4))) = "\203K\203\214\201[\203W\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4F20[5] __attribute__((aligned(8))) = "Game";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4F28[9] __attribute__((aligned(8))) = "Game GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4F34[9] __attribute__((aligned(4))) = "Game FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4F40[9] __attribute__((aligned(8))) = "Game SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4F4C[9] __attribute__((aligned(4))) = "Game ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4F58[8] __attribute__((aligned(8))) = "\203Q\201[\203\200\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_4F60[323] __attribute__((aligned(8))) = "There is not enough free space on the Memory Card\nin %s to save all types of new files.\nExisti"
+    "ng F-ZERO GX files may be erased or overwritten.\n(To manage files on the Memory Card, please go"
+    " to\nthe Memory Card management screen.) In order to save\na new file, the following number of f"
+    "ree files\nand blocks must be available:";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_50A4[4] __attribute__((aligned(4))) = "GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_50A8[4] __attribute__((aligned(8))) = "FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_50AC[4] __attribute__((aligned(4))) = "SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_50B0[4] __attribute__((aligned(8))) = "ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_50B4[368] __attribute__((aligned(4))) = "\202\242\202\255\202\302\202\251\202\314\203f\201[\203^\202\315\203Z\201[\203u\202\305\202\253"
+    "\202\334\202\271\202\361\201B\n%s\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\311"
+    "\213\363[\202\240]\202\253\227e\227\312\202\252\202\310\202\242\202\251\201A\n\203t\203@\203C"
+    "\203\213\220\224[\202\267\202\244]\202\314\220\247[\202\271\202\242]\214\300[\202\260\202\361]"
+    "\202\360\211z[\202\261]\202\246\202\304\202\265\202\334\202\242\202\334\202\267\201B\n\203Z\201["
+    "\203u\202\267\202\351\202\311\202\315\217\255[\202\267\202\255]\202\310\202\255\202\306\202\340"
+    "\210\310[\202\242]\211\272[\202\251]\202\314\213\363[\202\240]\202\253\227e[\202\346\202\244 ]"
+    "\227\312[\202\350\202\345\202\244]\202\252\225K[\202\320\202\302]\227v[\202\346\202\244]\202\305"
+    "\202\267\201B\n(\203\201\203\202\203\212\201[\203J\201[\203h\202\314\223\340[\202\310\202\242]"
+    "\227e[\202\346\202\244]\202\360\220\256[\202\271\202\242]\227\235[\202\350]\202\267\202\351\202"
+    "\311\202\315\201A\n\226{[\202\331\202\361]\221\314[\202\275\202\242]\202\314\203\201\203\202\203"
+    "\212\201[\203J\201[\203h\211\346[\202\252]\226\312[\202\337\202\361]\202\305\215s[\202\250\202"
+    "\261]\202\310\202\301\202\304\202\255\202\276\202\263\202\242)\n";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5224[67] __attribute__((aligned(4))) = "/bcffa0a0/1/bcffffff/ File and /bcffa0a0/        /bcffffff/ Blocks";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5268[4] __attribute__((aligned(8))) = "GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_526C[4] __attribute__((aligned(4))) = "FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5270[4] __attribute__((aligned(8))) = "SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5274[4] __attribute__((aligned(4))) = "ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5278[68] __attribute__((aligned(8))) = "\203t\203@\203C\203\213/bcffa0a0/1/bcffffff/\202\302 \202\306/bcffa0a0/%4d/bcffffff/\203u\203"
+    "\215\203b\203N\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_52BC[68] __attribute__((aligned(4))) = "/bcffa0a0/1/bcffffff/ File and /bcffa0a0/\202R\201`%2d/bcffffff/ Blocks\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5300[4] __attribute__((aligned(8))) = "GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5304[4] __attribute__((aligned(4))) = "FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5308[4] __attribute__((aligned(8))) = "SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_530C[4] __attribute__((aligned(4))) = "ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5310[72] __attribute__((aligned(8))) = "\203t\203@\203C\203\213/bcffa0a0/1/bcffffff/\202\302 \202\306/bcffa0a0/\202R\201`%2d/bcffffff/"
+    "\203u\203\215\203b\203N\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5358[53] __attribute__((aligned(8))) = "No Memory Card in SLOT.\nPlease insert a Memory Card.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5390[4] __attribute__((aligned(8))) = "GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5394[4] __attribute__((aligned(4))) = "FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5398[4] __attribute__((aligned(8))) = "SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_539C[4] __attribute__((aligned(4))) = "ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_53A0[88] __attribute__((aligned(8))) = "\203\201\203\202\203\212\201[\203J\201[\203h\202\252\214\251[\202\335]\202\302\202\251\202\350"
+    "\202\334\202\271\202\361\201B\n\220\332[\202\271\202\302]\221\261[\202\274\202\255]\202\360\212m"
+    "[\202\251\202\255]\224F[\202\311\202\361]\202\265\202\304\202\255\202\276\202\263\202\242\201B"
+    "\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_53F8[5] __attribute__((aligned(8))) = "SAVE";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5400[4] __attribute__((aligned(8))) = "GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5404[4] __attribute__((aligned(4))) = "FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5408[4] __attribute__((aligned(8))) = "SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_540C[4] __attribute__((aligned(4))) = "ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5410[8] __attribute__((aligned(8))) = "\203Z\201[\203u\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5418[5] __attribute__((aligned(8))) = "LOAD";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5420[4] __attribute__((aligned(8))) = "GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5424[4] __attribute__((aligned(4))) = "FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5428[4] __attribute__((aligned(8))) = "SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_542C[4] __attribute__((aligned(4))) = "ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5430[8] __attribute__((aligned(8))) = "\203\215\201[\203h\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5438[5] __attribute__((aligned(8))) = "COPY";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5440[4] __attribute__((aligned(8))) = "GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5444[4] __attribute__((aligned(4))) = "FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5448[4] __attribute__((aligned(8))) = "SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_544C[4] __attribute__((aligned(4))) = "ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5450[8] __attribute__((aligned(8))) = "\203R\203s\201[\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5458[6] __attribute__((aligned(8))) = "ERASE";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5460[4] __attribute__((aligned(8))) = "GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5464[4] __attribute__((aligned(4))) = "FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5468[4] __attribute__((aligned(8))) = "SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_546C[4] __attribute__((aligned(4))) = "ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5470[8] __attribute__((aligned(8))) = "\202\257 \202\267\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5478[52] __attribute__((aligned(8))) = "This Memory Card cannot be used.\nPlease remove it. ";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_54AC[4] __attribute__((aligned(4))) = "GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_54B0[4] __attribute__((aligned(8))) = "FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_54B4[4] __attribute__((aligned(4))) = "SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_54B8[4] __attribute__((aligned(8))) = "ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_54BC[84] __attribute__((aligned(4))) = "\202\261\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\315\216g[\202\265]\227p[\202"
+    "\346\202\244]\202\305\202\253\202\334\202\271\202\361\201B\n\203\201\203\202\203\212\201[\203J"
+    "\201[\203h\202\360\224\262[\202\312]\202\242\202\304\202\255\202\276\202\263\202\242\201B";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5510[83] __attribute__((aligned(8))) = "Accessing the Memory Card in Slot A. Do not touch the Memory Card or POWER Button.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5564[4] __attribute__((aligned(4))) = "GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5568[4] __attribute__((aligned(8))) = "FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_556C[4] __attribute__((aligned(4))) = "SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5570[4] __attribute__((aligned(8))) = "ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5574[76] __attribute__((aligned(4))) = "\203\201\203\202\203\212\201[\203J\201[\203h\202\311\203A\203N\203Z\203X\222\206\202\305\202\267"
+    "\201B\203\201\203\202\203\212\201[\203J\201[\203h\202\342\223d\214\271\202\311\220G\202\347\202"
+    "\310\202\242\202\305\202\255\202\276\202\263\202\242\201B\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_55C0[7] __attribute__((aligned(8))) = "Saving";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_55C8[4] __attribute__((aligned(8))) = "GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_55CC[4] __attribute__((aligned(4))) = "FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_55D0[4] __attribute__((aligned(8))) = "SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_55D4[4] __attribute__((aligned(4))) = "ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_55D8[12] __attribute__((aligned(8))) = "\203Z\201[\203u\222\206\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_55E4[64] __attribute__((aligned(4))) = "Some F-ZERO GX files on\nthe Memory Card in SLOT are corrupted.\n";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5624[18] __attribute__((aligned(4))) = "LIST_NO_EXIST GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5638[18] __attribute__((aligned(8))) = "LIST_NO_EXIST FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_564C[18] __attribute__((aligned(4))) = "LIST_NO_EXIST SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5660[18] __attribute__((aligned(8))) = "LIST_NO_EXIST ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5674[220] __attribute__((aligned(4))) = "SLOT\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\311\202\315\n\203f\201[\203^\202"
+    "\2521\202\302\202\340\202\240\202\350\202\334\202\271\202\361\202\305\202\265\202\275\201B\n("
+    "\202\261\202\355\202\352\202\275\203f\201[\203^\202\252\221\266[\202\273\202\361]\215\335[\202"
+    "\264\202\242]\202\265\202\304\202\242\202\334\202\267\201B\n\203\201\203\202\203\212\201[\203J"
+    "\201[\203h\202\314\223\340[\202\310\202\242]\227e[\202\346\202\244]\202\360\220\256[\202\271\202"
+    "\242]\227\235[\202\350]\202\267\202\351\202\311\202\315\201A\n\226{[\202\331\202\361]\221\314["
+    "\202\275\202\242]\202\314\203\201\203\202\203\212\201[\203J\201[\203h\211\346\226\312\202\305"
+    "\202\250\202\261\202\310\202\301\202\304\202\255\202\276\202\263\202\242)";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5750[121] __attribute__((aligned(8))) = "The data list on the Memory Card in SLOT\nhas been read. (Some F-ZERO GX files on\nthe Memory Ca"
+    "rd in SLOT are corrupted.)";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_57CC[13] __attribute__((aligned(4))) = "LIST_END GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_57DC[13] __attribute__((aligned(4))) = "LIST_END FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_57EC[13] __attribute__((aligned(4))) = "LIST_END SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_57FC[13] __attribute__((aligned(4))) = "LIST_END ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_580C[224] __attribute__((aligned(4))) = "SLOT\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\314\n\203f\201[\203^\203\212\203X"
+    "\203g\202\360\223\307[\202\346]\202\335\202\261\202\335\202\334\202\265\202\275\201B\n(\202\261"
+    "\202\355\202\352\202\275\203f\201[\203^\202\252\221\266[\202\273\202\361]\215\335[\202\264\202"
+    "\242]\202\265\202\304\202\242\202\334\202\267\201B\n\203\201\203\202\203\212\201[\203J\201[\203h"
+    "\202\314\223\340[\202\310\202\242]\227e[\202\346\202\244]\202\360\220\256[\202\271\202\242]\227"
+    "\235[\202\350]\202\267\202\351\202\311\202\315\201A\n\226{[\202\331\202\361]\221\314[\202\275"
+    "\202\242]\202\314\203\201\203\202\203\212\201[\203J\201[\203h\211\346\226\312\202\305\202\250"
+    "\202\261\202\310\202\301\202\304\202\255\202\276\202\263\202\242)\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_58EC[111] __attribute__((aligned(4))) = "Some F-ZERO GX files on\nthe Memory Card in SLOT are corrupted.\nPlease go to Options to manage "
+    "the Memory Card.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_595C[18] __attribute__((aligned(4))) = "LIST_NO_EXIST GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5970[18] __attribute__((aligned(8))) = "LIST_NO_EXIST FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5984[18] __attribute__((aligned(4))) = "LIST_NO_EXIST SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5998[18] __attribute__((aligned(8))) = "LIST_NO_EXIST ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_8_data_59AC[4] __attribute__((aligned(4))) = {
+    0x00U, 0x00U, 0x00U, 0x00U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_59B0[166] __attribute__((aligned(8))) = "The data list on the Memory Card in SLOT\nhas been read. (Some F-ZERO GX files on\nthe Memory Ca"
+    "rd in SLOT are corrupted.\nPlease go to Options manage the Memory Card.)";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5A58[13] __attribute__((aligned(8))) = "LIST_END GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5A68[13] __attribute__((aligned(8))) = "LIST_END FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5A78[13] __attribute__((aligned(8))) = "LIST_END SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5A88[13] __attribute__((aligned(8))) = "LIST_END ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_8_data_5A98[4] __attribute__((aligned(8))) = {
+    0x00U, 0x00U, 0x00U, 0x00U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5A9C[168] __attribute__((aligned(4))) = "No Memory Card found in Slot A. Please re-insert the\noriginal Memory Card from which the Game d"
+    "ata was loaded.\n\203\237 Button \201c Retry\n\203\240 Button \201c Continue without saving\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5B44[13] __attribute__((aligned(4))) = "LIST_END GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5B54[13] __attribute__((aligned(4))) = "LIST_END FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5B64[13] __attribute__((aligned(4))) = "LIST_END SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5B74[13] __attribute__((aligned(4))) = "LIST_END ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5B84[184] __attribute__((aligned(4))) = "\203X\203\215\203b\203g\202`\202\314\203\201\203\202\203\212\201[\203J\201[\203h\202\252\224\262"
+    "[\202\312]\202\251\202\352\202\304\202\242\202\334\202\267\201B\n\203Q\201[\203\200\203f\201["
+    "\203^\202\360\203\215\201[\203h\202\265\202\275\203\201\203\202\203\212\201[\203J\201[\203h\202"
+    "\360\n\203X\203\215\203b\203g\202`\202\311\202\263\202\265\202\304\203\237\203{\203^\203\223\202"
+    "\360\211\237[\202\250]\202\265\202\304\202\255\202\276\202\263\202\242\201B\n\203L\203\203\203"
+    "\223\203Z\203\213\202\267\202\351\202\311\202\315\203\240\202\360\211\237[\202\250]\202\265\202"
+    "\304\202\255\202\276\202\263\202\242\201B\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5C3C[38] __attribute__((aligned(4))) = "Are you sure you\nwant to delete this\077";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5C64[13] __attribute__((aligned(4))) = "LIST_END GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5C74[13] __attribute__((aligned(4))) = "LIST_END FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5C84[13] __attribute__((aligned(4))) = "LIST_END SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5C94[13] __attribute__((aligned(4))) = "LIST_END ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5CA4[48] __attribute__((aligned(4))) = "\226{[\202\331\202\361]\223\226[\202\306\202\244]\202\311\217\301[\202\257]\202\265\202\304\202"
+    "\340\n\202\346\202\353\202\265\202\242\202\305\202\267\202\251\077\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5CD4[70] __attribute__((aligned(4))) = "The device in SLOT is not a Memory Card.\nPlease insert a Memory Card.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5D1C[13] __attribute__((aligned(4))) = "LIST_END GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5D2C[13] __attribute__((aligned(4))) = "LIST_END FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5D3C[13] __attribute__((aligned(4))) = "LIST_END SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5D4C[13] __attribute__((aligned(4))) = "LIST_END ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5D5C[104] __attribute__((aligned(4))) = "\203\201\203\202\203\212\201[\203J\201[\203h\210\310\212O\202\314\202\340\202\314\202\252\214"
+    "\251[\202\335]\202\302\202\251\202\350\202\334\202\265\202\275\201B\n\202\261\202\314\202\334"
+    "\202\334\202\305\202\315\215\354[\202\263\202\254]\213\306[\202\345\202\244]\202\252\225\333["
+    "\202\331]\221\266[\202\274\202\361]\202\305\202\253\202\334\202\271\202\361\201B";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5DC4[53] __attribute__((aligned(4))) = "Created Emblems cannot be\nsaved to this Memory Card.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5DFC[13] __attribute__((aligned(4))) = "LIST_END GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5E0C[13] __attribute__((aligned(4))) = "LIST_END FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5E1C[13] __attribute__((aligned(4))) = "LIST_END SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5E2C[13] __attribute__((aligned(4))) = "LIST_END ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5E3C[72] __attribute__((aligned(4))) = "\202\261\202\314\202\334\202\334\202\305\202\315\203G\203\223\203u\203\214\203\200\202\314\215"
+    "\354[\202\263\202\254]\213\306[\202\345\202\244]\202\252\225\333[\202\331]\221\266[\202\274\202"
+    "\361]\202\305\202\253\202\334\202\271\202\361\201B\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5E84[42] __attribute__((aligned(4))) = "The FILE Data exists in SLOT. \nOverwrite\077";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5EB0[20] __attribute__((aligned(8))) = "OVERWRITE_QUERY GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5EC4[20] __attribute__((aligned(4))) = "OVERWRITE_QUERY FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5ED8[20] __attribute__((aligned(8))) = "OVERWRITE_QUERY SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5EEC[20] __attribute__((aligned(4))) = "OVERWRITE_QUERY ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5F00[48] __attribute__((aligned(8))) = "    \217\343[\202\244\202\355]\217\221[\202\252]\202\253\202\265\202\304\202\340\202\346\202\353"
+    "\202\265\202\242\202\305\202\267\202\251\201H    \000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5F30[18] __attribute__((aligned(8))) = "Create a New File";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5F44[15] __attribute__((aligned(4))) = "NEW_CREATE GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5F54[15] __attribute__((aligned(4))) = "NEW_CREATE FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5F64[15] __attribute__((aligned(4))) = "NEW_CREATE SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5F74[15] __attribute__((aligned(4))) = "NEW_CREATE ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5F84[12] __attribute__((aligned(4))) = "\220V\213K\215\354\220\254\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5F90[19] __attribute__((aligned(8))) = "Create a new file.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5FA4[18] __attribute__((aligned(4))) = "NEW_CREATE_DO GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5FB8[18] __attribute__((aligned(8))) = "NEW_CREATE_DO FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5FCC[18] __attribute__((aligned(4))) = "NEW_CREATE_DO SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5FE0[18] __attribute__((aligned(8))) = "NEW_CREATE_DO ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_5FF4[32] __attribute__((aligned(4))) = "\220V\213K\202\311\203t\203@\203C\203\213\202\360\215\354\220\254\202\265\202\334\202\267\201B"
+    "\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_6014[26] __attribute__((aligned(4))) = "Cannot create a new file.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_6030[20] __attribute__((aligned(8))) = "NEW_CREATE_DONT GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_6044[20] __attribute__((aligned(4))) = "NEW_CREATE_DONT FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_6058[20] __attribute__((aligned(8))) = "NEW_CREATE_DONT SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_606C[20] __attribute__((aligned(4))) = "NEW_CREATE_DONT ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_6080[36] __attribute__((aligned(8))) = "\220V\213K\202\311\203t\203@\203C\203\213\202\360\215\354\220\254\202\305\202\253\202\334\202"
+    "\271\202\361\201B\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_60A4[32] __attribute__((aligned(4))) = "%d block(s) of space available.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_60C4[15] __attribute__((aligned(4))) = "FREE_SPACE GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_60D4[15] __attribute__((aligned(4))) = "FREE_SPACE FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_60E4[15] __attribute__((aligned(4))) = "FREE_SPACE SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_60F4[15] __attribute__((aligned(4))) = "FREE_SPACE ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_6104[20] __attribute__((aligned(4))) = "\213\363\202\253\227e\227\312 %d\203u\203\215\203b\203N";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_6118[49] __attribute__((aligned(8))) = "%d block(s) needed. (%d free block(s) available)";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_614C[20] __attribute__((aligned(4))) = "FREE_NEED_SPACE GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_6160[20] __attribute__((aligned(8))) = "FREE_NEED_SPACE FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_6174[20] __attribute__((aligned(4))) = "FREE_NEED_SPACE SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_6188[20] __attribute__((aligned(8))) = "FREE_NEED_SPACE ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_619C[36] __attribute__((aligned(4))) = "%d\203u\203\215\203b\203N\225K\227v(\213\363\202\253\227e\227\312 %d\203u\203\215\203b\203N)";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_61C0[13] __attribute__((aligned(8))) = "Corrupt File";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_61D0[16] __attribute__((aligned(8))) = "BROKEN_FILE GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_61E0[16] __attribute__((aligned(8))) = "BROKEN_FILE FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_61F0[16] __attribute__((aligned(8))) = "BROKEN_FILE SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_6200[16] __attribute__((aligned(8))) = "BROKEN_FILE ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_6210[16] __attribute__((aligned(8))) = "\211\363\202\352\202\275\203t\203@\203C\203\213\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_6220[44] __attribute__((aligned(8))) = "This file is corrupted and must be deleted.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_624C[20] __attribute__((aligned(4))) = "BROKEN_FILE_DEL GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_6260[20] __attribute__((aligned(8))) = "BROKEN_FILE_DEL FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_6274[20] __attribute__((aligned(4))) = "BROKEN_FILE_DEL SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_6288[20] __attribute__((aligned(8))) = "BROKEN_FILE_DEL ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_629C[52] __attribute__((aligned(4))) = "\202\261\202\314\203t\203@\203C\203\213\202\315\211\363\202\352\202\304\202\242\202\351\202\314"
+    "\202\305\217\301\202\267\225K\227v\202\252\202\240\202\350\202\334\202\267\201B\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Obj_8_data_62D0 lbl_8_data_62D0 __attribute__((aligned(8))) = {
+    {{(const char *)((u8 *)&lbl_8_data_778), (const char *)((u8 *)&lbl_8_data_7C8), (const char *)((u8 *)&lbl_8_data_7D4), (const char *)((u8 *)&lbl_8_data_7E0), (const char *)((u8 *)&lbl_8_data_7EC), (const char *)((u8 *)&lbl_8_data_7F8)}, {(const char *)((u8 *)&lbl_8_data_864), (const char *)((u8 *)&lbl_8_data_8A8), (const char *)((u8 *)&lbl_8_data_8B8), (const char *)((u8 *)&lbl_8_data_8C8), (const char *)((u8 *)&lbl_8_data_8D8), (const char *)((u8 *)&lbl_8_data_8E8)}, {(const char *)((u8 *)&lbl_8_data_948), (const char *)((u8 *)&lbl_8_data_9B8), (const char *)((u8 *)&lbl_8_data_9C4), (const char *)((u8 *)&lbl_8_data_9D0), (const char *)((u8 *)&lbl_8_data_9DC), (const char *)((u8 *)&lbl_8_data_9E8)}, {(const char *)((u8 *)&lbl_8_data_AD0), (const char *)((u8 *)&lbl_8_data_B28), (const char *)((u8 *)&lbl_8_data_B34), (const char *)((u8 *)&lbl_8_data_B40), (const char *)((u8 *)&lbl_8_data_B4C), (const char *)((u8 *)&lbl_8_data_B58)}, {(const char *)((u8 *)&lbl_8_data_BC0), (const char *)((u8 *)&lbl_8_data_BF4), (const char *)((u8 *)&lbl_8_data_C0C), (const char *)((u8 *)&lbl_8_data_C24), (const char *)((u8 *)&lbl_8_data_C3C), (const char *)((u8 *)&lbl_8_data_C54)}, {(const char *)((u8 *)&lbl_8_data_C7C), (const char *)((u8 *)&lbl_8_data_CAC), (const char *)((u8 *)&lbl_8_data_CC4), (const char *)((u8 *)&lbl_8_data_CDC), (const char *)((u8 *)&lbl_8_data_CF4), (const char *)((u8 *)&lbl_8_data_D0C)}, {(const char *)((u8 *)&lbl_8_data_D34), (const char *)((u8 *)&lbl_8_data_D64), (const char *)((u8 *)&lbl_8_data_D7C), (const char *)((u8 *)&lbl_8_data_D94), (const char *)((u8 *)&lbl_8_data_DAC), (const char *)((u8 *)&lbl_8_data_DC4)}, {(const char *)((u8 *)&lbl_8_data_DF4), (const char *)((u8 *)&lbl_8_data_E24), (const char *)((u8 *)&lbl_8_data_E40), (const char *)((u8 *)&lbl_8_data_E5C), (const char *)((u8 *)&lbl_8_data_E78), (const char *)((u8 *)&lbl_8_data_E94)}, {(const char *)((u8 *)&lbl_8_data_EBC), (const char *)((u8 *)&lbl_8_data_EF0), (const char *)((u8 *)&lbl_8_data_F0C), (const char *)((u8 *)&lbl_8_data_F28), (const char *)((u8 *)&lbl_8_data_F44), (const char *)((u8 *)&lbl_8_data_F60)}, {(const char *)((u8 *)&lbl_8_data_F8C), (const char *)((u8 *)&lbl_8_data_FD0), (const char *)((u8 *)&lbl_8_data_FF0), (const char *)((u8 *)&lbl_8_data_1010), (const char *)((u8 *)&lbl_8_data_1030), (const char *)((u8 *)&lbl_8_data_1050)}, {(const char *)((u8 *)&lbl_8_data_1094), (const char *)((u8 *)&lbl_8_data_10D8), (const char *)((u8 *)&lbl_8_data_10F8), (const char *)((u8 *)&lbl_8_data_1118), (const char *)((u8 *)&lbl_8_data_1138), (const char *)((u8 *)&lbl_8_data_1158)}, {(const char *)((u8 *)&lbl_8_data_119C), (const char *)((u8 *)&lbl_8_data_11CC), (const char *)((u8 *)&lbl_8_data_11EC), (const char *)((u8 *)&lbl_8_data_120C), (const char *)((u8 *)&lbl_8_data_122C), (const char *)((u8 *)&lbl_8_data_124C)}, {(const char *)((u8 *)&lbl_8_data_127C), (const char *)((u8 *)&lbl_8_data_12C0), (const char *)((u8 *)&lbl_8_data_12E0), (const char *)((u8 *)&lbl_8_data_1300), (const char *)((u8 *)&lbl_8_data_1320), (const char *)((u8 *)&lbl_8_data_1340)}, {(const char *)((u8 *)&lbl_8_data_1384), (const char *)((u8 *)&lbl_8_data_13C8), (const char *)((u8 *)&lbl_8_data_13E8), (const char *)((u8 *)&lbl_8_data_1408), (const char *)((u8 *)&lbl_8_data_1428), (const char *)((u8 *)&lbl_8_data_1448)}, {(const char *)((u8 *)&lbl_8_data_148C), (const char *)((u8 *)&lbl_8_data_14AC), (const char *)((u8 *)&lbl_8_data_14BC), (const char *)((u8 *)&lbl_8_data_14CC), (const char *)((u8 *)&lbl_8_data_14DC), (const char *)((u8 *)&lbl_8_data_14EC)}, {(const char *)((u8 *)&lbl_8_data_1508), (const char *)((u8 *)&lbl_8_data_151C), (const char *)((u8 *)&lbl_8_data_152C), (const char *)((u8 *)&lbl_8_data_153C), (const char *)((u8 *)&lbl_8_data_154C), (const char *)((u8 *)&lbl_8_data_155C)}, {(const char *)((u8 *)&lbl_8_data_156C), (const char *)((u8 *)&lbl_8_data_15A0), (const char *)((u8 *)&lbl_8_data_15B8), (const char *)((u8 *)&lbl_8_data_15D0), (const char *)((u8 *)&lbl_8_data_15E8), (const char *)((u8 *)&lbl_8_data_1600)}, {(const char *)((u8 *)&lbl_8_data_1634), (const char *)((u8 *)&lbl_8_data_1668), (const char *)((u8 *)&lbl_8_data_1680), (const char *)((u8 *)&lbl_8_data_1698), (const char *)((u8 *)&lbl_8_data_16B0), (const char *)((u8 *)&lbl_8_data_16C8)}, {(const char *)((u8 *)&lbl_8_data_16FC), (const char *)((u8 *)&lbl_8_data_171C), (const char *)((u8 *)&lbl_8_data_1734), (const char *)((u8 *)&lbl_8_data_174C), (const char *)((u8 *)&lbl_8_data_1764), (const char *)((u8 *)&lbl_8_data_177C)}, {(const char *)((u8 *)&lbl_8_data_17A0), (const char *)((u8 *)&lbl_8_data_17D4), (const char *)((u8 *)&lbl_8_data_17F0), (const char *)((u8 *)&lbl_8_data_180C), (const char *)((u8 *)&lbl_8_data_1828), (const char *)((u8 *)&lbl_8_data_1844)}, {(const char *)((u8 *)&lbl_8_data_1874), (const char *)((u8 *)&lbl_8_data_18AC), (const char *)((u8 *)&lbl_8_data_18C8), (const char *)((u8 *)&lbl_8_data_18E4), (const char *)((u8 *)&lbl_8_data_1900), (const char *)((u8 *)&lbl_8_data_191C)}, {(const char *)((u8 *)&lbl_8_data_1954), (const char *)((u8 *)&lbl_8_data_1994), (const char *)((u8 *)&lbl_8_data_19B4), (const char *)((u8 *)&lbl_8_data_19D4), (const char *)((u8 *)&lbl_8_data_19F4), (const char *)((u8 *)&lbl_8_data_1A14)}, {(const char *)((u8 *)&lbl_8_data_1A54), (const char *)((u8 *)&lbl_8_data_1A90), (const char *)((u8 *)&lbl_8_data_1AB0), (const char *)((u8 *)&lbl_8_data_1AD0), (const char *)((u8 *)&lbl_8_data_1AF0), (const char *)((u8 *)&lbl_8_data_1B10)}, {(const char *)((u8 *)&lbl_8_data_1B50), (const char *)((u8 *)&lbl_8_data_1B8C), (const char *)((u8 *)&lbl_8_data_1BAC), (const char *)((u8 *)&lbl_8_data_1BCC), (const char *)((u8 *)&lbl_8_data_1BEC), (const char *)((u8 *)&lbl_8_data_1C0C)}, {(const char *)((u8 *)&lbl_8_data_1C50), (const char *)((u8 *)&lbl_8_data_1C90), (const char *)((u8 *)&lbl_8_data_1CB0), (const char *)((u8 *)&lbl_8_data_1CD0), (const char *)((u8 *)&lbl_8_data_1CF0), (const char *)((u8 *)&lbl_8_data_1D10)}, {(const char *)((u8 *)&lbl_8_data_1D4C), (const char *)((u8 *)&lbl_8_data_1D8C), (const char *)((u8 *)&lbl_8_data_1DAC), (const char *)((u8 *)&lbl_8_data_1DCC), (const char *)((u8 *)&lbl_8_data_1DEC), (const char *)((u8 *)&lbl_8_data_1E0C)}, {(const char *)((u8 *)&lbl_8_data_1E4C), (const char *)((u8 *)&lbl_8_data_1E78), (const char *)((u8 *)&lbl_8_data_1E90), (const char *)((u8 *)&lbl_8_data_1EA8), (const char *)((u8 *)&lbl_8_data_1EC0), (const char *)((u8 *)&lbl_8_data_1ED8)}, {(const char *)((u8 *)&lbl_8_data_1F04), (const char *)((u8 *)&lbl_8_data_1F60), (const char *)((u8 *)&lbl_8_data_1F78), (const char *)((u8 *)&lbl_8_data_1F90), (const char *)((u8 *)&lbl_8_data_1FA8), (const char *)((u8 *)&lbl_8_data_1FC0)}, {(const char *)((u8 *)&lbl_8_data_202C), (const char *)((u8 *)&lbl_8_data_205C), (const char *)((u8 *)&lbl_8_data_206C), (const char *)((u8 *)&lbl_8_data_207C), (const char *)((u8 *)&lbl_8_data_208C), (const char *)((u8 *)&lbl_8_data_209C)}, {(const char *)((u8 *)&lbl_8_data_20D4), (const char *)((u8 *)&lbl_8_data_2128), (const char *)((u8 *)&lbl_8_data_213C), (const char *)((u8 *)&lbl_8_data_2150), (const char *)((u8 *)&lbl_8_data_2164), (const char *)((u8 *)&lbl_8_data_2178)}, {(const char *)((u8 *)&lbl_8_data_21C0), (const char *)((u8 *)&lbl_8_data_2204), (const char *)((u8 *)&lbl_8_data_2214), (const char *)((u8 *)&lbl_8_data_2224), (const char *)((u8 *)&lbl_8_data_2234), (const char *)((u8 *)&lbl_8_data_2244)}, {(const char *)((u8 *)&lbl_8_data_2288), (const char *)((u8 *)&lbl_8_data_22C0), (const char *)((u8 *)&lbl_8_data_22D4), (const char *)((u8 *)&lbl_8_data_22E8), (const char *)((u8 *)&lbl_8_data_22FC), (const char *)((u8 *)&lbl_8_data_2310)}, {(const char *)((u8 *)&lbl_8_data_2354), (const char *)((u8 *)&lbl_8_data_238C), (const char *)((u8 *)&lbl_8_data_239C), (const char *)((u8 *)&lbl_8_data_23AC), (const char *)((u8 *)&lbl_8_data_23BC), (const char *)((u8 *)&lbl_8_data_23CC)}, {(const char *)((u8 *)&lbl_8_data_2410), (const char *)((u8 *)&lbl_8_data_2470), (const char *)((u8 *)&lbl_8_data_2480), (const char *)((u8 *)&lbl_8_data_2490), (const char *)((u8 *)&lbl_8_data_24A0), (const char *)((u8 *)&lbl_8_data_24B0)}, {(const char *)((u8 *)&lbl_8_data_2508), (const char *)((u8 *)&lbl_8_data_2544), (const char *)((u8 *)&lbl_8_data_2554), (const char *)((u8 *)&lbl_8_data_2564), (const char *)((u8 *)&lbl_8_data_2574), (const char *)((u8 *)&lbl_8_data_2584)}, {(const char *)((u8 *)&lbl_8_data_25DC), (const char *)((u8 *)&lbl_8_data_263C), (const char *)((u8 *)&lbl_8_data_2650), (const char *)((u8 *)&lbl_8_data_2664), (const char *)((u8 *)&lbl_8_data_2678), (const char *)((u8 *)&lbl_8_data_268C)}, {(const char *)((u8 *)&lbl_8_data_26F8), (const char *)((u8 *)&lbl_8_data_2720), (const char *)((u8 *)&lbl_8_data_2734), (const char *)((u8 *)&lbl_8_data_2748), (const char *)((u8 *)&lbl_8_data_275C), (const char *)((u8 *)&lbl_8_data_2770)}, {(const char *)((u8 *)&lbl_8_data_27AC), (const char *)((u8 *)&lbl_8_data_27B4), (const char *)((u8 *)&lbl_8_data_27C0), (const char *)((u8 *)&lbl_8_data_27CC), (const char *)((u8 *)&lbl_8_data_27D8), (const char *)((u8 *)&lbl_8_data_27E4)}, {(const char *)((u8 *)&lbl_8_data_27F0), (const char *)((u8 *)&lbl_8_data_27F8), (const char *)((u8 *)&lbl_8_data_2804), (const char *)((u8 *)&lbl_8_data_2810), (const char *)((u8 *)&lbl_8_data_281C), (const char *)((u8 *)&lbl_8_data_2828)}, {(const char *)((u8 *)&lbl_8_data_2834), (const char *)((u8 *)&lbl_8_data_2838), (const char *)((u8 *)&lbl_8_data_2840), (const char *)((u8 *)&lbl_8_data_2848), (const char *)((u8 *)&lbl_8_data_2850), (const char *)((u8 *)&lbl_8_data_2858)}, {(const char *)((u8 *)&lbl_8_data_2860), (const char *)((u8 *)&lbl_8_data_2864), (const char *)((u8 *)&lbl_8_data_286C), (const char *)((u8 *)&lbl_8_data_2874), (const char *)((u8 *)&lbl_8_data_287C), (const char *)((u8 *)&lbl_8_data_2884)}, {(const char *)((u8 *)&lbl_8_data_288C), (const char *)((u8 *)&lbl_8_data_28C8), (const char *)((u8 *)&lbl_8_data_28DC), (const char *)((u8 *)&lbl_8_data_28F0), (const char *)((u8 *)&lbl_8_data_2904), (const char *)((u8 *)&lbl_8_data_2918)}, {(const char *)((u8 *)&lbl_8_data_2958), (const char *)((u8 *)&lbl_8_data_2AE8), (const char *)((u8 *)&lbl_8_data_2AF4), (const char *)((u8 *)&lbl_8_data_2B00), (const char *)((u8 *)&lbl_8_data_2B0C), (const char *)((u8 *)&lbl_8_data_2B18)}, {(const char *)((u8 *)&lbl_8_data_2D68), (const char *)((u8 *)&lbl_8_data_2E4C), (const char *)((u8 *)&lbl_8_data_2E58), (const char *)((u8 *)&lbl_8_data_2E64), (const char *)((u8 *)&lbl_8_data_2E70), (const char *)((u8 *)&lbl_8_data_2E7C)}, {(const char *)((u8 *)&lbl_8_data_2FD8), (const char *)((u8 *)&lbl_8_data_3168), (const char *)((u8 *)&lbl_8_data_3178), (const char *)((u8 *)&lbl_8_data_3188), (const char *)((u8 *)&lbl_8_data_3198), (const char *)((u8 *)&lbl_8_data_31A8)}, {(const char *)((u8 *)&lbl_8_data_33F8), (const char *)((u8 *)&lbl_8_data_34DC), (const char *)((u8 *)&lbl_8_data_34F0), (const char *)((u8 *)&lbl_8_data_3504), (const char *)((u8 *)&lbl_8_data_3518), (const char *)((u8 *)&lbl_8_data_352C)}, {(const char *)((u8 *)&lbl_8_data_3688), (const char *)((u8 *)&lbl_8_data_36DC), (const char *)((u8 *)&lbl_8_data_36F0), (const char *)((u8 *)&lbl_8_data_3704), (const char *)((u8 *)&lbl_8_data_3718), (const char *)((u8 *)&lbl_8_data_372C)}, {(const char *)((u8 *)&lbl_8_data_378C), (const char *)((u8 *)&lbl_8_data_37B4), (const char *)((u8 *)&lbl_8_data_37CC), (const char *)((u8 *)&lbl_8_data_37E4), (const char *)((u8 *)&lbl_8_data_37FC), (const char *)((u8 *)&lbl_8_data_3814)}, {(const char *)((u8 *)&lbl_8_data_3850), (const char *)((u8 *)&lbl_8_data_3884), (const char *)((u8 *)&lbl_8_data_3894), (const char *)((u8 *)&lbl_8_data_38A4), (const char *)((u8 *)&lbl_8_data_38B4), (const char *)((u8 *)&lbl_8_data_38C4)}, {(const char *)((u8 *)&lbl_8_data_3904), (const char *)((u8 *)&lbl_8_data_391C), (const char *)((u8 *)&lbl_8_data_3930), (const char *)((u8 *)&lbl_8_data_3944), (const char *)((u8 *)&lbl_8_data_3958), (const char *)((u8 *)&lbl_8_data_396C)}, {(const char *)((u8 *)&lbl_8_data_3988), (const char *)((u8 *)&lbl_8_data_3990), (const char *)((u8 *)&lbl_8_data_399C), (const char *)((u8 *)&lbl_8_data_39A8), (const char *)((u8 *)&lbl_8_data_39B4), (const char *)((u8 *)&lbl_8_data_39C0)}, {(const char *)((u8 *)&lbl_8_data_39CC), (const char *)((u8 *)&lbl_8_data_3A04), (const char *)((u8 *)&lbl_8_data_3A14), (const char *)((u8 *)&lbl_8_data_3A24), (const char *)((u8 *)&lbl_8_data_3A34), (const char *)((u8 *)&lbl_8_data_3A44)}, {(const char *)((u8 *)&lbl_8_data_3A88), (const char *)((u8 *)&lbl_8_data_3AB4), (const char *)((u8 *)&lbl_8_data_3AC4), (const char *)((u8 *)&lbl_8_data_3AD4), (const char *)((u8 *)&lbl_8_data_3AE4), (const char *)((u8 *)&lbl_8_data_3AF4)}, {(const char *)((u8 *)&lbl_8_data_3B2C), (const char *)((u8 *)&lbl_8_data_3B6C), (const char *)((u8 *)&lbl_8_data_3B7C), (const char *)((u8 *)&lbl_8_data_3B8C), (const char *)((u8 *)&lbl_8_data_3B9C), (const char *)((u8 *)&lbl_8_data_3BAC)}, {(const char *)((u8 *)&lbl_8_data_3BF0), (const char *)((u8 *)&lbl_8_data_3C48), (const char *)((u8 *)&lbl_8_data_3C58), (const char *)((u8 *)&lbl_8_data_3C68), (const char *)((u8 *)&lbl_8_data_3C78), (const char *)((u8 *)&lbl_8_data_3C88)}, {(const char *)((u8 *)&lbl_8_data_3CCC), (const char *)((u8 *)&lbl_8_data_3D14), (const char *)((u8 *)&lbl_8_data_3D20), (const char *)((u8 *)&lbl_8_data_3D2C), (const char *)((u8 *)&lbl_8_data_3D38), (const char *)((u8 *)&lbl_8_data_3D44)}, {(const char *)((u8 *)&lbl_8_data_3D98), (const char *)((u8 *)&lbl_8_data_3DCC), (const char *)((u8 *)&lbl_8_data_3DD8), (const char *)((u8 *)&lbl_8_data_3DE4), (const char *)((u8 *)&lbl_8_data_3DF0), (const char *)((u8 *)&lbl_8_data_3DFC)}, {(const char *)((u8 *)&lbl_8_data_3E30), (const char *)((u8 *)&lbl_8_data_3E68), (const char *)((u8 *)&lbl_8_data_3E74), (const char *)((u8 *)&lbl_8_data_3E80), (const char *)((u8 *)&lbl_8_data_3E8C), (const char *)((u8 *)&lbl_8_data_3E98)}, {(const char *)((u8 *)&lbl_8_data_3ECC), (const char *)((u8 *)&lbl_8_data_3F00), (const char *)((u8 *)&lbl_8_data_3F0C), (const char *)((u8 *)&lbl_8_data_3F18), (const char *)((u8 *)&lbl_8_data_3F24), (const char *)((u8 *)&lbl_8_data_3F30)}, {(const char *)((u8 *)&lbl_8_data_3F64), (const char *)((u8 *)&lbl_8_data_3F9C), (const char *)((u8 *)&lbl_8_data_3FA8), (const char *)((u8 *)&lbl_8_data_3FB4), (const char *)((u8 *)&lbl_8_data_3FC0), (const char *)((u8 *)&lbl_8_data_3FCC)}, {(const char *)((u8 *)&lbl_8_data_4000), (const char *)((u8 *)&lbl_8_data_403C), (const char *)((u8 *)&lbl_8_data_404C), (const char *)((u8 *)&lbl_8_data_405C), (const char *)((u8 *)&lbl_8_data_406C), (const char *)((u8 *)&lbl_8_data_407C)}, {(const char *)((u8 *)&lbl_8_data_40A4), (const char *)((u8 *)&lbl_8_data_40D4), (const char *)((u8 *)&lbl_8_data_40E8), (const char *)((u8 *)&lbl_8_data_40FC), (const char *)((u8 *)&lbl_8_data_4110), (const char *)((u8 *)&lbl_8_data_4124)}, {(const char *)((u8 *)&lbl_8_data_4160), (const char *)((u8 *)&lbl_8_data_419C), (const char *)((u8 *)&lbl_8_data_41AC), (const char *)((u8 *)&lbl_8_data_41BC), (const char *)((u8 *)&lbl_8_data_41CC), (const char *)((u8 *)&lbl_8_data_41DC)}, {(const char *)((u8 *)&lbl_8_data_4218), (const char *)((u8 *)&lbl_8_data_4240), (const char *)((u8 *)&lbl_8_data_4250), (const char *)((u8 *)&lbl_8_data_4260), (const char *)((u8 *)&lbl_8_data_4270), (const char *)((u8 *)&lbl_8_data_4280)}, {(const char *)((u8 *)&lbl_8_data_42C4), (const char *)((u8 *)&lbl_8_data_4304), (const char *)((u8 *)&lbl_8_data_4314), (const char *)((u8 *)&lbl_8_data_4324), (const char *)((u8 *)&lbl_8_data_4334), (const char *)((u8 *)&lbl_8_data_4344)}, {(const char *)((u8 *)&lbl_8_data_4384), (const char *)((u8 *)&lbl_8_data_43BC), (const char *)((u8 *)&lbl_8_data_43CC), (const char *)((u8 *)&lbl_8_data_43DC), (const char *)((u8 *)&lbl_8_data_43EC), (const char *)((u8 *)&lbl_8_data_43FC)}, {(const char *)((u8 *)&lbl_8_data_4424), (const char *)((u8 *)&lbl_8_data_4434), (const char *)((u8 *)&lbl_8_data_4444), (const char *)((u8 *)&lbl_8_data_4454), (const char *)((u8 *)&lbl_8_data_4464), (const char *)((u8 *)&lbl_8_data_4474)}, {(const char *)((u8 *)&lbl_8_data_4484), (const char *)((u8 *)&lbl_8_data_4490), (const char *)((u8 *)&lbl_8_data_44A0), (const char *)((u8 *)&lbl_8_data_44B0), (const char *)((u8 *)&lbl_8_data_44C0), (const char *)((u8 *)&lbl_8_data_44D0)}, {(const char *)((u8 *)&lbl_8_data_44DC), (const char *)((u8 *)&lbl_8_data_44EC), (const char *)((u8 *)&lbl_8_data_44FC), (const char *)((u8 *)&lbl_8_data_450C), (const char *)((u8 *)&lbl_8_data_451C), (const char *)((u8 *)&lbl_8_data_452C)}, {(const char *)((u8 *)&lbl_8_data_453C), (const char *)((u8 *)&lbl_8_data_454C), (const char *)((u8 *)&lbl_8_data_455C), (const char *)((u8 *)&lbl_8_data_456C), (const char *)((u8 *)&lbl_8_data_457C), (const char *)((u8 *)&lbl_8_data_458C)}, {(const char *)((u8 *)&lbl_8_data_459C), (const char *)((u8 *)&lbl_8_data_45F0), (const char *)((u8 *)&lbl_8_data_45FC), (const char *)((u8 *)&lbl_8_data_4608), (const char *)((u8 *)&lbl_8_data_4614), (const char *)((u8 *)&lbl_8_data_4620)}, {(const char *)((u8 *)&lbl_8_data_4688), (const char *)((u8 *)&lbl_8_data_46DC), (const char *)((u8 *)&lbl_8_data_46E8), (const char *)((u8 *)&lbl_8_data_46F4), (const char *)((u8 *)&lbl_8_data_4700), (const char *)((u8 *)&lbl_8_data_470C)}, {(const char *)((u8 *)&lbl_8_data_4774), (const char *)((u8 *)&lbl_8_data_47A0), (const char *)((u8 *)&lbl_8_data_47B0), (const char *)((u8 *)&lbl_8_data_47C0), (const char *)((u8 *)&lbl_8_data_47D0), (const char *)((u8 *)&lbl_8_data_47E0)}, {(const char *)((u8 *)&lbl_8_data_480C), (const char *)((u8 *)&lbl_8_data_483C), (const char *)((u8 *)&lbl_8_data_484C), (const char *)((u8 *)&lbl_8_data_485C), (const char *)((u8 *)&lbl_8_data_486C), (const char *)((u8 *)&lbl_8_data_487C)}, {(const char *)((u8 *)&lbl_8_data_48B0), (const char *)((u8 *)&lbl_8_data_4948), (const char *)((u8 *)&lbl_8_data_4960), (const char *)((u8 *)&lbl_8_data_4978), (const char *)((u8 *)&lbl_8_data_4990), (const char *)((u8 *)&lbl_8_data_49A8)}, {(const char *)((u8 *)&lbl_8_data_4A34), (const char *)((u8 *)&lbl_8_data_4A78), (const char *)((u8 *)&lbl_8_data_4A90), (const char *)((u8 *)&lbl_8_data_4AA8), (const char *)((u8 *)&lbl_8_data_4AC0), (const char *)((u8 *)&lbl_8_data_4AD8)}, {(const char *)((u8 *)&lbl_8_data_4B28), (const char *)((u8 *)&lbl_8_data_4B9C), (const char *)((u8 *)&lbl_8_data_4BA0), (const char *)((u8 *)&lbl_8_data_4BA4), (const char *)((u8 *)&lbl_8_data_4BA8), (const char *)((u8 *)&lbl_8_data_4BAC)}, {(const char *)((u8 *)&lbl_8_data_4C68), (const char *)((u8 *)&lbl_8_data_4CE0), (const char *)((u8 *)&lbl_8_data_4CE4), (const char *)((u8 *)&lbl_8_data_4CE8), (const char *)((u8 *)&lbl_8_data_4CEC), (const char *)((u8 *)&lbl_8_data_4CF0)}, {(const char *)((u8 *)&lbl_8_data_4D4C), (const char *)((u8 *)&lbl_8_data_4D54), (const char *)((u8 *)&lbl_8_data_4D60), (const char *)((u8 *)&lbl_8_data_4D6C), (const char *)((u8 *)&lbl_8_data_4D78), (const char *)((u8 *)&lbl_8_data_4D84)}, {(const char *)((u8 *)&lbl_8_data_4D8C), (const char *)((u8 *)&lbl_8_data_4D94), (const char *)((u8 *)&lbl_8_data_4DA0), (const char *)((u8 *)&lbl_8_data_4DAC), (const char *)((u8 *)&lbl_8_data_4DB8), (const char *)((u8 *)&lbl_8_data_4DC4)}, {(const char *)((u8 *)&lbl_8_data_4DCC), (const char *)((u8 *)&lbl_8_data_4DD4), (const char *)((u8 *)&lbl_8_data_4DE0), (const char *)((u8 *)&lbl_8_data_4DEC), (const char *)((u8 *)&lbl_8_data_4DF8), (const char *)((u8 *)&lbl_8_data_4E04)}, {(const char *)((u8 *)&lbl_8_data_4E10), (const char *)((u8 *)&lbl_8_data_4E18), (const char *)((u8 *)&lbl_8_data_4E24), (const char *)((u8 *)&lbl_8_data_4E30), (const char *)((u8 *)&lbl_8_data_4E3C), (const char *)((u8 *)&lbl_8_data_4E48)}, {(const char *)((u8 *)&lbl_8_data_4E54), (const char *)((u8 *)&lbl_8_data_4E5C), (const char *)((u8 *)&lbl_8_data_4E68), (const char *)((u8 *)&lbl_8_data_4E74), (const char *)((u8 *)&lbl_8_data_4E80), (const char *)((u8 *)&lbl_8_data_4E8C)}, {(const char *)((u8 *)&lbl_8_data_4E98), (const char *)((u8 *)&lbl_8_data_4EA0), (const char *)((u8 *)&lbl_8_data_4EAC), (const char *)((u8 *)&lbl_8_data_4EB8), (const char *)((u8 *)&lbl_8_data_4EC4), (const char *)((u8 *)&lbl_8_data_4ED0)}, {(const char *)((u8 *)&lbl_8_data_4EDC), (const char *)((u8 *)&lbl_8_data_4EE4), (const char *)((u8 *)&lbl_8_data_4EF0), (const char *)((u8 *)&lbl_8_data_4EFC), (const char *)((u8 *)&lbl_8_data_4F08), (const char *)((u8 *)&lbl_8_data_4F14)}, {(const char *)((u8 *)&lbl_8_data_4F20), (const char *)((u8 *)&lbl_8_data_4F28), (const char *)((u8 *)&lbl_8_data_4F34), (const char *)((u8 *)&lbl_8_data_4F40), (const char *)((u8 *)&lbl_8_data_4F4C), (const char *)((u8 *)&lbl_8_data_4F58)}, {(const char *)((u8 *)&lbl_8_data_4F60), (const char *)((u8 *)&lbl_8_data_50A4), (const char *)((u8 *)&lbl_8_data_50A8), (const char *)((u8 *)&lbl_8_data_50AC), (const char *)((u8 *)&lbl_8_data_50B0), (const char *)((u8 *)&lbl_8_data_50B4)}, {(const char *)((u8 *)&lbl_8_data_5224), (const char *)((u8 *)&lbl_8_data_5268), (const char *)((u8 *)&lbl_8_data_526C), (const char *)((u8 *)&lbl_8_data_5270), (const char *)((u8 *)&lbl_8_data_5274), (const char *)((u8 *)&lbl_8_data_5278)}, {(const char *)((u8 *)&lbl_8_data_52BC), (const char *)((u8 *)&lbl_8_data_5300), (const char *)((u8 *)&lbl_8_data_5304), (const char *)((u8 *)&lbl_8_data_5308), (const char *)((u8 *)&lbl_8_data_530C), (const char *)((u8 *)&lbl_8_data_5310)}, {(const char *)((u8 *)&lbl_8_data_5358), (const char *)((u8 *)&lbl_8_data_5390), (const char *)((u8 *)&lbl_8_data_5394), (const char *)((u8 *)&lbl_8_data_5398), (const char *)((u8 *)&lbl_8_data_539C), (const char *)((u8 *)&lbl_8_data_53A0)}, {(const char *)((u8 *)&lbl_8_data_53F8), (const char *)((u8 *)&lbl_8_data_5400), (const char *)((u8 *)&lbl_8_data_5404), (const char *)((u8 *)&lbl_8_data_5408), (const char *)((u8 *)&lbl_8_data_540C), (const char *)((u8 *)&lbl_8_data_5410)}, {(const char *)((u8 *)&lbl_8_data_5418), (const char *)((u8 *)&lbl_8_data_5420), (const char *)((u8 *)&lbl_8_data_5424), (const char *)((u8 *)&lbl_8_data_5428), (const char *)((u8 *)&lbl_8_data_542C), (const char *)((u8 *)&lbl_8_data_5430)}, {(const char *)((u8 *)&lbl_8_data_5438), (const char *)((u8 *)&lbl_8_data_5440), (const char *)((u8 *)&lbl_8_data_5444), (const char *)((u8 *)&lbl_8_data_5448), (const char *)((u8 *)&lbl_8_data_544C), (const char *)((u8 *)&lbl_8_data_5450)}, {(const char *)((u8 *)&lbl_8_data_5458), (const char *)((u8 *)&lbl_8_data_5460), (const char *)((u8 *)&lbl_8_data_5464), (const char *)((u8 *)&lbl_8_data_5468), (const char *)((u8 *)&lbl_8_data_546C), (const char *)((u8 *)&lbl_8_data_5470)}, {(const char *)((u8 *)&lbl_8_data_5478), (const char *)((u8 *)&lbl_8_data_54AC), (const char *)((u8 *)&lbl_8_data_54B0), (const char *)((u8 *)&lbl_8_data_54B4), (const char *)((u8 *)&lbl_8_data_54B8), (const char *)((u8 *)&lbl_8_data_54BC)}, {(const char *)((u8 *)&lbl_8_data_5510), (const char *)((u8 *)&lbl_8_data_5564), (const char *)((u8 *)&lbl_8_data_5568), (const char *)((u8 *)&lbl_8_data_556C), (const char *)((u8 *)&lbl_8_data_5570), (const char *)((u8 *)&lbl_8_data_5574)}, {(const char *)((u8 *)&lbl_8_data_55C0), (const char *)((u8 *)&lbl_8_data_55C8), (const char *)((u8 *)&lbl_8_data_55CC), (const char *)((u8 *)&lbl_8_data_55D0), (const char *)((u8 *)&lbl_8_data_55D4), (const char *)((u8 *)&lbl_8_data_55D8)}, {(const char *)((u8 *)&lbl_8_data_55E4), (const char *)((u8 *)&lbl_8_data_5624), (const char *)((u8 *)&lbl_8_data_5638), (const char *)((u8 *)&lbl_8_data_564C), (const char *)((u8 *)&lbl_8_data_5660), (const char *)((u8 *)&lbl_8_data_5674)}, {(const char *)((u8 *)&lbl_8_data_5750), (const char *)((u8 *)&lbl_8_data_57CC), (const char *)((u8 *)&lbl_8_data_57DC), (const char *)((u8 *)&lbl_8_data_57EC), (const char *)((u8 *)&lbl_8_data_57FC), (const char *)((u8 *)&lbl_8_data_580C)}, {(const char *)((u8 *)&lbl_8_data_58EC), (const char *)((u8 *)&lbl_8_data_595C), (const char *)((u8 *)&lbl_8_data_5970), (const char *)((u8 *)&lbl_8_data_5984), (const char *)((u8 *)&lbl_8_data_5998), (const char *)((u8 *)&lbl_8_data_59AC)}, {(const char *)((u8 *)&lbl_8_data_59B0), (const char *)((u8 *)&lbl_8_data_5A58), (const char *)((u8 *)&lbl_8_data_5A68), (const char *)((u8 *)&lbl_8_data_5A78), (const char *)((u8 *)&lbl_8_data_5A88), (const char *)((u8 *)&lbl_8_data_5A98)}, {(const char *)((u8 *)&lbl_8_data_5A9C), (const char *)((u8 *)&lbl_8_data_5B44), (const char *)((u8 *)&lbl_8_data_5B54), (const char *)((u8 *)&lbl_8_data_5B64), (const char *)((u8 *)&lbl_8_data_5B74), (const char *)((u8 *)&lbl_8_data_5B84)}, {(const char *)((u8 *)&lbl_8_data_5C3C), (const char *)((u8 *)&lbl_8_data_5C64), (const char *)((u8 *)&lbl_8_data_5C74), (const char *)((u8 *)&lbl_8_data_5C84), (const char *)((u8 *)&lbl_8_data_5C94), (const char *)((u8 *)&lbl_8_data_5CA4)}, {(const char *)((u8 *)&lbl_8_data_5CD4), (const char *)((u8 *)&lbl_8_data_5D1C), (const char *)((u8 *)&lbl_8_data_5D2C), (const char *)((u8 *)&lbl_8_data_5D3C), (const char *)((u8 *)&lbl_8_data_5D4C), (const char *)((u8 *)&lbl_8_data_5D5C)}, {(const char *)((u8 *)&lbl_8_data_5DC4), (const char *)((u8 *)&lbl_8_data_5DFC), (const char *)((u8 *)&lbl_8_data_5E0C), (const char *)((u8 *)&lbl_8_data_5E1C), (const char *)((u8 *)&lbl_8_data_5E2C), (const char *)((u8 *)&lbl_8_data_5E3C)}, {(const char *)((u8 *)&lbl_8_data_5E84), (const char *)((u8 *)&lbl_8_data_5EB0), (const char *)((u8 *)&lbl_8_data_5EC4), (const char *)((u8 *)&lbl_8_data_5ED8), (const char *)((u8 *)&lbl_8_data_5EEC), (const char *)((u8 *)&lbl_8_data_5F00)}, {(const char *)((u8 *)&lbl_8_data_5F30), (const char *)((u8 *)&lbl_8_data_5F44), (const char *)((u8 *)&lbl_8_data_5F54), (const char *)((u8 *)&lbl_8_data_5F64), (const char *)((u8 *)&lbl_8_data_5F74), (const char *)((u8 *)&lbl_8_data_5F84)}, {(const char *)((u8 *)&lbl_8_data_5F90), (const char *)((u8 *)&lbl_8_data_5FA4), (const char *)((u8 *)&lbl_8_data_5FB8), (const char *)((u8 *)&lbl_8_data_5FCC), (const char *)((u8 *)&lbl_8_data_5FE0), (const char *)((u8 *)&lbl_8_data_5FF4)}, {(const char *)((u8 *)&lbl_8_data_6014), (const char *)((u8 *)&lbl_8_data_6030), (const char *)((u8 *)&lbl_8_data_6044), (const char *)((u8 *)&lbl_8_data_6058), (const char *)((u8 *)&lbl_8_data_606C), (const char *)((u8 *)&lbl_8_data_6080)}, {(const char *)((u8 *)&lbl_8_data_60A4), (const char *)((u8 *)&lbl_8_data_60C4), (const char *)((u8 *)&lbl_8_data_60D4), (const char *)((u8 *)&lbl_8_data_60E4), (const char *)((u8 *)&lbl_8_data_60F4), (const char *)((u8 *)&lbl_8_data_6104)}, {(const char *)((u8 *)&lbl_8_data_6118), (const char *)((u8 *)&lbl_8_data_614C), (const char *)((u8 *)&lbl_8_data_6160), (const char *)((u8 *)&lbl_8_data_6174), (const char *)((u8 *)&lbl_8_data_6188), (const char *)((u8 *)&lbl_8_data_619C)}, {(const char *)((u8 *)&lbl_8_data_61C0), (const char *)((u8 *)&lbl_8_data_61D0), (const char *)((u8 *)&lbl_8_data_61E0), (const char *)((u8 *)&lbl_8_data_61F0), (const char *)((u8 *)&lbl_8_data_6200), (const char *)((u8 *)&lbl_8_data_6210)}, {(const char *)((u8 *)&lbl_8_data_6220), (const char *)((u8 *)&lbl_8_data_624C), (const char *)((u8 *)&lbl_8_data_6260), (const char *)((u8 *)&lbl_8_data_6274), (const char *)((u8 *)&lbl_8_data_6288), (const char *)((u8 *)&lbl_8_data_629C)}}
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_6D68[79] __attribute__((aligned(8))) = "A Memory Card is not inserted in Slot A.\nPlease properly insert a Memory Card.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_8_data_6DB8[4] __attribute__((aligned(8))) = {
+    0x00U, 0x00U, 0x00U, 0x00U
+};
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_6DBC[113] __attribute__((aligned(4))) = "\x83X\x83\x8D\x83" "b\x83gA\x82\xC9\x83\x81\x83\x82\x83\x8A\x81[\x83J\x81[\x83h\x82\xAA\x8C\xA9[\x82\xDD]\x82\xC2\x82\xA9\x82\xE8\x82\xDC\x82\xB9\x82\xF1\x81" "B\n\x83\x81\x83\x82\x83\x8A\x81[\x83J\x81[\x83h\x82\xCC\x90\xDA[\x82\xB9\x82\xC2]\x91\xB1[\x82\xBC\x82\xAD]\x82\xF0\x8Am[\x82\xA9\x82\xAD]\x94" "F[\x82\xC9\x82\xF1]\x82\xB5\x82\xC4\x82\xAD\x82\xBE\x82\xB3\x82\xA2\x81" "B";
+#pragma explicit_zero_data reset
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 *lbl_8_data_6E30[6] __attribute__((aligned(4))) = {
+    (u8 *)&lbl_8_data_6D68,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DBC
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_6E48[64] __attribute__((aligned(8))) = "There are %d blocks of free space\non the Memory Card in Slot A.";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_6E88[59] __attribute__((aligned(8))) = "\x83X\x83\x8D\x83" "b\x83gA\x82\xCC\x83\x81\x83\x82\x83\x8A\x81[\x83J\x81[\x83h\x82\xCD\n%d\x83u\x83\x8D\x83" "b\x83N\x82\xCC\x8B\xF3[\x82\xA0]\x82\xAB\x82\xAA\x82\xA0\x82\xE8\x82\xDC\x82\xB7";
+#pragma explicit_zero_data reset
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 *lbl_8_data_6EC4[6] __attribute__((aligned(4))) = {
+    (u8 *)&lbl_8_data_6E48,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6E88
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_6EDC[29] __attribute__((aligned(4))) = "The game could not be saved.";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_6EFC[37] __attribute__((aligned(4))) = "\x83Q\x81[\x83\x80\x83" "f\x81[\x83^\x82\xCD\x83Z\x81[\x83u\x82\xB3\x82\xEA\x82\xDC\x82\xB9\x82\xF1\x82\xC5\x82\xB5\x82\xBD";
+#pragma explicit_zero_data reset
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 *lbl_8_data_6F24[6] __attribute__((aligned(4))) = {
+    (u8 *)&lbl_8_data_6EDC,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6EFC
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_6F3C[484] __attribute__((aligned(4))) = "There is not enough free space on the Memory Card\nin Slot A to save all types of new files .\nE"
+    "xisting F-ZERO GX files may be erased or overwritten.\n(To manage files on the Memory Card, plea"
+    "se go to the\nNintendo GameCube Memory Card management screen.)\nIn order to save a new file, th"
+    "e following number of\nfree files and blocks must be available:\nGame 1 file and 4 blocks\nGarag"
+    "e 1 file and 18 blocks\nGhost 1 file and 3 blocks\nEmblem 1 file and 3 blocks\nReplay 1 file and"
+    " 3\201`13 blocks\n";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_7120[221] __attribute__((aligned(8))) = "\x83X\x83\x8D\x83" "b\x83gA\x82\xCC\x83\x81\x83\x82\x83\x8A\x81[\x83J\x81[\x83h\x82\xC9\x8B\xF3\x82\xAB\x97" "e\x97\xCA\x82\xAA\x82\xC8\x82\xA2\x82\xA9\x81" "A\x83t\x83@\x83" "C\x83\x8B\x90\x94\x82\xCC\x90\xA7\x8C\xC0\x82\xF0\n\x89z\x82\xA6\x82\xC4\x82\xB5\x82\xDC\x82\xA2\x82\xDC\x82\xB7\x81" "B\x83Z\x81[\x83u\x82\xB7\x82\xE9\x82\xC9\x82\xCD\x8F\xAD\x82\xC8\x82\xAD\x82\xC6\x82\xE0\x83t\x83@\x83" "C\x83\x8B" "1\x82\xC2\x82\xC6\n4\x83u\x83\x8D\x83" "b\x83N\x95K\x97v\x82\xC5\x82\xB7\x81" "B(\x83\x81\x83\x82\x83\x8A\x81[\x83J\x81[\x83h\x82\xCC\x93\xE0\x97" "e\x82\xF0\x90\xAE\x97\x9D\x82\xB7\x82\xE9\x82\xC9\x82\xCD\x81" "A\n\x96{\x91\xCC\x82\xCC\x83\x81\x83\x82\x83\x8A\x81[\x83J\x81[\x83h\x89\xE6\x96\xCA\x82\xC5\x8Ds\x82\xC8\x82\xC1\x82\xC4\x82\xAD\x82\xBE\x82\xB3\x82\xA2)";
+#pragma explicit_zero_data reset
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 *lbl_8_data_7200[6] __attribute__((aligned(4))) = {
+    (u8 *)&lbl_8_data_6F3C,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_7120
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_7218[59] __attribute__((aligned(8))) = "The Memory Card in Slot A\nis corrupted and cannot be used.";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_7254[27] __attribute__((aligned(4))) = "\x83G\x83\x93\x83R\x81[\x83h\x82\xAA\x82\xA8\x82\xA9\x82\xB5\x82\xA2\x82\xC5\x82\xB7\x82\xE6";
+#pragma explicit_zero_data reset
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 *lbl_8_data_7270[6] __attribute__((aligned(4))) = {
+    (u8 *)&lbl_8_data_7218,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_7254
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_7288[58] __attribute__((aligned(8))) = "The Memory Card in Slot A is damaged\nand cannot be used. ";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_72C4[81] __attribute__((aligned(4))) = "\x83X\x83\x8D\x83" "b\x83gA\x82\xCC\x83\x81\x83\x82\x83\x8A\x81[\x83J\x81[\x83h\x82\xCD\x81" "A\x83" "f\x81[\x83^\x82\xAA\n\x82\xB1\x82\xED\x82\xEA\x82\xC4\x82\xA2\x82\xE9\x82\xCC\x82\xC5\x8Eg[\x82\xB5]\x97p[\x82\xE6\x82\xA4]\x82\xC5\x82\xAB\x82\xDC\x82\xB9\x82\xF1\x81" "B";
+#pragma explicit_zero_data reset
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 *lbl_8_data_7318[6] __attribute__((aligned(4))) = {
+    (u8 *)&lbl_8_data_7288,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_72C4
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_7330[42] __attribute__((aligned(8))) = "Please insert a Memory Card into Slot A. ";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_735C[60] __attribute__((aligned(4))) = "\x83X\x83\x8D\x83" "b\x83gA\x82\xC9\x8Eg[\x82\xB5]\x97p[\x82\xE6\x82\xA4]\x82\xB7\x82\xE9\x83\x81\x83\x82\x83\x8A\x81[\x83J\x81[\x83h\x82\xF0\x82\xB3\x82\xB5\x82\xC4\x82\xAD\x82\xBE\x82\xB3\x82\xA2";
+#pragma explicit_zero_data reset
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 *lbl_8_data_7398[6] __attribute__((aligned(4))) = {
+    (u8 *)&lbl_8_data_7330,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_735C
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_73B0[68] __attribute__((aligned(8))) = "The device in Slot A is not supported.\nPlease insert a Memory Card.";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_73F4[67] __attribute__((aligned(4))) = "\x83X\x83\x8D\x83" "b\x83gA\x82\xC9\x82\xCD\n\x83\x81\x83\x82\x83\x8A\x81[\x83J\x81[\x83h\x88\xC8[\x82\xA2]\x8AO[\x82\xAA\x82\xA2]\x82\xCC\x82\xE0\x82\xCC\x82\xAA\x82\xB3\x82\xB3\x82\xC1\x82\xC4\x82\xA2\x82\xDC\x82\xB7\x81" "B";
+#pragma explicit_zero_data reset
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 *lbl_8_data_7438[6] __attribute__((aligned(4))) = {
+    (u8 *)&lbl_8_data_73B0,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_73F4
+};
+#pragma explicit_zero_data reset
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_7450[42] __attribute__((aligned(8))) = "\x83\x9F\x81" "cContinue without saving\n\x83\xB2\x81" "cTry again";
+#pragma explicit_zero_data reset
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 *lbl_8_data_747C[6] __attribute__((aligned(4))) = {
+    (u8 *)&lbl_8_data_7450,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_7494[54] __attribute__((aligned(4))) = "Game Data cannot be loaded.\nContinue without saving\077 ";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_74CC[63] __attribute__((aligned(4))) = "\x82\xB1\x82\xCC\x82\xDC\x82\xDC\x82\xC5\x82\xCD\x81" "A\x83Q\x81[\x83\x80\x83" "f\x81[\x83^\x82\xF0\n\x83\x8D\x81[\x83h\x82\xC5\x82\xAB\x82\xDC\x82\xB9\x82\xF1\x82\xAA\x82\xE6\x82\xEB\x82\xB5\x82\xA2\x82\xC5\x82\xB7\x82\xA9?";
+#pragma explicit_zero_data reset
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 *lbl_8_data_750C[6] __attribute__((aligned(4))) = {
+    (u8 *)&lbl_8_data_7494,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_74CC
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_7524[54] __attribute__((aligned(4))) = "Game Data cannot be saved.\n Continue without saving\077 ";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_755C[63] __attribute__((aligned(4))) = "\x82\xB1\x82\xCC\x82\xDC\x82\xDC\x82\xC5\x82\xCD\x81" "A\x83Q\x81[\x83\x80\x83" "f\x81[\x83^\x82\xF0\n\x83Z\x81[\x83u\x82\xC5\x82\xAB\x82\xDC\x82\xB9\x82\xF1\x82\xAA\x82\xE6\x82\xEB\x82\xB5\x82\xA2\x82\xC5\x82\xB7\x82\xA9?";
+#pragma explicit_zero_data reset
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 *lbl_8_data_759C[6] __attribute__((aligned(4))) = {
+    (u8 *)&lbl_8_data_7524,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_755C
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_75B4[101] __attribute__((aligned(4))) = "Game Data could not be saved.\n You can save and load data from\n the Memory Card menu under Opt"
+    "ions. ";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_761C[131] __attribute__((aligned(4))) = "\x83Q\x81[\x83\x80\x83" "f\x81[\x83^\x82\xCD\x83\x8D\x81[\x83h\x82\xB3\x82\xEA\x82\xDC\x82\xB9\x82\xF1\x82\xC5\x82\xB5\x82\xBD\x81" "B\n\x83Q\x81[\x83\x80\x83" "f\x81[\x83^\x82\xCC\x83Z\x81[\x83u\x81" "A\x83\x8D\x81[\x83h\x82\xCD\x81" "A\n\x83I\x83v\x83V\x83\x87\x83\x93\x82\xCC\x83\x81\x83\x82\x83\x8A\x81[\x83J\x81[\x83h\x83\x81\x83j\x83\x85\x81[\x82\xA9\x82\xE7\x89\xC2[\x82\xA9]\x94\\[\x82\xCC\x82\xA4]\x82\xC5\x82\xB7\x81" "B";
+#pragma explicit_zero_data reset
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 *lbl_8_data_76A0[6] __attribute__((aligned(4))) = {
+    (u8 *)&lbl_8_data_75B4,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_761C
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_76B8[98] __attribute__((aligned(8))) = "Game Data could not be saved.\nYou can save and load data from\nthe Memory Card menu under Optio"
+    "ns.";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_771C[131] __attribute__((aligned(4))) = "\x83Q\x81[\x83\x80\x83" "f\x81[\x83^\x82\xCD\x83Z\x81[\x83u\x82\xB3\x82\xEA\x82\xDC\x82\xB9\x82\xF1\x82\xC5\x82\xB5\x82\xBD\x81" "B\n\x83Q\x81[\x83\x80\x83" "f\x81[\x83^\x82\xCC\x83Z\x81[\x83u\x81" "A\x83\x8D\x81[\x83h\x82\xCD\x81" "A\n\x83I\x83v\x83V\x83\x87\x83\x93\x82\xCC\x83\x81\x83\x82\x83\x8A\x81[\x83J\x81[\x83h\x83\x81\x83j\x83\x85\x81[\x82\xA9\x82\xE7\x89\xC2[\x82\xA9]\x94\\[\x82\xCC\x82\xA4]\x82\xC5\x82\xB7\x81" "B";
+#pragma explicit_zero_data reset
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 *lbl_8_data_77A0[6] __attribute__((aligned(4))) = {
+    (u8 *)&lbl_8_data_76B8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_771C
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_77B8[145] __attribute__((aligned(8))) = "There is no F-ZERO GX save file\non the Memory Card in Slot A.\nWould you like to create a save "
+    "file now\077 \n(1 save file uses 4 blocks of memory.)\n";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_784C[179] __attribute__((aligned(4))) = "\x83X\x83\x8D\x83" "b\x83gA\x82\xCC\x83\x81\x83\x82\x83\x8A\x81[\x83J\x81[\x83h\x82\xC9\x82\xCD" "F-ZERO GX\x82\xCC\n\x83Q\x81[\x83\x80\x83" "f\x81[\x83^\x82\xAA\x82\xA0\x82\xE8\x82\xDC\x82\xB9\x82\xF1\x81" "B\x83X\x83\x8D\x83" "b\x83gA\x82\xCC\n\x83\x81\x83\x82\x83\x8A\x81[\x83J\x81[\x83h\x82\xC9\x83Q\x81[\x83\x80\x83" "f\x81[\x83^\x82\xF0\x8D\xEC[\x82\xB3\x82\xAD]\x90\xAC[\x82\xB9\x82\xA2]\x82\xB5\x82\xC4\x82\xE0\n\x82\xE6\x82\xEB\x82\xB5\x82\xA2\x82\xC5\x82\xB7\x82\xA9?(4\x83u\x83\x8D\x83" "b\x83N\x8Eg[\x82\xB5]\x97p[\x82\xE6\x82\xA4]\x82\xB5\x82\xDC\x82\xB7)";
+#pragma explicit_zero_data reset
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 *lbl_8_data_7900[6] __attribute__((aligned(4))) = {
+    (u8 *)&lbl_8_data_77B8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_784C
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_7918[44] __attribute__((aligned(8))) = "Advancing to user name\nregistration screen.";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_7944[59] __attribute__((aligned(4))) = "\x83\x81\x83\x82\x83\x8A\x81[\x83J\x81[\x83h\x82\xC9\x83\x86\x81[\x83U\x81[\x96\xBC[\x82\xDF\x82\xA2]\x82\xF0\x93o[\x82\xC6\x82\xA4]\x98^[\x82\xEB\x82\xAD]\x82\xB5\x82\xDC\x82\xB7\x81" "B";
+#pragma explicit_zero_data reset
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 *lbl_8_data_7980[6] __attribute__((aligned(4))) = {
+    (u8 *)&lbl_8_data_7918,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_7944
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_7998[72] __attribute__((aligned(8))) = "The Memory Card in Slot A was removed.\n The process has been cancelled.";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_79E0[56] __attribute__((aligned(8))) = "\x83\x81\x83\x82\x83\x8A\x81[\x83J\x81[\x83h\x82\xAA\x94\xB2\x82\xA9\x82\xEA\x82\xDC\x82\xB5\x82\xBD\x81" "B\n\x8D\xEC\x8B\xC6\x82\xF0\x83L\x83\x83\x83\x93\x83Z\x83\x8B\x82\xB5\x82\xDC\x82\xB7\x81" "B";
+#pragma explicit_zero_data reset
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 *lbl_8_data_7A18[6] __attribute__((aligned(4))) = {
+    (u8 *)&lbl_8_data_7998,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_79E0
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_7A30[68] __attribute__((aligned(8))) = "Press the \203\237 Button when ready.\n Press the \203\240 Button to cancel. \000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_7A74[58] __attribute__((aligned(4))) = "\x8F\x80\x94\xF5\x82\xAA\x82\xC5\x82\xAB\x82\xBD\x82\xE7\x83\x9F\x82\xF0\x89\x9F\x82\xB5\x82\xC4\x82\xAD\x82\xBE\x82\xB3\x82\xA2\x81" "B\n\x83\xA0\x82\xC5\x83L\x83\x83\x83\x93\x83Z\x83\x8B\x82\xB5\x82\xDC\x82\xB7\x81" "B";
+#pragma explicit_zero_data reset
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 *lbl_8_data_7AB0[6] __attribute__((aligned(4))) = {
+    (u8 *)&lbl_8_data_7A30,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_7A74
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_7AC8[40] __attribute__((aligned(8))) = "The Memory Card process was cancelled. ";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_7AF0[55] __attribute__((aligned(8))) = "\x83\x81\x83\x82\x83\x8A\x81[\x83J\x81[\x83h\x82\xCC\x8D\xEC[\x82\xB3\x82\xAC]\x8B\xC6[\x82\xE5\x82\xA4]\x82\xF0\x83L\x83\x83\x83\x93\x83Z\x83\x8B\x82\xB5\x82\xDC\x82\xB5\x82\xBD\x81" "B";
+#pragma explicit_zero_data reset
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 *lbl_8_data_7B28[6] __attribute__((aligned(4))) = {
+    (u8 *)&lbl_8_data_7AC8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_7AF0
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_7B40[32] __attribute__((aligned(8))) = "Please press the \203\237 Button. \000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_7B60[21] __attribute__((aligned(8))) = "\x83\x9F\x82\xF0\x89\x9F\x82\xB5\x82\xC4\x82\xAD\x82\xBE\x82\xB3\x82\xA2\x81" "B";
+#pragma explicit_zero_data reset
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 *lbl_8_data_7B78[6] __attribute__((aligned(4))) = {
+    (u8 *)&lbl_8_data_7B40,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_7B60
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_7B90[50] __attribute__((aligned(8))) = "Register this name on the\nMemory Card in Slot A\077 ";
+#pragma explicit_zero_data reset
+
+
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_7BC4[53] __attribute__((aligned(4))) = "\x82\xB1\x82\xCC\x96\xBC\x91O\x82\xC5\x83\x81\x83\x82\x83\x8A\x81[\x83J\x81[\x83h\x82\xC9\n\x93o\x98^\x82\xB5\x82\xC4\x82\xE0\x82\xE6\x82\xEB\x82\xB5\x82\xA2\x82\xC5\x82\xB7\x82\xA9?";
+#pragma explicit_zero_data reset
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 *lbl_8_data_7BFC[6] __attribute__((aligned(4))) = {
+    (u8 *)&lbl_8_data_7B90,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_6DB8,
+    (u8 *)&lbl_8_data_7BC4
+};
+#pragma explicit_zero_data reset
 
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
@@ -490,43 +7604,30 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
 }
 #pragma section code_type ".text"
 
-/* title logo lines, two text images per step: -2 = none, -1 = end */
-static const fn_8_EC4_TitleEntry fzgx_pool_fn_8_EC4_lines[4][2] = {
-    { { -2, 0, 0, 0 }, { -2, 0, 0, 0 } },
-    { { 0x8E00, 6, 0, 0x63 }, { 0x8E01, 6, 0, 0x100 } },
-    { { 0x8E03, 10, 0, 0xF0 }, { -1, 0, 0, 0 } },
-    { { -1, 0, 0, 0 }, { -1, 0, 0, 0 } },
-};
-
-extern u8 lbl_801A66BA;
-
-extern void fn_8_784(u32);
-extern f32 fn_1_52070(u32);
-extern void fn_80007AB4(TitleColor *);
-extern s32 fn_1_4E724(FontDrawPacket *);
-extern int fn_1_4C10(void);
-extern u32 fn_1_52088(void);
-extern void fn_1_3EF8C(u8);
-extern u32 fn_1_3ED8C(u32, u32, u32, u32, u32, u32, u32);
-extern u32 fn_1_3EB78(u32, u32, u32, u32);
-extern void fn_1_3EFF0(void (*)(u32), u8);
-extern void fn_8006CE1C(f32);
-extern void fn_1_3EF08(u8);
-extern void fn_1_4A00(s32, u8, void *);
+#pragma section code_type ".fzgxpool"
+static void fzgx_data_layout(void) {
+    void *volatile s; /* fzgx-allow: S2 layout primer sink: the .data section base is created before the .bss base */
+    s = lbl_8_data_6E30[0];
+    s = lbl_8_data_6EC4[0];
+    s = lbl_8_data_6F24[0];
+}
+#pragma section code_type ".text"
 
 /* file-scope objects of the retail TU (from a matched sibling), in retail order: MWCC addresses them off one section base */
 u8 fzgx_obj_lbl_8_bss_0;
 u8 fzgx_pool_lbl_8_bss_0_gap_1;
 u8 fzgx_obj_lbl_8_bss_2;
 u8 fzgx_pool_lbl_8_bss_0_gap_3;
-u32 lbl_8_bss_4[2];
-u32 lbl_8_bss_C[5];
-u32 lbl_8_bss_20[129];
-s16 lbl_8_bss_224;
+f32 fzgx_obj_lbl_8_bss_4;
+u32 lbl_8_bss_4__fzgx_offset_4;
+u32 fzgx_obj_lbl_8_bss_C[5];
+u32 lbl_8_bss_20__fzgx_offset_0[128];
+f32 lbl_8_bss_20__fzgx_offset_200;
+s16 fzgx_obj_lbl_8_bss_224;
 u16 fzgx_pool_lbl_8_bss_0_gap_226;
-u32 lbl_8_bss_228;
-u32 lbl_8_bss_22C;
-u8 lbl_8_bss_230;
+u32 fzgx_obj_lbl_8_bss_228;
+u32 fzgx_obj_lbl_8_bss_22C;
+u8 fzgx_obj_lbl_8_bss_230;
 u8 fzgx_pool_lbl_8_bss_0_gap_231;
 u16 fzgx_pool_lbl_8_bss_0_gap_231_fill_232;
 u32 fzgx_obj_lbl_8_bss_234;
@@ -536,7 +7637,8 @@ u8 fzgx_obj_lbl_8_bss_23D;
 u16 fzgx_pool_lbl_8_bss_0_gap_23E;
 u8 fzgx_pool_lbl_8_bss_0_gap_23E_fill_240;
 u8 lbl_8_bss_238__fzgx_offset_9;
-u16 lbl_8_bss_242__fzgx_offset_0;
+u8 fzgx_obj_lbl_8_bss_242;
+u8 lbl_8_bss_242__fzgx_offset_1;
 s32 lbl_8_bss_242__fzgx_offset_2;
 u8 lbl_8_bss_242__fzgx_offset_6;
 u8 lbl_8_bss_242__fzgx_offset_7;
@@ -561,9 +7663,9 @@ u16 fzgx_obj_lbl_8_bss_2A8;
 u16 fzgx_pool_lbl_8_bss_0_gap_2AA;
 u32 fzgx_obj_lbl_8_bss_2AC;
 u32 fzgx_obj_lbl_8_bss_2B0;
-u32 lbl_8_bss_2B4;
-u32 lbl_8_bss_2B8;
-u32 lbl_8_bss_2BC;
+u32 fzgx_obj_lbl_8_bss_2B4;
+u32 fzgx_obj_lbl_8_bss_2B8;
+u32 fzgx_obj_lbl_8_bss_2BC;
 u32 fzgx_obj_lbl_8_bss_2C0[67];
 
 #pragma section code_type ".fzgxpool"
@@ -573,14 +7675,16 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_pool_lbl_8_bss_0_gap_1;
     s = *(u8 *)&fzgx_obj_lbl_8_bss_2;
     s = *(u8 *)&fzgx_pool_lbl_8_bss_0_gap_3;
-    s = *(u8 *)&lbl_8_bss_4;
-    s = *(u8 *)&lbl_8_bss_C;
-    s = *(u8 *)&lbl_8_bss_20;
-    s = *(u8 *)&lbl_8_bss_224;
+    s = *(u8 *)&fzgx_obj_lbl_8_bss_4;
+    s = *(u8 *)&lbl_8_bss_4__fzgx_offset_4;
+    s = *(u8 *)&fzgx_obj_lbl_8_bss_C;
+    s = *(u8 *)&lbl_8_bss_20__fzgx_offset_0;
+    s = *(u8 *)&lbl_8_bss_20__fzgx_offset_200;
+    s = *(u8 *)&fzgx_obj_lbl_8_bss_224;
     s = *(u8 *)&fzgx_pool_lbl_8_bss_0_gap_226;
-    s = *(u8 *)&lbl_8_bss_228;
-    s = *(u8 *)&lbl_8_bss_22C;
-    s = *(u8 *)&lbl_8_bss_230;
+    s = *(u8 *)&fzgx_obj_lbl_8_bss_228;
+    s = *(u8 *)&fzgx_obj_lbl_8_bss_22C;
+    s = *(u8 *)&fzgx_obj_lbl_8_bss_230;
     s = *(u8 *)&fzgx_pool_lbl_8_bss_0_gap_231;
     s = *(u8 *)&fzgx_pool_lbl_8_bss_0_gap_231_fill_232;
     s = *(u8 *)&fzgx_obj_lbl_8_bss_234;
@@ -590,7 +7694,8 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_pool_lbl_8_bss_0_gap_23E;
     s = *(u8 *)&fzgx_pool_lbl_8_bss_0_gap_23E_fill_240;
     s = *(u8 *)&lbl_8_bss_238__fzgx_offset_9;
-    s = *(u8 *)&lbl_8_bss_242__fzgx_offset_0;
+    s = *(u8 *)&fzgx_obj_lbl_8_bss_242;
+    s = *(u8 *)&lbl_8_bss_242__fzgx_offset_1;
     s = *(u8 *)&lbl_8_bss_242__fzgx_offset_2;
     s = *(u8 *)&lbl_8_bss_242__fzgx_offset_6;
     s = *(u8 *)&lbl_8_bss_242__fzgx_offset_7;
@@ -615,12 +7720,44 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_pool_lbl_8_bss_0_gap_2AA;
     s = *(u8 *)&fzgx_obj_lbl_8_bss_2AC;
     s = *(u8 *)&fzgx_obj_lbl_8_bss_2B0;
-    s = *(u8 *)&lbl_8_bss_2B4;
-    s = *(u8 *)&lbl_8_bss_2B8;
-    s = *(u8 *)&lbl_8_bss_2BC;
+    s = *(u8 *)&fzgx_obj_lbl_8_bss_2B4;
+    s = *(u8 *)&fzgx_obj_lbl_8_bss_2B8;
+    s = *(u8 *)&fzgx_obj_lbl_8_bss_2BC;
     s = *(u8 *)&fzgx_obj_lbl_8_bss_2C0;
 }
 #pragma section code_type ".text"
+/* fzgx:end fn_8_BE4 */
+
+/* fzgx:begin fn_8_EC4 */
+typedef struct fn_8_EC4_TitleEntry {
+    s32 image;
+    u8 flags;
+    u8 pad;
+    u16 y;
+} fn_8_EC4_TitleEntry;
+
+
+struct fn_8_EC4_Bss58 {
+    u8 unk0[0x15];
+    s8 unk15;
+};
+
+
+/* title logo lines, two text images per step: -2 = none, -1 = end */
+static const fn_8_EC4_TitleEntry fzgx_pool_fn_8_EC4_lines[4][2] = {
+    { { -2, 0, 0, 0 }, { -2, 0, 0, 0 } },
+    { { 0x8E00, 6, 0, 0x63 }, { 0x8E01, 6, 0, 0x100 } },
+    { { 0x8E03, 10, 0, 0xF0 }, { -1, 0, 0, 0 } },
+    { { -1, 0, 0, 0 }, { -1, 0, 0, 0 } },
+};
+
+extern u8 lbl_801A66BA;
+
+extern void fn_8_784(u32);
+extern void fn_80007AB4(TitleColor *);
+extern s32 fn_1_4E724(FontDrawPacket *);
+extern int fn_1_4C10(void);
+
 
 void fn_8_EC4(void) {
     s32 step;
@@ -686,9 +7823,9 @@ void fn_8_EC4(void) {
             (*(struct fn_8_EC4_Bss58 *)&lbl_1_bss_58).unk15 = (mode + 1) & 3;
             if (lbl_1_bss_96A == 0x9c) {
                 fn_1_3EF8C(6);
-                fn_1_3ED8C(0, 3, 1, (u8)lbl_8_bss_224, 10, 30, 0);
+                fn_1_3ED8C(0, 3, 1, (u8)fzgx_obj_lbl_8_bss_224, 10, 30, 0);
                 fn_1_3EB78(0, 0, 0, 0);
-                fn_1_3EFF0(fn_8_784, 1);
+                fn_1_3EFF0((u32)fn_8_784, 1);
                 fn_8006CE1C(1.0f);
                 fn_1_3EF08(1);
             }
@@ -733,6 +7870,47 @@ void fn_8_EC4(void) {
     }
     fn_1_52088();
 }
+
+#pragma section code_type ".fzgxpool"
+__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 30.0f;
+    d = 4503599627370496.0;
+    d = 4503601774854144.0;
+    s = 60.0f;
+    s = 180.0f;
+    s = 10860.0f;
+    s = 1020.0f;
+}
+static const u32 fzgx_pool_table4[1] = {0xFFFFFFFF};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 500.0f;
+    s = 400.0f;
+    s = 0.07999999821186066f;
+}
+static const u32 fzgx_pool_table6[1] = {0xFFFFFFFF};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep6(void) { const u32 *volatile cp; cp = fzgx_pool_table6; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime7(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 300.0f;
+}
+static const u32 fzgx_pool_table8[1] = {0xFFFFFFFF};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep8(void) { const u32 *volatile cp; cp = fzgx_pool_table8; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime9(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 1.5f;
+    s = -1.0f;
+    s = 8.0f;
+    s = 0.5f;
+    s = 4.0f;
+    s = 190.0f;
+    s = 0.07000000029802322f;
+    s = 0.550000011920929f;
+    s = 150.0f;
+}
+#pragma section code_type ".text"
 /* fzgx:end fn_8_EC4 */
 
 /* fzgx:begin fn_8_1304 */
@@ -756,7 +7934,6 @@ struct fn_8_1344_lbl_8_bss_4 {
 extern struct fn_8_1344_lbl_8_bss_4 lbl_8_bss_4;
 extern u8 lbl_8_bss_238__fzgx_offset_A;
 
-extern u32 fn_1_47F74(u32);
 
 void fn_8_1344(void) {
     (*(u8 *)&lbl_8_bss_238__fzgx_offset_A) = 0;
@@ -767,44 +7944,6 @@ void fn_8_1344(void) {
 /* fzgx:end fn_8_1344 */
 
 /* fzgx:begin fn_8_1394 */
-#include "font.h"
-
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 320.0f;
-    s = 362.0f;
-    s = 1.0f;
-    s = 0.0f;
-    s = 0.4000000059604645f;
-    s = 3.5f;
-    s = 0.6700000166893005f;
-    s = 120.0f;
-    s = 2.0f;
-    s = 0.75f;
-    s = 3.0f;
-    s = 16.0f;
-    s = 464.0f;
-    s = 0.009999999776482582f;
-    s = 0.10000000149011612f;
-    s = 360.0f;
-    s = 240.0f;
-    s = 200.0f;
-}
-static const u32 fzgx_pool_table2[17] = {0xFFFFFFFE, 0x00000000, 0xFFFFFFFE, 0x00000000, 0x00008E00, 0x06000063, 0x00008E01, 0x06000100, 0x00008E03, 0x0A0000F0, 0xFFFFFFFF, 0x00000000, 0xFFFFFFFF, 0x00000000, 0xFFFFFFFF, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 30.0f;
-    d = 4503599627370496.0;
-    d = 4503601774854144.0;
-    s = 60.0f;
-    s = 180.0f;
-    s = 10860.0f;
-    s = 1020.0f;
-}
-#pragma section code_type ".text"
-
 struct fn_8_1394_Copy88 { u32 a[22]; };
 struct fn_8_1394_lbl_8_bss_0 {
     u8 unk_0;
@@ -819,17 +7958,14 @@ struct fn_8_1394_lbl_8_bss_0 {
     u8 pad_22C[0x16];
     u8 unk_242;
 };
-extern f32 fn_1_52070(u32);
 extern int fn_1_3F038(void);
 extern int fn_1_4C10(void);
 extern int fn_1_4F734(FontDrawPacket *);
-extern s32 fn_1_465D0(s32, s32);
 extern u16 fn_1_48690(u32);
 extern u16 fn_1_486C4(u32);
 
 
 extern u32 fn_1_47E54(u32);
-extern u32 fn_1_52088(void);
 extern u32 fn_1_5370(s8, u32);
 extern u32 fn_8_0();
 
@@ -839,76 +7975,10 @@ extern u32 fn_8_0();
 extern int fn_1_3FC38(void);
 extern void fn_1_3EF14(void *);
 extern void fn_1_3FC68(s32);
-extern void fn_1_41104(void *);
 extern void fn_1_51678(FontDrawPacket *, u32, s16, s16, s16, s16);
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
-u8 fzgx_obj_lbl_8_bss_0;
-u8 fzgx_pool_lbl_8_bss_0_gap_1;
-u8 fzgx_obj_lbl_8_bss_2;
-u8 fzgx_pool_lbl_8_bss_0_gap_3;
-f32 lbl_8_bss_4;
-u32 lbl_8_bss_4__fzgx_offset_4;
-u32 lbl_8_bss_C[5];
-u32 lbl_8_bss_20__fzgx_offset_0[128];
-f32 lbl_8_bss_20__fzgx_offset_200;
-u16 lbl_8_bss_224;
-u16 fzgx_pool_lbl_8_bss_0_gap_226;
-u32 lbl_8_bss_228;
-u32 lbl_8_bss_22C;
-u8 lbl_8_bss_230;
-u8 fzgx_pool_lbl_8_bss_0_gap_231;
-u16 fzgx_pool_lbl_8_bss_0_gap_231_fill_232;
-u32 fzgx_obj_lbl_8_bss_234;
-u32 fzgx_obj_lbl_8_bss_238;
-u8 lbl_8_bss_238__fzgx_offset_4;
-u8 fzgx_obj_lbl_8_bss_23D;
-u16 fzgx_pool_lbl_8_bss_0_gap_23E;
-u8 fzgx_pool_lbl_8_bss_0_gap_23E_fill_240;
-u8 lbl_8_bss_238__fzgx_offset_9;
-u8 fzgx_obj_lbl_8_bss_242;
-u8 lbl_8_bss_242__fzgx_offset_1;
-u32 lbl_8_bss_242__fzgx_offset_2[25];
 
-#pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
-    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
-    s = *(u8 *)&fzgx_obj_lbl_8_bss_0;
-    s = *(u8 *)&fzgx_pool_lbl_8_bss_0_gap_1;
-    s = *(u8 *)&fzgx_obj_lbl_8_bss_2;
-    s = *(u8 *)&fzgx_pool_lbl_8_bss_0_gap_3;
-    s = *(u8 *)&lbl_8_bss_4;
-    s = *(u8 *)&lbl_8_bss_4__fzgx_offset_4;
-    s = *(u8 *)&lbl_8_bss_C;
-    s = *(u8 *)&lbl_8_bss_20__fzgx_offset_0;
-    s = *(u8 *)&lbl_8_bss_20__fzgx_offset_200;
-    s = *(u8 *)&lbl_8_bss_224;
-    s = *(u8 *)&fzgx_pool_lbl_8_bss_0_gap_226;
-    s = *(u8 *)&lbl_8_bss_228;
-    s = *(u8 *)&lbl_8_bss_22C;
-    s = *(u8 *)&lbl_8_bss_230;
-    s = *(u8 *)&fzgx_pool_lbl_8_bss_0_gap_231;
-    s = *(u8 *)&fzgx_pool_lbl_8_bss_0_gap_231_fill_232;
-    s = *(u8 *)&fzgx_obj_lbl_8_bss_234;
-    s = *(u8 *)&fzgx_obj_lbl_8_bss_238;
-    s = *(u8 *)&lbl_8_bss_238__fzgx_offset_4;
-    s = *(u8 *)&fzgx_obj_lbl_8_bss_23D;
-    s = *(u8 *)&fzgx_pool_lbl_8_bss_0_gap_23E;
-    s = *(u8 *)&fzgx_pool_lbl_8_bss_0_gap_23E_fill_240;
-    s = *(u8 *)&lbl_8_bss_238__fzgx_offset_9;
-    s = *(u8 *)&fzgx_obj_lbl_8_bss_242;
-    s = *(u8 *)&lbl_8_bss_242__fzgx_offset_1;
-    s = *(u8 *)&lbl_8_bss_242__fzgx_offset_2;
-}
-#pragma section code_type ".text"
-
-extern void OSReport(const char *, ...);
-#pragma section code_type ".fzgxpool"
-static void fzgx_string_layout(void) {
-    /* fzgx-allow: S2 layout primer: MWCC emits string literals in first-use order; the section is dropped at integration */
-    OSReport("vehicle/vehicle_sel.arc.lz");
-}
-#pragma section code_type ".text"
 
 u32 fn_8_1394(void) {
     f32 fn_8_1394_zero;
@@ -979,7 +8049,7 @@ u32 fn_8_1394(void) {
     f32 v47;
 
     
-    v1 = lbl_8_bss_228;
+    v1 = fzgx_obj_lbl_8_bss_228;
     lbl_8_bss_20__fzgx_offset_200 = 1.0f;
     if ((s32)v1 > 10980 && (s32)v1 <= 11040) {
     v3 = (f32)(s32)(11040 - v1);
@@ -1010,7 +8080,7 @@ u32 fn_8_1394(void) {
     lbl_8_bss_20__fzgx_offset_200 = (1.0f - v4);
     fn_1_52088();
     }
-    if ((s32)lbl_8_bss_228 > 10680 && (s32)lbl_8_bss_228 <= 10980) {
+    if ((s32)fzgx_obj_lbl_8_bss_228 > 10680 && (s32)fzgx_obj_lbl_8_bss_228 <= 10980) {
     fn_1_52070(320);
     loc_1C0 = *(FontDrawPacket *)&lbl_1_rodata_26F8;
     v10 = 320.0f;
@@ -1037,7 +8107,7 @@ u32 fn_8_1394(void) {
     lbl_8_bss_20__fzgx_offset_200 = 0.0f;
     fn_1_52088();
     }
-    v16 = lbl_8_bss_228;
+    v16 = fzgx_obj_lbl_8_bss_228;
     if ((s32)v16 > 10620 && (s32)v16 <= 10680) {
     v18 = 1.0f;
     v19 = (f32)(s32)(10680 - v16);
@@ -1068,11 +8138,11 @@ u32 fn_8_1394(void) {
     lbl_8_bss_20__fzgx_offset_200 = (1.0f - v20);
     fn_1_52088();
     }
-    if ((s32)fn_1_3FC38() != 0 && (s32)lbl_8_bss_228 == 1200) {
+    if ((s32)fn_1_3FC38() != 0 && (s32)fzgx_obj_lbl_8_bss_228 == 1200) {
     fn_1_5370(4, 0);
     fn_1_3FC68(0);
     }
-    v26 = lbl_8_bss_228;
+    v26 = fzgx_obj_lbl_8_bss_228;
     if ((s32)v26 > 1020 && (s32)v26 <= 1200) {
     v28 = (f32)(s32)(1200 - v26);
     v29 = (v28 / 180.0f);
@@ -1102,7 +8172,7 @@ u32 fn_8_1394(void) {
     lbl_8_bss_20__fzgx_offset_200 = (1.0f - v29);
     fn_1_52088();
     }
-    if ((s32)lbl_8_bss_228 <= 1020) {
+    if ((s32)fzgx_obj_lbl_8_bss_228 <= 1020) {
     fn_1_52070(320);
     loc_B8 = *(FontDrawPacket *)&lbl_1_rodata_26F8;
     v35 = 320.0f;
@@ -1129,7 +8199,7 @@ u32 fn_8_1394(void) {
     fn_1_52088();
     }
     fn_1_3EF14((void *)&loc_270);
-    v41 = lbl_8_bss_228;
+    v41 = fzgx_obj_lbl_8_bss_228;
     if (10860.0f <= (f32)(s32)v41) {
     fzgx_obj_lbl_8_bss_2 = 0;
     loc_270.a[0] = (loc_270.a[0] & 0xFFFFFFFB);
@@ -1211,18 +8281,18 @@ u32 fn_8_1394(void) {
     }
     t41 = fn_1_52088();
     v45 = t41;
-    unk_4 = lbl_8_bss_4;
+    unk_4 = fzgx_obj_lbl_8_bss_4;
     if ((fn_8_1394_zero = 0.0f, unk_4 == fn_8_1394_zero)) {
-    t42 = fn_1_465D0((s32)(u8 *)"vehicle/vehicle_sel.arc.lz", 1);
+    t42 = fn_1_465D0((char *)lbl_8_data_478, 1);
     v45 = t42;
-    fn_1_41104((void *)1);
+    fn_1_41104(1);
     fn_1_47E54(154);
     fn_1_47E54(155);
     fn_1_47E54(157);
     fn_1_47E54(161);
     v45 = fn_1_47E54(156);
     v45 = fn_1_47E54(162);
-    lbl_8_bss_4 = 1.0f;
+    fzgx_obj_lbl_8_bss_4 = 1.0f;
     }
     }
     return v45;
@@ -1267,18 +8337,14 @@ struct fn_8_1C18_lbl_8_bss_0 {
 
 
 extern u32 fn_1_4706C(void);
-extern u32 fn_1_4A00(u32, u32, u32);
-extern u32 fn_1_9A958(u32, u32);
 
 
-extern void fn_1_7B084(void *, int);
-extern void fn_8006CE1C(f32);
 
 void fn_8_1C18(void) {
     struct fn_8_1C18_lbl_8_bss_0 *p_lbl_8_bss_0;
     p_lbl_8_bss_0 = (struct fn_8_1C18_lbl_8_bss_0 *)&(*(struct fn_8_1C18_lbl_8_bss_0 *)&lbl_8_bss_0);
     fn_8006CE1C((0.0f));
-    fn_1_4A00(1, 15, p_lbl_8_bss_0->unk_238);
+    fn_1_4A00(1, 15, (void *)p_lbl_8_bss_0->unk_238);
     lbl_1_bss_970 = 600;
     fn_1_4706C();
     fn_1_7B084((void *)p_lbl_8_bss_0->unk_224, 0);
@@ -1288,10 +8354,6 @@ void fn_8_1C18(void) {
 /* fzgx:end fn_8_1C18 */
 
 /* fzgx:begin fn_8_1C90 noprologue */
-#include "types.h"
-
-#include "font.h"
-
 struct fn_8_1C90_Copy88 { u32 a[22]; };
 struct fn_8_1C90_lbl_8_rodata_0 {
     f32 unk_0;
@@ -1321,19 +8383,12 @@ struct fn_8_1C90_lbl_1_bss_970 {
 
 extern int fn_1_4C10(void);
 extern int fn_1_4F734(FontDrawPacket *);
-extern struct fn_8_1C90_lbl_1_bss_970 lbl_1_bss_970;
-extern struct fn_8_1C90_lbl_8_bss_0 lbl_8_bss_0;
-extern struct fn_8_1C90_lbl_8_rodata_0 lbl_8_rodata_0;
 extern u16 fn_1_48690(u32);
 extern u16 fn_1_486C4(u32);
-extern u16 lbl_1_bss_96A;
-extern u32 fn_1_4A00(u32, u32, u32);
 extern u32 fn_8_0();
 extern u32 lbl_1_rodata_26F8;
 extern u32 lbl_801A66A0;
 extern void fn_1_51678(FontDrawPacket *, u32, s16, s16, s16, s16);
-extern void fn_1_52070(u32);
-extern void fn_1_52088(void);
 
 void fn_8_1C90(void) {
     struct fn_8_1C90_lbl_8_bss_0 *p_lbl_8_bss_0;
@@ -1418,15 +8473,15 @@ void fn_8_1C90(void) {
     fn_1_4F734((FontDrawPacket *)&loc_60);
     p_lbl_8_bss_0->unk_220 = p_lbl_8_rodata_0->unk_C;
     fn_1_52088();
-    p_bss_970 = &lbl_1_bss_970;
+    p_bss_970 = (struct fn_8_1C90_lbl_1_bss_970 *)&lbl_1_bss_970;
     if (p_bss_970->unk_0 != 0) {
         v13 = --p_bss_970->unk_0;
         if (v13 == 15 && fn_1_4C10() == 0) {
-            fn_1_4A00(0, 15, p_lbl_8_bss_0->unk_238);
+            fn_1_4A00(0, 15, (void *)p_lbl_8_bss_0->unk_238);
         }
     } else {
         if (fn_1_4C10() == 0) {
-            lbl_1_bss_96A = 158;
+            (*(u16 *)&lbl_1_bss_96A) = 158;
         }
     }
 }
@@ -1442,7 +8497,6 @@ void fn_8_1F64(void) {
 
 /* fzgx:begin fn_8_1F74 */
 extern u32 fn_1_A5EFC(void);
-extern u32 fn_8006CE1C(f32);
 extern u8 lbl_801A66B8;
 
 void fn_8_1F74(void) {
@@ -1454,15 +8508,6 @@ void fn_8_1F74(void) {
 /* fzgx:end fn_8_1F74 */
 
 /* fzgx:begin fn_8_1FB0 */
-extern void fn_1_4FEC(void);
-extern u32 fn_1_C3378(void);
-extern u32 fn_1_F7A20(void);
-extern void fn_1_3EF8C(u8);
-extern u32 fn_1_3ED8C(u32, u32, u32, u32, u32, u32, u32);
-extern u32 fn_1_3EB78(u32, u32, u32, u32);
-extern void fn_1_3EFF0(void (*)(u32), u8);
-extern void fn_8006CE1C(f32);
-extern void fn_1_3EF08(u8);
 extern void fn_8_784(u32);
 
 extern u8 lbl_801A66B8;
@@ -1510,7 +8555,7 @@ f32 fn_8_1FB0(f32 arg0) {
                 fn_1_3EF8C(6);
                 fn_1_3ED8C(0, 3, 1, lbl_8_bss_224.unk_0 & 0xff, 10, 30, 0);
                 fn_1_3EB78(0, 0, 0, 0);
-                fn_1_3EFF0(&fn_8_784, 1);
+                fn_1_3EFF0((u32)fn_8_784, 1);
                 fn_8006CE1C(lbl_8_rodata_8);
                 fn_1_3EF08(1);
             }
@@ -1529,323 +8574,128 @@ void fn_8_2120(void) {
 /* fzgx:end fn_8_2120 */
 
 /* fzgx:begin fn_8_2124 */
-#include "rel/title/title.h"
-
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 320.0f;
-    s = 362.0f;
-    s = 1.0f;
-    s = 0.0f;
-    s = 0.4000000059604645f;
-    s = 3.5f;
-    s = 0.6700000166893005f;
-    s = 120.0f;
-    s = 2.0f;
-    s = 0.75f;
-    s = 3.0f;
-    s = 16.0f;
-    s = 464.0f;
-    s = 0.009999999776482582f;
-    s = 0.10000000149011612f;
-    s = 360.0f;
-    s = 240.0f;
-    s = 200.0f;
-}
-static const u32 fzgx_pool_table2[17] = {0xFFFFFFFE, 0x00000000, 0xFFFFFFFE, 0x00000000, 0x00008E00, 0x06000063, 0x00008E01, 0x06000100, 0x00008E03, 0x0A0000F0, 0xFFFFFFFF, 0x00000000, 0xFFFFFFFF, 0x00000000, 0xFFFFFFFF, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static inline void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 30.0f;
-    d = 4503599627370496.0;
-    d = 4503601774854144.0;
-    s = 60.0f;
-    s = 180.0f;
-    s = 10860.0f;
-    s = 1020.0f;
-}
-static const u32 fzgx_pool_table4[1] = {0xFFFFFFFF};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 500.0f;
-    s = 400.0f;
-    s = 0.07999999821186066f;
-}
-static const u32 fzgx_pool_table6[1] = {0xFFFFFFFF};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep6(void) { const u32 *volatile cp; cp = fzgx_pool_table6; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime7(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 300.0f;
-}
-static const u32 fzgx_pool_table8[1] = {0xFFFFFFFF};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep8(void) { const u32 *volatile cp; cp = fzgx_pool_table8; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime9(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 1.5f;
-    s = -1.0f;
-    s = 8.0f;
-    s = 0.5f;
-    s = 4.0f;
-    s = 190.0f;
-    s = 0.07000000029802322f;
-    s = 0.550000011920929f;
-    s = 150.0f;
-}
-static const u32 fzgx_pool_table10[1] = {0xA0505000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep10(void) { const u32 *volatile cp; cp = fzgx_pool_table10; }  /* fzgx-allow: S2 pool primer sink */
-static const u32 fzgx_pool_table11[1] = {0xA0A0A000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep11(void) { const u32 *volatile cp; cp = fzgx_pool_table11; }  /* fzgx-allow: S2 pool primer sink */
-static const u32 fzgx_pool_table12[1] = {0xFFFFFF00};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep12(void) { const u32 *volatile cp; cp = fzgx_pool_table12; }  /* fzgx-allow: S2 pool primer sink */
-static const u32 fzgx_pool_table13[1] = {0x70707000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep13(void) { const u32 *volatile cp; cp = fzgx_pool_table13; }  /* fzgx-allow: S2 pool primer sink */
-static const u32 fzgx_pool_table14[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep14(void) { const u32 *volatile cp; cp = fzgx_pool_table14; }  /* fzgx-allow: S2 pool primer sink */
-static const u32 fzgx_pool_table15[1] = {0x70707000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep15(void) { const u32 *volatile cp; cp = fzgx_pool_table15; }  /* fzgx-allow: S2 pool primer sink */
-static const u32 fzgx_pool_table16[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep16(void) { const u32 *volatile cp; cp = fzgx_pool_table16; }  /* fzgx-allow: S2 pool primer sink */
-static const u32 fzgx_pool_table17[1] = {0xFFFFFF00};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep17(void) { const u32 *volatile cp; cp = fzgx_pool_table17; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime18(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 288.0f;
-    s = 10.0f;
-    s = 352.0f;
-}
-static const u32 fzgx_pool_table19[1] = {0xA0505000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep19(void) { const u32 *volatile cp; cp = fzgx_pool_table19; }  /* fzgx-allow: S2 pool primer sink */
-#pragma section code_type ".text"
-
-struct fn_8_2124_pool {
-    u8 pad_0[8];
-    f32 unk_8;
-    f32 unk_C;
-    u8 pad_10[0x14];
-    f32 unk_24;
-    u8 pad_28[0x70];
-    f64 unk_98;
-    u8 pad_A0[0x38];
-    f32 unk_D8;
-    f32 unk_DC;
-    u8 pad_E0[0x10];
-    u32 unk_F0, unk_F4, unk_F8, unk_FC;
-    u32 unk_100, unk_104, unk_108, unk_10C;
-    f32 unk_110, unk_114, unk_118;
-};
-const u8 fzgx_pool_lbl_8_rodata_0[8] = {0x43,0xA0,0x00,0x00,0x43,0xB5,0x00,0x00};
-const f32 fzgx_pool_lbl_8_rodata_8 = 1.0f;
-const f32 fzgx_pool_lbl_8_rodata_C = 0.0f;
-const u8 fzgx_pool_lbl_8_rodata_C__fzgx_offset_4[20] = {0x3E,0xCC,0xCC,0xCD,0x40,0x60,0x00,0x00,0x3F,0x2B,0x85,0x1F,0x42,0xF0,0x00,0x00,0x40,0x00,0x00,0x00};
-const f32 fzgx_pool_lbl_8_rodata_C__fzgx_offset_18 = 0.75f;
-const u8 fzgx_pool_lbl_8_rodata_C__fzgx_offset_1C[112] = {0x40,0x40,0x00,0x00,0x41,0x80,0x00,0x00,0x43,0xE8,0x00,0x00,0x3C,0x23,0xD7,0x0A,0x3D,0xCC,0xCC,0xCD,0x43,0xB4,0x00,0x00,0x43,0x70,0x00,0x00,0x43,0x48,0x00,0x00,0xFF,0xFF,0xFF,0xFE,0x00,0x00,0x00,0x00,0xFF,0xFF,0xFF,0xFE,0x00,0x00,0x00,0x00,0x00,0x00,0x8E,0x00,0x06,0x00,0x00,0x63,0x00,0x00,0x8E,0x01,0x06,0x00,0x01,0x00,0x00,0x00,0x8E,0x03,0x0A,0x00,0x00,0xF0,0xFF,0xFF,0xFF,0xFF,0x00,0x00,0x00,0x00,0xFF,0xFF,0xFF,0xFF,0x00,0x00,0x00,0x00,0xFF,0xFF,0xFF,0xFF,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x41,0xF0,0x00,0x00,0x43,0x30,0x00,0x00,0x00,0x00,0x00,0x00};
-const f64 fzgx_pool_lbl_8_rodata_C__fzgx_offset_8C = 4503601774854144.0;
-const u8 fzgx_pool_lbl_8_rodata_C__fzgx_offset_94[56] = {0x42,0x70,0x00,0x00,0x43,0x34,0x00,0x00,0x46,0x29,0xB0,0x00,0x44,0x7F,0x00,0x00,0xFF,0xFF,0xFF,0xFF,0x43,0xFA,0x00,0x00,0x43,0xC8,0x00,0x00,0x3D,0xA3,0xD7,0x0A,0xFF,0xFF,0xFF,0xFF,0x43,0x96,0x00,0x00,0xFF,0xFF,0xFF,0xFF,0x3F,0xC0,0x00,0x00,0xBF,0x80,0x00,0x00,0x41,0x00,0x00,0x00};
-const f32 fzgx_pool_lbl_8_rodata_C__fzgx_offset_CC = 0.5f;
-const f32 fzgx_pool_lbl_8_rodata_C__fzgx_offset_D0 = 4.0f;
-const u8 fzgx_pool_lbl_8_rodata_C__fzgx_offset_D4[16] = {0x43,0x3E,0x00,0x00,0x3D,0x8F,0x5C,0x29,0x3F,0x0C,0xCC,0xCD,0x43,0x16,0x00,0x00};
-const f32 fzgx_pool_lbl_8_rodata_C__fzgx_offset_104 = 288.0f;
-const f32 fzgx_pool_lbl_8_rodata_C__fzgx_offset_108 = 10.0f;
-const f32 fzgx_pool_lbl_8_rodata_C__fzgx_offset_10C = 352.0f;
-const u8 fzgx_pool_lbl_8_rodata_C__fzgx_offset_110[68] = {0xA0,0x50,0x50,0x00,0xA0,0xA0,0xA0,0x00,0xFF,0xFF,0xFF,0x00,0x70,0x70,0x70,0x00,0x00,0x00,0x00,0x00,0x70,0x70,0x70,0x00,0x00,0x00,0x00,0x00,0xFF,0xFF,0xFF,0x00,0xFF,0xFF,0xFF,0xFF,0x43,0x8C,0x00,0x00,0x43,0x52,0x00,0x00,0x3C,0xA3,0xD7,0x0C,0x43,0x5C,0x00,0x00,0x3C,0xF5,0xC2,0x90,0x42,0x20,0x00,0x00,0x43,0xAC,0x80,0x00,0x43,0x82,0x00,0x00};
-
-
-extern u32 fn_800081C8(void *, void *, f32);
 extern void fn_1_49410(void);
 extern void fn_1_4955C(f32, f32);
 extern void fn_1_4954C(f32);
-extern void fn_1_495C8(u8);
 extern void fn_1_49590(f32);
 extern void fn_1_495B0(u32);
 extern void fn_1_4966C(f32, f32);
 extern void fn_1_496FC(f32, f32);
 extern void fn_1_4D494(void);
-extern void fn_1_49514(u32 *);
-extern void fn_1_49528(u32 *);
 extern void fn_1_4AE0C(const char *, ...);
-extern u32 fn_1_4D4C8(void *, f32, f32);
 
 void fn_8_2124(u32 arg0, u8 *arg1, f32 arg2) {
-    const struct fn_8_2124_pool *p_lbl_8_rodata_0;
-    f32 v1;
-    struct { u32 a[2]; } loc_2C;
-    u32 loc_28, loc_24, loc_20, loc_1C, loc_18;
-    u32 loc_14, loc_10, loc_C, loc_8;
-    
-    loc_28 = fzgx_pool_table11[0];
-    loc_2C.a[0] = fzgx_pool_table10[0];
-    loc_2C.a[1] = fn_800081C8(&loc_2C, &loc_28, fzgx_pool_lbl_8_rodata_8);
+    TitleColor blend;
+    f32 scale;
+
+    *(u32 *)&blend = fn_800081C8((TitleColor){ 0xA0, 0x50, 0x50, 0x00 }, (TitleColor){ 0xA0, 0xA0, 0xA0, 0x00 }, 1.0f);
     fn_1_49410();
-    v1 = fzgx_pool_lbl_8_rodata_C__fzgx_offset_18;
-    fn_1_4955C(v1, v1);
+    scale = 0.75f;
+    fn_1_4955C(scale, scale);
     fn_1_4954C(arg2);
     fn_1_495C8(9);
     if (5 != lbl_801A66B4) {
-        fn_1_49590(fzgx_pool_lbl_8_rodata_C__fzgx_offset_CC);
+        fn_1_49590(0.5f);
         fn_1_495B0(0x80000000);
-        fn_1_4966C(fzgx_pool_lbl_8_rodata_C, fzgx_pool_lbl_8_rodata_C__fzgx_offset_D0);
+        fn_1_4966C(0.0f, 4.0f);
     }
-    fn_1_496FC(fzgx_pool_lbl_8_rodata_C__fzgx_offset_104, (f32)(s32)arg0);
+    fn_1_496FC(288.0f, (f32)(s32)arg0);
     fn_1_495C8(10);
     if (*arg1 == 0) {
         fn_1_4D494();
-        loc_24 = fzgx_pool_table12[0];
-        fn_1_49514(&loc_24);
-        fn_1_4AE0C((const char *)lbl_8_data_7C14, lbl_8_data_62D0.text[TITLE_TEXT_YES][lbl_801A66B4]);
-        loc_20 = loc_2C.a[1];
-        fn_1_4D4C8(&loc_20, arg2, fzgx_pool_lbl_8_rodata_C__fzgx_offset_108);
+        fn_1_49514((TitleColor){ 0xFF, 0xFF, 0xFF, 0x00 });
+        fn_1_4AE0C("%s", lbl_8_data_62D0.text[TITLE_TEXT_YES][lbl_801A66B4]);
+        fn_1_4D4C8(blend, arg2, 10.0f);
     } else {
-        loc_1C = fzgx_pool_table13[0];
-        fn_1_49514(&loc_1C);
-        loc_18 = fzgx_pool_table14[0];
-        fn_1_49528(&loc_18);
-        fn_1_4AE0C((const char *)lbl_8_data_7C14, lbl_8_data_62D0.text[TITLE_TEXT_YES][lbl_801A66B4]);
+        fn_1_49514((TitleColor){ 0x70, 0x70, 0x70, 0x00 });
+        fn_1_49528((TitleColor){ 0x00, 0x00, 0x00, 0x00 });
+        fn_1_4AE0C("%s", lbl_8_data_62D0.text[TITLE_TEXT_YES][lbl_801A66B4]);
     }
-    fn_1_496FC(fzgx_pool_lbl_8_rodata_C__fzgx_offset_10C, (f32)(s32)arg0);
+    fn_1_496FC(352.0f, (f32)(s32)arg0);
     fn_1_495C8(8);
     if (*arg1 == 0) {
-        loc_14 = fzgx_pool_table15[0];
-        fn_1_49514(&loc_14);
-        loc_10 = fzgx_pool_table16[0];
-        fn_1_49528(&loc_10);
-        fn_1_4AE0C((const char *)lbl_8_data_7C14, lbl_8_data_62D0.text[TITLE_TEXT_NO][lbl_801A66B4]);
+        fn_1_49514((TitleColor){ 0x70, 0x70, 0x70, 0x00 });
+        fn_1_49528((TitleColor){ 0x00, 0x00, 0x00, 0x00 });
+        fn_1_4AE0C("%s", lbl_8_data_62D0.text[TITLE_TEXT_NO][lbl_801A66B4]);
     } else {
         fn_1_4D494();
-        loc_C = fzgx_pool_table17[0];
-        fn_1_49514(&loc_C);
-        fn_1_4AE0C((const char *)lbl_8_data_7C14, lbl_8_data_62D0.text[TITLE_TEXT_NO][lbl_801A66B4]);
-        loc_8 = loc_2C.a[1];
-        fn_1_4D4C8(&loc_8, arg2, fzgx_pool_lbl_8_rodata_C__fzgx_offset_108);
+        fn_1_49514((TitleColor){ 0xFF, 0xFF, 0xFF, 0x00 });
+        fn_1_4AE0C("%s", lbl_8_data_62D0.text[TITLE_TEXT_NO][lbl_801A66B4]);
+        fn_1_4D4C8(blend, arg2, 10.0f);
     }
 }
 /* fzgx:end fn_8_2124 */
 
 /* fzgx:begin fn_8_23AC noprologue */
-#include "types.h"
-
-#include "rel/title/title.h"
-struct fn_8_23AC_lbl_8_rodata_0 {
-    f32 unk_0;
-    u8 pad_4[0x4];
-    f32 unk_8;
-    f32 unk_C;
-    u8 pad_10[0x14];
-    f32 unk_24;
-    u8 pad_28[0xB0];
-    f32 unk_D8;
-    f32 unk_DC;
-    u8 pad_E0[0x30];
-    f32 unk_110;
-    f32 unk_114;
-    f32 unk_118;
-    u32 unk_11C;
-    u32 unk_120;
-    u32 unk_124;
-    u32 unk_128;
-    u32 unk_12C;
-    u32 unk_130;
-    u32 unk_134;
-    u32 unk_138;
-};
-
-extern struct fn_8_23AC_lbl_8_rodata_0 lbl_8_rodata_0;
-extern u32 fn_1_4D4C8(void *, f32, f32);
-extern u32 fn_800081C8(void *, void *, f32);
-extern u32 lbl_801A66B4;
 extern void fn_1_49410(void);
-extern void fn_1_49514(u32 *);
-extern void fn_1_49528(u32 *);
 extern void fn_1_4954C(f32);
 extern void fn_1_4955C(f32, f32);
 extern void fn_1_49590(f32);
 extern void fn_1_495B0(u32);
-extern void fn_1_495C8(u8);
 extern void fn_1_4966C(f32, f32);
 extern void fn_1_496FC(f32, f32);
 extern void fn_1_4AE0C(const char *, ...);
 extern void fn_1_4D494(void);
 
-void fn_8_23AC(void * arg0, f32 arg1) {
-    struct fn_8_23AC_lbl_8_rodata_0 *p_lbl_8_rodata_0;
-    u32 v0;
-    f32 v1;
-    s32 v2;
-    f32 v3;
-    struct { u32 a[3]; } loc_2C;
-    u32 loc_28;
-    u32 loc_24;
-    u32 loc_20;
-    u32 loc_1C;
-    u32 loc_18;
-    u32 loc_14;
-    u32 loc_10;
-    u32 loc_C;
-    u32 loc_8;
-    /* frame */
-    u32 t0;
-    u32 t25;
-    p_lbl_8_rodata_0 = (struct fn_8_23AC_lbl_8_rodata_0 *)&lbl_8_rodata_0;
-    v0 = p_lbl_8_rodata_0->unk_120;
-    loc_28 = v0;
-    loc_2C.a[0] = p_lbl_8_rodata_0->unk_11C;
-    t0 = fn_800081C8((void *)&loc_2C, (void *)&loc_28, p_lbl_8_rodata_0->unk_8);
-    loc_2C.a[1] = t0;
+void fn_8_23AC(void *arg0, f32 arg1) {
+    TitleColor blend;
+    f32 scale;
+
+    *(u32 *)&blend = fn_800081C8((TitleColor){ 0xA0, 0x50, 0x50, 0x00 }, (TitleColor){ 0xA0, 0xA0, 0xA0, 0x00 }, 1.0f);
     fn_1_49410();
-    v1 = p_lbl_8_rodata_0->unk_24;
-    fn_1_4955C(v1, v1);
+    scale = 0.75f;
+    fn_1_4955C(scale, scale);
     fn_1_4954C(arg1);
     fn_1_495C8(9);
-    if ((s32)lbl_801A66B4 != 5) {
-    fn_1_49590(p_lbl_8_rodata_0->unk_D8);
-    fn_1_495B0(0x80000000);
-    fn_1_4966C(p_lbl_8_rodata_0->unk_C, p_lbl_8_rodata_0->unk_DC);
+    if (lbl_801A66B4 != 5) {
+        fn_1_49590(0.5f);
+        fn_1_495B0(0x80000000);
+        fn_1_4966C(0.0f, 4.0f);
     }
-    fn_1_496FC(p_lbl_8_rodata_0->unk_110, p_lbl_8_rodata_0->unk_0);
+    fn_1_496FC(288.0f, 320.0f);
     fn_1_495C8(10);
-    if (*(u8 *)((u8 *)arg0 + 0) == 0) {
-    fn_1_4D494();
-    loc_24 = p_lbl_8_rodata_0->unk_124;
-    fn_1_49514((u32 *)&loc_24);
-    fn_1_4AE0C((const char *)(u32)&lbl_8_data_7C14, lbl_8_data_62D0.text[TITLE_TEXT_YES][lbl_801A66B4]);
-    loc_20 = loc_2C.a[1];
-    fn_1_4D4C8((void *)&loc_20, arg1, p_lbl_8_rodata_0->unk_114);
+    if (*(u8 *)arg0 == 0) {
+        fn_1_4D494();
+        fn_1_49514((TitleColor){ 0xFF, 0xFF, 0xFF, 0x00 });
+        fn_1_4AE0C("%s", lbl_8_data_62D0.text[TITLE_TEXT_YES][lbl_801A66B4]);
+        fn_1_4D4C8(blend, arg1, 10.0f);
     } else {
-    loc_1C = p_lbl_8_rodata_0->unk_128;
-    fn_1_49514((u32 *)&loc_1C);
-    loc_18 = p_lbl_8_rodata_0->unk_12C;
-    fn_1_49528((u32 *)&loc_18);
-    fn_1_4AE0C((const char *)(u32)&lbl_8_data_7C14, lbl_8_data_62D0.text[TITLE_TEXT_YES][lbl_801A66B4]);
+        fn_1_49514((TitleColor){ 0x70, 0x70, 0x70, 0x00 });
+        fn_1_49528((TitleColor){ 0x00, 0x00, 0x00, 0x00 });
+        fn_1_4AE0C("%s", lbl_8_data_62D0.text[TITLE_TEXT_YES][lbl_801A66B4]);
     }
-    fn_1_496FC(p_lbl_8_rodata_0->unk_118, p_lbl_8_rodata_0->unk_0);
+    fn_1_496FC(352.0f, 320.0f);
     fn_1_495C8(8);
-    if (*(u8 *)((u8 *)arg0 + 0) == 0) {
-    v2 = (u32)&loc_14;
-    loc_14 = p_lbl_8_rodata_0->unk_130;
-    fn_1_49514((u32 *)v2);
-    v2 = (u32)&loc_10;
-    loc_10 = p_lbl_8_rodata_0->unk_134;
-    fn_1_49528((u32 *)v2);
-    v2 = (u32)&lbl_8_data_7C14;
-    fn_1_4AE0C((const char *)(u32)v2, lbl_8_data_62D0.text[TITLE_TEXT_NO][lbl_801A66B4]);
+    if (*(u8 *)arg0 == 0) {
+        fn_1_49514((TitleColor){ 0x70, 0x70, 0x70, 0x00 });
+        fn_1_49528((TitleColor){ 0x00, 0x00, 0x00, 0x00 });
+        fn_1_4AE0C("%s", lbl_8_data_62D0.text[TITLE_TEXT_NO][lbl_801A66B4]);
     } else {
-    fn_1_4D494();
-    v2 = (u32)&loc_C;
-    loc_C = p_lbl_8_rodata_0->unk_138;
-    fn_1_49514((u32 *)v2);
-    v2 = (u32)&lbl_8_data_7C14;
-    fn_1_4AE0C((const char *)(u32)v2, lbl_8_data_62D0.text[TITLE_TEXT_NO][lbl_801A66B4]);
-    v3 = arg1;
-    v2 = (u32)&loc_8;
-    loc_8 = loc_2C.a[1];
-    t25 = fn_1_4D4C8((void *)v2, v3, p_lbl_8_rodata_0->unk_114);
-    v2 = t25;
+        fn_1_4D494();
+        fn_1_49514((TitleColor){ 0xFF, 0xFF, 0xFF, 0x00 });
+        fn_1_4AE0C("%s", lbl_8_data_62D0.text[TITLE_TEXT_NO][lbl_801A66B4]);
+        fn_1_4D4C8(blend, arg1, 10.0f);
     }
 }
 /* fzgx:end fn_8_23AC */
 
 /* fzgx:begin fn_8_25F8 */
+#pragma section code_type ".fzgxpool"
+static const u32 fzgx_pool_tail13C[1] = {0xFFFFFFFF};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fzgx_pool_keep12(void) { const u32 *volatile cp; cp = fzgx_pool_tail13C; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fzgx_pool_prime13(void) {
+    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
+    s = 280.0f;
+    s = 210.0f;
+    s = 0.020000003278255463f;
+    s = 220.0f;
+    s = 0.030000001192092896f;
+    s = 40.0f;
+    s = 345.0f;
+    s = 260.0f;
+}
+#pragma section code_type ".text"
+
 struct fn_8_25F8_lbl_8_bss_0 {
     u8 pad_0[0x244];
     u32 unk_244;
@@ -1855,23 +8705,15 @@ struct fn_8_25F8_lbl_8_bss_0 {
 };
 
 
-extern u32 fn_1_4FEC(void);
-extern u32 fn_1_C3378(void);
-extern u32 fn_1_F7A20(void);
 extern u8 lbl_801A66B9;
 
 void fn_8_25F8(void) {
     struct fn_8_25F8_lbl_8_bss_0 *p_lbl_8_bss_0;
-    u32 v0;
-    u32 t0, t1, t2;
     p_lbl_8_bss_0 = (struct fn_8_25F8_lbl_8_bss_0 *)&(*(struct fn_8_25F8_lbl_8_bss_0 *)&lbl_8_bss_0);
     if (lbl_801A66B9 == 0) {
-    t0 = fn_1_4FEC();
-    v0 = t0;
-    t1 = fn_1_C3378();
-    v0 = t1;
-    t2 = fn_1_F7A20();
-    v0 = t2;
+    fn_1_4FEC();
+    fn_1_C3378();
+    fn_1_F7A20();
     lbl_801A66B9 = 1;
     }
     p_lbl_8_bss_0->unk_244 = 0;
@@ -1891,91 +8733,6 @@ typedef unsigned long fn_8_2660_u32;
 
 typedef float fn_8_2660_f32;
 typedef double fn_8_2660_f64;
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
-    volatile fn_8_2660_f32 s; volatile fn_8_2660_f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 320.0f;
-    s = 362.0f;
-    s = 1.0f;
-    s = 0.0f;
-    s = 0.4000000059604645f;
-    s = 3.5f;
-    s = 0.6700000166893005f;
-    s = 120.0f;
-    s = 2.0f;
-    s = 0.75f;
-    s = 3.0f;
-    s = 16.0f;
-    s = 464.0f;
-    s = 0.009999999776482582f;
-    s = 0.10000000149011612f;
-    s = 360.0f;
-    s = 240.0f;
-    s = 200.0f;
-}
-static const fn_8_2660_u32 fzgx_pool_table2[17] = {0xFFFFFFFE, 0x00000000, 0xFFFFFFFE, 0x00000000, 0x00008E00, 0x06000063, 0x00008E01, 0x06000100, 0x00008E03, 0x0A0000F0, 0xFFFFFFFF, 0x00000000, 0xFFFFFFFF, 0x00000000, 0xFFFFFFFF, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const fn_8_2660_u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
-    volatile fn_8_2660_f32 s; volatile fn_8_2660_f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 30.0f;
-    d = 4503599627370496.0;
-    d = 4503601774854144.0;
-    s = 60.0f;
-    s = 180.0f;
-    s = 10860.0f;
-    s = 1020.0f;
-}
-static const fn_8_2660_u32 fzgx_pool_table4[1] = {0xFFFFFFFF};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const fn_8_2660_u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
-    volatile fn_8_2660_f32 s; volatile fn_8_2660_f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 500.0f;
-    s = 400.0f;
-    s = 0.07999999821186066f;
-}
-static const fn_8_2660_u32 fzgx_pool_table6[1] = {0xFFFFFFFF};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep6(void) { const fn_8_2660_u32 *volatile cp; cp = fzgx_pool_table6; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime7(void) {
-    volatile fn_8_2660_f32 s; volatile fn_8_2660_f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 300.0f;
-}
-static const fn_8_2660_u32 fzgx_pool_table8[1] = {0xFFFFFFFF};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep8(void) { const fn_8_2660_u32 *volatile cp; cp = fzgx_pool_table8; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime9(void) {
-    volatile fn_8_2660_f32 s; volatile fn_8_2660_f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 1.5f;
-    s = -1.0f;
-    s = 8.0f;
-    s = 0.5f;
-    s = 4.0f;
-    s = 190.0f;
-    s = 0.07000000029802322f;
-    s = 0.550000011920929f;
-    s = 150.0f;
-}
-static const fn_8_2660_u32 fzgx_pool_table10[8] = {0xA0505000, 0xA0A0A000, 0xFFFFFF00, 0x70707000, 0x00000000, 0x70707000, 0x00000000, 0xFFFFFF00};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep10(void) { const fn_8_2660_u32 *volatile cp; cp = fzgx_pool_table10; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime11(void) {
-    volatile fn_8_2660_f32 s; volatile fn_8_2660_f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 288.0f;
-    s = 10.0f;
-    s = 352.0f;
-}
-static const fn_8_2660_u32 fzgx_pool_table12[8] = {0xA0505000, 0xA0A0A000, 0xFFFFFF00, 0x70707000, 0x00000000, 0x70707000, 0x00000000, 0xFFFFFF00};
-static const fn_8_2660_u32 fzgx_pool_tail13C[1] = {0xFFFFFFFF};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep12(void) { const fn_8_2660_u32 *volatile cp; cp = fzgx_pool_table12; cp = fzgx_pool_tail13C; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime13(void) {
-    volatile fn_8_2660_f32 s; volatile fn_8_2660_f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 280.0f;
-    s = 210.0f;
-    s = 0.020000003278255463f;
-    s = 220.0f;
-    s = 0.030000001192092896f;
-    s = 40.0f;
-    s = 345.0f;
-    s = 260.0f;
-}
-#pragma section code_type ".text"
 
 
 /* title state machine, base lbl_8_bss_0 */
@@ -2157,11 +8914,8 @@ extern void fn_1_495B0(fn_8_2660_u32);
 extern void fn_1_53C9C(void *, void *, fn_8_2660_f32, fn_8_2660_f32, fn_8_2660_f32, fn_8_2660_f32, fn_8_2660_f32);
 extern void fn_1_4955C(fn_8_2660_f32, fn_8_2660_f32);
 extern void fn_1_4954C(fn_8_2660_f32);
-extern void fn_1_495C8(fn_8_2660_u32);
 extern void fn_1_496FC(fn_8_2660_f32, fn_8_2660_f32);
 extern void fn_1_4A0D8(const char *);
-extern void fn_1_C3378(void);
-extern void fn_1_F7A20(void);
 extern void fn_1_C34F0(void);
 extern int sprintf(char *, const char *, ...);
 extern void fn_1_4FD64(void);
@@ -2175,12 +8929,6 @@ extern void fn_1_B7E14(void *);
 extern fn_8_2660_u32 fn_1_C3688(void);
 extern fn_8_2660_s32 fn_1_B88C4(void);
 extern fn_8_2660_s32 fn_1_B8EDC(fn_8_2660_u32);
-extern void fn_1_3EF8C(fn_8_2660_u32);
-extern void fn_1_3ED8C(fn_8_2660_u32, fn_8_2660_u32, fn_8_2660_u32, fn_8_2660_u32, fn_8_2660_u32, fn_8_2660_u32, fn_8_2660_u32);
-extern void fn_1_3EB78(fn_8_2660_u32, fn_8_2660_u32, fn_8_2660_u32, fn_8_2660_u32);
-extern void fn_1_3EFF0(fn_8_2660_u32, fn_8_2660_u32);
-extern void fn_8006CE1C(fn_8_2660_f32);
-extern void fn_1_3EF08(fn_8_2660_u32);
 extern void fn_8_23AC(void *, fn_8_2660_f32);
 extern fn_8_2660_u32 fn_8_F9E4(void *, void *, fn_8_2660_u32);
 extern void fn_8_FF9C(void);
@@ -2188,1017 +8936,8 @@ extern fn_8_2660_s32 fn_8_FC5C(void);
 extern void fn_8_10084(fn_8_2660_u32);
 extern void fn_8_100B4(void);
 extern void *fn_8_5840(void *);
-extern void fn_8_2124(fn_8_2660_u32, void *, fn_8_2660_f32);
 extern void fn_8_784(fn_8_2660_u32);
 static inline void *fn_8_2660_array_read(void **array, fn_8_2660_s32 *index) { return array[*index]; }
-extern fn_8_2660_u8 fn_8_1304__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_1344__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_1394__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_1C08__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_1C0C__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_1C10__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_1C14__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_1C18__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_1C90__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_1F64__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_1F74__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_1FB0__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_2120__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_25F8__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_2660__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_4E8C__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_4E90__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_4F64__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_516C__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_520C__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_5210__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_5214__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_5218__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_530C__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_5514__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_55CC__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_5608__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_5810__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_5B44__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_5C4C__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_5C50__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_BD8__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_BDC__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_BE0__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_BE4__fzgx_offset_0[];
-extern fn_8_2660_u8 fn_8_BE4__fzgx_offset_100[];
-extern fn_8_2660_u8 fn_8_BE4__fzgx_offset_10C[];
-extern fn_8_2660_u8 fn_8_BE4__fzgx_offset_118[];
-extern fn_8_2660_u8 fn_8_BE4__fzgx_offset_124[];
-extern fn_8_2660_u8 fn_8_BE4__fzgx_offset_130[];
-extern fn_8_2660_u8 fn_8_BE4__fzgx_offset_13C[];
-extern fn_8_2660_u8 fn_8_BE4__fzgx_offset_148[];
-extern fn_8_2660_u8 fn_8_BE4__fzgx_offset_154[];
-extern fn_8_2660_u8 fn_8_BE4__fzgx_offset_160[];
-extern fn_8_2660_u8 fn_8_BE4__fzgx_offset_16C[];
-extern fn_8_2660_u8 fn_8_BE4__fzgx_offset_178[];
-extern fn_8_2660_u8 fn_8_BE4__fzgx_offset_184[];
-extern fn_8_2660_u8 fn_8_BE4__fzgx_offset_DC[];
-extern fn_8_2660_u8 fn_8_BE4__fzgx_offset_E8[];
-extern fn_8_2660_u8 fn_8_BE4__fzgx_offset_F4[];
-extern fn_8_2660_u8 fn_8_EC4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1010__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1030__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1050__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_108__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1094__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_10D8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_10F8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_10__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1118__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1138__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1158__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_118__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_119C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_11CC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_11EC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_120C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_120__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_122C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_124C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_127C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_12C0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_12C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_12E0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1300__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1320__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1340__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_134__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1384__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_13C8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_13E8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1408__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_140__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1428__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1448__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_148C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_14AC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_14BC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_14CC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_14DC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_14EC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1508__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_150__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_151C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_152C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_153C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_154C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_155C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_156C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_15A0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_15B8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_15C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_15D0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_15E8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1600__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1634__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1668__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1680__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_168__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1698__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_16B0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_16C8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_16FC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_170__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_171C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1734__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_174C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1764__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_177C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_17A0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_17D4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_17F0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_180C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1828__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1844__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_184__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1874__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_18AC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_18C8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_18E4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1900__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_191C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_194__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1954__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1994__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_19B4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_19D4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_19F4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1A14__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1A4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1A54__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1A90__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1AB0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1AD0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1AF0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1B0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1B10__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1B50__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1B8C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1BAC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1BCC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1BC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1BEC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1C0C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1C50__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1C90__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1CB0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1CC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1CD0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1CF0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1D10__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1D4C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1D4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1D8C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1DAC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1DCC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1DEC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1E0C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1E0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1E4C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1E78__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1E8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1E90__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1EA8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1EC0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1ED8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1F04__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1F0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1F60__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1F78__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1F8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1F90__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1FA8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_1FC0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_202C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_205C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_206C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_207C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_208C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_209C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_20D4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2128__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_213C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2150__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2164__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2178__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_21C0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2204__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2214__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2224__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2234__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2244__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2288__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_22C0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_22D4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_22E8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_22FC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2310__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2354__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_238C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_239C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_23AC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_23BC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_23CC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2410__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2470__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2480__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2490__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_24A0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_24B0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2508__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2544__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2554__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2564__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2574__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2584__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_25DC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_263C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2650__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2664__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2678__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_268C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_26F8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2720__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2734__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2748__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_275C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2770__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_27AC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_27B4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_27C0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_27CC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_27D8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_27E4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_27F0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_27F8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2804__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2810__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_281C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2828__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2834__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2838__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2840__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2848__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2850__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2858__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2860__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2864__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_286C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2874__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_287C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2884__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_288C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_28C8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_28DC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_28F0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_28__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2904__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2918__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2958__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2AE8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2AF4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2B00__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2B0C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2B18__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2B4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2BC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2C4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2CC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2D4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2D68__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2DC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2E4C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2E4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2E58__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2E64__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2E70__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2E7C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2EC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2F8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_2FD8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_300__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_308__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_310__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3168__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3178__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3188__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3198__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_31A8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_33F8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_34DC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_34F0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_34__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3504__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3518__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_352C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3688__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_36DC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_36F0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3704__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3718__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_372C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_378C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_37B4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_37CC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_37E4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_37FC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3814__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3850__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3884__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3894__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_38A4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_38B4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_38C4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3904__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_391C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3930__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3944__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3958__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_396C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3988__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3990__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_399C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_39A8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_39B4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_39C0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_39CC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3A04__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3A14__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3A24__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3A34__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3A44__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3A88__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3AB4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3AC4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3AD4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3AE4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3AF4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3B2C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3B6C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3B7C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3B8C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3B9C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3BAC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3BF0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3C48__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3C58__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3C68__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3C78__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3C88__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3CCC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3D14__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3D20__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3D2C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3D38__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3D44__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3D98__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3DCC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3DD8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3DE4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3DF0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3DFC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3E30__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3E68__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3E74__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3E80__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3E8C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3E98__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3ECC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3F00__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3F0C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3F18__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3F24__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3F30__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3F64__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3F9C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3FA8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3FB4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3FC0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_3FCC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4000__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_403C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_404C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_405C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_406C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_407C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_40A4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_40D4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_40E8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_40FC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4110__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4124__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4160__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_419C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_41AC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_41BC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_41CC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_41DC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4218__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4240__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4250__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4260__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4270__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4280__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_42C4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4304__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4314__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4324__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4334__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4344__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4384__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_43BC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_43CC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_43DC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_43EC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_43FC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4424__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4434__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4444__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4454__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4464__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4474__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4484__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4490__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_44A0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_44B0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_44C0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_44D0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_44DC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_44EC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_44FC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_44__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_450C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_451C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_452C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_453C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_454C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_455C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_456C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_457C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_458C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_459C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_45F0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_45FC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4608__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4614__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4620__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4688__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_46DC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_46E8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_46F4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4700__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_470C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4774__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_47A0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_47B0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_47C0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_47D0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_47E0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_480C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_483C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_484C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_485C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_486C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_487C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_48B0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4948__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4960__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4978__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4990__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_49A8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4A34__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4A78__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4A90__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4AA8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4AC0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4AD8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4B28__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4B9C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4BA0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4BA4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4BA8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4BAC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4C68__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4CE0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4CE4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4CE8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4CEC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4CF0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4D0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4D4C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4D54__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4D60__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4D6C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4D78__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4D84__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4D8C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4D94__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4DA0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4DAC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4DB8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4DC4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4DCC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4DC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4DD4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4DE0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4DEC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4DF8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4E04__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4E10__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4E18__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4E24__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4E30__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4E3C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4E48__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4E54__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4E5C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4E68__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4E74__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4E80__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4E8C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4E98__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4EA0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4EAC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4EB8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4EC4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4ED0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4EDC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4EE4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4EF0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4EFC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4F08__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4F14__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4F20__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4F28__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4F34__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4F40__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4F4C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4F58__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4F60__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4FC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_508__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_50A4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_50A8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_50AC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_50B0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_50B4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5224__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_524__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5268__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_526C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5270__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5274__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5278__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_52BC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5300__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5304__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5308__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_530C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_530__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5310__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5358__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5390__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5394__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5398__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_539C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_53A0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_53F8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5400__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5404__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5408__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_540C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5410__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5418__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5420__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5424__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5428__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_542C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5430__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5438__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5440__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5444__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5448__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_544C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5450__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5458__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5460__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5464__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5468__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_546C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5470__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5478__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_548__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_54AC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_54B0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_54B4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_54B8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_54BC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_54__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5510__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5564__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5568__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_556C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5570__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5574__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_558__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_55C0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_55C8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_55CC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_55D0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_55D4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_55D8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_55E4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5624__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5638__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_564C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5660__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5674__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_56C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5750__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_57CC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_57C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_57DC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_57EC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_57FC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_580C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_58EC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_595C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5970__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5984__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_598__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5998__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_59AC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_59B0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5A58__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5A68__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5A78__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5A88__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5A98__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5A9C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5AC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5B44__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5B54__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5B64__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5B74__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5B84__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5C0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5C3C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5C64__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5C74__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5C84__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5C94__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5CA4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5CD4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5D1C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5D2C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5D3C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5D4C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5D4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5D5C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5DC4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5DFC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5E0C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5E1C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5E2C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5E3C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5E84__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5EB0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5EC4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5ED8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5EEC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5F00__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5F30__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5F44__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5F4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5F54__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5F64__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5F74__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5F84__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5F90__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5FA4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5FB8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5FCC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5FE0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_5FF4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_600__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_6014__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_6030__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_6044__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_6058__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_606C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_6080__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_60A4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_60C4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_60D4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_60E4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_60F4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_60__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_6104__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_6118__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_614C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_6160__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_6174__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_6188__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_618__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_619C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_61C0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_61D0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_61E0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_61F0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_6200__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_6210__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_6220__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_624C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_624__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_6260__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_6274__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_6288__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_629C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_63C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_650__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_66C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_67C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_688__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_69C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_6B4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_6C4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_6D68__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_6DB8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_6DBC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_6E48__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_6E88__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_6EDC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_6EFC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_6F3C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_70__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_7120__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_7218__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_7254__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_7288__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_72C4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_7330__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_735C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_73B0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_73F4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_7450__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_7494__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_74CC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_7524__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_755C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_75B4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_761C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_76B8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_771C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_778__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_77B8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_784C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_7918__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_7944__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_7998__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_79E0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_7A30__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_7A74__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_7AC8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_7AF0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_7B40__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_7B60__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_7B90__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_7BC4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_7C8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_7D4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_7E0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_7EC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_7F8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_80__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_864__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_88__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_8A8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_8B8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_8C8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_8D8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_8E8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_90__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_948__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_9B8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_9C4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_9C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_9D0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_9DC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_9E8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_A8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_AD0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_B28__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_B34__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_B40__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_B4C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_B58__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_B8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_BC0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_BF4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_C0C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_C0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_C24__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_C3C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_C54__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_C7C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_CAC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_CC4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_CC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_CDC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_CF4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_D0C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_D34__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_D64__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_D7C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_D8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_D94__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_DAC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_DC4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_DF4__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_E24__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_E40__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_E5C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_E78__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_E8__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_E94__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_EBC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_EF0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_F0C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_F0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_F28__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_F44__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_F60__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_F8C__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_FC__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_FD0__fzgx_offset_0[];
-extern fn_8_2660_u8 lbl_8_data_FF0__fzgx_offset_0[];
-static fn_8_2660_u32 fzgx_pool_native_lbl_8_data_0_gap_0[7052] = {0x4E4F4E00, 0x4D415354, 0x45522052, 0x45435600, 0x4D415354, 0x45522053, 0x454E4400, 0x534C4156, 0x45205345, 0x4E440000, 0x534C4156, 0x45205245, 0x43560000, 0x494E4954, 0x00000000, 0x54455354, 0x00000000, 0x54455354, 0x454E4400, 0x53455455, 0x50000000, 0x53455455, 0x505F444F, 0x4E450000, 0x53455455, 0x505F434F, 0x554E5445, 0x52000000, 0x53455455, 0x505F434E, 0x545F444F, 0x4E450000, 0x554E4C49, 0x4E4B0000, 0x434F494E, 0x00000000, 0x454E5452, 0x595F5741, 0x49540000, 0x4348414C, 0x4C454E47, 0x45520000, 0x4348414C, 0x4C454E47, 0x45525F4F, 0x4B000000, 0x454E5452, 0x59000000, 0x454E5452, 0x595F4F4B, 0x00000000, 0x53494E47, 0x4C454348, 0x45434B00, 0x53494E47, 0x4C454348, 0x45434B5F, 0x4F4B0000, 0x434F5552, 0x53450000, 0x434F5552, 0x53455F4F, 0x4B000000, 0x434F5552, 0x53455F44, 0x41544100, 0x434F5552, 0x53455F44, 0x4154415F, 0x4F4B0000, 0x4D414348, 0x494E4500, 0x4D414348, 0x494E455F, 0x4F4B0000, 0x434F4E46, 0x49470000, 0x434F4E46, 0x49475F4F, 0x4B000000, 0x434F554E, 0x54455241, 0x444A5553, 0x54000000, 0x4C494E4B, 0x57414954, 0x00000000, 0x4C494E4B, 0x57414954, 0x4F4B0000, 0x4C494E4B, 0x53454C00, 0x4C494E4B, 0x44454C49, 0x56455259, 0x53544152, 0x54000000, 0x4C494E4B, 0x44454C49, 0x56455259, 0x00000000, 0x4C494E4B, 0x44454C49, 0x56455259, 0x4F4B0000, 0x4C494E4B, 0x53454C4F, 0x4B000000, 0x434F5552, 0x53455649, 0x45570000, 0x434F5552, 0x53455649, 0x45575F4F, 0x4B000000, 0x4C494E4B, 0x52455100, 0x4C494E4B, 0x5354414E, 0x44425900, 0x4C494E4B, 0x4F4B0000, 0x4C494E4B, 0x00000000, 0x50415553, 0x45000000, 0x4552524F, 0x52000000, (fn_8_2660_u32)lbl_8_data_0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_10__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_28__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_34__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_44__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_54__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_60__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_70__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_80__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_88__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_90__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_9C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_A8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_B8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_C0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_CC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_D8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_E8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_F0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_FC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_108__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_118__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_120__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_12C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_134__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_140__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_150__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_15C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_168__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_170__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_184__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_194__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1A4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1B0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1BC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1CC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1D4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1E0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1E8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1F0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1F8__fzgx_offset_0, 0x70726F67, 0x00000000, 0x6D656D63, 0x61726400, 0x7469746C, 0x65000000, 0x64656D6F, 0x00000000, 0x6D656E75, 0x00000000, 0x6C6F676F, 0x00000000, 0x7761726E, 0x696E6700, 0x6F706572, 0x6174696F, 0x6E000000, 0x72617469, 0x6E670000, 0x63617264, 0x00000000, 0x72616E6B, 0x696E6700, 0x6D6F7669, 0x65000000, (fn_8_2660_u32)lbl_8_data_2B4__fzgx_offset_0, (fn_8_2660_u32)fn_8_1F74__fzgx_offset_0, (fn_8_2660_u32)fn_8_1FB0__fzgx_offset_0, (fn_8_2660_u32)fn_8_2120__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2BC__fzgx_offset_0, (fn_8_2660_u32)fn_8_25F8__fzgx_offset_0, (fn_8_2660_u32)fn_8_2660__fzgx_offset_0, (fn_8_2660_u32)fn_8_4E8C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2C4__fzgx_offset_0, (fn_8_2660_u32)fn_8_1C18__fzgx_offset_0, (fn_8_2660_u32)fn_8_1C90__fzgx_offset_0, (fn_8_2660_u32)fn_8_1F64__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2CC__fzgx_offset_0, (fn_8_2660_u32)fn_8_1344__fzgx_offset_0, (fn_8_2660_u32)fn_8_1394__fzgx_offset_0, (fn_8_2660_u32)fn_8_1C08__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2D4__fzgx_offset_0, (fn_8_2660_u32)fn_8_1C0C__fzgx_offset_0, (fn_8_2660_u32)fn_8_1C10__fzgx_offset_0, (fn_8_2660_u32)fn_8_1C14__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2DC__fzgx_offset_0, (fn_8_2660_u32)fn_8_BE4__fzgx_offset_0, (fn_8_2660_u32)fn_8_EC4__fzgx_offset_0, (fn_8_2660_u32)fn_8_1304__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2E4__fzgx_offset_0, (fn_8_2660_u32)fn_8_BD8__fzgx_offset_0, (fn_8_2660_u32)fn_8_BDC__fzgx_offset_0, (fn_8_2660_u32)fn_8_BE0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2EC__fzgx_offset_0, (fn_8_2660_u32)fn_8_4E90__fzgx_offset_0, (fn_8_2660_u32)fn_8_4F64__fzgx_offset_0, (fn_8_2660_u32)fn_8_516C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2F8__fzgx_offset_0, (fn_8_2660_u32)fn_8_520C__fzgx_offset_0, (fn_8_2660_u32)fn_8_5210__fzgx_offset_0, (fn_8_2660_u32)fn_8_5214__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_300__fzgx_offset_0, (fn_8_2660_u32)fn_8_5218__fzgx_offset_0, (fn_8_2660_u32)fn_8_530C__fzgx_offset_0, (fn_8_2660_u32)fn_8_5514__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_308__fzgx_offset_0, (fn_8_2660_u32)fn_8_55CC__fzgx_offset_0, (fn_8_2660_u32)fn_8_5608__fzgx_offset_0, (fn_8_2660_u32)fn_8_5810__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_310__fzgx_offset_0, (fn_8_2660_u32)fn_8_5B44__fzgx_offset_0, (fn_8_2660_u32)fn_8_5C4C__fzgx_offset_0, (fn_8_2660_u32)fn_8_5C50__fzgx_offset_0, 0x2B200000, 0x012C0006, 0x4E494E54, 0x454E444F, 0x00000000, 0x414D5553, 0x454D454E, 0x54205649, 0x53494F4E, 0x00000000, 0x462D5A45, 0x524F2066, 0x6F722047, 0x43000000, 0x57454C43, 0x4F4D4520, 0x544F0000, 0x4F564552, 0x20323030, 0x306B6D2F, 0x6820574F, 0x524C4421, 0x00000000, 0x7469746C, 0x652E6300, 0x76656869, 0x636C652F, 0x25735F65, 0x2E617263, 0x2E6C7A00, 0x6D6F7669, 0x652F7374, 0x6F727930, 0x302E7478, 0x74000000, 0x6D6F7669, 0x652F7374, 0x6F727930, 0x31412E74, 0x78740000, 0x76656869, 0x636C652F, 0x76656869, 0x636C655F, 0x73656C2E, 0x6172632E, 0x6C7A0000, (fn_8_2660_u32)fn_8_BE4__fzgx_offset_DC, (fn_8_2660_u32)fn_8_BE4__fzgx_offset_E8, (fn_8_2660_u32)fn_8_BE4__fzgx_offset_F4, (fn_8_2660_u32)fn_8_BE4__fzgx_offset_100, (fn_8_2660_u32)fn_8_BE4__fzgx_offset_10C, (fn_8_2660_u32)fn_8_BE4__fzgx_offset_118, (fn_8_2660_u32)fn_8_BE4__fzgx_offset_124, (fn_8_2660_u32)fn_8_BE4__fzgx_offset_130, (fn_8_2660_u32)fn_8_BE4__fzgx_offset_13C, (fn_8_2660_u32)fn_8_BE4__fzgx_offset_148, (fn_8_2660_u32)fn_8_BE4__fzgx_offset_154, (fn_8_2660_u32)fn_8_BE4__fzgx_offset_160, (fn_8_2660_u32)fn_8_BE4__fzgx_offset_16C, (fn_8_2660_u32)fn_8_BE4__fzgx_offset_178, (fn_8_2660_u32)fn_8_BE4__fzgx_offset_184, 0x835A838C, 0x834E835E, 0x00000000, 0x83668374, 0x8348838B, 0x8367835A, 0x838C834E, 0x835E82C9, 0x93FC82E8, 0x82DC82B7, 0x00000000, 0x835A838C, 0x834E835E, 0x32000000, 0x835A834A, 0x83938368, 0x835A838C, 0x834E835E, 0x82C993FC, 0x82E882DC, 0x82B70000, 0x4143835A, 0x838C834E, 0x835E0000, 0x4143835A, 0x838C834E, 0x835E82C9, 0x93FC82E8, 0x82DC82B7, 0x00000000, 0x8380815B, 0x8372815B, 0x83658358, 0x83670000, 0x8380815B, 0x8372815B, 0x82F082DD, 0x82DC82B7, 0x00000000, 0x834A8358, 0x835E837D, 0x83438359, 0x00000000, 0x834A8358, 0x835E837D, 0x83438359, 0x82F082A8, 0x82B182C8, 0x82A282DC, 0x82B70000, 0x82AD82E9, 0x82DC82A2, 0x82EB4368, 0x616E6765, 0x00000000, 0x8ED482CC, 0x904682F0, 0x95CF82A6, 0x82DC82B7, 0x00000000, 0x83588367, 0x815B838A, 0x815B8382, 0x815B8368, 0x00000000, 0x83588367, 0x815B838A, 0x815B8382, 0x815B8368, 0x82F082CD, 0x82B682DF, 0x82DC82B7, 0x00000000, 0x838A8376, 0x838C8343, 0x00000000, 0x838A8376, 0x838C8343, 0x8AD38FDC, 0x8382815B, 0x836882C5, 0x82B70000, 0x83498376, 0x83568387, 0x83930000, 0x8351815B, 0x838082CC, 0x90DD92E8, 0x82F095CF, 0x82A682DC, 0x82B70000, 0x83708343, 0x838D8362, 0x83678382, 0x815B8368, 0x00000000, 0x83708343, 0x838D8362, 0x83678382, 0x815B8368, 0x82C993FC, 0x82E882DC, 0x82B70000, 0x955C8FB2, 0x91E48382, 0x815B8368, 0x00000000, 0x955C8FB2, 0x91E482C5, 0x82B70000, 0x83438393, 0x835E8372, 0x8385815B, 0x8382815B, 0x83680000, 0x83438393, 0x835E8372, 0x8385815B, 0x8382815B, 0x836882C5, 0x82B70000, 0x83658358, 0x83678382, 0x815B8368, 0x00000000, 0x83658358, 0x83678382, 0x815B8368, 0x82C993FC, 0x82E882DC, 0x82B70000, (fn_8_2660_u32)lbl_8_data_4D0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4DC__fzgx_offset_0, 0x00000001, (fn_8_2660_u32)lbl_8_data_4FC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_508__fzgx_offset_0, 0xFFFFFFFE, (fn_8_2660_u32)lbl_8_data_524__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_530__fzgx_offset_0, 0xFFFFFFFC, (fn_8_2660_u32)lbl_8_data_548__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_558__fzgx_offset_0, 0x00000008, (fn_8_2660_u32)lbl_8_data_56C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_57C__fzgx_offset_0, 0x00000005, (fn_8_2660_u32)lbl_8_data_598__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5AC__fzgx_offset_0, 0x00000006, (fn_8_2660_u32)lbl_8_data_5C0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5D4__fzgx_offset_0, 0x00000009, (fn_8_2660_u32)lbl_8_data_5F4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_600__fzgx_offset_0, 0x0000000C, (fn_8_2660_u32)lbl_8_data_618__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_624__fzgx_offset_0, 0x00000003, (fn_8_2660_u32)lbl_8_data_63C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_650__fzgx_offset_0, 0x0000000D, (fn_8_2660_u32)lbl_8_data_66C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_67C__fzgx_offset_0, 0x0000000E, (fn_8_2660_u32)lbl_8_data_688__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_69C__fzgx_offset_0, 0x00000010, (fn_8_2660_u32)lbl_8_data_6B4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6C4__fzgx_offset_0, 0x00000004, 0x41204D65, 0x6D6F7279, 0x20436172, 0x64206973, 0x206E6F74, 0x20696E73, 0x65727465, 0x6420696E, 0x20534C4F, 0x542E0A50, 0x6C656173, 0x65207072, 0x6F706572, 0x6C792069, 0x6E736572, 0x74206120, 0x4D656D6F, 0x72792043, 0x6172642E, 0x00000000, 0x4E4F4341, 0x52442047, 0x45520000, 0x4E4F4341, 0x52442046, 0x52410000, 0x4E4F4341, 0x52442053, 0x50410000, 0x4E4F4341, 0x52442049, 0x54410000, 0x534C4F54, 0x82C98381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82AA8CA9, 0x5B82DD5D, 0x82C282A9, 0x82E882DC, 0x82B982F1, 0x81420A83, 0x81838283, 0x8A815B83, 0x4A815B83, 0x6882CC90, 0xDA5B82B9, 0x82C25D91, 0xB15B82BC, 0x82AD5D82, 0xF08A6D5B, 0x82A982AD, 0x5D94465B, 0x82C982F1, 0x5D82B582, 0xC482AD82, 0xBE82B382, 0xA2814200, 0x54686520, 0x64657669, 0x63652069, 0x6E20534C, 0x4F542069, 0x73206E6F, 0x74207375, 0x70706F72, 0x7465642E, 0x0A506C65, 0x61736520, 0x696E7365, 0x72742061, 0x204D656D, 0x6F727920, 0x43617264, 0x2E000000, 0x57524F4E, 0x47444556, 0x49434520, 0x47455200, 0x57524F4E, 0x47444556, 0x49434520, 0x46524100, 0x57524F4E, 0x47444556, 0x49434520, 0x53504100, 0x57524F4E, 0x47444556, 0x49434520, 0x49544100, 0x534C4F54, 0x82C982CD, 0x0A838183, 0x82838A81, 0x5B834A81, 0x5B836888, 0xC85B82A2, 0x5D8A4F5B, 0x82AA82A2, 0x5D82CC82, 0xE082CC82, 0xAA82B382, 0xB382C182, 0xC482A282, 0xDC82B781, 0x420A8381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82F082B3, 0x82B582C4, 0x82AD82BE, 0x82B382A2, 0x81420000, 0x41206661, 0x74616C20, 0x6572726F, 0x72206861, 0x73206F63, 0x63757265, 0x642E0A54, 0x75726E20, 0x74686520, 0x706F7765, 0x72206F66, 0x6620616E, 0x64207265, 0x66657220, 0x746F2074, 0x6865204E, 0x696E7465, 0x6E646F20, 0x47616D65, 0x43756265, 0x0A686172, 0x64776172, 0x65206D61, 0x6E75616C, 0x20666F72, 0x20646574, 0x61696C73, 0x2E200000, 0x46415441, 0x4C204745, 0x52000000, 0x46415441, 0x4C204652, 0x41000000, 0x46415441, 0x4C205350, 0x41000000, 0x46415441, 0x4C204954, 0x41000000, 0x92765B82, 0xBF5D96BD, 0x5B82DF82, 0xA25D9349, 0x5B82C482, 0xAB5D82C8, 0x83478389, 0x815B82AA, 0x8B4E5B82, 0xA85D82B1, 0x82E882DC, 0x82B582BD, 0x81420A0A, 0x967B5B82, 0xD982F15D, 0x91CC5B82, 0xBD82A25D, 0x82CC8370, 0x838F815B, 0x837B835E, 0x839382F0, 0x899F5B82, 0xA85D82B5, 0x82C40A93, 0x645B82C5, 0x82F15D8C, 0xB95B82B0, 0x82F15D82, 0xF0826E82, 0x65826582, 0xC982B581, 0x410A967B, 0x5B82D982, 0xF15D91CC, 0x5B82BD82, 0xA25D82CC, 0x8EE65B82, 0xC65D82E8, 0x88B55B82, 0xA082C282, 0xA95D82A2, 0x90E05B82, 0xB982C25D, 0x96BE5B82, 0xDF82A25D, 0x8F915B82, 0xB582E55D, 0x82CC0A8E, 0x775B82B5, 0x5D8EA65B, 0x82B65D82, 0xC98F5D5B, 0x82B582BD, 0x82AA5D82, 0xC182C482, 0xAD82BE82, 0xB382A281, 0x42000000, 0x54686973, 0x20646174, 0x61207665, 0x7273696F, 0x6E206973, 0x20696E63, 0x6F727265, 0x63742E0A, 0x53617665, 0x2067616D, 0x65206461, 0x74612061, 0x6761696E, 0x20696E20, 0x74686520, 0x47616D65, 0x20446174, 0x61206D65, 0x6E752069, 0x6E204F70, 0x74696F6E, 0x732E2000, 0x56455253, 0x494F4E20, 0x47455200, 0x56455253, 0x494F4E20, 0x46524100, 0x56455253, 0x494F4E20, 0x53504100, 0x56455253, 0x494F4E20, 0x49544100, 0x8366815B, 0x835E82CC, 0x836F815B, 0x83578387, 0x839382AA, 0x88E15B82, 0xBF82AA5D, 0x82A282DC, 0x82B78142, 0x0A834983, 0x76835683, 0x87839382, 0xCC835181, 0x5B838083, 0x66815B83, 0x5E82C50A, 0x8366815B, 0x835E82F0, 0x835A815B, 0x837582B5, 0x92BC5B82, 0xC882A85D, 0x82B582C4, 0x82AD82BE, 0x82B382A2, 0x81420000, 0x839F2081, 0x6320436F, 0x6E74696E, 0x75652077, 0x6974686F, 0x7574206C, 0x6F616469, 0x6E670A20, 0x2083B220, 0x81632054, 0x72792061, 0x6761696E, 0x20000000, 0x43415054, 0x494F4E5F, 0x4C4F4144, 0x5F524554, 0x52592047, 0x45520000, 0x43415054, 0x494F4E5F, 0x4C4F4144, 0x5F524554, 0x52592046, 0x52410000, 0x43415054, 0x494F4E5F, 0x4C4F4144, 0x5F524554, 0x52592053, 0x50410000, 0x43415054, 0x494F4E5F, 0x4C4F4144, 0x5F524554, 0x52592049, 0x54410000, 0x839F8163, 0x838D815B, 0x836882B9, 0x82B882C9, 0x8F495B82, 0xA85D82ED, 0x82E92083, 0xB2816383, 0x8A836783, 0x89834300, 0x839F2081, 0x6320436F, 0x6E74696E, 0x75652077, 0x6974686F, 0x75742073, 0x6176696E, 0x670A83B2, 0x20816320, 0x54727920, 0x61676169, 0x6E200000, 0x43415054, 0x494F4E5F, 0x53415645, 0x5F524554, 0x52592047, 0x45520000, 0x43415054, 0x494F4E5F, 0x53415645, 0x5F524554, 0x52592046, 0x52410000, 0x43415054, 0x494F4E5F, 0x53415645, 0x5F524554, 0x52592053, 0x50410000, 0x43415054, 0x494F4E5F, 0x53415645, 0x5F524554, 0x52592049, 0x54410000, 0x839F8163, 0x835A815B, 0x837582B9, 0x82B882C9, 0x8F495B82, 0xA85D82ED, 0x82E92083, 0xB2816383, 0x8A836783, 0x89834300, 0x839F2081, 0x6320436F, 0x6E74696E, 0x75652077, 0x6974686F, 0x75742073, 0x6176696E, 0x670A83B2, 0x20816320, 0x54727920, 0x61676169, 0x6E000000, 0x43415054, 0x494F4E5F, 0x4C495354, 0x5F524554, 0x52592047, 0x45520000, 0x43415054, 0x494F4E5F, 0x4C495354, 0x5F524554, 0x52592046, 0x52410000, 0x43415054, 0x494F4E5F, 0x4C495354, 0x5F524554, 0x52592053, 0x50410000, 0x43415054, 0x494F4E5F, 0x4C495354, 0x5F524554, 0x52592049, 0x54410000, 0x839F8163, 0x838A8358, 0x836782F0, 0x8EE65B82, 0xC65D82E7, 0x82B882C9, 0x8F495B82, 0xA85D82ED, 0x82E92083, 0xB2816383, 0x8A836783, 0x89834300, 0x839F2081, 0x6320436F, 0x6E74696E, 0x75652077, 0x6974686F, 0x75742065, 0x72617369, 0x6E670A83, 0xB2208163, 0x20547279, 0x20616761, 0x696E2000, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F52, 0x45545259, 0x20474552, 0x00000000, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F52, 0x45545259, 0x20465241, 0x00000000, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F52, 0x45545259, 0x20535041, 0x00000000, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F52, 0x45545259, 0x20495441, 0x00000000, 0x839F8163, 0x8FC15B82, 0xAF5D82B3, 0x82B882C9, 0x8F495B82, 0xA85D82ED, 0x82E92083, 0xB2816383, 0x8A836783, 0x89834300, 0x839F2081, 0x6320436F, 0x6E74696E, 0x75652077, 0x6974686F, 0x75742063, 0x6865636B, 0x696E670A, 0x83B22081, 0x63205472, 0x79206167, 0x61696E20, 0x00000000, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F52, 0x45545259, 0x20474552, 0x00000000, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F52, 0x45545259, 0x20465241, 0x00000000, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F52, 0x45545259, 0x20535041, 0x00000000, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F52, 0x45545259, 0x20495441, 0x00000000, 0x839F8163, 0x83608346, 0x8362834E, 0x82B982B8, 0x82C98F49, 0x5B82A85D, 0x82ED82E9, 0x2083B281, 0x63838A83, 0x67838983, 0x43000000, 0x839F2081, 0x6320436F, 0x6E74696E, 0x75652077, 0x6974686F, 0x7574206C, 0x6F616469, 0x6E670A83, 0xB2208163, 0x20547279, 0x20616761, 0x696E0A83, 0xB4208163, 0x2043686F, 0x6F736520, 0x536C6F74, 0x20000000, 0x43415054, 0x494F4E5F, 0x4C4F4144, 0x5F524554, 0x52595F43, 0x484F4943, 0x45204745, 0x52000000, 0x43415054, 0x494F4E5F, 0x4C4F4144, 0x5F524554, 0x52595F43, 0x484F4943, 0x45204652, 0x41000000, 0x43415054, 0x494F4E5F, 0x4C4F4144, 0x5F524554, 0x52595F43, 0x484F4943, 0x45205350, 0x41000000, 0x43415054, 0x494F4E5F, 0x4C4F4144, 0x5F524554, 0x52595F43, 0x484F4943, 0x45204954, 0x41000000, 0x839F8163, 0x838D815B, 0x836882B9, 0x82B882C9, 0x8F495B82, 0xA85D82ED, 0x82E90A83, 0xB2816383, 0x8A836783, 0x89834320, 0x83B48163, 0x8358838D, 0x83628367, 0x82F09149, 0x5B82A682, 0xE75D82D4, 0x00000000, 0x839F2081, 0x6320436F, 0x6E74696E, 0x75652077, 0x6974686F, 0x75742073, 0x6176696E, 0x670A83B2, 0x20816320, 0x54727920, 0x61676169, 0x6E0A83B4, 0x20816320, 0x43686F6F, 0x73652053, 0x6C6F7420, 0x00000000, 0x43415054, 0x494F4E5F, 0x53415645, 0x5F524554, 0x52595F43, 0x484F4943, 0x45204745, 0x52000000, 0x43415054, 0x494F4E5F, 0x53415645, 0x5F524554, 0x52595F43, 0x484F4943, 0x45204652, 0x41000000, 0x43415054, 0x494F4E5F, 0x53415645, 0x5F524554, 0x52595F43, 0x484F4943, 0x45205350, 0x41000000, 0x43415054, 0x494F4E5F, 0x53415645, 0x5F524554, 0x52595F43, 0x484F4943, 0x45204954, 0x41000000, 0x839F8163, 0x835A815B, 0x837582B9, 0x82B882C9, 0x8F495B82, 0xA85D82ED, 0x82E90A83, 0xB2816383, 0x8A836783, 0x89834320, 0x83B48163, 0x8358838D, 0x83628367, 0x82F09149, 0x5B82A682, 0xE75D82D4, 0x00000000, 0x839F2081, 0x6320436F, 0x6E74696E, 0x75652077, 0x6974686F, 0x75742073, 0x6176696E, 0x670A83B2, 0x20816320, 0x54727920, 0x61676169, 0x6E200000, 0x43415054, 0x494F4E5F, 0x4C495354, 0x5F524554, 0x52595F43, 0x484F4943, 0x45204745, 0x52000000, 0x43415054, 0x494F4E5F, 0x4C495354, 0x5F524554, 0x52595F43, 0x484F4943, 0x45204652, 0x41000000, 0x43415054, 0x494F4E5F, 0x4C495354, 0x5F524554, 0x52595F43, 0x484F4943, 0x45205350, 0x41000000, 0x43415054, 0x494F4E5F, 0x4C495354, 0x5F524554, 0x52595F43, 0x484F4943, 0x45204954, 0x41000000, 0x839F8163, 0x838A8358, 0x836782F0, 0x8EE65B82, 0xC65D82E7, 0x82B882C9, 0x8F495B82, 0xA85D82ED, 0x82E90A83, 0xB2816383, 0x8A836783, 0x89834300, 0x839F2081, 0x6320436F, 0x6E74696E, 0x75652077, 0x6974686F, 0x75742065, 0x72617369, 0x6E670A83, 0xB2208163, 0x20547279, 0x20616761, 0x696E0A83, 0xB4208163, 0x2043686F, 0x6F736520, 0x536C6F74, 0x20000000, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F52, 0x45545259, 0x5F43484F, 0x49434520, 0x47455200, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F52, 0x45545259, 0x5F43484F, 0x49434520, 0x46524100, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F52, 0x45545259, 0x5F43484F, 0x49434520, 0x53504100, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F52, 0x45545259, 0x5F43484F, 0x49434520, 0x49544100, 0x839F8163, 0x8FC15B82, 0xAF5D82B3, 0x82B882C9, 0x8F495B82, 0xA85D82ED, 0x82E90A83, 0xB2816383, 0x8A836783, 0x89834320, 0x83B48163, 0x8358838D, 0x83628367, 0x82F09149, 0x5B82A682, 0xE75D82D4, 0x00000000, 0x839F2081, 0x6320436F, 0x6E74696E, 0x75652077, 0x6974686F, 0x75742063, 0x6865636B, 0x696E670A, 0x83B22081, 0x63205472, 0x79206167, 0x61696E0A, 0x83B42081, 0x63204368, 0x6F6F7365, 0x20536C6F, 0x74200000, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F52, 0x45545259, 0x5F43484F, 0x49434520, 0x47455200, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F52, 0x45545259, 0x5F43484F, 0x49434520, 0x46524100, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F52, 0x45545259, 0x5F43484F, 0x49434520, 0x53504100, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F52, 0x45545259, 0x5F43484F, 0x49434520, 0x49544100, 0x839F8163, 0x83608346, 0x8362834E, 0x82B982B8, 0x82C98F49, 0x5B82A85D, 0x82ED82E9, 0x0A83B281, 0x63838A83, 0x67838983, 0x432083B4, 0x81638358, 0x838D8362, 0x836782F0, 0x91495B82, 0xA682E75D, 0x82D40000, 0x506C6561, 0x73652070, 0x72657373, 0x20746865, 0x20839F20, 0x42757474, 0x6F6E2E20, 0x00000000, 0x43415054, 0x494F4E5F, 0x41204745, 0x52000000, 0x43415054, 0x494F4E5F, 0x41204652, 0x41000000, 0x43415054, 0x494F4E5F, 0x41205350, 0x41000000, 0x43415054, 0x494F4E5F, 0x41204954, 0x41000000, 0x839F82F0, 0x899F5B82, 0xA85D82B5, 0x82C482AD, 0x82BE82B3, 0x82A28142, 0x00000000, 0x839F2081, 0x63204465, 0x6C657465, 0x2066696C, 0x65000000, 0x43415054, 0x494F4E5F, 0x41204745, 0x52000000, 0x43415054, 0x494F4E5F, 0x41204652, 0x41000000, 0x43415054, 0x494F4E5F, 0x41205350, 0x41000000, 0x43415054, 0x494F4E5F, 0x41204954, 0x41000000, 0x839F8163, 0x8FC15B82, 0xAF5D82B7, 0x00000000, 0x839F2081, 0x6320436F, 0x6E74696E, 0x75652077, 0x6974686F, 0x7574206C, 0x6F616469, 0x6E670A83, 0xB4208163, 0x2043686F, 0x6F736520, 0x6120536C, 0x6F742000, 0x43415054, 0x494F4E5F, 0x4C4F4144, 0x5F43484F, 0x49434520, 0x47455200, 0x43415054, 0x494F4E5F, 0x4C4F4144, 0x5F43484F, 0x49434520, 0x46524100, 0x43415054, 0x494F4E5F, 0x4C4F4144, 0x5F43484F, 0x49434520, 0x53504100, 0x43415054, 0x494F4E5F, 0x4C4F4144, 0x5F43484F, 0x49434520, 0x49544100, 0x839F8163, 0x838D815B, 0x836882B9, 0x82B882C9, 0x8F495B82, 0xA85D82ED, 0x82E90A83, 0xB4816383, 0x58838D83, 0x62836782, 0xF091495B, 0x82A682E7, 0x5D82D400, 0x839F2081, 0x6320436F, 0x6E74696E, 0x75652077, 0x6974686F, 0x75742073, 0x6176696E, 0x670A83B4, 0x20816320, 0x43686F6F, 0x73652061, 0x20536C6F, 0x74200000, 0x43415054, 0x494F4E5F, 0x53415645, 0x5F43484F, 0x49434520, 0x47455200, 0x43415054, 0x494F4E5F, 0x53415645, 0x5F43484F, 0x49434520, 0x46524100, 0x43415054, 0x494F4E5F, 0x53415645, 0x5F43484F, 0x49434520, 0x53504100, 0x43415054, 0x494F4E5F, 0x53415645, 0x5F43484F, 0x49434520, 0x49544100, 0x839F8163, 0x835A815B, 0x837582B9, 0x82B882C9, 0x8F495B82, 0xA85D82ED, 0x82E90A83, 0xB4816383, 0x58838D83, 0x62836782, 0xF091495B, 0x82A682E7, 0x5D82D400, 0x839F2081, 0x6320436F, 0x6E74696E, 0x75652077, 0x6974686F, 0x75742073, 0x6176696E, 0x67000000, 0x43415054, 0x494F4E5F, 0x4C495354, 0x5F43484F, 0x49434520, 0x47455200, 0x43415054, 0x494F4E5F, 0x4C495354, 0x5F43484F, 0x49434520, 0x46524100, 0x43415054, 0x494F4E5F, 0x4C495354, 0x5F43484F, 0x49434520, 0x53504100, 0x43415054, 0x494F4E5F, 0x4C495354, 0x5F43484F, 0x49434520, 0x49544100, 0x839F8163, 0x838A8358, 0x836782F0, 0x8EE65B82, 0xC65D82E7, 0x82B882C9, 0x8F495B82, 0xA85D82ED, 0x82E90000, 0x839F2081, 0x6320436F, 0x6E74696E, 0x75652077, 0x6974686F, 0x75742065, 0x72617369, 0x6E670A83, 0xB4208163, 0x2043686F, 0x6F736520, 0x6120536C, 0x6F742000, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F43, 0x484F4943, 0x45204745, 0x52000000, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F43, 0x484F4943, 0x45204652, 0x41000000, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F43, 0x484F4943, 0x45205350, 0x41000000, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F43, 0x484F4943, 0x45204954, 0x41000000, 0x839F8163, 0x82AF82B3, 0x82B882C9, 0x8F495B82, 0xA85D82ED, 0x82E90A83, 0xB4816383, 0x58838D83, 0x62836782, 0xF091495B, 0x82A682E7, 0x5D82D400, 0x839F2081, 0x6320436F, 0x6E74696E, 0x75652077, 0x6974686F, 0x75742063, 0x6865636B, 0x696E670A, 0x83B42081, 0x63204368, 0x6F6F7365, 0x20612053, 0x6C6F7420, 0x00000000, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F43, 0x484F4943, 0x45204745, 0x52000000, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F43, 0x484F4943, 0x45204652, 0x41000000, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F43, 0x484F4943, 0x45205350, 0x41000000, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F43, 0x484F4943, 0x45204954, 0x41000000, 0x839F8163, 0x83608346, 0x8362834E, 0x82B982B8, 0x82C98F49, 0x5B82A85D, 0x82ED82E9, 0x0A83B481, 0x63835883, 0x8D836283, 0x6782F091, 0x495B82A6, 0x82E75D82, 0xD4000000, 0x839F2081, 0x6320436F, 0x6E74696E, 0x75652077, 0x6974686F, 0x7574206C, 0x6F616469, 0x6E670A83, 0xB2208163, 0x20547279, 0x20616761, 0x696E0A83, 0xB4208163, 0x20466F72, 0x6D617420, 0x00000000, 0x43415054, 0x494F4E5F, 0x4C4F4144, 0x5F524554, 0x52595F46, 0x4F524D41, 0x54204745, 0x52000000, 0x43415054, 0x494F4E5F, 0x4C4F4144, 0x5F524554, 0x52595F46, 0x4F524D41, 0x54204652, 0x41000000, 0x43415054, 0x494F4E5F, 0x4C4F4144, 0x5F524554, 0x52595F46, 0x4F524D41, 0x54205350, 0x41000000, 0x43415054, 0x494F4E5F, 0x4C4F4144, 0x5F524554, 0x52595F46, 0x4F524D41, 0x54204954, 0x41000000, 0x839F8163, 0x838D815B, 0x836882B9, 0x82B882C9, 0x8F495B82, 0xA85D82ED, 0x82E90A83, 0xB2816383, 0x8A836783, 0x89834320, 0x83B48163, 0x83748348, 0x815B837D, 0x83628367, 0x82B782E9, 0x00000000, 0x839F2081, 0x6320436F, 0x6E74696E, 0x75652077, 0x6974686F, 0x75742073, 0x6176696E, 0x670A83B2, 0x20816320, 0x54727920, 0x61676169, 0x6E0A83B4, 0x20816320, 0x466F726D, 0x61742000, 0x43415054, 0x494F4E5F, 0x53415645, 0x5F524554, 0x52595F46, 0x4F524D41, 0x54204745, 0x52000000, 0x43415054, 0x494F4E5F, 0x53415645, 0x5F524554, 0x52595F46, 0x4F524D41, 0x54204652, 0x41000000, 0x43415054, 0x494F4E5F, 0x53415645, 0x5F524554, 0x52595F46, 0x4F524D41, 0x54205350, 0x41000000, 0x43415054, 0x494F4E5F, 0x53415645, 0x5F524554, 0x52595F46, 0x4F524D41, 0x54204954, 0x41000000, 0x839F8163, 0x835A815B, 0x837582B9, 0x82B882C9, 0x8F495B82, 0xA85D82ED, 0x82E90A83, 0xB2816383, 0x8A836783, 0x89834320, 0x83B48163, 0x83748348, 0x815B837D, 0x83628367, 0x82B782E9, 0x00000000, 0x839F2081, 0x6320436F, 0x6E74696E, 0x75652077, 0x6974686F, 0x75742073, 0x6176696E, 0x670A83B2, 0x20816320, 0x54727920, 0x61676169, 0x6E0A83B4, 0x20816320, 0x466F726D, 0x61742000, 0x43415054, 0x494F4E5F, 0x4C495354, 0x5F524554, 0x52595F46, 0x4F524D41, 0x54204745, 0x52000000, 0x43415054, 0x494F4E5F, 0x4C495354, 0x5F524554, 0x52595F46, 0x4F524D41, 0x54204652, 0x41000000, 0x43415054, 0x494F4E5F, 0x4C495354, 0x5F524554, 0x52595F46, 0x4F524D41, 0x54205350, 0x41000000, 0x43415054, 0x494F4E5F, 0x4C495354, 0x5F524554, 0x52595F46, 0x4F524D41, 0x54204954, 0x41000000, 0x839F8163, 0x838A8358, 0x836782F0, 0x82C682E7, 0x82B882C9, 0x8F495B82, 0xA85D82ED, 0x82E90A83, 0xB2816383, 0x8A836783, 0x89834320, 0x83B48163, 0x83748348, 0x815B837D, 0x83628367, 0x82B782E9, 0x00000000, 0x839F2081, 0x6320436F, 0x6E74696E, 0x75652077, 0x6974686F, 0x75742065, 0x72617369, 0x6E670A83, 0xB2208163, 0x20547279, 0x20616761, 0x696E0A83, 0xB4208163, 0x20466F72, 0x6D617420, 0x00000000, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F52, 0x45545259, 0x5F464F52, 0x4D415420, 0x47455200, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F52, 0x45545259, 0x5F464F52, 0x4D415420, 0x46524100, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F52, 0x45545259, 0x5F464F52, 0x4D415420, 0x53504100, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F52, 0x45545259, 0x5F464F52, 0x4D415420, 0x49544100, 0x839F8163, 0x82AF82B3, 0x82B882C9, 0x8F495B82, 0xA85D82ED, 0x82E90A83, 0xB2816383, 0x8A836783, 0x89834320, 0x83B48163, 0x83748348, 0x815B837D, 0x83628367, 0x82B782E9, 0x00000000, 0x839F2081, 0x6320436F, 0x6E74696E, 0x75652077, 0x6974686F, 0x75742063, 0x6865636B, 0x696E670A, 0x83B22081, 0x63205472, 0x79206167, 0x61696E0A, 0x83B42081, 0x6320466F, 0x726D6174, 0x20000000, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F52, 0x45545259, 0x5F464F52, 0x4D415420, 0x47455200, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F52, 0x45545259, 0x5F464F52, 0x4D415420, 0x46524100, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F52, 0x45545259, 0x5F464F52, 0x4D415420, 0x53504100, 0x43415054, 0x494F4E5F, 0x44454C45, 0x54455F52, 0x45545259, 0x5F464F52, 0x4D415420, 0x49544100, 0x839F8163, 0x83608346, 0x8362834E, 0x82B982B8, 0x82C98F49, 0x5B82A85D, 0x82ED82E9, 0x0A83B281, 0x63838A83, 0x67838983, 0x432083B4, 0x81638374, 0x8348815B, 0x837D8362, 0x836782B7, 0x82E90000, 0x839F2081, 0x63204265, 0x67696E20, 0x77697468, 0x6F757420, 0x73617665, 0x696E670A, 0x83B22081, 0x63205472, 0x79206167, 0x61696E00, 0x43415054, 0x494F4E5F, 0x53415645, 0x5F524554, 0x52592047, 0x45520000, 0x43415054, 0x494F4E5F, 0x53415645, 0x5F524554, 0x52592046, 0x52410000, 0x43415054, 0x494F4E5F, 0x53415645, 0x5F524554, 0x52592053, 0x50410000, 0x43415054, 0x494F4E5F, 0x53415645, 0x5F524554, 0x52592049, 0x54410000, 0x839F8163, 0x835A815B, 0x837582B9, 0x82B882C9, 0x8E6E5B82, 0xCD82B65D, 0x82DF82E9, 0x2083B281, 0x63838A83, 0x67838983, 0x43000000, 0x839F2081, 0x63204265, 0x67696E20, 0x77697468, 0x6F757420, 0x73617669, 0x6E670A83, 0xB2208163, 0x20547279, 0x20616761, 0x696E0A83, 0xB4208163, 0x20526573, 0x65742061, 0x6E642061, 0x63636573, 0x73207379, 0x7374656D, 0x204D656D, 0x6F727920, 0x43617264, 0x20736372, 0x65656E00, 0x43415054, 0x494F4E5F, 0x53415645, 0x5F524554, 0x52592047, 0x45520000, 0x43415054, 0x494F4E5F, 0x53415645, 0x5F524554, 0x52592046, 0x52410000, 0x43415054, 0x494F4E5F, 0x53415645, 0x5F524554, 0x52592053, 0x50410000, 0x43415054, 0x494F4E5F, 0x53415645, 0x5F524554, 0x52592049, 0x54410000, 0x839F8163, 0x835A815B, 0x837582B9, 0x82B882C9, 0x8E6E5B82, 0xCD82B65D, 0x82DF82E9, 0x2083B281, 0x63838A83, 0x67838983, 0x430A83B4, 0x8163838A, 0x835A8362, 0x836782B5, 0x82C4967B, 0x5B82D982, 0xF15D91CC, 0x5B82BD82, 0xA25D8381, 0x8382838A, 0x815B834A, 0x815B8368, 0x89E65B82, 0xAA5D96CA, 0x5B82DF82, 0xF15D82D6, 0x00000000, 0x43686F6F, 0x73652074, 0x68652053, 0x6C6F7420, 0x77697468, 0x20746865, 0x204D656D, 0x6F727920, 0x43617264, 0x20696E73, 0x65727465, 0x642E2000, 0x43484F49, 0x43455F53, 0x4C4F5420, 0x47455200, 0x43484F49, 0x43455F53, 0x4C4F5420, 0x46524100, 0x43484F49, 0x43455F53, 0x4C4F5420, 0x53504100, 0x43484F49, 0x43455F53, 0x4C4F5420, 0x49544100, 0x83818382, 0x838A815B, 0x834A815B, 0x836882F0, 0x82B382B5, 0x82BD8358, 0x838D8362, 0x836782F0, 0x0A91495B, 0x82A682E7, 0x5D82F182, 0xC582AD82, 0xBE82B382, 0xA2814200, 0x55736520, 0x2083AD20, 0x6F722083, 0xB5746F20, 0x73656C65, 0x63742E0A, 0x50726573, 0x73207468, 0x6520839F, 0x20427574, 0x746F6E20, 0x746F2063, 0x6F6E6669, 0x726D2061, 0x6E642074, 0x68652083, 0xA0204275, 0x74746F6E, 0x2063616E, 0x63656C2E, 0x20000000, 0x43415054, 0x494F4E5F, 0x43484F49, 0x43452047, 0x45520000, 0x43415054, 0x494F4E5F, 0x43484F49, 0x43452046, 0x52410000, 0x43415054, 0x494F4E5F, 0x43484F49, 0x43452053, 0x50410000, 0x43415054, 0x494F4E5F, 0x43484F49, 0x43452049, 0x54410000, 0x83AD82A9, 0x83B582C5, 0x91495B82, 0xA682E75D, 0x82F182C5, 0x8141839F, 0x82C58C88, 0x5B82AB5D, 0x82DF82C4, 0x82AD82BE, 0x82B382A2, 0x81420A83, 0xA082C583, 0x4C838383, 0x93835A83, 0x8B82B582, 0xDC82B781, 0x42000000, 0x54686520, 0x46494C45, 0x20446174, 0x61207361, 0x76652074, 0x6F207468, 0x65204D65, 0x6D6F7279, 0x20436172, 0x640A696E, 0x20534C4F, 0x54206861, 0x73206265, 0x656E2063, 0x616E6365, 0x6C6C6564, 0x2E000000, 0x4E4F5341, 0x56455F45, 0x58495420, 0x47455200, 0x4E4F5341, 0x56455F45, 0x58495420, 0x46524100, 0x4E4F5341, 0x56455F45, 0x58495420, 0x53504100, 0x4E4F5341, 0x56455F45, 0x58495420, 0x49544100, 0x46494C45, 0x8366815B, 0x835E82CC, 0x0A838183, 0x82838A81, 0x5B834A81, 0x5B836882, 0xD682CC83, 0x5A815B83, 0x7582F092, 0x865B82BF, 0x82E382A4, 0x5D8E7E5B, 0x82B55D82, 0xB582DC82, 0xB582BD81, 0x42000000, 0x54686520, 0x4D656D6F, 0x72792043, 0x61726420, 0x696E2053, 0x4C4F540A, 0x69732064, 0x616D6167, 0x65642061, 0x6E642063, 0x616E6E6F, 0x74206265, 0x20757365, 0x642E0000, 0x57524F4E, 0x475F5345, 0x43544F52, 0x20474552, 0x00000000, 0x57524F4E, 0x475F5345, 0x43544F52, 0x20465241, 0x00000000, 0x57524F4E, 0x475F5345, 0x43544F52, 0x20535041, 0x00000000, 0x57524F4E, 0x475F5345, 0x43544F52, 0x20495441, 0x00000000, 0x534C4F54, 0x82CC8381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82CD0A82, 0xB182ED82, 0xEA82C482, 0xA282E982, 0xCC82C58E, 0x675B82B5, 0x5D97705B, 0x82E682A4, 0x5D82C582, 0xAB82DC82, 0xB982F181, 0x42000000, 0x54686520, 0x4D656D6F, 0x72792043, 0x61726420, 0x696E2053, 0x4C4F540A, 0x69732064, 0x616D6167, 0x65642061, 0x6E642063, 0x616E6E6F, 0x74206265, 0x20757365, 0x642E0000, 0x57524F4E, 0x475F4341, 0x52442047, 0x45520000, 0x57524F4E, 0x475F4341, 0x52442046, 0x52410000, 0x57524F4E, 0x475F4341, 0x52442053, 0x50410000, 0x57524F4E, 0x475F4341, 0x52442049, 0x54410000, 0x534C4F54, 0x82CC8381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82CD0A82, 0xB182ED82, 0xEA82C482, 0xA282E982, 0xCC82C58E, 0x675B82B5, 0x5D97705B, 0x82E682A4, 0x5D82C582, 0xAB82DC82, 0xB982F181, 0x42000000, 0x54686520, 0x4D656D6F, 0x72792043, 0x61726420, 0x696E2053, 0x4C4F540A, 0x69732063, 0x6F727275, 0x70746564, 0x20616E64, 0x206D7573, 0x74206265, 0x20666F72, 0x6D617474, 0x65642E0A, 0x4F4B2074, 0x6F20666F, 0x726D6174, 0x20746865, 0x204D656D, 0x6F727920, 0x43617264, 0x206E6F77, 0x3F000000, 0x454E434F, 0x44494E47, 0x20474552, 0x00000000, 0x454E434F, 0x44494E47, 0x20465241, 0x00000000, 0x454E434F, 0x44494E47, 0x20535041, 0x00000000, 0x454E434F, 0x44494E47, 0x20495441, 0x00000000, 0x534C4F54, 0x82CC8381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82CD8E67, 0x5B82C282, 0xA95D82A6, 0x82DC82B9, 0x82F18142, 0x0A838183, 0x82838A81, 0x5B834A81, 0x5B836882, 0xF093FC5B, 0x82A25D82, 0xEA92BC5B, 0x82C882A8, 0x5D82B582, 0xC482AD82, 0xBE82B382, 0xA2814200, 0x54686520, 0x4D656D6F, 0x72792043, 0x61726420, 0x696E2053, 0x4C4F540A, 0x69732063, 0x6F727275, 0x70746564, 0x20616E64, 0x206D7573, 0x74206265, 0x20666F72, 0x6D617474, 0x65642E00, 0x454E434F, 0x44494E47, 0x20474552, 0x00000000, 0x454E434F, 0x44494E47, 0x20465241, 0x00000000, 0x454E434F, 0x44494E47, 0x20535041, 0x00000000, 0x454E434F, 0x44494E47, 0x20495441, 0x00000000, 0x534C4F54, 0x82CC8381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82CD8E67, 0x5B82C282, 0xA95D82A6, 0x82DC82B9, 0x82F18142, 0x0A838183, 0x82838A81, 0x5B834A81, 0x5B836882, 0xF093FC5B, 0x82A25D82, 0xEA92BC5B, 0x82C882A8, 0x5D82B582, 0xC482AD82, 0xBE82B382, 0xA2814200, 0x54686520, 0x4D656D6F, 0x72792043, 0x61726420, 0x696E2053, 0x4C4F540A, 0x69732063, 0x6F727275, 0x70746564, 0x20616E64, 0x206D7573, 0x74206265, 0x20666F72, 0x6D617474, 0x65642E0A, 0x4F4B2074, 0x6F20666F, 0x726D6174, 0x20746865, 0x204D656D, 0x6F727920, 0x43617264, 0x206E6F77, 0x3F000000, 0x464F524D, 0x41545F51, 0x55455259, 0x20474552, 0x00000000, 0x464F524D, 0x41545F51, 0x55455259, 0x20465241, 0x00000000, 0x464F524D, 0x41545F51, 0x55455259, 0x20535041, 0x00000000, 0x464F524D, 0x41545F51, 0x55455259, 0x20495441, 0x00000000, 0x534C4F54, 0x82CC8381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82CD8366, 0x815B835E, 0x82AA0A82, 0xB182ED82, 0xEA82C482, 0xA282E982, 0xCC82C583, 0x74834881, 0x5B837D83, 0x62836782, 0xAA954B97, 0x7682C582, 0xB781420A, 0x83748348, 0x815B837D, 0x83628367, 0x82B582C4, 0x82E082E6, 0x82EB82B5, 0x82A282C5, 0x82B782A9, 0x81480000, 0x4F4B2074, 0x6F20666F, 0x726D6174, 0x20746865, 0x0A4D656D, 0x6F727920, 0x43617264, 0x20696E20, 0x534C4F54, 0x3F000000, 0x464F524D, 0x41545F51, 0x55455259, 0x32204745, 0x52000000, 0x464F524D, 0x41545F51, 0x55455259, 0x32204652, 0x41000000, 0x464F524D, 0x41545F51, 0x55455259, 0x32205350, 0x41000000, 0x464F524D, 0x41545F51, 0x55455259, 0x32204954, 0x41000000, 0x534C4F54, 0x82CC8381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82F00A83, 0x74834881, 0x5B837D83, 0x62836782, 0xB582C482, 0xE082E682, 0xEB82B582, 0xA282C582, 0xB782A981, 0x48000000, 0x536C6F74, 0x20410000, 0x534C4F54, 0x5F412047, 0x45520000, 0x534C4F54, 0x5F412046, 0x52410000, 0x534C4F54, 0x5F412053, 0x50410000, 0x534C4F54, 0x5F412049, 0x54410000, 0x8358838D, 0x83628367, 0x82600000, 0x536C6F74, 0x20420000, 0x534C4F54, 0x5F422047, 0x45520000, 0x534C4F54, 0x5F422046, 0x52410000, 0x534C4F54, 0x5F422053, 0x50410000, 0x534C4F54, 0x5F422049, 0x54410000, 0x8358838D, 0x83628367, 0x82610000, 0x59455300, 0x48414920, 0x47455200, 0x48414920, 0x46524100, 0x48414920, 0x53504100, 0x48414920, 0x49544100, 0x82CD82A2, 0x00000000, 0x4E4F0000, 0x49494520, 0x47455200, 0x49494520, 0x46524100, 0x49494520, 0x53504100, 0x49494520, 0x49544100, 0x82A282A2, 0x82A60000, 0x466F726D, 0x61747469, 0x6E67206F, 0x66207468, 0x65204D65, 0x6D6F7279, 0x20436172, 0x6420696E, 0x20534C4F, 0x540A6861, 0x73206265, 0x656E2063, 0x616E6365, 0x6C6C6564, 0x2E000000, 0x464F524D, 0x41545F43, 0x414E4345, 0x4C204745, 0x52000000, 0x464F524D, 0x41545F43, 0x414E4345, 0x4C204652, 0x41000000, 0x464F524D, 0x41545F43, 0x414E4345, 0x4C205350, 0x41000000, 0x464F524D, 0x41545F43, 0x414E4345, 0x4C204954, 0x41000000, 0x534C4F54, 0x82CC8381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82CC0A83, 0x74834881, 0x5B837D83, 0x62836782, 0xF092865B, 0x82BF82E3, 0x5D8E7E5B, 0x82A482B5, 0x5D82B582, 0xDC82B582, 0xBD814200, 0x54686520, 0x4D656D6F, 0x72792043, 0x61726420, 0x696E2053, 0x4C4F5420, 0x646F6573, 0x206E6F74, 0x20686176, 0x650A656E, 0x6F756768, 0x20667265, 0x65207370, 0x6163652E, 0x20462D5A, 0x45524F20, 0x47582072, 0x65717569, 0x72657320, 0x7468650A, 0x666F6C6C, 0x6F77696E, 0x6720746F, 0x20736176, 0x65206974, 0x73206469, 0x66666572, 0x656E7420, 0x74797065, 0x73206F66, 0x20646174, 0x613A0A28, 0x546F206D, 0x616E6167, 0x65206669, 0x6C657320, 0x6F6E2074, 0x6865204D, 0x656D6F72, 0x79204361, 0x72642C0A, 0x706C6561, 0x73652067, 0x6F20746F, 0x20746865, 0x204E696E, 0x74656E64, 0x6F204761, 0x6D654375, 0x62650A4D, 0x656D6F72, 0x79204361, 0x7264206D, 0x616E6167, 0x656D656E, 0x74207363, 0x7265656E, 0x2E290A47, 0x616D6520, 0x44617461, 0x3A203120, 0x46696C65, 0x20616E64, 0x20342042, 0x6C6F636B, 0x730A4761, 0x72616765, 0x20446174, 0x613A2031, 0x2046696C, 0x6520616E, 0x64203138, 0x20426C6F, 0x636B730A, 0x47686F73, 0x74204461, 0x74613A20, 0x31204669, 0x6C652061, 0x6E642033, 0x20426C6F, 0x636B730A, 0x456D626C, 0x656D2044, 0x6174613A, 0x20312046, 0x696C6520, 0x616E6420, 0x3320426C, 0x6F636B73, 0x0A526570, 0x6C617920, 0x44617461, 0x3A203120, 0x46696C65, 0x20616E64, 0x20338160, 0x31332042, 0x6C6F636B, 0x73000000, 0x4E4F454E, 0x54204745, 0x52000000, 0x4E4F454E, 0x54204652, 0x41000000, 0x4E4F454E, 0x54205350, 0x41000000, 0x4E4F454E, 0x54204954, 0x41000000, 0x534C4F54, 0x82CC8381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82C98BF3, 0x5B82A05D, 0x82AB9765, 0x5B82E682, 0xA4205D97, 0xCA5B82E8, 0x82E582A4, 0x5D82AA82, 0xC882A282, 0xA981410A, 0x83748340, 0x8343838B, 0x90945B82, 0xB782A45D, 0x82CC90A7, 0x5B82B982, 0xA25D8CC0, 0x5B82B082, 0xF15D82F0, 0x897A5B82, 0xB15D82A6, 0x82C482B5, 0x82DC82A2, 0x82DC82B7, 0x81420A46, 0x2D5A4552, 0x4F204758, 0x82CC8A65, 0x5B82A982, 0xAD5D8374, 0x83408343, 0x838B82F0, 0x835A815B, 0x837582B7, 0x82E982C9, 0x82CD0A8F, 0xAD5B82B7, 0x82AD5D82, 0xC882AD82, 0xC682E088, 0xC85B82A2, 0x5D89BA5B, 0x82A95D82, 0xCC8BF35B, 0x82A05D82, 0xAB97655B, 0x82E682A4, 0x205D97CA, 0x5B82E882, 0xE582A45D, 0x82AA954B, 0x5B82D082, 0xC25D9776, 0x5B82E682, 0xA45D82C5, 0x82B78142, 0x0A288381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82CC93E0, 0x5B82C882, 0xA25D9765, 0x5B82E682, 0xA45D82F0, 0x90AE5B82, 0xB982A25D, 0x979D5B82, 0xE85D82B7, 0x82E982C9, 0x82CD8141, 0x0A967B5B, 0x82D982F1, 0x5D91CC5B, 0x82BD82A2, 0x5D82CC83, 0x81838283, 0x8A815B83, 0x4A815B83, 0x6889E65B, 0x82AA5D96, 0xCA5B82DF, 0x82F15D82, 0xC58D735B, 0x82A882B1, 0x5D82C882, 0xC182C482, 0xAD82BE82, 0xB382A229, 0x0A202083, 0x51815B83, 0x80836681, 0x5B835E3A, 0x83748340, 0x8343838B, 0x825082C2, 0x82C68253, 0x8375838D, 0x8362834E, 0x0A20834B, 0x838C815B, 0x83578366, 0x815B835E, 0x3A837483, 0x40834383, 0x8B825082, 0xC282C682, 0x50825783, 0x75838D83, 0x62834E0A, 0x20835381, 0x5B835883, 0x67836681, 0x5B835E3A, 0x83748340, 0x8343838B, 0x825082C2, 0x82C68252, 0x8375838D, 0x8362834E, 0x0A834783, 0x93837583, 0x8C838083, 0x66815B83, 0x5E3A8374, 0x83408343, 0x838B8250, 0x82C282C6, 0x82528375, 0x838D8362, 0x834E0A20, 0x20838A83, 0x76838C83, 0x43836681, 0x5B835E3A, 0x83748340, 0x8343838B, 0x825082C2, 0x82C68252, 0x81608250, 0x82528375, 0x838D8362, 0x834E0A00, 0x54686572, 0x65206973, 0x206E6F74, 0x20656E6F, 0x75676820, 0x66726565, 0x20737061, 0x6365206F, 0x6E207468, 0x650A4D65, 0x6D6F7279, 0x20436172, 0x6420696E, 0x20534C4F, 0x542E2054, 0x6F207361, 0x76652046, 0x494C4520, 0x44617461, 0x2C0A796F, 0x75206E65, 0x65642061, 0x74206C65, 0x61737420, 0x31206669, 0x6C652061, 0x6E642052, 0x45515549, 0x52454420, 0x626C6F63, 0x6B732E0A, 0x28546F20, 0x6D616E61, 0x67652066, 0x696C6573, 0x206F6E20, 0x74686520, 0x4D656D6F, 0x72792043, 0x6172642C, 0x0A706C65, 0x61736520, 0x676F2074, 0x6F207468, 0x65204E69, 0x6E74656E, 0x646F2047, 0x616D6543, 0x7562650A, 0x4D656D6F, 0x72792043, 0x61726420, 0x6D616E61, 0x67656D65, 0x6E742073, 0x63726565, 0x6E2E2900, 0x4E4F454E, 0x54204745, 0x52000000, 0x4E4F454E, 0x54204652, 0x41000000, 0x4E4F454E, 0x54205350, 0x41000000, 0x4E4F454E, 0x54204954, 0x41000000, 0x534C4F54, 0x82CC8381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82C98BF3, 0x5B82A05D, 0x82AB9765, 0x5B82E682, 0xA4205D97, 0xCA5B82E8, 0x82E582A4, 0x5D82AA82, 0xC882A282, 0xA981410A, 0x83748340, 0x8343838B, 0x90945B82, 0xB782A45D, 0x82CC90A7, 0x5B82B982, 0xA25D8CC0, 0x5B82B082, 0xF15D82F0, 0x897A5B82, 0xB15D82A6, 0x82C482B5, 0x82DC82A2, 0x82DC82B7, 0x81420A46, 0x494C4583, 0x66815B83, 0x5E82F083, 0x5A815B83, 0x7582B782, 0xE982C982, 0xCD0A8FAD, 0x5B82B782, 0xAD5D82C8, 0x82AD82C6, 0x82E08374, 0x83408343, 0x838B3182, 0xC282C652, 0x45515549, 0x52454483, 0x75838D83, 0x62834E95, 0x4B5B82D0, 0x82C25D97, 0x765B82E6, 0x82A45D82, 0xC582B781, 0x420A2883, 0x81838283, 0x8A815B83, 0x4A815B83, 0x6882CC93, 0xE05B82C8, 0x82A25D97, 0x655B82E6, 0x82A45D82, 0xF090AE5B, 0x82B982A2, 0x5D979D5B, 0x82E85D82, 0xB782E982, 0xC982CD81, 0x410A967B, 0x5B82D982, 0xF15D91CC, 0x5B82BD82, 0xA25D82CC, 0x83818382, 0x838A815B, 0x834A815B, 0x836889E6, 0x5B82AA5D, 0x96CA5B82, 0xDF82F15D, 0x82C58D73, 0x5B82A882, 0xB15D82C8, 0x82C182C4, 0x82AD82BE, 0x82B382A2, 0x290A0000, 0x54686520, 0x4D656D6F, 0x72792043, 0x61726420, 0x696E2053, 0x4C4F5420, 0x646F6573, 0x206E6F74, 0x20686176, 0x650A656E, 0x6F756768, 0x20667265, 0x65207370, 0x6163652E, 0x20462D5A, 0x45524F20, 0x47582072, 0x65717569, 0x72657320, 0x7468650A, 0x666F6C6C, 0x6F77696E, 0x6720746F, 0x20736176, 0x65206974, 0x73206469, 0x66666572, 0x656E7420, 0x74797065, 0x73206F66, 0x20646174, 0x613A0A28, 0x546F206D, 0x616E6167, 0x65206669, 0x6C657320, 0x6F6E2074, 0x6865204D, 0x656D6F72, 0x79204361, 0x72642C0A, 0x706C6561, 0x73652067, 0x6F20746F, 0x20746865, 0x204E696E, 0x74656E64, 0x6F204761, 0x6D654375, 0x62650A4D, 0x656D6F72, 0x79204361, 0x7264206D, 0x616E6167, 0x656D656E, 0x74207363, 0x7265656E, 0x2E290A47, 0x616D6520, 0x44617461, 0x3A203120, 0x46696C65, 0x20616E64, 0x20342042, 0x6C6F636B, 0x730A4761, 0x72616765, 0x20446174, 0x613A2031, 0x2046696C, 0x6520616E, 0x64203138, 0x20426C6F, 0x636B730A, 0x47686F73, 0x74204461, 0x74613A20, 0x31204669, 0x6C652061, 0x6E642033, 0x20426C6F, 0x636B730A, 0x456D626C, 0x656D2044, 0x6174613A, 0x20312046, 0x696C6520, 0x616E6420, 0x3320426C, 0x6F636B73, 0x0A526570, 0x6C617920, 0x44617461, 0x3A203120, 0x46696C65, 0x20616E64, 0x20338160, 0x31332042, 0x6C6F636B, 0x73000000, 0x494E5353, 0x50414345, 0x20474552, 0x00000000, 0x494E5353, 0x50414345, 0x20465241, 0x00000000, 0x494E5353, 0x50414345, 0x20535041, 0x00000000, 0x494E5353, 0x50414345, 0x20495441, 0x00000000, 0x534C4F54, 0x82CC8381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82C98BF3, 0x5B82A05D, 0x82AB9765, 0x5B82E682, 0xA4205D97, 0xCA5B82E8, 0x82E582A4, 0x5D82AA82, 0xC882A282, 0xA981410A, 0x83748340, 0x8343838B, 0x90945B82, 0xB782A45D, 0x82CC90A7, 0x5B82B982, 0xA25D8CC0, 0x5B82B082, 0xF15D82F0, 0x897A5B82, 0xB15D82A6, 0x82C482B5, 0x82DC82A2, 0x82DC82B7, 0x81420A46, 0x2D5A4552, 0x4F204758, 0x82CC8A65, 0x5B82A982, 0xAD5D8374, 0x83408343, 0x838B82F0, 0x835A815B, 0x837582B7, 0x82E982C9, 0x82CD0A8F, 0xAD5B82B7, 0x82AD5D82, 0xC882AD82, 0xC682E088, 0xC85B82A2, 0x5D89BA5B, 0x82A95D82, 0xCC8BF35B, 0x82A05D82, 0xAB97655B, 0x82E682A4, 0x205D97CA, 0x5B82E882, 0xE582A45D, 0x82AA954B, 0x5B82D082, 0xC25D9776, 0x5B82E682, 0xA45D82C5, 0x82B78142, 0x0A288381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82CC93E0, 0x5B82C882, 0xA25D9765, 0x5B82E682, 0xA45D82F0, 0x90AE5B82, 0xB982A25D, 0x979D5B82, 0xE85D82B7, 0x82E982C9, 0x82CD8141, 0x0A967B5B, 0x82D982F1, 0x5D91CC5B, 0x82BD82A2, 0x5D82CC83, 0x81838283, 0x8A815B83, 0x4A815B83, 0x6889E65B, 0x82AA5D96, 0xCA5B82DF, 0x82F15D82, 0xC58D735B, 0x82A882B1, 0x5D82C882, 0xC182C482, 0xAD82BE82, 0xB382A229, 0x0A202083, 0x51815B83, 0x80836681, 0x5B835E3A, 0x83748340, 0x8343838B, 0x825082C2, 0x82C68253, 0x8375838D, 0x8362834E, 0x0A20834B, 0x838C815B, 0x83578366, 0x815B835E, 0x3A837483, 0x40834383, 0x8B825082, 0xC282C682, 0x50825783, 0x75838D83, 0x62834E0A, 0x20835381, 0x5B835883, 0x67836681, 0x5B835E3A, 0x83748340, 0x8343838B, 0x825082C2, 0x82C68252, 0x8375838D, 0x8362834E, 0x0A834783, 0x93837583, 0x8C838083, 0x66815B83, 0x5E3A8374, 0x83408343, 0x838B8250, 0x82C282C6, 0x82528375, 0x838D8362, 0x834E0A20, 0x20838A83, 0x76838C83, 0x43836681, 0x5B835E3A, 0x83748340, 0x8343838B, 0x825082C2, 0x82C68252, 0x81608250, 0x82528375, 0x838D8362, 0x834E0A00, 0x54686520, 0x4D656D6F, 0x72792043, 0x61726420, 0x696E2053, 0x4C4F5420, 0x646F6573, 0x206E6F74, 0x0A686176, 0x6520656E, 0x6F756768, 0x20667265, 0x65207370, 0x6163652E, 0x20417420, 0x6C656173, 0x74203120, 0x66696C65, 0x0A616E64, 0x20524551, 0x55495245, 0x4420626C, 0x6F636B73, 0x20617265, 0x206E6565, 0x64656420, 0x746F2073, 0x6176650A, 0x46494C45, 0x20446174, 0x612E2028, 0x546F206D, 0x616E6167, 0x65206669, 0x6C657320, 0x6F6E2074, 0x6865204D, 0x656D6F72, 0x790A4361, 0x72642C20, 0x706C6561, 0x73652067, 0x6F20746F, 0x20746865, 0x204E696E, 0x74656E64, 0x6F204761, 0x6D654375, 0x62650A4D, 0x656D6F72, 0x79204361, 0x7264206D, 0x616E6167, 0x656D656E, 0x74207363, 0x7265656E, 0x2E290000, 0x494E5353, 0x50414345, 0x5F524550, 0x4C415920, 0x47455200, 0x494E5353, 0x50414345, 0x5F524550, 0x4C415920, 0x46524100, 0x494E5353, 0x50414345, 0x5F524550, 0x4C415920, 0x53504100, 0x494E5353, 0x50414345, 0x5F524550, 0x4C415920, 0x49544100, 0x534C4F54, 0x82CC8381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82C98BF3, 0x5B82A05D, 0x82AB9765, 0x5B82E682, 0xA4205D97, 0xCA5B82E8, 0x82E582A4, 0x5D82AA82, 0xC882A282, 0xA981410A, 0x83748340, 0x8343838B, 0x90945B82, 0xB782A45D, 0x82CC90A7, 0x5B82B982, 0xA25D8CC0, 0x5B82B082, 0xF15D82F0, 0x897A5B82, 0xB15D82A6, 0x82C482B5, 0x82DC82A2, 0x82DC82B7, 0x81420A46, 0x494C4583, 0x66815B83, 0x5E82F083, 0x5A815B83, 0x7582B782, 0xE982C982, 0xCD0A8FAD, 0x5B82B782, 0xAD5D82C8, 0x82AD82C6, 0x82E08374, 0x83408343, 0x838B3182, 0xC282C652, 0x45515549, 0x52454483, 0x75838D83, 0x62834E95, 0x4B5B82D0, 0x82C25D97, 0x765B82E6, 0x82A45D82, 0xC582B781, 0x420A2883, 0x81838283, 0x8A815B83, 0x4A815B83, 0x6882CC93, 0xE05B82C8, 0x82A25D97, 0x655B82E6, 0x82A45D82, 0xF090AE5B, 0x82B982A2, 0x5D979D5B, 0x82E85D82, 0xB782E982, 0xC982CD81, 0x410A967B, 0x5B82D982, 0xF15D91CC, 0x5B82BD82, 0xA25D82CC, 0x83818382, 0x838A815B, 0x834A815B, 0x836889E6, 0x5B82AA5D, 0x96CA5B82, 0xDF82F15D, 0x82C58D73, 0x5B82A882, 0xB15D82C8, 0x82C182C4, 0x82AD82BE, 0x82B382A2, 0x290A0000, 0x54686572, 0x65206973, 0x20616C72, 0x65616479, 0x2046494C, 0x45204461, 0x74610A6F, 0x6E207468, 0x65204D65, 0x6D6F7279, 0x20436172, 0x6420696E, 0x20534C4F, 0x542E0A4F, 0x4B20746F, 0x20736176, 0x65206F76, 0x65722074, 0x68697320, 0x64617461, 0x3F000000, 0x4F564552, 0x57524954, 0x455F5155, 0x45525920, 0x47455200, 0x4F564552, 0x57524954, 0x455F5155, 0x45525920, 0x46524100, 0x4F564552, 0x57524954, 0x455F5155, 0x45525920, 0x53504100, 0x4F564552, 0x57524954, 0x455F5155, 0x45525920, 0x49544100, 0x534C4F54, 0x82CC8381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82C982CD, 0x0A82B782, 0xC582C946, 0x494C4583, 0x66815B83, 0x5E82AA82, 0xA082E882, 0xDC82B781, 0x420A8FE3, 0x5B82A482, 0xED5D8F91, 0x5B82AA5D, 0x82AB82B5, 0x82C482E0, 0x82E682EB, 0x82B582A2, 0x82C582B7, 0x82A98148, 0x00000000, 0x54686520, 0x46494C45, 0x20446174, 0x61206F76, 0x65727772, 0x6974650A, 0x77617320, 0x63616E63, 0x656C6564, 0x2E000000, 0x4F564552, 0x57524954, 0x455F4341, 0x4E43454C, 0x20474552, 0x00000000, 0x4F564552, 0x57524954, 0x455F4341, 0x4E43454C, 0x20465241, 0x00000000, 0x4F564552, 0x57524954, 0x455F4341, 0x4E43454C, 0x20535041, 0x00000000, 0x4F564552, 0x57524954, 0x455F4341, 0x4E43454C, 0x20495441, 0x00000000, 0x46494C45, 0x8366815B, 0x835E82CC, 0x0A8FE35B, 0x82A482ED, 0x5D8F915B, 0x82AA5D82, 0xAB82F092, 0x865B82BF, 0x82E35D8E, 0x7E5B82A4, 0x82B55D82, 0xB582DC82, 0xB582BD81, 0x42000000, 0x46494C45, 0x20446174, 0x61207761, 0x73207361, 0x76656420, 0x746F0A74, 0x6865204D, 0x656D6F72, 0x79204361, 0x72642069, 0x6E20534C, 0x4F542E20, 0x00000000, 0x53415645, 0x5F454E44, 0x20474552, 0x00000000, 0x53415645, 0x5F454E44, 0x20465241, 0x00000000, 0x53415645, 0x5F454E44, 0x20535041, 0x00000000, 0x53415645, 0x5F454E44, 0x20495441, 0x00000000, 0x534C4F54, 0x82CC8381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82D60A46, 0x494C4583, 0x66815B83, 0x5E82CC83, 0x5A815B83, 0x7582AA8F, 0x495B82A8, 0x5D82ED82, 0xE882DC82, 0xB582BD81, 0x42000000, 0x46726565, 0x20626C6F, 0x636B7320, 0x696E2053, 0x4C4F543A, 0x00000000, 0x52454D41, 0x494E5F42, 0x4C4F434B, 0x53204745, 0x52000000, 0x52454D41, 0x494E5F42, 0x4C4F434B, 0x53204652, 0x41000000, 0x52454D41, 0x494E5F42, 0x4C4F434B, 0x53205350, 0x41000000, 0x52454D41, 0x494E5F42, 0x4C4F434B, 0x53204954, 0x41000000, 0x534C4F54, 0x82CC8BF3, 0x5B82A05D, 0x82AB8375, 0x838D8362, 0x834E8146, 0x00000000, 0x426C6F63, 0x6B733A00, 0x424C4F43, 0x4B532047, 0x45520000, 0x424C4F43, 0x4B532046, 0x52410000, 0x424C4F43, 0x4B532053, 0x50410000, 0x424C4F43, 0x4B532049, 0x54410000, 0x8375838D, 0x8362834E, 0x81460000, 0x4C6F6164, 0x696E6720, 0x46494C45, 0x20446174, 0x61206672, 0x6F6D0A74, 0x6865204D, 0x656D6F72, 0x79204361, 0x72642077, 0x61732063, 0x616E6365, 0x6C6C6564, 0x2E200000, 0x4E4F4C4F, 0x41445F45, 0x58495420, 0x47455200, 0x4E4F4C4F, 0x41445F45, 0x58495420, 0x46524100, 0x4E4F4C4F, 0x41445F45, 0x58495420, 0x53504100, 0x4E4F4C4F, 0x41445F45, 0x58495420, 0x49544100, 0x46494C45, 0x8366815B, 0x835E82CC, 0x0A838183, 0x82838A81, 0x5B834A81, 0x5B836882, 0xA982E782, 0xCC838D81, 0x5B836882, 0xF092865B, 0x82BF82E3, 0x82A45D8E, 0x7E5B82B5, 0x5D82B582, 0xDC82B582, 0xBD814200, 0x54686520, 0x4D656D6F, 0x72792043, 0x61726420, 0x696E2053, 0x4C4F5420, 0x68617320, 0x6265656E, 0x20666F72, 0x6D617474, 0x65642E00, 0x464F524D, 0x41545F45, 0x4E442047, 0x45520000, 0x464F524D, 0x41545F45, 0x4E442046, 0x52410000, 0x464F524D, 0x41545F45, 0x4E442053, 0x50410000, 0x464F524D, 0x41545F45, 0x4E442049, 0x54410000, 0x534C4F54, 0x82CC8381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82CC0A83, 0x74834881, 0x5B837D83, 0x62836782, 0xAA8F495B, 0x82A85D82, 0xED82E882, 0xDC82B582, 0xBD814200, 0x54686520, 0x46494C45, 0x20446174, 0x61206861, 0x73206265, 0x656E206C, 0x6F616465, 0x640A6672, 0x6F6D2074, 0x6865204D, 0x656D6F72, 0x79204361, 0x72642069, 0x6E20534C, 0x4F542E20, 0x00000000, 0x4C4F4144, 0x5F454E44, 0x20474552, 0x00000000, 0x4C4F4144, 0x5F454E44, 0x20465241, 0x00000000, 0x4C4F4144, 0x5F454E44, 0x20535041, 0x00000000, 0x4C4F4144, 0x5F454E44, 0x20495441, 0x00000000, 0x534C4F54, 0x82CC8381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82A982E7, 0x82CC0A46, 0x494C4583, 0x66815B83, 0x5E82CC83, 0x8D815B83, 0x6882AA8F, 0x495B82A8, 0x5D82ED82, 0xE882DC82, 0xB582BD81, 0x42000000, 0x54686520, 0x462D5A45, 0x524F2047, 0x58204649, 0x4C452044, 0x61746120, 0x6F6E0A74, 0x6865204D, 0x656D6F72, 0x79204361, 0x72642069, 0x6E20534C, 0x4F540A69, 0x7320636F, 0x72727570, 0x74656420, 0x616E6420, 0x6D757374, 0x20626520, 0x64656C65, 0x7465642E, 0x00000000, 0x44415441, 0x5F42524F, 0x4B454E20, 0x47455200, 0x44415441, 0x5F42524F, 0x4B454E20, 0x46524100, 0x44415441, 0x5F42524F, 0x4B454E20, 0x53504100, 0x44415441, 0x5F42524F, 0x4B454E20, 0x49544100, 0x46494C45, 0x8366815B, 0x835E82AA, 0x82B182ED, 0x82EA82C4, 0x82A282DC, 0x82B78142, 0x0A837483, 0x40834383, 0x8B82F08F, 0xC15B82B5, 0x82E582A4, 0x5D8B8E5B, 0x2082AB82, 0xE55D82B5, 0x82DC82B7, 0x81420000, 0x54686520, 0x4D656D6F, 0x72792043, 0x61726420, 0x696E2053, 0x4C4F5420, 0x77617320, 0x72656D6F, 0x7665642E, 0x0A4D656D, 0x6F727920, 0x43617264, 0x20616363, 0x65737320, 0x77617320, 0x73746F70, 0x7065642E, 0x20000000, 0x44455441, 0x43482047, 0x45520000, 0x44455441, 0x43482046, 0x52410000, 0x44455441, 0x43482053, 0x50410000, 0x44455441, 0x43482049, 0x54410000, 0x534C4F54, 0x82CC8381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82AA94B2, 0x5B82CA5D, 0x82A982EA, 0x82DC82B5, 0x82BD8142, 0x0A8DEC5B, 0x82B382AC, 0x5D8BC65B, 0x82E582A4, 0x5D82F092, 0x865B82BF, 0x82E35D8E, 0x7E5B82A4, 0x82B55D82, 0xB582DC82, 0xB7814200, 0x54686572, 0x65206973, 0x206E6F20, 0x46494C45, 0x20446174, 0x61206F6E, 0x0A746865, 0x204D656D, 0x6F727920, 0x43617264, 0x20696E20, 0x534C4F54, 0x2E200000, 0x4E4F4649, 0x4C452047, 0x45520000, 0x4E4F4649, 0x4C452046, 0x52410000, 0x4E4F4649, 0x4C452053, 0x50410000, 0x4E4F4649, 0x4C452049, 0x54410000, 0x534C4F54, 0x82CC8381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82C982CD, 0x0A46494C, 0x45836681, 0x5B835E82, 0xAA82A082, 0xE882DC82, 0xB982F181, 0x42000000, 0x54686572, 0x65206973, 0x206E6F20, 0x5265706C, 0x61792044, 0x61746120, 0x6F6E0A74, 0x6865204D, 0x656D6F72, 0x79204361, 0x72642069, 0x6E20534C, 0x4F542E20, 0x00000000, 0x4E4F4649, 0x4C452047, 0x45520000, 0x4E4F4649, 0x4C452046, 0x52410000, 0x4E4F4649, 0x4C452053, 0x50410000, 0x4E4F4649, 0x4C452049, 0x54410000, 0x534C4F54, 0x82CC8381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82C982CD, 0x0A46494C, 0x45836681, 0x5B835E82, 0xAA82A082, 0xE882DC82, 0xB982F181, 0x42000000, 0x54686572, 0x65206973, 0x206E6F20, 0x47686F73, 0x74204461, 0x7461206F, 0x6E0A7468, 0x65204D65, 0x6D6F7279, 0x20436172, 0x6420696E, 0x20534C4F, 0x542E2000, 0x4E4F4649, 0x4C452047, 0x45520000, 0x4E4F4649, 0x4C452046, 0x52410000, 0x4E4F4649, 0x4C452053, 0x50410000, 0x4E4F4649, 0x4C452049, 0x54410000, 0x534C4F54, 0x82CC8381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82C982CD, 0x0A46494C, 0x45836681, 0x5B835E82, 0xAA82A082, 0xE882DC82, 0xB982F181, 0x42000000, 0x54686572, 0x65206973, 0x206E6F20, 0x456D626C, 0x656D2044, 0x61746120, 0x6F6E0A74, 0x6865204D, 0x656D6F72, 0x79204361, 0x72642069, 0x6E20534C, 0x4F542E20, 0x00000000, 0x4E4F4649, 0x4C452047, 0x45520000, 0x4E4F4649, 0x4C452046, 0x52410000, 0x4E4F4649, 0x4C452053, 0x50410000, 0x4E4F4649, 0x4C452049, 0x54410000, 0x534C4F54, 0x82CC8381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82C982CD, 0x0A46494C, 0x45836681, 0x5B835E82, 0xAA82A082, 0xE882DC82, 0xB982F181, 0x42000000, 0x556E6162, 0x6C652074, 0x6F206765, 0x74207468, 0x65206461, 0x7461206C, 0x6973740A, 0x6F6E2074, 0x6865204D, 0x656D6F72, 0x79204361, 0x72642069, 0x6E20534C, 0x4F542E20, 0x00000000, 0x4E4F4C49, 0x53545F45, 0x58495420, 0x47455200, 0x4E4F4C49, 0x53545F45, 0x58495420, 0x46524100, 0x4E4F4C49, 0x53545F45, 0x58495420, 0x53504100, 0x4E4F4C49, 0x53545F45, 0x58495420, 0x49544100, 0x534C4F54, 0x82CC8366, 0x815B835E, 0x838A8358, 0x836782AA, 0x0A82C682, 0xEA82DC82, 0xB982F182, 0xC582B582, 0xBD814200, 0x54686572, 0x65206973, 0x206E6F20, 0x64617461, 0x206F6E0A, 0x74686520, 0x4D656D6F, 0x72792043, 0x61726420, 0x696E2053, 0x4C4F542E, 0x20000000, 0x4C495354, 0x5F4E4F5F, 0x45584953, 0x54204745, 0x52000000, 0x4C495354, 0x5F4E4F5F, 0x45584953, 0x54204652, 0x41000000, 0x4C495354, 0x5F4E4F5F, 0x45584953, 0x54205350, 0x41000000, 0x4C495354, 0x5F4E4F5F, 0x45584953, 0x54204954, 0x41000000, 0x534C4F54, 0x82CC8381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82C982CD, 0x0A836681, 0x5B835E82, 0xAA3182C2, 0x82E082A0, 0x82E882DC, 0x82B982F1, 0x82C582B5, 0x82BD8142, 0x00000000, 0x54686520, 0x64617461, 0x206C6973, 0x74206F6E, 0x20746865, 0x204D656D, 0x6F727920, 0x43617264, 0x0A696E20, 0x534C4F54, 0x20686173, 0x20626565, 0x6E206C6F, 0x61646564, 0x2E000000, 0x4C495354, 0x5F454E44, 0x20474552, 0x00000000, 0x4C495354, 0x5F454E44, 0x20465241, 0x00000000, 0x4C495354, 0x5F454E44, 0x20535041, 0x00000000, 0x4C495354, 0x5F454E44, 0x20495441, 0x00000000, 0x534C4F54, 0x82CC8381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82CC0A83, 0x66815B83, 0x5E838A83, 0x58836782, 0xF093C75B, 0x82E65D82, 0xDD82B182, 0xDD82DC82, 0xB582BD81, 0x42000000, 0x446F6E65, 0x20636865, 0x636B696E, 0x67207468, 0x65204D65, 0x6D6F7279, 0x20436172, 0x6420696E, 0x20534C4F, 0x542E0000, 0x43484543, 0x4B5F454E, 0x44204745, 0x52000000, 0x43484543, 0x4B5F454E, 0x44204652, 0x41000000, 0x43484543, 0x4B5F454E, 0x44205350, 0x41000000, 0x43484543, 0x4B5F454E, 0x44204954, 0x41000000, 0x534C4F54, 0x82CC8381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82CC0A83, 0x60834683, 0x62834E82, 0xAA5B82B5, 0x5D8F495B, 0x82E382A4, 0x5D97B95B, 0x82E882E5, 0x5D82B55B, 0x82A45D82, 0xDC82B582, 0xBD814200, 0x46494C45, 0x20446174, 0x61206465, 0x6C657469, 0x6F6E206F, 0x6E207468, 0x65204D65, 0x6D6F7279, 0x20436172, 0x640A696E, 0x20534C4F, 0x54207761, 0x73206361, 0x6E63656C, 0x6C65642E, 0x00000000, 0x4E4F4445, 0x4C5F4558, 0x49542047, 0x45520000, 0x4E4F4445, 0x4C5F4558, 0x49542046, 0x52410000, 0x4E4F4445, 0x4C5F4558, 0x49542053, 0x50410000, 0x4E4F4445, 0x4C5F4558, 0x49542049, 0x54410000, 0x534C4F54, 0x82CC4649, 0x4C458366, 0x815B835E, 0x82CC8DED, 0x5B82B382, 0xAD5D8F9C, 0x5B82B682, 0xE55D82F0, 0x92865B82, 0xBF82E382, 0xA45D8E7E, 0x5B82B55D, 0x82B582DC, 0x82B582BD, 0x81420000, 0x31204649, 0x4C452044, 0x61746120, 0x77617320, 0x65726173, 0x65642066, 0x726F6D20, 0x74686520, 0x4D656D6F, 0x72792043, 0x61726420, 0x696E2053, 0x4C4F542E, 0x00000000, 0x44454C45, 0x54455F45, 0x4E442047, 0x45520000, 0x44454C45, 0x54455F45, 0x4E442046, 0x52410000, 0x44454C45, 0x54455F45, 0x4E442053, 0x50410000, 0x44454C45, 0x54455F45, 0x4E442049, 0x54410000, 0x534C4F54, 0x82CC4649, 0x4C458366, 0x815B835E, 0x82F08250, 0x82C28FC1, 0x5B82AF5D, 0x82B582DC, 0x82B582BD, 0x81420000, 0x4E4F5720, 0x464F524D, 0x41545449, 0x4E470000, 0x464F524D, 0x41545F4E, 0x4F572047, 0x45520000, 0x464F524D, 0x41545F4E, 0x4F572046, 0x52410000, 0x464F524D, 0x41545F4E, 0x4F572053, 0x50410000, 0x464F524D, 0x41545F4E, 0x4F572049, 0x54410000, 0x4E4F5720, 0x464F524D, 0x41545449, 0x4E470000, 0x4E4F5720, 0x53415649, 0x4E470000, 0x53415645, 0x5F4E4F57, 0x20474552, 0x00000000, 0x53415645, 0x5F4E4F57, 0x20465241, 0x00000000, 0x53415645, 0x5F4E4F57, 0x20535041, 0x00000000, 0x53415645, 0x5F4E4F57, 0x20495441, 0x00000000, 0x4E4F5720, 0x53415649, 0x4E470000, 0x4E4F5720, 0x4D414B49, 0x4E47204C, 0x49535400, 0x4C495354, 0x5F4E4F57, 0x20474552, 0x00000000, 0x4C495354, 0x5F4E4F57, 0x20465241, 0x00000000, 0x4C495354, 0x5F4E4F57, 0x20535041, 0x00000000, 0x4C495354, 0x5F4E4F57, 0x20495441, 0x00000000, 0x4E4F5720, 0x4D414B49, 0x4E47204C, 0x49535400, 0x4E4F5720, 0x43484543, 0x4B494E47, 0x00000000, 0x4C495354, 0x5F4E4F57, 0x20474552, 0x00000000, 0x4C495354, 0x5F4E4F57, 0x20465241, 0x00000000, 0x4C495354, 0x5F4E4F57, 0x20535041, 0x00000000, 0x4C495354, 0x5F4E4F57, 0x20495441, 0x00000000, 0x4E4F5720, 0x43484543, 0x4B494E47, 0x00000000, 0x41636365, 0x7373696E, 0x67207468, 0x65204D65, 0x6D6F7279, 0x20436172, 0x6420696E, 0x20534C4F, 0x542E0A44, 0x6F206E6F, 0x7420746F, 0x75636820, 0x74686520, 0x4D656D6F, 0x72792043, 0x61726420, 0x6F722050, 0x4F574552, 0x20427574, 0x746F6E2E, 0x00000000, 0x41434345, 0x53532047, 0x45520000, 0x41434345, 0x53532046, 0x52410000, 0x41434345, 0x53532053, 0x50410000, 0x41434345, 0x53532049, 0x54410000, 0x83818382, 0x838A815B, 0x834A815B, 0x836882C9, 0x8341834E, 0x835A8358, 0x92865B82, 0xBF82E382, 0xA45D82C5, 0x82B78142, 0x0A838183, 0x82838A81, 0x5B834A81, 0x5B836882, 0xE293645B, 0x82C582F1, 0x5D8CB95B, 0x82B082F1, 0x5D82C990, 0x475B82B3, 0x82ED5D82, 0xE782C882, 0xA282C582, 0xAD82BE82, 0xB382A281, 0x420A0000, 0x41636365, 0x7373696E, 0x67207468, 0x65204D65, 0x6D6F7279, 0x20436172, 0x6420696E, 0x20534C4F, 0x542E0A44, 0x6F206E6F, 0x7420746F, 0x75636820, 0x74686520, 0x4D656D6F, 0x72792043, 0x61726420, 0x6F722050, 0x4F574552, 0x20427574, 0x746F6E2E, 0x00000000, 0x41434345, 0x53532047, 0x45520000, 0x41434345, 0x53532046, 0x52410000, 0x41434345, 0x53532053, 0x50410000, 0x41434345, 0x53532049, 0x54410000, 0x83818382, 0x838A815B, 0x834A815B, 0x836882C9, 0x8341834E, 0x835A8358, 0x92865B82, 0xBF82E382, 0xA45D82C5, 0x82B78142, 0x0A838183, 0x82838A81, 0x5B834A81, 0x5B836882, 0xE293645B, 0x82C582F1, 0x5D8CB95B, 0x82B082F1, 0x5D82C990, 0x475B82B3, 0x82ED5D82, 0xE782C882, 0xA282C582, 0xAD82BE82, 0xB382A281, 0x420A0000, 0x4F4B2074, 0x6F207361, 0x76652046, 0x494C4520, 0x746F2074, 0x6865204D, 0x656D6F72, 0x79204361, 0x72642069, 0x6E20534C, 0x4F543F00, 0x53415645, 0x5F515545, 0x52592047, 0x45520000, 0x53415645, 0x5F515545, 0x52592046, 0x52410000, 0x53415645, 0x5F515545, 0x52592053, 0x50410000, 0x53415645, 0x5F515545, 0x52592049, 0x54410000, 0x534C4F54, 0x82C94649, 0x4C4582F0, 0x835A815B, 0x837582B5, 0x82C482E0, 0x0A82E682, 0xEB82B582, 0xA282C582, 0xB782A981, 0x48000000, 0x49662079, 0x6F752073, 0x74617274, 0x206E6F77, 0x2C0A796F, 0x75207769, 0x6C6C206E, 0x6F742062, 0x65206162, 0x6C652074, 0x6F207361, 0x76652E00, 0x43414E4E, 0x4F545F53, 0x41564520, 0x47455200, 0x43414E4E, 0x4F545F53, 0x41564520, 0x46524100, 0x43414E4E, 0x4F545F53, 0x41564520, 0x53504100, 0x43414E4E, 0x4F545F53, 0x41564520, 0x49544100, 0x82B182CC, 0x82DC82DC, 0x8E6E5B82, 0xCD82B65D, 0x82DF82BD, 0x8FEA5B82, 0xCE5D8D87, 0x5B82A082, 0xA25D0A83, 0x5A815B83, 0x7582C582, 0xAB82DC82, 0xB982F100, 0x54686572, 0x65206172, 0x65206E6F, 0x204D656D, 0x6F727920, 0x43617264, 0x7320696E, 0x73657274, 0x65642070, 0x726F7065, 0x726C792E, 0x0A506C65, 0x61736520, 0x63686563, 0x6B20636F, 0x6E6E6563, 0x74696F6E, 0x73206F72, 0x20696E73, 0x65727420, 0x61204D65, 0x6D6F7279, 0x20436172, 0x642E0A49, 0x6620796F, 0x75207374, 0x61727420, 0x6E6F772C, 0x20796F75, 0x2077696C, 0x6C206E6F, 0x74206265, 0x2061626C, 0x6520746F, 0x20736176, 0x65207468, 0x65206761, 0x6D652E00, 0x43414E4E, 0x4F545F53, 0x4156455F, 0x4E4F4341, 0x52442047, 0x45520000, 0x43414E4E, 0x4F545F53, 0x4156455F, 0x4E4F4341, 0x52442046, 0x52410000, 0x43414E4E, 0x4F545F53, 0x4156455F, 0x4E4F4341, 0x52442053, 0x50410000, 0x43414E4E, 0x4F545F53, 0x4156455F, 0x4E4F4341, 0x52442049, 0x54410000, 0x83818382, 0x838A815B, 0x834A815B, 0x836882AA, 0x8CA95B82, 0xDD5D82C2, 0x82A982E8, 0x82DC82B9, 0x82F18142, 0x0A90DA5B, 0x82B982C2, 0x5D91B15B, 0x82BC82AD, 0x5D82F08A, 0x6D5B82A9, 0x82AD5D94, 0x465B82C9, 0x82F15D82, 0xB582C482, 0xAD82BE82, 0xB382A281, 0x420A82B1, 0x82CC82DC, 0x82DC8E6E, 0x5B82CD82, 0xB65D82DF, 0x82BD8FEA, 0x5B82CE5D, 0x8D875B82, 0xA082A25D, 0x0A835A81, 0x5B837582, 0xC582AB82, 0xDC82B982, 0xF1000000, 0x54686520, 0x64657669, 0x63652069, 0x6E20534C, 0x4F542069, 0x73206E6F, 0x74207375, 0x70706F72, 0x7465642E, 0x0A506C65, 0x61736520, 0x696E7365, 0x72742061, 0x204D656D, 0x6F727920, 0x43617264, 0x2E000000, 0x43414E4E, 0x4F545F53, 0x4156455F, 0x4E4F4341, 0x52442047, 0x45520000, 0x43414E4E, 0x4F545F53, 0x4156455F, 0x4E4F4341, 0x52442046, 0x52410000, 0x43414E4E, 0x4F545F53, 0x4156455F, 0x4E4F4341, 0x52442053, 0x50410000, 0x43414E4E, 0x4F545F53, 0x4156455F, 0x4E4F4341, 0x52442049, 0x54410000, 0x83818382, 0x838A815B, 0x834A815B, 0x836888C8, 0x8A4F82CC, 0x82E082CC, 0x82AA8CA9, 0x5B82DD5D, 0x82C282A9, 0x82E882DC, 0x82B582BD, 0x81420A83, 0x81838283, 0x8A815B83, 0x4A815B83, 0x6882F082, 0xB382B582, 0xC482AD82, 0xBE82B382, 0xA2814200, 0x45697468, 0x65722047, 0x616D6520, 0x44617461, 0x20776173, 0x206E6F74, 0x206C6F61, 0x6465640A, 0x6F722074, 0x6865206F, 0x72696769, 0x6E616C20, 0x4D656D6F, 0x72792043, 0x6172642C, 0x0A66726F, 0x6D207768, 0x69636820, 0x74686520, 0x47616D65, 0x20646174, 0x61207761, 0x73206C6F, 0x61646564, 0x2C0A6861, 0x73206265, 0x656E2072, 0x656D6F76, 0x65642E00, 0x47455200, 0x46524100, 0x53504100, 0x49544100, 0x8351815B, 0x83808366, 0x815B835E, 0x82AA838D, 0x815B8368, 0x82B382EA, 0x82C482A2, 0x82C882A2, 0x82A90A83, 0x51815B83, 0x80836681, 0x5B835E82, 0xF0838D81, 0x5B836882, 0xB582BD83, 0x81838283, 0x8A815B83, 0x4A815B83, 0x680A82C5, 0x82CD82A0, 0x82E882DC, 0x82B982F1, 0x81422883, 0x51815B83, 0x80836681, 0x5B835E82, 0xCC835A81, 0x5B837581, 0x410A838D, 0x815B8368, 0x82CD8141, 0x83498376, 0x83568387, 0x839382CC, 0x83818382, 0x838A815B, 0x834A815B, 0x83680A83, 0x81836A83, 0x85815B82, 0xA982E789, 0xC25B82A9, 0x5D945C5B, 0x82CC82A4, 0x5D82C582, 0xB7814229, 0x00000000, 0x45697468, 0x65722047, 0x616D6520, 0x44617461, 0x20776173, 0x206E6F74, 0x206C6F61, 0x6465640A, 0x6F722074, 0x6865206F, 0x72696769, 0x6E616C20, 0x4D656D6F, 0x72792043, 0x6172642C, 0x0A66726F, 0x6D207768, 0x69636820, 0x74686520, 0x47616D65, 0x20646174, 0x61207761, 0x73206C6F, 0x61646564, 0x2C0A2068, 0x61732062, 0x65656E20, 0x72656D6F, 0x7665642E, 0x00000000, 0x47455200, 0x46524100, 0x53504100, 0x49544100, 0x8351815B, 0x83808366, 0x815B835E, 0x82AA838D, 0x815B8368, 0x82B382EA, 0x82C482A2, 0x82C882A2, 0x82A90A83, 0x51815B83, 0x80836681, 0x5B835E82, 0xF0838D81, 0x5B836882, 0xB582BD83, 0x81838283, 0x8A815B83, 0x4A815B83, 0x680A82C5, 0x82CD82A0, 0x82E882DC, 0x82B982F1, 0x81420000, 0x44617461, 0x00000000, 0x46696C65, 0x20474552, 0x00000000, 0x46696C65, 0x20465241, 0x00000000, 0x46696C65, 0x20535041, 0x00000000, 0x46696C65, 0x20495441, 0x00000000, 0x8366815B, 0x835E0000, 0x47616D65, 0x00000000, 0x53797374, 0x656D2047, 0x45520000, 0x53797374, 0x656D2046, 0x52410000, 0x53797374, 0x656D2053, 0x50410000, 0x53797374, 0x656D2049, 0x54410000, 0x8351815B, 0x83800000, 0x44656275, 0x67000000, 0x44656275, 0x67204745, 0x52000000, 0x44656275, 0x67204652, 0x41000000, 0x44656275, 0x67205350, 0x41000000, 0x44656275, 0x67204954, 0x41000000, 0x8366836F, 0x8362834F, 0x00000000, 0x5265706C, 0x61790000, 0x5265706C, 0x61792047, 0x45520000, 0x5265706C, 0x61792046, 0x52410000, 0x5265706C, 0x61792053, 0x50410000, 0x5265706C, 0x61792049, 0x54410000, 0x838A8376, 0x838C8343, 0x00000000, 0x456D626C, 0x656D0000, 0x456D626C, 0x656D2047, 0x45520000, 0x456D626C, 0x656D2046, 0x52410000, 0x456D626C, 0x656D2053, 0x50410000, 0x456D626C, 0x656D2049, 0x54410000, 0x83478393, 0x8375838C, 0x83800000, 0x47686F73, 0x74000000, 0x47686F73, 0x74204745, 0x52000000, 0x47686F73, 0x74204652, 0x41000000, 0x47686F73, 0x74205350, 0x41000000, 0x47686F73, 0x74204954, 0x41000000, 0x8353815B, 0x83588367, 0x00000000, 0x47617261, 0x67650000, 0x43757374, 0x6F6D2047, 0x45520000, 0x43757374, 0x6F6D2046, 0x52410000, 0x43757374, 0x6F6D2053, 0x50410000, 0x43757374, 0x6F6D2049, 0x54410000, 0x834B838C, 0x815B8357, 0x00000000, 0x47616D65, 0x00000000, 0x47616D65, 0x20474552, 0x00000000, 0x47616D65, 0x20465241, 0x00000000, 0x47616D65, 0x20535041, 0x00000000, 0x47616D65, 0x20495441, 0x00000000, 0x8351815B, 0x83800000, 0x54686572, 0x65206973, 0x206E6F74, 0x20656E6F, 0x75676820, 0x66726565, 0x20737061, 0x6365206F, 0x6E207468, 0x65204D65, 0x6D6F7279, 0x20436172, 0x640A696E, 0x20257320, 0x746F2073, 0x61766520, 0x616C6C20, 0x74797065, 0x73206F66, 0x206E6577, 0x2066696C, 0x65732E0A, 0x45786973, 0x74696E67, 0x20462D5A, 0x45524F20, 0x47582066, 0x696C6573, 0x206D6179, 0x20626520, 0x65726173, 0x6564206F, 0x72206F76, 0x65727772, 0x69747465, 0x6E2E0A28, 0x546F206D, 0x616E6167, 0x65206669, 0x6C657320, 0x6F6E2074, 0x6865204D, 0x656D6F72, 0x79204361, 0x72642C20, 0x706C6561, 0x73652067, 0x6F20746F, 0x0A746865, 0x204D656D, 0x6F727920, 0x43617264, 0x206D616E, 0x6167656D, 0x656E7420, 0x73637265, 0x656E2E29, 0x20496E20, 0x6F726465, 0x7220746F, 0x20736176, 0x650A6120, 0x6E657720, 0x66696C65, 0x2C207468, 0x6520666F, 0x6C6C6F77, 0x696E6720, 0x6E756D62, 0x6572206F, 0x66206672, 0x65652066, 0x696C6573, 0x0A616E64, 0x20626C6F, 0x636B7320, 0x6D757374, 0x20626520, 0x61766169, 0x6C61626C, 0x653A0000, 0x47455200, 0x46524100, 0x53504100, 0x49544100, 0x82A282AD, 0x82C282A9, 0x82CC8366, 0x815B835E, 0x82CD835A, 0x815B8375, 0x82C582AB, 0x82DC82B9, 0x82F18142, 0x0A257382, 0xCC838183, 0x82838A81, 0x5B834A81, 0x5B836882, 0xC98BF35B, 0x82A05D82, 0xAB976597, 0xCA82AA82, 0xC882A282, 0xA981410A, 0x83748340, 0x8343838B, 0x90945B82, 0xB782A45D, 0x82CC90A7, 0x5B82B982, 0xA25D8CC0, 0x5B82B082, 0xF15D82F0, 0x897A5B82, 0xB15D82A6, 0x82C482B5, 0x82DC82A2, 0x82DC82B7, 0x81420A83, 0x5A815B83, 0x7582B782, 0xE982C982, 0xCD8FAD5B, 0x82B782AD, 0x5D82C882, 0xAD82C682, 0xE088C85B, 0x82A25D89, 0xBA5B82A9, 0x5D82CC8B, 0xF35B82A0, 0x5D82AB97, 0x655B82E6, 0x82A4205D, 0x97CA5B82, 0xE882E582, 0xA45D82AA, 0x954B5B82, 0xD082C25D, 0x97765B82, 0xE682A45D, 0x82C582B7, 0x81420A28, 0x83818382, 0x838A815B, 0x834A815B, 0x836882CC, 0x93E05B82, 0xC882A25D, 0x97655B82, 0xE682A45D, 0x82F090AE, 0x5B82B982, 0xA25D979D, 0x5B82E85D, 0x82B782E9, 0x82C982CD, 0x81410A96, 0x7B5B82D9, 0x82F15D91, 0xCC5B82BD, 0x82A25D82, 0xCC838183, 0x82838A81, 0x5B834A81, 0x5B836889, 0xE65B82AA, 0x5D96CA5B, 0x82DF82F1, 0x5D82C58D, 0x735B82A8, 0x82B15D82, 0xC882C182, 0xC482AD82, 0xBE82B382, 0xA2290A00, 0x2F626366, 0x66613061, 0x302F312F, 0x62636666, 0x66666666, 0x2F204669, 0x6C652061, 0x6E64202F, 0x62636666, 0x61306130, 0x2F202020, 0x20202020, 0x202F6263, 0x66666666, 0x66662F20, 0x426C6F63, 0x6B730000, 0x47455200, 0x46524100, 0x53504100, 0x49544100, 0x83748340, 0x8343838B, 0x2F626366, 0x66613061, 0x302F312F, 0x62636666, 0x66666666, 0x2F82C220, 0x82C62F62, 0x63666661, 0x3061302F, 0x2534642F, 0x62636666, 0x66666666, 0x2F837583, 0x8D836283, 0x4E000000, 0x2F626366, 0x66613061, 0x302F312F, 0x62636666, 0x66666666, 0x2F204669, 0x6C652061, 0x6E64202F, 0x62636666, 0x61306130, 0x2F825281, 0x60253264, 0x2F626366, 0x66666666, 0x662F2042, 0x6C6F636B, 0x73000000, 0x47455200, 0x46524100, 0x53504100, 0x49544100, 0x83748340, 0x8343838B, 0x2F626366, 0x66613061, 0x302F312F, 0x62636666, 0x66666666, 0x2F82C220, 0x82C62F62, 0x63666661, 0x3061302F, 0x82528160, 0x2532642F, 0x62636666, 0x66666666, 0x2F837583, 0x8D836283, 0x4E000000, 0x4E6F204D, 0x656D6F72, 0x79204361, 0x72642069, 0x6E20534C, 0x4F542E0A, 0x506C6561, 0x73652069, 0x6E736572, 0x74206120, 0x4D656D6F, 0x72792043, 0x6172642E, 0x00000000, 0x47455200, 0x46524100, 0x53504100, 0x49544100, 0x83818382, 0x838A815B, 0x834A815B, 0x836882AA, 0x8CA95B82, 0xDD5D82C2, 0x82A982E8, 0x82DC82B9, 0x82F18142, 0x0A90DA5B, 0x82B982C2, 0x5D91B15B, 0x82BC82AD, 0x5D82F08A, 0x6D5B82A9, 0x82AD5D94, 0x465B82C9, 0x82F15D82, 0xB582C482, 0xAD82BE82, 0xB382A281, 0x42000000, 0x53415645, 0x00000000, 0x47455200, 0x46524100, 0x53504100, 0x49544100, 0x835A815B, 0x83750000, 0x4C4F4144, 0x00000000, 0x47455200, 0x46524100, 0x53504100, 0x49544100, 0x838D815B, 0x83680000, 0x434F5059, 0x00000000, 0x47455200, 0x46524100, 0x53504100, 0x49544100, 0x83528373, 0x815B0000, 0x45524153, 0x45000000, 0x47455200, 0x46524100, 0x53504100, 0x49544100, 0x82AF2082, 0xB7000000, 0x54686973, 0x204D656D, 0x6F727920, 0x43617264, 0x2063616E, 0x6E6F7420, 0x62652075, 0x7365642E, 0x0A506C65, 0x61736520, 0x72656D6F, 0x76652069, 0x742E2000, 0x47455200, 0x46524100, 0x53504100, 0x49544100, 0x82B182CC, 0x83818382, 0x838A815B, 0x834A815B, 0x836882CD, 0x8E675B82, 0xB55D9770, 0x5B82E682, 0xA45D82C5, 0x82AB82DC, 0x82B982F1, 0x81420A83, 0x81838283, 0x8A815B83, 0x4A815B83, 0x6882F094, 0xB25B82CA, 0x5D82A282, 0xC482AD82, 0xBE82B382, 0xA2814200, 0x41636365, 0x7373696E, 0x67207468, 0x65204D65, 0x6D6F7279, 0x20436172, 0x6420696E, 0x20536C6F, 0x7420412E, 0x20446F20, 0x6E6F7420, 0x746F7563, 0x68207468, 0x65204D65, 0x6D6F7279, 0x20436172, 0x64206F72, 0x20504F57, 0x45522042, 0x7574746F, 0x6E2E0000, 0x47455200, 0x46524100, 0x53504100, 0x49544100, 0x83818382, 0x838A815B, 0x834A815B, 0x836882C9, 0x8341834E, 0x835A8358, 0x928682C5, 0x82B78142, 0x83818382, 0x838A815B, 0x834A815B, 0x836882E2, 0x93648CB9, 0x82C99047, 0x82E782C8, 0x82A282C5, 0x82AD82BE, 0x82B382A2, 0x81420000, 0x53617669, 0x6E670000, 0x47455200, 0x46524100, 0x53504100, 0x49544100, 0x835A815B, 0x83759286, 0x00000000, 0x536F6D65, 0x20462D5A, 0x45524F20, 0x47582066, 0x696C6573, 0x206F6E0A, 0x74686520, 0x4D656D6F, 0x72792043, 0x61726420, 0x696E2053, 0x4C4F5420, 0x61726520, 0x636F7272, 0x75707465, 0x642E0A00, 0x4C495354, 0x5F4E4F5F, 0x45584953, 0x54204745, 0x52000000, 0x4C495354, 0x5F4E4F5F, 0x45584953, 0x54204652, 0x41000000, 0x4C495354, 0x5F4E4F5F, 0x45584953, 0x54205350, 0x41000000, 0x4C495354, 0x5F4E4F5F, 0x45584953, 0x54204954, 0x41000000, 0x534C4F54, 0x82CC8381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82C982CD, 0x0A836681, 0x5B835E82, 0xAA3182C2, 0x82E082A0, 0x82E882DC, 0x82B982F1, 0x82C582B5, 0x82BD8142, 0x0A2882B1, 0x82ED82EA, 0x82BD8366, 0x815B835E, 0x82AA91B6, 0x5B82BB82, 0xF15D8DDD, 0x5B82B482, 0xA25D82B5, 0x82C482A2, 0x82DC82B7, 0x81420A83, 0x81838283, 0x8A815B83, 0x4A815B83, 0x6882CC93, 0xE05B82C8, 0x82A25D97, 0x655B82E6, 0x82A45D82, 0xF090AE5B, 0x82B982A2, 0x5D979D5B, 0x82E85D82, 0xB782E982, 0xC982CD81, 0x410A967B, 0x5B82D982, 0xF15D91CC, 0x5B82BD82, 0xA25D82CC, 0x83818382, 0x838A815B, 0x834A815B, 0x836889E6, 0x96CA82C5, 0x82A882B1, 0x82C882C1, 0x82C482AD, 0x82BE82B3, 0x82A22900, 0x54686520, 0x64617461, 0x206C6973, 0x74206F6E, 0x20746865, 0x204D656D, 0x6F727920, 0x43617264, 0x20696E20, 0x534C4F54, 0x0A686173, 0x20626565, 0x6E207265, 0x61642E20, 0x28536F6D, 0x6520462D, 0x5A45524F, 0x20475820, 0x66696C65, 0x73206F6E, 0x0A746865, 0x204D656D, 0x6F727920, 0x43617264, 0x20696E20, 0x534C4F54, 0x20617265, 0x20636F72, 0x72757074, 0x65642E29, 0x00000000, 0x4C495354, 0x5F454E44, 0x20474552, 0x00000000, 0x4C495354, 0x5F454E44, 0x20465241, 0x00000000, 0x4C495354, 0x5F454E44, 0x20535041, 0x00000000, 0x4C495354, 0x5F454E44, 0x20495441, 0x00000000, 0x534C4F54, 0x82CC8381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82CC0A83, 0x66815B83, 0x5E838A83, 0x58836782, 0xF093C75B, 0x82E65D82, 0xDD82B182, 0xDD82DC82, 0xB582BD81, 0x420A2882, 0xB182ED82, 0xEA82BD83, 0x66815B83, 0x5E82AA91, 0xB65B82BB, 0x82F15D8D, 0xDD5B82B4, 0x82A25D82, 0xB582C482, 0xA282DC82, 0xB781420A, 0x83818382, 0x838A815B, 0x834A815B, 0x836882CC, 0x93E05B82, 0xC882A25D, 0x97655B82, 0xE682A45D, 0x82F090AE, 0x5B82B982, 0xA25D979D, 0x5B82E85D, 0x82B782E9, 0x82C982CD, 0x81410A96, 0x7B5B82D9, 0x82F15D91, 0xCC5B82BD, 0x82A25D82, 0xCC838183, 0x82838A81, 0x5B834A81, 0x5B836889, 0xE696CA82, 0xC582A882, 0xB182C882, 0xC182C482, 0xAD82BE82, 0xB382A229, 0x00000000, 0x536F6D65, 0x20462D5A, 0x45524F20, 0x47582066, 0x696C6573, 0x206F6E0A, 0x74686520, 0x4D656D6F, 0x72792043, 0x61726420, 0x696E2053, 0x4C4F5420, 0x61726520, 0x636F7272, 0x75707465, 0x642E0A50, 0x6C656173, 0x6520676F, 0x20746F20, 0x4F707469, 0x6F6E7320, 0x746F206D, 0x616E6167, 0x65207468, 0x65204D65, 0x6D6F7279, 0x20436172, 0x642E0000, 0x4C495354, 0x5F4E4F5F, 0x45584953, 0x54204745, 0x52000000, 0x4C495354, 0x5F4E4F5F, 0x45584953, 0x54204652, 0x41000000, 0x4C495354, 0x5F4E4F5F, 0x45584953, 0x54205350, 0x41000000, 0x4C495354, 0x5F4E4F5F, 0x45584953, 0x54204954, 0x41000000, 0x00000000, 0x54686520, 0x64617461, 0x206C6973, 0x74206F6E, 0x20746865, 0x204D656D, 0x6F727920, 0x43617264, 0x20696E20, 0x534C4F54, 0x0A686173, 0x20626565, 0x6E207265, 0x61642E20, 0x28536F6D, 0x6520462D, 0x5A45524F, 0x20475820, 0x66696C65, 0x73206F6E, 0x0A746865, 0x204D656D, 0x6F727920, 0x43617264, 0x20696E20, 0x534C4F54, 0x20617265, 0x20636F72, 0x72757074, 0x65642E0A, 0x506C6561, 0x73652067, 0x6F20746F, 0x204F7074, 0x696F6E73, 0x206D616E, 0x61676520, 0x74686520, 0x4D656D6F, 0x72792043, 0x6172642E, 0x29000000, 0x4C495354, 0x5F454E44, 0x20474552, 0x00000000, 0x4C495354, 0x5F454E44, 0x20465241, 0x00000000, 0x4C495354, 0x5F454E44, 0x20535041, 0x00000000, 0x4C495354, 0x5F454E44, 0x20495441, 0x00000000, 0x00000000, 0x4E6F204D, 0x656D6F72, 0x79204361, 0x72642066, 0x6F756E64, 0x20696E20, 0x536C6F74, 0x20412E20, 0x506C6561, 0x73652072, 0x652D696E, 0x73657274, 0x20746865, 0x0A6F7269, 0x67696E61, 0x6C204D65, 0x6D6F7279, 0x20436172, 0x64206672, 0x6F6D2077, 0x68696368, 0x20746865, 0x2047616D, 0x65206461, 0x74612077, 0x6173206C, 0x6F616465, 0x642E0A83, 0x9F204275, 0x74746F6E, 0x20816320, 0x52657472, 0x790A83A0, 0x20427574, 0x746F6E20, 0x81632043, 0x6F6E7469, 0x6E756520, 0x77697468, 0x6F757420, 0x73617669, 0x6E670000, 0x4C495354, 0x5F454E44, 0x20474552, 0x00000000, 0x4C495354, 0x5F454E44, 0x20465241, 0x00000000, 0x4C495354, 0x5F454E44, 0x20535041, 0x00000000, 0x4C495354, 0x5F454E44, 0x20495441, 0x00000000, 0x8358838D, 0x83628367, 0x826082CC, 0x83818382, 0x838A815B, 0x834A815B, 0x836882AA, 0x94B25B82, 0xCA5D82A9, 0x82EA82C4, 0x82A282DC, 0x82B78142, 0x0A835181, 0x5B838083, 0x66815B83, 0x5E82F083, 0x8D815B83, 0x6882B582, 0xBD838183, 0x82838A81, 0x5B834A81, 0x5B836882, 0xF00A8358, 0x838D8362, 0x83678260, 0x82C982B3, 0x82B582C4, 0x839F837B, 0x835E8393, 0x82F0899F, 0x5B82A85D, 0x82B582C4, 0x82AD82BE, 0x82B382A2, 0x81420A83, 0x4C838383, 0x93835A83, 0x8B82B782, 0xE982C982, 0xCD83A082, 0xF0899F5B, 0x82A85D82, 0xB582C482, 0xAD82BE82, 0xB382A281, 0x42000000, 0x41726520, 0x796F7520, 0x73757265, 0x20796F75, 0x0A77616E, 0x7420746F, 0x2064656C, 0x65746520, 0x74686973, 0x3F000000, 0x4C495354, 0x5F454E44, 0x20474552, 0x00000000, 0x4C495354, 0x5F454E44, 0x20465241, 0x00000000, 0x4C495354, 0x5F454E44, 0x20535041, 0x00000000, 0x4C495354, 0x5F454E44, 0x20495441, 0x00000000, 0x967B5B82, 0xD982F15D, 0x93965B82, 0xC682A45D, 0x82C98FC1, 0x5B82AF5D, 0x82B582C4, 0x82E00A82, 0xE682EB82, 0xB582A282, 0xC582B782, 0xA93F0000, 0x54686520, 0x64657669, 0x63652069, 0x6E20534C, 0x4F542069, 0x73206E6F, 0x74206120, 0x4D656D6F, 0x72792043, 0x6172642E, 0x0A506C65, 0x61736520, 0x696E7365, 0x72742061, 0x204D656D, 0x6F727920, 0x43617264, 0x2E000000, 0x4C495354, 0x5F454E44, 0x20474552, 0x00000000, 0x4C495354, 0x5F454E44, 0x20465241, 0x00000000, 0x4C495354, 0x5F454E44, 0x20535041, 0x00000000, 0x4C495354, 0x5F454E44, 0x20495441, 0x00000000, 0x83818382, 0x838A815B, 0x834A815B, 0x836888C8, 0x8A4F82CC, 0x82E082CC, 0x82AA8CA9, 0x5B82DD5D, 0x82C282A9, 0x82E882DC, 0x82B582BD, 0x81420A82, 0xB182CC82, 0xDC82DC82, 0xC582CD8D, 0xEC5B82B3, 0x82AC5D8B, 0xC65B82E5, 0x82A45D82, 0xAA95DB5B, 0x82D95D91, 0xB65B82BC, 0x82F15D82, 0xC582AB82, 0xDC82B982, 0xF1814200, 0x43726561, 0x74656420, 0x456D626C, 0x656D7320, 0x63616E6E, 0x6F742062, 0x650A7361, 0x76656420, 0x746F2074, 0x68697320, 0x4D656D6F, 0x72792043, 0x6172642E, 0x00000000, 0x4C495354, 0x5F454E44, 0x20474552, 0x00000000, 0x4C495354, 0x5F454E44, 0x20465241, 0x00000000, 0x4C495354, 0x5F454E44, 0x20535041, 0x00000000, 0x4C495354, 0x5F454E44, 0x20495441, 0x00000000, 0x82B182CC, 0x82DC82DC, 0x82C582CD, 0x83478393, 0x8375838C, 0x838082CC, 0x8DEC5B82, 0xB382AC5D, 0x8BC65B82, 0xE582A45D, 0x82AA95DB, 0x5B82D95D, 0x91B65B82, 0xBC82F15D, 0x82C582AB, 0x82DC82B9, 0x82F18142, 0x00000000, 0x54686520, 0x46494C45, 0x20446174, 0x61206578, 0x69737473, 0x20696E20, 0x534C4F54, 0x2E200A4F, 0x76657277, 0x72697465, 0x3F000000, 0x4F564552, 0x57524954, 0x455F5155, 0x45525920, 0x47455200, 0x4F564552, 0x57524954, 0x455F5155, 0x45525920, 0x46524100, 0x4F564552, 0x57524954, 0x455F5155, 0x45525920, 0x53504100, 0x4F564552, 0x57524954, 0x455F5155, 0x45525920, 0x49544100, 0x20202020, 0x8FE35B82, 0xA482ED5D, 0x8F915B82, 0xAA5D82AB, 0x82B582C4, 0x82E082E6, 0x82EB82B5, 0x82A282C5, 0x82B782A9, 0x81482020, 0x20200000, 0x43726561, 0x74652061, 0x204E6577, 0x2046696C, 0x65000000, 0x4E45575F, 0x43524541, 0x54452047, 0x45520000, 0x4E45575F, 0x43524541, 0x54452046, 0x52410000, 0x4E45575F, 0x43524541, 0x54452053, 0x50410000, 0x4E45575F, 0x43524541, 0x54452049, 0x54410000, 0x90568B4B, 0x8DEC90AC, 0x00000000, 0x43726561, 0x74652061, 0x206E6577, 0x2066696C, 0x652E0000, 0x4E45575F, 0x43524541, 0x54455F44, 0x4F204745, 0x52000000, 0x4E45575F, 0x43524541, 0x54455F44, 0x4F204652, 0x41000000, 0x4E45575F, 0x43524541, 0x54455F44, 0x4F205350, 0x41000000, 0x4E45575F, 0x43524541, 0x54455F44, 0x4F204954, 0x41000000, 0x90568B4B, 0x82C98374, 0x83408343, 0x838B82F0, 0x8DEC90AC, 0x82B582DC, 0x82B78142, 0x00000000, 0x43616E6E, 0x6F742063, 0x72656174, 0x65206120, 0x6E657720, 0x66696C65, 0x2E000000, 0x4E45575F, 0x43524541, 0x54455F44, 0x4F4E5420, 0x47455200, 0x4E45575F, 0x43524541, 0x54455F44, 0x4F4E5420, 0x46524100, 0x4E45575F, 0x43524541, 0x54455F44, 0x4F4E5420, 0x53504100, 0x4E45575F, 0x43524541, 0x54455F44, 0x4F4E5420, 0x49544100, 0x90568B4B, 0x82C98374, 0x83408343, 0x838B82F0, 0x8DEC90AC, 0x82C582AB, 0x82DC82B9, 0x82F18142, 0x00000000, 0x25642062, 0x6C6F636B, 0x28732920, 0x6F662073, 0x70616365, 0x20617661, 0x696C6162, 0x6C652E00, 0x46524545, 0x5F535041, 0x43452047, 0x45520000, 0x46524545, 0x5F535041, 0x43452046, 0x52410000, 0x46524545, 0x5F535041, 0x43452053, 0x50410000, 0x46524545, 0x5F535041, 0x43452049, 0x54410000, 0x8BF382AB, 0x976597CA, 0x20256483, 0x75838D83, 0x62834E00, 0x25642062, 0x6C6F636B, 0x28732920, 0x6E656564, 0x65642E20, 0x28256420, 0x66726565, 0x20626C6F, 0x636B2873, 0x29206176, 0x61696C61, 0x626C6529, 0x00000000, 0x46524545, 0x5F4E4545, 0x445F5350, 0x41434520, 0x47455200, 0x46524545, 0x5F4E4545, 0x445F5350, 0x41434520, 0x46524100, 0x46524545, 0x5F4E4545, 0x445F5350, 0x41434520, 0x53504100, 0x46524545, 0x5F4E4545, 0x445F5350, 0x41434520, 0x49544100, 0x25648375, 0x838D8362, 0x834E954B, 0x9776288B, 0xF382AB97, 0x6597CA20, 0x25648375, 0x838D8362, 0x834E2900, 0x436F7272, 0x75707420, 0x46696C65, 0x00000000, 0x42524F4B, 0x454E5F46, 0x494C4520, 0x47455200, 0x42524F4B, 0x454E5F46, 0x494C4520, 0x46524100, 0x42524F4B, 0x454E5F46, 0x494C4520, 0x53504100, 0x42524F4B, 0x454E5F46, 0x494C4520, 0x49544100, 0x89F382EA, 0x82BD8374, 0x83408343, 0x838B0000, 0x54686973, 0x2066696C, 0x65206973, 0x20636F72, 0x72757074, 0x65642061, 0x6E64206D, 0x75737420, 0x62652064, 0x656C6574, 0x65642E00, 0x42524F4B, 0x454E5F46, 0x494C455F, 0x44454C20, 0x47455200, 0x42524F4B, 0x454E5F46, 0x494C455F, 0x44454C20, 0x46524100, 0x42524F4B, 0x454E5F46, 0x494C455F, 0x44454C20, 0x53504100, 0x42524F4B, 0x454E5F46, 0x494C455F, 0x44454C20, 0x49544100, 0x82B182CC, 0x83748340, 0x8343838B, 0x82CD89F3, 0x82EA82C4, 0x82A282E9, 0x82CC82C5, 0x8FC182B7, 0x954B9776, 0x82AA82A0, 0x82E882DC, 0x82B78142, 0x00000000, (fn_8_2660_u32)lbl_8_data_778__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_7C8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_7D4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_7E0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_7EC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_7F8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_864__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_8A8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_8B8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_8C8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_8D8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_8E8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_948__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_9B8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_9C4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_9D0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_9DC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_9E8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_AD0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_B28__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_B34__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_B40__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_B4C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_B58__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_BC0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_BF4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_C0C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_C24__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_C3C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_C54__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_C7C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_CAC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_CC4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_CDC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_CF4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_D0C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_D34__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_D64__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_D7C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_D94__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_DAC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_DC4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_DF4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_E24__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_E40__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_E5C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_E78__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_E94__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_EBC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_EF0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_F0C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_F28__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_F44__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_F60__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_F8C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_FD0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_FF0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1010__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1030__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1050__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1094__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_10D8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_10F8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1118__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1138__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1158__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_119C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_11CC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_11EC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_120C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_122C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_124C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_127C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_12C0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_12E0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1300__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1320__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1340__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1384__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_13C8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_13E8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1408__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1428__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1448__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_148C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_14AC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_14BC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_14CC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_14DC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_14EC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1508__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_151C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_152C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_153C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_154C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_155C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_156C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_15A0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_15B8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_15D0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_15E8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1600__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1634__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1668__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1680__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1698__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_16B0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_16C8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_16FC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_171C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1734__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_174C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1764__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_177C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_17A0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_17D4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_17F0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_180C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1828__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1844__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1874__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_18AC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_18C8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_18E4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1900__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_191C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1954__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1994__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_19B4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_19D4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_19F4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1A14__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1A54__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1A90__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1AB0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1AD0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1AF0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1B10__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1B50__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1B8C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1BAC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1BCC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1BEC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1C0C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1C50__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1C90__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1CB0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1CD0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1CF0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1D10__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1D4C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1D8C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1DAC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1DCC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1DEC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1E0C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1E4C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1E78__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1E90__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1EA8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1EC0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1ED8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1F04__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1F60__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1F78__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1F90__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1FA8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_1FC0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_202C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_205C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_206C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_207C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_208C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_209C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_20D4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2128__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_213C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2150__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2164__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2178__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_21C0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2204__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2214__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2224__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2234__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2244__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2288__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_22C0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_22D4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_22E8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_22FC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2310__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2354__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_238C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_239C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_23AC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_23BC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_23CC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2410__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2470__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2480__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2490__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_24A0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_24B0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2508__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2544__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2554__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2564__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2574__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2584__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_25DC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_263C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2650__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2664__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2678__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_268C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_26F8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2720__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2734__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2748__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_275C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2770__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_27AC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_27B4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_27C0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_27CC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_27D8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_27E4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_27F0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_27F8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2804__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2810__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_281C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2828__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2834__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2838__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2840__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2848__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2850__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2858__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2860__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2864__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_286C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2874__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_287C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2884__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_288C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_28C8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_28DC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_28F0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2904__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2918__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2958__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2AE8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2AF4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2B00__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2B0C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2B18__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2D68__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2E4C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2E58__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2E64__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2E70__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2E7C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_2FD8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3168__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3178__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3188__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3198__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_31A8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_33F8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_34DC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_34F0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3504__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3518__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_352C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3688__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_36DC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_36F0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3704__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3718__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_372C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_378C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_37B4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_37CC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_37E4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_37FC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3814__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3850__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3884__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3894__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_38A4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_38B4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_38C4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3904__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_391C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3930__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3944__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3958__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_396C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3988__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3990__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_399C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_39A8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_39B4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_39C0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_39CC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3A04__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3A14__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3A24__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3A34__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3A44__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3A88__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3AB4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3AC4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3AD4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3AE4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3AF4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3B2C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3B6C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3B7C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3B8C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3B9C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3BAC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3BF0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3C48__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3C58__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3C68__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3C78__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3C88__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3CCC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3D14__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3D20__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3D2C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3D38__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3D44__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3D98__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3DCC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3DD8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3DE4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3DF0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3DFC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3E30__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3E68__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3E74__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3E80__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3E8C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3E98__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3ECC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3F00__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3F0C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3F18__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3F24__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3F30__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3F64__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3F9C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3FA8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3FB4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3FC0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_3FCC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4000__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_403C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_404C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_405C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_406C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_407C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_40A4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_40D4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_40E8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_40FC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4110__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4124__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4160__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_419C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_41AC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_41BC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_41CC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_41DC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4218__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4240__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4250__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4260__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4270__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4280__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_42C4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4304__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4314__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4324__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4334__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4344__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4384__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_43BC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_43CC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_43DC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_43EC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_43FC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4424__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4434__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4444__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4454__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4464__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4474__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4484__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4490__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_44A0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_44B0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_44C0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_44D0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_44DC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_44EC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_44FC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_450C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_451C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_452C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_453C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_454C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_455C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_456C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_457C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_458C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_459C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_45F0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_45FC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4608__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4614__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4620__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4688__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_46DC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_46E8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_46F4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4700__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_470C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4774__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_47A0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_47B0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_47C0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_47D0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_47E0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_480C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_483C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_484C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_485C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_486C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_487C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_48B0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4948__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4960__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4978__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4990__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_49A8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4A34__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4A78__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4A90__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4AA8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4AC0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4AD8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4B28__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4B9C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4BA0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4BA4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4BA8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4BAC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4C68__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4CE0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4CE4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4CE8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4CEC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4CF0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4D4C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4D54__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4D60__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4D6C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4D78__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4D84__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4D8C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4D94__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4DA0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4DAC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4DC4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4DCC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4DD4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4DE0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4DEC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4DF8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4E04__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4E10__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4E18__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4E24__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4E30__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4E3C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4E48__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4E54__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4E5C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4E68__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4E74__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4E80__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4E8C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4E98__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4EA0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4EAC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4EB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4EC4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4ED0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4EDC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4EE4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4EF0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4EFC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4F08__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4F14__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4F20__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4F28__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4F34__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4F40__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4F4C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4F58__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_4F60__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_50A4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_50A8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_50AC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_50B0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_50B4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5224__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5268__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_526C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5270__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5274__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5278__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_52BC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5300__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5304__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5308__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_530C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5310__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5358__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5390__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5394__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5398__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_539C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_53A0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_53F8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5400__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5404__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5408__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_540C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5410__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5418__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5420__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5424__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5428__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_542C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5430__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5438__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5440__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5444__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5448__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_544C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5450__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5458__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5460__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5464__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5468__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_546C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5470__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5478__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_54AC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_54B0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_54B4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_54B8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_54BC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5510__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5564__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5568__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_556C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5570__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5574__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_55C0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_55C8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_55CC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_55D0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_55D4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_55D8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_55E4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5624__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5638__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_564C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5660__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5674__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5750__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_57CC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_57DC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_57EC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_57FC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_580C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_58EC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_595C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5970__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5984__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5998__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_59AC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_59B0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5A58__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5A68__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5A78__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5A88__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5A98__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5A9C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5B44__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5B54__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5B64__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5B74__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5B84__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5C3C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5C64__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5C74__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5C84__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5C94__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5CA4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5CD4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5D1C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5D2C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5D3C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5D4C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5D5C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5DC4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5DFC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5E0C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5E1C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5E2C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5E3C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5E84__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5EB0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5EC4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5ED8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5EEC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5F00__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5F30__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5F44__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5F54__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5F64__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5F74__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5F84__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5F90__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5FA4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5FB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5FCC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5FE0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_5FF4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6014__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6030__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6044__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6058__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_606C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6080__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_60A4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_60C4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_60D4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_60E4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_60F4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6104__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6118__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_614C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6160__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6174__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6188__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_619C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_61C0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_61D0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_61E0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_61F0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6200__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6210__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6220__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_624C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6260__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6274__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6288__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_629C__fzgx_offset_0, 0x41204D65, 0x6D6F7279, 0x20436172, 0x64206973, 0x206E6F74, 0x20696E73, 0x65727465, 0x6420696E, 0x20536C6F, 0x7420412E, 0x0A506C65, 0x61736520, 0x70726F70, 0x65726C79, 0x20696E73, 0x65727420, 0x61204D65, 0x6D6F7279, 0x20436172, 0x642E0000, 0x00000000, 0x8358838D, 0x83628367, 0x4182C983, 0x81838283, 0x8A815B83, 0x4A815B83, 0x6882AA8C, 0xA95B82DD, 0x5D82C282, 0xA982E882, 0xDC82B982, 0xF181420A, 0x83818382, 0x838A815B, 0x834A815B, 0x836882CC, 0x90DA5B82, 0xB982C25D, 0x91B15B82, 0xBC82AD5D, 0x82F08A6D, 0x5B82A982, 0xAD5D9446, 0x5B82C982, 0xF15D82B5, 0x82C482AD, 0x82BE82B3, 0x82A28142, 0x00000000}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static union { fn_8_2660_u32 words[8]; void *view[8]; } fzgx_pool_native_lbl_8_data_0_unk_6E30 = {{(fn_8_2660_u32)lbl_8_data_6D68__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DBC__fzgx_offset_0, 0x54686572, 0x65206172}}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static fn_8_2660_u32 fzgx_pool_native_lbl_8_data_0_gap_6E50[29] = {0x65202564, 0x20626C6F, 0x636B7320, 0x6F662066, 0x72656520, 0x73706163, 0x650A6F6E, 0x20746865, 0x204D656D, 0x6F727920, 0x43617264, 0x20696E20, 0x536C6F74, 0x20412E00, 0x8358838D, 0x83628367, 0x4182CC83, 0x81838283, 0x8A815B83, 0x4A815B83, 0x6882CD0A, 0x25648375, 0x838D8362, 0x834E82CC, 0x8BF35B82, 0xA05D82AB, 0x82AA82A0, 0x82E882DC, 0x82B70000}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static union { fn_8_2660_u32 words[8]; void *view[8]; } fzgx_pool_native_lbl_8_data_0_unk_6EC4 = {{(fn_8_2660_u32)lbl_8_data_6E48__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6E88__fzgx_offset_0, 0x54686520, 0x67616D65}}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static fn_8_2660_u32 fzgx_pool_native_lbl_8_data_0_gap_6EE4[16] = {0x20636F75, 0x6C64206E, 0x6F742062, 0x65207361, 0x7665642E, 0x00000000, 0x8351815B, 0x83808366, 0x815B835E, 0x82CD835A, 0x815B8375, 0x82B382EA, 0x82DC82B9, 0x82F182C5, 0x82B582BD, 0x00000000}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static union { fn_8_2660_u32 words[8]; void *view[8]; } fzgx_pool_native_lbl_8_data_0_unk_6F24 = {{(fn_8_2660_u32)lbl_8_data_6EDC__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6EFC__fzgx_offset_0, 0x54686572, 0x65206973}}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static fn_8_2660_u32 fzgx_pool_native_lbl_8_data_0_gap_6F44[175] = {0x206E6F74, 0x20656E6F, 0x75676820, 0x66726565, 0x20737061, 0x6365206F, 0x6E207468, 0x65204D65, 0x6D6F7279, 0x20436172, 0x640A696E, 0x20536C6F, 0x74204120, 0x746F2073, 0x61766520, 0x616C6C20, 0x74797065, 0x73206F66, 0x206E6577, 0x2066696C, 0x6573202E, 0x0A457869, 0x7374696E, 0x6720462D, 0x5A45524F, 0x20475820, 0x66696C65, 0x73206D61, 0x79206265, 0x20657261, 0x73656420, 0x6F72206F, 0x76657277, 0x72697474, 0x656E2E0A, 0x28546F20, 0x6D616E61, 0x67652066, 0x696C6573, 0x206F6E20, 0x74686520, 0x4D656D6F, 0x72792043, 0x6172642C, 0x20706C65, 0x61736520, 0x676F2074, 0x6F207468, 0x650A4E69, 0x6E74656E, 0x646F2047, 0x616D6543, 0x75626520, 0x4D656D6F, 0x72792043, 0x61726420, 0x6D616E61, 0x67656D65, 0x6E742073, 0x63726565, 0x6E2E290A, 0x496E206F, 0x72646572, 0x20746F20, 0x73617665, 0x2061206E, 0x65772066, 0x696C652C, 0x20746865, 0x20666F6C, 0x6C6F7769, 0x6E67206E, 0x756D6265, 0x72206F66, 0x0A667265, 0x65206669, 0x6C657320, 0x616E6420, 0x626C6F63, 0x6B73206D, 0x75737420, 0x62652061, 0x7661696C, 0x61626C65, 0x3A0A4761, 0x6D652031, 0x2066696C, 0x6520616E, 0x64203420, 0x626C6F63, 0x6B730A47, 0x61726167, 0x65203120, 0x66696C65, 0x20616E64, 0x20313820, 0x626C6F63, 0x6B730A47, 0x686F7374, 0x20312066, 0x696C6520, 0x616E6420, 0x3320626C, 0x6F636B73, 0x0A456D62, 0x6C656D20, 0x31206669, 0x6C652061, 0x6E642033, 0x20626C6F, 0x636B730A, 0x5265706C, 0x61792031, 0x2066696C, 0x6520616E, 0x64203381, 0x60313320, 0x626C6F63, 0x6B730A00, 0x8358838D, 0x83628367, 0x4182CC83, 0x81838283, 0x8A815B83, 0x4A815B83, 0x6882C98B, 0xF382AB97, 0x6597CA82, 0xAA82C882, 0xA282A981, 0x41837483, 0x40834383, 0x8B909482, 0xCC90A78C, 0xC082F00A, 0x897A82A6, 0x82C482B5, 0x82DC82A2, 0x82DC82B7, 0x8142835A, 0x815B8375, 0x82B782E9, 0x82C982CD, 0x8FAD82C8, 0x82AD82C6, 0x82E08374, 0x83408343, 0x838B3182, 0xC282C60A, 0x34837583, 0x8D836283, 0x4E954B97, 0x7682C582, 0xB7814228, 0x83818382, 0x838A815B, 0x834A815B, 0x836882CC, 0x93E09765, 0x82F090AE, 0x979D82B7, 0x82E982C9, 0x82CD8141, 0x0A967B91, 0xCC82CC83, 0x81838283, 0x8A815B83, 0x4A815B83, 0x6889E696, 0xCA82C58D, 0x7382C882, 0xC182C482, 0xAD82BE82, 0xB382A229, 0x00000000}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static union { fn_8_2660_u32 words[8]; void *view[8]; } fzgx_pool_native_lbl_8_data_0_unk_7200 = {{(fn_8_2660_u32)lbl_8_data_6F3C__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_7120__fzgx_offset_0, 0x54686520, 0x4D656D6F}}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static fn_8_2660_u32 fzgx_pool_native_lbl_8_data_0_gap_7220[20] = {0x72792043, 0x61726420, 0x696E2053, 0x6C6F7420, 0x410A6973, 0x20636F72, 0x72757074, 0x65642061, 0x6E642063, 0x616E6E6F, 0x74206265, 0x20757365, 0x642E0000, 0x83478393, 0x8352815B, 0x836882AA, 0x82A882A9, 0x82B582A2, 0x82C582B7, 0x82E60000}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static union { fn_8_2660_u32 words[8]; void *view[8]; } fzgx_pool_native_lbl_8_data_0_unk_7270 = {{(fn_8_2660_u32)lbl_8_data_7218__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_7254__fzgx_offset_0, 0x54686520, 0x4D656D6F}}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static fn_8_2660_u32 fzgx_pool_native_lbl_8_data_0_gap_7290[34] = {0x72792043, 0x61726420, 0x696E2053, 0x6C6F7420, 0x41206973, 0x2064616D, 0x61676564, 0x0A616E64, 0x2063616E, 0x6E6F7420, 0x62652075, 0x7365642E, 0x20000000, 0x8358838D, 0x83628367, 0x4182CC83, 0x81838283, 0x8A815B83, 0x4A815B83, 0x6882CD81, 0x41836681, 0x5B835E82, 0xAA0A82B1, 0x82ED82EA, 0x82C482A2, 0x82E982CC, 0x82C58E67, 0x5B82B55D, 0x97705B82, 0xE682A45D, 0x82C582AB, 0x82DC82B9, 0x82F18142, 0x00000000}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static union { fn_8_2660_u32 words[8]; void *view[8]; } fzgx_pool_native_lbl_8_data_0_unk_7318 = {{(fn_8_2660_u32)lbl_8_data_7288__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_72C4__fzgx_offset_0, 0x506C6561, 0x73652069}}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static fn_8_2660_u32 fzgx_pool_native_lbl_8_data_0_gap_7338[24] = {0x6E736572, 0x74206120, 0x4D656D6F, 0x72792043, 0x61726420, 0x696E746F, 0x20536C6F, 0x7420412E, 0x20000000, 0x8358838D, 0x83628367, 0x4182C98E, 0x675B82B5, 0x5D97705B, 0x82E682A4, 0x5D82B782, 0xE9838183, 0x82838A81, 0x5B834A81, 0x5B836882, 0xF082B382, 0xB582C482, 0xAD82BE82, 0xB382A200}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static union { fn_8_2660_u32 words[8]; void *view[8]; } fzgx_pool_native_lbl_8_data_0_unk_7398 = {{(fn_8_2660_u32)lbl_8_data_7330__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_735C__fzgx_offset_0, 0x54686520, 0x64657669}}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static fn_8_2660_u32 fzgx_pool_native_lbl_8_data_0_gap_73B8[32] = {0x63652069, 0x6E20536C, 0x6F742041, 0x20697320, 0x6E6F7420, 0x73757070, 0x6F727465, 0x642E0A50, 0x6C656173, 0x6520696E, 0x73657274, 0x2061204D, 0x656D6F72, 0x79204361, 0x72642E00, 0x8358838D, 0x83628367, 0x4182C982, 0xCD0A8381, 0x8382838A, 0x815B834A, 0x815B8368, 0x88C85B82, 0xA25D8A4F, 0x5B82AA82, 0xA25D82CC, 0x82E082CC, 0x82AA82B3, 0x82B382C1, 0x82C482A2, 0x82DC82B7, 0x81420000}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static union { fn_8_2660_u32 words[8]; void *view[8]; } fzgx_pool_native_lbl_8_data_0_unk_7438 = {{(fn_8_2660_u32)lbl_8_data_73B0__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_73F4__fzgx_offset_0, 0x839F8163, 0x436F6E74}}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static fn_8_2660_u32 fzgx_pool_native_lbl_8_data_0_gap_7458[9] = {0x696E7565, 0x20776974, 0x686F7574, 0x20736176, 0x696E670A, 0x83B28163, 0x54727920, 0x61676169, 0x6E000000}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static union { fn_8_2660_u32 words[8]; void *view[8]; } fzgx_pool_native_lbl_8_data_0_unk_747C = {{(fn_8_2660_u32)lbl_8_data_7450__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, 0x47616D65, 0x20446174}}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static fn_8_2660_u32 fzgx_pool_native_lbl_8_data_0_gap_749C[28] = {0x61206361, 0x6E6E6F74, 0x20626520, 0x6C6F6164, 0x65642E0A, 0x436F6E74, 0x696E7565, 0x20776974, 0x686F7574, 0x20736176, 0x696E673F, 0x20000000, 0x82B182CC, 0x82DC82DC, 0x82C582CD, 0x81418351, 0x815B8380, 0x8366815B, 0x835E82F0, 0x0A838D81, 0x5B836882, 0xC582AB82, 0xDC82B982, 0xF182AA82, 0xE682EB82, 0xB582A282, 0xC582B782, 0xA93F0000}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static union { fn_8_2660_u32 words[8]; void *view[8]; } fzgx_pool_native_lbl_8_data_0_unk_750C = {{(fn_8_2660_u32)lbl_8_data_7494__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_74CC__fzgx_offset_0, 0x47616D65, 0x20446174}}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static fn_8_2660_u32 fzgx_pool_native_lbl_8_data_0_gap_752C[28] = {0x61206361, 0x6E6E6F74, 0x20626520, 0x73617665, 0x642E0A20, 0x436F6E74, 0x696E7565, 0x20776974, 0x686F7574, 0x20736176, 0x696E673F, 0x20000000, 0x82B182CC, 0x82DC82DC, 0x82C582CD, 0x81418351, 0x815B8380, 0x8366815B, 0x835E82F0, 0x0A835A81, 0x5B837582, 0xC582AB82, 0xDC82B982, 0xF182AA82, 0xE682EB82, 0xB582A282, 0xC582B782, 0xA93F0000}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static union { fn_8_2660_u32 words[8]; void *view[8]; } fzgx_pool_native_lbl_8_data_0_unk_759C = {{(fn_8_2660_u32)lbl_8_data_7524__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_755C__fzgx_offset_0, 0x47616D65, 0x20446174}}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static fn_8_2660_u32 fzgx_pool_native_lbl_8_data_0_gap_75BC[57] = {0x6120636F, 0x756C6420, 0x6E6F7420, 0x62652073, 0x61766564, 0x2E0A2059, 0x6F752063, 0x616E2073, 0x61766520, 0x616E6420, 0x6C6F6164, 0x20646174, 0x61206672, 0x6F6D0A20, 0x74686520, 0x4D656D6F, 0x72792043, 0x61726420, 0x6D656E75, 0x20756E64, 0x6572204F, 0x7074696F, 0x6E732E20, 0x00000000, 0x8351815B, 0x83808366, 0x815B835E, 0x82CD838D, 0x815B8368, 0x82B382EA, 0x82DC82B9, 0x82F182C5, 0x82B582BD, 0x81420A83, 0x51815B83, 0x80836681, 0x5B835E82, 0xCC835A81, 0x5B837581, 0x41838D81, 0x5B836882, 0xCD81410A, 0x83498376, 0x83568387, 0x839382CC, 0x83818382, 0x838A815B, 0x834A815B, 0x83688381, 0x836A8385, 0x815B82A9, 0x82E789C2, 0x5B82A95D, 0x945C5B82, 0xCC82A45D, 0x82C582B7, 0x81420000}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static union { fn_8_2660_u32 words[8]; void *view[8]; } fzgx_pool_native_lbl_8_data_0_unk_76A0 = {{(fn_8_2660_u32)lbl_8_data_75B4__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_761C__fzgx_offset_0, 0x47616D65, 0x20446174}}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static fn_8_2660_u32 fzgx_pool_native_lbl_8_data_0_gap_76C0[56] = {0x6120636F, 0x756C6420, 0x6E6F7420, 0x62652073, 0x61766564, 0x2E0A596F, 0x75206361, 0x6E207361, 0x76652061, 0x6E64206C, 0x6F616420, 0x64617461, 0x2066726F, 0x6D0A7468, 0x65204D65, 0x6D6F7279, 0x20436172, 0x64206D65, 0x6E752075, 0x6E646572, 0x204F7074, 0x696F6E73, 0x2E000000, 0x8351815B, 0x83808366, 0x815B835E, 0x82CD835A, 0x815B8375, 0x82B382EA, 0x82DC82B9, 0x82F182C5, 0x82B582BD, 0x81420A83, 0x51815B83, 0x80836681, 0x5B835E82, 0xCC835A81, 0x5B837581, 0x41838D81, 0x5B836882, 0xCD81410A, 0x83498376, 0x83568387, 0x839382CC, 0x83818382, 0x838A815B, 0x834A815B, 0x83688381, 0x836A8385, 0x815B82A9, 0x82E789C2, 0x5B82A95D, 0x945C5B82, 0xCC82A45D, 0x82C582B7, 0x81420000}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static union { fn_8_2660_u32 words[8]; void *view[8]; } fzgx_pool_native_lbl_8_data_0_unk_77A0 = {{(fn_8_2660_u32)lbl_8_data_76B8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_771C__fzgx_offset_0, 0x54686572, 0x65206973}}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static fn_8_2660_u32 fzgx_pool_native_lbl_8_data_0_gap_77C0[80] = {0x206E6F20, 0x462D5A45, 0x524F2047, 0x58207361, 0x76652066, 0x696C650A, 0x6F6E2074, 0x6865204D, 0x656D6F72, 0x79204361, 0x72642069, 0x6E20536C, 0x6F742041, 0x2E0A576F, 0x756C6420, 0x796F7520, 0x6C696B65, 0x20746F20, 0x63726561, 0x74652061, 0x20736176, 0x65206669, 0x6C65206E, 0x6F773F20, 0x0A283120, 0x73617665, 0x2066696C, 0x65207573, 0x65732034, 0x20626C6F, 0x636B7320, 0x6F66206D, 0x656D6F72, 0x792E290A, 0x00000000, 0x8358838D, 0x83628367, 0x4182CC83, 0x81838283, 0x8A815B83, 0x4A815B83, 0x6882C982, 0xCD462D5A, 0x45524F20, 0x475882CC, 0x0A835181, 0x5B838083, 0x66815B83, 0x5E82AA82, 0xA082E882, 0xDC82B982, 0xF1814283, 0x58838D83, 0x62836741, 0x82CC0A83, 0x81838283, 0x8A815B83, 0x4A815B83, 0x6882C983, 0x51815B83, 0x80836681, 0x5B835E82, 0xF08DEC5B, 0x82B382AD, 0x5D90AC5B, 0x82B982A2, 0x5D82B582, 0xC482E00A, 0x82E682EB, 0x82B582A2, 0x82C582B7, 0x82A93F28, 0x34837583, 0x8D836283, 0x4E8E675B, 0x82B55D97, 0x705B82E6, 0x82A45D82, 0xB582DC82, 0xB7290000}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static union { fn_8_2660_u32 words[8]; void *view[8]; } fzgx_pool_native_lbl_8_data_0_unk_7900 = {{(fn_8_2660_u32)lbl_8_data_77B8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_784C__fzgx_offset_0, 0x41647661, 0x6E63696E}}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static fn_8_2660_u32 fzgx_pool_native_lbl_8_data_0_gap_7920[24] = {0x6720746F, 0x20757365, 0x72206E61, 0x6D650A72, 0x65676973, 0x74726174, 0x696F6E20, 0x73637265, 0x656E2E00, 0x83818382, 0x838A815B, 0x834A815B, 0x836882C9, 0x8386815B, 0x8355815B, 0x96BC5B82, 0xDF82A25D, 0x82F0936F, 0x5B82C682, 0xA45D985E, 0x5B82EB82, 0xAD5D82B5, 0x82DC82B7, 0x81420000}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static union { fn_8_2660_u32 words[8]; void *view[8]; } fzgx_pool_native_lbl_8_data_0_unk_7980 = {{(fn_8_2660_u32)lbl_8_data_7918__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_7944__fzgx_offset_0, 0x54686520, 0x4D656D6F}}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static fn_8_2660_u32 fzgx_pool_native_lbl_8_data_0_gap_79A0[30] = {0x72792043, 0x61726420, 0x696E2053, 0x6C6F7420, 0x41207761, 0x73207265, 0x6D6F7665, 0x642E0A20, 0x54686520, 0x70726F63, 0x65737320, 0x68617320, 0x6265656E, 0x2063616E, 0x63656C6C, 0x65642E00, 0x83818382, 0x838A815B, 0x834A815B, 0x836882AA, 0x94B282A9, 0x82EA82DC, 0x82B582BD, 0x81420A8D, 0xEC8BC682, 0xF0834C83, 0x83839383, 0x5A838B82, 0xB582DC82, 0xB7814200}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static union { fn_8_2660_u32 words[8]; void *view[8]; } fzgx_pool_native_lbl_8_data_0_unk_7A18 = {{(fn_8_2660_u32)lbl_8_data_7998__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_79E0__fzgx_offset_0, 0x50726573, 0x73207468}}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static fn_8_2660_u32 fzgx_pool_native_lbl_8_data_0_gap_7A38[30] = {0x6520839F, 0x20427574, 0x746F6E20, 0x7768656E, 0x20726561, 0x64792E0A, 0x20507265, 0x73732074, 0x68652083, 0xA0204275, 0x74746F6E, 0x20746F20, 0x63616E63, 0x656C2E20, 0x00000000, 0x8F8094F5, 0x82AA82C5, 0x82AB82BD, 0x82E7839F, 0x82F0899F, 0x82B582C4, 0x82AD82BE, 0x82B382A2, 0x81420A83, 0xA082C583, 0x4C838383, 0x93835A83, 0x8B82B582, 0xDC82B781, 0x42000000}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static union { fn_8_2660_u32 words[8]; void *view[8]; } fzgx_pool_native_lbl_8_data_0_unk_7AB0 = {{(fn_8_2660_u32)lbl_8_data_7A30__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_7A74__fzgx_offset_0, 0x54686520, 0x4D656D6F}}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static fn_8_2660_u32 fzgx_pool_native_lbl_8_data_0_gap_7AD0[22] = {0x72792043, 0x61726420, 0x70726F63, 0x65737320, 0x77617320, 0x63616E63, 0x656C6C65, 0x642E2000, 0x83818382, 0x838A815B, 0x834A815B, 0x836882CC, 0x8DEC5B82, 0xB382AC5D, 0x8BC65B82, 0xE582A45D, 0x82F0834C, 0x83838393, 0x835A838B, 0x82B582DC, 0x82B582BD, 0x81420000}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static union { fn_8_2660_u32 words[8]; void *view[8]; } fzgx_pool_native_lbl_8_data_0_unk_7B28 = {{(fn_8_2660_u32)lbl_8_data_7AC8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_7AF0__fzgx_offset_0, 0x506C6561, 0x73652070}}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static fn_8_2660_u32 fzgx_pool_native_lbl_8_data_0_gap_7B48[12] = {0x72657373, 0x20746865, 0x20839F20, 0x42757474, 0x6F6E2E20, 0x00000000, 0x839F82F0, 0x899F82B5, 0x82C482AD, 0x82BE82B3, 0x82A28142, 0x00000000}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static union { fn_8_2660_u32 words[8]; void *view[8]; } fzgx_pool_native_lbl_8_data_0_unk_7B78 = {{(fn_8_2660_u32)lbl_8_data_7B40__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_7B60__fzgx_offset_0, 0x52656769, 0x73746572}}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static fn_8_2660_u32 fzgx_pool_native_lbl_8_data_0_gap_7B98[25] = {0x20746869, 0x73206E61, 0x6D65206F, 0x6E207468, 0x650A4D65, 0x6D6F7279, 0x20436172, 0x6420696E, 0x20536C6F, 0x7420413F, 0x20000000, 0x82B182CC, 0x96BC914F, 0x82C58381, 0x8382838A, 0x815B834A, 0x815B8368, 0x82C90A93, 0x6F985E82, 0xB582C482, 0xE082E682, 0xEB82B582, 0xA282C582, 0xB782A93F, 0x00000000}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static union { fn_8_2660_u32 words[7]; void *view[7]; } fzgx_pool_native_lbl_8_data_0_unk_7BFC = {{(fn_8_2660_u32)lbl_8_data_7B90__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_6DB8__fzgx_offset_0, (fn_8_2660_u32)lbl_8_data_7BC4__fzgx_offset_0, 0x25730000}}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static char fzgx_pool_native_lbl_8_data_0_str_7C18[0x10] = {0x40, 0x23, 0x24, 0x40, 0x23, 0x24, 0x40, 0x24, 0x20, 0x20, 0x25, 0x73, 0x0A, 0x00, 0x00, 0x00}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static char fzgx_pool_native_lbl_8_data_0_str_7C28[0xC] = {0x83, 0x47, 0x83, 0x74, 0x83, 0x5B, 0x83, 0x8D, 0x00, 0x00, 0x00, 0x00}; /* fzgx-allow: A1 measured pool bytes and bindings */
-
-/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
-fn_8_2660_u8 fzgx_obj_lbl_8_bss_0;
-fn_8_2660_u8 fzgx_pool_lbl_8_bss_0_gap_1;
-fn_8_2660_u8 fzgx_obj_lbl_8_bss_2;
-fn_8_2660_u8 fzgx_pool_lbl_8_bss_0_gap_3;
-fn_8_2660_u32 lbl_8_bss_4[2];
-fn_8_2660_u32 lbl_8_bss_C[5];
-fn_8_2660_u32 lbl_8_bss_20[129];
-fn_8_2660_s16 lbl_8_bss_224;
-fn_8_2660_u16 fzgx_pool_lbl_8_bss_0_gap_226;
-fn_8_2660_u32 lbl_8_bss_228;
-fn_8_2660_u32 lbl_8_bss_22C;
-fn_8_2660_u8 lbl_8_bss_230;
-fn_8_2660_u8 fzgx_pool_lbl_8_bss_0_gap_231;
-fn_8_2660_u16 fzgx_pool_lbl_8_bss_0_gap_231_fill_232;
-fn_8_2660_u32 fzgx_obj_lbl_8_bss_234;
-fn_8_2660_u32 fzgx_obj_lbl_8_bss_238;
-fn_8_2660_u8 lbl_8_bss_238__fzgx_offset_4;
-fn_8_2660_u8 fzgx_obj_lbl_8_bss_23D;
-fn_8_2660_u16 fzgx_pool_lbl_8_bss_0_gap_23E;
-fn_8_2660_u8 fzgx_pool_lbl_8_bss_0_gap_23E_fill_240;
-fn_8_2660_u8 lbl_8_bss_238__fzgx_offset_9;
-fn_8_2660_u16 lbl_8_bss_242__fzgx_offset_0;
-fn_8_2660_s32 lbl_8_bss_242__fzgx_offset_2;
-fn_8_2660_u8 lbl_8_bss_242__fzgx_offset_6;
-fn_8_2660_u8 lbl_8_bss_242__fzgx_offset_7;
-fn_8_2660_u16 lbl_8_bss_242__fzgx_offset_8;
-fn_8_2660_u32 lbl_8_bss_242__fzgx_offset_A;
-fn_8_2660_u8 lbl_8_bss_242__fzgx_offset_E;
-fn_8_2660_u8 lbl_8_bss_242__fzgx_offset_F;
-fn_8_2660_u8 lbl_8_bss_242__fzgx_offset_10;
-fn_8_2660_u8 lbl_8_bss_242__fzgx_offset_11;
-fn_8_2660_s32 lbl_8_bss_242__fzgx_offset_12;
-fn_8_2660_s32 lbl_8_bss_242__fzgx_offset_16;
-fn_8_2660_s32 lbl_8_bss_242__fzgx_offset_1A;
-fn_8_2660_u8 lbl_8_bss_242__fzgx_offset_1E;
-fn_8_2660_u8 lbl_8_bss_242__fzgx_offset_1F;
-fn_8_2660_u16 lbl_8_bss_242__fzgx_offset_20;
-fn_8_2660_s32 lbl_8_bss_242__fzgx_offset_22;
-fn_8_2660_u8 lbl_8_bss_242__fzgx_offset_26;
-fn_8_2660_u8 lbl_8_bss_242__fzgx_offset_27;
-fn_8_2660_u16 lbl_8_bss_242__fzgx_offset_28;
-fn_8_2660_u32 lbl_8_bss_242__fzgx_offset_2A[15];
-fn_8_2660_u16 fzgx_obj_lbl_8_bss_2A8;
-fn_8_2660_u16 fzgx_pool_lbl_8_bss_0_gap_2AA;
-fn_8_2660_u32 fzgx_obj_lbl_8_bss_2AC;
-fn_8_2660_u32 fzgx_obj_lbl_8_bss_2B0;
-fn_8_2660_u32 lbl_8_bss_2B4;
-fn_8_2660_u32 lbl_8_bss_2B8;
-fn_8_2660_u32 lbl_8_bss_2BC;
-fn_8_2660_u32 fzgx_obj_lbl_8_bss_2C0[67];
-
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_data_first_access(void) { void *volatile sink; /* fzgx-allow: S2 section-base primer sink */
-sink = (*((fzgx_pool_native_lbl_8_data_0_unk_6E30.view) + (0)));
-sink = (*((fzgx_pool_native_lbl_8_data_0_unk_6EC4.view) + (0)));
-sink = (*((fzgx_pool_native_lbl_8_data_0_unk_6F24.view) + (0)));
-} /* fzgx-allow: S2 section-base primer sink */
-static void fzgx_bss_layout(void) {
-    volatile fn_8_2660_u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
-    s = *(fn_8_2660_u8 *)&fzgx_obj_lbl_8_bss_0;
-    s = *(fn_8_2660_u8 *)&fzgx_pool_lbl_8_bss_0_gap_1;
-    s = *(fn_8_2660_u8 *)&fzgx_obj_lbl_8_bss_2;
-    s = *(fn_8_2660_u8 *)&fzgx_pool_lbl_8_bss_0_gap_3;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_4;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_C;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_20;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_224;
-    s = *(fn_8_2660_u8 *)&fzgx_pool_lbl_8_bss_0_gap_226;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_228;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_22C;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_230;
-    s = *(fn_8_2660_u8 *)&fzgx_pool_lbl_8_bss_0_gap_231;
-    s = *(fn_8_2660_u8 *)&fzgx_pool_lbl_8_bss_0_gap_231_fill_232;
-    s = *(fn_8_2660_u8 *)&fzgx_obj_lbl_8_bss_234;
-    s = *(fn_8_2660_u8 *)&fzgx_obj_lbl_8_bss_238;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_238__fzgx_offset_4;
-    s = *(fn_8_2660_u8 *)&fzgx_obj_lbl_8_bss_23D;
-    s = *(fn_8_2660_u8 *)&fzgx_pool_lbl_8_bss_0_gap_23E;
-    s = *(fn_8_2660_u8 *)&fzgx_pool_lbl_8_bss_0_gap_23E_fill_240;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_238__fzgx_offset_9;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_242__fzgx_offset_0;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_242__fzgx_offset_2;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_242__fzgx_offset_6;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_242__fzgx_offset_7;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_242__fzgx_offset_8;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_242__fzgx_offset_A;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_242__fzgx_offset_E;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_242__fzgx_offset_F;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_242__fzgx_offset_10;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_242__fzgx_offset_11;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_242__fzgx_offset_12;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_242__fzgx_offset_16;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_242__fzgx_offset_1A;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_242__fzgx_offset_1E;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_242__fzgx_offset_1F;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_242__fzgx_offset_20;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_242__fzgx_offset_22;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_242__fzgx_offset_26;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_242__fzgx_offset_27;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_242__fzgx_offset_28;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_242__fzgx_offset_2A;
-    s = *(fn_8_2660_u8 *)&fzgx_obj_lbl_8_bss_2A8;
-    s = *(fn_8_2660_u8 *)&fzgx_pool_lbl_8_bss_0_gap_2AA;
-    s = *(fn_8_2660_u8 *)&fzgx_obj_lbl_8_bss_2AC;
-    s = *(fn_8_2660_u8 *)&fzgx_obj_lbl_8_bss_2B0;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_2B4;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_2B8;
-    s = *(fn_8_2660_u8 *)&lbl_8_bss_2BC;
-    s = *(fn_8_2660_u8 *)&fzgx_obj_lbl_8_bss_2C0;
-}
-#pragma section code_type ".text"
-
 void fn_8_2660(fn_8_2660_f32 arg0, fn_8_2660_f32 arg1, fn_8_2660_f32 arg2) {
 
 struct TitleInput *p_lbl_1_bss_9F8;
@@ -3264,10 +9003,10 @@ lbl_8_bss_242__fzgx_offset_E = 35;
 lbl_8_bss_242__fzgx_offset_E = 33;
 }
 break;
-case 2:
+case 4:
 lbl_8_bss_242__fzgx_offset_E = 5;
 break;
-case 3:
+case 2:
 if (fn_1_B7C00() == 0) {
 args.unk0 = 0;
 args.unk4 = 0x104;
@@ -3276,7 +9015,7 @@ fn_1_AA6D8(2, 0, &args);
 lbl_8_bss_242__fzgx_offset_E = 3;
 }
 break;
-case 4:
+case 3:
 if (fn_1_B7C00() == 0) {
 ret = fn_1_B7C5C();
 lbl_8_bss_242__fzgx_offset_1A = ret;
@@ -3311,12 +9050,12 @@ lbl_8_bss_242__fzgx_offset_E = 21;
 }
 }
 break;
-case 6:
+case 33:
 lbl_8_bss_242__fzgx_offset_1E = 1;
 lbl_8_bss_242__fzgx_offset_A = 0;
 lbl_8_bss_242__fzgx_offset_E = 0x22;
 break;
-case 7:
+case 34:
 if (fn_1_B7C00() != 0) {
 break;
 }
@@ -3326,11 +9065,11 @@ break;
 }
 do { loc_5C = (*((fzgx_pool_table6) + (0))); fn_1_53BD8((void *)&loc_5C, (320.0f), (240.0f), (500.0f), (300.0f), (0.0799999982f)); if (lbl_8_bss_242__fzgx_offset_2 == 3) { fn_1_A2D84(0xA9010600); } } while (0) ;
 if (lbl_8_bss_242__fzgx_offset_1A == -13 || lbl_8_bss_242__fzgx_offset_1A == -6) {
-do { p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_7270.view; p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4); item = (*((p_data_tbl) + (*p_idx))); loc_58 = (*((fzgx_pool_table8) + (0))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_7200.view; p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4); if (item == (*((p_data_tbl) + (*p_idx)))) { fn_1_53C9C((void *)&loc_58, item, (320.0f), (190.0f), (0.0700000003f), (30.0f), (0.550000012f)); } else { fn_1_53C9C((void *)&loc_58, item, (320.0f), (150.0f), (0.0700000003f), (30.0f), (0.75f)); } do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
+do { p_data_tbl = (void **)lbl_8_data_7270; p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4); item = (*((p_data_tbl) + (*p_idx))); loc_58 = (*((fzgx_pool_table8) + (0))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); p_data_tbl = (void **)lbl_8_data_7200; p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4); if (item == (*((p_data_tbl) + (*p_idx)))) { fn_1_53C9C((void *)&loc_58, item, (320.0f), (190.0f), (0.0700000003f), (30.0f), (0.550000012f)); } else { fn_1_53C9C((void *)&loc_58, item, (320.0f), (150.0f), (0.0700000003f), (30.0f), (0.75f)); } do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
 } else {
-do { p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_7318.view; p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4); item = (*((p_data_tbl) + (*p_idx))); loc_54 = (*((fzgx_pool_table8) + (0))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_7200.view; p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4); if (item == (*((p_data_tbl) + (*p_idx)))) { fn_1_53C9C((void *)&loc_54, item, (320.0f), (190.0f), (0.0700000003f), (30.0f), (0.550000012f)); } else { fn_1_53C9C((void *)&loc_54, item, (320.0f), (150.0f), (0.0700000003f), (30.0f), (0.75f)); } do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
+do { p_data_tbl = (void **)lbl_8_data_7318; p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4); item = (*((p_data_tbl) + (*p_idx))); loc_54 = (*((fzgx_pool_table8) + (0))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); p_data_tbl = (void **)lbl_8_data_7200; p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4); if (item == (*((p_data_tbl) + (*p_idx)))) { fn_1_53C9C((void *)&loc_54, item, (320.0f), (190.0f), (0.0700000003f), (30.0f), (0.550000012f)); } else { fn_1_53C9C((void *)&loc_54, item, (320.0f), (150.0f), (0.0700000003f), (30.0f), (0.75f)); } do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
 }
-do { p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_750C.view; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fn_1_496FC((320.0f), (240.0f)); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
+do { p_data_tbl = (void **)lbl_8_data_750C; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fn_1_496FC((320.0f), (240.0f)); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
 fn_8_23AC(&lbl_8_bss_242__fzgx_offset_1E, (0.0700000003f));
 do { p_lbl_1_bss_9F8 = (struct TitleInput *)&(*(struct TitleInput *)&lbl_1_bss_9F8); if ((p_lbl_1_bss_9F8->unk_10 & 1) != 0 || (p_lbl_1_bss_9F8->unk_12 & 1) != 0) { lbl_8_bss_242__fzgx_offset_1E = 0; fn_1_A2D84(0xA9011300); } if (((p_lbl_1_bss_9F8->unk_10 >> 1) & 1) != 0 || (((*(struct TitleInput *)&lbl_1_bss_9F8).unk_12 >> 1) & 1) != 0) { lbl_8_bss_242__fzgx_offset_1E = 1; fn_1_A2D84(0xA9011300); } } while (0) ;
 if (((*(struct TitleInput *)&lbl_1_bss_9F8).unk_8 >> 8) & 1) {
@@ -3345,17 +9084,17 @@ lbl_8_bss_242__fzgx_offset_E = 11;
 }
 }
 break;
-case 8:
+case 35:
 lbl_8_bss_242__fzgx_offset_1E = 1;
 lbl_8_bss_242__fzgx_offset_E = 0x24;
 break;
-case 9:
+case 36:
 if (fn_1_B7C00() != 0) {
 break;
 }
 do { loc_50 = (*((fzgx_pool_table6) + (0))); fn_1_53BD8((void *)&loc_50, (320.0f), (240.0f), (500.0f), (300.0f), (0.0799999982f)); if (lbl_8_bss_242__fzgx_offset_2 == 3) { fn_1_A2D84(0xA9010600); } } while (0) ;
-do { p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_7438.view; p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4); item = (*((p_data_tbl) + (*p_idx))); loc_4C = (*((fzgx_pool_table8) + (0))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_7200.view; p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4); if (item == (*((p_data_tbl) + (*p_idx)))) { fn_1_53C9C((void *)&loc_4C, item, (320.0f), (190.0f), (0.0700000003f), (30.0f), (0.550000012f)); } else { fn_1_53C9C((void *)&loc_4C, item, (320.0f), (150.0f), (0.0700000003f), (30.0f), (0.75f)); } do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
-do { p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_747C.view; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fn_1_496FC((320.0f), (280.0f)); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
+do { p_data_tbl = (void **)lbl_8_data_7438; p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4); item = (*((p_data_tbl) + (*p_idx))); loc_4C = (*((fzgx_pool_table8) + (0))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); p_data_tbl = (void **)lbl_8_data_7200; p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4); if (item == (*((p_data_tbl) + (*p_idx)))) { fn_1_53C9C((void *)&loc_4C, item, (320.0f), (190.0f), (0.0700000003f), (30.0f), (0.550000012f)); } else { fn_1_53C9C((void *)&loc_4C, item, (320.0f), (150.0f), (0.0700000003f), (30.0f), (0.75f)); } do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
+do { p_data_tbl = (void **)lbl_8_data_747C; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fn_1_496FC((320.0f), (280.0f)); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
 vHalf = (*(struct TitleInput *)&lbl_1_bss_9F8).unk_8;
 if ((vHalf >> 8) & 1) {
 fn_1_A2D84(0xA9011100);
@@ -3367,20 +9106,20 @@ fn_1_A2D84(0xA9011000);
 lbl_8_bss_242__fzgx_offset_E = 11;
 }
 break;
-case 10:
+case 8:
 if (fn_1_B7C00() != 0) {
 break;
 }
 lbl_8_bss_242__fzgx_offset_1E = 1;
 lbl_8_bss_242__fzgx_offset_E = 9;
 break;
-case 11:
+case 9:
 if (fn_1_B7C00() != 0) {
 break;
 }
 do { loc_48 = (*((fzgx_pool_table6) + (0))); fn_1_53BD8((void *)&loc_48, (320.0f), (240.0f), (500.0f), (300.0f), (0.0799999982f)); if (lbl_8_bss_242__fzgx_offset_2 == 3) { fn_1_A2D84(0xA9010600); } } while (0) ;
-do { p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_6E30.view; p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4); item = (*((p_data_tbl) + (*p_idx))); loc_44 = (*((fzgx_pool_table8) + (0))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_7200.view; p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4); if (item == (*((p_data_tbl) + (*p_idx)))) { fn_1_53C9C((void *)&loc_44, item, (320.0f), (190.0f), (0.0700000003f), (30.0f), (0.550000012f)); } else { fn_1_53C9C((void *)&loc_44, item, (320.0f), (150.0f), (0.0700000003f), (30.0f), (0.75f)); } do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
-do { p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_750C.view; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fn_1_496FC((320.0f), (240.0f)); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
+do { p_data_tbl = (void **)lbl_8_data_6E30; p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4); item = (*((p_data_tbl) + (*p_idx))); loc_44 = (*((fzgx_pool_table8) + (0))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); p_data_tbl = (void **)lbl_8_data_7200; p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4); if (item == (*((p_data_tbl) + (*p_idx)))) { fn_1_53C9C((void *)&loc_44, item, (320.0f), (190.0f), (0.0700000003f), (30.0f), (0.550000012f)); } else { fn_1_53C9C((void *)&loc_44, item, (320.0f), (150.0f), (0.0700000003f), (30.0f), (0.75f)); } do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
+do { p_data_tbl = (void **)lbl_8_data_750C; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fn_1_496FC((320.0f), (240.0f)); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
 fn_8_23AC(&lbl_8_bss_242__fzgx_offset_1E, (0.0700000003f));
 do { p_lbl_1_bss_9F8 = (struct TitleInput *)&(*(struct TitleInput *)&lbl_1_bss_9F8); if ((p_lbl_1_bss_9F8->unk_10 & 1) != 0 || (p_lbl_1_bss_9F8->unk_12 & 1) != 0) { lbl_8_bss_242__fzgx_offset_1E = 0; fn_1_A2D84(0xA9011300); } if (((p_lbl_1_bss_9F8->unk_10 >> 1) & 1) != 0 || (((*(struct TitleInput *)&lbl_1_bss_9F8).unk_12 >> 1) & 1) != 0) { lbl_8_bss_242__fzgx_offset_1E = 1; fn_1_A2D84(0xA9011300); } } while (0) ;
 if (((*(struct TitleInput *)&lbl_1_bss_9F8).unk_8 >> 8) & 1) {
@@ -3395,22 +9134,22 @@ lbl_8_bss_242__fzgx_offset_E = 11;
 }
 }
 break;
-case 12:
+case 10:
 do { loc_40 = (*((fzgx_pool_table6) + (0))); fn_1_53BD8((void *)&loc_40, (320.0f), (240.0f), (500.0f), (300.0f), (0.0799999982f)); if (lbl_8_bss_242__fzgx_offset_2 == 3) { fn_1_A2D84(0xA9010600); } } while (0) ;
-do { p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_76A0.view; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fn_1_496FC((320.0f), (210.0f)); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
-do { p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_7B78.view; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fTmp = (320.0f); fn_1_496FC(fTmp, fTmp); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
+do { p_data_tbl = (void **)lbl_8_data_76A0; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fn_1_496FC((320.0f), (210.0f)); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
+do { p_data_tbl = (void **)lbl_8_data_7B78; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fTmp = (320.0f); fn_1_496FC(fTmp, fTmp); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
 if (((*(struct TitleInput *)&lbl_1_bss_9F8).unk_8 >> 8) & 1) {
 fn_1_A2D84(0xA9011100);
 lbl_8_bss_242__fzgx_offset_E = 0x25;
 }
 break;
-case 13:
+case 6:
 if (fn_1_B7C00() != 0) {
 break;
 }
 lbl_8_bss_242__fzgx_offset_E = 7;
 break;
-case 14:
+case 7:
 if (fn_1_B7C00() != 0) {
 break;
 }
@@ -3477,19 +9216,19 @@ lbl_8_bss_242__fzgx_offset_E = 11;
 break;
 }
 do { loc_3C = (*((fzgx_pool_table6) + (0))); fn_1_53BD8((void *)&loc_3C, (320.0f), (240.0f), (500.0f), (300.0f), (0.0799999982f)); if (lbl_8_bss_242__fzgx_offset_2 == 3) { fn_1_A2D84(0xA9010600); } } while (0) ;
-title_formats = fzgx_pool_native_lbl_8_data_0_unk_6EC4.view;
+title_formats = (void **)lbl_8_data_6EC4;
 sprintf((char *)bufC8, (const char *)(*((title_formats) + ((*(fn_8_2660_s32 *)&lbl_801A66B4) ))), lbl_8_bss_242__fzgx_offset_12);
 loc_38 = (*((fzgx_pool_table8) + (0)));
 fn_1_49410();
 do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0) ;
-title_names = fzgx_pool_native_lbl_8_data_0_unk_7200.view;
+title_names = (void **)lbl_8_data_7200;
 if ((void *)bufC8 == (*((title_names) + ((*(fn_8_2660_s32 *)&lbl_801A66B4) )))) {
 fn_1_53C9C((void *)&loc_38, (void *)bufC8, (320.0f), (190.0f), (0.0700000003f), (30.0f), (0.550000012f));
 } else {
 fn_1_53C9C((void *)&loc_38, (void *)bufC8, (320.0f), (150.0f), (0.0700000003f), (30.0f), (0.75f));
 }
 do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0) ;
-do { p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_7900.view; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fn_1_496FC((320.0f), (240.0f)); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
+do { p_data_tbl = (void **)lbl_8_data_7900; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fn_1_496FC((320.0f), (240.0f)); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
 fn_8_23AC(&lbl_8_bss_242__fzgx_offset_1E, (0.0700000003f));
 do { p_lbl_1_bss_9F8 = (struct TitleInput *)&(*(struct TitleInput *)&lbl_1_bss_9F8); if ((p_lbl_1_bss_9F8->unk_10 & 1) != 0 || (p_lbl_1_bss_9F8->unk_12 & 1) != 0) { lbl_8_bss_242__fzgx_offset_1E = 0; fn_1_A2D84(0xA9011300); } if (((p_lbl_1_bss_9F8->unk_10 >> 1) & 1) != 0 || (((*(struct TitleInput *)&lbl_1_bss_9F8).unk_12 >> 1) & 1) != 0) { lbl_8_bss_242__fzgx_offset_1E = 1; fn_1_A2D84(0xA9011300); } } while (0) ;
 if (((*(struct TitleInput *)&lbl_1_bss_9F8).unk_8 >> 8) & 1) {
@@ -3503,36 +9242,36 @@ fn_1_A2D84(0xA9011000);
 }
 }
 break;
-case 21:
+case 25:
 if (fn_1_B7C00() != 0) {
 break;
 }
 do { loc_34 = (*((fzgx_pool_table6) + (0))); fn_1_53BD8((void *)&loc_34, (320.0f), (240.0f), (500.0f), (300.0f), (0.0799999982f)); if (lbl_8_bss_242__fzgx_offset_2 == 3) { fn_1_A2D84(0xA9010600); } } while (0) ;
-do { p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_7980.view; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fn_1_496FC((320.0f), (240.0f)); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
+do { p_data_tbl = (void **)lbl_8_data_7980; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fn_1_496FC((320.0f), (240.0f)); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
 cnt = lbl_8_bss_242__fzgx_offset_22;
 lbl_8_bss_242__fzgx_offset_22 = cnt - 1;
 if ((fn_8_2660_s32)cnt < 0) {
 lbl_8_bss_242__fzgx_offset_E = 0x1a;
 }
 break;
-case 22:
+case 28:
 if (fn_1_B7C00() != 0) {
 break;
 }
 do { loc_30 = (*((fzgx_pool_table6) + (0))); fn_1_53BD8((void *)&loc_30, (320.0f), (240.0f), (500.0f), (300.0f), (0.0799999982f)); if (lbl_8_bss_242__fzgx_offset_2 == 3) { fn_1_A2D84(0xA9010600); } } while (0) ;
-do { p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_7A18.view; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fn_1_496FC((320.0f), (240.0f)); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
+do { p_data_tbl = (void **)lbl_8_data_7A18; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fn_1_496FC((320.0f), (240.0f)); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
 cnt = lbl_8_bss_242__fzgx_offset_22;
 lbl_8_bss_242__fzgx_offset_22 = cnt - 1;
 if ((fn_8_2660_s32)cnt < 0) {
 lbl_8_bss_242__fzgx_offset_E = 0;
 }
 break;
-case 23:
+case 26:
 fn_8_F9E4((void *)fzgx_obj_lbl_8_bss_234, (void *)fzgx_obj_lbl_8_bss_238, (*(struct Title8B3A0 *)&lbl_1_bss_8B3A0).unk_9E);
 lbl_8_bss_242__fzgx_offset_1E = 1;
 lbl_8_bss_242__fzgx_offset_E = 0x1b;
 break;
-case 24:
+case 27:
 if (fn_1_B7C00() != 0) {
 break;
 }
@@ -3573,7 +9312,7 @@ fn_1_495B0(0x80000000);
 fn_1_49590((0.5f));
 fn_1_4966C((-1.0f), (4.0f));
 }
-p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_7BFC.view;
+p_data_tbl = (void **)lbl_8_data_7BFC;
 p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4) ;
 fn_1_4A0D8((const char *)(*((p_data_tbl) + (*p_idx))));
 fn_1_4AEC0(0);
@@ -3583,11 +9322,11 @@ loc_60 = (*((fzgx_pool_tail13C) + (0)));
 fn_1_4D2AC((void *)&loc_60, (0.0300000012f), (40.0f));
 }
 break;
-case 25:
+case 24:
 if (fn_1_B7C00() != 0) {
 break;
 }
-OSReport((const char *)fzgx_pool_native_lbl_8_data_0_str_7C18, (const char *)(*(fn_8_2660_u8 (*)[0x100])&lbl_8_bss_242__fzgx_offset_26));
+OSReport("@#$@#$@$  %s\n", (const char *)(*(fn_8_2660_u8 (*)[0x100])&lbl_8_bss_242__fzgx_offset_26));
 if ((*(fn_8_2660_s32 *)&lbl_801A66B4) != 5) {
 fn_80083DB0((fn_8_2660_u32)buf64, (fn_8_2660_u32)(*(fn_8_2660_u8 (*)[0x100])&lbl_8_bss_242__fzgx_offset_26));
 src = (fn_8_2660_u8 *)buf64;
@@ -3608,9 +9347,9 @@ src += 2;
 }
 *dst = 0;
 }
-OSReport((const char *)fzgx_pool_native_lbl_8_data_0_str_7C18, (const char *)(*(fn_8_2660_u8 (*)[0x100])&lbl_8_bss_242__fzgx_offset_26));
+OSReport("@#$@#$@$  %s\n", (const char *)(*(fn_8_2660_u8 (*)[0x100])&lbl_8_bss_242__fzgx_offset_26));
 if ((*(fn_8_2660_u8 (*)[0x100])&lbl_8_bss_242__fzgx_offset_26)[0] == 0) {
-sprintf((char *)(*(fn_8_2660_u8 (*)[0x100])&lbl_8_bss_242__fzgx_offset_26), (const char *)fzgx_pool_native_lbl_8_data_0_str_7C28);
+sprintf((char *)(*(fn_8_2660_u8 (*)[0x100])&lbl_8_bss_242__fzgx_offset_26), "\x83G\x83t\x83[\x83\x8D");
 }
 fn_80083DB0((fn_8_2660_u32)((fn_8_2660_u8 *)&lbl_1_bss_718E0 + 0x5522), (fn_8_2660_u32)(*(fn_8_2660_u8 (*)[0x100])&lbl_8_bss_242__fzgx_offset_26));
 fn_1_F7954();
@@ -3627,7 +9366,7 @@ args.unk4 = 0x14000;
 fn_1_AA6D8(0, 0, &args);
 lbl_8_bss_242__fzgx_offset_E = 0x1d;
 break;
-case 26:
+case 29:
 if (fn_1_B7C00() != 0) {
 break;
 }
@@ -3639,20 +9378,20 @@ lbl_8_bss_242__fzgx_offset_E = 0x25;
 lbl_8_bss_242__fzgx_offset_E = 0;
 }
 break;
-case 27:
+case 30:
 if (fn_1_B7C00() != 0) {
 break;
 }
 lbl_8_bss_242__fzgx_offset_1E = 1;
 lbl_8_bss_242__fzgx_offset_E = 0x1f;
 break;
-case 28:
+case 31:
 if (fn_1_B7C00() != 0) {
 break;
 }
 do { loc_2C = (*((fzgx_pool_table6) + (0))); fn_1_53BD8((void *)&loc_2C, (320.0f), (240.0f), (500.0f), (300.0f), (0.0799999982f)); if (lbl_8_bss_242__fzgx_offset_2 == 3) { fn_1_A2D84(0xA9010600); } } while (0) ;
-do { p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_6F24.view; p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4); item = (*((p_data_tbl) + (*p_idx))); loc_28 = (*((fzgx_pool_table8) + (0))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_7200.view; p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4); if (item == (*((p_data_tbl) + (*p_idx)))) { fn_1_53C9C((void *)&loc_28, item, (320.0f), (190.0f), (0.0700000003f), (30.0f), (0.550000012f)); } else { fn_1_53C9C((void *)&loc_28, item, (320.0f), (150.0f), (0.0700000003f), (30.0f), (0.75f)); } do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
-do { p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_759C.view; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fn_1_496FC((320.0f), (240.0f)); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
+do { p_data_tbl = (void **)lbl_8_data_6F24; p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4); item = (*((p_data_tbl) + (*p_idx))); loc_28 = (*((fzgx_pool_table8) + (0))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); p_data_tbl = (void **)lbl_8_data_7200; p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4); if (item == (*((p_data_tbl) + (*p_idx)))) { fn_1_53C9C((void *)&loc_28, item, (320.0f), (190.0f), (0.0700000003f), (30.0f), (0.550000012f)); } else { fn_1_53C9C((void *)&loc_28, item, (320.0f), (150.0f), (0.0700000003f), (30.0f), (0.75f)); } do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
+do { p_data_tbl = (void **)lbl_8_data_759C; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fn_1_496FC((320.0f), (240.0f)); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
 fn_8_23AC(&lbl_8_bss_242__fzgx_offset_1E, (0.0700000003f));
 do { p_lbl_1_bss_9F8 = (struct TitleInput *)&(*(struct TitleInput *)&lbl_1_bss_9F8); if ((p_lbl_1_bss_9F8->unk_10 & 1) != 0 || (p_lbl_1_bss_9F8->unk_12 & 1) != 0) { lbl_8_bss_242__fzgx_offset_1E = 0; fn_1_A2D84(0xA9011300); } if (((p_lbl_1_bss_9F8->unk_10 >> 1) & 1) != 0 || (((*(struct TitleInput *)&lbl_1_bss_9F8).unk_12 >> 1) & 1) != 0) { lbl_8_bss_242__fzgx_offset_1E = 1; fn_1_A2D84(0xA9011300); } } while (0) ;
 if (((*(struct TitleInput *)&lbl_1_bss_9F8).unk_8 >> 8) & 1) {
@@ -3667,33 +9406,33 @@ fn_1_A2D84(0xA9011000);
 }
 }
 break;
-case 29:
+case 32:
 if (fn_1_B7C00() != 0) {
 break;
 }
 do { loc_24 = (*((fzgx_pool_table6) + (0))); fn_1_53BD8((void *)&loc_24, (320.0f), (240.0f), (500.0f), (300.0f), (0.0799999982f)); if (lbl_8_bss_242__fzgx_offset_2 == 3) { fn_1_A2D84(0xA9010600); } } while (0) ;
-do { p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_76A0.view; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fn_1_496FC((320.0f), (210.0f)); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
-do { p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_7B78.view; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fTmp = (320.0f); fn_1_496FC(fTmp, fTmp); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
+do { p_data_tbl = (void **)lbl_8_data_76A0; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fn_1_496FC((320.0f), (210.0f)); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
+do { p_data_tbl = (void **)lbl_8_data_7B78; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fTmp = (320.0f); fn_1_496FC(fTmp, fTmp); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
 if (((*(struct TitleInput *)&lbl_1_bss_9F8).unk_8 >> 8) & 1) {
 lbl_8_bss_242__fzgx_offset_E = 0x25;
 fn_1_A2D84(0xA9011100);
 }
 break;
-case 30:
+case 21:
 if (fn_1_B7C00() != 0) {
 break;
 }
 lbl_8_bss_242__fzgx_offset_1E = 1;
 lbl_8_bss_242__fzgx_offset_E = 0x16;
 break;
-case 31:
+case 22:
 if (fn_1_B7C00() != 0) {
 break;
 }
 do { loc_20 = (*((fzgx_pool_table4) + (0))); fn_1_53BD8((void *)&loc_20, (320.0f), (240.0f), (500.0f), (400.0f), (0.0799999982f)); if (lbl_8_bss_242__fzgx_offset_2 == 3) { fn_1_A2D84(0xA9010600); } } while (0) ;
-do { p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_7200.view; p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4); item = (*((p_data_tbl) + (*p_idx))); loc_1C = (*((fzgx_pool_table8) + (0))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_7200.view; p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4); if (item == (*((p_data_tbl) + (*p_idx)))) { fn_1_53C9C((void *)&loc_1C, item, (320.0f), (190.0f), (0.0700000003f), (30.0f), (0.550000012f)); } else { fn_1_53C9C((void *)&loc_1C, item, (320.0f), (150.0f), (0.0700000003f), (30.0f), (0.75f)); } do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
-do { p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_759C.view; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fn_1_496FC((320.0f), (345.0f)); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
-fn_8_2124(400, &lbl_8_bss_242__fzgx_offset_1E, (0.0700000003f));
+do { p_data_tbl = (void **)lbl_8_data_7200; p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4); item = (*((p_data_tbl) + (*p_idx))); loc_1C = (*((fzgx_pool_table8) + (0))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); p_data_tbl = (void **)lbl_8_data_7200; p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4); if (item == (*((p_data_tbl) + (*p_idx)))) { fn_1_53C9C((void *)&loc_1C, item, (320.0f), (190.0f), (0.0700000003f), (30.0f), (0.550000012f)); } else { fn_1_53C9C((void *)&loc_1C, item, (320.0f), (150.0f), (0.0700000003f), (30.0f), (0.75f)); } do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
+do { p_data_tbl = (void **)lbl_8_data_759C; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fn_1_496FC((320.0f), (345.0f)); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
+fn_8_2124(400, (u8 *)&lbl_8_bss_242__fzgx_offset_1E, (0.0700000003f));
 do { p_lbl_1_bss_9F8 = (struct TitleInput *)&(*(struct TitleInput *)&lbl_1_bss_9F8); if ((p_lbl_1_bss_9F8->unk_10 & 1) != 0 || (p_lbl_1_bss_9F8->unk_12 & 1) != 0) { lbl_8_bss_242__fzgx_offset_1E = 0; fn_1_A2D84(0xA9011300); } if (((p_lbl_1_bss_9F8->unk_10 >> 1) & 1) != 0 || (((*(struct TitleInput *)&lbl_1_bss_9F8).unk_12 >> 1) & 1) != 0) { lbl_8_bss_242__fzgx_offset_1E = 1; fn_1_A2D84(0xA9011300); } } while (0) ;
 if (((*(struct TitleInput *)&lbl_1_bss_9F8).unk_8 >> 8) & 1) {
 if (lbl_8_bss_242__fzgx_offset_1E == 0) {
@@ -3707,31 +9446,31 @@ fn_1_A2D84(0xA9011000);
 }
 }
 break;
-case 32:
+case 23:
 if (fn_1_B7C00() != 0) {
 break;
 }
 do { loc_18 = (*((fzgx_pool_table6) + (0))); fn_1_53BD8((void *)&loc_18, (320.0f), (240.0f), (500.0f), (300.0f), (0.0799999982f)); if (lbl_8_bss_242__fzgx_offset_2 == 3) { fn_1_A2D84(0xA9010600); } } while (0) ;
-do { p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_77A0.view; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fn_1_496FC((320.0f), (210.0f)); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
-do { p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_7B78.view; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fTmp = (320.0f); fn_1_496FC(fTmp, fTmp); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
+do { p_data_tbl = (void **)lbl_8_data_77A0; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fn_1_496FC((320.0f), (210.0f)); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
+do { p_data_tbl = (void **)lbl_8_data_7B78; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fTmp = (320.0f); fn_1_496FC(fTmp, fTmp); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
 if (((*(struct TitleInput *)&lbl_1_bss_9F8).unk_8 >> 8) & 1) {
 lbl_8_bss_242__fzgx_offset_E = 0x25;
 fn_1_A2D84(0xA9011100);
 }
 break;
-case 33:
+case 11:
 if (fn_1_B7C00() != 0) {
 break;
 }
 lbl_8_bss_242__fzgx_offset_E = 0xc;
 break;
-case 34:
+case 12:
 if (fn_1_B7C00() != 0) {
 break;
 }
 do { loc_14 = (*((fzgx_pool_table6) + (0))); fn_1_53BD8((void *)&loc_14, (320.0f), (240.0f), (500.0f), (300.0f), (0.0799999982f)); if (lbl_8_bss_242__fzgx_offset_2 == 3) { fn_1_A2D84(0xA9010600); } } while (0) ;
-do { p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_7398.view; p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4); item = (*((p_data_tbl) + (*p_idx))); loc_10 = (*((fzgx_pool_table8) + (0))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_7200.view; p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4); if (item == (*((p_data_tbl) + (*p_idx)))) { fn_1_53C9C((void *)&loc_10, item, (320.0f), (190.0f), (0.0700000003f), (30.0f), (0.550000012f)); } else { fn_1_53C9C((void *)&loc_10, item, (320.0f), (150.0f), (0.0700000003f), (30.0f), (0.75f)); } do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
-do { p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_7AB0.view; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fn_1_496FC((320.0f), (260.0f)); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
+do { p_data_tbl = (void **)lbl_8_data_7398; p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4); item = (*((p_data_tbl) + (*p_idx))); loc_10 = (*((fzgx_pool_table8) + (0))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); p_data_tbl = (void **)lbl_8_data_7200; p_idx = &(*(fn_8_2660_s32 *)&lbl_801A66B4); if (item == (*((p_data_tbl) + (*p_idx)))) { fn_1_53C9C((void *)&loc_10, item, (320.0f), (190.0f), (0.0700000003f), (30.0f), (0.550000012f)); } else { fn_1_53C9C((void *)&loc_10, item, (320.0f), (150.0f), (0.0700000003f), (30.0f), (0.75f)); } do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
+do { p_data_tbl = (void **)lbl_8_data_7AB0; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fn_1_496FC((320.0f), (260.0f)); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
 vHalf = (*(struct TitleInput *)&lbl_1_bss_9F8).unk_8;
 if ((vHalf >> 8) & 1) {
 lbl_8_bss_242__fzgx_offset_E = 0;
@@ -3742,9 +9481,9 @@ lbl_8_bss_242__fzgx_offset_E = 0xd;
 fn_1_A2D84(0xA9011000);
 }
 break;
-case 35:
+case 13:
 do { loc_C = (*((fzgx_pool_table6) + (0))); fn_1_53BD8((void *)&loc_C, (320.0f), (240.0f), (500.0f), (300.0f), (0.0799999982f)); if (lbl_8_bss_242__fzgx_offset_2 == 3) { fn_1_A2D84(0xA9010600); } } while (0) ;
-do { p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_7B28.view; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fn_1_496FC((320.0f), (240.0f)); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
+do { p_data_tbl = (void **)lbl_8_data_7B28; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fn_1_496FC((320.0f), (240.0f)); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
 cnt = lbl_8_bss_242__fzgx_offset_22;
 lbl_8_bss_242__fzgx_offset_22 = cnt - 1;
 if ((fn_8_2660_s32)cnt < 0) {
@@ -3753,13 +9492,13 @@ fn_1_C3378();
 fn_1_F7A20();
 }
 break;
-case 36:
+case 14:
 if (fn_1_B7C00() != 0) {
 break;
 }
 do { loc_8 = (*((fzgx_pool_table6) + (0))); fn_1_53BD8((void *)&loc_8, (320.0f), (240.0f), (500.0f), (300.0f), (0.0799999982f)); if (lbl_8_bss_242__fzgx_offset_2 == 3) { fn_1_A2D84(0xA9010600); } } while (0) ;
-do { p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_76A0.view; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fn_1_496FC((320.0f), (210.0f)); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
-do { p_data_tbl = fzgx_pool_native_lbl_8_data_0_unk_7B78.view; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fTmp = (320.0f); fn_1_496FC(fTmp, fTmp); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
+do { p_data_tbl = (void **)lbl_8_data_76A0; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fn_1_496FC((320.0f), (210.0f)); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
+do { p_data_tbl = (void **)lbl_8_data_7B78; item = (*((p_data_tbl) + ((*(fn_8_2660_s32 *)&lbl_801A66B4)))); fn_1_49410(); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { do { fn_1_4AEC0(1); fn_1_4AEB4((1.5f)); fn_1_4966C((-1.0f), (8.0f)); } while (0); } else { do { fn_1_49590((0.5f)); fn_1_495B0(0x80000000); fn_1_4966C((-1.0f), (4.0f)); } while (0); } } while (0); fTmp = (0.75f); fn_1_4955C(fTmp, fTmp); fn_1_4954C((0.0700000003f)); fn_1_495C8(9); fTmp = (320.0f); fn_1_496FC(fTmp, fTmp); fn_1_4A0D8((const char *)item); do { if ((*(fn_8_2660_s32 *)&lbl_801A66B4) == 5) { fn_1_4AEC0(0); fn_1_4AEB4((0.0f)); } } while (0); } while (0) ;
 if (((*(struct TitleInput *)&lbl_1_bss_9F8).unk_8 >> 8) & 1) {
 lbl_8_bss_242__fzgx_offset_E = 0x25;
 fn_1_A2D84(0xA9011100);
@@ -3799,7 +9538,7 @@ break;
 (*(struct Title858 *)&lbl_1_bss_58).unk_15 = (vByte + 1) & 3;
 if ((*(fn_8_2660_s16 *)&lbl_1_bss_96A) == 0x9c) {
 fn_1_3EF8C(6);
-fn_1_3ED8C(0, 3, 1, lbl_8_bss_224 & 0xFF, 10, 30, 0);
+fn_1_3ED8C(0, 3, 1, fzgx_obj_lbl_8_bss_224 & 0xFF, 10, 30, 0);
 fn_1_3EB78(0, 0, 0, 0);
 fn_1_3EFF0((fn_8_2660_u32)fn_8_784, 1);
 fn_8006CE1C((1.0f));
@@ -3810,6 +9549,21 @@ break;
 fn_1_54278(0, 0);
 fn_1_5428C((1.0f));
 }
+
+/* the names and tables of fn_8_4E90, fn_8_5218, fn_8_5840 and fn_8_5B44 */
+char lbl_8_data_7CDC[] = "LightMain";
+char lbl_8_data_7CE8[] = "OperationCardDisp";
+char lbl_8_data_7CFC[] = "\x82`\x82" "a\x82" "b\x82" "c\x82" "d\x82" "e\x82" "f\x82g\x82h\x82i\x82j\x82k\x82l\x82m\x82n\x82o\x82p\x82q\x82r\x82s\x82t\x82u\x82v\x82w\x82x\x82y";
+char lbl_8_data_7D34[] = "\x82\x81\x82\x82\x82\x83\x82\x84\x82\x85\x82\x86\x82\x87\x82\x88\x82\x89\x82\x8A\x82\x8B\x82\x8C\x82\x8D\x82\x8E\x82\x8F\x82\x90\x82\x91\x82\x92\x82\x93\x82\x94\x82\x95\x82\x96\x82\x97\x82\x98\x82\x99\x82\x9A";
+char lbl_8_data_7D6C[] = "\x81" "C\x81" "D\x81H\x81I\x81{\x81|\x81^\x81_\x81\x81\x81\x83\x81\x84\x81" "F\x81G\x81L\x81M\x81O\x81Q\x81" "b\x81i\x81j\x81m\x81n\x81o\x81p\x81\x90\x81\x93\x81\x94\x81\x95\x81\x96\x81\x97\x81@";
+char lbl_8_data_7DAC[] = "\x82O\x82P\x82Q\x82R\x82S\x82T\x82U\x82V\x82W\x82X";
+char lbl_8_data_7DC4[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+char lbl_8_data_7DE0[] = "abcdefghijklmnopqrstuvwxyz";
+char lbl_8_data_7DFC[] = ",.?!+-/\\=<>:;'`^_|()[]{}$%#&*@  ";
+char lbl_8_data_7E20[] = "0123456789";
+char lbl_8_data_7E2C[] = "movie/story00";
+char lbl_8_data_7E3C[] = "movie/story01A";
+char lbl_8_data_7E4C[] = "end";
 /* fzgx:end fn_8_2660 */
 
 /* fzgx:begin fn_8_4E8C */
