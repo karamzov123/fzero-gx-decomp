@@ -49705,17 +49705,7 @@
     "module": "main_rel",
     "source": "rel/main_rel/alloc/fn_1_5370.c",
     "symbols": [
-      "fn_1_5370"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/alloc.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/alloc/fn_1_56B8.c",
-    "symbols": [
+      "fn_1_5370",
       "fn_1_56B8"
     ],
     "status": "matching",
@@ -49723,9 +49713,8 @@
     "extra_cflags": [],
     "tu": "rel/main_rel/alloc.c",
     "pool": {
-      "@38": "jumptable_1_data_341C",
-      "@36": "lbl_1_rodata_178",
-      "@37": "lbl_1_rodata_180"
+      "@70": "lbl_1_rodata_178",
+      "@71": "lbl_1_rodata_180"
     }
   },
   {

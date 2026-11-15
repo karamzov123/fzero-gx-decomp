@@ -6970,8 +6970,8 @@ rel/main_rel/car_test/fn_1_7E8F4.c:
 	.text       start:0x0007E8F4 end:0x0007E9C4 align:4
 
 rel/main_rel/alloc/fn_1_5370.c:
-	.text       start:0x00005370 end:0x000056B8 align:4
-	.data       start:0x00003318 end:0x0000341C align:8
+	.text       start:0x00005370 end:0x000058C4 align:4
+	.data       start:0x00003318 end:0x00003558 align:8
 
 rel/main_rel/enemy_ctrl/fn_1_C6F8C.c:
 	.text       start:0x000C6F8C end:0x000C7224 align:4
@@ -8486,9 +8486,6 @@ rel/main_rel/font/fn_1_4D2AC.c:
 
 rel/main_rel/phys/fn_1_E733C.c:
 	.text       start:0x000E733C end:0x000E7524 align:4
-
-rel/main_rel/alloc/fn_1_56B8.c:
-	.text       start:0x000056B8 end:0x000058C4 align:4
 
 rel/main_rel/stcoli/fn_1_16E68.c:
 	.text       start:0x00016E68 end:0x00017098 align:4
