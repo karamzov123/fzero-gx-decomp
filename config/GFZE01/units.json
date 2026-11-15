@@ -73169,8 +73169,17 @@
     "module": "main_rel",
     "source": "rel/main_rel/data/lbl_1_data_1C5D8.c",
     "symbols": [
-      "lbl_1_data_1C650",
-      "lbl_1_data_1C660",
+      "lbl_1_data_1C650"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/data/lbl_1_data_1C670.c",
+    "symbols": [
       "lbl_1_data_1C670",
       "lbl_1_data_1C68C"
     ],
@@ -99520,10 +99529,17 @@
       "lbl_1_rodata_2878",
       "lbl_1_rodata_2880",
       "lbl_1_rodata_28A8",
-      "lbl_1_rodata_28AC",
-      "lbl_1_rodata_28B0",
-      "lbl_1_rodata_28B4",
-      "lbl_1_rodata_28F4",
+      "lbl_1_rodata_28AC"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/data/lbl_1_rodata_2950.c",
+    "symbols": [
       "lbl_1_rodata_2950",
       "lbl_1_rodata_2954",
       "lbl_1_rodata_295C",
@@ -129870,85 +129886,18 @@
     "module": "main_rel",
     "source": "rel/main_rel/shadowmap/fn_1_5672C.c",
     "symbols": [
-      "fn_1_5672C"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/shadowmap.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/shadowmap/fn_1_56858.c",
-    "symbols": [
-      "fn_1_56858"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/shadowmap.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/shadowmap/fn_1_568EC.c",
-    "symbols": [
-      "fn_1_568EC"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/shadowmap.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/shadowmap/fn_1_568F8.c",
-    "symbols": [
-      "fn_1_568F8"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/shadowmap.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/shadowmap/fn_1_56D4C.c",
-    "symbols": [
-      "fn_1_56D4C"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/shadowmap.c",
-    "pool": {
-      "...rodata.0": "lbl_1_rodata_28B0"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/shadowmap/fn_1_571E8.c",
-    "symbols": [
-      "fn_1_571E8"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/shadowmap.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/shadowmap/fn_1_5745C.c",
-    "symbols": [
+      "fn_1_5672C",
+      "fn_1_56858",
+      "fn_1_568EC",
+      "fn_1_568F8",
+      "fn_1_56D4C",
+      "fn_1_571E8",
       "fn_1_5745C"
     ],
     "status": "matching",
-    "mw_version": "GC/1.3.2",
+    "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/shadowmap.c",
-    "pool": {
-      "...rodata.0": "lbl_1_rodata_28B0",
-      "@27": "lbl_1_rodata_28B4"
-    }
+    "tu": "rel/main_rel/shadowmap.c"
   },
   {
     "module": "main_rel",
