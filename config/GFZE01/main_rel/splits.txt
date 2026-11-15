@@ -15511,6 +15511,7 @@ rel/main_rel/accessory/fn_1_123050.c:
 
 rel/main_rel/camera/fn_1_90E0.c:
 	.text       start:0x000090E0 end:0x0000A888 align:4
+	.data       start:0x00003678 end:0x00003BD0 align:8
 
 rel/main_rel/bg_cas/fn_1_10069C.c:
 	.text       start:0x0010069C end:0x001011CC align:4
@@ -16378,21 +16379,6 @@ rel/main_rel/data/lbl_1_data_32A8.c:
 
 rel/main_rel/data/lbl_1_data_3630.c:
 	.data       start:0x00003630 end:0x00003678 align:8
-
-rel/main_rel/data/lbl_1_data_3678.c:
-	.data       start:0x00003678 end:0x00003690 align:8
-
-rel/main_rel/data/lbl_1_data_3690.c:
-	.data       start:0x00003690 end:0x00003698 align:8
-
-rel/main_rel/data/lbl_1_data_3698.c:
-	.data       start:0x00003698 end:0x000036B8 align:8
-
-rel/main_rel/data/lbl_1_data_36B8.c:
-	.data       start:0x000036B8 end:0x000036C0 align:8
-
-rel/main_rel/data/lbl_1_data_36C0.c:
-	.data       start:0x000036C0 end:0x000036C8 align:8
 
 rel/main_rel/data/lbl_1_data_40C8.c:
 	.data       start:0x000040C8 end:0x00004128 align:8
@@ -20440,9 +20426,6 @@ rel/main_rel/data/lbl_1_data_35C8.c:
 
 rel/main_rel/data/lbl_1_data_35E8.c:
 	.data       start:0x000035E8 end:0x00003630 align:8
-
-rel/main_rel/data/lbl_1_data_36C8.c:
-	.data       start:0x000036C8 end:0x000039B8 align:8
 
 rel/main_rel/data/lbl_1_data_4568.c:
 	.data       start:0x00004568 end:0x000056D8 align:8

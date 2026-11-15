@@ -280408,32 +280408,6 @@
     "unit_size": 264,
     "unit_start": 222968
   },
-  "main_rel:lbl_1_data_3678": {
-    "address": 13944,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "u8 lbl_1_data_3678[0xC]",
-        "path": "include/rel/main_rel/camera.h"
-      }
-    ],
-    "definition": "u8 lbl_1_data_3678[0xC]",
-    "method": "typed-data",
-    "module": "main_rel",
-    "references": [
-      "fn_1_90E0"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 21,
-    "sha256": "135ff073b80e045e15fa73c796c3d708e1112267472246b598348f0333249b3a",
-    "size": 12,
-    "source": "rel/main_rel/data/lbl_1_data_3678.c",
-    "symbol": "lbl_1_data_3678",
-    "unit_align": 8,
-    "unit_size": 24,
-    "unit_start": 13944
-  },
   "main_rel:lbl_1_data_3679C": {
     "address": 223132,
     "align": 4,
@@ -280509,25 +280483,6 @@
     "unit_align": 8,
     "unit_size": 264,
     "unit_start": 223232
-  },
-  "main_rel:lbl_1_data_3684": {
-    "address": 13956,
-    "align": 4,
-    "declarations": [],
-    "definition": "char lbl_1_data_3684[9]",
-    "method": "string",
-    "module": "main_rel",
-    "references": [],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 21,
-    "sha256": "2d2180cfd3b14096fd7af8fa81f628047a67745690b662e7758401ceae15dc03",
-    "size": 9,
-    "source": "rel/main_rel/data/lbl_1_data_3678.c",
-    "symbol": "lbl_1_data_3684",
-    "unit_align": 8,
-    "unit_size": 24,
-    "unit_start": 13944
   },
   "main_rel:lbl_1_data_36844": {
     "address": 223300,
@@ -280623,25 +280578,6 @@
     "unit_align": 8,
     "unit_size": 264,
     "unit_start": 223232
-  },
-  "main_rel:lbl_1_data_3690": {
-    "address": 13968,
-    "align": 8,
-    "declarations": [],
-    "definition": "char lbl_1_data_3690[5]",
-    "method": "string",
-    "module": "main_rel",
-    "references": [],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 5,
-    "sha256": "4e97e9a8cc596aea750f74ded7638dc2cd32e5c4ed95eba469f26229350e7289",
-    "size": 5,
-    "source": "rel/main_rel/data/lbl_1_data_3690.c",
-    "symbol": "lbl_1_data_3690",
-    "unit_align": 8,
-    "unit_size": 8,
-    "unit_start": 13968
   },
   "main_rel:lbl_1_data_36908": {
     "address": 223496,
@@ -280756,25 +280692,6 @@
     "unit_align": 8,
     "unit_size": 48,
     "unit_start": 223592
-  },
-  "main_rel:lbl_1_data_3698": {
-    "address": 13976,
-    "align": 8,
-    "declarations": [],
-    "definition": "char lbl_1_data_3698[9]",
-    "method": "string",
-    "module": "main_rel",
-    "references": [],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 31,
-    "sha256": "d8d13f7c052a0fddf2f985f7bd58b631418d0fbed0d4c9361abaf2ab4c4dad27",
-    "size": 9,
-    "source": "rel/main_rel/data/lbl_1_data_3698.c",
-    "symbol": "lbl_1_data_3698",
-    "unit_align": 8,
-    "unit_size": 32,
-    "unit_start": 13976
   },
   "main_rel:lbl_1_data_36984": {
     "address": 223620,
@@ -280947,25 +280864,6 @@
     "unit_size": 200,
     "unit_start": 223720
   },
-  "main_rel:lbl_1_data_36A4": {
-    "address": 13988,
-    "align": 4,
-    "declarations": [],
-    "definition": "char lbl_1_data_36A4[8]",
-    "method": "string",
-    "module": "main_rel",
-    "references": [],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 31,
-    "sha256": "681a831fcf951ee34664cfab665a11be515df82d8d7629575b43d123c0b40621",
-    "size": 8,
-    "source": "rel/main_rel/data/lbl_1_data_3698.c",
-    "symbol": "lbl_1_data_36A4",
-    "unit_align": 8,
-    "unit_size": 32,
-    "unit_start": 13976
-  },
   "main_rel:lbl_1_data_36A4C": {
     "address": 223820,
     "align": 4,
@@ -281041,25 +280939,6 @@
     "unit_align": 8,
     "unit_size": 200,
     "unit_start": 223920
-  },
-  "main_rel:lbl_1_data_36AC": {
-    "address": 13996,
-    "align": 4,
-    "declarations": [],
-    "definition": "char lbl_1_data_36AC[11]",
-    "method": "string",
-    "module": "main_rel",
-    "references": [],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 31,
-    "sha256": "230230bf505a2bad31ef10d56c494b5c19279b7ca2c6eb2b5c6f2e630395322e",
-    "size": 11,
-    "source": "rel/main_rel/data/lbl_1_data_3698.c",
-    "symbol": "lbl_1_data_36AC",
-    "unit_align": 8,
-    "unit_size": 32,
-    "unit_start": 13976
   },
   "main_rel:lbl_1_data_36AE4": {
     "address": 223972,
@@ -281175,25 +281054,6 @@
     "unit_size": 32,
     "unit_start": 224120
   },
-  "main_rel:lbl_1_data_36B8": {
-    "address": 14008,
-    "align": 8,
-    "declarations": [],
-    "definition": "char lbl_1_data_36B8[6]",
-    "method": "string",
-    "module": "main_rel",
-    "references": [],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 6,
-    "sha256": "1ee6b9704f016cab3c34f010b39b675987044048918f1936163486301e0f53d9",
-    "size": 6,
-    "source": "rel/main_rel/data/lbl_1_data_36B8.c",
-    "symbol": "lbl_1_data_36B8",
-    "unit_align": 8,
-    "unit_size": 8,
-    "unit_start": 14008
-  },
   "main_rel:lbl_1_data_36B98": {
     "address": 224152,
     "align": 8,
@@ -281308,25 +281168,6 @@
     "unit_size": 8,
     "unit_start": 872
   },
-  "main_rel:lbl_1_data_36C0": {
-    "address": 14016,
-    "align": 8,
-    "declarations": [],
-    "definition": "char lbl_1_data_36C0[5]",
-    "method": "string",
-    "module": "main_rel",
-    "references": [],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 5,
-    "sha256": "6564e394e190d6a86868494de2565cd00baad436b1cb4d40b4489721b8b5ddb6",
-    "size": 5,
-    "source": "rel/main_rel/data/lbl_1_data_36C0.c",
-    "symbol": "lbl_1_data_36C0",
-    "unit_align": 8,
-    "unit_size": 8,
-    "unit_start": 14016
-  },
   "main_rel:lbl_1_data_36C1C": {
     "address": 224284,
     "align": 4,
@@ -281384,25 +281225,6 @@
     "unit_size": 56,
     "unit_start": 224336
   },
-  "main_rel:lbl_1_data_36C8": {
-    "address": 14024,
-    "align": 8,
-    "declarations": [],
-    "definition": "char lbl_1_data_36C8[4]",
-    "method": "string",
-    "module": "main_rel",
-    "references": [],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 752,
-    "sha256": "f57979fe4dabec33a97d97f62c6accbd76244d8752b04bc33f3c8d77bf14b0f2",
-    "size": 4,
-    "source": "rel/main_rel/data/lbl_1_data_36C8.c",
-    "symbol": "lbl_1_data_36C8",
-    "unit_align": 8,
-    "unit_size": 752,
-    "unit_start": 14024
-  },
   "main_rel:lbl_1_data_36C88": {
     "address": 224392,
     "align": 8,
@@ -281440,86 +281262,6 @@
     "unit_align": 8,
     "unit_size": 56,
     "unit_start": 224392
-  },
-  "main_rel:lbl_1_data_36CC": {
-    "address": 14028,
-    "align": 4,
-    "declarations": [],
-    "definition": "Data_lbl_1_data_36CC lbl_1_data_36CC",
-    "header": {
-      "path": "rel/main_rel/data/lbl_1_data_36CC.h",
-      "text": "#ifndef DATA_LBL_1_DATA_36CC_H\n#define DATA_LBL_1_DATA_36CC_H\n\n#include \"types.h\"\n\ntypedef struct {\n    u8 *at_0;\n    u8 *at_4;\n    u8 *at_8;\n    u8 *at_C;\n    u8 *at_10;\n    u8 *at_14;\n    u8 *at_18;\n    u8 *at_1C;\n} Data_lbl_1_data_36CC;\nextern Data_lbl_1_data_36CC lbl_1_data_36CC;\n\n#endif\n"
-    },
-    "method": "relocated-table",
-    "module": "main_rel",
-    "references": [],
-    "relocations": [
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "main_rel",
-        "offset": 0,
-        "symbol": "lbl_1_data_3684"
-      },
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "main_rel",
-        "offset": 4,
-        "symbol": "lbl_1_data_3690"
-      },
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "main_rel",
-        "offset": 8,
-        "symbol": "lbl_1_data_3698"
-      },
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "main_rel",
-        "offset": 12,
-        "symbol": "lbl_1_data_36A4"
-      },
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "main_rel",
-        "offset": 16,
-        "symbol": "lbl_1_data_36AC"
-      },
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "main_rel",
-        "offset": 20,
-        "symbol": "lbl_1_data_36B8"
-      },
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "main_rel",
-        "offset": 24,
-        "symbol": "lbl_1_data_36C0"
-      },
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "main_rel",
-        "offset": 28,
-        "symbol": "lbl_1_data_36C8"
-      }
-    ],
-    "section": ".data",
-    "section_size": 752,
-    "sha256": "66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925",
-    "size": 32,
-    "source": "rel/main_rel/data/lbl_1_data_36C8.c",
-    "symbol": "lbl_1_data_36CC",
-    "unit_align": 8,
-    "unit_size": 752,
-    "unit_start": 14024
   },
   "main_rel:lbl_1_data_36CC0": {
     "address": 224448,
@@ -281767,32 +281509,6 @@
     "unit_align": 8,
     "unit_size": 64,
     "unit_start": 224912
-  },
-  "main_rel:lbl_1_data_36EC": {
-    "address": 14060,
-    "align": 4,
-    "declarations": [
-      {
-        "declaration": "Obj_1_data_36EC lbl_1_data_36EC",
-        "path": "include/rel/main_rel/camera.h"
-      }
-    ],
-    "definition": "Obj_1_data_36EC lbl_1_data_36EC",
-    "method": "declared-record",
-    "module": "main_rel",
-    "references": [
-      "fn_1_8B10"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 752,
-    "sha256": "667f690c0edf46fe7d72b415ded787ba003704df4038edfd8d36a0b1a407d309",
-    "size": 716,
-    "source": "rel/main_rel/data/lbl_1_data_36C8.c",
-    "symbol": "lbl_1_data_36EC",
-    "unit_align": 8,
-    "unit_size": 752,
-    "unit_start": 14024
   },
   "main_rel:lbl_1_data_36ED0": {
     "address": 224976,
