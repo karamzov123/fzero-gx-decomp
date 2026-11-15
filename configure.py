@@ -268,11 +268,16 @@ cflags_rel = [
 config.linker_version = "GC/1.3.2"
 # Object name used to link RELs that have no configured units yet.
 config.rel_empty_file = "rel/empty.c"
-# Retail RELs keep unreferenced functions (e.g. main.rel fn_1_8CA20 has no
-# callers yet is present), so the original link did not dead-strip. Linking
-# without -strip_partial mirrors that and means carved units never need a
-# FORCEACTIVE entry.
-config.rel_strip_partial = False
+# Retail RELs were linked with dead-stripping. Evidence: a static function that MWCC inlined at
+# every call is not in retail code, but the literals it created are at the place of its
+# definition (replay .rodata 0x0: the floats of fn_13_CDC are before the colours of fn_13_BCC,
+# main_rel .data 0x1EF68: the car_test model/texture info strings are before the strings of
+# fn_1_7C2A0). Every shipped MWCC emits the code of such a function, so the link removed it.
+# Retail also keeps functions with no caller (main.rel fn_1_8CA20). The roots of the retail link
+# are not known. This build assumes that they were the global symbols: tools/rel_forceactive.py
+# puts every global symbol in FORCEACTIVE and `-strip_partial` removes only unreferenced local
+# symbols. A carved unit needs no entry.
+config.rel_strip_partial = True
 
 
 # Helper function for Dolphin libraries
