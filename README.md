@@ -100,6 +100,14 @@ a scoped float intensity is computed with ordinary arithmetic before the rendere
 retail object and 16-target link still match. Two other TU rewrites did not match and were not
 installed; see [the follow-up evidence](state/repairs/tu-native-intensity-20261114.json).
 
+The existing repair engine now proposes guarded removal of pure two-argument float operand
+wrappers. A measured cohort of **12 real baseline functions / 24 candidates** compiled without
+errors and produced four exact object candidates. Two were admitted: `fn_10_1B2F4` and
+`fn_3_23724` each lose one helper in favor of normal arithmetic. The other two are blocked by
+inherited shared-header declaration conflicts and are **not** accepted progress. Conditional
+hoisting and overlapping nested-wrapper edits are excluded. See
+[the generator and admission evidence](state/repairs/native-operand-family-20261114.json).
+
 Revision submissions now refresh literal-pool bindings when source changes renumber private
 constants. Failed revisions preserve the previously accepted source, compiler settings, split
 ownership and pool/verified state; a real stale-binding regression verified that fallback.
