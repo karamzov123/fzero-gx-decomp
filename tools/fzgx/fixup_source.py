@@ -3720,6 +3720,85 @@ def split_helper_calls(body, name):
         yield f'split inline/external helper {name} uses {mask:x}',text
 
 
+def native_operand_helpers(body, name):
+    """Remove pure float operand wrappers, preserving their scalar rounding.
+
+    Scoped arithmetic is proposed only for a complete, unconditional statement
+    with no other nested calls or side effects. Compiler/oracle admission remains
+    the caller's responsibility; these are source candidates, not matches.
+    """
+    from .sdkimport import masked
+    span = _function_body_span(body, name)
+    if not span:
+        return
+    code = masked(body)
+    pattern = re.compile(
+        r'\bstatic\s+inline\s+(?:f32|float)\s+(\w*operand\w*)\s*\('
+        r'\s*(?:f32|float)\s+(\w+)\s*,\s*(?:f32|float)\s+(\w+)\s*\)'
+        r'\s*\{([^{}]+)\}')
+    calls = [dict(callee=callee, start=start, end=end, slots=slots)
+             for callee, start, end, slots in call_sites(body)]
+    identifier = r'[A-Za-z_]\w*'
+    lvalue = identifier + r'(?:\s*(?:->|\.)\s*' + identifier + r'|\s*\[[^\[\]\n]+\])*'
+    for definition in pattern.finditer(code):
+        helper, first, second, inner = definition.groups()
+        expression = re.fullmatch(r'\s*return\s+(\w+)\s*([+*/-])\s*(\w+)\s*;\s*', inner)
+        compound = re.fullmatch(r'\s*(\w+)\s*([+*/-])=\s*(\w+)\s*;\s*return\s+\1\s*;\s*', inner)
+        operation = expression or compound
+        if not operation or {operation[1], operation[3]} != {first, second}:
+            continue
+        sites = [site for site in calls if site['callee'] == helper
+                 and not definition.start() <= site['start'] < definition.end()]
+        if not sites or any(not span[1] <= site['start'] < site['end'] <= span[2]
+                            or len(site['slots']) != 2 for site in sites):
+            continue
+        # Simultaneous edits must not overlap (including a wrapper calling itself).
+        if any(a['start'] < b['start'] < a['end'] for a in sites for b in sites):
+            continue
+        # Do not remove a helper whose address or another non-call use survives.
+        if len(re.findall(r'\b' + re.escape(helper) + r'\b', code)) != len(sites) + 1:
+            continue
+        replacements = []
+        scoped = []
+        for site in sites:
+            args = [body[a:b].strip() for a, b in site['slots']]
+            values = dict(zip((first, second), args))
+            left, right = values[operation[1]], values[operation[3]]
+            op = operation[2]
+            replacements.append((site['start'], site['end'],
+                                 f'((f32)((f32)({left}) {op} (f32)({right})))'))
+            begin = body.rfind('\n', 0, site['start']) + 1
+            end = body.find('\n', site['end'])
+            end = len(body) if end < 0 else end
+            statement = body[begin:end]
+            other_calls = [s for s in calls if begin <= s['start'] < end and s is not site]
+            safe = (statement.strip().endswith(';') and statement.count(';') == 1
+                    and re.match(r'\s*(?:' + lvalue + r'\s*=|[A-Za-z_]\w*\s*\()', statement)
+                    and not re.match(r'\s*(?:if|while|for|switch|return|case|else|do)\b', statement)
+                    and not re.search(r'\?|:|&&|\|\||\+\+|--|\bvolatile\b', statement)
+                    and '\n' not in body[site['start']:site['end']]
+                    and all(s['start'] < site['start'] and s['end'] >= site['end'] for s in other_calls)
+                    and not re.search(r'\+\+|--|(?<![=!<>])=(?!=)|\bvolatile\b', left + '\n' + right))
+            if not safe:
+                continue
+            local = 'product' if op == '*' else 'sum' if op == '+' else 'arithmetic_value'
+            while re.search(r'\b' + local + r'\b', code):
+                local += '_value'
+            indent = statement[:len(statement) - len(statement.lstrip(' \t'))]
+            rewritten = statement[:site['start'] - begin] + local + statement[site['end'] - begin:]
+            text = (indent + '{\n' + indent + f'    f32 {local} = (f32)({left});\n'
+                    + indent + f'    {local} {op}= (f32)({right});\n'
+                    + indent + '    ' + rewritten.strip() + '\n' + indent + '}')
+            scoped.append((begin, end, text))
+        for label, edits in [('inline float operand ', replacements), ('scoped float arithmetic ', scoped)]:
+            if len(edits) != len(sites) or len({a for a, _, _ in edits}) != len(edits):
+                continue
+            text = body
+            for a, b, replacement in sorted(edits + [(definition.start(), definition.end(), '')], reverse=True):
+                text = text[:a] + replacement + text[b:]
+            yield label + helper, text
+
+
 def inline_helpers(body, name, helpers=None):
     """Do not emit unused out-of-line copies of reconstructed static helpers.
 

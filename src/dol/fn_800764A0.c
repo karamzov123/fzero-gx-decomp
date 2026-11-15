@@ -27,14 +27,9 @@ extern void fn_800735C8(s32,s32);
 extern void fn_80073C6C(s32);
 extern void fn_800736C0(u32,void *);
 extern void fn_800745A4(u32,s32,s32,u32,u32,u32);
-static inline f32 fn_800764A0_operand(f32 left, f32 right) { left *= right; return left; }
-static inline f32 fn_800764A0_operand_(f32 right, f32 left) { return left * right; }
-static inline f32 fn_800764A0_operand__(f32 right, f32 left) { left *= right; return left; }
-static inline f32 fn_800764A0_read_pointer(struct fn_800764A0_lbl_801A6D00_T *owner) { return owner->unk_10; }
 void fn_800764A0(struct fn_800764A0_Arg0 *arg0, void *arg1, u32 arg2) {
  struct fn_800764A0_lbl_801A3220 *p_lbl_801A3220;
- f32 v2;
- struct { volatile u8 a[8]; } loc_8; /* Preserve the ordered byte stores interleaved with state reads. */
+ struct { u8 a[8]; } loc_8;
  s32 lab_t2;
  u32 color_arg0;
  u32 color_arg1;
@@ -55,10 +50,9 @@ void fn_800764A0(struct fn_800764A0_Arg0 *arg0, void *arg1, u32 arg2) {
  lbl_8006DAEC();
  fn_8006F120(lbl_8015AD28,(void *)((u8 *)&lbl_801A3220+0x50));
  lbl_801A6D00->unk_C = 0.5f;
- lbl_801A6D00->unk_10 = fn_800764A0_operand_(-1.0f,fn_800764A0_read_pointer(lbl_801A6D00));
- lbl_801A6D00->unk_14 = fn_800764A0_operand(lbl_801A6D00->unk_14,-1.0f);
- v2 = fn_800764A0_operand__(-1.0f,lbl_801A6D00->unk_18);
- lbl_801A6D00->unk_18 = v2;
+ lbl_801A6D00->unk_10 *= -1.0f;
+ lbl_801A6D00->unk_14 *= -1.0f;
+ lbl_801A6D00->unk_18 *= -1.0f;
  lbl_801A6D00->unk_1C = 0.5f;
  lbl_801A6D00->unk_20 = 0.0f;
  lbl_801A6D00->unk_24 = 0.0f;
@@ -70,11 +64,11 @@ void fn_800764A0(struct fn_800764A0_Arg0 *arg0, void *arg1, u32 arg2) {
  p_lbl_801A3220->unk_40 = 1;
  }
  loc_8.a[4] = arg2;
- color_arg0 = *(volatile u32 *)((u8 *)arg0+0); /* Preserve state read ordering relative to the color byte stores. */
+ color_arg0 = *(u32 *)((u8 *)arg0+0);
  loc_8.a[5] = arg2;
- color_arg1 = *(volatile u32 *)((u8 *)arg0+4); /* Preserve state read ordering relative to the color byte stores. */
+ color_arg1 = *(u32 *)((u8 *)arg0+4);
  loc_8.a[6] = arg2;
- lab_t2 = *(volatile u32 *)((u8 *)arg0+12); /* Preserve state read ordering relative to the color byte stores. */
+ lab_t2 = *(u32 *)((u8 *)arg0+12);
  loc_8.a[7] = arg2;
  fn_800734A8(color_arg0,color_arg1,lab_t2,4);
  *(u32 *)((u8 *)&loc_8+0) = *(u32 *)((u8 *)&loc_8+4);
