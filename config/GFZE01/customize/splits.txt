@@ -528,6 +528,7 @@ rel/customize/toolkit/fn_3_1AEE4.c:
 
 rel/customize/_prolog/fn_3_15A0.c:
 	.text       start:0x000015A0 end:0x000033A0 align:4
+	.data       start:0x00000000 end:0x00001668 align:8
 
 rel/customize/emblem/fn_3_149AC.c:
 	.text       start:0x000149AC end:0x00014BBC align:4
@@ -1009,35 +1010,15 @@ rel/customize/data/lbl_3_data_4648.c:
 rel/customize/data/lbl_3_data_4B70.c:
 	.data       start:0x00004B70 end:0x00004BB4 align:8
 
-rel/customize/data/lbl_3_data_0.c:
-	.data       start:0x00000000 end:0x00000F18 align:8
 
-rel/customize/data/lbl_3_data_F18.c:
-	.data       start:0x00000F18 end:0x00000F60 align:8
 
-rel/customize/data/lbl_3_data_F60.c:
-	.data       start:0x00000F60 end:0x00001018 align:8
 
-rel/customize/data/lbl_3_data_1018.c:
-	.data       start:0x00001018 end:0x00001060 align:8
 
-rel/customize/data/lbl_3_data_1060.c:
-	.data       start:0x00001060 end:0x000010A8 align:8
 
-rel/customize/data/lbl_3_data_10A8.c:
-	.data       start:0x000010A8 end:0x000010F0 align:8
 
-rel/customize/data/lbl_3_data_10F0.c:
-	.data       start:0x000010F0 end:0x000011D8 align:8
 
-rel/customize/data/lbl_3_data_11D8.c:
-	.data       start:0x000011D8 end:0x00001230 align:8
 
-rel/customize/data/lbl_3_data_1230.c:
-	.data       start:0x00001230 end:0x000015D8 align:8
 
-rel/customize/data/lbl_3_data_15D8.c:
-	.data       start:0x000015D8 end:0x000015F0 align:8
 
 rel/customize/data/lbl_3_data_1668.c:
 	.data       start:0x00001668 end:0x00001698 align:8
