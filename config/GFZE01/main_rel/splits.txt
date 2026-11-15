@@ -2127,21 +2127,6 @@ rel/main_rel/sound/fn_1_A5864.c:
 rel/main_rel/sound/fn_1_A59AC.c:
 	.text       start:0x000A59AC end:0x000A5AA0
 
-rel/main_rel/prog/fn_1_A6FE8.c:
-	.text       start:0x000A6FE8 end:0x000A7024
-
-rel/main_rel/prog/fn_1_A714C.c:
-	.text       start:0x000A714C end:0x000A71AC
-
-rel/main_rel/prog/fn_1_A71AC.c:
-	.text       start:0x000A71AC end:0x000A71BC
-
-rel/main_rel/prog/fn_1_A71BC.c:
-	.text       start:0x000A71BC end:0x000A71CC
-
-rel/main_rel/prog/fn_1_A728C.c:
-	.text       start:0x000A728C end:0x000A7294
-
 rel/main_rel/driver/fn_1_A8528.c:
 	.text       start:0x000A8528 end:0x000A861C
 
@@ -4942,9 +4927,6 @@ rel/main_rel/spline/fn_1_F7338.c:
 rel/main_rel/effect/fn_1_58E3C.c:
 	.text       start:0x00058E3C end:0x00058F50 align:4
 
-rel/main_rel/prog/fn_1_A71CC.c:
-	.text       start:0x000A71CC end:0x000A722C align:4
-
 rel/main_rel/car/fn_1_8D0A4.c:
 	.text       start:0x0008D0A4 end:0x0008D168 align:4
 
@@ -5013,9 +4995,6 @@ rel/main_rel/sel_static_disp/fn_1_149CA4.c:
 
 rel/main_rel/camera/fn_1_B81C.c:
 	.text       start:0x0000B81C end:0x0000B85C align:4
-
-rel/main_rel/prog/fn_1_A722C.c:
-	.text       start:0x000A722C end:0x000A728C align:4
 
 rel/main_rel/car/fn_1_933D8.c:
 	.text       start:0x000933D8 end:0x000934CC align:4
@@ -7158,9 +7137,6 @@ rel/main_rel/bg_aur/fn_1_152CB4.c:
 
 rel/main_rel/accessory/fn_1_112F40.c:
 	.text       start:0x00112F40 end:0x001132E4 align:4
-
-rel/main_rel/prog/fn_1_A7024.c:
-	.text       start:0x000A7024 end:0x000A714C align:4
 
 rel/main_rel/sound/fn_1_A3BD8.c:
 	.text       start:0x000A3BD8 end:0x000A3C78 align:4
@@ -15608,12 +15584,6 @@ rel/main_rel/data/lbl_1_bss_6F520.c:
 rel/main_rel/data/lbl_1_bss_6F5C0.c:
 	.bss        start:0x0006F5C0 end:0x0006F5F0 align:32
 
-rel/main_rel/data/lbl_1_bss_6F608.c:
-	.bss        start:0x0006F608 end:0x0006F620 align:8
-
-rel/main_rel/data/lbl_1_bss_6F620.c:
-	.bss        start:0x0006F620 end:0x0006F638 align:32
-
 rel/main_rel/data/lbl_1_bss_6F638.c:
 	.bss        start:0x0006F638 end:0x0006F640 align:8
 
@@ -18990,8 +18960,13 @@ rel/main_rel/prog/fn_1_A5D88.c:
 	.data       start:0x000341B8 end:0x00034348 align:8
 	.bss        start:0x0006F5F0 end:0x0006F608 align:8
 
-rel/main_rel/data/lbl_1_rodata_49F8.c:
-	.rodata     start:0x000049F8 end:0x00006168 align:8
+rel/main_rel/prog/fn_1_A6FE8.c:
+	.text       start:0x000A6FE8 end:0x000A7294 align:4
+	.rodata     start:0x000049F8 end:0x00004A28 align:8
+	.bss        start:0x0006F608 end:0x0006F638 align:8
+
+rel/main_rel/data/lbl_1_rodata_4A28.c:
+	.rodata     start:0x00004A28 end:0x00006168 align:8
 
 rel/main_rel/data/lbl_1_data_3E910.c:
 	.data       start:0x0003E910 end:0x0003F408 align:8
