@@ -188683,40 +188683,6 @@
     "unit_size": 16,
     "unit_start": 121000
   },
-  "main_rel:lbl_1_data_1DC80": {
-    "address": 121984,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "u8 lbl_1_data_1DC80[0x48]",
-        "path": "include/rel/main_rel/screen_effect.h"
-      },
-      {
-        "declaration": "u8 lbl_1_data_1DC80[0x48]",
-        "path": "src/rel/main_rel/screen_effect.c"
-      },
-      {
-        "declaration": "u8 lbl_1_data_1DC80[0x48]",
-        "path": "src/rel/main_rel/screen_effect.c"
-      }
-    ],
-    "definition": "u8 lbl_1_data_1DC80[0x48]",
-    "method": "typed-data",
-    "module": "main_rel",
-    "references": [
-      "fn_1_76704"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 72,
-    "sha256": "081bcfa4932d8b451fde48ba02a50b596dbdc6b678c334bdee2894ad3a217b3a",
-    "size": 72,
-    "source": "rel/main_rel/data/lbl_1_data_1DC80.c",
-    "symbol": "lbl_1_data_1DC80",
-    "unit_align": 8,
-    "unit_size": 72,
-    "unit_start": 121984
-  },
   "main_rel:lbl_1_data_1DCF0": {
     "address": 122096,
     "align": 8,
