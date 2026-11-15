@@ -7405,6 +7405,7 @@ rel/main_rel/memcard/fn_1_BC310.c:
 
 rel/main_rel/enemy_ctrl/fn_1_C4ABC.c:
 	.text       start:0x000C4ABC end:0x000C6ED4 align:4
+	.data       start:0x0003D230 end:0x0003D288 align:8
 
 rel/main_rel/accessory/fn_1_10E3B4.c:
 	.text       start:0x0010E3B4 end:0x00110008 align:4
@@ -20993,7 +20994,7 @@ rel/main_rel/data/lbl_1_data_3CF40.c:
 	.data       start:0x0003CF40 end:0x0003CF50 align:8
 
 rel/main_rel/data/lbl_1_data_3D158.c:
-	.data       start:0x0003D158 end:0x0003D26C align:8
+	.data       start:0x0003D158 end:0x0003D230 align:8
 
 rel/main_rel/data/lbl_1_data_3D288.c:
 	.data       start:0x0003D288 end:0x0003D290 align:8

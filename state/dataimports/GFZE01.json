@@ -300552,60 +300552,6 @@
     "unit_size": 276,
     "unit_start": 250200
   },
-  "main_rel:lbl_1_data_3D230": {
-    "address": 250416,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "u32 lbl_1_data_3D230",
-        "path": "include/rel/main_rel/memcard.h"
-      }
-    ],
-    "definition": "u32 lbl_1_data_3D230",
-    "method": "typed-data",
-    "module": "main_rel",
-    "references": [
-      "fn_1_C39FC",
-      "fn_1_C40A0",
-      "fn_1_C4ABC"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 276,
-    "sha256": "b40711a88c7039756fb8a73827eabe2c0fe5a0346ca7e0a104adc0fc764f528d",
-    "size": 4,
-    "source": "rel/main_rel/data/lbl_1_data_3D158.c",
-    "symbol": "lbl_1_data_3D230",
-    "unit_align": 8,
-    "unit_size": 276,
-    "unit_start": 250200
-  },
-  "main_rel:lbl_1_data_3D234": {
-    "address": 250420,
-    "align": 4,
-    "declarations": [
-      {
-        "declaration": "u8 lbl_1_data_3D234[0x38]",
-        "path": "include/rel/main_rel/enemy_ctrl.h"
-      }
-    ],
-    "definition": "u8 lbl_1_data_3D234[0x38]",
-    "method": "typed-data",
-    "module": "main_rel",
-    "references": [
-      "fn_1_C47B4"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 276,
-    "sha256": "d86e24a8014dc4e066a02568b40b667ab8de5d430f942bf3c54fbc98b810d12a",
-    "size": 56,
-    "source": "rel/main_rel/data/lbl_1_data_3D158.c",
-    "symbol": "lbl_1_data_3D234",
-    "unit_align": 8,
-    "unit_size": 276,
-    "unit_start": 250200
-  },
   "main_rel:lbl_1_data_3D288": {
     "address": 250504,
     "align": 8,

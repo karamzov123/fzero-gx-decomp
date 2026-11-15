@@ -94946,9 +94946,7 @@
       "lbl_1_data_3D16C",
       "lbl_1_data_3D174",
       "lbl_1_data_3D17C",
-      "lbl_1_data_3D180",
-      "lbl_1_data_3D230",
-      "lbl_1_data_3D234"
+      "lbl_1_data_3D180"
     ],
     "status": "matching",
     "data": true,
@@ -118240,7 +118238,6 @@
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_5168",
-      "@987": "jumptable_1_data_3D26C",
       "...bss.0": "lbl_1_bss_7AC48",
       "fzgx_obj_lbl_1_bss_7AC48": "lbl_1_bss_7AC48",
       "lbl_1_bss_7AC48__fzgx_offset_4": "lbl_1_bss_7AC48+0x4",
@@ -118258,8 +118255,7 @@
       "lbl_1_bss_7AC90__fzgx_offset_3": "lbl_1_bss_7AC90+0x3",
       "lbl_1_bss_7AC90__fzgx_offset_4": "lbl_1_bss_7AC90+0x4",
       "lbl_1_bss_7AC90__fzgx_offset_8": "lbl_1_bss_7AC90+0x8",
-      "fzgx_obj_lbl_1_bss_7AC9C": "lbl_1_bss_7AC9C",
-      "fzgx_obj_lbl_1_data_3D230": "lbl_1_data_3D230"
+      "fzgx_obj_lbl_1_bss_7AC9C": "lbl_1_bss_7AC9C"
     }
   },
   {
