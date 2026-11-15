@@ -666,15 +666,11 @@ void fn_5_6E8(void) {
 /* fzgx:end fn_5_6E8 */
 
 /* fzgx:begin fn_5_7A0 */
-/* WARNING: compiler-diff device, not original code: the cast view of lbl_1_bss_D58 (and the pad
-   pointer below) gives retail's reloads of the pad words; kept from the per-function unit. */
-#define PAD (*(PadInput *)&lbl_1_bss_D58)
 #define CUR_ID (lbl_5_data_F0[lbl_1_bss_970.unk_4].id)
 
 void fn_5_7A0(void) {
     s32 delta;
     s8 v;
-    PadInput *pad;
     MoviePlayer *player;
 
     if (sMode == 1) {
@@ -687,22 +683,21 @@ void fn_5_7A0(void) {
         fn_5_3C44();
     } else if (fn_1_157920() == 0 && sMode == -2) {
         delta = 0;
-        if ((PAD.unk_8 >> 4) & 1) {
+        if (__rlwinm(lbl_1_bss_D58.unk_8, 28, 31, 31)) {
             sLanguage++;
             v = sLanguage;
             sLanguage = (v > 5) ? -1 : v;
         }
         fn_5_1404(lbl_5_data_F0);
-        pad = &lbl_1_bss_D58;
-        if (((pad->unk_10 >> 3) & 1) || ((pad->unk_12 >> 3) & 1)) {
+        if (__rlwinm(lbl_1_bss_D58.unk_10, 29, 31, 31) || __rlwinm(lbl_1_bss_D58.unk_12, 29, 31, 31)) {
             delta = -1;
-        } else if (((pad->unk_10 >> 2) & 1) || ((PAD.unk_12 >> 2) & 1)) {
+        } else if (__rlwinm(lbl_1_bss_D58.unk_10, 30, 31, 31) || __rlwinm(lbl_1_bss_D58.unk_12, 30, 31, 31)) {
             delta = 1;
         }
-        if (!((PAD.unk_2 >> 9) & 1)) {
-            if (((pad->unk_10 >> 1) & 1) || ((PAD.unk_12 >> 1) & 1)) {
+        if (!__rlwinm(lbl_1_bss_D58.unk_2, 23, 31, 31)) {
+            if (__rlwinm(lbl_1_bss_D58.unk_10, 31, 31, 31) || __rlwinm(lbl_1_bss_D58.unk_12, 31, 31, 31)) {
                 delta += 21;
-            } else if (((pad->unk_10 >> 0) & 1) || ((PAD.unk_12 >> 0) & 1)) {
+            } else if (__rlwinm(lbl_1_bss_D58.unk_10, 0, 31, 31) || __rlwinm(lbl_1_bss_D58.unk_12, 0, 31, 31)) {
                 delta -= 21;
             }
         }
@@ -711,47 +706,47 @@ void fn_5_7A0(void) {
         }
     }
 
-    if (sMode != -2 && ((PAD.unk_8 >> 9) & 1)) {
+    if (sMode != -2 && __rlwinm(lbl_1_bss_D58.unk_8, 23, 31, 31)) {
         fn_1_157940();
         ADXT_Stop(*lbl_1_bss_6EAD0.unk_0);
         fn_5_3C44();
     }
 
-    if ((PAD.unk_8 >> 10) & 1) {
+    if (__rlwinm(lbl_1_bss_D58.unk_8, 22, 31, 31)) {
         sDeflicker = 1 - sDeflicker;
         fn_80070704(sDeflicker);
     }
-    if ((PAD.unk_8 >> 11) & 1) {
+    if (__rlwinm(lbl_1_bss_D58.unk_8, 21, 31, 31)) {
         sFurigana = 1 - sFurigana;
     }
-    if ((PAD.unk_A >> 8) & 1) {
+    if (__rlwinm(lbl_1_bss_D58.unk_A, 24, 31, 31)) {
         sBackground = 1 - sBackground;
     }
 
-    if ((PAD.unk_2 >> 8) & 1) {
-        if (((PAD.unk_10 >> 3) & 1) || ((lbl_1_bss_D58.unk_12 >> 3) & 1)) {
+    if (__rlwinm(lbl_1_bss_D58.unk_2, 24, 31, 31)) {
+        if (__rlwinm(lbl_1_bss_D58.unk_10, 29, 31, 31) || __rlwinm(lbl_1_bss_D58.unk_12, 29, 31, 31)) {
             sScaleX += 0.1f;
             sScaleY += 0.1f;
-        } else if (((PAD.unk_10 >> 2) & 1) || ((PAD.unk_12 >> 2) & 1)) {
+        } else if (__rlwinm(lbl_1_bss_D58.unk_10, 30, 31, 31) || __rlwinm(lbl_1_bss_D58.unk_12, 30, 31, 31)) {
             sScaleX -= 0.1f;
             sScaleY -= 0.1f;
         }
     }
 
-    if ((PAD.unk_2 >> 9) & 1) {
-        if (((PAD.unk_10 >> 3) & 1) || ((lbl_1_bss_D58.unk_12 >> 3) & 1)) {
+    if (__rlwinm(lbl_1_bss_D58.unk_2, 23, 31, 31)) {
+        if (__rlwinm(lbl_1_bss_D58.unk_10, 29, 31, 31) || __rlwinm(lbl_1_bss_D58.unk_12, 29, 31, 31)) {
             sPosY -= 8.0f;
-        } else if (((lbl_1_bss_D58.unk_10 >> 2) & 1) || ((PAD.unk_12 >> 2) & 1)) {
+        } else if (__rlwinm(lbl_1_bss_D58.unk_10, 30, 31, 31) || __rlwinm(lbl_1_bss_D58.unk_12, 30, 31, 31)) {
             sPosY += 8.0f;
         }
-        if (((PAD.unk_10 >> 1) & 1) || ((PAD.unk_12 >> 1) & 1)) {
+        if (__rlwinm(lbl_1_bss_D58.unk_10, 31, 31, 31) || __rlwinm(lbl_1_bss_D58.unk_12, 31, 31, 31)) {
             sPosX += 8.0f;
-        } else if (((PAD.unk_10 >> 0) & 1) || ((PAD.unk_12 >> 0) & 1)) {
+        } else if (__rlwinm(lbl_1_bss_D58.unk_10, 0, 31, 31) || __rlwinm(lbl_1_bss_D58.unk_12, 0, 31, 31)) {
             sPosX -= 8.0f;
         }
     }
 
-    if ((PAD.unk_8 >> 8) & 1) {
+    if (__rlwinm(lbl_1_bss_D58.unk_8, 24, 31, 31)) {
         if (sMode != -2) {
             fn_5_3C44();
         }
@@ -901,7 +896,7 @@ void fn_5_7A0(void) {
         fn_5_169C();
     }
 
-    if (((PAD.unk_8 >> 12) & 1) && !((PAD.unk_2 >> 9) & 1)) {
+    if (__rlwinm(lbl_1_bss_D58.unk_8, 20, 31, 31) && !__rlwinm(lbl_1_bss_D58.unk_2, 23, 31, 31)) {
         lbl_1_bss_968 = 10;
     }
 }
