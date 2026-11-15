@@ -1430,7 +1430,6 @@ s16 fn_5_2C54(u8 *text, s8 start, s8 count) {
 
 void fn_5_2E00(void) {
     MovieCommand *entry;
-    f32 posY;
     f32 screenW;
     f32 screenH;
     f32 savedAspect;
@@ -1507,20 +1506,17 @@ void fn_5_2E00(void) {
         y = (f32)sPosY + (f32)((screenH - (f32)(s16)((f32)h * sScaleX)) / 2.0f);
         loc_78 = TEMPLATE;
         width = (f32)((f32)sWidth * sScaleX) / 8.0f;
-        /* WARNING: compiler-diff device, not original code: the store through a cast pointer gives
-           retail's schedule of this packet; kept from the per-function unit. */
-        *(f32 *)&loc_78.x = (f32)(s16)x;
-        posY = (480.0f * (f32)(s16)y) / screenH;
+        loc_78.x = (f32)(s16)x;
+        loc_78.y = (480.0f * (f32)(s16)y) / screenH;
         loc_78.z += 0.1f;
         loc_78.image = 18;
         loc_78.scale_x *= width;
         loc_78.scale_y *= ((480.0f * (f32)((f32)h * sScaleY)) / screenH) / 8.0f;
         *(GXColor *)loc_78.color = (GXColor){0, 0, 0, 255};
-        loc_78.y = posY;
         fn_1_4E724(&loc_78);
         if (entry->type == 3) {
             loc_78 = TEMPLATE;
-            loc_78.y = posY;
+            loc_78.y = (480.0f * (f32)(s16)y) / screenH;
             loc_78.x = (f32)(s16)x;
             loc_78.scale_x *= (f32)((f32)sWidth * sScaleX) / 320.0f;
             loc_78.scale_y *= ((480.0f * (f32)((f32)sHeight * sScaleY)) / screenH) / 240.0f;
@@ -1529,7 +1525,7 @@ void fn_5_2E00(void) {
         } else if (entry->type == 4) {
             if (entry->arg < fn_1_40ED4()) {
                 loc_78 = TEMPLATE;
-                loc_78.y = posY;
+                loc_78.y = (480.0f * (f32)(s16)y) / screenH;
                 loc_78.x = (f32)(s16)x;
                 loc_78.scale_x *= (f32)((f32)sWidth * sScaleX) / 320.0f;
                 loc_78.scale_y *= ((480.0f * (f32)((f32)sHeight * sScaleY)) / screenH) / 224.0f;
