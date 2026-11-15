@@ -28,16 +28,21 @@ def pool_backup_path(key: str) -> Path:
     return STATE_DIR / 'pool_upgrades' / (key.replace(':', '__') + '.json')
 
 
-def preserve_pool(p: Project, key: str) -> None:
+def preserve_pool(p: Project, key: str, revision: bool = False) -> None:
     """Journal accepted C and compiler settings before attempting a linked upgrade."""
     state = Ledger().get(key)
-    if not state or state['status'] != 'matched' or state['link_state'] != 'pool':
+    if not state:
+        return
+    accepted = state['status'] == 'matched' or (
+        revision and state['status'] == 'claimed' and state['prev_status'] == 'matched')
+    allowed_links = ('pool', 'verified') if revision else ('pool',)
+    if not accepted or state['link_state'] not in allowed_links:
         return
     path = pool_backup_path(key)
     sym = p.resolve(key)
     unit = p.unit_record(p.unit_of(sym))
     src = ROOT / 'src' / unit.get('tu', unit['source'])
-    saved = dict(unit=unit, matched_commit=state['matched_commit'])
+    saved = dict(unit=unit, matched_commit=state['matched_commit'], link_state=state['link_state'])
     if unit.get('tu'):
         tf = tufile.parse(src.read_text())
         block = tf.get(sym.name)
@@ -81,8 +86,8 @@ def restore_pool(p: Project, key: str) -> bool:
         units = p.load_units()
         units = [unit if u['source'] == unit['source'] else u for u in units]
         p.save_units(units)
-    Ledger().db.execute("UPDATE functions SET status='matched', link_state='pool', matched_commit=? WHERE symbol=?",
-                        (saved['matched_commit'], key))
+    Ledger().db.execute("UPDATE functions SET status='matched', link_state=?, matched_commit=? WHERE symbol=?",
+                        (saved.get('link_state', 'pool'), saved['matched_commit'], key))
     return True
 
 

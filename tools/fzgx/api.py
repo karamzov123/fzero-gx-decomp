@@ -667,6 +667,31 @@ def _promote_referenced_locals(p: Project, key: str, unit_src: Optional[str], un
     return out
 
 
+def _update_match_metadata(p: Project, unit_src: Optional[str], result: oracle.CheckResult) -> bool:
+    """Bind the installed source's literals, including labels changed by a revision."""
+    if unit_src is None:
+        raise ValueError("matched source has no registered unit")
+    changed = False
+    with oracle.build_lock("units.lock"):
+        units = p.load_units()
+        for unit in units:
+            if unit["source"] != unit_src:
+                continue
+            before = dict(unit)
+            if result.matched_pool:
+                unit["pool"] = True
+            else:
+                unit["status"] = "matching"
+                if result.pool_map:
+                    unit["pool"] = dict(result.pool_map)
+                else:
+                    unit.pop("pool", None)
+            changed = unit != before
+        if changed:
+            p.save_units(units)
+    return changed
+
+
 def _install(p: Project, unit_src: str, text: str, pool: bool = False) -> None:
     """Make `text` the canonical source of the unit: a block of its TU file, or its own file.
 
@@ -794,8 +819,11 @@ def submit(p: Project, symbol: str, agent: str = "unknown", message: str = "",
             l.finish(key, "released", "unmatched", notes=f"revise rejected: {reason}", model=model,
                      harness=harness, tokens_in=tokens_in, tokens_out=tokens_out, cost_usd=cost_usd, shadow=True)
             return {"ok": False, "error": reason, "percent": res.percent, "revise": True}
+        verify.preserve_pool(p, key, revision=True)
         if work.exists():
             _install(p, unit_src, work.read_text(), pool=res.matched_pool)
+        if _update_match_metadata(p, unit_src, res):
+            _reconfigure_and_split(p)
         _discard_work(p, key)
         link = "pool" if res.matched_pool else "pending"
         l.db.execute("UPDATE functions SET link_state=? WHERE symbol=?", (link, key))
@@ -831,19 +859,7 @@ def submit(p: Project, symbol: str, agent: str = "unknown", message: str = "",
     if install_source.exists():
         _install(p, unit_src, install_source.read_text(), pool=res.matched_pool)
     _discard_work(p, key)
-    with oracle.build_lock("units.lock"):
-        units = p.load_units()
-        for u in units:
-            if u["source"] == unit_src:
-                if res.matched_pool:
-                    u["pool"] = True          # accepted, retail object linked (see CLAUDE.md)
-                else:
-                    u["status"] = "matching"
-                    if res.pool_map:
-                        u["pool"] = dict(res.pool_map)  # ninja retargets the literals after compiling
-                    else:
-                        u.pop("pool", None)
-        p.save_units(units)
+    _update_match_metadata(p, unit_src, res)
     if res.pool_map and expected_pool_seed is None:
         _reconfigure_and_split(p)  # build.ninja gains the mwcc_pool statement for this unit
     # Existing pool units keep their splits. The verifier's Ninja configure
