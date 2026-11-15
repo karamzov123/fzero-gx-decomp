@@ -7960,6 +7960,10 @@ static inline f32 fn_1_13FB8C_clamp(f32 t) {
 #define PACKET_B(n) (((u8 *)&packet)[(n)])
 #define PRINT_VALUE(n) fn_1_4AE0C((char *)p_lbl_1_data_40F58 + 0xe8c, ((char **)values.a)[(n) * 6 + lbl_801A66B4])
 
+u8 lbl_1_data_42118[28] = {
+    0x83U, 0x7DU, 0x83U, 0x58U, 0x83U, 0x5EU, 0x81U, 0x5BU, 0x00U, 0x00U, 0x00U, 0x00U, 0x25U, 0x73U, 0x20U, 0x00U, 0x81U, 0xA3U, 0x00U, 0x00U, 0x25U, 0x30U, 0x32U, 0x64U, 0x00U, 0x00U, 0x00U, 0x00U
+};
+
 void fn_1_13FB8C(u32 arg0, u32 arg1, s16 arg2, s16 arg3, s32 arg4, f32 arg5) {
     u8 *p_lbl_1_data_40F58;
     struct fn_1_13FB8C_Copy216 values;
@@ -8114,6 +8118,8 @@ void fn_1_13FB8C(u32 arg0, u32 arg1, s16 arg2, s16 arg3, s32 arg4, f32 arg5) {
         originY += 23;
     }
 }
+
+u32 lbl_1_data_42194 = 0x819A0000U;
 /* fzgx:end fn_1_13FB8C */
 
 /* fzgx:begin fn_1_14083C */

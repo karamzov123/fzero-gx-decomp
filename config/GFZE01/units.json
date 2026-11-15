@@ -98313,8 +98313,7 @@
       "lbl_1_data_420E8",
       "lbl_1_data_420F4",
       "lbl_1_data_42100",
-      "lbl_1_data_4210C",
-      "lbl_1_data_42118"
+      "lbl_1_data_4210C"
     ],
     "status": "matching",
     "data": true,
@@ -138290,10 +138289,7 @@
     "pool": {
       "@174": "lbl_1_rodata_8600",
       "@172": "lbl_1_rodata_85F0",
-      "@177": "lbl_1_rodata_8608",
-      "@186": "jumptable_1_data_42174",
-      "@187": "jumptable_1_data_42154",
-      "@188": "jumptable_1_data_42134"
+      "@177": "lbl_1_rodata_8608"
     }
   },
   {

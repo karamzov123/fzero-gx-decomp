@@ -321163,25 +321163,6 @@
     "unit_size": 620,
     "unit_start": 270024
   },
-  "main_rel:lbl_1_data_42118": {
-    "address": 270616,
-    "align": 8,
-    "declarations": [],
-    "definition": "u8 lbl_1_data_42118[28]",
-    "method": "typed-data",
-    "module": "main_rel",
-    "references": [],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 620,
-    "sha256": "dfed3d87a84e4be1a80b475889725c3725ea79517ed0cd526cdad73289452c63",
-    "size": 28,
-    "source": "rel/main_rel/data/lbl_1_data_41EC8.c",
-    "symbol": "lbl_1_data_42118",
-    "unit_align": 8,
-    "unit_size": 620,
-    "unit_start": 270024
-  },
   "main_rel:lbl_1_data_42198": {
     "address": 270744,
     "align": 8,

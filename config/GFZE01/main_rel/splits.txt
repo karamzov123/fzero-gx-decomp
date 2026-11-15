@@ -8557,6 +8557,7 @@ rel/main_rel/sel_static_disp/fn_1_1375C0.c:
 
 rel/main_rel/sel_static_disp/fn_1_13FB8C.c:
 	.text       start:0x0013FB8C end:0x0014083C align:4
+	.data       start:0x00042118 end:0x00042198 align:8
 
 rel/main_rel/stcoli/fn_1_239C4.c:
 	.text       start:0x000239C4 end:0x000248C0 align:4
@@ -21084,7 +21085,7 @@ rel/main_rel/data/lbl_1_data_41E78.c:
 	.data       start:0x00041E78 end:0x00041EA8 align:8
 
 rel/main_rel/data/lbl_1_data_41EC8.c:
-	.data       start:0x00041EC8 end:0x00042134 align:8
+	.data       start:0x00041EC8 end:0x00042118 align:8
 
 rel/main_rel/data/lbl_1_data_42198.c:
 	.data       start:0x00042198 end:0x000421A8 align:8
