@@ -12,9 +12,18 @@ typedef struct MovieResource {
     u32 field_c;
 } MovieResource;
 
+static inline u32 resource_offset(MovieResource *movie) {
+    u32 offset;
+
+    offset = fn_12_35DB4(movie->field_8, movie->field_c);
+    if (fn_12_35548(movie) == 1) {
+        offset += 0x20000;
+    }
+    return offset;
+}
+
 u32 fn_12_38680(MovieResource *movie) {
     u32 base;
-    struct { u32 value; } offset;
 
     if (movie == 0) {
         MWSFSVM_Error(lbl_12_rodata_2240);
@@ -22,9 +31,5 @@ u32 fn_12_38680(MovieResource *movie) {
     }
 
     base = fn_12_38704();
-    offset.value = fn_12_35DB4(movie->field_8, movie->field_c);
-    if (fn_12_35548(movie) == 1) {
-        offset.value += 0x20000;
-    }
-    return base + offset.value;
+    return base + resource_offset(movie);
 }

@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "version": "GFZE01",
+  "base_commit": "0867d5941aefd6b67fc7a5cc273d2a9c4ff6e307",
+  "source_tree_sha256": "663a2b8080578f40afc2e65bb9aeb317cefd46024bea199fc1deb7334813b150",
+  "census_archive": "device-census-20261116.json.gz",
+  "census_sha256": "85f9db2c0a2203686cbc3dafecc73acf435052ad57276c8d98c52f4c91feff16",
+  "census_categories": {
+    "adx-dead-write-use": {
+      "spots": 7,
+      "files": 1,
+      "owner_functions": 1
+    },
+    "marked-warning": {
+      "spots": 37,
+      "files": 12,
+      "owner_functions": 13
+    },
+    "optimization-pragma-review": {
+      "spots": 945,
+      "files": 273,
+      "owner_functions": 695
+    },
+    "single-field-value-carrier-review": {
+      "spots": 273,
+      "files": 97,
+      "owner_functions": 180
+    },
+    "volatile-token-review": {
+      "spots": 15470,
+      "files": 389,
+      "owner_functions": 1235
+    }
+  },
+  "confirmed_debt_owner_functions": [
+    "main:fn_8004313C",
+    "main:fn_80048340",
+    "main:fn_8004EFA8",
+    "main:fn_8004F00C",
+    "main:fn_8004F26C",
+    "main:fn_8004F55C",
+    "main:fn_8006BCF8",
+    "main_rel:fn_1_12F4A8",
+    "main_rel:fn_1_145C6C",
+    "main_rel:fn_1_15578",
+    "main_rel:fn_1_163BC",
+    "main_rel:fn_1_2CBAC",
+    "sel:_epilog"
+  ],
+  "source_forms": {
+    "c": 7159,
+    "mixed": 1,
+    "original-assembly": 5,
+    "standalone-assembly": 186
+  },
+  "change": {
+    "symbol": "movie_module:fn_12_38680",
+    "source": "src/rel/movie_module/fn_12_38680.c",
+    "before_sha256": "907668ba11da11ca68fef9477ea338c5eb3b1ebdd23e919460860a6db6178dc7",
+    "after_sha256": "1f59b4e14d85e6b043896acdbf11bdc8e536b80289d07c0f6d863026f9ce71ed",
+    "compiler": "GC/1.3.2",
+    "flags": "",
+    "carrier_declarations_removed": 1,
+    "explanation": "Group the real resource-offset computation (offset lookup and mode adjustment) in an inline helper; preserve the null guard, base-call order, widths and unsigned arithmetic. No scalar wrapper, identity helper, unused value, pragma or volatile was introduced.",
+    "fully_natural_function_credit_claimed": false
+  },
+  "experiments": [
+    {
+      "archive": "small-carrier-removals-20261116.sources.json.gz",
+      "functions": 32,
+      "records": 98,
+      "accepted": 0,
+      "stopping_condition": "32 smallest single-function source owners from the frozen before census, two-round maximum; stop first zero-yield round.",
+      "sha256": "966f301e59e0a495dd3db94c4507ad2bf846045416dae5b617ab640b7ea2fb3a"
+    },
+    {
+      "archive": "carrier-computations-20261116.sources.json.gz",
+      "functions": 2,
+      "records": 5,
+      "accepted": 1,
+      "stopping_condition": "Two controls, one real adjusted-offset helper and two real quotient helper spellings, once.",
+      "sha256": "b20b5e5cf86f677b0ea5d1d7ed2d36f53a0308cb7b6e691563a40362680986e4"
+    }
+  ],
+  "validation": [
+    "Independent line-by-line marker scan agrees with all 37 warning locations.",
+    "All 16733 initial finding source-line checks passed; source patch removes exactly one carrier review spot and no other category changes.",
+    "All 32 removal-only controls match; all 66 removals/combined removals are retained as nonmatching evidence.",
+    "Accepted resource-offset computation matches real MWCC object and relocations; no extra helper is emitted.",
+    "configure.py; ninja -j 2 build/GFZE01/ok: 16 files OK",
+    "build/tools/dtk shasum -q -c config/GFZE01/build.sha1: 16 files OK",
+    "tools/fzgx.py lint: 0 finding(s)",
+    "Both portable archives replayed all 103 bodies; programmatic source-SHA sets, exact verdicts and aligned error counts agree with the original reports."
+  ],
+  "limits": [
+    "Warning spots are comments, not distinct devices. Multiple warnings can describe one device, and one warning can describe several.",
+    "Owners are physical TU-block owners or single-function source owners, not a complete call graph. Shared primers and headers can affect other consumers.",
+    "ADX dead-write uses are explicit device consumers. Other pragmas, volatile tokens and scalar-carrier shapes are review signals, not confirmed devices.",
+    "Source-form classification uses current configured retail functions and the existing reviewed assembly registry; C form does not certify natural C.",
+    "No preprocessor/call-graph or whole-project semantic audit is claimed. Unmarked devices and unresolved type/data ownership are not a certified total."
+  ]
+}

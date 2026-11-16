@@ -363,6 +363,14 @@ def cmd_honest(a, p):
     return 0
 
 
+def cmd_devicecensus(a, p):
+    """Separate marked debt, lexical review signals and configured source form."""
+    from . import devicecensus
+    report = devicecensus.measure(p)
+    _print(report if a.json else devicecensus.summary(report), a.json)
+    return 0
+
+
 def cmd_shapecensus(a, p):
     """Divergence-kind census of the near-miss band; see tools/fzgx/shapecensus.py."""
     from fzgx import shapecensus
@@ -731,6 +739,9 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--limit", type=int, default=0, help="cap --uncredited output")
     s.add_argument("--closure", action="store_true",
                    help="per-module closure table: what is authored, and what each module still costs")
+    s = sub.add_parser("devicecensus", help="read-only marked-device and source-form inventory; review signals are not device verdicts")
+    s.set_defaults(fn=cmd_devicecensus)
+    s.add_argument("--json", action="store_true", help="include source locations, owners and input fingerprints")
     s = sub.add_parser("shapecensus",
                        help="classify the near-miss band by divergence kind (is regalloc one shape?)")
     s.set_defaults(fn=cmd_shapecensus)
