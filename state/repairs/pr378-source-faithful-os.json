@@ -3,7 +3,7 @@
   "version": "GFZE01",
   "pull_request": 378,
   "reviewed_head": "f10df00c1f0f3f004e8ea03849cc5f8541c376e0",
-  "base_main": "875d32594d0a1c686beddb816f34715efae42a75",
+  "base_main": "27a4323b999436af79541576ebb07478f0fa87b8",
   "decision": "Accept the mixed OS.c reconstruction, resolve conflicts while retaining current main, and replace the proposed file-wide lint exemption with reviewed individual assembly spans.",
   "source_provenance": "OS.c is identical to PR #378's reviewed source and the already accepted PR #379 implementation. Other projects were inspected for conventions only; no donor implementation was imported. The existing OSGetTick body was not changed.",
   "preferred_form": "Original language and native mixed translation unit where evidenced; standalone assembler when originally standalone. Do not force known SDK asm functions into separate units merely because their original container is C.",
