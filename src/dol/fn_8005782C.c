@@ -51,7 +51,6 @@ typedef struct SJMemory {
 extern u32 fn_80057728(void);
 extern u32 fn_800576DC(void);
 
-static inline void fn_8005782C_store(void *destination, int value) { *(int *)destination = value; }
 #pragma opt_dead_assignments off
 u32 fn_8005782C(SJ *sj, int channel, SJCK *chunk) {
     int *fzgx_value_;
@@ -91,7 +90,7 @@ u32 fn_8005782C(SJ *sj, int channel, SJCK *chunk) {
                 memory->error_callback(memory->error_object, -3);
             }
         } else {
-            fn_8005782C_store(&(chunk->len), 0);
+            (*( int * )(&(chunk->len)) = (0));
             chunk->data = 0;
             if (memory->error_callback != 0) {
                 memory->error_callback(memory->error_object, -3);

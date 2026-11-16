@@ -106344,8 +106344,12 @@
       "...rodata.0": "lbl_1_rodata_2950",
       "@34": "lbl_1_rodata_29C0",
       "@27": "lbl_1_rodata_29A4",
+      "@151": "lbl_1_rodata_2B64",
+      "@271": "lbl_1_rodata_2CE8",
       "@13": "lbl_1_rodata_2978",
-      "@16": "lbl_1_rodata_2988"
+      "@16": "lbl_1_rodata_2988",
+      "@272": "lbl_1_rodata_2CF0",
+      "@273": "lbl_1_rodata_2CF8"
     }
   },
   {
@@ -110000,7 +110004,7 @@
     "extra_cflags": [],
     "tu": "rel/main_rel/font.c",
     "pool": {
-      "@41": "lbl_1_rodata_2758"
+      "@34": "lbl_1_rodata_2758"
     }
   },
   {
@@ -122262,7 +122266,7 @@
     "extra_cflags": [],
     "tu": "rel/main_rel/phys.c",
     "pool": {
-      "@54": "lbl_1_rodata_6800"
+      "@50": "lbl_1_rodata_6800"
     }
   },
   {

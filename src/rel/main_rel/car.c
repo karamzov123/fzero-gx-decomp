@@ -9986,7 +9986,6 @@ typedef struct {
     f32 unk_150;
 } FzgxChild;
 
-static inline void fn_1_85F90_store(u32 *destination, u32 value) { *destination = value; }
 static inline const f32 *fn_1_85F90_array_read(const f32 *array) { return array; }
 void fn_1_85F90(void *obj, f32 a, f32 b, f32 c, f32 d, int mode) {
     f32 *fzgx_value;
@@ -10036,7 +10035,7 @@ void fn_1_85F90(void *obj, f32 a, f32 b, f32 c, f32 d, int mode) {
     }
     fn_1_23500(obj, a);
     if (child != 0 && active) {
-        fn_1_85F90_store(&(child->unk_11c), 0);
+        (*(&(child->unk_11c)) = (0));
         child->unk_118 = 0;
     }
 }
@@ -39953,7 +39952,6 @@ typedef struct {
 
 
 
-static inline void fn_1_95238_store(f32 *destination, f32 value) { *destination = value; }
 static inline void fn_1_95238_call_fn_1_4270C(void * a0, void * a1, u32 a2) { fn_1_4270C(a0, (s32)(void *)(a1), a2); }
 
 void fn_1_95238(u32 arg0, EventList *arg1) {
@@ -39980,7 +39978,7 @@ void fn_1_95238(u32 arg0, EventList *arg1) {
     fzgx_value = &(arg1->field_68);
     *fzgx_value = lbl_1_rodata_3F6C;
     p_lbl_801A6D00 = (fn_1_95238_lbl_801A6D00 *)&(*((fn_1_95238_lbl_801A6D00 *)&lbl_801A6D00));
-    fn_1_95238_store(&(arg1->field_6c), lbl_1_rodata_3F6C);
+    (*(&(arg1->field_6c)) = (lbl_1_rodata_3F6C));
     v2 = (u8 *)arg1;
     v1 = (u8 *)arg1;
     v0 = 0;

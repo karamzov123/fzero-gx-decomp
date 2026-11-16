@@ -25998,13 +25998,16 @@ u32 fn_1_3FC9C(void) {
 /* fzgx:end fn_1_3FC9C */
 
 /* fzgx:begin fn_1_3FCB0 */
-static inline u32 fn_1_3FCB0_operand(u32 left, u32 right) { left &= right; return left; }
 #pragma opt_propagation off
 void fn_1_3FCB0(s32 value) {
     s32 mask = -value;
     mask |= value;
     mask >>= 31;
-    lbl_1_bss_3C08[0] = fn_1_3FCB0_operand(((lbl_1_bss_3C08[0] | (u32)value)), ((u32)mask));
+    {
+        u32 arithmetic_value = (u32)(((lbl_1_bss_3C08[0] | (u32)value)));
+        arithmetic_value &= (u32)(((u32)mask));
+        lbl_1_bss_3C08[0] = arithmetic_value;
+    }
 }
 #pragma opt_propagation reset
 /* fzgx:end fn_1_3FCB0 */

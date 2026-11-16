@@ -1725,7 +1725,6 @@ static inline void fn_1_E3778_loop2(void) {
     }
 }
 
-static inline void fn_1_E3778_call_fn_1_E1A00(void * a0, void * a1) { fn_1_E1A00(a0, a1); }
 void fn_1_E3778(void) {
     s16 n;
     struct { u8 *value; } name;
@@ -1738,7 +1737,7 @@ void fn_1_E3778(void) {
         n = fn_1_E5430(i);
         p = fn_1_E54A8(i, 0);
         for (j = 0; j < n; j++, p = (void *)((u8 *)p + 0x1a8)) {
-            fn_1_E3778_call_fn_1_E1A00(p, name.value);
+            fn_1_E1A00(p, name.value);
         }
     }
     fn_1_E2DCC();
@@ -2560,7 +2559,6 @@ static inline u32 *fn_1_E4A38_array_read(u32 *array) { return array; }
 #pragma opt_propagation off
 static inline u32 fn_1_E4A38_array_read_(u32 *array, s32 index) { return array[index]; }
 static inline u32 * fn_1_E4A38_read_pointer(struct D * owner) { return owner->unk_30; }
-static inline char * fn_1_E4A38_call_strcat(const char * a1, char * a0) { return strcat(a0, a1); }
 void fn_1_E4A38(u32 arg0, u16 arg1, u16 arg2, Cb arg3) {
     u8 * fzgx_live;
     struct D *p_lbl_1_data_3DC98;
@@ -2643,7 +2641,7 @@ void fn_1_E4A38(u32 arg0, u16 arg1, u16 arg2, Cb arg3) {
         }
         v2 = *(u32 *)((u8 *)arg0 + 316);
         if ((*(u64 *)((u8 *)arg0 + 312) & 0x40000000) != 0) {
-            fn_1_E4A38_call_strcat((const char *)p_lbl_1_data_3DC98->s2a4, loc_8);
+            strcat(loc_8, (const char *)p_lbl_1_data_3DC98->s2a4);
         }
         v0 = *(u32 *)((u8 *)arg0 + 316);
         if ((*(u64 *)((u8 *)arg0 + 312) & 0x20000000) != 0) {

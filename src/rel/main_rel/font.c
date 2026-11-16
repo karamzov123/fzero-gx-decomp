@@ -5319,7 +5319,6 @@ extern void fn_80073C6C(s32);
 extern GXTexObj lbl_1_bss_4E688;
 
 static inline f32 fn_1_4E220_operand(f32 left, f32 right) { left *= right; return left; }
-static inline void fn_1_4E220_call_GXInitTexObj(GXTexObj * a0, void * a1, u16 a2, u16 a3, GXTexFmt a4, GXTexWrapMode a5, GXTexWrapMode a6, u8 a7) { GXInitTexObj(a0, a1, a2, a3, a4, a5, a6, a7); }
 static inline f32 fn_1_4E220_operand_(f32 right, f32 left) { return left * right; }
 void fn_1_4E220(struct Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
     f32 fzgx_live;
@@ -5362,7 +5361,7 @@ void fn_1_4E220(struct Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
         scale = f46 * scale;
         DCFlushRange((void *)arg0->unk_48, __cvt_fp2unsigned(scale));
         lab_t3_ = arg0->unk_46;
-        fn_1_4E220_call_GXInitTexObj(&lbl_1_bss_4E688, (void *)arg0->unk_48, ((u16)(arg0->unk_44)), lab_t3_, (GXTexFmt)arg0->unk_40, GX_CLAMP, GX_CLAMP, 0);
+        GXInitTexObj(&lbl_1_bss_4E688, (void *)arg0->unk_48, ((u16)(arg0->unk_44)), lab_t3_, (GXTexFmt)arg0->unk_40, GX_CLAMP, GX_CLAMP, 0);
         lab_t1 = arg3 & 0xFF;
         fn_80073778(&lbl_1_bss_4E688, lab_t1);
     } else {

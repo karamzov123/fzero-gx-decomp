@@ -566,7 +566,6 @@ extern void fn_1_A2D84(u32);
 
 #pragma opt_lifetimes off
 #pragma opt_propagation off
-static inline void fn_1_E174_store(s16 value, s16 *destination) { *destination = value; }
 void fn_1_E174(f32 arg0) {
     f32 fzgx_live;
     s16 fzgx_value;
@@ -714,7 +713,7 @@ void fn_1_E174(f32 arg0) {
     v3 = (p_lbl_1_rodata_4E0->unk_1C);
     v8 = (p_lbl_1_bss_1148->unk_2E - 1);
     v9 = (-p_lbl_1_bss_1148->unk_24);
-    fn_1_E174_store(60, &(p_lbl_1_data_43B8->unk_14C));
+    (*(&(p_lbl_1_data_43B8->unk_14C)) = (60));
     v2 += 1536;
     fzgx_value = v8;
     p_lbl_1_bss_1148->unk_2E = fzgx_value;

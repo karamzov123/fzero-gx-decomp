@@ -1349,8 +1349,8 @@ typedef struct {
 
 static inline f64 fn_1_D7A10_operand(f64 right, f64 left) { return left * right; }
 static inline f64 fn_1_D7A10_operand_(f64 right, f64 left) { return left * right; }
-static inline f64 fn_1_D7A10_operand__(f64 right, f64 left) { return left * right; }
-static inline f64 fn_1_D7A10_operand___(f64 right, f64 left) { return left * right; }
+
+
 void fn_1_D7A10(LigSeg *obj) {
 	s32 i;
 
@@ -1359,8 +1359,16 @@ void fn_1_D7A10(LigSeg *obj) {
 			f64 t;
 
 			obj->f3c = (f32)(fn_1_D7A10_operand((0.98), (obj->f3c)));
-			obj->f40 = (f32)(fn_1_D7A10_operand__((0.98), (obj->f40)));
-			obj->f44 = (f32)(fn_1_D7A10_operand___((0.98), (obj->f44)));
+			{
+			    f64 product_value = (f64)((obj->f40));
+			    product_value *= (f64)((0.98));
+			    obj->f40 = (f32)(product_value);
+			}
+			{
+			    f64 product = (f64)((obj->f44));
+			    product *= (f64)((0.98));
+			    obj->f44 = (f32)(product);
+			}
 			obj->f40 = obj->f40 - 0.08f;
 			obj->f30 = obj->f30 + obj->f3c;
 			obj->f34 = obj->f34 + obj->f40;

@@ -1505,7 +1505,6 @@ typedef struct {
 } Request;
 
 #pragma opt_common_subs off
-static inline void fn_1_157070_store(u32 value, u32 *destination) { *destination = value; }
 void fn_1_157070(State *state) {
     u8 *fzgx_value__;
     f32 fzgx_live;
@@ -1530,7 +1529,7 @@ void fn_1_157070(State *state) {
         success.value = 0;
         request.unk0 = 2;
         request.unk4 = (s32)(table[16] * amount) + 300;
-        fn_1_157070_store(0, &(request.unk8));
+        (*(&(request.unk8)) = (0));
         fzgx_value__ = &(request.unkc);
         *fzgx_value__ = (u8)((s32)(table[17] * amount) + 80);
         request.unke = 90;

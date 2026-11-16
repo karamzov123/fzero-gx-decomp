@@ -20806,8 +20806,6 @@ struct CalcOut {
 };
 
 
-static inline f32 fn_1_2A500_read_y(Vec3 * owner) { return owner->y; }
-static inline f32 fn_1_2A500_read_z(Vec3 * owner) { return owner->z; }
 #pragma opt_common_subs off
 s32 fn_1_2A500(void *self, Vec3 *out, Vec3 *pos, void *a, void *b, f32 *outF)
 {
@@ -20829,8 +20827,8 @@ s32 fn_1_2A500(void *self, Vec3 *out, Vec3 *pos, void *a, void *b, f32 *outF)
                        (u8 *)mgr + 0x9C, *(u32 *)((u8 *)mgr + 0x98), 0);
 
     if (found != 0) {
-        f32 dz = fn_1_2A500_read_z(out);
-        f32 dy = fn_1_2A500_read_y(out);
+        f32 dz = (out->z);
+        f32 dy = (out->y);
         f32 dx = (out->x);
         f32 d;
 

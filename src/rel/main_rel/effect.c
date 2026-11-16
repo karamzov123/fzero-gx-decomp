@@ -19605,7 +19605,7 @@ typedef struct EffP {
 } EffP;
 
 #pragma opt_dead_assignments off
-static inline f64 fn_1_65B5C_operand(f64 right, f64 left) { return left * right; }
+
 void fn_1_65B5C(EffP *p) {
     f32 fzgx_live_;
     f32 fzgx_live;
@@ -19620,7 +19620,11 @@ void fn_1_65B5C(EffP *p) {
     p->f44 = p->f44 + p->f50;
     if (p->f28 > 50.0f * (((p->fb4) / 2.0f))) {
         fzgx_live_ = p->f2c;
-        p->f2c = fn_1_65B5C_operand((0.9200000137090683), (fzgx_live_));
+        {
+            f64 product = (f64)((fzgx_live_));
+            product *= (f64)((0.9200000137090683));
+            p->f2c = product;
+        }
     }
     p->f28 = p->f28 + p->f2c;
     one = 1.0f;

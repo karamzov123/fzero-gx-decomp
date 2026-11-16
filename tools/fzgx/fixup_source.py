@@ -3758,7 +3758,7 @@ def optimizer_directive_removals(body, name):
 
 
 def native_operand_helpers(body, name):
-    """Remove pure float operand wrappers, preserving their scalar rounding.
+    """Remove pure scalar operand wrappers, preserving their rounding.
 
     Scoped arithmetic is proposed only for a complete, unconditional statement
     with no other nested calls or side effects. Compiler/oracle admission remains
@@ -3769,18 +3769,21 @@ def native_operand_helpers(body, name):
     if not span:
         return
     code = masked(body)
+    scalar_ty = r'(?:f32|float|f64|double|u32|s32|u16|s16|u8|s8|int|unsigned(?:\s+int|\s+long)?|long)'
     pattern = re.compile(
-        r'\bstatic\s+inline\s+(?:f32|float)\s+(\w*operand\w*)\s*\('
-        r'\s*(?:f32|float)\s+(\w+)\s*,\s*(?:f32|float)\s+(\w+)\s*\)'
+        r'\bstatic\s+inline\s+(' + scalar_ty + r')\s+(\w*operand\w*)\s*\('
+        r'\s*(' + scalar_ty + r')\s+(\w+)\s*,\s*(' + scalar_ty + r')\s+(\w+)\s*\)'
         r'\s*\{([^{}]+)\}')
     calls = [dict(callee=callee, start=start, end=end, slots=slots)
              for callee, start, end, slots in call_sites(body)]
     identifier = r'[A-Za-z_]\w*'
     lvalue = identifier + r'(?:\s*(?:->|\.)\s*' + identifier + r'|\s*\[[^\[\]\n]+\])*'
     for definition in pattern.finditer(code):
-        helper, first, second, inner = definition.groups()
-        expression = re.fullmatch(r'\s*return\s+(\w+)\s*([+*/-])\s*(\w+)\s*;\s*', inner)
-        compound = re.fullmatch(r'\s*(\w+)\s*([+*/-])=\s*(\w+)\s*;\s*return\s+\1\s*;\s*', inner)
+        ret_ty, helper, ty1, first, ty2, second, inner = definition.groups()
+        expression = re.fullmatch(
+            r'\s*return\s+\(*(\w+)\)*\s*([+*/&|^-])\s*\(*(\w+)\)*\s*;\s*', inner)
+        compound = re.fullmatch(
+            r'\s*(\w+)\s*([+*/&|^-])=\s*\(*(\w+)\)*\s*;\s*return\s+\1\s*;\s*', inner)
         operation = expression or compound
         if not operation or {operation[1], operation[3]} != {first, second}:
             continue
@@ -3797,13 +3800,15 @@ def native_operand_helpers(body, name):
             continue
         replacements = []
         scoped = []
+        types_by_param = {first: ty1, second: ty2}
         for site in sites:
             args = [body[a:b].strip() for a, b in site['slots']]
             values = dict(zip((first, second), args))
             left, right = values[operation[1]], values[operation[3]]
+            left_ty, right_ty = types_by_param[operation[1]], types_by_param[operation[3]]
             op = operation[2]
             replacements.append((site['start'], site['end'],
-                                 f'((f32)((f32)({left}) {op} (f32)({right})))'))
+                                 f'(({ret_ty})(({left_ty})({left}) {op} ({right_ty})({right})))'))
             begin = body.rfind('\n', 0, site['start']) + 1
             end = body.find('\n', site['end'])
             end = len(body) if end < 0 else end
@@ -3823,8 +3828,8 @@ def native_operand_helpers(body, name):
                 local += '_value'
             indent = statement[:len(statement) - len(statement.lstrip(' \t'))]
             rewritten = statement[:site['start'] - begin] + local + statement[site['end'] - begin:]
-            text = (indent + '{\n' + indent + f'    f32 {local} = (f32)({left});\n'
-                    + indent + f'    {local} {op}= (f32)({right});\n'
+            text = (indent + '{\n' + indent + f'    {left_ty} {local} = ({left_ty})({left});\n'
+                    + indent + f'    {local} {op}= ({right_ty})({right});\n'
                     + indent + '    ' + rewritten.strip() + '\n' + indent + '}')
             scoped.append((begin, end, text))
         for label, edits in [('inline float operand ', replacements), ('scoped float arithmetic ', scoped)]:
@@ -3837,7 +3842,7 @@ def native_operand_helpers(body, name):
 
 
 def native_access_helpers(body, name):
-    """Remove synthetic read_pointer and array_read accessor wrappers."""
+    """Remove synthetic read_pointer, array_read, store, and call wrappers."""
     from .sdkimport import masked
     span = _function_body_span(body, name)
     if not span:
@@ -3846,7 +3851,7 @@ def native_access_helpers(body, name):
     calls = [dict(callee=callee, start=start, end=end, slots=slots)
              for callee, start, end, slots in call_sites(body)]
     rp_pat = re.compile(
-        r'(?m)^[ \t]*static\s+inline\s+([^\n{;]+?)\s+(\w*read_pointer\w*)\s*\('
+        r'(?m)^[ \t]*static\s+inline\s+([^\n{;]+?)\s+(\w*read_(?:pointer|size|one|y|z|entry)\w*)\s*\('
         r'\s*([^\n,;{}]+?)\s*(\w+)\s*\)\s*\{\s*return\s+\4((?:(?:->|\.)\w+)+)\s*;\s*\}[ \t]*\n?')
     for defn in rp_pat.finditer(code):
         ret, helper, param_ty, param, chain = defn.groups()
@@ -3909,6 +3914,71 @@ def native_access_helpers(body, name):
                         p2: body[site['slots'][1][0]:site['slots'][1][1]].strip()}
                 arr_expr, idx_expr = args[r_arr], args[r_idx]
                 edits.append((site['start'], site['end'], f'(({arr_expr})[{idx_expr}])'))
+        text = body
+        for a, b, repl in sorted(edits, reverse=True):
+            text = text[:a] + repl + text[b:]
+        yield 'inline access helper ' + helper, text
+
+    st_pat = re.compile(
+        r'(?m)^[ \t]*static\s+inline\s+void\s+(\w*_store\w*)\s*\('
+        r'\s*([^\n,;{}]+?)\s*(\w+)\s*,\s*([^\n,;{}]+?)\s*(\w+)\s*\)'
+        r'\s*\{\s*\*\s*(?:\(\s*([^\n();{}]+?)\s*\))?\s*(\w+)\s*=\s*(\w+)\s*;\s*\}[ \t]*\n?')
+    for defn in st_pat.finditer(code):
+        helper, ty1, p1, ty2, p2, cast_ty, dst_p, val_p = defn.groups()
+        if any('volatile' in (x or '') for x in (ty1, ty2, cast_ty)) or {dst_p, val_p} != {p1, p2}:
+            continue
+        sites = [s for s in calls if s['callee'] == helper
+                 and not defn.start() <= s['start'] < defn.end()]
+        if not sites or any(not span[1] <= s['start'] < s['end'] <= span[2]
+                            or len(s['slots']) != 2 for s in sites):
+            continue
+        if any(a['start'] < b['start'] < a['end'] for a in sites for b in sites):
+            continue
+        if len(re.findall(r'\b' + re.escape(helper) + r'\b', code)) != len(sites) + 1:
+            continue
+        edits = [(defn.start(), defn.end(), '')]
+        for site in sites:
+            args = {p1: body[site['slots'][0][0]:site['slots'][0][1]].strip(),
+                    p2: body[site['slots'][1][0]:site['slots'][1][1]].strip()}
+            dst_expr, val_expr = args[dst_p], args[val_p]
+            if cast_ty:
+                expr = f'(*( {cast_ty.strip()} )({dst_expr}) = ({val_expr}))'
+            elif dst_expr.startswith('&') and re.fullmatch(r'&\s*[A-Za-z_]\w*(?:(?:->|\.)\w+|\s*\[[^\[\]\n]+\])*', dst_expr):
+                expr = f'({dst_expr[1:].strip()} = ({val_expr}))'
+            else:
+                expr = f'(*({dst_expr}) = ({val_expr}))'
+            edits.append((site['start'], site['end'], expr))
+        text = body
+        for a, b, repl in sorted(edits, reverse=True):
+            text = text[:a] + repl + text[b:]
+        yield 'inline access helper ' + helper, text
+
+    call_pat = re.compile(
+        r'(?m)^[ \t]*static\s+inline\s+([^\n{;]+?)\s+(\w*_call_\w+)\s*\(([^;{}]*)\)'
+        r'\s*\{\s*(?:return\s+)?(\w+)\s*\(([^;{}]*)\)\s*;\s*\}[ \t]*\n?')
+    for defn in call_pat.finditer(code):
+        ret, helper, param_str, target_fn, arg_str = defn.groups()
+        params = [re.search(r'(\w+)\s*$', p.strip()) for p in param_str.split(',') if p.strip()]
+        if not params or any(m is None for m in params):
+            continue
+        pnames = [m[1] for m in params]
+        cargs = [a.strip() for a in arg_str.split(',') if a.strip()]
+        if set(pnames) != set(cargs) or len(pnames) != len(cargs):
+            continue
+        sites = [s for s in calls if s['callee'] == helper
+                 and not defn.start() <= s['start'] < defn.end()]
+        if not sites or any(not span[1] <= s['start'] < s['end'] <= span[2]
+                            or len(s['slots']) != len(pnames) for s in sites):
+            continue
+        if any(a['start'] < b['start'] < a['end'] for a in sites for b in sites):
+            continue
+        if len(re.findall(r'\b' + re.escape(helper) + r'\b', code)) != len(sites) + 1:
+            continue
+        edits = [(defn.start(), defn.end(), '')]
+        for site in sites:
+            mapping = {p: body[a:b].strip() for p, (a, b) in zip(pnames, site['slots'])}
+            reordered = ', '.join(mapping[c] for c in cargs)
+            edits.append((site['start'], site['end'], f'{target_fn}({reordered})'))
         text = body
         for a, b, repl in sorted(edits, reverse=True):
             text = text[:a] + repl + text[b:]

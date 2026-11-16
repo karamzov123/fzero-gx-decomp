@@ -46,7 +46,6 @@ extern void fn_80078D60(s32);
 
 #pragma opt_loop_invariants off
 #pragma opt_propagation off
-static inline void fn_80078360_store(void *destination, u32 value) { *(u32 *)destination = value; }
 void *fn_80078360(fn_80078360_Arg0 *arg0, u8 *arg1, fn_80078360_Arg2 *arg2, u8 *arg3, fn_80078360_Arg4 *arg4) {
     u32 v0;
     s32 mask2;
@@ -105,7 +104,7 @@ void *fn_80078360(fn_80078360_Arg0 *arg0, u8 *arg1, fn_80078360_Arg2 *arg2, u8 *
                         *(u32 *)(p + 0x50) = fn_800723D8();
                         fn_80078344(*(u32 *)(p + 0x48), *(u32 *)(p + 0x50));
                         arg4->unk_30 = *(u32 *)(p + 0x48) + *(u32 *)(p + 0x50);
-                        fn_80078360_store(&(arg4->unk_34), arg4->unk_34 + *(u32 *)(p + 0x50));
+                        (*( u32 * )(&(arg4->unk_34)) = (arg4->unk_34 + *(u32 *)(p + 0x50)));
                     }
                 }
             }
