@@ -1,0 +1,98 @@
+{
+  "kind": "documentation-audit-no-source-repair",
+  "issue": "https://github.com/karamzov123/fzero-gx-decomp/issues/377",
+  "author": "jedgentry",
+  "review_date": "2026-11-16",
+  "historical_commit": "0efb2ebad7e1f40c6f9a4be19fbb27560267577c",
+  "current_comparison_commit": "43f969c4d8766e0a40134d4caab500cded51738d",
+  "attachment": {
+    "url": "https://github.com/user-attachments/files/34862077/device_census_0efb2ebad.json",
+    "sha256": "4f4ff62dadd1d017b1823775da6519e6e2107ed9d6e3baaf2d88938106f7d2ef",
+    "rows_recounted": 745,
+    "summary_reproduced_exactly": true,
+    "classes": {
+      "MARKED": {"functions": 12, "bytes": 21856},
+      "DEVICE": {"functions": 604, "bytes": 615840},
+      "UNCLEAR": {"functions": 44, "bytes": 15204},
+      "SETTING": {"functions": 85, "bytes": 52612}
+    },
+    "flagged_entries": 616,
+    "flagged_reported_bytes": 637696,
+    "stated_total_functions": 7310,
+    "stated_total_code_bytes": 2913268,
+    "scenario_percent_recomputed": 78.11063039857645,
+    "scenario_with_unclear_percent_recomputed": 77.58874226470067,
+    "historical_primary_markers_verified_in_selected_compiler_inputs": 12
+  },
+  "historical_verification": {
+    "isolated_retail_build": "16/16 hashes passed",
+    "fresh_objdiff_report": {
+      "total_functions": 7351,
+      "matched_functions": 7351,
+      "total_code_bytes": 2937044,
+      "matched_code_bytes": 2937044,
+      "total_data_bytes": 5068445,
+      "matched_data_bytes": 4999053
+    },
+    "module_qualified_inventory_agrees_with_objdiff": true,
+    "init_functions": 15,
+    "init_code_bytes": 9284,
+    "text_functions": 7336,
+    "text_code_bytes": 2927760
+  },
+  "identity_and_attribution_findings": {
+    "bare_name_keys_in_attachment": true,
+    "prolog_modules": 15,
+    "epilog_modules": 13,
+    "bare_text_name_dictionary_keys": 7310,
+    "bare_text_bytes_when_car_colchg_aliases_win": 2913268,
+    "denominator_diagnostic_is_not_proof_of_unpublished_script": true,
+    "mixed_identity_row": {
+      "key": "_prolog",
+      "reported_file": "src/rel/customize/_prolog.c",
+      "reported_bytes": 664,
+      "reported_bytes_actually_belong_to": "car_colchg:_prolog",
+      "customize_retail_bytes": 1048
+    },
+    "historical_device_entries_with_no_listed_pragma_in_selected_compiler_input": [
+      "customize:_prolog", "car_colchg:_epilog", "title:fn_8_B138", "main_rel:fn_1_103B00"
+    ],
+    "unclear_entry_with_null_reported_size": "__init_data",
+    "current_device_entries_with_no_listed_pragma_in_selected_compiler_input": [
+      "movie:fn_5_169C", "profile:fn_16_61D4", "customize:_prolog", "title:fn_8_B138", "main_rel:fn_1_103B00", "main_rel:fn_1_56B8", "movie:fn_5_4C8", "movie:fn_5_2C54", "movie:fn_5_37C", "car_colchg:_epilog"
+    ],
+    "screen_does_not_certify_device_freedom": true
+  },
+  "method_review": {
+    "device_entries_with_tu_verdict": 491,
+    "device_entries_with_neighbour_verdict": 113,
+    "full_604_classification_experiment_independently_replayed": false,
+    "missing_material": "Attachment includes verdict labels, not the experiment script, complete commands, compiler transcripts or raw object diffs.",
+    "interpretation": "Sensitivity of a sibling or neighbouring split object to an option does not establish that a scoped setting was absent from the original source or that reconstructed split boundaries were original TU boundaries. False positives and unscanned devices are both possible.",
+    "natural_c_percentage_certified": false,
+    "78_percent_is_rigorous_bound": false
+  },
+  "real_mwcc_probes": {
+    "historical_baselines_reproduced_installed_masked_instructions": true,
+    "word_metric": "Positional relocation-masked instruction-word differences, not aligned edit distance or objdiff percentages.",
+    "results": [
+      {"function": "main_rel:fn_1_10E3B4", "removed": "opt_common_subs off", "compiler": "GC/1.3.2", "baseline_bytes": 7252, "variant_bytes": 7260, "word_positions_changed": 1477},
+      {"function": "main_rel:fn_1_10E3B4", "removed": "opt_propagation off", "compiler": "GC/1.3.2", "baseline_bytes": 7252, "variant_bytes": 7252, "word_positions_changed": 162},
+      {"function": "customize:fn_3_15A0", "removed": "opt_common_subs off", "compiler": "GC/1.3.2", "baseline_bytes": 7680, "variant_bytes": 7588, "word_positions_changed": 1653},
+      {"function": "customize:fn_3_15A0", "removed": "opt_pointer_contraction off", "compiler": "GC/1.3.2", "baseline_bytes": 7680, "variant_bytes": 7680, "word_positions_changed": 0},
+      {"function": "main:__OSSetExceptionHandler", "removed": "peephole off", "compiler": "GC/1.2.5n", "baseline_bytes": 28, "variant_bytes": 24, "word_positions_changed": 7}
+    ],
+    "current_native_os_probe": {
+      "unit": "dol/OS.c",
+      "change": "Move the existing peephole-off directive to the top of the same native TU.",
+      "functions_compared": 14,
+      "function_word_changes": 0,
+      "historical_handler_instruction_stream_preserved": true,
+      "does_not_prove_every_os_pragma_original": true
+    },
+    "variants_installed": false,
+    "source_matches_or_device_removals_claimed": 0
+  },
+  "documentation_decision": "Acknowledge substantial unmarked steering candidates and credit the census; retain its historical 616/637696 totals as reported/recounted candidates, not confirmed current devices. Keep 78.11% as an explicitly conditional historical scenario, not a certified mission percentage. Require a module-qualified, compiled-input-aware provenance audit before changing the natural-C headline.",
+  "issue_state_changed": false
+}

@@ -31,7 +31,7 @@ Verified locally on **2026-11-16**, including PR #379's data ownership, repaired
 - **Diagnostic Object Match:** **100.0%** of code bytes (7,351 / 7,351 functions in the objdiff report). This includes assembly and retail fallback objects; it is not a natural-C completion percentage.
 - **Authored C Credit:** **7,159 / 7,351** functions, **98.7909%** of code bytes (`fzgx sync`, then `fzgx honest`). Registered mixed/whole assembly and standalone assembly are excluded even when compiled from `.c`; C with devices or unclassified header kernels can still receive credit, so this is not a device-free natural-C total.
 - **Assembly/Mixed Inventory:** **192** current configured functions remain outside C credit: **186 standalone assembly**, **5 original assembly functions compiled from C**, and **1 registered mixed C/assembly function**. This is an audit inventory, not 192 required C conversions; original assembly is a legitimate completed source form when evidenced.
-- **Compiler-Diff Debt:** **35 primary warning markers across 12 files** in `src/` and `include/` (37 markers when `WARNING: device` cross-references are included). Markers are not a count of distinct devices or affected functions; unmarked constructs still need review.
+- **Compiler-Diff Debt:** **Not fully audited.** There are **35 primary warning markers across 12 files** in `src/` and `include/` (37 including `WARNING: device` cross-references), but this marker-only count misses substantial unmarked steering candidates. [jedgentry's expanded census (#377)](https://github.com/karamzov123/fzero-gx-decomp/issues/377) lists **616 flagged functions / 637,696 bytes** at its historical revision, including 604 unmarked pragma candidates. Those classifications need identity/provenance corrections and per-function review; they are not a verified current device count or natural-C percentage. See the review below.
 - **Target Executables:** **16 / 16** link and match the retail SHA-1 hashes byte for byte (`16 files OK`, followed by an independent checksum check).
 - **Diagnostic Data Match:** **100%** (5,068,399 / 5,068,399 bytes in the freshly regenerated report). The denominator reflects the current splits/report; this is not an asset-reconstruction or source-owned-data percentage.
 - **Saved Data-Import Replay:** **15,579 objects**, **3,569,245 bytes**, **zero skips** with `fzgx data-import --regenerate`. This is compiler-validated saved-import coverage, not all retail data.
@@ -44,6 +44,28 @@ completion, and `fzgx honest` is not a device-free-source audit. Under
 natural C wherever the original was C, assembly only with original-assembly evidence, and zero
 compiler-diff devices. A separate audited device-free natural-C total is not yet established.
 
+### Expanded Device Census: Issue #377
+
+jedgentry's [issue #377](https://github.com/karamzov123/fzero-gx-decomp/issues/377) correctly
+identifies a gap that warning counts and `fzgx honest` do not measure. We independently
+recounted its attachment: **12 marked entries / 21,856 bytes**, plus **604 unmarked
+pragma candidates / 615,840 bytes**. Real MWCC probes confirm that several listed
+pragmas change code generation; unmarked steering is a substantial cleanup priority.
+
+The reported **78.11%** is reproducible as an arithmetic scenario, **not a verified
+current natural-C completion percentage**. A fresh build/report of the exact cited
+commit (`0efb2ebad`) has **7,351 functions / 2,937,044 code bytes**, rather than the
+attachment's 7,310 / 2,913,268. The review also found a cross-module `_prolog` identity
+collision and four flagged entries with none of their listed pragmas in the actual
+compiler input at that revision. Neighbour/TU sensitivity alone cannot prove that a
+pragma was absent from the original source; native SDK settings need separate evidence.
+
+Use the census as a broader candidate queue—not the warning count as the debt total,
+and not 78.11% as a certified headline. Audit scoped settings, compiler flags, helpers,
+volatile views and shared-header callers, retaining the full retail-match gate.
+The [detailed review and compiler evidence](docs/findings/issue377-device-census-review.md)
+records verified totals, identity/method limitations and changes since the scan.
+
 ### Remaining Work and Next Steps
 
 | Executable | Authored C / known functions | Outside C credit | Authored code bytes |
@@ -55,7 +77,7 @@ compiler-diff devices. A separate audited device-free natural-C total is not yet
 
 1. Pull requests with better near-matches are welcome.
 2. **Audit the 192 assembly/mixed functions against original-assembly evidence.** Preserve genuine SDK/runtime/MetroTRK and middleware assembly in the appropriate source form; convert only code that was plausibly C. The three `main_rel` entries are `fn_1_4B6D4`, `fn_1_4B788`, and `fn_1_9DFB8`. The seven `movie_module` entries are `fn_12_52E8`, `fn_12_D0B8`, `fn_12_12564`, `fn_12_33664`, `fn_12_33698`, `fn_12_3CB74`, and `fn_12_3D144`.
-3. **Keep metrics synchronized and reproducible.** Run `fzgx sync` after updating source/configuration, then regenerate progress and report authored C, evidenced assembly, and device debt separately. Ledger totals can include retired symbols; use the current configured-function denominator rather than adding raw ledger statuses. Data ownership and readable shared types remain separate work; executable hash parity does not prove complete source-owned data.
+3. **Audit unmarked steering and keep metrics reproducible.** Start from the expanded [#377 census review](docs/findings/issue377-device-census-review.md), correcting module identity and compiler-input attribution before accepting a device classification. Run `fzgx sync` after source/configuration changes and report C-authored credit, evidenced assembly, candidate/confirmed device debt and binary matching separately. Use current module-qualified functions, not bare-name or raw ledger totals. Data ownership and readable shared types remain separate work; executable hash parity does not prove complete source-owned data.
 4. **Preserve the acceptance gate.** Rebuild with `python3 configure.py && ninja`, independently run `build/tools/dtk shasum -c config/GFZE01/build.sha1`, run `fzgx lint`, and snapshot provenance before committing accepted changes. Do not replace a working match with an unverified naturalization attempt.
 5. **Extend regional source coverage after the primary cleanup.** PAL and Japanese configurations have landed assembly baselines, not primary-target C coverage. Verify each region separately with legally obtained inputs; the USA checksum result above does not certify either regional build.
 
@@ -93,7 +115,7 @@ definitions, and two pragma pairs** across three current functions:
 - `fn_16_61D4`: normal packet scale assignments replace one helper, and helper-only dead-assignment and redundant common-subexpression pragmas are gone. One denominator helper remains; this function is not fully naturalized.
 
 All three still match their real retail objects and passed the supported 16-target verifier.
-These devices were unmarked, so the 34-primary-warning tally is unchanged. See
+These devices were unmarked, so their removal did not reduce the warning-marker tally. See
 [the measured source and rollback evidence](state/repairs/compound-scaling-20261114.json).
 
 A subsequent main_rel TU cleanup removes one additional operand helper from `fn_1_15EC40`:
