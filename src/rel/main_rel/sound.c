@@ -2486,8 +2486,6 @@ static inline void setup(s32 h, u32 *handles, u8 id) {
  } else fn_8004BF0C(h, ((s16 *)&lbl_1_data_2D93C)[id]);
  S_TRACK = id;
 }
-#pragma opt_loop_invariants off
-#pragma opt_strength_reduction off
 #pragma opt_propagation off
 void fn_1_A1964(u8 arg) {
  u32 *handles = (u32 *)S_HANDLES;
@@ -2505,8 +2503,6 @@ void fn_1_A1964(u8 arg) {
  }
 }
 #pragma opt_propagation reset
-#pragma opt_strength_reduction reset
-#pragma opt_loop_invariants reset
 /* fzgx:end fn_1_A1964 */
 
 /* fzgx:begin fn_1_A1CE8 */
@@ -2743,10 +2739,8 @@ static inline void play(u8 track) {
     }
     S_TRACK = track;
 }
-#pragma opt_loop_invariants off
 #pragma opt_dead_assignments off
 static inline u8 fn_1_A1DCC_array_read(s32 index, u8 *array) { return array[index]; }
-#pragma opt_lifetimes off
 void fn_1_A1DCC(u8 arg0) {
     s8 track;
     /* All guards share the retail epilogue. */
@@ -2765,11 +2759,8 @@ void fn_1_A1DCC(u8 arg0) {
 end:
     return;
 }
-#pragma opt_lifetimes reset
 
 #pragma opt_dead_assignments reset
-
-#pragma opt_loop_invariants reset
 /* fzgx:end fn_1_A1DCC */
 
 /* fzgx:begin fn_1_A2210 noprologue */
@@ -4580,7 +4571,6 @@ extern s32 fn_1_3F864(void);
 extern u32 fn_1_864E8(s32 arg0);
 extern void fn_80067898(u32 arg0);
 #pragma opt_propagation off
-#pragma opt_lifetimes off
 void fn_1_A358C(s32 arg0) {
     u8* base = (u8*)&lbl_1_bss_6EA98;
     u8* entry;

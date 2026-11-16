@@ -1463,7 +1463,6 @@ struct fn_1_F4810_Arg5 { u8 unk_0; };
 struct fn_1_F4810_Arg6 { u8 unk_0; };
 
 #pragma opt_propagation off
-#pragma opt_lifetimes off
 static inline s32 read_bits(struct fn_1_F4810_Arg0 *src, u32 *pos, s32 count) {
     s32 value = 0;
     while (count > 0) {

@@ -947,7 +947,6 @@ extern void fn_1_D9D8C(void *, u32, s32);
 extern void fn_1_DA3A0(void *);
 extern void fn_80008BEC(void *, u32, u32);
 
-#pragma opt_dead_assignments off
 #pragma opt_pointer_analysis on
 void fn_1_D7274(void) {
     Obj_1_data_2A7E0_At3C *obj;
@@ -1012,8 +1011,6 @@ void fn_1_D7274(void) {
     }
 }
 #pragma opt_pointer_analysis reset
-
-#pragma opt_dead_assignments reset
 /* fzgx:end fn_1_D7274 */
 
 /* fzgx:begin fn_1_D744C */

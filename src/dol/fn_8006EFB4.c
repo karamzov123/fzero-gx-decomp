@@ -9,7 +9,6 @@ struct fn_8006EFB4_Arg0 {
 extern void lbl_8006D8D8(s16, f32 *, f32);
 extern void mathutil_mtxA_rotate_x(s16);
 
-#pragma opt_dead_assignments off
 f32 fn_8006EFB4(struct fn_8006EFB4_Arg0 *arg0, f32 arg1, f32 *arg2) {
     f32 *pool;
     f32 z;
@@ -32,4 +31,3 @@ f32 fn_8006EFB4(struct fn_8006EFB4_Arg0 *arg0, f32 arg1, f32 *arg2) {
     arg2[2] = z;
     return y;
 }
-#pragma opt_dead_assignments reset

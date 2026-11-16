@@ -1260,7 +1260,6 @@ extern void lbl_8006E1D8(u32, f32, f32, f32);
 
 #pragma opt_propagation off
 static inline f32 fn_1_9F4B4_read_pointer(struct fn_1_9F4B4_lbl_1_rodata_42D0 * owner) { return owner->unk_0; }
-#pragma opt_strength_reduction off
 static inline f32 fn_1_9F4B4_read_pointer_(struct fn_1_9F4B4_lbl_1_rodata_42D0 * owner) { return owner->unk_0; }
 void fn_1_9F4B4(struct fn_1_9F4B4_Arg0 *arg0) {
     f32 loc_30[3];
@@ -1363,7 +1362,6 @@ void fn_1_9F4B4(struct fn_1_9F4B4_Arg0 *arg0) {
         *(f32 *)((u8 *)0xCC000000 + 0x8000) = fn_1_9F4B4_read_pointer(&lbl_1_rodata_42D4);  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
     }
 }
-#pragma opt_strength_reduction reset
 
 #pragma opt_propagation reset
 /* fzgx:end fn_1_9F4B4 */

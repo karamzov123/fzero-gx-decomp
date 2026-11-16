@@ -18,7 +18,6 @@ extern double exp(double);
 
 extern double jn(int, double);
 
-#pragma opt_loop_invariants off
 void fn_8007C910(decimal *z, const decimal *x, const decimal *y) {
     int zlen, dexp;
     u8 *ib, *i, *ie;
@@ -133,5 +132,4 @@ round_done: ;
     }
     z->sig.length = (u8)(i - ib + 1);
 }
-#pragma opt_loop_invariants reset
 

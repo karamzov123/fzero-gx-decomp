@@ -5783,9 +5783,7 @@ void fn_1_13C16C(void) {
 struct Copy88 { u32 words[22]; };
 struct Copy200 { u32 words[10][5]; };
 
-#pragma opt_propagation off
 #pragma opt_common_subs off
-#pragma opt_strength_reduction off
 void fn_1_13C1A0(u8 *arg0) {
     char buf[256];
     struct Copy88 loc_60;
@@ -5846,11 +5844,8 @@ void fn_1_13C1A0(u8 *arg0) {
             *(u32 *)(lbl_1_data_2BD54 + arg0[0] * 0x18 + idx * 4));
     fn_1_138144( (void*)((u32)buf), lbl_1_bss_8B3A0.unk_94 & 0x40000000);
 }
-#pragma opt_strength_reduction reset
 
 #pragma opt_common_subs reset
-
-#pragma opt_propagation reset
 /* fzgx:end fn_1_13C1A0 */
 
 /* fzgx:begin fn_1_13C5EC noprologue */
@@ -6677,7 +6672,6 @@ u8 lbl_1_data_41E44[0x9] = {0x92U, 0xB4U, 0x8FU, 0x64U, 0x97U, 0xCAU, 0x8BU, 0x8
 /* fzgx:begin fn_1_13D460 */
 static inline s32 fn_1_13D460_strip_position(s32 x, s32 y) { return x + y; }
 #pragma opt_propagation off
-#pragma opt_lifetimes off
 void fn_1_13D460(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     FontDrawPacket setup;
     FontDrawPacket packet;
@@ -6772,7 +6766,6 @@ void fn_1_13D460(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
         fn_1_4F734(&packet);
     }
 }
-#pragma opt_lifetimes reset
 
 #pragma opt_propagation reset
 /* fzgx:end fn_1_13D460 */
@@ -8904,7 +8897,6 @@ extern void fn_1_143780(u32, u32, u32);
 extern void fn_1_143F5C(u32, u32, u32);
 extern void fn_1_144254(u32, u32, u32);
 
-#pragma opt_branch off
 void fn_1_1420E0(void) {
     u32 v;
     u8 flag;
@@ -10219,7 +10211,6 @@ static inline void blend_color(FontDrawPacket *out, u32 a0, u32 b0, u32 a1, u32 
     out->alpha = 0.35f;
 }
 
-#pragma opt_common_subs on
 #pragma opt_loop_invariants off
 void fn_1_143780(u32 arg0, u32 arg1, u32 arg2) {
     u32 count;
@@ -13601,7 +13592,6 @@ static inline BOOL fn_1_147A04_range0(s32 mode) {
     return r;
 }
 
-#pragma opt_loop_invariants off
 #pragma opt_propagation off
 #pragma fp_contract off
 void fn_1_147A04(s32 arg0, const fn_1_147A04_Obj *arg1) {
@@ -15479,7 +15469,6 @@ extern u8 lbl_1_bss_8E550;
 extern void fn_1_51678(FontDrawPacket *, u32, s16, s16, s16, s16);
 extern int fn_1_4F734(FontDrawPacket *);
 
-#pragma opt_strength_reduction off
 #pragma opt_propagation off
 void fn_1_1498B8(u32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, f32 arg6) {
     struct fn_1_1498B8_Copy88 loc_8;
@@ -15514,7 +15503,6 @@ void fn_1_1498B8(u32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, f32
         }
     }
 }
-#pragma opt_strength_reduction reset
 /* fzgx:end fn_1_1498B8 */
 
 /* fzgx:begin fn_1_149B24 */

@@ -20,7 +20,6 @@ typedef struct McDst {
 
 extern const f32 lbl_12_rodata_9E8[2];
 
-#pragma opt_strength_reduction off
 void fn_12_118E8(McBiSrc *src, McDst *out, s32 cbp) {
     u8 *pred1;
     u8 *d;
@@ -90,4 +89,3 @@ void fn_12_118E8(McBiSrc *src, McDst *out, s32 cbp) {
         cbp <<= 1;
     }
 }
-#pragma opt_strength_reduction reset

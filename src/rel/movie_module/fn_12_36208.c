@@ -46,8 +46,6 @@ extern s32 fn_12_35548(MovieState *);
 
 static inline FnFree fn_12_36208_read_pointer(AllocCtx * owner) { return owner->free_fn; }
 static inline void * fn_12_36208_read_pointer_(AllocCtx * owner) { return owner->data; }
-#pragma opt_loop_invariants off
-#pragma opt_strength_reduction off
 #pragma opt_dead_assignments off
 s32 fn_12_36208(MovieModule *m) {
     FnAlloc fzgx_live_;
@@ -176,6 +174,4 @@ s32 fn_12_36208(MovieModule *m) {
 }
 #pragma opt_dead_assignments reset
 
-#pragma opt_strength_reduction reset
 
-#pragma opt_loop_invariants reset

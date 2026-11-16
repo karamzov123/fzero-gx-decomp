@@ -23,7 +23,6 @@ extern void OSReport(const char *, ...);
 extern s32 fn_8003401C(u32);
 
 #pragma opt_propagation off
-#pragma opt_lifetimes off
 #pragma section code_type ".fzgxpool"
 static void fzgx_string_layout(void) {
     /* fzgx-allow: S2 layout primer: MWCC emits string literals in first-use order; the section is dropped at integration */
@@ -86,5 +85,4 @@ void fn_8003DD48(u8 arg0) {
     }
     OSRestoreInterrupts(v1);
 }
-#pragma opt_lifetimes reset
 #pragma opt_propagation reset

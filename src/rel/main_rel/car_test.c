@@ -1919,8 +1919,6 @@ extern void lbl_8006D848(f32);
 extern void lbl_8006E0A4(u32);
 
 #pragma opt_common_subs off
-#pragma opt_branch off
-#pragma opt_lifetimes off
 
 static inline f32 depth_fade(f32 z, f64 absZ) {
     f32 result = fzgx_pool_table_10[0];
@@ -2176,7 +2174,6 @@ void fn_1_7ECB8(void * arg0, u32 arg1, u32 arg2, f32 arg3) {
     }
     }
 }
-#pragma opt_lifetimes reset
 
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_7ECB8 */

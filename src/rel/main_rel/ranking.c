@@ -225,7 +225,6 @@ static inline s32 clamp10(s32 n) {
     return n < 0 ? 0 : (n > 10 ? 10 : n);
 }
 
-#pragma opt_dead_assignments off
 #pragma opt_loop_invariants off
 static inline void fn_1_1556B4_loop10(s32 count, u8 arg0, RankEntry *dst) {
     s32 i;
@@ -250,7 +249,6 @@ static inline void fn_1_1556B4_loop10(s32 count, u8 arg0, RankEntry *dst) {
         }
 }
 
-#pragma opt_common_subs off
 void fn_1_1556B4(u8 arg0, u8 arg1) {
     RankEntry t;
     RankEntry tmp[10];
@@ -411,11 +409,6 @@ void fn_1_1556B4(u8 arg0, u8 arg1) {
     }
 }
 #pragma opt_loop_invariants reset
-
-#pragma opt_dead_assignments reset
-
-
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_1556B4 */
 
 /* fzgx:begin fn_1_155F7C */
@@ -1222,7 +1215,6 @@ typedef struct {
     u8 pad10[0x28]; f32 value; f32 delta;
 } Sig_fn_1_156C08_Entry;
 #pragma opt_propagation off
-#pragma opt_dead_assignments off
 static inline f32 fn_1_156C08_read_pointer(Sig_fn_1_156C08_Entry *owner) { return owner->delta; }
 void fn_1_156C08(Sig_fn_1_156C08_Entry *arg0) {
     f32 v1; f32 v3; s32 v13; s32 v13_2; f32 v7; s32 negative; u32 *ph;
@@ -1269,7 +1261,6 @@ void fn_1_156C08(Sig_fn_1_156C08_Entry *arg0) {
         if (fn_8006B6F8(arg0->handle) >= 0) arg0->flags |= 2;
     }
 }
-#pragma opt_dead_assignments reset
 /* fzgx:end fn_1_156C08 */
 
 /* fzgx:begin fn_1_156D9C noprologue */
@@ -1331,10 +1322,6 @@ extern s32 fn_8006B628(u32, void *);
 extern s32 fn_8006B6F8(u32);
 
 #pragma opt_dead_assignments off
-#pragma opt_loop_invariants off
-#pragma opt_strength_reduction off
-#pragma opt_common_subs off
-#pragma opt_propagation off
 void fn_1_156D9C(RankSlot *slot)
 {
     u32 digit;
@@ -1397,13 +1384,9 @@ void fn_1_156D9C(RankSlot *slot)
         }
     }
 }
-#pragma opt_propagation reset
 
-#pragma opt_common_subs reset
 
-#pragma opt_strength_reduction reset
 
-#pragma opt_loop_invariants reset
 
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_1_156D9C */
@@ -1525,7 +1508,6 @@ typedef struct {
 #pragma opt_common_subs off
 static inline void fn_1_157070_store(u32 value, u32 *destination) { *destination = value; }
 static inline f32 fn_1_157070_read_pointer(State * owner) { return owner->value34; }
-#pragma opt_strength_reduction off
 void fn_1_157070(State *state) {
     u8 *fzgx_value__;
     f32 fzgx_live;
@@ -1586,7 +1568,6 @@ void fn_1_157070(State *state) {
         }
     }
 }
-#pragma opt_strength_reduction reset
 
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_157070 */

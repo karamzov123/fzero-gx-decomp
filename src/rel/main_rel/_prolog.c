@@ -1198,7 +1198,6 @@ extern int PADReset(u32);
 
 /* layout primer: touches the .bss objects in retail order */
 
-#pragma opt_loop_invariants off
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_base_order_data(void) {
@@ -1351,7 +1350,6 @@ void fn_1_1304(Sig_fn_8001CF80_PADStatus *pads) {
 
     fn_1_D332C(pads);
 }
-#pragma opt_loop_invariants reset
 /* fzgx:end fn_1_1304 */
 
 /* fzgx:begin fn_1_17C8 */

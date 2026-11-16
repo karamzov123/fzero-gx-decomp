@@ -10,7 +10,6 @@ typedef union {
 extern volatile Func8008D6BCFifo __WGFifo[];
 
 #pragma optimization_level 0
-#pragma opt_propagation off
 #pragma peephole on
 u32 func_8008D6BC(register u32 value, register u8 command, register u32 fifo) {
     /* FIFO writes are volatile hardware accesses. */

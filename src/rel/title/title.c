@@ -152,8 +152,6 @@ struct fn_8_954_lbl_1_bss_8B3A0 {
     u8 unk_9E;
 };
 
-#pragma opt_dead_code off
-#pragma opt_dead_assignments off
 #pragma opt_propagation off
 static inline s32 check_input(struct fn_8_954_lbl_1_bss_9F8 *unused,
                              struct fn_8_954_lbl_1_bss_9C8 *unused2, s32 unused3) {
@@ -240,7 +238,6 @@ extern void fn_1_F7A20(void);
 extern s32 fn_1_3FC38(void);
 extern void fn_1_435C(u32);
 
-#pragma opt_dead_assignments off
 void _epilog(void) {
     if (!lbl_801A66B9) {
         fn_1_4FEC();
@@ -257,7 +254,6 @@ void _epilog(void) {
     fn_1_41A8();
     fn_1_47A60(lbl_1_bss_960);
 }
-#pragma opt_dead_assignments reset
 /* fzgx:end _epilog */
 
 /* fzgx:begin fn_8_B7C */

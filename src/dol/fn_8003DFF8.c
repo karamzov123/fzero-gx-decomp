@@ -38,7 +38,6 @@ extern Slot *lbl_801A6C4C;
 extern char lbl_8012B5F8[];
 
 #pragma opt_propagation off
-#pragma opt_lifetimes off
 void fn_8003DFF8(s32 arg0) {
     s32 offset;
     u32 level;
@@ -76,7 +75,6 @@ void fn_8003DFF8(s32 arg0) {
     }
     OSRestoreInterrupts(level);
 }
-#pragma opt_lifetimes reset
 
 #pragma opt_propagation reset
 

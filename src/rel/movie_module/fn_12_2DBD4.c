@@ -58,7 +58,6 @@ static inline int fn_12_2DBD4_is_ntsc(MovieModule *module) {
 
 static inline MovieCallback fn_12_2DBD4_array_read(MovieCallback *array, s32 index) { return array[index]; }
 #pragma opt_common_subs off
-#pragma opt_dead_assignments off
 void fn_12_2DBD4(MovieModule *module, int arg1, int arg2, int *out, int arg4) {
     struct { MovieGlobals *value; } gs;
     int work[3];
@@ -127,7 +126,6 @@ void fn_12_2DBD4(MovieModule *module, int arg1, int arg2, int *out, int arg4) {
         *out = 0;
     }
 }
-#pragma opt_dead_assignments reset
 
 #pragma opt_common_subs reset
 

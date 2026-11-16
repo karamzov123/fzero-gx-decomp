@@ -60,7 +60,6 @@ extern int fn_800570DC(void *, void *);
 extern void fn_80056730(void *, int);
 extern void LSC_Start(void *);
 
-#pragma opt_strength_reduction off
 static inline MovieObject * fn_12_34798_read_pointer(MovieModule * owner) { return owner->field_128; }
 void fn_12_34798(MovieModule *self, void *arg) {
     void (* fzgx_live)(MovieObject *);
@@ -123,5 +122,4 @@ void fn_12_34798(MovieModule *self, void *arg) {
         fn_12_3858C(module);
     }
 }
-#pragma opt_strength_reduction reset
 

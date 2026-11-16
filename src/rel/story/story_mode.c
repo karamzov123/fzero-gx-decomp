@@ -2067,7 +2067,6 @@ extern s32 fn_1_3F8C(u32, u32, u32, u32);
 extern u32 fn_1_426C(u32);
 
 #pragma opt_propagation off
-#pragma opt_lifetimes off
 s32 fn_7_23A8(void) {
     struct fn_7_23A8_bss_0 *p;
     u8 *t0;
@@ -2110,7 +2109,6 @@ s32 fn_7_23A8(void) {
     }
     return 0;
 }
-#pragma opt_lifetimes reset
 
 #pragma opt_propagation reset
 /* fzgx:end fn_7_23A8 */

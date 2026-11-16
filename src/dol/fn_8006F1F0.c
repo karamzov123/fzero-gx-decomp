@@ -51,8 +51,6 @@ static inline void fn_8006F1F0_cross(Vec3 *a, Vec3 *b, Vec3 *out) {
 }
 
 #pragma opt_propagation off
-#pragma opt_common_subs off
-#pragma opt_strength_reduction off
 void fn_8006F1F0(Vec3 *arg0, Vec3 *arg1, Vec3 *arg2) {
     Vec3 w;
     Vec3 u;
@@ -91,8 +89,6 @@ void fn_8006F1F0(Vec3 *arg0, Vec3 *arg1, Vec3 *arg2) {
     p->unk_2C = arg0->z;
     lbl_8006DF44();
 }
-#pragma opt_strength_reduction reset
 
-#pragma opt_common_subs reset
 
 #pragma opt_propagation reset

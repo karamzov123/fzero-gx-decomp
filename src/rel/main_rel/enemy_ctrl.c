@@ -1925,8 +1925,6 @@ lbl_1_bss_8B3A0_t fzgx_obj_lbl_1_bss_8B3A0;
 extern u32 lbl_1_bss_8B4EC[32];
 extern u32 lbl_1_bss_8B5CC[8];
 
-#pragma opt_loop_invariants off
-#pragma opt_dead_assignments off
 void fn_1_C6F8C(void) {
 	fn_1_C6F8C_Msg msgA;
 	u16 idx;
@@ -2001,9 +1999,7 @@ void fn_1_C6F8C(void) {
 
 	fn_1_52088();
 }
-#pragma opt_dead_assignments reset
 
-#pragma opt_loop_invariants reset
 
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_C6F8C */
@@ -5906,7 +5902,6 @@ extern void fn_1_495C8(u8);
 extern void fn_1_496FC(f32, f32);
 extern void fn_1_4AE0C(const char *, ...);
 
-#pragma opt_strength_reduction off
 #pragma opt_common_subs off
 void fn_1_CFF94(u32 arg0, s16 arg1, f32 arg2) {
     s32 v6;
@@ -5967,8 +5962,6 @@ void fn_1_CFF94(u32 arg0, s16 arg1, f32 arg2) {
     fn_1_4AE0C(lbl_1_data_3D630, arg1);
 }
 #pragma opt_common_subs reset
-
-#pragma opt_strength_reduction reset
 /* fzgx:end fn_1_CFF94 */
 
 /* fzgx:begin fn_1_D01B0 noprologue */

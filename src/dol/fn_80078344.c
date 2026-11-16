@@ -3,8 +3,6 @@
 
 #pragma optimization_level 0
 #pragma always_inline on
-#pragma opt_propagation off
-#pragma opt_address_propagation off
 #pragma peephole on
 #pragma scheduling off
 static inline void writeDisplayList(u32 a, u32 b, u32 unused, u32 command, u32 address) {

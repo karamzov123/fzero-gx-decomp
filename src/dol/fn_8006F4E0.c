@@ -16,7 +16,6 @@ typedef struct { f32 x, y, z; } Vec3;
 typedef struct { Vec3 dir; Vec3 up; } DirUp;
 
 #pragma opt_common_subs off
-#pragma opt_lifetimes off
 #pragma opt_dead_assignments off
 void fn_8006F4E0(s16 *arg0) {
     DirUp v;

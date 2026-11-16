@@ -136,7 +136,6 @@ typedef struct ArchiveEntry {
 
 
 
-#pragma opt_propagation on
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 s32 fzgx_obj_lbl_1_bss_897A0;
 u32 fzgx_obj_lbl_1_bss_897A4;
@@ -240,8 +239,6 @@ u32 fn_1_12A4B0(void *arg0, s32 arg1, s32 arg2) {
     return *(u32 *)((u8 *)e_2 + 0x68);
 }
 #pragma opt_common_subs reset
-
-#pragma opt_propagation reset
 /* fzgx:end fn_1_12A4B0 */
 
 /* fzgx:begin fn_1_12A6D8 */
@@ -531,8 +528,6 @@ struct fn_1_12AB38_state {
 };
 
 #pragma opt_propagation off
-#pragma opt_common_subs off
-#pragma opt_dead_assignments off
 void fn_1_12AB38(void *arg0) {
     struct fn_1_12AB38_state *state =
         (struct fn_1_12AB38_state *)&lbl_1_bss_897A0;
@@ -548,9 +543,7 @@ void fn_1_12AB38(void *arg0) {
         fn_80006E10(arg0);
     }
 }
-#pragma opt_dead_assignments reset
 
-#pragma opt_common_subs reset
 
 #pragma opt_propagation reset
 /* fzgx:end fn_1_12AB38 */
@@ -3035,7 +3028,6 @@ static inline s16 getCount(s16 id) {
 }
 
 #pragma opt_lifetimes off
-#pragma opt_loop_invariants off
 void fn_1_12DAEC(Object *objs, Object *subObjs, u32 arg2, void *owner, s32 *handles, s32 *subHandles, s32 tracked) {
     struct { Slot *value; } slot;
     s32 *handle;
@@ -3084,7 +3076,6 @@ void fn_1_12DAEC(Object *objs, Object *subObjs, u32 arg2, void *owner, s32 *hand
         subObj += 2;
     }
 }
-#pragma opt_loop_invariants reset
 
 #pragma opt_lifetimes reset
 /* fzgx:end fn_1_12DAEC */
@@ -3881,8 +3872,6 @@ void fn_1_12F358(u16 arg0) {
     }
     return;
 }
-
-
 /* fzgx:end fn_1_12F358 */
 
 /* fzgx:begin fn_1_12F4A8 noprologue */

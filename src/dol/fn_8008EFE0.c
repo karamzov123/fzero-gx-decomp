@@ -10,7 +10,6 @@ extern u32 lbl_801A6E1C;
 extern u8 *lbl_801A6680;
 
 #pragma opt_dead_assignments off
-#pragma opt_common_subs on
 s32 fn_8008EFE0(u8 *arg0, u32 arg1) {
     u32 loc_20;
     u32 loc_1C;
@@ -81,5 +80,4 @@ s32 fn_8008EFE0(u8 *arg0, u32 arg1) {
     *lbl_801A6680 = 0;
     return 0;
 }
-#pragma opt_common_subs reset
 #pragma opt_dead_assignments reset

@@ -20,7 +20,6 @@ typedef struct McDst {
 /* Six 8x8 blocks: a coded block adds its residual to the prediction, an
  * uncoded one copies the prediction; aligned destinations are zeroed by line
  * first so the stores do not fetch them. */
-#pragma opt_strength_reduction off
 u32 fn_12_11CE0(McSrc *src, McDst *out, s32 cbp) {
     s16 * coef_base;
     u8 *d;
@@ -135,5 +134,4 @@ u32 fn_12_11CE0(McSrc *src, McDst *out, s32 cbp) {
     }
     return (u32)pred;
 }
-#pragma opt_strength_reduction reset
 

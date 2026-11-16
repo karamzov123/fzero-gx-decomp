@@ -11,10 +11,7 @@ extern void fn_8008E114(u8 *table, u32 dst, u32 len);
 extern char lbl_80095E0C[];
 extern char lbl_80095E34[];
 
-#pragma opt_propagation off
 #pragma opt_loop_invariants off
-#pragma opt_lifetimes off
-#pragma opt_dead_assignments off
 s32 gdev_cc_read(u32 arg0, s32 arg1) {
     u8 buffer[0x500];
     struct { u8 *value; } table;

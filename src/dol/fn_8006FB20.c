@@ -32,8 +32,6 @@ static inline void fn_8006FB20_cross(fn_8006FB20_Vec *a, fn_8006FB20_Vec *b, fn_
     out->z = z;
 }
 
-#pragma opt_dead_assignments off
-#pragma opt_loop_invariants off
 void fn_8006FB20(f32 arg0, u32 arg1) {
     u32 tmp_lbl_8006D668;
     f32 lab_t3;
@@ -51,7 +49,5 @@ void fn_8006FB20(f32 arg0, u32 arg1) {
     tmp_lbl_8006D668 = lbl_8006D668(&p[2]);
     tmp_lbl_8006D668;
 }
-#pragma opt_loop_invariants reset
 
-#pragma opt_dead_assignments reset
 

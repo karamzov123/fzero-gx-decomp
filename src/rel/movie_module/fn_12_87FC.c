@@ -17,7 +17,6 @@ extern void fn_12_847C(void *, u32, void *, void *, void *);
 extern void fn_12_8344(u32, void *, u32);
 extern void fn_12_7E58(void *, void *, void *);
 
-#pragma opt_common_subs off
 #pragma opt_dead_assignments off
 void fn_12_87FC(MovieModule *module) {
     u8 local[8];
@@ -35,4 +34,3 @@ void fn_12_87FC(MovieModule *module) {
 }
 #pragma opt_dead_assignments reset
 
-#pragma opt_common_subs reset

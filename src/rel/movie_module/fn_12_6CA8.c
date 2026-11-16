@@ -17,7 +17,6 @@ typedef struct MovieError {
 extern u32 lbl_12_bss_4DB8[2];
 extern u32 lbl_12_bss_4DB0;
 
-#pragma opt_propagation off
 static inline s32 check_module(MovieModule *module) {
     s32 invalid;
     invalid = -1;
@@ -39,7 +38,6 @@ static inline s32 report_error(s32 unused, s32 error) {
     }
     return error;
 }
-#pragma opt_propagation reset
 
 s32 fn_12_6CA8(MovieModule *module, MovieCallback callback, void *argument) {
     s32 invalid;

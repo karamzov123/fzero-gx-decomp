@@ -89,7 +89,6 @@ static void fzgx_bss_layout(void) {
 }
 #pragma section code_type ".text"
 static inline u8 * fn_13_0_read_pointer(struct fn_13_0_lbl_1_bss_7EFD8 * owner) { return owner->unk_3C; }
-#pragma opt_lifetimes off
 #pragma opt_dead_assignments off
 void fn_13_0(void) {
     u8 fzgx_value;
@@ -189,7 +188,6 @@ void fn_13_0(void) {
     fn_1_3FCB0(0x800000);
 }
 #pragma opt_dead_assignments reset
-#pragma opt_lifetimes reset
 /* fzgx:end fn_13_0 */
 
 /* fzgx:begin fn_13_3FC */

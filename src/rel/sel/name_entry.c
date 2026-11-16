@@ -107,7 +107,6 @@ extern void fn_1_435C(u32 value);
 extern fn_10_25CB0_Entry * fn_1_45D0(u32, u32, const char *, u32);
 
 #pragma opt_loop_invariants off
-#pragma opt_propagation on
 void fn_10_25CB0(u32 arg0) {
     u8 *ptr;
     fn_10_25CB0_Entry *e;
@@ -150,7 +149,6 @@ void fn_10_25CB0(u32 arg0) {
     }
     lbl_10_bss_55CD8->unk_0 |= 0x10000000;
 }
-#pragma opt_propagation reset
 #pragma opt_loop_invariants reset
 /* fzgx:end fn_10_25CB0 */
 

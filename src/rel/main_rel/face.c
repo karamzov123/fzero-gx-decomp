@@ -101,7 +101,6 @@ static void fzgx_string_layout(void) {
 static inline u32 fn_1_D1848_array_read(s32 index, u32 *array) { return array[index]; }
 #pragma peephole reset
 
-#pragma opt_loop_invariants off
 #pragma opt_propagation off
 void fn_1_D1848(void) {
     u32 texsize;
@@ -140,8 +139,6 @@ void fn_1_D1848(void) {
     fn_1_D2F84();
 }
 #pragma opt_propagation reset
-
-#pragma opt_loop_invariants reset
 /* fzgx:end fn_1_D1848 */
 
 /* fzgx:begin fn_1_D19B8 noprologue */
@@ -198,7 +195,6 @@ extern void fn_80006E10(u32);
 
 #include "types.h"
 
-#pragma opt_pointer_analysis off
 void fn_1_D19B8(u8 *arg0) {
     u8 *p_lbl_1_data_3D670;
     u32 *p_lbl_1_data_20D1C;
@@ -272,7 +268,6 @@ void fn_1_D19B8(u8 *arg0) {
 
     fn_80006E10((u32)(p_lbl_1_data_3D670 + 0x3b8));
 }
-#pragma opt_pointer_analysis reset
 /* fzgx:end fn_1_D19B8 */
 
 /* fzgx:begin fn_1_D1C94 noprologue */

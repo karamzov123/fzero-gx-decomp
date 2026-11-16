@@ -468,7 +468,6 @@ extern Obj_1_bss_8EDF0_At10 *fn_1_15530C(Obj_1_bss_8EDF0_At10 *arg);
 extern void fn_1_A8EB0(int arg0, int arg1);
 
 #pragma opt_common_subs off
-#pragma opt_propagation off
 #pragma opt_lifetimes off
 void fn_1_155120(void) {
     Obj_1_bss_8EDF0 *state = &lbl_1_bss_8EDF0;

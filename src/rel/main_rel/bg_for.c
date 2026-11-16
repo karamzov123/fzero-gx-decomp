@@ -1944,7 +1944,6 @@ static inline void vec_dot(DF2A4Vec *a, DF2A4Vec *b, f32 *dot) {
     *dot = bx;
 }
 
-#pragma opt_common_subs off
 static inline void vec_dot_plane(DF2A4Vec *a, DF2A4Vec *b, f32 *dot) {
     f32 result;
     f32 ay;
@@ -2004,7 +2003,6 @@ static inline void fn_1_DF2A4_translation(DF2A4Vec *out) {
     f32 z = *(f32 *)(0xE0000000 + 0x2C);
     psvec_set(out, z, y, x);
 }
-#pragma opt_lifetimes off
 s16 fn_1_DF2A4(DF2A4Vec *pos, DF2A4Vec * __restrict prev, void *mtx, DF2A4Vec *point, DF2A4Vec *normal,
                DF2A4Vec *hit, DF2A4Vec *out, f32 radius, f32 height) {
     u8 *pool = lbl_1_rodata_6780;
@@ -2115,7 +2113,6 @@ s16 fn_1_DF2A4(DF2A4Vec *pos, DF2A4Vec * __restrict prev, void *mtx, DF2A4Vec *p
     }
     return result;
 }
-#pragma opt_lifetimes reset
 /* fzgx:end fn_1_DF2A4 */
 
 /* fzgx:begin fn_1_DF6AC */
@@ -3194,7 +3191,6 @@ extern void lbl_8006D5A4(void *, void *, void *, f32);
 extern void lbl_8006D5F0(void *, f32, void *);
 
 /* Earliest time t at which two moving spheres of combined radius r touch. */
-#pragma opt_propagation off
 #pragma opt_lifetimes off
 static inline f32 E1408_length(f32 u, f32 v, f32 w) {
     f32 length = u * u;
@@ -3256,7 +3252,6 @@ static inline s32 E1408_sweep(E1408Pool *pool, E1408Vec *dp, E1408Vec *dv, f32 r
 }
 
 /* Whether `me` may push `other` out of the way. */
-#pragma opt_propagation off
 static inline u32 E1408_pushes(u64 me, u64 other, u32 result) {
 
     if (((me & 0x80000) != 0 && (other & 0x80000) == 0) || ((me & 0x40000) == 0 && (other & 0x40000) != 0)) {
@@ -3265,7 +3260,6 @@ static inline u32 E1408_pushes(u64 me, u64 other, u32 result) {
     return result;
 }
 
-#pragma opt_propagation off
 static inline u64 E1408_flags_core(u64 fa, u64 fb, u32 pa, u32 pb) {
     if (((fa & 0x80000) != 0 && (fb & 0x80000) == 0) || ((fa & 0x40000) == 0 && (fb & 0x40000) != 0)) {
         pa = 1;
@@ -3286,9 +3280,7 @@ static inline u64 E1408_flags(u32 pb, u32 pa, u32 fb, u64 fa) {
     return pb | ((u64)pa << 32);
 }
 
-#pragma opt_propagation reset
 static inline f32 fn_1_E1408_read_pointer(E1408Object * owner) { return owner->fieldF4; }
-#pragma opt_propagation off
 static inline void E1408_add_reverse(E1408Vec *pos, E1408Vec *delta, f32 scale) {
     psvec_add(pos, delta, pos);
     psvec_scale(delta, scale, delta);
@@ -3298,7 +3290,6 @@ static inline void E1408_separate(E1408Vec *a, E1408Vec *b, E1408Vec *delta, f32
     psvec_scale(delta, scale, delta);
     psvec_add(b, delta, b);
 }
-#pragma opt_propagation on
 s32 fn_1_E1408(E1408Object *a, E1408Object *b) {
     E1408Vec n;
     E1408Vec dp;
@@ -3360,7 +3351,6 @@ s32 fn_1_E1408(E1408Object *a, E1408Object *b) {
     b->other = a;
     return 1;
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_E1408 */
 
 /* fzgx:begin fn_1_E1934 */

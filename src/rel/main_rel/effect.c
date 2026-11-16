@@ -1102,7 +1102,6 @@ typedef struct {
 
 static inline f32 fn_1_5962C_operand(f32 right, f32 left) { return left * right; }
 #pragma opt_dead_assignments off
-#pragma opt_strength_reduction off
 void fn_1_5962C(Fn_1_5962C_State *self) {
     f32 fzgx_live;
     f32 scale;
@@ -1132,7 +1131,6 @@ void fn_1_5962C(Fn_1_5962C_State *self) {
         self->field_24 = self->field_24 * rate;
     }
 }
-#pragma opt_strength_reduction reset
 
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_1_5962C */
@@ -5125,7 +5123,6 @@ extern s32 lbl_1_bss_6C860;
 extern s32 fn_1_66B8(void *, f32);
 
 #pragma opt_propagation off
-#pragma opt_common_subs off
 void fn_1_5D020(Fx *p) {
     f32 v;
     f32 w;
@@ -5158,7 +5155,6 @@ void fn_1_5D020(Fx *p) {
     p->unk20 *= g;
     p->unk24 *= g;
 }
-#pragma opt_common_subs reset
 #pragma opt_propagation reset
 /* fzgx:end fn_1_5D020 */
 
@@ -5184,10 +5180,8 @@ extern void *memset(void *dst, int c, u32 n);
 extern f32 fn_1_A71AC(void);
 extern int fn_1_9F914(const void *a, const void *b);
 #define LIT(off) (*(const f32 *)(pool + (off)))
-#pragma opt_lifetimes off
 static inline f32 fn_1_5D1B8_read_pointer(Self * owner) { return owner->f_24; }
 static inline f32 fn_1_5D1B8_scaled(f32 product, f32 scale) { return product; }
-#pragma opt_lifetimes reset
 #pragma opt_common_subs off
 #pragma peephole on
 void fn_1_5D1B8(Self *self)
@@ -5629,9 +5623,7 @@ struct Fn15D718Work {
 	u8 alphaByte;
 };
 #pragma opt_propagation off
-#pragma opt_common_subs off
 static inline f32 fn_1_64760_array_read(f32 *array, s32 index) { return array[index]; }
-#pragma opt_dead_assignments off
 void fn_1_5D718(struct Fn15D718 *self) {
 struct Fn15D718Work work;
 struct Fn15D718Tmp tmp;
@@ -5676,9 +5668,7 @@ work.alphaByte = 0xff;
 work.alpha2 = alpha;
 fn_1_9F914(&work, object);
 }
-#pragma opt_dead_assignments reset
 
-#pragma opt_common_subs reset
 
 #pragma opt_propagation reset
 /* fzgx:end fn_1_5D718 */
@@ -6588,7 +6578,6 @@ struct fn_1_5E3C4_Arg0 {
 };
 
 #pragma opt_dead_assignments off
-#pragma opt_strength_reduction off
 f32 fn_1_5E3C4(struct fn_1_5E3C4_Arg0 *arg0, f32 arg1) {
     f32 v0;
     u32 v1;
@@ -6627,7 +6616,6 @@ f32 fn_1_5E3C4(struct fn_1_5E3C4_Arg0 *arg0, f32 arg1) {
     }
     return v0;
 }
-#pragma opt_strength_reduction reset
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_1_5E3C4 */
 
@@ -12455,7 +12443,6 @@ struct obj_state {
 };
 
 #pragma peephole on
-#pragma opt_dead_assignments off
 #pragma opt_propagation off
 void fn_1_618B8(struct obj_state *p)
 {
@@ -12489,7 +12476,6 @@ void fn_1_618B8(struct obj_state *p)
 }
 #pragma opt_propagation reset
 
-#pragma opt_dead_assignments reset
 
 #pragma peephole reset
 /* fzgx:end fn_1_618B8 */
@@ -15145,7 +15131,6 @@ extern s32 lbl_1_bss_6C860;
 extern s32 fn_1_66B8(void *, f32);
 
 #pragma opt_propagation off
-#pragma opt_common_subs off
 void fn_1_6313C(Fx *p) {
     f32 v;
     f32 w;
@@ -15178,7 +15163,6 @@ void fn_1_6313C(Fx *p) {
     p->unk20 *= g;
     p->unk24 *= g;
 }
-#pragma opt_common_subs reset
 #pragma opt_propagation reset
 /* fzgx:end fn_1_6313C */
 
@@ -17508,9 +17492,7 @@ struct Fn15D718Work {
 	u8 alphaByte;
 };
 #pragma opt_propagation off
-#pragma opt_common_subs off
 static inline f32 fn_1_64760_array_read(f32 *array, s32 index) { return array[index]; }
-#pragma opt_dead_assignments off
 void fn_1_64760(struct Fn15D718 *self) {
 struct Fn15D718Work work;
 struct Fn15D718Tmp tmp;
@@ -17555,9 +17537,7 @@ work.alphaByte = 0xff;
 work.alpha2 = alpha;
 fn_1_9F914(&work, object);
 }
-#pragma opt_dead_assignments reset
 
-#pragma opt_common_subs reset
 
 #pragma opt_propagation reset
 /* fzgx:end fn_1_64760 */
@@ -18817,7 +18797,6 @@ static inline void rand_step654B0(void)
     *(volatile u32 *)&lbl_1_data_1D628 = *(volatile u32 *)&lbl_1_data_1D628 * 0x41C64E6D + 12345;
 }
 
-#pragma opt_propagation on
 static inline f32 fn_1_654B0_operand(f32 right, f32 left) { return ((right) * (left)); }
 #pragma opt_common_subs off
 static inline f32 fn_1_654B0_operand_(f32 right, f32 left) { return left * right; }
@@ -18861,7 +18840,6 @@ static inline f32 random_float654B0(f32 bits)
 }
 
 #pragma scheduling on
-#pragma opt_propagation on
 void fn_1_654B0(Particle654B0 *p)
 {
     f32 v;
@@ -19727,9 +19705,7 @@ struct Fn1_65CDCWork {
 };
 
 #pragma opt_propagation off
-#pragma opt_common_subs off
 static inline f32 fn_1_65CDC_array_read(f32 *array, s32 index) { return array[index]; }
-#pragma opt_dead_assignments off
 void fn_1_65CDC(struct Fn1_65CDC *self) {
 	struct Fn1_65CDCWork work;
 	struct Fn1_65CDCTmp tmp;
@@ -19775,8 +19751,6 @@ void fn_1_65CDC(struct Fn1_65CDC *self) {
 	work.alpha2 = alpha;
 	fn_1_9F914(&work, object);
 }
-#pragma opt_dead_assignments reset
-#pragma opt_common_subs reset
 #pragma opt_propagation reset
 /* fzgx:end fn_1_65CDC */
 
@@ -21394,9 +21368,7 @@ typedef struct {
 } Obj67430;
 
 static inline f32 fn_1_67430_read_pointer(Vec3f * owner) { return owner->z; }
-#pragma opt_dead_assignments off
 #pragma opt_propagation off
-#pragma opt_loop_invariants off
 void fn_1_67430(Obj67430 *p)
 {
     Vec3fBig   v1;
@@ -21434,11 +21406,8 @@ void fn_1_67430(Obj67430 *p)
     t = pool[129] * (pool[82] - p->fb4);
     p->fb4 = p->fb4 + t;
 }
-#pragma opt_loop_invariants reset
 
 #pragma opt_propagation reset
-
-#pragma opt_dead_assignments reset
 /* fzgx:end fn_1_67430 */
 
 /* fzgx:begin fn_1_6755C */

@@ -8289,6 +8289,7 @@ s32 fn_4_4B74(u32 arg0, u32 arg1) {
     return 31 - __cntlzw(v);
 }
 /* fzgx:end fn_4_4B74 */
+
 /* fzgx:begin fn_4_4CB8 noprologue */
 void fn_4_4CB8(s32 arg0, u32 arg1, u32 arg2) {
     u32 v0;
@@ -8344,6 +8345,7 @@ void fn_4_4CB8(s32 arg0, u32 arg1, u32 arg2) {
     }
 }
 /* fzgx:end fn_4_4CB8 */
+
 /* fzgx:begin fn_4_4DF8 noprologue */
 typedef struct fn_4_4DF8_Color { u8 r, g, b, a; } fn_4_4DF8_Color;
 
@@ -9224,8 +9226,8 @@ void fn_4_4DF8(void) {
 }
 #pragma fp_contract reset
 /* fzgx:end fn_4_4DF8 */
-/* fzgx:begin fn_4_63D4 noprologue */
 
+/* fzgx:begin fn_4_63D4 noprologue */
 struct fn_4_63D4_bss {
 u8 pad_0[0x118];
 u8 unk_118;
@@ -15073,18 +15075,6 @@ u32 fn_4_ABB0(void) {
 /* fzgx:end fn_4_ABB0 */
 
 /* fzgx:begin fn_4_AC58 */
-
-
-
-
-
-
-
-
-
-
-
-
 extern void fn_4_3128(void);
 extern u32 fn_80008BA8(u32, u32, u32);
 extern u32 fn_1_F7308(void);
@@ -16951,18 +16941,6 @@ fn_1_133DBC((void *)1);
 /* fzgx:end fn_4_C768 */
 
 /* fzgx:begin fn_4_D1A8 */
-
-
-
-
-
-
-
-
-
-
-
-
 extern void fn_4_3128(void);
 extern u32 fn_80008BA8(u32, u32, u32);
 extern u32 fn_1_F7308(void);
@@ -17079,9 +17057,6 @@ extern u32 fn_4_C768;
 extern u32 fn_4_B528;
 #pragma opt_common_subs off
 #pragma opt_loop_invariants off
-#pragma opt_propagation off
-#pragma opt_pointer_analysis off
-#pragma opt_strength_reduction on
 extern u8 lbl_4_rodata_410__fzgx_offset_0[];
 extern u8 lbl_4_rodata_418__fzgx_offset_0[];
 extern u8 lbl_4_rodata_49C__fzgx_offset_0[];
@@ -17249,9 +17224,6 @@ fn_1_A2D84(0xa9100000U);
 lbl_4_bss_5684 = 0;
 lbl_4_bss_5685 = 0;
 }
-#pragma opt_strength_reduction reset
-#pragma opt_pointer_analysis reset
-#pragma opt_propagation reset
 #pragma opt_loop_invariants reset
 #pragma opt_common_subs reset
 /* fzgx:end fn_4_D1A8 */

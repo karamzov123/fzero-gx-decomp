@@ -54,8 +54,6 @@ extern void fn_12_21D40(MovieModule *module, int value, int flag);
 extern void fn_12_2D7DC(MovieModule *module, int value, int flag);
 
 #pragma opt_lifetimes off
-#pragma opt_propagation off
-#pragma opt_loop_invariants off
 int fn_12_29FF8(MovieModule *module) {
     int *fzgx_value;
     int local_14;

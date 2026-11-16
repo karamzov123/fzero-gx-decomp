@@ -69,8 +69,6 @@ extern void fn_1_4AE0C(const char *, ...);
 extern void fn_1_8D3F8(void *, void *, void *, void *);
 
 static inline u32 fn_16_6B24_array_read(u32 *array, s32 index) { return array[index]; }
-#pragma opt_lifetimes off
-#pragma opt_loop_invariants off
 void fn_16_6B24(void) {
     struct fn_16_6B24_lbl_16_rodata_58 *p_lbl_16_rodata_58;
     struct fn_16_6B24_lbl_1_bss_8B614 *p_lbl_1_bss_8B614;
@@ -116,7 +114,5 @@ void fn_16_6B24(void) {
     fn_16_6B24_array_read(lbl_16_data_82F28.unk_D8, lbl_1_bss_8B614.unk_A),
     fn_16_6B24_array_read(lbl_16_data_82F28.unk_F0, lbl_1_bss_8B614.unk_A));
 }
-#pragma opt_loop_invariants reset
 
-#pragma opt_lifetimes reset
 

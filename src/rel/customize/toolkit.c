@@ -12057,7 +12057,6 @@ static inline void finish_impl(struct fn_3_28EBC_Copy88 *p, void (*cb)(void)) {
     p->alpha = 1.0f;
     fn_1_4F734((FontDrawPacket *)p);
 }
-#pragma opt_lifetimes on
 #pragma opt_propagation off
 void fn_3_28EBC(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7, s16 arg8) {
     struct fn_3_28EBC_lbl_3_rodata_768 *p_lbl_3_rodata_768;

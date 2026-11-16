@@ -13,7 +13,6 @@ extern void *memset(void *dst, int value, u32 size);
 extern void PADTypeAndStatusCallback(void);
 extern u32 SIGetTypeAsync(s32 channel, void (*callback)(void));
 
-#pragma opt_lifetimes off
 void PADProbeCallback(u32 unused, u32 value) {
     u32 response[3];
     u32 chanBit;
@@ -40,5 +39,4 @@ void PADProbeCallback(u32 unused, u32 value) {
         SIGetTypeAsync(lbl_801A64B4, PADTypeAndStatusCallback);
     }
 }
-#pragma opt_lifetimes reset
 

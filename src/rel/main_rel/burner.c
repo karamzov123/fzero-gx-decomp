@@ -3060,9 +3060,7 @@ extern u32 fn_1_9D260(void);
 extern u32 fn_1_9D230(void);
 extern void fn_1_9AD88(void);
 
-#pragma opt_propagation off
 #pragma opt_common_subs off
-#pragma opt_strength_reduction off
 static inline s32 Fn9A7BC_flag(Fn9A7BCA *a) {
     return a->unk_84;
 }

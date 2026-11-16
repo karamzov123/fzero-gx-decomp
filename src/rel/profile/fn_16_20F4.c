@@ -35,7 +35,6 @@ extern struct fn_16_20F4_BF0 lbl_1_bss_BF0[];
 extern const f32 lbl_16_rodata_0[22];
 extern void fn_1_A2D84(u32);
 #pragma opt_propagation off
-#pragma opt_common_subs on
 static inline const f32 *fn_16_20F4_array_read(const f32 *array) { return array; }
 s32 fn_16_20F4(void) {
     struct { volatile u16 *value; } p; /* Controller flags are read on each test. */

@@ -24,8 +24,6 @@ extern void fn_8006E2B0(Vec3 *, Vec3 *);
 extern void lbl_8006DB30(void);
 
 #pragma opt_common_subs off
-#pragma opt_lifetimes off
-#pragma opt_dead_assignments off
 void fn_8006F6A8(Fn8006F6A8 *self) {
     Vec3 vec_b;
     Vec3 vec_a;
@@ -60,8 +58,6 @@ void fn_8006F6A8(Fn8006F6A8 *self) {
 
     lbl_8006DB30();
 }
-#pragma opt_dead_assignments reset
 
-#pragma opt_lifetimes reset
 
 #pragma opt_common_subs reset

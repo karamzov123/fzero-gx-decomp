@@ -69,7 +69,6 @@ static inline s32 get_curve(u8 *base, s32 idx) {
     return r;
 }
 
-#pragma opt_lifetimes off
 void fn_80026FE0(void) {
     SoundEntry *e;
     s32 f6;
@@ -304,5 +303,4 @@ void fn_80026FE0(void) {
         AISetStreamVolRight(base[0xB8C + lbl_801A6B80]);
     }
 }
-#pragma opt_lifetimes reset
 

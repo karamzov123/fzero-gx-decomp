@@ -2581,7 +2581,6 @@ extern u8 * memset(u8 *, int, u32);
 extern void lbl_8006DD14(u32, void *);
 
 
-#pragma opt_propagation on
 #pragma opt_loop_invariants off
 void fn_1_6B8A4(u32 arg0, void * arg1, f32 arg2) {
     u32 v0;
@@ -2862,7 +2861,6 @@ void fn_1_6B8A4(u32 arg0, void * arg1, f32 arg2) {
     }
     return;
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_6B8A4 */
 
 /* fzgx:begin fn_1_6BFB8 noprologue */
@@ -5530,7 +5528,6 @@ static const u32 fzgx_pool_table_100[122] = {
 void fzgx_pool_primer_2E8(void) { fzgx_sink_d(0.4000000059604645); }
 #pragma section code_type ".text"
 
-#pragma opt_propagation on
 #pragma opt_loop_invariants off
 void fn_1_6E62C(u32 arg0, void * arg1, f32 arg2) {
     u32 v0;
@@ -5816,7 +5813,6 @@ void fn_1_6E62C(u32 arg0, void * arg1, f32 arg2) {
     }
     return;
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_6E62C */
 
 /* fzgx:begin fn_1_6ED40 */
@@ -7173,8 +7169,6 @@ void fn_1_6FD58(Struct_1_6FD58 *arg0, Sig_fn_80008C20_fn_80008C20_Vec *arg1, f32
         fn_1_6CF3C(&s, arg1, scale, arg3 * (1.4f * (m + 0.5)));
     }
 }
-
-
 /* fzgx:end fn_1_6FD58 */
 
 /* fzgx:begin fn_1_6FFA0 noprologue */
@@ -7474,7 +7468,6 @@ __declspec(section ".fzgxpool") static void fzgx_pool_keep44(void) { const u32 *
 #define FN6FFA0_RAND() \
     (lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB, (s32)((lbl_801A63C0 >> 16) & 0x7FFF))
 
-#pragma opt_loop_invariants off
 #pragma opt_propagation off
 void fn_1_6FFA0(Fn6FFA0Car *car, u32 arg1, u32 arg2) {
     Fn6FFA0Vec pos;
@@ -7542,7 +7535,6 @@ setup:
     velocity = &work.unk_3c;
     goto loop; /* fzgx-allow: S1 return from shared loop-entry setup */
 }
-#pragma opt_loop_invariants reset
 /* fzgx:end fn_1_6FFA0 */
 
 /* fzgx:begin fn_1_702A0 noprologue */

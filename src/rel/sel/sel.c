@@ -51783,9 +51783,6 @@ extern u32 fn_10_24BD0;
 extern u32 fn_10_23990;
 #pragma opt_common_subs off
 #pragma opt_loop_invariants off
-#pragma opt_propagation off
-#pragma opt_pointer_analysis off
-#pragma opt_strength_reduction on
 extern u8 lbl_4_rodata_410__fzgx_offset_0[];
 extern u8 lbl_4_rodata_418__fzgx_offset_0[];
 extern u8 lbl_4_rodata_49C__fzgx_offset_0[];
@@ -52028,9 +52025,6 @@ fn_1_A2D84(0xa9100000U);
 lbl_10_bss_55CDC__fzgx_offset_0 = 0;
 lbl_10_bss_55CDD__fzgx_offset_0 = 0;
 }
-#pragma opt_strength_reduction reset
-#pragma opt_pointer_analysis reset
-#pragma opt_propagation reset
 #pragma opt_loop_invariants reset
 #pragma opt_common_subs reset
 /* fzgx:end fn_10_25610 */

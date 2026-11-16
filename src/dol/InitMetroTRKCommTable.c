@@ -49,7 +49,6 @@ extern s32 ddh_cc_pre_continue(void);
 extern s32 ddh_cc_post_stop(void);
 extern s32 ddh_cc_initinterrupts(void);
 
-#pragma opt_dead_assignments off
 s32 InitMetroTRKCommTable(s32 transport) {
     s32 result = 1;
     u8 *str = (u8 *)EndofProgramInstruction;
@@ -104,5 +103,4 @@ s32 InitMetroTRKCommTable(s32 transport) {
     }
     return result;
 }
-#pragma opt_dead_assignments reset
 

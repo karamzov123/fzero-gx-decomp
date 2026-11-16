@@ -215,7 +215,6 @@ typedef struct {
     u32 field_c;
 } Fn1D38C4Result;
 
-#pragma opt_propagation off
 #pragma opt_common_subs off
 void *fn_1_D38C4(void *arg) {
     u8 path[96];
@@ -262,8 +261,6 @@ void *fn_1_D38C4(void *arg) {
     return result;
 }
 #pragma opt_common_subs reset
-
-#pragma opt_propagation reset
 /* fzgx:end fn_1_D38C4 */
 
 /* fzgx:begin fn_1_D3A4C noprologue */

@@ -12,7 +12,6 @@ extern volatile u32 lbl_801A6C90; /* volatile: retail reloads the cursor after s
 extern volatile u32 lbl_801A6C94; /* volatile: retail reads generation after the cursor stores. */
 
 #pragma opt_propagation off
-#pragma opt_strength_reduction off
 u32 fn_8006BC84(Fn8006BC84Data *data) {
     u32 count;
     u32 result;
@@ -38,7 +37,6 @@ u32 fn_8006BC84(Fn8006BC84Data *data) {
     }
     return result;
 }
-#pragma opt_strength_reduction reset
 
 #pragma opt_propagation reset
 

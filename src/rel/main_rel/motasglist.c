@@ -1334,7 +1334,6 @@ typedef struct Object4247C {
 
 #pragma opt_propagation off
 #pragma fp_contract on
-#pragma opt_common_subs on
 static inline void fn_1_4247C_set(Vec4247C *v) {
     v->x = lbl_1_rodata_F50;
     v->y = lbl_1_rodata_F50;
@@ -1413,7 +1412,6 @@ void fn_1_4247C(Object4247C *object, u8 *entries, u8 *data) {
         i++;
     }
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_4247C */
 
 /* fzgx:begin fn_1_426AC */

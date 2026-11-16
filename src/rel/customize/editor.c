@@ -1022,11 +1022,7 @@ typedef struct {
 	u8 pad_40[0x18];
 } DrawPacket;
 
-#pragma opt_dead_assignments off
-#pragma opt_propagation on
 #pragma opt_common_subs off
-#pragma opt_lifetimes on
-#pragma opt_loop_invariants off
 void fn_3_16E14(void) {
 	u32 fzgx_value;
 	s32 width;
@@ -1072,15 +1068,9 @@ for (fzgx_loop_i_3181 = 0; (u8)fzgx_loop_i_3181 < (u8)count; fzgx_loop_i_3181++)
     i = fzgx_loop_i_3181;
 }
 }
-#pragma opt_loop_invariants reset
 
-#pragma opt_lifetimes reset
 
 #pragma opt_common_subs reset
-
-#pragma opt_propagation reset
-
-#pragma opt_dead_assignments reset
 /* fzgx:end fn_3_16E14 */
 
 /* fzgx:begin fn_3_16FD0 */
@@ -1112,7 +1102,6 @@ void fn_3_16FD0(u32 arg0) {
 #pragma opt_propagation off
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 
-#pragma opt_common_subs off
 #pragma peephole off
 void fn_3_17098(void) {
     u32 *b = (u32 *)&lbl_3_bss_A2410;
@@ -1130,8 +1119,6 @@ void fn_3_17098(void) {
 }
 }
 #pragma peephole reset
-
-#pragma opt_common_subs reset
 /* fzgx:end fn_3_17098 */
 
 /* fzgx:begin fn_3_170E0 */

@@ -52,7 +52,6 @@ extern u32 fn_80057728(void);
 extern u32 fn_800576DC(void);
 
 static inline void fn_8005782C_store(void *destination, int value) { *(int *)destination = value; }
-#pragma opt_loop_invariants on
 #pragma opt_dead_assignments off
 u32 fn_8005782C(SJ *sj, int channel, SJCK *chunk) {
     int *fzgx_value_;
@@ -104,5 +103,4 @@ u32 fn_8005782C(SJ *sj, int channel, SJCK *chunk) {
 }
 #pragma opt_dead_assignments reset
 
-#pragma opt_loop_invariants reset
 

@@ -237,8 +237,6 @@ void _epilog(void) {
 /* fzgx:end _epilog */
 
 /* fzgx:begin fn_15_1F4 */
-
-
 extern s32 lbl_15_bss_1C;
 extern void fn_15_B90(void);
 
@@ -1493,8 +1491,6 @@ void fn_15_11DC(void) {
 /* fzgx:end fn_15_11DC */
 
 /* fzgx:begin fn_15_1D7C */
-
-
 extern u32 fn_15_1F28(u32, u32);
 extern u32 fn_15_FCC(void);
 extern u32 fn_1_4A00(u32, u32, u32);
@@ -1596,8 +1592,6 @@ void fn_15_1DF4(void) {
 /* fzgx:end fn_15_1DF4 */
 
 /* fzgx:begin fn_15_1EE0 */
-
-
 extern u32 camera_enable_flags(u32);
 extern u32 fn_15_236C(u32, u32);
 
@@ -2013,7 +2007,6 @@ extern void fn_1_92530(void);
 
 #pragma opt_propagation off
 static inline void fn_15_2458_call_fn_1_934CC(u32 a2, void * a1, struct fn_15_2458_Car * a0) { fn_1_934CC(a0, a1, a2); }
-#pragma opt_dead_assignments off
 void fn_15_2458(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
     struct fn_15_2458_bss *p_bss;
     struct fn_15_2458_data *p_data;
@@ -2077,7 +2070,6 @@ out:
     fn_1_435C(p_bss->unk_78);
     fn_1_3F8C(&p_data->unk_1D0, fn_1_92530, car, 0xA);
 }
-#pragma opt_dead_assignments reset
 
 #pragma opt_propagation reset
 /* fzgx:end fn_15_2458 */
@@ -2407,8 +2399,6 @@ for (fzgx_loop_i_994 = 0; fzgx_loop_i_994 < 12; fzgx_loop_i_994 += 6) {
         }
     }
 }
-
-
 /* fzgx:end fn_15_2AE4 */
 
 /* fzgx:begin fn_15_2CEC */
@@ -4851,9 +4841,6 @@ void fn_15_5730(f32 arg0) {
     p_elem = (struct fn_15_5730_elem *)fzgx_pool_native_lbl_15_data_0_unk_1D50;
     fn_1_4AE0C(fzgx_pool_native_lbl_15_data_0_unk_1F78, p_elem[(*(u32 (*)[1])&lbl_801A66B4)[0]].unk_C);
 }
-
-
-
 /* fzgx:end fn_15_5730 */
 
 /* fzgx:begin fn_15_5864 */

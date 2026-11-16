@@ -2559,7 +2559,6 @@ extern void fn_1_A8EF8(u16, u16);
 static inline u32 *fn_1_E4A38_array_read(u32 *array) { return array; }
 #pragma opt_propagation off
 static inline u32 fn_1_E4A38_array_read_(u32 *array, s32 index) { return array[index]; }
-#pragma opt_lifetimes off
 static inline u32 * fn_1_E4A38_read_pointer(struct D * owner) { return owner->unk_30; }
 static inline char * fn_1_E4A38_call_strcat(const char * a1, char * a0) { return strcat(a0, a1); }
 void fn_1_E4A38(u32 arg0, u16 arg1, u16 arg2, Cb arg3) {
@@ -2664,7 +2663,6 @@ void fn_1_E4A38(u32 arg0, u16 arg1, u16 arg2, Cb arg3) {
         arg3(p_lbl_1_data_3DC98->s2cc);
     }
 }
-#pragma opt_lifetimes reset
 
 #pragma opt_propagation reset
 /* fzgx:end fn_1_E4A38 */

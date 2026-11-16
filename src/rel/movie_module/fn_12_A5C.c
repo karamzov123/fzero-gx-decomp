@@ -55,7 +55,6 @@ extern void fn_12_3DBE0(Fn12_A5C_3 *, Fn12_A5C_2 *, s32);
 extern void fn_12_3A64(s32, s32, s32);
 extern void fn_12_3710(s32, s32, s32);
 
-#pragma opt_common_subs off
 void fn_12_A5C(Fn12_A5C_0 *param0, Fn12_A5C_1 *param1, s32 type, s32 param3) {
     s32 *fzgx_value;
     Fn12_A5C_3 var3;
@@ -126,4 +125,3 @@ void fn_12_A5C(Fn12_A5C_0 *param0, Fn12_A5C_1 *param1, s32 type, s32 param3) {
     }
     }
 }
-#pragma opt_common_subs reset

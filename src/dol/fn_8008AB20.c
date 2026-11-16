@@ -1,6 +1,5 @@
 #include "types.h"
 #pragma use_lmw_stmw on
-#pragma opt_pointer_analysis off
 struct Sig_fn_80088B00_fn_80088B00_Arg0 {
     u8 pad_0[0x8];
     u32 unk_8;

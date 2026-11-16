@@ -2,8 +2,6 @@
 extern const f32 lbl_801A73F4;
 extern s16 lbl_8006D24C(f32, f32);
 typedef struct { f32 x, y, z; } Vec3;
-#pragma opt_dead_assignments off
-#pragma opt_dead_code off
 u16 fn_8006F394(void) {
     /* Preserve the three stack stores observed in retail, including unused y. */
     volatile Vec3 v;
@@ -20,4 +18,3 @@ u16 fn_8006F394(void) {
     v.z = c;
     return lbl_8006D24C(a, c);
 }
-#pragma opt_dead_assignments reset

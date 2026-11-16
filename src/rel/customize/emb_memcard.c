@@ -1821,7 +1821,6 @@ static void bss_prime(void) {
 
 #pragma opt_propagation off
 #define clamp_fade(x) ((x) < 0 ? 0.0f : (f32)(x) > 10.0f ? 10.0f : (f32)(x))
-#pragma opt_dead_assignments off
 void fn_3_E6F8(void) {
     Obj_3_bss_7EDD8 *state;
     Obj_3_bss_7EDD8 *state3;
@@ -2020,7 +2019,6 @@ void fn_3_E6F8(void) {
         }
     }
 }
-#pragma opt_dead_assignments reset
 /* fzgx:end fn_3_E6F8 */
 
 /* fzgx:begin fn_3_F044 */

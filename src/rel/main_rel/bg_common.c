@@ -1975,7 +1975,6 @@ extern f32 lbl_1_rodata_78E0[2];
 extern f32 lbl_8006D668(u32 *);
 
 #pragma opt_propagation off
-#pragma opt_strength_reduction off
 static inline f32 fn_1_105BD8_operand(f32 right, f32 left) { left *= right; return left; }
 #pragma opt_common_subs off
 void fn_1_105BD8(u32 id, u32 *a, u32 *b, u32 *c, u32 *d) {
@@ -2016,7 +2015,6 @@ void fn_1_105BD8(u32 id, u32 *a, u32 *b, u32 *c, u32 *d) {
 }
 #pragma opt_common_subs reset
 
-#pragma opt_strength_reduction reset
 
 #pragma opt_propagation reset
 /* fzgx:end fn_1_105BD8 */
@@ -3183,7 +3181,6 @@ extern f32 lbl_1_rodata_7AB8[9];
 extern u32 lbl_1_bss_88B40[3];
 extern u8 *fn_80083970(u8 *, const u8 *);
 
-#pragma opt_loop_invariants off
 #pragma opt_propagation off
 #pragma opt_lifetimes off
 void fn_1_107930(fn_1_107930_Object *arg) {
@@ -3297,7 +3294,6 @@ void fn_1_107930(fn_1_107930_Object *arg) {
 }
 #pragma opt_lifetimes reset
 #pragma opt_propagation reset
-#pragma opt_loop_invariants reset
 /* fzgx:end fn_1_107930 */
 
 /* fzgx:begin fn_1_107C4C */

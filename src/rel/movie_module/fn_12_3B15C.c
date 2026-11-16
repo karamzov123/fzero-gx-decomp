@@ -76,9 +76,6 @@ static inline int mwsst_IsValid(const MwsStHandle *handle) {
     return 1;
 }
 
-#pragma opt_pointer_analysis off
-#pragma opt_dead_assignments off
-#pragma opt_loop_invariants off
 void fn_12_3B15C(MwsStHandle *handle) {
     void (* fzgx_live_)(SJ *sj);
     void (* fzgx_live)(MwsStHandle *handle);
@@ -122,8 +119,5 @@ void fn_12_3B15C(MwsStHandle *handle) {
         }
     }
 }
-#pragma opt_loop_invariants reset
 
-#pragma opt_dead_assignments reset
 
-#pragma opt_pointer_analysis reset

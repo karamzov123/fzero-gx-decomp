@@ -119,7 +119,6 @@ static inline int detect_stride(u8 *data, int length, int *duration) {
 }
 #pragma opt_common_subs off
 #pragma opt_propagation off
-#pragma opt_strength_reduction off
 int fn_12_2396C(u8 *arg0, s32 arg1, Sig_fn_12_2396C_MovieState *arg2) {
     int stride;
     int duration;
@@ -134,7 +133,6 @@ int fn_12_2396C(u8 *arg0, s32 arg1, Sig_fn_12_2396C_MovieState *arg2) {
     fn_12_232DC(arg0, arg1, arg2);
     return 1;
 }
-#pragma opt_strength_reduction reset
 
 #pragma opt_propagation reset
 

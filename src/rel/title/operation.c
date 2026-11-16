@@ -2055,7 +2055,6 @@ void shared_pool_primer_c(void) {
 #pragma pop
 
 #pragma push
-#pragma opt_propagation off
 #pragma opt_lifetimes off
 void fn_8_7EFC(void) {
     s32 x;
@@ -2317,7 +2316,6 @@ void shared_pool_primer_c(void) {
 }
 #pragma pop
 #pragma push
-#pragma opt_propagation off
 #pragma opt_lifetimes off
 void fn_8_8440(void) {
     s32 x;
@@ -2756,7 +2754,6 @@ void shared_pool_primer4(void) {
 #pragma pop
 
 #pragma push
-#pragma opt_propagation off
 #pragma opt_lifetimes off
 void fn_8_89B8(void) {
     s32 x;
@@ -7377,7 +7374,6 @@ extern void fn_80072558(void);
 extern void lbl_8006D758(void);
 extern void lbl_8006E0B4(f32,f32,f32);
 extern void lbl_8006E14C(f32);
-#pragma opt_common_subs on
 #pragma opt_propagation off
 #pragma opt_lifetimes off
 void fn_8_CC4C(u32 x, u32 y) {
@@ -7660,7 +7656,6 @@ extern void fn_8_CF94(struct Sig_fn_8_CF94_fn_8_CF94_Arg0 *);
 typedef union { struct { u16 pad : 7; u16 value : 9; } a; struct { u16 pad : 4; u16 value : 12; } b; } fn_8_D034_Bits;
 static inline u16 fn_8_D034_array_read(u16 *array, s32 index) { return array[index]; }
 #pragma opt_propagation off
-#pragma opt_loop_invariants off
 void fn_8_D034(void) {
     u8 fzgx_value;
     MsgTable msgs = fzgx_pool_msgs;
@@ -7754,7 +7749,6 @@ void fn_8_D034(void) {
         fn_1_3F894();
     }
 }
-#pragma opt_loop_invariants reset
 
 #pragma opt_propagation reset
 /* fzgx:end fn_8_D034 */
@@ -9685,9 +9679,6 @@ static inline void clear_name_entry_flag(void) {
 }
 #pragma opt_common_subs off
 #pragma opt_loop_invariants off
-#pragma opt_propagation off
-#pragma opt_pointer_analysis off
-#pragma opt_strength_reduction off
 
 void fn_8_F9E4(u32 arg0, u32 arg1, u8 arg2) {
     Node *n;
@@ -9746,17 +9737,11 @@ void fn_8_F9E4(u32 arg0, u32 arg1, u8 arg2) {
     fzgx_obj_lbl_8_bss_555 = 0;
 }
 
-#pragma opt_strength_reduction reset
-#pragma opt_pointer_analysis reset
-#pragma opt_propagation reset
 #pragma opt_loop_invariants reset
 #pragma opt_common_subs reset
 
 #pragma opt_common_subs reset
 #pragma opt_loop_invariants reset
-#pragma opt_propagation reset
-#pragma opt_pointer_analysis reset
-#pragma opt_strength_reduction reset
 /* fzgx:end fn_8_F9E4 */
 
 /* fzgx:begin fn_8_FC5C */

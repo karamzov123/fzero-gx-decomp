@@ -566,7 +566,6 @@ extern void fn_1_A2D84(u32);
 
 #pragma opt_lifetimes off
 #pragma opt_propagation off
-#pragma opt_strength_reduction off
 static inline void fn_1_E174_store(s16 value, s16 *destination) { *destination = value; }
 void fn_1_E174(f32 arg0) {
     f32 fzgx_live;
@@ -846,7 +845,6 @@ void fn_1_E174(f32 arg0) {
     }
     }
 }
-#pragma opt_strength_reduction reset
 
 #pragma opt_propagation reset
 
@@ -2474,8 +2472,6 @@ void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
         *(u16 *)((u8 *)arg0 + 8) = arg0->unk_6;
     }
 }
-
-
 /* fzgx:end fn_1_FCB0 */
 
 /* fzgx:begin fn_1_10138 */
@@ -3736,7 +3732,6 @@ static inline void fn_1_1138C_read_pointer(Cam *c, Obj_1_data_4754 *base, s32 in
     c->unk_5C = entry->unk_C;
     c->unk_58 = lbl_1_rodata_608[0];
 }
-#pragma opt_strength_reduction on
 void fn_1_1138C(Cam *c)
 {
     V3 b;
@@ -3780,7 +3775,6 @@ void fn_1_1138C(Cam *c)
         fn_1_1138C_read_pointer(c, base, c->unk_4);
     }
 }
-#pragma opt_strength_reduction reset
 /* fzgx:end fn_1_1138C */
 
 /* fzgx:begin fn_1_11544 */
@@ -3819,8 +3813,6 @@ typedef struct LiveCam {
 } LiveCam;
 
 #pragma opt_propagation off
-#pragma opt_dead_assignments on
-#pragma opt_strength_reduction off
 void fn_1_11544(LiveCam *cam) {
     f32 fzgx_live_;
     f32 fzgx_live;
@@ -3896,9 +3888,7 @@ void fn_1_11544(LiveCam *cam) {
     fn_1_15578(cam->unk_1c, &sp_24, &sp_10, &sp_18, 0x40005, &sp_14, 1, 0, 0, 0);
     lbl_8006DB30();
 }
-#pragma opt_strength_reduction reset
 
-#pragma opt_dead_assignments reset
 
 #pragma opt_propagation reset
 /* fzgx:end fn_1_11544 */

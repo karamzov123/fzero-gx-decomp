@@ -1183,7 +1183,6 @@ extern const f32 lbl_1_rodata_194;
 extern u32 fn_80038EEC(f32, f32, f32, f32, f32, f32);
 extern u32 fn_80074188(u32, u32, u32, u32);
 
-#pragma opt_propagation off
 #pragma opt_common_subs off
 void fn_1_627C(void) {
     f32 width;

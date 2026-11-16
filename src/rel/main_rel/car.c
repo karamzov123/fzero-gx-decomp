@@ -1612,11 +1612,8 @@ typedef struct {
     char *unk_00;
 } TblRow;
 
-#pragma opt_strength_reduction on
 #pragma opt_propagation off
-#pragma opt_lifetimes off
 #pragma opt_loop_invariants off
-#pragma opt_dead_assignments off
 void fn_1_7FD7C(Fn7FD7CArg *arg0)
 {
     u32 tmp_call9;
@@ -1707,11 +1704,8 @@ for (fzgx_loop_j_1994 = 0; fzgx_loop_j_1994 < 5; fzgx_loop_j_1994++) {
     }
     fn_80006E10( (u32)((char *)(base + 0xe20)));
 }
-#pragma opt_dead_assignments reset
 #pragma opt_loop_invariants reset
-#pragma opt_lifetimes reset
 #pragma opt_propagation reset
-#pragma opt_strength_reduction reset
 /* fzgx:end fn_1_7FD7C */
 
 /* fzgx:begin fn_1_7FFF0 */
@@ -9567,7 +9561,6 @@ static void fzgx_string_layout(void) {
 }
 #pragma section code_type ".text"
 
-#pragma opt_loop_invariants off
 void fn_1_85688(void) {
     Fn85688Pair *q;
     s8 j;
@@ -9633,7 +9626,6 @@ loop1_test:
         }
     }
 }
-#pragma opt_loop_invariants reset
 
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_85688 */
@@ -10351,8 +10343,6 @@ struct fn_1_866B4_state {
 };
 extern struct fn_1_866B4_state lbl_1_bss_6D820;
 
-#pragma opt_loop_invariants on
-#pragma opt_common_subs off
 #pragma opt_lifetimes off
 s32 fn_1_866B4(u32 arg0) {
     s16 v6;
@@ -11081,8 +11071,6 @@ typedef struct {
     u16 unk_48[1];
 } Manager_1_86900;
 
-#pragma opt_loop_invariants on
-#pragma opt_lifetimes off
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u32 fzgx_obj_lbl_1_bss_6D820;
 u32 fzgx_obj_lbl_1_bss_6D824;
@@ -11154,9 +11142,6 @@ void *fn_1_86900(s32 arg0) {
     return 0;
 }
 #pragma opt_common_subs reset
-
-#pragma opt_lifetimes reset
-#pragma opt_loop_invariants reset
 /* fzgx:end fn_1_86900 */
 
 /* fzgx:begin fn_1_869B0 noprologue */
@@ -14479,7 +14464,6 @@ typedef unsigned int u32;
 typedef struct { u32 a, b, c; } V3;
 
 #pragma optimization_level 0
-#pragma opt_propagation off
 
 void fn_1_892CC(V3 *dst, V3 *src, u32 a, u32 b) {
     a = src->a;

@@ -1057,7 +1057,6 @@ static inline void Col4(u8 r, u8 g, u8 b, u8 a) {
 }
 
 /* retail keeps the trip count in two webs (an uncoalesced copy): lifetimes off */
-#pragma opt_lifetimes off
 void fn_1_57810(u16 n, Vtx3 *verts, Col *color) {
     u8 a;
     u8 b;
@@ -1086,7 +1085,6 @@ void fn_1_57810(u16 n, Vtx3 *verts, Col *color) {
         p++;
     }
 }
-#pragma opt_lifetimes reset
 /* fzgx:end fn_1_57810 */
 
 /* fzgx:begin fn_1_579A0 noprologue */

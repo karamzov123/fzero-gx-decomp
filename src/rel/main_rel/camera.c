@@ -1043,7 +1043,6 @@ for (fzgx_loop_i_1063 = 0; fzgx_loop_i_1063 < count; fzgx_loop_i_1063++) {
 }
     return 0;
 }
-
 /* fzgx:end fn_1_707C */
 
 /* fzgx:begin camera_set_entry_field_0xa8 */
@@ -3747,7 +3746,6 @@ static inline void fn_1_A888_setpos2(f32 a, f32 b, f32 c) {
     *(f32 *)(0xE0000000 + 0x2C) = c;  /* fzgx-allow: A2 locked matrix, retail lis 0xe000 base */
 }
 
-#pragma opt_common_subs on
 #pragma opt_propagation off
 f32 fn_1_A888(void *arg0) {
     f32 fzgx_live_;
@@ -3828,8 +3826,6 @@ f32 fn_1_A888(void *arg0) {
     return res;
 }
 #pragma opt_propagation reset
-
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_A888 */
 
 /* fzgx:begin fn_1_AA54 noprologue */
@@ -4626,7 +4622,6 @@ for (fzgx_loop_i_7616 = 0; fzgx_loop_i_7616 < 3; fzgx_loop_i_7616++) {
         }
     }
 }
-
 /* fzgx:end fn_1_B4D4 */
 
 /* fzgx:begin fn_1_B724 noprologue */
@@ -5318,7 +5313,6 @@ void fn_1_C268(s32 arg) {
                  lbl_1_bss_10D8.unk_1C);
     }
 }
-
 /* fzgx:end fn_1_C268 */
 
 /* fzgx:begin fn_1_C304 */

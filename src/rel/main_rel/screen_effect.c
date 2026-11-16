@@ -6545,16 +6545,13 @@ typedef struct {
     u16 unk_28[8];
 } Fn17BB80State;
 
-#pragma opt_propagation off
 static inline void fn_1_7BB80_set(u16 val, u16 *arr, s32 off) {
     *(u16 *)((u8 *)arr + off) = val;
 }
-#pragma opt_propagation reset
 
 
 static inline u16 * fn_1_7BB80_read_pointer(Fn17BB80State * owner) { return owner->unk_28; }
 #pragma opt_dead_assignments off
-#pragma opt_lifetimes off
 void fn_1_7BB80(Fn17BB80Entry *arg0, s32 arg1) {
     Fn17BB80Entry * fzgx_live;
     u8 *data = (u8 *)&lbl_1_data_1E558;
@@ -6578,7 +6575,6 @@ void fn_1_7BB80(Fn17BB80Entry *arg0, s32 arg1) {
     fn_800356B8(arg0, arg1);
     bss->unk_14++;
 }
-#pragma opt_lifetimes reset
 
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_1_7BB80 */

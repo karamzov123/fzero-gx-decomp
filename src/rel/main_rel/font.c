@@ -2360,7 +2360,6 @@ struct fn_1_4AF10_lbl_1_bss_3E058 {
 
 
 
-#pragma opt_pointer_analysis off
 void fn_1_4AF10(u32 arg0) {
     u32 v0;
     v0 = (*(struct fn_1_4AF10_lbl_1_bss_3E058 *)&lbl_1_bss_3E058).unk_0;
@@ -2369,7 +2368,6 @@ void fn_1_4AF10(u32 arg0) {
     fn_1_4A0D8((const char *)arg0);
     (*(struct fn_1_4AF10_lbl_1_bss_3E058 *)&lbl_1_bss_3E058).unk_0 = v0;
 }
-#pragma opt_pointer_analysis reset
 /* fzgx:end fn_1_4AF10 */
 
 /* fzgx:begin fn_1_4AF64 */
@@ -2789,12 +2787,10 @@ typedef struct {
     u8 pad_2A[0xE];
 } Entry;
 
-#pragma opt_cse off
 
 #pragma opt_common_subs off
 #pragma opt_dead_assignments off
 static inline Entry *fn_1_4BA24_array_read(Entry *array) { return array; }
-#pragma opt_strength_reduction off
 void fn_1_4BA24(u32 arg0, s32 arg1, void *arg2)
 {
     u32 saved;
@@ -2830,7 +2826,6 @@ void fn_1_4BA24(u32 arg0, s32 arg1, void *arg2)
 
     fn_800206FC(saved);
 }
-#pragma opt_strength_reduction reset
 
 #pragma opt_dead_assignments reset
 
@@ -6505,7 +6500,6 @@ typedef struct fn_1_508C4_FontObject {
 } fn_1_508C4_FontObject;
 
 
-#pragma opt_dead_assignments off
 #pragma opt_propagation off
 void fn_1_508C4(fn_1_508C4_FontObject *obj, f32 dx, f32 dy) {
     fn_1_508C4_FontObject work;
@@ -6544,8 +6538,6 @@ void fn_1_508C4(fn_1_508C4_FontObject *obj, f32 dx, f32 dy) {
     }
 }
 #pragma opt_propagation reset
-
-#pragma opt_dead_assignments reset
 /* fzgx:end fn_1_508C4 */
 
 /* fzgx:begin fn_1_50A90 noprologue */

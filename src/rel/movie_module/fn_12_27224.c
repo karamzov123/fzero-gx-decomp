@@ -33,7 +33,6 @@ extern u32 fn_12_2AAD4(struct Sig_fn_12_2AAD4_fn_12_2AAD4_Arg0 *);
 
 #pragma opt_common_subs off
 static inline u32 fn_12_27224_operand(u32 right, u32 left) { return left * right; }
-#pragma opt_loop_invariants off
 s32 fn_12_27224(struct fn_12_27224_Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3) {
     u32 list_bits;
     u32 entry_130;
@@ -126,6 +125,5 @@ s32 fn_12_27224(struct fn_12_27224_Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3) {
     *(u32 *)((u8 *)(u32)arg0 + 2416) = 0;
     return 0;
 }
-#pragma opt_loop_invariants reset
 
 #pragma opt_common_subs reset

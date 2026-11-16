@@ -73,14 +73,12 @@ void Run();
 
 void fn_8000EB04();
 
-#pragma opt_lifetimes off
 static inline BOOL IsStreamEnabled(void) {
     if (fn_80019C48()->streaming) {
         return 1;
     }
     return 0;
 }
-#pragma opt_lifetimes reset
 
 
 #pragma peephole off

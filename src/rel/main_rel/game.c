@@ -12302,8 +12302,6 @@ static void fzgx_bss_layout(void) {
 }
 #pragma section code_type ".text"
 
-#pragma opt_dead_assignments off
-#pragma opt_loop_invariants off
 void fn_1_37E98(void) {
 
     u32 v1;
@@ -12446,9 +12444,6 @@ void fn_1_37E98(void) {
             lbl_1_bss_96A = 184;
     }
 }
-#pragma opt_loop_invariants reset
-
-#pragma opt_dead_assignments reset
 /* fzgx:end fn_1_37E98 */
 
 /* fzgx:begin fn_1_382C4 noprologue */
@@ -25848,7 +25843,6 @@ extern void fn_1_56018(s32);
 extern void fn_1_560F0(s32, u32);
 extern void fn_1_556B8(void *);
 
-#pragma opt_dead_assignments off
 #pragma opt_common_subs off
 #pragma opt_propagation off
 void fn_1_3F8EC(f32 arg0) {
@@ -25937,8 +25931,6 @@ void fn_1_3F8EC(f32 arg0) {
 #pragma opt_propagation reset
 
 #pragma opt_common_subs reset
-
-#pragma opt_dead_assignments reset
 /* fzgx:end fn_1_3F8EC */
 
 /* fzgx:begin fn_1_3FBF4 */

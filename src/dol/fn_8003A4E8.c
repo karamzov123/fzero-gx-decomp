@@ -17,7 +17,6 @@ typedef struct {
 #pragma opt_propagation off
 #pragma opt_lifetimes off
 static inline u32 * fn_8003A4E8_read_pointer(Ctx * owner) { return owner->cursor; }
-#pragma opt_strength_reduction off
 s32 fn_8003A4E8(Ctx *d, u32 idx, u8 *counts) {
     u32 * fzgx_live_;
     u32 * fzgx_live;
@@ -52,7 +51,6 @@ s32 fn_8003A4E8(Ctx *d, u32 idx, u8 *counts) {
     ((idx & 0xFF)[d->entries]).len = t;
     return 0;
 }
-#pragma opt_strength_reduction reset
 
 #pragma opt_lifetimes reset
 

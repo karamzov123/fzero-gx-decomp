@@ -21,11 +21,8 @@ extern void fn_80023D00(u32, u32, u32);
 
 #pragma peephole off
 #pragma opt_common_subs off
-#pragma opt_pointer_analysis off
 #pragma opt_dead_assignments off
-#pragma opt_strength_reduction off
 static inline f32 fn_800243C4_read_pointer(struct fn_800243C4_Arg1 * owner) { return owner->unk_1A8; }
-#pragma opt_strength_reduction reset
 
 void fn_800243C4(struct fn_800243C4_Arg0 *arg0, struct fn_800243C4_Arg1 *arg1) {
     u32 i;
@@ -67,7 +64,6 @@ void fn_800243C4(struct fn_800243C4_Arg0 *arg0, struct fn_800243C4_Arg1 *arg1) {
 }
 #pragma opt_dead_assignments reset
 
-#pragma opt_pointer_analysis reset
 
 #pragma opt_common_subs reset
 

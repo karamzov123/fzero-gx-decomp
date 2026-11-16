@@ -16291,8 +16291,6 @@ extern void lbl_8006E1D8(Vec3 *, f32, f32, f32);
 
 #pragma opt_dead_assignments off
 
-#pragma opt_lifetimes on
-#pragma opt_strength_reduction off
 s32 fn_1_27E34(Object *arg0)
 {
     f32 fzgx_value;
@@ -16383,9 +16381,7 @@ s32 fn_1_27E34(Object *arg0)
     }
     return ret;
 }
-#pragma opt_strength_reduction reset
 
-#pragma opt_lifetimes reset
 
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_1_27E34 */
@@ -17087,7 +17083,6 @@ typedef struct Fn_1_287E8 {
 } Fn_1_287E8;
 
 #pragma opt_common_subs off
-#pragma opt_dead_assignments on
 void fn_1_287E8(Fn_1_287E8 *self) {
     f32 * table;
     table = (((f32 *)&lbl_1_rodata_840));
@@ -17166,7 +17161,6 @@ void fn_1_287E8(Fn_1_287E8 *self) {
     }
     self->field212 = 0;
 }
-#pragma opt_dead_assignments reset
 
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_287E8 */
@@ -19818,7 +19812,6 @@ extern void lbl_8006DB74(Mtx *);
 extern void lbl_8006DB30(void);
 
 #pragma opt_common_subs off
-#pragma opt_loop_invariants off
 void fn_1_29968(Owner *self)
 {
     f32 fzgx_live;
@@ -19842,7 +19835,6 @@ void fn_1_29968(Owner *self)
     lbl_8006DB74(&self->unk_5E0);
     lbl_8006DB30();
 }
-#pragma opt_loop_invariants reset
 
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_29968 */
@@ -22721,7 +22713,6 @@ typedef struct Fn_1_2BBD0Arg {
 } Fn_1_2BBD0Arg;
 
 #pragma opt_common_subs off
-#pragma opt_lifetimes off
 static inline f32 fn_1_2BBD0_read_pointer(Fn_1_2BBD0Vec * owner) { return owner->z; }
 #pragma opt_propagation off
 void fn_1_2BBD0(Fn_1_2BBD0 *self, Fn_1_2BBD0Arg *other, f32 threshold) {
@@ -22776,7 +22767,6 @@ void fn_1_2BBD0(Fn_1_2BBD0 *self, Fn_1_2BBD0Arg *other, f32 threshold) {
 }
 #pragma opt_propagation reset
 
-#pragma opt_lifetimes reset
 
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_2BBD0 */
@@ -26018,7 +26008,6 @@ __declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
 }
 #pragma section code_type ".text"
 
-#pragma opt_common_subs on
 #pragma opt_propagation off
 s32 fn_1_2DF98(void)
 {
@@ -26075,7 +26064,6 @@ s32 fn_1_2DF98(void)
     return 0;
 }
 #pragma opt_propagation reset
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_2DF98 */
 
 /* fzgx:begin fn_1_2E1B8 noprologue */
@@ -26644,7 +26632,6 @@ static inline s32 packed_time_difference(u32 t1, u32 t2) {
 }
 
 #pragma opt_dead_assignments off
-#pragma opt_loop_invariants off
 void fn_1_2E3B4(Arg0 *arg0, Arg1 *arg1) {
     f32 distance;
     s32 val_e;
@@ -26779,7 +26766,6 @@ void fn_1_2E3B4(Arg0 *arg0, Arg1 *arg1) {
     arg0->unk_9A = 0;
     arg0->unk_8A = 0;
 }
-#pragma opt_loop_invariants reset
 
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_1_2E3B4 */
