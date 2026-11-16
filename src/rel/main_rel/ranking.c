@@ -3065,7 +3065,6 @@ int fn_1_159588(int arg) {
     s16 count;
     int value;
     RankingArchive *entry;
-    s32 *table;
 
     index = (s16)((arg >> 8) & 0xffff);
     if (((s32 *)lbl_1_bss_8F588)[index] != 0) {
@@ -3076,8 +3075,7 @@ int fn_1_159588(int arg) {
             count = count + 0x10;
         }
 
-        table = (s32 *)&lbl_1_data_FCD4;
-        if (table[index * 10] != 0) {
+        if (lbl_1_data_FCD4[index].loaded != 0) {
             fn_1_159804(index, entry);
         } else {
             if (count >= entry->limit) {
@@ -3101,8 +3099,8 @@ int fn_1_159588(int arg) {
 /* fzgx:begin fn_1_1596DC noprologue */
 #include "types.h"
 #include "rel/main_rel/ranking_archive.h"
+#include "rel/main_rel/bitmap_resource.h"
 
-extern u8 lbl_1_data_FCD4[];
 extern int lbl_801A66B4;
 extern int lbl_1_bss_8F588[];
 
@@ -3132,9 +3130,7 @@ void fn_1_1596DC(int index) {
             if (entry->ids[i] == -1) {
                 break;
             }
-            if (fn_1_46DC4(*(void **)(lbl_1_data_FCD4 +
-                                      entry->ids[i] * 0x28 +
-                                      lbl_801A66B4 * 4 + 4)) != 0) {
+            if (fn_1_46DC4(lbl_1_data_FCD4[entry->ids[i]].paths[lbl_801A66B4]) != 0) {
                 lbl_1_bss_8F588[entry->ids[i]] = count;
             }
         }

@@ -64,22 +64,8 @@ extern Obj_1_data_1A3B8 lbl_1_data_1A3B8;
 // lbl_1_bss_3E058: .bss size 0x4, 5 refs from font.c
 extern u32 lbl_1_bss_3E058;
 
-// lbl_1_data_FCD4: .data size 0x1D60, 5 refs from font.c
-typedef struct {
-    u8 pad_0[0x4];
-    u32 unk_4;  // 3 loads, 0 stores
-    u8 pad_8[0x4];
-    u32 unk_C;  // 6 loads, 0 stores
-} Obj_1_data_FCD4_At20;
-typedef struct {
-    u32 unk_0;  // 14 loads, 2 stores
-    u32 unk_4;  // 2 loads, 0 stores
-    u8 pad_8[0x18];
-    Obj_1_data_FCD4_At20 *unk_20;  // 10 loads, 0 stores
-    u8 unk_24;  // 13 loads, 0 stores
-    u8 pad_25[0x1D3B];
-} Obj_1_data_FCD4;
-extern Obj_1_data_FCD4 lbl_1_data_FCD4;
+// lbl_1_data_FCD4: .data size 0x1D60 (188 x 0x28)
+#include "rel/main_rel/bitmap_resource.h"
 
 // lbl_1_bss_4BA30: .bss size 0x14, 5 refs from font.c
 typedef struct {

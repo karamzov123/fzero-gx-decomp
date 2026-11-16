@@ -1,0 +1,1413 @@
+{
+  "format": "fzgx-device-cleanup-provenance-v1",
+  "version": "GFZE01",
+  "base_commit": "09f46529912ea270ff9611a5d995a8025ac5c99e",
+  "source_tree_sha256": "c1793f02749919ef5ddb301ae776b42ced7fc2ce8dcfa16f642066b8d3f109f0",
+  "configuration_sha256": {
+    "config/GFZE01/units.json": "66305b32c6e0d5904c0e446288bd799aaed4293566b319940eb79c4bfcbbde9d",
+    "config/GFZE01/symbols.txt": "679485d0d8614930c89f5e1919cb46fd91ccd6937a2fc574f1b96db549516b6a",
+    "config/GFZE01/main_rel/symbols.txt": "f420bce352a0130123c6300a9ce3ac052ec0ff29fbc515a1ffc6d2e9308f3422",
+    "config/GFZE01/sample/symbols.txt": "82322476c91b8aa92d58259230913fc2ba507a6b2218de8bd16f2502234941e7",
+    "config/GFZE01/movie_module/symbols.txt": "a1c606bd19ce8925821903d77df8a551e66651bf906adcf01a295526ddd11f2c",
+    "config/GFZE01/customize/symbols.txt": "9e0f12b8bc2c81915c785749472b704f4f0ee31d9bd6770cf37b47446734ff03",
+    "config/GFZE01/sel/symbols.txt": "9ca64c6f0dc6779d30a980398e89dd29fde8dbdf6ffb5b11bb75e5e5bf00f69f",
+    "config/GFZE01/title/symbols.txt": "93046c0993fd8d5d483aa9b7e6d59ecd5109434c16b0901b556132247285917b",
+    "config/GFZE01/pilotpoint/symbols.txt": "4852b5bc0d356713cc7bdb9009a3f3028826e7b11db2c5abee1affe54967c42b",
+    "config/GFZE01/option/symbols.txt": "290b234fe8577db852adf16de0ae1019bb459e8b47203805283891f02868f03f",
+    "config/GFZE01/interview/symbols.txt": "016e13c402380a163cd32153e50c07f5af68939d998e8f8e27f3eeeb72cb25dc",
+    "config/GFZE01/profile/symbols.txt": "f59d2d0adb87b8a4b029e27ce53fcd7b8c780851d493d14a62e2c36b1092e5b2",
+    "config/GFZE01/story/symbols.txt": "956ee3dcef8f80bfaec9dddb55296cd764c6116af2d55586e85543092cafd24f",
+    "config/GFZE01/winning/symbols.txt": "1da2904c3593ce510f39933ba8054ca073abe033e1f5524c3ae67c6acc8fa2f3",
+    "config/GFZE01/movie/symbols.txt": "487762d1ae2ed79e25640765dda920cd9c1ba50c5c910bd35d3ee5c89c8a09c4",
+    "config/GFZE01/car_colchg/symbols.txt": "367638db7fb20a8379d891ae7e534edadf00ac4fd18648a3d1fdbd2d5167742f",
+    "config/GFZE01/replay/symbols.txt": "c869c9456a87836d13d9e8b05622e8a19ff794d997bb67d790805235aae7d9d7",
+    "config/original_assembly.json": "e8cd9c49c2a57648132368ec83377f293988f49195a8dd8dd7339bf6f1ff3c71"
+  },
+  "headers": {
+    "include/rel/main_rel/bitmap_resource.h": "199f5ca7c4493a6e0538863db811477cd2e5b2fc4f4f01b487122b7657593fc7",
+    "include/rel/main_rel/bitmap.h": "e6c8f534af2bab53f313d610a03dcbcd84465e7a898cbc738efdd39ba4c41e92",
+    "include/rel/main_rel/font.h": "88e0e8d665b04c5ef6921a4edb2bab18b4cba4edb802f222bb934835ae9f79a3",
+    "include/rel/main_rel/ranking.h": "67f960cb51297ae68f0a0d0eb32bbc199cff5a989a5013e0d1578ae6caa6fbbd"
+  },
+  "sources": {
+    "src/rel/main_rel/bitmap.c": "1634b1b2869f5f15214658000f27002bfd097dd0ae3d522918547027233b3bc8",
+    "src/rel/main_rel/font.c": "88c9aa933cbcb79300aa8eef9168b597f7c97fdede28a615520e3ee8e828a7bb",
+    "src/rel/main_rel/ranking.c": "c422e60788521f4955b57bc96bcdca4179d57663537b563727c8fb1f1b3ed4a0"
+  },
+  "evidence": {
+    "table": "lbl_1_data_FCD4 is 0x1D60 = 188 x 0x28; retail data words 1..7 of each record relocate to archive path strings selected by lbl_801A66B4.",
+    "loader": "fn_1_47AD4 stores the heap index (lbl_1_data_6CA0 entry), sets loaded=1 and the image set: count, 0x10-byte headers, GXInitTexObj objects of 0x20 bytes.",
+    "consumers": "Twenty functions in bitmap.c, font.c and ranking.c accessed the same fields through private views or byte strides."
+  },
+  "cohorts": {
+    "typed": {
+      "hypothesis": "Shared BitmapResource layout for lbl_1_data_FCD4[188]; installed-form compile of every changed bitmap.c/font.c/ranking.c unit.",
+      "stopping_condition": "fixed loop/prototype variants once",
+      "records": [
+        {
+          "symbol": "fn_1_47E54",
+          "label": "typed",
+          "sha256": "4b0de93cb63b41b369a4a1ce7aeb27ec7086593632d8357f3899dae8a6069462",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_47EE4",
+          "label": "typed",
+          "sha256": "9404521e35b3593329e560f0bfd09983f269ca4c803667908f45fd62828d67e5",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_47F74",
+          "label": "typed",
+          "sha256": "b1e63ed97ed1d4756c2d6948c9c8e43c43f377e231d13d5d0bfe73d8f1c2bec0",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_48004",
+          "label": "typed",
+          "sha256": "049cb94f8e56fc9e1184fd3dc6f01520f2ef148d610dd7daed9d7222dc86fa8d",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_4811C",
+          "label": "typed",
+          "sha256": "d98020675bf593385333b562b99b05d7965edf279406a669a006b160fbbc46cc",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_48140",
+          "label": "typed",
+          "sha256": "f45b8680b98943c05e70fdbc6ef7ba7a7c4bdcb52f70b4d77d3d67d43f361b56",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_48164",
+          "label": "typed",
+          "sha256": "dd5d8e77af220ac47d713b619065648e86fad87aa1607ecd98e41e339b6e537f",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_481E8",
+          "label": "typed",
+          "sha256": "b3abef4a8f11d654f64f193d9e22d59d7a9dfcb391cb1f6146dc0235a4d03fa2",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_48214",
+          "label": "typed",
+          "sha256": "fc1f035773f5c0dda526d334bfea0653d4a272aecfd211c3494a4474cfd5161e",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_48418",
+          "label": "typed",
+          "sha256": "bfe5a5dc758ce3cef18a691867276a6f01e41e9505fa90a502c19f8048199ece",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_484CC",
+          "label": "typed",
+          "sha256": "8276cc77451cee718b1af5be93526550fc647824d2f4310dd5fa5e81428114f1",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_485A8",
+          "label": "typed",
+          "sha256": "38c12c9d6051000cfed0fcebdc23b5f42879bd655e0bfc52adf47d9a96417a3d",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_485C8",
+          "label": "typed",
+          "sha256": "a21c0ac92998597c6a97e1184944d906b6b106cf7e80a4c82e07ead930cc4d1f",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_48690",
+          "label": "typed",
+          "sha256": "3c7f79d05b1d4174e505b160d49cb299d08073771815ebcae54d2afee02ac72b",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_486C4",
+          "label": "typed",
+          "sha256": "bf15f9912b936f48365638391e864f52f7cb3b25f146cf1c5efc94f0b3eec7a1",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_486F8",
+          "label": "typed",
+          "sha256": "888029ca9ef0d2d95e6c5c1bbf70f825ecc6086ab04963556fc39537f08430ff",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_48730",
+          "label": "typed",
+          "sha256": "4e6beb7b2462ee78a0979c6d8b5210ba43089c6b74812a8b1e76d38e3dabe9ea",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_4877C",
+          "label": "typed",
+          "sha256": "317e2d6eeb4d4d9469792a0b82c9fe6fff80d20f3465ec249d3ce39ebde2182f",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_48780",
+          "label": "typed",
+          "sha256": "16b26b1861ed7ff3cdd3814cc8ad71de1fa40679191a3ef8f0e89aa124f8848c",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_487EC",
+          "label": "typed",
+          "sha256": "c21eb059371be4ee166b8f83f3eabc469169a17551133ab08137c554184e3cf9",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_4AEE8",
+          "label": "typed",
+          "sha256": "f9eb36e6ef965763451f72fe91362808cce8917affa64a4184c1b9f3dce2de9c",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_4E220",
+          "label": "typed",
+          "sha256": "c60cbc3f5176859d2822187f713c7863c94e6de2c13aa2d8c6f273aab4f1c350",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_4EB74",
+          "label": "typed",
+          "sha256": "645f291d057302f90aaf95696a3cedb14206d434b04f205b62db7618a4fb2673",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_4F734",
+          "label": "typed",
+          "sha256": "3ef6f8d91673968194e1292b42c2edc65aa9c0f4ba8be5fd339df121784bfab7",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_4FD64",
+          "label": "typed",
+          "sha256": "c584b6b37e42399e7c83065cf837449653fb552a415d5590760fadfa313764d6",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_527B4",
+          "label": "typed",
+          "sha256": "5f55aadb4c902bf3b2733c5badcdc0b9dfd027538ee9c6ee2e361bdfddad72b7",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": false,
+          "word_errors": 5
+        },
+        {
+          "symbol": "fn_1_159588",
+          "label": "typed",
+          "sha256": "075b34897250924b2b388145370c95ec00ae0057ffc64526cbc72bd4e67a567e",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_1596DC",
+          "label": "typed",
+          "sha256": "acaa79c5b5277ca35e5eee08576eb286d0a3d95b5621e1fd6b9507db984a8d6b",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        }
+      ]
+    },
+    "min527": {
+      "hypothesis": "Shared BitmapResource layout for lbl_1_data_FCD4[188]; installed-form compile of every changed bitmap.c/font.c/ranking.c unit.",
+      "stopping_condition": "fixed loop/prototype variants once",
+      "records": [
+        {
+          "symbol": "fn_1_47E54",
+          "label": "min527",
+          "sha256": "4b0de93cb63b41b369a4a1ce7aeb27ec7086593632d8357f3899dae8a6069462",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_47EE4",
+          "label": "min527",
+          "sha256": "9404521e35b3593329e560f0bfd09983f269ca4c803667908f45fd62828d67e5",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_47F74",
+          "label": "min527",
+          "sha256": "b1e63ed97ed1d4756c2d6948c9c8e43c43f377e231d13d5d0bfe73d8f1c2bec0",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_48004",
+          "label": "min527",
+          "sha256": "049cb94f8e56fc9e1184fd3dc6f01520f2ef148d610dd7daed9d7222dc86fa8d",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_4811C",
+          "label": "min527",
+          "sha256": "d98020675bf593385333b562b99b05d7965edf279406a669a006b160fbbc46cc",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_48140",
+          "label": "min527",
+          "sha256": "f45b8680b98943c05e70fdbc6ef7ba7a7c4bdcb52f70b4d77d3d67d43f361b56",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_48164",
+          "label": "min527",
+          "sha256": "dd5d8e77af220ac47d713b619065648e86fad87aa1607ecd98e41e339b6e537f",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_481E8",
+          "label": "min527",
+          "sha256": "b3abef4a8f11d654f64f193d9e22d59d7a9dfcb391cb1f6146dc0235a4d03fa2",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_48214",
+          "label": "min527",
+          "sha256": "fc1f035773f5c0dda526d334bfea0653d4a272aecfd211c3494a4474cfd5161e",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_48418",
+          "label": "min527",
+          "sha256": "bfe5a5dc758ce3cef18a691867276a6f01e41e9505fa90a502c19f8048199ece",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_484CC",
+          "label": "min527",
+          "sha256": "8276cc77451cee718b1af5be93526550fc647824d2f4310dd5fa5e81428114f1",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_485A8",
+          "label": "min527",
+          "sha256": "38c12c9d6051000cfed0fcebdc23b5f42879bd655e0bfc52adf47d9a96417a3d",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_485C8",
+          "label": "min527",
+          "sha256": "a21c0ac92998597c6a97e1184944d906b6b106cf7e80a4c82e07ead930cc4d1f",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_48690",
+          "label": "min527",
+          "sha256": "3c7f79d05b1d4174e505b160d49cb299d08073771815ebcae54d2afee02ac72b",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_486C4",
+          "label": "min527",
+          "sha256": "bf15f9912b936f48365638391e864f52f7cb3b25f146cf1c5efc94f0b3eec7a1",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_486F8",
+          "label": "min527",
+          "sha256": "888029ca9ef0d2d95e6c5c1bbf70f825ecc6086ab04963556fc39537f08430ff",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_48730",
+          "label": "min527",
+          "sha256": "4e6beb7b2462ee78a0979c6d8b5210ba43089c6b74812a8b1e76d38e3dabe9ea",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_4877C",
+          "label": "min527",
+          "sha256": "317e2d6eeb4d4d9469792a0b82c9fe6fff80d20f3465ec249d3ce39ebde2182f",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_48780",
+          "label": "min527",
+          "sha256": "16b26b1861ed7ff3cdd3814cc8ad71de1fa40679191a3ef8f0e89aa124f8848c",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_487EC",
+          "label": "min527",
+          "sha256": "c21eb059371be4ee166b8f83f3eabc469169a17551133ab08137c554184e3cf9",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_4AEE8",
+          "label": "min527",
+          "sha256": "f9eb36e6ef965763451f72fe91362808cce8917affa64a4184c1b9f3dce2de9c",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_4E220",
+          "label": "min527",
+          "sha256": "c60cbc3f5176859d2822187f713c7863c94e6de2c13aa2d8c6f273aab4f1c350",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_4EB74",
+          "label": "min527",
+          "sha256": "645f291d057302f90aaf95696a3cedb14206d434b04f205b62db7618a4fb2673",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_4F734",
+          "label": "min527",
+          "sha256": "3ef6f8d91673968194e1292b42c2edc65aa9c0f4ba8be5fd339df121784bfab7",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_4FD64",
+          "label": "min527",
+          "sha256": "c584b6b37e42399e7c83065cf837449653fb552a415d5590760fadfa313764d6",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_527B4",
+          "label": "min527",
+          "sha256": "f38b68bdd73972b554d664c9b2f38756486605bfc070ba04e25e19376db9a46a",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_159588",
+          "label": "min527",
+          "sha256": "075b34897250924b2b388145370c95ec00ae0057ffc64526cbc72bd4e67a567e",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_1596DC",
+          "label": "min527",
+          "sha256": "acaa79c5b5277ca35e5eee08576eb286d0a3d95b5621e1fd6b9507db984a8d6b",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        }
+      ]
+    },
+    "fn_1_527B4": {
+      "hypothesis": "fn_1_527B4 typed entry variants under BitmapResource; two fixed variants once.",
+      "stopping_condition": "two fixed variants once",
+      "records": [
+        {
+          "symbol": "fn_1_527B4",
+          "label": "installed minimal control",
+          "sha256": "f38b68bdd73972b554d664c9b2f38756486605bfc070ba04e25e19376db9a46a",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_527B4",
+          "label": "element index temporary",
+          "sha256": "933390da65fb7e161f19df46febb4c85d95eb06314fc9a292921bd54974a8d4d",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": false,
+          "word_errors": 5
+        },
+        {
+          "symbol": "fn_1_527B4",
+          "label": "base then advance",
+          "sha256": "754f4d7c6a192ed9c404fb467d98b3ab8dac1e8b3c666e1e91420f7a4fb1e711",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        }
+      ]
+    },
+    "final": {
+      "hypothesis": "Shared BitmapResource layout for lbl_1_data_FCD4[188]; installed-form compile of every changed bitmap.c/font.c/ranking.c unit.",
+      "stopping_condition": "fixed loop/prototype variants once",
+      "records": [
+        {
+          "symbol": "fn_1_47E54",
+          "label": "final",
+          "sha256": "4b0de93cb63b41b369a4a1ce7aeb27ec7086593632d8357f3899dae8a6069462",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_47EE4",
+          "label": "final",
+          "sha256": "9404521e35b3593329e560f0bfd09983f269ca4c803667908f45fd62828d67e5",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_47F74",
+          "label": "final",
+          "sha256": "b1e63ed97ed1d4756c2d6948c9c8e43c43f377e231d13d5d0bfe73d8f1c2bec0",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_48004",
+          "label": "final",
+          "sha256": "049cb94f8e56fc9e1184fd3dc6f01520f2ef148d610dd7daed9d7222dc86fa8d",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_4811C",
+          "label": "final",
+          "sha256": "d98020675bf593385333b562b99b05d7965edf279406a669a006b160fbbc46cc",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_48140",
+          "label": "final",
+          "sha256": "f45b8680b98943c05e70fdbc6ef7ba7a7c4bdcb52f70b4d77d3d67d43f361b56",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_48164",
+          "label": "final",
+          "sha256": "dd5d8e77af220ac47d713b619065648e86fad87aa1607ecd98e41e339b6e537f",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_481E8",
+          "label": "final",
+          "sha256": "b3abef4a8f11d654f64f193d9e22d59d7a9dfcb391cb1f6146dc0235a4d03fa2",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_48214",
+          "label": "final",
+          "sha256": "fc1f035773f5c0dda526d334bfea0653d4a272aecfd211c3494a4474cfd5161e",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_48418",
+          "label": "final",
+          "sha256": "bfe5a5dc758ce3cef18a691867276a6f01e41e9505fa90a502c19f8048199ece",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_484CC",
+          "label": "final",
+          "sha256": "8276cc77451cee718b1af5be93526550fc647824d2f4310dd5fa5e81428114f1",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_485A8",
+          "label": "final",
+          "sha256": "38c12c9d6051000cfed0fcebdc23b5f42879bd655e0bfc52adf47d9a96417a3d",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_485C8",
+          "label": "final",
+          "sha256": "a21c0ac92998597c6a97e1184944d906b6b106cf7e80a4c82e07ead930cc4d1f",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_48690",
+          "label": "final",
+          "sha256": "3c7f79d05b1d4174e505b160d49cb299d08073771815ebcae54d2afee02ac72b",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_486C4",
+          "label": "final",
+          "sha256": "bf15f9912b936f48365638391e864f52f7cb3b25f146cf1c5efc94f0b3eec7a1",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_486F8",
+          "label": "final",
+          "sha256": "888029ca9ef0d2d95e6c5c1bbf70f825ecc6086ab04963556fc39537f08430ff",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_48730",
+          "label": "final",
+          "sha256": "4e6beb7b2462ee78a0979c6d8b5210ba43089c6b74812a8b1e76d38e3dabe9ea",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_4877C",
+          "label": "final",
+          "sha256": "317e2d6eeb4d4d9469792a0b82c9fe6fff80d20f3465ec249d3ce39ebde2182f",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_48780",
+          "label": "final",
+          "sha256": "16b26b1861ed7ff3cdd3814cc8ad71de1fa40679191a3ef8f0e89aa124f8848c",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_487EC",
+          "label": "final",
+          "sha256": "c21eb059371be4ee166b8f83f3eabc469169a17551133ab08137c554184e3cf9",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_4AEE8",
+          "label": "final",
+          "sha256": "f9eb36e6ef965763451f72fe91362808cce8917affa64a4184c1b9f3dce2de9c",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_4E220",
+          "label": "final",
+          "sha256": "c60cbc3f5176859d2822187f713c7863c94e6de2c13aa2d8c6f273aab4f1c350",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_4EB74",
+          "label": "final",
+          "sha256": "645f291d057302f90aaf95696a3cedb14206d434b04f205b62db7618a4fb2673",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_4F734",
+          "label": "final",
+          "sha256": "3ef6f8d91673968194e1292b42c2edc65aa9c0f4ba8be5fd339df121784bfab7",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_4FD64",
+          "label": "final",
+          "sha256": "c584b6b37e42399e7c83065cf837449653fb552a415d5590760fadfa313764d6",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_527B4",
+          "label": "final",
+          "sha256": "754f4d7c6a192ed9c404fb467d98b3ab8dac1e8b3c666e1e91420f7a4fb1e711",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_159588",
+          "label": "final",
+          "sha256": "075b34897250924b2b388145370c95ec00ae0057ffc64526cbc72bd4e67a567e",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        },
+        {
+          "symbol": "fn_1_1596DC",
+          "label": "final",
+          "sha256": "acaa79c5b5277ca35e5eee08576eb286d0a3d95b5621e1fd6b9507db984a8d6b",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "bitmap_apply.py": {
+      "sha256": "48636c85fd6bc34474ebf7518315bfb712666baebd41cd725c9b6c6ab932aa6a",
+      "text": "\"\"\"Install the shared BitmapResource layout (worktree root).\n\nargv[1]: comma-separated functions to keep in 'minimal' form (shared type, original\naddress arithmetic); every other site gets typed indexing.\n\"\"\"\nimport re, sys\nfrom pathlib import Path\n\nMIN = set(filter(None, (sys.argv[1] if len(sys.argv) > 1 else '').split(',')))\n\ndef must(t, old, new, n=1):\n    assert t.count(old) == n, (old[:70], t.count(old), n)\n    return t.replace(old, new)\n\ndef block(t, name):\n    m = re.search(r'/\\* fzgx:begin ' + name + r'( [^*]*)?\\*/', t)\n    e = t.index('/* fzgx:end ' + name + ' */', m.start())\n    return m.start(), e\n\ndef edit(t, name, typed, minimal=None):\n    s, e = block(t, name)\n    b = t[s:e]\n    for old, new, *n in (minimal if name in MIN and minimal is not None else typed):\n        b = must(b, old, new, n[0] if n else 1)\n    return t[:s] + b + t[e:]\n\nPath('include/rel/main_rel/bitmap_resource.h').write_text('''#ifndef REL_MAIN_REL_BITMAP_RESOURCE_H\n#define REL_MAIN_REL_BITMAP_RESOURCE_H\n\n#include \"types.h\"\n\n/* Bitmap resource table lbl_1_data_FCD4[188], 0x28 bytes each.\n * Retail data gives each record seven archive paths selected by the language\n * index lbl_801A66B4. The loader fn_1_47AD4 records the heap index (an entry of\n * the three-heap table lbl_1_data_6CA0) and the image set: 0x10-byte texture\n * headers plus 0x20-byte texture objects initialized with GXInitTexObj. */\ntypedef struct BitmapImageInfo {\n    u32 flags;\n    u32 offset;\n    u16 width;\n    u16 height;\n    u32 unk_C;\n} BitmapImageInfo;\n\ntypedef struct BitmapImages {\n    u32 count;\n    BitmapImageInfo *info;\n    u32 unk_8;\n    u32 (*textures)[8];\n} BitmapImages;\n\ntypedef struct BitmapResource {\n    s32 loaded;\n    char *paths[7];\n    BitmapImages *images;\n    u8 heap;\n    u8 pad_25[3];\n} BitmapResource;\n\nextern BitmapResource lbl_1_data_FCD4[188];\n\n#endif\n''')\n\nGEN = re.compile(r'// lbl_1_data_FCD4: [^\\n]*\\ntypedef struct \\{\\n    u8 pad_0\\[0x4\\];\\n    u32 unk_4;[^\\n]*\\n'\n                 r'    u8 pad_8\\[0x4\\];\\n    u32 unk_C;[^\\n]*\\n\\} Obj_1_data_FCD4_At20;\\ntypedef struct \\{\\n'\n                 r'    u32 unk_0;[^\\n]*\\n    u32 unk_4;[^\\n]*\\n    u8 pad_8\\[0x18\\];\\n    Obj_1_data_FCD4_At20 \\*unk_20;[^\\n]*\\n'\n                 r'    u8 unk_24;[^\\n]*\\n    u8 pad_25\\[0x1D3B\\];\\n\\} Obj_1_data_FCD4;\\nextern Obj_1_data_FCD4 lbl_1_data_FCD4;\\n')\nfor h in ('bitmap', 'font', 'ranking'):\n    p = Path(f'include/rel/main_rel/{h}.h'); t = p.read_text()\n    t, n = GEN.subn('// lbl_1_data_FCD4: .data size 0x1D60 (188 x 0x28)\\n#include \"rel/main_rel/bitmap_resource.h\"\\n', t)\n    assert n == 1, h\n    p.write_text(t)\n\nR = 'BitmapResource'\n# ---------------- bitmap.c\np = Path('src/rel/main_rel/bitmap.c'); t = p.read_text()\nt = edit(t, 'fn_1_47E54', [\n    ('typedef struct {\\n    s32 unk_0;\\n    s32 unk_4[9];\\n} Fn147E54Entry;\\n\\n', ''),\n    ('extern void fn_1_465D0(s32, s32);', 'extern void fn_1_465D0(char *, s32);'),\n    ('fn_1_465D0(*(s32 *)((u8 *)&lbl_1_data_FCD4.unk_4 + index * 0x28 + lbl_801A66B4 * 4), 1);',\n     'fn_1_465D0(lbl_1_data_FCD4[index].paths[lbl_801A66B4], 1);')], [\n    ('typedef struct {\\n    s32 unk_0;\\n    s32 unk_4[9];\\n} Fn147E54Entry;\\n\\n', ''),\n    ('fn_1_465D0(*(s32 *)((u8 *)&lbl_1_data_FCD4.unk_4 + index * 0x28 + lbl_801A66B4 * 4), 1);',\n     'fn_1_465D0(*(s32 *)((u8 *)lbl_1_data_FCD4[0].paths + index * 0x28 + lbl_801A66B4 * 4), 1);')])\nfor fn, ty in (('fn_1_47EE4', 'Fn147EE4Entry'), ('fn_1_47F74', 'Fn147F74Entry'), ('fn_1_48004', 'BitmapEntry')):\n    var = 'entry' if fn == 'fn_1_48004' else 'object'\n    common = [(f'typedef struct {{\\n    s32 unk_0;\\n    u8 pad_4[0x24];\\n}} {ty};\\n\\n', ''),\n              (f'{ty} *', f'{R} *', 2),\n              (f'{var}->unk_0', f'{var}->loaded', 1 if fn != 'fn_1_48004' else 2)]\n    t = edit(t, fn, [(f'{var} = ({ty} *)((u8 *)&lbl_1_data_FCD4 + index * 0x28);', f'{var} = &lbl_1_data_FCD4[index];')] + common,\n             [(f'{var} = ({ty} *)((u8 *)&lbl_1_data_FCD4 + index * 0x28);', f'{var} = ({R} *)((u8 *)lbl_1_data_FCD4 + index * 0x28);')] + common)\nt = edit(t, 'fn_1_48164', [\n    ('Obj_1_data_FCD4 *entry;', f'{R} *entry;'),\n    ('entry = (Obj_1_data_FCD4 *)((u8 *)&lbl_1_data_FCD4 + 0x28);', 'entry = &lbl_1_data_FCD4[1];'),\n    ('index++, entry = (Obj_1_data_FCD4 *)((u8 *)entry + 0x28)', 'index++, entry++'),\n    ('(s32)entry->unk_0 != 0 && entry->unk_24 == value', 'entry->loaded != 0 && entry->heap == value')])\ntex = '''typedef struct {\n    s32 unk_0;\n    u32 unk_4;\n    u8 pad_8[0x18];\n    Obj_1_data_FCD4_At20 *unk_20;\n    u8 unk_24;\n    u8 pad_25[0x3];\n} TexRecord;\n\n'''\nt = edit(t, 'fn_1_48214', [\n    (tex, ''),\n    ('record = (TexRecord *)((u8 *)&lbl_1_data_FCD4 + i * 0x28);', 'record = &lbl_1_data_FCD4[i];'),\n    ('scan = (TexRecord *)((u8 *)&lbl_1_data_FCD4 + n * 0x28);', 'scan = &lbl_1_data_FCD4[n];'),\n    ('record = (TexRecord *)((u8 *)record + 0x28);', 'record++;'),\n    ('TexRecord *', f'{R} *', 2),\n    ('record->unk_0', 'record->loaded', 3), ('scan->unk_0', 'scan->loaded'),\n    ('record->unk_24', 'record->heap', 4), ('scan->unk_24', 'scan->heap'),\n    ('record->unk_20->unk_C', '(u32)record->images->textures', 2), ('(u32)record->unk_20', '(u32)record->images', 2)])\nt = edit(t, 'fn_1_484CC', [\n    ('u8 *texture_record;', f'{R} *texture_record;'),\n    ('texture_record = (u8 *)&lbl_1_data_FCD4 + 0x28;', 'texture_record = &lbl_1_data_FCD4[1];'),\n    ('*(s32 *)texture_record != 0 && texture_record[0x24] == index', 'texture_record->loaded != 0 && texture_record->heap == index'),\n    ('texture_record += 0x28;', 'texture_record++;')])\nt = edit(t, 'fn_1_485A8', [\n    ('return ((Obj_1_data_FCD4 *)((u8 *)&lbl_1_data_FCD4 + index * 0x28))->unk_0 != 0;', 'return lbl_1_data_FCD4[index].loaded != 0;')])\nt = edit(t, 'fn_1_485C8', [\n    ('''extern struct fn_1_485C8_lbl_1_data_FCD4 lbl_1_data_FCD4;\nextern u32 lbl_1_bss_3E020;\n\nstruct fn_1_485C8_lbl_1_data_FCD4_0_E40 {\n    u8 pad_0[0x20];\n    u32 unk_20;\n    u8 pad_24[0x4];\n};\nstruct fn_1_485C8_lbl_1_data_FCD4 {\n    struct fn_1_485C8_lbl_1_data_FCD4_0_E40 unk_0[1];\n};\n''', '''#include \"rel/main_rel/bitmap_resource.h\"\n\nextern u32 lbl_1_bss_3E020;\n'''),\n    ('lbl_1_bss_3E020 = lbl_1_data_FCD4.unk_0[arg0].unk_20;', 'lbl_1_bss_3E020 = (u32)lbl_1_data_FCD4[arg0].images;')])\nt = edit(t, 'fn_1_48730', [\n    ('''    Obj_1_data_FCD4 *entry =\n        (Obj_1_data_FCD4 *)((u8 *)&lbl_1_data_FCD4 + table_index * 0x28);''', f'    {R} *entry = &lbl_1_data_FCD4[table_index];'),\n    ('(s32)entry->unk_0 == 1 && entry->unk_20 != 0', 'entry->loaded == 1 && entry->images != 0'),\n    ('return (u8 *)entry->unk_20->unk_4 + ((u8)slot_index << 4);', 'return &entry->images->info[(u8)slot_index];')])\nt = edit(t, 'fn_1_48780', [\n    ('Obj_1_data_FCD4 *obj;', f'{R} *obj;'),\n    ('obj = (Obj_1_data_FCD4 *)((u8 *)&lbl_1_data_FCD4 + 0x28);', 'obj = &lbl_1_data_FCD4[1];'),\n    ('(int)obj->unk_0 != 0', 'obj->loaded != 0'), ('fn_1_47AD4(obj, obj->unk_24, 0, 0);', 'fn_1_47AD4(obj, obj->heap, 0, 0);'),\n    ('obj = (Obj_1_data_FCD4 *)((u8 *)obj + 0x28);', 'obj++;')])\nt = edit(t, 'fn_1_487EC', [('extern void fn_1_47AD4(Obj_1_data_FCD4 *obj,', f'extern void fn_1_47AD4({R} *obj,', 2)])\npro = t.index('/* fzgx:begin ')\nt = must(t[:pro], 'extern void fn_1_47AD4(Obj_1_data_FCD4 *obj,', f'extern void fn_1_47AD4({R} *obj,') + t[pro:]\nassert 'Obj_1_data_FCD4' not in t, [m.start() for m in re.finditer('Obj_1_data_FCD4', t)][:5]\np.write_text(t)\n\n# ---------------- ranking.c\np = Path('src/rel/main_rel/ranking.c'); t = p.read_text()\nt = edit(t, 'fn_1_159588', [\n    ('    s32 *table;\\n', ''),\n    ('        table = (s32 *)&lbl_1_data_FCD4;\\n        if (table[index * 10] != 0) {', '        if (lbl_1_data_FCD4[index].loaded != 0) {')])\nt = edit(t, 'fn_1_1596DC', [\n    ('#include \"rel/main_rel/ranking_archive.h\"\\n', '#include \"rel/main_rel/ranking_archive.h\"\\n#include \"rel/main_rel/bitmap_resource.h\"\\n'),\n    ('extern u8 lbl_1_data_FCD4[];\\n', ''),\n    ('''            if (fn_1_46DC4(*(void **)(lbl_1_data_FCD4 +\n                                      entry->ids[i] * 0x28 +\n                                      lbl_801A66B4 * 4 + 4)) != 0) {''',\n     '            if (fn_1_46DC4(lbl_1_data_FCD4[entry->ids[i]].paths[lbl_801A66B4]) != 0) {')])\nassert 'Obj_1_data_FCD4' not in t\np.write_text(t)\n\n# ---------------- font.c\np = Path('src/rel/main_rel/font.c'); t = p.read_text()\nt = edit(t, 'fn_1_4AEE8', [('extern void fn_1_47AD4(Obj_1_data_FCD4 *obj,', f'extern void fn_1_47AD4({R} *obj,')])\nt = edit(t, 'fn_1_4E220', [\n    ('Obj_1_data_FCD4_At20 *v6;', 'BitmapImages *v6;'),\n    ('v6 = *(Obj_1_data_FCD4_At20 **)((((u32)&lbl_1_data_FCD4) + 0x20) + (((v5 >> 8) & 0xFFFF) * 0x28));',\n     'v6 = lbl_1_data_FCD4[(v5 >> 8) & 0xFFFF].images;'),\n    ('fn_80073778((void *)(v6->unk_C + ((v5 & 0xFF) << 5)), arg3 & 0xFF);', 'fn_80073778(v6->textures[v5 & 0xFF], arg3 & 0xFF);')], [\n    ('Obj_1_data_FCD4_At20 *v6;', 'BitmapImages *v6;'),\n    ('v6 = *(Obj_1_data_FCD4_At20 **)((((u32)&lbl_1_data_FCD4) + 0x20) + (((v5 >> 8) & 0xFFFF) * 0x28));',\n     'v6 = *(BitmapImages **)((((u32)lbl_1_data_FCD4) + 0x20) + (((v5 >> 8) & 0xFFFF) * 0x28));'),\n    ('fn_80073778((void *)(v6->unk_C + ((v5 & 0xFF) << 5)), arg3 & 0xFF);', 'fn_80073778((void *)((u32)v6->textures + ((v5 & 0xFF) << 5)), arg3 & 0xFF);')])\nt = edit(t, 'fn_1_4EB74', [\n    ('''/* lbl_1_data_FCD4 is indexed as an array of 0x28-byte records; the header's\n   Obj_1_data_FCD4 spans the whole blob, so index through this record view. */\ntypedef struct TableEntry {\n    s32 unk_0;\n    u32 unk_4;\n    u8 pad_8[0x18];\n    Obj_1_data_FCD4_At20 *unk_20;\n    u32 unk_24;\n} TableEntry;\n\n''', ''),\n    ('    TableEntry *table;\\n    Obj_1_data_FCD4_At20 *data;\\n', f'    {R} *table;\\n    BitmapImages *data;\\n'),\n    ('    u16 *row;\\n', '    BitmapImageInfo *info;\\n'),\n    ('table = (TableEntry *)&lbl_1_data_FCD4;', 'table = lbl_1_data_FCD4;'),\n    ('table[index].unk_0 == 0', 'table[index].loaded == 0'), ('data = table[index].unk_20;', 'data = table[index].images;'),\n    ('''    row = (u16 *)((u8 *)data->unk_4 + ((value & 0xff) << 4));\n    x = (f32)(u32)row[4];\n    y = (f32)(u32)row[5];\n    fn_80073778((void *)((u8 *)data->unk_C + ((value & 0xff) << 5)), 0);''', '''    info = &data->info[value & 0xff];\n    x = (f32)(u32)info->width;\n    y = (f32)(u32)info->height;\n    fn_80073778(data->textures[value & 0xff], 0);''')])\nt = edit(t, 'fn_1_4F734', [\n    ('''typedef struct ImageInfo {\n    u8 unk_0[8];\n    u16 width, height;\n    u32 unk_C;\n} ImageInfo;\ntypedef struct Images {\n    u32 unk_0;\n    ImageInfo *info;\n    u32 unk_8;\n    u32 (*textures)[8];\n} Images;\ntypedef struct Resource {\n    s32 loaded;\n    u8 unk_4[0x1c];\n    Images *images;\n    u32 unk_24;\n} Resource;\n''', ''),\n    ('extern Resource lbl_1_data_FCD4[];\\n', ''),\n    ('                Resource *resource;\\n                Resource *table;\\n', f'                {R} *resource;\\n                {R} *table;\\n'),\n    ('                    ImageInfo *info;\\n', '                    BitmapImageInfo *info;\\n')])\ns, e = block(t, 'fn_1_4F734'); b = t[s:e]\nassert not re.search(r'\\b(Resource|Images|ImageInfo)\\b', b), re.findall(r'.*\\b(?:Resource|Images|ImageInfo)\\b.*', b)\nif '#include \"rel/main_rel/font.h\"' not in b and '#include \"rel/main_rel/bitmap_resource.h\"' not in b:\n    b = b.replace('#include \"types.h\"\\n', '#include \"types.h\"\\n#include \"rel/main_rel/bitmap_resource.h\"\\n', 1)\n    assert 'bitmap_resource.h' in b\nt = t[:s] + b + t[e:]\nt = edit(t, 'fn_1_4FD64', [\n    ('Obj_1_data_FCD4_At20 *q;', 'BitmapImages *q;'), ('u8 *p1;', 'BitmapImageInfo *p1;'), ('Obj_1_data_FCD4 *o;', f'{R} *o;'),\n    ('o = (Obj_1_data_FCD4 *)((u8 *)&lbl_1_data_FCD4 + (u16)(pk >> 8) * 0x28);', 'o = &lbl_1_data_FCD4[(u16)(pk >> 8)];'),\n    ('(s32)o->unk_0 != 0', 'o->loaded != 0'), ('q = o->unk_20;', 'q = o->images;'),\n    ('p1 = (u8 *)q->unk_4 + ((pk & 0xFF) << 4);', 'p1 = &q->info[pk & 0xFF];'),\n    ('p2 = (u8 *)q->unk_C + ((pk & 0xFF) << 5);', 'p2 = (u8 *)q->textures[pk & 0xFF];'),\n    ('fw = (f32)*(u16 *)(p1 + 8);', 'fw = (f32)p1->width;'), ('fh = (f32)*(u16 *)(p1 + 0xA);', 'fh = (f32)p1->height;')], [\n    ('Obj_1_data_FCD4_At20 *q;', 'BitmapImages *q;'), ('Obj_1_data_FCD4 *o;', f'{R} *o;'),\n    ('o = (Obj_1_data_FCD4 *)((u8 *)&lbl_1_data_FCD4 + (u16)(pk >> 8) * 0x28);', f'o = ({R} *)((u8 *)lbl_1_data_FCD4 + (u16)(pk >> 8) * 0x28);'),\n    ('(s32)o->unk_0 != 0', 'o->loaded != 0'), ('q = o->unk_20;', 'q = o->images;'),\n    ('p1 = (u8 *)q->unk_4 + ((pk & 0xFF) << 4);', 'p1 = (u8 *)q->info + ((pk & 0xFF) << 4);'),\n    ('p2 = (u8 *)q->unk_C + ((pk & 0xFF) << 5);', 'p2 = (u8 *)q->textures + ((pk & 0xFF) << 5);')])\nt = edit(t, 'fn_1_527B4', [\n    ('''typedef struct {\n    u8 pad_0[0x20];\n    Obj_1_data_FCD4_At20 *unk_20;\n    u8 pad_24[0x4];\n} FontTableEntry;\n''', ''),\n    ('    FontTableEntry *entry;\\n    Obj_1_data_FCD4_At20 *obj;\\n', f'    {R} *entry;\\n    BitmapImages *obj;\\n'),\n    ('    u32 index;\\n', ''),\n    ('''        index = ((value >> 8) & 0xffff) * 0x28;\n        entry = (FontTableEntry *)&lbl_1_data_FCD4;\n        entry = (FontTableEntry *)((u8 *)entry + index);\n        obj = entry->unk_20;''', '''        entry = &lbl_1_data_FCD4[(value >> 8) & 0xffff];\n        obj = entry->images;'''),\n    ('fn_80073778((void *)((u8 *)obj->unk_C + ((value & 0xff) << 5)), 1);', 'fn_80073778(obj->textures[value & 0xff], 1);')], [\n    ('''typedef struct {\n    u8 pad_0[0x20];\n    Obj_1_data_FCD4_At20 *unk_20;\n    u8 pad_24[0x4];\n} FontTableEntry;\n''', ''),\n    ('    FontTableEntry *entry;\\n    Obj_1_data_FCD4_At20 *obj;\\n', f'    {R} *entry;\\n    BitmapImages *obj;\\n'),\n    ('''        entry = (FontTableEntry *)&lbl_1_data_FCD4;\n        entry = (FontTableEntry *)((u8 *)entry + index);\n        obj = entry->unk_20;''', f'''        entry = ({R} *)lbl_1_data_FCD4;\n        entry = ({R} *)((u8 *)entry + index);\n        obj = entry->images;'''),\n    ('fn_80073778((void *)((u8 *)obj->unk_C + ((value & 0xff) << 5)), 1);', 'fn_80073778((void *)((u8 *)obj->textures + ((value & 0xff) << 5)), 1);')])\nassert 'Obj_1_data_FCD4' not in t, [t[m.start()-200:m.start()+40] for m in re.finditer('Obj_1_data_FCD4', t)][:2]\np.write_text(t)\nprint('applied; minimal:', sorted(MIN))\n"
+    },
+    "bitmap_eval.py": {
+      "sha256": "70e48b8e7896bc714c3f74d3dfe536e16f10faf1a0e0b240494f1b081f4eda09",
+      "text": "\"\"\"snapshot: save canonical text of every ranking.c unit. eval LABEL: compile changed units.\"\"\"\nimport sys, json, hashlib\nfrom pathlib import Path\nsys.path.insert(0, 'tools')\nfrom fzgx import api, fixup, oracle\nfrom fzgx.project import Project\n\nmode = sys.argv[1]\nsnap = Path(sys.argv[2])\np = Project('GFZE01')\nTUS = ('rel/main_rel/bitmap.c', 'rel/main_rel/font.c', 'rel/main_rel/ranking.c')\nunits = [u for u in p.load_units() if u.get('tu') in TUS]\ntexts = {}\nfor u in units:\n    texts[u['symbols'][0]] = api._canonical_text(p, u['source'])\nif mode == 'snapshot':\n    snap.write_text(json.dumps(texts))\n    print(len(texts), 'units')\n    raise SystemExit\nbefore = json.loads(snap.read_text())\nlabel = sys.argv[3]\nout = Path('.fzgx/manual-device-review/bitmap-resource') / label\ne = fixup.Engine(p, out)\nrows = []\nfor name, text in texts.items():\n    if before.get(name) == text:\n        continue\n    key = 'main_rel:' + name\n    mw, flags = oracle.version_for(p, p.resolve(key))\n    rows.append(e.record(key, text, mw, flags, label=label, before_sha256=hashlib.sha256(before[name].encode()).hexdigest()))\nwith oracle.build_lock():\n    e.evaluate(rows)\nreport = dict(hypothesis='Shared BitmapResource layout for lbl_1_data_FCD4[188]; installed-form compile of every changed bitmap.c/font.c/ranking.c unit.',\n              stopping_condition='fixed loop/prototype variants once', records=rows, best={},\n              frontier={'all_frozen_probes': rows}, generator_sha256=e.generator_sha256, environment=e.environment)\n(out / 'report.json').write_text(json.dumps(report, indent=2) + '\\n')\nfixup.archive_sources(report, out / 'sources.json.gz')\nfor r in rows:\n    print(r['symbol'], r['sha256'][:12], bool(r.get('matched')), r.get('word_errors'), r.get('extra_helpers'))\n"
+    },
+    "bitmap_527.py": {
+      "sha256": "d0b9dc54e45a28fb7c5063057d02b28ba31ba26062cf0b567c2f03c0747a50c8",
+      "text": "\"\"\"fn_1_527B4 typed entry variants under BitmapResource; two fixed variants once.\"\"\"\nimport sys, json\nfrom pathlib import Path\nsys.path.insert(0, 'tools')\nfrom fzgx import api, fixup, oracle\nfrom fzgx.project import Project\np = Project('GFZE01'); out = Path('.fzgx/manual-device-review/bitmap-resource/fn_1_527B4'); e = fixup.Engine(p, out)\nkey = 'main_rel:fn_1_527B4'; s = p.resolve(key); mw, flags = oracle.version_for(p, s)\nbody = api._canonical_text(p, p.unit_record(p.unit_of(s))['source'])\nold = '''        index = ((value >> 8) & 0xffff) * 0x28;\n        entry = (BitmapResource *)lbl_1_data_FCD4;\n        entry = (BitmapResource *)((u8 *)entry + index);\n'''\nassert old in body\nV = [('''        index = (value >> 8) & 0xffff;\n        entry = &lbl_1_data_FCD4[index];\n''', 'element index temporary'),\n     ('''        index = (value >> 8) & 0xffff;\n        entry = lbl_1_data_FCD4;\n        entry += index;\n''', 'base then advance')]\nrows = [e.record(key, body, mw, flags, label='installed minimal control')]\nrows += [e.record(key, body.replace(old, n), mw, flags, parent=rows[0]['id'], label=l) for n, l in V]\nwith oracle.build_lock(): e.evaluate(rows)\nreport = dict(hypothesis=__doc__.strip(), stopping_condition='two fixed variants once', records=rows, best={},\n              frontier={'all_frozen_probes': rows}, generator_sha256=e.generator_sha256, environment=e.environment)\n(out / 'report.json').write_text(json.dumps(report, indent=2) + '\\n'); fixup.archive_sources(report, out / 'sources.json.gz')\nfor r in rows: print(r['sha256'][:12], bool(r.get('matched')), r.get('word_errors'), r['label'])\n"
+    },
+    "bitmap_manifest.py": {
+      "sha256": "92fb5b92a6a719b527eb96fdd3904f20584d13c8402272ba43c368d37fc14214",
+      "text": "\"\"\"archive | manifest for the BitmapResource batch (worktree root).\"\"\"\nimport sys, json, gzip, hashlib, re, subprocess\nfrom pathlib import Path\nsys.path.insert(0, 'tools')\nfrom fzgx import fixup\n\nstage, S = sys.argv[1], Path(sys.argv[2])\nsha = lambda b: hashlib.sha256(b).hexdigest()\nR = Path('.fzgx/manual-device-review/bitmap-resource')\nDIRS = [R / 'final', R / 'fn_1_527B4']\nARCH = Path('state/repairs/bitmap-resource-layout-20261116.sources.json.gz')\n\nif stage == 'archive':\n    reps = [json.loads((d / 'report.json').read_text()) for d in DIRS]\n    assert len({r['generator_sha256'] for r in reps}) == 1 and len({r['environment'] for r in reps}) == 1\n    rows = [x for r in reps for x in r['records']]\n    fixup.archive_sources(dict(records=rows, best={}, frontier={'all': rows}, generator_sha256=reps[0]['generator_sha256'],\n                               environment=reps[0]['environment']), ARCH)\n    print(len(json.loads(gzip.decompress(ARCH.read_bytes()))['records']))\n    raise SystemExit\n\ndef multiset(rows):\n    return sorted((r['symbol'], r['sha256'], r['mw'], r['flags'], bool(r.get('matched')), r.get('word_errors')) for r in rows)\narch = json.loads(gzip.decompress(ARCH.read_bytes()))\nrep = json.loads(Path(f'.fzgx/fixup/replay/{ARCH.name}/replay.json').read_text())\nassert rep['reproduced'] == len(arch['records']) and multiset(arch['records']) == multiset(rep['records'])\nprof = {(r['symbol'], r['sha256']): r['compile_profile'] for r in arch['records']}\nassert all(prof[(r['symbol'], r['sha256'])] == r['compile_profile'] for r in rep['records'])\nlog = (R / 'full-gates.log').read_bytes()\ntext = re.sub(r'\\x1b\\[[0-9;]*m', '', log.decode('utf-8', 'replace'))\nreturns = re.findall(r'^RETURN (\\d+)$', text, re.M)\nassert returns == ['0'] * 4 and text.count('16 files OK') >= 2 and '0 finding(s)' in text\ncensus_path = Path('state/repairs/device-census-bitmap-resource-20261116.json.gz')\ncensus = json.loads(gzip.decompress(census_path.read_bytes()))\nsumm = lambda rows: [dict(symbol=x['symbol'], label=x['label'], sha256=x['sha256'], mw=x['mw'], flags=x['flags'],\n                          matched=bool(x.get('matched')), word_errors=x.get('word_errors')) for x in rows]\ncohorts = {}\nfor d in [R / 'typed', R / 'min527', R / 'fn_1_527B4', R / 'final']:\n    r = json.loads((d / 'report.json').read_text())\n    cohorts[d.name] = dict(hypothesis=r['hypothesis'], stopping_condition=r['stopping_condition'], records=summ(r['records']))\nfinal = json.loads((R / 'final/report.json').read_text())['records']\nhead = subprocess.run(['git', 'rev-parse', 'HEAD'], capture_output=True, text=True, check=True).stdout.strip()\nscripts = {n: dict(sha256=sha((S / n).read_bytes()), text=(S / n).read_text())\n           for n in ('bitmap_apply.py', 'bitmap_eval.py', 'bitmap_527.py', 'bitmap_manifest.py')}\nmanifest = dict(\n    format='fzgx-device-cleanup-provenance-v1', version='GFZE01', base_commit=head,\n    source_tree_sha256=census['source_tree_sha256'], configuration_sha256=census['configuration_sha256'],\n    headers={h: sha(Path(h).read_bytes()) for h in ('include/rel/main_rel/bitmap_resource.h', 'include/rel/main_rel/bitmap.h',\n                                                    'include/rel/main_rel/font.h', 'include/rel/main_rel/ranking.h')},\n    sources={s_: sha(Path(s_).read_bytes()) for s_ in ('src/rel/main_rel/bitmap.c', 'src/rel/main_rel/font.c', 'src/rel/main_rel/ranking.c')},\n    evidence=dict(\n        table='lbl_1_data_FCD4 is 0x1D60 = 188 x 0x28; retail data words 1..7 of each record relocate to archive path strings selected by lbl_801A66B4.',\n        loader='fn_1_47AD4 stores the heap index (lbl_1_data_6CA0 entry), sets loaded=1 and the image set: count, 0x10-byte headers, GXInitTexObj objects of 0x20 bytes.',\n        consumers='Twenty functions in bitmap.c, font.c and ranking.c accessed the same fields through private views or byte strides.'),\n    cohorts=cohorts, scripts=scripts,\n    replay_archive=dict(path=ARCH.name, sha256=sha(ARCH.read_bytes()), records=len(arch['records']), replayed=rep['reproduced'],\n                        command='python tools/fzgx.py fixup --archive state/repairs/' + ARCH.name),\n    accepted=[dict(function='main_rel:' + x['symbol'], sha256=x['sha256'], matched=bool(x.get('matched'))) for x in final],\n    data_import_regeneration=json.loads((S / 'bitmap_regen.json').read_text()),\n    limits='fn_1_47AD4 (the loader) keeps its own argument view; its body is a dense lifted reconstruction outside this batch. '\n           'Only fields used by the consumers are named. The table data stays retail-linked. No device or natural-function credit.',\n    removed=dict(private_type_definitions=12, private_views=11, generated_aggregate_views=3, scalar_carriers=0, tagged_register_copy_blocks=0),\n    partial_cleanups_only=True, new_fully_natural_function_credit=0, fully_natural_function_credit_claimed=False,\n    census=dict(path=census_path.name, sha256=sha(census_path.read_bytes()), categories=census['categories'],\n                known_scaffolding_owner_function_union=len(census['confirmed_debt_owner_functions'])),\n    validation=dict(commands=['.venv/bin/python configure.py', 'ninja -j 2 build/GFZE01/ok',\n                              'build/tools/dtk shasum -q -c config/GFZE01/build.sha1', '.venv/bin/python tools/fzgx.py lint'],\n                    returns=[int(x) for x in returns], linked_hashes=16, independent_hashes=16, lint_findings=0, local_log_sha256=sha(log)))\nPath('state/repairs/bitmap-resource-layout-20261116.json').write_text(json.dumps(manifest, indent=2) + '\\n')\nprint('ok', len(final), manifest['census']['categories']['marked-warning'])\n"
+    }
+  },
+  "replay_archive": {
+    "path": "bitmap-resource-layout-20261116.sources.json.gz",
+    "sha256": "85de859338a56e1c4d0b26dba1e148d66671006d5d99df2b3c9a68cc6259fdc8",
+    "records": 30,
+    "replayed": 30,
+    "command": "python tools/fzgx.py fixup --archive state/repairs/bitmap-resource-layout-20261116.sources.json.gz"
+  },
+  "accepted": [
+    {
+      "function": "main_rel:fn_1_47E54",
+      "sha256": "4b0de93cb63b41b369a4a1ce7aeb27ec7086593632d8357f3899dae8a6069462",
+      "matched": true
+    },
+    {
+      "function": "main_rel:fn_1_47EE4",
+      "sha256": "9404521e35b3593329e560f0bfd09983f269ca4c803667908f45fd62828d67e5",
+      "matched": true
+    },
+    {
+      "function": "main_rel:fn_1_47F74",
+      "sha256": "b1e63ed97ed1d4756c2d6948c9c8e43c43f377e231d13d5d0bfe73d8f1c2bec0",
+      "matched": true
+    },
+    {
+      "function": "main_rel:fn_1_48004",
+      "sha256": "049cb94f8e56fc9e1184fd3dc6f01520f2ef148d610dd7daed9d7222dc86fa8d",
+      "matched": true
+    },
+    {
+      "function": "main_rel:fn_1_4811C",
+      "sha256": "d98020675bf593385333b562b99b05d7965edf279406a669a006b160fbbc46cc",
+      "matched": true
+    },
+    {
+      "function": "main_rel:fn_1_48140",
+      "sha256": "f45b8680b98943c05e70fdbc6ef7ba7a7c4bdcb52f70b4d77d3d67d43f361b56",
+      "matched": true
+    },
+    {
+      "function": "main_rel:fn_1_48164",
+      "sha256": "dd5d8e77af220ac47d713b619065648e86fad87aa1607ecd98e41e339b6e537f",
+      "matched": true
+    },
+    {
+      "function": "main_rel:fn_1_481E8",
+      "sha256": "b3abef4a8f11d654f64f193d9e22d59d7a9dfcb391cb1f6146dc0235a4d03fa2",
+      "matched": true
+    },
+    {
+      "function": "main_rel:fn_1_48214",
+      "sha256": "fc1f035773f5c0dda526d334bfea0653d4a272aecfd211c3494a4474cfd5161e",
+      "matched": true
+    },
+    {
+      "function": "main_rel:fn_1_48418",
+      "sha256": "bfe5a5dc758ce3cef18a691867276a6f01e41e9505fa90a502c19f8048199ece",
+      "matched": true
+    },
+    {
+      "function": "main_rel:fn_1_484CC",
+      "sha256": "8276cc77451cee718b1af5be93526550fc647824d2f4310dd5fa5e81428114f1",
+      "matched": true
+    },
+    {
+      "function": "main_rel:fn_1_485A8",
+      "sha256": "38c12c9d6051000cfed0fcebdc23b5f42879bd655e0bfc52adf47d9a96417a3d",
+      "matched": true
+    },
+    {
+      "function": "main_rel:fn_1_485C8",
+      "sha256": "a21c0ac92998597c6a97e1184944d906b6b106cf7e80a4c82e07ead930cc4d1f",
+      "matched": true
+    },
+    {
+      "function": "main_rel:fn_1_48690",
+      "sha256": "3c7f79d05b1d4174e505b160d49cb299d08073771815ebcae54d2afee02ac72b",
+      "matched": true
+    },
+    {
+      "function": "main_rel:fn_1_486C4",
+      "sha256": "bf15f9912b936f48365638391e864f52f7cb3b25f146cf1c5efc94f0b3eec7a1",
+      "matched": true
+    },
+    {
+      "function": "main_rel:fn_1_486F8",
+      "sha256": "888029ca9ef0d2d95e6c5c1bbf70f825ecc6086ab04963556fc39537f08430ff",
+      "matched": true
+    },
+    {
+      "function": "main_rel:fn_1_48730",
+      "sha256": "4e6beb7b2462ee78a0979c6d8b5210ba43089c6b74812a8b1e76d38e3dabe9ea",
+      "matched": true
+    },
+    {
+      "function": "main_rel:fn_1_4877C",
+      "sha256": "317e2d6eeb4d4d9469792a0b82c9fe6fff80d20f3465ec249d3ce39ebde2182f",
+      "matched": true
+    },
+    {
+      "function": "main_rel:fn_1_48780",
+      "sha256": "16b26b1861ed7ff3cdd3814cc8ad71de1fa40679191a3ef8f0e89aa124f8848c",
+      "matched": true
+    },
+    {
+      "function": "main_rel:fn_1_487EC",
+      "sha256": "c21eb059371be4ee166b8f83f3eabc469169a17551133ab08137c554184e3cf9",
+      "matched": true
+    },
+    {
+      "function": "main_rel:fn_1_4AEE8",
+      "sha256": "f9eb36e6ef965763451f72fe91362808cce8917affa64a4184c1b9f3dce2de9c",
+      "matched": true
+    },
+    {
+      "function": "main_rel:fn_1_4E220",
+      "sha256": "c60cbc3f5176859d2822187f713c7863c94e6de2c13aa2d8c6f273aab4f1c350",
+      "matched": true
+    },
+    {
+      "function": "main_rel:fn_1_4EB74",
+      "sha256": "645f291d057302f90aaf95696a3cedb14206d434b04f205b62db7618a4fb2673",
+      "matched": true
+    },
+    {
+      "function": "main_rel:fn_1_4F734",
+      "sha256": "3ef6f8d91673968194e1292b42c2edc65aa9c0f4ba8be5fd339df121784bfab7",
+      "matched": true
+    },
+    {
+      "function": "main_rel:fn_1_4FD64",
+      "sha256": "c584b6b37e42399e7c83065cf837449653fb552a415d5590760fadfa313764d6",
+      "matched": true
+    },
+    {
+      "function": "main_rel:fn_1_527B4",
+      "sha256": "754f4d7c6a192ed9c404fb467d98b3ab8dac1e8b3c666e1e91420f7a4fb1e711",
+      "matched": true
+    },
+    {
+      "function": "main_rel:fn_1_159588",
+      "sha256": "075b34897250924b2b388145370c95ec00ae0057ffc64526cbc72bd4e67a567e",
+      "matched": true
+    },
+    {
+      "function": "main_rel:fn_1_1596DC",
+      "sha256": "acaa79c5b5277ca35e5eee08576eb286d0a3d95b5621e1fd6b9507db984a8d6b",
+      "matched": true
+    }
+  ],
+  "data_import_regeneration": {
+    "command": "fzgx data-import --regenerate (no --apply) for every main_rel data unit including bitmap.h, font.h or ranking.h",
+    "summary": {
+      "imported": false,
+      "objects": 50,
+      "bytes": 60897,
+      "skipped": []
+    },
+    "records": [
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_3E060",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_3E060.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_3F60C",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_3E060.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_40BBC",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_3E060.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_40C6C",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_3E060.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_4B9CC",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_3E060.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_4BA30",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_4BA30.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_4BA44",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_4BA30.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_4BA58",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_4BA58.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_4BA5C",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_4BA58.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_4BA60",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_4BA60.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_4BA80",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_4BA60.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_4BB30",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_4BB30.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_4BB3C",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_4BB30.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_4BB40",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_4BB40.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_4BB9C",
+        "method": "opaque-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_4BB40.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_4C680",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_4C680.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_4C684",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_4C680.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_4E6B0",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_4E6B0.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_646E0",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_646E0.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_646E4",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_646E0.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_6C710",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_6C710.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_6C7A0",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_6C7A0.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_6C7A4",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_6C7A0.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_6C7CC",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_6C7A0.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_6C7DC",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_6C7A0.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_8EF20",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_8EF20.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_8F3E0",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_8F3E0.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_8F3E4",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_8F3E0.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_8F3FC",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_8F3E0.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_8F428",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_8F428.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_8F588",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_8F588.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_8F878",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_8F878.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_data_6CA0",
+        "method": "declared-record",
+        "source": "rel/main_rel/data/lbl_1_data_6CA0.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_data_6CC4",
+        "method": "string",
+        "source": "rel/main_rel/data/lbl_1_data_6CA0.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_data_6CDC",
+        "method": "string",
+        "source": "rel/main_rel/data/lbl_1_data_6CA0.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_data_6CF4",
+        "method": "string",
+        "source": "rel/main_rel/data/lbl_1_data_6CA0.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_data_6D0C",
+        "method": "string",
+        "source": "rel/main_rel/data/lbl_1_data_6CA0.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_data_6D24",
+        "method": "string",
+        "source": "rel/main_rel/data/lbl_1_data_6CA0.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_data_6D3C",
+        "method": "string",
+        "source": "rel/main_rel/data/lbl_1_data_6CA0.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_data_1A368",
+        "method": "string",
+        "source": "rel/main_rel/data/lbl_1_data_1A368.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_data_1A374",
+        "method": "string",
+        "source": "rel/main_rel/data/lbl_1_data_1A368.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_data_1A390",
+        "method": "string",
+        "source": "rel/main_rel/data/lbl_1_data_1A368.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_data_1A3AC",
+        "method": "string",
+        "source": "rel/main_rel/data/lbl_1_data_1A368.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_data_1A3B8",
+        "method": "declared-record",
+        "source": "rel/main_rel/data/lbl_1_data_1A368.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_data_1AE90",
+        "method": "typed-data",
+        "source": "rel/main_rel/data/lbl_1_data_1A368.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_data_1AE94",
+        "method": "string",
+        "source": "rel/main_rel/data/lbl_1_data_1A368.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_data_1AE9C",
+        "method": "string",
+        "source": "rel/main_rel/data/lbl_1_data_1A368.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_data_1C500",
+        "method": "typed-data",
+        "source": "rel/main_rel/data/lbl_1_data_1C500.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_data_1C504",
+        "method": "declared-relocation",
+        "source": "rel/main_rel/data/lbl_1_data_1C500.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_data_1C508",
+        "method": "declared-record",
+        "source": "rel/main_rel/data/lbl_1_data_1C500.c"
+      }
+    ]
+  },
+  "limits": "fn_1_47AD4 (the loader) keeps its own argument view; its body is a dense lifted reconstruction outside this batch. Only fields used by the consumers are named. The table data stays retail-linked. No device or natural-function credit.",
+  "removed": {
+    "private_type_definitions": 12,
+    "private_views": 11,
+    "generated_aggregate_views": 3,
+    "scalar_carriers": 0,
+    "tagged_register_copy_blocks": 0
+  },
+  "partial_cleanups_only": true,
+  "new_fully_natural_function_credit": 0,
+  "fully_natural_function_credit_claimed": false,
+  "census": {
+    "path": "device-census-bitmap-resource-20261116.json.gz",
+    "sha256": "1195c2d48a8635cf1a0526abb6a9edc4879ea43b913332821484430d08d55b9f",
+    "categories": {
+      "adx-dead-write-use": {
+        "spots": 7,
+        "files": 1,
+        "owner_functions": 1,
+        "unassigned_spots": 0
+      },
+      "layout-primer-function": {
+        "spots": 10630,
+        "files": 145,
+        "owner_functions": 958,
+        "unassigned_spots": 72
+      },
+      "marked-warning": {
+        "spots": 38,
+        "files": 13,
+        "owner_functions": 14,
+        "unassigned_spots": 1
+      },
+      "optimization-pragma-review": {
+        "spots": 937,
+        "files": 273,
+        "owner_functions": 695,
+        "unassigned_spots": 28
+      },
+      "single-field-value-carrier-review": {
+        "spots": 267,
+        "files": 96,
+        "owner_functions": 176,
+        "unassigned_spots": 6
+      },
+      "synthetic-function-review": {
+        "spots": 4,
+        "files": 4,
+        "owner_functions": 4,
+        "unassigned_spots": 0
+      },
+      "tagged-register-staging": {
+        "spots": 44,
+        "files": 8,
+        "owner_functions": 10,
+        "unassigned_spots": 0
+      },
+      "volatile-token-review": {
+        "spots": 15470,
+        "files": 389,
+        "owner_functions": 1235,
+        "unassigned_spots": 171
+      }
+    },
+    "known_scaffolding_owner_function_union": 972
+  },
+  "validation": {
+    "commands": [
+      ".venv/bin/python configure.py",
+      "ninja -j 2 build/GFZE01/ok",
+      "build/tools/dtk shasum -q -c config/GFZE01/build.sha1",
+      ".venv/bin/python tools/fzgx.py lint"
+    ],
+    "returns": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "linked_hashes": 16,
+    "independent_hashes": 16,
+    "lint_findings": 0,
+    "local_log_sha256": "83b3a5a7401513505c5a7cf54cd0c8b3374bb84e9d33c197af6c21e376676769"
+  }
+}

@@ -13,7 +13,7 @@ extern void fn_8006FDEC(void);
 extern void fn_80009064(u32 value);
 extern void fn_1_46B4(u32 arg0, u32 arg1, char *arg2, s32 arg3);
 extern void *fn_1_48730(u32 value);
-extern void fn_1_47AD4(Obj_1_data_FCD4 *obj, u8 value, int arg2, int arg3);
+extern void fn_1_47AD4(BitmapResource *obj, u8 value, int arg2, int arg3);
 extern f32 lbl_1_rodata_10C0[5];
 extern f32 lbl_1_bss_3E05C;
 
@@ -161,13 +161,8 @@ s32 fn_1_47AD4(Obj_1_47AD4_Arg0 *arg0,s32 arg1,s32 arg2,s32 arg3) {
 /* fzgx:end fn_1_47AD4 */
 
 /* fzgx:begin fn_1_47E54 */
-typedef struct {
-    s32 unk_0;
-    s32 unk_4[9];
-} Fn147E54Entry;
-
 extern void OSPanic(const unsigned char *, ...);
-extern void fn_1_465D0(s32, s32);
+extern void fn_1_465D0(char *, s32);
 extern u32 lbl_801A66B4;
 
 void fn_1_47E54(s32 index) {
@@ -181,26 +176,21 @@ void fn_1_47E54(s32 index) {
     if (valid == 0) {
         OSPanic(lbl_1_data_1A368, 0x18c, lbl_1_data_1A374);
     }
-    fn_1_465D0(*(s32 *)((u8 *)&lbl_1_data_FCD4.unk_4 + index * 0x28 + lbl_801A66B4 * 4), 1);
+    fn_1_465D0(lbl_1_data_FCD4[index].paths[lbl_801A66B4], 1);
 }
 /* fzgx:end fn_1_47E54 */
 
 /* fzgx:begin fn_1_47EE4 noprologue */
 #include "rel/main_rel/bitmap.h"
 
-typedef struct {
-    s32 unk_0;
-    u8 pad_4[0x24];
-} Fn147EE4Entry;
-
 extern void OSPanic(const unsigned char *, ...);
-extern void fn_1_47AD4(Fn147EE4Entry *object, s32 arg1, s32 arg2, s32 arg3);
+extern void fn_1_47AD4(BitmapResource *object, s32 arg1, s32 arg2, s32 arg3);
 
 void fn_1_47EE4(s32 index) {
-    Fn147EE4Entry *object;
+    BitmapResource *object;
     s32 valid;
 
-    object = (Fn147EE4Entry *)((u8 *)&lbl_1_data_FCD4 + index * 0x28);
+    object = &lbl_1_data_FCD4[index];
     if (index > 0xbb) {
         valid = 0;
     } else {
@@ -209,7 +199,7 @@ void fn_1_47EE4(s32 index) {
     if (valid == 0) {
         OSPanic(lbl_1_data_1A368, 0x1a8, lbl_1_data_1A374);
     }
-    if (object->unk_0 == 0) {
+    if (object->loaded == 0) {
         fn_1_47AD4(object, 0, 1, 1);
     }
 }
@@ -218,19 +208,14 @@ void fn_1_47EE4(s32 index) {
 /* fzgx:begin fn_1_47F74 noprologue */
 #include "rel/main_rel/bitmap.h"
 
-typedef struct {
-    s32 unk_0;
-    u8 pad_4[0x24];
-} Fn147F74Entry;
-
 extern void OSPanic(const unsigned char *, ...);
-extern void fn_1_47AD4(Fn147F74Entry *object, s32 arg1, s32 arg2, s32 arg3);
+extern void fn_1_47AD4(BitmapResource *object, s32 arg1, s32 arg2, s32 arg3);
 
 void fn_1_47F74(s32 index) {
-    Fn147F74Entry *object;
+    BitmapResource *object;
     s32 valid;
 
-    object = (Fn147F74Entry *)((u8 *)&lbl_1_data_FCD4 + index * 0x28);
+    object = &lbl_1_data_FCD4[index];
     if (index > 0xbb) {
         valid = 0;
     } else {
@@ -239,7 +224,7 @@ void fn_1_47F74(s32 index) {
     if (valid == 0) {
         OSPanic(lbl_1_data_1A368, 0x1b5, lbl_1_data_1A374);
     }
-    if (object->unk_0 == 0) {
+    if (object->loaded == 0) {
         fn_1_47AD4(object, 0, 0, 1);
     }
 }
@@ -248,20 +233,15 @@ void fn_1_47F74(s32 index) {
 /* fzgx:begin fn_1_48004 noprologue */
 #include "rel/main_rel/bitmap.h"
 
-typedef struct {
-    s32 unk_0;
-    u8 pad_4[0x24];
-} BitmapEntry;
-
 extern void OSPanic(const u8 *, ...);
-extern void fn_1_47AD4(BitmapEntry *, s32, s32, s32);
+extern void fn_1_47AD4(BitmapResource *, s32, s32, s32);
 extern void fn_1_48418(s32);
 
 void fn_1_48004(s32 index, s32 image) {
-    BitmapEntry *entry;
+    BitmapResource *entry;
     s32 valid;
 
-    entry = (BitmapEntry *)((u8 *)&lbl_1_data_FCD4 + index * 0x28);
+    entry = &lbl_1_data_FCD4[index];
     if (index > 0xbb) {
         valid = 0;
     } else {
@@ -270,7 +250,7 @@ void fn_1_48004(s32 index, s32 image) {
     if (valid == 0) {
         OSPanic(lbl_1_data_1A368, 0x1c5, lbl_1_data_1A374);
     }
-    if (entry->unk_0 == 0) {
+    if (entry->loaded == 0) {
         if (image == 0) {
             if (index > 0xbb) {
                 valid = 0;
@@ -280,7 +260,7 @@ void fn_1_48004(s32 index, s32 image) {
             if (valid == 0) {
                 OSPanic(lbl_1_data_1A368, 0x1b5, lbl_1_data_1A374);
             }
-            if (entry->unk_0 == 0) {
+            if (entry->loaded == 0) {
                 fn_1_47AD4(entry, 0, 0, 1);
             }
         } else {
@@ -309,12 +289,12 @@ void fn_1_48140(int index) {
 // Enables matching bitmap entries in the shared bitmap table.
 void fn_1_48164(int value) {
     s16 index;
-    Obj_1_data_FCD4 *entry;
+    BitmapResource *entry;
 
     index = 1;
-    entry = (Obj_1_data_FCD4 *)((u8 *)&lbl_1_data_FCD4 + 0x28);
-    for (; index < 0xbc; index++, entry = (Obj_1_data_FCD4 *)((u8 *)entry + 0x28)) {
-        if ((s32)entry->unk_0 != 0 && entry->unk_24 == value) {
+    entry = &lbl_1_data_FCD4[1];
+    for (; index < 0xbc; index++, entry++) {
+        if (entry->loaded != 0 && entry->heap == value) {
             fn_1_48214(index, 1);
         }
     }
@@ -341,15 +321,6 @@ extern void fn_1_46B4(u32 arg0, u32 arg1, char *arg2, s32 arg3);
 extern void fn_1_484CC(s32);
 
 typedef struct {
-    s32 unk_0;
-    u32 unk_4;
-    u8 pad_8[0x18];
-    Obj_1_data_FCD4_At20 *unk_20;
-    u8 unk_24;
-    u8 pad_25[0x3];
-} TexRecord;
-
-typedef struct {
     u32 unk_0;
     u32 unk_4;
     s32 unk_8;
@@ -362,7 +333,7 @@ void fn_1_48214(s32 index, s32 enabled) {
     s32 n;
     s16 i;
     s16 end;
-    TexRecord *record;
+    BitmapResource *record;
 
     fn_8006FDEC();
 
@@ -380,50 +351,50 @@ void fn_1_48214(s32 index, s32 enabled) {
         end = (s16)(index + 1);
     }
 
-    record = (TexRecord *)((u8 *)&lbl_1_data_FCD4 + i * 0x28);
+    record = &lbl_1_data_FCD4[i];
 
     while (i < end) {
-        if (record->unk_0 != 0) {
-            if (record->unk_24 == 0) {
-                fn_1_46B4(lbl_801A6410, record->unk_20->unk_C,
+        if (record->loaded != 0) {
+            if (record->heap == 0) {
+                fn_1_46B4(lbl_801A6410, (u32)record->images->textures,
                           (char *)lbl_1_data_1A368, 0x21e);
-                fn_1_46B4(lbl_801A6410, (u32)record->unk_20,
+                fn_1_46B4(lbl_801A6410, (u32)record->images,
                           (char *)lbl_1_data_1A368, 0x21f);
-                record->unk_0 = 0;
+                record->loaded = 0;
             } else {
                 BitmapEntry *bitmap =
                     (BitmapEntry *)((u8 *)&lbl_1_data_6CA0 +
-                                    record->unk_24 * 12);
+                                    record->heap * 12);
 
-                fn_1_46B4(bitmap->unk_0, record->unk_20->unk_C,
+                fn_1_46B4(bitmap->unk_0, (u32)record->images->textures,
                           (char *)lbl_1_data_1A368, 0x223);
-                fn_1_46B4(bitmap->unk_0, (u32)record->unk_20,
+                fn_1_46B4(bitmap->unk_0, (u32)record->images,
                           (char *)lbl_1_data_1A368, 0x224);
-                record->unk_0 = 0;
+                record->loaded = 0;
                 if (enabled == 0) {
                     found = 0;
                     for (n = 0; n < 0xbc; n++) {
-                        TexRecord *scan;
+                        BitmapResource *scan;
                         u8 sc;
                         u8 rc;
 
-                        scan = (TexRecord *)((u8 *)&lbl_1_data_FCD4 + n * 0x28);
-                        if (scan->unk_0 != 0) {
-                            sc = scan->unk_24;
-                            rc = record->unk_24;
+                        scan = &lbl_1_data_FCD4[n];
+                        if (scan->loaded != 0) {
+                            sc = scan->heap;
+                            rc = record->heap;
                             if (sc == rc) {
                                 found = 1;
                             }
                         }
                     }
                     if (found == 0) {
-                        fn_1_484CC(record->unk_24);
+                        fn_1_484CC(record->heap);
                     }
                 }
             }
         }
         i++;
-        record = (TexRecord *)((u8 *)record + 0x28);
+        record++;
     }
 }
 /* fzgx:end fn_1_48214 */
@@ -456,7 +427,7 @@ void fn_1_48418(int index) {
 /* fzgx:begin fn_1_484CC */
 // Releases a bitmap and invalidates dependent texture records.
 void fn_1_484CC(s32 index) {
-    u8 *texture_record;
+    BitmapResource *texture_record;
     s16 texture_index;
     u32 *bitmap_entry;
 
@@ -467,13 +438,13 @@ void fn_1_484CC(s32 index) {
 
     fn_8006FDEC();
     texture_index = 1;
-    texture_record = (u8 *)&lbl_1_data_FCD4 + 0x28;
+    texture_record = &lbl_1_data_FCD4[1];
     while (texture_index < 188) {
-        if (*(s32 *)texture_record != 0 && texture_record[0x24] == index) {
+        if (texture_record->loaded != 0 && texture_record->heap == index) {
             fn_1_48214(texture_index, 1);
         }
         texture_index++;
-        texture_record += 0x28;
+        texture_record++;
     }
 
     fn_80009064(bitmap_entry[0]);
@@ -485,27 +456,19 @@ void fn_1_484CC(s32 index) {
 
 /* fzgx:begin fn_1_485A8 */
 u32 fn_1_485A8(s32 index) {
-    return ((Obj_1_data_FCD4 *)((u8 *)&lbl_1_data_FCD4 + index * 0x28))->unk_0 != 0;
+    return lbl_1_data_FCD4[index].loaded != 0;
 }
 /* fzgx:end fn_1_485A8 */
 
 /* fzgx:begin fn_1_485C8 noprologue */
 #include "types.h"
 
-extern struct fn_1_485C8_lbl_1_data_FCD4 lbl_1_data_FCD4;
+#include "rel/main_rel/bitmap_resource.h"
+
 extern u32 lbl_1_bss_3E020;
 
-struct fn_1_485C8_lbl_1_data_FCD4_0_E40 {
-    u8 pad_0[0x20];
-    u32 unk_20;
-    u8 pad_24[0x4];
-};
-struct fn_1_485C8_lbl_1_data_FCD4 {
-    struct fn_1_485C8_lbl_1_data_FCD4_0_E40 unk_0[1];
-};
-
 void fn_1_485C8(u32 arg0) {
-    lbl_1_bss_3E020 = lbl_1_data_FCD4.unk_0[arg0].unk_20;
+    lbl_1_bss_3E020 = (u32)lbl_1_data_FCD4[arg0].images;
 }
 /* fzgx:end fn_1_485C8 */
 
@@ -601,11 +564,10 @@ u32 fn_1_486F8(u32 value) {
 void *fn_1_48730(u32 value) {
     u32 table_index = (value >> 8) & 0xffff;
     u32 slot_index = value & 0xff;
-    Obj_1_data_FCD4 *entry =
-        (Obj_1_data_FCD4 *)((u8 *)&lbl_1_data_FCD4 + table_index * 0x28);
+    BitmapResource *entry = &lbl_1_data_FCD4[table_index];
 
-    if (entry != 0 && (s32)entry->unk_0 == 1 && entry->unk_20 != 0) {
-        return (u8 *)entry->unk_20->unk_4 + ((u8)slot_index << 4);
+    if (entry != 0 && entry->loaded == 1 && entry->images != 0) {
+        return &entry->images->info[(u8)slot_index];
     }
     return 0;
 }
@@ -619,15 +581,15 @@ void fn_1_4877C(void) {
 
 /* fzgx:begin fn_1_48780 */
 void fn_1_48780(void) {
-    Obj_1_data_FCD4 *obj;
+    BitmapResource *obj;
     int i;
 
-    obj = (Obj_1_data_FCD4 *)((u8 *)&lbl_1_data_FCD4 + 0x28);
+    obj = &lbl_1_data_FCD4[1];
     for (i = 1; i < 0xBC; i++) {
-        if ((int)obj->unk_0 != 0) {
-            fn_1_47AD4(obj, obj->unk_24, 0, 0);
+        if (obj->loaded != 0) {
+            fn_1_47AD4(obj, obj->heap, 0, 0);
         }
-        obj = (Obj_1_data_FCD4 *)((u8 *)obj + 0x28);
+        obj++;
     }
 }
 /* fzgx:end fn_1_48780 */
@@ -644,7 +606,7 @@ extern void fn_8006FDEC(void);
 extern void fn_80009064(u32 value);
 extern void fn_1_46B4(u32 arg0, u32 arg1, char *arg2, s32 arg3);
 extern void *fn_1_48730(u32 value);
-extern void fn_1_47AD4(Obj_1_data_FCD4 *obj, u8 value, int arg2, int arg3);
+extern void fn_1_47AD4(BitmapResource *obj, u8 value, int arg2, int arg3);
 extern f32 lbl_1_rodata_10C0[5];
 extern f32 lbl_1_bss_3E05C;
 
@@ -661,7 +623,7 @@ extern void fn_8006FDEC(void);
 extern void fn_80009064(u32 value);
 extern void fn_1_46B4(u32 arg0, u32 arg1, char *arg2, s32 arg3);
 extern void *fn_1_48730(u32 value);
-extern void fn_1_47AD4(Obj_1_data_FCD4 *obj, u8 value, int arg2, int arg3);
+extern void fn_1_47AD4(BitmapResource *obj, u8 value, int arg2, int arg3);
 extern f32 lbl_1_rodata_10C0[5];
 extern f32 lbl_1_bss_3E05C;
 

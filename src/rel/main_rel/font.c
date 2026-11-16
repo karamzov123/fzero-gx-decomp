@@ -2334,7 +2334,7 @@ extern void fn_8006FDEC(void);
 extern void fn_80009064(u32 value);
 extern void fn_1_46B4(u32 arg0, u32 arg1, char *arg2, s32 arg3);
 extern void *fn_1_48730(u32 value);
-extern void fn_1_47AD4(Obj_1_data_FCD4 *obj, u8 value, int arg2, int arg3);
+extern void fn_1_47AD4(BitmapResource *obj, u8 value, int arg2, int arg3);
 extern f32 lbl_1_rodata_10C0[5];
 extern f32 lbl_1_bss_3E05C;
 
@@ -5324,7 +5324,7 @@ void fn_1_4E220(struct Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
     u32 v1;
     s32 v2;
     u32 v5;
-    Obj_1_data_FCD4_At20 *v6;
+    BitmapImages *v6;
     u32 v7;
     f32 scale;
     f32 f44;
@@ -5365,11 +5365,11 @@ void fn_1_4E220(struct Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
     } else {
         lab_t2 = arg0->unk_0;
         v5 = lab_t2;
-        v6 = *(Obj_1_data_FCD4_At20 **)((((u32)&lbl_1_data_FCD4) + 0x20) + (((v5 >> 8) & 0xFFFF) * 0x28));
+        v6 = lbl_1_data_FCD4[(v5 >> 8) & 0xFFFF].images;
         if (!(lbl_1_rodata_2750 != arg0->unk_10 && lbl_1_rodata_2750 != arg0->unk_14 && v6 != 0)) {
             return;
         } else {
-            fn_80073778((void *)(v6->unk_C + ((v5 & 0xFF) << 5)), arg3 & 0xFF);
+            fn_80073778(v6->textures[v5 & 0xFF], arg3 & 0xFF);
         }
     }
     v7 = arg1 & 0xFF;
@@ -5569,22 +5569,12 @@ s32 fn_1_4E92C(s32 arg0, u32 arg1, s16 arg2, s16 arg3, u32 arg4) {
 /* fzgx:end fn_1_4E92C */
 
 /* fzgx:begin fn_1_4EB74 */
-/* lbl_1_data_FCD4 is indexed as an array of 0x28-byte records; the header's
-   Obj_1_data_FCD4 spans the whole blob, so index through this record view. */
-typedef struct TableEntry {
-    s32 unk_0;
-    u32 unk_4;
-    u8 pad_8[0x18];
-    Obj_1_data_FCD4_At20 *unk_20;
-    u32 unk_24;
-} TableEntry;
-
 s32 fn_1_4EB74(fn_1_4EB74_FontObject *self) {
-    TableEntry *table;
-    Obj_1_data_FCD4_At20 *data;
+    BitmapResource *table;
+    BitmapImages *data;
     u32 value;
     u32 index;
-    u16 *row;
+    BitmapImageInfo *info;
     f32 x;
     f32 y;
 
@@ -5597,16 +5587,16 @@ s32 fn_1_4EB74(fn_1_4EB74_FontObject *self) {
     value = self->unk_0;
 
     index = (value >> 8) & 0xffff;
-    table = (TableEntry *)&lbl_1_data_FCD4;
-    if (table[index].unk_0 == 0) {
+    table = lbl_1_data_FCD4;
+    if (table[index].loaded == 0) {
         return 0;
     }
 
-    data = table[index].unk_20;
-    row = (u16 *)((u8 *)data->unk_4 + ((value & 0xff) << 4));
-    x = (f32)(u32)row[4];
-    y = (f32)(u32)row[5];
-    fn_80073778((void *)((u8 *)data->unk_C + ((value & 0xff) << 5)), 0);
+    data = table[index].images;
+    info = &data->info[value & 0xff];
+    x = (f32)(u32)info->width;
+    y = (f32)(u32)info->height;
+    fn_80073778(data->textures[value & 0xff], 0);
     fn_1_4EDAC( (FontDrawPacket*)(void *)(self), x, y);
     return 1;
 }
@@ -5993,6 +5983,7 @@ void fn_1_4F724(void) {
 
 /* fzgx:begin fn_1_4F734 noprologue */
 #include "types.h"
+#include "rel/main_rel/bitmap_resource.h"
 #include "font.h"
 
 typedef struct State {
@@ -6008,28 +5999,10 @@ typedef struct Config {
     u8 unk_8[0x44];
     char warning[1];
 } Config;
-typedef struct ImageInfo {
-    u8 unk_0[8];
-    u16 width, height;
-    u32 unk_C;
-} ImageInfo;
-typedef struct Images {
-    u32 unk_0;
-    ImageInfo *info;
-    u32 unk_8;
-    u32 (*textures)[8];
-} Images;
-typedef struct Resource {
-    s32 loaded;
-    u8 unk_4[0x1c];
-    Images *images;
-    u32 unk_24;
-} Resource;
 extern State lbl_1_bss_4C678;
 extern Config lbl_1_data_1C500;
 extern u16 lbl_1_bss_4E6D0__fzgx_offset_16002;
 extern u8 *lbl_801A6D00;
-extern Resource lbl_1_data_FCD4[];
 extern void fn_1_A71CC(void), fn_800724C8(void), lbl_8006D758(void), fn_80072558(void),
     fn_1_A722C(void);
 extern void fn_8007245C(u32), fn_80074788(u32), fn_80074660(u32), fn_80073678(u32),
@@ -6104,8 +6077,8 @@ int fn_1_4F734(FontDrawPacket *input) {
             if (local.flags & 0x2000000)
                 result = 0;
             else {
-                Resource *resource;
-                Resource *table;
+                BitmapResource *resource;
+                BitmapResource *table;
                 u32 id, index;
                 fn_1_159588(local.image);
                 table = lbl_1_data_FCD4;
@@ -6114,7 +6087,7 @@ int fn_1_4F734(FontDrawPacket *input) {
                 if (!table[index].loaded)
                     result = 0;
                 else {
-                    ImageInfo *info;
+                    BitmapImageInfo *info;
                     f32 height, width;
                     resource = table;
                     resource += index;
@@ -6293,21 +6266,21 @@ void fn_1_4FD64(f32 arg0) {
             if (*(volatile u32 *)&e->unk_30 & 0x2000000) continue; // volatile: preserve retail's second flags load.
             {
                 u32 pk;
-                Obj_1_data_FCD4_At20 *q;
-                u8 *p1;
+                BitmapImages *q;
+                BitmapImageInfo *p1;
                 u8 *p2;
                 f32 fh;
                 f32 fw;
-                Obj_1_data_FCD4 *o;
+                BitmapResource *o;
                 fn_1_159588(e->unk_0);
                 pk = e->unk_0;
-                o = (Obj_1_data_FCD4 *)((u8 *)&lbl_1_data_FCD4 + (u16)(pk >> 8) * 0x28);
-                if ((s32)o->unk_0 != 0) {
-                    q = o->unk_20;
-                    p1 = (u8 *)q->unk_4 + ((pk & 0xFF) << 4);
-                    p2 = (u8 *)q->unk_C + ((pk & 0xFF) << 5);
-                    fw = (f32)*(u16 *)(p1 + 8);
-                    fh = (f32)*(u16 *)(p1 + 0xA);
+                o = &lbl_1_data_FCD4[(u16)(pk >> 8)];
+                if (o->loaded != 0) {
+                    q = o->images;
+                    p1 = &q->info[pk & 0xFF];
+                    p2 = (u8 *)q->textures[pk & 0xFF];
+                    fw = (f32)p1->width;
+                    fh = (f32)p1->height;
                     fn_80073778(p2, 0);
                     fn_1_4EDAC((FontDrawPacket *)e, fw, fh);
                 }
@@ -7845,18 +7818,13 @@ typedef struct {
     s16 unk_28;
 } FontState;
 
-typedef struct {
-    u8 pad_0[0x20];
-    Obj_1_data_FCD4_At20 *unk_20;
-    u8 pad_24[0x4];
-} FontTableEntry;
 
 
 void fn_1_527B4(void) {
     u8 scratch[0x30];
     FontState *state;
-    FontTableEntry *entry;
-    Obj_1_data_FCD4_At20 *obj;
+    BitmapResource *entry;
+    BitmapImages *obj;
     u32 value;
     u32 index;
 
@@ -7871,16 +7839,16 @@ void fn_1_527B4(void) {
         fn_800745A4(1, 1, 4, 0x21, 0, 0x7d);
         GXLoadTexMtxImm( (u32)(void *)(&scratch[0]), 0x21, 1);
         value = state->unk_0;
-        index = ((value >> 8) & 0xffff) * 0x28;
-        entry = (FontTableEntry *)&lbl_1_data_FCD4;
-        entry = (FontTableEntry *)((u8 *)entry + index);
-        obj = entry->unk_20;
+        index = (value >> 8) & 0xffff;
+        entry = lbl_1_data_FCD4;
+        entry += index;
+        obj = entry->images;
         if (lbl_1_rodata_2750 == state->unk_10 ||
             lbl_1_rodata_2750 == state->unk_14 ||
             obj == 0) {
             return;
         }
-        fn_80073778((void *)((u8 *)obj->unk_C + ((value & 0xff) << 5)), 1);
+        fn_80073778((void *)((u8 *)obj->textures + ((value & 0xff) << 5)), 1);
     }
     fn_80074660(2);
     fn_80073678(2);

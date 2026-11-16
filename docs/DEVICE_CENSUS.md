@@ -4,7 +4,7 @@ Run `python tools/fzgx.py devicecensus` for the live summary, or add `--json` fo
 
 ## Measured checkpoint
 
-The latest source fingerprint and complete compressed inventory are retained in `state/repairs/device-census-typed-index-20261116.json.gz`; `state/repairs/typed-index-recovery-20261116.json`, `state/repairs/bgwin-string-layout-20261116.json` and `state/repairs/automated-device-cleanup-20261116.json` record accepted source hashes, compiler context, replay archives and validation. Earlier inventories and their evidence manifests remain intact. Each inventory records its base commit and explicitly notes modified source/configuration; the source-tree digest identifies the measured contents independently of that base.
+The latest source fingerprint and complete compressed inventory are retained in `state/repairs/device-census-bitmap-resource-20261116.json.gz`; `state/repairs/bitmap-resource-layout-20261116.json`, `state/repairs/typed-index-recovery-20261116.json`, `state/repairs/bgwin-string-layout-20261116.json` and `state/repairs/automated-device-cleanup-20261116.json` record accepted source hashes, compiler context, replay archives and validation. Earlier inventories and their evidence manifests remain intact. Each inventory records its base commit and explicitly notes modified source/configuration; the source-tree digest identifies the measured contents independently of that base.
 
 | Category | Spots | Files | Owner functions |
 | --- | ---: | ---: | ---: |
@@ -74,3 +74,9 @@ Retail often keeps a byte offset and an index as separate induction registers. T
 - `main_rel:fn_1_10A8D0` stays as it is: node, in-half and cross-half edge indexing alone and combined differ by 8-61 words. Do not repeat those variants.
 
 The carrier queue falls from 269 to 267. Neither function is credited as fully natural, because unmarked code is not certified device-free.
+
+## Bitmap resource table layout
+
+`lbl_1_data_FCD4` is 188 records of 0x28 bytes. Retail data relocates words 1-7 of each record to archive-path strings, which `lbl_801A66B4` selects by language. The loader `fn_1_47AD4` records the heap index (an entry of the three-heap table `lbl_1_data_6CA0`), sets `loaded` and stores an image set: a count, 0x10-byte texture headers (flags, data offset, width, height) and 0x20-byte objects built with `GXInitTexObj`. `include/rel/main_rel/bitmap_resource.h` now holds `BitmapResource`, `BitmapImages` and `BitmapImageInfo`. They replace twelve private type definitions and the generated aggregate that was duplicated in bitmap.h, font.h and ranking.h.
+
+Twenty consumers across bitmap.c, font.c and ranking.c now index typed records instead of byte strides. All 28 changed units compile against retail. `fn_1_527B4` misses by 5 words with `&table[index]` or an index temporary, but matches as `entry = lbl_1_data_FCD4; entry += index;`, the same pointer-advance shape `fn_1_4F734` already uses. The loader keeps its own argument view: its body is a dense lifted reconstruction outside this batch. This is shared-type recovery, not device removal. Census rows are unchanged, and no function is credited as fully natural.
