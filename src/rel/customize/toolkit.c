@@ -1489,7 +1489,7 @@ void fn_3_1A488(void) {
     struct { u32 a[4]; } loc_8;
     u32 t3;
     entries = (struct fn_3_1A488_lbl_1_bss_9F8_8_E20 *)((u8 *)&(*(struct fn_3_1A488_lbl_1_bss_9F8 *)&lbl_1_bss_9F8) + 16);
-    v0 = *(volatile u8 *)&lbl_3_bss_A2438.unk_0; /* Retail reloads this field. */
+    v0 = *(u8 *)&lbl_3_bss_A2438.unk_0;
     if ((entries[v0].unk_0 & 1) != 0 ||
         (((1) & (*(u16 *)((u8 *)&(*(struct fn_3_1A488_lbl_1_bss_9F8 *)&lbl_1_bss_9F8) + v0 * 20 + 18)))) != 0) {
         Obj_3_bss_A2438 *st = &lbl_3_bss_A2438;
@@ -1525,7 +1525,7 @@ void fn_3_1A488(void) {
     }
     {
         Obj_3_bss_A2438 *st = &lbl_3_bss_A2438;
-        v2 = (u16)((*(volatile u8 *)&st->unk_0 /* Retail reloads this field. */)[entries]).unk_0;
+        v2 = (u16)((*(u8 *)&st->unk_0)[entries]).unk_0;
         if (((v2 >> 9) & 1) != 0 ||
             (st->unk_10 == 0 && ((v2 >> 8) & 1) != 0)) {
             fn_1_A2D84(0xA9150500);

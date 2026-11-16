@@ -4130,7 +4130,7 @@ void fn_3_4C58(void) {
             *(volatile u32 *)&dst->unk_428 = (u32)fn_1_FDC00; /* Ordered callback setup. */
             *(volatile u32 *)&dst->unk_42c = (u32)fn_1_FD27C; /* Ordered callback setup. */
             *(volatile u32 *)&dst->unk_424 = (u32)fn_1_FD324; /* Ordered callback setup. */
-            *(volatile u32 *)&dst->unk_420 = 0; /* Ordered callback setup. */
+            *(u32 *)&dst->unk_420 = 0; /* Ordered callback setup. */
             dst->unk_c = 0x20000000;
             fn_1_FD844(m, dst);
             if ((m->unk_0 & 0x40000000) != 0) {
@@ -4421,9 +4421,9 @@ s32 fn_3_5070(void) {
         if (((lbl_1_bss_9F8[player].rep0 >> 1) & 1) || ((lbl_1_bss_9F8[player].rep1 >> 1) & 1)) {
             dir++;
         }
-        /* Re-read the active menu state after polling input (volatile defeats the CSE with `old`). */
+        /* Read the active menu state after polling input. */
         {
-            s32 state = *(volatile s16 *)&menu.p->unk_C;  /* fzgx-allow: S2 volatile view keeps the verified load order */
+            s32 state = *(s16 *)&menu.p->unk_C;
             values.p[state] = stepMenuValue(values.p[state], dir, lo, hi);
         }
         if (old != values.p[menu.p->unk_C]) {
@@ -7225,7 +7225,7 @@ s32 fn_3_83CC(void)
         lbl_3_bss_20.category = category > 3 ? 0 : category < 0 ? 3 : category;
     }
     /* Observe the current UI mode separately from the following list scan. */
-    if (*(volatile s16 *)&lbl_3_bss_20.category != 3) {
+    if (*(s16 *)&lbl_3_bss_20.category != 3) {
         s32 next;
         if (((((lbl_1_bss_9F8[controller].repeat) >> 3) & 1)) ||
             ((((lbl_1_bss_9F8[controller].held) >> 3) & 1)))

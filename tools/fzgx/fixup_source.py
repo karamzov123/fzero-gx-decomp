@@ -4232,6 +4232,55 @@ def native_access_helpers(body, name):
         yield 'inline clamp helper ' + helper, text
 
 
+def volatile_removals(body, name):
+    """Probe redundant scalar address-cast qualifiers in the selected function.
+
+    This only proposes candidates: exact MWCC/relocation checks and source review
+    remain mandatory. Never change declarations or infer a nonvolatile object's
+    type by deleting the access cast. SDK and hardware volatility is not debt.
+    """
+    from .sdkimport import masked
+    if not name.startswith('fn_'):
+        return
+    span = _function_body_span(body, name)
+    if not span:
+        return
+    code = masked(body)
+    skip_tokens = ('0xCC00', '0xCC01', '0xE000', '0x8000', 'FIFO', 'Fifo', 'fifo', 'Reg',
+                   'OSContext', 'DVD', 'PPCWGPipe', '__OS', '__VI', '__SI', '__EXI', '__AI',
+                   '__DSP', '__PI', '__MI', '__PE', '__CP', 'AI_', 'VI_', 'SI_', 'EXI_',
+                   'PI_', 'MI_', 'DSP_', 'PE_', 'CP_', 'mail', 'resetWork', 'SDK',
+                   'asynchronous', 'primer', 'Primer', 'sink', '.fzgxpool', 'fzgx_pool',
+                   'fzgx_fn_', 'handler', 'interrupt', 'hardware', 'Hardware', 'DMA', 'pending')
+
+    def clean_volatile_comments(ln, cln_after):
+        if not re.search(r'\bvolatile\b', cln_after):
+            ln = re.sub(r'[ \t]*/\*[^*]*\b(?:[Vv]olatile|fzgx-allow:\s*S2|[Rr]etail reloads|[Rr]etail re-reads|[Rr]etail keeps)[^*]*\*/', '', ln)
+            ln = re.sub(r'[ \t]*//[^\n]*\b(?:[Vv]olatile|fzgx-allow:\s*S2|[Rr]etail reloads|[Rr]etail re-reads|[Rr]etail keeps)[^\n]*', '', ln)
+        return ln
+
+    # Keep the scalar type, width, lvalue and parentheses unchanged.
+    vcast_pat = re.compile(
+        r'\*\s*\(\s*((?:volatile\s+(?:[su](?:8|16|32|64)|f32|f64)|(?:[su](?:8|16|32|64)|f32|f64)\s+volatile)\s*\*)\s*\)\s*&\s*(\([A-Za-z_]\w*(?:(?:->|\.)\w+)*\)|[A-Za-z_]\w*(?:(?:->|\.)\w+)*)')
+    for m in vcast_pat.finditer(code):
+        if not (span[1] <= m.start() < m.end() <= span[2]):
+            continue
+        lstart = body.rfind('\n', 0, m.start()) + 1
+        lend = body.find('\n', m.end())
+        lend = len(body) if lend < 0 else lend
+        line = body[lstart:lend]
+        cline = code[lstart:lend]
+        if any(h in line for h in skip_tokens):
+            continue
+        ptr_ty = body[m.start(1):m.end(1)]
+        expr = body[m.start(2):m.end(2)]
+        rel_s, rel_e = m.start(1) - lstart, m.end(1) - lstart
+        nonvol_ptr_ty = re.sub(r'\bvolatile\s*', '', ptr_ty).strip()
+        cline_after = cline[:rel_s] + nonvol_ptr_ty + cline[rel_e:]
+        new_line = clean_volatile_comments(line[:rel_s] + nonvol_ptr_ty + line[rel_e:], cline_after)
+        yield f'strip volatile from cast {expr}', body[:lstart] + new_line + body[lend:]
+
+
 def inline_helpers(body, name, helpers=None):
     """Do not emit unused out-of-line copies of reconstructed static helpers.
 
