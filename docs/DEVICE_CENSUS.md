@@ -4,7 +4,7 @@ Run `python tools/fzgx.py devicecensus` for the live summary, or add `--json` fo
 
 ## Measured checkpoint
 
-The latest source fingerprint and complete compressed inventory are retained in `state/repairs/device-census-bgwin-20261116.json.gz`; `state/repairs/bgwin-string-layout-20261116.json` and `state/repairs/automated-device-cleanup-20261116.json` record accepted source hashes, compiler context, replay archives and validation. Earlier inventories and their evidence manifests remain intact. Each inventory records its base commit and explicitly notes modified source/configuration; the source-tree digest identifies the measured contents independently of that base.
+The latest source fingerprint and complete compressed inventory are retained in `state/repairs/device-census-typed-index-20261116.json.gz`; `state/repairs/typed-index-recovery-20261116.json`, `state/repairs/bgwin-string-layout-20261116.json` and `state/repairs/automated-device-cleanup-20261116.json` record accepted source hashes, compiler context, replay archives and validation. Earlier inventories and their evidence manifests remain intact. Each inventory records its base commit and explicitly notes modified source/configuration; the source-tree digest identifies the measured contents independently of that base.
 
 | Category | Spots | Files | Owner functions |
 | --- | ---: | ---: | ---: |
@@ -13,7 +13,7 @@ The latest source fingerprint and complete compressed inventory are retained in 
 | Synthetic `.fzgxpool` primer function definitions | 10,630 | 145 | 958 |
 | Tagged `__reg_value_` register-staging assignments | 44 | 8 | 10 |
 | Optimization-setting directives (excluding reset/push/pop) | 937 | 273 | 695 |
-| Anonymous one-field `value` scalar-carrier shapes | 269 | 97 | 178 |
+| Anonymous one-field `value` scalar-carrier shapes | 267 | 96 | 176 |
 | Other `fzgx_` function definitions requiring review | 4 | 4 | 4 |
 | `volatile` tokens | 15,470 | 389 | 1,235 |
 
@@ -64,3 +64,13 @@ The live 32-function trial admitted 30 controls and blocked two: their code word
 The lookup still loads the global through an explicitly marked staging copy: the direct typed global assignment differs by 13 aligned words in both tested forms. Marking it raises the warning row from 37 to 38 spots; the tagged-staging row (44) and the known-scaffolding union (972) are unchanged, so this is layout recovery, **not** device removal or new natural-function credit. Twelve compiled bodies, including both failing direct-load probes and a whitespace-only installed-form control, replay from `bgwin-string-layout-20261116.sources.json.gz` with identical source hashes, compiler profiles, verdicts and aligned errors. The whole build and the independent retail check report `16 files OK`; lint reports zero findings.
 
 A follow-up frontier on that 13-word staging barrier is retained in `state/repairs/bgwin-staging-frontier-20261116.json.gz` (22 compiled bodies with their header variants). Without staging, the lookup is instruction-identical to retail except that `table` and `index` swap r28/r29. A typed pointer member, a scalar pointer global, all six local declaration orders with while/for loops, and a staging copy that reads the typed member all leave the same 13 words. Only the address-taken staging copy matches. The scalar global fits the evidence (two 4-byte offset-0 references; the next object is 32-byte aligned), but it would conflict with the saved 16-byte declared-bss import and gains nothing in codegen, so it is not installed. Do not repeat these variants; a removal needs a different source structure.
+
+## Typed indexing and the ranking archive layout
+
+Retail often keeps a byte offset and an index as separate induction registers. That is MWCC's strength reduction of `&array[i]`, not evidence for a hand-maintained offset. A scan of the carrier queue found seven offset carriers stepped by an element size across five functions. Three outcomes, each from one fixed cohort:
+
+- `main:fn_80077D40` now loops `for (i = 0; i < count; i++) item = &items[i];` with no carrier. All four typed-index spellings match. The LOD tests are also spelled naturally: `addis/cmplwi 0xffff` is MWCC's unsigned compare with `0xFFFFFFFF`, and the promoted `u16` compare with `-1` needs no cast.
+- Six ranking.c functions (`fn_1_159440`, `fn_1_159478`, `fn_1_1594AC`, `fn_1_159588`, `fn_1_1596DC`, `fn_1_159804`) now share `RankingArchive` in `include/rel/main_rel/ranking_archive.h` (`lbl_1_data_4C810[4]`, 0x3C each). It replaces five private views and the generated 0xF0 aggregate. Data relocations give its archive path (`"/bmp/bmp_cardt.arc"`, ...) and `-1`-terminated id table; the ring fields come from the enqueue/evict/move-to-tail code. Removing the `fn_1_1596DC` carrier first differed by 8 words, all MWCC's bottom-test loop inversion. Keeping the original top-test `break` with `for (i = 0;; i++)` matches. `fn_1_159478` needs the same entry pointer as `fn_1_159440`: direct `array[index]` addressing differs by 4 words. Callers now use `fn_1_159804`'s true `s16 (s16, RankingArchive *)` prototype. Every one of the 79 ranking.c units whose text changed compiles against retail. `fn_1_1577D0` keeps its pre-existing extra-helper policy flag with an exact object match, identical to its committed control. The raw-word data definition is unchanged.
+- `main_rel:fn_1_10A8D0` stays as it is: node, in-half and cross-half edge indexing alone and combined differ by 8-61 words. Do not repeat those variants.
+
+The carrier queue falls from 269 to 267. Neither function is credited as fully natural, because unmarked code is not certified device-free.

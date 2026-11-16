@@ -1,0 +1,3016 @@
+{
+  "format": "fzgx-device-cleanup-provenance-v1",
+  "version": "GFZE01",
+  "base_commit": "f8101aba4969af086f93eff18b49293fe3d51458",
+  "source_tree_sha256": "30bf3e89be03511bf2a1b5cc855bf05d57ffd778afa993a3a88a3a460a33246f",
+  "configuration_sha256": {
+    "config/GFZE01/units.json": "66305b32c6e0d5904c0e446288bd799aaed4293566b319940eb79c4bfcbbde9d",
+    "config/GFZE01/symbols.txt": "679485d0d8614930c89f5e1919cb46fd91ccd6937a2fc574f1b96db549516b6a",
+    "config/GFZE01/main_rel/symbols.txt": "f420bce352a0130123c6300a9ce3ac052ec0ff29fbc515a1ffc6d2e9308f3422",
+    "config/GFZE01/sample/symbols.txt": "82322476c91b8aa92d58259230913fc2ba507a6b2218de8bd16f2502234941e7",
+    "config/GFZE01/movie_module/symbols.txt": "a1c606bd19ce8925821903d77df8a551e66651bf906adcf01a295526ddd11f2c",
+    "config/GFZE01/customize/symbols.txt": "9e0f12b8bc2c81915c785749472b704f4f0ee31d9bd6770cf37b47446734ff03",
+    "config/GFZE01/sel/symbols.txt": "9ca64c6f0dc6779d30a980398e89dd29fde8dbdf6ffb5b11bb75e5e5bf00f69f",
+    "config/GFZE01/title/symbols.txt": "93046c0993fd8d5d483aa9b7e6d59ecd5109434c16b0901b556132247285917b",
+    "config/GFZE01/pilotpoint/symbols.txt": "4852b5bc0d356713cc7bdb9009a3f3028826e7b11db2c5abee1affe54967c42b",
+    "config/GFZE01/option/symbols.txt": "290b234fe8577db852adf16de0ae1019bb459e8b47203805283891f02868f03f",
+    "config/GFZE01/interview/symbols.txt": "016e13c402380a163cd32153e50c07f5af68939d998e8f8e27f3eeeb72cb25dc",
+    "config/GFZE01/profile/symbols.txt": "f59d2d0adb87b8a4b029e27ce53fcd7b8c780851d493d14a62e2c36b1092e5b2",
+    "config/GFZE01/story/symbols.txt": "956ee3dcef8f80bfaec9dddb55296cd764c6116af2d55586e85543092cafd24f",
+    "config/GFZE01/winning/symbols.txt": "1da2904c3593ce510f39933ba8054ca073abe033e1f5524c3ae67c6acc8fa2f3",
+    "config/GFZE01/movie/symbols.txt": "487762d1ae2ed79e25640765dda920cd9c1ba50c5c910bd35d3ee5c89c8a09c4",
+    "config/GFZE01/car_colchg/symbols.txt": "367638db7fb20a8379d891ae7e534edadf00ac4fd18648a3d1fdbd2d5167742f",
+    "config/GFZE01/replay/symbols.txt": "c869c9456a87836d13d9e8b05622e8a19ff794d997bb67d790805235aae7d9d7",
+    "config/original_assembly.json": "e8cd9c49c2a57648132368ec83377f293988f49195a8dd8dd7339bf6f1ff3c71"
+  },
+  "headers": {
+    "include/rel/main_rel/ranking.h": "434bac2871ee91df2ea2cda982ad31cc9614275c52ee6d5147871e21ec4398bc",
+    "include/rel/main_rel/ranking_archive.h": "934dc02a7eef51534184d51e6a6eb8a34870229d2411b74e7786f5f6e68a46e0"
+  },
+  "sources": {
+    "src/dol/fn_80077D40.c": "1a2b910303ac9c313fb054bc5799e5f97f178bc7d0222e5850bddb74bbc43f04",
+    "src/rel/main_rel/ranking.c": "6f4a99fd95987fb40b08ebb9eda5f626dec7cc7062f6a76dfc7c3a5a1770b0ff"
+  },
+  "evidence": {
+    "strength_reduction": "Retail keeps a byte offset and an index as separate induction registers; this is MWCC strength reduction of &array[i].",
+    "ranking_layout": "lbl_1_data_4C810 is 0xF0 = 4 x 0x3C; data relocations place an archive path string and a u16 id table at +0/+4 of entries 1..3; six functions index the same fields.",
+    "sentinel": "addis r0,r7,1; cmplwi r0,0xffff lowers an unsigned compare with 0xFFFFFFFF; lhz; cmpwi -1 is the int-promoted u16 compare with -1."
+  },
+  "cohorts": {
+    "texlist-index": {
+      "hypothesis": "Frozen cohort: fn_80077D40 typed item indexing instead of a byte-offset carrier.\n\nEvidence: retail keeps offset (r31, +0x10) and index (r30) as separate induction\nvariables and forms item = items + offset, MWCC's strength reduction of &items[i].\nThe earlier removal-only probe (plain u32 offset) differs by 6 words.\nStopping condition: control + four fixed variants once; actual profile; no search.\n\nFollow-up: natural spellings of the LOD sentinel tests on the typed for-loop form.\n\nRetail `addis r0,r7,1; cmplwi r0,0xffff` is MWCC's lowering of an unsigned compare\nwith 0xFFFFFFFF; `lhz; cmpwi -1` is an int-promoted u16 compare with -1.\nStopping condition: three fixed variants once; actual profile; no search.",
+      "stopping_condition": "control + four fixed variants once",
+      "environment": "dc3b082b16a28521bcc92ee9d5bee42a3f74c63f53b940dc5443b13b443f8cf7",
+      "records": [
+        {
+          "symbol": "fn_80077D40",
+          "label": "installed control",
+          "sha256": "22fd1b9e49cf76db6ca521139e22d867661b0ef960c6ea423dc85a54b70fb5a9",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_80077D40",
+          "label": "typed index; while loop",
+          "sha256": "c84bc341d3bf8a986ebc8a562fe9395d3243bbfe9c39e6d9a3a5111ec215b267",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_80077D40",
+          "label": "typed index; for loop",
+          "sha256": "e11bf0b820c4330c07338a51b19563594085d3452c5f40a80dc52b21730db2c7",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_80077D40",
+          "label": "pointer-plus index; while loop",
+          "sha256": "14931d52dd69bcd0243aae4b12e9521e618240c524b9e1ea7c51de74a3c5e6c2",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_80077D40",
+          "label": "typed index; for loop; initialized total",
+          "sha256": "7f152b3f664ea253abd1d9a0e91cbcbd261eb1bb36b6f4d13019a802d675a121",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_80077D40",
+          "label": "unsigned all-ones LOD sentinel",
+          "sha256": "eea80932e4c06137b9f360fa44ef04435144d9ba24500b4e904f6c35c8d9f2fd",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_80077D40",
+          "label": "promoted u16 sentinel without cast",
+          "sha256": "2d18a896992d5f8c66669616551197f8196bd6a7dfce273c82b9358e745521cf",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_80077D40",
+          "label": "both natural sentinel tests",
+          "sha256": "1a2b910303ac9c313fb054bc5799e5f97f178bc7d0222e5850bddb74bbc43f04",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        }
+      ]
+    },
+    "graph-index": {
+      "hypothesis": "Frozen cohort: fn_1_10A8D0 typed node/edge indexing instead of byte-offset carriers.\n\nFamilies: (N) the three sort loops' `offset` node stride; (E) the in-half edge writes via\n`edgeOffset`; (X) the cross-half edge writes via `inner`, plus the edge-count temporary.\nEach family alone and combined, with node spellings &nodes[i]+1 / &nodes[i+1].\nStopping condition: these fixed variants once; actual profile; no flags/search.",
+      "stopping_condition": "fixed variants once",
+      "environment": "dc3b082b16a28521bcc92ee9d5bee42a3f74c63f53b940dc5443b13b443f8cf7",
+      "records": [
+        {
+          "symbol": "fn_1_10A8D0",
+          "label": "installed control",
+          "sha256": "1fb18d97e2569c5f71ed6bab9d047abed5db7eb9cac1b3cdb78a40477fbd5249",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_10A8D0",
+          "label": "typed indexing: N &g->nodes[i] + 1",
+          "sha256": "732638cd40090d05dd0b04e7f990490e5e69c11d3051aa94f1447775e9cf724f",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": false,
+          "word_errors": 43,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_10A8D0",
+          "label": "typed indexing: N &g->nodes[i + 1]",
+          "sha256": "f965e1a24d855f585df3127aaecb5a3956e84ff1bb0b6bcb3151747742ccf6d9",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": false,
+          "word_errors": 61,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_10A8D0",
+          "label": "typed indexing: E",
+          "sha256": "cd3335b12733f447ebe8caa3f36cdedf4e33989174fbcc3cbd1e9559ac4880eb",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": false,
+          "word_errors": 8,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_10A8D0",
+          "label": "typed indexing: X",
+          "sha256": "3e515f4ff695b4249753d2fb0686d5c51161f64ddb9d490ef153b362b7eb5f25",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": false,
+          "word_errors": 12,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_10A8D0",
+          "label": "typed indexing: E+X",
+          "sha256": "2809354af5500d404e5227189d5091e0056a6d58593eb9b0ceb3fc146f88d87b",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": false,
+          "word_errors": 12,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_10A8D0",
+          "label": "typed indexing: N &g->nodes[i] + 1 + E + X",
+          "sha256": "3f6d04e1a7727fe39153e28b872ae207694148491d3e23cfb5692b4cc0f68ca7",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": false,
+          "word_errors": 31,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_10A8D0",
+          "label": "typed indexing: N &g->nodes[i + 1] + E + X",
+          "sha256": "605725cb88ec513c523af7f4238458daf28847086446a8a2286cb5a2583bf106",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": false,
+          "word_errors": 59,
+          "object_matched": null,
+          "extra_helpers": null
+        }
+      ]
+    },
+    "ranking-index": {
+      "hypothesis": "Frozen cohort: fn_1_1596DC indexes the s16 id list instead of a byte-offset carrier.\n\nEvidence: retail reloads entry+4 and uses lhax with a separate +2 induction register:\nMWCC's strength reduction of list[i] over s16. Stopping condition: four fixed variants\nonce; actual profile; no flags/search.\n\nFollow-up: keep the retail top-test/break loop and index the s16 list.\n\nDiagnosis: all four first-round variants differ only by MWCC's bottom-test loop\ninversion; retail tests the terminator at the top and breaks. Stopping condition:\nthree fixed variants once; actual profile; no flags/search.",
+      "stopping_condition": "four fixed variants once",
+      "environment": "dc3b082b16a28521bcc92ee9d5bee42a3f74c63f53b940dc5443b13b443f8cf7",
+      "records": [
+        {
+          "symbol": "fn_1_1596DC",
+          "label": "installed control",
+          "sha256": "1a1891987c926c8b9c7b839a70991604ee3d9820f4ad2819621a0a4b1f97686b",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_1596DC",
+          "label": "s16 *list member; reuse i; for",
+          "sha256": "66e40281b7d4344bb3ab440e7b47df307be54c94da678970780d6fbb9eeabf07",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": false,
+          "word_errors": 8,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_1596DC",
+          "label": "s16 *list member; separate j; for",
+          "sha256": "d4bcf3a1284561e58143fcef459fda27ea1cbab9a69897fe71f2509bb869452d",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": false,
+          "word_errors": 8,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_1596DC",
+          "label": "u32 member cast to s16 list; reuse i; for",
+          "sha256": "22ad64e41962d25c16130c49dffff3364dc3f68a125dc221b34d4b38a7b3a530",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": false,
+          "word_errors": 8,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_1596DC",
+          "label": "s16 *list member; reuse i; while",
+          "sha256": "75de6498c33cd600c15c2879319b70c7b33e89d9643c38b50b6ac86e9bd68ae7",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": false,
+          "word_errors": 8,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_1596DC",
+          "label": "top-test break; for(i=0;;i++)",
+          "sha256": "b2f951bbf68161b3facb63a63c7e46982a56f9750ff7a482575779b51d6d0fb4",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_1596DC",
+          "label": "top-test break; for(j=0;;j++)",
+          "sha256": "e29e9c67293dcfb9e3e02895d8048da88885b698810fe21d749d32905f45e3d0",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_1596DC",
+          "label": "top-test break; for(;;) with i++",
+          "sha256": "2c3274201fac9b10e8d098b61dbb799c1bcc45ac30f3029f32dfe37ea7111bfb",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        }
+      ]
+    },
+    "ranking-archive/final": {
+      "hypothesis": "Shared RankingArchive layout for lbl_1_data_4C810[4]; installed-form compile of every changed ranking.c unit.",
+      "stopping_condition": "fixed loop/prototype variants once",
+      "environment": "d265000e59db8fbaae03ba316e629b588ec4fa386e7e27b348ad0ed9d4c44981",
+      "records": [
+        {
+          "symbol": "fn_1_1554D0",
+          "label": "final",
+          "sha256": "1ff724a16f632cf4551f1148794e2b9a8325404f8e669035769f2e7b464c98d4",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15555C",
+          "label": "final",
+          "sha256": "2083affbdc9ad1fabc540c9d17acf339a52a0a6da3089740b453231a345ef7f8",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_155F7C",
+          "label": "final",
+          "sha256": "0e317e5cf38bed116008e915347c6b2c2e6d239d03ef6afd64f51524f517d57d",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_155F8C",
+          "label": "final",
+          "sha256": "2c952fc95deed5590780b1a83afae35a99d2876c8e9698187394a6550b35c184",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_155F9C",
+          "label": "final",
+          "sha256": "82e9ab79e40ec415434a9955df327ab8dcb14a22bf834e485af032056f57592b",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_155FA8",
+          "label": "final",
+          "sha256": "ac0643e72a91441614f0b71dbb54cbed533fa95b5f30a9ec3964b91431f259f5",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156198",
+          "label": "final",
+          "sha256": "dbccc6a828e4eb21d7083084bd13e8002aeee24d865e804cb5d596f69a8b1f0e",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_1563E8",
+          "label": "final",
+          "sha256": "992069c0b9b2b45dd9a2dbe2b467e58cfb486d4f9a315ee16bddbcd2f07509f1",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_1564D0",
+          "label": "final",
+          "sha256": "8f0db858d7863fc3d742615419160b9746fdf432162789aad66549b088fd5754",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156510",
+          "label": "final",
+          "sha256": "7ac01881222649e1a911f86273255938f7aa2a53708b03dcd6b92b26353fcc62",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156530",
+          "label": "final",
+          "sha256": "88363a7886e841c5837d882a759af696df3414a2a5e94ef726037323fb36bc2d",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156534",
+          "label": "final",
+          "sha256": "4948ff6165c7bdadb447ea9a1f54376f89d26ceb9ef40ce7174b7dbceb26a587",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156554",
+          "label": "final",
+          "sha256": "f01aa9fd3ce16e3620171c0e72f52a635ffee7735b74a5d084ab04924f08b376",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156558",
+          "label": "final",
+          "sha256": "4071328fb8898d1107b87107800fab15482df570320a7081e8652f16d3098b3a",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15655C",
+          "label": "final",
+          "sha256": "51c948a381465b6e4d84aaa16e0efcecc1a9ef40cff75f543743829cde466ec7",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156560",
+          "label": "final",
+          "sha256": "b176779e5334da59535c3d22408b78f001d734d2dfbbac93b3ed2f16c07dc1f0",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156564",
+          "label": "final",
+          "sha256": "8cce020ff282a26b355dba5419c3d3b618febd44a17af93ca4eec93989fc17d6",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156568",
+          "label": "final",
+          "sha256": "df6cda7d14083fdd7151f1f70207248bb6480c1745bddaac3b6866b6c921b3da",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15656C",
+          "label": "final",
+          "sha256": "b737316bf2dc0b2170f7a4831ebf6b8b86d780f1057a0db5ac3f4e402e11c2d8",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15657C",
+          "label": "final",
+          "sha256": "ff3a04daff1eef538fcb93550b9d6b1af0dc7ad20e18c9c2c563bf1285fb1c5d",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156580",
+          "label": "final",
+          "sha256": "4a65cc9597ce084b9f37a17540ec35c52109ff6cf407603e16c4986bbf1f8ee3",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156584",
+          "label": "final",
+          "sha256": "28bf8c61d83ca07842bc1f57abb8028243889c427e95e15b9467b9d9f25fa823",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156588",
+          "label": "final",
+          "sha256": "6faeb8b74cc5855c6fb9b9ce47d5667cbd0612bcec40a90e1644fb745f2af198",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15658C",
+          "label": "final",
+          "sha256": "bacf2df7584aa34fb6f2b6288d12b60aaf3180576e7dab71f12c9dad8734ca50",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156590",
+          "label": "final",
+          "sha256": "c27cac708b8b9a3c5041bb13b38de220911e51499d2dae3c87fc835852d87829",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156594",
+          "label": "final",
+          "sha256": "78899216a7b647cfdbc3f14f6595253b90249d81d4d380408d5b374418014de2",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156598",
+          "label": "final",
+          "sha256": "c3b0df3aec05f299cbf61bff387378e0572fae1c56c79f25cddee0ce28ad2c56",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15659C",
+          "label": "final",
+          "sha256": "f783cf4a89dc7d049978e0c6a03d261c932a2499b049c80ab55a3198ff517ced",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15665C",
+          "label": "final",
+          "sha256": "af066e2b0592daa651bd8c4cf31ef7bc61726af01ec797f72be61cc630debb39",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_1566F8",
+          "label": "final",
+          "sha256": "ca7e4e49feaf72aeac9a5aeb616a11951ec1bd779b403c21c6e03bdf2d2f9381",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156730",
+          "label": "final",
+          "sha256": "3b585d6d1ae011c12ba190c7bb561ea92bad56cbf07d01e0995b1c23ca581fcb",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156754",
+          "label": "final",
+          "sha256": "4c83038a6385c2c7cc6837904898e112d7ca65c084e614c93ff8c0cdcd22c0d5",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156884",
+          "label": "final",
+          "sha256": "c7f004ead7f1b9278e4d56b9409dc4096eb4dc3023ce352f11299d517ac1b629",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_1569A0",
+          "label": "final",
+          "sha256": "30988ccf90ea26aa820530b6e071c0b90143a1e96b63cdc44393555df624d5be",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_1569E8",
+          "label": "final",
+          "sha256": "c478215187035b3fff58394b41234e0f464c098099b2666a89fe181c3a6838bc",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156B18",
+          "label": "final",
+          "sha256": "53c69684cbd331fe97953ebf25c9aba151ce2b715783a7aad2595272f79172f9",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156C08",
+          "label": "final",
+          "sha256": "2a266b491f5917adb77f264580820785afbc4242024dc7ecc4b13fed2b261d17",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156F54",
+          "label": "final",
+          "sha256": "3dd40885d33cbe196a1061a3802d7274c77253d9a66a8d38e3993eedb1818a79",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_157070",
+          "label": "final",
+          "sha256": "a4cc55c1ce212a46289f2be078653b5c8ef012bda8f1b90ba09d06ff6de4684d",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_157200",
+          "label": "final",
+          "sha256": "36ca4e685e429446150260e497b4af6da6de4be2b07c80e32b528bac4b31d9e5",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_157358",
+          "label": "final",
+          "sha256": "d19a1c08c376d76f3e048e01a4767cd2537c390d15f1015a134749fda8364acd",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_157598",
+          "label": "final",
+          "sha256": "cf54d70656c2c3e6077b95d604796318410b9b20660d49da5840fd125fcc2fd7",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_1576B4",
+          "label": "final",
+          "sha256": "6ba23b408bfb5caea856ca878c16c1563d2cc82f224de5089deac68762e821be",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_1577D0",
+          "label": "final",
+          "sha256": "061eabb7aba11ef6f0d57e88e384e835b553a8f1b952ece8d4de9293523ec5cc",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": false,
+          "word_errors": 0,
+          "object_matched": true,
+          "extra_helpers": [
+            "fn_1_157920",
+            "fn_1_157820",
+            "fn_1_157950",
+            "fn_1_157FC8",
+            "fn_1_1578C4",
+            "fn_1_157930",
+            "fn_1_157940"
+          ]
+        },
+        {
+          "symbol": "fn_1_1586A8",
+          "label": "final",
+          "sha256": "00aa2984d43a0b63c6d3d93e1a252870663b7bd4df75c5f195abfab454218879",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_1586AC",
+          "label": "final",
+          "sha256": "f3262165e6c029577cad75542ef364b213a99628fab73bc3d490a089ebce24f4",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_158980",
+          "label": "final",
+          "sha256": "aa6c434c352087435486e9e8daff725e17cda1d096cf21f20f82c3f10b257778",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_158984",
+          "label": "final",
+          "sha256": "fc000d8f47753e5cb01222295bb83c5627b6f820ae1421e2f83ea55627109e69",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15903C",
+          "label": "final",
+          "sha256": "264eeb71f6404bee2457a1d56b5ef0cddd5f116a880e4abc35b38c0b46a1d4e4",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_159040",
+          "label": "final",
+          "sha256": "06a8c302ed9756a592dc0ade831944b1ffb1bf8fb818199ac97df78c4580d2f3",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_159060",
+          "label": "final",
+          "sha256": "eea7684629e39eaf7ba14b8d74e0dae9df9a8d7a0f6c9a0f5d3ca7e7b1be5ece",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_159064",
+          "label": "final",
+          "sha256": "68775575898c438a9e6ac66cb2b33d9e4273774d0054a6bda9e87840a26aa093",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15906C",
+          "label": "final",
+          "sha256": "619dbce783951766ef032896a1539859a0a95c0b8ec1bd076585b887a7ebd580",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_159440",
+          "label": "final",
+          "sha256": "51e8668b174f5830f49d8f7c51ba3e130d7e1d1b7f685634d06a4c815a55c537",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_159478",
+          "label": "final",
+          "sha256": "92fdfd3f08bdb30d539a15891be11cb9329490cbd3f9df48c4a014cee2b205d4",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_1594AC",
+          "label": "final",
+          "sha256": "d2ecd7023fe5ae4e0189eefb989247c0cd4747c2de3c486b57f3cf80433abb90",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_159588",
+          "label": "final",
+          "sha256": "ee7216ac1735bcaa8dbe8bcb0bd8fb318cd0eeb9e6cf951b4f29ae88dcd672d7",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_1596DC",
+          "label": "final",
+          "sha256": "6d101c4bbd98f1a08e2d47d8b9ddece1e45fe126affc7a096a95c2a19a716050",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_159804",
+          "label": "final",
+          "sha256": "a3e709c86c72c5105a58bce50d039fa9f2ea56f981fb741ffc692312aed8e6d8",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_159AE0",
+          "label": "final",
+          "sha256": "731b3f74e4b03be385adcd116d838ea642979acc79820dbcf5c4362973f5efcd",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15AC00",
+          "label": "final",
+          "sha256": "ef736f6a48737236c52c53807eb694f414648df204b6f5960fcf54fd5d3af5db",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15AC10",
+          "label": "final",
+          "sha256": "3f9feaaa70a2b5bc71df84fe73a3aadb6f7284c666fd6073822b75af298a3e28",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B3E8",
+          "label": "final",
+          "sha256": "04a33e11a8ff22d4b312700b6709fa12d4b136d8c513a5e3ea833364fa183345",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B3F8",
+          "label": "final",
+          "sha256": "b8d47054a6c863116f543880d45b296f317451c785d21c0dfc7c0876397a84a6",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B408",
+          "label": "final",
+          "sha256": "1a52f7a4150a98398eaf82a69955751f503fd2f45b991af1bcc4ef041307070f",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B418",
+          "label": "final",
+          "sha256": "d333f6aa84978c2674b9b28beb8fd49a76bb9660630223d5b19d95e1da6f9a37",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B428",
+          "label": "final",
+          "sha256": "0036ecdc10f59935c42e63a25a542fc6d7d1873fd048a8052e9d60fd361ba6af",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B42C",
+          "label": "final",
+          "sha256": "315a3abd7b2936e6b70304c7f1dc3fc7b290422f9d60df8ea947fde3df821e46",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B4F8",
+          "label": "final",
+          "sha256": "9ba4a5901edd9a31dfd65a2eda39fbf6443f51cd4f4709f677ea38628b5620ed",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B4FC",
+          "label": "final",
+          "sha256": "6cc90090c1d724603f9094a6580b03b9f29554dc4b72f064cc17ffbb788b7784",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B51C",
+          "label": "final",
+          "sha256": "32c4d10f2b30030ccf8a12ff966097ed593fc09367449416968c93c0e7dadbe2",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B520",
+          "label": "final",
+          "sha256": "79a817febd37b9d73a34d727860e8d8846cb36bb94e66a2baa11637b8bf5e766",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B540",
+          "label": "final",
+          "sha256": "2edccda5ffb4236dc7a473ee63833f7245ebe50b564ac31c2ac6da9c5c775923",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B544",
+          "label": "final",
+          "sha256": "5bc2376c9934de4b5a5911932aa124c3ba96e095e2e0ac73b6b10abb64cfd535",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B588",
+          "label": "final",
+          "sha256": "a4570a922ea1db51fe0d7e6fa9a14737fc3950a9c53118aee85e7efbbaaf4232",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B5CC",
+          "label": "final",
+          "sha256": "4ab3d62125e18439cb9dacc5d3943ea4fa8c11cdefe0b628cc9c3ef1add006b8",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B610",
+          "label": "final",
+          "sha256": "11f625fe05af7e999f7182a3eba7f86c2e183f59be295f2ab7cce36e7b7fc0ac",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B654",
+          "label": "final",
+          "sha256": "5b90cba2d83faac0dffa729986ed02b14b0e0f775fb6aa77018e1ff1bb808cdc",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B698",
+          "label": "final",
+          "sha256": "24f8206e5b72e37127acefc30ec5f741a9b434e2e16776ee447c796148502b2d",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        }
+      ]
+    },
+    "ranking-archive/fn_1_159478": {
+      "hypothesis": "fn_1_159478 under the shared layout: fixed spellings once (actual profile, no search).",
+      "stopping_condition": "four fixed spellings once",
+      "environment": "d265000e59db8fbaae03ba316e629b588ec4fa386e7e27b348ad0ed9d4c44981",
+      "records": [
+        {
+          "symbol": "fn_1_159478",
+          "label": "array index (installed attempt)",
+          "sha256": "4876e951e77b6a365a817aeda772e428634d3c67bfe82d51b22eec75bb6f1c1f",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": false,
+          "word_errors": 4,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_159478",
+          "label": "entry pointer initializer",
+          "sha256": "074933e9512a5b0ea7804902c8669cb54eea7095864b0cc5dd3e71e6dbf0b222",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_159478",
+          "label": "entry pointer assignment",
+          "sha256": "25273fd76aea2af92c2300ea642674bfe731b83b2061d47738dba47a4b8e6da8",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_159478",
+          "label": "pointer arithmetic",
+          "sha256": "cde844297a8f4cce317e649c390d342a93f75af5beb64e3a4b2b0d3096d4e65f",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": false,
+          "word_errors": 4,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_159478",
+          "label": "decayed pointer cast",
+          "sha256": "fee626089264ece117b54fcc01ccf12a1c152cf91d8bfa178663fc1185023de1",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        }
+      ]
+    },
+    "ranking-archive/prototype": {
+      "hypothesis": "fn_1_159588 with fn_1_159804's true prototype (only caller). One fixed variant.",
+      "stopping_condition": "one variant",
+      "environment": "d265000e59db8fbaae03ba316e629b588ec4fa386e7e27b348ad0ed9d4c44981",
+      "records": [
+        {
+          "symbol": "fn_1_159588",
+          "label": "stale prototype control",
+          "sha256": "1127027bd0db8c10ec5c9344e0cfd1367050733df469c679e9b32deff2126b62",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_159588",
+          "label": "true fn_1_159804 prototype",
+          "sha256": "ee7216ac1735bcaa8dbe8bcb0bd8fb318cd0eeb9e6cf951b4f29ae88dcd672d7",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        }
+      ]
+    },
+    "ranking-archive/index-stale": {
+      "hypothesis": "Shared RankingArchive layout for lbl_1_data_4C810[4]; installed-form compile of every changed ranking.c unit.",
+      "stopping_condition": "fixed loop/prototype variants once",
+      "environment": "d265000e59db8fbaae03ba316e629b588ec4fa386e7e27b348ad0ed9d4c44981",
+      "records": [
+        {
+          "symbol": "fn_1_1554D0",
+          "label": "index-stale",
+          "sha256": "02fc753e467ee7e3001f5e2ea8fa36a50a0b22d1f84e1fcf2e07b3dc6d6e748d",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15555C",
+          "label": "index-stale",
+          "sha256": "502d4c52a3a428fc307f288e94f8074111fa584b49425a8976e0005daf5bfc25",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_155F7C",
+          "label": "index-stale",
+          "sha256": "564b211e5162818347bc88d339e33a23cae4ab78f2c2aa58f2915a667831d617",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_155F8C",
+          "label": "index-stale",
+          "sha256": "d7af021bffb2869a8b145388653c984c8deb71d80b09db65e06eba237ffca237",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_155F9C",
+          "label": "index-stale",
+          "sha256": "9ac2cf9221f822ff5c929fc77a797f4bd843f45d9820928c475027088165e1cc",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_155FA8",
+          "label": "index-stale",
+          "sha256": "56c221f62c6386b08ff87324b7470fb7f5cbb1213b7274a3d5055652782408b3",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156198",
+          "label": "index-stale",
+          "sha256": "f55b725c6ee06f2e23b8d3b736331fc25f35c862c892266e3f8bfb823131ae9c",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_1563E8",
+          "label": "index-stale",
+          "sha256": "3067b2b7dcc2030107cfbf012bd3297156e002333a58c092e769a7f207cf1846",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_1564D0",
+          "label": "index-stale",
+          "sha256": "2658e79a88b82ff3d1262c974fdf023b0e7f82b95e2524009612bd296867f248",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156510",
+          "label": "index-stale",
+          "sha256": "f899346bf60504b7f00de9a9718836b9241464f0489d30f65fcd0050e995357b",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156530",
+          "label": "index-stale",
+          "sha256": "2e8d2b37ff3ae266ceb839abbe60ede74b89dd5b5a17048d8a898e2058a6cc55",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156534",
+          "label": "index-stale",
+          "sha256": "ddc5015a5c5d37faa2b89d1ed3568fd1b310634d753c28bb208571eddb4db4a5",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156554",
+          "label": "index-stale",
+          "sha256": "d6a711d518813706d1fcf6b94cf644392c7c8c5fb5f5922520ff35d2782edc99",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156558",
+          "label": "index-stale",
+          "sha256": "a62b6141766e8378ec0dda522eedc7709675c0803fa27779282c87f50688b6ef",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15655C",
+          "label": "index-stale",
+          "sha256": "322c4620c38fc720ab57bbf50862b533fa5607a7c39a1506efd9235571a55e2f",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156560",
+          "label": "index-stale",
+          "sha256": "5f390004d3fc436ee2b5a0d603e19bb2e6523282f7c41332c02de10a816f0a6b",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156564",
+          "label": "index-stale",
+          "sha256": "5a3eb2ede3b03ec68e09eea7249e0111515ae6f0b508ad83def1345421d529de",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156568",
+          "label": "index-stale",
+          "sha256": "7d6d18b6efe66dbb7dd5fdc2120c342f14424ee1f9035df823e8bbf4f68b4d3e",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15656C",
+          "label": "index-stale",
+          "sha256": "a4705c58b10e87d4bce67c67d1876f4c536055c0136d9ce8c058ec36c123b25c",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15657C",
+          "label": "index-stale",
+          "sha256": "3984e1bce0b997891b141957eefdf2b962a4d33747c9725ba4ad879ca788d74e",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156580",
+          "label": "index-stale",
+          "sha256": "6d06665011bfce5c789fd239a9eef2af2deeca06247794eddf83d229f42a90a6",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156584",
+          "label": "index-stale",
+          "sha256": "5b3de70e388b4fd19c81d91f4cce2af92fc4deede33cd4be1b974727481799aa",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156588",
+          "label": "index-stale",
+          "sha256": "b3cc262903f95f90b5ab4a18b3a822afa0c7f5c1e673a57cbac4ac8f8df595f1",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15658C",
+          "label": "index-stale",
+          "sha256": "dc2e232494758f0d88334962a15bb6aea86add7511b6773833cc68ac07a484d4",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156590",
+          "label": "index-stale",
+          "sha256": "0d0162c270044578fd36d86ad22f84a171d6740eab808990bd9944c6cf117f80",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156594",
+          "label": "index-stale",
+          "sha256": "0d6548af9e51fec04346d54b49773cfb15297e3001626a93dd9ba956ae63d4fd",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156598",
+          "label": "index-stale",
+          "sha256": "0fa2a96a0d683a074fe227387a64b068a113c2e6975c2ea3aaf9c01d9060e881",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15659C",
+          "label": "index-stale",
+          "sha256": "e788f56714d3217c85017432ae6daca93293d32825c7a5cc60626669d7ada099",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15665C",
+          "label": "index-stale",
+          "sha256": "2b74b69caaa0b09a744d8c766b62c51bdcc6d47aff1a1c92a1ded33448a5a64a",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_1566F8",
+          "label": "index-stale",
+          "sha256": "1ca5a902e5a897786a609185fa1437e392eb30305bf81314adb6c76fa4cb0ad3",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156730",
+          "label": "index-stale",
+          "sha256": "542d773b27bc3aeb6036c7d89fa189719d1227bf59bb60e7bd394557f0f1c2fb",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156754",
+          "label": "index-stale",
+          "sha256": "08dd6814024280108f01c8bf29ae056edb8d268bb6886e30776b21c309281bc7",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156884",
+          "label": "index-stale",
+          "sha256": "3cd5e25c169b56762654a2fb024b3ef5d97f039d6f2573a886ec1cd3cb0b12dc",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_1569A0",
+          "label": "index-stale",
+          "sha256": "0e91fbb2c810592814869627fbd9a44879528124edf43377384fdbd7a1d9e430",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_1569E8",
+          "label": "index-stale",
+          "sha256": "10e1a985ca93d4a4c135b427b84cc59933eedddd7f177371caa0972cbbc7213c",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156B18",
+          "label": "index-stale",
+          "sha256": "31e931acb053f0925710f350c64aa1ba6c8732bc10761a6dbb1fee18564583e6",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156C08",
+          "label": "index-stale",
+          "sha256": "ec58fe31aa71efbc59d5acaa3c3b4d9b2d59950b284296749c4a4702ec395986",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_156F54",
+          "label": "index-stale",
+          "sha256": "2cbfd1bb1a336b4edfe8e6f93e85ed6dec92022dccd0b992b06706664f81ed0d",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_157070",
+          "label": "index-stale",
+          "sha256": "0276dac04e61a71c41b6ace78a09057d1af12dae7578fd245ff8ff4d0db609f6",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_157200",
+          "label": "index-stale",
+          "sha256": "faac7655e9fdc60598554c130edee2ff0ca83540cbe838d50e361f3eb0cc1efb",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_157358",
+          "label": "index-stale",
+          "sha256": "9daff057e906b546fda2a7abc61f915aa992b7d4ccacafa896a3a27f0f9b92b8",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_157598",
+          "label": "index-stale",
+          "sha256": "529c97fc179440e509c01949dc6217d21782f9a58c96020c25b97c2e0e8f3bf1",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_1576B4",
+          "label": "index-stale",
+          "sha256": "52374755d4910a7c6156b81e4c345ce7841edc7c6854b7810eeecea8bf710ce2",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_1577D0",
+          "label": "index-stale",
+          "sha256": "35563fee69642f614bc8dda0406030bd41891e7090ef2acc8d36e812ba08bd19",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": false,
+          "word_errors": 0,
+          "object_matched": true,
+          "extra_helpers": [
+            "fn_1_157920",
+            "fn_1_157820",
+            "fn_1_157950",
+            "fn_1_157FC8",
+            "fn_1_1578C4",
+            "fn_1_157930",
+            "fn_1_157940"
+          ]
+        },
+        {
+          "symbol": "fn_1_1586A8",
+          "label": "index-stale",
+          "sha256": "57ac8519efd2dae7690a788204526a2d6d35edd547aac7951a3cd5d5b3471d47",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_1586AC",
+          "label": "index-stale",
+          "sha256": "011bc3d77d228c8c60a9288e3e0c50e1c10306d57c180ed4801c18a7b270e98a",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_158980",
+          "label": "index-stale",
+          "sha256": "fa43ebec55663900c8b216d8dd2f4b1e91a3d4ba57bfe8e4e42259ecd769fa96",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_158984",
+          "label": "index-stale",
+          "sha256": "64c67e76093dbda3ec2a117f79d38b71a36befb2e61c0e4730c4520483c96ab8",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15903C",
+          "label": "index-stale",
+          "sha256": "f8f9efa5fc4a6bfe166ef3585db24ad339fe251c86564493e5adb3eb51733a6f",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_159040",
+          "label": "index-stale",
+          "sha256": "1fdf1f542de5bdad5fdf3e7a923557ae098d8a6846ab04554198fcaebadc8254",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_159060",
+          "label": "index-stale",
+          "sha256": "7d832203d24d0f66da17ec212b3ddd63b45c9b1e5cfc48e6a4587cc2e1bfe17a",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_159064",
+          "label": "index-stale",
+          "sha256": "177d38dae6b41cb1c01a8afad7bcb4199430f2b9ee65faea3700e3f6255454b3",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15906C",
+          "label": "index-stale",
+          "sha256": "ff06429107f6c35cd5b3d9bbc8a6617eeed78c55ae0cf25f4709ccee78eeee2e",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_159440",
+          "label": "index-stale",
+          "sha256": "6dc7e3db1642b5ce4cab50fbcfd12d8193e00663ae44ed50b51542d4feeb736f",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_159478",
+          "label": "index-stale",
+          "sha256": "4876e951e77b6a365a817aeda772e428634d3c67bfe82d51b22eec75bb6f1c1f",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": false,
+          "word_errors": 4,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_1594AC",
+          "label": "index-stale",
+          "sha256": "80ae767ec2853f8b993cc5e60c19beda3478d664ea320b305a4dd203ee4b6028",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_159588",
+          "label": "index-stale",
+          "sha256": "1127027bd0db8c10ec5c9344e0cfd1367050733df469c679e9b32deff2126b62",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_1596DC",
+          "label": "index-stale",
+          "sha256": "6d101c4bbd98f1a08e2d47d8b9ddece1e45fe126affc7a096a95c2a19a716050",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_159804",
+          "label": "index-stale",
+          "sha256": "a3e709c86c72c5105a58bce50d039fa9f2ea56f981fb741ffc692312aed8e6d8",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_159AE0",
+          "label": "index-stale",
+          "sha256": "bc75adde988e56e4c83202698814240190ae6bbd8c2db986ac49332261ace75f",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15AC00",
+          "label": "index-stale",
+          "sha256": "a41617471474ec5b2b467592ce0bb1311588a80589d7f3fd30c8136ae8118880",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15AC10",
+          "label": "index-stale",
+          "sha256": "0ab4736faf9edfa7684959dc4481dc9ed52da994fbc9f151e34636992419a520",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B3E8",
+          "label": "index-stale",
+          "sha256": "3e473c53fe0e15952a4f0257e2ca2e608e32751cc3ccc7ce5edfac14c097e1f6",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B3F8",
+          "label": "index-stale",
+          "sha256": "2baf8dd2d403c97733de3320050298f81d3e3bdb064c733f1377615d8dd086bc",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B408",
+          "label": "index-stale",
+          "sha256": "009ae20de52df29113a01fcc76225295029e706c959865adb498d81c917343eb",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B418",
+          "label": "index-stale",
+          "sha256": "7610f9a80893fa5089443616a54f1ee92af887f3633906f91f7ba3ec9c1e8cca",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B428",
+          "label": "index-stale",
+          "sha256": "5fd75db010143c857cb7d5238062c55d7df520628f9eba290bf1376db87e0b32",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B42C",
+          "label": "index-stale",
+          "sha256": "ba26966ded846b70db481cc9d4be09c9255e902dd4cd25cef655b0636a79144e",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B4F8",
+          "label": "index-stale",
+          "sha256": "6a0296e22ec88a7d38a0649af223bda73995ae78f20ecd1bf02203dbd512ce5c",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B4FC",
+          "label": "index-stale",
+          "sha256": "d6a3126766a32ed5ac18a10848f60a927cc1ce118b154b8be52c0e255e32f126",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B51C",
+          "label": "index-stale",
+          "sha256": "1c4bb989fcce2f47688355a4e52a2a40c776b47a0b66df754c6cf42b0b71686a",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B520",
+          "label": "index-stale",
+          "sha256": "38e8d8fba64c566a01a1af532e450338b20bd210202f3280ecd47ee0e7fef791",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B540",
+          "label": "index-stale",
+          "sha256": "ef34d27086e113b220974c24ba009f1efd558e5129aa7bc6a56785d308fcf859",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B544",
+          "label": "index-stale",
+          "sha256": "131c224ed4a7c1d20c90be36548e91ce73fc8533a8607adaeb683b4e05888dc8",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B588",
+          "label": "index-stale",
+          "sha256": "5142b5ef2907b1c3c371f9aac297850156d857e90ec6f3b2c1820663e345d891",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B5CC",
+          "label": "index-stale",
+          "sha256": "1cf666e39a670534f52ea71b2b3b9a87e8f7583af81e750ac5d99f3835d54801",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B610",
+          "label": "index-stale",
+          "sha256": "92a9265411ee9a6947cb5205d4924e12f861cff2eb9c9f0d7eebe486c931f131",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B654",
+          "label": "index-stale",
+          "sha256": "797567b4216bfa566362caaace501e2a082f2bcd4e38a62b8ca85d2411b5e3eb",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        },
+        {
+          "symbol": "fn_1_15B698",
+          "label": "index-stale",
+          "sha256": "a60fb11e3411f55c77f36cf873d2f7bb31e018cb37ef9e5aa1fef0867b181ded",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        }
+      ]
+    },
+    "ranking-archive/controls": {
+      "hypothesis": "Control: fn_1_1577D0 installed text under the committed header (extra-helper policy check).",
+      "stopping_condition": "controls",
+      "environment": "dc3b082b16a28521bcc92ee9d5bee42a3f74c63f53b940dc5443b13b443f8cf7",
+      "records": [
+        {
+          "symbol": "fn_1_1577D0",
+          "label": "committed control",
+          "sha256": "b9a04a505d86aa332e5e829700e3ada2e0d3223285336e99eba770d30fed2331",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": false,
+          "word_errors": 0,
+          "object_matched": true,
+          "extra_helpers": [
+            "fn_1_157920",
+            "fn_1_157820",
+            "fn_1_157950",
+            "fn_1_157FC8",
+            "fn_1_1578C4",
+            "fn_1_157930",
+            "fn_1_157940"
+          ]
+        },
+        {
+          "symbol": "fn_1_159478",
+          "label": "committed control",
+          "sha256": "2b999090b2b64ffa53edfef84a4584e03ae1733d6df7f14e03ca32a104e1e4bb",
+          "mw": "GC/1.3.2",
+          "flags": "",
+          "matched": true,
+          "word_errors": 0,
+          "object_matched": null,
+          "extra_helpers": null
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "texlist_probe.py": {
+      "sha256": "b78c094c9949cb8aa66f2b22d1eee03ca95f5b2711a86a56d1a3ff8009c0ae4b",
+      "text": "\"\"\"Frozen cohort: fn_80077D40 typed item indexing instead of a byte-offset carrier.\n\nEvidence: retail keeps offset (r31, +0x10) and index (r30) as separate induction\nvariables and forms item = items + offset, MWCC's strength reduction of &items[i].\nThe earlier removal-only probe (plain u32 offset) differs by 6 words.\nStopping condition: control + four fixed variants once; actual profile; no search.\n\"\"\"\nimport sys, json\nfrom pathlib import Path\nsys.path.insert(0, 'tools')\nfrom fzgx import api, fixup, oracle\nfrom fzgx.project import Project\np = Project('GFZE01'); out = Path('.fzgx/manual-device-review/texlist-index'); e = fixup.Engine(p, out)\nkey = 'main:fn_80077D40'; s = p.resolve(key); mw, flags = oracle.version_for(p, s)\nsrc = p.unit_record(p.unit_of(s))['source']\nbody = api._canonical_text(p, src)\ndecl = '    u32 i;\\n    struct { u32 value; } offset;\\n    u32 total;\\n'\ninit = '    total = 0;\\n    i = 0;\\n    offset.value = 0;\\n\\n    while (i < arg0->count) {\\n        item = (struct Item *)((u8 *)arg0->items + offset.value);\\n'\nstep = '        offset.value += sizeof(struct Item);\\n        i++;\\n    }\\n'\nassert decl in body and init in body and step in body\nrows = [e.record(key, body, mw, flags, label='installed control')]\ndef add(text, label):\n    assert text != body\n    rows.append(e.record(key, text, mw, flags, parent=rows[0]['id'], label=label))\nw = body.replace(decl, '    u32 i;\\n    u32 total;\\n').replace(init, '    total = 0;\\n    i = 0;\\n\\n    while (i < arg0->count) {\\n        item = &arg0->items[i];\\n').replace(step, '        i++;\\n    }\\n')\nadd(w, 'typed index; while loop')\nf = body.replace(decl, '    u32 i;\\n    u32 total;\\n').replace(init, '    total = 0;\\n\\n    for (i = 0; i < arg0->count; i++) {\\n        item = &arg0->items[i];\\n').replace(step, '    }\\n')\nadd(f, 'typed index; for loop')\nadd(w.replace('        item = &arg0->items[i];\\n', '        item = arg0->items + i;\\n'), 'pointer-plus index; while loop')\nadd(f.replace('    total = 0;\\n\\n    for', '    for').replace('    u32 total;\\n', '    u32 total = 0;\\n'), 'typed index; for loop; initialized total')\nwith oracle.build_lock(): e.evaluate(rows)\nreport = dict(hypothesis=__doc__.strip(), stopping_condition='control + four fixed variants once', records=rows, best={},\n              frontier={'all_frozen_probes': rows}, generator_sha256=e.generator_sha256, environment=e.environment)\n(out / 'report.json').write_text(json.dumps(report, indent=2) + '\\n'); fixup.archive_sources(report, out / 'sources.json.gz')\nfor r in rows: print(r['sha256'][:12], bool(r.get('matched')), r.get('word_errors'), r.get('extra_helpers'), r['label'])\n"
+    },
+    "texlist_probe2.py": {
+      "sha256": "8860272b5b90f58ab196cf6f6f3e0eaf02b0fd3604770f6e0832dd188bda7c84",
+      "text": "\"\"\"Follow-up: natural spellings of the LOD sentinel tests on the typed for-loop form.\n\nRetail `addis r0,r7,1; cmplwi r0,0xffff` is MWCC's lowering of an unsigned compare\nwith 0xFFFFFFFF; `lhz; cmpwi -1` is an int-promoted u16 compare with -1.\nStopping condition: three fixed variants once; actual profile; no search.\n\"\"\"\nimport sys, json\nfrom pathlib import Path\nsys.path.insert(0, 'tools')\nfrom fzgx import fixup, oracle\nfrom fzgx.project import Project\np = Project('GFZE01'); out = Path('.fzgx/manual-device-review/texlist-index'); e = fixup.Engine(p, out)\nprev = json.loads((out / 'report.json').read_text())\nparent = next(r for r in prev['records'] if r['label'] == 'typed index; for loop')\nkey = 'main:fn_80077D40'; mw, flags = parent['mw'], parent['flags']\nbase = Path(parent['source']).read_text()\na_old = '            if ((max_lod + 0x10000) == 0xFFFF) {\\n'\nb_old = '            if ((s32)item->max_lod != -1 && item->max_lod < max_lod) {\\n'\nassert a_old in base and b_old in base\na = base.replace(a_old, '            if (max_lod == 0xFFFFFFFF) {\\n')\nb = base.replace(b_old, '            if (item->max_lod != -1 && item->max_lod < max_lod) {\\n')\nab = a.replace(b_old, '            if (item->max_lod != -1 && item->max_lod < max_lod) {\\n')\nrows = [e.record(key, t, mw, flags, parent=parent['id'], label=l) for t, l in\n        [(a, 'unsigned all-ones LOD sentinel'), (b, 'promoted u16 sentinel without cast'), (ab, 'both natural sentinel tests')]]\nwith oracle.build_lock(): e.evaluate(rows)\nprev['records'] += rows; prev['frontier']['all_frozen_probes'] += rows\nprev['hypothesis'] += '\\n\\n' + __doc__.strip()\n(out / 'report.json').write_text(json.dumps(prev, indent=2) + '\\n'); fixup.archive_sources(prev, out / 'sources.json.gz')\nfor r in rows: print(r['sha256'][:12], bool(r.get('matched')), r.get('word_errors'), r.get('extra_helpers'), r['label'])\n"
+    },
+    "graph_probe.py": {
+      "sha256": "f8bd5902388b6cd7cd89f3fb4dfe526027c2c09b38123b84d2d40a1b3054e4b5",
+      "text": "\"\"\"Frozen cohort: fn_1_10A8D0 typed node/edge indexing instead of byte-offset carriers.\n\nFamilies: (N) the three sort loops' `offset` node stride; (E) the in-half edge writes via\n`edgeOffset`; (X) the cross-half edge writes via `inner`, plus the edge-count temporary.\nEach family alone and combined, with node spellings &nodes[i]+1 / &nodes[i+1].\nStopping condition: these fixed variants once; actual profile; no flags/search.\n\"\"\"\nimport sys, json, itertools\nfrom pathlib import Path\nsys.path.insert(0, 'tools')\nfrom fzgx import api, fixup, oracle\nfrom fzgx.project import Project\np = Project('GFZE01'); out = Path('.fzgx/manual-device-review/graph-index'); e = fixup.Engine(p, out)\nkey = 'main_rel:fn_1_10A8D0'; s = p.resolve(key); mw, flags = oracle.version_for(p, s)\nbody = api._canonical_text(p, p.unit_record(p.unit_of(s))['source'])\ndef must(t, old, new, n=1):\n    assert t.count(old) == n, (old, t.count(old)); return t.replace(old, new)\ndef fam_n(t, spelling):\n    t = must(t, '    struct { u32 value; } offset;\\n', '')\n    t = must(t, '    offset.value = i;\\n    for (; i < g->nodeCount; offset.value += sizeof(Node_10A8D0), i++, a++) {\\n',\n               '    for (; i < g->nodeCount; i++, a++) {\\n', 3)\n    return must(t, '        b.value = (Node_10A8D0 *)((u8 *)g->nodes + offset.value) + 1;\\n', f'        b.value = {spelling};\\n', 3)\ndef fam_e(t):\n    t = must(t, '    struct { u32 value; } edgeOffset;\\n', '')\n    t = must(t, '    i = 0;\\n    edgeOffset.value = i;\\n    k = 0;\\n', '    i = 0;\\n    k = 0;\\n')\n    t = must(t, '''            ((Edge_10A8D0 *)((u8 *)g->edges + edgeOffset.value))->a = a;\n            ((Edge_10A8D0 *)((u8 *)g->edges + edgeOffset.value))->b = a + 1;\n            ((Edge_10A8D0 *)((u8 *)g->edges + edgeOffset.value))->weight = fn_1_1289BC(a, a + 1);\n            edgeOffset.value += sizeof(Edge_10A8D0);\n            k++;\n''', '''            g->edges[k].a = a;\n            g->edges[k].b = a + 1;\n            g->edges[k].weight = fn_1_1289BC(a, a + 1);\n            k++;\n''')\n    return t\ndef fam_x(t):\n    t = must(t, '    struct { u32 value; } inner;\\n', '')\n    t = must(t, '    inner.value = (half - 1) * 2;\\n    g->edgeCount = inner.value + half;\\n', '    g->edgeCount = (half - 1) * 2 + half;\\n')\n    t = must(t, '    inner.value = k * sizeof(Edge_10A8D0);\\n', '')\n    t = must(t, '''        ((Edge_10A8D0 *)((u8 *)g->edges + inner.value))->a = pairA.value;\n        ((Edge_10A8D0 *)((u8 *)g->edges + inner.value))->b = c;\n        ((Edge_10A8D0 *)((u8 *)g->edges + inner.value))->weight = fn_1_1289BC(pairA.value, c);\n        inner.value += sizeof(Edge_10A8D0);\n''', '''        g->edges[k].a = pairA.value;\n        g->edges[k].b = c;\n        g->edges[k].weight = fn_1_1289BC(pairA.value, c);\n        k++;\n''')\n    return t\nrows = [e.record(key, body, mw, flags, label='installed control')]\nvariants = []\nfor sp in ('&g->nodes[i] + 1', '&g->nodes[i + 1]'):\n    variants.append((fam_n(body, sp), f'N {sp}'))\nvariants.append((fam_e(body), 'E'))\nvariants.append((fam_x(body), 'X'))\nvariants.append((fam_x(fam_e(body)), 'E+X'))\nfor sp in ('&g->nodes[i] + 1', '&g->nodes[i + 1]'):\n    variants.append((fam_x(fam_e(fam_n(body, sp))), f'N {sp} + E + X'))\nfor t, l in variants:\n    rows.append(e.record(key, t, mw, flags, parent=rows[0]['id'], label='typed indexing: ' + l))\nwith oracle.build_lock(): e.evaluate(rows)\nreport = dict(hypothesis=__doc__.strip(), stopping_condition='fixed variants once', records=rows, best={},\n              frontier={'all_frozen_probes': rows}, generator_sha256=e.generator_sha256, environment=e.environment)\n(out / 'report.json').write_text(json.dumps(report, indent=2) + '\\n'); fixup.archive_sources(report, out / 'sources.json.gz')\nfor r in rows: print(r['sha256'][:12], bool(r.get('matched')), r.get('word_errors'), r.get('extra_helpers'), r['label'])\n"
+    },
+    "ranking_probe.py": {
+      "sha256": "9e614cf029f99aaba3b47e725de8d19e71470e8bf6d5ac4fe84a0114ec7393f6",
+      "text": "\"\"\"Frozen cohort: fn_1_1596DC indexes the s16 id list instead of a byte-offset carrier.\n\nEvidence: retail reloads entry+4 and uses lhax with a separate +2 induction register:\nMWCC's strength reduction of list[i] over s16. Stopping condition: four fixed variants\nonce; actual profile; no flags/search.\n\"\"\"\nimport sys, json\nfrom pathlib import Path\nsys.path.insert(0, 'tools')\nfrom fzgx import api, fixup, oracle\nfrom fzgx.project import Project\np = Project('GFZE01'); out = Path('.fzgx/manual-device-review/ranking-index'); e = fixup.Engine(p, out)\nkey = 'main_rel:fn_1_1596DC'; s = p.resolve(key); mw, flags = oracle.version_for(p, s)\nbody = api._canonical_text(p, p.unit_record(p.unit_of(s))['source'])\ndef must(t, old, new, n=1):\n    assert t.count(old) == n, (old, t.count(old)); return t.replace(old, new)\nloop_old = '''        offset.value = 0;\n        count = 0;\n        for (;;) {\n            if (*(s16 *)((u8 *)entry->unk_4 + offset.value) == -1) {\n                break;\n            }\n            if (fn_1_46DC4(*(void **)(lbl_1_data_FCD4 +\n                                      *(s16 *)((u8 *)entry->unk_4 + offset.value) * 0x28 +\n                                      lbl_801A66B4 * 4 + 4)) != 0) {\n                lbl_1_bss_8F588[*(s16 *)((u8 *)entry->unk_4 + offset.value)] = count;\n            }\n            offset.value += 2;\n        }\n'''\ndef loop(ix, init, cond, step, elem):\n    return f'''        count = 0;\n        for ({init}; {cond}; {step}) {{\n            if (fn_1_46DC4(*(void **)(lbl_1_data_FCD4 +\n                                      {elem} * 0x28 +\n                                      lbl_801A66B4 * 4 + 4)) != 0) {{\n                lbl_1_bss_8F588[{elem}] = count;\n            }}\n        }}\n'''\nbase = must(body, '    struct { int value; } offset;\\n', '')\ntyped = must(base, '    u32 unk_4;\\n', '    s16 *unk_4;\\n')\nrows = [e.record(key, body, mw, flags, label='installed control')]\nV = [\n (must(typed, loop_old, loop('i', 'i = 0', 'entry->unk_4[i] != -1', 'i++', 'entry->unk_4[i]')), 's16 *list member; reuse i; for'),\n (must(must(typed, '    int count;\\n', '    int count;\\n    int j;\\n'), loop_old, loop('j', 'j = 0', 'entry->unk_4[j] != -1', 'j++', 'entry->unk_4[j]')), 's16 *list member; separate j; for'),\n (must(base, loop_old, loop('i', 'i = 0', '((s16 *)entry->unk_4)[i] != -1', 'i++', '((s16 *)entry->unk_4)[i]')), 'u32 member cast to s16 list; reuse i; for'),\n (must(typed, loop_old, '''        i = 0;\n        count = 0;\n        while (entry->unk_4[i] != -1) {\n            if (fn_1_46DC4(*(void **)(lbl_1_data_FCD4 +\n                                      entry->unk_4[i] * 0x28 +\n                                      lbl_801A66B4 * 4 + 4)) != 0) {\n                lbl_1_bss_8F588[entry->unk_4[i]] = count;\n            }\n            i++;\n        }\n'''), 's16 *list member; reuse i; while'),\n]\nfor t, l in V: rows.append(e.record(key, t, mw, flags, parent=rows[0]['id'], label=l))\nwith oracle.build_lock(): e.evaluate(rows)\nreport = dict(hypothesis=__doc__.strip(), stopping_condition='four fixed variants once', records=rows, best={},\n              frontier={'all_frozen_probes': rows}, generator_sha256=e.generator_sha256, environment=e.environment)\n(out / 'report.json').write_text(json.dumps(report, indent=2) + '\\n'); fixup.archive_sources(report, out / 'sources.json.gz')\nfor r in rows: print(r['sha256'][:12], bool(r.get('matched')), r.get('word_errors'), r.get('extra_helpers'), r['label'])\n"
+    },
+    "ranking_probe2.py": {
+      "sha256": "8d5b36fb6e827fa2dfbaad6d8e562cdce96d4f7d6404f2d282a72e3fcf8a941a",
+      "text": "\"\"\"Follow-up: keep the retail top-test/break loop and index the s16 list.\n\nDiagnosis: all four first-round variants differ only by MWCC's bottom-test loop\ninversion; retail tests the terminator at the top and breaks. Stopping condition:\nthree fixed variants once; actual profile; no flags/search.\n\"\"\"\nimport sys, json\nfrom pathlib import Path\nsys.path.insert(0, 'tools')\nfrom fzgx import fixup, oracle\nfrom fzgx.project import Project\np = Project('GFZE01'); out = Path('.fzgx/manual-device-review/ranking-index'); e = fixup.Engine(p, out)\nprev = json.loads((out / 'report.json').read_text())\nctrl = next(r for r in prev['records'] if r['label'] == 'installed control')\nbody = Path(ctrl['source']).read_text(); key = 'main_rel:fn_1_1596DC'; mw, flags = ctrl['mw'], ctrl['flags']\ndef must(t, old, new, n=1):\n    assert t.count(old) == n, (old, t.count(old)); return t.replace(old, new)\ntyped = must(must(body, '    struct { int value; } offset;\\n', ''), '    u32 unk_4;\\n', '    s16 *unk_4;\\n')\nold_head = '''        offset.value = 0;\n        count = 0;\n        for (;;) {\n            if (*(s16 *)((u8 *)entry->unk_4 + offset.value) == -1) {\n'''\ndef var(t, ix, decl, head):\n    if decl:\n        t = must(t, '    int count;\\n', '    int count;\\n    int j;\\n')\n    t = must(t, old_head, head.format(ix=ix))\n    t = must(t, '*(s16 *)((u8 *)entry->unk_4 + offset.value)', f'entry->unk_4[{ix}]', 2)\n    return must(t, '            offset.value += 2;\\n', '' if 'for (' in head and '++)' in head else f'            {ix}++;\\n')\nforh = '''        count = 0;\n        for ({ix} = 0;; {ix}++) {{\n            if (entry->unk_4[{ix}] == -1) {{\n'''\nwhileh = '''        {ix} = 0;\n        count = 0;\n        for (;;) {{\n            if (entry->unk_4[{ix}] == -1) {{\n'''\nV = [(var(typed, 'i', False, forh), 'top-test break; for(i=0;;i++)'),\n     (var(typed, 'j', True, forh), 'top-test break; for(j=0;;j++)'),\n     (var(typed, 'i', False, whileh), 'top-test break; for(;;) with i++')]\nrows = [e.record(key, t, mw, flags, parent=ctrl['id'], label=l) for t, l in V]\nwith oracle.build_lock(): e.evaluate(rows)\nprev['records'] += rows; prev['frontier']['all_frozen_probes'] += rows; prev['hypothesis'] += '\\n\\n' + __doc__.strip()\n(out / 'report.json').write_text(json.dumps(prev, indent=2) + '\\n'); fixup.archive_sources(prev, out / 'sources.json.gz')\nfor r in rows: print(r['sha256'][:12], bool(r.get('matched')), r.get('word_errors'), r.get('extra_helpers'), r['label'])\n"
+    },
+    "ranking_apply.py": {
+      "sha256": "fb5442c3d05b7d8abd48d78ae54a2ef41a5859e50d4c62a2334edea896279bde",
+      "text": "\"\"\"Install the shared RankingArchive layout in ranking.h/ranking.c (worktree root).\"\"\"\nimport sys\nfrom pathlib import Path\n\nLOOP = sys.argv[1] if len(sys.argv) > 1 else 'index'      # 1594AC loop: index|offset\nPROTO = sys.argv[2] if len(sys.argv) > 2 else 'stale'     # fn_1_159804 extern: stale|true\n\ndef must(t, old, new, n=1):\n    assert t.count(old) == n, (old[:60], t.count(old), n)\n    return t.replace(old, new)\n\nPath('include/rel/main_rel/ranking_archive.h').write_text('''#ifndef REL_MAIN_REL_RANKING_ARCHIVE_H\n#define REL_MAIN_REL_RANKING_ARCHIVE_H\n\n#include \"types.h\"\n\n/* Bitmap archives that ranking.c loads on demand: lbl_1_data_4C810[4], 0x3C each.\n * Data relocations give entries 1..3 an archive path (\"/bmp/bmp_cardt.arc\", ...)\n * and a -1-terminated id table. fn_1_1594AC opens the archive and clears the id\n * ring; fn_1_159588, fn_1_1596DC and fn_1_159804 keep up to `limit` ids between\n * head and tail, both wrapping at 15. Words 0x30..0x38 keep observed roles only. */\ntypedef struct RankingArchive {\n    char *path;\n    s16 *ids;\n    s16 queue[16];\n    s16 head;\n    s16 tail;\n    u8 limit;\n    u8 pad_2D[3];\n    u32 unk_30;\n    u32 unk_34;\n    s32 unk_38;\n} RankingArchive;\n\nextern RankingArchive lbl_1_data_4C810[4];\n\n#endif\n''')\n\nh = Path('include/rel/main_rel/ranking.h')\nt = h.read_text()\nt = must(t, '''// lbl_1_data_4C810: .data size 0xF0, 5 refs from ranking.c (own data block)\ntypedef struct {\n    u32 unk_0;  // 2 loads, 0 stores\n    u32 unk_4;  // 3 loads, 0 stores\n    s16 unk_8;  // 2 loads, 1 stores\n    u8 pad_A[0x1E];\n    s16 unk_28;  // 4 loads, 3 stores\n    s16 unk_2A;  // 5 loads, 2 stores\n    u8 unk_2C;  // 2 loads, 0 stores\n    u8 pad_2D[0x3];\n    u32 unk_30;  // 1 loads, 0 stores\n    u32 unk_34;  // 1 loads, 2 stores\n    u32 unk_38;  // 1 loads, 1 stores\n    u8 pad_3C[0xB4];\n} Obj_1_data_4C810;\nextern Obj_1_data_4C810 lbl_1_data_4C810;\n''', '''// lbl_1_data_4C810: .data size 0xF0 (4 x 0x3C), 5 refs from ranking.c (own data block)\n#include \"rel/main_rel/ranking_archive.h\"\n''')\nh.write_text(t)\n\nc = Path('src/rel/main_rel/ranking.c')\nt = c.read_text()\nproto = ('extern void fn_1_159804(int index, RankingArchive *entry);' if PROTO == 'stale'\n         else 'extern s16 fn_1_159804(s16 value, RankingArchive *entry);')\nt = must(t, 'extern void fn_1_159804(int index, Obj_1_data_4C810 *entry);', proto, 6)\n\nt = must(t, '''/* fzgx:begin fn_1_159440 */\ntypedef struct {\n    u8 pad_0[0x30];\n    u32 unk_30;\n    u32 unk_34;\n    u8 pad_38[0x4];\n} fn_1_159440_RankingEntry;\n\n// Preserve the current ranking entry before refreshing its state.\nvoid fn_1_159440(int index, int flag) {\n    fn_1_159440_RankingEntry *entry;\n\n    entry = &((fn_1_159440_RankingEntry *)&lbl_1_data_4C810)[index];\n''', '''/* fzgx:begin fn_1_159440 */\n// Preserve the current ranking entry before refreshing its state.\nvoid fn_1_159440(int index, int flag) {\n    RankingArchive *entry;\n\n    entry = &lbl_1_data_4C810[index];\n''')\n\nt = must(t, '''/* fzgx:begin fn_1_159478 */\ntypedef struct {\n    u8 pad[0x34];\n    u32 unk_34;\n    u8 tail[4];\n} Entry159478;\n\nvoid fn_1_159478(int index, int unused, int value) {\n    ((Entry159478 *)&lbl_1_data_4C810)[index].unk_34 = value;\n''', '''/* fzgx:begin fn_1_159478 */\nvoid fn_1_159478(int index, int unused, int value) {\n    RankingArchive *entry;\n\n    entry = &lbl_1_data_4C810[index];\n    entry->unk_34 = value;\n''')\n\nold_1594AC_head = '''void fn_1_1594AC(int index, int flag) {\n    Obj_1_data_4C810 *entry;\n    s16 value;\n    int offset;\n\n    // Activate the selected ranking entry and publish its referenced indices.\n    entry = (Obj_1_data_4C810 *)((u8 *)&lbl_1_data_4C810 + index * 0x3c);\n    if (entry->unk_2C >= 0x10) {\n        OSReport((const char *)lbl_1_data_4C900);\n    }\n\n    if (flag != 0) {\n        fn_1_465D0((void *)entry->unk_0, 6);\n    } else {\n        fn_1_465D0((void *)entry->unk_0, 5);\n    }\n\n    offset = 0;\n    for (;;) {\n        value = *(s16 *)((u8 *)entry->unk_4 + offset);\n        if (value == -1) {\n            break;\n        }\n        ((int *)lbl_1_bss_8F588)[value] = index;\n        offset += 2;\n    }\n\n    fn_80008BEC((u8 *)entry + 8, 0, 0x20);\n    entry->unk_28 = 1;\n    entry->unk_2A = 0;\n    entry->unk_38 = flag;\n'''\nif LOOP == 'index':\n    var, loop = 'int i;', '''    for (i = 0;; i++) {\n        value = entry->ids[i];\n        if (value == -1) {\n            break;\n        }\n        ((int *)lbl_1_bss_8F588)[value] = index;\n    }\n'''\nelse:\n    var, loop = 'int offset;', '''    offset = 0;\n    for (;;) {\n        value = *(s16 *)((u8 *)entry->ids + offset);\n        if (value == -1) {\n            break;\n        }\n        ((int *)lbl_1_bss_8F588)[value] = index;\n        offset += 2;\n    }\n'''\nt = must(t, old_1594AC_head, f'''void fn_1_1594AC(int index, int flag) {{\n    RankingArchive *entry;\n    s16 value;\n    {var}\n\n    // Activate the selected ranking entry and publish its referenced indices.\n    entry = &lbl_1_data_4C810[index];\n    if (entry->limit >= 0x10) {{\n        OSReport((const char *)lbl_1_data_4C900);\n    }}\n\n    if (flag != 0) {{\n        fn_1_465D0(entry->path, 6);\n    }} else {{\n        fn_1_465D0(entry->path, 5);\n    }}\n\n{loop}\n    fn_80008BEC(entry->queue, 0, sizeof(entry->queue));\n    entry->head = 1;\n    entry->tail = 0;\n    entry->unk_38 = flag;\n''')\n\n# fn_1_159588\nt = must(t, '''/* fzgx:begin fn_1_159588 */\ntypedef struct {\n    u8 pad_0[8];\n    s16 values[16];\n    s16 start;\n    s16 end;\n    u8 limit;\n    u8 pad_2d[3];\n    u32 unk_30;\n    u32 value;\n} RankEntryView;\n\n''', '/* fzgx:begin fn_1_159588 */\\n')\nt = must(t, '''    Obj_1_data_4C810 *entry;\n    RankEntryView *view;\n    s32 *table;\n''', '''    RankingArchive *entry;\n    s32 *table;\n''')\nt = must(t, '''        entry = (Obj_1_data_4C810 *)((u8 *)&lbl_1_data_4C810 +\n            ((s32 *)lbl_1_bss_8F588)[index] * 0x3c);\n        view = (RankEntryView *)entry;\n''', '''        entry = &lbl_1_data_4C810[((s32 *)lbl_1_bss_8F588)[index]];\n''')\ns588 = t.index('/* fzgx:begin fn_1_159588 */'); e588 = t.index('/* fzgx:end fn_1_159588 */')\nblk = t[s588:e588]\nfor a, b in [('view->values', 'entry->queue'), ('view->start', 'entry->head'), ('view->end', 'entry->tail'),\n             ('view->limit', 'entry->limit'), ('view->value', 'entry->unk_34')]:\n    blk = blk.replace(a, b)\nassert 'view' not in blk\nt = t[:s588] + blk + t[e588:]\n\n# fn_1_1596DC (noprologue)\nt = must(t, '''/* fzgx:begin fn_1_1596DC noprologue */\n#include \"types.h\"\n\ntypedef struct {\n    u32 unk_0;\n    u32 unk_4;\n    s16 unk_8[16];\n    s16 unk_28;\n    s16 unk_2a;\n    u8 unk_2c;\n    u8 pad_2d[0xb];\n    s32 unk_38;\n} RankingEntry;\n\nextern RankingEntry lbl_1_data_4C810[4];\n''', '''/* fzgx:begin fn_1_1596DC noprologue */\n#include \"types.h\"\n#include \"rel/main_rel/ranking_archive.h\"\n\n''')\ns6 = t.index('/* fzgx:begin fn_1_1596DC'); e6 = t.index('/* fzgx:end fn_1_1596DC */')\nblk = t[s6:e6]\nblk = must(blk, '    struct { int value; } offset;\\n    RankingEntry *entry;\\n', '    RankingArchive *entry;\\n')\nblk = must(blk, '''        offset.value = 0;\n        count = 0;\n        for (;;) {\n            if (*(s16 *)((u8 *)entry->unk_4 + offset.value) == -1) {\n''', '''        count = 0;\n        for (i = 0;; i++) {\n            if (entry->ids[i] == -1) {\n''')\nblk = must(blk, '*(s16 *)((u8 *)entry->unk_4 + offset.value)', 'entry->ids[i]', 2)\nblk = must(blk, '            offset.value += 2;\\n', '')\nfor a, b in [('unk_8[', 'queue['), ('unk_28', 'head'), ('unk_2a', 'tail')]:\n    blk = blk.replace(a, b)\nassert 'unk_2' not in blk and 'unk_4' not in blk and 'offset' not in blk, blk\nt = t[:s6] + blk + t[e6:]\n\n# fn_1_159804 (noprologue)\nt = must(t, '''/* fzgx:begin fn_1_159804 noprologue */\n#include \"types.h\"\n\ntypedef struct {\n    u32 unk_0;\n    u32 unk_4;\n    s16 unk_8[16];\n    s16 unk_28;\n    s16 unk_2a;\n    u8 unk_2c;\n    u8 pad_2d[0xb];\n    s32 unk_38;\n} RankingEntry;\n\ns16 fn_1_159804(s16 value, RankingEntry *entry) {\n''', '''/* fzgx:begin fn_1_159804 noprologue */\n#include \"types.h\"\n#include \"rel/main_rel/ranking_archive.h\"\n\ns16 fn_1_159804(s16 value, RankingArchive *entry) {\n''')\ns8 = t.index('/* fzgx:begin fn_1_159804'); e8 = t.index('/* fzgx:end fn_1_159804 */')\nblk = t[s8:e8]\nfor a, b in [('unk_8[', 'queue['), ('unk_28', 'head'), ('unk_2a', 'tail')]:\n    blk = blk.replace(a, b)\nassert 'unk_' not in blk, blk\nt = t[:s8] + blk + t[e8:]\nassert 'Obj_1_data_4C810' not in t\nc.write_text(t)\nprint('applied', LOOP, PROTO)\n"
+    },
+    "ranking_eval.py": {
+      "sha256": "a81bd26341f6fb84543c58a13c311071de39df1099554099224c7fc0d3c6c466",
+      "text": "\"\"\"snapshot: save canonical text of every ranking.c unit. eval LABEL: compile changed units.\"\"\"\nimport sys, json, hashlib\nfrom pathlib import Path\nsys.path.insert(0, 'tools')\nfrom fzgx import api, fixup, oracle\nfrom fzgx.project import Project\n\nmode = sys.argv[1]\nsnap = Path(sys.argv[2])\np = Project('GFZE01')\nunits = [u for u in p.load_units() if u.get('tu') == 'rel/main_rel/ranking.c']\ntexts = {}\nfor u in units:\n    texts[u['symbols'][0]] = api._canonical_text(p, u['source'])\nif mode == 'snapshot':\n    snap.write_text(json.dumps(texts))\n    print(len(texts), 'units')\n    raise SystemExit\nbefore = json.loads(snap.read_text())\nlabel = sys.argv[3]\nout = Path('.fzgx/manual-device-review/ranking-archive') / label\ne = fixup.Engine(p, out)\nrows = []\nfor name, text in texts.items():\n    if before.get(name) == text:\n        continue\n    key = 'main_rel:' + name\n    mw, flags = oracle.version_for(p, p.resolve(key))\n    rows.append(e.record(key, text, mw, flags, label=label, before_sha256=hashlib.sha256(before[name].encode()).hexdigest()))\nwith oracle.build_lock():\n    e.evaluate(rows)\nreport = dict(hypothesis='Shared RankingArchive layout for lbl_1_data_4C810[4]; installed-form compile of every changed ranking.c unit.',\n              stopping_condition='fixed loop/prototype variants once', records=rows, best={},\n              frontier={'all_frozen_probes': rows}, generator_sha256=e.generator_sha256, environment=e.environment)\n(out / 'report.json').write_text(json.dumps(report, indent=2) + '\\n')\nfixup.archive_sources(report, out / 'sources.json.gz')\nfor r in rows:\n    print(r['symbol'], r['sha256'][:12], bool(r.get('matched')), r.get('word_errors'), r.get('extra_helpers'))\n"
+    },
+    "ranking_478.py": {
+      "sha256": "76ef0c29814bbf53131edb4f44b4f7e8ddaecb8cfaf46cd3606b7647118e2bb0",
+      "text": "\"\"\"fn_1_159478 under the shared layout: fixed spellings once (actual profile, no search).\"\"\"\nimport sys, json\nfrom pathlib import Path\nsys.path.insert(0, 'tools')\nfrom fzgx import api, fixup, oracle\nfrom fzgx.project import Project\np = Project('GFZE01'); out = Path('.fzgx/manual-device-review/ranking-archive/fn_1_159478'); e = fixup.Engine(p, out)\nkey = 'main_rel:fn_1_159478'; s = p.resolve(key); mw, flags = oracle.version_for(p, s)\nbody = api._canonical_text(p, p.unit_record(p.unit_of(s))['source'])\nold = '    lbl_1_data_4C810[index].unk_34 = value;\\n'\nassert old in body\nV = [('    RankingArchive *entry = &lbl_1_data_4C810[index];\\n\\n    entry->unk_34 = value;\\n', 'entry pointer initializer'),\n     ('    RankingArchive *entry;\\n\\n    entry = &lbl_1_data_4C810[index];\\n    entry->unk_34 = value;\\n', 'entry pointer assignment'),\n     ('    (lbl_1_data_4C810 + index)->unk_34 = value;\\n', 'pointer arithmetic'),\n     ('    ((RankingArchive *)lbl_1_data_4C810)[index].unk_34 = value;\\n', 'decayed pointer cast')]\nrows = [e.record(key, body, mw, flags, label='array index (installed attempt)')]\nrows += [e.record(key, body.replace(old, n), mw, flags, parent=rows[0]['id'], label=l) for n, l in V]\nwith oracle.build_lock(): e.evaluate(rows)\nreport = dict(hypothesis=__doc__.strip(), stopping_condition='four fixed spellings once', records=rows, best={},\n              frontier={'all_frozen_probes': rows}, generator_sha256=e.generator_sha256, environment=e.environment)\n(out / 'report.json').write_text(json.dumps(report, indent=2) + '\\n'); fixup.archive_sources(report, out / 'sources.json.gz')\nfor r in rows: print(r['sha256'][:12], bool(r.get('matched')), r.get('word_errors'), r['label'])\n"
+    },
+    "ranking_1577.py": {
+      "sha256": "45a1f6d4d180bb86ee77b58152ecd34dc8d41b7e2365b93ae15e712cb790780f",
+      "text": "\"\"\"Control: fn_1_1577D0 installed text under the committed header (extra-helper policy check).\"\"\"\nimport sys, json\nfrom pathlib import Path\nsys.path.insert(0, 'tools')\nfrom fzgx import api, fixup, oracle\nfrom fzgx.project import Project\np = Project('GFZE01'); out = Path('.fzgx/manual-device-review/ranking-archive/controls'); e = fixup.Engine(p, out)\nrows = []\nfor k in ('main_rel:fn_1_1577D0', 'main_rel:fn_1_159478'):\n    s = p.resolve(k); mw, flags = oracle.version_for(p, s)\n    rows.append(e.record(k, api._canonical_text(p, p.unit_record(p.unit_of(s))['source']), mw, flags, label='committed control'))\nwith oracle.build_lock(): e.evaluate(rows)\nreport = dict(hypothesis=__doc__.strip(), stopping_condition='controls', records=rows, best={},\n              frontier={'all_frozen_probes': rows}, generator_sha256=e.generator_sha256, environment=e.environment)\n(out / 'report.json').write_text(json.dumps(report, indent=2) + '\\n'); fixup.archive_sources(report, out / 'sources.json.gz')\nfor r in rows: print(r['symbol'], r['sha256'][:12], bool(r.get('matched')), r.get('word_errors'), r.get('object_matched'), r.get('extra_helpers'))\n"
+    },
+    "ranking_proto.py": {
+      "sha256": "3fedd7fb422caad15b35daa5eca983b7b8e57f9085ace41399f33333167db0e2",
+      "text": "\"\"\"fn_1_159588 with fn_1_159804's true prototype (only caller). One fixed variant.\"\"\"\nimport sys, json\nfrom pathlib import Path\nsys.path.insert(0, 'tools')\nfrom fzgx import api, fixup, oracle\nfrom fzgx.project import Project\np = Project('GFZE01'); out = Path('.fzgx/manual-device-review/ranking-archive/prototype'); e = fixup.Engine(p, out)\nkey = 'main_rel:fn_1_159588'; s = p.resolve(key); mw, flags = oracle.version_for(p, s)\nbody = api._canonical_text(p, p.unit_record(p.unit_of(s))['source'])\nold = 'extern void fn_1_159804(int index, RankingArchive *entry);'\nassert body.count(old) >= 1\nrows = [e.record(key, body, mw, flags, label='stale prototype control')]\nrows.append(e.record(key, body.replace(old, 'extern s16 fn_1_159804(s16 value, RankingArchive *entry);'), mw, flags, parent=rows[0]['id'], label='true fn_1_159804 prototype'))\nwith oracle.build_lock(): e.evaluate(rows)\nreport = dict(hypothesis=__doc__.strip(), stopping_condition='one variant', records=rows, best={},\n              frontier={'all_frozen_probes': rows}, generator_sha256=e.generator_sha256, environment=e.environment)\n(out / 'report.json').write_text(json.dumps(report, indent=2) + '\\n'); fixup.archive_sources(report, out / 'sources.json.gz')\nfor r in rows: print(r['sha256'][:12], bool(r.get('matched')), r.get('word_errors'), r['label'])\n"
+    },
+    "typed_manifest.py": {
+      "sha256": "dbc5f4fce40e79c22dfd69da3a5e5d24304fd462cb8f2848e47c94c45aaf2ef3",
+      "text": "\"\"\"Archive typed-index cohorts and write state/repairs/typed-index-recovery-20261116.json.\n\nstage 'archive': write the two replay archives. stage 'manifest': needs replay outputs + gate log.\n\"\"\"\nimport sys, json, gzip, hashlib, re, subprocess\nfrom pathlib import Path\nsys.path.insert(0, 'tools')\nfrom fzgx import fixup\n\nS = Path(sys.argv[2])\nstage = sys.argv[1]\nsha = lambda b: hashlib.sha256(b).hexdigest()\nR = Path('.fzgx/manual-device-review')\nA_DIRS = [R / 'texlist-index', R / 'graph-index', R / 'ranking-index']\nB_DIRS = [R / 'ranking-archive/final', R / 'ranking-archive/fn_1_159478', R / 'ranking-archive/prototype']\nA = Path('state/repairs/typed-index-probes-20261116.sources.json.gz')\nB = Path('state/repairs/ranking-archive-layout-20261116.sources.json.gz')\n\ndef combined(dirs):\n    reps = [json.loads((d / 'report.json').read_text()) for d in dirs]\n    assert len({r['generator_sha256'] for r in reps}) == 1\n    rows = [x for r in reps for x in r['records']]\n    return dict(hypothesis='\\n\\n'.join(r['hypothesis'] for r in reps), records=rows, best={},\n                frontier={'all_frozen_probes': rows}, generator_sha256=reps[0]['generator_sha256'],\n                environment=reps[0]['environment'], environments=sorted({r['environment'] for r in reps})), reps\n\nif stage == 'archive':\n    for dirs, path in ((A_DIRS, A), (B_DIRS, B)):\n        rep, _ = combined(dirs)\n        fixup.archive_sources(rep, path)\n        print(path, len(json.loads(gzip.decompress(path.read_bytes()))['records']))\n    raise SystemExit\n\ndef summary(rows):\n    return [dict(symbol=x['symbol'], label=x['label'], sha256=x['sha256'], mw=x['mw'], flags=x['flags'],\n                 matched=bool(x.get('matched')), word_errors=x.get('word_errors'),\n                 object_matched=x.get('object_matched'), extra_helpers=x.get('extra_helpers')) for x in rows]\n\ndef multiset(rows):\n    return sorted((r['symbol'], r['sha256'], r['mw'], r['flags'], bool(r.get('matched')), r.get('word_errors')) for r in rows)\n\nreplays = {}\nfor path in (A, B):\n    arch = json.loads(gzip.decompress(path.read_bytes()))\n    rep = json.loads(Path(f'.fzgx/fixup/replay/{path.name}/replay.json').read_text())\n    assert rep['reproduced'] == len(arch['records']) and multiset(arch['records']) == multiset(rep['records']), path\n    profiles = {(r['symbol'], r['sha256']): r['compile_profile'] for r in arch['records']}\n    assert all(profiles[(r['symbol'], r['sha256'])] == r['compile_profile'] for r in rep['records'])\n    replays[path.name] = dict(sha256=sha(path.read_bytes()), records=len(arch['records']), replayed=rep['reproduced'])\n\nlog = Path('.fzgx/manual-device-review/ranking-archive/full-gates.log').read_bytes()\ntext = re.sub(r'\\x1b\\[[0-9;]*m', '', log.decode('utf-8', 'replace'))\nreturns = re.findall(r'^RETURN (\\d+)$', text, re.M)\nassert returns == ['0'] * 4 and text.count('16 files OK') >= 2 and '0 finding(s)' in text\ncensus_path = Path('state/repairs/device-census-typed-index-20261116.json.gz')\ncensus = json.loads(gzip.decompress(census_path.read_bytes()))\nregen = json.loads((S / 'regen.json').read_text())\nhead = subprocess.run(['git', 'rev-parse', 'HEAD'], capture_output=True, text=True, check=True).stdout.strip()\ncohorts = {}\nfor d in A_DIRS + B_DIRS + [R / 'ranking-archive/index-stale', R / 'ranking-archive/controls']:\n    r = json.loads((d / 'report.json').read_text())\n    cohorts[str(d.relative_to(R))] = dict(hypothesis=r['hypothesis'], stopping_condition=r['stopping_condition'],\n                                         environment=r['environment'], records=summary(r['records']))\nfinal = json.loads((R / 'ranking-archive/final/report.json').read_text())['records']\nscripts = {n: dict(sha256=sha((S / n).read_bytes()), text=(S / n).read_text()) for n in (\n    'texlist_probe.py', 'texlist_probe2.py', 'graph_probe.py', 'ranking_probe.py', 'ranking_probe2.py',\n    'ranking_apply.py', 'ranking_eval.py', 'ranking_478.py', 'ranking_1577.py', 'ranking_proto.py', 'typed_manifest.py')}\ninstalled_texlist = next(x for x in json.loads((R / 'texlist-index/report.json').read_text())['records']\n                         if x['label'] == 'both natural sentinel tests')\nmanifest = dict(\n    format='fzgx-device-cleanup-provenance-v1', version='GFZE01', base_commit=head,\n    source_tree_sha256=census['source_tree_sha256'], configuration_sha256=census['configuration_sha256'],\n    headers={h: sha(Path(h).read_bytes()) for h in ('include/rel/main_rel/ranking.h', 'include/rel/main_rel/ranking_archive.h')},\n    sources={s_: sha(Path(s_).read_bytes()) for s_ in ('src/dol/fn_80077D40.c', 'src/rel/main_rel/ranking.c')},\n    evidence=dict(\n        strength_reduction='Retail keeps a byte offset and an index as separate induction registers; this is MWCC strength reduction of &array[i].',\n        ranking_layout='lbl_1_data_4C810 is 0xF0 = 4 x 0x3C; data relocations place an archive path string and a u16 id table at +0/+4 of entries 1..3; six functions index the same fields.',\n        sentinel='addis r0,r7,1; cmplwi r0,0xffff lowers an unsigned compare with 0xFFFFFFFF; lhz; cmpwi -1 is the int-promoted u16 compare with -1.'),\n    cohorts=cohorts, scripts=scripts, replay_archives=replays,\n    replay_commands=['python tools/fzgx.py fixup --archive state/repairs/' + A.name,\n                     'python tools/fzgx.py fixup --archive state/repairs/' + B.name],\n    accepted=[dict(function='main:fn_80077D40', sha256=installed_texlist['sha256'], label=installed_texlist['label'])] +\n             [dict(function='main_rel:' + x['symbol'], sha256=x['sha256'], matched=bool(x.get('matched')),\n                   object_matched=x.get('object_matched'), extra_helpers=x.get('extra_helpers')) for x in final],\n    removed=dict(scalar_carriers=2, private_layout_views=5, generated_aggregate_views=1, byte_stride_offsets=2,\n                 tagged_register_copy_blocks=0),\n    negative=dict(function='main_rel:fn_1_10A8D0', word_errors=sorted({x.get('word_errors') for x in cohorts['graph-index']['records'] if not x['matched']})),\n    pre_existing=dict(function='main_rel:fn_1_1577D0', note='Object matches exactly; extra-helper source-policy flag is identical in the committed control.'),\n    data_import_regeneration=regen,\n    partial_cleanups_only=True, new_fully_natural_function_credit=0, fully_natural_function_credit_claimed=False,\n    census=dict(path=census_path.name, sha256=sha(census_path.read_bytes()), categories=census['categories'],\n                known_scaffolding_owner_function_union=len(census['confirmed_debt_owner_functions'])),\n    validation=dict(commands=['.venv/bin/python configure.py', 'ninja -j 2 build/GFZE01/ok',\n                              'build/tools/dtk shasum -q -c config/GFZE01/build.sha1', '.venv/bin/python tools/fzgx.py lint'],\n                    returns=[int(x) for x in returns], linked_hashes=16, independent_hashes=16, lint_findings=0, local_log_sha256=sha(log)),\n    limits='Only fields used by the six functions are named; words 0x30..0x38 keep observed roles. The data unit keeps its raw-word '\n           'definition and own header. Removing carriers does not certify these functions device-free.',\n)\nPath('state/repairs/typed-index-recovery-20261116.json').write_text(json.dumps(manifest, indent=2) + '\\n')\nprint('ok', {k: v['records'] for k, v in replays.items()}, manifest['census']['categories']['single-field-value-carrier-review'])\n"
+    }
+  },
+  "replay_archives": {
+    "typed-index-probes-20261116.sources.json.gz": {
+      "sha256": "cf6ba20b170a54a6797edbad7a557afb568aba79fcede349b3ea70d918a6a321",
+      "records": 24,
+      "replayed": 24
+    },
+    "ranking-archive-layout-20261116.sources.json.gz": {
+      "sha256": "63318a69ac2608838f24ab6976847de579966eddd4373c747f0f087ad4b00c50",
+      "records": 85,
+      "replayed": 85
+    }
+  },
+  "replay_commands": [
+    "python tools/fzgx.py fixup --archive state/repairs/typed-index-probes-20261116.sources.json.gz",
+    "python tools/fzgx.py fixup --archive state/repairs/ranking-archive-layout-20261116.sources.json.gz"
+  ],
+  "accepted": [
+    {
+      "function": "main:fn_80077D40",
+      "sha256": "1a2b910303ac9c313fb054bc5799e5f97f178bc7d0222e5850bddb74bbc43f04",
+      "label": "both natural sentinel tests"
+    },
+    {
+      "function": "main_rel:fn_1_1554D0",
+      "sha256": "1ff724a16f632cf4551f1148794e2b9a8325404f8e669035769f2e7b464c98d4",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_15555C",
+      "sha256": "2083affbdc9ad1fabc540c9d17acf339a52a0a6da3089740b453231a345ef7f8",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_155F7C",
+      "sha256": "0e317e5cf38bed116008e915347c6b2c2e6d239d03ef6afd64f51524f517d57d",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_155F8C",
+      "sha256": "2c952fc95deed5590780b1a83afae35a99d2876c8e9698187394a6550b35c184",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_155F9C",
+      "sha256": "82e9ab79e40ec415434a9955df327ab8dcb14a22bf834e485af032056f57592b",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_155FA8",
+      "sha256": "ac0643e72a91441614f0b71dbb54cbed533fa95b5f30a9ec3964b91431f259f5",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_156198",
+      "sha256": "dbccc6a828e4eb21d7083084bd13e8002aeee24d865e804cb5d596f69a8b1f0e",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_1563E8",
+      "sha256": "992069c0b9b2b45dd9a2dbe2b467e58cfb486d4f9a315ee16bddbcd2f07509f1",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_1564D0",
+      "sha256": "8f0db858d7863fc3d742615419160b9746fdf432162789aad66549b088fd5754",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_156510",
+      "sha256": "7ac01881222649e1a911f86273255938f7aa2a53708b03dcd6b92b26353fcc62",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_156530",
+      "sha256": "88363a7886e841c5837d882a759af696df3414a2a5e94ef726037323fb36bc2d",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_156534",
+      "sha256": "4948ff6165c7bdadb447ea9a1f54376f89d26ceb9ef40ce7174b7dbceb26a587",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_156554",
+      "sha256": "f01aa9fd3ce16e3620171c0e72f52a635ffee7735b74a5d084ab04924f08b376",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_156558",
+      "sha256": "4071328fb8898d1107b87107800fab15482df570320a7081e8652f16d3098b3a",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_15655C",
+      "sha256": "51c948a381465b6e4d84aaa16e0efcecc1a9ef40cff75f543743829cde466ec7",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_156560",
+      "sha256": "b176779e5334da59535c3d22408b78f001d734d2dfbbac93b3ed2f16c07dc1f0",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_156564",
+      "sha256": "8cce020ff282a26b355dba5419c3d3b618febd44a17af93ca4eec93989fc17d6",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_156568",
+      "sha256": "df6cda7d14083fdd7151f1f70207248bb6480c1745bddaac3b6866b6c921b3da",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_15656C",
+      "sha256": "b737316bf2dc0b2170f7a4831ebf6b8b86d780f1057a0db5ac3f4e402e11c2d8",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_15657C",
+      "sha256": "ff3a04daff1eef538fcb93550b9d6b1af0dc7ad20e18c9c2c563bf1285fb1c5d",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_156580",
+      "sha256": "4a65cc9597ce084b9f37a17540ec35c52109ff6cf407603e16c4986bbf1f8ee3",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_156584",
+      "sha256": "28bf8c61d83ca07842bc1f57abb8028243889c427e95e15b9467b9d9f25fa823",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_156588",
+      "sha256": "6faeb8b74cc5855c6fb9b9ce47d5667cbd0612bcec40a90e1644fb745f2af198",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_15658C",
+      "sha256": "bacf2df7584aa34fb6f2b6288d12b60aaf3180576e7dab71f12c9dad8734ca50",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_156590",
+      "sha256": "c27cac708b8b9a3c5041bb13b38de220911e51499d2dae3c87fc835852d87829",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_156594",
+      "sha256": "78899216a7b647cfdbc3f14f6595253b90249d81d4d380408d5b374418014de2",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_156598",
+      "sha256": "c3b0df3aec05f299cbf61bff387378e0572fae1c56c79f25cddee0ce28ad2c56",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_15659C",
+      "sha256": "f783cf4a89dc7d049978e0c6a03d261c932a2499b049c80ab55a3198ff517ced",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_15665C",
+      "sha256": "af066e2b0592daa651bd8c4cf31ef7bc61726af01ec797f72be61cc630debb39",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_1566F8",
+      "sha256": "ca7e4e49feaf72aeac9a5aeb616a11951ec1bd779b403c21c6e03bdf2d2f9381",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_156730",
+      "sha256": "3b585d6d1ae011c12ba190c7bb561ea92bad56cbf07d01e0995b1c23ca581fcb",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_156754",
+      "sha256": "4c83038a6385c2c7cc6837904898e112d7ca65c084e614c93ff8c0cdcd22c0d5",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_156884",
+      "sha256": "c7f004ead7f1b9278e4d56b9409dc4096eb4dc3023ce352f11299d517ac1b629",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_1569A0",
+      "sha256": "30988ccf90ea26aa820530b6e071c0b90143a1e96b63cdc44393555df624d5be",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_1569E8",
+      "sha256": "c478215187035b3fff58394b41234e0f464c098099b2666a89fe181c3a6838bc",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_156B18",
+      "sha256": "53c69684cbd331fe97953ebf25c9aba151ce2b715783a7aad2595272f79172f9",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_156C08",
+      "sha256": "2a266b491f5917adb77f264580820785afbc4242024dc7ecc4b13fed2b261d17",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_156F54",
+      "sha256": "3dd40885d33cbe196a1061a3802d7274c77253d9a66a8d38e3993eedb1818a79",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_157070",
+      "sha256": "a4cc55c1ce212a46289f2be078653b5c8ef012bda8f1b90ba09d06ff6de4684d",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_157200",
+      "sha256": "36ca4e685e429446150260e497b4af6da6de4be2b07c80e32b528bac4b31d9e5",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_157358",
+      "sha256": "d19a1c08c376d76f3e048e01a4767cd2537c390d15f1015a134749fda8364acd",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_157598",
+      "sha256": "cf54d70656c2c3e6077b95d604796318410b9b20660d49da5840fd125fcc2fd7",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_1576B4",
+      "sha256": "6ba23b408bfb5caea856ca878c16c1563d2cc82f224de5089deac68762e821be",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_1577D0",
+      "sha256": "061eabb7aba11ef6f0d57e88e384e835b553a8f1b952ece8d4de9293523ec5cc",
+      "matched": false,
+      "object_matched": true,
+      "extra_helpers": [
+        "fn_1_157920",
+        "fn_1_157820",
+        "fn_1_157950",
+        "fn_1_157FC8",
+        "fn_1_1578C4",
+        "fn_1_157930",
+        "fn_1_157940"
+      ]
+    },
+    {
+      "function": "main_rel:fn_1_1586A8",
+      "sha256": "00aa2984d43a0b63c6d3d93e1a252870663b7bd4df75c5f195abfab454218879",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_1586AC",
+      "sha256": "f3262165e6c029577cad75542ef364b213a99628fab73bc3d490a089ebce24f4",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_158980",
+      "sha256": "aa6c434c352087435486e9e8daff725e17cda1d096cf21f20f82c3f10b257778",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_158984",
+      "sha256": "fc000d8f47753e5cb01222295bb83c5627b6f820ae1421e2f83ea55627109e69",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_15903C",
+      "sha256": "264eeb71f6404bee2457a1d56b5ef0cddd5f116a880e4abc35b38c0b46a1d4e4",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_159040",
+      "sha256": "06a8c302ed9756a592dc0ade831944b1ffb1bf8fb818199ac97df78c4580d2f3",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_159060",
+      "sha256": "eea7684629e39eaf7ba14b8d74e0dae9df9a8d7a0f6c9a0f5d3ca7e7b1be5ece",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_159064",
+      "sha256": "68775575898c438a9e6ac66cb2b33d9e4273774d0054a6bda9e87840a26aa093",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_15906C",
+      "sha256": "619dbce783951766ef032896a1539859a0a95c0b8ec1bd076585b887a7ebd580",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_159440",
+      "sha256": "51e8668b174f5830f49d8f7c51ba3e130d7e1d1b7f685634d06a4c815a55c537",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_159478",
+      "sha256": "92fdfd3f08bdb30d539a15891be11cb9329490cbd3f9df48c4a014cee2b205d4",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_1594AC",
+      "sha256": "d2ecd7023fe5ae4e0189eefb989247c0cd4747c2de3c486b57f3cf80433abb90",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_159588",
+      "sha256": "ee7216ac1735bcaa8dbe8bcb0bd8fb318cd0eeb9e6cf951b4f29ae88dcd672d7",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_1596DC",
+      "sha256": "6d101c4bbd98f1a08e2d47d8b9ddece1e45fe126affc7a096a95c2a19a716050",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_159804",
+      "sha256": "a3e709c86c72c5105a58bce50d039fa9f2ea56f981fb741ffc692312aed8e6d8",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_159AE0",
+      "sha256": "731b3f74e4b03be385adcd116d838ea642979acc79820dbcf5c4362973f5efcd",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_15AC00",
+      "sha256": "ef736f6a48737236c52c53807eb694f414648df204b6f5960fcf54fd5d3af5db",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_15AC10",
+      "sha256": "3f9feaaa70a2b5bc71df84fe73a3aadb6f7284c666fd6073822b75af298a3e28",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_15B3E8",
+      "sha256": "04a33e11a8ff22d4b312700b6709fa12d4b136d8c513a5e3ea833364fa183345",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_15B3F8",
+      "sha256": "b8d47054a6c863116f543880d45b296f317451c785d21c0dfc7c0876397a84a6",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_15B408",
+      "sha256": "1a52f7a4150a98398eaf82a69955751f503fd2f45b991af1bcc4ef041307070f",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_15B418",
+      "sha256": "d333f6aa84978c2674b9b28beb8fd49a76bb9660630223d5b19d95e1da6f9a37",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_15B428",
+      "sha256": "0036ecdc10f59935c42e63a25a542fc6d7d1873fd048a8052e9d60fd361ba6af",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_15B42C",
+      "sha256": "315a3abd7b2936e6b70304c7f1dc3fc7b290422f9d60df8ea947fde3df821e46",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_15B4F8",
+      "sha256": "9ba4a5901edd9a31dfd65a2eda39fbf6443f51cd4f4709f677ea38628b5620ed",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_15B4FC",
+      "sha256": "6cc90090c1d724603f9094a6580b03b9f29554dc4b72f064cc17ffbb788b7784",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_15B51C",
+      "sha256": "32c4d10f2b30030ccf8a12ff966097ed593fc09367449416968c93c0e7dadbe2",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_15B520",
+      "sha256": "79a817febd37b9d73a34d727860e8d8846cb36bb94e66a2baa11637b8bf5e766",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_15B540",
+      "sha256": "2edccda5ffb4236dc7a473ee63833f7245ebe50b564ac31c2ac6da9c5c775923",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_15B544",
+      "sha256": "5bc2376c9934de4b5a5911932aa124c3ba96e095e2e0ac73b6b10abb64cfd535",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_15B588",
+      "sha256": "a4570a922ea1db51fe0d7e6fa9a14737fc3950a9c53118aee85e7efbbaaf4232",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_15B5CC",
+      "sha256": "4ab3d62125e18439cb9dacc5d3943ea4fa8c11cdefe0b628cc9c3ef1add006b8",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_15B610",
+      "sha256": "11f625fe05af7e999f7182a3eba7f86c2e183f59be295f2ab7cce36e7b7fc0ac",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_15B654",
+      "sha256": "5b90cba2d83faac0dffa729986ed02b14b0e0f775fb6aa77018e1ff1bb808cdc",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    },
+    {
+      "function": "main_rel:fn_1_15B698",
+      "sha256": "24f8206e5b72e37127acefc30ec5f741a9b434e2e16776ee447c796148502b2d",
+      "matched": true,
+      "object_matched": null,
+      "extra_helpers": null
+    }
+  ],
+  "removed": {
+    "scalar_carriers": 2,
+    "private_layout_views": 5,
+    "generated_aggregate_views": 1,
+    "byte_stride_offsets": 2,
+    "tagged_register_copy_blocks": 0
+  },
+  "negative": {
+    "function": "main_rel:fn_1_10A8D0",
+    "word_errors": [
+      8,
+      12,
+      31,
+      43,
+      59,
+      61
+    ]
+  },
+  "pre_existing": {
+    "function": "main_rel:fn_1_1577D0",
+    "note": "Object matches exactly; extra-helper source-policy flag is identical in the committed control."
+  },
+  "data_import_regeneration": {
+    "command": "fzgx data-import --regenerate (no --apply) for lbl_1_data_4C810 and five ranking.h-including bss units",
+    "summary": {
+      "imported": false,
+      "objects": 9,
+      "bytes": 1582,
+      "skipped": []
+    },
+    "records": [
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_8EF20",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_8EF20.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_8F3E0",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_8F3E0.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_8F3E4",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_8F3E0.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_8F3FC",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_8F3E0.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_8F428",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_8F428.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_8F588",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_8F588.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_bss_8F878",
+        "method": "declared-bss",
+        "source": "rel/main_rel/data/lbl_1_bss_8F878.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_data_4C810",
+        "method": "declared-relocated-record",
+        "source": "rel/main_rel/data/lbl_1_data_4C810.c"
+      },
+      {
+        "module": "main_rel",
+        "symbol": "lbl_1_data_4C900",
+        "method": "string",
+        "source": "rel/main_rel/data/lbl_1_data_4C810.c"
+      }
+    ]
+  },
+  "partial_cleanups_only": true,
+  "new_fully_natural_function_credit": 0,
+  "fully_natural_function_credit_claimed": false,
+  "census": {
+    "path": "device-census-typed-index-20261116.json.gz",
+    "sha256": "d521a726000410c88c29a665810da8a7b029aaac922ab9b4af347895d8d81c8a",
+    "categories": {
+      "adx-dead-write-use": {
+        "spots": 7,
+        "files": 1,
+        "owner_functions": 1,
+        "unassigned_spots": 0
+      },
+      "layout-primer-function": {
+        "spots": 10630,
+        "files": 145,
+        "owner_functions": 958,
+        "unassigned_spots": 72
+      },
+      "marked-warning": {
+        "spots": 38,
+        "files": 13,
+        "owner_functions": 14,
+        "unassigned_spots": 1
+      },
+      "optimization-pragma-review": {
+        "spots": 937,
+        "files": 273,
+        "owner_functions": 695,
+        "unassigned_spots": 28
+      },
+      "single-field-value-carrier-review": {
+        "spots": 267,
+        "files": 96,
+        "owner_functions": 176,
+        "unassigned_spots": 6
+      },
+      "synthetic-function-review": {
+        "spots": 4,
+        "files": 4,
+        "owner_functions": 4,
+        "unassigned_spots": 0
+      },
+      "tagged-register-staging": {
+        "spots": 44,
+        "files": 8,
+        "owner_functions": 10,
+        "unassigned_spots": 0
+      },
+      "volatile-token-review": {
+        "spots": 15470,
+        "files": 389,
+        "owner_functions": 1235,
+        "unassigned_spots": 171
+      }
+    },
+    "known_scaffolding_owner_function_union": 972
+  },
+  "validation": {
+    "commands": [
+      ".venv/bin/python configure.py",
+      "ninja -j 2 build/GFZE01/ok",
+      "build/tools/dtk shasum -q -c config/GFZE01/build.sha1",
+      ".venv/bin/python tools/fzgx.py lint"
+    ],
+    "returns": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "linked_hashes": 16,
+    "independent_hashes": 16,
+    "lint_findings": 0,
+    "local_log_sha256": "728f8549200b78f3993f00dab741a65e1bf9fa42109a2229b57eab3e8facbef7"
+  },
+  "limits": "Only fields used by the six functions are named; words 0x30..0x38 keep observed roles. The data unit keeps its raw-word definition and own header. Removing carriers does not certify these functions device-free."
+}

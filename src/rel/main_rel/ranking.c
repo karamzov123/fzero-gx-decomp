@@ -38,7 +38,7 @@ extern void fn_1_1569E8(void *entry);
 extern void fn_1_12EF80(s16 value, s16 *out_0, s16 *out_1);
 extern s32 fn_1_156218(u32 arg, void *out0, void *out1, void *out2);
 extern u32 lbl_1_bss_8F3FC[9];
-extern void fn_1_159804(int index, Obj_1_data_4C810 *entry);
+extern s16 fn_1_159804(s16 value, RankingArchive *entry);
 extern void fn_1_4811C(s16 value);
 extern void fn_1_48004(s16 value, u32 arg);
 extern u32 lbl_1_rodata_DAF8[16];
@@ -2135,7 +2135,7 @@ extern void fn_1_1569E8(void *entry);
 extern void fn_1_12EF80(s16 value, s16 *out_0, s16 *out_1);
 extern s32 fn_1_156218(u32 arg, void *out0, void *out1, void *out2);
 extern u32 lbl_1_bss_8F3FC[9];
-extern void fn_1_159804(int index, Obj_1_data_4C810 *entry);
+extern s16 fn_1_159804(s16 value, RankingArchive *entry);
 extern void fn_1_4811C(s16 value);
 extern void fn_1_48004(s16 value, u32 arg);
 extern u32 lbl_1_rodata_DAF8[16];
@@ -2324,7 +2324,7 @@ extern void fn_1_1569E8(void *entry);
 extern void fn_1_12EF80(s16 value, s16 *out_0, s16 *out_1);
 extern s32 fn_1_156218(u32 arg, void *out0, void *out1, void *out2);
 extern u32 lbl_1_bss_8F3FC[9];
-extern void fn_1_159804(int index, Obj_1_data_4C810 *entry);
+extern s16 fn_1_159804(s16 value, RankingArchive *entry);
 extern void fn_1_4811C(s16 value);
 extern void fn_1_48004(s16 value, u32 arg);
 extern u32 lbl_1_rodata_DAF8[16];
@@ -2576,7 +2576,7 @@ extern void fn_1_1569E8(void *entry);
 extern void fn_1_12EF80(s16 value, s16 *out_0, s16 *out_1);
 extern s32 fn_1_156218(u32 arg, void *out0, void *out1, void *out2);
 extern u32 lbl_1_bss_8F3FC[9];
-extern void fn_1_159804(int index, Obj_1_data_4C810 *entry);
+extern s16 fn_1_159804(s16 value, RankingArchive *entry);
 extern void fn_1_4811C(s16 value);
 extern void fn_1_48004(s16 value, u32 arg);
 extern u32 lbl_1_rodata_DAF8[16];
@@ -3006,98 +3006,72 @@ s8 fn_1_15906C(u32 arg0, struct RankingEffectObject *arg1, f32 arg2) {
 /* fzgx:end fn_1_15906C */
 
 /* fzgx:begin fn_1_159440 */
-typedef struct {
-    u8 pad_0[0x30];
-    u32 unk_30;
-    u32 unk_34;
-    u8 pad_38[0x4];
-} fn_1_159440_RankingEntry;
-
 // Preserve the current ranking entry before refreshing its state.
 void fn_1_159440(int index, int flag) {
-    fn_1_159440_RankingEntry *entry;
+    RankingArchive *entry;
 
-    entry = &((fn_1_159440_RankingEntry *)&lbl_1_data_4C810)[index];
+    entry = &lbl_1_data_4C810[index];
     entry->unk_34 = entry->unk_30;
     fn_1_1594AC(index, flag);
 }
 /* fzgx:end fn_1_159440 */
 
 /* fzgx:begin fn_1_159478 */
-typedef struct {
-    u8 pad[0x34];
-    u32 unk_34;
-    u8 tail[4];
-} Entry159478;
-
 void fn_1_159478(int index, int unused, int value) {
-    ((Entry159478 *)&lbl_1_data_4C810)[index].unk_34 = value;
+    RankingArchive *entry;
+
+    entry = &lbl_1_data_4C810[index];
+    entry->unk_34 = value;
     fn_1_1594AC(index, unused);
 }
 /* fzgx:end fn_1_159478 */
 
 /* fzgx:begin fn_1_1594AC */
 void fn_1_1594AC(int index, int flag) {
-    Obj_1_data_4C810 *entry;
+    RankingArchive *entry;
     s16 value;
-    int offset;
+    int i;
 
     // Activate the selected ranking entry and publish its referenced indices.
-    entry = (Obj_1_data_4C810 *)((u8 *)&lbl_1_data_4C810 + index * 0x3c);
-    if (entry->unk_2C >= 0x10) {
+    entry = &lbl_1_data_4C810[index];
+    if (entry->limit >= 0x10) {
         OSReport((const char *)lbl_1_data_4C900);
     }
 
     if (flag != 0) {
-        fn_1_465D0((void *)entry->unk_0, 6);
+        fn_1_465D0(entry->path, 6);
     } else {
-        fn_1_465D0((void *)entry->unk_0, 5);
+        fn_1_465D0(entry->path, 5);
     }
 
-    offset = 0;
-    for (;;) {
-        value = *(s16 *)((u8 *)entry->unk_4 + offset);
+    for (i = 0;; i++) {
+        value = entry->ids[i];
         if (value == -1) {
             break;
         }
         ((int *)lbl_1_bss_8F588)[value] = index;
-        offset += 2;
     }
 
-    fn_80008BEC((u8 *)entry + 8, 0, 0x20);
-    entry->unk_28 = 1;
-    entry->unk_2A = 0;
+    fn_80008BEC(entry->queue, 0, sizeof(entry->queue));
+    entry->head = 1;
+    entry->tail = 0;
     entry->unk_38 = flag;
 }
 /* fzgx:end fn_1_1594AC */
 
 /* fzgx:begin fn_1_159588 */
-typedef struct {
-    u8 pad_0[8];
-    s16 values[16];
-    s16 start;
-    s16 end;
-    u8 limit;
-    u8 pad_2d[3];
-    u32 unk_30;
-    u32 value;
-} RankEntryView;
-
 int fn_1_159588(int arg) {
     s16 index;
     s16 count;
     int value;
-    Obj_1_data_4C810 *entry;
-    RankEntryView *view;
+    RankingArchive *entry;
     s32 *table;
 
     index = (s16)((arg >> 8) & 0xffff);
     if (((s32 *)lbl_1_bss_8F588)[index] != 0) {
-        entry = (Obj_1_data_4C810 *)((u8 *)&lbl_1_data_4C810 +
-            ((s32 *)lbl_1_bss_8F588)[index] * 0x3c);
-        view = (RankEntryView *)entry;
-        count = view->start;
-        count = view->end - count + 1;
+        entry = &lbl_1_data_4C810[((s32 *)lbl_1_bss_8F588)[index]];
+        count = entry->head;
+        count = entry->tail - count + 1;
         if (count < 0) {
             count = count + 0x10;
         }
@@ -3106,16 +3080,16 @@ int fn_1_159588(int arg) {
         if (table[index * 10] != 0) {
             fn_1_159804(index, entry);
         } else {
-            if (count >= view->limit) {
-                fn_1_4811C(view->values[view->start]);
-                value = view->start + 1;
-                view->start = value > 0xf ? 0 : (value < 0 ? 0xf : value);
+            if (count >= entry->limit) {
+                fn_1_4811C(entry->queue[entry->head]);
+                value = entry->head + 1;
+                entry->head = value > 0xf ? 0 : (value < 0 ? 0xf : value);
             }
 
-            value = view->end + 1;
-            view->end = value > 0xf ? 0 : (value < 0 ? 0xf : value);
-            view->values[view->end] = index;
-            fn_1_48004(view->values[view->end], view->value);
+            value = entry->tail + 1;
+            entry->tail = value > 0xf ? 0 : (value < 0 ? 0xf : value);
+            entry->queue[entry->tail] = index;
+            fn_1_48004(entry->queue[entry->tail], entry->unk_34);
         }
     } else {
         return 0;
@@ -3126,19 +3100,8 @@ int fn_1_159588(int arg) {
 
 /* fzgx:begin fn_1_1596DC noprologue */
 #include "types.h"
+#include "rel/main_rel/ranking_archive.h"
 
-typedef struct {
-    u32 unk_0;
-    u32 unk_4;
-    s16 unk_8[16];
-    s16 unk_28;
-    s16 unk_2a;
-    u8 unk_2c;
-    u8 pad_2d[0xb];
-    s32 unk_38;
-} RankingEntry;
-
-extern RankingEntry lbl_1_data_4C810[4];
 extern u8 lbl_1_data_FCD4[];
 extern int lbl_801A66B4;
 extern int lbl_1_bss_8F588[];
@@ -3147,36 +3110,33 @@ extern void fn_1_4811C(s16 value);
 extern s8 fn_1_46DC4(void *object);
 
 void fn_1_1596DC(int index) {
-    struct { int value; } offset;
-    RankingEntry *entry;
+    RankingArchive *entry;
     int i;
     int count;
 
     entry = &lbl_1_data_4C810[index];
     i = 0;
-    while (entry->unk_2a + 1 != entry->unk_28 &&
-           (entry->unk_2a != 0xf || entry->unk_28 != 0)) {
-        fn_1_4811C(entry->unk_8[entry->unk_28]);
-        entry->unk_28 = entry->unk_28 + 1 > 0xf ? 0
-                      : (entry->unk_28 + 1 < 0 ? 0xf : entry->unk_28 + 1);
+    while (entry->tail + 1 != entry->head &&
+           (entry->tail != 0xf || entry->head != 0)) {
+        fn_1_4811C(entry->queue[entry->head]);
+        entry->head = entry->head + 1 > 0xf ? 0
+                      : (entry->head + 1 < 0 ? 0xf : entry->head + 1);
         if (++i > 0x10) {
             break;
         }
     }
 
     if (entry->unk_38 != 0) {
-        offset.value = 0;
         count = 0;
-        for (;;) {
-            if (*(s16 *)((u8 *)entry->unk_4 + offset.value) == -1) {
+        for (i = 0;; i++) {
+            if (entry->ids[i] == -1) {
                 break;
             }
             if (fn_1_46DC4(*(void **)(lbl_1_data_FCD4 +
-                                      *(s16 *)((u8 *)entry->unk_4 + offset.value) * 0x28 +
+                                      entry->ids[i] * 0x28 +
                                       lbl_801A66B4 * 4 + 4)) != 0) {
-                lbl_1_bss_8F588[*(s16 *)((u8 *)entry->unk_4 + offset.value)] = count;
+                lbl_1_bss_8F588[entry->ids[i]] = count;
             }
-            offset.value += 2;
         }
     }
 }
@@ -3184,34 +3144,24 @@ void fn_1_1596DC(int index) {
 
 /* fzgx:begin fn_1_159804 noprologue */
 #include "types.h"
+#include "rel/main_rel/ranking_archive.h"
 
-typedef struct {
-    u32 unk_0;
-    u32 unk_4;
-    s16 unk_8[16];
-    s16 unk_28;
-    s16 unk_2a;
-    u8 unk_2c;
-    u8 pad_2d[0xb];
-    s32 unk_38;
-} RankingEntry;
-
-s16 fn_1_159804(s16 value, RankingEntry *entry) {
-    s16 start = entry->unk_28;
+s16 fn_1_159804(s16 value, RankingArchive *entry) {
+    s16 start = entry->head;
     int count = 0;
     int found = 0;
     int next;
     s16 pos;
 
-    while (entry->unk_2a + 1 != start && (entry->unk_2a != 15 || start != 0)) {
+    while (entry->tail + 1 != start && (entry->tail != 15 || start != 0)) {
         next = start + 1;
         pos = next > 15 ? 0 : (next < 0 ? 15 : next);
 
-        if (value == entry->unk_8[start]) {
+        if (value == entry->queue[start]) {
             found = 1;
         }
         if (found) {
-            entry->unk_8[start] = entry->unk_8[pos];
+            entry->queue[start] = entry->queue[pos];
         }
         start = pos;
 
@@ -3222,7 +3172,7 @@ s16 fn_1_159804(s16 value, RankingEntry *entry) {
         }
     }
 
-    entry->unk_8[entry->unk_2a] = value;
+    entry->queue[entry->tail] = value;
     return start;
 }
 /* fzgx:end fn_1_159804 */
@@ -3328,7 +3278,7 @@ extern void fn_1_1569E8(void *entry);
 extern void fn_1_12EF80(s16 value, s16 *out_0, s16 *out_1);
 extern s32 fn_1_156218(u32 arg, void *out0, void *out1, void *out2);
 extern u32 lbl_1_bss_8F3FC[9];
-extern void fn_1_159804(int index, Obj_1_data_4C810 *entry);
+extern s16 fn_1_159804(s16 value, RankingArchive *entry);
 extern void fn_1_4811C(s16 value);
 extern void fn_1_48004(s16 value, u32 arg);
 extern u32 lbl_1_rodata_DAF8[16];
@@ -3528,7 +3478,7 @@ extern void fn_1_1569E8(void *entry);
 extern void fn_1_12EF80(s16 value, s16 *out_0, s16 *out_1);
 extern s32 fn_1_156218(u32 arg, void *out0, void *out1, void *out2);
 extern u32 lbl_1_bss_8F3FC[9];
-extern void fn_1_159804(int index, Obj_1_data_4C810 *entry);
+extern s16 fn_1_159804(s16 value, RankingArchive *entry);
 extern void fn_1_4811C(s16 value);
 extern void fn_1_48004(s16 value, u32 arg);
 extern u32 lbl_1_rodata_DAF8[16];
