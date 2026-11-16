@@ -7,7 +7,6 @@ struct fn_80064230_T {
 
 extern struct fn_80064230_T *lbl_801A6C80;
 
-static inline u8 * fn_80064230_read_pointer(struct fn_80064230_T * owner) { return owner->data; }
 void fn_80064230(u32 id, u32 sel) {
     u8 *p;
     u32 k;
@@ -41,7 +40,7 @@ void fn_80064230(u32 id, u32 sel) {
                         *(s16 *)(lbl_801A6C80->data + (k << 1) + 0x5A34) =
                             *(s16 *)(lbl_801A6C80->data + (k << 1) + 0x5AB4);
                     } else if (((0xA040) == ((u16)id))) {
-                        *(s16 *)(fn_80064230_read_pointer(lbl_801A6C80) + (k << 1) + 0x5A54) =
+                        *(s16 *)((lbl_801A6C80->data) + (k << 1) + 0x5A54) =
                             *(s16 *)(lbl_801A6C80->data + (k << 1) + 0x5AD4);
                     }
                     break;

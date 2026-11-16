@@ -44,7 +44,6 @@ typedef struct MovieObject {
     MovieVTable *vtable;
 } MovieObject;
 
-static inline void * fn_12_34390_read_pointer(MovieModule * owner) { return owner->movies; }
 void fn_12_34390(MovieModule *module, void *arg1, void *arg2) {
     void * fzgx_live_;
     MovieVTable * fzgx_live;
@@ -63,7 +62,7 @@ void fn_12_34390(MovieModule *module, void *arg1, void *arg2) {
         return;
     }
 
-    fn_80056CD0(fn_12_34390_read_pointer(module));
+    fn_80056CD0((module->movies));
 
     if (!fn_12_3A36C(module)) {
         MWSFSVM_Error(((char *)fzgx_pool_strings_lbl_12_rodata_12E0_E0));

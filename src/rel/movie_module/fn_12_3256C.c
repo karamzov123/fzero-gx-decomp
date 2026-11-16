@@ -7,7 +7,6 @@ typedef struct MovieContext {
     int kind;
 } MovieContext;
 
-static inline u8 fn_12_3256C_array_read(u8 *array, s32 index) { return array[index]; }
 int fn_12_3256C(MovieContext *self, u32 *result) {
     int kind_ok;
     int kind;
@@ -46,7 +45,7 @@ default: {
         return 0;
     }
 
-    *result = fn_12_3256C_array_read(movie, 0xb1);
+    *result = ((movie)[0xb1]);
     return 1;
 }
 

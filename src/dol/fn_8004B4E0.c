@@ -77,11 +77,10 @@ static inline AdxStm *adxstm_CreateIn(StmSource *src, s32 start, s32 count) {
     return stm;
 }
 
-static inline s32 fn_8004B4E0_array_read(s32 index, s32 *array) { return array[index]; }
 AdxStm *fn_8004B4E0(StmSource *src, s32 kind) {
     s32 *config = lbl_8012B900;
     if (kind < 0x100) {
-        return adxstm_CreateIn(src, fn_8004B4E0_array_read(0, lbl_8017D6F8), config[0]);
+        return adxstm_CreateIn(src, ((lbl_8017D6F8)[0]), config[0]);
     }
     return adxstm_CreateIn(src, config[1], config[2]);
 }

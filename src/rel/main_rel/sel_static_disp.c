@@ -8605,7 +8605,6 @@ extern u16 fn_1_486C4(u32);
 extern void fn_1_51678(FontDrawPacket *, u32, s16, s16, s16, s16);
 extern int fn_1_4F734(FontDrawPacket *);
 
-static inline u32 fn_1_1418EC_array_read(u32 *array, s32 index) { return array[index]; }
 #pragma opt_loop_invariants off
 void fn_1_1418EC(u32 arg0, u32 arg1) {
 	struct S16 wid;
@@ -8623,9 +8622,9 @@ void fn_1_1418EC(u32 arg0, u32 arg1) {
 	wid.c = lbl_1_rodata_922C.c;
 	wid.d = lbl_1_rodata_922C.d;
 
-	ln[0] = fn_1_1418EC_array_read(lbl_1_rodata_923C, 0);
-	ln[1] = fn_1_1418EC_array_read(lbl_1_rodata_923C, 1);
-	ln[2] = fn_1_1418EC_array_read(lbl_1_rodata_923C, 2);
+	ln[0] = ((lbl_1_rodata_923C)[0]);
+	ln[1] = ((lbl_1_rodata_923C)[1]);
+	ln[2] = ((lbl_1_rodata_923C)[2]);
 
 	for (i = 0; i < 7; i++) {
 		pkt = lbl_1_rodata_26F8;
@@ -19346,8 +19345,6 @@ u32 fn_1_14D6D8(s16 index) {
 /* fzgx:begin fn_1_14D728 */
 typedef struct { u32 values[75]; } InitTable;
 
-static inline u32 fn_1_14D728_array_read(u32 *array, s32 index) { return array[index]; }
-static inline u8 fn_1_14D728_array_read_(u8 *array, s32 index) { return array[index]; }
 void fn_1_14D728(Source *source, Display *displays) {
     char * data = (((char *)&lbl_1_data_43E78));
     InitTable table;
@@ -19367,25 +19364,25 @@ void fn_1_14D728(Source *source, Display *displays) {
         if (index != -1) {
             s16 slot;
             s16 pos;
-            for (pos = 0; pos < strlen((char *)fn_1_14D728_array_read(table.values, index)); pos++) {
-                u8 *p = (u8 *)fn_1_14D728_array_read(table.values, index);
-                u8 c = fn_1_14D728_array_read_(p, pos);
-                p[pos] = (c == -1) ? -1 : fn_1_14D728_array_read_((((u8 *)&lbl_8015B200)), c);
+            for (pos = 0; pos < strlen((char *)((table.values)[index])); pos++) {
+                u8 *p = (u8 *)((table.values)[index]);
+                u8 c = ((p)[pos]);
+                p[pos] = (c == -1) ? -1 : (((((u8 *)&lbl_8015B200)))[c]);
             }
             for (slot = 0; slot < 4; slot++) {
                 if (current.value->handle[slot] == 0 && (base->flags & (1 << slot)) != 0) {
                     char buffer[0x20];
                     if (slot == 0)
-                        sprintf(buffer, data + 0x1338, fn_1_14D728_array_read(table.values, index), slot);
+                        sprintf(buffer, data + 0x1338, ((table.values)[index]), slot);
                     else
-                        sprintf(buffer, data + 0x1348, fn_1_14D728_array_read(table.values, index), slot + 1);
+                        sprintf(buffer, data + 0x1348, ((table.values)[index]), slot + 1);
                     current.value->handle[slot] = fn_1_12ADA0(buffer, current.value->object);
                     fn_1_8019C(((slot)[current.value->handle]));
                 }
             }
             {
                 char buffer[0x20];
-                sprintf(buffer, data + 0x135c, fn_1_14D728_array_read(table.values, index));
+                sprintf(buffer, data + 0x135c, ((table.values)[index]));
                 fn_1_12A7C4(buffer, (char *)current.value + 0x20, 0x320);
             }
         }

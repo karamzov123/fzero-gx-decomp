@@ -8922,7 +8922,6 @@ extern size_t strlen(const char *);
 extern s32 fn_8006FC5C(const char *, const char *, size_t);
 extern s32 fn_8006FC1C(const char *, const char *);
 
-static inline NameLink * fn_1_9D0EC_read_pointer(NameEntry * owner) { return owner->link; }
 void fn_1_9D0EC(NameEntry *arg0, s32 arg1, NameRule *arg2, s32 (*arg3)(s32, NameEntry *)) {
     s32 len;
     s32 (*cb)(s32, NameEntry *) = arg3;
@@ -8935,7 +8934,7 @@ void fn_1_9D0EC(NameEntry *arg0, s32 arg1, NameRule *arg2, s32 (*arg3)(s32, Name
 
     result = 1;
     while (count > 0) {
-        name = fn_1_9D0EC_read_pointer(arg0)->holder->name;
+        name = (arg0->link)->holder->name;
         len = strlen(name);
         r = rules;
         i = 0;

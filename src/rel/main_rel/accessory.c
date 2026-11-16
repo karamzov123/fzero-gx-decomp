@@ -1994,7 +1994,6 @@ typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
 #define F(o) (*(const f32 *)(pool+(o)))
 #define D(o) (*(const f64 *)(pool+(o)))
 #define INDEX(i) (((u32 *)lbl_1_data_3FFBC)[i])
-static inline f32 fn_1_10AD18_read_pointer(Link * owner) { return owner->length; }
 extern u8 lbl_1_bss_88B50[0xC00];
 static inline void fzgx_copy_pos(Work *arg0) {
  Node *cn;
@@ -2080,9 +2079,9 @@ void fn_1_10AD18(Work *arg0) {
  z=a->pos.z-b->pos.z;
  delta.x=x; delta.y=y; delta.z=z;
  len=(f32)(x*x)+y*y+z*z;
- if(len-F(0x9c)>fn_1_10AD18_read_pointer(l)) {
+ if(len-F(0x9c)>(l->length)) {
  inv=lbl_8006D118(len,&len);
- r=lbl_8006D0B4(fn_1_10AD18_read_pointer(l));
+ r=lbl_8006D0B4((l->length));
  s=inv*(len-r);
  len=s;
  cx=delta.x*s; cy=delta.y*s; cz=delta.z*s;
@@ -3110,7 +3109,6 @@ typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
 #define F(o) (*(const f32 *)(pool+(o)))
 #define D(o) (*(const f64 *)(pool+(o)))
 #define INDEX(i) (((u32 *)lbl_1_data_3FFBC)[i])
-static inline f32 fn_1_10BE3C_read_pointer(Link * owner) { return owner->length; }
 extern u8 lbl_1_bss_88B50[0xC00];
 void fn_1_10BE3C(Work *arg0) {
  const u8 *pool=lbl_1_rodata_7AB8;
@@ -3190,9 +3188,9 @@ void fn_1_10BE3C(Work *arg0) {
  z=a->pos.z-b->pos.z;
  delta.x=x; delta.y=y; delta.z=z;
  len=(f32)(x*x)+y*y+z*z;
- if(len-F(0x9c)>fn_1_10BE3C_read_pointer(l)) {
+ if(len-F(0x9c)>(l->length)) {
  inv=lbl_8006D118(len,&len);
- r=lbl_8006D0B4(fn_1_10BE3C_read_pointer(l));
+ r=lbl_8006D0B4((l->length));
  s=inv*(len-r);
  len=s;
  cx=delta.x*s; cy=delta.y*s; cz=delta.z*s;
@@ -4553,7 +4551,6 @@ typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
 #define F(o) (*(const f32 *)(pool+(o)))
 #define D(o) (*(const f64 *)(pool+(o)))
 #define INDEX(i) (((u32 *)lbl_1_data_3FFBC)[i])
-static inline f32 fn_1_10D7D4_read_pointer(Link * owner) { return owner->length; }
 #pragma opt_common_subs off
 void fn_1_10D7D4(Work *arg0) {
  const u8 *pool=lbl_1_rodata_7AB8;
@@ -4628,9 +4625,9 @@ void fn_1_10D7D4(Work *arg0) {
  z=a->pos.z-b->pos.z;
  delta.x=x; delta.y=y; delta.z=z;
  len=(f32)(x*x)+y*y+z*z;
- if(len-F(0x9c)>fn_1_10D7D4_read_pointer(l)) {
+ if(len-F(0x9c)>(l->length)) {
  inv=lbl_8006D118(len,&len);
- r=lbl_8006D0B4(fn_1_10D7D4_read_pointer(l));
+ r=lbl_8006D0B4((l->length));
  s=inv*(len-r);
  len=s;
  cx=delta.x*s; cy=delta.y*s; cz=delta.z*s;
@@ -9966,7 +9963,6 @@ typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
 #define F(o) (*(const f32 *)(pool+(o)))
 #define D(o) (*(const f64 *)(pool+(o)))
 #define INDEX(i) (((u32 *)lbl_1_data_3FFBC)[i])
-static inline f32 fn_1_1132E4_read_pointer(Link * owner) { return owner->length; }
 #pragma opt_common_subs off
 void fn_1_1132E4(Work *arg0) {
  const u8 *pool=lbl_1_rodata_7AB8;
@@ -10037,9 +10033,9 @@ void fn_1_1132E4(Work *arg0) {
  z=a->pos.z-b->pos.z;
  delta.x=x; delta.y=y; delta.z=z;
  len=(f32)(x*x)+y*y+z*z;
- if(len-F(0x9c)>fn_1_1132E4_read_pointer(l)) {
+ if(len-F(0x9c)>(l->length)) {
  inv=lbl_8006D118(len,&len);
- r=lbl_8006D0B4(fn_1_1132E4_read_pointer(l));
+ r=lbl_8006D0B4((l->length));
  s=inv*(len-r);
  len=s;
  cx=delta.x*s; cy=delta.y*s; cz=delta.z*s;
@@ -16773,7 +16769,6 @@ typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
 #define F(o) (*(const f32 *)(pool+(o)))
 #define D(o) (*(const f64 *)(pool+(o)))
 #define INDEX(i) (((u32 *)lbl_1_data_3FFBC)[i])
-static inline f32 fn_1_11B958_read_pointer(Link * owner) { return owner->length; }
 extern u8 lbl_1_bss_88B50[0xC00];
 #pragma opt_common_subs off
 void fn_1_11B958(Work *arg0) {
@@ -16859,9 +16854,9 @@ void fn_1_11B958(Work *arg0) {
  z=a->pos.z-b->pos.z;
  delta.x=x; delta.y=y; delta.z=z;
  len=(f32)(x*x)+y*y+z*z;
- if(len-F(0x9c)>fn_1_11B958_read_pointer(l)) {
+ if(len-F(0x9c)>(l->length)) {
  inv=lbl_8006D118(len,&len);
- r=lbl_8006D0B4(fn_1_11B958_read_pointer(l));
+ r=lbl_8006D0B4((l->length));
  s=inv*(len-r);
  len=s;
  cx=delta.x*s; cy=delta.y*s; cz=delta.z*s;
@@ -17223,7 +17218,6 @@ typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
 #define F(o) (*(const f32 *)(pool+(o)))
 #define D(o) (*(const f64 *)(pool+(o)))
 #define INDEX(i) (((u32 *)lbl_1_data_3FFBC)[i])
-static inline f32 fn_1_11C440_read_pointer(Link * owner) { return owner->length; }
 extern u8 lbl_1_bss_88B50[0xC00];
 #pragma opt_common_subs off
 void fn_1_11C440(Work *arg0) {
@@ -17309,9 +17303,9 @@ void fn_1_11C440(Work *arg0) {
  z=a->pos.z-b->pos.z;
  delta.x=x; delta.y=y; delta.z=z;
  len=(f32)(x*x)+y*y+z*z;
- if(len-F(0x9c)>fn_1_11C440_read_pointer(l)) {
+ if(len-F(0x9c)>(l->length)) {
  inv=lbl_8006D118(len,&len);
- r=lbl_8006D0B4(fn_1_11C440_read_pointer(l));
+ r=lbl_8006D0B4((l->length));
  s=inv*(len-r);
  len=s;
  cx=delta.x*s; cy=delta.y*s; cz=delta.z*s;
@@ -21405,7 +21399,6 @@ typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
 #define F(o) (*(const f32 *)(pool+(o)))
 #define D(o) (*(const f64 *)(pool+(o)))
 #define INDEX(i) (((u32 *)lbl_1_data_3FFBC)[i])
-static inline f32 fn_1_124AD4_read_pointer(Link * owner) { return owner->length; }
 #pragma opt_common_subs off
 void fn_1_124AD4(Work *arg0) {
  const u8 *pool=lbl_1_rodata_7AB8;
@@ -21481,9 +21474,9 @@ void fn_1_124AD4(Work *arg0) {
  z=a->pos.z-b->pos.z;
  delta.x=x; delta.y=y; delta.z=z;
  len=(f32)(x*x)+y*y+z*z;
- if(len-F(0x9c)>fn_1_124AD4_read_pointer(l)) {
+ if(len-F(0x9c)>(l->length)) {
  inv=lbl_8006D118(len,&len);
- r=lbl_8006D0B4(fn_1_124AD4_read_pointer(l));
+ r=lbl_8006D0B4((l->length));
  s=inv*(len-r);
  len=s;
  cx=delta.x*s; cy=delta.y*s; cz=delta.z*s;
@@ -21829,7 +21822,6 @@ typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
 #define F(o) (*(const f32 *)(pool+(o)))
 #define D(o) (*(const f64 *)(pool+(o)))
 #define INDEX(i) (((u32 *)lbl_1_data_3FFBC)[i])
-static inline f32 fn_1_1256EC_read_pointer(Link * owner) { return owner->length; }
 #pragma opt_common_subs off
 void fn_1_1256EC(Work *arg0) {
  const u8 *pool=lbl_1_rodata_7AB8;
@@ -21905,9 +21897,9 @@ void fn_1_1256EC(Work *arg0) {
  z=a->pos.z-b->pos.z;
  delta.x=x; delta.y=y; delta.z=z;
  len=(f32)(x*x)+y*y+z*z;
- if(len-F(0x9c)>fn_1_1256EC_read_pointer(l)) {
+ if(len-F(0x9c)>(l->length)) {
  inv=lbl_8006D118(len,&len);
- r=lbl_8006D0B4(fn_1_1256EC_read_pointer(l));
+ r=lbl_8006D0B4((l->length));
  s=inv*(len-r);
  len=s;
  cx=delta.x*s; cy=delta.y*s; cz=delta.z*s;
@@ -22638,7 +22630,6 @@ typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
 #define F(o) (*(const f32 *)(pool+(o)))
 #define D(o) (*(const f64 *)(pool+(o)))
 #define INDEX(i) (((u32 *)lbl_1_data_3FFBC)[i])
-static inline f32 fn_1_126774_read_pointer(Link * owner) { return owner->length; }
 extern u8 lbl_1_bss_88B50[0xC00];
 #pragma opt_common_subs off
 void fn_1_126774(Work *arg0) {
@@ -22724,9 +22715,9 @@ void fn_1_126774(Work *arg0) {
  z=a->pos.z-b->pos.z;
  delta.x=x; delta.y=y; delta.z=z;
  len=(f32)(x*x)+y*y+z*z;
- if(len-F(0x9c)>fn_1_126774_read_pointer(l)) {
+ if(len-F(0x9c)>(l->length)) {
  inv=lbl_8006D118(len,&len);
- r=lbl_8006D0B4(fn_1_126774_read_pointer(l));
+ r=lbl_8006D0B4((l->length));
  s=inv*(len-r);
  len=s;
  cx=delta.x*s; cy=delta.y*s; cz=delta.z*s;
@@ -23061,7 +23052,6 @@ typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
 #define F(o) (*(const f32 *)(pool+(o)))
 #define D(o) (*(const f64 *)(pool+(o)))
 #define INDEX(i) (((u32 *)lbl_1_data_3FFBC)[i])
-static inline f32 fn_1_12744C_read_pointer(Link * owner) { return owner->length; }
 #define SPHERE(CX, CY, CZ, RADIUS, STRENGTH) { \
  Fn183D28Vec3 diff; \
  Fn183D28Vec3 center; \
@@ -23160,9 +23150,9 @@ void fn_1_12744C(Work *arg0) {
  z=a->pos.z-b->pos.z;
  delta.x=x; delta.y=y; delta.z=z;
  len=(f32)(x*x)+y*y+z*z;
- if(len-F(0x9c)>fn_1_12744C_read_pointer(l)) {
+ if(len-F(0x9c)>(l->length)) {
  inv=lbl_8006D118(len,&len);
- r=lbl_8006D0B4(fn_1_12744C_read_pointer(l));
+ r=lbl_8006D0B4((l->length));
  s=inv*(len-r);
  len=s;
  cx=delta.x*s; cy=delta.y*s; cz=delta.z*s;

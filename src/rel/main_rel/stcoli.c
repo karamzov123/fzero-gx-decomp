@@ -10316,7 +10316,6 @@ static inline void GXPosition3f32(f32 x, f32 y, f32 z) {
     GX_WRITE_F32(z);
 }
 
-static inline f32 fn_1_21F18_array_read(f32 *array, s32 index) { return array[index]; }
 #pragma opt_common_subs off
 void fn_1_21F18(StcoliDrawEntity *entity, f32 *scale, f32 time) {
     StcoliPool6C8 *pool;
@@ -10342,8 +10341,8 @@ void fn_1_21F18(StcoliDrawEntity *entity, f32 *scale, f32 time) {
         p->x = half * lbl_8006D188((s16)angle);
         p->y = c;
         p->z = zero;
-        p->x *= fn_1_21F18_array_read(scale, 0);
-        p->y *= fn_1_21F18_array_read(scale, 1);
+        p->x *= ((scale)[0]);
+        p->y *= ((scale)[1]);
         lbl_8006E1B0(p, p);
         p++;
     }
@@ -10380,8 +10379,8 @@ void fn_1_21F18(StcoliDrawEntity *entity, f32 *scale, f32 time) {
             v.z = z;
             v.x = x;
             v.y = y;
-            v.x = x * fn_1_21F18_array_read(scale, 0);
-            v.y = y * fn_1_21F18_array_read(scale, 1);
+            v.x = x * ((scale)[0]);
+            v.y = y * ((scale)[1]);
         }
         lbl_8006E1B0(&v, &pts[0]);
         v.x = -v.x;
@@ -20807,7 +20806,6 @@ struct CalcOut {
 };
 
 
-static inline f32 fn_1_2A500_read_pointer(Vec3 * owner) { return owner->x; }
 static inline f32 fn_1_2A500_read_y(Vec3 * owner) { return owner->y; }
 static inline f32 fn_1_2A500_read_z(Vec3 * owner) { return owner->z; }
 #pragma opt_common_subs off
@@ -20833,7 +20831,7 @@ s32 fn_1_2A500(void *self, Vec3 *out, Vec3 *pos, void *a, void *b, f32 *outF)
     if (found != 0) {
         f32 dz = fn_1_2A500_read_z(out);
         f32 dy = fn_1_2A500_read_y(out);
-        f32 dx = fn_1_2A500_read_pointer(out);
+        f32 dx = (out->x);
         f32 d;
 
         dz = dz - pos->z;
@@ -22713,7 +22711,6 @@ typedef struct Fn_1_2BBD0Arg {
 } Fn_1_2BBD0Arg;
 
 #pragma opt_common_subs off
-static inline f32 fn_1_2BBD0_read_pointer(Fn_1_2BBD0Vec * owner) { return owner->z; }
 #pragma opt_propagation off
 void fn_1_2BBD0(Fn_1_2BBD0 *self, Fn_1_2BBD0Arg *other, f32 threshold) {
     if (self->active == 0) {
@@ -22737,7 +22734,7 @@ void fn_1_2BBD0(Fn_1_2BBD0 *self, Fn_1_2BBD0Arg *other, f32 threshold) {
             *(volatile f32 *)(LC_BASE + 0x2C) = vc; /* Hardware access must remain ordered. */
             fn_8006E250(&other->field7c, &vec);
             lbl_8006D668(&vec);
-            if (fn_1_2BBD0_read_pointer(&vec) < (*((lbl_1_rodata_92C) + (0)))) {
+            if ((vec.z) < (*((lbl_1_rodata_92C) + (0)))) {
                 self->position = vec;
                 self->value4c1 = other->value04;
                 lbl_8006D668(&self->position);

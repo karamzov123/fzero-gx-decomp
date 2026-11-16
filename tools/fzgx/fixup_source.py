@@ -3836,6 +3836,85 @@ def native_operand_helpers(body, name):
             yield label + helper, text
 
 
+def native_access_helpers(body, name):
+    """Remove synthetic read_pointer and array_read accessor wrappers."""
+    from .sdkimport import masked
+    span = _function_body_span(body, name)
+    if not span:
+        return
+    code = masked(body)
+    calls = [dict(callee=callee, start=start, end=end, slots=slots)
+             for callee, start, end, slots in call_sites(body)]
+    rp_pat = re.compile(
+        r'(?m)^[ \t]*static\s+inline\s+([^\n{;]+?)\s+(\w*read_pointer\w*)\s*\('
+        r'\s*([^\n,;{}]+?)\s*(\w+)\s*\)\s*\{\s*return\s+\4((?:(?:->|\.)\w+)+)\s*;\s*\}[ \t]*\n?')
+    for defn in rp_pat.finditer(code):
+        ret, helper, param_ty, param, chain = defn.groups()
+        if 'volatile' in ret or 'volatile' in param_ty:
+            continue
+        sites = [s for s in calls if s['callee'] == helper
+                 and not defn.start() <= s['start'] < defn.end()]
+        if not sites or any(not span[1] <= s['start'] < s['end'] <= span[2]
+                            or len(s['slots']) != 1 for s in sites):
+            continue
+        if any(a['start'] < b['start'] < a['end'] for a in sites for b in sites):
+            continue
+        if len(re.findall(r'\b' + re.escape(helper) + r'\b', code)) != len(sites) + 1:
+            continue
+        edits = [(defn.start(), defn.end(), '')]
+        for site in sites:
+            arg = body[site['slots'][0][0]:site['slots'][0][1]].strip()
+            if arg.startswith('&') and chain.startswith('->') and re.fullmatch(r'&\s*[A-Za-z_]\w*', arg):
+                expr = f'({arg[1:].strip()}.{chain[2:]})'
+            elif re.fullmatch(r'[A-Za-z_]\w*', arg):
+                expr = f'({arg}{chain})'
+            else:
+                expr = f'(({arg}){chain})'
+            edits.append((site['start'], site['end'], expr))
+        text = body
+        for a, b, repl in sorted(edits, reverse=True):
+            text = text[:a] + repl + text[b:]
+        yield 'inline access helper ' + helper, text
+
+    ar_pat = re.compile(
+        r'(?m)^[ \t]*static\s+inline\s+([^\n{;]+?)\s+(\w*array_read\w*)\s*\('
+        r'\s*([^\n,;{}]+?)\s*(\w+)\s*(?:,\s*([^\n,;{}]+?)\s*(\w+)\s*)?\)'
+        r'\s*\{\s*return\s+(\w+)(?:\[(\w+)\])?\s*;\s*\}[ \t]*\n?')
+    for defn in ar_pat.finditer(code):
+        ret, helper, ty1, p1, ty2, p2, r_arr, r_idx = defn.groups()
+        if 'volatile' in (ret or '') or 'volatile' in (ty1 or '') or 'volatile' in (ty2 or ''):
+            continue
+        sites = [s for s in calls if s['callee'] == helper
+                 and not defn.start() <= s['start'] < defn.end()]
+        expected_arity = 2 if p2 else 1
+        if not sites or any(not span[1] <= s['start'] < s['end'] <= span[2]
+                            or len(s['slots']) != expected_arity for s in sites):
+            continue
+        if any(a['start'] < b['start'] < a['end'] for a in sites for b in sites):
+            continue
+        if len(re.findall(r'\b' + re.escape(helper) + r'\b', code)) != len(sites) + 1:
+            continue
+        edits = [(defn.start(), defn.end(), '')]
+        if expected_arity == 1:
+            if r_arr != p1 or r_idx is not None:
+                continue
+            for site in sites:
+                arg = body[site['slots'][0][0]:site['slots'][0][1]].strip()
+                edits.append((site['start'], site['end'], f'({arg})'))
+        else:
+            if {r_arr, r_idx} != {p1, p2}:
+                continue
+            for site in sites:
+                args = {p1: body[site['slots'][0][0]:site['slots'][0][1]].strip(),
+                        p2: body[site['slots'][1][0]:site['slots'][1][1]].strip()}
+                arr_expr, idx_expr = args[r_arr], args[r_idx]
+                edits.append((site['start'], site['end'], f'(({arr_expr})[{idx_expr}])'))
+        text = body
+        for a, b, repl in sorted(edits, reverse=True):
+            text = text[:a] + repl + text[b:]
+        yield 'inline access helper ' + helper, text
+
+
 def inline_helpers(body, name, helpers=None):
     """Do not emit unused out-of-line copies of reconstructed static helpers.
 

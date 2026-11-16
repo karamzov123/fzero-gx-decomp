@@ -1212,7 +1212,6 @@ static inline void col4(u8 a, u8 b, u8 c, u8 d) {
     GXWGFifo.u8 = d;
 }
 
-static inline f32 fn_1_57A70_read_pointer(V16 * owner) { return owner->x; }
 #pragma opt_loop_invariants off
 void fn_1_57A70(u32 n, V16 *v) {
     s32 i;
@@ -1225,7 +1224,7 @@ void fn_1_57A70(u32 n, V16 *v) {
         p = v;
         count = n;
         for (i = 0; i < count; i++) {
-            pos3(fn_1_57A70_read_pointer(p), p->y, p->z);
+            pos3((p->x), p->y, p->z);
             col4(p->a, p->b, p->c, p->d);
             p++;
         }

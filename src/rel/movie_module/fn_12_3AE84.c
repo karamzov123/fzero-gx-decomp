@@ -141,7 +141,6 @@ extern void fn_12_39A18(MwsPlayer *player);
 
 extern void mwSfdPause(MwsPlayer *player, int paused);
 
-static inline SfdHandle * fn_12_3AE84_read_pointer(MwsPlayer * owner) { return owner->sfd; }
 int fn_12_3AE84(MwsPlayer *player) {
     const char * fzgx_live;
     struct mwsfdsvr____rodata_0 *data = &lbl_12_rodata_2D28;
@@ -192,7 +191,7 @@ int fn_12_3AE84(MwsPlayer *player) {
                 if (player->paused == 0)
                     MWSST_Pause(sound, 0);
             }
-        } else if (fn_12_2DA6C(fn_12_3AE84_read_pointer(player)) == 3) {
+        } else if (fn_12_2DA6C((player->sfd)) == 3) {
             fn_12_39A18(player);
             if (player->paused == 0)
                 mwSfdPause(player, 0);

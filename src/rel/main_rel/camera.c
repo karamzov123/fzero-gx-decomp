@@ -755,7 +755,6 @@ static void fzgx_bss_layout(void) {
 }
 #pragma section code_type ".text"
 
-static inline u8 fn_1_6D2C_array_read(s32 index, u8 *array) { return array[index]; }
 #pragma opt_dead_assignments off
 u32 fn_1_6D2C(u32 index) {
     
@@ -785,7 +784,7 @@ case 9: case 10: {
 default: {
 
         row = (u8 *)fzgx_obj_game_camera_entries + index * 0x1FC;
-        return fn_1_6D2C_array_read(4, row);
+        return ((row)[4]);
     
 } break;
 }
@@ -2378,7 +2377,6 @@ static inline f32 fn_1_8D08_look_z(f32 distance) {
     value = value * distance + *(f32 *)(0xE0000000 + 0x2C);
     return value;
 }
-static inline f32 fn_1_8D08_read_pointer(fn_1_8D08_Camera * owner) { return owner->lerp; }
 static inline f32 (* fn_1_8D08_read_pointer_(fn_1_8D08_Camera * owner))[4] { return owner->mtx; }
 static inline f32 (* fn_1_8D08_read_pointer__(fn_1_8D08_Camera * owner))[4] { return owner->mtx; }
 #pragma opt_lifetimes off
@@ -2526,7 +2524,7 @@ void fn_1_8D08(fn_1_8D08_Camera *cam, f32 arg1) {
         {
             f64 angle = cam->angle;
             f32 delta;
-            f32 weight = fn_1_8D08_read_pointer(cam);
+            f32 weight = (cam->lerp);
             f32 step;
             f64 half;
             delta = out.flags2 - cam->angle;

@@ -1028,7 +1028,6 @@ static inline s32 fn_1_1324C4_inl(s32 a) {
     return 7;
 }
 
-static inline f32 fn_1_1324C4_read_pointer(const struct fn_1_1324C4_f32 * owner) { return owner->unk_0; }
 #pragma opt_common_subs off
 void fn_1_1324C4(void *arg0) {
     s32 v0;
@@ -1076,7 +1075,7 @@ void fn_1_1324C4(void *arg0) {
     lab_t1 = 385;
     fn_1_13EDDC(505, lab_t1, v2, v1, 0);
     fn_1_1363F0(v1, 0, 1);
-    fn_1_1368A0(v2, v1, 0, fn_1_1324C4_read_pointer(&lbl_1_rodata_8640), lbl_1_rodata_8644, lbl_1_rodata_8648.unk_0, lbl_1_rodata_863C, lbl_1_rodata_863C);
+    fn_1_1368A0(v2, v1, 0, (lbl_1_rodata_8640.unk_0), lbl_1_rodata_8644, lbl_1_rodata_8648.unk_0, lbl_1_rodata_863C, lbl_1_rodata_863C);
     fn_1_13750C(23, 66, v2, v1);
     fn_1_13A848(442, 276, 1, v2, 0, lbl_1_rodata_864C, lbl_1_rodata_8650);
     {

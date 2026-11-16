@@ -87,7 +87,6 @@ extern void VISetNextFrameBuffer(u32);
 extern void GXSetDispCopyGamma(u32);
 extern void fn_80035110(void *, Sig_fn_80035110_GXBool);
 
-static inline u8 * fn_80070774_read_pointer(struct fn_80070774_lbl_801A6CF4_T * owner) { return owner->unk_1A; }
 #pragma opt_common_subs off
 void fn_80070774(u32 arg0, u32 arg1, u32 arg2) {
     u32 t7;
@@ -143,7 +142,7 @@ void fn_80070774(u32 arg0, u32 arg1, u32 arg2) {
     fn_8007423C(0, 0, lbl_801A6CF4->unk_4, lbl_801A6CF4->unk_6);
     fn_800743C4(lbl_801A6CF4->unk_4, lbl_801A6CF4->unk_8);
     GXSetDispCopyYScale((f32)(u32)lbl_801A6CF4->unk_8 / (f32)(u32)lbl_801A6CF4->unk_6);
-    fn_80034ECC(lbl_801A6CF4->unk_19, fn_80070774_read_pointer(lbl_801A6CF4), 1, lbl_801A6CF4->unk_32);
+    fn_80034ECC(lbl_801A6CF4->unk_19, (lbl_801A6CF4->unk_1A), 1, lbl_801A6CF4->unk_32);
     if ((s32)arg2 != 0) {
         fn_80037C2C(Sig_fn_80037C2C_GX_PF_RGBA6_Z24, Sig_fn_80037C2C_GX_ZC_LINEAR);
         fn_80037D14(1);

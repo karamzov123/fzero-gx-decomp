@@ -53,7 +53,6 @@ static inline int decode_info_header(AdxHeader *header, int buffer_len, u32 *ver
     return result;
 }
 
-static inline u8 fn_8004683C_array_read(s32 index, u8 *array) { return array[index]; }
 int fn_8004683C(u8 *buffer, int buffer_len, int *ainf_len, u8 ainf[16],
                 s16 *default_out_volume, s16 default_pan[2]) {
     u32 version;
@@ -82,7 +81,7 @@ int fn_8004683C(u8 *buffer, int buffer_len, int *ainf_len, u8 ainf[16],
     ainf_offset = version == 4 ? 0x20 : 0x14;
     {
         u8 *q = (u8 *)(ainf_offset + (u32)base);
-        tag = ((u32)fn_8004683C_array_read(4, q) << 24) | ((u32)fn_8004683C_array_read(5, q) << 16) | ((u32)fn_8004683C_array_read(6, q) << 8) | (u32)fn_8004683C_array_read(7, q);
+        tag = ((u32)((q)[4]) << 24) | ((u32)((q)[5]) << 16) | ((u32)((q)[6]) << 8) | (u32)((q)[7]);
     }
     if (tag != 0x41494E46) {
         return -2;

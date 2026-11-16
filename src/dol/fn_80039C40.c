@@ -32,7 +32,6 @@ static inline s32 divUp(s32 a, s32 b) {
     return (a - 1) / b;
 }
 
-static inline Comp * fn_80039C40_read_pointer(Dec * owner) { return owner->comps; }
 s32 fn_80039C40(Dec *d) {
     u8 i;
     u32 b;
@@ -55,11 +54,11 @@ s32 fn_80039C40(Dec *d) {
         return 6;
     }
     for (i = 0; i < d->numComp; i++) {
-        fn_80039C40_read_pointer(d)[i].id = *d->ptr++;
+        (d->comps)[i].id = *d->ptr++;
         bb = *d->ptr++;
-        fn_80039C40_read_pointer(d)[i].h = bb >> 4;
-        fn_80039C40_read_pointer(d)[i].v = bb & 0xf;
-        fn_80039C40_read_pointer(d)[i].tq = *d->ptr++;
+        (d->comps)[i].h = bb >> 4;
+        (d->comps)[i].v = bb & 0xf;
+        (d->comps)[i].tq = *d->ptr++;
     }
     d->maxH = 1;
     d->maxV = 1;
@@ -75,12 +74,12 @@ s32 fn_80039C40(Dec *d) {
     {
     u8 fzgx_loop_i_1473;
 for (fzgx_loop_i_1473 = 0; fzgx_loop_i_1473 < d->numComp; fzgx_loop_i_1473++) {
-        lab_t0 = d->width * fn_80039C40_read_pointer(d)[fzgx_loop_i_1473].h;
+        lab_t0 = d->width * (d->comps)[fzgx_loop_i_1473].h;
         lab_t1_ = d->maxH;
-        fn_80039C40_read_pointer(d)[fzgx_loop_i_1473].w8 = divUp(lab_t0, lab_t1_);
-        lab_t0 = d->height * fn_80039C40_read_pointer(d)[fzgx_loop_i_1473].v;
+        (d->comps)[fzgx_loop_i_1473].w8 = divUp(lab_t0, lab_t1_);
+        lab_t0 = d->height * (d->comps)[fzgx_loop_i_1473].v;
         lab_t1_ = d->maxV;
-        fn_80039C40_read_pointer(d)[fzgx_loop_i_1473].hC = divUp(lab_t0, lab_t1_);
+        (d->comps)[fzgx_loop_i_1473].hC = divUp(lab_t0, lab_t1_);
     }
     i = fzgx_loop_i_1473;
 }

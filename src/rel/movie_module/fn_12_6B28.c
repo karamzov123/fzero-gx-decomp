@@ -74,13 +74,12 @@ static inline MovieEntry *fn_12_6B28_find(MovieModule *module) {
 }
 
 
-static inline u32 fn_12_6B28_array_read(u32 *array, s32 index) { return array[index]; }
 MovieEntry *fn_12_6B28(void) {
     s32 i;
     MovieModule *module;
     MovieEntry *entry;
 
-    module = (MovieModule *)fn_12_6B28_array_read(lbl_12_bss_4DB8, 0);
+    module = (MovieModule *)((lbl_12_bss_4DB8)[0]);
     entry = fn_12_6B28_find(module);
     if (NULL == entry) {
         return NULL;

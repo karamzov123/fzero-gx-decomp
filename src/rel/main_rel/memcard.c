@@ -18798,7 +18798,6 @@ typedef struct {
     u8 pad_18[0x10];
 } CalTime_1_B7CE4;
 
-static inline u8 fn_1_B7CE4_array_read(u8 *array, s32 index) { return array[index]; }
 
 typedef struct {
     u8 pad_0[0x750];
@@ -18821,7 +18820,7 @@ void fn_1_B7CE4(s32 arg0, char *arg1) {
         off = *(u32 *)&lbl_801A66B4 * 4;
         q = (QStruct *)(base + 0x5c84);
         sprintf(arg1, (const char *)(base + 0x7388),
-                *(u32 *)((u8 *)q + fn_1_B7CE4_array_read(tbl, 0x3f) * 0x18 + off), p,
+                *(u32 *)((u8 *)q + ((tbl)[0x3f]) * 0x18 + off), p,
                 q->lang[*(u32 *)&lbl_801A66B4]);
     } else {
         OSCalendarTime ct;
@@ -32141,7 +32140,6 @@ static inline u32 fn_1_hexnum2(u8 *s, u32 len) {
 	return v;
 }
 
-static inline void * fn_1_C17D0_read_pointer(MemCardFile * owner) { return owner->unk_2c; }
 #pragma opt_propagation off
 void fn_1_C17D0(void *arg0, MemCardFile *file, MemCardFile *prev, u32 unused3, u32 unused4, u32 unused5) {
 	u32 val;
@@ -32161,13 +32159,13 @@ void fn_1_C17D0(void *arg0, MemCardFile *file, MemCardFile *prev, u32 unused3, u
 		val = fn_1_hexnum2(file->unk_2, 8);
 	}
 
-	if (fn_1_C17D0_read_pointer(file) != 0) {
-		fn_1_46B4(*(void **)&lbl_801A6410, fn_1_C17D0_read_pointer(file), (const char *)&"memcard.c", 0x32E5);
+	if ((file->unk_2c) != 0) {
+		fn_1_46B4(*(void **)&lbl_801A6410, (file->unk_2c), (const char *)&"memcard.c", 0x32E5);
 		file->unk_2c = 0;
 	}
 	file->unk_2c = (void *)fn_1_4630(*(void **)&lbl_801A6410, val, &lbl_1_data_3C7B8, 0x32E8);
 	if (prev->unk_2c != 0) {
-		fn_80008BA8((u32)fn_1_C17D0_read_pointer(file), (u32)prev->unk_2c, val);
+		fn_80008BA8((u32)(file->unk_2c), (u32)prev->unk_2c, val);
 	}
 }
 #pragma opt_propagation reset

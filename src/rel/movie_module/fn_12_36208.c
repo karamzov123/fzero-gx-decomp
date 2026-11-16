@@ -45,7 +45,6 @@ extern AllocCtx *fn_12_38DBC(void);
 extern s32 fn_12_35548(MovieState *);
 
 static inline FnFree fn_12_36208_read_pointer(AllocCtx * owner) { return owner->free_fn; }
-static inline void * fn_12_36208_read_pointer_(AllocCtx * owner) { return owner->data; }
 #pragma opt_dead_assignments off
 s32 fn_12_36208(MovieModule *m) {
     FnAlloc fzgx_live_;
@@ -88,7 +87,7 @@ s32 fn_12_36208(MovieModule *m) {
         } else {
             ctx = fn_12_38DBC();
             fzgx_live_ = ctx->alloc;
-            ptr = fzgx_live_(fn_12_36208_read_pointer_(ctx), off);
+            ptr = fzgx_live_((ctx->data), off);
         }
         if (ptr != 0) {
             mm.value->arr[mm.value->count] = ptr;

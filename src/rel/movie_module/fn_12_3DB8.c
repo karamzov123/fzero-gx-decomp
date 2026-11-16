@@ -31,7 +31,6 @@ struct SFXZObject {
 
 void fn_12_3DB8(SFXZObject *object, u32 near_z, u32 far_z, u32 *table);
 
-static inline u8 fn_12_3DB8_array_read(s32 index, u8 *array) { return array[index]; }
 void fn_12_3DB8(SFXZObject *object, u32 near_z, u32 far_z, u32 *table) {
     s32 i;
     s32 j;
@@ -92,7 +91,7 @@ i = index_7;
 }
     { s32 index_8;
 for (index_8 = 0; index_8 <= 255; index_8++) {
-        table[index_8] = z_table[fn_12_3DB8_array_read(index_8, ccir_table)];
+        table[index_8] = z_table[((ccir_table)[index_8])];
     }
 i = index_8;
 }

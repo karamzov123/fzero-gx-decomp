@@ -4794,7 +4794,6 @@ extern u16 lbl_1_bss_25B80;
 extern u8 lbl_1_bss_26B18__fzgx_offset_5;
 
 #pragma optpointer_analysis off
-static inline const f32 fn_1_32600_array_read(const f32 *array, s32 index) { return array[index]; }
 
 typedef struct lbl_1_bss_3C30_t {
     u32 unk_0;
@@ -4844,7 +4843,7 @@ int fn_1_32600(FnObj_1_32600* obj) {
                 fn_1_15E260(lab_t0);
             }
             if (fzgx_obj_lbl_1_bss_3C30.unk_5 != 5) {
-                if ((obj->unk_0 & 0x00000200) || obj->unk_17c < fn_1_32600_array_read(rodata, 3)) {
+                if ((obj->unk_0 & 0x00000200) || obj->unk_17c < ((rodata)[3])) {
                     return 1;
                 }
             } else {
@@ -4857,12 +4856,12 @@ int fn_1_32600(FnObj_1_32600* obj) {
         fzgx_live = obj->unk_17c;
         fv = fzgx_live;
         if (lbl_1_bss_25B80 < 0x12c) {
-            lim = fn_1_32600_array_read(rodata, 3);
+            lim = ((rodata)[3]);
         } else if (lbl_1_bss_25B80 < 0x258) {
             lim = ((4)[rodata]);
         } else {
-            lim = fn_1_32600_array_read(rodata, 121);
-            fv = fn_1_32600_array_read(rodata, 1);
+            lim = ((rodata)[121]);
+            fv = ((rodata)[1]);
         }
         cond = (fv < lim);
         cond |= (obj->unk_214 != 0);
@@ -27592,7 +27591,6 @@ extern u32 fn_1_50A90(void *, s32, s32, s32, s32);
 extern void fn_1_49514(u32 *);
 extern void fn_1_49614(void);
 
-static inline f32 fn_1_408E8_read_pointer(struct fn_1_408E8_lbl_1_rodata_BD8 * owner) { return owner->unk_1BC; }
 static inline f32 fn_1_408E8_read_one(struct fn_1_408E8_lbl_1_rodata_BD8 * owner) { return owner->unk_C; }
 #pragma opt_common_subs off
 #pragma opt_propagation off
@@ -27619,12 +27617,12 @@ void fn_1_408E8(void *arg0, u32 arg1, u32 arg2, s32 arg3, s32 arg4, f32 arg5) {
     if ((*(u8 *)((u8 *)arg0 + 3) & 1) != 0) {
         v0 = *(f32 *)((u8 *)arg0 + 8);
         if (v0 < p_lbl_1_rodata_BD8->unk_340)
-            *(f32 *)((u8 *)arg0 + 8) = v0 + fn_1_408E8_read_pointer(p_lbl_1_rodata_BD8);
+            *(f32 *)((u8 *)arg0 + 8) = v0 + (p_lbl_1_rodata_BD8->unk_1BC);
         else
             *(f32 *)((u8 *)arg0 + 8) = p_lbl_1_rodata_BD8->unk_C;
     } else {
         v0_2 = *(f32 *)((u8 *)arg0 + 8);
-        v1 = fn_1_408E8_read_pointer(p_lbl_1_rodata_BD8);
+        v1 = (p_lbl_1_rodata_BD8->unk_1BC);
         if (v0_2 > v1)
             *(f32 *)((u8 *)arg0 + 8) = v0_2 - v1;
         else {

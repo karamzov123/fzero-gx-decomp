@@ -9887,7 +9887,6 @@ typedef struct {
     void *entry[4];
 } Fn1_55210_Object;
 
-static inline void * fn_1_55210_array_read(void * *array, s32 index) { return array[index]; }
 void fn_1_55210(void *value) {
     s32 offset;
     Fn1_55210_Object *obj;
@@ -9916,8 +9915,8 @@ void fn_1_55210(void *value) {
             for (i = 0, offset = 0; i < 4; i++, offset += 0x30) {
                 if ((__rlwnm(lbl_1_bss_6C7CC.unk_0, ((i + 1) & 31), 31, 31) != 0)) {
                     obj->entry[i] = fn_1_548AC(0x30);
-                    if (fn_1_55210_array_read(obj->entry, i) != 0) {
-                        lbl_8006DD14(((((((((u8 *)lbl_801A66CC))) + (((offset)))) + (((0xe0)))))), fn_1_55210_array_read(obj->entry, i));
+                    if (((obj->entry)[i]) != 0) {
+                        lbl_8006DD14(((((((((u8 *)lbl_801A66CC))) + (((offset)))) + (((0xe0)))))), ((obj->entry)[i]));
                     } else {
                         ok = 0;
                     }
@@ -9967,7 +9966,6 @@ typedef struct {
     void *entry[4];
 } Fn1_553C4_Object;
 
-static inline void * fn_1_553C4_array_read(void * *array, s32 index) { return array[index]; }
 void fn_1_553C4(void *value, void *arg) {
     s32 offset;
     Fn1_553C4_Object *obj;
@@ -9997,8 +9995,8 @@ void fn_1_553C4(void *value, void *arg) {
             for (i = 0, offset = 0; i < 4; i++, offset += 0x30) {
                 if ((__rlwnm(lbl_1_bss_6C7CC.unk_0, ((i + 1) & 31), 31, 31) != 0)) {
                     obj->entry[i] = fn_1_548AC(0x30);
-                    if (fn_1_553C4_array_read(obj->entry, i) != 0) {
-                        lbl_8006DD14(((((((((u8 *)lbl_801A66CC))) + (((offset)))) + (((0xe0)))))), fn_1_553C4_array_read(obj->entry, i));
+                    if (((obj->entry)[i]) != 0) {
+                        lbl_8006DD14(((((((((u8 *)lbl_801A66CC))) + (((offset)))) + (((0xe0)))))), ((obj->entry)[i]));
                     } else {
                         ok = 0;
                     }
@@ -10347,9 +10345,7 @@ typedef struct {
     void *unk_68;
 } Fn1_55C48Object;
 
-static inline void * fn_1_55C48_read_pointer(Fn1_55C48Object * owner) { return owner->unk_68; }
 
-static inline void * fn_1_55C48_read_pointer_(Fn1_55C48Object * owner) { return owner->unk_08; }
 void fn_1_55C48(Fn1_55C48Object *value) {
     Fn1_55C48Object * entry;
     s32 lab_t0__2;
@@ -10370,10 +10366,10 @@ void fn_1_55C48(Fn1_55C48Object *value) {
         entry = value;
         state = (Obj_1_bss_6C7CC *)&lbl_1_bss_6C7CC;
         for (i = 0; i < 4; i++) {
-            if (((0) != (fn_1_55C48_read_pointer(entry)))) {
+            if (((0) != ((entry->unk_68)))) {
                 lab_t0 = i;
                 lab_t0_ = lab_t0;
-                fn_800749B0(lab_t0_, fn_1_55C48_read_pointer(entry));
+                fn_800749B0(lab_t0_, (entry->unk_68));
             } else if ((__rlwnm(state->unk_0, ((u32)(i + 1) % 32), 31, 31) != 0)) {
                 lab_t0__2 = i;
                 fn_800749B0(lab_t0__2, 0);
@@ -10382,7 +10378,7 @@ void fn_1_55C48(Fn1_55C48Object *value) {
         }
     }
 
-    fn_80077F8C(fn_1_55C48_read_pointer_(value));
+    fn_80077F8C((value->unk_08));
     fn_1_56554();
 
     {
@@ -10398,7 +10394,7 @@ void fn_1_55C48(Fn1_55C48Object *value) {
             if ((__rlwnm(state->unk_0, ((u32)(j + 1) % 32), 31, 31) != 0)) {
                 lab_t0__2 = j;
                 fn_800749B0(lab_t0__2, (((0xe0) + ((u8 *)*table)) + (offset)));
-            } else if (fn_1_55C48_read_pointer(entry_2) != 0) {
+            } else if ((entry_2->unk_68) != 0) {
                 lab_t0__2 = j;
                 fn_800749B0(lab_t0__2, 0);
             }
@@ -10430,9 +10426,7 @@ typedef struct {
     void (*unk_80)(void *, u32, u32);
 } Fn1_55D6CObject;
 
-static inline void * fn_1_55D6C_read_pointer(Fn1_55D6CObject * owner) { return owner->unk_68; }
 
-static inline void * fn_1_55D6C_read_pointer_(Fn1_55D6CObject * owner) { return owner->unk_08; }
 void fn_1_55D6C(Fn1_55D6CObject *value) {
     Fn1_55D6CObject * entry;
     s32 lab_t0__2;
@@ -10453,10 +10447,10 @@ void fn_1_55D6C(Fn1_55D6CObject *value) {
         entry = value;
         state = (Obj_1_bss_6C7CC *)&lbl_1_bss_6C7CC;
         for (i = 0; i < 4; i++) {
-            if (((0) != (fn_1_55D6C_read_pointer(entry)))) {
+            if (((0) != ((entry->unk_68)))) {
                 lab_t0 = i;
                 lab_t0_ = lab_t0;
-                fn_800749B0(lab_t0_, fn_1_55D6C_read_pointer(entry));
+                fn_800749B0(lab_t0_, (entry->unk_68));
             } else if ((__rlwnm(state->unk_0, ((u32)(i + 1) % 32), 31, 31) != 0)) {
                 lab_t0__2 = i;
                 fn_800749B0(lab_t0__2, 0);
@@ -10465,7 +10459,7 @@ void fn_1_55D6C(Fn1_55D6CObject *value) {
         }
     }
 
-    value->unk_80(fn_1_55D6C_read_pointer_(value), value->unk_78, value->unk_7C);
+    value->unk_80((value->unk_08), value->unk_78, value->unk_7C);
     fn_1_56554();
 
     {
@@ -10481,7 +10475,7 @@ void fn_1_55D6C(Fn1_55D6CObject *value) {
             if ((__rlwnm(state->unk_0, ((u32)(j + 1) % 32), 31, 31) != 0)) {
                 lab_t0__2 = j;
                 fn_800749B0(lab_t0__2, (((0xe0) + ((u8 *)*table)) + (offset)));
-            } else if (fn_1_55D6C_read_pointer(entry_2) != 0) {
+            } else if ((entry_2->unk_68) != 0) {
                 lab_t0__2 = j;
                 fn_800749B0(lab_t0__2, 0);
             }
@@ -10510,9 +10504,7 @@ typedef struct {
     void *unk_68;
 } Fn1_55EA0Object;
 
-static inline void * fn_1_55EA0_read_pointer(Fn1_55EA0Object * owner) { return owner->unk_68; }
 
-static inline void * fn_1_55EA0_read_pointer_(Fn1_55EA0Object * owner) { return owner->unk_08; }
 void fn_1_55EA0(Fn1_55EA0Object *value) {
     Fn1_55EA0Object * entry;
     s32 lab_t0__2;
@@ -10533,10 +10525,10 @@ void fn_1_55EA0(Fn1_55EA0Object *value) {
         entry = value;
         state = (Obj_1_bss_6C7CC *)&lbl_1_bss_6C7CC;
         for (i = 0; i < 4; i++) {
-            if (((0) != (fn_1_55EA0_read_pointer(entry)))) {
+            if (((0) != ((entry->unk_68)))) {
                 lab_t0 = i;
                 lab_t0_ = lab_t0;
-                fn_800749B0(lab_t0_, fn_1_55EA0_read_pointer(entry));
+                fn_800749B0(lab_t0_, (entry->unk_68));
             } else if ((__rlwnm(state->unk_0, ((u32)(i + 1) % 32), 31, 31) != 0)) {
                 lab_t0__2 = i;
                 fn_800749B0(lab_t0__2, 0);
@@ -10545,7 +10537,7 @@ void fn_1_55EA0(Fn1_55EA0Object *value) {
         }
     }
 
-    fn_800781B8(fn_1_55EA0_read_pointer_(value));
+    fn_800781B8((value->unk_08));
     fn_1_56554();
 
     {
@@ -10561,7 +10553,7 @@ void fn_1_55EA0(Fn1_55EA0Object *value) {
             if ((__rlwnm(state->unk_0, ((u32)(j + 1) % 32), 31, 31) != 0)) {
                 lab_t0__2 = j;
                 fn_800749B0(lab_t0__2, (((0xe0) + ((u8 *)*table)) + (offset)));
-            } else if (fn_1_55EA0_read_pointer(entry_2) != 0) {
+            } else if ((entry_2->unk_68) != 0) {
                 lab_t0__2 = j;
                 fn_800749B0(lab_t0__2, 0);
             }

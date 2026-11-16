@@ -22,7 +22,6 @@ extern void fn_80023D00(u32, u32, u32);
 #pragma peephole off
 #pragma opt_common_subs off
 #pragma opt_dead_assignments off
-static inline f32 fn_800243C4_read_pointer(struct fn_800243C4_Arg1 * owner) { return owner->unk_1A8; }
 
 void fn_800243C4(struct fn_800243C4_Arg0 *arg0, struct fn_800243C4_Arg1 *arg1) {
     u32 i;
@@ -45,8 +44,8 @@ void fn_800243C4(struct fn_800243C4_Arg0 *arg0, struct fn_800243C4_Arg1 *arg1) {
         while ((((0xFF) & (i))) < 3) {
             switch ((s32)(((0xFF) & (i)))) {
             case 0:
-                if ((0.0f) != fn_800243C4_read_pointer(arg1)) {
-                    f32 t = (0.5f) * fn_800243C4_read_pointer(arg1);
+                if ((0.0f) != (arg1->unk_1A8)) {
+                    f32 t = (0.5f) * (arg1->unk_1A8);
                     fn_80023B70(v5, v4, t, (1.0f) - t);
                 }
                 fn_80023D00(v5, (u32)arg1, 0);

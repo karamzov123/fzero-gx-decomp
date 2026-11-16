@@ -33,9 +33,7 @@ static inline void fn_80008C20_cross(fn_80008C20_Vec *a, fn_80008C20_Vec *b, fn_
     out->z = z;
 }
 
-static inline u32 fn_80008C20_array_read(s32 index, u32 *array) { return array[index]; }
 #pragma opt_propagation off
-static inline f32 fn_80008C20_read_pointer(fn_80008C20_Vec * owner) { return owner->x; }
 void fn_80008C20(fn_80008C20_Vec *arg0, fn_80008C20_Vec *arg1, fn_80008C20_Vec *arg2) {
     fn_80008C20_Vec t;
     fn_80008C20_Vec t2;
@@ -59,8 +57,8 @@ void fn_80008C20(fn_80008C20_Vec *arg0, fn_80008C20_Vec *arg1, fn_80008C20_Vec *
         lbl_8006D7DC(arg0);
         return;
     }
-    p = (f32 *)fn_80008C20_array_read(0, lbl_801A6D00);
-    p[0] = fn_80008C20_read_pointer(&t);
+    p = (f32 *)((lbl_801A6D00)[0]);
+    p[0] = (t.x);
     p[1] = t2.x;
     p[2] = v.x;
     p[3] = arg0->x;

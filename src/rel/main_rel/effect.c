@@ -177,7 +177,6 @@ extern AvlineEntry *fn_1_4630(u32, u32, u8 *, u32);
 extern void fn_1_9F7DC(void);
 extern void fn_1_58114(void);
 
-static inline AvlineEntry * fn_1_584D4_read_pointer(AvlineState * owner) { return owner->unk_00; }
 void fn_1_584D4(void) {
     AvlineState *state = (AvlineState *)&lbl_1_bss_6C848;
     s32 id;
@@ -186,7 +185,7 @@ void fn_1_584D4(void) {
 
     state->unk_00 = fn_1_4630(lbl_801A6410[0], sizeof(AvlineEntry) * 0xbe, lbl_1_data_1D62C, 0xc1);
     state->unk_04 = fn_1_4630(lbl_801A6410[0], sizeof(AvlineEntry) * 0xc8, lbl_1_data_1D62C, 0xc2);
-    entry = fn_1_584D4_read_pointer(state);
+    entry = (state->unk_00);
     state->unk_08 = 0;
     id = 0;
     for (count = 0xbe; count > 0; count--) {
@@ -5180,7 +5179,6 @@ extern void *memset(void *dst, int c, u32 n);
 extern f32 fn_1_A71AC(void);
 extern int fn_1_9F914(const void *a, const void *b);
 #define LIT(off) (*(const f32 *)(pool + (off)))
-static inline f32 fn_1_5D1B8_read_pointer(Self * owner) { return owner->f_24; }
 static inline f32 fn_1_5D1B8_scaled(f32 product, f32 scale) { return product; }
 #pragma opt_common_subs off
 #pragma peephole on
@@ -5222,7 +5220,7 @@ cr = LIT(0x5c) * fzgx_live_;
 out.r = cr * fade;
 cg = LIT(0x5c) * s->f_20;
 out.g = cg * fade;
-cb = LIT(0x5c) * fn_1_5D1B8_read_pointer(s);
+cb = LIT(0x5c) * (s->f_24);
 out.b = cb * fade;
 out.a = LIT(0x5c) * fade;
 out.y = LIT(0x150) * scale;
@@ -10806,7 +10804,6 @@ typedef struct {
     f32 fb4;
 } Obj_60C88;
 
-static inline f32 fn_1_60C88_read_pointer(Obj_60C88 * owner) { return owner->f28; }
 #pragma opt_propagation off
 void fn_1_60C88(Obj_60C88 *this)
 {
@@ -10828,8 +10825,8 @@ void fn_1_60C88(Obj_60C88 *this)
     lbl_8006E1B0(&this->v94, &this->v3c);
 
     this->fb4 = (f32)(s32)this->i10 * 0.5f;
-    if (fn_1_60C88_read_pointer(this) > 0.0f) {
-        this->f28 = (f32)((f64)fn_1_60C88_read_pointer(this) - 0.3);
+    if ((this->f28) > 0.0f) {
+        this->f28 = (f32)((f64)(this->f28) - 0.3);
     }
 }
 #pragma opt_propagation reset
@@ -11362,7 +11359,6 @@ extern u8 *memset(u8 *, int, u32);
 #pragma opt_propagation off
 static inline f32 fn_1_61070_read_pointer(Vec * owner) { return owner->y; }
 #pragma opt_common_subs off
-static inline f32 fn_1_61070_read_pointer_(Vec * owner) { return owner->x; }
 void fn_1_61070(Fn161070 *self) {
     f32 fzgx_live;
     EfxData data;
@@ -11384,7 +11380,7 @@ void fn_1_61070(Fn161070 *self) {
         const Mat44 *src = (const Mat44 *)(FZGX_CURRENT_MTX_ADDR);
         psvec_set(&vector, src->m[2][3], src->m[1][3], src->m[0][3]);
     }
-    fzgx_live = fn_1_61070_read_pointer_(&vector);
+    fzgx_live = (vector.x);
     acc = fzgx_live * fzgx_live;
     acc = fn_1_61070_read_pointer(&vector) * fn_1_61070_read_pointer(&vector) + acc;
     acc = vector.z * vector.z + acc;
@@ -17128,7 +17124,6 @@ extern void fn_1_5621C(f32,f32,f32,f32);
 extern void fn_1_556B8(void *);
 extern void fn_80072558(void);
 #pragma fp_contract on
-static inline f32 fn_1_64388_read_pointer(SelfObj * owner) { return owner->size; }
 #pragma opt_common_subs off
 static inline f32 fn_1_64388_read_pointer_(Vec3 * owner) { return owner->y; }
 #pragma opt_dead_assignments off
@@ -17145,7 +17140,7 @@ void fn_1_64388(ArgObj *arg0) {
  obj=arg0->obj;
  lbl_8006DCA4(arg0);
  lbl_8006E1B0(&obj->pos,&pos);
- scale=fn_1_64388_read_pointer(obj)/10.0f;
+ scale=(obj->size)/10.0f;
  node=obj->node;
  if(pos.z > -1.1920928955078125e-7f) return;
  ratio=fn_1_A71AC();

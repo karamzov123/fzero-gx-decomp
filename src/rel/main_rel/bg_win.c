@@ -1889,7 +1889,6 @@ extern s32 fn_1_3F864(void);
 extern u32 fn_1_58C4(void);
 extern void fn_1_A2D84(u32);
 
-static inline u32 * fn_1_15E7F4_read_pointer(struct fn_1_15E7F4_Copy88 * owner) { return owner->a; }
 void fn_1_15E7F4(void *arg0, s32 arg1) {
     struct fn_1_15E7F4_lbl_1_rodata_DD58 *p_lbl_1_rodata_DD58;
     f32 v0;
@@ -1929,7 +1928,7 @@ void fn_1_15E7F4(void *arg0, s32 arg1) {
         *(u8 *)((u8 *)arg0 + 2) = 120;
     }
     loc_58 = *(struct fn_1_15E7F4_Copy88 *)&lbl_1_rodata_26F8;
-    fn_1_15E7F4_read_pointer(&loc_58)[0] = 0x941A;
+    (loc_58.a)[0] = 0x941A;
     *(f32 *)((u8 *)&loc_58 + 4) = fn_1_519FC((320.0f));
     *(f32 *)((u8 *)&loc_58 + 8) = fn_1_51AC0((150.0f));
     *(f32 *)((u8 *)&loc_58 + 12) = (0.00100000005f);
@@ -1937,10 +1936,10 @@ void fn_1_15E7F4(void *arg0, s32 arg1) {
     *(f32 *)((u8 *)&loc_58 + 16) *= v0;
     v1 = fn_1_58C4() == 1 ? (1.0f) : (0.800000012f);
     v3 = *(f32 *)((u8 *)&loc_58 + 20) * v1;
-    fn_1_15E7F4_read_pointer(&loc_58)[12] = 0x400000A;
+    (loc_58.a)[12] = 0x400000A;
     *(f32 *)((u8 *)&loc_58 + 20) = v3;
     *(f32 *)((u8 *)&loc_58 + 84) = (f32)arg1;
-    fn_1_15E7F4_read_pointer(&loc_58)[20] = (u32)fn_1_15C4EC;
+    (loc_58.a)[20] = (u32)fn_1_15C4EC;
     if (*(u8 *)((u8 *)arg0 + 2) > 110) {
         v4 = (0.5f);
         v6 = v3 * v4;
@@ -1987,7 +1986,7 @@ void fn_1_15E7F4(void *arg0, s32 arg1) {
             *(f32 *)((u8 *)&loc_58 + 28) = *(f32 *)((u8 *)v16 + 4);
             *(f32 *)((u8 *)&loc_58 + 32) = *(f32 *)((u8 *)v16 + 8);
             *(f32 *)((u8 *)&loc_58 + 36) = *(f32 *)((u8 *)v16 + 12);
-            fn_1_15E7F4_read_pointer(&loc_58)[12] = v5 | 0x4000000;
+            (loc_58.a)[12] = v5 | 0x4000000;
             v19 = (1.0f) - (f32)(s32)(120 - *(u8 *)((u8 *)arg0 + 2)) / (10.0f);
             v20 = (40.0f) * v19;
             offset = (350.0f) * v19;

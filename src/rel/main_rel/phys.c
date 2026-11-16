@@ -2880,7 +2880,6 @@ extern void fn_1_496FC(f32 a, f32 b);
 extern void fn_1_4955C(f32 a, f32 b);
 extern f32 __fabsf(f32);
 
-static inline f32 fn_1_E52F8_read_pointer(Sig_fn_8006F828_Fn8006F828Data * owner) { return owner->value1; }
 void fn_1_E52F8(Sig_fn_1_E52F8_Arg *arg0, void (*fmt)(const char *, ...))
 {
     Sig_fn_8006F828_Fn8006F828Data v;
@@ -2890,7 +2889,7 @@ void fn_1_E52F8(Sig_fn_1_E52F8_Arg *arg0, void (*fmt)(const char *, ...))
     lbl_8006DCA4(arg0, (void *)fmt);
     fn_1_A71AC();
     fn_8006F828(arg0->unk_54, &v);
-    b = (s16)fn_1_E52F8_read_pointer(&v);
+    b = (s16)(v.value1);
     a = (s16)v.value0;
     if (fmt == fn_1_4AE0C) {
         fn_1_496FC((f32)a, (f32)b);
@@ -3355,10 +3354,9 @@ typedef struct { f32 x; f32 y; f32 z; } E5AE0Vec;
 extern void fn_1_5773C(E5AE0Vec *a, E5AE0Vec *b, u8 *c);
 extern void fn_80008BEC(void *dst, int value, u32 size);
 
-static inline u32 fn_1_E5AE0_array_read(u32 *array, s32 index) { return array[index]; }
 #pragma opt_common_subs off
 void fn_1_E5AE0(s16 a, s16 b, f32 w, f32 h) {
-    u32 flag = fn_1_E5AE0_array_read(lbl_1_rodata_6A98, 0);
+    u32 flag = ((lbl_1_rodata_6A98)[0]);
     E5AE0Vec o1;
     E5AE0Vec o2;
     s16 i;

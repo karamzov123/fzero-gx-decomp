@@ -88,7 +88,6 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&lbl_13_bss_40;
 }
 #pragma section code_type ".text"
-static inline u8 * fn_13_0_read_pointer(struct fn_13_0_lbl_1_bss_7EFD8 * owner) { return owner->unk_3C; }
 #pragma opt_dead_assignments off
 void fn_13_0(void) {
     u8 fzgx_value;
@@ -166,7 +165,7 @@ void fn_13_0(void) {
     }
     if (ver >= 4) {
         for (k = 0; k < (u8)n; k++) {
-            fn_13_0_read_pointer(&lbl_1_bss_7EFD8)[k] = fn_1_F453C(fzgx_obj_lbl_13_bss_0, &lbl_13_bss_4, 1);
+            (lbl_1_bss_7EFD8.unk_3C)[k] = fn_1_F453C(fzgx_obj_lbl_13_bss_0, &lbl_13_bss_4, 1);
         }
     }
     for (k = 0; k < (u8)n; k++) {

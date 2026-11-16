@@ -326,7 +326,6 @@ static inline int mpvhdec_IsWantedDelim(int delimiter_type, int wanted_mask) {
     return (delimiter_type & wanted_mask) != 0;
 }
 
-static inline const SJInterface * fn_12_AE70_read_pointer(SJ * owner) { return owner->fields.view_interface.interface; }
 int fn_12_AE70(MPVContext *context, SJ *stream) {
     unsigned char * fzgx_live;
     SJCK header;
@@ -369,7 +368,7 @@ int fn_12_AE70(MPVContext *context, SJ *stream) {
                 delimiter = fn_12_A0D8(fzgx_live, chunk.fields.view_len.len, -1);
                 if (delimiter == 0) {
                     fn_800589BC(&chunk, chunk.fields.view_len.len - 3, &chunk, &remainder);
-                    fn_12_AE70_read_pointer(stream)->fields.view_put_chunk.put_chunk(
+                    (stream->fields.view_interface.interface)->fields.view_put_chunk.put_chunk(
                         stream, 0, &chunk);
                     stream->fields.view_interface.interface->fields.view_unget_chunk.unget_chunk(
                         stream, 1, &remainder);

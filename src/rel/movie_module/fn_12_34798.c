@@ -60,7 +60,6 @@ extern int fn_800570DC(void *, void *);
 extern void fn_80056730(void *, int);
 extern void LSC_Start(void *);
 
-static inline MovieObject * fn_12_34798_read_pointer(MovieModule * owner) { return owner->field_128; }
 void fn_12_34798(MovieModule *self, void *arg) {
     void (* fzgx_live)(MovieObject *);
     
@@ -115,7 +114,7 @@ void fn_12_34798(MovieModule *self, void *arg) {
         fn_12_3916C(module, module->field_12c);
         fn_12_38DC8(module);
         LSC_Start(module->movie);
-        if (fn_12_34798_read_pointer(module) != 0) {
+        if ((module->field_128) != 0) {
             fzgx_live = module->field_128->vtable->method_14;
             fzgx_live(module->field_128);
         }

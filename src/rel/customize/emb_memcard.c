@@ -844,7 +844,6 @@ static inline Obj_3_bss_7EDC0_At0 *card_slot(u32 offset) { return (Obj_3_bss_7ED
 static inline Obj_3_bss_7EE40 *editor_slot(u32 offset) { return (Obj_3_bss_7EE40 *)((u8 *)&lbl_3_bss_7EE40 + offset); }
 #pragma opt_pointer_analysis on
 static inline s32 clamp_menu(s32 n) { return n < 0 ? 0 : n > 10 ? 10 : n; }
-static inline u8 fn_3_CE94_array_read(u8 *array, s32 index) { return array[index]; }
 #pragma opt_lifetimes off
 void fn_3_CE94(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     s16 v3;
@@ -991,7 +990,7 @@ void fn_3_CE94(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
             color1 = fzgx_pool_table3[0];
             fn_1_49514(&color1);
             slot = (u8 *)&lbl_3_bss_7EE40 + 0x10000;
-            if (fn_3_CE94_array_read(slot, -0x7E60) == 4) {
+            if (((slot)[-0x7E60]) == 4) {
                 x2 = v0 + 40;
                 y1 = dy1;
                 fn_1_496FC((f32)x2, (f32)(y1 + 219));
@@ -999,7 +998,7 @@ void fn_3_CE94(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
                 fn_1_496FC((f32)x2, (f32)(y1 + 244));
                 fn_1_4AE0C(fzgx_format, fzgx_text_354[lbl_801A66B4]);
             }
-            if (fn_3_CE94_array_read(slot, -0x7E60) == 40) {
+            if (((slot)[-0x7E60]) == 40) {
                 y2 = dy1;
                 x1 = v0 + 40;
                 fn_1_496FC((f32)x1, (f32)(y2 + 219));

@@ -14,7 +14,6 @@ extern int fn_12_2D73C(MovieObject *obj, int id);
 extern u32 lbl_12_bss_7C64[137];
 extern int fn_12_24A88(MovieObject *obj, int value);
 
-static inline u32 fn_12_2EAC4_array_read(u32 *array, s32 index) { return array[index]; }
 #pragma opt_propagation off
 int fn_12_2EAC4(MovieObject *obj) {
     u32 *table;
@@ -34,7 +33,7 @@ int fn_12_2EAC4(MovieObject *obj) {
 
             if (fn_12_2D73C(obj, 0x47) == 1) {
                 num = obj->field_f24 - obj->field_f4c;
-                den = fn_12_2EAC4_array_read(table, 110);
+                den = ((table)[110]);
             } else {
                 s32 a = obj->field_f58;
                 s32 b = obj->field_f4c;

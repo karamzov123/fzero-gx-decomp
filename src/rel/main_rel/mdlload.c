@@ -701,14 +701,13 @@ static inline f32 d42dist(volatile D42Vec *a, D42Vec *b) {
     value = value + dz*dz;
     return value;
 }
-static inline f32 fn_1_D42A8_array_read(f32 *array, s32 index) { return array[index]; }
 #pragma opt_common_subs off
 void fn_1_D42A8(u32 arg0, int arg1) {
     D42Vec a;
     D42Vec b;
     fn_1_681C((u8)arg1, (u32 *)&a);
     fn_1_6898((u8)arg1, (u32 *)&b);
-    ((f32 *)arg0)[arg1] = d42dist(&a, &b) < fn_1_D42A8_array_read(lbl_1_rodata_6168, 0) ? d42dist(&a, &b) : fn_1_D42A8_array_read(lbl_1_rodata_6168, 0);
+    ((f32 *)arg0)[arg1] = d42dist(&a, &b) < ((lbl_1_rodata_6168)[0]) ? d42dist(&a, &b) : ((lbl_1_rodata_6168)[0]);
 }
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_D42A8 */

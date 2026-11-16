@@ -8205,7 +8205,6 @@ base.value[3] = x;
 base.value[7] = y;
 base.value[11] = z;
 }
-static inline Car850C4 * fn_1_850C4_read_pointer(State850C4 * owner) { return owner->cars; }
 
 #pragma opt_dead_assignments off
 
@@ -8243,8 +8242,8 @@ racer->flags |= 0x200000;
 for (i = 0; i < state->count; i++) {
 for (j = i + 1; j < state->count; j++) {
 if (fn_1_239C4(&state->cars[i], &state->cars[j]) != 0) {
-a = fn_1_868C0((s8)fn_1_850C4_read_pointer(state)[i].id);
-b = fn_1_868C0((s8)fn_1_850C4_read_pointer(state)[j].id);
+a = fn_1_868C0((s8)(state->cars)[i].id);
+b = fn_1_868C0((s8)(state->cars)[j].id);
 if (a->flags & 0x200000) {
 fn_1_25004(&state->cars[i]);
 }
@@ -8255,21 +8254,21 @@ fn_1_68B6C((s8)i, (s8)j);
 }
 }
 }
-for (car = fn_1_850C4_read_pointer(state), j = 0, matrix = (f32 *)(0xE0000000 + 0x00); j < state->count; j++, car++) {
+for (car = (state->cars), j = 0, matrix = (f32 *)(0xE0000000 + 0x00); j < state->count; j++, car++) {
 if (car->flags58C & 8) {
 lbl_8006DBAC(&car->vecEC);
 setTranslation(&car->pos, matrix);
 fn_1_266A8(car);
 }
 }
-for (car = fn_1_850C4_read_pointer(state), i = 0; i < state->count; i++, car++) {
+for (car = (state->cars), i = 0; i < state->count; i++, car++) {
 fn_1_24A4C(car);
 }
-for (car = fn_1_850C4_read_pointer(state), i = 0; i < state->count; i++, car++) {
+for (car = (state->cars), i = 0; i < state->count; i++, car++) {
 fn_1_8A1B4(car, ((void *)0) , racer);
 }
 if (!forced && state->f158 == 0) {
-for (car = fn_1_850C4_read_pointer(state), i = 0; i < state->count; i++, car++) {
+for (car = (state->cars), i = 0; i < state->count; i++, car++) {
 CarInfo850C4 *info = car->info;
 if (!(car->flags & 0x08010000) && racer != ((void *)0) ) {
 s32 ok = info->lap >= racer->lap;
@@ -8280,7 +8279,7 @@ fn_1_250F8(car);
 }
 }
 } else {
-for (car = fn_1_850C4_read_pointer(state), i = 0; i < state->count; i++, car++) {
+for (car = (state->cars), i = 0; i < state->count; i++, car++) {
 car->f184 = 100.0f;
 }
 }
@@ -8289,7 +8288,7 @@ state->racerHook(racer);
 state->racerHook = fn_1_8B9B8;
 racer->slotMask = 0;
 best = state->count;
-for (car = fn_1_850C4_read_pointer(state), i = 0; i < state->count; i++, car++) {
+for (car = (state->cars), i = 0; i < state->count; i++, car++) {
 slot = -1;
 if (!(car->flags & 0x20000000)) {
 if (i < fn_1_3F854()) {
@@ -8309,7 +8308,7 @@ racer->slots[slot] = car->pos;
 }
 }
 if (state->carHook != ((void *)0) ) {
-for (car = fn_1_850C4_read_pointer(state), i = 0; i < state->count; i++, car++) {
+for (car = (state->cars), i = 0; i < state->count; i++, car++) {
 state->carHook(car);
 }
 }
@@ -12437,7 +12436,6 @@ static void fzgx_string_layout(void) {
 }
 #pragma section code_type ".text"
 
-static inline f32 fn_1_87448_array_read(s32 index, f32 *array) { return array[index]; }
 void fn_1_87448(Fn1_87448_Obj *self, Fn1_87448_Arg1 *arg1, s8 arg2, int flag, f32 f) {
     s32 k;
     u8 **row;
@@ -12449,10 +12447,10 @@ void fn_1_87448(Fn1_87448_Obj *self, Fn1_87448_Arg1 *arg1, s8 arg2, int flag, f3
 
     lim = 0;
     tab = (Fn1_87448_Tab *)self->unk_334[arg2].unk_04;
-    if (f <= fn_1_87448_array_read(0, lbl_1_rodata_3518)) {
+    if (f <= ((lbl_1_rodata_3518)[0])) {
         return;
     }
-    below = f < fn_1_87448_array_read(0, lbl_1_rodata_3530);
+    below = f < ((lbl_1_rodata_3530)[0]);
     if (arg1 != 0) {
         lim = arg1->unk_02;
     }
@@ -19704,7 +19702,6 @@ extern CarObject *fn_1_3F8C(void *, void (*)(void), Car *, u32);
 extern void fn_1_43F4(void);
 
 #pragma opt_propagation off
-static inline CarObject * fn_1_8D988_read_pointer(Car * owner) { return owner->unk_484; }
 static inline s8 * fn_1_8D988_values(CarManager * m) { return m->values; }
 void fn_1_8D988(void) {
     struct { CarManager *m; } mgr;
@@ -19722,11 +19719,11 @@ void fn_1_8D988(void) {
         car->unk_0 |= 0x04000000;
         tmp_call1 = fn_1_45D0(lbl_801A6410, 0x88, lbl_1_data_1FFF0, 0x1cb0);
         car->unk_484 = tmp_call1;
-        if (fn_1_8D988_read_pointer(car) == 0) {
+        if ((car->unk_484) == 0) {
             car->unk_0 &= ~0x04000000;
             continue;
         }
-        fn_1_8D988_read_pointer(car)->unk_40 = lbl_801A6410;
+        (car->unk_484)->unk_40 = lbl_801A6410;
         car->unk_50e = 1;
         fn_1_C487C(car);
         fn_1_43E8(1);

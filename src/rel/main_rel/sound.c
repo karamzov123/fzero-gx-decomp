@@ -2740,7 +2740,6 @@ static inline void play(u8 track) {
     S_TRACK = track;
 }
 #pragma opt_dead_assignments off
-static inline u8 fn_1_A1DCC_array_read(s32 index, u8 *array) { return array[index]; }
 void fn_1_A1DCC(u8 arg0) {
     s8 track;
     /* All guards share the retail epilogue. */
@@ -2749,7 +2748,7 @@ void fn_1_A1DCC(u8 arg0) {
     if (arg0 > 45) track = -1;
     else if (lbl_1_bss_8CA24 || lbl_1_bss_8B5F0) track = 44;
     else if (lbl_1_bss_8B5F1) track = 43;
-    else track = (s8)fn_1_A1DCC_array_read(arg0, lbl_1_rodata_437C);
+    else track = (s8)((lbl_1_rodata_437C)[arg0]);
     if (track == -1) {
         if (++S_CYCLE > 5) S_CYCLE = 0;
         play(lbl_1_rodata_43AC[S_CYCLE]);
@@ -4424,7 +4423,6 @@ extern s16 fn_1_3F0C8(void);
 extern void fn_80067344(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
 extern void fn_80067898(u32 arg0);
 
-static inline SoundEntry * fn_1_A31E4_read_pointer(SoundState * owner) { return owner->unk_74C; }
 void fn_1_A31E4(void) {
     SoundState *state = &lbl_1_bss_6EA98;
     SoundEntry *tbl;
@@ -4439,7 +4437,7 @@ void fn_1_A31E4(void) {
 
     if (fn_1_3F864() != 0) {
         n = fn_1_3F854();
-        tbl = fn_1_A31E4_read_pointer(state);
+        tbl = (state->unk_74C);
         for (i = 0; i < n; i++) {
             id = tbl[i].unk_1;
             flags = fn_1_864E8(id);

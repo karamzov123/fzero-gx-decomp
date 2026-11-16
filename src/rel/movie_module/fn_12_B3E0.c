@@ -312,9 +312,7 @@ void *memcpy(void *destination, const void *source, unsigned long size);
 int fn_12_B254(MPVContext *context, const u8 *data, int length);
 
 #pragma peephole on
-static inline const SJInterface * fn_12_B3E0_read_pointer(SJ * owner) { return owner->fields.view_interface.interface; }
 #pragma opt_propagation off
-static inline void * fn_12_B3E0_read_pointer_(MPVContext * owner) { return owner->fields.view_picture_user.picture_user.fields.view_buffer.buffer; }
 #pragma opt_lifetimes off
 int fn_12_B3E0(MPVContext *context, const u8 *data, int length) {
     SJ *user_sj;
@@ -346,17 +344,17 @@ int fn_12_B3E0(MPVContext *context, const u8 *data, int length) {
     }
     user_sj = ((index)[context->fields.view_user_streams.user_streams]).fields.view_stream.stream;
     if (user_sj != 0) {
-        fn_12_B3E0_read_pointer(user_sj)->fields.view_get_chunk.get_chunk(
+        (user_sj->fields.view_interface.interface)->fields.view_get_chunk.get_chunk(
             user_sj, 0, delimiter_offset, &first);
         memcpy(first.fields.view_data.data, data, first.fields.view_len.len);
-        fn_12_B3E0_read_pointer(user_sj)->fields.view_put_chunk.put_chunk(user_sj, 1,
+        (user_sj->fields.view_interface.interface)->fields.view_put_chunk.put_chunk(user_sj, 1,
                                                                                   &first);
         if (first.fields.view_len.len < delimiter_offset) {
-            fn_12_B3E0_read_pointer(user_sj)->fields.view_get_chunk.get_chunk(
+            (user_sj->fields.view_interface.interface)->fields.view_get_chunk.get_chunk(
                 user_sj, 0, delimiter_offset - first.fields.view_len.len, &second);
             memcpy(second.fields.view_data.data, data + first.fields.view_len.len,
                    second.fields.view_len.len);
-            fn_12_B3E0_read_pointer(user_sj)->fields.view_put_chunk.put_chunk(user_sj, 1,
+            (user_sj->fields.view_interface.interface)->fields.view_put_chunk.put_chunk(user_sj, 1,
                                                                                       &second);
         }
         if (((index)[context->fields.view_user_streams.user_streams]).fields.view_callback.callback !=
@@ -375,7 +373,7 @@ int fn_12_B3E0(MPVContext *context, const u8 *data, int length) {
             picture_copy_size = delimiter_offset;
         }
         context->fields.view_picture_user.picture_user.fields.view_size.size = picture_copy_size;
-        memcpy(fn_12_B3E0_read_pointer_(context), data,
+        memcpy((context->fields.view_picture_user.picture_user.fields.view_buffer.buffer), data,
                context->fields.view_picture_user.picture_user.fields.view_size.size);
     }
     if (sequence_result != 0) {

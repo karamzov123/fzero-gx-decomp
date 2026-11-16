@@ -47,8 +47,6 @@ extern void fn_800416DC(AdxSjdHandle *decoder, s32 samples);
 extern void fn_800416CC(AdxSjdHandle *decoder, s32 enabled);
 extern void fn_800416D4(AdxSjdHandle *decoder, s32 length);
 
-static inline const SJInterface * fn_8004D8DC_read_pointer(SJ * owner) { return owner->interface; }
-static inline const SJInterface * fn_8004D8DC_read_pointer_(SJ * owner) { return owner->interface; }
 void fn_8004D8DC(ADXTHandle *handle) {
     void (* fzgx_live_)(SJ *sj, int channel, int max_size, SJCK *chunk);
     const SJInterface * fzgx_live;
@@ -69,17 +67,17 @@ void fn_8004D8DC(ADXTHandle *handle) {
         return;
     }
     info2 = 0;
-    fzgx_live = fn_8004D8DC_read_pointer(input);
+    fzgx_live = (input->interface);
     fzgx_live_ = fzgx_live->get_chunk;
     fzgx_live_(input, 1, 0x7FFFFFFF, &chunk1);
-    fzgx_live = fn_8004D8DC_read_pointer_(input);
+    fzgx_live = (input->interface);
     fzgx_live_ = fzgx_live->get_chunk;
     fzgx_live_(input, 1, 0x7FFFFFFF, &chunk2);
     if (fn_80046804(chunk1.data, chunk1.len, &info1) != 0) {
         handle->link_enabled = 0;
-        fzgx_live = fn_8004D8DC_read_pointer_(input);
+        fzgx_live = (input->interface);
         fzgx_live->unget_chunk(input, 1, &chunk2);
-        fzgx_live = fn_8004D8DC_read_pointer_(input);
+        fzgx_live = (input->interface);
         fzgx_live->unget_chunk(input, 1, &chunk1);
         return;
     }
@@ -93,28 +91,28 @@ void fn_8004D8DC(ADXTHandle *handle) {
     nbyte = nbyte + info1;
     link_off = (s16)(info2);
     if (scan1 != 0 && scan2 != 0) {
-        fzgx_live = fn_8004D8DC_read_pointer_(input);
+        fzgx_live = (input->interface);
         fzgx_live->unget_chunk(input, 1, &chunk2);
-        fzgx_live = fn_8004D8DC_read_pointer_(input);
+        fzgx_live = (input->interface);
         fzgx_live->unget_chunk(input, 1, &chunk1);
         handle->link_enabled = 0;
         return;
     }
     if (scan1 == 0) {
-        fzgx_live = fn_8004D8DC_read_pointer_(input);
+        fzgx_live = (input->interface);
         fzgx_live->unget_chunk(input, 1, &chunk2);
         fn_800589BC(&chunk1, nbyte, &chunk1, &remainder1);
-        fzgx_live = fn_8004D8DC_read_pointer_(input);
+        fzgx_live = (input->interface);
         fzgx_live->put_chunk(input, 0, &chunk1);
-        fzgx_live = fn_8004D8DC_read_pointer_(input);
+        fzgx_live = (input->interface);
         fzgx_live->unget_chunk(input, 1, &remainder1);
     } else {
-        fzgx_live = fn_8004D8DC_read_pointer_(input);
+        fzgx_live = (input->interface);
         fzgx_live->put_chunk(input, 0, &chunk1);
         fn_800589BC(&chunk2, link_off, &chunk2, &remainder2);
-        fzgx_live = fn_8004D8DC_read_pointer_(input);
+        fzgx_live = (input->interface);
         fzgx_live->put_chunk(input, 0, &chunk2);
-        fzgx_live = fn_8004D8DC_read_pointer_(input);
+        fzgx_live = (input->interface);
         fzgx_live->unget_chunk(input, 1, &remainder2);
     }
     handle->linked_decoded_samples += fn_800416F8(decoder);

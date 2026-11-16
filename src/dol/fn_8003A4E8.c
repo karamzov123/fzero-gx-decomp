@@ -16,7 +16,6 @@ typedef struct {
 
 #pragma opt_propagation off
 #pragma opt_lifetimes off
-static inline u32 * fn_8003A4E8_read_pointer(Ctx * owner) { return owner->cursor; }
 s32 fn_8003A4E8(Ctx *d, u32 idx, u8 *counts) {
     u32 * fzgx_live_;
     u32 * fzgx_live;
@@ -32,10 +31,10 @@ s32 fn_8003A4E8(Ctx *d, u32 idx, u8 *counts) {
     for (j = 1; j <= 16; j++) {
         n += ((j - 1)[counts]);
     }
-    fzgx_live_ = fn_8003A4E8_read_pointer(d);
+    fzgx_live_ = (d->cursor);
     fzgx_live = fzgx_live_;
     ((idx & 0xFF)[d->entries]).str = (u8 *)fzgx_live;
-    fzgx_live_2 = fn_8003A4E8_read_pointer(d);
+    fzgx_live_2 = (d->cursor);
     base = n + (s32)(u32)fzgx_live_2;
     d->cursor = (u32 *)(base + 1);
     t = 0;

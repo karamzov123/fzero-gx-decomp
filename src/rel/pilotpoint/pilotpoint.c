@@ -3984,7 +3984,6 @@ extern u32 lbl_8006DCA4(void);
 extern void fn_1_F7870(void *);
 
 static inline f32 fn_14_4460_operand(f32 right, f32 left) { return left * right; }
-static inline f32 fn_14_4460_array_read(s32 index, f32 *array) { return array[index]; }
 static inline Bss_14_bss_8350_Target *fn_14_4460_find(void) {
     u32 flags;
     s16 i;
@@ -4037,12 +4036,12 @@ s32 fn_14_4460(void) {
     fn_8006F038(&(*(Bss_14_bss_92C4 *)&lbl_14_bss_92C4).unk_4, &(*(Bss_14_bss_92C4 *)&lbl_14_bss_92C4).unk_10, 0);
     lbl_8006DCDC();
 
-    a = fn_14_4460_operand((0.699999988f), fn_14_4460_array_read(0, (*(Data_1_data_1E5C0 *)&lbl_1_data_1E5C0).v.f));
-    b = fn_14_4460_operand(((0.699999988f)), (fn_14_4460_array_read(1, (*(Data_1_data_1E5C0 *)&lbl_1_data_1E5C0).v.f)));
+    a = fn_14_4460_operand((0.699999988f), (((*(Data_1_data_1E5C0 *)&lbl_1_data_1E5C0).v.f)[0]));
+    b = fn_14_4460_operand(((0.699999988f)), ((((*(Data_1_data_1E5C0 *)&lbl_1_data_1E5C0).v.f)[1])));
     local = (*(Data_1_data_1E5C0 *)&lbl_1_data_1E5C0);
     local.v.f[0] = a - b;
     local.v.f[1] = a + b;
-    local.v.f[2] = fn_14_4460_array_read(2, (*(Data_1_data_1E5C0 *)&lbl_1_data_1E5C0).v.f);
+    local.v.f[2] = (((*(Data_1_data_1E5C0 *)&lbl_1_data_1E5C0).v.f)[2]);
     fn_1_F7870(&local);
     lbl_8006DCA4();
 

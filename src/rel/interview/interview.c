@@ -816,8 +816,6 @@ typedef struct InterviewState {
     u8 unk_100;
 } InterviewState;
 
-static inline u8 * fn_17_C9C_read_pointer(InterviewState * owner) { return owner->unk_14; }
-static inline u8 fn_17_C9C_array_read(s32 index, u8 *array) { return array[index]; }
 void fn_17_C9C(void) {
     InterviewState *state;
     u8 local[0x14c0];
@@ -840,13 +838,13 @@ void fn_17_C9C(void) {
         state->unk_58 |= 0x20000000;
     } else if (index == 8) {
         state->unk_58 |= 0x00200000;
-        fn_1_3FDA8(fn_17_C9C_read_pointer(state), state->unk_18);
+        fn_1_3FDA8((state->unk_14), state->unk_18);
         fn_1_4A00(1, 0x1e, state->unk_18);
     } else {
         state->unk_58 |= 1;
         lbl_1_bss_96A = 0xc6;
         fn_1_3EF14(local);
-        state->unk_100 = fn_17_C9C_array_read(0xa6, local) - 1;
+        state->unk_100 = ((local)[0xa6]) - 1;
         state->unk_f8 = fn_1_3FC9C();
         if (fn_1_FA088() != 0) {
             state->unk_f9 = 1;
@@ -144332,7 +144330,6 @@ static inline struct Entry *get_entry(s32 mode,s32 kind,s32 index,u32 flags) {
  return v3;
 }
 static inline struct Details * fn_17_7728_read_pointer(struct Group * owner) { return owner->unk_14; }
-static inline f32 fn_17_7728_read_pointer_(struct Payload * owner) { return owner->unk_24; }
 void fn_17_7728(struct fn_17_7728_Arg0 *arg0, u32 lab_unused0, u32 lab_unused1) {
  struct Payload loc;
  struct Triple triple;
@@ -144369,7 +144366,7 @@ void fn_17_7728(struct fn_17_7728_Arg0 *arg0, u32 lab_unused0, u32 lab_unused1) 
  arg0->unk_28=triple.x; arg0->unk_2C=triple.y; arg0->unk_30=triple.z;
  arg0->unk_34=loc.unk_18;arg0->unk_38=loc.unk_1C;arg0->unk_3C=loc.unk_20;
     lab_v = loc.unk_28;
- arg0->unk_20=lab_v;arg0->unk_0=fn_17_7728_read_pointer_(&loc);arg0->unk_20=lab_v;
+ arg0->unk_20=lab_v;arg0->unk_0=(loc.unk_24);arg0->unk_20=lab_v;
 }
 /* fzgx:end fn_17_7728 */
 

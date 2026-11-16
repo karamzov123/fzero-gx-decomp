@@ -2348,7 +2348,6 @@ extern void camera_set_result(s16);
 extern void camera_set_selected_value(u8);
 extern void fn_1_5370(s8, u32);
 
-static inline u8 * fn_1_FCB0_read_pointer(Sig_fn_1_101D0_Fn_1_101D0_State * owner) { return owner->pad_0; }
 void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
     s16 *fzgx_value__;
     u32 fzgx_value_;
@@ -2365,7 +2364,7 @@ void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
     s32 v32;
     s32 v_div;
     s32 v_n;
-    v0 = fn_1_FCB0_read_pointer(arg0)[0];
+    v0 = (arg0->pad_0)[0];
     if (v0 == 1 && (*(u32 *)((u8 *)arg0 + 12) & 0x80000) != 0) {
         v0 = 4;
         arg0->unk_12 = v0;
@@ -2421,7 +2420,7 @@ void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
                 if ((*(u32 *)((u8 *)arg0 + 12) & 0x80000) == 0) {
                     arg0->unk_12 = 3;
                 }
-                if (fn_1_FCB0_read_pointer(arg0)[0] == 2) {
+                if ((arg0->pad_0)[0] == 2) {
                     arg0->unk_12 = (s16)((*(s16 *)((u8 *)arg0 + 2) + 1) % 3);
                 }
             }

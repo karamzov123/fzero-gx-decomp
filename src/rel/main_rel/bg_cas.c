@@ -1471,7 +1471,6 @@ extern void fn_80074918(u8, s32, u8);
 extern void fn_800720B0(u32);
 extern void fn_80072864(u32);
 
-static inline Fn fn_1_FCFA4_read_pointer(Manager * owner) { return owner->sub.unk_420; }
 void fn_1_FCFA4(void *arg0) {
     s32 tmp_call4;
     u32 nxt;
@@ -1491,7 +1490,7 @@ void fn_1_FCFA4(void *arg0) {
     if (m == 0) {
         return;
     }
-    f0 = fn_1_FCFA4_read_pointer(m);
+    f0 = (m->sub.unk_420);
     if (f0 != 0 && f0((void *)((u8 *)m + 0x10000)) != 0) {
         return;
     }
@@ -5172,7 +5171,6 @@ active:
     } while (--v13 > 0);
     return;
 }
-
 /* fzgx:end fn_1_FFE7C */
 
 /* fzgx:begin fn_1_10069C noprologue */

@@ -6062,7 +6062,6 @@ extern void fn_80008BEC(s16 *values, s32 value, s32 count);
 extern void fn_80008BA8(u8 *destination, s16 *entry, s32 size);
 extern s16 fn_1_14F014(void);
 
-static inline s16 fn_3_6F90_array_read(s32 index, s16 *array) { return array[index]; }
 void fn_3_6F90(void) {
     s16 values[6];
     struct { s16 * value; } entry;
@@ -6074,8 +6073,8 @@ void fn_3_6F90(void) {
     entry.value = (s16 *)lbl_3_bss_6D8C0;
     i = 0;
     while (i < fn_1_14F014()) {
-        k = fn_3_6F90_array_read(1, entry.value);
-        fn_80008BA8((lbl_3_bss_7E240) + k * 0x190 + fn_3_6F90_array_read(k, values) * 0x10, entry.value, 0x10);
+        k = ((entry.value)[1]);
+        fn_80008BA8((lbl_3_bss_7E240) + k * 0x190 + ((values)[k]) * 0x10, entry.value, 0x10);
         values[k]++;
         entry.value += 8;
         i++;

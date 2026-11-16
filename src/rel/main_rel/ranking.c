@@ -1215,7 +1215,6 @@ typedef struct {
     u8 pad10[0x28]; f32 value; f32 delta;
 } Sig_fn_1_156C08_Entry;
 #pragma opt_propagation off
-static inline f32 fn_1_156C08_read_pointer(Sig_fn_1_156C08_Entry *owner) { return owner->delta; }
 void fn_1_156C08(Sig_fn_1_156C08_Entry *arg0) {
     f32 v1; f32 v3; s32 v13; s32 v13_2; f32 v7; s32 negative; u32 *ph;
     f32 *pool = lbl_1_rodata_D8C8;
@@ -1224,7 +1223,7 @@ void fn_1_156C08(Sig_fn_1_156C08_Entry *arg0) {
     struct { u8 a[36]; } loc_8;
     v1 = -1.899999976158142f;
     (void)v1; (void)v1;
-    v1 = (f32)(v1 * fn_1_156C08_read_pointer(arg0));
+    v1 = (f32)(v1 * (arg0->delta));
     if (v1 > 25.0f) v1 = 25.0f;
     else if (v1 < -25.0f) v1 = -25.0f;
     v1 += arg0->value;
@@ -1507,7 +1506,6 @@ typedef struct {
 
 #pragma opt_common_subs off
 static inline void fn_1_157070_store(u32 value, u32 *destination) { *destination = value; }
-static inline f32 fn_1_157070_read_pointer(State * owner) { return owner->value34; }
 void fn_1_157070(State *state) {
     u8 *fzgx_value__;
     f32 fzgx_live;
@@ -1520,7 +1518,7 @@ void fn_1_157070(State *state) {
     f32 amount;
 
     if (state->flags4c & 4) {
-        fzgx_live = fn_1_157070_read_pointer(state);
+        fzgx_live = (state->value34);
         amount = -state->value48 / fzgx_live;
         amount = (amount - table[14]) / table[15];
         if (amount > table[11]) {
@@ -1607,7 +1605,6 @@ typedef struct {
     u8 value29;
 } RankingRequest;
 
-static inline f32 fn_1_157200_array_read(f32 *array, s32 index) { return array[index]; }
 #pragma opt_dead_assignments off
 void fn_1_157200(RankingState *state) {
     if (state->status & 0x10) {
@@ -1620,7 +1617,7 @@ void fn_1_157200(RankingState *state) {
         request.value14 = 240;
         if (state->value > lbl_1_rodata_D910) {
             request.value16 = 90;
-        } else if (state->value < fn_1_157200_array_read(lbl_1_rodata_D914, 0)) {
+        } else if (state->value < ((lbl_1_rodata_D914)[0])) {
             request.value16 = 270;
         } else {
             request.value16 = success;
