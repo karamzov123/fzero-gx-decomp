@@ -3253,7 +3253,7 @@
    "file": "spline.c",
    "text": [
     1003272,
-    1030040
+    1025728
    ],
    "data_sec": 5,
    "data": [
@@ -3396,7 +3396,29 @@
     "fn_1_FA638",
     "fn_1_FA650",
     "fn_1_FA67C",
-    "fn_1_FA69C",
+    "fn_1_FA69C"
+   ],
+   "confidence": {
+    "text+data": 6,
+    "text-range": 140,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "bg_cas.c",
+   "text": [
+    1025728,
+    1055464
+   ],
+   "data_sec": 5,
+   "data": [
+    257936,
+    258428
+   ],
+   "anchor_refs": [
+    1030040
+   ],
+   "functions": [
     "fn_1_FA6C0",
     "fn_1_FA75C",
     "fn_1_FA82C",
@@ -3410,29 +3432,7 @@
     "fn_1_FB0B4",
     "fn_1_FB180",
     "fn_1_FB18C",
-    "fn_1_FB770"
-   ],
-   "confidence": {
-    "text+data": 6,
-    "text-range": 140,
-    "data-vote": 0
-   }
-  },
-  {
-   "file": "bg_cas.c",
-   "text": [
-    1030040,
-    1055464
-   ],
-   "data_sec": 5,
-   "data": [
-    257936,
-    258428
-   ],
-   "anchor_refs": [
-    1030040
-   ],
-   "functions": [
+    "fn_1_FB770",
     "fn_1_FB798",
     "fn_1_FB870",
     "fn_1_FB87C",
