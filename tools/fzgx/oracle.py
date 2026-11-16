@@ -1100,7 +1100,8 @@ def module_flags(project: Project, module: str) -> Tuple[str, str]:
         stamp = oj.stat().st_mtime_ns
     except OSError:
         stamp = None
-    key = (project.version, module, stamp)
+    unit_stamp = project.units_path.stat().st_mtime_ns if project.units_path.exists() else None
+    key = (project.version, module, stamp, unit_stamp)
     hit = _FLAGS_CACHE.get(key)
     if hit:
         return hit
@@ -1110,8 +1111,17 @@ def module_flags(project: Project, module: str) -> Tuple[str, str]:
 
 
 def _module_flags(project: Project, module: str) -> Tuple[str, str]:
+    # A scratch profile already includes its unit overrides. Taking an arbitrary
+    # first profile leaks them into every other unit (e.g. sel's first unit has
+    # -inline on,noauto while its ordinary units are built with -inline auto).
+    # Use an override-free configured unit as the module baseline; explicit unit
+    # overrides are applied exactly once by compile_command/compile_many.
+    configured = {u['module'] + '/' + u['source'].rsplit('.', 1)[0]: u for u in project.load_units()}
     for name, meta in project.objdiff_units().items():
         if name.split("/", 1)[0] == module and meta.get("scratch", {}).get("c_flags"):
+            unit = configured.get(name)
+            if unit is None or unit.get('extra_cflags'):
+                continue
             flags = meta["scratch"]["c_flags"].replace(" -lang=c", "") + f" -i include -i build/{project.version}/include"
             return flags, ("GC/1.2.5n" if module == "main" else "GC/1.3.2")
     flags = ("-nodefaults -proc gekko -align powerpc -enum int -fp hardware -Cpp_exceptions off -O4,p -inline auto "

@@ -3553,11 +3553,11 @@ void fn_1_12ECA8(s16 arg0, s16 arg1, void *arg2, void *arg3, void *arg4) {
         p = *(void **)((u8 *)arg2 + 0x150);
         *(u16 *)((u8 *)p + 0x40) |= 1;
         count = 0;
-        { void * __reg_value_scan = arg3; scan.value = __reg_value_scan; }
+        scan.value = (void *)(arg3);
         while (count < fn_1_12ECA8_map(index)) {
             fn_1_934CC(scan.value, (u8 *)scan.value + 0x148, table);
             p = *(void **)((u8 *)scan.value + 0x150);
-            { void * __reg_value_scan = ((0x4e0) + ((u8 *)scan.value)); scan.value = __reg_value_scan; }
+            scan.value = (void *)(((0x4e0) + ((u8 *)scan.value)));
             count++;
             *(u16 *)((u8 *)p + 0x40) |= 1;
         }

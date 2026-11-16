@@ -67,9 +67,9 @@ int fn_12_25DA8(MovieModule *module, int track, int offset, int length, int limi
         if (fn_12_2D73C(module, 0x37) != 0) {
             { int __reg_value_delta = (state->low ^ track) >> 1; delta = __reg_value_delta; }
             delta -= fn_12_25DA8_operand((state->low), ((state->low ^ track)));
-            { int __reg_value_delta = (u32)delta >> 31; delta = __reg_value_delta; }
+            delta = (int)((u32)delta >> 31);
         } else {
-            { int __reg_value_delta = (state->selected - track) == 0; delta = __reg_value_delta; }
+            delta = (int)((state->selected - track) == 0);
         }
         if (delta != 0) {
             state->current = index;

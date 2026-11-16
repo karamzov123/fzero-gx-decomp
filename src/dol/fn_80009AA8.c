@@ -48,13 +48,13 @@ void fn_80009AA8(s32 arg0, s32 arg1) {
 
     node = (Node *)(arg1 - 0x20);
     pool = (Pool *)(lbl_801A6744 + arg0 * 0xC);
-    { Node * __reg_value_tail = pool->tail; tail.value = __reg_value_tail; }
+    tail.value = (Node *)(pool->tail);
 
     if (node->next != 0) {
         node->next->prev = node->prev;
     }
     if (node->prev == 0) {
-        { Node * __reg_value_tail = node->next; tail.value = __reg_value_tail; }
+        tail.value = (Node *)(node->next);
     } else {
         node->prev->next = node->next;
     }

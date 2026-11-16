@@ -1320,9 +1320,7 @@ void fn_1_9F4B4(struct fn_1_9F4B4_Arg0 *arg0) {
         *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
         fn_8003462C(0x80, 0, 4);
         {
-            struct { f32 value; } f31s;
-            f31s.value = -arg0->unk_C;
-            f31.value = f31s.value;
+            f31.value = (f32)(-arg0->unk_C);
             f30.value = arg0->unk_C;
             lbl_8006DAEC();
             lbl_8006E0A4((void *)arg0);

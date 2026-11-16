@@ -19,6 +19,7 @@ MARKER = re.compile(r'WARNING:\s*(?:compiler-diff\s+device|device)\b')
 PRAGMA = re.compile(r'^[ \t]*#[ \t]*pragma[ \t]+(opt_\w+|optimize_for_size|optimization_level|scheduling|peephole)\b([^\n]*)', re.M)
 CARRIER = re.compile(r'\bstruct\s*\{\s*(?:[su](?:8|16|32|64)|f32|f64|int|unsigned|float|double)\s+value\s*;\s*\}\s*[A-Za-z_]\w*\s*;')
 DEAD_WRITE = re.compile(r'\bADX_COMPILER_DIFF_DEAD_WRITE\s*\(')
+REGISTER_STAGING = re.compile(r'\b__reg_value_\w+\s*=')
 SYNTHETIC_FUNCTION = re.compile(r'\b(fzgx_\w+)\s*\((?:[^(){};]|\([^(){};]*\))*\)\s*\{')
 CODE_SECTION = re.compile(r'^[ \t]*#pragma[ \t]+section[ \t]+code_type[ \t]+"([^"]+)"[^\n]*', re.M)
 EXPLICIT_POOL = re.compile(r'__declspec\s*\(\s*section\s+"\.fzgxpool"\s*\)\s+[^;{}]*?\b(fzgx_\w+)\s*\((?:[^(){};]|\([^(){};]*\))*\)\s*\{')
@@ -97,6 +98,8 @@ def measure(project):
                 add('volatile-token-review', match.start(), match[0])
             for match in CARRIER.finditer(code):
                 add('single-field-value-carrier-review', match.start(), match[0])
+            for match in REGISTER_STAGING.finditer(code):
+                add('tagged-register-staging', match.start(), match[0])
             for match in SYNTHETIC_FUNCTION.finditer(code):
                 section_index = bisect_right(section_positions, match.start()) - 1
                 pool = match.start(1) in explicit_pool or (section_index >= 0 and sections[section_index][1] == '.fzgxpool')
@@ -115,6 +118,7 @@ def measure(project):
     marker_owners = sorted({r['owner'] for r in warnings if r['owner']})
     macro_owners = sorted({r['owner'] for r in dead_writes if r['owner']})
     primer_owners = sorted({r['owner'] for r in findings if r['category'] == 'layout-primer-function' and r['owner']})
+    register_owners = sorted({r['owner'] for r in findings if r['category'] == 'tagged-register-staging' and r['owner']})
     categories = {}
     for category in sorted({r['category'] for r in findings}):
         rows = [r for r in findings if r['category'] == category]
@@ -123,7 +127,7 @@ def measure(project):
                                     unassigned_spots=sum(r['owner'] is None for r in rows))
     config_paths = [project.units_path] + [project.module_config_dir(m) / 'symbols.txt' for m in project.modules]
     config_paths.append(original_assembly.REGISTRY)
-    return dict(schema=2, version=project.version,
+    return dict(schema=3, version=project.version,
                 source_commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
                 source_status=subprocess.check_output(['git', 'status', '--porcelain=v1', '--untracked-files=all', '--', 'src', 'include', 'config'], cwd=ROOT, text=True).splitlines(),
                 source_tree_sha256=digest.hexdigest(), scanned_files=scanned,
@@ -133,13 +137,15 @@ def measure(project):
                 categories=categories, marked_owner_functions=marker_owners,
                 adx_dead_write_owner_functions=macro_owners,
                 layout_primer_owner_functions=primer_owners,
-                confirmed_debt_owner_functions=sorted(set(marker_owners) | set(macro_owners) | set(primer_owners)),
+                tagged_register_owner_functions=register_owners,
+                confirmed_debt_owner_functions=sorted(set(marker_owners) | set(macro_owners) | set(primer_owners) | set(register_owners)),
                 unassigned_warning_spots=[r for r in warnings if not r['owner']],
                 limits=[
                     'Warning spots are comments, not distinct devices. Multiple warnings can describe one device, and one warning can describe several.',
                     'Owners are physical TU-block owners or single-function source owners, not a complete call graph. Shared primers and headers can affect other consumers.',
                     'ADX dead-write uses are explicit device consumers. Other pragmas, volatile tokens and scalar-carrier shapes are review signals, not confirmed devices.',
                     'Layout primers are physical fzgx_-named definitions in the synthetic .fzgxpool code section, recognized by active section pragmas or explicit attributes. Repeated copies are not deduplicated into inferred original data objects. Other fzgx_-named functions remain review-only.',
+                    'Tagged register staging counts assignments to the repair engine-generated __reg_value_ namespace. This category expands the owner union beyond the earlier marker/primer-only inventory; coverage changes are not regressions.',
                     'Source-form classification uses current configured retail functions and the existing reviewed assembly registry; C form does not certify natural C.',
                     'No preprocessor/call-graph or whole-project semantic audit is claimed. Unmarked devices and unresolved type/data ownership are not a certified total.'
                 ], files_with_findings=files, findings=findings)
@@ -151,7 +157,7 @@ def summary(report):
     for category, row in report['categories'].items():
         unresolved = f", {row['unassigned_spots']} unassigned" if row['unassigned_spots'] else ''
         lines.append(f"  {category}: {row['spots']} spots, {row['files']} files, {row['owner_functions']} owner functions{unresolved}")
-    lines += [f"Confirmed marked/dead-write/layout-primer owner-function union: {len(report['confirmed_debt_owner_functions'])}",
+    lines += [f"Known marked/dead-write/primer/tagged-staging owner-function union: {len(report['confirmed_debt_owner_functions'])}",
               f"Unassigned/shared warning spots: {len(report['unassigned_warning_spots'])}",
               'Configured source forms: ' + ', '.join(f'{key}={value}' for key, value in report['source_forms'].items()),
               'These are lower-bound marked debt and review signals, not a certified remaining-device or natural-C total.']

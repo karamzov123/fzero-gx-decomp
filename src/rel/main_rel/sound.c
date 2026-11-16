@@ -2460,7 +2460,6 @@ static void fzgx_bss_layout(void) {
 
 #pragma opt_propagation off
 
-#pragma opt_propagation off
 static inline void setup(s32 h, u32 *handles, u8 id) {
  u32 flags;
  if (h == handles[0]) {
@@ -2486,7 +2485,6 @@ static inline void setup(s32 h, u32 *handles, u8 id) {
  } else fn_8004BF0C(h, ((s16 *)&lbl_1_data_2D93C)[id]);
  S_TRACK = id;
 }
-#pragma opt_propagation off
 void fn_1_A1964(u8 arg) {
  u32 *handles = (u32 *)S_HANDLES;
  s8 id;

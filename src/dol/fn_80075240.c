@@ -141,10 +141,8 @@ void fn_80075240(void) {
                     x = tx * 4 + col;
                     n = row * 4 + col;
                     {
-                        struct { s32 value; } offset;
                         s32 address;
-                        offset.value = tile * 64 + n * 2;
-                        address = offset.value;
+                        address = (s32)(tile * 64 + n * 2);
                         address += dst.value;
                         *(u8 *)(address + 0) = 0;
                         *(u8 *)(address + 1) = 0;

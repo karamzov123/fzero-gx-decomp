@@ -3363,10 +3363,10 @@ void fn_1_5B3D0(struct fn_1_5B3D0_Arg0 *arg0) {
 
     state = &lbl_1_data_1D628;
     next = ((1103515245) * (state->unk_0)) + 12345;
-    { u32 __reg_value_random = (next >> 16) & 0x7FFF; random = __reg_value_random; }
-    { f32 __reg_value_r = (f32)random; r = __reg_value_r; }
+    random = (u32)((next >> 16) & 0x7FFF);
+    r = (f32)((f32)random);
     { f32 __reg_value_r = r / (32767.0f); r = __reg_value_r; }
-    { f32 __reg_value_r = (0.100000001f) * r; r = __reg_value_r; }
+    r = (f32)((0.100000001f) * r);
     state->unk_0 = next;
     arg0->unk_10 = (s32)((60.0f) * ((0.125f) + r));
 }
@@ -21955,12 +21955,12 @@ void fn_1_67F20(Fn167F20 *obj) {
 
     current = obj->value88;
     { f32 __reg_value_delta = obj->value8c - current; delta = __reg_value_delta; }
-    { f32 __reg_value_delta = fn_1_67F20_operand((delta), (0.05f)); delta = __reg_value_delta; }
+    delta = (f32)(fn_1_67F20_operand((delta), (0.05f)));
     obj->value88 = current + delta;
 
     current = obj->value28;
-    { f32 __reg_value_delta = obj->value2c - current; delta = __reg_value_delta; }
-    { f32 __reg_value_delta = fn_1_67F20_operand((delta), (0.01f)); delta = __reg_value_delta; }
+    delta = (f32)(obj->value2c - current);
+    delta = (f32)(fn_1_67F20_operand((delta), (0.01f)));
     obj->value28 = current + delta;
 
     if (obj->state < 0x1e) {

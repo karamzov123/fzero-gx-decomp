@@ -2418,7 +2418,7 @@ void fn_1_1368A0(s32 arg0, s16 arg1, s32 arg2, f32 farg0, f32 farg1, f32 farg2, 
         fn_1_49748((f32)(*(f32 *)((u8 *)(&lbl_1_rodata_863C) + 0)));
         spC = sp10.words[0];
         fn_1_49514((u32 *)(&spC));
-        { f32 __reg_value_prod = farg2 * farg3; prod = __reg_value_prod; }
+        prod = (f32)(farg2 * farg3);
         temp_f29 = farg0 + prod;
         prod2 = farg4;
         fn_1_496FC((f32)(temp_f29), (f32)(farg1 + prod2));
@@ -2443,7 +2443,7 @@ void fn_1_1368A0(s32 arg0, s16 arg1, s32 arg2, f32 farg0, f32 farg1, f32 farg2, 
     loc_14.scale_x *= farg3;
     loc_14.scale_y *= farg4;
     (*(u32 *)((u8 *)(&loc_14) + 56)) = sp10.words[0];
-    { u32 __reg_value_quot = loc_8[2] / 3; quot = __reg_value_quot; }
+    quot = (u32)(loc_8[2] / 3);
     lab_t0 = (FontDrawPacket *)(&loc_14);
     fn_1_5158C(lab_t0, (u32)(0x9A21U), (u32)((u32) (s16) (loc_8[2] % 3)), (u32)((u32) (s16) quot));
     fn_1_4F734((FontDrawPacket *)(&loc_14));
@@ -2456,7 +2456,7 @@ void fn_1_1368A0(s32 arg0, s16 arg1, s32 arg2, f32 farg0, f32 farg1, f32 farg2, 
     loc_14.scale_x *= farg3;
     loc_14.scale_y *= farg4;
     (*(u32 *)((u8 *)(&loc_14) + 56)) = sp10.words[0];
-    { u32 __reg_value_quot = loc_8[1] / 3; quot = __reg_value_quot; }
+    quot = (u32)(loc_8[1] / 3);
     lab_t0 = (FontDrawPacket *)(&loc_14);
     fn_1_5158C(lab_t0, (u32)(0x9A21U), (u32)((u32) (s16) (loc_8[1] % 3)), (u32)((u32) (s16) quot));
     fn_1_4F734((FontDrawPacket *)(&loc_14));
@@ -2469,7 +2469,7 @@ void fn_1_1368A0(s32 arg0, s16 arg1, s32 arg2, f32 farg0, f32 farg1, f32 farg2, 
     loc_14.scale_x *= farg3;
     loc_14.scale_y *= farg4;
     (*(u32 *)((u8 *)(&loc_14) + 56)) = (*((0) + (sp10.words)));
-    { u32 __reg_value_quot = loc_8[0] / 3; quot = __reg_value_quot; }
+    quot = (u32)(loc_8[0] / 3);
     lab_t0 = (FontDrawPacket *)(&loc_14);
     fn_1_5158C(lab_t0, (u32)(0x9A21U), (u32)((u32) (s16) (loc_8[0] % 3)), (u32)((u32) (s16) quot));
     fn_1_4F734((FontDrawPacket *)(&loc_14));
@@ -2705,7 +2705,7 @@ void fn_1_1373B0(s16 arg0, u8* arg1, u8* arg2, u8* arg3, s16 arg4) {
     } else {
         tmp = base.value + (arg0 - 0x29) * 0x81c0;
     }
-    { u8* __reg_value_base = tmp; base.value = __reg_value_base; }
+    base.value = (u8*)(tmp);
 
     for (i = 0; i < 3u; i++) {
         fn_1_14E9E4(base.value[0x81a4], &info);
@@ -13088,7 +13088,6 @@ static inline BOOL fn_1_147508_isValidChar(u32 c) {
 #define IS_MODE_B(m) fn_1_147508_isModeB(m)
 #define IS_VALID_CHAR(c) fn_1_147508_isValidChar(c)
 
-#pragma opt_propagation off
 static inline void fn_1_147508_setPacket(FontDrawPacket *p, u32 image, f32 x, f32 y) {
     p->image = image;
     p->x = x;
@@ -20247,7 +20246,6 @@ static inline void drawKinds(void *arg0, void *arg1, void *argB, s16 arg2, int a
     }
 }
 
-#pragma opt_lifetimes off
 void fn_1_14E5E4(void *arg0, s16 arg1, f32 arg2) {
     void *a;
     void *b;

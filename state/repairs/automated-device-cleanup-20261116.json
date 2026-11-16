@@ -1,0 +1,433 @@
+{
+  "format": "fzgx-device-cleanup-provenance-v1",
+  "version": "GFZE01",
+  "base_commit": "8341d74455ebdddf8f307679685409c697ec3e1e",
+  "source_tree_sha256": "52db299710eb020833744821997c620658be6efd63ad06c0fff039201ee5e6bc",
+  "configuration_sha256": {
+    "config/GFZE01/units.json": "66305b32c6e0d5904c0e446288bd799aaed4293566b319940eb79c4bfcbbde9d",
+    "config/GFZE01/symbols.txt": "679485d0d8614930c89f5e1919cb46fd91ccd6937a2fc574f1b96db549516b6a",
+    "config/GFZE01/main_rel/symbols.txt": "f420bce352a0130123c6300a9ce3ac052ec0ff29fbc515a1ffc6d2e9308f3422",
+    "config/GFZE01/sample/symbols.txt": "82322476c91b8aa92d58259230913fc2ba507a6b2218de8bd16f2502234941e7",
+    "config/GFZE01/movie_module/symbols.txt": "a1c606bd19ce8925821903d77df8a551e66651bf906adcf01a295526ddd11f2c",
+    "config/GFZE01/customize/symbols.txt": "9e0f12b8bc2c81915c785749472b704f4f0ee31d9bd6770cf37b47446734ff03",
+    "config/GFZE01/sel/symbols.txt": "9ca64c6f0dc6779d30a980398e89dd29fde8dbdf6ffb5b11bb75e5e5bf00f69f",
+    "config/GFZE01/title/symbols.txt": "93046c0993fd8d5d483aa9b7e6d59ecd5109434c16b0901b556132247285917b",
+    "config/GFZE01/pilotpoint/symbols.txt": "4852b5bc0d356713cc7bdb9009a3f3028826e7b11db2c5abee1affe54967c42b",
+    "config/GFZE01/option/symbols.txt": "290b234fe8577db852adf16de0ae1019bb459e8b47203805283891f02868f03f",
+    "config/GFZE01/interview/symbols.txt": "016e13c402380a163cd32153e50c07f5af68939d998e8f8e27f3eeeb72cb25dc",
+    "config/GFZE01/profile/symbols.txt": "f59d2d0adb87b8a4b029e27ce53fcd7b8c780851d493d14a62e2c36b1092e5b2",
+    "config/GFZE01/story/symbols.txt": "956ee3dcef8f80bfaec9dddb55296cd764c6116af2d55586e85543092cafd24f",
+    "config/GFZE01/winning/symbols.txt": "1da2904c3593ce510f39933ba8054ca073abe033e1f5524c3ae67c6acc8fa2f3",
+    "config/GFZE01/movie/symbols.txt": "487762d1ae2ed79e25640765dda920cd9c1ba50c5c910bd35d3ee5c89c8a09c4",
+    "config/GFZE01/car_colchg/symbols.txt": "367638db7fb20a8379d891ae7e534edadf00ac4fd18648a3d1fdbd2d5167742f",
+    "config/GFZE01/replay/symbols.txt": "c869c9456a87836d13d9e8b05622e8a19ff794d997bb67d790805235aae7d9d7",
+    "config/original_assembly.json": "e8cd9c49c2a57648132368ec83377f293988f49195a8dd8dd7339bf6f1ff3c71"
+  },
+  "accepted": [
+    {
+      "function": "main:fn_80075240",
+      "source": "dol/fn_80075240.c",
+      "tu": null,
+      "sha256": "e51fa7d4c8a9e26aec9360cc6447c60795d15a33486f8d2332ed08b4f55dd7db",
+      "experiment": "positive-cleanup-families",
+      "label": "fold single-use scalar carrier offset",
+      "probe_mw": "GC/1.3.2",
+      "probe_flags": ""
+    },
+    {
+      "function": "main:fn_8007ADF0",
+      "source": "dol/fn_8007ADF0.c",
+      "tu": null,
+      "sha256": "215930d93cb0dea65c5ddfd271da893339af771f41c42b008686074955b5a0a3",
+      "experiment": "positive-cleanup-families",
+      "label": "remove duplicate optimizer setters (1)",
+      "probe_mw": "GC/1.3.2",
+      "probe_flags": ""
+    },
+    {
+      "function": "main_rel:fn_1_147508",
+      "source": "rel/main_rel/sel_static_disp/fn_1_147508.c",
+      "tu": "rel/main_rel/sel_static_disp.c",
+      "sha256": "6c6d68143c84f794ffa6dfd4c9b258658b09eee1701188fbb296ed2465c8ebfd",
+      "experiment": "positive-cleanup-families",
+      "label": "remove duplicate optimizer setters (1)",
+      "probe_mw": "GC/1.3.2",
+      "probe_flags": ""
+    },
+    {
+      "function": "main_rel:fn_1_14E5E4",
+      "source": "rel/main_rel/sel_static_disp/fn_1_14E5E4.c",
+      "tu": "rel/main_rel/sel_static_disp.c",
+      "sha256": "758a6e2e1e82e5dbc896e0b26fda6d4523c2db980325b187e75699653266dea5",
+      "experiment": "positive-cleanup-families",
+      "label": "remove duplicate optimizer setters (1)",
+      "probe_mw": "GC/1.3.2",
+      "probe_flags": ""
+    },
+    {
+      "function": "main_rel:fn_1_71768",
+      "source": "rel/main_rel/effect_car/fn_1_71768.c",
+      "tu": "rel/main_rel/effect_car.c",
+      "sha256": "809bed19055f3c2f7dd795bb54f970806d8c7b4c092c414d892ae12fe570b78e",
+      "experiment": "positive-cleanup-families",
+      "label": "remove duplicate optimizer setters (1)",
+      "probe_mw": "GC/1.3.2",
+      "probe_flags": ""
+    },
+    {
+      "function": "main_rel:fn_1_9F4B4",
+      "source": "rel/main_rel/background/fn_1_9F4B4.c",
+      "tu": "rel/main_rel/background.c",
+      "sha256": "b81da5b1d4caeae2383fbc4b761c6a27a6eaf226fb5319e074eacbf34387453f",
+      "experiment": "positive-cleanup-families",
+      "label": "fold single-use scalar carrier f31s",
+      "probe_mw": "GC/1.3.2",
+      "probe_flags": ""
+    },
+    {
+      "function": "main_rel:fn_1_A1964",
+      "source": "rel/main_rel/sound/fn_1_A1964.c",
+      "tu": "rel/main_rel/sound.c",
+      "sha256": "00823c87b917b497bd9e1c532b97de9c56c8fd24792eb172492592cb09d65bc6",
+      "experiment": "positive-cleanup-families",
+      "label": "remove duplicate optimizer setters (2)",
+      "probe_mw": "GC/1.3.2",
+      "probe_flags": ""
+    },
+    {
+      "function": "main_rel:fn_1_E1408",
+      "source": "rel/main_rel/bg_for/fn_1_E1408.c",
+      "tu": "rel/main_rel/bg_for.c",
+      "sha256": "ab76be4d82fc81c4138ff2b35f283ed235afed3de84c296faed4a5547bcad974",
+      "experiment": "positive-cleanup-families",
+      "label": "remove duplicate optimizer setters (1)",
+      "probe_mw": "GC/1.3.2",
+      "probe_flags": ""
+    },
+    {
+      "function": "sel:fn_10_1D314",
+      "source": "rel/sel/sel/fn_10_1D314.c",
+      "tu": "rel/sel/sel.c",
+      "sha256": "8333bf13f39509a3cef4130a6fcdc50c8013f012760b863d02e4ec1f25e13607",
+      "experiment": "positive-cleanup-families",
+      "label": "remove duplicate optimizer setters (1)",
+      "probe_mw": "GC/1.3.2",
+      "probe_flags": ""
+    },
+    {
+      "function": "main_rel:fn_1_5B3D0",
+      "source": "rel/main_rel/effect/fn_1_5B3D0.c",
+      "tu": "rel/main_rel/effect.c",
+      "sha256": "8a7dc4850ceb084b11309dad1e0483cf9ee4dc7cbfc2e6bd013a73ce646a44a2",
+      "experiment": "native-register-copies",
+      "label": "remove tagged register-copy block 2",
+      "probe_mw": "GC/1.3.2",
+      "probe_flags": ""
+    },
+    {
+      "function": "main_rel:fn_1_67F20",
+      "source": "rel/main_rel/effect/fn_1_67F20.c",
+      "tu": "rel/main_rel/effect.c",
+      "sha256": "83295bdb709a3f66a720c1bfef6e4504db484715bd712b4c13e4f1d4eee8aa2a",
+      "experiment": "native-register-copies",
+      "label": "remove all but first tagged register-copy blocks",
+      "probe_mw": "GC/1.3.2",
+      "probe_flags": ""
+    },
+    {
+      "function": "main_rel:fn_1_1373B0",
+      "source": "rel/main_rel/sel_static_disp/fn_1_1373B0.c",
+      "tu": "rel/main_rel/sel_static_disp.c",
+      "sha256": "8b2d398c732c0bd04eab8cdbb46bb82b1571314f033380821f3e11e6f58be87d",
+      "experiment": "native-register-copies",
+      "label": "remove tagged register-copy block 2",
+      "probe_mw": "GC/1.3.2",
+      "probe_flags": ""
+    },
+    {
+      "function": "customize:fn_3_2BFB4",
+      "source": "rel/customize/toolkit/fn_3_2BFB4.c",
+      "tu": "rel/customize/toolkit.c",
+      "sha256": "264565bdb4ebfbc40596ea6f3564f77f20cbf9fffc87884f05c25b621aa46d45",
+      "experiment": "native-register-copies",
+      "label": "remove all tagged register-copy blocks",
+      "probe_mw": "GC/1.3.2",
+      "probe_flags": ""
+    },
+    {
+      "function": "movie_module:fn_12_25DA8",
+      "source": "rel/movie_module/fn_12_25DA8.c",
+      "tu": null,
+      "sha256": "14bce903be79942fbcdb10d7bbd362029aa53a9e78bc4388b0296d1f705fc83a",
+      "experiment": "native-register-copies",
+      "label": "remove second half tagged register-copy blocks",
+      "probe_mw": "GC/1.3.2",
+      "probe_flags": "-use_lmw_stmw on"
+    },
+    {
+      "function": "main:fn_80009AA8",
+      "source": "dol/fn_80009AA8.c",
+      "tu": null,
+      "sha256": "edef4801c7bae138225a74f0f95c8196677e3d10ae375f272b52fc894878037d",
+      "experiment": "native-register-copies",
+      "label": "remove all tagged register-copy blocks",
+      "probe_mw": "GC/1.3.2",
+      "probe_flags": ""
+    },
+    {
+      "function": "main_rel:fn_1_12ECA8",
+      "source": "rel/main_rel/archive/fn_1_12ECA8.c",
+      "tu": "rel/main_rel/archive.c",
+      "sha256": "22548c5df29b97044b2e8a6878189d84bd512f21ffc5797dd98e78a9786b01fb",
+      "experiment": "native-register-copies",
+      "label": "remove all tagged register-copy blocks",
+      "probe_mw": "GC/1.3.2",
+      "probe_flags": ""
+    },
+    {
+      "function": "main_rel:fn_1_15C0AC",
+      "source": "rel/main_rel/bg_win/fn_1_15C0AC.c",
+      "tu": "rel/main_rel/bg_win.c",
+      "sha256": "bb1044ba2611c5a324fc1279bd871db941205d417a615df2de309ab84f369282",
+      "experiment": "native-register-copies",
+      "label": "remove all tagged register-copy blocks",
+      "probe_mw": "GC/1.3.2",
+      "probe_flags": ""
+    },
+    {
+      "function": "main_rel:fn_1_1368A0",
+      "source": "rel/main_rel/sel_static_disp/fn_1_1368A0.c",
+      "tu": "rel/main_rel/sel_static_disp.c",
+      "sha256": "a24b5532918e136f74e17536ae0398ad93383cafc6de7ec1db7008ed32ec8935",
+      "experiment": "native-register-copies",
+      "label": "remove tagged register-copy block 1",
+      "probe_mw": "GC/1.3.2",
+      "probe_flags": ""
+    },
+    {
+      "function": "option:fn_4_B528",
+      "source": "rel/option/_prolog/fn_4_B528.c",
+      "tu": "rel/option/_prolog.c",
+      "sha256": "b32a7756d44641a2041d678ce2a3a6e506ac686ab0157c6bd4c10af42fc59ab0",
+      "experiment": "native-register-copies",
+      "label": "remove tagged register-copy block 10",
+      "probe_mw": "GC/1.3.2",
+      "probe_flags": ""
+    },
+    {
+      "function": "sel:fn_10_23990",
+      "source": "rel/sel/sel/fn_10_23990.c",
+      "tu": "rel/sel/sel.c",
+      "sha256": "c437609e8471e2cc4ed680bf1f5724d91c40107c5707727c8669bf7ffacd2537",
+      "experiment": "native-register-copies",
+      "label": "remove tagged register-copy block 10",
+      "probe_mw": "GC/1.3.2",
+      "probe_flags": ""
+    },
+    {
+      "function": "title:fn_8_DD64",
+      "source": "rel/title/operation/fn_8_DD64.c",
+      "tu": "rel/title/operation.c",
+      "sha256": "d6f80910446a63032a655582baec6de2382db1679b00b31e01c482466ade0db9",
+      "experiment": "native-register-copies",
+      "label": "remove tagged register-copy block 10",
+      "probe_mw": "GC/1.3.2",
+      "probe_flags": ""
+    },
+    {
+      "function": "main_rel:fn_1_15BA78",
+      "source": "rel/main_rel/bg_win/fn_1_15BA78.c",
+      "tu": "rel/main_rel/bg_win.c",
+      "sha256": "0e16204cb52f246e50d559d6993315f48234954be5099842990cc5c6b31353b8",
+      "experiment": "indexed-offset-carriers",
+      "label": "natural byte-index expression",
+      "probe_mw": "GC/1.3",
+      "probe_flags": ""
+    }
+  ],
+  "partial_cleanups_only": true,
+  "new_fully_natural_function_credit": 0,
+  "removed": {
+    "tagged_register_copy_blocks": 54,
+    "scalar_carriers": 3,
+    "duplicate_optimizer_setters": 8
+  },
+  "archives": [
+    {
+      "experiment": "positive-cleanup-families",
+      "archive": "automated-cleanup-positive-20261116.sources.json.gz",
+      "sha256": "8307b8de5797c2fea40f3bbdd42a80ba30592b7240d007bfcce3ba339ff495ea",
+      "records": 18,
+      "archived_compiled_bodies": 18,
+      "legacy_inline_context_explicitly_preserved": 2,
+      "replayed": 18,
+      "verdicts_and_aligned_errors_reproduced": true
+    },
+    {
+      "experiment": "indexed-offset-carriers",
+      "archive": "automated-cleanup-indexed-20261116.sources.json.gz",
+      "sha256": "78817e6b3545ad8630020034104cf1acfae679ddcfc264745d95dccce364ac8f",
+      "records": 3,
+      "archived_compiled_bodies": 3,
+      "legacy_inline_context_explicitly_preserved": 0,
+      "replayed": 3,
+      "verdicts_and_aligned_errors_reproduced": true
+    },
+    {
+      "experiment": "native-register-copies",
+      "archive": "automated-cleanup-register-20261116.sources.json.gz",
+      "sha256": "8a097d9114e8f83c6cbfa93356849e5b298428c84360f4c3760c4da4f9c2674b",
+      "records": 603,
+      "archived_compiled_bodies": 603,
+      "legacy_inline_context_explicitly_preserved": 0,
+      "replayed": 603,
+      "verdicts_and_aligned_errors_reproduced": true
+    },
+    {
+      "experiment": "primer-actual-context",
+      "archive": "automated-cleanup-primer-20261116.sources.json.gz",
+      "sha256": "3e53dd2ff4181621b7515209a14b51f78267f9b68506dc4bd7738e443a17eb5e",
+      "records": 26,
+      "archived_compiled_bodies": 26,
+      "legacy_inline_context_explicitly_preserved": 0,
+      "replayed": 26,
+      "verdicts_and_aligned_errors_reproduced": true
+    },
+    {
+      "experiment": "compiler-profile-regression",
+      "archive": "automated-cleanup-profile-20261116.sources.json.gz",
+      "sha256": "c509445bd57ba30b15449d4ba0ef718cf883a9a4ff110e3e2f0970379191622a",
+      "records": 2,
+      "archived_compiled_bodies": 2,
+      "legacy_inline_context_explicitly_preserved": 0,
+      "replayed": 2,
+      "verdicts_and_aligned_errors_reproduced": true
+    },
+    {
+      "experiment": "public CLI smoke, live cohorts and strict policy guards",
+      "archive": "automated-cleanup-cli-20261116.sources.json.gz",
+      "sha256": "bbcbd5402264a542e625e96abd7b039870468d52d70a57d325d10a30cdc5c1e9",
+      "records": 131,
+      "archived_compiled_bodies": 131,
+      "runs": [
+        {
+          "experiment": "cleanup-cli-smoke",
+          "records": 5,
+          "controls": 1,
+          "blocked_controls": [],
+          "proposals": 1
+        },
+        {
+          "experiment": "cleanup-cli-live32",
+          "records": 95,
+          "controls": 30,
+          "blocked_controls": [
+            "fn_17_802C",
+            "fn_80022028"
+          ],
+          "proposals": 0
+        },
+        {
+          "experiment": "cleanup-cli-pointer",
+          "records": 2,
+          "controls": 1,
+          "blocked_controls": [],
+          "proposals": 0
+        },
+        {
+          "experiment": "cleanup-cli-sel32",
+          "records": 31,
+          "controls": 5,
+          "blocked_controls": [],
+          "proposals": 0
+        }
+      ],
+      "replayed": 131,
+      "verdicts_and_aligned_errors_reproduced": true
+    }
+  ],
+  "replayed_bodies": 783,
+  "compiler_profile_parity": {
+    "checked": 11604,
+    "differences": [],
+    "normalization": "Exclude output/control switches -c/-nofail, default C language selector and include paths; compare all remaining tokens plus effective last -O/-inline/-str/-fp_contract/-use_lmw_stmw/-sdata/-sdata2 values. Extra-cflags entries are shell fragments joined with spaces, exactly as Ninja does, not shlex.join arguments."
+  },
+  "census": {
+    "path": "device-census-automated-20261116.json.gz",
+    "sha256": "8fb3ff5942807e68b70c9fee1335780d3d33b72bbc0d8591084d844da886f94e",
+    "categories": {
+      "adx-dead-write-use": {
+        "spots": 7,
+        "files": 1,
+        "owner_functions": 1,
+        "unassigned_spots": 0
+      },
+      "layout-primer-function": {
+        "spots": 10630,
+        "files": 145,
+        "owner_functions": 958,
+        "unassigned_spots": 72
+      },
+      "marked-warning": {
+        "spots": 37,
+        "files": 12,
+        "owner_functions": 13,
+        "unassigned_spots": 1
+      },
+      "optimization-pragma-review": {
+        "spots": 937,
+        "files": 273,
+        "owner_functions": 695,
+        "unassigned_spots": 28
+      },
+      "single-field-value-carrier-review": {
+        "spots": 269,
+        "files": 97,
+        "owner_functions": 178,
+        "unassigned_spots": 6
+      },
+      "synthetic-function-review": {
+        "spots": 4,
+        "files": 4,
+        "owner_functions": 4,
+        "unassigned_spots": 0
+      },
+      "tagged-register-staging": {
+        "spots": 44,
+        "files": 8,
+        "owner_functions": 10,
+        "unassigned_spots": 0
+      },
+      "volatile-token-review": {
+        "spots": 15470,
+        "files": 389,
+        "owner_functions": 1235,
+        "unassigned_spots": 171
+      }
+    },
+    "known_owner_union": 972
+  },
+  "validation": {
+    "commands": [
+      ".venv/bin/python configure.py",
+      "ninja -j 2 build/GFZE01/ok",
+      "build/tools/dtk shasum -q -c config/GFZE01/build.sha1",
+      ".venv/bin/python tools/fzgx.py lint"
+    ],
+    "linked_hashes": 16,
+    "independent_hashes": 16,
+    "lint_findings": 0,
+    "local_log_sha256": "b5e1966e080279228dd018047378f9410989e459507eba54b4b73d695e7132bb",
+    "archive": "automated-cleanup-validation-20261116.json.gz",
+    "archive_sha256": "1c0e1740158e9932c08263792900ff2cb25f4f5273b72c450c7fb78dd04ab299",
+    "final_recheck": "configure, up-to-date Ninja target, 16 independent hashes and zero lint findings; exact private committed-snapshot gate remains mandatory before publication",
+    "cli_selector_rejections_verified": ["--apply", "--drafts", "--replay"]
+  },
+  "notes": [
+    "The compiler-profile fix prevents a configured unit override from leaking into ordinary units of its module. The archive regression preserves both the 172-word legacy failure and zero-word actual-profile control.",
+    "Two historical positive-cohort sel probes had an implicit module override; the portable archive makes -inline on,noauto explicit to reproduce their measured contexts. Installed source is separately validated by the actual configured whole build.",
+    "Four pool maps are refreshed from real object/relocation evidence after anonymous literal names changed. Retail bytes, ABI flags, compiler versions and acceptance gates are not changed.",
+    "The read-only CLI blocks unsupported controls and never applies or claims linked verification. In its 32-function live cohort two controls were blocked despite zero code-word errors because extra helper/source policy still rejected them.",
+    "Synthetic-primer removal remains an unaccepted source-shape frontier; negative actual-context probes and the rejected generator are retained, not installed."
+  ]
+}

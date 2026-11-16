@@ -8976,7 +8976,6 @@ static inline f32 fn_1_71768_distance(u32 arg0, const f32 *loc_8) {
     return lbl_8006D0B4(x);
 }
 
-#pragma opt_lifetimes off
 #pragma opt_propagation off
 void fn_1_71768(u32 arg0, u32 arg1) {
     struct fn_1_71768_lbl_1_rodata_2D70 *p_lbl_1_rodata_2D70;

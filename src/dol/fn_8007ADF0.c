@@ -29,7 +29,6 @@ void fn_8007ADF0(u32 arg0, u32 arg1) {
     *(u32 *)(end_2 - 4) = size;
 }
     off = (*(u32 *)(arg0 + 0xc) & ~7) - 4;
-#pragma opt_propagation off
     if (*(u32 *)(arg0 + off) != 0) {
         *(u32 *)(block + 8) = *(u32 *)(*(u32 *)(arg0 + off) + 8);
         *(u32 *)(*(u32 *)(block + 8) + 0xc) = block;

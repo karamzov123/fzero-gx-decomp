@@ -42095,8 +42095,8 @@
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
     "pool": {
-      "@75": "lbl_801A7480",
-      "@74": "lbl_801A7488",
+      "@74": "lbl_801A7480",
+      "@73": "lbl_801A7488",
       "...bss.0": "lbl_8019F040",
       "lbl_8019F040": "lbl_8019F040",
       "lbl_8019F130": "lbl_8019F130",
@@ -146620,8 +146620,25 @@
     "tu": "rel/option/_prolog.c",
     "pool": {
       "...rodata.0": "lbl_4_rodata_410",
+      "@122": "lbl_4_rodata_B34",
+      "@123": "lbl_4_rodata_B38",
+      "@49": "lbl_4_rodata_B1C",
+      "@21": "lbl_4_rodata_B10",
+      "@51": "lbl_4_rodata_B20",
+      "@22": "lbl_4_rodata_B14",
+      "@53": "lbl_4_rodata_B24",
+      "@23": "lbl_4_rodata_B18",
+      "@55": "lbl_4_rodata_B28",
       "@6": "lbl_4_rodata_B00",
-      "@12": "lbl_4_rodata_B08"
+      "@124": "lbl_4_rodata_B40",
+      "@12": "lbl_4_rodata_B08",
+      "@126": "lbl_4_rodata_B50",
+      "@127": "lbl_4_rodata_B58",
+      "@125": "lbl_4_rodata_B48",
+      "@88": "lbl_4_rodata_B30",
+      "@87": "lbl_4_rodata_B2C",
+      "@128": "lbl_4_rodata_B60",
+      "@129": "lbl_4_rodata_B64"
     }
   },
   {
@@ -156585,8 +156602,25 @@
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_1548",
+      "@122": "lbl_10_rodata_1C6C",
+      "@123": "lbl_10_rodata_1C70",
+      "@49": "lbl_10_rodata_1C54",
+      "@21": "lbl_10_rodata_1C48",
+      "@51": "lbl_10_rodata_1C58",
+      "@22": "lbl_10_rodata_1C4C",
+      "@53": "lbl_10_rodata_1C5C",
+      "@23": "lbl_10_rodata_1C50",
+      "@55": "lbl_10_rodata_1C60",
       "@6": "lbl_10_rodata_1C38",
-      "@12": "lbl_10_rodata_1C40"
+      "@124": "lbl_10_rodata_1C78",
+      "@12": "lbl_10_rodata_1C40",
+      "@126": "lbl_10_rodata_1C88",
+      "@127": "lbl_10_rodata_1C90",
+      "@125": "lbl_10_rodata_1C80",
+      "@88": "lbl_10_rodata_1C68",
+      "@87": "lbl_10_rodata_1C64",
+      "@128": "lbl_10_rodata_1C98",
+      "@129": "lbl_10_rodata_1C9C"
     }
   },
   {
@@ -160409,8 +160443,25 @@
     "tu": "rel/title/operation.c",
     "pool": {
       "...rodata.0": "lbl_8_rodata_408",
+      "@122": "lbl_8_rodata_B2C",
+      "@123": "lbl_8_rodata_B30",
+      "@49": "lbl_8_rodata_B14",
+      "@21": "lbl_8_rodata_B08",
+      "@51": "lbl_8_rodata_B18",
+      "@22": "lbl_8_rodata_B0C",
+      "@53": "lbl_8_rodata_B1C",
+      "@23": "lbl_8_rodata_B10",
+      "@55": "lbl_8_rodata_B20",
       "@6": "lbl_8_rodata_AF8",
-      "@12": "lbl_8_rodata_B00"
+      "@124": "lbl_8_rodata_B38",
+      "@12": "lbl_8_rodata_B00",
+      "@126": "lbl_8_rodata_B48",
+      "@127": "lbl_8_rodata_B50",
+      "@125": "lbl_8_rodata_B40",
+      "@88": "lbl_8_rodata_B28",
+      "@87": "lbl_8_rodata_B24",
+      "@128": "lbl_8_rodata_B58",
+      "@129": "lbl_8_rodata_B5C"
     }
   },
   {

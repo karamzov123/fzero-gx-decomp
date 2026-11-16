@@ -810,6 +810,7 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument('--saved', action='store_true', help='reuse this output report without repeating search')
     s.add_argument('--clones', action='store_true', help='pool saved C across exact retail clones and repair one representative per family')
     s.add_argument('--pool-upgrades', action='store_true', help='repair accepted pool-only C into linkable matches, largest first')
+    s.add_argument('--cleanup', action='store_true', help='read-only inverse-device cleanup of verified matched C; outputs proofs and proposed sources, never applies')
     s.add_argument('--apply', action='store_true', help='submit exact results, verify all 16 hashes and commit')
     s.add_argument('--min-percent', type=float, help='minimum saved similarity (default: 95, or 0 with --clones)'); s.add_argument('--max-percent', type=float, default=100)
     s.add_argument('--module'); s.add_argument('--max-size', type=int); s.add_argument('--limit', type=int)

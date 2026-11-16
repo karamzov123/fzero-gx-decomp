@@ -512,6 +512,211 @@ def scalar_carriers(body: str, name: str) -> List[Tuple[str, str]]:
     return out
 
 
+def fold_single_use_carriers(body: str, name: str) -> List[Tuple[str, str]]:
+    """Fold an adjacent, effect-free staging expression into its sole consumer.
+
+    Unlike scalar unwrapping this removes the allocation-only temporary itself.
+    Never move calls, volatile accesses, control flow or short-circuit operands.
+    """
+    from .sdkimport import masked
+    span = _function_body_span(body, name)
+    if not span:
+        return []
+    code = masked(body)
+    inner = code[span[1] + 1:span[2]]
+    if re.search(r'\b(?:volatile|asm|__asm__)\b|(?m:^[ \t]*#)', inner):
+        return []
+    declaration = re.compile(r'\bstruct\s*\{\s*([su](?:8|16|32|64)|f32|f64|int|unsigned|float|double)\s+(\w+)\s*;\s*\}\s*(\w+)\s*;')
+    out = []
+    for decl in declaration.finditer(code, span[1], span[2]):
+        base, field, variable = decl[1], decl[2], decl[3]
+        if len(re.findall(r'\b' + re.escape(variable) + r'\b', inner)) != 3:
+            continue
+        access = r'\b' + re.escape(variable) + r'\s*\.\s*' + re.escape(field) + r'\b'
+        assignment = re.search(r'(?m)^[ \t]*' + access + r'[ \t]*=[ \t]*([^;\n]+);[ \t]*\n', code[decl.end():span[2]])
+        if not assignment:
+            continue
+        start = decl.end() + assignment.start()
+        end = decl.end() + assignment.end()
+        rhs_start, rhs_end = decl.end() + assignment.start(1), decl.end() + assignment.end(1)
+        consumer = re.match(r'[ \t]*(?:return[ \t]+[^;\n]+|[A-Za-z_]\w*(?:(?:->|\.)\w+|\[[^\]\n]+\])*[ \t]*=[^;\n]+);', code[end:span[2]])
+        if not consumer:
+            continue
+        consumer_end = end + consumer.end()
+        expression = code[rhs_start:rhs_end]
+        statement = code[end:consumer_end]
+        if len(re.findall(access, statement)) != 1:
+            continue
+        combined = expression + statement
+        direct_copy = bool(re.fullmatch(r'[ \t]*(?:return[ \t]+|[A-Za-z_]\w*[ \t]*=[ \t]*)' + access + r'[ \t]*;', statement))
+        if re.search(r'\+\+|--|&&|\|\||[?:]', combined):
+            continue
+        if not direct_copy and re.search(r'\b[A-Za-z_]\w*\s*\(|,', combined):
+            continue
+        # No read can escape into a condition or an assignment embedded in RHS.
+        if re.search(r'(?<![=!<>])=(?!=)', expression):
+            continue
+        use = re.compile(access).search(code, end, consumer_end)
+        if use is None:
+            continue
+        replacement = '(' + base + ')(' + body[rhs_start:rhs_end].strip() + ')'
+        decl_start = code.rfind('\n', 0, decl.start()) + 1
+        decl_end = code.find('\n', decl.end())
+        if decl_end < 0 or code[decl_start:decl.start()].strip() or code[decl.end():decl_end].strip():
+            continue
+        edits = [(decl_start, decl_end + 1, ''), (start, end, ''), (use.start(), use.end(), replacement)]
+        text = body
+        for first, last, value in sorted(edits, reverse=True):
+            text = text[:first] + value + text[last:]
+        out.append(('fold single-use scalar carrier ' + variable, text))
+    return out
+
+
+def native_register_copies(body: str, name: str) -> List[Tuple[str, str]]:
+    """Invert the repair engine's tagged block-copy device, preserving conversion.
+
+    The destination is a fixed scalar/record lvalue, not a computed pointer or
+    subscript. The RHS remains before its store; no other statement is moved.
+    """
+    from .sdkimport import masked
+    span = _function_body_span(body, name)
+    if not span or '##' in body:
+        return []
+
+    def edits(text):
+        code = masked(text)
+        current = _function_body_span(code, name)
+        if not current:
+            return []
+        pattern = re.compile(r'\{\s*([^;{}=]+?)\s+(__reg_value_\w+)\s*=\s*([^;{}]+);\s*'
+                             r'([A-Za-z_]\w*(?:\s*\.\s*[A-Za-z_]\w*)*)\s*=\s*\2\s*;\s*\}')
+        found = []
+        for match in pattern.finditer(code, current[1], current[2]):
+            if match.start() == current[1]:
+                continue
+            typ = match[1].strip()
+            if (re.search(r'\b(?:volatile|static|extern|auto)\b', typ)
+                    or len(re.findall(r'\b' + re.escape(match[2]) + r'\b', match[0])) != 2):
+                continue
+            typ = re.sub(r'\bregister\s+', '', typ)
+            if re.search(r'\b(?:struct|union)\b', typ) and '*' not in typ:
+                continue
+            rhs = text[match.start(3):match.end(3)].strip()
+            lhs = text[match.start(4):match.end(4)].strip()
+            found.append((match.start(), match.end(), lhs + ' = (' + typ + ')(' + rhs + ');'))
+        return found
+
+    def replace(text, changes):
+        for first, last, value in sorted(changes, reverse=True):
+            text = text[:first] + value + text[last:]
+        return text
+
+    changes = edits(body)
+    if not changes:
+        return []
+    out = [('remove all tagged register-copy blocks', replace(body, changes))]
+    if len(changes) > 2:
+        middle = len(changes) // 2
+        for label, group in [('first half', changes[:middle]), ('second half', changes[middle:]),
+                             ('all but first', changes[1:]), ('all but last', changes[:-1])]:
+            out.append(('remove ' + label + ' tagged register-copy blocks', replace(body, group)))
+    if len(changes) <= 32:
+        out.extend(('remove tagged register-copy block ' + str(index + 1), replace(body, [change]))
+                   for index, change in enumerate(changes))
+    for label, text in unwrap_scalar_carriers(body, name):
+        changes = edits(text)
+        if changes:
+            out.append((label + '; remove tagged register-copy blocks', replace(text, changes)))
+    return out
+
+
+def indexed_offset_carriers(body: str, name: str) -> List[Tuple[str, str]]:
+    """Recover an unsigned affine byte index from a coupled counted loop.
+
+    Only a zero-based counter with one terminal increment and one constant
+    offset step is admitted. Keep the loop/calls/stores in place and preserve
+    the offset's unsigned conversion instead of inventing allocation controls.
+    """
+    from .sdkimport import masked
+    from .original_assembly import _end
+    span = _function_body_span(body, name)
+    if not span:
+        return []
+    code = masked(body)
+    inner = code[span[1]:span[2]]
+    if re.search(r'\b(?:volatile|asm|__asm__)\b|(?m:^[ \t]*#)', inner):
+        return []
+    carrier = re.compile(r'\bstruct\s*\{\s*(u32|unsigned(?:\s+(?:int|long))?)\s+(\w+)\s*;\s*\}\s*(\w+)\s*;')
+    out = []
+    for decl in carrier.finditer(code, span[1], span[2]):
+        base, field, variable = decl[1], decl[2], decl[3]
+        access = r'\b' + re.escape(variable) + r'\s*\.\s*' + re.escape(field) + r'\b'
+        uses = list(re.finditer(access, code[decl.end():span[2]]))
+        if re.search(r'&[\s()]*' + access, inner):
+            continue
+        if len(re.findall(r'\b' + re.escape(variable) + r'\b', inner)) != len(uses) + 1:
+            continue
+        writes = list(re.finditer(access + r'\s*(?:\+\+|--|[+*/&|^-]?=(?!=))', inner))
+        initial = re.compile(access + r'\s*=\s*0\s*;').search(code, decl.end(), span[2])
+        step = re.compile(access + r'\s*\+=\s*(0[xX][0-9a-fA-F]+|[1-9][0-9]*)\s*;').search(code, decl.end(), span[2])
+        if len(writes) != 2 or initial is None or step is None or initial.end() > step.start():
+            continue
+        if not 0 < int(step[1], 0) <= 0xFFFFFFFF:
+            continue
+        for loop in re.finditer(r'\bwhile\s*\(([^;{}]*)\)\s*\{', code[initial.end():span[2]]):
+            loop_start = initial.end() + loop.start()
+            opening = initial.end() + loop.end() - 1
+            loop_end = _end(code, opening)
+            if not (opening < step.start() < loop_end - 1):
+                continue
+            tail = re.fullmatch(r'\s*(\w+)\s*\+\+\s*;\s*', code[step.end():loop_end - 1])
+            if tail is None:
+                continue
+            counter = tail[1]
+            counter_types = re.findall(r'\b([A-Za-z_]\w*(?:[ \t]+[A-Za-z_]\w*)*)[ \t]+'
+                                       + re.escape(counter) + r'[ \t]*(?=[,;=])', inner)
+            counter_types = [re.sub(r'\bregister\s+', '', typ).strip() for typ in counter_types
+                             if not re.search(r'\b(?:return|case|goto)\b', typ)]
+            if len(counter_types) != 1 or counter_types[0] not in ('s32', 'u32', 'int', 'long', 'unsigned', 'unsigned int', 'unsigned long'):
+                continue
+            if not re.search(r'\b' + re.escape(counter) + r'\s*<', loop[1]):
+                continue
+            counter_writes = list(re.finditer(r'\b' + re.escape(counter) + r'\s*(?:\+\+|--|[+*/&|^-]?=(?!=))', inner))
+            counter_zero = re.compile(r'\b' + re.escape(counter) + r'\s*=\s*0\s*;').search(code, span[1], loop_start)
+            if len(counter_writes) != 2 or counter_zero is None or re.search(r'&[\s()]*\b' + re.escape(counter) + r'\b', inner):
+                continue
+            edits = []
+            valid = True
+            for use in uses:
+                first, last = decl.end() + use.start(), decl.end() + use.end()
+                if initial.start() <= first < initial.end() or step.start() <= first < step.end():
+                    continue
+                if initial.end() <= first < loop_start:
+                    value = '(' + base + ')0'
+                elif opening < first < step.start():
+                    value = '(' + base + ')((' + base + ')' + counter + ' * ' + step[1] + ')'
+                else:
+                    valid = False
+                    break
+                if code[max(0, first - 1):first] == '&':
+                    valid = False
+                    break
+                edits.append((first, last, value))
+            if not valid:
+                continue
+            for first, last in ((decl.start(), decl.end()), initial.span(), step.span()):
+                line_start = code.rfind('\n', 0, first) + 1
+                line_end = code.find('\n', last)
+                if line_end >= 0 and not code[line_start:first].strip() and not code[last:line_end].strip():
+                    first, last = line_start, line_end + 1
+                edits.append((first, last, ''))
+            text = body
+            for first, last, value in sorted(edits, reverse=True):
+                text = text[:first] + value + text[last:]
+            out.append(('recover counted unsigned byte index ' + variable, text))
+    return out
+
+
 def unwrap_scalar_carriers(body: str, name: str) -> List[Tuple[str, str]]:
     """Offer ordinary locals for anonymous one-member scalar wrappers in old seeds.
 
@@ -3751,6 +3956,24 @@ def optimizer_directive_removals(body, name):
         for match in sorted(matches, key=lambda m: m.start(), reverse=True):
             text = text[:match.start()] + text[match.end():]
         return text
+    # Repeated setters do not require removing the setting that the code needs.
+    # Includes and unknown directives are barriers: never infer their state.
+    states, duplicate = {}, []
+    for directive in re.finditer(r'(?m)^[ \t]*#\s*(?:include\b[^\n]*|pragma\b[^\n]*)(?:\n|$)', code):
+        setting = re.fullmatch(r'[ \t]*#\s*pragma\s+(opt_\w+|optimize_for_size|scheduling|peephole)'
+                               r'\s+(on|off|reset|push|pop)\s*', directive[0])
+        if setting is None:
+            states.clear()
+            continue
+        option, value = setting.groups()
+        if value in ('reset', 'push', 'pop'):
+            states.pop(option, None)
+            continue
+        if states.get(option) == value:
+            duplicate.append(directive)
+        states[option] = value
+    if duplicate:
+        yield f'remove duplicate optimizer setters ({len(duplicate)})', remove(duplicate)
     for option, matches in groups.items():
         yield 'test optimizer directive removal ' + option, remove(matches)
     if len(groups) > 1:

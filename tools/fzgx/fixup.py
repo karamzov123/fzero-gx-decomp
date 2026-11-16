@@ -124,7 +124,9 @@ class Engine:
             self._new_sources += 1
         elif digest(path.read_bytes()) != sha:
             raise ValueError(f'changed content-addressed source: {path}')
+        profile_flags = flags if isinstance(flags, str) else ' '.join(str(f) for f in flags)
         return dict(metadata, symbol=symbol, source=str(path), sha256=sha, mw=mw, flags=flags,
+                    compile_profile=oracle.compile_command(self.project,sym.module,mw,profile_flags)[2:],
                     target=str(target), id=identity)
 
     timing = {}
@@ -519,6 +521,7 @@ class Engine:
     def proposals(self, row, capture=None, max_orders=50000):
         body = source_text(row['source'])
         name = self.project.resolve(row['symbol']).name
+
         families = []
         deferred_graph = []
         operators = {}
@@ -554,6 +557,13 @@ class Engine:
         yield from source.native_access_helpers(body, name)
         yield from source.volatile_removals(body, name)
         yield from source.redundant_scalar_access_casts(body, name)
+        yield from source.fold_single_use_carriers(body, name)
+        yield from source.native_register_copies(body, name)
+        yield from source.indexed_offset_carriers(body, name)
+        for label, text in source.optimizer_directive_removals(body, name):
+            if label.startswith('remove duplicate optimizer setters'):
+                yield label, text
+                break
         yield from source.accessor_lifetimes(body, name)
         if row.get('score') == 100:
             if row.get('source_lint') and (check.matched or check.matched_pool):
@@ -801,6 +811,81 @@ class Engine:
         self.transfer_clones(history, seen, transfers)
         self.emit(dict(stage='clones', families=len(self.clones), shared=len(self.clone_shared),
                        matches=len(self.matched_symbols(history))))
+
+    def cleanup_proposals(self, row):
+        """Known inverse devices only; no allocator, flags or instruction search."""
+        text = source_text(row['source'])
+        symbol = self.project.resolve(row['symbol'])
+        if symbol is None:
+            return
+        name = symbol.name
+        yield from source.unwrap_scalar_carriers(text, name)
+        yield from source.fold_single_use_carriers(text, name)
+        yield from source.native_register_copies(text, name)
+        yield from source.indexed_offset_carriers(text, name)
+        for label, candidate in source.optimizer_directive_removals(text, name):
+            if label.startswith('remove duplicate optimizer setters'):
+                yield label, candidate
+                break
+
+    @staticmethod
+    def cleanup_debt(text):
+        from .original_assembly import masked
+        code = masked(text)
+        return (len(re.findall(r'\b__reg_value_\w+\s*=', code)),
+                len(re.findall(r'\bstruct\s*\{\s*[^;{}]+;\s*\}\s*\w+\s*;', code)),
+                len(re.findall(r'(?m)^[ \t]*#pragma\s+(?:opt_\w+|optimize_for_size|scheduling|peephole)\b', code)))
+
+    def cleanup(self, rows, rounds=2, max_candidates=80, budget_s=None) -> dict:
+        """Read-only finite elimination with exact installed-source controls."""
+        started = time.monotonic()
+        self.evaluate(rows)
+        history, seen = list(rows), {r['id'] for r in rows}
+        controls = {r['symbol']: r for r in rows if r.get('matched')}
+        best, stats = dict(controls), []
+        for iteration in range(rounds):
+            if budget_s is not None and time.monotonic() - started >= budget_s:
+                break
+            candidates = []
+            for symbol, seed in best.items():
+                choices = sorted(self.cleanup_proposals(seed), key=lambda pair: self.cleanup_debt(pair[1]))
+                count = 0
+                for label, text in choices:
+                    if self.cleanup_debt(text) >= self.cleanup_debt(source_text(seed['source'])):
+                        continue
+                    row = self.record(symbol, text, seed['mw'], seed['flags'], parent=seed['id'], label=label)
+                    if row['id'] in seen:
+                        continue
+                    seen.add(row['id'])
+                    candidates.append(row)
+                    count += 1
+                    if count >= max_candidates:
+                        break
+                if budget_s is not None and time.monotonic() - started >= budget_s:
+                    break
+            if not candidates:
+                break
+            self.evaluate(candidates)
+            improved = 0
+            for row in candidates:
+                prior = best[row['symbol']]
+                if row.get('matched') and self.cleanup_debt(source_text(row['source'])) < self.cleanup_debt(source_text(prior['source'])):
+                    best[row['symbol']] = row
+                    improved += 1
+            history.extend(candidates)
+            stats.append(dict(round=iteration + 1, candidates=len(candidates), improvements=improved))
+            self.emit(dict(stage='cleanup', **stats[-1]))
+            if not improved:
+                break
+        winners = {symbol: row for symbol, row in best.items() if row['id'] != controls[symbol]['id']}
+        report = dict(mode='read-only-cleanup', records=history, best=winners,
+                      frontier={'all_frozen_probes': history}, stats=stats,
+                      controls=len(controls), blocked_controls=[r['symbol'] for r in rows if not r.get('matched')],
+                      compiled=self.compiled, cached=self.cached, compile_seconds=self.compile_seconds,
+                      seconds=time.monotonic() - started, environment=self.environment,
+                      generator_sha256=self.generator_sha256)
+        (self.output / 'report.json').write_text(json.dumps(report, indent=2) + '\n')
+        return report
 
     def run(self, rows, rounds=2, beam=3, max_candidates=80, budget_s=None, captures=None, stop_on_match=False):
         start=time.monotonic(); history=list(rows); seen={r['id'] for r in rows}; initial={}
@@ -1130,6 +1215,8 @@ def replay_archive(path):
                 if body is None or digest(body.encode())!=record['sha256']:
                     raise ValueError(symbol+': generated body hash mismatch')
                 row=engine.record(symbol,body,record['mw'],record['flags'])
+                if record.get('compile_profile') is not None and row['compile_profile']!=record['compile_profile']:
+                    raise ValueError(symbol+': compiler profile changed; replay in the pinned configuration')
                 engine.evaluate([row])
                 if not row.get('object'):
                     raise ValueError(symbol+': reproduced body no longer compiles')
@@ -1172,6 +1259,31 @@ def load_records(engine,args):
     from .ledger import Ledger
     from seeds.recovered import SavedCandidates
     p=engine.project;ledger=Ledger();rows=[]
+    if getattr(args, 'cleanup', False):
+        from . import api, original_assembly
+        selected = p.resolve(args.symbol) if args.symbol else None
+        if args.symbol and selected is None:
+            raise ValueError('unknown or ambiguous function: ' + args.symbol)
+        for unit in sorted(p.load_units(), key=lambda u: (u['module'], u['source'])):
+            if unit['status'] != 'matching' or unit.get('asm') or len(unit['symbols']) != 1:
+                continue
+            symbol = p.resolve(unit['module'] + ':' + unit['symbols'][0])
+            if (symbol is None or symbol.kind != 'function' or not symbol.size or
+                    selected is not None and symbol != selected or
+                    args.module and symbol.module != args.module or
+                    args.max_size is not None and symbol.size > args.max_size or
+                    original_assembly.source_form(unit['source'], symbol.name) != 'c'):
+                continue
+            state = ledger.get(p.key(symbol))
+            if not state or state['status'] != 'matched' or state['link_state'] != 'verified':
+                continue
+            text = source_text(args.body) if args.body else api._canonical_text(p, unit['source'])
+            row = engine.record(p.key(symbol), text, *oracle.version_for(p, symbol), label='installed cleanup control')
+            if any(engine.cleanup_proposals(row)):
+                rows.append(row)
+            if args.limit and len(rows) >= args.limit:
+                break
+        return rows
     if getattr(args, 'pool_upgrades', False):
         from . import api
         engine.linkable_only = True
@@ -1359,13 +1471,18 @@ def archive_sources(report, path):
         seed,recipe=repair_recipe(by_id,row)
         records.append(dict(symbol=row['symbol'],body=source_text(row['source']),sha256=row['sha256'],
             seed=source_text(seed['source']),seed_sha256=seed['sha256'],seed_symbol=seed['symbol'],
-            generator='fzgx fixup',recipe=recipe,mw=row['mw'],flags=row['flags'],
+            generator='fzgx fixup',recipe=recipe,mw=row['mw'],flags=row['flags'],compile_profile=row.get('compile_profile'),
             **{k:row[k] for k in ('raw_percent','percent','percent_adjusted','score','word_errors','aligned_word_percent','matched') if k in row}))
     path.write_bytes(gzip.compress(json.dumps(dict(format='fzgx-source-repairs-v1',
         generator_sha256=report['generator_sha256'],environment=report['environment'],records=records)).encode(),mtime=0))
 
 
 def command(p,args):
+    if getattr(args, 'cleanup', False):
+        if args.apply or args.clones or args.corpus or args.capture or args.archive or args.saved or args.replay or args.drafts or getattr(args, 'pool_upgrades', False):
+            raise ValueError('--cleanup is read-only and cannot be combined with other repair selectors or --apply')
+        if args.body and not args.symbol:
+            raise ValueError('--cleanup --body requires an explicit symbol')
     if getattr(args, 'pool_upgrades', False) and (args.clones or args.body or args.corpus or args.capture or args.archive):
         raise ValueError('--pool-upgrades selects canonical accepted C; do not combine it with other source selectors')
     if args.min_percent is None:
@@ -1383,6 +1500,11 @@ def command(p,args):
             raise SystemExit(1)
         return result
     output=(args.output or STATE_DIR/'fixup'/'corpus').resolve()
+    if getattr(args, 'cleanup', False) and args.output is None:
+        # Preserve ordinary repair corpora and every earlier cleanup checkpoint.
+        label=re.sub(r'[^A-Za-z0-9_.-]', '_', args.symbol or args.module or 'corpus')
+        label='corpus' if label in ('', '.', '..') else label
+        output=(STATE_DIR/'fixup'/'cleanup'/label/str(time.time_ns())).resolve()
     if args.saved:
         report=json.loads((output/'report.json').read_text())
     else:
@@ -1394,9 +1516,11 @@ def command(p,args):
         carved=any(p.unit_of(p.resolve(r['symbol'])) for r in rows if p.resolve(r['symbol']))
         if carved:
             with oracle.build_lock():
-                report=engine.run(rows,args.rounds,args.beam,args.max_candidates,args.budget,captures)
+                report=(engine.cleanup(rows,args.rounds,args.max_candidates,args.budget)
+                        if getattr(args, 'cleanup', False) else engine.run(rows,args.rounds,args.beam,args.max_candidates,args.budget,captures))
         else:
-            report=engine.run(rows,args.rounds,args.beam,args.max_candidates,args.budget,captures)
+            report=(engine.cleanup(rows,args.rounds,args.max_candidates,args.budget)
+                    if getattr(args, 'cleanup', False) else engine.run(rows,args.rounds,args.beam,args.max_candidates,args.budget,captures))
         # One canonical corpus format for capture and future repair, all variants
         # remain in report.json rather than separate per-algorithm stores.
         best={s:r for s,r in report['best'].items() if r['score']>=0 and not r.get('matched')}
@@ -1414,7 +1538,7 @@ def command(p,args):
         (output/'results.json').write_text(json.dumps(
             {s: {'baseline': {'object': r['object'], 'pure': modes.get(s, 'unclassified')}}
              for s, r in best.items()}))
-    if report.get('clones'):
+    if report.get('clones') or getattr(args, 'cleanup', False):
         archive_sources(report,output/'sources.json.gz')
     if args.apply:
         by_id={r['id']:r for r in report['records']};inputs={};functions=[]
@@ -1445,4 +1569,7 @@ def command(p,args):
     reported={s:r for s,r in report['best'].items() if not report.get('clones') or s in targets}
     summary.update(functions=len(reported),variants=len(report['records']),
                    matches=[s for s,r in reported.items() if r.get('matched')])
+    if getattr(args, 'cleanup', False):
+        summary.update(mode='read-only-cleanup', applied=False, controls=report['controls'],
+                       blocked_controls=report['blocked_controls'], linked_verification=False)
     print(json.dumps(summary,indent=2));return summary

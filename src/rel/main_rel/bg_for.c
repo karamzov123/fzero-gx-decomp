@@ -3179,7 +3179,6 @@ extern void lbl_8006D5F0(void *, f32, void *);
 
 /* Earliest time t at which two moving spheres of combined radius r touch. */
 #pragma opt_lifetimes off
-#pragma opt_lifetimes off
 static inline s32 E1408_sweep(E1408Pool *pool, E1408Vec *dp, E1408Vec *dv, f32 r, f32 *t) {
     f32 B;
     f32 A;

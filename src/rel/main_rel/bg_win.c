@@ -181,7 +181,6 @@ typedef struct {
 char *fn_1_15BA78(char *name) {
     StringTable * table;
     u32 index;
-    struct { u32 value; } entry_offset;
     u32 name_length;
 
     { StringTable * __reg_value_table = (*(StringTable * *)&lbl_1_bss_8F8D0); table = __reg_value_table; }
@@ -191,15 +190,13 @@ char *fn_1_15BA78(char *name) {
 
     name_length = strlen(name);
     index = 0;
-    entry_offset.value = 0;
     while (index < table->count) {
-        u8 *entry = ((((entry_offset.value)) + ((((u8 *)table)) + ((table->entries_offset)))));
+        u8 *entry = (u8 *)table + table->entries_offset + index * 8;
         if (name_length == *(u32 *)entry &&
             fn_8006FC1C((char *)table + *(u32 *)(entry + 4), name) != 0) {
             u32 result_offset = *(u32 *)((u8 *)table + table->results_offset + index * 8 + 4);
             return (char *)table + result_offset;
         }
-        entry_offset.value += 8;
         index++;
     }
     return name;
@@ -560,7 +557,7 @@ void fn_1_15C0AC(void) {
     u16 b;
     u32 i;
 
-    { WinEntry * __reg_value_out = (WinEntry *)&lbl_1_bss_8F8E0; out.value = __reg_value_out; }
+    out.value = (WinEntry *)((WinEntry *)&lbl_1_bss_8F8E0);
     in = (u8 *)&lbl_1_bss_9F8;
     for (i = 0; i < 4; i++) {
         a = 0;
