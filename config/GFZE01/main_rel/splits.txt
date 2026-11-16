@@ -4167,13 +4167,13 @@ rel/main_rel/bg_aur/fn_1_153D48.c:
 rel/main_rel/bg_aur/fn_1_1543E8.c:
 	.text       start:0x001543E8 end:0x00154410
 
-rel/main_rel/bg_tow/fn_1_154708.c:
+rel/main_rel/rep_memcard/fn_1_154708.c:
 	.text       start:0x00154708 end:0x00154798
 
-rel/main_rel/bg_tow/fn_1_1548A8.c:
+rel/main_rel/rep_memcard/fn_1_1548A8.c:
 	.text       start:0x001548A8 end:0x00154930
 
-rel/main_rel/bg_tow/fn_1_154930.c:
+rel/main_rel/rep_memcard/fn_1_154930.c:
 	.text       start:0x00154930 end:0x001549B8
 
 rel/main_rel/rep_memcard/fn_1_154CC4.c:
@@ -4511,7 +4511,7 @@ rel/main_rel/_prolog/fn_1_12B4.c:
 rel/main_rel/spline/fn_1_F5AF0.c:
 	.text       start:0x000F5AF0 end:0x000F5B38 align:4
 
-rel/main_rel/bg_tow/fn_1_1549B8.c:
+rel/main_rel/rep_memcard/fn_1_1549B8.c:
 	.text       start:0x001549B8 end:0x00154A08 align:4
 
 rel/main_rel/mdlload/fn_1_D3C58.c:
@@ -4706,7 +4706,7 @@ rel/main_rel/archive/fn_1_131084.c:
 rel/main_rel/game/fn_1_40EE4.c:
 	.text       start:0x00040EE4 end:0x00040F34 align:4
 
-rel/main_rel/bg_tow/fn_1_1547FC.c:
+rel/main_rel/rep_memcard/fn_1_1547FC.c:
 	.text       start:0x001547FC end:0x001548A8 align:4
 
 rel/main_rel/face/fn_1_D3020.c:
@@ -7571,7 +7571,7 @@ rel/main_rel/car/fn_1_866B4.c:
 rel/main_rel/game/fn_1_3E62C.c:
 	.text       start:0x0003E62C end:0x0003E66C align:4
 
-rel/main_rel/bg_tow/fn_1_154798.c:
+rel/main_rel/rep_memcard/fn_1_154798.c:
 	.text       start:0x00154798 end:0x001547FC align:4
 
 rel/main_rel/burner/fn_1_9A508.c:

@@ -53411,76 +53411,6 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/bg_tow/fn_1_154708.c",
-    "symbols": [
-      "fn_1_154708"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bg_tow.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bg_tow/fn_1_154798.c",
-    "symbols": [
-      "fn_1_154798"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bg_tow.c",
-    "pool": {
-      "...data.0": "lbl_1_data_49A18",
-      "fzgx_pool_native_lbl_1_data_49A18_funcs": "lbl_1_data_49A18"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bg_tow/fn_1_1547FC.c",
-    "symbols": [
-      "fn_1_1547FC"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bg_tow.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bg_tow/fn_1_1548A8.c",
-    "symbols": [
-      "fn_1_1548A8"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bg_tow.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bg_tow/fn_1_154930.c",
-    "symbols": [
-      "fn_1_154930"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bg_tow.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bg_tow/fn_1_1549B8.c",
-    "symbols": [
-      "fn_1_1549B8"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bg_tow.c"
-  },
-  {
-    "module": "main_rel",
     "source": "rel/main_rel/bg_win/fn_1_15B70C.c",
     "symbols": [
       "fn_1_15B70C"
@@ -124892,6 +124822,76 @@
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/main_rel/relocation.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/rep_memcard/fn_1_154708.c",
+    "symbols": [
+      "fn_1_154708"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/rep_memcard.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/rep_memcard/fn_1_154798.c",
+    "symbols": [
+      "fn_1_154798"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/rep_memcard.c",
+    "pool": {
+      "...data.0": "lbl_1_data_49A18",
+      "fzgx_pool_native_lbl_1_data_49A18_funcs": "lbl_1_data_49A18"
+    }
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/rep_memcard/fn_1_1547FC.c",
+    "symbols": [
+      "fn_1_1547FC"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/rep_memcard.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/rep_memcard/fn_1_1548A8.c",
+    "symbols": [
+      "fn_1_1548A8"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/rep_memcard.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/rep_memcard/fn_1_154930.c",
+    "symbols": [
+      "fn_1_154930"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/rep_memcard.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/rep_memcard/fn_1_1549B8.c",
+    "symbols": [
+      "fn_1_1549B8"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/rep_memcard.c"
   },
   {
     "module": "main_rel",
