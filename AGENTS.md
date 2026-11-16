@@ -70,8 +70,11 @@ humans and other harnesses. `fzgx verify` relinks all 16 targets and verifies
 every hash before committing accepted source. Batches verify every 60 seconds by
 default and drain again on exit; completed matches do not wait for outlier models.
 Rules enforced by tooling:
-no hardcoded addresses, no inline asm, no writes outside the assigned work copy.
-Asm kernels and compiler-diff devices are reviewed changes governed by `docs/ASM_POLICY.md`.
+no hardcoded addresses, no unreviewed assembly, no writes outside the assigned work copy.
+Runner-bound matchers do not introduce assembly or change its approvals. Owner-directed
+manual/PR work preserves evidenced original mixed C/assembly units where appropriate;
+scoped approvals, shared kernels and devices are governed by `docs/ASM_POLICY.md`
+and `docs/RECONSTRUCTION_STANDARDS.md`, not a blanket file-suffix rule.
 
 Shared data is integrated independently with `fzgx data-import --apply`, never
 through a matcher claim. Preserve recovered header types. The importer proves
