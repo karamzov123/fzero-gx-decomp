@@ -11,7 +11,7 @@
 extern u8 lbl_8_bss_0;
 
 // lbl_8_data_0: .data size 0x4, 5 refs from title.c
-extern u32 lbl_8_data_0;
+extern char lbl_8_data_0[4];
 
 // lbl_8_bss_3D0: .bss size 0x170, 5 refs from title.c
 typedef struct {
@@ -95,7 +95,7 @@ extern u8 lbl_8_data_84EC[0x18];
 extern u8 lbl_8_data_8554[0x18];
 
 // lbl_8_data_7CDC: .data size 0x174, 1 refs from title.c (own data block)
-extern u8 lbl_8_data_7CDC[0x174];
+extern char lbl_8_data_7CDC[];
 
 // jumptable_8_data_7C34: .data size 0xA8, 1 refs from title.c (own data block)
 extern u8 jumptable_8_data_7C34[0xA8];

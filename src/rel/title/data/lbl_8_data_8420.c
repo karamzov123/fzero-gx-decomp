@@ -25,6 +25,19 @@
 #include "rel/title/data/lbl_8_data_8AD4.h"
 #include "rel/title/data/lbl_8_data_8C5C.h"
 #include "rel/title/data/lbl_8_data_8FF0.h"
+#include "rel/title/data/lbl_8_data_9270.h"
+#include "rel/title/data/lbl_8_data_95B8.h"
+#include "rel/title/data/lbl_8_data_96AC.h"
+#include "rel/title/data/lbl_8_data_9778.h"
+#include "rel/title/data/lbl_8_data_97DC.h"
+#include "rel/title/data/lbl_8_data_990C.h"
+#include "rel/title/data/lbl_8_data_99BC.h"
+#include "rel/title/data/lbl_8_data_9AB8.h"
+#include "rel/title/data/lbl_8_data_9B8C.h"
+#include "rel/title/data/lbl_8_data_9C04.h"
+#include "rel/title/data/lbl_8_data_9E04.h"
+#include "rel/title/data/lbl_8_data_A01C.h"
+#include "rel/title/data/lbl_8_data_A1E8.h"
 
 #include "rel/title/data/lbl_8_data_8420.h"
 extern char lbl_8_data_8438[13];
@@ -94,6 +107,52 @@ extern u8 lbl_8_data_911C[180];
 extern u8 lbl_8_data_91D0[40];
 extern u8 lbl_8_data_91F8[60];
 extern u8 lbl_8_data_9234[60];
+#include "rel/title/data/lbl_8_data_9270.h"
+extern u8 lbl_8_data_9298[300];
+extern u8 lbl_8_data_93C4[340];
+extern u8 lbl_8_data_9518[40];
+extern u8 lbl_8_data_9540[60];
+extern u8 lbl_8_data_957C[60];
+#include "rel/title/data/lbl_8_data_95B8.h"
+extern char lbl_8_data_9668[39];
+extern char lbl_8_data_9690[28];
+#include "rel/title/data/lbl_8_data_96AC.h"
+extern char lbl_8_data_96C4[72];
+extern char lbl_8_data_970C[108];
+#include "rel/title/data/lbl_8_data_9778.h"
+extern char lbl_8_data_9790[73];
+#include "rel/title/data/lbl_8_data_97DC.h"
+extern char lbl_8_data_9844[88];
+extern char lbl_8_data_989C[112];
+#include "rel/title/data/lbl_8_data_990C.h"
+extern char lbl_8_data_9924[73];
+extern char lbl_8_data_9970[76];
+#include "rel/title/data/lbl_8_data_99BC.h"
+extern char lbl_8_data_99D4[90];
+extern char lbl_8_data_9A30[136];
+#include "rel/title/data/lbl_8_data_9AB8.h"
+extern char lbl_8_data_9AD0[81];
+extern char lbl_8_data_9B24[104];
+#include "rel/title/data/lbl_8_data_9B8C.h"
+extern char lbl_8_data_9BA4[96];
+#include "rel/title/data/lbl_8_data_9C04.h"
+extern char lbl_8_data_9CB8[137];
+extern char lbl_8_data_9D44[192];
+#include "rel/title/data/lbl_8_data_9E04.h"
+extern char lbl_8_data_9E1C[295];
+extern char lbl_8_data_9F44[216];
+#include "rel/title/data/lbl_8_data_A01C.h"
+extern u8 lbl_8_data_A0C0;
+extern char lbl_8_data_A0C4[];
+extern char lbl_8_data_A174[];
+extern char lbl_8_data_A178[];
+extern char lbl_8_data_A17C[];
+extern char lbl_8_data_A180[];
+extern char lbl_8_data_A184[];
+#include "rel/title/data/lbl_8_data_A1E8.h"
+extern u8 lbl_8_data_A288[0x40];
+extern u8 lbl_8_data_A2C8[0x18];
+extern u8 lbl_8_data_A2E0[0x70];
 
 
 extern char lbl_8_data_83FC[];
@@ -982,5 +1041,649 @@ __declspec(section ".data") u8 lbl_8_data_91F8[60] __attribute__((aligned(8))) =
 #pragma explicit_zero_data on
 __declspec(section ".data") u8 lbl_8_data_9234[60] __attribute__((aligned(4))) = {
     0x00U, 0x00U, 0x00U, 0x02U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x02U, 0x3FU, 0x00U, 0x00U, 0x00U, 0x3FU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x02U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U
+};
+#pragma explicit_zero_data reset
+
+
+
+
+
+
+
+/* Obj_8_data_9270 (header) does not place every retail pointer; fields follow the relocations. */
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_8_data_9270 lbl_8_data_9270 __attribute__((aligned(8))) = {
+    0x0000000AU,
+    (u8 *)&lbl_8_data_9054,
+    0x00000009U,
+    (u8 *)&lbl_8_data_911C,
+    0x00000002U,
+    (u8 *)&lbl_8_data_91D0,
+    0x00000003U,
+    (u8 *)&lbl_8_data_91F8,
+    0x00000003U,
+    (u8 *)&lbl_8_data_9234
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_8_data_9298[300] __attribute__((aligned(8))) = {
+    0x00U, 0x00U, 0x00U, 0x02U, 0x00U, 0x00U, 0x00U, 0x00U, 0xC2U, 0x8EU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x02U, 0x3EU, 0x5DU, 0xDDU, 0xF4U, 0xC2U, 0xB1U, 0x9DU, 0x58U, 0xC3U, 0x88U, 0x2DU, 0x9DU, 0xC3U, 0x88U, 0x2DU, 0x9DU, 0x00U, 0x00U, 0x00U, 0x02U, 0x3EU, 0x91U, 0x11U, 0x06U, 0xC2U, 0xE2U, 0xCCU, 0xCDU, 0xC3U, 0xEBU, 0x57U, 0x63U, 0xC3U, 0xEBU, 0x57U, 0x63U, 0x00U, 0x00U, 0x00U, 0x02U, 0x3EU, 0xA2U, 0x22U, 0x2DU, 0xC3U, 0x02U, 0xC5U, 0xCEU, 0xC4U, 0x0DU, 0xD1U, 0x03U, 0xC4U, 0x0DU, 0xD1U, 0x03U, 0x00U, 0x00U, 0x00U, 0x02U, 0x3EU, 0xB3U, 0x33U, 0x33U, 0xC3U, 0x16U, 0xE3U, 0xADU, 0xC4U, 0x1BU, 0x09U, 0xB6U, 0xC4U, 0x1BU, 0x09U, 0xB6U, 0x00U, 0x00U, 0x00U, 0x02U, 0x3EU, 0xC4U, 0x44U, 0x39U, 0xC3U, 0x2AU, 0xDEU, 0x56U, 0xC3U, 0xFFU, 0x70U, 0x27U, 0xC3U, 0xFFU, 0x70U, 0x27U, 0x00U, 0x00U, 0x00U, 0x02U, 0x3EU, 0xD5U, 0x55U, 0x61U, 0xC3U, 0x35U, 0xDFU, 0x67U, 0xC2U, 0x3DU, 0xDFU, 0x81U, 0xC2U, 0x3DU, 0xDFU, 0x81U, 0x00U, 0x00U, 0x00U, 0x02U, 0x3EU, 0xE6U, 0x66U, 0x66U, 0xC3U, 0x29U, 0xF3U, 0x35U, 0x44U, 0x63U, 0x1DU, 0x07U, 0x44U, 0x63U, 0x1DU, 0x07U, 0x00U, 0x00U, 0x00U, 0x02U, 0x3EU, 0xEEU, 0xEEU, 0xFAU, 0xC3U, 0x15U, 0x95U, 0xFDU, 0x44U, 0xBDU, 0x97U, 0x5EU, 0x44U, 0xBDU, 0x97U, 0x5EU, 0x00U, 0x00U, 0x00U, 0x02U, 0x3FU, 0x00U, 0x00U, 0x00U, 0xC2U, 0xAAU, 0x0EU, 0xC0U, 0x44U, 0xF9U, 0xE2U, 0x5FU, 0x44U, 0xF9U, 0xE2U, 0x5FU, 0x00U, 0x00U, 0x00U, 0x02U, 0x3FU, 0x04U, 0x44U, 0x4AU, 0xC2U, 0x53U, 0x06U, 0xB7U, 0x44U, 0xDFU, 0x97U, 0x88U, 0x44U, 0xDFU, 0x97U, 0x88U, 0x00U, 0x00U, 0x00U, 0x02U, 0x3FU, 0x11U, 0x11U, 0x17U, 0x41U, 0x91U, 0xC7U, 0xE9U, 0x44U, 0x8FU, 0x59U, 0xC7U, 0x44U, 0x8FU, 0x59U, 0xC7U, 0x00U, 0x00U, 0x00U, 0x02U, 0x3FU, 0x22U, 0x22U, 0x1DU, 0x42U, 0x9EU, 0x76U, 0xA5U, 0x44U, 0x36U, 0x36U, 0x35U, 0x44U, 0x36U, 0x36U, 0x35U, 0x00U, 0x00U, 0x00U, 0x02U, 0x3FU, 0x44U, 0x44U, 0x4AU, 0x43U, 0x0DU, 0xF8U, 0xD3U, 0x43U, 0x83U, 0x44U, 0xA9U, 0x43U, 0x83U, 0x44U, 0xA9U, 0x00U, 0x00U, 0x00U, 0x02U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x43U, 0x20U, 0x00U, 0x01U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_8_data_93C4[340] __attribute__((aligned(4))) = {
+    0x00U, 0x00U, 0x00U, 0x02U, 0x00U, 0x00U, 0x00U, 0x00U, 0x42U, 0xB4U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x02U, 0x3EU, 0x5DU, 0xDDU, 0xF4U, 0x42U, 0x99U, 0xADU, 0x22U, 0xC3U, 0x4BU, 0x52U, 0x79U, 0xC3U, 0x4BU, 0x52U, 0x79U, 0x00U, 0x00U, 0x00U, 0x02U, 0x3EU, 0xA2U, 0x22U, 0x2DU, 0x42U, 0x2DU, 0xCFU, 0xE5U, 0xC3U, 0xFBU, 0x03U, 0x9CU, 0xC3U, 0xFBU, 0x03U, 0x9CU, 0x00U, 0x00U, 0x00U, 0x02U, 0x3EU, 0xC4U, 0x44U, 0x39U, 0xC0U, 0x19U, 0x5FU, 0xFAU, 0xC4U, 0x69U, 0xE3U, 0x61U, 0xC4U, 0x69U, 0xE3U, 0x61U, 0x00U, 0x00U, 0x00U, 0x02U, 0x3EU, 0xD5U, 0x55U, 0x61U, 0xC2U, 0x1AU, 0x82U, 0x13U, 0xC4U, 0x98U, 0x31U, 0x6BU, 0xC4U, 0x98U, 0x31U, 0x6BU, 0x00U, 0x00U, 0x00U, 0x02U, 0x3EU, 0xDDU, 0xDDU, 0xD3U, 0xC2U, 0x6FU, 0x64U, 0x6CU, 0xC4U, 0xA0U, 0x2AU, 0x33U, 0xC4U, 0xA0U, 0x2AU, 0x33U, 0x00U, 0x00U, 0x00U, 0x02U, 0x3EU, 0xE6U, 0x66U, 0x66U, 0xC2U, 0xA2U, 0xACU, 0xE0U, 0xC4U, 0x94U, 0x46U, 0x60U, 0xC4U, 0x94U, 0x46U, 0x60U, 0x00U, 0x00U, 0x00U, 0x02U, 0x3EU, 0xEEU, 0xEEU, 0xFAU, 0xC2U, 0xC6U, 0xC6U, 0xADU, 0xC4U, 0x49U, 0x48U, 0x50U, 0xC4U, 0x49U, 0x48U, 0x50U, 0x00U, 0x00U, 0x00U, 0x02U, 0x3EU, 0xF7U, 0x77U, 0x6CU, 0xC2U, 0xD8U, 0x59U, 0xC2U, 0xC3U, 0x39U, 0x99U, 0xBCU, 0xC3U, 0x39U, 0x99U, 0xBCU, 0x00U, 0x00U, 0x00U, 0x02U, 0x3FU, 0x00U, 0x00U, 0x00U, 0xC2U, 0xD3U, 0x26U, 0x42U, 0x43U, 0xC9U, 0x0AU, 0x00U, 0x43U, 0xC9U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x02U, 0x3FU, 0x04U, 0x44U, 0x4AU, 0xC2U, 0xBDU, 0x8BU, 0xA0U, 0x44U, 0x3DU, 0x82U, 0x22U, 0x44U, 0x3DU, 0x82U, 0x22U, 0x00U, 0x00U, 0x00U, 0x02U, 0x3FU, 0x08U, 0x88U, 0x83U, 0xC2U, 0xA0U, 0x9DU, 0x25U, 0x44U, 0x63U, 0x0DU, 0x5DU, 0x44U, 0x63U, 0x0DU, 0x5DU, 0x00U, 0x00U, 0x00U, 0x02U, 0x3FU, 0x0CU, 0xCCU, 0xCDU, 0xC2U, 0x80U, 0xFFU, 0x84U, 0x44U, 0x6DU, 0x70U, 0x1CU, 0x44U, 0x6DU, 0x70U, 0x1CU, 0x00U, 0x00U, 0x00U, 0x02U, 0x3FU, 0x15U, 0x55U, 0x50U, 0xC2U, 0x05U, 0x73U, 0x6CU, 0x44U, 0x5EU, 0xF7U, 0x09U, 0x44U, 0x5EU, 0xF7U, 0x09U, 0x00U, 0x00U, 0x00U, 0x02U, 0x3FU, 0x26U, 0x66U, 0x66U, 0x41U, 0x92U, 0xFEU, 0x76U, 0x44U, 0x23U, 0x13U, 0x49U, 0x44U, 0x23U, 0x13U, 0x49U, 0x00U, 0x00U, 0x00U, 0x02U, 0x3FU, 0x37U, 0x77U, 0x7DU, 0x42U, 0x57U, 0x80U, 0xD8U, 0x43U, 0xD1U, 0xDAU, 0xB4U, 0x43U, 0xD1U, 0xDAU, 0xB4U, 0x00U, 0x00U, 0x00U, 0x02U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x42U, 0xB4U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_8_data_9518[40] __attribute__((aligned(8))) = {
+    0x00U, 0x00U, 0x00U, 0x02U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x02U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_8_data_9540[60] __attribute__((aligned(8))) = {
+    0x00U, 0x00U, 0x00U, 0x02U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x02U, 0x3FU, 0x00U, 0x00U, 0x00U, 0x3FU, 0x37U, 0xAEU, 0xFFU, 0x3FU, 0xABU, 0x1EU, 0x3AU, 0x3FU, 0xABU, 0x1EU, 0x3AU, 0x00U, 0x00U, 0x00U, 0x02U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_8_data_957C[60] __attribute__((aligned(4))) = {
+    0x00U, 0x00U, 0x00U, 0x02U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x02U, 0x3FU, 0x00U, 0x00U, 0x00U, 0x3FU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x02U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U
+};
+#pragma explicit_zero_data reset
+
+
+
+
+
+
+
+extern void fn_8_9B44(void);
+extern void fn_8_9FB4(void);
+extern void fn_8_A3A4(void);
+extern void fn_8_A954(void);
+extern void fn_8_ABBC(void);
+extern void fn_8_ADF4(void);
+extern void fn_8_B138(void);
+extern void fn_8_B380(void);
+extern void fn_8_B840(void);
+extern void fn_8_BAEC(void);
+extern void fn_8_BC04(void);
+/* Obj_8_data_95B8 (header) does not place every retail pointer; fields follow the relocations. */
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_8_data_95B8 lbl_8_data_95B8 __attribute__((aligned(8))) = {
+    0x0000000FU,
+    (u8 *)&lbl_8_data_9298,
+    0x00000011U,
+    (u8 *)&lbl_8_data_93C4,
+    0x00000002U,
+    (u8 *)&lbl_8_data_9518,
+    0x00000003U,
+    (u8 *)&lbl_8_data_9540,
+    0x00000003U,
+    (u8 *)&lbl_8_data_957C,
+    fn_8_9B44,
+    fn_8_9FB4,
+    fn_8_A3A4,
+    fn_8_A954,
+    fn_8_ABBC,
+    fn_8_BAEC,
+    fn_8_ADF4,
+    fn_8_B138,
+    fn_8_BC04,
+    fn_8_B380,
+    fn_8_B840,
+    0x000001E0U,
+    0x000001E0U,
+    0x000001E0U,
+    0x000001E0U,
+    0x000001E0U,
+    0x0000001EU,
+    0x0000012CU,
+    0x0000012CU,
+    0x0000001EU,
+    0x000001E0U,
+    0x000001E0U,
+    0x000001E0U,
+    0x000001E0U,
+    0x000001E0U,
+    0x000001E0U,
+    0x000001E0U,
+    0x0000001EU,
+    0x0000012CU,
+    0x0000012CU,
+    0x0000001EU,
+    0x000001E0U,
+    0x000001E0U,
+    0x0000000BU
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_9668[39] __attribute__((aligned(8))) = "A total of 40 + alpha card variations.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_9690[28] __attribute__((aligned(8))) = "\203J\201[\203h\202\315\221S\225\224\202\30541\216\355\227\336+\203\277\201B\n\000";
+#pragma explicit_zero_data reset
+
+
+
+extern u8 lbl_8_data_81AC[];
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_8_data_96AC lbl_8_data_96AC __attribute__((aligned(4))) = {
+    (u8 *)&lbl_8_data_9668,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_9690
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_96C4[72] __attribute__((aligned(4))) = "You will get an original machine\nas you create the F-ZERO LICENSE CARD.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_970C[108] __attribute__((aligned(4))) = "/bcff8040/F-ZERO \203\211\203C\203Z\203\223\203X\203J\201[\203h/bcffffff/\202\360\215\354\220"
+    "\254\202\267\202\351\202\306\n/bcffff00/\203I\203\212\203W\203i\203\213\203}\203V\203\223/bcffff"
+    "ff/\202\252\202\340\202\347\202\246\202\334\202\267\201B\n";
+#pragma explicit_zero_data reset
+
+
+
+extern u8 lbl_8_data_81AC[];
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_8_data_9778 lbl_8_data_9778 __attribute__((aligned(8))) = {
+    (u8 *)&lbl_8_data_96C4,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_970C
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_9790[73] __attribute__((aligned(8))) = "You will earn the Pilot Points by playing\nwith your F-ZERO LICENSE CARD.";
+#pragma explicit_zero_data reset
+
+
+
+extern u8 lbl_8_data_81AC[];
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_8_data_97DC lbl_8_data_97DC __attribute__((aligned(4))) = {
+    0x834A815BU,
+    0x836882F0U,
+    0x8E6782C1U,
+    0x82C48376U,
+    0x838C8343U,
+    0x82B782E9U,
+    0x82C60A2FU,
+    0x62636666U,
+    0x38303430U,
+    0x2F837083U,
+    0x43838D83U,
+    0x62836783U,
+    0x7C834383U,
+    0x9383672FU,
+    0x62636666U,
+    0x66666666U,
+    0x2F82AA93U,
+    0xFC82E882U,
+    0xDC82B781U,
+    0x42000000U,
+    (u8 *)&lbl_8_data_9790,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_97DC
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_9844[88] __attribute__((aligned(4))) = "Collect and exchange the Pilot Points\nfor parts items to build\nyour own custom machine.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_989C[112] __attribute__((aligned(4))) = "\202\261\202\314\203|\203C\203\223\203g\202\360\217W\202\337\202\351\202\306/bcff8040/\203p\201["
+    "\203c\202\314\214\360\212\267/bcffffff/\202\252\202\305\202\253\202\334\202\267\201B\n\216\251"
+    "\225\252\202\276\202\257\202\314\203}\203V\203\223\202\311\203J\203X\203^\203}\203C\203Y\202\265"
+    "\202\304\202\255\202\276\202\263\202\242\201B";
+#pragma explicit_zero_data reset
+
+
+
+extern u8 lbl_8_data_81AC[];
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_8_data_990C lbl_8_data_990C __attribute__((aligned(4))) = {
+    (u8 *)&lbl_8_data_9844,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_989C
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_9924[73] __attribute__((aligned(4))) = "You can save other information like\npilot rank earnings and racing data.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_9970[76] __attribute__((aligned(8))) = "\202\261\202\314\221\274\202\311\202\340\203p\203C\203\215\203b\203g\203\211\203\223\203N\202"
+    "\314\212l\223\276\202\342\n\203v\203\214\203C\203f\201[\203^\202\360\203Z\201[\203u\202\267\202"
+    "\351\202\261\202\306\202\252\202\305\202\253\202\334\202\267\201B";
+#pragma explicit_zero_data reset
+
+
+
+extern u8 lbl_8_data_81AC[];
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_8_data_99BC lbl_8_data_99BC __attribute__((aligned(4))) = {
+    (u8 *)&lbl_8_data_9924,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_9970
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_99D4[90] __attribute__((aligned(4))) = "You will get your password\nby playing the Time Attack Mode\nwith your F-ZERO LICENSE CARD.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_9A30[136] __attribute__((aligned(8))) = "F-ZERO\203\211\203C\203Z\203\223\203X\203J\201[\203h\202\360\216g\227p\202\265\202\304\n/bcff804"
+    "0/\203^\203C\203\200\203A\203^\203b\203N\203\202\201[\203h/bcffffff/\202\360\203v\203\214\203C"
+    "\202\267\202\351\202\306\n/bcffff00/\203p\203X\203\217\201[\203h/bcffffff/\202\252\225\\\216\246"
+    "\202\263\202\352\202\334\202\267\201B\000";
+#pragma explicit_zero_data reset
+
+
+
+extern u8 lbl_8_data_81AC[];
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_8_data_9AB8 lbl_8_data_9AB8 __attribute__((aligned(8))) = {
+    (u8 *)&lbl_8_data_99D4,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_9A30
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_9AD0[81] __attribute__((aligned(8))) = "Enter your password at the\nF-ZERO official website to join\nthe Internet Ranking!";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_9B24[104] __attribute__((aligned(4))) = "F-ZERO\214\366\216\256\203y\201[\203W\202\305\203p\203X\203\217\201[\203h\202\360\223\374\227"
+    "\315\202\267\202\352\202\316\201A\n/bcff8040/\203C\203\223\203^\201[\203l\203b\203g\203\211\203"
+    "\223\203L\203\223\203O/bcffffff/\202\311\216Q\211\301\202\305\202\253\202\334\202\267\201B";
+#pragma explicit_zero_data reset
+
+
+
+extern u8 lbl_8_data_81AC[];
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_8_data_9B8C lbl_8_data_9B8C __attribute__((aligned(4))) = {
+    (u8 *)&lbl_8_data_9AD0,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_9B24
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_9BA4[96] __attribute__((aligned(4))) = "You can exchange your F-ZERO GX data\nwith F-ZERO AX by using\nthe NINTENDO GAMECUBE Memory Card"
+    ".";
+#pragma explicit_zero_data reset
+
+
+
+extern u8 lbl_8_data_81AC[];
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_8_data_9C04 lbl_8_data_9C04 __attribute__((aligned(4))) = {
+    0x2F626366U,
+    0x66383034U,
+    0x302F836AU,
+    0x83938365U,
+    0x83938368U,
+    0x815B8351U,
+    0x815B8380U,
+    0x834C8385U,
+    0x815B8375U,
+    0x9770835CU,
+    0x83748367U,
+    0x0A462D5AU,
+    0x45524F20U,
+    0x47582F62U,
+    0x63666666U,
+    0x6666662FU,
+    0x82CC8366U,
+    0x815B835EU,
+    0x82CC93FCU,
+    0x82C182BDU,
+    0x83818382U,
+    0x838A815BU,
+    0x834A815BU,
+    0x836882F0U,
+    0x0A8E6797U,
+    0x7082B782U,
+    0xE982C681U,
+    0x412F6263U,
+    0x66666666U,
+    0x30302F46U,
+    0x2D5A4552U,
+    0x4F204158U,
+    0x2F626366U,
+    0x66666666U,
+    0x662F82C6U,
+    0x0A984193U,
+    0xAE82C582U,
+    0xAB82DC82U,
+    0xB7814200U,
+    (u8 *)&lbl_8_data_9BA4,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_9C04
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_9CB8[137] __attribute__((aligned(8))) = "You can load your F-ZERO GX machine data\nfrom your Memory Card and you can\nalso download the F"
+    "-ZERO AX machine data\nto your Memory Card.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_9D44[192] __attribute__((aligned(4))) = "\203\201\203\202\203\212\201[\203J\201[\203h\202\360\221}\223\374\202\267\202\351\202\306\201A/b"
+    "cff8040/\203j\203\223\203e\203\223\203h\201[\n\203Q\201[\203\200\203L\203\205\201[\203u\227p\203"
+    "\\\203t\203gF-ZERO GX/bcffffff/\202\314\n\203}\203V\203\223\203f\201[\203^\202\314\203\215\201["
+    "\203h\202\342/bcffff00/F-ZERO AX/bcffffff/\202\314\n\203X\203y\203V\203\203\203\213\203f\201["
+    "\203^\202\360\203_\203E\203\223\203\215\201[\203h\202\305\202\253\202\334\202\267\201B\000\000";
+#pragma explicit_zero_data reset
+
+
+
+extern u8 lbl_8_data_81AC[];
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_8_data_9E04 lbl_8_data_9E04 __attribute__((aligned(4))) = {
+    (u8 *)&lbl_8_data_9CB8,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_9D44
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_9E1C[295] __attribute__((aligned(4))) = "Please make sure there is no foreign object in the\nslot, before you insert the Memory Card. Mem"
+    "ory\nCards without F-ZERO GX game data can not be\nused. Do not touch the Memory Card during the"
+    " game\nplay. It can damage the file. It is recommended to\nsave only the F-ZERO GX data in the M"
+    "emory Card.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_9F44[216] __attribute__((aligned(4))) = "/bc808080/\203\201\203\202\203\212\201[\203J\201[\203h\202\360\215\267\202\265\215\236\202\336"
+    "\221O\202\311\203X\203\215\203b\203g\202\311\210\331\217\355\202\252\202\310\202\242\202\261\202"
+    "\306\202\360\n\212m\224F\202\265\202\304\211\272\202\263\202\242\201B/bc5050a0/F-ZERO GX/bc80808"
+    "0/\210\310\212O\202\314\203f\201[\203^\202\360\n\223\374\202\352\202\310\202\242\202\305\216g"
+    "\227p\202\267\202\351\202\261\202\306\202\360\220\204\217\247\202\265\202\334\202\267\201B\n\203"
+    "v\203\214\203C\222\206\202\314\203J\201[\203h\202\314\224\262\202\253\215\267\202\265\202\315"
+    "\201A\220\342\221\316\202\311\202\250\202\342\202\337\202\255\202\276\202\263\202\242\201B\000";
+#pragma explicit_zero_data reset
+
+
+
+extern u8 lbl_8_data_81AC[];
+
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_8_data_A01C lbl_8_data_A01C __attribute__((aligned(4))) = {
+    (u8 *)&lbl_8_data_9E1C,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_81AC,
+    (u8 *)&lbl_8_data_9F44,
+    0x31303030U,
+    0x50545300U,
+    0x32303030U,
+    0x50545300U,
+    0x34303030U,
+    0x50545300U,
+    0x38303030U,
+    0x50545300U,
+    0x462D5A45U,
+    0x524F204CU,
+    0x4943454EU,
+    0x53452043U,
+    0x41524400U,
+    0x494E5445U,
+    0x524E4554U,
+    0x2052414EU,
+    0x4B494E47U,
+    0x00000000U,
+    0x4E494E54U,
+    0x454E444FU,
+    0x2047414DU,
+    0x45435542U,
+    0x45204D45U,
+    0x4D4F5259U,
+    0x20434152U,
+    0x44000000U,
+    0x68747470U,
+    0x00000000U,
+    0x3A000000U,
+    0x2F2F0000U,
+    0x662D7A65U,
+    0x726F2E6AU,
+    0x70000000U,
+    0x2F000000U,
+    0x00000000U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_8_data_A0C0 __attribute__((aligned(8))) = 0x24U;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_A0C4[] __attribute__((aligned(4))) = "By inputting data with the Paddle lever, view\nchange button and/or start button during the\nran"
+    "king display, you can sort by best laps,\nmaximum speed and machine type ranking. ";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_A174[] __attribute__((aligned(4))) = "GER";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_A178[] __attribute__((aligned(8))) = "FRA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_A17C[] __attribute__((aligned(4))) = "SPA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_A180[] __attribute__((aligned(8))) = "ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_A184[] __attribute__((aligned(4))) = {
+    0x83U, 0x75U, 0x81U, 0x5BU, 0x83U, 0x58U, 0x83U, 0x67U, 0x83U, 0x7BU, 0x83U, 0x5EU, 0x83U, 0x93U, 0x82U, 0xE2U, 0x83U, 0x72U, 0x83U, 0x85U, 0x81U, 0x5BU, 0x83U, 0x60U, 0x83U, 0x46U, 0x83U, 0x93U, 0x83U, 0x57U, 0x83U, 0x7BU, 0x83U, 0x5EU, 0x83U, 0x93U, 0x82U, 0xC8U, 0x82U, 0xC7U, 0x82U, 0xF0U, 0x89U, 0x9FU, 0x82U, 0xB7U, 0x82U, 0xC6U, 0x0AU, 0x83U, 0x89U, 0x83U, 0x93U, 0x83U, 0x4CU, 0x83U, 0x93U, 0x83U, 0x4FU, 0x82U, 0xCCU, 0x95U, 0x5CU, 0x8EU, 0xA6U, 0x82U, 0xF0U, 0x90U, 0xD8U, 0x82U, 0xE8U, 0x91U, 0xD6U, 0x82U, 0xA6U, 0x82U, 0xE9U, 0x82U, 0xB1U, 0x82U, 0xC6U, 0x82U, 0xAAU, 0x82U, 0xC5U, 0x82U, 0xABU, 0x82U, 0xDCU, 0x82U, 0xB7U, 0x81U, 0x42U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U
+};
+#pragma explicit_zero_data reset
+
+
+extern char lbl_8_rodata_9A8[];
+extern char lbl_8_rodata_9F4[];
+extern char lbl_8_rodata_A40[];
+extern char lbl_8_rodata_A8C[];
+extern struct fn_8_D630_rodata lbl_8_rodata_408;
+extern u8 lbl_8_rodata_410[];
+extern u8 lbl_8_rodata_494[];
+extern u8 lbl_8_rodata_518[];
+extern u8 lbl_8_rodata_520[];
+extern u8 lbl_8_rodata_570[];
+extern u8 lbl_8_rodata_57C[];
+extern u8 lbl_8_rodata_628[];
+extern u8 lbl_8_rodata_6D4[];
+extern u8 lbl_8_rodata_780[];
+extern u8 lbl_8_rodata_78C[];
+extern u8 lbl_8_rodata_840[];
+extern u8 lbl_8_rodata_8F4[];
+extern u8 lbl_8_rodata_9B8[];
+extern u8 lbl_8_rodata_A04[];
+extern u8 lbl_8_rodata_A48[];
+extern u8 lbl_8_rodata_A94[];
+#pragma explicit_zero_data on
+__declspec(section ".data") Data_lbl_8_data_A1E8 lbl_8_data_A1E8 __attribute__((aligned(8))) = {
+    0x00000040U,
+    (u8 *)&lbl_8_rodata_410,
+    (u8 *)&lbl_8_rodata_494,
+    0x00000000U,
+    (u8 *)&lbl_8_rodata_408,
+    0x00000026U,
+    (u8 *)&lbl_8_rodata_520,
+    0x00000000U,
+    0x00000000U,
+    (u8 *)&lbl_8_rodata_518,
+    0x00000055U,
+    (u8 *)&lbl_8_rodata_57C,
+    (u8 *)&lbl_8_rodata_628,
+    (u8 *)&lbl_8_rodata_6D4,
+    (u8 *)&lbl_8_rodata_570,
+    0x00000058U,
+    (u8 *)&lbl_8_rodata_78C,
+    (u8 *)&lbl_8_rodata_840,
+    (u8 *)&lbl_8_rodata_8F4,
+    (u8 *)&lbl_8_rodata_780,
+    0x0000001CU,
+    (u8 *)&lbl_8_rodata_9B8,
+    0x00000000U,
+    0x00000000U,
+    (u8 *)&lbl_8_rodata_9A8,
+    0x0000001CU,
+    (u8 *)&lbl_8_rodata_A04,
+    0x00000000U,
+    0x00000000U,
+    (u8 *)&lbl_8_rodata_9F4,
+    0x00000020U,
+    (u8 *)&lbl_8_rodata_A48,
+    0x00000000U,
+    0x00000000U,
+    (u8 *)&lbl_8_rodata_A40,
+    0x0000000CU,
+    (u8 *)&lbl_8_rodata_A94,
+    0x00000000U,
+    0x00000000U,
+    (u8 *)&lbl_8_rodata_A8C
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_8_data_A288[0x40] __attribute__((aligned(8))) = {
+    0x6EU, 0x61U, 0x6DU, 0x65U, 0x5FU, 0x65U, 0x6EU, 0x74U, 0x72U, 0x79U, 0x2EU, 0x63U, 0x00U, 0x00U, 0x00U, 0x00U, 0x81U, 0x40U, 0x00U, 0x00U, 0x81U, 0xE7U, 0x00U, 0x00U, 0x25U, 0x73U, 0x81U, 0x40U, 0x81U, 0x40U, 0x81U, 0x40U, 0x25U, 0x73U, 0x00U, 0x00U, 0x81U, 0xE8U, 0x00U, 0x00U, 0x6EU, 0x61U, 0x6DU, 0x65U, 0x5FU, 0x65U, 0x6EU, 0x74U, 0x72U, 0x79U, 0x5FU, 0x66U, 0x69U, 0x78U, 0x65U, 0x64U, 0x5FU, 0x6CU, 0x65U, 0x74U, 0x74U, 0x65U, 0x72U, 0x00U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_8_data_A2C8[0x18] __attribute__((aligned(8))) = {
+    0x96U, 0xBCU, 0x91U, 0x4FU, 0x82U, 0xF0U, 0x93U, 0xFCU, 0x82U, 0xEAU, 0x82U, 0xC4U, 0x82U, 0xADU, 0x82U, 0xBEU, 0x82U, 0xB3U, 0x82U, 0xA2U, 0x81U, 0x42U, 0x00U, 0x00U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_8_data_A2E0[0x70] __attribute__((aligned(8))) = {
+    0x50U, 0x6CU, 0x65U, 0x61U, 0x73U, 0x65U, 0x20U, 0x65U, 0x6EU, 0x74U, 0x65U, 0x72U, 0x20U, 0x79U, 0x6FU, 0x75U, 0x72U, 0x20U, 0x6EU, 0x61U, 0x6DU, 0x65U, 0x2EU, 0x20U, 0x20U, 0x00U, 0x00U, 0x00U, 0x83U, 0x47U, 0x83U, 0x74U, 0x83U, 0x5BU, 0x83U, 0x8DU, 0x00U, 0x00U, 0x00U, 0x00U, 0x82U, 0x65U, 0x81U, 0x7CU, 0x82U, 0x79U, 0x82U, 0x64U, 0x82U, 0x71U, 0x82U, 0x6EU, 0x00U, 0x00U, 0x00U, 0x00U, 0x6EU, 0x61U, 0x6DU, 0x65U, 0x5FU, 0x65U, 0x6EU, 0x74U, 0x72U, 0x79U, 0x5FU, 0x6DU, 0x61U, 0x69U, 0x6EU, 0x00U, 0x6EU, 0x61U, 0x6DU, 0x65U, 0x5FU, 0x65U, 0x6EU, 0x74U, 0x72U, 0x79U, 0x5FU, 0x64U, 0x69U, 0x73U, 0x70U, 0x5FU, 0x6DU, 0x61U, 0x69U, 0x6EU, 0x00U, 0x00U, 0x00U, 0x00U, 0x6EU, 0x61U, 0x6DU, 0x65U, 0x5FU, 0x65U, 0x6EU, 0x74U, 0x72U, 0x79U, 0x5FU, 0x6CU, 0x69U, 0x6EU, 0x65U, 0x00U
 };
 #pragma explicit_zero_data reset

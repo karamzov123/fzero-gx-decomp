@@ -7,6 +7,7 @@ extern char lbl_16_data_82B10[9];
 extern char lbl_16_data_82B1C[12];
 extern char lbl_16_data_82B28[12];
 #include "rel/profile/data/lbl_16_data_82B34.h"
+extern u32 lbl_16_data_82B54[41];
 
 
 
@@ -48,5 +49,13 @@ __declspec(section ".data") Data_lbl_16_data_82B34 lbl_16_data_82B34 __attribute
     (u8 *)&lbl_16_data_82B10,
     (u8 *)&lbl_16_data_82B10,
     (u8 *)&lbl_16_data_82B28
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u32 lbl_16_data_82B54[41] __attribute__((aligned(4))) = {
+    0x0000004AU, 0x00000054U, 0x00000038U, 0x0000003EU, 0x00000037U, 0x00000055U, 0x00000030U, 0x00000035U, 0x0000003AU, 0x00000040U, 0x00000044U, 0x00000050U, 0x00000033U, 0x0000002EU, 0x00000031U, 0x0000004FU, 0x00000039U, 0x0000003DU, 0x0000004CU, 0x0000003FU, 0x00000048U, 0x00000052U, 0x00000045U, 0x00000053U, 0x0000003CU, 0x00000056U, 0x00000043U, 0x00000042U, 0x00000032U, 0x0000002FU, 0x00000034U, 0x00000036U, 0x0000004DU, 0x00000046U, 0x00000041U, 0x00000051U, 0x0000004EU, 0x00000047U, 0x0000003BU, 0x0000004BU, 0x00000049U
 };
 #pragma explicit_zero_data reset

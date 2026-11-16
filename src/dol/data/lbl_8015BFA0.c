@@ -5,4 +5,4 @@ extern u8 lbl_8015BFA0[32];
 
 
 /* Storage extent is known; element/field types are not recovered. */
-__declspec(section ".data") u8 lbl_8015BFA0[32] __attribute__((aligned(8)));
+__declspec(section ".data") u8 lbl_8015BFA0[32] __attribute__((aligned(32)));

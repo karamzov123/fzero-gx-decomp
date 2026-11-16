@@ -399,3 +399,552 @@ void GXGetVtxAttrFmt(GXVtxFmt fmt, int attr, GXCompCnt *cnt, GXCompType *type, u
         return;
     }
 }
+
+typedef struct GXVtxAttrFmt {
+    u32 attr;
+    GXCompCnt cnt;
+    GXCompType type;
+    u8 frac;
+} GXVtxAttrFmt;
+
+void GXGetVtxAttrFmtv(GXVtxFmt vat, GXVtxAttrFmt *fmt) {
+    int attr;
+
+    for (attr = 9; attr <= 20; attr++) {
+        fmt->attr = (u32)attr;
+        GXGetVtxAttrFmt(vat, attr, &fmt->cnt, &fmt->type, &fmt->frac);
+        fmt++;
+    }
+    fmt->attr = 0xff;
+}
+
+#include "sdk_addresses.h"
+
+typedef enum _GXBPRegs {
+    GX_BP_REG_GENMODE = 0x0,
+    GX_BP_REG_DISPCOPYFILTER0 = 0x1,
+    GX_BP_REG_DISPCOPYFILTER1 = 0x2,
+    GX_BP_REG_DISPCOPYFILTER2 = 0x3,
+    GX_BP_REG_DISPCOPYFILTER3 = 0x4,
+    GX_BP_REG_INDMTX0A = 0x6,
+    GX_BP_REG_INDMTX0B = 0x7,
+    GX_BP_REG_INDMTX0C = 0x8,
+    GX_BP_REG_INDMTX1A = 0x9,
+    GX_BP_REG_INDMTX1B = 0xA,
+    GX_BP_REG_INDMTX1C = 0xB,
+    GX_BP_REG_INDMTX2A = 0xC,
+    GX_BP_REG_INDMTX2B = 0xD,
+    GX_BP_REG_INDMTX2C = 0xE,
+    GX_BP_REG_INDIMASK = 0xF,
+    GX_BP_REG_INDTEVSTAGE0 = 0x10,
+    GX_BP_REG_INDTEVSTAGE1 = 0x11,
+    GX_BP_REG_INDTEVSTAGE2 = 0x12,
+    GX_BP_REG_INDTEVSTAGE3 = 0x13,
+    GX_BP_REG_INDTEVSTAGE4 = 0x14,
+    GX_BP_REG_INDTEVSTAGE5 = 0x15,
+    GX_BP_REG_INDTEVSTAGE6 = 0x16,
+    GX_BP_REG_INDTEVSTAGE7 = 0x17,
+    GX_BP_REG_INDTEVSTAGE8 = 0x18,
+    GX_BP_REG_INDTEVSTAGE9 = 0x19,
+    GX_BP_REG_INDTEVSTAGE10 = 0x1A,
+    GX_BP_REG_INDTEVSTAGE11 = 0x1B,
+    GX_BP_REG_INDTEVSTAGE12 = 0x1C,
+    GX_BP_REG_INDTEVSTAGE13 = 0x1D,
+    GX_BP_REG_INDTEVSTAGE14 = 0x1E,
+    GX_BP_REG_INDTEVSTAGE15 = 0x1F,
+    GX_BP_REG_SCISSORTL = 0x20,
+    GX_BP_REG_SCISSORBR = 0x21,
+    GX_BP_REG_LINEPTWIDTH = 0x22,
+    GX_BP_REG_PERF0TRI = 0x23,
+    GX_BP_REG_PERF0QUAD = 0x24,
+    GX_BP_REG_RAS1_SS0 = 0x25,
+    GX_BP_REG_RAS1_SS1 = 0x26,
+    GX_BP_REG_RAS1_IREF = 0x27,
+    GX_BP_REG_RAS1_TREF0 = 0x28,
+    GX_BP_REG_RAS1_TREF1 = 0x29,
+    GX_BP_REG_RAS1_TREF2 = 0x2A,
+    GX_BP_REG_RAS1_TREF3 = 0x2B,
+    GX_BP_REG_RAS1_TREF4 = 0x2C,
+    GX_BP_REG_RAS1_TREF5 = 0x2D,
+    GX_BP_REG_RAS1_TREF6 = 0x2E,
+    GX_BP_REG_RAS1_TREF7 = 0x2F,
+    GX_BP_REG_SU_SSIZE0 = 0x30,
+    GX_BP_REG_SU_TSIZE0 = 0x31,
+    GX_BP_REG_SU_SSIZE1 = 0x32,
+    GX_BP_REG_SU_TSIZE1 = 0x33,
+    GX_BP_REG_SU_SSIZE2 = 0x34,
+    GX_BP_REG_SU_TSIZE2 = 0x35,
+    GX_BP_REG_SU_SSIZE3 = 0x36,
+    GX_BP_REG_SU_TSIZE3 = 0x37,
+    GX_BP_REG_SU_SSIZE4 = 0x38,
+    GX_BP_REG_SU_TSIZE4 = 0x39,
+    GX_BP_REG_SU_SSIZE5 = 0x3A,
+    GX_BP_REG_SU_TSIZE5 = 0x3B,
+    GX_BP_REG_SU_SSIZE6 = 0x3C,
+    GX_BP_REG_SU_TSIZE6 = 0x3D,
+    GX_BP_REG_SU_SSIZE7 = 0x3E,
+    GX_BP_REG_SU_TSIZE7 = 0x3F,
+    GX_BP_REG_ZMODE = 0x40,
+    GX_BP_REG_BLENDMODE = 0x41,
+    GX_BP_REG_DSTALPHA = 0x42,
+    GX_BP_REG_ZCONTROL = 0x43,
+    GX_BP_REG_FIELDMASK = 0x44,
+    GX_BP_REG_DRAWDONE = 0x45,
+    GX_BP_REG_PETOKEN = 0x47,
+    GX_BP_REG_PETOKENINT = 0x48,
+    GX_BP_REG_TEXCOPYSRCXY = 0x49,
+    GX_BP_REG_TEXCOPYSRCWH = 0x4A,
+    GX_BP_REG_TEXCOPYDST = 0x4B,
+    GX_BP_REG_DISPCOPYSTRIDE = 0x4D,
+    GX_BP_REG_DISPCOPYSCALEY = 0x4E,
+    GX_BP_REG_COPYCLEARAR = 0x4F,
+    GX_BP_REG_COPYCLEARGB = 0x50,
+    GX_BP_REG_COPYCLEARZ = 0x51,
+    GX_BP_REG_COPYFILTER0 = 0x53,
+    GX_BP_REG_COPYFILTER1 = 0x54,
+    GX_BP_REG_BOUNDINGBOX0 = 0x55,
+    GX_BP_REG_BOUNDINGBOX1 = 0x56,
+    GX_BP_REG_SCISSOROFFSET = 0x59,
+    GX_BP_REG_TMEMPRELOADADDR = 0x60,
+    GX_BP_REG_TMEMPRELOADEVEN = 0x61,
+    GX_BP_REG_TMEMPRELOADODD = 0x62,
+    GX_BP_REG_TMEMPRELOADMODE = 0x63,
+    GX_BP_REG_TMEMTLUTSRC = 0x64,
+    GX_BP_REG_TMEMTLUTDST = 0x65,
+    GX_BP_REG_TMEMTEXINVALIDATE = 0x66,
+    GX_BP_REG_PERF1 = 0x67,
+    GX_BP_REG_FIELDMODE = 0x68,
+    GX_BP_REG_SETMODE0_TEX0 = 0x80,
+    GX_BP_REG_SETMODE0_TEX1 = 0x81,
+    GX_BP_REG_SETMODE0_TEX2 = 0x82,
+    GX_BP_REG_SETMODE0_TEX3 = 0x83,
+    GX_BP_REG_SETMODE1_TEX0 = 0x84,
+    GX_BP_REG_SETMODE1_TEX1 = 0x85,
+    GX_BP_REG_SETMODE1_TEX2 = 0x86,
+    GX_BP_REG_SETMODE1_TEX3 = 0x87,
+    GX_BP_REG_SETIMAGE0_TEX0 = 0x88,
+    GX_BP_REG_SETIMAGE0_TEX1 = 0x89,
+    GX_BP_REG_SETIMAGE0_TEX2 = 0x8A,
+    GX_BP_REG_SETIMAGE0_TEX3 = 0x8B,
+    GX_BP_REG_SETIMAGE1_TEX0 = 0x8C,
+    GX_BP_REG_SETIMAGE1_TEX1 = 0x8D,
+    GX_BP_REG_SETIMAGE1_TEX2 = 0x8E,
+    GX_BP_REG_SETIMAGE1_TEX3 = 0x8F,
+    GX_BP_REG_SETIMAGE2_TEX0 = 0x90,
+    GX_BP_REG_SETIMAGE2_TEX1 = 0x91,
+    GX_BP_REG_SETIMAGE2_TEX2 = 0x92,
+    GX_BP_REG_SETIMAGE2_TEX3 = 0x93,
+    GX_BP_REG_SETIMAGE3_TEX0 = 0x94,
+    GX_BP_REG_SETIMAGE3_TEX1 = 0x95,
+    GX_BP_REG_SETIMAGE3_TEX2 = 0x96,
+    GX_BP_REG_SETIMAGE3_TEX3 = 0x97,
+    GX_BP_REG_SETTLUT_TEX0 = 0x98,
+    GX_BP_REG_SETTLUT_TEX1 = 0x99,
+    GX_BP_REG_SETTLUT_TEX2 = 0x9A,
+    GX_BP_REG_SETTLUT_TEX3 = 0x9B,
+    GX_BP_REG_SETMODE0_TEX4 = 0xA0,
+    GX_BP_REG_SETMODE0_TEX5 = 0xA1,
+    GX_BP_REG_SETMODE0_TEX6 = 0xA2,
+    GX_BP_REG_SETMODE0_TEX7 = 0xA3,
+    GX_BP_REG_SETMODE1_TEX4 = 0xA4,
+    GX_BP_REG_SETMODE1_TEX5 = 0xA5,
+    GX_BP_REG_SETMODE1_TEX6 = 0xA6,
+    GX_BP_REG_SETMODE1_TEX7 = 0xA7,
+    GX_BP_REG_SETIMAGE0_TEX4 = 0xA8,
+    GX_BP_REG_SETIMAGE0_TEX5 = 0xA9,
+    GX_BP_REG_SETIMAGE0_TEX6 = 0xAA,
+    GX_BP_REG_SETIMAGE0_TEX7 = 0xAB,
+    GX_BP_REG_SETIMAGE1_TEX4 = 0xAC,
+    GX_BP_REG_SETIMAGE1_TEX5 = 0xAD,
+    GX_BP_REG_SETIMAGE1_TEX6 = 0xAE,
+    GX_BP_REG_SETIMAGE1_TEX7 = 0xAF,
+    GX_BP_REG_SETIMAGE2_TEX4 = 0xB0,
+    GX_BP_REG_SETIMAGE2_TEX5 = 0xB1,
+    GX_BP_REG_SETIMAGE2_TEX6 = 0xB2,
+    GX_BP_REG_SETIMAGE2_TEX7 = 0xB3,
+    GX_BP_REG_SETIMAGE3_TEX4 = 0xB4,
+    GX_BP_REG_SETIMAGE3_TEX5 = 0xB5,
+    GX_BP_REG_SETIMAGE3_TEX6 = 0xB6,
+    GX_BP_REG_SETIMAGE3_TEX7 = 0xB7,
+    GX_BP_REG_SETTLUT_TEX4 = 0xB8,
+    GX_BP_REG_SETTLUT_TEX5 = 0xB9,
+    GX_BP_REG_SETTLUT_TEX6 = 0xBA,
+    GX_BP_REG_SETTLUT_TEX7 = 0xBB,
+    GX_BP_REG_TEVCOLORCOMBINER0 = 0xC0,
+    GX_BP_REG_TEVALPHACOMBINER0 = 0xC1,
+    GX_BP_REG_TEVCOLORCOMBINER1 = 0xC2,
+    GX_BP_REG_TEVALPHACOMBINER1 = 0xC3,
+    GX_BP_REG_TEVCOLORCOMBINER2 = 0xC4,
+    GX_BP_REG_TEVALPHACOMBINER2 = 0xC5,
+    GX_BP_REG_TEVCOLORCOMBINER3 = 0xC6,
+    GX_BP_REG_TEVALPHACOMBINER3 = 0xC7,
+    GX_BP_REG_TEVCOLORCOMBINER4 = 0xC8,
+    GX_BP_REG_TEVALPHACOMBINER4 = 0xC9,
+    GX_BP_REG_TEVCOLORCOMBINER5 = 0xCA,
+    GX_BP_REG_TEVALPHACOMBINER5 = 0xCB,
+    GX_BP_REG_TEVCOLORCOMBINER6 = 0xCC,
+    GX_BP_REG_TEVALPHACOMBINER6 = 0xCD,
+    GX_BP_REG_TEVCOLORCOMBINER7 = 0xCE,
+    GX_BP_REG_TEVALPHACOMBINER7 = 0xCF,
+    GX_BP_REG_TEVCOLORCOMBINER8 = 0xD0,
+    GX_BP_REG_TEVALPHACOMBINER8 = 0xD1,
+    GX_BP_REG_TEVCOLORCOMBINER9 = 0xD2,
+    GX_BP_REG_TEVALPHACOMBINER9 = 0xD3,
+    GX_BP_REG_TEVCOLORCOMBINER10 = 0xD4,
+    GX_BP_REG_TEVALPHACOMBINER10 = 0xD5,
+    GX_BP_REG_TEVCOLORCOMBINER11 = 0xD6,
+    GX_BP_REG_TEVALPHACOMBINER11 = 0xD7,
+    GX_BP_REG_TEVCOLORCOMBINER12 = 0xD8,
+    GX_BP_REG_TEVALPHACOMBINER12 = 0xD9,
+    GX_BP_REG_TEVCOLORCOMBINER13 = 0xDA,
+    GX_BP_REG_TEVALPHACOMBINER13 = 0xDB,
+    GX_BP_REG_TEVCOLORCOMBINER14 = 0xDC,
+    GX_BP_REG_TEVALPHACOMBINER14 = 0xDD,
+    GX_BP_REG_TEVCOLORCOMBINER15 = 0xDE,
+    GX_BP_REG_TEVALPHACOMBINER15 = 0xDF,
+    GX_BP_REG_TEVREG0LO = 0xE0,
+    GX_BP_REG_TEVREG0HI = 0xE1,
+    GX_BP_REG_TEVREG1LO = 0xE2,
+    GX_BP_REG_TEVREG1HI = 0xE3,
+    GX_BP_REG_TEVREG2LO = 0xE4,
+    GX_BP_REG_TEVREG2HI = 0xE5,
+    GX_BP_REG_TEVREG3LO = 0xE6,
+    GX_BP_REG_TEVREG3HI = 0xE7,
+    GX_BP_REG_FOGRANGE = 0xE8,
+    GX_BP_REG_FOGRANGEK0 = 0xE9,
+    GX_BP_REG_FOGRANGEK1 = 0xEA,
+    GX_BP_REG_FOGRANGEK2 = 0xEB,
+    GX_BP_REG_FOGRANGEK3 = 0xEC,
+    GX_BP_REG_FOGRANGEK4 = 0xED,
+    GX_BP_REG_FOGPARAM0 = 0xEE,
+    GX_BP_REG_FOGPARAM1 = 0xEF,
+    GX_BP_REG_FOGPARAM2 = 0xF0,
+    GX_BP_REG_FOGPARAM3 = 0xF1,
+    GX_BP_REG_FOGCOLOR = 0xF2,
+    GX_BP_REG_ALPHACOMPARE = 0xF3,
+    GX_BP_REG_ZTEXTURE0 = 0xF4,
+    GX_BP_REG_ZTEXTURE1 = 0xF5,
+    GX_BP_REG_TEVKSEL0 = 0xF6,
+    GX_BP_REG_TEVKSEL1 = 0xF7,
+    GX_BP_REG_TEVKSEL2 = 0xF8,
+    GX_BP_REG_TEVKSEL3 = 0xF9,
+    GX_BP_REG_TEVKSEL4 = 0xFA,
+    GX_BP_REG_TEVKSEL5 = 0xFB,
+    GX_BP_REG_TEVKSEL6 = 0xFC,
+    GX_BP_REG_TEVKSEL7 = 0xFD,
+    GX_BP_REG_SSMASK = 0xFE,
+} GXBPRegs;
+
+typedef union {
+    u8 u8;
+    u16 u16;
+    u32 u32;
+    u64 u64;
+    s8 s8;
+    s16 s16;
+    s32 s32;
+    s64 s64;
+    f32 f32;
+    f64 f64;
+} PPCWGPipe;
+
+// Hardware or OS state can change asynchronously.
+volatile PPCWGPipe
+    GXFIFO : FZGX_ADDR_GXFIFO; // fzgx-allow: S2 SDK asynchronous state
+
+void GXSetArray(GXAttr attr, void *base_ptr, u8 stride) {
+    GXAttr cpAttr;
+    u32 phyAddr;
+    if (attr == GX_VA_NBT) {
+        attr = GX_VA_NRM;
+    }
+    cpAttr = attr - GX_VA_POS;
+    phyAddr = (u32)base_ptr & 0x3FFFFFFF;
+    do {
+        long regAddr;
+        GXFIFO.u8 = (u8)(8);
+        GXFIFO.u8 = (u8)(cpAttr | GX_BP_REG_SETMODE0_TEX4);
+        GXFIFO.u32 = (u32)(phyAddr);
+        regAddr = cpAttr - 12;
+        if (regAddr >= 0 && regAddr < 4) {
+            gx->indexBase[regAddr] = phyAddr;
+        }
+    } while (0);
+    do {
+        long regAddr;
+        GXFIFO.u8 = (u8)(8);
+        GXFIFO.u8 = (u8)(cpAttr | GX_BP_REG_SETIMAGE2_TEX4);
+        GXFIFO.u32 = (u32)(stride);
+        regAddr = cpAttr - 12;
+        if (regAddr >= 0 && regAddr < 4) {
+            gx->indexStride[regAddr] = stride;
+        }
+    } while (0);
+}
+
+typedef union {
+    u8 u8;
+    u16 u16;
+    u32 u32;
+} GXWGFifoReg;
+
+#define GXWGFifoAddress ((u32)(0xCC00 << 16) + 0x8000)
+// Hardware FIFO register is intentionally volatile.
+#define GXWGFifo (*(volatile GXWGFifoReg *)GXWGFifoAddress)
+
+void GXInvalidateVtxCache(void) {
+    GXWGFifo.u8 = 0x48;
+}
+
+typedef enum _GXTexCoordID {
+    GX_TEXCOORD0,
+    GX_TEXCOORD1,
+    GX_TEXCOORD2,
+    GX_TEXCOORD3,
+    GX_TEXCOORD4,
+    GX_TEXCOORD5,
+    GX_TEXCOORD6,
+    GX_TEXCOORD7,
+    GX_MAXCOORD,
+    GX_TEXCOORD_NULL = 255,
+} GXTexCoordID;
+
+typedef enum _GXTexGenType {
+    GX_TG_MTX3x4,
+    GX_TG_MTX2x4,
+    GX_TG_BUMP0,
+    GX_TG_BUMP1,
+    GX_TG_BUMP2,
+    GX_TG_BUMP3,
+    GX_TG_BUMP4,
+    GX_TG_BUMP5,
+    GX_TG_BUMP6,
+    GX_TG_BUMP7,
+    GX_TG_SRTG,
+} GXTexGenType;
+
+typedef enum _GXTexGenSrc {
+    GX_TG_POS,
+    GX_TG_NRM,
+    GX_TG_BINRM,
+    GX_TG_TANGENT,
+    GX_TG_TEX0,
+    GX_TG_TEX1,
+    GX_TG_TEX2,
+    GX_TG_TEX3,
+    GX_TG_TEX4,
+    GX_TG_TEX5,
+    GX_TG_TEX6,
+    GX_TG_TEX7,
+    GX_TG_TEXCOORD0,
+    GX_TG_TEXCOORD1,
+    GX_TG_TEXCOORD2,
+    GX_TG_TEXCOORD3,
+    GX_TG_TEXCOORD4,
+    GX_TG_TEXCOORD5,
+    GX_TG_TEXCOORD6,
+    GX_TG_COLOR0,
+    GX_TG_COLOR1,
+} GXTexGenSrc;
+
+void __GXSetMatrixIndex(GXAttr index);
+
+// Hardware or OS state can change asynchronously.
+volatile PPCWGPipe
+    GXFIFO : FZGX_ADDR_GXFIFO; // fzgx-allow: S2 SDK asynchronous state
+
+void GXSetTexCoordGen2(GXTexCoordID dst_coord, GXTexGenType func, GXTexGenSrc src_param, u32 mtx,
+                 GXBool normalize, u32 pt_texmtx) {
+    u32 reg = 0;
+    u32 row;
+    u32 bumprow;
+    u32 form;
+    GXAttr mtxIdAttr;
+    form = 0;
+    row = 5;
+    switch (src_param) {
+    case GX_TG_POS:
+        row = 0;
+        form = 1;
+        break;
+    case GX_TG_NRM:
+        row = 1;
+        form = 1;
+        break;
+    case GX_TG_BINRM:
+        row = 3;
+        form = 1;
+        break;
+    case GX_TG_TANGENT:
+        row = 4;
+        form = 1;
+        break;
+    case GX_TG_COLOR0:
+        row = 2;
+        break;
+    case GX_TG_COLOR1:
+        row = 2;
+        break;
+    case GX_TG_TEX0:
+        row = 5;
+        break;
+    case GX_TG_TEX1:
+        row = 6;
+        break;
+    case GX_TG_TEX2:
+        row = 7;
+        break;
+    case GX_TG_TEX3:
+        row = 8;
+        break;
+    case GX_TG_TEX4:
+        row = 9;
+        break;
+    case GX_TG_TEX5:
+        row = 10;
+        break;
+    case GX_TG_TEX6:
+        row = 11;
+        break;
+    case GX_TG_TEX7:
+        row = 12;
+        break;
+    case GX_TG_TEXCOORD0:
+        bumprow;
+        break;
+    case GX_TG_TEXCOORD1:
+        bumprow;
+        break;
+    case GX_TG_TEXCOORD2:
+        bumprow;
+        break;
+    case GX_TG_TEXCOORD3:
+        bumprow;
+        break;
+    case GX_TG_TEXCOORD4:
+        bumprow;
+        break;
+    case GX_TG_TEXCOORD5:
+        bumprow;
+        break;
+    case GX_TG_TEXCOORD6:
+        bumprow;
+        break;
+    default:
+        break;
+    }
+    switch (func) {
+    case GX_TG_MTX2x4:
+        (reg) = ((u32)(reg) & ~(((1 << (1)) - 1) << (1))) | ((u32)(0) << (1));
+        ;
+        (reg) = ((u32)(reg) & ~(((1 << (1)) - 1) << (2))) | ((u32)(form) << (2));
+        ;
+        (reg) = ((u32)(reg) & ~(((1 << (3)) - 1) << (4))) | ((u32)(0) << (4));
+        ;
+        (reg) = ((u32)(reg) & ~(((1 << (5)) - 1) << (7))) | ((u32)(row) << (7));
+        ;
+        break;
+    case GX_TG_MTX3x4:
+        (reg) = ((u32)(reg) & ~(((1 << (1)) - 1) << (1))) | ((u32)(1) << (1));
+        ;
+        (reg) = ((u32)(reg) & ~(((1 << (1)) - 1) << (2))) | ((u32)(form) << (2));
+        ;
+        (reg) = ((u32)(reg) & ~(((1 << (3)) - 1) << (4))) | ((u32)(0) << (4));
+        ;
+        (reg) = ((u32)(reg) & ~(((1 << (5)) - 1) << (7))) | ((u32)(row) << (7));
+        ;
+        break;
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+    case 9:
+        (reg) = ((u32)(reg) & ~(((1 << (1)) - 1) << (1))) | ((u32)(0) << (1));
+        ;
+        (reg) = ((u32)(reg) & ~(((1 << (1)) - 1) << (2))) | ((u32)(form) << (2));
+        ;
+        (reg) = ((u32)(reg) & ~(((1 << (3)) - 1) << (4))) | ((u32)(1) << (4));
+        ;
+        (reg) = ((u32)(reg) & ~(((1 << (5)) - 1) << (7))) | ((u32)(row) << (7));
+        ;
+        (reg) = ((u32)(reg) & ~(((1 << (3)) - 1) << (12))) | ((u32)(src_param - 12) << (12));
+        ;
+        (reg) = ((u32)(reg) & ~(((1 << (3)) - 1) << (15))) | ((u32)(func - 2) << (15));
+        ;
+        break;
+    case GX_TG_SRTG:
+        (reg) = ((u32)(reg) & ~(((1 << (1)) - 1) << (1))) | ((u32)(0) << (1));
+        ;
+        (reg) = ((u32)(reg) & ~(((1 << (1)) - 1) << (2))) | ((u32)(form) << (2));
+        ;
+        if (src_param == GX_TG_COLOR0) {
+            (reg) = ((u32)(reg) & ~(((1 << (3)) - 1) << (4))) | ((u32)(2) << (4));
+            ;
+        } else {
+            (reg) = ((u32)(reg) & ~(((1 << (3)) - 1) << (4))) | ((u32)(3) << (4));
+            ;
+        }
+        (reg) = ((u32)(reg) & ~(((1 << (5)) - 1) << (7))) | ((u32)(2) << (7));
+        ;
+        break;
+    default:
+        break;
+    }
+    do {
+        GXFIFO.u8 = (u8)(0x10);
+        GXFIFO.u32 = (u32)(0x1000 + (dst_coord + 0x40));
+        GXFIFO.u32 = (u32)(reg);
+        ;
+    } while (0);
+    reg = 0;
+    (reg) = ((u32)(reg) & ~(((1 << (6)) - 1) << (0))) | ((u32)(pt_texmtx - 64) << (0));
+    ;
+    (reg) = ((u32)(reg) & ~(((1 << (1)) - 1) << (8))) | ((u32)(normalize) << (8));
+    ;
+    do {
+        GXFIFO.u8 = (u8)(0x10);
+        GXFIFO.u32 = (u32)(0x1000 + (dst_coord + 0x50));
+        GXFIFO.u32 = (u32)(reg);
+        ;
+    } while (0);
+    switch (dst_coord) {
+    case GX_TEXCOORD0:
+        (gx->matIdxA) = ((u32)(gx->matIdxA) & ~(((1 << (6)) - 1) << (6))) | ((u32)(mtx) << (6));
+        ;
+        break;
+    case GX_TEXCOORD1:
+        (gx->matIdxA) = ((u32)(gx->matIdxA) & ~(((1 << (6)) - 1) << (12))) | ((u32)(mtx) << (12));
+        ;
+        break;
+    case GX_TEXCOORD2:
+        (gx->matIdxA) = ((u32)(gx->matIdxA) & ~(((1 << (6)) - 1) << (18))) | ((u32)(mtx) << (18));
+        ;
+        break;
+    case GX_TEXCOORD3:
+        (gx->matIdxA) = ((u32)(gx->matIdxA) & ~(((1 << (6)) - 1) << (24))) | ((u32)(mtx) << (24));
+        ;
+        break;
+    case GX_TEXCOORD4:
+        (gx->matIdxB) = ((u32)(gx->matIdxB) & ~(((1 << (6)) - 1) << (0))) | ((u32)(mtx) << (0));
+        ;
+        break;
+    case GX_TEXCOORD5:
+        (gx->matIdxB) = ((u32)(gx->matIdxB) & ~(((1 << (6)) - 1) << (6))) | ((u32)(mtx) << (6));
+        ;
+        break;
+    case GX_TEXCOORD6:
+        (gx->matIdxB) = ((u32)(gx->matIdxB) & ~(((1 << (6)) - 1) << (12))) | ((u32)(mtx) << (12));
+        ;
+        break;
+    default:
+        (gx->matIdxB) = ((u32)(gx->matIdxB) & ~(((1 << (6)) - 1) << (18))) | ((u32)(mtx) << (18));
+        ;
+        break;
+    }
+    mtxIdAttr = dst_coord + 1;
+    __GXSetMatrixIndex(mtxIdAttr);
+}
+

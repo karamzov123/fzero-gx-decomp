@@ -110,31 +110,8 @@ typedef struct {
 } Obj_1_data_4C810;
 extern Obj_1_data_4C810 lbl_1_data_4C810;
 
-// lbl_1_bss_8F568: .bss size 0x10, 5 refs from ranking.c
-typedef struct {
-    u8 pad_0[0x2];
-    s16 unk_2;  // 1 loads, 0 stores
-    s16 unk_4;  // 6 loads, 0 stores
-    s16 unk_6;  // 1 loads, 0 stores
-    u32 unk_8;  // 8 loads, 0 stores
-    s16 unk_C;  // 8 loads, 0 stores
-    s16 unk_E;  // 9 loads, 0 stores
-    u32 unk_10;  // 3 loads, 0 stores
-    u32 unk_14;  // 8 loads, 0 stores
-    u32 unk_18;  // 3 loads, 0 stores
-    s16 unk_1C;  // 1 loads, 0 stores
-    u8 pad_1E[0x2];
-    s16 unk_20;  // 1 loads, 0 stores
-    s16 unk_22;  // 1 loads, 0 stores
-} Obj_1_bss_8F568_AtC;
-typedef struct {
-    u8 unk_0;  // 1 loads, 1 stores
-    u8 pad_1[0x3];
-    f32 unk_4;  // 6 loads, 2 stores
-    f32 unk_8;  // 3 loads, 1 stores
-    Obj_1_bss_8F568_AtC *unk_C;  // 2 loads, 1 stores
-} Obj_1_bss_8F568;
-extern Obj_1_bss_8F568 lbl_1_bss_8F568;
+// lbl_1_bss_8F568: .bss size 0x1, 5 refs from ranking.c
+extern u8 lbl_1_bss_8F568;
 
 // lbl_1_bss_8EF20: .bss size 0x48, 5 refs from ranking.c
 typedef struct {
@@ -211,7 +188,7 @@ extern Obj_1_data_FCD4 lbl_1_data_FCD4;
 extern u32 lbl_1_bss_8F3E0;
 
 // lbl_1_data_4C788: .data size 0xC, 1 refs from ranking.c (own data block)
-extern u8 lbl_1_data_4C788[0xC];
+extern u32 lbl_1_data_4C788[0x3];
 
 // jumptable_1_data_4C794: .data size 0x1C, 1 refs from ranking.c (own data block)
 extern u8 jumptable_1_data_4C794[0x1C];

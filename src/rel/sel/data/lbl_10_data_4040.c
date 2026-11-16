@@ -6,6 +6,8 @@ extern char lbl_10_data_408C[21];
 extern char lbl_10_data_40A4[21];
 extern char lbl_10_data_40BC[21];
 extern char lbl_10_data_40D4[21];
+extern char lbl_10_data_40EC[56];
+extern char lbl_10_data_4124[83];
 
 
 
@@ -35,4 +37,17 @@ __declspec(section ".data") char lbl_10_data_40BC[21] __attribute__((aligned(4))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_40D4[21] __attribute__((aligned(4))) = "Memcard checking ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_40EC[56] __attribute__((aligned(4))) = "\203`\203F\203b\203N\222\206\202\305\202\267\201B\n\203\201\203\202\203\212\201[\203J\201[\203h"
+    "\202\360\224\262\202\251\202\310\202\242\202\305\202\255\202\276\202\263\202\242\201B\n\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_4124[83] __attribute__((aligned(4))) = "Please insert F-ZERO LICENSE CARD after\n\tthe data is loaded from the Memory Card. ";
 #pragma explicit_zero_data reset

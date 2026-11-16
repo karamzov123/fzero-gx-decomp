@@ -48,8 +48,8 @@ typedef struct {
 } Obj_1_bss_6D600;
 extern Obj_1_bss_6D600 lbl_1_bss_6D600;
 
-// lbl_1_data_1DAC0: .data size 0x44, 6 refs from screen_effect.c (own data block)
-extern u8 lbl_1_data_1DAC0[0x44];
+// lbl_1_data_1DAC0: .data size 0x10, 6 refs from screen_effect.c (own data block)
+extern u8 lbl_1_data_1DAC0[0x10];
 
 // lbl_1_data_1DCF0: .data size 0x4, 5 refs from screen_effect.c (own data block)
 extern u32 lbl_1_data_1DCF0;
@@ -90,11 +90,11 @@ typedef struct {
 } Obj_1_bss_6D7A8;
 extern Obj_1_bss_6D7A8 lbl_1_bss_6D7A8;
 
-// lbl_1_data_1D9B8: .data size 0x108, 5 refs from screen_effect.c
+// lbl_1_data_1D9B8: .data size 0xE4, 5 refs from screen_effect.c
 typedef struct {
     u8 pad_0[0x5];
     u8 unk_5;  // 3 loads, 0 stores
-    u8 pad_6[0x102];
+    u8 pad_6[0xDE];
 } Obj_1_data_1D9B8;
 extern Obj_1_data_1D9B8 lbl_1_data_1D9B8;
 
@@ -176,8 +176,8 @@ extern u8 lbl_1_data_1E4B8[0xA0];
 // jumptable_1_data_1DB04: .data size 0x98, 1 refs from screen_effect.c (own data block)
 extern u8 jumptable_1_data_1DB04[0x98];
 
-// lbl_1_data_1DC80: .data size 0x48, 1 refs from screen_effect.c (own data block)
-extern u8 lbl_1_data_1DC80[0x48];
+// lbl_1_data_1DC80: .data size 0x33, 1 refs from screen_effect.c (own data block)
+extern u8 lbl_1_data_1DC80[0x33];
 
 // jumptable_1_data_1DCC8: .data size 0x28, 1 refs from screen_effect.c (own data block)
 extern u8 jumptable_1_data_1DCC8[0x28];

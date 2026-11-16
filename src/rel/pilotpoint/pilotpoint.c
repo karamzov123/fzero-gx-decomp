@@ -3149,6 +3149,7 @@ u32 fn_14_34FC(void) {
 
 /* fzgx:begin fn_14_3AE8 */
 #include "rel/pilotpoint/pilotpoint.h"
+extern Obj_14_data_2F36 lbl_14_data_27B8__fzgx_offset_77E;
 
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
@@ -3400,13 +3401,13 @@ s32 fn_14_3AE8(Rp_arg *arg0) {
 
     switch (qq) {
     case 0:
-        fn_1_14DE80((void *)(lbl_14_bss_8344 + idx * 0xA20), &zc, &z8, lbl_14_data_2F36.unk_0, 1.0f);
+        fn_1_14DE80((void *)(lbl_14_bss_8344 + idx * 0xA20), &zc, &z8, lbl_14_data_27B8__fzgx_offset_77E.unk_0, 1.0f);
         break;
     case 1:
-        fn_1_14E054((void *)(lbl_14_bss_8344 + idx * 0xA20), &t34, lbl_14_data_2F36.unk_0, 1.0f);
+        fn_1_14E054((void *)(lbl_14_bss_8344 + idx * 0xA20), &t34, lbl_14_data_27B8__fzgx_offset_77E.unk_0, 1.0f);
         break;
     case 2:
-        fn_1_14E198((void *)(lbl_14_bss_8344 + idx * 0xA20), &t34, lbl_14_data_2F36.unk_0, 1.0f);
+        fn_1_14E198((void *)(lbl_14_bss_8344 + idx * 0xA20), &t34, lbl_14_data_27B8__fzgx_offset_77E.unk_0, 1.0f);
         break;
     }
 
@@ -3629,6 +3630,7 @@ for (; (s16)fzgx_loop_i_6660 < (s16)fn_1_12CB04(t0); fzgx_loop_i_6660++) {
 
 /* fzgx:begin fn_14_4008 */
 #include "rel/pilotpoint/pilotpoint.h"
+extern Obj_14_data_2F36 lbl_14_data_27B8__fzgx_offset_77E;
 
 typedef struct fn_14_4008_Vec {
     f32 x;
@@ -3812,7 +3814,7 @@ s32 fn_14_4008(void) {
     } else {
         fn_1_151BDC(lbl_14_bss_180);
     }
-    fn_1_14DE80((u8 *)lbl_14_bss_8340 + index.value, &sel0, &sel1, lbl_14_data_2F36.unk_0, 1.0f);
+    fn_1_14DE80((u8 *)lbl_14_bss_8340 + index.value, &sel0, &sel1, lbl_14_data_27B8__fzgx_offset_77E.unk_0, 1.0f);
     lbl_8006DAEC();
 
     if (((fn_14_4008_Part (*)[3])lbl_14_bss_8340)[b][1].id ==
@@ -3821,7 +3823,7 @@ s32 fn_14_4008(void) {
     } else {
         fn_1_151BDC(lbl_14_bss_180);
     }
-    fn_1_14E054(&((fn_14_4008_Part (*)[3])lbl_14_bss_8340)[b], sel0, lbl_14_data_2F36.unk_0, 1.0f);
+    fn_1_14E054(&((fn_14_4008_Part (*)[3])lbl_14_bss_8340)[b], sel0, lbl_14_data_27B8__fzgx_offset_77E.unk_0, 1.0f);
     lbl_8006DBE4();
 
     if (((fn_14_4008_Part (*)[3])lbl_14_bss_8340)[c][2].id ==
@@ -3830,7 +3832,7 @@ s32 fn_14_4008(void) {
     } else {
         fn_1_151BDC(lbl_14_bss_180);
     }
-    fn_1_14E198(&((fn_14_4008_Part (*)[3])lbl_14_bss_8340)[c], sel1, lbl_14_data_2F36.unk_0, 1.0f);
+    fn_1_14E198(&((fn_14_4008_Part (*)[3])lbl_14_bss_8340)[c], sel1, lbl_14_data_27B8__fzgx_offset_77E.unk_0, 1.0f);
     lbl_8006DC20();
     return 0;
 }

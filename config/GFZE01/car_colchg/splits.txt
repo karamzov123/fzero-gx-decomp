@@ -132,5 +132,8 @@ rel/car_colchg/data/lbl_9_bss_E0.c:
 rel/car_colchg/data/lbl_9_data_0.c:
 	.data       start:0x00000000 end:0x000001B8 align:8
 
+rel/car_colchg/data/lbl_9_data_1B8.c:
+	.data       start:0x000001B8 end:0x00000344 align:8
+
 rel/car_colchg/data/lbl_9_rodata_0.c:
 	.rodata     start:0x00000000 end:0x0000005C align:8

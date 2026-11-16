@@ -496,8 +496,12 @@ f32 fzgx_obj_lbl_1_bss_7AC9C;
 #define cpu_worst_progress lbl_1_bss_7AC90__fzgx_offset_8
 #define cpu_line_scale fzgx_obj_lbl_1_bss_7AC9C
 
-u32 fzgx_obj_lbl_1_data_3D230 = 1;    /* the CPU random generator */
-#define cpu_seed fzgx_obj_lbl_1_data_3D230
+u32 lbl_1_data_3D230 = 1;    /* the CPU random generator */
+#define cpu_seed lbl_1_data_3D230
+/* the strings of fn_1_C47B4 */
+u8 lbl_1_data_3D234[0x38] = {
+    0x65U, 0x6EU, 0x65U, 0x6DU, 0x79U, 0x5FU, 0x63U, 0x74U, 0x72U, 0x6CU, 0x2EU, 0x63U, 0x00U, 0x00U, 0x00U, 0x00U, 0x6CU, 0x69U, 0x6EU, 0x65U, 0x25U, 0x30U, 0x32U, 0x64U, 0x2EU, 0x62U, 0x69U, 0x6EU, 0x00U, 0x00U, 0x00U, 0x00U, 0x72U, 0x62U, 0x00U, 0x00U, 0x65U, 0x6EU, 0x65U, 0x6DU, 0x79U, 0x5FU, 0x6CU, 0x69U, 0x6EU, 0x65U, 0x00U, 0x00U, 0x2EU, 0x2EU, 0x00U, 0x00U, 0x77U, 0x62U, 0x00U, 0x00U
+};
 
 /* retail .rodata 0x5168..0x57E4 (the CPU tables), so the literals below land at retail offsets */
 const u32 fzgx_pool_lbl_1_rodata_5168[16] = {
@@ -1802,8 +1806,6 @@ extern const f32 lbl_1_rodata_5A58;
 extern const f32 lbl_1_rodata_5A5C;
 extern const f32 lbl_1_rodata_5A60;
 extern const f32 lbl_1_rodata_5A64;
-extern s8 lbl_1_rodata_59C0[72];
-extern u32 lbl_1_rodata_5A08[72];
 
 extern s16 fn_1_3F0C8(void);
 extern u32 fn_1_D0428(void);
@@ -1816,9 +1818,21 @@ extern u32 fn_1_C8294(u32, u8, u32);
 extern void fn_1_CF5B0(s32);
 extern s32 camera_get_flags(void);
 
+/* six EnemyCtrlEntry rows for fn_1_C8294, copied whole onto the stack */
 typedef struct {
-	u32 w[18];
+	s16 x;
+	s16 y;
+	f32 scale;
+	s16 ofs_x;
+	s16 ofs_y;
+} fn_1_C6F8C_Entry;
+
+typedef struct {
+	fn_1_C6F8C_Entry entries[6];
 } fn_1_C6F8C_Msg;
+
+extern const fn_1_C6F8C_Msg lbl_1_rodata_59C0;
+extern const fn_1_C6F8C_Msg lbl_1_rodata_5A08;
 
 typedef struct {
 	u8 pad_0[0x2B4];
@@ -1955,10 +1969,10 @@ void fn_1_C6F8C(void) {
 		u8 kind = fn_1_D2D48();
 
 		if ((fzgx_obj_lbl_1_bss_8B3A0.unk_94 & 0x40000000) == 0) {
-			msgA = *(fn_1_C6F8C_Msg *)&lbl_1_rodata_59C0;
+			msgA = lbl_1_rodata_59C0;
 			fn_1_C8294((u32)&msgA, kind, 1);
 		} else {
-			msgB = *(fn_1_C6F8C_Msg *)&lbl_1_rodata_5A08;
+			msgB = lbl_1_rodata_5A08;
 			fn_1_C8294((u32)&msgB, kind, 1);
 		}
 	}
@@ -5881,7 +5895,7 @@ extern const f32 lbl_1_rodata_6050;
 extern const f64 lbl_1_rodata_5C00;
 extern int fn_1_4F734(FontDrawPacket *);
 extern u32 lbl_1_bss_3C30;
-extern u32 lbl_1_data_3D630;
+extern char lbl_1_data_3D630[];
 extern f32 lbl_1_rodata_26F8[22];
 extern u32 lbl_801A66B4;
 extern void fn_1_49410(void);
@@ -5950,7 +5964,7 @@ void fn_1_CFF94(u32 arg0, s16 arg1, f32 arg2) {
     fn_1_495C8(9);
     fn_1_4954C((4.0f));
     fn_1_495A0(arg2);
-    fn_1_4AE0C((const char *)&lbl_1_data_3D630, arg1);
+    fn_1_4AE0C(lbl_1_data_3D630, arg1);
 }
 #pragma opt_common_subs reset
 

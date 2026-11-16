@@ -3,6 +3,7 @@
 
 extern char lbl_10_data_6168[11];
 extern char lbl_10_data_6174[7];
+extern u8 lbl_10_data_617C[];
 
 
 
@@ -14,4 +15,12 @@ __declspec(section ".data") char lbl_10_data_6168[11] __attribute__((aligned(8))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_6174[7] __attribute__((aligned(4))) = "%dTime";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_10_data_617C[] __attribute__((aligned(4))) = {
+    0x83U, 0x76U, 0x83U, 0x8CU, 0x83U, 0x43U, 0x89U, 0xF1U, 0x90U, 0x94U, 0x00U, 0x00U
+};
 #pragma explicit_zero_data reset

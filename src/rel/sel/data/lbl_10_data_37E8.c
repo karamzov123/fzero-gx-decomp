@@ -2,9 +2,25 @@
 #include "types.h"
 
 extern char lbl_10_data_37E8[19];
+extern char lbl_10_data_37FC[40];
+extern char lbl_10_data_3824[170];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_37E8[19] __attribute__((aligned(8))) = "Memcard no use ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_37FC[40] __attribute__((aligned(4))) = "\203\201\203\202\203\212\201[\203J\201[\203h\202\360\216g\202\355\202\270\202\311\203v\203\214"
+    "\203C\202\265\202\334\202\267\201B\n";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_3824[170] __attribute__((aligned(4))) = "Wrong Memory Card. Please remove\n\t the Memory Card and insert \n\tthe /bcff0000/Original Memor"
+    "y Card/bcffffff/ which you started\n\t the game. Save within the given time. \n ";
 #pragma explicit_zero_data reset

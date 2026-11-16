@@ -2,9 +2,17 @@
 #include "types.h"
 
 extern char lbl_16_data_82DD0[25];
+extern char lbl_16_data_82DEC[36];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_16_data_82DD0[25] __attribute__((aligned(8))) = "Select a Pilot to View. ";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_16_data_82DEC[36] __attribute__((aligned(4))) = "\214\251\202\275\202\242\203p\203C\203\215\203b\203g\202\360\221I\202\361\202\305\202\255\202"
+    "\276\202\263\202\242\201B\000";
 #pragma explicit_zero_data reset

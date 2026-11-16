@@ -6,6 +6,9 @@ extern char lbl_10_data_2654[15];
 extern char lbl_10_data_2664[15];
 extern char lbl_10_data_2674[15];
 extern char lbl_10_data_2684[15];
+extern char lbl_10_data_2694[16];
+extern char lbl_10_data_26A4[8];
+extern char lbl_10_data_26AC[12];
 
 
 
@@ -35,4 +38,22 @@ __declspec(section ".data") char lbl_10_data_2674[15] __attribute__((aligned(4))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_2684[15] __attribute__((aligned(4))) = "%d Players ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_2694[16] __attribute__((aligned(4))) = "\203v\203\214\203C\203\204\201[ %d\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_26A4[8] __attribute__((aligned(4))) = "%d Cars";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_26AC[12] __attribute__((aligned(4))) = "%d Cars GER";
 #pragma explicit_zero_data reset

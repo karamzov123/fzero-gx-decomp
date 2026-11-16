@@ -35,6 +35,35 @@ extern s32 fn_8006FDEC(void);
 extern void fn_8006FEFC(void);
 extern void fn_8006FD1C(void);
 
+/* The last disc messages and the message group table (fn_800063AC copies it
+   to lbl_801A66F4). In the retail .data they come directly before the switch
+   table of this function. */
+extern u8 *lbl_80121F1C[];
+extern u8 lbl_80121F84[];
+extern u8 *lbl_80121FC8[];
+extern u8 lbl_80121FDC[];
+extern u8 lbl_80121FF4[];
+extern u8 lbl_80122014[];
+extern u8 *lbl_801A63D8[];
+extern u8 *lbl_801A63E0[];
+extern u8 lbl_801A63E8[];
+extern u8 *lbl_801A63EC[];
+
+u8 *lbl_80122030[5] = {
+    lbl_80121FDC, lbl_801A63E8, lbl_80121FF4, lbl_80121F84, lbl_80122014,
+};
+
+char lbl_80122044[23] = "Reading the Game Disc.";
+
+StringGroup lbl_8012205C[6] = {
+    {lbl_80121F1C, 3},
+    {lbl_801A63D8, 2},
+    {lbl_801A63E0, 2},
+    {lbl_80121FC8, 5},
+    {lbl_80122030, 5},
+    {lbl_801A63EC, 1},
+};
+
 /* fn_80006334's body: it is defined after fn_800060D8 (which calls it) and
    before this function, so MWCC auto-inlines it here. */
 static inline u32 is_wide(u8 *str) {

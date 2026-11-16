@@ -6,6 +6,7 @@ extern char lbl_10_data_2B54[7];
 extern char lbl_10_data_2B5C[7];
 extern char lbl_10_data_2B64[7];
 extern char lbl_10_data_2B6C[7];
+extern char lbl_10_data_2B74[20];
 
 
 
@@ -35,4 +36,10 @@ __declspec(section ".data") char lbl_10_data_2B64[7] __attribute__((aligned(4)))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_2B6C[7] __attribute__((aligned(4))) = "Ac ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_2B74[20] __attribute__((aligned(4))) = "\203A\201[\203P\201[\203h\203J\203b\203v30\000";
 #pragma explicit_zero_data reset

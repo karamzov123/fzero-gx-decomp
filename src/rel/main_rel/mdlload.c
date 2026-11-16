@@ -2,7 +2,7 @@
 #include "rel/main_rel/globals.h"
 #include "rel/main_rel/mdlload.h"
 
-extern void fn_80071484(void);
+extern void *fn_80071484(u32 arg0);
 extern void fn_80071678(void);
 extern void *OSGetArenaHi(void);
 extern void fn_1_D3BE8(void);
@@ -40,7 +40,7 @@ extern void fn_1_12F78(void *owner, void *data);
 extern void DCFlushRange(void *address, u32 length);
 extern void *fn_80071100(void *data, void *size, void *user);
 extern void fn_1_D3BE8(void);
-extern void fn_80071484(void);
+extern void *fn_80071484(u32 arg0);
 extern void fn_80071678(void);
 extern void *OSGetArenaHi(void);
 extern u8 lbl_1_bss_7AD58[8];
@@ -184,8 +184,8 @@ int fn_1_D3768(void *owner, void *user) {
 /* fzgx:end fn_1_D3768 */
 
 /* fzgx:begin fn_1_D3884 */
-void fn_1_D3884(void) {
-    fn_80071484();
+void *fn_1_D3884(void *arg0) {
+    return fn_80071484((u32)arg0);
 }
 /* fzgx:end fn_1_D3884 */
 

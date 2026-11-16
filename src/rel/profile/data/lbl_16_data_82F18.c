@@ -7,7 +7,6 @@ extern char lbl_16_data_82F18[16];
 extern u8 lbl_16_data_830C0[704];
 extern u32 lbl_16_data_83380[44];
 extern char lbl_16_data_83430[];
-extern u8 lbl_16_data_83440[];
 
 
 
@@ -174,13 +173,5 @@ __declspec(section ".data") u32 lbl_16_data_83380[44] __attribute__((aligned(8))
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_16_data_83430[] __attribute__((aligned(8))) = {
     0x25U, 0x30U, 0x32U, 0x64U, 0x00U, 0x00U, 0x00U, 0x00U, 0x31U, 0x30U, 0x30U, 0x30U, 0x6BU, 0x67U, 0x00U, 0x00U
-};
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") u8 lbl_16_data_83440[] __attribute__((aligned(8))) = {
-    0x25U, 0x73U, 0x0AU, 0x00U, 0x25U, 0x34U, 0x64U, 0x6BU, 0x67U, 0x0AU, 0x00U, 0x00U, 0x63U, 0x30U, 0x78U, 0x38U, 0x33U, 0x62U, 0x34U, 0x00U, 0x63U, 0x30U, 0x78U, 0x38U, 0x33U, 0x62U, 0x32U, 0x00U
 };
 #pragma explicit_zero_data reset

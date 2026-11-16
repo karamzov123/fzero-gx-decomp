@@ -105,3 +105,17 @@ u32 GXGetTexBufferSize(u16 width, u16 height, u32 format, GXBool mipmap, u8 max_
     }
     return bufferSize;
 }
+
+void __GetImageTileCount(GXTexFmt format, u16 width, u16 height, u32 *a, u32 *b, u32 *c) {
+    u32 widthTiles, heightTiles;
+    __GXGetTexTileShift(format, &widthTiles, &heightTiles);
+    if (width <= 0) {
+        width = 1;
+    }
+    if (height <= 0) {
+        height = 1;
+    }
+    *a = (((width) + (1 << (widthTiles)) - 1) >> (widthTiles));
+    *b = (((height) + (1 << (heightTiles)) - 1) >> (heightTiles));
+    *c = (format == GX_TF_RGBA8 || format == GX_TF_Z24X8) ? 2 : 1;
+}

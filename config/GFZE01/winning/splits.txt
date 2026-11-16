@@ -12,32 +12,18 @@ rel/winning/fn_15_B8C.c:
 rel/winning/fn_15_2CEC.c:
 	.text       start:0x00002CEC end:0x00002CF0
 
-rel/winning/fn_15_3AFC.c:
-	.text       start:0x00003AFC end:0x00003B00
 
-rel/winning/fn_15_405C.c:
-	.text       start:0x0000405C end:0x00004060
 
-rel/winning/winning/fn_15_4568.c:
-	.text       start:0x00004568 end:0x00004578
 
 rel/winning/fn_15_545C.c:
 	.text       start:0x0000545C end:0x00005460
 
-rel/winning/winning/fn_15_3B00.c:
-	.text       start:0x00003B00 end:0x00003B24 align:4
 
-rel/winning/winning/fn_15_4060.c:
-	.text       start:0x00004060 end:0x00004124 align:4
 
 rel/winning/winning/fn_15_1EE0.c:
 	.text       start:0x00001EE0 end:0x00001F28 align:4
 
-rel/winning/winning/fn_15_3A14.c:
-	.text       start:0x00003A14 end:0x00003AFC align:4
 
-rel/winning/winning/fn_15_401C.c:
-	.text       start:0x0000401C end:0x0000405C align:4
 
 rel/winning/winning/fn_15_2228.c:
 	.text       start:0x00002228 end:0x00002274 align:4
@@ -51,8 +37,6 @@ rel/winning/winning/fn_15_236C.c:
 rel/winning/winning/fn_15_1F4.c:
 	.text       start:0x000001F4 end:0x00000260 align:4
 
-rel/winning/winning/fn_15_30E8.c:
-	.text       start:0x000030E8 end:0x00003174 align:4
 
 rel/winning/winning/fn_15_350.c:
 	.text       start:0x00000350 end:0x000003AC align:4
@@ -69,8 +53,6 @@ rel/winning/winning/fn_15_2620.c:
 rel/winning/winning/fn_15_DD8.c:
 	.text       start:0x00000DD8 end:0x00000FCC align:4
 
-rel/winning/winning/fn_15_398C.c:
-	.text       start:0x0000398C end:0x00003A14 align:4
 
 rel/winning/winning/fn_15_2CF0.c:
 	.text       start:0x00002CF0 end:0x00002D74 align:4
@@ -103,19 +85,14 @@ rel/winning/winning/fn_15_5864.c:
 	.text       start:0x00005864 end:0x0000588C align:4
 
 rel/winning/winning/fn_15_2E8C.c:
-	.text       start:0x00002E8C end:0x000030E8 align:4
+	.text       start:0x00002E8C end:0x0000537C align:4
+	.data       start:0x00000000 end:0x00001F70 align:8
 
-rel/winning/winning/fn_15_3174.c:
-	.text       start:0x00003174 end:0x00003368 align:4
 
-rel/winning/winning/fn_15_38FC.c:
-	.text       start:0x000038FC end:0x0000398C align:4
 
 rel/winning/winning/fn_15_2AE4.c:
 	.text       start:0x00002AE4 end:0x00002CEC align:4
 
-rel/winning/winning/fn_15_435C.c:
-	.text       start:0x0000435C end:0x00004568 align:4
 
 rel/winning/winning/fn_15_27D4.c:
 	.text       start:0x000027D4 end:0x00002AE4 align:4
@@ -126,8 +103,6 @@ rel/winning/data/lbl_15_bss_88.c:
 rel/winning/data/lbl_15_bss_3F8.c:
 	.bss        start:0x000003F8 end:0x00000480 align:8
 
-rel/winning/winning/fn_15_3368.c:
-	.text       start:0x00003368 end:0x000038FC align:4
 
 rel/winning/winning/fn_15_5460.c:
 	.text       start:0x00005460 end:0x00005730 align:4
@@ -135,8 +110,6 @@ rel/winning/winning/fn_15_5460.c:
 rel/winning/winning/fn_15_5730.c:
 	.text       start:0x00005730 end:0x00005864 align:4
 
-rel/winning/winning/fn_15_4578.c:
-	.text       start:0x00004578 end:0x0000537C align:4
 
 rel/winning/winning/fn_15_11DC.c:
 	.text       start:0x000011DC end:0x00001D7C align:4
@@ -147,71 +120,36 @@ rel/winning/winning/fn_15_3AC.c:
 rel/winning/winning/fn_15_2458.c:
 	.text       start:0x00002458 end:0x00002620 align:4
 
-rel/winning/winning/fn_15_4124.c:
-	.text       start:0x00004124 end:0x0000435C align:4
 
 rel/winning/winning/fn_15_644.c:
 	.text       start:0x00000644 end:0x00000B8C align:4
 
-rel/winning/winning/fn_15_3B24.c:
-	.text       start:0x00003B24 end:0x0000401C align:4
 
 rel/winning/data/lbl_15_bss_D0.c:
 	.bss        start:0x000000D0 end:0x000003F8 align:8
 
-rel/winning/data/lbl_15_data_0.c:
-	.data       start:0x00000000 end:0x00000020 align:8
 
-rel/winning/data/lbl_15_data_1C40.c:
-	.data       start:0x00001C40 end:0x00001C50 align:8
 
-rel/winning/data/lbl_15_data_1C50.c:
-	.data       start:0x00001C50 end:0x00001C68 align:8
 
-rel/winning/data/lbl_15_data_1C68.c:
-	.data       start:0x00001C68 end:0x00001C70 align:8
-
-rel/winning/data/lbl_15_bss_0.c:
-	.bss        start:0x00000000 end:0x00000010 align:8
 
 rel/winning/data/lbl_15_bss_78.c:
 	.bss        start:0x00000078 end:0x00000088 align:8
 
-rel/winning/data/lbl_15_data_20.c:
-	.data       start:0x00000020 end:0x00000030 align:8
 
-rel/winning/data/lbl_15_data_30.c:
-	.data       start:0x00000030 end:0x00000050 align:8
 
-rel/winning/data/lbl_15_data_50.c:
-	.data       start:0x00000050 end:0x00000060 align:8
 
-rel/winning/data/lbl_15_data_60.c:
-	.data       start:0x00000060 end:0x00000068 align:8
 
-rel/winning/data/lbl_15_data_68.c:
-	.data       start:0x00000068 end:0x00000070 align:8
 
-rel/winning/data/lbl_15_data_70.c:
-	.data       start:0x00000070 end:0x00000090 align:8
-
-rel/winning/data/lbl_15_data_240.c:
-	.data       start:0x00000240 end:0x00001C40 align:8
-
-rel/winning/data/lbl_15_data_1C70.c:
-	.data       start:0x00001C70 end:0x00001F20 align:8
 
 rel/winning/data/lbl_15_data_1F70.c:
 	.data       start:0x00001F70 end:0x00001F7D align:8
 
-rel/winning/data/lbl_15_rodata_90.c:
-	.rodata     start:0x00000090 end:0x00000098 align:8
+rel/winning/data/lbl_15_bss_0.c:
+	.bss        start:0x00000000 end:0x00000010 align:8
 
-rel/winning/data/lbl_15_rodata_98.c:
-	.rodata     start:0x00000098 end:0x000000D0 align:8
+rel/winning/data/lbl_15_bss_10.c:
+	.bss        start:0x00000010 end:0x00000078 align:8
 
-rel/winning/data/lbl_15_rodata_D0.c:
-	.rodata     start:0x000000D0 end:0x000000D8 align:8
 
-rel/winning/data/lbl_15_rodata_D8.c:
-	.rodata     start:0x000000D8 end:0x000001EC align:8
+rel/winning/data/lbl_15_rodata_0.c:
+	.rodata     start:0x00000000 end:0x000001EC align:8

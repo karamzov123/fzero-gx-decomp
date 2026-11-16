@@ -6,6 +6,9 @@ extern char lbl_10_data_1B5C[22];
 extern char lbl_10_data_1B74[22];
 extern char lbl_10_data_1B8C[22];
 extern char lbl_10_data_1BA4[22];
+extern char lbl_10_data_1BBC[24];
+extern char lbl_10_data_1BD4[24];
+extern char lbl_10_data_1BEC[28];
 
 
 
@@ -35,4 +38,22 @@ __declspec(section ".data") char lbl_10_data_1B8C[22] __attribute__((aligned(4))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_1BA4[22] __attribute__((aligned(4))) = "ITA There is no data.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_1BBC[24] __attribute__((aligned(4))) = "\203f\201[\203^\202\252\202\240\202\350\202\334\202\271\202\361\201B\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_1BD4[24] __attribute__((aligned(4))) = "This data is incorrect.";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_1BEC[28] __attribute__((aligned(4))) = "GER This data is incorrect.";
 #pragma explicit_zero_data reset

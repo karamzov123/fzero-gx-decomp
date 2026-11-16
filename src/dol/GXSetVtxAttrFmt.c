@@ -285,6 +285,13 @@ typedef enum _GXPerf1 {
     GX_PERF1_NONE = 22,
 } GXPerf1;
 
+typedef struct _GXVtxAttrFmtList {
+    GXAttr attr;
+    GXCompCnt cnt;
+    GXCompType type;
+    u8 frac;
+} GXVtxAttrFmtList;
+
 typedef struct _GXTexObj {
     u32 texture_filter;
     u32 texture_lod;
@@ -708,6 +715,20 @@ void GXSetVtxAttrFmt(GXVtxFmt format, GXAttr attr, GXCompCnt count, GXCompType t
     u32 *vB = (u32 *)&gx->vatB[format];
     u32 *vC = &gx->vatC[format];
     SETVAT(vA, vB, vC, attr, count, type, frac);
+    gx->dirtyState |= GX_DIRTY_VAT;
+    gx->dirtyVAT |= (u8)(1 << (u8)format);
+}
+
+void GXSetVtxAttrFmtv(GXVtxFmt format, GXVtxAttrFmtList *list) {
+    u32 *vatA;
+    u32 *vatB;
+    u32 *vatC;
+    vatA = (u32 *)&gx->vatA[format];
+    vatB = (u32 *)&gx->vatB[format];
+    vatC = &gx->vatC[format];
+    for (; list->attr != GX_VA_NULL; list++) {
+        SETVAT(vatA, vatB, vatC, list->attr, list->cnt, list->type, list->frac);
+    }
     gx->dirtyState |= GX_DIRTY_VAT;
     gx->dirtyVAT |= (u8)(1 << (u8)format);
 }

@@ -1220,6 +1220,7 @@ extern u16 lbl_1_data_414[36];
 extern void PADControlMotor(int index, int value);
 extern u32 lbl_801A66A0;
 
+u8 lbl_1_data_3E8F0 = 0x0F;
 
 void fn_1_F73A8(s32 idx, s32 kind, s32 val) {
     Obj_1_bss_7F02C *p;

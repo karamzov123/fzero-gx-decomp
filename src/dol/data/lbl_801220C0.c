@@ -14,7 +14,6 @@ extern u8 DSPInitCode[128];
 extern char OSCacheData[560];
 extern char lbl_80122A58[436];
 extern char OSContextMessage_1b4[35];
-extern char OSErrorData[];
 
 
 
@@ -122,18 +121,4 @@ __declspec(section ".data") char lbl_80122A58[436] __attribute__((aligned(8))) =
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char OSContextMessage_1b4[35] __attribute__((aligned(4))) = "FPU-unavailable handler installed\n";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char OSErrorData[] __attribute__((aligned(16))) = " in \"%s\" on line %d.\n\000\000\000\nAddress:      Back Chain    LR Save\n\000\000\0000x%08x:  "
-    " 0x%08x    0x%08x\n\000Non-recoverable Exception %d\000\000\000\000Unhandled Exception %d\000"
-    "\000\nDSISR = 0x%08x                   DAR  = 0x%08x\n\000\000\000\000TB = 0x%016llx\n\000\nInst"
-    "ruction at 0x%x (read from SRR0) attempted to access invalid address 0x%x (read from DAR)\n\000"
-    "\nAttempted to fetch instruction from invalid address 0x%x (read from SRR0)\n\000\nInstruction a"
-    "t 0x%x (read from SRR0) attempted to access unaligned address 0x%x (read from DAR)\n\000\000\000"
-    "\nProgram exception : Possible illegal instruction/operation at or around 0x%x (read from SRR0)"
-    "\n\000AI DMA Address =   0x%04x%04x\n\000\000ARAM DMA Address = 0x%04x%04x\n\000\000DI DMA Addre"
-    "ss =   0x%08x\n\000\000\nLast interrupt (%d): SRR0 = 0x%08x  TB = 0x%016llx\n\000\000\000";
 #pragma explicit_zero_data reset

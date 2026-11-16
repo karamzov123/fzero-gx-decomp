@@ -1,5 +1,6 @@
 #include "dolphin/types.h"
 #include "dolphin/os/OSReset.h"
+#include "dolphin/os/OSTime.h"
 struct Sig_GXInitFifoBase_GXInitFifoBase_Arg0 {
     u32 unk_0;
     u32 unk_4;
@@ -115,6 +116,96 @@ extern vu32 __PIRegs[];
 extern vu32 __CPRegs[];
 #define GX_FIFO_U8 (*(volatile u8 *)0xCC008000) /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
 #define GX_FIFO_U32 (*(volatile u32 *)0xCC008000) /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+extern OSTime OSGetTime(void);
+
+
+extern u32 fn_80009FF4(void);
+extern u32 fn_800321D8(u32);
+extern u32 fn_80033EB0(void);
+extern u32 fn_80034378(u32);
+extern u32 fn_80034444(u32);
+
+#pragma peephole off
+#pragma opt_common_subs off
+#pragma opt_propagation off
+#pragma opt_dead_assignments off
+#pragma opt_loop_invariants off
+s32 fn_8003086C(s32 arg0) {
+    static u32 peCount;
+    static OSTime time;
+    static u32 calledOnce;
+    u32 prev;
+    u32 hi;
+    u32 lo;
+    volatile u16 *p50;  /* fzgx-allow: S2 memory-mapped register */
+    volatile u16 *p46;  /* fzgx-allow: S2 memory-mapped register */
+    OSTime now;
+    u32 v;
+    s64 diff;
+
+    if (arg0 == 0) {
+        if (calledOnce == 0) {
+            p46 = (volatile u16 *)(__memReg + 0x4e);  /* fzgx-allow: S2 memory-mapped register */
+            p50 = (volatile u16 *)(__memReg + 0x50);  /* fzgx-allow: S2 memory-mapped register */
+            hi = *p46;
+            do {
+                prev = hi;
+                hi = *p46;
+                lo = *p50;
+            } while (hi != prev);
+            peCount = (hi << 16) | lo;
+            now = OSGetTime();
+            time = now;
+            calledOnce = 1;
+            return 0;
+        }
+        now = OSGetTime();
+        p46 = (volatile u16 *)(__memReg + 0x4e);  /* fzgx-allow: S2 memory-mapped register */
+        p50 = (volatile u16 *)(__memReg + 0x50);  /* fzgx-allow: S2 memory-mapped register */
+        hi = *p46;
+        do {
+            prev = hi;
+            hi = *p46;
+            lo = *p50;
+        } while (hi != prev);
+        v = (hi << 16) | lo;
+        if ((now - time) < 10) {
+            return 0;
+        }
+        if (v != peCount) {
+            time = now;
+            peCount = v;
+            return 0;
+        }
+    } else {
+        fn_800321D8(0);
+        fn_80034378(0);
+        fn_80034444(0);
+        GX_FIFO_U32 = 0;
+        GX_FIFO_U32 = 0;
+        GX_FIFO_U32 = 0;
+        GX_FIFO_U32 = 0;
+        GX_FIFO_U32 = 0;
+        GX_FIFO_U32 = 0;
+        GX_FIFO_U32 = 0;
+        GX_FIFO_U32 = 0;
+        fn_80009FF4();
+        *(volatile u16 *)((u32)__cpReg + 2) = 0; /* hardware register */  /* fzgx-allow: S2 memory-mapped register */
+        *(volatile u16 *)((u32)__cpReg + 4) = 3; /* hardware register */  /* fzgx-allow: S2 memory-mapped register */
+        gx->unk_4F2 = 1;
+        fn_80033EB0();
+    }
+    return 1;
+}
+#pragma opt_loop_invariants reset
+
+#pragma opt_dead_assignments reset
+
+#pragma opt_propagation reset
+
+#pragma opt_common_subs reset
+
+#pragma peephole reset
 #pragma peephole off
 void * GXInit(u32 arg0, u32 arg1, u32 arg2) {
     static u32 resetFuncRegistered;

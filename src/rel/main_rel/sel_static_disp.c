@@ -1901,7 +1901,7 @@ void fn_1_1358BC(s16 arg0, s16 arg1, int arg2, s16 arg3, int unused, void* arg5,
         fn_1_4962C();
         {
             const f32* scale = &lbl_1_rodata_8960;
-            fn_1_4CF3C(*scale * arg8, &lbl_1_data_41A30,
+            fn_1_4CF3C(*scale * arg8, "%s\n",
                        fn_1_14FEAC(arg5, arg6, arg7, buf, 0));
         }
     } else {
@@ -1937,7 +1937,6 @@ extern void fn_1_4962C(void);
 extern char* fn_1_14FEAC(void*, void*, void*, void*, int);
 extern char* fn_1_7F49C(s16, int, void*);
 extern void fn_1_4CF3C(f32, void*, ...);
-extern const f32 lbl_1_rodata_8960[];
 
 void fn_1_135B80(f32 scale, f32 arg7, f32 arg8, s16 x, s16 y, u32 mode, s16 index,
                  u32 unused, void* a, void* b, void* c) {
@@ -1982,9 +1981,9 @@ void fn_1_135B80(f32 scale, f32 arg7, f32 arg8, s16 x, s16 y, u32 mode, s16 inde
     fn_1_4962C();
 
     if (index >= 0x29 || index < 0) {
-        fn_1_4CF3C((f32)(lbl_1_rodata_8960[0] * scale), &lbl_1_data_41A30, (str = fn_1_14FEAC(a, b, c, buf1, 0)));
+        fn_1_4CF3C((f32)(lbl_1_rodata_8960 * scale), "%s\n", (str = fn_1_14FEAC(a, b, c, buf1, 0)));
     } else {
-        fn_1_4CF3C((f32)(lbl_1_rodata_8960[0] * scale), &lbl_1_data_41A30, (str = fn_1_7F49C(index, 0, buf2)));
+        fn_1_4CF3C((f32)(lbl_1_rodata_8960 * scale), "%s\n", (str = fn_1_7F49C(index, 0, buf2)));
     }
 }
 /* fzgx:end fn_1_135B80 */
@@ -2034,7 +2033,6 @@ typedef struct SelMachineEntry {
 } SelMachineEntry;
 
 extern SelImageTable lbl_1_rodata_8964;
-extern SelImagePacket lbl_1_rodata_26F8;
 extern const f64 lbl_1_rodata_8600;
 extern const f32 lbl_1_rodata_8960;
 extern void* fn_1_12F118(void);
@@ -2046,7 +2044,6 @@ extern void fn_1_496FC(f32, f32);
 extern void fn_1_4954C(f32);
 extern void fn_1_4955C(f32, f32);
 extern void fn_1_4962C(void);
-extern u32 fn_1_14FEAC(u32, u32, u32, void*, void*);
 extern void fn_1_4CF3C(f32, void*, ...);
 
 void fn_1_135D7C(s16 x, s16 y, u32 format, s16 index, void* arg4, s16 slot, int arg6,
@@ -2072,7 +2069,7 @@ void fn_1_135D7C(s16 x, s16 y, u32 format, s16 index, void* arg4, s16 slot, int 
         }
         if (!(entry->flags & 0x40000000)) {
             index = entry->image_index;
-            packet = lbl_1_rodata_26F8;
+            packet = *(SelImagePacket *)&lbl_1_rodata_26F8;
             i = index < 0 ? 0 : ((u32)index > 40 ? 40 : index);
             packet.image = images.image[i];
             packet.x = (f32)x;
@@ -2102,12 +2099,12 @@ void fn_1_135D7C(s16 x, s16 y, u32 format, s16 index, void* arg4, s16 slot, int 
             fn_1_4962C();
             {
                 const f32* scale = &lbl_1_rodata_8960;
-                fn_1_4CF3C(*scale * scale_x, &lbl_1_data_41A30,
-                           fn_1_14FEAC(entry->body, entry->cockpit, entry->booster, name, arg4));
+                fn_1_4CF3C(*scale * scale_x, "%s\n",
+                           fn_1_14FEAC((void *)entry->body, (void *)entry->cockpit, (void *)entry->booster, name, (int)arg4));
             }
         }
     } else {
-        packet = lbl_1_rodata_26F8;
+        packet = *(SelImagePacket *)&lbl_1_rodata_26F8;
         i = index < 0 ? 0 : ((u32)index > 40 ? 40 : index);
         packet.image = images.image[i];
         packet.x = (f32)x;
@@ -5316,6 +5313,17 @@ static inline s32 fn_1_13ABA8_spacing(s32 *table, s32 index) {
     return *(s32 *)((u8 *)table + off);
 }
 
+u8 lbl_1_data_41AF8[0x24] = {
+    0x42U, 0x41U, 0x4CU, 0x41U, 0x4EU, 0x43U, 0x45U, 0x00U, 0x20U, 0x20U, 0x20U, 0x20U, 0x43U, 0x4FU, 0x4CU, 0x4FU, 0x52U, 0x20U, 0x20U, 0x20U, 0x20U, 0x4FU, 0x4BU, 0x00U, 0x83U, 0xA1U, 0x83U, 0xAFU, 0x00U, 0x00U, 0x00U, 0x00U, 0x83U, 0x9FU, 0x00U, 0x00U
+};
+u8 lbl_1_data_41B1C[0x6] = "\077\077\077\077\077";
+u8 lbl_1_data_41B24[0x18] = {
+    0x3FU, 0x3FU, 0x3FU, 0x3FU, 0x3FU, 0x3FU, 0x3FU, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x83U, 0xA0U, 0x00U, 0x00U, 0x83U, 0xB2U, 0x00U, 0x00U, 0x83U, 0xB4U, 0x00U, 0x00U
+};
+u8 lbl_1_data_41B3C[0x18] = {
+    0x83U, 0xA4U, 0x00U, 0x00U, 0x83U, 0xADU, 0x83U, 0xB5U, 0x83U, 0xD0U, 0x00U, 0x00U, 0x83U, 0xADU, 0x83U, 0xB5U, 0x00U, 0x00U, 0x00U, 0x00U, 0x83U, 0xB0U, 0x00U, 0x00U
+};
+
 void fn_1_13ABA8(u32 arg0) {
     struct fn_1_13ABA8_packet loc_38;
     struct fn_1_13ABA8_lbl_1_rodata_8C14 loc_20;
@@ -6661,6 +6669,11 @@ void fn_1_13D02C(void) {
         fn_1_4AE0C((const char *)&lbl_1_data_41DEC, v23);
     }
 }
+
+u8 lbl_1_data_41E1C[0x8] = "NO DATA";
+u8 lbl_1_data_41E24[0xF] = "%02d;%02d<%03d";
+char lbl_1_data_41E34[16] = "Very Heavy Load";
+u8 lbl_1_data_41E44[0x9] = {0x92U, 0xB4U, 0x8FU, 0x64U, 0x97U, 0xCAU, 0x8BU, 0x89U, 0x00U};
 /* fzgx:end fn_1_13D02C */
 
 /* fzgx:begin fn_1_13D460 */
@@ -7947,6 +7960,10 @@ static inline f32 fn_1_13FB8C_clamp(f32 t) {
 #define PACKET_B(n) (((u8 *)&packet)[(n)])
 #define PRINT_VALUE(n) fn_1_4AE0C((char *)p_lbl_1_data_40F58 + 0xe8c, ((char **)values.a)[(n) * 6 + lbl_801A66B4])
 
+u8 lbl_1_data_42118[28] = {
+    0x83U, 0x7DU, 0x83U, 0x58U, 0x83U, 0x5EU, 0x81U, 0x5BU, 0x00U, 0x00U, 0x00U, 0x00U, 0x25U, 0x73U, 0x20U, 0x00U, 0x81U, 0xA3U, 0x00U, 0x00U, 0x25U, 0x30U, 0x32U, 0x64U, 0x00U, 0x00U, 0x00U, 0x00U
+};
+
 void fn_1_13FB8C(u32 arg0, u32 arg1, s16 arg2, s16 arg3, s32 arg4, f32 arg5) {
     u8 *p_lbl_1_data_40F58;
     struct fn_1_13FB8C_Copy216 values;
@@ -8101,6 +8118,8 @@ void fn_1_13FB8C(u32 arg0, u32 arg1, s16 arg2, s16 arg3, s32 arg4, f32 arg5) {
         originY += 23;
     }
 }
+
+u32 lbl_1_data_42194 = 0x819A0000U;
 /* fzgx:end fn_1_13FB8C */
 
 /* fzgx:begin fn_1_14083C */
@@ -15818,7 +15837,6 @@ void fn_1_14A028(void) {
         }
     }
 }
-
 /* fzgx:end fn_1_14A028 */
 
 /* fzgx:begin fn_1_14A17C noprologue */
@@ -18115,7 +18133,6 @@ void fn_1_14B93C(void) {
         }
     }
 }
-
 /* fzgx:end fn_1_14B93C */
 
 /* fzgx:begin fn_1_14BC3C */
@@ -20470,7 +20487,6 @@ char *fn_1_14EA74(s16 arg0, char *arg1, s16 arg2) {
     }
     return arg1;
 }
-
 /* fzgx:end fn_1_14EA74 */
 
 /* fzgx:begin fn_1_14EBF8 noprologue */
@@ -20539,6 +20555,16 @@ s32 fn_1_14ED00(s32 arg0, void *arg1, s32 arg2) {
 typedef struct {
     u32 word[60];
 } Table240;
+
+char lbl_1_data_462B8[3] = "A+";
+char lbl_1_data_462BC[2] = "A";
+char lbl_1_data_462C0[3] = "B+";
+char lbl_1_data_462C4[2] = "B";
+char lbl_1_data_462C8[3] = "C+";
+char lbl_1_data_462CC[3] = "D+";
+char lbl_1_data_462D0[2] = "D";
+char lbl_1_data_462D4[3] = "E+";
+char lbl_1_data_462D8[2] = "E";
 
 int fn_1_14EE00(s16 arg0, void *arg1, s16 arg2) {
     u32 table[60];

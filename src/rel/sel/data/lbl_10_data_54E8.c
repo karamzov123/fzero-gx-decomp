@@ -6,6 +6,7 @@ extern char lbl_10_data_54F4[13];
 extern char lbl_10_data_5504[13];
 extern char lbl_10_data_5514[13];
 extern char lbl_10_data_5524[13];
+extern char lbl_10_data_5534[12];
 
 
 
@@ -35,4 +36,10 @@ __declspec(section ".data") char lbl_10_data_5514[13] __attribute__((aligned(4))
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_5524[13] __attribute__((aligned(4))) = "PROCEED\t ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_5534[12] __attribute__((aligned(4))) = "\220\346\202\311\220i\202\336\000\000\000";
 #pragma explicit_zero_data reset

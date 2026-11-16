@@ -2,9 +2,31 @@
 #include "types.h"
 
 extern char lbl_10_data_1418[9];
+extern char lbl_10_data_1424[24];
+extern char lbl_10_data_143C[37];
+extern char lbl_10_data_1464[44];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_1418[9] __attribute__((aligned(8))) = "No Ghost";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_1424[24] __attribute__((aligned(4))) = "\203S\201[\203X\203g\202\306\221\316\220\355\202\265\202\334\202\271\202\361\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_143C[37] __attribute__((aligned(4))) = "Ghost Bit Faster Than Your Best Time";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_1464[44] __attribute__((aligned(4))) = "\216\251\214\310\203x\203X\203g\203^\203C\203\200\202\346\202\350\217\255\202\265\221\254\202"
+    "\242\203S\201[\203X\203g\202\305\202\267\000\000\000";
 #pragma explicit_zero_data reset

@@ -2,9 +2,18 @@
 #include "types.h"
 
 extern char lbl_10_data_6238[34];
+extern u8 lbl_10_data_625C[];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_6238[34] __attribute__((aligned(8))) = "Number of Rivals You've Destroyed";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_10_data_625C[] __attribute__((aligned(4))) = {
+    0x91U, 0x8DU, 0x8CU, 0x82U, 0x94U, 0x6AU, 0x90U, 0x94U, 0x00U, 0x00U, 0x00U, 0x00U
+};
 #pragma explicit_zero_data reset

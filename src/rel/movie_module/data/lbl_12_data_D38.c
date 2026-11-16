@@ -6,6 +6,8 @@
 #include "rel/movie_module/data/lbl_12_data_D38.h"
 extern u32 lbl_12_data_E90[2];
 #include "rel/movie_module/data/lbl_12_data_E98.h"
+extern float lbl_12_data_EA0[3][3];
+extern float lbl_12_data_EC4[3][3];
 
 
 extern struct mwsfdcre____rodata_0 lbl_12_rodata_1D88;
@@ -131,4 +133,16 @@ __declspec(section ".data") Data_lbl_12_data_E98 lbl_12_data_E98 __attribute__((
     (u8 *)&lbl_12_rodata_2E10,
     0x00000000U
 };
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") float lbl_12_data_EA0[3][3] __attribute__((aligned(8))) = {{0.30078125f, 0.5859375f, 0.11328125f}, {-0.171875f, -0.33984375f, 0.51171875f}, {0.51171875f, -0.4296875f, -0.08203125f}};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") float lbl_12_data_EC4[3][3] __attribute__((aligned(4))) = {{0.256999999f, 0.504000008f, 0.0979999974f}, {-0.148000002f, -0.291000009f, 0.43900001f}, {0.43900001f, -0.368000001f, -0.0710000023f}};
 #pragma explicit_zero_data reset

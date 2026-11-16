@@ -2,8 +2,6 @@
 #include "types.h"
 #include "dol/globals.h"
 
-extern u8 lbl_8015CF68[240];
-extern u8 lbl_8015D058[88];
 extern u8 lbl_8015D0B0[16];
 extern u8 lbl_8015D0C0[64];
 extern u32 lbl_8015D100[32];
@@ -76,9 +74,5 @@ __declspec(section ".data") u8 lbl_8015D0C0[64] __attribute__((aligned(8)));
 __declspec(section ".data") u8 lbl_8015D0B0[16] __attribute__((aligned(8)));
 
 
-/* Storage extent is known; element/field types are not recovered. */
-__declspec(section ".data") u8 lbl_8015D058[88] __attribute__((aligned(8)));
 
 
-/* Storage extent is known; element/field types are not recovered. */
-__declspec(section ".data") u8 lbl_8015CF68[240] __attribute__((aligned(8)));

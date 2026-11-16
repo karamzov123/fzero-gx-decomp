@@ -32,6 +32,10 @@ def cmd_data_import(a, p):
     if a.inventory:
         _print(dataimport.inventory(p, a.module), a.json)
         return 0
+    if a.jump_tables:
+        from . import jumptables
+        _print(jumptables.own(p, a.module, a.symbols or None, a.apply), a.json)
+        return 0
     recipes = json.loads(Path(a.recipes).read_text()) if a.recipes else {}
     names = a.symbols or list(recipes)
     if a.regenerate:
@@ -650,6 +654,8 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument('--module')
     s.add_argument('--recipes', help='JSON string-grid layouts keyed by symbol')
     s.add_argument('--regenerate', action='store_true', help='recreate saved imports and preserve their split ownership')
+    s.add_argument('--jump-tables', action='store_true',
+                   help='give switch tables to the units of their functions (symbols: function names); --apply checks all hashes')
 
     s = sub.add_parser("sync", help="load functions from dtk config into the ledger"); s.set_defaults(fn=cmd_sync)
     s = sub.add_parser("inventory", help="list functions"); s.set_defaults(fn=cmd_inventory)

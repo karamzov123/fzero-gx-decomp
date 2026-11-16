@@ -2,9 +2,112 @@
 #include "types.h"
 
 extern char lbl_1_data_20478[16];
+extern char lbl_1_data_20488[11];
+extern char lbl_1_data_20494[16];
+extern char lbl_1_data_204A4[12];
+extern char lbl_1_data_204B0[20];
+extern char lbl_1_data_204C4[12];
+extern char lbl_1_data_204D0[20];
+extern char lbl_1_data_204E4[15];
+extern char lbl_1_data_204F4[20];
+extern char lbl_1_data_20508[16];
+extern char lbl_1_data_20518[100];
+extern char lbl_1_data_2057C[22];
+extern char lbl_1_data_20594[18];
+extern u8 lbl_1_data_205A8[0xB4];
+extern u8 lbl_1_data_2065C[4];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_1_data_20478[16] __attribute__((aligned(8))) = "\203V\203\213\203o\201[\203\211\203b\203g\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_20488[11] __attribute__((aligned(8))) = "Spark Moon";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_20494[16] __attribute__((aligned(4))) = "\203X\203p\201[\203N\203\200\201[\203\223\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_204A4[12] __attribute__((aligned(4))) = "Bunny Flash";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_204B0[20] __attribute__((aligned(8))) = "\203o\203j\201[\203t\203\211\203b\203V\203\205\000\000\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_204C4[12] __attribute__((aligned(4))) = "Groovy Taxi";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_204D0[20] __attribute__((aligned(8))) = "\203O\203\213\201[\203r\201[\203^\203N\203V\201[\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_204E4[15] __attribute__((aligned(4))) = "Rolling Turtle";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_204F4[20] __attribute__((aligned(4))) = "\203\215\201[\203\212\203\223\203O\203^\201[\203g\203\213\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_20508[16] __attribute__((aligned(8))) = "Rainbow Phoenix";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_20518[100] __attribute__((aligned(8))) = "\203\214\203C\203\223\203{\201[\203t\203F\203j\203b\203N\203X\000\000%s_sv%d.tpl\000%s_cv%d.tpl"
+    "\000%s.tpl\000\000%s.gma\000\000%s_crash.gma\000\000\000\000%s_0%d.gma\000\000%s.fmi\000";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_2057C[22] __attribute__((aligned(4))) = "vehicle/carcmntex.tpl";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_1_data_20594[18] __attribute__((aligned(4))) = "init/crashmdl.tpl";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_1_data_205A8[0xB4] __attribute__((aligned(8))) = {
+    0x69U, 0x6EU, 0x69U, 0x74U, 0x2FU, 0x63U, 0x72U, 0x61U, 0x73U, 0x68U, 0x6DU, 0x64U, 0x6CU, 0x2EU, 0x67U, 0x6DU, 0x61U, 0x00U, 0x00U, 0x00U, 0x63U, 0x6DU, 0x6EU, 0x5FU, 0x61U, 0x00U, 0x00U, 0x00U, 0x63U, 0x6DU, 0x6EU, 0x5FU, 0x62U, 0x00U, 0x00U, 0x00U, 0x63U, 0x6DU, 0x6EU, 0x5FU, 0x63U, 0x00U, 0x00U, 0x00U, 0x76U, 0x65U, 0x68U, 0x69U, 0x63U, 0x6CU, 0x65U, 0x5FU, 0x70U, 0x61U, 0x72U, 0x74U, 0x73U, 0x2FU, 0x00U, 0x00U, 0x63U, 0x61U, 0x72U, 0x63U, 0x6DU, 0x6EU, 0x74U, 0x65U, 0x78U, 0x2EU, 0x74U, 0x70U, 0x6CU, 0x00U, 0x00U, 0x00U, 0x76U, 0x65U, 0x68U, 0x69U, 0x63U, 0x6CU, 0x65U, 0x2FU, 0x25U, 0x73U, 0x5FU, 0x65U, 0x2EU, 0x61U, 0x72U, 0x63U, 0x2EU, 0x6CU, 0x7AU, 0x00U, 0x76U, 0x65U, 0x68U, 0x69U, 0x63U, 0x6CU, 0x65U, 0x2FU, 0x25U, 0x73U, 0x5FU, 0x70U, 0x2EU, 0x61U, 0x72U, 0x63U, 0x2EU, 0x6CU, 0x7AU, 0x00U, 0x25U, 0x73U, 0x5FU, 0x30U, 0x25U, 0x64U, 0x65U, 0x6DU, 0x62U, 0x2EU, 0x74U, 0x70U, 0x6CU, 0x00U, 0x00U, 0x00U, 0x25U, 0x73U, 0x5FU, 0x65U, 0x6DU, 0x62U, 0x2EU, 0x74U, 0x70U, 0x6CU, 0x00U, 0x00U, 0x25U, 0x73U, 0x5FU, 0x30U, 0x25U, 0x64U, 0x65U, 0x6DU, 0x62U, 0x2EU, 0x67U, 0x6DU, 0x61U, 0x00U, 0x00U, 0x00U, 0x25U, 0x73U, 0x5FU, 0x65U, 0x6DU, 0x62U, 0x2EU, 0x67U, 0x6DU, 0x61U, 0x00U, 0x00U, 0x2EU, 0x2EU, 0x2FU, 0x2EU, 0x2EU, 0x00U, 0x00U, 0x00U
+};
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_1_data_2065C[4] __attribute__((aligned(4))) = {
+    0xFFU, 0xFFU, 0xFFU, 0xFFU
+};
 #pragma explicit_zero_data reset

@@ -1,235 +1,205 @@
 #include "types.h"
+#include "dolphin/types.h"
 #include "rel/main_rel/globals.h"
 #include "rel/main_rel/driver.h"
-
-extern void *lbl_801A6410;
-extern void fn_80071718(void *value);
-extern void fn_800711A8(void *value);
-extern void fn_1_46B4(void *arg0, void *arg1, void *arg2, s32 arg3);
-extern void fn_1_A7E60(s32 arg0, s8 arg1, s32 arg2, s32 arg3, s32 arg4);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DBAC(void *arg0);
-extern void lbl_8006E0A4(void *arg0);
-extern void fn_8006F6A8(void *arg0);
-extern void lbl_8006DB30(void);
-extern void fn_1_A861C(void *arg0, void *arg1);
-extern void fn_1_A8834(void *arg0, void *arg1);
-extern void fn_1_A89B0(void *arg0, void *arg1, s32 arg2);
-extern void fn_1_3920(void);
-extern void fn_1_A8D4C(void);
-extern void fn_1_A8D64(void);
-extern void fn_8001A78C(void (*func)(void));
-extern void fn_8001A7D0(void (*func)(void));
-extern void fn_1_A9420(u8 value);
-extern void fn_1_A948C(int);
-extern void fn_1_A943C(int, int);
-extern void fn_1_A9464(u16 arg0, u16 arg1);
-extern void fn_1_A942C(u8 value);
-extern void fn_1_A96BC(void);
-extern void (*lbl_1_bss_7167C)(void);
-extern void fn_1_A5C98(void *);
-extern u8 lbl_1_bss_716C8[320];
-
-extern void (*lbl_1_bss_71680)(void);
-
-extern void (*lbl_1_bss_7167C)(void);
-extern void fn_1_A9420(u8 value);
-extern void fn_1_A9464(u16 arg0, u16 arg1);
-extern u32 fn_1_451C(void);
-extern void sprintf(void *buffer, char *format, ...);
-extern void fn_1_A5AA0(void *buffer, void *destination);
-extern u32 lbl_1_bss_71670;
-
-extern void (*lbl_1_bss_71684)(void);
-
-extern void (*lbl_1_bss_71688)(void);
-
-extern void (*lbl_1_bss_7168C)(void);
-extern void fn_1_A8528(void *arg0, void *arg1);
-extern u32 fn_1_A7024(f32, f32, f32, f32);
-extern u32 fn_80074918(u32, u32, u32);
-
-/* fzgx:begin fn_1_A7294 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
 #include "rel/main_rel/prog.h"
-#include "rel/main_rel/driver.h"
 #include "psvec.h"
+#include "rel/main_rel/car.h"
+#include "dolphin/hw_regs.h"
 
-extern s16 fn_1_12C930(s16);
-extern s16 fn_1_12CCB0(s16, s16);
-extern void *fn_1_14DD68(u32);
-extern u32 fn_1_4630(u32, u32, u8 *, u32);
-extern void fn_1_A7E60(s8, s8, u32, u32, void *);
-extern u32 lbl_801A6410;
+
+
+
+
+
+
+
+struct fn_1_A7F84_lbl_801A6D00 {
+    u32 unk_0;
+};
+
+struct fn_1_A7F84_lbl_1_rodata_4A28 {
+    f32 unk_0;
+};
+
+typedef struct FnA8528Config {
+    u8 pad_0c[0x0c];
+    f32 unk_0c;
+    u8 pad_10[0x0c];
+    f32 unk_1c;
+    u8 pad_20[0x0c];
+    f32 unk_2c;
+} FnA8528Config;
+
+struct fn_1_A9868_lbl_1_rodata_4AA0 {
+    u32 unk_0;
+    u32 unk_4;
+    u32 unk_8;
+    u32 unk_C;
+    u32 unk_10;
+    u32 unk_14;
+    u32 unk_18;
+    u32 unk_1C;
+    u32 unk_20;
+    f32 unk_24;
+    f32 unk_28;
+    f32 unk_2C;
+    f32 unk_30;
+};
+
+struct FzgxCopy_88 { u32 words[22]; };
+
+typedef struct FnA861CVehicle {
+    u8 pad_0[8];
+    f32 unk_8;
+    u8 pad_c[0xa4 - 0xc];
+    f32 unk_a4;
+    u8 pad_a8[0xb0 - 0xa8];
+    f32 unk_b0;
+    u8 pad_b4[0xb8 - 0xb4];
+    f32 unk_b8;
+    u8 pad_bc[0xc0 - 0xbc];
+    f32 unk_c0;
+} FnA861CVehicle;
+
+typedef struct Sig_fn_1_41488_Fn41488Data {
+    u32 count;
+    char *strings;
+} Sig_fn_1_41488_Fn41488Data;
+
+struct Sig_fn_800737E4_fn_800737E4_Arg0 {
+    f32 unk_0;
+    u8 pad_4[0x4];
+    f32 unk_8;
+    f32 unk_C;
+    u8 pad_10[0x4];
+    f32 unk_14;
+    f32 unk_18;
+    f32 unk_1C;
+    u8 pad_20[0x8];
+    f32 unk_28;
+    f32 unk_2C;
+};
 
 typedef struct {
-    f32 x, y, z;
-} Vec3;
+    u8 kind;
+    u8 callback;
+    u8 flags;
+    u8 pad3;
+    s16 x;
+    s16 y;
+    s16 z;
+    s16 padA;
+    void *data;
+} Fn1A9250Entry;
 
 typedef struct {
-    u8 pad_0[0x324];
-    u32 unk_324;
-    s8 unk_328;
-    u8 pad_329[0x67];
-    u32 unk_390;
-    void *unk_394[3];
-    u32 unk_3a0;
-    u8 pad_3a4[0x9C];
-} A7294Elem;
+    u8 pad_0[0x8];
+    u32 unk_8;
+} DriverAsset;
 
-void fn_1_A7294(A7294Elem *arg0, u32 count) {
-    A7294Elem *e;
-    u32 i;
-    s32 t;
-    s32 j;
-    s8 c;
-    s8 v;
-    void *vec;
+typedef struct FnA8834Camera {
+    u8 pad_0[0x90];
+    u8 unk_90[0x48];
+    f32 unk_d8;
+    f32 unk_dc;
+    u8 pad_e0[4];
+    f32 unk_e4;
+    u8 pad_e8[0x18c - 0xe8];
+    u8 unk_18c[4];
+} FnA8834Camera;
 
-    for (i = 0; i < count; i++) {
-        e = arg0 + i;
-        for (t = 0; t < 3; t++) {
-            e->unk_394[t] = 0;
-        }
-    }
+struct Sig_fn_80077B64_fn_80077B64_Arg0 {
+    u8 pad_0[0x4];
+    u32 unk_4;
+};
 
-    e = arg0;
-    for (i = 0; i < count; i++, e++) {
-        c = e->unk_328;
-        if (c < 0) {
-            continue;
-        }
-        if (c == 0x22 || c == 0x27) {
-            continue;
-        }
-        if (e->unk_390 & 0x100000) {
-            continue;
-        }
-        for (j = 0; j < 3; j++) {
-            if (j == 0) {
-                v = (s8)fn_1_12C930(c);
-            } else {
-                v = (s8)fn_1_12CCB0(c, (s16)(j - 1));
-            }
-            if (v >= 0) {
-                if (!(c >= 0x29 && e->unk_3a0 != 0)) {
-                    vec = 0;
-                } else {
-                    s16 k = *(s16 *)(e->unk_3a0 + 0x360);
-                    if (k >= 0x19 && k <= 0x31) {
-                        vec = &lbl_1_data_35864[(k - 0x19) * 0xC];
-                    } else {
-                        vec = 0;
-                    }
-                }
-                if (vec) {
-                    Vec3 tmp;
-                    psvec_add(vec, fn_1_14DD68(e->unk_3a0), &tmp);
-                    vec = &tmp;
-                }
-                e->unk_394[j] = (void *)fn_1_4630(*(u32 *)&lbl_801A6410, 0x30c, lbl_1_data_34354, 0x9e);
-                if (e->unk_394[j] != 0) {
-                    fn_1_A7E60(c, v, (u32)e->unk_394[j], e->unk_324, vec);
-                }
-            }
-        }
-    }
-}
-/* fzgx:end fn_1_A7294 */
+typedef struct FnA8834Vehicle {
+    u8 pad_0[8];
+    f32 unk_8;
+    u8 pad_c[0xa4 - 0xc];
+    f32 unk_a4;
+    u8 pad_a8[0xb0 - 0xa8];
+    f32 unk_b0;
+    u8 pad_b4[0xc0 - 0xb4];
+    f32 unk_c0;
+    u8 pad_c4[0x1fc - 0xc4];
+    f32 unk_1fc;
+} FnA8834Vehicle;
 
-/* fzgx:begin fn_1_A744C noprologue */
-#include "types.h"
-#include "rel/main_rel/driver.h"
+struct fn_1_A9868_lbl_801A6D00 {
+    u32 unk_0;
+};
+
+struct Sig_fn_80077B14_fn_80077B14_Arg0 {
+    u8 pad_0[0x4];
+    u32 unk_4;
+    u8 pad_8[0x18];
+    u32 unk_20;
+};
+
+typedef struct {
+    signed char gpr;
+    signed char fpr;
+    unsigned short reserved;
+    char *input_arg_area;
+    char *reg_save_area;
+} Sig_parse_format_MkVaListState;
+
+typedef struct Sig_fn_80015EE8_Fn80015EE8Out {
+    f32 f0;
+    f32 f1;
+    f32 f2;
+    f32 f3;
+    f32 f4;
+    f32 f5;
+    f32 f6;
+    f32 f7;
+    f32 f8;
+    f32 f9;
+    f32 f10;
+    f32 f11;
+    f32 f12;
+    f32 f13;
+    f32 f14;
+    f32 f15;
+} Sig_fn_80015EE8_Fn80015EE8Out;
+
+typedef struct FnA861CCamera {
+    u8 pad_0[0xdc];
+    f32 yaw;      /* 0xdc */
+    f32 roll;     /* 0xe0 */
+    f32 pitch;    /* 0xe4 */
+    u8 unk_e8;
+    u8 unk_e9;
+    u8 pad_ea[0x15c - 0xea];
+    u8 unk_15c[4];
+} FnA861CCamera;
+
+typedef union {
+    u8 u8;
+    f32 f32;
+} PPCWGPipe;
+
+typedef struct {
+    u8 r;
+    u8 g;
+    u8 b;
+    u8 a;
+} GXColor;
+
+typedef struct FnA7E60Object {
+    u8 pad_fc[0xfc];
+    s32 unk_fc;
+    s32 unk_100;
+    s32 unk_104;
+    void *unk_108;
+} FnA7E60Object;
 
 typedef struct Resource {
     u8 pad_0[8];
     void *unk_8;
 } Resource;
-typedef struct Slot {
-    u8 pad_0[0x108];
-    Resource *unk_108;
-} Slot;
-typedef struct Entry {
-    u8 pad_0[0x328];
-    s8 unk_328;
-    u8 pad_329[0x6B];
-    Slot *unk_394[3];
-    u8 pad_3A0[0x18];
-    s16 unk_3B8;
-    u8 pad_3BA[0x86];
-} Entry;
-
-extern s32 fn_1_12C930(s32);
-extern s16 fn_1_12CCB0(s16, s16);
-extern Resource *fn_1_D3884(char *);
-extern void fn_80006E10(const char *);
-extern int sprintf(char *, const char *, ...);
-extern u32 fn_80077D40(void);
-extern u32 fn_80071470(void *, u32);
-extern void fn_80008BA8(u32, u32, u32);
-extern void fn_80071718(Resource *);
-
-#pragma opt_common_subs off
-static inline s16 fn_1_A744C_call_fn_1_12CCB0(s16 a1, s16 a0) { return fn_1_12CCB0(a0, a1); }
-static inline Slot * fn_1_A744C_array_read(Slot * *array, s32 index) { return array[index]; }
-void fn_1_A744C(Entry *entries, u32 count) {
-    char buffer[128];
-    s16 variant;
-    s32 j;
-    Entry *subentry;
-    s32 driver;
-    char * lab_t0;
-    s32 variantArg;
-    s8 index;
-    Slot *slot;
-    Resource *resource;
-    s32 variantChoice;
-    u32 i;
-    Entry *entry;
-    char *strings = (char *)&lbl_1_data_34348;
-    char * lab_t0_;
-    fn_80006E10(strings + 0x34);
-    for (i = 0, entry = entries; i < count; i++, entry = (Entry *)((char *)entry + 0x440)) {
-        variant = entry->unk_3B8 % 4;
-        if (variant != 0) {
-            subentry = entry;
-            variantChoice = variant;
-            variantArg = variant;
-            driver = entry->unk_328;
-            for (j = 0; j < 3; j++, subentry = (Entry *)((char *)subentry + 4)) {
-                slot = fn_1_A744C_array_read(subentry->unk_394, 0);
-                if (slot != 0) {
-                    if (j == 0) {
-                        index = fn_1_12C930(driver);
-                    } else {
-                        index = fn_1_A744C_call_fn_1_12CCB0(j - 1, driver);
-                    }
-                    if (index >= 0) {
-                        if (variantChoice == 0) {
-                            lab_t0 = buffer;
-                            lab_t0_ = lab_t0;
-                            sprintf(lab_t0_, strings + 0x18, ((char **)lbl_1_data_20D1C)[index]);
-                        } else {
-                            lab_t0 = buffer;
-                            lab_t0_ = lab_t0;
-                            sprintf(lab_t0_, strings + 0x24, ((char **)lbl_1_data_20D1C)[index], variantArg);
-                        }
-                        resource = fn_1_D3884(buffer);
-                        fn_80008BA8(fn_80071470(slot->unk_108->unk_8, 0), (fn_80071470(resource->unk_8, 0)), (fn_80077D40()));
-                        fn_80071718(resource);
-                    }
-                }
-            }
-        }
-    }
-    fn_80006E10(strings + 0x3C);
-}
-#pragma opt_common_subs reset
-/* fzgx:end fn_1_A744C */
-
-/* fzgx:begin fn_1_A75DC noprologue */
-#include "types.h"
 
 typedef struct {
     u8 pad_0[0x8];
@@ -238,598 +208,104 @@ typedef struct {
     u32 unk_10;
 } Fn1A75dcResult;
 
-typedef struct {
-    u8 pad_0[0x328];
-    s8 unk_328;
-    u8 pad_329[0x6b];
-    void *unk_394;
-} Fn1A75dcObject;
-
-typedef struct {
-    u8 pad_0[0x108];
-    Fn1A75dcResult *unk_108;
-} Fn1A75dcEntry;
-
-typedef struct {
-    u8 pad_0[0x18];
-    char unk_18[0xc];
-    char unk_24[0x10];
-    char unk_34[0x8];
-    char unk_3c[0x10];
-} Fn1A75dcData;
-
-u8 lbl_1_data_34348[12] = {0x00,0x01,0x05,0x07,0x08,0x0C,0x0D,0x10,0x12,0x17,0x00,0x00};
-u8 lbl_1_data_34354[12] = {0x64,0x72,0x69,0x76,0x65,0x72,0x2E,0x63,0x00,0x00,0x00,0x00};
-char lbl_1_data_34354__fzgx_offset_C[12] = {0x25U,0x73U,0x5FU,0x31U,0x30U,0x30U,0x2EU,0x74U,0x70U,0x6CU,0x00U,0x00U};
-char lbl_1_data_34354__fzgx_offset_18[16] = {0x25U,0x73U,0x5FU,0x31U,0x30U,0x30U,0x5FU,0x63U,0x76U,0x25U,0x64U,0x2EU,0x74U,0x70U,0x6CU,0x00U};
-char lbl_1_data_34354__fzgx_offset_28[8] = {0x63U,0x68U,0x61U,0x72U,0x61U,0x2FU,0x00U,0x00U};
-char lbl_1_data_34354__fzgx_offset_30[16] = {0x2EU,0x2EU,0x00U,0x00U,0x63U,0x68U,0x61U,0x72U,0x61U,0x00U,0x00U,0x00U,0x25U,0x73U,0x5FU,0x31U};
-u8 lbl_1_data_34354__fzgx_offset_40[8] = {0x30,0x30,0x2E,0x67,0x6D,0x61,0x00,0x00};
-extern const char *lbl_1_data_20D1C[];
-
-extern s32 fn_1_12C930(s32);
-extern s32 fn_1_12CCB0(s32, s16);
-extern Fn1A75dcResult *fn_1_D3884(void *);
-extern void fn_80006E10(const char *);
-extern void sprintf(char *, const char *, ...);
-extern void *fn_80077D40(Fn1A75dcResult *);
-extern void *fn_80071470(void *, s32);
-extern void fn_80008BA8(void *, void *, void *);
-extern void fn_80071718(Fn1A75dcResult *);
-
-#pragma opt_common_subs on
-#pragma opt_lifetimes off
-static inline Fn1A75dcResult * fn_1_A75DC_read_pointer(Fn1A75dcEntry * owner) { return owner->unk_108; }
-#pragma opt_propagation off
-static inline void * fn_1_A75DC_read_pointer_(Fn1A75dcObject * owner) { return owner->unk_394; }
-#pragma opt_loop_invariants off
-void fn_1_A75DC(Fn1A75dcObject *obj, void *arg) {
-    s32 i;
-    Fn1A75dcObject *entry;
-    s32 index;
-    s16 lab_t1;
-    struct { void * value; } other;
-    Fn1A75dcResult *result;
-    void *first_value;
-    char buffer[0x80];
-
-    Fn1A75dcData *data;
-    fn_80006E10(lbl_1_data_34354__fzgx_offset_28);
-    index = obj->unk_328;
-    entry = obj;
-    i = 0;
-    while (i < 3) {
-        Fn1A75dcEntry *item = (Fn1A75dcEntry *)fn_1_A75DC_read_pointer_(entry);
-        if (item != 0) {
-            s8 slot;
-            if (((0) == (i))) {
-                slot = fn_1_12C930(index);
-            } else {
-                lab_t1 = (s16)(i - 1);
-                slot = fn_1_12CCB0(index, lab_t1);
-            }
-            if (slot >= 0) {
-                if ((s32)arg == 0) {
-                    sprintf(buffer, lbl_1_data_34354__fzgx_offset_C,
-                        (*((lbl_1_data_20D1C) + (slot))));
-                } else {
-                    sprintf(buffer, lbl_1_data_34354__fzgx_offset_18,
-                        (*((lbl_1_data_20D1C) + (slot))), arg);
-                }
-                result = fn_1_D3884(buffer);
-                other.value = fn_80077D40(result);
-                first_value = fn_80071470(result->unk_8, 0);
-                fn_80008BA8(fn_80071470(fn_1_A75DC_read_pointer(item)->unk_8, 0),
-                    first_value, other.value);
-                fn_80071718(result);
-            }
-        }
-        i++;
-        entry = (Fn1A75dcObject *)((u8 *)entry + 4);
-    }
-    fn_80006E10(lbl_1_data_34354__fzgx_offset_30);
-}
-#pragma opt_loop_invariants reset
-
-#pragma opt_propagation reset
-
-#pragma opt_lifetimes reset
-
-#pragma opt_common_subs reset
-/* fzgx:end fn_1_A75DC */
-
-/* fzgx:begin fn_1_A7728 */
-typedef struct FnA7728Resource {
-    u8 pad_104[0x104];
-    void *field_104;
-    void *field_108;
-} FnA7728Resource;
-
-typedef struct FnA7728Object {
-    u8 pad_394[0x394];
-    FnA7728Resource *field_394;
-} FnA7728Object;
-
-void fn_1_A7728(FnA7728Object *objects) {
-    u8 *object;
-    s32 index;
-
-    object = (u8 *)objects;
-    index = 0;
-    for (;;) {
-        if (((FnA7728Object *)object)->field_394 != 0) {
-            if (((FnA7728Object *)object)->field_394->field_108 != 0) {
-                fn_80071718(((FnA7728Object *)object)->field_394->field_108);
-                ((FnA7728Object *)object)->field_394->field_108 = 0;
-            }
-            if (((FnA7728Object *)object)->field_394->field_104 != 0) {
-                fn_800711A8(((FnA7728Object *)object)->field_394->field_104);
-                ((FnA7728Object *)object)->field_394->field_104 = 0;
-            }
-            fn_1_46B4(lbl_801A6410, ((FnA7728Object *)object)->field_394,
-                      lbl_1_data_34354, 0x115);
-            ((FnA7728Object *)object)->field_394 = 0;
-        }
-        index++;
-        object += 4;
-        if (index >= 3) {
-            break;
-        }
-    }
-}
-/* fzgx:end fn_1_A7728 */
-
-/* fzgx:begin fn_1_A77DC */
-typedef struct FnA77DCObject {
-    u8 pad_32c[0x32c];
-    void *field_32c;
-    u8 pad_330[0x64];
-    void *field_394[3];
-    u8 pad_3a0[0x1a];
-    s16 field_3ba;
-} FnA77DCObject;
-
-void fn_1_A77DC(FnA77DCObject *object) {
-    s32 index;
-
-    if (object->field_3ba == 0 || object->field_3ba == 1) {
-        for (index = 0; index < 3; index++) {
-            if (object->field_394[index] != 0) {
-                fn_1_A8528(object->field_394[index], object->field_32c);
-            }
-        }
-    }
-}
-/* fzgx:end fn_1_A77DC */
-
-/* fzgx:begin fn_1_A7854 */
-typedef struct FnA7854Object {
-    u8 pad_394[0x394];
-    void *item;
-    u8 pad_398[0x22];
-    s16 field_3ba;
-} FnA7854Object;
-
-extern void fn_1_A8270(void *arg0, void *arg1);
-
-void fn_1_A7854(FnA7854Object *object, void *arg1) {
-    FnA7854Object *cursor;
-    s32 index;
-
-    if (object->field_3ba == 0 || object->field_3ba == 1) {
-        index = 0;
-        cursor = object;
-        do {
-            if (cursor->item != 0) {
-                fn_1_A8270(cursor->item, arg1);
-            }
-            index++;
-            cursor = (FnA7854Object *)((u8 *)cursor + 4);
-        } while (index < 3);
-    }
-}
-/* fzgx:end fn_1_A7854 */
-
-/* fzgx:begin fn_1_A78CC */
-extern u8 lbl_1_data_34354[72];
-extern void *lbl_801A6410;
-extern void *fn_1_4630(void *arg0, s32 arg1, void *arg2, s32 arg3);
-
-void fn_1_A78CC(void) {
-    u32 **table;
-    s32 offset;
-    s32 index;
-
-    lbl_1_bss_6F638 = (u32)fn_1_4630(lbl_801A6410, 0xb0, lbl_1_data_34354, 0x145);
-    table = (u32 **)&lbl_1_bss_6F638;
-    index = 0;
-    offset = 0;
-    do {
-        *(u32 *)((u8 *)*table + offset) =
-            (u32)fn_1_4630(lbl_801A6410, 0x30c, lbl_1_data_34354, 0x147);
-        index++;
-        offset += 4;
-    } while (index < 0x2c);
-}
-/* fzgx:end fn_1_A78CC */
-
-/* fzgx:begin fn_1_A7968 */
-void fn_1_A7968(void) {
-    s32 **table;
-    s32 offset;
-    s32 index;
-
-    table = (s32 **)&lbl_1_bss_6F638;
-    offset = 0;
-    index = 0;
-    do {
-        fn_1_A7E60(41, (s8)index, *(s32 *)((u8 *)*table + offset), -1, 0);
-        index++;
-        offset += 4;
-    } while (index < 44);
-}
-/* fzgx:end fn_1_A7968 */
-
-/* fzgx:begin fn_1_A79D8 */
-struct fn_1_A79D8_Vec {
-    u32 unk_0;
-    u32 unk_4;
-    u32 unk_8;
+struct fn_1_A8270_Entry {
+	u32 unk_0;
+	u32 unk_4;
+	u32 unk_8;
+	u8 pad_C[0x18];
 };
 
-struct fn_1_A79D8_Obj {
-    u8 unk_0[0x114];
-    struct fn_1_A79D8_Vec vec;
+struct fn_1_A8270_Arg0 {
+	u8 pad_0[0xE8];
+	u8 unk_E8;
+	u8 unk_E9;
+	s16 unk_EA;
+	s16 unk_EC;
+	s16 unk_EE;
+	void *unk_F0;
+	u8 pad_F4[8];
+	struct fn_1_A8270_Entry *unk_FC;
+	s32 unk_100;
+	u32 unk_104;
+	u8 pad_108[0x24];
+	u32 *unk_12C[12];
 };
-
-extern u32 lbl_1_bss_6F638;
-extern void fn_1_A8528(void *, void *);
-extern void fn_1_A8270(void *, void *);
-
-void fn_1_A79D8(u32 arg0, struct fn_1_A79D8_Vec *arg1) {
-    u32 *table = *(u32 **)&lbl_1_bss_6F638;
-    struct fn_1_A79D8_Obj *obj = (struct fn_1_A79D8_Obj *)table[arg0];
-    struct fn_1_A79D8_Vec old = obj->vec;
-
-    obj->vec = *arg1;
-    fn_1_A8528(obj, 0);
-    fn_1_A8270(obj, 0);
-    obj->vec = old;
-}
-/* fzgx:end fn_1_A79D8 */
-
-/* fzgx:begin fn_1_A7A70 */
-void fn_1_A7A70(void) {
-    s32 index;
-    u32 *entries;
-
-    for (index = 0; index < 0x2c; index++) {
-        entries = (u32 *)lbl_1_bss_6F638;
-        if (entries[index] != 0) {
-            fn_1_46B4(lbl_801A6410, (void *)entries[index],
-                      lbl_1_data_34354, 0x168);
-            entries = (u32 *)lbl_1_bss_6F638;
-            entries[index] = 0;
-        }
-    }
-
-    if (lbl_1_bss_6F638 != 0) {
-        fn_1_46B4(lbl_801A6410, (void *)lbl_1_bss_6F638,
-                  lbl_1_data_34354, 0x169);
-        lbl_1_bss_6F638 = 0;
-    }
-}
-/* fzgx:end fn_1_A7A70 */
-
-/* fzgx:begin fn_1_A7B30 noprologue */
-#include "types.h"
-
-typedef struct FnA7B30Vector {
-    s32 x;
-    s32 y;
-    s32 z;
-} FnA7B30Vector;
-
-extern FnA7B30Vector lbl_1_data_35864[];
-
-void fn_1_A7B30(s32 index, FnA7B30Vector *out) {
-    *out = lbl_1_data_35864[index - 25];
-}
-/* fzgx:end fn_1_A7B30 */
-
-/* fzgx:begin fn_1_A7B5C noprologue */
-typedef signed char s8;
-
-
-typedef signed long s32;
-
-
-typedef unsigned char u8;
-
-
-typedef unsigned long u32;
-
-
-typedef float f32;
-
-
-typedef struct Vec3 {
-f32 x;
-f32 y;
-f32 z;
-} Vec3;
-
-
-typedef struct {
-u8 unk_0;
-u8 unk_1;
-u8 unk_2;
-u8 unk_3;
-u8 unk_4;
-u8 unk_5;
-u8 unk_6;
-u8 unk_7;
-u8 unk_8;
-u8 unk_9;
-u8 pad_A[0x2];
-} Obj_1_data_34348;
-extern Obj_1_data_34348 lbl_1_data_34348;
-
-
-typedef struct {
-u32 unk_0;
-u32 unk_4;
-u32 unk_8;
-u8 pad_C[0x204];
-} Obj_1_data_343C4;
-extern Obj_1_data_343C4 lbl_1_data_343C4;
-typedef struct {
-u8 pad_0[0x48];
-f32 unk_48;
-f32 unk_4C;
-f32 unk_50;
-f32 unk_54;
-f32 unk_58;
-u8 pad_5C[0xF74];
-} Obj_1_data_345D4;
-extern Obj_1_data_345D4 lbl_1_data_345D4;
-
-
-typedef struct A7B5C_Mtx {
-u8 pad[0x30];
-} A7B5C_Mtx;
-typedef struct A7B5C_Obj {
-A7B5C_Mtx mtx[4];
-f32 unk_c0;
-f32 unk_c4;
-f32 unk_c8;
-f32 unk_cc;
-f32 unk_d0;
-f32 unk_d4;
-f32 unk_d8;
-f32 unk_dc;
-f32 unk_e0;
-f32 unk_e4;
-s8 unk_e8;
-u8 unk_e9;
-u8 pad_ea[0x10c - 0xea];
-f32 unk_10c;
-f32 unk_110;
-Vec3 unk_114;
-f32 unk_120;
-f32 unk_124;
-f32 unk_128;
-A7B5C_Mtx parts[10];
-} A7B5C_Obj;
-typedef struct A7B5C_Src {
-u8 pad[8];
-u8 *data;
-} A7B5C_Src;
-
-
-extern void fn_1_A7F84(void *, s32);
-extern void lbl_8006DD14(void *, void *);
-extern void lbl_8006DB74(void *);
-extern void lbl_8006DBAC(void *);
-extern void lbl_8006DD7C(void);
-extern f32 lbl_8006DAEC(void);
-extern void lbl_8006DFC4(void *);
-extern void lbl_8006DB30(void);
-
-#pragma opt_propagation off
-
-static inline void A7B5C_init(A7B5C_Obj *obj, s8 kind, s8 type, f32 unused) {
-f32 negative;
-f32 positive;
-f32 zero;
-zero = unused;
-obj->unk_e0 = zero;
-obj->unk_dc = zero;
-obj->unk_e4 = zero;
-obj->unk_d8 = zero;
-obj->unk_120 = zero;
-obj->unk_124 = zero;
-obj->unk_128 = zero;
-obj->unk_e8 = type;
-obj->unk_e9 = (kind >= 0x29);
-if (obj->unk_e9 != 0) {
-if (type == 0x21) {
-negative = -0.1f;
-obj->unk_120 = zero;
-obj->unk_124 = zero;
-obj->unk_128 = negative;
-} else if (type == 0x2a) {
-positive = 0.1f;
-obj->unk_120 = positive;
-obj->unk_124 = zero;
-obj->unk_128 = positive;
-} else if (type == 0x2b) {
-negative = -0.1f;
-positive = 0.1f;
-obj->unk_120 = negative;
-obj->unk_124 = zero;
-obj->unk_128 = positive;
-} else if (type == 0x15) {
-positive = 0.1f;
-obj->unk_120 = zero;
-obj->unk_124 = zero;
-obj->unk_128 = positive;
-} else if (type == 0x29) {
-negative = -0.1f;
-obj->unk_120 = zero;
-obj->unk_124 = zero;
-obj->unk_128 = negative;
-}
-}
-}
-static inline void A7B5C_copy_parts(A7B5C_Mtx *parts, A7B5C_Src *src) {
-s32 i;
-for (i = 0; i < 10; i++) {
-lbl_8006DD14(src->data + (s8)(&lbl_1_data_34348.unk_0)[i] * 0x18c + 0x88, &parts[i]);
-}
-}
-static inline void A7B5C_default_parts(A7B5C_Mtx *parts, s32 off) {
-s32 i;
-for (i = 0; i < 10; i++) {
-fn_1_A7F84((u8 *)&lbl_1_data_345D4 + off, i);
-lbl_8006DB74(&parts[i]);
-}
-}
-void fn_1_A7B5C(A7B5C_Obj *obj, A7B5C_Src *src, s8 kind, s8 type, Vec3 *pos) {
-A7B5C_Mtx *parts;
-Obj_1_data_345D4 *entry;
-s32 off;
-s32 i;
-A7B5C_init(obj, kind, type, 0.0f);
-if (pos != ((void *)0) ) {
-obj->unk_114 = *pos;
-} else {
-obj->unk_114 = ((Vec3 *)&lbl_1_data_343C4)[type];
-}
-if (src != ((void *)0) ) {
-parts = obj->parts;
-for (i = 0; i < 10; i++, parts++) {
-lbl_8006DD14(src->data + (s8)(&lbl_1_data_34348.unk_0)[i] * 0x18c + 0x88, parts);
-}
-obj->unk_c0 = *(f32 *)(src->data + 0xe80);
-obj->unk_c4 = *(f32 *)(src->data + 0xe90);
-obj->unk_c8 = *(f32 *)(src->data + 0xea0);
-obj->unk_cc = *(f32 *)(src->data + 0x163c);
-obj->unk_d0 = *(f32 *)(src->data + 0x164c);
-obj->unk_d4 = *(f32 *)(src->data + 0x165c);
-obj->unk_10c = *(f32 *)(src->data + 0xc74);
-obj->unk_110 = *(f32 *)(src->data + 0xe00);
-} else {
-A7B5C_Mtx *defaultParts;
-s32 j;
-defaultParts = obj->parts;
-for (j = 0; j < 10; j++, defaultParts++) {
-fn_1_A7F84((void *)((u32)&lbl_1_data_345D4 + type * 0x5c), j);
-lbl_8006DB74(defaultParts);
-}
-entry = (Obj_1_data_345D4 *)((u8 *)&lbl_1_data_345D4 + type * 0x5c);
-obj->unk_c0 = entry->unk_48;
-obj->unk_c4 = entry->unk_4C;
-obj->unk_c8 = entry->unk_50;
-obj->unk_cc = -entry->unk_48;
-obj->unk_d0 = entry->unk_4C;
-obj->unk_d4 = entry->unk_50;
-obj->unk_10c = entry->unk_54;
-obj->unk_110 = entry->unk_58;
-}
-lbl_8006DBAC((u8 *)obj + 0x15c);
-lbl_8006DB74(&obj->mtx[0]);
-lbl_8006DD7C();
-lbl_8006DAEC();
-lbl_8006DFC4((u8 *)obj + 0x1bc);
-lbl_8006DB74(&obj->mtx[1]);
-lbl_8006DB30();
-lbl_8006DAEC();
-lbl_8006DFC4((u8 *)obj + 0x21c);
-lbl_8006DB74(&obj->mtx[2]);
-lbl_8006DB30();
-lbl_8006DAEC();
-lbl_8006DFC4((u8 *)obj + 0x18c);
-lbl_8006DB74(&obj->mtx[3]);
-lbl_8006DB30();
-}
-/* fzgx:end fn_1_A7B5C */
-
-/* fzgx:begin fn_1_A7E60 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/car.h"
-#include "dolphin/hw_regs.h"
-#include "psvec.h"
-
-
-
-
-typedef struct {
-    u8 pad0[0x1c];
-    void *field_1c;
-} CarObject;
-
-typedef struct {
-    u8 pad0[0x12];
-    u16 field_12;
-    u8 pad14[0x12];
-    u8 field_26;
-    void *field_28;
-    u8 pad2c[0x8];
-    void *field_34;
-    u8 pad38[0x14];
-    u8 field_4c;
-} EventNode;
-
-typedef struct {
-    u8 pad0[0x24];
-    void *field_24;
-} EventData;
-
-typedef struct {
-    u8 pad0[0x8];
-    EventData *field_8;
-    void *field_c;
-} EventObject;
-
-struct fn_1_7F954_lbl_801A6410 {
-    u32 unk_0;
-};
-
-struct fn_1_7FA04_lbl_801A6410 {
-    u32 unk_0;
-};
-
-typedef struct {
-    u8 pad0[0x40];
-    void *value;
-} ResourceHolder;
-
-typedef struct {
-    u32 x;
-    u32 y;
-    u32 z;
-} RawVec3;
 
 typedef struct {
     f32 x;
     f32 y;
     f32 z;
-} Vec3;
+} fn_1_A7E60_Vec3;
 
 typedef struct {
-    u8 _pad_000[0x7c];
-    Vec3 field_07c;
-    u8 _pad_088[0xc4];
-    Vec3 field_14c;
-} Fn184644Object;
+    u32 w[45];
+} Unk_23800000;
 
 typedef struct {
-    u32 x;
-    u32 y;
-    u32 z;
-} Triple;
+    u8 pad_00[0x1C];
+    u16 unk_1C;
+} Sig_fn_1_55628_Fn1_55628Object;
+
+struct fn_1_A8270_Rec {
+	u8 pad_0[4];
+	u32 unk_4;
+	u8 pad_8[0x16];
+	u8 count;
+};
+
+typedef struct fn_1_8D210_car {
+    f32 position[6];
+    f32 scale_z;
+    f32 scale_y;
+    f32 scale_x;
+    f32 field_24;
+    u16 field_28;
+    u16 field_2a;
+    u16 field_2c;
+    u16 field_2e;
+    u16 field_30;
+    u16 field_32;
+    u32 field_34;
+    u8 field_38;
+    u8 field_39;
+    u8 field_3a;
+    u8 pad_3b;
+    u32 field_3c;
+    u8 field_40;
+    u8 pad_41[3];
+    f32 field_44;
+    f32 field_48;
+    f32 field_4c;
+    f32 field_50;
+    s16 field_54;
+    u8 pad_56[2];
+    s32 field_58;
+    u8 field_5c[4];
+    u32 field_60;
+} fn_1_8D210_car;
+
+typedef s32 (*fn_1_8D210_callback)(u32);
+
+typedef struct {
+    u8 pad[0x15];
+    u8 code;
+} State;
+
+typedef struct {
+    u8 pad[4];
+    State *state;
+} fn_1_8E3A4_Object;
+
+struct Sig_fn_800713E0_fn_800713E0_Entry {
+    u8 pad_0[0x18];
+    u16 count;
+};
+
+struct Sig_fn_800713E0_fn_800713E0_Arg0 {
+    s32 count;
+    u8 pad_4[0x4];
+    struct Sig_fn_800713E0_fn_800713E0_Entry **entries;
+};
 
 typedef struct Fn195158Object Fn195158Object;
 
@@ -841,54 +317,6 @@ struct Fn195158Object {
     u8 unk_30[0x58];
     u8 unk_88[0x04];
 };
-
-struct TargetObj {
-    char pad[0x60];
-    char field_0x60[0xc];
-    f32 field_0x6c;
-    char pad2[0xc];
-    f32 field_0x7c;
-};
-
-struct ModelItem {
-    u32 flags;
-    char pad[0x1c];
-};
-
-struct Model {
-    char pad[0x18];
-    u16 count;
-    char pad2[0x26];
-    struct ModelItem items[1];
-};
-
-typedef struct {
-    u32 entries[41];
-} FnTable;
-
-typedef struct {
-    u8 pad_0[0x4];
-    s32 field_4;
-    s32 field_8;
-    s32 field_c;
-    s32 field_10;
-    s32 field_14;
-} Fn1_8F45C_Object;
-
-typedef struct {
-    s32 active;
-    s32 entries[5];
-} Fn1_8F494_Object;
-
-typedef struct {
-    u8 pad_0[0x148];
-    u8 pad_148[0x20];
-    u8 pad_168[0x40];
-    u8 pad_1a8[0x20];
-    u8 pad_1c8[0x20];
-    u8 pad_1e8[0x20];
-    u8 entries[0x14][0x20];
-} Fn1_8F5A4_Object;
 
 typedef struct Fn195158Data Fn195158Data;
 
@@ -914,59 +342,24 @@ struct Fn195158Car {
     Fn195158Data *unk_150;
 };
 
-typedef struct Fn935E4Slot {
-    u8 pad0[0xa];
-    u16 field_a;
-} Fn935E4Slot;
-
-typedef struct Fn935E4Node {
-    u8 pad0[0xa];
-    u16 field_a;
-    u8 pad_c[6];
-    u16 field_12;
-    u8 pad14[0x12];
-    u8 field_26;
-    u8 pad27[1];
-    Fn935E4Slot *field_28;
-    u8 pad2c[8];
-    Fn935E4Slot *field_34;
-    u8 pad38[0x14];
-    u8 field_4c;
-} Fn935E4Node;
-
 typedef struct {
     u8 pad0[0x12];
     u16 field_12;
     u8 pad14[0x12];
     u8 field_26;
     void *field_28;
-    u8 pad2c[8];
+    u8 pad2c[0x8];
     void *field_34;
     u8 pad38[0x14];
     u8 field_4c;
-} Node;
-
-typedef struct Fn935E4Car {
-    u8 pad0[0x1c];
-    Fn935E4Node *field_1c;
-} Fn935E4Car;
-
-typedef struct {
-    u8 pad0[0x24];
-    void *field_24;
-    f32 field_28;
-    f32 field_2c;
-} OutData;
+} EventNode;
 
 typedef struct {
     u8 pad0[0x1c];
-    Node *field_1c;
-    u8 pad20[0x128];
-    u16 field_148;
-    u8 pad14a[6];
-    OutData *field_150;
-    void *field_154;
-} Owner;
+    void *field_1c;
+} CarObject;
+
+typedef f32 fzgx_Mtx[3][4];
 
 typedef struct Fn1967A8Resource Fn1967A8Resource;
 
@@ -1027,91 +420,11 @@ typedef struct Vec3f {
     f32 x, y, z;
 } Vec3f;
 
-typedef struct fn_1_8D210_car {
-    f32 position[6];
-    f32 scale_z;
-    f32 scale_y;
-    f32 scale_x;
-    f32 field_24;
-    u16 field_28;
-    u16 field_2a;
-    u16 field_2c;
-    u16 field_2e;
-    u16 field_30;
-    u16 field_32;
-    u32 field_34;
-    u8 field_38;
-    u8 field_39;
-    u8 field_3a;
-    u8 pad_3b;
-    u32 field_3c;
-    u8 field_40;
-    u8 pad_41[3];
-    f32 field_44;
-    f32 field_48;
-    f32 field_4c;
-    f32 field_50;
-    s16 field_54;
-    u8 pad_56[2];
-    s32 field_58;
-    u8 field_5c[4];
-    u32 field_60;
-} fn_1_8D210_car;
-
-typedef s32 (*fn_1_8D210_callback)(u32);
-
 typedef struct {
-    u8 pad[0x15];
-    u8 code;
-} State;
-
-typedef struct {
-    u8 pad[4];
-    State *state;
-} fn_1_8E3A4_Object;
-
-typedef struct Sig_fn_1_41418_Fn41418Data {
-    u32 count;
-    char *strings;
-} Sig_fn_1_41418_Fn41418Data;
-
-typedef struct {
-    u32 w[45];
-} Unk_23800000;
-
-typedef struct {
-    u8 pad_00[0x1C];
-    u16 unk_1C;
-} Sig_fn_1_55628_Fn1_55628Object;
-
-typedef struct fn_1_8D988_CarObject { u8 pad_0[0x40]; void *unk_40; } fn_1_8D988_CarObject;
-
-typedef struct fn_1_8D988_Car {
-    u32 unk_0; s16 unk_4; u8 pad_6[0x46e]; s8 unk_474; u8 pad_475[0xf];
-    fn_1_8D988_CarObject *unk_484; u8 pad_488[0x86]; u8 unk_50e; u8 pad_50f[0x111];
-} fn_1_8D988_Car;
-
-struct Sig_fn_800713E0_fn_800713E0_Entry {
-    u8 pad_0[0x18];
-    u16 count;
-};
-
-struct Sig_fn_800713E0_fn_800713E0_Arg0 {
-    s32 count;
-    u8 pad_4[0x4];
-    struct Sig_fn_800713E0_fn_800713E0_Entry **entries;
-};
-
-typedef struct Sig_fn_1_97174_Fn197174Owner Sig_fn_1_97174_Fn197174Owner;
-
-struct Sig_fn_1_97174_Fn197174Owner {
-    u8 unk_00[0x14];
-    u8 *base;
-};
-
-typedef struct fn_1_95238_lbl_801A6D00 {
-    u32 unk_0;
-} fn_1_95238_lbl_801A6D00;
+    u32 x;
+    u32 y;
+    u32 z;
+} Triple;
 
 typedef struct {
     u8 **unk_00;
@@ -1129,43 +442,181 @@ typedef struct {
     u8 pad_00[2];
     s8 unk_02;
 } Fn1_87448_Arg1;
+
+typedef struct {
+    u8 pad_0[0x4];
+    s32 field_4;
+    s32 field_8;
+    s32 field_c;
+    s32 field_10;
+    s32 field_14;
+} Fn1_8F45C_Object;
+
+typedef struct {
+    s32 active;
+    s32 entries[5];
+} Fn1_8F494_Object;
+
+typedef struct {
+    u8 pad_0[0x148];
+    u8 pad_148[0x20];
+    u8 pad_168[0x40];
+    u8 pad_1a8[0x20];
+    u8 pad_1c8[0x20];
+    u8 pad_1e8[0x20];
+    u8 entries[0x14][0x20];
+} Fn1_8F5A4_Object;
+
+typedef struct Fn935E4Slot {
+    u8 pad0[0xa];
+    u16 field_a;
+} Fn935E4Slot;
+
+typedef struct Fn935E4Node {
+    u8 pad0[0xa];
+    u16 field_a;
+    u8 pad_c[6];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    u8 pad27[1];
+    Fn935E4Slot *field_28;
+    u8 pad2c[8];
+    Fn935E4Slot *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} Fn935E4Node;
+
+typedef struct Fn935E4Car {
+    u8 pad0[0x1c];
+    Fn935E4Node *field_1c;
+} Fn935E4Car;
+
+typedef struct A7B5C_Mtx {
+u8 pad[0x30];
+} A7B5C_Mtx;
+
+typedef struct fn_1_A7B5C_Vec3 {
+f32 x;
+f32 y;
+f32 z;
+} fn_1_A7B5C_Vec3;
+
+typedef struct A7B5C_Obj {
+A7B5C_Mtx mtx[4];
+f32 unk_c0;
+f32 unk_c4;
+f32 unk_c8;
+f32 unk_cc;
+f32 unk_d0;
+f32 unk_d4;
+f32 unk_d8;
+f32 unk_dc;
+f32 unk_e0;
+f32 unk_e4;
+s8 unk_e8;
+u8 unk_e9;
+u8 pad_ea[0x10c - 0xea];
+f32 unk_10c;
+f32 unk_110;
+fn_1_A7B5C_Vec3 unk_114;
+f32 unk_120;
+f32 unk_124;
+f32 unk_128;
+A7B5C_Mtx parts[10];
+} A7B5C_Obj;
+
+typedef struct A7B5C_Src {
+u8 pad[8];
+u8 *data;
+} A7B5C_Src;
+
+typedef struct { f32 x, y, z; } fzgx_Vec;
+
+typedef struct fn_1_A89B0_Obj {
+    fzgx_Mtx mtx;           /* 0x000 */
+    fzgx_Vec pos[2][4];     /* 0x030, 0x060 */
+    u8 pad_90[0xC0 - 0x90];
+    fzgx_Vec ofs[2];        /* 0x0C0, 0x0CC */
+    u8 pad_d8[0x10C - 0xD8];
+    f32 len1;               /* 0x10C */
+    f32 len2;               /* 0x110 */
+    u8 pad_114[0x12C - 0x114];
+    fzgx_Mtx joints[7];     /* 0x12C */
+} fn_1_A89B0_Obj;
+
+typedef struct fn_1_A89B0_Arg1 {
+    u8 pad_0[0x1FC];
+    f32 unk_1FC;
+} fn_1_A89B0_Arg1;
+
+typedef struct {
+    u8 pad_0[4];
+    u8 unk_4;
+    u8 unk_5;
+    u8 pad_6[0x32];
+} fn_1_A948C_Font;
+
+typedef struct DriverDesc {
+    u8 pad_0[0x40];
+    u32 unk_40;
+    s32 unk_44;
+    u32 unk_48;
+} DriverDesc;
+extern s16 fn_1_12C930(s16 arg0);
+extern s16 fn_1_12CCB0(s16 arg0, s16 arg1);
+extern void *fn_1_14DD68(void *arg0);
+extern u32 fn_1_4630();
+extern void fn_1_A7E60(s8 arg0, s8 arg1, FnA7E60Object *object, s32 arg3, void *arg4);
+extern void *lbl_801A6410;
+extern void *fn_1_D3884();
+extern void fn_80006E10(u32 arg0);
+extern void sprintf(void *buffer, char *format, ...);
+extern u32 fn_80077D40();
+extern u32 fn_80071470(u32, u32);
+extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
+extern void fn_80071718(void *value);
+extern void fn_1_A8270(struct fn_1_A8270_Arg0 *self, s32 arg1);
+extern void fn_1_A8528(void *, void *);
+extern void fn_1_A7F84(void *arg0, u32 arg1);
+extern void lbl_8006DD14(void *, void *);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006DBAC(void *arg0);
+extern void lbl_8006DD7C(void);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DFC4(void *pos);
+extern void lbl_8006DB30(void);
 extern void fn_1_801F8(s16 arg0, void *arg1);
-extern s32 fn_1_46C70();
+extern s32 fn_1_46C70(void);
 extern s32 fn_1_465D0(s32 arg0, s32 arg1);
 extern char *fn_80083DB0(char *dst, const char *src);
-extern void fn_80006E10(u32 arg0);
-extern int sprintf(char *s, const char *format, ...);
 extern Unk_23800000 lbl_23800000[];
-extern u8* fn_1_36AD0();
+extern u8* fn_1_36AD0(void);
 extern void fn_1_14F6F8(u8 arg0, u8 arg1, u8 arg2, void *arg3);
-extern u32 lbl_801A6410;
 extern void fn_1_56858(void *, int);
 extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
-extern void fn_1_12A734(s32 value);
+extern void fn_1_12A734(s32 idx);
 extern void fn_1_7F658(void *arg0);
 extern void fn_1_591A0(s32 id);
 extern void fn_1_8E1E8(void);
 extern void fn_1_FDFF4(void);
-extern u32 fn_80071718(u32);
-extern void fn_800711A8(u32 value);
+extern void fn_800711A8(void *value);
 extern void _savegpr_27(void);
 extern void _restgpr_27(void);
-extern void OSReport(const char *format, ...);
+extern void OSReport(const char *msg, ...);
 extern f32 lbl_1_rodata_3508[];
 extern int fn_1_20A5C(f32 *, f32 *);
 extern void *fn_1_21644(void *arg0, f32 *arg1, void *arg2);
 extern u8 * fn_1_14F04(void);
-extern void fn_1_17920(int, int, f32);
+extern void fn_1_17920(s32 index, void *arg1, f32 t);
 extern void lbl_8006D7F4(f32, f32, f32);
-extern void lbl_8006DBAC(Vec3 *a);
-extern void lbl_8006E0A4(void *);
-extern void lbl_8006E0B4(f32 arg0, f32 arg1, f32 arg2);
+extern void lbl_8006E0A4(void *arg0);
+extern void lbl_8006E0B4(f32, f32, f32);
 extern void fn_1_892FC(void *arg0, int arg1, int arg2);
 extern void fn_1_23500();
 extern f32 lbl_1_rodata_3518[6];
 extern f32 lbl_1_rodata_3530[22];
 extern u32 lbl_8006DBE4(void);
-extern void lbl_8006DFC4(void *arg0);
 extern u8 *fn_80083970(u8 *str, const u8 *needle);
 extern void fn_1_55628(Sig_fn_1_55628_Fn1_55628Object *);
 extern void fn_1_556B8(void *value);
@@ -1174,10 +625,10 @@ extern void fn_80072558(void);
 extern u32 fn_800793D4(u8 *arg0, u32 arg1, u32 arg2);
 extern void fn_1_8B9B8(void *);
 extern s32 fn_1_8D210(fn_1_8D210_car *car, fn_1_8D210_callback callback, u32 arg, s32 enable);
-extern s32 fn_1_F7BE4();
+extern s32 fn_1_F7BE4(s16 arg0);
 extern u8 lbl_1_rodata_3D34[164];
 extern s32 fn_1_45D0();
-extern void fn_1_C487C();
+extern void fn_1_C487C(void);
 extern void fn_1_43E8(u32 arg0);
 extern void fn_1_C4ABC(void);
 extern s32 fn_1_3F8C(u32 arg3, u32 arg0, u32 arg1, u32 index);
@@ -1191,17 +642,15 @@ extern s32 fn_1_41418(void *resource, u16 id);
 extern void fn_1_95210(void *arg0);
 extern void fn_1_95158(Fn195158Car *car);
 extern s32 fn_1_97174(EventNode *arg0, s32 arg1, void *arg2);
-extern void fn_1_93734(u32, u32);
+extern void fn_1_93734(CarObject *car, void *name);
 extern void fn_1_4270C(void *arg0, s32 arg1, u32 arg2);
 extern const f32 lbl_1_rodata_3F6C;
-extern u8 *lbl_801A6D00;
-extern void mathutil_mtxA_rotate_y(int value);
-extern void mathutil_mtxA_rotate_z(int value);
+extern FnA8528Config *lbl_801A6D00;
+extern u32 mathutil_mtxA_rotate_y(u32);
+extern void mathutil_mtxA_rotate_z(s32);
 extern void lbl_8006D758(void);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DB30(void);
-extern void lbl_8006E14C(f32 arg0);
-extern void mathutil_mtxA_rotate_x(s16 arg0);
+extern void lbl_8006E14C(f32);
+extern void mathutil_mtxA_rotate_x(u32);
 extern void fn_1_12AB38(void *arg0);
 extern s32 fn_1_12A8A4(u32 arg0, void *arg1);
 extern u32 lbl_1_bss_6E98C;
@@ -1216,7 +665,7 @@ extern const f32 lbl_1_rodata_3E48[];
 extern void *camera_get_state_object(void);
 extern void camera_update_state(void *);
 extern CarR29 *fn_80071268(void *, void *);
-extern void lbl_8006E1F0(Vec3f *, f32, f32, f32);
+extern void lbl_8006E1F0(void *, f32, f32, f32);
 extern void fn_1_A714C(f32 *a, f32 *b, f32 *c, f32 *d);
 extern f32 lbl_8006D21C(s32);
 extern void lbl_8006E2C0(Vec3f *, f32, f32, f32);
@@ -1225,24 +674,23 @@ extern void fn_1_B81C(Vec3f *, Vec3f *, s32);
 extern void fn_1_150464(u32 arg0);
 extern void fn_1_810E4(u32 arg0);
 extern u8 lbl_1_rodata_3590[984];
-extern u32 fn_1_12AC00(unsigned char *value);
+extern void *fn_1_12AC00(void *arg0);
 extern void fn_1_80294(void *arg0, void *arg1, s32 arg2);
 extern u32 lbl_1_rodata_3A94[7];
 extern void lbl_8006DC6C(void *, u32, u32);
 extern void lbl_8006E1B0(void *, void *);
 extern void lbl_8006DFE8(void *);
 extern f32 fn_1_A71AC(void);
-extern u8 fn_1_5910();
+extern u8 fn_1_5910(void);
 extern void fn_1_681C(u32 index, u32 *output);
 extern void fn_1_6914(u32 index, u32 *output);
-extern f32 lbl_8006D534(Vec3 *a, Vec3 *b);
+extern f32 lbl_8006D534(fn_1_A7E60_Vec3 *a, fn_1_A7E60_Vec3 *b);
 extern u32 lbl_1_rodata_3B20[3];
 extern f32 lbl_1_rodata_3B2C[47];
 extern Triple lbl_1_rodata_3BE8;
 extern u32 fn_80007CDC(f32 *arg0);
 extern u32 fn_80007D58(f32 *arg0);
 extern void lbl_8006D784(void *);
-extern void lbl_8006DD14(void *, void *);
 extern u32 lbl_1_rodata_3BF4[14];
 extern u32 lbl_1_bss_6D8F4[31];
 extern u32 lbl_801A66A0;
@@ -1250,15 +698,12 @@ extern u32 fn_1_56018(s32 value);
 extern void fn_1_560F0(s32 index, void *arg);
 extern void fn_1_55210(void *value);
 extern f32 lbl_8006D188(s16);
-extern void fn_1_87448();
-extern void fn_80008BA8(void *dst, const void *src, int size);
+extern void fn_1_87448(Fn1_87448_Obj *self, Fn1_87448_Arg1 *arg1, s8 arg2, int flag, f32 f);
 extern void lbl_8006D7DC(void *value);
-extern void lbl_8006DB74(void *value);
 extern f32 lbl_1_rodata_3C2C[33];
 extern u8 lbl_1_bss_8CA28;
 extern void fn_80008BEC(void *dest, int value, u32 size);
 extern u32 GXGetTexBufferSize(u16 width, u16 height, u32 arg2, u32 arg3, u32 arg4);
-extern u32 fn_1_4630();
 extern void fn_1_550A8(void);
 extern void fn_1_545B8(void);
 extern void fn_1_550E0(void);
@@ -1266,27 +711,27 @@ extern void fn_80038F10(f32* out);
 extern void GXGetScissor(u32 *left, u32 *top, u32 *width, u32 *height);
 extern void GXGetProjectionv(f32* out);
 extern void C_MTXPerspective(f32 *out, f32 a1, f32 a2, f32 a3, f32 a4);
-extern void fn_800737E4(void *, s32);
-extern u32 fn_80038EEC();
+extern void fn_800737E4(struct Sig_fn_800737E4_fn_800737E4_Arg0 *, s32, f32);
+extern u32 fn_80038EEC(void);
 extern s32 __cvt_fp2unsigned(f32);
 extern u32 fn_80074188(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
 extern void fn_80074918(u8 arg0, s32 arg1, u8 arg2);
 extern void fn_80008204(void *);
-extern void fn_80074300();
+extern void fn_80074300(u16 arg0, u16 arg1, u16 arg2, u16 arg3, u32 lab_unused0);
 extern void fn_80074438(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
 extern void fn_8003526C(u32, u8);
 extern void GXInvalidateTexAll(void);
 extern void fn_80072270(void *);
 extern void fn_1_4FC50(u32, u32, u16, u16, u32);
 extern u32 fn_80008E84(u32 arg0);
-extern void fn_1_426C(s32 value);
+extern void fn_1_426C(u32 arg0);
 extern void fn_1_8E7D0(Fn1_8F45C_Object *obj);
 extern void fn_1_12A2B8(u32 value);
 extern void fn_1_12A2D0(s32 value);
-extern void fn_1_9724C();
+extern void fn_1_9724C(void);
 extern void fn_1_107C4C(void *arg);
 extern void fn_1_966A0(Fn1_8F494_Object *obj);
-extern void fn_1_95EF0();
+extern void fn_1_95EF0(void *arg0, s32 arg_sp0);
 extern void fn_1_8F5A4(Fn1_8F5A4_Object *obj);
 extern void fn_1_968FC(Fn1_8F5A4_Object *obj);
 extern s32 fn_1_41488(void *arg0, void *arg1);
@@ -1296,7 +741,7 @@ extern void fn_1_42AD0(void *, s32, u16, s32, u16);
 extern void fn_1_41328(void *arg0);
 extern void fn_1_426E4(void *arg0, void *arg1);
 extern u32 lbl_1_bss_6D828;
-extern s32 fn_1_3F854(u32 arg0);
+extern u8 fn_1_3F854(void);
 extern s32 fn_1_8171C(s32 value);
 extern u8 lbl_1_rodata_3968[232];
 extern void fn_800712E4(void *arg0, u32 arg1, void *arg2);
@@ -1306,8 +751,8 @@ extern u32 lbl_1_bss_6D978;
 extern f32 fn_1_86A2C(void *);
 extern void fn_1_85688(void);
 extern void fn_1_854D4(void);
-extern void fn_1_85934();
-extern void fn_1_C489C(Obj_1_bss_6D838_Target *);
+extern void fn_1_85934(f32 arg);
+extern void fn_1_C489C(void *arg0);
 extern void fn_1_C40A0(Obj_1_bss_6D838_Target *);
 extern u8 lbl_1_bss_6DA5C[30];
 extern void fn_1_8A1B4(void *arg0, void *arg1, int arg2);
@@ -1318,7 +763,7 @@ extern s32 fn_8006FDEC(void);
 extern void fn_8006FEFC(void);
 extern u8 lbl_1_rodata_3DD8[84];
 extern u32 lbl_1_bss_6D86C[34];
-extern u32 fn_1_12ADA0(unsigned char *value, u32 arg);
+extern s32 fn_1_12ADA0(void *arg0, void *arg1);
 extern void fn_1_961F0(void *obj);
 extern u32 lbl_1_bss_6E978[3];
 extern s32 lbl_1_bss_6E984;
@@ -1326,30 +771,1690 @@ extern u32 lbl_1_rodata_3FA0[28];
 extern void fn_80007AB4(u8 *arg0);
 extern void fn_1_92554(void *arg0, s32 arg1);
 extern f32 lbl_1_rodata_3F70[12];
-extern u8 lbl_1_data_34348[12];
 extern void fn_1_12A2C4(u32 value);
-extern void fn_1_A7B5C(void *arg0, s32 arg1, void *arg2, s8 arg3, void *arg4);
+extern void fn_1_A7B5C(A7B5C_Obj *obj, A7B5C_Src *src, s8 kind, s8 type, fn_1_A7B5C_Vec3 *pos);
 extern u32 lbl_1_bss_6D970;
 extern u32 lbl_1_bss_6D974;
 extern u32 fn_1_435C(u32 value);
 extern void fn_1_850C4(void);
+extern struct fn_1_A7F84_lbl_1_rodata_4A28 lbl_1_rodata_4A28;
+extern u32 lbl_8006D91C(u32);
+extern u32 lbl_8006D998(u32);
+extern void _savegpr_23(void);
+extern void _restgpr_23(void);
+extern u32 fn_80077A18(void);
+extern void lbl_8006D9D8(void *);
+extern void fn_80077A20(struct fn_1_A8270_Rec *, void *);
+extern void fn_1_55FC4(f32 value);
+extern f32 lbl_1_rodata_4A34[25];
+extern Fn1A9250Entry lbl_1_bss_70658[];
+extern struct fn_1_A9868_lbl_1_rodata_4AA0 lbl_1_rodata_4AA0;
+extern f32 C_MTXOrtho(Sig_fn_80015EE8_Fn80015EE8Out *, f32, f32, f32, f32, f32, f32);
+extern void fn_1_A861C(FnA861CCamera *cam, FnA861CVehicle *veh);
+extern void fn_1_A8834(FnA8834Camera *cam, FnA8834Vehicle *veh);
+extern void fn_1_A9420(u8 value);
+extern s32 fn_8008077C(u32 arg0, u32 arg1, u32 arg2);
+extern int fn_1_A948C(const char *str);
+extern void fn_1_49410(void);
+extern void fn_1_494DC(s16 index);
+extern void fn_1_520A0(void);
+extern void fn_1_52088(void);
+extern u32 lbl_1_bss_71658[6];
+extern const f64 lbl_1_rodata_4A98;
+extern void fn_1_49714(f32 value1, f32 value2, f32 value3);
+extern void fn_1_49680(f32 value1, f32 value2);
+extern void fn_1_A93C4(u32 arg0);
+extern void fn_1_4A0D8(const u8 *s);
+extern void fn_1_520CC(void);
+extern void fn_1_49514(u32 *value);
+extern u32 GXLoadPosMtxImm(u32, u32);
+extern void fn_800720B0(s32 arg0);
+extern void fn_80072EDC(s32 arg0, s32 arg1);
+extern void GXSetCurrentMtx(u32 value);
+extern void fn_8006F1F0(void *, void *, void *);
+extern void fn_8007245C(u32 value);
+extern void fn_8007264C(u32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4);
+extern void fn_800734A8(u32 arg0, s32 arg1, s32 arg2, s32 arg3);
+extern void fn_80073678(u32 arg0);
+extern void fn_80073898(u32 arg0);
+extern void fn_80073C6C(s32 index);
+extern void fn_80074660(u32 arg0);
+extern void fn_800746A8();
+extern void fn_80074718(u8 value, s32 arg);
+extern void fn_80074788(u32 arg0);
+extern void fn_800747D0(u32 arg0, u32 arg1, s32 arg2, s32 arg3, u32 arg4, s32 arg5, s32 arg6);
+extern void OSPanic(const char *file, int line, const char *msg, ...);
+extern void fn_8006F6A8(void *arg0);
+extern void fn_1_A89B0(fn_1_A89B0_Obj *obj, fn_1_A89B0_Arg1 *arg1, s32 side);
+extern void fn_1_3920(void);
+extern void fn_1_A8D4C(void);
+extern void fn_1_A8D64(void);
+extern u32 fn_8001A78C(u32 arg0);
+extern u32 fn_8001A7D0(u32 arg0);
+extern void fn_1_A943C(u32 arg0, u32 arg1);
+extern void fn_1_A9464(u16 arg0, u16 arg1);
+extern void fn_1_A942C(u8 value);
+extern void fn_1_A96BC(void);
+extern void fn_1_A5C98(void *);
+extern u8 lbl_1_bss_716C8[320];
+extern u32 fn_1_451C(void);
+extern void fn_1_A5AA0(void *buffer, void *destination);
+extern u32 lbl_1_bss_71670;
+extern void fn_1_A7024(f32 arg0, f32 arg1, f32 arg2, f32 arg3);
+extern f32 lbl_1_rodata_4AC4[4];
+extern void fn_8003462C(u32 arg0, u32 arg1, u32 arg2);
+extern f32 lbl_8006D0B4(f32);
+extern void lbl_8006D668(void *);
+extern u32 fn_1_44884(void *);
+extern size_t strlen(const char *str);
+extern fn_1_A948C_Font lbl_1_data_1AEA8[];
+extern char *strchr(const char *str, int c);
+extern char *strrchr(const char *str, int c);
+extern void fn_1_A9FFC(s16 x, s16 y, s16 w, s16 h, GXColor color);
+extern const f32 lbl_1_rodata_4CA8;
+extern void fn_1_C3378(void);
+extern DriverDesc lbl_1_rodata_4AE0[];
+extern char *fn_80083CF4(char *dest, const char *src, size_t n);
+extern char *strcat(char *dest, const char *src);
+extern u8 fn_1_AAEB0__fzgx_offset_0[];
+extern u8 fn_1_AAF18__fzgx_offset_0[];
+extern u8 fn_1_AAF1C__fzgx_offset_0[];
+extern u8 fn_1_AB434__fzgx_offset_0[];
+extern u8 fn_1_AB438__fzgx_offset_0[];
+extern u8 fn_1_AB458__fzgx_offset_0[];
+extern u8 fn_1_AB478__fzgx_offset_0[];
+extern u8 fn_1_AB4F4__fzgx_offset_0[];
+extern u8 fn_1_AB598__fzgx_offset_0[];
+extern u8 fn_1_AB5CC__fzgx_offset_0[];
+extern u8 fn_1_AB61C__fzgx_offset_0[];
+extern u8 fn_1_AB64C__fzgx_offset_0[];
+extern u8 fn_1_AB75C__fzgx_offset_0[];
+extern u8 fn_1_AB7C4__fzgx_offset_0[];
+extern u8 fn_1_AB870__fzgx_offset_0[];
+extern u8 fn_1_AB880__fzgx_offset_0[];
+extern u8 fn_1_AB8D8__fzgx_offset_0[];
+extern u8 fn_1_AB93C__fzgx_offset_0[];
+extern u8 fn_1_AB98C__fzgx_offset_0[];
+extern u8 fn_1_AB99C__fzgx_offset_0[];
+extern u8 fn_1_ABA14__fzgx_offset_0[];
+extern u8 fn_1_ABA24__fzgx_offset_0[];
+extern u8 fn_1_ABA9C__fzgx_offset_0[];
+extern u8 fn_1_ABAAC__fzgx_offset_0[];
+extern u8 fn_1_ABB24__fzgx_offset_0[];
+extern u8 fn_1_ABB4C__fzgx_offset_0[];
+extern u8 fn_1_ABC5C__fzgx_offset_0[];
+extern u8 fn_1_ABC98__fzgx_offset_0[];
+extern u8 fn_1_ABCE8__fzgx_offset_0[];
+extern u8 fn_1_ABD58__fzgx_offset_0[];
+extern u8 fn_1_ABDA8__fzgx_offset_0[];
+extern u8 fn_1_ABDB8__fzgx_offset_0[];
+extern u8 fn_1_ABE14__fzgx_offset_0[];
+extern u8 fn_1_ABE88__fzgx_offset_0[];
+extern u8 fn_1_ABF44__fzgx_offset_0[];
+extern u8 fn_1_AC000__fzgx_offset_0[];
+extern u8 fn_1_AC12C__fzgx_offset_0[];
+extern u8 fn_1_AC188__fzgx_offset_0[];
+extern u8 fn_1_AC294__fzgx_offset_0[];
+extern u8 fn_1_AC2D8__fzgx_offset_0[];
+extern u8 fn_1_AC328__fzgx_offset_0[];
+extern u8 fn_1_AC38C__fzgx_offset_0[];
+extern u8 fn_1_AC3DC__fzgx_offset_0[];
+extern u8 fn_1_AC464__fzgx_offset_0[];
+extern u8 fn_1_AC4B4__fzgx_offset_0[];
+extern u8 fn_1_AC4C4__fzgx_offset_0[];
+extern u8 fn_1_AC53C__fzgx_offset_0[];
+extern u8 fn_1_AC6A4__fzgx_offset_0[];
+extern u8 fn_1_AC6A8__fzgx_offset_0[];
+extern u8 fn_1_AC6C8__fzgx_offset_0[];
+extern u8 fn_1_AC6CC__fzgx_offset_0[];
+extern u8 fn_1_AC6DC__fzgx_offset_0[];
+extern u8 fn_1_AC6E0__fzgx_offset_0[];
+extern u8 fn_1_AC700__fzgx_offset_0[];
+extern u8 fn_1_AC704__fzgx_offset_0[];
+extern u8 fn_1_AC74C__fzgx_offset_0[];
+extern u8 fn_1_AC79C__fzgx_offset_0[];
+extern u8 fn_1_AC904__fzgx_offset_0[];
+extern u8 fn_1_AC908__fzgx_offset_0[];
+extern u8 fn_1_AC928__fzgx_offset_0[];
+extern u8 fn_1_AC92C__fzgx_offset_0[];
+extern u8 fn_1_AC960__fzgx_offset_0[];
+extern u8 fn_1_ACA00__fzgx_offset_0[];
+extern u8 fn_1_ACA1C__fzgx_offset_0[];
+extern u8 fn_1_ACA78__fzgx_offset_0[];
+extern u8 fn_1_ACD00__fzgx_offset_0[];
+extern u8 fn_1_ACD04__fzgx_offset_0[];
+extern u8 fn_1_ACE7C__fzgx_offset_0[];
+extern u8 fn_1_ACE80__fzgx_offset_0[];
+extern u8 fn_1_ACEBC__fzgx_offset_0[];
+extern u8 fn_1_ACF0C__fzgx_offset_0[];
+extern u8 fn_1_ACF2C__fzgx_offset_0[];
+extern u8 fn_1_ACF30__fzgx_offset_0[];
+extern u8 fn_1_AD098__fzgx_offset_0[];
+extern u8 fn_1_AD09C__fzgx_offset_0[];
+extern u8 fn_1_AD0A0__fzgx_offset_0[];
+extern u8 fn_1_AD140__fzgx_offset_0[];
+extern u8 fn_1_AD164__fzgx_offset_0[];
+extern u8 fn_1_AD168__fzgx_offset_0[];
+extern u8 fn_1_AD1AC__fzgx_offset_0[];
+extern u8 fn_1_AD1E4__fzgx_offset_0[];
+extern u8 fn_1_AD264__fzgx_offset_0[];
+extern u8 fn_1_AEC34__fzgx_offset_0[];
+extern u8 fn_1_AECCC__fzgx_offset_0[];
+extern u8 fn_1_B03A8__fzgx_offset_0[];
+extern u8 fn_1_B03CC__fzgx_offset_0[];
+extern u8 fn_1_B1710__fzgx_offset_0[];
+extern u8 fn_1_B171C__fzgx_offset_0[];
+extern u8 fn_1_B2770__fzgx_offset_0[];
+extern u8 fn_1_B277C__fzgx_offset_0[];
+extern u8 fn_1_B38F4__fzgx_offset_0[];
+extern u8 fn_1_B3900__fzgx_offset_0[];
+extern u8 fn_1_B40B4__fzgx_offset_0[];
+extern u8 fn_1_B40C0__fzgx_offset_0[];
+extern u8 lbl_1_data_35ACC__fzgx_offset_0[];
+extern u8 lbl_1_data_35AD8__fzgx_offset_0[];
+extern u8 lbl_1_data_35AE0__fzgx_offset_0[];
+extern u8 lbl_1_data_35AEC__fzgx_offset_0[];
+extern u8 lbl_1_data_35AF4__fzgx_offset_0[];
+extern u8 lbl_1_data_35B00__fzgx_offset_0[];
+extern u8 lbl_1_data_35B08__fzgx_offset_0[];
+extern u8 lbl_1_data_35B10__fzgx_offset_0[];
+extern u8 lbl_1_data_35B34__fzgx_offset_0[];
+extern u8 lbl_1_data_35B48__fzgx_offset_0[];
+extern u8 lbl_1_data_35B74__fzgx_offset_0[];
+extern u8 lbl_1_data_35B88__fzgx_offset_0[];
+extern u8 lbl_1_data_35BB4__fzgx_offset_0[];
+extern u8 lbl_1_data_35BC8__fzgx_offset_0[];
+extern u8 lbl_1_data_35BF4__fzgx_offset_0[];
+extern u8 lbl_1_data_35C44__fzgx_offset_0[];
+extern u8 lbl_1_data_35C50__fzgx_offset_0[];
+extern u8 lbl_1_data_35C5C__fzgx_offset_0[];
+extern u8 lbl_1_data_35C68__fzgx_offset_0[];
+extern u8 lbl_1_data_35C74__fzgx_offset_0[];
+extern u8 lbl_1_data_35CE0__fzgx_offset_0[];
+extern u8 lbl_1_data_35D24__fzgx_offset_0[];
+extern u8 lbl_1_data_35D34__fzgx_offset_0[];
+extern u8 lbl_1_data_35D44__fzgx_offset_0[];
+extern u8 lbl_1_data_35D54__fzgx_offset_0[];
+extern u8 lbl_1_data_35D64__fzgx_offset_0[];
+extern u8 lbl_1_data_35DC4__fzgx_offset_0[];
+extern u8 lbl_1_data_35E34__fzgx_offset_0[];
+extern u8 lbl_1_data_35E40__fzgx_offset_0[];
+extern u8 lbl_1_data_35E4C__fzgx_offset_0[];
+extern u8 lbl_1_data_35E58__fzgx_offset_0[];
+extern u8 lbl_1_data_35E64__fzgx_offset_0[];
+extern u8 lbl_1_data_35F4C__fzgx_offset_0[];
+extern u8 lbl_1_data_35FA4__fzgx_offset_0[];
+extern u8 lbl_1_data_35FB0__fzgx_offset_0[];
+extern u8 lbl_1_data_35FBC__fzgx_offset_0[];
+extern u8 lbl_1_data_35FC8__fzgx_offset_0[];
+extern u8 lbl_1_data_35FD4__fzgx_offset_0[];
+extern u8 lbl_1_data_3603C__fzgx_offset_0[];
+extern u8 lbl_1_data_36070__fzgx_offset_0[];
+extern u8 lbl_1_data_36088__fzgx_offset_0[];
+extern u8 lbl_1_data_360A0__fzgx_offset_0[];
+extern u8 lbl_1_data_360B8__fzgx_offset_0[];
+extern u8 lbl_1_data_360D0__fzgx_offset_0[];
+extern u8 lbl_1_data_360F8__fzgx_offset_0[];
+extern u8 lbl_1_data_36128__fzgx_offset_0[];
+extern u8 lbl_1_data_36140__fzgx_offset_0[];
+extern u8 lbl_1_data_36158__fzgx_offset_0[];
+extern u8 lbl_1_data_36170__fzgx_offset_0[];
+extern u8 lbl_1_data_36188__fzgx_offset_0[];
+extern u8 lbl_1_data_361B0__fzgx_offset_0[];
+extern u8 lbl_1_data_361E0__fzgx_offset_0[];
+extern u8 lbl_1_data_361F8__fzgx_offset_0[];
+extern u8 lbl_1_data_36210__fzgx_offset_0[];
+extern u8 lbl_1_data_36228__fzgx_offset_0[];
+extern u8 lbl_1_data_36240__fzgx_offset_0[];
+extern u8 lbl_1_data_36270__fzgx_offset_0[];
+extern u8 lbl_1_data_362A0__fzgx_offset_0[];
+extern u8 lbl_1_data_362BC__fzgx_offset_0[];
+extern u8 lbl_1_data_362D8__fzgx_offset_0[];
+extern u8 lbl_1_data_362F4__fzgx_offset_0[];
+extern u8 lbl_1_data_36310__fzgx_offset_0[];
+extern u8 lbl_1_data_36338__fzgx_offset_0[];
+extern u8 lbl_1_data_3636C__fzgx_offset_0[];
+extern u8 lbl_1_data_36388__fzgx_offset_0[];
+extern u8 lbl_1_data_363A4__fzgx_offset_0[];
+extern u8 lbl_1_data_363C0__fzgx_offset_0[];
+extern u8 lbl_1_data_363DC__fzgx_offset_0[];
+extern u8 lbl_1_data_36408__fzgx_offset_0[];
+extern u8 lbl_1_data_3644C__fzgx_offset_0[];
+extern u8 lbl_1_data_3646C__fzgx_offset_0[];
+extern u8 lbl_1_data_3648C__fzgx_offset_0[];
+extern u8 lbl_1_data_364AC__fzgx_offset_0[];
+extern u8 lbl_1_data_364CC__fzgx_offset_0[];
+extern u8 lbl_1_data_36510__fzgx_offset_0[];
+extern u8 lbl_1_data_36554__fzgx_offset_0[];
+extern u8 lbl_1_data_36574__fzgx_offset_0[];
+extern u8 lbl_1_data_36594__fzgx_offset_0[];
+extern u8 lbl_1_data_365B4__fzgx_offset_0[];
+extern u8 lbl_1_data_365D4__fzgx_offset_0[];
+extern u8 lbl_1_data_36618__fzgx_offset_0[];
+extern u8 lbl_1_data_36648__fzgx_offset_0[];
+extern u8 lbl_1_data_36668__fzgx_offset_0[];
+extern u8 lbl_1_data_36688__fzgx_offset_0[];
+extern u8 lbl_1_data_366A8__fzgx_offset_0[];
+extern u8 lbl_1_data_366C8__fzgx_offset_0[];
+extern u8 lbl_1_data_366F8__fzgx_offset_0[];
+extern u8 lbl_1_data_3673C__fzgx_offset_0[];
+extern u8 lbl_1_data_3675C__fzgx_offset_0[];
+extern u8 lbl_1_data_3677C__fzgx_offset_0[];
+extern u8 lbl_1_data_3679C__fzgx_offset_0[];
+extern u8 lbl_1_data_367BC__fzgx_offset_0[];
+extern u8 lbl_1_data_36800__fzgx_offset_0[];
+extern u8 lbl_1_data_36844__fzgx_offset_0[];
+extern u8 lbl_1_data_36864__fzgx_offset_0[];
+extern u8 lbl_1_data_36884__fzgx_offset_0[];
+extern u8 lbl_1_data_368A4__fzgx_offset_0[];
+extern u8 lbl_1_data_368C4__fzgx_offset_0[];
+extern u8 lbl_1_data_36908__fzgx_offset_0[];
+extern u8 lbl_1_data_36928__fzgx_offset_0[];
+extern u8 lbl_1_data_36938__fzgx_offset_0[];
+extern u8 lbl_1_data_36948__fzgx_offset_0[];
+extern u8 lbl_1_data_36958__fzgx_offset_0[];
+extern u8 lbl_1_data_36968__fzgx_offset_0[];
+extern u8 lbl_1_data_36984__fzgx_offset_0[];
+extern u8 lbl_1_data_36998__fzgx_offset_0[];
+extern u8 lbl_1_data_369A8__fzgx_offset_0[];
+extern u8 lbl_1_data_369B8__fzgx_offset_0[];
+extern u8 lbl_1_data_369C8__fzgx_offset_0[];
+extern u8 lbl_1_data_369D8__fzgx_offset_0[];
+extern u8 lbl_1_data_369E8__fzgx_offset_0[];
+extern u8 lbl_1_data_36A1C__fzgx_offset_0[];
+extern u8 lbl_1_data_36A34__fzgx_offset_0[];
+extern u8 lbl_1_data_36A4C__fzgx_offset_0[];
+extern u8 lbl_1_data_36A64__fzgx_offset_0[];
+extern u8 lbl_1_data_36A7C__fzgx_offset_0[];
+extern u8 lbl_1_data_36AB0__fzgx_offset_0[];
+extern u8 lbl_1_data_36AE4__fzgx_offset_0[];
+extern u8 lbl_1_data_36AFC__fzgx_offset_0[];
+extern u8 lbl_1_data_36B14__fzgx_offset_0[];
+extern u8 lbl_1_data_36B2C__fzgx_offset_0[];
+extern u8 lbl_1_data_36B44__fzgx_offset_0[];
+extern u8 lbl_1_data_36B78__fzgx_offset_0[];
+extern u8 lbl_1_data_36B98__fzgx_offset_0[];
+extern u8 lbl_1_data_36BB0__fzgx_offset_0[];
+extern u8 lbl_1_data_36BC8__fzgx_offset_0[];
+extern u8 lbl_1_data_36BE0__fzgx_offset_0[];
+extern u8 lbl_1_data_36BF8__fzgx_offset_0[];
+extern u8 lbl_1_data_36C1C__fzgx_offset_0[];
+extern u8 lbl_1_data_36C50__fzgx_offset_0[];
+extern u8 lbl_1_data_36C6C__fzgx_offset_0[];
+extern u8 lbl_1_data_36C88__fzgx_offset_0[];
+extern u8 lbl_1_data_36CA4__fzgx_offset_0[];
+extern u8 lbl_1_data_36CC0__fzgx_offset_0[];
+extern u8 lbl_1_data_36CF0__fzgx_offset_0[];
+extern u8 lbl_1_data_36D28__fzgx_offset_0[];
+extern u8 lbl_1_data_36D44__fzgx_offset_0[];
+extern u8 lbl_1_data_36D60__fzgx_offset_0[];
+extern u8 lbl_1_data_36D7C__fzgx_offset_0[];
+extern u8 lbl_1_data_36D98__fzgx_offset_0[];
+extern u8 lbl_1_data_36DD0__fzgx_offset_0[];
+extern u8 lbl_1_data_36E10__fzgx_offset_0[];
+extern u8 lbl_1_data_36E30__fzgx_offset_0[];
+extern u8 lbl_1_data_36E50__fzgx_offset_0[];
+extern u8 lbl_1_data_36E70__fzgx_offset_0[];
+extern u8 lbl_1_data_36E90__fzgx_offset_0[];
+extern u8 lbl_1_data_36ED0__fzgx_offset_0[];
+extern u8 lbl_1_data_36F0C__fzgx_offset_0[];
+extern u8 lbl_1_data_36F2C__fzgx_offset_0[];
+extern u8 lbl_1_data_36F4C__fzgx_offset_0[];
+extern u8 lbl_1_data_36F6C__fzgx_offset_0[];
+extern u8 lbl_1_data_36F8C__fzgx_offset_0[];
+extern u8 lbl_1_data_36FCC__fzgx_offset_0[];
+extern u8 lbl_1_data_37008__fzgx_offset_0[];
+extern u8 lbl_1_data_37028__fzgx_offset_0[];
+extern u8 lbl_1_data_37048__fzgx_offset_0[];
+extern u8 lbl_1_data_37068__fzgx_offset_0[];
+extern u8 lbl_1_data_37088__fzgx_offset_0[];
+extern u8 lbl_1_data_370CC__fzgx_offset_0[];
+extern u8 lbl_1_data_3710C__fzgx_offset_0[];
+extern u8 lbl_1_data_3712C__fzgx_offset_0[];
+extern u8 lbl_1_data_3714C__fzgx_offset_0[];
+extern u8 lbl_1_data_3716C__fzgx_offset_0[];
+extern u8 lbl_1_data_3718C__fzgx_offset_0[];
+extern u8 lbl_1_data_371C8__fzgx_offset_0[];
+extern u8 lbl_1_data_37208__fzgx_offset_0[];
+extern u8 lbl_1_data_37228__fzgx_offset_0[];
+extern u8 lbl_1_data_37248__fzgx_offset_0[];
+extern u8 lbl_1_data_37268__fzgx_offset_0[];
+extern u8 lbl_1_data_37288__fzgx_offset_0[];
+extern u8 lbl_1_data_372C8__fzgx_offset_0[];
+extern u8 lbl_1_data_372F4__fzgx_offset_0[];
+extern u8 lbl_1_data_3730C__fzgx_offset_0[];
+extern u8 lbl_1_data_37324__fzgx_offset_0[];
+extern u8 lbl_1_data_3733C__fzgx_offset_0[];
+extern u8 lbl_1_data_37354__fzgx_offset_0[];
+extern u8 lbl_1_data_37380__fzgx_offset_0[];
+extern u8 lbl_1_data_373DC__fzgx_offset_0[];
+extern u8 lbl_1_data_373F4__fzgx_offset_0[];
+extern u8 lbl_1_data_3740C__fzgx_offset_0[];
+extern u8 lbl_1_data_37424__fzgx_offset_0[];
+extern u8 lbl_1_data_3743C__fzgx_offset_0[];
+extern u8 lbl_1_data_374A8__fzgx_offset_0[];
+extern u8 lbl_1_data_374D8__fzgx_offset_0[];
+extern u8 lbl_1_data_374E8__fzgx_offset_0[];
+extern u8 lbl_1_data_374F8__fzgx_offset_0[];
+extern u8 lbl_1_data_37508__fzgx_offset_0[];
+extern u8 lbl_1_data_37518__fzgx_offset_0[];
+extern u8 lbl_1_data_37550__fzgx_offset_0[];
+extern u8 lbl_1_data_375A4__fzgx_offset_0[];
+extern u8 lbl_1_data_375B8__fzgx_offset_0[];
+extern u8 lbl_1_data_375CC__fzgx_offset_0[];
+extern u8 lbl_1_data_375E0__fzgx_offset_0[];
+extern u8 lbl_1_data_375F4__fzgx_offset_0[];
+extern u8 lbl_1_data_3763C__fzgx_offset_0[];
+extern u8 lbl_1_data_37680__fzgx_offset_0[];
+extern u8 lbl_1_data_37690__fzgx_offset_0[];
+extern u8 lbl_1_data_376A0__fzgx_offset_0[];
+extern u8 lbl_1_data_376B0__fzgx_offset_0[];
+extern u8 lbl_1_data_376C0__fzgx_offset_0[];
+extern u8 lbl_1_data_37704__fzgx_offset_0[];
+extern u8 lbl_1_data_3773C__fzgx_offset_0[];
+extern u8 lbl_1_data_37750__fzgx_offset_0[];
+extern u8 lbl_1_data_37764__fzgx_offset_0[];
+extern u8 lbl_1_data_37778__fzgx_offset_0[];
+extern u8 lbl_1_data_3778C__fzgx_offset_0[];
+extern u8 lbl_1_data_377D0__fzgx_offset_0[];
+extern u8 lbl_1_data_37808__fzgx_offset_0[];
+extern u8 lbl_1_data_37818__fzgx_offset_0[];
+extern u8 lbl_1_data_37828__fzgx_offset_0[];
+extern u8 lbl_1_data_37838__fzgx_offset_0[];
+extern u8 lbl_1_data_37848__fzgx_offset_0[];
+extern u8 lbl_1_data_3788C__fzgx_offset_0[];
+extern u8 lbl_1_data_378EC__fzgx_offset_0[];
+extern u8 lbl_1_data_378FC__fzgx_offset_0[];
+extern u8 lbl_1_data_3790C__fzgx_offset_0[];
+extern u8 lbl_1_data_3791C__fzgx_offset_0[];
+extern u8 lbl_1_data_3792C__fzgx_offset_0[];
+extern u8 lbl_1_data_37984__fzgx_offset_0[];
+extern u8 lbl_1_data_379C0__fzgx_offset_0[];
+extern u8 lbl_1_data_379D0__fzgx_offset_0[];
+extern u8 lbl_1_data_379E0__fzgx_offset_0[];
+extern u8 lbl_1_data_379F0__fzgx_offset_0[];
+extern u8 lbl_1_data_37A00__fzgx_offset_0[];
+extern u8 lbl_1_data_37A58__fzgx_offset_0[];
+extern u8 lbl_1_data_37AB8__fzgx_offset_0[];
+extern u8 lbl_1_data_37ACC__fzgx_offset_0[];
+extern u8 lbl_1_data_37AE0__fzgx_offset_0[];
+extern u8 lbl_1_data_37AF4__fzgx_offset_0[];
+extern u8 lbl_1_data_37B08__fzgx_offset_0[];
+extern u8 lbl_1_data_37B74__fzgx_offset_0[];
+extern u8 lbl_1_data_37B9C__fzgx_offset_0[];
+extern u8 lbl_1_data_37BB0__fzgx_offset_0[];
+extern u8 lbl_1_data_37BC4__fzgx_offset_0[];
+extern u8 lbl_1_data_37BD8__fzgx_offset_0[];
+extern u8 lbl_1_data_37BEC__fzgx_offset_0[];
+extern u8 lbl_1_data_37C28__fzgx_offset_0[];
+extern u8 lbl_1_data_37C30__fzgx_offset_0[];
+extern u8 lbl_1_data_37C3C__fzgx_offset_0[];
+extern u8 lbl_1_data_37C48__fzgx_offset_0[];
+extern u8 lbl_1_data_37C54__fzgx_offset_0[];
+extern u8 lbl_1_data_37C60__fzgx_offset_0[];
+extern u8 lbl_1_data_37C6C__fzgx_offset_0[];
+extern u8 lbl_1_data_37C74__fzgx_offset_0[];
+extern u8 lbl_1_data_37C80__fzgx_offset_0[];
+extern u8 lbl_1_data_37C8C__fzgx_offset_0[];
+extern u8 lbl_1_data_37C98__fzgx_offset_0[];
+extern u8 lbl_1_data_37CA4__fzgx_offset_0[];
+extern u8 lbl_1_data_37CB0__fzgx_offset_0[];
+extern u8 lbl_1_data_37CB4__fzgx_offset_0[];
+extern u8 lbl_1_data_37CBC__fzgx_offset_0[];
+extern u8 lbl_1_data_37CC4__fzgx_offset_0[];
+extern u8 lbl_1_data_37CCC__fzgx_offset_0[];
+extern u8 lbl_1_data_37CD4__fzgx_offset_0[];
+extern u8 lbl_1_data_37CDC__fzgx_offset_0[];
+extern u8 lbl_1_data_37CE0__fzgx_offset_0[];
+extern u8 lbl_1_data_37CE8__fzgx_offset_0[];
+extern u8 lbl_1_data_37CF0__fzgx_offset_0[];
+extern u8 lbl_1_data_37CF8__fzgx_offset_0[];
+extern u8 lbl_1_data_37D00__fzgx_offset_0[];
+extern u8 lbl_1_data_37D08__fzgx_offset_0[];
+extern u8 lbl_1_data_37D44__fzgx_offset_0[];
+extern u8 lbl_1_data_37D58__fzgx_offset_0[];
+extern u8 lbl_1_data_37D6C__fzgx_offset_0[];
+extern u8 lbl_1_data_37D80__fzgx_offset_0[];
+extern u8 lbl_1_data_37D94__fzgx_offset_0[];
+extern u8 lbl_1_data_37DD4__fzgx_offset_0[];
+extern u8 lbl_1_data_37F64__fzgx_offset_0[];
+extern u8 lbl_1_data_37F70__fzgx_offset_0[];
+extern u8 lbl_1_data_37F7C__fzgx_offset_0[];
+extern u8 lbl_1_data_37F88__fzgx_offset_0[];
+extern u8 lbl_1_data_37F94__fzgx_offset_0[];
+extern u8 lbl_1_data_381E4__fzgx_offset_0[];
+extern u8 lbl_1_data_382C8__fzgx_offset_0[];
+extern u8 lbl_1_data_382D4__fzgx_offset_0[];
+extern u8 lbl_1_data_382E0__fzgx_offset_0[];
+extern u8 lbl_1_data_382EC__fzgx_offset_0[];
+extern u8 lbl_1_data_382F8__fzgx_offset_0[];
+extern u8 lbl_1_data_38454__fzgx_offset_0[];
+extern u8 lbl_1_data_385E4__fzgx_offset_0[];
+extern u8 lbl_1_data_385F4__fzgx_offset_0[];
+extern u8 lbl_1_data_38604__fzgx_offset_0[];
+extern u8 lbl_1_data_38614__fzgx_offset_0[];
+extern u8 lbl_1_data_38624__fzgx_offset_0[];
+extern u8 lbl_1_data_38874__fzgx_offset_0[];
+extern u8 lbl_1_data_38958__fzgx_offset_0[];
+extern u8 lbl_1_data_3896C__fzgx_offset_0[];
+extern u8 lbl_1_data_38980__fzgx_offset_0[];
+extern u8 lbl_1_data_38994__fzgx_offset_0[];
+extern u8 lbl_1_data_389A8__fzgx_offset_0[];
+extern u8 lbl_1_data_38B04__fzgx_offset_0[];
+extern u8 lbl_1_data_38B58__fzgx_offset_0[];
+extern u8 lbl_1_data_38B6C__fzgx_offset_0[];
+extern u8 lbl_1_data_38B80__fzgx_offset_0[];
+extern u8 lbl_1_data_38B94__fzgx_offset_0[];
+extern u8 lbl_1_data_38BA8__fzgx_offset_0[];
+extern u8 lbl_1_data_38C08__fzgx_offset_0[];
+extern u8 lbl_1_data_38C30__fzgx_offset_0[];
+extern u8 lbl_1_data_38C48__fzgx_offset_0[];
+extern u8 lbl_1_data_38C60__fzgx_offset_0[];
+extern u8 lbl_1_data_38C78__fzgx_offset_0[];
+extern u8 lbl_1_data_38C90__fzgx_offset_0[];
+extern u8 lbl_1_data_38CCC__fzgx_offset_0[];
+extern u8 lbl_1_data_38D00__fzgx_offset_0[];
+extern u8 lbl_1_data_38D10__fzgx_offset_0[];
+extern u8 lbl_1_data_38D20__fzgx_offset_0[];
+extern u8 lbl_1_data_38D30__fzgx_offset_0[];
+extern u8 lbl_1_data_38D40__fzgx_offset_0[];
+extern u8 lbl_1_data_38D80__fzgx_offset_0[];
+extern u8 lbl_1_data_38D98__fzgx_offset_0[];
+extern u8 lbl_1_data_38DAC__fzgx_offset_0[];
+extern u8 lbl_1_data_38DC0__fzgx_offset_0[];
+extern u8 lbl_1_data_38DD4__fzgx_offset_0[];
+extern u8 lbl_1_data_38DE8__fzgx_offset_0[];
+extern u8 lbl_1_data_38E04__fzgx_offset_0[];
+extern u8 lbl_1_data_38E0C__fzgx_offset_0[];
+extern u8 lbl_1_data_38E18__fzgx_offset_0[];
+extern u8 lbl_1_data_38E24__fzgx_offset_0[];
+extern u8 lbl_1_data_38E30__fzgx_offset_0[];
+extern u8 lbl_1_data_38E3C__fzgx_offset_0[];
+extern u8 lbl_1_data_38E48__fzgx_offset_0[];
+extern u8 lbl_1_data_38E80__fzgx_offset_0[];
+extern u8 lbl_1_data_38E90__fzgx_offset_0[];
+extern u8 lbl_1_data_38EA0__fzgx_offset_0[];
+extern u8 lbl_1_data_38EB0__fzgx_offset_0[];
+extern u8 lbl_1_data_38EC0__fzgx_offset_0[];
+extern u8 lbl_1_data_38F04__fzgx_offset_0[];
+extern u8 lbl_1_data_38F30__fzgx_offset_0[];
+extern u8 lbl_1_data_38F40__fzgx_offset_0[];
+extern u8 lbl_1_data_38F50__fzgx_offset_0[];
+extern u8 lbl_1_data_38F60__fzgx_offset_0[];
+extern u8 lbl_1_data_38F70__fzgx_offset_0[];
+extern u8 lbl_1_data_38FA8__fzgx_offset_0[];
+extern u8 lbl_1_data_38FE8__fzgx_offset_0[];
+extern u8 lbl_1_data_38FF8__fzgx_offset_0[];
+extern u8 lbl_1_data_39008__fzgx_offset_0[];
+extern u8 lbl_1_data_39018__fzgx_offset_0[];
+extern u8 lbl_1_data_39028__fzgx_offset_0[];
+extern u8 lbl_1_data_3906C__fzgx_offset_0[];
+extern u8 lbl_1_data_390C4__fzgx_offset_0[];
+extern u8 lbl_1_data_390D4__fzgx_offset_0[];
+extern u8 lbl_1_data_390E4__fzgx_offset_0[];
+extern u8 lbl_1_data_390F4__fzgx_offset_0[];
+extern u8 lbl_1_data_39104__fzgx_offset_0[];
+extern u8 lbl_1_data_39148__fzgx_offset_0[];
+extern u8 lbl_1_data_39190__fzgx_offset_0[];
+extern u8 lbl_1_data_3919C__fzgx_offset_0[];
+extern u8 lbl_1_data_391A8__fzgx_offset_0[];
+extern u8 lbl_1_data_391B4__fzgx_offset_0[];
+extern u8 lbl_1_data_391C0__fzgx_offset_0[];
+extern u8 lbl_1_data_39214__fzgx_offset_0[];
+extern u8 lbl_1_data_39248__fzgx_offset_0[];
+extern u8 lbl_1_data_39254__fzgx_offset_0[];
+extern u8 lbl_1_data_39260__fzgx_offset_0[];
+extern u8 lbl_1_data_3926C__fzgx_offset_0[];
+extern u8 lbl_1_data_39278__fzgx_offset_0[];
+extern u8 lbl_1_data_392AC__fzgx_offset_0[];
+extern u8 lbl_1_data_392E4__fzgx_offset_0[];
+extern u8 lbl_1_data_392F0__fzgx_offset_0[];
+extern u8 lbl_1_data_392FC__fzgx_offset_0[];
+extern u8 lbl_1_data_39308__fzgx_offset_0[];
+extern u8 lbl_1_data_39314__fzgx_offset_0[];
+extern u8 lbl_1_data_39348__fzgx_offset_0[];
+extern u8 lbl_1_data_3937C__fzgx_offset_0[];
+extern u8 lbl_1_data_39388__fzgx_offset_0[];
+extern u8 lbl_1_data_39394__fzgx_offset_0[];
+extern u8 lbl_1_data_393A0__fzgx_offset_0[];
+extern u8 lbl_1_data_393AC__fzgx_offset_0[];
+extern u8 lbl_1_data_393E0__fzgx_offset_0[];
+extern u8 lbl_1_data_39418__fzgx_offset_0[];
+extern u8 lbl_1_data_39424__fzgx_offset_0[];
+extern u8 lbl_1_data_39430__fzgx_offset_0[];
+extern u8 lbl_1_data_3943C__fzgx_offset_0[];
+extern u8 lbl_1_data_39448__fzgx_offset_0[];
+extern u8 lbl_1_data_3947C__fzgx_offset_0[];
+extern u8 lbl_1_data_394B8__fzgx_offset_0[];
+extern u8 lbl_1_data_394C8__fzgx_offset_0[];
+extern u8 lbl_1_data_394D8__fzgx_offset_0[];
+extern u8 lbl_1_data_394E8__fzgx_offset_0[];
+extern u8 lbl_1_data_394F8__fzgx_offset_0[];
+extern u8 lbl_1_data_39520__fzgx_offset_0[];
+extern u8 lbl_1_data_39550__fzgx_offset_0[];
+extern u8 lbl_1_data_39564__fzgx_offset_0[];
+extern u8 lbl_1_data_39578__fzgx_offset_0[];
+extern u8 lbl_1_data_3958C__fzgx_offset_0[];
+extern u8 lbl_1_data_395A0__fzgx_offset_0[];
+extern u8 lbl_1_data_395DC__fzgx_offset_0[];
+extern u8 lbl_1_data_39618__fzgx_offset_0[];
+extern u8 lbl_1_data_39628__fzgx_offset_0[];
+extern u8 lbl_1_data_39638__fzgx_offset_0[];
+extern u8 lbl_1_data_39648__fzgx_offset_0[];
+extern u8 lbl_1_data_39658__fzgx_offset_0[];
+extern u8 lbl_1_data_39694__fzgx_offset_0[];
+extern u8 lbl_1_data_396BC__fzgx_offset_0[];
+extern u8 lbl_1_data_396CC__fzgx_offset_0[];
+extern u8 lbl_1_data_396DC__fzgx_offset_0[];
+extern u8 lbl_1_data_396EC__fzgx_offset_0[];
+extern u8 lbl_1_data_396FC__fzgx_offset_0[];
+extern u8 lbl_1_data_39740__fzgx_offset_0[];
+extern u8 lbl_1_data_39780__fzgx_offset_0[];
+extern u8 lbl_1_data_39790__fzgx_offset_0[];
+extern u8 lbl_1_data_397A0__fzgx_offset_0[];
+extern u8 lbl_1_data_397B0__fzgx_offset_0[];
+extern u8 lbl_1_data_397C0__fzgx_offset_0[];
+extern u8 lbl_1_data_39800__fzgx_offset_0[];
+extern u8 lbl_1_data_39838__fzgx_offset_0[];
+extern u8 lbl_1_data_39848__fzgx_offset_0[];
+extern u8 lbl_1_data_39858__fzgx_offset_0[];
+extern u8 lbl_1_data_39868__fzgx_offset_0[];
+extern u8 lbl_1_data_39878__fzgx_offset_0[];
+extern u8 lbl_1_data_398A0__fzgx_offset_0[];
+extern u8 lbl_1_data_398B0__fzgx_offset_0[];
+extern u8 lbl_1_data_398C0__fzgx_offset_0[];
+extern u8 lbl_1_data_398D0__fzgx_offset_0[];
+extern u8 lbl_1_data_398E0__fzgx_offset_0[];
+extern u8 lbl_1_data_398F0__fzgx_offset_0[];
+extern u8 lbl_1_data_39900__fzgx_offset_0[];
+extern u8 lbl_1_data_3990C__fzgx_offset_0[];
+extern u8 lbl_1_data_3991C__fzgx_offset_0[];
+extern u8 lbl_1_data_3992C__fzgx_offset_0[];
+extern u8 lbl_1_data_3993C__fzgx_offset_0[];
+extern u8 lbl_1_data_3994C__fzgx_offset_0[];
+extern u8 lbl_1_data_39958__fzgx_offset_0[];
+extern u8 lbl_1_data_39968__fzgx_offset_0[];
+extern u8 lbl_1_data_39978__fzgx_offset_0[];
+extern u8 lbl_1_data_39988__fzgx_offset_0[];
+extern u8 lbl_1_data_39998__fzgx_offset_0[];
+extern u8 lbl_1_data_399A8__fzgx_offset_0[];
+extern u8 lbl_1_data_399B8__fzgx_offset_0[];
+extern u8 lbl_1_data_399C8__fzgx_offset_0[];
+extern u8 lbl_1_data_399D8__fzgx_offset_0[];
+extern u8 lbl_1_data_399E8__fzgx_offset_0[];
+extern u8 lbl_1_data_399F8__fzgx_offset_0[];
+extern u8 lbl_1_data_39A08__fzgx_offset_0[];
+extern u8 lbl_1_data_39A18__fzgx_offset_0[];
+extern u8 lbl_1_data_39A6C__fzgx_offset_0[];
+extern u8 lbl_1_data_39A78__fzgx_offset_0[];
+extern u8 lbl_1_data_39A84__fzgx_offset_0[];
+extern u8 lbl_1_data_39A90__fzgx_offset_0[];
+extern u8 lbl_1_data_39A9C__fzgx_offset_0[];
+extern u8 lbl_1_data_39B04__fzgx_offset_0[];
+extern u8 lbl_1_data_39B58__fzgx_offset_0[];
+extern u8 lbl_1_data_39B64__fzgx_offset_0[];
+extern u8 lbl_1_data_39B70__fzgx_offset_0[];
+extern u8 lbl_1_data_39B7C__fzgx_offset_0[];
+extern u8 lbl_1_data_39B88__fzgx_offset_0[];
+extern u8 lbl_1_data_39BF0__fzgx_offset_0[];
+extern u8 lbl_1_data_39C1C__fzgx_offset_0[];
+extern u8 lbl_1_data_39C2C__fzgx_offset_0[];
+extern u8 lbl_1_data_39C3C__fzgx_offset_0[];
+extern u8 lbl_1_data_39C4C__fzgx_offset_0[];
+extern u8 lbl_1_data_39C5C__fzgx_offset_0[];
+extern u8 lbl_1_data_39C88__fzgx_offset_0[];
+extern u8 lbl_1_data_39CB8__fzgx_offset_0[];
+extern u8 lbl_1_data_39CC8__fzgx_offset_0[];
+extern u8 lbl_1_data_39CD8__fzgx_offset_0[];
+extern u8 lbl_1_data_39CE8__fzgx_offset_0[];
+extern u8 lbl_1_data_39CF8__fzgx_offset_0[];
+extern u8 lbl_1_data_39D2C__fzgx_offset_0[];
+extern u8 lbl_1_data_39DC4__fzgx_offset_0[];
+extern u8 lbl_1_data_39DDC__fzgx_offset_0[];
+extern u8 lbl_1_data_39DF4__fzgx_offset_0[];
+extern u8 lbl_1_data_39E0C__fzgx_offset_0[];
+extern u8 lbl_1_data_39E24__fzgx_offset_0[];
+extern u8 lbl_1_data_39EB0__fzgx_offset_0[];
+extern u8 lbl_1_data_39EF4__fzgx_offset_0[];
+extern u8 lbl_1_data_39F0C__fzgx_offset_0[];
+extern u8 lbl_1_data_39F24__fzgx_offset_0[];
+extern u8 lbl_1_data_39F3C__fzgx_offset_0[];
+extern u8 lbl_1_data_39F54__fzgx_offset_0[];
+extern u8 lbl_1_data_39FA4__fzgx_offset_0[];
+extern u8 lbl_1_data_3A018__fzgx_offset_0[];
+extern u8 lbl_1_data_3A01C__fzgx_offset_0[];
+extern u8 lbl_1_data_3A020__fzgx_offset_0[];
+extern u8 lbl_1_data_3A024__fzgx_offset_0[];
+extern u8 lbl_1_data_3A028__fzgx_offset_0[];
+extern u8 lbl_1_data_3A0E4__fzgx_offset_0[];
+extern u8 lbl_1_data_3A15C__fzgx_offset_0[];
+extern u8 lbl_1_data_3A160__fzgx_offset_0[];
+extern u8 lbl_1_data_3A164__fzgx_offset_0[];
+extern u8 lbl_1_data_3A168__fzgx_offset_0[];
+extern u8 lbl_1_data_3A16C__fzgx_offset_0[];
+extern u8 lbl_1_data_3A1C8__fzgx_offset_0[];
+extern u8 lbl_1_data_3A1D0__fzgx_offset_0[];
+extern u8 lbl_1_data_3A1DC__fzgx_offset_0[];
+extern u8 lbl_1_data_3A1E8__fzgx_offset_0[];
+extern u8 lbl_1_data_3A1F4__fzgx_offset_0[];
+extern u8 lbl_1_data_3A200__fzgx_offset_0[];
+extern u8 lbl_1_data_3A208__fzgx_offset_0[];
+extern u8 lbl_1_data_3A210__fzgx_offset_0[];
+extern u8 lbl_1_data_3A21C__fzgx_offset_0[];
+extern u8 lbl_1_data_3A228__fzgx_offset_0[];
+extern u8 lbl_1_data_3A234__fzgx_offset_0[];
+extern u8 lbl_1_data_3A240__fzgx_offset_0[];
+extern u8 lbl_1_data_3A248__fzgx_offset_0[];
+extern u8 lbl_1_data_3A250__fzgx_offset_0[];
+extern u8 lbl_1_data_3A25C__fzgx_offset_0[];
+extern u8 lbl_1_data_3A268__fzgx_offset_0[];
+extern u8 lbl_1_data_3A274__fzgx_offset_0[];
+extern u8 lbl_1_data_3A280__fzgx_offset_0[];
+extern u8 lbl_1_data_3A28C__fzgx_offset_0[];
+extern u8 lbl_1_data_3A294__fzgx_offset_0[];
+extern u8 lbl_1_data_3A2A0__fzgx_offset_0[];
+extern u8 lbl_1_data_3A2AC__fzgx_offset_0[];
+extern u8 lbl_1_data_3A2B8__fzgx_offset_0[];
+extern u8 lbl_1_data_3A2C4__fzgx_offset_0[];
+extern u8 lbl_1_data_3A2D0__fzgx_offset_0[];
+extern u8 lbl_1_data_3A2D8__fzgx_offset_0[];
+extern u8 lbl_1_data_3A2E4__fzgx_offset_0[];
+extern u8 lbl_1_data_3A2F0__fzgx_offset_0[];
+extern u8 lbl_1_data_3A2FC__fzgx_offset_0[];
+extern u8 lbl_1_data_3A308__fzgx_offset_0[];
+extern u8 lbl_1_data_3A314__fzgx_offset_0[];
+extern u8 lbl_1_data_3A31C__fzgx_offset_0[];
+extern u8 lbl_1_data_3A328__fzgx_offset_0[];
+extern u8 lbl_1_data_3A334__fzgx_offset_0[];
+extern u8 lbl_1_data_3A340__fzgx_offset_0[];
+extern u8 lbl_1_data_3A34C__fzgx_offset_0[];
+extern u8 lbl_1_data_3A358__fzgx_offset_0[];
+extern u8 lbl_1_data_3A360__fzgx_offset_0[];
+extern u8 lbl_1_data_3A36C__fzgx_offset_0[];
+extern u8 lbl_1_data_3A378__fzgx_offset_0[];
+extern u8 lbl_1_data_3A384__fzgx_offset_0[];
+extern u8 lbl_1_data_3A390__fzgx_offset_0[];
+extern u8 lbl_1_data_3A39C__fzgx_offset_0[];
+extern u8 lbl_1_data_3A3A4__fzgx_offset_0[];
+extern u8 lbl_1_data_3A3B0__fzgx_offset_0[];
+extern u8 lbl_1_data_3A3BC__fzgx_offset_0[];
+extern u8 lbl_1_data_3A3C8__fzgx_offset_0[];
+extern u8 lbl_1_data_3A3D4__fzgx_offset_0[];
+extern u8 lbl_1_data_3A3DC__fzgx_offset_0[];
+extern u8 lbl_1_data_3A520__fzgx_offset_0[];
+extern u8 lbl_1_data_3A524__fzgx_offset_0[];
+extern u8 lbl_1_data_3A528__fzgx_offset_0[];
+extern u8 lbl_1_data_3A52C__fzgx_offset_0[];
+extern u8 lbl_1_data_3A530__fzgx_offset_0[];
+extern u8 lbl_1_data_3A6A0__fzgx_offset_0[];
+extern u8 lbl_1_data_3A6E4__fzgx_offset_0[];
+extern u8 lbl_1_data_3A6E8__fzgx_offset_0[];
+extern u8 lbl_1_data_3A6EC__fzgx_offset_0[];
+extern u8 lbl_1_data_3A6F0__fzgx_offset_0[];
+extern u8 lbl_1_data_3A6F4__fzgx_offset_0[];
+extern u8 lbl_1_data_3A738__fzgx_offset_0[];
+extern u8 lbl_1_data_3A77C__fzgx_offset_0[];
+extern u8 lbl_1_data_3A780__fzgx_offset_0[];
+extern u8 lbl_1_data_3A784__fzgx_offset_0[];
+extern u8 lbl_1_data_3A788__fzgx_offset_0[];
+extern u8 lbl_1_data_3A78C__fzgx_offset_0[];
+extern u8 lbl_1_data_3A7D4__fzgx_offset_0[];
+extern u8 lbl_1_data_3A80C__fzgx_offset_0[];
+extern u8 lbl_1_data_3A810__fzgx_offset_0[];
+extern u8 lbl_1_data_3A814__fzgx_offset_0[];
+extern u8 lbl_1_data_3A818__fzgx_offset_0[];
+extern u8 lbl_1_data_3A81C__fzgx_offset_0[];
+extern u8 lbl_1_data_3A874__fzgx_offset_0[];
+extern u8 lbl_1_data_3A87C__fzgx_offset_0[];
+extern u8 lbl_1_data_3A880__fzgx_offset_0[];
+extern u8 lbl_1_data_3A884__fzgx_offset_0[];
+extern u8 lbl_1_data_3A888__fzgx_offset_0[];
+extern u8 lbl_1_data_3A88C__fzgx_offset_0[];
+extern u8 lbl_1_data_3A894__fzgx_offset_0[];
+extern u8 lbl_1_data_3A89C__fzgx_offset_0[];
+extern u8 lbl_1_data_3A8A0__fzgx_offset_0[];
+extern u8 lbl_1_data_3A8A4__fzgx_offset_0[];
+extern u8 lbl_1_data_3A8A8__fzgx_offset_0[];
+extern u8 lbl_1_data_3A8AC__fzgx_offset_0[];
+extern u8 lbl_1_data_3A8B4__fzgx_offset_0[];
+extern u8 lbl_1_data_3A8BC__fzgx_offset_0[];
+extern u8 lbl_1_data_3A8C0__fzgx_offset_0[];
+extern u8 lbl_1_data_3A8C4__fzgx_offset_0[];
+extern u8 lbl_1_data_3A8C8__fzgx_offset_0[];
+extern u8 lbl_1_data_3A8CC__fzgx_offset_0[];
+extern u8 lbl_1_data_3A8D4__fzgx_offset_0[];
+extern u8 lbl_1_data_3A8DC__fzgx_offset_0[];
+extern u8 lbl_1_data_3A8E0__fzgx_offset_0[];
+extern u8 lbl_1_data_3A8E4__fzgx_offset_0[];
+extern u8 lbl_1_data_3A8E8__fzgx_offset_0[];
+extern u8 lbl_1_data_3A8EC__fzgx_offset_0[];
+extern u8 lbl_1_data_3A8F4__fzgx_offset_0[];
+extern u8 lbl_1_data_3A928__fzgx_offset_0[];
+extern u8 lbl_1_data_3A92C__fzgx_offset_0[];
+extern u8 lbl_1_data_3A930__fzgx_offset_0[];
+extern u8 lbl_1_data_3A934__fzgx_offset_0[];
+extern u8 lbl_1_data_3A938__fzgx_offset_0[];
+extern u8 lbl_1_data_3A98C__fzgx_offset_0[];
+extern u8 lbl_1_data_3A9E0__fzgx_offset_0[];
+extern u8 lbl_1_data_3A9E4__fzgx_offset_0[];
+extern u8 lbl_1_data_3A9E8__fzgx_offset_0[];
+extern u8 lbl_1_data_3A9EC__fzgx_offset_0[];
+extern u8 lbl_1_data_3A9F0__fzgx_offset_0[];
+extern u8 lbl_1_data_3AA3C__fzgx_offset_0[];
+extern u8 lbl_1_data_3AA44__fzgx_offset_0[];
+extern u8 lbl_1_data_3AA48__fzgx_offset_0[];
+extern u8 lbl_1_data_3AA4C__fzgx_offset_0[];
+extern u8 lbl_1_data_3AA50__fzgx_offset_0[];
+extern u8 lbl_1_data_3AA54__fzgx_offset_0[];
+extern u8 lbl_1_data_3AA60__fzgx_offset_0[];
+extern u8 lbl_1_data_3AAA0__fzgx_offset_0[];
+extern u8 lbl_1_data_3AAB4__fzgx_offset_0[];
+extern u8 lbl_1_data_3AAC8__fzgx_offset_0[];
+extern u8 lbl_1_data_3AADC__fzgx_offset_0[];
+extern u8 lbl_1_data_3AAF0__fzgx_offset_0[];
+extern u8 lbl_1_data_3ABCC__fzgx_offset_0[];
+extern u8 lbl_1_data_3AC48__fzgx_offset_0[];
+extern u8 lbl_1_data_3AC58__fzgx_offset_0[];
+extern u8 lbl_1_data_3AC68__fzgx_offset_0[];
+extern u8 lbl_1_data_3AC78__fzgx_offset_0[];
+extern u8 lbl_1_data_3AC88__fzgx_offset_0[];
+extern u8 lbl_1_data_3AD68__fzgx_offset_0[];
+extern u8 lbl_1_data_3ADD8__fzgx_offset_0[];
+extern u8 lbl_1_data_3ADEC__fzgx_offset_0[];
+extern u8 lbl_1_data_3AE00__fzgx_offset_0[];
+extern u8 lbl_1_data_3AE14__fzgx_offset_0[];
+extern u8 lbl_1_data_3AE28__fzgx_offset_0[];
+extern u8 lbl_1_data_3AE2C__fzgx_offset_0[];
+extern u8 lbl_1_data_3AED4__fzgx_offset_0[];
+extern u8 lbl_1_data_3AEE4__fzgx_offset_0[];
+extern u8 lbl_1_data_3AEF4__fzgx_offset_0[];
+extern u8 lbl_1_data_3AF04__fzgx_offset_0[];
+extern u8 lbl_1_data_3AF14__fzgx_offset_0[];
+extern u8 lbl_1_data_3AF18__fzgx_offset_0[];
+extern u8 lbl_1_data_3AFC0__fzgx_offset_0[];
+extern u8 lbl_1_data_3AFD0__fzgx_offset_0[];
+extern u8 lbl_1_data_3AFE0__fzgx_offset_0[];
+extern u8 lbl_1_data_3AFF0__fzgx_offset_0[];
+extern u8 lbl_1_data_3B000__fzgx_offset_0[];
+extern u8 lbl_1_data_3B0B8__fzgx_offset_0[];
+extern u8 lbl_1_data_3B0E0__fzgx_offset_0[];
+extern u8 lbl_1_data_3B0F0__fzgx_offset_0[];
+extern u8 lbl_1_data_3B100__fzgx_offset_0[];
+extern u8 lbl_1_data_3B110__fzgx_offset_0[];
+extern u8 lbl_1_data_3B120__fzgx_offset_0[];
+extern u8 lbl_1_data_3B150__fzgx_offset_0[];
+extern u8 lbl_1_data_3B198__fzgx_offset_0[];
+extern u8 lbl_1_data_3B1A8__fzgx_offset_0[];
+extern u8 lbl_1_data_3B1B8__fzgx_offset_0[];
+extern u8 lbl_1_data_3B1C8__fzgx_offset_0[];
+extern u8 lbl_1_data_3B1D8__fzgx_offset_0[];
+extern u8 lbl_1_data_3B240__fzgx_offset_0[];
+extern u8 lbl_1_data_3B278__fzgx_offset_0[];
+extern u8 lbl_1_data_3B288__fzgx_offset_0[];
+extern u8 lbl_1_data_3B298__fzgx_offset_0[];
+extern u8 lbl_1_data_3B2A8__fzgx_offset_0[];
+extern u8 lbl_1_data_3B2B8__fzgx_offset_0[];
+extern u8 lbl_1_data_3B300__fzgx_offset_0[];
+extern u8 lbl_1_data_3B32C__fzgx_offset_0[];
+extern u8 lbl_1_data_3B340__fzgx_offset_0[];
+extern u8 lbl_1_data_3B354__fzgx_offset_0[];
+extern u8 lbl_1_data_3B368__fzgx_offset_0[];
+extern u8 lbl_1_data_3B37C__fzgx_offset_0[];
+extern u8 lbl_1_data_3B3AC__fzgx_offset_0[];
+extern u8 lbl_1_data_3B3C0__fzgx_offset_0[];
+extern u8 lbl_1_data_3B3D0__fzgx_offset_0[];
+extern u8 lbl_1_data_3B3E0__fzgx_offset_0[];
+extern u8 lbl_1_data_3B3F0__fzgx_offset_0[];
+extern u8 lbl_1_data_3B400__fzgx_offset_0[];
+extern u8 lbl_1_data_3B40C__fzgx_offset_0[];
+extern u8 lbl_1_data_3B420__fzgx_offset_0[];
+extern u8 lbl_1_data_3B434__fzgx_offset_0[];
+extern u8 lbl_1_data_3B448__fzgx_offset_0[];
+extern u8 lbl_1_data_3B45C__fzgx_offset_0[];
+extern u8 lbl_1_data_3B470__fzgx_offset_0[];
+extern u8 lbl_1_data_3B490__fzgx_offset_0[];
+extern u8 lbl_1_data_3B4AC__fzgx_offset_0[];
+extern u8 lbl_1_data_3B4C0__fzgx_offset_0[];
+extern u8 lbl_1_data_3B4D4__fzgx_offset_0[];
+extern u8 lbl_1_data_3B4E8__fzgx_offset_0[];
+extern u8 lbl_1_data_3B4FC__fzgx_offset_0[];
+extern u8 lbl_1_data_3B520__fzgx_offset_0[];
+extern u8 lbl_1_data_3B540__fzgx_offset_0[];
+extern u8 lbl_1_data_3B550__fzgx_offset_0[];
+extern u8 lbl_1_data_3B560__fzgx_offset_0[];
+extern u8 lbl_1_data_3B570__fzgx_offset_0[];
+extern u8 lbl_1_data_3B580__fzgx_offset_0[];
+extern u8 lbl_1_data_3B594__fzgx_offset_0[];
+extern u8 lbl_1_data_3B5C8__fzgx_offset_0[];
+extern u8 lbl_1_data_3B5DC__fzgx_offset_0[];
+extern u8 lbl_1_data_3B5F0__fzgx_offset_0[];
+extern u8 lbl_1_data_3B604__fzgx_offset_0[];
+extern u8 lbl_1_data_3B618__fzgx_offset_0[];
+extern u8 lbl_1_data_3B63C__fzgx_offset_0[];
+extern u8 lbl_1_data_3B64C__fzgx_offset_0[];
+extern u8 lbl_1_data_3B65C__fzgx_offset_0[];
+extern u8 lbl_1_data_3B66C__fzgx_offset_0[];
+extern u8 lbl_1_data_3B67C__fzgx_offset_0[];
+extern u8 lbl_1_data_3B68C__fzgx_offset_0[];
+extern u8 lbl_1_data_3B69C__fzgx_offset_0[];
+extern u8 lbl_1_data_3B6C8__fzgx_offset_0[];
+extern u8 lbl_1_data_3B6DC__fzgx_offset_0[];
+extern u8 lbl_1_data_3B6F0__fzgx_offset_0[];
+extern u8 lbl_1_data_3B704__fzgx_offset_0[];
+extern u8 lbl_1_data_3B718__fzgx_offset_0[];
+extern u8 lbl_1_data_3C1E8__fzgx_offset_0[];
+extern u8 lbl_1_data_3C1F8__fzgx_offset_0[];
+extern u8 lbl_1_data_3C20C__fzgx_offset_0[];
+extern u8 lbl_1_data_3C21C__fzgx_offset_0[];
+extern u8 lbl_1_data_3C22C__fzgx_offset_0[];
+extern u8 lbl_1_data_3C244__fzgx_offset_0[];
+extern u8 lbl_1_data_3C254__fzgx_offset_0[];
+extern u8 lbl_1_data_3C284__fzgx_offset_0[];
+extern u8 lbl_1_data_3C290__fzgx_offset_0[];
+extern u8 lbl_1_data_3C2A0__fzgx_offset_0[];
+extern u8 lbl_1_data_3C2B4__fzgx_offset_0[];
+extern u8 lbl_1_data_3C2C4__fzgx_offset_0[];
+extern u8 lbl_1_data_3C2D4__fzgx_offset_0[];
+extern u8 lbl_1_data_3C2E8__fzgx_offset_0[];
+extern u8 lbl_1_data_3C2F8__fzgx_offset_0[];
+extern u8 lbl_1_data_3C30C__fzgx_offset_0[];
+extern u8 lbl_1_data_3C320__fzgx_offset_0[];
+extern u8 lbl_1_data_3C334__fzgx_offset_0[];
+extern u8 lbl_1_data_3C348__fzgx_offset_0[];
+extern u8 lbl_1_data_3C360__fzgx_offset_0[];
+extern u8 lbl_1_data_3C374__fzgx_offset_0[];
+extern u8 lbl_1_data_3C388__fzgx_offset_0[];
+extern u8 lbl_1_data_3C398__fzgx_offset_0[];
+extern u8 lbl_1_data_3C3A8__fzgx_offset_0[];
+extern u8 lbl_1_data_3C3B8__fzgx_offset_0[];
+extern u8 lbl_1_data_3C3CC__fzgx_offset_0[];
+extern u8 lbl_1_data_3C3DC__fzgx_offset_0[];
+extern u8 lbl_1_data_3C3F4__fzgx_offset_0[];
+extern u8 lbl_1_data_3C404__fzgx_offset_0[];
+extern u8 lbl_1_data_3C418__fzgx_offset_0[];
+extern u8 lbl_1_data_3C42C__fzgx_offset_0[];
+extern u8 lbl_1_data_3C440__fzgx_offset_0[];
+extern u8 lbl_1_data_3C450__fzgx_offset_0[];
+extern u8 lbl_1_data_3C460__fzgx_offset_0[];
+extern u8 lbl_1_data_3C470__fzgx_offset_0[];
+extern u8 lbl_1_data_3C484__fzgx_offset_0[];
+extern u8 lbl_1_data_3C498__fzgx_offset_0[];
+extern u8 lbl_1_data_3C4AC__fzgx_offset_0[];
+extern u8 lbl_1_data_3C4C0__fzgx_offset_0[];
+extern u8 lbl_1_data_3C4D8__fzgx_offset_0[];
+extern u8 lbl_1_data_3C4F4__fzgx_offset_0[];
+extern u8 lbl_1_data_3C50C__fzgx_offset_0[];
+extern u8 lbl_1_data_3C520__fzgx_offset_0[];
+extern u8 lbl_1_data_3C538__fzgx_offset_0[];
+extern u8 lbl_1_data_3C550__fzgx_offset_0[];
+extern u8 lbl_1_data_3C568__fzgx_offset_0[];
+extern u8 lbl_1_data_3C578__fzgx_offset_0[];
+extern void fn_1_A2DC4(u32);
 
-typedef struct FnA7E60Object {
-    u8 pad_fc[0xfc];
-    s32 unk_fc;
-    s32 unk_100;
-    s32 unk_104;
-    s32 unk_108;
-} FnA7E60Object;
+/* fzgx:begin fn_1_A7294 */
+Obj_1_data_34348 lbl_1_data_34348 = {0x00, 0x01, 0x05, 0x07, 0x08, 0x0C, 0x0D, 0x10, 0x12, 0x17};
+
+typedef struct {
+    f32 x, y, z;
+} fn_1_A7294_Vec3;
+
+typedef struct {
+    u8 pad_0[0x324];
+    u32 unk_324;
+    s8 unk_328;
+    u8 pad_329[0x67];
+    u32 unk_390;
+    void *unk_394[3];
+    u32 unk_3a0;
+    u8 pad_3a4[0x9C];
+} A7294Elem;
+
+void fn_1_A7294(A7294Elem *arg0, u32 count) {
+    A7294Elem *e;
+    u32 i;
+    s32 t;
+    s32 j;
+    s8 c;
+    s8 v;
+    void *vec;
+
+    for (i = 0; i < count; i++) {
+        e = arg0 + i;
+        for (t = 0; t < 3; t++) {
+            e->unk_394[t] = 0;
+        }
+    }
+
+    e = arg0;
+    for (i = 0; i < count; i++, e++) {
+        c = e->unk_328;
+        if (c < 0) {
+            continue;
+        }
+        if (c == 0x22 || c == 0x27) {
+            continue;
+        }
+        if (e->unk_390 & 0x100000) {
+            continue;
+        }
+        for (j = 0; j < 3; j++) {
+            if (j == 0) {
+                v = (s8)fn_1_12C930(c);
+            } else {
+                v = (s8)fn_1_12CCB0(c, (s16)(j - 1));
+            }
+            if (v >= 0) {
+                if (!(c >= 0x29 && e->unk_3a0 != 0)) {
+                    vec = 0;
+                } else {
+                    s16 k = *(s16 *)(e->unk_3a0 + 0x360);
+                    if (k >= 0x19 && k <= 0x31) {
+                        vec = &lbl_1_data_35864[(k - 0x19) * 0xC];
+                    } else {
+                        vec = 0;
+                    }
+                }
+                if (vec) {
+                    fn_1_A7294_Vec3 tmp;
+                    psvec_add(vec, fn_1_14DD68((void *)e->unk_3a0), &tmp);
+                    vec = &tmp;
+                }
+                e->unk_394[j] = (void *)fn_1_4630(lbl_801A6410, 0x30c, "driver.c", 0x9e);
+                if (e->unk_394[j] != 0) {
+                    fn_1_A7E60(c, v, e->unk_394[j], e->unk_324, vec);
+                }
+            }
+        }
+    }
+}
+/* fzgx:end fn_1_A7294 */
+
+/* fzgx:begin fn_1_A744C */
+static char driver_texture_format[] = "%s_100.tpl";
+static char driver_texture_variant_format[] = "%s_100_cv%d.tpl";
+
+
+typedef struct Slot {
+    u8 pad_0[0x108];
+    Resource *unk_108;
+} Slot;
+typedef struct Entry {
+    u8 pad_0[0x328];
+    s8 unk_328;
+    u8 pad_329[0x6B];
+    Slot *unk_394[3];
+    u8 pad_3A0[0x18];
+    s16 unk_3B8;
+    u8 pad_3BA[0x86];
+} Entry;
+
+
+#pragma opt_common_subs off
+static inline s16 fn_1_A744C_call_fn_1_12CCB0(s16 a1, s16 a0) { return fn_1_12CCB0(a0, a1); }
+static inline Slot * fn_1_A744C_array_read(Slot * *array, s32 index) { return array[index]; }
+void fn_1_A744C(Entry *entries, u32 count) {
+    char buffer[128];
+    s16 variant;
+    s32 j;
+    Entry *subentry;
+    s32 driver;
+    char * lab_t0;
+    s32 variantArg;
+    s8 index;
+    Slot *slot;
+    Resource *resource;
+    s32 variantChoice;
+    u32 i;
+    Entry *entry;
+    char * lab_t0_;
+    fn_80006E10((u32)"chara/");
+    for (i = 0, entry = entries; i < count; i++, entry = (Entry *)((char *)entry + 0x440)) {
+        variant = entry->unk_3B8 % 4;
+        if (variant != 0) {
+            subentry = entry;
+            variantChoice = variant;
+            variantArg = variant;
+            driver = entry->unk_328;
+            for (j = 0; j < 3; j++, subentry = (Entry *)((char *)subentry + 4)) {
+                slot = fn_1_A744C_array_read(subentry->unk_394, 0);
+                if (slot != 0) {
+                    if (j == 0) {
+                        index = fn_1_12C930(driver);
+                    } else {
+                        index = fn_1_A744C_call_fn_1_12CCB0(j - 1, driver);
+                    }
+                    if (index >= 0) {
+                        if (variantChoice == 0) {
+                            lab_t0 = buffer;
+                            lab_t0_ = lab_t0;
+                            sprintf(lab_t0_, driver_texture_format, ((char **)lbl_1_data_20D1C)[index]);
+                        } else {
+                            lab_t0 = buffer;
+                            lab_t0_ = lab_t0;
+                            sprintf(lab_t0_, driver_texture_variant_format, ((char **)lbl_1_data_20D1C)[index], variantArg);
+                        }
+                        resource = fn_1_D3884(buffer);
+                        fn_80008BA8(fn_80071470((u32)slot->unk_108->unk_8, 0), (fn_80071470((u32)resource->unk_8, 0)), (fn_80077D40()));
+                        fn_80071718(resource);
+                    }
+                }
+            }
+        }
+    }
+    fn_80006E10((u32)"..");
+}
+#pragma opt_common_subs reset
+/* fzgx:end fn_1_A744C */
+
+/* fzgx:begin fn_1_A75DC */
+typedef struct {
+    u8 pad_0[0x328];
+    s8 unk_328;
+    u8 pad_329[0x6b];
+    void *unk_394;
+} Fn1A75dcObject;
+
+typedef struct {
+    u8 pad_0[0x108];
+    Fn1A75dcResult *unk_108;
+} Fn1A75dcEntry;
+
+typedef struct {
+    u8 pad_0[0x18];
+    char unk_18[0xc];
+    char unk_24[0x10];
+    char unk_34[0x8];
+    char unk_3c[0x10];
+} Fn1A75dcData;
+
+
+
+#pragma opt_common_subs on
+#pragma opt_lifetimes off
+static inline Fn1A75dcResult * fn_1_A75DC_read_pointer(Fn1A75dcEntry * owner) { return owner->unk_108; }
+#pragma opt_propagation off
+static inline void * fn_1_A75DC_read_pointer_(Fn1A75dcObject * owner) { return owner->unk_394; }
+#pragma opt_loop_invariants off
+void fn_1_A75DC(Fn1A75dcObject *obj, void *arg) {
+    s32 i;
+    Fn1A75dcObject *entry;
+    s32 index;
+    s16 lab_t1;
+    struct { void * value; } other;
+    Fn1A75dcResult *result;
+    void *first_value;
+    char buffer[0x80];
+
+    Fn1A75dcData *data;
+    fn_80006E10((u32)"chara/");
+    index = obj->unk_328;
+    entry = obj;
+    i = 0;
+    while (i < 3) {
+        Fn1A75dcEntry *item = (Fn1A75dcEntry *)fn_1_A75DC_read_pointer_(entry);
+        if (item != 0) {
+            s8 slot;
+            if (((0) == (i))) {
+                slot = fn_1_12C930(index);
+            } else {
+                lab_t1 = (s16)(i - 1);
+                slot = fn_1_12CCB0(index, lab_t1);
+            }
+            if (slot >= 0) {
+                if ((s32)arg == 0) {
+                    sprintf(buffer, driver_texture_format,
+                        ((char **)lbl_1_data_20D1C)[slot]);
+                } else {
+                    sprintf(buffer, driver_texture_variant_format,
+                        ((char **)lbl_1_data_20D1C)[slot], arg);
+                }
+                result = fn_1_D3884(buffer);
+                other.value = (void *)fn_80077D40(result);
+                first_value = (void *)fn_80071470((u32)result->unk_8, 0);
+                fn_80008BA8(fn_80071470((u32)fn_1_A75DC_read_pointer(item)->unk_8, 0),
+                    (u32)first_value, (u32)other.value);
+                fn_80071718(result);
+            }
+        }
+        i++;
+        entry = (Fn1A75dcObject *)((u8 *)entry + 4);
+    }
+    fn_80006E10((u32)"..");
+}
+#pragma opt_loop_invariants reset
+
+#pragma opt_propagation reset
+
+#pragma opt_lifetimes reset
+
+#pragma opt_common_subs reset
+/* fzgx:end fn_1_A75DC */
+
+/* fzgx:begin fn_1_A7728 */
+typedef struct FnA7728Resource {
+    u8 pad_104[0x104];
+    void *field_104;
+    void *field_108;
+} FnA7728Resource;
+
+typedef struct FnA7728Object {
+    u8 pad_394[0x394];
+    FnA7728Resource *field_394;
+} FnA7728Object;
+
+void fn_1_A7728(FnA7728Object *objects) {
+    u8 *object;
+    s32 index;
+
+    object = (u8 *)objects;
+    index = 0;
+    for (;;) {
+        if (((FnA7728Object *)object)->field_394 != 0) {
+            if (((FnA7728Object *)object)->field_394->field_108 != 0) {
+                fn_80071718(((FnA7728Object *)object)->field_394->field_108);
+                ((FnA7728Object *)object)->field_394->field_108 = 0;
+            }
+            if (((FnA7728Object *)object)->field_394->field_104 != 0) {
+                fn_800711A8(((FnA7728Object *)object)->field_394->field_104);
+                ((FnA7728Object *)object)->field_394->field_104 = 0;
+            }
+            fn_1_46B4( (u32)(void *)(lbl_801A6410), (u32)(void *)(((FnA7728Object *)object)->field_394), "driver.c", 0x115);
+            ((FnA7728Object *)object)->field_394 = 0;
+        }
+        index++;
+        object += 4;
+        if (index >= 3) {
+            break;
+        }
+    }
+}
+/* fzgx:end fn_1_A7728 */
+
+/* fzgx:begin fn_1_A77DC */
+typedef struct FnA77DCObject {
+    u8 pad_32c[0x32c];
+    void *field_32c;
+    u8 pad_330[0x64];
+    void *field_394[3];
+    u8 pad_3a0[0x1a];
+    s16 field_3ba;
+} FnA77DCObject;
+
+void fn_1_A77DC(FnA77DCObject *object) {
+    s32 index;
+
+    if (object->field_3ba == 0 || object->field_3ba == 1) {
+        for (index = 0; index < 3; index++) {
+            if (object->field_394[index] != 0) {
+                fn_1_A8528(object->field_394[index], object->field_32c);
+            }
+        }
+    }
+}
+/* fzgx:end fn_1_A77DC */
+
+/* fzgx:begin fn_1_A7854 */
+typedef struct FnA7854Object {
+    u8 pad_394[0x394];
+    void *item;
+    u8 pad_398[0x22];
+    s16 field_3ba;
+} FnA7854Object;
+
+void fn_1_A7854(FnA7854Object *object, s32 arg1) {
+    FnA7854Object *cursor;
+    s32 index;
+
+    if (object->field_3ba == 0 || object->field_3ba == 1) {
+        index = 0;
+        cursor = object;
+        do {
+            if (cursor->item != 0) {
+                fn_1_A8270(cursor->item, arg1);
+            }
+            index++;
+            cursor = (FnA7854Object *)((u8 *)cursor + 4);
+        } while (index < 3);
+    }
+}
+/* fzgx:end fn_1_A7854 */
+
+/* fzgx:begin fn_1_A78CC */
+void fn_1_A78CC(void) {
+    u32 **table;
+    s32 offset;
+    s32 index;
+
+    lbl_1_bss_6F638 = (u32)fn_1_4630(lbl_801A6410, 0xb0, "driver.c", 0x145);
+    table = (u32 **)&lbl_1_bss_6F638;
+    index = 0;
+    offset = 0;
+    do {
+        *(u32 *)((u8 *)*table + offset) =
+            (u32)fn_1_4630(lbl_801A6410, 0x30c, "driver.c", 0x147);
+        index++;
+        offset += 4;
+    } while (index < 0x2c);
+}
+/* fzgx:end fn_1_A78CC */
+
+/* fzgx:begin fn_1_A7968 */
+void fn_1_A7968(void) {
+    s32 **table;
+    s32 offset;
+    s32 index;
+
+    table = (s32 **)&lbl_1_bss_6F638;
+    offset = 0;
+    index = 0;
+    do {
+        fn_1_A7E60(41, (s8)index, (FnA7E60Object *)(s32)(*(s32 *)((u8 *)*table + offset)), -1, (void *)(s32)(0));
+        index++;
+        offset += 4;
+    } while (index < 44);
+}
+/* fzgx:end fn_1_A7968 */
+
+/* fzgx:begin fn_1_A79D8 */
+struct fn_1_A79D8_Vec {
+    u32 unk_0;
+    u32 unk_4;
+    u32 unk_8;
+};
+
+struct fn_1_A79D8_Obj {
+    u8 unk_0[0x114];
+    struct fn_1_A79D8_Vec vec;
+};
+
+
+void fn_1_A79D8(u32 arg0, struct fn_1_A79D8_Vec *arg1) {
+    u32 *table = *(u32 **)&lbl_1_bss_6F638;
+    struct fn_1_A79D8_Obj *obj = (struct fn_1_A79D8_Obj *)table[arg0];
+    struct fn_1_A79D8_Vec old = obj->vec;
+
+    obj->vec = *arg1;
+    fn_1_A8528(obj, 0);
+    fn_1_A8270( (struct fn_1_A8270_Arg0 *)(void *)(obj), (s32)(void *)(0));
+    obj->vec = old;
+}
+/* fzgx:end fn_1_A79D8 */
+
+/* fzgx:begin fn_1_A7A70 */
+void fn_1_A7A70(void) {
+    s32 index;
+    u32 *entries;
+
+    for (index = 0; index < 0x2c; index++) {
+        entries = (u32 *)lbl_1_bss_6F638;
+        if (entries[index] != 0) {
+            fn_1_46B4( (u32)(void *)(lbl_801A6410), (u32)((void *)entries[index]), "driver.c", 0x168);
+            entries = (u32 *)lbl_1_bss_6F638;
+            entries[index] = 0;
+        }
+    }
+
+    if (lbl_1_bss_6F638 != 0) {
+        fn_1_46B4( (u32)(void *)(lbl_801A6410), (u32)((void *)lbl_1_bss_6F638), "driver.c", 0x169);
+        lbl_1_bss_6F638 = 0;
+    }
+}
+/* fzgx:end fn_1_A7A70 */
+
+/* fzgx:begin fn_1_A7B30 */
+typedef struct FnA7B30Vector {
+    s32 x;
+    s32 y;
+    s32 z;
+} FnA7B30Vector;
+
+void fn_1_A7B30(s32 index, FnA7B30Vector *out) {
+    FnA7B30Vector *table = (FnA7B30Vector *)lbl_1_data_35864; *out = table[index - 25];
+}
+/* fzgx:end fn_1_A7B30 */
+
+/* fzgx:begin fn_1_A7B5C */
+typedef signed char s8;
+
+
+typedef signed long s32;
+
+
+typedef unsigned char u8;
+
+
+typedef unsigned long u32;
+
+
+typedef float f32;
+
+
+
+
+typedef struct {
+u8 unk_0;
+u8 unk_1;
+u8 unk_2;
+u8 unk_3;
+u8 unk_4;
+u8 unk_5;
+u8 unk_6;
+u8 unk_7;
+u8 unk_8;
+u8 unk_9;
+u8 pad_A[0x2];
+} fn_1_A7B5C_Obj_1_data_34348;
+
+
+typedef struct {
+u32 unk_0;
+u32 unk_4;
+u32 unk_8;
+u8 pad_C[0x204];
+} fn_1_A7B5C_Obj_1_data_343C4;
+typedef struct {
+u8 pad_0[0x48];
+f32 unk_48;
+f32 unk_4C;
+f32 unk_50;
+f32 unk_54;
+f32 unk_58;
+u8 pad_5C[0xF74];
+} fn_1_A7B5C_Obj_1_data_345D4;
+
+
+
+
+
+#pragma opt_propagation off
+
+static inline void A7B5C_init(A7B5C_Obj *obj, s8 kind, s8 type, f32 unused) {
+f32 negative;
+f32 positive;
+f32 zero;
+zero = unused;
+obj->unk_e0 = zero;
+obj->unk_dc = zero;
+obj->unk_e4 = zero;
+obj->unk_d8 = zero;
+obj->unk_120 = zero;
+obj->unk_124 = zero;
+obj->unk_128 = zero;
+obj->unk_e8 = type;
+obj->unk_e9 = (kind >= 0x29);
+if (obj->unk_e9 != 0) {
+if (type == 0x21) {
+negative = -0.1f;
+obj->unk_120 = zero;
+obj->unk_124 = zero;
+obj->unk_128 = negative;
+} else if (type == 0x2a) {
+positive = 0.1f;
+obj->unk_120 = positive;
+obj->unk_124 = zero;
+obj->unk_128 = positive;
+} else if (type == 0x2b) {
+negative = -0.1f;
+positive = 0.1f;
+obj->unk_120 = negative;
+obj->unk_124 = zero;
+obj->unk_128 = positive;
+} else if (type == 0x15) {
+positive = 0.1f;
+obj->unk_120 = zero;
+obj->unk_124 = zero;
+obj->unk_128 = positive;
+} else if (type == 0x29) {
+negative = -0.1f;
+obj->unk_120 = zero;
+obj->unk_124 = zero;
+obj->unk_128 = negative;
+}
+}
+}
+static inline void A7B5C_copy_parts(A7B5C_Mtx *parts, A7B5C_Src *src) {
+s32 i;
+for (i = 0; i < 10; i++) {
+lbl_8006DD14(src->data + (s8)(&(*((fn_1_A7B5C_Obj_1_data_34348 *)&lbl_1_data_34348)).unk_0)[i] * 0x18c + 0x88, &parts[i]);
+}
+}
+static inline void A7B5C_default_parts(A7B5C_Mtx *parts, s32 off) {
+s32 i;
+for (i = 0; i < 10; i++) {
+fn_1_A7F84((u8 *)&(*((fn_1_A7B5C_Obj_1_data_345D4 *)&lbl_1_data_345D4)) + off, i);
+lbl_8006DB74(&parts[i]);
+}
+}
+void fn_1_A7B5C(A7B5C_Obj *obj, A7B5C_Src *src, s8 kind, s8 type, fn_1_A7B5C_Vec3 *pos) {
+A7B5C_Mtx *parts;
+fn_1_A7B5C_Obj_1_data_345D4 *entry;
+s32 off;
+s32 i;
+A7B5C_init(obj, kind, type, 0.0f);
+if (pos != ((void *)0) ) {
+obj->unk_114 = *pos;
+} else {
+obj->unk_114 = ((fn_1_A7B5C_Vec3 *)&(*((fn_1_A7B5C_Obj_1_data_343C4 *)&lbl_1_data_343C4)))[type];
+}
+if (src != ((void *)0) ) {
+parts = obj->parts;
+for (i = 0; i < 10; i++, parts++) {
+lbl_8006DD14(src->data + (s8)(&(*((fn_1_A7B5C_Obj_1_data_34348 *)&lbl_1_data_34348)).unk_0)[i] * 0x18c + 0x88, parts);
+}
+obj->unk_c0 = *(f32 *)(src->data + 0xe80);
+obj->unk_c4 = *(f32 *)(src->data + 0xe90);
+obj->unk_c8 = *(f32 *)(src->data + 0xea0);
+obj->unk_cc = *(f32 *)(src->data + 0x163c);
+obj->unk_d0 = *(f32 *)(src->data + 0x164c);
+obj->unk_d4 = *(f32 *)(src->data + 0x165c);
+obj->unk_10c = *(f32 *)(src->data + 0xc74);
+obj->unk_110 = *(f32 *)(src->data + 0xe00);
+} else {
+A7B5C_Mtx *defaultParts;
+s32 j;
+defaultParts = obj->parts;
+for (j = 0; j < 10; j++, defaultParts++) {
+fn_1_A7F84((void *)((u32)&(*((fn_1_A7B5C_Obj_1_data_345D4 *)&lbl_1_data_345D4)) + type * 0x5c), j);
+lbl_8006DB74(defaultParts);
+}
+entry = (fn_1_A7B5C_Obj_1_data_345D4 *)((u8 *)&(*((fn_1_A7B5C_Obj_1_data_345D4 *)&lbl_1_data_345D4)) + type * 0x5c);
+obj->unk_c0 = entry->unk_48;
+obj->unk_c4 = entry->unk_4C;
+obj->unk_c8 = entry->unk_50;
+obj->unk_cc = -entry->unk_48;
+obj->unk_d0 = entry->unk_4C;
+obj->unk_d4 = entry->unk_50;
+obj->unk_10c = entry->unk_54;
+obj->unk_110 = entry->unk_58;
+}
+lbl_8006DBAC((u8 *)obj + 0x15c);
+lbl_8006DB74(&obj->mtx[0]);
+lbl_8006DD7C();
+lbl_8006DAEC();
+lbl_8006DFC4((u8 *)obj + 0x1bc);
+lbl_8006DB74(&obj->mtx[1]);
+lbl_8006DB30();
+lbl_8006DAEC();
+lbl_8006DFC4((u8 *)obj + 0x21c);
+lbl_8006DB74(&obj->mtx[2]);
+lbl_8006DB30();
+lbl_8006DAEC();
+lbl_8006DFC4((u8 *)obj + 0x18c);
+lbl_8006DB74(&obj->mtx[3]);
+lbl_8006DB30();
+}
+/* fzgx:end fn_1_A7B5C */
+
+/* fzgx:begin fn_1_A7E60 */
+typedef struct {
+    u8 pad0[0x24];
+    void *field_24;
+} EventData;
+
+typedef struct {
+    u8 pad0[0x8];
+    EventData *field_8;
+    void *field_c;
+} EventObject;
+
+struct fn_1_7F954_lbl_801A6410 {
+    u32 unk_0;
+};
+
+struct fn_1_7FA04_lbl_801A6410 {
+    u32 unk_0;
+};
+
+typedef struct {
+    u8 pad0[0x40];
+    void *value;
+} ResourceHolder;
+
+typedef struct {
+    u32 x;
+    u32 y;
+    u32 z;
+} RawVec3;
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+typedef struct {
+    u8 _pad_000[0x7c];
+    Vec3 field_07c;
+    u8 _pad_088[0xc4];
+    Vec3 field_14c;
+} Fn184644Object;
+
+
+typedef struct Fn195158Object Fn195158Object;
+
+
+struct TargetObj {
+    char pad[0x60];
+    char field_0x60[0xc];
+    f32 field_0x6c;
+    char pad2[0xc];
+    f32 field_0x7c;
+};
+
+struct ModelItem {
+    u32 flags;
+    char pad[0x1c];
+};
+
+struct Model {
+    char pad[0x18];
+    u16 count;
+    char pad2[0x26];
+    struct ModelItem items[1];
+};
+
+typedef struct {
+    u32 entries[41];
+} FnTable;
+
+
+
+
+typedef struct Fn195158Data Fn195158Data;
+
+
+typedef struct Fn195158Car Fn195158Car;
+
+
+
+
+typedef struct {
+    u8 pad0[0x12];
+    u16 field_12;
+    u8 pad14[0x12];
+    u8 field_26;
+    void *field_28;
+    u8 pad2c[8];
+    void *field_34;
+    u8 pad38[0x14];
+    u8 field_4c;
+} Node;
+
+
+typedef struct {
+    u8 pad0[0x24];
+    void *field_24;
+    f32 field_28;
+    f32 field_2c;
+} OutData;
+
+typedef struct {
+    u8 pad0[0x1c];
+    Node *field_1c;
+    u8 pad20[0x128];
+    u16 field_148;
+    u8 pad14a[6];
+    OutData *field_150;
+    void *field_154;
+} Owner;
+
+typedef struct Fn1967A8Resource Fn1967A8Resource;
+
+
+typedef struct Fn196968Object Fn196968Object;
+
+
+typedef struct Fn1969E8Owner Fn1969E8Owner;
+
+
+typedef struct Fn196BC0Object Fn196BC0Object;
+
+
+typedef struct Fn196A68Object Fn196A68Object;
+
+
+
+
+
+
+typedef struct Sig_fn_1_41418_Fn41418Data {
+    u32 count;
+    char *strings;
+} Sig_fn_1_41418_Fn41418Data;
+
+
+
+typedef struct fn_1_8D988_CarObject { u8 pad_0[0x40]; void *unk_40; } fn_1_8D988_CarObject;
+
+typedef struct fn_1_8D988_Car {
+    u32 unk_0; s16 unk_4; u8 pad_6[0x46e]; s8 unk_474; u8 pad_475[0xf];
+    fn_1_8D988_CarObject *unk_484; u8 pad_488[0x86]; u8 unk_50e; u8 pad_50f[0x111];
+} fn_1_8D988_Car;
+
+
+
+typedef struct Sig_fn_1_97174_Fn197174Owner Sig_fn_1_97174_Fn197174Owner;
+
+struct Sig_fn_1_97174_Fn197174Owner {
+    u8 unk_00[0x14];
+    u8 *base;
+};
+
+typedef struct fn_1_95238_lbl_801A6D00 {
+    u32 unk_0;
+} fn_1_95238_lbl_801A6D00;
+
+
+
+
 
 // Initialize the selected car data and build its localized display values.
-void fn_1_A7E60(void *arg0, s8 arg1, FnA7E60Object *object, s32 arg3, void *arg4) {
+void fn_1_A7E60(s8 arg0, s8 arg1, FnA7E60Object *object, s32 arg3, void *arg4) {
     char buffer[0x80];
     u8 *data;
     s32 index;
     s32 format_value;
 
-    data = lbl_1_data_34348;
     index = (s32)arg1;
     object->unk_fc = ((s32 *)lbl_1_data_26B60)[index];
     object->unk_100 = ((s32 *)lbl_1_data_26C14)[index];
@@ -1362,37 +2467,20 @@ void fn_1_A7E60(void *arg0, s8 arg1, FnA7E60Object *object, s32 arg3, void *arg4
         fn_1_12A2B8( (s32)(0));
     }
 
-    fn_1_12AB38(data + 0x40);
+    fn_1_12AB38("chara");
     format_value = ((s32 *)lbl_1_data_20D1C)[index];
-    sprintf(buffer, (const char *)(data + 0x18), format_value);
-    object->unk_108 = fn_1_12AC00((unsigned char *)buffer);
-    sprintf(buffer, (const char *)(data + 0x48), format_value);
-    object->unk_104 = fn_1_12ADA0((unsigned char *)buffer, object->unk_108);
-    fn_1_12AB38(data + 0x3c);
+    sprintf(buffer, driver_texture_format, format_value);
+    object->unk_108 = fn_1_12AC00(buffer);
+    sprintf(buffer, "%s_100.gma", format_value);
+    object->unk_104 = fn_1_12ADA0(buffer, object->unk_108);
+    fn_1_12AB38("..");
     fn_1_12A2B8( (s32)(0));
     fn_1_12A2C4( (s32)(0));
-    fn_1_A7B5C(object, 0, arg0, arg1, arg4);
+    fn_1_A7B5C((A7B5C_Obj *)object, 0, arg0, arg1, arg4);
 }
 /* fzgx:end fn_1_A7E60 */
 
-/* fzgx:begin fn_1_A7F84 noprologue */
-#include "types.h"
-
-struct fn_1_A7F84_lbl_1_rodata_4A28 {
-    f32 unk_0;
-};
-struct fn_1_A7F84_lbl_801A6D00 {
-    u32 unk_0;
-};
-extern struct fn_1_A7F84_lbl_1_rodata_4A28 lbl_1_rodata_4A28;
-extern struct fn_1_A7F84_lbl_801A6D00 lbl_801A6D00;
-extern u32 jumptable_1_data_3439C;
-extern u32 lbl_8006D91C(u32);
-extern u32 mathutil_mtxA_rotate_y(u32);
-extern void mathutil_mtxA_rotate_x(u32);
-extern u32 lbl_8006D998(u32);
-
-
+/* fzgx:begin fn_1_A7F84 */
 void fn_1_A7F84(void *arg0, u32 arg1) {
     switch (arg1) {
     case 0:
@@ -1409,41 +2497,41 @@ void fn_1_A7F84(void *arg0, u32 arg1) {
         lbl_8006D998(0x4000U);
         mathutil_mtxA_rotate_y((u32) (*(s16 *)((u8 *)(arg0) + 4)));
         mathutil_mtxA_rotate_x(0U);
-        (*(f32 *)((u8 *)(lbl_801A6D00.unk_0) + 12)) = (f32) lbl_1_rodata_4A28.unk_0;
-        (*(f32 *)((u8 *)(lbl_801A6D00.unk_0) + 28)) = (f32) (*(f32 *)((u8 *)(arg0) + 28));
-        (*(f32 *)((u8 *)(lbl_801A6D00.unk_0) + 44)) = (f32) (*(f32 *)((u8 *)(arg0) + 32));
+        (*(f32 *)((u8 *)((*((struct fn_1_A7F84_lbl_801A6D00 *)&lbl_801A6D00)).unk_0) + 12)) = (f32) lbl_1_rodata_4A28.unk_0;
+        (*(f32 *)((u8 *)((*((struct fn_1_A7F84_lbl_801A6D00 *)&lbl_801A6D00)).unk_0) + 28)) = (f32) (*(f32 *)((u8 *)(arg0) + 28));
+        (*(f32 *)((u8 *)((*((struct fn_1_A7F84_lbl_801A6D00 *)&lbl_801A6D00)).unk_0) + 44)) = (f32) (*(f32 *)((u8 *)(arg0) + 32));
         return;
     case 3:
         lbl_8006D998((u32) (*(s16 *)((u8 *)(arg0) + 10)));
         mathutil_mtxA_rotate_y((u32) (*(s16 *)((u8 *)(arg0) + 8)));
         mathutil_mtxA_rotate_x((u32) (*(s16 *)((u8 *)(arg0) + 6)));
-        (*(f32 *)((u8 *)(lbl_801A6D00.unk_0) + 12)) = (f32) (*(f32 *)((u8 *)(arg0) + 36));
-        (*(f32 *)((u8 *)(lbl_801A6D00.unk_0) + 28)) = (f32) (*(f32 *)((u8 *)(arg0) + 40));
-        (*(f32 *)((u8 *)(lbl_801A6D00.unk_0) + 44)) = (f32) (*(f32 *)((u8 *)(arg0) + 44));
+        (*(f32 *)((u8 *)((*((struct fn_1_A7F84_lbl_801A6D00 *)&lbl_801A6D00)).unk_0) + 12)) = (f32) (*(f32 *)((u8 *)(arg0) + 36));
+        (*(f32 *)((u8 *)((*((struct fn_1_A7F84_lbl_801A6D00 *)&lbl_801A6D00)).unk_0) + 28)) = (f32) (*(f32 *)((u8 *)(arg0) + 40));
+        (*(f32 *)((u8 *)((*((struct fn_1_A7F84_lbl_801A6D00 *)&lbl_801A6D00)).unk_0) + 44)) = (f32) (*(f32 *)((u8 *)(arg0) + 44));
         return;
     case 4:
         lbl_8006D998((u32) (*(s16 *)((u8 *)(arg0) + 16)));
         mathutil_mtxA_rotate_y((u32) (*(s16 *)((u8 *)(arg0) + 14)));
         mathutil_mtxA_rotate_x((u32) (*(s16 *)((u8 *)(arg0) + 12)));
-        (*(f32 *)((u8 *)(lbl_801A6D00.unk_0) + 12)) = (f32) (*(f32 *)((u8 *)(arg0) + 48));
-        (*(f32 *)((u8 *)(lbl_801A6D00.unk_0) + 28)) = (f32) (*(f32 *)((u8 *)(arg0) + 52));
-        (*(f32 *)((u8 *)(lbl_801A6D00.unk_0) + 44)) = (f32) (*(f32 *)((u8 *)(arg0) + 56));
+        (*(f32 *)((u8 *)((*((struct fn_1_A7F84_lbl_801A6D00 *)&lbl_801A6D00)).unk_0) + 12)) = (f32) (*(f32 *)((u8 *)(arg0) + 48));
+        (*(f32 *)((u8 *)((*((struct fn_1_A7F84_lbl_801A6D00 *)&lbl_801A6D00)).unk_0) + 28)) = (f32) (*(f32 *)((u8 *)(arg0) + 52));
+        (*(f32 *)((u8 *)((*((struct fn_1_A7F84_lbl_801A6D00 *)&lbl_801A6D00)).unk_0) + 44)) = (f32) (*(f32 *)((u8 *)(arg0) + 56));
         return;
     case 5:
         lbl_8006D998((u32) (s16) (-0x4000 - ((*(s16 *)((u8 *)(arg0) + 10)) + 0x4000)));
         mathutil_mtxA_rotate_y((u32) (*(s16 *)((u8 *)(arg0) + 8)));
         mathutil_mtxA_rotate_x((u32) (s16) (-0x4000 - ((*(s16 *)((u8 *)(arg0) + 6)) + 0x4000)));
-        (*(f32 *)((u8 *)(lbl_801A6D00.unk_0) + 12)) = (f32) -(*(f32 *)((u8 *)(arg0) + 36));
-        (*(f32 *)((u8 *)(lbl_801A6D00.unk_0) + 28)) = (f32) (*(f32 *)((u8 *)(arg0) + 40));
-        (*(f32 *)((u8 *)(lbl_801A6D00.unk_0) + 44)) = (f32) (*(f32 *)((u8 *)(arg0) + 44));
+        (*(f32 *)((u8 *)((*((struct fn_1_A7F84_lbl_801A6D00 *)&lbl_801A6D00)).unk_0) + 12)) = (f32) -(*(f32 *)((u8 *)(arg0) + 36));
+        (*(f32 *)((u8 *)((*((struct fn_1_A7F84_lbl_801A6D00 *)&lbl_801A6D00)).unk_0) + 28)) = (f32) (*(f32 *)((u8 *)(arg0) + 40));
+        (*(f32 *)((u8 *)((*((struct fn_1_A7F84_lbl_801A6D00 *)&lbl_801A6D00)).unk_0) + 44)) = (f32) (*(f32 *)((u8 *)(arg0) + 44));
         return;
     case 6:
         lbl_8006D998((u32) (s16) (0x4000 - ((*(s16 *)((u8 *)(arg0) + 16)) - 0x4000)));
         mathutil_mtxA_rotate_y((u32) (*(s16 *)((u8 *)(arg0) + 14)));
         mathutil_mtxA_rotate_x((u32) (s16) (0x4000 - ((*(s16 *)((u8 *)(arg0) + 12)) - 0x4000)));
-        (*(f32 *)((u8 *)(lbl_801A6D00.unk_0) + 12)) = (f32) -(*(f32 *)((u8 *)(arg0) + 48));
-        (*(f32 *)((u8 *)(lbl_801A6D00.unk_0) + 28)) = (f32) (*(f32 *)((u8 *)(arg0) + 52));
-        (*(f32 *)((u8 *)(lbl_801A6D00.unk_0) + 44)) = (f32) (*(f32 *)((u8 *)(arg0) + 56));
+        (*(f32 *)((u8 *)((*((struct fn_1_A7F84_lbl_801A6D00 *)&lbl_801A6D00)).unk_0) + 12)) = (f32) -(*(f32 *)((u8 *)(arg0) + 48));
+        (*(f32 *)((u8 *)((*((struct fn_1_A7F84_lbl_801A6D00 *)&lbl_801A6D00)).unk_0) + 28)) = (f32) (*(f32 *)((u8 *)(arg0) + 52));
+        (*(f32 *)((u8 *)((*((struct fn_1_A7F84_lbl_801A6D00 *)&lbl_801A6D00)).unk_0) + 44)) = (f32) (*(f32 *)((u8 *)(arg0) + 56));
         return;
     case 7:
         lbl_8006D91C(-0x4000U);
@@ -1454,76 +2542,51 @@ void fn_1_A7F84(void *arg0, u32 arg1) {
         lbl_8006D998((u32) (s16) (0x4000 - ((*(s16 *)((u8 *)(arg0) + 24)) - 0x4000)));
         mathutil_mtxA_rotate_y((u32) (*(s16 *)((u8 *)(arg0) + 22)));
         mathutil_mtxA_rotate_x((u32) (s16) (0x4000 - ((*(s16 *)((u8 *)(arg0) + 20)) - 0x4000)));
-        (*(f32 *)((u8 *)(lbl_801A6D00.unk_0) + 12)) = (f32) -(*(f32 *)((u8 *)(arg0) + 60));
-        (*(f32 *)((u8 *)(lbl_801A6D00.unk_0) + 28)) = (f32) (*(f32 *)((u8 *)(arg0) + 64));
-        (*(f32 *)((u8 *)(lbl_801A6D00.unk_0) + 44)) = (f32) (*(f32 *)((u8 *)(arg0) + 68));
+        (*(f32 *)((u8 *)((*((struct fn_1_A7F84_lbl_801A6D00 *)&lbl_801A6D00)).unk_0) + 12)) = (f32) -(*(f32 *)((u8 *)(arg0) + 60));
+        (*(f32 *)((u8 *)((*((struct fn_1_A7F84_lbl_801A6D00 *)&lbl_801A6D00)).unk_0) + 28)) = (f32) (*(f32 *)((u8 *)(arg0) + 64));
+        (*(f32 *)((u8 *)((*((struct fn_1_A7F84_lbl_801A6D00 *)&lbl_801A6D00)).unk_0) + 44)) = (f32) (*(f32 *)((u8 *)(arg0) + 68));
         return;
     case 9:
         lbl_8006D998((u32) (*(s16 *)((u8 *)(arg0) + 24)));
         mathutil_mtxA_rotate_y((u32) (*(s16 *)((u8 *)(arg0) + 22)));
         mathutil_mtxA_rotate_x((u32) (*(s16 *)((u8 *)(arg0) + 20)));
-        (*(f32 *)((u8 *)(lbl_801A6D00.unk_0) + 12)) = (f32) (*(f32 *)((u8 *)(arg0) + 60));
-        (*(f32 *)((u8 *)(lbl_801A6D00.unk_0) + 28)) = (f32) (*(f32 *)((u8 *)(arg0) + 64));
-        (*(f32 *)((u8 *)(lbl_801A6D00.unk_0) + 44)) = (f32) (*(f32 *)((u8 *)(arg0) + 68));
+        (*(f32 *)((u8 *)((*((struct fn_1_A7F84_lbl_801A6D00 *)&lbl_801A6D00)).unk_0) + 12)) = (f32) (*(f32 *)((u8 *)(arg0) + 60));
+        (*(f32 *)((u8 *)((*((struct fn_1_A7F84_lbl_801A6D00 *)&lbl_801A6D00)).unk_0) + 28)) = (f32) (*(f32 *)((u8 *)(arg0) + 64));
+        (*(f32 *)((u8 *)((*((struct fn_1_A7F84_lbl_801A6D00 *)&lbl_801A6D00)).unk_0) + 44)) = (f32) (*(f32 *)((u8 *)(arg0) + 68));
         /* fallthrough */
     default:
         return;
     }
 }
+
+/* retail data of this TU that follows the fn_1_A7F84 switch table */
+Obj_1_data_343C4 lbl_1_data_343C4 = {
+    0x00000000U,
+    0x3F1EB852U,
+    0x3F8AE148U,
+    {0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0xB8U, 0x51U, 0xEBU, 0xBEU, 0xF1U, 0x68U, 0x73U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x0CU, 0xCCU, 0xCDU, 0x3DU, 0xEBU, 0x85U, 0x1FU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x01U, 0x47U, 0xAFU, 0x3EU, 0xCCU, 0xCCU, 0xCDU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x06U, 0x66U, 0x67U, 0xBFU, 0x81U, 0x47U, 0xAFU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x21U, 0x47U, 0xAFU, 0xBFU, 0xA5U, 0x1EU, 0xB8U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0xDCU, 0x28U, 0xF7U, 0xBFU, 0x2AU, 0x3DU, 0x71U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0xDEU, 0xB8U, 0x52U, 0xBFU, 0x1CU, 0x28U, 0xF6U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x53U, 0x33U, 0x33U, 0xBEU, 0x9EU, 0xB8U, 0x52U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x23U, 0xD7U, 0x0BU, 0x3EU, 0x4CU, 0xCCU, 0xCDU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x1EU, 0xB8U, 0x52U, 0xBFU, 0x82U, 0x8FU, 0x5CU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0xC7U, 0xAEU, 0x15U, 0xBFU, 0x75U, 0xC2U, 0x90U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x3AU, 0xE1U, 0x48U, 0x3EU, 0xECU, 0xCCU, 0xCDU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0xF8U, 0x51U, 0xEBU, 0xBEU, 0x99U, 0x99U, 0x9AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x21U, 0x47U, 0xAFU, 0x3DU, 0xB8U, 0x51U, 0xEBU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0xE6U, 0x66U, 0x67U, 0x3EU, 0xFEU, 0xB8U, 0x52U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x15U, 0xC2U, 0x8FU, 0xBEU, 0x54U, 0x7AU, 0xE2U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x1DU, 0x70U, 0xA4U, 0xBEU, 0x33U, 0x33U, 0x33U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0xBFU, 0x28U, 0xF5U, 0xC3U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x6EU, 0x14U, 0x7BU, 0x3FU, 0x85U, 0x1EU, 0xB8U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x6BU, 0x85U, 0x1FU, 0x3FU, 0x87U, 0xAEU, 0x15U, 0x3FU, 0x37U, 0x0AU, 0x3EU, 0x3EU, 0xD4U, 0x7AU, 0xE2U, 0x3FU, 0x6CU, 0xCCU, 0xCDU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x05U, 0x1EU, 0xB8U, 0x3EU, 0x94U, 0x7AU, 0xE2U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0xE1U, 0x47U, 0xAFU, 0xBFU, 0x8EU, 0xB8U, 0x52U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0xC0U, 0x00U, 0x00U, 0xBEU, 0x8AU, 0x3DU, 0x71U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x42U, 0x8FU, 0x5CU, 0xBCU, 0xF5U, 0xC2U, 0x90U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0xC7U, 0xAEU, 0x15U, 0xBCU, 0xA3U, 0xD7U, 0x0BU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x3AU, 0xE1U, 0x48U, 0x3DU, 0x0FU, 0x5CU, 0x29U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x59U, 0x99U, 0x9AU, 0xBDU, 0x8FU, 0x5CU, 0x29U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0xBAU, 0x3DU, 0x71U, 0x3FU, 0x4FU, 0x5CU, 0x2AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x4CU, 0xCCU, 0xCDU, 0xBDU, 0x85U, 0x1EU, 0xB8U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x26U, 0x66U, 0x67U, 0xBEU, 0x42U, 0x8FU, 0x5CU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0xBCU, 0xCCU, 0xCDU, 0x3FU, 0x18U, 0x51U, 0xEBU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x59U, 0x99U, 0x9AU, 0xBFU, 0xDCU, 0x28U, 0xF7U, 0x00U, 0x00U, 0x00U, 0x00U, 0x40U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x10U, 0xA3U, 0xD7U, 0xBDU, 0xCCU, 0xCCU, 0xCDU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x26U, 0x66U, 0x67U, 0xBFU, 0x39U, 0x99U, 0x9AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x33U, 0x33U, 0x33U, 0xBFU, 0x6BU, 0x85U, 0x1FU, 0xBEU, 0x94U, 0x7AU, 0xE2U, 0x3FU, 0x33U, 0x33U, 0x33U, 0xBEU, 0x94U, 0x7AU, 0xE2U, 0x00U, 0x00U, 0x00U, 0x00U, 0x40U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x2FU, 0x5CU, 0x29U, 0xBEU, 0xDCU, 0x28U, 0xF7U, 0xBFU, 0x37U, 0x0AU, 0x3EU, 0x3EU, 0xB0U, 0xA3U, 0xD7U, 0x3FU, 0x4EU, 0x14U, 0x7BU, 0x3EU, 0xD7U, 0x0AU, 0x3DU, 0x3FU, 0x59U, 0x99U, 0x9AU, 0xBFU, 0x95U, 0xC2U, 0x8FU, 0xBEU, 0xD7U, 0x0AU, 0x3DU, 0x3FU, 0x59U, 0x99U, 0x9AU, 0xBFU, 0x95U, 0xC2U, 0x8FU}
+};
+Obj_1_data_345D4 lbl_1_data_345D4 = {
+    {0x15U, 0x55U, 0xFBU, 0xCDU, 0x3DU, 0x1DU, 0xCBU, 0x62U, 0x2CU, 0x8DU, 0xBEU, 0xE4U, 0x32U, 0x6DU, 0x2FU, 0xCBU, 0x28U, 0x24U, 0x15U, 0x55U, 0x77U, 0x1CU, 0x3DU, 0xCBU, 0x7CU, 0x5FU, 0x00U, 0x00U, 0x3EU, 0x2DU, 0xB0U, 0xDEU, 0x3CU, 0x89U, 0x1CU, 0x08U, 0xBEU, 0x2BU, 0xBEU, 0x44U, 0x3DU, 0xB7U, 0x31U, 0x0AU, 0xBBU, 0x37U, 0x2CU, 0x52U, 0xBEU, 0x2DU, 0x3CU, 0xFFU, 0x3DU, 0x13U, 0x27U, 0x24U, 0xBDU, 0xD9U, 0xB4U, 0x57U, 0xBDU, 0x86U, 0xB0U, 0xD9U, 0xBDU, 0xE5U, 0x2CU, 0x5AU, 0xBDU, 0x7CU, 0xC8U, 0xDEU},
+    -0.129999995f,
+    0.0949999988f,
+    -0.275000006f,
+    0.116534002f,
+    0.182986006f,
+    {0x20U, 0x00U, 0xF0U, 0xC8U, 0x3EU, 0x9BU, 0xC7U, 0x42U, 0x34U, 0x73U, 0xB7U, 0x22U, 0x3AU, 0x7DU, 0x30U, 0xA9U, 0x2BU, 0x08U, 0x20U, 0x00U, 0x40U, 0x48U, 0x30U, 0x53U, 0x3DU, 0x62U, 0x00U, 0x00U, 0x3EU, 0x46U, 0xC3U, 0xB9U, 0x3DU, 0x8AU, 0x8CU, 0x9CU, 0xBDU, 0xAFU, 0xD7U, 0xE4U, 0x3EU, 0x10U, 0xF4U, 0x95U, 0x3DU, 0x89U, 0xCEU, 0x4AU, 0xBDU, 0xC1U, 0x15U, 0xDFU, 0x3DU, 0xD3U, 0xEDU, 0x52U, 0xBDU, 0x88U, 0x53U, 0xC1U, 0xBDU, 0x25U, 0xE3U, 0x54U, 0xBDU, 0x87U, 0x11U, 0x51U, 0xBDU, 0x7FU, 0xADU, 0x2AU, 0xBDU, 0x94U, 0x7AU, 0xE1U, 0x3EU, 0x11U, 0x68U, 0x73U, 0xBEU, 0x36U, 0xC8U, 0xB4U, 0x3EU, 0x0EU, 0xC3U, 0xDBU, 0x3DU, 0xF6U, 0x81U, 0x67U, 0x0EU, 0x57U, 0xF7U, 0x53U, 0x3BU, 0x89U, 0xC4U, 0x62U, 0x2AU, 0x15U, 0xC1U, 0x4CU, 0x32U, 0xC4U, 0x38U, 0xF0U, 0x30U, 0x7BU, 0x0EU, 0x57U, 0x4AU, 0xDFU, 0x3AU, 0x99U, 0x4AU, 0x72U, 0x00U, 0x00U, 0x3EU, 0x60U, 0x57U, 0xD1U, 0x3DU, 0x25U, 0x37U, 0x5DU, 0xBDU, 0xD2U, 0x49U, 0x5EU, 0x3EU, 0x29U, 0xDEU, 0x05U, 0x3CU, 0xE3U, 0x2CU, 0x1FU, 0xBDU, 0xCDU, 0x46U, 0x6FU, 0x3DU, 0xB6U, 0x6AU, 0x55U, 0xBDU, 0xCFU, 0x05U, 0x21U, 0xBDU, 0x38U, 0x51U, 0xECU, 0xBDU, 0xBDU, 0x33U, 0xD3U, 0xBDU, 0x00U, 0x13U, 0xECU, 0xBDU, 0xBAU, 0xD4U, 0x2CU, 0x3DU, 0xE4U, 0x7AU, 0x18U, 0xBEU, 0x75U, 0x39U, 0xFCU, 0x3EU, 0x19U, 0x99U, 0x9AU, 0x3EU, 0x0FU, 0xDFU, 0x3BU, 0x18U, 0xE3U, 0xF5U, 0x42U, 0x3DU, 0xD3U, 0xCBU, 0x44U, 0x36U, 0xD0U, 0xB8U, 0x9FU, 0x33U, 0x84U, 0x37U, 0xB2U, 0x21U, 0x63U, 0x18U, 0xE3U, 0x50U, 0xB0U, 0x36U, 0xA6U, 0x59U, 0xAEU, 0x00U, 0x00U, 0x3EU, 0x53U, 0x6CU, 0x16U, 0x3DU, 0x4EU, 0x2DU, 0x1FU, 0xBDU, 0xEEU, 0x50U, 0xC6U, 0x3EU, 0x22U, 0x3BU, 0x79U, 0x3DU, 0x32U, 0xCDU, 0x7DU, 0xBDU, 0xF7U, 0x9FU, 0x23U, 0x3EU, 0x08U, 0xD3U, 0x28U, 0xBDU, 0x87U, 0xC2U, 0x87U, 0xBDU, 0x31U, 0x52U, 0xF4U, 0xBDU, 0x84U, 0x6DU, 0x83U, 0xBDU, 0x2CU, 0xEEU, 0xE1U, 0xBDU, 0xCCU, 0xCCU, 0xCDU, 0x3EU, 0x1FU, 0xBEU, 0x77U, 0xBEU, 0x5BU, 0xA5U, 0xE3U, 0x3DU, 0xE7U, 0x03U, 0x2AU, 0x3EU, 0x1AU, 0xF9U, 0x66U, 0x07U, 0x1CU, 0x1CU, 0xBAU, 0x36U, 0xB2U, 0xCAU, 0x5EU, 0x05U, 0xCEU, 0xB7U, 0xC1U, 0x1FU, 0xE1U, 0x31U, 0x5FU, 0x17U, 0x78U, 0x07U, 0x1CU, 0x5BU, 0x4BU, 0x35U, 0x49U, 0x69U, 0xF7U, 0x00U, 0x00U, 0x3EU, 0x81U, 0xBBU, 0xCFU, 0xBEU, 0x35U, 0x89U, 0xF0U, 0xBEU, 0x1FU, 0x55U, 0x15U, 0x3EU, 0x44U, 0xFBU, 0x55U, 0xBEU, 0x34U, 0x47U, 0xC3U, 0xBEU, 0x42U, 0xAFU, 0xDEU, 0x3CU, 0xC5U, 0xACU, 0x47U, 0xBEU, 0x4DU, 0x82U, 0xBAU, 0xBDU, 0x8FU, 0x5CU, 0x29U, 0xBDU, 0xC9U, 0xB0U, 0xEEU, 0xBCU, 0x8EU, 0x38U, 0xA8U, 0xBEU, 0x11U, 0xA7U, 0xE3U, 0x3DU, 0x62U, 0x36U, 0xC1U, 0xBEU, 0xB4U, 0xA6U, 0xA8U, 0x3EU, 0x31U, 0xA9U, 0xFCU, 0x3EU, 0x26U, 0x66U, 0x66U, 0x09U, 0xBEU, 0x15U, 0x86U, 0x32U, 0x8CU, 0xC8U, 0x0DU, 0x24U, 0xC6U, 0xC0U, 0x98U, 0x20U, 0xF6U, 0x38U, 0xC9U, 0x1BU, 0x87U, 0x09U, 0xC2U, 0x58U, 0x81U, 0x3CU, 0x62U, 0x57U, 0xCDU, 0x00U, 0x00U, 0x3EU, 0x39U, 0x48U, 0x13U, 0xBDU, 0xFAU, 0x33U, 0x37U, 0xBEU, 0x0CU, 0xCCU, 0xCDU, 0x3EU, 0x0CU, 0xF5U, 0x2CU, 0xBDU, 0x92U, 0xB9U, 0x0AU, 0xBEU, 0x0BU, 0x46U, 0xBBU, 0x3DU, 0x11U, 0x1CU, 0xF3U, 0xBEU, 0x4DU, 0xFAU, 0x44U, 0xBDU, 0x85U, 0x1EU, 0xB8U, 0xBDU, 0xD3U, 0x72U, 0xA4U, 0xBCU, 0xF8U, 0xAFU, 0x3EU, 0xBDU, 0xEAU, 0xE9U, 0x68U, 0x3DU, 0x57U, 0x10U, 0x88U, 0xBEU, 0xB5U, 0x1BU, 0x93U, 0x3EU, 0x28U, 0xF5U, 0xC3U, 0x3EU, 0x1EU, 0xB8U, 0x52U, 0x18U, 0xE3U, 0xF7U, 0x61U, 0x3EU, 0x65U, 0xCEU, 0x74U, 0x29U, 0xAFU, 0xB7U, 0x3EU, 0x13U, 0x20U, 0x37U, 0xADU, 0xFEU, 0x3DU, 0x18U, 0xE3U, 0x69U, 0xBAU, 0x3DU, 0xA6U, 0x69U, 0x02U, 0x00U, 0x00U, 0x3EU, 0x61U, 0xC9U, 0x71U, 0x3DU, 0x32U, 0x3CU, 0xC9U, 0xBDU, 0xEDU, 0xDFU, 0x01U, 0x3EU, 0x1FU, 0xAFU, 0x86U, 0x3CU, 0xC4U, 0x69U, 0x51U, 0xBEU, 0x04U, 0x95U, 0x18U, 0x3DU, 0xC2U, 0x54U, 0xA4U, 0xBDU, 0xA0U, 0xB2U, 0x42U, 0xBDU, 0x61U, 0x47U, 0xAEU, 0xBDU, 0x79U, 0x23U, 0xA3U, 0xBDU, 0x21U, 0xEEU, 0x67U, 0xBDU, 0xCFU, 0x0EU, 0x0BU, 0x3DU, 0xBFU, 0xD1U, 0x57U, 0xBEU, 0x5CU, 0xBAU, 0xF9U, 0x3DU, 0xF5U, 0xC1U, 0x83U, 0x3EU, 0x0FU, 0x5CU, 0xAFU, 0x20U, 0x98U, 0xE8U, 0x21U, 0x31U, 0xFFU, 0xA8U, 0xB6U, 0x3AU, 0xC9U, 0x93U, 0xADU, 0x47U, 0x51U, 0x2FU, 0xD4U, 0x31U, 0x92U, 0x20U, 0x98U, 0x52U, 0xA2U, 0x32U, 0x94U, 0x63U, 0xC4U, 0x00U, 0x00U, 0x3EU, 0x43U, 0x12U, 0xB2U, 0x3DU, 0xEDU, 0x7EU, 0x89U, 0xBEU, 0x0BU, 0x5FU, 0x5FU, 0x3DU, 0xEBU, 0xA1U, 0xF5U, 0x3DU, 0xAEU, 0xC8U, 0xD6U, 0xBEU, 0x22U, 0x1AU, 0x72U, 0x3DU, 0xD3U, 0xCCU, 0x4BU, 0xBDU, 0xE0U, 0x0DU, 0x1BU, 0xBDU, 0x71U, 0xA9U, 0xFCU, 0xBDU, 0x9AU, 0x19U, 0x01U, 0xBDU, 0x9DU, 0x3EU, 0x4FU, 0xBEU, 0x00U, 0x00U, 0x00U, 0x3EU, 0x46U, 0x24U, 0xDDU, 0xBEU, 0xADU, 0x4FU, 0xDFU, 0x3EU, 0x49U, 0x0FU, 0xF9U, 0x3EU, 0x7EU, 0x61U, 0x07U, 0x07U, 0x1CU, 0x02U, 0xA9U, 0x3FU, 0x79U, 0xD8U, 0x37U, 0x2FU, 0xDAU, 0xB2U, 0x79U, 0x31U, 0x3CU, 0x25U, 0x49U, 0x0FU, 0xDDU, 0x07U, 0x1CU, 0x9AU, 0xDBU, 0x2FU, 0x7CU, 0xA3U, 0x0AU, 0x00U, 0x00U, 0x3EU, 0xA0U, 0xD9U, 0x51U, 0xBBU, 0x99U, 0xA6U, 0x2FU, 0xBEU, 0x5AU, 0x52U, 0x69U, 0x3EU, 0x5EU, 0x36U, 0x8FU, 0x3AU, 0x2DU, 0xCDU, 0x2DU, 0xBEU, 0x74U, 0x4FU, 0x1AU, 0x3EU, 0x12U, 0xD7U, 0x73U, 0xBEU, 0x3DU, 0xD7U, 0xEDU, 0xBDU, 0xF4U, 0x8CU, 0xB5U, 0xBDU, 0xBDU, 0xBDU, 0xB6U, 0xBCU, 0x62U, 0x00U, 0x3BU, 0xBEU, 0x00U, 0x00U, 0x00U, 0x3EU, 0x42U, 0x8FU, 0x5CU, 0xBEU, 0xB0U, 0xA3U, 0xD7U, 0x3EU, 0x4EU, 0x87U, 0xD3U, 0x3EU, 0x4EU, 0x31U, 0xD7U, 0x1CU, 0x71U, 0xF3U, 0x40U, 0x3EU, 0x68U, 0xC7U, 0x1DU, 0x32U, 0x70U, 0xB3U, 0x7DU, 0x25U, 0x14U, 0x3CU, 0x3AU, 0x11U, 0xECU, 0x1CU, 0x71U, 0xB4U, 0x79U, 0x3DU, 0x2BU, 0xB4U, 0x37U, 0x00U, 0x00U, 0x3EU, 0x43U, 0xFAU, 0x2BU, 0x3DU, 0x5BU, 0xA0U, 0xA5U, 0xBDU, 0xC5U, 0x75U, 0x3AU, 0x3EU, 0x04U, 0x69U, 0x94U, 0x3DU, 0x5AU, 0xB6U, 0xD0U, 0xBDU, 0xE2U, 0x2CU, 0xCBU, 0x3DU, 0xAEU, 0x42U, 0x18U, 0xBDU, 0xA5U, 0x79U, 0xF2U, 0xBDU, 0x24U, 0x5FU, 0x5BU, 0xBDU, 0x6AU, 0x15U, 0x12U, 0xBDU, 0x37U, 0x05U, 0x85U, 0xBDU, 0xCCU, 0xCCU, 0xCDU, 0x3DU, 0xB8U, 0x51U, 0xECU, 0xBEU, 0x51U, 0xEBU, 0x85U, 0x3EU, 0x11U, 0x65U, 0x4DU, 0x3DU, 0xFFU, 0x75U, 0x97U, 0x1BU, 0x05U, 0xF5U, 0x12U, 0x3FU, 0x6FU, 0xC9U, 0x05U, 0x1BU, 0xD4U, 0xB4U, 0x01U, 0x1FU, 0xE3U, 0x36U, 0x1EU, 0x0EU, 0xBFU, 0x1BU, 0x05U, 0x76U, 0x7AU, 0x39U, 0x74U, 0x7DU, 0xC8U, 0x00U, 0x00U, 0x3EU, 0x5FU, 0x13U, 0x06U, 0x3DU, 0x57U, 0xB0U, 0xF7U, 0xBDU, 0xEDU, 0x91U, 0x68U, 0x3EU, 0x18U, 0x87U, 0x23U, 0x3DU, 0x56U, 0x6BU, 0xE8U, 0xBEU, 0x17U, 0x6BU, 0xC2U, 0x3DU, 0x33U, 0x99U, 0xF6U, 0xBDU, 0x17U, 0xA4U, 0x61U, 0xBDU, 0x61U, 0x47U, 0xAEU, 0xBDU, 0x70U, 0x53U, 0x1AU, 0xBDU, 0x2EU, 0xBEU, 0x59U, 0xBDU, 0xCCU, 0xCCU, 0xCDU, 0x3DU, 0x7DU, 0xD5U, 0x4EU, 0xBEU, 0x79U, 0xBFU, 0x59U, 0x3EU, 0x10U, 0xFFU, 0x11U, 0x3EU, 0x5AU, 0x39U, 0xC5U, 0x18U, 0xE3U, 0xF6U, 0xC2U, 0x39U, 0xFBU, 0xC5U, 0xECU, 0x23U, 0xAAU, 0xBBU, 0x71U, 0x31U, 0x86U, 0x35U, 0x00U, 0x28U, 0xE4U, 0x18U, 0xE3U, 0x53U, 0x84U, 0x3AU, 0xD7U, 0x52U, 0xA9U, 0x00U, 0x00U, 0x3EU, 0x60U, 0xE0U, 0xA8U, 0x3DU, 0x29U, 0x22U, 0xD9U, 0xBDU, 0xA3U, 0xD7U, 0x0AU, 0x3EU, 0x1AU, 0x9EU, 0x2CU, 0x3DU, 0x3CU, 0xF7U, 0x01U, 0xBDU, 0xB6U, 0x7AU, 0x96U, 0x3DU, 0x8FU, 0x62U, 0xFAU, 0xBDU, 0x53U, 0x02U, 0x71U, 0xBDU, 0x1DU, 0xD7U, 0xEDU, 0xBDU, 0x5CU, 0x10U, 0xD8U, 0xBDU, 0x0DU, 0x92U, 0xFBU, 0xBDU, 0x8FU, 0x5CU, 0x29U, 0x3DU, 0xCCU, 0xCCU, 0xCDU, 0xBEU, 0x38U, 0x51U, 0xECU, 0x3EU, 0x02U, 0x3DU, 0x0CU, 0x3EU, 0x08U, 0x83U, 0x34U, 0x0CU, 0xCCU, 0xFCU, 0xDFU, 0x30U, 0x90U, 0xC6U, 0x97U, 0x23U, 0x42U, 0xBAU, 0x09U, 0x17U, 0x13U, 0x3AU, 0xF2U, 0x0CU, 0x37U, 0x0CU, 0xCCU, 0x67U, 0x0CU, 0x3DU, 0x14U, 0x6AU, 0xABU, 0x00U, 0x00U, 0x3EU, 0x80U, 0x75U, 0xF7U, 0x3CU, 0x10U, 0x92U, 0x8AU, 0xBDU, 0xE0U, 0x4AU, 0x73U, 0x3EU, 0x41U, 0x45U, 0x95U, 0x3CU, 0x36U, 0x62U, 0xFEU, 0xBDU, 0xF8U, 0x04U, 0xDAU, 0x3DU, 0xE1U, 0xAAU, 0x3FU, 0xBDU, 0xA8U, 0x27U, 0x31U, 0xBDU, 0x41U, 0x54U, 0xCAU, 0xBDU, 0xC2U, 0x81U, 0x34U, 0xBCU, 0xBEU, 0x39U, 0xF7U, 0xBDU, 0xCAU, 0x26U, 0xE5U, 0x3DU, 0xEFU, 0xD7U, 0x5EU, 0xBEU, 0x8AU, 0x4DU, 0xF4U, 0x3DU, 0xFAU, 0xCFU, 0xFAU, 0x3EU, 0x42U, 0x05U, 0xFFU, 0x20U, 0x00U, 0xF3U, 0x73U, 0x3EU, 0xC7U, 0xBAU, 0xE1U, 0x2CU, 0xD3U, 0xA3U, 0xE0U, 0x44U, 0xF4U, 0x2CU, 0x25U, 0x2CU, 0xD3U, 0x20U, 0x00U, 0x5FU, 0x31U, 0x38U, 0xA4U, 0x60U, 0x5CU, 0x00U, 0x00U, 0x3EU, 0x47U, 0x47U, 0xD8U, 0x3DU, 0x60U, 0x25U, 0x39U, 0xBDU, 0xC7U, 0xAFU, 0x21U, 0x3DU, 0xF0U, 0x19U, 0xF4U, 0x3DU, 0x6DU, 0x58U, 0xC9U, 0xBEU, 0x09U, 0x28U, 0x5BU, 0x3DU, 0x95U, 0xB9U, 0x1FU, 0xBDU, 0x5FU, 0x70U, 0xDFU, 0xBDU, 0x1FU, 0xBEU, 0x77U, 0xBDU, 0x59U, 0x3AU, 0x2EU, 0xBDU, 0x4AU, 0xBEU, 0x6AU, 0xBDU, 0xD7U, 0x0AU, 0x3DU, 0x3EU, 0x05U, 0x1EU, 0xB8U, 0xBEU, 0x33U, 0x33U, 0x33U, 0x3EU, 0x01U, 0x3FU, 0x4BU, 0x3EU, 0x0BU, 0x96U, 0xAFU, 0x0AU, 0xAAU, 0xF2U, 0x22U, 0x3FU, 0x81U, 0xCBU, 0xADU, 0x26U, 0x4AU, 0xAEU, 0xACU, 0x2CU, 0x68U, 0x30U, 0xFAU, 0x12U, 0xB3U, 0x0AU, 0xAAU, 0x81U, 0xD6U, 0x39U, 0x3CU, 0x87U, 0xECU, 0x00U, 0x00U, 0x3EU, 0x81U, 0x98U, 0x4AU, 0x3DU, 0xA4U, 0xD7U, 0xF1U, 0xBDU, 0xFDU, 0x70U, 0x1EU, 0x3EU, 0x42U, 0xB3U, 0x46U, 0x3CU, 0xD7U, 0xAFU, 0xEAU, 0xBEU, 0x2FU, 0xAEU, 0xBCU, 0x3DU, 0xADU, 0x38U, 0xCEU, 0xBEU, 0x07U, 0x6FU, 0x6DU, 0xBDU, 0xA2U, 0xAEU, 0xD1U, 0xBDU, 0xC4U, 0x1CU, 0x3FU, 0xBCU, 0xBCU, 0xEEU, 0x9EU, 0xBDU, 0xE1U, 0x47U, 0xAEU, 0x3DU, 0xEBU, 0x85U, 0x1FU, 0xBEU, 0x9EU, 0xB8U, 0x52U, 0x3EU, 0x49U, 0x21U, 0x04U, 0x3EU, 0x43U, 0x1DU, 0xF7U, 0x0EU, 0x38U, 0xF6U, 0x0BU, 0x3FU, 0x4AU, 0xC4U, 0xB4U, 0x22U, 0x82U, 0xB6U, 0xFDU, 0x33U, 0x03U, 0x35U, 0xFDU, 0x26U, 0xD6U, 0x0EU, 0x38U, 0xA9U, 0x13U, 0x3CU, 0xA2U, 0xA8U, 0x57U, 0x00U, 0x00U, 0x3EU, 0x6FU, 0xBAU, 0x02U, 0x3DU, 0x8EU, 0xB0U, 0x32U, 0xBDU, 0xD2U, 0xBEU, 0x49U, 0x3EU, 0x1BU, 0x3CU, 0x82U, 0x3DU, 0x49U, 0x40U, 0xBCU, 0xBDU, 0xF6U, 0xCBU, 0x53U, 0x3DU, 0x96U, 0x2EU, 0x90U, 0xBDU, 0x2AU, 0x78U, 0xAFU, 0xBDU, 0x4CU, 0x80U, 0x41U, 0xBDU, 0x8DU, 0x48U, 0x02U, 0xBCU, 0xB7U, 0xD8U, 0x49U, 0xBDU, 0xCCU, 0xCCU, 0xCDU, 0x3DU, 0xD1U, 0x4DU, 0xB6U, 0xBEU, 0x3BU, 0x30U, 0xF9U, 0x3DU, 0xF8U, 0x10U, 0xE9U, 0x3EU, 0x15U, 0x0DU, 0x28U, 0x00U, 0x00U, 0x22U, 0xC9U, 0x36U, 0x95U, 0xD4U, 0x37U, 0xFEU, 0x8EU, 0xA4U, 0x9BU, 0x12U, 0xD6U, 0x29U, 0x2AU, 0xFBU, 0x0EU, 0x00U, 0x00U, 0xA3U, 0xAFU, 0x3BU, 0xFAU, 0xA2U, 0x9BU, 0x00U, 0x00U, 0x3EU, 0x46U, 0x87U, 0xB1U, 0xBEU, 0x4DU, 0x00U, 0xF7U, 0xBDU, 0xEDU, 0x91U, 0x68U, 0x3EU, 0x11U, 0x35U, 0x54U, 0xBEU, 0x15U, 0x6CU, 0x0DU, 0xBEU, 0x62U, 0x53U, 0x54U, 0x3CU, 0x21U, 0xDBU, 0x87U, 0xBEU, 0x0FU, 0x4CU, 0xF5U, 0xBDU, 0x47U, 0xFEU, 0xD2U, 0xBDU, 0xABU, 0xF6U, 0x5EU, 0x3BU, 0x23U, 0xD7U, 0x0AU, 0xBEU, 0x0FU, 0x5CU, 0x29U, 0x00U, 0x00U, 0x00U, 0x00U, 0xBEU, 0x8AU, 0x3DU, 0x71U, 0x3EU, 0x2CU, 0xC7U, 0x8FU, 0x3EU, 0x1DU, 0x3BU, 0xF3U, 0x0AU, 0x97U, 0xF9U, 0x6FU, 0x3FU, 0xA0U, 0xC7U, 0xECU, 0x25U, 0xB8U, 0xC2U, 0x7BU, 0xECU, 0xA2U, 0x3AU, 0xAAU, 0xE8U, 0x9DU, 0x0AU, 0x97U, 0x94U, 0xA2U, 0x38U, 0x53U, 0x99U, 0xA8U, 0x00U, 0x00U, 0x3EU, 0x59U, 0xA3U, 0x90U, 0x3CU, 0xF7U, 0xDFU, 0xA0U, 0xBDU, 0xEBU, 0x4EU, 0x98U, 0x3EU, 0x1AU, 0x6AU, 0xCAU, 0x3BU, 0x9FU, 0x94U, 0x85U, 0xBDU, 0xE1U, 0xE9U, 0x29U, 0x3DU, 0x9AU, 0xB8U, 0x63U, 0xBDU, 0xC3U, 0x3EU, 0x79U, 0xBDU, 0x4CU, 0x59U, 0x75U, 0xBDU, 0x90U, 0xCFU, 0x5BU, 0xBCU, 0x84U, 0xD3U, 0x39U, 0xBDU, 0xC4U, 0xA8U, 0xC1U, 0x3DU, 0x87U, 0xCEU, 0x10U, 0xBEU, 0x65U, 0xD0U, 0x74U, 0x3EU, 0x00U, 0x68U, 0x55U, 0x3EU, 0x05U, 0x55U, 0x82U, 0x16U, 0xC1U, 0xF7U, 0xE8U, 0x37U, 0x1BU, 0xCEU, 0x7BU, 0x21U, 0x88U, 0xB3U, 0xCEU, 0x22U, 0x91U, 0x31U, 0x16U, 0x0CU, 0xECU, 0x16U, 0xC1U, 0x61U, 0x40U, 0x38U, 0xBBU, 0x67U, 0xB1U, 0x00U, 0x00U, 0x3EU, 0x61U, 0xC3U, 0xF0U, 0x3DU, 0x37U, 0xD7U, 0x3DU, 0xBDU, 0xECU, 0x16U, 0xDFU, 0x3EU, 0x1DU, 0xF1U, 0x9DU, 0x3DU, 0x03U, 0x4AU, 0x02U, 0xBEU, 0x11U, 0x9BU, 0x91U, 0x3DU, 0x89U, 0x3DU, 0x10U, 0xBDU, 0x87U, 0xECU, 0xFFU, 0xBDU, 0x57U, 0x8EU, 0x5CU, 0xBDU, 0x80U, 0xA2U, 0x87U, 0xBDU, 0x14U, 0xACU, 0x2AU, 0xBDU, 0xB8U, 0x51U, 0xECU, 0x3DU, 0xACU, 0x52U, 0x1EU, 0xBEU, 0x56U, 0xB9U, 0x3DU, 0x3EU, 0x09U, 0x76U, 0xBCU, 0x3EU, 0x1DU, 0x2BU, 0xF5U, 0x1CU, 0x71U, 0xF8U, 0x1EU, 0x38U, 0x20U, 0xC9U, 0xCDU, 0x36U, 0xBEU, 0xC6U, 0xA9U, 0x28U, 0x6FU, 0x3BU, 0xFEU, 0x25U, 0xA0U, 0x1CU, 0x71U, 0x4BU, 0x97U, 0x34U, 0xF5U, 0x55U, 0xCEU, 0x00U, 0x00U, 0x3EU, 0x7CU, 0x3AU, 0x86U, 0x3DU, 0x45U, 0xADU, 0x54U, 0xBDU, 0xEDU, 0x40U, 0x25U, 0x3EU, 0x3AU, 0x08U, 0xC0U, 0x3DU, 0x50U, 0x96U, 0xBCU, 0xBDU, 0xE0U, 0x50U, 0xBEU, 0x3EU, 0x12U, 0xD5U, 0xE0U, 0xBDU, 0xEFU, 0x53U, 0x3FU, 0xBDU, 0x46U, 0x19U, 0x54U, 0xBDU, 0xB1U, 0x71U, 0xE3U, 0xBDU, 0x8EU, 0x2FU, 0xBEU, 0xBDU, 0xCCU, 0xCCU, 0xCDU, 0x3EU, 0x1FU, 0xBEU, 0x77U, 0xBEU, 0x8DU, 0xD2U, 0xF2U, 0x3EU, 0x30U, 0x57U, 0xD1U, 0x3EU, 0x24U, 0xC8U, 0x36U, 0x20U, 0x00U, 0xF7U, 0x2EU, 0x3FU, 0x3DU, 0xC5U, 0xFCU, 0x38U, 0xE9U, 0xBEU, 0xCEU, 0x3CU, 0x96U, 0x33U, 0x78U, 0x35U, 0xA7U, 0x20U, 0x00U, 0x3FU, 0xE3U, 0x35U, 0x38U, 0x3CU, 0xD0U, 0x00U, 0x00U, 0x3EU, 0x5DU, 0x5AU, 0xE2U, 0x3DU, 0x2EU, 0x19U, 0xB9U, 0xBDU, 0xA8U, 0x32U, 0xBAU, 0x3EU, 0x17U, 0xBDU, 0xCFU, 0x3DU, 0x33U, 0x99U, 0xF6U, 0xBDU, 0xA9U, 0xBEU, 0x90U, 0x3DU, 0xFAU, 0xDFU, 0x2FU, 0xBDU, 0xD1U, 0xA7U, 0xE3U, 0xBDU, 0x31U, 0x19U, 0x48U, 0xBDU, 0x82U, 0xAFU, 0x57U, 0xBDU, 0x76U, 0xE3U, 0xF8U, 0xBDU, 0x94U, 0x7AU, 0xE1U, 0x3EU, 0x26U, 0x66U, 0x66U, 0xBEU, 0x6EU, 0x14U, 0x7BU, 0x3EU, 0x18U, 0x05U, 0xE6U, 0x3EU, 0x0BU, 0xCFU, 0xD5U, 0x07U, 0x1CU, 0xFAU, 0xEFU, 0x39U, 0x26U, 0xBFU, 0xC2U, 0x1FU, 0xEDU, 0xB1U, 0x06U, 0x40U, 0xA1U, 0x34U, 0xA9U, 0x31U, 0xCDU, 0x07U, 0x1CU, 0x41U, 0xB3U, 0x3CU, 0x0CU, 0x41U, 0x98U, 0x00U, 0x00U, 0x3EU, 0x86U, 0x2FU, 0x16U, 0x3CU, 0xD6U, 0x6FU, 0x0DU, 0xBDU, 0x97U, 0xF7U, 0xBEU, 0x3EU, 0x3BU, 0xABU, 0xA8U, 0x3CU, 0xC3U, 0xACU, 0x93U, 0xBDU, 0xDCU, 0x82U, 0x9DU, 0x3DU, 0xC5U, 0x59U, 0xF7U, 0xBDU, 0x8DU, 0x1BU, 0xF8U, 0xBDU, 0x45U, 0xE1U, 0xC1U, 0xBDU, 0xE4U, 0x7BU, 0x24U, 0xBCU, 0x8CU, 0x5AU, 0x81U, 0xBDU, 0xB8U, 0x51U, 0xECU, 0x3EU, 0x14U, 0x7AU, 0xE1U, 0xBEU, 0x80U, 0x00U, 0x00U, 0x3EU, 0x06U, 0x9EU, 0x3DU, 0x3EU, 0x40U, 0xDEU, 0x09U, 0x0EU, 0x38U, 0xF5U, 0x9CU, 0x3FU, 0x27U, 0xCEU, 0x6EU, 0x25U, 0xFEU, 0xBFU, 0x43U, 0x1DU, 0x97U, 0x34U, 0x97U, 0x11U, 0xE5U, 0x0EU, 0x3BU, 0x8FU, 0xCDU, 0x3DU, 0x13U, 0x8EU, 0xB1U, 0x00U, 0x00U, 0x3EU, 0x6DU, 0xA5U, 0x55U, 0x3DU, 0x5FU, 0x3AU, 0x58U, 0xBDU, 0xDEU, 0x26U, 0x91U, 0x3EU, 0x29U, 0x0BU, 0x41U, 0x3DU, 0x0EU, 0x97U, 0x07U, 0xBDU, 0xE0U, 0xDCU, 0xBAU, 0x3DU, 0xBCU, 0xB1U, 0xCDU, 0xBDU, 0x82U, 0x19U, 0xEBU, 0xBDU, 0x41U, 0xD2U, 0x9EU, 0xBDU, 0x8DU, 0x44U, 0xDDU, 0xBCU, 0xB8U, 0x00U, 0x22U, 0xBDU, 0xA0U, 0xBEU, 0x51U, 0x3DU, 0xDAU, 0xD1U, 0x8DU, 0xBEU, 0x3CU, 0x38U, 0xF3U, 0x3DU, 0xFAU, 0xC6U, 0x04U, 0x3EU, 0x00U, 0x29U, 0xF1U, 0x0EU, 0x38U, 0xF6U, 0x33U, 0x3EU, 0x97U, 0xCEU, 0x83U, 0x21U, 0x55U, 0xB3U, 0x24U, 0x14U, 0x1BU, 0x34U, 0xD5U, 0xFDU, 0x18U, 0x0EU, 0x38U, 0x48U, 0x9DU, 0x34U, 0x63U, 0x47U, 0x68U, 0x00U, 0x00U, 0x3EU, 0x94U, 0x65U, 0x41U, 0x3DU, 0x83U, 0x46U, 0x56U, 0xBEU, 0x06U, 0xCDU, 0x29U, 0x3EU, 0x50U, 0xCEU, 0x0CU, 0x3DU, 0x8FU, 0xAAU, 0xCEU, 0xBEU, 0x2AU, 0x00U, 0xE2U, 0x3DU, 0xCAU, 0x07U, 0xF6U, 0xBDU, 0x44U, 0xE4U, 0x00U, 0xBDU, 0x55U, 0x72U, 0x58U, 0xBDU, 0xC5U, 0x49U, 0xB6U, 0xBDU, 0x04U, 0xADU, 0x79U, 0xBDU, 0xEBU, 0x85U, 0x1FU, 0x3DU, 0xC2U, 0x8FU, 0x5CU, 0xBEU, 0x6BU, 0x85U, 0x1FU, 0x3EU, 0x25U, 0xDEU, 0x9CU, 0x3EU, 0x41U, 0x85U, 0x06U, 0x20U, 0x00U, 0xEFU, 0xA0U, 0x3FU, 0xC9U, 0xC5U, 0x53U, 0x2AU, 0x83U, 0xADU, 0x75U, 0x35U, 0x97U, 0x35U, 0x4EU, 0x1EU, 0xC8U, 0x20U, 0x00U, 0x7DU, 0x1FU, 0x3DU, 0x06U, 0x7FU, 0x6FU, 0x00U, 0x00U, 0x3EU, 0x56U, 0x15U, 0x66U, 0x3DU, 0xA0U, 0x7BU, 0xBBU, 0xBDU, 0xEBU, 0x4EU, 0x98U, 0x3EU, 0x1EU, 0x0CU, 0x9EU, 0x3DU, 0x33U, 0xCEU, 0x64U, 0xBEU, 0x10U, 0xD6U, 0x6FU, 0x3DU, 0xCCU, 0xFEU, 0x15U, 0xBDU, 0x74U, 0xE9U, 0x81U, 0xBDU, 0x61U, 0x47U, 0xAEU, 0xBDU, 0x59U, 0x3AU, 0x2EU, 0xBDU, 0x4AU, 0xBEU, 0x6AU, 0xBDU, 0xEBU, 0x85U, 0x1FU, 0x3EU, 0x00U, 0x00U, 0x00U, 0xBEU, 0x47U, 0xAEU, 0x14U, 0x3DU, 0xF5U, 0xC1U, 0x83U, 0x3EU, 0x0FU, 0x5CU, 0xAFU, 0x1CU, 0x71U, 0xF3U, 0x98U, 0x3DU, 0x11U, 0xCDU, 0xF3U, 0x3AU, 0x6BU, 0xD1U, 0xF2U, 0x39U, 0xA9U, 0x33U, 0xC3U, 0x3EU, 0x0FU, 0x1CU, 0x71U, 0x4AU, 0x55U, 0x35U, 0x78U, 0x51U, 0xBCU, 0x00U, 0x00U, 0x3EU, 0x5EU, 0xDDU, 0x8BU, 0x3DU, 0x7FU, 0x73U, 0x7EU, 0xBDU, 0xCEU, 0xAAU, 0xF3U, 0x3EU, 0x10U, 0x47U, 0x0BU, 0x3DU, 0x85U, 0x7AU, 0x78U, 0xBDU, 0xBCU, 0x8EU, 0x26U, 0x3DU, 0xFAU, 0x1EU, 0xC5U, 0xBDU, 0xAEU, 0xBEU, 0x59U, 0xBDU, 0x2AU, 0x27U, 0xF2U, 0xBDU, 0x89U, 0x32U, 0x0EU, 0xBDU, 0x64U, 0xD1U, 0xA6U, 0xBDU, 0xB8U, 0x51U, 0xECU, 0x3EU, 0x29U, 0x78U, 0xD5U, 0xBEU, 0x66U, 0xE9U, 0x79U, 0x3EU, 0x1BU, 0x91U, 0x71U, 0x3EU, 0x16U, 0x44U, 0x95U, 0x0AU, 0xAAU, 0xF6U, 0xE5U, 0x3EU, 0x4AU, 0xD5U, 0x4FU, 0x1FU, 0xCDU, 0xB3U, 0x69U, 0x1FU, 0x4CU, 0x2AU, 0xFAU, 0x05U, 0xD8U, 0x0AU, 0xAAU, 0x62U, 0x87U, 0x3AU, 0xA7U, 0x61U, 0x8BU, 0x00U, 0x00U, 0x3EU, 0xB7U, 0x31U, 0xF4U, 0x3DU, 0x9DU, 0x12U, 0x45U, 0xBEU, 0x53U, 0xA7U, 0xDBU, 0x3EU, 0x8CU, 0x27U, 0xA6U, 0x3DU, 0x96U, 0x84U, 0x06U, 0xBEU, 0x80U, 0x8DU, 0xF3U, 0x3EU, 0x09U, 0xE8U, 0xC4U, 0xBDU, 0x91U, 0x8BU, 0x93U, 0xBDU, 0xEAU, 0xFBU, 0xC2U, 0xBDU, 0x90U, 0xBFU, 0xA1U, 0xBCU, 0x85U, 0xE5U, 0xF3U, 0xBEU, 0x14U, 0x7AU, 0xE1U, 0x3EU, 0x19U, 0x99U, 0x9AU, 0xBEU, 0x85U, 0x1EU, 0xB8U, 0x3EU, 0x52U, 0x5FU, 0xA6U, 0x3EU, 0x5EU, 0x6EU, 0xA8U, 0x15U, 0x55U, 0xF7U, 0x17U, 0x3BU, 0xCCU, 0xC8U, 0xA7U, 0x24U, 0xA0U, 0xACU, 0xB9U, 0x30U, 0x2CU, 0x31U, 0x98U, 0x16U, 0xFAU, 0x15U, 0x55U, 0x55U, 0xEBU, 0x39U, 0xB5U, 0x5EU, 0xCEU, 0x00U, 0x00U, 0x3EU, 0x80U, 0xEEU, 0xF2U, 0x3DU, 0x44U, 0x09U, 0xE5U, 0xBDU, 0xEDU, 0x91U, 0x68U, 0x3EU, 0x34U, 0x92U, 0xFFU, 0x3DU, 0x4EU, 0xA9U, 0xE7U, 0xBEU, 0x22U, 0xF2U, 0x73U, 0x3DU, 0xBCU, 0x9BU, 0xC7U, 0xBDU, 0x8CU, 0x60U, 0x46U, 0xBDU, 0x61U, 0x47U, 0xAEU, 0xBDU, 0x83U, 0x26U, 0x5BU, 0xBDU, 0x0BU, 0x9AU, 0x9EU, 0xBDU, 0xEBU, 0x85U, 0x1FU, 0x3DU, 0xF5U, 0xC2U, 0x8FU, 0xBEU, 0x57U, 0x0AU, 0x3DU, 0x3EU, 0x1BU, 0xB2U, 0x35U, 0x3EU, 0x1AU, 0x67U, 0x62U, 0x0EU, 0x38U, 0xF9U, 0xD5U, 0x3FU, 0xEDU, 0xD3U, 0xA6U, 0x1DU, 0x53U, 0xACU, 0xD8U, 0x1FU, 0x8AU, 0x2BU, 0x3FU, 0x01U, 0x9BU, 0x0EU, 0x38U, 0x5CU, 0x30U, 0x2DU, 0x9CU, 0x5FU, 0xA4U, 0x00U, 0x00U, 0x3EU, 0xA5U, 0x05U, 0x29U, 0x3DU, 0x74U, 0xEBU, 0x9AU, 0xBEU, 0x1EU, 0x18U, 0x26U, 0x3EU, 0x7FU, 0x57U, 0x2EU, 0x3CU, 0xE1U, 0xD6U, 0x49U, 0xBEU, 0x58U, 0x92U, 0xEFU, 0x3EU, 0x0CU, 0x45U, 0xCCU, 0xBDU, 0xA9U, 0xD7U, 0xBAU, 0xBDU, 0x81U, 0x06U, 0x25U, 0xBDU, 0xB6U, 0xD3U, 0xB7U, 0xBDU, 0x05U, 0x14U, 0x3CU, 0xBEU, 0x0AU, 0x3DU, 0x71U, 0x3EU, 0x0FU, 0x5CU, 0x29U, 0xBEU, 0x61U, 0x47U, 0xAEU, 0x3EU, 0x2BU, 0xA6U, 0x6AU, 0x3EU, 0x20U, 0xC4U, 0x59U, 0x20U, 0x00U, 0xF0U, 0x5CU, 0x37U, 0x08U, 0xC2U, 0x02U, 0x21U, 0x6FU, 0xA4U, 0x8AU, 0x3DU, 0xD8U, 0x23U, 0xFBU, 0x21U, 0x67U, 0x20U, 0x00U, 0x45U, 0xBBU, 0x21U, 0x7DU, 0x51U, 0x7BU, 0x00U, 0x00U, 0x3EU, 0x93U, 0x23U, 0x57U, 0x3DU, 0xF8U, 0x03U, 0xCDU, 0xBEU, 0x0DU, 0xFBU, 0x50U, 0x3EU, 0x51U, 0x90U, 0x8EU, 0x3DU, 0x8DU, 0x49U, 0x0EU, 0xBEU, 0x57U, 0xEBU, 0xF2U, 0x3DU, 0xEAU, 0x03U, 0x3EU, 0xBDU, 0x61U, 0xDCU, 0x94U, 0xBDU, 0x67U, 0x6CU, 0x8BU, 0xBDU, 0x90U, 0xCEU, 0xD5U, 0xBDU, 0x90U, 0xD2U, 0x80U, 0xBEU, 0x01U, 0x32U, 0xB5U, 0x3EU, 0x51U, 0xEBU, 0x85U, 0xBEU, 0x53U, 0x30U, 0x94U, 0x3EU, 0x2DU, 0xC1U, 0x61U, 0x3EU, 0x48U, 0x3BU, 0xA3U, 0x15U, 0x55U, 0xFBU, 0x65U, 0x3DU, 0xF2U, 0xCAU, 0xFAU, 0x2BU, 0xF9U, 0xC1U, 0x6BU, 0x11U, 0xF8U, 0x3AU, 0x52U, 0x09U, 0xD0U, 0x15U, 0x55U, 0xA4U, 0xE9U, 0x36U, 0x99U, 0xA8U, 0x33U, 0x00U, 0x00U, 0x3EU, 0x75U, 0x01U, 0x9FU, 0x3DU, 0x07U, 0x58U, 0x19U, 0xBEU, 0x0DU, 0xD6U, 0x9DU, 0x3EU, 0x1BU, 0x9AU, 0x9EU, 0x3CU, 0xE3U, 0xF5U, 0x73U, 0xBEU, 0x0AU, 0xFAU, 0xB5U, 0x3DU, 0x92U, 0xFDU, 0xB9U, 0xBDU, 0xF9U, 0xF4U, 0xD3U, 0xBDU, 0x67U, 0x6CU, 0x8BU, 0xBDU, 0xB1U, 0x5BU, 0xDDU, 0xBDU, 0x4CU, 0xCEU, 0xE6U, 0xBDU, 0xEAU, 0x2BU, 0x17U, 0x3DU, 0x9DU, 0xBFU, 0x48U, 0xBEU, 0x8EU, 0xDAU, 0xCBU, 0x3EU, 0x2EU, 0x14U, 0x7BU, 0x3EU, 0x22U, 0x4DU, 0xD3U, 0x20U, 0x00U, 0xF8U, 0x61U, 0x3DU, 0xC4U, 0xD9U, 0x40U, 0x27U, 0x86U, 0xB4U, 0x3BU, 0x1AU, 0x8BU, 0x2EU, 0xA9U, 0xFAU, 0xF4U, 0x20U, 0x00U, 0x60U, 0xD8U, 0x34U, 0xB6U, 0x63U, 0xECU, 0x00U, 0x00U, 0x3EU, 0xE2U, 0x8DU, 0xCAU, 0x3DU, 0x83U, 0xAFU, 0x32U, 0xBEU, 0x5CU, 0xF0U, 0x74U, 0x3EU, 0xAFU, 0xFDU, 0xA4U, 0x3DU, 0xA7U, 0xA5U, 0x2BU, 0xBEU, 0x81U, 0xF7U, 0xD7U, 0x3EU, 0x5CU, 0xC1U, 0x44U, 0xBDU, 0xE7U, 0xECU, 0xFFU, 0xBDU, 0xE8U, 0x39U, 0x04U, 0xBDU, 0xB7U, 0xE4U, 0xDEU, 0xBDU, 0xB0U, 0xA6U, 0xFCU, 0xBEU, 0x24U, 0xB4U, 0x8DU, 0x3EU, 0x50U, 0xE6U, 0x6DU, 0xBEU, 0xA3U, 0xD6U, 0x1FU, 0x3EU, 0x72U, 0x30U, 0x34U, 0x3EU, 0x68U, 0x71U, 0xE7U, 0x11U, 0xC7U, 0xFDU, 0xF7U, 0x3FU, 0xD5U, 0xCEU, 0x10U, 0x2AU, 0x7EU, 0xB4U, 0x89U, 0x01U, 0x37U, 0x39U, 0x04U, 0xE9U, 0x7FU, 0x11U, 0xC7U, 0x59U, 0x0AU, 0x36U, 0x80U, 0x5BU, 0xECU, 0x00U, 0x00U, 0x3EU, 0x51U, 0x6FU, 0x87U, 0x3CU, 0xAAU, 0xDAU, 0x34U, 0xBDU, 0xADU, 0x01U, 0x3BU, 0x3EU, 0x1EU, 0xF5U, 0xEDU, 0x3BU, 0x2CU, 0x8EU, 0x69U, 0xBDU, 0xD5U, 0x7AU, 0x35U, 0x3DU, 0xB1U, 0xE2U, 0x15U, 0xBDU, 0xF4U, 0x98U, 0xC4U, 0xBDU, 0x4DU, 0x74U, 0x92U, 0xBDU, 0x88U, 0xBCU, 0x17U, 0xBCU, 0xE8U, 0x70U, 0x97U, 0xBDU, 0xAEU, 0x14U, 0x7BU, 0x3DU, 0x99U, 0x99U, 0x9AU, 0xBEU, 0x80U, 0x00U, 0x00U, 0x3EU, 0x10U, 0xB1U, 0x36U, 0x3EU, 0x07U, 0xB0U, 0x70U, 0x15U, 0x55U, 0xF2U, 0xE4U, 0x3DU, 0x98U, 0xB9U, 0xAFU, 0x1FU, 0x4CU, 0x95U, 0x99U, 0x4CU, 0x50U, 0x30U, 0x6CU, 0x25U, 0x7AU, 0x15U, 0x55U, 0x3FU, 0x5FU, 0x38U, 0x90U, 0x3FU, 0x6EU, 0x00U, 0x00U, 0x3EU, 0x1CU, 0x46U, 0xD8U, 0x3DU, 0x3BU, 0x8EU, 0x4CU, 0xBDU, 0x8AU, 0xB1U, 0x4FU, 0x3DU, 0xCAU, 0xAFU, 0x36U, 0x3CU, 0xF2U, 0x4DU, 0x90U, 0xBDU, 0xCDU, 0x89U, 0x8BU, 0x3DU, 0xA3U, 0x82U, 0x1BU, 0xBBU, 0xE4U, 0x75U, 0x60U, 0xBDU, 0x39U, 0x96U, 0xFBU, 0xBCU, 0xA6U, 0x4AU, 0x17U, 0xBCU, 0x40U, 0x01U, 0x0CU, 0xBDU, 0xAEU, 0x14U, 0x7BU, 0x3DU, 0xCCU, 0xCCU, 0xCDU, 0xBDU, 0x8FU, 0x5CU, 0x29U, 0x3DU, 0x57U, 0x77U, 0x4BU, 0x3DU, 0x8BU, 0x20U, 0x75U, 0x1CU, 0x71U, 0xF8U, 0x1CU, 0x38U, 0x20U, 0xBBU, 0x32U, 0x31U, 0x74U, 0xBBU, 0x70U, 0x4AU, 0x15U, 0x39U, 0x1FU, 0x49U, 0xE3U, 0x1CU, 0x71U, 0xBAU, 0x22U, 0x3FU, 0xFAU, 0xBAU, 0x21U, 0x00U, 0x00U, 0x3EU, 0x4EU, 0x4DU, 0xE4U, 0x3DU, 0x4DU, 0x35U, 0xA8U, 0xBDU, 0xBBU, 0x25U, 0xF6U, 0x3DU, 0xF1U, 0xC5U, 0xC5U, 0x3DU, 0x10U, 0xDEU, 0x09U, 0xBDU, 0xC5U, 0x9DU, 0x99U, 0x3DU, 0x94U, 0xBAU, 0x52U, 0xBDU, 0xB2U, 0x97U, 0x7DU, 0xBDU, 0x1FU, 0x7FU, 0x8DU, 0xBDU, 0xA9U, 0x07U, 0x96U, 0xBDU, 0x8DU, 0xD2U, 0x6BU, 0xBDU, 0xD7U, 0x0AU, 0x3DU, 0x3DU, 0xDBU, 0x22U, 0xD1U, 0xBEU, 0x97U, 0x0AU, 0x3DU, 0x3EU, 0x05U, 0xF5U, 0xAEU, 0x3EU, 0x57U, 0xDAU, 0x1FU, 0x1CU, 0x71U, 0xF6U, 0xD8U, 0x3EU, 0x98U, 0xC8U, 0x7AU, 0x2CU, 0x71U, 0xB1U, 0x8AU, 0x28U, 0x79U, 0x38U, 0xD8U, 0x12U, 0xC2U, 0x1CU, 0x71U, 0x55U, 0x37U, 0x31U, 0x12U, 0x5EU, 0x5DU, 0x00U, 0x00U, 0x3EU, 0x49U, 0xE8U, 0x81U, 0x3DU, 0x2DU, 0x1AU, 0xEBU, 0xBDU, 0xA3U, 0x05U, 0xD9U, 0x3EU, 0x0DU, 0xBFU, 0x48U, 0x3CU, 0xCAU, 0x64U, 0x3DU, 0xBDU, 0xC0U, 0xBFU, 0xE4U, 0x3DU, 0xCBU, 0x48U, 0x4DU, 0xBDU, 0x63U, 0x60U, 0x8DU, 0xBDU, 0x0BU, 0xB1U, 0xAFU, 0xBDU, 0x46U, 0xE7U, 0xE6U, 0xBDU, 0x26U, 0xE4U, 0x3BU, 0xBDU, 0x9EU, 0xB8U, 0x52U, 0x3DU, 0xDCU, 0x28U, 0xF6U, 0xBEU, 0x23U, 0xD7U, 0x0AU, 0x3DU, 0xB9U, 0x39U, 0x22U, 0x3DU, 0xD9U, 0x55U, 0xF8U, 0x20U, 0x00U, 0xF7U, 0x3AU, 0x3FU, 0x2AU, 0xBDU, 0xD1U, 0x39U, 0x16U, 0xB6U, 0xE0U, 0x41U, 0x86U, 0x36U, 0x07U, 0x3AU, 0x82U, 0x20U, 0x00U, 0x40U, 0x12U, 0x35U, 0x44U, 0x3DU, 0x1DU, 0x00U, 0x00U, 0x3EU, 0x32U, 0xD0U, 0xA2U, 0x3DU, 0x01U, 0x4EU, 0x7FU, 0xBDU, 0x8CU, 0x78U, 0xEAU, 0x3DU, 0xE4U, 0xA2U, 0xFDU, 0x3DU, 0x12U, 0x26U, 0x3EU, 0xBDU, 0x97U, 0x4AU, 0x34U, 0x3DU, 0xB5U, 0x26U, 0x52U, 0xBDU, 0xD3U, 0x39U, 0x7EU, 0xBDU, 0x25U, 0xE3U, 0x54U, 0xBDU, 0x87U, 0x12U, 0xE4U, 0xBDU, 0x7FU, 0xAAU, 0x04U, 0xBDU, 0x8FU, 0x5CU, 0x29U, 0x3DU, 0xEFU, 0x9DU, 0xB2U, 0xBEU, 0x5FU, 0xBEU, 0x77U, 0x3EU, 0x10U, 0x38U, 0x5CU, 0x3DU, 0xF3U, 0x84U, 0xFDU, 0x07U, 0x1CU, 0xF6U, 0x77U, 0x3FU, 0xF0U, 0xC6U, 0x36U, 0x23U, 0xA4U, 0xB8U, 0xA3U, 0x25U, 0x0CU, 0x39U, 0x85U, 0x19U, 0x27U, 0x07U, 0x1CU, 0x95U, 0x39U, 0x3EU, 0x2FU, 0x94U, 0x93U, 0x00U, 0x00U, 0x3EU, 0x2BU, 0x55U, 0xACU, 0x3CU, 0xEFU, 0xB0U, 0x92U, 0xBDU, 0x9DU, 0x02U, 0x8AU, 0x3DU, 0xFBU, 0x54U, 0x19U, 0x3DU, 0x1DU, 0x50U, 0xA9U, 0xBDU, 0xB9U, 0x1EU, 0x64U, 0x3DU, 0x43U, 0x12U, 0x6FU, 0xBDU, 0x58U, 0xECU, 0x96U, 0xBDU, 0x14U, 0xBFU, 0x0AU, 0xBDU, 0x7AU, 0x33U, 0x37U, 0xBCU, 0x06U, 0xD7U, 0x1FU, 0xBDU, 0x97U, 0x75U, 0xB8U, 0x3DU, 0x72U, 0xDBU, 0x1FU, 0xBEU, 0x36U, 0xDCU, 0x5DU, 0x3DU, 0xF3U, 0xD6U, 0x41U, 0x3EU, 0x02U, 0x46U, 0x39U, 0x03U, 0x8EU, 0xE6U, 0xE4U, 0x3AU, 0xFBU, 0xAAU, 0x09U, 0x32U, 0x9EU, 0x93U, 0xEBU, 0x52U, 0x1FU, 0x2FU, 0xE6U, 0x39U, 0xCBU, 0x03U, 0x8EU, 0x75U, 0x6FU, 0x38U, 0xA3U, 0x75U, 0xDEU, 0x00U, 0x00U, 0x3EU, 0x26U, 0x79U, 0x46U, 0x3DU, 0x9AU, 0xD8U, 0xE4U, 0xBDU, 0x83U, 0x2FU, 0xCBU, 0x3DU, 0x74U, 0x05U, 0xF7U, 0x3DU, 0x4AU, 0xF3U, 0xE4U, 0xBDU, 0xCAU, 0xE1U, 0x8BU, 0x3DU, 0x27U, 0xC2U, 0x87U, 0xBDU, 0x88U, 0xCAU, 0x3EU, 0xBCU, 0xE6U, 0x12U, 0x84U, 0xBDU, 0x72U, 0x4AU, 0x6BU, 0xBBU, 0xA9U, 0x8AU, 0xA8U, 0xBDU, 0xB8U, 0x51U, 0xECU, 0x3DU, 0xCCU, 0xCCU, 0xCDU, 0xBEU, 0x57U, 0x0AU, 0x3DU, 0x3DU, 0xFBU, 0xB8U, 0xC3U, 0x3EU, 0x1EU, 0xE4U, 0x19U, 0x03U, 0x8EU, 0x00U, 0x00U, 0x3EU, 0x73U, 0xB1U, 0x02U, 0x2BU, 0xF0U, 0x86U, 0xD0U, 0x60U, 0xD7U, 0x36U, 0x4EU, 0x34U, 0x6AU, 0x03U, 0x8EU, 0xB8U, 0x2FU, 0x39U, 0xDCU, 0xB7U, 0x29U, 0x00U, 0x00U, 0x3EU, 0x9EU, 0x2EU, 0xD3U, 0xBBU, 0x6CU, 0xFAU, 0x6AU, 0xBDU, 0x92U, 0xCAU, 0x58U, 0x3EU, 0x3AU, 0x73U, 0xF7U, 0x38U, 0xB8U, 0x8CU, 0xA4U, 0xBDU, 0xF8U, 0x42U, 0xB7U, 0x3EU, 0x31U, 0xE3U, 0x22U, 0xBDU, 0xBFU, 0xA1U, 0x1BU, 0xBDU, 0xE4U, 0x1DU, 0x4BU, 0xBCU, 0xCBU, 0x61U, 0xFEU, 0xBBU, 0x12U, 0x14U, 0x6AU, 0xBDU, 0xEBU, 0x85U, 0x1FU, 0x3EU, 0x47U, 0xAEU, 0x14U, 0xBEU, 0x3DU, 0x70U, 0xA4U, 0x3DU, 0xD9U, 0xABU, 0xF3U, 0x3DU, 0xC0U, 0xADU, 0x8AU, 0x0BU, 0x60U, 0xF7U, 0x32U, 0x3FU, 0xF4U, 0xC7U, 0xCDU, 0x2BU, 0xB2U, 0xBEU, 0x17U, 0x28U, 0x0AU, 0x39U, 0x4AU, 0x1FU, 0x83U, 0x0BU, 0x60U, 0x40U, 0x00U, 0x3BU, 0x2EU, 0x40U, 0x00U, 0x00U, 0x00U, 0x3EU, 0x67U, 0xF0U, 0x67U, 0x3DU, 0x14U, 0x7BU, 0xEEU, 0xBDU, 0xEDU, 0xDFU, 0x01U, 0x3EU, 0x27U, 0x73U, 0x19U, 0x3CU, 0xD8U, 0x03U, 0xCDU, 0xBDU, 0xF4U, 0x59U, 0xDAU, 0x3DU, 0xC4U, 0xE8U, 0x32U, 0xBDU, 0xC7U, 0xDAU, 0xA5U, 0xBDU, 0x61U, 0x47U, 0xAEU, 0xBDU, 0x97U, 0x47U, 0x95U, 0xBCU, 0x98U, 0x2AU, 0x99U, 0xBDU, 0xCCU, 0xCCU, 0xCDU, 0x3DU, 0xEBU, 0x85U, 0x1FU, 0xBEU, 0x85U, 0x1EU, 0xB8U, 0x3EU, 0x10U, 0x81U, 0x3DU, 0x3EU, 0x28U, 0x98U, 0x2DU, 0x0AU, 0xAAU, 0xFDU, 0x89U, 0x31U, 0xDFU, 0x69U, 0x0EU, 0x34U, 0xD5U, 0x57U, 0x30U, 0x4DU, 0x5BU, 0x1FU, 0xCAU, 0x38U, 0x68U, 0x0AU, 0xAAU, 0x9AU, 0x7FU, 0x31U, 0xC5U, 0x95U, 0xB3U, 0x00U, 0x00U, 0x3EU, 0x44U, 0xF7U, 0xECU, 0x3CU, 0xBDU, 0x7FU, 0x52U, 0xBDU, 0xAEU, 0x24U, 0x35U, 0x3DU, 0xEFU, 0x04U, 0x14U, 0x3CU, 0x1FU, 0xB1U, 0xE2U, 0xBDU, 0xC6U, 0xF0U, 0x4AU, 0x3EU, 0x0AU, 0xE4U, 0x2AU, 0xBDU, 0x8FU, 0xB9U, 0x7CU, 0xBDU, 0x77U, 0x84U, 0x66U, 0xBDU, 0x40U, 0x29U, 0xF1U, 0xBCU, 0x23U, 0x9CU, 0x52U, 0xBDU, 0xAEU, 0x14U, 0x7BU, 0x3EU, 0x4CU, 0xCCU, 0xCDU, 0xBEU, 0x0AU, 0x3DU, 0x71U, 0x3DU, 0xAAU, 0x08U, 0x7DU, 0x3DU, 0xBCU, 0xB9U, 0xAAU, 0x15U, 0x55U, 0xF2U, 0xE4U, 0x3DU, 0x98U, 0xB9U, 0xAFU, 0x1FU, 0x4CU, 0x95U, 0x99U, 0x4CU, 0x50U, 0x30U, 0x6CU, 0x25U, 0x7AU, 0x15U, 0x55U, 0x3FU, 0x5FU, 0x38U, 0x90U, 0x3FU, 0x6EU, 0x00U, 0x00U, 0x3EU, 0x1CU, 0x46U, 0xD8U, 0x3DU, 0x3BU, 0x8EU, 0x4CU, 0xBDU, 0x8AU, 0xB1U, 0x4FU, 0x3DU, 0xCAU, 0xAFU, 0x36U, 0x3CU, 0xF2U, 0x4DU, 0x90U, 0xBDU, 0xCDU, 0x89U, 0x8BU, 0x3DU, 0xA3U, 0x82U, 0x1BU, 0xBBU, 0xE4U, 0x75U, 0x60U, 0xBDU, 0x39U, 0x96U, 0xFBU, 0xBCU, 0xA6U, 0x4AU, 0x17U, 0xBCU, 0x40U, 0x01U, 0x0CU, 0xBDU, 0xAEU, 0x14U, 0x7BU, 0x3DU, 0xCCU, 0xCCU, 0xCDU, 0xBDU, 0x8FU, 0x5CU, 0x29U, 0x3DU, 0x57U, 0x77U, 0x4BU, 0x3DU, 0x8BU, 0x20U, 0x75U, 0x15U, 0x55U, 0xF2U, 0xE4U, 0x3DU, 0x98U, 0xB9U, 0xAFU, 0x1FU, 0x4CU, 0x95U, 0x99U, 0x4CU, 0x50U, 0x30U, 0x6CU, 0x25U, 0x7AU, 0x15U, 0x55U, 0x3FU, 0x5FU, 0x38U, 0x90U, 0x3FU, 0x6EU, 0x00U, 0x00U, 0x3EU, 0x1CU, 0x46U, 0xD8U, 0x3DU, 0x3BU, 0x8EU, 0x4CU, 0xBDU, 0x8AU, 0xB1U, 0x4FU, 0x3DU, 0xCAU, 0xAFU, 0x36U, 0x3CU, 0xF2U, 0x4DU, 0x90U, 0xBDU, 0xCDU, 0x89U, 0x8BU, 0x3DU, 0xA3U, 0x82U, 0x1BU, 0xBBU, 0xE4U, 0x75U, 0x60U, 0xBDU, 0x39U, 0x96U, 0xFBU, 0xBCU, 0xA6U, 0x4AU, 0x17U, 0xBCU, 0x40U, 0x01U, 0x0CU, 0xBDU, 0xAEU, 0x14U, 0x7BU, 0x3DU, 0xCCU, 0xCCU, 0xCDU, 0xBDU, 0x8FU, 0x5CU, 0x29U, 0x3DU, 0x57U, 0x77U, 0x4BU, 0x3DU, 0x8BU, 0x20U, 0x75U}
+};
+u8 lbl_1_data_355A4[0xB0] = {
+    0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x66U, 0x66U, 0x66U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x66U, 0x66U, 0x66U, 0x3FU, 0x4CU, 0xCCU, 0xCDU, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x59U, 0x99U, 0x9AU, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x40U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x59U, 0x99U, 0x9AU, 0x3FU, 0x59U, 0x99U, 0x9AU, 0x3FU, 0x59U, 0x99U, 0x9AU, 0x3FU, 0x26U, 0x66U, 0x66U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x40U, 0x00U, 0x00U, 0x3FU, 0x40U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U
+};
+u8 lbl_1_data_35654[0x210] = {
+    0x00U, 0x00U, 0x00U, 0x00U, 0x3DU, 0x23U, 0xD7U, 0x0AU, 0x3CU, 0x23U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0xBDU, 0x23U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3CU, 0xA3U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0xBCU, 0xA3U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3CU, 0x23U, 0xD7U, 0x0AU, 0x3DU, 0xF5U, 0xC2U, 0x8FU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3CU, 0x23U, 0xD7U, 0x0AU, 0x3DU, 0xF5U, 0xC2U, 0x8FU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3CU, 0xF5U, 0xC2U, 0x8FU, 0x3CU, 0x23U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3CU, 0xA3U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0xBCU, 0xF5U, 0xC2U, 0x8FU, 0xBCU, 0x23U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3DU, 0x23U, 0xD7U, 0x0AU, 0xBCU, 0x23U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3DU, 0x23U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0xBCU, 0x23U, 0xD7U, 0x0AU, 0xBCU, 0x23U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0xBCU, 0x23U, 0xD7U, 0x0AU, 0x3DU, 0x23U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0xBCU, 0xA3U, 0xD7U, 0x0AU, 0xBCU, 0xA3U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3CU, 0xA3U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3CU, 0x23U, 0xD7U, 0x0AU, 0xBCU, 0x23U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3DU, 0x75U, 0xC2U, 0x8FU, 0x3DU, 0xB8U, 0x51U, 0xECU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3CU, 0xF5U, 0xC2U, 0x8FU, 0x3CU, 0xA3U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3CU, 0x23U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0xBDU, 0x4CU, 0xCCU, 0xCDU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3CU, 0xA3U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0xBDU, 0x75U, 0xC2U, 0x8FU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3CU, 0xF5U, 0xC2U, 0x8FU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0xBCU, 0xA3U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0xBCU, 0xF5U, 0xC2U, 0x8FU, 0xBCU, 0xF5U, 0xC2U, 0x8FU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3CU, 0x23U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3CU, 0x23U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3CU, 0x23U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0xBCU, 0xF5U, 0xC2U, 0x8FU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0xBDU, 0x4CU, 0xCCU, 0xCDU, 0xBCU, 0xF5U, 0xC2U, 0x8FU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0xBDU, 0x23U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3DU, 0x4CU, 0xCCU, 0xCDU, 0x3DU, 0x23U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3CU, 0xF5U, 0xC2U, 0x8FU, 0xBDU, 0xCCU, 0xCCU, 0xCDU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3CU, 0xA3U, 0xD7U, 0x0AU, 0x3DU, 0x75U, 0xC2U, 0x8FU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3CU, 0xA3U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3CU, 0x23U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3DU, 0xA3U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3CU, 0xF5U, 0xC2U, 0x8FU, 0xBCU, 0xF5U, 0xC2U, 0x8FU, 0x00U, 0x00U, 0x00U, 0x00U, 0xBDU, 0x23U, 0xD7U, 0x0AU, 0xBCU, 0xA3U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3CU, 0x23U, 0xD7U, 0x0AU, 0x3CU, 0x23U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0xBDU, 0x75U, 0xC2U, 0x8FU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3CU, 0xF5U, 0xC2U, 0x8FU, 0xBDU, 0xCCU, 0xCCU, 0xCDU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3CU, 0xF5U, 0xC2U, 0x8FU, 0xBDU, 0xCCU, 0xCCU, 0xCDU
+};
+u8 lbl_1_data_35864[0x12C] = {
+    0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0x0FU, 0x5CU, 0x29U, 0x3DU, 0xB8U, 0x51U, 0xECU, 0x00U, 0x00U, 0x00U, 0x00U, 0xBCU, 0xA3U, 0xD7U, 0x0AU, 0x3EU, 0x42U, 0x8FU, 0x5CU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0xB8U, 0x51U, 0xECU, 0xBFU, 0xA1U, 0x47U, 0xAEU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0x99U, 0x99U, 0x9AU, 0x3DU, 0xCCU, 0xCCU, 0xCDU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0xFAU, 0xE1U, 0x48U, 0x3DU, 0xE1U, 0x47U, 0xAEU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3DU, 0x4CU, 0xCCU, 0xCDU, 0x3CU, 0xA3U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0x85U, 0x1EU, 0xB8U, 0x3DU, 0x75U, 0xC2U, 0x8FU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0xB8U, 0x51U, 0xECU, 0x3EU, 0x4CU, 0xCCU, 0xCDU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0x61U, 0x47U, 0xAEU, 0x3DU, 0x8FU, 0x5CU, 0x29U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0x8FU, 0x5CU, 0x29U, 0x3DU, 0xF5U, 0xC2U, 0x8FU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0x23U, 0xD7U, 0x0AU, 0x3DU, 0xCCU, 0xCCU, 0xCDU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3DU, 0x23U, 0xD7U, 0x0AU, 0x3EU, 0x0FU, 0x5CU, 0x29U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0x4CU, 0xCCU, 0xCDU, 0x3DU, 0xCCU, 0xCCU, 0xCDU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0x0FU, 0x5CU, 0x29U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0x85U, 0x1EU, 0xB8U, 0x3CU, 0xF5U, 0xC2U, 0x8FU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0x0FU, 0x5CU, 0x29U, 0x3DU, 0xCCU, 0xCCU, 0xCDU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3DU, 0x75U, 0xC2U, 0x8FU, 0x3EU, 0x0FU, 0x5CU, 0x29U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0x99U, 0x99U, 0x9AU, 0x3EU, 0x61U, 0x47U, 0xAEU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0x99U, 0x99U, 0x9AU, 0xBEU, 0xB3U, 0x33U, 0x33U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0xCCU, 0xCCU, 0xCDU, 0x3DU, 0xF5U, 0xC2U, 0x8FU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0x75U, 0xC2U, 0x8FU, 0x3DU, 0xA3U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0x75U, 0xC2U, 0x8FU, 0x3DU, 0xA3U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0x75U, 0xC2U, 0x8FU, 0x3DU, 0xA3U, 0xD7U, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3DU, 0xF5U, 0xC2U, 0x8FU, 0x3DU, 0xE1U, 0x47U, 0xAEU, 0x00U, 0x00U, 0x00U, 0x00U, 0x3EU, 0x23U, 0xD7U, 0x0AU, 0xBCU, 0x23U, 0xD7U, 0x0AU
+};
 /* fzgx:end fn_1_A7F84 */
 
-/* fzgx:begin fn_1_A8270 noprologue */
-#include "types.h"
-#include "rel/main_rel/driver.h"
-
-struct fn_1_A8270_Entry {
-	u32 unk_0;
-	u32 unk_4;
-	u32 unk_8;
-	u8 pad_C[0x18];
-};
-
-struct fn_1_A8270_Rec {
-	u8 pad_0[4];
-	u32 unk_4;
-	u8 pad_8[0x16];
-	u8 count;
-};
-
-struct fn_1_A8270_Arg0 {
-	u8 pad_0[0xE8];
-	u8 unk_E8;
-	u8 unk_E9;
-	s16 unk_EA;
-	s16 unk_EC;
-	s16 unk_EE;
-	void *unk_F0;
-	u8 pad_F4[8];
-	struct fn_1_A8270_Entry *unk_FC;
-	s32 unk_100;
-	u32 unk_104;
-	u8 pad_108[0x24];
-	u32 *unk_12C[12];
-};
-
-extern void _savegpr_23(void);
-extern void _restgpr_23(void);
-extern u32 fn_80077A18(void);
-extern void lbl_8006DAEC(void);
-extern struct fn_1_A8270_Rec *fn_80071268(u32, u32);
-extern void lbl_8006D9D8(void *);
-extern void mathutil_mtxA_rotate_z(s32);
-extern void mathutil_mtxA_rotate_y(s32);
-extern void mathutil_mtxA_rotate_x(s32);
-extern void lbl_8006E0A4(u32);
-extern void lbl_8006E14C(f32);
-extern void fn_80077A20(struct fn_1_A8270_Rec *, void *);
-extern void fn_1_55FC4(f32);
-extern void fn_80072558(void);
-extern void fn_1_556B8(struct fn_1_A8270_Rec *);
-extern void lbl_8006DB30(void);
-extern f32 lbl_1_rodata_4A34[25];
-
+/* fzgx:begin fn_1_A8270 */
 static inline s8 tab_index(s8 c) {
 	const s8 *p = (const s8 *)&lbl_1_data_34348;
 	s32 k;
@@ -1552,7 +2615,7 @@ void fn_1_A8270(struct fn_1_A8270_Arg0 *self, s32 arg1) {
 	lbl_8006DAEC();
 	for (i = 0; i < self->unk_100; i++) {
 		ent = &self->unk_FC[i];
-		rec = fn_80071268(unk_104, ent->unk_4);
+		rec = (struct fn_1_A8270_Rec *)fn_80071268( (void *)(u32)(unk_104), (void *)(u32)(ent->unk_4));
 		if (rec != 0) {
 			lbl_8006D9D8(&self->unk_F0);
 			mathutil_mtxA_rotate_z(self->unk_EE);
@@ -1560,7 +2623,7 @@ void fn_1_A8270(struct fn_1_A8270_Arg0 *self, s32 arg1) {
 			mathutil_mtxA_rotate_y(lab_t0);
 			mathutil_mtxA_rotate_x(self->unk_EC);
 			if (self->unk_E9 != 0) {
-				lbl_8006E0A4((u32)&lbl_1_data_35654[self->unk_E8 * 12]);
+				lbl_8006E0A4( (void *)((u32)&lbl_1_data_35654[self->unk_E8 * 12]));
 			}
 			if (self->unk_E9 != 0) {
 				lbl_8006E14C(((const f32 *)lbl_1_data_355A4)[self->unk_E8]);
@@ -1585,7 +2648,7 @@ void fn_1_A8270(struct fn_1_A8270_Arg0 *self, s32 arg1) {
 					fn_1_55FC4(fn_1_A8270_array_read(lbl_1_rodata_4A34)[0]);
 				}
 				fn_80072558();
-				fn_1_556B8(rec);
+				fn_1_556B8( (void *)(struct fn_1_A8270_Rec *)(rec));
 			}
 		}
 	}
@@ -1608,16 +2671,7 @@ typedef struct FnA8528Object {
     u8 unk_120[0x4];
 } FnA8528Object;
 
-typedef struct FnA8528Config {
-    u8 pad_0c[0x0c];
-    f32 unk_0c;
-    u8 pad_10[0x0c];
-    f32 unk_1c;
-    u8 pad_20[0x0c];
-    f32 unk_2c;
-} FnA8528Config;
 
-extern FnA8528Config *lbl_801A6D00;
 
 // Initializes the driver's state from the active configuration and shared systems.
 void fn_1_A8528(void *arg0, void *arg1) {
@@ -1643,25 +2697,15 @@ void fn_1_A8528(void *arg0, void *arg1) {
     ((FnA8528Object *)arg0)->unk_ea = orientation[1];
     ((FnA8528Object *)arg0)->unk_ee = orientation[2];
 
-    fn_1_A861C(arg0, arg1);
-    fn_1_A8834(arg0, arg1);
-    fn_1_A89B0(arg0, arg1, 1);
-    fn_1_A89B0(arg0, arg1, 0);
+    fn_1_A861C( (FnA861CCamera *)(void *)(arg0), (FnA861CVehicle *)(void *)(arg1));
+    fn_1_A8834( (FnA8834Camera *)(void *)(arg0), (FnA8834Vehicle *)(void *)(arg1));
+    fn_1_A89B0( (fn_1_A89B0_Obj *)(void *)(arg0), (fn_1_A89B0_Arg1 *)(void *)(arg1), 1);
+    fn_1_A89B0( (fn_1_A89B0_Obj *)(void *)(arg0), (fn_1_A89B0_Arg1 *)(void *)(arg1), 0);
     lbl_8006DB30();
 }
 /* fzgx:end fn_1_A8528 */
 
-/* fzgx:begin fn_1_A861C noprologue */
-#include "types.h"
-#include "dolphin/types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/driver.h"
-#include "types.h"
-#include "dolphin/types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/driver.h"
-#include "types.h"
-
+/* fzgx:begin fn_1_A861C */
 /* begin game/main_rel/driver_types.h (deltawave784/fzgx, CC0) */
 #ifndef GAME_MAIN_REL_DRIVER_TYPES_H
 #define GAME_MAIN_REL_DRIVER_TYPES_H
@@ -1670,80 +2714,16 @@ void fn_1_A8528(void *arg0, void *arg1) {
 // a block can compile standalone and under the prologue. Hand-owned (librarian).
 
 
-typedef struct {
-    u8 pad_0[0x8];
-    u32 unk_8;
-} DriverAsset;
 
-struct fn_1_A7F84_lbl_1_rodata_4A28 {
-    f32 unk_0;
-};
 
-typedef struct FnA8528Config {
-    u8 pad_0c[0x0c];
-    f32 unk_0c;
-    u8 pad_10[0x0c];
-    f32 unk_1c;
-    u8 pad_20[0x0c];
-    f32 unk_2c;
-} FnA8528Config;
 
-struct fn_1_A7F84_lbl_801A6D00 {
-    u32 unk_0;
-};
 
-struct fn_1_A9868_lbl_801A6D00 {
-    u32 unk_0;
-};
 
-typedef struct FnA861CCamera {
-    u8 pad_0[0xdc];
-    f32 yaw;      /* 0xdc */
-    f32 roll;     /* 0xe0 */
-    f32 pitch;    /* 0xe4 */
-    u8 unk_e8;
-    u8 unk_e9;
-    u8 pad_ea[0x15c - 0xea];
-    u8 unk_15c[4];
-} FnA861CCamera;
 
-typedef struct {
-    signed char gpr;
-    signed char fpr;
-    unsigned short reserved;
-    char *input_arg_area;
-    char *reg_save_area;
-} Sig_parse_format_MkVaListState;
 
 typedef Sig_parse_format_MkVaListState Sig_parse_format_va_list;
 
-typedef struct {
-    u8 kind;
-    u8 callback;
-    u8 flags;
-    u8 pad3;
-    s16 x;
-    s16 y;
-    s16 z;
-    s16 padA;
-    void *data;
-} Fn1A9250Entry;
 
-struct fn_1_A9868_lbl_1_rodata_4AA0 {
-    u32 unk_0;
-    u32 unk_4;
-    u32 unk_8;
-    u32 unk_C;
-    u32 unk_10;
-    u32 unk_14;
-    u32 unk_18;
-    u32 unk_1C;
-    u32 unk_20;
-    f32 unk_24;
-    f32 unk_28;
-    f32 unk_2C;
-    f32 unk_30;
-};
 
 /* begin game/main_rel/shared_types.h (deltawave784/fzgx, CC0) */
 #ifndef GAME_MAIN_REL_SHARED_TYPES_H
@@ -1753,198 +2733,29 @@ struct fn_1_A9868_lbl_1_rodata_4AA0 {
 // the TU headers can be included together. Hand-owned (librarian).
 
 
-typedef struct Sig_fn_1_41488_Fn41488Data {
-    u32 count;
-    char *strings;
-} Sig_fn_1_41488_Fn41488Data;
 
-typedef struct Sig_fn_80015EE8_Fn80015EE8Out {
-    f32 f0;
-    f32 f1;
-    f32 f2;
-    f32 f3;
-    f32 f4;
-    f32 f5;
-    f32 f6;
-    f32 f7;
-    f32 f8;
-    f32 f9;
-    f32 f10;
-    f32 f11;
-    f32 f12;
-    f32 f13;
-    f32 f14;
-    f32 f15;
-} Sig_fn_80015EE8_Fn80015EE8Out;
 
-struct Sig_fn_80077B14_fn_80077B14_Arg0 {
-    u8 pad_0[0x4];
-    u32 unk_4;
-    u8 pad_8[0x18];
-    u32 unk_20;
-};
 
-struct Sig_fn_80077B64_fn_80077B64_Arg0 {
-    u8 pad_0[0x4];
-    u32 unk_4;
-};
 
-struct FzgxCopy_88 { u32 words[22]; };
 
 #endif  // GAME_MAIN_REL_SHARED_TYPES_H
 
 /* end game/main_rel/shared_types.h */
 
-struct Sig_fn_800737E4_fn_800737E4_Arg0 {
-    f32 unk_0;
-    u8 pad_4[0x4];
-    f32 unk_8;
-    f32 unk_C;
-    u8 pad_10[0x4];
-    f32 unk_14;
-    f32 unk_18;
-    f32 unk_1C;
-    u8 pad_20[0x8];
-    f32 unk_28;
-    f32 unk_2C;
-};
 
-typedef struct FnA861CVehicle {
-    u8 pad_0[8];
-    f32 unk_8;
-    u8 pad_c[0xa4 - 0xc];
-    f32 unk_a4;
-    u8 pad_a8[0xb0 - 0xa8];
-    f32 unk_b0;
-    u8 pad_b4[0xb8 - 0xb4];
-    f32 unk_b8;
-    u8 pad_bc[0xc0 - 0xbc];
-    f32 unk_c0;
-} FnA861CVehicle;
 
-typedef struct FnA8834Camera {
-    u8 pad_0[0x90];
-    u8 unk_90[0x48];
-    f32 unk_d8;
-    f32 unk_dc;
-    u8 pad_e0[4];
-    f32 unk_e4;
-    u8 pad_e8[0x18c - 0xe8];
-    u8 unk_18c[4];
-} FnA8834Camera;
 
-typedef struct FnA8834Vehicle {
-    u8 pad_0[8];
-    f32 unk_8;
-    u8 pad_c[0xa4 - 0xc];
-    f32 unk_a4;
-    u8 pad_a8[0xb0 - 0xa8];
-    f32 unk_b0;
-    u8 pad_b4[0xc0 - 0xb4];
-    f32 unk_c0;
-    u8 pad_c4[0x1fc - 0xc4];
-    f32 unk_1fc;
-} FnA8834Vehicle;
 
-extern struct fn_1_A7F84_lbl_1_rodata_4A28 lbl_1_rodata_4A28;
-extern FnA8528Config *lbl_801A6D00;
-extern Fn1A9250Entry lbl_1_bss_70658[];
-extern struct fn_1_A9868_lbl_1_rodata_4AA0 lbl_1_rodata_4AA0;
-extern f32 C_MTXOrtho(Sig_fn_80015EE8_Fn80015EE8Out *, f32, f32, f32, f32, f32, f32);
-extern void fn_800737E4(struct Sig_fn_800737E4_fn_800737E4_Arg0 *, s32, f32);
-extern void fn_1_A861C(FnA861CCamera *cam, FnA861CVehicle *veh);
-extern void fn_1_A8834(FnA8834Camera *cam, FnA8834Vehicle *veh);
 
 #endif  // GAME_MAIN_REL_DRIVER_TYPES_H
 
 /* end game/main_rel/driver_types.h */
 
-extern void fn_80006E10(u32 arg0);
-extern s32 fn_1_12C930(s8);
-extern s16 fn_1_12CCB0(s16 arg0, s16 arg1);
-extern int sprintf(char *s, const char *format, ...);
-extern void fn_1_D3884();
-extern u32 fn_80077D40(void);
-extern u32 fn_80071470(u32, u32);
-extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_80071718(void *value);
-extern void fn_1_A8270(void *, void *);
-extern void *lbl_801A6410;
-extern u32 fn_1_4630();
-extern void fn_1_A8528(void *, void *);
-extern u32 lbl_8006D91C(u32);
-extern u32 mathutil_mtxA_rotate_y(u32);
-extern void mathutil_mtxA_rotate_x(u32);
-extern u32 lbl_8006D998(u32);
-extern void lbl_8006DBAC(void *arg0);
-extern void lbl_8006DB74(void *);
-extern void mathutil_mtxA_rotate_z(s32);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DFC4(void *pos);
-extern void lbl_8006DB30(void);
-extern void fn_1_A9420(u8 value);
-extern s32 fn_8008077C(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_1_A948C(int);
-extern void fn_1_49410(void);
-extern void fn_1_494DC(s16 index);
-extern void fn_1_520A0(void);
-extern void fn_1_52088(void);
-extern u32 lbl_1_bss_71658[6];
-extern const f64 lbl_1_rodata_4A98;
-extern void fn_1_49714(f32 value1, f32 value2, f32 value3);
-extern void fn_1_49680(f32 value1, f32 value2);
-extern void fn_1_A93C4(u32 arg0);
-extern void fn_1_4A0D8(void *);
-extern void fn_1_520CC(void);
-extern void fn_1_49514(u32 *value);
 extern void (*lbl_1_bss_7168C)(void);
-extern u32 GXLoadPosMtxImm(u32, u32);
-extern u32 fn_800720B0(u32);
-extern void fn_80072EDC(s32 arg0, s32 arg1);
-extern void fn_1_A714C(f32 *a, f32 *b, f32 *c, f32 *d);
-extern void GXSetCurrentMtx(u32 value);
-extern void fn_8006F1F0(void *, void *, void *);
-extern void fn_8007245C(u32 value);
-extern void fn_8007264C(u32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4);
-extern void fn_800734A8(u32 arg0, s32 arg1, s32 arg2, s32 arg3);
-extern void fn_80073678(u32 arg0);
-extern void fn_80073898(u32 arg0);
-extern void fn_80073C6C(s32 index);
-extern void fn_80074660(u32 arg0);
-extern void fn_800746A8();
-extern void fn_80074718(u8 value, s32 arg);
-extern void fn_80074788(u32 arg0);
-extern void fn_800747D0(u32 arg0, u32 arg1, s32 arg2, s32 arg3, u32 arg4, s32 arg5, s32 arg6);
-extern void fn_80074918(u8 arg0, s32 arg1, u8 arg2);
-extern void OSPanic(const char *file, int line, const char *msg, ...);
-extern void OSReport(const char *format, ...);
-extern void fn_800711A8(void *value);
-extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
-extern void fn_1_A7E60(s32 arg0, s8 arg1, s32 arg2, s32 arg3, s32 arg4);
-extern void lbl_8006E0A4(void *arg0);
-extern void fn_8006F6A8(void *arg0);
-extern void fn_1_A89B0(void *arg0, void *arg1, s32 arg2);
-extern void fn_1_3920(void);
-extern void fn_1_A8D4C(void);
-extern void fn_1_A8D64(void);
-extern u32 fn_8001A78C(u32 arg0);
-extern u32 fn_8001A7D0(u32 arg0);
-extern void fn_1_A943C(u32 arg0, u32 arg1);
-extern void fn_1_A9464(u16 arg0, u16 arg1);
-extern void fn_1_A942C(u8 value);
-extern void fn_1_A96BC(void);
 extern void (*lbl_1_bss_7167C)(void);
-extern void fn_1_A5C98(void *);
-extern u8 lbl_1_bss_716C8[320];
 extern void (*lbl_1_bss_71680)(void);
-extern u32 fn_1_451C(void);
-extern void fn_1_A5AA0(void *buffer, void *destination);
-extern u32 lbl_1_bss_71670;
 extern void (*lbl_1_bss_71684)(void);
 extern void (*lbl_1_bss_71688)(void);
-extern u32 fn_1_A7024(f32, f32, f32, f32);
-extern f32 lbl_1_rodata_4AC4[4];
-extern void fn_8003462C(u32, u32, u32);
 
 /* The TU's shared literal pool (lbl_1_rodata_4A28 .. +0x40) in retail order, so the
  * function's own literals dedupe onto retail's displacements. */
@@ -2020,17 +2831,7 @@ void fn_1_A861C(FnA861CCamera *cam, FnA861CVehicle *veh)
 }
 /* fzgx:end fn_1_A861C */
 
-/* fzgx:begin fn_1_A8834 noprologue */
-#include "types.h"
-#include "dolphin/types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/driver.h"
-#include "types.h"
-#include "dolphin/types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/driver.h"
-#include "types.h"
-
+/* fzgx:begin fn_1_A8834 */
 /* begin game/main_rel/driver_types.h (deltawave784/fzgx, CC0) */
 #ifndef GAME_MAIN_REL_DRIVER_TYPES_H
 #define GAME_MAIN_REL_DRIVER_TYPES_H
@@ -2039,80 +2840,16 @@ void fn_1_A861C(FnA861CCamera *cam, FnA861CVehicle *veh)
 // a block can compile standalone and under the prologue. Hand-owned (librarian).
 
 
-typedef struct {
-    u8 pad_0[0x8];
-    u32 unk_8;
-} DriverAsset;
 
-struct fn_1_A7F84_lbl_1_rodata_4A28 {
-    f32 unk_0;
-};
 
-typedef struct FnA8528Config {
-    u8 pad_0c[0x0c];
-    f32 unk_0c;
-    u8 pad_10[0x0c];
-    f32 unk_1c;
-    u8 pad_20[0x0c];
-    f32 unk_2c;
-} FnA8528Config;
 
-struct fn_1_A7F84_lbl_801A6D00 {
-    u32 unk_0;
-};
 
-struct fn_1_A9868_lbl_801A6D00 {
-    u32 unk_0;
-};
 
-typedef struct FnA861CCamera {
-    u8 pad_0[0xdc];
-    f32 yaw;      /* 0xdc */
-    f32 roll;     /* 0xe0 */
-    f32 pitch;    /* 0xe4 */
-    u8 unk_e8;
-    u8 unk_e9;
-    u8 pad_ea[0x15c - 0xea];
-    u8 unk_15c[4];
-} FnA861CCamera;
 
-typedef struct {
-    signed char gpr;
-    signed char fpr;
-    unsigned short reserved;
-    char *input_arg_area;
-    char *reg_save_area;
-} Sig_parse_format_MkVaListState;
 
 typedef Sig_parse_format_MkVaListState Sig_parse_format_va_list;
 
-typedef struct {
-    u8 kind;
-    u8 callback;
-    u8 flags;
-    u8 pad3;
-    s16 x;
-    s16 y;
-    s16 z;
-    s16 padA;
-    void *data;
-} Fn1A9250Entry;
 
-struct fn_1_A9868_lbl_1_rodata_4AA0 {
-    u32 unk_0;
-    u32 unk_4;
-    u32 unk_8;
-    u32 unk_C;
-    u32 unk_10;
-    u32 unk_14;
-    u32 unk_18;
-    u32 unk_1C;
-    u32 unk_20;
-    f32 unk_24;
-    f32 unk_28;
-    f32 unk_2C;
-    f32 unk_30;
-};
 
 /* begin game/main_rel/shared_types.h (deltawave784/fzgx, CC0) */
 #ifndef GAME_MAIN_REL_SHARED_TYPES_H
@@ -2122,198 +2859,29 @@ struct fn_1_A9868_lbl_1_rodata_4AA0 {
 // the TU headers can be included together. Hand-owned (librarian).
 
 
-typedef struct Sig_fn_1_41488_Fn41488Data {
-    u32 count;
-    char *strings;
-} Sig_fn_1_41488_Fn41488Data;
 
-typedef struct Sig_fn_80015EE8_Fn80015EE8Out {
-    f32 f0;
-    f32 f1;
-    f32 f2;
-    f32 f3;
-    f32 f4;
-    f32 f5;
-    f32 f6;
-    f32 f7;
-    f32 f8;
-    f32 f9;
-    f32 f10;
-    f32 f11;
-    f32 f12;
-    f32 f13;
-    f32 f14;
-    f32 f15;
-} Sig_fn_80015EE8_Fn80015EE8Out;
 
-struct Sig_fn_80077B14_fn_80077B14_Arg0 {
-    u8 pad_0[0x4];
-    u32 unk_4;
-    u8 pad_8[0x18];
-    u32 unk_20;
-};
 
-struct Sig_fn_80077B64_fn_80077B64_Arg0 {
-    u8 pad_0[0x4];
-    u32 unk_4;
-};
 
-struct FzgxCopy_88 { u32 words[22]; };
 
 #endif  // GAME_MAIN_REL_SHARED_TYPES_H
 
 /* end game/main_rel/shared_types.h */
 
-struct Sig_fn_800737E4_fn_800737E4_Arg0 {
-    f32 unk_0;
-    u8 pad_4[0x4];
-    f32 unk_8;
-    f32 unk_C;
-    u8 pad_10[0x4];
-    f32 unk_14;
-    f32 unk_18;
-    f32 unk_1C;
-    u8 pad_20[0x8];
-    f32 unk_28;
-    f32 unk_2C;
-};
 
-typedef struct FnA861CVehicle {
-    u8 pad_0[8];
-    f32 unk_8;
-    u8 pad_c[0xa4 - 0xc];
-    f32 unk_a4;
-    u8 pad_a8[0xb0 - 0xa8];
-    f32 unk_b0;
-    u8 pad_b4[0xb8 - 0xb4];
-    f32 unk_b8;
-    u8 pad_bc[0xc0 - 0xbc];
-    f32 unk_c0;
-} FnA861CVehicle;
 
-typedef struct FnA8834Camera {
-    u8 pad_0[0x90];
-    u8 unk_90[0x48];
-    f32 unk_d8;
-    f32 unk_dc;
-    u8 pad_e0[4];
-    f32 unk_e4;
-    u8 pad_e8[0x18c - 0xe8];
-    u8 unk_18c[4];
-} FnA8834Camera;
 
-typedef struct FnA8834Vehicle {
-    u8 pad_0[8];
-    f32 unk_8;
-    u8 pad_c[0xa4 - 0xc];
-    f32 unk_a4;
-    u8 pad_a8[0xb0 - 0xa8];
-    f32 unk_b0;
-    u8 pad_b4[0xc0 - 0xb4];
-    f32 unk_c0;
-    u8 pad_c4[0x1fc - 0xc4];
-    f32 unk_1fc;
-} FnA8834Vehicle;
 
-extern struct fn_1_A7F84_lbl_1_rodata_4A28 lbl_1_rodata_4A28;
-extern FnA8528Config *lbl_801A6D00;
-extern Fn1A9250Entry lbl_1_bss_70658[];
-extern struct fn_1_A9868_lbl_1_rodata_4AA0 lbl_1_rodata_4AA0;
-extern f32 C_MTXOrtho(Sig_fn_80015EE8_Fn80015EE8Out *, f32, f32, f32, f32, f32, f32);
-extern void fn_800737E4(struct Sig_fn_800737E4_fn_800737E4_Arg0 *, s32, f32);
-extern void fn_1_A861C(FnA861CCamera *cam, FnA861CVehicle *veh);
-extern void fn_1_A8834(FnA8834Camera *cam, FnA8834Vehicle *veh);
 
 #endif  // GAME_MAIN_REL_DRIVER_TYPES_H
 
 /* end game/main_rel/driver_types.h */
 
-extern void fn_80006E10(u32 arg0);
-extern s32 fn_1_12C930(s8);
-extern s16 fn_1_12CCB0(s16 arg0, s16 arg1);
-extern int sprintf(char *s, const char *format, ...);
-extern void fn_1_D3884();
-extern u32 fn_80077D40(void);
-extern u32 fn_80071470(u32, u32);
-extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_80071718(void *value);
-extern void fn_1_A8270(void *, void *);
-extern void *lbl_801A6410;
-extern u32 fn_1_4630();
-extern void fn_1_A8528(void *, void *);
-extern u32 lbl_8006D91C(u32);
-extern u32 mathutil_mtxA_rotate_y(u32);
-extern void mathutil_mtxA_rotate_x(u32);
-extern u32 lbl_8006D998(u32);
-extern void lbl_8006DBAC(void *arg0);
-extern void lbl_8006DB74(void *);
-extern void mathutil_mtxA_rotate_z(s32);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DFC4(void *pos);
-extern void lbl_8006DB30(void);
-extern void fn_1_A9420(u8 value);
-extern s32 fn_8008077C(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_1_A948C(int);
-extern void fn_1_49410(void);
-extern void fn_1_494DC(s16 index);
-extern void fn_1_520A0(void);
-extern void fn_1_52088(void);
-extern u32 lbl_1_bss_71658[6];
-extern const f64 lbl_1_rodata_4A98;
-extern void fn_1_49714(f32 value1, f32 value2, f32 value3);
-extern void fn_1_49680(f32 value1, f32 value2);
-extern void fn_1_A93C4(u32 arg0);
-extern void fn_1_4A0D8(void *);
-extern void fn_1_520CC(void);
-extern void fn_1_49514(u32 *value);
 extern void (*lbl_1_bss_7168C)(void);
-extern u32 GXLoadPosMtxImm(u32, u32);
-extern u32 fn_800720B0(u32);
-extern void fn_80072EDC(s32 arg0, s32 arg1);
-extern void fn_1_A714C(f32 *a, f32 *b, f32 *c, f32 *d);
-extern void GXSetCurrentMtx(u32 value);
-extern void fn_8006F1F0(void *, void *, void *);
-extern void fn_8007245C(u32 value);
-extern void fn_8007264C(u32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4);
-extern void fn_800734A8(u32 arg0, s32 arg1, s32 arg2, s32 arg3);
-extern void fn_80073678(u32 arg0);
-extern void fn_80073898(u32 arg0);
-extern void fn_80073C6C(s32 index);
-extern void fn_80074660(u32 arg0);
-extern void fn_800746A8();
-extern void fn_80074718(u8 value, s32 arg);
-extern void fn_80074788(u32 arg0);
-extern void fn_800747D0(u32 arg0, u32 arg1, s32 arg2, s32 arg3, u32 arg4, s32 arg5, s32 arg6);
-extern void fn_80074918(u8 arg0, s32 arg1, u8 arg2);
-extern void OSPanic(const char *file, int line, const char *msg, ...);
-extern void OSReport(const char *format, ...);
-extern void fn_800711A8(void *value);
-extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
-extern void fn_1_A7E60(s32 arg0, s8 arg1, s32 arg2, s32 arg3, s32 arg4);
-extern void lbl_8006E0A4(void *arg0);
-extern void fn_8006F6A8(void *arg0);
-extern void fn_1_A89B0(void *arg0, void *arg1, s32 arg2);
-extern void fn_1_3920(void);
-extern void fn_1_A8D4C(void);
-extern void fn_1_A8D64(void);
-extern u32 fn_8001A78C(u32 arg0);
-extern u32 fn_8001A7D0(u32 arg0);
-extern void fn_1_A943C(u32 arg0, u32 arg1);
-extern void fn_1_A9464(u16 arg0, u16 arg1);
-extern void fn_1_A942C(u8 value);
-extern void fn_1_A96BC(void);
 extern void (*lbl_1_bss_7167C)(void);
-extern void fn_1_A5C98(void *);
-extern u8 lbl_1_bss_716C8[320];
 extern void (*lbl_1_bss_71680)(void);
-extern u32 fn_1_451C(void);
-extern void fn_1_A5AA0(void *buffer, void *destination);
-extern u32 lbl_1_bss_71670;
 extern void (*lbl_1_bss_71684)(void);
 extern void (*lbl_1_bss_71688)(void);
-extern u32 fn_1_A7024(f32, f32, f32, f32);
-extern f32 lbl_1_rodata_4AC4[4];
-extern void fn_8003462C(u32, u32, u32);
 
 /* The TU's shared literal pool (lbl_1_rodata_4A28 .. +0x58) in retail order, so the
  * function's own literals dedupe onto retail's displacements. */
@@ -2385,46 +2953,7 @@ void fn_1_A8834(FnA8834Camera *cam, FnA8834Vehicle *veh) {
 }
 /* fzgx:end fn_1_A8834 */
 
-/* fzgx:begin fn_1_A89B0 noprologue */
-#include "types.h"
-#include "psvec.h"
-
-typedef f32 fzgx_Mtx[3][4];
-typedef struct { f32 x, y, z; } fzgx_Vec;
-
-typedef struct fn_1_A89B0_Obj {
-    fzgx_Mtx mtx;           /* 0x000 */
-    fzgx_Vec pos[2][4];     /* 0x030, 0x060 */
-    u8 pad_90[0xC0 - 0x90];
-    fzgx_Vec ofs[2];        /* 0x0C0, 0x0CC */
-    u8 pad_d8[0x10C - 0xD8];
-    f32 len1;               /* 0x10C */
-    f32 len2;               /* 0x110 */
-    u8 pad_114[0x12C - 0x114];
-    fzgx_Mtx joints[7];     /* 0x12C */
-} fn_1_A89B0_Obj;
-
-typedef struct fn_1_A89B0_Arg1 {
-    u8 pad_0[0x1FC];
-    f32 unk_1FC;
-} fn_1_A89B0_Arg1;
-
-extern fzgx_Mtx *lbl_801A6D00;
-
-extern void lbl_8006DAEC(void);
-extern void mathutil_mtxA_rotate_x(s32);
-extern void mathutil_mtxA_rotate_z(s32);
-extern void lbl_8006DFC4(void *);
-extern void lbl_8006DB74(void *);
-extern void lbl_8006DBAC(void *);
-extern void lbl_8006D758(void);
-extern void lbl_8006DB30(void);
-extern void lbl_8006E0B4(f32, f32, f32);
-extern void lbl_8006E1F0(void *, f32, f32, f32);
-extern f32 lbl_8006D0B4(f32);
-extern void lbl_8006D668(void *);
-extern u32 fn_1_44884(void *);
-
+/* fzgx:begin fn_1_A89B0 */
 /* primes the shared literal pool lbl_1_rodata_4A28 in retail order */
 #pragma section code_type ".fzgxpool"
 void fzgx_pool_A89B0(f32 *o) {
@@ -2571,11 +3100,11 @@ void fn_1_A89B0(fn_1_A89B0_Obj *obj, fn_1_A89B0_Arg1 *arg1, s32 side) {
     tipy = tip.y;
     tipz = tip.z;
     distsq = tip.x;
-    dir.x = delta = distsq - (*lbl_801A6D00)[0][3];
+    dir.x = delta = distsq - (*((fzgx_Mtx *)lbl_801A6D00))[0][3];
     distsq = (f32)(delta * delta);
-    dir.y = delta = tipy - (*lbl_801A6D00)[1][3];
+    dir.y = delta = tipy - (*((fzgx_Mtx *)lbl_801A6D00))[1][3];
     distsq = delta * delta + distsq;
-    dir.z = delta = tipz - (*lbl_801A6D00)[2][3];
+    dir.z = delta = tipz - (*((fzgx_Mtx *)lbl_801A6D00))[2][3];
     dist = lbl_8006D0B4(delta * delta + distsq);
     lbl_8006D668(&dir);
     fn_1_44884(&dir);
@@ -2622,7 +3151,27 @@ void fn_1_A8D64(void) {
 }
 /* fzgx:end fn_1_A8D64 */
 
-/* fzgx:begin fn_1_A8D84 */
+/* fzgx:begin fn_1_A8D84 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/driver.h"
+
+extern void fn_1_A8D4C(void);
+extern void fn_1_A8D64(void);
+extern void fn_8001A78C(void (*func)(void));
+extern void fn_8001A7D0(void (*func)(void));
+extern void (*lbl_1_bss_7167C)(void);
+
+extern void (*lbl_1_bss_71680)(void);
+
+extern void (*lbl_1_bss_7167C)(void);
+
+extern void (*lbl_1_bss_71684)(void);
+
+extern void (*lbl_1_bss_71688)(void);
+
+extern void (*lbl_1_bss_7168C)(void);
+
 void fn_1_A8D84(void) {
     lbl_1_bss_6F640 = 0;
     fn_8001A78C(fn_1_A8D4C);
@@ -2637,21 +3186,9 @@ u32 fn_1_A8DC4(void) {
 }
 /* fzgx:end fn_1_A8DC4 */
 
-/* fzgx:begin fn_1_A8DD4 noprologue */
-#include "types.h"
-
-typedef struct {
-    signed char gpr;
-    signed char fpr;
-    unsigned short reserved;
-    char *input_arg_area;
-    char *reg_save_area;
-} Sig_parse_format_MkVaListState;
+/* fzgx:begin fn_1_A8DD4 */
 typedef Sig_parse_format_MkVaListState Sig_parse_format_va_list;
 
-extern void fn_1_A9420(u8 value);
-extern s32 fn_8008077C(u32 buffer, const char *format, Sig_parse_format_va_list *args);
-extern void fn_1_A948C(char *text);
 
 void fn_1_A8DD4(const char *format, ...) {
     char buffer[0x200];
@@ -2659,7 +3196,7 @@ void fn_1_A8DD4(const char *format, ...) {
 
     fn_1_A9420(0);
     __builtin_va_info(&args);
-    fn_8008077C((u32)buffer, format, &args);
+    fn_8008077C((u32)buffer, (u32)(const char *)(format), (u32)(Sig_parse_format_va_list *)(&args));
     fn_1_A948C(buffer);
 }
 /* fzgx:end fn_1_A8DD4 */
@@ -2669,7 +3206,7 @@ void fn_1_A8DD4(const char *format, ...) {
 
 void fn_1_A8E78(int arg) {
     fn_1_A9420(0);
-    fn_1_A948C(arg);
+    fn_1_A948C( (const char *)(int)(arg));
 }
 /* fzgx:end fn_1_A8E78 */
 
@@ -2793,41 +3330,12 @@ void fn_1_A8FA0(void) {
 }
 /* fzgx:end fn_1_A8FA0 */
 
-/* fzgx:begin fn_1_A9250 noprologue */
-#include "types.h"
-
-extern void fn_1_49410(void);
-extern u32 lbl_1_data_35990[3];
-extern void fn_1_494DC(s16);
-extern void fn_1_520A0(void);
-extern void fn_1_52088(void);
-extern u32 lbl_1_bss_71658[6];
-extern const f64 lbl_1_rodata_4A98;
-extern void fn_1_49714(f32, f32, f32);
-extern void fn_1_49680(f32, f32);
-extern void fn_1_A93C4(u8);
-extern void fn_1_4A0D8(void *);
-extern void fn_1_520CC(void);
-
-typedef struct {
-    u8 kind;
-    u8 callback;
-    u8 flags;
-    u8 pad3;
-    s16 x;
-    s16 y;
-    s16 z;
-    s16 padA;
-    void *data;
-} Fn1A9250Entry;
-
-extern Fn1A9250Entry lbl_1_bss_70658[];
-
+/* fzgx:begin fn_1_A9250 */
 void fn_1_A9250(int arg) {
     int i;
 
     fn_1_49410();
-    fn_1_494DC((s16)lbl_1_data_35990[(u8)arg]);
+    fn_1_494DC((s16)(((u32 *)&lbl_1_data_35990))[(u8)arg]);
     fn_1_520A0();
     fn_1_52088();
 
@@ -2844,7 +3352,7 @@ void fn_1_A9250(int arg) {
                     (f32)lbl_1_bss_70658[i].y);
             }
             fn_1_A93C4(lbl_1_bss_70658[i].callback);
-            fn_1_4A0D8(lbl_1_bss_70658[i].data);
+            fn_1_4A0D8( (const u8 *)(void *)(lbl_1_bss_70658[i].data));
         }
     }
 
@@ -2854,8 +3362,6 @@ void fn_1_A9250(int arg) {
 /* fzgx:end fn_1_A9250 */
 
 /* fzgx:begin fn_1_A93C4 */
-extern void fn_1_49514(u32 *);
-
 void fn_1_A93C4(u32 arg0) {
     u32 v0;
     u32 v1;
@@ -2887,12 +3393,9 @@ void fn_1_A942C(u8 value) {
 }
 /* fzgx:end fn_1_A942C */
 
-/* fzgx:begin fn_1_A943C noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_A943C */
 extern void (*lbl_1_bss_7168C)(void);
 
-extern struct fn_1_A943C_lbl_1_bss_6F648 lbl_1_bss_6F648;
 
 struct fn_1_A943C_lbl_1_bss_6F648 {
     u8 pad_0[0x2];
@@ -2905,11 +3408,11 @@ struct fn_1_A943C_lbl_1_bss_6F648 {
 
 void fn_1_A943C(u32 arg0, u32 arg1) {
     u8 v0;
-    v0 = lbl_1_bss_6F648.unk_2;
-    lbl_1_bss_6F648.unk_4 = arg0;
-    lbl_1_bss_6F648.unk_6 = arg1;
-    lbl_1_bss_6F648.unk_8 = 0;
-    lbl_1_bss_6F648.unk_2 = (v0 & 0xFFFFFFFD);
+    v0 = (*((struct fn_1_A943C_lbl_1_bss_6F648 *)&lbl_1_bss_6F648)).unk_2;
+    (*((struct fn_1_A943C_lbl_1_bss_6F648 *)&lbl_1_bss_6F648)).unk_4 = arg0;
+    (*((struct fn_1_A943C_lbl_1_bss_6F648 *)&lbl_1_bss_6F648)).unk_6 = arg1;
+    (*((struct fn_1_A943C_lbl_1_bss_6F648 *)&lbl_1_bss_6F648)).unk_8 = 0;
+    (*((struct fn_1_A943C_lbl_1_bss_6F648 *)&lbl_1_bss_6F648)).unk_2 = (v0 & 0xFFFFFFFD);
 }
 /* fzgx:end fn_1_A943C */
 
@@ -2926,9 +3429,7 @@ void fn_1_A9464(u16 arg0, u16 arg1) {
 }
 /* fzgx:end fn_1_A9464 */
 
-/* fzgx:begin fn_1_A948C noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_A948C */
 typedef struct {
     u8 unk_0;
     u8 unk_1;
@@ -2942,19 +3443,7 @@ typedef struct {
 } fn_1_A948C_Header;
 
 /* an entry of the font table lbl_1_data_1AEA8 */
-typedef struct {
-    u8 pad_0[4];
-    u8 unk_4;
-    u8 unk_5;
-    u8 pad_6[0x32];
-} fn_1_A948C_Font;
 
-extern fn_1_A948C_Font lbl_1_data_1AEA8[];
-extern size_t strlen(const char *);
-extern char *strchr(const char *, int);
-extern char *strrchr(const char *, int);
-extern char *fn_80083DB0(char *, const char *);
-extern void OSReport(const char *, ...);
 
 /* the retail TU's .data and .bss objects this function uses, at their retail offsets, so MWCC addresses them
  * off one section base each */
@@ -3089,13 +3578,45 @@ void fn_1_A96FC(void) {
 }
 /* fzgx:end fn_1_A96FC */
 
-/* fzgx:begin fn_1_A9764 */
+/* fzgx:begin fn_1_A9764 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/driver.h"
+
+extern void (*lbl_1_bss_7167C)(void);
+
+extern void (*lbl_1_bss_71680)(void);
+
+extern void (*lbl_1_bss_7167C)(void);
+
+extern void (*lbl_1_bss_71684)(void);
+
+extern void (*lbl_1_bss_71688)(void);
+
+extern void (*lbl_1_bss_7168C)(void);
+
 void fn_1_A9764(void) {
     lbl_1_bss_7167C();
 }
 /* fzgx:end fn_1_A9764 */
 
-/* fzgx:begin fn_1_A9790 */
+/* fzgx:begin fn_1_A9790 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/driver.h"
+
+extern void (*lbl_1_bss_7167C)(void);
+
+extern void (*lbl_1_bss_71680)(void);
+
+extern void (*lbl_1_bss_7167C)(void);
+
+extern void (*lbl_1_bss_71684)(void);
+
+extern void (*lbl_1_bss_71688)(void);
+
+extern void (*lbl_1_bss_7168C)(void);
+
 void fn_1_A9790(void) {
     lbl_1_bss_71680();
 }
@@ -3107,106 +3628,77 @@ void fn_1_A97BC(void) {
 }
 /* fzgx:end fn_1_A97BC */
 
-/* fzgx:begin fn_1_A97E4 */
+/* fzgx:begin fn_1_A97E4 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/driver.h"
+
+extern void (*lbl_1_bss_7167C)(void);
+
+extern void (*lbl_1_bss_71680)(void);
+
+extern void (*lbl_1_bss_7167C)(void);
+
+extern void (*lbl_1_bss_71684)(void);
+
+extern void (*lbl_1_bss_71688)(void);
+
+extern void (*lbl_1_bss_7168C)(void);
+
 void fn_1_A97E4(void) {
     lbl_1_bss_71684();
 }
 /* fzgx:end fn_1_A97E4 */
 
-/* fzgx:begin fn_1_A9810 */
+/* fzgx:begin fn_1_A9810 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/driver.h"
+
+extern void (*lbl_1_bss_7167C)(void);
+
+extern void (*lbl_1_bss_71680)(void);
+
+extern void (*lbl_1_bss_7167C)(void);
+
+extern void (*lbl_1_bss_71684)(void);
+
+extern void (*lbl_1_bss_71688)(void);
+
+extern void (*lbl_1_bss_7168C)(void);
+
 void fn_1_A9810(void) {
     lbl_1_bss_71688();
 }
 /* fzgx:end fn_1_A9810 */
 
-/* fzgx:begin fn_1_A983C */
+/* fzgx:begin fn_1_A983C noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/driver.h"
+
+extern void (*lbl_1_bss_7167C)(void);
+
+extern void (*lbl_1_bss_71680)(void);
+
+extern void (*lbl_1_bss_7167C)(void);
+
+extern void (*lbl_1_bss_71684)(void);
+
+extern void (*lbl_1_bss_71688)(void);
+
+extern void (*lbl_1_bss_7168C)(void);
+
 void fn_1_A983C(void) {
     lbl_1_bss_7168C();
 }
 /* fzgx:end fn_1_A983C */
 
-/* fzgx:begin fn_1_A9868 noprologue */
-#include "types.h"
-
-typedef struct Sig_fn_80015EE8_Fn80015EE8Out {
-    f32 f0;
-    f32 f1;
-    f32 f2;
-    f32 f3;
-    f32 f4;
-    f32 f5;
-    f32 f6;
-    f32 f7;
-    f32 f8;
-    f32 f9;
-    f32 f10;
-    f32 f11;
-    f32 f12;
-    f32 f13;
-    f32 f14;
-    f32 f15;
-} Sig_fn_80015EE8_Fn80015EE8Out;
-struct Sig_fn_800737E4_fn_800737E4_Arg0 {
-    f32 unk_0;
-    u8 pad_4[0x4];
-    f32 unk_8;
-    f32 unk_C;
-    u8 pad_10[0x4];
-    f32 unk_14;
-    f32 unk_18;
-    f32 unk_1C;
-    u8 pad_20[0x8];
-    f32 unk_28;
-    f32 unk_2C;
-};
-
+/* fzgx:begin fn_1_A9868 */
 struct fn_1_A9868_lbl_1_bss_71690 {
     u32 unk_0;
 };
-struct fn_1_A9868_lbl_1_rodata_4AA0 {
-    u32 unk_0;
-    u32 unk_4;
-    u32 unk_8;
-    u32 unk_C;
-    u32 unk_10;
-    u32 unk_14;
-    u32 unk_18;
-    u32 unk_1C;
-    u32 unk_20;
-    f32 unk_24;
-    f32 unk_28;
-    f32 unk_2C;
-    f32 unk_30;
-};
-struct fn_1_A9868_lbl_801A6D00 {
-    u32 unk_0;
-};
 
-extern struct fn_1_A9868_lbl_1_bss_71690 lbl_1_bss_71690;
-extern struct fn_1_A9868_lbl_1_rodata_4AA0 lbl_1_rodata_4AA0;
-extern struct fn_1_A9868_lbl_801A6D00 lbl_801A6D00;
-extern u32 GXLoadPosMtxImm(u32, u32);
-extern u32 fn_800720B0(u32);
-extern u32 fn_80072EDC(u32, u32);
-extern void fn_1_A714C(f32 *, f32 *, f32 *, f32 *);
-extern f32 C_MTXOrtho(Sig_fn_80015EE8_Fn80015EE8Out *, f32, f32, f32, f32, f32, f32);
-extern void GXSetCurrentMtx(u32);
-extern void fn_8006F1F0(void *, void *, void *);
-extern void fn_8007245C(u32);
-extern void fn_8007264C(u32, s32, s32, s32, u8);
-extern void fn_800734A8(u32, s32, s32, s32);
-extern void fn_80073678(u32);
-extern void fn_80073898(u32);
-extern void fn_80073C6C(s32);
-extern void fn_80074660(u32);
-extern void fn_800746A8(u8, s32);
-extern void fn_80074718(u8, s32);
-extern void fn_80074788(u32);
-extern void fn_800747D0(u32, u32, s32, s32, u32, s32, s32);
-extern void fn_80074918(u8, s32, u8);
-extern void fn_800737E4(struct Sig_fn_800737E4_fn_800737E4_Arg0 *, s32, f32);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DB30(void);
 
 void fn_1_A9868(u32 arg0, u32 arg1, u32 arg2, f32 arg3) {
     struct fn_1_A9868_lbl_1_rodata_4AA0 *p_lbl_1_rodata_4AA0;
@@ -3217,7 +3709,7 @@ void fn_1_A9868(u32 arg0, u32 arg1, u32 arg2, f32 arg3) {
     u32 loc_8[3];
     f32 zero;
     p_lbl_1_rodata_4AA0 = (struct fn_1_A9868_lbl_1_rodata_4AA0 *)&lbl_1_rodata_4AA0;
-    p_lbl_1_bss_71690 = (struct fn_1_A9868_lbl_1_bss_71690 *)&lbl_1_bss_71690;
+    p_lbl_1_bss_71690 = (struct fn_1_A9868_lbl_1_bss_71690 *)&(*((struct fn_1_A9868_lbl_1_bss_71690 *)&lbl_1_bss_71690));
     fn_1_A714C((f32 *)((u8 *)(u32)p_lbl_1_bss_71690 + 4), (f32 *)((u8 *)(u32)p_lbl_1_bss_71690 + 8), (f32 *)((u8 *)(u32)p_lbl_1_bss_71690 + 12), (f32 *)((u8 *)(u32)p_lbl_1_bss_71690 + 16));
     fn_8007245C(2560);
     fn_800720B0(0);
@@ -3244,7 +3736,7 @@ void fn_1_A9868(u32 arg0, u32 arg1, u32 arg2, f32 arg3) {
     loc_8[2] = p_lbl_1_rodata_4AA0->unk_20;
     fn_8006F1F0((void *)loc_20, (void *)loc_14, (void *)loc_8);
     GXSetCurrentMtx(0);
-    GXLoadPosMtxImm(lbl_801A6D00.unk_0, 0);
+    GXLoadPosMtxImm((*((struct fn_1_A9868_lbl_801A6D00 *)&lbl_801A6D00)).unk_0, 0);
     lbl_8006DB30();
     zero = C_MTXOrtho((Sig_fn_80015EE8_Fn80015EE8Out *)&loc_2C, p_lbl_1_rodata_4AA0->unk_24, p_lbl_1_rodata_4AA0->unk_28, p_lbl_1_rodata_4AA0->unk_24, p_lbl_1_rodata_4AA0->unk_2C, p_lbl_1_rodata_4AA0->unk_24, p_lbl_1_rodata_4AA0->unk_30);
     fn_800737E4((struct Sig_fn_800737E4_fn_800737E4_Arg0 *)&loc_2C, 1, zero);
@@ -3253,27 +3745,9 @@ void fn_1_A9868(u32 arg0, u32 arg1, u32 arg2, f32 arg3) {
 }
 /* fzgx:end fn_1_A9868 */
 
-/* fzgx:begin fn_1_A9A28 noprologue */
-#include "types.h"
-#include "dolphin/hw_regs.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/driver.h"
-
-typedef struct {
-    u8 r;
-    u8 g;
-    u8 b;
-    u8 a;
-} GXColor;
-
-typedef union {
-    u8 u8;
-    f32 f32;
-} PPCWGPipe;
-
+/* fzgx:begin fn_1_A9A28 */
 volatile PPCWGPipe GXWGFifo : GX_FIFO_BASE; /* volatile: hardware port */
 
-extern void fn_8003462C(u32, u32, u32);
 
 /* The SDK's const-parameter vertex writers; GC/2.5 keeps the by-value color in registers across them. */
 static inline void GXPosition3f32(const f32 x, const f32 y, const f32 z) {
@@ -3302,28 +3776,9 @@ void fn_1_A9A28(s16 x0, s16 y0, s16 x1, s16 y1, GXColor color) {
 }
 /* fzgx:end fn_1_A9A28 */
 
-/* fzgx:begin fn_1_A9B70 noprologue */
-#include "types.h"
-#include "dolphin/hw_regs.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/driver.h"
-
-typedef struct {
-    u8 r;
-    u8 g;
-    u8 b;
-    u8 a;
-} GXColor;
-
-typedef union {
-    u8 u8;
-    f32 f32;
-} PPCWGPipe;
-
+/* fzgx:begin fn_1_A9B70 */
 volatile PPCWGPipe GXWGFifo : GX_FIFO_BASE; /* volatile: hardware port */
 
-extern void fn_8003462C(u32, u32, u32);
-extern void fn_1_A9FFC(s16 x, s16 y, s16 w, s16 h, GXColor color);
 
 static inline void GXPosition3f32(const f32 x, const f32 y, const f32 z) {
     GXWGFifo.f32 = x;
@@ -3365,27 +3820,9 @@ void fn_1_A9B70(s16 x, s16 y, s16 w, s16 h, GXColor color) {
 }
 /* fzgx:end fn_1_A9B70 */
 
-/* fzgx:begin fn_1_A9FFC noprologue */
-#include "types.h"
-#include "dolphin/hw_regs.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/driver.h"
-
-typedef struct {
-    u8 r;
-    u8 g;
-    u8 b;
-    u8 a;
-} GXColor;
-
-typedef union {
-    u8 u8;
-    f32 f32;
-} PPCWGPipe;
-
+/* fzgx:begin fn_1_A9FFC */
 volatile PPCWGPipe GXWGFifo : GX_FIFO_BASE; /* volatile: hardware port */
 
-extern void fn_8003462C(u32, u32, u32);
 
 /* The SDK's const-parameter vertex writers; GC/2.5 keeps the by-value color in registers across them. */
 static inline void GXPosition3f32(const f32 x, const f32 y, const f32 z) {
@@ -3418,27 +3855,9 @@ void fn_1_A9FFC(s16 x, s16 y, s16 w, s16 h, GXColor color) {
 }
 /* fzgx:end fn_1_A9FFC */
 
-/* fzgx:begin fn_1_AA188 noprologue */
-#include "types.h"
-#include "dolphin/hw_regs.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/driver.h"
-
-typedef struct {
-    u8 r;
-    u8 g;
-    u8 b;
-    u8 a;
-} GXColor;
-
-typedef union {
-    u8 u8;
-    f32 f32;
-} PPCWGPipe;
-
+/* fzgx:begin fn_1_AA188 */
 volatile PPCWGPipe GXWGFifo : GX_FIFO_BASE; /* volatile: hardware port */
 
-extern void fn_8003462C(u32, u32, u32);
 
 /* The SDK's const-parameter vertex writers; GC/2.5 keeps the by-value colors in registers across them. */
 static inline void GXPosition3f32(const f32 x, const f32 y, const f32 z) {
@@ -3471,20 +3890,7 @@ void fn_1_AA188(s16 x, s16 y, s16 w, s16 h, GXColor c0, GXColor c1, GXColor c2, 
 }
 /* fzgx:end fn_1_AA188 */
 
-/* fzgx:begin fn_1_AA350 noprologue */
-#include "types.h"
-#include "dolphin/types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/driver.h"
-#include "types.h"
-#include "dolphin/types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/driver.h"
-#include "types.h"
-#include "dolphin/hw_regs.h"
-#include "types.h"
-#include "rel/main_rel/driver.h"
-
+/* fzgx:begin fn_1_AA350 */
 /* begin game/main_rel/driver_types.h (deltawave784/fzgx, CC0) */
 #ifndef GAME_MAIN_REL_DRIVER_TYPES_H
 #define GAME_MAIN_REL_DRIVER_TYPES_H
@@ -3493,80 +3899,16 @@ void fn_1_AA188(s16 x, s16 y, s16 w, s16 h, GXColor c0, GXColor c1, GXColor c2, 
 // a block can compile standalone and under the prologue. Hand-owned (librarian).
 
 
-typedef struct {
-    u8 pad_0[0x8];
-    u32 unk_8;
-} DriverAsset;
 
-struct fn_1_A7F84_lbl_1_rodata_4A28 {
-    f32 unk_0;
-};
 
-typedef struct FnA8528Config {
-    u8 pad_0c[0x0c];
-    f32 unk_0c;
-    u8 pad_10[0x0c];
-    f32 unk_1c;
-    u8 pad_20[0x0c];
-    f32 unk_2c;
-} FnA8528Config;
 
-struct fn_1_A7F84_lbl_801A6D00 {
-    u32 unk_0;
-};
 
-struct fn_1_A9868_lbl_801A6D00 {
-    u32 unk_0;
-};
 
-typedef struct FnA861CCamera {
-    u8 pad_0[0xdc];
-    f32 yaw;      /* 0xdc */
-    f32 roll;     /* 0xe0 */
-    f32 pitch;    /* 0xe4 */
-    u8 unk_e8;
-    u8 unk_e9;
-    u8 pad_ea[0x15c - 0xea];
-    u8 unk_15c[4];
-} FnA861CCamera;
 
-typedef struct {
-    signed char gpr;
-    signed char fpr;
-    unsigned short reserved;
-    char *input_arg_area;
-    char *reg_save_area;
-} Sig_parse_format_MkVaListState;
 
 typedef Sig_parse_format_MkVaListState Sig_parse_format_va_list;
 
-typedef struct {
-    u8 kind;
-    u8 callback;
-    u8 flags;
-    u8 pad3;
-    s16 x;
-    s16 y;
-    s16 z;
-    s16 padA;
-    void *data;
-} Fn1A9250Entry;
 
-struct fn_1_A9868_lbl_1_rodata_4AA0 {
-    u32 unk_0;
-    u32 unk_4;
-    u32 unk_8;
-    u32 unk_C;
-    u32 unk_10;
-    u32 unk_14;
-    u32 unk_18;
-    u32 unk_1C;
-    u32 unk_20;
-    f32 unk_24;
-    f32 unk_28;
-    f32 unk_2C;
-    f32 unk_30;
-};
 
 /* begin game/main_rel/shared_types.h (deltawave784/fzgx, CC0) */
 #ifndef GAME_MAIN_REL_SHARED_TYPES_H
@@ -3576,198 +3918,29 @@ struct fn_1_A9868_lbl_1_rodata_4AA0 {
 // the TU headers can be included together. Hand-owned (librarian).
 
 
-typedef struct Sig_fn_1_41488_Fn41488Data {
-    u32 count;
-    char *strings;
-} Sig_fn_1_41488_Fn41488Data;
 
-typedef struct Sig_fn_80015EE8_Fn80015EE8Out {
-    f32 f0;
-    f32 f1;
-    f32 f2;
-    f32 f3;
-    f32 f4;
-    f32 f5;
-    f32 f6;
-    f32 f7;
-    f32 f8;
-    f32 f9;
-    f32 f10;
-    f32 f11;
-    f32 f12;
-    f32 f13;
-    f32 f14;
-    f32 f15;
-} Sig_fn_80015EE8_Fn80015EE8Out;
 
-struct Sig_fn_80077B14_fn_80077B14_Arg0 {
-    u8 pad_0[0x4];
-    u32 unk_4;
-    u8 pad_8[0x18];
-    u32 unk_20;
-};
 
-struct Sig_fn_80077B64_fn_80077B64_Arg0 {
-    u8 pad_0[0x4];
-    u32 unk_4;
-};
 
-struct FzgxCopy_88 { u32 words[22]; };
 
 #endif  // GAME_MAIN_REL_SHARED_TYPES_H
 
 /* end game/main_rel/shared_types.h */
 
-struct Sig_fn_800737E4_fn_800737E4_Arg0 {
-    f32 unk_0;
-    u8 pad_4[0x4];
-    f32 unk_8;
-    f32 unk_C;
-    u8 pad_10[0x4];
-    f32 unk_14;
-    f32 unk_18;
-    f32 unk_1C;
-    u8 pad_20[0x8];
-    f32 unk_28;
-    f32 unk_2C;
-};
 
-typedef struct FnA861CVehicle {
-    u8 pad_0[8];
-    f32 unk_8;
-    u8 pad_c[0xa4 - 0xc];
-    f32 unk_a4;
-    u8 pad_a8[0xb0 - 0xa8];
-    f32 unk_b0;
-    u8 pad_b4[0xb8 - 0xb4];
-    f32 unk_b8;
-    u8 pad_bc[0xc0 - 0xbc];
-    f32 unk_c0;
-} FnA861CVehicle;
 
-typedef struct FnA8834Camera {
-    u8 pad_0[0x90];
-    u8 unk_90[0x48];
-    f32 unk_d8;
-    f32 unk_dc;
-    u8 pad_e0[4];
-    f32 unk_e4;
-    u8 pad_e8[0x18c - 0xe8];
-    u8 unk_18c[4];
-} FnA8834Camera;
 
-typedef struct FnA8834Vehicle {
-    u8 pad_0[8];
-    f32 unk_8;
-    u8 pad_c[0xa4 - 0xc];
-    f32 unk_a4;
-    u8 pad_a8[0xb0 - 0xa8];
-    f32 unk_b0;
-    u8 pad_b4[0xc0 - 0xb4];
-    f32 unk_c0;
-    u8 pad_c4[0x1fc - 0xc4];
-    f32 unk_1fc;
-} FnA8834Vehicle;
 
-extern struct fn_1_A7F84_lbl_1_rodata_4A28 lbl_1_rodata_4A28;
-extern FnA8528Config *lbl_801A6D00;
-extern Fn1A9250Entry lbl_1_bss_70658[];
-extern struct fn_1_A9868_lbl_1_rodata_4AA0 lbl_1_rodata_4AA0;
-extern f32 C_MTXOrtho(Sig_fn_80015EE8_Fn80015EE8Out *, f32, f32, f32, f32, f32, f32);
-extern void fn_800737E4(struct Sig_fn_800737E4_fn_800737E4_Arg0 *, s32, f32);
-extern void fn_1_A861C(FnA861CCamera *cam, FnA861CVehicle *veh);
-extern void fn_1_A8834(FnA8834Camera *cam, FnA8834Vehicle *veh);
 
 #endif  // GAME_MAIN_REL_DRIVER_TYPES_H
 
 /* end game/main_rel/driver_types.h */
 
-extern void fn_80006E10(u32 arg0);
-extern s32 fn_1_12C930(s8);
-extern s16 fn_1_12CCB0(s16 arg0, s16 arg1);
-extern int sprintf(char *s, const char *format, ...);
-extern void fn_1_D3884();
-extern u32 fn_80077D40(void);
-extern u32 fn_80071470(u32, u32);
-extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_80071718(void *value);
-extern void fn_1_A8270(void *, void *);
-extern void *lbl_801A6410;
-extern u32 fn_1_4630();
-extern void fn_1_A8528(void *, void *);
-extern u32 lbl_8006D91C(u32);
-extern u32 mathutil_mtxA_rotate_y(u32);
-extern void mathutil_mtxA_rotate_x(u32);
-extern u32 lbl_8006D998(u32);
-extern void lbl_8006DBAC(void *arg0);
-extern void lbl_8006DB74(void *);
-extern void mathutil_mtxA_rotate_z(s32);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DFC4(void *pos);
-extern void lbl_8006DB30(void);
-extern void fn_1_A9420(u8 value);
-extern s32 fn_8008077C(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_1_A948C(int);
-extern void fn_1_49410(void);
-extern void fn_1_494DC(s16 index);
-extern void fn_1_520A0(void);
-extern void fn_1_52088(void);
-extern u32 lbl_1_bss_71658[6];
-extern const f64 lbl_1_rodata_4A98;
-extern void fn_1_49714(f32 value1, f32 value2, f32 value3);
-extern void fn_1_49680(f32 value1, f32 value2);
-extern void fn_1_A93C4(u32 arg0);
-extern void fn_1_4A0D8(void *);
-extern void fn_1_520CC(void);
-extern void fn_1_49514(u32 *value);
 extern void (*lbl_1_bss_7168C)(void);
-extern u32 GXLoadPosMtxImm(u32, u32);
-extern u32 fn_800720B0(u32);
-extern void fn_80072EDC(s32 arg0, s32 arg1);
-extern void fn_1_A714C(f32 *a, f32 *b, f32 *c, f32 *d);
-extern void GXSetCurrentMtx(u32 value);
-extern void fn_8006F1F0(void *, void *, void *);
-extern void fn_8007245C(u32 value);
-extern void fn_8007264C(u32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4);
-extern void fn_800734A8(u32 arg0, s32 arg1, s32 arg2, s32 arg3);
-extern void fn_80073678(u32 arg0);
-extern void fn_80073898(u32 arg0);
-extern void fn_80073C6C(s32 index);
-extern void fn_80074660(u32 arg0);
-extern void fn_800746A8();
-extern void fn_80074718(u8 value, s32 arg);
-extern void fn_80074788(u32 arg0);
-extern void fn_800747D0(u32 arg0, u32 arg1, s32 arg2, s32 arg3, u32 arg4, s32 arg5, s32 arg6);
-extern void fn_80074918(u8 arg0, s32 arg1, u8 arg2);
-extern void OSPanic(const char *file, int line, const char *msg, ...);
-extern void OSReport(const char *format, ...);
-extern void fn_800711A8(void *value);
-extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
-extern void fn_1_A7E60(s32 arg0, s8 arg1, s32 arg2, s32 arg3, s32 arg4);
-extern void lbl_8006E0A4(void *arg0);
-extern void fn_8006F6A8(void *arg0);
-extern void fn_1_A89B0(void *arg0, void *arg1, s32 arg2);
-extern void fn_1_3920(void);
-extern void fn_1_A8D4C(void);
-extern void fn_1_A8D64(void);
-extern u32 fn_8001A78C(u32 arg0);
-extern u32 fn_8001A7D0(u32 arg0);
-extern void fn_1_A943C(u32 arg0, u32 arg1);
-extern void fn_1_A9464(u16 arg0, u16 arg1);
-extern void fn_1_A942C(u8 value);
-extern void fn_1_A96BC(void);
 extern void (*lbl_1_bss_7167C)(void);
-extern void fn_1_A5C98(void *);
-extern u8 lbl_1_bss_716C8[320];
 extern void (*lbl_1_bss_71680)(void);
-extern u32 fn_1_451C(void);
-extern void fn_1_A5AA0(void *buffer, void *destination);
-extern u32 lbl_1_bss_71670;
 extern void (*lbl_1_bss_71684)(void);
 extern void (*lbl_1_bss_71688)(void);
-extern u32 fn_1_A7024(f32, f32, f32, f32);
-extern f32 lbl_1_rodata_4AC4[4];
-extern void fn_8003462C(u32, u32, u32);
 
 
 #define WG_F32 (*(volatile f32 *)(GX_FIFO_BASE + 0x0)) /* Hardware access must remain ordered. */
@@ -3811,7 +3984,58 @@ void fn_1_AA538(void) {
 }
 /* fzgx:end fn_1_AA538 */
 
-/* fzgx:begin fn_1_AA590 */
+/* fzgx:begin fn_1_AA590 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/driver.h"
+
+extern void *lbl_801A6410;
+extern void fn_80071718(void *value);
+extern void fn_800711A8(void *value);
+extern void fn_1_46B4(void *arg0, void *arg1, void *arg2, s32 arg3);
+extern void fn_1_A7E60(s32 arg0, s8 arg1, s32 arg2, s32 arg3, s32 arg4);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DBAC(void *arg0);
+extern void lbl_8006E0A4(void *arg0);
+extern void fn_8006F6A8(void *arg0);
+extern void lbl_8006DB30(void);
+extern void fn_1_A861C(void *arg0, void *arg1);
+extern void fn_1_A8834(void *arg0, void *arg1);
+extern void fn_1_A89B0(void *arg0, void *arg1, s32 arg2);
+extern void fn_1_3920(void);
+extern void fn_1_A8D4C(void);
+extern void fn_1_A8D64(void);
+extern void fn_8001A78C(void (*func)(void));
+extern void fn_8001A7D0(void (*func)(void));
+extern void fn_1_A9420(u8 value);
+extern void fn_1_A948C(int);
+extern void fn_1_A943C(int, int);
+extern void fn_1_A9464(u16 arg0, u16 arg1);
+extern void fn_1_A942C(u8 value);
+extern void fn_1_A96BC(void);
+extern void (*lbl_1_bss_7167C)(void);
+extern void fn_1_A5C98(void *);
+extern u8 lbl_1_bss_716C8[320];
+
+extern void (*lbl_1_bss_71680)(void);
+
+extern void (*lbl_1_bss_7167C)(void);
+extern void fn_1_A9420(u8 value);
+extern void fn_1_A9464(u16 arg0, u16 arg1);
+extern u32 fn_1_451C(void);
+extern void sprintf(void *buffer, char *format, ...);
+extern void fn_1_A5AA0(void *buffer, void *destination);
+extern u32 lbl_1_bss_71670;
+
+extern void (*lbl_1_bss_71684)(void);
+
+extern void (*lbl_1_bss_71688)(void);
+
+extern void (*lbl_1_bss_7168C)(void);
+extern void fn_1_A8528(void *arg0, void *arg1);
+extern u32 fn_1_A7024(f32, f32, f32, f32);
+extern u32 fn_80074918(u32, u32, u32);
+
 extern void *lbl_801A6410;
 extern void fn_80071718(void *value);
 extern void fn_800711A8(void *value);
@@ -4024,7 +4248,58 @@ void fn_1_AA590(void)
 }
 /* fzgx:end fn_1_AA590 */
 
-/* fzgx:begin fn_1_AA6D8 */
+/* fzgx:begin fn_1_AA6D8 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/driver.h"
+
+extern void *lbl_801A6410;
+extern void fn_80071718(void *value);
+extern void fn_800711A8(void *value);
+extern void fn_1_46B4(void *arg0, void *arg1, void *arg2, s32 arg3);
+extern void fn_1_A7E60(s32 arg0, s8 arg1, s32 arg2, s32 arg3, s32 arg4);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DBAC(void *arg0);
+extern void lbl_8006E0A4(void *arg0);
+extern void fn_8006F6A8(void *arg0);
+extern void lbl_8006DB30(void);
+extern void fn_1_A861C(void *arg0, void *arg1);
+extern void fn_1_A8834(void *arg0, void *arg1);
+extern void fn_1_A89B0(void *arg0, void *arg1, s32 arg2);
+extern void fn_1_3920(void);
+extern void fn_1_A8D4C(void);
+extern void fn_1_A8D64(void);
+extern void fn_8001A78C(void (*func)(void));
+extern void fn_8001A7D0(void (*func)(void));
+extern void fn_1_A9420(u8 value);
+extern void fn_1_A948C(int);
+extern void fn_1_A943C(int, int);
+extern void fn_1_A9464(u16 arg0, u16 arg1);
+extern void fn_1_A942C(u8 value);
+extern void fn_1_A96BC(void);
+extern void (*lbl_1_bss_7167C)(void);
+extern void fn_1_A5C98(void *);
+extern u8 lbl_1_bss_716C8[320];
+
+extern void (*lbl_1_bss_71680)(void);
+
+extern void (*lbl_1_bss_7167C)(void);
+extern void fn_1_A9420(u8 value);
+extern void fn_1_A9464(u16 arg0, u16 arg1);
+extern u32 fn_1_451C(void);
+extern void sprintf(void *buffer, char *format, ...);
+extern void fn_1_A5AA0(void *buffer, void *destination);
+extern u32 lbl_1_bss_71670;
+
+extern void (*lbl_1_bss_71684)(void);
+
+extern void (*lbl_1_bss_71688)(void);
+
+extern void (*lbl_1_bss_7168C)(void);
+extern void fn_1_A8528(void *arg0, void *arg1);
+extern u32 fn_1_A7024(f32, f32, f32, f32);
+extern u32 fn_80074918(u32, u32, u32);
+
 extern void *lbl_801A6410;
 extern void fn_80071718(void *value);
 extern void fn_800711A8(void *value);
@@ -6141,7 +6416,58 @@ void fn_1_AA6D8(u8 kind, u8 slot, DriverParam *param) {
 }
 /* fzgx:end fn_1_AA6D8 */
 
-/* fzgx:begin fn_1_AAB98 */
+/* fzgx:begin fn_1_AAB98 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/driver.h"
+
+extern void *lbl_801A6410;
+extern void fn_80071718(void *value);
+extern void fn_800711A8(void *value);
+extern void fn_1_46B4(void *arg0, void *arg1, void *arg2, s32 arg3);
+extern void fn_1_A7E60(s32 arg0, s8 arg1, s32 arg2, s32 arg3, s32 arg4);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DBAC(void *arg0);
+extern void lbl_8006E0A4(void *arg0);
+extern void fn_8006F6A8(void *arg0);
+extern void lbl_8006DB30(void);
+extern void fn_1_A861C(void *arg0, void *arg1);
+extern void fn_1_A8834(void *arg0, void *arg1);
+extern void fn_1_A89B0(void *arg0, void *arg1, s32 arg2);
+extern void fn_1_3920(void);
+extern void fn_1_A8D4C(void);
+extern void fn_1_A8D64(void);
+extern void fn_8001A78C(void (*func)(void));
+extern void fn_8001A7D0(void (*func)(void));
+extern void fn_1_A9420(u8 value);
+extern void fn_1_A948C(int);
+extern void fn_1_A943C(int, int);
+extern void fn_1_A9464(u16 arg0, u16 arg1);
+extern void fn_1_A942C(u8 value);
+extern void fn_1_A96BC(void);
+extern void (*lbl_1_bss_7167C)(void);
+extern void fn_1_A5C98(void *);
+extern u8 lbl_1_bss_716C8[320];
+
+extern void (*lbl_1_bss_71680)(void);
+
+extern void (*lbl_1_bss_7167C)(void);
+extern void fn_1_A9420(u8 value);
+extern void fn_1_A9464(u16 arg0, u16 arg1);
+extern u32 fn_1_451C(void);
+extern void sprintf(void *buffer, char *format, ...);
+extern void fn_1_A5AA0(void *buffer, void *destination);
+extern u32 lbl_1_bss_71670;
+
+extern void (*lbl_1_bss_71684)(void);
+
+extern void (*lbl_1_bss_71688)(void);
+
+extern void (*lbl_1_bss_7168C)(void);
+extern void fn_1_A8528(void *arg0, void *arg1);
+extern u32 fn_1_A7024(f32, f32, f32, f32);
+extern u32 fn_80074918(u32, u32, u32);
+
 extern void *lbl_801A6410;
 extern void fn_80071718(void *value);
 extern void fn_800711A8(void *value);
@@ -6442,9 +6768,7 @@ void fn_1_AAB98(void) {
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_AAB98 */
 
-/* fzgx:begin fn_1_AAEB0 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_AAEB0 */
 struct fn_1_AAEB0_Arg0 {
     u8 unk_0;
     u8 pad_1[0x4];
@@ -6457,15 +6781,12 @@ struct fn_1_AAEB0_lbl_1_data_35AC8 {
     u32 unk_6AC4[1];
 };
 
-extern struct fn_1_AAEB0_lbl_1_data_35AC8 lbl_1_data_35AC8;
-extern void OSPanic(const char *, int, const char *, ...);
-extern void OSReport(const char *, ...);
 
 static inline u32 *fn_1_AAEB0_array_read(u32 *array) { return array; }
 #pragma opt_propagation off
 void fn_1_AAEB0(struct fn_1_AAEB0_Arg0 *arg0) {
     struct fn_1_AAEB0_lbl_1_data_35AC8 *p_lbl_1_data_35AC8;
-    p_lbl_1_data_35AC8 = (struct fn_1_AAEB0_lbl_1_data_35AC8 *)&lbl_1_data_35AC8;
+    p_lbl_1_data_35AC8 = (struct fn_1_AAEB0_lbl_1_data_35AC8 *)&(*((struct fn_1_AAEB0_lbl_1_data_35AC8 *)&lbl_1_data_35AC8));
     OSReport((const char *)(u32)((u8 *)(u32)p_lbl_1_data_35AC8 + 28000), arg0->unk_0, *(u32 *)((u8 *)arg0->unk_24 + 4), fn_1_AAEB0_array_read(p_lbl_1_data_35AC8->unk_6AC4)[arg0->unk_5]);
     OSPanic((const char *)(u32)((u8 *)(u32)p_lbl_1_data_35AC8 + 27888), 1322, (const char *)(u32)((u8 *)(u32)p_lbl_1_data_35AC8 + 28044));
 }
@@ -6478,7 +6799,7 @@ void fn_1_AAF18(void) {
 }
 /* fzgx:end fn_1_AAF18 */
 
-/* fzgx:begin fn_1_AAF1C noprologue */
+/* fzgx:begin fn_1_AAF1C */
 typedef signed short s16;
 typedef signed long s32;
 
@@ -6489,14 +6810,10 @@ typedef unsigned char u8;
 typedef unsigned long u32;
 
 
-extern s16 lbl_1_bss_960;
 
 
-extern u32 lbl_1_data_35AC8;
 
 
-extern void OSReport(const char *, ...);
-extern void OSPanic(const char *, int, const char *, ...);
 typedef struct {
 u8 pad_0[0x3F];
 u8 unk_3F;
@@ -6586,7 +6903,7 @@ case -0x7f:
 obj->unk_8 = 0x1f;
 break;
 case -0x77:
-if (lbl_1_bss_960 == 3) {
+if ((*((s16 *)&lbl_1_bss_960)) == 3) {
 obj->unk_8 = 0x4d;
 } else {
 obj->unk_8 = 0x4c;

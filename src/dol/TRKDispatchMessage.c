@@ -9,6 +9,24 @@ struct TRKBuffer {
     u8 data[(0x800 + 0x80)];
 };
 
+/* MetroTRK message command IDs (msgcmd.h) */
+enum {
+    kDSConnect = 0x01,
+    kDSDisconnect = 0x02,
+    kDSReset = 0x03,
+    kDSVersions = 0x04,
+    kDSSupportMask = 0x05,
+    kDSOverride = 0x07,
+    kDSReadMemory = 0x10,
+    kDSWriteMemory = 0x11,
+    kDSReadRegisters = 0x12,
+    kDSWriteRegisters = 0x13,
+    kDSSetOption = 0x17,
+    kDSContinue = 0x18,
+    kDSStep = 0x19,
+    kDSStop = 0x1A
+};
+
 extern s32 fn_80089144(TRKBuffer *, u32);
 extern void MWTRACE(u32, ...);
 extern char lbl_80095850[];
@@ -34,46 +52,46 @@ s32 TRKDispatchMessage(TRKBuffer * arg0) {
     fn_80089144(arg0, 0);
     MWTRACE(1, lbl_80095850, arg0->data[4]);
     switch (arg0->data[4]) {
-    case 26:
+    case kDSConnect:
         result = fn_8008A6E4(arg0);
         break;
-    case 12:
+    case kDSDisconnect:
         result = fn_8008A66C(arg0);
         break;
-    case 11:
+    case kDSReset:
         result = fn_8008A614(arg0);
         break;
-    case 10:
+    case kDSOverride:
         result = fn_8008A5BC(arg0);
         break;
-    case 9:
+    case kDSVersions:
         result = fn_8008A5B4(arg0);
         break;
-    case 8:
+    case kDSSupportMask:
         result = fn_8008A5AC(arg0);
         break;
-    case 7:
+    case kDSReadMemory:
         result = fn_8008A3C0(arg0);
         break;
-    case 6:
+    case kDSWriteMemory:
         result = fn_8008A1CC(arg0);
         break;
-    case 5:
+    case kDSReadRegisters:
         result = fn_80089EEC(arg0);
         break;
-    case 4:
+    case kDSWriteRegisters:
         result = fn_80089C5C(arg0);
         break;
-    case 3:
+    case kDSContinue:
         result = fn_80089BAC(arg0);
         break;
-    case 2:
+    case kDSStep:
         result = fn_8008998C(arg0);
         break;
-    case 1:
+    case kDSStop:
         result = fn_800898E4(arg0);
         break;
-    case 0:
+    case kDSSetOption:
         result = fn_8008983C(arg0);
         break;
     }

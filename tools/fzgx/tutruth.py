@@ -175,7 +175,7 @@ def private_type_names(body: str) -> set:
     names = set(re.findall(r'\}\s*([A-Za-z_]\w*)\s*;', body, re.M))
     names |= set(re.findall(r'^(?:typedef\s+)?(?:struct|union)\s+([A-Za-z_]\w*)\s*\{', body, re.M))
     names |= set(re.findall(r'^typedef\s+[^;{}]*?\(\s*\*\s*([A-Za-z_]\w*)\s*\)\s*\([^;]*\)\s*;', body, re.M))
-    names |= set(re.findall(r'^typedef\s+(?!struct\b|union\b|enum\b)[^;{}()]*?\b([A-Za-z_]\w*)\s*;', body, re.M))
+    names |= set(re.findall(r'^typedef\s+(?!struct\b|union\b|enum\b)[^;{}()\[]*?\b([A-Za-z_]\w*)\s*(?:\[[^\]]*\]\s*)*;', body, re.M))
     return names - {'u8', 'u16', 'u32', 's8', 's16', 's32', 'f32', 'f64'}
 
 
@@ -185,7 +185,7 @@ def type_definition_span(body: str, tname: str) -> Optional[Tuple[int, int]]:
     m1 = re.search(r'^typedef\s+[^;{}]*?\(\s*\*\s*' + re.escape(tname) + r'\s*\)\s*\([^;]*\)\s*;\s*\n?', body, re.M)
     if m1:
         return m1.start(), m1.end()
-    m2 = re.search(r'^typedef\s+(?!struct\b|union\b|enum\b)[^;{}()]*?\b' + re.escape(tname) + r'\s*;\s*\n?', body, re.M)
+    m2 = re.search(r'^typedef\s+(?!struct\b|union\b|enum\b)[^;{}()\[]*?\b' + re.escape(tname) + r'\s*(?:\[[^\]]*\]\s*)*;\s*\n?', body, re.M)
     if m2:
         return m2.start(), m2.end()
     for m in re.finditer(r'^(?:typedef\s+)?(?:struct|union|enum)\s*(?:[A-Za-z_]\w*\s*)?\{', body, re.M):
@@ -220,7 +220,7 @@ def order_prologue_types(prologue: str) -> str:
         for m in re.finditer(r'^typedef\s+[^;{}]*;\s*\n?', prologue, re.M):
             text = m.group(0)
             fp = re.search(r'\(\s*\*\s*([A-Za-z_]\w*)\s*\)', text)
-            name = fp.group(1) if fp else re.findall(r'([A-Za-z_]\w*)\s*;', text)[-1]
+            name = fp.group(1) if fp else re.findall(r'([A-Za-z_]\w*)\s*(?:\[[^\]]*\]\s*)*;', text)[-1]
             defs.append((m.start(), m.end(), {name}))
         for m in re.finditer(r'^(?:typedef\s+)?(?:struct|union|enum)\b[^;{]*\{', prologue, re.M):
             # find the end of this definition
@@ -892,13 +892,24 @@ def resolve(p: Project, tu_source: str, v, apply: bool = True,
         for u in list(units.values()):
             if isinstance(u.get('pool'), dict):
                 res = oracle.check(p, f"{module}:{u['symbols'][0]}", 20)
-                # an empty map means the recorded one was already applied: never wipe it (finish.py's guard)
-                if res.ok and (res.matched or res.matched_pool) and res.pool_map and res.pool_map != u['pool']:
+                new_map = res.pool_map if res.ok and (res.matched or res.matched_pool) else None
+                if not new_map:
+                    # an empty map means the recorded one was already applied: never wipe it (finish.py's
+                    # guard), unless the recorded private names no longer exist in the compiled object
+                    # (a new prologue renumbers the block's @N literals): then bind them again
+                    from . import collapse, poolfix
+                    obj = scratch / f"{u['symbols'][0]}.pool.o"
+                    cp_ = oracle.compile_unit(p, p.objdiff_unit_name(module, u['source']), u['source'], None, output=obj)
+                    if cp_.returncode == 0:
+                        names_ = {s['name'] for s in poolfix.Elf(obj.read_bytes()).symbols()}
+                        if any(k not in names_ for k in u['pool']):
+                            new_map = collapse._pool_map(p, module, u['symbols'], obj)
+                if new_map and new_map != u['pool']:
                     with oracle.build_lock('units.lock'):
                         all_units = p.load_units()
                         for x in all_units:
                             if x['source'] == u['source']:
-                                x['pool'] = dict(res.pool_map)
+                                x['pool'] = dict(new_map)
                         p.save_units(all_units)
                     report.setdefault('pool_remapped', []).append(u['symbols'][0])
         for u in units.values():

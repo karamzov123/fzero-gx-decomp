@@ -99,7 +99,7 @@ extern u8 jumptable_1_data_3D5E0[0x50];
 extern f32 lbl_1_data_3D554;
 
 // lbl_1_data_3D630: .data size 0x3, 1 refs from enemy_ctrl.c (own data block)
-extern u32 lbl_1_data_3D630;
+extern u8 lbl_1_data_3D630[0x3];
 
 // lbl_1_data_3D234: .data size 0x38, 1 refs from enemy_ctrl.c (own data block)
 extern u8 lbl_1_data_3D234[0x38];

@@ -506,10 +506,8 @@ extern void fn_1_857C(s8);
 extern void fn_1_90E0(void);
 extern void fn_1_EE44(void);
 extern f32 fn_1_A6FE8(void);
-extern const f64 lbl_1_rodata_178;
-extern const f64 lbl_1_rodata_180;
 extern void fn_1_8D08(void *, f32);
-extern void fn_1_EBE4(void *, s32, u32);
+extern u32 fn_1_EBE4(void *, s32, u32, f32);
 extern u8 lbl_1_data_33CC[0xF];
 extern u8 lbl_1_data_33DC[0xF];
 
@@ -545,6 +543,12 @@ typedef struct {
     Item *unk_4;
     Target *unk_8;
 } State;
+
+u8 lbl_1_data_3318[0xB4] = {
+    0x63U, 0x61U, 0x6DU, 0x65U, 0x72U, 0x61U, 0x2EU, 0x63U, 0x00U, 0x00U, 0x00U, 0x00U, 0x63U, 0x61U, 0x6DU, 0x65U, 0x72U, 0x61U, 0x20U, 0x6DU, 0x61U, 0x6EU, 0x61U, 0x67U, 0x65U, 0x72U, 0x20U, 0x68U, 0x61U, 0x73U, 0x20U, 0x61U, 0x6CU, 0x72U, 0x65U, 0x61U, 0x64U, 0x79U, 0x20U, 0x61U, 0x63U, 0x74U, 0x69U, 0x76U, 0x65U, 0x2EU, 0x20U, 0x62U, 0x79U, 0x20U, 0x74U, 0x65U, 0x72U, 0x61U, 0x6DU, 0x6FU, 0x74U, 0x6FU, 0x0AU, 0x00U, 0x67U, 0x61U, 0x6DU, 0x65U, 0x5FU, 0x63U, 0x61U, 0x6DU, 0x65U, 0x72U, 0x61U, 0x20U, 0x68U, 0x61U, 0x73U, 0x20U, 0x61U, 0x6CU, 0x72U, 0x65U, 0x61U, 0x64U, 0x79U, 0x20U, 0x61U, 0x63U, 0x74U, 0x69U, 0x76U, 0x65U, 0x2EU, 0x20U, 0x62U, 0x79U, 0x20U, 0x74U, 0x65U, 0x72U, 0x61U, 0x6DU, 0x6FU, 0x74U, 0x6FU, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x6CU, 0x69U, 0x76U, 0x65U, 0x5FU, 0x63U, 0x61U, 0x6DU, 0x65U, 0x72U, 0x61U, 0x20U, 0x68U, 0x61U, 0x73U, 0x20U, 0x61U, 0x6CU, 0x72U, 0x65U, 0x61U, 0x64U, 0x79U, 0x20U, 0x61U, 0x63U, 0x74U, 0x69U, 0x76U, 0x65U, 0x2EU, 0x20U, 0x62U, 0x79U, 0x20U, 0x74U, 0x65U, 0x72U, 0x61U, 0x6DU, 0x6FU, 0x74U, 0x6FU, 0x0AU, 0x00U, 0x00U, 0x00U, 0x00U, 0x43U, 0x61U, 0x6DU, 0x65U, 0x72U, 0x61U, 0x45U, 0x78U, 0x65U, 0x63U, 0x00U, 0x00U, 0x43U, 0x61U, 0x6DU, 0x65U, 0x72U, 0x61U, 0x44U, 0x69U, 0x73U, 0x70U, 0x00U, 0x00U
+};
+u8 lbl_1_data_33CC[0xF] = "GameCameraExec";
+u8 lbl_1_data_33DC[0xF] = "LiveCameraExec";
 
 s8 fn_1_5370(s8 arg0, s32 arg1) {
     State *state = (State *)&lbl_1_bss_F68;
@@ -632,10 +636,10 @@ s8 fn_1_5370(s8 arg0, s32 arg1) {
         kind = (u8)(state->unk_0->unk_48);
         if ((s8)kind == 1 || (i == 0 && (s8)kind == 3) ||
             (i == 1 && (s8)kind == 4) || (i == 2 && (s8)kind == 5)) {
-            f = f * lbl_1_rodata_178;
+            f *= 2.0;
         }
         if ((s8)kind == 2) {
-            f = f * lbl_1_rodata_180;
+            f *= 0.5;
         }
         if ((s8)kind == 0) {
             item->unk_2 = (u16)arg1;
@@ -647,11 +651,11 @@ s8 fn_1_5370(s8 arg0, s32 arg1) {
     }
 
     if (flag) {
-        fn_1_A6FE8();
+        f = fn_1_A6FE8();
         if (arg0 == 4) {
-            fn_1_EBE4(state->unk_8, -1, 1);
+            fn_1_EBE4(state->unk_8, -1, 1, f);
         } else {
-            fn_1_EBE4(state->unk_8, arg1, 0);
+            fn_1_EBE4(state->unk_8, arg1, 0, f);
         }
         fn_1_435C(state->unk_0->unk_50);
         state->unk_0->list0[state->unk_0->num0++] =
@@ -688,19 +692,18 @@ typedef struct {
 } fn_1_56B8_Cluster;
 
 extern f32 fn_1_A6FE8(void);
-extern void fn_1_8D08(GameCameraEntry *, f32);
+extern void fn_1_8D08(void *, f32);
 extern void fn_1_8A0C(s32);
-extern void fn_1_EBE4(fn_1_56B8_Camera *, s16, s32, f32);
+extern u32 fn_1_EBE4(void *, s32, u32, f32);
 extern void fn_1_EE04(fn_1_56B8_Camera *);
 
-#pragma opt_common_subs off
 void fn_1_56B8(void) {
     GameCameraEntry *entry;
     fn_1_56B8_Cluster *c = (fn_1_56B8_Cluster *)&lbl_1_bss_F68;
     u32 count = 0;
     u32 reset;
     u8 i;
-    u8 mode;
+    u32 mode;
     f32 scale;
     reset = 0;
 
@@ -741,7 +744,7 @@ void fn_1_56B8(void) {
     entry = c->entries;
     for (i = 0; i < count; i++, entry++) {
         scale = fn_1_A6FE8();
-        mode = c->target->unk_48;
+        mode = (u8)(c->target->unk_48);
         if ((s8)mode == 1 || (i == 0 && (s8)mode == 3) ||
             (i == 1 && (s8)mode == 4) ||
             (i == 2 && (s8)mode == 5)) {
@@ -773,6 +776,20 @@ void fn_1_56B8(void) {
         fn_1_EE04(c->live);
     }
 }
+
+/* fn_1_5948's messages: it reaches them off the TU .data base (lbl_1_data_32A8 + 0x1A4 on) */
+char lbl_1_data_344C[] = "loop: %d, mode: %d\n";
+char lbl_1_data_3460[] = "camera mode is wrong. by teramoto";
+char lbl_1_data_3484[] = "camera mode is wrong. by teramoto ";
+char lbl_1_data_34A8[] = "caemra mode is wrong. by teramoto";
+char lbl_1_data_34CC[] = "camera.c: NaN check error!\n";
+char lbl_1_data_34E8[] = "  mode: %2d\n";
+char lbl_1_data_34F8[] = "  loop: %2d\n";
+char lbl_1_data_3508[] = "pos->x: %8.3f\n";
+char lbl_1_data_3518[] = "pos->y: %8.3f\n";
+char lbl_1_data_3528[] = "pos->z: %8.3f\n";
+char lbl_1_data_3538[] = "  pers: %8.3f\n";
+char lbl_1_data_3548[] = "   asp: %8.3f\n";
 /* fzgx:end fn_1_56B8 */
 
 /* fzgx:begin fn_1_58C4 */

@@ -2,9 +2,18 @@
 #include "types.h"
 
 extern char lbl_10_data_4A68[74];
+extern char lbl_10_data_4AB4[68];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_4A68[74] __attribute__((aligned(8))) = "Please insert the Memory Card\nbefore you insert the F-ZERO LICENSE CARD.\n";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_4AB4[68] __attribute__((aligned(4))) = "\203\201\203\202\203\212\201|\203J\201[\203h\202\360\202\262\216g\227p\202\267\202\351\225\373"
+    "\202\315\203\201\203\202\203\212\201[\203J\201[\203h\202\360\220\346\202\311\215\267\202\265\202"
+    "\304\202\255\202\276\202\263\202\242\000\000\000";
 #pragma explicit_zero_data reset

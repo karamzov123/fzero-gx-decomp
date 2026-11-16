@@ -2,9 +2,25 @@
 #include "types.h"
 
 extern char lbl_10_data_5A70[17];
+extern char lbl_10_data_5A84[64];
+extern char lbl_10_data_5AC4[42];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_5A70[17] __attribute__((aligned(8))) = "CREATE_CARD\t ITA";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_5A84[64] __attribute__((aligned(4))) = "\203J\201[\203h\202\360\215\354\220\254\202\265\202\334\202\267\201B\n\220V\202\265\202\242\203J"
+    "\201[\203h\202\315\203v\203\214\203C\217I\227\271\214\343\202\311\224r\217o\202\263\202\352\202"
+    "\334\202\267\201B";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_5AC4[42] __attribute__((aligned(4))) = "Playing without the F-ZERO LICENSE CARD. ";
 #pragma explicit_zero_data reset

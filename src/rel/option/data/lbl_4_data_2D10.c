@@ -4,6 +4,9 @@
 
 extern char lbl_4_data_2D10[20];
 #include "rel/option/data/lbl_4_data_2D24.h"
+extern char lbl_4_data_2D5C[22];
+extern u8 lbl_4_data_2D72;
+extern u16 lbl_4_data_2D74;
 
 
 
@@ -34,4 +37,22 @@ __declspec(section ".data") Data_lbl_4_data_2D24 lbl_4_data_2D24 __attribute__((
     (u8 *)&lbl_4_data_C,
     (u8 *)&lbl_4_data_2D10
 };
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_4_data_2D5C[22] __attribute__((aligned(4))) = "option_card_menu_disp";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_4_data_2D72 __attribute__((aligned(2))) = 0xFFU;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u16 lbl_4_data_2D74 __attribute__((aligned(4))) = 0xFFFFU;
 #pragma explicit_zero_data reset

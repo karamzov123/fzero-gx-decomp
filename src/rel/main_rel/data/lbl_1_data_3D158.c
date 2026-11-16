@@ -9,8 +9,6 @@ extern char lbl_1_data_3D16C[6];
 extern char lbl_1_data_3D174[5];
 extern char lbl_1_data_3D17C[4];
 #include "rel/main_rel/data/lbl_1_data_3D180.h"
-extern u32 lbl_1_data_3D230;
-extern u8 lbl_1_data_3D234[0x38];
 
 
 
@@ -118,19 +116,5 @@ __declspec(section ".data") Data_lbl_1_data_3D180 lbl_1_data_3D180 __attribute__
     (u8 *)&lbl_1_rodata_5724,
     (u8 *)&lbl_1_rodata_5754,
     (u8 *)&lbl_1_rodata_579C
-};
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") u32 lbl_1_data_3D230 __attribute__((aligned(8))) = 0x00000001U;
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") u8 lbl_1_data_3D234[0x38] __attribute__((aligned(4))) = {
-    0x65U, 0x6EU, 0x65U, 0x6DU, 0x79U, 0x5FU, 0x63U, 0x74U, 0x72U, 0x6CU, 0x2EU, 0x63U, 0x00U, 0x00U, 0x00U, 0x00U, 0x6CU, 0x69U, 0x6EU, 0x65U, 0x25U, 0x30U, 0x32U, 0x64U, 0x2EU, 0x62U, 0x69U, 0x6EU, 0x00U, 0x00U, 0x00U, 0x00U, 0x72U, 0x62U, 0x00U, 0x00U, 0x65U, 0x6EU, 0x65U, 0x6DU, 0x79U, 0x5FU, 0x6CU, 0x69U, 0x6EU, 0x65U, 0x00U, 0x00U, 0x2EU, 0x2EU, 0x00U, 0x00U, 0x77U, 0x62U, 0x00U, 0x00U
 };
 #pragma explicit_zero_data reset

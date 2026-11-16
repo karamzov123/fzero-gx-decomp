@@ -2,9 +2,18 @@
 #include "types.h"
 
 extern const f32 lbl_1_rodata_8068;
+extern const f32 lbl_1_rodata_806C[];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".rodata") const f32 lbl_1_rodata_8068 __attribute__((aligned(8))) = 0.0f;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".rodata") const f32 lbl_1_rodata_806C[] __attribute__((aligned(4))) = {
+    -4.80000019f
+};
 #pragma explicit_zero_data reset

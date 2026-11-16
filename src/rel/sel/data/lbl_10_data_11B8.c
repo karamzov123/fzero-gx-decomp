@@ -2,9 +2,16 @@
 #include "types.h"
 
 extern char lbl_10_data_11B8[19];
+extern char lbl_10_data_11CC[28];
 
 
 
 #pragma explicit_zero_data on
 __declspec(section ".data") char lbl_10_data_11B8[19] __attribute__((aligned(8))) = "Select Game Mode. ";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_11CC[28] __attribute__((aligned(4))) = "\203\202\201[\203h\202\360\221I\221\360\202\265\202\304\202\255\202\276\202\263\202\242\201B\000";
 #pragma explicit_zero_data reset
