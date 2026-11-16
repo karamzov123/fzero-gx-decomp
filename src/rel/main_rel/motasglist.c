@@ -26,35 +26,9 @@ extern const f32 lbl_1_rodata_F54;
 #include "types.h"
 #include "rel/main_rel/motasglist.h"
 
-typedef struct SigData {
-    u16 value0;
-    u16 value2;
-    s16 value4;
-    u16 pad6;
-    u32 value8;
-} SigData;
+typedef MotaSignal SigData;
 
-typedef struct Elem {
-    u16 unk_00;
-    u16 unk_02;
-    u8 unk_04;
-    u8 unk_05;
-    u16 unk_06;
-    u16 unk_08;
-    u16 unk_0A;
-    u16 unk_0C;
-    u16 unk_0E;
-    u16 unk_10;
-    u16 unk_12;
-    f32 unk_14;
-    f32 unk_18;
-    u32 unk_1C;
-    u32 unk_20;
-    u32 unk_24;
-    u32 *unk_28;
-    u32 unk_2C;
-    u32 unk_30;
-} Elem;
+typedef MotaEntry Elem;
 
 typedef struct In {
     u8 unk_00[4];
@@ -74,12 +48,7 @@ typedef struct In {
     u32 unk_24;
 } In;
 
-typedef struct Ent12 {
-    u8 *unk_00;
-    Elem *unk_04;
-    u16 unk_08;
-    u16 unk_0A;
-} Ent12;
+typedef MotaTrack Ent12;
 
 typedef struct Src {
     u16 unk_00;
@@ -104,34 +73,7 @@ typedef struct Ent8 {
     u32 unk_04;
 } Ent8;
 
-typedef struct Out {
-    u8 unk_00;
-    u8 unk_01;
-    u16 unk_02;
-    u32 unk_04;
-    u32 unk_08;
-    Elem *unk_0C;
-    u16 unk_10;
-    u16 unk_12;
-    u8 *unk_14;
-    u32 unk_18;
-    u32 unk_1C;
-    u8 *unk_20;
-    u16 unk_24;
-    u8 unk_26;
-    u8 unk_27;
-    Ent12 *unk_28;
-    SigData *unk_2C;
-    SigData *unk_30;
-    u32 unk_34;
-    u32 unk_38;
-    u32 unk_3C;
-    u32 unk_40;
-    u32 unk_44;
-    u16 unk_48;
-    u16 unk_4A;
-    u8 unk_4C;
-} Out;
+typedef MotaList Out;
 
 struct Pool {
     u32 unk_0;
@@ -391,6 +333,7 @@ void *fn_1_41BDC(fn_1_41BDC_MotasglistData *data, s32 index) {
 
 /* fzgx:begin fn_1_41C18 noprologue */
 #include "types.h"
+#include "rel/main_rel/motasglist.h"
 
 typedef struct Sig_fn_1_41C18_Fn1967A8Resource Sig_fn_1_41C18_Fn1967A8Resource;
 struct Sig_fn_1_41C18_Fn1967A8Resource {
@@ -409,39 +352,27 @@ typedef struct Sig_fn_1_41488_Fn41488Data {
     char *strings;
 } Sig_fn_1_41488_Fn41488Data;
 
-struct fn_1_41C18_Arg0 {
-    u8 pad_0[0x4];
-    u32 unk_4;
-};
 
 extern int fn_1_41488(Sig_fn_1_41488_Fn41488Data *, const char *);
 extern void fn_1_41328(Sig_fn_1_41328_RelocData *);
 
-void fn_1_41C18(struct fn_1_41C18_Arg0 *arg0, u32 arg1) {
-    struct { u32 value; } v0;
-    s32 v1;
-    u32 v2;
-    u32 v3;
-    u32 v4;
-    int t1;
-    arg0->unk_4 = arg1;
+void fn_1_41C18(MotaList *arg0, u32 arg1) {
+    s32 i;
+    MotaEntry *entry;
+    s32 index;
+
+    arg0->unk_04 = arg1;
     fn_1_41328((Sig_fn_1_41328_RelocData *)arg1);
-    if ((*(u16 *)((u8 *)(u32)arg0 + 2) & 0x4) != 0) {
-    v0.value = 0;
-    v1 = 0;
-    v2 = v0.value;
-    while (v1 < (s32)*(u16 *)((u8 *)(u32)arg0 + 16)) {
-    v3 = arg1;
-    v4 = (*(u32 *)((u8 *)(u32)arg0 + 12) + v0.value);
-    t1 = fn_1_41488((Sig_fn_1_41488_Fn41488Data *)v3, (const char *)(*(u32 *)((u8 *)(u32)arg0 + 20) + *(u32 *)((u8 *)v4 + 28)));
-    v3 = t1;
-    *(u16 *)((u8 *)v4 + 2) = v3;
-    if (*(u16 *)((u8 *)v4 + 2) == 65535) {
-    *(u16 *)((u8 *)v4 + 2) = v2;
-    }
-    v0.value += 52;
-    v1++;
-    }
+    if (arg0->unk_02 & 4) {
+        for (i = 0; i < (s32)arg0->unk_10; i++) {
+            entry = &arg0->unk_0C[i];
+            index = fn_1_41488((Sig_fn_1_41488_Fn41488Data *)arg1,
+                             (const char *)arg0->unk_14 + entry->unk_1C);
+            entry->unk_02 = index;
+            if (entry->unk_02 == 65535) {
+                entry->unk_02 = 0;
+            }
+        }
     }
 }
 /* fzgx:end fn_1_41C18 */

@@ -1,0 +1,199 @@
+{
+  "schema": 1,
+  "version": "GFZE01",
+  "base_commit": "9244317f5f4bb77779e5d1f6884672499c7bd896",
+  "source_tree_sha256": "bc51557b90f747e4bf116c7082ab671ed6888f08137567107e8baa42195fa6de",
+  "header": "include/rel/main_rel/motasglist.h",
+  "header_sha256": "c165ed3b02e76d34524f0ac21fe1a768ea646293dc735412285784f06bc05865",
+  "census_archive": "device-census-primers-20261116.json.gz",
+  "census_sha256": "bbfcdf7a491d3040ec6444202c5f5e57a907d8e24b706b4673ba46c17f629e38",
+  "census_categories": {
+    "adx-dead-write-use": {
+      "spots": 7,
+      "files": 1,
+      "owner_functions": 1,
+      "unassigned_spots": 0
+    },
+    "layout-primer-function": {
+      "spots": 10630,
+      "files": 145,
+      "owner_functions": 958,
+      "unassigned_spots": 72
+    },
+    "marked-warning": {
+      "spots": 37,
+      "files": 12,
+      "owner_functions": 13,
+      "unassigned_spots": 1
+    },
+    "optimization-pragma-review": {
+      "spots": 945,
+      "files": 273,
+      "owner_functions": 695,
+      "unassigned_spots": 28
+    },
+    "single-field-value-carrier-review": {
+      "spots": 272,
+      "files": 97,
+      "owner_functions": 179,
+      "unassigned_spots": 6
+    },
+    "synthetic-function-review": {
+      "spots": 4,
+      "files": 4,
+      "owner_functions": 4,
+      "unassigned_spots": 0
+    },
+    "volatile-token-review": {
+      "spots": 15470,
+      "files": 389,
+      "owner_functions": 1235,
+      "unassigned_spots": 171
+    }
+  },
+  "known_scaffolding_owner_function_union": 967,
+  "census_validation": "Independent balanced-parenthesis identifier scan and line-based section/attribute classification agree at all 10634 synthetic definition locations, including a function-pointer-parameter primer. Of these, 10630 are in .fzgxpool; four non-pool synthetic functions remain review-only.",
+  "hypothesis": "Share the construction-proven MotaSignal/MotaEntry/MotaTrack/MotaList layouts with name binding. Preserve the known prefix and leave unknown allocation tail uninterpreted; independently test native scalar/typed iteration without allocator carriers.",
+  "stopping_condition": "Two exact controls, one shared constructor and five binder variants, once; no new compiler settings.",
+  "layout_proof": {
+    "compiler": "GC/1.3.2",
+    "flags": "",
+    "source": "#include \"rel/main_rel/motasglist.h\"\n\nconst u32 mota_layout_probe[] = {\n    sizeof(MotaSignal),\n    sizeof(MotaEntry),\n    sizeof(MotaTrack),\n    sizeof(MotaList),\n    (u32)&((MotaList *)0)->unk_02,\n    (u32)&((MotaList *)0)->unk_04,\n    (u32)&((MotaList *)0)->unk_0C,\n    (u32)&((MotaList *)0)->unk_10,\n    (u32)&((MotaList *)0)->unk_14,\n    (u32)&((MotaEntry *)0)->unk_02,\n    (u32)&((MotaEntry *)0)->unk_1C\n};\n",
+    "object_sha256": "5700adbc30ad26e20ebd75f1b060232a6b6cf361f778c3bf6cb1ce9ef47335b0",
+    "big_endian_values": [
+      12,
+      52,
+      12,
+      80,
+      2,
+      4,
+      12,
+      16,
+      20,
+      2,
+      28
+    ],
+    "expected_values": [
+      12,
+      52,
+      12,
+      80,
+      2,
+      4,
+      12,
+      16,
+      20,
+      2,
+      28
+    ]
+  },
+  "archive": "mota-shared-layout-20261116.sources.json.gz",
+  "archive_sha256": "6adb3500c551e72f2c1962210a9a87dc0e78dfe754af12ab5e6166eedc327f62",
+  "records": [
+    {
+      "label": "installed baseline",
+      "symbol": "fn_1_41518",
+      "sha256": "bfca4c584090be941196b6ec7492ba39f32aa1e147bbc0ce196f4bec0c5b478d",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "score": 100.0,
+      "word_errors": 0,
+      "matched": true
+    },
+    {
+      "label": "installed baseline",
+      "symbol": "fn_1_41C18",
+      "sha256": "c18909da0125b75df5be87fe731ced93d8c530312b62fba994f123cb38b61849",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "score": 100.0,
+      "word_errors": 0,
+      "matched": true
+    },
+    {
+      "label": "share construction layouts",
+      "symbol": "fn_1_41518",
+      "sha256": "f4d95eb03d03ca5f7309a71674ac8a779a5319073912ad56422e29c8ede9e3b4",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "score": 100.0,
+      "word_errors": 0,
+      "matched": true
+    },
+    {
+      "label": "share binder layouts; retain carrier",
+      "symbol": "fn_1_41C18",
+      "sha256": "980722bf31b322453b535bd16f1a09af9472806ce261d1af906c99b885f25b41",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "score": 100.0,
+      "word_errors": 0,
+      "matched": true
+    },
+    {
+      "label": "share binder layouts; ordinary offset",
+      "symbol": "fn_1_41C18",
+      "sha256": "b94b3b8d9ceba2eb6b26ed8b180d20980ba65c463345193f0db1ec8ebbe2bb96",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "score": 97.5,
+      "word_errors": 1
+    },
+    {
+      "label": "share binder layouts; typed entry",
+      "symbol": "fn_1_41C18",
+      "sha256": "9fdee947aaa453576d120f392035c82f43140c656f1d406a8a8f4344cd557a63",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "score": 100.0,
+      "word_errors": 0,
+      "matched": true
+    },
+    {
+      "label": "share binder layouts; typed entry ordinary offset",
+      "symbol": "fn_1_41C18",
+      "sha256": "706f38fa813a0eab95c70154262b3c56d06d2b7bf691971be7a94c255df27e79",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "score": 97.5,
+      "word_errors": 1
+    },
+    {
+      "label": "natural typed indexed binding loop",
+      "symbol": "fn_1_41C18",
+      "sha256": "0a13a671c2c83cbb0f90f11a23a2596c624e8dde85a79cc3e7da9420fe275110",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "score": 100.0,
+      "word_errors": 0,
+      "matched": true
+    }
+  ],
+  "accepted": [
+    {
+      "label": "share construction layouts",
+      "symbol": "fn_1_41518",
+      "sha256": "f4d95eb03d03ca5f7309a71674ac8a779a5319073912ad56422e29c8ede9e3b4",
+      "mw": "GC/1.3.2",
+      "flags": ""
+    },
+    {
+      "label": "natural typed indexed binding loop",
+      "symbol": "fn_1_41C18",
+      "sha256": "0a13a671c2c83cbb0f90f11a23a2596c624e8dde85a79cc3e7da9420fe275110",
+      "mw": "GC/1.3.2",
+      "flags": ""
+    }
+  ],
+  "carrier_declarations_removed": 1,
+  "fully_natural_function_credit_claimed": false,
+  "validation": [
+    "Two installed baselines match retail; shared constructor and native typed binder match real MWCC objects and relocations.",
+    "MWCC-emitted big-endian layout data verifies all four sizeof values and seven binding-relevant offsets.",
+    "configure.py; ninja -j 2 build/GFZE01/ok: 16 files OK",
+    "build/tools/dtk shasum -q -c config/GFZE01/build.sha1: 16 files OK",
+    "tools/fzgx.py lint: 0 finding(s)",
+    "Portable shared-engine archive replay regenerated all eight bodies; source-SHA sets, exact verdicts and aligned word errors agree with original measurements."
+  ],
+  "limits": "The shared list type is a proven accessed 0x50-byte prefix of the constructor's 0x60-byte allocation; its tail is deliberately not invented. Constructor carriers unrelated to this binding recovery remain. Primer counts are physical source definitions, not deduplicated original objects or an exhaustive count of device debt."
+}
