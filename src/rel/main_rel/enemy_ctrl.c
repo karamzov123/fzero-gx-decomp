@@ -716,9 +716,6 @@ static inline s32 cpu_bit(u32 mask, s32 n) {
 }
 
 /* the squared length of (x, y) */
-static inline f32 cpu_mag2(f32 x, f32 y) {
-    return __fmadds(y, y, x * x);
-}
 
 static inline s32 cpu_line_scan(CpuBlock *ai, s32 from, f32 *t) {
     s32 k;
@@ -4901,12 +4898,6 @@ extern const f32 lbl_1_rodata_5FAC;
 extern const f32 lbl_1_rodata_5FB0;
 extern const f32 lbl_1_rodata_5FB4;
 
-static inline f32 blink_scale(s32 n) {
-    if (n > 15) {
-        return lbl_1_rodata_5CFC;
-    }
-    return (f32)n / lbl_1_rodata_5D04;
-}
 static inline f32 blink_scale_b(s32 n, f32 scale) {
     if (n > 15) {
         return scale;

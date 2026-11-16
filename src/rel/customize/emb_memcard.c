@@ -838,10 +838,7 @@ static union { u32 w[1]; char v[4]; } fzgx_pool_init_fzgx_format = {{  /* fzgx-a
 #define fzgx_data_464 fzgx_pool_init_fzgx_data_464.v
 #define fzgx_format fzgx_pool_init_fzgx_format.v
 #pragma opt_pointer_analysis off
-static inline const char **text_array(u32 p) { return (const char **)p; }
-static inline const char *text_format(u32 p) { return (const char *)p; }
 static inline Obj_3_bss_7EDC0_At0 *card_slot(u32 offset) { return (Obj_3_bss_7EDC0_At0 *)((u8 *)lbl_3_bss_7EDC0.unk_0 + offset); }
-static inline Obj_3_bss_7EE40 *editor_slot(u32 offset) { return (Obj_3_bss_7EE40 *)((u8 *)&lbl_3_bss_7EE40 + offset); }
 #pragma opt_pointer_analysis on
 static inline s32 clamp_menu(s32 n) { return n < 0 ? 0 : n > 10 ? 10 : n; }
 #pragma opt_lifetimes off
@@ -1166,7 +1163,6 @@ static void fzgx_fn_3_D9A0_pool_tail(void) {
 
 static inline f32 packet_x(s16 x, f32 offset) { return offset + (f32)x; }
 static inline s32 packet_offset(s32 x, s32 offset) { return x + offset; }
-static inline s32 packet_int_x(s16 x) { return x; }
 
 static inline s32 clamp15(s32 n) {
     return n < 0 ? 0 : n > 15 ? 15 : n;

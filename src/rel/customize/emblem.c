@@ -964,7 +964,6 @@ extern u32 fn_3_17820(u8 *);
 extern u8 fn_3_19C94(void);
 extern void fn_80008BA8(u32, u32, u32);
 
-static inline EmblemEntry *fn_3_1445C_array_read(EmblemEntry *array) { return array; }
 void fn_3_1445C(void) {
     s32 next;
     EmblemState *state2;
@@ -1008,18 +1007,18 @@ void fn_3_1445C(void) {
     if (state2->field_18 == 0x7f)
         lbl_3_bss_A17A0.field_18 = 0;
 
-    if (fn_3_1445C_array_read(lbl_3_bss_A17D4)[lbl_3_bss_A17A0.field_1a].field_0c < 0x2000 &&
-        fn_3_1445C_array_read(lbl_3_bss_A17D4)[lbl_3_bss_A17A0.field_1a].field_0c != 0)
-        fn_3_1445C_array_read(lbl_3_bss_A17D4)[lbl_3_bss_A17A0.field_1a].field_00 = 0x20000000;
+    if ((lbl_3_bss_A17D4)[lbl_3_bss_A17A0.field_1a].field_0c < 0x2000 &&
+        (lbl_3_bss_A17D4)[lbl_3_bss_A17A0.field_1a].field_0c != 0)
+        (lbl_3_bss_A17D4)[lbl_3_bss_A17A0.field_1a].field_00 = 0x20000000;
 
-    fn_3_1445C_array_read(lbl_3_bss_A17D4)[lbl_3_bss_A17A0.field_1a].field_06 =
+    (lbl_3_bss_A17D4)[lbl_3_bss_A17A0.field_1a].field_06 =
         (u8)lbl_3_bss_A17A0.field_10;
-    fn_3_1445C_array_read(lbl_3_bss_A17D4)[lbl_3_bss_A17A0.field_1a].field_07 =
+    (lbl_3_bss_A17D4)[lbl_3_bss_A17A0.field_1a].field_07 =
         (u8)lbl_3_bss_A17A0.field_12;
-    fn_3_1445C_array_read(lbl_3_bss_A17D4)[lbl_3_bss_A17A0.field_1a].field_08 =
+    (lbl_3_bss_A17D4)[lbl_3_bss_A17A0.field_1a].field_08 =
         fn_3_17820((u8 *)&lbl_3_bss_A17D4[lbl_3_bss_A17A0.field_1a]);
-    fn_3_1445C_array_read(lbl_3_bss_A17D4)[lbl_3_bss_A17A0.field_1a].field_04 = fn_3_19C94();
-    fn_80008BA8(fn_3_1445C_array_read(lbl_3_bss_A17D4)[lbl_3_bss_A17A0.field_1a].field_14,
+    (lbl_3_bss_A17D4)[lbl_3_bss_A17A0.field_1a].field_04 = fn_3_19C94();
+    fn_80008BA8((lbl_3_bss_A17D4)[lbl_3_bss_A17A0.field_1a].field_14,
                  lbl_3_bss_A17A0.field_20, 0x2000);
 }
 /* fzgx:end fn_3_1445C */

@@ -71,9 +71,6 @@ extern const f32 lbl_801A7480;
 extern const f32 lbl_801A7488;
 extern const f32 lbl_801A749C;
 
-static inline s32 texture_address(s32 offset, u32 base) {
-    return offset + base;
-}
 
 void fn_80075240(void) {
     Vec up;

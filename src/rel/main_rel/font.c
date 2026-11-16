@@ -5318,8 +5318,6 @@ extern void fn_80073778(void *, s32);
 extern void fn_80073C6C(s32);
 extern GXTexObj lbl_1_bss_4E688;
 
-static inline f32 fn_1_4E220_operand(f32 left, f32 right) { left *= right; return left; }
-static inline f32 fn_1_4E220_operand_(f32 right, f32 left) { return left * right; }
 void fn_1_4E220(struct Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
     f32 fzgx_live;
     Mtx loc_8;
@@ -5781,11 +5779,6 @@ static inline u8 draw_min255(s32 value) {
     return result;
 }
 
-static inline void draw_rgb(DrawColor *color, u8 blue, u8 green, u8 red) {
-    color->r = red;
-    color->g = green;
-    color->b = blue;
-}
 
 void fn_1_4EDAC(FontDrawPacket *arg0, f32 arg1, f32 arg2) {
     u32 v0;
@@ -6348,7 +6341,6 @@ extern void fn_1_51678(FontDrawPacket *, u32, s16, s16, s16, s16);
 extern int fn_1_4F734(FontDrawPacket *);
 
 #pragma opt_common_subs off
-static inline u32 *fn_1_50190_array_read(u32 *array) { return array; }
 #pragma opt_lifetimes off
 void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg4, f32 farg5) {
     struct Pkt88 loc_8;
@@ -6414,7 +6406,7 @@ void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg
         fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (u32)(*(u32 *)((u8 *)(arg0) + 0)), (s16)(0), (s16)(0), (s16)((s16) farg2), (s16)((s16) farg4));
         (*(f32 *)((u8 *)(&loc_8) + 4)) = var_f22;
         (*(f32 *)((u8 *)(&loc_8) + 8)) = var_f30;
-        fn_1_50190_array_read(loc_8.words)[0xC] &= 0xFFFFFFF0;
+        ((u32 *)(loc_8.words))[0xC] &= 0xFFFFFFF0;
         fn_1_4F734((FontDrawPacket *)((FontDrawPacket *) &loc_8));
         loc_8 = *(struct Pkt88 *)(arg0);
         fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (u32)(*(u32 *)((u8 *)(arg0) + 0)), (s16)((s16) farg2), (s16)(0), (s16)((s16) temp_f25), (s16)((s16) farg4));
@@ -6422,7 +6414,7 @@ void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg
         temp_f29 /= temp_f25;
         (*(f32 *)((u8 *)(&loc_8) + 8)) = var_f30;
         temp_f31 = var_f22 + farg2;
-        fn_1_50190_array_read(loc_8.words)[0xC] &= 0xFFFFFFF0;
+        ((u32 *)(loc_8.words))[0xC] &= 0xFFFFFFF0;
         (*(f32 *)((u8 *)(&loc_8) + 4)) = temp_f31;
         (*(f32 *)((u8 *)(&loc_8) + 16)) *= temp_f29;
         fn_1_4F734((FontDrawPacket *)((FontDrawPacket *) &loc_8));
@@ -6433,14 +6425,14 @@ void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg
         temp_f26 = temp_f26 + temp_f31;
         (*(f32 *)((u8 *)(&loc_8) + 8)) = var_f30;
         (*(f32 *)((u8 *)(&loc_8) + 4)) = temp_f26;
-        fn_1_50190_array_read(loc_8.words)[0xC] &= 0xFFFFFFF0;
+        ((u32 *)(loc_8.words))[0xC] &= 0xFFFFFFF0;
         fn_1_4F734((FontDrawPacket *)((FontDrawPacket *) &loc_8));
         loc_8 = *(struct Pkt88 *)(arg0);
         fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (u32)(*(u32 *)((u8 *)(arg0) + 0)), (s16)(0), (s16)((s16) farg4), (s16)((s16) farg2), (s16)((s16) temp_f24));
         temp_f28 = temp_f23 / temp_f24;
         (*(f32 *)((u8 *)(&loc_8) + 4)) = var_f22;
         temp_f30 = var_f30 + farg4;
-        fn_1_50190_array_read(loc_8.words)[0xC] &= 0xFFFFFFF0;
+        ((u32 *)(loc_8.words))[0xC] &= 0xFFFFFFF0;
         (*(f32 *)((u8 *)(&loc_8) + 8)) = temp_f30;
         (*(f32 *)((u8 *)(&loc_8) + 20)) *= temp_f28;
         fn_1_4F734((FontDrawPacket *)((FontDrawPacket *) &loc_8));
@@ -6450,14 +6442,14 @@ void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg
         (*(f32 *)((u8 *)(&loc_8) + 8)) = temp_f30;
         (*(f32 *)((u8 *)(&loc_8) + 16)) *= temp_f29;
         (*(f32 *)((u8 *)(&loc_8) + 20)) *= temp_f28;
-        fn_1_50190_array_read(loc_8.words)[0xC] &= 0xFFFFFFF0;
+        ((u32 *)(loc_8.words))[0xC] &= 0xFFFFFFF0;
         fn_1_4F734((FontDrawPacket *)((FontDrawPacket *) &loc_8));
         loc_8 = *(struct Pkt88 *)(arg0);
         fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (u32)(*(u32 *)((u8 *)(arg0) + 0)), (s16)((s16) temp_f27), (s16)((s16) farg4), (s16)((s16) farg3), (s16)((s16) temp_f24));
         (*(f32 *)((u8 *)(&loc_8) + 4)) = temp_f26;
         (*(f32 *)((u8 *)(&loc_8) + 8)) = temp_f30;
         (*(f32 *)((u8 *)(&loc_8) + 20)) *= temp_f28;
-        fn_1_50190_array_read(loc_8.words)[0xC] &= 0xFFFFFFF0;
+        ((u32 *)(loc_8.words))[0xC] &= 0xFFFFFFF0;
         fn_1_4F734((FontDrawPacket *)((FontDrawPacket *) &loc_8));
         loc_8 = *(struct Pkt88 *)(arg0);
         temp_f28_2 = farg4 + temp_f24;
@@ -6465,20 +6457,20 @@ void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg
         temp_f30_2 = temp_f23 + temp_f30;
         (*(f32 *)((u8 *)(&loc_8) + 4)) = var_f22;
         (*(f32 *)((u8 *)(&loc_8) + 8)) = temp_f30_2;
-        fn_1_50190_array_read(loc_8.words)[0xC] &= 0xFFFFFFF0;
+        ((u32 *)(loc_8.words))[0xC] &= 0xFFFFFFF0;
         fn_1_4F734((FontDrawPacket *)((FontDrawPacket *) &loc_8));
         loc_8 = *(struct Pkt88 *)(arg0);
         fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (u32)(*(u32 *)((u8 *)(arg0) + 0)), (s16)((s16) farg2), (s16)((s16) temp_f28_2), (s16)((s16) temp_f25), (s16)((s16) farg5));
         (*(f32 *)((u8 *)(&loc_8) + 4)) = temp_f31;
         (*(f32 *)((u8 *)(&loc_8) + 8)) = temp_f30_2;
         (*(f32 *)((u8 *)(&loc_8) + 16)) *= temp_f29;
-        fn_1_50190_array_read(loc_8.words)[0xC] &= 0xFFFFFFF0;
+        ((u32 *)(loc_8.words))[0xC] &= 0xFFFFFFF0;
         fn_1_4F734((FontDrawPacket *)((FontDrawPacket *) &loc_8));
         loc_8 = *(struct Pkt88 *)(arg0);
         fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (u32)(*(u32 *)((u8 *)(arg0) + 0)), (s16)((s16) temp_f27), (s16)((s16) temp_f28_2), (s16)((s16) farg3), (s16)((s16) farg5));
         (*(f32 *)((u8 *)(&loc_8) + 4)) = temp_f26;
         (*(f32 *)((u8 *)(&loc_8) + 8)) = temp_f30_2;
-        fn_1_50190_array_read(loc_8.words)[0xC] &= 0xFFFFFFF0;
+        ((u32 *)(loc_8.words))[0xC] &= 0xFFFFFFF0;
         fn_1_4F734((FontDrawPacket *)((FontDrawPacket *) &loc_8));
     }
 }
@@ -6790,16 +6782,6 @@ static inline int in_range(int value, int lower, int upper)
     return value >= lower;
 }
 
-static inline int clamp(int value, int lower, int upper)
-{
-    int result = value;
-    if (value < lower) {
-        result = lower;
-    } else if (result > upper) {
-        result = upper;
-    }
-    return result;
-}
 
 void fn_1_5158C(FontDrawPacket *packet, u32 color, s16 x, s16 y)
 {

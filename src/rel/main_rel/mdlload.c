@@ -1533,13 +1533,12 @@ extern s32 fn_1_66B8(void *, f32);
 extern void fn_1_D550C(void *);
 extern f32 lbl_8006D0B4(f32);
 extern f32 lbl_8006D668(u32 *);
-static inline f32 distance_squared_operand(f32 right, f32 left) { return left * right; }
 static inline f32 distance_squared(f32 *a, f32 *b) {
     f32 dx = (*((a) + (0)));
     f32 dy = a[1];
     f32 dz = a[2];
     dx -= b[0]; dy -= (*((1) + (b))); dz -= b[2];
-    dx = distance_squared_operand((dx), (dx));
+    dx = ((f32)((f32)((dx)) * (f32)((dx))));
     dx += dy * dy; dx += dz * dz;
     return dx;
 }

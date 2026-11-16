@@ -58,7 +58,6 @@ typedef struct MovieModule {
     void *field_28cc;
 } MovieModule;
 
-static inline u32 *fn_12_208C4_array_read(u32 *array) { return array; }
 #pragma opt_propagation off
 int fn_12_208C4(MovieModule *arg0) {
     void **fzgx_value;
@@ -81,7 +80,7 @@ int fn_12_208C4(MovieModule *arg0) {
                                      movie_data.value->field_0020,
                                      movie_data.value->field_001c);
     } else {
-        movie.value = (Movie *)fn_12_208C4_array_read(lbl_12_bss_7C64)[128];
+        movie.value = (Movie *)((u32 *)(lbl_12_bss_7C64))[128];
     }
     if (movie.value == 0) {
         movie.value = 0;

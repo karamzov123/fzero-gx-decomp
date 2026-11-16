@@ -15,7 +15,6 @@ typedef struct Node {
     s32 f8;
 } Node;
 
-static inline struct Node * fn_80009830_read_pointer(Node * owner) { return owner->f4; }
 void *fn_80009830(s32 arg0, s32 arg1) {
     struct Node * fzgx_value;
     struct Node * fzgx_live;

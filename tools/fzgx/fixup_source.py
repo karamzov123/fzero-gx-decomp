@@ -3769,46 +3769,89 @@ def native_operand_helpers(body, name):
     if not span:
         return
     code = masked(body)
-    scalar_ty = r'(?:f32|float|f64|double|u32|s32|u16|s16|u8|s8|int|unsigned(?:\s+int|\s+long)?|long)'
+    scalar_ty = r'(?:const\s+)?(?:f32|float|f64|double|u32|s32|u16|s16|u8|s8|int|unsigned(?:\s+int|\s+long)?|long)(?:\s*\*+)?'
     pattern = re.compile(
-        r'\bstatic\s+inline\s+(' + scalar_ty + r')\s+(\w*operand\w*)\s*\('
-        r'\s*(' + scalar_ty + r')\s+(\w+)\s*,\s*(' + scalar_ty + r')\s+(\w+)\s*\)'
-        r'\s*\{([^{}]+)\}')
+        r'(?m)^[ \t]*static\s+inline\s+(' + scalar_ty + r')(?:\s+|\b)(\w*(?:operand|mul|multiply|add|strip_position|AddPosition|less_equal|merge)\w*)\s*\('
+        r'\s*(' + scalar_ty + r')\s*(\w+)\s*,\s*(' + scalar_ty + r')\s*(\w+)\s*\)'
+        r'\s*\{([^{}]+)\}[ \t]*\n?')
     calls = [dict(callee=callee, start=start, end=end, slots=slots)
              for callee, start, end, slots in call_sites(body)]
     identifier = r'[A-Za-z_]\w*'
     lvalue = identifier + r'(?:\s*(?:->|\.)\s*' + identifier + r'|\s*\[[^\[\]\n]+\])*'
     for definition in pattern.finditer(code):
         ret_ty, helper, ty1, first, ty2, second, inner = definition.groups()
-        expression = re.fullmatch(
-            r'\s*return\s+\(*(\w+)\)*\s*([+*/&|^-])\s*\(*(\w+)\)*\s*;\s*', inner)
-        compound = re.fullmatch(
-            r'\s*(\w+)\s*([+*/&|^-])=\s*\(*(\w+)\)*\s*;\s*return\s+\1\s*;\s*', inner)
-        operation = expression or compound
-        if not operation or {operation[1], operation[3]} != {first, second}:
-            continue
+        ret_ty, ty1, ty2 = ret_ty.strip(), ty1.strip(), ty2.strip()
         sites = [site for site in calls if site['callee'] == helper
                  and not definition.start() <= site['start'] < definition.end()]
-        if not sites or any(not span[1] <= site['start'] < site['end'] <= span[2]
-                            or len(site['slots']) != 2 for site in sites):
+        if not sites and len(re.findall(r'\b' + re.escape(helper) + r'\b', code)) == 1:
+            yield 'remove unused operand helper ' + helper, body[:definition.start()] + body[definition.end():]
             continue
-        # Simultaneous edits must not overlap (including a wrapper calling itself).
-        if any(a['start'] < b['start'] < a['end'] for a in sites for b in sites):
+        expression = re.fullmatch(
+            r'\s*return\s+(?:\(\s*[^\n();{}]+?\s*\)\s*)?\(*(\*?\s*\w+)\)*\s*(\+|-|\*|/|&|\||\^|<=|>=|<|>|==|!=)\s*(?:\(\s*[^\n();{}]+?\s*\)\s*)?\(*(\*?\s*\w+)\)*\s*;\s*', inner)
+        compound = re.fullmatch(
+            r'\s*(\w+)\s*([+*/&|^-])=\s*\(*(\w+)\)*\s*;\s*return\s+\1\s*;\s*', inner)
+        temp_expr = re.fullmatch(
+            r'\s*' + scalar_ty + r'\s+(\w+)\s*=\s*\(*(\*?\s*\w+)\)*\s*([+*/&|^-])\s*\(*(\*?\s*\w+)\)*\s*;\s*return\s+\1\s*;\s*', inner)
+        if temp_expr:
+            lhs_tok, op, rhs_tok = temp_expr[2].replace(' ', ''), temp_expr[3], temp_expr[4].replace(' ', '')
+        elif expression:
+            lhs_tok, op, rhs_tok = expression[1].replace(' ', ''), expression[2], expression[3].replace(' ', '')
+        elif compound:
+            lhs_tok, op, rhs_tok = compound[1].replace(' ', ''), compound[2], compound[3].replace(' ', '')
+        else:
             continue
-        # Do not remove a helper whose address or another non-call use survives.
+        lhs_p, rhs_p = lhs_tok.lstrip('*'), rhs_tok.lstrip('*')
+        if {lhs_p, rhs_p} != {first, second}:
+            continue
+        if not sites or any(len(site['slots']) != 2 for site in sites):
+            continue
         if len(re.findall(r'\b' + re.escape(helper) + r'\b', code)) != len(sites) + 1:
             continue
+        if any(a['start'] < b['start'] < a['end'] for a in sites for b in sites):
+            # Support nested calls to the same binary operand helper by rewriting innermost calls first.
+            types_by_param = {first: ty1, second: ty2}
+            for label, typed in [('inline float operand ', True), ('inline direct operand ', False)]:
+                cur = body
+                ok_nested = True
+                for _ in range(len(sites)):
+                    cur_calls = [dict(callee=c, start=s, end=e, slots=sl)
+                                 for c, s, e, sl in call_sites(cur)
+                                 if c == helper and not definition.start() <= s < definition.end()]
+                    if not cur_calls:
+                        break
+                    leaf = next((c for c in cur_calls if not any(c['start'] < o['start'] < c['end'] for o in cur_calls)), None)
+                    if not leaf or len(leaf['slots']) != 2:
+                        ok_nested = False
+                        break
+                    args = [cur[a:b].strip() for a, b in leaf['slots']]
+                    values = dict(zip((first, second), args))
+                    left = ('*(' + values[lhs_p] + ')') if lhs_tok.startswith('*') else values[lhs_p]
+                    right = ('*(' + values[rhs_p] + ')') if rhs_tok.startswith('*') else values[rhs_p]
+                    left_ty = ret_ty if lhs_tok.startswith('*') else types_by_param[lhs_p]
+                    right_ty = ret_ty if rhs_tok.startswith('*') else types_by_param[rhs_p]
+                    repl = f'(({ret_ty})(({left_ty})({left}) {op} ({right_ty})({right})))' if typed else f'(({left}) {op} ({right}))'
+                    cur = cur[:leaf['start']] + repl + cur[leaf['end']:]
+                if ok_nested:
+                    cur = cur[:definition.start()] + cur[definition.end():]
+                    yield label + helper, cur
+            continue
         replacements = []
+        untyped_replacements = []
         scoped = []
         types_by_param = {first: ty1, second: ty2}
         for site in sites:
             args = [body[a:b].strip() for a, b in site['slots']]
             values = dict(zip((first, second), args))
-            left, right = values[operation[1]], values[operation[3]]
-            left_ty, right_ty = types_by_param[operation[1]], types_by_param[operation[3]]
-            op = operation[2]
+            left = ('*(' + values[lhs_p] + ')') if lhs_tok.startswith('*') else values[lhs_p]
+            right = ('*(' + values[rhs_p] + ')') if rhs_tok.startswith('*') else values[rhs_p]
+            left_ty = ret_ty if lhs_tok.startswith('*') else types_by_param[lhs_p]
+            right_ty = ret_ty if rhs_tok.startswith('*') else types_by_param[rhs_p]
             replacements.append((site['start'], site['end'],
                                  f'(({ret_ty})(({left_ty})({left}) {op} ({right_ty})({right})))'))
+            untyped_replacements.append((site['start'], site['end'],
+                                         f'(({left}) {op} ({right}))'))
+            if op not in ('+', '-', '*', '/', '&', '|', '^'):
+                continue
             begin = body.rfind('\n', 0, site['start']) + 1
             end = body.find('\n', site['end'])
             end = len(body) if end < 0 else end
@@ -3832,7 +3875,9 @@ def native_operand_helpers(body, name):
                     + indent + f'    {local} {op}= ({right_ty})({right});\n'
                     + indent + '    ' + rewritten.strip() + '\n' + indent + '}')
             scoped.append((begin, end, text))
-        for label, edits in [('inline float operand ', replacements), ('scoped float arithmetic ', scoped)]:
+        for label, edits in [('inline float operand ', replacements),
+                             ('inline direct operand ', untyped_replacements),
+                             ('scoped float arithmetic ', scoped)]:
             if len(edits) != len(sites) or len({a for a, _, _ in edits}) != len(edits):
                 continue
             text = body
@@ -3842,7 +3887,7 @@ def native_operand_helpers(body, name):
 
 
 def native_access_helpers(body, name):
-    """Remove synthetic read_pointer, array_read, store, and call wrappers."""
+    """Remove synthetic read_pointer, array_read, address, clamp, store, call, and unused helpers."""
     from .sdkimport import masked
     span = _function_body_span(body, name)
     if not span:
@@ -3850,17 +3895,27 @@ def native_access_helpers(body, name):
     code = masked(body)
     calls = [dict(callee=callee, start=start, end=end, slots=slots)
              for callee, start, end, slots in call_sites(body)]
+
+    unused_pat = re.compile(
+        r'(?m)^[ \t]*static\s+inline\s+[^\n{;]+?(?:\s+|\b)([A-Za-z_]\w*)\s*\([^;{}]*\)\s*\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}[ \t]*\n?')
+    for defn in unused_pat.finditer(code):
+        helper = defn.group(1)
+        if helper == name or helper.startswith('fzgx_'):
+            continue
+        if len(re.findall(r'\b' + re.escape(helper) + r'\b', code)) == 1:
+            yield 'remove unused inline helper ' + helper, body[:defn.start()] + body[defn.end():]
+
     rp_pat = re.compile(
-        r'(?m)^[ \t]*static\s+inline\s+([^\n{;]+?)\s+(\w*read_(?:pointer|size|one|y|z|entry)\w*)\s*\('
-        r'\s*([^\n,;{}]+?)\s*(\w+)\s*\)\s*\{\s*return\s+\4((?:(?:->|\.)\w+)+)\s*;\s*\}[ \t]*\n?')
+        r'(?m)^[ \t]*static\s+inline\s+([^\n{;]+?)(?:\s+|\b)(\w*(?:read_(?:pointer|size|one|y|z|entry)|_values)\w*)\s*\('
+        r'\s*([^\n,;{}]+?)\s*(\w+)\s*\)\s*\{\s*(?:[^\n;{}]+?\s+(\w+)\s*;\s*\5\s*=\s*\(*\4((?:(?:->|\.)\w+)+)\)*\s*;\s*return\s+\5|return\s+\(*\4((?:(?:->|\.)\w+)+)\)*)\s*;\s*\}[ \t]*\n?')
     for defn in rp_pat.finditer(code):
-        ret, helper, param_ty, param, chain = defn.groups()
+        ret, helper, param_ty, param, _tmp, chain_tmp, chain_dir = defn.groups()
+        chain = chain_tmp or chain_dir
         if 'volatile' in ret or 'volatile' in param_ty:
             continue
         sites = [s for s in calls if s['callee'] == helper
                  and not defn.start() <= s['start'] < defn.end()]
-        if not sites or any(not span[1] <= s['start'] < s['end'] <= span[2]
-                            or len(s['slots']) != 1 for s in sites):
+        if not sites or any(len(s['slots']) != 1 for s in sites):
             continue
         if any(a['start'] < b['start'] < a['end'] for a in sites for b in sites):
             continue
@@ -3881,8 +3936,118 @@ def native_access_helpers(body, name):
             text = text[:a] + repl + text[b:]
         yield 'inline access helper ' + helper, text
 
+    rp_fwd_pat = re.compile(
+        r'(?m)^[ \t]*static\s+inline\s+([^\n{;]+?)(?:\s+|\b)(\w*read_pointer\w*)\s*\('
+        r'\s*([^\n,;{}]+?)\s*(\w+)\s*\)\s*\{\s*return\s+(\w+)\(\4\)\s*;\s*\}[ \t]*\n?')
+    for defn in rp_fwd_pat.finditer(code):
+        ret, helper, param_ty, param, target_fn = defn.groups()
+        if 'volatile' in ret or 'volatile' in param_ty:
+            continue
+        sites = [s for s in calls if s['callee'] == helper
+                 and not defn.start() <= s['start'] < defn.end()]
+        if not sites or any(len(s['slots']) != 1 for s in sites):
+            continue
+        if any(a['start'] < b['start'] < a['end'] for a in sites for b in sites):
+            continue
+        if len(re.findall(r'\b' + re.escape(helper) + r'\b', code)) != len(sites) + 1:
+            continue
+        edits = [(defn.start(), defn.end(), '')]
+        for site in sites:
+            arg = body[site['slots'][0][0]:site['slots'][0][1]].strip()
+            edits.append((site['start'], site['end'], f'{target_fn}({arg})'))
+        text = body
+        for a, b, repl in sorted(edits, reverse=True):
+            text = text[:a] + repl + text[b:]
+        yield 'inline access helper ' + helper, text
+
+    rp0_pat = re.compile(
+        r'(?m)^[ \t]*static\s+inline\s+([^\n{;]+?)(?:\s+|\b)(\w*read_pointer\w*)\s*\(\s*(?:void)?\s*\)'
+        r'\s*\{\s*return\s+([^;{}]+?)\s*;\s*\}[ \t]*\n?')
+    for defn in rp0_pat.finditer(code):
+        ret, helper, ret_expr = defn.groups()
+        if 'volatile' in ret or 'volatile' in ret_expr:
+            continue
+        sites = [s for s in calls if s['callee'] == helper
+                 and not defn.start() <= s['start'] < defn.end()]
+        if not sites or any(len(s['slots']) != 0 for s in sites):
+            continue
+        if any(a['start'] < b['start'] < a['end'] for a in sites for b in sites):
+            continue
+        if len(re.findall(r'\b' + re.escape(helper) + r'\b', code)) != len(sites) + 1:
+            continue
+        edits = [(defn.start(), defn.end(), '')]
+        for site in sites:
+            edits.append((site['start'], site['end'], f'({ret_expr.strip()})'))
+        text = body
+        for a, b, repl in sorted(edits, reverse=True):
+            text = text[:a] + repl + text[b:]
+        yield 'inline access helper ' + helper, text
+
+    deref_pat = re.compile(
+        r'(?m)^[ \t]*static\s+inline\s+([^\n{;]+?)(?:\s+|\b)(\w*_(?:language|word|float|read|scaled)\w*)\s*\('
+        r'\s*([^\n,;{}]+?)\s*(\w+)\s*(?:,\s*[^\n,;{}]+?\s*(\w+)\s*)?\)'
+        r'\s*\{\s*return\s+(\*?)\s*((?:\(\s*[^\n();{}]+?\s*\)\s*)*)(\*?)\s*\4\s*;\s*\}[ \t]*\n?')
+    for defn in deref_pat.finditer(code):
+        ret, helper, ty1, p1, p2, star1, casts, star2 = defn.groups()
+        if 'volatile' in ret or 'volatile' in ty1:
+            continue
+        sites = [s for s in calls if s['callee'] == helper
+                 and not defn.start() <= s['start'] < defn.end()]
+        expected_arity = 2 if p2 else 1
+        if not sites or any(len(s['slots']) != expected_arity for s in sites):
+            continue
+        if any(a['start'] < b['start'] < a['end'] for a in sites for b in sites):
+            continue
+        if len(re.findall(r'\b' + re.escape(helper) + r'\b', code)) != len(sites) + 1:
+            continue
+        edits = [(defn.start(), defn.end(), '')]
+        casts_str = (casts or '').strip()
+        ret_str = ret.strip()
+        for site in sites:
+            arg = body[site['slots'][0][0]:site['slots'][0][1]].strip()
+            if star1 == '*' or star2 == '*':
+                if star1 == '*' and casts_str:
+                    expr = f'(*{casts_str}({arg}))'
+                elif casts_str:
+                    expr = f'({casts_str}*({arg}))'
+                else:
+                    expr = f'(*({arg}))'
+            else:
+                expr = f'(({ret_str})({arg}))'
+            edits.append((site['start'], site['end'], expr))
+        text = body
+        for a, b, repl in sorted(edits, reverse=True):
+            text = text[:a] + repl + text[b:]
+        yield 'inline access helper ' + helper, text
+
+    re_pat = re.compile(
+        r'(?m)^[ \t]*static\s+inline\s+([^\n{;]+?)(?:\s+|\b)(\w*_read_entry\w*)\s*\('
+        r'\s*([^\n,;{}]+?)\s*(\w+)\s*,\s*([^\n,;{}]+?)\s*(\w+)\s*\)'
+        r'\s*\{\s*return\s+\4((?:(?:->|\.)\w+)+)\[\6\]\s*;\s*\}[ \t]*\n?')
+    for defn in re_pat.finditer(code):
+        ret, helper, ty1, p1, ty2, p2, chain = defn.groups()
+        if 'volatile' in ret or 'volatile' in ty1 or 'volatile' in ty2:
+            continue
+        sites = [s for s in calls if s['callee'] == helper
+                 and not defn.start() <= s['start'] < defn.end()]
+        if not sites or any(len(s['slots']) != 2 for s in sites):
+            continue
+        if any(a['start'] < b['start'] < a['end'] for a in sites for b in sites):
+            continue
+        if len(re.findall(r'\b' + re.escape(helper) + r'\b', code)) != len(sites) + 1:
+            continue
+        edits = [(defn.start(), defn.end(), '')]
+        for site in sites:
+            arg0 = body[site['slots'][0][0]:site['slots'][0][1]].strip()
+            arg1 = body[site['slots'][1][0]:site['slots'][1][1]].strip()
+            edits.append((site['start'], site['end'], f'(({arg0}){chain}[{arg1}])'))
+        text = body
+        for a, b, repl in sorted(edits, reverse=True):
+            text = text[:a] + repl + text[b:]
+        yield 'inline access helper ' + helper, text
+
     ar_pat = re.compile(
-        r'(?m)^[ \t]*static\s+inline\s+([^\n{;]+?)\s+(\w*array_read\w*)\s*\('
+        r'(?m)^[ \t]*static\s+inline\s+([^\n{;]+?)(?:\s+|\b)(\w*array_read\w*)\s*\('
         r'\s*([^\n,;{}]+?)\s*(\w+)\s*(?:,\s*([^\n,;{}]+?)\s*(\w+)\s*)?\)'
         r'\s*\{\s*return\s+(\w+)(?:\[(\w+)\])?\s*;\s*\}[ \t]*\n?')
     for defn in ar_pat.finditer(code):
@@ -3892,8 +4057,7 @@ def native_access_helpers(body, name):
         sites = [s for s in calls if s['callee'] == helper
                  and not defn.start() <= s['start'] < defn.end()]
         expected_arity = 2 if p2 else 1
-        if not sites or any(not span[1] <= s['start'] < s['end'] <= span[2]
-                            or len(s['slots']) != expected_arity for s in sites):
+        if not sites or any(len(s['slots']) != expected_arity for s in sites):
             continue
         if any(a['start'] < b['start'] < a['end'] for a in sites for b in sites):
             continue
@@ -3919,8 +4083,37 @@ def native_access_helpers(body, name):
             text = text[:a] + repl + text[b:]
         yield 'inline access helper ' + helper, text
 
+    addr_pat = re.compile(
+        r'(?m)^[ \t]*static\s+inline\s+u8\s*\*\s*(\w*_address_\w+)\s*\('
+        r'\s*([^\n,;{}]+?)\s*(\w+)\s*,\s*([^\n,;{}]+?)\s*(\w+)\s*\)'
+        r'\s*\{[\s\S]*?=\s*(\w+)\s*\+\s*\(s32\)[^;{}]+;\s*return\s+[^;{}]+;\s*\}[ \t]*\n?')
+    for defn in addr_pat.finditer(code):
+        helper, ty1, p1, ty2, p2, base_p = defn.groups()
+        if base_p not in (p1, p2):
+            continue
+        off_p = p2 if base_p == p1 else p1
+        sites = [s for s in calls if s['callee'] == helper
+                 and not defn.start() <= s['start'] < defn.end()]
+        if not sites or any(len(s['slots']) != 2 for s in sites):
+            continue
+        if any(a['start'] < b['start'] < a['end'] for a in sites for b in sites):
+            continue
+        if len(re.findall(r'\b' + re.escape(helper) + r'\b', code)) != len(sites) + 1:
+            continue
+        for style, fmt in [('typed', '((u8 *)({base}) + (s32)({off}))'),
+                           ('direct', '(({base}) + ({off}))')]:
+            edits = [(defn.start(), defn.end(), '')]
+            for site in sites:
+                args = {p1: body[site['slots'][0][0]:site['slots'][0][1]].strip(),
+                        p2: body[site['slots'][1][0]:site['slots'][1][1]].strip()}
+                edits.append((site['start'], site['end'], fmt.format(base=args[base_p], off=args[off_p])))
+            text = body
+            for a, b, repl in sorted(edits, reverse=True):
+                text = text[:a] + repl + text[b:]
+            yield f'inline address helper {style} ' + helper, text
+
     st_pat = re.compile(
-        r'(?m)^[ \t]*static\s+inline\s+void\s+(\w*_store\w*)\s*\('
+        r'(?m)^[ \t]*static\s+inline\s+void\s+(\w*_(?:store|init_out)\w*)\s*\('
         r'\s*([^\n,;{}]+?)\s*(\w+)\s*,\s*([^\n,;{}]+?)\s*(\w+)\s*\)'
         r'\s*\{\s*\*\s*(?:\(\s*([^\n();{}]+?)\s*\))?\s*(\w+)\s*=\s*(\w+)\s*;\s*\}[ \t]*\n?')
     for defn in st_pat.finditer(code):
@@ -3929,8 +4122,7 @@ def native_access_helpers(body, name):
             continue
         sites = [s for s in calls if s['callee'] == helper
                  and not defn.start() <= s['start'] < defn.end()]
-        if not sites or any(not span[1] <= s['start'] < s['end'] <= span[2]
-                            or len(s['slots']) != 2 for s in sites):
+        if not sites or any(len(s['slots']) != 2 for s in sites):
             continue
         if any(a['start'] < b['start'] < a['end'] for a in sites for b in sites):
             continue
@@ -3954,7 +4146,7 @@ def native_access_helpers(body, name):
         yield 'inline access helper ' + helper, text
 
     call_pat = re.compile(
-        r'(?m)^[ \t]*static\s+inline\s+([^\n{;]+?)\s+(\w*_call_\w+)\s*\(([^;{}]*)\)'
+        r'(?m)^[ \t]*static\s+inline\s+([^\n{;]+?)(?:\s+|\b)(\w*(?:_call_\w+|_apply))\s*\(([^;{}]*)\)'
         r'\s*\{\s*(?:return\s+)?(\w+)\s*\(([^;{}]*)\)\s*;\s*\}[ \t]*\n?')
     for defn in call_pat.finditer(code):
         ret, helper, param_str, target_fn, arg_str = defn.groups()
@@ -3962,13 +4154,20 @@ def native_access_helpers(body, name):
         if not params or any(m is None for m in params):
             continue
         pnames = [m[1] for m in params]
-        cargs = [a.strip() for a in arg_str.split(',') if a.strip()]
-        if set(pnames) != set(cargs) or len(pnames) != len(cargs):
+        raw_cargs = [a.strip() for a in arg_str.split(',') if a.strip()]
+        parsed_cargs = []
+        ok = True
+        for ca in raw_cargs:
+            m = re.fullmatch(r'((?:\(\s*[^\n();{}]+?\s*\)\s*)*)\(*(\w+)\)*', ca)
+            if not m or m[2] not in pnames:
+                ok = False
+                break
+            parsed_cargs.append((m[1], m[2]))
+        if not ok:
             continue
         sites = [s for s in calls if s['callee'] == helper
                  and not defn.start() <= s['start'] < defn.end()]
-        if not sites or any(not span[1] <= s['start'] < s['end'] <= span[2]
-                            or len(s['slots']) != len(pnames) for s in sites):
+        if not sites or any(len(s['slots']) != len(pnames) for s in sites):
             continue
         if any(a['start'] < b['start'] < a['end'] for a in sites for b in sites):
             continue
@@ -3977,12 +4176,60 @@ def native_access_helpers(body, name):
         edits = [(defn.start(), defn.end(), '')]
         for site in sites:
             mapping = {p: body[a:b].strip() for p, (a, b) in zip(pnames, site['slots'])}
-            reordered = ', '.join(mapping[c] for c in cargs)
+            reordered = ', '.join(f'{cast_prefix}({mapping[pname]})' if cast_prefix else mapping[pname]
+                                  for cast_prefix, pname in parsed_cargs)
             edits.append((site['start'], site['end'], f'{target_fn}({reordered})'))
         text = body
         for a, b, repl in sorted(edits, reverse=True):
             text = text[:a] + repl + text[b:]
         yield 'inline access helper ' + helper, text
+
+    clamp3_pat = re.compile(
+        r'(?m)^[ \t]*static\s+inline\s+f32\s+(\w*_clamp\w*)\s*\('
+        r'\s*f32\s+(\w+)\s*,\s*f32\s+(\w+)\s*,\s*f32\s+(\w+)\s*\)'
+        r'\s*\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}[ \t]*\n?')
+    for defn in clamp3_pat.finditer(code):
+        helper, vx, vlo, vhi = defn.groups()
+        sites = [s for s in calls if s['callee'] == helper
+                 and not defn.start() <= s['start'] < defn.end()]
+        if not sites or any(len(s['slots']) != 3 for s in sites):
+            continue
+        if any(a['start'] < b['start'] < a['end'] for a in sites for b in sites):
+            continue
+        if len(re.findall(r'\b' + re.escape(helper) + r'\b', code)) != len(sites) + 1:
+            continue
+        edits = [(defn.start(), defn.end(), '')]
+        for site in sites:
+            ax = body[site['slots'][0][0]:site['slots'][0][1]].strip()
+            alo = body[site['slots'][1][0]:site['slots'][1][1]].strip()
+            ahi = body[site['slots'][2][0]:site['slots'][2][1]].strip()
+            edits.append((site['start'], site['end'], f'((({ax}) < ({alo})) ? ({alo}) : ((({ax}) > ({ahi})) ? ({ahi}) : ({ax})))'))
+        text = body
+        for a, b, repl in sorted(edits, reverse=True):
+            text = text[:a] + repl + text[b:]
+        yield 'inline clamp helper ' + helper, text
+
+    clamp1_pat = re.compile(
+        r'(?m)^[ \t]*static\s+inline\s+f32\s+(\w*_clamp\w*)\s*\(\s*f32\s+(\w+)\s*\)'
+        r'\s*\{\s*return\s+\2\s*<\s*0\.0f\s*\?\s*0\.0f\s*:\s*\2\s*>\s*1\.0f\s*\?\s*1\.0f\s*:\s*\2\s*;\s*\}[ \t]*\n?')
+    for defn in clamp1_pat.finditer(code):
+        helper, vx = defn.groups()
+        sites = [s for s in calls if s['callee'] == helper
+                 and not defn.start() <= s['start'] < defn.end()]
+        if not sites or any(len(s['slots']) != 1 for s in sites):
+            continue
+        if any(a['start'] < b['start'] < a['end'] for a in sites for b in sites):
+            continue
+        if len(re.findall(r'\b' + re.escape(helper) + r'\b', code)) != len(sites) + 1:
+            continue
+        edits = [(defn.start(), defn.end(), '')]
+        for site in sites:
+            ax = body[site['slots'][0][0]:site['slots'][0][1]].strip()
+            edits.append((site['start'], site['end'], f'((({ax}) < 0.0f) ? 0.0f : ((({ax}) > 1.0f) ? 1.0f : ({ax})))'))
+        text = body
+        for a, b, repl in sorted(edits, reverse=True):
+            text = text[:a] + repl + text[b:]
+        yield 'inline clamp helper ' + helper, text
 
 
 def inline_helpers(body, name, helpers=None):

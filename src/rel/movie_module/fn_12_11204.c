@@ -12,7 +12,6 @@ struct fn_12_7870_Arg3 {
 
 #pragma opt_propagation off
 #pragma opt_lifetimes off
-static inline u8 fn_12_7870_array_read(s32 index, u8 *array) { return array[index]; }
 void fn_12_11204(u32 arg0, u32 arg1, struct fn_12_7870_Arg2 *arg2, struct fn_12_7870_Arg3 *arg3) {
     u8 *entry;
     s16 y;

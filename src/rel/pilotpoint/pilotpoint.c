@@ -11987,7 +11987,6 @@ extern void fn_1_49748(f32);
 extern void fn_1_5233C(void);
 extern int fn_1_4F734(fn_14_D2EC_FontDrawPacket *);
 
-static inline const char * *fn_14_D2EC_array_read(const char * *array) { return array; }
 void fn_14_D2EC(s32 arg0) {
     fn_14_D2EC_FontDrawPacket packet;
     u32 lab_t0;
@@ -12019,7 +12018,7 @@ void fn_14_D2EC(s32 arg0) {
         fn_1_495C8(9);
         fn_1_4955C(0.8f, 0.8f);
         fn_1_496FC(320.0f, 244.0f);
-        fn_1_4AE0C(fn_14_D2EC_array_read(lbl_14_data_BD4)[lbl_801A66B4]);
+        fn_1_4AE0C(((const char * *)(lbl_14_data_BD4))[lbl_801A66B4]);
         fn_1_49738((u32)fn_1_5233C);
         fn_1_49748(5.0f);
 
@@ -12414,7 +12413,6 @@ extern void fn_1_49748(f32);
 extern void fn_1_5233C(void);
 extern int fn_1_4F734(fn_14_D600_FontDrawPacket *);
 
-static inline const char * *fn_14_D600_array_read(const char * *array) { return array; }
 void fn_14_D600(s32 arg0) {
     fn_14_D600_FontDrawPacket packet;
     u32 lab_t0;
@@ -12446,7 +12444,7 @@ void fn_14_D600(s32 arg0) {
         fn_1_495C8(9);
         fn_1_4955C(0.8f, 0.8f);
         fn_1_496FC(320.0f, 244.0f);
-        fn_1_4AE0C(fn_14_D600_array_read(lbl_14_data_C54)[lbl_801A66B4]);
+        fn_1_4AE0C(((const char * *)(lbl_14_data_C54))[lbl_801A66B4]);
         fn_1_49738((u32)fn_1_5233C);
         fn_1_49748(5.0f);
 
@@ -12841,7 +12839,6 @@ extern void fn_1_49748(f32);
 extern void fn_1_5233C(void);
 extern int fn_1_4F734(fn_14_D914_FontDrawPacket *);
 
-static inline const char * *fn_14_D914_array_read(const char * *array) { return array; }
 void fn_14_D914(s32 arg0) {
     fn_14_D914_FontDrawPacket packet;
     u32 lab_t0;
@@ -12873,7 +12870,7 @@ void fn_14_D914(s32 arg0) {
         fn_1_495C8(9);
         fn_1_4955C(0.8f, 0.8f);
         fn_1_496FC(320.0f, 244.0f);
-        fn_1_4AE0C(fn_14_D914_array_read(lbl_14_data_C9C)[lbl_801A66B4]);
+        fn_1_4AE0C(((const char * *)(lbl_14_data_C9C))[lbl_801A66B4]);
         fn_1_49738((u32)fn_1_5233C);
         fn_1_49748(5.0f);
 

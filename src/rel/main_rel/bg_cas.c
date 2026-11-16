@@ -2285,7 +2285,6 @@ typedef struct {
     u32 rest : 26;
 } FDB40Bits;
 
-static inline u32 rotl(u32 x, int n) { return (x >> n) & 1; }
 
 s32 fn_1_FDB40(void **arg0) {
     u8 *p;
@@ -5443,21 +5442,12 @@ static inline f32 F65Scale(f32 factor, f32 age) {
     return 1.0f - (f32)((age - 1.0f) * factor);
 }
 
-static inline f32 F65SquaredXY(f32 x, f32 y) {
-    return x * x + y * y;
-}
 
 static inline f32 F65SquareAdd(f32 value, f32 sum) {
     return sum + value * value;
 }
 
-static inline f32 F65LengthSq(const F65Vec *v) {
-    return v->x * v->x + v->y * v->y + v->z * v->z;
-}
 
-static inline f32 F65SquaredYX(f32 y, f32 x) {
-    return x * x + y * y;
-}
 
 void fn_1_10069C(struct fn_1_10069C_Arg0 *obj) {
 #define arg0 effect

@@ -617,7 +617,6 @@ static void fzgx_bss_layout(void) {
 }
 #pragma section code_type ".text"
 
-static inline CameraEntry *fn_1_6B48_array_read(CameraEntry *array) { return array; }
 s16 fn_1_6B48(s32 index) {
     CameraState * state;
 {
@@ -639,7 +638,7 @@ s16 fn_1_6B48(s32 index) {
     case 11:
         return -1;
     default:
-        return fn_1_6B48_array_read(fzgx_obj_game_camera_entries)[index].value;
+        return (fzgx_obj_game_camera_entries)[index].value;
 }
     }
 }
@@ -2347,14 +2346,6 @@ const f32 fzgx_pool_fzgx_camera_distance[1] = {-10.0f};
 const f64 fzgx_pool_fzgx_camera_half[1] = {0.5};
 
 /* translate the locked-cache matrix A */
-static inline void mtxA_set_translate(fn_1_8D08_Vec *v) {
-    f32 x = v->x;
-    f32 y = v->y;
-    f32 z = v->z;
-    *(f32 *)(0xE0000000 + 0x0C) = x;
-    *(f32 *)(0xE0000000 + 0x1C) = y;
-    *(f32 *)(0xE0000000 + 0x2C) = z;
-}
 
 /* look point: matrix A applied to (0, 0, -10) */
 #define camera_update_look(cam) { \
@@ -2372,11 +2363,6 @@ static inline void mtxA_set_translate(fn_1_8D08_Vec *v) {
     cam->look.z = z; \
 }
 
-static inline f32 fn_1_8D08_look_z(f32 distance) {
-    f32 value = *(f32 *)(0xE0000000 + 0x28);
-    value = value * distance + *(f32 *)(0xE0000000 + 0x2C);
-    return value;
-}
 static inline f32 (* fn_1_8D08_read_pointer_(fn_1_8D08_Camera * owner))[4] { return owner->mtx; }
 static inline f32 (* fn_1_8D08_read_pointer__(fn_1_8D08_Camera * owner))[4] { return owner->mtx; }
 #pragma opt_lifetimes off
@@ -3108,10 +3094,6 @@ v->z = z;
 static inline void fn_1_90E0_call_lbl_8006E0B4(f32 a0, f32 a1, f32 a2) { lbl_8006E0B4(a0, a1, a2); }
 #pragma opt_propagation on
 #pragma opt_lifetimes on
-static inline void camera_get_transition_target90(struct fn_1_90E0_Arg0 *camera, Output90 *output, signed int *target) {
-*target = (signed int)fn_1_86254(camera->unk_2);
-fn_1_8B10(camera, output);
-}
 #pragma opt_propagation off
 #pragma opt_lifetimes off
 void fn_1_90E0(struct fn_1_90E0_Arg0 *arg0) {
@@ -4265,15 +4247,6 @@ extern void lbl_8006DC6C(f32 (*m)[4]);
 extern void lbl_8006E1B0(CamVec *in, CamVec *out);
 extern void lbl_8006D5A4(CamVec *a, CamVec *b, CamVec *out, f32 t);
 
-static inline f32 fn_1_AFC8_clamp(f32 x, f32 lo, f32 hi) {
-    if (x < lo) {
-        return lo;
-    }
-    if (x > hi) {
-        return hi;
-    }
-    return x;
-}
 
 /* While cam->unk_78 (counted down by camera_update_transition) is positive, blends the camera toward the current
  * transition preset (lbl_1_data_3BD0 entry cam->unk_A4 in game mode 14, else lbl_1_data_3A2C): mode 0 from unk_8
@@ -4323,7 +4296,7 @@ void fn_1_AFC8(Camera *cam) {
                 cam->unk_1F4 += step;
             }
             cam->unk_1F0 += cam->unk_1F4;
-            cam->unk_1F0 = fn_1_AFC8_clamp(cam->unk_1F0, 0.0f, 1.0f);
+            cam->unk_1F0 = (((cam->unk_1F0) < (0.0f)) ? (0.0f) : (((cam->unk_1F0) > (1.0f)) ? (1.0f) : (cam->unk_1F0)));
             t = cam->unk_1F0;
             lbl_8006D5A4(&from.pos, &to.pos, &cam->unk_8C, t);
             lbl_8006D5A4(&from.at, &to.at, &cam->unk_98, t);

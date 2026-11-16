@@ -5155,10 +5155,6 @@ static inline void fn_1_10E3B4_sphere4(Work *arg0, u32 count, u32 base, f32 cx, 
  psvec_scale_add(&a->pos, &delta, -wa * r, &a->pos); \
  psvec_scale_add(&b->pos, &delta, b->weight * r, &b->pos); \
 }
-static inline void fn_1_10E3B4_fall(Node *n, f32 g) {
- n->pos.y -= 0.5 * g;
- n->vel.y -= g;
-}
 static inline f32 fn_1_10E3B4_randf(f32 scale) {
  lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
  return scale * ((f32)(s32)((lbl_801A63C0 >> 16) & 0x7FFF) / 32767.0f);
@@ -5998,7 +5994,6 @@ static inline u32 *fn_1_110478_indices(u8 *base) {
  return indices;
 }
 #define INDEX(i) (fn_1_110478_indices(data)[i])
-static inline f32 fn_1_110478_read_pointer(Link * owner) { return owner->length; }
 static inline void fn_1_110478_sphere(Work *arg0, u32 base, f32 cx, f32 cy, f32 cz, f32 radius, f32 strength) {
  Fn183D28Vec3 center;
  Fn183D28Vec3 diff;
@@ -6881,7 +6876,6 @@ static inline u32 *fn_1_111980_indices(u8 *base) {
  return indices;
 }
 #define INDEX(i) (fn_1_111980_indices(data)[i])
-static inline f32 fn_1_111980_read_pointer(Link * owner) { return owner->length; }
 static inline void fn_1_111980_sphere(Work *arg0, u32 base, f32 cx, f32 cy, f32 cz, f32 radius, f32 strength) {
  Fn183D28Vec3 center;
  Fn183D28Vec3 diff;
@@ -15845,7 +15839,6 @@ typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
 #define F(o) (*(const f32 *)(pool+(o)))
 #define D(o) (*(const f64 *)(pool+(o)))
 #define INDEX(i) (((u32 *)lbl_1_data_3FFBC)[i])
-static inline f32 fn_1_1192D0_read_pointer(Link * owner) { return owner->length; }
 static inline void fn_1_1192D0_sphere(Work *arg0, const u8 *pool, s32 base, f32 cx, f32 cy, f32 cz, s32 ro, s32 so) {
  Fn183D28Vec3 center;
  Fn183D28Vec3 diff;
@@ -15894,7 +15887,7 @@ static inline void fn_1_1192D0_constrain(const u8 *pool, Node *a, Node *b, Link 
  f32 cz;
  f32 x;
  inv=lbl_8006D118(*len,len);
- r=lbl_8006D0B4(fn_1_1192D0_read_pointer(l));
+ r=lbl_8006D0B4((l->length));
  s=inv*(*len-r);
  *len=s;
  cx=delta.x*s; cy=delta.y*s; cz=delta.z*s;
@@ -15992,7 +15985,7 @@ void fn_1_1192D0(Work *arg0) {
  z=a->pos.z-b->pos.z;
  delta.x=x; delta.y=y; delta.z=z;
  len=(f32)(x*x)+y*y+z*z;
- if(len-F(0x9c)>fn_1_1192D0_read_pointer(l)) fn_1_1192D0_constrain(pool,a,b,l,&len,dp);
+ if(len-F(0x9c)>(l->length)) fn_1_1192D0_constrain(pool,a,b,l,&len,dp);
  }
  }
  }
@@ -16334,7 +16327,6 @@ typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
 #define F(o) (*(const f32 *)(pool+(o)))
 #define D(o) (*(const f64 *)(pool+(o)))
 #define INDEX(i) (((u32 *)lbl_1_data_3FFBC)[i])
-static inline f32 fn_1_11A774_read_pointer(Link * owner) { return owner->length; }
 #define SPHERE(BASE, CX, CY, CZ, RADIUS, STRENGTH) { \
  Fn183D28Vec3 diff; \
  Fn183D28Vec3 center; \
@@ -16373,7 +16365,7 @@ static inline void fn_1_11A774_constrain(const u8 *pool, Node *a, Node *b, Link 
  f32 cz;
  f32 x;
  inv=lbl_8006D118(*len,len);
- r=lbl_8006D0B4(fn_1_11A774_read_pointer(l));
+ r=lbl_8006D0B4((l->length));
  s=inv*(*len-r);
  *len=s;
  cx=delta.x*s; cy=delta.y*s; cz=delta.z*s;
@@ -16488,8 +16480,8 @@ void fn_1_11A774(Work *arg0) {
  z=a->pos.z-b->pos.z;
  delta.x=x; delta.y=y; delta.z=z;
  len=(f32)(x*x)+y*y+z*z;
- if(len-F(0x9c)>fn_1_11A774_read_pointer(l)) LINKFIX
- if(F(0x1a4)+len<fn_1_11A774_read_pointer(l)) LINKFIX
+ if(len-F(0x9c)>(l->length)) LINKFIX
+ if(F(0x1a4)+len<(l->length)) LINKFIX
  }
  }
  SPHERE(532,c404,c68,c68,F(0x408),F(0x40c))
@@ -17625,7 +17617,6 @@ typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
 #define F(o) (*(const f32 *)(pool+(o)))
 #define D(o) (*(const f64 *)(pool+(o)))
 #define INDEX(i) (((u32 *)lbl_1_data_3FFBC)[i])
-static inline f32 fn_1_11CD3C_read_pointer(Link * owner) { return owner->length; }
 extern u8 lbl_1_bss_88B50[0xC00];
 void fn_1_11CD3C(Work *arg0) {
  const u8 *pool=lbl_1_rodata_7AB8;
@@ -19060,7 +19051,6 @@ typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
 #define F(o) (*(const f32 *)(pool+(o)))
 #define D(o) (*(const f64 *)(pool+(o)))
 #define INDEX(i) (((u32 *)lbl_1_data_3FFBC)[i])
-static inline f32 fn_1_11F250_read_pointer(Link * owner) { return owner->length; }
 #define SPHERE(BASE, CX, CY, CZ, RADIUS, STRENGTH) { \
  Fn183D28Vec3 diff; \
  Fn183D28Vec3 center; \
@@ -19111,7 +19101,7 @@ static inline void fn_1_11F250_constrain(const u8 *pool, Node *a, Node *b, Link 
  f32 cz;
  f32 x;
  inv=lbl_8006D118(*len,len);
- r=lbl_8006D0B4(fn_1_11F250_read_pointer(l));
+ r=lbl_8006D0B4((l->length));
  s=inv*(*len-r);
  *len=s;
  cx=delta.x*s; cy=delta.y*s; cz=delta.z*s;
@@ -19228,8 +19218,8 @@ void fn_1_11F250(Work *arg0) {
  z=a->pos.z-b->pos.z;
  delta.x=x; delta.y=y; delta.z=z;
  len=(f32)(x*x)+y*y+z*z;
- if(len-F(0x9c)>fn_1_11F250_read_pointer(l)) LINKFIX
- if(F(0x1a4)+len<fn_1_11F250_read_pointer(l) && li<20) LINKFIX
+ if(len-F(0x9c)>(l->length)) LINKFIX
+ if(F(0x1a4)+len<(l->length) && li<20) LINKFIX
  if((y=a->pos.y)<F(0x68) || b->pos.y<F(0x68)) {
  if(y<F(0x68)) a->pos.y=F(0x248);
  if(b->pos.y<F(0x68)) b->pos.y=F(0x248);
@@ -20750,31 +20740,10 @@ static inline f32 sim_dot(const SimVec *v) {
 
 #pragma opt_propagation off
 #pragma opt_lifetimes off
-static inline void sim_integrate(SimNode *n, u8 *pool) {
-    f64 gravity;
-    f32 acceleration;
-    gravity = *(const f64 *)(pool + 0x58);
-    acceleration = *(const f32 *)(pool + 0x60);
-    n->prev = n->pos;
-    n->pos.x += n->vel.x;
-    n->pos.y += n->vel.y;
-    n->pos.z += n->vel.z;
-    n->pos.y -= gravity;
-    n->vel.y -= acceleration;
-}
 #pragma opt_lifetimes on
 
 #pragma opt_propagation off
 #pragma opt_lifetimes off
-static inline void sim_reset(SimRope *r) {
-    u32 index;
-    SimNode *node;
-    node = r->nodes;
-    for (index = 0; index < r->count; index++, node++) {
-        lbl_8006DBE4();
-        lbl_8006E1B0(&node->local, &node->pos);
-    }
-}
 #pragma opt_lifetimes on
 static inline void sim_sphere(SimRope *r, s32 bone, f32 x, f32 y, f32 z,
                              u32 radius2_offset, u32 radius_offset, u8 *pool) {
@@ -20809,16 +20778,8 @@ static inline void sim_sphere(SimRope *r, s32 bone, f32 x, f32 y, f32 z,
 #pragma opt_lifetimes on
 #pragma opt_propagation off
 #pragma opt_lifetimes off
-static inline f32 fn_1_123050_read_pointer(SimNode *owner) {
-    f32 mass;
-    mass = owner->mass;
-    return mass;
-}
 #pragma opt_lifetimes on
 #pragma opt_propagation on
-static inline f32 sim_inverse_mass(SimNode *a, SimNode *b, u8 *pool) {
-    return PF(0xa0) / (a->mass + b->mass);
-}
 #pragma opt_propagation on
 #pragma opt_lifetimes on
 #pragma inline_max_size(4096)
@@ -20827,49 +20788,8 @@ static inline f32 sim_inverse_mass(SimNode *a, SimNode *b, u8 *pool) {
 #pragma opt_common_subs off
 #pragma opt_lifetimes on
 #pragma opt_propagation off
-static inline f32 sim_mass_ratio(f32 mb, f32 ma, f32 one) {
-    f32 numerator, sum, a_mass, b_mass;
-    b_mass = mb;
-    a_mass = ma;
-    numerator = one;
-    sum = a_mass + b_mass;
-    return numerator / sum;
-}
 #pragma opt_propagation on
 #pragma opt_lifetimes on
-static inline void sim_apply_pair(SimNode *a, SimNode *b, SimVec *delta, f32 length, f32 one) {
-    f32 ma, mb, sum;
-    psvec_scale(delta, length, delta);
-    sum = one / (a->mass + b->mass);
-    ma = sum * a->mass;
-    mb = b->mass * sum;
-    psvec_scale_add(&a->pos, delta, -ma, &a->pos);
-    psvec_scale_add(&b->pos, delta, mb, &b->pos);
-}
-static inline void sim_velocity(SimRope *r, u8 *literal_pool) {
-    SimVec noise;
-    SimNode *n;
-    u32 i;
-    f64 damping, inherit, noise_scale;
-    f32 pos_y;
-    n = r->nodes;
-    damping = PD(0x500);
-    inherit = PD(0x508);
-    noise_scale = PD(0x198);
-    for (i = 0; i < r->count; i++, n++) {
-        fn_1_1286F4(&noise);
-        n->vel.x *= damping;
-        n->vel.y *= damping;
-        n->vel.z *= damping;
-        n->vel.x += (f64)(inherit * (n->pos.x - n->prev.x));
-        pos_y = n->pos.y;
-        n->vel.y += (f64)(inherit * (pos_y - n->prev.y));
-        n->vel.z += (f64)(inherit * (n->pos.z - n->prev.z));
-        n->vel.x += (f64)(noise_scale * noise.x);
-        n->vel.y += (f64)(noise_scale * noise.y);
-        n->vel.z += (f64)(noise_scale * noise.z);
-    }
-}
 #undef pool
 #define pool literal_pool
 #undef fzgx_pool_table_0
@@ -22126,7 +22046,6 @@ typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
 #define F(o) (*(const f32 *)(pool+(o)))
 #define D(o) (*(const f64 *)(pool+(o)))
 #define INDEX(i) (((u32 *)lbl_1_data_3FFBC)[i])
-static inline f32 fn_1_125DF0_read_pointer(Link * owner) { return owner->length; }
 extern u8 lbl_1_bss_88B50[0xC00];
 extern f64 fabs(f64);
 #pragma opt_common_subs off

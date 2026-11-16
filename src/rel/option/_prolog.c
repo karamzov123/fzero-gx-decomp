@@ -3113,12 +3113,6 @@ extern void fn_1_495B0(u32);
 extern void fn_1_49590(f32);
 extern void fn_1_4A0D8(const char *);
 extern void fn_1_4AE0C(const char *, ...);
-static inline void fn_4_2394_shadow(void) {
-if (lbl_801A66B4 != 5) {
-fn_1_495B0(0x80000000);
-fn_1_49590(0.5f);
-}
-}
 /* Draws a labelled box with an outline, placed left or right of the centre line. */
 extern u8 fn_4_347C__fzgx_offset_0[];
 extern u8 fn_4_3568__fzgx_offset_0[];
@@ -12144,10 +12138,6 @@ extern void fn_1_5233C(void);
 #pragma opt_propagation off
 #pragma opt_lifetimes off
 #pragma fp_contract off
-static inline void fn_4_82A0_print(const char *format, const char **table, s32 *language) {
-    table = (const char **)table[*language];
-    fn_1_4AE0C(format, (const char *)table);
-}
 void fn_4_82A0(void) {
     struct fn_4_82A0_Bss *bss;
     u8 *data;
@@ -15424,12 +15414,7 @@ extern void fn_1_4A0D8(const char *);
 #pragma pool_data on
 #pragma fp_contract off
 #pragma opt_common_subs off
-static inline f64 fn_10_2325C_read_pointer(struct fn_8_D630_rodata * owner) { return owner->unk_6B0; }
 static inline s32 fn_4_ADF4_sign(s32 x) { return x < 0 ? -1 : x > 0; }
-static inline u8 fn_4_ADF4_blend(u8 c, f32 f) {
-    f32 delta = (f32)(255 - c) * f;
-    return (s32)((f32)c + delta);
-}
 void fn_4_ADF4(struct fn_8_D630_obj *arg0)
 {
 struct fn_8_D630_obj *p;

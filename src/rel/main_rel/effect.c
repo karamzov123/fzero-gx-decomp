@@ -1232,30 +1232,8 @@ extern s32 lbl_8006D24C(f32, f32);
 extern void *memset(void *, int, u32);
 extern void lbl_8006DB74(void *);
 
-static inline void offset_segment(Vec3 *head, Vec3 *tail, Vec3 *dir, f32 width)
-{
-    f32 ox = dir->x * width;
-    f32 oy = dir->y * width;
-    head->x += ox;
-    head->y += oy;
-    tail->x -= ox;
-    tail->y -= oy;
-}
 
-static inline f32 segment_length_squared(Vec3 *head, Vec3 *tail)
-{
-    f32 dx = head->x - tail->x;
-    f32 dy = head->y - tail->y;
-    f32 dz = head->z - tail->z;
-    return (f32)(dx * dx) + dy * dy + dz * dz;
-}
 
-static inline void set_segment_midpoint(Vec3 *out, f32 y, f32 x, f32 z, f32 factor)
-{
-    out->x = factor * x;
-    out->y = factor * y;
-    out->z = factor * z;
-}
 
 #pragma opt_lifetimes off
 #pragma opt_propagation off
@@ -3886,9 +3864,6 @@ typedef struct {
 
 #pragma fp_contract off
 
-static inline void fn_1_5B7F8_init_out(Fn183D28Vec3 **dest, Fn183D28Vec3 *src) {
-    *dest = src;
-}
 
 static inline void fn_1_5B7F8_transform(void *mtx, Fn183D28Vec3 *out, Fn183D28Vec3 *t, Fn183D28Vec3 *in) {
     f32 x;
@@ -3898,8 +3873,8 @@ static inline void fn_1_5B7F8_transform(void *mtx, Fn183D28Vec3 *out, Fn183D28Ve
     Fn183D28Vec3 *source;
     f32 *lc = (f32 *)LC_BASE;
     lbl_8006DC6C(mtx);
-    fn_1_5B7F8_init_out(&dest, out);
-    fn_1_5B7F8_init_out(&source, in);
+    (dest = (out));
+    (source = (in));
     x = *(volatile f32 *)&dest->x; /* fzgx-allow: S2 in-place locked-cache translation load order */
     y = *(volatile f32 *)&dest->y; /* fzgx-allow: S2 preserve locked-cache column load order */
     z = *(volatile f32 *)&dest->z; /* fzgx-allow: S2 preserve locked-cache column load order */
@@ -3923,9 +3898,6 @@ static inline void fn_1_5B7F8_transform(void *mtx, Fn183D28Vec3 *out, Fn183D28Ve
         lc[11] = tag##_z; \
     } while (0)
 
-static inline void fn_1_5B7F8_apply(Fn183D28Vec3 *out, Fn183D28Vec3 *in) {
-    lbl_8006E1B0(in, out);
-}
 
 static inline void fn_1_5B7F8_init_lc(volatile f32 **cache) {  /* fzgx-allow: S2 volatile keeps the verified access order */
     *cache = (volatile f32 *)LC_BASE; /* Locked-cache transform matrix. */
@@ -4811,9 +4783,6 @@ static void fzgx_fn_1_5CA00_pool4(void) {
 #pragma force_active off
 
 #define FIELD(off) (*(f32 *)((u8 *)arg0 + (off)))
-static inline f64 color_clamp(f64 value, f64 min, f64 max) {
- return value < min ? min : value > max ? max : value;
-}
 static inline void load_car_matrix(struct fn_1_5CA00_Arg0 *car) {
  lbl_8006E0A4((u32)&car->unk_3C);
 }
@@ -6395,12 +6364,6 @@ static inline void extrapolate(Vec3 *out, Vec3 *prev, Vec3 *a) {
 }
 #pragma fp_contract on
 #pragma opt_common_subs off
-static inline f32 len_sq(f32 x, f32 y, f32 z) {
-    f32 result = x * x;
-    result += y * y;
-    result += z * z;
-    return result;
-}
 static inline f32 scale_len_sq(Vec3 *v) {
     f32 result = v->x * v->x;
     result += v->y * v->y;
@@ -8842,12 +8805,6 @@ extern void mathutil_mtxA_rotate_y(s32);
 extern void mathutil_mtxA_rotate_x(s32);
 
 /* Sets the translation column of the locked-cache matrix A. */
-static inline void fn_1_5F654_set_translate(f32 x, f32 y, f32 z) {
-
-    *(f32 *)(0xE0000000 + 0x0C) = x;
-    *(f32 *)(0xE0000000 + 0x1C) = y;
-    *(f32 *)(0xE0000000 + 0x2C) = z;
-}
 
 void fn_1_5F654(fn_1_5F654_Effect *effect) {
     f32 mtx[12];
@@ -9667,16 +9624,6 @@ typedef struct {
 
 extern const f32 lbl_1_rodata_2950;
 
-static inline f32 beam_segment_length(BeamVec *a, BeamVec *b)
-{
-    f32 x = a->x - b->x;
-    f32 y = a->y - b->y;
-    f32 z = a->z - b->z;
-    f32 len = x * x;
-    len += y * y;
-    len += z * z;
-    return len;
-}
 
 #pragma opt_lifetimes off
 static inline f32 beam_orient(BeamEffect *effect, BeamVec *startArg, BeamVec *endArg, const BeamConstants *constants)
@@ -11837,7 +11784,6 @@ extern void mathutil_mtxA_rotate_x(s32);
 extern void mathutil_mtxA_rotate_z(s32);
 extern void lbl_8006E1C0(fn_1_61370_Vec *, fn_1_61370_Vec *);
 
-static inline f32 fn_1_61370_read_pointer(fn_1_61370_Vec * owner) { return owner->z; }
 #pragma opt_propagation off
 void fn_1_61370(fn_1_61370_Obj *p) {
     s16 * fzgx_live;
@@ -14842,10 +14788,6 @@ static inline f32 eff_dist_to(struct Eff62E9C *e, EffVec3 *p) {
     return lbl_8006D0B4(sq);
 }
 
-static inline void eff_finish_packet(struct EffPacket62E9C *pkt, f32 size, f32 a) {
-    pkt->unk_4 = size;
-    pkt->color[3] = (u8)(s32)a;
-}
 
 void fn_1_62E9C(struct Eff62E9C *e) {
     struct EffPacket62E9C pkt;
@@ -16109,19 +16051,6 @@ extern void mathutil_mtxA_rotate_y(s16);
 extern void mathutil_mtxA_rotate_x(s16);
 
 /* Translation column of the current matrix in the locked cache. */
-static inline void mtxA_set_translate(Fn183D28Vec3 *v) {
-    f32 z;
-    f32 y;
-    f32 x;
-
-    z = v->z;
-    y = v->y;
-    x = v->x;
-
-    *(f32 *)(0xE0000000 + 0x0C) = x;
-    *(f32 *)(0xE0000000 + 0x1C) = y;
-    *(f32 *)(0xE0000000 + 0x2C) = z;
-}
 
 void fn_1_635BC(Fn1635BCEffect *e) {
     Fn183D28Vec3 pos;
@@ -18786,13 +18715,7 @@ typedef struct Particle654B0 {
 } Particle654B0;
 
 /* Advances the shared linear congruential generator. */
-static inline void rand_step654B0(void)
-{
-    /* probe: volatile access as a scheduling barrier */
-    *(volatile u32 *)&lbl_1_data_1D628 = *(volatile u32 *)&lbl_1_data_1D628 * 0x41C64E6D + 12345;
-}
 
-static inline f32 fn_1_654B0_operand(f32 right, f32 left) { return ((right) * (left)); }
 #pragma opt_common_subs off
 static inline f32 fn_1_654B0_operand_(f32 right, f32 left) { return left * right; }
 static inline void advance_particle654B0(Particle654B0 *p)
@@ -20921,9 +20844,6 @@ f32 fzgx_pool_primer_404(void) { return 3.0f; }
 #pragma section code_type ".text"
 #define effect_random() ((f32)effect_rand() / 32767.0f)
 #define effect_random2() ((f32)effect_rand2() / 32767.0f)
-static inline f32 effect_saved_random(void) {
-    return effect_random();
-}
 static inline void effect_cross_store(const Fn183D28Vec3 *a, const Fn183D28Vec3 *b, Fn183D28Vec3 *out) {
     f32 ax, ay, az;
     f32 x, y, z;
@@ -20944,9 +20864,6 @@ static inline void effect_cross_store(const Fn183D28Vec3 *a, const Fn183D28Vec3 
     *(volatile f32 *)&out->z = z;
 }
 #define effect_cross(a, b, out) effect_cross_store(a, b, out)
-static inline f64 effect_jitter(f32 scale) {
-    return scale * (effect_random() - 0.5);
-}
 static inline u32 effect_aux_jitter(Fn183D28Vec3 *v) {
     f32 x, y;
     u32 z;
@@ -20997,16 +20914,8 @@ typedef Fn662D8Effect Fn662D8Source;
 #define velocity anchor
 
 #pragma fp_contract on
-static inline f32 effect_madd(f32 c, f32 a, f32 b) {
-    return a * b + c;
-}
 static inline f32 effect_multiply(f32 a, f32 b) {
     return a * b;
-}
-static inline f32 effect_half_brightness(f32 size) {
-    f32 result = 1.0f + size;
-    result = 0.5f * result;
-    return result;
 }
 static inline f32 effect_sqnorm(const Fn183D28Vec3 *v) {
     f32 x = v->x;
@@ -21634,11 +21543,6 @@ typedef struct EffectVec {
     f32 x, y, z;
 } EffectVec;
 
-static inline void vec_scale(EffectVec *v, f32 s) {
-    v->x *= s;
-    v->y *= s;
-    v->z *= s;
-}
 
 /* LCG random, 15 bits */
 static inline u32 rand15(void) {

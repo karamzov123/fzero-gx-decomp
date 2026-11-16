@@ -123,21 +123,6 @@ static inline int svm_exec_svr(int server_type) {
     return result;
 }
 
-static inline void svm_clear(void) {
-    int index;
-    int *counter;
-
-    memset(lbl_8018FF78__fzgx_offset_1C0, 0, sizeof(lbl_8018FF78__fzgx_offset_1C0));
-    memset(&lbl_8018FF70, 0, sizeof(lbl_8018FF70));
-    memset(&lbl_8018FF68, 0, sizeof(lbl_8018FF68));
-    memset(&lbl_8018FEB0__fzgx_offset_24, 0, sizeof(lbl_8018FEB0__fzgx_offset_24));
-    memset(&lbl_8018FEB0__fzgx_offset_1C, 0, sizeof(lbl_8018FEB0__fzgx_offset_1C));
-    counter = lbl_8018FF78__fzgx_offset_1E0;
-    for (index = 0; index < 6; index++) {
-        *counter++ = 0;
-    }
-    lbl_8018FEB0__fzgx_offset_2C = 0;
-}
 
 void fn_8005912C(int server_type, int id, SVMServerFunction function, void *object) {
     struct SVMServerCallback *callback;

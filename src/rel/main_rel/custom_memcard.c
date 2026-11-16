@@ -1018,15 +1018,6 @@ extern void fn_1_13E054(s32, s32);
 extern void fn_1_13EDDC(s32, s32, s32, s32, s32);
 extern void fn_1_49410(void);
 
-static inline s32 fn_1_1324C4_inl(s32 a) {
-    if (lbl_801A66B4 == 5) {
-        return 0;
-    }
-    if (a > 40) {
-        return 4;
-    }
-    return 7;
-}
 
 #pragma opt_common_subs off
 void fn_1_1324C4(void *arg0) {

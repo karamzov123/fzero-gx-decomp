@@ -543,7 +543,6 @@ static void fzgx_bss_layout(void) {
 }
 #pragma section code_type ".text"
 
-static inline Entry_155FB4 *fn_1_155FB4_array_read(Entry_155FB4 *array) { return array; }
 #pragma opt_loop_invariants off
 void fn_1_155FB4(char *arg) {
 Rec_155FB4 rec;
@@ -561,7 +560,7 @@ a = fzgx_obj_lbl_1_bss_8EF20;
 for (i = 9; i >= 0; i--) {
 /* record fields other than the loop-invariant id are re-read on every pass: retail reloads them inside the loop */
 #define VRF(f) (((volatile Rec_155FB4 *)&rec)->f)
-if (fn_1_155FB4_array_read(a)[i].unk_0 == rec.unk_1444 && a[i].unk_18 == VRF(unk_145C)
+if ((a)[i].unk_0 == rec.unk_1444 && a[i].unk_18 == VRF(unk_145C)
 && a[i].unk_1A == VRF(unk_145E) && a[i].pad_1B[0] == VRF(unk_145F)
 && a[i].pad_1B[1] == VRF(unk_1460) && a[i].pad_1B[2] == VRF(unk_1461)
 && a[i].pad_1B[3] == VRF(unk_1462) && a[i].pad_1B[4] == VRF(unk_1463) ) {

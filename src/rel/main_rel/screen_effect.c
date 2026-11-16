@@ -3660,7 +3660,6 @@ typedef struct {
     ScreenEffectEntry *entries;
 } ScreenEffectTable;
 
-static inline ScreenEffectEntry *fn_1_791B0_array_read(ScreenEffectEntry *array) { return array; }
 #pragma opt_common_subs off
 void fn_1_791B0(void) {
     struct { s32 value; } i;
@@ -3677,13 +3676,13 @@ void fn_1_791B0(void) {
     }
 
     for (i.value = 0; i.value < table->count; i.value++) {
-        if (fn_1_791B0_array_read(table->entries)[i.value].unk_4[0] == 'C' &&
-            fn_1_791B0_array_read(table->entries)[i.value].unk_4[3] == '_' &&
-            fn_1_791B0_array_read(table->entries)[i.value].unk_4[4] == 'M' &&
-            fn_1_791B0_array_read(table->entries)[i.value].unk_4[5] == 'A' &&
-            fn_1_791B0_array_read(table->entries)[i.value].unk_4[6] == 'P' &&
-            fn_1_791B0_array_read(table->entries)[i.value].unk_4[7] == '\0') {
-            lbl_1_bss_6D778.unk_0 = fn_1_791B0_array_read(table->entries)[i.value].unk_0;
+        if (((ScreenEffectEntry *)(table->entries))[i.value].unk_4[0] == 'C' &&
+            ((ScreenEffectEntry *)(table->entries))[i.value].unk_4[3] == '_' &&
+            ((ScreenEffectEntry *)(table->entries))[i.value].unk_4[4] == 'M' &&
+            ((ScreenEffectEntry *)(table->entries))[i.value].unk_4[5] == 'A' &&
+            ((ScreenEffectEntry *)(table->entries))[i.value].unk_4[6] == 'P' &&
+            ((ScreenEffectEntry *)(table->entries))[i.value].unk_4[7] == '\0') {
+            lbl_1_bss_6D778.unk_0 = ((ScreenEffectEntry *)(table->entries))[i.value].unk_0;
             return;
         }
     }
@@ -4272,15 +4271,6 @@ static inline void fx_lookup(ScreenFx *e, s32 key) {
     }
 }
 
-static inline void fx_set(ScreenFx *e, const ScreenFxEntry *ent) {
-    e->active = 1;
-    e->type = ent->type;
-    e->unk_4 = ent->unk_4;
-    e->unk_8 = ent->unk_8;
-    e->unk_C = ent->unk_C;
-    e->unk_D = ent->unk_D;
-    e->unk_E = ent->unk_E;
-}
 
 void fn_1_79948(void) {
     ScreenFx *e;

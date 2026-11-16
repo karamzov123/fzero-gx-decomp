@@ -67,12 +67,6 @@ static void fzgx_bss_layout(void) {
 }
 #pragma section code_type ".text"
 
-static inline void svm_call_err1(const char *message) {
-    strncpy(lbl_8018FEE0, message, sizeof(lbl_8018FEE0) - 1);
-    if (lbl_8018FF60.function != 0) {
-        lbl_8018FF60.function(lbl_8018FF60.object, lbl_8018FEE0);
-    }
-}
 
 static inline void svm_unlock(int type) {
     if (lbl_8018FF68.function != 0) {

@@ -4475,19 +4475,7 @@ failed:
     return 0;
 }
 
-static inline f32 fn_1_192E8_dot(f32 ax, f32 ay, f32 az, f32 bx, f32 by, f32 bz)
-{
-    return (f32)(bx * ax) + by * ay + bz * az;
-}
 
-static inline f32 fn_1_192E8_vdot(Vec3 *a, Vec3 *b)
-{
-    f32 z, y, x;
-    z = a->z;
-    y = a->y;
-    x = a->x;
-    return (f32)(x * b->x) + y * b->y + z * b->z;
-}
 
 static inline void fn_1_192E8_normal(Vec3 *out, f32 scale)
 {
@@ -13085,7 +13073,6 @@ static inline void fn_1_24A4C_set_translate(f32 z, f32 y, f32 x) {
 }
 
 static inline f32 fn_1_24A4C_speed(f64 scale, f32 magnitude, f32 mass) { return scale * (magnitude / mass); }
-static inline f64 fn_1_24A4C_timer(f64 bias, f64 value, f64 add) { return add + (value - bias); }
 static inline f64 fn_1_24A4C_read_pointer(struct fn_1_24A4C_lbl_1_rodata_840 * owner) { return owner->unk_20; }
 #pragma opt_dead_assignments off
 #pragma opt_common_subs off
@@ -20087,10 +20074,6 @@ static inline f32 fn_1_29A0C_length(Vec3 *p)
     return lbl_8006D0B4(v1);
 }
 
-static inline u32 fn_1_29A0C_word(f32 *p)
-{
-    return *(u32 *)p;
-}
 
 /* retail's in-place fmadds translate (x = x * lift + LC[3] in one register) needs opt_lifetimes off */
 #pragma opt_lifetimes off
@@ -20203,9 +20186,9 @@ void fn_1_29A0C(Machine *m)
         LC[11] = z;
     }
     amp = 5.999999848427251e-05f * m->unk_478;
-    hash = fn_1_29A0C_word(&m->unk_94.z) ^ (fn_1_29A0C_word(&m->unk_94.x) ^ fn_1_29A0C_word(&m->unk_94.y));
+    hash = (*(u32 *)(&m->unk_94.z)) ^ ((*(u32 *)(&m->unk_94.x)) ^ (*(u32 *)(&m->unk_94.y)));
     t = amp * ((u16)(hash ^ m->unk_A0) / 65536.0f);
-    mathutil_mtxA_rotate_z((s32)(10430.3779296875f * (amp * ((u16)(hash ^ fn_1_29A0C_word(&m->unk_A4)) / 65536.0f))));
+    mathutil_mtxA_rotate_z((s32)(10430.3779296875f * (amp * ((u16)(hash ^ (*(u32 *)(&m->unk_A4))) / 65536.0f))));
     mathutil_mtxA_rotate_x((s32)(10430.3779296875f * t));
     if (m->unk_0 & 0x20) {
         f32 w = m->unk_C8;
@@ -20241,7 +20224,7 @@ void fn_1_29A0C(Machine *m)
         if (t > 1.0f) {
             t = 1.0f;
         }
-        jitter.x = (u16)(hash ^ fn_1_29A0C_word(&m->unk_A4)) / 65536.0f - 0.5f;
+        jitter.x = (u16)(hash ^ (*(u32 *)(&m->unk_A4))) / 65536.0f - 0.5f;
         jitter.y = 0.0f;
         jitter.z = (u16)(hash ^ m->unk_A8) / 65536.0f - 0.5f;
         lbl_8006E1C0(&jitter, &jitter);
@@ -22499,9 +22482,6 @@ static inline f32 fn_1_2B684_square(f32 t) {
     return t * t;
 }
 
-static inline f32 fn_1_2B684_lensq(Vec3f *v) {
-    return v->z * v->z + (v->y * v->y + v->x * v->x);
-}
 
 #pragma opt_common_subs off
 #pragma opt_propagation off
@@ -24434,7 +24414,6 @@ extern void fn_1_4A0D8(const char *);
 extern u32 fn_1_50A90(void *,u32,u32,u32,u32);
 struct FzgxCopy_88 { u32 words[22]; };
 
-static inline u32 *fn_1_2D038_read_pointer(struct FzgxCopy_88 *owner) { return owner->words; }
 #pragma opt_propagation off
 void fn_1_2D038(void) {
 struct FzgxCopy_88 loc_8;
@@ -24500,9 +24479,9 @@ temp_f7=45.0f+temp_f28;
 (*(f32 *)((u8 *)&loc_8+4))=temp_f26;
 (*(f32 *)((u8 *)&loc_8+8))=16.0f+(f32)(0.5f*temp_f7);
 (*(f32 *)((u8 *)&loc_8+12))=0.00079999998f;
-fn_1_2D038_read_pointer(&loc_8)[0xC]=0xA;
+(loc_8.words)[0xC]=0xA;
 (*(f32 *)((u8 *)&loc_8+44))=var_f31;
-fn_1_2D038_read_pointer(&loc_8)[0]=2;
+(loc_8.words)[0]=2;
 fn_1_50A90(&loc_8,(u32)(s32)(18.0f*var_f30),(u32)(s32)(45.0f*var_f30),(u32)(s32)((50.0f+temp_f27)*var_f29),(u32)(s32)(temp_f7*var_f29));
 }
 #pragma opt_propagation reset

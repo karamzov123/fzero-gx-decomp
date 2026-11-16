@@ -2209,16 +2209,6 @@ extern void fn_1_495B0(u32);
 extern void fn_1_496FC(f32, f32);
 extern void fn_1_4AE0C(const char *, ...);
 
-static inline u32 time_milliseconds(u32 a) {
-    struct { u32 value; } minutes;
-    u32 seconds = (a >> 12) & 0xFF;
-    u32 milliseconds = a & 0xFFF;
-    minutes.value = (a >> 20) & 0xFF;
-    minutes.value *= 60;
-    minutes.value = seconds + minutes.value;
-    minutes.value *= 1000;
-    return milliseconds + minutes.value;
-}
 static inline u32 time_difference(u32 a, u32 b) {
     u32 am = (a >> 20) & 0xFF;
     u32 bm = (b >> 20) & 0xFF;

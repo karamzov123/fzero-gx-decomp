@@ -300,7 +300,6 @@ static void fzgx_bss_layout(void) {
 }
 #pragma section code_type ".text"
 
-static inline void* *fn_1_EB4BC_array_read(void* *array) { return array; }
 #pragma section code_type ".fzgxpool"
 static void fzgx_string_layout(void) {
     /* fzgx-allow: S2 layout primer: MWCC emits string literals in first-use order; the section is dropped at integration */
@@ -4691,17 +4690,6 @@ extern void fn_1_F1300(u32, void *, u32, u32, u32);
 extern int sprintf(char *, const char *, ...);
 extern void fn_80006E10(const char *);
 
-static inline void GhostEntry_setKind(GhostEntry *entry, u16 index, u8 count)
-{
-    entry->index = index;
-    if (count <= 1) {
-        entry->kind = 1;
-    } else if (count <= 3) {
-        entry->kind = 2;
-    } else {
-        entry->kind = 4;
-    }
-}
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u32 fzgx_obj_lbl_1_bss_7B180[2];
@@ -5507,14 +5495,7 @@ static void fzgx_bss_layout(void) {
 }
 #pragma section code_type ".text"
 
-static inline f32 ghost_ratio(u32 a, u32 b) {
-    return (f32)a / (f32)b;
-}
 
-static inline u32 ghost_lerp(u32 a, u32 lo, u32 hi, u32 b) {
-    f32 r = (f32)a / (f32)b;
-    return (f32)lo * (lbl_1_rodata_6BD0 - r) + (f32)(f32)hi * r;
-}
 
 s32 fn_1_F0E00(s32 idx, s32 *out) {
     u32 cur;

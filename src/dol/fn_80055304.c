@@ -445,11 +445,6 @@ static inline void* allocateHandle(void)
     return &cvfs_obj[i];
 }
 
-static inline void releaseHandle(CvFsObject* handle)
-{
-    handle->object = NULL;
-    handle->interface = NULL;
-}
 
 static inline CvFsInterface* addDevice(char* name,
                                        CvFsInterfaceFactory factory)

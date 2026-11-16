@@ -18,8 +18,6 @@ extern u32 lbl_12_bss_6924;
 extern u32 lbl_12_bss_6920;
 
 #pragma opt_lifetimes off
-static inline u32 * fn_12_9594_read_pointer_read_pointer(MovieBits * owner) { return owner->field_c; }
-static inline u32 * fn_12_9594_read_pointer(MovieBits * owner) { return fn_12_9594_read_pointer_read_pointer(owner); }
 s32 fn_12_9594(MovieBits *state, MovieCode *code, s32 *out, s32 *base) {
     u32 bits;
     s32 count;
@@ -34,7 +32,7 @@ s32 fn_12_9594(MovieBits *state, MovieCode *code, s32 *out, s32 *base) {
     bits = state->field_0;
     count = state->field_8;
     word = state->field_4;
-    ptr = fn_12_9594_read_pointer(state);
+    ptr = (state->field_c);
     nb = code->field_4;
 {
     s32 sg;

@@ -74,19 +74,6 @@ static inline unsigned int sfh_stream_class(unsigned char stream_id) {
     return type;
 }
 
-static inline int sfh_is_effective_video(const SFHStreamRecord *stream, unsigned char stream_id) {
-    int valid;
-    if (sfh_stream_class(stream_id) != 0xE0) {
-        valid = 0;
-    } else if (stream->effective_features > 1) {
-        valid = 0;
-    } else if (stream->effective_features == 0) {
-        valid = 0;
-    } else {
-        valid = 1;
-    }
-    return valid;
-}
 
 static inline const SFHStreamRecord *sfh_find_handle_stream(const SFHHandle *handle,
                                                             unsigned int stream_id) {
@@ -110,19 +97,6 @@ static inline const SFHStreamRecord *sfh_find_handle_stream(const SFHHandle *han
 }
 
 
-static inline int sfh_picture_rate(unsigned int code) {
-    switch (code) {
-    case 1: return 23976;
-    case 2: return 24000;
-    case 3: return 25000;
-    case 4: return 29970;
-    case 5: return 30000;
-    case 6: return 50000;
-    case 7: return 59940;
-    case 8: return 60000;
-    default: return 0;
-    }
-}
 int fn_12_31860(SFHHandle *handle, unsigned char stream_id, int *width, int *height) {
     const SFHStreamRecord *stream;
     const unsigned char *dimensions;

@@ -2591,9 +2591,6 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
 }
 #pragma section code_type ".text"
 
-static inline int abs(int x) {
-    return __abs(x);
-}
 
 typedef struct { u32 value; } DrawColor;
 static inline void draw(void *obj, s16 start, s16 base, DrawColor *items) {
@@ -8892,9 +8889,6 @@ struct fn_3_23724_Unk88 {
 
 extern void fn_1_50190(void *, f32, f32, f32, f32, f32, f32);
 extern void fn_1_50164(f32, f32, f32, f32, void *);
-static inline f32 fn_3_23724_clamp(f32 x) {
-    return x < 0.0f ? 0.0f : x > 1.0f ? 1.0f : x;
-}
 
 void fn_3_23724(s16 arg0, s16 arg1, s16 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6) {
     struct fn_3_23724_Unk88 u;
@@ -8916,15 +8910,15 @@ void fn_3_23724(s16 arg0, s16 arg1, s16 arg2, f32 arg3, f32 arg4, f32 arg5, f32 
     u.field10[8] = 6;
     lab_t3 = 7.0f;
     fn_1_50190(&u, arg3, arg4, lab_t3, 7.0f, 23.0f, 7.0f);
-    t2 = t1 * fn_3_23724_clamp(arg6);
+    t2 = t1 * (((arg6) < 0.0f) ? 0.0f : (((arg6) > 1.0f) ? 1.0f : (arg6)));
     u = *(struct fn_3_23724_Unk88 *)(void *)(*(u8 (*)[])&lbl_1_rodata_26F8);
     u.field00 = 0x8902;
     u.field04 = (f32)arg0;
-    t4 = (24.0f + (f32)(t1 * fn_3_23724_clamp(arg5)) < (((f32)(((t2) / 2.0f))) + (24.0f)))
+    t4 = (24.0f + (f32)(t1 * (((arg5) < 0.0f) ? 0.0f : (((arg5) > 1.0f) ? 1.0f : (arg5)))) < (((f32)(((t2) / 2.0f))) + (24.0f)))
         ? (((f32)(t2 / 2.0f) + 24.0f))
-        : ((t3 = 24.0f) + (f32)(t1 * fn_3_23724_clamp(arg5)) > t0 - (f32)(((t2) / 2.0f)))
+        : ((t3 = 24.0f) + (f32)(t1 * (((arg5) < 0.0f) ? 0.0f : (((arg5) > 1.0f) ? 1.0f : (arg5)))) > t0 - (f32)(((t2) / 2.0f)))
         ? t0 - (f32)(((t2) / 2.0f))
-        : t3 + (f32)(t1 * fn_3_23724_clamp(arg5));
+        : t3 + (f32)(t1 * (((arg5) < 0.0f) ? 0.0f : (((arg5) > 1.0f) ? 1.0f : (arg5))));
     t5 = (((((f32)arg1)) + ((t4))));
     u.field08 = t5;
     u.field0C = (f32)(arg2 - 1);
@@ -14547,7 +14541,6 @@ static void fzgx_bss_layout(void) {
 }
 #pragma section code_type ".text"
 
-static inline fn_3_2C290_Entry *fn_3_2C290_array_read(fn_3_2C290_Entry *array) { return array; }
 #pragma opt_dead_assignments off
 void fn_3_2C290(fn_3_2C290_Arg *arg0) {
     fn_3_2C290_Mtx mtx;

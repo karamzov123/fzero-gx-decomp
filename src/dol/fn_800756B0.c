@@ -93,17 +93,6 @@ __declspec(section ".fzgxpool") void fn_800756B0_primer(void) {
     fn_80075080(&lbl_801A3220);
 }
 
-static inline void fn_800756B0_store(fn_800756B0_State *state, u32 value) {
-    state->unk_10 = value;
-    state->unk_2 = 0;
-    state->unk_14 = 15;
-    state->unk_18 = 7;
-    state->unk_3 = 0xFF;
-    state->unk_4 = 0xFF;
-    state->unk_5 = 0xFF;
-    state->unk_8 = 16;
-    state->unk_C = 16;
-}
 
 void fn_800756B0(fn_800756B0_Arg0 *arg0, fn_800756B0_Arg1 *arg1) {
     s32 i;

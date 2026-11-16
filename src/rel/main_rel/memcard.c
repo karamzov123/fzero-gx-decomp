@@ -18414,12 +18414,6 @@ static inline const char *card_slot_b(void) {
 #define SLOT_TEXT_B card_slot_b()
 #undef draw_tint
 #define draw_tint(rgb, scale) fn_1_4D274(tint_color(rgb), scale)
-static inline f32 card_counter_float(s32 value) {
-    union { double d; u32 w[2]; } cv;
-    cv.w[0] = 0x43300000;
-    cv.w[1] = (u32)value ^ 0x80000000;
-    return (f32)(cv.d - *(const double *)((const u8 *)fzgx_pool_rodata_lbl_1_rodata_4CAC + 4));
-}
 #pragma opt_lifetimes off
 static inline Color_1_B6B28 tint_level4(u32 rgb) {
     Color_1_B6B28 c;
@@ -24102,12 +24096,11 @@ static inline s32 fn_1_B9DE8_mount(u32 data, s32 chan) {
     }
     return result;
 }
-static inline void *fn_1_B9DE8_unmount_read_pointer(MemcardSlot *owner) { return owner->unk_C; }
 static inline void fn_1_B9DE8_unmount(u32 data, s32 chan) {
     MemcardSlot *slot = (MemcardSlot *)&lbl_1_bss_716C8 + chan;
     do {
     } while (CARDUnmount(chan) == -1);
-    if (fn_1_B9DE8_unmount_read_pointer(slot) != 0) {
+    if ((slot->unk_C) != 0) {
         fn_1_46B4(lbl_801A6410, slot->unk_C, FILE_STR, 0x258C);
         slot->unk_C = 0;
     }
@@ -24125,7 +24118,6 @@ static inline void fn_1_B9DE8_unmount(u32 data, s32 chan) {
     } \
     fn_1_B9DE8_unmount(data, chan); \
 } while (0)
-static inline u32 fn_1_B9DE8_language(u32 *language) { return *language; }
 void fn_1_B9DE8(MemcardArg *arg0) {
     u32 data = (u32)&lbl_1_data_35AC8;
     u32 *lang = &lbl_801A66B4;

@@ -294,7 +294,7 @@ class Engine:
                     check = self.check(row)
                     row['matched'] = bool(check.matched or check.matched_pool)
                     row['binding_score'] = check.percent_adjusted
-                self.cache[row['id']] = {k:row[k] for k in ('object','score','bit_errors','matched','binding_score','word_errors','shape_errors','aligned_word_percent','response_sha256') if k in row}
+                self.cache[row['id']] = {k:row[k] for k in ('object','score','bit_errors','matched','binding_score','word_errors','shape_errors','aligned_word_percent','response_sha256','pool_map') if k in row}
             if time.monotonic()-progress >= 10:
                 self.cache_path.write_text(json.dumps(self.cache))
                 self.emit({'stage': 'compile', 'compiled': self.compiled, 'cached': self.cached})
@@ -306,7 +306,7 @@ class Engine:
         self.timing['cache-write'] = self.timing.get('cache-write', 0) + time.monotonic() - cache_tick
         self.emit({'stage': 'evaluate-timing', **{k: (round(v, 2) if isinstance(v, float) else v) for k, v in self.timing.items()}, 'jobs': len(jobs), 'pending': total})
         for row in rows:
-            row.update({k:v for k,v in unique[row['id']].items() if k in ('object','score','bit_errors','matched','binding_score','word_errors','shape_errors','aligned_word_percent','response_sha256')})
+            row.update({k:v for k,v in unique[row['id']].items() if k in ('object','score','bit_errors','matched','binding_score','word_errors','shape_errors','aligned_word_percent','response_sha256','pool_map')})
             row.pop('frame_layout_only',None)
             target=self.targets[row['symbol']][1];words=self.words.get(row['id'])
             if words and len(words)==len(target) and row['score']<100:

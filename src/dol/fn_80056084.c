@@ -111,13 +111,6 @@ static inline void gcci_call_error(const char *message, void *handle) {
     }
 }
 
-static inline int gcci_is_idle(const GcCiObject *handle) {
-    int idle = 0;
-    if (handle->status == GCCI_STATUS_COMPLETE || handle->status == GCCI_STATUS_IDLE) {
-        idle = 1;
-    }
-    return idle;
-}
 
 static inline int gcci_is_dvd_finished(const GcCiObject *handle) {
     int done = 0;

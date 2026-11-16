@@ -11676,11 +11676,6 @@ extern void fn_10_F050(s32,s32);
 #define DRAW() fn_1_4F734((FontDrawPacket *)&packet)
 #define COLOR(i,o) packet.color[i] = (u8)(P(o) + (f32)(P(o) * WAVE()))
 
-static inline s32 clampCountdown(s32 value) {
-    if (value < 0) return 0;
-    if (value > 10) return 10;
-    return value;
-}
 
 void fn_10_E600(void) {
     f32 *pool;
@@ -13919,7 +13914,6 @@ extern void fn_1_13EDDC(s32, s32, s32, s32, s32);
 extern void fn_1_1363F0(s32, s32, s32);
 extern void fn_1_1368A0(s32, s32, s32, f32, f32, f32, f32, f32);
 
-static inline f32 *fn_10_FF54_array_read(f32 *array) { return array; }
 #pragma opt_common_subs off
 void fn_10_FF54(void) {
     f32 *pool = (*(f32 (*)[19])&lbl_10_rodata_158);
@@ -13929,7 +13923,7 @@ void fn_10_FF54(void) {
     fn_1_13D02C();
     fn_1_49410();
     if (((*(fn_10_FF54_SelState *)&lbl_1_bss_8B3A0).flags & 0x80000000) == 0) {
-        lbl_10_bss_55690.unk_0 = lbl_10_bss_55690.unk_4 = fn_10_FF54_array_read(pool)[17];
+        lbl_10_bss_55690.unk_0 = lbl_10_bss_55690.unk_4 = ((f32 *)(pool))[17];
         fn_10_12C14();
         fn_10_19040();
         fn_10_1973C();
@@ -13951,12 +13945,12 @@ void fn_10_FF54(void) {
         fn_1_1380F0(fn_10_21C20(8, (s16)lbl_801A66B4));
     }
     fn_1_13B328(0x40800000, 0);
-    fn_1_134EE4(0, 1, 0, fn_10_FF54_array_read(pool)[19]);
-    fn_1_135894(0xd5, 0x16e - (lbl_801A66B4 == 5 ? 0 : (val > 0x28 ? 4 : 7)), 6, val, 0, idx, 0, fn_10_FF54_array_read(pool)[17], fn_10_FF54_array_read(pool)[17]);
-    fn_1_136174(0xd5, 0x163, 1, val, (s16)lbl_801A66B4, idx, 0, fn_10_FF54_array_read(pool)[18], fn_10_FF54_array_read(pool)[18]);
+    fn_1_134EE4(0, 1, 0, ((f32 *)(pool))[19]);
+    fn_1_135894(0xd5, 0x16e - (lbl_801A66B4 == 5 ? 0 : (val > 0x28 ? 4 : 7)), 6, val, 0, idx, 0, ((f32 *)(pool))[17], ((f32 *)(pool))[17]);
+    fn_1_136174(0xd5, 0x163, 1, val, (s16)lbl_801A66B4, idx, 0, ((f32 *)(pool))[18], ((f32 *)(pool))[18]);
     fn_1_13EDDC(0x1f9, 0x181, val, idx, 0);
     fn_1_1363F0(idx, 0, 1);
-    fn_1_1368A0(val, idx, 0, fn_10_FF54_array_read(pool)[157], fn_10_FF54_array_read(pool)[158], fn_10_FF54_array_read(pool)[159], fn_10_FF54_array_read(pool)[17], fn_10_FF54_array_read(pool)[17]);
+    fn_1_1368A0(val, idx, 0, ((f32 *)(pool))[157], ((f32 *)(pool))[158], ((f32 *)(pool))[159], ((f32 *)(pool))[17], ((f32 *)(pool))[17]);
 }
 #pragma opt_common_subs reset
 /* fzgx:end fn_10_FF54 */
@@ -15007,7 +15001,6 @@ typedef struct {
 extern s8 fn_1_A5DC4(void);
 extern void fn_10_12E34(FontDrawPacket *packet, FontVertex *vertices);
 
-static inline const unsigned long fn_10_10E34_array_read(const unsigned long *array, s32 index) { return array[index]; }
 void fn_10_10E34(void) {
     FontDrawPacket packet;
     s32 xs[2];
@@ -17987,15 +17980,12 @@ extern void fn_1_4AE0C(const char *, ...);
 struct fn_10_13ECC_Color { u8 r, g, b, a; };
 #define poolu32(off) (*(u32 *)((off) == 0x538 ? &shadow_color : &text_color))
 
-static inline u32 fn_10_13ECC_AddPosition(s32 y, s32 offset) {
-    return (u32)y + (u32)offset;
-}
 
 struct fn_10_13ECC_Position { s32 x; u32 y; };
 static inline f32 fn_10_13ECC_SetPositionXY(s32 y, s32 offset, s16 x, FontDrawPacket *packet) {
     struct fn_10_13ECC_Position position;
     position.x = x + 3;
-    position.y = fn_10_13ECC_AddPosition(y, offset) + (u32)(position.x - x);
+    position.y = ((u32)((s32)(y) + (s32)(offset))) + (u32)(position.x - x);
     packet->x = (f32)position.x;
     return (f32)(s32)position.y;
 }
@@ -23231,9 +23221,6 @@ void fn_10_1615C(struct Sig_fn_10_18A50_fn_10_18A50_Arg0 *arg0,s32 arg1) {
 extern u16 fn_1_A5DB0(void);
 extern u16 fn_1_A5D88(void);
 typedef struct { u8 pad[0x90]; const s16 unk_90; u16 pad92; u32 unk_94; } Panel175F0;
-static inline s8 panel175F0_enabled(Panel175F0 *panel) {
-    return (s8)lbl_10_data_2B4[panel->unk_90];
-}
 const u32 fzgx_pool_table_0[17] = {0x00000000, 0x0000B500, 0x0000B600, 0x0000AD00, 0x0000B300, 0x0000B800, 0x0000B200, 0x0000B100, 0x0000AE00, 0x0000B400, 0x0000B900, 0x0000B000, 0x0000AF00, 0x0000B700, 0x00000000, 0x00000000, 0x00F0F0FF};
 #pragma section code_type ".fzgxpool"
 void fzgx_pool_primer_44(void) { fzgx_pool_sink_f32(1.0f); }
@@ -28270,9 +28257,6 @@ static void fzgx_data_layout_lbl_10_rodata_158_b(void) {
 }
 #pragma section code_type ".text"
 
-static inline void SelCarDescSetFlag(SelCarDesc *desc, u32 value) {
-    desc->flags[desc->idx] = value >> 31;
-}
 
 void fn_10_19040(void) {
     s16 kind;
@@ -39685,11 +39669,6 @@ static union {u32 words[2]; char view[0x8];} fzgx_pool_native_lbl_10_data_D00_st
 
 #pragma opt_common_subs off
 #pragma opt_common_subs on
-static inline f32 SelectionOffset(s32 *origin, s32 offset) {
-    s32 coordinate = *origin + offset;
-    *origin = coordinate - offset;
-    return (f32)coordinate;
-}
 #pragma opt_common_subs off
 void fn_10_1D314(struct Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3) {
     char buf[256];
@@ -40745,14 +40724,6 @@ void fzgx_pool_fn_10_1E9CC_1008(void) { fzgx_usep(fzgx_pool_table_1008); }
 #pragma section code_type ".text"
 
 #define F(i) (((f32 *)&loc_5C)[i])
-static inline f32 fn_10_1E9CC_clamp(s32 x0) {
- f32 x = x0 / 10.0f;
- f32 result = 0.0f;
- if (x < result) return result;
- result = 1.0f;
- if (x > result) return result;
- return x;
-}
 #define FZ_CLAMP01(x) ((x) < 0.0f ? 0.0f : ((x) > 1.0f ? 1.0f : (x)))
 void fn_10_1E9CC(s32 arg0, u32 arg1, s32 arg2, f32 arg3) {
     f32 fzgx_live;
@@ -41446,15 +41417,6 @@ static inline void fn_10_1EF04_draw(f32 value, Obj_1_bss_4B9CC *obj) {
     fn_1_4CE48(value, obj);
 }
 
-static inline f32 fn_10_1EF04_clamp(f32 x, f32 lo, f32 hi) {
-    if (x < lo) {
-        return lo;
-    }
-    if (x > hi) {
-        return hi;
-    }
-    return x;
-}
 
 void fn_10_1EF04(fn_10_1EF04_Arg * __restrict arg, f32 alpha) {
     s32 mode;
@@ -41473,7 +41435,7 @@ void fn_10_1EF04(fn_10_1EF04_Arg * __restrict arg, f32 alpha) {
         width = 50.0f;
     }
     if (arg->f20 == 2) {
-        fade = fn_10_1EF04_clamp((f32)arg->f1C / 10.0f, 0.0f, 1.0f);
+        fade = ((((f32)arg->f1C / 10.0f) < (0.0f)) ? (0.0f) : ((((f32)arg->f1C / 10.0f) > (1.0f)) ? (1.0f) : ((f32)arg->f1C / 10.0f)));
     }
     if (arg->fC != NULL) {
         param = lbl_1_rodata_26F8;
@@ -44744,7 +44706,6 @@ extern s32 fn_10_C694;
 
 extern u16 lbl_801A66C4;
 
-static inline const char *fn_10_210F0_array_read(u32 index, const u32 *array, s32 row) { return ((const char *(*)[6])array)[row][index]; }
 #pragma fp_contract off
 void fn_10_210F0(void) {
     const f32 *cp;
@@ -50090,12 +50051,7 @@ extern void fn_1_4A0D8(const char *);
 #pragma pool_data on
 #pragma fp_contract off
 #pragma opt_common_subs off
-static inline f64 fn_10_2325C_read_pointer(struct fn_8_D630_rodata * owner) { return owner->unk_6B0; }
 static inline s32 fn_4_ADF4_sign(s32 x) { return x < 0 ? -1 : x > 0; }
-static inline u8 fn_4_ADF4_blend(u8 c, f32 f) {
-f32 delta = (f32)(255 - c) * f;
-return (s32)((f32)c + delta);
-}
 void fn_10_2325C(struct fn_8_D630_obj *arg0)
 {
 struct fn_8_D630_obj *p;

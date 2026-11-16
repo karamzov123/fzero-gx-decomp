@@ -415,9 +415,6 @@ static inline s16 count_used(PasteSlot *slot) {
 
 #define CLAMP(x, lo, hi) ((x) < (lo) ? (lo) : ((x) > (hi) ? (hi) : (x)))
 
-static inline f32 clamp_blend(f32 value, const EditorConsts *limits) {
-    return CLAMP(value, limits->unk_34, limits->unk_F0);
-}
 
 static inline void initialize_entry(PasteSlot *slot, EditorSave *state, u8 *character) {
     state->unk_C = 0x8000000;
@@ -683,7 +680,6 @@ extern struct InputState lbl_1_bss_9F8;
 extern void fn_1_A2D84(u32);
 extern void fn_80008BEC(void *, int, u32);
 #pragma opt_pointer_analysis on
-static inline struct InputEntry *array_read(struct InputEntry *array) { return array; }
 static inline void finish(Obj_3_bss_7EDD8 *q, u32 state) {
  q->unk_10 = q->unk_C;
  q->unk_C = state;
@@ -697,12 +693,12 @@ void fn_3_104C4(void) {
  u32 previous;
  u32 state;
  p = (Obj_3_bss_7EDD8 *)&lbl_3_bss_7EDD8;
- if ((array_read(lbl_1_bss_9F8.unk_12)[index = p->unk_14].unk_0 & 1) ||
+ if ((((struct InputEntry *)(lbl_1_bss_9F8.unk_12))[index = p->unk_14].unk_0 & 1) ||
      (lbl_1_bss_9F8.unk_10[index].unk_0 & 1)) {
   if ((s32)lbl_3_bss_7EDD8.unk_18 == 0) fn_1_A2D84(0xA9010000);
   lbl_3_bss_7EDD8.unk_18 = 1;
  }
- if (((array_read(lbl_1_bss_9F8.unk_12)[index = p->unk_14].unk_0 >> 1) & 1) ||
+ if (((((struct InputEntry *)(lbl_1_bss_9F8.unk_12))[index = p->unk_14].unk_0 >> 1) & 1) ||
      ((lbl_1_bss_9F8.unk_10[index].unk_0 >> 1) & 1)) {
   if ((s32)lbl_3_bss_7EDD8.unk_18 == 1) fn_1_A2D84(0xA9010000);
   lbl_3_bss_7EDD8.unk_18 = 0;
@@ -1006,7 +1002,6 @@ extern void fn_1_A2D84(u32);
 extern void fn_80008BA8(void *, void *, u32);
 extern void fn_3_11994(s32, s32, void *, void *);
 
-static inline struct InputEntry *array_read(struct InputEntry *array) { return array; }
 
 typedef struct { f32 x, y, z; } ViewVec;
 typedef struct { ViewVec eye; ViewVec at; } ViewVecs;
@@ -1026,7 +1021,6 @@ typedef struct {
 #define CLAMP(x, lo, hi) (((x) < (lo)) ? (lo) : (((x) > (hi)) ? (hi) : (x)))
 
 #pragma opt_dead_assignments off
-static inline struct InputEntry *fn_3_106FC_array_read(struct InputEntry *array) { return array; }
 #pragma opt_propagation off
 void fn_3_106FC(void) {
     struct InputEntry *buttons;
@@ -1045,13 +1039,13 @@ void fn_3_106FC(void) {
         p->unk_1E = CLAMP(top - 1, 0, BANK_COUNT(p) - 1);
     }
 
-    buttons = fn_3_106FC_array_read(lbl_1_bss_9F8.unk_8);
+    buttons = ((struct InputEntry *)(lbl_1_bss_9F8.unk_8));
     q = &lbl_3_bss_7EDD8;
     if ((buttons[q->unk_14].unk_0 >> 4) & 1) {
         q->unk_10 = q->unk_C;
         q->unk_C = 0x1000000;
     }
-    if ((fn_3_106FC_array_read(lbl_1_bss_9F8.unk_10)[index = q->unk_14].unk_0 & 1) || (fn_3_106FC_array_read(lbl_1_bss_9F8.unk_12)[index].unk_0 & 1)) {
+    if ((((struct InputEntry *)(lbl_1_bss_9F8.unk_10))[index = q->unk_14].unk_0 & 1) || (((struct InputEntry *)(lbl_1_bss_9F8.unk_12))[index].unk_0 & 1)) {
         if (p->unk_1F == 0) {
             if (p->unk_1E != 0) {
                 lbl_3_bss_7EDD8.unk_21 = 10;
@@ -1065,7 +1059,7 @@ void fn_3_106FC(void) {
         }
     }
     index = q->unk_14;
-    if (((fn_3_106FC_array_read(lbl_1_bss_9F8.unk_10)[index].unk_0 >> 1) & 1) || ((fn_3_106FC_array_read(lbl_1_bss_9F8.unk_12)[index].unk_0 >> 1) & 1)) {
+    if (((((struct InputEntry *)(lbl_1_bss_9F8.unk_10))[index].unk_0 >> 1) & 1) || ((((struct InputEntry *)(lbl_1_bss_9F8.unk_12))[index].unk_0 >> 1) & 1)) {
         if (p->unk_1F > 7) {
             if (p->unk_1E + 9 < lbl_3_bss_87000.banks[p->unk_3C].count) {
                 lbl_3_bss_7EDD8.unk_20 = 10;
@@ -1078,15 +1072,15 @@ void fn_3_106FC(void) {
             fn_1_A2D84(0xA9010000);
         }
     }
-    if ((fn_3_106FC_array_read(lbl_1_bss_9F8.unk_12)[q->unk_14].unk_0 >> 8) & 1) {
+    if ((((struct InputEntry *)(lbl_1_bss_9F8.unk_12))[q->unk_14].unk_0 >> 8) & 1) {
         p->unk_3C = (p->unk_3C + 2) % 3;
         fn_1_A2D84(0xA9010000);
     }
-    if ((fn_3_106FC_array_read(lbl_1_bss_9F8.unk_12)[q->unk_14].unk_0 >> 9) & 1) {
+    if ((((struct InputEntry *)(lbl_1_bss_9F8.unk_12))[q->unk_14].unk_0 >> 9) & 1) {
         p->unk_3C = (p->unk_3C + 1) % 3;
         fn_1_A2D84(0xA9010000);
     }
-    if ((fn_3_106FC_array_read(lbl_1_bss_9F8.unk_8)[q->unk_14].unk_0 >> 8) & 1) {
+    if ((((struct InputEntry *)(lbl_1_bss_9F8.unk_8))[q->unk_14].unk_0 >> 8) & 1) {
         u32 bank = p->unk_3C;
         if (lbl_3_bss_87000.banks[bank].items != NULL) {
             if (lbl_3_bss_87000.banks[bank].items[p->unk_1E + p->unk_1F] != NULL &&
@@ -1131,7 +1125,7 @@ void fn_3_106FC(void) {
             }
         }
     }
-    if ((fn_3_106FC_array_read(lbl_1_bss_9F8.unk_8)[q->unk_14].unk_0 >> 9) & 1) {
+    if ((((struct InputEntry *)(lbl_1_bss_9F8.unk_8))[q->unk_14].unk_0 >> 9) & 1) {
         fn_1_A2D84(0xA9010200);
         /* Retail tests the flag with a register rotate. */
         if (!__rlwnm(lbl_3_bss_7EE40.unk_0, 2, 31, 31)) {
@@ -1176,17 +1170,16 @@ extern struct fn_3_10B68_lbl_3_bss_7EDD8 lbl_3_bss_7EDD8;
 extern void fn_1_A2D84(u32);
 
 #pragma opt_pointer_analysis on
-static inline struct fn_3_10B68_lbl_1_bss_9F8_12_E20 *fn_3_10B68_array_read(struct fn_3_10B68_lbl_1_bss_9F8_12_E20 *array) { return array; }
 void fn_3_10B68(void) {
     struct fn_3_10B68_lbl_3_bss_7EDD8 *p_lbl_3_bss_7EDD8;
     u16 v0;
     void * v1;
     p_lbl_3_bss_7EDD8 = (struct fn_3_10B68_lbl_3_bss_7EDD8 *)&lbl_3_bss_7EDD8;
-    if ((fn_3_10B68_array_read(lbl_1_bss_9F8.unk_12)[(*(u8 volatile *)&(p_lbl_3_bss_7EDD8->unk_14)) /* Retail reloads this field. */].unk_0 & 0x1) != 0) {
+    if ((((struct fn_3_10B68_lbl_1_bss_9F8_12_E20 *)(lbl_1_bss_9F8.unk_12))[(*(u8 volatile *)&(p_lbl_3_bss_7EDD8->unk_14)) /* Retail reloads this field. */].unk_0 & 0x1) != 0) {
     p_lbl_3_bss_7EDD8->unk_18 = 1;
     fn_1_A2D84(0xA9010000);
     }
-    if (((fn_3_10B68_array_read(lbl_1_bss_9F8.unk_12)[(*(u8 volatile *)&(p_lbl_3_bss_7EDD8->unk_14)) /* Retail reloads this field. */].unk_0 >> 1) & 0x1) != 0) {
+    if (((((struct fn_3_10B68_lbl_1_bss_9F8_12_E20 *)(lbl_1_bss_9F8.unk_12))[(*(u8 volatile *)&(p_lbl_3_bss_7EDD8->unk_14)) /* Retail reloads this field. */].unk_0 >> 1) & 0x1) != 0) {
     lbl_3_bss_7EDD8.unk_18 = 0;
     fn_1_A2D84(0xA9010000);
     }
@@ -1826,7 +1819,6 @@ extern void fn_1_A2D84(u32);
 
 
 
-static inline u16 *fn_3_118BC_array_read(u16 *array) { return array; }
 #pragma opt_propagation off
 void fn_3_118BC(void) {
     u16 *p;
@@ -1835,7 +1827,7 @@ void fn_3_118BC(void) {
     fn_3_11A38();
     p = lbl_1_bss_9F8;
     p += 4;
-    v = fn_3_118BC_array_read(p)[lbl_3_bss_7EDD8.unk_14 * 10];
+    v = ((u16 *)(p))[lbl_3_bss_7EDD8.unk_14 * 10];
     if (((v >> 4) & 1) || ((v >> 9) & 1)) {
         fn_1_A2D84(0xa9010200);
         lbl_3_bss_7EDD8.unk_C = lbl_3_bss_7EDD8.unk_10;

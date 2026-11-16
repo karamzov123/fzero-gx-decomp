@@ -275,7 +275,6 @@ static void fzgx_data_layout_lbl_16_data_82DB0(void) {
 }
 #pragma section code_type ".text"
 
-static inline char **fn_16_6508_table(u8 *p, s32 offset) { return (char **)(p + offset); }
 static inline char * fn_16_6508_array_read(char * *array, s32 index) { return array[index]; }
 void fn_16_6508(void) {
     ProfileState *state;

@@ -56,28 +56,8 @@ static inline s32 fn_12_2FE60_average(Sig_fn_12_2FE60_State *state) {
 
 extern s64 __div2i(s64, s64);
 
-static inline void fn_12_2FE60_magnitude(s64 *result, s64 value) {
-    *result = value < 0 ? -value : value;
-}
 
-static inline s32 fn_12_2FE60_print(char *buffer, Sig_fn_12_2FE60_State *state, s64 out, s32 rounded, s64 time, s64 scale) {
-    s64 in = state->input.a;
-    s64 maximum = state->maximum;
-    return sprintf(buffer, lbl_12_rodata_1028, state,
-        (s32)(time / scale), rounded, (s32)(time >> 32), (s32)time, (s32)(time & 0x7FFFFFFF),
-        (s32)maximum, (s32)in, (s32)out, (s32)(in - out), (s32)(maximum - out),
-        state->maxInactive, state->minInactive, state->maxActive, state->minActive,
-        state->mode, state->active, state->resets, state->jumps, state->resyncs,
-        state->positive, state->negative, state->average, state->adjusted, lbl_12_bss_6988);
-}
 
-static inline s32 fn_12_2FE60_floor(f64 value) {
-    if ((s32)value > value) {
-        return (s32)value - 1;
-    } else {
-        return (s32)value;
-    }
-}
 
 static inline void fn_12_2FE60_shift(Sig_fn_12_2FE60_State *state, s32 amount, s32 i) {
     for (; i < state->count; i++) {
@@ -85,13 +65,6 @@ static inline void fn_12_2FE60_shift(Sig_fn_12_2FE60_State *state, s32 amount, s
     }
 }
 
-static inline s64 fn_12_2FE60_abs(s64 value) {
-    if (value < 0) {
-        return -value;
-    } else {
-        return value;
-    }
-}
 
 void fn_12_2FE60(Sig_fn_12_2FE60_State *state, Sig_fn_12_2FE60_Int64Pair *arg1, Sig_fn_12_2FE60_Int64Pair *arg2, Sig_fn_12_2FE60_Int64Pair *arg3, f32 arg4) {
     char buffer[256];

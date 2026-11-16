@@ -55,12 +55,6 @@ extern void fn_8006331C(u8, u8);
 extern void fn_80062654(u8);
 extern void fn_80064E84(u8, u8);
 
-static inline u8 * fn_8005FDE0_address_9770(s32 offset, u8 * base) {
-    u8 * result;
-    result = (u8 *)offset;
-    result = base + (s32)result;
-    return result;
-}
 #pragma opt_dead_assignments off
 void fn_8005FDE0(u32 arg0) {
     u32 channel;

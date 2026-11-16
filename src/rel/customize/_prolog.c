@@ -723,10 +723,6 @@ extern void fn_1_4966C(f32, f32);
 extern void fn_1_495B0(u32);
 extern void fn_1_49590(f32);
 
-static inline char *CustomizeName(fn_3_CB4_CustomizeData *data, s32 selected) {
-    char **names = (char **)((u32)data + 0x630);
-    return names[selected];
-}
 
 #pragma opt_lifetimes off
 void fn_3_CB4(char *name) {
@@ -3251,25 +3247,8 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime13(void) {
 }
 #pragma section code_type ".text"
 
-static inline s16 fn_3_3AE8_down(s32 held, s16 d) {
-    if (((held >> 1) & 1) ||
-        ((lbl_1_bss_9F8[lbl_3_bss_F0.unk_6].unk_12 >> 1) & 1) ||
-        ((held >> 2) & 1) ||
-        ((lbl_1_bss_9F8[lbl_3_bss_F0.unk_6].unk_12 >> 2) & 1)) {
-        d++;
-    }
-    return d;
-}
 
 /* Wraps a menu cursor into [0, max]. */
-static inline s32 fn_3_3AE8_wrap(s32 max, s32 v) {
-    if (v > max) {
-        return 0;
-    } else if (v < 0) {
-        v = max;
-    }
-    return v;
-}
 
 void fn_3_3AE8(s16 arg0, MenuEntry *arg1, s16 arg2) {
     Obj_3_bss_F0 *state;
@@ -7205,16 +7184,6 @@ __declspec(section ".fzgxpool") static void fzgx___fzgx_pool_primer(void)
 }
 #pragma section code_type ".text"
 
-static inline void reset_scroll(s16 i, CustomizePanel *panel)
-{
-    s32 count;
-    panel->scroll = i;
-    /* The scrolling selection is observed anew after each adjustment. */
-    for (; i < (count = *(volatile s16 *)&panel->index); i++) {
-        if (count > (s16)((s16)-panel->scroll + 5))
-            panel->scroll--;
-    }
-}
 
 static inline s16 find_part(CustomizePanel *panel)
 {

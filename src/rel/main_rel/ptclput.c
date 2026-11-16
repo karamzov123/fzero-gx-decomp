@@ -201,9 +201,6 @@ extern void lbl_8006DB74(void *);
 extern void lbl_8006D848(f32);
 extern void lbl_8006DFC4(void *);
 
-static inline f32 fn_1_9FA18_dot(fn_1_9FA18_Vec *a) {
-    return __fmadds(a->z, a->z, __fmadds(a->y, a->y, a->x * a->x));
-}
 
 void fn_1_9FA18(void) {
     fn_1_9FA18_Mgr *mgr;

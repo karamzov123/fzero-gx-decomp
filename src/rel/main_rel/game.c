@@ -25434,7 +25434,6 @@ extern u32 lbl_1_rodata_E88[11];
 
 #pragma opt_propagation off
 #pragma peephole on
-static inline s32 *fn_1_3F5F8_array_read(s32 *array) { return array; }
 void fn_1_3F5F8(void) {
     Obj_1_bss_3C30 *mgr = &lbl_1_bss_3C30;
     s16 n;
@@ -25462,7 +25461,7 @@ void fn_1_3F5F8(void) {
     tbl[2] = lbl_1_rodata_E88[2];
     tbl[3] = lbl_1_rodata_E88[3];
     tbl[4] = lbl_1_rodata_E88[4];
-    val = fn_1_3F5F8_array_read(tbl)[mgr->unk_8];
+    val = (tbl)[mgr->unk_8];
     mode = *(s16 *)&lbl_1_bss_960;
     if (mode == 10 || mode == 12) {
         return;

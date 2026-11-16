@@ -27,12 +27,6 @@ static inline u32 fn_12_3DBE0_merge(u32 a, u32 b) {
     return (a << 16) | (b & 0xFFFF);
 }
 
-static inline s32 fn_12_3DBE0_div4(s32 value, MovieSrc *source, s32 *src) {
-    s32 quotient;
-    *src = (s32)source->data;
-    quotient = value / 4;
-    return quotient;
-}
 
 #pragma inline_max_size(4096)
 void fn_12_3DBE0(MovieSrc *source, MovieDst *dest, u32 *palette) {

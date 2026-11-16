@@ -2599,7 +2599,6 @@ static inline s8 tab_index(s8 c) {
 	return 0;
 }
 
-static inline f32 *fn_1_A8270_array_read(f32 *array) { return array; }
 #pragma opt_loop_invariants off
 void fn_1_A8270(struct fn_1_A8270_Arg0 *self, s32 arg1) {
 	s32 i;
@@ -2644,8 +2643,8 @@ void fn_1_A8270(struct fn_1_A8270_Arg0 *self, s32 arg1) {
 			}
 			if (ok != 0) {
 				if (arg1 != 0) {
-					lbl_8006E14C(fn_1_A8270_array_read(lbl_1_rodata_4A34)[0]);
-					fn_1_55FC4(fn_1_A8270_array_read(lbl_1_rodata_4A34)[0]);
+					lbl_8006E14C(((f32 *)(lbl_1_rodata_4A34))[0]);
+					fn_1_55FC4(((f32 *)(lbl_1_rodata_4A34))[0]);
 				}
 				fn_80072558();
 				fn_1_556B8( (void *)(struct fn_1_A8270_Rec *)(rec));
@@ -6627,12 +6626,6 @@ static void fzgx_bss_layout(void) {
 extern const f32 lbl_1_rodata_4CA8;
 extern void fn_1_A2DC4(u32);
 
-static inline int fn_1_AAB98_isActive(fn_1_AAB98_Entry *e) {
-    if (e->unk_24->unk_0 == 1) {
-        return 1;
-    }
-    return 0;
-}
 
 static inline int fn_1_AAB98_confirm(void) {
     if ((lbl_1_bss_9F8.unk_8 >> 8) & 1) {
@@ -6716,7 +6709,6 @@ static inline void fn_1_AAB98_commit(void) {
     lbl_1_bss_718B2 = 0xFF;
 }
 
-static inline fn_1_AAB98_Entry *fn_1_AAB98_array_read(fn_1_AAB98_Entry *array) { return array; }
 #pragma opt_common_subs off
 void fn_1_AAB98(void) {
     u8 idx;
@@ -6726,7 +6718,7 @@ void fn_1_AAB98(void) {
     idx = lbl_1_bss_718B1;
     active = 0;
     if (idx == 0 && fzgx_obj_lbl_1_bss_716C8[0].unk_24 != NULL) {
-        if (fn_1_AAB98_array_read(fzgx_obj_lbl_1_bss_716C8)[0].unk_24->unk_0 == 1) {
+        if (((fn_1_AAB98_Entry *)(fzgx_obj_lbl_1_bss_716C8))[0].unk_24->unk_0 == 1) {
             active = 1;
         } else {
             active = 0;

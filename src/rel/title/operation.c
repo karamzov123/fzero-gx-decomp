@@ -3659,9 +3659,6 @@ static const f32 fzgx_pool_B0[23] = {
 
 /* Inlined helper: MWCC keeps an inline parameter a real variable (it is not propagated into
  * its single use), so the ratio is evaluated before the 2.0f / 1.0f constants. */
-static inline f32 fn_8_9B44_fade(f32 q) {
-    return 2.0f * (1.0f - q);
-}
 
 void fn_8_9B44(void) {
     f32 first;
@@ -5885,12 +5882,6 @@ __declspec(section ".fzgxpool") void fzgx_pool_primer7(void) {
     };
 }
 
-static inline f32 op_min(f32 limit, f32 a) {
-    if (a > limit) {
-        a = limit;
-    }
-    return a;
-}
 
 static inline void op_update_banner(OpSprite *banner) {
 #define dur fzgx_obj_lbl_8_bss_3D0
@@ -5913,9 +5904,6 @@ static inline void op_update_banner(OpSprite *banner) {
 #undef dur
 #undef timer
 
-static inline f32 op_curve_at(f32 t, u32 count, Sig_fn_1_9DDA8_fn_1_9DDA8_CurveKey *keys) {
-    return fn_1_9E14C(count, keys, t);
-}
 
 void fn_8_B380(void) {
 
@@ -7654,7 +7642,6 @@ extern void fn_1_3F894(void);
 extern void fn_8_CF94(struct Sig_fn_8_CF94_fn_8_CF94_Arg0 *);
 
 typedef union { struct { u16 pad : 7; u16 value : 9; } a; struct { u16 pad : 4; u16 value : 12; } b; } fn_8_D034_Bits;
-static inline u16 fn_8_D034_array_read(u16 *array, s32 index) { return array[index]; }
 #pragma opt_propagation off
 void fn_8_D034(void) {
     u8 fzgx_value;
@@ -7935,12 +7922,7 @@ extern void fn_1_4A0D8(const char *);
 #pragma pool_data on
 #pragma fp_contract off
 #pragma opt_common_subs off
-static inline fn_8_D630_f64 fn_10_2325C_read_pointer(struct fn_8_D630_rodata * owner) { return owner->unk_6B0; }
 static inline fn_8_D630_s32 fn_4_ADF4_sign(fn_8_D630_s32 x) { return x < 0 ? -1 : x > 0; }
-static inline fn_8_D630_u8 fn_4_ADF4_blend(fn_8_D630_u8 c, fn_8_D630_f32 f) {
-fn_8_D630_f32 delta = (fn_8_D630_f32)(255 - c) * f;
-return (fn_8_D630_s32)((fn_8_D630_f32)c + delta);
-}
 void fn_8_D630(struct fn_8_D630_obj *arg0)
 {
 struct fn_8_D630_obj *p;

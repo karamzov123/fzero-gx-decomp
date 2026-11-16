@@ -144516,15 +144516,6 @@ static inline fn_17_7A74_Entry *fn_17_7A74_entry(s32 set, s32 kind, s32 index, u
     return entry;
 }
 
-static inline f32 fn_17_7A74_clamp(f32 x, f32 lo, f32 hi) {
-    if (x < lo) {
-        return lo;
-    }
-    if (x > hi) {
-        return hi;
-    }
-    return x;
-}
 
 void fn_17_7A74(fn_17_7A74_State *state) {
     fn_17_7A74_Key from;
@@ -144560,7 +144551,7 @@ void fn_17_7A74(fn_17_7A74_State *state) {
             state->unk_58 += step;
         }
         state->unk_54 += state->unk_58;
-        state->unk_54 = fn_17_7A74_clamp(state->unk_54, 0.0f, 1.0f);
+        state->unk_54 = (((state->unk_54) < (0.0f)) ? (0.0f) : (((state->unk_54) > (1.0f)) ? (1.0f) : (state->unk_54)));
         t = state->unk_54;
         lbl_8006D5A4(t, &from.unk_4, &to.unk_4, &state->unk_28);
         lbl_8006D5A4(t, &from.unk_10, &to.unk_10, &state->unk_34);

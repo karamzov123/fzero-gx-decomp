@@ -74,19 +74,6 @@ static inline unsigned int sfh_stream_class(unsigned char stream_id) {
     return type;
 }
 
-static inline int sfh_is_effective_video(const SFHStreamRecord *stream, unsigned char stream_id) {
-    int valid;
-    if (sfh_stream_class(stream_id) != 0xE0) {
-        valid = 0;
-    } else if (stream->effective_features > 1) {
-        valid = 0;
-    } else if (stream->effective_features == 0) {
-        valid = 0;
-    } else {
-        valid = 1;
-    }
-    return valid;
-}
 
 static inline const SFHStreamRecord *sfh_find_handle_stream(const SFHHandle *handle,
                                                             unsigned int stream_id) {

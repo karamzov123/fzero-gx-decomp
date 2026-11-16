@@ -7975,15 +7975,7 @@ static inline void burner_scale_color(BurnerColor *color, f32 amount) {
     color->b = color->b * amount;
 }
 
-static inline f32 burner_clamp01(f32 x) {
-    return x < 0.0 ? 0.0 : (x > 1.0 ? 1.0 : x);
-}
 
-static inline void burner_fade_color(BurnerColor *color, f32 t) {
-    color->r = color->r * (1.0f - t);
-    color->g = color->g * (1.0f - t);
-    color->b = color->b * (1.0f - t);
-}
 
 static inline f32 burner_fade_factor(f64 *result, f32 t) {
     *result = (f32)*result - t;
@@ -9986,7 +9978,6 @@ typedef struct {
     f32 unk_150;
 } FzgxChild;
 
-static inline const f32 *fn_1_85F90_array_read(const f32 *array) { return array; }
 void fn_1_85F90(void *obj, f32 a, f32 b, f32 c, f32 d, int mode) {
     f32 *fzgx_value;
     int active;
@@ -36027,15 +36018,6 @@ static inline int fn_1_9012C_cycle(Fn9012CCar *car, Fn9012CPart *part, s32 step)
     return 0;
 }
 
-static inline f32 fn_1_9012C_clamp(f32 v, f32 lo, f32 hi) {
-    if (v < lo) {
-        return lo;
-    }
-    if (v > hi) {
-        return hi;
-    }
-    return v;
-}
 
 void fn_1_9012C(Fn9012CCar *car) {
     Fn9012CResult result0;
@@ -36236,7 +36218,7 @@ void fn_1_9012C(Fn9012CCar *car) {
             }
             break;
         case 13:
-            lbl_1_data_26DD8 = fn_1_9012C_clamp(lbl_1_data_26DD8 + (f32)step, 1.0f, 100.0f);
+            lbl_1_data_26DD8 = (((lbl_1_data_26DD8 + (f32)step) < (1.0f)) ? (1.0f) : (((lbl_1_data_26DD8 + (f32)step) > (100.0f)) ? (100.0f) : (lbl_1_data_26DD8 + (f32)step)));
             break;
         default:
             part = &car->unk_208[fzgx_obj_lbl_1_bss_6E960 - 14];
@@ -39952,7 +39934,6 @@ typedef struct {
 
 
 
-static inline void fn_1_95238_call_fn_1_4270C(void * a0, void * a1, u32 a2) { fn_1_4270C(a0, (s32)(void *)(a1), a2); }
 
 void fn_1_95238(u32 arg0, EventList *arg1) {
     f32 *fzgx_value;
@@ -40051,7 +40032,7 @@ void fn_1_95238(u32 arg0, EventList *arg1) {
         *(u16 *)((u8 *)v16 + 0xa) = (u16)v15;
     }
     fn_1_93734(arg0, (u32)fn_1_41418( (void *)((Sig_fn_1_41418_Fn41418Data *)*(u32 *)((u8 *)arg0 + 0x154)), v13.value));
-    fn_1_95238_call_fn_1_4270C((void *)*(u32 *)((u8 *)arg0 + 0x150), (void *)0, v13.value);
+    fn_1_4270C((void *)*(u32 *)((u8 *)arg0 + 0x150), (s32)(void *)((void *)0), v13.value);
     *(u16 *)((u8 *)arg0 + 0x148) = v13.value;
 }
 /* fzgx:end fn_1_95238 */

@@ -2818,12 +2818,6 @@ extern void fn_1_4966C(f32, f32);
 extern void fn_1_496FC(f32, f32);
 extern void fn_1_4A0D8(const char *);
 
-static inline s32 panel_position(PanelConfig *p, s32 x, u8 value) {
-    f32 first = (lbl_1_rodata_8B28 * (f32)(100 - (s32)value)) / lbl_1_rodata_85F4;
-    f32 origin = (f32)x;
-    f32 width = p->w - lbl_1_rodata_8638;
-    return (s32)(first + (origin + p->x) + (width * (f32)value) / lbl_1_rodata_85F4);
-}
 static inline f32 panel_ratio(f32 divisor, f32 numerator) {
     return numerator / divisor;
 }
@@ -5306,10 +5300,6 @@ extern u32 fn_1_13F7F8(s16, s16);
         width += fn_1_13B24C(pass, width + start, 439, textHeight, (const char*)fn_1_13F7F8(id, (s16)lbl_801A66B4)); \
         break;
 
-static inline s32 fn_1_13ABA8_spacing(s32 *table, s32 index) {
-    s32 off = index * 4;
-    return *(s32 *)((u8 *)table + off);
-}
 
 u8 lbl_1_data_41AF8[0x24] = {
     0x42U, 0x41U, 0x4CU, 0x41U, 0x4EU, 0x43U, 0x45U, 0x00U, 0x20U, 0x20U, 0x20U, 0x20U, 0x43U, 0x4FU, 0x4CU, 0x4FU, 0x52U, 0x20U, 0x20U, 0x20U, 0x20U, 0x4FU, 0x4BU, 0x00U, 0x83U, 0xA1U, 0x83U, 0xAFU, 0x00U, 0x00U, 0x00U, 0x00U, 0x83U, 0x9FU, 0x00U, 0x00U
@@ -5880,9 +5870,6 @@ extern fn_1_13C5EC_Color lbl_1_rodata_8D80;
 extern fn_1_13C5EC_Color lbl_1_rodata_8D84;
 extern const f32 lbl_1_rodata_85F0;
 
-static inline f32 fn_1_13C5EC_clamp(f32 x, f32 lo, f32 hi) {
-    return (x < lo) ? lo : ((x > hi) ? hi : x);
-}
 
 
 #pragma pool_data off
@@ -5933,7 +5920,7 @@ void fn_1_13C5EC(u8 arg0) {
         if (i == sel) {
             if (fn_1_40F34() >= 40) {
                 lbl_1_bss_8E3E0 = lbl_1_bss_8E3E0 + 0.3f * (lbl_1_bss_8E3E0 - 41.0f);
-                lbl_1_bss_8E3E0 = fn_1_13C5EC_clamp(lbl_1_bss_8E3E0, 0.0f, 40.0f);
+                lbl_1_bss_8E3E0 = (((lbl_1_bss_8E3E0) < (0.0f)) ? (0.0f) : (((lbl_1_bss_8E3E0) > (40.0f)) ? (40.0f) : (lbl_1_bss_8E3E0)));
             } else {
                 lbl_1_bss_8E3E0 = 40.0f;
             }
@@ -5946,7 +5933,7 @@ void fn_1_13C5EC(u8 arg0) {
             }
             if (fn_1_40F34() >= 190) {
                 lbl_1_data_41DE8 = lbl_1_data_41DE8 + 0.5f * (0.05f - lbl_1_data_41DE8);
-                lbl_1_data_41DE8 = fn_1_13C5EC_clamp(lbl_1_data_41DE8, 0.05f, 1.0f);
+                lbl_1_data_41DE8 = (((lbl_1_data_41DE8) < (0.05f)) ? (0.05f) : (((lbl_1_data_41DE8) > (1.0f)) ? (1.0f) : (lbl_1_data_41DE8)));
             } else {
                 lbl_1_data_41DE8 = 1.0f;
             }
@@ -5996,7 +5983,7 @@ void fn_1_13C5EC(u8 arg0) {
                 packet.scale_y *= (2.0f - alpha) * lbl_1_data_41DE8;
                 packet.flags = 10;
                 packet.alpha = alpha;
-                packet.color_add[0] = packet.color_add[1] = packet.color_add[2] = (s32)fn_1_13C5EC_clamp(128.0f * (1.0f - lbl_1_data_41DE8) + glow, 0.0f, 255.0f);
+                packet.color_add[0] = packet.color_add[1] = packet.color_add[2] = (s32)(((128.0f * (1.0f - lbl_1_data_41DE8) + glow) < (0.0f)) ? (0.0f) : (((128.0f * (1.0f - lbl_1_data_41DE8) + glow) > (255.0f)) ? (255.0f) : (128.0f * (1.0f - lbl_1_data_41DE8) + glow)));
                 fn_1_4F734(&packet);
             }
         }
@@ -8134,22 +8121,9 @@ static inline void inv_clamp(f32 *out, f32 x, f32 d) {
         : MAXF(x, lbl_1_rodata_861C) / d);
 }
 static inline f32 half_f(f32 h) { return h * lbl_1_rodata_85F0; }
-static inline f32 half_max(f32 h) {
-    f32 m = lbl_1_rodata_9178;
-    if (h > m) m = h;
-    m = m * lbl_1_rodata_85F0;
-    return m;
-}
 static inline f32 clamp_f(f32 x) { return CLAMP(x); }
-static inline f32 inverse_clamp_f(f32 k, f32 x, f32 d) { return k - CLAMP(max_f(x, lbl_1_rodata_861C) / d); }
 static inline void position_f(FontDrawPacket *p, f32 x, f32 y, f32 z) { p->x = x; p->y = y; p->z = z; }
 #define position(p,x,y,z) position_f((p),(s16)(x),(s16)(y),(z))
-static inline void position_edge(FontDrawPacket *p, f32 x, f32 y, f32 h, f32 z, int side) {
-    p->x = x;
-    p->z = z;
-    if (side) p->y = y + (f32)(h * lbl_1_rodata_85F0);
-    else p->y = y - (f32)(h * lbl_1_rodata_85F0);
-}
 #pragma opt_common_subs off
 #pragma opt_propagation off
 #pragma opt_lifetimes off
@@ -9233,11 +9207,6 @@ extern f64 fn_80074188(u32,u32,u32,u32);
 extern void fn_80072270(struct Sig_fn_80072270_fn_80072270_Arg0 *);
 extern int fn_1_4F734(void *);
 
-static inline f32 panel_float(s32 v, f64 bias) {
- union { f64 d; u32 w[2]; } c;
- c.w[0]=0x43300000; c.w[1]=(u32)v^0x80000000;
- return c.d-bias;
-}
 #pragma opt_common_subs off
 void fn_1_14267C(u32 arg0,u32 arg1,u32 arg2,f32 arg3,f32 arg4) {
  u32 v2;
@@ -10200,14 +10169,6 @@ static inline void draw_color(u32 a,u32 b,u32 c,u32 d,u32 e,u32 f,Color color) {
 }
 static inline void set_color(Color color) {
     fn_1_49514((u32 *)&color);
-}
-static inline void blend_color(FontDrawPacket *out, u32 a0, u32 b0, u32 a1, u32 b1, u32 a2, u32 b2, f32 sn) {
-    f32 one = 1.0f;
-    f32 t = (one + sn) / 2.0f;
-    out->color[0] = (s32)((f32)((f32)a0 * (one - t)) + (f32)((f32)b0 * t));
-    out->color[1] = (s32)((f32)((f32)a1 * (one - t)) + (f32)((f32)b1 * t));
-    out->color[2] = (s32)((f32)((f32)a2 * (one - t)) + (f32)((f32)b2 * t));
-    out->alpha = 0.35f;
 }
 
 #pragma opt_loop_invariants off
@@ -13096,9 +13057,6 @@ extern void fn_1_496FC(f32, f32);
 extern void fn_1_49738(void (*)(void));
 
 #pragma opt_propagation off
-static inline BOOL fn_1_147508_le(u32 a, u32 b) {
-    return ((b | ~a) - ((b - a) >> 1)) >> 31;
-}
 
 static inline BOOL fn_1_147508_inRange(s32 m, s32 lo, s32 hi) {
     return m == lo || m == hi;
@@ -13125,9 +13083,6 @@ static inline BOOL fn_1_147508_isValidChar(u32 c) {
     return valid;
 }
 
-static inline BOOL fn_1_147508_validName(u8 a, u8 b, u8 c) {
-    return fn_1_147508_isValidChar(a) && fn_1_147508_isValidChar(b) && fn_1_147508_isValidChar(c);
-}
 
 #define IS_MODE_A(m) fn_1_147508_isModeA(m)
 #define IS_MODE_B(m) fn_1_147508_isModeB(m)
@@ -22094,7 +22049,6 @@ extern u32 lbl_801A63C0;
 extern s16 fn_1_3F0C8(Obj_1_data_2A7E0 *);
 extern void fn_1_1507C4(Entry24 *, Vec3 *);
 
-static inline s32 *fn_1_150654_array_read(s32 *array) { return array; }
 void fn_1_150654(void) {
     s32 *counters;
     s32 i;
@@ -22126,8 +22080,8 @@ void fn_1_150654(void) {
             x = (m >> 16) & 0x7FFF;
             counters[1] = (s16)(20.0f + (f32)(10.0f * ((f32)x / 32767.0f)));
         }
-        if (fn_1_150654_array_read(counters)[1] != 0) {
-            counters[1] = fn_1_150654_array_read(counters)[1] - 1;
+        if (((s32 *)(counters))[1] != 0) {
+            counters[1] = ((s32 *)(counters))[1] - 1;
             {
                 Vec3 v = {0x00000000u, 0xBF800000u, 0x00000000u};
 

@@ -75,29 +75,28 @@ extern void ARQPostRequest(ARQRequest *, u32, u32, u32, u32, u32, u32, void (*)(
 extern u32 fn_8006060C(u32);
 extern u32 fn_80064D4C(u8, u32);
 
-static inline SndBankEntry *fn_80065F34_array_read(SndBankEntry *array) { return array; }
 
 static inline void fn_80065F34_unload(u32 arg0) {
     u32 i;
 
     if (arg0 >= 16) {
-    } else if (fn_80065F34_array_read(lbl_801A6C80->entries)[arg0].unk0 + 0x10000 != 65535) {
+    } else if ((lbl_801A6C80->entries)[arg0].unk0 + 0x10000 != 65535) {
         fn_8006060C(arg0);
         fn_80064D4C(arg0, 0);
         fn_80064D4C(arg0, 1);
-        lbl_801A6C80->unk460 -= fn_80065F34_array_read(lbl_801A6C80->entries)[arg0].unkC;
-        fn_80065F34_array_read(lbl_801A6C80->entries)[arg0].unk0 = -1;
-        fn_80065F34_array_read(lbl_801A6C80->entries)[arg0].unkE = 0xFF;
-        fn_80065F34_array_read(lbl_801A6C80->entries)[arg0].unkD = 0xFF;
-        fn_80065F34_array_read(lbl_801A6C80->entries)[arg0].unkC = 0;
+        lbl_801A6C80->unk460 -= (lbl_801A6C80->entries)[arg0].unkC;
+        (lbl_801A6C80->entries)[arg0].unk0 = -1;
+        (lbl_801A6C80->entries)[arg0].unkE = 0xFF;
+        (lbl_801A6C80->entries)[arg0].unkD = 0xFF;
+        (lbl_801A6C80->entries)[arg0].unkC = 0;
         for (i = 0; i < 16; i++) {
-            if (lbl_801A6C80->unk104[i] == fn_80065F34_array_read(lbl_801A6C80->entries)[arg0].unk8) {
+            if (lbl_801A6C80->unk104[i] == (lbl_801A6C80->entries)[arg0].unk8) {
                 lbl_801A6C80->unk184[i] = 0;
-                fn_80065F34_array_read(lbl_801A6C80->entries)[arg0].unk8 = 0;
+                (lbl_801A6C80->entries)[arg0].unk8 = 0;
             }
-            if (lbl_801A6C80->unk1AC[i] == fn_80065F34_array_read(lbl_801A6C80->entries)[arg0].unk4) {
+            if (lbl_801A6C80->unk1AC[i] == (lbl_801A6C80->entries)[arg0].unk4) {
                 lbl_801A6C80->unk22C[i] = 0;
-                fn_80065F34_array_read(lbl_801A6C80->entries)[arg0].unk4 = 0;
+                (lbl_801A6C80->entries)[arg0].unk4 = 0;
             }
         }
     }

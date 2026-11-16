@@ -1189,7 +1189,6 @@ extern void fn_8006F1F0(V3 *a, V3 *b, V3 *out);
 extern AuroraDef lbl_1_rodata_D508;
 extern AuroraCam *lbl_801A6D00;
 
-static inline f32 fn_1_153D74_read_pointer(V3 * owner) { return owner->y; }
 static inline f32 fn_1_153D74_operand(f32 right, f32 left) { left *= right; return left; }
 void fn_1_153D74(void *arg0) {
     f32 fzgx_live;
@@ -1283,7 +1282,6 @@ void fn_1_153D74(void *arg0) {
         q = q + 0x30;
     }
 }
-
 /* fzgx:end fn_1_153D74 */
 
 /* fzgx:begin fn_1_1540B0 noprologue */

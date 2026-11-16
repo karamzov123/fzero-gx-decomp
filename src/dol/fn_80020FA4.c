@@ -19,12 +19,6 @@ extern void DCInvalidateRange(void *, u32);
 extern void DCFlushRangeNoSync(void *, u32);
 
 #pragma opt_propagation off
-static inline u8 * fn_80020FA4_address_685(u8 * base, s32 offset) {
-    u8 * result;
-    result = (u8 *)offset;
-    result = base + (s32)result;
-    return result;
-}
 void fn_80020FA4(void) {
     u8 *base = (u8 *)&lbl_8015D200;
     u8 *v0;
@@ -33,7 +27,7 @@ void fn_80020FA4(void) {
     u8 *b[3];
     u8 *c[3];
 
-    v0 = fn_80020FA4_address_685(base, lbl_801A6AE0 * 1920);
+    v0 = ((u8 *)(base) + (s32)(lbl_801A6AE0 * 1920));
     v1 = base + lbl_801A6AE4 * 1920;
     lbl_801A6AD0 = v0;
     lbl_801A6AD4 = v1;

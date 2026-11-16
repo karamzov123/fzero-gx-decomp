@@ -39,35 +39,6 @@ extern const s32 lbl_12_rodata_ADC[4];
 extern const s32 lbl_12_rodata_AEC[5];
 extern FrameHeader lbl_12_bss_69B0;
 
-static inline s32 parseHeader(u8 *p, FrameHeader *h) {
-    if (p[0] != 0xff) {
-        return 0;
-    }
-    if ((p[1] & 0xf8) != 0xf8) {
-        return 0;
-    }
-    h->layer = (p[1] >> 1) & 3;
-    h->prot = p[1] & 1;
-    h->bitrate = p[2] >> 4;
-    h->rate = (p[2] >> 2) & 3;
-    h->padding = (p[2] >> 1) & 1;
-    h->priv = p[2] & 1;
-    h->mode = p[3] >> 6;
-    h->modeExt = (p[3] >> 4) & 3;
-    h->copyright = (p[3] >> 3) & 1;
-    h->original = (p[3] >> 2) & 1;
-    h->emphasis = p[3] & 3;
-    if (h->layer == 0) {
-        return 0;
-    }
-    if (h->bitrate == 0xf) {
-        return 0;
-    }
-    if (h->rate == 3) {
-        return 0;
-    }
-    return 1;
-}
 
 static inline u8 *findHeader(u8 *p, s32 size, FrameHeader *h) {
     for (; size >= 4; size--, p++) {

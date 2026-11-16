@@ -4374,11 +4374,6 @@ static inline f32 fn_1_11E98_dist2(Cam11E98Vec *a, Cam11E98Vec *b) {
 }
 
 // Write a translation into the current (locked-cache) matrix.
-static inline void fn_1_11E98_set_trans(f32 x, f32 y, f32 z) {
-    *(f32 *)(0xE0000000 + 0x0C) = x;
-    *(f32 *)(0xE0000000 + 0x1C) = y;
-    *(f32 *)(0xE0000000 + 0x2C) = z;
-}
 
 // Pick the camera point nearest to the current target point and aim the camera from it.
 #pragma opt_propagation off
@@ -5118,13 +5113,6 @@ extern void fn_8006E2B0(void *, Vec3 *);
 
 extern u8 fn_1_1350C(Sig_fn_1_45730_LoadResult *, u8 *);
 
-static inline void lz_clear(u8 *buf, int n) {
-    int i;
-
-    for (i = 0; i < n; i++) {
-        buf[i] = 0;
-    }
-}
 
 // Loads an LZSS-compressed file (Okumura layout: N = 4096 ring window, F = 18,
 // start position N - F): an 8-byte header (compressed size, decompressed size)

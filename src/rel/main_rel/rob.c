@@ -6165,7 +6165,6 @@ extern void fn_1_42E74(Fn142E74Object *);
 extern void fn_8004D18C(ADXTHandle *, u32);
 
 static inline f32 fn97288_ufloat(u32 x, f64 bias) { return (f32)x; }
-static inline f32 fn97288_sfloat(s32 x, f64 bias) { return (f32)x; }
 static inline f32 fn97288_clamp(f32 x, const struct fn_1_97288_lbl_1_rodata_3E48 *r, struct fn_1_97288_lbl_1_data_209C0 *d) {
     return x < (0.0f) ? (0.0f) : x > d->unk_6418 ? d->unk_6418 : x;
 }

@@ -109,11 +109,6 @@ static const void *fzgx_bss_layout(int x) {
 }
 #pragma section code_type ".text"
 
-static inline void gcci_call_error(const char *message, void *handle) {
-    if (lbl_801878C8 != 0) {
-        lbl_801878C8(lbl_801878C4, message, handle);
-    }
-}
 
 static inline int gcci_is_idle(const GcCiObject *handle) {
     int idle = 0;

@@ -67,12 +67,6 @@ static void fzgx_bss_layout(void) {
 }
 #pragma section code_type ".text"
 
-static inline void svm_call_err1(const char *message) {
-    strncpy(lbl_8018FEE0, message, sizeof(lbl_8018FEE0) - 1);
-    if (lbl_8018FF60.function != 0) {
-        lbl_8018FF60.function(lbl_8018FF60.object, lbl_8018FEE0);
-    }
-}
 
 static inline void svm_unlock(int type) {
     if (lbl_8018FF68.function != 0) {
@@ -116,20 +110,5 @@ static inline int svm_exec_svr(int server_type) {
     return result;
 }
 
-static inline void svm_clear(void) {
-    int index;
-    int *counter;
-
-    memset(lbl_8018FF78__fzgx_offset_1C0, 0, sizeof(lbl_8018FF78__fzgx_offset_1C0));
-    memset(&lbl_8018FF70, 0, sizeof(lbl_8018FF70));
-    memset(&lbl_8018FF68, 0, sizeof(lbl_8018FF68));
-    memset(&lbl_8018FEB0__fzgx_offset_24, 0, sizeof(lbl_8018FEB0__fzgx_offset_24));
-    memset(&lbl_8018FEB0__fzgx_offset_1C, 0, sizeof(lbl_8018FEB0__fzgx_offset_1C));
-    counter = lbl_8018FF78__fzgx_offset_1E0;
-    for (index = 0; index < 6; index++) {
-        *counter++ = 0;
-    }
-    lbl_8018FEB0__fzgx_offset_2C = 0;
-}
 
 int fn_80058DB4(void) { return svm_exec_svr(4); }

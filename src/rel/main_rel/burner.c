@@ -1689,9 +1689,6 @@ static inline void fn_1_98F28_min(f32 *v, f32 hi) {
     }
 }
 
-static inline f32 fn_1_98F28_clamp(f32 v, f32 lo, f32 hi) {
-    return v < lo ? lo : (v > hi ? hi : v);
-}
 
 void fn_1_98F28(fn_1_98F28_Event *event) {
     fn_1_98F28_Burner *b = event->burner;
@@ -2018,7 +2015,7 @@ void fn_1_98F28(fn_1_98F28_Event *event) {
                                 pp->pos.x += (f32)(0.15f * ((f32)(u16)fn_1_584AC() / 32767.0f - 0.5f));
                                 pp->pos.y += (f32)(0.15f * ((f32)(u16)fn_1_584AC() / 32767.0f - 0.5f));
                                 pp->pos.z += (f32)(0.15f * ((f32)(u16)fn_1_584AC() / 32767.0f - 0.5f));
-                                pp->size = 0.70710677f * sz * fn_1_98F28_clamp(2.0f * d2, 0.1f, 1.0f);
+                                pp->size = 0.70710677f * sz * (((2.0f * d2) < (0.1f)) ? (0.1f) : (((2.0f * d2) > (1.0f)) ? (1.0f) : (2.0f * d2)));
                                 pp->rot = ang;
                                 if (rem < 4.0f) {
                                                                         c.x = bright * (g * (color.x * (rem / 4.0f)));
@@ -3065,11 +3062,6 @@ static inline s32 Fn9A7BC_flag(Fn9A7BCA *a) {
     return a->unk_84;
 }
 
-static inline void Fn9A7BC_copy_values(Fn9A7BCB *b, Fn9A7BCA *a, s32 v) {
-    b->unk_c = a->unk_98;
-    b->unk_1c = a->unk_94;
-    a->unk_88 = v;
-}
 
 extern u8 fn_1_101348__fzgx_offset_0[];
 extern u8 fn_1_1013A0__fzgx_offset_0[];
@@ -5504,7 +5496,6 @@ extern int sprintf(char *, const char *, ...);
 extern s32 fn_1_465D0(char *, s32);
 
 #pragma opt_propagation off
-static inline void * fn_1_9A958_read_entry(struct fn_1_9A958_data * owner, int i) { return owner->entries[i]; }
 void fn_1_9A958(int index, int flag) {
     struct fn_1_9A958_data *data = &lbl_1_data_2A0C0;
     u8 *indices = data->indices;

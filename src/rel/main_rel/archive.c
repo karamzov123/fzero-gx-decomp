@@ -590,7 +590,6 @@ typedef struct ArchiveState {
     ArchiveEntry entries[1];
 } ArchiveState;
 
-static inline ArchiveEntry *fn_1_12AC28_array_read(ArchiveEntry *array) { return array; }
 typedef struct lbl_1_bss_897AC_t {
     ArchiveEntry entries[1];
     u8 pad_6C[0x1ac8];
@@ -625,7 +624,7 @@ void *fn_1_12AC28(void *arg0, void **arg1, void **arg2) {
 
     
     if (lbl_1_bss_897A4 != 0) {
-        if (fn_8006A480(fn_1_12AC28_array_read(fzgx_obj_lbl_1_bss_897AC.entries)[fzgx_obj_lbl_1_bss_897A0].data, arg0, info1) != 0) {
+        if (fn_8006A480(((ArchiveEntry *)(fzgx_obj_lbl_1_bss_897AC.entries))[fzgx_obj_lbl_1_bss_897A0].data, arg0, info1) != 0) {
             lookup = fn_8006A998(info1);
         } else {
             lookup = 0;
@@ -633,7 +632,7 @@ void *fn_1_12AC28(void *arg0, void **arg1, void **arg2) {
         archive = lookup;
         if (lookup != 0) {
             if (arg1 != 0 && arg2 != 0) {
-                if (fn_8006A480(fn_1_12AC28_array_read(fzgx_obj_lbl_1_bss_897AC.entries)[fzgx_obj_lbl_1_bss_897A0].data, arg0, info2) == 0) {
+                if (fn_8006A480(((ArchiveEntry *)(fzgx_obj_lbl_1_bss_897AC.entries))[fzgx_obj_lbl_1_bss_897A0].data, arg0, info2) == 0) {
                     OSPanic(lbl_1_data_40608, 0x1be, lbl_1_data_4076C);
                 }
                 *arg2 = fn_8006A9AC(info2);

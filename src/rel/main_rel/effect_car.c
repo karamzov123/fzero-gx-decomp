@@ -874,16 +874,7 @@ void fzgx_pool_primer_68B6C(f32 *f, f64 *d) {
 }
 #pragma section code_type ".text"
 
-static inline void sub68B6C(const Vec68B6C *a, const Vec68B6C *b, void *vout) {
-    Vec68B6C *out = vout;
-    out->x = a->x - b->x;
-    out->y = a->y - b->y;
-    out->z = a->z - b->z;
-}
 
-static inline f32 mul68B6C(f32 a, f32 b) {
-    return a * b;
-}
 
 static inline f32 dot68B6C(f32 ax, f32 ay, f32 az, f32 bx, f32 by, f32 bz) {
     f32 v = ax * bx;
@@ -1844,15 +1835,6 @@ void fzgx_pool_primer_A7_1(f32 *f, f64 *d) {
 typedef struct VecA7 {
     f32 x, y, z;
 } VecA7;
-static inline f32 dot_A7(const VecA7 *a, const VecA7 *b) {
-    return (f32)(a->x * b->x) + a->y * b->y + a->z * b->z;
-}
-static inline void reject_A7(VecA7 *v, const VecA7 *n) {
-    f32 dot = -dot_A7(v, n);
-    v->x += (f32)(dot * n->x);
-    v->y += (f32)(dot * n->y);
-    v->z += (f32)(dot * n->z);
-}
 
 typedef struct EffectA7 {
     u8 pad0[0xc];
@@ -2155,17 +2137,8 @@ static inline f32 fn_1_6AF70_random(const struct fn_1_6AF70_lbl_1_rodata_2D70 *p
     return (f32)(fn_1_584AC() & 0xFFFF) / (32767.0f);
 }
 
-static inline f64 fn_1_6AF70_noise(const struct fn_1_6AF70_lbl_1_rodata_2D70 *pool) {
-    f32 value = (f32)(fn_1_584AC() & 0xFFFF) / (32767.0f);
-    return (f64)value - (0.5);
-}
 
 typedef struct fn_1_6AF70_Vec { f32 x, y, z; } fn_1_6AF70_Vec;
-static inline void fn_1_6AF70_sub(fn_1_6AF70_Vec *dst, const fn_1_6AF70_Vec *a, const fn_1_6AF70_Vec *b) {
-    dst->x = a->x - b->x;
-    dst->y = a->y - b->y;
-    dst->z = a->z - b->z;
-}
 static inline void fn_1_6AF70_scale(fn_1_6AF70_Vec *dst, const fn_1_6AF70_Vec *src, f32 scale) {
     dst->x = scale * src->x;
     dst->y = scale * src->y;
@@ -2192,9 +2165,6 @@ static inline void fn_1_6AF70_sub_scaled(fn_1_6AF70_Vec *dst, const fn_1_6AF70_V
     dst->x = dst->x - (f32)(src->x * scale);
     dst->y = dst->y - (f32)(src->y * scale);
     dst->z = dst->z - (f32)(src->z * scale);
-}
-static inline f32 fn_1_6AF70_multiply(f32 a, f32 b) {
-    return a * b;
 }
 static inline void fn_1_6AF70_project_sub(fn_1_6AF70_Vec *dst, const fn_1_6AF70_Vec *src, f32 scale) {
     dst->x = dst->x - (f32)(scale * src->x);
@@ -2460,11 +2430,19 @@ inner_loop:
     loc_5C.a[17] = loc_5C.a[17] + (f32)(((0.800000012f)) * (f32)(v73 - ((0.5f))));
     fn_1_6AF70_sub_scaled((fn_1_6AF70_Vec *)&loc_5C.a[15], (const fn_1_6AF70_Vec *)&loc_5C.a[18], (1.0f));
     t13 = fn_1_584AC();
-    loc_5C.a[11] = fn_1_6AF70_multiply((f32)(((0.5f)) + (f32)(((0.300000012f)) * (f32)((f32)(u32)(t13 & 0xFFFF) / ((32767.0f))))), (0.5f));
+    {
+        f32 product = (f32)((f32)(((0.5f)) + (f32)(((0.300000012f)) * (f32)((f32)(u32)(t13 & 0xFFFF) / ((32767.0f))))));
+        product *= (f32)((0.5f));
+        loc_5C.a[11] = product;
+    }
     t14 = fn_1_584AC();
     v4 = v6 * (f32)((f32)(u32)(t14 & 0xFFFF) / ((32767.0f)));
     v4 = ((0.200000003f)) * v4;
-    loc_5C.a[10] = fn_1_6AF70_multiply((f32)(((0.400000006f)) + v4), (0.5f));
+    {
+        f32 product = (f32)((f32)(((0.400000006f)) + v4));
+        product *= (f32)((0.5f));
+        loc_5C.a[10] = product;
+    }
     t15 = fn_1_584AC();
     v74 = ((0.5f)) + (f32)(((0.300000012f)) * (f32)((f32)(u32)(t15 & 0xFFFF) / ((32767.0f))));
     v4 = ((0.5f)) * v74;
@@ -3515,24 +3493,6 @@ static void fzgx_pool_primer_230(void) { /* Preserve this shared literal-pool sl
 #pragma section code_type ".text"
 
 #pragma fp_contract on
-static inline f32 fn_1_6CF3C_rand(void) {
-    return (f32)(fn_1_584AC() & 0xFFFF) / 32767.0f;
-}
-static inline s16 fn_1_6CF3C_clamps(f32 x, s16 lo, s16 hi) {
-    if ((s16)x < lo) return lo;
-    if ((s16)x > hi) return hi;
-    return (s16)x;
-}
-static inline f32 fn_1_6CF3C_clampf(f32 x, f32 lo, f32 hi) {
-    if (x < lo) return lo;
-    if (x > hi) return hi;
-    return x;
-}
-static inline f64 fn_1_6CF3C_clampd(f64 x, f64 lo, f64 hi) {
-    if (x < lo) return lo;
-    if (x > hi) return hi;
-    return x;
-}
 
 void fn_1_6CF3C(struct fn_1_6CF3C_Arg0 *arg0, struct fn_1_6CF3C_Vec *arg1, f32 arg2, f32 arg3) {
     struct fn_1_6CF3C_lbl_1_rodata_2D70 *p_lbl_1_rodata_2D70;
@@ -5088,8 +5048,6 @@ extern u32 fn_1_584AC(void);
 extern u32 fn_1_58C4(void);
 extern u8 * memset(u8 *, int, u32);
 
-static inline f32 fn_1_6E140_operand(f32 right, f32 left) { return left + right; }
-static inline f32 fn_1_6E140_operand_(f32 right, f32 left) { return left + right; }
 #pragma opt_propagation off
 void fn_1_6E140(Vec3_T *arg0, Vec3_T *arg1, f32 arg2) {
     f32 u;
@@ -7223,11 +7181,6 @@ extern void lbl_8006E1B0(Fn6FFA0Vec *arg0, Fn6FFA0Vec *arg1);
 extern s16 fn_1_59078(void *arg0);
 extern u32 lbl_801A63C0;
 /* Set the translation column of the current matrix (locked cache). */
-static inline void fn_1_6FFA0_set_translate(f32 x, f32 y, f32 z) {
-    *(f32 *)(0xE0000000 + 0x0C) = x;
-    *(f32 *)(0xE0000000 + 0x1C) = y;
-    *(f32 *)(0xE0000000 + 0x2C) = z;
-}
 
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
@@ -8127,9 +8080,6 @@ extern s16 fn_1_58F50(const void *);
 #define D_0x248 10.0
 #define D_0x1f0 0.0003
 struct fn_1_7099C_ResourceSlot { Obj_1_bss_38458_Target *value; };
-static inline u32 fn_1_7099C_resource(Obj_1_bss_38458_Target **p) {
- return *(u32 *)(((struct fn_1_7099C_ResourceSlot *)p)->value->unk_8+0x148);
-}
 #define E(o) (*(f32 *)((u8 *)&loc_14+(o)))
 #pragma pool_data on
 void fn_1_7099C(struct fn_1_7099C_Arg0 *arg0, Fn183D28Vec3 *arg1, u32 arg2, f32 arg3, f32 arg4) {
@@ -8403,9 +8353,6 @@ static inline f64 fn_1_71024_jitter(void) {
     return 2.0 * ((f32)fn_1_584AC() / 32767.0f - 0.5);
 }
 
-static inline f32 fn_1_71024_clamp(f32 v, f32 lo, f32 hi) {
-    return (v < lo) ? lo : ((v > hi) ? hi : v);
-}
 
 #define FN_1_71024_DIST(car, p) fn_1_71024_dist(car, &(p))
 #define FN_1_71024_SCALE(d) (10.0f * ((d) / 800.0f))

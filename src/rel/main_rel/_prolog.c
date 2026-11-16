@@ -1695,7 +1695,6 @@ struct fn_1_1FE8_Arg1 {
     s8 unk_0; s8 unk_1; s8 unk_2; s8 unk_3;
     u8 unk_4; u8 unk_5; u8 unk_6; u8 unk_7;
 };
-static inline s32 absval(s32 x) { return __abs(x); }
 s8 fn_1_1FE8(u16 *arg0, struct fn_1_1FE8_Arg1 *arg1, u32 arg2, s8 arg3) {
     u32 v1 = (u16)arg2;
     s8 v5 = 0;

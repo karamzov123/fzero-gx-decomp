@@ -804,21 +804,12 @@ static inline f32 F65Scale(f32 factor, f32 age) {
     return 1.0f - (f32)((age - 1.0f) * factor);
 }
 
-static inline f32 F65SquaredXY(f32 x, f32 y) {
-    return x * x + y * y;
-}
 
 static inline f32 F65SquareAdd(f32 value, f32 sum) {
     return sum + value * value;
 }
 
-static inline f32 F65LengthSq(const F65Vec *v) {
-    return v->x * v->x + v->y * v->y + v->z * v->z;
-}
 
-static inline f32 F65SquaredYX(f32 y, f32 x) {
-    return x * x + y * y;
-}
 
 void fn_1_F65A0(struct fn_1_F65A0_Arg0 *obj) {
 #define arg0 effect
@@ -3403,9 +3394,6 @@ static union { u32 w[10]; char *v[10]; } fzgx_pool_init_lbl_1_data_3EEA4 = {{  /
     (u32)lbl_1_data_3EE7C__fzgx_offset_0, (u32)lbl_1_data_3EE90__fzgx_offset_0
 }};
 
-static inline u32 scale_time(u32 value) {
-    return (u32)(value * lbl_1_rodata_7470.unk_0);
-}
 
 #pragma opt_common_subs off
 void fn_1_FA1D8(u32 arg0, u32 arg1, SplineTimeTable *table) {

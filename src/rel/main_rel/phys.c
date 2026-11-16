@@ -2555,7 +2555,6 @@ extern void fn_1_4AE0C(const char *, ...);
 extern void fn_1_A8DD4(const char *, ...);
 extern void fn_1_A8EF8(u16, u16);
 
-static inline u32 *fn_1_E4A38_array_read(u32 *array) { return array; }
 #pragma opt_propagation off
 static inline u32 fn_1_E4A38_array_read_(u32 *array, s32 index) { return array[index]; }
 static inline u32 * fn_1_E4A38_read_pointer(struct D * owner) { return owner->unk_30; }

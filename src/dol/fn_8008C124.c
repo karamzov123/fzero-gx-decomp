@@ -55,9 +55,6 @@ instructions.words[1] = 0x7C9EFBA6;
 }
 return ExecuteInstructions(value, &instructions);
 }
-static inline u64 ShiftFPValue(u64 value) {
-return value >> 32;
-}
 static inline s32 AccessFP(u32 reg, u64 *value, s32 read) {
 s32 result = 0;
 InstructionBuffer instructions = lbl_80095B80;

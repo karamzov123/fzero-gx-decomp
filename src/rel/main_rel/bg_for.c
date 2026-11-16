@@ -1927,7 +1927,6 @@ extern void lbl_8006DFC4(void *);
 extern void lbl_8006D758(void);
 extern s32 fn_1_DEDC4(void *, void *, void *, DF2A4Vec *, DF2A4Vec *, DF2A4Vec *, DF2A4Vec *, f32);
 
-static inline f32 vec_dot_read_pointer(DF2A4Vec * owner) { return owner->y; }
 static inline void vec_dot(DF2A4Vec *a, DF2A4Vec *b, f32 *dot) {
     f32 result;
     f32 ax;
@@ -1963,9 +1962,6 @@ static inline void vec_dot_plane(DF2A4Vec *a, DF2A4Vec *b, f32 *dot) {
     result += az * bz;
     *dot = result;
 }
-static inline s32 distance_outside(f32 bound, f32 distance) {
-    return distance * distance > bound;
-}
 
 static inline void plane_distance(DF2A4Vec *a, DF2A4Vec *b, DF2A4Vec *normal, f32 *dot) {
     DF2A4Vec d;
@@ -1981,22 +1977,13 @@ static inline void plane_distance_second(DF2A4Vec *a, DF2A4Vec *b, DF2A4Vec *nor
     lbl_8006D5F0(normal, hit, *scale * dist);
 }
 
-static inline s32 plane_outside(DF2A4Vec *a, DF2A4Vec *b, DF2A4Vec *normal, f32 bound) {
-    f32 dist;
-    plane_distance(a, b, normal, &dist);
-    return dist * dist > bound;
-}
 
 static inline void fn_1_DF2A4_bound(f32 radius, f32 height, f32 *bound) {
     f32 result = radius * radius;
     result += height * height;
     *bound = result;
 }
-static inline f32 fn_1_DF2A4_operand_pointer(const f32 *left, f32 right) {
-    f32 result = *left * right;
-    return result;
-}
-#define fn_1_DF2A4_operand(left, right) fn_1_DF2A4_operand_pointer(&(left), right)
+#define fn_1_DF2A4_operand(left, right) ((f32)((f32)(*(&(left))) * (f32)(right)))
 static inline void fn_1_DF2A4_translation(DF2A4Vec *out) {
     f32 x = *(f32 *)(0xE0000000 + 0x0C);
     f32 y = *(f32 *)(0xE0000000 + 0x1C);
@@ -3192,12 +3179,6 @@ extern void lbl_8006D5F0(void *, f32, void *);
 
 /* Earliest time t at which two moving spheres of combined radius r touch. */
 #pragma opt_lifetimes off
-static inline f32 E1408_length(f32 u, f32 v, f32 w) {
-    f32 length = u * u;
-    length += v * v;
-    length += w * w;
-    return length;
-}
 #pragma opt_lifetimes off
 static inline s32 E1408_sweep(E1408Pool *pool, E1408Vec *dp, E1408Vec *dv, f32 r, f32 *t) {
     f32 B;
@@ -3252,23 +3233,7 @@ static inline s32 E1408_sweep(E1408Pool *pool, E1408Vec *dp, E1408Vec *dv, f32 r
 }
 
 /* Whether `me` may push `other` out of the way. */
-static inline u32 E1408_pushes(u64 me, u64 other, u32 result) {
 
-    if (((me & 0x80000) != 0 && (other & 0x80000) == 0) || ((me & 0x40000) == 0 && (other & 0x40000) != 0)) {
-        result = 1;
-    }
-    return result;
-}
-
-static inline u64 E1408_flags_core(u64 fa, u64 fb, u32 pa, u32 pb) {
-    if (((fa & 0x80000) != 0 && (fb & 0x80000) == 0) || ((fa & 0x40000) == 0 && (fb & 0x40000) != 0)) {
-        pa = 1;
-    }
-    if (((fb & 0x80000) != 0 && (fa & 0x80000) == 0) || ((fb & 0x40000) == 0 && (fa & 0x40000) != 0)) {
-        pb = 1;
-    }
-    return ((u64)pb << 32) | pa;
-}
 static inline u64 E1408_flags(u32 pb, u32 pa, u32 fb, u64 fa) {
     fa = (u32)fa;
     if (((fa & 0x80000) != 0 && ((u64)fb & 0x80000) == 0) || ((fa & 0x40000) == 0 && ((u64)fb & 0x40000) != 0)) {
@@ -3281,10 +3246,6 @@ static inline u64 E1408_flags(u32 pb, u32 pa, u32 fb, u64 fa) {
 }
 
 static inline f32 fn_1_E1408_read_pointer(E1408Object * owner) { return owner->fieldF4; }
-static inline void E1408_add_reverse(E1408Vec *pos, E1408Vec *delta, f32 scale) {
-    psvec_add(pos, delta, pos);
-    psvec_scale(delta, scale, delta);
-}
 static inline void E1408_separate(E1408Vec *a, E1408Vec *b, E1408Vec *delta, f32 scale) {
     psvec_add(a, delta, a);
     psvec_scale(delta, scale, delta);

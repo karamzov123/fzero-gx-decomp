@@ -1671,15 +1671,6 @@ typedef struct {
     s8 unk_F;
 } Cur7E9C4;
 
-static inline s32 check7E9C4(u32 idx) {
-    Entry7E9C4 *e = &((Entry7E9C4 *)&lbl_1_bss_6D620)[idx];
-    s32 sel = 0;
-
-    if (e->unk_F != 0 || e->unk_10 < 0x20) {
-        sel = 1;
-    }
-    return sel;
-}
 
 void fn_1_7E9C4(void) {
     s32 sel;
@@ -1944,15 +1935,6 @@ static inline f32 clamp_rotation(f32 x, f32 low, f32 high) {
         return low;
     if (x > high)
         return high;
-    return x;
-}
-static inline f32 clamp_angle(f32 x) {
-    f32 result = fzgx_pool_table_10[0];
-    if (x < result)
-        return result;
-    result = fzgx_pool_table_48[0];
-    if (x > result)
-        return result;
     return x;
 }
 static inline f32 progress_angle(f32 scale, u32 progress) {

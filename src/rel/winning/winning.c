@@ -2223,7 +2223,6 @@ extern struct fn_15_27D4_St *lbl_15_bss_2C;
 struct fn_15_2620_Arg0;
 extern void fn_15_2620(struct fn_15_2620_Arg0 *);
 static inline f32 fn_15_27D4_operand(f32 right,f32 left){return left+right;}
-static inline struct fn_15_27D4_Dst *fn_15_27D4_read_pointer(struct fn_15_27D4_Tab *owner){return owner->unk_54;}
 void fn_15_27D4(struct fn_15_27D4_Arg0 *arg0){
 f32 *fzgx_value;
 struct fn_15_27D4_Tab *fzgx_live_;
@@ -2283,7 +2282,7 @@ arg0->unk_A8.y=p_tab->unk_34.y;
 arg0->unk_A8.z=1.5f+p_tab->unk_34.z;break;
 default:break;
 }
-p_dst=fn_15_27D4_read_pointer(p_tab);
+p_dst=(p_tab->unk_54);
 p_dst->unk_C=*(const struct fn_15_27D4_Vec3 *)fzgx_pool_t11;break;
 default:break;
 }
@@ -2327,7 +2326,6 @@ extern s16 fn_1_12CB04(s16);
 extern s16 fn_1_12CCB0(s16, s16);
 extern u32 fn_15_2458(s16, s16, s16, u32);
 
-static inline struct fn_15_2AE4_rec *fn_15_2AE4_array_read(struct fn_15_2AE4_rec *array) { return array; }
 void fn_15_2AE4(void) {
     u8 * fzgx_live;
     struct fn_15_2AE4_bss0 *b;
@@ -2363,10 +2361,10 @@ for (fzgx_loop_i_994 = 0; fzgx_loop_i_994 < 12; fzgx_loop_i_994 += 6) {
 
     n = b->unk_38;
     for (i = 0; i < n; i++) {
-        c.value = fn_15_2AE4_array_read(recs)[i].unk_4;
+        c.value = (recs)[i].unk_4;
         if (c.value >= 0x29) {
             // Wide codes collapse to one representative byte.
-            c.value = *(u8 *)(fn_15_2AE4_array_read(recs)[i].unk_0 + 0x81a0);
+            c.value = *(u8 *)((recs)[i].unk_0 + 0x81a0);
         }
         if (c.value == 0x22) {
             b->unk_4++;
@@ -2374,7 +2372,7 @@ for (fzgx_loop_i_994 = 0; fzgx_loop_i_994 < 12; fzgx_loop_i_994 += 6) {
     }
 
     for (i = 0; i < b->unk_38; i++) {
-        c.value = fn_15_2AE4_array_read(recs)[i].unk_4;
+        c.value = (recs)[i].unk_4;
         if (c.value >= 0x29) {
             c.value = *(u8 *)((*((i) + (recs))).unk_0 + 0x81a0);
         }
