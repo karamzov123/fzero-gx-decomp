@@ -31,9 +31,6 @@ s32 TRKTerminateNub(void) {
     return 0;
 }
 
-static inline u8 * TRKInitializeNub_read_pointer_read_pointer(EndianTest * owner) { return owner->byte; }
-static inline u8 * TRKInitializeNub_read_pointer(EndianTest * owner) { return TRKInitializeNub_read_pointer_read_pointer(owner); }
-static inline u8 * TRKInitializeNub_read_pointer_(EndianTest * owner) { return owner->byte; }
 #pragma opt_dead_assignments off
 int TRKInitializeNub(void)
 {
@@ -45,10 +42,10 @@ int TRKInitializeNub(void)
     result.value = 0;
     gTRKBigEndian[0] = 1;
 
-    TRKInitializeNub_read_pointer_(&endian)[0] = 0x12;
-    TRKInitializeNub_read_pointer_(&endian)[1] = 0x34;
-    TRKInitializeNub_read_pointer_(&endian)[2] = 0x56;
-    TRKInitializeNub_read_pointer(&endian)[3] = 0x78;
+    (endian.byte)[0] = 0x12;
+    (endian.byte)[1] = 0x34;
+    (endian.byte)[2] = 0x56;
+    (endian.byte)[3] = 0x78;
 
     if (((0x12345678) == (endian.word))) {
         gTRKBigEndian[0] = 1;

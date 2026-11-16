@@ -3131,7 +3131,6 @@ extern u8 lbl_15_bss_D0;
 extern void lbl_8006E1B0(void *, void *);
 
 #pragma opt_propagation off
-#pragma opt_lifetimes off
 void fn_15_3174(void * arg0) {
     struct fn_15_3174_lbl_15_rodata_0 *p_lbl_15_rodata_0;
     u8 v0;
@@ -3204,7 +3203,6 @@ void fn_15_3174(void * arg0) {
     lbl_8006E1B0((void *)v16, (void *)v16);
     *(f32 *)((u8 *)arg0 + 184) = (1.0f);
 }
-#pragma opt_lifetimes reset
 
 #pragma opt_propagation reset
 /* fzgx:end fn_15_3174 */
@@ -3945,9 +3943,7 @@ extern void fn_1_4AE0C(const char *, ...);
 extern void fn_1_4A0D8(const char *);
 
 #pragma opt_loop_invariants off
-#pragma opt_common_subs off
 #pragma opt_propagation off
-#pragma opt_lifetimes off
 void fn_15_435C(void) {
     u32 buf[8];
     u32 v[6];
@@ -4022,9 +4018,7 @@ void fn_15_435C(void) {
         i++;
     }
 }
-#pragma opt_lifetimes reset
 #pragma opt_propagation reset
-#pragma opt_common_subs reset
 #pragma opt_loop_invariants reset
 /* fzgx:end fn_15_435C */
 

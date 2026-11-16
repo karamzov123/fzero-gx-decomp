@@ -55,7 +55,6 @@ extern u8 lbl_80095890[52];
 extern void * memset(void *, int, u32);
 extern void MWTRACE(u32, ...);
 
-static inline u8 * fn_8008A1CC_read_pointer(struct Sig_fn_8008A1CC_TRKBuffer * owner) { return owner->data; }
 #pragma opt_lifetimes off
 s32 fn_8008A1CC(struct Sig_fn_8008A1CC_TRKBuffer *arg0) {
     u8 *p_lbl_80095890 = lbl_80095890;
@@ -72,8 +71,8 @@ s32 fn_8008A1CC(struct Sig_fn_8008A1CC_TRKBuffer *arg0) {
 
     v0 = *(u32 *)((u8 *)arg0 + 32);
     v1 = *(u16 *)((u8 *)arg0 + 28);
-    v2 = fn_8008A1CC_read_pointer(arg0)[8];
-    MWTRACE(1, (u32)((u8 *)(u32)p_lbl_80095890) + 384, fn_8008A1CC_read_pointer(arg0)[4], v0, v1, v2);
+    v2 = (arg0->data)[8];
+    MWTRACE(1, (u32)((u8 *)(u32)p_lbl_80095890) + 384, (arg0->data)[4], v0, v1, v2);
     if (v2 & 2) {
         memset(&respA, 0, 0x40);
         respA.flag = 0x80;
@@ -144,7 +143,6 @@ struct fn_8008A3C0_Rodata {
 };
 extern struct fn_8008A3C0_Rodata lbl_80095890_ro;
 
-#pragma opt_common_subs off
 s32 fn_8008A3C0(struct fn_8008A3C0_Arg0 *arg0) {
     u8 *base;
     s32 v4 = 0;
@@ -219,5 +217,4 @@ s32 fn_8008A3C0(struct fn_8008A3C0_Arg0 *arg0) {
     MWTRACE(1, (u32)(base + 0x80), v4);
     return v4;
 }
-#pragma opt_common_subs reset
 

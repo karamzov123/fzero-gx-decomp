@@ -126,10 +126,7 @@ extern u32 fn_80034378(u32);
 extern u32 fn_80034444(u32);
 
 #pragma peephole off
-#pragma opt_common_subs off
 #pragma opt_propagation off
-#pragma opt_dead_assignments off
-#pragma opt_loop_invariants off
 s32 fn_8003086C(s32 arg0) {
     static u32 peCount;
     static OSTime time;
@@ -197,13 +194,10 @@ s32 fn_8003086C(s32 arg0) {
     }
     return 1;
 }
-#pragma opt_loop_invariants reset
 
-#pragma opt_dead_assignments reset
 
 #pragma opt_propagation reset
 
-#pragma opt_common_subs reset
 
 #pragma peephole reset
 #pragma peephole off

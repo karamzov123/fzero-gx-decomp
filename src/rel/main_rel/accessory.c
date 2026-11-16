@@ -24935,7 +24935,6 @@ typedef struct {
     char unk_3C[1];
 } DisplayData;
 
-static inline f32 fn_1_12A0E0_read_pointer(Sig_fn_8006F78C_Fn8006F78CData * owner) { return owner->value1; }
 #pragma opt_propagation off
 #pragma opt_common_subs off
 void fn_1_12A0E0(DisplayData *arg0)
@@ -24968,7 +24967,7 @@ void fn_1_12A0E0(DisplayData *arg0)
     fn_1_4954C(-depth);
     fn_8006F78C(&vec, &vec, scale);
     fzgx_live = vec.value0;
-    fn_1_496FC(fzgx_live, fn_1_12A0E0_read_pointer(&vec));
+    fn_1_496FC(fzgx_live, (vec.value1));
     fn_1_49738(fn_1_12A080);
     fn_1_495FC();
     fn_1_495C8(0x11);

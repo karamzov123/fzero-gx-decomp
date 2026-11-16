@@ -1,0 +1,831 @@
+{
+  "batch": "multisym-device-cleanup-20261116",
+  "date": "2026-11-16",
+  "description": "Remove 30 redundant opt pragma lines, 24 synthetic/unused inline helpers, and 3 scalar carriers across 15 multi-symbol C units (24 functions).",
+  "scratch_archive": "/home/armandofm/.hermes/cache/scratch/device-cleanup-multisym-batch7",
+  "fully_natural_claimed": false,
+  "totals": {
+    "units_cleaned": 15,
+    "functions_cleaned": 25,
+    "pragmas_removed": 30,
+    "helpers_removed": 24,
+    "carriers_removed": 3
+  },
+  "units": [
+    {
+      "unit_ref": "main:fn_8003086C",
+      "module": "main",
+      "symbols": [
+        "fn_8003086C",
+        "GXInit"
+      ],
+      "tu": null,
+      "source": "dol/GXInit.c",
+      "before_sha256": "b87236eb4f567e09ada85acea42eceee9bc9024c34091632fc99bea86615c08b",
+      "candidate_sha256": "cbeb0d67f3d7c59fae6f22e6eaa11a9aaa4d92e0efbd9d6ee2a51b584d11b356",
+      "canonical_sha256": "cbeb0d67f3d7c59fae6f22e6eaa11a9aaa4d92e0efbd9d6ee2a51b584d11b356",
+      "before_counts": {
+        "pragmas": 12,
+        "helpers": 0,
+        "carriers": 0
+      },
+      "after_counts": {
+        "pragmas": 6,
+        "helpers": 0,
+        "carriers": 0
+      },
+      "applied": [
+        {
+          "symbol": "fn_8003086C",
+          "generator": "optimizer_directive_removals",
+          "label": "test optimizer directive removal opt_common_subs"
+        },
+        {
+          "symbol": "fn_8003086C",
+          "generator": "optimizer_directive_removals",
+          "label": "test optimizer directive removal opt_dead_assignments"
+        },
+        {
+          "symbol": "fn_8003086C",
+          "generator": "optimizer_directive_removals",
+          "label": "test optimizer directive removal opt_loop_invariants"
+        }
+      ],
+      "fully_natural_claimed": false
+    },
+    {
+      "unit_ref": "main:SIBusy",
+      "module": "main",
+      "symbols": [
+        "SIBusy",
+        "SIIsChanBusy",
+        "CompleteTransfer",
+        "SIInterruptHandler",
+        "SIEnablePollingInterrupt",
+        "SIRegisterPollingHandler",
+        "SIUnregisterPollingHandler",
+        "SIInit",
+        "__SITransfer",
+        "SIGetStatus",
+        "SISetCommand",
+        "SITransferCommands",
+        "SISetXY",
+        "SIEnablePolling",
+        "SIDisablePolling",
+        "SIGetResponseRaw",
+        "SIGetResponse",
+        "AlarmHandler_SIBios",
+        "SITransfer",
+        "GetTypeCallback",
+        "SIGetType",
+        "SIGetTypeAsync",
+        "SIDecodeType",
+        "SIProbe",
+        "fn_8001317C"
+      ],
+      "tu": null,
+      "source": "dol/SIBios.c",
+      "before_sha256": "777d73559e2112129fad2749d910bd275be0480394752a75f0455dc370e17035",
+      "candidate_sha256": "677cc2751abd45ebf662957a5b14af08d674b63def70cc30c83fa488f3aa66ad",
+      "canonical_sha256": "677cc2751abd45ebf662957a5b14af08d674b63def70cc30c83fa488f3aa66ad",
+      "before_counts": {
+        "pragmas": 2,
+        "helpers": 3,
+        "carriers": 0
+      },
+      "after_counts": {
+        "pragmas": 0,
+        "helpers": 3,
+        "carriers": 0
+      },
+      "applied": [
+        {
+          "symbol": "SIBusy",
+          "generator": "optimizer_directive_removals",
+          "label": "test optimizer directive removal opt_propagation"
+        }
+      ],
+      "fully_natural_claimed": false
+    },
+    {
+      "unit_ref": "main:fn_8008A1CC",
+      "module": "main",
+      "symbols": [
+        "fn_8008A1CC",
+        "fn_8008A3C0"
+      ],
+      "tu": null,
+      "source": "dol/fn_8008A1CC.c",
+      "before_sha256": "0bedb20e8db7a45fe2dcb2c6ec1e47179611545f2aed010824974d615bf834be",
+      "candidate_sha256": "04712c72caca15510a7c7523e757e6456aa47898d47aec373b62bcdb33dc2bfb",
+      "canonical_sha256": "04712c72caca15510a7c7523e757e6456aa47898d47aec373b62bcdb33dc2bfb",
+      "before_counts": {
+        "pragmas": 4,
+        "helpers": 1,
+        "carriers": 0
+      },
+      "after_counts": {
+        "pragmas": 2,
+        "helpers": 0,
+        "carriers": 0
+      },
+      "applied": [
+        {
+          "symbol": "fn_8008A1CC",
+          "generator": "native_access_helpers",
+          "label": "inline access helper fn_8008A1CC_read_pointer"
+        },
+        {
+          "symbol": "fn_8008A1CC",
+          "generator": "optimizer_directive_removals",
+          "label": "test optimizer directive removal opt_common_subs"
+        }
+      ],
+      "fully_natural_claimed": false
+    },
+    {
+      "unit_ref": "main:TRKNubWelcome",
+      "module": "main",
+      "symbols": [
+        "TRKNubWelcome",
+        "TRKTerminateNub",
+        "TRKInitializeNub"
+      ],
+      "tu": null,
+      "source": "dol/nubinit.c",
+      "before_sha256": "11a8f84a2915bc59bf280df37285b4a2ef10ffa7df7a6b6d93ec0a2a037c0cad",
+      "candidate_sha256": "f9e0ab8f6ac0d860573052730c869d795ca6c048e6b181cc08883765c3d24907",
+      "canonical_sha256": "f9e0ab8f6ac0d860573052730c869d795ca6c048e6b181cc08883765c3d24907",
+      "before_counts": {
+        "pragmas": 2,
+        "helpers": 3,
+        "carriers": 1
+      },
+      "after_counts": {
+        "pragmas": 2,
+        "helpers": 0,
+        "carriers": 1
+      },
+      "applied": [
+        {
+          "symbol": "TRKNubWelcome",
+          "generator": "native_access_helpers",
+          "label": "inline access helper TRKInitializeNub_read_pointer_read_pointer"
+        },
+        {
+          "symbol": "TRKNubWelcome",
+          "generator": "native_access_helpers",
+          "label": "inline access helper TRKInitializeNub_read_pointer"
+        },
+        {
+          "symbol": "TRKNubWelcome",
+          "generator": "native_access_helpers",
+          "label": "inline access helper TRKInitializeNub_read_pointer_"
+        }
+      ],
+      "fully_natural_claimed": false
+    },
+    {
+      "unit_ref": "main_rel:fn_1_12907C",
+      "module": "main_rel",
+      "symbols": [
+        "fn_1_12907C",
+        "fn_1_12999C",
+        "fn_1_129D9C",
+        "fn_1_12A080",
+        "fn_1_12A0E0"
+      ],
+      "tu": "rel/main_rel/accessory.c",
+      "source": "rel/main_rel/accessory/fn_1_12907C.c",
+      "before_sha256": "3e85c390f0b69b8ce3f60ea2484de33786820e9905eb2d3bf53c954519a56126",
+      "candidate_sha256": "4b4d53f5743e83d4a78572c95aa8cba027ea5f58d3101e7b0a24f438cc8ea0f3",
+      "canonical_sha256": "4b4d53f5743e83d4a78572c95aa8cba027ea5f58d3101e7b0a24f438cc8ea0f3",
+      "before_counts": {
+        "pragmas": 14,
+        "helpers": 3,
+        "carriers": 3
+      },
+      "after_counts": {
+        "pragmas": 14,
+        "helpers": 2,
+        "carriers": 3
+      },
+      "applied": [
+        {
+          "symbol": "fn_1_12A0E0",
+          "generator": "native_access_helpers",
+          "label": "inline access helper fn_1_12A0E0_read_pointer"
+        }
+      ],
+      "fully_natural_claimed": false
+    },
+    {
+      "unit_ref": "main_rel:fn_1_A7294",
+      "module": "main_rel",
+      "symbols": [
+        "fn_1_A7294",
+        "fn_1_A744C",
+        "fn_1_A75DC",
+        "fn_1_A7728",
+        "fn_1_A77DC",
+        "fn_1_A7854",
+        "fn_1_A78CC",
+        "fn_1_A7968",
+        "fn_1_A79D8",
+        "fn_1_A7A70",
+        "fn_1_A7B30",
+        "fn_1_A7B5C",
+        "fn_1_A7E60",
+        "fn_1_A7F84"
+      ],
+      "tu": "rel/main_rel/driver.c",
+      "source": "rel/main_rel/driver/fn_1_A7294.c",
+      "before_sha256": "dce63c4bc62a1478b5d08a07da331e3dea190dbd4fb2f4cb7f2e3b2d31ebf8f2",
+      "candidate_sha256": "f31cf354b31e812e93fcc146451e6ee483db7ada44d237bd2545e51c12e81e7a",
+      "canonical_sha256": "f31cf354b31e812e93fcc146451e6ee483db7ada44d237bd2545e51c12e81e7a",
+      "before_counts": {
+        "pragmas": 11,
+        "helpers": 7,
+        "carriers": 5
+      },
+      "after_counts": {
+        "pragmas": 5,
+        "helpers": 3,
+        "carriers": 5
+      },
+      "applied": [
+        {
+          "symbol": "fn_1_A744C",
+          "generator": "native_access_helpers",
+          "label": "inline access helper fn_1_A744C_call_fn_1_12CCB0"
+        },
+        {
+          "symbol": "fn_1_A75DC",
+          "generator": "native_access_helpers",
+          "label": "inline access helper fn_1_A75DC_read_pointer"
+        },
+        {
+          "symbol": "fn_1_A75DC",
+          "generator": "optimizer_directive_removals",
+          "label": "test optimizer directive removal opt_common_subs"
+        },
+        {
+          "symbol": "fn_1_A75DC",
+          "generator": "optimizer_directive_removals",
+          "label": "test optimizer directive removal opt_lifetimes"
+        },
+        {
+          "symbol": "fn_1_A75DC",
+          "generator": "optimizer_directive_removals",
+          "label": "test optimizer directive removal opt_loop_invariants"
+        },
+        {
+          "symbol": "fn_1_A7B5C",
+          "generator": "native_access_helpers",
+          "label": "remove unused inline helper A7B5C_copy_parts"
+        },
+        {
+          "symbol": "fn_1_A7B5C",
+          "generator": "native_access_helpers",
+          "label": "remove unused inline helper A7B5C_default_parts"
+        }
+      ],
+      "fully_natural_claimed": false
+    },
+    {
+      "unit_ref": "main_rel:fn_1_B171C",
+      "module": "main_rel",
+      "symbols": [
+        "fn_1_B171C",
+        "fn_1_B22AC",
+        "fn_1_B2770",
+        "fn_1_B277C"
+      ],
+      "tu": "rel/main_rel/memcard.c",
+      "source": "rel/main_rel/memcard/fn_1_B171C.c",
+      "before_sha256": "5e98de0aa0db95fd0b65e15a749613e23c80c77ade3b4fe13e7447ff9a1207ca",
+      "candidate_sha256": "ddbd6053509931386e1f714d771a5c24369acf3c785523fbcd281956a517c8cc",
+      "canonical_sha256": "ddbd6053509931386e1f714d771a5c24369acf3c785523fbcd281956a517c8cc",
+      "before_counts": {
+        "pragmas": 8,
+        "helpers": 4,
+        "carriers": 1
+      },
+      "after_counts": {
+        "pragmas": 4,
+        "helpers": 4,
+        "carriers": 1
+      },
+      "applied": [
+        {
+          "symbol": "fn_1_B277C",
+          "generator": "optimizer_directive_removals",
+          "label": "test optimizer directive removal opt_common_subs"
+        },
+        {
+          "symbol": "fn_1_B277C",
+          "generator": "optimizer_directive_removals",
+          "label": "test optimizer directive removal opt_propagation"
+        }
+      ],
+      "fully_natural_claimed": false
+    },
+    {
+      "unit_ref": "main_rel:fn_1_B3900",
+      "module": "main_rel",
+      "symbols": [
+        "fn_1_B3900",
+        "fn_1_B40B4",
+        "fn_1_B40C0"
+      ],
+      "tu": "rel/main_rel/memcard.c",
+      "source": "rel/main_rel/memcard/fn_1_B3900.c",
+      "before_sha256": "93076d7168cf1631e907831d319483af33cf7101363cfd0cf267a77b09957e55",
+      "candidate_sha256": "aabd56e3923bb757f15805b7740b8baa2cecfd6b22a73e72f60a417fd5b2af1f",
+      "canonical_sha256": "aabd56e3923bb757f15805b7740b8baa2cecfd6b22a73e72f60a417fd5b2af1f",
+      "before_counts": {
+        "pragmas": 0,
+        "helpers": 1,
+        "carriers": 0
+      },
+      "after_counts": {
+        "pragmas": 0,
+        "helpers": 0,
+        "carriers": 0
+      },
+      "applied": [
+        {
+          "symbol": "fn_1_B3900",
+          "generator": "native_access_helpers",
+          "label": "inline access helper fn_1_B3900_array_read"
+        }
+      ],
+      "fully_natural_claimed": false
+    },
+    {
+      "unit_ref": "main_rel:fn_1_727BC",
+      "module": "main_rel",
+      "symbols": [
+        "fn_1_727BC",
+        "fn_1_72848",
+        "fn_1_728B0",
+        "fn_1_72980",
+        "fn_1_729F8",
+        "fn_1_75D84",
+        "fn_1_761B8",
+        "fn_1_76218",
+        "fn_1_76448",
+        "fn_1_76504",
+        "fn_1_76650",
+        "fn_1_76704",
+        "fn_1_76964",
+        "fn_1_769FC",
+        "fn_1_76A94",
+        "fn_1_76BD0",
+        "fn_1_76BF8",
+        "fn_1_76C60",
+        "fn_1_76DBC",
+        "fn_1_76DC0",
+        "fn_1_76EB8",
+        "fn_1_77200",
+        "fn_1_77238",
+        "fn_1_772E0",
+        "fn_1_77384"
+      ],
+      "tu": "rel/main_rel/screen_effect.c",
+      "source": "rel/main_rel/screen_effect/fn_1_727BC.c",
+      "before_sha256": "7bf1aa252c08c18e1f86ffbbbb1c678f04663c3407f70ddc5422a3b980e1be66",
+      "candidate_sha256": "e91f070a95a76c5a13abf2175f94781bd79e9eca51d52b1a477786bb7ecab02a",
+      "canonical_sha256": "e91f070a95a76c5a13abf2175f94781bd79e9eca51d52b1a477786bb7ecab02a",
+      "before_counts": {
+        "pragmas": 4,
+        "helpers": 5,
+        "carriers": 2
+      },
+      "after_counts": {
+        "pragmas": 2,
+        "helpers": 4,
+        "carriers": 2
+      },
+      "applied": [
+        {
+          "symbol": "fn_1_727BC",
+          "generator": "native_access_helpers",
+          "label": "inline access helper fn_1_727BC_array_read"
+        },
+        {
+          "symbol": "fn_1_727BC",
+          "generator": "optimizer_directive_removals",
+          "label": "test optimizer directive removal opt_dead_assignments"
+        }
+      ],
+      "fully_natural_claimed": false
+    },
+    {
+      "unit_ref": "sel:fn_10_26554",
+      "module": "sel",
+      "symbols": [
+        "fn_10_26554",
+        "fn_10_266AC"
+      ],
+      "tu": null,
+      "source": "rel/sel/record.c",
+      "before_sha256": "51a2997cc74bb16a28b39e5646d72b3b595c717edd254898565c0b45aab552b0",
+      "candidate_sha256": "b63e2a82fd73e9dc5f772437e23baf9e13201de0aa444de3ca8840ff6cbce0e1",
+      "canonical_sha256": "b63e2a82fd73e9dc5f772437e23baf9e13201de0aa444de3ca8840ff6cbce0e1",
+      "before_counts": {
+        "pragmas": 0,
+        "helpers": 1,
+        "carriers": 0
+      },
+      "after_counts": {
+        "pragmas": 0,
+        "helpers": 0,
+        "carriers": 0
+      },
+      "applied": [
+        {
+          "symbol": "fn_10_26554",
+          "generator": "native_access_helpers",
+          "label": "inline access helper fn_10_26554_call_fn_1_AA6D8"
+        }
+      ],
+      "fully_natural_claimed": false
+    },
+    {
+      "unit_ref": "sel:fn_10_0",
+      "module": "sel",
+      "symbols": [
+        "fn_10_0",
+        "_prolog",
+        "fn_10_834",
+        "fn_10_AB8",
+        "_epilog",
+        "fn_10_D2C",
+        "fn_10_12D8",
+        "fn_10_1544",
+        "fn_10_1F28",
+        "fn_10_1F9C",
+        "fn_10_21EC",
+        "fn_10_3268",
+        "fn_10_3350",
+        "fn_10_3954",
+        "fn_10_3A98",
+        "fn_10_3B44",
+        "fn_10_3C14",
+        "fn_10_3D64",
+        "fn_10_3DE0",
+        "fn_10_3F54",
+        "fn_10_436C",
+        "fn_10_4568",
+        "fn_10_4600",
+        "fn_10_472C",
+        "fn_10_4790",
+        "fn_10_4838",
+        "fn_10_4A84",
+        "fn_10_4AE0",
+        "fn_10_4D78",
+        "fn_10_5148",
+        "fn_10_51BC",
+        "fn_10_51CC",
+        "fn_10_5230",
+        "fn_10_5780",
+        "fn_10_578C",
+        "fn_10_5E94",
+        "fn_10_6518",
+        "fn_10_7130",
+        "fn_10_7320",
+        "fn_10_73AC",
+        "fn_10_757C",
+        "fn_10_75D4",
+        "fn_10_7A10",
+        "fn_10_7E84",
+        "fn_10_7FC0",
+        "fn_10_804C",
+        "fn_10_82BC",
+        "fn_10_8314",
+        "fn_10_83C0",
+        "fn_10_84DC",
+        "fn_10_8538",
+        "fn_10_8600",
+        "fn_10_8780",
+        "fn_10_8800",
+        "fn_10_8870",
+        "fn_10_8930",
+        "fn_10_8AAC",
+        "fn_10_8B0C",
+        "fn_10_8BB8",
+        "fn_10_8D90",
+        "fn_10_8DFC",
+        "fn_10_8F0C",
+        "fn_10_9154",
+        "fn_10_91E8",
+        "fn_10_924C",
+        "fn_10_948C",
+        "fn_10_95A0",
+        "fn_10_96F8",
+        "fn_10_9788",
+        "fn_10_A0E8",
+        "fn_10_A25C",
+        "fn_10_A480",
+        "fn_10_A634",
+        "fn_10_A7DC",
+        "fn_10_A90C",
+        "fn_10_AB98",
+        "fn_10_AE14",
+        "fn_10_B2C8",
+        "fn_10_BD64",
+        "fn_10_BEF0",
+        "fn_10_BEF4",
+        "fn_10_BEF8",
+        "fn_10_C084",
+        "fn_10_C210",
+        "fn_10_C258",
+        "fn_10_C274",
+        "fn_10_C298",
+        "fn_10_C2BC",
+        "fn_10_C328",
+        "fn_10_C49C",
+        "fn_10_C594",
+        "fn_10_C5E0",
+        "fn_10_C654",
+        "fn_10_C684",
+        "fn_10_C694",
+        "fn_10_C6A4",
+        "fn_10_C8A8",
+        "fn_10_C8E4",
+        "fn_10_C954",
+        "fn_10_C958",
+        "fn_10_C9B0",
+        "fn_10_C9F4",
+        "fn_10_C9F8",
+        "fn_10_CA58",
+        "fn_10_CA90",
+        "fn_10_CA94",
+        "fn_10_CB20",
+        "fn_10_CD90",
+        "fn_10_CDE8",
+        "fn_10_CE5C",
+        "fn_10_CE6C",
+        "fn_10_CEC4",
+        "fn_10_CF30",
+        "fn_10_CF50",
+        "fn_10_CFAC",
+        "fn_10_CFDC"
+      ],
+      "tu": "rel/sel/sel.c",
+      "source": "rel/sel/sel/fn_10_0.c",
+      "before_sha256": "88fdd130377d6d8b169897e91a17072cb5503a5b4f3408b31b2086c30400bb68",
+      "candidate_sha256": "73d7d7cc3dad2d07bbe24a54bc23ac6ef9c65bc2961da45842799a84aafb0143",
+      "canonical_sha256": "73d7d7cc3dad2d07bbe24a54bc23ac6ef9c65bc2961da45842799a84aafb0143",
+      "before_counts": {
+        "pragmas": 42,
+        "helpers": 28,
+        "carriers": 41
+      },
+      "after_counts": {
+        "pragmas": 42,
+        "helpers": 19,
+        "carriers": 38
+      },
+      "applied": [
+        {
+          "symbol": "fn_10_3350",
+          "generator": "native_access_helpers",
+          "label": "remove unused inline helper sel_rotl"
+        },
+        {
+          "symbol": "fn_10_3F54",
+          "generator": "unwrap_scalar_carriers",
+          "label": "unwrap scalar carrier upper"
+        },
+        {
+          "symbol": "fn_10_7130",
+          "generator": "native_access_helpers",
+          "label": "remove unused inline helper fn_10_7130_array_read"
+        },
+        {
+          "symbol": "fn_10_7130",
+          "generator": "native_access_helpers",
+          "label": "inline access helper fn_10_7130_array_read_"
+        },
+        {
+          "symbol": "fn_10_7E84",
+          "generator": "native_access_helpers",
+          "label": "remove unused inline helper fn_10_7E84_array_read"
+        },
+        {
+          "symbol": "fn_10_7E84",
+          "generator": "native_access_helpers",
+          "label": "inline access helper fn_10_7E84_array_read_"
+        },
+        {
+          "symbol": "fn_10_8BB8",
+          "generator": "native_access_helpers",
+          "label": "inline access helper fn_10_8BB8_array_read"
+        },
+        {
+          "symbol": "fn_10_8BB8",
+          "generator": "unwrap_scalar_carriers",
+          "label": "unwrap scalar carrier p_lbl_1_bss_8B3A0"
+        },
+        {
+          "symbol": "fn_10_8BB8",
+          "generator": "unwrap_scalar_carriers",
+          "label": "unwrap scalar carrier p_lbl_1_bss_9C8"
+        },
+        {
+          "symbol": "fn_10_8F0C",
+          "generator": "native_access_helpers",
+          "label": "inline access helper fn_10_8F0C_read_pointer"
+        },
+        {
+          "symbol": "fn_10_9788",
+          "generator": "native_access_helpers",
+          "label": "remove unused inline helper connected"
+        },
+        {
+          "symbol": "fn_10_A480",
+          "generator": "native_access_helpers",
+          "label": "remove unused inline helper fn_10_A480_read"
+        }
+      ],
+      "fully_natural_claimed": false
+    },
+    {
+      "unit_ref": "sel:fn_10_1FEF4",
+      "module": "sel",
+      "symbols": [
+        "fn_10_1FEF4",
+        "fn_10_200D8"
+      ],
+      "tu": "rel/sel/sel.c",
+      "source": "rel/sel/sel/fn_10_1FEF4.c",
+      "before_sha256": "7efa9033a55bd78b1993ce531c4de66bd00a955e360347a01094e2d520e5e011",
+      "candidate_sha256": "1fc84434e7c528f6822a66cf979c1d0f7052964bdaebeafa79836095f894dba7",
+      "canonical_sha256": "1fc84434e7c528f6822a66cf979c1d0f7052964bdaebeafa79836095f894dba7",
+      "before_counts": {
+        "pragmas": 0,
+        "helpers": 2,
+        "carriers": 0
+      },
+      "after_counts": {
+        "pragmas": 0,
+        "helpers": 0,
+        "carriers": 0
+      },
+      "applied": [
+        {
+          "symbol": "fn_10_200D8",
+          "generator": "native_access_helpers",
+          "label": "remove unused inline helper fn_10_200D8_signed_float"
+        },
+        {
+          "symbol": "fn_10_200D8",
+          "generator": "native_access_helpers",
+          "label": "remove unused inline helper fn_10_200D8_unsigned_float"
+        }
+      ],
+      "fully_natural_claimed": false
+    },
+    {
+      "unit_ref": "story:fn_7_41FC",
+      "module": "story",
+      "symbols": [
+        "fn_7_41FC",
+        "fn_7_44DC",
+        "fn_7_4648",
+        "fn_7_4E28",
+        "fn_7_4EF8",
+        "fn_7_4FD0"
+      ],
+      "tu": "rel/story/story_mode.c",
+      "source": "rel/story/story_mode/fn_7_41FC.c",
+      "before_sha256": "ae08621e3c50e69d1e9b7dde51a2f8310051aa4039bba359b933dc667263b0b6",
+      "candidate_sha256": "03a6b64dd6c6a422f1c59f825230cb42b9892a79397cb4f654ee806498cd0ad4",
+      "canonical_sha256": "03a6b64dd6c6a422f1c59f825230cb42b9892a79397cb4f654ee806498cd0ad4",
+      "before_counts": {
+        "pragmas": 18,
+        "helpers": 5,
+        "carriers": 3
+      },
+      "after_counts": {
+        "pragmas": 16,
+        "helpers": 5,
+        "carriers": 3
+      },
+      "applied": [
+        {
+          "symbol": "fn_7_44DC",
+          "generator": "optimizer_directive_removals",
+          "label": "test optimizer directive removal opt_common_subs"
+        }
+      ],
+      "fully_natural_claimed": false
+    },
+    {
+      "unit_ref": "title:fn_8_BE4",
+      "module": "title",
+      "symbols": [
+        "fn_8_BE4",
+        "fn_8_EC4",
+        "fn_8_1304",
+        "fn_8_1344",
+        "fn_8_1394",
+        "fn_8_1C08",
+        "fn_8_1C0C",
+        "fn_8_1C10",
+        "fn_8_1C14",
+        "fn_8_1C18",
+        "fn_8_1C90",
+        "fn_8_1F64",
+        "fn_8_1F74",
+        "fn_8_1FB0",
+        "fn_8_2120",
+        "fn_8_2124",
+        "fn_8_23AC",
+        "fn_8_25F8",
+        "fn_8_2660"
+      ],
+      "tu": "rel/title/title.c",
+      "source": "rel/title/title/fn_8_BE4.c",
+      "before_sha256": "3af1051d1440fe4200fd46784061c9921aaf4cdd62d77af77c8029a2d91624ac",
+      "candidate_sha256": "fd90b44d8387da49b4d4b4f48b9a9b2e06e027ac1ae2983419bdad864140e6e2",
+      "canonical_sha256": "fd90b44d8387da49b4d4b4f48b9a9b2e06e027ac1ae2983419bdad864140e6e2",
+      "before_counts": {
+        "pragmas": 0,
+        "helpers": 1,
+        "carriers": 1
+      },
+      "after_counts": {
+        "pragmas": 0,
+        "helpers": 0,
+        "carriers": 1
+      },
+      "applied": [
+        {
+          "symbol": "fn_8_2660",
+          "generator": "native_access_helpers",
+          "label": "remove unused inline helper fn_8_2660_array_read"
+        }
+      ],
+      "fully_natural_claimed": false
+    },
+    {
+      "unit_ref": "winning:fn_15_2E8C",
+      "module": "winning",
+      "symbols": [
+        "fn_15_2E8C",
+        "fn_15_30E8",
+        "fn_15_3174",
+        "fn_15_3368",
+        "fn_15_38FC",
+        "fn_15_398C",
+        "fn_15_3A14",
+        "fn_15_3AFC",
+        "fn_15_3B00",
+        "fn_15_3B24",
+        "fn_15_401C",
+        "fn_15_405C",
+        "fn_15_4060",
+        "fn_15_4124",
+        "fn_15_435C",
+        "fn_15_4568",
+        "fn_15_4578"
+      ],
+      "tu": "rel/winning/winning.c",
+      "source": "rel/winning/winning/fn_15_2E8C.c",
+      "before_sha256": "5f005755dec6fdce8a9c1a26de850ff2f2c6b95931bee55f0ec8c77b5920fdf9",
+      "candidate_sha256": "5fa840a4a9c2283a17b338c89bcce9ed4d6e875543e0e51a0cb4010865d65964",
+      "canonical_sha256": "5fa840a4a9c2283a17b338c89bcce9ed4d6e875543e0e51a0cb4010865d65964",
+      "before_counts": {
+        "pragmas": 18,
+        "helpers": 1,
+        "carriers": 4
+      },
+      "after_counts": {
+        "pragmas": 12,
+        "helpers": 1,
+        "carriers": 4
+      },
+      "applied": [
+        {
+          "symbol": "fn_15_3174",
+          "generator": "optimizer_directive_removals",
+          "label": "test optimizer directive removal opt_lifetimes"
+        },
+        {
+          "symbol": "fn_15_435C",
+          "generator": "optimizer_directive_removals",
+          "label": "test optimizer directive removal opt_common_subs"
+        },
+        {
+          "symbol": "fn_15_435C",
+          "generator": "optimizer_directive_removals",
+          "label": "test optimizer directive removal opt_lifetimes"
+        }
+      ],
+      "fully_natural_claimed": false
+    }
+  ]
+}

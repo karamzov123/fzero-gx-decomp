@@ -8933,7 +8933,6 @@ extern void fn_8_10084(fn_8_2660_u32);
 extern void fn_8_100B4(void);
 extern void *fn_8_5840(void *);
 extern void fn_8_784(fn_8_2660_u32);
-static inline void *fn_8_2660_array_read(void **array, fn_8_2660_s32 *index) { return array[*index]; }
 void fn_8_2660(fn_8_2660_f32 arg0, fn_8_2660_f32 arg1, fn_8_2660_f32 arg2) {
 
 struct TitleInput *p_lbl_1_bss_9F8;

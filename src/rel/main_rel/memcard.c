@@ -10400,9 +10400,7 @@ extern u32 fn_1_F4810(void *a0, void *a1, void *a2, void *a3, void *a4, void *a5
 extern void fn_80008BA8(u32 dst, u32 src, u32 size);
 extern void fn_80008BEC(void *dst, int val, u32 size);
 
-#pragma opt_common_subs on
 #pragma opt_dead_assignments off
-#pragma opt_propagation on
 static inline u8 * fn_1_B277C_address_18218(u8 * base, s32 offset) { struct { u8 * value; } result;
     result.value = (u8 *)offset;
     result.value = base + (s32)result.value;
@@ -11064,11 +11062,8 @@ rec = record_address((u8 *)fzgx_live->unk_DC, off);
 }
 #pragma opt_lifetimes reset
 
-#pragma opt_propagation reset
 
 #pragma opt_dead_assignments reset
-
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_B277C */
 
 /* fzgx:begin fn_1_B38F4 */
@@ -11090,7 +11085,6 @@ extern void OSPanic(const char *file, int line, const char *fmt, ...);
 extern s32 CARDUnmount(s32);
 extern void fn_1_46B4(u32, u32, const char *, int);
 
-static inline u8 fn_1_B3900_array_read(u8 *array, s32 index) { return array[index]; }
 
 void fn_1_B3900(u8 *arg0) {
     u8 *data = (u8 *)&lbl_1_data_35AC8;
@@ -11099,14 +11093,14 @@ void fn_1_B3900(u8 *arg0) {
     u8 *state;
     u32 f;
 
-    if (fn_1_B3900_array_read(arg0, 4) == 0xFF) {
+    if (((arg0)[4]) == 0xFF) {
         return;
     }
 
-    switch (fn_1_B3900_array_read(arg0, 4)) {
+    switch (((arg0)[4])) {
     default:
-        OSReport((const char *)(data + 0x6DDC), fn_1_B3900_array_read(arg0, 4));
-        OSReport((const char *)(data + 0x6DF0), fn_1_B3900_array_read(arg0, 3));
+        OSReport((const char *)(data + 0x6DDC), ((arg0)[4]));
+        OSReport((const char *)(data + 0x6DF0), ((arg0)[3]));
         OSPanic((const char *)(data + 0x6CF0), 0x1A40, (const char *)(data + 0x6E04));
         break;
 
@@ -11122,8 +11116,8 @@ void fn_1_B3900(u8 *arg0) {
             if (((u16)global->unk_8 >> 8) & 1) {
                 arg0[3] = 0x1E;
         } else if ((((u16)global->unk_8 >> 11) & 1) && !(f & 2)) {
-            if (fn_1_B3900_array_read(arg0, 5) == 3 && *(u32 *)(arg0 + 0xC) != 0) {
-                while (CARDUnmount(fn_1_B3900_array_read(arg0, 0)) == -1) {
+            if (((arg0)[5]) == 3 && *(u32 *)(arg0 + 0xC) != 0) {
+                while (CARDUnmount(((arg0)[0])) == -1) {
                 }
                 fn_1_46B4(lbl_801A6410, *(u32 *)(arg0 + 0xC), (const char *)(data + 0x6CF0), 0x1A52);
                 arg0[7] = 0;
@@ -11132,11 +11126,11 @@ void fn_1_B3900(u8 *arg0) {
                 *(u32 *)(state + 0x1C) = 0;
                 *(u32 *)(state + 0x18) = 0;
             }
-            if (fn_1_B3900_array_read(arg0, 6) != 0xFF) {
-                arg0[3] = fn_1_B3900_array_read(arg0, 6);
+            if (((arg0)[6]) != 0xFF) {
+                arg0[3] = ((arg0)[6]);
                 arg0[6] = 0xFF;
             } else {
-                arg0[3] = fn_1_B3900_array_read(arg0, 5);
+                arg0[3] = ((arg0)[5]);
             }
             {
                 u8 *entry = bss + 8;
@@ -11170,8 +11164,8 @@ void fn_1_B3900(u8 *arg0) {
         break;
 
     case 3:
-        if ((s8)fn_1_B3900_array_read(arg0, 1) == -0x7F) {
-            *(u32 *)(*(u8 **)(arg0 + 0x24) + 4) = (s8)fn_1_B3900_array_read(arg0, 1);
+        if ((s8)((arg0)[1]) == -0x7F) {
+            *(u32 *)(*(u8 **)(arg0 + 0x24) + 4) = (s8)((arg0)[1]);
             arg0[3] = 1;
         } else {
             switch (*(s32 *)(*(u8 **)(arg0 + 0x24) + 4)) {
@@ -11256,12 +11250,12 @@ void fn_1_B3900(u8 *arg0) {
     case 5:
         if (*(s32 *)(*(u8 **)(arg0 + 0x24) + 4) != 0) {
             s32 done;
-            if (!(fn_1_B3900_array_read(arg0, 0x2A) & 1)) {
+            if (!(((arg0)[0x2A]) & 1)) {
                 done = 0;
                 arg0[0x28] = 0xC;
                 arg0[0x2A] |= 1;
             } else {
-                u8 c = fn_1_B3900_array_read(arg0, 0x28);
+                u8 c = ((arg0)[0x28]);
                 if ((s8)c > 0) {
                     done = 0;
                     arg0[0x28] = c - 1;

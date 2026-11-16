@@ -19,7 +19,6 @@ extern u32 lbl_1_bss_718C0;
 extern u8 lbl_1_bss_8B3A0[];
 extern u8 lbl_1_bss_718E0;
 
-static inline void fn_10_26554_call_fn_1_AA6D8(void * a3, void * a2, int a1, int a0) { fn_1_AA6D8(a0, a1, a2); }
 void fn_10_26554(void) {
     s16 b;
     u8 work[0x100];
@@ -45,7 +44,7 @@ void fn_10_26554(void) {
         *(u32 *)(data + 4) = 4;
         *(void **)(data + 0xc) = &lbl_1_bss_718E0;
         *(void **)(data + 8) = work;
-        fn_10_26554_call_fn_1_AA6D8(&lbl_1_bss_718E0, data, 0, 0);
+        fn_1_AA6D8(0, 0, data);
 }
     }
 }

@@ -4201,7 +4201,6 @@ extern int fn_1_4F734(FontDrawPacket *);
 
 #pragma opt_propagation off
 #pragma peephole on
-#pragma opt_common_subs on
 void fn_7_44DC(void) {
     u16 v1;
     u8 i;
@@ -4236,7 +4235,6 @@ void fn_7_44DC(void) {
         i++;
     }
 }
-#pragma opt_common_subs reset
 
 #pragma peephole reset
 

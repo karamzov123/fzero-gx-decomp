@@ -4207,10 +4207,6 @@ void fn_10_3268(void) {
 /* fzgx:end fn_10_3268 */
 
 /* fzgx:begin fn_10_3350 noprologue */
-static inline u32 sel_rotl(u32 x, s32 n) {
-return (x << n) | (x >> (32 - n));
-}
-
 #pragma opt_unroll_loops off
 
 void fn_10_3350(void) {
@@ -4524,7 +4520,7 @@ void fn_10_3DE0(u8 index, fn_10_3DE0_SelEntry *entries, s16 slot) {
 
 void fn_10_3F54(void) {
 s16 final_selector;
-struct { u8 *value; } upper;
+u8 * upper;
 GameState *gs;
 s16 selector;
 struct { s16 value; } pressed;
@@ -5878,9 +5874,7 @@ void fn_10_6518(void) {
 /* fzgx:begin fn_10_7130 noprologue */
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 
-static inline u8 *fn_10_7130_array_read(u8 *array) { return array; }
 
-static inline u8 fn_10_7130_array_read_(s32 index, u8 *array) { return array[index]; }
 
 void fn_10_7130(void) {
     struct { fn_10_7130_SelEntry *value; } entry;
@@ -5906,7 +5900,7 @@ void fn_10_7130(void) {
                 *(u32 *)p = flags & 0x3fffffff;
             if ((*(u32 *)p & 0x40000000) != 0)
                 goto skip; /* skip this entry: shared loop tail advances to the next one */
-            value = fn_10_7130_array_read_(0x81a0, p);
+            value = ((p)[0x81a0]);
         }
         off = value * 0x440;
         if (((s16)lbl_10_data_45A) !=
@@ -6310,10 +6304,6 @@ void fn_10_7A10(void) {
 /* fzgx:end fn_10_7A10 */
 
 /* fzgx:begin fn_10_7E84 noprologue */
-static inline u8 *fn_10_7E84_array_read(u8 *array) { return array; }
-
-static inline u8 fn_10_7E84_array_read_(u8 *array, s32 index) { return array[index]; }
-
 #pragma opt_lifetimes off
 
 void fn_10_7E84(void) {
@@ -6329,7 +6319,7 @@ void fn_10_7E84(void) {
 
     base = (*(u8 (*)[])&(*((Obj_10_bss_0 *)&lbl_10_bss_0))) + 0x50000;
     state = (*(u8 (*)[])&lbl_1_bss_8B3A0.unk_0);
-    index = fn_10_7E84_array_read_(state, 0x9e);
+    index = ((state)[0x9e]);
     flags = *(u32 *)(state + 0x94);
     rec = state + (index << 5);
     count = *(s16 *)(rec + 0xe);
@@ -6721,13 +6711,12 @@ void fn_10_8B0C(void) {
 /* fzgx:begin fn_10_8BB8 noprologue */
 #pragma opt_common_subs off
 
-static inline struct fn_10_8BB8_S9F8 *fn_10_8BB8_array_read(struct fn_10_8BB8_S9F8 *array) { return array; }
 
 #pragma opt_dead_assignments off
 
 void fn_10_8BB8(void) {
-    struct { struct fn_10_8BB8_lbl_1_bss_8B3A0 *value; } p_lbl_1_bss_8B3A0;
-    struct { u8 *value; } p_lbl_1_bss_9C8;
+    struct fn_10_8BB8_lbl_1_bss_8B3A0 * p_lbl_1_bss_8B3A0;
+    u8 * p_lbl_1_bss_9C8;
     u32 v0;
     int v1;
     u32 v2;
@@ -6755,16 +6744,16 @@ void fn_10_8BB8(void) {
     }
     {
     s16 fzgx_loop_v3_1334;
-    p_lbl_1_bss_9C8.value = (u8 *)&(*(u8 (*)[])&lbl_1_bss_9C8);
-    p_lbl_1_bss_8B3A0.value = &(*(struct fn_10_8BB8_lbl_1_bss_8B3A0 *)&lbl_1_bss_8B3A0.unk_0);
+    p_lbl_1_bss_9C8 = (u8 *)&(*(u8 (*)[])&lbl_1_bss_9C8);
+    p_lbl_1_bss_8B3A0 = &(*(struct fn_10_8BB8_lbl_1_bss_8B3A0 *)&lbl_1_bss_8B3A0.unk_0);
     fzgx_loop_v3_1334 = 0;
     while ((s16)fzgx_loop_v3_1334 < 4) {
-        if ((s8)p_lbl_1_bss_9C8.value[fzgx_loop_v3_1334 * 12 + 10] != -1 &&
-            __rlwnm(p_lbl_1_bss_8B3A0.value->unk_98, ((s16)fzgx_loop_v3_1334 + 1) & 31, 31, 31) != 0) {
-            if (((fn_10_8BB8_array_read((*(struct fn_10_8BB8_S9F8 (*)[])&(*(u8 (*)[])&lbl_1_bss_9F8)))[p_lbl_1_bss_8B3A0.value->unk_9E].f8 >> 8) & 1) != 0)
+        if ((s8)p_lbl_1_bss_9C8[fzgx_loop_v3_1334 * 12 + 10] != -1 &&
+            __rlwnm(p_lbl_1_bss_8B3A0->unk_98, ((s16)fzgx_loop_v3_1334 + 1) & 31, 31, 31) != 0) {
+            if (((((struct fn_10_8BB8_S9F8 *)((*(struct fn_10_8BB8_S9F8 (*)[])&(*(u8 (*)[])&lbl_1_bss_9F8))))[p_lbl_1_bss_8B3A0->unk_9E].f8 >> 8) & 1) != 0)
                 v4 = (s16)(v4 + 1);
                 (void) v4;  /* fzgx: keeps the web at its definition */
-            if (((fn_10_8BB8_array_read((*(struct fn_10_8BB8_S9F8 (*)[])&(*(u8 (*)[])&lbl_1_bss_9F8)))[p_lbl_1_bss_8B3A0.value->unk_9E].f8 >> 8) & 1) != 0)
+            if (((((struct fn_10_8BB8_S9F8 *)((*(struct fn_10_8BB8_S9F8 (*)[])&(*(u8 (*)[])&lbl_1_bss_9F8))))[p_lbl_1_bss_8B3A0->unk_9E].f8 >> 8) & 1) != 0)
                 fn_1_12F150(fzgx_loop_v3_1334, 2, 1);
         }
         fzgx_loop_v3_1334++;
@@ -6817,8 +6806,6 @@ void fn_10_8DFC(void) {
 /* fzgx:end fn_10_8DFC */
 
 /* fzgx:begin fn_10_8F0C noprologue */
-static inline fn_10_8F0C_SelSub * fn_10_8F0C_read_pointer(fn_10_8F0C_SelState * owner) { return owner->unk_A4; }
-
 #pragma opt_dead_assignments off
 
 #pragma opt_common_subs off
@@ -6837,10 +6824,10 @@ void fn_10_8F0C(void) {
 
     *(u16 *)&(*((U16Box *)&lbl_1_bss_96A)) = 14;
     st = &(*((fn_10_8F0C_SelState *)&lbl_1_bss_8B3A0));
-    if (fn_10_8F0C_read_pointer(st)->unk_20 != 0) {
+    if ((st->unk_A4)->unk_20 != 0) {
         val = &st->unk_A4->unk_20;
-        *val = fn_10_8F0C_read_pointer(st)->unk_20 - 1;
-        if (fn_10_8F0C_read_pointer(st)->unk_20 == 0) {
+        *val = (st->unk_A4)->unk_20 - 1;
+        if ((st->unk_A4)->unk_20 == 0) {
             fn_1_A2D84(0xA9121E00);
         }
     }
@@ -6878,12 +6865,12 @@ void fn_10_8F0C(void) {
                 }
             }
             if (count != 0 || fn_1_12F228() != 0) {
-                fn_10_8F0C_read_pointer(st)->unk_16 = 1;
+                (st->unk_A4)->unk_16 = 1;
                 fn_1_12F1E8(0);
             }
             if (count != 0 || fn_1_12F228() != 0) {
                 fn_1_12F1E8(0);
-                flag = fn_10_8F0C_read_pointer(st)->unk_17;
+                flag = (st->unk_A4)->unk_17;
                 lbl_10_bss_14 = (s32)(0x19 + ((-(s32)flag | flag) >> 31));
                 fn_1_4A00(0, lbl_10_bss_4938C, (u32)((void *)lbl_10_bss_49388));
                 lbl_10_bss_51744 = 0;
@@ -7114,11 +7101,6 @@ void fn_10_96F8(void *first, void *second) {
 /* fzgx:end fn_10_96F8 */
 
 /* fzgx:begin fn_10_9788 noprologue */
-static inline int connected(u32 device) {
-    return device == 0x09000000 || device == 0x88000000 ||
-           device == 0x8B100000 || device == 0x08000000;
-}
-
 static inline s16 countControllers(void) {
     s16 i;
     s16 count = 0;
@@ -7463,8 +7445,6 @@ void fn_10_A25C(SelObjA25C *obj) {
 /* fzgx:end fn_10_A25C */
 
 /* fzgx:begin fn_10_A480 noprologue */
-static inline fn_10_A480_s32 fn_10_A480_read(fn_10_A480_u8 *p) { return (fn_10_A480_s8)*p; }
-
 #pragma opt_common_subs off
 
 void fn_10_A480(struct fn_10_A480_Arg0 *arg0) {
@@ -43689,18 +43669,6 @@ static const u32 fzgx_pool_table_818[648] = { /* fzgx-allow: A1 retail data byte
 #define PULSE() COPY(); packet.a[0] = 0x9F02; PF(packet,11) *= K(0x48) + (f32)((f32)(K(0x48) * (K(0x44) + lbl_8006D188((s32)(K(0x78) * (f32)(lbl_801A66A0 % 120) / K(0x390))))) / 2.0f); packet.a[12] = 10; DRAW()
 #define SMALL() PF(packet,4) *= K(0x110); PF(packet,5) *= K(0x110); packet.a[0] = 0x9F07; PF(packet,3) += K(0x1270); DRAW()
 
-static inline f32 fn_10_200D8_signed_float(s32 value, const u8 *pool) {
-    union { f64 d; u32 w[2]; } convert;
-    convert.w[1] = (u32)value ^ 0x80000000;
-    convert.w[0] = 0x43300000;
-    return (f32)(convert.d - *(const f64 *)(pool + 0x88));
-}
-static inline f32 fn_10_200D8_unsigned_float(u32 value, const u8 *pool) {
-    union { f64 d; u32 w[2]; } convert;
-    convert.w[1] = value;
-    convert.w[0] = 0x43300000;
-    return (f32)(convert.d - *(const f64 *)(pool + 0x90));
-}
 void fn_10_200D8(s32 arg0, u32 arg1, u32 arg2, u32 arg3, f32 arg4) {
     struct fn_10_200D8_Copy88 packet;
     struct fn_10_200D8_Copy88 base;

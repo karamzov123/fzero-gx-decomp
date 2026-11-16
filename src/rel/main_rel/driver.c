@@ -1790,7 +1790,6 @@ typedef struct Entry {
 
 
 #pragma opt_common_subs off
-static inline s16 fn_1_A744C_call_fn_1_12CCB0(s16 a1, s16 a0) { return fn_1_12CCB0(a0, a1); }
 static inline Slot * fn_1_A744C_array_read(Slot * *array, s32 index) { return array[index]; }
 void fn_1_A744C(Entry *entries, u32 count) {
     char buffer[128];
@@ -1821,7 +1820,7 @@ void fn_1_A744C(Entry *entries, u32 count) {
                     if (j == 0) {
                         index = fn_1_12C930(driver);
                     } else {
-                        index = fn_1_A744C_call_fn_1_12CCB0(j - 1, driver);
+                        index = fn_1_12CCB0(driver, j - 1);
                     }
                     if (index >= 0) {
                         if (variantChoice == 0) {
@@ -1869,12 +1868,8 @@ typedef struct {
 
 
 
-#pragma opt_common_subs on
-#pragma opt_lifetimes off
-static inline Fn1A75dcResult * fn_1_A75DC_read_pointer(Fn1A75dcEntry * owner) { return owner->unk_108; }
 #pragma opt_propagation off
 static inline void * fn_1_A75DC_read_pointer_(Fn1A75dcObject * owner) { return owner->unk_394; }
-#pragma opt_loop_invariants off
 void fn_1_A75DC(Fn1A75dcObject *obj, void *arg) {
     s32 i;
     Fn1A75dcObject *entry;
@@ -1911,7 +1906,7 @@ void fn_1_A75DC(Fn1A75dcObject *obj, void *arg) {
                 result = fn_1_D3884(buffer);
                 other.value = (void *)fn_80077D40(result);
                 first_value = (void *)fn_80071470((u32)result->unk_8, 0);
-                fn_80008BA8(fn_80071470((u32)fn_1_A75DC_read_pointer(item)->unk_8, 0),
+                fn_80008BA8(fn_80071470((u32)(item->unk_108)->unk_8, 0),
                     (u32)first_value, (u32)other.value);
                 fn_80071718(result);
             }
@@ -1921,13 +1916,8 @@ void fn_1_A75DC(Fn1A75dcObject *obj, void *arg) {
     }
     fn_80006E10((u32)"..");
 }
-#pragma opt_loop_invariants reset
 
 #pragma opt_propagation reset
-
-#pragma opt_lifetimes reset
-
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_A75DC */
 
 /* fzgx:begin fn_1_A7728 */
@@ -2210,19 +2200,6 @@ obj->unk_120 = zero;
 obj->unk_124 = zero;
 obj->unk_128 = negative;
 }
-}
-}
-static inline void A7B5C_copy_parts(A7B5C_Mtx *parts, A7B5C_Src *src) {
-s32 i;
-for (i = 0; i < 10; i++) {
-lbl_8006DD14(src->data + (s8)(&(*((fn_1_A7B5C_Obj_1_data_34348 *)&lbl_1_data_34348)).unk_0)[i] * 0x18c + 0x88, &parts[i]);
-}
-}
-static inline void A7B5C_default_parts(A7B5C_Mtx *parts, s32 off) {
-s32 i;
-for (i = 0; i < 10; i++) {
-fn_1_A7F84((u8 *)&(*((fn_1_A7B5C_Obj_1_data_345D4 *)&lbl_1_data_345D4)) + off, i);
-lbl_8006DB74(&parts[i]);
 }
 }
 void fn_1_A7B5C(A7B5C_Obj *obj, A7B5C_Src *src, s8 kind, s8 type, fn_1_A7B5C_Vec3 *pos) {

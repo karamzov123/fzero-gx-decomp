@@ -11532,7 +11532,7 @@
       "peCount$1": "lbl_801A6BD8",
       "time$2": "lbl_801A6BE0",
       "calledOnce$3": "lbl_801A6BE8",
-      "resetFuncRegistered$30": "resetFuncRegistered$63"
+      "resetFuncRegistered$32": "resetFuncRegistered$63"
     },
     "own": [
       "lbl_801A6BD8",
@@ -45628,7 +45628,7 @@
     "collapsed": true,
     "pool": {
       "@5": "@62",
-      "@48": "@154"
+      "@37": "@154"
     },
     "own": [
       "@62",
@@ -103446,9 +103446,9 @@
     "tu": "rel/main_rel/driver.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_4A28",
-      "@328": "lbl_1_rodata_4A28",
-      "@329": "lbl_1_rodata_4A28+0x4",
-      "@330": "lbl_1_rodata_4A28+0x8"
+      "@305": "lbl_1_rodata_4A28",
+      "@306": "lbl_1_rodata_4A28+0x4",
+      "@307": "lbl_1_rodata_4A28+0x8"
     }
   },
   {
@@ -125905,8 +125905,8 @@
     "tu": "rel/main_rel/screen_effect.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_3180",
-      "@204": "lbl_1_rodata_31D8",
-      "@513": "lbl_1_rodata_31EC"
+      "@197": "lbl_1_rodata_31D8",
+      "@506": "lbl_1_rodata_31EC"
     }
   },
   {

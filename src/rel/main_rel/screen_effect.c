@@ -143,8 +143,6 @@ struct fn_1_727BC_lbl_1_data_1D960_58_E6 {
 };
 extern void OSPanic(const char *, int, const char *, ...);
 
-static inline struct fn_1_727BC_lbl_1_data_1D960_58_E6 *fn_1_727BC_array_read(struct fn_1_727BC_lbl_1_data_1D960_58_E6 *array) { return array; }
-#pragma opt_dead_assignments off
 void fn_1_727BC(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
     u32 v0;
     s32 v1;
@@ -159,13 +157,12 @@ void fn_1_727BC(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
         v1 = obj->unk_DC;
         v2 = (arg1 & 0xFF);
         table = (struct fn_1_727BC_lbl_1_data_1D960_58_E6 *)&lbl_1_data_1D9B8;
-        v3 = fn_1_727BC_array_read(table)[v1].unk_5 - 1;
+        v3 = (table)[v1].unk_5 - 1;
         valid = v2 <= v3;
         if (valid != 0U && v1 != 0) return;
     }
     OSPanic((const char *)lbl_1_data_1DAC0, 394, lbl_1_data_1DAEC);
 }
-#pragma opt_dead_assignments reset
 /* fzgx:end fn_1_727BC */
 
 /* fzgx:begin fn_1_72848 noprologue */

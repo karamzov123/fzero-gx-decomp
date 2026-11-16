@@ -250,7 +250,6 @@ BOOL SIUnregisterPollingHandler(__OSInterruptHandler handler) {
     return 0;
 }
 
-#pragma opt_propagation off
 void SIInit(void) {
     OSRegisterVersion(__SIVersion);
     Packet[0].chan = Packet[1].chan = Packet[2].chan = Packet[3].chan = -1;
@@ -266,7 +265,6 @@ void SIInit(void) {
     SIGetType(2);
     SIGetType(3);
 }
-#pragma opt_propagation reset
 
 typedef struct SIComm_s {
     u32 tcint : 1;
