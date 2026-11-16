@@ -4141,8 +4141,8 @@ static inline f32 progress_ratio(Progress *self) {
 
 #pragma opt_propagation off
 /* WARNING: compiler-diff device, not original code: keeps the dead pedal compare in the case 5-8 header
- * (see there) until register allocation. The body is exact with the pragma on; whether it has other
- * dead assignments that the pragma also keeps was not checked. */
+ * (see there) until register allocation. Removing this pragma, removing the dead compare, or removing
+ * both leaves 27 aligned word errors with the current source and recorded compiler settings. */
 #pragma opt_dead_assignments off
 void fn_1_12F4A8(Machine *m) {
     CpuBlock *ai;

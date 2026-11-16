@@ -68,7 +68,7 @@ static inline s32 fn_80048340_put8(struct fn_80048340_stream *arg1,
 }
 
 static inline s32 fn_80048340_put16(struct fn_80048340_stream *arg1,
-                                    const volatile void *p) { /* volatile: staged source slot */
+                                    const void *p) {
     struct fn_80048340_block blk;
     s16 *dst;
 
@@ -78,7 +78,7 @@ static inline s32 fn_80048340_put16(struct fn_80048340_stream *arg1,
         return 0;
     }
     dst = (s16 *)blk.ptr;
-    *dst = *(const volatile s16 *)p; /* volatile: source read after the callback */
+    *dst = *(const s16 *)p;
     (*(fn_80048340_FnC *)(arg1->vtable + 32))(arg1, 1, &blk);
     return 1;
 }
@@ -136,9 +136,11 @@ s32 fn_80048340(struct fn_80048340_data *arg0, struct fn_80048340_stream *arg1) 
     s32 i;
     s32 pad;
     /* WARNING: compiler-diff device, not original code: the remaining volatile
-     * block pointer, writer reads and word staging retain retail's stack
-     * allocation and access ordering. Ordinary halfword staging matches without
-     * qualified writes; those qualifiers and address casts are not needed. */
+     * block pointer, word-writer reads and word staging retain retail's stack
+     * allocation and access ordering. Ordinary halfword staging and writer reads
+     * match without qualifiers. Removing the block-pointer qualification still
+     * leaves 48 aligned word errors; removing word staging/read qualification
+     * leaves 279 (shared repair-engine measurements, not positional counts). */
     u8 b;
     u16 v1;
     u16 v;

@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "kind": "portable-fixed-cohort-replay",
+  "engine": "fzgx.fixup.replay_archive",
+  "command": "python tools/fzgx.py fixup --archive state/repairs/<archive>",
+  "archives": [
+    {
+      "archive": "volatile-cast-cleanup-20261116.all-sources.json.gz",
+      "sha256": "36748821fd4d87104c5a05d17bff5e65607cc195a4c39b9c716769096d17b004",
+      "reproduced_bodies": 48,
+      "verdicts_and_aligned_errors_reproduced": true
+    },
+    {
+      "archive": "scalar-lvalue-cleanup-20261116.all-sources.json.gz",
+      "sha256": "5d3c09564b3d30a21e5417540bbdc76e29b11fc5c69da182bf600de7df76b596",
+      "reproduced_bodies": 20,
+      "verdicts_and_aligned_errors_reproduced": true
+    },
+    {
+      "archive": "marked-debt-cleanup-20261116.all-sources.json.gz",
+      "sha256": "7ddd707561de3e0b294e0fce68a25467995f1c84657e59815dd0ca0a028a3a10",
+      "reproduced_bodies": 12,
+      "verdicts_and_aligned_errors_reproduced": true
+    }
+  ],
+  "total_reproduced": 80,
+  "acceptance": "All frozen probes, including failed removal attempts, are retained. Shared replay regenerated each source from its seed plus hashed edit recipe, recompiled real MWCC objects, and repeated object/relocation checks. Source SHA key sets, exact-match verdicts and aligned-word error counts were compared programmatically with the original reports; all agree.",
+  "limits": "Reproduction of a failed probe is evidence, not acceptance. No new fully natural functions are claimed. Original selected-best archives remain available; these all-sources archives additionally retain every frozen probe."
+}
