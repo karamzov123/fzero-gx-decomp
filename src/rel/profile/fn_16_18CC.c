@@ -58,7 +58,7 @@ void fn_16_18CC(void) {
     /* one-member carriers: a constant address in a plain pointer is rematerialised */
     struct { struct fn_16_18CC_Entry *value; } ent;
     s32 *handles;
-    struct { u32 value; } tb;
+    u32 tb;
     Sig_fn_1_8F494_Fn1_8F494_Object * lab_t0;
 
     d = (struct fn_16_18CC_ProfileHandles *)((u8 *)&lbl_16_data_0 + 0x80000);
@@ -92,8 +92,8 @@ void fn_16_18CC(void) {
         }
         p->unk_58 = 0;
     }
-    tb.value = (u32)d + 0x2B54;
-    fn_1_48140(*(s32 *)(tb.value + p->unk_C * 4));
+    tb = (u32)d + 0x2B54;
+    fn_1_48140(*(s32 *)(tb + p->unk_C * 4));
     e = &lbl_16_bss_220[p->unk_C];
     fn_1_80F1C((s16)e->unk_324, e);
 }

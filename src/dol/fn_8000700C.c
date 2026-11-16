@@ -16,17 +16,17 @@ extern void fn_80006BDC(const char *, ...);
 extern int fn_80083BCC(const char *, const char *);
 
 s32 fn_8000700C(const char *path) {
-    struct { char *value; } str;
+    char * str;
     char buf[0x88];
     s32 result;
     s32 i;
 
-    str.value = lbl_801220C0;
+    str = lbl_801220C0;
     if (lbl_801A66F8 == 0) {
         result = DVDConvertPathToEntrynum(path);
     } else {
         if (lbl_801A6704 == 0) {
-            OSPanic(str.value + 0x58, 749, str.value + 0x80);
+            OSPanic(str + 0x58, 749, str + 0x80);
         }
         if (path[0] == '/') {
             for (i = 1; i < strlen(path) + 1; i++) {
@@ -42,9 +42,9 @@ s32 fn_8000700C(const char *path) {
             }
             strcat(buf, path);
         }
-        fn_80006BDC(str.value + 0xa0, path);
-        fn_80006BDC(str.value + 0xb0, lbl_8015BD40);
-        fn_80006BDC(str.value + 0xc0, buf);
+        fn_80006BDC(str + 0xa0, path);
+        fn_80006BDC(str + 0xb0, lbl_8015BD40);
+        fn_80006BDC(str + 0xc0, buf);
         i = 0;
         result = -1;
         for (; i < (s32)lbl_801A66FC; i++) {
@@ -53,7 +53,7 @@ s32 fn_8000700C(const char *path) {
                 break;
             }
         }
-        fn_80006BDC(str.value + 0xd0, buf, result | 0x7FFF0000);
+        fn_80006BDC(str + 0xd0, buf, result | 0x7FFF0000);
     }
     return result;
 }

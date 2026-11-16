@@ -3052,7 +3052,7 @@ static inline s32 available34(u32 flags) {
 #define mode34(entry) \
     (((entry) & 4) ? (lbl_14_bss_110.unk_0 | 0x80000000) : (lbl_14_bss_110.unk_0 & 0x7FFFFFFF))
 u32 fn_14_34FC(void) {
-    struct { Obj_14_bss_110 *value; } sel;
+    Obj_14_bss_110 * sel;
     f32 v0;
     f32 v1;
     s16 direction;
@@ -3065,13 +3065,13 @@ u32 fn_14_34FC(void) {
     u32 *flagbase;
     u32 result;
     f64 v3;
-    sel.value = &lbl_14_bss_110;
+    sel = &lbl_14_bss_110;
     v0 = (f32)(s32)lbl_14_bss_92BC;
     v1 = (v0 - 10.0f) / 20.0f;
     result = 0;
     direction = 0;
     horizontal = 0;
-    old = sel.value->unk_4;
+    old = sel->unk_4;
     if ((s32)lbl_14_bss_92C0 == 1) {
         /* The timer is re-read through a different lvalue so the front end keeps
          * it a plain load temporary (the backend still folds it onto one lwz). */
@@ -3088,14 +3088,14 @@ u32 fn_14_34FC(void) {
     if (((*(struct Input34 *)&lbl_1_bss_9F8).repeat & 1) || ((*(struct Input34 *)&lbl_1_bss_9F8).held & 1)) direction--;
     if ((((*(struct Input34 *)&lbl_1_bss_9F8).repeat >> 3) & 1) || (((*(struct Input34 *)&lbl_1_bss_9F8).held >> 3) & 1)) horizontal = -1;
     if ((((*(struct Input34 *)&lbl_1_bss_9F8).repeat >> 2) & 1) || (((*(struct Input34 *)&lbl_1_bss_9F8).held >> 2) & 1)) horizontal++;
-    sel.value->unk_4 = wrap34(sel.value->unk_4 + direction, 0, 7);
-    while ((*flags34(sel.value->unk_4) & 1) || !available34(*flags34(sel.value->unk_4))) {
+    sel->unk_4 = wrap34(sel->unk_4 + direction, 0, 7);
+    while ((*flags34(sel->unk_4) & 1) || !available34(*flags34(sel->unk_4))) {
         if (!direction) direction = 1;
-        sel.value->unk_4 = wrap34(sel.value->unk_4 + direction, 0, 7);
+        sel->unk_4 = wrap34(sel->unk_4 + direction, 0, 7);
     }
     flagbase = &lbl_14_bss_110.unk_C;
     /* Reload the selection after scanning the entry flags. */
-    lbl_14_bss_110.unk_0 = mode34(flagbase[*(volatile s16 *)&sel.value->unk_4 * 2]);
+    lbl_14_bss_110.unk_0 = mode34(flagbase[*(volatile s16 *)&sel->unk_4 * 2]);
     if (lbl_14_bss_110.unk_0 & 0x80000000) {
         if (horizontal < 0) {
             candidate = *(s16 *)((u8 *)&lbl_14_bss_110 + 6);
@@ -3106,16 +3106,16 @@ u32 fn_14_34FC(void) {
                 if (count > 10) { candidate = 0; break; }
                 count++;
             }
-            sel.value->unk_4 = candidate;
+            sel->unk_4 = candidate;
         }
     } else if (horizontal > 0) {
-        *(s16 *)((u8 *)&lbl_14_bss_110 + 6) = sel.value->unk_4;
-        sel.value->unk_4 = 0;
+        *(s16 *)((u8 *)&lbl_14_bss_110 + 6) = sel->unk_4;
+        sel->unk_4 = 0;
     }
-    lbl_14_bss_110.unk_0 = mode34(flagbase[sel.value->unk_4 * 2]);
-    if (sel.value->unk_4 != old) fn_1_A2D84(0xA9010000);
+    lbl_14_bss_110.unk_0 = mode34(flagbase[sel->unk_4 * 2]);
+    if (sel->unk_4 != old) fn_1_A2D84(0xA9010000);
     if (((*(struct Input34 *)&lbl_1_bss_9F8).pressed >> 8) & 1) {
-        parent = sel.value->unk_4;
+        parent = sel->unk_4;
         if (flagbase[parent * 2] & 4) {
             result = 1;
             fn_1_A2D84(0xA9010200);
@@ -3125,13 +3125,13 @@ u32 fn_14_34FC(void) {
             flagbase[parent * 2] |= 1;
             lbl_14_bss_110.unk_48 = (*(u32 *)&lbl_801A66A0);
             lbl_14_bss_110.unk_0 &= ~0x60000000;
-            if (flagbase[sel.value->unk_4 * 2] & 8) {
+            if (flagbase[sel->unk_4 * 2] & 8) {
                 lbl_14_bss_110.unk_0 |= 0x40000000;
                 fn_1_A2D84(0xA9110400);
             }
-            if (flagbase[sel.value->unk_4 * 2] & 16) {
+            if (flagbase[sel->unk_4 * 2] & 16) {
                 lbl_14_bss_110.unk_0 |= 0x20000000;
-                fn_1_A514C(*(s16 *)((u8 *)&lbl_14_bss_110 + sel.value->unk_4 * 8 + 8));
+                fn_1_A514C(*(s16 *)((u8 *)&lbl_14_bss_110 + sel->unk_4 * 8 + 8));
             }
         }
     }
@@ -3736,7 +3736,7 @@ typedef struct fn_14_4008_Part {
 } fn_14_4008_Part;
 
 s32 fn_14_4008(void) {
-    struct { fn_14_4008_View *value; } camera;
+    fn_14_4008_View * camera;
     fn_14_4008_View view;
     f32 y;
     f32 x;
@@ -3751,7 +3751,7 @@ s32 fn_14_4008(void) {
     s16 c;
     s16 q;
     s16 r;
-    struct { s32 value; } index;
+    s32 index;
 
     fn_80008BEC(&lbl_14_bss_92C4.unk_4, 0, sizeof(fn_14_4008_Vec));
     fn_80008BEC(&lbl_14_bss_92C4.unk_10, 0, sizeof(fn_14_4008_Vec));
@@ -3766,14 +3766,14 @@ s32 fn_14_4008(void) {
     fn_8006F038((void *)&lbl_14_bss_92C4.unk_4, (void *)&lbl_14_bss_92C4.unk_10, 0);
     lbl_8006DCDC();
 
-    camera.value = &(*(fn_14_4008_View *)&lbl_1_data_1E5C0);
+    camera = &(*(fn_14_4008_View *)&lbl_1_data_1E5C0);
     scale = 0.7f;
-    x = camera.value->unk_C * scale;
-    y = camera.value->unk_10 * scale;
-    view = *camera.value;
+    x = camera->unk_C * scale;
+    y = camera->unk_10 * scale;
+    view = *camera;
     view.unk_C = x - y;
     view.unk_10 = x + y;
-    view.unk_14 = camera.value->unk_14;
+    view.unk_14 = camera->unk_14;
     fn_1_F7870(&view);
 
     lbl_8006DCA4();
@@ -3808,13 +3808,13 @@ s32 fn_14_4008(void) {
         }
     }
 
-    if (*(s16 *)((u8 *)lbl_14_bss_8340 + (index.value = a * sizeof(*lbl_14_bss_8340))) ==
+    if (*(s16 *)((u8 *)lbl_14_bss_8340 + (index = a * sizeof(*lbl_14_bss_8340))) ==
         fn_1_14F270(fn_1_128B00(0), 0, 0x80000000)) {
         fn_1_151BDC(fn_1_36AD0() + (fn_14_DC2C() & 0xFF) * 0x81C0);
     } else {
         fn_1_151BDC(lbl_14_bss_180);
     }
-    fn_1_14DE80((u8 *)lbl_14_bss_8340 + index.value, &sel0, &sel1, lbl_14_data_27B8__fzgx_offset_77E.unk_0, 1.0f);
+    fn_1_14DE80((u8 *)lbl_14_bss_8340 + index, &sel0, &sel1, lbl_14_data_27B8__fzgx_offset_77E.unk_0, 1.0f);
     lbl_8006DAEC();
 
     if (((fn_14_4008_Part (*)[3])lbl_14_bss_8340)[b][1].id ==
@@ -4014,14 +4014,14 @@ s32 fn_14_4460(void) {
     u32 flags;
     s16 i;
     s16 count;
-    struct { Bss_14_bss_8350_Target *value; } target;
+    Bss_14_bss_8350_Target * target;
     s16 id;
     s32 off;
 
     
-    target.value = fn_14_4460_find();
+    target = fn_14_4460_find();
 
-    id = fn_1_12C710(target.value->unk_88);
+    id = fn_1_12C710(target->unk_88);
 
     neg1 = -lbl_8006D188(0xEEE);
     (*(Bss_14_bss_92C4 *)&lbl_14_bss_92C4).unk_4 = (f32)((0.55000000000000004) * neg1);
@@ -4046,10 +4046,10 @@ s32 fn_14_4460(void) {
     fn_1_F7870(&local);
     lbl_8006DCA4();
 
-    target.value->unk_A8 = (0.0f);
-    target.value->unk_AC = (0.0f);
-    target.value->unk_B0 = (0.0f);
-    fn_1_9250C(target.value);
+    target->unk_A8 = (0.0f);
+    target->unk_AC = (0.0f);
+    target->unk_B0 = (0.0f);
+    fn_1_9250C(target);
 
 {
     f32 fzgx_loop_zero_2935;
@@ -4059,11 +4059,11 @@ s32 fn_14_4460(void) {
     fzgx_loop_i_2935 = 0;
     fzgx_loop_off_2935 = 0;
     while (fzgx_loop_i_2935 < (s16)fn_1_12CB04(id)) {
-        target.value = (Bss_14_bss_8350_Target *)((u8 *)target.value + fzgx_loop_off_2935 + 0x4E0);
-        target.value->unk_A8 = fzgx_loop_zero_2935;
-        target.value->unk_AC = fzgx_loop_zero_2935;
-        target.value->unk_B0 = fzgx_loop_zero_2935;
-        fn_1_9250C(target.value);
+        target = (Bss_14_bss_8350_Target *)((u8 *)target + fzgx_loop_off_2935 + 0x4E0);
+        target->unk_A8 = fzgx_loop_zero_2935;
+        target->unk_AC = fzgx_loop_zero_2935;
+        target->unk_B0 = fzgx_loop_zero_2935;
+        fn_1_9250C(target);
         fzgx_loop_off_2935 += 0x4E0;
         fzgx_loop_i_2935++;
     }
@@ -7478,7 +7478,7 @@ void fn_14_82E4(s16 arg0, s16 arg1, s16 arg2) {
     s32 n;
     struct { f32 value; } y;
     f32 t;
-    struct { s32 value; } d;
+    s32 d;
 
     t = lbl_8006D188((s32)(65536.0f * (f32)((lbl_801A66A0 % 60) % 120) / 120.0f));
     n = arg2 / 60;
@@ -7490,7 +7490,7 @@ void fn_14_82E4(s16 arg0, s16 arg1, s16 arg2) {
     fn_1_495C8(9);
     fn_1_4954C(5.0f);
     fn_1_4955C(0.7f, 0.7f);
-    fn_1_4AE0C((const char *)"%d", d.value = n / 10);
+    fn_1_4AE0C((const char *)"%d", d = n / 10);
     fn_1_496FC(x, y.value);
     {
         fn_14_82E4_Color c = *(const fn_14_82E4_Color *)fzgx_pool_table28;
@@ -7502,7 +7502,7 @@ void fn_14_82E4(s16 arg0, s16 arg1, s16 arg2) {
     fn_1_495C8(9);
     fn_1_4955C(0.7f, 0.7f);
     fn_1_4954C(9.0f);
-    fn_1_4AE0C((const char *)"%d", d.value);
+    fn_1_4AE0C((const char *)"%d", d);
     fn_1_49410();
     x = 20.0f + x;
     fn_1_496FC(x, y.value);
@@ -7514,7 +7514,7 @@ void fn_14_82E4(s16 arg0, s16 arg1, s16 arg2) {
     fn_1_495C8(9);
     fn_1_4955C(0.7f, 0.7f);
     fn_1_4954C(5.0f);
-    fn_1_4AE0C((const char *)"%d", d.value = n % 10);
+    fn_1_4AE0C((const char *)"%d", d = n % 10);
     fn_1_496FC(x, y.value);
     {
         fn_14_82E4_Color c = *(const fn_14_82E4_Color *)fzgx_pool_table30;
@@ -7525,7 +7525,7 @@ void fn_14_82E4(s16 arg0, s16 arg1, s16 arg2) {
     fn_1_495C8(9);
     fn_1_4955C(0.7f, 0.7f);
     fn_1_4954C(9.0f);
-    fn_1_4AE0C((const char *)"%d", d.value);
+    fn_1_4AE0C((const char *)"%d", d);
 }
 /* fzgx:end fn_14_82E4 */
 

@@ -163,7 +163,7 @@ static inline void fn_1_101BC4_copy12(volatile struct fn_1_101BC4_Copy12 *dst, c
 void fn_1_101BC4(u32 arg0) {
     const struct fn_1_101BC4_lbl_1_rodata_77F8 *p_lbl_1_rodata_77F8;
     Obj_1_bss_85250 *p_lbl_1_bss_85250;
-    struct { u32 value; } v0;
+    u32 v0;
     u32 v4;
     u32 v2;
     f64 v3;
@@ -243,10 +243,10 @@ void fn_1_101BC4(u32 arg0) {
         p_lbl_1_bss_85250->unk_1C = 0;
         while (v4 < *(u32 *)v1) {
             v10 = (u32)p_lbl_1_bss_85250->unk_18;
-            v0.value = p_lbl_1_bss_85250->unk_1C;
+            v0 = p_lbl_1_bss_85250->unk_1C;
             v14 = -1;
             v13 = v10;
-            for (v12 = 0; v12 < v0.value; v12++, v13 += 68) {
+            for (v12 = 0; v12 < v0; v12++, v13 += 68) {
                 dx = *(f32 *)(v13 + 16);
                 dy = *(f32 *)(v13 + 20);
                 dz = *(f32 *)(v13 + 24);
@@ -263,11 +263,11 @@ void fn_1_101BC4(u32 arg0) {
             }
             if ((v14 + 0x10000U) != 65535) {
                 v17 = v10 + v14 * 68;
-                v0.value = ((Obj_1_bss_85250_At18 *)v17)->unk_2 << 1;
-                *(u16 *)(v17 + v0.value + 4) = v4;
+                v0 = ((Obj_1_bss_85250_At18 *)v17)->unk_2 << 1;
+                *(u16 *)(v17 + v0 + 4) = v4;
                 ((Obj_1_bss_85250_At18 *)((u8 *)p_lbl_1_bss_85250->unk_18 + v14 * 68))->unk_2++;
             } else {
-                v20 = v0.value * 68;
+                v20 = v0 * 68;
                 v6 = v10 + v20;
                 fn_1_101BC4_copy12((struct fn_1_101BC4_Copy12 *)(v6 + 40), (struct fn_1_101BC4_Copy12 *)v2);
                 fn_1_101BC4_copy12((struct fn_1_101BC4_Copy12 *)(v6 + 28), (struct fn_1_101BC4_Copy12 *)(v6 + 40));
@@ -418,9 +418,9 @@ void fn_1_101BC4(u32 arg0) {
                     *(u32 *)((u32)p_lbl_1_bss_85250->unk_20 + v6_2 * 24) = v4;
                     *(u32 *)((u32)p_lbl_1_bss_85250->unk_20 + v6_2 * 24 + 4) = v51;
                     v15 = fn_1_1024C4( (const Point1024C4 *)((const Sig_fn_1_1024C4_Point1024C4 *)v4), (const Point1024C4 *)((const Sig_fn_1_1024C4_Point1024C4 *)v51));
-                    v0.value = (u32)p_lbl_1_bss_85250->unk_20;
+                    v0 = (u32)p_lbl_1_bss_85250->unk_20;
                     v53 = p_lbl_1_rodata_77F8->unk_90;
-                    *(f32 *)(v0.value + v6_2 * 24 + 8) = v15;
+                    *(f32 *)(v0 + v6_2 * 24 + 8) = v15;
                     v16 = p_lbl_1_rodata_77F8->unk_94;
                     v52 = (u32)p_lbl_1_bss_85250->unk_20;
                     v28 = p_lbl_1_rodata_77F8->unk_98;
@@ -445,9 +445,9 @@ void fn_1_101BC4(u32 arg0) {
                     *(u32 *)((u32)p_lbl_1_bss_85250->unk_20 + v6_2 * 24) = v4;
                     *(u32 *)((u32)p_lbl_1_bss_85250->unk_20 + v6_2 * 24 + 4) = v59;
                     v15 = fn_1_1024C4( (const Point1024C4 *)((const Sig_fn_1_1024C4_Point1024C4 *)v4), (const Point1024C4 *)((const Sig_fn_1_1024C4_Point1024C4 *)v59));
-                    v0.value = (u32)p_lbl_1_bss_85250->unk_20;
+                    v0 = (u32)p_lbl_1_bss_85250->unk_20;
                     v62 = p_lbl_1_rodata_77F8->unk_90;
-                    *(f32 *)(v0.value + v6_2 * 24 + 8) = v15;
+                    *(f32 *)(v0 + v6_2 * 24 + 8) = v15;
                     v16 = p_lbl_1_rodata_77F8->unk_94;
                     v52 = (u32)p_lbl_1_bss_85250->unk_20;
                     v28 = p_lbl_1_rodata_77F8->unk_98;

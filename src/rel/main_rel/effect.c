@@ -2658,8 +2658,6 @@ void fn_1_5ABCC(Fn1_5ABCCOutput *out) {
     scaled = (0.25f) * (t / (32767.0f));
     out->unk_10 = (s32)((60.0f) * ((0.25f) + scaled));
 }
-
-
 /* fzgx:end fn_1_5ABCC */
 
 /* fzgx:begin fn_1_5AC48 noprologue */
@@ -3385,20 +3383,18 @@ extern struct fn_1_5B3D0_State lbl_1_data_1D628;
 void fn_1_5B3D0(struct fn_1_5B3D0_Arg0 *arg0) {
     u32 next;
     struct fn_1_5B3D0_State *state;
-    struct { u32 value; } random;
-    struct { f32 value; } r;
+    u32 random;
+    f32 r;
 
     state = &lbl_1_data_1D628;
     next = ((1103515245) * (state->unk_0)) + 12345;
-    { u32 __reg_value_random = (next >> 16) & 0x7FFF; random.value = __reg_value_random; }
-    { f32 __reg_value_r = (f32)random.value; r.value = __reg_value_r; }
-    { f32 __reg_value_r = r.value / (32767.0f); r.value = __reg_value_r; }
-    { f32 __reg_value_r = (0.100000001f) * r.value; r.value = __reg_value_r; }
+    { u32 __reg_value_random = (next >> 16) & 0x7FFF; random = __reg_value_random; }
+    { f32 __reg_value_r = (f32)random; r = __reg_value_r; }
+    { f32 __reg_value_r = r / (32767.0f); r = __reg_value_r; }
+    { f32 __reg_value_r = (0.100000001f) * r; r = __reg_value_r; }
     state->unk_0 = next;
-    arg0->unk_10 = (s32)((60.0f) * ((0.125f) + r.value));
+    arg0->unk_10 = (s32)((60.0f) * ((0.125f) + r));
 }
-
-
 /* fzgx:end fn_1_5B3D0 */
 
 /* fzgx:begin fn_1_5B450 noprologue */
@@ -10301,7 +10297,7 @@ void fn_1_60880(Avl60880Obj *obj) {
     f32 dot;
     struct { f32 value; } scale;
     f32 lenSq;
-    struct { f32 value; } k;
+    f32 k;
 
     if (++lbl_1_bss_6C85C > 200) {
         obj->state = 3;
@@ -10351,10 +10347,10 @@ void fn_1_60880(Avl60880Obj *obj) {
     obj->pos.y += obj->vel.y;
     obj->pos.z += obj->vel.z;
 
-    k.value = 512.0f / (10.0f * obj->size);
-    obj->spinX += (s32)(k.value * (obj->vel.x + obj->vel.y));
-    obj->spinY += (s32)(k.value * (obj->vel.y + obj->vel.z));
-    obj->spinZ += (s32)(k.value * (obj->vel.z + obj->vel.x));
+    k = 512.0f / (10.0f * obj->size);
+    obj->spinX += (s32)(k * (obj->vel.x + obj->vel.y));
+    obj->spinY += (s32)(k * (obj->vel.y + obj->vel.z));
+    obj->spinZ += (s32)(k * (obj->vel.z + obj->vel.x));
 
     obj->spinX -= obj->spinX >> 5;
     obj->spinY -= obj->spinY >> 5;
@@ -11375,25 +11371,22 @@ extern void lbl_8006DFC4(void *);
 extern void fn_1_9F914(void *, int);
 extern u8 *memset(u8 *, int, u32);
 
-#pragma opt_loop_invariants off
 #pragma opt_propagation off
 static inline f32 fn_1_61070_read_pointer(Vec * owner) { return owner->y; }
-#pragma opt_dead_assignments off
 #pragma opt_common_subs off
 static inline f32 fn_1_61070_read_pointer_(Vec * owner) { return owner->x; }
-#pragma opt_strength_reduction off
 void fn_1_61070(Fn161070 *self) {
     f32 fzgx_live;
     EfxData data;
     Fade fade;
     Vec vector;
-    struct { const f32 *value; } pool;
+    const f32 * pool;
     int id = self->field34;
     f32 radius = self->field28;
     f32 acc;
     f32 distance;
     f32 scale;
-    pool.value = lbl_1_rodata_2950;
+    pool = lbl_1_rodata_2950;
 
     lbl_8006D9D8(self->field3c);
     lbl_8006D7B0();
@@ -11409,7 +11402,7 @@ void fn_1_61070(Fn161070 *self) {
     acc = vector.z * vector.z + acc;
     distance = lbl_8006D0B4(acc);
 
-    if (distance > pool.value[1] + radius) {
+    if (distance > pool[1] + radius) {
         lbl_8006DB74(&fade);
         lbl_8006D848((distance - radius) / distance);
         lbl_8006DFC4(&fade);
@@ -11417,24 +11410,20 @@ void fn_1_61070(Fn161070 *self) {
 
     memset((u8 *)&data, 0, 0x40);
     lbl_8006DB74(data.mtx);
-    scale = pool.value[0x54] * self->field28;
+    scale = pool[0x54] * self->field28;
     data.field0 = scale;
-    data.color[0] = (u8)(pool.value[0x17] * self->field1c);
-    data.color[1] = (u8)(pool.value[0x17] * self->field20);
-    data.color[2] = (u8)(pool.value[0x17] * self->field24);
+    data.color[0] = (u8)(pool[0x17] * self->field1c);
+    data.color[1] = (u8)(pool[0x17] * self->field20);
+    data.color[2] = (u8)(pool[0x17] * self->field24);
     data.color[3] = 0xff;
     data.field4 = scale;
     fn_1_9F914(&data, id);
 }
-#pragma opt_strength_reduction reset
 
 #pragma opt_common_subs reset
 
-#pragma opt_dead_assignments reset
 
 #pragma opt_propagation reset
-
-#pragma opt_loop_invariants reset
 /* fzgx:end fn_1_61070 */
 
 /* fzgx:begin fn_1_611EC noprologue */
@@ -22079,7 +22068,7 @@ typedef struct Fn167F20 {
 static inline f32 fn_1_67F20_operand(f32 right, f32 left) { return left * right; }
 void fn_1_67F20(Fn167F20 *obj) {
     f32 current;
-    struct { f32 value; } delta;
+    f32 delta;
 
     obj->value48 *= 0.9f;
     obj->value4c *= 0.9f;
@@ -22093,14 +22082,14 @@ void fn_1_67F20(Fn167F20 *obj) {
     obj->valueae += obj->valueac;
 
     current = obj->value88;
-    { f32 __reg_value_delta = obj->value8c - current; delta.value = __reg_value_delta; }
-    { f32 __reg_value_delta = fn_1_67F20_operand((delta.value), (0.05f)); delta.value = __reg_value_delta; }
-    obj->value88 = current + delta.value;
+    { f32 __reg_value_delta = obj->value8c - current; delta = __reg_value_delta; }
+    { f32 __reg_value_delta = fn_1_67F20_operand((delta), (0.05f)); delta = __reg_value_delta; }
+    obj->value88 = current + delta;
 
     current = obj->value28;
-    { f32 __reg_value_delta = obj->value2c - current; delta.value = __reg_value_delta; }
-    { f32 __reg_value_delta = fn_1_67F20_operand((delta.value), (0.01f)); delta.value = __reg_value_delta; }
-    obj->value28 = current + delta.value;
+    { f32 __reg_value_delta = obj->value2c - current; delta = __reg_value_delta; }
+    { f32 __reg_value_delta = fn_1_67F20_operand((delta), (0.01f)); delta = __reg_value_delta; }
+    obj->value28 = current + delta;
 
     if (obj->state < 0x1e) {
         obj->value1c = fn_1_67F20_operand((0.01f), (-obj->value1c));

@@ -9001,7 +9001,7 @@ static const u32 fzgx_pool_table_40[1] = { 0x00F0F0FF };
 
 void fn_10_D044(void) {
     f32 *p_lbl_10_rodata_158;
-    struct { u8 *value; } p_lbl_1_rodata_26F8;
+    u8 * p_lbl_1_rodata_26F8;
     struct fn_10_D044_lbl_1_bss_8B3A0 *p_lbl_1_bss_8B3A0;
     u32 v0;
     u32 v1;
@@ -9021,7 +9021,7 @@ void fn_10_D044(void) {
     f32 v16;
     f32 v3;
     u32 v17;
-    struct { u32 value; } v18;
+    u32 v18;
     f32 v19;
     f32 v20;
     u32 v21;
@@ -9029,7 +9029,7 @@ void fn_10_D044(void) {
     u32 v25;
     f32 v24;
     u32 v23;
-    struct { u32 value; } v26;
+    u32 v26;
     u32 v28;
     u32 v29;
     u32 v30;
@@ -9049,7 +9049,7 @@ void fn_10_D044(void) {
     f32 v42;
     f32 v43;
     f64 v44;
-    struct { f32 value; } v45;
+    f32 v45;
     f32 v46;
     f32 v47;
     f32 v48;
@@ -9094,18 +9094,18 @@ void fn_10_D044(void) {
     v14 = (f32)(v32 * v3);
     v15 = (320.0f);
     v16 = (f32)((0.5f) * v3);
-    v18.value = (0x10000 - 24279);
+    v18 = (0x10000 - 24279);
     v19 = (3.0f);
     v20 = (323.0f);
     v22 = (4.0f);
     p_lbl_1_bss_8B3A0 = (struct fn_10_D044_lbl_1_bss_8B3A0 *)&(*(struct fn_10_D044_lbl_1_bss_8B3A0 *)&lbl_1_bss_8B3A0);
     v24 = (5.0f);
-    v26.value = (0x10000 - 24278);
+    v26 = (0x10000 - 24278);
     v27 = 0;
     v30 = 0x43300000;
     while ((s16)v27 < 3) {
     loc_8 = *(FontDrawPacket *)(*(u8 (*)[])&lbl_1_rodata_26F8);
-    loc_8.image = v18.value;
+    loc_8.image = v18;
     loc_8.flags = 10;
     loc_8.x = v15;
     loc_8.y = (f32)(s32)(198 + v27 * 40);
@@ -9117,7 +9117,7 @@ void fn_10_D044(void) {
     }
     fn_1_4F734((FontDrawPacket *)&loc_8);
     loc_8 = *(FontDrawPacket *)(*(u8 (*)[])&lbl_1_rodata_26F8);
-    loc_8.image = v18.value;
+    loc_8.image = v18;
     loc_8.flags = 10;
     loc_8.x = v20;
     loc_8.y = (f32)(s32)(201 + v27 * 40);
@@ -9131,7 +9131,7 @@ void fn_10_D044(void) {
     }
     fn_1_4F734((FontDrawPacket *)&loc_8);
     loc_8 = *(FontDrawPacket *)(*(u8 (*)[])&lbl_1_rodata_26F8);
-    loc_8.image = v26.value;
+    loc_8.image = v26;
     loc_8.flags = 10;
     loc_8.x = v15;
     loc_8.y = (f32)(s32)(198 + v27 * 40);
@@ -33553,7 +33553,7 @@ void fn_10_1AD5C(void) {
  s32 id;
  s16 car;
  State *state;
- struct { u8 *value; } entries;
+ u8 * entries;
  const f32 *pool = (const f32 *)lbl_10_rodata_158;
  fn_80008BEC(&config,0,0x68);
  state=(State *)lbl_1_bss_8B3A0;
@@ -33589,8 +33589,8 @@ void fn_10_1AD5C(void) {
  fn_1_1380F0();
  fn_1_13B328(0x1000000,0);
  id=state->id;
- entries.value=lbl_1_bss_8B3A0;
- car=*(s16 *)(((((s16)id << 5)) + (entries.value)) + 14);
+ entries=lbl_1_bss_8B3A0;
+ car=*(s16 *)(((((s16)id << 5)) + (entries)) + 14);
  fn_1_134EE4(0,1,0,F(0x4c));
  fn_1_135894(213,366,6,car,0,id,0,F(0x44),F(0x44));
  fn_1_136174(213,355,1,car,(s16)lbl_801A66B4,id,0,F(0x48),F(0x48));
@@ -46054,7 +46054,7 @@ u8 pad_0[8]; s16 unk_8; u8 pad_A[0x86]; s16 unk_90;
 #pragma opt_propagation off
 
 void fn_10_21E30(void) {
-struct { u8 *value; } data_base;
+u8 * data_base;
 f32 *constants;
 u32 v0;
 u32 v1;
@@ -46078,7 +46078,7 @@ s16 loc_A;
 u16 loc_8;
 s32 t1;
 s32 t5;
-data_base.value = (u8 *)((u8 (*)[])&lbl_10_data_D00);
+data_base = (u8 *)((u8 (*)[])&lbl_10_data_D00);
 constants = lbl_10_rodata_158;
 v3 = (*((u32 *)&lbl_801A66B4)) == 5 ? 0 : (*((u32 *)&lbl_801A66B4));
 loc_1C = *(struct Copy22 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + 0x1348);
@@ -46118,8 +46118,8 @@ v12 = (v3 << 2);
 struct { u8 *value; } table;
 u32 offset = loc_1C.a[loc_A] * 24;
 offset += v12;
-table.value = data_base.value + 0x1fdc;
-sprintf((char *)&loc_B8, (char *)data_base.value + 0x5b68,
+table.value = data_base + 0x1fdc;
+sprintf((char *)&loc_B8, (char *)data_base + 0x5b68,
 *(char **)(table.value + offset));
 }
 fn_1_49410();
@@ -46151,8 +46151,8 @@ fn_1_141338((u8)loc_A,320,240,45,(*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rod
 struct { u8 *value; } table;
 u32 offset = ((s16 *)&loc_C)[v9] * 24;
 offset += v12;
-table.value = data_base.value + 0x1fdc;
-sprintf((char *)&loc_B8, (char *)data_base.value + 0x5b70,
+table.value = data_base + 0x1fdc;
+sprintf((char *)&loc_B8, (char *)data_base + 0x5b70,
 *(char **)(table.value + offset));
 }
 fn_1_49410();

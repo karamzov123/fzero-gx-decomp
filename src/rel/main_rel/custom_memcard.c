@@ -401,17 +401,13 @@ extern void fn_1_9250C(void *);
 extern void fn_1_13C16C(void);
 extern s32 fn_1_12CB04(s16);
 
-#pragma opt_common_subexpressions off
 #pragma opt_lifetimes off
-#pragma opt_loop_invariants on
-#pragma opt_dead_assignments off
 #pragma opt_common_subs off
-#pragma opt_propagation off
 void fn_1_13198C(s16 idx, void *a1, void *a2, EntryObj *a3, EntryObj *a4, s32 mode) {
     f32 fzgx_value;
     u8 buf[60];
     u32 mask[3];
-    struct { s16 value; } id;
+    s16 id;
     u32 off;
     s16 e;
     EntryObj *cur;
@@ -420,8 +416,8 @@ void fn_1_13198C(s16 idx, void *a1, void *a2, EntryObj *a3, EntryObj *a4, s32 mo
     s16 i;
     Vec3 * lab_t0;
 
-    id.value = idx;
-    off = id.value * 0x20;
+    id = idx;
+    off = id * 0x20;
     e = *(s16 *)(((u8 *)&lbl_1_bss_8B3A0) + off + 0xE);
     if (lbl_1_bss_8B3A0.unk_94 & 0x80000000u) {
         return;
@@ -431,7 +427,7 @@ void fn_1_13198C(s16 idx, void *a1, void *a2, EntryObj *a3, EntryObj *a4, s32 mo
         return;
     }
 
-    cur = (EntryObj *)((u8 *)a3 + id.value * 0x4E0);
+    cur = (EntryObj *)((u8 *)a3 + id * 0x4E0);
     if (0 == cur) {
         OSReport((const char *)&lbl_1_data_41928);
         return;
@@ -470,7 +466,7 @@ void fn_1_13198C(s16 idx, void *a1, void *a2, EntryObj *a3, EntryObj *a4, s32 mo
         fn_1_13C16C();
     }
 
-    p = (EntryObj *)((u8 *)a4 + id.value * 0x9C0);
+    p = (EntryObj *)((u8 *)a4 + id * 0x9C0);
     for (i = 0; i < (s16)fn_1_12CB04(e); i++) {
         if (p != 0) {
             p->unk_A8 = lbl_1_rodata_861C;
@@ -490,17 +486,12 @@ void fn_1_13198C(s16 idx, void *a1, void *a2, EntryObj *a3, EntryObj *a4, s32 mo
         p = ((1) + (p));
     }
 }
-#pragma opt_propagation reset
 
 #pragma opt_common_subs reset
 
-#pragma opt_dead_assignments reset
 
-#pragma opt_loop_invariants reset
 
 #pragma opt_lifetimes reset
-
-#pragma opt_common_subexpressions reset
 /* fzgx:end fn_1_13198C */
 
 /* fzgx:begin fn_1_131B90 */

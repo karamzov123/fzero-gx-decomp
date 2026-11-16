@@ -3951,7 +3951,7 @@ static inline void apply_bg_material(BgData *base, s32 idx) {
 }
 
 void fn_1_107F74(BgObj *obj, int flag) {
-    struct { BgData *value; } data;
+    BgData * data;
     u32 i;
     Obj_1_bss_86ED0 *e;
     u8 *ent;
@@ -3960,12 +3960,12 @@ void fn_1_107F74(BgObj *obj, int flag) {
     u8 **names;
     u8 **names2;
     u8 *model;
-    data.value = (BgData *)lbl_1_data_3F510;
+    data = (BgData *)lbl_1_data_3F510;
     if (obj == NULL) return;
     e = &lbl_1_bss_86ED0;
     for (i = 0; i < 0x46; i++, e = (Obj_1_bss_86ED0 *)((u8 *)e + 0x68)) {
         if (e == NULL || e->unk_C != (u32)obj) continue;
-        ids = data.value->ids;
+        ids = data->ids;
         model = obj->unk_150;
         ent = *(u8 **)(model + 8) + ids[e->unk_8] * 0x18c;
         lbl_8006DCA4();
@@ -3979,21 +3979,21 @@ void fn_1_107F74(BgObj *obj, int flag) {
         if (flag != 0 && r == 0) continue;
         if ((void *)e->unk_10 == NULL) continue;
         if ((s16)lbl_1_bss_960 != 4) {
-            names = data.value->names;
-            if (fn_80083970(names[e->unk_8], data.value->str1) != NULL) {
-                apply_bg_material(data.value, 1);
+            names = data->names;
+            if (fn_80083970(names[e->unk_8], data->str1) != NULL) {
+                apply_bg_material(data, 1);
             } else {
-                names2 = data.value->names;
-                if (fn_80083970(names2[e->unk_8], data.value->str2) != NULL) {
-                    apply_bg_material(data.value, 0);
+                names2 = data->names;
+                if (fn_80083970(names2[e->unk_8], data->str2) != NULL) {
+                    apply_bg_material(data, 0);
                 }
             }
         }
         fn_80072558();
         fn_1_556B8((void *)e->unk_10);
         if ((s16)lbl_1_bss_960 != 4) {
-            names = data.value->names;
-            if (fn_80083970(names[e->unk_8], data.value->str2) != NULL) {
+            names = data->names;
+            if (fn_80083970(names[e->unk_8], data->str2) != NULL) {
                 fn_1_F7870(lbl_1_data_1E5C0);
             }
         }

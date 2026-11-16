@@ -529,7 +529,7 @@ static void fzgx_bss_layout(void) {
 #pragma section code_type ".text"
 
 void fn_8_6C90(void) {
-    struct { s32 value; } n;
+    s32 n;
     f64 sq;
     f32 t;
     f32 k;
@@ -544,20 +544,20 @@ void fn_8_6C90(void) {
     }
     if ((f64)(s32)lbl_8_bss_3CC < PD(0x00)) {
         t = (f32)(PD(0x10) - (f32)(s32)lbl_8_bss_3CC / PD(0x00));
-        n.value = (s32)(PF(0x08) + (f32)(PF(0x0C) * t));
+        n = (s32)(PF(0x08) + (f32)(PF(0x0C) * t));
     } else if ((f64)(s32)lbl_8_bss_3CC > (f64)(s32)fzgx_obj_lbl_8_bss_3D0 - PD(0x00)) {
         t = (f32)(PD(0x10) - (f32)(s32)(fzgx_obj_lbl_8_bss_3D0 - lbl_8_bss_3CC) / PD(0x00));
-        n.value = (s32)(PF(0x08) - (f32)(PF(0x0C) * t));
+        n = (s32)(PF(0x08) - (f32)(PF(0x0C) * t));
     } else {
         t = PF(0x34);
-        n.value = 320;
+        n = 320;
     }
     sq = (PF(0x38) - t) * (PF(0x38) - t);
     fn_1_49410();
     fn_1_495B0(0x8000u << 16);
     fn_1_49590(PF(0x3C));
     fn_1_495C8(9);
-    fn_1_496FC(n.value, PF(0x18));
+    fn_1_496FC(n, PF(0x18));
     fn_1_4954C(PF(0x40));
     if ((s32)(*(u32 *)&lbl_801A66B4) == 5) {
         k = PF(0x38);

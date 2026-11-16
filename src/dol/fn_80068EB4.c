@@ -33,7 +33,7 @@ void fn_80068EB4(void) {
     u8 *q;
     u8 *p;
     s32 flags;
-    struct { u32 value; } msg;
+    u32 msg;
     u32 w;
     u32 cmd;
     u32 arg;
@@ -106,15 +106,15 @@ void fn_80068EB4(void) {
                 } else {
                     fn_80065A7C((arg << 8) | ((i)[lbl_801A6C80->tracks]).chan | 0x80);
                     if (((i)[lbl_801A6C80->tracks]).flags & 0x18) {
-                        msg.value = 0xA01C0000;
+                        msg = 0xA01C0000;
                         if (((i)[lbl_801A6C80->tracks]).flags & 8) {
                             ((i)[lbl_801A6C80->tracks]).flags &= 0xF5;
                         } else {
                             ((i)[lbl_801A6C80->tracks]).flags &= 0xEF;
-                            msg.value |= 0x7F00;
+                            msg |= 0x7F00;
                         }
-                        msg.value |= ((i)[lbl_801A6C80->tracks]).chan;
-                        fn_80065A7C(msg.value);
+                        msg |= ((i)[lbl_801A6C80->tracks]).chan;
+                        fn_80065A7C(msg);
                     }
                 }
             }
@@ -131,7 +131,7 @@ void fn_80068EB4(void) {
         }
         b = *q++;
         lo = b & 0x7F;
-        msg.value = (s << 24) | (lo << 16);
+        msg = (s << 24) | (lo << 16);
         more = b & 0x80;
         switch (s & 0xF0) {
         case 0x90:
@@ -139,35 +139,35 @@ void fn_80068EB4(void) {
         case 0xB0:
         case 0xF0:
             b = *q++;
-            msg.value |= (b & 0x7F) << 8;
+            msg |= (b & 0x7F) << 8;
             more = b & 0x80;
             break;
         case 0xE0:
-            msg.value = (msg.value & 0xFF00FFFF) | (lo << 8);
+            msg = (msg & 0xFF00FFFF) | (lo << 8);
             break;
         case 0xD0:
             if (((i)[lbl_801A6C80->tracks]).flags2 & 0x80) {
                 b1 = ((1)[q]);
                 b0 = ((0)[q]);
                 q += 2;
-                msg.value &= 0xBFFFFFFF;
-                msg.value |= ((b0 & 0x7F) << 8) | ((b1 & 0x7F) << 4);
+                msg &= 0xBFFFFFFF;
+                msg |= ((b0 & 0x7F) << 8) | ((b1 & 0x7F) << 4);
                 more = b1 & 0x80;
             }
             break;
         }
-        msg.value |= ((i)[lbl_801A6C80->tracks]).chan;
-        fn_80065A7C(msg.value);
+        msg |= ((i)[lbl_801A6C80->tracks]).chan;
+        fn_80065A7C(msg);
         if (more & 0x80) {
             p = q;
             goto top; /* another event follows without a delta time */
         }
-        msg.value = *q++;
-        if (msg.value & 0x80) {
-            msg.value = (msg.value & 0x7F) << 7;
-            msg.value = (msg.value | (*q++ & 0x7F)) & 0x3FFF;
+        msg = *q++;
+        if (msg & 0x80) {
+            msg = (msg & 0x7F) << 7;
+            msg = (msg | (*q++ & 0x7F)) & 0x3FFF;
         }
-        ((i)[lbl_801A6C80->tracks]).wait += msg.value << 16;
+        ((i)[lbl_801A6C80->tracks]).wait += msg << 16;
         ((i)[lbl_801A6C80->tracks]).cur = q;
     next:;
     }

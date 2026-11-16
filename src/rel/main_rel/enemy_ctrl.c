@@ -264,7 +264,7 @@ void fn_1_C489C(void *arg0) {
     f64 v5;
     f32 v6;
     f64 v7;
-    struct { void *value; } table;
+    void * table;
     void *v10;
     void *v11;
     v0 = *(u32 *)((u8 *)arg0 + 1156);
@@ -6455,7 +6455,7 @@ extern void fn_8006F78C(Fn183D28Vec3 *, Sig_fn_8006F78C_Fn8006F78CData *, f32);
 extern Fn183D28Vec3 *fn_1_EB0D8(u32);
 extern u32 fn_1_EB0B0(void);
 void fn_1_D07E0(f32 arg0, f32 arg1, f32 arg2) {
-struct { f32 *value; } p_lbl_1_rodata_26F8;
+f32 * p_lbl_1_rodata_26F8;
 Obj_1_bss_3C30 *p_lbl_1_bss_3C30;
 u8 v0;
 s32 v1;

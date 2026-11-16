@@ -131,7 +131,6 @@ inline static s32 fire_row_byte_offset(u32 x, u32 tile_y, u32 row, u32 buf)
 }
 
 #pragma opt_loop_invariants off
-#pragma opt_strength_reduction on
 void fn_8_0(void)
 {
   u32 src;
@@ -153,10 +152,7 @@ void fn_8_0(void)
   {
     u32 value;
   } i;
-  struct
-  {
-    u32 value;
-  } next;
+  u32 next;
   Sig_GXInitTexObj_GXTexObj obj;
   fn_80074660(2);
   fn_80073678(3);
@@ -171,7 +167,7 @@ void fn_8_0(void)
   fn_80072D64(1, 8, 0, 0, 1, 3);
   fn_80072CC4(1, 7, 7, 7, 0);
   fn_80072E20(1, 0, 0, 0, 1, 0);
-  next.value = (lbl_8_bss_C ^ 1) * 256;
+  next = (lbl_8_bss_C ^ 1) * 256;
   {
     u32 seed_x;
     for (seed_x = 0; seed_x < 16; seed_x++)
@@ -225,8 +221,8 @@ void fn_8_0(void)
     }
 
   }
-  DCFlushRange(lbl_8_bss_20 + next.value, 256);
-  GXInitTexObj(&obj, lbl_8_bss_20 + next.value, 16, 16, Sig_GXInitTexObj_GX_TF_I8, Sig_GXInitTexObj_GX_MIRROR, Sig_GXInitTexObj_GX_MIRROR, 0);
+  DCFlushRange(lbl_8_bss_20 + next, 256);
+  GXInitTexObj(&obj, lbl_8_bss_20 + next, 16, 16, Sig_GXInitTexObj_GX_TF_I8, Sig_GXInitTexObj_GX_MIRROR, Sig_GXInitTexObj_GX_MIRROR, 0);
   fn_80073778(&obj, 1);
   lbl_8_bss_C ^= 1;
   lbl_8006DAEC();
@@ -245,7 +241,6 @@ void fn_8_0(void)
   fn_80072E20(2, 0, 0, 0, 1, 0);
 }
 
-#pragma opt_strength_reduction reset
 #pragma opt_loop_invariants reset
 /* fzgx:end fn_8_0 */
 

@@ -28,7 +28,7 @@ extern void fn_12_5FA0(void *, const void *, int *);
 extern void fn_12_5810(void *, const void *, int *, int);
 
 int fn_12_654C(MovieModule *movie, const u8 *data, int size, int *offset, int *flags) {
-    struct { int value; } count;
+    int count;
     struct { int value; } processed;
     int kind;
 
@@ -40,27 +40,27 @@ int fn_12_654C(MovieModule *movie, const u8 *data, int size, int *offset, int *f
 
     while (size >= 4) {
         processed.value = 0;
-        count.value = 0;
+        count = 0;
         kind = fn_12_670C(data);
         switch (kind) {
         case 0x10000:
-            fn_12_62F8(&movie->field14, data, &count.value);
+            fn_12_62F8(&movie->field14, data, &count);
             processed.value = 1;
             break;
         case 0x20000:
-            fn_12_5FA0(&movie->values, data, &count.value);
+            fn_12_5FA0(&movie->values, data, &count);
             processed.value = 1;
             break;
         case 0x40000:
-            fn_12_5810(&movie->fielda0, data, &count.value, movie->field10);
+            fn_12_5810(&movie->fielda0, data, &count, movie->field10);
             break;
         case 0x80000:
             break;
         }
         *flags |= kind;
-        data += count.value;
-        size -= count.value;
-        *offset += count.value;
+        data += count;
+        size -= count;
+        *offset += count;
         if (!processed.value)
             break;
     }

@@ -509,14 +509,14 @@ u64 flags;
 } fn_1_E1E9C_PhysObj;
 void fn_1_E1E9C(fn_1_E1E9C_PhysObj *obj) {
 char buf[0x20];
-struct { const char *value; } strtab;
+const char * strtab;
 s16 result;
 Obj_1_data_2A7E0_At3C *state;
 s32 i;
 fn_1_E1E9C_PhysEntry *entry;
 s16 j;
 state = lbl_1_data_2A7E0.unk_3C;
-strtab.value = (const char *)&lbl_1_data_3DC98;
+strtab = (const char *)&lbl_1_data_3DC98;
 if ((obj->flags & 0x2000000ULL) != 0) {
 switch (lbl_1_data_2B0D4[fn_1_7B054()]) {
 case 1:
@@ -573,27 +573,27 @@ obj->slots[2] = -1;
 obj->slots[3] = -1;
 switch (obj->kind) {
 case 5:
-fn_80083DB0(buf, strtab.value + 0x124);
+fn_80083DB0(buf, strtab + 0x124);
 for (i = 0; i < (s32)lbl_1_bss_3BE0->unk_48; i++) { if (fn_8006FC5C((*(fn_1_E1E9C_PhysEntry **)(lbl_1_bss_3BE0->unk_54 + i * 0x40 + 8))->info->name, buf, strlen(buf))) { result = i; break; } } ;
-fn_80083DB0(buf, strtab.value + 0x134);
+fn_80083DB0(buf, strtab + 0x134);
 for (i = 0; i < (s32)lbl_1_bss_3BE0->unk_48; i++) { if (fn_8006FC5C((*(fn_1_E1E9C_PhysEntry **)(lbl_1_bss_3BE0->unk_54 + i * 0x40 + 8))->info->name, buf, strlen(buf))) { obj->slots[0] = i; break; } } ;
-fn_80083DB0(buf, strtab.value + 0x14C);
+fn_80083DB0(buf, strtab + 0x14C);
 for (i = 0; i < (s32)lbl_1_bss_3BE0->unk_48; i++) { if (fn_8006FC5C((*(fn_1_E1E9C_PhysEntry **)(lbl_1_bss_3BE0->unk_54 + i * 0x40 + 8))->info->name, buf, strlen(buf))) { obj->slots[1] = i; break; } } ;
-fn_80083DB0(buf, strtab.value + 0x164);
+fn_80083DB0(buf, strtab + 0x164);
 for (i = 0; i < (s32)lbl_1_bss_3BE0->unk_48; i++) { if (fn_8006FC5C((*(fn_1_E1E9C_PhysEntry **)(lbl_1_bss_3BE0->unk_54 + i * 0x40 + 8))->info->name, buf, strlen(buf))) { obj->slots[2] = i; break; } } ;
 break;
 case 1:
-fn_80083DB0(buf, strtab.value + 0x17C);
+fn_80083DB0(buf, strtab + 0x17C);
 for (i = 0; i < (s32)lbl_1_bss_3BE0->unk_48; i++) { if (fn_8006FC5C((*(fn_1_E1E9C_PhysEntry **)(lbl_1_bss_3BE0->unk_54 + i * 0x40 + 8))->info->name, buf, strlen(buf))) { result = i; break; } } ;
-fn_80083DB0(buf, strtab.value + 0x180);
+fn_80083DB0(buf, strtab + 0x180);
 for (i = 0; i < (s32)lbl_1_bss_3BE0->unk_48; i++) { if (fn_8006FC5C((*(fn_1_E1E9C_PhysEntry **)(lbl_1_bss_3BE0->unk_54 + i * 0x40 + 8))->info->name, buf, strlen(buf))) { obj->slots[0] = i; break; } } ;
-fn_80083DB0(buf, strtab.value + 0x18C);
+fn_80083DB0(buf, strtab + 0x18C);
 for (i = 0; i < (s32)lbl_1_bss_3BE0->unk_48; i++) { if (fn_8006FC5C((*(fn_1_E1E9C_PhysEntry **)(lbl_1_bss_3BE0->unk_54 + i * 0x40 + 8))->info->name, buf, strlen(buf))) { obj->slots[1] = i; break; } } ;
-fn_80083DB0(buf, strtab.value + 0x198);
+fn_80083DB0(buf, strtab + 0x198);
 for (i = 0; i < (s32)lbl_1_bss_3BE0->unk_48; i++) { if (fn_8006FC5C((*(fn_1_E1E9C_PhysEntry **)(lbl_1_bss_3BE0->unk_54 + i * 0x40 + 8))->info->name, buf, strlen(buf))) { obj->slots[2] = i; break; } } ;
 break;
 case 4:
-fn_80083DB0(buf, strtab.value + 0x20);
+fn_80083DB0(buf, strtab + 0x20);
 for (i = 0; i < (s32)lbl_1_bss_3BE0->unk_48; i++) { if (fn_8006FC5C((*(fn_1_E1E9C_PhysEntry **)(lbl_1_bss_3BE0->unk_54 + i * 0x40 + 8))->info->name, buf, strlen(buf))) { result = i; break; } } ;
 break;
 }
@@ -777,7 +777,7 @@ void fn_1_E252C(u32 arg0, u32 arg1, Sig_fn_1_E1E9C_fn_1_E1E9C_PhysObj * arg2) {
     u32 v12;
     u32 v13;
     f32 v14;
-    struct { f32 value; } v15;
+    f32 v15;
     f32 v16;
     f32 v17;
     u32 v18;
@@ -811,7 +811,7 @@ void fn_1_E252C(u32 arg0, u32 arg1, Sig_fn_1_E1E9C_fn_1_E1E9C_PhysObj * arg2) {
     u32 v46;
     u32 v47;
     f32 v48;
-    struct { f32 value; } v49;
+    f32 v49;
     f32 v50;
     f32 v51;
     u32 v52;
@@ -957,10 +957,10 @@ void fn_1_E252C(u32 arg0, u32 arg1, Sig_fn_1_E1E9C_fn_1_E1E9C_PhysObj * arg2) {
     case 5: {
     v48 = 0.3f;
     *(u16 *)((u8 *)arg2 + 12) = 0;
-    v49.value = 1.0f;
+    v49 = 1.0f;
     *(f32 *)((u8 *)arg2 + 24) = v48;
     v50 = 0.5f;
-    *(f32 *)((u8 *)arg2 + 28) = v49.value;
+    *(f32 *)((u8 *)arg2 + 28) = v49;
     v51 = 0.016666668f;
     *(f32 *)((u8 *)arg2 + 32) = v50;
     *(f32 *)((u8 *)arg2 + 36) = v50;
@@ -4199,7 +4199,7 @@ void fn_1_E733C(u8 *obj, s16 count) {
     f32 f;
     s32 v;
     s32 t;
-    struct { s16 value; } i;
+    s16 i;
     f = (0.0f);
     if (count == 0) {
         return;
@@ -4232,7 +4232,7 @@ void fn_1_E733C(u8 *obj, s16 count) {
         }
     }
     ((s16 *)lbl_1_bss_7B14C)[0] = t;
-    for (i.value = 0; i.value < count;) {
+    for (i = 0; i < count;) {
         switch ((s16)((s16 *)lbl_1_bss_7B14C)[0]) {
         case 0:
             *(f32 *)(obj + 0x18) = *(f32 *)(obj + 0x18) + f;
@@ -4250,7 +4250,7 @@ void fn_1_E733C(u8 *obj, s16 count) {
             *(f32 *)(obj + 0x28) = *(f32 *)(obj + 0x28) + f / (60.0f);
             break;
         }
-        i.value++;
+        i++;
         obj += 0x1A8;
     }
 }

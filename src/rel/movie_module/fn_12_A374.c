@@ -6,7 +6,7 @@ extern u8 lbl_12_data_68[72];
 s32 fn_12_A374(s32 arg0, s32 length, s32 count) {
     s32 shift;
     s32 remaining;
-    struct { s32 value; } code;
+    s32 code;
     u32 value;
     u32 lab_v;
     u32 first;
@@ -35,7 +35,7 @@ s32 fn_12_A374(s32 arg0, s32 length, s32 count) {
     if (value != 0) return 0;
     ONE(value);
     if (value == 0) return 0;
-    lab_v = code.value;
+    lab_v = code;
     PEEK(6,lab_v);
     switch(lab_v) {
     case 22: case 23: SKIP(5); break;

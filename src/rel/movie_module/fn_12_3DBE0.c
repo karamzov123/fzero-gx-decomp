@@ -39,7 +39,7 @@ void fn_12_3DBE0(MovieSrc *source, MovieDst *dest, u32 *palette) {
     s32 width;
     u32 i2;
     s32 x;
-    struct { s32 value; } rawHeight;
+    s32 rawHeight;
     u32 a;
     u32 b;
     s32 y;
@@ -69,10 +69,10 @@ void fn_12_3DBE0(MovieSrc *source, MovieDst *dest, u32 *palette) {
     width = height;
     rawSkip = dest->pitch - rawWidth;
     top = (u32)dest->data;
-    rawHeight.value = dest->height;
+    rawHeight = dest->height;
     src = (u32)source->data;
-    rawHeight.value /= 4;
-    dest = (MovieDst *)rawHeight.value;
+    rawHeight /= 4;
+    dest = (MovieDst *)rawHeight;
     height = (s32)dest;
     bottom = top + 32;
     stride.value = b & ~3;

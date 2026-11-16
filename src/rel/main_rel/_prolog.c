@@ -2313,7 +2313,7 @@ u8 *lv;
 u32 mask;
 s32 k;
 s32 held2;
-struct { u8 value; } cur;
+u8 cur;
 s32 sh2;
 u8 old;
 u8 level;
@@ -2369,8 +2369,8 @@ if (*t2 != 0) {
 sh2 = 31 - k;
 mask = 0x80000000 >> sh2;
 bits->out1 &= ~mask;
-cur.value = *t2;
-if (cur.value == 0 && __rlwnm((bits->enable1), (32 - (k)) & 31, 31, 31) ) {
+cur = *t2;
+if (cur == 0 && __rlwnm((bits->enable1), (32 - (k)) & 31, 31, 31) ) {
 old = *lv;
 switch (sh2) {
 case 31:

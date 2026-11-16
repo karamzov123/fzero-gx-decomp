@@ -72,8 +72,8 @@ void fn_12_33A44(SfdObj *obj, SfdHdr *hdr, SfdInfo *info) {
     s32 vC;
     struct { s32 value; } type;
     s32 v34;
-    struct { s32 value; } v24;
-    struct { s32 value; } v28;
+    s32 v24;
+    s32 v28;
     s32 v18;
     s32 v30;
     void *cur;
@@ -83,7 +83,7 @@ void fn_12_33A44(SfdObj *obj, SfdHdr *hdr, SfdInfo *info) {
     s32 size;
     u8 *data;
     void *base;
-    struct { s32 value; } time;
+    s32 time;
 
     handle = obj->unk_40;
     v20 = hdr->unk_20;
@@ -123,19 +123,19 @@ void fn_12_33A44(SfdObj *obj, SfdHdr *hdr, SfdInfo *info) {
         type.value = 1;
         break;
     }
-    v24.value = hdr->unk_24;
+    v24 = hdr->unk_24;
     v34 = hdr->unk_34;
     v18 = hdr->unk_18;
     v30 = hdr->unk_30;
     v2C = hdr->unk_2C;
-    v28.value = hdr->unk_28;
+    v28 = hdr->unk_28;
     if (fn_12_2DF28(handle, &rate) != 0) {
         MWSFSVM_Error((const char *)lbl_12_rodata_1230);
     }
     r = rate.unk_0;
     {
         extern s64 __div2i(s64, s64);
-        time.value = (s32)__div2i((s64)v34 * r, (s64)v18 * 1000);
+        time = (s32)__div2i((s64)v34 * r, (s64)v18 * 1000);
     }
     info->unk_00 = v20;
     info->unk_04 = kind.value;
@@ -145,14 +145,14 @@ void fn_12_33A44(SfdObj *obj, SfdHdr *hdr, SfdInfo *info) {
     info->unk_14 = vC;
     info->unk_18 = type.value;
     info->unk_1C = rate.unk_0;
-    info->unk_20 = time.value;
+    info->unk_20 = time;
     info->unk_24 = v34;
     info->unk_28 = v18;
     info->unk_2C = v2C;
     info->unk_30 = (s32)(((s64)r * (s64)v30) / ((s64)v18 * 1000));
     info->unk_34 = v30;
-    info->unk_38 = v24.value;
-    info->unk_3C = v28.value;
+    info->unk_38 = v24;
+    info->unk_3C = v28;
 
     base = obj->unk_BC;
     cur = obj->unk_D4;

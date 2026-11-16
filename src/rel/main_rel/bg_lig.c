@@ -763,7 +763,7 @@ void fn_1_D6C10(VecD6C10 *arg0, f32 arg1) {
     f32 v36;
     f32 v37;
     u32 v38;
-    struct { f32 value; } coefficient;
+    f32 coefficient;
     ParticleD6C10 loc_14;
     f32 loc_8[3];
     /* frame */
@@ -823,7 +823,7 @@ void fn_1_D6C10(VecD6C10 *arg0, f32 arg1) {
     loc_14.unk_C = 13;
     v2 = 1;
     loc_14.unk_1A = (0x10000 - 1);
-    coefficient.value = (f32)product.value;
+    coefficient = (f32)product.value;
     }
     v5 = 0x43300000;
     loc_14.unk_34 = *(u32 *)((u8 *)lbl_1_bss_38458->unk_8 + 360);
@@ -879,7 +879,7 @@ void fn_1_D6C10(VecD6C10 *arg0, f32 arg1) {
     v1 = (f32)(u32)(t14 & 0xFFFF) / 32767.0f;
     loc_14.unk_B2 = 14;
     loc_14.unk_3C.x -= loc_14.unk_48.x;
-    loc_14.unk_48.y += (0.10000000000000001) + (f32)(coefficient.value * (f32)v1);
+    loc_14.unk_48.y += (0.10000000000000001) + (f32)(coefficient * (f32)v1);
     loc_14.unk_28 = (f32)v8;
     loc_14.unk_2C = (f32)((30.0) * v8);
     }

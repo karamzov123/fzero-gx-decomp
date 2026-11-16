@@ -1743,7 +1743,6 @@ s32 fn_1_15578(V3 *arg0, V3 *arg1, f32 *outT, V3 *outNrm, u32 flags, s32 *arg5, 
     return 0;
 }
 /* fzgx:end fn_1_15578 */
-/* fzgx:end fn_1_15578 */
 
 /* fzgx:begin fn_1_163BC noprologue */
 #include "types.h"
@@ -7975,7 +7974,6 @@ u32 fn_1_1FB80(void *pos, u32 mask) {
     }
     return result.value;
 }
-
 /* fzgx:end fn_1_1FB80 */
 
 /* fzgx:begin fn_1_1FC98 noprologue */
@@ -8043,7 +8041,6 @@ u32 fn_1_1FC98(void *pos, u32 mask) {
     }
     return result.value;
 }
-
 /* fzgx:end fn_1_1FC98 */
 
 /* fzgx:begin fn_1_1FDB0 noprologue */
@@ -10516,9 +10513,9 @@ void fn_1_2221C(fn_1_2221C_Obj *obj, Fn183D28Vec3 *scale, f32 t) {
     s32 angle;
     Fn183D28Vec3 buf[18];
     struct { f32 (*value)[4]; } m;
-    struct { fn_1_2221C_Pool *value; } c;
+    fn_1_2221C_Pool * c;
 
-    c.value = (fn_1_2221C_Pool *)lbl_1_rodata_6C8;
+    c = (fn_1_2221C_Pool *)lbl_1_rodata_6C8;
 
     anim = obj->anim;
     if (anim->unk_3C != 0) {
@@ -10526,7 +10523,7 @@ void fn_1_2221C(fn_1_2221C_Obj *obj, Fn183D28Vec3 *scale, f32 t) {
     } else {
         value = obj->unk_2C;
     }
-    width = __fabs(value * (c.value->two * scale->x));
+    width = __fabs(value * (c->two * scale->x));
     if (anim->unk_28 != 0) {
         value = fn_1_9E14C(anim->unk_4, anim->unk_28, t);
     } else {
@@ -10534,12 +10531,12 @@ void fn_1_2221C(fn_1_2221C_Obj *obj, Fn183D28Vec3 *scale, f32 t) {
     }
     radius = __fabs(value * scale->y);
 
-    zero = c.value->zero;
-    half = c.value->half;
+    zero = c->zero;
+    half = c->half;
     b = buf;
     for (i = 0, m.value = LC_MTX; i < 2; i++) {
         lbl_8006DAEC();
-        offset = width * ((i == 0) ? c.value->half : c.value->neg_half);
+        offset = width * ((i == 0) ? c->half : c->neg_half);
         tx = m.value[0][0];
         tx = tx * offset + m.value[0][3];
         ty = m.value[1][0];
@@ -10937,11 +10934,11 @@ typedef struct {
     f32 limit;
 } fn_1_229EC_ctrl;
 
-static inline f32 fn_1_229EC_operand(f32 left, f32 right) { return left * right; }
+
 static inline f32 fn_1_229EC_operand_(f32 right, f32 left) { return ((((left)) * ((right)))); }
 
-static inline f32 fn_1_229EC_operand__(f32 left, f32 right) { left *= right; return left; }
-static inline f32 fn_1_229EC_operand___(f32 left, f32 right) { left *= right; return left; }
+
+
 void fn_1_229EC(fn_1_229EC_ctrl *ctrl, f32 *out_pos, f32 *out_mag)
 {
     f32 fzgx_live;
@@ -10969,7 +10966,7 @@ void fn_1_229EC(fn_1_229EC_ctrl *ctrl, f32 *out_pos, f32 *out_mag)
         falloff = fn_1_229EC_operand_((5.0f), (falloff));
     }
 
-    *out_pos = total - (f32)(fn_1_229EC_operand__((delta), (falloff)));
+    *out_pos = total - (f32)(((f32)((f32)((delta)) * (f32)((falloff)))));
 }
     {
         f32 lim;
@@ -10982,17 +10979,15 @@ void fn_1_229EC(fn_1_229EC_ctrl *ctrl, f32 *out_pos, f32 *out_mag)
 
     if (mag < 0.0f) {
         lab_t1 = (0.05f);
-        delta = fn_1_229EC_operand((delta), lab_t1);
+        delta = ((f32)((f32)((delta)) * (f32)(lab_t1)));
     }
 
-    *out_mag = *out_mag + (f32)(fn_1_229EC_operand___((1000.0f), (delta))) / ctrl->divisor;
+    *out_mag = *out_mag + (f32)(((f32)((f32)((1000.0f)) * (f32)((delta))))) / ctrl->divisor;
     *out_mag = *out_mag - (f32)((*out_mag * *out_mag) * 8.0f) / ctrl->divisor;
     if (216.0 * *out_mag < 2.0) {
         *out_mag = 0.0f;
     }
 }
-
-
 /* fzgx:end fn_1_229EC */
 
 /* fzgx:begin fn_1_22B10 noprologue */
@@ -20425,8 +20420,8 @@ extern double __fabs(double);
 void fn_1_2A214(StColiObj *obj)
 {
     float limit;
-    struct { float *value; } c;
-    c.value = lbl_1_rodata_840;
+    float * c;
+    c = lbl_1_rodata_840;
 
     if (obj->flags & 2) {
         float k0 = (0.899999976f);
@@ -23199,7 +23194,7 @@ f32 fn_1_2BD30(StcoliObj2BD30 *obj, StcoliOut2BD30 *out, Vec3 *src) {
     f32 fzgx_live_;
     f32 fzgx_live;
     Vec3 local;
-    struct { f32 value; } m;
+    f32 m;
     f32 ax, ay, az;
     f32 vx, vy, vz;
     f32 lengthSquared;
@@ -23228,19 +23223,19 @@ f32 fn_1_2BD30(StcoliObj2BD30 *obj, StcoliOut2BD30 *out, Vec3 *src) {
     out->depth = 0.0f;
     if (ax > ay) {
         if (ax > az) {
-            m.value = ax;
+            m = ax;
             fn_1_2BD30_set(&out->axis, out->dir.x, 0.0f, 0.0f);
         } else {
-            m.value = az;
+            m = az;
             fn_1_2BD30_set(&out->axis, 0.0f, 0.0f, out->dir.z);
             out->depth = out->dir.z;
         }
     } else {
         if (ay > az) {
-            m.value = ay;
+            m = ay;
             fn_1_2BD30_set(&out->axis, 0.0f, out->dir.y, 0.0f);
         } else {
-            m.value = az;
+            m = az;
             fn_1_2BD30_set(&out->axis, 0.0f, 0.0f, out->dir.z);
             out->depth = out->dir.z;
         }
@@ -23259,7 +23254,7 @@ f32 fn_1_2BD30(StcoliObj2BD30 *obj, StcoliOut2BD30 *out, Vec3 *src) {
     }
     lbl_8006E1C0(&out->axis, &out->axis);
     lbl_8006DB30();
-    return __fabs(m.value);
+    return __fabs(m);
 }
 #pragma opt_dead_assignments reset
 
@@ -24453,13 +24448,12 @@ extern void fn_1_496FC(f32,f32);
 extern void fn_1_4A0D8(const char *);
 extern u32 fn_1_50A90(void *,u32,u32,u32,u32);
 struct FzgxCopy_88 { u32 words[22]; };
-static inline f32 fn_1_2D038_operand(f32 right,f32 left) { left+=right; return left; }
+
 static inline u32 *fn_1_2D038_read_pointer(struct FzgxCopy_88 *owner) { return owner->words; }
-#pragma opt_dead_assignments off
 #pragma opt_propagation off
 void fn_1_2D038(void) {
 struct FzgxCopy_88 loc_8;
-struct { struct fn_1_2D038_hdr *value; } hdr;
+struct fn_1_2D038_hdr * hdr;
 s32 var_r29;
 f32 var_f31;
 f32 var_f30;
@@ -24480,7 +24474,7 @@ if ((u32)lbl_1_bss_5138__fzgx_offset_F4==0) { var_r29=1; lbl_1_bss_5138__fzgx_of
 else if (((s32)lbl_1_bss_5138__fzgx_offset_F0==0) && ((u32)lbl_1_bss_5138__fzgx_offset_F4>=0xB4U)) { lbl_1_bss_5138__fzgx_offset_F0=1; lbl_1_bss_5138__fzgx_offset_F4=0; lbl_1_bss_5138__fzgx_offset_F8=0; }
 if (((u32)lbl_1_bss_5138__fzgx_offset_F4==0) && ((s32)lbl_1_bss_5138__fzgx_offset_F0!=0)) var_r28=1;
 }
-if (((u8)lbl_1_bss_5138__fzgx_offset_FC!=0) || ((hdr.value = &fzgx_obj_lbl_1_bss_3C30.hdr, hdr.value->unk_5 == 2) && fn_1_F22D4(hdr.value)!=0)) {
+if (((u8)lbl_1_bss_5138__fzgx_offset_FC!=0) || ((hdr = &fzgx_obj_lbl_1_bss_3C30.hdr, hdr->unk_5 == 2) && fn_1_F22D4(hdr)!=0)) {
 if ((u32)lbl_1_bss_5138__fzgx_offset_F4==0) { var_r29+=1; lbl_1_bss_5138__fzgx_offset_100=1; }
 else if (((s32)lbl_1_bss_5138__fzgx_offset_100==0) && ((u32)lbl_1_bss_5138__fzgx_offset_F4>=0xB4U)) { lbl_1_bss_5138__fzgx_offset_100=1; lbl_1_bss_5138__fzgx_offset_F4=0; lbl_1_bss_5138__fzgx_offset_F8=0; }
 if (var_r29==2) { var_r28=0; lbl_1_bss_5138__fzgx_offset_F8=0; }
@@ -24514,7 +24508,7 @@ fn_1_49410(); fn_1_495FC(); fn_1_4954C(0.000600000028f); fn_1_49590(0.400000006f
 if ((u32)lbl_1_bss_5138__fzgx_offset_F8==0) lbl_1_bss_5138__fzgx_offset_F8=(u32)fn_1_15BA78((&lbl_1_data_5BF8)[var_r28]);
 lab_t0=(const char *)lbl_1_bss_5138__fzgx_offset_F8;
 temp_f27=fn_1_4B068(lab_t0); temp_f28=fn_1_4B090((const char *)lbl_1_bss_5138__fzgx_offset_F8);
-temp_f26=temp_f27; temp_f26*=0.5f; lab_t1=70.0f; temp_f26=fn_1_2D038_operand(temp_f26,lab_t1);
+temp_f26=temp_f27; temp_f26*=0.5f; lab_t1=70.0f; temp_f26=((f32)((f32)(lab_t1) + (f32)(temp_f26)));
 fn_1_496FC(temp_f26,36.0f); fn_1_4A0D8((const char *)lbl_1_bss_5138__fzgx_offset_F8);
 loc_8=*(const struct FzgxCopy_88 *)((((s32)(((u8 *)(&lbl_1_rodata_26F8)+-4)))+4));
 temp_f7=45.0f+temp_f28;
@@ -24527,7 +24521,6 @@ fn_1_2D038_read_pointer(&loc_8)[0]=2;
 fn_1_50A90(&loc_8,(u32)(s32)(18.0f*var_f30),(u32)(s32)(45.0f*var_f30),(u32)(s32)((50.0f+temp_f27)*var_f29),(u32)(s32)(temp_f7*var_f29));
 }
 #pragma opt_propagation reset
-#pragma opt_dead_assignments reset
 /* fzgx:end fn_1_2D038 */
 
 /* fzgx:begin fn_1_2D524 */

@@ -18,7 +18,7 @@ void fn_80064FDC(u8 arg0, struct fn_80064FDC_Arg1 *arg1) {
     u32 v8;
     u8 *v11;
     u32 v22;
-    struct { s8 value; } adjustment;
+    s8 adjustment;
     struct { u8 value; } volume;
     s32 v11_2;
     s16 v15;
@@ -74,19 +74,19 @@ void fn_80064FDC(u8 arg0, struct fn_80064FDC_Arg1 *arg1) {
             *(u8 *)(lbl_801A6C80 + v7 + 0x597) = fn_80064FDC_array_read(14, fzgx_loop_v3_658);
             *(u8 *)(lbl_801A6C80 + v7 + 0x58b) = fn_80064FDC_array_read(1, fzgx_loop_v3_658);
             *(u32 *)(lbl_801A6C80 + v7 + 0x5a0) = (u32)fzgx_loop_v3_658;
-            adjustment.value = 0;
+            adjustment = 0;
             if (*(u8 *)(lbl_801A6C80 + v8 + 0x589) & 2) {
                 v11 = v1 + lbl_801A6C80;
                 v12 = *(u8 *)(v11 + 0x495);
                 volume.value = *(u8 *)(v11 + 0x493);
-                if (v12 != 64) adjustment.value = ((s8)v12 - 64) << 1;
+                if (v12 != 64) adjustment = ((s8)v12 - 64) << 1;
             } else {
                 v11 = v1 + lbl_801A6C80;
                 v12 = *(u8 *)(v11 + 0x494);
                 volume.value = *(u8 *)(v11 + 0x492);
-                if (v12 != 64) adjustment.value = ((s8)v12 - 64) << 1;
+                if (v12 != 64) adjustment = ((s8)v12 - 64) << 1;
             }
-            v15 = (s8)volume.value + adjustment.value;
+            v15 = (s8)volume.value + adjustment;
             if (v15 < 0) v15 = 0;
             else if (v15 > 127) v15 = 127;
             *(u8 *)(lbl_801A6C80 + v7 + 0x598) = v15;

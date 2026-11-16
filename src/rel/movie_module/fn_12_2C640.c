@@ -33,7 +33,7 @@ s32 fn_12_2C640(struct fn_12_2C640_Arg0 *arg0) {
     int t15;
     int t1_2;
     int t16;
-    struct { int value; } ready;
+    int ready;
     s32 tmp_fn_12_2F1D0;
     s32 tmp_call7;
     v0.value = arg0->unk_48;
@@ -56,9 +56,9 @@ s32 fn_12_2C640(struct fn_12_2C640_Arg0 *arg0) {
         t2 = tmp_fn_12_2F1D0;
         v3 = t1_2 | t2;
     }
-    if (v2 == 0 || v3 == 0) ready.value = 0;
-    else ready.value = 1;
-    if (ready.value == 0) {
+    if (v2 == 0 || v3 == 0) ready = 0;
+    else ready = 1;
+    if (ready == 0) {
         return v0.value;
     }
     tmp_call7 = FIELD(0x9b4);
@@ -91,13 +91,13 @@ s32 fn_12_2C640(struct fn_12_2C640_Arg0 *arg0) {
     case 4:
     case 6:
         if (FIELD(0x9d8) == 0) {
-            ready.value = 1;
+            ready = 1;
         } else if (FIELD(0x9b4) == 0) {
-            ready.value = 1;
+            ready = 1;
         } else if (FIELD(0xf2c) != 0) {
-            ready.value = 1;
+            ready = 1;
         } else if (FIELD(0xf48) >= FIELD(0xa54)) {
-            ready.value = 1;
+            ready = 1;
         } else {
             if (FIELD(0x9b8) == 0 && FIELD(0x9b4) == 0) {
                 v6 = 1;
@@ -116,10 +116,10 @@ s32 fn_12_2C640(struct fn_12_2C640_Arg0 *arg0) {
                 case 0: v6 = v7 & v0.value; break;
                 }
             }
-            if (v6 != 0) ready.value = 1;
-            else ready.value = 0;
+            if (v6 != 0) ready = 1;
+            else ready = 0;
         }
-        if (ready.value) {
+        if (ready) {
             fn_12_2F210(arg0, 7, 6, 0, 0);
             v0.value = 4;
         } else {

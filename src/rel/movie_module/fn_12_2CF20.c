@@ -24,7 +24,7 @@ s32 fn_12_2CF20(void *movie, s32 index, MovieCmd *cmd) {
     s32 v4;
     s32 tail;
     u8 *buffer;
-    struct { s32 value; } next;
+    s32 next;
     s32 cap;
     struct { s32 value; } newtail;
 
@@ -48,12 +48,12 @@ s32 fn_12_2CF20(void *movie, s32 index, MovieCmd *cmd) {
             fzgx_value = value;
             *slot = *cmd;
         }
-        next.value = tail;
-        next.value = next.value + 1;
+        next = tail;
+        next = next + 1;
         cap = entry->capacity;
-        newtail.value = next.value - cap;
-        if (next.value < cap) {
-            newtail.value = next.value;
+        newtail.value = next - cap;
+        if (next < cap) {
+            newtail.value = next;
         }
         entry->used = entry->used + 1;
         entry->tail = newtail.value;

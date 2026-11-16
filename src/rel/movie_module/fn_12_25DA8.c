@@ -40,7 +40,7 @@ static inline u32 fn_12_25DA8_operand(u32 right, u32 left) { return left & right
 int fn_12_25DA8(MovieModule *module, int track, int offset, int length, int limit) {
     void * fzgx_live;
     MovieState *state;
-    struct { int value; } delta;
+    int delta;
     int index;
     MovieResult result;
     int status;
@@ -65,13 +65,13 @@ int fn_12_25DA8(MovieModule *module, int track, int offset, int length, int limi
     index = fn_12_2D73C(module, 0x1e);
     if (index != -1) {
         if (fn_12_2D73C(module, 0x37) != 0) {
-            { int __reg_value_delta = (state->low ^ track) >> 1; delta.value = __reg_value_delta; }
-            delta.value -= fn_12_25DA8_operand((state->low), ((state->low ^ track)));
-            { int __reg_value_delta = (u32)delta.value >> 31; delta.value = __reg_value_delta; }
+            { int __reg_value_delta = (state->low ^ track) >> 1; delta = __reg_value_delta; }
+            delta -= fn_12_25DA8_operand((state->low), ((state->low ^ track)));
+            { int __reg_value_delta = (u32)delta >> 31; delta = __reg_value_delta; }
         } else {
-            { int __reg_value_delta = (state->selected - track) == 0; delta.value = __reg_value_delta; }
+            { int __reg_value_delta = (state->selected - track) == 0; delta = __reg_value_delta; }
         }
-        if (delta.value != 0) {
+        if (delta != 0) {
             state->current = index;
         }
     }

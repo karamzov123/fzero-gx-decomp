@@ -1518,7 +1518,7 @@ void fn_1_4270C(void *arg0, struct fn_1_4270C_Arg1 *arg1, u32 arg2) {
     u32 v28;
     u32 v29;
     s32 v30;
-    struct { u32 value; } v31;
+    u32 v31;
     u32 v32;
     u32 v33;
     v5 = *(u32 *)((((*(u32 *)((u8 *)arg0 + 36)) + (8)) + (((arg2 & 0xFFFF) << 2))));
@@ -1645,7 +1645,6 @@ for (fzgx_loop_v22_4540 = 3; fzgx_loop_v22_4540 != 0; fzgx_loop_v22_4540--) {
         v6++;
     }
 }
-
 /* fzgx:end fn_1_4270C */
 
 /* fzgx:begin fn_1_42AD0 */

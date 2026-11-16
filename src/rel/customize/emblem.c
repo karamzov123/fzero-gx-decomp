@@ -542,7 +542,7 @@ void fn_3_139F0(void) {
 FontDrawPacket pkt;
 
 u8 i;
-struct { EmbTextRow *value; } tbl;
+EmbTextRow * tbl;
 
 pkt = lbl_1_rodata_26F8;
 pkt.image = 0xc;
@@ -601,8 +601,8 @@ fn_1_494DC(5);
 fn_1_495C8(1);
 fn_1_4954C(7.0f);
 fn_1_496FC(320.0f, 110.0f);
-tbl.value = (EmbTextRow *)fzgx_pool_data_lbl_3_data_3360_FC;
-fn_1_4AE0C(((const char *)(((u8 *)fzgx_pool_data_lbl_3_data_3360_24C))) , tbl.value[9][lbl_801A66B4]);
+tbl = (EmbTextRow *)fzgx_pool_data_lbl_3_data_3360_FC;
+fn_1_4AE0C(((const char *)(((u8 *)fzgx_pool_data_lbl_3_data_3360_24C))) , tbl[9][lbl_801A66B4]);
 }
 /* fzgx:end fn_3_139F0 */
 

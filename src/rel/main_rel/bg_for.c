@@ -3500,8 +3500,8 @@ typedef struct {
 } Fn1E1A00Object;
 
 void fn_1_E1A00(Fn1E1A00Object *obj, u8 *str) {
-    struct { const f32 *value; } pool;
-    pool.value = lbl_1_rodata_6780;
+    const f32 * pool;
+    pool = lbl_1_rodata_6780;
 
     while (*str != 0) {
         switch (*str) {
@@ -3564,5 +3564,4 @@ void fn_1_E1A00(Fn1E1A00Object *obj, u8 *str) {
         str++;
     }
 }
-
 /* fzgx:end fn_1_E1A00 */

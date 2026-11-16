@@ -1178,13 +1178,13 @@ void fn_3_D9A0(void) {
     u8 *p_lbl_1_rodata_26F8;
     Obj_3_bss_7EDD8 *p_arrow;
     Obj_3_bss_7EDD8 *p_lbl_3_bss_7EDD8;
-    struct { u32 value; } index;
-    struct { s32 value; } fade;
+    u32 index;
+    s32 fade;
     s32 v65;
     u32 v64;
     s16 v19;
     s16 v68;
-    struct { u32 value; } v66;
+    u32 v66;
     s32 v0;
     s16 v1;
     u8 v67;
@@ -1198,7 +1198,7 @@ void fn_3_D9A0(void) {
     f32 v47;
     f32 v51;
     f32 v57;
-    struct { s32 value; } n;
+    s32 n;
     s32 d;
     s32 cn;
     s32 cd;
@@ -1209,15 +1209,15 @@ void fn_3_D9A0(void) {
 
     if ((s8)fn_1_A5DC4() != 0) {
         v2 = lbl_3_bss_7EDD8.unk_24;
-        n.value = (s16)v2 < 0 ? 0 : v2 > 15 ? 15 : v2;
+        n = (s16)v2 < 0 ? 0 : v2 > 15 ? 15 : v2;
         d = v2 - 15;
-        v0 = (s32)(f32)(-30.0f + (f32)(750.0f - (f32)(48.0f * (f32)n.value)));
+        v0 = (s32)(f32)(-30.0f + (f32)(750.0f - (f32)(48.0f * (f32)n)));
         v1 = (s16)clamp15(d);
     } else {
         v4 = lbl_3_bss_7EDD8.unk_24;
-        n.value = (s16)v4 < 0 ? 0 : v4 > 15 ? 15 : v4;
+        n = (s16)v4 < 0 ? 0 : v4 > 15 ? 15 : v4;
         d = v4 - 15;
-        v0 = (s32)(f32)(660.0f - (f32)(44.0f * (f32)n.value));
+        v0 = (s32)(f32)(660.0f - (f32)(44.0f * (f32)n));
         v1 = (s16)clamp15(d);
     }
     loc_8 = *(FontDrawPacket *)&(*(u8 (*)[])&lbl_1_rodata_26F8);
@@ -1305,23 +1305,23 @@ void fn_3_D9A0(void) {
         loc_8 = *(FontDrawPacket *)&(*(u8 (*)[])&lbl_1_rodata_26F8);
         p_selected = &lbl_3_bss_7EDD8;
         loc_8.image = 0x890B;
-        n.value = p_selected->unk_1F * 62;
-        n.value += v19;
-        loc_8.x = (f32)(n.value + 31);
+        n = p_selected->unk_1F * 62;
+        n += v19;
+        loc_8.x = (f32)(n + 31);
         loc_8.y = 320.0f;
         loc_8.z = 60.0f;
         loc_8.flags = 5;
         fn_1_4F734(&loc_8);
         {
             struct { s32 value; } sum;
-            n.value = p_selected->unk_1F * 62;
-            sum.value = n.value;
+            n = p_selected->unk_1F * 62;
+            sum.value = n;
             sum.value += v19;
             loc_8.x = (f32)(sum.value + 80);
             loc_8.flags |= 0x80000;
             fn_1_4F734(&loc_8);
-            n.value = p_selected->unk_1F * 62;
-            sum.value = n.value;
+            n = p_selected->unk_1F * 62;
+            sum.value = n;
             sum.value += v19;
             loc_8.x = (f32)(sum.value + 31);
             loc_8.y = 368.0f;
@@ -1330,9 +1330,9 @@ void fn_3_D9A0(void) {
             fn_1_4F734(&loc_8);
             {
                 struct { u32 value; } final_sum;
-                n.value = p_selected->unk_1F * 62;
+                n = p_selected->unk_1F * 62;
                 final_sum.value = v19;
-                final_sum.value = n.value + final_sum.value;
+                final_sum.value = n + final_sum.value;
                 loc_8.x = (f32)(s32)(final_sum.value + 80);
                 loc_8.flags |= 0x80000;
                 fn_1_4F734(&loc_8);
@@ -1373,42 +1373,42 @@ void fn_3_D9A0(void) {
     }
     {
     v68 = p_arrow->unk_1E;
-    index.value = (s16)v68 << 2;
-    v66.value = 65535;
-    fade.value = v1;
+    index = (s16)v68 << 2;
+    v66 = 65535;
+    fade = v1;
     p_lbl_1_rodata_26F8 = (u8 *)&(*(u8 (*)[])&lbl_1_rodata_26F8);
     p_lbl_3_bss_87000 = (struct fn_3_D9A0_lbl_3_bss_87000 *)&lbl_3_bss_87000;
-    for (; (start = p_arrow->unk_1E), v68 < start + 9; index.value += 4, v68++) {
+    for (; (start = p_arrow->unk_1E), v68 < start + 9; index += 4, v68++) {
         loc_8 = *(FontDrawPacket *)p_lbl_1_rodata_26F8;
         v67 = v68 - start;
-        n.value = v67 * 62;
-        n.value += v19;
-        loc_8.x = (f32)packet_offset(n.value, 72);
+        n = v67 * 62;
+        n += v19;
+        loc_8.x = (f32)packet_offset(n, 72);
         loc_8.y = 360.0f;
         loc_8.z = 30.0f;
         loc_8.flags = 10;
         if ((s8)fn_1_A5DC4() != 0) {
-            n.value = clamp15(fade.value - v67);
+            n = clamp15(fade - v67);
             d = clamp15(15 - v67);
-            loc_8.scale_x = (f32)(0.90625f * (f32)n.value) / (f32)d;
+            loc_8.scale_x = (f32)(0.90625f * (f32)n) / (f32)d;
         } else {
-            n.value = clamp15(fade.value - v67);
+            n = clamp15(fade - v67);
             d = clamp15(15 - v67);
-            loc_8.scale_x = (f32)(0.921875f * (f32)n.value) / (f32)d;
+            loc_8.scale_x = (f32)(0.921875f * (f32)n) / (f32)d;
         }
         {
             struct { s32 value; } numerator;
             struct { f32 value; } clamped;
-            numerator.value = fade.value - v67;
+            numerator.value = fade - v67;
             cn = clamp15(numerator.value);
             d = 15 - v67;
             cd = clamp15(d);
-            v40 = (f32)(numerator.value * (s32)v66.value) / (f32)d;
+            v40 = (f32)(numerator.value * (s32)v66) / (f32)d;
             loc_8.scale_y = (f32)(0.9375f * (f32)cn) / (f32)cd;
             *(u16 *)((u8 *)&loc_8 + 0x28) = (u16)v40;
         }
         entry = &((struct fn_3_D9A0_lbl_3_bss_87000 *)&lbl_3_bss_87000)->unk_0[p_lbl_3_bss_7EDD8->unk_3C];
-        if (entry->unk_8 == 0 || (image = *(u32 *)((u8 *)entry->unk_8 + index.value)) == 0 || entry->unk_4[v68] == 0) {
+        if (entry->unk_8 == 0 || (image = *(u32 *)((u8 *)entry->unk_8 + index)) == 0 || entry->unk_4[v68] == 0) {
             loc_8.image = 0x8917;
             fn_1_4F734(&loc_8);
         } else {

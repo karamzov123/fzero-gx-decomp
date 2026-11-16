@@ -1551,7 +1551,7 @@ static inline f32 distance_squared(f32 *a, f32 *b) {
 static inline f32 fn_1_D59A8_operand(f32 left, f32 right) { return left * right; }
 static inline f32 fn_1_D59A8_operand_(f32 right, f32 left) { return left * right; }
 static inline f32 fn_1_D59A8_operand__(f32 left, f32 right) { return left * right; }
-static inline f32 fn_1_D59A8_operand___(f32 left, f32 right) { left += right; return left; }
+
 void fn_1_D59A8(struct fn_1_D59A8_obj *obj) {
     f32 v44[3]; f32 v38[3]; f32 v2c[3]; f32 v20[3]; f32 v14[3]; f32 v8[3];
     f32 step1;
@@ -1564,7 +1564,11 @@ void fn_1_D59A8(struct fn_1_D59A8_obj *obj) {
     for (i = 0; i < 3; i++) {
         obj->elems[i].unk_2C = obj->elems[i].unk_2C - 1;
         obj->elems[i].pos[0] = obj->elems[i].pos[0] + step1;
-        obj->elems[i].pos[2] = fn_1_D59A8_operand___((obj->elems[i].pos[2]), (((0.100000001f))));
+        {
+            f32 sum = (f32)((obj->elems[i].pos[2]));
+            sum += (f32)((((0.100000001f))));
+            obj->elems[i].pos[2] = sum;
+        }
         obj->elems[i].unk_28 = obj->elems[i].unk_28 + obj->elems[i].unk_2A;
         count = fn_1_58C4();
         fn_1_681C(0, (u32 *)v8);

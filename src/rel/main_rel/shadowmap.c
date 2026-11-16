@@ -902,7 +902,7 @@ static inline void ShadowCam_set_lc(void) {
 
 #pragma opt_common_subs off
 void fn_1_5745C(ShadowSrc *src, u32 *color) {
-    struct { ShadowCam **value; } cameraSlot;
+    ShadowCam ** cameraSlot;
     u32 flags;
     void *list;
     ShadowQuad *quad;

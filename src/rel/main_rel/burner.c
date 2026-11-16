@@ -5505,7 +5505,6 @@ extern struct fn_1_9A958_data lbl_1_data_2A0C0;
 extern int sprintf(char *, const char *, ...);
 extern s32 fn_1_465D0(char *, s32);
 
-#pragma opt_dead_assignments off
 #pragma opt_propagation off
 static inline void * fn_1_9A958_read_entry(struct fn_1_9A958_data * owner, int i) { return owner->entries[i]; }
 void fn_1_9A958(int index, int flag) {
@@ -5515,12 +5514,12 @@ void fn_1_9A958(int index, int flag) {
     u8 buffer_b[0x20];
     int idx = indices[index];
     void *entry;
-    struct { void **value; } table;
+    void ** table;
 
     if (data->current != idx) {
         int offset = idx * 4;
-        table.value = data->entries;
-        entry = *(void **)((u8 *)table.value + offset);
+        table = data->entries;
+        entry = *(void **)((u8 *)table + offset);
         if (entry != 0) {
             sprintf((char *)buffer_a, data->string_a, data->string_b, entry);
             sprintf((char *)buffer_b, data->string_c, data->string_b, entry);
@@ -5534,7 +5533,6 @@ void fn_1_9A958(int index, int flag) {
         }
     }
 }
-#pragma opt_dead_assignments reset
 /* fzgx:end fn_1_9A958 */
 
 /* fzgx:begin fn_1_9AA2C noprologue */

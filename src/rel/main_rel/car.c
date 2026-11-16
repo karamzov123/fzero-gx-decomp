@@ -602,7 +602,6 @@ void fn_1_7F3AC(CarFn_1_7F3AC *car, u32 lab_unused0, u32 lab_unused1, u32 lab_un
         *fzgx_value = 0;
     }
 }
-
 /* fzgx:end fn_1_7F3AC */
 
 /* fzgx:begin fn_1_7F428 */
@@ -12500,7 +12499,6 @@ void fn_1_87448(Fn1_87448_Obj *self, Fn1_87448_Arg1 *arg1, s8 arg2, int flag, f3
         }
     }
 }
-
 /* fzgx:end fn_1_87448 */
 
 /* fzgx:begin fn_1_875B4 */
@@ -17910,10 +17908,10 @@ f32 fn_1_8CA70(u32 a, s32 b) {
     u32 span;
     u32 index;
     int swapped = 0;
-    struct { struct rodata_3508 *value; } constants;
-    constants.value = (struct rodata_3508 *)lbl_1_rodata_3508;
+    struct rodata_3508 * constants;
+    constants = (struct rodata_3508 *)lbl_1_rodata_3508;
     if (a == b) {
-        return constants.value->f[4];
+        return constants->f[4];
     }
     if (a > b) {
         u32 temp = a;
@@ -17929,10 +17927,10 @@ f32 fn_1_8CA70(u32 a, s32 b) {
     if (!(swapped)) {
         return value;
     }
-    if (constants.value->unk_668 == value) {
+    if (constants->unk_668 == value) {
         return value;
     }
-    return (f32)(value * constants.value->unk_7E8);
+    return (f32)(value * constants->unk_7E8);
 }
 /* fzgx:end fn_1_8CA70 */
 
@@ -17953,10 +17951,10 @@ f32 fn_1_8CAF4(u32 a, s32 b) {
     u32 span;
     u32 index;
     int swapped = 0;
-    struct { struct rodata_3508 *value; } constants;
-    constants.value = (struct rodata_3508 *)lbl_1_rodata_3508;
+    struct rodata_3508 * constants;
+    constants = (struct rodata_3508 *)lbl_1_rodata_3508;
     if (a == b) {
-        return constants.value->f[4];
+        return constants->f[4];
     }
     if (a > b) {
         u32 temp = a;
@@ -17972,10 +17970,10 @@ f32 fn_1_8CAF4(u32 a, s32 b) {
     if (!(swapped)) {
         return value;
     }
-    if (constants.value->unk_668 == value) {
+    if (constants->unk_668 == value) {
         return value;
     }
-    return (f32)(value * constants.value->unk_7E8);
+    return (f32)(value * constants->unk_7E8);
 }
 /* fzgx:end fn_1_8CAF4 */
 
@@ -40149,7 +40147,6 @@ void fn_1_9550C(Owner *owner, Config *config) {
         }
     }
 }
-
 /* fzgx:end fn_1_9550C */
 
 /* fzgx:begin fn_1_956B8 */

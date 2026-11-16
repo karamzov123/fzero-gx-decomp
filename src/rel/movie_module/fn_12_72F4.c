@@ -39,11 +39,11 @@ s32 fn_12_72F4(Obj *o) {
     s32 i;
     Req *req;
     u8 *flags;
-    struct { Obj *value; } base;
+    Obj * base;
 
     flags = (u8 *)((u32)o + 0x78);
     req = &o->req;
-    base.value = o;
+    base = o;
     i = 0;
     o->f68 = o->f2bc;
     *(void **)((u8 *)req + 0x20) = (u8 *)o + 0xc80;
@@ -52,7 +52,7 @@ s32 fn_12_72F4(Obj *o) {
     o->fa0 = mask;
     for (i = 0; i < 6; i++) {
         if ((s32)mask < 0) {
-            req->buf = base.value->bufs[i];
+            req->buf = base->bufs[i];
             flags[i] = o->cb(o, req);
         }
         mask <<= 1;

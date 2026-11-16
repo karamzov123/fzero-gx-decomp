@@ -3144,7 +3144,6 @@ void fn_3_39F0(void) {
     fn_1_131004();
     fn_3_3438();
 }
-
 /* fzgx:end fn_3_39F0 */
 
 /* fzgx:begin fn_3_3AE8 noprologue */
@@ -4251,7 +4250,7 @@ static void fzgx_bss_layout(void) {
 #pragma section code_type ".text"
 
 void fn_3_4F08(void) {
-    struct { u32 value; } v0;
+    u32 v0;
     u32 v1;
     struct F0 *f;
     u8 *q;

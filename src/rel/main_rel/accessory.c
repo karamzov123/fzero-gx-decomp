@@ -414,7 +414,7 @@ void fn_1_108A90(fn_1_108A90_Self *self, s32 idx, f32 radius, f32 cx, f32 cy, f3
     fn_1_108A90_Self *s = self;
     f32 r = radius;
     f32 sq = r * r;
-    struct { u32 value; } i;
+    u32 i;
     fn_1_108A90_Entry *e;
     fn_1_108A90_Vec3 center;
     fn_1_108A90_Vec3 d;
@@ -424,9 +424,9 @@ void fn_1_108A90(fn_1_108A90_Self *self, s32 idx, f32 radius, f32 cx, f32 cy, f3
     center.z = cz;
     lbl_8006DBAC((void *)(((0x88) + (((*((s->unk_c->unk_150) + (2)))) + (idx * 0x18c)))));
     lbl_8006E1B0(&center, &center);
-    i.value = 0;
+    i = 0;
     e = s->entries;
-    while (i.value < s->count) {
+    while (i < s->count) {
         f32 dz;
         f32 dy;
         f32 dx;
@@ -448,7 +448,7 @@ void fn_1_108A90(fn_1_108A90_Self *self, s32 idx, f32 radius, f32 cx, f32 cy, f3
             psvec_sub_scale_add(&e->vec, &center, r * lbl_8006D0E8(d2), &d, &e->vec);
         }
     next:
-        i.value = i.value + 1;
+        i = i + 1;
         e = (fn_1_108A90_Entry *)((u8 *)e + 0x44);
     }
 }
@@ -687,7 +687,7 @@ void fn_1_108EEC(fn_1_108EEC_Arg *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, 
     u8 *e;
     f32 rad2;
     f32 len2;
-    struct { f32 value; } scale;
+    f32 scale;
     f32 dx;
     f32 dy;
     f32 dz;
@@ -720,11 +720,11 @@ void fn_1_108EEC(fn_1_108EEC_Arg *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, 
             c.z = dz;
             len2 = len2 + dz * dz;
             if (len2 < rad2) {
-                scale.value = arg1 / lbl_8006D0B4(len2);
+                scale = arg1 / lbl_8006D0B4(len2);
                 fzgx_live = c.x;
-                c.x = (f32)(fzgx_live * scale.value) + v.x;
-                c.y = (f32)(c.y * scale.value) + v.y;
-                c.z = (f32)(c.z * scale.value) + v.z;
+                c.x = (f32)(fzgx_live * scale) + v.x;
+                c.y = (f32)(c.y * scale) + v.y;
+                c.z = (f32)(c.z * scale) + v.z;
                 lbl_8006DBAC(p + 0x88);
                 fn_8006E250(&c, &c);
                 fn_8006E250(&b, &b);
@@ -751,7 +751,6 @@ void fn_1_108EEC(fn_1_108EEC_Arg *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, 
         n++;
     }
 }
-
 /* fzgx:end fn_1_108EEC */
 
 /* fzgx:begin fn_1_109114 */
@@ -24292,7 +24291,7 @@ extern f32 lbl_1_rodata_806C[61];
 extern f32 fn_1_8CAF4(s16, u32);
 
 void fn_1_128F54(void) {
-    struct { u32 value; } inner_count;
+    u32 inner_count;
     u32 outer_count;
     struct { s16 value; } item;
     u32 i;
@@ -24348,7 +24347,7 @@ void fn_1_128F54(void) {
         }
         i++;
     }
-    inner_count.value = fzgx_loop_inner_count_553.value;
+    inner_count = fzgx_loop_inner_count_553.value;
     outer_count = fzgx_loop_outer_count_553;
 }
 }

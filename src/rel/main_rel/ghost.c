@@ -393,7 +393,6 @@ s32 fn_1_EB4BC(void) {
 	lbl_1_bss_7E9E8__fzgx_offset_14 = 0;
 	return 1;
 }
-
 /* fzgx:end fn_1_EB4BC */
 
 /* fzgx:begin fn_1_EB85C */
@@ -3488,8 +3487,8 @@ extern void fn_1_14DBCC(void *);
 extern void fn_1_984F0(void *);
 void fn_1_EEB44(void)
 {
-struct { GhostStrings *value; } str;
-struct { Obj_1_bss_7B180 *value; } work;
+GhostStrings * str;
+Obj_1_bss_7B180 * work;
 char objName[0x100];
 char itemName[0x100];
 f32 mtx[3][4];
@@ -3516,108 +3515,108 @@ s32 count;
 s32 f;
 u8 *lapFlags;
 u32 ghostIndex;
-str.value = (GhostStrings *)lbl_1_data_3E358;
-work.value = &lbl_1_bss_7B180;
-if ((s32)work.value->unk_8 != 0 && work.value->unk_38AC != 0 ) {
-if ((s32)work.value->unk_3894 != 0) {
-str.value->busy = 0;
+str = (GhostStrings *)lbl_1_data_3E358;
+work = &lbl_1_bss_7B180;
+if ((s32)work->unk_8 != 0 && work->unk_38AC != 0 ) {
+if ((s32)work->unk_3894 != 0) {
+str->busy = 0;
 } else {
 i = 0;
-cursor.slot = work.value->arr_18D8;
+cursor.slot = work->arr_18D8;
 for (; i < 5; i++) {
 fn_80008BEC(cursor.slot, 0, 0x30);
 cursor.slot += 0x30;
 }
 if (lbl_1_bss_960 == 9) {
-if ((s32)work.value->unk_16C8 >= 0 && (s32)work.value->unk_17CC == 0) {
+if ((s32)work->unk_16C8 >= 0 && (s32)work->unk_17CC == 0) {
 player = fn_1_3F0D8(0, &speed, &misc);
 ptime = ((player)->min * 60000 + (player)->sec * 1000 + (player)->ms) ;
-rec = (GhostRecord *)work.value->unk_16B4;
+rec = (GhostRecord *)work->unk_16B4;
 if (ptime >= ((rec)->min * 60000 + (rec)->sec * 1000 + (rec)->ms) ) {
-work.value->unk_174C = 3;
+work->unk_174C = 3;
 } else {
-work.value->unk_174C = 1;
+work->unk_174C = 1;
 }
-} else if ((s32)work.value->unk_17CC != 0) {
-work.value->unk_174C = 0;
-} else if (work.value->unk_174E == 0) {
-work.value->unk_174C = 0;
+} else if ((s32)work->unk_17CC != 0) {
+work->unk_174C = 0;
+} else if (work->unk_174E == 0) {
+work->unk_174C = 0;
 }
 } else {
-if (work.value->unk_174E != 0 && (s32)work.value->unk_17CC == 0) {
+if (work->unk_174E != 0 && (s32)work->unk_17CC == 0) {
 player = fn_1_3F0D8(0, &speed, &misc);
 ptime = ((player)->min * 60000 + (player)->sec * 1000 + (player)->ms) ;
-count = work.value->unk_174E;
-work.value->unk_174C = 1;
-recs = (GhostRecord **)&work.value->unk_16B4;
+count = work->unk_174E;
+work->unk_174C = 1;
+recs = (GhostRecord **)&work->unk_16B4;
 for (j = 0; j < count; j++) {
 rec = recs[j];
 if (ptime >= ((rec)->min * 60000 + (rec)->sec * 1000 + (rec)->ms) ) {
-work.value->unk_174C = 3;
+work->unk_174C = 3;
 }
 }
-} else if ((s32)work.value->unk_17CC != 0) {
-work.value->unk_174C = 0;
-} else if (work.value->unk_174E == 0) {
-work.value->unk_174C = 0;
+} else if ((s32)work->unk_17CC != 0) {
+work->unk_174C = 0;
+} else if (work->unk_174E == 0) {
+work->unk_174C = 0;
 }
 }
-if (work.value->unk_16CC != 0xff) {
+if (work->unk_16CC != 0xff) {
 player = fn_1_3F0D8(0, &speed, &misc);
 ptime = ((player)->min * 60000 + (player)->sec * 1000 + (player)->ms) ;
-if ((s32)work.value->unk_20 != 0) {
-recs = (GhostRecord **)&work.value->unk_16B4;
-recs += work.value->unk_174E;
+if ((s32)work->unk_20 != 0) {
+recs = (GhostRecord **)&work->unk_16B4;
+recs += work->unk_174E;
 rec = recs[-2];
 rtime = ((rec)->min * 60000 + (rec)->sec * 1000 + (rec)->ms) ;
 } else {
-recs = (GhostRecord **)&work.value->unk_16B4;
-recs += work.value->unk_174E;
+recs = (GhostRecord **)&work->unk_16B4;
+recs += work->unk_174E;
 rec = recs[-1];
 rtime = ((rec)->min * 60000 + (rec)->sec * 1000 + (rec)->ms) ;
 }
 if (rtime > ptime) {
-work.value->unk_174D = 1;
+work->unk_174D = 1;
 } else {
-work.value->unk_174D = 3;
+work->unk_174D = 3;
 }
 } else {
-work.value->unk_174D = 0;
+work->unk_174D = 0;
 }
-work.value->unk_3894 = 1;
+work->unk_3894 = 1;
 fn_1_8645C(0, mtx);
-for (f = work.value->unk_0 - 3; (u32)f < work.value->unk_0; f++) {
+for (f = work->unk_0 - 3; (u32)f < work->unk_0; f++) {
 if (f > 0 && f < 0x7080) {
-lapFlags = (u8 *)work.value->unk_16E8;
+lapFlags = (u8 *)work->unk_16E8;
 lapFlags[f] = 1;
 }
 }
 lbl_8006DBAC((Vec3 *)mtx);
 fn_8006F5C4(&angX, &angY, &angZ);
-((GhostFrame *)work.value->unk_38AC)->angleY = angZ >> 8;
-((GhostFrame *)work.value->unk_38AC)->angleZ = angY;
-((GhostFrame *)work.value->unk_38AC)->angleX = angX >> 8;
-((GhostFrame *)work.value->unk_38AC)->lapDelta = work.value->unk_0 - work.value->unk_4;
+((GhostFrame *)work->unk_38AC)->angleY = angZ >> 8;
+((GhostFrame *)work->unk_38AC)->angleZ = angY;
+((GhostFrame *)work->unk_38AC)->angleX = angX >> 8;
+((GhostFrame *)work->unk_38AC)->lapDelta = work->unk_0 - work->unk_4;
 packed0 = fn_1_F17B4(&mtx[0][3]);
 packed1 = fn_1_F17B4(&mtx[1][3]);
 packed2 = fn_1_F17B4(&mtx[2][3]);
-ghost_pack_bits(&((GhostFrame *)work.value->unk_38AC)->packed, &packed0, &packed1, &packed2);
-((GhostFrame *)work.value->unk_38AC)->flags = fn_1_3F114();
-((GhostFrame *)work.value->unk_38AC)->pad = 0;
-*(u8 *)work.value->unk_38B0 = 1;
-work.value->unk_38AC += sizeof(GhostFrame);
-work.value->unk_38B0++;
-work.value->unk_1820++;
-work.value->unk_4 = work.value->unk_0;
-work.value->unk_0++;
-work.value->unk_C = 1;
-str.value->course = 0;
+ghost_pack_bits(&((GhostFrame *)work->unk_38AC)->packed, &packed0, &packed1, &packed2);
+((GhostFrame *)work->unk_38AC)->flags = fn_1_3F114();
+((GhostFrame *)work->unk_38AC)->pad = 0;
+*(u8 *)work->unk_38B0 = 1;
+work->unk_38AC += sizeof(GhostFrame);
+work->unk_38B0++;
+work->unk_1820++;
+work->unk_4 = work->unk_0;
+work->unk_0++;
+work->unk_C = 1;
+str->course = 0;
 course = fn_1_86254(0);
 if (course != ((void *)0) ) {
-str.value->course = course[3];
+str->course = course[3];
 }
-cursor.objs = (GhostObject **)&work.value->unk_1794;
-otherCursor.items = (void **)&work.value->unk_17A8;
+cursor.objs = (GhostObject **)&work->unk_1794;
+otherCursor.items = (void **)&work->unk_17A8;
 {
 for (i = 0; i < 5; i++) {
 if (cursor.objs[i] != ((void *)0) ) {
@@ -3626,23 +3625,23 @@ fn_1_12A734(cursor.objs[i]->handle);
 cursor.objs[i]->handle = -1;
 }
 fn_1_7F934(cursor.objs[i]);
-fn_1_46B4(lbl_801A6410, cursor.objs[i], str.value->file, 0xd89);
-sprintf(objName, str.value->fmtObj, i);
+fn_1_46B4(lbl_801A6410, cursor.objs[i], str->file, 0xd89);
+sprintf(objName, str->fmtObj, i);
 cursor.objs[i] = ((void *)0) ;
 }
 if (otherCursor.items[i] != ((void *)0) ) {
 fn_1_14DBCC(otherCursor.items[i]);
-fn_1_46B4(lbl_801A6410, otherCursor.items[i], str.value->file, 0xd93);
-sprintf(itemName, str.value->fmtItem, i);
+fn_1_46B4(lbl_801A6410, otherCursor.items[i], str->file, 0xd93);
+sprintf(itemName, str->fmtItem, i);
 otherCursor.items[i] = ((void *)0) ;
 }
 }
 }
-otherCursor.ghost = work.value->arr_19C8;
-for (ghostCounter.value = 0; ghostCounter.value < work.value->unk_174E; ghostCounter.value++) {
+otherCursor.ghost = work->arr_19C8;
+for (ghostCounter.value = 0; ghostCounter.value < work->unk_174E; ghostCounter.value++) {
 fn_1_984F0(otherCursor.ghost + ghostCounter.value * 0x620);
 }
-str.value->busy = 0;
+str->busy = 0;
 }
 }
 return;
@@ -5635,7 +5634,7 @@ void fn_1_F1300(u32 count, GhostVec4 *records, const u8 *xbytes,
     f32 fzgx_live_;
     f32 *fzgx_value;
     f32 fzgx_live;
-    struct { u32 value; } k;
+    u32 k;
     const u8 * bytes_b_local = zbytes;
     const s16 * values_local = values;
     s16 sample;
@@ -5660,7 +5659,7 @@ void fn_1_F1300(u32 count, GhostVec4 *records, const u8 *xbytes,
         records++;
     }
 
-    for (k.value = 0; k.value < count - 1; k.value++) {
+    for (k = 0; k < count - 1; k++) {
         f32 a;
         f32 b;
         f32 c;

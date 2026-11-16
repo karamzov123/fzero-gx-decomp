@@ -20,7 +20,7 @@ void fn_12_12590(MovieCtx *m, u32 lab_unused0) {
     s32 rows;
     s32 rows16;
     s32 rbit;
-    struct { s32 value; } half;
+    s32 half;
     s32 wide;
     s32 h32;
     s32 w32;
@@ -32,9 +32,9 @@ void fn_12_12590(MovieCtx *m, u32 lab_unused0) {
     rows = (w0 + 15) / 16;
     rows16 = rows << 4;
     rbit = (s32)((u32)rows >> 27 & 1u);
-    half.value = (rows16 + 31) / 32;
+    half = (rows16 + 31) / 32;
     wide = (((rbit + rows16) >> 1) + 31) / 32;
-    h32 = half.value << 5;
+    h32 = half << 5;
     w32 = wide << 5;
     h0 = m->field_1d4;
     cols = (h0 + 15) / 16;

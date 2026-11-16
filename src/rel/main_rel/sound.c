@@ -4295,7 +4295,6 @@ static void fzgx_bss_layout(void) {
 }
 #pragma section code_type ".text"
 
-#pragma opt_lifetimes off
 #pragma opt_common_subs off
 void fn_1_A2FC8(s32 arg0, f32 arg1, u32 unused2, u32 unused3, u32 unused4) {
     
@@ -4304,7 +4303,7 @@ void fn_1_A2FC8(s32 arg0, f32 arg1, u32 unused2, u32 unused3, u32 unused4) {
     s32 i;
     s32 found = 0;
     s32 idx;
-    struct { f32 value; } f0;
+    f32 f0;
     struct { f32 value; } f1;
 
     for (i = 0; i < (s8)lbl_1_bss_6F2C4; i++) {
@@ -4335,13 +4334,13 @@ void fn_1_A2FC8(s32 arg0, f32 arg1, u32 unused2, u32 unused3, u32 unused4) {
     }
     fn_80067344(1, 0x10, 0xB0270000, snd);
 
-    f0.value = arg1 * lbl_1_rodata_4530;
-    if (f0.value < lbl_1_rodata_4474) {
+    f0 = arg1 * lbl_1_rodata_4530;
+    if (f0 < lbl_1_rodata_4474) {
         f1.value = lbl_1_rodata_4474;
-    } else if (f0.value > lbl_1_rodata_4470) {
+    } else if (f0 > lbl_1_rodata_4470) {
         f1.value = lbl_1_rodata_4470;
     } else {
-        f1.value = f0.value;
+        f1.value = f0;
     }
 
     if (f1.value < lbl_1_rodata_4534) {
@@ -4376,8 +4375,6 @@ tail:
     }
 }
 #pragma opt_common_subs reset
-
-#pragma opt_lifetimes reset
 /* fzgx:end fn_1_A2FC8 */
 
 /* fzgx:begin fn_1_A31E4 noprologue */

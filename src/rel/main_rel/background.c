@@ -1037,18 +1037,18 @@ void fn_1_9EDE8(Obj_1_9EDE8 *arg0) {
     Vec3 pos;
     u32 z;
     Vec3 vtx[4];
-    struct { f32 value; } radius;
+    f32 radius;
     struct { f32 value; } neg;
 
     pos.x = arg0->unk_14;
     pos.y = arg0->unk_24;
     pos.z = arg0->unk_34;
     if (arg0->unk_38 & 2) {
-        radius.value = *(f32 *)((u8 *)arg0 + 4);
+        radius = *(f32 *)((u8 *)arg0 + 4);
     } else {
-        radius.value = *(f32 *)arg0;
+        radius = *(f32 *)arg0;
     }
-    if (!(arg0->unk_38 & 4) && fn_1_54E34(&pos, radius.value) == 0) {
+    if (!(arg0->unk_38 & 4) && fn_1_54E34(&pos, radius) == 0) {
         arg0->unk_38 |= 1;
         return;
     }
@@ -1103,14 +1103,14 @@ void fn_1_9EDE8(Obj_1_9EDE8 *arg0) {
     FIFO(lbl_1_rodata_42D0);
     FIFO(lbl_1_rodata_42D0);
     fn_8003462C(0x80, 0, 4);
-    radius.value = *(f32 *)arg0;
-    neg.value = -radius.value;
+    radius = *(f32 *)arg0;
+    neg.value = -radius;
     lbl_8006DAEC();
     lbl_8006DFC4((u32)((u8 *)arg0 + 8));
     lbl_8006E1D8((u32)&vtx[0], neg.value, neg.value, lbl_1_rodata_42D0);
-    lbl_8006E1D8((u32)&vtx[1], radius.value, neg.value, lbl_1_rodata_42D0);
-    lbl_8006E1D8((u32)&vtx[2], radius.value, radius.value, lbl_1_rodata_42D0);
-    lbl_8006E1D8((u32)&vtx[3], neg.value, radius.value, lbl_1_rodata_42D0);
+    lbl_8006E1D8((u32)&vtx[1], radius, neg.value, lbl_1_rodata_42D0);
+    lbl_8006E1D8((u32)&vtx[2], radius, radius, lbl_1_rodata_42D0);
+    lbl_8006E1D8((u32)&vtx[3], neg.value, radius, lbl_1_rodata_42D0);
     lbl_8006DB30();
     FIFO(vtx[0].x);
     FIFO(vtx[0].y);

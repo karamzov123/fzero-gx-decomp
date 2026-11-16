@@ -908,7 +908,6 @@ void fn_9_1124(void)
 /* fzgx:end fn_9_1124 */
 
 /* fzgx:begin colchg_menu_disp */
-
 void colchg_menu_disp(void)
 {
     u32 base = (u32)&lbl_9_data_0;
@@ -1003,10 +1002,10 @@ __declspec(section ".fzgxpool") static inline void fzgx_pool_prime5(void) {
 s32 fn_9_1310(struct Car_9_1310 *car) {
     u32 *rng;
     f32 angle;
-    struct { s32 value; } color;
-    struct { struct Car_9_1310 *value; } held_car;
-    held_car.value = car;
-    color.value = lbl_9_bss_8->unk_C;
+    s32 color;
+    struct Car_9_1310 * held_car;
+    held_car = car;
+    color = lbl_9_bss_8->unk_C;
     lbl_8006D7F4(0.0f, 0.0f, -10.0f);
     mathutil_mtxA_rotate_y(-0x8000);
     rng = &lbl_801A66A0;
@@ -1015,7 +1014,7 @@ s32 fn_9_1310(struct Car_9_1310 *car) {
     mathutil_mtxA_rotate_y((s32)angle);
     lbl_8006E14C(2.0f);
     fn_80072558();
-    fn_1_870BC( (struct Car *)(struct Car_9_1310 *)(held_car.value), (s8)color.value, (struct Car *)(struct Car_9_1310 *)(held_car.value), 0, (u8)held_car.value->unk_3b8, 1.0f);
+    fn_1_870BC( (struct Car *)(struct Car_9_1310 *)(held_car), (s8)color, (struct Car *)(struct Car_9_1310 *)(held_car), 0, (u8)held_car->unk_3b8, 1.0f);
     return 0;
 }
 /* fzgx:end fn_9_1310 */
@@ -1390,7 +1389,6 @@ void fn_9_1AFC(void) {
 /* fzgx:end fn_9_1AFC */
 
 /* fzgx:begin fn_9_1BCC */
-
 void fn_9_1BCC(void) {
     struct CarColchgEntry entries[0x29];
     s8 i;

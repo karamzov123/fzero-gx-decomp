@@ -75,7 +75,7 @@ static inline f64 *write_block(MovieDecoder *m, f64 *b) {
 }
 
 void fn_12_7940(MovieDecoder *m, s32 n) {
-    struct { s32 value; } skip;
+    s32 skip;
     f64 *blk;
     Sig_fn_12_7E58_MovieFrameBuffer *fb;
     Sig_fn_12_7E58_MovieFrameBuffer *fbout;
@@ -91,7 +91,7 @@ void fn_12_7940(MovieDecoder *m, s32 n) {
     cstride = fb->chroma_stride;
     ystride = fb->luma_stride;
     m->block_out = out + n * 48 - 48;
-    skip.value = (cstride - 1) * 8;
+    skip = (cstride - 1) * 8;
     while (--n != 0) {
         m->get_offsets(m, m->count - n, &ofs, fb);
         m->stride = ystride;
@@ -121,7 +121,7 @@ void fn_12_7940(MovieDecoder *m, s32 n) {
         m->src += 8;
         read_block(m, blk + 24);
         m->dst = write_block(m, blk + 24);
-        m->src += skip.value;
+        m->src += skip;
         read_block(m, blk + 32);
         m->dst = write_block(m, blk + 32);
         m->src += 8;
