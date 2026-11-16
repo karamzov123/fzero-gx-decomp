@@ -20,6 +20,10 @@ The remaining "bg_aur.c" range still mixes TUs. bg_aur's own handler entry is `f
 
 Without its primer, the one-function bg_tow.c compiled whole but fell to 99.49% and could not place its literals. Its pool belonged to the larger TU above, so a wrong TU boundary can also be what makes a primer necessary.
 
+**bg_tow.c now compiles as one file and matches 16/16 inside that compile**, the first un-collapsed TU to do so. Its moved blocks carried bg_aur's whole old prologue. Removing 294 extern declarations no block referenced changed no code and let tutruth unify 15 of 16 blocks. `fn_1_1540B0` was the last self-contained block (93%, an r27/r28 swap from passing the object as `u32`). It now takes the shared object type and copies the constant vector as a struct, and it matches under the TU prologue. The file has no `noprologue` blocks left. Bodies replay from `state/repairs/bgtow-whole-tu-20261116.sources.json.gz`.
+
+It is not collapsed yet: its primer is still needed. Without it, 15/16 still match, but `fn_1_154410` drops to 99.51% and bg_tow's strings no longer fill its `.data` range exactly. The primer serves `fn_1_153D74`, which reads the literal pool through a lifter struct view (`AuroraDef` over `lbl_1_rodata_D508`: seven floats, a zero, the int-to-float bias, five vectors, four floats). It also carries other devices (`fzgx_live`, an inert multiply helper, raw locked-cache stores). Rewriting it with real literals and a constant vector table is the next step before primer removal and collapse.
+
 The pilot also showed what each TU needs before it can collapse:
 
 1. **Correct ownership**: TU boundaries, then regenerated TU headers. Regenerating moves declarations; a block that redeclares a symbol with another type (for example a scalar `lbl_1_data_49A18` against the header's `u32[5]`) and data units or import records that name the old header must follow in the same change.

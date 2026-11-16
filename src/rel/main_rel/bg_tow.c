@@ -1,83 +1,96 @@
 #include "types.h"
 #include "rel/main_rel/globals.h"
 #include "rel/main_rel/bg_tow.h"
-
-/* fzgx:begin fn_1_153988 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
 #include "rel/main_rel/bg_aur.h"
+#include "psvec.h"
 
-extern int fn_8003BE1C(void *arg0, void *arg1);
-extern int fn_8003C1A4(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4);
-extern void fn_8003CE74(void *arg0, void *arg1, int arg2);
-extern void fn_8003CBB0(void *arg0, void *arg1, void *arg2, void *arg3);
-extern void fn_8003C6D0(void *arg0, void *arg1, void *arg2, void *arg3);
-extern u16 lbl_1_bss_8ED8C;
-extern u16 lbl_1_bss_8ED8E;
-extern void fn_1_151C9C(void);
-extern void fn_80074A7C(void (*callback)(void));
+typedef struct {
+    s32 count;
+    u8 pad_004[0x100];
+    s32 counter[64];
+    f32 timer[64];
+    f32 progress[64];
+    f32 cooldown[64];
+} Fn153B24Data;
+
+typedef struct {
+    f32 m[12];
+} AuroraCam;
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} V3;
+
+typedef struct {
+    u32 unk_0[7];
+    f32 zero;
+    u32 unk_1[2];
+    V3 def[5];
+    f32 k1;
+    f32 k2;
+    f32 k3;
+    f32 k4;
+} AuroraDef;
+
+typedef struct BgAurVec {
+    f32 x, y, z;
+} BgAurVec;
 extern void fn_1_153AF8(u32 *entries);
 extern void fn_1_153D48(void *background);
 extern void fn_1_9A508(void);
 extern int fn_1_58C4(void);
-extern void fn_1_5948(int);
-extern void fn_1_627C(int);
-extern void fn_1_9D260(void);
+extern void fn_1_5948(u32 arg0);
+extern void fn_1_627C();
+extern u32 fn_1_9D260(void);
 extern void fn_1_9AD54(void);
 extern void fn_1_153D74(void *);
-extern void fn_1_153B24(void *);
-extern void fn_1_153C60(Obj_1_data_2A7E0_At3C *value);
-extern void fn_1_1540B0(Obj_1_data_2A7E0_At3C *value);
+extern void fn_1_153B24();
+extern void fn_1_153C60(u8 *base);
+extern void fn_1_1540B0(Obj_1_data_2A7E0_At3C *);
 extern void fn_1_9AD88(void);
-extern void fn_80008BEC(void *arg0, u32 arg1, u32 arg2);
+extern void lbl_8006DFE8(void *);
+extern void lbl_8006E13C(void *);
+extern void lbl_8006E0A4(void *);
+extern void fn_80072558(void);
+extern void lbl_8006D784(void *);
+extern void fn_1_560F0(s32 index, void *arg);
+extern void fn_1_55210(void *value);
+extern void fn_80008BEC(void *dest, int value, u32 size);
+extern s16 camera_get_mode(void);
+extern u32 lbl_8006DAEC(void);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006DD7C(void);
+extern void lbl_8006DB30(void);
+extern f32 lbl_8006D0B4(f32 x);
+extern void fn_1_862D4(s16 mode, void *out);
+extern void fn_1_8636C(int index, void *arg);
+extern void fn_1_869B0(int index, u32 *out);
+extern void fn_8006F1F0(V3 *a, V3 *b, V3 *out);
+extern AuroraDef lbl_1_rodata_D508;
+extern AuroraCam *lbl_801A6D00;
+extern s32 fn_1_5910(void);
+extern void fn_1_154164(u8 *value, const BgAurVec *offset, void *rotation, s32 all);
+extern u32 lbl_1_rodata_D57C[7];
+extern u32 fn_1_9BBE4(void *, u32, u32, void *);
+extern void lbl_8006D7DC(void *);
+extern void lbl_8006DFC4(void *);
+extern void lbl_8006E0C8(void *);
+extern void mathutil_mtxA_rotate_z(s16);
+extern void mathutil_mtxA_rotate_y(s16);
+extern void mathutil_mtxA_rotate_x(s16);
+extern u32 lbl_801A63C0;
+extern void OSPanic(const char *file, int line, const char *msg, ...);
 
-extern void fn_1_153AF8(u32 *entries);
-extern void fn_1_153D48(void *background);
-extern void fn_1_9A508(void);
-extern u8 lbl_1_rodata_D048[1200];
-extern int fn_1_8D690(s16 value);
-extern int fn_1_8D72C(s16 value);
+/* fzgx:begin fn_1_153988 */
 
 // fn_1_153988: empty in retail (single blr).
 void fn_1_153988(void) {
 }
 /* fzgx:end fn_1_153988 */
 
-/* fzgx:begin fn_1_15398C noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_aur.h"
-
-extern int fn_8003BE1C(void *arg0, void *arg1);
-extern int fn_8003C1A4(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4);
-extern void fn_8003CE74(void *arg0, void *arg1, int arg2);
-extern void fn_8003CBB0(void *arg0, void *arg1, void *arg2, void *arg3);
-extern void fn_8003C6D0(void *arg0, void *arg1, void *arg2, void *arg3);
-extern u16 lbl_1_bss_8ED8C;
-extern u16 lbl_1_bss_8ED8E;
-extern void fn_1_151C9C(void);
-extern void fn_80074A7C(void (*callback)(void));
-extern void fn_1_153AF8(u32 *entries);
-extern void fn_1_153D48(void *background);
-extern void fn_1_9A508(void);
-extern int fn_1_58C4(void);
-extern void fn_1_5948(int);
-extern void fn_1_627C(int);
-extern void fn_1_9D260(void);
-extern void fn_1_9AD54(void);
-extern void fn_1_153D74(void *);
-extern void fn_1_153B24(void *);
-extern void fn_1_153C60(Obj_1_data_2A7E0_At3C *value);
-extern void fn_1_1540B0(Obj_1_data_2A7E0_At3C *value);
-extern void fn_1_9AD88(void);
-extern void fn_80008BEC(void *arg0, u32 arg1, u32 arg2);
-
-extern void fn_1_153AF8(u32 *entries);
-extern void fn_1_153D48(void *background);
-extern void fn_1_9A508(void);
-extern u8 lbl_1_rodata_D048[1200];
-extern int fn_1_8D690(s16 value);
-extern int fn_1_8D72C(s16 value);
+/* fzgx:begin fn_1_15398C */
 
 // Prepares the shared background object and advances the background system.
 void fn_1_15398C(void) {
@@ -89,41 +102,7 @@ void fn_1_15398C(void) {
 }
 /* fzgx:end fn_1_15398C */
 
-/* fzgx:begin fn_1_1539D0 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_aur.h"
-
-extern int fn_8003BE1C(void *arg0, void *arg1);
-extern int fn_8003C1A4(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4);
-extern void fn_8003CE74(void *arg0, void *arg1, int arg2);
-extern void fn_8003CBB0(void *arg0, void *arg1, void *arg2, void *arg3);
-extern void fn_8003C6D0(void *arg0, void *arg1, void *arg2, void *arg3);
-extern u16 lbl_1_bss_8ED8C;
-extern u16 lbl_1_bss_8ED8E;
-extern void fn_1_151C9C(void);
-extern void fn_80074A7C(void (*callback)(void));
-extern void fn_1_153AF8(u32 *entries);
-extern void fn_1_153D48(void *background);
-extern void fn_1_9A508(void);
-extern int fn_1_58C4(void);
-extern void fn_1_5948(int);
-extern void fn_1_627C(int);
-extern void fn_1_9D260(void);
-extern void fn_1_9AD54(void);
-extern void fn_1_153D74(void *);
-extern void fn_1_153B24(void *);
-extern void fn_1_153C60(Obj_1_data_2A7E0_At3C *value);
-extern void fn_1_1540B0(Obj_1_data_2A7E0_At3C *value);
-extern void fn_1_9AD88(void);
-extern void fn_80008BEC(void *arg0, u32 arg1, u32 arg2);
-
-extern void fn_1_153AF8(u32 *entries);
-extern void fn_1_153D48(void *background);
-extern void fn_1_9A508(void);
-extern u8 lbl_1_rodata_D048[1200];
-extern int fn_1_8D690(s16 value);
-extern int fn_1_8D72C(s16 value);
+/* fzgx:begin fn_1_1539D0 */
 
 // Calls initialization, then loops calling two functions for each item
 void fn_1_1539D0(void) {
@@ -136,41 +115,7 @@ void fn_1_1539D0(void) {
 }
 /* fzgx:end fn_1_1539D0 */
 
-/* fzgx:begin fn_1_153A28 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_aur.h"
-
-extern int fn_8003BE1C(void *arg0, void *arg1);
-extern int fn_8003C1A4(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4);
-extern void fn_8003CE74(void *arg0, void *arg1, int arg2);
-extern void fn_8003CBB0(void *arg0, void *arg1, void *arg2, void *arg3);
-extern void fn_8003C6D0(void *arg0, void *arg1, void *arg2, void *arg3);
-extern u16 lbl_1_bss_8ED8C;
-extern u16 lbl_1_bss_8ED8E;
-extern void fn_1_151C9C(void);
-extern void fn_80074A7C(void (*callback)(void));
-extern void fn_1_153AF8(u32 *entries);
-extern void fn_1_153D48(void *background);
-extern void fn_1_9A508(void);
-extern int fn_1_58C4(void);
-extern void fn_1_5948(int);
-extern void fn_1_627C(int);
-extern void fn_1_9D260(void);
-extern void fn_1_9AD54(void);
-extern void fn_1_153D74(void *);
-extern void fn_1_153B24(void *);
-extern void fn_1_153C60(Obj_1_data_2A7E0_At3C *value);
-extern void fn_1_1540B0(Obj_1_data_2A7E0_At3C *value);
-extern void fn_1_9AD88(void);
-extern void fn_80008BEC(void *arg0, u32 arg1, u32 arg2);
-
-extern void fn_1_153AF8(u32 *entries);
-extern void fn_1_153D48(void *background);
-extern void fn_1_9A508(void);
-extern u8 lbl_1_rodata_D048[1200];
-extern int fn_1_8D690(s16 value);
-extern int fn_1_8D72C(s16 value);
+/* fzgx:begin fn_1_153A28 */
 
 void fn_1_153A28(void) {
     Obj_1_data_2A7E0_At3C *obj;
@@ -182,7 +127,7 @@ void fn_1_153A28(void) {
     fn_1_9AD54();
     count = fn_1_58C4();
     for (i = 0; i < count; i++) {
-        fn_1_5948(i);
+        fn_1_5948( (int)(i));
         fn_1_153D74(obj);
         fn_1_627C(i);
     }
@@ -190,169 +135,33 @@ void fn_1_153A28(void) {
 }
 /* fzgx:end fn_1_153A28 */
 
-/* fzgx:begin fn_1_153AAC noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_aur.h"
-
-extern int fn_8003BE1C(void *arg0, void *arg1);
-extern int fn_8003C1A4(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4);
-extern void fn_8003CE74(void *arg0, void *arg1, int arg2);
-extern void fn_8003CBB0(void *arg0, void *arg1, void *arg2, void *arg3);
-extern void fn_8003C6D0(void *arg0, void *arg1, void *arg2, void *arg3);
-extern u16 lbl_1_bss_8ED8C;
-extern u16 lbl_1_bss_8ED8E;
-extern void fn_1_151C9C(void);
-extern void fn_80074A7C(void (*callback)(void));
-extern void fn_1_153AF8(u32 *entries);
-extern void fn_1_153D48(void *background);
-extern void fn_1_9A508(void);
-extern int fn_1_58C4(void);
-extern void fn_1_5948(int);
-extern void fn_1_627C(int);
-extern void fn_1_9D260(void);
-extern void fn_1_9AD54(void);
-extern void fn_1_153D74(void *);
-extern void fn_1_153B24(void *);
-extern void fn_1_153C60(Obj_1_data_2A7E0_At3C *value);
-extern void fn_1_1540B0(Obj_1_data_2A7E0_At3C *value);
-extern void fn_1_9AD88(void);
-extern void fn_80008BEC(void *arg0, u32 arg1, u32 arg2);
-
-extern void fn_1_153AF8(u32 *entries);
-extern void fn_1_153D48(void *background);
-extern void fn_1_9A508(void);
-extern u8 lbl_1_rodata_D048[1200];
-extern int fn_1_8D690(s16 value);
-extern int fn_1_8D72C(s16 value);
+/* fzgx:begin fn_1_153AAC */
 
 // fn_1_153AAC: empty in retail (single blr).
 void fn_1_153AAC(void) {
 }
 /* fzgx:end fn_1_153AAC */
 
-/* fzgx:begin fn_1_153AB0 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_aur.h"
-
-extern int fn_8003BE1C(void *arg0, void *arg1);
-extern int fn_8003C1A4(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4);
-extern void fn_8003CE74(void *arg0, void *arg1, int arg2);
-extern void fn_8003CBB0(void *arg0, void *arg1, void *arg2, void *arg3);
-extern void fn_8003C6D0(void *arg0, void *arg1, void *arg2, void *arg3);
-extern u16 lbl_1_bss_8ED8C;
-extern u16 lbl_1_bss_8ED8E;
-extern void fn_1_151C9C(void);
-extern void fn_80074A7C(void (*callback)(void));
-extern void fn_1_153AF8(u32 *entries);
-extern void fn_1_153D48(void *background);
-extern void fn_1_9A508(void);
-extern int fn_1_58C4(void);
-extern void fn_1_5948(int);
-extern void fn_1_627C(int);
-extern void fn_1_9D260(void);
-extern void fn_1_9AD54(void);
-extern void fn_1_153D74(void *);
-extern void fn_1_153B24(void *);
-extern void fn_1_153C60(Obj_1_data_2A7E0_At3C *value);
-extern void fn_1_1540B0(Obj_1_data_2A7E0_At3C *value);
-extern void fn_1_9AD88(void);
-extern void fn_80008BEC(void *arg0, u32 arg1, u32 arg2);
-
-extern void fn_1_153AF8(u32 *entries);
-extern void fn_1_153D48(void *background);
-extern void fn_1_9A508(void);
-extern u8 lbl_1_rodata_D048[1200];
-extern int fn_1_8D690(s16 value);
-extern int fn_1_8D72C(s16 value);
+/* fzgx:begin fn_1_153AB0 */
 
 // Initializes the background Aurora object.
 void fn_1_153AB0(void) {
     Obj_1_data_2A7E0_At3C *object = lbl_1_data_2A7E0.unk_3C;
 
-    fn_1_153C60(object);
+    fn_1_153C60( (u8 *)(Obj_1_data_2A7E0_At3C *)(object));
     fn_1_1540B0(object);
     fn_1_9AD88();
 }
 /* fzgx:end fn_1_153AB0 */
 
-/* fzgx:begin fn_1_153AF4 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_aur.h"
-
-extern int fn_8003BE1C(void *arg0, void *arg1);
-extern int fn_8003C1A4(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4);
-extern void fn_8003CE74(void *arg0, void *arg1, int arg2);
-extern void fn_8003CBB0(void *arg0, void *arg1, void *arg2, void *arg3);
-extern void fn_8003C6D0(void *arg0, void *arg1, void *arg2, void *arg3);
-extern u16 lbl_1_bss_8ED8C;
-extern u16 lbl_1_bss_8ED8E;
-extern void fn_1_151C9C(void);
-extern void fn_80074A7C(void (*callback)(void));
-extern void fn_1_153AF8(u32 *entries);
-extern void fn_1_153D48(void *background);
-extern void fn_1_9A508(void);
-extern int fn_1_58C4(void);
-extern void fn_1_5948(int);
-extern void fn_1_627C(int);
-extern void fn_1_9D260(void);
-extern void fn_1_9AD54(void);
-extern void fn_1_153D74(void *);
-extern void fn_1_153B24(void *);
-extern void fn_1_153C60(Obj_1_data_2A7E0_At3C *value);
-extern void fn_1_1540B0(Obj_1_data_2A7E0_At3C *value);
-extern void fn_1_9AD88(void);
-extern void fn_80008BEC(void *arg0, u32 arg1, u32 arg2);
-
-extern void fn_1_153AF8(u32 *entries);
-extern void fn_1_153D48(void *background);
-extern void fn_1_9A508(void);
-extern u8 lbl_1_rodata_D048[1200];
-extern int fn_1_8D690(s16 value);
-extern int fn_1_8D72C(s16 value);
+/* fzgx:begin fn_1_153AF4 */
 
 // fn_1_153AF4: empty in retail (single blr).
 void fn_1_153AF4(void) {
 }
 /* fzgx:end fn_1_153AF4 */
 
-/* fzgx:begin fn_1_153AF8 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_aur.h"
-
-extern int fn_8003BE1C(void *arg0, void *arg1);
-extern int fn_8003C1A4(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4);
-extern void fn_8003CE74(void *arg0, void *arg1, int arg2);
-extern void fn_8003CBB0(void *arg0, void *arg1, void *arg2, void *arg3);
-extern void fn_8003C6D0(void *arg0, void *arg1, void *arg2, void *arg3);
-extern u16 lbl_1_bss_8ED8C;
-extern u16 lbl_1_bss_8ED8E;
-extern void fn_1_151C9C(void);
-extern void fn_80074A7C(void (*callback)(void));
-extern void fn_1_153AF8(u32 *entries);
-extern void fn_1_153D48(void *background);
-extern void fn_1_9A508(void);
-extern int fn_1_58C4(void);
-extern void fn_1_5948(int);
-extern void fn_1_627C(int);
-extern void fn_1_9D260(void);
-extern void fn_1_9AD54(void);
-extern void fn_1_153D74(void *);
-extern void fn_1_153B24(void *);
-extern void fn_1_153C60(Obj_1_data_2A7E0_At3C *value);
-extern void fn_1_1540B0(Obj_1_data_2A7E0_At3C *value);
-extern void fn_1_9AD88(void);
-extern void fn_80008BEC(void *arg0, u32 arg1, u32 arg2);
-
-extern void fn_1_153AF8(u32 *entries);
-extern void fn_1_153D48(void *background);
-extern void fn_1_9A508(void);
-extern u8 lbl_1_rodata_D048[1200];
-extern int fn_1_8D690(s16 value);
-extern int fn_1_8D72C(s16 value);
+/* fzgx:begin fn_1_153AF8 */
 
 // Clears the first entry and any following entries selected by its count.
 void fn_1_153AF8(u32 *entries) {
@@ -367,19 +176,14 @@ void fn_1_153AF8(u32 *entries) {
 }
 /* fzgx:end fn_1_153AF8 */
 
-/* fzgx:begin fn_1_153B24 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_153B24 */
 
-typedef struct {
-    s32 count;
-    u8 pad_004[0x100];
-    s32 counter[64];
-    f32 timer[64];
-    f32 progress[64];
-    f32 cooldown[64];
-} Fn153B24Data;
-
-void fn_1_153B24(Fn153B24Data *data, u32 lab_unused0, u32 lab_unused1, u32 lab_unused2) {
+void fn_1_153B24(data, lab_unused0, lab_unused1, lab_unused2)
+Fn153B24Data *data;
+u32 lab_unused0;
+u32 lab_unused1;
+u32 lab_unused2;
+{
     f32 base;
     f32 prod;
     s32 i;
@@ -414,17 +218,7 @@ void fn_1_153B24(Fn153B24Data *data, u32 lab_unused0, u32 lab_unused1, u32 lab_u
 }
 /* fzgx:end fn_1_153B24 */
 
-/* fzgx:begin fn_1_153C60 noprologue */
-#include "types.h"
-
-extern u32 lbl_1_data_2A7E0[];
-extern void lbl_8006DFE8(void *);
-extern void lbl_8006E13C(void *);
-extern void lbl_8006E0A4(void *);
-extern void fn_80072558(void);
-extern void lbl_8006D784(void *);
-extern void fn_1_560F0(s32, void *);
-extern void fn_1_55210(void *);
+/* fzgx:begin fn_1_153C60 */
 
 void fn_1_153C60(u8 *base) {
     u8 *entry;
@@ -443,7 +237,7 @@ void fn_1_153C60(u8 *base) {
         {
             u32 value = *(u32 *)(obj + 4);
 
-            if ((value + 0x10000) == 0xffff || (value & lbl_1_data_2A7E0[20]) != 0) {
+            if ((value + 0x10000) == 0xffff || (value & (((u32 *)&lbl_1_data_2A7E0))[20]) != 0) {
                 lbl_8006DFE8(slot + 0x504);
                 lbl_8006E13C(obj + 0x20);
                 lbl_8006E0A4((u8 *)*(void **)(base + 0x1104) + 8);
@@ -466,41 +260,7 @@ void fn_1_153C60(u8 *base) {
 }
 /* fzgx:end fn_1_153C60 */
 
-/* fzgx:begin fn_1_153D48 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_aur.h"
-
-extern int fn_8003BE1C(void *arg0, void *arg1);
-extern int fn_8003C1A4(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4);
-extern void fn_8003CE74(void *arg0, void *arg1, int arg2);
-extern void fn_8003CBB0(void *arg0, void *arg1, void *arg2, void *arg3);
-extern void fn_8003C6D0(void *arg0, void *arg1, void *arg2, void *arg3);
-extern u16 lbl_1_bss_8ED8C;
-extern u16 lbl_1_bss_8ED8E;
-extern void fn_1_151C9C(void);
-extern void fn_80074A7C(void (*callback)(void));
-extern void fn_1_153AF8(u32 *entries);
-extern void fn_1_153D48(void *background);
-extern void fn_1_9A508(void);
-extern int fn_1_58C4(void);
-extern void fn_1_5948(int);
-extern void fn_1_627C(int);
-extern void fn_1_9D260(void);
-extern void fn_1_9AD54(void);
-extern void fn_1_153D74(void *);
-extern void fn_1_153B24(void *);
-extern void fn_1_153C60(Obj_1_data_2A7E0_At3C *value);
-extern void fn_1_1540B0(Obj_1_data_2A7E0_At3C *value);
-extern void fn_1_9AD88(void);
-extern void fn_80008BEC(void *arg0, u32 arg1, u32 arg2);
-
-extern void fn_1_153AF8(u32 *entries);
-extern void fn_1_153D48(void *background);
-extern void fn_1_9A508(void);
-extern u8 lbl_1_rodata_D048[1200];
-extern int fn_1_8D690(s16 value);
-extern int fn_1_8D72C(s16 value);
+/* fzgx:begin fn_1_153D48 */
 
 // Clears the Aurora background data region.
 void fn_1_153D48(void *background) {
@@ -508,17 +268,7 @@ void fn_1_153D48(void *background) {
 }
 /* fzgx:end fn_1_153D48 */
 
-/* fzgx:begin fn_1_153D74 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_aur.h"
-#include "psvec.h"
-
-typedef struct {
-    f32 x;
-    f32 y;
-    f32 z;
-} V3;
+/* fzgx:begin fn_1_153D74 */
 
 typedef struct {
     u32 unk_0;
@@ -536,37 +286,9 @@ typedef struct {
     V3 target;
 } Aurora;
 
-typedef struct {
-    u32 unk_0[7];
-    f32 zero;
-    u32 unk_1[2];
-    V3 def[5];
-    f32 k1;
-    f32 k2;
-    f32 k3;
-    f32 k4;
-} AuroraDef;
 
-typedef struct {
-    f32 m[12];
-} AuroraCam;
 
-extern int fn_1_58C4(void);
-extern void fn_1_5948(int);
-extern s16 camera_get_mode(void);
-extern void lbl_8006D784(void *mat);
-extern u32 lbl_8006DAEC(void);
-extern u32 lbl_8006DB74(void *mat);
-extern void lbl_8006DD7C(void);
-extern void lbl_8006DB30(void);
-extern f32 lbl_8006D0B4(f32 x);
-extern void fn_1_862D4(s16 mode, void *out);
-extern void fn_1_8636C(s16 mode, AuroraCam *cam);
-extern void fn_1_869B0(s16 mode, void *out);
-extern void fn_8006F1F0(V3 *a, V3 *b, V3 *out);
 
-extern AuroraDef lbl_1_rodata_D508;
-extern AuroraCam *lbl_801A6D00;
 
 static inline f32 fn_1_153D74_operand(f32 right, f32 left) { left *= right; return left; }
 void fn_1_153D74(void *arg0) {
@@ -602,7 +324,7 @@ void fn_1_153D74(void *arg0) {
     p = (Aurora *)base;
     q = base;
     for (i = 0; i < count; i++) {
-        fn_1_5948(i);
+        fn_1_5948( (int)(i));
         mode = camera_get_mode();
         if (mode == -1) {
             v = cfg->def[0];
@@ -615,7 +337,7 @@ void fn_1_153D74(void *arg0) {
         } else {
             lbl_8006DAEC();
             fn_1_862D4(mode, &v);
-            fn_1_8636C(mode, lbl_801A6D00);
+            fn_1_8636C( (s16)(mode), (void *)(AuroraCam *)(lbl_801A6D00));
             z = cfg->zero;
             *(f32 *)(0xE0000000 + 0x0c) = z;
             *(f32 *)(0xE0000000 + 0x1c) = z;
@@ -627,7 +349,7 @@ void fn_1_153D74(void *arg0) {
             p->view.y = lbl_801A6D00->m[5];
             p->view.z = lbl_801A6D00->m[9];
             lbl_8006DB74(q + 0x11c);
-            fn_1_869B0(mode, &p->target);
+            fn_1_869B0( (s16)(mode), (u32 *)(void *)(&p->target));
             fn_8006F1F0(&v, &p->view, &p->pos);
             z = cfg->zero;
             *(f32 *)(0xE0000000 + 0x0c) = z;
@@ -663,58 +385,33 @@ void fn_1_153D74(void *arg0) {
 }
 /* fzgx:end fn_1_153D74 */
 
-/* fzgx:begin fn_1_1540B0 noprologue */
-#include "types.h"
-
-extern s32 fn_1_5910(void);
-extern void fn_1_154164(u32 value, u32 *arg1, u32 *arg2, u32 arg3);
-extern u32 lbl_1_rodata_D57C[7];
-
-void fn_1_1540B0(u32 value) {
-    u32 *table;
+/* fzgx:begin fn_1_1540B0 */
+void fn_1_1540B0(Obj_1_data_2A7E0_At3C *bg) {
+    u8 *table;
     s32 i;
-    u32 *base;
-    u32 *entry;
-    u32 args[3];
+    u8 *base;
+    s32 slot;
+    BgAurVec args;
 
-    base = (u32 *)((u8 *)value + 0x1108);
-    {
-        s32 slot;
-        slot = fn_1_5910();
-        fn_1_154164(value, (u32 *)((u8 *)base + slot * 0xc + 0x8c),
-                    (u32 *)((u8 *)base + slot * 0x30 + 0x23c), 0);
-    }
-
-    entry = lbl_1_rodata_D57C;
+    base = (u8 *)bg + 0x1108;
+    slot = fn_1_5910();
+    fn_1_154164((u8 *)bg, (BgAurVec *)(base + slot * 0xc + 0x8c), base + slot * 0x30 + 0x23c, 0);
     table = base;
-    i = 0;
-    while (i < (s32)base[1]) {
-        args[0] = entry[0];
-        args[1] = entry[1];
-        args[2] = entry[2];
-        fn_1_154164(value, args, (u32 *)((u8 *)table + 0x2fc), 1);
-        table = (u32 *)((u8 *)table + 0x30);
-        i++;
+    for (i = 0; i < ((s32 *)base)[1]; i++) {
+        args = *(BgAurVec *)lbl_1_rodata_D57C;
+        fn_1_154164((u8 *)bg, &args, table + 0x2fc, 1);
+        table += 0x30;
     }
 }
 /* fzgx:end fn_1_1540B0 */
 
-/* fzgx:begin fn_1_154164 noprologue */
-#include "types.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_aur.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_aur.h"
-#include "psvec.h"
-
+/* fzgx:begin fn_1_154164 */
 /* begin game/main_rel/bg_aur_types.h (deltawave784/fzgx, CC0) */
 #ifndef GAME_MAIN_REL_BG_AUR_TYPES_H
 #define GAME_MAIN_REL_BG_AUR_TYPES_H
 
 // Types (and the externs that name them) of bg_aur.c, hoisted out of its prologue so that
 // a block can compile standalone and under the prologue. Hand-owned (librarian).
-
 
 struct fn_1_151C9C_lbl_1_rodata_D4F8 {
     f32 unk_0;
@@ -724,17 +421,6 @@ struct fn_1_151C9C_lbl_1_rodata_D500 {
     f64 unk_0;
 };
 
-typedef struct {
-    s32 count;
-    u8 pad_004[0x100];
-    s32 counter[64];
-    f32 timer[64];
-    f32 progress[64];
-    f32 cooldown[64];
-} Fn153B24Data;
-
-extern struct fn_1_151C9C_lbl_1_rodata_D4F8 lbl_1_rodata_D4F8;
-extern struct fn_1_151C9C_lbl_1_rodata_D500 lbl_1_rodata_D500;
 
 #endif  // GAME_MAIN_REL_BG_AUR_TYPES_H
 
@@ -742,66 +428,6 @@ extern struct fn_1_151C9C_lbl_1_rodata_D500 lbl_1_rodata_D500;
 
 typedef struct V { f32 x,y,z; } V;
 
-typedef struct BgAurVec {
-    f32 x, y, z;
-} BgAurVec;
-extern f32 lbl_1_rodata_D508[29];
-extern f32 *lbl_801A6D00;
-extern s32 fn_1_58C4(void);
-extern void fn_1_5948(int);
-extern s16 camera_get_mode(void);
-extern void fn_1_862D4(int, V *);
-extern void fn_1_8636C(int index, void *arg);
-extern void fn_1_869B0(int index, u32 *out);
-extern void lbl_8006D784(void *);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DB74(void *);
-extern void fn_8006F1F0(void *, void *, void *);
-extern void lbl_8006DD7C(void);
-extern void lbl_8006DB30(void);
-extern f32 lbl_8006D0B4(f32);
-extern u32 fn_1_9BBE4(void *, u32, u32, void *);
-extern void lbl_8006D7DC(void *);
-extern void lbl_8006DFC4(void *);
-extern void lbl_8006E13C(void *);
-extern void lbl_8006E0C8(void *);
-extern void lbl_8006E0A4(void *);
-extern void mathutil_mtxA_rotate_z(s16);
-extern void mathutil_mtxA_rotate_y(s16);
-extern void mathutil_mtxA_rotate_x(s16);
-extern int fn_1_8D690(int arg0);
-extern int fn_1_8D72C(s16 index);
-extern u32 fn_1_151BE8(s16 arg0, s16 arg1);
-extern void fn_80008BA8(void *, void *, u32);
-extern void lbl_8006DFE8(void *);
-extern void fn_80072558(void);
-extern void fn_1_560F0(s32 index, void *arg);
-extern void fn_1_55210(void *);
-extern s32 fn_1_5910(void);
-extern void fn_1_154164(u8 *value, const BgAurVec *offset, void *rotation, s32 all);
-extern u32 lbl_1_rodata_D57C[7];
-extern int fn_8003BE1C(void *arg0, void *arg1);
-extern int fn_8003C1A4(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4);
-extern void fn_8003CE74(void *arg0, void *arg1, int arg2);
-extern void fn_8003CBB0(void *arg0, void *arg1, void *arg2, void *arg3);
-extern void fn_8003C6D0(void *arg0, void *arg1, void *arg2, void *arg3);
-extern u16 lbl_1_bss_8ED8C;
-extern u16 lbl_1_bss_8ED8E;
-extern void fn_1_151C9C(void *arg0, s32 arg_sp0);
-extern u32 fn_80074A7C(u32 arg0);
-extern void fn_1_153AF8(u32 *entries);
-extern void fn_1_153D48(void *background);
-extern void fn_1_9A508(void);
-extern void fn_1_627C(int);
-extern u32 fn_1_9D260(void);
-extern void fn_1_9AD54(void);
-extern void fn_1_153D74(void *arg);
-extern void fn_1_153B24();
-extern void fn_1_153C60(u8 *base);
-extern void fn_1_1540B0(u32 value);
-extern void fn_1_9AD88(void);
-extern void fn_80008BEC(void *dest, int value, u32 size);
-extern u8 lbl_1_rodata_D048[1200];
 
 typedef struct BgAurPart {
     u32 flags;
@@ -822,8 +448,6 @@ typedef struct BgAurParts {
     BgAurPart *parts[17];
     s32 hidden[17];
 } BgAurParts;
-
-
 
 void fn_1_154164(u8 *value, const BgAurVec *offset, void *rotation, s32 all) {
     f32 *pos;
@@ -870,41 +494,7 @@ void fn_1_154164(u8 *value, const BgAurVec *offset, void *rotation, s32 all) {
 }
 /* fzgx:end fn_1_154164 */
 
-/* fzgx:begin fn_1_1543E8 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_aur.h"
-
-extern int fn_8003BE1C(void *arg0, void *arg1);
-extern int fn_8003C1A4(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4);
-extern void fn_8003CE74(void *arg0, void *arg1, int arg2);
-extern void fn_8003CBB0(void *arg0, void *arg1, void *arg2, void *arg3);
-extern void fn_8003C6D0(void *arg0, void *arg1, void *arg2, void *arg3);
-extern u16 lbl_1_bss_8ED8C;
-extern u16 lbl_1_bss_8ED8E;
-extern void fn_1_151C9C(void);
-extern void fn_80074A7C(void (*callback)(void));
-extern void fn_1_153AF8(u32 *entries);
-extern void fn_1_153D48(void *background);
-extern void fn_1_9A508(void);
-extern int fn_1_58C4(void);
-extern void fn_1_5948(int);
-extern void fn_1_627C(int);
-extern void fn_1_9D260(void);
-extern void fn_1_9AD54(void);
-extern void fn_1_153D74(void *);
-extern void fn_1_153B24(void *);
-extern void fn_1_153C60(Obj_1_data_2A7E0_At3C *value);
-extern void fn_1_1540B0(Obj_1_data_2A7E0_At3C *value);
-extern void fn_1_9AD88(void);
-extern void fn_80008BEC(void *arg0, u32 arg1, u32 arg2);
-
-extern void fn_1_153AF8(u32 *entries);
-extern void fn_1_153D48(void *background);
-extern void fn_1_9A508(void);
-extern u8 lbl_1_rodata_D048[1200];
-extern int fn_1_8D690(s16 value);
-extern int fn_1_8D72C(s16 value);
+/* fzgx:begin fn_1_1543E8 */
 
 u32 fn_1_1543E8(s32 value, u32 *source) {
     Obj_1_data_2A7E0_At3C *obj = lbl_1_data_2A7E0.unk_3C;
@@ -921,18 +511,7 @@ u32 fn_1_1543E8(s32 value, u32 *source) {
 }
 /* fzgx:end fn_1_1543E8 */
 
-/* fzgx:begin fn_1_154410 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_tow.h"
-
-extern u32 lbl_801A63C0;
-extern void lbl_8006D7DC(void *);
-extern void mathutil_mtxA_rotate_z(s16);
-extern void mathutil_mtxA_rotate_y(s16);
-extern void mathutil_mtxA_rotate_x(s16);
-extern void lbl_8006DB74(void *);
-extern void OSPanic(const char *file, int line, const char *msg, ...);
+/* fzgx:begin fn_1_154410 */
 
 /* Retail addresses bg_tow.c's literal pool (lbl_1_rodata_D508) through one base register;
    the primer reproduces that pool's first-use order so this unit's literals land on the
@@ -1001,7 +580,6 @@ typedef struct {
     u32 unk_1104;
     BgTowSub sub;
 } BgTowState;
-
 
 static inline f32 bg_tow_randf(void) {
     lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
