@@ -4199,7 +4199,7 @@
    "file": "bg_aur.c",
    "text": [
     1382252,
-    1393680
+    1390984
    ],
    "data_sec": 5,
    "data": [
@@ -4227,7 +4227,29 @@
     "fn_1_152970",
     "fn_1_152A28",
     "fn_1_152CB4",
-    "fn_1_152FAC",
+    "fn_1_152FAC"
+   ],
+   "confidence": {
+    "text+data": 1,
+    "text-range": 32,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "bg_tow.c",
+   "text": [
+    1390984,
+    1394440
+   ],
+   "data_sec": 5,
+   "data": [
+    287752,
+    301592
+   ],
+   "anchor_refs": [
+    1393680
+   ],
+   "functions": [
     "fn_1_153988",
     "fn_1_15398C",
     "fn_1_1539D0",
@@ -4242,29 +4264,7 @@
     "fn_1_153D74",
     "fn_1_1540B0",
     "fn_1_154164",
-    "fn_1_1543E8"
-   ],
-   "confidence": {
-    "text+data": 1,
-    "text-range": 32,
-    "data-vote": 0
-   }
-  },
-  {
-   "file": "bg_tow.c",
-   "text": [
-    1393680,
-    1394440
-   ],
-   "data_sec": 5,
-   "data": [
-    287752,
-    301592
-   ],
-   "anchor_refs": [
-    1393680
-   ],
-   "functions": [
+    "fn_1_1543E8",
     "fn_1_154410"
    ],
    "confidence": {

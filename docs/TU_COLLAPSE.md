@@ -14,6 +14,12 @@ Synthetic `.fzgxpool` layout primers are the largest known-scaffolding category 
 
 The TU map gave bg_tow.c seven functions, but only `fn_1_154410` belongs there (it panics with `"bg_tow.c"`). `fn_1_154708`-`fn_1_1549B8` belong to rep_memcard.c. Their data includes the `"rep_memcard.c"` file string passed with line 0x73, the `REP_MEMCARD_*` state names and `"RepMemcardEvent"`. rep_memcard's state table at 0x49A18 lists `fn_1_1548A8`, `fn_1_154930` and `fn_1_1549B8` together with `fn_1_154A08` and `fn_1_154BE4`, across the old boundary. The map now starts rep_memcard.c at 0x154708, with data from 0x49A18. `fzgx tu-regroup` moved exactly those six blocks, byte-identical and relink-verified. Unused rep_memcard declarations were pruned from bg_tow.c, and the ledger snapshot changes only those six unit paths.
 
+The literal pool and handler table then showed that bg_tow.c also started too late. Retail's background handler table `lbl_1_data_2A9B8` has nine handlers per background, and bg_tow's entry is `fn_1_153988`, `15398C`, `1539D0`, `153A28`, `153AAC`, `153AB0`, `153AF4`, `1543E8` and `154410`. The helpers `153AF8`-`154164` are called only from those handlers, and `153B24`/`153D74` use bg_tow's literal pool `lbl_1_rodata_D508`, which already backed `fn_1_154410`. `fn_1_154410` panics at bg_tow.c lines 482-527, so most of that file precedes it, and `fn_1_152FAC` ends exactly at 0x153988. bg_tow.c therefore starts at 0x153988, and regroup moved those 15 functions from bg_aur.c byte-identically.
+
+The remaining "bg_aur.c" range still mixes TUs. bg_aur's own handler entry is `fn_1_150500`-`fn_1_15176C`, which starts before the mapped range. `fn_1_151AF0`-`fn_1_152FAC` are a separate library used by customize and sel, and no evidence names it yet, so that range keeps its current mapping.
+
+Without its primer, the one-function bg_tow.c compiled whole but fell to 99.49% and could not place its literals. Its pool belonged to the larger TU above, so a wrong TU boundary can also be what makes a primer necessary.
+
 The pilot also showed what each TU needs before it can collapse:
 
 1. **Correct ownership**: TU boundaries, then regenerated TU headers. Regenerating moves declarations; a block that redeclares a symbol with another type (for example a scalar `lbl_1_data_49A18` against the header's `u32[5]`) and data units or import records that name the old header must follow in the same change.
