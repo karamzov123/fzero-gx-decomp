@@ -4232,6 +4232,34 @@ def native_access_helpers(body, name):
         yield 'inline clamp helper ' + helper, text
 
 
+def redundant_scalar_access_casts(body, name):
+    """Use a declared scalar lvalue instead of an identical address-cast view.
+
+    Unknown/header-only types and qualified access paths stay unchanged. These
+    are type-backed proposals, not permission to remove representation casts.
+    """
+    from .sdkimport import masked
+    span = _function_body_span(body, name)
+    if not span:
+        return
+    code = masked(body)
+    fields, variables = declared_types(code, span[0])
+    pattern = re.compile(
+        r'\*\s*\(\s*([su](?:8|16|32|64)|f32|f64)\s*\*\s*\)\s*&\s*'
+        r'(\([A-Za-z_]\w*(?:(?:->|\.)\w+)*\)|[A-Za-z_]\w*(?:(?:->|\.)\w+)*)')
+    for match in pattern.finditer(code, span[1], span[2]):
+        expression = match[2].strip('()')
+        parts = re.split(r'->|\.', expression)
+        typ = variables.get(parts[0], '')
+        qualified = bool(re.search(r'\b(?:const|volatile)\b', typ))
+        for member in parts[1:]:
+            typ = fields.get(record_tag(typ), {}).get(member, '')
+            qualified |= bool(re.search(r'\b(?:const|volatile)\b', typ))
+        if qualified or typ.strip() != match[1]:
+            continue
+        yield 'use declared scalar lvalue ' + expression, body[:match.start()] + expression + body[match.end():]
+
+
 def volatile_removals(body, name):
     """Probe redundant scalar address-cast qualifiers in the selected function.
 

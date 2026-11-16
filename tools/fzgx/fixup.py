@@ -553,6 +553,7 @@ class Engine:
         yield from source.native_operand_helpers(body, name)
         yield from source.native_access_helpers(body, name)
         yield from source.volatile_removals(body, name)
+        yield from source.redundant_scalar_access_casts(body, name)
         yield from source.accessor_lifetimes(body, name)
         if row.get('score') == 100:
             if row.get('source_lint') and (check.matched or check.matched_pool):

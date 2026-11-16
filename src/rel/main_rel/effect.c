@@ -1291,7 +1291,7 @@ void fn_1_59770(fn_1_59770_Effect *effect)
             workZ = dir.x;
             workY = dir.y;
             /* Keep the endpoint loads in their original evaluation order. */
-            headX = *(f32 *)&head.x;
+            headX = head.x;
             workX = tail.x;
             offset = workZ * width;
             offsetY = workY * width;

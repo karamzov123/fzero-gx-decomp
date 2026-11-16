@@ -1175,15 +1175,15 @@ void fn_3_10B68(void) {
     u16 v0;
     void * v1;
     p_lbl_3_bss_7EDD8 = (struct fn_3_10B68_lbl_3_bss_7EDD8 *)&lbl_3_bss_7EDD8;
-    if ((((struct fn_3_10B68_lbl_1_bss_9F8_12_E20 *)(lbl_1_bss_9F8.unk_12))[(*(u8 *)&(p_lbl_3_bss_7EDD8->unk_14))].unk_0 & 0x1) != 0) {
+    if ((((struct fn_3_10B68_lbl_1_bss_9F8_12_E20 *)(lbl_1_bss_9F8.unk_12))[(p_lbl_3_bss_7EDD8->unk_14)].unk_0 & 0x1) != 0) {
     p_lbl_3_bss_7EDD8->unk_18 = 1;
     fn_1_A2D84(0xA9010000);
     }
-    if (((((struct fn_3_10B68_lbl_1_bss_9F8_12_E20 *)(lbl_1_bss_9F8.unk_12))[(*(u8 *)&(p_lbl_3_bss_7EDD8->unk_14))].unk_0 >> 1) & 0x1) != 0) {
+    if (((((struct fn_3_10B68_lbl_1_bss_9F8_12_E20 *)(lbl_1_bss_9F8.unk_12))[(p_lbl_3_bss_7EDD8->unk_14)].unk_0 >> 1) & 0x1) != 0) {
     lbl_3_bss_7EDD8.unk_18 = 0;
     fn_1_A2D84(0xA9010000);
     }
-    v0 = lbl_1_bss_9F8.unk_8[(*(u8 *)&(p_lbl_3_bss_7EDD8->unk_14))].unk_0;
+    v0 = lbl_1_bss_9F8.unk_8[(p_lbl_3_bss_7EDD8->unk_14)].unk_0;
     if (((v0 >> 9) & 0x1) != 0 || (((v0 >> 8) & 0x1) != 0 && (s32)lbl_3_bss_7EDD8.unk_18 == 0)) {
     if (((lbl_1_bss_9F8.unk_8[(*(u8 volatile *)&(p_lbl_3_bss_7EDD8->unk_14)) /* Retail reloads this field. */].unk_0 >> 8) & 0x1) != 0) {
     fn_1_A2D84((0xA9010000 + 256));

@@ -4130,7 +4130,7 @@ void fn_3_4C58(void) {
             *(volatile u32 *)&dst->unk_428 = (u32)fn_1_FDC00; /* Ordered callback setup. */
             *(volatile u32 *)&dst->unk_42c = (u32)fn_1_FD27C; /* Ordered callback setup. */
             *(volatile u32 *)&dst->unk_424 = (u32)fn_1_FD324; /* Ordered callback setup. */
-            *(u32 *)&dst->unk_420 = 0; /* Ordered callback setup. */
+            dst->unk_420 = 0; /* Ordered callback setup. */
             dst->unk_c = 0x20000000;
             fn_1_FD844(m, dst);
             if ((m->unk_0 & 0x40000000) != 0) {

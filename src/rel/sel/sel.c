@@ -50910,7 +50910,7 @@ lbl_10_bss_55CD8->unk_17 = 8;
 }
 if (flA != 0) {
 v68 = *(const MenuColor *)&lbl_10_rodata_1CA0;
-rp = fn_1_45D0 (*(u32 *)&lbl_801A6410, 0x12, p + 0xa0, 0xd4);
+rp = fn_1_45D0 (lbl_801A6410, 0x12, p + 0xa0, 0xd4);
 *(u16 *)((u8 *)rp + 8) = (u16)((u32)(cnt & 0xFF) * 56 + 0x7e);
 *(u16 *)((u8 *)rp + 10) = 0x17a;
 *(u8 *)((u8 *)rp + 0) = 1;

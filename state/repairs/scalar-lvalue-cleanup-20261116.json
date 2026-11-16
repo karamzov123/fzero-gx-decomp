@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "kind": "type-backed-device-cleanup",
+  "version": "GFZE01",
+  "base_commit": "80507aa5e9847f78a6aed2feef7a0cf4c87674b2",
+  "engine": "fzgx.fixup.Engine",
+  "generator": "tools/fzgx/fixup_source.py:redundant_scalar_access_casts",
+  "hypothesis": "Identical declared scalar lvalues can replace redundant address-cast views in the same ten application functions; never remove representation casts or qualifiers.",
+  "stopping_condition": "At most eight rounds; stop first round with zero exact simplifications.",
+  "cohort_functions": 10,
+  "records": 20,
+  "partial_cleanups": [
+    {
+      "symbol": "fn_3_10B68",
+      "source": "rel/customize/emb_paste_editor/fn_3_10B68.c",
+      "tu": "rel/customize/emb_paste_editor.c",
+      "before_sha256": "a563f1a34fdb0ac6a8b205944e4955dd5f8ac2a7207a331d24c67cf837503f09",
+      "after_sha256": "9526f5f9086a73fe520925f4958b53073c5581a1dd377cef1a3c38071a94dd92",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "casts_removed": 3,
+      "fully_natural_claimed": false
+    },
+    {
+      "symbol": "fn_3_4C58",
+      "source": "rel/customize/_prolog/fn_3_4C58.c",
+      "tu": "rel/customize/_prolog.c",
+      "before_sha256": "0aee3b1de881d188e66f4533ff1a54992ddce6cca817848f8cbc63ddffe47eb6",
+      "after_sha256": "652787ab89f2ddafb8084de2b505e7065ed39410601ac17ca804b320fd0e2f44",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "casts_removed": 1,
+      "fully_natural_claimed": false
+    },
+    {
+      "symbol": "fn_1_59770",
+      "source": "rel/main_rel/effect/fn_1_59770.c",
+      "tu": "rel/main_rel/effect.c",
+      "before_sha256": "30ebc8e3aecce2e0119fc70b0714ae7103aaa3aa3df943bf561b264c77ed45b4",
+      "after_sha256": "dee462daf9d54e72691b8eeb2ebfd2d5392a13e39663cd158cfd918f48be69b9",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "casts_removed": 1,
+      "fully_natural_claimed": false
+    },
+    {
+      "symbol": "fn_10_2406C",
+      "source": "rel/sel/sel/fn_10_2406C.c",
+      "tu": "rel/sel/sel.c",
+      "before_sha256": "7a30a0d2f6ac37078d77d2b2ab35677ab9ed3b0d20fbfc7e9c77e7f17817c7e5",
+      "after_sha256": "8e5c37064c705eb1eb453c9e2339e9db420a6d3e5aff8d4a751c6230e79ca8e0",
+      "mw": "GC/1.3.2",
+      "flags": "",
+      "casts_removed": 1,
+      "fully_natural_claimed": false
+    }
+  ],
+  "casts_removed": 6,
+  "fully_natural_claimed": false,
+  "archive": "scalar-lvalue-cleanup-20261116.sources.json.gz",
+  "archive_sha256": "701670a91109eb396ee4b95c72d6dec73d6df0c0777c74cd0dd94f81f720c2bf",
+  "type_evidence": [
+    "fn_3_10B68: private input-state layout declares unk_14 as u8 (offset 0x14).",
+    "fn_3_4C58: private destination layout declares unk_420 as u32.",
+    "fn_1_59770: Vec3 declares x as f32.",
+    "fn_10_2406C: lbl_801A6410 is explicitly declared extern u32."
+  ],
+  "validation": [
+    "All ten installed baselines match through real MWCC/object/relocation checks; all accepted candidates match.",
+    "configure.py; ninja -j 2 build/GFZE01/ok: 16 files OK",
+    "build/tools/dtk shasum -q -c config/GFZE01/build.sha1: 16 files OK",
+    "tools/fzgx.py lint: 0 finding(s)"
+  ],
+  "limits": "Partial cleanups only. Existing optimizer pragmas, required volatile accesses, synthetic layout views and other devices remain. Unknown/header-only layouts and qualified paths are not proposed by this generator."
+}
