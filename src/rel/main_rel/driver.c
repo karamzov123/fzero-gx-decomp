@@ -3115,39 +3115,29 @@ void fn_1_A89B0(fn_1_A89B0_Obj *obj, fn_1_A89B0_Arg1 *arg1, s32 side) {
 }
 /* fzgx:end fn_1_A89B0 */
 
-/* fzgx:begin fn_1_A8D4C */
-void fn_1_A8D4C(void) {
+/* fzgx:begin fn_1_A8D4C noprologue */
+#include "types.h"
+
+typedef void (*VIRetraceCallback)(u32 retraceCount);
+
+extern VIRetraceCallback fn_8001A78C(VIRetraceCallback callback);
+extern VIRetraceCallback fn_8001A7D0(VIRetraceCallback callback);
+extern void fn_1_3920(void);
+
+u32 lbl_1_bss_6F640;
+
+void fn_1_A8D4C(u32 retraceCount) {
     lbl_1_bss_6F640 += 1;
 }
 /* fzgx:end fn_1_A8D4C */
 
-/* fzgx:begin fn_1_A8D64 */
-void fn_1_A8D64(void) {
+/* fzgx:begin fn_1_A8D64 noprologue */
+void fn_1_A8D64(u32 retraceCount) {
     fn_1_3920();
 }
 /* fzgx:end fn_1_A8D64 */
 
 /* fzgx:begin fn_1_A8D84 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/driver.h"
-
-extern void fn_1_A8D4C(void);
-extern void fn_1_A8D64(void);
-extern void fn_8001A78C(void (*func)(void));
-extern void fn_8001A7D0(void (*func)(void));
-extern void (*lbl_1_bss_7167C)(void);
-
-extern void (*lbl_1_bss_71680)(void);
-
-extern void (*lbl_1_bss_7167C)(void);
-
-extern void (*lbl_1_bss_71684)(void);
-
-extern void (*lbl_1_bss_71688)(void);
-
-extern void (*lbl_1_bss_7168C)(void);
-
 void fn_1_A8D84(void) {
     lbl_1_bss_6F640 = 0;
     fn_8001A78C(fn_1_A8D4C);
@@ -3155,7 +3145,7 @@ void fn_1_A8D84(void) {
 }
 /* fzgx:end fn_1_A8D84 */
 
-/* fzgx:begin fn_1_A8DC4 */
+/* fzgx:begin fn_1_A8DC4 noprologue */
 // Returns the current driver state handle.
 u32 fn_1_A8DC4(void) {
     return lbl_1_bss_6F640;
