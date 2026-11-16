@@ -122,15 +122,6 @@ s32 fn_1_15B70C(s32 kind, fn_1_15B70C_Entry *entry) {
 /* fzgx:end fn_1_15B70C */
 
 /* fzgx:begin fn_1_15B970 */
-typedef struct {
-    u8 pad_0[0x8];
-    u32 unk_8;
-    u32 unk_C;
-    u32 unk_10;
-    u32 unk_14;
-    u32 unk_18;
-} WinObject;
-
 static inline u32 swap32(u32 value) {
     u32 temp;
 
@@ -138,30 +129,27 @@ static inline u32 swap32(u32 value) {
     return __lwbrx(&temp, 0);
 }
 
-void fn_1_15B970(WinObject *obj) {
-    u32 offset;
+void fn_1_15B970(BgWinStringTable *obj) {
     u32 count;
 
     lbl_1_bss_8F8D0.unk_0 = (u32)obj;
     if (obj != 0) {
-        obj->unk_8 = swap32(obj->unk_8);
-        obj->unk_C = swap32(obj->unk_C);
-        obj->unk_10 = swap32(obj->unk_10);
+        obj->count = swap32(obj->count);
+        obj->entries_offset = swap32(obj->entries_offset);
+        obj->results_offset = swap32(obj->results_offset);
         obj->unk_14 = swap32(obj->unk_14);
         obj->unk_18 = swap32(obj->unk_18);
 
         count = 0;
-        offset = 0;
-        while (count < obj->unk_8) {
-            u32 *a = (u32 *)((u8 *)obj + obj->unk_C + offset);
-            u32 *b = (u32 *)((u8 *)obj + obj->unk_10 + offset);
+        while (count < obj->count) {
+            BgWinStringEntry *a = (BgWinStringEntry *)((u8 *)obj + obj->entries_offset) + count;
+            BgWinStringResult *b = (BgWinStringResult *)((u8 *)obj + obj->results_offset) + count;
 
-            a[1] = swap32(a[1]);
-            a[0] = swap32(a[0]);
-            b[1] = swap32(b[1]);
-            b[0] = swap32(b[0]);
+            a->name_offset = swap32(a->name_offset);
+            a->length = swap32(a->length);
+            b->value_offset = swap32(b->value_offset);
+            b->unk_0 = swap32(b->unk_0);
 
-            offset += 8;
             count++;
         }
     }
@@ -171,19 +159,14 @@ void fn_1_15B970(WinObject *obj) {
 /* fzgx:begin fn_1_15BA78 */
 #include "types.h"
 
-typedef struct {
-    u8 pad_00[0x08];
-    u32 count;
-    u32 entries_offset;
-    u32 results_offset;
-} StringTable;
-
 char *fn_1_15BA78(char *name) {
-    StringTable * table;
+    BgWinStringTable * table;
     u32 index;
     u32 name_length;
 
-    { StringTable * __reg_value_table = (*(StringTable * *)&lbl_1_bss_8F8D0); table = __reg_value_table; }
+    /* WARNING: compiler-diff device, not original code: direct typed global
+     * assignment without this staging copy still differs by 13 aligned words. */
+    { BgWinStringTable * __reg_value_table = (*(BgWinStringTable * *)&lbl_1_bss_8F8D0); table = __reg_value_table; }
     if (table == 0) {
         return name;
     }
@@ -191,10 +174,10 @@ char *fn_1_15BA78(char *name) {
     name_length = strlen(name);
     index = 0;
     while (index < table->count) {
-        u8 *entry = (u8 *)table + table->entries_offset + index * 8;
-        if (name_length == *(u32 *)entry &&
-            fn_8006FC1C((char *)table + *(u32 *)(entry + 4), name) != 0) {
-            u32 result_offset = *(u32 *)((u8 *)table + table->results_offset + index * 8 + 4);
+        BgWinStringEntry *entry = (BgWinStringEntry *)((u8 *)table + table->entries_offset) + index;
+        if (name_length == entry->length &&
+            fn_8006FC1C((char *)table + entry->name_offset, name) != 0) {
+            u32 result_offset = ((BgWinStringResult *)((u8 *)table + table->results_offset))[index].value_offset;
             return (char *)table + result_offset;
         }
         index++;

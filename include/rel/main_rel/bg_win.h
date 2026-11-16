@@ -60,6 +60,29 @@ extern u8 lbl_1_data_4C980[0x11];
 // lbl_1_data_4C994: .data size 0xC, 3 refs from bg_win.c (own data block)
 extern u8 lbl_1_data_4C994[0xC];
 
+/* String-resource layout shared by the endian conversion and name lookup.
+ * fn_1_15B970 swaps header words 08..18 and both words of each 8-byte row;
+ * fn_1_15BA78 identifies the name length/offset and result offset fields.
+ * The first eight header bytes and result word zero remain uninterpreted. */
+typedef struct {
+    u32 length;
+    u32 name_offset;
+} BgWinStringEntry;
+
+typedef struct {
+    u32 unk_0;
+    u32 value_offset;
+} BgWinStringResult;
+
+typedef struct {
+    u8 pad_00[0x08];
+    u32 count;
+    u32 entries_offset;
+    u32 results_offset;
+    u32 unk_14;
+    u32 unk_18;
+} BgWinStringTable;
+
 // lbl_1_bss_8F8D0: .bss size 0x10, 2 refs from bg_win.c
 typedef struct {
     u32 unk_0;  // 3 loads, 1 stores

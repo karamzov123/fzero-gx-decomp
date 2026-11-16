@@ -4,11 +4,11 @@ Run `python tools/fzgx.py devicecensus` for the live summary, or add `--json` fo
 
 ## Measured checkpoint
 
-The latest source fingerprint and complete compressed inventory are retained in `state/repairs/device-census-automated-20261116.json.gz`; `state/repairs/automated-device-cleanup-20261116.json` records accepted source hashes, compiler context, replay archives and validation. Earlier inventories and their evidence manifests remain intact. Each inventory records its base commit and explicitly notes modified source/configuration; the source-tree digest identifies the measured contents independently of that base.
+The latest source fingerprint and complete compressed inventory are retained in `state/repairs/device-census-bgwin-20261116.json.gz`; `state/repairs/bgwin-string-layout-20261116.json` and `state/repairs/automated-device-cleanup-20261116.json` record accepted source hashes, compiler context, replay archives and validation. Earlier inventories and their evidence manifests remain intact. Each inventory records its base commit and explicitly notes modified source/configuration; the source-tree digest identifies the measured contents independently of that base.
 
 | Category | Spots | Files | Owner functions |
 | --- | ---: | ---: | ---: |
-| Explicit device-warning comments | 37 | 12 | 13 |
+| Explicit device-warning comments | 38 | 13 | 14 |
 | ADX dead-write macro uses | 7 | 1 | 1 |
 | Synthetic `.fzgxpool` primer function definitions | 10,630 | 145 | 958 |
 | Tagged `__reg_value_` register-staging assignments | 44 | 8 | 10 |
@@ -17,7 +17,7 @@ The latest source fingerprint and complete compressed inventory are retained in 
 | Other `fzgx_` function definitions requiring review | 4 | 4 | 4 |
 | `volatile` tokens | 15,470 | 389 | 1,235 |
 
-The explicit-warning and ADX-use owner-function union is **13**, not 14. One shared-header warning has no single function owner. Warnings are spots, not distinct devices: several comments can describe the same device and one comment can describe several. The directive, carrier-shape and volatile rows are **review queues, not confirmed device totals**. Hardware volatility, SDK implementation requirements and legitimate aggregate types must not be counted as defects without review.
+The explicit-warning and ADX-use owner-function union is **14**, not 15. One shared-header warning has no single function owner. Warnings are spots, not distinct devices: several comments can describe the same device and one comment can describe several. The directive, carrier-shape and volatile rows are **review queues, not confirmed device totals**. Hardware volatility, SDK implementation requirements and legitimate aggregate types must not be counted as defects without review.
 
 Including the confirmed synthetic layout-primer and tagged-staging owners gives a distinct known-scaffolding owner-function union of **972**. Schema 3 adds tagged-staging coverage: this expansion from the earlier marker/primer-only union of 967 is not a source regression. There are 72 primer definitions in shared/unassigned scope, beyond the 958 mapped primer owners. Primer counts are physical definitions, including repeated source copies; they are not 10,630 distinct original data objects or instructions executed by retail. Four synthetic-name helpers outside `.fzgxpool` stay review-only. An independent balanced-parenthesis scan and separate section/attribute classifier agree with every one of the 10,634 synthetic definitions, including function-pointer parameters.
 
@@ -56,3 +56,9 @@ python tools/fzgx.py fixup --cleanup --module sel --limit 32 --rounds 4 --max-ca
 It requires exact installed-source controls, proposes known inverse devices only, stops when a round has no improvements, and preserves every frozen probe in its report/archive. It does not apply sources, change claims, run flag/allocator searches or claim linked verification. `--cleanup --apply` and incompatible repair selectors are rejected. Without `--output`, each run gets a separate timestamped cleanup directory rather than overwriting an ordinary repair corpus or previous checkpoint.
 
 The live 32-function trial admitted 30 controls and blocked two: their code words match but extra-helper/source-policy checks reject them. It produced no further accepted proposals; a historical-body smoke cohort produced one. The sel trial admitted five controls and produced no further proposals. Zero yield is a stopping signal, not permission to widen arbitrary search. Primer removal remains a measured negative frontier in the retained actual-profile archive and rejected-generator snapshot. Further gains need shared types, actual computations or native-TU/data recovery, not repeated removal-only sweeps.
+
+## Shared string-resource layout
+
+`fn_1_15B970` (endian conversion) and `fn_1_15BA78` (name lookup) now share three layouts in `include/rel/main_rel/bg_win.h`: a header with count, entry-table offset and result-table offset, an 8-byte name entry (length, name offset) and an 8-byte result row whose second word is the value offset. The conversion swaps header words 0x08..0x18 and both words of every row; the lookup reads exactly the named fields. The first eight header bytes and result word zero remain uninterpreted. Both loops index the typed rows directly instead of maintaining byte strides. Real MWCC-emitted layout data verifies the three layout sizes, nine field offsets and the 0x10-byte global slot that holds the table pointer.
+
+The lookup still loads the global through an explicitly marked staging copy: the direct typed global assignment differs by 13 aligned words in both tested forms. Marking it raises the warning row from 37 to 38 spots; the tagged-staging row (44) and the known-scaffolding union (972) are unchanged, so this is layout recovery, **not** device removal or new natural-function credit. Twelve compiled bodies, including both failing direct-load probes and a whitespace-only installed-form control, replay from `bgwin-string-layout-20261116.sources.json.gz` with identical source hashes, compiler profiles, verdicts and aligned errors. The whole build and the independent retail check report `16 files OK`; lint reports zero findings.
