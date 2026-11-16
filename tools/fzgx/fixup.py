@@ -549,6 +549,7 @@ class Engine:
             yield from layout.unused_bss_definitions(self.project, row['symbol'], body, row.get('object'), check)
             yield from layout.private_data_objects(body, row.get('object'), check)
         yield from source.split_declaration_groups(body, name)
+        yield from source.optimizer_directive_removals(body, name)
         yield from source.native_operand_helpers(body, name)
         yield from source.accessor_lifetimes(body, name)
         if row.get('score') == 100:

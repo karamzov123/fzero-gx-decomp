@@ -2819,7 +2819,6 @@ extern void fn_1_4966C(f32, f32);
 extern void fn_1_496FC(f32, f32);
 extern void fn_1_4A0D8(const char *);
 
-#pragma opt_propagation on
 static inline s32 panel_position(PanelConfig *p, s32 x, u8 value) {
     f32 first = (lbl_1_rodata_8B28 * (f32)(100 - (s32)value)) / lbl_1_rodata_85F4;
     f32 origin = (f32)x;

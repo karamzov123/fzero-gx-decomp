@@ -3108,7 +3108,6 @@ v->z = z;
 #define FOVRATE90(speed) (0.05 - 4e-5f * (speed))
 #pragma opt_propagation off
 #pragma opt_lifetimes off
-#pragma opt_dead_assignments on
 static inline void fn_1_90E0_call_lbl_8006E0B4(f32 a0, f32 a1, f32 a2) { lbl_8006E0B4(a0, a1, a2); }
 #pragma opt_propagation on
 #pragma opt_lifetimes on

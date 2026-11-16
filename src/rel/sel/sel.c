@@ -39683,10 +39683,7 @@ static char fzgx_pool_native_lbl_10_data_D00_str_5A64[0x20] = {0x82, 0xC6, 0x82,
 static char fzgx_pool_native_lbl_10_data_D00_str_5A84[0x4] = {0x25, 0x33, 0x64, 0x00}; /* fzgx-allow: A1 measured pool bytes and bindings */
 static union {u32 words[2]; char view[0x8];} fzgx_pool_native_lbl_10_data_D00_str_5A88 = {{0x25737300, (u32)fn_10_1E57C__fzgx_offset_30}}; /* fzgx-allow: A1 measured pool bytes and bindings */
 
-#pragma opt_loop_invariants off
-#pragma opt_strength_reduction on
 #pragma opt_common_subs off
-#pragma opt_propagation on
 #pragma opt_common_subs on
 static inline f32 SelectionOffset(s32 *origin, s32 offset) {
     s32 coordinate = *origin + offset;
@@ -39924,7 +39921,6 @@ for (fzgx_loop_i_179376 = 0; fzgx_loop_i_179376 < 6; fzgx_loop_i_179376++) {
     i = fzgx_loop_i_179376;
 }
         } else {
-#pragma opt_loop_invariants off
             yb = (s32)((f32)yb - (14.0f));
             fn_1_496FC((f32)(a + 0x60), (f32)yb);
             fn_1_4CF3C(fzgx_pool_native_lbl_10_data_D00_str_5134.view, (70.0f), fzgx_pool_native_lbl_10_data_D00_tbl_59E8[lbl_801A66B4]);

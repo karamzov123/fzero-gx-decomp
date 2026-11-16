@@ -893,7 +893,6 @@ extern u32 fn_800793D4(u8 *, u32, u32);
 #define CLAMP_U8(x) (((x) > 0xFFU) ? 0xFF : (x))
 
 #pragma opt_dead_assignments off
-#pragma opt_pointer_analysis off
 #pragma opt_propagation off
 void fn_1_7D6B8(void *arg0) {
     s32 *temp_r3_2;
@@ -903,7 +902,7 @@ void fn_1_7D6B8(void *arg0) {
     s32 temp_r3_4;
     s32 temp_r4;
     s32 shift_idx;
-    struct { s32 value; } temp_r5;
+    s32 temp_r5;
     s32 temp_r8;
     s8 temp_r10;
     struct { s32 value; } var_r0;
@@ -1044,9 +1043,9 @@ void fn_1_7D6B8(void *arg0) {
             temp_r3 = *(u8 *)((u8 *)(arg0) + 8);
             shift_idx = (s8) temp_r3;
             if ((shift_idx != (s8) temp_r0_2) && (((u16) lbl_1_bss_9F8.unk_8 >> 0xBU) & 1)) {
-                temp_r5.value = *(s32 *)((u8 *)(arg0) + 12);
+                temp_r5 = *(s32 *)((u8 *)(arg0) + 12);
                 temp_r4 = (s8) (*(u8 *)((u8 *)(arg0) + 7)) * 4;
-                (*(s32 *)((u8 *)((temp_r5.value + temp_r4)) + 0)) ^= (1 << shift_idx);
+                (*(s32 *)((u8 *)((temp_r5 + temp_r4)) + 0)) ^= (1 << shift_idx);
             }
             if (((u16) lbl_1_bss_9F8.unk_8 >> 0xAU) & 1) {
                 temp_r3_2 = (s32 *)((*(s32 *)((u8 *)(arg0) + 12)) + ((s8) (*(u8 *)((u8 *)(arg0) + 7)) * 4));
@@ -1283,7 +1282,6 @@ void fn_1_7D6B8(void *arg0) {
 }
 #pragma opt_propagation reset
 
-#pragma opt_pointer_analysis reset
 
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_1_7D6B8 */

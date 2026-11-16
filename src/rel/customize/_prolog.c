@@ -1668,7 +1668,6 @@ extern void fn_3_E64(u8 *);
 
 
 
-#pragma opt_pointer_contraction off
 
 #define customize_save_move(c, choice) (input_offset = customize_save_move_impl(c, choice))
 

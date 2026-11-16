@@ -848,7 +848,6 @@ static inline u8 fn_3_CE94_array_read(u8 *array, s32 index) { return array[index
 #pragma opt_lifetimes off
 void fn_3_CE94(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     s16 v3;
-    struct { u32 value; } data_base;
     struct fn_3_CE94_lbl_3_rodata_288 *p_lbl_3_rodata_288;
     Obj_3_bss_7EDD8 *p_lbl_3_bss_7EDD8;
     s16 v0;
@@ -877,7 +876,6 @@ void fn_3_CE94(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     s32 t0;
     s32 x2;
     s16 dy0, dy1;
-    data_base.value = (u32)&lbl_3_data_1A40;
     t0 = fn_1_A5DC4();
     v0 = arg3;
     if ((s8)t0 != 0) {

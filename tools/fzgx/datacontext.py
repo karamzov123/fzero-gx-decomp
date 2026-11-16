@@ -67,8 +67,10 @@ def evidence(project, fn, loads, full=False):
         if full:
             lines += declarations(project, record).splitlines()
         if recipe := record.get('recipe'):
-            for region in recipe['regions']:
+            for region in recipe.get('regions', ()):
                 lines.append('  ' + region['field'] + ''.join(f'[{n}]' for n in region['shape']))
+            for field in recipe.get('record', ()):
+                lines.append('  ' + f'{field[0]} {field[1]}' + (f'[{field[2]}]' if len(field) > 2 else ''))
         if record['method'] in ('string', 'string-pool'):
             raw = project.bytes_at(record['module'], name)
             shown = raw if full else raw[:128]

@@ -3569,11 +3569,6 @@ extern void fn_1_5233C(void *, void *);
 
 #pragma opt_propagation off
 static inline f32 fn_3_1D338_operand(f32 right, f32 left) { return left * right; }
-static inline f32 fn_3_1D338_operand_(f32 left, f32 right) { return left * right; }
-#pragma opt_loop_invariants on
-static inline f32 fn_3_1D338_operand__(f32 right, f32 left) { return left * right; }
-#pragma opt_strength_reduction on
-static inline f32 fn_3_1D338_operand___(f32 left, f32 right) { return left * right; }
 void fn_3_1D338(s16 kind) {
     s16 fzgx_value;
     struct fn_3_1D338_sprite sprite;
@@ -3598,7 +3593,11 @@ void fn_3_1D338(s16 kind) {
         (lbl_3_bss_F0.unk24 & 0x20000000)) {
         if ((f32)lbl_3_bss_F0.unk2A < 8.0f) {
             f29 = 8.0f;
-            v = fn_3_1D338_operand_((((f32)(s16)v29 * (f32)lbl_3_bss_F0.unk2A)), (0.125f));
+            {
+                f32 product = (f32)((((f32)(s16)v29 * (f32)lbl_3_bss_F0.unk2A)));
+                product *= (f32)((0.125f));
+                v = product;
+            }
 clamped = 8.0f;
 clamped = (v < clamped) ? clamped : (((v) > ( (f32)(s16)v29)) ? ( (f32)(s16)v29) : (v));
 f30 = clamped;
@@ -3828,9 +3827,6 @@ f30 = clamped;
         fn_1_4AE0C((const char *)fn_3_2B750(14, lbl_3_bss_F0.unkA));
     }
 }
-#pragma opt_strength_reduction reset
-
-#pragma opt_loop_invariants reset
 
 #pragma opt_propagation reset
 /* fzgx:end fn_3_1D338 */

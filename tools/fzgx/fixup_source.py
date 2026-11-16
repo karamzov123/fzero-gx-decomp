@@ -3720,6 +3720,43 @@ def split_helper_calls(body, name):
         yield f'split inline/external helper {name} uses {mask:x}',text
 
 
+def optimizer_directive_removals(body, name):
+    """Probe existing optimizer controls without introducing replacement devices.
+
+    These are hypotheses, not device classifications. The shared engine and
+    retail gates decide whether a removal preserves instructions and bindings.
+    Refuse conditional state and original-assembly units rather than guessing
+    which preprocessor branch or SDK profile is active.
+    """
+    from .sdkimport import masked
+    code = masked(body)
+    if (not _function_body_span(code, name)
+            or re.search(r'\b(?:asm|__asm__)\b', code)
+            or re.search(r'(?m)^\s*#\s*(?:if|ifdef|ifndef|elif|else|endif)\b', code)):
+        return
+    pattern = re.compile(r'(?m)^[ \t]*#[ \t]*pragma[ \t]+(opt_[a-z_]+)'
+                         r'[ \t]+(on|off|reset)[ \t]*(?:\n|$)')
+    options = {}
+    for match in pattern.finditer(code):
+        options.setdefault(match[1], []).append(match)
+    groups = {option: matches for option, matches in options.items()
+              if any(m[2] != 'reset' for m in matches)}
+    # Never remove a recognized setting but leave an unrecognized push/pop or
+    # other state transition for that same option behind.
+    groups = {option: matches for option, matches in groups.items()
+              if len(matches) == len(re.findall(r'(?m)^\s*#\s*pragma\s+'
+                                                + re.escape(option) + r'\b', code))}
+    def remove(matches):
+        text = body
+        for match in sorted(matches, key=lambda m: m.start(), reverse=True):
+            text = text[:match.start()] + text[match.end():]
+        return text
+    for option, matches in groups.items():
+        yield 'test optimizer directive removal ' + option, remove(matches)
+    if len(groups) > 1:
+        yield 'test all optimizer directive removals', remove([m for group in groups.values() for m in group])
+
+
 def native_operand_helpers(body, name):
     """Remove pure float operand wrappers, preserving their scalar rounding.
 
