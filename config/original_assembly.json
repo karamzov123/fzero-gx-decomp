@@ -1,0 +1,42 @@
+{
+  "src/dol/OS.c": [
+    {
+      "symbol": "__OSDBIntegrator",
+      "form": "asm-function",
+      "sha256": "a26666a4267d8385c667538bdc3d9f76893879055c003f1172d18add5115cc55",
+      "evidence": "Retail 0x8000AA08..0x8000AA2C: copied fragment, fixed low-memory LR save, privileged mtmsr, no compiler prologue; docs/RECONSTRUCTION_STANDARDS.md."
+    },
+    {
+      "symbol": "fn_8000AA2C",
+      "form": "asm-function",
+      "sha256": "0b2c7f22b0b60c07576713667b448e85a3aecba49d7990fac9f3a23573b1c665",
+      "evidence": "SDK __OSDBJump; retail 0x8000AA2C..0x8000AA30 is the copied absolute bla 0x60 trampoline, with __OSDBJUMPEND boundary."
+    },
+    {
+      "symbol": "OSExceptionVector",
+      "form": "asm-function",
+      "sha256": "f85f870fcaa8e082b3ca0cd5b2a4a2b6d8dbdd3b547f1816667089677c42631f",
+      "evidence": "Retail 0x8000AA60..0x8000AAFC: copied/patched exception vector, privileged SRR/SPRG access and rfi; preserve all entry labels."
+    },
+    {
+      "symbol": "OSDefaultExceptionHandler",
+      "form": "asm-function",
+      "sha256": "042c4353fc6b5ef7075042f34a7c5c18911f9ebdb7d497f8d33ffb718c642fee",
+      "evidence": "Retail 0x8000AAFC..0x8000AB54: incoming-register context save without a compiler prologue, GQR1-GQR7/DSISR/DAR reads, hand-made frame and tail branch."
+    },
+    {
+      "symbol": "__OSPSInit",
+      "form": "inline-block",
+      "sha256": "2e54946aa513327469fd5ba1820f6593e9fea51cf29a164fbe70035d56b7cbcb",
+      "evidence": "Original SDK mixed C/assembly: retail 0x8000AB74..0x8000AB98 resets GQR0-GQR7; C prologue, calls, sync and epilogue remain compiled. Melee and SMS use this form; see pinned survey."
+    }
+  ],
+  "src/dol/OSGetTick.c": [
+    {
+      "symbol": "OSGetTick",
+      "form": "asm-function",
+      "sha256": "054d43c0677f400e0bbf621cb2b10855c7ee8705e9f80ea6ec51ed516d023b51",
+      "evidence": "Existing original-SDK mftb leaf with no compiler prologue. units.json compiles this CodeWarrior asm function from C; classify its source as original assembly, not C-authored progress. No body or compiler setting was changed."
+    }
+  ]
+}

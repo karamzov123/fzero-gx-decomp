@@ -24,6 +24,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from . import oracle, tufile, verify
+from .original_assembly import source_form
 from .carve import carve
 from .context import build_context
 from .ledger import Ledger
@@ -140,8 +141,9 @@ def sync(p: Project) -> Dict[str, int]:
     matched = 0
     for u in p.load_units():
         if u["status"] == "matching":
-            target_status = "asm" if u.get("asm") else "matched"
             for s in u.get("symbols", []):
+                form = source_form(u['source'], s, bool(u.get('asm')))
+                target_status = "matched" if form == 'c' else "asm"
                 key = _key(p, f"{u['module']}:{s}")
                 row = l.get(key) or l.get(s)
                 if row and row["status"] != target_status:

@@ -1,7 +1,8 @@
 # Coding rules
 
-These rules keep the tree shiftable and readable. `fzgx lint` enforces A1, A2,
-S1, S2; `fzgx submit` refuses a unit that fails lint.
+These rules keep the tree shiftable and readable. `fzgx lint` enforces A1, A2, A3,
+S1, S2; `fzgx submit` refuses a unit that fails lint. Follow the source-faithful
+forms in [ASM_POLICY.md](ASM_POLICY.md) and [RECONSTRUCTION_STANDARDS.md](RECONSTRUCTION_STANDARDS.md).
 
 ## A. Shiftability (hard rules)
 
@@ -12,7 +13,10 @@ S1, S2; `fzgx submit` refuses a unit that fails lint.
   Every cross-reference is a symbol. If the disassembly shows `lis/addi` to an
   address, find or declare the symbol at that address (`symbols.txt`).
 - **A2** No `(T *)0x8...` casts. Declare `extern T name;` instead.
-- **A3** Data referenced by code gets a symbol and a declaration; never compute
+- **A3** C-source assembly bodies require reviewed original-assembly evidence and
+  a matching path/function/form/body entry in `config/original_assembly.json`.
+  No whole-file exemption or inline `fzgx-allow` can authorize new assembly.
+- **Symbol ownership** Data referenced by code gets a symbol and a declaration; never compute
   an address arithmetically from another symbol unless the original code does
   (array indexing is fine; `&symbol + 0x1234` across objects is not).
 - **A4** Do not depend on link order or on gaps between objects.

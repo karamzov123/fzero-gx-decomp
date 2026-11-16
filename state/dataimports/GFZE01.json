@@ -27110,7 +27110,7 @@
     "declarations": [
       {
         "declaration": "DVDDriveInfo DriveInfo",
-        "path": "src/dol/InquiryCallback.c"
+        "path": "src/dol/OS.c"
       }
     ],
     "definition": "u8 DriveInfo[32]",
@@ -27903,7 +27903,7 @@
     "declarations": [
       {
         "declaration": "unsigned char OSDataPool[]",
-        "path": "src/dol/OSInit.c"
+        "path": "src/dol/OS.c"
       }
     ],
     "definition": "char OSDataPool[68]",

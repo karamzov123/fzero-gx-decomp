@@ -5,7 +5,7 @@ Rules (docs/CODING_RULES.md):
       0xC0000000..0xC17FFFFF (uncached) or 0xCC000000..0xCC00FFFF (hardware
       registers) outside include/dolphin/hw_regs.h
   A2  no cast of a literal to a pointer:  (T *)0x...
-  A3  no inline assembly bodies in reconstructed C
+  A3  assembly bodies require reviewed, span-specific original-assembly evidence
   S1  no `goto` without a justification comment on the same or previous line
   S2  no `volatile` / codegen-only `union` without a justification comment
 A line may opt out with `// fzgx-allow: <rule> <reason>`.
@@ -18,6 +18,7 @@ from pathlib import Path
 from typing import Iterable, List, Tuple
 
 from .project import ROOT
+from . import original_assembly
 
 HEX_RE = re.compile(r"\b0[xX]([0-9A-Fa-f]{8})\b")
 PTR_CAST_RE = re.compile(r"\(\s*[\w\s]+\*\s*\)\s*0[xX][0-9A-Fa-f]+")
@@ -44,7 +45,10 @@ def lint_file(path: Path) -> List[Tuple[str, int, str]]:
     if _rel(path) in EXEMPT:
         return []
     findings: List[Tuple[str, int, str]] = []
-    lines = path.read_text(errors="replace").splitlines()
+    text = path.read_text(errors="replace")
+    lines = text.splitlines()
+    if path.suffix == '.c':
+        findings.extend(original_assembly.findings(path, text))
     for i, line in enumerate(lines, 1):
         code = line.split("//", 1)[0]
         allow = {r for m in ALLOW_RE.finditer(line) for r in m.group(1).split(",")}  # every allow comment on the line
@@ -58,8 +62,10 @@ def lint_file(path: Path) -> List[Tuple[str, int, str]]:
                 findings.append(("A1", i, f"hardcoded address 0x{v:08X}; use a symbol"))
         if PTR_CAST_RE.search(code) and "A2" not in allow:
             findings.append(("A2", i, "literal cast to pointer; declare an extern symbol"))
-        if re.search(r'\b(?:asm|__asm__)\s*(?:volatile\s*)?\{', code):
-            findings.append(("A3", i, "inline assembly body in reconstructed C"))
+        # Preserve the existing direct-header check; scoped source approvals do
+        # not create an implicit exemption for every .h file.
+        if path.suffix != '.c' and re.search(r'\b(?:asm|__asm__)\s*(?:volatile\s*)?\{', code):
+            findings.append(("A3", i, "inline assembly body outside reviewed C-source spans"))
         if re.search(r"\bgoto\b", code) and not justified and "S1" not in allow:
             findings.append(("S1", i, "goto without a justification comment"))
         if re.search(r"\bvolatile\b", code) and not justified and "S2" not in allow:

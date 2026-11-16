@@ -12945,7 +12945,16 @@
       "ClearArena",
       "InquiryCallback",
       "OSInit",
-      "OSExceptionInit"
+      "OSExceptionInit",
+      "__OSDBIntegrator",
+      "fn_8000AA2C",
+      "__OSSetExceptionHandler",
+      "__OSGetExceptionHandler",
+      "OSExceptionVector",
+      "OSDefaultExceptionHandler",
+      "__OSPSInit",
+      "__OSGetDIConfig",
+      "OSRegisterVersion"
     ],
     "pool": {
       "...data.0": "OSDataPool",
@@ -13133,17 +13142,6 @@
   },
   {
     "module": "main",
-    "source": "dol/OSDefaultExceptionHandler.c",
-    "symbols": [
-      "OSDefaultExceptionHandler"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
     "source": "dol/OSDisableInterrupts.c",
     "symbols": [
       "OSDisableInterrupts"
@@ -13242,39 +13240,6 @@
       "@76",
       "lbl_801A6430"
     ]
-  },
-  {
-    "module": "main",
-    "source": "dol/OSExceptionHandlers.c",
-    "symbols": [
-      "__OSSetExceptionHandler",
-      "__OSGetExceptionHandler"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ]
-  },
-  {
-    "module": "main",
-    "source": "dol/OSExceptionVector.c",
-    "symbols": [
-      "OSExceptionVector"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
   },
   {
     "module": "main",
@@ -13528,32 +13493,6 @@
     "mw_version": null,
     "extra_cflags": [],
     "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/OSPairedInit.c",
-    "symbols": [
-      "__OSPSInit",
-      "__OSGetDIConfig",
-      "OSRegisterVersion"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ],
-    "pool": {
-      "@4": "lbl_801A6424"
-    }
   },
   {
     "module": "main",
@@ -17156,17 +17095,6 @@
     "pool": {
       "@2": "OSContextMessage_1b4"
     }
-  },
-  {
-    "module": "main",
-    "source": "dol/__OSDBIntegrator.c",
-    "symbols": [
-      "__OSDBIntegrator"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
   },
   {
     "module": "main",
@@ -29383,17 +29311,6 @@
     "source": "dol/fn_8000A0B8.c",
     "symbols": [
       "fn_8000A0B8"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8000AA2C.c",
-    "symbols": [
-      "fn_8000AA2C"
     ],
     "status": "matching",
     "mw_version": null,

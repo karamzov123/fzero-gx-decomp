@@ -1,79 +1,138 @@
-# Assembly and compiler-diff device policy (owner, 2026-11-12)
+# Assembly and compiler-diff device policy
 
-This replaces the earlier rule "header asm kernels only where other decomps do the same". The question
-that decides whether assembly is allowed is **was the original code assembly?**, not whether another
-project happens to use asm for similar code.
+Owner-directed source-faithful reconstruction standard, updated 2026-11-16.
+This supersedes the blanket rules that whole assembly functions must be split into
+`.s` files and that inline kernels must be moved out of C translation units.
 
-## 1. Allowed assembly: only where the original was plausibly assembly
+The deciding questions are **what was the original implementation language and
+organization, and what does this game's retail object prove?** A `.c` suffix does
+not make a function natural C, and a matching hash does not prove source fidelity.
+See [the pinned convention survey](RECONSTRUCTION_STANDARDS.md).
 
-Nintendo's SDK, the Metrowerks runtime, MetroTRK and middleware such as CRI/Sofdec, MusyX and ADX wrote
-some code in assembly: whole `asm` functions (`OSContext`, `OSCache`, `__save_gpr`/`__restore_gpr`,
-`PSMTX*`) or `asm {}` blocks inside C functions (GX matrix writes, CRI pixel kernels). Reproducing those
-as assembly is matching, not cheating.
+## 1. Evidence for original assembly
 
-Assembly needs evidence, recorded in a comment next to it. Any one of these is evidence:
+SDK, runtime, MetroTRK and middleware sources can legitimately contain whole
+assembly functions and assembly blocks inside C functions. Reconstructing their
+original form is not a compiler-diff device.
 
-- instructions MWCC never emits from C: `psq_*` in forms the compiler does not generate, `mfspr`/`mtspr`,
-  `mfmsr`/`mtmsr`, `dcbz_l`, `mcrxr`, `addc` carry tricks, `stfdu`/`lwzux`/`lfdux` update chains that C
-  folds (measure it: write the C, report the word count it misses by);
-- no MWCC prologue/epilogue (`nofralloc` shape), or register usage no compiler allocation produces;
-- known SDK/middleware source shows the function or block as assembly.
+Record evidence next to the implementation and in reviewed provenance. Useful
+positive evidence includes:
 
-If a compiler intrinsic exists (`__dcbz`, `__dcbt`, `__fabs`, `__frsqrte`, ...) and still matches, use
-it instead of asm. Measure it; intrinsics often change the surrounding schedule (fn_12_3C17C: 193 words).
+- a version-compatible SDK/middleware reference showing that routine or block as
+  assembly, cross-checked against this game's instructions and relocations;
+- copied or patched exception-vector/trampoline fragments, entry labels, privileged
+  machine-state operations, or context saves that must precede a C prologue;
+- an instruction form, register contract or update chain shown by a concrete MWCC
+  probe not to arise from the proposed C or intrinsic implementation.
 
-## 2. Form
+A tiny leaf with no stack frame, an unfamiliar instruction, a difficult allocation
+mismatch, or another project's assembly workaround alone is not proof. Do not
+classify every `mfspr`, carry operation or paired-single instruction as necessarily
+hand-written: account for compiler intrinsics and generated forms.
 
-- **Whole-function assembly** is an asm unit: `fzgx asm-unit`, `.s` in `src/`, `asm: true` in
-  `units.json`, ledger status `asm`. It counts as matched, not as C.
-- **Small kernels inside a C function** live in `include/` headers as macros or inline functions on the
-  caller's register variables (`include/psvec.h`, `include/sofdec/*_ppc.h`, `include/mathutil*.h`).
-  Lint rule A3 keeps `asm` bodies out of `src/`. One kernel family per header; a landed header never
-  grows (adding inline functions renumbers MWCC's `@N` literals in every includer).
-- Matcher agents never add assembly. New kernels are reviewed changes (PR or owner session) that cite
-  the evidence from section 1.
+Prefer a genuine compiler intrinsic when it fits the original source abstraction
+and matches. Measure its effects on scheduling and registers. Do not split or
+rewrite a known original mixed C/assembly routine solely to make it look like C;
+do not replace ordinary compiler-generated C with assembly because it is easier.
 
-The OS exception/debug fragments follow these forms without a per-file lint
-exception: `__OSDBIntegrator`, `fn_8000AA2C` (`__OSDBJump`),
-`OSExceptionVector` and `OSDefaultExceptionHandler` are separate assembly
-units. Their copied-fragment labels and privileged register operations are
-preserved. `__OSPSInit` remains C and includes only its GQR reset kernel from
-`include/dolphin/os/OSPairedInit.h`. The small-data format used by
-`OSRegisterVersion` stays with the OS data owner; moving its compiler literal
-into a separately aligned small-data input changes the retail layout.
+## 2. Preferred reconstruction form
+
+1. **Original C or C++:** reconstruct natural source in the original language, with
+   shared types, meaningful operations and the measured compiler/ABI settings.
+2. **Original CodeWarrior assembly functions in a C/C++ translation unit:** keep
+   `asm` functions, `nofralloc`, operand parameters and entry labels alongside the
+   related C when evidence supports that organization. Preserve static linkage and
+   native data/literal ownership. Whole-TU fidelity is preferred over artificial
+   splits; a split is an incremental build technique, not the final goal.
+3. **Original inline assembly:** keep the block in its original C function. Use a
+   shared header macro or inline helper where the original abstraction was shared
+   or evidence supports it, not as a mandatory hiding place for all assembly.
+4. **Original standalone assembler:** retain a `.s` unit with `asm: true` in
+   `units.json`. Existing verified standalone reconstructions remain valid; migrate
+   them only through a reviewed, compiler-backed change with positive evidence.
+5. **Uncertain language or organization:** preserve the verified reconstruction,
+   record the uncertainty and investigate. Another game's SDK version is a lead,
+   not authority to copy its body, layout, pragma, assertion or compiler options.
+
+Original assembly commonly appears in architecture-register helpers, cache and
+context routines, runtime save/restore stubs, exception entry, and paired-single
+math. This is a reason to investigate those families, not blanket approval of them.
+
+### Scoped enforcement and OS.c
+
+`config/original_assembly.json` records reviewed C-source assembly spans by source
+path, enclosing function, form and SHA-256 of the comment/whitespace-independent
+assembly tokens. A3 checks whole CodeWarrior asm functions as well as inline blocks.
+An added, changed, moved, duplicated or missing registered body requires review;
+there is no file-wide exemption and `fzgx-allow: A3` cannot authorize one.
+This is a review guard, not an exhaustive C preprocessor or a replacement for the
+compiler and retail oracle. Header kernels remain reviewed shared infrastructure.
+
+The accepted OS.c form is one mixed translation unit: `__OSDBIntegrator`,
+`fn_8000AA2C` (SDK `__OSDBJump`), `OSExceptionVector` and
+`OSDefaultExceptionHandler` remain original assembly functions. `__OSPSInit`
+retains its C calls/prologue/epilogue and original GQR-reset block. Their copied
+fragment boundaries and the original small-data/literal layout remain intact.
+No per-file lint exemption or artificial OS split is needed.
+
+Runner-bound matchers still must not introduce assembly or modify the registry.
+Original-assembly additions, migrations and header kernels are reviewed changes
+made through a PR or an owner-directed manual session. Preserve attribution and
+follow [the source-import policy](SOURCE_IMPORT_POLICY.md).
 
 ## 3. Compiler-diff devices
 
-A device is any construct whose only purpose is to steer MWCC's code generation and that the original
-code plausibly did not contain: dead compares or stores kept alive by `opt_dead_assignments off`,
-identity inline helpers, parameter copies that exist only for register order, value-preserving casts
-(`(u64)x | 0x100000000ull`), `volatile` on non-volatile objects, pragmas used only to move a register.
+A device is a construct whose sole purpose is to steer compiler output and that
+the original plausibly did not contain: dead compares/stores, inert identity
+helpers, fake parameter/local copies, value-preserving bit tricks, unjustified
+`volatile`, padding or pragmas used solely to force an allocation/schedule.
+An original ABI declaration, SDK `register` operand, hardware `volatile`, genuine
+representation union or evidenced SDK pragma is not a device merely by spelling.
 
-- Every device is marked with a comment starting `WARNING: compiler-diff device, not original code`,
-  followed by the honest form and how far the honest form misses (rows or words). Commit and PR titles
-  say "device".
-- Prefer a C device over an asm device. **Assembly used only to steer the compiler** (for example the
-  dead `asm { mr r6, x }` writes of `include/adx_compiler_diff.h`, PR #322) is the worst kind of device:
-  it is tied to one compiler build and hides intent. It is accepted only as marked, tracked debt and is
-  first in line for removal.
-- Removing a device is real remaining work, ranked with unmatched functions. A replacement lands only if
-  the function still matches and all 16 hashes pass.
-- Open list: `grep -rn "WARNING: compiler-diff device\|WARNING: device" src include`.
+- New device-free reconstruction is the preferred deliverable. A matching device
+  is not natural-C completion. Do not weaken guards or relabel debt to claim it.
+- Existing accepted devices remain tracked debt; do not regress a verified match
+  simply to remove a marker. A reviewed debt change must be explicitly identified
+  as a device, not ordinary source progress.
+- Every device has a comment starting `WARNING: compiler-diff device, not original
+  code`, giving the honest form and measured residual (rows or words). Device
+  changes identify themselves in commit and PR titles.
+- Assembly inserted solely to steer the compiler, such as dead register writes,
+  is not original assembly. A scoped original-assembly entry cannot legitimize it.
+- Removing a device is real remaining work. Replacements still need the full
+  compiler, object, relocation, lint and sixteen-target hash gates.
+
+Inventory both `WARNING: compiler-diff device` and `WARNING: device` in `src/` and
+`include/`. Marker counts are not a count of distinct devices or affected functions;
+unmarked constructs still need review.
 
 ## 4. What "done" means
 
-The project is complete when:
+The active target is USA GFZE01. Completion requires:
 
-1. every function of all 16 targets matches;
-2. every function the original wrote in C is natural C;
-3. assembly appears only where the original was assembly (sections 1 and 2);
-4. zero compiler-diff devices remain.
+1. all functions and data in its sixteen executables match;
+2. natural C/C++ wherever the original used C/C++;
+3. original assembly only with evidence and an appropriate reconstruction form;
+4. zero compiler-diff devices, with readable shared types and reproducible ownership.
+
+Other regions require their own legally obtained inputs and separate verification.
+Executable parity alone does not prove source-owned data or reconstructed assets.
 
 ## 5. Metrics
 
-Report three numbers, never only one:
+Report binary matching, source form and device debt separately:
 
-- **matched**: `fzgx report` (objdiff) and the ledger's matched + asm counts;
-- **natural C**: `fzgx honest` (matched functions with a compiled C body), minus functions that still
-  carry a device;
-- **devices remaining**: the grep in section 3 (files and marked spots).
+- **Binary match:** regenerated objdiff report and all sixteen independent hashes;
+  identify any retail fallback objects rather than treating them as authored source.
+- **C-authored credit:** `fzgx sync`, then `fzgx honest`; this excludes registered
+  original asm functions, mixed functions and standalone assembly. It can still
+  include unclassified header kernels and compiler-diff devices, so it is not a
+  certified device-free natural-C total.
+- **Assembly/mixed source:** the current configured function inventory, ledger
+  `asm` status and per-function `source_form`. Mixed C/assembly is distinguished
+  from whole-function and standalone assembly, regardless of file suffix.
+- **Device debt:** marked spots and files, plus any audited unmarked debt. A
+  device-free total needs a separate audit; do not infer it from C file counts.
+
+Historical ledger rows include retired symbols. Use the current retail-function
+inventory for denominators, and preserve all historical provenance when syncing.

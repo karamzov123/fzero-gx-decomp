@@ -17,7 +17,7 @@
 
 A matching decompilation of **F-Zero GX** (2003) for the Nintendo GameCube.
 
-The goal of this project is to reconstruct readable, maintainable, matching C source code that faithfully reproduces every byte of all 16 retail executables when compiled with the original Metrowerks CodeWarrior compiler toolchain.
+The goal is readable, maintainable, source-faithful reconstruction: natural C/C++ where the original used it, original assembly where evidenced, and the original mixed translation units where appropriate. The original Metrowerks CodeWarrior toolchain must reproduce every byte of all 16 retail executables. File extensions and matching badges alone do not establish completion.
 
 > [!IMPORTANT]
 > This repository does **not** contain any copyrighted game assets, binary dumps, or ROM files. A legally obtained copy of the retail game is required to extract the original targets and build the project.
@@ -26,14 +26,15 @@ The goal of this project is to reconstruct readable, maintainable, matching C so
 
 ## Current Status
 
-Verified locally on **2026-11-14**, after consolidating merged upstream through PR #376 and the accepted changes below, for **GFZE01**:
+Verified locally on **2026-11-16**, including PR #379's data ownership, repaired saved-import replay and the reviewed PR #378 mixed-OS integration, for **GFZE01**:
 
 - **Diagnostic Object Match:** **100.0%** of code bytes (7,351 / 7,351 functions in the objdiff report). This includes assembly and retail fallback objects; it is not a natural-C completion percentage.
-- **Authored C Credit:** **7,160 / 7,351** functions, **98.7912%** of code bytes (`fzgx sync`, then `fzgx honest`). This includes C with compiler-diff devices and evidenced inline assembly kernels, not just device-free natural C.
-- **Assembly-Owned Functions:** **191** current configured functions remain outside authored-C credit. This is an audit inventory, not 191 proven C conversions: original assembly is permitted when supported by evidence.
-- **Compiler-Diff Debt:** **34 primary warning markers across 11 files** in `src/` and `include/` (36 markers when `WARNING: device` cross-references are included). Markers are not a count of distinct devices or affected functions; unmarked constructs still need review.
+- **Authored C Credit:** **7,159 / 7,351** functions, **98.7909%** of code bytes (`fzgx sync`, then `fzgx honest`). Registered mixed/whole assembly and standalone assembly are excluded even when compiled from `.c`; C with devices or unclassified header kernels can still receive credit, so this is not a device-free natural-C total.
+- **Assembly/Mixed Inventory:** **192** current configured functions remain outside C credit: **186 standalone assembly**, **5 original assembly functions compiled from C**, and **1 registered mixed C/assembly function**. This is an audit inventory, not 192 required C conversions; original assembly is a legitimate completed source form when evidenced.
+- **Compiler-Diff Debt:** **35 primary warning markers across 12 files** in `src/` and `include/` (37 markers when `WARNING: device` cross-references are included). Markers are not a count of distinct devices or affected functions; unmarked constructs still need review.
 - **Target Executables:** **16 / 16** link and match the retail SHA-1 hashes byte for byte (`16 files OK`, followed by an independent checksum check).
-- **Diagnostic Data Match:** **98.63%** (4,999,117 / 5,068,445 bytes in the regenerated report). This is not an asset-reconstruction or source-owned-data percentage.
+- **Diagnostic Data Match:** **100%** (5,068,399 / 5,068,399 bytes in the freshly regenerated report). The denominator reflects the current splits/report; this is not an asset-reconstruction or source-owned-data percentage.
+- **Saved Data-Import Replay:** **15,579 objects**, **3,569,245 bytes**, **zero skips** with `fzgx data-import --regenerate`. This is compiler-validated saved-import coverage, not all retail data.
 - **Source Coverage:** **13 / 16** executables have authored-C credit for every configured function. The remaining inventories are listed below.
 - **Lint:** **0 findings** (`fzgx lint`).
 
@@ -47,13 +48,13 @@ compiler-diff devices. A separate audited device-free natural-C total is not yet
 
 | Executable | Authored C / known functions | Outside C credit | Authored code bytes |
 |---|---:|---:|---:|
-| `main.dol` | 2,064 / 2,245 | 181 | 94.6328% |
+| `main.dol` | 2,063 / 2,245 | 182 | 94.6314% |
 | `main_rel` | 3,227 / 3,230 | 3 | 99.9469% |
 | `movie_module` | 784 / 791 | 7 | 98.5292% |
 | Other 13 executables | All configured functions | 0 | 100% |
 
 1. Pull requests with better near-matches are welcome.
-2. **Audit the 191 assembly-owned functions against original-assembly evidence.** Preserve genuine SDK/runtime/MetroTRK and middleware assembly; convert only code that was plausibly C. The three `main_rel` entries are `fn_1_4B6D4`, `fn_1_4B788`, and `fn_1_9DFB8`. The seven `movie_module` entries are `fn_12_52E8`, `fn_12_D0B8`, `fn_12_12564`, `fn_12_33664`, `fn_12_33698`, `fn_12_3CB74`, and `fn_12_3D144`.
+2. **Audit the 192 assembly/mixed functions against original-assembly evidence.** Preserve genuine SDK/runtime/MetroTRK and middleware assembly in the appropriate source form; convert only code that was plausibly C. The three `main_rel` entries are `fn_1_4B6D4`, `fn_1_4B788`, and `fn_1_9DFB8`. The seven `movie_module` entries are `fn_12_52E8`, `fn_12_D0B8`, `fn_12_12564`, `fn_12_33664`, `fn_12_33698`, `fn_12_3CB74`, and `fn_12_3D144`.
 3. **Keep metrics synchronized and reproducible.** Run `fzgx sync` after updating source/configuration, then regenerate progress and report authored C, evidenced assembly, and device debt separately. Ledger totals can include retired symbols; use the current configured-function denominator rather than adding raw ledger statuses. Data ownership and readable shared types remain separate work; executable hash parity does not prove complete source-owned data.
 4. **Preserve the acceptance gate.** Rebuild with `python3 configure.py && ninja`, independently run `build/tools/dtk shasum -c config/GFZE01/build.sha1`, run `fzgx lint`, and snapshot provenance before committing accepted changes. Do not replace a working match with an unverified naturalization attempt.
 5. **Extend regional source coverage after the primary cleanup.** PAL and Japanese configurations have landed assembly baselines, not primary-target C coverage. Verify each region separately with legally obtained inputs; the USA checksum result above does not certify either regional build.
@@ -314,6 +315,7 @@ We welcome contributions from everyone! Whether you are an experienced decompile
 
 - Review [CONTRIBUTING.md](CONTRIBUTING.md) for full pull request and workflow guidelines.
 - Review [docs/CODING_RULES.md](docs/CODING_RULES.md) for code structure standards (no hardcoded pointer literals, shiftability requirements, proper struct typing).
+- Follow [the reconstruction standards and pinned community survey](docs/RECONSTRUCTION_STANDARDS.md) and [assembly policy](docs/ASM_POLICY.md). Prefer the evidenced original language and translation unit—not universal `.s` splitting or header-only assembly. OS.c is one mixed C/CodeWarrior-assembly unit, with individual body approvals rather than a file-wide lint exemption.
 - Consult [docs/MWCC_IDIOMS.md](docs/MWCC_IDIOMS.md) for patterns and CodeWarrior compiler quirks discovered across the project.
 - Join the discussion on the [GameCube / Wii Decompilation Discord][discord] in `#dtk`.
 

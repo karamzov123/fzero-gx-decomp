@@ -1,5 +1,5 @@
 {
- "generated": 1794807525,
+ "generated": 1794810785,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -9031,7 +9031,7 @@
   {
    "symbol": "__OSDBIntegrator",
    "module": "main",
-   "unit": "dol/__OSDBIntegrator.c",
+   "unit": "dol/OS.c",
    "addr": 2147527176,
    "size": 36,
    "status": "asm",
@@ -9048,7 +9048,7 @@
   {
    "symbol": "fn_8000AA2C",
    "module": "main",
-   "unit": "dol/fn_8000AA2C.c",
+   "unit": "dol/OS.c",
    "addr": 2147527212,
    "size": 4,
    "status": "asm",
@@ -9065,7 +9065,7 @@
   {
    "symbol": "__OSSetExceptionHandler",
    "module": "main",
-   "unit": "dol/OSExceptionHandlers.c",
+   "unit": "dol/OS.c",
    "addr": 2147527216,
    "size": 28,
    "status": "matched",
@@ -9082,7 +9082,7 @@
   {
    "symbol": "__OSGetExceptionHandler",
    "module": "main",
-   "unit": "dol/OSExceptionHandlers.c",
+   "unit": "dol/OS.c",
    "addr": 2147527244,
    "size": 20,
    "status": "matched",
@@ -9099,7 +9099,7 @@
   {
    "symbol": "OSExceptionVector",
    "module": "main",
-   "unit": "dol/OSExceptionVector.c",
+   "unit": "dol/OS.c",
    "addr": 2147527264,
    "size": 156,
    "status": "asm",
@@ -9116,7 +9116,7 @@
   {
    "symbol": "OSDefaultExceptionHandler",
    "module": "main",
-   "unit": "dol/OSDefaultExceptionHandler.c",
+   "unit": "dol/OS.c",
    "addr": 2147527420,
    "size": 88,
    "status": "asm",
@@ -9133,10 +9133,10 @@
   {
    "symbol": "__OSPSInit",
    "module": "main",
-   "unit": "dol/OSPairedInit.c",
+   "unit": "dol/OS.c",
    "addr": 2147527508,
    "size": 84,
-   "status": "matched",
+   "status": "asm",
    "attempts": 1,
    "best_percent": 100.0,
    "claimed_by": null,
@@ -9150,7 +9150,7 @@
   {
    "symbol": "__OSGetDIConfig",
    "module": "main",
-   "unit": "dol/OSPairedInit.c",
+   "unit": "dol/OS.c",
    "addr": 2147527592,
    "size": 20,
    "status": "matched",
@@ -9167,7 +9167,7 @@
   {
    "symbol": "OSRegisterVersion",
    "module": "main",
-   "unit": "dol/OSPairedInit.c",
+   "unit": "dol/OS.c",
    "addr": 2147527612,
    "size": 44,
    "status": "matched",
@@ -11550,7 +11550,7 @@
    "unit": "dol/OSGetTick.c",
    "addr": 2147554340,
    "size": 8,
-   "status": "matched",
+   "status": "asm",
    "attempts": 2,
    "best_percent": 100.0,
    "claimed_by": null,

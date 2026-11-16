@@ -10,16 +10,19 @@ That makes the headline unusable for deciding whether a change helped. This modu
 the question the headline cannot: of the functions objdiff calls matched, how many have a C
 body that is actually compiled into a target?
 
-Four registries decide the answer, and they fail differently (findings 279/280):
+The build registries and reviewed source forms decide the answer:
 
     symbols.txt   retail address + size            (known function)
     splits.txt    which .text range a unit owns     (is there a unit at all?)
     units.json    that the unit is built from C     (is it compiled?)
     build/gen/    the generated translation unit   (was it actually built?)
+    original_assembly.json  reviewed whole/mixed asm compiled from C
 
-A function is **authored** only when the ledger calls it matched, its units.json
-record selects matching C, and that unit's compiled object exists. Only an authored function should count as
-progress, and only an authored function can honestly be *completed*.
+A function receives **C-authored credit** only when the ledger calls it matched,
+its unit selects matching C, its compiled object exists and its registered source
+form is C. Original assembly and mixed functions can be completed reconstructions
+without receiving C credit. Device freedom and unclassified header kernels still
+need a separate audit; C credit alone is not certified natural-C completion.
 """
 
 from __future__ import annotations
@@ -30,6 +33,7 @@ from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Set, Tuple
 
 from .project import ROOT
+from .original_assembly import source_form
 
 CONFIG = ROOT / "config" / "GFZE01"
 RANGE_RE = re.compile(r"start:(0x[0-9A-Fa-f]+)\s+end:(0x[0-9A-Fa-f]+)")
@@ -175,17 +179,19 @@ def state(module: str, symbol: str) -> dict:
         "registered": rec is not None,
         "compiled": gen_built(rec),
         "unit": rec.get("source") if rec else None,
+        "source_form": source_form(rec['source'], symbol, bool(rec.get('asm'))) if rec else None,
     }
 
 
 def authored(module: str, symbol: str) -> bool:
-    """True when this symbol is built from a C body we wrote.
+    """True when this symbol is built from a C-form body we wrote.
 
     Deliberately stricter than objdiff's `matched`: a split with no compiled unit leaves the
     retail auto object supplying the bytes, which matches by construction and is not work.
+    Registered whole/mixed assembly is excluded; device freedom needs an audit.
     """
     st = state(module, symbol)
-    return bool(st.get("registered") and st.get("compiled"))
+    return bool(st.get("registered") and st.get("compiled") and st.get("source_form") == 'c')
 
 
 def _pct(a: float, b: float) -> float:
@@ -219,10 +225,12 @@ def measure(status: Optional[Dict[str, str]] = None) -> dict:
             key = qualified if multiplicity[symbol] > 1 else symbol
             r = rec.get(qualified)
             credited = status.get(qualified, status.get(key)) == "matched"
+            form = source_form(r['source'], symbol, bool(r.get('asm'))) if r else None
             rows.append({
                 "module": module, "symbol": key, "size": size,
                 "credited": credited,
-                "authored": bool(credited and r is not None and gen_built(r)),
+                "authored": bool(credited and r is not None and gen_built(r) and form == 'c'),
+                "source_form": form,
                 "registered": r is not None,
                 "compiled": gen_built(r) if r else False,
                 "split": any(s <= addr and addr + size <= e for s, e in covered(module)),

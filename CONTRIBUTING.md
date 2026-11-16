@@ -27,8 +27,13 @@ for the next attempt.
 - No integer literal in `0x80000000..0x817FFFFF`, `0xC0000000..0xC17FFFFF` or
   `0xCC000000..0xCC00FFFF` outside `include/dolphin/hw_regs.h`. Every cross-reference is
   a symbol; the tree must stay shiftable.
-- No inline assembly, no `.s` files for code. Unmatched code stays in decomp-toolkit's
-  split objects.
+- Reconstruct natural C/C++ where the original used it, and evidenced original assembly
+  in its appropriate form. Preserve mixed CodeWarrior C/assembly translation units
+  where supported; standalone original assembly may use `.s`. Do not introduce assembly
+  merely to force a C match. C-source assembly bodies need scoped reviewed evidence in
+  `config/original_assembly.json`, not a file-wide exemption. Unmatched code stays in
+  decomp-toolkit's split objects. See `docs/ASM_POLICY.md` and the pinned convention
+  survey in `docs/RECONSTRUCTION_STANDARDS.md`.
 - `goto`, `volatile` and codegen-only `union` need a one-line justification comment.
 - Use the shared types: `#include "rel/<module>/globals.h"` and its recovered struct
   fields (`unk_XX` names are offsets, and the offsets are verified) instead of casts and

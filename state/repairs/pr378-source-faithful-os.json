@@ -1,0 +1,67 @@
+{
+  "kind": "reviewed-pr-integration-and-reconstruction-standard",
+  "version": "GFZE01",
+  "pull_request": 378,
+  "reviewed_head": "f10df00c1f0f3f004e8ea03849cc5f8541c376e0",
+  "base_main": "875d32594d0a1c686beddb816f34715efae42a75",
+  "decision": "Accept the mixed OS.c reconstruction, resolve conflicts while retaining current main, and replace the proposed file-wide lint exemption with reviewed individual assembly spans.",
+  "source_provenance": "OS.c is identical to PR #378's reviewed source and the already accepted PR #379 implementation. Other projects were inspected for conventions only; no donor implementation was imported. The existing OSGetTick body was not changed.",
+  "preferred_form": "Original language and native mixed translation unit where evidenced; standalone assembler when originally standalone. Do not force known SDK asm functions into separate units merely because their original container is C.",
+  "os_integration": {
+    "functions": 14,
+    "whole_asm_functions": ["__OSDBIntegrator", "fn_8000AA2C", "OSExceptionVector", "OSDefaultExceptionHandler"],
+    "mixed_function": "__OSPSInit",
+    "preserved": ["static scopes", "copied-fragment entry labels", "compiler settings", "native small-data and literal ownership", "prior data-import replay repair"],
+    "removed_workaround": "Six split OS records and their now-unused C/asm/header sources; no broad rollback of other accepted work.",
+    "file_wide_exemption": false
+  },
+  "assembly_guard": {
+    "registry": "config/original_assembly.json",
+    "scope": "source path, function name, form and SHA-256 of assembly tokens with comments/whitespace ignored",
+    "approved_bodies": 6,
+    "negative_probes": [
+      "Changed GQR reset instructions compile with MWCC but are rejected by A3.",
+      "An additional whole assembly function in approved OS.c compiles but is rejected by A3.",
+      "An additional inline block in another OS.c function compiles but is rejected by A3.",
+      "Moving, deleting or duplicating approved spans is rejected.",
+      "Assembly-looking comments and strings do not create approvals or false findings."
+    ],
+    "no_new_repository_unit_tests": true
+  },
+  "classification": {
+    "source_forms_independent_of_file_suffix": true,
+    "c_functions": 7159,
+    "standalone_assembly_functions": 186,
+    "original_assembly_functions_compiled_from_c": 5,
+    "registered_mixed_functions": 1,
+    "current_functions": 7351,
+    "c_authored_bytes": 2901532,
+    "total_code_bytes": 2937044,
+    "c_authored_code_percent": 98.7909,
+    "device_free_natural_c_claimed": false,
+    "stale_ledger_probe": "Supplying matched status for every current symbol still does not give assembly or mixed functions C-authored credit.",
+    "additional_audit": "OSGetTick was already a CodeWarrior asm function compiled from C. Its body is unchanged and now classified as original assembly, corroborated by Sunshine OSTime.c and GX retail 80011424..8001142C."
+  },
+  "survey": {
+    "document": "docs/RECONSTRUCTION_STANDARDS.md",
+    "melee": "2f8eab8ebd7a2d25541e125abfa246defe1bacec",
+    "sunshine": "ec8be8ed3a7ae186575179ef78b8345aa7102345",
+    "wind_waker": "d217e2b5e1c1514e6f3f640835f83f01dd67aa72",
+    "families": ["mixed SDK OS.c", "architecture register helpers", "cache/context save and restore", "SDK time-base helpers", "portable C versus optimized paired-single matrix functions", "legitimate hardware volatility and representation unions", "compiler/version-specific matching and guards"],
+    "version_caution": "Observed practice is not proof of GX's SDK version; body/layout/pragma choices still need the GX retail oracle."
+  },
+  "verification": {
+    "all_retail_hashes": "16/16",
+    "lint_findings": 0,
+    "objdiff_matched_code_bytes": 2937044,
+    "objdiff_total_code_bytes": 2937044,
+    "objdiff_matched_data_bytes": 5068399,
+    "objdiff_total_data_bytes": 5068399,
+    "objdiff_matched_functions": 7351,
+    "saved_imports": 15579,
+    "saved_import_bytes": 3569245,
+    "saved_import_skips": 0,
+    "ledger_preservation": "All 7355 historical function rows, 27293 attempts and 53 name rows preserved. Only nine function unit fields and two source-classification status fields changed semantically.",
+    "protected_instructions": "AGENTS.md left unchanged: the protected-file approval timed out. The runner-bound no-new-assembly restriction remains; authoritative manual/PR reconstruction policy, README, CONTRIBUTING and coding rules are updated."
+  }
+}
