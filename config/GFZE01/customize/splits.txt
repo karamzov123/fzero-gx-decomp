@@ -872,9 +872,6 @@ rel/customize/data/lbl_3_bss_7E240.c:
 rel/customize/data/lbl_3_bss_7E6F0.c:
 	.bss        start:0x0007E6F0 end:0x0007EBA0 align:16
 
-rel/customize/data/lbl_3_bss_7EBA0.c:
-	.bss        start:0x0007EBA0 end:0x0007EBA8 align:32
-
 rel/customize/data/lbl_3_bss_7EBA8.c:
 	.bss        start:0x0007EBA8 end:0x0007EBB0 align:8
 
@@ -1010,16 +1007,6 @@ rel/customize/data/lbl_3_data_4648.c:
 rel/customize/data/lbl_3_data_4B70.c:
 	.data       start:0x00004B70 end:0x00004BB4 align:8
 
-
-
-
-
-
-
-
-
-
-
 rel/customize/data/lbl_3_data_1668.c:
 	.data       start:0x00001668 end:0x00001698 align:8
 
@@ -1145,3 +1132,6 @@ rel/customize/data/lbl_3_data_3780.c:
 
 rel/customize/data/lbl_3_rodata_0.c:
 	.rodata     start:0x00000000 end:0x00000E34 align:8
+
+rel/customize/data/lbl_3_bss_7EBA0.c:
+	.bss        start:0x0007EBA0 end:0x0007EBA8 align:32

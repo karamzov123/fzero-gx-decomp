@@ -15624,9 +15624,6 @@ rel/main_rel/data/lbl_1_bss_3C00.c:
 rel/main_rel/data/lbl_1_bss_3C08.c:
 	.bss        start:0x00003C08 end:0x00003C10 align:8
 
-rel/main_rel/data/lbl_1_bss_3C10.c:
-	.bss        start:0x00003C10 end:0x00003C30 align:16
-
 rel/main_rel/data/lbl_1_bss_3C30.c:
 	.bss        start:0x00003C30 end:0x00005100 align:16
 
@@ -16055,9 +16052,6 @@ rel/main_rel/data/lbl_1_bss_854B8.c:
 
 rel/main_rel/data/lbl_1_bss_86EC0.c:
 	.bss        start:0x00086EC0 end:0x00086ED0 align:32
-
-rel/main_rel/data/lbl_1_bss_6EA98.c:
-	.bss        start:0x0006EA98 end:0x0006EAA8 align:8
 
 rel/main_rel/data/lbl_1_bss_6F1E0.c:
 	.bss        start:0x0006F1E0 end:0x0006F2C8 align:32
@@ -19394,3 +19388,9 @@ rel/main_rel/data/lbl_1_rodata_4820.c:
 
 rel/main_rel/data/lbl_1_data_40600.c:
 	.data       start:0x00040600 end:0x00040608 align:8
+
+rel/main_rel/data/lbl_1_bss_3C10.c:
+	.bss        start:0x00003C10 end:0x00003C30 align:16
+
+rel/main_rel/data/lbl_1_bss_6EA98.c:
+	.bss        start:0x0006EA98 end:0x0006EAA8 align:8

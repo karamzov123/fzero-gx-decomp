@@ -2932,16 +2932,20 @@
         "path": "src/rel/customize/_prolog.c"
       },
       {
-        "declaration": "u32 lbl_3_bss_7EBA4",
-        "path": "src/rel/customize/customize.c"
-      },
-      {
         "declaration": "CustomizeObject *lbl_3_bss_7EBA4",
         "path": "src/rel/customize/customize.c"
       },
       {
         "declaration": "u32 lbl_3_bss_7EBA4",
         "path": "src/rel/customize/customize.c"
+      },
+      {
+        "declaration": "u32 lbl_3_bss_7EBA4",
+        "path": "src/rel/customize/emb_memcard.c"
+      },
+      {
+        "declaration": "u32 lbl_3_bss_7EBA4",
+        "path": "src/rel/customize/emb_memcard.c"
       }
     ],
     "definition": "u8 lbl_3_bss_7EBA4[4]",
@@ -24719,22 +24723,6 @@
       {
         "declaration": "u8 lbl_17_bss_0[]",
         "path": "src/rel/interview/interview.c"
-      },
-      {
-        "declaration": "u8 lbl_17_bss_0",
-        "path": "src/rel/interview/interview.c"
-      },
-      {
-        "declaration": "struct fn_17_4FE0_lbl_17_bss_0 lbl_17_bss_0",
-        "path": "src/rel/interview/interview.c"
-      },
-      {
-        "declaration": "u8 lbl_17_bss_0",
-        "path": "src/rel/interview/interview.c"
-      },
-      {
-        "declaration": "struct bss_s lbl_17_bss_0",
-        "path": "src/rel/interview/interview.c"
       }
     ],
     "definition": "u8 lbl_17_bss_0",
@@ -25344,19 +25332,7 @@
         "path": "include/rel/interview/interview.h"
       },
       {
-        "declaration": "InterviewData lbl_17_bss_60",
-        "path": "src/rel/interview/interview.c"
-      },
-      {
         "declaration": "InterviewGlobals lbl_17_bss_60",
-        "path": "src/rel/interview/interview.c"
-      },
-      {
-        "declaration": "u8 lbl_17_bss_60[118]",
-        "path": "src/rel/interview/interview.c"
-      },
-      {
-        "declaration": "InterviewState lbl_17_bss_60",
         "path": "src/rel/interview/interview.c"
       }
     ],
@@ -25413,14 +25389,6 @@
       {
         "declaration": "u16 lbl_17_bss_D6",
         "path": "include/rel/interview/interview.h"
-      },
-      {
-        "declaration": "s16 lbl_17_bss_D6",
-        "path": "src/rel/interview/interview.c"
-      },
-      {
-        "declaration": "s16 lbl_17_bss_D6[]",
-        "path": "src/rel/interview/interview.c"
       }
     ],
     "definition": "u16 lbl_17_bss_D6",
@@ -28872,32 +28840,16 @@
     "declarations": [
       {
         "declaration": "u32 Type[4]",
-        "path": "src/dol/GetTypeCallback.c"
-      },
-      {
-        "declaration": "u32 Type[4]",
-        "path": "src/dol/SIGetResponseRaw.c"
-      },
-      {
-        "declaration": "u32 Type[]",
-        "path": "src/dol/SIGetStatus.c"
-      },
-      {
-        "declaration": "u32 Type[4]",
-        "path": "src/dol/SIGetType.c"
-      },
-      {
-        "declaration": "u32 Type[4]",
-        "path": "src/dol/SIGetTypeAsync.c"
+        "path": "dol/data/Type.c"
       }
     ],
     "definition": "u32 Type[4]",
     "method": "typed-data",
     "module": "main",
     "references": [
-      "GetTypeCallback",
-      "SIGetResponseRaw",
       "SIGetStatus",
+      "SIGetResponseRaw",
+      "GetTypeCallback",
       "SIGetType",
       "SIGetTypeAsync"
     ],
@@ -83890,6 +83842,10 @@
       {
         "declaration": "u8 lbl_1_bss_3C10",
         "path": "src/rel/main_rel/game.c"
+      },
+      {
+        "declaration": "u8 lbl_1_bss_3C10",
+        "path": "src/rel/main_rel/motasglist.c"
       }
     ],
     "definition": "u8 lbl_1_bss_3C10[12]",
@@ -476555,18 +476511,6 @@
       {
         "declaration": "u32 lbl_8_bss_238",
         "path": "include/rel/title/title.h"
-      },
-      {
-        "declaration": "struct fn_8_AA8_lbl_8_bss_238 lbl_8_bss_238",
-        "path": "src/rel/title/title.c"
-      },
-      {
-        "declaration": "u32 lbl_8_bss_238",
-        "path": "src/rel/title/title.c"
-      },
-      {
-        "declaration": "struct fn_8_1FB0_lbl_8_bss_238 lbl_8_bss_238",
-        "path": "src/rel/title/title.c"
       }
     ],
     "definition": "u8 lbl_8_bss_238[112]",
@@ -476574,12 +476518,12 @@
     "module": "title",
     "references": [
       "_epilog",
-      "fn_8_1304",
-      "fn_8_1344",
-      "fn_8_1FB0",
       "fn_8_55CC",
       "fn_8_5810",
-      "fn_8_AA8"
+      "fn_8_AA8",
+      "fn_8_1304",
+      "fn_8_1344",
+      "fn_8_1FB0"
     ],
     "relocations": [],
     "section": ".bss",
@@ -489568,18 +489512,6 @@
       {
         "declaration": "u32 lbl_15_bss_14",
         "path": "include/rel/winning/winning.h"
-      },
-      {
-        "declaration": "s32 lbl_15_bss_14",
-        "path": "src/rel/winning/winning.c"
-      },
-      {
-        "declaration": "u32 lbl_15_bss_14",
-        "path": "src/rel/winning/winning.c"
-      },
-      {
-        "declaration": "u32 lbl_15_bss_14",
-        "path": "src/rel/winning/winning.c"
       }
     ],
     "definition": "u8 lbl_15_bss_14[8]",
@@ -489737,12 +489669,7 @@
   "winning:lbl_15_bss_74": {
     "address": 116,
     "align": 4,
-    "declarations": [
-      {
-        "declaration": "struct fn_15_3A14_lbl_15_bss_74 lbl_15_bss_74",
-        "path": "src/rel/winning/winning.c"
-      }
-    ],
+    "declarations": [],
     "definition": "u8 lbl_15_bss_74[4]",
     "method": "opaque-bss",
     "module": "winning",

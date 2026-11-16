@@ -1,0 +1,53 @@
+{
+  "kind": "accepted-pr-maintenance",
+  "version": "GFZE01",
+  "pull_request": 379,
+  "merged_commit": "816e7d992f18c2d8e3425980675281579bfd6e45",
+  "reviewed_head": "1b8cc54798e7ebf79fad611fc26c2959a8f985e7",
+  "source_provenance": "Maintenance of sources already accepted through PR #379; no further contributor source import.",
+  "data_import_replay": {
+    "cause": "Regeneration re-inferred caller declarations instead of replaying admitted BSS/scalar definitions, initialized types and alignment.",
+    "change": "Replay saved definitions and alignment while checking retail identity and payload; retain real MWCC layout, initialized-byte and relocation validation.",
+    "before_skipped": 140,
+    "after_objects": 15579,
+    "after_bytes": 3569245,
+    "after_skipped": 0,
+    "command": "uv run tools/fzgx.py data-import --regenerate",
+    "apply_check": {
+      "command": "uv run tools/fzgx.py data-import --regenerate --apply main:Type interview:lbl_17_bss_0 interview:lbl_17_bss_60 title:lbl_8_bss_238 winning:lbl_15_bss_14 customize:lbl_3_bss_7EBA0 main_rel:lbl_1_bss_3C10 main_rel:lbl_1_bss_6EA9C",
+      "objects": 24,
+      "bytes": 421,
+      "skipped": 0,
+      "all_retail_hashes_passed": true
+    },
+    "negative_compiler_probes": [
+      "Reject a saved main:Type address differing from the retail symbol.",
+      "Reject a saved main:Type payload digest differing from retail.",
+      "Accept the 112-byte title:lbl_8_bss_238 definition; reject a compiled 111-byte definition against its 112-byte retail extent.",
+      "Accept main:__DVDVersion's original relocation; reject a compiled initializer whose relocation addend is increased by four."
+    ]
+  },
+  "os_policy": {
+    "exception_required": false,
+    "lint_exemption_removed": true,
+    "whole_assembly_units": ["__OSDBIntegrator", "fn_8000AA2C", "OSExceptionVector", "OSDefaultExceptionHandler"],
+    "original_assembly_evidence": "Copied debug/exception fragments, absent MWCC prologues, privileged MSR/SRR/SPRG access, GQR/DSISR/DAR reads, rfi and the absolute bla 0x60 trampoline; adjacent source comments identify retail ranges.",
+    "c_units": ["dol/OS.c", "dol/OSExceptionHandlers.c", "dol/OSPairedInit.c"],
+    "inline_kernel": "include/dolphin/os/OSPairedInit.h: original li/mtspr GQR0-GQR7 sequence at retail 0x8000AB74..0x8000AB98, leaving __OSPSInit's prologue, C calls, sync and epilogue compiled by MWCC.",
+    "layout_measurement": "A separate compiler-generated four-byte version-format literal asks for eight-byte small-data section alignment and shifts the following data. Keep lbl_801A6424[4] at offset 12 in OS.c's original 16-byte small-data owner and retarget OSPairedInit's literal to it with the existing pool mechanism.",
+    "compiler_settings": "Retain GC/1.2.5n and existing OS compiler flags/peephole profile. No new device or policy exception."
+  },
+  "verification": {
+    "configure_and_ninja": "16 files OK",
+    "retail_hashes": "16/16",
+    "lint_findings": 0,
+    "matched_code": 2937044,
+    "total_code": 2937044,
+    "matched_data": 5068399,
+    "total_data": 5068399,
+    "matched_functions": 7351,
+    "total_functions": 7351,
+    "natural_c_completion_claimed": false,
+    "ledger_snapshot": "Restore historical snapshot, sync current units, snapshot. All 7355 function rows, 27293 attempts and 53 name rows preserved; only 174 function unit fields changed semantically."
+  }
+}

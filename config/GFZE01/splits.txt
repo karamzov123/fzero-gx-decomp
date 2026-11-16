@@ -2687,8 +2687,26 @@ dol/__OSFPRInit.c:
 	.text       start:0x8000A0FC end:0x8000A224 align:4
 
 dol/OS.c:
-	.text       start:0x8000A224 end:0x8000ABE8 align:4
+	.text       start:0x8000A224 end:0x8000AA08 align:4
 	.sdata      start:0x801A6418 end:0x801A6428 align:8
+
+dol/__OSDBIntegrator.c:
+	.text       start:0x8000AA08 end:0x8000AA2C align:4
+
+dol/fn_8000AA2C.c:
+	.text       start:0x8000AA2C end:0x8000AA30 align:4
+
+dol/OSExceptionHandlers.c:
+	.text       start:0x8000AA30 end:0x8000AA60 align:4
+
+dol/OSExceptionVector.c:
+	.text       start:0x8000AA60 end:0x8000AAFC align:4
+
+dol/OSDefaultExceptionHandler.c:
+	.text       start:0x8000AAFC end:0x8000AB54 align:4
+
+dol/OSPairedInit.c:
+	.text       start:0x8000AB54 end:0x8000ABE8 align:4
 
 dol/DecrementerExceptionHandler.c:
 	.text       start:0x8000B2C4 end:0x8000B314 align:4
@@ -7101,9 +7119,6 @@ dol/data/lbl_80123B20.c:
 dol/data/lbl_80123B50.c:
 	.data       start:0x80123B50 end:0x80123BA8 align:16
 
-dol/data/Type.c:
-	.data       start:0x80123BA8 end:0x80123BB8 align:8
-
 dol/data/lbl_80123BB8.c:
 	.data       start:0x80123BB8 end:0x80123C68 align:8
 
@@ -8855,3 +8870,6 @@ dol/data/DummyCommandBlock.c:
 	.bss        start:0x8015CE80 end:0x8015CF38 align:8
 dol/data/lbl_801A7918.c:
 	.sbss2      start:0x801A7918 end:0x801A7920 align:8
+
+dol/data/Type.c:
+	.data       start:0x80123BA8 end:0x80123BB8 align:8

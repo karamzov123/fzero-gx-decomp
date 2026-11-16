@@ -464,7 +464,7 @@ def source_view(sym, decls, data):
     return None
 
 
-def generate(p, sym, recipe=None, opaque_bss=False, scalar_byte=False, header_bytes=False):
+def generate(p, sym, recipe=None, opaque_bss=False, scalar_byte=False, header_bytes=False, saved=None):
     if sym.kind != 'object' or sym.section not in SECTIONS or not sym.size or not sym.name.isidentifier():
         raise ValueError('not a supported named data object')
     if sym.name.startswith('jumptable_'):
@@ -479,6 +479,17 @@ def generate(p, sym, recipe=None, opaque_bss=False, scalar_byte=False, header_by
         if target.scope == 'local':
             raise ValueError(f'{target.name}: local relocation target requires promotion with its owner')
     decls = declarations(p).get(sym.name, [])
+    if saved:
+        # Replay the admitted definition, not a later caller's partial view. Retail
+        # identity and the compiler's complete layout/bytes/relocations still gate it.
+        if any(saved[key] != value for key, value in (
+                ('module', sym.module), ('symbol', sym.name), ('section', sym.section),
+                ('address', sym.addr), ('size', sym.size))):
+            raise ValueError('saved import no longer describes the retail object')
+        if saved['sha256'] != hashlib.sha256(data).hexdigest():
+            raise ValueError('saved import payload changed')
+        if saved['method'] in ('typed-data', 'float-pool', 'zero-data', 'string', 'string-pool'):
+            decls = [dict(declaration=saved['definition'], path=saved['source'])] + decls
     includes = ['types.h']
     extras, method, header = [], '', None
     target_includes = {}
@@ -517,6 +528,17 @@ def generate(p, sym, recipe=None, opaque_bss=False, scalar_byte=False, header_by
         decl, method = f'{kind} {sym.name}', 'string-grid'
         if sym.section in BSS:
             init, method = None, 'string-buffer'
+    elif sym.section in BSS and saved:
+        decl, method = saved['definition'], saved['method']
+        if method == 'declared-bss':
+            for d in saved['declarations']:
+                if d['declaration'] == decl and d['path'].startswith('include/'):
+                    includes.append(d['path'][8:])
+                    break
+        elif method.startswith('opaque-bss'):
+            extras.append('/* Storage extent is known; element/field types are not recovered. */')
+        else:
+            raise ValueError('unsupported saved BSS generation method')
     elif sym.section in BSS:
         # Headers carry recovered structs. Do not flatten them into byte arrays.
         known = next((d for d in decls if d['path'].startswith('include/')), None)
@@ -759,7 +781,7 @@ def generate(p, sym, recipe=None, opaque_bss=False, scalar_byte=False, header_by
         decl = 'const ' + decl
         if header:
             header['text'] = header['text'].replace(f'extern {type_name} ', f'extern const {type_name} ')
-    align = int(sym.attrs.get('align', _section_default_align(p, sym.module, sym.section)))
+    align = saved['align'] if saved else int(sym.attrs.get('align', _section_default_align(p, sym.module, sym.section)))
     while align > 1 and sym.addr % align:
         align //= 2
     # Named sections defeat small-data selection and zero-initializer migration.
@@ -856,6 +878,7 @@ def import_data(p, names, apply=False, recipes=None, regenerate=False):
     scratch.mkdir(parents=True, exist_ok=True)
     records, skipped, ready = [], [], []
     with oracle.build_lock():
+        saved = json.loads((ROOT / 'state/dataimports' / f'{p.version}.json').read_text()) if regenerate else {}
         if not regenerate:
             names = boundary_closure(p, names)
         for name in dict.fromkeys(names):
@@ -871,7 +894,11 @@ def import_data(p, names, apply=False, recipes=None, regenerate=False):
                     raise ValueError('local data must be promoted with its referring sources')
                 if any(s.unit != owner and s.section == sym.section and s.start < sym.end and sym.addr < s.end for s in p.splits(sym.module)):
                     raise ValueError('range overlaps an existing split')
-                source, record = generate(p, sym, (recipes or {}).get(name, (recipes or {}).get(sym.name)))
+                previous = saved.get(f'{sym.module}:{sym.name}')
+                if regenerate and previous is None:
+                    raise ValueError('no saved data import')
+                source, record = generate(p, sym, (recipes or {}).get(name, (recipes or {}).get(sym.name)),
+                                          saved=previous)
                 if header := record.get('header'):
                     # The probe prepends this directory to MWCC's include path.
                     path = scratch / header['path']

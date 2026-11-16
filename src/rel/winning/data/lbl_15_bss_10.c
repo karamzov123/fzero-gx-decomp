@@ -16,13 +16,13 @@ __declspec(section ".data") u8 lbl_15_bss_74[4] __attribute__((aligned(4)));
 __declspec(section ".data") u8 lbl_15_bss_2C[72] __attribute__((aligned(4)));
 
 
-/* Storage extent is known; the header type does not reproduce the retail layout. */
+/* Storage extent is known; element/field types are not recovered. */
 __declspec(section ".data") u8 lbl_15_bss_1C[16] __attribute__((aligned(4)));
 
 
-/* Storage extent is known; the header type does not reproduce the retail layout. */
+/* Storage extent is known; element/field types are not recovered. */
 __declspec(section ".data") u8 lbl_15_bss_14[8] __attribute__((aligned(4)));
 
 
-/* Storage extent is known; the header type does not reproduce the retail layout. */
+/* Storage extent is known; element/field types are not recovered. */
 __declspec(section ".data") u8 lbl_15_bss_10[4] __attribute__((aligned(8)));

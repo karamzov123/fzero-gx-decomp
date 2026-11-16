@@ -466,9 +466,6 @@ rel/title/_prolog/fn_8_0.c:
 rel/title/name_entry.c:
 	.text       start:0x0000FF9C end:0x000100C4 align:4
 
-rel/title/data/lbl_8_bss_238.c:
-	.bss        start:0x00000238 end:0x000002A8 align:8
-
 rel/title/data/lbl_8_bss_550.c:
 	.bss        start:0x00000550 end:0x00000556 align:16
 
@@ -477,3 +474,6 @@ rel/title/data/lbl_8_data_8420.c:
 
 rel/title/data/lbl_8_rodata_0.c:
 	.rodata     start:0x00000000 end:0x00000C2C align:8
+
+rel/title/data/lbl_8_bss_238.c:
+	.bss        start:0x00000238 end:0x000002A8 align:8

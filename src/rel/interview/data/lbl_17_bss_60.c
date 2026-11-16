@@ -9,5 +9,5 @@ extern u16 lbl_17_bss_D6;
 __declspec(section ".data") u16 lbl_17_bss_D6 __attribute__((aligned(2)));
 
 
-/* Storage extent is known; the header type does not reproduce the retail layout. */
+/* Storage extent is known; element/field types are not recovered. */
 __declspec(section ".data") u8 lbl_17_bss_60[118] __attribute__((aligned(8)));

@@ -265,9 +265,6 @@ rel/interview/data/lbl_17_bss_20.c:
 rel/interview/data/lbl_17_bss_58.c:
 	.bss        start:0x00000058 end:0x00000060 align:8
 
-rel/interview/data/lbl_17_bss_60.c:
-	.bss        start:0x00000060 end:0x000000D8 align:8
-
 rel/interview/data/lbl_17_bss_D8.c:
 	.bss        start:0x000000D8 end:0x00000150 align:8
 
@@ -276,3 +273,6 @@ rel/interview/data/lbl_17_rodata_0.c:
 
 rel/interview/data/lbl_17_bss_0.c:
 	.bss        start:0x00000000 end:0x00000010 align:8
+
+rel/interview/data/lbl_17_bss_60.c:
+	.bss        start:0x00000060 end:0x000000D8 align:8

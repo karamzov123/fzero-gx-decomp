@@ -33,6 +33,15 @@ it instead of asm. Measure it; intrinsics often change the surrounding schedule 
 - Matcher agents never add assembly. New kernels are reviewed changes (PR or owner session) that cite
   the evidence from section 1.
 
+The OS exception/debug fragments follow these forms without a per-file lint
+exception: `__OSDBIntegrator`, `fn_8000AA2C` (`__OSDBJump`),
+`OSExceptionVector` and `OSDefaultExceptionHandler` are separate assembly
+units. Their copied-fragment labels and privileged register operations are
+preserved. `__OSPSInit` remains C and includes only its GQR reset kernel from
+`include/dolphin/os/OSPairedInit.h`. The small-data format used by
+`OSRegisterVersion` stays with the OS data owner; moving its compiler literal
+into a separately aligned small-data input changes the retail layout.
+
 ## 3. Compiler-diff devices
 
 A device is any construct whose only purpose is to steer MWCC's code generation and that the original
