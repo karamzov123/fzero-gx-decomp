@@ -729,6 +729,27 @@ def generate_build_ninja(
     )
     n.newline()
 
+    # A REL link that dead-strips takes every global symbol of its objects as a root
+    # (tools/rel_forceactive.py has the evidence), so only unreferenced local symbols go.
+    rel_forceactive = config.tools_dir / "rel_forceactive.py"
+    n.rule(
+        name="rel_forceactive",
+        command=f"$python {rel_forceactive} $lcf $out @$out.rsp",
+        description="FORCEACTIVE $out",
+        rspfile="$out.rsp",
+        rspfile_content="$in_newline",
+    )
+    # The REL is not made when the link removed a local symbol that the allow list does not have.
+    rel_strip_check = config.tools_dir / "rel_strip_check.py"
+    n.rule(
+        name="rel_strip_check",
+        command=f"$python {rel_strip_check} $plf $allow $out @$out.rsp",
+        description="STRIP CHECK $plf",
+        rspfile="$out.rsp",
+        rspfile_content="$in_newline",
+    )
+    n.newline()
+
     n.comment("Generate DOL")
     n.rule(
         name="elf2dol",
@@ -897,6 +918,7 @@ def generate_build_ninja(
             self.ldscript: Optional[Path] = Path(config["ldscript"])
             self.entry = config["entry"]
             self.inputs: List[str] = []
+            self.strip_check: List[Path] = []
 
         def add(self, obj: Path) -> None:
             self.inputs.append(serialize_path(obj))
@@ -939,7 +961,28 @@ def generate_build_ninja(
                 preplf_path = build_path / self.name / f"{self.name}.preplf"
                 plf_path = build_path / self.name / f"{self.name}.plf"
                 preplf_ldflags = "$ldflags -sdata 0 -sdata2 0 -r"
-                plf_ldflags = f"$ldflags -sdata 0 -sdata2 0 -r1 -lcf {serialize_path(self.ldscript)}"
+                plf_ldscript = self.ldscript
+                if self.entry and config.rel_strip_partial:
+                    plf_ldscript = build_path / self.name / "ldscript.strip.lcf"
+                    n.build(
+                        outputs=plf_ldscript,
+                        rule="rel_forceactive",
+                        inputs=self.inputs,
+                        implicit=[self.ldscript, rel_forceactive],
+                        variables={"lcf": serialize_path(self.ldscript)},
+                        order_only="post-compile",
+                    )
+                    allow = config.config_path.parent / self.name / "strip_allow.txt"
+                    self.strip_check = [build_path / self.name / f"{self.name}.strip_check"]
+                    n.build(
+                        outputs=self.strip_check,
+                        rule="rel_strip_check",
+                        inputs=self.inputs,
+                        implicit=[plf_path, rel_strip_check, rel_forceactive]
+                        + ([allow] if allow.exists() else []),
+                        variables={"plf": serialize_path(plf_path), "allow": serialize_path(allow)},
+                    )
+                plf_ldflags = f"$ldflags -sdata 0 -sdata2 0 -r1 -lcf {serialize_path(plf_ldscript)}"
                 if self.entry:
                     plf_ldflags += f" -m {self.entry}"
                     # -strip_partial is only valid with -m
@@ -966,7 +1009,7 @@ def generate_build_ninja(
                     outputs=plf_path,
                     rule="link",
                     inputs=self.inputs,
-                    implicit=[self.ldscript, preplf_path, *mwld_implicit],
+                    implicit=[plf_ldscript, preplf_path, *mwld_implicit],
                     implicit_outputs=plf_map,
                     variables={"ldflags": plf_ldflags},
                     order_only="post-compile",
@@ -1328,7 +1371,8 @@ def generate_build_ninja(
                 outputs=rel_outputs,
                 rule="makerel",
                 inputs=list(map(lambda step: step.partial_output(), link_steps_local)),
-                implicit=[dtk, config.config_path],
+                implicit=[dtk, config.config_path]
+                + [path for step in link_steps_local for path in step.strip_check],
                 variables={
                     "config": config.config_path,
                     "rspfile": config.out_path() / f"rel{idx}.rsp",
