@@ -1,25 +1,11 @@
 {
  "module": "replay",
- "unassigned_prefix": [
-  "fn_13_0",
-  "fn_13_3FC",
-  "fn_13_A40",
-  "fn_13_A48",
-  "fn_13_A6C",
-  "_prolog",
-  "fn_13_AFC",
-  "fn_13_B00",
-  "_epilog",
-  "fn_13_B08",
-  "fn_13_B64",
-  "fn_13_B78",
-  "fn_13_B7C"
- ],
+ "unassigned_prefix": [],
  "tus": [
   {
    "file": "replay_mode.c",
    "text": [
-    3020,
+    0,
     4012
    ],
    "data_sec": 5,
@@ -32,6 +18,19 @@
     3840
    ],
    "functions": [
+    "fn_13_0",
+    "fn_13_3FC",
+    "fn_13_A40",
+    "fn_13_A48",
+    "fn_13_A6C",
+    "_prolog",
+    "fn_13_AFC",
+    "fn_13_B00",
+    "_epilog",
+    "fn_13_B08",
+    "fn_13_B64",
+    "fn_13_B78",
+    "fn_13_B7C",
     "fn_13_BCC",
     "fn_13_CDC",
     "fn_13_E8C",
