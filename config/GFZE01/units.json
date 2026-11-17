@@ -61111,17 +61111,6 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/data/lbl_1_bss_6F640.c",
-    "symbols": [
-      "lbl_1_bss_6F640"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main_rel",
     "source": "rel/main_rel/data/lbl_1_bss_6F648.c",
     "symbols": [
       "lbl_1_bss_6F648"
@@ -101683,39 +101672,9 @@
     "module": "main_rel",
     "source": "rel/main_rel/driver/fn_1_A8D4C.c",
     "symbols": [
-      "fn_1_A8D4C"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/driver.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/driver/fn_1_A8D64.c",
-    "symbols": [
-      "fn_1_A8D64"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/driver.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/driver/fn_1_A8D84.c",
-    "symbols": [
-      "fn_1_A8D84"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/driver.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/driver/fn_1_A8DC4.c",
-    "symbols": [
+      "fn_1_A8D4C",
+      "fn_1_A8D64",
+      "fn_1_A8D84",
       "fn_1_A8DC4"
     ],
     "status": "matching",

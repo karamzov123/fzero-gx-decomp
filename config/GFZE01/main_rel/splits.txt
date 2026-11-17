@@ -2146,16 +2146,8 @@ rel/main_rel/driver/fn_1_A8528.c:
 	.text       start:0x000A8528 end:0x000A861C
 
 rel/main_rel/driver/fn_1_A8D4C.c:
-	.text       start:0x000A8D4C end:0x000A8D64
-
-rel/main_rel/driver/fn_1_A8D64.c:
-	.text       start:0x000A8D64 end:0x000A8D84
-
-rel/main_rel/driver/fn_1_A8D84.c:
-	.text       start:0x000A8D84 end:0x000A8DC4
-
-rel/main_rel/driver/fn_1_A8DC4.c:
-	.text       start:0x000A8DC4 end:0x000A8DD4
+	.text       start:0x000A8D4C end:0x000A8DD4 align:4
+	.bss        start:0x0006F640 end:0x0006F648 align:8
 
 rel/main_rel/driver/fn_1_A8E78.c:
 	.text       start:0x000A8E78 end:0x000A8EB0
@@ -15600,9 +15592,6 @@ rel/main_rel/data/lbl_1_bss_6F620.c:
 
 rel/main_rel/data/lbl_1_bss_6F638.c:
 	.bss        start:0x0006F638 end:0x0006F640 align:8
-
-rel/main_rel/data/lbl_1_bss_6F640.c:
-	.bss        start:0x0006F640 end:0x0006F648 align:32
 
 rel/main_rel/data/lbl_1_bss_6F648.c:
 	.bss        start:0x0006F648 end:0x00070658 align:8

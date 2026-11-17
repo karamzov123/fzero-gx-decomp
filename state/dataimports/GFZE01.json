@@ -88744,34 +88744,6 @@
     "unit_size": 8,
     "unit_start": 456248
   },
-  "main_rel:lbl_1_bss_6F640": {
-    "address": 456256,
-    "align": 32,
-    "declarations": [
-      {
-        "declaration": "u32 lbl_1_bss_6F640",
-        "path": "include/rel/main_rel/driver.h"
-      }
-    ],
-    "definition": "u8 lbl_1_bss_6F640[8]",
-    "method": "opaque-bss-header-mismatch",
-    "module": "main_rel",
-    "references": [
-      "fn_1_A8D4C",
-      "fn_1_A8D84",
-      "fn_1_A8DC4"
-    ],
-    "relocations": [],
-    "section": ".bss",
-    "section_size": 8,
-    "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
-    "size": 8,
-    "source": "rel/main_rel/data/lbl_1_bss_6F640.c",
-    "symbol": "lbl_1_bss_6F640",
-    "unit_align": 32,
-    "unit_size": 8,
-    "unit_start": 456256
-  },
   "main_rel:lbl_1_bss_6F648": {
     "address": 456264,
     "align": 8,
