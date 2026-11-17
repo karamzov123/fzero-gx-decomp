@@ -1,0 +1,3 @@
+# Local symbols that the dead-stripping link may remove (tools/rel_strip_check.py).
+# Each entry is a static helper that MWCC inlined at every call. Retail holds the inlined copy.
+menu_panel  # inlined in fn_13_CDC

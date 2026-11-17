@@ -6,77 +6,9 @@ Sections:
 	.data       type:data align:8
 	.bss        type:bss align:8
 
-rel/replay/fn_13_A40.c:
-	.text       start:0x00000A40 end:0x00000A48
-
-rel/replay/_prolog/fn_13_A6C.c:
-	.text       start:0x00000A6C end:0x00000A94
-
-rel/replay/fn_13_AFC.c:
-	.text       start:0x00000AFC end:0x00000B00
-
-rel/replay/fn_13_B00.c:
-	.text       start:0x00000B00 end:0x00000B04
-
-rel/replay/_epilog.c:
-	.text       start:0x00000B04 end:0x00000B08
-
-rel/replay/fn_13_B78.c:
-	.text       start:0x00000B78 end:0x00000B7C
-
-rel/replay/replay_mode/fn_13_EF0.c:
-	.text       start:0x00000EF0 end:0x00000F00
-
-rel/replay/fn_13_FA8.c:
-	.text       start:0x00000FA8 end:0x00000FAC
-
-rel/replay/_prolog/fn_13_B64.c:
-	.text       start:0x00000B64 end:0x00000B78 align:4
-
-rel/replay/_prolog/fn_13_A48.c:
-	.text       start:0x00000A48 end:0x00000A6C align:4
-
-rel/replay/replay_mode/fn_13_E8C.c:
-	.text       start:0x00000E8C end:0x00000EF0 align:4
-
-rel/replay/_prolog/fn_13_B7C.c:
-	.text       start:0x00000B7C end:0x00000BCC align:4
-
-rel/replay/replay_mode/fn_13_F00.c:
-	.text       start:0x00000F00 end:0x00000FA8 align:4
-
-rel/replay/_prolog/fn_13_B08.c:
-	.text       start:0x00000B08 end:0x00000B64 align:4
-
-rel/replay/replay_mode/fn_13_BCC.c:
-	.text       start:0x00000BCC end:0x00000CDC align:4
-
-rel/replay/replay_mode/fn_13_CDC.c:
-	.text       start:0x00000CDC end:0x00000E8C align:4
-
-rel/replay/_prolog/_prolog.c:
-	.text       start:0x00000A94 end:0x00000AFC align:4
-
-rel/replay/_prolog/fn_13_0.c:
-	.text       start:0x00000000 end:0x000003FC align:4
-
-rel/replay/_prolog/fn_13_3FC.c:
-	.text       start:0x000003FC end:0x00000A40 align:4
-
-rel/replay/data/lbl_13_bss_0.c:
-	.bss        start:0x00000000 end:0x00000038 align:8
-
-rel/replay/data/lbl_13_bss_38.c:
-	.bss        start:0x00000038 end:0x00000040 align:8
-
-rel/replay/data/lbl_13_bss_40.c:
-	.bss        start:0x00000040 end:0x00000050 align:8
-
-rel/replay/data/lbl_13_bss_50.c:
-	.bss        start:0x00000050 end:0x0000005E align:8
-
-rel/replay/data/lbl_13_data_0.c:
-	.data       start:0x00000000 end:0x000000B0 align:8
-
-rel/replay/data/lbl_13_rodata_0.c:
+rel/replay/replay_mode/fn_13_0.c:
+	.text       start:0x00000000 end:0x00000FAC align:4
 	.rodata     start:0x00000000 end:0x0000001C align:8
+	.data       start:0x00000000 end:0x000000B0 align:8
+	.bss        start:0x00000000 end:0x0000005E align:8
+
