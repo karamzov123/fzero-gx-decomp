@@ -2218,7 +2218,7 @@
    "file": "relocation.c",
    "text": [
     679064,
-    682096
+    679304
    ],
    "data_sec": 5,
    "data": [
@@ -2229,18 +2229,7 @@
     679064
    ],
    "functions": [
-    "fn_1_A5C98",
-    "fn_1_A5D88",
-    "fn_1_A5D9C",
-    "fn_1_A5DB0",
-    "fn_1_A5DC4",
-    "fn_1_A5DEC",
-    "fn_1_A5EFC",
-    "fn_1_A5F44",
-    "fn_1_A6480",
-    "fn_1_A66FC",
-    "fn_1_A67E8",
-    "fn_1_A6840"
+    "fn_1_A5C98"
    ],
    "confidence": {
     "text+data": 1,
@@ -2251,7 +2240,7 @@
   {
    "file": "prog.c",
    "text": [
-    682096,
+    679304,
     684692
    ],
    "data_sec": 5,
@@ -2263,6 +2252,17 @@
     682096
    ],
    "functions": [
+    "fn_1_A5D88",
+    "fn_1_A5D9C",
+    "fn_1_A5DB0",
+    "fn_1_A5DC4",
+    "fn_1_A5DEC",
+    "fn_1_A5EFC",
+    "fn_1_A5F44",
+    "fn_1_A6480",
+    "fn_1_A66FC",
+    "fn_1_A67E8",
+    "fn_1_A6840",
     "fn_1_A6870",
     "fn_1_A6E68",
     "fn_1_A6F10",
