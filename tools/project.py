@@ -739,6 +739,15 @@ def generate_build_ninja(
         rspfile="$out.rsp",
         rspfile_content="$in_newline",
     )
+    # The REL is not made when the link removed a local symbol that the allow list does not have.
+    rel_strip_check = config.tools_dir / "rel_strip_check.py"
+    n.rule(
+        name="rel_strip_check",
+        command=f"$python {rel_strip_check} $plf $allow $out @$out.rsp",
+        description="STRIP CHECK $plf",
+        rspfile="$out.rsp",
+        rspfile_content="$in_newline",
+    )
     n.newline()
 
     n.comment("Generate DOL")
@@ -909,6 +918,7 @@ def generate_build_ninja(
             self.ldscript: Optional[Path] = Path(config["ldscript"])
             self.entry = config["entry"]
             self.inputs: List[str] = []
+            self.strip_check: List[Path] = []
 
         def add(self, obj: Path) -> None:
             self.inputs.append(serialize_path(obj))
@@ -961,6 +971,16 @@ def generate_build_ninja(
                         implicit=[self.ldscript, rel_forceactive],
                         variables={"lcf": serialize_path(self.ldscript)},
                         order_only="post-compile",
+                    )
+                    allow = config.config_path.parent / self.name / "strip_allow.txt"
+                    self.strip_check = [build_path / self.name / f"{self.name}.strip_check"]
+                    n.build(
+                        outputs=self.strip_check,
+                        rule="rel_strip_check",
+                        inputs=self.inputs,
+                        implicit=[plf_path, rel_strip_check, rel_forceactive]
+                        + ([allow] if allow.exists() else []),
+                        variables={"plf": serialize_path(plf_path), "allow": serialize_path(allow)},
                     )
                 plf_ldflags = f"$ldflags -sdata 0 -sdata2 0 -r1 -lcf {serialize_path(plf_ldscript)}"
                 if self.entry:
@@ -1351,7 +1371,8 @@ def generate_build_ninja(
                 outputs=rel_outputs,
                 rule="makerel",
                 inputs=list(map(lambda step: step.partial_output(), link_steps_local)),
-                implicit=[dtk, config.config_path],
+                implicit=[dtk, config.config_path]
+                + [path for step in link_steps_local for path in step.strip_check],
                 variables={
                     "config": config.config_path,
                     "rspfile": config.out_path() / f"rel{idx}.rsp",

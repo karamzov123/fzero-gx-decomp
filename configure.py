@@ -276,7 +276,8 @@ config.rel_empty_file = "rel/empty.c"
 # Retail also keeps functions with no caller (main.rel fn_1_8CA20). The roots of the retail link
 # are not known. This build assumes that they were the global symbols: tools/rel_forceactive.py
 # puts every global symbol in FORCEACTIVE and `-strip_partial` removes only unreferenced local
-# symbols. A carved unit needs no entry.
+# symbols. A carved unit needs no entry. tools/rel_strip_check.py stops the build when the link
+# removes a local symbol that config/GFZE01/<module>/strip_allow.txt does not list.
 config.rel_strip_partial = True
 
 

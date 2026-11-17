@@ -16,13 +16,13 @@ import struct
 import sys
 
 
-def global_symbols(path):
+def symbols(path):
+    """Yield (name, binding, type, section index) for each symbol of an ELF file."""
     data = open(path, "rb").read()
     if data[:4] != b"\x7fELF":
-        return []
+        return
     shoff, = struct.unpack_from(">I", data, 0x20)
     shentsize, shnum = struct.unpack_from(">HH", data, 0x2E)
-    names = []
     for i in range(shnum):
         sh = struct.unpack_from(">IIIIIIIIII", data, shoff + i * shentsize)
         if sh[1] != 2:  # SHT_SYMTAB
@@ -30,11 +30,13 @@ def global_symbols(path):
         stroff = struct.unpack_from(">IIIIIIIIII", data, shoff + sh[6] * shentsize)[4]
         for off in range(sh[4] + 16, sh[4] + sh[5], 16):
             name, _value, _size, info, _other, shndx = struct.unpack_from(">IIIBBH", data, off)
-            if info >> 4 == 0 or shndx == 0 or info & 0xF > 2:
-                continue  # local, undefined, or a section/file symbol
             end = data.index(b"\0", stroff + name)
-            names.append(data[stroff + name:end].decode())
-    return names
+            yield data[stroff + name:end].decode(), info >> 4, info & 0xF, shndx
+
+
+def global_symbols(path):
+    # Skip local, undefined, and section/file symbols.
+    return [name for name, binding, kind, shndx in symbols(path) if binding and shndx and kind <= 2]
 
 
 def main():
