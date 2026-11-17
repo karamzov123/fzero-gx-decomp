@@ -23,6 +23,7 @@ SECTIONS
        Declare them `extern vu32 __DIRegs[];` (or a register struct) in C. A name here must
        not exist in symbols.txt: GX's __cpReg/__peReg/__piReg/__memReg are .sbss pointer
        variables, not these. */
+    __CPRegs = 0xCC000000;
     __VIRegs = 0xCC002000;
     __PIRegs = 0xCC003000;
     __MEMRegs = 0xCC004000;

@@ -21,6 +21,13 @@ from typing import Dict, Iterable, List, Optional
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 DEFAULT_VERSION = "GFZE01"
+# configure.py VERSIONS order. A matching unit without "matching_for" matches all of them
+# (dtk-template's Matching); "matching_for" narrows it (MatchingFor).
+VERSIONS = ["GFZE01", "GFZP01", "GFZJ01"]
+
+
+def unit_matches(u: dict, version: str) -> bool:
+    return u.get("status") == "matching" and version in u.get("matching_for", VERSIONS)
 # Ledger, locks, saved attempts and caches: outside build/ on purpose (a build wipe must not lose state).
 STATE_DIR = ROOT / ".fzgx"
 
@@ -86,12 +93,29 @@ def load_json_retry(path: Path, tries: int = 20, delay: float = 0.1):
                 raise
             time.sleep(delay)
 
+def dump_units(units: List[dict]) -> str:
+    """units.json text: indent 2, with each matching_for list on one line."""
+    def order(u: dict) -> dict:  # matching_for right after status
+        out = {}
+        for k, v in u.items():
+            if k != "matching_for":
+                out[k] = v
+            if k == "status" and "matching_for" in u:
+                out["matching_for"] = u["matching_for"]
+        return out
+    text = json.dumps([order(u) for u in units], indent=2) + "\n"
+    return re.sub(r'"matching_for": \[\s*([^\]]*?)\s*\]',
+                  lambda m: '"matching_for": [' + ", ".join(x.strip() for x in m.group(1).split(",")) + "]", text)
+
+
 class Project:
     def __init__(self, version: str = DEFAULT_VERSION) -> None:
         self.version = version
         self.config_dir = ROOT / "config" / version
         self.build_dir = ROOT / "build" / version
-        self.units_path = self.config_dir / "units.json"
+        # one unit list for every version (config/GFZE01/units.json)
+        self.units_path = ROOT / "config" / DEFAULT_VERSION / "units.json"
+        self.is_canonical = version == DEFAULT_VERSION
         self._modules: Optional[List[str]] = None
         self._symbols: Dict[str, Dict[str, Symbol]] = {}
         self._asm_index: Dict[str, Dict[str, Function]] = {}
@@ -610,10 +634,16 @@ class Project:
         stamp = self.units_path.stat().st_mtime_ns
         cache = self.__dict__.setdefault("_units_cache", None)
         if cache and cache[0] == stamp:
-            return json.loads(cache[1])  # a fresh copy: callers mutate and save the list
+            return self._for_version(json.loads(cache[1]))  # a fresh copy: callers mutate and save the list
         text = self.units_path.read_text()
         self.__dict__["_units_cache"] = (stamp, text)
-        return json.loads(text)
+        return self._for_version(json.loads(text))
+
+    def _for_version(self, units: List[dict]) -> List[dict]:
+        """GFZE01 sees the list as stored; another version sees only the units that match it."""
+        if self.is_canonical:
+            return units
+        return [u for u in units if unit_matches(u, self.version)]
 
     def unit_record(self, unit_source: str) -> Optional[dict]:
         """units.json entry for a split unit name (the `source` field), if configured."""
@@ -653,10 +683,16 @@ class Project:
         stamp = self.units_path.stat().st_mtime_ns
         cache = self.__dict__.setdefault("_units_cache", None)
         if cache and cache[0] == stamp:
-            return json.loads(cache[1])  # a fresh copy: callers mutate and save the list
+            return self._for_version(json.loads(cache[1]))  # a fresh copy: callers mutate and save the list
         text = self.units_path.read_text()
         self.__dict__["_units_cache"] = (stamp, text)
-        return json.loads(text)
+        return self._for_version(json.loads(text))
+
+    def _for_version(self, units: List[dict]) -> List[dict]:
+        """GFZE01 sees the list as stored; another version sees only the units that match it."""
+        if self.is_canonical:
+            return units
+        return [u for u in units if unit_matches(u, self.version)]
 
     def unit_record(self, unit_source: str) -> Optional[dict]:
         """units.json entry for a split unit name (the `source` field), if configured."""
@@ -668,9 +704,30 @@ class Project:
         return idx[1].get(unit_source)
 
     def save_units(self, units: List[dict]) -> None:
+        if not self.is_canonical:
+            raise RuntimeError(f"{self.version}: units are saved through {DEFAULT_VERSION} "
+                               f"(a unit's versions are its matching_for)")
+        # A unit that becomes matching without saying where matches GFZE01 only: "matching"
+        # alone means every version, so only units already stored that way keep it.
+        everywhere = set()
+        if self.units_path.exists():
+            everywhere = {u["source"] for u in json.loads(self.units_path.read_text())
+                          if u.get("status") == "matching" and "matching_for" not in u}
+        for u in units:
+            if u.get("status") != "matching":
+                u.pop("matching_for", None)
+                continue
+            if "matching_for" not in u and u["source"] not in everywhere:
+                u["matching_for"] = [DEFAULT_VERSION]
+            if "matching_for" in u:
+                have = set(u["matching_for"])
+                if have >= set(VERSIONS):
+                    del u["matching_for"]
+                else:
+                    u["matching_for"] = [v for v in VERSIONS if v in have]
         units.sort(key=lambda u: (u["module"], u["source"]))
         tmp = self.units_path.with_suffix(".json.tmp")
-        tmp.write_text(json.dumps(units, indent=2) + "\n")
+        tmp.write_text(dump_units(units))
         os.replace(tmp, self.units_path)  # readers in other processes never see a partial file
 
     def objdiff_unit_name(self, module: str, source: str) -> str:

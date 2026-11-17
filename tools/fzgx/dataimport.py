@@ -17,7 +17,7 @@ from pathlib import Path
 from . import oracle
 from .carve import _section_default_align, order_labels_after_functions
 from .poolfix import Elf
-from .project import ROOT, STATE_DIR, Project, Symbol
+from .project import ROOT, STATE_DIR, Project, Symbol, VERSIONS, unit_matches
 
 BSS = {'.bss', '.sbss', '.sbss2'}
 SECTIONS = BSS | {'.data', '.rodata', '.sdata', '.sdata2'}
@@ -1444,8 +1444,14 @@ def _install(p, records, scratch):
                                       lambda m: m[0] if 'force_active' in m[0] else m[0] + ' force_active', text, flags=re.M)
                     symbols.write_text(text)
                 order_labels_after_functions(symbols)
-                units.append(dict(module=r['module'], source=r['source'], symbols=[member['symbol'] for member in group],
-                                  status='matching', data=True, mw_version=None, extra_cflags=[]))
+                record = dict(module=r['module'], source=r['source'], symbols=[member['symbol'] for member in group],
+                              status='matching', data=True, mw_version=None, extra_cflags=[])
+                # matches where every unit it replaces matched (save_units normalizes)
+                members = {member['symbol'] for member in group}
+                replaced = [u for u in old_units if members & set(u.get('symbols') or [])]
+                record['matching_for'] = ([v for v in VERSIONS if all(unit_matches(u, v) for u in replaced)]
+                                          if replaced else []) or [p.version]
+                units.append(record)
             for unit in old_units:
                 if unit['source'] not in groups:
                     (ROOT / 'src' / unit['source']).unlink()

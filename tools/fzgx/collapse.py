@@ -30,7 +30,7 @@ from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
 from . import oracle, poolfix, tufile, tutrial
-from .project import ROOT, STATE_DIR, Project
+from .project import ROOT, STATE_DIR, Project, VERSIONS, unit_matches
 
 SECTION_TYPE = {".text": "code", ".rodata": "rodata", ".data": "data", ".bss": "bss",
                 ".sdata": "data", ".sbss": "bss", ".sdata2": "rodata", ".sbss2": "bss"}
@@ -202,6 +202,8 @@ def collapse(p: Project, tu_source: str, keep_on_failure: bool = False) -> Dict[
                "status": "matching", "mw_version": mw, "extra_cflags": extra, "collapsed": True}
         if pl.get("pool"):
             rec["pool"] = dict(pl["pool"])  # ninja retargets the literals after compiling
+        # the TU unit matches where every unit it replaces matched (save_units normalizes)
+        rec["matching_for"] = [v for v in VERSIONS if all(unit_matches(u, v) for u in old)] or [p.version]
         units.append(rec)
         p.save_units(units)
         for src in old_sources:  # the generated per-function units are gone
