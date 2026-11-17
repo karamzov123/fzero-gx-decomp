@@ -1,130 +1,263 @@
 #include "types.h"
-#include "rel/customize/globals.h"
-#include "rel/customize/emb_memcard.h"
+#include "dolphin/gx.h"
 
+/* the memory card request of the emblem save and load menu, passed to the main_rel card routines */
+typedef struct MemcardWork {
+    u32 flags;
+    u8 mode;
+    u8 pad_5[3];
+    u32 buffer;
+    u32 size;
+    u32 unk_10;
+    s8 status;
+    u8 pad_15[0x33];
+} MemcardWork;
 
-extern u32 lbl_3_bss_7ED58[18];
+typedef struct EmbColor {
+    u8 r;
+    u8 g;
+    u8 b;
+    u8 a;
+} EmbColor;
+
 extern u32 lbl_801A6410;
-extern u32 lbl_3_data_1A18;
-extern u8 fn_1_B7C00(void);
-extern void fn_1_C1394(u32 *arg0);
-extern void fn_1_46B4(u32 arg0, u32 arg1, char *arg2, u32 arg3);
-extern u32 lbl_3_rodata_288[60];
-extern void lbl_8006DCA4(void);
-extern void lbl_8006E1D8(struct Vec3 *, f32, f32, f32);
-extern void fn_1_7BCCC(struct Vec3 *);
-extern void fn_80035680(struct GXLightObj *, f32, f32, f32);
-extern void fn_80035690(struct GXLightObj *, f32, f32, f32);
-extern void fn_80035420(struct GXLightObj *, f32, int);
-extern void fn_800356AC(struct GXLightObj *, u32 *);
-extern void GXInitLightDistAttn(struct GXLightObj *, f32, f32, int);
-extern void fn_1_7BB80(struct GXLightObj *, int);
-extern void fn_1_7BD6C(int);
-extern void fn_80074CF4(f32, f32, f32);
-extern u32 lbl_1_rodata_26F8;
-extern s32 lbl_3_bss_120;
-extern s32 fn_1_4C10(void);
-extern s16 fn_3_B270(void);
-extern u16 lbl_1_bss_96A;
-extern u32 lbl_3_bss_243A8[6];
-extern void fn_1_4A00(s32, s32, u32);
-extern u16 lbl_3_bss_20[104];
-extern u32 lbl_3_bss_2C7C0[66624];
-extern void fn_80008BEC(void *arg0, u32 arg1, u32 arg2);
-extern void fn_1_FDFF4(void);
-extern void fn_1_FC4E0(void *, s32);
-extern u32 lbl_3_bss_7EBA4;
-extern u32 lbl_3_bss_7EBA8;
-extern u8 lbl_3_data_11DC[84];
-extern void fn_1_7F3AC(u32);
-extern void fn_1_BC29C(u32 *arg0);
-extern void fn_1_B9C0C(void);
-extern char lbl_3_data_1A1C[17];
-extern s32 fn_1_B7CD4(void);
-extern s32 fn_1_B7C5C(void);
-extern void OSReport(const char *, ...);
+extern u32 *lbl_3_bss_A1784;
+extern s32 lbl_3_bss_A1798;
 extern u32 lbl_3_bss_A179C;
-extern u32 lbl_3_data_1A14;
-extern u32 lbl_3_bss_87000[16];
-extern void fn_3_D9A0_primer_f(f32);
-extern void fn_3_D9A0_primer_d(f64);
-extern f32 lbl_3_rodata_378[84];
-extern void fn_1_870BC(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, f32 arg5);
-extern void fn_1_151BDC(void *arg0);
-extern u32 fn_1_14E2DC(u32 arg0, u32 arg1, f32 arg2);
-extern u8 lbl_3_bss_87040[33216];
-extern u32 fn_1_4AEC0(u32);
-extern void fn_1_4A0D8(const char *);
+
+extern s32 fn_1_4C10(void);
+extern void fn_1_46B4(u32, u32, const char *, s32);
+extern void fn_1_4FD64(void);
+extern u8 fn_1_B7C00(void);
+extern s32 fn_1_B7C5C(void);
+extern s32 fn_1_B7CD4(void);
+extern void fn_1_B9BE0(void);
+extern void fn_1_B9C0C(void);
+extern void fn_1_B9DE8(MemcardWork *);
+extern s8 fn_1_BA144(MemcardWork *);
+extern void fn_1_BC29C(MemcardWork *);
+extern void fn_1_BC310(MemcardWork *);
+extern void fn_1_C0510(MemcardWork *);
+extern void fn_1_C1394(MemcardWork *);
+extern u32 fn_3_1307C(void);
+extern void fn_80008BA8(u32, u32, u32);
+extern void fn_8003462C(s32, s32, s32);
+extern void fn_800371F8(s32, EmbColor);
+extern void fn_8007245C(s32);
+extern void fn_80072864(s32);
+extern void fn_800728A8(s32, s32, s32, s32);
+extern void fn_80072AB0(s32, s32, s32);
+extern void fn_80072C24(s32, s32, s32, s32, s32);
+extern void fn_80072CC4(s32, s32, s32, s32, s32);
+extern void fn_80072D64(s32, s32, s32, s32, s32, s32);
+extern void fn_80072E20(s32, s32, s32, s32, s32, s32);
+extern void fn_800734A8(s32, s32, s32, s32);
+extern void fn_80073678(s32);
+extern void fn_80073C6C(s32);
+extern void fn_80074660(s32);
+extern void fn_80074788(s32);
+extern void fn_800747D0(s32, s32, s32, s32, s32, s32, s32);
+extern void fn_80074918(s32, s32, s32);
+extern void OSReport(const char *, ...);
+
+void fn_3_C128(void);
+void fn_3_C188(void);
+void fn_3_C234(void);
+void fn_3_C28C(void);
+void fn_3_C328(void);
+void fn_3_C3B4(void);
+
+MemcardWork lbl_3_bss_7ED58;
+u32 *lbl_3_bss_7EDA0;
+
+void (*lbl_3_data_1958[6])(void) = {
+    fn_3_C128, fn_3_C188, fn_3_C234, fn_3_C28C, fn_3_C328, fn_3_C3B4,
+};
+char *lbl_3_data_19F8[6] = {
+    "EMB_MEMCARD_WAIT",
+    "EMB_MEMCARD_ACTION_INIT",
+    "EMB_MEMCARD_SAVE_PROC",
+    "EMB_MEMCARD_LOAD_PROC",
+    "EMB_MEMCARD_DEL_PROC",
+    "EMB_MEMCARD_FINISH",
+};
+s32 lbl_3_data_1A10 = -1;
+s32 lbl_3_data_1A14 = -1;
+s32 lbl_3_data_1A18 = -1;
+
+/* fzgx:begin fn_3_BD98 */
+void fn_3_BD98(void) {
+    fn_1_B9BE0();
+    fn_1_B9DE8(&lbl_3_bss_7ED58);
+    lbl_3_bss_7ED58.flags |= 0x10;
+    lbl_3_bss_7ED58.mode = 9;
+    lbl_3_data_1A18 = 0;
+    lbl_3_data_1A10 = fn_3_1307C() & 0xff;
+    lbl_3_bss_7EDA0 = lbl_3_bss_A1784;
+}
+/* fzgx:end fn_3_BD98 */
+
+/* fzgx:begin fn_3_BE10 */
+void fn_3_BE10(void) {
+    fn_1_B9BE0();
+    fn_1_B9DE8(&lbl_3_bss_7ED58);
+    lbl_3_bss_7ED58.flags |= 0x10;
+    lbl_3_bss_7ED58.mode = 10;
+    lbl_3_data_1A18 = 0;
+    lbl_3_data_1A10 = fn_3_1307C() & 0xff;
+    lbl_3_bss_7EDA0 = lbl_3_bss_A1784;
+}
+/* fzgx:end fn_3_BE10 */
+
+/* fzgx:begin fn_3_BE88 */
+void fn_3_BE88(void) {
+    if (fn_1_4C10() == 0) {
+        if (lbl_3_data_1A18 >= 0) {
+            lbl_3_data_1A14 = lbl_3_data_1A18;
+            lbl_3_data_1A18 = -1;
+        }
+        lbl_3_data_1958[lbl_3_data_1A14]();
+    }
+}
+/* fzgx:end fn_3_BE88 */
+
+/* fzgx:begin fn_3_BEF0 */
+void fn_3_BEF0(void) {
+    fn_1_BC29C(&lbl_3_bss_7ED58);
+    fn_1_B9C0C();
+}
+/* fzgx:end fn_3_BEF0 */
+
+/* fzgx:begin fn_3_BF1C */
+void fn_3_BF1C(void) {
+    s32 mode;
+
+    if (lbl_3_bss_A1798 == 0) {
+        return;
+    }
+    fn_1_4FD64();
+    fn_80074918(0, 7, 0);
+    fn_80074788(1);
+    fn_80074660(0);
+    fn_80073678(1);
+    fn_80073C6C(0);
+    fn_800747D0(4, 0, 0, 0, 0, 2, 2);
+    fn_80072AB0(0, 0, 0);
+    fn_800734A8(0, 0xFF, 0xFF, 4);
+    fn_80072C24(0, 0xF, 0xF, 0xF, 2);
+    fn_80072D64(0, 0, 0, 0, 1, 0);
+    fn_80072CC4(0, 7, 7, 7, 1);
+    fn_80072E20(0, 0, 0, 0, 1, 0);
+    fn_800728A8(1, 4, 5, 0);
+    fn_80072864(2);
+    fn_8007245C(0x200);
+    {
+        EmbColor color = {0x00, 0x00, 0x00, 0xA0};
+
+        fn_800371F8(1, color);
+    }
+    fn_8003462C(0x80, 7, 4);
+    GXWGFifo.f32 = 0.0f;
+    GXWGFifo.f32 = 0.0f;
+    GXWGFifo.f32 = -1.0f;
+    GXWGFifo.f32 = 640.0f;
+    GXWGFifo.f32 = 0.0f;
+    GXWGFifo.f32 = -1.0f;
+    GXWGFifo.f32 = 640.0f;
+    GXWGFifo.f32 = 480.0f;
+    GXWGFifo.f32 = -1.0f;
+    GXWGFifo.f32 = 0.0f;
+    GXWGFifo.f32 = 480.0f;
+    GXWGFifo.f32 = -1.0f;
+    if (fn_1_B7C00() != 0) {
+        return;
+    }
+    mode = lbl_3_data_1A14;
+    if (mode == 5 || (u32)(mode - 2) <= 1 || mode == 4) {
+        return;
+    }
+    fn_1_BC310(&lbl_3_bss_7ED58);
+}
+/* fzgx:end fn_3_BF1C */
+
+/* fzgx:begin fn_3_C128 */
+void fn_3_C128(void) {
+    s16 result;
+
+    lbl_3_bss_A179C = 0;
+    result = fn_1_BA144(&lbl_3_bss_7ED58);
+    if (result == 0) {
+        lbl_3_data_1A18 = 1;
+    } else if (result == 1) {
+        lbl_3_bss_A179C = 1;
+    }
+}
+/* fzgx:end fn_3_C128 */
+
+/* fzgx:begin fn_3_C188 */
+void fn_3_C188(void) {
+    s8 status;
+
+    status = lbl_3_bss_7ED58.status;
+    if (status == 1) {
+        lbl_3_bss_7ED58.buffer = lbl_3_bss_7EDA0[lbl_3_data_1A10];
+        lbl_3_bss_7ED58.size = 0x2000;
+        lbl_3_bss_7ED58.unk_10 = 4;
+        lbl_3_data_1A18 = 2;
+    } else if (status == 2) {
+        lbl_3_data_1A18 = 3;
+    } else if (status == 8) {
+        lbl_3_data_1A18 = 4;
+    }
+    fn_1_C0510(&lbl_3_bss_7ED58);
+}
+/* fzgx:end fn_3_C188 */
+
+/* fzgx:begin fn_3_C234 */
+void fn_3_C234(void) {
+    if (!fn_1_B7C00()) {
+        if (fn_1_B7CD4() == 0) {
+            OSReport("result_code: %d\n", fn_1_B7C5C());
+        }
+        lbl_3_data_1A18 = 5;
+    }
+}
+/* fzgx:end fn_3_C234 */
+
+/* fzgx:begin fn_3_C28C */
+void fn_3_C28C(void) {
+    MemcardWork *work = &lbl_3_bss_7ED58;
+
+    fn_80008BA8(lbl_3_bss_7EDA0[lbl_3_data_1A10], work->buffer, work->size);
+    if (work->buffer != 0) {
+        fn_1_46B4(lbl_801A6410, work->buffer, "emb_memcard.c", 316);
+        work->buffer = 0;
+        work->size = 0;
+    }
+    lbl_3_data_1A18 = 5;
+}
+/* fzgx:end fn_3_C28C */
 
 /* fzgx:begin fn_3_C328 */
-#include "types.h"
-
-extern u32 lbl_3_bss_7ED58[18];
-extern u32 lbl_801A6410;
-
-extern u32 lbl_3_data_1A18;
-extern u8 fn_1_B7C00(void);
-extern void fn_1_46B4(u32 arg0, u32 arg1, char *arg2, u32 arg3);
-
 void fn_3_C328(void) {
-    u32 *state;
+    MemcardWork *work;
 
     if (!fn_1_B7C00()) {
-        state = lbl_3_bss_7ED58;
-        fn_1_C1394(state);
-        if (state[2] != 0) {
-            fn_1_46B4(lbl_801A6410, state[2], (*(char (*)[14])&lbl_3_data_1A30), 0x154);
-            state[2] = 0;
-            state[3] = 0;
+        work = &lbl_3_bss_7ED58;
+        fn_1_C1394(work);
+        if (work->buffer != 0) {
+            fn_1_46B4(lbl_801A6410, work->buffer, "emb_memcard.c", 340);
+            work->buffer = 0;
+            work->size = 0;
         }
         lbl_3_data_1A18 = 0;
     }
 }
 /* fzgx:end fn_3_C328 */
 
-/* fzgx:begin fn_3_C3B4 noprologue */
-#include "types.h"
-
-extern s32 lbl_3_bss_120;
-
-
-extern s32 fn_1_4C10(void);
-extern s16 fn_3_B270(void);
-extern u16 lbl_1_bss_96A;
-extern u32 lbl_3_bss_20850;
-extern u32 lbl_3_bss_243A8[6];
-extern void fn_1_4A00(s32, s32, u32);
-extern u16 lbl_3_bss_20[104];
-extern u32 lbl_3_bss_2C7C0[66624];
-extern void fn_80008BEC(void *, s32, s32);
-extern void fn_1_FDFF4(void);
-extern void fn_1_FC4E0(void *, s32);
-extern u32 lbl_3_bss_7EBA4;
-extern u32 lbl_3_bss_7EBA8;
-extern u8 lbl_3_data_11DC[84];
-extern u32 lbl_801A6410;
-extern void fn_1_7F3AC(u32);
-extern void fn_1_46B4(u32, u32, u8 *, s32);
-extern void fn_1_BC29C(u32 *arg0);
-extern void fn_1_B9C0C(void);
-extern char lbl_3_data_1A1C[17];
-extern u8 fn_1_B7C00(void);
-extern s32 fn_1_B7CD4(void);
-extern s32 fn_1_B7C5C(void);
-extern void OSReport(const char *, ...);
-extern u32 lbl_3_bss_A179C;
-extern u32 lbl_3_data_1A14;
-
-extern u32 lbl_3_bss_7ED58[18];
-extern u32 lbl_3_bss_A179C;
-extern u32 lbl_3_data_1A14;
-extern u32 lbl_3_data_1A18;
-
-extern void fn_1_BC29C(u32 *arg0);
-extern void fn_1_B9C0C(void);
-
+/* fzgx:begin fn_3_C3B4 */
 void fn_3_C3B4(void) {
-    fn_1_BC29C(lbl_3_bss_7ED58);
+    fn_1_BC29C(&lbl_3_bss_7ED58);
     fn_1_B9C0C();
     lbl_3_bss_A179C = 1;
     lbl_3_data_1A14 = -1;
@@ -415,7 +548,65 @@ void fn_3_C400(u32 arg0, u32 arg1) {
 #pragma opt_propagation reset
 /* fzgx:end fn_3_C400 */
 
-/* fzgx:begin fn_3_CE94 */
+/* fzgx:begin fn_3_CE94 noprologue */
+#include "types.h"
+#include "rel/customize/globals.h"
+#include "rel/customize/emb_memcard.h"
+
+
+extern u32 lbl_3_bss_7ED58[18];
+extern u32 lbl_801A6410;
+extern u32 lbl_3_data_1A18;
+extern u8 fn_1_B7C00(void);
+extern void fn_1_C1394(u32 *arg0);
+extern void fn_1_46B4(u32 arg0, u32 arg1, char *arg2, u32 arg3);
+extern u32 lbl_3_rodata_288[60];
+extern void lbl_8006DCA4(void);
+extern void lbl_8006E1D8(struct Vec3 *, f32, f32, f32);
+extern void fn_1_7BCCC(struct Vec3 *);
+extern void fn_80035680(struct GXLightObj *, f32, f32, f32);
+extern void fn_80035690(struct GXLightObj *, f32, f32, f32);
+extern void fn_80035420(struct GXLightObj *, f32, int);
+extern void fn_800356AC(struct GXLightObj *, u32 *);
+extern void GXInitLightDistAttn(struct GXLightObj *, f32, f32, int);
+extern void fn_1_7BB80(struct GXLightObj *, int);
+extern void fn_1_7BD6C(int);
+extern void fn_80074CF4(f32, f32, f32);
+extern u32 lbl_1_rodata_26F8;
+extern s32 lbl_3_bss_120;
+extern s32 fn_1_4C10(void);
+extern s16 fn_3_B270(void);
+extern u16 lbl_1_bss_96A;
+extern u32 lbl_3_bss_243A8[6];
+extern void fn_1_4A00(s32, s32, u32);
+extern u16 lbl_3_bss_20[104];
+extern u32 lbl_3_bss_2C7C0[66624];
+extern void fn_80008BEC(void *arg0, u32 arg1, u32 arg2);
+extern void fn_1_FDFF4(void);
+extern void fn_1_FC4E0(void *, s32);
+extern u32 lbl_3_bss_7EBA4;
+extern u32 lbl_3_bss_7EBA8;
+extern u8 lbl_3_data_11DC[84];
+extern void fn_1_7F3AC(u32);
+extern void fn_1_BC29C(u32 *arg0);
+extern void fn_1_B9C0C(void);
+extern char lbl_3_data_1A1C[17];
+extern s32 fn_1_B7CD4(void);
+extern s32 fn_1_B7C5C(void);
+extern void OSReport(const char *, ...);
+extern u32 lbl_3_bss_A179C;
+extern u32 lbl_3_data_1A14;
+extern u32 lbl_3_bss_87000[16];
+extern void fn_3_D9A0_primer_f(f32);
+extern void fn_3_D9A0_primer_d(f64);
+extern f32 lbl_3_rodata_378[84];
+extern void fn_1_870BC(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, f32 arg5);
+extern void fn_1_151BDC(void *arg0);
+extern u32 fn_1_14E2DC(u32 arg0, u32 arg1, f32 arg2);
+extern u8 lbl_3_bss_87040[33216];
+extern u32 fn_1_4AEC0(u32);
+extern void fn_1_4A0D8(const char *);
+
 #include "types.h"
 #include "font.h"
 #include "rel/customize/emb_memcard.h"
@@ -1013,7 +1204,65 @@ void fn_3_CE94(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
 #pragma opt_lifetimes reset
 /* fzgx:end fn_3_CE94 */
 
-/* fzgx:begin fn_3_D9A0 */
+/* fzgx:begin fn_3_D9A0 noprologue */
+#include "types.h"
+#include "rel/customize/globals.h"
+#include "rel/customize/emb_memcard.h"
+
+
+extern u32 lbl_3_bss_7ED58[18];
+extern u32 lbl_801A6410;
+extern u32 lbl_3_data_1A18;
+extern u8 fn_1_B7C00(void);
+extern void fn_1_C1394(u32 *arg0);
+extern void fn_1_46B4(u32 arg0, u32 arg1, char *arg2, u32 arg3);
+extern u32 lbl_3_rodata_288[60];
+extern void lbl_8006DCA4(void);
+extern void lbl_8006E1D8(struct Vec3 *, f32, f32, f32);
+extern void fn_1_7BCCC(struct Vec3 *);
+extern void fn_80035680(struct GXLightObj *, f32, f32, f32);
+extern void fn_80035690(struct GXLightObj *, f32, f32, f32);
+extern void fn_80035420(struct GXLightObj *, f32, int);
+extern void fn_800356AC(struct GXLightObj *, u32 *);
+extern void GXInitLightDistAttn(struct GXLightObj *, f32, f32, int);
+extern void fn_1_7BB80(struct GXLightObj *, int);
+extern void fn_1_7BD6C(int);
+extern void fn_80074CF4(f32, f32, f32);
+extern u32 lbl_1_rodata_26F8;
+extern s32 lbl_3_bss_120;
+extern s32 fn_1_4C10(void);
+extern s16 fn_3_B270(void);
+extern u16 lbl_1_bss_96A;
+extern u32 lbl_3_bss_243A8[6];
+extern void fn_1_4A00(s32, s32, u32);
+extern u16 lbl_3_bss_20[104];
+extern u32 lbl_3_bss_2C7C0[66624];
+extern void fn_80008BEC(void *arg0, u32 arg1, u32 arg2);
+extern void fn_1_FDFF4(void);
+extern void fn_1_FC4E0(void *, s32);
+extern u32 lbl_3_bss_7EBA4;
+extern u32 lbl_3_bss_7EBA8;
+extern u8 lbl_3_data_11DC[84];
+extern void fn_1_7F3AC(u32);
+extern void fn_1_BC29C(u32 *arg0);
+extern void fn_1_B9C0C(void);
+extern char lbl_3_data_1A1C[17];
+extern s32 fn_1_B7CD4(void);
+extern s32 fn_1_B7C5C(void);
+extern void OSReport(const char *, ...);
+extern u32 lbl_3_bss_A179C;
+extern u32 lbl_3_data_1A14;
+extern u32 lbl_3_bss_87000[16];
+extern void fn_3_D9A0_primer_f(f32);
+extern void fn_3_D9A0_primer_d(f64);
+extern f32 lbl_3_rodata_378[84];
+extern void fn_1_870BC(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, f32 arg5);
+extern void fn_1_151BDC(void *arg0);
+extern u32 fn_1_14E2DC(u32 arg0, u32 arg1, f32 arg2);
+extern u8 lbl_3_bss_87040[33216];
+extern u32 fn_1_4AEC0(u32);
+extern void fn_1_4A0D8(const char *);
+
 #include "font.h"
 
 extern u32 lbl_3_bss_7ED58[18];
@@ -1414,7 +1663,65 @@ void fn_3_D9A0(void) {
 }
 /* fzgx:end fn_3_D9A0 */
 
-/* fzgx:begin fn_3_E5D4 */
+/* fzgx:begin fn_3_E5D4 noprologue */
+#include "types.h"
+#include "rel/customize/globals.h"
+#include "rel/customize/emb_memcard.h"
+
+
+extern u32 lbl_3_bss_7ED58[18];
+extern u32 lbl_801A6410;
+extern u32 lbl_3_data_1A18;
+extern u8 fn_1_B7C00(void);
+extern void fn_1_C1394(u32 *arg0);
+extern void fn_1_46B4(u32 arg0, u32 arg1, char *arg2, u32 arg3);
+extern u32 lbl_3_rodata_288[60];
+extern void lbl_8006DCA4(void);
+extern void lbl_8006E1D8(struct Vec3 *, f32, f32, f32);
+extern void fn_1_7BCCC(struct Vec3 *);
+extern void fn_80035680(struct GXLightObj *, f32, f32, f32);
+extern void fn_80035690(struct GXLightObj *, f32, f32, f32);
+extern void fn_80035420(struct GXLightObj *, f32, int);
+extern void fn_800356AC(struct GXLightObj *, u32 *);
+extern void GXInitLightDistAttn(struct GXLightObj *, f32, f32, int);
+extern void fn_1_7BB80(struct GXLightObj *, int);
+extern void fn_1_7BD6C(int);
+extern void fn_80074CF4(f32, f32, f32);
+extern u32 lbl_1_rodata_26F8;
+extern s32 lbl_3_bss_120;
+extern s32 fn_1_4C10(void);
+extern s16 fn_3_B270(void);
+extern u16 lbl_1_bss_96A;
+extern u32 lbl_3_bss_243A8[6];
+extern void fn_1_4A00(s32, s32, u32);
+extern u16 lbl_3_bss_20[104];
+extern u32 lbl_3_bss_2C7C0[66624];
+extern void fn_80008BEC(void *arg0, u32 arg1, u32 arg2);
+extern void fn_1_FDFF4(void);
+extern void fn_1_FC4E0(void *, s32);
+extern u32 lbl_3_bss_7EBA4;
+extern u32 lbl_3_bss_7EBA8;
+extern u8 lbl_3_data_11DC[84];
+extern void fn_1_7F3AC(u32);
+extern void fn_1_BC29C(u32 *arg0);
+extern void fn_1_B9C0C(void);
+extern char lbl_3_data_1A1C[17];
+extern s32 fn_1_B7CD4(void);
+extern s32 fn_1_B7C5C(void);
+extern void OSReport(const char *, ...);
+extern u32 lbl_3_bss_A179C;
+extern u32 lbl_3_data_1A14;
+extern u32 lbl_3_bss_87000[16];
+extern void fn_3_D9A0_primer_f(f32);
+extern void fn_3_D9A0_primer_d(f64);
+extern f32 lbl_3_rodata_378[84];
+extern void fn_1_870BC(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, f32 arg5);
+extern void fn_1_151BDC(void *arg0);
+extern u32 fn_1_14E2DC(u32 arg0, u32 arg1, f32 arg2);
+extern u8 lbl_3_bss_87040[33216];
+extern u32 fn_1_4AEC0(u32);
+extern void fn_1_4A0D8(const char *);
+
 #include "types.h"
 
 typedef struct CustomizeSlot {
@@ -2016,7 +2323,65 @@ void fn_3_E6F8(void) {
 }
 /* fzgx:end fn_3_E6F8 */
 
-/* fzgx:begin fn_3_F044 */
+/* fzgx:begin fn_3_F044 noprologue */
+#include "types.h"
+#include "rel/customize/globals.h"
+#include "rel/customize/emb_memcard.h"
+
+
+extern u32 lbl_3_bss_7ED58[18];
+extern u32 lbl_801A6410;
+extern u32 lbl_3_data_1A18;
+extern u8 fn_1_B7C00(void);
+extern void fn_1_C1394(u32 *arg0);
+extern void fn_1_46B4(u32 arg0, u32 arg1, char *arg2, u32 arg3);
+extern u32 lbl_3_rodata_288[60];
+extern void lbl_8006DCA4(void);
+extern void lbl_8006E1D8(struct Vec3 *, f32, f32, f32);
+extern void fn_1_7BCCC(struct Vec3 *);
+extern void fn_80035680(struct GXLightObj *, f32, f32, f32);
+extern void fn_80035690(struct GXLightObj *, f32, f32, f32);
+extern void fn_80035420(struct GXLightObj *, f32, int);
+extern void fn_800356AC(struct GXLightObj *, u32 *);
+extern void GXInitLightDistAttn(struct GXLightObj *, f32, f32, int);
+extern void fn_1_7BB80(struct GXLightObj *, int);
+extern void fn_1_7BD6C(int);
+extern void fn_80074CF4(f32, f32, f32);
+extern u32 lbl_1_rodata_26F8;
+extern s32 lbl_3_bss_120;
+extern s32 fn_1_4C10(void);
+extern s16 fn_3_B270(void);
+extern u16 lbl_1_bss_96A;
+extern u32 lbl_3_bss_243A8[6];
+extern void fn_1_4A00(s32, s32, u32);
+extern u16 lbl_3_bss_20[104];
+extern u32 lbl_3_bss_2C7C0[66624];
+extern void fn_80008BEC(void *arg0, u32 arg1, u32 arg2);
+extern void fn_1_FDFF4(void);
+extern void fn_1_FC4E0(void *, s32);
+extern u32 lbl_3_bss_7EBA4;
+extern u32 lbl_3_bss_7EBA8;
+extern u8 lbl_3_data_11DC[84];
+extern void fn_1_7F3AC(u32);
+extern void fn_1_BC29C(u32 *arg0);
+extern void fn_1_B9C0C(void);
+extern char lbl_3_data_1A1C[17];
+extern s32 fn_1_B7CD4(void);
+extern s32 fn_1_B7C5C(void);
+extern void OSReport(const char *, ...);
+extern u32 lbl_3_bss_A179C;
+extern u32 lbl_3_data_1A14;
+extern u32 lbl_3_bss_87000[16];
+extern void fn_3_D9A0_primer_f(f32);
+extern void fn_3_D9A0_primer_d(f64);
+extern f32 lbl_3_rodata_378[84];
+extern void fn_1_870BC(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, f32 arg5);
+extern void fn_1_151BDC(void *arg0);
+extern u32 fn_1_14E2DC(u32 arg0, u32 arg1, f32 arg2);
+extern u8 lbl_3_bss_87040[33216];
+extern u32 fn_1_4AEC0(u32);
+extern void fn_1_4A0D8(const char *);
+
 #include "font.h"
 
 extern u32 lbl_3_bss_7ED58[18];
@@ -2279,7 +2644,65 @@ void fn_3_F044(void) {
 }
 /* fzgx:end fn_3_F044 */
 
-/* fzgx:begin fn_3_F878 */
+/* fzgx:begin fn_3_F878 noprologue */
+#include "types.h"
+#include "rel/customize/globals.h"
+#include "rel/customize/emb_memcard.h"
+
+
+extern u32 lbl_3_bss_7ED58[18];
+extern u32 lbl_801A6410;
+extern u32 lbl_3_data_1A18;
+extern u8 fn_1_B7C00(void);
+extern void fn_1_C1394(u32 *arg0);
+extern void fn_1_46B4(u32 arg0, u32 arg1, char *arg2, u32 arg3);
+extern u32 lbl_3_rodata_288[60];
+extern void lbl_8006DCA4(void);
+extern void lbl_8006E1D8(struct Vec3 *, f32, f32, f32);
+extern void fn_1_7BCCC(struct Vec3 *);
+extern void fn_80035680(struct GXLightObj *, f32, f32, f32);
+extern void fn_80035690(struct GXLightObj *, f32, f32, f32);
+extern void fn_80035420(struct GXLightObj *, f32, int);
+extern void fn_800356AC(struct GXLightObj *, u32 *);
+extern void GXInitLightDistAttn(struct GXLightObj *, f32, f32, int);
+extern void fn_1_7BB80(struct GXLightObj *, int);
+extern void fn_1_7BD6C(int);
+extern void fn_80074CF4(f32, f32, f32);
+extern u32 lbl_1_rodata_26F8;
+extern s32 lbl_3_bss_120;
+extern s32 fn_1_4C10(void);
+extern s16 fn_3_B270(void);
+extern u16 lbl_1_bss_96A;
+extern u32 lbl_3_bss_243A8[6];
+extern void fn_1_4A00(s32, s32, u32);
+extern u16 lbl_3_bss_20[104];
+extern u32 lbl_3_bss_2C7C0[66624];
+extern void fn_80008BEC(void *arg0, u32 arg1, u32 arg2);
+extern void fn_1_FDFF4(void);
+extern void fn_1_FC4E0(void *, s32);
+extern u32 lbl_3_bss_7EBA4;
+extern u32 lbl_3_bss_7EBA8;
+extern u8 lbl_3_data_11DC[84];
+extern void fn_1_7F3AC(u32);
+extern void fn_1_BC29C(u32 *arg0);
+extern void fn_1_B9C0C(void);
+extern char lbl_3_data_1A1C[17];
+extern s32 fn_1_B7CD4(void);
+extern s32 fn_1_B7C5C(void);
+extern void OSReport(const char *, ...);
+extern u32 lbl_3_bss_A179C;
+extern u32 lbl_3_data_1A14;
+extern u32 lbl_3_bss_87000[16];
+extern void fn_3_D9A0_primer_f(f32);
+extern void fn_3_D9A0_primer_d(f64);
+extern f32 lbl_3_rodata_378[84];
+extern void fn_1_870BC(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, f32 arg5);
+extern void fn_1_151BDC(void *arg0);
+extern u32 fn_1_14E2DC(u32 arg0, u32 arg1, f32 arg2);
+extern u8 lbl_3_bss_87040[33216];
+extern u32 fn_1_4AEC0(u32);
+extern void fn_1_4A0D8(const char *);
+
 struct Vec3 {
     f32 x;
     f32 y;
@@ -2325,7 +2748,65 @@ void fn_3_F878(void) {
 }
 /* fzgx:end fn_3_F878 */
 
-/* fzgx:begin fn_3_F948 */
+/* fzgx:begin fn_3_F948 noprologue */
+#include "types.h"
+#include "rel/customize/globals.h"
+#include "rel/customize/emb_memcard.h"
+
+
+extern u32 lbl_3_bss_7ED58[18];
+extern u32 lbl_801A6410;
+extern u32 lbl_3_data_1A18;
+extern u8 fn_1_B7C00(void);
+extern void fn_1_C1394(u32 *arg0);
+extern void fn_1_46B4(u32 arg0, u32 arg1, char *arg2, u32 arg3);
+extern u32 lbl_3_rodata_288[60];
+extern void lbl_8006DCA4(void);
+extern void lbl_8006E1D8(struct Vec3 *, f32, f32, f32);
+extern void fn_1_7BCCC(struct Vec3 *);
+extern void fn_80035680(struct GXLightObj *, f32, f32, f32);
+extern void fn_80035690(struct GXLightObj *, f32, f32, f32);
+extern void fn_80035420(struct GXLightObj *, f32, int);
+extern void fn_800356AC(struct GXLightObj *, u32 *);
+extern void GXInitLightDistAttn(struct GXLightObj *, f32, f32, int);
+extern void fn_1_7BB80(struct GXLightObj *, int);
+extern void fn_1_7BD6C(int);
+extern void fn_80074CF4(f32, f32, f32);
+extern u32 lbl_1_rodata_26F8;
+extern s32 lbl_3_bss_120;
+extern s32 fn_1_4C10(void);
+extern s16 fn_3_B270(void);
+extern u16 lbl_1_bss_96A;
+extern u32 lbl_3_bss_243A8[6];
+extern void fn_1_4A00(s32, s32, u32);
+extern u16 lbl_3_bss_20[104];
+extern u32 lbl_3_bss_2C7C0[66624];
+extern void fn_80008BEC(void *arg0, u32 arg1, u32 arg2);
+extern void fn_1_FDFF4(void);
+extern void fn_1_FC4E0(void *, s32);
+extern u32 lbl_3_bss_7EBA4;
+extern u32 lbl_3_bss_7EBA8;
+extern u8 lbl_3_data_11DC[84];
+extern void fn_1_7F3AC(u32);
+extern void fn_1_BC29C(u32 *arg0);
+extern void fn_1_B9C0C(void);
+extern char lbl_3_data_1A1C[17];
+extern s32 fn_1_B7CD4(void);
+extern s32 fn_1_B7C5C(void);
+extern void OSReport(const char *, ...);
+extern u32 lbl_3_bss_A179C;
+extern u32 lbl_3_data_1A14;
+extern u32 lbl_3_bss_87000[16];
+extern void fn_3_D9A0_primer_f(f32);
+extern void fn_3_D9A0_primer_d(f64);
+extern f32 lbl_3_rodata_378[84];
+extern void fn_1_870BC(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, f32 arg5);
+extern void fn_1_151BDC(void *arg0);
+extern u32 fn_1_14E2DC(u32 arg0, u32 arg1, f32 arg2);
+extern u8 lbl_3_bss_87040[33216];
+extern u32 fn_1_4AEC0(u32);
+extern void fn_1_4A0D8(const char *);
+
 typedef struct MemCardSlot {
     u32 unk0;
     u32 flags;

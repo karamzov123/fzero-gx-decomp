@@ -90,7 +90,7 @@
    "file": "customize.c",
    "text": [
     44276,
-    49960
+    48536
    ],
    "data_sec": 5,
    "data": [
@@ -112,16 +112,7 @@
     "fn_3_BA74",
     "fn_3_BC60",
     "fn_3_BD00",
-    "fn_3_BD30",
-    "fn_3_BD98",
-    "fn_3_BE10",
-    "fn_3_BE88",
-    "fn_3_BEF0",
-    "fn_3_BF1C",
-    "fn_3_C128",
-    "fn_3_C188",
-    "fn_3_C234",
-    "fn_3_C28C"
+    "fn_3_BD30"
    ],
    "confidence": {
     "text+data": 10,
@@ -132,7 +123,7 @@
   {
    "file": "emb_memcard.c",
    "text": [
-    49960,
+    48536,
     63876
    ],
    "data_sec": 5,
@@ -144,6 +135,15 @@
     49960
    ],
    "functions": [
+    "fn_3_BD98",
+    "fn_3_BE10",
+    "fn_3_BE88",
+    "fn_3_BEF0",
+    "fn_3_BF1C",
+    "fn_3_C128",
+    "fn_3_C188",
+    "fn_3_C234",
+    "fn_3_C28C",
     "fn_3_C328",
     "fn_3_C3B4",
     "fn_3_C400",
