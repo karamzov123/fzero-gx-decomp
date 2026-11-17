@@ -146512,91 +146512,19 @@
     "module": "option",
     "source": "rel/option/_prolog/fn_4_AB30.c",
     "symbols": [
-      "fn_4_AB30"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/option/_prolog.c"
-  },
-  {
-    "module": "option",
-    "source": "rel/option/_prolog/fn_4_AB90.c",
-    "symbols": [
-      "fn_4_AB90"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/option/_prolog.c"
-  },
-  {
-    "module": "option",
-    "source": "rel/option/_prolog/fn_4_ABB0.c",
-    "symbols": [
-      "fn_4_ABB0"
+      "fn_4_AB30",
+      "fn_4_AB90",
+      "fn_4_ABB0",
+      "fn_4_AC58",
+      "fn_4_ACF0",
+      "fn_4_AD44",
+      "fn_4_AD78",
+      "fn_4_ADAC",
+      "fn_4_ADB0",
+      "fn_4_ADF0"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/option/_prolog.c",
-    "pool": {
-      "...data.0": "lbl_4_data_2F00",
-      "fzgx_pool_native_lbl_4_data_2F00_handlers": "lbl_4_data_2F00"
-    }
-  },
-  {
-    "module": "option",
-    "source": "rel/option/_prolog/fn_4_AC58.c",
-    "symbols": [
-      "fn_4_AC58"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/option/_prolog.c"
-  },
-  {
-    "module": "option",
-    "source": "rel/option/_prolog/fn_4_ACF0.c",
-    "symbols": [
-      "fn_4_ACF0"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/option/_prolog.c"
-  },
-  {
-    "module": "option",
-    "source": "rel/option/_prolog/fn_4_AD44.c",
-    "symbols": [
-      "fn_4_AD44"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/option/_prolog.c"
-  },
-  {
-    "module": "option",
-    "source": "rel/option/_prolog/fn_4_AD78.c",
-    "symbols": [
-      "fn_4_AD78"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/option/_prolog.c"
-  },
-  {
-    "module": "option",
-    "source": "rel/option/_prolog/fn_4_ADB0.c",
-    "symbols": [
-      "fn_4_ADB0"
-    ],
-    "status": "matching",
-    "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/option/_prolog.c"
   },
@@ -146810,39 +146738,6 @@
   },
   {
     "module": "option",
-    "source": "rel/option/data/lbl_4_bss_5628.c",
-    "symbols": [
-      "lbl_4_bss_5628"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_bss_5630.c",
-    "symbols": [
-      "lbl_4_bss_5630"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_bss_5678.c",
-    "symbols": [
-      "lbl_4_bss_5678"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
     "source": "rel/option/data/lbl_4_bss_5680.c",
     "symbols": [
       "lbl_4_bss_5680",
@@ -146939,12 +146834,17 @@
       "lbl_4_data_2D78",
       "lbl_4_data_2D8C",
       "lbl_4_data_2D9C",
-      "lbl_4_data_2DB4",
-      "lbl_4_data_2F00",
-      "lbl_4_data_2F1C",
-      "lbl_4_data_2F20",
-      "lbl_4_data_2F3C",
-      "lbl_4_data_2F40",
+      "lbl_4_data_2DB4"
+    ],
+    "status": "matching",
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "option",
+    "source": "rel/option/data/lbl_4_data_2F78.c",
+    "symbols": [
       "lbl_4_data_2F78",
       "lbl_4_data_3018",
       "lbl_4_data_3058",
@@ -147230,28 +147130,6 @@
     "data": true,
     "mw_version": null,
     "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/fn_4_ADAC.c",
-    "symbols": [
-      "fn_4_ADAC"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/option/_prolog.c"
-  },
-  {
-    "module": "option",
-    "source": "rel/option/fn_4_ADF0.c",
-    "symbols": [
-      "fn_4_ADF0"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/option/_prolog.c"
   },
   {
     "module": "option",

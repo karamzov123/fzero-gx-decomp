@@ -415446,133 +415446,6 @@
     "unit_size": 16,
     "unit_start": 22040
   },
-  "option:lbl_4_bss_5628": {
-    "address": 22056,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "OptionState lbl_4_bss_5628",
-        "path": "src/rel/option/_prolog.c"
-      }
-    ],
-    "definition": "u8 lbl_4_bss_5628[8]",
-    "method": "opaque-bss",
-    "module": "option",
-    "references": [
-      "fn_4_ABB0"
-    ],
-    "relocations": [],
-    "section": ".bss",
-    "section_size": 8,
-    "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
-    "size": 8,
-    "source": "rel/option/data/lbl_4_bss_5628.c",
-    "symbol": "lbl_4_bss_5628",
-    "unit_align": 8,
-    "unit_size": 8,
-    "unit_start": 22056
-  },
-  "option:lbl_4_bss_5630": {
-    "address": 22064,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "Obj_4_bss_5630 lbl_4_bss_5630",
-        "path": "include/rel/option/globals.h"
-      },
-      {
-        "declaration": "Obj_4_bss_5630 lbl_4_bss_5630",
-        "path": "src/rel/option/_prolog.c"
-      },
-      {
-        "declaration": "Obj_4_bss_5630 lbl_4_bss_5630",
-        "path": "src/rel/title/name_entry.c"
-      }
-    ],
-    "definition": "Obj_4_bss_5630 lbl_4_bss_5630",
-    "method": "declared-bss",
-    "module": "option",
-    "references": [
-      "fn_4_AB30",
-      "fn_4_AC58",
-      "fn_4_ACF0",
-      "fn_4_AD44",
-      "fn_4_AD78",
-      "fn_4_ADB0"
-    ],
-    "relocations": [],
-    "section": ".bss",
-    "section_size": 72,
-    "sha256": "834a709ba2534ebe3ee1397fd4f7bd288b2acc1d20a08d6c862dcd99b6f04400",
-    "size": 72,
-    "source": "rel/option/data/lbl_4_bss_5630.c",
-    "symbol": "lbl_4_bss_5630",
-    "unit_align": 8,
-    "unit_size": 72,
-    "unit_start": 22064
-  },
-  "option:lbl_4_bss_5678": {
-    "address": 22136,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "u32 lbl_4_bss_5678",
-        "path": "src/rel/option/_prolog.c"
-      },
-      {
-        "declaration": "u32 lbl_4_bss_5678",
-        "path": "src/rel/option/_prolog.c"
-      },
-      {
-        "declaration": "u32 lbl_4_bss_5678",
-        "path": "src/rel/option/_prolog.c"
-      },
-      {
-        "declaration": "u32 lbl_4_bss_5678",
-        "path": "src/rel/option/_prolog.c"
-      },
-      {
-        "declaration": "u32 lbl_4_bss_5678",
-        "path": "src/rel/option/_prolog.c"
-      },
-      {
-        "declaration": "u32 lbl_4_bss_5678",
-        "path": "src/rel/option/_prolog.c"
-      },
-      {
-        "declaration": "u32 lbl_4_bss_5678",
-        "path": "src/rel/option/_prolog.c"
-      },
-      {
-        "declaration": "u32 lbl_4_bss_5678",
-        "path": "src/rel/option/_prolog.c"
-      },
-      {
-        "declaration": "u32 lbl_4_bss_5678",
-        "path": "src/rel/option/_prolog.c"
-      },
-      {
-        "declaration": "u32 lbl_4_bss_5678",
-        "path": "src/rel/option/_prolog.c"
-      }
-    ],
-    "definition": "u8 lbl_4_bss_5678[8]",
-    "method": "opaque-bss-header-mismatch",
-    "module": "option",
-    "references": [
-      "fn_4_ACF0"
-    ],
-    "relocations": [],
-    "section": ".bss",
-    "section_size": 8,
-    "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
-    "size": 8,
-    "source": "rel/option/data/lbl_4_bss_5678.c",
-    "symbol": "lbl_4_bss_5678",
-    "unit_align": 8,
-    "unit_size": 8,
-    "unit_start": 22136
-  },
   "option:lbl_4_bss_5680": {
     "address": 22144,
     "align": 8,
@@ -416560,233 +416433,6 @@
     "unit_size": 872,
     "unit_start": 11640
   },
-  "option:lbl_4_data_2F00": {
-    "address": 12032,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "Obj_4_data_2F00 lbl_4_data_2F00",
-        "path": "include/rel/option/globals.h"
-      },
-      {
-        "declaration": "OptionTable lbl_4_data_2F00",
-        "path": "src/rel/option/_prolog.c"
-      },
-      {
-        "declaration": "Obj_4_data_2F00 lbl_4_data_2F00",
-        "path": "src/rel/option/_prolog.c"
-      },
-      {
-        "declaration": "Obj_4_data_2F00 lbl_4_data_2F00",
-        "path": "src/rel/title/name_entry.c"
-      }
-    ],
-    "definition": "Data_lbl_4_data_2F00 lbl_4_data_2F00",
-    "header": {
-      "path": "rel/option/data/lbl_4_data_2F00.h",
-      "text": "#ifndef DATA_LBL_4_DATA_2F00_H\n#define DATA_LBL_4_DATA_2F00_H\n\n#include \"types.h\"\n\ntypedef struct {\n    void (*at_0)(void);\n    void (*at_4)(void);\n    void (*at_8)(void);\n    void (*at_C)(void);\n    void (*at_10)(void);\n    void (*at_14)(void);\n    u32 at_18;\n} Data_lbl_4_data_2F00;\nextern Data_lbl_4_data_2F00 lbl_4_data_2F00;\n\n#endif\n"
-    },
-    "method": "relocated-table",
-    "module": "option",
-    "references": [
-      "fn_4_ABB0",
-      "fn_4_AC58"
-    ],
-    "relocations": [
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "option",
-        "offset": 0,
-        "symbol": "fn_4_ACF0"
-      },
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "option",
-        "offset": 4,
-        "symbol": "fn_4_AD78"
-      },
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "option",
-        "offset": 8,
-        "symbol": "fn_4_ADB0"
-      },
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "option",
-        "offset": 12,
-        "symbol": "fn_4_AD44"
-      },
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "option",
-        "offset": 16,
-        "symbol": "fn_4_ADAC"
-      },
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "option",
-        "offset": 20,
-        "symbol": "fn_4_ADF0"
-      }
-    ],
-    "section": ".data",
-    "section_size": 872,
-    "sha256": "82307b5b8efe26afd838bdf95a1995e9f6b2185407930e57f88a3b87ae79a17c",
-    "size": 28,
-    "source": "rel/option/data/lbl_4_data_2D78.c",
-    "symbol": "lbl_4_data_2F00",
-    "unit_align": 8,
-    "unit_size": 872,
-    "unit_start": 11640
-  },
-  "option:lbl_4_data_2F1C": {
-    "address": 12060,
-    "align": 4,
-    "declarations": [
-      {
-        "declaration": "u32 lbl_4_data_2F1C",
-        "path": "include/rel/option/globals.h"
-      },
-      {
-        "declaration": "u32 lbl_4_data_2F1C",
-        "path": "src/rel/option/_prolog.c"
-      },
-      {
-        "declaration": "u32 lbl_4_data_2F1C",
-        "path": "src/rel/title/name_entry.c"
-      }
-    ],
-    "definition": "u32 lbl_4_data_2F1C",
-    "method": "typed-data",
-    "module": "option",
-    "references": [
-      "fn_4_AB30",
-      "fn_4_ACF0",
-      "fn_4_AD78",
-      "fn_4_ADB0"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 872,
-    "sha256": "ad95131bc0b799c0b1af477fb14fcf26a6a9f76079e48bf090acb7e8367bfd0e",
-    "size": 4,
-    "source": "rel/option/data/lbl_4_data_2D78.c",
-    "symbol": "lbl_4_data_2F1C",
-    "unit_align": 8,
-    "unit_size": 872,
-    "unit_start": 11640
-  },
-  "option:lbl_4_data_2F20": {
-    "address": 12064,
-    "align": 8,
-    "declarations": [],
-    "definition": "char lbl_4_data_2F20[28]",
-    "method": "string-pool",
-    "module": "option",
-    "references": [],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 872,
-    "sha256": "9e0a1a9d57f3ed7e8e311ba7d95da328b801f4129430c7ffd2508ec2e260c0a1",
-    "size": 28,
-    "source": "rel/option/data/lbl_4_data_2D78.c",
-    "symbol": "lbl_4_data_2F20",
-    "unit_align": 8,
-    "unit_size": 872,
-    "unit_start": 11640
-  },
-  "option:lbl_4_data_2F3C": {
-    "address": 12092,
-    "align": 4,
-    "declarations": [],
-    "definition": "u8 lbl_4_data_2F3C[4]",
-    "method": "zero-data",
-    "module": "option",
-    "references": [],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 872,
-    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
-    "size": 4,
-    "source": "rel/option/data/lbl_4_data_2D78.c",
-    "symbol": "lbl_4_data_2F3C",
-    "unit_align": 8,
-    "unit_size": 872,
-    "unit_start": 11640
-  },
-  "option:lbl_4_data_2F40": {
-    "address": 12096,
-    "align": 8,
-    "declarations": [],
-    "definition": "Data_lbl_4_data_2F40 lbl_4_data_2F40",
-    "header": {
-      "path": "rel/option/data/lbl_4_data_2F40.h",
-      "text": "#ifndef DATA_LBL_4_DATA_2F40_H\n#define DATA_LBL_4_DATA_2F40_H\n\n#include \"types.h\"\n\ntypedef struct {\n    u32 at_0;\n    u32 at_4;\n    u32 at_8;\n    u32 at_C;\n    u32 at_10;\n    u32 at_14;\n    u32 at_18;\n    u32 at_1C;\n    u8 *at_20;\n    u8 *at_24;\n    u8 *at_28;\n    u8 *at_2C;\n    u8 *at_30;\n    u8 *at_34;\n} Data_lbl_4_data_2F40;\nextern Data_lbl_4_data_2F40 lbl_4_data_2F40;\n\n#endif\n"
-    },
-    "method": "relocated-table",
-    "module": "option",
-    "references": [],
-    "relocations": [
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "option",
-        "offset": 32,
-        "symbol": "lbl_4_data_2F20"
-      },
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "option",
-        "offset": 36,
-        "symbol": "lbl_4_data_2F3C"
-      },
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "option",
-        "offset": 40,
-        "symbol": "lbl_4_data_2F3C"
-      },
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "option",
-        "offset": 44,
-        "symbol": "lbl_4_data_2F3C"
-      },
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "option",
-        "offset": 48,
-        "symbol": "lbl_4_data_2F3C"
-      },
-      {
-        "addend": 0,
-        "kind": 1,
-        "module": "option",
-        "offset": 52,
-        "symbol": "lbl_4_data_2F40"
-      }
-    ],
-    "section": ".data",
-    "section_size": 872,
-    "sha256": "e031166cc03057bf50a4135981008cf563ecd98ee90c5eae4d9bec85a1ffbe34",
-    "size": 56,
-    "source": "rel/option/data/lbl_4_data_2D78.c",
-    "symbol": "lbl_4_data_2F40",
-    "unit_align": 8,
-    "unit_size": 872,
-    "unit_start": 11640
-  },
   "option:lbl_4_data_2F78": {
     "address": 12152,
     "align": 8,
@@ -416980,14 +416626,14 @@
       }
     ],
     "section": ".data",
-    "section_size": 872,
+    "section_size": 360,
     "sha256": "ef010078d9472c360c1b91716e74e2e8f6c1e38fa78ec1da9fb79b699e9149ff",
     "size": 160,
-    "source": "rel/option/data/lbl_4_data_2D78.c",
+    "source": "rel/option/data/lbl_4_data_2F78.c",
     "symbol": "lbl_4_data_2F78",
     "unit_align": 8,
-    "unit_size": 872,
-    "unit_start": 11640
+    "unit_size": 360,
+    "unit_start": 12152
   },
   "option:lbl_4_data_3018": {
     "address": 12312,
@@ -417010,14 +416656,14 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 872,
+    "section_size": 360,
     "sha256": "09f7ba93e11e05c746ab013d28e1e7dcc6645f3d8964bc269d344be14da9929c",
     "size": 64,
-    "source": "rel/option/data/lbl_4_data_2D78.c",
+    "source": "rel/option/data/lbl_4_data_2F78.c",
     "symbol": "lbl_4_data_3018",
     "unit_align": 8,
-    "unit_size": 872,
-    "unit_start": 11640
+    "unit_size": 360,
+    "unit_start": 12152
   },
   "option:lbl_4_data_3058": {
     "address": 12376,
@@ -417036,14 +416682,14 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 872,
+    "section_size": 360,
     "sha256": "537ba11b630014c0e149e3cafeb8d37cee285741666823ef9a0b4c20afcd68a8",
     "size": 24,
-    "source": "rel/option/data/lbl_4_data_2D78.c",
+    "source": "rel/option/data/lbl_4_data_2F78.c",
     "symbol": "lbl_4_data_3058",
     "unit_align": 8,
-    "unit_size": 872,
-    "unit_start": 11640
+    "unit_size": 360,
+    "unit_start": 12152
   },
   "option:lbl_4_data_3070": {
     "address": 12400,
@@ -417062,14 +416708,14 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 872,
+    "section_size": 360,
     "sha256": "960020b878c910c0cc1ff914a4a0ec2fac8c19834494f627a458a0243372a2a5",
     "size": 112,
-    "source": "rel/option/data/lbl_4_data_2D78.c",
+    "source": "rel/option/data/lbl_4_data_2F78.c",
     "symbol": "lbl_4_data_3070",
     "unit_align": 8,
-    "unit_size": 872,
-    "unit_start": 11640
+    "unit_size": 360,
+    "unit_start": 12152
   },
   "option:lbl_4_rodata_0": {
     "address": 0,
