@@ -5635,8 +5635,9 @@ rel/main_rel/sel_static_disp/fn_1_1332FC.c:
 	.text       start:0x001332FC end:0x0013354C align:4
 
 rel/main_rel/bg_lig/fn_1_D5C70.c:
-	.text       start:0x000D5C70 end:0x000D5FA8 align:4
-	.data       start:0x0003DC08 end:0x0003DC38 align:8
+	.text       start:0x000D5C70 end:0x000D6680 align:4
+	.rodata     start:0x00006328 end:0x00006358 align:8
+	.data       start:0x0003DBE8 end:0x0003DC38 align:8
 
 rel/main_rel/enemy_ctrl/fn_1_CF5B0.c:
 	.text       start:0x000CF5B0 end:0x000CFA0C align:4
@@ -7907,9 +7908,6 @@ rel/main_rel/bg_aur/fn_1_15176C.c:
 
 rel/main_rel/stcoli/fn_1_26F34.c:
 	.text       start:0x00026F34 end:0x000278B8 align:4
-
-rel/main_rel/bg_lig/fn_1_D5FA8.c:
-	.text       start:0x000D5FA8 end:0x000D6680 align:4
 
 rel/main_rel/accessory/fn_1_11CAB4.c:
 	.text       start:0x0011CAB4 end:0x0011CD3C align:4
@@ -18206,11 +18204,8 @@ rel/main_rel/mdlload/fn_1_D35D4.c:
 	.data       start:0x0003DBD8 end:0x0003DBE8 align:8
 	.bss        start:0x0007AD60 end:0x0007AD78 align:8
 
-rel/main_rel/data/lbl_1_data_3DBE8.c:
-	.data       start:0x0003DBE8 end:0x0003DC08 align:8
-
-rel/main_rel/data/lbl_1_rodata_6328.c:
-	.rodata     start:0x00006328 end:0x00006750 align:8
+rel/main_rel/data/lbl_1_rodata_6358.c:
+	.rodata     start:0x00006358 end:0x00006750 align:8
 
 rel/main_rel/data/lbl_1_rodata_6780.c:
 	.rodata     start:0x00006780 end:0x00007480 align:8

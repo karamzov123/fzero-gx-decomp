@@ -39,8 +39,21 @@ extern void fn_1_446C(void);
 extern void fn_1_76BF8(void);
 extern void fn_1_72648(void);
 
-/* fzgx:begin fn_1_D5C70 */
-extern int fn_1_58C4(void);
+/* fzgx:begin fn_1_D5C70 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "sdk_addresses.h"
+
+extern void OSPanic(const char *file, int line, const char *msg, ...);
+extern void fn_80008BA8(void *dst, const void *src, int size);
+extern u32 lbl_801A66A0;
+extern u32 lbl_801A63C0;
+extern u32 lbl_801A66C8;
+extern void *memset(void *dst, int value, u32 size);
+extern f32 lbl_8006D0B4(f32);
+extern s32 fn_1_58C4(void);
+extern u32 fn_1_584AC(void);
+extern s16 fn_1_58E3C(void *source);
 
 typedef struct {
     u32 unk0;
@@ -69,7 +82,7 @@ s32 fn_1_D5C70(u32 arg0, u32 *arg1) {
         DATA(IDX) = arg1;
         IDX = IDX + 1;
         if (IDX >= 32) {
-            OSPanic((const char *)lbl_1_data_3DBE8, 0x577, (const char *)lbl_1_data_3DBF4);
+            OSPanic("bg_lig.c", 0x577, "SPOT LIGHT OVER!");
         }
         break;
     case 1:
@@ -78,7 +91,7 @@ s32 fn_1_D5C70(u32 arg0, u32 *arg1) {
         DATA(IDX) = arg1;
         IDX = IDX + 1;
         if (IDX >= 32) {
-            OSPanic((const char *)lbl_1_data_3DBE8, 0x57e, (const char *)lbl_1_data_3DBF4);
+            OSPanic("bg_lig.c", 0x57e, "SPOT LIGHT OVER!");
         }
         break;
     case 2:
@@ -88,7 +101,7 @@ s32 fn_1_D5C70(u32 arg0, u32 *arg1) {
         DATA(IDX) = arg1;
         IDX = IDX + 1;
         if (IDX >= 32) {
-            OSPanic((const char *)lbl_1_data_3DBE8, 0x586, (const char *)lbl_1_data_3DBF4);
+            OSPanic("bg_lig.c", 0x586, "SPOT LIGHT OVER!");
         }
         break;
     case 3:
@@ -98,7 +111,7 @@ s32 fn_1_D5C70(u32 arg0, u32 *arg1) {
         DATA(IDX) = arg1;
         IDX = IDX + 1;
         if (IDX >= 32) {
-            OSPanic((const char *)lbl_1_data_3DBE8, 0x58e, (const char *)lbl_1_data_3DBF4);
+            OSPanic("bg_lig.c", 0x58e, "SPOT LIGHT OVER!");
         }
         break;
     case 5:
@@ -140,25 +153,7 @@ s32 fn_1_D5C70(u32 arg0, u32 *arg1) {
 }
 /* fzgx:end fn_1_D5C70 */
 
-/* fzgx:begin fn_1_D5FA8 */
-#include "sdk_addresses.h"
-
-typedef signed char s8;
-typedef signed short s16;
-typedef signed long s32;
-
-
-typedef unsigned char u8;
-typedef unsigned short u16;
-typedef unsigned long u32;
-
-
-typedef float f32;
-typedef double f64;
-
-
-u32 __OSBusClock : FZGX_ADDR___OSBusClock;
-u32 __OSTVMode : FZGX_ADDR___OSTVMode;
+/* fzgx:begin fn_1_D5FA8 noprologue */
 typedef union PPCWGPipe {
 u8 u8;
 u16 u16;
