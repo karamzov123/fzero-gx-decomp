@@ -2335,109 +2335,6 @@
   },
   {
     "module": "customize",
-    "source": "rel/customize/data/lbl_3_bss_A1768.c",
-    "symbols": [
-      "lbl_3_bss_A1768",
-      "lbl_3_bss_A176C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/data/lbl_3_bss_A1770.c",
-    "symbols": [
-      "lbl_3_bss_A1770",
-      "lbl_3_bss_A1774"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/data/lbl_3_bss_A1778.c",
-    "symbols": [
-      "lbl_3_bss_A1778",
-      "lbl_3_bss_A1784"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/data/lbl_3_bss_A1798.c",
-    "symbols": [
-      "lbl_3_bss_A1798",
-      "lbl_3_bss_A179C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/data/lbl_3_bss_A17A0.c",
-    "symbols": [
-      "lbl_3_bss_A17A0",
-      "lbl_3_bss_A17CC"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/data/lbl_3_bss_A17D0.c",
-    "symbols": [
-      "lbl_3_bss_A17D0",
-      "lbl_3_bss_A17D2",
-      "lbl_3_bss_A17D4"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/data/lbl_3_bss_A23D8.c",
-    "symbols": [
-      "lbl_3_bss_A23D8"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/data/lbl_3_bss_A23E0.c",
-    "symbols": [
-      "lbl_3_bss_A23E0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "customize",
     "source": "rel/customize/data/lbl_3_bss_A23E8.c",
     "symbols": [
       "lbl_3_bss_A23E8",
@@ -2817,158 +2714,6 @@
   },
   {
     "module": "customize",
-    "source": "rel/customize/data/lbl_3_data_3360.c",
-    "symbols": [
-      "lbl_3_data_3360",
-      "lbl_3_data_336C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/data/lbl_3_data_3370.c",
-    "symbols": [
-      "lbl_3_data_3370"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/data/lbl_3_data_3380.c",
-    "symbols": [
-      "lbl_3_data_3380"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/data/lbl_3_data_3388.c",
-    "symbols": [
-      "lbl_3_data_3388"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/data/lbl_3_data_3398.c",
-    "symbols": [
-      "lbl_3_data_3398"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/data/lbl_3_data_33A8.c",
-    "symbols": [
-      "lbl_3_data_33A8",
-      "lbl_3_data_33BC",
-      "lbl_3_data_33CC",
-      "lbl_3_data_33DC",
-      "lbl_3_data_33E4"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/data/lbl_3_data_33F0.c",
-    "symbols": [
-      "lbl_3_data_33F0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/data/lbl_3_data_33F8.c",
-    "symbols": [
-      "lbl_3_data_33F8"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/data/lbl_3_data_3400.c",
-    "symbols": [
-      "lbl_3_data_3400"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/data/lbl_3_data_3408.c",
-    "symbols": [
-      "lbl_3_data_3408"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/data/lbl_3_data_3410.c",
-    "symbols": [
-      "lbl_3_data_3410"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/data/lbl_3_data_3420.c",
-    "symbols": [
-      "lbl_3_data_3420",
-      "lbl_3_data_342C",
-      "lbl_3_data_3444",
-      "lbl_3_data_3574"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "customize",
     "source": "rel/customize/data/lbl_3_data_35B0.c",
     "symbols": [
       "lbl_3_data_35B0",
@@ -3319,8 +3064,18 @@
       "lbl_3_rodata_4B8",
       "lbl_3_rodata_4BC",
       "lbl_3_rodata_4C8",
-      "lbl_3_rodata_4D4",
-      "lbl_3_rodata_4E0",
+      "lbl_3_rodata_4D4"
+    ],
+    "status": "matching",
+    "matching_for": ["GFZE01"],
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "customize",
+    "source": "rel/customize/data/lbl_3_rodata_538.c",
+    "symbols": [
       "lbl_3_rodata_538",
       "lbl_3_rodata_53C",
       "lbl_3_rodata_540",
@@ -4490,76 +4245,36 @@
     "module": "customize",
     "source": "rel/customize/emb_paste_editor/fn_3_1307C.c",
     "symbols": [
-      "fn_3_1307C"
+      "fn_3_1307C",
+      "fn_3_1308C",
+      "fn_3_130A8",
+      "fn_3_130C8",
+      "fn_3_1338C",
+      "fn_3_1349C",
+      "fn_3_13508",
+      "fn_3_137AC",
+      "fn_3_139F0",
+      "fn_3_13D98",
+      "fn_3_13EA4",
+      "fn_3_14008",
+      "fn_3_1401C",
+      "fn_3_1402C",
+      "fn_3_14064",
+      "fn_3_14074",
+      "fn_3_14080",
+      "fn_3_141A8",
+      "fn_3_142C4",
+      "fn_3_1441C",
+      "fn_3_1443C",
+      "fn_3_1445C",
+      "fn_3_14600",
+      "fn_3_146BC"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/customize/emb_paste_editor.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/emb_paste_editor/fn_3_1308C.c",
-    "symbols": [
-      "fn_3_1308C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emb_paste_editor.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/emb_paste_editor/fn_3_130A8.c",
-    "symbols": [
-      "fn_3_130A8"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emb_paste_editor.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/emb_paste_editor/fn_3_130C8.c",
-    "symbols": [
-      "fn_3_130C8"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/customize/emb_paste_editor.c",
-    "pool": {
-      "@29": "lbl_3_rodata_4E0",
-      "...data.0": "lbl_3_data_3360",
-      "fzgx_obj_lbl_3_data_3360": "lbl_3_data_3360",
-      "lbl_3_data_3444__fzgx_offset_108": "lbl_3_data_3444+0x108",
-      "lbl_3_data_3444__fzgx_offset_11C": "lbl_3_data_3444+0x11C",
-      "lbl_3_data_3574__fzgx_offset_0": "lbl_3_data_3574",
-      "lbl_3_data_3574__fzgx_offset_C": "lbl_3_data_3574+0xC",
-      "lbl_3_data_3574__fzgx_offset_20": "lbl_3_data_3574+0x20",
-      "...bss.0": "lbl_3_bss_A1768",
-      "fzgx_obj_lbl_3_bss_A1768": "lbl_3_bss_A1768",
-      "lbl_3_bss_A176C__fzgx_offset_0": "lbl_3_bss_A176C",
-      "lbl_3_bss_A1770__fzgx_offset_0": "lbl_3_bss_A1770",
-      "lbl_3_bss_A1774__fzgx_offset_0": "lbl_3_bss_A1774",
-      "lbl_3_bss_A1778__fzgx_offset_0": "lbl_3_bss_A1778",
-      "lbl_3_bss_A1778__fzgx_offset_4": "lbl_3_bss_A1778+0x4",
-      "lbl_3_bss_A1778__fzgx_offset_8": "lbl_3_bss_A1778+0x8",
-      "lbl_3_bss_A1784__fzgx_offset_0": "lbl_3_bss_A1784",
-      "lbl_3_bss_A1784__fzgx_offset_4": "lbl_3_bss_A1784+0x4",
-      "lbl_3_bss_A1784__fzgx_offset_8": "lbl_3_bss_A1784+0x8",
-      "lbl_3_bss_A1784__fzgx_offset_10": "lbl_3_bss_A1784+0x10",
-      "lbl_3_bss_A1798__fzgx_offset_0": "lbl_3_bss_A1798",
-      "lbl_3_bss_A179C__fzgx_offset_0": "lbl_3_bss_A179C",
-      "lbl_3_bss_A17A0__fzgx_offset_0": "lbl_3_bss_A17A0",
-      "lbl_3_bss_A17CC__fzgx_offset_0": "lbl_3_bss_A17CC",
-      "lbl_3_bss_A17D0__fzgx_offset_0": "lbl_3_bss_A17D0"
-    }
+    "tu": "rel/customize/emblem.c"
   },
   {
     "module": "customize",
@@ -4607,386 +4322,15 @@
   },
   {
     "module": "customize",
-    "source": "rel/customize/emblem/fn_3_1338C.c",
-    "symbols": [
-      "fn_3_1338C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emblem.c",
-    "pool": {
-      "@9": "lbl_3_data_3574",
-      "...bss.0": "lbl_3_bss_A1768",
-      "fzgx_obj_lbl_3_bss_A1768": "lbl_3_bss_A1768",
-      "fzgx_obj_lbl_3_bss_A176C": "lbl_3_bss_A176C",
-      "lbl_3_bss_A1770": "lbl_3_bss_A1770",
-      "lbl_3_bss_A1774": "lbl_3_bss_A1774",
-      "lbl_3_bss_A1778__fzgx_offset_0": "lbl_3_bss_A1778",
-      "lbl_3_bss_A1778__fzgx_offset_4": "lbl_3_bss_A1778+0x4",
-      "lbl_3_bss_A1778__fzgx_offset_8": "lbl_3_bss_A1778+0x8",
-      "lbl_3_bss_A1784__fzgx_offset_0": "lbl_3_bss_A1784",
-      "lbl_3_bss_A1784__fzgx_offset_4": "lbl_3_bss_A1784+0x4",
-      "lbl_3_bss_A1784__fzgx_offset_8": "lbl_3_bss_A1784+0x8",
-      "lbl_3_bss_A1784__fzgx_offset_9": "lbl_3_bss_A1784+0x9",
-      "lbl_3_bss_A1784__fzgx_offset_A": "lbl_3_bss_A1784+0xA",
-      "lbl_3_bss_A1784__fzgx_offset_C": "lbl_3_bss_A1784+0xC",
-      "lbl_3_bss_A1798": "lbl_3_bss_A1798",
-      "fzgx_obj_lbl_3_bss_A179C": "lbl_3_bss_A179C",
-      "fzgx_obj_lbl_3_bss_A17A0": "lbl_3_bss_A17A0",
-      "fzgx_obj_lbl_3_bss_A17CC": "lbl_3_bss_A17CC"
-    }
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/emblem/fn_3_1349C.c",
-    "symbols": [
-      "fn_3_1349C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emblem.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/emblem/fn_3_13508.c",
-    "symbols": [
-      "fn_3_13508"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/customize/emblem.c",
-    "pool": {
-      "...bss.0": "lbl_3_bss_A1768",
-      "lbl_3_bss_A1768": "lbl_3_bss_A1768",
-      "lbl_3_bss_A176C": "lbl_3_bss_A176C",
-      "lbl_3_bss_A1770": "lbl_3_bss_A1770",
-      "lbl_3_bss_A1774": "lbl_3_bss_A1774",
-      "lbl_3_bss_A1778": "lbl_3_bss_A1778",
-      "lbl_3_bss_A1778__fzgx_offset_8": "lbl_3_bss_A1778+0x8",
-      "lbl_3_bss_A1784": "lbl_3_bss_A1784",
-      "lbl_3_bss_A1798": "lbl_3_bss_A1798",
-      "lbl_3_bss_A179C": "lbl_3_bss_A179C",
-      "lbl_3_bss_A17A0": "lbl_3_bss_A17A0",
-      "lbl_3_bss_A17CC": "lbl_3_bss_A17CC",
-      "lbl_3_bss_A17D0": "lbl_3_bss_A17D0",
-      "lbl_3_bss_A17D2": "lbl_3_bss_A17D2"
-    }
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/emblem/fn_3_137AC.c",
-    "symbols": [
-      "fn_3_137AC"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emblem.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/emblem/fn_3_139F0.c",
-    "symbols": [
-      "fn_3_139F0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/customize/emblem.c",
-    "pool": {
-      "...rodata.0": "lbl_3_rodata_4E0",
-      "@41": "lbl_3_rodata_4E0+0x10",
-      "@42": "lbl_3_rodata_4E0+0x14",
-      "@43": "lbl_3_rodata_4E0+0x18",
-      "@44": "lbl_3_rodata_4E0+0x1C",
-      "@45": "lbl_3_rodata_4E0+0x20",
-      "@46": "lbl_3_rodata_4E0+0x24",
-      "@47": "lbl_3_rodata_4E0+0x28",
-      "@48": "lbl_3_rodata_4E0+0x2C",
-      "@49": "lbl_3_rodata_4E0+0x30",
-      "@50": "lbl_3_rodata_4E0+0x34",
-      "@51": "lbl_3_rodata_4E0+0x38",
-      "@52": "lbl_3_rodata_4E0+0x3C",
-      "@58": "lbl_3_rodata_4E0+0x50",
-      "@53": "lbl_3_rodata_4E0+0x40",
-      "@54": "lbl_3_rodata_4E0+0x44",
-      "@55": "lbl_3_rodata_4E0+0x48",
-      "@56": "lbl_3_rodata_4E0+0x4C",
-      "...data.0": "lbl_3_data_3360"
-    }
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/emblem/fn_3_13D98.c",
-    "symbols": [
-      "fn_3_13D98"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emblem.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/emblem/fn_3_13EA4.c",
-    "symbols": [
-      "fn_3_13EA4"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/customize/emblem.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/emblem/fn_3_14008.c",
-    "symbols": [
-      "fn_3_14008"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emblem.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/emblem/fn_3_1401C.c",
-    "symbols": [
-      "fn_3_1401C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emblem.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/emblem/fn_3_1402C.c",
-    "symbols": [
-      "fn_3_1402C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emblem.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/emblem/fn_3_14064.c",
-    "symbols": [
-      "fn_3_14064"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emblem.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/emblem/fn_3_14074.c",
-    "symbols": [
-      "fn_3_14074"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emblem.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/emblem/fn_3_14080.c",
-    "symbols": [
-      "fn_3_14080"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/customize/emblem.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/emblem/fn_3_141A8.c",
-    "symbols": [
-      "fn_3_141A8"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emblem.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/emblem/fn_3_142C4.c",
-    "symbols": [
-      "fn_3_142C4"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emblem.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/emblem/fn_3_1441C.c",
-    "symbols": [
-      "fn_3_1441C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emblem.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/emblem/fn_3_1443C.c",
-    "symbols": [
-      "fn_3_1443C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emblem.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/emblem/fn_3_1445C.c",
-    "symbols": [
-      "fn_3_1445C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/customize/emblem.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/emblem/fn_3_14600.c",
-    "symbols": [
-      "fn_3_14600"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emblem.c"
-  },
-  {
-    "module": "customize",
     "source": "rel/customize/emblem/fn_3_146C0.c",
     "symbols": [
-      "fn_3_146C0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emblem.c",
-    "pool": {
-      "lbl_3_bss_A23D8__fzgx_offset_2": "lbl_3_bss_A23D8+0x2"
-    }
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/emblem/fn_3_14778.c",
-    "symbols": [
-      "fn_3_14778"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emblem.c",
-    "pool": {
-      "...bss.0": "lbl_3_bss_A23D8",
-      "lbl_3_bss_A23D8": "lbl_3_bss_A23D8",
-      "lbl_3_bss_A23E0": "lbl_3_bss_A23E0"
-    }
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/emblem/fn_3_14794.c",
-    "symbols": [
-      "fn_3_14794"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emblem.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/emblem/fn_3_149AC.c",
-    "symbols": [
-      "fn_3_149AC"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3",
-    "extra_cflags": [],
-    "tu": "rel/customize/emblem.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/emblem/fn_3_14BBC.c",
-    "symbols": [
-      "fn_3_14BBC"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/customize/emblem.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/emblem/fn_3_14E18.c",
-    "symbols": [
-      "fn_3_14E18"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/customize/emblem.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/emblem/fn_3_15240.c",
-    "symbols": [
-      "fn_3_15240"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/customize/emblem.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/emblem/fn_3_152BC.c",
-    "symbols": [
+      "fn_3_146C0",
+      "fn_3_14778",
+      "fn_3_14794",
+      "fn_3_149AC",
+      "fn_3_14BBC",
+      "fn_3_14E18",
+      "fn_3_15240",
       "fn_3_152BC"
     ],
     "status": "matching",
@@ -5138,18 +4482,6 @@
     "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/customize/emb_paste_editor.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/fn_3_146BC.c",
-    "symbols": [
-      "fn_3_146BC"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emblem.c"
   },
   {
     "module": "customize",

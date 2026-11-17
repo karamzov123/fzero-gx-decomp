@@ -148,40 +148,10 @@ rel/customize/fn_3_13078.c:
 	.text       start:0x00013078 end:0x0001307C
 
 rel/customize/emb_paste_editor/fn_3_1307C.c:
-	.text       start:0x0001307C end:0x0001308C
-
-rel/customize/emb_paste_editor/fn_3_1308C.c:
-	.text       start:0x0001308C end:0x000130A8
-
-rel/customize/emb_paste_editor/fn_3_130A8.c:
-	.text       start:0x000130A8 end:0x000130C8
-
-rel/customize/emblem/fn_3_14008.c:
-	.text       start:0x00014008 end:0x0001401C
-
-rel/customize/emblem/fn_3_1401C.c:
-	.text       start:0x0001401C end:0x0001402C
-
-rel/customize/emblem/fn_3_1402C.c:
-	.text       start:0x0001402C end:0x00014064
-
-rel/customize/emblem/fn_3_14064.c:
-	.text       start:0x00014064 end:0x00014074
-
-rel/customize/emblem/fn_3_14074.c:
-	.text       start:0x00014074 end:0x00014080
-
-rel/customize/emblem/fn_3_142C4.c:
-	.text       start:0x000142C4 end:0x0001441C
-
-rel/customize/emblem/fn_3_1441C.c:
-	.text       start:0x0001441C end:0x0001443C
-
-rel/customize/emblem/fn_3_1443C.c:
-	.text       start:0x0001443C end:0x0001445C
-
-rel/customize/fn_3_146BC.c:
-	.text       start:0x000146BC end:0x000146C0
+	.text       start:0x0001307C end:0x000146C0 align:4
+	.rodata     start:0x000004E0 end:0x00000538 align:8
+	.data       start:0x00003360 end:0x000035B0 align:8
+	.bss        start:0x000A1768 end:0x000A23D8 align:8
 
 rel/customize/editor/fn_3_1552C.c:
 	.text       start:0x0001552C end:0x0001560C
@@ -297,9 +267,6 @@ rel/customize/toolkit/fn_3_1A1D8.c:
 rel/customize/_prolog/fn_3_61B8.c:
 	.text       start:0x000061B8 end:0x00006270 align:4
 
-rel/customize/emblem/fn_3_14600.c:
-	.text       start:0x00014600 end:0x000146BC align:4
-
 rel/customize/_prolog/fn_3_968C.c:
 	.text       start:0x0000968C end:0x00009710 align:4
 
@@ -349,29 +316,14 @@ rel/customize/emb_paste_editor/fn_3_11994.c:
 rel/customize/_prolog/fn_3_5A50.c:
 	.text       start:0x00005A50 end:0x00005B9C align:4
 
-rel/customize/emblem/fn_3_141A8.c:
-	.text       start:0x000141A8 end:0x000142C4 align:4
-
 rel/customize/_prolog/fn_3_7594.c:
 	.text       start:0x00007594 end:0x00007688 align:4
-
-rel/customize/emblem/fn_3_1349C.c:
-	.text       start:0x0001349C end:0x00013508 align:4
-
-rel/customize/emblem/fn_3_13EA4.c:
-	.text       start:0x00013EA4 end:0x00014008 align:4
-
-rel/customize/emblem/fn_3_14080.c:
-	.text       start:0x00014080 end:0x000141A8 align:4
 
 rel/customize/emb_paste_editor/fn_3_1180C.c:
 	.text       start:0x0001180C end:0x000118BC align:4
 
 rel/customize/_prolog/fn_3_5CE4.c:
 	.text       start:0x00005CE4 end:0x00005D84 align:4
-
-rel/customize/emblem/fn_3_15240.c:
-	.text       start:0x00015240 end:0x000152BC align:4
 
 rel/customize/_prolog/fn_3_3438.c:
 	.text       start:0x00003438 end:0x0000368C align:4
@@ -389,13 +341,11 @@ rel/customize/toolkit/fn_3_1AB34.c:
 	.text       start:0x0001AB34 end:0x0001ABD8 align:4
 
 rel/customize/emblem/fn_3_146C0.c:
-	.text       start:0x000146C0 end:0x00014778 align:4
+	.text       start:0x000146C0 end:0x0001552C align:4
+	.bss        start:0x000A23D8 end:0x000A23E8 align:8
 
 rel/customize/_prolog/fn_3_5B9C.c:
 	.text       start:0x00005B9C end:0x00005C4C align:4
-
-rel/customize/emblem/fn_3_13D98.c:
-	.text       start:0x00013D98 end:0x00013EA4 align:4
 
 rel/customize/customize/fn_3_ACF4.c:
 	.text       start:0x0000ACF4 end:0x0000AE74 align:4
@@ -436,9 +386,6 @@ rel/customize/emb_paste_editor/fn_3_10B68.c:
 rel/customize/toolkit/fn_3_1D338.c:
 	.text       start:0x0001D338 end:0x0001EC2C align:4
 
-rel/customize/emblem/fn_3_1445C.c:
-	.text       start:0x0001445C end:0x00014600 align:4
-
 rel/customize/_prolog/fn_3_131C.c:
 	.text       start:0x0000131C end:0x000014C4 align:4
 
@@ -466,14 +413,8 @@ rel/customize/_prolog/fn_3_7CF8.c:
 rel/customize/emb_paste_editor/fn_3_118BC.c:
 	.text       start:0x000118BC end:0x00011930 align:4
 
-rel/customize/emblem/fn_3_1338C.c:
-	.text       start:0x0001338C end:0x0001349C align:4
-
 rel/customize/_prolog/fn_3_4C58.c:
 	.text       start:0x00004C58 end:0x00004F08 align:4
-
-rel/customize/emblem/fn_3_14778.c:
-	.text       start:0x00014778 end:0x00014794 align:4
 
 rel/customize/_prolog/fn_3_5F28.c:
 	.text       start:0x00005F28 end:0x000060C8 align:4
@@ -506,9 +447,6 @@ rel/customize/_prolog/fn_3_15A0.c:
 	.text       start:0x000015A0 end:0x000033A0 align:4
 	.data       start:0x00000000 end:0x00001668 align:8
 
-rel/customize/emblem/fn_3_149AC.c:
-	.text       start:0x000149AC end:0x00014BBC align:4
-
 rel/customize/emb_memcard/fn_3_E5D4.c:
 	.text       start:0x0000E5D4 end:0x0000E6F8 align:4
 
@@ -529,9 +467,6 @@ rel/customize/_prolog/fn_3_0.c:
 
 rel/customize/_prolog/fn_3_4380.c:
 	.text       start:0x00004380 end:0x00004538 align:4
-
-rel/customize/emblem/fn_3_137AC.c:
-	.text       start:0x000137AC end:0x000139F0 align:4
 
 rel/customize/toolkit/fn_3_1A648.c:
 	.text       start:0x0001A648 end:0x0001AB34 align:4
@@ -556,9 +491,6 @@ rel/customize/toolkit/fn_3_1BF08.c:
 
 rel/customize/_prolog/fn_3_4538.c:
 	.text       start:0x00004538 end:0x000048E0 align:4
-
-rel/customize/emblem/fn_3_139F0.c:
-	.text       start:0x000139F0 end:0x00013D98 align:4
 
 rel/customize/toolkit/fn_3_1EC2C.c:
 	.text       start:0x0001EC2C end:0x0001EFE4 align:4
@@ -586,9 +518,6 @@ rel/customize/_prolog/fn_3_48E0.c:
 
 rel/customize/customize/fn_3_BA74.c:
 	.text       start:0x0000BA74 end:0x0000BC60 align:4
-
-rel/customize/emblem/fn_3_13508.c:
-	.text       start:0x00013508 end:0x000137AC align:4
 
 rel/customize/emb_paste_editor/fn_3_12B14.c:
 	.text       start:0x00012B14 end:0x00012E4C align:4
@@ -637,9 +566,6 @@ rel/customize/emb_paste_editor/fn_3_106FC.c:
 
 rel/customize/_prolog/fn_3_E64.c:
 	.text       start:0x00000E64 end:0x000010A4 align:4
-
-rel/customize/emb_paste_editor/fn_3_130C8.c:
-	.text       start:0x000130C8 end:0x0001338C align:4
 
 rel/customize/toolkit/fn_3_1B4BC.c:
 	.text       start:0x0001B4BC end:0x0001BA20 align:4
@@ -734,23 +660,11 @@ rel/customize/editor/fn_3_177AC.c:
 rel/customize/_prolog/fn_3_14E4.c:
 	.text       start:0x000014E4 end:0x000015A0 align:4
 
-rel/customize/emblem/fn_3_14794.c:
-	.text       start:0x00014794 end:0x000149AC align:4
-
 rel/customize/emb_paste_editor/fn_3_10260.c:
 	.text       start:0x00010260 end:0x000104C4 align:4
 
-rel/customize/emblem/fn_3_152BC.c:
-	.text       start:0x000152BC end:0x0001552C align:4
-
-rel/customize/emblem/fn_3_14BBC.c:
-	.text       start:0x00014BBC end:0x00014E18 align:4
-
 rel/customize/_prolog/fn_3_680C.c:
 	.text       start:0x0000680C end:0x00006AC4 align:4
-
-rel/customize/emblem/fn_3_14E18.c:
-	.text       start:0x00014E18 end:0x00015240 align:4
 
 rel/customize/_prolog/fn_3_5500.c:
 	.text       start:0x00005500 end:0x00005A50 align:4
@@ -941,30 +855,6 @@ rel/customize/data/lbl_3_bss_9F640.c:
 rel/customize/data/lbl_3_bss_9F690.c:
 	.bss        start:0x0009F690 end:0x000A1768 align:8
 
-rel/customize/data/lbl_3_bss_A1768.c:
-	.bss        start:0x000A1768 end:0x000A1770 align:8
-
-rel/customize/data/lbl_3_bss_A1770.c:
-	.bss        start:0x000A1770 end:0x000A1778 align:16
-
-rel/customize/data/lbl_3_bss_A1778.c:
-	.bss        start:0x000A1778 end:0x000A1798 align:8
-
-rel/customize/data/lbl_3_bss_A1798.c:
-	.bss        start:0x000A1798 end:0x000A17A0 align:8
-
-rel/customize/data/lbl_3_bss_A17A0.c:
-	.bss        start:0x000A17A0 end:0x000A17D0 align:32
-
-rel/customize/data/lbl_3_bss_A17D0.c:
-	.bss        start:0x000A17D0 end:0x000A23D8 align:16
-
-rel/customize/data/lbl_3_bss_A23D8.c:
-	.bss        start:0x000A23D8 end:0x000A23E0 align:8
-
-rel/customize/data/lbl_3_bss_A23E0.c:
-	.bss        start:0x000A23E0 end:0x000A23E8 align:32
-
 rel/customize/data/lbl_3_bss_A23E8.c:
 	.bss        start:0x000A23E8 end:0x000A2408 align:8
 
@@ -1031,42 +921,6 @@ rel/customize/data/lbl_3_data_3308.c:
 rel/customize/data/lbl_3_data_3320.c:
 	.data       start:0x00003320 end:0x00003360 align:8
 
-rel/customize/data/lbl_3_data_3360.c:
-	.data       start:0x00003360 end:0x00003370 align:8
-
-rel/customize/data/lbl_3_data_3370.c:
-	.data       start:0x00003370 end:0x00003380 align:8
-
-rel/customize/data/lbl_3_data_3380.c:
-	.data       start:0x00003380 end:0x00003388 align:8
-
-rel/customize/data/lbl_3_data_3388.c:
-	.data       start:0x00003388 end:0x00003398 align:8
-
-rel/customize/data/lbl_3_data_3398.c:
-	.data       start:0x00003398 end:0x000033A8 align:8
-
-rel/customize/data/lbl_3_data_33A8.c:
-	.data       start:0x000033A8 end:0x000033F0 align:8
-
-rel/customize/data/lbl_3_data_33F0.c:
-	.data       start:0x000033F0 end:0x000033F8 align:8
-
-rel/customize/data/lbl_3_data_33F8.c:
-	.data       start:0x000033F8 end:0x00003400 align:8
-
-rel/customize/data/lbl_3_data_3400.c:
-	.data       start:0x00003400 end:0x00003408 align:8
-
-rel/customize/data/lbl_3_data_3408.c:
-	.data       start:0x00003408 end:0x00003410 align:8
-
-rel/customize/data/lbl_3_data_3410.c:
-	.data       start:0x00003410 end:0x00003420 align:8
-
-rel/customize/data/lbl_3_data_3420.c:
-	.data       start:0x00003420 end:0x000035B0 align:8
-
 rel/customize/data/lbl_3_data_35B0.c:
 	.data       start:0x000035B0 end:0x00003618 align:8
 
@@ -1083,7 +937,10 @@ rel/customize/data/lbl_3_rodata_0.c:
 	.rodata     start:0x00000000 end:0x00000270 align:8
 
 rel/customize/data/lbl_3_rodata_288.c:
-	.rodata     start:0x00000288 end:0x00000E34 align:8
+	.rodata     start:0x00000288 end:0x000004E0 align:8
+
+rel/customize/data/lbl_3_rodata_538.c:
+	.rodata     start:0x00000538 end:0x00000E34 align:8
 
 rel/customize/data/lbl_3_bss_7EBA0.c:
 	.bss        start:0x0007EBA0 end:0x0007EBA8 align:32
