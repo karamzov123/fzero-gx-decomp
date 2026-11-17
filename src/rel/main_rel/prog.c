@@ -47,6 +47,11 @@ extern ProgPad lbl_1_bss_9F8[4];
 extern s16 lbl_1_bss_962;
 extern ProgPad lbl_1_bss_D58;
 
+/* Pad button test: bit n of a pad button word. */
+/* REVIEW NOTE (accepted for now): PAD_BIT is a reconstruction. Retail reads a pad bit with lhz + rlwinm and
+ * loads the word again in each statement. Only the __rlwinm intrinsic reproduces it. No retail name proves it. */
+#define PAD_BIT(word, n) __rlwinm((word), (32 - (n)) & 31, 31, 31)
+
 extern void OSPanic(const char *file, int line, const char *msg, ...);
 extern s32 OSGetResetCode(void);
 extern u32 OSGetProgressiveMode(void);
@@ -138,8 +143,8 @@ void fn_1_A5DEC(void) {
             ticks = (OS_BUS_CLOCK >> 2) / 1000;
         } while ((u32)((OSGetTick() / ticks) - (start / ticks)) < 500);
         fn_1_3308();
-        if (((lbl_1_bss_9F8[0].button >> 9) & 1) || ((lbl_1_bss_9F8[1].button >> 9) & 1) ||
-            ((lbl_1_bss_9F8[2].button >> 9) & 1) || ((lbl_1_bss_9F8[3].button >> 9) & 1) ||
+        if (PAD_BIT(lbl_1_bss_9F8[0].button, 9) || PAD_BIT(lbl_1_bss_9F8[1].button, 9) ||
+            PAD_BIT(lbl_1_bss_9F8[2].button, 9) || PAD_BIT(lbl_1_bss_9F8[3].button, 9) ||
             OSGetProgressiveMode() != 0) {
             lbl_1_data_341B8->enabled = 1;
             return;
@@ -235,19 +240,16 @@ s32 fn_1_A6480(void) {
     s32 buttonB;
     s32 start;
     s8 state;
-    ProgPad *pad;
 
-    pad = &lbl_1_bss_D58;
     buttonA = 1;
-    /* WARNING: compiler-diff device, not original code. Retail reloads this field (volatile view). */
-    if (!((*(u16 volatile *)&lbl_1_bss_D58.down) & 1) && !(lbl_1_bss_D58.unk_A & 1)) {
+    if (!PAD_BIT(lbl_1_bss_D58.down, 0) && !PAD_BIT(lbl_1_bss_D58.unk_A, 0)) {
         buttonA = 0;
     }
     buttonB = 1;
-    if (!((lbl_1_bss_D58.down >> 1) & 1) && !((lbl_1_bss_D58.unk_A >> 1) & 1)) {
+    if (!PAD_BIT(lbl_1_bss_D58.down, 1) && !PAD_BIT(lbl_1_bss_D58.unk_A, 1)) {
         buttonB = 0;
     }
-    start = (pad->down >> 8) & 1;
+    start = PAD_BIT(lbl_1_bss_D58.down, 8);
     state = lbl_1_data_341B8->state;
     switch (state) {
     case 0:
