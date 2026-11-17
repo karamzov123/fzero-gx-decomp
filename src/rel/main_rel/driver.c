@@ -3542,129 +3542,74 @@ void fn_1_A96EC(void) {
 }
 /* fzgx:end fn_1_A96EC */
 
-/* fzgx:begin fn_1_A96FC */
+/* fzgx:begin fn_1_A96FC noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+
+typedef struct RelModule {
+    void *module;
+    void *bss;
+} RelModule;
+
+extern u32 fn_1_451C(void);
+extern int sprintf(char *buffer, const char *format, ...);
+extern void fn_1_A5AA0(const char *path, RelModule *rel);
+extern void fn_1_A5C98(RelModule *rel);
+
+char *lbl_1_data_35A70[18] = {
+    "advertise", "sel", "", "option", "test", "customize", "car_colchg", "acsetup", "movie",
+    "story", "title", "testmode", "replay", "pilotpoint", "winning", "profile", "interview", "",
+};
+
+u32 lbl_1_bss_71670;
+RelModule lbl_1_bss_71674;
+void (*lbl_1_bss_7167C)(void);
+void (*lbl_1_bss_71680)(void);
+void (*lbl_1_bss_71684)(void);
+void (*lbl_1_bss_71688)(void);
+void (*lbl_1_bss_7168C)(void);
+
 // Initialize the driver state and format its startup data.
 void fn_1_A96FC(void) {
-    u8 buffer[0x48];
+    char buffer[0x48];
 
     lbl_1_bss_71670 = fn_1_451C();
-    sprintf(buffer, (char *)lbl_1_data_35AB8,
-                ((u32 *)lbl_1_data_35A70)[*(s16 *)&lbl_1_bss_960]);
+    sprintf(buffer, "fze.%s.rel", lbl_1_data_35A70[*(s16 *)&lbl_1_bss_960]);
     fn_1_A5AA0(buffer, &lbl_1_bss_71674);
 }
 /* fzgx:end fn_1_A96FC */
 
 /* fzgx:begin fn_1_A9764 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/driver.h"
-
-extern void (*lbl_1_bss_7167C)(void);
-
-extern void (*lbl_1_bss_71680)(void);
-
-extern void (*lbl_1_bss_7167C)(void);
-
-extern void (*lbl_1_bss_71684)(void);
-
-extern void (*lbl_1_bss_71688)(void);
-
-extern void (*lbl_1_bss_7168C)(void);
-
 void fn_1_A9764(void) {
     lbl_1_bss_7167C();
 }
 /* fzgx:end fn_1_A9764 */
 
 /* fzgx:begin fn_1_A9790 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/driver.h"
-
-extern void (*lbl_1_bss_7167C)(void);
-
-extern void (*lbl_1_bss_71680)(void);
-
-extern void (*lbl_1_bss_7167C)(void);
-
-extern void (*lbl_1_bss_71684)(void);
-
-extern void (*lbl_1_bss_71688)(void);
-
-extern void (*lbl_1_bss_7168C)(void);
-
 void fn_1_A9790(void) {
     lbl_1_bss_71680();
 }
 /* fzgx:end fn_1_A9790 */
 
-/* fzgx:begin fn_1_A97BC */
+/* fzgx:begin fn_1_A97BC noprologue */
 void fn_1_A97BC(void) {
     fn_1_A5C98(&lbl_1_bss_71674);
 }
 /* fzgx:end fn_1_A97BC */
 
 /* fzgx:begin fn_1_A97E4 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/driver.h"
-
-extern void (*lbl_1_bss_7167C)(void);
-
-extern void (*lbl_1_bss_71680)(void);
-
-extern void (*lbl_1_bss_7167C)(void);
-
-extern void (*lbl_1_bss_71684)(void);
-
-extern void (*lbl_1_bss_71688)(void);
-
-extern void (*lbl_1_bss_7168C)(void);
-
 void fn_1_A97E4(void) {
     lbl_1_bss_71684();
 }
 /* fzgx:end fn_1_A97E4 */
 
 /* fzgx:begin fn_1_A9810 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/driver.h"
-
-extern void (*lbl_1_bss_7167C)(void);
-
-extern void (*lbl_1_bss_71680)(void);
-
-extern void (*lbl_1_bss_7167C)(void);
-
-extern void (*lbl_1_bss_71684)(void);
-
-extern void (*lbl_1_bss_71688)(void);
-
-extern void (*lbl_1_bss_7168C)(void);
-
 void fn_1_A9810(void) {
     lbl_1_bss_71688();
 }
 /* fzgx:end fn_1_A9810 */
 
 /* fzgx:begin fn_1_A983C noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/driver.h"
-
-extern void (*lbl_1_bss_7167C)(void);
-
-extern void (*lbl_1_bss_71680)(void);
-
-extern void (*lbl_1_bss_7167C)(void);
-
-extern void (*lbl_1_bss_71684)(void);
-
-extern void (*lbl_1_bss_71688)(void);
-
-extern void (*lbl_1_bss_7168C)(void);
-
 void fn_1_A983C(void) {
     lbl_1_bss_7168C();
 }

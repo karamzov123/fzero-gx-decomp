@@ -2188,25 +2188,9 @@ rel/main_rel/driver/fn_1_A96EC.c:
 	.text       start:0x000A96EC end:0x000A96FC
 
 rel/main_rel/driver/fn_1_A96FC.c:
-	.text       start:0x000A96FC end:0x000A9764
-
-rel/main_rel/driver/fn_1_A9764.c:
-	.text       start:0x000A9764 end:0x000A9790
-
-rel/main_rel/driver/fn_1_A9790.c:
-	.text       start:0x000A9790 end:0x000A97BC
-
-rel/main_rel/driver/fn_1_A97BC.c:
-	.text       start:0x000A97BC end:0x000A97E4
-
-rel/main_rel/driver/fn_1_A97E4.c:
-	.text       start:0x000A97E4 end:0x000A9810
-
-rel/main_rel/driver/fn_1_A9810.c:
-	.text       start:0x000A9810 end:0x000A983C
-
-rel/main_rel/driver/fn_1_A983C.c:
-	.text       start:0x000A983C end:0x000A9868
+	.text       start:0x000A96FC end:0x000A9868 align:4
+	.data       start:0x000359D8 end:0x00035AC8 align:8
+	.bss        start:0x00071670 end:0x00071690 align:8
 
 rel/main_rel/driver/fn_1_AAF18.c:
 	.text       start:0x000AAF18 end:0x000AAF1C
@@ -15629,15 +15613,6 @@ rel/main_rel/data/lbl_1_bss_70658.c:
 rel/main_rel/data/lbl_1_bss_71658.c:
 	.bss        start:0x00071658 end:0x00071670 align:8
 
-rel/main_rel/data/lbl_1_bss_71670.c:
-	.bss        start:0x00071670 end:0x00071680 align:16
-
-rel/main_rel/data/lbl_1_bss_71680.c:
-	.bss        start:0x00071680 end:0x00071688 align:32
-
-rel/main_rel/data/lbl_1_bss_71688.c:
-	.bss        start:0x00071688 end:0x00071690 align:8
-
 rel/main_rel/data/lbl_1_bss_71690.c:
 	.bss        start:0x00071690 end:0x000716C0 align:16
 
@@ -17911,21 +17886,6 @@ rel/main_rel/data/lbl_1_data_1C1B8.c:
 rel/main_rel/data/lbl_1_data_1C1C0.c:
 	.data       start:0x0001C1C0 end:0x0001C300 align:8
 
-rel/main_rel/data/lbl_1_data_35A08.c:
-	.data       start:0x00035A08 end:0x00035A40 align:8
-
-rel/main_rel/data/lbl_1_data_35A40.c:
-	.data       start:0x00035A40 end:0x00035A48 align:8
-
-rel/main_rel/data/lbl_1_data_35A48.c:
-	.data       start:0x00035A48 end:0x00035A70 align:8
-
-rel/main_rel/data/lbl_1_data_35A70.c:
-	.data       start:0x00035A70 end:0x00035AB8 align:8
-
-rel/main_rel/data/lbl_1_data_35AB8.c:
-	.data       start:0x00035AB8 end:0x00035AC8 align:8
-
 rel/main_rel/data/lbl_1_data_3CF50.c:
 	.data       start:0x0003CF50 end:0x0003CF68 align:8
 
@@ -18188,12 +18148,6 @@ rel/main_rel/data/lbl_1_data_2DB48.c:
 
 rel/main_rel/data/lbl_1_data_35990.c:
 	.data       start:0x00035990 end:0x000359D8 align:8
-
-rel/main_rel/data/lbl_1_data_359D8.c:
-	.data       start:0x000359D8 end:0x000359E8 align:8
-
-rel/main_rel/data/lbl_1_data_359E8.c:
-	.data       start:0x000359E8 end:0x00035A08 align:8
 
 rel/main_rel/data/lbl_1_data_3CB50.c:
 	.data       start:0x0003CB50 end:0x0003CB68 align:8
