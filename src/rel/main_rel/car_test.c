@@ -1,196 +1,144 @@
 #include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/car_test.h"
 
-extern void fn_1_5634C(u32 arg0);
-extern void fn_1_7ECB8(u32 arg0, u32 arg1, u32 arg2);
-extern void *lbl_801A6410;
-extern const f64 lbl_1_rodata_3588;
-extern void fn_1_12AB38(const char *);
-extern void *fn_1_45D0(void *, s32, const char *, s32);
-extern void fn_80008BEC(void *, s32, s32);
-extern void fn_1_80F80(void *, u8, void *);
-extern void fn_1_1502BC(void *, void *, void *);
+/* car_test.c: the machine test scene (main.rel, one translation unit) */
 
-extern void fn_80083DB0(void* arg0, u32 arg1);
-extern void fn_1_801F8(s16 arg0, void* arg1);
-extern const f32 lbl_1_rodata_33AC;
-extern void *fn_1_4630(void *arg0, u32 arg1, void *arg2, u32 arg3);
-extern const f32 lbl_1_rodata_33B0[84];
-extern void *memset(void *dst, int value, u32 size);
-extern void fn_1_46B4(void *arg0, void *arg1, u8 *arg2, s32 arg3);
-extern void fn_1_7F954(void *arg0, s32 arg1);
-extern void fn_1_49614(void);
-extern const f32 lbl_1_rodata_33A8;
-extern void fn_80071ED4(s32 arg0, f32 arg1, f32 arg2);
-extern void fn_80072014(void *arg0);
-extern void fn_800720B0(s32 arg0);
+typedef struct GXColor {
+    u8 r, g, b, a;
+} GXColor;
 
-/* fzgx:begin fn_1_7C13C */
-#include "types.h"
-
-typedef struct {
-    u8 pad_32c[0x32c];
-    void *field_32c;
-    u8 pad_330[0x110];
-} Fn17C13CEntry;
-
-typedef struct {
-    u8 pad_4[4];
-    u16 field_4;
-    u16 field_6;
-    u8 pad_8[0x17c];
-    f32 field_184;
-} Fn17C13CObject;
-
-void fn_1_7C13C(Fn17C13CEntry *arg0) {
-    f32 value;
-    Fn17C13CEntry *p;
-    int i;
-
-    value = 100.0f;
-    p = arg0;
-    for (i = 0; i < 0x29; i++) {
-        p->field_32c = fn_1_4630((*(u8 * *)&lbl_801A6410), 0x620, (*(u8 (*)[128])&lbl_1_data_1EF5C), 0x58);
-        ((Fn17C13CObject *)p->field_32c)->field_6 = (u16)i;
-        ((Fn17C13CObject *)p->field_32c)->field_4 = (u16)i;
-        ((Fn17C13CObject *)p->field_32c)->field_184 = value;
-        p++;
-    }
-}
-/* fzgx:end fn_1_7C13C */
-
-/* fzgx:begin fn_1_7C1E8 */
-void fn_1_7C1E8(void *out) {
-    u8 *p;
-    s8 i;
-
-    p = (u8 *)out;
-    for (i = 0; i < 2; i++) {
-        *(u32 *)p = (u32)fn_1_4630(lbl_801A6410, 4, (*(u8 (*)[128])&lbl_1_data_1EF5C), 0x68);
-        memset(*(void **)p, 0xff, 4);
-        *(f32 *)(p + 4) = lbl_1_rodata_33B0[0];
-        *(u16 *)(p + 8) = 0xE000;
-        *(s16 *)(p + 10) = 0x2000;
-        p += 0xc;
-    }
-}
-/* fzgx:end fn_1_7C1E8 */
-
-/* fzgx:begin fn_1_7C2A0 noprologue */
-#include "types.h"
-
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 1.0f;
-    s = 100.0f;
-    s = 17.320507049560547f;
-}
-static const u32 fzgx_pool_table2[1] = {0x00FF00FF};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
-static const u32 fzgx_pool_table3[1] = {0x00FF00FF};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep3(void) { const u32 *volatile cp; cp = fzgx_pool_table3; }  /* fzgx-allow: S2 pool primer sink */
-static const u32 fzgx_pool_table4[1] = {0x00FF00FF};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = -100.0f;
-    s = 3.0f;
-    s = 6.0f;
-    s = -3.0f;
-    s = 182.04444885253906f;
-    s = 255.0f;
-    d = 4503601774854144.0;
-    d = 4503599627370496.0;
-}
-#pragma section code_type ".text"
-
-typedef struct Vec3f {
+typedef struct Vec3 {
     f32 x, y, z;
-} Vec3f;
+} Vec3;
 
-typedef struct Line3 {
-    Vec3f a;
-    Vec3f b;
-} Line3;
+/* one model of a machine */
+typedef struct CarModel {
+    u8 pad_0[8];
+    Vec3 center;
+    f32 radius;
+    u16 ntex;
+} CarModel;
 
-typedef struct Rodata33A8 {
-    f32 f0;
-    f32 f4;
-    u8 pad8[4];
-    u32 c0;
-    u32 c1;
-    u32 c2;
-    f32 f18;
-    f32 f1c;
-    f32 f20;
-    f32 f24;
-    f32 f28;
-    f32 f2c;
-} Rodata33A8;
+typedef struct CarModelEntry {
+    u32 unk_0;
+    char *name;
+} CarModelEntry;
 
-typedef struct CarInner {
-    u8 pad0[4];
-    s16 idx;
-    u8 pad6[0x76];
-    f32 f7c;
-    u8 pad80[4];
-    f32 f84;
-} CarInner;
-
-typedef struct CarInfo {
+typedef struct CarModelInfo {
     s32 count;
-    u8 pad4[4];
-    u8 *tbl;
-} CarInfo;
+    CarModel *model;
+    CarModelEntry *entries;
+} CarModelInfo;
 
-typedef struct CarSlot {
-    u8 **list;
-    CarInfo *info;
-    u32 pad;
-} CarSlot;
+/* one level of detail of a machine */
+typedef struct CarLod {
+    CarModel **models;
+    CarModelInfo *info;
+    u32 unk_8;
+} CarLod;
 
+typedef struct CarTex {
+    u32 flags;
+    u32 unk_4;
+    u16 width;
+    u16 height;
+    u16 max_lod;
+    u16 pad_e;
+} CarTex;
+
+typedef struct CarTexList {
+    u32 count;
+    CarTex *items;
+} CarTexList;
+
+/* the body state of a machine (0x620 bytes) */
+typedef struct CarBody {
+    u8 pad_0[4];
+    s16 index;
+    u16 unk_6;
+    u8 pad_8[0x74];
+    Vec3 pos;
+    u8 pad_88[0xC4];
+    f32 mtx[3][4];
+    u8 pad_17C[8];
+    f32 unk_184;
+    u8 pad_188[0x498];
+} CarBody;
+
+/* one machine (0x440 bytes) */
 typedef struct Car {
-    u8 pad0[2];
+    u8 pad_0[2];
     s8 limit;
-    u8 pad3[0x329];
-    CarInner *inner;
-    u8 *p330;
-    CarSlot slots[3];
-    u8 pad358[0x62];
-    s16 f3ba;
+    u8 pad_3[0x325];
+    s8 kind;
+    u8 pad_329[3];
+    CarBody *body;
+    u8 *parts;
+    CarLod lods[6];
+    CarTexList *tex[4];
+    u8 lod_mask;
+    u8 pad_38D[0x2B];
+    s16 cv;
+    s16 lod;
+    u8 pad_3BC[0x84];
 } Car;
 
-typedef struct Game {
-    u8 pad0[6];
-    s8 f6;
-    s8 f7;
-    s8 f8;
-    u8 pad9[3];
-    u32 *masks;
-    u8 pad10[0xc];
-    u8 **color;
-    u32 flags;
-    s8 f24;
-} Game;
+/* one light of the test scene (0xC bytes) */
+typedef struct CarTestLight {
+    u8 *color;
+    f32 distance;
+    s16 rot_x;
+    s16 rot_y;
+} CarTestLight;
 
-extern Game *lbl_1_bss_6D7E8;
-extern Rodata33A8 lbl_1_rodata_33A8;
+/* the state of the test scene (0x2C bytes) */
+typedef struct CarTest {
+    Car *cars;
+    s8 sel;
+    s8 channel;
+    s8 mode;
+    s8 car;
+    s8 model;
+    u8 pad_9[3];
+    u32 *disp_masks;
+    char **mode_names;
+    char **mode_help;
+    u8 *bg_color;
+    CarTestLight *lights;
+    u32 flags;
+    s8 lod;
+    u8 lod_level[5];
+} CarTest;
+
+extern void *lbl_801A6410;
+
+extern void *fn_1_4630(void *heap, u32 size, const char *file, u32 line);
+extern void *fn_800793D4(void *dst, int value, u32 size);
+extern void *memset(void *dst, int value, u32 size);
+extern s8 fn_1_816E8(Car *car, s8 lod);
+extern void fn_1_495D8(s32, s32, f32);
+extern void fn_1_495FC(void);
+
+void fn_1_7C13C(Car *cars);
+void fn_1_7C1E8(CarTestLight *lights);
+
+typedef struct Line3 {
+    Vec3 a;
+    Vec3 b;
+} Line3;
+
 extern u32 lbl_801A66A0;
-extern u32 lbl_1_data_1EFDC;
-extern u32 lbl_1_data_1EFE4;
 
 extern u32 fn_1_3C18(u32);
 extern void fn_1_3BDC(u32);
 extern void fn_1_55210(void *);
-extern void fn_1_57714(u8);
-extern void fn_1_5773C(Vec3f *, Vec3f *, u32 *);
+extern void fn_1_57714(s32);
+extern void fn_1_5773C(Vec3 *, Vec3 *, GXColor *);
 extern void fn_1_87238(Car *, s8, f32);
 extern void fn_1_87610(Car *, Car *);
 extern void fn_1_A77DC(Car *);
 extern void fn_1_A7854(Car *, void *);
 extern void fn_1_A8DD4(const char *, ...);
+extern void fn_1_A8EB0(int, int);
 extern void fn_1_A8EF8(u16, u16);
 extern void fn_80008BEC(void *, int, u32);
 extern void fn_80072558(void);
@@ -204,257 +152,161 @@ extern void lbl_8006DBE4(void);
 extern void lbl_8006DCA4(void);
 extern void lbl_8006DFC4(void *);
 extern void lbl_8006E0A4(void *);
-extern void mathutil_mtxA_rotate_y(s32);
-extern u8 *fn_80083970(u8 *, const u8 *);
+extern void mathutil_mtxA_rotate_y(s32 angle);
+extern char *fn_80083970(char *, const char *);
 
-void fn_1_7C2A0(Car *car) {
-    Rodata33A8 *pool = &lbl_1_rodata_33A8;
-    s8 count;
-    void * lab_t1;
-    Line3 l0, l1, l2;
-    u32 c0, c1, c2;
-    s16 i, k;
-
-    if (lbl_1_bss_6D7E8->flags & 0x40000000) {
-        return;
-    }
-    count = car->slots[lbl_1_bss_6D7E8->f24 - 0 + 0].info->count;
-    if (car->inner->idx == lbl_1_bss_6D7E8->f7 || lbl_1_bss_6D7E8->f6 == 5) {
-        lbl_8006DAEC();
-        lbl_8006DCA4();
-        c0 = fzgx_pool_table2[0];
-        c1 = fzgx_pool_table3[0];
-        c2 = fzgx_pool_table4[0];
-        fn_80008BEC(&l0, 0, 0x18);
-        fn_80008BEC(&l1, 0, 0x18);
-        fn_80008BEC(&l2, 0, 0x18);
-        l0.a.x = (-100.0f);
-        l0.b.x = (100.0f);
-        l1.a.y = (-100.0f);
-        l1.b.y = (100.0f);
-        l2.a.z = (-100.0f);
-        l2.b.z = (100.0f);
-        fn_1_57714(2);
-        fn_80072558();
-        fn_1_5773C(&l0.a, &l0.b, &c0);
-        fn_1_5773C(&l1.a, &l1.b, &c1);
-        fn_1_5773C(&l2.a, &l2.b, &c2);
-        if (lbl_1_bss_6D7E8->f6 == 5) {
-            s8 v = car->inner->idx;
-            f32 t0 = (6.0f) * (f32)(v % 2);
-            f32 t1 = (6.0f) * (f32)(v / 2);
-            car->inner->f7c = (3.0f) - t0;
-            car->inner->f84 = (-3.0f) + t1;
-        }
-        lbl_8006E0A4((u8 *)car->inner + 0x7c);
-        if (lbl_1_bss_6D7E8->f6 == 5) {
-            mathutil_mtxA_rotate_y((s32)((182.044449f) * (f32)(lbl_801A66A0 % 360)));
-        }
-        {
-            u8 *c = *lbl_1_bss_6D7E8->color;
-            fn_80074D68((f32)c[0] / (255.0f), (f32)c[1] / (255.0f), (f32)c[2] / (255.0f));
-        }
-        fn_80074D78((u32)__cntlzw(lbl_1_bss_6D7E8->flags & 0x80000000) >> 5);
-        lbl_8006DAEC();
-        lbl_8006D7DC((u8 *)car->inner + 0x7c);
-        lbl_8006DB74((u8 *)car->inner + 0x14c);
-        fn_1_A77DC(car);
-        lab_t1 = 0;
-        fn_1_A7854(car, lab_t1);
-        lbl_8006DB30();
-        car->f3ba = lbl_1_bss_6D7E8->f24;
-        fn_1_3BDC(3);
-        if (lbl_1_bss_6D7E8->f8 == count) {
-            i = 0;
-            k = 0;
-            for (; i < count; i++) {
-                if (((1 << i) & lbl_1_bss_6D7E8->masks[lbl_1_bss_6D7E8->f7]) && i != 0) {
-                    if ((s16)k > car->limit - 1) {
-                        break;
-                    }
-                    if (fn_80083970(*(u8 **)(car->slots[lbl_1_bss_6D7E8->f24].info->tbl + i * 8 + 4), (u8 *)&lbl_1_data_1EFDC)
-                        != *(u8 **)(car->slots[lbl_1_bss_6D7E8->f24].info->tbl + i * 8 + 4)) {
-                        if (car->slots[lbl_1_bss_6D7E8->f24].list[i] == 0) {
-                            k++;
-                        } else {
-                            lbl_8006DAEC();
-                            if (car->p330 != 0) {
-                                fn_1_87610(car, car);
-                                lbl_8006DBE4();
-                                lbl_8006DFC4(car->p330 + k * 0x30);
-                                fn_80072558();
-                                fn_1_55210(car->slots[lbl_1_bss_6D7E8->f24].list[i]);
-                            }
-                            lbl_8006DB30();
-                            k++;
-                        }
-                    }
-                }
-            }
-            fn_80072558();
-            fn_1_87238(car, lbl_1_bss_6D7E8->f24, (1.0f));
-        } else {
-            fn_80072558();
-            fn_1_55210(car->slots[lbl_1_bss_6D7E8->f24].list[lbl_1_bss_6D7E8->f8]);
-        }
-        {
-            s16 r = fn_1_3C18(3);
-            fn_1_A8EF8(0x140, 0x190);
-            fn_1_A8DD4((const char *)&"cpu:%d\n", r);
-        }
-        lbl_8006DB30();
-    }
-}
-/* fzgx:end fn_1_7C2A0 */
-
-/* fzgx:begin fn_1_7C7CC noprologue */
-#include "types.h"
-
-/* the TU's .data ahead of this function, at retail offsets */
-char *fzgx_pool_data_48[6] = {"CAR_TESTTOP", "CAR_SELECT", "CAR_CHECK", "LIGHT_CHG", "BGCOL_CHG", "ALL_DISP"};
-char *fzgx_pool_data_94[6] = {"(Menu:exit)", "(A:Check)\n(B:Top)", "(B:Select)", "(B:Top)", "(B:Top)", "(B:Top)"};
-char fzgx_pool_gap_AC[0xC] = "car_test.c";
-/* the TU creates its .data pool before its .rodata pool (fn_1_7C13C addresses "car_test.c" first); MWCC
- * numbers hoisted section bases in pool-creation order, so retail keeps .data in r29 above .rodata in r28 */
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_data_first(void) {
-    const char *volatile s;  /* fzgx-allow: S2 pool primer sink */
-    s = "CAR_TESTTOP";
-    s = "CAR_SELECT";
-    s = "CAR_CHECK";
-}
-#pragma section code_type ".text"
-
-/* the TU's .rodata ahead of this function: fn_1_7C2A0's literals and colours */
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 1.0f;
-    s = 100.0f;
-    s = 17.320507049560547f;
-}
-static const u32 fzgx_pool_table2[1] = {0x00FF00FF};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
-static const u32 fzgx_pool_table3[1] = {0x00FF00FF};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep3(void) { const u32 *volatile cp; cp = fzgx_pool_table3; }  /* fzgx-allow: S2 pool primer sink */
-static const u32 fzgx_pool_table4[1] = {0x00FF00FF};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = -100.0f;
-    s = 3.0f;
-    s = 6.0f;
-    s = -3.0f;
-    s = 182.04444885253906f;
-    s = 255.0f;
-    d = 4503601774854144.0;
-    d = 4503599627370496.0;
-}
-#pragma section code_type ".text"
-
-typedef struct {
-    u8 r, g, b, a;
-} Color;
-
-typedef struct {
-    f32 x, y, z;
-} Vec;
-
-typedef struct {
-    u8 pad_0[8];
-    Vec center;
-    f32 radius;
-    u16 ntex;
-} CarModel;
-
-typedef struct {
-    u32 unk_0;
-    char *name;
-} CarModelEntry;
-
-typedef struct {
-    s32 count;
-    CarModel *model;
-    CarModelEntry *entries;
-} CarModelInfo;
-
-typedef struct {
-    CarModel **models;
-    CarModelInfo *info;
-    u32 unk_8;
-} CarLod;
-
-typedef struct {
-    u32 flags;
-    u32 unk_4;
-    u16 width;
-    u16 height;
-    u16 max_lod;
-    u16 pad_e;
-} CarTex;
-
-typedef struct {
-    u32 count;
-    CarTex *items;
-} CarTexList;
-
-typedef struct {
-    u8 pad_0[0x328];
-    s8 kind;
-    u8 pad_329[0xB];
-    CarLod lods[6];
-    CarTexList *tex[4];
-    u8 lod_mask;
-    u8 pad_38D[0x2B];
-    s16 cv;
-    u8 pad_3BA[0x86];
-} Car;
-
-typedef struct {
-    Car *cars;
-    s8 sel;
-    s8 channel;
-    s8 mode;
-    s8 car;
-    s8 model;
-    u8 pad_9[3];
-    u32 *disp_masks;
-    char **mode_names;
-    char **mode_help;
-    u8 *bg_color;
-    u8 **light_color;
-    u32 flags;
-    s8 lod;
-    u8 lod_level[5];
-} CarTest;
-
-typedef struct {
-    u8 pad_0[0x14];
-    u16 hold;
-    u16 trig;
+/* one pad's button words */
+typedef struct PadInput {
+    u16 unk_0;
+    u16 unk_2;
+    u8 pad_4[4];
+    u16 unk_8;
+    u16 unk_A;
+    u8 pad_C[4];
+    u16 unk_10;
+    u16 unk_12;
 } PadInput;
+
+extern PadInput lbl_1_bss_9F8[4];
+extern char *lbl_1_data_1F318[];
 
 extern void fn_1_495C8(u8);
 extern void fn_1_4955C(f32, f32);
 extern void fn_1_496FC(f32, f32);
-extern void fn_1_49514(Color *);
+extern void fn_1_49514(GXColor *);
 extern void fn_1_4AE0C(const char *, ...);
-extern void fn_1_A8DD4(const char *, ...);
-extern void fn_1_A8EB0(int, int);
 extern void fn_1_8CB78(CarTexList *);
 extern void fn_1_8CC04(CarModel *, u8, s16, s16, u32, f32);
-extern char *fn_80083970(char *, const char *);
 extern u32 fn_80077D40(CarTexList *);
 extern u32 fn_80077BD4(CarModelInfo *);
 
-extern char *lbl_1_data_1F318[];
-extern PadInput lbl_1_bss_9F8;
-extern CarTest *lbl_1_bss_6D7E8;
+extern void fn_1_7F954(void *, s32);
+extern void fn_1_49614(void);
+extern void fn_1_46B4(void *heap, void *ptr, const char *file, s32 line);
+extern void fn_80071ED4(s32, f32, f32);
+extern void fn_80072014(void *);
+extern void fn_800720B0(s32);
+extern void fn_1_5634C(u32);
+extern void fn_1_12AB38(const char *);
+extern void *fn_1_45D0(void *, s32, const char *, s32);
+extern void fn_1_80F80(void *, u8, void *);
+extern void fn_1_1502BC(void *, void *, void *);
+extern void fn_80083DB0(void *, u32);
+extern void fn_1_801F8(s16, void *);
+void fn_1_7ECB8(u32 arg0, u32 arg1, u32 arg2);
 
+/* degrees to the 0x10000-per-turn angle unit; folds to an int constant (315 gives 0xE000) */
+#define DEG_TO_S16(deg) ((s16)(182.04445f * (deg)))
 
-/* model and texture statistics of the selected car (compiled out of line in retail and stripped) */
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void disp_model_info(CarTest *g, CarModelInfo *info) {
+typedef struct GXLightObj {
+    u32 dummy[16];
+} GXLightObj;
+
+typedef struct BgState {
+    u8 pad_0[0x8];
+    struct {
+        u8 pad_0[0x20];
+        void *unk_20;
+    } *unk_8;
+} BgState;
+
+extern u32 lbl_801A6CE0;
+extern BgState *lbl_1_bss_38454;
+
+extern void lbl_8006D758(void);
+extern void lbl_8006E1B0(Vec3 *src, Vec3 *dst);
+extern void mathutil_mtxA_rotate_z(s32 angle);
+extern void fn_1_57720(s32, s32, s32, s32);
+extern void fn_1_57810(s32 n, Vec3 *pts, GXColor *c);
+extern void fn_80077F8C(void *);
+extern void *memcpy(void *dst, const void *src, u32 n);
+extern void fn_1_7BCCC(Vec3 *v);
+extern void fn_80035680(GXLightObj *lt, f32 x, f32 y, f32 z);
+extern void fn_80035690(GXLightObj *lt, f32 x, f32 y, f32 z);
+extern void fn_80035420(GXLightObj *lt, f32 cutoff, s32 fn);
+extern void fn_800356AC(GXLightObj *lt, GXColor *c);
+extern void GXInitLightDistAttn(GXLightObj *lt, f32 ref_dist, f32 ref_br, s32 fn);
+extern void fn_1_7BB80(GXLightObj *lt, s32 id);
+extern void fn_1_7BD6C(s32);
+extern void fn_80074CF4(f32 r, f32 g, f32 b);
+
+/* fzgx:begin fn_1_7BF9C */
+static char *mode_names[6] = {"CAR_TESTTOP", "CAR_SELECT", "CAR_CHECK", "LIGHT_CHG", "BGCOL_CHG", "ALL_DISP"};
+static char *mode_help[6] = {"(Menu:exit)", "(A:Check)\n(B:Top)", "(B:Select)", "(B:Top)", "(B:Top)", "(B:Top)"};
+
+CarTest *lbl_1_bss_6D7E8;
+
+// Initialize the shared light state and its required resources.
+void fn_1_7BF9C(Car *cars, s8 flag) {
+    u8 *bg_color;
+    CarTestLight *lights;
+    u32 *masks;
+
+    lbl_1_bss_6D7E8 = fn_1_4630(lbl_801A6410, sizeof(CarTest), "car_test.c", 51);
+    bg_color = fn_1_4630(lbl_801A6410, 4, "car_test.c", 52);
+    lights = fn_1_4630(lbl_801A6410, 2 * sizeof(CarTestLight), "car_test.c", 53);
+    masks = fn_1_4630(lbl_801A6410, 41 * sizeof(u32), "car_test.c", 54);
+    fn_800793D4(masks, 0xFF, 41 * sizeof(u32));
+    fn_1_7C13C(cars);
+    fn_1_7C1E8(lights);
+    lbl_1_bss_6D7E8->cars = cars;
+    lbl_1_bss_6D7E8->sel = 2;
+    lbl_1_bss_6D7E8->mode = 2;
+    lbl_1_bss_6D7E8->lod = 0;
+    lbl_1_bss_6D7E8->model = fn_1_816E8(lbl_1_bss_6D7E8->cars + lbl_1_bss_6D7E8->car, lbl_1_bss_6D7E8->lod);
+    lbl_1_bss_6D7E8->disp_masks = masks;
+    lbl_1_bss_6D7E8->mode_names = mode_names;
+    lbl_1_bss_6D7E8->mode_help = mode_help;
+    lbl_1_bss_6D7E8->bg_color = bg_color;
+    lbl_1_bss_6D7E8->lights = lights;
+    if (flag == 0) {
+        lbl_1_bss_6D7E8->flags |= 0x40000000;
+    }
+    fn_1_495D8(2, 2, 1.0f);
+    fn_1_495FC();
+}
+/* fzgx:end fn_1_7BF9C */
+
+/* fzgx:begin fn_1_7C13C */
+void fn_1_7C13C(Car *cars) {
+    f32 unk_184;
+    Car *car;
+    int i;
+
+    unk_184 = 100.0f;
+    car = cars;
+    for (i = 0; i < 41; i++) {
+        car->body = fn_1_4630(lbl_801A6410, sizeof(CarBody), "car_test.c", 88);
+        car->body->unk_6 = i;
+        car->body->index = i;
+        car->body->unk_184 = unk_184;
+        car++;
+    }
+}
+/* fzgx:end fn_1_7C13C */
+
+/* fzgx:begin fn_1_7C1E8 */
+void fn_1_7C1E8(CarTestLight *lights) {
+    CarTestLight *light;
+    s8 i;
+
+    light = lights;
+    for (i = 0; i < 2; i++) {
+        light->color = fn_1_4630(lbl_801A6410, 4, "car_test.c", 104);
+        memset(light->color, 0xFF, 4);
+        light->distance = 17.320507f;
+        light->rot_x = DEG_TO_S16(315);
+        light->rot_y = DEG_TO_S16(45);
+        light++;
+    }
+}
+/* fzgx:end fn_1_7C1E8 */
+
+/* fzgx:begin fn_1_7C2A0 */
+/* The model and texture statistics of the selected machine. MWCC inlines the two functions in
+   fn_1_7C7CC and the link removes these copies. Their strings are made here: they are in .data
+   after "car_test.c" and before the strings of fn_1_7C2A0. */
+static void disp_model_info(CarTest *test, CarModelInfo *info) {
     s8 n;
     s8 i;
     s8 m;
@@ -473,14 +325,14 @@ __declspec(section ".fzgxpool") static void disp_model_info(CarTest *g, CarModel
         fn_1_A8DD4("radius    :%2.2f\n", model->radius);
         fn_1_A8DD4("ntex      :%d\n", model->ntex);
     } else {
-        model = g->cars[g->car].lods[g->lod].models[g->model];
+        model = test->cars[test->car].lods[test->lod].models[test->model];
         fn_1_A8DD4("center    :%2.2f %2.2f %2.2f\n", model->center.x, model->center.y, model->center.z);
         fn_1_A8DD4("radius    :%2.2f\n", model->radius);
         fn_1_A8DD4("ntex      :%d\n", model->ntex);
     }
 }
 
-__declspec(section ".fzgxpool") static void disp_tex_info(CarTexList *tex) {
+static void disp_tex_info(CarTexList *tex) {
     s8 i;
 
     fn_1_A8EB0(20, 10);
@@ -490,71 +342,140 @@ __declspec(section ".fzgxpool") static void disp_tex_info(CarTexList *tex) {
         fn_1_A8DD4("%3dx%3d mip%d\n", tex->items[i].width, tex->items[i].height, tex->items[i].max_lod);
     }
 }
-#pragma section code_type ".text"
 
-/* fn_1_7C2A0's two strings */
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_pool_prime_str(void) {
-    const char *volatile s;  /* fzgx-allow: S2 pool primer sink */
-    s = "pos_";
-    s = "cpu:%d\n";
+void fn_1_7C2A0(Car *car) {
+    s8 count;
+    Line3 l0, l1, l2;
+    s16 i, k;
+
+    if (lbl_1_bss_6D7E8->flags & 0x40000000) {
+        return;
+    }
+    count = car->lods[lbl_1_bss_6D7E8->lod].info->count;
+    if (car->body->index == lbl_1_bss_6D7E8->car || lbl_1_bss_6D7E8->mode == 5) {
+        lbl_8006DAEC();
+        lbl_8006DCA4();
+        {
+            GXColor c0 = {0x00, 0xFF, 0x00, 0xFF};
+            GXColor c1 = {0x00, 0xFF, 0x00, 0xFF};
+            GXColor c2 = {0x00, 0xFF, 0x00, 0xFF};
+
+            fn_80008BEC(&l0, 0, sizeof(Line3));
+            fn_80008BEC(&l1, 0, sizeof(Line3));
+            fn_80008BEC(&l2, 0, sizeof(Line3));
+            l0.a.x = -100.0f;
+            l0.b.x = 100.0f;
+            l1.a.y = -100.0f;
+            l1.b.y = 100.0f;
+            l2.a.z = -100.0f;
+            l2.b.z = 100.0f;
+            fn_1_57714(2);
+            fn_80072558();
+            fn_1_5773C(&l0.a, &l0.b, &c0);
+            fn_1_5773C(&l1.a, &l1.b, &c1);
+            fn_1_5773C(&l2.a, &l2.b, &c2);
+        }
+        if (lbl_1_bss_6D7E8->mode == 5) {
+            s8 v = car->body->index;
+            f32 t0 = 6.0f * (f32)(v % 2);
+            f32 t1 = 6.0f * (f32)(v / 2);
+            car->body->pos.x = 3.0f - t0;
+            car->body->pos.z = -3.0f + t1;
+        }
+        lbl_8006E0A4(&car->body->pos);
+        if (lbl_1_bss_6D7E8->mode == 5) {
+            mathutil_mtxA_rotate_y((s32)(182.044449f * (f32)(lbl_801A66A0 % 360)));
+        }
+        {
+            u8 *c = lbl_1_bss_6D7E8->lights->color;
+            fn_80074D68((f32)c[0] / 255.0f, (f32)c[1] / 255.0f, (f32)c[2] / 255.0f);
+        }
+        fn_80074D78((u32)__cntlzw(lbl_1_bss_6D7E8->flags & 0x80000000) >> 5);
+        lbl_8006DAEC();
+        lbl_8006D7DC(&car->body->pos);
+        lbl_8006DB74(car->body->mtx);
+        fn_1_A77DC(car);
+        fn_1_A7854(car, NULL);
+        lbl_8006DB30();
+        car->lod = lbl_1_bss_6D7E8->lod;
+        fn_1_3BDC(3);
+        if (lbl_1_bss_6D7E8->model == count) {
+            i = 0;
+            k = 0;
+            for (; i < count; i++) {
+                if (((1 << i) & lbl_1_bss_6D7E8->disp_masks[lbl_1_bss_6D7E8->car]) && i != 0) {
+                    if ((s16)k > car->limit - 1) {
+                        break;
+                    }
+                    if (fn_80083970(car->lods[lbl_1_bss_6D7E8->lod].info->entries[i].name, "pos_")
+                        != car->lods[lbl_1_bss_6D7E8->lod].info->entries[i].name) {
+                        if (car->lods[lbl_1_bss_6D7E8->lod].models[i] == NULL) {
+                            k++;
+                        } else {
+                            lbl_8006DAEC();
+                            if (car->parts != NULL) {
+                                fn_1_87610(car, car);
+                                lbl_8006DBE4();
+                                lbl_8006DFC4(car->parts + k * 0x30);
+                                fn_80072558();
+                                fn_1_55210(car->lods[lbl_1_bss_6D7E8->lod].models[i]);
+                            }
+                            lbl_8006DB30();
+                            k++;
+                        }
+                    }
+                }
+            }
+            fn_80072558();
+            fn_1_87238(car, lbl_1_bss_6D7E8->lod, 1.0f);
+        } else {
+            fn_80072558();
+            fn_1_55210(car->lods[lbl_1_bss_6D7E8->lod].models[lbl_1_bss_6D7E8->model]);
+        }
+        {
+            s16 r = fn_1_3C18(3);
+            fn_1_A8EF8(0x140, 0x190);
+            fn_1_A8DD4("cpu:%d\n", r);
+        }
+        lbl_8006DB30();
+    }
 }
-#pragma section code_type ".text"
+/* fzgx:end fn_1_7C2A0 */
 
-/* the TU's .data between fn_1_7C2A0's strings and this function's: the CARLOD/CARCV name strings
- * that lod_names/cv_names point at (retail lbl_1_data_1EFEC..1F074) */
-char fzgx_pool_gap_13C[0x90] = "CARLOD_HI\0\0\0" "CARLOD_MHI\0\0" "CARLOD_MLOW\0" "CARLOD_LOW\0\0"
-                               "CARLOD_CRASH\0\0\0\0" "CARLOD_NODISP\0\0\0"
-                               "CARCV0\0\0" "CARCV1\0\0" "CARCV2\0\0" "CARCV3\0\0"
-                               "CARSV0\0\0" "CARSV1\0\0" "CARSV2\0\0" "CARSV3\0";
-extern char lbl_1_data_1EFEC[];  /* "CARLOD_HI" */
-extern char lbl_1_data_1EFF8[];  /* "CARLOD_MHI" */
-extern char lbl_1_data_1F004[];  /* "CARLOD_MLOW" */
-extern char lbl_1_data_1F010[];  /* "CARLOD_LOW" */
-extern char lbl_1_data_1F01C[];  /* "CARLOD_CRASH" */
-extern char lbl_1_data_1F02C[];  /* "CARLOD_NODISP" */
-extern char lbl_1_data_1F03C[];  /* "CARCV0" */
-extern char lbl_1_data_1F044[];  /* "CARCV1" */
-extern char lbl_1_data_1F04C[];  /* "CARCV2" */
-extern char lbl_1_data_1F054[];  /* "CARCV3" */
-extern char lbl_1_data_1F05C[];  /* "CARSV0" */
-extern char lbl_1_data_1F064[];  /* "CARSV1" */
-extern char lbl_1_data_1F06C[];  /* "CARSV2" */
-extern char lbl_1_data_1F074[];  /* "CARSV3" */
-
-void fn_1_7C7CC(CarTest *g) {
-    s8 car = g->car;
+/* fzgx:begin fn_1_7C7CC */
+void fn_1_7C7CC(CarTest *test) {
+    s8 car = test->car;
     s8 i;
 
-    if (g->flags & 0x40000000) {
+    if (test->flags & 0x40000000) {
         fn_1_496FC(160.0f, 100.0f);
         fn_1_4AE0C("\x82\xad\x82\xe9\x82\xdc\x83\x54\x83\x43\x83\x59\x82\xaa\x82\xa8\x82\xa8\x82\xab\x82\xb7\x82\xac\x82\xc4\x83\x71\x81\x5b\x83\x76\n"
                    "\x82\xb1\x82\xa6\x82\xbf\x82\xe1\x82\xa2\x82\xdc\x82\xb5\x82\xbd\x81\x49\n");
         return;
     }
-    if ((lbl_1_bss_9F8.hold >> 11) & 1) {
+    if ((lbl_1_bss_9F8[1].unk_0 >> 11) & 1) {
         s8 lod;
         u8 level;
 
         fn_1_A8EB0(20, 3);
-        fn_1_A8DD4("%s\n", lbl_1_data_1F318[g->cars[g->car].kind]);
-        fn_1_8CB78(g->cars[g->car].tex[g->cars[g->car].cv % 4]);
+        fn_1_A8DD4("%s\n", lbl_1_data_1F318[test->cars[test->car].kind]);
+        fn_1_8CB78(test->cars[test->car].tex[test->cars[test->car].cv % 4]);
         for (lod = 0; lod < 5; lod++) {
-            if (lod != g->lod && ((1 << lod) & g->cars[g->car].lod_mask)) {
-                level = g->lod_level[lod];
-                fn_1_8CC04(*g->cars[g->car].lods[lod].models, level, lod * 150 + 10, 300, 0xFFFFFFFF, 0.35f);
+            if (lod != test->lod && ((1 << lod) & test->cars[test->car].lod_mask)) {
+                level = test->lod_level[lod];
+                fn_1_8CC04(*test->cars[test->car].lods[lod].models, level, lod * 150 + 10, 300, 0xFFFFFFFF, 0.35f);
             }
         }
-        level = g->lod_level[g->lod];
-        fn_1_8CC04(*g->cars[g->car].lods[g->lod].models, level, g->lod * 150 + 10, 300, 0xFF000000, 0.5f);
+        level = test->lod_level[test->lod];
+        fn_1_8CC04(*test->cars[test->car].lods[test->lod].models, level, test->lod * 150 + 10, 300, 0xFF000000, 0.5f);
         return;
     }
     fn_1_495C8(1);
     fn_1_496FC(320.0f, 30.0f);
-    fn_1_4AE0C("%s\n", g->mode_names[g->mode]);
+    fn_1_4AE0C("%s\n", test->mode_names[test->mode]);
     fn_1_495C8(0);
     fn_1_4955C(0.5f, 1.0f);
-    fn_1_4AE0C("%s\n", g->mode_help[g->mode]);
+    fn_1_4AE0C("%s\n", test->mode_help[test->mode]);
     fn_1_4955C(1.0f, 1.0f);
     switch (lbl_1_bss_6D7E8->mode) {
     case 0:
@@ -562,18 +483,18 @@ void fn_1_7C7CC(CarTest *g) {
         fn_1_496FC(120.0f, 100.0f);
         for (i = 0; i < 5; i++) {
             if (i != 0) {
-                if (g->sel == i) {
-                    Color c = {0xFF, 0x00, 0x00, 0x00};
+                if (test->sel == i) {
+                    GXColor c = {0xFF, 0x00, 0x00, 0x00};
                     fn_1_49514(&c);
                 } else {
-                    Color c = {0xFF, 0xFF, 0xFF, 0x00};
+                    GXColor c = {0xFF, 0xFF, 0xFF, 0x00};
                     fn_1_49514(&c);
                 }
-                fn_1_4AE0C("%d %s\n", i, g->mode_names[i]);
+                fn_1_4AE0C("%d %s\n", i, test->mode_names[i]);
             }
         }
         {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+            GXColor c = {0xFF, 0xFF, 0xFF, 0x00};
             fn_1_49514(&c);
         }
         fn_1_496FC(120.0f, 300.0f);
@@ -588,45 +509,45 @@ void fn_1_7C7CC(CarTest *g) {
         fn_1_4AE0C("[Spec]\n");
         fn_1_4AE0C("(Pad2 Didital)\n");
         {
-            Color c = {0xFF, 0x00, 0x00, 0x00};
+            GXColor c = {0xFF, 0x00, 0x00, 0x00};
             fn_1_49514(&c);
         }
-        if (g->channel != 0) {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+        if (test->channel != 0) {
+            GXColor c = {0xFF, 0xFF, 0xFF, 0x00};
             fn_1_49514(&c);
         }
-        fn_1_4AE0C("%s:%3d\n", "R", g->light_color[0][0]);
+        fn_1_4AE0C("%s:%3d\n", "R", test->lights->color[0]);
         {
-            Color c = {0xFF, 0x00, 0x00, 0x00};
+            GXColor c = {0xFF, 0x00, 0x00, 0x00};
             fn_1_49514(&c);
         }
-        if (g->channel != 1) {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+        if (test->channel != 1) {
+            GXColor c = {0xFF, 0xFF, 0xFF, 0x00};
             fn_1_49514(&c);
         }
-        fn_1_4AE0C("%s:%3d\n", "G", g->light_color[0][1]);
+        fn_1_4AE0C("%s:%3d\n", "G", test->lights->color[1]);
         {
-            Color c = {0xFF, 0x00, 0x00, 0x00};
+            GXColor c = {0xFF, 0x00, 0x00, 0x00};
             fn_1_49514(&c);
         }
-        if (g->channel != 2) {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+        if (test->channel != 2) {
+            GXColor c = {0xFF, 0xFF, 0xFF, 0x00};
             fn_1_49514(&c);
         }
-        fn_1_4AE0C("%s:%3d\n", "B", g->light_color[0][2]);
+        fn_1_4AE0C("%s:%3d\n", "B", test->lights->color[2]);
         {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+            GXColor c = {0xFF, 0xFF, 0xFF, 0x00};
             fn_1_49514(&c);
         }
         fn_1_4AE0C("\n[MoveLight]\n");
         fn_1_4AE0C("Pad2 C-STICK,L,R\n");
         fn_1_4955C(1.0f, 1.0f);
-        if ((lbl_1_bss_9F8.trig >> 3) & 1) {
-            CarModelInfo *info = g->cars[g->car].lods[g->lod].info;
-            disp_model_info(g, info);
+        if ((lbl_1_bss_9F8[1].unk_2 >> 3) & 1) {
+            CarModelInfo *info = test->cars[test->car].lods[test->lod].info;
+            disp_model_info(test, info);
         }
-        if ((lbl_1_bss_9F8.trig >> 2) & 1) {
-            CarTexList *tex = g->cars[g->car].tex[g->cars[g->car].cv % 4];
+        if ((lbl_1_bss_9F8[1].unk_2 >> 2) & 1) {
+            CarTexList *tex = test->cars[test->car].tex[test->cars[test->car].cv % 4];
             disp_tex_info(tex);
         }
         break;
@@ -636,81 +557,81 @@ void fn_1_7C7CC(CarTest *g) {
         fn_1_4955C(0.5f, 1.0f);
         fn_1_4AE0C("[Spec]\n");
         {
-            Color c = {0xFF, 0x00, 0x00, 0x00};
+            GXColor c = {0xFF, 0x00, 0x00, 0x00};
             fn_1_49514(&c);
         }
-        if (g->channel != 0) {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+        if (test->channel != 0) {
+            GXColor c = {0xFF, 0xFF, 0xFF, 0x00};
             fn_1_49514(&c);
         }
-        fn_1_4AE0C("%s:%3d\n", "R", g->light_color[0][0]);
+        fn_1_4AE0C("%s:%3d\n", "R", test->lights->color[0]);
         {
-            Color c = {0xFF, 0x00, 0x00, 0x00};
+            GXColor c = {0xFF, 0x00, 0x00, 0x00};
             fn_1_49514(&c);
         }
-        if (g->channel != 1) {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+        if (test->channel != 1) {
+            GXColor c = {0xFF, 0xFF, 0xFF, 0x00};
             fn_1_49514(&c);
         }
-        fn_1_4AE0C("%s:%3d\n", "G", g->light_color[0][1]);
+        fn_1_4AE0C("%s:%3d\n", "G", test->lights->color[1]);
         {
-            Color c = {0xFF, 0x00, 0x00, 0x00};
+            GXColor c = {0xFF, 0x00, 0x00, 0x00};
             fn_1_49514(&c);
         }
-        if (g->channel != 2) {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+        if (test->channel != 2) {
+            GXColor c = {0xFF, 0xFF, 0xFF, 0x00};
             fn_1_49514(&c);
         }
-        fn_1_4AE0C("%s:%3d\n", "B", g->light_color[0][2]);
+        fn_1_4AE0C("%s:%3d\n", "B", test->lights->color[2]);
         {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+            GXColor c = {0xFF, 0xFF, 0xFF, 0x00};
             fn_1_49514(&c);
         }
         fn_1_4955C(1.0f, 1.0f);
         break;
     case 1: {
-        CarModelInfo *info = g->cars[g->car].lods[g->lod].info;
-        CarTexList *tex = g->cars[g->car].tex[g->cars[g->car].cv % 4];
+        CarModelInfo *info = test->cars[test->car].lods[test->lod].info;
+        CarTexList *tex = test->cars[test->car].tex[test->cars[test->car].cv % 4];
 
         fn_1_495C8(0);
         fn_1_496FC(10.0f, 100.0f);
         fn_1_4955C(0.5f, 0.5f);
-        if (g->model == info->count) {
-            Color c = {0xFF, 0x00, 0x00, 0x00};
+        if (test->model == info->count) {
+            GXColor c = {0xFF, 0x00, 0x00, 0x00};
             fn_1_49514(&c);
         }
         fn_1_4AE0C("[DISP OBEY FLAGS]\n");
         {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+            GXColor c = {0xFF, 0xFF, 0xFF, 0x00};
             fn_1_49514(&c);
         }
         fn_1_4AE0C("-----------------\n");
         for (i = 0; i < info->count; i++) {
-            if (!((1 << i) & g->disp_masks[g->car]) ||
+            if (!((1 << i) & test->disp_masks[test->car]) ||
                 fn_80083970(info->entries[i].name, "pos_") == info->entries[i].name) {
-                Color c = {0x7F, 0x7F, 0x7F, 0x00};
+                GXColor c = {0x7F, 0x7F, 0x7F, 0x00};
                 fn_1_49514(&c);
             }
-            if (i == g->model) {
-                Color c = {0xFF, 0x00, 0x00, 0x00};
+            if (i == test->model) {
+                GXColor c = {0xFF, 0x00, 0x00, 0x00};
                 fn_1_49514(&c);
             }
             if (fn_80083970(info->entries[i].name, "pos_") == info->entries[i].name) {
                 fn_1_4AE0C("PosData\n");
                 {
-                    Color c = {0xFF, 0xFF, 0xFF, 0x00};
+                    GXColor c = {0xFF, 0xFF, 0xFF, 0x00};
                     fn_1_49514(&c);
                 }
             } else {
-                fn_1_4AE0C("%s[%s]\n", info->entries[i].name, ((1 << i) & g->disp_masks[g->car]) ? "ON" : "OFF");
+                fn_1_4AE0C("%s[%s]\n", info->entries[i].name, ((1 << i) & test->disp_masks[test->car]) ? "ON" : "OFF");
                 {
-                    Color c = {0xFF, 0xFF, 0xFF, 0x00};
+                    GXColor c = {0xFF, 0xFF, 0xFF, 0x00};
                     fn_1_49514(&c);
                 }
             }
         }
         {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+            GXColor c = {0xFF, 0xFF, 0xFF, 0x00};
             fn_1_49514(&c);
         }
         fn_1_4AE0C("\n\n\n(Y:Tggle)\n(X:All Tggle)\n");
@@ -720,20 +641,20 @@ void fn_1_7C7CC(CarTest *g) {
         fn_1_4AE0C("TexSize:%7d\n", fn_80077D40(tex));
         fn_1_4AE0C("VtxNum :%7d\n", fn_80077BD4(info));
         fn_1_4955C(1.0f, 1.0f);
-        if ((lbl_1_bss_9F8.trig >> 3) & 1) {
-            CarModelInfo *info = g->cars[g->car].lods[g->lod].info;
-            disp_model_info(g, info);
+        if ((lbl_1_bss_9F8[1].unk_2 >> 3) & 1) {
+            CarModelInfo *info = test->cars[test->car].lods[test->lod].info;
+            disp_model_info(test, info);
         }
-        if ((lbl_1_bss_9F8.trig >> 2) & 1) {
-            CarTexList *tex = g->cars[g->car].tex[g->cars[g->car].cv % 4];
+        if ((lbl_1_bss_9F8[1].unk_2 >> 2) & 1) {
+            CarTexList *tex = test->cars[test->car].tex[test->cars[test->car].cv % 4];
             disp_tex_info(tex);
         }
         {
-            char *lod_names[6] = {lbl_1_data_1EFEC, lbl_1_data_1EFF8, lbl_1_data_1F004, lbl_1_data_1F010, lbl_1_data_1F01C, lbl_1_data_1F02C};
+            char *lod_names[6] = {"CARLOD_HI", "CARLOD_MHI", "CARLOD_MLOW", "CARLOD_LOW", "CARLOD_CRASH", "CARLOD_NODISP"};
             fn_1_496FC(450.0f, 350.0f);
             fn_1_4955C(0.5f, 1.0f);
             fn_1_4AE0C("(LOD:C-Stick)\n\n");
-            fn_1_4AE0C("     %s\n", lod_names[g->lod]);
+            fn_1_4AE0C("     %s\n", lod_names[test->lod]);
             fn_1_4955C(1.0f, 1.0f);
         }
         break;
@@ -742,43 +663,43 @@ void fn_1_7C7CC(CarTest *g) {
         fn_1_495C8(0);
         fn_1_496FC(120.0f, 200.0f);
         {
-            Color c = {0xFF, 0x00, 0x00, 0x00};
+            GXColor c = {0xFF, 0x00, 0x00, 0x00};
             fn_1_49514(&c);
         }
-        if (g->channel != 0) {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+        if (test->channel != 0) {
+            GXColor c = {0xFF, 0xFF, 0xFF, 0x00};
             fn_1_49514(&c);
         }
-        fn_1_4AE0C("%s:%3d\n", "R", g->bg_color[0]);
+        fn_1_4AE0C("%s:%3d\n", "R", test->bg_color[0]);
         {
-            Color c = {0xFF, 0x00, 0x00, 0x00};
+            GXColor c = {0xFF, 0x00, 0x00, 0x00};
             fn_1_49514(&c);
         }
-        if (g->channel != 1) {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+        if (test->channel != 1) {
+            GXColor c = {0xFF, 0xFF, 0xFF, 0x00};
             fn_1_49514(&c);
         }
-        fn_1_4AE0C("%s:%3d\n", "G", g->bg_color[1]);
+        fn_1_4AE0C("%s:%3d\n", "G", test->bg_color[1]);
         {
-            Color c = {0xFF, 0x00, 0x00, 0x00};
+            GXColor c = {0xFF, 0x00, 0x00, 0x00};
             fn_1_49514(&c);
         }
-        if (g->channel != 2) {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+        if (test->channel != 2) {
+            GXColor c = {0xFF, 0xFF, 0xFF, 0x00};
             fn_1_49514(&c);
         }
-        fn_1_4AE0C("%s:%3d\n", "B", g->bg_color[2]);
+        fn_1_4AE0C("%s:%3d\n", "B", test->bg_color[2]);
         {
-            Color c = {0xFF, 0x00, 0x00, 0x00};
+            GXColor c = {0xFF, 0x00, 0x00, 0x00};
             fn_1_49514(&c);
         }
-        if (g->channel != 3) {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+        if (test->channel != 3) {
+            GXColor c = {0xFF, 0xFF, 0xFF, 0x00};
             fn_1_49514(&c);
         }
-        fn_1_4AE0C("%s:%3d\n", "A", g->bg_color[3]);
+        fn_1_4AE0C("%s:%3d\n", "A", test->bg_color[3]);
         {
-            Color c = {0xFF, 0xFF, 0xFF, 0x00};
+            GXColor c = {0xFF, 0xFF, 0xFF, 0x00};
             fn_1_49514(&c);
         }
         break;
@@ -788,65 +709,25 @@ void fn_1_7C7CC(CarTest *g) {
     fn_1_495C8(0);
     fn_1_496FC(120.0f, 420.0f);
     {
-        char *cv_names[8] = {lbl_1_data_1F03C, lbl_1_data_1F044, lbl_1_data_1F04C, lbl_1_data_1F054,
-                            lbl_1_data_1F05C, lbl_1_data_1F064, lbl_1_data_1F06C, lbl_1_data_1F074};
-        fn_1_4AE0C("%2d/%2d:[%s](%s)\n", car, 40, lbl_1_data_1F318[car], cv_names[g->cars[g->car].cv] + 3);
+        char *cv_names[8] = {"CARCV0", "CARCV1", "CARCV2", "CARCV3",
+                            "CARSV0", "CARSV1", "CARSV2", "CARSV3"};
+        fn_1_4AE0C("%2d/%2d:[%s](%s)\n", car, 40, lbl_1_data_1F318[car], cv_names[test->cars[test->car].cv] + 3);
     }
 }
 /* fzgx:end fn_1_7C7CC */
 
 /* fzgx:begin fn_1_7D694 */
-typedef struct {
-    u8 _pad4[4];
-    s16 value;
-} Entry;
-
-typedef struct {
-    u8 _pad32c[0x32c];
-    Entry *entry;
-} Object;
-
-typedef struct {
-    u8 _pad7[7];
-    s8 value;
-} GlobalEntry;
-
 // Compares the object's entry selector with the active global selector.
-void fn_1_7D694(Object *obj) {
-    Entry *entry = obj->entry;
-    GlobalEntry *active = *(GlobalEntry **)&lbl_1_bss_6D7E8;
-
-    if (entry->value == active->value) {
+void fn_1_7D694(Car *car) {
+    if (car->body->index == lbl_1_bss_6D7E8->car) {
         return;
     }
 }
 /* fzgx:end fn_1_7D694 */
 
 /* fzgx:begin fn_1_7D6B8 */
-extern void fn_1_5634C(u32 arg0);
-extern void fn_1_7ECB8(u32 arg0, u32 arg1, u32 arg2);
-extern void *lbl_801A6410;
-extern const f64 lbl_1_rodata_3588;
-extern void fn_1_12AB38(const char *);
-extern void *fn_1_45D0(void *, s32, const char *, s32);
-extern void fn_80008BEC(void *, s32, s32);
-extern void fn_1_80F80(void *, u8, void *);
-extern void fn_1_1502BC(void *, void *, void *);
-
-extern void fn_80083DB0(void* arg0, u32 arg1);
-extern void fn_1_801F8(s16 arg0, void* arg1);
-extern const f32 lbl_1_rodata_33AC;
-extern void *fn_1_4630(void *arg0, u32 arg1, void *arg2, u32 arg3);
-extern const f32 lbl_1_rodata_33B0[84];
-extern void *memset(void *dst, int value, u32 size);
-extern void fn_1_46B4(void *arg0, void *arg1, u8 *arg2, s32 arg3);
-extern void fn_1_7F954(void *arg0, s32 arg1);
-extern void fn_1_49614(void);
-extern const f32 lbl_1_rodata_33A8;
-extern void fn_80071ED4(s32 arg0, f32 arg1, f32 arg2);
-extern void fn_80072014(void *arg0);
-extern void fn_800720B0(s32 arg0);
-
+/* WARNING: compiler-diff device, not original code (carried from main: the machine draft of this
+   function with two optimizer pragmas, the volatile pad reads and the one-field carriers) */
 typedef struct {
     void *info;                 /* -> Fn1_7D6B8Info * */
     s32 *count;
@@ -882,12 +763,9 @@ typedef struct {
 } Fn1_7D6B8Info;
 
 /* Halfword fields not yet named in car_test.h. */
-#define INPUT_14 (*(u16 *)&lbl_1_bss_9F8.pad_14[0])
-#define INPUT_24 (*(u16 *)&lbl_1_bss_9F8.pad_14[0x10])
-#define INPUT_26 (*(u16 *)&lbl_1_bss_9F8.pad_14[0x12])
-extern void * memset(void *, int, u32);
-extern u8 fn_1_816E8(void *, u8);
-extern u32 fn_800793D4(u8 *, u32, u32);
+#define INPUT_14 (lbl_1_bss_9F8[1].unk_0)
+#define INPUT_24 (lbl_1_bss_9F8[1].unk_10)
+#define INPUT_26 (lbl_1_bss_9F8[1].unk_12)
 
 /* saturate a u8 channel at 0xFF after a signed step */
 #define CLAMP_U8(x) (((x) > 0xFFU) ? 0xFF : (x))
@@ -943,7 +821,7 @@ void fn_1_7D6B8(void *arg0) {
     u8 temp_r4_22;
     u8 temp_r4_24;
     u8 temp_r4_26;
-    u8 temp_r4_2;
+    s8 temp_r4_2;
     u8 temp_r4_6;
     u8 temp_r4_8;
     u8 *temp_r4_20;
@@ -963,10 +841,10 @@ void fn_1_7D6B8(void *arg0) {
         temp_r0 = *(u8 *)((u8 *)(arg0) + 6);
         switch ((s8) temp_r0) {                     /* switch 1; irregular */
         case 0:                                     /* switch 1 */
-            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8.unk_10)) /* Retail reloads this field. */ >> 3U) & 1) || (((u16) lbl_1_bss_9F8.unk_12 >> 3U) & 1)) {
+            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8[0].unk_10)) /* Retail reloads this field. */ >> 3U) & 1) || (((u16) lbl_1_bss_9F8[0].unk_12 >> 3U) & 1)) {
                 var_r4 = -1;
             }
-            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8.unk_10)) /* Retail reloads this field. */ >> 2U) & 1) || (((u16) lbl_1_bss_9F8.unk_12 >> 2U) & 1)) {
+            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8[0].unk_10)) /* Retail reloads this field. */ >> 2U) & 1) || (((u16) lbl_1_bss_9F8[0].unk_12 >> 2U) & 1)) {
                 var_r4 += 1;
             }
             (*(u8 *)((u8 *)(arg0) + 4)) = (u8) ((*(u8 *)((u8 *)(arg0) + 4)) + var_r4);
@@ -976,16 +854,16 @@ void fn_1_7D6B8(void *arg0) {
             if ((s8) (*(u8 *)((u8 *)(arg0) + 4)) > 4) {
                 (*(u8 *)((u8 *)(arg0) + 4)) = 1U;
             }
-            if (((u16) lbl_1_bss_9F8.unk_8 >> 8U) & 1) {
+            if (((u16) lbl_1_bss_9F8[0].unk_8 >> 8U) & 1) {
                 (*(u8 *)((u8 *)(arg0) + 6)) = (u8) (*(u8 *)((u8 *)(arg0) + 4));
                 return;
             }
             break;
         case 1:                                     /* switch 1 */
-            if (((*(u16 volatile *)&(lbl_1_bss_9F8.unk_10)) /* Retail reloads this field. */ & 1) || (lbl_1_bss_9F8.unk_12 & 1)) {
+            if (((*(u16 volatile *)&(lbl_1_bss_9F8[0].unk_10)) /* Retail reloads this field. */ & 1) || (lbl_1_bss_9F8[0].unk_12 & 1)) {
                 var_r4 = -1;
             }
-            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8.unk_10)) /* Retail reloads this field. */ >> 1U) & 1) || (((u16) lbl_1_bss_9F8.unk_12 >> 1U) & 1)) {
+            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8[0].unk_10)) /* Retail reloads this field. */ >> 1U) & 1) || (((u16) lbl_1_bss_9F8[0].unk_12 >> 1U) & 1)) {
                 var_r4 += 1;
             }
             (*(u8 *)((u8 *)(arg0) + 7)) = (u8) ((*(u8 *)((u8 *)(arg0) + 7)) + var_r4);
@@ -1019,10 +897,10 @@ void fn_1_7D6B8(void *arg0) {
                     (*(u8 *)((u8 *)(temp_r9) + 37)) = (u8) var_r6_2;
                 }
             }
-            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8.unk_10)) /* Retail reloads this field. */ >> 3U) & 1) || (((u16) lbl_1_bss_9F8.unk_12 >> 3U) & 1)) {
+            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8[0].unk_10)) /* Retail reloads this field. */ >> 3U) & 1) || (((u16) lbl_1_bss_9F8[0].unk_12 >> 3U) & 1)) {
                 var_r5 = -1;
             }
-            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8.unk_10)) /* Retail reloads this field. */ >> 2U) & 1) || (((u16) lbl_1_bss_9F8.unk_12 >> 2U) & 1)) {
+            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8[0].unk_10)) /* Retail reloads this field. */ >> 2U) & 1) || (((u16) lbl_1_bss_9F8[0].unk_12 >> 2U) & 1)) {
                 var_r5 += 1;
             }
             (*(u8 *)((u8 *)(arg0) + 8)) = (u8) ((*(u8 *)((u8 *)(arg0) + 8)) + var_r5);
@@ -1042,12 +920,12 @@ void fn_1_7D6B8(void *arg0) {
             }
             temp_r3 = *(u8 *)((u8 *)(arg0) + 8);
             shift_idx = (s8) temp_r3;
-            if ((shift_idx != (s8) temp_r0_2) && (((u16) lbl_1_bss_9F8.unk_8 >> 0xBU) & 1)) {
+            if ((shift_idx != (s8) temp_r0_2) && (((u16) lbl_1_bss_9F8[0].unk_8 >> 0xBU) & 1)) {
                 temp_r5 = *(s32 *)((u8 *)(arg0) + 12);
                 temp_r4 = (s8) (*(u8 *)((u8 *)(arg0) + 7)) * 4;
                 (*(s32 *)((u8 *)((temp_r5 + temp_r4)) + 0)) ^= (1 << shift_idx);
             }
-            if (((u16) lbl_1_bss_9F8.unk_8 >> 0xAU) & 1) {
+            if (((u16) lbl_1_bss_9F8[0].unk_8 >> 0xAU) & 1) {
                 temp_r3_2 = (s32 *)((*(s32 *)((u8 *)(arg0) + 12)) + ((s8) (*(u8 *)((u8 *)(arg0) + 7)) * 4));
                 if ((*(s32 *)((u8 *)(temp_r3_2) + 0)) & 0x80000000) {
                     memset((void *)(temp_r3_2), (s32)(0), (u32)(4U));
@@ -1055,10 +933,10 @@ void fn_1_7D6B8(void *arg0) {
                     memset((void *)(temp_r3_2), (s32)(-1), (u32)(4U));
                 }
             }
-            if (((u16) lbl_1_bss_9F8.unk_8 >> 8U) & 1) {
+            if (((u16) lbl_1_bss_9F8[0].unk_8 >> 8U) & 1) {
                 (*(u8 *)((u8 *)(arg0) + 6)) = 2U;
             }
-            if (((u16) lbl_1_bss_9F8.unk_8 >> 9U) & 1) {
+            if (((u16) lbl_1_bss_9F8[0].unk_8 >> 9U) & 1) {
                 (*(u8 *)((u8 *)(arg0) + 6)) = 0U;
                 (*(u8 *)((u8 *)(arg0) + 5)) = 0U;
             }
@@ -1072,9 +950,9 @@ void fn_1_7D6B8(void *arg0) {
                 } else if (INPUT_26 & 1) {
                     var_r4_2 = -1;
                 }
-            } else if ((((u16) lbl_1_bss_9F8.unk_12 >> 6U) & 1) || (((u16) lbl_1_bss_9F8.unk_12 >> 5U) & 1)) {
+            } else if ((((u16) lbl_1_bss_9F8[0].unk_12 >> 6U) & 1) || (((u16) lbl_1_bss_9F8[0].unk_12 >> 5U) & 1)) {
                 var_r4_2 = 1;
-            } else if ((((u16) lbl_1_bss_9F8.unk_12 >> 7U) & 1) || (((u16) lbl_1_bss_9F8.unk_12 >> 4U) & 1)) {
+            } else if ((((u16) lbl_1_bss_9F8[0].unk_12 >> 7U) & 1) || (((u16) lbl_1_bss_9F8[0].unk_12 >> 4U) & 1)) {
                 var_r4_2 = -1;
             }
             if (var_r4_2 != 0) {
@@ -1090,7 +968,7 @@ void fn_1_7D6B8(void *arg0) {
                         }
                     }
                     (*(u8 *)((u8 *)(arg0) + 36)) = (u8) var_r0.value;
-                    temp_r4_2 = *(u8 *)((u8 *)(arg0) + 36);
+                    temp_r4_2 = *(s8 *)((u8 *)(arg0) + 36);
                     mask = 1;
                     temp_r4 = mask << (s8) temp_r4_2;
                     mask = temp_r4;
@@ -1101,7 +979,7 @@ void fn_1_7D6B8(void *arg0) {
             }
             break;
         case 2:                                     /* switch 1 */
-            if (((u16) lbl_1_bss_9F8.unk_8 >> 9U) & 1) {
+            if (((u16) lbl_1_bss_9F8[0].unk_8 >> 9U) & 1) {
                 (*(u8 *)((u8 *)(arg0) + 6)) = 1U;
             }
             if (((u16) (*(u16 volatile *)&(INPUT_24)) /* Retail reloads this field. */ >> 3U) & 1) {
@@ -1160,16 +1038,16 @@ void fn_1_7D6B8(void *arg0) {
             }
             break;
         case 4:                                     /* switch 1 */
-            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8.unk_10)) /* Retail reloads this field. */ >> 3U) & 1) || (((u16) lbl_1_bss_9F8.unk_12 >> 3U) & 1)) {
+            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8[0].unk_10)) /* Retail reloads this field. */ >> 3U) & 1) || (((u16) lbl_1_bss_9F8[0].unk_12 >> 3U) & 1)) {
                 var_r4 = -1;
             }
-            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8.unk_10)) /* Retail reloads this field. */ >> 2U) & 1) || (((u16) lbl_1_bss_9F8.unk_12 >> 2U) & 1)) {
+            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8[0].unk_10)) /* Retail reloads this field. */ >> 2U) & 1) || (((u16) lbl_1_bss_9F8[0].unk_12 >> 2U) & 1)) {
                 var_r4 += 1;
             }
-            if (((*(u16 volatile *)&(lbl_1_bss_9F8.unk_10)) /* Retail reloads this field. */ & 1) || (lbl_1_bss_9F8.unk_12 & 1)) {
+            if (((*(u16 volatile *)&(lbl_1_bss_9F8[0].unk_10)) /* Retail reloads this field. */ & 1) || (lbl_1_bss_9F8[0].unk_12 & 1)) {
                 var_r5 = -1;
             }
-            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8.unk_10)) /* Retail reloads this field. */ >> 1U) & 1) || (((u16) lbl_1_bss_9F8.unk_12 >> 1U) & 1)) {
+            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8[0].unk_10)) /* Retail reloads this field. */ >> 1U) & 1) || (((u16) lbl_1_bss_9F8[0].unk_12 >> 1U) & 1)) {
                 var_r5 += 1;
             }
             (*(u8 *)((u8 *)(arg0) + 5)) = (u8) ((*(u8 *)((u8 *)(arg0) + 5)) + var_r4);
@@ -1210,30 +1088,30 @@ void fn_1_7D6B8(void *arg0) {
                 (*(u8 *)((u8 *)(temp_r3_12) + 3)) = CLAMP_U8(temp_r4_18);
                 break;
             }
-            if (((u16) lbl_1_bss_9F8.unk_8 >> 0xBU) & 1) {
+            if (((u16) lbl_1_bss_9F8[0].unk_8 >> 0xBU) & 1) {
                 fn_800793D4((void *)(*(void **)((u8 *)(arg0) + 24)), (s32)(0), (u32)(4U));
             }
-            if (((u16) lbl_1_bss_9F8.unk_8 >> 9U) & 1) {
+            if (((u16) lbl_1_bss_9F8[0].unk_8 >> 9U) & 1) {
                 (*(u8 *)((u8 *)(arg0) + 6)) = 0U;
                 (*(u8 *)((u8 *)(arg0) + 5)) = 0U;
                 return;
             }
             break;
         case 3:                                     /* switch 1 */
-            if (((u16) lbl_1_bss_9F8.unk_8 >> 9U) & 1) {
+            if (((u16) lbl_1_bss_9F8[0].unk_8 >> 9U) & 1) {
                 (*(u8 *)((u8 *)(arg0) + 6)) = 0U;
                 (*(u8 *)((u8 *)(arg0) + 5)) = 0U;
             }
-            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8.unk_10)) /* Retail reloads this field. */ >> 3U) & 1) || (((u16) lbl_1_bss_9F8.unk_12 >> 3U) & 1) || (((u16) (*(u16 volatile *)&(INPUT_24)) /* Retail reloads this field. */ >> 3U) & 1) || (((u16) INPUT_26 >> 3U) & 1)) {
+            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8[0].unk_10)) /* Retail reloads this field. */ >> 3U) & 1) || (((u16) lbl_1_bss_9F8[0].unk_12 >> 3U) & 1) || (((u16) (*(u16 volatile *)&(INPUT_24)) /* Retail reloads this field. */ >> 3U) & 1) || (((u16) INPUT_26 >> 3U) & 1)) {
                 var_r4 = -1;
             }
-            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8.unk_10)) /* Retail reloads this field. */ >> 2U) & 1) || (((u16) lbl_1_bss_9F8.unk_12 >> 2U) & 1) || (((u16) (*(u16 volatile *)&(INPUT_24)) /* Retail reloads this field. */ >> 2U) & 1) || (((u16) INPUT_26 >> 2U) & 1)) {
+            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8[0].unk_10)) /* Retail reloads this field. */ >> 2U) & 1) || (((u16) lbl_1_bss_9F8[0].unk_12 >> 2U) & 1) || (((u16) (*(u16 volatile *)&(INPUT_24)) /* Retail reloads this field. */ >> 2U) & 1) || (((u16) INPUT_26 >> 2U) & 1)) {
                 var_r4 += 1;
             }
-            if (((*(u16 volatile *)&(lbl_1_bss_9F8.unk_10)) /* Retail reloads this field. */ & 1) || (lbl_1_bss_9F8.unk_12 & 1) || ((*(u16 volatile *)&(INPUT_24)) /* Retail reloads this field. */ & 1) || (INPUT_26 & 1)) {
+            if (((*(u16 volatile *)&(lbl_1_bss_9F8[0].unk_10)) /* Retail reloads this field. */ & 1) || (lbl_1_bss_9F8[0].unk_12 & 1) || ((*(u16 volatile *)&(INPUT_24)) /* Retail reloads this field. */ & 1) || (INPUT_26 & 1)) {
                 var_r5 = -1;
             }
-            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8.unk_10)) /* Retail reloads this field. */ >> 1U) & 1) || (((u16) lbl_1_bss_9F8.unk_12 >> 1U) & 1) || (((u16) (*(u16 volatile *)&(INPUT_24)) /* Retail reloads this field. */ >> 1U) & 1) || (((u16) INPUT_26 >> 1U) & 1)) {
+            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8[0].unk_10)) /* Retail reloads this field. */ >> 1U) & 1) || (((u16) lbl_1_bss_9F8[0].unk_12 >> 1U) & 1) || (((u16) (*(u16 volatile *)&(INPUT_24)) /* Retail reloads this field. */ >> 1U) & 1) || (((u16) INPUT_26 >> 1U) & 1)) {
                 var_r5 += 1;
             }
             (*(u8 *)((u8 *)(arg0) + 5)) = (u8) ((*(u8 *)((u8 *)(arg0) + 5)) + var_r4);
@@ -1281,185 +1159,71 @@ void fn_1_7D6B8(void *arg0) {
     }
 }
 #pragma opt_propagation reset
-
-
 #pragma opt_dead_assignments reset
+#undef INPUT_14
+#undef INPUT_24
+#undef INPUT_26
+#undef CLAMP_U8
 /* fzgx:end fn_1_7D6B8 */
 
 /* fzgx:begin fn_1_7E1DC */
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 1.0f;
-    s = 100.0f;
-    s = 17.320507049560547f;
-}
-static const u32 fzgx_pool_table2[3] = {0x00FF00FF, 0x00FF00FF, 0x00FF00FF};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = -100.0f;
-    s = 3.0f;
-    s = 6.0f;
-    s = -3.0f;
-    s = 182.04444885253906f;
-    s = 255.0f;
-    d = 4503601774854144.0;
-    d = 4503599627370496.0;
-}
-static const u32 fzgx_pool_table4[47] = {0xFF000000, 0xFFFFFF00, 0xFFFFFF00, 0xFF000000, 0xFFFFFF00, 0xFF000000, 0xFFFFFF00, 0xFF000000, 0xFFFFFF00, 0xFFFFFF00, 0xFF000000, 0xFFFFFF00, 0xFF000000, 0xFFFFFF00, 0xFF000000, 0xFFFFFF00, 0xFFFFFF00, 0xFF000000, 0xFFFFFF00, 0x7F7F7F00, 0xFF000000, 0xFFFFFF00, 0xFFFFFF00, 0xFFFFFF00, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xFF000000, 0xFFFFFF00, 0xFF000000, 0xFFFFFF00, 0xFF000000, 0xFFFFFF00, 0xFF000000, 0xFFFFFF00, 0xFFFFFF00, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 160.0f;
-    s = 0.3499999940395355f;
-    s = 0.5f;
-    s = 320.0f;
-    s = 30.0f;
-    s = 120.0f;
-    s = 300.0f;
-    s = 10.0f;
-    s = 200.0f;
-    s = 410.0f;
-    s = 450.0f;
-    s = 350.0f;
-    s = 420.0f;
-}
-#pragma section code_type ".text"
-
-typedef struct {
-    f32 x;
-    f32 y;
-    f32 z;
-} Vec3;
-
-typedef struct {
-    u8 r;
-    u8 g;
-    u8 b;
-    u8 a;
-} Color;
-
-typedef struct _GXLightObj {
-    u32 dummy[16];
-} GXLightObj;
-
-typedef struct {
-    Color *unk_0;
-    f32 unk_4;
-    s16 unk_8;
-    s16 unk_A;
-} Fn7E1DCView;
-
-typedef struct {
-    u8 pad_0[0x1C];
-    Fn7E1DCView *unk_1C;
-    u32 unk_20;
-} Fn7E1DCObj;
-
 /* .bss 0x9F8 is four 0x14-byte button records (held, previous, pressed, released); this reads the second */
-typedef struct {
-    u16 unk_0;
-    u16 unk_2;
-    u8 pad_4[0x4];
-    u16 unk_8;
-    u8 pad_A[0xA];
-} PadRec;
-
-typedef struct {
-    u8 pad_0[0x8];
-    struct {
-        u8 pad_0[0x20];
-        void *unk_20;
-    } *unk_8;
-} Fn7E1DCBg;
-
-extern u32 lbl_801A6CE0;
-extern Fn7E1DCBg *lbl_1_bss_38454;
-
-extern void lbl_8006D758(void);
-extern void lbl_8006DCA4(void);
-extern void lbl_8006E0A4(Vec3 *v);
-extern void lbl_8006E1B0(Vec3 *src, Vec3 *dst);
-extern void mathutil_mtxA_rotate_y(s16 angle);
-extern void mathutil_mtxA_rotate_z(s16 angle);
-extern void fn_1_57714(s32 arg0);
-extern void fn_1_57720(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
-extern void fn_1_5773C(Vec3 *a, Vec3 *b, Color *c);
-extern void fn_1_57810(s32 n, Vec3 *pts, Color *c);
-extern void fn_80072558(void);
-extern void fn_80077F8C(void *arg0);
-extern void *memcpy(void *dst, const void *src, u32 n);
-extern void fn_1_7BCCC(Vec3 *v);
-extern void fn_80035680(GXLightObj *lt, f32 x, f32 y, f32 z);
-extern void fn_80035690(GXLightObj *lt, f32 x, f32 y, f32 z);
-extern void fn_80035420(GXLightObj *lt, f32 cutoff, s32 fn);
-extern void fn_800356AC(GXLightObj *lt, Color *c);
-extern void GXInitLightDistAttn(GXLightObj *lt, f32 ref_dist, f32 ref_br, s32 fn);
-extern void fn_1_7BB80(GXLightObj *lt, s32 id);
-extern void fn_1_7BD6C(s32 arg0);
-extern void fn_80074CF4(f32 r, f32 g, f32 b);
-
-/* car_test.h types lbl_1_bss_6D7E8 as u32; it holds a pointer, reread after every store as retail does */
-#define OBJ_6D7E8 (*(Fn7E1DCObj **)&lbl_1_bss_6D7E8)
-#define PAD (((PadRec *)&lbl_1_bss_9F8)[1])
-/* degrees to the 0x10000-per-turn angle unit; folds to an int constant (315 gives 0xE000) */
-#define DEG_TO_S16(deg) ((s16)(182.04445f * (deg)))
 #define CLAMP(x, lo, hi) (((x) < (lo)) ? (lo) : (((x) > (hi)) ? (hi) : (x)))
 
 void fn_1_7E1DC(void) {
-    Fn7E1DCObj *obj = (Fn7E1DCObj *)lbl_1_bss_6D7E8;
+    /* WARNING: compiler-diff device, not original code: the cast view of the state pointer (as main) */
+    CarTest *test = *(CarTest **)&lbl_1_bss_6D7E8;
     Vec3 v;
     GXLightObj light;
     Vec3 pts[21];
     s8 i;
 
-    if (obj->unk_20 & 0x40000000) {
+    if (test->flags & 0x40000000) {
         return;
     }
-    if ((PAD.unk_2 >> 4) & 1) {
-        OBJ_6D7E8->unk_1C->unk_8 += DEG_TO_S16(1);
+    if ((lbl_1_bss_9F8[1].unk_2 >> 4) & 1) {
+        lbl_1_bss_6D7E8->lights->rot_x += DEG_TO_S16(1);
     }
-    if ((PAD.unk_2 >> 5) & 1) {
-        OBJ_6D7E8->unk_1C->unk_8 += DEG_TO_S16(359);
+    if ((lbl_1_bss_9F8[1].unk_2 >> 5) & 1) {
+        lbl_1_bss_6D7E8->lights->rot_x += DEG_TO_S16(359);
     }
-    if ((PAD.unk_2 >> 7) & 1) {
-        OBJ_6D7E8->unk_1C->unk_A += DEG_TO_S16(1);
+    if ((lbl_1_bss_9F8[1].unk_2 >> 7) & 1) {
+        lbl_1_bss_6D7E8->lights->rot_y += DEG_TO_S16(1);
     }
-    if ((PAD.unk_2 >> 6) & 1) {
-        OBJ_6D7E8->unk_1C->unk_A += DEG_TO_S16(359);
+    if ((lbl_1_bss_9F8[1].unk_2 >> 6) & 1) {
+        lbl_1_bss_6D7E8->lights->rot_y += DEG_TO_S16(359);
     }
-    if ((PAD.unk_2 >> 8) & 1) {
-        OBJ_6D7E8->unk_1C->unk_4 += 0.1f;
+    if ((lbl_1_bss_9F8[1].unk_2 >> 8) & 1) {
+        lbl_1_bss_6D7E8->lights->distance += 0.1f;
     }
-    if ((PAD.unk_2 >> 9) & 1) {
-        OBJ_6D7E8->unk_1C->unk_4 -= 0.1f;
+    if ((lbl_1_bss_9F8[1].unk_2 >> 9) & 1) {
+        lbl_1_bss_6D7E8->lights->distance -= 0.1f;
     }
-    OBJ_6D7E8->unk_1C->unk_8 %= DEG_TO_S16(360);
-    OBJ_6D7E8->unk_1C->unk_A %= DEG_TO_S16(360);
-    OBJ_6D7E8->unk_1C->unk_4 = CLAMP(OBJ_6D7E8->unk_1C->unk_4, 0.01f, 17.320507049560547f);
-    if ((PAD.unk_8 >> 9) & 1) {
-        OBJ_6D7E8->unk_1C->unk_4 = 17.320507049560547f;
-        OBJ_6D7E8->unk_1C->unk_8 = DEG_TO_S16(315);
-        OBJ_6D7E8->unk_1C->unk_A = DEG_TO_S16(45);
+    lbl_1_bss_6D7E8->lights->rot_x %= DEG_TO_S16(360);
+    lbl_1_bss_6D7E8->lights->rot_y %= DEG_TO_S16(360);
+    lbl_1_bss_6D7E8->lights->distance = CLAMP(lbl_1_bss_6D7E8->lights->distance, 0.01f, 17.320507f);
+    if ((lbl_1_bss_9F8[1].unk_8 >> 9) & 1) {
+        lbl_1_bss_6D7E8->lights->distance = 17.320507f;
+        lbl_1_bss_6D7E8->lights->rot_x = DEG_TO_S16(315);
+        lbl_1_bss_6D7E8->lights->rot_y = DEG_TO_S16(45);
     }
 
-    v.x = OBJ_6D7E8->unk_1C->unk_4;
+    v.x = lbl_1_bss_6D7E8->lights->distance;
     v.z = 0.0f;
     v.y = 0.0f;
     lbl_8006D758();
-    mathutil_mtxA_rotate_y(OBJ_6D7E8->unk_1C->unk_8);
-    mathutil_mtxA_rotate_z(OBJ_6D7E8->unk_1C->unk_A);
+    mathutil_mtxA_rotate_y(lbl_1_bss_6D7E8->lights->rot_x);
+    mathutil_mtxA_rotate_z(lbl_1_bss_6D7E8->lights->rot_y);
     lbl_8006E1B0(&v, &v);
 
-    if (((PAD.unk_2 >> 7) & 1) || ((PAD.unk_2 >> 4) & 1) || ((PAD.unk_2 >> 6) & 1) || ((PAD.unk_2 >> 5) & 1) ||
-        ((PAD.unk_2 >> 8) & 1) || ((PAD.unk_2 >> 9) & 1) || ((PAD.unk_0 >> 8) & 1)) {
+    if (((lbl_1_bss_9F8[1].unk_2 >> 7) & 1) || ((lbl_1_bss_9F8[1].unk_2 >> 4) & 1) || ((lbl_1_bss_9F8[1].unk_2 >> 6) & 1) || ((lbl_1_bss_9F8[1].unk_2 >> 5) & 1) ||
+        ((lbl_1_bss_9F8[1].unk_2 >> 8) & 1) || ((lbl_1_bss_9F8[1].unk_2 >> 9) & 1) || ((lbl_1_bss_9F8[1].unk_0 >> 8) & 1)) {
         Vec3 origin = {0.0f, 0.0f, 0.0f};
-        Color green = {0x00, 0xFF, 0x00, 0xFF};
-        Color white = {0xFF, 0xFF, 0xFF, 0xFF};
+        GXColor green = {0x00, 0xFF, 0x00, 0xFF};
+        GXColor white = {0xFF, 0xFF, 0xFF, 0xFF};
         Vec3 w;
 
-        w.x = OBJ_6D7E8->unk_1C->unk_4;
+        w.x = lbl_1_bss_6D7E8->lights->distance;
         w.z = 0.0f;
         w.y = 0.0f;
         lbl_8006DCA4();
@@ -1474,8 +1238,8 @@ void fn_1_7E1DC(void) {
         /* a 20-point circle about each axis, closed by repeating the first point */
         for (i = 0; i < 20; i++) {
             lbl_8006D758();
-            mathutil_mtxA_rotate_y(DEG_TO_S16(i * 360 / 20));
-            mathutil_mtxA_rotate_z(OBJ_6D7E8->unk_1C->unk_A);
+            mathutil_mtxA_rotate_y(182.04445f * (i * 360 / 20));
+            mathutil_mtxA_rotate_z(lbl_1_bss_6D7E8->lights->rot_y);
             lbl_8006E1B0(&w, &pts[i]);
         }
         memcpy(&pts[20], &pts[0], sizeof(Vec3));
@@ -1483,8 +1247,8 @@ void fn_1_7E1DC(void) {
         fn_1_57810(21, pts, &white);
         for (i = 0; i < 20; i++) {
             lbl_8006D758();
-            mathutil_mtxA_rotate_y(OBJ_6D7E8->unk_1C->unk_8);
-            mathutil_mtxA_rotate_z(DEG_TO_S16(i * 360 / 20));
+            mathutil_mtxA_rotate_y(lbl_1_bss_6D7E8->lights->rot_x);
+            mathutil_mtxA_rotate_z(182.04445f * (i * 360 / 20));
             lbl_8006E1B0(&w, &pts[i]);
         }
         memcpy(&pts[20], &pts[0], sizeof(Vec3));
@@ -1499,7 +1263,7 @@ void fn_1_7E1DC(void) {
     fn_80035690(&light, v.x, v.y, v.z);
     fn_80035420(&light, 0.0f, 0);
     {
-        Color c = *OBJ_6D7E8->unk_1C->unk_0;
+        GXColor c = *(GXColor *)lbl_1_bss_6D7E8->lights->color;
         fn_800356AC(&light, &c);
     }
     GXInitLightDistAttn(&light, 0.0f, 0.0f, 0);
@@ -1510,47 +1274,54 @@ void fn_1_7E1DC(void) {
 /* fzgx:end fn_1_7E1DC */
 
 /* fzgx:begin fn_1_7E7A4 */
-typedef struct Fn1_7E7A4Data {
-    void *field_0;
-    u8 pad_4[8];
-    void *field_c;
-    u8 pad_10[8];
-    void *field_18;
-    void *field_1c;
-} Fn1_7E7A4Data;
-
-void fn_1_7E7A4(Fn1_7E7A4Data *arg0) {
+void fn_1_7E7A4(CarTest *test) {
     s8 i;
-    u32 offset;
 
-    for (i = 0, offset = 0; i < 0x29; offset += 0x440, i++) {
-        fn_1_46B4(
-            lbl_801A6410,
-            *(void **)(((((((0x32c) + ((u8 *)arg0->field_0)))) + ((offset))))),
-            (*(u8 (*)[128])&lbl_1_data_1EF5C),
-            0x313);
+    for (i = 0; i < 41; i++) {
+        fn_1_46B4(lbl_801A6410, test->cars[i].body, "car_test.c", 787);
     }
-
-    fn_1_7F954(arg0->field_0, 0x29);
-
+    fn_1_7F954(test->cars, 41);
     for (i = 0; i < 2; i++) {
-        fn_1_46B4(
-            lbl_801A6410,
-            *(void **)((u8 *)arg0->field_1c + i * 0xc),
-            (*(u8 (*)[128])&lbl_1_data_1EF5C),
-            0x321);
+        fn_1_46B4(lbl_801A6410, test->lights[i].color, "car_test.c", 801);
     }
-
-    fn_1_46B4(lbl_801A6410, arg0->field_18, (*(u8 (*)[128])&lbl_1_data_1EF5C), 0x324);
-    fn_1_46B4(lbl_801A6410, arg0->field_c, (*(u8 (*)[128])&lbl_1_data_1EF5C), 0x325);
-    fn_1_46B4(lbl_801A6410, arg0, (*(u8 (*)[128])&lbl_1_data_1EF5C), 0x326);
+    fn_1_46B4(lbl_801A6410, test->bg_color, "car_test.c", 804);
+    fn_1_46B4(lbl_801A6410, test->disp_masks, "car_test.c", 805);
+    fn_1_46B4(lbl_801A6410, test, "car_test.c", 806);
     fn_1_49614();
-    fn_80074D68(lbl_1_rodata_33A8, lbl_1_rodata_33A8, lbl_1_rodata_33A8);
+    fn_80074D68(1.0f, 1.0f, 1.0f);
     fn_80074D78(1);
 }
 /* fzgx:end fn_1_7E7A4 */
 
-/* fzgx:begin fn_1_7E8F4 */
+/* fzgx:begin fn_1_7E8F4 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/car_test.h"
+
+extern void fn_1_5634C(u32 arg0);
+extern void fn_1_7ECB8(u32 arg0, u32 arg1, u32 arg2);
+extern void *lbl_801A6410;
+extern const f64 lbl_1_rodata_3588;
+extern void fn_1_12AB38(const char *);
+extern void *fn_1_45D0(void *, s32, const char *, s32);
+extern void fn_80008BEC(void *, s32, s32);
+extern void fn_1_80F80(void *, u8, void *);
+extern void fn_1_1502BC(void *, void *, void *);
+
+extern void fn_80083DB0(void* arg0, u32 arg1);
+extern void fn_1_801F8(s16 arg0, void* arg1);
+extern const f32 lbl_1_rodata_33AC;
+extern void *fn_1_4630(void *arg0, u32 arg1, void *arg2, u32 arg3);
+extern const f32 lbl_1_rodata_33B0[84];
+extern void *memset(void *dst, int value, u32 size);
+extern void fn_1_46B4(void *arg0, void *arg1, u8 *arg2, s32 arg3);
+extern void fn_1_7F954(void *arg0, s32 arg1);
+extern void fn_1_49614(void);
+extern const f32 lbl_1_rodata_33A8;
+extern void fn_80071ED4(s32 arg0, f32 arg1, f32 arg2);
+extern void fn_80072014(void *arg0);
+extern void fn_800720B0(s32 arg0);
+
 extern void fn_1_5634C(u32 arg0);
 extern void fn_1_7ECB8(u32 arg0, u32 arg1, u32 arg2);
 extern void *lbl_801A6410;
@@ -1705,7 +1476,35 @@ void fn_1_7E9C4(void) {
 }
 /* fzgx:end fn_1_7E9C4 */
 
-/* fzgx:begin fn_1_7EAE8 */
+/* fzgx:begin fn_1_7EAE8 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/car_test.h"
+
+extern void fn_1_5634C(u32 arg0);
+extern void fn_1_7ECB8(u32 arg0, u32 arg1, u32 arg2);
+extern void *lbl_801A6410;
+extern const f64 lbl_1_rodata_3588;
+extern void fn_1_12AB38(const char *);
+extern void *fn_1_45D0(void *, s32, const char *, s32);
+extern void fn_80008BEC(void *, s32, s32);
+extern void fn_1_80F80(void *, u8, void *);
+extern void fn_1_1502BC(void *, void *, void *);
+
+extern void fn_80083DB0(void* arg0, u32 arg1);
+extern void fn_1_801F8(s16 arg0, void* arg1);
+extern const f32 lbl_1_rodata_33AC;
+extern void *fn_1_4630(void *arg0, u32 arg1, void *arg2, u32 arg3);
+extern const f32 lbl_1_rodata_33B0[84];
+extern void *memset(void *dst, int value, u32 size);
+extern void fn_1_46B4(void *arg0, void *arg1, u8 *arg2, s32 arg3);
+extern void fn_1_7F954(void *arg0, s32 arg1);
+extern void fn_1_49614(void);
+extern const f32 lbl_1_rodata_33A8;
+extern void fn_80071ED4(s32 arg0, f32 arg1, f32 arg2);
+extern void fn_80072014(void *arg0);
+extern void fn_800720B0(s32 arg0);
+
 // fn_1_7EAE8: main_rel .text:0x0007EAE8 size 0x24
 // Wrapper that calls fn_1_5634C with argument 0.
 
@@ -1714,7 +1513,35 @@ void fn_1_7EAE8(void) {
 }
 /* fzgx:end fn_1_7EAE8 */
 
-/* fzgx:begin fn_1_7EB0C */
+/* fzgx:begin fn_1_7EB0C noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/car_test.h"
+
+extern void fn_1_5634C(u32 arg0);
+extern void fn_1_7ECB8(u32 arg0, u32 arg1, u32 arg2);
+extern void *lbl_801A6410;
+extern const f64 lbl_1_rodata_3588;
+extern void fn_1_12AB38(const char *);
+extern void *fn_1_45D0(void *, s32, const char *, s32);
+extern void fn_80008BEC(void *, s32, s32);
+extern void fn_1_80F80(void *, u8, void *);
+extern void fn_1_1502BC(void *, void *, void *);
+
+extern void fn_80083DB0(void* arg0, u32 arg1);
+extern void fn_1_801F8(s16 arg0, void* arg1);
+extern const f32 lbl_1_rodata_33AC;
+extern void *fn_1_4630(void *arg0, u32 arg1, void *arg2, u32 arg3);
+extern const f32 lbl_1_rodata_33B0[84];
+extern void *memset(void *dst, int value, u32 size);
+extern void fn_1_46B4(void *arg0, void *arg1, u8 *arg2, s32 arg3);
+extern void fn_1_7F954(void *arg0, s32 arg1);
+extern void fn_1_49614(void);
+extern const f32 lbl_1_rodata_33A8;
+extern void fn_80071ED4(s32 arg0, f32 arg1, f32 arg2);
+extern void fn_80072014(void *arg0);
+extern void fn_800720B0(s32 arg0);
+
 typedef struct {
     s8 unk_0;
 } SignedByteView;
@@ -2160,25 +1987,137 @@ void fn_1_7ECB8(void * arg0, u32 arg1, u32 arg2, f32 arg3) {
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_7ECB8 */
 
-/* fzgx:begin fn_1_7F1E8 */
+/* fzgx:begin fn_1_7F1E8 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/car_test.h"
+
+extern void fn_1_5634C(u32 arg0);
+extern void fn_1_7ECB8(u32 arg0, u32 arg1, u32 arg2);
+extern void *lbl_801A6410;
+extern const f64 lbl_1_rodata_3588;
+extern void fn_1_12AB38(const char *);
+extern void *fn_1_45D0(void *, s32, const char *, s32);
+extern void fn_80008BEC(void *, s32, s32);
+extern void fn_1_80F80(void *, u8, void *);
+extern void fn_1_1502BC(void *, void *, void *);
+
+extern void fn_80083DB0(void* arg0, u32 arg1);
+extern void fn_1_801F8(s16 arg0, void* arg1);
+extern const f32 lbl_1_rodata_33AC;
+extern void *fn_1_4630(void *arg0, u32 arg1, void *arg2, u32 arg3);
+extern const f32 lbl_1_rodata_33B0[84];
+extern void *memset(void *dst, int value, u32 size);
+extern void fn_1_46B4(void *arg0, void *arg1, u8 *arg2, s32 arg3);
+extern void fn_1_7F954(void *arg0, s32 arg1);
+extern void fn_1_49614(void);
+extern const f32 lbl_1_rodata_33A8;
+extern void fn_80071ED4(s32 arg0, f32 arg1, f32 arg2);
+extern void fn_80072014(void *arg0);
+extern void fn_800720B0(s32 arg0);
+
 void fn_1_7F1E8(u32 arg0, u32 arg1) {
     fn_1_7ECB8(arg0, arg1, 0x80000000); // fzgx-allow: A1 retail sentinel
 }
 /* fzgx:end fn_1_7F1E8 */
 
-/* fzgx:begin fn_1_7F20C */
+/* fzgx:begin fn_1_7F20C noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/car_test.h"
+
+extern void fn_1_5634C(u32 arg0);
+extern void fn_1_7ECB8(u32 arg0, u32 arg1, u32 arg2);
+extern void *lbl_801A6410;
+extern const f64 lbl_1_rodata_3588;
+extern void fn_1_12AB38(const char *);
+extern void *fn_1_45D0(void *, s32, const char *, s32);
+extern void fn_80008BEC(void *, s32, s32);
+extern void fn_1_80F80(void *, u8, void *);
+extern void fn_1_1502BC(void *, void *, void *);
+
+extern void fn_80083DB0(void* arg0, u32 arg1);
+extern void fn_1_801F8(s16 arg0, void* arg1);
+extern const f32 lbl_1_rodata_33AC;
+extern void *fn_1_4630(void *arg0, u32 arg1, void *arg2, u32 arg3);
+extern const f32 lbl_1_rodata_33B0[84];
+extern void *memset(void *dst, int value, u32 size);
+extern void fn_1_46B4(void *arg0, void *arg1, u8 *arg2, s32 arg3);
+extern void fn_1_7F954(void *arg0, s32 arg1);
+extern void fn_1_49614(void);
+extern const f32 lbl_1_rodata_33A8;
+extern void fn_80071ED4(s32 arg0, f32 arg1, f32 arg2);
+extern void fn_80072014(void *arg0);
+extern void fn_800720B0(s32 arg0);
+
 void fn_1_7F20C(u32 arg0, u32 arg1) {
     fn_1_7ECB8(arg0, arg1, 0x40000000); // fzgx-allow: A1 retail sentinel
 }
 /* fzgx:end fn_1_7F20C */
 
-/* fzgx:begin fn_1_7F230 */
+/* fzgx:begin fn_1_7F230 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/car_test.h"
+
+extern void fn_1_5634C(u32 arg0);
+extern void fn_1_7ECB8(u32 arg0, u32 arg1, u32 arg2);
+extern void *lbl_801A6410;
+extern const f64 lbl_1_rodata_3588;
+extern void fn_1_12AB38(const char *);
+extern void *fn_1_45D0(void *, s32, const char *, s32);
+extern void fn_80008BEC(void *, s32, s32);
+extern void fn_1_80F80(void *, u8, void *);
+extern void fn_1_1502BC(void *, void *, void *);
+
+extern void fn_80083DB0(void* arg0, u32 arg1);
+extern void fn_1_801F8(s16 arg0, void* arg1);
+extern const f32 lbl_1_rodata_33AC;
+extern void *fn_1_4630(void *arg0, u32 arg1, void *arg2, u32 arg3);
+extern const f32 lbl_1_rodata_33B0[84];
+extern void *memset(void *dst, int value, u32 size);
+extern void fn_1_46B4(void *arg0, void *arg1, u8 *arg2, s32 arg3);
+extern void fn_1_7F954(void *arg0, s32 arg1);
+extern void fn_1_49614(void);
+extern const f32 lbl_1_rodata_33A8;
+extern void fn_80071ED4(s32 arg0, f32 arg1, f32 arg2);
+extern void fn_80072014(void *arg0);
+extern void fn_800720B0(s32 arg0);
+
 void fn_1_7F230(u32 arg0, u32 arg1) {
     fn_1_7ECB8(arg0, arg1, 0);
 }
 /* fzgx:end fn_1_7F230 */
 
-/* fzgx:begin fn_1_7F254 */
+/* fzgx:begin fn_1_7F254 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/car_test.h"
+
+extern void fn_1_5634C(u32 arg0);
+extern void fn_1_7ECB8(u32 arg0, u32 arg1, u32 arg2);
+extern void *lbl_801A6410;
+extern const f64 lbl_1_rodata_3588;
+extern void fn_1_12AB38(const char *);
+extern void *fn_1_45D0(void *, s32, const char *, s32);
+extern void fn_80008BEC(void *, s32, s32);
+extern void fn_1_80F80(void *, u8, void *);
+extern void fn_1_1502BC(void *, void *, void *);
+
+extern void fn_80083DB0(void* arg0, u32 arg1);
+extern void fn_1_801F8(s16 arg0, void* arg1);
+extern const f32 lbl_1_rodata_33AC;
+extern void *fn_1_4630(void *arg0, u32 arg1, void *arg2, u32 arg3);
+extern const f32 lbl_1_rodata_33B0[84];
+extern void *memset(void *dst, int value, u32 size);
+extern void fn_1_46B4(void *arg0, void *arg1, u8 *arg2, s32 arg3);
+extern void fn_1_7F954(void *arg0, s32 arg1);
+extern void fn_1_49614(void);
+extern const f32 lbl_1_rodata_33A8;
+extern void fn_80071ED4(s32 arg0, f32 arg1, f32 arg2);
+extern void fn_80072014(void *arg0);
+extern void fn_800720B0(s32 arg0);
+
 void *fn_1_7F254(void *arg0, void *arg1) {
     u8 kind = ((u8 *)arg0)[5];
     s16 type;
