@@ -5241,6 +5241,7 @@ void fn_10_5780(struct Fn105780 *obj) {
 /* fzgx:end fn_10_5780 */
 
 /* fzgx:begin fn_10_578C noprologue */
+#include "game/pad.h"
 /* begin sofdec/adxt.h (deltawave784/fzgx, CC0) */
 
 #ifndef SOFDEC_ADXT_H
@@ -5307,10 +5308,10 @@ s16 fn_10_578C(void *arg0) {
     v3.value = p_lbl_1_bss_9F8.value;
     for (; v1 < 4; v4.value += 12, v3.value += 20, v1++) {
         if ((s8)v4.value[10] != -1 && __rlwnm(p_lbl_1_bss_8B3A0->unk_98, (v1 + 1) & 31, 31, 31)) {
-            if (((*(volatile u16 *)(v3.value + 16) >> 3) & 1) || ((*(volatile u16 *)(v3.value + 18) >> 3) & 1)) v2--; /* volatile: controller flags are sampled independently for each test. */
-            if (((*(volatile u16 *)(v3.value + 16) >> 2) & 1) || ((*(volatile u16 *)(v3.value + 18) >> 2) & 1)) v2++; /* volatile: controller flags are sampled independently for each test. */
-            v5 = *(volatile u16 *)(v3.value + 16); /* volatile: controller flags are sampled independently for each test. */
-            if (((v5 >> 2) & 1) || (((v7 = *(volatile u16 *)(v3.value + 18)) >> 2) & 1)) fn_1_12F128(v1); /* volatile: controller flags are sampled independently for each test. */
+            if (PAD_BIT(*(u16 *)(v3.value + 16), 3) || PAD_BIT(*(u16 *)(v3.value + 18), 3)) v2--;
+            if (PAD_BIT(*(u16 *)(v3.value + 16), 2) || PAD_BIT(*(u16 *)(v3.value + 18), 2)) v2++;
+            v5 = *(u16 *)(v3.value + 16);
+            if (((v5 >> 2) & 1) || (((v7 = *(u16 *)(v3.value + 18)) >> 2) & 1)) fn_1_12F128(v1);
             else if (((v5 >> 3) & 1) || ((v7 >> 3) & 1)) fn_1_12F128(v1);
         }
     }
@@ -5330,9 +5331,9 @@ s16 fn_10_578C(void *arg0) {
     if (*(s16 *)((u8 *)arg0 + 146) == 8) {
         for (v12 = 0; v12 < 4; v12++) {
             if ((s8)p_lbl_1_bss_9C8.value[v12 * 12 + 10] != -1 && __rlwnm(p_lbl_1_bss_8B3A0->unk_98, (v12 + 1) & 31, 31, 31)) {
-                if (((*(volatile u16 *)(p_lbl_1_bss_9F8.value + v12 * 20 + 8) >> 9) & 1)) v13--; /* volatile: controller flags are sampled independently for each test. */
-                if (((*(volatile u16 *)(p_lbl_1_bss_9F8.value + v12 * 20 + 8) >> 8) & 1)) v13 = (s16)(v13 + 1); /* volatile: controller flags are sampled independently for each test. */
-                v5 = *(volatile u16 *)(p_lbl_1_bss_9F8.value + v12 * 20 + 8); /* volatile: controller flags are sampled independently for each test. */
+                if (PAD_BIT(*(u16 *)(p_lbl_1_bss_9F8.value + v12 * 20 + 8), 9)) v13--;
+                if (PAD_BIT(*(u16 *)(p_lbl_1_bss_9F8.value + v12 * 20 + 8), 8)) v13 = (s16)(v13 + 1);
+                v5 = *(u16 *)(p_lbl_1_bss_9F8.value + v12 * 20 + 8);
                 if ((v5 >> 8) & 1) fn_1_12F150(v12, 9, 1);
                 else if ((v5 >> 9) & 1) fn_1_12F150(v12, 9, 0);
             }
@@ -5344,9 +5345,9 @@ s16 fn_10_578C(void *arg0) {
         v20 = p_lbl_1_bss_9F8.value;
         for (v17 = 0; v17 < 4; v19 += 12, v20 += 20, v17++) {
             if ((s8)v19[10] != -1 && __rlwnm(p_lbl_1_bss_8B3A0->unk_98, (v17 + 1) & 31, 31, 31)) {
-                if (((*(volatile u16 *)(v20 + 8) >> 9) & 1)) v13--; /* volatile: controller flags are sampled independently for each test. */
-                if (((*(volatile u16 *)(v20 + 8) >> 8) & 1)) v13 = (s16)(v13 + 1); /* volatile: controller flags are sampled independently for each test. */
-                v5 = *(volatile u16 *)(v20 + 8); /* volatile: controller flags are sampled independently for each test. */
+                if (PAD_BIT(*(u16 *)(v20 + 8), 9)) v13--;
+                if (PAD_BIT(*(u16 *)(v20 + 8), 8)) v13 = (s16)(v13 + 1);
+                v5 = *(u16 *)(v20 + 8);
                 if ((v5 >> 8) & 1) fn_1_12F150(v17, 9, 1);
                 else if ((v5 >> 9) & 1) fn_1_12F150(v17, 9, 0);
             }
@@ -5361,10 +5362,10 @@ s16 fn_10_578C(void *arg0) {
         v26 = 0;
         for (v23 = 0; v23 < 4; v23++) {
             if ((s8)p_lbl_1_bss_9C8.value[v23 * 12 + 10] != -1 && __rlwnm(p_lbl_1_bss_8B3A0->unk_98, (v23 + 1) & 31, 31, 31)) {
-                if (((*(volatile u16 *)(p_lbl_1_bss_9F8.value + v23 * 20 + 16) >> 0) & 1) || ((*(volatile u16 *)(p_lbl_1_bss_9F8.value + v23 * 20 + 18) >> 0) & 1)) v26--; /* volatile: controller flags are sampled independently for each test. */
-                if (((*(volatile u16 *)(p_lbl_1_bss_9F8.value + v23 * 20 + 16) >> 1) & 1) || ((*(volatile u16 *)(p_lbl_1_bss_9F8.value + v23 * 20 + 18) >> 1) & 1)) v26++; /* volatile: controller flags are sampled independently for each test. */
-                v27 = *(volatile u16 *)(p_lbl_1_bss_9F8.value + v23 * 20 + 16); /* volatile: controller flags are sampled independently for each test. */
-                if (((v27 >> 1) & 1) || (((v29 = *(volatile u16 *)(p_lbl_1_bss_9F8.value + v23 * 20 + 18)) >> 1) & 1)) fn_1_12F128(v23); /* volatile: controller flags are sampled independently for each test. */
+                if (PAD_BIT(*(u16 *)(p_lbl_1_bss_9F8.value + v23 * 20 + 16), 0) || PAD_BIT(*(u16 *)(p_lbl_1_bss_9F8.value + v23 * 20 + 18), 0)) v26--;
+                if (PAD_BIT(*(u16 *)(p_lbl_1_bss_9F8.value + v23 * 20 + 16), 1) || PAD_BIT(*(u16 *)(p_lbl_1_bss_9F8.value + v23 * 20 + 18), 1)) v26++;
+                v27 = *(u16 *)(p_lbl_1_bss_9F8.value + v23 * 20 + 16);
+                if (((v27 >> 1) & 1) || (((v29 = *(u16 *)(p_lbl_1_bss_9F8.value + v23 * 20 + 18)) >> 1) & 1)) fn_1_12F128(v23);
                 else if ((v27 & 1) || (v29 & 1)) fn_1_12F128(v23);
             }
         }
@@ -7605,9 +7606,9 @@ inline int fn_10_A7DC(s16 mode) {
 /* fzgx:end fn_10_A7DC */
 
 /* fzgx:begin fn_10_A90C noprologue */
+#include "game/pad.h"
 #pragma opt_loop_invariants off
 #pragma opt_dead_assignments off
-#pragma opt_common_subs off
 void fn_10_A90C(SelState *state) {
     u8 *p_lbl_1_bss_9C8;
     s16 delta;
@@ -7622,11 +7623,11 @@ void fn_10_A90C(SelState *state) {
     while (i < 4) {
         if (lbl_1_bss_9C8[i].unk_a != -1) {
             if (__rlwnm(p_lbl_1_bss_8B3A0->unk_98, (i + 1) & 31, 31, 31)) {
-                if ((*(volatile u16 *)((u8 *)lbl_1_bss_9F8 + i * 20 + 0x10) & 1) || (*(volatile u16 *)((u8 *)lbl_1_bss_9F8 + i * 20 + 0x12) & 1)) delta--; // fzgx-allow: S2 layout primer sink: MWCC emits the literal pool in first-access order
-                if (((*(volatile u16 *)((u8 *)lbl_1_bss_9F8 + i * 20 + 0x10) >> 1) & 1) || ((*(volatile u16 *)((u8 *)lbl_1_bss_9F8 + i * 20 + 0x12) >> 1) & 1)) delta++; // fzgx-allow: S2 layout primer sink: MWCC emits the literal pool in first-access order
-                if (((*(u16 *)((u8 *)lbl_1_bss_9F8 + i * 20 + 0x10) >> 1) & 1) || ((*(u16 *)((u8 *)lbl_1_bss_9F8 + i * 20 + 0x12) >> 1) & 1)) {
+                if (PAD_BIT(((SelInput *)lbl_1_bss_9F8)[i].unk_10, 0) || PAD_BIT(((SelInput *)lbl_1_bss_9F8)[i].unk_12, 0)) delta--;
+                if (PAD_BIT(((SelInput *)lbl_1_bss_9F8)[i].unk_10, 1) || PAD_BIT(((SelInput *)lbl_1_bss_9F8)[i].unk_12, 1)) delta++;
+                if (PAD_BIT(((SelInput *)lbl_1_bss_9F8)[i].unk_10, 1) || PAD_BIT(((SelInput *)lbl_1_bss_9F8)[i].unk_12, 1)) {
                     fn_1_12F128(i);
-                } else if ((*(u16 *)((u8 *)lbl_1_bss_9F8 + i * 20 + 0x10) & 1) || (*(u16 *)((u8 *)lbl_1_bss_9F8 + i * 20 + 0x12) & 1)) {
+                } else if (PAD_BIT(((SelInput *)lbl_1_bss_9F8)[i].unk_10, 0) || PAD_BIT(((SelInput *)lbl_1_bss_9F8)[i].unk_12, 0)) {
                     fn_1_12F128(i);
                 }
             }
@@ -7649,7 +7650,6 @@ void fn_10_A90C(SelState *state) {
     }
 }
 #pragma opt_loop_invariants reset
-#pragma opt_common_subs reset
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_10_A90C */
 
@@ -27288,6 +27288,20 @@ extern char *fn_80083DB0(char *dst, const char *src);
 extern void fn_10_2325C(struct fn_8_D630_obj *arg0);
 extern void ADXT_Stop(ADXTHandle *handle);
 
+#include "game/pad.h"
+
+/* A pad state (0x14 bytes); lbl_1_bss_9F8 holds one per port. */
+typedef struct {
+    u16 unk_0;
+    u16 unk_2;
+    u8 pad_4[0x4];
+    u16 unk_8;
+    u8 pad_a[0x6];
+    u16 unk_10;
+    u16 unk_12;
+} fn_10_18A50_Pad;
+#define fn_10_18A50_pads ((fn_10_18A50_Pad *)&lbl_1_bss_9F8)
+
 void fn_10_18A50(struct fn_10_18A50_Arg0 *param0, u32 param1) {
     struct fn_10_18A50_Arg0 *arg0 = param0;
     s16 v10;
@@ -27295,8 +27309,6 @@ void fn_10_18A50(struct fn_10_18A50_Arg0 *param0, u32 param1) {
     u32 v11;
     f32 v1;
     f32 t1;
-    u32 v9;
-    u32 v8;
     s32 v6;
     s16 id = *(volatile s16 *)&arg0->unk_8C; /* Read the selection ID before polling. */
     struct { u32 value; } saved;
@@ -27306,18 +27318,13 @@ void fn_10_18A50(struct fn_10_18A50_Arg0 *param0, u32 param1) {
         for (v6 = 0; v6 < 4; v6++) {
             if ((s8)lbl_1_bss_9C8[v6 * 12 + 10] != -1 &&
                 (__rlwnm(*(u32 *)((((u8 *)&lbl_1_bss_8B3A0)) + 0x98), (v6 + 1) & 31, 31, 31))) {
-                /* Controller state is polled again for each decision. */
-                if ((((v8 = *(volatile u16 *)((((u8 *)&lbl_1_bss_9F8)) + v6 * 20 + 16)) >> 1) & 1) ||
-                    (((v9 = *(volatile u16 *)((((u8 *)&lbl_1_bss_9F8)) + v6 * 20 + 18)) >> 1) & 1) || /* Poll the second controller state. */
-                    (v8 & 1) || (v9 & 1)) {
+                if (PAD_BIT(fn_10_18A50_pads[v6].unk_10, 1) || PAD_BIT(fn_10_18A50_pads[v6].unk_12, 1) ||
+                    PAD_BIT(fn_10_18A50_pads[v6].unk_10, 0) || PAD_BIT(fn_10_18A50_pads[v6].unk_12, 0)) {
                     v10 = arg0->unk_E0[v6];
-                    /* Re-read controller state for this decision, as in retail. */
-                    if (((*(volatile u16 *)((((u8 *)&lbl_1_bss_9F8)) + v6 * 20 + 16) >> 1) & 1) || /* Fresh poll. */
-                        ((*(volatile u16 *)((((u8 *)&lbl_1_bss_9F8)) + v6 * 20 + 18) >> 1) & 1)) { /* Fresh second-state poll. */
+                    if (PAD_BIT(fn_10_18A50_pads[v6].unk_10, 1) || PAD_BIT(fn_10_18A50_pads[v6].unk_12, 1)) {
                         lbl_10_bss_55AE0 = 0;
                     }
-                    if ((*(u16 *)((((u8 *)&lbl_1_bss_9F8)) + v6 * 20 + 16) & 1) ||
-                        (*(u16 *)((((u8 *)&lbl_1_bss_9F8)) + v6 * 20 + 18) & 1)) {
+                    if (PAD_BIT(fn_10_18A50_pads[v6].unk_10, 0) || PAD_BIT(fn_10_18A50_pads[v6].unk_12, 0)) {
                         lbl_10_bss_55AE0 = 1;
                     }
                 }
@@ -27333,6 +27340,7 @@ void fn_10_18A50(struct fn_10_18A50_Arg0 *param0, u32 param1) {
         fn_10_18C54(38, saved.value, t1, 0);
     }
 }
+#undef fn_10_18A50_pads
 /* fzgx:end fn_10_18A50 */
 
 /* fzgx:begin fn_10_18C54 */
