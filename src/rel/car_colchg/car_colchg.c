@@ -91,6 +91,11 @@ typedef struct ColchgScene {
 } ColchgScene;
 
 extern PadInput lbl_1_bss_D58;
+
+/* Pad button test: bit n of a pad button word. */
+/* REVIEW NOTE (accepted for now): PAD_BIT is a reconstruction. Retail reads a pad bit with lhz + rlwinm and
+ * loads the word again in each statement. Only the __rlwinm intrinsic reproduces it. No retail name proves it. */
+#define PAD_BIT(word, n) __rlwinm((word), (32 - (n)) & 31, 31, 31)
 extern SystemCursor lbl_1_bss_970;
 extern u16 lbl_1_bss_96A;
 extern u16 lbl_1_bss_968;
@@ -225,7 +230,7 @@ void _prolog(void) {
 /* fzgx:begin fn_9_298 */
 void fn_9_298(void) {
     if (fn_1_4C10() == 0) {
-        if (__rlwinm(lbl_1_bss_D58.unk_8, 20, 31, 31)) {
+        if (PAD_BIT(lbl_1_bss_D58.unk_8, 12)) {
             lbl_1_bss_96A = 0x75;
         }
     }
@@ -277,18 +282,18 @@ void fn_9_454(void) {
 
     if (fn_1_4C10() == 0) {
         delta = 0;
-        if (__rlwinm(lbl_1_bss_D58.unk_10, 29, 31, 31) || __rlwinm(lbl_1_bss_D58.unk_12, 29, 31, 31)) {
+        if (PAD_BIT(lbl_1_bss_D58.unk_10, 3) || PAD_BIT(lbl_1_bss_D58.unk_12, 3)) {
             delta = -1;
         }
-        if (__rlwinm(lbl_1_bss_D58.unk_10, 30, 31, 31) || __rlwinm(lbl_1_bss_D58.unk_12, 30, 31, 31)) {
+        if (PAD_BIT(lbl_1_bss_D58.unk_10, 2) || PAD_BIT(lbl_1_bss_D58.unk_12, 2)) {
             delta++;
         }
         value = lbl_1_bss_970.unk_4 + delta;
         value = (lbl_1_bss_970.unk_4 = (value > 0x73) ? 0x73 : ((value < 0x73) ? 0x73 : value));
-        if (__rlwinm(lbl_1_bss_D58.unk_8, 24, 31, 31)) {
+        if (PAD_BIT(lbl_1_bss_D58.unk_8, 8)) {
             lbl_1_bss_96A = value;
         }
-        if (__rlwinm(lbl_1_bss_D58.unk_8, 23, 31, 31)) {
+        if (PAD_BIT(lbl_1_bss_D58.unk_8, 9)) {
             lbl_1_bss_96A = 0x75;
         }
     }
@@ -319,14 +324,14 @@ void fn_9_5D8(void) {
     s8 delta;
 
     if (fn_1_4C10() == 0) {
-        if (__rlwinm(lbl_1_bss_D58.unk_8, 23, 31, 31)) {
+        if (PAD_BIT(lbl_1_bss_D58.unk_8, 9)) {
             lbl_1_bss_96A = 0x72;
         }
         delta = 0;
-        if (__rlwinm(lbl_1_bss_D58.unk_10, 0, 31, 31) || __rlwinm(lbl_1_bss_D58.unk_12, 0, 31, 31)) {
+        if (PAD_BIT(lbl_1_bss_D58.unk_10, 0) || PAD_BIT(lbl_1_bss_D58.unk_12, 0)) {
             delta = -1;
         }
-        if (__rlwinm(lbl_1_bss_D58.unk_10, 31, 31, 31) || __rlwinm(lbl_1_bss_D58.unk_12, 31, 31, 31)) {
+        if (PAD_BIT(lbl_1_bss_D58.unk_10, 1) || PAD_BIT(lbl_1_bss_D58.unk_12, 1)) {
             delta++;
         }
         if (delta != 0) {
@@ -334,7 +339,7 @@ void fn_9_5D8(void) {
             lbl_9_bss_8->car = value > 40 ? 0 : value < 0 ? 40 : value;
         }
         entries = lbl_1_data_1FB6C[lbl_9_bss_8->car];
-        if (__rlwinm(lbl_1_bss_D58.unk_8, 24, 31, 31) && entries->id != -1) {
+        if (PAD_BIT(lbl_1_bss_D58.unk_8, 8) && entries->id != -1) {
             lbl_1_bss_96A = 0x76;
         }
     }
@@ -370,19 +375,19 @@ void fn_9_7DC(void) {
 
     entries = lbl_1_data_1FB6C[lbl_9_bss_8->car];
     if (fn_1_4C10() == 0) {
-        if (__rlwinm(lbl_1_bss_D58.unk_8, 24, 31, 31)) {
+        if (PAD_BIT(lbl_1_bss_D58.unk_8, 8)) {
             lbl_1_bss_96A = 0x77;
         }
-        if (__rlwinm(lbl_1_bss_D58.unk_8, 23, 31, 31)) {
+        if (PAD_BIT(lbl_1_bss_D58.unk_8, 9)) {
             lbl_1_bss_96A = 0x73;
         }
         change = 0;
         // Direct polling of the button-edge reads and the second button-edge source.
-        if (__rlwinm(lbl_1_bss_D58.unk_10, 0, 31, 31) || __rlwinm(lbl_1_bss_D58.unk_12, 0, 31, 31)) {
+        if (PAD_BIT(lbl_1_bss_D58.unk_10, 0) || PAD_BIT(lbl_1_bss_D58.unk_12, 0)) {
             change = -1;
         }
         // Direct polling of the button-edge reads and the second button-edge source.
-        if (__rlwinm(lbl_1_bss_D58.unk_10, 31, 31, 31) || __rlwinm(lbl_1_bss_D58.unk_12, 31, 31, 31)) {
+        if (PAD_BIT(lbl_1_bss_D58.unk_10, 1) || PAD_BIT(lbl_1_bss_D58.unk_12, 1)) {
             change++;
         }
         if (change != 0) {
@@ -451,16 +456,16 @@ void fn_9_AF0(void) {
     u8 shift;
 
     if (fn_1_4C10() == 0) {
-        if (__rlwinm(lbl_1_bss_D58.unk_8, 23, 31, 31)) {
+        if (PAD_BIT(lbl_1_bss_D58.unk_8, 9)) {
             lbl_1_bss_96A = 0x76;
         }
         delta = 0;
         step = 0;
         entries = lbl_1_data_1FB6C[lbl_9_bss_8->car];
-        if (__rlwinm(lbl_1_bss_D58.unk_10, 29, 31, 31) || __rlwinm(lbl_1_bss_D58.unk_12, 29, 31, 31)) {
+        if (PAD_BIT(lbl_1_bss_D58.unk_10, 3) || PAD_BIT(lbl_1_bss_D58.unk_12, 3)) {
             delta = -1;
         }
-        if (__rlwinm(lbl_1_bss_D58.unk_10, 30, 31, 31) || __rlwinm(lbl_1_bss_D58.unk_12, 30, 31, 31)) {
+        if (PAD_BIT(lbl_1_bss_D58.unk_10, 2) || PAD_BIT(lbl_1_bss_D58.unk_12, 2)) {
             delta++;
         }
         if (delta != 0) {
@@ -474,10 +479,10 @@ void fn_9_AF0(void) {
         rgb[0] = color >> 24;
         rgb[1] = (color >> 16) & 0xFF;
         rgb[2] = (color >> 8) & 0xFF;
-        if (__rlwinm(lbl_1_bss_D58.unk_10, 0, 31, 31) || __rlwinm(lbl_1_bss_D58.unk_12, 0, 31, 31)) {
+        if (PAD_BIT(lbl_1_bss_D58.unk_10, 0) || PAD_BIT(lbl_1_bss_D58.unk_12, 0)) {
             step = -1;
         }
-        if (__rlwinm(lbl_1_bss_D58.unk_10, 31, 31, 31) || __rlwinm(lbl_1_bss_D58.unk_12, 31, 31, 31)) {
+        if (PAD_BIT(lbl_1_bss_D58.unk_10, 1) || PAD_BIT(lbl_1_bss_D58.unk_12, 1)) {
             step++;
         }
         if (step != 0) {
@@ -522,21 +527,21 @@ void fn_9_E4C(void) {
     s32 value;
 
     if (fn_1_4C10() == 0) {
-        if (__rlwinm(lbl_1_bss_D58.unk_8, 23, 31, 31)) {
+        if (PAD_BIT(lbl_1_bss_D58.unk_8, 9)) {
             lbl_1_bss_96A = 0x72;
         }
         change = 0;
-        if (__rlwinm(lbl_1_bss_D58.unk_10, 0, 31, 31) || __rlwinm(lbl_1_bss_D58.unk_12, 0, 31, 31)) {
+        if (PAD_BIT(lbl_1_bss_D58.unk_10, 0) || PAD_BIT(lbl_1_bss_D58.unk_12, 0)) {
             change = -1;
         }
-        if (__rlwinm(lbl_1_bss_D58.unk_10, 31, 31, 31) || __rlwinm(lbl_1_bss_D58.unk_12, 31, 31, 31)) {
+        if (PAD_BIT(lbl_1_bss_D58.unk_10, 1) || PAD_BIT(lbl_1_bss_D58.unk_12, 1)) {
             change++;
         }
         if (change != 0) {
             value = lbl_9_bss_8->car + change;
             lbl_9_bss_8->car = value > 40 ? 0 : value < 0 ? 40 : value;
         }
-        if (__rlwinm(lbl_1_bss_D58.unk_8, 24, 31, 31)) {
+        if (PAD_BIT(lbl_1_bss_D58.unk_8, 8)) {
             lbl_1_bss_96A = 0x76;
         }
     }
@@ -563,7 +568,7 @@ void colchg_save_init(void) {
 /* fzgx:begin fn_9_FD0 */
 void fn_9_FD0(void) {
     if (fn_1_4C10() == 0) {
-        if (__rlwinm(lbl_1_bss_D58.unk_8, 23, 31, 31)) {
+        if (PAD_BIT(lbl_1_bss_D58.unk_8, 9)) {
             lbl_1_bss_968 = 10;
         }
     }
@@ -592,10 +597,10 @@ void fn_9_1054(void) {
 void fn_9_10BC(void) {
     if (fn_1_4C10() == 0) {
         lbl_1_bss_96A = 0x73;
-        if (__rlwinm(lbl_1_bss_D58.unk_8, 23, 31, 31)) {
+        if (PAD_BIT(lbl_1_bss_D58.unk_8, 9)) {
             lbl_1_bss_96A = 0x72;
         }
-        if (__rlwinm(lbl_1_bss_D58.unk_8, 24, 31, 31)) {
+        if (PAD_BIT(lbl_1_bss_D58.unk_8, 8)) {
             lbl_1_bss_96A = 0x76;
         }
     }
@@ -687,7 +692,7 @@ void colchg_selcar_disp(ColchgCar *cars) {
     fn_1_4955C(1.0f, 1.0f);
     fn_1_4955C(1.0f, 1.0f);
     fn_1_4AE0C("(%2d)\n", lbl_9_bss_8->car);
-    if (__rlwinm(lbl_1_bss_D58.unk_0, 24, 31, 31) && entries->id == -1) {
+    if (PAD_BIT(lbl_1_bss_D58.unk_0, 8) && entries->id == -1) {
         /* "this machine cannot change color" */
         fn_1_4AE0C("\x82\xB1\x82\xCC\x82\xAD\x82\xE9\x82\xDC\x82\xCD\x83J\x83\x89\x81[\x83`\x83" "F\x83\x93\x83W\x82\xC5\x82\xAB\x82\xDC\x82\xB9\x82\xF1\n");
     }
