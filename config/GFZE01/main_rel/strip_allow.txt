@@ -1,0 +1,4 @@
+# Local symbols that the dead-stripping link may remove (tools/rel_strip_check.py).
+# Each entry is a static helper that MWCC inlined at every call. Retail holds the inlined copy.
+disp_model_info  # car_test.c, inlined two times in fn_1_7C7CC
+disp_tex_info  # car_test.c, inlined two times in fn_1_7C7CC
