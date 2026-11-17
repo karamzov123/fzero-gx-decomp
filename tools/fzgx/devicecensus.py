@@ -17,7 +17,10 @@ from .project import ROOT
 
 MARKER = re.compile(r'WARNING:\s*(?:compiler-diff\s+device|device)\b')
 PRAGMA = re.compile(r'^[ \t]*#[ \t]*pragma[ \t]+(opt_\w+|optimize_for_size|optimization_level|scheduling|peephole)\b([^\n]*)', re.M)
-CARRIER = re.compile(r'\bstruct\s*\{\s*(?:[su](?:8|16|32|64)|f32|f64|int|unsigned|float|double)\s+value\s*;\s*\}\s*[A-Za-z_]\w*\s*;')
+# Any element type: primitive, typedef'd (`fn_10_A480_s32`), qualified, tagged or pointer
+# (`struct { u8 *value; }`, the struct-wrapped constant-pointer shape). Schema 4 widened
+# this from primitive spellings only, which missed 120 physical carrier shapes.
+CARRIER = re.compile(r'\bstruct\s*\{\s*[A-Za-z_][\w \t*]*?\bvalue\s*;\s*\}\s*[A-Za-z_]\w*\s*;')
 DEAD_WRITE = re.compile(r'\bADX_COMPILER_DIFF_DEAD_WRITE\s*\(')
 REGISTER_STAGING = re.compile(r'\b__reg_value_\w+\s*=')
 SYNTHETIC_FUNCTION = re.compile(r'\b(fzgx_\w+)\s*\((?:[^(){};]|\([^(){};]*\))*\)\s*\{')
@@ -127,7 +130,7 @@ def measure(project):
                                     unassigned_spots=sum(r['owner'] is None for r in rows))
     config_paths = [project.units_path] + [project.module_config_dir(m) / 'symbols.txt' for m in project.modules]
     config_paths.append(original_assembly.REGISTRY)
-    return dict(schema=3, version=project.version,
+    return dict(schema=4, version=project.version,
                 source_commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
                 source_status=subprocess.check_output(['git', 'status', '--porcelain=v1', '--untracked-files=all', '--', 'src', 'include', 'config'], cwd=ROOT, text=True).splitlines(),
                 source_tree_sha256=digest.hexdigest(), scanned_files=scanned,

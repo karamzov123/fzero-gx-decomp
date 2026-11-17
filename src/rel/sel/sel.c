@@ -3371,8 +3371,6 @@ void fn_10_12D8(void) {
         }                                                                           \
     }
 
-#pragma opt_common_subs off
-
 static inline void confirm(void) {
     lbl_10_bss_14 = (s32)(0xF);
     fn_1_12F17C();
@@ -3380,8 +3378,6 @@ static inline void confirm(void) {
     lbl_10_bss_51744 = 0;
     fn_1_A2D84(0xA9010100);
 }
-
-#pragma opt_common_subs reset
 
 #define MAY_CANCEL() (!(menu->unk_94 & 0x40000000) || (menu->unk_94 & 0x4000))
 
@@ -5470,7 +5466,6 @@ s16 fn_10_578C(void *arg0) {
 fn_10_5E94_s16 fn_10_5E94(void *arg0) {
 
 
-#pragma opt_common_subs off
 
 struct { fn_10_5E94_s16 value; } v29;
 struct { fn_10_5E94_s16 value; } v25;
@@ -5594,7 +5589,6 @@ fn_1_A2D84(0xA9010000);
 }
 return v10;
 }
-#pragma opt_common_subs reset
 #pragma opt_common_subs reset
 /* fzgx:end fn_10_5E94 */
 
@@ -7449,7 +7443,7 @@ void fn_10_A25C(SelObjA25C *obj) {
 
 void fn_10_A480(struct fn_10_A480_Arg0 *arg0) {
 fn_10_A480_s16 v4 = 0;
-struct { fn_10_A480_s32 value; } temp;
+fn_10_A480_s32 temp;
 fn_10_A480_s16 v1;
 fn_10_A480_s16 v2;
 fn_10_A480_s16 v3;
@@ -7459,11 +7453,11 @@ fn_10_A480_s32 v12;
 fn_10_A480_s32 lower;
 fn_10_A480_s32 v10;
 fn_10_A480_s32 v5;
-temp.value = 30;
+temp = 30;
 if ((arg0->unk_94 & 2) != 0) {
-temp.value = (*(fn_10_A480_s8 (*)[1])&(*(fn_10_A480_u8 *)((u8 *)&lbl_10_bss_4938E)))[0];
+temp = (*(fn_10_A480_s8 (*)[1])&(*(fn_10_A480_u8 *)((u8 *)&lbl_10_bss_4938E)))[0];
 }
-v1 = (fn_10_A480_s16)temp.value ;
+v1 = (fn_10_A480_s16)temp ;
 v2 = 0;
 goto loop_test; /* Keep the verified branch to loop_test. */
 loop_body:

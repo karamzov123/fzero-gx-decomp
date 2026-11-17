@@ -4,22 +4,24 @@ Run `python tools/fzgx.py devicecensus` for the live summary, or add `--json` fo
 
 ## Measured checkpoint
 
-The latest source fingerprint and complete compressed inventory are retained in `state/repairs/device-census-bitmap-resource-20261116.json.gz`; `state/repairs/bitmap-resource-layout-20261116.json`, `state/repairs/typed-index-recovery-20261116.json`, `state/repairs/bgwin-string-layout-20261116.json` and `state/repairs/automated-device-cleanup-20261116.json` record accepted source hashes, compiler context, replay archives and validation. Earlier inventories and their evidence manifests remain intact. Each inventory records its base commit and explicitly notes modified source/configuration; the source-tree digest identifies the measured contents independently of that base.
+The latest source fingerprint and complete compressed inventory (schema 4) are retained in `state/repairs/device-census-collapsed-inverse-20261117.json.gz`; `state/repairs/collapsed-device-inverse-20261117.json`, `state/repairs/bitmap-resource-layout-20261116.json`, `state/repairs/typed-index-recovery-20261116.json`, `state/repairs/bgwin-string-layout-20261116.json` and `state/repairs/automated-device-cleanup-20261116.json` record accepted source hashes, compiler context, replay archives and validation. Earlier inventories and their evidence manifests remain intact. Each inventory records its base commit and explicitly notes modified source/configuration; the source-tree digest identifies the measured contents independently of that base.
 
 | Category | Spots | Files | Owner functions |
 | --- | ---: | ---: | ---: |
-| Explicit device-warning comments | 38 | 13 | 14 |
+| Explicit device-warning comments | 46 | 17 | 21 |
 | ADX dead-write macro uses | 7 | 1 | 1 |
-| Synthetic `.fzgxpool` primer function definitions | 10,630 | 145 | 958 |
+| Synthetic `.fzgxpool` primer function definitions | 10,558 | 140 | 939 |
 | Tagged `__reg_value_` register-staging assignments | 44 | 8 | 10 |
-| Optimization-setting directives (excluding reset/push/pop) | 937 | 273 | 695 |
-| Anonymous one-field `value` scalar-carrier shapes | 267 | 96 | 176 |
+| Optimization-setting directives (excluding reset/push/pop) | 927 | 272 | 689 |
+| Anonymous one-field `value` carrier shapes (any element type) | 384 | 119 | 233 |
 | Other `fzgx_` function definitions requiring review | 4 | 4 | 4 |
-| `volatile` tokens | 15,470 | 389 | 1,235 |
+| `volatile` tokens | 15,351 | 385 | 1,209 |
 
-The explicit-warning and ADX-use owner-function union is **14**, not 15. One shared-header warning has no single function owner. Warnings are spots, not distinct devices: several comments can describe the same device and one comment can describe several. The directive, carrier-shape and volatile rows are **review queues, not confirmed device totals**. Hardware volatility, SDK implementation requirements and legitimate aggregate types must not be counted as defects without review.
+Owner-PR merges #380-#389 (whole-TU collapses of car_colchg, emb_memcard, bg_for, light, bg_tow, mdlload, shadowmap, prog and option ranges) moved the base before this checkpoint: they added nine marked warnings in car_colchg, mdlload, prog and shadowmap (38 -> 47) and removed 72 primer definitions. Schema 4 widens the carrier row from primitive element spellings to any element type, including typedef'd scalars and the struct-wrapped pointer shape: the same tree counts 264 under schema 3 and 384 under schema 4, so the row's growth is coverage, not regression.
 
-Including the confirmed synthetic layout-primer and tagged-staging owners gives a distinct known-scaffolding owner-function union of **972**. Schema 3 adds tagged-staging coverage: this expansion from the earlier marker/primer-only union of 967 is not a source regression. There are 72 primer definitions in shared/unassigned scope, beyond the 958 mapped primer owners. Primer counts are physical definitions, including repeated source copies; they are not 10,630 distinct original data objects or instructions executed by retail. Four synthetic-name helpers outside `.fzgxpool` stay review-only. An independent balanced-parenthesis scan and separate section/attribute classifier agree with every one of the 10,634 synthetic definitions, including function-pointer parameters.
+The explicit-warning and ADX-use owner-function union is **21**, not 22. One shared-header warning has no single function owner. Warnings are spots, not distinct devices: several comments can describe the same device and one comment can describe several. The directive, carrier-shape and volatile rows are **review queues, not confirmed device totals**. Hardware volatility, SDK implementation requirements and legitimate aggregate types must not be counted as defects without review.
+
+Including the confirmed synthetic layout-primer and tagged-staging owners gives a distinct known-scaffolding owner-function union of **960**. Schema 3 added tagged-staging coverage: that expansion from the earlier marker/primer-only union of 967 to 972 was not a source regression. There are 72 primer definitions in shared/unassigned scope, beyond the 939 mapped primer owners. Primer counts are physical definitions, including repeated source copies; they are not 10,558 distinct original data objects or instructions executed by retail. Four synthetic-name helpers outside `.fzgxpool` stay review-only. An independent balanced-parenthesis scan and separate section/attribute classifier agree with every one of the 10,634 synthetic definitions, including function-pointer parameters.
 
 The current configured retail-function denominator is 7,351: 7,159 C-form, 186 standalone-assembly, five reviewed original-assembly, and one mixed function. These categories describe source form, not natural-C completion. Original assembly is legitimate when evidenced; the 192 outside-pure-C forms are not automatically C-conversion debt. Raw ledger totals can also retain retired entries, so they are not the source-form denominator.
 
@@ -80,3 +82,26 @@ The carrier queue falls from 269 to 267. Neither function is credited as fully n
 `lbl_1_data_FCD4` is 188 records of 0x28 bytes. Retail data relocates words 1-7 of each record to archive-path strings, which `lbl_801A66B4` selects by language. The loader `fn_1_47AD4` records the heap index (an entry of the three-heap table `lbl_1_data_6CA0`), sets `loaded` and stores an image set: a count, 0x10-byte texture headers (flags, data offset, width, height) and 0x20-byte objects built with `GXInitTexObj`. `include/rel/main_rel/bitmap_resource.h` now holds `BitmapResource`, `BitmapImages` and `BitmapImageInfo`. They replace twelve private type definitions and the generated aggregate that was duplicated in bitmap.h, font.h and ranking.h.
 
 Twenty consumers across bitmap.c, font.c and ranking.c now index typed records instead of byte strides. All 28 changed units compile against retail. `fn_1_527B4` misses by 5 words with `&table[index]` or an index temporary, but matches as `entry = lbl_1_data_FCD4; entry += index;`, the same pointer-advance shape `fn_1_4F734` already uses. The loader keeps its own argument view: its body is a dense lifted reconstruction outside this batch. This is shared-type recovery, not device removal. Census rows are unchanged, and no function is credited as fully natural.
+
+## Collapsed-unit inverse pass
+
+Every earlier inverse-device sweep compiled one function per unit. A collapsed translation unit compiles all of its functions together, so a device that was needed in isolation may be unnecessary there. One fixed cohort tested that hypothesis: the 75 census spots (marked warnings, optimizer directives, carriers) owned by functions in the 14 multi-function units, one removal at a time plus all removals per function, and fixed hand hypotheses for the nine newly marked devices. Each variant replaced one TU block inside the base checkout's hash-verified generated unit and was compiled with that unit's exact ninja command (compiler, flags and pool retargeting). A variant was accepted only if its whole-unit object was objdiff-identical to the verified object for every symbol and section, the owner had zero aligned word errors under the repair engine, and the combined build passed every linked and independent hash.
+
+Accepted: **one marked device and one carrier removed**, plus four inert or duplicate optimizer setters.
+
+- `car_colchg:colchg_chgcol_disp` loses its marked `opt_lifetimes off`. The body reused its loop counter as the car index; written like its siblings `colchg_selcar_disp` and `colchg_selmate_disp` (`s16 car_id = lbl_9_bss_8->car;`, `&cars[car_id]` at each call), it matches without the pragma.
+- `sel:fn_10_A480` drops its `temp` carrier; the plain local is object-identical.
+- No-op setters removed: a `peephole on` that is already the `-O4,p` default (`story:fn_7_44DC`), duplicate `opt_propagation off` (`story:fn_7_4648`) and `opt_common_subs off` (`sel:fn_10_5E94`) setters with one surplus reset each, and an `opt_common_subs` pair around `sel`'s `confirm()` helper that changes no caller.
+
+The other eight new marked devices stay. Their measured residues are in `state/repairs/collapsed-device-inverse-20261117.json`; do not repeat these forms:
+
+- `fn_9_AF0`: the comma-expression `chan` pointer. Pointer increments, `&rgb[0]`, other placements and stores through `chan` leave at least 4 words, the `mr r29,r30` induction copy.
+- `colchg_selmate_disp`: the loop-counter carrier. A plain `s16` and five separate-count, `for`-loop and declaration forms leave 8 words.
+- `fn_1_A6480`: the volatile pad view. Retail reloads every pad field: `down` three times, and `unk_A` twice with a rematerialized base. Sixteen access-path spellings and eight inline-helper forms leave at least 4 words. No other unit reads the object as volatile, so there is no evidence for a shared volatile declaration.
+- `fn_1_D42A8` and `fn_1_D47F0`: function-wide `opt_common_subs off`. Retail evaluates the clamped squared distance twice; twelve helper and clamp spellings reach at best 82.7%. CSE off for the whole TU matches `fn_1_D42A8` but breaks five other mdlload functions, so it is not a TU compiler setting.
+- `fn_1_56D4C`: the volatile view on `target->pos.x`. Without it MWCC schedules the x load last; six declaration orders, three copy orders and a setter helper leave at least 5 words.
+- `fn_1_5745C`: the plain pragma removal leaves 5 words; its psvec comma device was not attempted.
+
+The other cohort removals miss by 3 to 121 words; the per-function minimum is recorded. All 213 distinct compiled bodies replay from `collapsed-device-inverse-20261117.sources.json.gz` through `fzgx fixup --archive` with identical source hashes, compiler profiles, verdicts and word errors. The engine marks every whole-unit body `matched=false` because it counts the unit's other functions as extra helpers, so word errors are the verdict for these records. Engine and harness agree on all 87 cohort variants and all 48 controls. The whole build and the independent retail check report `16 files OK`; lint reports zero findings.
+
+Census effect: marked warnings 47 -> 46, optimizer directives 932 -> 927, carriers 385 -> 384 under schema 4, and the known-scaffolding union 961 -> 960. These are partial cleanups. No function is credited as fully natural, and the yield (7 of 87 cohort variants, in 6 functions, 2 of them real debt) is the stopping signal for removal-only passes over collapsed units.

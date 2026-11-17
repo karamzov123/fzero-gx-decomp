@@ -743,33 +743,27 @@ void colchg_selmate_disp(ColchgCar *cars) {
 /* fzgx:end colchg_selmate_disp */
 
 /* fzgx:begin colchg_chgcol_disp */
-/* WARNING: compiler-diff device, not original code (opt_lifetimes off for this function only) */
-#pragma opt_lifetimes off
 void colchg_chgcol_disp(ColchgCar *cars) {
     PanelTemplate panel;
-    ColchgCar *car;
+    s16 car_id = lbl_9_bss_8->car;
     s16 i;
 
-    i = lbl_9_bss_8->car;
     fn_1_496FC(160.0f, 50.0f);
     fn_1_4AE0C("[ \x83J\x83\x89\x81[\x83`\x83" "F\x83\x93\x83W ]\n");  /* "[ color change ]" */
-    car = &cars[i];
     for (i = 0; i < 2; i++) {
         panel = lbl_1_rodata_26F8;
         panel.y = 255.0f;
         panel.x = 480.0f * (i % 2) * 0.5f;
         switch (i) {
         case 0:
-            fn_1_8D3F8(&lbl_9_bss_14[i], &panel, fn_9_120C, car);
+            fn_1_8D3F8(&lbl_9_bss_14[i], &panel, fn_9_120C, &cars[car_id]);
             break;
         case 1:
-            fn_1_8D3F8(&lbl_9_bss_14[i], &panel, fn_9_1310, car);
+            fn_1_8D3F8(&lbl_9_bss_14[i], &panel, fn_9_1310, &cars[car_id]);
             break;
         }
     }
 }
-
-#pragma opt_lifetimes reset
 /* fzgx:end colchg_chgcol_disp */
 
 /* fzgx:begin colchg_ezsel_disp */

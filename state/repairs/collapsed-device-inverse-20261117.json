@@ -1,0 +1,443 @@
+{
+ "format": "fzgx-device-cleanup-provenance-v1",
+ "version": "GFZE01",
+ "base_commit": "94c20efe6d4caa9a48de448114a38e9ea0b1cd59",
+ "source_tree_sha256": "fd2c583868fe2599f246832507909a602b967cfe054dc0c124d9995a289f7748",
+ "configuration_sha256": {
+  "config/GFZE01/units.json": "12d9a0a1bfee4f5006363d0a7c3a58a31bec9d3c966e8165d314ad2f72b7cfa8",
+  "config/GFZE01/symbols.txt": "679485d0d8614930c89f5e1919cb46fd91ccd6937a2fc574f1b96db549516b6a",
+  "config/GFZE01/main_rel/symbols.txt": "02e1368988a05a83870673f14136fe076ec754bad05df8b2a62da4c876eef2b4",
+  "config/GFZE01/sample/symbols.txt": "82322476c91b8aa92d58259230913fc2ba507a6b2218de8bd16f2502234941e7",
+  "config/GFZE01/movie_module/symbols.txt": "a1c606bd19ce8925821903d77df8a551e66651bf906adcf01a295526ddd11f2c",
+  "config/GFZE01/customize/symbols.txt": "6f058256b72973c1309091bb409abf61f295b920a71f34e8a1a4e20bc2d0fe43",
+  "config/GFZE01/sel/symbols.txt": "9ca64c6f0dc6779d30a980398e89dd29fde8dbdf6ffb5b11bb75e5e5bf00f69f",
+  "config/GFZE01/title/symbols.txt": "93046c0993fd8d5d483aa9b7e6d59ecd5109434c16b0901b556132247285917b",
+  "config/GFZE01/pilotpoint/symbols.txt": "4852b5bc0d356713cc7bdb9009a3f3028826e7b11db2c5abee1affe54967c42b",
+  "config/GFZE01/option/symbols.txt": "682def12b6590a902a432478ae1dc88ed98965ddedb02a3d402c53812c8f57e7",
+  "config/GFZE01/interview/symbols.txt": "016e13c402380a163cd32153e50c07f5af68939d998e8f8e27f3eeeb72cb25dc",
+  "config/GFZE01/profile/symbols.txt": "f59d2d0adb87b8a4b029e27ce53fcd7b8c780851d493d14a62e2c36b1092e5b2",
+  "config/GFZE01/story/symbols.txt": "956ee3dcef8f80bfaec9dddb55296cd764c6116af2d55586e85543092cafd24f",
+  "config/GFZE01/winning/symbols.txt": "1da2904c3593ce510f39933ba8054ca073abe033e1f5524c3ae67c6acc8fa2f3",
+  "config/GFZE01/movie/symbols.txt": "487762d1ae2ed79e25640765dda920cd9c1ba50c5c910bd35d3ee5c89c8a09c4",
+  "config/GFZE01/car_colchg/symbols.txt": "367638db7fb20a8379d891ae7e534edadf00ac4fd18648a3d1fdbd2d5167742f",
+  "config/GFZE01/replay/symbols.txt": "c869c9456a87836d13d9e8b05622e8a19ff794d997bb67d790805235aae7d9d7",
+  "config/original_assembly.json": "e8cd9c49c2a57648132368ec83377f293988f49195a8dd8dd7339bf6f1ff3c71"
+ },
+ "sources_sha256": {
+  "src/rel/car_colchg/car_colchg.c": "13dc07871f181bf7e79adb343d26e52496241eab4913507af3a0dacaee7656b4",
+  "src/rel/sel/sel.c": "7f5d4c48617aa6355a6f92749090e9e0e3c0356a828f379639ff617d9377fa3e",
+  "src/rel/story/story_mode.c": "b8686de1b54cac6b2e2d137a920908f25595bb051ec91717b6c0472b119f09f2",
+  "tools/fzgx/devicecensus.py": "4e434b7d30dafa03424c6ed9a16c7562c70078014800869550d2f40bb9705c42"
+ },
+ "hypothesis": "Collapsed TUs give MWCC whole-unit context that per-function device sweeps never measured; remove each marked device, optimizer-pragma pair and one-field carrier owned by a function in a multi-function unit, one at a time, and accept only object-identical results.",
+ "stopping_condition": "One pass over the 75 census spots in 14 collapsed units (single removals plus all-at-once per function) and fixed hand hypotheses for the nine newly marked devices; no flags, allocator or search. Stop after the pass.",
+ "cohort_selection": {
+  "rule": "census rows marked-warning, optimization-pragma-review, single-field-value-carrier-review and tagged-register-staging whose owner function belongs to a configured unit with more than one symbol (collapsed TU range), at base 94c20efe6",
+  "spots": 75,
+  "units": 14,
+  "owners": 48
+ },
+ "acceptance": "owner aligned word errors 0 under the engine with the unit's pinned compile profile, whole-unit objdiff identity against the hash-verified built object of the base checkout (every symbol and section), and the combined full build with all 16 linked and independent hashes. The engine marks every whole-unit body matched=false because the unit's other functions are extra helpers under its per-function policy; word errors, not that flag, are the verdict here.",
+ "generator_scripts": {
+  "cohort_gen.py": {
+   "sha256": "2c2bf1c0feb63c1b44e80571147a53e9b1c5acf4594ee424bc9bf231ead63bd9",
+   "text": "\"\"\"Generate single-construct removal variants for the collapsed-unit cohort.\nEach variant = the main checkout's verified generated unit with ONE edited TU block substituted\nverbatim. Writes OUT/<unit-id>/<owner>__<variant>.c and OUT/manifest.json.\"\"\"\nimport json, re, sys, collections\nfrom pathlib import Path\n\nS = Path(sys.argv[1])\nOUT = S / \"cohort2\"\nMAIN = Path(\"/home/armandofm/projects/fzgx\")\ncohort = json.load(open(S / \"cohort.json\"))\nunits = json.load(open(MAIN / \"config/GFZE01/units.json\"))\nby_src = {u[\"source\"]: u for u in units}\n\nPRAGMA = re.compile(r\"^[ \\t]*#pragma[ \\t]+(\\w+)[ \\t]+(off|on)\\b[^\\n]*\\n\", re.M)\nCARRIER = re.compile(r\"struct \\{ (\\w[\\w ]*?) value; \\} (\\w+);\")\nWARN = re.compile(r\"^[ \\t]*/\\* WARNING: compiler-diff device[^\\n]*\\*/[ \\t]*\\n\", re.M)\n\n\ndef block(tu_text, name):\n    m = re.search(r\"^/\\* fzgx:begin %s(?: [^*]*)? \\*/\\n\" % re.escape(name), tu_text, re.M)\n    if not m:\n        raise ValueError(name)\n    i = m.end()\n    return tu_text[i:tu_text.index(f\"/* fzgx:end {name} */\", i)]\n\n\ndef pseudo_block(text, name):\n    \"\"\"Definition of `name` in a marker-less TU, with the contiguous pragma/comment lines just\n    before it and the contiguous pragma lines just after its closing brace.\"\"\"\n    m = re.search(r\"^[A-Za-z_][^;\\n]*\\b%s\\([^;{]*\\)\\s*\\{[ \\t]*$\" % re.escape(name), text, re.M)\n    if not m:\n        return None\n    start = m.start()\n    while True:\n        prev = text.rfind(\"\\n\", 0, start - 1) + 1\n        line = text[prev:start]\n        if prev < start and (line.lstrip().startswith(\"#pragma\") or line.lstrip().startswith(\"/* WARNING\")):\n            start = prev\n        else:\n            break\n    end = text.index(\"\\n}\\n\", m.end()) + 3\n    while True:\n        nl = text.find(\"\\n\", end)\n        line = text[end:nl + 1]\n        if line.lstrip().startswith(\"#pragma\") and \"section\" not in line:\n            end = nl + 1\n        else:\n            break\n    return text[start:end]\n\n\ndef drop_pragma(text, m):\n    \"\"\"Remove pragma match m and its first following `#pragma NAME reset` (if any).\"\"\"\n    name = m.group(1)\n    t = text[:m.start()] + text[m.end():]\n    r = re.compile(r\"^[ \\t]*#pragma[ \\t]+%s[ \\t]+reset\\b[^\\n]*\\n\" % name, re.M)\n    rm = r.search(t, m.start())\n    if rm:\n        t = t[:rm.start()] + t[rm.end():]\n    return t\n\n\ndef drop_carrier(text, m):\n    typ, var = m.group(1), m.group(2)\n    t = text[:m.start()] + f\"{typ} {var};\" + text[m.end():]\n    return re.sub(r\"\\b%s\\.value\\b\" % re.escape(var), var, t)\n\n\ndef main():\n    owners = collections.OrderedDict()\n    for f in cohort:\n        owners.setdefault((f[\"unit\"], f[\"owner\"], f[\"path\"]), []).append(f)\n    manifest = []\n    for (unit_src, owner, path), fs in owners.items():\n        name = owner.split(\":\", 1)[1]\n        tu = (MAIN / path).read_text()\n        try:\n            blk = block(tu, name)\n        except ValueError:\n            blk = pseudo_block(tu, name)\n            print(\"pseudo-block:\", owner)\n            if blk is None:\n                manifest.append({\"owner\": owner, \"unit\": unit_src, \"error\": \"definition not found in \" + path})\n                continue\n        gp = MAIN / \"build/GFZE01/gen\" / unit_src\n        gen = (gp if gp.exists() else MAIN / \"src\" / unit_src).read_text()\n        if gen.count(blk) != 1:\n            manifest.append({\"owner\": owner, \"unit\": unit_src, \"error\": f\"block occurs {gen.count(blk)}x in gen\"})\n            continue\n        variants = {}\n        pms = list(PRAGMA.finditer(blk))\n        for k, m in enumerate(pms):\n            variants[f\"p{k}_{m.group(1)}\"] = drop_pragma(blk, m)\n        cms = list(CARRIER.finditer(blk))\n        for k, m in enumerate(cms):\n            variants[f\"c{k}_{m.group(2)}\"] = drop_carrier(blk, m)\n        if len(pms) + len(cms) > 1:\n            t = blk\n            while True:\n                m = PRAGMA.search(t)\n                if not m:\n                    break\n                t = drop_pragma(t, m)\n            while True:\n                m = CARRIER.search(t)\n                if not m:\n                    break\n                t = drop_carrier(t, m)\n            variants[\"all\"] = t\n        d = OUT / unit_src.replace(\"/\", \"__\")\n        d.mkdir(parents=True, exist_ok=True)\n        for vk, vb in variants.items():\n            assert vb != blk, (owner, vk)\n            p = d / f\"{name}__{vk}.c\"\n            p.write_text(gen.replace(blk, vb))\n            manifest.append({\"owner\": owner, \"unit\": unit_src, \"variant\": vk, \"file\": str(p),\n                             \"mw\": by_src[unit_src].get(\"mw_version\") or \"GC/1.3.2\"})\n    json.dump(manifest, open(OUT / \"manifest.json\", \"w\"), indent=1)\n    print(len(manifest), \"entries;\", sum(1 for m in manifest if \"error\" in m), \"errors\")\n    for m in manifest:\n        if \"error\" in m:\n            print(m)\n\n\nmain()\n"
+  },
+  "cohort_run.py": {
+   "sha256": "9a18b297bf77138f17223149f77ec2b320db7ced0435496f5d736b5379c3fe2f",
+   "text": "\"\"\"Compile every cohort variant with its unit's exact ninja command (compiler, flags, poolfix)\nand objdiff it against the main checkout's hash-verified unit object.\nA per-unit control (the unmodified verified gen file) must MATCH or the unit is skipped.\nusage: cohort_run.py SCRATCH   (run from the worktree root)\"\"\"\nimport json, shlex, subprocess, sys, collections\nfrom concurrent.futures import ThreadPoolExecutor\nfrom pathlib import Path\n\nS = Path(sys.argv[1])\nMAIN = Path(\"/home/armandofm/projects/fzgx\")\nOBJDIFF = Path(\"build/tools/objdiff-cli\")\nman = [m for m in json.load(open(S / \"cohort2/manifest.json\")) if \"file\" in m]\nOBJ = S / \"cohort2_obj\"\nOBJ.mkdir(exist_ok=True)\n\n\ndef unit_obj(unit_src):\n    return \"build/GFZE01/src/\" + unit_src[:-2] + \".o\"\n\n\n_cmds = {}\n\n\ndef command(unit_src):\n    if unit_src not in _cmds:\n        cp = subprocess.run([\"ninja\", \"-t\", \"commands\", \"-s\", unit_obj(unit_src)], cwd=MAIN,\n                            text=True, capture_output=True, check=True)\n        _cmds[unit_src] = cp.stdout.strip().splitlines()[-1]\n    return _cmds[unit_src]\n\n\ndef compile_variant(unit_src, src, out):\n    cmd = command(unit_src)\n    gen = \"build/GFZE01/gen/\" + unit_src\n    if not (MAIN / gen).exists():\n        gen = \"src/\" + unit_src\n    if cmd.startswith(\"sh tools/mwcc_batch.sh\"):\n        cc = shlex.split(cmd.split(\" -- \", 1)[1])\n        steps = [cc + [\"-c\", str(src), \"-o\", str(out)]]\n    else:\n        parts = cmd.split(\" && \")\n        cc = [a for a in shlex.split(parts[0]) if a != \"-MMD\"]\n        i = cc.index(\"-c\")\n        assert cc[i + 1] == gen, (cc[i + 1], gen)\n        cc[i + 1] = str(src)\n        cc[cc.index(\"-o\") + 1] = str(out)\n        steps = [cc]\n        for p in parts[1:]:\n            a = shlex.split(p)\n            if \"tools/fzgx/poolfix.py\" in a:\n                a[a.index(\"tools/fzgx/poolfix.py\") + 1] = str(out)\n                steps.append(a)\n            elif \"transform_dep.py\" in p:\n                continue\n            else:\n                raise RuntimeError(\"unknown step: \" + p)\n    for k, st in enumerate(steps):\n        cp = subprocess.run(st, text=True, capture_output=True)\n        if cp.returncode != 0:\n            return (\"POOLSTALE \" if k > 0 else \"\") + (cp.stdout + cp.stderr)[-800:]\n    return None\n\n\ndef diff(unit_src, obj):\n    ref = MAIN / unit_obj(unit_src)\n    cp = subprocess.run([str(OBJDIFF), \"diff\", \"-1\", str(ref), \"-2\", str(obj), \"-o\", \"-\", \"--format\", \"json\"],\n                        text=True, capture_output=True)\n    d = json.loads(cp.stdout)\n    bad = {}\n    for kind in (\"symbols\", \"sections\"):\n        for s in d.get(\"left\", {}).get(kind, []):\n            mp = s.get(\"match_percent\")\n            if mp is not None and mp < 100.0:\n                bad[s[\"name\"]] = round(mp, 3)\n    return bad\n\n\ndef run(m, tag):\n    out = OBJ / (Path(m[\"file\"]).parent.name + \"__\" + Path(m[\"file\"]).stem + \".o\")\n    err = compile_variant(m[\"unit\"], m[\"file\"], out)\n    if err and err.startswith(\"POOLSTALE\"):\n        sys.path.insert(0, \"tools\")\n        from fzgx import oracle\n        name = m[\"owner\"].split(\":\", 1)[1]\n        ref = oracle.words(MAIN / unit_obj(m[\"unit\"]), name)\n        ours = oracle.words(out, name)\n        same = ref is not None and ref == ours\n        return dict(m, verdict=\"POOL-WORDS-SAME\" if same else \"POOL-WORDS-DIFF\",\n                    detail=\"\" if same else (oracle.word_score(ref or [], ours or [])[0]))\n    if err:\n        return dict(m, verdict=\"compile-error\", detail=err)\n    bad = diff(m[\"unit\"], out)\n    return dict(m, verdict=\"MATCH\" if not bad else \"DIFF\", detail=bad)\n\n\ndef main():\n    unitset = sorted({m[\"unit\"] for m in man})\n    controls = {}\n    for u in unitset:\n        c = S / \"cohort2\" / u.replace(\"/\", \"__\") / \"_control.c\"\n        gp = MAIN / \"build/GFZE01/gen\" / u\n        c.write_text((gp if gp.exists() else MAIN / \"src\" / u).read_text())\n        r = run({\"unit\": u, \"file\": str(c), \"owner\": \"control\", \"variant\": \"control\"}, \"control\")\n        controls[u] = r[\"verdict\"]\n        print(\"control\", u, r[\"verdict\"], r[\"detail\"] if r[\"verdict\"] != \"MATCH\" else \"\")\n    todo = [m for m in man if controls[m[\"unit\"]] == \"MATCH\"]\n    with ThreadPoolExecutor(16) as ex:\n        res = list(ex.map(lambda m: run(m, \"\"), todo))\n    res += [dict(m, verdict=\"skipped-control\") for m in man if controls[m[\"unit\"]] != \"MATCH\"]\n    json.dump({\"controls\": controls, \"results\": res}, open(S / \"cohort2_results.json\", \"w\"), indent=1)\n    c = collections.Counter(r[\"verdict\"] for r in res)\n    print(c)\n    for r in res:\n        if r[\"verdict\"] in (\"MATCH\", \"POOL-WORDS-SAME\"):\n            print(r[\"verdict\"], r[\"owner\"], r[\"variant\"])\n    for r in res:\n        if r[\"verdict\"] == \"POOL-WORDS-DIFF\":\n            print(\"PWDIFF\", r[\"owner\"], r[\"variant\"], r[\"detail\"])\n        if r[\"verdict\"] == \"DIFF\":\n            own = r[\"owner\"].split(\":\")[1]\n            print(\"DIFF \", r[\"owner\"], r[\"variant\"], r[\"detail\"].get(own, r[\"detail\"]))\n\n\nmain()\n"
+  },
+  "engine_archive.py": {
+   "sha256": "398101c5dad474701f27e863858c54c0311f45e66f23f2c0165bc2ffe03545cd",
+   "text": "\"\"\"Record collapsed-unit device-inverse probes through the shared repair engine and archive them.\nusage: engine_archive.py SCRATCH OUTDIR [--smoke]   (run from the worktree root)\nEvery body is a whole collapsed unit (the verified generated unit with one edit), recorded\nagainst the owner function's retail object with the unit's actual compiler profile.\"\"\"\nimport sys, json, re, hashlib\nfrom pathlib import Path\nsys.path.insert(0, 'tools')\nfrom fzgx import fixup, oracle\nfrom fzgx.project import Project\n\nS = Path(sys.argv[1]); out = Path(sys.argv[2]); smoke = '--smoke' in sys.argv\nMAIN = Path('/home/armandofm/projects/fzgx')\np = Project('GFZE01'); e = fixup.Engine(p, out); rows = []\nunits = {u['source']: u for u in json.load(open(MAIN / 'config/GFZE01/units.json'))}\n\n\ndef base_text(unit_src):\n    g = MAIN / 'build/GFZE01/gen' / unit_src\n    return (g if g.exists() else MAIN / 'src' / unit_src).read_text()\n\n\ndef profile(unit_src):\n    \"\"\"mw and unit extra flags exactly as configured for the collapsed unit.\"\"\"\n    u = units[unit_src]\n    s = p.resolve(u['module'] + ':' + u['symbols'][0]) if u['symbols'][0] in ('_prolog', '_epilog') else p.resolve(u['symbols'][0])\n    mw, flags = oracle.version_for(p, s)\n    return mw, flags\n\n\ncontrols = {}\n\n\ndef control(owner, unit_src):\n    if owner not in controls:\n        mw, flags = profile(unit_src)\n        controls[owner] = e.record(owner, base_text(unit_src), mw, flags, label='installed collapsed-unit control',\n                                   unit=unit_src)\n        rows.append(controls[owner])\n    return controls[owner]\n\n\ndef add(owner, unit_src, path, label):\n    base = control(owner, unit_src)\n    text = Path(path).read_text()\n    assert text != base_text(unit_src), (owner, label)\n    row = e.record(owner, text, base['mw'], base['flags'], parent=base['id'], label=label, unit=unit_src)\n    rows.append(row)\n    return row\n\n\ncohort = [m for m in json.load(open(S / 'cohort2/manifest.json')) if 'file' in m]\nmanual = [  # earlier hand probes (fixed hypotheses), each a whole-unit variant\n    ('car_colchg:fn_9_AF0', 'rel/car_colchg/car_colchg/_prolog.c', S / 'af0', 'chan comma-device natural alternative: '),\n    ('car_colchg:fn_9_AF0', 'rel/car_colchg/car_colchg/_prolog.c', [S / 'cc/nocomma.c', S / 'cc/rgbdirect.c'], 'chan comma-device removal: '),\n    ('car_colchg:colchg_chgcol_disp', 'rel/car_colchg/car_colchg/_prolog.c', S / 'chg', 'chgcol opt_lifetimes removal: '),\n    ('car_colchg:colchg_selmate_disp', 'rel/car_colchg/car_colchg/_prolog.c', S / 'sel2', 'selmate carrier removal: '),\n    ('main_rel:fn_1_A6480', 'rel/main_rel/prog/fn_1_A5D88.c', S / 'prog', 'pad volatile-view removal, access spelling: '),\n    ('main_rel:fn_1_A6480', 'rel/main_rel/prog/fn_1_A5D88.c', S / 'prog2', 'pad volatile-view removal, inline helper: '),\n    ('main_rel:fn_1_D42A8', 'rel/main_rel/mdlload/fn_1_D35D4.c', S / 'd42', 'distance clamp without opt_common_subs: '),\n    ('main_rel:fn_1_D42A8', 'rel/main_rel/mdlload/fn_1_D35D4.c', [S / 'mdl/tu_nocse.c'], 'TU-wide opt_common_subs off: '),\n    ('main_rel:fn_1_56D4C', 'rel/main_rel/shadowmap/fn_1_5672C.c', S / 'shd', 'translation copy without volatile view: '),\n    ('main_rel:fn_1_56D4C', 'rel/main_rel/shadowmap/fn_1_5672C.c', S / 'shd2', 'translation copy decl order/helper: '),\n]\ntodo = []\nfor owner, unit_src, src, label in manual:\n    files = sorted(src.glob('*.c')) if isinstance(src, Path) else src\n    for f in files:\n        if f.name in ('control.c', 'ctl.c'):\n            continue\n        todo.append((owner, unit_src, f, label + f.stem))\nfor m in cohort:\n    todo.append((m['owner'], m['unit'], Path(m['file']), 'collapsed-unit cohort: ' + m['variant']))\nif smoke:\n    keep = {('car_colchg:colchg_chgcol_disp', 'carid_first_x1'), ('car_colchg:colchg_selmate_disp', 'plain')}\n    todo = [t for t in todo if (t[0], t[2].stem) in keep]\nfor t in todo:\n    add(*t)\n# the accepted, installed forms (worktree's regenerated units) for every changed owner\nINSTALLED = {\n    'car_colchg:colchg_chgcol_disp': 'rel/car_colchg/car_colchg/_prolog.c',\n    'sel:fn_10_A480': 'rel/sel/sel/fn_10_0.c', 'sel:fn_10_1544': 'rel/sel/sel/fn_10_0.c',\n    'sel:fn_10_5E94': 'rel/sel/sel/fn_10_0.c',\n    'story:fn_7_44DC': 'rel/story/story_mode/fn_7_41FC.c', 'story:fn_7_4648': 'rel/story/story_mode/fn_7_41FC.c',\n}\nif not smoke:\n    for owner, unit_src in INSTALLED.items():\n        g = Path('build/GFZE01/gen') / unit_src\n        add(owner, unit_src, g if g.exists() else Path('src') / unit_src, 'accepted installed form')\nwith oracle.build_lock():\n    e.evaluate(rows)\nfor r in rows:\n    if r.get('object'):\n        e.check(r)\nreport = dict(hypothesis='Collapsed TUs give MWCC whole-unit context that per-function device sweeps never measured; '\n                         'remove each marked device, optimizer-pragma pair and one-field carrier owned by a function '\n                         'in a multi-function unit, one at a time, and accept only object-identical results.',\n              stopping_condition='One pass over the 75 census spots in 14 collapsed units (single removals plus all-at-once '\n                                 'per function) and fixed hand hypotheses for the nine newly marked devices; no flags, '\n                                 'allocator or search. Stop after the pass.',\n              records=rows, best={}, frontier={'all_frozen_probes': rows},\n              generator_sha256=e.generator_sha256, environment=e.environment)\n(out / 'report.json').write_text(json.dumps(report, indent=1, default=str) + '\\n')\nfixup.archive_sources(report, out / 'sources.json.gz')\nfor r in rows:\n    print(r['symbol'], '|', r['label'], '|', bool(r.get('matched')), r.get('word_errors'), r.get('extra_helpers'))\n"
+  },
+  "unitcheck.py": {
+   "sha256": "ad42822a2318ea2c18e5c935c432e64f324e17846a621784be7202f51a919968",
+   "text": "\"\"\"Compile a variant of a collapsed unit's generated C with the unit's configured compiler\nand flags, then objdiff the whole object against the retail target.\nusage: unitcheck.py UNIT_NAME VARIANT.c [VARIANT2.c ...]   (run from the worktree root)\nPrints, per variant, every symbol/section of the target below 100% (empty = whole unit matches).\"\"\"\nimport json, shlex, subprocess, sys, os\nfrom pathlib import Path\n\nROOT = Path.cwd()\nOBJDIFF = ROOT / \"build/tools/objdiff-cli\"\nunits = {u[\"name\"]: u for u in json.load(open(ROOT / \"objdiff.json\"))[\"units\"]}\n\n\ndef main():\n    name = sys.argv[1]\n    u = units[name]\n    sc = u[\"scratch\"]\n    flags = sc[\"c_flags\"]\n    mw = os.environ[\"MW\"]\n    target = Path(os.environ.get(\"REFROOT\", \"/home/armandofm/projects/fzgx\")) / (u[\"base_path\"] if os.environ.get(\"REF\", \"built\") == \"built\" else u[\"target_path\"])\n    print(\"reference:\", target)\n    out_dir = Path(os.environ.get(\"OUT\", \"/tmp/claude-1000/-home-armandofm-projects-fzgx/87b8ef80-0e14-4ea8-9c4c-508103c3951d/scratchpad/obj\"))\n    out_dir.mkdir(parents=True, exist_ok=True)\n    for var in sys.argv[2:]:\n        obj = out_dir / (Path(var).stem + \".o\")\n        cmd = [str(ROOT / \"build/tools/wibo\"), str(ROOT / \"build/compilers\" / mw / \"mwcceppc.exe\")]\n        cmd += shlex.split(flags) + [\"-i\", \"include\", \"-i\", \"build/GFZE01/include\", \"-c\", var, \"-o\", str(obj)]\n        cp = subprocess.run(cmd, cwd=ROOT, text=True, capture_output=True)\n        if cp.returncode != 0:\n            print(f\"{var}: COMPILE FAILED\\n{(cp.stdout + cp.stderr)[-1500:]}\")\n            continue\n        # apply the unit's pool retargeting, as ninja's mwcc_pool rule does\n        pool = os.environ.get(\"POOL\")\n        if pool:\n            subprocess.run(shlex.split(pool) + [str(obj)], cwd=ROOT, check=True)\n        cp = subprocess.run([str(OBJDIFF), \"diff\", \"-1\", str(target), \"-2\", str(obj), \"-o\", \"-\", \"--format\", \"json\"],\n                            text=True, capture_output=True)\n        data = json.loads(cp.stdout)\n        bad = []\n        for s in data.get(\"left\", {}).get(\"symbols\", []):\n            mp = s.get(\"match_percent\")\n            if mp is not None and mp < 100.0:\n                bad.append(f\"  sym {s['name']}: {mp:.3f}\")\n        for s in data.get(\"left\", {}).get(\"sections\", []):\n            mp = s.get(\"match_percent\")\n            if mp is not None and mp < 100.0:\n                bad.append(f\"  sec {s['name']}: {mp:.3f}\")\n        print(f\"{var}: {'MATCH' if not bad else 'DIFF'}\")\n        print(\"\\n\".join(bad))\n\n\nmain()\n"
+  }
+ },
+ "environment": "34ca5c3983785748d225599154c16cadc681abbbe9df84a32644a3e080d62afd",
+ "generator_sha256": "be4cba1111f93df0fe72ec0880023036a68c35e6af277b732fc70c2b0702b856",
+ "archive": "collapsed-device-inverse-20261117.sources.json.gz",
+ "archive_sha256": "eba28b72d979415c49b60270c40d88f6b007a749e9f6c26eff70516d622532e4",
+ "archived_compiled_bodies": 213,
+ "recorded_rows": 218,
+ "replayed": 213,
+ "replay_command": "python tools/fzgx.py fixup --archive state/repairs/collapsed-device-inverse-20261117.sources.json.gz",
+ "replay_check": "replay.json and archive have identical (symbol, body sha256, mw, flags, compile_profile, matched, word_errors) multisets",
+ "harness_concordance": {
+  "cohort_variants": 87,
+  "controls_matched": 13,
+  "controls": 13,
+  "engine_zero_iff_harness_match": true
+ },
+ "accepted": [
+  {
+   "function": "car_colchg:colchg_chgcol_disp",
+   "kind": "marked device removed",
+   "removed": "#pragma opt_lifetimes off/reset (WARNING-marked)",
+   "replacement": "sibling colchg_selcar_disp/colchg_selmate_disp form: s16 car_id = lbl_9_bss_8->car; &cars[car_id] at each call; no reuse of the loop counter as the car index"
+  },
+  {
+   "function": "sel:fn_10_A480",
+   "kind": "carrier removed",
+   "removed": "struct { fn_10_A480_s32 value; } temp",
+   "replacement": "fn_10_A480_s32 temp"
+  },
+  {
+   "function": "sel:fn_10_1544",
+   "kind": "inert setter removed",
+   "removed": "#pragma opt_common_subs off/reset around the confirm() inline helper only"
+  },
+  {
+   "function": "sel:fn_10_5E94",
+   "kind": "duplicate setter removed",
+   "removed": "second #pragma opt_common_subs off inside the body and one of two trailing resets"
+  },
+  {
+   "function": "story:fn_7_44DC",
+   "kind": "inert setter removed",
+   "removed": "#pragma peephole on/reset (peephole is already on under -O4,p)"
+  },
+  {
+   "function": "story:fn_7_4648",
+   "kind": "duplicate setter removed",
+   "removed": "second #pragma opt_propagation off (already off for the preceding helpers) and one of two resets"
+  }
+ ],
+ "retained_devices": {
+  "car_colchg:fn_9_AF0": "comma-expression chan pointer; 10 natural forms (pointer increment, &rgb[0], placement, stores through chan) leave 4+ words: the print-loop induction copy mr r29,r30",
+  "car_colchg:colchg_selmate_disp": "loop-counter carrier; plain s16 and 5 separate-count/for/decl-order forms all leave 8 words",
+  "main_rel:fn_1_A6480": "volatile view of lbl_1_bss_D58.down; retail reloads every pad field (3x down, 2x unk_A with a rematerialized base); 16 access-path spellings and 8 inline-helper forms leave 4+ words; no other unit reads the object volatile, so no shared-declaration evidence",
+  "main_rel:fn_1_D42A8": "function-wide opt_common_subs off; retail evaluates the squared distance twice (MIN-style); 12 helper/clamp spellings leave 82.7% or worse; TU-wide CSE-off matches it but regresses five other mdlload functions",
+  "main_rel:fn_1_D47F0": "function-wide opt_common_subs off; plain removal leaves 50 words",
+  "main_rel:fn_1_56D4C": "volatile view on target->pos.x; without it MWCC schedules the x load last; 6 declaration orders, direct/interleaved/reversed copies and a setter helper leave 5+ words",
+  "main_rel:fn_1_5745C": "uninitialized-cam comma inside psvec_set plus function-wide opt_common_subs off; plain pragma removal leaves 5 words; not attempted further"
+ },
+ "frontier": {
+  "colchg_chgcol_disp": {
+   "probes": 12,
+   "best_word_errors": 0,
+   "zero_error_probes": 6
+  },
+  "colchg_selmate_disp": {
+   "probes": 7,
+   "best_word_errors": 8,
+   "zero_error_probes": 0
+  },
+  "fn_10_12D8": {
+   "probes": 1,
+   "best_word_errors": 3,
+   "zero_error_probes": 0
+  },
+  "fn_10_1544": {
+   "probes": 3,
+   "best_word_errors": 0,
+   "zero_error_probes": 1
+  },
+  "fn_10_21EC": {
+   "probes": 4,
+   "best_word_errors": 15,
+   "zero_error_probes": 0
+  },
+  "fn_10_3350": {
+   "probes": 1,
+   "best_word_errors": 43,
+   "zero_error_probes": 0
+  },
+  "fn_10_3A98": {
+   "probes": 1,
+   "best_word_errors": 7,
+   "zero_error_probes": 0
+  },
+  "fn_10_3F54": {
+   "probes": 1,
+   "best_word_errors": 17,
+   "zero_error_probes": 0
+  },
+  "fn_10_4AE0": {
+   "probes": 1,
+   "best_word_errors": 5,
+   "zero_error_probes": 0
+  },
+  "fn_10_578C": {
+   "probes": 1,
+   "best_word_errors": 56,
+   "zero_error_probes": 0
+  },
+  "fn_10_5E94": {
+   "probes": 5,
+   "best_word_errors": 0,
+   "zero_error_probes": 2
+  },
+  "fn_10_7E84": {
+   "probes": 1,
+   "best_word_errors": 3,
+   "zero_error_probes": 0
+  },
+  "fn_10_8BB8": {
+   "probes": 3,
+   "best_word_errors": 4,
+   "zero_error_probes": 0
+  },
+  "fn_10_8F0C": {
+   "probes": 3,
+   "best_word_errors": 4,
+   "zero_error_probes": 0
+  },
+  "fn_10_9788": {
+   "probes": 1,
+   "best_word_errors": 56,
+   "zero_error_probes": 0
+  },
+  "fn_10_A0E8": {
+   "probes": 1,
+   "best_word_errors": 11,
+   "zero_error_probes": 0
+  },
+  "fn_10_A25C": {
+   "probes": 4,
+   "best_word_errors": 8,
+   "zero_error_probes": 0
+  },
+  "fn_10_A480": {
+   "probes": 3,
+   "best_word_errors": 0,
+   "zero_error_probes": 1
+  },
+  "fn_10_A634": {
+   "probes": 3,
+   "best_word_errors": 13,
+   "zero_error_probes": 0
+  },
+  "fn_10_A90C": {
+   "probes": 4,
+   "best_word_errors": 6,
+   "zero_error_probes": 0
+  },
+  "fn_10_AE14": {
+   "probes": 1,
+   "best_word_errors": 17,
+   "zero_error_probes": 0
+  },
+  "fn_15_3174": {
+   "probes": 1,
+   "best_word_errors": 37,
+   "zero_error_probes": 0
+  },
+  "fn_15_3368": {
+   "probes": 1,
+   "best_word_errors": 15,
+   "zero_error_probes": 0
+  },
+  "fn_15_3B24": {
+   "probes": 1,
+   "best_word_errors": 40,
+   "zero_error_probes": 0
+  },
+  "fn_15_435C": {
+   "probes": 3,
+   "best_word_errors": 4,
+   "zero_error_probes": 0
+  },
+  "fn_15_4578": {
+   "probes": 5,
+   "best_word_errors": 8,
+   "zero_error_probes": 0
+  },
+  "fn_1_12907C": {
+   "probes": 3,
+   "best_word_errors": 7,
+   "zero_error_probes": 0
+  },
+  "fn_1_129D9C": {
+   "probes": 1,
+   "best_word_errors": 10,
+   "zero_error_probes": 0
+  },
+  "fn_1_12A080": {
+   "probes": 3,
+   "best_word_errors": 4,
+   "zero_error_probes": 0
+  },
+  "fn_1_12A0E0": {
+   "probes": 3,
+   "best_word_errors": 4,
+   "zero_error_probes": 0
+  },
+  "fn_1_56D4C": {
+   "probes": 11,
+   "best_word_errors": 5,
+   "zero_error_probes": 0
+  },
+  "fn_1_5745C": {
+   "probes": 1,
+   "best_word_errors": 5,
+   "zero_error_probes": 0
+  },
+  "fn_1_581AC": {
+   "probes": 1,
+   "best_word_errors": 4,
+   "zero_error_probes": 0
+  },
+  "fn_1_76A94": {
+   "probes": 1,
+   "best_word_errors": 7,
+   "zero_error_probes": 0
+  },
+  "fn_1_A6480": {
+   "probes": 25,
+   "best_word_errors": 4,
+   "zero_error_probes": 0
+  },
+  "fn_1_A744C": {
+   "probes": 1,
+   "best_word_errors": 16,
+   "zero_error_probes": 0
+  },
+  "fn_1_A75DC": {
+   "probes": 1,
+   "best_word_errors": 16,
+   "zero_error_probes": 0
+  },
+  "fn_1_A7B5C": {
+   "probes": 1,
+   "best_word_errors": 27,
+   "zero_error_probes": 0
+  },
+  "fn_1_AECCC": {
+   "probes": 1,
+   "best_word_errors": 121,
+   "zero_error_probes": 0
+  },
+  "fn_1_B277C": {
+   "probes": 3,
+   "best_word_errors": 4,
+   "zero_error_probes": 0
+  },
+  "fn_1_D42A8": {
+   "probes": 14,
+   "best_word_errors": 0,
+   "zero_error_probes": 1
+  },
+  "fn_1_D47F0": {
+   "probes": 1,
+   "best_word_errors": 50,
+   "zero_error_probes": 0
+  },
+  "fn_4_4CB8": {
+   "probes": 1,
+   "best_word_errors": 7,
+   "zero_error_probes": 0
+  },
+  "fn_7_41FC": {
+   "probes": 1,
+   "best_word_errors": 21,
+   "zero_error_probes": 0
+  },
+  "fn_7_44DC": {
+   "probes": 3,
+   "best_word_errors": 0,
+   "zero_error_probes": 1
+  },
+  "fn_7_4648": {
+   "probes": 5,
+   "best_word_errors": 0,
+   "zero_error_probes": 2
+  },
+  "fn_7_4FD0": {
+   "probes": 1,
+   "best_word_errors": 14,
+   "zero_error_probes": 0
+  },
+  "fn_9_AF0": {
+   "probes": 10,
+   "best_word_errors": 4,
+   "zero_error_probes": 0
+  }
+ },
+ "partial_cleanups_only": true,
+ "new_fully_natural_function_credit": 0,
+ "fully_natural_function_credit_claimed": 0,
+ "census": {
+  "path": "device-census-collapsed-inverse-20261117.json.gz",
+  "sha256": "57007c6424bb0fc45f8ad8abf040aeda35609a12b87f44ff2a5c32fb598703f4",
+  "schema": 4,
+  "categories": {
+   "adx-dead-write-use": {
+    "spots": 7,
+    "files": 1,
+    "owner_functions": 1,
+    "unassigned_spots": 0
+   },
+   "layout-primer-function": {
+    "spots": 10558,
+    "files": 140,
+    "owner_functions": 939,
+    "unassigned_spots": 72
+   },
+   "marked-warning": {
+    "spots": 46,
+    "files": 17,
+    "owner_functions": 21,
+    "unassigned_spots": 1
+   },
+   "optimization-pragma-review": {
+    "spots": 927,
+    "files": 272,
+    "owner_functions": 689,
+    "unassigned_spots": 28
+   },
+   "single-field-value-carrier-review": {
+    "spots": 384,
+    "files": 119,
+    "owner_functions": 233,
+    "unassigned_spots": 7
+   },
+   "synthetic-function-review": {
+    "spots": 4,
+    "files": 4,
+    "owner_functions": 4,
+    "unassigned_spots": 0
+   },
+   "tagged-register-staging": {
+    "spots": 44,
+    "files": 8,
+    "owner_functions": 10,
+    "unassigned_spots": 0
+   },
+   "volatile-token-review": {
+    "spots": 15351,
+    "files": 385,
+    "owner_functions": 1209,
+    "unassigned_spots": 171
+   }
+  },
+  "schema_change": "single-field-value-carrier-review now matches any element type (typedef, qualified, tagged, pointer); the same tree counts 264 under schema 3 and 384 under schema 4. Base 94c20efe6 counts 385 under schema 4; fn_10_A480 removes one.",
+  "base_schema3_categories": {
+   "marked-warning": 47,
+   "optimization-pragma-review": 932,
+   "single-field-value-carrier-review": 264,
+   "known_owner_union": 961
+  }
+ },
+ "validation": {
+  "commands": [
+   "uv run python configure.py",
+   "ninja build/GFZE01/ok",
+   "build/tools/dtk shasum -q -c config/GFZE01/build.sha1",
+   "uv run tools/fzgx.py lint"
+  ],
+  "returns": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "linked_hashes": 16,
+  "independent_hashes": 16,
+  "lint_findings": 0,
+  "local_log_sha256": "3debb79bc308a08875dec6e9fed969485fe11153677a2961e8069bfb7130faea"
+ },
+ "limits": "One single-construct pass with fixed hand hypotheses; no flags, allocator capture or search. Inert/duplicate setter removals change no code and are reported separately from device removal. Census rows are lower-bound review signals, not a certified device-free total; no function is credited as fully natural."
+}

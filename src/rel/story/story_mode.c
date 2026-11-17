@@ -4200,7 +4200,6 @@ extern u16 fn_1_48690(u32);
 extern int fn_1_4F734(FontDrawPacket *);
 
 #pragma opt_propagation off
-#pragma peephole on
 void fn_7_44DC(void) {
     u16 v1;
     u8 i;
@@ -4236,7 +4235,6 @@ void fn_7_44DC(void) {
     }
 }
 
-#pragma peephole reset
 
 #pragma opt_propagation reset
 /* fzgx:end fn_7_44DC */
@@ -4347,7 +4345,6 @@ static inline f32 storyDistanceSquared(const StoryVec *a, const StoryVec *b) {
     return result;
 }
 
-#pragma opt_propagation off
 #pragma opt_lifetimes off
 #pragma opt_common_subs off
 s32 fn_7_4648(StoryTriggerContext *context, StoryTrigger *arg1) {
@@ -4611,7 +4608,6 @@ s32 fn_7_4648(StoryTriggerContext *context, StoryTrigger *arg1) {
 }
 #pragma opt_common_subs reset
 #pragma opt_lifetimes reset
-#pragma opt_propagation reset
 #pragma opt_propagation reset
 /* fzgx:end fn_7_4648 */
 
