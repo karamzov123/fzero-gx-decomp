@@ -14998,7 +14998,51 @@ u8 *fn_4_A82C(u8 *s) {
 __declspec(section ".fzgxpool") u8 *fzgx_primer(void) { return fzgx_pool_fzgx_pad; }
 /* fzgx:end fn_4_A82C */
 
-/* fzgx:begin fn_4_AB30 */
+/* fzgx:begin fn_4_AB30 noprologue */
+#include "types.h"
+
+typedef struct {
+    u32 unk_0;
+    u8 unk_4;
+    u8 pad_5[0x1D];
+    u8 unk_22;
+    u8 pad_23[0x25];
+} Obj_4_bss_5630;
+
+extern void fn_1_B9BE0(void);
+extern void fn_1_B9DE8(u32);
+extern u32 fn_1_B9C0C(void);
+extern u32 fn_1_1380F0(char *);
+extern u32 fn_1_13ABA8(u32);
+extern u32 fn_1_B7C00(void);
+extern s8 fn_1_BA144(u32 *);
+extern u32 fn_1_BC310(void *);
+extern u32 fn_1_C0510(u32);
+extern u32 fn_1_C1394(void *);
+extern s32 lbl_801A66B4;
+
+void fn_4_ACF0(void);
+void fn_4_AD78(void);
+void fn_4_ADB0(void);
+void fn_4_AD44(void);
+void fn_4_ADAC(void);
+void fn_4_ADF0(void);
+
+/* per state: the update handlers (fn_4_ABB0) and the draw handlers (fn_4_AC58) */
+void (*lbl_4_data_2F00[3])(void) = {fn_4_ACF0, fn_4_AD78, fn_4_ADB0};
+void (*lbl_4_data_2F0C[3])(void) = {fn_4_AD44, fn_4_ADAC, fn_4_ADF0};
+s32 lbl_4_data_2F18 = -1;  /* current state */
+s32 lbl_4_data_2F1C = -1;  /* next state */
+char *lbl_4_data_2F60[6] = {
+    "Use \x83\xad or \x83\xb5 to choose. ", "", "", "", "",
+    "\x83\xad\x82\xa9\x83\xb5\x82\xc5\x8d\x80\x96\xda\x82\xf0\x91I\x82\xf1\x82\xc5\x82\xad\x82\xbe\x82\xb3\x82\xa2\x81" "B",
+};
+
+u32 lbl_4_bss_5628 = 0;  /* frames left in the current state */
+u32 lbl_4_bss_562C = 0;  /* frames of the next state */
+Obj_4_bss_5630 lbl_4_bss_5630;
+s32 lbl_4_bss_5678;  /* result of the frame */
+
 // Initialize the option state and reset its associated data value.
 void fn_4_AB30(void) {
     fn_1_B9BE0();
@@ -15011,151 +15055,46 @@ void fn_4_AB30(void) {
 }
 /* fzgx:end fn_4_AB30 */
 
-/* fzgx:begin fn_4_AB90 */
+/* fzgx:begin fn_4_AB90 noprologue */
 void fn_4_AB90(void) {
     fn_1_B9C0C();
 }
 /* fzgx:end fn_4_AB90 */
 
-/* fzgx:begin fn_4_ABB0 */
-#include "types.h"
-
-typedef void (*OptionHandler)(void);
-
-/* retail addresses the whole bss cluster 0x5628..0x5678 off one base */
-typedef struct {
-    u32 count;      /* 0x00 */
-    u32 pending;    /* 0x04 */
-    u8 pad_8[0x48];
-    u32 result;     /* 0x50 */
-} OptionState;
-
-/* retail addresses the handler table, current and next slots off one base */
-typedef struct {
-    OptionHandler handlers[6];  /* 0x00 */
-    s32 current;                /* 0x18 */
-    s32 next;                   /* 0x1C */
-} OptionTable;
-
-extern OptionState lbl_4_bss_5628;
-
-static OptionHandler fzgx_pool_native_lbl_4_data_2F00_handlers[6] = {(OptionHandler)(u32)fn_4_ACF0__fzgx_offset_0, (OptionHandler)(u32)fn_4_AD78__fzgx_offset_0, (OptionHandler)(u32)fn_4_ADB0__fzgx_offset_0, (OptionHandler)(u32)fn_4_AD44__fzgx_offset_0, (OptionHandler)(u32)fn_4_ADAC__fzgx_offset_0, (OptionHandler)(u32)fn_4_ADF0__fzgx_offset_0}; /* fzgx-allow: A1 measured pool bytes and bindings */
-static s32 fzgx_pool_native_lbl_4_data_2F00_current = 0xFFFFFFFF; /* fzgx-allow: A1 measured pool bytes and bindings */
-static s32 fzgx_pool_native_lbl_4_data_2F00_next = 0xFFFFFFFF; /* fzgx-allow: A1 measured pool bytes and bindings */
-
+/* fzgx:begin fn_4_ABB0 noprologue */
 u32 fn_4_ABB0(void) {
-    
-    OptionState *st = &lbl_4_bss_5628;
-
-    st->result = 0;
-    if (fzgx_pool_native_lbl_4_data_2F00_next >= 0 && st->count == 0) {
-        fzgx_pool_native_lbl_4_data_2F00_current = fzgx_pool_native_lbl_4_data_2F00_next;
-        fzgx_pool_native_lbl_4_data_2F00_next = -1;
-        st->count = st->pending;
-        st->pending = 0;
+    lbl_4_bss_5678 = 0;
+    if (lbl_4_data_2F1C >= 0 && lbl_4_bss_5628 == 0) {
+        lbl_4_data_2F18 = lbl_4_data_2F1C;
+        lbl_4_data_2F1C = -1;
+        lbl_4_bss_5628 = lbl_4_bss_562C;
+        lbl_4_bss_562C = 0;
     }
-    if (fzgx_pool_native_lbl_4_data_2F00_current >= 0) {
-        if (st->count != 0) {
-            st->count--;
+    if (lbl_4_data_2F18 >= 0) {
+        if (lbl_4_bss_5628 != 0) {
+            lbl_4_bss_5628--;
         }
-        fzgx_pool_native_lbl_4_data_2F00_handlers[fzgx_pool_native_lbl_4_data_2F00_current]();
+        lbl_4_data_2F00[lbl_4_data_2F18]();
     }
-    return st->result;
+    return lbl_4_bss_5678;
 }
 /* fzgx:end fn_4_ABB0 */
 
-/* fzgx:begin fn_4_AC58 */
-extern void fn_4_3128(void);
-extern u32 fn_80008BA8(u32, u32, u32);
-extern u32 fn_1_F7308(void);
-
-
-
-
-
-
-extern u32 memcpy(u32, u32, u32);
-extern void fn_4_63D4(void);
-extern int fn_1_4C10(void);
-
-
-extern u32 fn_4_0(u32, u32, u32, u32, u32);
-
-
-
-
-extern void fn_1_1280(u32);
-extern void fn_1_A2D84(u32);
-extern u32 fn_4_ABB0(void);
-extern u32 fn_1_1380F0(u32);
-extern u32 fn_1_13ABA8(u32);
-
-
-extern s32 lbl_801A66B4;
-
-
-extern u32 fn_1_B7E98(u32);
-extern u32 fn_1_B800C(u32);
-extern u32 fn_1_B80F0(u32);
-extern u32 fn_1_B8170(u32);
-
-
-extern void fn_4_9AD0(void);
-extern u8 *fn_4_A82C(u8 *);
-extern void fn_80083DB0(u8 *, u32);
-extern u32 fn_1_B9C0C(void);
-extern s8 fn_1_BA144(u32 *);
-
-
-extern u32 fn_1_B7C00(void);
-extern u32 fn_1_BC310(void *);
-extern u32 fn_1_C0510(u32);
-extern u32 fn_1_C1394(void *);
-
-
-extern struct fn_4_9B0_lbl_4_data_1260 lbl_4_data_1260;
-
-
-
-
-extern u32 fn_1_3CC4(u32);
-extern u32 fn_1_407C(u32);
-extern u32 fn_1_426C(u32);
-extern void fn_4_AB90(void);
-extern struct _prolog_lbl_1_bss_6EAD0 lbl_1_bss_6EAD0;
-
-
-
-
-
-
-
-
-
-
-extern u32 fn_1_1380F0(u32);
-extern u32 fn_1_B7C00(void);
-extern u32 fn_1_13ABA8(u32);
-
-#pragma opt_propagation off
+/* fzgx:begin fn_4_AC58 noprologue */
 void fn_4_AC58(void) {
-    Obj_4_data_2F00 *p = &lbl_4_data_2F00;
-    u32 *table = (u32 *)&p->pad_0[0x60];
-    fn_1_1380F0(table[lbl_801A66B4]);
+    fn_1_1380F0(lbl_4_data_2F60[lbl_801A66B4]);
     if ((u8)fn_1_B7C00() || (s32)lbl_4_bss_5630.unk_22 == 2) {
         fn_1_13ABA8(0);
     } else {
         fn_1_13ABA8(0x28000000);
     }
-    if ((s32)p->unk_18 >= 0) {
-        u32 offset = p->unk_18 * 4;
-        void (**callbacks)(void) = (void (**)(void))&p->pad_0[0xC];
-        (*(void (**)(void))((u8 *)callbacks + offset))();
+    if (lbl_4_data_2F18 >= 0) {
+        lbl_4_data_2F0C[lbl_4_data_2F18]();
     }
 }
 /* fzgx:end fn_4_AC58 */
 
-/* fzgx:begin fn_4_ACF0 */
+/* fzgx:begin fn_4_ACF0 noprologue */
 void fn_4_ACF0(void) {
     u32 v0;
     u32 t0;
@@ -15171,7 +15110,7 @@ void fn_4_ACF0(void) {
 }
 /* fzgx:end fn_4_ACF0 */
 
-/* fzgx:begin fn_4_AD44 */
+/* fzgx:begin fn_4_AD44 noprologue */
 void fn_4_AD44(void) {
     u32 t0;
     t0 = fn_1_B7C00();
@@ -15181,20 +15120,20 @@ void fn_4_AD44(void) {
 }
 /* fzgx:end fn_4_AD44 */
 
-/* fzgx:begin fn_4_AD78 */
+/* fzgx:begin fn_4_AD78 noprologue */
 void fn_4_AD78(void) {
     fn_1_C0510((u32)&lbl_4_bss_5630);
     lbl_4_data_2F1C = 2;
 }
 /* fzgx:end fn_4_AD78 */
 
-/* fzgx:begin fn_4_ADAC */
+/* fzgx:begin fn_4_ADAC noprologue */
 // fn_4_ADAC: empty in retail (single blr).
 void fn_4_ADAC(void) {
 }
 /* fzgx:end fn_4_ADAC */
 
-/* fzgx:begin fn_4_ADB0 */
+/* fzgx:begin fn_4_ADB0 noprologue */
 void fn_4_ADB0(void) {
     u32 t0;
     t0 = fn_1_B7C00();
@@ -15205,7 +15144,7 @@ void fn_4_ADB0(void) {
 }
 /* fzgx:end fn_4_ADB0 */
 
-/* fzgx:begin fn_4_ADF0 */
+/* fzgx:begin fn_4_ADF0 noprologue */
 // fn_4_ADF0: empty in retail (single blr).
 void fn_4_ADF0(void) {
 }

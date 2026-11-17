@@ -6,18 +6,6 @@ Sections:
 	.data       type:data align:8
 	.bss        type:bss align:8
 
-rel/option/fn_4_ADAC.c:
-	.text       start:0x0000ADAC end:0x0000ADB0
-
-rel/option/fn_4_ADF0.c:
-	.text       start:0x0000ADF0 end:0x0000ADF4
-
-rel/option/_prolog/fn_4_AB90.c:
-	.text       start:0x0000AB90 end:0x0000ABB0 align:4
-
-rel/option/_prolog/fn_4_AD78.c:
-	.text       start:0x0000AD78 end:0x0000ADAC align:4
-
 rel/option/_prolog/fn_4_894.c:
 	.text       start:0x00000894 end:0x000008DC align:4
 
@@ -47,12 +35,6 @@ rel/option/_prolog/fn_4_4B10.c:
 
 rel/option/_prolog/fn_4_4784.c:
 	.text       start:0x00004784 end:0x00004834 align:4
-
-rel/option/_prolog/fn_4_AD44.c:
-	.text       start:0x0000AD44 end:0x0000AD78 align:4
-
-rel/option/_prolog/fn_4_ADB0.c:
-	.text       start:0x0000ADB0 end:0x0000ADF0 align:4
 
 rel/option/_prolog/fn_4_6678.c:
 	.text       start:0x00006678 end:0x00006720 align:4
@@ -87,9 +69,6 @@ rel/option/_prolog/fn_4_9B20.c:
 rel/option/_prolog/fn_4_8AE0.c:
 	.text       start:0x00008AE0 end:0x00008B3C align:4
 
-rel/option/_prolog/fn_4_ACF0.c:
-	.text       start:0x0000ACF0 end:0x0000AD44 align:4
-
 rel/option/_prolog/fn_4_347C.c:
 	.text       start:0x0000347C end:0x00003568 align:4
 
@@ -106,7 +85,9 @@ rel/option/_prolog/fn_4_9B0.c:
 	.text       start:0x000009B0 end:0x00000A0C align:4
 
 rel/option/_prolog/fn_4_AB30.c:
-	.text       start:0x0000AB30 end:0x0000AB90 align:4
+	.text       start:0x0000AB30 end:0x0000ADF4 align:4
+	.data       start:0x00002F00 end:0x00002F78 align:8
+	.bss        start:0x00005628 end:0x00005680 align:8
 
 rel/option/name_entry.c:
 	.text       start:0x0000D760 end:0x0000D888 align:4
@@ -139,13 +120,11 @@ rel/option/_prolog/fn_4_250.c:
 rel/option/_prolog/fn_4_4834.c:
 	.text       start:0x00004834 end:0x00004B10 align:4
 
-
 rel/option/_prolog/fn_4_0.c:
 	.text       start:0x00000000 end:0x00000250 align:4
 
 rel/option/_prolog/fn_4_D420.c:
 	.text       start:0x0000D420 end:0x0000D760 align:4
-
 
 rel/option/_prolog/fn_4_6720.c:
 	.text       start:0x00006720 end:0x000078E0 align:4
@@ -153,12 +132,6 @@ rel/option/_prolog/fn_4_6720.c:
 
 rel/option/_prolog/fn_4_C768.c:
 	.text       start:0x0000C768 end:0x0000D1A8 align:4
-
-rel/option/_prolog/fn_4_AC58.c:
-	.text       start:0x0000AC58 end:0x0000ACF0 align:4
-
-rel/option/_prolog/fn_4_ABB0.c:
-	.text       start:0x0000ABB0 end:0x0000AC58 align:4
 
 rel/option/_prolog/fn_4_2700.c:
 	.text       start:0x00002700 end:0x000028FC align:4
@@ -214,7 +187,6 @@ rel/option/_prolog/fn_4_2D4.c:
 rel/option/_prolog/fn_4_3568.c:
 	.text       start:0x00003568 end:0x0000406C align:4
 
-
 rel/option/_prolog/fn_4_40C4.c:
 	.text       start:0x000040C4 end:0x0000467C align:4
 
@@ -242,63 +214,8 @@ rel/option/data/lbl_4_bss_10.c:
 rel/option/data/lbl_4_bss_5618.c:
 	.bss        start:0x00005618 end:0x00005628 align:8
 
-rel/option/data/lbl_4_bss_5628.c:
-	.bss        start:0x00005628 end:0x00005630 align:8
-
-rel/option/data/lbl_4_bss_5630.c:
-	.bss        start:0x00005630 end:0x00005678 align:8
-
-rel/option/data/lbl_4_bss_5678.c:
-	.bss        start:0x00005678 end:0x00005680 align:8
-
 rel/option/data/lbl_4_bss_5680.c:
 	.bss        start:0x00005680 end:0x00005686 align:8
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 rel/option/data/lbl_4_data_2C20.c:
 	.data       start:0x00002C20 end:0x00002C30 align:8
@@ -309,33 +226,14 @@ rel/option/data/lbl_4_data_2C30.c:
 rel/option/data/lbl_4_data_2C58.c:
 	.data       start:0x00002C58 end:0x00002D10 align:8
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 rel/option/data/lbl_4_data_2C00.c:
 	.data       start:0x00002C00 end:0x00002C20 align:8
 
 rel/option/data/lbl_4_data_2D78.c:
-	.data       start:0x00002D78 end:0x000030E0 align:8
+	.data       start:0x00002D78 end:0x00002F00 align:8
 
+rel/option/data/lbl_4_data_2F78.c:
+	.data       start:0x00002F78 end:0x000030E0 align:8
 
 rel/option/data/lbl_4_data_2D10.c:
 	.data       start:0x00002D10 end:0x00002D78 align:8
