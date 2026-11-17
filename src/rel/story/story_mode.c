@@ -3872,169 +3872,271 @@ u32 fn_7_4094(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
 }
 /* fzgx:end fn_7_4094 */
 
-/* fzgx:begin fn_7_4108 */
-#include "rel/story/story_mode.h"
+/* fzgx:begin fn_7_4108 noprologue */
+#include "types.h"
+#include "font.h"
 
-typedef struct {
+typedef struct GXColor {
     u8 r;
     u8 g;
     u8 b;
     u8 a;
-} Color;
+} GXColor;
 
+typedef struct Vec {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec;
+
+/* the course of the current scenario (lbl_7_bss_1964) */
+typedef struct StoryCourse {
+    u32 flags;
+    u8 pad_4[0x8];
+    u8 unk_C;
+    u8 unk_D;
+} StoryCourse;
+
+/* one scenario trigger: type 0..3 are conditions, 4 is an action, 5 ends the list */
+typedef struct StoryTrigger {
+    u16 type;
+    u16 opcode;
+    s32 unk_4;
+    s32 unk_8;
+    s32 unk_C;
+    s32 unk_10;
+    f32 unk_14;
+} StoryTrigger;
+
+/* scenario state passed in by story_mode.c: 0x200 bytes of trigger flags, then counters */
+typedef struct StoryContext {
+    u32 done[0x80];
+    s32 timers[8];
+    s32 counters[8];
+    u32 flags240;
+    u32 flags244;
+    s16 unk_248;
+} StoryContext;
+
+
+typedef struct StoryVehicle {
+    u32 flags;
+    u8 pad_4[0x78];
+    Vec pos;
+    u8 pad_88[0xF4];
+    f32 unk_17C;
+    u8 pad_180[4];
+    f32 unk_184;
+    u8 pad_188[0x2FA];
+    u8 unk_482;
+} StoryVehicle;
+
+typedef struct StoryEventObject {
+    u8 pad_0[0xE];
+    s16 unk_E;
+    u8 pad_10[0x44];
+    Vec pos;
+    u8 pad_60[0xD8];
+    u32 flags138;
+    u32 flags13C;
+} StoryEventObject;
+
+typedef struct StoryTime {
+    u8 pad_0[0x1EC];
+    u8 minutes;
+    u8 seconds;
+    u16 milliseconds;
+} StoryTime;
+
+typedef struct StoryPlayer {
+    u8 pad_0[0x115];
+    u8 unk_115;
+    u8 pad_116[2];
+    s32 unk_118;
+} StoryPlayer;
+
+/* view of StoryInput starting at its button word */
+typedef struct StoryButtons {
+    u16 unk_0;
+    u8 pad_2[0x12];
+} StoryButtons;
+
+typedef struct StoryPlayerList {
+    u8 pad_0[0x2C];
+    StoryPlayer *unk_2C[4];
+} StoryPlayerList;
+
+typedef struct StoryInput {
+    u8 pad_0[8];
+    u16 buttons;
+    u8 pad_A[0xA];
+} StoryInput;
+
+extern FontDrawPacket lbl_1_rodata_26F8;
+extern StoryInput lbl_1_bss_9F8[];
+
+extern void OSReport(const char *, ...);
+extern u16 fn_1_48690(u32);
+extern s16 fn_1_3F0C8(void);
+extern u8 fn_1_86810(int);
+extern StoryVehicle *fn_1_86254(s32);
+extern StoryTime *fn_1_8627C(s32);
+extern s16 fn_1_E5568(s16);
+extern StoryEventObject *fn_1_E54A8(s16, s16);
+extern u32 fn_1_E57C4(void *);
+extern s16 fn_1_E5430(s16);
+extern u32 fn_1_8C66C(u32);
+extern f32 fn_1_8C6A0(u32);
+extern u32 fn_1_F1B94(void);
+
+s32 fn_7_4648(StoryContext *context, StoryTrigger *trigger);
+void fn_7_4FD0(StoryContext *context, StoryTrigger *trigger);
+s32 fn_7_4E28(s32 op, s32 a, s32 b);
+s32 fn_7_4EF8(u32 op, f32 a, f32 b);
+
+typedef struct { u8 pad[4]; f32 f4,f8,fc,f10,f14; u8 pad18[8]; f32 f20; u8 pad24[0x1c]; f32 f40; u8 pad44[0x70]; } CarSpec;
+extern CarSpec lbl_1_data_28060[];
+
+typedef struct { f32 x,y,z; } ActionVec;
+typedef struct { u8 r,g,b,a; } ActionColor;
+typedef struct { u32 flags; u8 pad4[0x2e]; u8 mode; } CarControl;
 typedef struct {
-    u8 unk_0;
-    u8 pad_1[0x3];
-    Obj_7_bss_1960_At4 *unk_4;
-    u8 unk_8;
-    u8 pad_9[0x3];
-    u32 unk_C;
-    Color unk_10[2];
-    u8 unk_18[2];
-    u8 pad_1A[0x2];
-    f32 unk_1C[2];
-    f32 unk_24[2];
-    u8 unk_2C;
-    u8 pad_2D[0x3];
-    u32 unk_30;
-} StoryReset;
+    u32 flags; s16 field4; s16 field6; f32 field8,fieldc,field10,field14;
+    u8 pad18[0x7c]; ActionVec field94,fielda0; u8 padac[0xd0];
+    f32 field17c; f32 field180; f32 field184; u8 pad188[0x98];
+    f32 field220,field224,field228,field22c; u8 pad230[0xc]; f32 field23c;
+    u8 pad240[0x244]; CarControl *field484; u8 pad488[0x14]; void *field49c;
+    u8 pad4a0[0x13a]; u16 field5da;
+} ActionCar;
+typedef struct { u8 pad[0x390]; u32 flags390; } Racer;
 
-extern const Color lbl_7_rodata_780;
+extern int fn_1_4C10(void);
+extern int fn_1_4CAC(void);
+extern int fn_1_40F44(void);
+extern u32 fn_1_3ED8C(u32,u32,u32,u32,u32,u32,u32);
+extern u32 fn_1_3F4B8(u32,u32,u32,u32,u32,u32);
+extern u32 fn_1_3EB78(u32,void *,void *,void *);
+extern u32 fn_1_3EA90(u32,void *,void *,void *);
+extern void fn_1_86194(f32);
+extern int fn_1_24F10(void *,f32);
+extern void *fn_1_868C0(s8);
+extern void fn_1_8E448(void *,u32);
+extern u32 fn_1_864E8(s32);
+extern void fn_1_85F90(void *,void *,f32,f32,f32,f32);
+extern void fn_1_8B880(void);
+extern void *fn_1_214C4(void *,u32,f32);
+extern u32 fn_1_17920(void *,u32,f32);
+extern u8 *fn_1_14F04(void);
+extern void fn_1_207DC(void *,void *,f32);
+extern void fn_1_25004(void *);
+extern void fn_1_8D988(void);
+extern void fn_1_8DAB4(void);
+extern void camera_set_entry_field_0xa8(u8,s16);
+extern s32 fn_1_3F1AC(void);
+extern void fn_1_A2D84(u32);
+extern u32 fn_1_A1588(void *,u32);
+extern void *lbl_1_bss_84[];
+extern u32 lbl_1_bss_6F23C;
+extern s8 lbl_1_bss_9C[];
+extern u8 lbl_1_bss_8B3A0[];
+// lbl_1_bss_6EAD0: .bss size 0x708, 6 refs from game.c (its first word is used here)
+typedef struct { u32 unk_0; u32 unk_4; } SoundHandles;
+extern SoundHandles *lbl_1_bss_6EAD0;
+typedef struct { u32 unk_0; u8 pad_4[0xE]; } SoundFlags;
+extern SoundFlags lbl_1_bss_6EAB4;
 
-/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
-u8 fzgx_obj_lbl_7_bss_1960;
-u8 lbl_7_bss_1960_fill_1961;
-u16 lbl_7_bss_1960_fill_1962;
-Obj_7_bss_1960_At4 *lbl_7_bss_1960_4;
-u8 lbl_7_bss_1960_8;
-u8 lbl_7_bss_1960_fill_1969;
-u16 lbl_7_bss_1960_fill_196A;
-u32 lbl_7_bss_1960_C;
-Color lbl_7_bss_1960_10[2];
-u8 lbl_7_bss_1960_18[2];
-u16 lbl_7_bss_1960_fill_197A;
-f32 lbl_7_bss_1960_1C[2];
-f32 lbl_7_bss_1960_24[2];
-u8 lbl_7_bss_1960_2C;
-u8 lbl_7_bss_1960_fill_198D;
-u16 lbl_7_bss_1960_fill_198E;
-u32 lbl_7_bss_1960_30;
-u32 lbl_7_bss_1960_fill_1994[55];
-u8 lbl_7_bss_1960_fill_1A70;
+const GXColor black = {0, 0, 0, 0};
 
-#pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
-    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
-    s = *(u8 *)&fzgx_obj_lbl_7_bss_1960;
-    s = *(u8 *)&lbl_7_bss_1960_fill_1961;
-    s = *(u8 *)&lbl_7_bss_1960_fill_1962;
-    s = *(u8 *)&lbl_7_bss_1960_4;
-    s = *(u8 *)&lbl_7_bss_1960_8;
-    s = *(u8 *)&lbl_7_bss_1960_fill_1969;
-    s = *(u8 *)&lbl_7_bss_1960_fill_196A;
-    s = *(u8 *)&lbl_7_bss_1960_C;
-    s = *(u8 *)&lbl_7_bss_1960_10;
-    s = *(u8 *)&lbl_7_bss_1960_18;
-    s = *(u8 *)&lbl_7_bss_1960_fill_197A;
-    s = *(u8 *)&lbl_7_bss_1960_1C;
-    s = *(u8 *)&lbl_7_bss_1960_24;
-    s = *(u8 *)&lbl_7_bss_1960_2C;
-    s = *(u8 *)&lbl_7_bss_1960_fill_198D;
-    s = *(u8 *)&lbl_7_bss_1960_fill_198E;
-    s = *(u8 *)&lbl_7_bss_1960_30;
-    s = *(u8 *)&lbl_7_bss_1960_fill_1994;
-    s = *(u8 *)&lbl_7_bss_1960_fill_1A70;
-}
-#pragma section code_type ".text"
+u8 lbl_7_bss_1960 = 0;
+StoryCourse *lbl_7_bss_1964 = NULL;
+u8 lbl_7_bss_1968 = 0;
+u32 lbl_7_bss_196C = 0;
+GXColor lbl_7_bss_1970[2];
+u8 lbl_7_bss_1978[2];
+f32 lbl_7_bss_197C[2];
+f32 lbl_7_bss_1984[2];
+u8 lbl_7_bss_198C;
+StoryTrigger *lbl_7_bss_1990;
+u8 lbl_7_bss_1994;
+u8 lbl_7_bss_1995;
+u8 lbl_7_bss_1996;
+u8 lbl_7_bss_1997;
+u8 lbl_7_bss_1998;
+u8 lbl_7_bss_1999;
+u8 lbl_7_bss_199A;
+u32 lbl_7_bss_199C;
+/* slot tables: 4 player slots, 30 object slots */
+u8 lbl_7_bss_19A0[4];
+u8 lbl_7_bss_19A4[4];
+u32 lbl_7_bss_19A8[4];
+u8 lbl_7_bss_19B8[30];
+u8 lbl_7_bss_19D8[30];
+u32 lbl_7_bss_19F8[30];
+/* Unknown retail object: .bss 0x1A70, 1 bytes. No code or data in any REL refers to it. */
+u8 lbl_7_bss_1A70;
 
-static inline void fn_7_4108_loop1(u32 *flags) {
-    u32 *p;
-    u8 i;
-    for (i = 0, p = flags + 0x88; i < 8; i++, p++) {
-        *p = 0;
-    }
-}
-
-#pragma opt_common_subs off
-void fn_7_4108(u32 *flags, u32 arg1, u32 arg2) {
-    
-    Color color[2];
-    Color *p_color;
-    f32 *p_f2;
-    f32 *p_f1;
+void fn_7_4108(StoryContext *context, StoryTrigger *triggers, StoryCourse *course) {
+    GXColor colors[2];
     u32 *p;
     u8 i;
 
-    p = flags;
+    p = context->done;
     for (i = 0; i < 128; i++, p++) {
         *p = 0;
     }
-    fn_7_4108_loop1(flags);
     {
-    u32 * fzgx_loop_p_2379;
-for (fzgx_loop_p_2379 = flags + 0x80, i = 0; i < 8; i++, fzgx_loop_p_2379++) {
-        *fzgx_loop_p_2379 = -1;
+        s32 *q = context->counters;
+        for (i = 0; i < 8; i++, q++) {
+            *q = 0;
+        }
     }
-    p = fzgx_loop_p_2379;
-}
-
-    p_color = lbl_7_bss_1960_10;
-    p_f2 = lbl_7_bss_1960_24;
-    p_f1 = lbl_7_bss_1960_1C;
-
-    lbl_7_bss_1960_4 = (Obj_7_bss_1960_At4 *)arg2;
-    lbl_7_bss_1960_8 = 0;
-    lbl_7_bss_1960_C = 0;
-    fzgx_obj_lbl_7_bss_1960 = 0;
-    color[0] = lbl_7_rodata_780;
-    color[1] = lbl_7_rodata_780;
+    {
+        s32 *q = context->timers;
+        for (i = 0; i < 8; i++, q++) {
+            *q = -1;
+        }
+    }
+    lbl_7_bss_1964 = course;
+    lbl_7_bss_1968 = 0;
+    lbl_7_bss_196C = 0;
+    lbl_7_bss_1960 = 0;
+    colors[1] = colors[0] = black;
     for (i = 0; i < 2; i++) {
-        p_color[i] = ((i)[color]);
-        (lbl_7_bss_1960_18)[i] = 0;
-        p_f2[i] = lbl_7_rodata_784;
-        p_f1[i] = lbl_7_rodata_784;
+        lbl_7_bss_1970[i] = colors[i];
+        lbl_7_bss_1978[i] = 0;
+        lbl_7_bss_197C[i] = lbl_7_bss_1984[i] = 0.0f;
     }
-    lbl_7_bss_1960_2C = 0;
-    lbl_7_bss_1960_30 = arg1;
+    lbl_7_bss_198C = 0;
+    lbl_7_bss_1990 = triggers;
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_7_4108 */
 
-/* fzgx:begin fn_7_41FC */
-#include "rel/story/story_mode.h"
-
-typedef struct fn_7_41FC_StoryTrigger {
-    u16 type;
-    u8 pad_2[0x16];
-} fn_7_41FC_StoryTrigger;
-
-extern s32 fn_7_4648();
-extern void fn_7_4FD0();
-extern void OSReport(const char *, ...);
-
-static inline f32 clamp_value(f32 x) {
-    if (x < lbl_7_rodata_784) return lbl_7_rodata_784;
-    if (x > lbl_7_rodata_788[0]) return lbl_7_rodata_788[0];
+/* fzgx:begin fn_7_41FC noprologue */
+static inline f32 clamp01(f32 x) {
+    if (x < 0.0f) {
+        return 0.0f;
+    }
+    if (x > 1.0f) {
+        return 1.0f;
+    }
     return x;
 }
 
-#pragma opt_propagation off
-void fn_7_41FC(u32 *flags) {
-    Obj_7_bss_1960 *g = &lbl_7_bss_1960;
-    fn_7_41FC_StoryTrigger *t;
+void fn_7_41FC(StoryContext *context) {
+    StoryTrigger *t;
     s32 *timer;
     u32 i;
     u32 n;
     s32 ok;
+    u8 k;
 
-    t = (fn_7_41FC_StoryTrigger *)g->unk_30;
-    timer = (s32 *)(flags + 0x80);
+    t = lbl_7_bss_1990;
+    timer = context->timers;
     for (i = 0; i < 8; i++, timer++) {
-        if (!__rlwnm(g->unk_C, (i + 1) & 31, 31, 31) && *timer >= 0) {
+        if (!__rlwnm(lbl_7_bss_196C, (i + 1) & 31, 31, 31) && *timer >= 0) {
             (*timer)--;
         }
     }
-
     n = 0;
     while (t->type != 5) {
         ok = 1;
@@ -4043,16 +4145,16 @@ void fn_7_41FC(u32 *flags) {
                 OSReport("Too Many Scenario Trigger\n\n");
                 return;
             }
-            if (__rlwnm(flags[n >> 5], ((n & 31) + 1) & 31, 31, 31)) {
+            if (__rlwnm(context->done[n >> 5], ((n & 31) + 1) & 31, 31, 31)) {
                 ok = 0;
                 break;
             }
             if (t->type == 2 || t->type == 3) {
-                if (fn_7_4648(flags, t)) {
+                if (fn_7_4648(context, t)) {
                     ok = 0;
                     break;
                 }
-            } else if (!fn_7_4648(flags, t)) {
+            } else if (!fn_7_4648(context, t)) {
                 ok = 0;
                 break;
             }
@@ -4060,17 +4162,18 @@ void fn_7_41FC(u32 *flags) {
             n++;
         }
         if (ok) {
-            fn_7_41FC_StoryTrigger *p = t - 1;
+            StoryTrigger *p = t - 1;
             u32 j = n - 1;
+
             while (p->type <= 3 && j != -1) {
                 if (p->type == 0 || p->type == 2) {
-                    flags[j >> 5] |= 0x80000000U >> (j & 31);
+                    context->done[j >> 5] |= 0x80000000 >> (j & 31);
                 }
                 p--;
                 j--;
             }
             while (t->type == 4) {
-                fn_7_4FD0(flags, t);
+                fn_7_4FD0(context, t);
                 t++;
             }
         } else {
@@ -4083,247 +4186,39 @@ void fn_7_41FC(u32 *flags) {
             }
         }
     }
-
-    {
-        u8 *active = &g->unk_18;
-        f32 *pos;
-        f32 *vel;
-        u8 k;
-        for (k = 0; k < 2; k++) {
-            if (active[k]) {
-                pos = &g->unk_1C;
-                vel = &g->unk_24;
-                pos[k] = pos[k] + vel[k];
-                pos[k] = clamp_value(pos[k]);
-            }
+    for (k = 0; k < 2; k++) {
+        if (lbl_7_bss_1978[k]) {
+            lbl_7_bss_197C[k] += lbl_7_bss_1984[k];
+            lbl_7_bss_197C[k] = clamp01(lbl_7_bss_197C[k]);
         }
     }
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_7_41FC */
 
-/* fzgx:begin fn_7_44DC */
-#include "font.h"
-
-/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
-u8 fzgx_obj_lbl_7_bss_1960;
-u8 lbl_7_bss_1960_fill_1961;
-u16 lbl_7_bss_1960_fill_1962;
-Obj_7_bss_1960_At4 *lbl_7_bss_1960_4;
-u8 lbl_7_bss_1960_8;
-u8 lbl_7_bss_1960_fill_1969;
-u16 lbl_7_bss_1960_fill_196A;
-u32 lbl_7_bss_1960_C;
-u32 lbl_7_bss_1960_10[2];
-u8 lbl_7_bss_1960_18[2];
-u16 lbl_7_bss_1960_fill_197A;
-f32 lbl_7_bss_1960_1C[2];
-f32 lbl_7_bss_1960_24;
-u32 lbl_7_bss_1960_fill_1988;
-u8 lbl_7_bss_1960_2C;
-u8 lbl_7_bss_1960_fill_198D;
-u16 lbl_7_bss_1960_fill_198E;
-u32 lbl_7_bss_1960_fill_1990;
-u8 lbl_7_bss_1960_34;
-u8 lbl_7_bss_1960_35;
-u8 lbl_7_bss_1960_36;
-u8 lbl_7_bss_1960_37;
-u8 lbl_7_bss_1960_38;
-u8 lbl_7_bss_1960_39;
-u8 lbl_7_bss_1960_3A;
-u8 lbl_7_bss_1960_fill_199B;
-u32 lbl_7_bss_1960_3C;
-/* slot tables: 4 player slots, 30 object slots */
-u8 lbl_7_bss_1960_40[4];
-u8 lbl_7_bss_1960_44[4];
-u32 lbl_7_bss_1960_48[4];
-u8 lbl_7_bss_1960_58[30];
-u8 lbl_7_bss_1960_78[30];
-u32 lbl_7_bss_1960_98[30];
-u8 lbl_7_bss_1960_fill_1A70;
-
-#pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
-    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
-    s = *(u8 *)&fzgx_obj_lbl_7_bss_1960;
-    s = *(u8 *)&lbl_7_bss_1960_fill_1961;
-    s = *(u8 *)&lbl_7_bss_1960_fill_1962;
-    s = *(u8 *)&lbl_7_bss_1960_4;
-    s = *(u8 *)&lbl_7_bss_1960_8;
-    s = *(u8 *)&lbl_7_bss_1960_fill_1969;
-    s = *(u8 *)&lbl_7_bss_1960_fill_196A;
-    s = *(u8 *)&lbl_7_bss_1960_C;
-    s = *(u8 *)lbl_7_bss_1960_10;
-    s = *(u8 *)lbl_7_bss_1960_18;
-    s = *(u8 *)&lbl_7_bss_1960_fill_197A;
-    s = *(u8 *)lbl_7_bss_1960_1C;
-    s = *(u8 *)&lbl_7_bss_1960_24;
-    s = *(u8 *)&lbl_7_bss_1960_fill_1988;
-    s = *(u8 *)&lbl_7_bss_1960_2C;
-    s = *(u8 *)&lbl_7_bss_1960_fill_198D;
-    s = *(u8 *)&lbl_7_bss_1960_fill_198E;
-    s = *(u8 *)&lbl_7_bss_1960_fill_1990;
-    s = *(u8 *)&lbl_7_bss_1960_34;
-    s = *(u8 *)&lbl_7_bss_1960_35;
-    s = *(u8 *)&lbl_7_bss_1960_36;
-    s = *(u8 *)&lbl_7_bss_1960_37;
-    s = *(u8 *)&lbl_7_bss_1960_38;
-    s = *(u8 *)&lbl_7_bss_1960_39;
-    s = *(u8 *)&lbl_7_bss_1960_3A;
-    s = *(u8 *)&lbl_7_bss_1960_fill_199B;
-    s = *(u8 *)&lbl_7_bss_1960_3C;
-    s = *(u8 *)lbl_7_bss_1960_40;
-    s = *(u8 *)lbl_7_bss_1960_44;
-    s = *(u8 *)lbl_7_bss_1960_48;
-    s = *(u8 *)lbl_7_bss_1960_58;
-    s = *(u8 *)lbl_7_bss_1960_78;
-    s = *(u8 *)lbl_7_bss_1960_98;
-    s = *(u8 *)&lbl_7_bss_1960_fill_1A70;
-}
-#pragma section code_type ".text"
-#pragma section code_type ".fzgxpool"
-static const u32 fzgx_pool_table1[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 0.0f;
-    s = 1.0f;
-    s = 300.0f;
-    s = 640.0f;
-    s = 480.0f;
-    d = 4503599627370496.0;
-}
-#pragma section code_type ".text"
-
-
-extern u16 fn_1_48690(u32);
-extern int fn_1_4F734(FontDrawPacket *);
-
-#pragma opt_propagation off
+/* fzgx:begin fn_7_44DC noprologue */
 void fn_7_44DC(void) {
-    u16 v1;
+    FontDrawPacket packet;
     u8 i;
 
-    i = 0;
-    while (i < 2) {
-        v1 = (u16)(i);
-        if (lbl_7_bss_1960_18[v1] != 0) {
-{
-    FontDrawPacket loc_8;
-            loc_8 = *(FontDrawPacket *)&lbl_1_rodata_26F8;
-            loc_8.image = 18;
-            loc_8.x = 0.0f;
-            loc_8.y = 0.0f;
-            loc_8.z = 300.0f - (f32)i;
-            loc_8.flags = 5;
-{
-    s16 t0;
-            loc_8.scale_x = loc_8.scale_x * (640.0f / (f32)(fn_1_48690(18)));
-}
-{
-    u32 t1;
-    f32 r;
-            r = 480.0f / (f32)fn_1_48690(18);
-            loc_8.scale_y = loc_8.scale_y * r;
-            *(u32 *)((u8 *)&loc_8 + 0x38) = lbl_7_bss_1960_10[v1];
-            loc_8.alpha = lbl_7_bss_1960_1C[v1];
-}
-            fn_1_4F734(&loc_8);
-}
+    for (i = 0; i < 2; i++) {
+        if (lbl_7_bss_1978[i] != 0) {
+            packet = lbl_1_rodata_26F8;
+            packet.image = 18;
+            packet.x = 0.0f;
+            packet.y = 0.0f;
+            packet.z = 300.0f - (f32)i;
+            packet.flags = 5;
+            packet.scale_x *= 640.0f / (f32)fn_1_48690(18);
+            packet.scale_y *= 480.0f / (f32)fn_1_48690(18);
+            *(GXColor *)packet.color = lbl_7_bss_1970[i];
+            packet.alpha = lbl_7_bss_197C[i];
+            fn_1_4F734(&packet);
         }
-        i++;
     }
 }
-
-
-#pragma opt_propagation reset
 /* fzgx:end fn_7_44DC */
 
-/* fzgx:begin fn_7_4648 */
-#include "types.h"
-
-#include "rel/story/story_mode.h"
-
-typedef struct {
-    f32 x, y, z;
-} StoryVec;
-typedef struct {
-    u8 pad_0[0x200];
-    s32 unk_200[8];
-    s32 unk_220[8];
-    u32 unk_240;
-    u32 unk_244;
-    s16 unk_248;
-} StoryTriggerContext;
-typedef struct {
-    u16 unk_0;
-    u16 unk_2;
-    s32 unk_4, unk_8, unk_C, unk_10;
-    f32 unk_14;
-} StoryTrigger;
-typedef struct {
-    u32 unk_0;
-    u8 pad_4[0x78];
-    StoryVec unk_7C;
-    u8 pad_88[0xF4];
-    f32 unk_17C;
-    u8 pad_180[4];
-    f32 unk_184;
-    u8 pad_188[0x2FA];
-    u8 unk_482;
-} StoryVehicle;
-typedef struct {
-    u8 pad_0[0x54];
-    StoryVec unk_54;
-    u8 pad_60[0xD8];
-    u64 unk_138;
-} StoryEventObject;
-typedef struct {
-    u8 pad_0[0x1EC];
-    u8 unk_1EC;
-    u8 unk_1ED;
-    u16 unk_1EE;
-} StoryTime;
-typedef struct {
-    u8 pad_0[0x115];
-    u8 unk_115;
-    u8 pad_116[2];
-    s32 unk_118;
-} StoryPlayer;
-typedef struct {
-    u8 pad_0[0x2C];
-    StoryPlayer *unk_2C[4];
-} StoryPlayerList;
-typedef struct {
-    u8 pad_0[8];
-    u16 hi : 6;
-    u16 b9 : 1;
-    u16 b8 : 1;
-    u16 lo : 8;
-    u8 pad_A[0xA];
-} StoryInputBits;
-/* view of StoryInput starting at its button word */
-typedef struct {
-    u16 unk_0;
-    u8 pad_2[0x12];
-} StoryButtons;
-extern s32 fn_7_4E28(s32, s32, s32);
-extern s32 fn_7_4EF8(u32, f32, f32);
-extern f64 lbl_7_rodata_798[6];
-extern s16 fn_1_3F0C8(void);
-extern u8 fn_1_86810(int);
-extern StoryVehicle *fn_1_86254(s32);
-extern void OSReport(const char *, ...);
-extern StoryTime *fn_1_8627C(s32);
-extern s16 fn_1_E5568(s16);
-extern StoryEventObject *fn_1_E54A8(s16, s16);
-extern u32 fn_1_E57C4(void *);
-extern s16 fn_1_E5430(s16);
-extern u32 fn_1_8C66C(u32);
-extern f32 fn_1_8C6A0(u32);
-extern u32 fn_1_F1B94(void);
-
-#pragma opt_propagation off
+/* fzgx:begin fn_7_4648 noprologue */
 static inline s32 storyButtonEither(u16 buttons) {
     switch (__rlwinm(buttons, 24, 31, 31) | __rlwinm(buttons, 23, 31, 31)) {
     default: return 1;
@@ -4331,7 +4226,7 @@ static inline s32 storyButtonEither(u16 buttons) {
     }
 }
 
-static inline f32 storyDistanceSquared(const StoryVec *a, const StoryVec *b) {
+static inline f32 storyDistanceSquared(const Vec *a, const Vec *b) {
     f32 x = a->x;
     f32 y = a->y;
     f32 z = a->z;
@@ -4345,24 +4240,24 @@ static inline f32 storyDistanceSquared(const StoryVec *a, const StoryVec *b) {
     return result;
 }
 
+/* WARNING: compiler-diff device, not original code (opt_propagation, opt_lifetimes, opt_common_subs off) */
+#pragma opt_propagation off
 #pragma opt_lifetimes off
 #pragma opt_common_subs off
-s32 fn_7_4648(StoryTriggerContext *context, StoryTrigger *arg1) {
-    Obj_7_bss_1960 *p_lbl_7_bss_1960;
+s32 fn_7_4648(StoryContext *context, StoryTrigger *arg1) {
     u16 v0;
     s32 v1;
     StoryTrigger *trigger;
     trigger = arg1;
-    v0 = arg1->unk_2;
-    p_lbl_7_bss_1960 = &lbl_7_bss_1960;
+    v0 = arg1->opcode;
     v1 = 0;
     switch (v0) {
     case 0: {
         u32 *flags = (u32 *)trigger->unk_4;
         s32 truth;
         switch ((s32)flags) {
-        case 0: flags = &context->unk_244; break;
-        case 1: flags = &context->unk_240; break;
+        case 0: flags = &context->flags244; break;
+        case 1: flags = &context->flags240; break;
         }
         if ((u32)flags + 0x10000 == 0xFFFF) {
             v1 = 1;
@@ -4374,19 +4269,19 @@ s32 fn_7_4648(StoryTriggerContext *context, StoryTrigger *arg1) {
         break;
     }
     case 1:
-        v1 = fn_7_4E28(trigger->unk_8, context->unk_220[trigger->unk_4], trigger->unk_C);
+        v1 = fn_7_4E28(trigger->unk_8, context->counters[trigger->unk_4], trigger->unk_C);
         break;
     case 6:
-        if (p_lbl_7_bss_1960->unk_4->unk_D == 0) v1 = 1;
+        if (lbl_7_bss_1964->unk_D == 0) v1 = 1;
         break;
     case 2:
         if (fn_1_3F0C8() == 0x29) v1 = 1;
         break;
     case 3:
-        if (p_lbl_7_bss_1960->unk_4->unk_C != 0) v1 = 1;
+        if (lbl_7_bss_1964->unk_C != 0) v1 = 1;
         break;
     case 4: {
-        StoryPlayerList *slot = (StoryPlayerList *)((u8 *)p_lbl_7_bss_1960->unk_4 + fn_1_86810(p_lbl_7_bss_1960->unk_34) * 4);
+        StoryPlayerList *slot = (StoryPlayerList *)((u8 *)lbl_7_bss_1964 + fn_1_86810(lbl_7_bss_1994) * 4);
         if (slot->unk_2C[0]->unk_115 == 0) v1 = 1;
         break;
     }
@@ -4394,10 +4289,10 @@ s32 fn_7_4648(StoryTriggerContext *context, StoryTrigger *arg1) {
         s32 value = trigger->unk_8;
         switch (trigger->unk_4) {
         case 0:
-            if (fn_1_86254(value)->unk_0 & 0x80) v1 = 1;
+            if (fn_1_86254(value)->flags & 0x80) v1 = 1;
             break;
         case 1:
-            if (fn_1_86254(p_lbl_7_bss_1960->unk_34)->unk_482 >= value) v1 = 1;
+            if (fn_1_86254(lbl_7_bss_1994)->unk_482 >= value) v1 = 1;
             break;
         default:
             OSReport("Trigger Error\n");
@@ -4411,17 +4306,17 @@ s32 fn_7_4648(StoryTriggerContext *context, StoryTrigger *arg1) {
         s32 value = trigger->unk_C;
         s32 current;
         if (kind == 8) {
-            StoryTime *time = fn_1_8627C(p_lbl_7_bss_1960->unk_34);
+            StoryTime *time = fn_1_8627C(lbl_7_bss_1994);
             s32 minutes;
             s32 seconds;
-            s32 milliseconds = time->unk_1EE;
-            seconds = time->unk_1ED * 1000;
-            minutes = time->unk_1EC * 60000;
+            s32 milliseconds = time->milliseconds;
+            seconds = time->seconds * 1000;
+            minutes = time->minutes * 60000;
             current = minutes + milliseconds;
             current = seconds + current;
             value = value * 1000 / 60;
         } else {
-            current = context->unk_200[kind];
+            current = context->timers[kind];
         }
         v1 = fn_7_4E28(op, current, value);
         break;
@@ -4467,19 +4362,19 @@ s32 fn_7_4648(StoryTriggerContext *context, StoryTrigger *arg1) {
             }
             break;
         case 3: {
-            u64 flags = fn_1_E54A8((s16)a, (s16)b)->unk_138;
+            u64 flags = *(u64 *)&fn_1_E54A8((s16)a, (s16)b)->flags138;
             if (flags & (s64)c) v1 = 1;
             break;
         }
         case 4: {
-            u64 flags = fn_1_E54A8((s16)a, (s16)b)->unk_138;
+            u64 flags = *(u64 *)&fn_1_E54A8((s16)a, (s16)b)->flags138;
             if (flags & ((s64)c << 32)) v1 = 1;
             break;
         }
         case 5: {
             StoryEventObject *object = fn_1_E54A8((s16)a, (s16)b);
             StoryVehicle *vehicle = fn_1_86254(c);
-            v1 = fn_7_4EF8(4, storyDistanceSquared(&object->unk_54, &vehicle->unk_7C), radius*radius);
+            v1 = fn_7_4EF8(4, storyDistanceSquared(&object->pos, &vehicle->pos), radius*radius);
             break;
         }
         default:
@@ -4497,13 +4392,13 @@ s32 fn_7_4648(StoryTriggerContext *context, StoryTrigger *arg1) {
     }
     case 10: {
         s32 id = trigger->unk_4;
-        StoryVec *pos = (StoryVec *)trigger->unk_8;
+        Vec *pos = (Vec *)trigger->unk_8;
         s32 op = trigger->unk_C;
         f32 radius = trigger->unk_14;
         StoryVehicle *vehicle;
-        if ((s32)pos == 0) pos = &fn_1_86254(p_lbl_7_bss_1960->unk_34)->unk_7C;
+        if ((s32)pos == 0) pos = &fn_1_86254(lbl_7_bss_1994)->pos;
         vehicle = fn_1_86254(id);
-        v1 = fn_7_4EF8(op, storyDistanceSquared(pos, &vehicle->unk_7C), radius*radius);
+        v1 = fn_7_4EF8(op, storyDistanceSquared(pos, &vehicle->pos), radius*radius);
         break;
     }
     case 11: {
@@ -4562,7 +4457,7 @@ s32 fn_7_4648(StoryTriggerContext *context, StoryTrigger *arg1) {
     case 13: {
         s32 truth = trigger->unk_8;
         s32 mask = trigger->unk_C;
-        u32 flags = fn_1_86254(trigger->unk_4)->unk_0;
+        u32 flags = fn_1_86254(trigger->unk_4)->flags;
         if (flags & mask) v1 = truth;
         else v1 = !truth;
         break;
@@ -4570,18 +4465,18 @@ s32 fn_7_4648(StoryTriggerContext *context, StoryTrigger *arg1) {
     case 14:
         switch (trigger->unk_4) {
         case 0: {
-            StoryButtons *buttonBase = (StoryButtons *)&lbl_1_bss_9F8[0].unk_8;
-            u16 buttons = buttonBase[p_lbl_7_bss_1960->unk_35].unk_0;
+            StoryButtons *buttonBase = (StoryButtons *)&lbl_1_bss_9F8[0].buttons;
+            u16 buttons = buttonBase[lbl_7_bss_1995].unk_0;
             v1 = storyButtonEither(buttons);
             break;
         }
         case 1: {
-            u32 pressed = __rlwinm(lbl_1_bss_9F8[p_lbl_7_bss_1960->unk_35].unk_8, 24, 31, 31);
+            u32 pressed = __rlwinm(lbl_1_bss_9F8[lbl_7_bss_1995].buttons, 24, 31, 31);
             v1 = pressed;
             break;
         }
         case 2: {
-            u32 pressed = __rlwinm(lbl_1_bss_9F8[p_lbl_7_bss_1960->unk_35].unk_8, 23, 31, 31);
+            u32 pressed = __rlwinm(lbl_1_bss_9F8[lbl_7_bss_1995].buttons, 23, 31, 31);
             v1 = pressed;
             break;
         }
@@ -4590,7 +4485,7 @@ s32 fn_7_4648(StoryTriggerContext *context, StoryTrigger *arg1) {
     case 15: {
         s32 op = trigger->unk_8;
         s32 value = trigger->unk_C;
-        StoryPlayerList *slot = (StoryPlayerList *)((u8 *)p_lbl_7_bss_1960->unk_4 + fn_1_86810(trigger->unk_4) * 4);
+        StoryPlayerList *slot = (StoryPlayerList *)((u8 *)lbl_7_bss_1964 + fn_1_86810(trigger->unk_4) * 4);
         StoryPlayer *player = slot->unk_2C[0];
         v1 = fn_7_4E28(op, player->unk_118, value);
         break;
@@ -4611,41 +4506,38 @@ s32 fn_7_4648(StoryTriggerContext *context, StoryTrigger *arg1) {
 #pragma opt_propagation reset
 /* fzgx:end fn_7_4648 */
 
-/* fzgx:begin fn_7_4E28 */
-extern void OSReport(const char *, ...);
+/* fzgx:begin fn_7_4E28 noprologue */
+s32 fn_7_4E28(s32 op, s32 a, s32 b) {
+    s32 result = 0;
 
-s32 fn_7_4E28(s32 arg0, s32 arg1, s32 arg2) {
-    s32 result;
-
-    result = 0;
-    switch (arg0) {
+    switch (op) {
     case 0:
-        if (arg1 == arg2) {
+        if (a == b) {
             result = 1;
         }
         break;
     case 1:
-        if (arg1 != arg2) {
+        if (a != b) {
             result = 1;
         }
         break;
     case 2:
-        if (arg1 >= arg2) {
+        if (a >= b) {
             result = 1;
         }
         break;
     case 3:
-        if (arg1 > arg2) {
+        if (a > b) {
             result = 1;
         }
         break;
     case 4:
-        if (arg1 <= arg2) {
+        if (a <= b) {
             result = 1;
         }
         break;
     case 5:
-        if (arg1 < arg2) {
+        if (a < b) {
             result = 1;
         }
         break;
@@ -4657,41 +4549,38 @@ s32 fn_7_4E28(s32 arg0, s32 arg1, s32 arg2) {
 }
 /* fzgx:end fn_7_4E28 */
 
-/* fzgx:begin fn_7_4EF8 */
-extern void OSReport(const char *, ...);
+/* fzgx:begin fn_7_4EF8 noprologue */
+s32 fn_7_4EF8(u32 op, f32 a, f32 b) {
+    s32 result = 0;
 
-s32 fn_7_4EF8(u32 arg0, f32 arg1, f32 arg2) {
-    s32 result;
-
-    result = 0;
-    switch ((s32)arg0) {
+    switch (op) {
     case 0:
-        if (arg1 == arg2) {
+        if (a == b) {
             result = 1;
         }
         break;
     case 1:
-        if (arg1 != arg2) {
+        if (a != b) {
             result = 1;
         }
         break;
     case 2:
-        if (arg1 >= arg2) {
+        if (a >= b) {
             result = 1;
         }
         break;
     case 3:
-        if (arg1 > arg2) {
+        if (a > b) {
             result = 1;
         }
         break;
     case 4:
-        if (arg1 <= arg2) {
+        if (a <= b) {
             result = 1;
         }
         break;
     case 5:
-        if (arg1 < arg2) {
+        if (a < b) {
             result = 1;
         }
         break;
@@ -4704,183 +4593,17 @@ s32 fn_7_4EF8(u32 arg0, f32 arg1, f32 arg2) {
 /* fzgx:end fn_7_4EF8 */
 
 /* fzgx:begin fn_7_4FD0 noprologue */
-#include "types.h"
-
-#include "rel/story/story_mode.h"
-#include "dolphin/hw_regs.h"
-#include "psvec.h"
-#include "game/vec3.h"
-#include "game/vec3.h"
-#include "game/main_rel/adxt_stop_types.h"
-
-#ifndef REL_MAIN_REL_GAME_H
-#define REL_MAIN_REL_GAME_H
-
-// lbl_1_bss_6EAD0: .bss size 0x708, 6 refs from game.c
-#ifndef FZGX_TYPES_LBL_1_BSS_6EAD0
-#define FZGX_TYPES_LBL_1_BSS_6EAD0
-// one layout for every TU header that declares this symbol (librarian, typedefs.json)
-typedef struct {
-    u32 unk_0;  // 23 loads, 0 stores
-    u32 unk_4;  // 9 loads, 0 stores
-} Obj_1_bss_6EAD0_At0;
-typedef struct {
-    Obj_1_bss_6EAD0_At0 *unk_0;  // 34 loads, 0 stores
-    u8 pad_4[0x704];
-} Obj_1_bss_6EAD0;
-#endif
-
-#endif  // REL_MAIN_REL_GAME_H
-#ifndef GAME_MAIN_REL_CAR_TYPES_H
-#define GAME_MAIN_REL_CAR_TYPES_H
-#ifndef REL_MAIN_REL_CAR_H
-#define REL_MAIN_REL_CAR_H
-
-#endif  // REL_MAIN_REL_CAR_H
-
-
-typedef struct Fn1967A8Resource Fn1967A8Resource;
-
-struct Fn1967A8Resource {
-    u8 unk_00;
-    u8 unk_01[0x07];
-    u32 unk_08;
-    u8 unk_0C[0x10];
-    u32 unk_1C;
-};
-
-
-typedef struct {
-    u8 pad_0[0x118];
-    u32 unk_118;
-    u32 unk_11C;
-    u8 pad_120[0x20];
-    s32 unk_140;
-    f32 unk_144;
-    f32 unk_148;
-    f32 unk_14C;
-    f32 unk_150;
-} CarSound;
-
-typedef struct {
-    u32 flags;
-    u8 pad_4[0x498];
-    CarSound *sound;
-} fn_1_85F90_Car;
-
-extern void fn_1_41F58(Fn1967A8Resource *arg0, s32 arg1, void (*arg2)(void), void *arg3);
-
-#endif  // GAME_MAIN_REL_CAR_TYPES_H
-
-/* end game/main_rel/car_types.h */
-
-extern int fn_1_4C10(void);
-extern int fn_1_4CAC(void);
-extern int fn_1_40F44(void);
-extern void OSReport(const char *, ...);
-extern u32 fn_1_3ED8C(u32,u32,u32,u32,u32,u32,u32);
-extern u32 fn_1_3F4B8(u32,u32,u32,u32,u32,u32);
-extern u32 fn_1_3EB78(u32,void *,void *,void *);
-extern u32 fn_1_3EA90(u32,void *,void *,void *);
-extern s16 fn_1_E5430(s16);
-extern void fn_1_86194(f32);
-typedef struct Sig_fn_1_24F10_Fn_1_24F10 {
-    int flags; u8 pad04[0x2c]; f32 field30; u8 pad34[0x150]; f32 field184;
-    u8 pad188[0x8c]; u16 field214; u8 pad216[0xe]; f32 field224;
-    u8 pad228[0x284]; f32 field4ac; u8 pad4b0[0xe3]; u8 field593;
-    u8 pad594[0x46]; u16 field5da;
-} Sig_fn_1_24F10_Fn_1_24F10;
-extern int fn_1_24F10(Sig_fn_1_24F10_Fn_1_24F10 *,f32);
-typedef struct { u8 pad[0x3bc]; u32 value; } Sig_fn_1_8E448_fn_1_8E448_Object;
-extern Sig_fn_1_8E448_fn_1_8E448_Object *fn_1_868C0(s8);
-extern void fn_1_8E448(Sig_fn_1_8E448_fn_1_8E448_Object *,u32);
-extern u32 fn_1_864E8(s32);
-extern void fn_1_85F90(fn_1_85F90_Car *,void *,f32,f32,f32,f32);
-extern void fn_1_8B880(void);
-extern void *fn_1_214C4(void *,u32,f32);
-extern u32 fn_1_17920(void *,u32,f32);
-extern u8 *fn_1_14F04(void);
-struct Sig_fn_1_207DC_A {
-    u8 pad_0[0x30]; f32 unk_30; f32 unk_34; u8 pad_38[4]; f32 unk_3C;
-    u8 pad_40[0x28]; f32 unk_68; f32 unk_6C; u8 pad_70[0xC]; u32 unk_7C;
-};
-extern void fn_1_207DC(struct Sig_fn_1_207DC_A *,void *,f32);
-typedef struct Sig_fn_1_25004_Fn_1_25004_Obj {
-    u32 flags00; s16 field04; u8 pad06[0x8e]; f32 field94; f32 field98; f32 field9c;
-    f32 fielda0; f32 fielda4; f32 fielda8; u8 padac[0xd0]; f32 field17c;
-    u8 pad180[4]; f32 field184; u8 pad188[0x9c]; f32 field224;
-    u8 pad228[0x24c]; u8 field474; u8 pad475[0x117]; u32 flags58c;
-} Sig_fn_1_25004_Fn_1_25004_Obj;
-extern void fn_1_25004(Sig_fn_1_25004_Fn_1_25004_Obj *);
-extern void fn_1_8D988(void);
-extern void fn_1_8DAB4(void);
-extern void camera_set_entry_field_0xa8(u8,s16);
-extern s32 fn_1_3F1AC(void);
-extern void fn_1_A2D84(u32);
-extern u32 fn_1_A1588(Sig_ADXT_Stop_ADXTHandle *,u32);
-
-extern void *lbl_1_bss_84[];
-
-extern u32 lbl_1_bss_6F23C;
-
-typedef struct { u8 pad[4]; f32 f4,f8,fc,f10,f14; u8 pad18[8]; f32 f20; u8 pad24[0x1c]; f32 f40; u8 pad44[0x70]; } CarSpec;
-extern CarSpec lbl_1_data_28060[];
-
-typedef struct { f32 x,y,z; } ActionVec;
-typedef struct { u8 r,g,b,a; } ActionColor;
-typedef struct { u32 flags; u8 pad4[0x2e]; u8 mode; } CarControl;
-typedef struct {
-    u32 flags; s16 field4; s16 field6; f32 field8,fieldc,field10,field14;
-    u8 pad18[0x7c]; ActionVec field94,fielda0; u8 padac[0xd0];
-    f32 field17c; f32 field180; f32 field184; u8 pad188[0x98];
-    f32 field220,field224,field228,field22c; u8 pad230[0xc]; f32 field23c;
-    u8 pad240[0x244]; CarControl *field484; u8 pad488[0x14]; void *field49c;
-    u8 pad4a0[0x13a]; u16 field5da;
-} ActionCar;
-typedef struct { u8 pad[0xe]; s16 fieldE; u8 pad10[0x128]; u32 flags138,flags13c; } FlagObject;
-typedef struct { u8 pad[0x390]; u32 flags390; } Racer;
-typedef struct { u8 pad[0x200]; s32 vars[8]; s32 vars2[8]; u32 flags240,flags244; } ActionState;
-typedef struct { u16 unk0,opcode; s32 op,index,value,extra; f32 amount; } ActionCommand;
-typedef struct {
-    u32 unk_0;
-    u8 pad_4[0xE];
-} Obj_1_bss_6EAB4;
-extern Obj_1_bss_6EAB4 lbl_1_bss_6EAB4;
-
-
-
-#pragma section code_type ".fzgxpool"
-static void fzgx_pool_primer(volatile f32 *p,volatile u32 *w,u32 n) { /* fzgx-allow: S2 retail literal-pool layout primer */
-    w[0]=fzgx_pool_table1[0];
-    p[0]=0.0f; p[1]=1.0f; p[2]=300.0f; p[3]=640.0f; p[4]=480.0f;
-    p[5]=(f32)n;
-}
-#pragma section code_type ".text"
-
-static const u32 pool_color0[1]={0};
-static const u32 pool_color1[1]={0};
-static const u32 pool_color2[1]={0};
-static const u32 pool_color4[1]={0x40000000};
-static const u32 pool_color3[1]={0x40000000};
-
-#pragma section code_type ".fzgxpool"
-static void fzgx_pool_primer2(volatile f32 *p,volatile u32 *w,s32 sn) { /* fzgx-allow: S2 retail literal-pool layout primer */
-    w[1]=pool_color0[0]; w[2]=pool_color1[0]; w[3]=pool_color2[0];
-    w[4]=pool_color4[0]; w[5]=pool_color3[0];
-    p[6]=100.0f; p[7]=-10000000.0f; p[8]=(f32)sn;
-}
-#pragma section code_type ".text"
-
 static inline void set_slot(u8 *a,u8 *b,u32 *c,s32 slot,u32 x,u32 y,u32 flags) {
     a[slot]=x;
     b[slot]=y;
     c[slot]=flags;
 }
-static inline void clear_object_flags(FlagObject *obj,u32 high,u32 low) {
+static inline void clear_object_flags(StoryEventObject *obj,u32 high,u32 low) {
     *(u64 *)&obj->flags138 &= ~(((u64)high << 32) | low);
 }
+/* WARNING: compiler-diff device, not original code (opt_dead_assignments off) */
 #pragma opt_dead_assignments off
-void fn_7_4FD0(ActionState *arg0,ActionCommand *arg1) {
+void fn_7_4FD0(StoryContext *arg0,StoryTrigger *arg1) {
     s32 i;
     s32 j;
     s32 end;
@@ -4889,192 +4612,171 @@ void fn_7_4FD0(ActionState *arg0,ActionCommand *arg1) {
     s32 index;
     s32 value;
     s32 extra;
-    s32 fzgx_loop_i_14578;
-    s32 fzgx_loop_i_19806;
-    s32 fzgx_loop_i_18323;
-    s32 fzgx_loop_i_16747;
     if ((fn_1_4C10()!=0 && fn_1_4CAC()==0) || fn_1_40F44()!=0)
-        lbl_7_bss_1960_2C=1;
+        lbl_7_bss_198C=1;
     switch (arg1->opcode) {
     case 0:
-        op=arg1->op; index=arg1->index; value=arg1->value;
+        op=arg1->unk_4; index=arg1->unk_8; value=arg1->unk_C;
         switch(op) {
         case 0:
-            if(index<8) arg0->vars[index]=value;
-            else if(index==9) for(i=0;i<8;i++) arg0->vars[i]=value;
+            if(index<8) arg0->timers[index]=value;
+            else if(index==9) for(i=0;i<8;i++) arg0->timers[i]=value;
             break;
         case 1:
-            if(index<8) arg0->vars[index]+=value;
-            else if(index==9) for(i=0;i<8;i++) arg0->vars[i]+=value;
+            if(index<8) arg0->timers[index]+=value;
+            else if(index==9) for(i=0;i<8;i++) arg0->timers[i]+=value;
             break;
         case 2:
             if(index<8) {
-                if(value) lbl_7_bss_1960_C |= 0x80000000U >> index;
-                else lbl_7_bss_1960_C &= ~(0x80000000U >> index);
+                if(value) lbl_7_bss_196C |= 0x80000000U >> index;
+                else lbl_7_bss_196C &= ~(0x80000000U >> index);
             } else if(index==9) {
-                {
-    s32 fzgx_loop_i_9184;
-for(fzgx_loop_i_9184=0;fzgx_loop_i_9184<8;fzgx_loop_i_9184++) {
-                    if(value) lbl_7_bss_1960_C |= 0x80000000U >> index;
-                    else lbl_7_bss_1960_C &= ~(0x80000000U >> index);
+                for(i=0;i<8;i++) {
+                    if(value) lbl_7_bss_196C |= 0x80000000U >> index;
+                    else lbl_7_bss_196C &= ~(0x80000000U >> index);
                 }
-    i = fzgx_loop_i_9184;
-}
             }
             break;
         default: OSReport("Action Error\n"); break;
         }
         break;
     case 20:
-        op=arg1->op; index=arg1->index; value=arg1->value;
+        op=arg1->unk_4; index=arg1->unk_8; value=arg1->unk_C;
         switch(op) {
         case 0:
-            if(index<8) arg0->vars2[index]=value;
-            else if(index==8) for(i=0;i<8;i++) arg0->vars2[i]=value;
+            if(index<8) arg0->counters[index]=value;
+            else if(index==8) for(i=0;i<8;i++) arg0->counters[i]=value;
             break;
         case 1:
-            if(index<8) arg0->vars2[index]+=value;
-            else if(index==8) for(i=0;i<8;i++) arg0->vars2[i]+=value;
+            if(index<8) arg0->counters[index]+=value;
+            else if(index==8) for(i=0;i<8;i++) arg0->counters[i]+=value;
             break;
         default: OSReport("Action Error\n"); break;
         }
         break;
     case 1:
-        op=arg1->op; index=arg1->index;
+        op=arg1->unk_4; index=arg1->unk_8;
         switch(op) {
-        case 1: lbl_7_bss_1960_36=index; break;
-        case 2: lbl_7_bss_1960_37=index; break;
-        case 3: lbl_7_bss_1960_38=index; break;
-        case 0: lbl_7_bss_1960_39=index; break;
-        case 4: lbl_7_bss_1960_8=index; break;
-        case 5: lbl_7_bss_1960_3A=index; break;
-        case 6: lbl_7_bss_1960_3C=index; break;
+        case 1: lbl_7_bss_1996=index; break;
+        case 2: lbl_7_bss_1997=index; break;
+        case 3: lbl_7_bss_1998=index; break;
+        case 0: lbl_7_bss_1999=index; break;
+        case 4: lbl_7_bss_1968=index; break;
+        case 5: lbl_7_bss_199A=index; break;
+        case 6: lbl_7_bss_199C=index; break;
         default: OSReport("Action Error\n"); break;
         }
         break;
     case 2:
-        fn_1_3ED8C(0,lbl_7_bss_1960_37,1,lbl_7_bss_1960_36,
-            lbl_7_bss_1960_39,lbl_7_bss_1960_38,lbl_7_bss_1960_3C);
-        if(lbl_7_bss_1960_8)
-            fn_1_3F4B8(lbl_7_bss_1960_8,lbl_7_bss_1960_3A,0,0,0,0);
+        fn_1_3ED8C(0,lbl_7_bss_1997,1,lbl_7_bss_1996,
+            lbl_7_bss_1999,lbl_7_bss_1998,lbl_7_bss_199C);
+        if(lbl_7_bss_1968)
+            fn_1_3F4B8(lbl_7_bss_1968,lbl_7_bss_199A,0,0,0,0);
         break;
     case 3:
         for(i=0;i<4;i++) {
-            lbl_7_bss_1960_40[i]=255;
-            lbl_7_bss_1960_44[i]=255;
-            lbl_7_bss_1960_48[i]=0;
+            lbl_7_bss_19A0[i]=255;
+            lbl_7_bss_19A4[i]=255;
+            lbl_7_bss_19A8[i]=0;
         }
         for(j=0;j<30;j++) {
-            lbl_7_bss_1960_58[j]=255;
-            lbl_7_bss_1960_78[j]=255;
-            lbl_7_bss_1960_98[j]=0;
+            lbl_7_bss_19B8[j]=255;
+            lbl_7_bss_19D8[j]=255;
+            lbl_7_bss_19F8[j]=0;
         }
         break;
     case 4:
-        lbl_7_bss_1960_35=*(u8 *)arg1->op;
+        lbl_7_bss_1995=*(u8 *)arg1->unk_4;
         break;
     case 5: {
         s32 op,index,value;
         u8 *scan;
-        op=arg1->op; index=arg1->index; value=arg1->value;
+        op=arg1->unk_4; index=arg1->unk_8; value=arg1->unk_C;
         switch(op) {
         case 0:
-            lbl_7_bss_1960_34=0;
-            set_slot(lbl_7_bss_1960_40,lbl_7_bss_1960_44,lbl_7_bss_1960_48,lbl_7_bss_1960_35,index,value,0);
+            lbl_7_bss_1994=0;
+            set_slot(lbl_7_bss_19A0,lbl_7_bss_19A4,lbl_7_bss_19A8,lbl_7_bss_1995,index,value,0);
             break;
         case 1:
-            {
-    s32 fzgx_loop_i_11476;
-for(fzgx_loop_i_11476=0,scan=lbl_7_bss_1960_58;fzgx_loop_i_11476<30 && *scan!=255;scan++,fzgx_loop_i_11476++) {}
-    i = fzgx_loop_i_11476;
-}
+            for(i=0,scan=lbl_7_bss_19B8;i<30 && *scan!=255;scan++,i++) {}
             if(i==30) OSReport("enemy car set error\n");
-            set_slot(lbl_7_bss_1960_58,lbl_7_bss_1960_78,lbl_7_bss_1960_98,i,index,value,0);
+            set_slot(lbl_7_bss_19B8,lbl_7_bss_19D8,lbl_7_bss_19F8,i,index,value,0);
             break;
         case 2:
-            lbl_7_bss_1960_34=0;
-            set_slot(lbl_7_bss_1960_40,lbl_7_bss_1960_44,lbl_7_bss_1960_48,lbl_7_bss_1960_35,index,value,0x100000);
+            lbl_7_bss_1994=0;
+            set_slot(lbl_7_bss_19A0,lbl_7_bss_19A4,lbl_7_bss_19A8,lbl_7_bss_1995,index,value,0x100000);
             break;
         case 3:
-            {
-    s32 fzgx_loop_i_11930;
-for(fzgx_loop_i_11930=0,scan=lbl_7_bss_1960_58;fzgx_loop_i_11930<30 && *scan!=255;scan++,fzgx_loop_i_11930++) {}
-    i = fzgx_loop_i_11930;
-}
+            for(i=0,scan=lbl_7_bss_19B8;i<30 && *scan!=255;scan++,i++) {}
             if(i==30) OSReport("enemy car set error\n");
-            set_slot(lbl_7_bss_1960_58,lbl_7_bss_1960_78,lbl_7_bss_1960_98,i,index,value,0x100000);
+            set_slot(lbl_7_bss_19B8,lbl_7_bss_19D8,lbl_7_bss_19F8,i,index,value,0x100000);
             break;
         default: OSReport("Action Error\n"); break;
         }
         break;
     }
     case 6:
-        fn_1_3EB78(1,lbl_7_bss_1960_40,lbl_7_bss_1960_44,lbl_7_bss_1960_48);
-        fn_1_3EA90((u8)(lbl_7_bss_1960_38-1),lbl_7_bss_1960_58,lbl_7_bss_1960_78,lbl_7_bss_1960_98);
+        fn_1_3EB78(1,lbl_7_bss_19A0,lbl_7_bss_19A4,lbl_7_bss_19A8);
+        fn_1_3EA90((u8)(lbl_7_bss_1998-1),lbl_7_bss_19B8,lbl_7_bss_19D8,lbl_7_bss_19F8);
         break;
     case 7: {
-        s32 i,op,index;
+        s32 op,index;
         u32 value,extra;
-        op=arg1->op; index=arg1->index; value=arg1->value; extra=arg1->extra;
+        op=arg1->unk_4; index=arg1->unk_8; value=arg1->unk_C; extra=arg1->unk_10;
         switch(op) {
         case 0:
             if(value!=-1) {
                 s32 group=(s16)index;
-                FlagObject *obj=(FlagObject *)fn_1_E54A8(group,(s16)value);
-                obj->flags13c |= extra;
+                StoryEventObject *obj=(StoryEventObject *)fn_1_E54A8(group,(s16)value);
+                obj->flags13C |= extra;
             } else {
-    s16 fzgx_loop_i_12810;
-for(fzgx_loop_i_12810=0;(s16)fzgx_loop_i_12810<(s16)fn_1_E5430((s16)index);fzgx_loop_i_12810++) {
-                FlagObject *obj=(FlagObject *)fn_1_E54A8((s16)index,fzgx_loop_i_12810); obj->flags13c |= extra;
+    s16 k;
+for(k=0;(s16)k<(s16)fn_1_E5430((s16)index);k++) {
+                StoryEventObject *obj=(StoryEventObject *)fn_1_E54A8((s16)index,k); obj->flags13C |= extra;
             }
-    i = fzgx_loop_i_12810;
 }
             break;
         case 1:
             if(value!=-1) {
                 s32 group=(s16)index;
-                FlagObject *obj=(FlagObject *)fn_1_E54A8(group,(s16)value);
+                StoryEventObject *obj=(StoryEventObject *)fn_1_E54A8(group,(s16)value);
                 obj->flags138 |= extra;
             } else {
-    s16 fzgx_loop_i_13145;
-for(fzgx_loop_i_13145=0;(s16)fzgx_loop_i_13145<(s16)fn_1_E5430((s16)index);fzgx_loop_i_13145++) {
-                FlagObject *obj=(FlagObject *)fn_1_E54A8((s16)index,fzgx_loop_i_13145); obj->flags138 |= extra;
+    s16 k;
+for(k=0;(s16)k<(s16)fn_1_E5430((s16)index);k++) {
+                StoryEventObject *obj=(StoryEventObject *)fn_1_E54A8((s16)index,k); obj->flags138 |= extra;
             }
-    i = fzgx_loop_i_13145;
 }
             break;
         case 2:
             if(value!=-1) {
                 s32 group=(s16)index;
-                clear_object_flags((FlagObject *)fn_1_E54A8(group,(s16)value),0,extra);
+                clear_object_flags((StoryEventObject *)fn_1_E54A8(group,(s16)value),0,extra);
             }
             else {
                 s16 k;
                 for(k=0;(s16)k<(s16)fn_1_E5430((s16)index);k++)
-                    clear_object_flags((FlagObject *)fn_1_E54A8((s16)index,k),0,extra);
+                    clear_object_flags((StoryEventObject *)fn_1_E54A8((s16)index,k),0,extra);
             }
             break;
         case 3:
             if(value!=-1) {
                 s32 group=(s16)index;
-                clear_object_flags((FlagObject *)fn_1_E54A8(group,(s16)value),extra,0);
+                clear_object_flags((StoryEventObject *)fn_1_E54A8(group,(s16)value),extra,0);
             }
             else {
                 s16 k;
                 for(k=0;(s16)k<(s16)fn_1_E5430((s16)index);k++)
-                    clear_object_flags((FlagObject *)fn_1_E54A8((s16)index,k),extra,0);
+                    clear_object_flags((StoryEventObject *)fn_1_E54A8((s16)index,k),extra,0);
             }
             break;
         case 4: {
             u32 id=(value<<4)|extra;
-            {
-    s32 fzgx_loop_i_13895;
-for(fzgx_loop_i_13895=0;fzgx_loop_i_13895<(s16)fn_1_E5430((s16)index);fzgx_loop_i_13895++) {
-                FlagObject *obj=(FlagObject *)fn_1_E54A8((s16)index,(s16)fzgx_loop_i_13895);
-                if(obj->fieldE==id) clear_object_flags(obj,0,0x2000);
+            s32 j;
+for(j=0;j<(s16)fn_1_E5430((s16)index);j++) {
+                StoryEventObject *obj=(StoryEventObject *)fn_1_E54A8((s16)index,(s16)j);
+                if(obj->unk_E==id) clear_object_flags(obj,0,0x2000);
             }
-    i = fzgx_loop_i_13895;
-}
             break;
         }
         default: OSReport("Action Error\n"); break;
@@ -5082,19 +4784,19 @@ for(fzgx_loop_i_13895=0;fzgx_loop_i_13895<(s16)fn_1_E5430((s16)index);fzgx_loop_
         break;
     }
     case 8: {
-        s32 first, i, op, index;
+        s32 first, op, index;
         f32 *fp=0;
         u16 *sp=0;
         s32 end;
         f32 amount;
         f32 base;
-        first=arg1->op; index=arg1->index; op=arg1->value; amount=arg1->amount;
-        if(first==99) {end=lbl_7_bss_1960_38-1;first=0;}
-        else if(first==98) {end=lbl_7_bss_1960_38-1;first=1;}
+        first=arg1->unk_4; index=arg1->unk_8; op=arg1->unk_C; amount=arg1->unk_14;
+        if(first==99) {end=lbl_7_bss_1998-1;first=0;}
+        else if(first==98) {end=lbl_7_bss_1998-1;first=1;}
         else end=first;
         {
-for(fzgx_loop_i_14578=first;fzgx_loop_i_14578<=end;fzgx_loop_i_14578++) {
-            ActionCar *car=(ActionCar *)fn_1_86254(fzgx_loop_i_14578);
+for(j=first;j<=end;j++) {
+            ActionCar *car=(ActionCar *)fn_1_86254(j);
             CarSpec *spec=&lbl_1_data_28060[car->field6];
             switch(index) {
             case 9:
@@ -5111,7 +4813,7 @@ for(fzgx_loop_i_14578=first;fzgx_loop_i_14578<=end;fzgx_loop_i_14578++) {
             case 3: op=0; fn_1_86194(amount); break;
             case 4: base=spec->f10; fp=&car->fieldc; break;
             case 5: base=spec->f14; fp=&car->field10; break;
-            case 6: op=0; fn_1_24F10((Sig_fn_1_24F10_Fn_1_24F10 *)car,amount); break;
+            case 6: op=0; fn_1_24F10((void *)car,amount); break;
             case 7: base=spec->f20; fp=&car->field14; break;
             case 8: base=spec->f40; fp=&car->field23c; break;
             default: op=0; break;
@@ -5132,7 +4834,6 @@ for(fzgx_loop_i_14578=first;fzgx_loop_i_14578<=end;fzgx_loop_i_14578++) {
             default: OSReport("Action Error\n"); break;
             }
         }
-    i = fzgx_loop_i_14578;
 }
         break;
     }
@@ -5141,9 +4842,9 @@ for(fzgx_loop_i_14578=first;fzgx_loop_i_14578<=end;fzgx_loop_i_14578++) {
         u32 notmask,notvalue;
         s32 i;
         u32 mask;
-        selector=arg1->op; op=arg1->index; value=arg1->value;
-        if(selector==99) {end=lbl_7_bss_1960_38-1;first=0;}
-        else if(selector==98) {end=lbl_7_bss_1960_38-1;first=1;}
+        selector=arg1->unk_4; op=arg1->unk_8; value=arg1->unk_C;
+        if(selector==99) {end=lbl_7_bss_1998-1;first=0;}
+        else if(selector==98) {end=lbl_7_bss_1998-1;first=1;}
         else {end=selector;first=selector;}
         mask=0x80000000U>>value; notvalue=~value; notmask=~mask;
         for(i=first;i<=end;i++) {
@@ -5164,9 +4865,9 @@ for(fzgx_loop_i_14578=first;fzgx_loop_i_14578<=end;fzgx_loop_i_14578++) {
         u32 notmask,notvalue;
         s32 i;
         u32 mask;
-        selector=arg1->op; op=arg1->index; value=arg1->value;
-        if(selector==99) {end=lbl_7_bss_1960_38-1;first=0;}
-        else if(selector==98) {end=lbl_7_bss_1960_38-1;first=1;}
+        selector=arg1->unk_4; op=arg1->unk_8; value=arg1->unk_C;
+        if(selector==99) {end=lbl_7_bss_1998-1;first=0;}
+        else if(selector==98) {end=lbl_7_bss_1998-1;first=1;}
         else {end=selector;first=selector;}
         mask=0x80000000U>>value; notvalue=~value; notmask=~mask;
         for(i=first;i<=end;i++) {
@@ -5185,63 +4886,63 @@ for(fzgx_loop_i_14578=first;fzgx_loop_i_14578<=end;fzgx_loop_i_14578++) {
     case 11: {
         u32 value;
         s32 first, end;
-        first=arg1->op; value=arg1->index;
-        if(first==99) {end=lbl_7_bss_1960_38-1;first=0;}
-        else if(first==98) {end=lbl_7_bss_1960_38-1;first=1;}
+        first=arg1->unk_4; value=arg1->unk_8;
+        if(first==99) {end=lbl_7_bss_1998-1;first=0;}
+        else if(first==98) {end=lbl_7_bss_1998-1;first=1;}
         else end=first;
         for(i=first;i<=end;i++) {
-            Sig_fn_1_8E448_fn_1_8E448_Object *racer=fn_1_868C0((s8)i);
+            void *racer=fn_1_868C0((s8)i);
             fn_1_8E448(racer,value);
         }
         break;
     }
     case 12: {
-        f32 x=(f32)arg1->index;
-        f32 z=arg1->amount;
-        f32 y=(f32)arg1->value;
+        f32 x=(f32)arg1->unk_8;
+        f32 z=arg1->unk_14;
+        f32 y=(f32)arg1->unk_C;
         ActionCar *car;
         u32 flags;
         u32 index;
-        index=arg1->op;
+        index=arg1->unk_4;
         car=(ActionCar *)fn_1_86254(index);
         fn_1_8627C(index);
         flags=fn_1_864E8(index);
-        fn_1_85F90((fn_1_85F90_Car *)car,(void *)-1,y,z,1.0f,x);
+        fn_1_85F90((void *)car,(void *)-1,y,z,1.0f,x);
         fn_1_8B880();
         car->flags=flags|(car->flags&0x400);
         break;
     }
     case 13: {
-        f32 x=(f32)arg1->index;
-        f32 z=arg1->amount;
-        f32 y=(f32)arg1->value;
+        f32 x=(f32)arg1->unk_8;
+        f32 z=arg1->unk_14;
+        f32 y=(f32)arg1->unk_C;
         ActionCar *car;
         u32 flags;
         f32 result;
         ActionVec pos;
         void *entry;
         u32 index;
-        index=arg1->op;
+        index=arg1->unk_4;
         car=(ActionCar *)fn_1_86254(index);
         fn_1_8627C(index);
         flags=fn_1_864E8(index);
         entry=fn_1_214C4(&result,0,x);
         fn_1_17920(entry,0,result);
-        fn_1_207DC((struct Sig_fn_1_207DC_A *)(fn_1_14F04()+0x400),&pos,z);
-        fn_1_85F90((fn_1_85F90_Car *)car,entry,y,pos.x,pos.y,pos.z);
+        fn_1_207DC((void *)(fn_1_14F04()+0x400),&pos,z);
+        fn_1_85F90((void *)car,entry,y,pos.x,pos.y,pos.z);
         fn_1_8B880();
         car->flags=flags|(car->flags&0x400);
         break;
     }
     case 14: {
         s32 first, i, op, value, end;
-        first=arg1->op; op=arg1->index; value=arg1->value;
-        if(first==99) {end=lbl_7_bss_1960_38-1;first=0;}
-        else if(first==98) {end=lbl_7_bss_1960_38-1;first=1;}
+        first=arg1->unk_4; op=arg1->unk_8; value=arg1->unk_C;
+        if(first==99) {end=lbl_7_bss_1998-1;first=0;}
+        else if(first==98) {end=lbl_7_bss_1998-1;first=1;}
         else end=first;
         {
-for(fzgx_loop_i_19806=first;fzgx_loop_i_19806<=end;fzgx_loop_i_19806++) {
-            CarControl *control=((ActionCar *)fn_1_86254(fzgx_loop_i_19806))->field484;
+for(i=first;i<=end;i++) {
+            CarControl *control=((ActionCar *)fn_1_86254(i))->field484;
             switch(op) {
             case -99: control->flags|=value; break;
             case -98: control->flags&=~value; break;
@@ -5249,12 +4950,11 @@ for(fzgx_loop_i_19806=first;fzgx_loop_i_19806<=end;fzgx_loop_i_19806++) {
             default: control->flags|=1;control->mode=op;break;
             }
         }
-    i = fzgx_loop_i_19806;
 }
         break;
     }
     case 15:
-        op=arg1->op; index=arg1->index;
+        op=arg1->unk_4; index=arg1->unk_8;
         switch(op) {
         case 0: lbl_1_bss_9C[6]=index;break;
         case 1: lbl_1_bss_9C[7]=index;break;
@@ -5262,37 +4962,37 @@ for(fzgx_loop_i_19806=first;fzgx_loop_i_19806<=end;fzgx_loop_i_19806++) {
         }
         break;
     case 16: {
-        ActionCar *car=(ActionCar *)fn_1_86254(arg1->op);
+        ActionCar *car=(ActionCar *)fn_1_86254(arg1->unk_4);
         ActionVec a=car->field94;
         ActionVec b=car->fielda0;
         f32 x=car->field224;
         f32 y=car->field17c;
-        fn_1_25004((Sig_fn_1_25004_Fn_1_25004_Obj *)car);
+        fn_1_25004((void *)car);
         car->field224=x;car->field17c=y;
         car->field94=a;car->fielda0=b;
         break;
     }
     case 17:
-        op=arg1->op; index=arg1->index;
+        op=arg1->unk_4; index=arg1->unk_8;
         switch(op) {
         case 0:
-            if(index<8) lbl_1_bss_84[0]=&arg0->vars[index];
+            if(index<8) lbl_1_bss_84[0]=&arg0->timers[index];
             else OSReport("Action Error\n");
             break;
         case 1: lbl_1_bss_84[1]=&((ActionCar *)fn_1_86254(index))->field17c;break;
         case 2: lbl_1_bss_84[2]=((ActionCar *)fn_1_86254(index))->field49c;break;
-        case 3: lbl_1_bss_84[3]=lbl_7_bss_1960_4;break;
+        case 3: lbl_1_bss_84[3]=lbl_7_bss_1964;break;
         case 4: lbl_1_bss_84[4]=(void *)index;break;
         case 5: lbl_1_bss_84[5]=(void *)index;break;
         default: OSReport("Action Error\n");break;
         }
         break;
     case 18:
-        if(arg1->op) fn_1_8D988();
+        if(arg1->unk_4) fn_1_8D988();
         else fn_1_8DAB4();
         break;
     case 19:
-        op=arg1->op; index=arg1->index;
+        op=arg1->unk_4; index=arg1->unk_8;
         switch(op) {
         case 0: camera_set_entry_field_0xa8(0,(s16)index);break;
         default: OSReport("Action Error\n");break;
@@ -5301,11 +5001,11 @@ for(fzgx_loop_i_19806=first;fzgx_loop_i_19806<=end;fzgx_loop_i_19806++) {
     case 21: {
         u32 *flags;
         s32 op,value;
-        flags=(u32 *)arg1->index; op=arg1->op; value=arg1->value;
+        flags=(u32 *)arg1->unk_8; op=arg1->unk_4; value=arg1->unk_C;
         switch((s32)flags) {
         case 0: flags=&arg0->flags244;break;
         case 1: flags=&arg0->flags240;break;
-        case 2: flags=(u32 *)lbl_7_bss_1960_4;break;
+        case 2: flags=(u32 *)lbl_7_bss_1964;break;
         }
         switch(op) {
         case 0: *flags=value;break;
@@ -5320,15 +5020,15 @@ for(fzgx_loop_i_19806=first;fzgx_loop_i_19806<=end;fzgx_loop_i_19806++) {
     case 22: {
         u32 handle;
         s32 op, extra, value;
-        extra=arg1->value;op=arg1->op;value=arg1->index;
-        if(extra==0) handle=((Obj_1_bss_6EAD0_At0 *)lbl_1_bss_6EAD0)->unk_0;
-        else handle=((Obj_1_bss_6EAD0_At0 *)lbl_1_bss_6EAD0)->unk_4;
+        extra=arg1->unk_C;op=arg1->unk_4;value=arg1->unk_8;
+        if(extra==0) handle=lbl_1_bss_6EAD0->unk_0;
+        else handle=lbl_1_bss_6EAD0->unk_4;
         switch(op) {
         case 0:
-            if(!lbl_7_bss_1960_2C && !fn_1_3F1AC()) fn_1_A2D84(value);
+            if(!lbl_7_bss_198C && !fn_1_3F1AC()) fn_1_A2D84(value);
             break;
         case 1:
-            if(!lbl_7_bss_1960_2C && !fn_1_3F1AC()) fn_1_A1588((Sig_ADXT_Stop_ADXTHandle *)handle,(u8)value);
+            if(!lbl_7_bss_198C && !fn_1_3F1AC()) fn_1_A1588((void *)handle,(u8)value);
             break;
         case 2: lbl_1_bss_6EAB4.unk_0|=value;break;
         }
@@ -5337,56 +5037,61 @@ for(fzgx_loop_i_19806=first;fzgx_loop_i_19806<=end;fzgx_loop_i_19806++) {
     case 23: {
         s32 op;
         f32 amount;
-        op=arg1->op;amount=arg1->amount;
+        op=arg1->unk_4;amount=arg1->unk_14;
         switch(op) {
         case 0: {
-            u32 slot=(u8)(fzgx_obj_lbl_7_bss_1960);
-            ((ActionColor *)lbl_7_bss_1960_10)[slot]=*(const ActionColor *)pool_color0;
-            lbl_7_bss_1960_18[slot]=0;
-            (&lbl_7_bss_1960_24)[slot]=0.0f;
-            lbl_7_bss_1960_1C[slot]=0.0f;
+            static const GXColor color={0, 0, 0, 0};
+            u32 slot=(u8)(lbl_7_bss_1960);
+            lbl_7_bss_1970[slot]=color;
+            lbl_7_bss_1978[slot]=0;
+            lbl_7_bss_1984[slot]=0.0f;
+            lbl_7_bss_197C[slot]=0.0f;
             break;
         }
         case 1: {
-            u32 slot=(u8)(fzgx_obj_lbl_7_bss_1960);
-            ((ActionColor *)lbl_7_bss_1960_10)[slot]=*(const ActionColor *)pool_color1;
-            lbl_7_bss_1960_18[slot]=2;
-            lbl_7_bss_1960_1C[slot]=0.0f;
-            (&lbl_7_bss_1960_24)[slot]=amount;
+            static const GXColor color={0, 0, 0, 0};
+            u32 slot=(u8)(lbl_7_bss_1960);
+            lbl_7_bss_1970[slot]=color;
+            lbl_7_bss_1978[slot]=2;
+            lbl_7_bss_197C[slot]=0.0f;
+            lbl_7_bss_1984[slot]=amount;
             break;
         }
         case 2: {
-            u32 slot=(u8)(fzgx_obj_lbl_7_bss_1960);
-            ((ActionColor *)lbl_7_bss_1960_10)[slot]=*(const ActionColor *)pool_color2;
-            lbl_7_bss_1960_18[slot]=1;
-            lbl_7_bss_1960_1C[slot]=1.0f;
-            (&lbl_7_bss_1960_24)[slot]=-amount;
+            static const GXColor color={0, 0, 0, 0};
+            u32 slot=(u8)(lbl_7_bss_1960);
+            lbl_7_bss_1970[slot]=color;
+            lbl_7_bss_1978[slot]=1;
+            lbl_7_bss_197C[slot]=1.0f;
+            lbl_7_bss_1984[slot]=-amount;
             break;
         }
         case 4: {
-            u32 slot=(u8)(fzgx_obj_lbl_7_bss_1960);
-            ((ActionColor *)lbl_7_bss_1960_10)[slot]=*(const ActionColor *)pool_color4;
-            lbl_7_bss_1960_18[slot]=1;
-            lbl_7_bss_1960_1C[slot]=1.0f;
-            (&lbl_7_bss_1960_24)[slot]=-amount;
+            static const GXColor color={0x40, 0, 0, 0};
+            u32 slot=(u8)(lbl_7_bss_1960);
+            lbl_7_bss_1970[slot]=color;
+            lbl_7_bss_1978[slot]=1;
+            lbl_7_bss_197C[slot]=1.0f;
+            lbl_7_bss_1984[slot]=-amount;
             break;
         }
         case 3: {
-            u32 slot=(u8)(fzgx_obj_lbl_7_bss_1960);
-            ((ActionColor *)lbl_7_bss_1960_10)[slot]=*(const ActionColor *)pool_color3;
-            lbl_7_bss_1960_18[slot]=2;
-            lbl_7_bss_1960_1C[slot]=0.0f;
-            (&lbl_7_bss_1960_24)[slot]=amount;
+            static const GXColor color={0x40, 0, 0, 0};
+            u32 slot=(u8)(lbl_7_bss_1960);
+            lbl_7_bss_1970[slot]=color;
+            lbl_7_bss_1978[slot]=2;
+            lbl_7_bss_197C[slot]=0.0f;
+            lbl_7_bss_1984[slot]=amount;
             break;
         }
         }
-        fzgx_obj_lbl_7_bss_1960++;
-        if(fzgx_obj_lbl_7_bss_1960>=2) fzgx_obj_lbl_7_bss_1960--;
+        lbl_7_bss_1960++;
+        if(lbl_7_bss_1960>=2) lbl_7_bss_1960--;
         break;
     }
-    case 24: *(s16 *)(lbl_1_bss_8B3A0 + 8)=arg1->op;break;
+    case 24: *(s16 *)(lbl_1_bss_8B3A0 + 8)=arg1->unk_4;break;
     }
-    if(lbl_7_bss_1960_2C) lbl_1_bss_6F23C&=~1;
+    if(lbl_7_bss_198C) lbl_1_bss_6F23C&=~1;
 }
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_7_4FD0 */
