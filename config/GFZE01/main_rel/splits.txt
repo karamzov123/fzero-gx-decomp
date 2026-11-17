@@ -1074,12 +1074,6 @@ rel/main_rel/font/fn_1_565F8.c:
 rel/main_rel/objput.c:
 	.text       start:0x00056664 end:0x0005672C
 
-rel/main_rel/shadowmap/fn_1_56858.c:
-	.text       start:0x00056858 end:0x000568EC
-
-rel/main_rel/shadowmap/fn_1_568EC.c:
-	.text       start:0x000568EC end:0x000568F8
-
 rel/main_rel/shadowmap/fn_1_57714.c:
 	.text       start:0x00057714 end:0x00057720
 
@@ -5538,7 +5532,9 @@ rel/main_rel/sel_static_disp/fn_1_133A8C.c:
 	.text       start:0x00133A8C end:0x00133BD8 align:4
 
 rel/main_rel/shadowmap/fn_1_5672C.c:
-	.text       start:0x0005672C end:0x00056858 align:4
+	.text       start:0x0005672C end:0x00057714 align:4
+	.rodata     start:0x000028B0 end:0x00002950 align:8
+	.data       start:0x0001C660 end:0x0001C670 align:8
 
 rel/main_rel/spline/fn_1_F7CAC.c:
 	.text       start:0x000F7CAC end:0x000F7D18 align:4
@@ -5799,9 +5795,6 @@ rel/main_rel/font/fn_1_4E92C.c:
 
 rel/main_rel/stcoli/fn_1_17D5C.c:
 	.text       start:0x00017D5C end:0x00017FCC align:4
-
-rel/main_rel/shadowmap/fn_1_571E8.c:
-	.text       start:0x000571E8 end:0x0005745C align:4
 
 rel/main_rel/memcard/fn_1_ACA78.c:
 	.text       start:0x000ACA78 end:0x000ACD00 align:4
@@ -6896,9 +6889,6 @@ rel/main_rel/archive/fn_1_131194.c:
 
 rel/main_rel/car/fn_1_82EDC.c:
 	.text       start:0x00082EDC end:0x00083070 align:4
-
-rel/main_rel/shadowmap/fn_1_568F8.c:
-	.text       start:0x000568F8 end:0x00056D4C align:4
 
 rel/main_rel/effect/fn_1_5D378.c:
 	.text       start:0x0005D378 end:0x0005D4FC align:4
@@ -8632,9 +8622,6 @@ rel/main_rel/effect/fn_1_654B0.c:
 
 rel/main_rel/phys/fn_1_E7524.c:
 	.text       start:0x000E7524 end:0x000E7764 align:4
-
-rel/main_rel/shadowmap/fn_1_5745C.c:
-	.text       start:0x0005745C end:0x00057714 align:4
 
 rel/main_rel/sel_static_disp/fn_1_14E5E4.c:
 	.text       start:0x0014E5E4 end:0x0014E8A4 align:4
@@ -15153,9 +15140,6 @@ rel/main_rel/burner/fn_1_9D420.c:
 rel/main_rel/bg_for/fn_1_DF6AC.c:
 	.text       start:0x000DF6AC end:0x000DFBBC align:4
 
-rel/main_rel/shadowmap/fn_1_56D4C.c:
-	.text       start:0x00056D4C end:0x000571E8 align:4
-
 rel/main_rel/alloc/fn_1_5948.c:
 	.text       start:0x00005948 end:0x0000627C align:4
 	.data       start:0x00003558 end:0x000035B0 align:8
@@ -18518,7 +18502,10 @@ rel/main_rel/data/lbl_1_data_1A368.c:
 	.data       start:0x0001A368 end:0x0001AEA8 align:8
 
 rel/main_rel/data/lbl_1_data_1C5D8.c:
-	.data       start:0x0001C650 end:0x0001C698 align:8
+	.data       start:0x0001C650 end:0x0001C660 align:8
+
+rel/main_rel/data/lbl_1_data_1C670.c:
+	.data       start:0x0001C670 end:0x0001C698 align:8
 
 rel/main_rel/data/lbl_1_data_3D008.c:
 	.data       start:0x0003D008 end:0x0003D138 align:8
@@ -18539,7 +18526,10 @@ rel/main_rel/data/lbl_1_rodata_DD60.c:
 	.rodata     start:0x0000DD60 end:0x0000DEEC align:8
 
 rel/main_rel/data/lbl_1_rodata_0.c:
-	.rodata     start:0x00000000 end:0x00004820 align:8
+	.rodata     start:0x00000000 end:0x000028B0 align:8
+
+rel/main_rel/data/lbl_1_rodata_2950.c:
+	.rodata     start:0x00002950 end:0x00004820 align:8
 
 rel/main_rel/mdlload/fn_1_D35D4.c:
 	.text       start:0x000D35D4 end:0x000D5C70 align:4
