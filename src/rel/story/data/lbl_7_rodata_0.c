@@ -8,18 +8,6 @@
 extern const f32 lbl_7_rodata_528;
 extern const f32 lbl_7_rodata_52C[34];
 #include "rel/story/data/lbl_7_rodata_5B4.h"
-extern const f32 lbl_7_rodata_780;
-extern const f32 lbl_7_rodata_784;
-extern const f32 lbl_7_rodata_788[4];
-extern const f64 lbl_7_rodata_798;
-extern const f32 lbl_7_rodata_7A0;
-extern const f32 lbl_7_rodata_7A4;
-extern const f32 lbl_7_rodata_7A8;
-extern const f32 lbl_7_rodata_7AC;
-extern const f32 lbl_7_rodata_7B0;
-extern const f32 lbl_7_rodata_7B4;
-extern const f32 lbl_7_rodata_7B8;
-extern const f64 lbl_7_rodata_7C0;
 
 
 extern u8 lbl_7_data_100A8[];
@@ -584,78 +572,4 @@ __declspec(section ".rodata") const Data_lbl_7_rodata_5B4 lbl_7_rodata_5B4 __att
     0x3456BF95U,
     0x33D6BF95U
 };
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".rodata") const f32 lbl_7_rodata_780 __attribute__((aligned(4))) = 0.0f;
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".rodata") const f32 lbl_7_rodata_784 __attribute__((aligned(4))) = 0.0f;
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".rodata") const f32 lbl_7_rodata_788[4] __attribute__((aligned(4))) = {
-    1.0f, 300.0f, 640.0f, 480.0f
-};
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".rodata") const f64 lbl_7_rodata_798 __attribute__((aligned(8))) = 4503599627370496.0;
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".rodata") const f32 lbl_7_rodata_7A0 __attribute__((aligned(4))) = 0.0f;
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".rodata") const f32 lbl_7_rodata_7A4 __attribute__((aligned(4))) = 0.0f;
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".rodata") const f32 lbl_7_rodata_7A8 __attribute__((aligned(4))) = 0.0f;
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".rodata") const f32 lbl_7_rodata_7AC __attribute__((aligned(4))) = 2.0f;
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".rodata") const f32 lbl_7_rodata_7B0 __attribute__((aligned(4))) = 2.0f;
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".rodata") const f32 lbl_7_rodata_7B4 __attribute__((aligned(4))) = 100.0f;
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".rodata") const f32 lbl_7_rodata_7B8 __attribute__((aligned(4))) = -10000000.0f;
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".rodata") const f64 lbl_7_rodata_7C0 __attribute__((aligned(8))) = 4503601774854144.0;
 #pragma explicit_zero_data reset

@@ -162,10 +162,6 @@ rel/story/story_mode/_prolog.c:
 rel/story/story_mode/fn_7_232C.c:
 	.text       start:0x0000232C end:0x0000235C align:4
 
-rel/story/story_mode/fn_7_41FC.c:
-	.text       start:0x000041FC end:0x000065E4 align:4
-	.data       start:0x00013FE0 end:0x00014124 align:8
-
 rel/story/story_mode/fn_7_15BC.c:
 	.text       start:0x000015BC end:0x000016FC align:4
 
@@ -205,11 +201,11 @@ rel/story/data/lbl_7_bss_18.c:
 rel/story/data/lbl_7_bss_48.c:
 	.bss        start:0x00000048 end:0x00001960 align:8
 
-rel/story/data/lbl_7_bss_1960.c:
-	.bss        start:0x00001960 end:0x00001A71 align:8
-
 rel/story/story_mode/fn_7_4108.c:
-	.text       start:0x00004108 end:0x000041FC align:4
+	.text       start:0x00004108 end:0x000065E4 align:4
+	.rodata     start:0x00000780 end:0x000007C8 align:8
+	.data       start:0x00013FE0 end:0x00014124 align:8
+	.bss        start:0x00001960 end:0x00001A71 align:8
 
 rel/story/data/lbl_7_data_0.c:
 	.data       start:0x00000000 end:0x0000BC10 align:8
@@ -230,4 +226,5 @@ rel/story/data/lbl_7_data_13DE0.c:
 	.data       start:0x00013DE0 end:0x00013FE0 align:8
 
 rel/story/data/lbl_7_rodata_0.c:
-	.rodata     start:0x00000000 end:0x000007C8 align:8
+	.rodata     start:0x00000000 end:0x00000780 align:8
+
