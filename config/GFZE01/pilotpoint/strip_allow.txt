@@ -1,0 +1,7 @@
+# Static helpers that MWCC inlined at every call. The link removes the out-of-line copy.
+# Retail holds the inlined copy of each one in the function named after it.
+draw_points_total  # fn_14_7584
+draw_card          # fn_14_7584
+draw_bar           # fn_14_8A54
+draw_frame         # fn_14_8A54, fn_14_A3DC
+draw_box           # fn_14_8A54
