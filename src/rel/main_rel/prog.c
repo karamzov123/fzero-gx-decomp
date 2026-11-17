@@ -535,249 +535,97 @@ void fn_1_A6FA0(void) {
 
 /* fzgx:begin fn_1_A6FE8 noprologue */
 #include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/prog.h"
 
-extern u32 lbl_1_bss_6F5F4;
-extern void fn_1_4A00(s32, s32, u32);
+/* The perspective of the 3D view. */
+typedef struct {
+    f32 fovy;
+    f32 aspect;
+    f32 near;
+    f32 far;
+    f32 tan;
+    f32 invTan;
+} Perspective;
+
 extern s8 fn_1_A5DC4(void);
-extern const f32 lbl_1_rodata_49F8;
-extern f32 lbl_1_rodata_49FC[11];
-extern f32 fn_1_A6FE8(void);
-extern void fn_1_A714C(f32 *, f32 *, f32 *, f32 *);
-extern u32 lbl_1_bss_6F5F0;
+extern f32 lbl_8006D21C(s32 angle);
+extern void fn_800721FC(f32 fovy, f32 aspect, f32 near, f32 far);
+extern void fn_80072344(void);
+extern void fn_80072378(void);
+
+Perspective lbl_1_bss_6F608;
+Perspective lbl_1_bss_6F620;
 
 f32 fn_1_A6FE8(void) {
     if (fn_1_A5DC4()) {
-        return lbl_1_rodata_49F8;
+        return 1.7777778f;
     }
-
-    return lbl_1_rodata_49FC[0];
+    return 1.3333334f;
 }
 /* fzgx:end fn_1_A6FE8 */
 
 /* fzgx:begin fn_1_A7024 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/prog.h"
+void fn_1_A7024(f32 fovy, f32 aspect, f32 near, f32 far) {
+    f32 bits;
 
-extern u32 lbl_1_bss_6F5F4;
-extern void fn_1_4A00(s32, s32, u32);
-extern s8 fn_1_A5DC4(void);
-extern const f32 lbl_1_rodata_49F8;
-extern f32 lbl_1_rodata_49FC[11];
-extern f32 fn_1_A6FE8(void);
-extern void fn_1_A714C(f32 *, f32 *, f32 *, f32 *);
-extern u32 lbl_1_bss_6F5F0;
-
-extern u32 lbl_1_bss_6F5F4;
-extern void fn_1_4A00(s32, s32, u32);
-extern s8 fn_1_A5DC4(void);
-extern const f32 lbl_1_rodata_49F8;
-extern f32 lbl_1_rodata_49FC[11];
-extern f32 fn_1_A6FE8(void);
-extern void fn_1_A714C(f32 *, f32 *, f32 *, f32 *);
-extern u32 lbl_1_bss_6F5F0;
-
-struct fn_1_A7024_lbl_1_rodata_49F8 {
-    u8 pad_0[0x8];
-    f64 unk_8;
-    f64 unk_10;
-    f32 unk_18;
-    u8 pad_1C[0x4];
-    f64 unk_20;
-    f64 unk_28;
-};
-
-const f32 fn_1_A7024_pool_primer[2] = {1.7777777910232544f, 1.3333333730697632f};
-
-extern f32 lbl_8006D21C(u32);
-extern const f32 lbl_1_rodata_49F8;
-extern void fn_800721FC(f32, f32, f32, f32);
-
-void fn_1_A7024(f32 arg0, f32 arg1, f32 arg2, f32 arg3) {
-    const struct fn_1_A7024_lbl_1_rodata_49F8 *p_lbl_1_rodata_49F8;
-    f64 v0;
-    f64 v1;
-    f64 v2;
-    u32 v3;
-    f32 v4;
-    f64 v5;
-    f64 v6;
-    f64 v7;
-    f32 loc_8;
-    f64 t1;
-
-    arg0 = arg0 < 0.5 ? 0.5 : (arg0 > 135.0 ? 135.0 : (f64)arg0);
-    loc_8 = arg0;
-    v3 = (*(u32 *)&loc_8) & 0x7F800000;
-    if ((v3 - 0x7F800000) == 0) {
-        arg0 = 55.0f;
+    fovy = fovy < 0.5 ? 0.5 : (fovy > 135.0 ? 135.0 : (f64)fovy);
+    bits = fovy;
+    if (((*(u32 *)&bits & 0x7F800000) - 0x7F800000) == 0) {
+        fovy = 55.0f;
     }
-    fn_800721FC(arg0, arg1, arg2, arg3);
-    *(f32 *)&lbl_1_bss_6F608.unk_0 = arg0;
-    *(f32 *)&lbl_1_bss_6F608.unk_8 = arg2;
-    *(f32 *)&lbl_1_bss_6F608.unk_C = arg3;
-    *(f32 *)&lbl_1_bss_6F608.unk_4 = arg1;
-    *(f32 *)&lbl_1_bss_6F608.unk_10 = lbl_8006D21C((s32)(182.04444885253906 * (0.5 * arg0)));
-    v7 = 1.0 / *(f32 *)&lbl_1_bss_6F608.unk_10;
-    *(f32 *)&lbl_1_bss_6F608.unk_14 = (f32)v7;
+    fn_800721FC(fovy, aspect, near, far);
+    lbl_1_bss_6F608.fovy = fovy;
+    lbl_1_bss_6F608.near = near;
+    lbl_1_bss_6F608.far = far;
+    lbl_1_bss_6F608.aspect = aspect;
+    lbl_1_bss_6F608.tan = lbl_8006D21C((s32)(182.04444885253906 * (0.5 * fovy)));
+    lbl_1_bss_6F608.invTan = 1.0 / lbl_1_bss_6F608.tan;
 }
 /* fzgx:end fn_1_A7024 */
 
 /* fzgx:begin fn_1_A714C noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/prog.h"
-
-extern u32 lbl_1_bss_6F5F4;
-extern void fn_1_4A00(s32, s32, u32);
-extern s8 fn_1_A5DC4(void);
-extern const f32 lbl_1_rodata_49F8;
-extern f32 lbl_1_rodata_49FC[11];
-extern f32 fn_1_A6FE8(void);
-extern void fn_1_A714C(f32 *, f32 *, f32 *, f32 *);
-extern u32 lbl_1_bss_6F5F0;
-
-void fn_1_A714C(f32 *a, f32 *b, f32 *c, f32 *d) {
-    if (a != 0) {
-        *a = *(f32 *)&lbl_1_bss_6F608.unk_0;
+void fn_1_A714C(f32 *fovy, f32 *aspect, f32 *near, f32 *far) {
+    if (fovy != NULL) {
+        *fovy = lbl_1_bss_6F608.fovy;
     }
-    if (b != 0) {
-        *b = *(f32 *)&lbl_1_bss_6F608.unk_4;
+    if (aspect != NULL) {
+        *aspect = lbl_1_bss_6F608.aspect;
     }
-    if (c != 0) {
-        *c = *(f32 *)&lbl_1_bss_6F608.unk_8;
+    if (near != NULL) {
+        *near = lbl_1_bss_6F608.near;
     }
-    if (d != 0) {
-        *d = *(f32 *)&lbl_1_bss_6F608.unk_C;
+    if (far != NULL) {
+        *far = lbl_1_bss_6F608.far;
     }
 }
 /* fzgx:end fn_1_A714C */
 
 /* fzgx:begin fn_1_A71AC noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/prog.h"
-
-extern u32 lbl_1_bss_6F5F4;
-extern void fn_1_4A00(s32, s32, u32);
-extern s8 fn_1_A5DC4(void);
-extern const f32 lbl_1_rodata_49F8;
-extern f32 lbl_1_rodata_49FC[11];
-extern f32 fn_1_A6FE8(void);
-extern void fn_1_A714C(f32 *, f32 *, f32 *, f32 *);
-extern u32 lbl_1_bss_6F5F0;
-
 f32 fn_1_A71AC(void) {
-    return *(f32 *)&lbl_1_bss_6F608.unk_10;
+    return lbl_1_bss_6F608.tan;
 }
 /* fzgx:end fn_1_A71AC */
 
 /* fzgx:begin fn_1_A71BC noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/prog.h"
-
-extern u32 lbl_1_bss_6F5F4;
-extern void fn_1_4A00(s32, s32, u32);
-extern s8 fn_1_A5DC4(void);
-extern const f32 lbl_1_rodata_49F8;
-extern f32 lbl_1_rodata_49FC[11];
-extern f32 fn_1_A6FE8(void);
-extern void fn_1_A714C(f32 *, f32 *, f32 *, f32 *);
-extern u32 lbl_1_bss_6F5F0;
-
 f32 fn_1_A71BC(void) {
-    return *(f32 *)((u8 *)&lbl_1_bss_6F608 + 0x14);
+    return lbl_1_bss_6F608.invTan;
 }
 /* fzgx:end fn_1_A71BC */
 
 /* fzgx:begin fn_1_A71CC noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/prog.h"
-
-extern u32 lbl_1_bss_6F5F4;
-extern void fn_1_4A00(s32, s32, u32);
-extern s8 fn_1_A5DC4(void);
-extern const f32 lbl_1_rodata_49F8;
-extern f32 lbl_1_rodata_49FC[11];
-extern f32 fn_1_A6FE8(void);
-extern void fn_1_A714C(f32 *, f32 *, f32 *, f32 *);
-extern u32 lbl_1_bss_6F5F0;
-
-extern void fn_80072344(void);
-
-typedef struct {
-    u32 unk_0;
-    u32 unk_4;
-    u32 unk_8;
-    u32 unk_C;
-    u32 unk_10;
-    u32 unk_14;
-} Copy_1_A71CC;
-
 void fn_1_A71CC(void) {
     fn_80072344();
-
-    *(Copy_1_A71CC *)&lbl_1_bss_6F620 =
-        *(Copy_1_A71CC *)&lbl_1_bss_6F608;
+    lbl_1_bss_6F620 = lbl_1_bss_6F608;
 }
 /* fzgx:end fn_1_A71CC */
 
 /* fzgx:begin fn_1_A722C noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/prog.h"
-
-extern u32 lbl_1_bss_6F5F4;
-extern void fn_1_4A00(s32, s32, u32);
-extern s8 fn_1_A5DC4(void);
-extern const f32 lbl_1_rodata_49F8;
-extern f32 lbl_1_rodata_49FC[11];
-extern f32 fn_1_A6FE8(void);
-extern void fn_1_A714C(f32 *, f32 *, f32 *, f32 *);
-extern u32 lbl_1_bss_6F5F0;
-
-#include "types.h"
-
-
-
-
-extern void fn_80072378(void);
-
-typedef struct {
-    u32 unk_0;
-    u32 unk_4;
-    u32 unk_8;
-    u32 unk_C;
-    u32 unk_10;
-    u32 unk_14;
-} Copy_1_A722C;
-
 void fn_1_A722C(void) {
     fn_80072378();
-
-    *(Copy_1_A722C *)&(*(u32 (*)[6])&lbl_1_bss_6F608) =
-        *(Copy_1_A722C *)&(*(u32 (*)[6])&lbl_1_bss_6F620);
+    lbl_1_bss_6F608 = lbl_1_bss_6F620;
 }
 /* fzgx:end fn_1_A722C */
 
 /* fzgx:begin fn_1_A728C noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/prog.h"
-
-extern u32 lbl_1_bss_6F5F4;
-extern void fn_1_4A00(s32, s32, u32);
-extern s8 fn_1_A5DC4(void);
-extern const f32 lbl_1_rodata_49F8;
-extern f32 lbl_1_rodata_49FC[11];
-extern f32 fn_1_A6FE8(void);
-extern void fn_1_A714C(f32 *, f32 *, f32 *, f32 *);
-extern u32 lbl_1_bss_6F5F0;
-
 // fn_1_A728C: returns a constant.
 int fn_1_A728C(void) {
     return 0;
