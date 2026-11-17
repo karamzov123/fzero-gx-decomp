@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/pad.h"
 #include "rel/main_rel/globals.h"
 #include "rel/main_rel/phys.h"
 
@@ -4197,22 +4198,22 @@ void fn_1_E733C(u8 *obj, s16 count) {
     if (count == 0) {
         return;
     }
-    if ((((*(u16 volatile *)&lbl_1_bss_9F8.unk_10) /* Retail reloads this field. */ >> 3) & 1) || (((&lbl_1_bss_9F8.unk_10)[10] >> 3) & 1)) {
+    if (PAD_BIT(lbl_1_bss_9F8.unk_10, 3) || PAD_BIT((&lbl_1_bss_9F8.unk_10)[10], 3)) {
         ((s16 *)lbl_1_bss_7B14C)[0] = (s16)((s16 *)lbl_1_bss_7B14C)[0] - 1;
     }
-    if ((((*(u16 volatile *)&lbl_1_bss_9F8.unk_10) /* Retail reloads this field. */ >> 2) & 1) || (((&lbl_1_bss_9F8.unk_10)[10] >> 2) & 1)) {
+    if (PAD_BIT(lbl_1_bss_9F8.unk_10, 2) || PAD_BIT((&lbl_1_bss_9F8.unk_10)[10], 2)) {
         ((s16 *)lbl_1_bss_7B14C)[0] = (s16)((s16 *)lbl_1_bss_7B14C)[0] + 1;
     }
-    if (((*(u16 volatile *)&lbl_1_bss_9F8.unk_10) /* Retail reloads this field. */ & 1) || ((&lbl_1_bss_9F8.unk_10)[10] & 1)) {
+    if (PAD_BIT(lbl_1_bss_9F8.unk_10, 0) || PAD_BIT((&lbl_1_bss_9F8.unk_10)[10], 0)) {
         f = (-0.100000001f);
     }
-    if ((((*(u16 volatile *)&lbl_1_bss_9F8.unk_10) /* Retail reloads this field. */ >> 1) & 1) || (((&lbl_1_bss_9F8.unk_10)[10] >> 1) & 1)) {
+    if (PAD_BIT(lbl_1_bss_9F8.unk_10, 1) || PAD_BIT((&lbl_1_bss_9F8.unk_10)[10], 1)) {
         f = (0.100000001f);
     }
-    if ((((*(volatile u16 *)&lbl_1_bss_9F8.unk_0 /* Retail reloads this field. */ >> 8) & 1)) || (((&lbl_1_bss_9F8.unk_0)[10] >> 8) & 1)) {
+    if (PAD_BIT(lbl_1_bss_9F8.unk_0, 8) || PAD_BIT((&lbl_1_bss_9F8.unk_0)[10], 8)) {
         f = fn_1_E733C_operand(((10.0f)), (f));
     }
-    if ((((*(volatile u16 *)&lbl_1_bss_9F8.unk_0 /* Retail reloads this field. */ >> 9) & 1)) || (((&lbl_1_bss_9F8.unk_0)[10] >> 9) & 1)) {
+    if (PAD_BIT(lbl_1_bss_9F8.unk_0, 9) || PAD_BIT((&lbl_1_bss_9F8.unk_0)[10], 9)) {
         f = f / (10.0f);
     }
     v = (s16)((s16 *)lbl_1_bss_7B14C)[0];

@@ -84,46 +84,47 @@ extern u8 fn_4_ADF0__fzgx_offset_0[];
 
 /* fzgx:begin fn_4_0 noprologue */
 #include "types.h"
+#include "game/pad.h"
 
-extern u32 lbl_1_bss_9F8;
+/* A pad state (0x14 bytes); lbl_1_bss_9F8 holds one per port. */
+typedef struct {
+    u16 unk_0;
+    u16 unk_2;
+    u8 pad_4[0x4];
+    u16 unk_8;
+    u16 unk_A;
+    u8 pad_C[0x4];
+    u16 unk_10;
+    u16 unk_12;
+} fn_4_0_Pad;
+
+extern fn_4_0_Pad lbl_1_bss_9F8[4];
 
 extern void fn_1_A2D84(u32);
 
-/* Volatile input-state reads preserve the separate repeated halfword loads in retail. */
 s32 fn_4_0(u32 out0, u32 a, u32 b, s32 index, u32 select)
 {
     u32 x, y;
     s32 n;
     u32 res, mid;
-    u8 *p;
 
     n = 0;
     res = out0;
     if (index == -1) {
         if (select == 0) {
-            x = ((*(volatile u16 *)((u8 *)&lbl_1_bss_9F8 + 0x10) >> 3) & 1) /* volatile: preserve repeated input-state reads in retail. */
-             || ((*(volatile u16 *)((u8 *)&lbl_1_bss_9F8 + 0x12) >> 3) & 1); /* volatile: preserve repeated input-state reads in retail. */
-            y = ((*(volatile u16 *)((u8 *)&lbl_1_bss_9F8 + 0x10) >> 2) & 1) /* volatile: preserve repeated input-state reads in retail. */
-             || ((*(volatile u16 *)((u8 *)&lbl_1_bss_9F8 + 0x12) >> 2) & 1); /* volatile: preserve repeated input-state reads in retail. */
+            x = PAD_BIT(lbl_1_bss_9F8[0].unk_10, 3) || PAD_BIT(lbl_1_bss_9F8[0].unk_12, 3);
+            y = PAD_BIT(lbl_1_bss_9F8[0].unk_10, 2) || PAD_BIT(lbl_1_bss_9F8[0].unk_12, 2);
         } else {
-            x = (*(volatile u16 *)((u8 *)&lbl_1_bss_9F8 + 0x10) & 1) /* volatile: preserve repeated input-state reads in retail. */
-             || (*(volatile u16 *)((u8 *)&lbl_1_bss_9F8 + 0x12) & 1); /* volatile: preserve repeated input-state reads in retail. */
-            y = ((*(volatile u16 *)((u8 *)&lbl_1_bss_9F8 + 0x10) >> 1) & 1) /* volatile: preserve repeated input-state reads in retail. */
-             || ((*(volatile u16 *)((u8 *)&lbl_1_bss_9F8 + 0x12) >> 1) & 1); /* volatile: preserve repeated input-state reads in retail. */
+            x = PAD_BIT(lbl_1_bss_9F8[0].unk_10, 0) || PAD_BIT(lbl_1_bss_9F8[0].unk_12, 0);
+            y = PAD_BIT(lbl_1_bss_9F8[0].unk_10, 1) || PAD_BIT(lbl_1_bss_9F8[0].unk_12, 1);
         }
     } else {
         if (select == 0) {
-            p = (u8 *)&lbl_1_bss_9F8 + ((0x14) * (index));
-            x = ((*(volatile u16 *)(p += 0x10) >> 3) & 1) /* volatile: preserve repeated input-state reads in retail. */
-             || ((*(volatile u16 *)((((index * 0x14) + ((u32)&lbl_1_bss_9F8)) + (0x12))) >> 3) & 1); /* volatile: preserve repeated input-state reads in retail. */
-            y = ((*(volatile u16 *)p >> 2) & 1) /* volatile: preserve repeated input-state reads in retail. */
-             || ((*(volatile u16 *)(((index * 0x14) + ((0x12) + ((u32)&lbl_1_bss_9F8)))) >> 2) & 1); /* volatile: preserve repeated input-state reads in retail. */
+            x = PAD_BIT(lbl_1_bss_9F8[index].unk_10, 3) || PAD_BIT(lbl_1_bss_9F8[index].unk_12, 3);
+            y = PAD_BIT(lbl_1_bss_9F8[index].unk_10, 2) || PAD_BIT(lbl_1_bss_9F8[index].unk_12, 2);
         } else {
-            p = (u8 *)&lbl_1_bss_9F8 + index * 0x14;
-            x = (*(volatile u16 *)(p += 0x10) & 1) /* volatile: preserve repeated input-state reads in retail. */
-             || (*(volatile u16 *)(((index * 0x14) + ((0x12) + ((u32)&lbl_1_bss_9F8)))) & 1); /* volatile: preserve repeated input-state reads in retail. */
-            y = ((*(volatile u16 *)p >> 1) & 1) /* volatile: preserve repeated input-state reads in retail. */
-             || ((*(volatile u16 *)(((index * 0x14) + ((0x12) + ((u32)&lbl_1_bss_9F8)))) >> 1) & 1); /* volatile: preserve repeated input-state reads in retail. */
+            x = PAD_BIT(lbl_1_bss_9F8[index].unk_10, 0) || PAD_BIT(lbl_1_bss_9F8[index].unk_12, 0);
+            y = PAD_BIT(lbl_1_bss_9F8[index].unk_10, 1) || PAD_BIT(lbl_1_bss_9F8[index].unk_12, 1);
         }
     }
     if (x) n = -1;
@@ -9524,8 +9525,7 @@ static void fzgx_bss_layout(void) {
 extern PadInput lbl_1_bss_9F8[4];
 extern u32 lbl_1_bss_980[4];
 extern PadD58 lbl_1_bss_D58;
-/* button `n` of a pad word */
-#define PAD_BIT(word, n) __rlwinm((word), (32 - (n)) & 31, 31, 31)
+#include "game/pad.h"
 
 extern PadCfg lbl_1_bss_AA0[4][3];
 extern u8 lbl_1_data_2B60[4];

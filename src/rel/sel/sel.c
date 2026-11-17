@@ -6160,13 +6160,13 @@ void fn_10_75D4(void) {
 /* fzgx:end fn_10_75D4 */
 
 /* fzgx:begin fn_10_7A10 noprologue */
+#include "game/pad.h"
 /* globals.h has no field at lbl_1_bss_8B3A0+0x98 (padding there); retail reads it as a word */
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 
 static inline u16 fn_10_7A10_input(s16 port) {
-    /* volatile: retail loads the port's word again for each test */
-    return ((volatile SelInput *)((u8 *)&lbl_1_bss_9F8 + port * 0x14))->unk_8;
+    return ((SelInput *)((u8 *)&lbl_1_bss_9F8 + port * 0x14))->unk_8;
 }
 
 static inline s32 fn_10_7A10_busy(void) {
@@ -6232,10 +6232,10 @@ void fn_10_7A10(void) {
                 if (__rlwnm(((fn_10_7A10_State *)&lbl_1_bss_8B3A0)->unk_98, (j + 1) & 31, 31, 31) == 0) {
                     continue;
                 }
-                if ((fn_10_7A10_input(index) >> 8) & 1) {
+                if (PAD_BIT(fn_10_7A10_input(index), 8)) {
                     count++;
                 }
-                if ((fn_10_7A10_input(index) >> 8) & 1) {
+                if (PAD_BIT(fn_10_7A10_input(index), 8)) {
                     fn_1_12F150(j, 0, 1);
                 }
             }
@@ -6252,10 +6252,10 @@ void fn_10_7A10(void) {
                 if (__rlwnm(((fn_10_7A10_State *)&lbl_1_bss_8B3A0)->unk_98, (k + 1) & 31, 31, 31) == 0) {
                     continue;
                 }
-                if ((fn_10_7A10_input(index) >> 8) & 1) {
+                if (PAD_BIT(fn_10_7A10_input(index), 8)) {
                     count++;
                 }
-                if ((fn_10_7A10_input(index) >> 8) & 1) {
+                if (PAD_BIT(fn_10_7A10_input(index), 8)) {
                     fn_1_12F150(k, 0, 1);
                     fn_1_12F17C();
                 }
@@ -6274,10 +6274,10 @@ void fn_10_7A10(void) {
             if (__rlwnm(((fn_10_7A10_State *)&lbl_1_bss_8B3A0)->unk_98, (n + 1) & 31, 31, 31) == 0) {
                 continue;
             }
-            if ((fn_10_7A10_input(index) >> 8) & 1) {
+            if (PAD_BIT(fn_10_7A10_input(index), 8)) {
                 count++;
             }
-            if ((fn_10_7A10_input(index) >> 8) & 1) {
+            if (PAD_BIT(fn_10_7A10_input(index), 8)) {
                 fn_1_12F150(n, 0, 1);
                 fn_1_12F17C();
             }
@@ -7663,7 +7663,7 @@ fn_10_AB98_s8 i;
 fn_10_AB98_s32 blocked;
 fn_10_AB98_s32 pos;
 fn_10_AB98_s32 next;
-struct { fn_10_AB98_s16 value; } count;
+fn_10_AB98_s16 count;
 fn_10_AB98_s16 dir;
 fn_10_AB98_s32 tmp_ra6;
 if (cursor->unk_8C == 0) {
@@ -7672,9 +7672,9 @@ pos = pos < 0 ? step : (pos > 110 ? 110 : pos);
 if ((cursor->unk_94 & 2) != 0 && (fn_10_AB98_s8)(*(fn_10_AB98_u8 (*)[0x1A0])&(*(u8 (*)[0x1A0])&lbl_10_data_2B4))[pos] == 0) {
 step = 1;
 }
-count.value = __abs((fn_10_AB98_s16)step);
+count = __abs((fn_10_AB98_s16)step);
 dir = sel_sign(step);
-while (count.value-- > 0) {
+while (count-- > 0) {
 next = pos + dir;
 pos = next > 110 ? 0 : (next < 0 ? 110 : next);
 if ((cursor->unk_94 & 2) != 0) {
@@ -7726,10 +7726,7 @@ sel_move_cursor(cursor, 0);
 /* fzgx:end fn_10_AB98 */
 
 /* fzgx:begin fn_10_AE14 noprologue */
-/* Pad button test: bit n of a pad button word. */
-/* REVIEW NOTE (accepted for now): PAD_BIT is a reconstruction. Retail reads a pad bit with lhz + rlwinm and
- * loads the word again in each statement. Only the __rlwinm intrinsic reproduces it. No retail name proves it. */
-#define PAD_BIT(word, n) __rlwinm((word), (32 - (n)) & 31, 31, 31)
+#include "game/pad.h"
 /* WARNING: compiler-diff device, not original code. Byte-offset view of lbl_1_bss_9F8 (carried from main): the
  * generated header types it as one 0x14 record, retail has four. */
 #define PADW(p, o) (*(u16 *)((p) + (o)))

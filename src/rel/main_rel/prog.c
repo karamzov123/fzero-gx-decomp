@@ -47,10 +47,7 @@ extern ProgPad lbl_1_bss_9F8[4];
 extern s16 lbl_1_bss_962;
 extern ProgPad lbl_1_bss_D58;
 
-/* Pad button test: bit n of a pad button word. */
-/* REVIEW NOTE (accepted for now): PAD_BIT is a reconstruction. Retail reads a pad bit with lhz + rlwinm and
- * loads the word again in each statement. Only the __rlwinm intrinsic reproduces it. No retail name proves it. */
-#define PAD_BIT(word, n) __rlwinm((word), (32 - (n)) & 31, 31, 31)
+#include "game/pad.h"
 
 extern void OSPanic(const char *file, int line, const char *msg, ...);
 extern s32 OSGetResetCode(void);

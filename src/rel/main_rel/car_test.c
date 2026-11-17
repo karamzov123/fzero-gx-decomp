@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/pad.h"
 
 /* car_test.c: the machine test scene (main.rel, one translation unit) */
 
@@ -727,7 +728,7 @@ void fn_1_7D694(Car *car) {
 
 /* fzgx:begin fn_1_7D6B8 */
 /* WARNING: compiler-diff device, not original code (carried from main: the machine draft of this
-   function with two optimizer pragmas, the volatile pad reads and the one-field carriers) */
+   function with two optimizer pragmas and the one-field carriers) */
 typedef struct {
     void *info;                 /* -> Fn1_7D6B8Info * */
     s32 *count;
@@ -841,10 +842,10 @@ void fn_1_7D6B8(void *arg0) {
         temp_r0 = *(u8 *)((u8 *)(arg0) + 6);
         switch ((s8) temp_r0) {                     /* switch 1; irregular */
         case 0:                                     /* switch 1 */
-            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8[0].unk_10)) /* Retail reloads this field. */ >> 3U) & 1) || (((u16) lbl_1_bss_9F8[0].unk_12 >> 3U) & 1)) {
+            if (PAD_BIT(lbl_1_bss_9F8[0].unk_10, 3) || PAD_BIT(lbl_1_bss_9F8[0].unk_12, 3)) {
                 var_r4 = -1;
             }
-            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8[0].unk_10)) /* Retail reloads this field. */ >> 2U) & 1) || (((u16) lbl_1_bss_9F8[0].unk_12 >> 2U) & 1)) {
+            if (PAD_BIT(lbl_1_bss_9F8[0].unk_10, 2) || PAD_BIT(lbl_1_bss_9F8[0].unk_12, 2)) {
                 var_r4 += 1;
             }
             (*(u8 *)((u8 *)(arg0) + 4)) = (u8) ((*(u8 *)((u8 *)(arg0) + 4)) + var_r4);
@@ -860,10 +861,10 @@ void fn_1_7D6B8(void *arg0) {
             }
             break;
         case 1:                                     /* switch 1 */
-            if (((*(u16 volatile *)&(lbl_1_bss_9F8[0].unk_10)) /* Retail reloads this field. */ & 1) || (lbl_1_bss_9F8[0].unk_12 & 1)) {
+            if (PAD_BIT(lbl_1_bss_9F8[0].unk_10, 0) || PAD_BIT(lbl_1_bss_9F8[0].unk_12, 0)) {
                 var_r4 = -1;
             }
-            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8[0].unk_10)) /* Retail reloads this field. */ >> 1U) & 1) || (((u16) lbl_1_bss_9F8[0].unk_12 >> 1U) & 1)) {
+            if (PAD_BIT(lbl_1_bss_9F8[0].unk_10, 1) || PAD_BIT(lbl_1_bss_9F8[0].unk_12, 1)) {
                 var_r4 += 1;
             }
             (*(u8 *)((u8 *)(arg0) + 7)) = (u8) ((*(u8 *)((u8 *)(arg0) + 7)) + var_r4);
@@ -876,10 +877,10 @@ void fn_1_7D6B8(void *arg0) {
             block_entry = &((Fn1_7D6B8Block *)(*(void **)arg0))[(s8) *(u8 *)((u8 *)arg0 + 7)];
             temp_r0_2 = (s8) *block_entry->slots[(s8) *(u8 *)((u8 *)arg0 + 36)].count;
             if (((u16) INPUT_14 >> 0xBU) & 1) {
-                if (((u16) (*(u16 volatile *)&(INPUT_26)) /* Retail reloads this field. */ >> 3U) & 1) {
+                if (PAD_BIT(INPUT_26, 3)) {
                     var_r6 = -1;
                 }
-                if (((u16) INPUT_26 >> 2U) & 1) {
+                if (PAD_BIT(INPUT_26, 2)) {
                     var_r6 += 1;
                 }
                 block_entry2 = &((Fn1_7D6B8Block *)(*(u32 *)arg0))[*(s8 *)((u8 *)arg0 + 7)];
@@ -897,10 +898,10 @@ void fn_1_7D6B8(void *arg0) {
                     (*(u8 *)((u8 *)(temp_r9) + 37)) = (u8) var_r6_2;
                 }
             }
-            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8[0].unk_10)) /* Retail reloads this field. */ >> 3U) & 1) || (((u16) lbl_1_bss_9F8[0].unk_12 >> 3U) & 1)) {
+            if (PAD_BIT(lbl_1_bss_9F8[0].unk_10, 3) || PAD_BIT(lbl_1_bss_9F8[0].unk_12, 3)) {
                 var_r5 = -1;
             }
-            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8[0].unk_10)) /* Retail reloads this field. */ >> 2U) & 1) || (((u16) lbl_1_bss_9F8[0].unk_12 >> 2U) & 1)) {
+            if (PAD_BIT(lbl_1_bss_9F8[0].unk_10, 2) || PAD_BIT(lbl_1_bss_9F8[0].unk_12, 2)) {
                 var_r5 += 1;
             }
             (*(u8 *)((u8 *)(arg0) + 8)) = (u8) ((*(u8 *)((u8 *)(arg0) + 8)) + var_r5);
@@ -945,14 +946,14 @@ void fn_1_7D6B8(void *arg0) {
             }
             var_r4_2 = 0;
             if (((u16) INPUT_14 >> 0xBU) & 1) {
-                if (((u16) INPUT_26 >> 1U) & 1) {
+                if (PAD_BIT(INPUT_26, 1)) {
                     var_r4_2 = 1;
-                } else if (INPUT_26 & 1) {
+                } else if (PAD_BIT(INPUT_26, 0)) {
                     var_r4_2 = -1;
                 }
-            } else if ((((u16) lbl_1_bss_9F8[0].unk_12 >> 6U) & 1) || (((u16) lbl_1_bss_9F8[0].unk_12 >> 5U) & 1)) {
+            } else if (PAD_BIT(lbl_1_bss_9F8[0].unk_12, 6) || PAD_BIT(lbl_1_bss_9F8[0].unk_12, 5)) {
                 var_r4_2 = 1;
-            } else if ((((u16) lbl_1_bss_9F8[0].unk_12 >> 7U) & 1) || (((u16) lbl_1_bss_9F8[0].unk_12 >> 4U) & 1)) {
+            } else if (PAD_BIT(lbl_1_bss_9F8[0].unk_12, 7) || PAD_BIT(lbl_1_bss_9F8[0].unk_12, 4)) {
                 var_r4_2 = -1;
             }
             if (var_r4_2 != 0) {
@@ -982,16 +983,16 @@ void fn_1_7D6B8(void *arg0) {
             if (((u16) lbl_1_bss_9F8[0].unk_8 >> 9U) & 1) {
                 (*(u8 *)((u8 *)(arg0) + 6)) = 1U;
             }
-            if (((u16) (*(u16 volatile *)&(INPUT_24)) /* Retail reloads this field. */ >> 3U) & 1) {
+            if (PAD_BIT(INPUT_24, 3)) {
                 var_r4 = -1;
             }
-            if (((u16) (*(u16 volatile *)&(INPUT_24)) /* Retail reloads this field. */ >> 2U) & 1) {
+            if (PAD_BIT(INPUT_24, 2)) {
                 var_r4 += 1;
             }
-            if ((*(u16 volatile *)&(INPUT_24)) /* Retail reloads this field. */ & 1) {
+            if (PAD_BIT(INPUT_24, 0)) {
                 var_r5 = -1;
             }
-            if (((u16) (*(u16 volatile *)&(INPUT_24)) /* Retail reloads this field. */ >> 1U) & 1) {
+            if (PAD_BIT(INPUT_24, 1)) {
                 var_r5 += 1;
             }
             (*(u8 *)((u8 *)(arg0) + 5)) = (u8) ((*(u8 *)((u8 *)(arg0) + 5)) + var_r4);
@@ -1038,16 +1039,16 @@ void fn_1_7D6B8(void *arg0) {
             }
             break;
         case 4:                                     /* switch 1 */
-            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8[0].unk_10)) /* Retail reloads this field. */ >> 3U) & 1) || (((u16) lbl_1_bss_9F8[0].unk_12 >> 3U) & 1)) {
+            if (PAD_BIT(lbl_1_bss_9F8[0].unk_10, 3) || PAD_BIT(lbl_1_bss_9F8[0].unk_12, 3)) {
                 var_r4 = -1;
             }
-            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8[0].unk_10)) /* Retail reloads this field. */ >> 2U) & 1) || (((u16) lbl_1_bss_9F8[0].unk_12 >> 2U) & 1)) {
+            if (PAD_BIT(lbl_1_bss_9F8[0].unk_10, 2) || PAD_BIT(lbl_1_bss_9F8[0].unk_12, 2)) {
                 var_r4 += 1;
             }
-            if (((*(u16 volatile *)&(lbl_1_bss_9F8[0].unk_10)) /* Retail reloads this field. */ & 1) || (lbl_1_bss_9F8[0].unk_12 & 1)) {
+            if (PAD_BIT(lbl_1_bss_9F8[0].unk_10, 0) || PAD_BIT(lbl_1_bss_9F8[0].unk_12, 0)) {
                 var_r5 = -1;
             }
-            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8[0].unk_10)) /* Retail reloads this field. */ >> 1U) & 1) || (((u16) lbl_1_bss_9F8[0].unk_12 >> 1U) & 1)) {
+            if (PAD_BIT(lbl_1_bss_9F8[0].unk_10, 1) || PAD_BIT(lbl_1_bss_9F8[0].unk_12, 1)) {
                 var_r5 += 1;
             }
             (*(u8 *)((u8 *)(arg0) + 5)) = (u8) ((*(u8 *)((u8 *)(arg0) + 5)) + var_r4);
@@ -1102,16 +1103,16 @@ void fn_1_7D6B8(void *arg0) {
                 (*(u8 *)((u8 *)(arg0) + 6)) = 0U;
                 (*(u8 *)((u8 *)(arg0) + 5)) = 0U;
             }
-            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8[0].unk_10)) /* Retail reloads this field. */ >> 3U) & 1) || (((u16) lbl_1_bss_9F8[0].unk_12 >> 3U) & 1) || (((u16) (*(u16 volatile *)&(INPUT_24)) /* Retail reloads this field. */ >> 3U) & 1) || (((u16) INPUT_26 >> 3U) & 1)) {
+            if (PAD_BIT(lbl_1_bss_9F8[0].unk_10, 3) || PAD_BIT(lbl_1_bss_9F8[0].unk_12, 3) || PAD_BIT(INPUT_24, 3) || PAD_BIT(INPUT_26, 3)) {
                 var_r4 = -1;
             }
-            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8[0].unk_10)) /* Retail reloads this field. */ >> 2U) & 1) || (((u16) lbl_1_bss_9F8[0].unk_12 >> 2U) & 1) || (((u16) (*(u16 volatile *)&(INPUT_24)) /* Retail reloads this field. */ >> 2U) & 1) || (((u16) INPUT_26 >> 2U) & 1)) {
+            if (PAD_BIT(lbl_1_bss_9F8[0].unk_10, 2) || PAD_BIT(lbl_1_bss_9F8[0].unk_12, 2) || PAD_BIT(INPUT_24, 2) || PAD_BIT(INPUT_26, 2)) {
                 var_r4 += 1;
             }
-            if (((*(u16 volatile *)&(lbl_1_bss_9F8[0].unk_10)) /* Retail reloads this field. */ & 1) || (lbl_1_bss_9F8[0].unk_12 & 1) || ((*(u16 volatile *)&(INPUT_24)) /* Retail reloads this field. */ & 1) || (INPUT_26 & 1)) {
+            if (PAD_BIT(lbl_1_bss_9F8[0].unk_10, 0) || PAD_BIT(lbl_1_bss_9F8[0].unk_12, 0) || PAD_BIT(INPUT_24, 0) || PAD_BIT(INPUT_26, 0)) {
                 var_r5 = -1;
             }
-            if ((((u16) (*(u16 volatile *)&(lbl_1_bss_9F8[0].unk_10)) /* Retail reloads this field. */ >> 1U) & 1) || (((u16) lbl_1_bss_9F8[0].unk_12 >> 1U) & 1) || (((u16) (*(u16 volatile *)&(INPUT_24)) /* Retail reloads this field. */ >> 1U) & 1) || (((u16) INPUT_26 >> 1U) & 1)) {
+            if (PAD_BIT(lbl_1_bss_9F8[0].unk_10, 1) || PAD_BIT(lbl_1_bss_9F8[0].unk_12, 1) || PAD_BIT(INPUT_24, 1) || PAD_BIT(INPUT_26, 1)) {
                 var_r5 += 1;
             }
             (*(u8 *)((u8 *)(arg0) + 5)) = (u8) ((*(u8 *)((u8 *)(arg0) + 5)) + var_r4);

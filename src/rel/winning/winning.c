@@ -259,9 +259,7 @@ extern u32 lbl_801A63C0;
 extern s32 lbl_801A66B4;
 extern PadInput lbl_1_bss_D58;
 extern PadInput lbl_1_bss_9F8[4];
-/* REVIEW NOTE (accepted for now): PAD_BIT is a reconstruction. Retail reads a pad bit with lhz + rlwinm and
- * loads the word again in each statement. Only the __rlwinm intrinsic reproduces it. No retail name proves it. */
-#define PAD_BIT(word, n) __rlwinm((word), (32 - (n)) & 31, 31, 31)
+#include "game/pad.h"
 extern u8 lbl_1_bss_25E98;
 extern InputStatus lbl_1_bss_5138;
 extern WinEntry lbl_1_bss_525C;

@@ -43,9 +43,7 @@ typedef struct PadInput {
 } PadInput;
 extern PadInput lbl_1_bss_9F8[4];
 
-/* REVIEW NOTE (accepted for now): PAD_BIT is a reconstruction. Retail reads a pad bit with lhz + rlwinm and
- * loads the word again in each statement. Only the __rlwinm intrinsic reproduces it. No retail name proves it. */
-#define PAD_BIT(word, n) __rlwinm((word), (32 - (n)) & 31, 31, 31)
+#include "game/pad.h"
 extern f64 __fabs(f64);
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DBE4(void);
@@ -2079,8 +2077,7 @@ u32 fn_14_34FC(void) {
         if (!direction) direction = 1;
         sel->unk_4 = wrap34(sel->unk_4 + direction, 0, 7);
     }
-    /* WARNING: compiler-diff device, not original code (volatile read: retail reloads the selection after scanning the entry flags) */
-    lbl_14_bss_110.unk_0 = (lbl_14_bss_110.unk_8[*(volatile s16 *)&sel->unk_4].unk_4 & 4) ? (lbl_14_bss_110.unk_0 | 0x80000000) : (lbl_14_bss_110.unk_0 & 0x7FFFFFFF);
+    lbl_14_bss_110.unk_0 = (lbl_14_bss_110.unk_8[lbl_14_bss_110.unk_4].unk_4 & 4) ? (lbl_14_bss_110.unk_0 | 0x80000000) : (lbl_14_bss_110.unk_0 & 0x7FFFFFFF);
     if (lbl_14_bss_110.unk_0 & 0x80000000) {
         if (horizontal < 0) {
             candidate = lbl_14_bss_110.unk_6;
@@ -5444,10 +5441,6 @@ const fn_14_1090_Color lbl_14_rodata_4F4[9] = {
     {0x19, 0xFF, 0x19, 0xFF}, {0xFF, 0xFF, 0xFF, 0xFF}, {0x19, 0xFF, 0x19, 0xFF},
 };
 
-/* WARNING: compiler-diff device, not original code (opt_lifetimes and opt_propagation off, carried from main) */
-#pragma push
-#pragma opt_lifetimes off
-#pragma opt_propagation off
 void fn_14_DC90(f32 alpha) {
     FontDrawPacket pkt;
 
@@ -5517,8 +5510,6 @@ void fn_14_DC90(f32 alpha) {
 /* fzgx:end fn_14_DC90 */
 
 /* fzgx:begin fn_14_DF70 */
-#pragma pop
-
 u8 fn_14_DF70(void) {
     PPRecord rec;
 

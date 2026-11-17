@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/pad.h"
 #include "rel/main_rel/globals.h"
 #include "rel/main_rel/memcard.h"
 extern void* lbl_801A6410;
@@ -212,20 +213,20 @@ void fn_1_AB64C(MemcardArg *arg) {
 
     if ((arg->unk_2A & 1) == 0) {
         state = (MemcardState *)arg->unk_24;
-        if (((lbl_1_bss_9F8.unk_10 & 1) != 0 ||
-             (lbl_1_bss_9F8.unk_12 & 1) != 0) &&
+        if ((PAD_BIT(lbl_1_bss_9F8.unk_10, 0) != 0 ||
+             PAD_BIT(lbl_1_bss_9F8.unk_12, 0) != 0) &&
             state->unk_1 == 1) {
             fn_1_A2DC4(DATA_A9011300);
             state->unk_1 = 0;
         /* Volatile prevents the compiler from reusing the first status read. */
-        } else if ((((*((volatile u16 *)&lbl_1_bss_9F8.unk_10) >> 1) & 1) != 0 ||
-                    ((lbl_1_bss_9F8.unk_12 >> 1) & 1) != 0) &&
+        } else if ((PAD_BIT(lbl_1_bss_9F8.unk_10, 1) != 0 ||
+                    PAD_BIT(lbl_1_bss_9F8.unk_12, 1) != 0) &&
                    state->unk_1 == 0) {
             fn_1_A2DC4(DATA_A9011300);
             state->unk_1 = 1;
         }
 
-        if (((lbl_1_bss_9F8.unk_8 >> 8) & 1) != 0) {
+        if (PAD_BIT(lbl_1_bss_9F8.unk_8, 8) != 0) {
             fn_1_A2DC4(DATA_A9011100);
             value = 1;
         } else {

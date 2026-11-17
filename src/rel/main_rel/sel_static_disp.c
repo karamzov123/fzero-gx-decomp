@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/pad.h"
 #include "rel/main_rel/globals.h"
 #include "rel/main_rel/sel_static_disp.h"
 #include "font.h"
@@ -18989,7 +18990,7 @@ void fn_1_14CAC8(void) {
     u16 bits10;  /* lbl_1_bss_9F8.unk_10 */
     u32 buttons;
 
-    if ((*(volatile u16 *)&lbl_1_bss_9F8.unk_8 >> 12) & 1) {  /* fzgx-allow: S2 retail reloads the buttons after this test */
+    if (PAD_BIT(lbl_1_bss_9F8.unk_8, 12)) {  /* fzgx-allow: S2 retail reloads the buttons after this test */
         lbl_1_bss_8E570__fzgx_offset_4 = lbl_1_bss_8E560__fzgx_offset_C - 1;
     }
     buttons = lbl_1_bss_9F8.unk_8;
@@ -19032,9 +19033,9 @@ void fn_1_14CAC8(void) {
     } else if (((bits10 = lbl_1_bss_9F8.unk_10) & 1) || ((bits12 = lbl_1_bss_9F8.unk_12) & 1) || ((bits10 >> 1) & 1) ||
                ((bits12 >> 1) & 1)) {
         fn_1_A2DC4(0xA9011300);
-        if ((lbl_1_bss_9F8.unk_10 & 1) || (lbl_1_bss_9F8.unk_12 & 1)) {
+        if (PAD_BIT(lbl_1_bss_9F8.unk_10, 0) || PAD_BIT(lbl_1_bss_9F8.unk_12, 0)) {
             lbl_1_bss_8E570__fzgx_offset_4--;
-        } else if (((lbl_1_bss_9F8.unk_10 >> 1) & 1) || ((lbl_1_bss_9F8.unk_12 >> 1) & 1)) {
+        } else if (PAD_BIT(lbl_1_bss_9F8.unk_10, 1) || PAD_BIT(lbl_1_bss_9F8.unk_12, 1)) {
             lbl_1_bss_8E570__fzgx_offset_4++;
         }
         lbl_1_bss_8E570__fzgx_offset_4 = (lbl_1_bss_8E570__fzgx_offset_4 + lbl_1_bss_8E560__fzgx_offset_C) % lbl_1_bss_8E560__fzgx_offset_C;
