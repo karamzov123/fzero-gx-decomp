@@ -1463,7 +1463,7 @@
    "file": "screen_effect.c",
    "text": [
     468552,
-    507084
+    506376
    ],
    "data_sec": 5,
    "data": [
@@ -1541,11 +1541,7 @@
     "fn_1_7B218",
     "fn_1_7B2E8",
     "fn_1_7B4C0",
-    "fn_1_7B558",
-    "fn_1_7BA08",
-    "fn_1_7BA48",
-    "fn_1_7BAF8",
-    "fn_1_7BB80"
+    "fn_1_7B558"
    ],
    "confidence": {
     "text+data": 9,
@@ -1556,7 +1552,7 @@
   {
    "file": "light.c",
    "text": [
-    507084,
+    506376,
     508220
    ],
    "data_sec": 5,
@@ -1568,6 +1564,10 @@
     507084
    ],
    "functions": [
+    "fn_1_7BA08",
+    "fn_1_7BA48",
+    "fn_1_7BAF8",
+    "fn_1_7BB80",
     "fn_1_7BCCC",
     "fn_1_7BD6C",
     "fn_1_7BE94",
