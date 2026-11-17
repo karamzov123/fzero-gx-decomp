@@ -7732,10 +7732,13 @@ sel_move_cursor(cursor, 0);
 /* fzgx:end fn_10_AB98 */
 
 /* fzgx:begin fn_10_AE14 noprologue */
-/* volatile: controller flags are sampled independently for each test (fzgx-allow: S2) */
-
-/* volatile: controller flags are sampled independently for each test (fzgx-allow: S2) */
-#define PADW(p, o) (*(volatile u16 *)((p) + (o)))
+/* Pad button test: bit n of a pad button word. */
+/* REVIEW NOTE (accepted for now): PAD_BIT is a reconstruction. Retail reads a pad bit with lhz + rlwinm and
+ * loads the word again in each statement. Only the __rlwinm intrinsic reproduces it. No retail name proves it. */
+#define PAD_BIT(word, n) __rlwinm((word), (32 - (n)) & 31, 31, 31)
+/* WARNING: compiler-diff device, not original code. Byte-offset view of lbl_1_bss_9F8 (carried from main): the
+ * generated header types it as one 0x14 record, retail has four. */
+#define PADW(p, o) (*(u16 *)((p) + (o)))
 
 #define WRAP(v, max) ((v) > (max) ? 0 : (v) < 0 ? (max) : (v))
 
@@ -7816,8 +7819,6 @@ static inline void fn_10_AE14_tail(fn_10_AE14_Cursor *cursor, s32 dir, s16 old) 
 
 void fn_10_AE14(fn_10_AE14_Cursor *cursor) {
     struct { s16 value; } i;
-    u32 rep;
-    u32 now;
     u8 *ctrl;
     u8 *pad;
     u8 *ctrls_;
@@ -7826,11 +7827,10 @@ void fn_10_AE14(fn_10_AE14_Cursor *cursor) {
     dir = 0;
     for (i.value = 0; i.value < 4; i.value++) {
         if ((s8)(*(u8 (*)[])&lbl_1_bss_9C8)[i.value * 12 + 10] != -1 && __rlwnm((*(fn_10_AE14_Sel *)&lbl_1_bss_8B3A0.unk_0).players, (i.value + 1) & 31, 31, 31)) {
-            if ((PADW((*(u8 (*)[])&lbl_1_bss_9F8) + i.value * 20, 16) & 1) || (PADW((*(u8 (*)[])&lbl_1_bss_9F8) + i.value * 20, 18) & 1)) dir--;
-            if (((PADW((*(u8 (*)[])&lbl_1_bss_9F8) + i.value * 20, 16) >> 1) & 1) || ((PADW((*(u8 (*)[])&lbl_1_bss_9F8) + i.value * 20, 18) >> 1) & 1)) dir++;
-            now = PADW((*(u8 (*)[])&lbl_1_bss_9F8) + i.value * 20, 16);
-            if (((now >> 1) & 1) || (((rep = PADW((*(u8 (*)[])&lbl_1_bss_9F8) + i.value * 20, 18)) >> 1) & 1)) fn_1_12F128(i.value);
-            else if ((now & 1) || (rep & 1)) fn_1_12F128(i.value);
+            if (PAD_BIT(PADW((*(u8 (*)[])&lbl_1_bss_9F8) + i.value * 20, 16), 0) || PAD_BIT(PADW((*(u8 (*)[])&lbl_1_bss_9F8) + i.value * 20, 18), 0)) dir--;
+            if (PAD_BIT(PADW((*(u8 (*)[])&lbl_1_bss_9F8) + i.value * 20, 16), 1) || PAD_BIT(PADW((*(u8 (*)[])&lbl_1_bss_9F8) + i.value * 20, 18), 1)) dir++;
+            if (PAD_BIT(PADW((*(u8 (*)[])&lbl_1_bss_9F8) + i.value * 20, 16), 1) || PAD_BIT(PADW((*(u8 (*)[])&lbl_1_bss_9F8) + i.value * 20, 18), 1)) fn_1_12F128(i.value);
+            else if (PAD_BIT(PADW((*(u8 (*)[])&lbl_1_bss_9F8) + i.value * 20, 16), 0) || PAD_BIT(PADW((*(u8 (*)[])&lbl_1_bss_9F8) + i.value * 20, 18), 0)) fn_1_12F128(i.value);
         }
     }
     if ((*(fn_10_AE14_Sel *)&lbl_1_bss_8B3A0.unk_0).mode == 1) {
@@ -7843,21 +7843,20 @@ void fn_10_AE14(fn_10_AE14_Cursor *cursor) {
         s16 j;
         for (j = 0; j < 4; j++) {
             if ((s8)(*(u8 (*)[])&lbl_1_bss_9C8)[j * 12 + 10] != -1 && __rlwnm((*(fn_10_AE14_Sel *)&lbl_1_bss_8B3A0.unk_0).players, (j + 1) & 31, 31, 31)) {
-                if ((PADW((*(u8 (*)[])&lbl_1_bss_9F8) + j * 20, 18) >> 8) & 1) vdir--;
-                if ((PADW((*(u8 (*)[])&lbl_1_bss_9F8) + j * 20, 18) >> 9) & 1) vdir++;
-                rep = PADW((*(u8 (*)[])&lbl_1_bss_9F8) + j * 20, 18);
-                if ((rep >> 9) & 1) fn_1_12F128(j);
-                else if ((rep >> 8) & 1) fn_1_12F128(j);
+                if (PAD_BIT(PADW((*(u8 (*)[])&lbl_1_bss_9F8) + j * 20, 18), 8)) vdir--;
+                if (PAD_BIT(PADW((*(u8 (*)[])&lbl_1_bss_9F8) + j * 20, 18), 9)) vdir++;
+                if (PAD_BIT(PADW((*(u8 (*)[])&lbl_1_bss_9F8) + j * 20, 18), 9)) fn_1_12F128(j);
+                else if (PAD_BIT(PADW((*(u8 (*)[])&lbl_1_bss_9F8) + j * 20, 18), 8)) fn_1_12F128(j);
             }
         }
         if (vdir != 0) {
             (*(fn_10_AE14_Sel *)&lbl_1_bss_8B3A0.unk_0).option = WRAP((*(fn_10_AE14_Sel *)&lbl_1_bss_8B3A0.unk_0).option + vdir, 3);
             fn_1_A2D84(0xA9010000);
         }
-        if ((*(fn_10_AE14_Sel *)&lbl_1_bss_8B3A0.unk_0).option == 3 && ((lbl_1_bss_D58.held >> 8) & 1)) {
+        if ((*(fn_10_AE14_Sel *)&lbl_1_bss_8B3A0.unk_0).option == 3 && PAD_BIT(lbl_1_bss_D58.held, 8)) {
             (*(fn_10_AE14_Sel *)&lbl_1_bss_8B3A0.unk_0).option = 5;
         }
-        if ((*(fn_10_AE14_Sel *)&lbl_1_bss_8B3A0.unk_0).option == 5 && !((lbl_1_bss_D58.held >> 8) & 1)) {
+        if ((*(fn_10_AE14_Sel *)&lbl_1_bss_8B3A0.unk_0).option == 5 && !PAD_BIT(lbl_1_bss_D58.held, 8)) {
             (*(fn_10_AE14_Sel *)&lbl_1_bss_8B3A0.unk_0).option = 3;
         }
     }
