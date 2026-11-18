@@ -46,6 +46,22 @@ void fn_1_D8D08(LigContainer *container);
 void fn_1_D8EEC(LigContainer *container, void *arg);
 
 typedef struct {
+    u8 pad_000[0x2c];
+    f32 x;
+    f32 y;
+    f32 z;
+    u8 pad_038[0x74];
+} fn_1_D8D58_LigEntry;
+
+typedef struct {
+    u8 pad_000[0x6d4];
+    s32 count;
+    fn_1_D8D58_LigEntry entries[1];
+} fn_1_D8D58_LigObject;
+
+void fn_1_D8D58(fn_1_D8D58_LigObject *obj, void *arg);
+
+typedef struct {
     u8 pad_000[0x6c0];
     f32 threshold;
 } fn_1_D8784_LigObject;
