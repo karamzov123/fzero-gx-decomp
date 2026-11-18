@@ -673,7 +673,7 @@ static inline void cross(const struct VecLocal *a, const struct VecLocal *b, str
  out->a[1] = y;
  out->a[2] = z;
 }
-void fn_1_DA3A0(void *arg0, f32 arg1, f32 arg2) {
+void fn_1_DA3A0(void *arg0) {
  u32 v0;
  s32 v1;
  u32 v2;

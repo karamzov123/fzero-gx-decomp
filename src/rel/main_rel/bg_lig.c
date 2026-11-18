@@ -27,7 +27,7 @@ extern void fn_1_D83E4(Obj_1_data_2A7E0_At3C *obj, s32 index);
 extern void fn_1_D7A10(Obj_1_data_2A7E0_At3C *obj);
 extern void fn_1_D8D58(Obj_1_data_2A7E0_At3C *obj, Obj_1_data_2A7E0_At3C *arg);
 extern void fn_1_D9D8C(Obj_1_bss_7AD78 *obj, u32 arg, s32 index);
-extern void fn_1_DA3A0(Obj_1_bss_7AD78 *obj);
+extern void fn_1_DA3A0(void *state);
 extern void fn_1_E87FC(void);
 extern void OSPanic(const char *file, int line, const char *msg, ...);
 extern u32 lbl_801A66A0;
@@ -930,9 +930,9 @@ extern void fn_1_4404(void);
 extern void fn_1_DA6A8(void *, u32);
 extern void fn_1_D9224(void *, u32);
 extern void fn_1_446C(void);
-extern void fn_1_D9D8C(void *, u32, s32);
-extern void fn_1_DA3A0(void *);
-extern void fn_80008BEC(void *, u32, u32);
+extern void fn_1_D9D8C(Obj_1_bss_7AD78 *obj, u32 arg, s32 index);
+extern void fn_1_DA3A0(void *state);
+extern void fn_80008BEC(void *, int, u32);
 
 #pragma opt_pointer_analysis on
 void fn_1_D7274(void) {
