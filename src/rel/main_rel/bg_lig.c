@@ -11,7 +11,8 @@ extern void fn_1_5948(s32 index);
 extern void fn_1_D8388(void *obj);
 extern void fn_1_627C(s32 index);
 extern void *fn_1_9D260(Obj_1_data_2A7E0 *data);
-extern void fn_1_D7B7C(Obj_1_data_2A7E0_At3C *obj);
+struct LigDrawEntry;
+extern void fn_1_D7B7C(struct LigDrawEntry *base);
 extern void fn_1_9AD88(void);
 extern void *memset(void *dst, int value, u32 size);
 extern void fn_1_D7EF4(void *, u32);
@@ -1011,7 +1012,8 @@ extern void fn_1_5948(s32 index);
 extern void fn_1_D8388(void *obj);
 extern void fn_1_627C(s32 index);
 extern void *fn_1_9D260(Obj_1_data_2A7E0 *data);
-extern void fn_1_D7B7C(Obj_1_data_2A7E0_At3C *obj);
+struct LigDrawEntry;
+extern void fn_1_D7B7C(struct LigDrawEntry *base);
 extern void fn_1_9AD88(void);
 extern void *memset(void *dst, int value, u32 size);
 extern void fn_1_D7EF4(void *, u32);
@@ -1136,7 +1138,7 @@ void fn_1_D7688(void) {
     Obj_1_data_2A7E0_At3C *obj = lbl_1_data_2A7E0.unk_3C;
     void *value = fn_1_9D260(&lbl_1_data_2A7E0);
     fn_1_D8784(obj);
-    fn_1_D7B7C(obj);
+    fn_1_D7B7C((struct LigDrawEntry *)obj);
     fn_1_D8EEC(obj, value);
     fn_1_9AD88();
 }
@@ -1383,32 +1385,33 @@ void fn_1_D7A10(LigSeg *obj) {
 
 extern f32 lbl_1_rodata_6524[];
 
-typedef struct {
+typedef struct LigDrawEntry {
     u8 pad0[0x24];
     f32 value;
     u8 pad28[0x4];
     s16 count;
     u8 pad2e[0x2];
-} LigEntry;
+} LigDrawEntry;
 
+struct LigEvt;
 typedef struct {
     u8 pad0[0x4];
-    void (*callback)(void);
-    LigEntry *entry;
+    void (*callback)(struct LigEvt *);
+    LigDrawEntry *entry;
 } LigEvent;
 
 extern void lbl_8006DCA4(void);
 
 
-extern s32 fn_1_54E34(LigEntry *entry, f32 value);
-extern void *fn_1_5448C(LigEntry *entry);
-extern LigEvent *fn_1_548AC(s32 size);
-extern void fn_1_D7C44(void);
+extern s32 fn_1_54E34(void *obj, f32 value);
+extern void *fn_1_5448C(LigDrawEntry *entry);
+extern void *fn_1_548AC(s32 size);
+extern void fn_1_D7C44(struct LigEvt *);
 extern void fn_1_5489C(void *data, void *event);
 
-void fn_1_D7B7C(LigEntry *base) {
+void fn_1_D7B7C(LigDrawEntry *base) {
     void *data;
-    LigEntry *entry;
+    LigDrawEntry *entry;
     s32 i;
     LigEvent *event;
 
@@ -1503,7 +1506,7 @@ typedef struct {
 	s16 unk_28;
 } LigSrc;
 
-typedef struct {
+typedef struct LigEvt {
 	u8 pad_0[8];
 	LigSrc *unk_8;
 } LigEvt;
@@ -1890,7 +1893,6 @@ typedef struct {
 } LigObject;
 
 extern void fn_1_D8CA8(fn_1_D8CA8_LigObject *obj);
-extern void fn_1_D7B7C(fn_1_D7B7C_LigEntry *base);
 extern void fn_1_D8D08(LigContainer *container);
 extern void fn_1_D8784(fn_1_D8784_LigObject *obj);
 extern void fn_1_D8EEC(fn_1_D8EEC_LigObject *obj, void *arg);
