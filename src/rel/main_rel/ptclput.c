@@ -1,19 +1,53 @@
 #include "types.h"
 #include "rel/main_rel/globals.h"
 #include "rel/main_rel/ptclput.h"
+#include "psvec.h"
+#include "dolphin/hw_regs.h"
 
-extern u16 lbl_1_bss_6EA94;
+
+
+struct fn_1_9F870_lbl_801A6410 {
+    u32 unk_0;
+};
 extern struct fn_1_9F870_lbl_801A6410 lbl_801A6410;
-extern u32 fn_1_46B4(u32, u32, void *, u32);
-extern u32 fn_1_45D0(u32, u32, void *, u32);
-extern void fn_80008BA8(void *, const void *, u32);
+extern u32 lbl_801A6D00;
+extern void fn_1_9F164(void *);
+extern void fn_1_9F4B4(void *);
+extern void fn_80074788(u32 arg0);
+extern void fn_80072864(u32 arg0);
+extern void fn_800745A4(u32 arg0, s32 arg1, s32 arg2, u32 arg3, u32 arg4, u32 arg5);
+extern void fn_800734A8(u32 arg0, s32 arg1, s32 arg2, s32 arg3);
+extern void fn_80072AB0(s32 arg0, s32 arg1, s32 arg2);
+extern void fn_800735C8(s32 index, s32 value);
+extern void fn_80073620(s32 index, s32 value);
+extern void fn_80073C6C(s32 index);
+extern void fn_80072C24(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
+extern void fn_80072D64(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4, s32 arg5);
+extern void fn_80072CC4(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
+extern void fn_80072E20(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4, s32 arg5);
+extern void fn_80073678(u32 arg0);
+extern void fn_80074660(u32 arg0);
+extern void fn_80074918(u8 arg0, s32 arg1, u8 arg2);
+extern void fn_800720B0(s32 arg0);
+extern void fn_800728A8(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+extern void lbl_8006D758(void);
+extern void GXLoadPosMtxImm(u32, u32);
+extern void fn_800724C8(void);
+extern void fn_8007245C(u32 value);
+extern void fn_80073778(void *obj, s32 index);
+extern void lbl_8006D9D8(void *);
+extern void lbl_8006D7B0(void);
+extern f32 lbl_8006D0B4(f32);
+extern void lbl_8006DB74(void *);
+extern void lbl_8006D848(f32);
+extern void lbl_8006DFC4(void *);
+extern u16 lbl_1_bss_6EA94;
+extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
+extern s32 fn_1_45D0();
+extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
 extern u32 lbl_1_bss_6EA90;
 
 /* fzgx:begin fn_1_9F7DC */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/ptclput.h"
-
 struct fn_1_9F7DC_lbl_1_bss_6EA88 {
     u32 unk_0;
     u32 unk_4;
@@ -37,23 +71,18 @@ void fn_1_9F7DC(void) {
 /* fzgx:end fn_1_9F7DC */
 
 /* fzgx:begin fn_1_9F870 */
-#include "types.h"
-
 struct fn_1_9F870_lbl_1_bss_6EA88 {
     u32 unk_0;
     u32 unk_4;
     u32 unk_8;
 };
-struct fn_1_9F870_lbl_801A6410 {
-    u32 unk_0;
-};
 
 void fn_1_9F870(void) {
     struct fn_1_9F870_lbl_1_bss_6EA88 *p_lbl_1_bss_6EA88;
     p_lbl_1_bss_6EA88 = (struct fn_1_9F870_lbl_1_bss_6EA88 *)&lbl_1_bss_6EA88;
-    fn_1_46B4(lbl_801A6410.unk_0, p_lbl_1_bss_6EA88->unk_0, &lbl_1_data_2CD20, 1226);
-    fn_1_46B4(lbl_801A6410.unk_0, p_lbl_1_bss_6EA88->unk_4, &lbl_1_data_2CD20, 1227);
-    fn_1_46B4(lbl_801A6410.unk_0, p_lbl_1_bss_6EA88->unk_8, &lbl_1_data_2CD20, 1228);
+    fn_1_46B4(lbl_801A6410.unk_0, p_lbl_1_bss_6EA88->unk_0, (const char *)(void *)(&lbl_1_data_2CD20), 1226);
+    fn_1_46B4(lbl_801A6410.unk_0, p_lbl_1_bss_6EA88->unk_4, (const char *)(void *)(&lbl_1_data_2CD20), 1227);
+    fn_1_46B4(lbl_801A6410.unk_0, p_lbl_1_bss_6EA88->unk_8, (const char *)(void *)(&lbl_1_data_2CD20), 1228);
 }
 /* fzgx:end fn_1_9F870 */
 
@@ -71,12 +100,10 @@ int fn_1_9F914(const void *src0, const void *src1) {
     if (*(u16 *)((u8 *)obj + 0xc) == 0x100) {
         return 0;
     }
-    fn_80008BA8((u8 *)obj->unk_0 +
-                    ((*(u16 *)((u8 *)obj + 0xc) & 0xffff) << 6),
-                src0, 0x40);
-    fn_80008BA8((u8 *)obj->unk_4 +
-                    (*(u16 *)((u8 *)obj + 0xc) << 6),
-                src1, 0x40);
+    fn_80008BA8( (u32)(void *)((u8 *)obj->unk_0 +
+                    ((*(u16 *)((u8 *)obj + 0xc) & 0xffff) << 6)), (u32)(const void *)(src0), 0x40);
+    fn_80008BA8( (u32)(void *)((u8 *)obj->unk_4 +
+                    (*(u16 *)((u8 *)obj + 0xc) << 6)), (u32)(const void *)(src1), 0x40);
     *(u16 *)((u8 *)obj + 0xc) = *(u16 *)((u8 *)obj + 0xc) + 1;
     return 1;
 }
@@ -111,9 +138,6 @@ s32 fn_1_9F9A4(u32 arg0) {
 /* fzgx:end fn_1_9F9A4 */
 
 /* fzgx:begin fn_1_9FA18 */
-#include "psvec.h"
-#include "dolphin/hw_regs.h"
-
 /* begin game/main_rel/ptclput_types.h (deltawave784/fzgx, CC0) */
 #ifndef GAME_MAIN_REL_PTCLPUT_TYPES_H
 #define GAME_MAIN_REL_PTCLPUT_TYPES_H
@@ -122,11 +146,7 @@ s32 fn_1_9F9A4(u32 arg0) {
 // a block can compile standalone and under the prologue. Hand-owned (librarian).
 
 
-struct fn_1_9F870_lbl_801A6410 {
-    u32 unk_0;
-};
 
-extern struct fn_1_9F870_lbl_801A6410 lbl_801A6410;
 
 #endif  // GAME_MAIN_REL_PTCLPUT_TYPES_H
 
@@ -168,38 +188,7 @@ typedef struct {
     } *unk_8;
 } fn_1_9FA18_Obj38458;
 
-extern u32 lbl_801A6D00;
 
-extern void fn_1_9F164(void *);
-extern void fn_1_9F4B4(void *);
-extern void fn_80074788(u32);
-extern void fn_80072864(u32);
-extern void fn_800745A4(u32, s32, s32, u32, u32, u32);
-extern void fn_800734A8(u32, s32, s32, s32);
-extern void fn_80072AB0(s32, s32, s32);
-extern void fn_800735C8(s32, s32);
-extern void fn_80073620(s32, s32);
-extern void fn_80073C6C(s32);
-extern void fn_80072C24(s32, s32, s32, s32, s32);
-extern void fn_80072D64(s32, s32, s32, s32, u8, s32);
-extern void fn_80072CC4(s32, s32, s32, s32, s32);
-extern void fn_80072E20(s32, s32, s32, s32, u8, s32);
-extern void fn_80073678(u32);
-extern void fn_80074660(u32);
-extern void fn_80074918(u8, s32, u8);
-extern u32 fn_800720B0(u32);
-extern void fn_800728A8(s32, s32, s32, s32);
-extern void lbl_8006D758(void);
-extern void GXLoadPosMtxImm(u32, u32);
-extern void fn_800724C8(void);
-extern void fn_8007245C(u32);
-extern void fn_80073778(void *, s32);
-extern void lbl_8006D9D8(void *);
-extern void lbl_8006D7B0(void);
-extern f32 lbl_8006D0B4(f32);
-extern void lbl_8006DB74(void *);
-extern void lbl_8006D848(f32);
-extern void lbl_8006DFC4(void *);
 
 
 void fn_1_9FA18(void) {

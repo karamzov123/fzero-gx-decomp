@@ -2043,9 +2043,6 @@ rel/main_rel/background/fn_1_9E598.c:
 rel/main_rel/background/fn_1_9E5B8.c:
 	.text       start:0x0009E5B8 end:0x0009E608
 
-rel/main_rel/ptclput/fn_1_9F8FC.c:
-	.text       start:0x0009F8FC end:0x0009F914
-
 rel/main_rel/sound/fn_1_9FE74.c:
 	.text       start:0x0009FE74 end:0x0009FEE8
 
@@ -4268,9 +4265,6 @@ rel/main_rel/spline/fn_1_F70D0.c:
 rel/main_rel/sel_static_disp/fn_1_13EDDC.c:
 	.text       start:0x0013EDDC end:0x0013EE60 align:4
 
-rel/main_rel/ptclput/fn_1_9F870.c:
-	.text       start:0x0009F870 end:0x0009F8FC align:4
-
 rel/main_rel/camera/fn_1_6400.c:
 	.text       start:0x00006400 end:0x0000649C align:4
 
@@ -4807,9 +4801,6 @@ rel/main_rel/car_test/fn_1_7EB0C.c:
 rel/main_rel/memcard/fn_1_B7C6C.c:
 	.text       start:0x000B7C6C end:0x000B7CD4 align:4
 
-rel/main_rel/ptclput/fn_1_9F914.c:
-	.text       start:0x0009F914 end:0x0009F9A4 align:4
-
 rel/main_rel/sel_static_disp/fn_1_14E1E0.c:
 	.text       start:0x0014E1E0 end:0x0014E2DC align:4
 
@@ -5077,9 +5068,6 @@ rel/main_rel/live_camera/fn_1_101D0.c:
 rel/main_rel/accessory/fn_1_128E10.c:
 	.text       start:0x00128E10 end:0x00128E8C align:4
 
-rel/main_rel/ptclput/fn_1_9F9A4.c:
-	.text       start:0x0009F9A4 end:0x0009FA18 align:4
-
 rel/main_rel/font/fn_1_51B84.c:
 	.text       start:0x00051B84 end:0x00051BFC align:4
 
@@ -5203,9 +5191,6 @@ rel/main_rel/camera/fn_1_6898.c:
 
 rel/main_rel/bg_win/fn_1_15E330.c:
 	.text       start:0x0015E330 end:0x0015E3E0 align:4
-
-rel/main_rel/ptclput/fn_1_9F7DC.c:
-	.text       start:0x0009F7DC end:0x0009F870 align:4
 
 rel/main_rel/driver/fn_1_A8DD4.c:
 	.text       start:0x000A8DD4 end:0x000A8E78 align:4
@@ -6862,9 +6847,6 @@ rel/main_rel/archive/fn_1_12DAEC.c:
 
 rel/main_rel/stcoli/fn_1_17098.c:
 	.text       start:0x00017098 end:0x00017920 align:4
-
-rel/main_rel/ptclput/fn_1_9FA18.c:
-	.text       start:0x0009FA18 end:0x0009FE74 align:4
 
 rel/main_rel/sound/fn_1_A1DCC.c:
 	.text       start:0x000A1DCC end:0x000A2210 align:4
@@ -18753,3 +18735,6 @@ rel/main_rel/data/lbl_1_bss_3C10.c:
 
 rel/main_rel/data/lbl_1_bss_6EA98.c:
 	.bss        start:0x0006EA98 end:0x0006EAA8 align:8
+
+rel/main_rel/ptclput.c:
+	.text       start:0x0009F7DC end:0x0009FE74 align:4
