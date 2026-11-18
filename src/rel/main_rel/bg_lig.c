@@ -1875,11 +1875,7 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime14(void) {
 }
 #pragma section code_type ".text"
 
-typedef struct {
-    f32 x;
-    f32 y;
-    f32 z;
-} LigVec;
+typedef Vec3 LigVec;
 
 typedef struct {
     u8 pad_000[0x3f0];
@@ -1922,7 +1918,7 @@ static inline f32 lig_dist(LigParticle *e, LigVec *v) {
 }
 
 // out = base + dir * len
-static inline void lig_offset(LigVec *out, LigVec *base, LigVec *dir, f32 len) {
+static inline void lig_target_offset(LigVec *out, LigVec *base, LigVec *dir, f32 len) {
     out->x = base->x + (f32)(dir->x * len);
     out->y = base->y + (f32)(dir->y * len);
     out->z = base->z + (f32)(dir->z * len);
@@ -2007,7 +2003,7 @@ void fn_1_D83E4(LigLightObj *obj, u32 index) {
     dir.y = to.y - from.y;
     dir.z = to.z - from.z;
     lbl_8006D668(&dir);
-    lig_offset(&obj->target, &from, &dir, 20.0f);
+    lig_target_offset(&obj->target, &from, &dir, 20.0f);
     obj->unk_6b4 = 70.0f;
     obj->unk_6a8 = 170.0f;
     obj->unk_6ac = 120.0f;
@@ -2070,6 +2066,7 @@ void fn_1_D8784(fn_1_D8784_LigObject *obj) {
 
 /* fzgx:begin fn_1_D8878 noprologue */
 #include "types.h"
+#include "game/vec3.h"
 #include "rel/main_rel/globals.h"
 
 #pragma section code_type ".fzgxpool"
@@ -2154,11 +2151,7 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime14(void) {
 }
 #pragma section code_type ".text"
 
-typedef struct {
-    f32 x;
-    f32 y;
-    f32 z;
-} LigVec;
+typedef Vec3 LigVec;
 
 typedef f32 LigMtx[3][4];
 
@@ -2239,7 +2232,7 @@ extern void fn_800728A8(s32, s32, s32, s32);
     } while (0)
 
 /* distance between two points */
-static inline f32 lig_dist(LigVec *a, LigVec *b) {
+static inline f32 lig_source_dist(LigVec *a, LigVec *b) {
     f32 x = a->x;
     f32 y = a->y;
     f32 z = a->z;
@@ -2286,7 +2279,7 @@ void fn_1_D8878(LigSource *src) {
     dist = lbl_8006D0B4(dist);
     for (i = 1; i < count; i++) {
         fn_1_681C(i, &cam);
-        dist = LIG_MIN(dist, lig_dist(&src->pos, &cam));
+        dist = LIG_MIN(dist, lig_source_dist(&src->pos, &cam));
     }
 
     if (dist < 20.0f) {
