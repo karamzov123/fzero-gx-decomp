@@ -394,6 +394,62 @@ def pair_relocations(ver: str, mod: str, us_syms_all, main_secs, mod_id) -> dict
             out[name] = (rm, sec, radd)
     return out
 
+
+# ---------------------------------------------------------------- section bytes
+
+def section_bytes(ver: str, mod: str):
+    """Return (read(sec, addr, size) -> bytes|None, relocated word offsets per section)."""
+    data = orig_file(ver, mod).read_bytes()
+    if mod == "main":
+        spans = []
+        for k in range(18):
+            off, addr, size = be32(data, k * 4), be32(data, 0x48 + k * 4), be32(data, 0x90 + k * 4)
+            if size:
+                spans.append((addr, addr + size, off))
+
+        def read(sec, addr, size):
+            for lo, hi, off in spans:
+                if lo <= addr and addr + size <= hi:
+                    return data[off + addr - lo:off + addr - lo + size]
+            return None
+        return read, None
+    tab, n = be32(data, 0x10), be32(data, 0x0C)
+    offs = {}
+    for k in range(min(n, len(REL_SECTIONS))):
+        o = be32(data, tab + k * 8) & ~1
+        if REL_SECTIONS[k] and o:
+            offs[REL_SECTIONS[k]] = o
+    holes = collections.defaultdict(set)
+    for sec, off, _ in rel_relocations(data):
+        if sec < len(REL_SECTIONS) and REL_SECTIONS[sec]:
+            holes[REL_SECTIONS[sec]].add(off & ~3)
+
+    def read(sec, addr, size):
+        if sec not in offs:
+            return None
+        return data[offs[sec] + addr:offs[sec] + addr + size]
+    return read, holes
+
+
+def same_bytes(us, rg, sec, us_lo, rg_lo, size) -> bool:
+    """Equal apart from relocated words (REL) or words that are pointers in both (DOL)."""
+    a, b = us[0](sec, us_lo, size), rg[0](sec, rg_lo, size)
+    if a is None or b is None or len(a) != size or len(b) != size:
+        return False
+    if a == b:
+        return True
+    for w in range(0, size - size % 4, 4):
+        x, y = a[w:w + 4], b[w:w + 4]
+        if x == y:
+            continue
+        if us[1] is not None:  # REL: both sites relocated
+            if (us_lo + w) & ~3 not in us[1].get(sec, ()) or (rg_lo + w) & ~3 not in rg[1].get(sec, ()):
+                return False
+        else:  # DOL: both words are addresses
+            if not (0x80000000 <= be32(x, 0) < 0x81800000 and 0x80000000 <= be32(y, 0) < 0x81800000):
+                return False
+    return a[size - size % 4:] == b[size - size % 4:]
+
 # ---------------------------------------------------------------- 4. units
 
 def us_text_splits() -> dict[tuple[str, str], tuple[int, int]]:
@@ -598,15 +654,98 @@ def _main(argv=None) -> int:
         def resolvable(n: str) -> bool:  # compiler-local labels and pool primers stay inside the object
             return n.startswith("@") or n.startswith("fzgx_pool_")
         splits_us = us_text_splits()
+        # collapsed units anywhere: every symbol of each split range is named in the region and
+        # moves by one amount, every function is identical, and the other bytes are the same
+        tu_blocks_us: dict[str, dict[str, list[str]]] = {}
+        for mod in MODS:
+            for block in cfg(US, mod, "splits.txt").read_text().split("\n\n")[1:]:
+                lines = block.strip().splitlines()
+                if lines and lines[0].endswith(":"):
+                    tu_blocks_us.setdefault(mod, {})[lines[0][:-1]] = lines[1:]
+        tu_blocks: dict[str, str] = {}
+        tu_why: dict[str, str] = {}
+        sec_reads = {}
+
+        def place_unit(u):
+            mod = u["module"]
+            if mod not in sec_reads:
+                sec_reads[mod] = (section_bytes(US, mod), section_bytes(ver, mod))
+            us_b, rg_b = sec_reads[mod]
+            moved, extra = [], []
+            for line in tu_blocks_us[mod][u["source"]]:
+                r = re.match(r"(\t(\.\w+)\s+start:0x)([0-9A-F]+)( end:0x)([0-9A-F]+)(.*)", line)
+                if not r:
+                    return None
+                sec, lo, hi = r.group(2), int(r.group(3), 16), int(r.group(5), 16)
+                inside = [(n, a) for n, (ss, a) in us_syms[mod].items() if ss == sec and lo <= a < hi]
+                # functions must all be named (and identical, below); labels and objects inside the
+                # range only need to agree on the offset, and the bytes around them are compared
+                unnamed_fns = [n for n, _ in inside if n not in named[mod] and us_types.get(n) == "function"]
+                if unnamed_fns and mod == "main":  # DOL calls are PC-relative: bytes cannot prove the layout
+                    tu_why[u["source"]] = f"{sec}: {len(unnamed_fns)} of {len(inside)} functions unnamed"
+                    return None
+                placed_syms = [(n, a) for n, a in inside if n in named[mod] and named[mod][n][0] == sec]
+                if not placed_syms:
+                    tu_why[u["source"]] = f"{sec}: no named symbol"
+                    return None
+                deltas = {named[mod][n][1] - a for n, a in placed_syms}
+                if len(deltas) != 1:
+                    tu_why[u["source"]] = f"{sec}: symbols move apart"
+                    return None
+                d = deltas.pop()
+                if sec in (".text", ".init"):
+                    diff = [n for n, _ in inside if n in funcs[mod] and n not in identical]
+                    if diff:
+                        tu_why[u["source"]] = f".text: {len(diff)} of {len(inside)} functions differ"
+                        return None
+                    if unnamed_fns and not same_bytes(us_b, rg_b, sec, lo, lo + d, hi - lo):
+                        tu_why[u["source"]] = f".text: {len(unnamed_fns)} unnamed functions and bytes differ"
+                        return None
+                elif sec in (".bss", ".sbss", ".sbss2"):
+                    if len(placed_syms) != len(inside):  # no bytes to compare: every object must be named
+                        tu_why[u["source"]] = f"{sec}: {len(inside) - len(placed_syms)} of {len(inside)} symbols unnamed"
+                        return None
+                else:
+                    if not same_bytes(us_b, rg_b, sec, lo, lo + d, hi - lo):
+                        tu_why[u["source"]] = f"{sec}: bytes differ"
+                        return None
+                moved.append(f"{r.group(1)}{lo + d:08X}{r.group(4)}{hi + d:08X}{r.group(6)}")
+                extra.extend((n, sec, a + d) for n, a in inside if n not in named[mod])
+            if any(t.split("+")[0] not in all_named for t in (u.get("pool") or {}).values()):
+                return None
+            taken = {(v[0], v[1]) for v in named[mod].values()}
+            if any((sec, a) in taken for _, sec, a in extra):
+                tu_why[u["source"]] = "a region symbol already sits where a unit symbol would go"
+                return None
+            for n, sec, a in extra:  # same layout and bytes: the unit's symbols sit at the same offsets
+                named[mod][n] = (sec, a)
+                all_named.add(n)
+                if us_types.get(n) == "function":
+                    fn_kind.add(n)
+            start = min(int(re.search(r"start:0x([0-9A-F]+)", x).group(1), 16) for x in moved)
+            return start, f"{u['source']}:\n" + "\n".join(moved)
+
         cand = []
+        exclude = set()
+        if os.environ.get("REGION_EXCLUDE"):
+            exclude = set(Path(os.environ["REGION_EXCLUDE"]).read_text().split())
         for u in json.loads((ROOT / "config" / US / "units.json").read_text()):
-            if u["status"] != "matching":
+            if u["status"] != "matching" or u["source"] in exclude:
                 continue
             if u["module"] in same_mods:  # every unit, assembly units too: the bytes are the same
                 obj = ROOT / "build" / US / "src" / (u["source"][:-2] + ".o")
                 if obj.exists():
                     undef, defs = nm(obj)
                     cand.append((u, u["module"], None, pooled(u, undef), defs))
+                continue
+            if not u.get("asm") and not u.get("data") and len(u["symbols"]) > 1 and u["source"] in tu_blocks_us.get(u["module"], {}):
+                placed = place_unit(u)
+                if placed:
+                    obj = ROOT / "build" / US / "src" / (u["source"][:-2] + ".o")
+                    if obj.exists():
+                        undef, defs = nm(obj)
+                        tu_blocks[u["source"]] = placed
+                        cand.append((u, u["module"], None, pooled(u, undef), defs))
                 continue
             if u.get("asm") or u.get("data") or len(u["symbols"]) != 1:
                 continue
@@ -621,6 +760,8 @@ def _main(argv=None) -> int:
                 continue
             undef, defs = nm(obj)
             cand.append((u, mod, sp, pooled(u, undef), defs))
+        if os.environ.get("REGION_WHY"):
+            Path(os.environ["REGION_WHY"]).write_text(json.dumps(tu_why, indent=1))
         if os.environ.get("REGION_DEBUG"):
             miss = collections.Counter()
             dd = set().union(*(c[4] for c in cand)) | all_named | dtk_named
@@ -690,8 +831,11 @@ def _main(argv=None) -> int:
                 if lines:
                     us_blocks[(mod, lines[0][:-1])] = block.strip()
         for u, mod, sp, _, _ in cand:
-            if sp is None:  # whole unit of an identical module: same addresses as USA
-                blocks[mod].append((0, us_blocks[(mod, u["source"])]))
+            if sp is None:
+                if u["source"] in tu_blocks:  # collapsed unit, moved to its region addresses
+                    blocks[mod].append(tu_blocks[u["source"]])
+                else:  # unit of an identical module: same addresses as USA
+                    blocks[mod].append((0, us_blocks[(mod, u["source"])]))
                 continue
             s, e = sp
             a = funcs[mod][u["symbols"][0]][0]
@@ -710,10 +854,37 @@ def _main(argv=None) -> int:
         check_yml = tmp / "check.yml"
         check_yml.write_text(check_cfg)
         # dtk may still auto-name a region symbol after a USA name in use: split, rename, repeat
-        for _ in range(10):
+        for _ in range(200):
             check = tmp / "check_split"
             shutil.rmtree(check, ignore_errors=True)
-            dtk_split(check_yml, check)
+            try:
+                dtk_split(check_yml, check)
+            except RuntimeError as e:
+                # a collapsed unit whose region symbols do not fit its ranges: leave it out
+                m = re.search(r"Split (\S+) \.\w+ \(0x", str(e))
+                bad = m and next((c for c in cand if c[0]["source"] == m.group(1) and c[2] is None
+                                  and c[0]["source"] in tu_blocks), None)
+                if not bad:
+                    g = re.search(r"\(module (\w+) ID \d+\).*?auto_\w+ (\.\w+) \d+:0x([0-9A-Fa-f]+)", str(e), re.S)
+                    if g:
+                        gmod, gsec, gaddr = g.group(1), g.group(2), int(g.group(3), 16)
+                        for c in cand:
+                            blk = tu_blocks.get(c[0]["source"])
+                            if c[1] == gmod and blk and re.search(
+                                    rf"\t{re.escape(gsec)}\s+start:0x[0-9A-F]+ end:0x{gaddr:08X}\b", blk[1]):
+                                bad = c
+                                break
+                if not bad:
+                    raise
+                print(f"{ver}: {bad[0]['source']} left out: {str(e).strip().splitlines()[-1].strip()}", file=sys.stderr)
+                cand.remove(bad)
+                bmod = bad[1]
+                blocks[bmod] = [b for b in blocks[bmod] if not b[1].startswith(bad[0]["source"] + ":")]
+                hdr = section_header(bmod, main_secs)
+                full = tmp / "check_splits" / cfg(ver, bmod, "splits.txt").relative_to(ROOT)
+                body = [b for _, b in sorted(blocks[bmod])]
+                full.write_text("\n\n".join(([hdr] if hdr else []) + body) + "\n" if hdr or body else "")
+                continue
             dups = []
             for mod in MODS:
                 _, counts = parse_asm(check / "asm" if mod == "main" else check / mod / "asm")

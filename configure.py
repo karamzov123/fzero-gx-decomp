@@ -490,6 +490,14 @@ if tu_sources:
     config.reconfig_deps.extend(sorted(p for p in tu_sources if p.is_file()))
 if config.version != CANONICAL_VERSION:
     config.config_path = render_version_config(version_units())
+    # tools/project.py reads <config dir>/<module>/strip_allow.txt; the shared source strips the same
+    # locals in every version, so the region build uses the GFZE01 lists
+    for _allow in (Path("config") / CANONICAL_VERSION).glob("*/strip_allow.txt"):
+        _dest = config.config_path.parent / _allow.parent.name / "strip_allow.txt"
+        _dest.parent.mkdir(parents=True, exist_ok=True)
+        if not _dest.exists() or _dest.read_text() != _allow.read_text():
+            _dest.write_text(_allow.read_text())
+        config.reconfig_deps.append(_allow)
     for d in (Path("config") / CANONICAL_VERSION, Path("config") / config.version):
         config.reconfig_deps += sorted(d.glob("**/splits.txt")) + sorted(d.glob("**/symbols.txt"))
 
