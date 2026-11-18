@@ -624,9 +624,8 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime27(void) {
 static const unsigned long fzgx_pool_table28[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
 __declspec(section ".fzgxpool") static void fzgx_pool_keep28(void) { const unsigned long *volatile cp; cp = fzgx_pool_table28; }  /* fzgx-allow: S2 pool primer sink */
 __declspec(section ".fzgxpool") static void fzgx_pool_prime29(void) {
-    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
+    volatile double d;  /* fzgx-allow: S2 pool primer sink */
     d = 0.05;
-    d = 0.02;
 }
 #pragma section code_type ".text"
 #pragma pool_data on
