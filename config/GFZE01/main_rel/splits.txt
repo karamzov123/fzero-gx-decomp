@@ -2536,25 +2536,7 @@ rel/main_rel/face/fn_1_D31E0.c:
 	.text       start:0x000D31E0 end:0x000D3214
 
 rel/main_rel/bg_lig/fn_1_D720C.c:
-	.text       start:0x000D720C end:0x000D7274
-
-rel/main_rel/bg_lig/fn_1_D744C.c:
-	.text       start:0x000D744C end:0x000D74C4
-
-rel/main_rel/bg_lig/fn_1_D74C4.c:
-	.text       start:0x000D74C4 end:0x000D75CC
-
-rel/main_rel/bg_lig/fn_1_D7688.c:
-	.text       start:0x000D7688 end:0x000D76EC
-
-rel/main_rel/bg_lig/fn_1_D76EC.c:
-	.text       start:0x000D76EC end:0x000D76F0
-
-rel/main_rel/bg_lig/fn_1_D76F0.c:
-	.text       start:0x000D76F0 end:0x000D7724
-
-rel/main_rel/bg_lig/fn_1_D7724.c:
-	.text       start:0x000D7724 end:0x000D7758
+	.text       start:0x000D720C end:0x000D7758
 
 rel/main_rel/bg_lig/fn_1_D79E4.c:
 	.text       start:0x000D79E4 end:0x000D7A10
@@ -2572,10 +2554,7 @@ rel/main_rel/bg_lig/fn_1_D8D08.c:
 	.text       start:0x000D8D08 end:0x000D8D58
 
 rel/main_rel/bg_lig/fn_1_D8EEC.c:
-	.text       start:0x000D8EEC end:0x000D8F4C
-
-rel/main_rel/bg_lig/fn_1_D8F4C.c:
-	.text       start:0x000D8F4C end:0x000D8FC4
+	.text       start:0x000D8EEC end:0x000D8FC4
 
 rel/main_rel/bg_san/fn_1_DA7B8.c:
 	.text       start:0x000DA7B8 end:0x000DA7E4
@@ -4581,9 +4560,6 @@ rel/main_rel/sel_static_disp/fn_1_13923C.c:
 rel/main_rel/font/fn_1_54448.c:
 	.text       start:0x00054448 end:0x0005448C align:4
 
-rel/main_rel/bg_lig/fn_1_D75CC.c:
-	.text       start:0x000D75CC end:0x000D7688 align:4
-
 rel/main_rel/memcard/fn_1_AC53C.c:
 	.text       start:0x000AC53C end:0x000AC6A4 align:4
 
@@ -5556,9 +5532,6 @@ rel/main_rel/burner/fn_1_9AA2C.c:
 
 rel/main_rel/font/fn_1_5448C.c:
 	.text       start:0x0005448C end:0x000545B8 align:4
-
-rel/main_rel/bg_lig/fn_1_D7274.c:
-	.text       start:0x000D7274 end:0x000D744C align:4
 
 rel/main_rel/enemy_ctrl/fn_1_CFF94.c:
 	.text       start:0x000CFF94 end:0x000D01B0 align:4
