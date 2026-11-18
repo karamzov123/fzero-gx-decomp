@@ -2536,25 +2536,7 @@ rel/main_rel/face/fn_1_D31E0.c:
 	.text       start:0x000D31E0 end:0x000D3214
 
 rel/main_rel/bg_lig/fn_1_D720C.c:
-	.text       start:0x000D720C end:0x000D7758
-
-rel/main_rel/bg_lig/fn_1_D79E4.c:
-	.text       start:0x000D79E4 end:0x000D7A10
-
-rel/main_rel/bg_lig/fn_1_D8388.c:
-	.text       start:0x000D8388 end:0x000D83E4
-
-rel/main_rel/bg_lig/fn_1_D8784.c:
-	.text       start:0x000D8784 end:0x000D8878
-
-rel/main_rel/bg_lig/fn_1_D8CA8.c:
-	.text       start:0x000D8CA8 end:0x000D8D08
-
-rel/main_rel/bg_lig/fn_1_D8D08.c:
-	.text       start:0x000D8D08 end:0x000D8D58
-
-rel/main_rel/bg_lig/fn_1_D8EEC.c:
-	.text       start:0x000D8EEC end:0x000D8FC4
+	.text       start:0x000D720C end:0x000D8FC4
 
 rel/main_rel/bg_san/fn_1_DA7B8.c:
 	.text       start:0x000DA7B8 end:0x000DA7E4
@@ -5032,9 +5014,6 @@ rel/main_rel/accessory/fn_1_128AAC.c:
 rel/main_rel/archive/fn_1_12C710.c:
 	.text       start:0x0012C710 end:0x0012C7B8 align:4
 
-rel/main_rel/bg_lig/fn_1_D7B7C.c:
-	.text       start:0x000D7B7C end:0x000D7C44 align:4
-
 rel/main_rel/_prolog/fn_1_3B34.c:
 	.text       start:0x00003B34 end:0x00003BB0 align:4
 
@@ -5602,9 +5581,6 @@ rel/main_rel/sel_static_disp/fn_1_143E7C.c:
 rel/main_rel/memcard/fn_1_BFCF8.c:
 	.text       start:0x000BFCF8 end:0x000BFE20 align:4
 
-rel/main_rel/bg_lig/fn_1_D8D58.c:
-	.text       start:0x000D8D58 end:0x000D8EEC align:4
-
 rel/main_rel/car/fn_1_84038.c:
 	.text       start:0x00084038 end:0x00084124 align:4
 
@@ -6138,9 +6114,6 @@ rel/main_rel/stcoli/fn_1_21950.c:
 rel/main_rel/stcoli/fn_1_29968.c:
 	.text       start:0x00029968 end:0x00029A0C align:4
 
-rel/main_rel/bg_lig/fn_1_D7C44.c:
-	.text       start:0x000D7C44 end:0x000D7EF4 align:4
-
 rel/main_rel/effect/fn_1_60C88.c:
 	.text       start:0x00060C88 end:0x00060D54 align:4
 
@@ -6161,9 +6134,6 @@ rel/main_rel/camera/fn_1_6BC0.c:
 
 rel/main_rel/stcoli/fn_1_2A500.c:
 	.text       start:0x0002A500 end:0x0002A638 align:4
-
-rel/main_rel/bg_lig/fn_1_D7A10.c:
-	.text       start:0x000D7A10 end:0x000D7B7C align:4
 
 rel/main_rel/game/fn_1_408E8.c:
 	.text       start:0x000408E8 end:0x00040B14 align:4
@@ -7200,9 +7170,6 @@ rel/main_rel/car/fn_1_850C4.c:
 rel/main_rel/sel_static_disp/fn_1_14FEAC.c:
 	.text       start:0x0014FEAC end:0x001502BC align:4
 
-rel/main_rel/bg_lig/fn_1_D8878.c:
-	.text       start:0x000D8878 end:0x000D8CA8 align:4
-
 rel/main_rel/sel_static_disp/fn_1_13D02C.c:
 	.text       start:0x0013D02C end:0x0013D460 align:4
 	.data       start:0x00041DF0 end:0x00041E50 align:8
@@ -7475,9 +7442,6 @@ rel/main_rel/bg_cas/fn_1_FF6B8.c:
 
 rel/main_rel/effect/fn_1_5F654.c:
 	.text       start:0x0005F654 end:0x0005F9B8 align:4
-
-rel/main_rel/bg_lig/fn_1_D83E4.c:
-	.text       start:0x000D83E4 end:0x000D8784 align:4
 
 rel/main_rel/live_camera/fn_1_12B88.c:
 	.text       start:0x00012B88 end:0x00012F78 align:4
@@ -8258,9 +8222,6 @@ rel/main_rel/stcoli/fn_1_2C97C.c:
 
 rel/main_rel/memcard/fn_1_C00EC.c:
 	.text       start:0x000C00EC end:0x000C023C align:4
-
-rel/main_rel/bg_lig/fn_1_D7758.c:
-	.text       start:0x000D7758 end:0x000D79E4 align:4
 
 rel/main_rel/bg_for/fn_1_DDF80.c:
 	.text       start:0x000DDF80 end:0x000DE180 align:4
@@ -14811,9 +14772,6 @@ rel/main_rel/accessory/fn_1_10976C.c:
 
 rel/main_rel/live_camera/fn_1_10AF0.c:
 	.text       start:0x00010AF0 end:0x0001138C align:4
-
-rel/main_rel/bg_lig/fn_1_D7EF4.c:
-	.text       start:0x000D7EF4 end:0x000D8388 align:4
 
 rel/main_rel/bg_for/fn_1_DEDC4.c:
 	.text       start:0x000DEDC4 end:0x000DF2A4 align:4
