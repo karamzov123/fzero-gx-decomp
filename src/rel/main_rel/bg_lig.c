@@ -631,47 +631,9 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime29(void) {
 #pragma section code_type ".text"
 #pragma pool_data on
 
-struct fn_1_D6C10_lbl_1_rodata_6360 {
-    u8 pad_0[0x28];
-    const f32 unk_28;
-    u8 pad_2C[0x4];
-    const f64 unk_30;
-    const f32 unk_38;
-    const f32 unk_3C;
-    const f32 unk_40;
-    const f32 unk_44;
-    const f32 unk_48;
-    u8 pad_4C[0x14];
-    const f64 unk_60;
-    u8 pad_68[0x18];
-    const f32 unk_80;
-    u8 pad_84[0x1C];
-    const f32 unk_A0;
-    u8 pad_A4[0x1C];
-    const f64 unk_C0;
-    u8 pad_C8[0x14];
-    u32 unk_DC;
-    u32 unk_E0;
-    u32 unk_E4;
-    const f32 unk_E8;
-    u8 pad_EC[0x4];
-    const f64 unk_F0;
-    const f64 unk_F8;
-    const f32 unk_100;
-    const f32 unk_104;
-    const f32 unk_108;
-    u8 pad_10C[0x4];
-    const f64 unk_110;
-    const f32 unk_118;
-    u8 pad_11C[0x4];
-    const f64 unk_120;
-    const f64 unk_128;
-};
-
 extern f32 lbl_8006D0B4(f32);
 extern s16 fn_1_58E3C(void *);
 extern s32 fn_1_58C4(void);
-extern const struct fn_1_D6C10_lbl_1_rodata_6360 lbl_1_rodata_6360;
 extern u32 lbl_801A66A0;
 extern u32 fn_1_584AC(void);
 extern s32 fn_1_66B8(void *, f32);
@@ -728,7 +690,6 @@ static inline f32 D6C10NearestImpl(f32 best, VecD6C10 *a, f32 *b) {
 #define D6C10Nearest(best, a, b) D6C10NearestImpl(best, a, b)
 
 void fn_1_D6C10(VecD6C10 *arg0, f32 arg1) {
-    const struct fn_1_D6C10_lbl_1_rodata_6360 *p_lbl_1_rodata_6360;
     u32 v0;
     f32 v1;
     u32 v2;
@@ -776,13 +737,11 @@ void fn_1_D6C10(VecD6C10 *arg0, f32 arg1) {
     f32 fzgx_pool_f32_1 = 10.0f;
     /* Spawn one particle near the closest viewer. */
     v0 = lbl_801A66A0;
-    p_lbl_1_rodata_6360 = (struct fn_1_D6C10_lbl_1_rodata_6360 *)&lbl_1_rodata_6360;
     v1 = (f32)(arg1);
-    v3 = (u32)(arg0);
     v8 = arg1;
     if (v0 % 20 == 0) {
     v1 = (f32)((f32)((20.0f) * arg1));
-    t0 = fn_1_66B8((void *)v3, v1);
+    t0 = fn_1_66B8(arg0, v1);
     v3 = t0;
     if ((s32)v3 != 0) {
     t1 = fn_1_58C4();
@@ -801,7 +760,7 @@ void fn_1_D6C10(VecD6C10 *arg0, f32 arg1) {
     if (v4.value > (800.0f)) return;
     {
     f64 v1;
-    memset(&loc_14, 0, 232);
+    memset(&loc_14, 0, sizeof(loc_14));
     {
     struct { f64 value; } product;
     v1 = (0.089999999999999997);
