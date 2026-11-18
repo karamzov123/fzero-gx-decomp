@@ -24,7 +24,8 @@ extern void *fn_1_548AC(s32 value);
 extern void fn_1_D8878(void);
 extern void fn_1_5489C(void *obj, void *arg);
 extern void fn_1_D83E4(Obj_1_data_2A7E0_At3C *obj, s32 index);
-extern void fn_1_D7A10(Obj_1_data_2A7E0_At3C *obj);
+struct LigSeg;
+extern void fn_1_D7A10(struct LigSeg *obj);
 extern void fn_1_D8D58(Obj_1_data_2A7E0_At3C *obj, Obj_1_data_2A7E0_At3C *arg);
 extern void fn_1_D9D8C(Obj_1_bss_7AD78 *obj, u32 arg, s32 index);
 extern void fn_1_DA3A0(void *state);
@@ -920,7 +921,7 @@ void fn_1_D720C(void) {
 extern s32 fn_1_58C4(void);
 extern void fn_1_9A508(void);
 extern f32 lbl_1_rodata_64A0[33];
-extern void fn_1_D79E4(Obj_1_data_2A7E0_At3C *);
+extern void fn_1_D79E4(void *);
 extern u8 fn_1_5300(void);
 extern void fn_1_77B80(u32);
 extern void fn_1_76BF8(void);
@@ -1064,7 +1065,7 @@ void fn_1_D74C4(void) {
         fn_1_627C(i);
     }
 
-    fn_1_D7A10(obj);
+    fn_1_D7A10((struct LigSeg *)obj);
     fn_1_D8D58(obj, arg);
     if (obj->unk_1C58 != 0) {
         fn_1_D9D8C(&lbl_1_bss_7AD78, obj->unk_1C58, 0);
@@ -1177,6 +1178,7 @@ void fn_1_D7724(Vec3Bits *dst, s16 index) {
 
 /* fzgx:begin fn_1_D7758 noprologue */
 #include "types.h"
+#include "rel/main_rel/globals.h"
 
 #pragma section code_type ".fzgxpool"
 static const u32 fzgx_pool_table1[4] = {0x00000000, 0x0280012C, 0x00000000, 0x00000001};  /* fzgx-allow: A1 retail pool bytes */
@@ -1209,10 +1211,6 @@ typedef struct {
     s16 unk_5C;
 } Rec;
 
-extern struct {
-    u8 pad_0[0x3C];
-    Rec *unk_3C;
-} lbl_1_data_2A7E0;
 extern u32 lbl_801A63C0;
 extern void lbl_8006D8D8(s32);
 extern void lbl_8006E1C0(Vec *, Vec *);
@@ -1317,7 +1315,7 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime8(void) {
 }
 #pragma section code_type ".text"
 
-typedef struct {
+typedef struct LigSeg {
 	u8 pad0[0x30];
 	f32 f30;
 	f32 f34;
@@ -1901,7 +1899,7 @@ extern void fn_1_103090(fn_1_D8CA8_LigEntry *entry);
 extern void fn_1_1030A4(fn_1_D8D08_LigEntry *entry);
 extern void fn_1_1030D4(fn_1_D8D58_LigEntry *entry, void *arg);
 extern void fn_1_103264(fn_1_D8EEC_LigEntry *entry, void *arg);
-extern void fn_1_D7A10(fn_1_D7A10_LigEntry *base);
+
 extern void fn_1_D8D58(LigObject *obj, void *arg);
 
 #endif  // GAME_MAIN_REL_BG_LIG_TYPES_H
