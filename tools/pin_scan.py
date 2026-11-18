@@ -29,6 +29,9 @@ UNITS = ROOT / "config/GFZE01/units.json"
 PY = ROOT / ".venv/bin/python"
 CLI = ROOT / "tools/fzgx.py"
 
+sys.path.insert(0, str(ROOT / "tools"))
+from fzgx.project import dump_units  # noqa: E402  (keeps matching_for lists on one line)
+
 
 def candidates_for(module):
     sys.path.insert(0, str(ROOT / "tools"))
@@ -59,7 +62,7 @@ def set_pin(symbol, mw, cf):
         if symbol in e["symbols"]:
             e["mw_version"] = mw
             e["extra_cflags"] = [cf] if cf else []
-    UNITS.write_text(json.dumps(data, indent=2))
+    UNITS.write_text(dump_units(data))
 
 
 def score(symbol, body, agent="pin-scan"):
@@ -160,7 +163,7 @@ def main():
                 if sym in e["symbols"]:
                     e["mw_version"] = mw
                     e["extra_cflags"] = [cf] if cf else []
-        UNITS.write_text(json.dumps(data, indent=2))
+        UNITS.write_text(dump_units(data))
         print(f"\npinned {len(winners)} unit(s): " + ", ".join(s for s, _ in winners))
         print("RUN THE GATE: ninja build/GFZE01/ok && sha1sum -c config/GFZE01/build.sha1 && lint && tests")
     return 0

@@ -15,6 +15,8 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / 'tools'))
+from fzgx.project import dump_units  # noqa: E402  (keeps matching_for lists on one line)
 
 
 def main():
@@ -76,7 +78,7 @@ def main():
     cfg.write_text(text)
     for path, body in edits.items():
         path.write_text(body)
-    (ROOT / 'config/GFZE01/units.json').write_text(json.dumps(units, indent=2) + '\n')
+    (ROOT / 'config/GFZE01/units.json').write_text(dump_units(units))
 
 
 if __name__ == '__main__':

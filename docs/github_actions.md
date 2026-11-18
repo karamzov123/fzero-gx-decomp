@@ -13,6 +13,11 @@ container image that does. This follows dtk-template's pattern exactly.
    `orig/GFZE01/sys/main.dol`, `orig/GFZE01/files/fze.*.rel` and
    `orig/GFZE01/files/enemy_line/main.rel` (the derived, decrypted REL; `line__.bin`
    itself is not needed by the build).
+   The regions (`docs/REGIONS.md`) add the same three kinds of file under `orig/GFZP01/`
+   (`fzp.*.rel`) and `orig/GFZJ01/` (`fz.*.rel`), each from its Redump disc and run through
+   `prepare_orig.py --version <VERSION>`: PAL disc sha1 `7db5630d62ffcc92e91b4112e73e3675a6cea401`,
+   NTSC-J disc sha1 `937e94b572b4ec83fa5016239edd3976c8862887`. Every file must match
+   `config/<VERSION>/build.sha1`. `karamzov123/fzgx-build` carries all three versions.
 3. Let its action build the image, then in the package settings under
    "Manage Actions access" grant this repository (`rayanht/fzgx`) the **Read** role.
 
