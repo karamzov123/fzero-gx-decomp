@@ -38,5 +38,61 @@
       "sha256": "054d43c0677f400e0bbf621cb2b10855c7ee8705e9f80ea6ec51ed516d023b51",
       "evidence": "Existing original-SDK mftb leaf with no compiler prologue. units.json compiles this CodeWarrior asm function from C; classify its source as original assembly, not C-authored progress. No body or compiler setting was changed."
     }
+  ],
+  "src/dol/PPCMffpscr.c": [
+    {
+      "symbol": "PPCMffpscr",
+      "form": "inline-block",
+      "sha256": "203ac630eedca6c467e372152c9ab24b74fddd8ea6cae6fc3f0be83089f53587",
+      "evidence": "Original Dolphin SDK base/PPCArch.c mixed C + inline asm (mffs f31; stfd f31, m.f); retail 0x8000A060..0x8000A080."
+    }
+  ],
+  "src/dol/PPCMtfpscr.c": [
+    {
+      "symbol": "PPCMtfpscr",
+      "form": "inline-block",
+      "sha256": "4eedda9defb12a80d3662d7ccf923047a6ef658bae0a5d7ff4a4a8f08bd63945",
+      "evidence": "Original Dolphin SDK base/PPCArch.c mixed C + inline asm (mtfsf 255, f31); retail 0x8000A080..0x8000A0A8."
+    }
+  ],
+  "src/dol/fn_80007664.c": [
+    {
+      "symbol": "fn_80007664",
+      "form": "inline-block",
+      "sha256": "ab19c73bfe74c656c19c942fe4f3aac286b8ed0596ba0e61726214ee556cf130",
+      "evidence": "Original VM PTE update routine: C bitfield updates wrapping TLB/cache invalidation inline asm (sync/tlbie/tlbsync/dcbf); retail 0x80007664..0x80007700."
+    },
+    {
+      "symbol": "fn_80007664",
+      "form": "inline-block",
+      "sha256": "bcaedfad897acb3115d46aa94a607772834e72f5c56fae5560a1fbc0eb19f7ac",
+      "evidence": "Original VM PTE update routine: C bitfield updates wrapping TLB/cache invalidation inline asm (sync/tlbie/tlbsync/dcbf); retail 0x80007664..0x80007700."
+    }
+  ],
+  "src/dol/fn_800071B8.c": [
+    {
+      "symbol": "fn_800071B8",
+      "form": "inline-block",
+      "sha256": "c7e14763fc4605d6e010276348ccf57d419e8772639cdca25c81d17ecba8fd92",
+      "evidence": "Original VM initialization routine: C arena/page-table setup wrapping privileged MMU inline asm (mfmsr/mtmsr/mtsdr1/mtsrin/tlbsync/mfdbatu/mtdbatu/mtdbatl); retail 0x800071B8..0x8000740C."
+    },
+    {
+      "symbol": "fn_800071B8",
+      "form": "inline-block",
+      "sha256": "46667a74b1b49ce1261b51fbd3bf7024b49672d65fa2186ca43f0c298d9daf06",
+      "evidence": "Original VM initialization routine: C arena/page-table setup wrapping privileged MMU inline asm (mfmsr/mtmsr/mtsdr1/mtsrin/tlbsync/mfdbatu/mtdbatu/mtdbatl); retail 0x800071B8..0x8000740C."
+    },
+    {
+      "symbol": "fn_800071B8",
+      "form": "inline-block",
+      "sha256": "83c9b66587f30026943f97626ac40918feeff22f27cfdf8f30c165fc9c92566d",
+      "evidence": "Original VM initialization routine: C arena/page-table setup wrapping privileged MMU inline asm (mfmsr/mtmsr/mtsdr1/mtsrin/tlbsync/mfdbatu/mtdbatu/mtdbatl); retail 0x800071B8..0x8000740C."
+    },
+    {
+      "symbol": "fn_800071B8",
+      "form": "inline-block",
+      "sha256": "1d372896ee8a93d8cf2559d0531781b8c5106de2e7c2da11cfa237d043b0041f",
+      "evidence": "Original VM initialization routine: C arena/page-table setup wrapping privileged MMU inline asm (mfmsr/mtmsr/mtsdr1/mtsrin/tlbsync/mfdbatu/mtdbatu/mtdbatl); retail 0x800071B8..0x8000740C."
+    }
   ]
 }

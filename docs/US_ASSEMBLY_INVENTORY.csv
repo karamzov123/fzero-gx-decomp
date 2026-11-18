@@ -30,13 +30,13 @@ main,OSSaveFPUContext,8,standalone-assembly,evidenced-assembly,docs/findings/gfz
 main,OSSetCurrentContext,92,standalone-assembly,evidenced-assembly,docs/findings/gfze01-assembly-origin-audit.md#oscontext-fpu
 main,OSSwitchFPUContext,132,standalone-assembly,evidenced-assembly,docs/findings/gfze01-assembly-origin-audit.md#oscontext-fpu
 main,PPCHalt,20,standalone-assembly,evidenced-assembly,docs/findings/gfze01-assembly-origin-audit.md#ppcarch-leaves
-main,PPCMffpscr,32,standalone-assembly,mixed-review,docs/findings/gfze01-assembly-origin-audit.md#main-mixed-review
+main,PPCMffpscr,32,mixed,closed,config/original_assembly.json
 main,PPCMfhid0,8,standalone-assembly,evidenced-assembly,docs/findings/gfze01-assembly-origin-audit.md#ppcarch-leaves
 main,PPCMfhid2,8,standalone-assembly,evidenced-assembly,docs/findings/gfze01-assembly-origin-audit.md#ppcarch-leaves
 main,PPCMfl2cr,8,standalone-assembly,evidenced-assembly,docs/findings/gfze01-assembly-origin-audit.md#ppcarch-leaves
 main,PPCMfmsr,8,standalone-assembly,evidenced-assembly,docs/findings/gfze01-assembly-origin-audit.md#ppcarch-leaves
 main,PPCMtdec,8,standalone-assembly,evidenced-assembly,docs/findings/gfze01-assembly-origin-audit.md#ppcarch-leaves
-main,PPCMtfpscr,40,standalone-assembly,mixed-review,docs/findings/gfze01-assembly-origin-audit.md#main-mixed-review
+main,PPCMtfpscr,40,mixed,closed,config/original_assembly.json
 main,PPCMthid2,8,standalone-assembly,evidenced-assembly,docs/findings/gfze01-assembly-origin-audit.md#ppcarch-leaves
 main,PPCMtl2cr,8,standalone-assembly,evidenced-assembly,docs/findings/gfze01-assembly-origin-audit.md#ppcarch-leaves
 main,PPCMtmmcr0,8,standalone-assembly,evidenced-assembly,docs/findings/gfze01-assembly-origin-audit.md#ppcarch-leaves
@@ -90,9 +90,9 @@ main,__start,348,standalone-assembly,evidenced-assembly,docs/findings/gfze01-ass
 main,approx_rsqrt,44,standalone-assembly,evidenced-assembly,docs/findings/gfze01-assembly-origin-audit.md#av-mathutil
 main,float_return_values,68,standalone-assembly,evidenced-assembly,docs/findings/gfze01-assembly-origin-audit.md#av-mathutil
 main,fn_80005E0C,208,standalone-assembly,evidenced-assembly,docs/findings/gfze01-assembly-origin-audit.md#ps-timing
-main,fn_800071B8,596,standalone-assembly,mixed-review,docs/findings/gfze01-assembly-origin-audit.md#main-mixed-review
+main,fn_800071B8,596,mixed,closed,config/original_assembly.json
 main,fn_80007654,16,standalone-assembly,evidenced-assembly,docs/findings/gfze01-assembly-origin-audit.md#os-boot-exc-mmu
-main,fn_80007664,156,standalone-assembly,mixed-review,docs/findings/gfze01-assembly-origin-audit.md#main-mixed-review
+main,fn_80007664,156,mixed,closed,config/original_assembly.json
 main,fn_80007700,48,standalone-assembly,evidenced-assembly,docs/findings/gfze01-assembly-origin-audit.md#os-boot-exc-mmu
 main,fn_800079A0,36,standalone-assembly,evidenced-assembly,docs/findings/gfze01-assembly-origin-audit.md#os-boot-exc-mmu
 main,fn_80009FD4,8,standalone-assembly,evidenced-assembly,docs/findings/gfze01-assembly-origin-audit.md#ppcarch-leaves
