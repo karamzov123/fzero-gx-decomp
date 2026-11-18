@@ -1180,6 +1180,7 @@ void fn_1_D7724(Vec3Bits *dst, s16 index) {
 
 /* fzgx:begin fn_1_D7758 noprologue */
 #include "types.h"
+#include "game/vec3.h"
 #include "rel/main_rel/globals.h"
 
 #pragma section code_type ".fzgxpool"
@@ -1191,11 +1192,7 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
 }
 #pragma section code_type ".text"
 
-typedef struct {
-    f32 x;
-    f32 y;
-    f32 z;
-} Vec;
+typedef Vec3 Vec;
 
 /* one of the 20 records of 0x30 bytes from lbl_1_data_2A7E0.unk_3C + 0x30 (fn_1_D79E4 clears them) */
 typedef struct {
@@ -1623,7 +1620,7 @@ extern void fn_1_A714C(f32 *, f32 *, f32 *, f32 *);
 extern f32 fn_1_A71AC(void);
 /* SMB1 mathutil_mtxA_tf_vec / mathutil_vec_normalize_len (DOL mathutil asm) */
 extern void lbl_8006E1C0(Vec3 *src, Vec3 *dst);
-extern void lbl_8006D668(Vec3 *v);
+extern f32 lbl_8006D668(void *);
 
 #pragma section code_type ".fzgxpool"
 static const u32 fzgx_pool_table1[4] = {0x00000000, 0x0280012C, 0x00000000, 0x00000001};  /* fzgx-allow: A1 retail pool bytes */
@@ -2019,7 +2016,7 @@ extern u32 fn_1_1FB80(LigVec *, s32);
 extern s32 fn_1_66B8(void *, f32);
 extern void fn_1_D7EF4(void *, u32);
 extern f32 lbl_8006D0B4(f32);
-extern void lbl_8006D668(LigVec *);
+extern f32 lbl_8006D668(void *);
 
 // Distance between an entry's position and a probe point.
 static inline f32 lig_dist(fn_1_D7A10_LigEntry *e, LigVec *v) {
