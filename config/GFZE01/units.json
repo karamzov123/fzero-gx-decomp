@@ -55951,268 +55951,33 @@
     "module": "main_rel",
     "source": "rel/main_rel/burner/fn_1_981C4.c",
     "symbols": [
-      "fn_1_981C4"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_98230.c",
-    "symbols": [
-      "fn_1_98230"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_982C4.c",
-    "symbols": [
-      "fn_1_982C4"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_9835C.c",
-    "symbols": [
-      "fn_1_9835C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_983CC.c",
-    "symbols": [
-      "fn_1_983CC"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_984F0.c",
-    "symbols": [
-      "fn_1_984F0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_98590.c",
-    "symbols": [
-      "fn_1_98590"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_985EC.c",
-    "symbols": [
-      "fn_1_985EC"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_98634.c",
-    "symbols": [
-      "fn_1_98634"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_98640.c",
-    "symbols": [
-      "fn_1_98640"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_986A4.c",
-    "symbols": [
-      "fn_1_986A4"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_987D0.c",
-    "symbols": [
-      "fn_1_987D0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_98804.c",
-    "symbols": [
-      "fn_1_98804"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_98840.c",
-    "symbols": [
-      "fn_1_98840"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_9885C.c",
-    "symbols": [
-      "fn_1_9885C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_988D8.c",
-    "symbols": [
-      "fn_1_988D8"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_988DC.c",
-    "symbols": [
-      "fn_1_988DC"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c",
-    "pool": {
-      "...rodata.0": "lbl_1_rodata_4100",
-      "@6": "lbl_1_rodata_4104"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_98E18.c",
-    "symbols": [
-      "fn_1_98E18"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c",
-    "pool": {
-      "...rodata.0": "lbl_1_rodata_4100"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_98F28.c",
-    "symbols": [
-      "fn_1_98F28"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c",
-    "pool": {
-      "...rodata.0": "lbl_1_rodata_4100",
-      "@56": "lbl_1_rodata_4104"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_9A0A4.c",
-    "symbols": [
-      "fn_1_9A0A4"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_9A0A8.c",
-    "symbols": [
+      "fn_1_981C4",
+      "fn_1_98230",
+      "fn_1_982C4",
+      "fn_1_9835C",
+      "fn_1_983CC",
+      "fn_1_984F0",
+      "fn_1_98590",
+      "fn_1_985EC",
+      "fn_1_98634",
+      "fn_1_98640",
+      "fn_1_986A4",
+      "fn_1_987D0",
+      "fn_1_98804",
+      "fn_1_98840",
+      "fn_1_9885C",
+      "fn_1_988D8",
+      "fn_1_988DC",
+      "fn_1_98E18",
+      "fn_1_98F28",
+      "fn_1_9A0A4",
       "fn_1_9A0A8"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
+    "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c",
-    "pool": {
-      "...rodata.0": "lbl_1_rodata_4100",
-      "@6": "lbl_1_rodata_4104"
-    }
+    "tu": "rel/main_rel/burner.c"
   },
   {
     "module": "main_rel",
@@ -64010,32 +63775,6 @@
     "source": "rel/main_rel/data/lbl_1_bss_6E990.c",
     "symbols": [
       "lbl_1_bss_6E990"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/data/lbl_1_bss_6EA00.c",
-    "symbols": [
-      "lbl_1_bss_6EA00",
-      "lbl_1_bss_6EA04"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/data/lbl_1_bss_6EA08.c",
-    "symbols": [
-      "lbl_1_bss_6EA08",
-      "lbl_1_bss_6EA0C"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -78985,18 +78724,6 @@
     "source": "rel/main_rel/data/lbl_1_data_27D90.c",
     "symbols": [
       "lbl_1_data_27D90"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/data/lbl_1_data_27DE0.c",
-    "symbols": [
-      "lbl_1_data_27DE0"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -103992,9 +103719,18 @@
       "lbl_1_rodata_3F98",
       "lbl_1_rodata_3F9C",
       "lbl_1_rodata_3FA0",
-      "lbl_1_rodata_4010",
-      "lbl_1_rodata_4100",
-      "lbl_1_rodata_4104",
+      "lbl_1_rodata_4010"
+    ],
+    "status": "matching",
+    "matching_for": ["GFZE01"],
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/data/lbl_1_rodata_41F0.c",
+    "symbols": [
       "lbl_1_rodata_41F0",
       "lbl_1_rodata_41FC",
       "lbl_1_rodata_4200",
