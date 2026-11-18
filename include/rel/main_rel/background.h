@@ -5,6 +5,19 @@
 #include "rel/main_rel/globals.h"
 
 typedef struct {
+    f32 width;
+    f32 height;
+    f32 mtx[3][4];
+    u32 flags;
+    union {
+        u8 bytes[4];
+        u32 word;
+    } color;
+} BackgroundQuad;
+
+void fn_1_9EDE8(BackgroundQuad *quad);
+
+typedef struct {
     s32 type; /* 0: constant, 1: linear, otherwise Hermite */
     f32 time;
     f32 value;

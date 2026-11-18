@@ -21,7 +21,6 @@ extern void lbl_8006DCA4(void);
 extern s32 fn_1_54E34(void *obj, f32 value);
 extern void *fn_1_54448(s32 value);
 extern void *fn_1_548AC(s32 value);
-extern void fn_1_D8878(void);
 extern void fn_1_5489C(void *obj, void *arg);
 struct LigLightObj;
 extern void fn_1_D83E4(struct LigLightObj *obj, u32 index);
@@ -1023,7 +1022,6 @@ extern void lbl_8006DCA4(void);
 extern s32 fn_1_54E34(void *obj, f32 value);
 extern void *fn_1_54448(s32 value);
 extern void *fn_1_548AC(s32 value);
-extern void fn_1_D8878(void);
 extern void fn_1_5489C(void *obj, void *arg);
 
 extern s32 fn_1_58C4(void);
@@ -1467,16 +1465,7 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime10(void) {
 }
 #pragma section code_type ".text"
 
-typedef struct {
-	f32 unk_0;
-	f32 unk_4;
-	u8 pad_8[0x30];
-	u32 unk_38;
-	u8 unk_3c;
-	u8 unk_3d;
-	u8 unk_3e;
-	u8 unk_3f;
-} LigObj;
+#include "rel/main_rel/background.h"
 
 typedef struct {
 	u8 pad_0[0x18];
@@ -1498,7 +1487,6 @@ extern void lbl_8006E1B0(void *a, void *b);
 extern void lbl_8006D7DC(void *a);
 extern void lbl_8006DB74(void *a);
 extern void mathutil_mtxA_rotate_z(s16 angle);
-extern void fn_1_9EDE8(LigObj *);
 extern void fn_80074788(u32);
 extern void fn_80072864(u32);
 extern void fn_80073778(void *, s32);
@@ -1515,7 +1503,7 @@ extern void fn_80072E20(s32, s32, s32, s32, u8, s32);
 extern void fn_80073678(u32);
 extern void fn_80074660(u32);
 extern void fn_80074918(u8, s32, u8);
-extern u32 fn_800720B0(u32);
+extern void fn_800720B0(s32);
 extern void fn_800728A8(s32, s32, s32, s32);
 extern void lbl_8006D758(void);
 
@@ -1529,7 +1517,7 @@ static inline u8 scale_to_byte(f32 value, f32 scale) {
 
 static inline u32 fn_1_D7C44_array_read(s32 index, u32 *array) { return array[index]; }
 void fn_1_D7C44(LigEvt *arg0) {
-	LigObj obj;
+	BackgroundQuad obj;
 	u32 stackbuf[3];
 	LigSrc *src;
 	u32 *unk;
@@ -1542,14 +1530,14 @@ void fn_1_D7C44(LigEvt *arg0) {
 	lbl_8006D7DC(stackbuf);
 	mathutil_mtxA_rotate_z(src->unk_28);
 	memset(&obj, 0, 0x40);
-	lbl_8006DB74((u8 *)&obj + 8);
-	obj.unk_0 = 0.70710677f * src->unk_24;
-	obj.unk_3c = scale_to_byte((f32)(u8)src->unk_18, 1.0f);
-	obj.unk_3d = scale_to_byte((f32)(u8)src->unk_1c, 1.0f);
-	obj.unk_3e = scale_to_byte((f32)(u8)src->unk_20, 1.0f);
-	obj.unk_3f = 0xFF;
-	obj.unk_38 |= 2;
-	obj.unk_4 = 2.0 * obj.unk_0;
+	lbl_8006DB74(obj.mtx);
+	obj.width = 0.70710677f * src->unk_24;
+	obj.color.bytes[0] = scale_to_byte((f32)(u8)src->unk_18, 1.0f);
+	obj.color.bytes[1] = scale_to_byte((f32)(u8)src->unk_1c, 1.0f);
+	obj.color.bytes[2] = scale_to_byte((f32)(u8)src->unk_20, 1.0f);
+	obj.color.bytes[3] = 0xFF;
+	obj.flags |= 2;
+	obj.height = 2.0 * obj.width;
 	handle = fn_1_D7C44_array_read(9, unk);
 	fn_80074788(0);
 	fn_80072864(1);
@@ -2013,7 +2001,9 @@ void fn_1_D83E4(LigLightObj *obj, u32 index) {
 /* fzgx:end fn_1_D83E4 */
 
 /* fzgx:begin fn_1_D8784 */
-typedef void (*LigCallback)(void);
+struct LigSource;
+extern void fn_1_D8878(struct LigSource *);
+typedef void (*LigCallback)(struct LigSource *);
 
 typedef struct {
     u32 unk_00;
@@ -2069,6 +2059,7 @@ void fn_1_D8784(fn_1_D8784_LigObject *obj) {
 #include "types.h"
 #include "game/vec3.h"
 #include "rel/main_rel/globals.h"
+#include "rel/main_rel/background.h"
 
 #pragma section code_type ".fzgxpool"
 static const u32 fzgx_pool_table1[4] = {0x00000000, 0x0280012C, 0x00000000, 0x00000001};  /* fzgx-allow: A1 retail pool bytes */
@@ -2154,9 +2145,7 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime14(void) {
 
 typedef Vec3 LigVec;
 
-typedef f32 LigMtx[3][4];
-
-typedef struct {
+typedef struct LigSource {
     LigVec pos;      /* 0x00 */
     u8 pad_C[0xC];
     f32 r;           /* 0x18 */
@@ -2173,14 +2162,6 @@ typedef struct {
     LigSource *source;
 } LigObject;
 
-typedef struct {
-    f32 width;       /* 0x00 */
-    f32 height;      /* 0x04 */
-    LigMtx mtx;      /* 0x08 */
-    u32 flags;       /* 0x38 */
-    u8 color[4];     /* 0x3C */
-} LigPacket;
-
 extern f32 lbl_8006D0B4(f32);
 extern void lbl_8006DCA4(void);
 extern void lbl_8006E1B0(void *src, void *dst);
@@ -2190,24 +2171,23 @@ extern s32 fn_1_58C4(void);
 extern void fn_1_681C(u8 index, void *out);
 extern void lbl_8006DB74(void *matrix);
 extern void lbl_8006D758(void);
-extern void fn_1_9EDE8(LigPacket *);
 extern void *memset(void *, int, u32);
-extern void fn_80074788(s32);
-extern void fn_80072864(s32);
+extern void fn_80074788(u32);
+extern void fn_80072864(u32);
 extern void fn_80073778(void *, s32);
-extern void fn_800745A4(s32, s32, s32, s32, s32, s32);
-extern void fn_800734A8(s32, s32, s32, s32);
+extern void fn_800745A4(u32, s32, s32, u32, u32, u32);
+extern void fn_800734A8(u32, s32, s32, s32);
 extern void fn_80072AB0(s32, s32, s32);
 extern void fn_800735C8(s32, s32);
 extern void fn_80073620(s32, s32);
 extern void fn_80073C6C(s32);
 extern void fn_80072C24(s32, s32, s32, s32, s32);
-extern void fn_80072D64(s32, s32, s32, s32, s32, s32);
+extern void fn_80072D64(s32, s32, s32, s32, u8, s32);
 extern void fn_80072CC4(s32, s32, s32, s32, s32);
-extern void fn_80072E20(s32, s32, s32, s32, s32, s32);
-extern void fn_80073678(s32);
-extern void fn_80074660(s32);
-extern void fn_80074918(s32, s32, s32);
+extern void fn_80072E20(s32, s32, s32, s32, u8, s32);
+extern void fn_80073678(u32);
+extern void fn_80074660(u32);
+extern void fn_80074918(u8, s32, u8);
 extern void fn_800720B0(s32);
 extern void fn_800728A8(s32, s32, s32, s32);
 
@@ -2250,7 +2230,7 @@ static inline f32 lig_source_dist(LigVec *a, LigVec *b) {
 
 /* src arrives as the owning object; its light source entry sits at +8 */
 void fn_1_D8878(LigSource *src) {
-    LigPacket packet;
+    BackgroundQuad packet;
     LigVec tmp;
     LigVec cam;
     void *scene;
@@ -2301,10 +2281,10 @@ void fn_1_D8878(LigSource *src) {
     scale = LIG_CLAMP01(dist);
     bright = env->unk_6C0;
     packet.width = 0.70710677f * size;
-    packet.color[0] = (u8)(bright * ((f32)(u8)src->r * scale));
-    packet.color[1] = (u8)(bright * ((f32)(u8)src->g * scale));
-    packet.color[2] = (u8)(bright * ((f32)(u8)src->b * scale));
-    packet.color[3] = 0xFF;
+    packet.color.bytes[0] = (u8)(bright * ((f32)(u8)src->r * scale));
+    packet.color.bytes[1] = (u8)(bright * ((f32)(u8)src->g * scale));
+    packet.color.bytes[2] = (u8)(bright * ((f32)(u8)src->b * scale));
+    packet.color.bytes[3] = 0xFF;
 
     if (scale * bright < 0.1f) {
         return;

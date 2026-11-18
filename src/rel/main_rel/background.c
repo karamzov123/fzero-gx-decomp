@@ -1007,47 +1007,38 @@ typedef struct {
     f32 z;
 } Vec3;
 
-typedef struct {
-    u8 pad_00[0x14];
-    f32 unk_14;
-    u8 pad_18[0x0C];
-    f32 unk_24;
-    u8 pad_28[0x0C];
-    f32 unk_34;
-    u32 unk_38;
-    u32 unk_3c;
-} Obj_1_9EDE8;
+#include "rel/main_rel/background.h"
 
 /* fzgx-allow: A1 GX FIFO write port; retail materialises it as lis 0xcc01/stfs -0x8000 */
 #define FIFO(v) (*(volatile f32 *)(GX_FIFO_BASE + 0x0) = (v)) /* Hardware access must remain ordered. */
 
-void fn_1_9EDE8(Obj_1_9EDE8 *arg0) {
+void fn_1_9EDE8(BackgroundQuad *arg0) {
     Vec3 pos;
     u32 z;
     Vec3 vtx[4];
     f32 radius;
     struct { f32 value; } neg;
 
-    pos.x = arg0->unk_14;
-    pos.y = arg0->unk_24;
-    pos.z = arg0->unk_34;
-    if (arg0->unk_38 & 2) {
-        radius = *(f32 *)((u8 *)arg0 + 4);
+    pos.x = arg0->mtx[0][3];
+    pos.y = arg0->mtx[1][3];
+    pos.z = arg0->mtx[2][3];
+    if (arg0->flags & 2) {
+        radius = arg0->height;
     } else {
-        radius = *(f32 *)arg0;
+        radius = arg0->width;
     }
-    if (!(arg0->unk_38 & 4) && fn_1_54E34(&pos, radius) == 0) {
-        arg0->unk_38 |= 1;
+    if (!(arg0->flags & 4) && fn_1_54E34(&pos, radius) == 0) {
+        arg0->flags |= 1;
         return;
     }
-    arg0->unk_38 &= ~1;
+    arg0->flags &= ~1;
     fn_800724C8();
     fn_8007245C(0x2200);
     lbl_8006DAEC();
     lbl_8006D758();
     GXLoadPosMtxImm(lbl_801A6D00, 0);
     lbl_8006DB30();
-    z = arg0->unk_3c;
+    z = arg0->color.word;
     fn_800736C0(0, &z);
     fn_8003462C(0x90, 0, 8);
     FIFO(lbl_1_rodata_42D0);
