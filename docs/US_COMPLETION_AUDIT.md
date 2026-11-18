@@ -29,7 +29,7 @@ The device census found 104 explicit warning locations (61 attributed functions,
 | Baseline recorded | `main`: five original-assembly and one mixed function | Maintain the scope and evidence in [the original assembly manifest](../config/original_assembly.json). Do not count these as missing C by default. |
 | Open | Marked devices and literal-pool primers | Start with an explicit warning or a small owner group with shared evidence. Remove a device only when retail code and relocations survive; record failed hypotheses rather than relabeling a workaround. Prioritize real literal/data ownership over mechanical primer removal. |
 | Open | Unmarked compiler-device review | Triage census signals by subsystem, starting with shared helpers and directives that affect multiple functions. Confirm intent and codegen before classifying them. |
-| Open | Native TU and data ownership | Validate split boundaries, extents, typed definitions, and relocation targets. Track this separately from C coverage. See [TU collapse](TU_COLLAPSE.md). |
+| In progress | Native TU and data ownership | [TU collapse pilot](TU_COLLAPSE.md#next-batch-unify-declarations-before-moving-storage): `bg_lig` declaration cleanup first, then whole-file scoring and native pool placement. `bg_tow` is the landed 16-function control. Track this separately from C coverage. |
 
 ## Refreshing and editing the audit
 

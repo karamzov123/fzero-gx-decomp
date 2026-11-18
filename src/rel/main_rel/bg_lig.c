@@ -30,7 +30,7 @@ extern void fn_1_D9D8C(Obj_1_bss_7AD78 *obj, u32 arg, s32 index);
 extern void fn_1_DA3A0(Obj_1_bss_7AD78 *obj);
 extern void fn_1_E87FC(void);
 extern void OSPanic(const char *file, int line, const char *msg, ...);
-extern struct fn_1_D66F8_lbl_801A66A0 lbl_801A66A0;
+extern u32 lbl_801A66A0;
 extern u32 lbl_1_rodata_6358;
 extern void fn_1_4404(void);
 extern u32 fn_1_DA6A8(void *, u32);
@@ -45,7 +45,6 @@ extern void fn_1_72648(void);
 #include "sdk_addresses.h"
 
 extern void OSPanic(const char *file, int line, const char *msg, ...);
-extern void fn_80008BA8(void *dst, const void *src, int size);
 extern u32 lbl_801A66A0;
 extern u32 lbl_801A63C0;
 extern u32 lbl_801A66C8;
@@ -376,16 +375,12 @@ struct fn_1_D66F8_Arg1 {
 struct fn_1_D66F8_Arg2 {
     u8 unk_0;
 };
-struct fn_1_D66F8_lbl_801A66A0 {
-    u32 unk_0;
-};
-
 void fn_1_D66F8(u8 arg0, u8 *arg1, s8 *arg2) {
     u32 sp8;
 
     sp8 = *(u32 *)((u8 *)(&lbl_1_rodata_6358) + 0);
     (*(u8 *)((u8 *)(arg1) + 0)) = *(u8 *)((u8 *)(((u8 *)(&sp8) + arg0)) + 0);
-    (*(s8 *)((u8 *)(arg2) + 0)) = ((u32) lbl_801A66A0.unk_0 / (u32) ((arg0 + 1) * 0x1E)) & 3;
+    (*(s8 *)((u8 *)(arg2) + 0)) = (lbl_801A66A0 / (u32) ((arg0 + 1) * 0x1E)) & 3;
 }
 /* fzgx:end fn_1_D66F8 */
 
@@ -635,9 +630,6 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime29(void) {
 #pragma section code_type ".text"
 #pragma pool_data on
 
-struct fn_1_D6C10_lbl_801A66A0 {
-    u32 unk_0;
-};
 struct fn_1_D6C10_lbl_1_rodata_6360 {
     u8 pad_0[0x28];
     const f32 unk_28;
@@ -679,9 +671,9 @@ extern f32 lbl_8006D0B4(f32);
 extern s16 fn_1_58E3C(void *);
 extern s32 fn_1_58C4(void);
 extern const struct fn_1_D6C10_lbl_1_rodata_6360 lbl_1_rodata_6360;
-extern struct fn_1_D6C10_lbl_801A66A0 lbl_801A66A0;
+extern u32 lbl_801A66A0;
 extern u32 fn_1_584AC(void);
-extern u32 fn_1_66B8(void *, f32);
+extern s32 fn_1_66B8(void *, f32);
 
 extern void * memset(void *, int, u32);
 extern void fn_1_681C(u32, u32 *);
@@ -782,7 +774,7 @@ void fn_1_D6C10(VecD6C10 *arg0, f32 arg1) {
     f32 fzgx_pool_f32_0 = 0.0199999996f;
     f32 fzgx_pool_f32_1 = 10.0f;
     /* Spawn one particle near the closest viewer. */
-    v0 = lbl_801A66A0.unk_0;
+    v0 = lbl_801A66A0;
     p_lbl_1_rodata_6360 = (struct fn_1_D6C10_lbl_1_rodata_6360 *)&lbl_1_rodata_6360;
     v1 = (f32)(arg1);
     v3 = (u32)(arg0);
@@ -1874,10 +1866,6 @@ typedef struct {
     fn_1_D8EEC_LigEntry unk_6d8[1];
 } fn_1_D8EEC_LigObject;
 
-struct fn_1_D66F8_lbl_801A66A0 {
-    u32 unk_0;
-};
-
 typedef struct {
     u8 pad_000[0x2c];
     f32 x;
@@ -1911,7 +1899,6 @@ extern void fn_1_D8EEC(fn_1_D8EEC_LigObject *obj, void *arg);
 extern void *fn_1_5448C(fn_1_D7B7C_LigEntry *entry);
 extern void fn_1_103090(fn_1_D8CA8_LigEntry *entry);
 extern void fn_1_1030A4(fn_1_D8D08_LigEntry *entry);
-extern struct fn_1_D66F8_lbl_801A66A0 lbl_801A66A0;
 extern void fn_1_1030D4(fn_1_D8D58_LigEntry *entry, void *arg);
 extern void fn_1_103264(fn_1_D8EEC_LigEntry *entry, void *arg);
 extern void fn_1_D7A10(fn_1_D7A10_LigEntry *base);
