@@ -23,7 +23,8 @@ extern void *fn_1_54448(s32 value);
 extern void *fn_1_548AC(s32 value);
 extern void fn_1_D8878(void);
 extern void fn_1_5489C(void *obj, void *arg);
-extern void fn_1_D83E4(Obj_1_data_2A7E0_At3C *obj, s32 index);
+struct LigLightObj;
+extern void fn_1_D83E4(struct LigLightObj *obj, u32 index);
 struct LigSeg;
 extern void fn_1_D7A10(struct LigSeg *obj);
 
@@ -1061,7 +1062,7 @@ void fn_1_D74C4(void) {
     count = fn_1_58C4();
     for (i = 0; i < count; i++) {
         fn_1_5948(i);
-        fn_1_D83E4(obj, i);
+        fn_1_D83E4((struct LigLightObj *)obj, (u32)i);
         fn_1_627C(i);
     }
 
@@ -1496,7 +1497,7 @@ extern void lbl_8006DCA4(void);
 extern void lbl_8006E1B0(void *a, void *b);
 extern void lbl_8006D7DC(void *a);
 extern void lbl_8006DB74(void *a);
-extern void mathutil_mtxA_rotate_z(u32 a);
+extern void mathutil_mtxA_rotate_z(s16 angle);
 extern void fn_1_9EDE8(LigObj *);
 extern void fn_80074788(u32);
 extern void fn_80072864(u32);
@@ -1877,7 +1878,7 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime14(void) {
 
 typedef Vec3 LigVec;
 
-typedef struct {
+typedef struct LigLightObj {
     u8 pad_000[0x3f0];
     LigParticle entries[14];
     LigVec target;
@@ -2182,12 +2183,12 @@ typedef struct {
 
 extern f32 lbl_8006D0B4(f32);
 extern void lbl_8006DCA4(void);
-extern void lbl_8006E1B0(LigVec *, LigVec *);
-extern void lbl_8006D7DC(LigVec *);
-extern void mathutil_mtxA_rotate_z(s16);
+extern void lbl_8006E1B0(void *src, void *dst);
+extern void lbl_8006D7DC(void *vec);
+extern void mathutil_mtxA_rotate_z(s16 angle);
 extern s32 fn_1_58C4(void);
 extern void fn_1_681C(u8 index, void *out);
-extern void lbl_8006DB74(LigMtx);
+extern void lbl_8006DB74(void *matrix);
 extern void lbl_8006D758(void);
 extern void fn_1_9EDE8(LigPacket *);
 extern void *memset(void *, int, u32);
