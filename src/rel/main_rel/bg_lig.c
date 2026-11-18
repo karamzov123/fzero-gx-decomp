@@ -33,7 +33,7 @@ extern void OSPanic(const char *file, int line, const char *msg, ...);
 extern u32 lbl_801A66A0;
 extern u32 lbl_1_rodata_6358;
 extern void fn_1_4404(void);
-extern u32 fn_1_DA6A8(void *, u32);
+extern void fn_1_DA6A8(void *, u32);
 extern void fn_80008BEC(void *, int, u32);
 extern void fn_1_446C(void);
 extern void fn_1_76BF8(void);
@@ -426,7 +426,7 @@ typedef struct {
 
 extern s32 fn_1_66B8(void *arg0, f32 arg1);
 extern s32 fn_1_58C4(void);
-extern void fn_1_681C(u8 value, void *out);
+extern void fn_1_681C(u8 index, void *out);
 extern u32 fn_1_584AC(void);
 extern s16 fn_1_58E3C(void *source);
 extern f32 lbl_8006D0B4(f32);
@@ -676,7 +676,7 @@ extern u32 fn_1_584AC(void);
 extern s32 fn_1_66B8(void *, f32);
 
 extern void * memset(void *, int, u32);
-extern void fn_1_681C(u32, u32 *);
+extern void fn_1_681C(u8 index, void *out);
 
 typedef VelocityInitD6C10 VecD6C10;
 typedef struct {
@@ -1611,7 +1611,7 @@ typedef struct {
 
 extern u32 lbl_801A63C0;
 extern void *lbl_801A6D00;
-extern void fn_1_681C(u8, Vec3 *);
+extern void fn_1_681C(u8 index, void *out);
 extern void fn_1_6898(u8, Vec3 *);
 extern void fn_1_6914(u8, Vec3 *);
 extern void fn_1_6990(u8, Vec3 *);
@@ -2009,7 +2009,7 @@ typedef struct {
     f32 unk_6c0;
 } LigLightObj;
 
-extern void fn_1_681C(u8, LigVec *);
+extern void fn_1_681C(u8 index, void *out);
 extern void fn_1_6898(u8, LigVec *);
 extern void fn_1_6914(u8, LigVec *);
 extern s16 camera_get_mode(void);
@@ -2312,7 +2312,7 @@ extern void lbl_8006E1B0(LigVec *, LigVec *);
 extern void lbl_8006D7DC(LigVec *);
 extern void mathutil_mtxA_rotate_z(s16);
 extern int fn_1_58C4(void);
-extern void fn_1_681C(u8, LigVec *);
+extern void fn_1_681C(u8 index, void *out);
 extern void lbl_8006DB74(LigMtx);
 extern void lbl_8006D758(void);
 extern void fn_1_9EDE8(LigPacket *);
