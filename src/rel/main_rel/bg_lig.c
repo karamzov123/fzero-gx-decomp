@@ -926,7 +926,7 @@ extern u8 fn_1_5300(void);
 extern void fn_1_77B80(u32);
 extern void fn_1_76BF8(void);
 extern void fn_1_72648(void);
-extern void fn_1_D8CA8(Obj_1_data_2A7E0_At3C *);
+
 extern void fn_1_4404(void);
 extern void fn_1_DA6A8(void *, u32);
 extern void fn_1_D9224(void *, u32);
@@ -958,7 +958,7 @@ void fn_1_D7274(void) {
         fn_1_72648();
     }
 
-    fn_1_D8CA8(obj);
+    fn_1_D8CA8((fn_1_D8CA8_LigObject *)obj);
     fn_1_4404();
 
     if (lbl_1_bss_7AD78.unk_14 != 0) {
@@ -1083,22 +1083,10 @@ void fn_1_D74C4(void) {
 /* fzgx:begin fn_1_D75CC */
 #include "types.h"
 
-typedef struct {
-    u8 data[0xac];
-} Sig_fn_1_D8D08_fn_1_D8D08_LigEntry;
-
-typedef struct {
-    u8 pad[0x6d4];
-    s32 count;
-    Sig_fn_1_D8D08_fn_1_D8D08_LigEntry entries[1];
-} Sig_fn_1_D8D08_LigContainer;
-
 struct fn_1_D75CC_lbl_1_data_2A7E0 {
     u8 pad_0[0x3C];
     u32 unk_3C;
 };
-
-extern void fn_1_D8D08(Sig_fn_1_D8D08_LigContainer *);
 
 void fn_1_D75CC(void) {
     u32 *temp_r31;
@@ -1124,7 +1112,7 @@ void fn_1_D75CC(void) {
     fn_1_446C();
     fn_1_76BF8();
     fn_1_72648();
-    fn_1_D8D08((Sig_fn_1_D8D08_LigContainer *)((Sig_fn_1_D8D08_LigContainer *)(temp_r30)));
+    fn_1_D8D08((LigContainer *)temp_r30);
 }
 /* fzgx:end fn_1_D75CC */
 
@@ -1807,34 +1795,12 @@ typedef struct {
 } fn_1_D8784_LigObject;
 
 typedef struct {
-    u8 pad_00[0x68];
-    u32 field_68;
-    u8 pad_6c[0x40];
-} fn_1_D8CA8_LigEntry;
-
-typedef struct {
-    u8 pad_00[0x6d4];
-    s32 count;
-    fn_1_D8CA8_LigEntry entries[1];
-} fn_1_D8CA8_LigObject;
-
-typedef struct {
     u8 pad0[0x24];
     f32 value;
     u8 pad28[0x4];
     s16 count;
     u8 pad2e[0x2];
 } fn_1_D7B7C_LigEntry;
-
-typedef struct {
-    u8 data[0xac];
-} fn_1_D8D08_LigEntry;
-
-typedef struct {
-    u8 pad[0x6d4];
-    s32 count;
-    fn_1_D8D08_LigEntry entries[1];
-} LigContainer;
 
 typedef struct {
     u8 unk_0[0xac];
@@ -1862,8 +1828,8 @@ typedef struct {
     fn_1_D8D58_LigEntry entries[1];
 } LigObject;
 
-extern void fn_1_D8CA8(fn_1_D8CA8_LigObject *obj);
-extern void fn_1_D8D08(LigContainer *container);
+
+
 extern void fn_1_D8784(fn_1_D8784_LigObject *obj);
 extern void fn_1_D8EEC(fn_1_D8EEC_LigObject *obj, void *arg);
 extern void *fn_1_5448C(fn_1_D7B7C_LigEntry *entry);
@@ -2431,18 +2397,6 @@ void fn_1_D8878(LigSource *src) {
 /* fzgx:end fn_1_D8878 */
 
 /* fzgx:begin fn_1_D8CA8 */
-typedef struct {
-    u8 pad_00[0x68];
-    u32 field_68;
-    u8 pad_6c[0x40];
-} fn_1_D8CA8_LigEntry;
-
-typedef struct {
-    u8 pad_00[0x6d4];
-    s32 count;
-    fn_1_D8CA8_LigEntry entries[1];
-} fn_1_D8CA8_LigObject;
-
 extern void fn_1_103090(fn_1_D8CA8_LigEntry *entry);
 
 void fn_1_D8CA8(fn_1_D8CA8_LigObject *obj) {
@@ -2459,16 +2413,6 @@ void fn_1_D8CA8(fn_1_D8CA8_LigObject *obj) {
 /* fzgx:end fn_1_D8CA8 */
 
 /* fzgx:begin fn_1_D8D08 */
-typedef struct {
-    u8 data[0xac];
-} fn_1_D8D08_LigEntry;
-
-typedef struct {
-    u8 pad[0x6d4];
-    s32 count;
-    fn_1_D8D08_LigEntry entries[1];
-} LigContainer;
-
 extern void fn_1_1030A4(fn_1_D8D08_LigEntry *entry);
 
 void fn_1_D8D08(LigContainer *container) {
