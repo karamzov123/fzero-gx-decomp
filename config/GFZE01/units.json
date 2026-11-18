@@ -64485,18 +64485,6 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/data/lbl_1_bss_71690.c",
-    "symbols": [
-      "lbl_1_bss_71690"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main_rel",
     "source": "rel/main_rel/data/lbl_1_bss_716C0.c",
     "symbols": [
       "lbl_1_bss_716C0"
@@ -104460,11 +104448,18 @@
     "symbols": [
       "lbl_1_rodata_4A28",
       "lbl_1_rodata_4A34",
-      "lbl_1_rodata_4A98",
-      "lbl_1_rodata_4AA0",
-      "lbl_1_rodata_4AC4",
-      "lbl_1_rodata_4AD4",
-      "lbl_1_rodata_4AD8",
+      "lbl_1_rodata_4A98"
+    ],
+    "status": "matching",
+    "matching_for": ["GFZE01"],
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/data/lbl_1_rodata_4AE0.c",
+    "symbols": [
       "lbl_1_rodata_4AE0",
       "lbl_1_rodata_4CA8",
       "lbl_1_rodata_4CAC",
@@ -108151,106 +108146,17 @@
     "module": "main_rel",
     "source": "rel/main_rel/driver/fn_1_A9868.c",
     "symbols": [
-      "fn_1_A9868"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/driver.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/driver/fn_1_A9A28.c",
-    "symbols": [
-      "fn_1_A9A28"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/2.5",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/driver.c",
-    "pool": {
-      "@47": "lbl_1_rodata_4AD8",
-      "@43": "lbl_1_rodata_4AD4",
-      "@44": "lbl_1_rodata_4AC4"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/driver/fn_1_A9B70.c",
-    "symbols": [
-      "fn_1_A9B70"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/driver.c",
-    "pool": {
-      "@126": "lbl_1_rodata_4AD8",
-      "@122": "lbl_1_rodata_4AD4",
-      "@123": "lbl_1_rodata_4AC4"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/driver/fn_1_A9FFC.c",
-    "symbols": [
-      "fn_1_A9FFC"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/2.5",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/driver.c",
-    "pool": {
-      "@63": "lbl_1_rodata_4AD8",
-      "@59": "lbl_1_rodata_4AD4",
-      "@60": "lbl_1_rodata_4AC4"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/driver/fn_1_AA188.c",
-    "symbols": [
-      "fn_1_AA188"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/2.5",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/driver.c",
-    "pool": {
-      "@66": "lbl_1_rodata_4AD8",
-      "@59": "lbl_1_rodata_4AD4",
-      "@60": "lbl_1_rodata_4AC4"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/driver/fn_1_AA350.c",
-    "symbols": [
-      "fn_1_AA350"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/driver.c",
-    "pool": {
-      "@52": "lbl_1_rodata_4AD8"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/driver/fn_1_AA538.c",
-    "symbols": [
+      "fn_1_A9868",
+      "fn_1_A9A28",
+      "fn_1_A9B70",
+      "fn_1_A9FFC",
+      "fn_1_AA188",
+      "fn_1_AA350",
       "fn_1_AA538"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
-    "mw_version": null,
+    "mw_version": "GC/2.5",
     "extra_cflags": [],
     "tu": "rel/main_rel/driver.c"
   },
