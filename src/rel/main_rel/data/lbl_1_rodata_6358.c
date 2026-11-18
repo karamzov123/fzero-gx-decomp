@@ -3,18 +3,6 @@
 
 extern const u32 lbl_1_rodata_6358[2];
 extern const u32 lbl_1_rodata_6360[76];
-extern const f32 lbl_1_rodata_6490[4];
-extern const f32 lbl_1_rodata_64A0[33];
-extern const f32 lbl_1_rodata_6524[];
-extern const f32 lbl_1_rodata_6594[];
-extern const f32 lbl_1_rodata_6628;
-extern const u32 lbl_1_rodata_662C[3];
-extern const f32 lbl_1_rodata_6638;
-extern const f32 lbl_1_rodata_663C;
-extern const f32 lbl_1_rodata_6640;
-extern const f32 lbl_1_rodata_6644[35];
-extern const f32 lbl_1_rodata_66D0[30];
-extern const f32 lbl_1_rodata_6748[2];
 
 
 
@@ -29,93 +17,5 @@ __declspec(section ".rodata") const u32 lbl_1_rodata_6358[2] __attribute__((alig
 #pragma explicit_zero_data on
 __declspec(section ".rodata") const u32 lbl_1_rodata_6360[76] __attribute__((aligned(8))) = {
     0x00000000U, 0x00000000U, 0x00000000U, 0x40800000U, 0x44FA0000U, 0x00000000U, 0x3FF00000U, 0x00000000U, 0x3FC99999U, 0x9999999AU, 0x46FFFE00U, 0x00000000U, 0x3FE00000U, 0x00000000U, 0x3F4CCCCDU, 0x3E4CCCCDU, 0x437F0000U, 0x3F000000U, 0x3F800000U, 0x43600000U, 0x43300000U, 0x00000000U, 0x43300000U, 0x80000000U, 0x43300000U, 0x00000000U, 0x00000000U, 0x3F800000U, 0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U, 0x44480000U, 0x00000000U, 0x3F80624DU, 0xD2F1A9FCU, 0x40240000U, 0x00000000U, 0x40490000U, 0x00000000U, 0x42700000U, 0x40200000U, 0x42AA0000U, 0x41A80000U, 0x3FA47AE1U, 0x47AE147BU, 0x3DA3D70AU, 0x00000000U, 0x4066C16CU, 0x20000000U, 0x3FF80000U, 0x00000000U, 0x00000000U, 0x3F800000U, 0x00000000U, 0x00000000U, 0x00000000U, 0x00000000U, 0x41A00000U, 0x00000000U, 0x3FB70A3DU, 0x70A3D70AU, 0x403E0000U, 0x00000000U, 0x41200000U, 0x3FC00000U, 0x3CA3D70AU, 0x00000000U, 0x3FB99999U, 0x9999999AU, 0x435D0000U, 0x00000000U, 0x3FA99999U, 0x9999999AU, 0x3F947AE1U, 0x47AE147BU
-};
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".rodata") const f32 lbl_1_rodata_6490[4] __attribute__((aligned(4))) = {
-    0.0f, 1.88085822e-37f, 0.0f, 1.40129846e-45f
-};
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".rodata") const f32 lbl_1_rodata_64A0[33] __attribute__((aligned(4))) = {
-    0.0f, 100.0f, 3.0f, 0.0f, 1.79999995f, 2.72008302e+23f, 1.64999998f, 4.17232506e-08f, 32767.0f, 235.0f, 80.0f, 30.0f, 4.0f, 0.0f, 1.75f, 0.0f, 3.79296875f, 0.0f, 2.765625f, 0.0f, 3276.80005f, 0.0f, 176.0f, -0.0f, 1.86999989f, -4.93268195e+32f, 0.0799999982f, 0.0f, 1.87249994f, 5.84860315e+35f, 1.15999997f, 89128.9609f, 400.0f
-};
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".rodata") const f32 lbl_1_rodata_6524[] __attribute__((aligned(4))) = {
-    0.707106769f, 1.0f, 0.0f, 2.0f, 0.0f, 176.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, 1.5f, 0.5f, 10.0f, 5.0f, 0.600000024f, 170.0f, 120.0f, 32.0f, 90.0f, 0.400000006f, 768.0f, 0.0f, 1.32499993f, -1.58818684e-23f, 2.5f
-};
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".rodata") const f32 lbl_1_rodata_6594[] __attribute__((aligned(4))) = {
-    0.100000001f, 50.0f, 20.0f, 70.0f, 33.0f, 15.0f, 0.649999976f, 0.75f, 182.044449f, 0.0f, 0.0f, 0.0f, 0.0f, 0.447209984f, -1.36867371e-33f, -1.0f, 100000.0f, 12.0f, 0.0f, 0.837111056f, -1.00961322e+32f, 0.00272222236f, 9.99999975e-05f, 1.8499999f, -107374184.0f, 1.44999993f, -1.58818684e-23f, 1.15999997f, 2.0f, 0.954999983f, 2.0f, 0.00400000019f, 0.0f, 1.57499993f, -2.5243549e-29f, 1.44999993f, -2.5243549e-29f
-};
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".rodata") const f32 lbl_1_rodata_6628 __attribute__((aligned(4))) = 0.600000024f;
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".rodata") const u32 lbl_1_rodata_662C[3] __attribute__((aligned(4))) = {
-    0x00000000U, 0x3F800000U, 0x00000000U
-};
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".rodata") const f32 lbl_1_rodata_6638 __attribute__((aligned(4))) = 0.0f;
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".rodata") const f32 lbl_1_rodata_663C __attribute__((aligned(4))) = 30.0f;
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".rodata") const f32 lbl_1_rodata_6640 __attribute__((aligned(4))) = 1.0f;
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".rodata") const f32 lbl_1_rodata_6644[35] __attribute__((aligned(4))) = {
-    0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 25.0f, 0.100000001f, 0.0199999996f, 2000.0f, 2500.0f, 500.0f, 650.0f, 0.5f, 0.0f, 0.0f, 0.5f, 0.0f, 0.0f, 14.0f, 0.0f, 0.0f, 2.0625f, 0.0f, 1.875f, 0.0f, 255.0f, 32768.0f, 120.0f, 0.0f, 176.0f, -0.0f, 176.0f, 0.0f
-};
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".rodata") const f32 lbl_1_rodata_66D0[30] __attribute__((aligned(4))) = {
-    0.5f, 0.649999976f, 0.75f, 1.0f, 0.0f, 182.044449f, 1.75f, 0.0f, 2.0f, 0.0f, 176.0f, 0.0f, 0.850000024f, 0.150000006f, 65536.0f, 60.0f, 30.0f, 5.0f, -5.0f, 0.100000001f, 90000.0f, -0.100000001f, 1.875f, 0.0f, 2.125f, 0.0f, 3.0f, 0.0f, 176.0f, -0.0f
-};
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".rodata") const f32 lbl_1_rodata_6748[2] __attribute__((aligned(4))) = {
-    6.0f, 0.0f
 };
 #pragma explicit_zero_data reset

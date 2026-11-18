@@ -14,6 +14,6 @@ extern u8 lbl_1_data_3DC50[0x9];
 extern u8 lbl_1_data_3DC5C[0x11];
 
 // lbl_1_data_3DC70: .data size 0x8, 1 refs from bg_san.c (own data block)
-extern u32 lbl_1_data_3DC70;
+extern s32 lbl_1_data_3DC70;
 
 #endif  // REL_MAIN_REL_BG_SAN_H

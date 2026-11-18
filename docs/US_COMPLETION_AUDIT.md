@@ -4,7 +4,7 @@ This is a living checklist for finishing the USA reconstruction. Update the rele
 
 ## Measured baseline
 
-Source baseline: `34dd6166ac74ea55679a43a13059758790391387` plus the `bg_lig.c` 24-function consolidation in this batch, built against the original USA inputs. All 16 targets match (`16 files OK`); 7,159 of 7,351 functions have compiled C credit (`192` functions outside C credit: `mixed=1`, `original-assembly=5`, `standalone-assembly=186`), with 13 of 16 modules at full C credit and zero functions credited without compiled C credit. C credit is not a certified device-free natural-C total.
+Source baseline: `82a5a8d1981623c8eab9b41c49142cf86f9d5c99` plus the `bg_lig.c`/`bg_san.c` boundary realignment and 73-function `bg_san.c` native-ownership consolidation in this batch, built against the original USA inputs. All 16 targets match (`16 files OK`); 7,159 of 7,351 functions have compiled C credit (`192` functions outside C credit: `mixed=1`, `original-assembly=5`, `standalone-assembly=186`), with 13 of 16 modules at full C credit and zero functions credited without compiled C credit. C credit is not a certified device-free natural-C total.
 
 | Module | Blocked (`C` suspect) | `evidenced-assembly` (reviewed + manifest) | `mixed-review` (C + inline `asm`) | `needs-origin-review` |
 | --- | ---: | ---: | ---: | ---: |
@@ -14,7 +14,7 @@ Source baseline: `34dd6166ac74ea55679a43a13059758790391387` plus the `bg_lig.c` 
 | Other 13 modules | 0 | 0 | 0 | 0 |
 | Total | 2 | 180 | 10 | 0 |
 
-In the `fzgx devicecensus` run after retiring the 7 `.fzgxpool` primer blocks in `bg_lig.c`: `marked-warning` has 104 explicit spots (61 owner functions, 1 unassigned), `layout-primer-function` has 9,603 spots (864 owner functions across 134 files, down from 871), and the known marked/dead-write/primer/tagged-staging owner-function union is 924 (down from 931). Counts overlap and are not an exhaustive device backlog. Ordinary uses of `volatile`, pragmas, or one-field types are review signals, not defects by themselves. Data ownership and native translation-unit boundaries are separate review tracks; this baseline does not certify their completion.
+In the `fzgx devicecensus` run after retiring all 6 `.fzgxpool` primer blocks in `bg_san.c` and all 8 `mwcc_pool` maps (`1,373 -> 1,365`): `marked-warning` has 104 explicit spots (61 owner functions, 1 unassigned), `layout-primer-function` has 9,581 spots (858 owner functions across 133 files, down from 864 across 134 files), and the known marked/dead-write/primer/tagged-staging owner-function union is 918 (down from 924). Counts overlap and are not an exhaustive device backlog. Ordinary uses of `volatile`, pragmas, or one-field types are review signals, not defects by themselves. Data ownership and native translation-unit boundaries are separate review tracks; this baseline does not certify their completion.
 
 ## Worklist
 
@@ -29,7 +29,7 @@ In the `fzgx devicecensus` run after retiring the 7 `.fzgxpool` primer blocks in
 | Baseline recorded | `main`: five original-assembly and one mixed function | Maintain the scope and evidence in [the original assembly manifest](../config/original_assembly.json). Do not count these as missing C by default. |
 | Open | Marked devices and literal-pool primers | Start with an explicit warning or a small owner group with shared evidence. Remove a device only when retail code and relocations survive; record failed hypotheses rather than relabeling a workaround. Prioritize real literal/data ownership over mechanical primer removal. |
 | Open | Unmarked compiler-device review | Triage census signals by subsystem, starting with shared helpers and directives that affect multiple functions. Confirm intent and codegen before classifying them. |
-| In progress | Native TU and data ownership | [`bg_lig.c` pilot](TU_COLLAPSE.md#bg_ligc-pilot-closure-0x6360-emission-proof-lbl_1_data_2abac-boundary-and-24-function-primer-free-group): consolidated `fn_1_D720C`–`fn_1_D8F4C` (24 fns) into one primer-free unit, retiring 7 `.fzgxpool` blocks (reducing `bg_lig.c` from 19 units / 8 primers to 5 units / 1 primer) and proving why `0x6360` (`fn_1_D6748`+`fn_1_D6C10`) splits from `0x6490` (`fn_1_D720C`–`fn_1_DA6A8`). `bg_tow` is the landed 16-function control. Track this separately from C coverage. |
+| In progress | Native TU and data ownership | [`bg_san.c` & `bg_lig.c` consolidation](TU_COLLAPSE.md#bg_ligc--bg_sanc-boundary-realignment-and-73-function-bg_sanc-native-ownership-consolidation): realigned `fn_1_D720C`–`fn_1_D8F4C` from `bg_lig.c` into `bg_san.c` (`bg_lig.c`: 16 fns / 3 units / 1 primer, `fzgx tu-check` OK) and consolidated all 73 `bg_san.c` functions (`fn_1_D720C`–`fn_1_DCB9C`) into 4 primer-free native-ownership units owning `.rodata 0x6490..0x6750`, `.data 0x3DC50..0x3DC78`, and `.bss 0x7AD78..0x7ADE8` (retiring all 6 primers, 8 `pool` maps, and 17 external data-import records). `bg_tow` is the 16-function whole-TU control. Track this separately from C coverage. |
 
 ## Refreshing and editing the audit
 

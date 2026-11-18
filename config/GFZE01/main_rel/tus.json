@@ -2815,7 +2815,7 @@
    "file": "bg_lig.c",
    "text": [
     875632,
-    888772
+    881164
    ],
    "data_sec": 5,
    "data": [
@@ -2841,7 +2841,31 @@
     "fn_1_D66F8",
     "fn_1_D6740",
     "fn_1_D6748",
-    "fn_1_D6C10",
+    "fn_1_D6C10"
+   ],
+   "confidence": {
+    "text+data": 2,
+    "text-range": 14,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "bg_san.c",
+   "text": [
+    881164,
+    904180
+   ],
+   "data_sec": 5,
+   "data": [
+    253008,
+    253048
+   ],
+   "anchor_refs": [
+    888772,
+    889380,
+    894632
+   ],
+   "functions": [
     "fn_1_D720C",
     "fn_1_D7274",
     "fn_1_D744C",
@@ -2865,31 +2889,7 @@
     "fn_1_D8D08",
     "fn_1_D8D58",
     "fn_1_D8EEC",
-    "fn_1_D8F4C"
-   ],
-   "confidence": {
-    "text+data": 2,
-    "text-range": 38,
-    "data-vote": 0
-   }
-  },
-  {
-   "file": "bg_san.c",
-   "text": [
-    888772,
-    904180
-   ],
-   "data_sec": 5,
-   "data": [
-    253008,
-    253048
-   ],
-   "anchor_refs": [
-    888772,
-    889380,
-    894632
-   ],
-   "functions": [
+    "fn_1_D8F4C",
     "fn_1_D8FC4",
     "fn_1_D9224",
     "fn_1_D9D8C",
@@ -2942,7 +2942,7 @@
    ],
    "confidence": {
     "text+data": 4,
-    "text-range": 45,
+    "text-range": 69,
     "data-vote": 0
    }
   },
