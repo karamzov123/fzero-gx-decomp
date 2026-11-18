@@ -314,6 +314,7 @@ lbl_3_bss_A17CC = .bss:0x000A17CC; // type:object
 lbl_3_bss_A17D2 = .bss:0x000A17D2; // type:object
 lbl_3_bss_A17D4 = .bss:0x000A17D4; // type:object
 lbl_3_bss_A23D8 = .bss:0x000A23D8; // type:object
+lbl_3_bss_A23DA = .bss:0x000A23DA; // type:object
 lbl_3_bss_A23E0 = .bss:0x000A23E0; // type:object
 lbl_3_bss_A23EC = .bss:0x000A23E8; // type:object
 lbl_3_bss_A2410 = .bss:0x000A2410; // type:object
