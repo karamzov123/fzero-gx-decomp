@@ -342,7 +342,13 @@ def cast_results(body: str, name: str, old_ret: str) -> str:
         before = body[line_start:m.start()]
         if not re.search(r'(=|return|\(|,|\?|:)\s*$', before):
             continue
-        out = out[:m.start()] + f'({old_ret})' + out[m.start():]
+        # the cast covers the whole call: `(T *)f(x)->m` would cast the member, not the result
+        # (effect_car.c fn_1_69BCC); measured on `out`, where a nested call may already be cast
+        res_out = split_args(out, out.index('(', m.start()))
+        if not res_out:
+            continue
+        close = res_out[1]
+        out = out[:m.start()] + f'(({old_ret})' + out[m.start():close + 1] + ')' + out[close + 1:]
     return out
 
 
@@ -376,9 +382,16 @@ def view_rewrite(body: str, name: str, decl: str, truth_is_pointer: bool = False
     else:
         view = f'(*(({t} *)&{name}))'
     ident = re.compile(r'(?<![\w.>])' + re.escape(name) + r'\b')
+    # an array view is an rvalue: `&name` stays the symbol's address, typed as the block's
+    # element pointer (effect_car.c fn_1_6A7A4 wrote `(u8 *)&lbl_1_rodata_2D70` -> not an lvalue)
+    addr = re.compile(r'(?<![&\w])&\s*' + re.escape(name) + r'\b(?!\s*\[)')
     out_lines = []
     for ln in body.splitlines():
         if tutidy.DECL_LINE_RE.match(ln) and tutidy._decl_name(ln) == name:
+            continue
+        if m.group(2):
+            parts = addr.split(ln)
+            out_lines.append(f'(({t} *)&{name})'.join(ident.sub(view, x) for x in parts))
             continue
         out_lines.append(ident.sub(view, ln))
     return '\n'.join(out_lines) + ('\n' if body.endswith('\n') else '')

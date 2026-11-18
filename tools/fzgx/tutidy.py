@@ -132,11 +132,14 @@ def tidy(p: Project, tu_source: str, dry_run: bool = False, check_fn=None) -> Di
 
 
 # an extern line, or a prototype written without extern: `s32 fn_1_9D260(void);`
-DECL_LINE_RE = re.compile(r"^\s*(?:extern\b[^{]*;|(?:const\s+)?[A-Za-z_]\w*[\w\s\*]*?\b[A-Za-z_]\w*\s*\([^;{}]*\)\s*;)\s*$")
+# a statement (`else if (c) f(x);`, `return f(x);`) is never a declaration (effect_car.c:
+# `else if` call lines were skipped by call adaptation and listed as declarations of `if`)
+STMT_KW = r"(?:else|if|while|for|do|switch|return|case|goto|sizeof|break|continue)\b"
+DECL_LINE_RE = re.compile(r"^\s*(?!" + STMT_KW + r")(?:extern\b[^{]*;|(?:const\s+)?[A-Za-z_]\w*[\w\s\*]*?\b[A-Za-z_]\w*\s*\([^;{}]*\)\s*;)\s*$")
 
 
 def _decl_name(line: str) -> Optional[str]:
-    if line.lstrip().startswith(("typedef", "static", "return", "if", "while", "for")):
+    if line.lstrip().startswith(("typedef", "static")) or re.match(r"\s*" + STMT_KW, line):
         return None
     m = PROTO_RE.match(line) if "(" in line else EXTERN_RE.match(line)
     return m.group(1) if m else None
