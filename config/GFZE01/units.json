@@ -54011,29 +54011,7 @@
     "extra_cflags": [],
     "tu": "rel/main_rel/bg_lig.c",
     "pool": {
-      "...rodata.0": "lbl_1_rodata_6360",
-      "@121": "lbl_1_rodata_6360+0xE8",
-      "@49": "lbl_1_rodata_6360+0x80",
-      "@131": "lbl_1_rodata_6360+0xF8",
-      "@130": "lbl_1_rodata_6360+0xF0",
-      "@153": "lbl_1_rodata_6360+0x120",
-      "@40": "lbl_1_rodata_6360+0x60",
-      "@100": "lbl_1_rodata_6360+0xC0",
-      "@14": "lbl_1_rodata_6360+0x28",
-      "@23": "lbl_1_rodata_6360+0x30",
-      "@132": "lbl_1_rodata_6360+0x100",
-      "@27": "lbl_1_rodata_6360+0x44",
-      "@133": "lbl_1_rodata_6360+0x104",
-      "@85": "lbl_1_rodata_6360+0xA0",
-      "@134": "lbl_1_rodata_6360+0x108",
-      "@143": "lbl_1_rodata_6360+0x110",
-      "@25": "lbl_1_rodata_6360+0x3C",
-      "@24": "lbl_1_rodata_6360+0x38",
-      "@144": "lbl_1_rodata_6360+0x118",
-      "@28": "lbl_1_rodata_6360+0x48",
-      "@26": "lbl_1_rodata_6360+0x40",
-      "@252": "lbl_1_rodata_6360+0x128",
-      "@109": "lbl_1_rodata_6360+0xDC"
+      "...rodata.0": "lbl_1_rodata_6360"
     }
   },
   {

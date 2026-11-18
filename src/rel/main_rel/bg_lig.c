@@ -521,7 +521,6 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
     volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
     s = 4.0f;
     s = 2000.0f;
-    s = 0.0f;
     d = 1.0;
     d = 0.2;
     s = 32767.0f;
