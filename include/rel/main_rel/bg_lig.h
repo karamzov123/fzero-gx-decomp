@@ -17,6 +17,7 @@ typedef struct {
 } LigParticle;
 
 void fn_1_D7EF4(LigParticle *entry, u32 index);
+void fn_1_D6C10(Vec3 *position, f32 scale);
 
 typedef struct {
     u8 pad_00[0x68];

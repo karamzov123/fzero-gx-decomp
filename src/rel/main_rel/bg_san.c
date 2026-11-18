@@ -25,7 +25,6 @@ extern void *fn_1_548AC(s32);
 extern void fn_1_DC764(void);
 extern void fn_1_5489C(void *, void *);
 extern const f64 lbl_1_rodata_6748;
-extern void fn_1_D6C10(void *, f32);
 extern f32 lbl_1_rodata_6644[35];
 extern void lbl_8006DCA4(void *data);
 extern void fn_1_DB53C(void);
@@ -630,7 +629,6 @@ extern void *fn_1_548AC(s32);
 extern void fn_1_DC764(void);
 extern void fn_1_5489C(void *, void *);
 extern const f64 lbl_1_rodata_6748;
-extern void fn_1_D6C10(void *, f32);
 extern f32 lbl_1_rodata_6644[35];
 extern void lbl_8006DCA4(void *data);
 extern void fn_1_DB53C(void);
@@ -2480,10 +2478,12 @@ void fn_1_DC764(Handler *handler) {
 /* fzgx:end fn_1_DC764 */
 
 /* fzgx:begin fn_1_DCB10 */
+#include "rel/main_rel/bg_lig.h"
 #include "rel/main_rel/bg_san.h"
 
 typedef struct fn_1_DCB10_Entry {
-    u8 pad_00[0x20];
+    Vec3 position;
+    u8 pad_0c[0x14];
     u32 flags;
 } fn_1_DCB10_Entry;
 
@@ -2503,7 +2503,7 @@ void fn_1_DCB10(void) {
     entry = (*global)->entries;
     while (i < (*global)->count) {
         if (entry->flags & 2) {
-            fn_1_D6C10(entry, *(const f32 *)&lbl_1_rodata_6748);
+            fn_1_D6C10(&entry->position, *(const f32 *)&lbl_1_rodata_6748);
         }
         i++;
         entry++;

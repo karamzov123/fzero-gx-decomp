@@ -591,13 +591,12 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime18(void) {
 }
 static const unsigned long fzgx_pool_table19[4] = {0x00000000, 0x00000000, 0x3F800000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
 __declspec(section ".fzgxpool") static void fzgx_pool_keep19(void) { const unsigned long *volatile cp; cp = fzgx_pool_table19; }  /* fzgx-allow: S2 pool primer sink */
-typedef struct { f32 x, y, z; } VelocityInitD6C10;
-static inline VelocityInitD6C10 D6C10InitialVelocity(void) {
-    VelocityInitD6C10 initialVelocity = { 0.0f, 0.0f, 0.0f };
+static inline Vec3 D6C10InitialVelocity(void) {
+    Vec3 initialVelocity = { 0.0f, 0.0f, 0.0f };
     return initialVelocity;
 }
 __declspec(section ".fzgxpool") static void fzgx_pool_prime20(void) {
-    VelocityInitD6C10 initialVelocity = D6C10InitialVelocity();
+    Vec3 initialVelocity = D6C10InitialVelocity();
     const void *volatile cp = &initialVelocity; /* fzgx-allow: S2 pool primer sink */
 }
 __declspec(section ".fzgxpool") static void fzgx_pool_prime23(void) {
@@ -640,7 +639,6 @@ extern s32 fn_1_66B8(void *, f32);
 extern void * memset(void *, int, u32);
 extern void fn_1_681C(u8 index, void *out);
 
-typedef VelocityInitD6C10 VecD6C10;
 typedef struct {
     u8 pad_0[0xC];
     u16 unk_C;
@@ -657,8 +655,8 @@ typedef struct {
     u8 pad_30[4];
     u32 unk_34;
     u8 pad_38[4];
-    VecD6C10 unk_3C;
-    VecD6C10 unk_48;
+    Vec3 unk_3C;
+    Vec3 unk_48;
     u8 pad_54[0x34];
     f32 unk_88;
     f32 unk_8C;
@@ -669,7 +667,7 @@ typedef struct {
     u8 pad_B4[0x34];
 } ParticleD6C10;
 
-static inline f32 D6C10Distance(VecD6C10 *a, f32 *b) {
+static inline f32 D6C10Distance(Vec3 *a, f32 *b) {
     f32 dx = a->x;
     f32 dy = a->y;
     f32 dz = a->z;
@@ -682,13 +680,13 @@ static inline f32 D6C10Distance(VecD6C10 *a, f32 *b) {
     return lbl_8006D0B4(dx);
 }
 
-static inline f32 D6C10NearestImpl(f32 best, VecD6C10 *a, f32 *b) {
+static inline f32 D6C10NearestImpl(f32 best, Vec3 *a, f32 *b) {
     if (best < D6C10Distance(a, b)) return best;
     return D6C10Distance(a, b);
 }
 #define D6C10Nearest(best, a, b) D6C10NearestImpl(best, a, b)
 
-void fn_1_D6C10(VecD6C10 *arg0, f32 arg1) {
+void fn_1_D6C10(Vec3 *arg0, f32 arg1) {
     u32 v0;
     f32 v1;
     u32 v2;
