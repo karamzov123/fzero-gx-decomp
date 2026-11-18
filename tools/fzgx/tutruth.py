@@ -544,7 +544,9 @@ def resolve(p: Project, tu_source: str, v, apply: bool = True,
     # dropped from the blocks, differing definitions get each block's prefix
     defs_by_type: Dict[str, List[Tuple[str, str]]] = {}
     for b in tf.blocks:
-        for t in set(re.findall(r'\}\s*([A-Za-z_]\w*)\s*;', b.body, re.M)) | set(re.findall(r'^(?:typedef\s+)?(?:struct|union)\s+([A-Za-z_]\w*)\s*\{', b.body, re.M)):
+        one_line = set(re.findall(r'^typedef\s+[^;{}]*?\(\s*\*\s*([A-Za-z_]\w*)\s*\)\s*\([^;]*\)\s*;', b.body, re.M))
+        one_line |= {m for m in re.findall(r'^typedef\s+(?!struct\b|union\b|enum\b)[^;{}()\[]*?\b([A-Za-z_]\w*)\s*(?:\[[^\]]*\]\s*)*;', b.body, re.M)}
+        for t in set(re.findall(r'\}\s*([A-Za-z_]\w*)\s*;', b.body, re.M)) | set(re.findall(r'^(?:typedef\s+)?(?:struct|union)\s+([A-Za-z_]\w*)\s*\{', b.body, re.M)) | one_line:
             span = type_definition_span(b.body, t)
             if span:
                 defs_by_type.setdefault(t, []).append((b.name, re.sub(r'\s+', ' ', b.body[span[0]:span[1]]).strip()))
@@ -556,15 +558,21 @@ def resolve(p: Project, tu_source: str, v, apply: bool = True,
         texts = {text for _, text in owners}
         if len(texts) == 1:
             first = True
+            fwd_re = re.compile(r'^typedef\s+struct\s+' + re.escape(t) + r'\s+' + re.escape(t) + r'\s*;\s*\n?', re.M)
             for bname, _ in owners:
                 b = tf.get(bname)
                 span = type_definition_span(b.body, t)
                 if not span:
                     continue
                 if first:
+                    # the blocks' forward typedef (`typedef struct T T;`) moves with the definition:
+                    # other hoisted types name `T *` (effect_car.c: Fn195158Data.unk_08)
+                    if fwd_re.search(b.body) and not fwd_re.search(tf.prologue):
+                        tf.prologue = tf.prologue.rstrip('\n') + f'\n\ntypedef struct {t} {t};\n'
                     tf.prologue = tf.prologue.rstrip('\n') + '\n\n' + b.body[span[0]:span[1]].rstrip('\n') + '\n'
                     first = False
                 b.body = b.body[:span[0]] + b.body[span[1]:]
+                b.body = fwd_re.sub('', b.body) if fwd_re.search(tf.prologue) else b.body
             report.setdefault('shared_types', []).append(t)
         else:
             for bname, _ in owners:
