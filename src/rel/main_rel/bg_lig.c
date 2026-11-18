@@ -1767,14 +1767,14 @@ void fn_1_D7EF4(LigParticle *e, u32 index) {
 /* fzgx:end fn_1_D7EF4 */
 
 /* fzgx:begin fn_1_D8388 */
-extern u32 fn_1_58C4(void);
+extern s32 fn_1_58C4(void);
 
 // Initializes each lighting entry while the lighting system is available.
 void fn_1_D8388(void *obj) {
     u8 *entry = (u8 *)obj;
     s32 i;
 
-    if (fn_1_58C4() < 2) {
+    if ((u32)fn_1_58C4() < 2) {
         i = 0;
         do {
             fn_1_D7EF4((LigParticle *)(entry + 0x3f0), 0);
@@ -1825,12 +1825,6 @@ typedef struct {
     s16 count;
     u8 pad2e[0x2];
 } fn_1_D7B7C_LigEntry;
-
-typedef struct {
-    u8 pad0[0x4];
-    void (*callback)(void);
-    fn_1_D7B7C_LigEntry *entry;
-} LigEvent;
 
 typedef struct {
     u8 data[0xac];
@@ -1989,7 +1983,7 @@ extern void fn_1_681C(u8 index, void *out);
 extern void fn_1_6898(u8, LigVec *);
 extern void fn_1_6914(u8, LigVec *);
 extern s16 camera_get_mode(void);
-extern s32 fn_1_58C4();
+extern s32 fn_1_58C4(void);
 extern f32 fn_1_8652C(s32);
 extern u32 fn_1_1FB80(LigVec *, s32);
 extern s32 fn_1_66B8(void *, f32);
@@ -2124,7 +2118,7 @@ typedef struct {
     f32 threshold;
 } fn_1_D8784_LigObject;
 
-extern u32 fn_1_58C4(fn_1_D8784_LigObject *obj);
+extern s32 fn_1_58C4(void);
 
 // Queues callbacks for eligible lig entries.
 void fn_1_D8784(fn_1_D8784_LigObject *obj) {
@@ -2134,7 +2128,7 @@ void fn_1_D8784(fn_1_D8784_LigObject *obj) {
     f32 factor;
     fn_1_D8784_LigEntry *entry;
 
-    if (fn_1_58C4(obj) >= 2) {
+    if ((u32)fn_1_58C4() >= 2) {
         return;
     }
     if (obj->threshold < lbl_1_rodata_6594[0]) {
@@ -2286,7 +2280,7 @@ extern void lbl_8006DCA4(void);
 extern void lbl_8006E1B0(LigVec *, LigVec *);
 extern void lbl_8006D7DC(LigVec *);
 extern void mathutil_mtxA_rotate_z(s16);
-extern int fn_1_58C4(void);
+extern s32 fn_1_58C4(void);
 extern void fn_1_681C(u8 index, void *out);
 extern void lbl_8006DB74(LigMtx);
 extern void lbl_8006D758(void);
