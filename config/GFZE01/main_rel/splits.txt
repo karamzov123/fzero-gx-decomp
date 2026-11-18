@@ -3936,49 +3936,10 @@ rel/main_rel/bg_aur/fn_1_151AF0.c:
 	.text       start:0x00151AF0 end:0x00151BDC
 
 rel/main_rel/rep_memcard/fn_1_154708.c:
-	.text       start:0x00154708 end:0x00154798
-
-rel/main_rel/rep_memcard/fn_1_1548A8.c:
-	.text       start:0x001548A8 end:0x00154930
-
-rel/main_rel/rep_memcard/fn_1_154930.c:
-	.text       start:0x00154930 end:0x001549B8
-
-rel/main_rel/rep_memcard/fn_1_154CC4.c:
-	.text       start:0x00154CC4 end:0x00154CD0
-
-rel/main_rel/rep_memcard/fn_1_154CD0.c:
-	.text       start:0x00154CD0 end:0x00154D84
-
-rel/main_rel/rep_memcard/fn_1_154D84.c:
-	.text       start:0x00154D84 end:0x00154E24
-
-rel/main_rel/rep_memcard/fn_1_154E24.c:
-	.text       start:0x00154E24 end:0x00154E34
-
-rel/main_rel/rep_memcard/fn_1_154E34.c:
-	.text       start:0x00154E34 end:0x00154E4C
-
-rel/main_rel/rep_memcard/fn_1_154ED0.c:
-	.text       start:0x00154ED0 end:0x00154F1C
-
-rel/main_rel/rep_memcard/fn_1_154F1C.c:
-	.text       start:0x00154F1C end:0x00154F74
-
-rel/main_rel/rep_memcard/fn_1_154F74.c:
-	.text       start:0x00154F74 end:0x00154F88
-
-rel/main_rel/rep_memcard/fn_1_154F88.c:
-	.text       start:0x00154F88 end:0x00154F98
-
-rel/main_rel/rep_memcard/fn_1_154F98.c:
-	.text       start:0x00154F98 end:0x00154FA8
-
-rel/main_rel/rep_memcard/fn_1_154FA8.c:
-	.text       start:0x00154FA8 end:0x00154FC0
-
-rel/main_rel/rep_memcard/fn_1_154FC0.c:
-	.text       start:0x00154FC0 end:0x00154FD8
+	.text       start:0x00154708 end:0x001554D0 align:4
+	.rodata     start:0x0000D598 end:0x0000D5B8 align:8
+	.data       start:0x00049A18 end:0x00049B08 align:8
+	.bss        start:0x0008ED90 end:0x0008EF20 align:8
 
 rel/main_rel/ranking/fn_1_1554D0.c:
 	.text       start:0x001554D0 end:0x0015555C
@@ -4273,9 +4234,6 @@ rel/main_rel/_prolog/fn_1_12B4.c:
 rel/main_rel/spline/fn_1_F5AF0.c:
 	.text       start:0x000F5AF0 end:0x000F5B38 align:4
 
-rel/main_rel/rep_memcard/fn_1_1549B8.c:
-	.text       start:0x001549B8 end:0x00154A08 align:4
-
 rel/main_rel/_prolog/fn_1_3238.c:
 	.text       start:0x00003238 end:0x00003308 align:4
 
@@ -4423,9 +4381,6 @@ rel/main_rel/memcard/fn_1_AC92C.c:
 rel/main_rel/spline/fn_1_FA5E0.c:
 	.text       start:0x000FA5E0 end:0x000FA61C align:4
 
-rel/main_rel/rep_memcard/fn_1_154C84.c:
-	.text       start:0x00154C84 end:0x00154CC4 align:4
-
 rel/main_rel/sound/fn_1_A4DF4.c:
 	.text       start:0x000A4DF4 end:0x000A4F18 align:4
 
@@ -4443,9 +4398,6 @@ rel/main_rel/spline/fn_1_F8AFC.c:
 
 rel/main_rel/car/fn_1_7FA04.c:
 	.text       start:0x0007FA04 end:0x0007FAA8 align:4
-
-rel/main_rel/rep_memcard/fn_1_154E4C.c:
-	.text       start:0x00154E4C end:0x00154ED0 align:4
 
 rel/main_rel/car/fn_1_900C4.c:
 	.text       start:0x000900C4 end:0x0009012C align:4
@@ -4465,14 +4417,8 @@ rel/main_rel/archive/fn_1_131084.c:
 rel/main_rel/game/fn_1_40EE4.c:
 	.text       start:0x00040EE4 end:0x00040F34 align:4
 
-rel/main_rel/rep_memcard/fn_1_1547FC.c:
-	.text       start:0x001547FC end:0x001548A8 align:4
-
 rel/main_rel/face/fn_1_D3020.c:
 	.text       start:0x000D3020 end:0x000D3144 align:4
-
-rel/main_rel/rep_memcard/fn_1_154FD8.c:
-	.text       start:0x00154FD8 end:0x00155120 align:4
 
 rel/main_rel/font/fn_1_56470.c:
 	.text       start:0x00056470 end:0x00056530 align:4
@@ -5391,10 +5337,6 @@ rel/main_rel/burner/fn_1_9ADCC.c:
 rel/main_rel/memcard/fn_1_AC000.c:
 	.text       start:0x000AC000 end:0x000AC12C align:4
 
-rel/main_rel/rep_memcard/fn_1_15530C.c:
-	.text       start:0x0015530C end:0x001554D0 align:4
-	.data       start:0x00049AD8 end:0x00049B08 align:8
-
 rel/main_rel/memcard/fn_1_B8170.c:
 	.text       start:0x000B8170 end:0x000B8338 align:4
 
@@ -5970,9 +5912,6 @@ rel/main_rel/ranking/fn_1_1576B4.c:
 rel/main_rel/camera/fn_1_6B48.c:
 	.text       start:0x00006B48 end:0x00006BC0 align:4
 
-rel/main_rel/rep_memcard/fn_1_154BE4.c:
-	.text       start:0x00154BE4 end:0x00154C84 align:4
-
 rel/main_rel/game/fn_1_3908C.c:
 	.text       start:0x0003908C end:0x000391F0 align:4
 
@@ -6333,9 +6272,6 @@ rel/main_rel/stcoli/fn_1_29968.c:
 
 rel/main_rel/bg_lig/fn_1_D7C44.c:
 	.text       start:0x000D7C44 end:0x000D7EF4 align:4
-
-rel/main_rel/rep_memcard/fn_1_155120.c:
-	.text       start:0x00155120 end:0x0015530C align:4
 
 rel/main_rel/effect/fn_1_60C88.c:
 	.text       start:0x00060C88 end:0x00060D54 align:4
@@ -7148,9 +7084,6 @@ rel/main_rel/car/fn_1_866B4.c:
 rel/main_rel/game/fn_1_3E62C.c:
 	.text       start:0x0003E62C end:0x0003E66C align:4
 
-rel/main_rel/rep_memcard/fn_1_154798.c:
-	.text       start:0x00154798 end:0x001547FC align:4
-
 rel/main_rel/burner/fn_1_9A508.c:
 	.text       start:0x0009A508 end:0x0009A578 align:4
 
@@ -7927,9 +7860,6 @@ rel/main_rel/bg_cas/fn_1_FDD7C.c:
 rel/main_rel/enemy_ctrl/fn_1_CFB28.c:
 	.text       start:0x000CFB28 end:0x000CFCA4 align:4
 	.data       start:0x0003D5E0 end:0x0003D630 align:8
-
-rel/main_rel/rep_memcard/fn_1_154A08.c:
-	.text       start:0x00154A08 end:0x00154BE4 align:4
 
 rel/main_rel/som/fn_1_1361C.c:
 	.text       start:0x0001361C end:0x0001383C align:4
@@ -14736,15 +14666,6 @@ rel/main_rel/data/lbl_1_bss_8E598.c:
 rel/main_rel/data/lbl_1_bss_8E6B0.c:
 	.bss        start:0x0008E6B0 end:0x0008ED88 align:16
 
-rel/main_rel/data/lbl_1_bss_8ED90.c:
-	.bss        start:0x0008ED90 end:0x0008EDA0 align:16
-
-rel/main_rel/data/lbl_1_bss_8EDA0.c:
-	.bss        start:0x0008EDA0 end:0x0008EDF0 align:32
-
-rel/main_rel/data/lbl_1_bss_8EDF0.c:
-	.bss        start:0x0008EDF0 end:0x0008EF20 align:16
-
 rel/main_rel/data/lbl_1_bss_8EF20.c:
 	.bss        start:0x0008EF20 end:0x0008EF68 align:32
 
@@ -17758,21 +17679,6 @@ rel/main_rel/data/lbl_1_data_48870.c:
 rel/main_rel/data/lbl_1_data_48878.c:
 	.data       start:0x00048878 end:0x00049A18 align:8
 
-rel/main_rel/data/lbl_1_data_49A18.c:
-	.data       start:0x00049A18 end:0x00049A40 align:8
-
-rel/main_rel/data/lbl_1_data_49A40.c:
-	.data       start:0x00049A40 end:0x00049A80 align:8
-
-rel/main_rel/data/lbl_1_data_49A80.c:
-	.data       start:0x00049A80 end:0x00049AB0 align:8
-
-rel/main_rel/data/lbl_1_data_49AB0.c:
-	.data       start:0x00049AB0 end:0x00049AC8 align:8
-
-rel/main_rel/data/lbl_1_data_49AC8.c:
-	.data       start:0x00049AC8 end:0x00049AD8 align:8
-
 rel/main_rel/data/lbl_1_data_2CD0.c:
 	.data       start:0x00002CD0 end:0x00002CD8 align:8
 
@@ -18120,8 +18026,8 @@ rel/main_rel/data/lbl_1_data_3FC88.c:
 rel/main_rel/data/lbl_1_rodata_83C0.c:
 	.rodata     start:0x000083C0 end:0x0000D048 align:8
 
-rel/main_rel/data/lbl_1_rodata_D598.c:
-	.rodata     start:0x0000D598 end:0x0000DD5C align:8
+rel/main_rel/data/lbl_1_rodata_D5B8.c:
+	.rodata     start:0x0000D5B8 end:0x0000DD5C align:8
 
 rel/main_rel/data/lbl_1_rodata_DD60.c:
 	.rodata     start:0x0000DD60 end:0x0000DEEC align:8
