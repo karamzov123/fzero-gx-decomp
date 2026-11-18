@@ -3605,23 +3605,91 @@ void fn_1_A983C(void) {
 }
 /* fzgx:end fn_1_A983C */
 
-/* fzgx:begin fn_1_A9868 */
-struct fn_1_A9868_lbl_1_bss_71690 {
-    u32 unk_0;
-};
+/* fzgx:begin fn_1_A9868 noprologue */
+#include "types.h"
+#include "dolphin/hw_regs.h"
 
+typedef struct {
+    u8 r;
+    u8 g;
+    u8 b;
+    u8 a;
+} GXColor;
 
-void fn_1_A9868(u32 arg0, u32 arg1, u32 arg2, f32 arg3) {
-    struct fn_1_A9868_lbl_1_rodata_4AA0 *p_lbl_1_rodata_4AA0;
-    struct fn_1_A9868_lbl_1_bss_71690 *p_lbl_1_bss_71690;
-    Sig_fn_80015EE8_Fn80015EE8Out loc_2C;
-    u32 loc_20[3];
-    u32 loc_14[3];
-    u32 loc_8[3];
-    f32 zero;
-    p_lbl_1_rodata_4AA0 = (struct fn_1_A9868_lbl_1_rodata_4AA0 *)&lbl_1_rodata_4AA0;
-    p_lbl_1_bss_71690 = (struct fn_1_A9868_lbl_1_bss_71690 *)&(*((struct fn_1_A9868_lbl_1_bss_71690 *)&lbl_1_bss_71690));
-    fn_1_A714C((f32 *)((u8 *)(u32)p_lbl_1_bss_71690 + 4), (f32 *)((u8 *)(u32)p_lbl_1_bss_71690 + 8), (f32 *)((u8 *)(u32)p_lbl_1_bss_71690 + 12), (f32 *)((u8 *)(u32)p_lbl_1_bss_71690 + 16));
+typedef f32 Mtx44[4][4];
+
+typedef struct Vec {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec;
+
+typedef union {
+    u8 u8;
+    f32 f32;
+} PPCWGPipe;
+
+/* 2D debug drawing state: drawing is on, and the projection saved by fn_1_A9868 */
+typedef struct DebugDraw {
+    s32 active;
+    f32 proj_0;
+    f32 proj_1;
+    f32 proj_2;
+    f32 proj_3;
+    u8 pad_14[0x1C];
+} DebugDraw;
+
+extern u32 *lbl_801A6D00;
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DB30(void);
+extern void fn_1_A714C(f32 *a, f32 *b, f32 *c, f32 *d);
+extern void fn_1_A7024(f32 arg0, f32 arg1, f32 arg2, f32 arg3);
+extern void fn_800737E4(Mtx44 m, s32 type);
+extern void fn_80074918(u8 arg0, s32 arg1, u8 arg2);
+extern void C_MTXOrtho(Mtx44 m, f32 t, f32 b, f32 l, f32 r, f32 n, f32 f);
+extern void GXLoadPosMtxImm(u32 *m, u32 id);
+extern void fn_800720B0(s32 arg0);
+extern void fn_80072EDC(s32 arg0, s32 arg1);
+extern void GXSetCurrentMtx(u32 value);
+extern void fn_8006F1F0(Vec *pos, Vec *up, Vec *at);
+extern void fn_8007245C(u32 value);
+extern void fn_8007264C(u32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4);
+extern void fn_800734A8(u32 arg0, s32 arg1, s32 arg2, s32 arg3);
+extern void fn_80073678(u32 arg0);
+extern void fn_80073898(u32 arg0);
+extern void fn_80073C6C(s32 index);
+extern void fn_80074660(u32 arg0);
+extern void fn_800746A8(u8 value, s32 arg);
+extern void fn_80074718(u8 value, s32 arg);
+extern void fn_80074788(u32 arg0);
+extern void fn_800747D0(u32 arg0, u32 arg1, s32 arg2, s32 arg3, u32 arg4, s32 arg5, s32 arg6);
+extern void fn_8003462C(u32 arg0, u32 arg1, u32 arg2);
+
+void fn_1_A9FFC(s16 x, s16 y, s16 w, s16 h, GXColor color);
+
+DebugDraw lbl_1_bss_71690;
+
+volatile PPCWGPipe GXWGFifo : GX_FIFO_BASE; /* volatile: hardware port */
+
+/* The SDK's const-parameter vertex writers; GC/2.5 keeps the by-value color in registers across them. */
+static inline void GXPosition3f32(const f32 x, const f32 y, const f32 z) {
+    GXWGFifo.f32 = x;
+    GXWGFifo.f32 = y;
+    GXWGFifo.f32 = z;
+}
+
+static inline void GXColor4u8(const u8 r, const u8 g, const u8 b, const u8 a) {
+    GXWGFifo.u8 = r;
+    GXWGFifo.u8 = g;
+    GXWGFifo.u8 = b;
+    GXWGFifo.u8 = a;
+}
+
+void fn_1_A9868(void) {
+    Mtx44 proj;
+    DebugDraw *dd = (DebugDraw *)&lbl_1_bss_71690;
+
+    fn_1_A714C(&dd->proj_0, &dd->proj_1, &dd->proj_2, &dd->proj_3);
     fn_8007245C(2560);
     fn_800720B0(0);
     fn_800747D0(4, 0, 1, 1, 0, 2, 1);
@@ -3636,48 +3704,29 @@ void fn_1_A9868(u32 arg0, u32 arg1, u32 arg2, f32 arg3) {
     fn_80073898(0);
     fn_80074788(1);
     lbl_8006DAEC();
-    loc_20[0] = p_lbl_1_rodata_4AA0->unk_0;
-    loc_20[1] = p_lbl_1_rodata_4AA0->unk_4;
-    loc_20[2] = p_lbl_1_rodata_4AA0->unk_8;
-    loc_14[0] = p_lbl_1_rodata_4AA0->unk_C;
-    loc_14[1] = p_lbl_1_rodata_4AA0->unk_10;
-    loc_14[2] = p_lbl_1_rodata_4AA0->unk_14;
-    loc_8[0] = p_lbl_1_rodata_4AA0->unk_18;
-    loc_8[1] = p_lbl_1_rodata_4AA0->unk_1C;
-    loc_8[2] = p_lbl_1_rodata_4AA0->unk_20;
-    fn_8006F1F0((void *)loc_20, (void *)loc_14, (void *)loc_8);
+    {
+        Vec pos = {0.0f, 0.0f, 100.0f};
+        Vec up = {0.0f, 1.0f, 0.0f};
+        Vec at = {0.0f, 0.0f, -100.0f};
+
+        fn_8006F1F0(&pos, &up, &at);
+    }
     GXSetCurrentMtx(0);
-    GXLoadPosMtxImm((*((struct fn_1_A9868_lbl_801A6D00 *)&lbl_801A6D00)).unk_0, 0);
+    GXLoadPosMtxImm(lbl_801A6D00, 0);
     lbl_8006DB30();
-    zero = C_MTXOrtho((Sig_fn_80015EE8_Fn80015EE8Out *)&loc_2C, p_lbl_1_rodata_4AA0->unk_24, p_lbl_1_rodata_4AA0->unk_28, p_lbl_1_rodata_4AA0->unk_24, p_lbl_1_rodata_4AA0->unk_2C, p_lbl_1_rodata_4AA0->unk_24, p_lbl_1_rodata_4AA0->unk_30);
-    fn_800737E4((struct Sig_fn_800737E4_fn_800737E4_Arg0 *)&loc_2C, 1, zero);
+    C_MTXOrtho(proj, 0.0f, 480.0f, 0.0f, 640.0f, 0.0f, 90000.0f);
+    fn_800737E4(proj, 1);
     fn_80074918(1, 7, 0);
-    p_lbl_1_bss_71690->unk_0 = 1;
+    dd->active = 1;
 }
 /* fzgx:end fn_1_A9868 */
 
-/* fzgx:begin fn_1_A9A28 */
-volatile PPCWGPipe GXWGFifo : GX_FIFO_BASE; /* volatile: hardware port */
-
-
-/* The SDK's const-parameter vertex writers; GC/2.5 keeps the by-value color in registers across them. */
-static inline void GXPosition3f32(const f32 x, const f32 y, const f32 z) {
-    GXWGFifo.f32 = x;
-    GXWGFifo.f32 = y;
-    GXWGFifo.f32 = z;
-}
-
-static inline void GXColor4u8(const u8 r, const u8 g, const u8 b, const u8 a) {
-    GXWGFifo.u8 = r;
-    GXWGFifo.u8 = g;
-    GXWGFifo.u8 = b;
-    GXWGFifo.u8 = a;
-}
-
+/* fzgx:begin fn_1_A9A28 noprologue */
+/* Draws one line (GXBegin 0xA8, two vertices) from (x0, y0) to (x1, y1), each coordinate offset by 0.5. */
 /* Draws one line (GXBegin 0xA8, two vertices) from (x0, y0) to (x1, y1), each coordinate offset by 0.5,
  * while lbl_1_bss_71690.unk_0 is set. */
 void fn_1_A9A28(s16 x0, s16 y0, s16 x1, s16 y1, GXColor color) {
-    if ((s32)lbl_1_bss_71690.unk_0 != 0) {
+    if (lbl_1_bss_71690.active != 0) {
         fn_8003462C(0xA8, 0, 2);
         GXPosition3f32(0.5f + x0, 0.5f + y0, 0.0f);
         GXColor4u8(color.r, color.g, color.b, color.a);
@@ -3687,72 +3736,33 @@ void fn_1_A9A28(s16 x0, s16 y0, s16 x1, s16 y1, GXColor color) {
 }
 /* fzgx:end fn_1_A9A28 */
 
-/* fzgx:begin fn_1_A9B70 */
-volatile PPCWGPipe GXWGFifo : GX_FIFO_BASE; /* volatile: hardware port */
-
-
-static inline void GXPosition3f32(const f32 x, const f32 y, const f32 z) {
-    GXWGFifo.f32 = x;
-    GXWGFifo.f32 = y;
-    GXWGFifo.f32 = z;
-}
-
-static inline void GXColor4u8(const u8 r, const u8 g, const u8 b, const u8 a) {
-    GXWGFifo.u8 = r;
-    GXWGFifo.u8 = g;
-    GXWGFifo.u8 = b;
-    GXWGFifo.u8 = a;
-}
-
-/* fn_1_A9A28's body (one line, GXBegin 0xA8), which retail inlines here four times */
-static inline void fn_1_A9B70_line(s16 x0, s16 y0, s16 x1, s16 y1, GXColor color) {
-    if ((s32)lbl_1_bss_71690.unk_0 != 0) {
-        fn_8003462C(0xA8, 0, 2);
-        GXPosition3f32(0.5f + x0, 0.5f + y0, 0.0f);
-        GXColor4u8(color.r, color.g, color.b, color.a);
-        GXPosition3f32(0.5f + x1, 0.5f + y1, 0.0f);
-        GXColor4u8(color.r, color.g, color.b, color.a);
-    }
-}
-
+/* fzgx:begin fn_1_A9B70 noprologue */
+/* Outlines the w by h rectangle at (x, y) with four lines, filling it first through fn_1_A9FFC when either side
+ * is 2 or less. */
 /* Outlines the w by h rectangle at (x, y) with four lines, filling it first through fn_1_A9FFC when either side
  * is 2 or less, while lbl_1_bss_71690.unk_0 is set. */
+/* fn_1_A9A28's body (one line, GXBegin 0xA8): retail inlines the calls here four times */
 void fn_1_A9B70(s16 x, s16 y, s16 w, s16 h, GXColor color) {
-    if ((s32)lbl_1_bss_71690.unk_0 == 0 || w == 0 || h == 0) {
+    if (lbl_1_bss_71690.active == 0 || w == 0 || h == 0) {
         return;
     }
     if (w <= 2 || h <= 2) {
         fn_1_A9FFC(x, y, w, h, color);
     }
-    fn_1_A9B70_line(x, y, x + w - 1, y, color);
-    fn_1_A9B70_line(x + w - 1, y, x + w - 1, y + h - 1, color);
-    fn_1_A9B70_line(x, y + 1, x, y + h, color);
-    fn_1_A9B70_line(x + 1, y + h - 1, x + w, y + h - 1, color);
+    fn_1_A9A28(x, y, x + w - 1, y, color);
+    fn_1_A9A28(x + w - 1, y, x + w - 1, y + h - 1, color);
+    fn_1_A9A28(x, y + 1, x, y + h, color);
+    fn_1_A9A28(x + 1, y + h - 1, x + w, y + h - 1, color);
 }
 /* fzgx:end fn_1_A9B70 */
 
-/* fzgx:begin fn_1_A9FFC */
-volatile PPCWGPipe GXWGFifo : GX_FIFO_BASE; /* volatile: hardware port */
-
-
-/* The SDK's const-parameter vertex writers; GC/2.5 keeps the by-value color in registers across them. */
-static inline void GXPosition3f32(const f32 x, const f32 y, const f32 z) {
-    GXWGFifo.f32 = x;
-    GXWGFifo.f32 = y;
-    GXWGFifo.f32 = z;
-}
-
-static inline void GXColor4u8(const u8 r, const u8 g, const u8 b, const u8 a) {
-    GXWGFifo.u8 = r;
-    GXWGFifo.u8 = g;
-    GXWGFifo.u8 = b;
-    GXWGFifo.u8 = a;
-}
-
+/* fzgx:begin fn_1_A9FFC noprologue */
+/* Fills the w by h rectangle at (x, y) with one color (GXBegin 0x80, four vertices), each coordinate offset
+ * by 0.5. */
 /* Fills the w by h rectangle at (x, y) with one color (GXBegin 0x80, four vertices), each coordinate offset
  * by 0.5, while lbl_1_bss_71690.unk_0 is set. */
 void fn_1_A9FFC(s16 x, s16 y, s16 w, s16 h, GXColor color) {
-    if ((s32)lbl_1_bss_71690.unk_0 != 0) {
+    if (lbl_1_bss_71690.active != 0) {
         fn_8003462C(0x80, 0, 4);
         GXPosition3f32(0.5f + x, 0.5f + y, 0.0f);
         GXColor4u8(color.r, color.g, color.b, color.a);
@@ -3766,28 +3776,13 @@ void fn_1_A9FFC(s16 x, s16 y, s16 w, s16 h, GXColor color) {
 }
 /* fzgx:end fn_1_A9FFC */
 
-/* fzgx:begin fn_1_AA188 */
-volatile PPCWGPipe GXWGFifo : GX_FIFO_BASE; /* volatile: hardware port */
-
-
-/* The SDK's const-parameter vertex writers; GC/2.5 keeps the by-value colors in registers across them. */
-static inline void GXPosition3f32(const f32 x, const f32 y, const f32 z) {
-    GXWGFifo.f32 = x;
-    GXWGFifo.f32 = y;
-    GXWGFifo.f32 = z;
-}
-
-static inline void GXColor4u8(const u8 r, const u8 g, const u8 b, const u8 a) {
-    GXWGFifo.u8 = r;
-    GXWGFifo.u8 = g;
-    GXWGFifo.u8 = b;
-    GXWGFifo.u8 = a;
-}
-
+/* fzgx:begin fn_1_AA188 noprologue */
+/* Fills the w by h rectangle at (x, y) with one color per corner (GXBegin 0x80, four vertices, clockwise from
+ * (x, y)), each coordinate offset by 0.5. */
 /* Fills the w by h rectangle at (x, y) with one color per corner (GXBegin 0x80, four vertices, clockwise from
  * (x, y)), each coordinate offset by 0.5, while lbl_1_bss_71690.unk_0 is set. */
 void fn_1_AA188(s16 x, s16 y, s16 w, s16 h, GXColor c0, GXColor c1, GXColor c2, GXColor c3) {
-    if ((s32)lbl_1_bss_71690.unk_0 != 0) {
+    if (lbl_1_bss_71690.active != 0) {
         fn_8003462C(0x80, 0, 4);
         GXPosition3f32(0.5f + x, 0.5f + y, 0.0f);
         GXColor4u8(c0.r, c0.g, c0.b, c0.a);
@@ -3801,97 +3796,29 @@ void fn_1_AA188(s16 x, s16 y, s16 w, s16 h, GXColor c0, GXColor c1, GXColor c2, 
 }
 /* fzgx:end fn_1_AA188 */
 
-/* fzgx:begin fn_1_AA350 */
-/* begin game/main_rel/driver_types.h (deltawave784/fzgx, CC0) */
-#ifndef GAME_MAIN_REL_DRIVER_TYPES_H
-#define GAME_MAIN_REL_DRIVER_TYPES_H
-
-// Types (and the externs that name them) of driver.c, hoisted out of its prologue so that
-// a block can compile standalone and under the prologue. Hand-owned (librarian).
-
-
-
-
-
-
-
-
-
-typedef Sig_parse_format_MkVaListState Sig_parse_format_va_list;
-
-
-
-/* begin game/main_rel/shared_types.h (deltawave784/fzgx, CC0) */
-#ifndef GAME_MAIN_REL_SHARED_TYPES_H
-#define GAME_MAIN_REL_SHARED_TYPES_H
-
-// Types that two or more main_rel TU type headers defined identically; one definition here so
-// the TU headers can be included together. Hand-owned (librarian).
-
-
-
-
-
-
-
-#endif  // GAME_MAIN_REL_SHARED_TYPES_H
-
-/* end game/main_rel/shared_types.h */
-
-
-
-
-
-
-#endif  // GAME_MAIN_REL_DRIVER_TYPES_H
-
-/* end game/main_rel/driver_types.h */
-
-extern void (*lbl_1_bss_7168C)(void);
-extern void (*lbl_1_bss_7167C)(void);
-extern void (*lbl_1_bss_71680)(void);
-extern void (*lbl_1_bss_71684)(void);
-extern void (*lbl_1_bss_71688)(void);
-
-
-#define WG_F32 (*(volatile f32 *)(GX_FIFO_BASE + 0x0)) /* Hardware access must remain ordered. */
-#define WG_U8 (*(volatile u8 *)(GX_FIFO_BASE + 0x0)) /* Hardware access must remain ordered. */
-
-static inline void pos3(f32 x, f32 y) {
-    WG_F32 = x;
-    WG_F32 = y;
-    WG_F32 = lbl_1_rodata_4AC4[0];
-}
-
-static inline void col4(u8 r, u8 g, u8 b, u8 a) {
-    WG_U8 = r;
-    WG_U8 = g;
-    WG_U8 = b;
-    WG_U8 = a;
-}
-
-static inline u16 fn_1_AA350_array_read(s32 index, u8 *array) { return array[index]; }
-void fn_1_AA350(s16 *a, s16 *b, u8 *c, u32 n) {
+/* fzgx:begin fn_1_AA350 noprologue */
+/* Draws n points (GXBegin 0x98) from the x and y arrays, one RGBA color per point. */
+void fn_1_AA350(s16 *x, s16 *y, u8 *color, u32 n) {
     u32 i;
-    if ((s32)lbl_1_bss_71690.unk_0 != 0) {
+    if (lbl_1_bss_71690.active != 0) {
         fn_8003462C(0x98, 0, (u16)n);
         for (i = 0; i < n; i++) {
-            pos3((f32)*a++, (f32)*b++);
-            col4(fn_1_AA350_array_read(0, c), fn_1_AA350_array_read(1, c), fn_1_AA350_array_read(2, c), fn_1_AA350_array_read(3, c));
-            c += 4;
+            GXPosition3f32(*x++, *y++, 0.0f);
+            GXColor4u8(color[0], color[1], color[2], color[3]);
+            color += 4;
         }
     }
 }
 /* fzgx:end fn_1_AA350 */
 
-/* fzgx:begin fn_1_AA538 */
+/* fzgx:begin fn_1_AA538 noprologue */
 // Initialize the shared rendering state and submit the associated configuration.
 void fn_1_AA538(void) {
-    Obj_1_bss_71690 *state = (Obj_1_bss_71690 *)&lbl_1_bss_71690;
+    DebugDraw *dd = (DebugDraw *)&lbl_1_bss_71690;
 
-    fn_1_A7024(state->unk_4, state->unk_8, state->unk_C, state->unk_10);
+    fn_1_A7024(dd->proj_0, dd->proj_1, dd->proj_2, dd->proj_3);
     fn_80074918(1, 3, 1);
-    state->unk_0 = 1;
+    dd->active = 1;
 }
 /* fzgx:end fn_1_AA538 */
 
