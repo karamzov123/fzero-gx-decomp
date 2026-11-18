@@ -8,7 +8,7 @@ jobs:
   build:
     # The build image holds game files: never run it for pull requests from other repositories.
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
-    # A *private* build container holding orig/GFZE01 (with the derived main.rel),
+    # A *private* build container holding orig/GFZE01, orig/GFZP01 and orig/GFZJ01 (with the derived main.rel),
     # the compilers and binutils, owned by whoever owns this repository (rayanht/fzgx-build
     # upstream, karamzov123/fzgx-build on the fork). See docs/github_actions.md.
     container: ghcr.io/${{ github.repository_owner }}/fzgx-build:main
@@ -17,7 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [GFZE01]
+        version: [GFZE01, GFZP01, GFZJ01]
 
     steps:
     - name: Checkout
@@ -57,6 +57,7 @@ jobs:
 
     # Partial C bodies scored for decomp.dev's fuzzy match only; exact measures are guarded.
     - name: Fuzzy match
+      if: hashFiles(format('fuzzy/{0}/index.json', matrix.version)) != ''
       run: |
         python3 tools/fuzzy_report.py apply --version ${{ matrix.version }} \
             --binutils /binutils --compilers /compilers \

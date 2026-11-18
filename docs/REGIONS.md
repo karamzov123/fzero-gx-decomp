@@ -101,5 +101,6 @@ python3 configure.py --version GFZP01 && ninja
 uv run tools/build_disc.py --version GFZP01 --image PATH/TO/GFZP01.iso --out /tmp/GFZP01.iso
 ```
 
-CI builds GFZE01 only, so check the regions locally after changing a unit that matches them
-(plain `"matching"`, or `matching_for` naming them).
+CI builds all three versions (`GFZE01`, `GFZP01`, `GFZJ01`) and uploads a `<VERSION>_report`
+for each, so decomp.dev reports every version. A unit that is plain `"matching"` or names a
+region in `matching_for` must still link there: check it locally before pushing.
