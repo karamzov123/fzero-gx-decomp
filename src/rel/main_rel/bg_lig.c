@@ -15,7 +15,6 @@ struct LigDrawEntry;
 extern void fn_1_D7B7C(struct LigDrawEntry *base);
 extern void fn_1_9AD88(void);
 extern void *memset(void *dst, int value, u32 size);
-extern void fn_1_D7EF4(void *, u32);
 extern f32 lbl_1_rodata_6594[];
 extern f32 lbl_1_rodata_6524[];
 extern void lbl_8006DCA4(void);
@@ -1016,7 +1015,6 @@ struct LigDrawEntry;
 extern void fn_1_D7B7C(struct LigDrawEntry *base);
 extern void fn_1_9AD88(void);
 extern void *memset(void *dst, int value, u32 size);
-extern void fn_1_D7EF4(void *, u32);
 extern f32 lbl_1_rodata_6594[];
 
 
@@ -1595,17 +1593,7 @@ void fn_1_D7C44(LigEvt *arg0) {
 #include "types.h"
 #include "game/vec3.h"
 #include "mathutil_vec_cross_prod.h"
-
-typedef struct {
-    Vec3 pos;
-    Vec3 vel;
-    Vec3 scale;
-    f32 value;
-    s16 phase;
-    s16 step;
-    s16 count;
-    u8 pad2e[0x2];
-} fn_1_D7A10_LigEntry;
+#include "rel/main_rel/bg_lig.h"
 
 extern u32 lbl_801A63C0;
 extern void *lbl_801A6D00;
@@ -1718,7 +1706,7 @@ static inline f32 lig_fade(f32 t, f32 max) {
 }
 
 // Respawns a lighting entry at a random point in front of the camera.
-void fn_1_D7EF4(fn_1_D7A10_LigEntry *e, u32 index) {
+void fn_1_D7EF4(LigParticle *e, u32 index) {
     Vec3 eye;
     Vec3 at;
     Vec3 target;
@@ -1789,7 +1777,7 @@ void fn_1_D8388(void *obj) {
     if (fn_1_58C4() < 2) {
         i = 0;
         do {
-            fn_1_D7EF4(entry + 0x3f0, 0);
+            fn_1_D7EF4((LigParticle *)(entry + 0x3f0), 0);
             i++;
             entry += 0x30;
         } while (i < 0xf);
@@ -1872,16 +1860,7 @@ typedef struct {
     u8 pad_038[0x74];
 } fn_1_D8D58_LigEntry;
 
-typedef struct {
-    f32 pos[3];
-    f32 vel[3];
-    f32 scale[3];
-    f32 value;
-    s16 phase;
-    s16 step;
-    s16 count;
-    u8 pad2e[0x2];
-} fn_1_D7A10_LigEntry;
+
 
 typedef struct {
     u8 pad_000[0x6d4];
@@ -1993,7 +1972,7 @@ typedef struct {
 
 typedef struct {
     u8 pad_000[0x3f0];
-    fn_1_D7A10_LigEntry entries[14];
+    LigParticle entries[14];
     LigVec target;
     u8 pad_69c[0xc];
     f32 unk_6a8;
@@ -2014,15 +1993,14 @@ extern s32 fn_1_58C4();
 extern f32 fn_1_8652C(s32);
 extern u32 fn_1_1FB80(LigVec *, s32);
 extern s32 fn_1_66B8(void *, f32);
-extern void fn_1_D7EF4(void *, u32);
 extern f32 lbl_8006D0B4(f32);
 extern f32 lbl_8006D668(void *);
 
 // Distance between an entry's position and a probe point.
-static inline f32 lig_dist(fn_1_D7A10_LigEntry *e, LigVec *v) {
-    f32 dx = e->pos[0];
-    f32 dy = e->pos[1];
-    f32 dz = e->pos[2];
+static inline f32 lig_dist(LigParticle *e, LigVec *v) {
+    f32 dx = e->pos.x;
+    f32 dy = e->pos.y;
+    f32 dz = e->pos.z;
     dx -= v->x;
     dy -= v->y;
     dz -= v->z;
@@ -2082,8 +2060,8 @@ void fn_1_D83E4(LigLightObj *obj, u32 index) {
     e = obj;
     drift_z = 0.1f;
     for (i = 0; i < 14; i++) {
-        e->entries[0].pos[0] += drift_x;
-        e->entries[0].pos[2] += drift_z;
+        e->entries[0].pos.x += drift_x;
+        e->entries[0].pos.z += drift_z;
         e->entries[0].phase += e->entries[0].step;
         count = fn_1_58C4();
         fn_1_681C(0, &probe);
@@ -2106,7 +2084,7 @@ void fn_1_D83E4(LigLightObj *obj, u32 index) {
         if (e->entries[0].count > 15) {
             fn_1_D7EF4(e->entries, index);
         }
-        e = (LigLightObj *)((u8 *)e + sizeof(fn_1_D7A10_LigEntry));
+        e = (LigLightObj *)((u8 *)e + sizeof(LigParticle));
     }
 
     if (obj->unk_6bc > 0) {
