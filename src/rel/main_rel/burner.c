@@ -8117,8 +8117,7 @@ extern f32 lbl_1_rodata_4244[7];
 extern void fn_1_17920(s32, s32, f32);
 extern void fn_1_85C58(s32, f32);
 extern void lbl_8006DB74(void *);
-extern void fn_1_9DDA8(u32, u32, u32);
-extern void fn_1_9DFB8(u32, u32, u32, u32);
+
 extern void GXPeekZ(u32, u32, void *);
 extern void GXPokeAlphaRead(u32);
 extern void fn_8003432C(u32, u32, u32 *);

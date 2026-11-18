@@ -13,8 +13,6 @@ extern f32 lbl_1_rodata_4244[7];
 extern void fn_1_17920(s32, s32, f32);
 extern void fn_1_85C58(s32, f32);
 extern void lbl_8006DB74(void *);
-extern void fn_1_9DDA8(u32, u32, u32);
-extern void fn_1_9DFB8(u32, u32, u32, u32);
 extern void GXPeekZ(u32, u32, void *);
 extern void GXPokeAlphaRead(u32);
 extern void fn_8003432C(u32, u32, u32 *);
@@ -109,8 +107,6 @@ extern f32 lbl_1_rodata_4244[7];
 extern void fn_1_17920(s32, s32, f32);
 extern void fn_1_85C58(s32, f32);
 extern void lbl_8006DB74(void *);
-extern void fn_1_9DDA8(u32, u32, u32);
-extern void fn_1_9DFB8(u32, u32, u32, u32);
 extern void GXPeekZ(u32, u32, void *);
 extern void GXPokeAlphaRead(u32);
 extern void fn_8003432C(u32, u32, u32 *);
@@ -384,17 +380,9 @@ typedef struct {
 
 /* end game/main_rel/background_types.h */
 
-typedef struct {
-    s32 type;     /* 0: constant, 1: linear, else: hermite */
-    f32 time;
-    f32 value;
-    f32 tanIn;
-    f32 tanOut;
-} fn_1_9DDA8_CurveKey;
-
 /* Evaluate a keyframe curve at time t; derivative != 0 returns the slope. */
-f32 fn_1_9DDA8(s32 count, fn_1_9DDA8_CurveKey *keys, s32 derivative, f32 t) {
-    fn_1_9DDA8_CurveKey *p;
+f32 fn_1_9DDA8(s32 count, BackgroundCurveKey *keys, s32 derivative, f32 t) {
+    BackgroundCurveKey *p;
     s32 i;
     f32 a, dt, d, m0, m1, u, s, u2, u3, w, b, e;
     f64 lin;
@@ -465,20 +453,20 @@ f32 fn_1_9DDA8(s32 count, fn_1_9DDA8_CurveKey *keys, s32 derivative, f32 t) {
 /* fzgx:end fn_1_9DDA8 */
 
 /* fzgx:begin fn_1_9E14C */
-void fn_1_9E14C(u32 arg0, u32 arg1) {
-    fn_1_9DDA8(arg0, arg1, 0);
+f32 fn_1_9E14C(s32 count, BackgroundCurveKey *keys, f32 t) {
+    return fn_1_9DDA8(count, keys, 0, t);
 }
 /* fzgx:end fn_1_9E14C */
 
 /* fzgx:begin fn_1_9E170 */
-void fn_1_9E170(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
-    fn_1_9DFB8(arg0, arg1, arg2, 0);
+f32 fn_1_9E170(s32 count, const BackgroundCurveKey *keys, s32 *cursor, f32 t) {
+    return fn_1_9DFB8(count, keys, cursor, 0, t);
 }
 /* fzgx:end fn_1_9E170 */
 
 /* fzgx:begin fn_1_9E194 */
-void fn_1_9E194(u32 arg0, u32 arg1) {
-    fn_1_9DDA8(arg0, arg1, 1);
+f32 fn_1_9E194(s32 count, BackgroundCurveKey *keys, f32 t) {
+    return fn_1_9DDA8(count, keys, 1, t);
 }
 /* fzgx:end fn_1_9E194 */
 
