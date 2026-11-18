@@ -591,15 +591,6 @@ rel/main_rel/game/fn_1_41418.c:
 rel/main_rel/game/fn_1_41488.c:
 	.text       start:0x00041488 end:0x00041518
 
-rel/main_rel/motasglist/fn_1_41BDC.c:
-	.text       start:0x00041BDC end:0x00041C18
-
-rel/main_rel/motasglist/fn_1_41F58.c:
-	.text       start:0x00041F58 end:0x00042044
-
-rel/main_rel/motasglist/fn_1_42458.c:
-	.text       start:0x00042458 end:0x0004247C
-
 rel/main_rel/motasglist/fn_1_426AC.c:
 	.text       start:0x000426AC end:0x000426E4
 
@@ -4794,9 +4785,6 @@ rel/main_rel/sel_static_disp/fn_1_14EF40.c:
 rel/main_rel/camera/fn_1_847C.c:
 	.text       start:0x0000847C end:0x0000857C align:4
 
-rel/main_rel/motasglist/fn_1_41B18.c:
-	.text       start:0x00041B18 end:0x00041BDC align:4
-
 rel/main_rel/burner/fn_1_9CD6C.c:
 	.text       start:0x0009CD6C end:0x0009CE1C align:4
 
@@ -4889,9 +4877,6 @@ rel/main_rel/camera/fn_1_8B10.c:
 
 rel/main_rel/rob/fn_1_96F20.c:
 	.text       start:0x00096F20 end:0x00097174 align:4
-
-rel/main_rel/motasglist/fn_1_41850.c:
-	.text       start:0x00041850 end:0x00041B18 align:4
 
 rel/main_rel/sel_static_disp/fn_1_13A9B8.c:
 	.text       start:0x0013A9B8 end:0x0013ABA8 align:4
@@ -5238,9 +5223,6 @@ rel/main_rel/load/fn_1_45730.c:
 
 rel/main_rel/ghost/fn_1_EB85C.c:
 	.text       start:0x000EB85C end:0x000EB8F4 align:4
-
-rel/main_rel/motasglist/fn_1_41E34.c:
-	.text       start:0x00041E34 end:0x00041F58 align:4
 
 rel/main_rel/replay/fn_1_F4E3C.c:
 	.text       start:0x000F4E3C end:0x000F4F08 align:4
@@ -5851,9 +5833,6 @@ rel/main_rel/ranking/fn_1_157200.c:
 rel/main_rel/sel_static_disp/fn_1_14DC68.c:
 	.text       start:0x0014DC68 end:0x0014DD68 align:4
 
-rel/main_rel/motasglist/fn_1_41C18.c:
-	.text       start:0x00041C18 end:0x00041CB8 align:4
-
 rel/main_rel/stcoli/fn_1_180F4.c:
 	.text       start:0x000180F4 end:0x000181CC align:4
 
@@ -6069,7 +6048,9 @@ rel/main_rel/effect/fn_1_67F20.c:
 	.text       start:0x00067F20 end:0x00068054 align:4
 
 rel/main_rel/motasglist/fn_1_41518.c:
-	.text       start:0x00041518 end:0x00041850 align:4
+	.text       start:0x00041518 end:0x0004247C align:4
+	.rodata     start:0x00000F40 end:0x00000F50 align:8
+	.data       start:0x00006710 end:0x00006730 align:8
 
 rel/main_rel/bg_san/fn_1_DABB4.c:
 	.text       start:0x000DABB4 end:0x000DAD68 align:4
@@ -6263,9 +6244,6 @@ rel/main_rel/stcoli/fn_1_207DC.c:
 
 rel/main_rel/stcoli/fn_1_21950.c:
 	.text       start:0x00021950 end:0x00021BE4 align:4
-
-rel/main_rel/motasglist/fn_1_41CB8.c:
-	.text       start:0x00041CB8 end:0x00041E34 align:4
 
 rel/main_rel/stcoli/fn_1_29968.c:
 	.text       start:0x00029968 end:0x00029A0C align:4
@@ -6778,9 +6756,6 @@ rel/main_rel/archive/fn_1_12C110.c:
 
 rel/main_rel/car/fn_1_8E244.c:
 	.text       start:0x0008E244 end:0x0008E3A4 align:4
-
-rel/main_rel/motasglist/fn_1_42044.c:
-	.text       start:0x00042044 end:0x00042254 align:4
 
 rel/main_rel/accessory/fn_1_108EEC.c:
 	.text       start:0x00108EEC end:0x00109114 align:4
@@ -7739,9 +7714,6 @@ rel/main_rel/live_camera/fn_1_12FD4.c:
 
 rel/main_rel/font/fn_1_4DE04.c:
 	.text       start:0x0004DE04 end:0x0004DE44 align:4
-
-rel/main_rel/motasglist/fn_1_42254.c:
-	.text       start:0x00042254 end:0x00042458 align:4
 
 rel/main_rel/spline/fn_1_FA4D4.c:
 	.text       start:0x000FA4D4 end:0x000FA5A8 align:4
@@ -15830,12 +15802,6 @@ rel/main_rel/data/lbl_1_data_6700.c:
 rel/main_rel/data/lbl_1_data_6708.c:
 	.data       start:0x00006708 end:0x00006710 align:8
 
-rel/main_rel/data/lbl_1_data_6710.c:
-	.data       start:0x00006710 end:0x00006720 align:8
-
-rel/main_rel/data/lbl_1_data_6720.c:
-	.data       start:0x00006720 end:0x00006730 align:8
-
 rel/main_rel/data/lbl_1_data_19060.c:
 	.data       start:0x00019060 end:0x00019388 align:8
 
@@ -18033,7 +17999,10 @@ rel/main_rel/data/lbl_1_rodata_DD60.c:
 	.rodata     start:0x0000DD60 end:0x0000DEEC align:8
 
 rel/main_rel/data/lbl_1_rodata_0.c:
-	.rodata     start:0x00000000 end:0x000028B0 align:8
+	.rodata     start:0x00000000 end:0x00000F40 align:8
+
+rel/main_rel/data/lbl_1_rodata_F50.c:
+	.rodata     start:0x00000F50 end:0x000028B0 align:8
 
 rel/main_rel/data/lbl_1_rodata_2950.c:
 	.rodata     start:0x00002950 end:0x000033A8 align:8

@@ -28,6 +28,23 @@ extern const f32 lbl_1_rodata_F54;
 
 typedef MotaSignal SigData;
 
+extern const f32 lbl_1_rodata_F30;
+extern const f32 lbl_1_rodata_F34;
+extern const f32 lbl_1_rodata_F38;
+
+struct fn_1_41BDC_MotasglistData;
+struct Fn42044Data;
+struct Fn42044Key;
+struct Fn42254Data;
+struct Fn42254Key;
+
+void *fn_1_41BDC(struct fn_1_41BDC_MotasglistData *data, s32 index);
+struct Fn42044Key *fn_1_42044(struct Fn42044Data *data, s32 track);
+struct Fn42254Key *fn_1_42254(struct Fn42254Data *data, s32 track);
+void fn_1_42458(SigData *dst, const SigData *src);
+extern void fn_1_42E74(void *object);
+extern void fn_1_46B4(u32 heap, void *ptr, const char *file, int line);
+
 typedef MotaEntry Elem;
 
 typedef struct In {
@@ -84,19 +101,18 @@ struct SigPtr {
 };
 
 extern struct Pool lbl_801A6410;
-extern u8 lbl_1_data_6710[16];
-extern void *fn_1_45D0(u32 pool, u32 size, u8 *table, u32 id);
-extern void fn_1_42458(SigData *dst, const SigData *src);
+u8 lbl_1_data_6710[0x10] = {0};
+extern void *fn_1_45D0(u32 heap, u32 size, char *file, int line);
 
 Out *fn_1_41518(In *p) {
-    Out *out = (Out *)fn_1_45D0(lbl_801A6410.unk_0, 0x60, lbl_1_data_6720, 0x63);
+    Out *out = (Out *)fn_1_45D0(lbl_801A6410.unk_0, 0x60, "motasglist.c", 0x63);
     In *arg0 = p;
     struct SigPtr sig;
     s32 i;
 
     out->unk_00 = arg0->unk_20;
     out->unk_02 = arg0->unk_22 | 4;
-    out->unk_0C = (Elem *)fn_1_45D0(lbl_801A6410.unk_0, (arg0->unk_04 * 52 + 31) & ~31, lbl_1_data_6720, 0x67);
+    out->unk_0C = (Elem *)fn_1_45D0(lbl_801A6410.unk_0, (arg0->unk_04 * 52 + 31) & ~31, "motasglist.c", 0x67);
     out->unk_10 = arg0->unk_04;
     out->unk_12 = 0;
     out->unk_04 = 0;
@@ -104,7 +120,7 @@ Out *fn_1_41518(In *p) {
     out->unk_24 = arg0->unk_10;
     out->unk_18 = arg0->unk_18;
     out->unk_26 = arg0->unk_06;
-    out->unk_28 = (Ent12 *)fn_1_45D0(lbl_801A6410.unk_0, (arg0->unk_06 * 12 + 31) & ~31, lbl_1_data_6720, 0x70);
+    out->unk_28 = (Ent12 *)fn_1_45D0(lbl_801A6410.unk_0, (arg0->unk_06 * 12 + 31) & ~31, "motasglist.c", 0x70);
     out->unk_14 = (u8 *)arg0 + arg0->unk_1C;
     out->unk_1C = 0;
     out->unk_08 = 0;
@@ -122,8 +138,8 @@ Out *fn_1_41518(In *p) {
     } else {
         out->unk_20 = 0;
     }
-    out->unk_2C = (SigData *)fn_1_45D0(lbl_801A6410.unk_0, ((arg0->unk_21 << 4) + 31) & ~31, lbl_1_data_6720, 0x82);
-    out->unk_30 = (SigData *)fn_1_45D0(lbl_801A6410.unk_0, ((arg0->unk_21 << 4) + 31) & ~31, lbl_1_data_6720, 0x83);
+    out->unk_2C = (SigData *)fn_1_45D0(lbl_801A6410.unk_0, ((arg0->unk_21 << 4) + 31) & ~31, "motasglist.c", 0x82);
+    out->unk_30 = (SigData *)fn_1_45D0(lbl_801A6410.unk_0, ((arg0->unk_21 << 4) + 31) & ~31, "motasglist.c", 0x83);
     sig.value = (const SigData *)lbl_1_data_6710;
     for (i = 0; i < (s32)arg0->unk_21; i++) {
         fn_1_42458((SigData *)((u8 *)out->unk_2C + i * 16), sig.value);
@@ -166,13 +182,10 @@ Out *fn_1_41518(In *p) {
 }
 /* fzgx:end fn_1_41518 */
 
-/* fzgx:begin fn_1_41850 */
+/* fzgx:begin fn_1_41850 noprologue */
 struct fn_1_41850_Arg0 {
     u8 pad_0[0x2];
     u16 unk_2;
-};
-struct fn_1_41850_lbl_801A6410 {
-    u32 unk_0;
 };
 struct fn_1_41850_Node {
     u8 pad_0[0x28];
@@ -207,56 +220,56 @@ void fn_1_41850(void *arg0, s32 arg_sp0) {
             while (var_r27 < (s32) (*(u16 *)((u8 *)(arg0) + 16))) {
                 temp_r4 = (void *)(((struct fn_1_41850_Node *)(*(void **)((u8 *)(arg0) + 12)))[var_r27].unk_28);
                 if (temp_r4 != NULL) {
-                    fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4), (const char *)((s8 *) (*(u8 (*)[])&lbl_1_data_6720)), (s32)(0x123));
+                    fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4), "motasglist.c", (s32)(0x123));
                 }
                 var_r28 += 0x34;
                 var_r27 += 1;
                             }
             temp_r4_2 = (void *)(*(void **)((u8 *)(arg0) + 20));
             if (temp_r4_2 != NULL) {
-                fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_2), (const char *)((s8 *) (*(u8 (*)[])&lbl_1_data_6720)), (s32)(0x125));
+                fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_2), "motasglist.c", (s32)(0x125));
             }
             temp_r4_3 = (void *)(*(void **)((u8 *)(arg0) + 32));
             if (temp_r4_3 != NULL) {
-                fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_3), (const char *)((s8 *) (*(u8 (*)[])&lbl_1_data_6720)), (s32)(0x126));
+                fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_3), "motasglist.c", (s32)(0x126));
             }
         }
-        fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(*(void **)((u8 *)(arg0) + 12)), (const char *)((s8 *) (*(u8 (*)[])&lbl_1_data_6720)), (s32)(0x128));
+        fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(*(void **)((u8 *)(arg0) + 12)), "motasglist.c", (s32)(0x128));
     } else {
         var_r27_2 = (void *)(*(void **)((u8 *)(arg0) + 12));
         while (var_r27_2 != NULL) {
             temp_r4_4 = (void *)(*(void **)((u8 *)(var_r27_2) + 40));
             temp_r28 = (void *)(*(void **)((u8 *)(var_r27_2) + 48));
             if (temp_r4_4 != NULL) {
-                fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_4), (const char *)((s8 *) (*(u8 (*)[])&lbl_1_data_6720)), (s32)(0x12E));
+                fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_4), "motasglist.c", (s32)(0x12E));
             }
-            fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(var_r27_2), (const char *)((s8 *) (*(u8 (*)[])&lbl_1_data_6720)), (s32)(0x12F));
+            fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(var_r27_2), "motasglist.c", (s32)(0x12F));
             var_r27_2 = (void *)(temp_r28);
                     }
         temp_r4_5 = (void *)(*(void **)((u8 *)(arg0) + 32));
         if (temp_r4_5 != NULL) {
-            fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_5), (const char *)((s8 *) (*(u8 (*)[])&lbl_1_data_6720)), (s32)(0x131));
+            fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_5), "motasglist.c", (s32)(0x131));
         }
     }
     temp_r4_6 = (void *)(*(void **)((u8 *)(arg0) + 40));
     if (temp_r4_6 != NULL) {
-        fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_6), (const char *)((s8 *) (*(u8 (*)[])&lbl_1_data_6720)), (s32)(0x133));
+        fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_6), "motasglist.c", (s32)(0x133));
     }
     temp_r4_7 = (void *)(*(void **)((u8 *)(arg0) + 52));
     if (temp_r4_7 != NULL) {
-        fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_7), (const char *)((s8 *) (*(u8 (*)[])&lbl_1_data_6720)), (s32)(0x10B));
+        fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_7), "motasglist.c", (s32)(0x10B));
     }
     temp_r4_8 = (void *)(*(void **)((u8 *)(arg0) + 56));
     if (temp_r4_8 != NULL) {
-        fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_8), (const char *)((s8 *) (*(u8 (*)[])&lbl_1_data_6720)), (s32)(0x10C));
+        fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_8), "motasglist.c", (s32)(0x10C));
     }
     temp_r4_9 = (void *)(*(void **)((u8 *)(arg0) + 44));
     if (temp_r4_9 != NULL) {
-        fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_9), (const char *)((s8 *) (*(u8 (*)[])&lbl_1_data_6720)), (s32)(0x10D));
+        fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_9), "motasglist.c", (s32)(0x10D));
     }
     temp_r4_10 = (void *)(*(void **)((u8 *)(arg0) + 48));
     if (temp_r4_10 != NULL) {
-        fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_10), (const char *)((s8 *) (*(u8 (*)[])&lbl_1_data_6720)), (s32)(0x10E));
+        fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_10), "motasglist.c", (s32)(0x10E));
     }
     (*(void **)((u8 *)(arg0) + 52)) = (void *)(NULL);
     (*(s8 *)((u8 *)(arg0) + 39)) = 0;
@@ -267,33 +280,32 @@ void fn_1_41850(void *arg0, s32 arg_sp0) {
     (*(s8 *)((u8 *)(arg0) + 76)) = 0;
     temp_r4_11 = (void *)(*(void **)((u8 *)(arg0) + 8));
     if ((temp_r4_11 != NULL) && !((*(u16 *)((u8 *)(arg0) + 2)) & 2)) {
-        fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_11), (const char *)((s8 *) (*(u8 (*)[])&lbl_1_data_6720)), (s32)(0x137));
+        fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_11), "motasglist.c", (s32)(0x137));
     }
-    fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(arg0), (const char *)((s8 *) (*(u8 (*)[])&lbl_1_data_6720)), (s32)(0x138));
+    fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(arg0), "motasglist.c", (s32)(0x138));
 }
 /* fzgx:end fn_1_41850 */
 
-/* fzgx:begin fn_1_41B18 */
-typedef struct Node Node;
-struct Node {
+/* fzgx:begin fn_1_41B18 noprologue */
+typedef struct Node_41B18 Node_41B18;
+struct Node_41B18 {
     u8 pad[0x30];
-    Node *next;
+    Node_41B18 *next;
 };
 
 typedef struct Object {
     u8 pad[2];
     u16 flags;
-    Node *data;
+    Node_41B18 *data;
 } Object;
 
-extern Object *fn_1_41BDC(Object *obj);
 
-void *fn_1_41B18(Object *obj, s32 unused, s32 index) {
+void *fn_1_41B18(Object *obj, s32 track, s32 index) {
     Object *result;
-    Node *node;
+    Node_41B18 *node;
     int i;
 
-    result = fn_1_41BDC(obj);
+    result = fn_1_41BDC((struct fn_1_41BDC_MotasglistData *)obj, track);
     if ((obj->flags & 1) != 0) {
         return (char *)result->data + index * 0x34;
     }
@@ -306,7 +318,7 @@ void *fn_1_41B18(Object *obj, s32 unused, s32 index) {
 }
 /* fzgx:end fn_1_41B18 */
 
-/* fzgx:begin fn_1_41BDC */
+/* fzgx:begin fn_1_41BDC noprologue */
 typedef struct fn_1_41BDC_MotasglistData {
     u8 pad_00[0x26];
     u8 count;
@@ -378,345 +390,6 @@ void fn_1_41C18(MotaList *arg0, u32 arg1) {
 /* fzgx:end fn_1_41C18 */
 
 /* fzgx:begin fn_1_41CB8 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/game.h"
-
-typedef struct Sig_ADXT_Pause_AdxSjdHandle Sig_ADXT_Pause_AdxSjdHandle;
-
-typedef struct Sig_ADXT_Pause_ADXStream Sig_ADXT_Pause_ADXStream;
-
-typedef struct Sig_ADXT_Pause_AXRNAHandle Sig_ADXT_Pause_AXRNAHandle;
-
-typedef struct Sig_ADXT_Pause_SJCK {
-    unsigned char *data;
-    int len;
-} Sig_ADXT_Pause_SJCK;
-
-typedef void (*Sig_ADXT_Pause_SJErrorCallback)(void *object, int error);
-
-typedef struct Sig_ADXT_Pause_SJInterface Sig_ADXT_Pause_SJInterface;
-
-typedef struct Sig_ADXT_Pause_SJ Sig_ADXT_Pause_SJ;
-
-struct Sig_ADXT_Pause_SJ {
-    const Sig_ADXT_Pause_SJInterface *interface;
-};
-
-struct Sig_ADXT_Pause_SJInterface {
-    void *reserved[3];
-    void (*destroy)(Sig_ADXT_Pause_SJ *sj);
-    const void *(*get_uuid)(Sig_ADXT_Pause_SJ *sj);
-    void (*reset)(Sig_ADXT_Pause_SJ *sj);
-    void (*get_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, int max_size, Sig_ADXT_Pause_SJCK *chunk);
-    void (*unget_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, Sig_ADXT_Pause_SJCK *chunk);
-    void (*put_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, Sig_ADXT_Pause_SJCK *chunk);
-    int (*get_num_data)(Sig_ADXT_Pause_SJ *sj, int channel);
-    int (*is_get_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, int size, int *available);
-    void (*entry_error_func)(Sig_ADXT_Pause_SJ *sj, Sig_ADXT_Pause_SJErrorCallback callback, void *object);
-};
-
-typedef struct Sig_ADXT_Pause_ADX_AMP Sig_ADXT_Pause_ADX_AMP;
-
-typedef struct Sig_ADXT_Pause_LSCObject Sig_ADXT_Pause_LSCObject;
-
-typedef struct Sig_ADXT_Pause_ADXTHandle {
-    s8 used;
-    s8 status;
-    s8 stream_type;
-    s8 maximum_channels;
-    Sig_ADXT_Pause_AdxSjdHandle *decoder;
-    Sig_ADXT_Pause_ADXStream *stream;
-    Sig_ADXT_Pause_AXRNAHandle *rna;
-    Sig_ADXT_Pause_SJ *stream_sj;
-    Sig_ADXT_Pause_SJ *input_sj;
-    Sig_ADXT_Pause_SJ *output_sj[2];
-    u8 *input_buffer;
-    s32 input_buffer_size;
-    s32 input_extra_size;
-    u8 *output_buffer;
-    s32 output_buffer_size;
-    s32 output_buffer_distance;
-    s32 server_frequency;
-    s16 stream_buffer_sectors;
-    s16 minimum_buffer_sectors;
-    s16 output_volume;
-    s16 output_pan[2];
-    s16 field_46;
-    s32 maximum_decode_samples;
-    s32 loop_count;
-    s32 link_data_length;
-    s32 field_54;
-    s32 field_58;
-    s32 field_5C;
-    s16 error_code;
-    u8 reserved_62[2];
-    s32 field_64;
-    s16 field_68;
-    s16 field_6A;
-    s8 stream_loop_enabled;
-    s8 auto_receiver;
-    u8 reserved_6E[2];
-    s8 suppress_playback;
-    s8 decoder_ready;
-    s8 paused;
-    u8 reserved_73;
-    Sig_ADXT_Pause_ADX_AMP *amplifier;
-    Sig_ADXT_Pause_SJ *amplifier_input[2];
-    Sig_ADXT_Pause_SJ *amplifier_output[2];
-    s32 time_offset;
-    s32 eos_sector;
-    s32 loop_sample_count;
-    Sig_ADXT_Pause_LSCObject *linked_stream_controller;
-    s8 link_enabled;
-    u8 reserved_99[3];
-    u32 playback_time;
-    s32 playback_start_vsync;
-    s32 linked_decoded_samples;
-    s8 pending_stream_start;
-    u8 reserved_A9[3];
-    u8 *work_end;
-    const char *pending_filename;
-    void *pending_directory;
-    s32 pending_file_offset;
-    s32 pending_file_sectors;
-} Sig_ADXT_Pause_ADXTHandle;
-
-typedef struct Sig_ADXT_Stop_AdxSjdHandle Sig_ADXT_Stop_AdxSjdHandle;
-
-typedef struct Sig_ADXT_Stop_ADXStream Sig_ADXT_Stop_ADXStream;
-
-typedef struct Sig_ADXT_Stop_AXRNAHandle Sig_ADXT_Stop_AXRNAHandle;
-
-typedef struct Sig_ADXT_Stop_SJCK {
-    unsigned char *data;
-    int len;
-} Sig_ADXT_Stop_SJCK;
-
-typedef void (*Sig_ADXT_Stop_SJErrorCallback)(void *object, int error);
-
-typedef struct Sig_ADXT_Stop_SJInterface Sig_ADXT_Stop_SJInterface;
-
-typedef struct Sig_ADXT_Stop_SJ Sig_ADXT_Stop_SJ;
-
-struct Sig_ADXT_Stop_SJInterface {
-    void *reserved[3];
-    void (*destroy)(Sig_ADXT_Stop_SJ *sj);
-    const void *(*get_uuid)(Sig_ADXT_Stop_SJ *sj);
-    void (*reset)(Sig_ADXT_Stop_SJ *sj);
-    void (*get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int max_size, Sig_ADXT_Stop_SJCK *chunk);
-    void (*unget_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
-    void (*put_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
-    int (*get_num_data)(Sig_ADXT_Stop_SJ *sj, int channel);
-    int (*is_get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int size, int *available);
-    void (*entry_error_func)(Sig_ADXT_Stop_SJ *sj, Sig_ADXT_Stop_SJErrorCallback callback, void *object);
-};
-
-struct Sig_ADXT_Stop_SJ {
-    const Sig_ADXT_Stop_SJInterface *interface;
-};
-
-typedef struct Sig_ADXT_Stop_ADX_AMP Sig_ADXT_Stop_ADX_AMP;
-
-typedef struct Sig_ADXT_Stop_LSCObject Sig_ADXT_Stop_LSCObject;
-
-typedef struct Sig_ADXT_Stop_ADXTHandle {
-    s8 used;
-    s8 status;
-    s8 stream_type;
-    s8 maximum_channels;
-    Sig_ADXT_Stop_AdxSjdHandle *decoder;
-    Sig_ADXT_Stop_ADXStream *stream;
-    Sig_ADXT_Stop_AXRNAHandle *rna;
-    Sig_ADXT_Stop_SJ *stream_sj;
-    Sig_ADXT_Stop_SJ *input_sj;
-    Sig_ADXT_Stop_SJ *output_sj[2];
-    u8 *input_buffer;
-    s32 input_buffer_size;
-    s32 input_extra_size;
-    u8 *output_buffer;
-    s32 output_buffer_size;
-    s32 output_buffer_distance;
-    s32 server_frequency;
-    s16 stream_buffer_sectors;
-    s16 minimum_buffer_sectors;
-    s16 output_volume;
-    s16 output_pan[2];
-    s16 field_46;
-    s32 maximum_decode_samples;
-    s32 loop_count;
-    s32 link_data_length;
-    s32 field_54;
-    s32 field_58;
-    s32 field_5C;
-    s16 error_code;
-    u8 reserved_62[2];
-    s32 field_64;
-    s16 field_68;
-    s16 field_6A;
-    s8 stream_loop_enabled;
-    s8 auto_receiver;
-    u8 reserved_6E[2];
-    s8 suppress_playback;
-    s8 decoder_ready;
-    s8 paused;
-    u8 reserved_73;
-    Sig_ADXT_Stop_ADX_AMP *amplifier;
-    Sig_ADXT_Stop_SJ *amplifier_input[2];
-    Sig_ADXT_Stop_SJ *amplifier_output[2];
-    s32 time_offset;
-    s32 eos_sector;
-    s32 loop_sample_count;
-    Sig_ADXT_Stop_LSCObject *linked_stream_controller;
-    s8 link_enabled;
-    u8 reserved_99[3];
-    u32 playback_time;
-    s32 playback_start_vsync;
-    s32 linked_decoded_samples;
-    s8 pending_stream_start;
-    u8 reserved_A9[3];
-    u8 *work_end;
-    const char *pending_filename;
-    void *pending_directory;
-    s32 pending_file_offset;
-    s32 pending_file_sectors;
-} Sig_ADXT_Stop_ADXTHandle;
-
-typedef struct {
-    u8 unk[0xb];
-    u8 value;
-} Entry;
-
-typedef struct {
-    u8 pad_0[2];
-    s16 unk_2;
-    u8 pad_4[8];
-    u32 unk_C;
-    u8 pad_10[0x10];
-} Obj_1_bss_25E9C;
-
-typedef struct {
-    u8 pad[0x2f8];
-    u32 value_2f8;
-    u32 value_2fc;
-    u32 value_300;
-    u32 value_304;
-    u32 value_308;
-    u32 value_30c;
-    u32 value_310;
-    u32 value_314;
-    u32 value_318;
-    u32 value_31c;
-} Fn40710Config;
-extern void fn_1_15E330(s32 index, u32 value, void *arg);
-extern void fn_1_15E5E4(s32 index, void *arg);
-extern void fn_1_15E688(s32 index, u32 value, u8 state, void *arg);
-extern void fn_1_15E3E0(s32 index, u32 value);
-extern void fn_1_15E434(u32 value);
-extern void fn_1_15E540(s32 index, void *arg);
-extern void fn_1_CB404(u8 value);
-extern void fn_1_D07C4(u32 arg0, u32 arg1);
-extern u32 lbl_1_bss_25B84;
-extern u32 OSGetTick(void);
-extern void fn_1_A0978(void);
-extern void fn_1_35174(void);
-extern s32 fn_1_3EFA8(void);
-extern u16 lbl_1_bss_26B5C__fzgx_offset_1E[3];
-extern u16 lbl_1_bss_26300;
-extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_80008BEC(void *dest, int value, u32 size);
-extern u32 fn_1_101C0(void);
-extern u32 fn_1_A11EC(void);
-extern u32 fn_1_435C(u32 value);
-extern void ADXT_Pause(Sig_ADXT_Pause_ADXTHandle *, s32);
-extern void fn_1_4310(u32 arg0);
-extern void fn_1_48004(s32 index, s32 image);
-extern void fn_1_8616C(void);
-extern void fn_1_A1588(u32 arg0, u32 arg1);
-extern void fn_1_D0790(void);
-extern void fn_1_817C0(void);
-extern u32 lbl_1_bss_381FC;
-extern void fn_1_EB080(int mode);
-extern s64 OSGetTime(void);
-extern void fn_1_4A00(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_1_5370(u32 arg0, u32 arg1);
-extern void fn_1_15E27C(void);
-extern void fn_1_4811C(int arg);
-extern void fn_1_A8F78(void);
-extern u8 lbl_1_bss_262F4;
-extern u32 lbl_1_bss_25E74[7];
-extern u8 lbl_1_bss_3C10;
-extern void fn_1_36330(void);
-extern void fn_1_36B10(void);
-extern void fn_1_3C98(void);
-extern void fn_1_37AA8(void);
-extern void fn_1_37E98(void);
-extern f32 lbl_1_bss_26304[4];
-extern u8 lbl_1_bss_26B04[20];
-extern u8 lbl_1_bss_26314[2032];
-extern s16 fn_1_12EF24(s16 row, s16 column);
-extern u8 lbl_1_bss_523C[32];
-extern Entry *lbl_1_bss_53F8[34];
-extern void OSPanic(const void *, u32, const char *, ...);
-extern Obj_1_bss_25E9C lbl_1_bss_25E9C[30];
-extern void fn_1_12AB38(void *arg0);
-extern void fn_1_465D0(char *value, u32 flag);
-extern void* fn_1_7F518(s16 car_type, void* car, s32 initialize);
-extern int sprintf(char *s, const char *format, ...);
-extern void fn_1_451E4(void);
-extern void fn_1_D3214(void);
-extern void VIWaitForRetrace(void);
-extern u32 fn_1_467F4(void);
-extern u32 fn_1_13018(void);
-extern u32 fn_1_46C60(void);
-extern u32 lbl_1_bss_26C2C[2];
-extern u32 lbl_1_bss_262F8[2];
-extern u16 lbl_1_bss_26C68[35526];
-extern u32 lbl_1_bss_3C08[2];
-extern u32 fn_800075AC(u32, u32, u32);
-extern u32 ghost_test_record_flag0(s32 arg);
-extern u32 fn_1_F9D44(u32 arg);
-extern u8 fn_1_F8C50(s32 arg0);
-extern void fn_1_2DB50(void);
-extern void fn_1_3F8C(void *, void *, Obj_1_bss_5138 *, int);
-extern void fn_1_2D888(void);
-extern void fn_1_2D524(void);
-extern u32 fn_1_FA070(void);
-extern int fn_1_FA180(int, u8);
-extern u32 fn_1_F9FEC(void);
-extern void fn_1_A2DC4(u32 arg0);
-extern Fn40710Config lbl_1_rodata_BD8;
-extern u8 lbl_1_bss_26B54[8];
-extern u32 fn_1_40EE4(void);
-extern u32 lbl_801A63D0;
-extern u32 lbl_1_bss_26C34[9];
-extern u8 lbl_1_bss_38218[568];
-extern u32 fn_1_4060(void);
-extern void ARQPostRequest(u8 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7);
-extern u32 lbl_801A63C0;
-extern void fn_1_40BE4(void);
-extern u32 GXGetTexBufferSize(u32, u32, u32, u32, u32);
-extern u32 lbl_1_bss_26B4C;
-extern u8 lbl_1_bss_25E90[8];
-extern s32 fn_1_48B0(u32 arg0, u32 arg1);
-extern void fn_1_40F54(void *arg0);
-extern u32 lbl_801A6CE0;
-extern u32 lbl_1_bss_38454;
-extern u32 fn_80070DE0(u32 arg0);
-extern void fn_1_D3884();
-extern void fn_1_D358C();
-extern void fn_800711A8(Obj_1_bss_38458_Target *target);
-extern void fn_80071718(u32 value);
-extern void fn_1_41134(void *unused, char *value);
-extern void fn_1_411D4(u32, char *);
-extern int DVDConvertPathToEntrynum(char *buffer);
-extern void fn_1_412A0(u32 index);
-extern size_t strlen(const char *str);
-extern int fn_80083BCC(const char *s1, const char *s2);
-extern u8 lbl_1_A9011300;
-extern u8 lbl_1_A9011100;
-extern u8 lbl_1_A9011000;
-
 typedef struct Fn41CB8Node {
     u8 pad0[0x30];
     struct Fn41CB8Node *next;
@@ -748,11 +421,6 @@ typedef struct Fn41CB8Data {
     u8 base_index;
 } Fn41CB8Data;
 
-extern void fn_1_42E74(void *resource);
-extern void *fn_1_42044(Fn41CB8Data *data, int index);
-extern void *fn_1_42254(Fn41CB8Data *data, int index);
-extern void fn_1_42458(void *entry, void *resource);
-extern u8 lbl_1_data_6710[16];
 
 static inline void fn_1_41CB8_walk(Fn41CB8Entry *entry, int n) {
     Fn41CB8Node *node;
@@ -765,7 +433,7 @@ static inline void fn_1_41CB8_walk(Fn41CB8Entry *entry, int n) {
     }
 }
 
-static inline void * fn_1_41CB8_read_pointer(Fn41CB8Data * owner) { return owner->items_b; }
+
 void fn_1_41CB8(Fn41CB8Data *data) {
     Fn41CB8Entry *entry;
     u32 offset;
@@ -779,7 +447,7 @@ void fn_1_41CB8(Fn41CB8Data *data) {
 
     if (data->index < data->limit) {
         entry = (Fn41CB8Entry *)((u8 *)data->table_a + data->index * 12);
-        (void) entry;  /* fzgx: keeps the web at its definition */
+
     } else if (data->table_b != 0) {
         entry = (Fn41CB8Entry *)((u8 *)data->table_b
             + (data->index - data->base_index) * 12);
@@ -792,11 +460,11 @@ void fn_1_41CB8(Fn41CB8Data *data) {
     i = 0;
     offset = 0;
     while (i < data->count) {
-        a = fn_1_42044(data, i);
+        a = fn_1_42044((struct Fn42044Data *)data, i);
         b = (u8 *)data->items_a + offset;
-        c = (u8 *)fn_1_41CB8_read_pointer(data) + offset;
+        c = (u8 *)data->items_b + offset;
         if (a != 0) {
-            resource = fn_1_42254(data, i);
+            resource = fn_1_42254((struct Fn42254Data *)data, i);
         } else {
             a = lbl_1_data_6710;
             resource = lbl_1_data_6710;
@@ -811,7 +479,7 @@ void fn_1_41CB8(Fn41CB8Data *data) {
 }
 /* fzgx:end fn_1_41CB8 */
 
-/* fzgx:begin fn_1_41E34 */
+/* fzgx:begin fn_1_41E34 noprologue */
 typedef struct MotasglistEntry {
     u16 value;
     u16 frame;
@@ -867,7 +535,7 @@ void fn_1_41E34(fn_1_41E34_MotasglistData *data, u32 index, MotasglistResult *re
 }
 /* fzgx:end fn_1_41E34 */
 
-/* fzgx:begin fn_1_41F58 */
+/* fzgx:begin fn_1_41F58 noprologue */
 typedef u16 (*Fn41F58Callback)(void *arg, void *entry);
 
 typedef struct Fn41F58Entry {
@@ -910,27 +578,7 @@ void fn_1_41F58(Fn41F58Data *data, int type, Fn41F58Callback callback, void *arg
 }
 /* fzgx:end fn_1_41F58 */
 
-/* fzgx:begin fn_1_42044 */
-extern void fn_1_41328(void *arg0);
-extern void fn_1_43264(void *arg0, f32 arg1);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DB30(void);
-extern void lbl_8006D668(void *vector);
-extern void lbl_8006DBAC(void *value);
-extern void fn_1_449A8(void *vector);
-extern void lbl_8006DB74(void *value);
-extern u32 lbl_1_bss_384CC;
-extern struct fn_1_41850_lbl_801A6410 lbl_801A6410;
-extern void fn_1_46B4(u32, void *, const char *, int);
-extern const f64 lbl_1_rodata_F40;
-extern const f32 lbl_1_rodata_F34;
-extern const f32 lbl_1_rodata_F30;
-extern const f64 lbl_1_rodata_F48;
-extern const f32 lbl_1_rodata_F38;
-extern void fn_8006E5FC(void *);
-extern const f32 lbl_1_rodata_F50;
-extern const f32 lbl_1_rodata_F54;
-
+/* fzgx:begin fn_1_42044 noprologue */
 typedef struct Fn42044Key {
     u16 unk_0;
     u16 frame;
@@ -985,12 +633,26 @@ typedef struct Fn42044Data {
     u8 extBase;
 } Fn42044Data;
 
+static inline Fn42044Node *fn_1_42044_node(Fn42044Entry *entry, u16 flags) {
+    Fn42044Node *node;
+    s32 i;
+
+    if (flags & 1) {
+        node = (Fn42044Node *)((u8 *)entry->nodes + entry->count * 0x34);
+    } else {
+        node = entry->nodes;
+        for (i = 0; i < entry->count; i++) {
+            node = node->next;
+        }
+    }
+    return node;
+}
+
 Fn42044Key *fn_1_42044(Fn42044Data *data, s32 track) {
     u16 index = data->index;
     u8 count = data->entryCount;
     Fn42044Entry *entry;
     u16 flags;
-    struct { s32 value; } i;
     Fn42044Node *node;
     Fn42044Track *t;
     u8 n;
@@ -1004,14 +666,7 @@ Fn42044Key *fn_1_42044(Fn42044Data *data, s32 track) {
     }
 
     flags = data->flags;
-    if (flags & 1) {
-        node = (Fn42044Node *)((u8 *)entry->nodes + entry->count * 0x34);
-    } else {
-        node = entry->nodes;
-        for (i.value = 0; i.value < entry->count; i.value++) {
-            node = node->next;
-        }
-    }
+    node = fn_1_42044_node(entry, flags);
 
     t = &node->tracks[track];
     frame = (s32)data->timer->time;
@@ -1074,7 +729,7 @@ Fn42044Key *fn_1_42044(Fn42044Data *data, s32 track) {
 }
 /* fzgx:end fn_1_42044 */
 
-/* fzgx:begin fn_1_42254 */
+/* fzgx:begin fn_1_42254 noprologue */
 typedef struct Fn42254Key {
     u16 unk_0;
     u16 frame;
@@ -1222,16 +877,8 @@ Fn42254Key *fn_1_42254(Fn42254Data *data, s32 track) {
 }
 /* fzgx:end fn_1_42254 */
 
-/* fzgx:begin fn_1_42458 */
-typedef struct Fn142458Data {
-    u16 value0;
-    u16 value2;
-    s16 value4;
-    u16 pad6;
-    u32 value8;
-} Fn142458Data;
-
-void fn_1_42458(Fn142458Data *dst, const Fn142458Data *src) {
+/* fzgx:begin fn_1_42458 noprologue */
+void fn_1_42458(SigData *dst, const SigData *src) {
     dst->value0 = src->value0;
     dst->value8 = src->value8;
     dst->value2 = src->value2;
