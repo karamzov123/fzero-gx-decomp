@@ -1280,4 +1280,3 @@ rel/sel/data/lbl_10_rodata_158.c:
 
 rel/sel/data/lbl_10_rodata_1D70.c:
 	.rodata     start:0x00001D70 end:0x00001E28 align:8
-

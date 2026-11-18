@@ -306,13 +306,18 @@ def apply(obj: Path, mapping: Dict[str, str]) -> Dict[str, object]:
     small_sections = {elf.sections[s['shndx']]['name'] for s in elf.symbols()
                       if s['name'] in mapping and 0 < s['shndx'] < len(elf.sections)
                       and elf.sections[s['shndx']]['name'] in ('.sdata', '.sdata2', '.bss', '.sbss')}
-    # both kinds become references to the retail symbol (the data unit that owns the retail
-    # range keeps the bytes); our private copies are dropped with their section
-    # A unit that owns a name in its .rodata owns the whole literal pool there (a TU unit whose split
-    # holds the .rodata range): the remaining map entries are interior references to other units'
-    # objects (OWNER__fzgx_offset_N), and the pool is kept, not emptied.
+    # External aliases can be retargeted without touching an owned literal pool.
+    # Retargeting a definition in that pool would leave its private bytes behind;
+    # dropping the section would also lose owned bytes. Reject before rewriting.
     rodata = elf.section('.rodata')
-    owns_rodata = any(s['name'] in owned for s in elf.symbols() if rodata and s['shndx'] == rodata['index'])
+    owns_rodata = rodata is not None and '.rodata' in owned_sections
+    if rodata is not None and owns_rodata:
+        private = sorted({s['name'] for s in elf.symbols()
+                          if s['shndx'] == rodata['index'] and s['name'] in mapping})
+        if private:
+            return {"retargeted": [],
+                    "skipped": [f"{name}: private copy in owned .rodata" for name in private],
+                    "rodata_emptied": False}
     elf.drop_section('.fzgxpool')  # the pool primer (see fixup_evidence.shared_pool_primer)
     done, skipped = elf.retarget(mapping)
     renamed, missing = elf.rename_defined(owned, exported)

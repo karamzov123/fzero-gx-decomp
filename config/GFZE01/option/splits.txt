@@ -219,4 +219,3 @@ rel/option/data/lbl_4_data_2D10.c:
 
 rel/option/data/lbl_4_rodata_0.c:
 	.rodata     start:0x00000000 end:0x00000410 align:8
-

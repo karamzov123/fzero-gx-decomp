@@ -1039,7 +1039,7 @@ static inline f32 name_entry_pulse_scale(u8 c) {
     return (f32)(0.5 + (f64)(f32)(10 - c) / 20.0);
 }
 void fn_10_24BD0(void) {
-    
+
     FontDrawPacket packet;
     u8 buf[3];
     f32 pulse_scale;
