@@ -89,9 +89,6 @@ rel/option/_prolog/fn_4_AB30.c:
 	.data       start:0x00002F00 end:0x00002F78 align:8
 	.bss        start:0x00005628 end:0x00005680 align:8
 
-rel/option/name_entry.c:
-	.text       start:0x0000D760 end:0x0000D888 align:4
-
 rel/option/_prolog/fn_4_8158.c:
 	.text       start:0x00008158 end:0x00008248 align:4
 
@@ -123,30 +120,21 @@ rel/option/_prolog/fn_4_4834.c:
 rel/option/_prolog/fn_4_0.c:
 	.text       start:0x00000000 end:0x00000250 align:4
 
-rel/option/_prolog/fn_4_D420.c:
-	.text       start:0x0000D420 end:0x0000D760 align:4
-
 rel/option/_prolog/fn_4_6720.c:
 	.text       start:0x00006720 end:0x000078E0 align:4
 	.data       start:0x00002AE8 end:0x00002C00 align:8
 
-rel/option/_prolog/fn_4_C768.c:
-	.text       start:0x0000C768 end:0x0000D1A8 align:4
-
 rel/option/_prolog/fn_4_2700.c:
 	.text       start:0x00002700 end:0x000028FC align:4
-
-rel/option/_prolog/fn_4_D1A8.c:
-	.text       start:0x0000D1A8 end:0x0000D420 align:4
 
 rel/option/_prolog/fn_4_1444.c:
 	.text       start:0x00001444 end:0x000018B8 align:4
 
-rel/option/_prolog/fn_4_B528.c:
-	.text       start:0x0000B528 end:0x0000BC04 align:4
-
-rel/option/_prolog/fn_4_ADF4.c:
-	.text       start:0x0000ADF4 end:0x0000B528 align:4
+rel/option/name_entry/fn_4_ADF4.c:
+	.text       start:0x0000ADF4 end:0x0000D888 align:4
+	.rodata     start:0x00000410 end:0x00000C34 align:8
+	.data       start:0x00002F78 end:0x000030E0 align:8
+	.bss        start:0x00005680 end:0x00005686 align:8
 
 rel/option/_prolog/fn_4_8B3C.c:
 	.text       start:0x00008B3C end:0x00008DC0 align:4
@@ -156,9 +144,6 @@ rel/option/_prolog/fn_4_2394.c:
 
 rel/option/_prolog/fn_4_A82C.c:
 	.text       start:0x0000A82C end:0x0000AB30 align:4
-
-rel/option/_prolog/fn_4_BC04.c:
-	.text       start:0x0000BC04 end:0x0000C768 align:4
 
 rel/option/_prolog/fn_4_9C14.c:
 	.text       start:0x00009C14 end:0x0000A734 align:4
@@ -214,9 +199,6 @@ rel/option/data/lbl_4_bss_10.c:
 rel/option/data/lbl_4_bss_5618.c:
 	.bss        start:0x00005618 end:0x00005628 align:8
 
-rel/option/data/lbl_4_bss_5680.c:
-	.bss        start:0x00005680 end:0x00005686 align:8
-
 rel/option/data/lbl_4_data_2C20.c:
 	.data       start:0x00002C20 end:0x00002C30 align:8
 
@@ -232,14 +214,9 @@ rel/option/data/lbl_4_data_2C00.c:
 rel/option/data/lbl_4_data_2D78.c:
 	.data       start:0x00002D78 end:0x00002F00 align:8
 
-rel/option/data/lbl_4_data_2F78.c:
-	.data       start:0x00002F78 end:0x000030E0 align:8
-
 rel/option/data/lbl_4_data_2D10.c:
 	.data       start:0x00002D10 end:0x00002D78 align:8
 
-rel/option/data/lbl_4_rodata_B70.c:
-	.rodata     start:0x00000B70 end:0x00000C34 align:8
-
 rel/option/data/lbl_4_rodata_0.c:
-	.rodata     start:0x00000000 end:0x00000B70 align:8
+	.rodata     start:0x00000000 end:0x00000410 align:8
+
