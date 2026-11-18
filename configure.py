@@ -482,6 +482,12 @@ def load_generated_units() -> None:
 
 load_generated_units()
 config.reconfig_deps = [CANONICAL_UNITS, Path("config") / config.version / "ldscript.tpl"]
+# The compiler reads build/<version>/gen, not the source containers. Regenerate
+# those inputs when a tracked TU is edited, not just when its manifest changes.
+tu_sources = {Path("src") / u["tu"] for u in version_units() if u.get("tu")}
+if tu_sources:
+    config.reconfig_deps.append(Path("tools/fzgx/tufile.py"))
+    config.reconfig_deps.extend(sorted(p for p in tu_sources if p.is_file()))
 if config.version != CANONICAL_VERSION:
     config.config_path = render_version_config(version_units())
     for d in (Path("config") / CANONICAL_VERSION, Path("config") / config.version):
