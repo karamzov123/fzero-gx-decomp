@@ -732,831 +732,40 @@ int fn_1_FB798(int mode, u32 *value) {
 /* fzgx:begin fn_1_FB870 noprologue */
 #include "types.h"
 #include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_cas.h"
-extern void fn_80008BEC(void *arg0, int arg1, int arg2);
-extern void fn_1_FCA10(void);
-extern int fn_1_FCF50(void);
-extern void *fn_1_563B8(void *);
-extern f32 lbl_1_rodata_761C[13];
-extern void fn_1_7EB8C(void *, f32);
-extern void fn_1_7F20C(void *, s32, f32);
-extern void lbl_8006DB74(void *);
-extern void lbl_8006DBAC(void *);
-extern void fn_1_FD3A8(void);
-extern void *memset(void *, int, u32);
-extern void fn_1_FE7D8(u8 *, s32);
-extern void fn_1_FF420(u8 *);
-extern void fn_80074788(int);
-extern void fn_80072864(int);
-extern void fn_800745A4(int, int, int, int, int, int);
-extern void fn_800734A8(int, int, int, int);
-extern void fn_80072AB0(int, int, int);
-extern void fn_800735C8(int, int);
-extern void fn_80073620(int, int);
-extern void fn_80073C6C(int);
-extern void fn_80072C24(int, int, int, int, int);
-extern void fn_80072D64(int, int, int, int, int, int);
-extern void fn_80072CC4(int, int, int, int, int);
-extern void fn_80072E20(int, int, int, int, int, int);
-extern void fn_80073678(int);
-extern void fn_80074660(int);
-extern void fn_80074918(int, int, int);
-extern void fn_800720B0(int);
-extern void fn_1_9A508(Obj_1_data_2A7E0 *arg0);
-extern void fn_1_9AD54(void);
-extern void fn_1_9AD88(void);
-extern void fn_1_10069C(Obj_1_data_2A7E0_At3C *);
-extern void fn_1_FF038(Obj_1_data_2A7E0_At3C *);
-extern const f64 lbl_1_rodata_760C;
-extern void OSPanic(const char *, int, const char *, ...);
-extern void lbl_8006D758(void);
-extern void lbl_8006E13C(void *);
-extern void lbl_8006E0A4(void *);
-extern void fn_80008BA8(void *, void *, u32);
-extern u8 lbl_1_bss_851E0[36];
-extern void fn_1_7F230(void *, s32, f32);
-extern void fn_1_FFC60(Obj_1_data_2A7E0_At3C *arg0);
-extern void fn_1_FEC7C(void *object);
-extern const f32 lbl_1_rodata_76A8;
 
-u8 *fn_1_FB870(void) {
-    return &lbl_1_bss_84450;
-}
-/* fzgx:end fn_1_FB870 */
+typedef struct {
+    f32 x, y, z;
+} Vec3;
 
-/* fzgx:begin fn_1_FB87C noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_cas.h"
-extern void fn_80008BEC(void *arg0, int arg1, int arg2);
-extern void fn_1_FCA10(void);
-extern int fn_1_FCF50(void);
-extern void *fn_1_563B8(void *);
-extern f32 lbl_1_rodata_761C[13];
-extern void fn_1_7EB8C(void *, f32);
-extern void fn_1_7F20C(void *, s32, f32);
-extern void lbl_8006DB74(void *);
-extern void lbl_8006DBAC(void *);
-extern void fn_1_FD3A8(void);
-extern void *memset(void *, int, u32);
-extern void fn_1_FE7D8(u8 *, s32);
-extern void fn_1_FF420(u8 *);
-extern void fn_80074788(int);
-extern void fn_80072864(int);
-extern void fn_800745A4(int, int, int, int, int, int);
-extern void fn_800734A8(int, int, int, int);
-extern void fn_80072AB0(int, int, int);
-extern void fn_800735C8(int, int);
-extern void fn_80073620(int, int);
-extern void fn_80073C6C(int);
-extern void fn_80072C24(int, int, int, int, int);
-extern void fn_80072D64(int, int, int, int, int, int);
-extern void fn_80072CC4(int, int, int, int, int);
-extern void fn_80072E20(int, int, int, int, int, int);
-extern void fn_80073678(int);
-extern void fn_80074660(int);
-extern void fn_80074918(int, int, int);
-extern void fn_800720B0(int);
-extern void fn_1_9A508(Obj_1_data_2A7E0 *arg0);
-extern void fn_1_9AD54(void);
-extern void fn_1_9AD88(void);
-extern void fn_1_10069C(Obj_1_data_2A7E0_At3C *);
-extern void fn_1_FF038(Obj_1_data_2A7E0_At3C *);
-extern const f64 lbl_1_rodata_760C;
-extern void OSPanic(const char *, int, const char *, ...);
-extern void lbl_8006D758(void);
-extern void lbl_8006E13C(void *);
-extern void lbl_8006E0A4(void *);
-extern void fn_80008BA8(void *, void *, u32);
-extern u8 lbl_1_bss_851E0[36];
-extern void fn_1_7F230(void *, s32, f32);
-extern void fn_1_FFC60(Obj_1_data_2A7E0_At3C *arg0);
-extern void fn_1_FEC7C(void *object);
-extern const f32 lbl_1_rodata_76A8;
+typedef struct {
+    s32 active;      // 0x0
+    Vec3 pos;        // 0x4
+    Vec3 vel;        // 0x10
+    Vec3 scale;      // 0x1C
+    f32 mtx[3][4];   // 0x28
+    s32 tex;         // 0x58
+    s8 off[4];       // 0x5C
+} CasLayer;
 
-extern void fn_80008BEC(void *arg0, int arg1, int arg2);
-extern void fn_1_FCA10(void);
-extern int fn_1_FCF50(void);
-extern void *fn_1_563B8(void *);
-extern f32 lbl_1_rodata_761C[13];
-extern void fn_1_7EB8C(void *, f32);
-extern void fn_1_7F20C(void *, s32, f32);
-extern void lbl_8006DB74(void *);
-extern void lbl_8006DBAC(void *);
-extern void fn_1_FD3A8(void);
-extern void *memset(void *, int, u32);
-extern void fn_1_FE7D8(u8 *, s32);
-extern void fn_1_FF420(u8 *);
-extern void fn_80074788(int);
-extern void fn_80072864(int);
-extern void fn_800745A4(int, int, int, int, int, int);
-extern void fn_800734A8(int, int, int, int);
-extern void fn_80072AB0(int, int, int);
-extern void fn_800735C8(int, int);
-extern void fn_80073620(int, int);
-extern void fn_80073C6C(int);
-extern void fn_80072C24(int, int, int, int, int);
-extern void fn_80072D64(int, int, int, int, int, int);
-extern void fn_80072CC4(int, int, int, int, int);
-extern void fn_80072E20(int, int, int, int, int, int);
-extern void fn_80073678(int);
-extern void fn_80074660(int);
-extern void fn_80074918(int, int, int);
-extern void fn_800720B0(int);
-extern void fn_1_9A508(Obj_1_data_2A7E0 *arg0);
-extern void fn_1_9AD54(void);
-extern void fn_1_9AD88(void);
-extern void fn_1_10069C(Obj_1_data_2A7E0_At3C *);
-extern void fn_1_FF038(Obj_1_data_2A7E0_At3C *);
-extern const f64 lbl_1_rodata_760C;
-extern void OSPanic(const char *, int, const char *, ...);
-extern void lbl_8006D758(void);
-extern void lbl_8006E13C(void *);
-extern void lbl_8006E0A4(void *);
-extern void fn_80008BA8(void *, void *, u32);
-extern u8 lbl_1_bss_851E0[36];
-extern void fn_1_7F230(void *, s32, f32);
-extern void fn_1_FFC60(Obj_1_data_2A7E0_At3C *arg0);
-extern void fn_1_FEC7C(void *object);
-extern const f32 lbl_1_rodata_76A8;
+typedef struct {
+    s32 active;        // 0x0
+    u8 id;             // 0x4
+    u8 pad_5[3];
+    s32 flags[3];      // 0x8
+    CasLayer lower[3]; // 0x14
+    CasLayer upper[3]; // 0x134
+    u8 pal[4];         // 0x254
+    f32 sx[3];         // 0x258
+    f32 sy[3];         // 0x264
+} CasEntry;
 
-extern f32 lbl_1_rodata_7590[2];
-extern const f32 lbl_1_rodata_7598;
 extern void fn_80008BEC(void *dst, int value, int size);
 extern void GXInitTexObjLOD(void *texObj, int minFilter, int magFilter, f32 minLod,
                             f32 maxLod, f32 lodBias, int biasClamp, int edgeLod, int maxAniso);
-
-typedef struct {
-    u8 unk_0[4];
-    u8 unk_4;
-    u8 unk_5[0x270 - 5];
-} Cas_1_Record;
-
-typedef struct {
-    u8 unk_0[4];
-    Cas_1_Record unk_4[5];
-    u8 unk_C34;
-    u32 unk_C38[1];
-} Cas_1_State;
-
-/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
-u8 fzgx_obj_lbl_1_bss_84450;
-u8 fzgx_pool_lbl_1_bss_84450_gap_84451;
-u16 fzgx_pool_lbl_1_bss_84450_gap_84451_fill_84452;
-Cas_1_Record fzgx_obj_lbl_1_bss_84454[5];
-u8 lbl_1_bss_84454__fzgx_offset_C30;
-u8 lbl_1_bss_84454__fzgx_offset_C31;
-u16 lbl_1_bss_84454__fzgx_offset_C32;
-u32 lbl_1_bss_85088[1];
-u32 lbl_1_bss_85088__fzgx_offset_4[13];
-u32 fzgx_obj_lbl_1_bss_850C0;
-u16 lbl_1_bss_850C0__fzgx_offset_4;
-u16 fzgx_obj_lbl_1_bss_850C6;
-u32 lbl_1_bss_850C6__fzgx_offset_2[3];
-
-#pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
-    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_84450;
-    s = *(u8 *)&fzgx_pool_lbl_1_bss_84450_gap_84451;
-    s = *(u8 *)&fzgx_pool_lbl_1_bss_84450_gap_84451_fill_84452;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_84454;
-    s = *(u8 *)&lbl_1_bss_84454__fzgx_offset_C30;
-    s = *(u8 *)&lbl_1_bss_84454__fzgx_offset_C31;
-    s = *(u8 *)&lbl_1_bss_84454__fzgx_offset_C32;
-    s = *(u8 *)&lbl_1_bss_85088;
-    s = *(u8 *)&lbl_1_bss_85088__fzgx_offset_4;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_850C0;
-    s = *(u8 *)&lbl_1_bss_850C0__fzgx_offset_4;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_850C6;
-    s = *(u8 *)&lbl_1_bss_850C6__fzgx_offset_2;
-}
-#pragma section code_type ".text"
-
-void fn_1_FB87C(u32 *values, u8 count) {
-    u8 buf[5];
-    
-    u32 *src;
-    u32 *dst;
-    Cas_1_Record *rec;
-    int i;
-    volatile const f32 *zero; /* reloaded each iteration: the callee may write */
-
-    *(u32 *)buf = *(u32 *)lbl_1_rodata_7590;
-    buf[4] = ((u8 *)lbl_1_rodata_7590)[4];
-
-    fn_80008BEC(fzgx_obj_lbl_1_bss_84454, 0, 0xc30);
-
-    fzgx_obj_lbl_1_bss_84454[0].unk_4 = buf[0];
-    fzgx_obj_lbl_1_bss_84454[1].unk_4 = buf[1];
-    fzgx_obj_lbl_1_bss_84454[2].unk_4 = buf[2];
-    fzgx_obj_lbl_1_bss_84454[3].unk_4 = buf[3];
-    fzgx_obj_lbl_1_bss_84454[4].unk_4 = buf[4];
-    lbl_1_bss_84454__fzgx_offset_C30 = count;
-
-    dst = lbl_1_bss_85088;
-    src = values;
-    zero = &lbl_1_rodata_7598;
-    for (i = 0; i < lbl_1_bss_84454__fzgx_offset_C30; i++) {
-        f32 z = *zero;
-
-        *dst = *src;
-        GXInitTexObjLOD((void *)*dst, 1, 1, z, z, z, 0, 0, 0);
-        src++;
-        dst++;
-    }
-}
-/* fzgx:end fn_1_FB87C */
-
-/* fzgx:begin fn_1_FB96C noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_cas.h"
-extern void fn_80008BEC(void *arg0, int arg1, int arg2);
-extern void fn_1_FCA10(void);
-extern int fn_1_FCF50(void);
-extern void *fn_1_563B8(void *);
-extern f32 lbl_1_rodata_761C[13];
-extern void fn_1_7EB8C(void *, f32);
-extern void fn_1_7F20C(void *, s32, f32);
-extern void lbl_8006DB74(void *);
-extern void lbl_8006DBAC(void *);
-extern void fn_1_FD3A8(void);
-extern void *memset(void *, int, u32);
-extern void fn_1_FE7D8(u8 *, s32);
-extern void fn_1_FF420(u8 *);
-extern void fn_80074788(int);
-extern void fn_80072864(int);
-extern void fn_800745A4(int, int, int, int, int, int);
-extern void fn_800734A8(int, int, int, int);
-extern void fn_80072AB0(int, int, int);
-extern void fn_800735C8(int, int);
-extern void fn_80073620(int, int);
-extern void fn_80073C6C(int);
-extern void fn_80072C24(int, int, int, int, int);
-extern void fn_80072D64(int, int, int, int, int, int);
-extern void fn_80072CC4(int, int, int, int, int);
-extern void fn_80072E20(int, int, int, int, int, int);
-extern void fn_80073678(int);
-extern void fn_80074660(int);
-extern void fn_80074918(int, int, int);
-extern void fn_800720B0(int);
-extern void fn_1_9A508(Obj_1_data_2A7E0 *arg0);
-extern void fn_1_9AD54(void);
-extern void fn_1_9AD88(void);
-extern void fn_1_10069C(Obj_1_data_2A7E0_At3C *);
-extern void fn_1_FF038(Obj_1_data_2A7E0_At3C *);
-extern const f64 lbl_1_rodata_760C;
-extern void OSPanic(const char *, int, const char *, ...);
 extern void lbl_8006D758(void);
 extern void lbl_8006E13C(void *);
 extern void lbl_8006E0A4(void *);
-extern void fn_80008BA8(void *, void *, u32);
-extern u8 lbl_1_bss_851E0[36];
-extern void fn_1_7F230(void *, s32, f32);
-extern void fn_1_FFC60(Obj_1_data_2A7E0_At3C *arg0);
-extern void fn_1_FEC7C(void *object);
-extern const f32 lbl_1_rodata_76A8;
-
-#include "rel/main_rel/bg_cas.h"
-
-// Initializes the selected background-cas state before running its setup stages.
-void fn_1_FB96C(int index) {
-    u32 *states = &lbl_1_bss_84454.unk_0;
-
-    states[(index & 0xff) * 0x9c] = 1;
-    fn_1_FB9DC(index);
-    fn_1_FBA88(index);
-    fn_1_FBC5C(index);
-}
-/* fzgx:end fn_1_FB96C */
-
-/* fzgx:begin fn_1_FB9C0 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_cas.h"
-extern void fn_80008BEC(void *arg0, int arg1, int arg2);
-extern void fn_1_FCA10(void);
-extern int fn_1_FCF50(void);
-extern void *fn_1_563B8(void *);
-extern f32 lbl_1_rodata_761C[13];
-extern void fn_1_7EB8C(void *, f32);
-extern void fn_1_7F20C(void *, s32, f32);
 extern void lbl_8006DB74(void *);
-extern void lbl_8006DBAC(void *);
-extern void fn_1_FD3A8(void);
-extern void *memset(void *, int, u32);
-extern void fn_1_FE7D8(u8 *, s32);
-extern void fn_1_FF420(u8 *);
-extern void fn_80074788(int);
-extern void fn_80072864(int);
-extern void fn_800745A4(int, int, int, int, int, int);
-extern void fn_800734A8(int, int, int, int);
-extern void fn_80072AB0(int, int, int);
-extern void fn_800735C8(int, int);
-extern void fn_80073620(int, int);
-extern void fn_80073C6C(int);
-extern void fn_80072C24(int, int, int, int, int);
-extern void fn_80072D64(int, int, int, int, int, int);
-extern void fn_80072CC4(int, int, int, int, int);
-extern void fn_80072E20(int, int, int, int, int, int);
-extern void fn_80073678(int);
-extern void fn_80074660(int);
-extern void fn_80074918(int, int, int);
-extern void fn_800720B0(int);
-extern void fn_1_9A508(Obj_1_data_2A7E0 *arg0);
-extern void fn_1_9AD54(void);
-extern void fn_1_9AD88(void);
-extern void fn_1_10069C(Obj_1_data_2A7E0_At3C *);
-extern void fn_1_FF038(Obj_1_data_2A7E0_At3C *);
-extern const f64 lbl_1_rodata_760C;
-extern void OSPanic(const char *, int, const char *, ...);
-extern void lbl_8006D758(void);
-extern void lbl_8006E13C(void *);
-extern void lbl_8006E0A4(void *);
-extern void fn_80008BA8(void *, void *, u32);
-extern u8 lbl_1_bss_851E0[36];
-extern void fn_1_7F230(void *, s32, f32);
-extern void fn_1_FFC60(Obj_1_data_2A7E0_At3C *arg0);
-extern void fn_1_FEC7C(void *object);
-extern const f32 lbl_1_rodata_76A8;
-
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_cas.h"
-
-// Clear the selected CAS state value.
-void fn_1_FB9C0(int index) {
-    (&lbl_1_bss_84454.unk_0)[(index & 0xff) * 0x9c] = 0;
-}
-/* fzgx:end fn_1_FB9C0 */
-
-/* fzgx:begin fn_1_FB9DC noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_cas.h"
-extern void fn_80008BEC(void *arg0, int arg1, int arg2);
-extern void fn_1_FCA10(void);
-extern int fn_1_FCF50(void);
-extern void *fn_1_563B8(void *);
-extern f32 lbl_1_rodata_761C[13];
-extern void fn_1_7EB8C(void *, f32);
-extern void fn_1_7F20C(void *, s32, f32);
-extern void lbl_8006DB74(void *);
-extern void lbl_8006DBAC(void *);
-extern void fn_1_FD3A8(void);
-extern void *memset(void *, int, u32);
-extern void fn_1_FE7D8(u8 *, s32);
-extern void fn_1_FF420(u8 *);
-extern void fn_80074788(int);
-extern void fn_80072864(int);
-extern void fn_800745A4(int, int, int, int, int, int);
-extern void fn_800734A8(int, int, int, int);
-extern void fn_80072AB0(int, int, int);
-extern void fn_800735C8(int, int);
-extern void fn_80073620(int, int);
-extern void fn_80073C6C(int);
-extern void fn_80072C24(int, int, int, int, int);
-extern void fn_80072D64(int, int, int, int, int, int);
-extern void fn_80072CC4(int, int, int, int, int);
-extern void fn_80072E20(int, int, int, int, int, int);
-extern void fn_80073678(int);
-extern void fn_80074660(int);
-extern void fn_80074918(int, int, int);
-extern void fn_800720B0(int);
-extern void fn_1_9A508(Obj_1_data_2A7E0 *arg0);
-extern void fn_1_9AD54(void);
-extern void fn_1_9AD88(void);
-extern void fn_1_10069C(Obj_1_data_2A7E0_At3C *);
-extern void fn_1_FF038(Obj_1_data_2A7E0_At3C *);
-extern const f64 lbl_1_rodata_760C;
-extern void OSPanic(const char *, int, const char *, ...);
-extern void lbl_8006D758(void);
-extern void lbl_8006E13C(void *);
-extern void lbl_8006E0A4(void *);
-extern void fn_80008BA8(void *, void *, u32);
-extern u8 lbl_1_bss_851E0[36];
-extern void fn_1_7F230(void *, s32, f32);
-extern void fn_1_FFC60(Obj_1_data_2A7E0_At3C *arg0);
-extern void fn_1_FEC7C(void *object);
-extern const f32 lbl_1_rodata_76A8;
-
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_cas.h"
-
-// Reset the per-slot flags and enable the flags associated with the selected slot.
-void fn_1_FB9DC(int index) {
-    u32 slot = index & 0xff;
-    Obj_1_bss_84454 *state =
-        (Obj_1_bss_84454 *)((u8 *)&lbl_1_bss_84454 + slot * 0x270);
-
-    state->unk_14 = 0;
-    state->unk_134 = 0;
-    state->unk_74 = 0;
-    state->unk_194 = 0;
-    state->unk_D4 = 0;
-    state->unk_1F4 = 0;
-
-    switch (slot) {
-    case 0:
-        state->unk_14 = 1;
-        state->unk_134 = 1;
-        break;
-    case 1:
-        state->unk_134 = 1;
-        state->unk_194 = 1;
-        break;
-    case 2:
-        state->unk_134 = 1;
-        state->unk_1F4 = 1;
-        break;
-    case 3:
-        state->unk_134 = 1;
-        state->unk_1F4 = 1;
-        break;
-    case 4:
-        state->unk_134 = 1;
-        state->unk_194 = 1;
-        break;
-    default:
-        break;
-    }
-}
-/* fzgx:end fn_1_FB9DC */
-
-/* fzgx:begin fn_1_FBA88 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_cas.h"
-extern void fn_80008BEC(void *arg0, int arg1, int arg2);
-extern void fn_1_FCA10(void);
-extern int fn_1_FCF50(void);
-extern void *fn_1_563B8(void *);
-extern f32 lbl_1_rodata_761C[13];
-extern void fn_1_7EB8C(void *, f32);
-extern void fn_1_7F20C(void *, s32, f32);
-extern void lbl_8006DB74(void *);
-extern void lbl_8006DBAC(void *);
-extern void fn_1_FD3A8(void);
-extern void *memset(void *, int, u32);
-extern void fn_1_FE7D8(u8 *, s32);
-extern void fn_1_FF420(u8 *);
-extern void fn_80074788(int);
-extern void fn_80072864(int);
-extern void fn_800745A4(int, int, int, int, int, int);
-extern void fn_800734A8(int, int, int, int);
-extern void fn_80072AB0(int, int, int);
-extern void fn_800735C8(int, int);
-extern void fn_80073620(int, int);
-extern void fn_80073C6C(int);
-extern void fn_80072C24(int, int, int, int, int);
-extern void fn_80072D64(int, int, int, int, int, int);
-extern void fn_80072CC4(int, int, int, int, int);
-extern void fn_80072E20(int, int, int, int, int, int);
-extern void fn_80073678(int);
-extern void fn_80074660(int);
-extern void fn_80074918(int, int, int);
-extern void fn_800720B0(int);
-extern void fn_1_9A508(Obj_1_data_2A7E0 *arg0);
-extern void fn_1_9AD54(void);
-extern void fn_1_9AD88(void);
-extern void fn_1_10069C(Obj_1_data_2A7E0_At3C *);
-extern void fn_1_FF038(Obj_1_data_2A7E0_At3C *);
-extern const f64 lbl_1_rodata_760C;
-extern void OSPanic(const char *, int, const char *, ...);
-extern void lbl_8006D758(void);
-extern void lbl_8006E13C(void *);
-extern void lbl_8006E0A4(void *);
-extern void fn_80008BA8(void *, void *, u32);
-extern u8 lbl_1_bss_851E0[36];
-extern void fn_1_7F230(void *, s32, f32);
-extern void fn_1_FFC60(Obj_1_data_2A7E0_At3C *arg0);
-extern void fn_1_FEC7C(void *object);
-extern const f32 lbl_1_rodata_76A8;
-
-extern void fn_80008BEC(void *arg0, int arg1, int arg2);
-extern void fn_1_FCA10(void);
-extern int fn_1_FCF50(void);
-extern void *fn_1_563B8(void *);
-extern f32 lbl_1_rodata_761C[13];
-extern void fn_1_7EB8C(void *, f32);
-extern void fn_1_7F20C(void *, s32, f32);
-extern void lbl_8006DB74(void *);
-extern void lbl_8006DBAC(void *);
-extern void fn_1_FD3A8(void);
-extern void *memset(void *, int, u32);
-extern void fn_1_FE7D8(u8 *, s32);
-extern void fn_1_FF420(u8 *);
-extern void fn_80074788(int);
-extern void fn_80072864(int);
-extern void fn_800745A4(int, int, int, int, int, int);
-extern void fn_800734A8(int, int, int, int);
-extern void fn_80072AB0(int, int, int);
-extern void fn_800735C8(int, int);
-extern void fn_80073620(int, int);
-extern void fn_80073C6C(int);
-extern void fn_80072C24(int, int, int, int, int);
-extern void fn_80072D64(int, int, int, int, int, int);
-extern void fn_80072CC4(int, int, int, int, int);
-extern void fn_80072E20(int, int, int, int, int, int);
-extern void fn_80073678(int);
-extern void fn_80074660(int);
-extern void fn_80074918(int, int, int);
-extern void fn_800720B0(int);
-extern void fn_1_9A508(Obj_1_data_2A7E0 *arg0);
-extern void fn_1_9AD54(void);
-extern void fn_1_9AD88(void);
-extern void fn_1_10069C(Obj_1_data_2A7E0_At3C *);
-extern void fn_1_FF038(Obj_1_data_2A7E0_At3C *);
-extern const f64 lbl_1_rodata_760C;
-extern void OSPanic(const char *, int, const char *, ...);
-extern void lbl_8006D758(void);
-extern void lbl_8006E13C(void *);
-extern void lbl_8006E0A4(void *);
-extern void fn_80008BA8(void *, void *, u32);
-extern u8 lbl_1_bss_851E0[36];
-extern void fn_1_7F230(void *, s32, f32);
-extern void fn_1_FFC60(Obj_1_data_2A7E0_At3C *arg0);
-extern void fn_1_FEC7C(void *object);
-extern const f32 lbl_1_rodata_76A8;
-
-typedef struct {
-    s32 flag;
-    u8 pad_4[0x54];
-    u32 val;
-    u8 b0, b1, b2, b3;
-} Slot_FBA88;
-
-typedef struct {
-    u8 pad_0[0x14];
-    Slot_FBA88 s[6];
-    u8 pad[0x270 - 0x14 - 6 * 0x60];
-} Obj_FBA88;
-
-extern u32 lbl_1_rodata_759C[25];
-
-void fn_1_FBA88(int index) {
-    u32 tbl[6];
-    u32 *p = tbl;
-    Obj_FBA88 *o = (Obj_FBA88 *)&lbl_1_bss_84454 + (index & 0xff);
-    int i;
-    u32 *q;
-    s8 n = 0;
-    s8 c0 = 0, c1 = 0, c2 = 0, c3 = 0;
-
-    tbl[0] = lbl_1_rodata_759C[0];
-    tbl[1] = lbl_1_rodata_759C[1];
-    tbl[2] = lbl_1_rodata_759C[2];
-    tbl[3] = lbl_1_rodata_759C[3];
-    tbl[4] = lbl_1_rodata_759C[4];
-    tbl[5] = lbl_1_rodata_759C[5];
-
-    for (i = 0; i < 3; i++) {
-        Slot_FBA88 *slot = (Slot_FBA88 *)((u8 *)o + i * 0x60 + 0x134);
-        if (slot->flag != 0) {
-            slot->val = *p++;
-            n++;
-            slot->b0 = c0++;
-            slot->b1 = c1++;
-            slot->b2 = c2++;
-            slot->b3 = c3++;
-        }
-    }
-    q = tbl + n;
-    {
-    int fzgx_loop_i_1025;
-for (fzgx_loop_i_1025 = 0; fzgx_loop_i_1025 < 3; fzgx_loop_i_1025++) {
-        Slot_FBA88 *slot = &o->s[fzgx_loop_i_1025];
-        if (slot->flag != 0) {
-            slot->val = *q++;
-            slot->b0 = c0++;
-            slot->b1 = -1 - fzgx_loop_i_1025;
-        }
-    }
-    i = fzgx_loop_i_1025;
-}
-}
-/* fzgx:end fn_1_FBA88 */
-
-/* fzgx:begin fn_1_FBC5C noprologue */
-#include "types.h"
-
-typedef struct {
-    f32 v[27];
-} CasPool;
-extern CasPool lbl_1_rodata_7590;
-
-typedef struct {
-    u8 pad_0[0x18];
-    f32 unk_18;
-    f32 unk_1C;
-    f32 unk_20;
-    f32 unk_24;
-    f32 unk_28;
-    f32 unk_2C;
-    f32 unk_30;
-    f32 unk_34;
-    f32 unk_38;
-    u8 pad_3C[0x24];
-} CasSub;
-
-typedef struct {
-    CasSub a[3];
-    CasSub b[3];
-    u8 pad_240[0x14];
-    u8 unk_254[3];
-    u8 pad_257;
-    f32 unk_258[3];
-    f32 unk_264[3];
-} CasEntry;
-
-extern CasEntry lbl_1_bss_84454[];
-
-void fn_1_FBC5C(u8 idx) {
-    CasEntry * p;
-    f32 *k = (f32 *)&lbl_1_rodata_7590;
-    int i;
-    p = &lbl_1_bss_84454[idx];
-
-    for (i = 0; i < 3; i++) {
-        p->a[i].unk_18 = k[2];
-        p->a[i].unk_1C = k[2];
-        p->a[i].unk_20 = k[2];
-        p->a[i].unk_30 = k[9];
-        p->a[i].unk_34 = k[9];
-        p->a[i].unk_38 = k[9];
-        p->b[i].unk_18 = (i == 1) ? k[10] : k[2];
-        p->b[i].unk_1C = k[2];
-        p->b[i].unk_20 = k[2];
-        p->b[i].unk_24 = k[2];
-        p->b[i].unk_28 = k[2];
-        p->b[i].unk_2C = k[2];
-        p->unk_258[i] = k[11];
-        p->unk_264[i] = k[12];
-        p->unk_254[i] = 0;
-    }
-
-    for (i = 0; i < 3; i++) {
-        switch (idx) {
-        case 0:
-            p->a[i].unk_24 = k[13];
-            p->a[i].unk_28 = k[14];
-            p->b[i].unk_30 = k[15];
-            p->b[i].unk_34 = k[15];
-            break;
-        case 1:
-            p->a[i].unk_24 = k[16];
-            p->a[i].unk_28 = k[17];
-            p->b[i].unk_30 = k[18];
-            p->b[i].unk_34 = k[15];
-            break;
-        case 2:
-            p->b[i].unk_30 = k[9];
-            p->b[i].unk_34 = k[9];
-            break;
-        case 3:
-            p->b[i].unk_30 = k[9];
-            p->b[i].unk_34 = k[9];
-            break;
-        case 4:
-            p->b[i].unk_30 = k[9];
-            p->b[i].unk_34 = k[15];
-            p->unk_258[i] = k[19];
-            p->unk_264[i] = k[20];
-            break;
-        }
-        p->b[i].unk_24 = p->a[i].unk_24 / k[21];
-        p->b[i].unk_28 = p->a[i].unk_28 / k[21];
-    }
-
-    switch (idx) {
-    case 0:
-        break;
-    case 1:
-        p->unk_258[0] = k[18];
-        p->unk_264[0] = k[18];
-        p->b[0].unk_24 = k[22];
-        p->b[0].unk_28 = k[22];
-        break;
-    case 2:
-        p->b[0].unk_24 = k[23];
-        p->b[0].unk_28 = k[23];
-        p->unk_258[0] = k[2];
-        p->unk_264[0] = k[18];
-        p->unk_264[2] = k[24];
-        break;
-    case 3:
-        p->b[0].unk_24 = k[25];
-        p->b[0].unk_28 = k[2];
-        p->unk_258[0] = k[11];
-        p->unk_264[0] = k[12];
-        p->b[2].unk_24 = k[26];
-        p->b[2].unk_28 = k[2];
-        p->b[2].unk_30 = k[15];
-        p->b[2].unk_34 = k[15];
-        p->unk_258[2] = k[19];
-        p->unk_264[2] = k[19];
-        break;
-    case 4:
-        break;
-    }
-}
-/* fzgx:end fn_1_FBC5C */
-
-/* fzgx:begin fn_1_FBEA8 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_cas.h"
-extern void fn_80008BEC(void *arg0, int arg1, int arg2);
-extern void fn_1_FCA10(void);
-extern int fn_1_FCF50(void);
-extern void *fn_1_563B8(void *);
-extern f32 lbl_1_rodata_761C[13];
-extern void fn_1_7EB8C(void *, f32);
-extern void fn_1_7F20C(void *, s32, f32);
-extern void lbl_8006DB74(void *);
-extern void lbl_8006DBAC(void *);
-extern void fn_1_FD3A8(void);
-extern void *memset(void *, int, u32);
-extern void fn_1_FE7D8(u8 *, s32);
-extern void fn_1_FF420(u8 *);
-extern void fn_80074788(int);
-extern void fn_80072864(int);
-extern void fn_800745A4(int, int, int, int, int, int);
-extern void fn_800734A8(int, int, int, int);
-extern void fn_80072AB0(int, int, int);
-extern void fn_800735C8(int, int);
-extern void fn_80073620(int, int);
-extern void fn_80073C6C(int);
-extern void fn_80072C24(int, int, int, int, int);
-extern void fn_80072D64(int, int, int, int, int, int);
-extern void fn_80072CC4(int, int, int, int, int);
-extern void fn_80072E20(int, int, int, int, int, int);
-extern void fn_80073678(int);
-extern void fn_80074660(int);
-extern void fn_80074918(int, int, int);
-extern void fn_800720B0(int);
-extern void fn_1_9A508(Obj_1_data_2A7E0 *arg0);
-extern void fn_1_9AD54(void);
-extern void fn_1_9AD88(void);
-extern void fn_1_10069C(Obj_1_data_2A7E0_At3C *);
-extern void fn_1_FF038(Obj_1_data_2A7E0_At3C *);
-extern const f64 lbl_1_rodata_760C;
-extern void OSPanic(const char *, int, const char *, ...);
-extern void lbl_8006D758(void);
-extern void lbl_8006E13C(void *);
-extern void lbl_8006E0A4(void *);
-extern void fn_80008BA8(void *, void *, u32);
-extern u8 lbl_1_bss_851E0[36];
-extern void fn_1_7F230(void *, s32, f32);
-extern void fn_1_FFC60(Obj_1_data_2A7E0_At3C *arg0);
-extern void fn_1_FEC7C(void *object);
-extern const f32 lbl_1_rodata_76A8;
-
-extern void lbl_8006DB74(void *);
-
-void fn_1_FBEA8(void) {
-    Obj_1_bss_84454 *base;
-    Obj_1_bss_84454 *entry;
-    u8 i;
-    s32 j;
-
-    base = &lbl_1_bss_84454;
-    for (i = 0; i < 5; i++) {
-        Obj_1_bss_84454 *slot =
-            (Obj_1_bss_84454 *)((u8 *)base + i * 0x270);
-        if ((s32)slot->unk_0 != 0) {
-            for (j = 0, entry = slot; j < 3;
-                 j++, entry = (Obj_1_bss_84454 *)((u8 *)entry + 0x60)) {
-                if ((s32)entry->unk_14 != 0) {
-                    entry->unk_18 += entry->unk_24;
-                    entry->unk_1C += entry->unk_28;
-                    entry->unk_20 += entry->unk_2C;
-                    lbl_8006D758();
-                    lbl_8006E13C(&entry->unk_30);
-                    lbl_8006E0A4(&entry->unk_18);
-                    lbl_8006DB74(entry->pad_3C);
-                }
-                if ((s32)entry->unk_134 != 0) {
-                    entry->unk_138 += entry->unk_144;
-                    entry->unk_13C += entry->unk_148;
-                    entry->unk_140 += entry->unk_14C;
-                    lbl_8006D758();
-                    lbl_8006E13C(&entry->unk_150);
-                    lbl_8006E0A4(&entry->unk_138);
-                    lbl_8006DB74(&entry->pad_158[4]);
-                }
-            }
-        }
-    }
-}
-/* fzgx:end fn_1_FBEA8 */
-
-/* fzgx:begin fn_1_FBFE4 noprologue */
-#include "types.h"
-
-extern const f32 lbl_1_rodata_7598; // 0.0f
-extern u32 lbl_1_bss_85088[14];
-
 extern void GXLoadTexMtxImm(void *, u32, u32);
 extern void fn_80072EDC(s32, s32);
 extern void fn_800734A8(s32, s32, s32, s32);
@@ -1568,29 +777,272 @@ extern void fn_80073C6C(s32);
 extern void fn_80073D60(s32, s32, s32, s32, s32);
 extern void fn_800745A4(s32, s32, s32, s32, u32, u32);
 
+void fn_1_FB9DC(u8 index);
+void fn_1_FBA88(u8 index);
+void fn_1_FBC5C(u8 index);
+
+u8 lbl_1_bss_84450;
+CasEntry lbl_1_bss_84454[5];
+u8 lbl_1_bss_85084;
+u32 lbl_1_bss_85088[14];
+
+u8 *fn_1_FB870(void) {
+    return &lbl_1_bss_84450;
+}
+/* fzgx:end fn_1_FB870 */
+
+/* fzgx:begin fn_1_FB87C noprologue */
+void fn_1_FB87C(u32 *values, u8 count) {
+    u8 ids[5] = {0x49, 0x4A, 0x4B, 0x4C, 0x64};
+    u32 *src;
+    u32 *dst;
+    int i;
+
+    fn_80008BEC(lbl_1_bss_84454, 0, 0xc30);
+    lbl_1_bss_84454[0].id = ids[0];
+    lbl_1_bss_84454[1].id = ids[1];
+    lbl_1_bss_84454[2].id = ids[2];
+    lbl_1_bss_84454[3].id = ids[3];
+    lbl_1_bss_84454[4].id = ids[4];
+    lbl_1_bss_85084 = count;
+
+    dst = lbl_1_bss_85088;
+    src = values;
+    for (i = 0; i < lbl_1_bss_85084; i++) {
+        *dst = *src;
+        GXInitTexObjLOD((void *)*dst, 1, 1, 0.0f, 0.0f, 0.0f, 0, 0, 0);
+        src++;
+        dst++;
+    }
+}
+/* fzgx:end fn_1_FB87C */
+
+/* fzgx:begin fn_1_FB96C noprologue */
+// Initializes the selected background-cas state before running its setup stages.
+void fn_1_FB96C(u8 index) {
+    lbl_1_bss_84454[index].active = 1;
+    fn_1_FB9DC(index);
+    fn_1_FBA88(index);
+    fn_1_FBC5C(index);
+}
+/* fzgx:end fn_1_FB96C */
+
+/* fzgx:begin fn_1_FB9C0 noprologue */
+// Clear the selected CAS state value.
+void fn_1_FB9C0(u8 index) {
+    lbl_1_bss_84454[index].active = 0;
+}
+/* fzgx:end fn_1_FB9C0 */
+
+/* fzgx:begin fn_1_FB9DC noprologue */
+// Reset the per-slot flags and enable the flags associated with the selected slot.
+void fn_1_FB9DC(u8 index) {
+    CasEntry *entry = &lbl_1_bss_84454[index];
+
+    entry->lower[0].active = 0;
+    entry->upper[0].active = 0;
+    entry->lower[1].active = 0;
+    entry->upper[1].active = 0;
+    entry->lower[2].active = 0;
+    entry->upper[2].active = 0;
+
+    switch (index) {
+    case 0:
+        entry->lower[0].active = 1;
+        entry->upper[0].active = 1;
+        break;
+    case 1:
+        entry->upper[0].active = 1;
+        entry->upper[1].active = 1;
+        break;
+    case 2:
+        entry->upper[0].active = 1;
+        entry->upper[2].active = 1;
+        break;
+    case 3:
+        entry->upper[0].active = 1;
+        entry->upper[2].active = 1;
+        break;
+    case 4:
+        entry->upper[0].active = 1;
+        entry->upper[1].active = 1;
+        break;
+    default:
+        break;
+    }
+}
+/* fzgx:end fn_1_FB9DC */
+
+/* fzgx:begin fn_1_FBA88 noprologue */
+void fn_1_FBA88(u8 index) {
+    s32 *p;
+    CasEntry *entry = &lbl_1_bss_84454[index];
+    s32 tex[6] = {0x2D, 0x30, 0x2A, 0x27, 0x39, 0x36};
+    int i;
+    s32 *q;
+    s8 n = 0;
+    s8 c0 = 0, c1 = 0, c2 = 0, c3 = 0;
+    int j;
+
+    p = tex;
+
+    for (i = 0; i < 3; i++) {
+        CasLayer *layer = &entry->upper[i];
+        if (layer->active != 0) {
+            layer->tex = *p++;
+            n++;
+            layer->off[0] = c0++;
+            layer->off[1] = c1++;
+            layer->off[2] = c2++;
+            layer->off[3] = c3++;
+        }
+    }
+    q = tex + n;
+    for (j = 0; j < 3; j++) {
+        CasLayer *layer = &entry->lower[j];
+        if (layer->active != 0) {
+            layer->tex = *q++;
+            layer->off[0] = c0++;
+            layer->off[1] = -1 - j;
+        }
+    }
+}
+/* fzgx:end fn_1_FBA88 */
+
+/* fzgx:begin fn_1_FBC5C noprologue */
+void fn_1_FBC5C(u8 idx) {
+    CasEntry *p;
+    int i;
+
+    p = &lbl_1_bss_84454[idx];
+
+    for (i = 0; i < 3; i++) {
+        p->lower[i].pos.x = 0.0f;
+        p->lower[i].pos.y = 0.0f;
+        p->lower[i].pos.z = 0.0f;
+        p->lower[i].scale.x = 1.0f;
+        p->lower[i].scale.y = 1.0f;
+        p->lower[i].scale.z = 1.0f;
+        p->upper[i].pos.x = (i == 1) ? 0.5f : 0.0f;
+        p->upper[i].pos.y = 0.0f;
+        p->upper[i].pos.z = 0.0f;
+        p->upper[i].vel.x = 0.0f;
+        p->upper[i].vel.y = 0.0f;
+        p->upper[i].vel.z = 0.0f;
+        p->sx[i] = 0.1f;
+        p->sy[i] = 0.2f;
+        p->pal[i] = 0;
+    }
+
+    for (i = 0; i < 3; i++) {
+        switch (idx) {
+        case 0:
+            p->lower[i].vel.x = (0.2f / 60.0f);
+            p->lower[i].vel.y = (0.3f / 60.0f);
+            p->upper[i].scale.x = 0.25f;
+            p->upper[i].scale.y = 0.25f;
+            break;
+        case 1:
+            p->lower[i].vel.x = (0.1f / 60.0f);
+            p->lower[i].vel.y = (0.15f / 60.0f);
+            p->upper[i].scale.x = 0.3f;
+            p->upper[i].scale.y = 0.25f;
+            break;
+        case 2:
+            p->upper[i].scale.x = 1.0f;
+            p->upper[i].scale.y = 1.0f;
+            break;
+        case 3:
+            p->upper[i].scale.x = 1.0f;
+            p->upper[i].scale.y = 1.0f;
+            break;
+        case 4:
+            p->upper[i].scale.x = 1.0f;
+            p->upper[i].scale.y = 0.25f;
+            p->sx[i] = 0.05f;
+            p->sy[i] = 0.03f;
+            break;
+        }
+        p->upper[i].vel.x = p->lower[i].vel.x / 3.0f;
+        p->upper[i].vel.y = p->lower[i].vel.y / 3.0f;
+    }
+
+    switch (idx) {
+    case 0:
+        break;
+    case 1:
+        p->sx[0] = 0.3f;
+        p->sy[0] = 0.3f;
+        p->upper[0].vel.x = 0.005f;
+        p->upper[0].vel.y = 0.005f;
+        break;
+    case 2:
+        p->upper[0].vel.x = 0.001f;
+        p->upper[0].vel.y = 0.001f;
+        p->sx[0] = 0.0f;
+        p->sy[0] = 0.3f;
+        p->sy[2] = 0.07f;
+        break;
+    case 3:
+        p->upper[0].vel.x = 0.015f;
+        p->upper[0].vel.y = 0.0f;
+        p->sx[0] = 0.1f;
+        p->sy[0] = 0.2f;
+        p->upper[2].vel.x = 0.01f;
+        p->upper[2].vel.y = 0.0f;
+        p->upper[2].scale.x = 0.25f;
+        p->upper[2].scale.y = 0.25f;
+        p->sx[2] = 0.05f;
+        p->sy[2] = 0.05f;
+        break;
+    case 4:
+        break;
+    }
+}
+/* fzgx:end fn_1_FBC5C */
+
+/* fzgx:begin fn_1_FBEA8 noprologue */
+void fn_1_FBEA8(void) {
+    CasEntry *entries;
+    CasEntry *entry;
+    u8 i;
+    s32 j;
+
+    entries = lbl_1_bss_84454;
+    for (i = 0; i < 5; i++) {
+        entry = &entries[i];
+        if (entry->active != 0) {
+            for (j = 0; j < 3; j++) {
+                if (entry->lower[j].active != 0) {
+                    entry->lower[j].pos.x += entry->lower[j].vel.x;
+                    entry->lower[j].pos.y += entry->lower[j].vel.y;
+                    entry->lower[j].pos.z += entry->lower[j].vel.z;
+                    lbl_8006D758();
+                    lbl_8006E13C(&entry->lower[j].scale);
+                    lbl_8006E0A4(&entry->lower[j].pos);
+                    lbl_8006DB74(entry->lower[j].mtx);
+                }
+                if (entry->upper[j].active != 0) {
+                    entry->upper[j].pos.x += entry->upper[j].vel.x;
+                    entry->upper[j].pos.y += entry->upper[j].vel.y;
+                    entry->upper[j].pos.z += entry->upper[j].vel.z;
+                    lbl_8006D758();
+                    lbl_8006E13C(&entry->upper[j].scale);
+                    lbl_8006E0A4(&entry->upper[j].pos);
+                    lbl_8006DB74(entry->upper[j].mtx);
+                }
+            }
+        }
+    }
+}
+/* fzgx:end fn_1_FBEA8 */
+
+/* fzgx:begin fn_1_FBFE4 noprologue */
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
 
-typedef struct {
-    s32 active;      // 0x0
-    u8 pad_4[0x24];
-    f32 mtx[3][4];   // 0x28
-    s32 tex;         // 0x58
-    s8 off[4];       // 0x5c
-} CasLayer;
 
 typedef struct {
-    s32 active;      // 0x0
-    u8 id;           // 0x4
-    u8 pad_5[3];
-    s32 flags[3];    // 0x8
-    CasLayer lower[3]; // 0x14
-    CasLayer upper[3]; // 0x134
-    u8 pal[4];       // 0x254
-    f32 sx[3];       // 0x258
-    f32 sy[3];       // 0x264
-} CasEntry;
-
-typedef struct {
+    /* WARNING: compiler-diff device, not original code */
     volatile s32 count;  // 0x0: snapshot count must be read before configuring layers
     s32 x;      // 0x4
     s32 tex;    // 0x8
@@ -1616,7 +1068,6 @@ typedef struct {
     CasAlloc alloc;  // 0xc
 } CasState;
 
-extern CasEntry lbl_1_bss_84454[5];
 
 void fn_1_FBFE4(CasState *state) {
     CasAlloc base;
@@ -1625,6 +1076,7 @@ void fn_1_FBFE4(CasState *state) {
     u8 i;
     CasOwner *owner;
     s32 j;
+    /* WARNING: compiler-diff device, not original code */
     struct { s32 value; } count;
     CasEntry *entry;
     s32 k;
@@ -1667,11 +1119,11 @@ void fn_1_FBFE4(CasState *state) {
                 cur.z = MAX(cur.z, z + 1);
                 cur.w = MAX(cur.w, w + 1);
                 mtx[0] = entry->sx[j];
-                mtx[1] = lbl_1_rodata_7598;
-                mtx[2] = lbl_1_rodata_7598;
-                mtx[3] = lbl_1_rodata_7598;
+                mtx[1] = 0.0f;
+                mtx[2] = 0.0f;
+                mtx[3] = 0.0f;
                 mtx[4] = entry->sy[j];
-                mtx[5] = lbl_1_rodata_7598;
+                mtx[5] = 0.0f;
                 GXLoadTexMtxImm(layer->mtx, tex, 1);
                 fn_800745A4(x, 1, 4, tex, 0, 0x7d);
                 fn_80073778((void *)lbl_1_bss_85088[entry->pal[j]], y);
