@@ -1117,15 +1117,12 @@ void fn_1_D75CC(void) {
 /* fzgx:end fn_1_D75CC */
 
 /* fzgx:begin fn_1_D7688 */
-extern void fn_1_D8784(Obj_1_data_2A7E0_At3C *obj);
-extern void fn_1_D8EEC(Obj_1_data_2A7E0_At3C *obj, void *value);
-
 void fn_1_D7688(void) {
     Obj_1_data_2A7E0_At3C *obj = lbl_1_data_2A7E0.unk_3C;
     void *value = fn_1_9D260(&lbl_1_data_2A7E0);
-    fn_1_D8784(obj);
+    fn_1_D8784((fn_1_D8784_LigObject *)obj);
     fn_1_D7B7C((struct LigDrawEntry *)obj);
-    fn_1_D8EEC(obj, value);
+    fn_1_D8EEC((LigContainer *)obj, value);
     fn_1_9AD88();
 }
 /* fzgx:end fn_1_D7688 */
@@ -1789,28 +1786,6 @@ void fn_1_D8388(void *obj) {
 // a block can compile standalone and under the prologue. Hand-owned (librarian).
 
 
-typedef struct {
-    u8 pad_000[0x6c0];
-    f32 threshold;
-} fn_1_D8784_LigObject;
-
-typedef struct {
-    u8 pad0[0x24];
-    f32 value;
-    u8 pad28[0x4];
-    s16 count;
-    u8 pad2e[0x2];
-} fn_1_D7B7C_LigEntry;
-
-typedef struct {
-    u8 unk_0[0xac];
-} fn_1_D8EEC_LigEntry;
-
-typedef struct {
-    u8 unk_0[0x6d4];
-    s32 unk_6d4;
-    fn_1_D8EEC_LigEntry unk_6d8[1];
-} fn_1_D8EEC_LigObject;
 
 typedef struct {
     u8 pad_000[0x2c];
@@ -1830,13 +1805,10 @@ typedef struct {
 
 
 
-extern void fn_1_D8784(fn_1_D8784_LigObject *obj);
-extern void fn_1_D8EEC(fn_1_D8EEC_LigObject *obj, void *arg);
-extern void *fn_1_5448C(fn_1_D7B7C_LigEntry *entry);
+
 extern void fn_1_103090(fn_1_D8CA8_LigEntry *entry);
 extern void fn_1_1030A4(fn_1_D8D08_LigEntry *entry);
 extern void fn_1_1030D4(fn_1_D8D58_LigEntry *entry, void *arg);
-extern void fn_1_103264(fn_1_D8EEC_LigEntry *entry, void *arg);
 
 extern void fn_1_D8D58(LigObject *obj, void *arg);
 
@@ -2078,11 +2050,6 @@ typedef struct {
     u8 callback_data[0x24];
     f32 scale;
 } fn_1_D8784_LigEntry;
-
-typedef struct {
-    u8 pad_000[0x6c0];
-    f32 threshold;
-} fn_1_D8784_LigObject;
 
 extern s32 fn_1_58C4(void);
 
@@ -2568,22 +2535,12 @@ void fn_1_D8D58(LigObject *obj, void *arg) {
 /* fzgx:end fn_1_D8D58 */
 
 /* fzgx:begin fn_1_D8EEC */
-typedef struct {
-    u8 unk_0[0xac];
-} fn_1_D8EEC_LigEntry;
-
-typedef struct {
-    u8 unk_0[0x6d4];
-    s32 unk_6d4;
-    fn_1_D8EEC_LigEntry unk_6d8[1];
-} fn_1_D8EEC_LigObject;
-
-extern void fn_1_103264(fn_1_D8EEC_LigEntry *entry, void *arg);
+extern void fn_1_103264(fn_1_D8D08_LigEntry *entry, void *arg);
 
 // Applies the operation to each entry in the object.
-void fn_1_D8EEC(fn_1_D8EEC_LigObject *obj, void *arg) {
-    s32 count = obj->unk_6d4;
-    fn_1_D8EEC_LigEntry *entry = obj->unk_6d8;
+void fn_1_D8EEC(LigContainer *obj, void *arg) {
+    s32 count = obj->count;
+    fn_1_D8D08_LigEntry *entry = obj->entries;
 
     while (count > 0) {
         fn_1_103264(entry, arg);
