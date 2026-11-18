@@ -1,0 +1,4 @@
+# Local symbols that the dead-stripping link may remove (tools/rel_strip_check.py).
+# Each entry is a static helper that MWCC inlined at every call. Retail holds the inlined copy.
+name_entry_glyph_size        # name_entry.c, inlined in fn_4_B528 and fn_4_D1A8
+name_entry_set_default_name  # name_entry.c, inlined in fn_4_D420 (sel: fn_10_25888 and fn_10_25CB0)

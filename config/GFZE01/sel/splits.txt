@@ -48,9 +48,6 @@ rel/sel/sel/fn_10_2323C.c:
 rel/sel/sel/fn_10_2324C.c:
 	.text       start:0x0002324C end:0x0002325C
 
-rel/sel/name_entry/fn_10_25BC8.c:
-	.text       start:0x00025BC8 end:0x00025CB0
-
 rel/sel/name_entry/fn_10_26000.c:
 	.text       start:0x00026000 end:0x000260D4
 
@@ -131,9 +128,6 @@ rel/sel/sel/fn_10_F57C.c:
 rel/sel/sel/fn_10_1E41C.c:
 	.text       start:0x0001E41C end:0x0001E57C align:4
 
-rel/sel/name_entry/fn_10_25CB0.c:
-	.text       start:0x00025CB0 end:0x00025E1C align:4
-
 rel/sel/sel/fn_10_107D4.c:
 	.text       start:0x000107D4 end:0x00010C24 align:4
 
@@ -161,12 +155,6 @@ rel/sel/sel/fn_10_1D314.c:
 rel/sel/sel/fn_10_13ECC.c:
 	.text       start:0x00013ECC end:0x00014C84 align:4
 	.data       start:0x00005FA0 end:0x00005FD0 align:8
-
-rel/sel/sel/fn_10_24BD0.c:
-	.text       start:0x00024BD0 end:0x00025610 align:4
-
-rel/sel/sel/fn_10_25888.c:
-	.text       start:0x00025888 end:0x00025BC8 align:4
 
 rel/sel/sel/fn_10_21978.c:
 	.text       start:0x00021978 end:0x00021C20 align:4
@@ -207,9 +195,6 @@ rel/sel/sel/fn_10_17814.c:
 rel/sel/sel/fn_10_117D0.c:
 	.text       start:0x000117D0 end:0x00012024 align:4
 
-rel/sel/sel/fn_10_2406C.c:
-	.text       start:0x0002406C end:0x00024BD0 align:4
-
 rel/sel/name_entry/fn_10_261E4.c:
 	.text       start:0x000261E4 end:0x00026424 align:4
 
@@ -231,20 +216,17 @@ rel/sel/sel/fn_10_19F70.c:
 rel/sel/sel/fn_10_10168.c:
 	.text       start:0x00010168 end:0x000107D4 align:4
 
-rel/sel/sel/fn_10_2325C.c:
-	.text       start:0x0002325C end:0x00023990 align:4
+rel/sel/name_entry/fn_10_2325C.c:
+	.text       start:0x0002325C end:0x00025E1C align:4
+	.rodata     start:0x00001548 end:0x00001D70 align:8
+	.data       start:0x000068E0 end:0x00006A48 align:8
+	.bss        start:0x00055CD8 end:0x00055CE0 align:8
 
 rel/sel/sel/fn_10_E600.c:
 	.text       start:0x0000E600 end:0x0000F050 align:4
 
 rel/sel/sel/fn_10_D5D4.c:
 	.text       start:0x0000D5D4 end:0x0000DAF8 align:4
-
-rel/sel/sel/fn_10_23990.c:
-	.text       start:0x00023990 end:0x0002406C align:4
-
-rel/sel/sel/fn_10_25610.c:
-	.text       start:0x00025610 end:0x00025888 align:4
 
 rel/sel/sel/fn_10_DAF8.c:
 	.text       start:0x0000DAF8 end:0x0000E034 align:4
@@ -347,9 +329,6 @@ rel/sel/data/lbl_10_bss_55B30.c:
 
 rel/sel/data/lbl_10_bss_55CE0.c:
 	.bss        start:0x00055CE0 end:0x00055CE3 align:32
-
-rel/sel/data/lbl_10_bss_55CD8.c:
-	.bss        start:0x00055CD8 end:0x00055CE0 align:8
 
 rel/sel/data/lbl_10_data_D00.c:
 	.data       start:0x00000D00 end:0x00000F00 align:8
@@ -1260,18 +1239,6 @@ rel/sel/data/lbl_10_data_6518.c:
 rel/sel/data/lbl_10_data_6530.c:
 	.data       start:0x00006530 end:0x00006670 align:8
 
-rel/sel/data/lbl_10_data_68E0.c:
-	.data       start:0x000068E0 end:0x00006980 align:8
-
-rel/sel/data/lbl_10_data_6980.c:
-	.data       start:0x00006980 end:0x000069C0 align:8
-
-rel/sel/data/lbl_10_data_69C0.c:
-	.data       start:0x000069C0 end:0x000069D8 align:8
-
-rel/sel/data/lbl_10_data_69D8.c:
-	.data       start:0x000069D8 end:0x00006A48 align:8
-
 rel/sel/data/lbl_10_data_6A48.c:
 	.data       start:0x00006A48 end:0x00006A68 align:8
 
@@ -1309,4 +1276,8 @@ rel/sel/record.c:
 	.text       start:0x00026554 end:0x000269A4 align:4
 
 rel/sel/data/lbl_10_rodata_158.c:
-	.rodata     start:0x00000158 end:0x00001E28 align:8
+	.rodata     start:0x00000158 end:0x00001548 align:8
+
+rel/sel/data/lbl_10_rodata_1D70.c:
+	.rodata     start:0x00001D70 end:0x00001E28 align:8
+

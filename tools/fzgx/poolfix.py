@@ -308,10 +308,15 @@ def apply(obj: Path, mapping: Dict[str, str]) -> Dict[str, object]:
                       and elf.sections[s['shndx']]['name'] in ('.sdata', '.sdata2', '.bss', '.sbss')}
     # both kinds become references to the retail symbol (the data unit that owns the retail
     # range keeps the bytes); our private copies are dropped with their section
+    # A unit that owns a name in its .rodata owns the whole literal pool there (a TU unit whose split
+    # holds the .rodata range): the remaining map entries are interior references to other units'
+    # objects (OWNER__fzgx_offset_N), and the pool is kept, not emptied.
+    rodata = elf.section('.rodata')
+    owns_rodata = any(s['name'] in owned for s in elf.symbols() if rodata and s['shndx'] == rodata['index'])
     elf.drop_section('.fzgxpool')  # the pool primer (see fixup_evidence.shared_pool_primer)
     done, skipped = elf.retarget(mapping)
     renamed, missing = elf.rename_defined(owned, exported)
-    pending = (['.rodata'] if pooled else []) + (['.data'] if data_names else [])
+    pending = (['.rodata'] if pooled and not owns_rodata else []) + (['.data'] if data_names else [])
     for name in sorted(small_sections):
         if name in owned_sections:
             # An owned object beside a retargeted private copy: the copy's bytes cannot be

@@ -151514,93 +151514,6 @@
   },
   {
     "module": "option",
-    "source": "rel/option/_prolog/fn_4_ADF4.c",
-    "symbols": [
-      "fn_4_ADF4"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/option/_prolog.c",
-    "pool": {
-      "...rodata.0": "lbl_4_rodata_410",
-      "@30": "lbl_4_rodata_B00",
-      "@31": "lbl_4_rodata_B08"
-    }
-  },
-  {
-    "module": "option",
-    "source": "rel/option/_prolog/fn_4_B528.c",
-    "symbols": [
-      "fn_4_B528"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/option/_prolog.c",
-    "pool": {
-      "...rodata.0": "lbl_4_rodata_410",
-      "@122": "lbl_4_rodata_B34",
-      "@123": "lbl_4_rodata_B38",
-      "@49": "lbl_4_rodata_B1C",
-      "@21": "lbl_4_rodata_B10",
-      "@51": "lbl_4_rodata_B20",
-      "@22": "lbl_4_rodata_B14",
-      "@53": "lbl_4_rodata_B24",
-      "@23": "lbl_4_rodata_B18",
-      "@55": "lbl_4_rodata_B28",
-      "@6": "lbl_4_rodata_B00",
-      "@124": "lbl_4_rodata_B40",
-      "@12": "lbl_4_rodata_B08",
-      "@126": "lbl_4_rodata_B50",
-      "@127": "lbl_4_rodata_B58",
-      "@125": "lbl_4_rodata_B48",
-      "@88": "lbl_4_rodata_B30",
-      "@87": "lbl_4_rodata_B2C",
-      "@128": "lbl_4_rodata_B60",
-      "@129": "lbl_4_rodata_B64"
-    }
-  },
-  {
-    "module": "option",
-    "source": "rel/option/_prolog/fn_4_BC04.c",
-    "symbols": [
-      "fn_4_BC04"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/option/_prolog.c",
-    "pool": {
-      "@194": "lbl_4_rodata_B00",
-      "@196": "lbl_4_rodata_B08"
-    }
-  },
-  {
-    "module": "option",
-    "source": "rel/option/_prolog/fn_4_C768.c",
-    "symbols": [
-      "fn_4_C768"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [
-      "-opt",
-      "speed,level=3,peephole,schedule"
-    ],
-    "tu": "rel/option/_prolog.c",
-    "pool": {
-      "...rodata.0": "lbl_4_rodata_410",
-      "@37": "lbl_4_rodata_B00",
-      "@38": "lbl_4_rodata_B08"
-    }
-  },
-  {
-    "module": "option",
     "source": "rel/option/_prolog/fn_4_D10.c",
     "symbols": [
       "fn_4_D10"
@@ -151608,42 +151521,6 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/option/_prolog.c"
-  },
-  {
-    "module": "option",
-    "source": "rel/option/_prolog/fn_4_D1A8.c",
-    "symbols": [
-      "fn_4_D1A8"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/option/_prolog.c",
-    "pool": {
-      "...rodata.0": "lbl_4_rodata_410",
-      "@36": "lbl_4_rodata_B10",
-      "@37": "lbl_4_rodata_B14",
-      "@38": "lbl_4_rodata_B18",
-      "...data.0": "lbl_4_data_2F78",
-      "fzgx_pool_data_lbl_4_data_2F78": "lbl_4_data_2F78",
-      "...bss.0": "lbl_4_bss_5680",
-      "lbl_4_bss_5680": "lbl_4_bss_5680",
-      "lbl_4_bss_5684": "lbl_4_bss_5684",
-      "lbl_4_bss_5685": "lbl_4_bss_5685"
-    }
-  },
-  {
-    "module": "option",
-    "source": "rel/option/_prolog/fn_4_D420.c",
-    "symbols": [
-      "fn_4_D420"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
     "extra_cflags": [],
     "tu": "rel/option/_prolog.c"
   },
@@ -151726,20 +151603,6 @@
     "source": "rel/option/data/lbl_4_bss_5618.c",
     "symbols": [
       "lbl_4_bss_5618"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_bss_5680.c",
-    "symbols": [
-      "lbl_4_bss_5680",
-      "lbl_4_bss_5684",
-      "lbl_4_bss_5685"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -151839,21 +151702,6 @@
       "lbl_4_data_2D8C",
       "lbl_4_data_2D9C",
       "lbl_4_data_2DB4"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/data/lbl_4_data_2F78.c",
-    "symbols": [
-      "lbl_4_data_2F78",
-      "lbl_4_data_3018",
-      "lbl_4_data_3058",
-      "lbl_4_data_3070"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -152038,48 +151886,7 @@
       "lbl_4_rodata_400",
       "lbl_4_rodata_404",
       "lbl_4_rodata_408",
-      "lbl_4_rodata_40C",
-      "lbl_4_rodata_410",
-      "lbl_4_rodata_418",
-      "lbl_4_rodata_49C",
-      "lbl_4_rodata_520",
-      "lbl_4_rodata_528",
-      "lbl_4_rodata_578",
-      "lbl_4_rodata_584",
-      "lbl_4_rodata_630",
-      "lbl_4_rodata_6DC",
-      "lbl_4_rodata_788",
-      "lbl_4_rodata_794",
-      "lbl_4_rodata_848",
-      "lbl_4_rodata_8FC",
-      "lbl_4_rodata_9B0",
-      "lbl_4_rodata_9C0",
-      "lbl_4_rodata_9FC",
-      "lbl_4_rodata_A0C",
-      "lbl_4_rodata_A48",
-      "lbl_4_rodata_A50",
-      "lbl_4_rodata_A94",
-      "lbl_4_rodata_A9C",
-      "lbl_4_rodata_B00",
-      "lbl_4_rodata_B08",
-      "lbl_4_rodata_B10",
-      "lbl_4_rodata_B14",
-      "lbl_4_rodata_B18",
-      "lbl_4_rodata_B1C",
-      "lbl_4_rodata_B20",
-      "lbl_4_rodata_B24",
-      "lbl_4_rodata_B28",
-      "lbl_4_rodata_B2C",
-      "lbl_4_rodata_B30",
-      "lbl_4_rodata_B34",
-      "lbl_4_rodata_B38",
-      "lbl_4_rodata_B40",
-      "lbl_4_rodata_B48",
-      "lbl_4_rodata_B50",
-      "lbl_4_rodata_B58",
-      "lbl_4_rodata_B60",
-      "lbl_4_rodata_B64",
-      "lbl_4_rodata_B68"
+      "lbl_4_rodata_40C"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -152089,69 +151896,25 @@
   },
   {
     "module": "option",
-    "source": "rel/option/data/lbl_4_rodata_B70.c",
+    "source": "rel/option/name_entry/fn_4_ADF4.c",
     "symbols": [
-      "lbl_4_rodata_B70",
-      "lbl_4_rodata_B78",
-      "lbl_4_rodata_B7C",
-      "lbl_4_rodata_B80",
-      "lbl_4_rodata_B84",
-      "lbl_4_rodata_B88",
-      "lbl_4_rodata_B90",
-      "lbl_4_rodata_B98",
-      "lbl_4_rodata_BA0",
-      "lbl_4_rodata_BA4",
-      "lbl_4_rodata_BA8",
-      "lbl_4_rodata_BAC",
-      "lbl_4_rodata_BB0",
-      "lbl_4_rodata_BB4",
-      "lbl_4_rodata_BB8",
-      "lbl_4_rodata_BBC",
-      "lbl_4_rodata_BC0",
-      "lbl_4_rodata_BC4",
-      "lbl_4_rodata_BC8",
-      "lbl_4_rodata_BCC",
-      "lbl_4_rodata_BD0",
-      "lbl_4_rodata_BD4",
-      "lbl_4_rodata_BD8",
-      "lbl_4_rodata_BDC",
-      "lbl_4_rodata_BE0",
-      "lbl_4_rodata_BE4",
-      "lbl_4_rodata_BE8",
-      "lbl_4_rodata_BEC",
-      "lbl_4_rodata_BF0",
-      "lbl_4_rodata_BF8",
-      "lbl_4_rodata_C00",
-      "lbl_4_rodata_C08",
-      "lbl_4_rodata_C0C",
-      "lbl_4_rodata_C10",
-      "lbl_4_rodata_C14",
-      "lbl_4_rodata_C18",
-      "lbl_4_rodata_C20",
-      "lbl_4_rodata_C24",
-      "lbl_4_rodata_C28",
-      "lbl_4_rodata_C2C",
-      "lbl_4_rodata_C30"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "option",
-    "source": "rel/option/name_entry.c",
-    "symbols": [
+      "fn_4_ADF4",
+      "fn_4_B528",
+      "fn_4_BC04",
+      "fn_4_C768",
+      "fn_4_D1A8",
+      "fn_4_D420",
       "fn_4_D760",
       "fn_4_D848",
       "fn_4_D878"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "collapsed": true
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-fp_contract off"
+    ],
+    "tu": "rel/option/name_entry.c"
   },
   {
     "module": "pilotpoint",
@@ -153424,20 +153187,6 @@
       "lbl_10_bss_55B30",
       "lbl_10_bss_55B34",
       "lbl_10_bss_55B3C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/data/lbl_10_bss_55CD8.c",
-    "symbols": [
-      "lbl_10_bss_55CD8",
-      "lbl_10_bss_55CDC",
-      "lbl_10_bss_55CDD"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -157434,54 +157183,6 @@
   },
   {
     "module": "sel",
-    "source": "rel/sel/data/lbl_10_data_68E0.c",
-    "symbols": [
-      "lbl_10_data_68E0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/data/lbl_10_data_6980.c",
-    "symbols": [
-      "lbl_10_data_6980"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/data/lbl_10_data_69C0.c",
-    "symbols": [
-      "lbl_10_data_69C0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/data/lbl_10_data_69D8.c",
-    "symbols": [
-      "lbl_10_data_69D8"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "sel",
     "source": "rel/sel/data/lbl_10_data_6A48.c",
     "symbols": [
       "lbl_10_data_6A48"
@@ -157879,89 +157580,18 @@
       "lbl_10_rodata_57C",
       "lbl_10_rodata_584",
       "lbl_10_rodata_588",
-      "lbl_10_rodata_5D0",
-      "lbl_10_rodata_1548",
-      "lbl_10_rodata_1550",
-      "lbl_10_rodata_15D4",
-      "lbl_10_rodata_1658",
-      "lbl_10_rodata_1660",
-      "lbl_10_rodata_16B0",
-      "lbl_10_rodata_16BC",
-      "lbl_10_rodata_1768",
-      "lbl_10_rodata_1814",
-      "lbl_10_rodata_18C0",
-      "lbl_10_rodata_18CC",
-      "lbl_10_rodata_1980",
-      "lbl_10_rodata_1A34",
-      "lbl_10_rodata_1AE8",
-      "lbl_10_rodata_1AF8",
-      "lbl_10_rodata_1B34",
-      "lbl_10_rodata_1B44",
-      "lbl_10_rodata_1B80",
-      "lbl_10_rodata_1B88",
-      "lbl_10_rodata_1BCC",
-      "lbl_10_rodata_1BD4",
-      "lbl_10_rodata_1C38",
-      "lbl_10_rodata_1C40",
-      "lbl_10_rodata_1C48",
-      "lbl_10_rodata_1C4C",
-      "lbl_10_rodata_1C50",
-      "lbl_10_rodata_1C54",
-      "lbl_10_rodata_1C58",
-      "lbl_10_rodata_1C5C",
-      "lbl_10_rodata_1C60",
-      "lbl_10_rodata_1C64",
-      "lbl_10_rodata_1C68",
-      "lbl_10_rodata_1C6C",
-      "lbl_10_rodata_1C70",
-      "lbl_10_rodata_1C78",
-      "lbl_10_rodata_1C80",
-      "lbl_10_rodata_1C88",
-      "lbl_10_rodata_1C90",
-      "lbl_10_rodata_1C98",
-      "lbl_10_rodata_1C9C",
-      "lbl_10_rodata_1CA0",
-      "lbl_10_rodata_1CA8",
-      "lbl_10_rodata_1CB0",
-      "lbl_10_rodata_1CB4",
-      "lbl_10_rodata_1CB8",
-      "lbl_10_rodata_1CBC",
-      "lbl_10_rodata_1CC0",
-      "lbl_10_rodata_1CC8",
-      "lbl_10_rodata_1CD0",
-      "lbl_10_rodata_1CD8",
-      "lbl_10_rodata_1CDC",
-      "lbl_10_rodata_1CE0",
-      "lbl_10_rodata_1CE4",
-      "lbl_10_rodata_1CE8",
-      "lbl_10_rodata_1CEC",
-      "lbl_10_rodata_1CF0",
-      "lbl_10_rodata_1CF4",
-      "lbl_10_rodata_1CF8",
-      "lbl_10_rodata_1CFC",
-      "lbl_10_rodata_1D00",
-      "lbl_10_rodata_1D04",
-      "lbl_10_rodata_1D08",
-      "lbl_10_rodata_1D0C",
-      "lbl_10_rodata_1D10",
-      "lbl_10_rodata_1D14",
-      "lbl_10_rodata_1D18",
-      "lbl_10_rodata_1D1C",
-      "lbl_10_rodata_1D20",
-      "lbl_10_rodata_1D24",
-      "lbl_10_rodata_1D28",
-      "lbl_10_rodata_1D30",
-      "lbl_10_rodata_1D38",
-      "lbl_10_rodata_1D40",
-      "lbl_10_rodata_1D44",
-      "lbl_10_rodata_1D48",
-      "lbl_10_rodata_1D4C",
-      "lbl_10_rodata_1D50",
-      "lbl_10_rodata_1D58",
-      "lbl_10_rodata_1D5C",
-      "lbl_10_rodata_1D60",
-      "lbl_10_rodata_1D64",
-      "lbl_10_rodata_1D68",
+      "lbl_10_rodata_5D0"
+    ],
+    "status": "matching",
+    "matching_for": ["GFZE01"],
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "sel",
+    "source": "rel/sel/data/lbl_10_rodata_1D70.c",
+    "symbols": [
       "lbl_10_rodata_1D70",
       "lbl_10_rodata_1D8C"
     ],
@@ -158009,26 +157639,23 @@
   },
   {
     "module": "sel",
-    "source": "rel/sel/name_entry/fn_10_25BC8.c",
+    "source": "rel/sel/name_entry/fn_10_2325C.c",
     "symbols": [
-      "fn_10_25BC8"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/sel/name_entry.c"
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/name_entry/fn_10_25CB0.c",
-    "symbols": [
+      "fn_10_2325C",
+      "fn_10_23990",
+      "fn_10_2406C",
+      "fn_10_24BD0",
+      "fn_10_25610",
+      "fn_10_25888",
+      "fn_10_25BC8",
       "fn_10_25CB0"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract off"
+    ],
     "tu": "rel/sel/name_entry.c"
   },
   {
@@ -159529,126 +159156,6 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/sel/sel.c"
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/sel/fn_10_2325C.c",
-    "symbols": [
-      "fn_10_2325C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/sel/sel.c",
-    "pool": {
-      "...rodata.0": "lbl_10_rodata_1548",
-      "@30": "lbl_10_rodata_1C38",
-      "@31": "lbl_10_rodata_1C40"
-    }
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/sel/fn_10_23990.c",
-    "symbols": [
-      "fn_10_23990"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/sel/sel.c",
-    "pool": {
-      "...rodata.0": "lbl_10_rodata_1548",
-      "@122": "lbl_10_rodata_1C6C",
-      "@123": "lbl_10_rodata_1C70",
-      "@49": "lbl_10_rodata_1C54",
-      "@21": "lbl_10_rodata_1C48",
-      "@51": "lbl_10_rodata_1C58",
-      "@22": "lbl_10_rodata_1C4C",
-      "@53": "lbl_10_rodata_1C5C",
-      "@23": "lbl_10_rodata_1C50",
-      "@55": "lbl_10_rodata_1C60",
-      "@6": "lbl_10_rodata_1C38",
-      "@124": "lbl_10_rodata_1C78",
-      "@12": "lbl_10_rodata_1C40",
-      "@126": "lbl_10_rodata_1C88",
-      "@127": "lbl_10_rodata_1C90",
-      "@125": "lbl_10_rodata_1C80",
-      "@88": "lbl_10_rodata_1C68",
-      "@87": "lbl_10_rodata_1C64",
-      "@128": "lbl_10_rodata_1C98",
-      "@129": "lbl_10_rodata_1C9C"
-    }
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/sel/fn_10_2406C.c",
-    "symbols": [
-      "fn_10_2406C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/sel/sel.c",
-    "pool": {
-      "@194": "lbl_10_rodata_1C38",
-      "@196": "lbl_10_rodata_1C40"
-    }
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/sel/fn_10_24BD0.c",
-    "symbols": [
-      "fn_10_24BD0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/sel/sel.c",
-    "pool": {
-      "...rodata.0": "lbl_10_rodata_1548",
-      "@37": "lbl_10_rodata_1C38",
-      "@38": "lbl_10_rodata_1C40"
-    }
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/sel/fn_10_25610.c",
-    "symbols": [
-      "fn_10_25610"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/sel/sel.c",
-    "pool": {
-      "...rodata.0": "lbl_10_rodata_1548",
-      "@36": "lbl_10_rodata_1C48",
-      "@37": "lbl_10_rodata_1C4C",
-      "@38": "lbl_10_rodata_1C50",
-      "...data.0": "lbl_10_data_68E0",
-      "fzgx_pool_init_fzgx_pool_data_lbl_4_data_2F78": "lbl_10_data_68E0",
-      "...bss.0": "lbl_10_bss_55CD8",
-      "lbl_10_bss_55CD8": "lbl_10_bss_55CD8",
-      "lbl_10_bss_55CDC__fzgx_offset_0": "lbl_10_bss_55CDC",
-      "lbl_10_bss_55CDD__fzgx_offset_0": "lbl_10_bss_55CDD"
-    }
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/sel/fn_10_25888.c",
-    "symbols": [
-      "fn_10_25888"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
     "extra_cflags": [],
     "tu": "rel/sel/sel.c"
   },

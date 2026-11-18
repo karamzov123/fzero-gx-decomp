@@ -69,19 +69,13 @@
   "fn_4_AD78",
   "fn_4_ADAC",
   "fn_4_ADB0",
-  "fn_4_ADF0",
-  "fn_4_ADF4",
-  "fn_4_B528",
-  "fn_4_BC04",
-  "fn_4_C768",
-  "fn_4_D1A8",
-  "fn_4_D420"
+  "fn_4_ADF0"
  ],
  "tus": [
   {
    "file": "name_entry.c",
    "text": [
-    55136,
+    44532,
     55432
    ],
    "data_sec": 5,
@@ -93,6 +87,12 @@
     55136
    ],
    "functions": [
+    "fn_4_ADF4",
+    "fn_4_B528",
+    "fn_4_BC04",
+    "fn_4_C768",
+    "fn_4_D1A8",
+    "fn_4_D420",
     "fn_4_D760",
     "fn_4_D848",
     "fn_4_D878"
