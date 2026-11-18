@@ -2535,39 +2535,6 @@ rel/main_rel/face/fn_1_D31AC.c:
 rel/main_rel/face/fn_1_D31E0.c:
 	.text       start:0x000D31E0 end:0x000D3214
 
-rel/main_rel/bg_lig/fn_1_D6680.c:
-	.text       start:0x000D6680 end:0x000D6688
-
-rel/main_rel/bg_lig/fn_1_D6688.c:
-	.text       start:0x000D6688 end:0x000D6690
-
-rel/main_rel/bg_lig/fn_1_D6690.c:
-	.text       start:0x000D6690 end:0x000D6698
-
-rel/main_rel/bg_lig/fn_1_D6698.c:
-	.text       start:0x000D6698 end:0x000D66A0
-
-rel/main_rel/bg_lig/fn_1_D66A0.c:
-	.text       start:0x000D66A0 end:0x000D66A8
-
-rel/main_rel/bg_lig/fn_1_D66A8.c:
-	.text       start:0x000D66A8 end:0x000D66B0
-
-rel/main_rel/bg_lig/fn_1_D66B0.c:
-	.text       start:0x000D66B0 end:0x000D66B8
-
-rel/main_rel/bg_lig/fn_1_D66B8.c:
-	.text       start:0x000D66B8 end:0x000D66BC
-
-rel/main_rel/bg_lig/fn_1_D66BC.c:
-	.text       start:0x000D66BC end:0x000D66F4
-
-rel/main_rel/bg_lig/fn_1_D66F4.c:
-	.text       start:0x000D66F4 end:0x000D66F8
-
-rel/main_rel/bg_lig/fn_1_D6740.c:
-	.text       start:0x000D6740 end:0x000D6748
-
 rel/main_rel/bg_lig/fn_1_D720C.c:
 	.text       start:0x000D720C end:0x000D7274
 
@@ -4614,9 +4581,6 @@ rel/main_rel/sel_static_disp/fn_1_13923C.c:
 rel/main_rel/font/fn_1_54448.c:
 	.text       start:0x00054448 end:0x0005448C align:4
 
-rel/main_rel/bg_lig/fn_1_D66F8.c:
-	.text       start:0x000D66F8 end:0x000D6740 align:4
-
 rel/main_rel/bg_lig/fn_1_D75CC.c:
 	.text       start:0x000D75CC end:0x000D7688 align:4
 
@@ -5488,7 +5452,7 @@ rel/main_rel/sel_static_disp/fn_1_1332FC.c:
 	.text       start:0x001332FC end:0x0013354C align:4
 
 rel/main_rel/bg_lig/fn_1_D5C70.c:
-	.text       start:0x000D5C70 end:0x000D6680 align:4
+	.text       start:0x000D5C70 end:0x000D6748 align:4
 	.rodata     start:0x00006328 end:0x00006358 align:8
 	.data       start:0x0003DBE8 end:0x0003DC38 align:8
 
