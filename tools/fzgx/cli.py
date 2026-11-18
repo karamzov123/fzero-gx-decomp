@@ -302,17 +302,21 @@ def cmd_report(a, p):
 def cmd_honest(a, p):
     """Authored-vs-credited progress, and the functions objdiff credits that we never wrote."""
     from . import progress
+    status = None
+    if a.snapshot:
+        rows = json.loads((progress.ROOT / "state/ledger.json").read_text())["functions"]
+        status = {r["symbol"]: r["status"] for r in rows}
+    m = progress.measure(status)
     if a.closure:
-        c = progress.closure()
+        c = progress.closure(m)
         if a.json:
             _print(c, True)
         else:
             print(progress.closure_summary(c))
         return 0
-    m = progress.measure()
     if a.uncredited:
-        rows = [r for r in progress.uncredited()
-                if not a.module or r["module"] == a.module]
+        rows = [r for r in m["functions"] if r["credited"] and not r["authored"]
+                and (not a.module or r["module"] == a.module)]
         rows.sort(key=lambda r: (r["module"], -r["size"]))
         if a.limit:
             rows = rows[:a.limit]
@@ -326,8 +330,8 @@ def cmd_honest(a, p):
         for r in rows:
             why = ("no split range" if not r["split"] else
                    "no units.json entry" if not r["registered"] else
-                   "unit registered but gen/ not built" if not r["compiled"] else
-                   "ledger does not call it matched")
+                   "no matching object in this build; rebuild before triage" if not r["compiled"] else
+                   r["source_form"] or "source form unknown")
             print("%-13s %-22s %7d  %s" % (r["module"], r["symbol"], r["size"], why))
         print("\n%d credited function(s) with no compiled C body" % len(rows))
         return 0
@@ -739,6 +743,8 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--limit", type=int, default=0, help="cap --uncredited output")
     s.add_argument("--closure", action="store_true",
                    help="per-module closure table: what is authored, and what each module still costs")
+    s.add_argument("--snapshot", action="store_true",
+                   help="use committed ledger status (still requires built objects in this worktree)")
     s = sub.add_parser("devicecensus", help="read-only marked-device and source-form inventory; review signals are not device verdicts")
     s.set_defaults(fn=cmd_devicecensus)
     s.add_argument("--json", action="store_true", help="include source locations, owners and input fingerprints")

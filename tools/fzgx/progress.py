@@ -265,20 +265,19 @@ def _summarise(rows: List[dict], status: Dict[str, str]) -> dict:
     }
 
 
-def closure() -> dict:
-    """Per-module closure state for the project's active goal.
-
-    Goal (b) is *all 16 targets linked, with honest code percentages, main_rel open*. That
-    makes a module finished when every one of its known functions is **authored** -- not when
-    objdiff calls it matched, because a module whose remaining functions sit in retail auto
-    objects links green while contributing nothing (finding 280).
-
-    So this separates what is left to *write* from what is left to *link*. The two are
-    different work: a credited-but-unauthored function needs no decompilation, only a split
-    range and a units.json entry, and it costs minutes against the days a genuinely unmatched
-    function costs. Ranking by a single blended number hides that.
-    """
-    per = measure()["per_module"]
+def closure(measurement: Optional[dict] = None) -> dict:
+    """C credit and the remaining verification/source-form work, not completion."""
+    m = measure() if measurement is None else measurement
+    per = m["per_module"]
+    from collections import Counter
+    backlog = Counter()
+    for r in m["functions"]:
+        if r["authored"]:
+            continue
+        if not r["compiled"] and r["credited"]:
+            backlog["credited_without_object"] += 1
+        else:
+            backlog[r["source_form"] or "unregistered"] += 1
     out = []
     for module, v in sorted(per.items()):
         if not v["known"]:
@@ -301,6 +300,7 @@ def closure() -> dict:
     return {"modules": out,
             "complete_modules": sum(1 for r in out if r["complete"]),
             "total_modules": len(out),
+            "backlog_by_source_form": dict(sorted(backlog.items())),
             "uncredited_total": sum(r["uncredited"] for r in out),
             "todo_total": sum(r["todo"] for r in out)}
 
@@ -314,9 +314,13 @@ def closure_summary(c: dict) -> str:
                    % (r["module"], r["known"], r["authored"], r["todo"],
                       r["todo_bytes"] / 1024, r["authored_code_percent"], r["uncredited"]))
     out.append("")
-    out.append("%d/%d modules fully authored; %d functions to write; %d credited-but-unauthored"
+    out.append("%d/%d modules with full C credit; %d functions outside C credit; %d credited without C credit"
                % (c["complete_modules"], c["total_modules"], c["todo_total"],
                   c["uncredited_total"]))
+    if c["backlog_by_source_form"]:
+        out.append("Outside C credit: " + ", ".join(
+            f"{key}={count}" for key, count in c["backlog_by_source_form"].items()))
+    out.append("C credit includes compiler workarounds; original assembly and mixed source are not missing C by default.")
     return "\n".join(out)
 
 
