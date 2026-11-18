@@ -451,7 +451,36 @@ def section_header(mod: str, main_secs=None) -> str:
     return "\n".join(out)
 
 
+def pooled(u: dict, undef: set[str]) -> set[str]:
+    """The symbols a unit really references: ninja retargets its pool names after compiling."""
+    pool = u.get("pool") or {}
+    # layout primers are removed after compiling (tools/fzgx/fixup_layout.py)
+    primer = re.compile(r"fzgx_pool_primer_[0-9a-fA-F]+|fzgx_bss_layout|primer")
+    src = ROOT / "src" / (u.get("tu") or u["source"])
+    text = src.read_text(errors="replace") if src.exists() else ""
+    primers = set(re.findall(r'#pragma\s+section\s+code_type\s+"\.fzgxpool"\s*static\s+void\s+(\w+)\s*\(', text))
+    return {pool.get(n, n).split("+")[0] for n in undef
+            if n.strip() and not primer.fullmatch(n) and n not in primers}
+
+
 def main(argv=None) -> int:
+    snapshot = Path(tempfile.mkdtemp(prefix="region_config_keep_"))
+    keep = [ROOT / "config" / v for v in ("GFZE01", "GFZP01", "GFZJ01")]
+    for d in keep:
+        shutil.copytree(d, snapshot / d.name)
+    try:
+        return _main(argv)
+    except BaseException:
+        # leave config/ as it was: a failed run must not strand half-written region files
+        for d in keep:
+            shutil.rmtree(d)
+            shutil.copytree(snapshot / d.name, d)
+        raise
+    finally:
+        shutil.rmtree(snapshot, ignore_errors=True)
+
+
+def _main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--version", required=True, choices=["GFZP01", "GFZJ01"])
     ap.add_argument("--units", nargs="*", metavar="SOURCE",
@@ -571,15 +600,15 @@ def main(argv=None) -> int:
         splits_us = us_text_splits()
         cand = []
         for u in json.loads((ROOT / "config" / US / "units.json").read_text()):
-            if u.get("asm") or u["status"] != "matching":
+            if u["status"] != "matching":
                 continue
-            if u["module"] in same_mods and len(u["symbols"]) > 1:
+            if u["module"] in same_mods:  # every unit, assembly units too: the bytes are the same
                 obj = ROOT / "build" / US / "src" / (u["source"][:-2] + ".o")
                 if obj.exists():
                     undef, defs = nm(obj)
-                    cand.append((u, u["module"], None, undef, defs))
+                    cand.append((u, u["module"], None, pooled(u, undef), defs))
                 continue
-            if u.get("data") or len(u["symbols"]) != 1:
+            if u.get("asm") or u.get("data") or len(u["symbols"]) != 1:
                 continue
             fn, mod = u["symbols"][0], u["module"]
             sp = splits_us.get((mod, u["source"]))
@@ -591,7 +620,7 @@ def main(argv=None) -> int:
             if not obj.exists():
                 continue
             undef, defs = nm(obj)
-            cand.append((u, mod, sp, undef, defs))
+            cand.append((u, mod, sp, pooled(u, undef), defs))
         if os.environ.get("REGION_DEBUG"):
             miss = collections.Counter()
             dd = set().union(*(c[4] for c in cand)) | all_named | dtk_named
