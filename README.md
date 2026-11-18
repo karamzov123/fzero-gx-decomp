@@ -44,6 +44,8 @@ completion, and `fzgx honest` is not a device-free-source audit. Under
 natural C wherever the original was C, assembly only with original-assembly evidence, and zero
 compiler-diff devices. A separate audited device-free natural-C total is not yet established.
 
+See the [living USA completion audit](docs/US_COMPLETION_AUDIT.md) for the editable backlog and evidence for each workstream.
+
 ### Expanded Device Census: Issue #377
 
 jedgentry's census lists **616 flagged entries / 637,696 bytes**, including 604
