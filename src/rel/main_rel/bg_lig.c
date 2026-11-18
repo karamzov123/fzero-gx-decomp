@@ -1197,6 +1197,7 @@ void fn_1_D7758(Vec *pos, f32 scale) {
         i++;
     }
 }
+#pragma fp_contract reset
 /* fzgx:end fn_1_D7758 */
 
 /* fzgx:begin fn_1_D79E4 */
@@ -1954,6 +1955,7 @@ void fn_1_D83E4(LigLightObj *obj, u32 index) {
     obj->unk_6ac = 120.0f;
     obj->unk_6b0 = 33.0f;
 }
+#pragma opt_propagation reset
 /* fzgx:end fn_1_D83E4 */
 
 /* fzgx:begin fn_1_D8784 */
