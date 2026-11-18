@@ -154827,20 +154827,6 @@
   },
   {
     "module": "sel",
-    "source": "rel/sel/data/lbl_10_bss_55CD8.c",
-    "symbols": [
-      "lbl_10_bss_55CD8",
-      "lbl_10_bss_55CDC",
-      "lbl_10_bss_55CDD"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "sel",
     "source": "rel/sel/data/lbl_10_bss_55CE0.c",
     "symbols": [
       "lbl_10_bss_55CE0",
@@ -158828,54 +158814,6 @@
   },
   {
     "module": "sel",
-    "source": "rel/sel/data/lbl_10_data_68E0.c",
-    "symbols": [
-      "lbl_10_data_68E0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/data/lbl_10_data_6980.c",
-    "symbols": [
-      "lbl_10_data_6980"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/data/lbl_10_data_69C0.c",
-    "symbols": [
-      "lbl_10_data_69C0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/data/lbl_10_data_69D8.c",
-    "symbols": [
-      "lbl_10_data_69D8"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "sel",
     "source": "rel/sel/data/lbl_10_data_6A48.c",
     "symbols": [
       "lbl_10_data_6A48"
@@ -159273,89 +159211,18 @@
       "lbl_10_rodata_57C",
       "lbl_10_rodata_584",
       "lbl_10_rodata_588",
-      "lbl_10_rodata_5D0",
-      "lbl_10_rodata_1548",
-      "lbl_10_rodata_1550",
-      "lbl_10_rodata_15D4",
-      "lbl_10_rodata_1658",
-      "lbl_10_rodata_1660",
-      "lbl_10_rodata_16B0",
-      "lbl_10_rodata_16BC",
-      "lbl_10_rodata_1768",
-      "lbl_10_rodata_1814",
-      "lbl_10_rodata_18C0",
-      "lbl_10_rodata_18CC",
-      "lbl_10_rodata_1980",
-      "lbl_10_rodata_1A34",
-      "lbl_10_rodata_1AE8",
-      "lbl_10_rodata_1AF8",
-      "lbl_10_rodata_1B34",
-      "lbl_10_rodata_1B44",
-      "lbl_10_rodata_1B80",
-      "lbl_10_rodata_1B88",
-      "lbl_10_rodata_1BCC",
-      "lbl_10_rodata_1BD4",
-      "lbl_10_rodata_1C38",
-      "lbl_10_rodata_1C40",
-      "lbl_10_rodata_1C48",
-      "lbl_10_rodata_1C4C",
-      "lbl_10_rodata_1C50",
-      "lbl_10_rodata_1C54",
-      "lbl_10_rodata_1C58",
-      "lbl_10_rodata_1C5C",
-      "lbl_10_rodata_1C60",
-      "lbl_10_rodata_1C64",
-      "lbl_10_rodata_1C68",
-      "lbl_10_rodata_1C6C",
-      "lbl_10_rodata_1C70",
-      "lbl_10_rodata_1C78",
-      "lbl_10_rodata_1C80",
-      "lbl_10_rodata_1C88",
-      "lbl_10_rodata_1C90",
-      "lbl_10_rodata_1C98",
-      "lbl_10_rodata_1C9C",
-      "lbl_10_rodata_1CA0",
-      "lbl_10_rodata_1CA8",
-      "lbl_10_rodata_1CB0",
-      "lbl_10_rodata_1CB4",
-      "lbl_10_rodata_1CB8",
-      "lbl_10_rodata_1CBC",
-      "lbl_10_rodata_1CC0",
-      "lbl_10_rodata_1CC8",
-      "lbl_10_rodata_1CD0",
-      "lbl_10_rodata_1CD8",
-      "lbl_10_rodata_1CDC",
-      "lbl_10_rodata_1CE0",
-      "lbl_10_rodata_1CE4",
-      "lbl_10_rodata_1CE8",
-      "lbl_10_rodata_1CEC",
-      "lbl_10_rodata_1CF0",
-      "lbl_10_rodata_1CF4",
-      "lbl_10_rodata_1CF8",
-      "lbl_10_rodata_1CFC",
-      "lbl_10_rodata_1D00",
-      "lbl_10_rodata_1D04",
-      "lbl_10_rodata_1D08",
-      "lbl_10_rodata_1D0C",
-      "lbl_10_rodata_1D10",
-      "lbl_10_rodata_1D14",
-      "lbl_10_rodata_1D18",
-      "lbl_10_rodata_1D1C",
-      "lbl_10_rodata_1D20",
-      "lbl_10_rodata_1D24",
-      "lbl_10_rodata_1D28",
-      "lbl_10_rodata_1D30",
-      "lbl_10_rodata_1D38",
-      "lbl_10_rodata_1D40",
-      "lbl_10_rodata_1D44",
-      "lbl_10_rodata_1D48",
-      "lbl_10_rodata_1D4C",
-      "lbl_10_rodata_1D50",
-      "lbl_10_rodata_1D58",
-      "lbl_10_rodata_1D5C",
-      "lbl_10_rodata_1D60",
-      "lbl_10_rodata_1D64",
-      "lbl_10_rodata_1D68",
+      "lbl_10_rodata_5D0"
+    ],
+    "status": "matching",
+    "matching_for": ["GFZE01"],
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "sel",
+    "source": "rel/sel/data/lbl_10_rodata_1D70.c",
+    "symbols": [
       "lbl_10_rodata_1D70",
       "lbl_10_rodata_1D8C"
     ],
@@ -159403,26 +159270,23 @@
   },
   {
     "module": "sel",
-    "source": "rel/sel/name_entry/fn_10_25BC8.c",
+    "source": "rel/sel/name_entry/fn_10_2325C.c",
     "symbols": [
-      "fn_10_25BC8"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/sel/name_entry.c"
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/name_entry/fn_10_25CB0.c",
-    "symbols": [
+      "fn_10_2325C",
+      "fn_10_23990",
+      "fn_10_2406C",
+      "fn_10_24BD0",
+      "fn_10_25610",
+      "fn_10_25888",
+      "fn_10_25BC8",
       "fn_10_25CB0"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract off"
+    ],
     "tu": "rel/sel/name_entry.c"
   },
   {
@@ -160923,126 +160787,6 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/sel/sel.c"
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/sel/fn_10_2325C.c",
-    "symbols": [
-      "fn_10_2325C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/sel/sel.c",
-    "pool": {
-      "...rodata.0": "lbl_10_rodata_1548",
-      "@30": "lbl_10_rodata_1C38",
-      "@31": "lbl_10_rodata_1C40"
-    }
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/sel/fn_10_23990.c",
-    "symbols": [
-      "fn_10_23990"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/sel/sel.c",
-    "pool": {
-      "...rodata.0": "lbl_10_rodata_1548",
-      "@122": "lbl_10_rodata_1C6C",
-      "@123": "lbl_10_rodata_1C70",
-      "@49": "lbl_10_rodata_1C54",
-      "@21": "lbl_10_rodata_1C48",
-      "@51": "lbl_10_rodata_1C58",
-      "@22": "lbl_10_rodata_1C4C",
-      "@53": "lbl_10_rodata_1C5C",
-      "@23": "lbl_10_rodata_1C50",
-      "@55": "lbl_10_rodata_1C60",
-      "@6": "lbl_10_rodata_1C38",
-      "@124": "lbl_10_rodata_1C78",
-      "@12": "lbl_10_rodata_1C40",
-      "@126": "lbl_10_rodata_1C88",
-      "@127": "lbl_10_rodata_1C90",
-      "@125": "lbl_10_rodata_1C80",
-      "@88": "lbl_10_rodata_1C68",
-      "@87": "lbl_10_rodata_1C64",
-      "@128": "lbl_10_rodata_1C98",
-      "@129": "lbl_10_rodata_1C9C"
-    }
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/sel/fn_10_2406C.c",
-    "symbols": [
-      "fn_10_2406C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/sel/sel.c",
-    "pool": {
-      "@194": "lbl_10_rodata_1C38",
-      "@196": "lbl_10_rodata_1C40"
-    }
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/sel/fn_10_24BD0.c",
-    "symbols": [
-      "fn_10_24BD0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/sel/sel.c",
-    "pool": {
-      "...rodata.0": "lbl_10_rodata_1548",
-      "@37": "lbl_10_rodata_1C38",
-      "@38": "lbl_10_rodata_1C40"
-    }
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/sel/fn_10_25610.c",
-    "symbols": [
-      "fn_10_25610"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/sel/sel.c",
-    "pool": {
-      "...rodata.0": "lbl_10_rodata_1548",
-      "@36": "lbl_10_rodata_1C48",
-      "@37": "lbl_10_rodata_1C4C",
-      "@38": "lbl_10_rodata_1C50",
-      "...data.0": "lbl_10_data_68E0",
-      "fzgx_pool_init_fzgx_pool_data_lbl_4_data_2F78": "lbl_10_data_68E0",
-      "...bss.0": "lbl_10_bss_55CD8",
-      "lbl_10_bss_55CD8": "lbl_10_bss_55CD8",
-      "lbl_10_bss_55CDC__fzgx_offset_0": "lbl_10_bss_55CDC",
-      "lbl_10_bss_55CDD__fzgx_offset_0": "lbl_10_bss_55CDD"
-    }
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/sel/fn_10_25888.c",
-    "symbols": [
-      "fn_10_25888"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
     "extra_cflags": [],
     "tu": "rel/sel/sel.c"
   },

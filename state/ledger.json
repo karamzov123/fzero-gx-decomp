@@ -120755,7 +120755,7 @@
   {
    "symbol": "fn_10_2325C",
    "module": "sel",
-   "unit": "rel/sel/sel/fn_10_2325C.c",
+   "unit": "rel/sel/name_entry/fn_10_2325C.c",
    "addr": 143964,
    "size": 1844,
    "status": "matched",
@@ -120772,7 +120772,7 @@
   {
    "symbol": "fn_10_23990",
    "module": "sel",
-   "unit": "rel/sel/sel/fn_10_23990.c",
+   "unit": "rel/sel/name_entry/fn_10_2325C.c",
    "addr": 145808,
    "size": 1756,
    "status": "matched",
@@ -120789,7 +120789,7 @@
   {
    "symbol": "fn_10_2406C",
    "module": "sel",
-   "unit": "rel/sel/sel/fn_10_2406C.c",
+   "unit": "rel/sel/name_entry/fn_10_2325C.c",
    "addr": 147564,
    "size": 2916,
    "status": "matched",
@@ -120806,7 +120806,7 @@
   {
    "symbol": "fn_10_24BD0",
    "module": "sel",
-   "unit": "rel/sel/sel/fn_10_24BD0.c",
+   "unit": "rel/sel/name_entry/fn_10_2325C.c",
    "addr": 150480,
    "size": 2624,
    "status": "matched",
@@ -120823,7 +120823,7 @@
   {
    "symbol": "fn_10_25610",
    "module": "sel",
-   "unit": "rel/sel/sel/fn_10_25610.c",
+   "unit": "rel/sel/name_entry/fn_10_2325C.c",
    "addr": 153104,
    "size": 632,
    "status": "matched",
@@ -120840,7 +120840,7 @@
   {
    "symbol": "fn_10_25888",
    "module": "sel",
-   "unit": "rel/sel/sel/fn_10_25888.c",
+   "unit": "rel/sel/name_entry/fn_10_2325C.c",
    "addr": 153736,
    "size": 832,
    "status": "matched",
@@ -120857,7 +120857,7 @@
   {
    "symbol": "fn_10_25BC8",
    "module": "sel",
-   "unit": "rel/sel/name_entry/fn_10_25BC8.c",
+   "unit": "rel/sel/name_entry/fn_10_2325C.c",
    "addr": 154568,
    "size": 232,
    "status": "matched",
@@ -120874,7 +120874,7 @@
   {
    "symbol": "fn_10_25CB0",
    "module": "sel",
-   "unit": "rel/sel/name_entry/fn_10_25CB0.c",
+   "unit": "rel/sel/name_entry/fn_10_2325C.c",
    "addr": 154800,
    "size": 364,
    "status": "matched",
