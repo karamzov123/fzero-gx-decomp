@@ -2444,7 +2444,7 @@ void fn_1_D8D58(fn_1_D8D58_LigObject *obj, void *arg) {
     fn_1_D8D58_LigEntry *entry = obj->entries;
 
     while (count > 0) {
-        u32 flags = *(u32 *)((u8 *)entry + 8);
+        u32 flags = entry->flags;
 
         if ((flags >> 28) & 1) {
             f32 x = 0.65f;
@@ -2453,8 +2453,8 @@ void fn_1_D8D58(fn_1_D8D58_LigObject *obj, void *arg) {
             entry->y = y;
             entry->z = 1.0f;
         } else if ((flags >> 29) & 1) {
-            f32 x = 1.0f;
             f32 y = 0.0f;
+            f32 x = 1.0f;
             entry->x = x;
             entry->y = y;
             entry->z = y;

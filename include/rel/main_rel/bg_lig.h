@@ -46,7 +46,9 @@ void fn_1_D8D08(LigContainer *container);
 void fn_1_D8EEC(LigContainer *container, void *arg);
 
 typedef struct {
-    u8 pad_000[0x2c];
+    u8 pad_000[8];
+    u32 flags;
+    u8 pad_00c[0x20];
     f32 x;
     f32 y;
     f32 z;
