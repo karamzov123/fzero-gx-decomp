@@ -22,7 +22,7 @@ struct FontDrawPacket {
     u16 width, height;
     void* pixels;
     FontDrawPacket* secondary;
-    void (*vertex_callback)(FontDrawPacket* packet, FontVertex* vertices);
+    void (*vertex_callback)(const FontDrawPacket* packet, FontVertex* vertices);
     u32 unk_54;
 };
 

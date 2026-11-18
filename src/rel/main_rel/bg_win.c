@@ -870,7 +870,7 @@ typedef struct { u8 pad[4]; s16 index; } Player;
 typedef struct { u8 pad[0x24]; u32 times[4]; } PlayerRecord;
 typedef struct { u32 words[14]; } Rank;
 typedef struct { u8 m, s; u16 ms; u8 pad[0x14]; u16 valid; } Time;
-typedef void (*VertexCallback)(FontDrawPacket *, FontVertex *);
+typedef void (*VertexCallback)(const FontDrawPacket *, FontVertex *);
 extern FontDrawPacket lbl_1_rodata_26F8;
 extern void *fn_1_86254(s32);
 extern u16 fn_1_486C4(u32);
@@ -2478,7 +2478,7 @@ void fn_1_15EFEC(s32 arg0) {
  loc_60.z = pool_190;
  loc_60.image = 0x9431;
  loc_60.flags = 0x400000A;
- loc_60.vertex_callback = (void (*)(FontDrawPacket*,FontVertex*))fn_1_15C4EC;
+ loc_60.vertex_callback = (void (*)(const FontDrawPacket*,FontVertex*))fn_1_15C4EC;
  *(f32*)((u8*)&loc_60+84) = (f32)index;
  v9 = fn_1_58C4() == 1 ? pool_1c : pool_20;
  loc_60.scale_x *= v9;
@@ -2517,7 +2517,7 @@ void fn_1_15EFEC(s32 arg0) {
  loc_8.z = pool_58;
  loc_8.image = 0x940B;
  loc_8.flags = 0x400000A;
- loc_8.vertex_callback = (void (*)(FontDrawPacket*,FontVertex*))fn_1_15C4EC;
+ loc_8.vertex_callback = (void (*)(const FontDrawPacket*,FontVertex*))fn_1_15C4EC;
  *(f32*)((u8*)&loc_8+84) = (f32)index;
  v23 = fn_1_58C4()==1 ? pool_1c : pool_20;
  loc_8.scale_x *= (f32)(pool_ec*v23);

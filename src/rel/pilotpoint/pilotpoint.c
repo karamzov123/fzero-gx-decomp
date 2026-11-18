@@ -2846,7 +2846,7 @@ void fn_14_6044(s16 arg0, s16 arg1) {
         if (lbl_14_bss_110.unk_8[i].unk_4 & 0x10) {
             spr.x = arg0 + 0x221;
             spr.flags |= 0x4000000;
-            spr.vertex_callback = (void (*)(FontDrawPacket *, FontVertex *))fn_14_600C;
+            spr.vertex_callback = (void (*)(const FontDrawPacket *, FontVertex *))fn_14_600C;
             fn_1_8D3F8((u8 *)lbl_14_bss_834C + cnt1 * 100, &spr, fn_14_3DF0, &cnt1);
             cnt1++;
         }
@@ -2944,7 +2944,7 @@ void fn_14_6494(void) {
     s.flags = 0x0400000A;
     s.scale_y = 0.75f;
     s.scale_x = 0.75f;
-    s.vertex_callback = (void (*)(FontDrawPacket *, FontVertex *))fn_14_645C;
+    s.vertex_callback = (void (*)(const FontDrawPacket *, FontVertex *))fn_14_645C;
     fn_1_8D3F8(lbl_14_bss_9258, &s, fn_14_4460, 0);
 
     {

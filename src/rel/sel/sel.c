@@ -14969,7 +14969,7 @@ typedef struct {
 
 
 extern s8 fn_1_A5DC4(void);
-extern void fn_10_12E34(FontDrawPacket *packet, FontVertex *vertices);
+extern void fn_10_12E34(const FontDrawPacket *packet, FontVertex *vertices);
 
 void fn_10_10E34(void) {
     FontDrawPacket packet;
@@ -28844,7 +28844,7 @@ extern u32 lbl_801A66A0;
 extern const FontDrawPacket lbl_1_rodata_26F8;
 
 extern s16 fn_10_0(s16 *, s16 *, s16, int);
-extern void fn_10_12E34(FontDrawPacket *, FontVertex *);
+extern void fn_10_12E34(const FontDrawPacket *, FontVertex *);
 extern u32 fn_10_19924(void *);
 extern s16 fn_1_12C7B8(s16);
 extern void fn_1_51914(FontDrawPacket *);
