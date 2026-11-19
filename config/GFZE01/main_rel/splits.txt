@@ -7010,9 +7010,6 @@ rel/main_rel/stcoli/fn_1_22B10.c:
 rel/main_rel/memcard/fn_1_BE978.c:
 	.text       start:0x000BE978 end:0x000BED04 align:4
 
-rel/main_rel/bg_for/fn_1_DD4DC.c:
-	.text       start:0x000DD4DC end:0x000DD890 align:4
-
 rel/main_rel/enemy_ctrl/fn_1_CB028.c:
 	.text       start:0x000CB028 end:0x000CB404 align:4
 
@@ -7327,7 +7324,7 @@ rel/main_rel/stcoli/fn_1_278B8.c:
 	.text       start:0x000278B8 end:0x00027DE4 align:4
 
 rel/main_rel/bg_for/fn_1_DCFA4.c:
-	.text       start:0x000DCFA4 end:0x000DD4DC align:4
+	.text       start:0x000DCFA4 end:0x000DD890 align:4
 
 rel/main_rel/bg_cas/fn_1_FCA10.c:
 	.text       start:0x000FCA10 end:0x000FCF50 align:4

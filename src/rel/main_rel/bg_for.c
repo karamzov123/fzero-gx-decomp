@@ -171,7 +171,7 @@ extern struct fn_1_DCE60_lbl_1_rodata_6750 lbl_1_rodata_6750;
 
 #pragma fp_contract on
 
-extern u8 lbl_1_rodata_6780[];
+extern const f32 lbl_1_rodata_6780[];
 extern void fn_80008BA8(void *, const void *, u32);
 extern void fn_1_57714(u8);
 extern void lbl_8006D758(void);
@@ -250,10 +250,9 @@ static inline void draw_vec(DCFA4Vec *v, s16 *angles, u8 *pool) {
     }
 }
 
-void fn_1_DCFA4(u32 arg0, f32 arg1) {
+void fn_1_DCFA4(u32 arg0) {
     u8 *p_lbl_1_rodata_6780;
     u32 v1;
-    f32 v2;
     u32 v3;
     u32 v4;
     u64 flags;
@@ -275,7 +274,7 @@ void fn_1_DCFA4(u32 arg0, f32 arg1) {
     s16 angles4[3];
     u32 color;
     p_lbl_1_rodata_6780 = (u8 *)&lbl_1_rodata_6780;
-    v2 = arg1;
+
     if (*(u32 *)(arg0+324) != 0) {
         flags = *(u64 *)((u8 *)arg0 + 312);
         if ((flags & 0x20000000ULL) != 0) {
@@ -339,7 +338,6 @@ extern struct fn_1_DCE60_lbl_1_rodata_6750 lbl_1_rodata_6750;
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DD14(void *, void *);
 extern void fn_1_A7024(f32, f32, f32, f32);
-extern void fn_8006F1F0(void *, void *, void *);
 extern void lbl_8006DB74(void *);
 extern void lbl_8006DCDC(void);
 extern void lbl_8006DB30(void);
@@ -348,19 +346,19 @@ extern void fn_1_E1408(void *, void *);
 
 #pragma fp_contract on
 
-extern f32 lbl_1_rodata_6780[10];
+extern const f32 lbl_1_rodata_6780[];
 extern void fn_1_E57F4(void *, f32);
 extern void fn_1_556B8(void *);
-extern f32 fn_1_56298(f32, f32, f32, f32);
-extern void fn_1_DCFA4(void *);
+extern void fn_1_56298(f32, f32, f32, f32);
+extern void fn_1_DCFA4(u32);
 extern void fn_1_55FF0(f32);
 extern void lbl_8006D784(void *);
 extern void lbl_8006DBAC(void *);
 extern void lbl_8006DFE8(void *);
 extern void fn_8006EE70(const void *, s16 *);
-extern void mathutil_mtxA_rotate_z(u32);
-extern void mathutil_mtxA_rotate_y(u32);
-extern void mathutil_mtxA_rotate_x(u32);
+extern void mathutil_mtxA_rotate_z(s32);
+extern void mathutil_mtxA_rotate_y(s32);
+extern void mathutil_mtxA_rotate_x(s32);
 extern void lbl_8006E15C(f32, f32, f32);
 extern void fn_80072558(void);
 extern f32 lbl_8006D0B4(f32);
@@ -400,7 +398,7 @@ typedef struct {
 #pragma fp_contract on
 #pragma opt_propagation off
 void fn_1_DD4DC(DDObj *obj) {
-    f32 *pool = lbl_1_rodata_6780;
+    const f32 *pool = lbl_1_rodata_6780;
     DDMtx matrix;
     s16 angle1[3];
     s16 angle2[3];
@@ -459,7 +457,7 @@ void fn_1_DD4DC(DDObj *obj) {
         fn_1_556B8(((DDModels *)lbl_1_bss_38454->unk_8)->p38);
     }
     fn_1_56298(pool[8], pool[8], pool[8], pool[8]);
-    fn_1_DCFA4(obj);
+    fn_1_DCFA4((u32)obj);
     lbl_8006D784(&matrix);
     lbl_8006DBAC(&obj->mC4);
     {
@@ -1208,7 +1206,6 @@ extern struct fn_1_DCE60_lbl_1_rodata_6750 lbl_1_rodata_6750;
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DD14(void *, void *);
 extern void fn_1_A7024(f32, f32, f32, f32);
-extern void fn_8006F1F0(void *, void *, void *);
 extern void lbl_8006DB74(void *);
 extern void lbl_8006DCDC(void);
 extern void lbl_8006DB30(void);
@@ -1221,7 +1218,6 @@ extern struct fn_1_DCE60_lbl_1_rodata_6750 lbl_1_rodata_6750;
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DD14(void *, void *);
 extern void fn_1_A7024(f32, f32, f32, f32);
-extern void fn_8006F1F0(void *, void *, void *);
 extern void lbl_8006DB74(void *);
 extern void lbl_8006DCDC(void);
 extern void lbl_8006DB30(void);
@@ -1631,7 +1627,6 @@ extern struct fn_1_DCE60_lbl_1_rodata_6750 lbl_1_rodata_6750;
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DD14(void *, void *);
 extern void fn_1_A7024(f32, f32, f32, f32);
-extern void fn_8006F1F0(void *, void *, void *);
 extern void lbl_8006DB74(void *);
 extern void lbl_8006DCDC(void);
 extern void lbl_8006DB30(void);
@@ -1851,7 +1846,6 @@ extern struct fn_1_DCE60_lbl_1_rodata_6750 lbl_1_rodata_6750;
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DD14(void *, void *);
 extern void fn_1_A7024(f32, f32, f32, f32);
-extern void fn_8006F1F0(void *, void *, void *);
 extern void lbl_8006DB74(void *);
 extern void lbl_8006DCDC(void);
 extern void lbl_8006DB30(void);
@@ -2065,7 +2059,6 @@ extern struct fn_1_DCE60_lbl_1_rodata_6750 lbl_1_rodata_6750;
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DD14(void *, void *);
 extern void fn_1_A7024(f32, f32, f32, f32);
-extern void fn_8006F1F0(void *, void *, void *);
 extern void lbl_8006DB74(void *);
 extern void lbl_8006DCDC(void);
 extern void lbl_8006DB30(void);
@@ -2250,7 +2243,6 @@ extern struct fn_1_DCE60_lbl_1_rodata_6750 lbl_1_rodata_6750;
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DD14(void *, void *);
 extern void fn_1_A7024(f32, f32, f32, f32);
-extern void fn_8006F1F0(void *, void *, void *);
 extern void lbl_8006DB74(void *);
 extern void lbl_8006DCDC(void);
 extern void lbl_8006DB30(void);
@@ -2745,7 +2737,6 @@ extern struct fn_1_DCE60_lbl_1_rodata_6750 lbl_1_rodata_6750;
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DD14(void *, void *);
 extern void fn_1_A7024(f32, f32, f32, f32);
-extern void fn_8006F1F0(void *, void *, void *);
 extern void lbl_8006DB74(void *);
 extern void lbl_8006DCDC(void);
 extern void lbl_8006DB30(void);
@@ -3318,7 +3309,6 @@ extern struct fn_1_DCE60_lbl_1_rodata_6750 lbl_1_rodata_6750;
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DD14(void *, void *);
 extern void fn_1_A7024(f32, f32, f32, f32);
-extern void fn_8006F1F0(void *, void *, void *);
 extern void lbl_8006DB74(void *);
 extern void lbl_8006DCDC(void);
 extern void lbl_8006DB30(void);
@@ -3363,7 +3353,6 @@ extern struct fn_1_DCE60_lbl_1_rodata_6750 lbl_1_rodata_6750;
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DD14(void *, void *);
 extern void fn_1_A7024(f32, f32, f32, f32);
-extern void fn_8006F1F0(void *, void *, void *);
 extern void lbl_8006DB74(void *);
 extern void lbl_8006DCDC(void);
 extern void lbl_8006DB30(void);
