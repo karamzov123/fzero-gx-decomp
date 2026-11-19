@@ -8,7 +8,7 @@
 // functions or living in its .data block), layouts recovered from every access in the module.
 
 // lbl_1_data_1D8A8: .data size 0xD, 2 refs from effect_car.c (own data block)
-extern u8 lbl_1_data_1D8A8[0xD];
+extern char lbl_1_data_1D8A8[0xD];
 
 // jumptable_1_data_1D8B8: .data size 0xA4, 1 refs from effect_car.c (own data block)
 extern u8 jumptable_1_data_1D8B8[0xA4];

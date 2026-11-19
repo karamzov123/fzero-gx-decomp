@@ -920,7 +920,6 @@ extern void fn_1_71D0C();
 extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
 extern u32 fn_1_4630();
 extern s16 fn_1_58E3C(void *source);
-extern s8 lbl_1_bss_6C878[];
 extern void fn_1_71024(Fn1_71024Car *car, Fn1_71024Vec *vel, u32 count, f32 scale);
 extern void fn_1_71768(u32 arg0, u32 arg1);
 extern void fn_1_702A0(void *arg0, void *arg1, u8 count_arg, u8 arg3);
@@ -932,6 +931,9 @@ extern void game_camera_set_shake(s16 index, s16 mode, s32 value, const f32 *del
 extern u32 lbl_1_rodata_314C[13];
 
 /* fzgx:begin fn_1_680F8 */
+char lbl_1_data_1D8A8[] = "effect_car.c";
+s8 lbl_1_bss_6C878[0x60];
+
 typedef struct Fn1_680F8Arg {
     u8 pad_00[0x18];
     s16 unk_18;
@@ -989,7 +991,7 @@ typedef struct Fn1_68248Arg {
 
 // Register the effect resource with the shared effect manager.
 void fn_1_68248(Fn1_68248Arg *arg) {
-    fn_1_46B4((u32)lbl_801A6410, (u32)(void *)(arg->unk_34), (const char *)(u8 *)(lbl_1_data_1D8A8), 0xe2);
+    fn_1_46B4((u32)lbl_801A6410, (u32)(void *)(arg->unk_34), lbl_1_data_1D8A8, 0xe2);
 }
 /* fzgx:end fn_1_68248 */
 

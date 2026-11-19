@@ -82091,44 +82091,6 @@
     "unit_size": 8,
     "unit_start": 444528
   },
-  "main_rel:lbl_1_bss_6C878": {
-    "address": 444536,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "s8 lbl_1_bss_6C878[]",
-        "path": "src/rel/main_rel/effect_car.c"
-      },
-      {
-        "declaration": "s8 lbl_1_bss_6C878[]",
-        "path": "src/rel/main_rel/effect_car.c"
-      },
-      {
-        "declaration": "s8 lbl_1_bss_6C878[]",
-        "path": "src/rel/main_rel/effect_car.c"
-      },
-      {
-        "declaration": "s8 lbl_1_bss_6C878[]",
-        "path": "src/rel/main_rel/effect_car.c"
-      }
-    ],
-    "definition": "u8 lbl_1_bss_6C878[96]",
-    "method": "opaque-bss",
-    "module": "main_rel",
-    "references": [
-      "fn_1_680F8"
-    ],
-    "relocations": [],
-    "section": ".bss",
-    "section_size": 96,
-    "sha256": "2ea9ab9198d1638007400cd2c3bef1cc745b864b76011a0e1bc52180ac6452d4",
-    "size": 96,
-    "source": "rel/main_rel/data/lbl_1_bss_6C878.c",
-    "symbol": "lbl_1_bss_6C878",
-    "unit_align": 8,
-    "unit_size": 96,
-    "unit_start": 444536
-  },
   "main_rel:lbl_1_bss_6C8D8": {
     "address": 444632,
     "align": 8,
@@ -153504,33 +153466,6 @@
     "unit_align": 8,
     "unit_size": 488,
     "unit_start": 120512
-  },
-  "main_rel:lbl_1_data_1D8A8": {
-    "address": 121000,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "u8 lbl_1_data_1D8A8[0xD]",
-        "path": "include/rel/main_rel/effect_car.h"
-      }
-    ],
-    "definition": "char lbl_1_data_1D8A8[13]",
-    "method": "string",
-    "module": "main_rel",
-    "references": [
-      "fn_1_680F8",
-      "fn_1_68248"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 13,
-    "sha256": "93e9a709e0befb053ebdfe61623f67bbc3b3af3e16510684459d6441d1bf0b04",
-    "size": 13,
-    "source": "rel/main_rel/data/lbl_1_data_1D8A8.c",
-    "symbol": "lbl_1_data_1D8A8",
-    "unit_align": 8,
-    "unit_size": 16,
-    "unit_start": 121000
   },
   "main_rel:lbl_1_data_1DCF0": {
     "address": 122096,
