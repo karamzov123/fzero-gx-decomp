@@ -159,6 +159,8 @@ typedef struct {
 } SelADXT;
 
 typedef struct {
+    s16 id;
+    u8 pad_2[2];
     u32 flags;
 } SelCell;
 
@@ -344,8 +346,10 @@ u32 lbl_10_bss_10 = 0;
 s32 lbl_10_bss_14 = 0;
 s16 lbl_10_bss_18 = 0;
 s16 lbl_10_bss_1A = 0;
-SelCell lbl_10_bss_1C[233];
-u8 lbl_10_bss_3C0[0x48FC0];
+SelCell lbl_10_bss_1C[6][19];
+/* 9 records of 0x81C0 bytes, each a multiple of 32. The buffer starts at a 32-byte boundary
+   (0x3C0, after the 0x390-byte grid). */
+u8 lbl_10_bss_3C0[0x48FC0] __attribute__((aligned(32)));
 SelCarEntry *lbl_10_bss_49380;
 u32 lbl_10_bss_49384;
 u32 lbl_10_bss_49388;
@@ -2755,7 +2759,7 @@ extern void (*lbl_1_bss_7168C)(void);
 u8 lbl_10_bss_5566C;
 Obj_10_bss_55670 lbl_10_bss_55670;
 s16 fn_10_0(s16 *first, s16 *second, s16 third, u32 fourth) {
-    return fn_1_152970(second, first, third, fourth, lbl_10_bss_1C, lbl_10_bss_1A, lbl_10_bss_18);
+    return fn_1_152970(second, first, third, fourth, lbl_10_bss_1C[0], lbl_10_bss_1A, lbl_10_bss_18);
 }
 /* fzgx:end fn_10_0 */
 
@@ -4442,14 +4446,14 @@ void fn_10_3C14(void) {
     if (lbl_1_bss_8B3A0.unk_94 & 0x20000000) {
         return;
     }
-    fn_1_152970(&slot_y, &slot_x, 0x36, 0, lbl_10_bss_1C, lbl_10_bss_1A, lbl_10_bss_18);
-    flags = (u8 *)&lbl_10_bss_1C->flags + 4;
+    fn_1_152970(&slot_y, &slot_x, 0x36, 0, lbl_10_bss_1C[0], lbl_10_bss_1A, lbl_10_bss_18);
+    flags = (u8 *)&lbl_10_bss_1C[0][0].flags;
     *(u32 *)(flags + slot_y * 0x98 + slot_x * 8) |= 0x10000000;
-    fn_1_152970(&slot_y, &slot_x, 0x37, 0, lbl_10_bss_1C, lbl_10_bss_1A, lbl_10_bss_18);
+    fn_1_152970(&slot_y, &slot_x, 0x37, 0, lbl_10_bss_1C[0], lbl_10_bss_1A, lbl_10_bss_18);
     *(u32 *)(flags + slot_y * 0x98 + slot_x * 8) |= 0x10000000;
-    fn_1_152970(&slot_y, &slot_x, 0x38, 0, lbl_10_bss_1C, lbl_10_bss_1A, lbl_10_bss_18);
+    fn_1_152970(&slot_y, &slot_x, 0x38, 0, lbl_10_bss_1C[0], lbl_10_bss_1A, lbl_10_bss_18);
     *(u32 *)(flags + slot_y * 0x98 + slot_x * 8) |= 0x10000000;
-    fn_1_152970(&slot_y, &slot_x, 0x39, 0, lbl_10_bss_1C, lbl_10_bss_1A, lbl_10_bss_18);
+    fn_1_152970(&slot_y, &slot_x, 0x39, 0, lbl_10_bss_1C[0], lbl_10_bss_1A, lbl_10_bss_18);
     *(u32 *)(flags + slot_y * 0x98 + slot_x * 8) |= 0x10000000;
 }
 /* fzgx:end fn_10_3C14 */
@@ -8099,7 +8103,7 @@ s16 fn_10_B2C8(fn_10_B2C8_Obj_1_bss_8B3A0 *arg0) {
             continue;
         }
         fn_1_12F1E8(0);
-        fn_1_152970(&row, &col, arg0->u.players[i].unk_E, 0, lbl_10_bss_1C, lbl_10_bss_1A, lbl_10_bss_18);
+        fn_1_152970(&row, &col, arg0->u.players[i].unk_E, 0, lbl_10_bss_1C[0], lbl_10_bss_1A, lbl_10_bss_18);
         if (!((*(fn_10_B2C8_Cell (*)[6][19])&lbl_10_bss_1C)[row][col].mask & 0xC0000000)) {  /* fzgx-allow: A1 entry state flag bits, not an address */
             if (((*(fn_10_B2C8_Obj_1_bss_8B3A0 *)&lbl_1_bss_8B3A0.unk_0).unk_94 & 0x40000000) && ((*(fn_10_B2C8_Obj_1_bss_8B3A0 *)&lbl_1_bss_8B3A0.unk_0).unk_94 & 0x1000)) {
                 fn_1_12ECA8(i, machine, (*(u8 (*)[4][0x4E0])&lbl_10_bss_51B7C)[i], (*(u8 (*)[4][0x9C0])&lbl_10_bss_52EFC)[i], &rec->unk_0);
@@ -27886,7 +27890,7 @@ void fn_10_18DD0(void) {
     fn_1_8CED0((Sig_fn_1_8CED0_Fn8CED0Window *)&lbl_10_bss_517EC, fn_1_A5D88() >> 1, fn_1_A5D9C() >> 1);
     lbl_10_bss_517EC.unk_44 = 55.0f;
     fn_10_0(&col, &row, lbl_1_bss_8B3A0.entries[param.id].unk_0, 0);
-    param.bits[param.id] = !!(*(&lbl_10_bss_1C.unk_4 + row * 38 + col * 2) & 0x80000000);
+    param.bits[param.id] = !!(lbl_10_bss_1C[row][col].unk_4 & 0x80000000);
     fn_1_8D3F8(&lbl_10_bss_517EC, &desc, fn_1_131C08, &param);
 }
 /* fzgx:end fn_10_18DD0 */

@@ -296,6 +296,54 @@ def _tname(names: Dict[str, Dict[str, str]], symbol: str, role: str, default: st
     return (names.get(symbol) or {}).get(role) or default
 
 
+def _fold(fields: Dict[int, Dict], lo: int, size: int, count: int) -> Dict[int, Dict]:
+    """Fields of one element of an array of `count` `size`-byte records at offset `lo`."""
+    elem: Dict[int, Dict] = {}
+    for off, f in sorted(fields.items()):
+        if not lo <= off < lo + size * count:
+            continue
+        t = (off - lo) % size
+        g = elem.get(t)
+        if g is None:
+            elem[t] = dict(f, widths=dict(f.get("widths") or {}))
+            continue
+        g["width"] = max(g["width"], f["width"])
+        for w, n in (f.get("widths") or {}).items():
+            g["widths"][w] = g["widths"].get(w, 0) + n
+        g["signed"] = g.get("signed") or f.get("signed")
+        for k in ("loads", "stores", "fops"):
+            g[k] = g.get(k, 0) + f.get(k, 0)
+        g["float"] = g["fops"] * 2 > g["loads"] + g["stores"]
+    return elem
+
+
+def array_shapes(names: Dict[str, Dict], symbol: str, tname: str, info: Dict[str, object]):
+    """Array shapes recorded in typedefs.json, which the access analysis cannot recover (it folds
+    every index into a field offset). `"array": {"size": S, "dims": [..]}` declares the symbol itself
+    an array of S-byte records; `"arrays": {"<hex offset>": {"size": S, "dims": [..]}}` declares member
+    arrays. Returns (element typedef texts, fields with the member arrays, symbol dims or None)."""
+    from math import prod
+    spec = names.get(symbol) or {}
+    fields = info["fields"]
+    if spec.get("array"):
+        a = spec["array"]
+        return [typedef(info, tname, _fold(fields, 0, a["size"], prod(a["dims"])), None, a["size"])], {}, a["dims"]
+    pre: List[str] = []
+    for key, a in sorted((spec.get("arrays") or {}).items(), key=lambda kv: int(kv[0], 16)):
+        lo, n = int(key, 16), prod(a["dims"])
+        elem = _fold(fields, lo, a["size"], n)
+        f0 = elem.get(0)
+        if len(elem) == 1 and f0 and f0["width"] == a["size"] and len(f0["widths"]) == 1 and a["size"] in (1, 2, 4, 8):
+            # one field filling the record: an array of scalars
+            ename = {1: "u8", 2: "s16" if f0.get("signed") else "u16", 4: "f32" if f0["float"] else "u32", 8: "f64"}[a["size"]]
+        else:
+            ename = _tname(names, symbol, f"elem_{lo:X}", f"{tname}_Elem{lo:X}")
+            pre.append(typedef(info, ename, elem, None, a["size"]))
+        fields = {o: f for o, f in fields.items() if not lo <= o < lo + a["size"] * n}
+        fields[lo] = {"elem": ename, "dims": a["dims"], "width": a["size"] * n}
+    return pre, fields, None
+
+
 def typedef(info: Dict[str, object], name: Optional[str] = None, fields: Optional[Dict[int, Dict]] = None,
             ptr_types: Optional[Dict[int, str]] = None, size: int = 0) -> str:
     """C typedef skeleton. ptr_types maps a field offset to the typedef name its pointer targets;
@@ -311,6 +359,10 @@ def typedef(info: Dict[str, object], name: Optional[str] = None, fields: Optiona
             continue  # overlaps the previous field: keep the earlier, wider view
         if off > cur:
             lines.append(f"    u8 pad_{cur:X}[0x{off - cur:X}];")
+        if f.get("elem"):  # a member array (typedefs.json "arrays")
+            lines.append(f"    {f['elem']} unk_{off:X}{''.join(f'[{d}]' for d in f['dims'])};")
+            cur = off + f["width"]
+            continue
         w = f["width"] or 4
         widths = f.get("widths") or {w: 1}
         if len(widths) > 1:
@@ -390,8 +442,13 @@ def header(p: Project, module: str, min_refs: int = 20, sections=(".data", ".bss
                     out.append(f"// object reached through {name}.unk_{poff:X}")
                     out.append(typedef(info, pt, fl))
                     ptr_types[poff] = pt
-            out.append(typedef(info, tname, None, ptr_types, sd.size))
-            out.append(f"extern {tname} {name};")
+            pre, fields, dims = array_shapes(names, name, tname, info)
+            out.extend(pre)
+            if dims:
+                out.append(f"extern {tname} {name}{''.join(f'[{d}]' for d in dims)};")
+            else:
+                out.append(typedef(info, tname, fields, ptr_types, sd.size))
+                out.append(f"extern {tname} {name};")
         out.append("")
     out.append(f"#endif  // {guard}")
     return "\n".join(out) + "\n"
@@ -475,7 +532,7 @@ def selfcheck(header_text: str, include_path: str) -> str:
             for f, off in fields:
                 lines.append(f"typedef char check_{m.group(1)}_{f}[OFF({m.group(1)}, {f}) == 0x{off:X} ? 1 : -1];")
             continue
-        m = re.match(r"^\s+[\w ]+\*?\s*(unk_([0-9A-F]+));", line)
+        m = re.match(r"^\s+[\w ]+\*?\s*(unk_([0-9A-F]+))(?:\[\d+\])*;", line)
         if m:
             fields.append((m.group(1), int(m.group(2), 16)))
     return "\n".join(lines) + "\n"
@@ -551,8 +608,13 @@ def tu_header(p: Project, module: str, tu: str, min_refs: int = 2) -> str:
                     pt = _tname(names, name, f"at_{poff:X}", f"{tname}_At{poff:X}")
                     out.append(typedef(info, pt, fl))
                     ptr_types[poff] = pt
-            out.append(typedef(info, tname, None, ptr_types, sd.size))
-            out.append(f"extern {tname} {name};")
+            pre, fields, dims = array_shapes(names, name, tname, info)
+            out.extend(pre)
+            if dims:
+                out.append(f"extern {tname} {name}{''.join(f'[{d}]' for d in dims)};")
+            else:
+                out.append(typedef(info, tname, fields, ptr_types, sd.size))
+                out.append(f"extern {tname} {name};")
         out.append("")
     out.append(f"#endif  // {guard}")
     return "\n".join(out) + "\n"

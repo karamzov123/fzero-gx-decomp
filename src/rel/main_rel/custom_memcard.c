@@ -1056,7 +1056,7 @@ void fn_1_1324C4(void *arg0) {
     }
     fn_1_13B328(0x30800000, 0);
     v1 = fn_1_8623C();
-    v2 = ((Obj_1_bss_8B3A0 *)((u8 *)&lbl_1_bss_8B3A0 + (lbl_1_bss_8B3A0.unk_9E << 5)))->unk_E;
+    v2 = lbl_1_bss_8B3A0.unk_C[lbl_1_bss_8B3A0.unk_9E].unk_2;
     fn_1_134EE4(0, 1, 0, lbl_1_rodata_861C);
     fn_1_135894(213, 366 - (lbl_801A66B4 == 5 ? 0 : (v2 > 40 ? 4 : 7)), 6, v2, 0, v1, 0, lbl_1_rodata_863C, lbl_1_rodata_863C);
     {

@@ -11,6 +11,58 @@
  "lbl_1_bss_10D8": {
   "self": "CameraParameters"
  },
+ "lbl_1_bss_8B3A0": {
+  "arrays": {
+   "100": {
+    "dims": [
+     4
+    ],
+    "size": 4
+   },
+   "110": {
+    "dims": [
+     4
+    ],
+    "size": 4
+   },
+   "B0": {
+    "dims": [
+     4
+    ],
+    "size": 4
+   },
+   "C": {
+    "dims": [
+     4
+    ],
+    "size": 32
+   },
+   "C0": {
+    "dims": [
+     4
+    ],
+    "size": 4
+   },
+   "D0": {
+    "dims": [
+     4
+    ],
+    "size": 4
+   },
+   "E0": {
+    "dims": [
+     4
+    ],
+    "size": 4
+   },
+   "F0": {
+    "dims": [
+     4
+    ],
+    "size": 4
+   }
+  }
+ },
  "live_camera": {
   "target": "LiveCamera"
  }

@@ -347,25 +347,39 @@ typedef struct {
 } Obj_1_bss_3C30;
 extern Obj_1_bss_3C30 lbl_1_bss_3C30;
 
-// lbl_1_bss_8B3A0: .bss size 0x14C, referenced by 87 functions, shape {'object': 252}
+// lbl_1_bss_8B3A0: .bss size 0x14C, referenced by 87 functions, shape {'object': 255}
 // object reached through lbl_1_bss_8B3A0.unk_A4
 typedef struct {
     u8 pad_0[0x19];
     u8 unk_19;  // 1 loads, 0 stores
 } Obj_1_bss_8B3A0_AtA4;
 typedef struct {
-    s16 unk_0;  // 11 loads, 2 stores
+    u8 pad_0[0x2];
+    s16 unk_2;  // 25 loads, 0 stores
+    u8 pad_4[0x4];
+    u8 unk_8;  // 7 loads, 2 stores
+    u8 pad_9[0x17];
+} Obj_1_bss_8B3A0_ElemC;
+typedef struct {
+    s16 unk_0;  // 1 loads, 1 stores
+    s16 unk_2;  // 1 loads, 1 stores
+} Obj_1_bss_8B3A0_ElemB0;
+typedef struct {
+    s16 unk_0;  // 2 loads, 4 stores
+    s16 unk_2;  // 2 loads, 4 stores
+} Obj_1_bss_8B3A0_ElemC0;
+typedef struct {
+    s16 unk_0;  // 1 loads, 2 stores
+    s16 unk_2;  // 1 loads, 2 stores
+} Obj_1_bss_8B3A0_ElemD0;
+typedef struct {
+    s16 unk_0;  // 12 loads, 2 stores
     u8 pad_2[0x2];
     s16 unk_4;  // 13 loads, 0 stores
     u8 pad_6[0x2];
     s16 unk_8;  // 7 loads, 2 stores
-    u8 pad_A[0x4];
-    s16 unk_E;  // 24 loads, 0 stores
-    u8 pad_10[0x4];
-    u8 unk_14;  // 7 loads, 2 stores
-    u8 pad_15[0x19];
-    s16 unk_2E;  // 1 loads, 0 stores
-    u8 pad_30[0x5C];
+    u8 pad_A[0x2];
+    Obj_1_bss_8B3A0_ElemC unk_C[4];
     s16 unk_8C;  // 2 loads, 0 stores
     u8 pad_8E[0x2];
     s16 unk_90;  // 15 loads, 0 stores
@@ -377,31 +391,13 @@ typedef struct {
     u8 pad_A0[0x4];
     Obj_1_bss_8B3A0_AtA4 *unk_A4;  // 4 loads, 0 stores
     u8 pad_A8[0x8];
-    s16 unk_B0;  // 1 loads, 1 stores
-    s16 unk_B2;  // 1 loads, 1 stores
-    u8 pad_B4[0xC];
-    s16 unk_C0;  // 2 loads, 4 stores
-    s16 unk_C2;  // 2 loads, 4 stores
-    u8 pad_C4[0xC];
-    s16 unk_D0;  // 1 loads, 2 stores
-    s16 unk_D2;  // 1 loads, 2 stores
-    u8 pad_D4[0xC];
-    u32 unk_E0;  // 0 loads, 2 stores
-    u32 unk_E4;  // 0 loads, 1 stores
-    u32 unk_E8;  // 0 loads, 1 stores
-    u32 unk_EC;  // 0 loads, 1 stores
-    u32 unk_F0;  // 2 loads, 2 stores
-    u32 unk_F4;  // 0 loads, 1 stores
-    u32 unk_F8;  // 0 loads, 1 stores
-    u32 unk_FC;  // 0 loads, 1 stores
-    u32 unk_100;  // 2 loads, 2 stores
-    u32 unk_104;  // 0 loads, 1 stores
-    u32 unk_108;  // 0 loads, 1 stores
-    u32 unk_10C;  // 0 loads, 1 stores
-    u32 unk_110;  // 2 loads, 2 stores
-    u32 unk_114;  // 0 loads, 1 stores
-    u32 unk_118;  // 0 loads, 1 stores
-    u32 unk_11C;  // 0 loads, 1 stores
+    Obj_1_bss_8B3A0_ElemB0 unk_B0[4];
+    Obj_1_bss_8B3A0_ElemC0 unk_C0[4];
+    Obj_1_bss_8B3A0_ElemD0 unk_D0[4];
+    u32 unk_E0[4];
+    u32 unk_F0[4];
+    u32 unk_100[4];
+    u32 unk_110[4];
     u32 unk_120;  // 0 loads, 2 stores
     u32 unk_124;  // 1 loads, 2 stores
     u8 unk_128;  // 0 loads, 1 stores
