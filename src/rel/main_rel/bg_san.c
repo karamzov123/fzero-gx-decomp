@@ -770,8 +770,8 @@ void fn_1_D8388(void *obj) {
 
 
 
-extern void fn_1_103090(fn_1_D8CA8_LigEntry *entry);
-extern void fn_1_1030A4(fn_1_D8D08_LigEntry *entry);
+extern void fn_1_103090(void *entry);
+extern void fn_1_1030A4(void *entry);
 extern void fn_1_1030D4(fn_1_D8D58_LigEntry *entry, void *arg);
 
 #endif  // GAME_MAIN_REL_BG_LIG_TYPES_H
@@ -1150,7 +1150,7 @@ void fn_1_D8878(LigSource *src) {
 /* fzgx:end fn_1_D8878 */
 
 /* fzgx:begin fn_1_D8CA8 noprologue */
-extern void fn_1_103090(fn_1_D8CA8_LigEntry *entry);
+extern void fn_1_103090(void *entry);
 
 void fn_1_D8CA8(fn_1_D8CA8_LigObject *obj) {
     s32 count = obj->count;
@@ -1166,7 +1166,7 @@ void fn_1_D8CA8(fn_1_D8CA8_LigObject *obj) {
 /* fzgx:end fn_1_D8CA8 */
 
 /* fzgx:begin fn_1_D8D08 noprologue */
-extern void fn_1_1030A4(fn_1_D8D08_LigEntry *entry);
+extern void fn_1_1030A4(void *entry);
 
 void fn_1_D8D08(LigContainer *container) {
     s32 count = container->count;
@@ -1224,7 +1224,7 @@ void fn_1_D8D58(fn_1_D8D58_LigObject *obj, void *arg) {
 /* fzgx:end fn_1_D8D58 */
 
 /* fzgx:begin fn_1_D8EEC noprologue */
-extern void fn_1_103264(fn_1_D8D08_LigEntry *entry, void *arg);
+extern void fn_1_103264(void *entry, void *arg);
 
 // Applies the operation to each entry in the object.
 void fn_1_D8EEC(LigContainer *obj, void *arg) {
