@@ -367,6 +367,13 @@ def cmd_honest(a, p):
     return 0
 
 
+def cmd_poolcensus(a, p):
+    from . import poolcensus
+    report = poolcensus.measure(p)
+    _print(report if a.json else poolcensus.summary(report), a.json)
+    return 0
+
+
 def cmd_devicecensus(a, p):
     """Separate marked debt, lexical review signals and configured source form."""
     from . import devicecensus
@@ -748,6 +755,9 @@ def build_parser() -> argparse.ArgumentParser:
     s = sub.add_parser("devicecensus", help="read-only marked-device and source-form inventory; review signals are not device verdicts")
     s.set_defaults(fn=cmd_devicecensus)
     s.add_argument("--json", action="store_true", help="include source locations, owners and input fingerprints")
+    s = sub.add_parser("poolcensus", help="screen retail objects for shared literal-pool conversion cohorts")
+    s.set_defaults(fn=cmd_poolcensus)
+    s.add_argument("--json", action="store_true", help="list candidate units as well as cohort totals")
     s = sub.add_parser("shapecensus",
                        help="classify the near-miss band by divergence kind (is regalloc one shape?)")
     s.set_defaults(fn=cmd_shapecensus)
