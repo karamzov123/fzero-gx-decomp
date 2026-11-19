@@ -106,3 +106,8 @@ The `fn_1_D8D58` caller and definition now share the same state and entry types 
 
 - The `0.0999000967f` scale and MWCC's unsigned integer-to-float conversion constant belong to the same 16-byte retail slice, `.rodata 0xDAE8..0xDAF8`. With an ordinary float literal, GC/1.3.2 emits both constants and the natural four-byte alignment gap in retail order. An explicit `const` definition instead duplicates the float when MWCC folds the reference.
 - The unit now owns that slice natively, with identical 540 instruction bytes and all 30 relocations after resolving local constants by address. The `.rodata` bytes also match exactly. The neighboring imported ranges remain unchanged in content and have separate owners on each side. Two import records and one pool map were retired; no `.fzgxpool` helper was involved. All 16 retail hashes and lint pass.
+
+### `bg_for.c`: compiler profile alignment
+
+- `fn_1_DD4DC`, the only explicitly pinned GC/1.3 unit in this mapping, produces a byte-identical object with GC/1.3.2 under the same production flags (948 bytes of `.text`, 64 relocation entries). It now uses the same compiler as its neighbors. No unit or pool ownership changed.
+- Compiling adjacent `fn_1_DCFA4` and `fn_1_DD4DC` together exposes incompatible declarations of `lbl_1_rodata_6780` and `fn_1_56298`. Whole-file compilation hits a separate conflict earlier: the local course view of `lbl_1_data_2A7E0` does not agree with `globals.h`.
