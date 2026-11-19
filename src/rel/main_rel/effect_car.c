@@ -66,17 +66,6 @@ typedef struct {
 typedef struct {
     u8 pad0[0x24];
     void *field_24;
-} EventData;
-
-typedef struct {
-    u8 pad0[0x8];
-    EventData *field_8;
-    void *field_c;
-} EventObject;
-
-typedef struct {
-    u8 pad0[0x24];
-    void *field_24;
     f32 field_28;
     f32 field_2c;
 } OutData;
@@ -124,12 +113,6 @@ typedef struct {
     s32 active;
     s32 entries[5];
 } Fn1_8F494_Object;
-
-typedef struct {
-    u32 x;
-    u32 y;
-    u32 z;
-} RawVec3;
 
 typedef struct {
     u8 pad0[0x12];
@@ -213,10 +196,6 @@ typedef struct {
     u32 z;
 } Triple;
 
-struct fn_1_7F954_lbl_801A6410 {
-    u32 unk_0;
-};
-
 typedef struct Fn195158Data Fn195158Data;
 
 typedef struct Fn195158Object Fn195158Object;
@@ -281,21 +260,12 @@ typedef struct fn_1_8D210_car {
     u32 field_60;
 } fn_1_8D210_car;
 
-struct fn_1_7FA04_lbl_801A6410 {
-    u32 unk_0;
-};
-
 struct Model {
     char pad[0x18];
     u16 count;
     char pad2[0x26];
     struct ModelItem items[1];
 };
-
-typedef struct {
-    u8 pad0[0x40];
-    void *value;
-} ResourceHolder;
 
 typedef struct Fn195158Car Fn195158Car;
 
@@ -985,36 +955,6 @@ void fn_1_68248(Fn1_68248Arg *arg) {
 
 // Types (and the externs that name them) of car.c, hoisted out of its prologue so that
 // a block can compile standalone and under the prologue. Hand-owned (librarian).
-
-typedef struct {
-    u8 pad0[0x24];
-    void *field_24;
-} EventData;
-
-typedef struct {
-    u8 pad0[0x8];
-    EventData *field_8;
-    void *field_c;
-} EventObject;
-
-struct fn_1_7F954_lbl_801A6410 {
-    u32 unk_0;
-};
-
-struct fn_1_7FA04_lbl_801A6410 {
-    u32 unk_0;
-};
-
-typedef struct {
-    u8 pad0[0x40];
-    void *value;
-} ResourceHolder;
-
-typedef struct {
-    u32 x;
-    u32 y;
-    u32 z;
-} RawVec3;
 
 /* begin game/vec3.h (fork-deltawave784/windows-and-types@8c8d7cc3) */
 #include "game/vec3.h"
