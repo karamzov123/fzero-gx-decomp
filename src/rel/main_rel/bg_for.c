@@ -182,7 +182,7 @@ extern void fn_1_57810(u32, void *, void *);
 extern void lbl_8006D784(void *);
 extern void lbl_8006DBAC(void *);
 extern void lbl_8006DFE8(const void *);
-extern void fn_1_DDF80(void *, void *, void *, void *, f32, f32);
+extern void fn_1_DDF80(Vec3 *, Vec3 *, Vec3 *, Vec3 *, f32, f32);
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DB30(void);
 extern void fn_1_56298(f32, f32, f32, f32);
@@ -297,7 +297,7 @@ void fn_1_DCFA4(u32 arg0) {
         lbl_8006DBAC((void *)(arg0+0xc4));
         matrix_translation(&m1);
         lbl_8006DFE8(&m1);
-        fn_1_DDF80((void *)(arg0+0x44), &delta1, &out1, &out2,
+        fn_1_DDF80((Vec3 *)(arg0+0x44), &delta1, &out1, &out2,
                    *(f32 *)(arg0+0x50), *(f32 *)(arg0+0x50));
         lbl_8006DAEC();
         draw_color(p_lbl_1_rodata_6780, 1);
@@ -313,7 +313,7 @@ void fn_1_DCFA4(u32 arg0) {
             lbl_8006DBAC((void *)(v0+0x14c));
             matrix_translation(&m2);
             lbl_8006DFE8(&m2);
-            fn_1_DDF80((void *)(v0+0x94), &delta2, &out3, &out4, *(f32 *)(v0+0x17c), *(f32 *)(v0+0x17c));
+            fn_1_DDF80((Vec3 *)(v0+0x94), &delta2, &out3, &out4, *(f32 *)(v0+0x17c), *(f32 *)(v0+0x17c));
             lbl_8006DAEC();
             draw_color(p_lbl_1_rodata_6780, 1);
             draw_vec(&out3, angles3, p_lbl_1_rodata_6780);
