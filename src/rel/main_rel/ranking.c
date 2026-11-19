@@ -3187,8 +3187,6 @@ struct fn_1_1598C4_lbl_1_bss_8F878 {
     u8 unk_3D;
     u8 unk_3E;
 };
-extern f32 lbl_1_rodata_DAE8;
-extern f64 lbl_1_rodata_DAF0;
 extern struct fn_1_1598C4_lbl_1_bss_8F878 lbl_1_bss_8F878;
 extern void fn_80008BA8(u32, u32, u32);
 extern s16 fn_1_14F01C(s16);
@@ -3215,7 +3213,7 @@ void fn_1_1598C4(s32 arg0, u8 arg1, u8 arg2, u8 arg3, u8 arg4, u8 arg5, u8 arg6,
     lbl_1_bss_8F878.unk_34 = arg0 & 0x3FFFF;
     lbl_1_bss_8F878.unk_39 = arg1;
     lbl_1_bss_8F878.unk_3D = arg6;
-    lbl_1_bss_8F878.unk_3E = (u8)(s32)((*(f32 *)((u8 *)(&lbl_1_rodata_DAE8) + 0)) * (f32)arg5);
+    lbl_1_bss_8F878.unk_3E = (u8)(s32)(0.0999000967f * (f32)arg5);
 
     if (arg1 >= 0x29U) {
         if ((s32)arg2 < fn_1_14F01C(0)) {

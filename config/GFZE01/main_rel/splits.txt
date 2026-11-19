@@ -5301,6 +5301,7 @@ rel/main_rel/enemy_ctrl/fn_1_CC8E4.c:
 
 rel/main_rel/ranking/fn_1_1598C4.c:
 	.text       start:0x001598C4 end:0x00159AE0 align:4
+	.rodata     start:0x0000DAE8 end:0x0000DAF8 align:8
 
 rel/main_rel/enemy_ctrl/fn_1_CC280.c:
 	.text       start:0x000CC280 end:0x000CC8E4 align:4
@@ -17677,7 +17678,10 @@ rel/main_rel/data/lbl_1_rodata_83C0.c:
 	.rodata     start:0x000083C0 end:0x0000D048 align:8
 
 rel/main_rel/data/lbl_1_rodata_D5B8.c:
-	.rodata     start:0x0000D5B8 end:0x0000DD5C align:8
+	.rodata     start:0x0000D5B8 end:0x0000DAE8 align:8
+
+rel/main_rel/data/lbl_1_rodata_DAF8.c:
+	.rodata     start:0x0000DAF8 end:0x0000DD5C align:8
 
 rel/main_rel/data/lbl_1_rodata_DD60.c:
 	.rodata     start:0x0000DD60 end:0x0000DEEC align:8

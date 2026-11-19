@@ -388077,13 +388077,13 @@
     "references": [],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 1956,
+    "section_size": 1328,
     "sha256": "6e26e048435b102f7779ad839b44260044a2a2248ea323335a54b5b851d512f5",
     "size": 36,
     "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
     "symbol": "lbl_1_rodata_D5B8",
     "unit_align": 8,
-    "unit_size": 1956,
+    "unit_size": 1328,
     "unit_start": 54712
   },
   "main_rel:lbl_1_rodata_D5C": {
@@ -388124,13 +388124,13 @@
     "references": [],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 1956,
+    "section_size": 1328,
     "sha256": "d0a306c7bb42950e41a6048d64ee315893159f1199860f0ecd3488acab14d3a9",
     "size": 660,
     "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
     "symbol": "lbl_1_rodata_D5DC",
     "unit_align": 8,
-    "unit_size": 1956,
+    "unit_size": 1328,
     "unit_start": 54712
   },
   "main_rel:lbl_1_rodata_D60": {
@@ -388349,13 +388349,13 @@
     "references": [],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 1956,
+    "section_size": 1328,
     "sha256": "ed1b2adb5846cbcfd95a89e382db53aa54dd67af6b4858f1e7818ea5e5168dee",
     "size": 24,
     "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
     "symbol": "lbl_1_rodata_D870",
     "unit_align": 8,
-    "unit_size": 1956,
+    "unit_size": 1328,
     "unit_start": 54712
   },
   "main_rel:lbl_1_rodata_D88": {
@@ -388396,13 +388396,13 @@
     "references": [],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 1956,
+    "section_size": 1328,
     "sha256": "ed1c8ae6d26dba44ec7dbb5a43c7edd9304870e1375bcf94f631bab21792cad9",
     "size": 48,
     "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
     "symbol": "lbl_1_rodata_D888",
     "unit_align": 8,
-    "unit_size": 1956,
+    "unit_size": 1328,
     "unit_start": 54712
   },
   "main_rel:lbl_1_rodata_D8B8": {
@@ -388420,13 +388420,13 @@
     "references": [],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 1956,
+    "section_size": 1328,
     "sha256": "18baf1a0bca99d68c1b448cae42f0b26550c842bf6c2b217166f51521f98e1c6",
     "size": 16,
     "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
     "symbol": "lbl_1_rodata_D8B8",
     "unit_align": 8,
-    "unit_size": 1956,
+    "unit_size": 1328,
     "unit_start": 54712
   },
   "main_rel:lbl_1_rodata_D8C": {
@@ -388511,13 +388511,13 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 1956,
+    "section_size": 1328,
     "sha256": "5248ee49aaffedb92a1bd9acc2972c86289896507a5fadee7ca12696aab23cb8",
     "size": 72,
     "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
     "symbol": "lbl_1_rodata_D8C8",
     "unit_align": 8,
-    "unit_size": 1956,
+    "unit_size": 1328,
     "unit_start": 54712
   },
   "main_rel:lbl_1_rodata_D90": {
@@ -388556,13 +388556,13 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 1956,
+    "section_size": 1328,
     "sha256": "7648f6e2761c4a42001f03c644409c676c3891df59fe4760c2b8f29380f2775c",
     "size": 4,
     "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
     "symbol": "lbl_1_rodata_D910",
     "unit_align": 8,
-    "unit_size": 1956,
+    "unit_size": 1328,
     "unit_start": 54712
   },
   "main_rel:lbl_1_rodata_D914": {
@@ -388582,13 +388582,13 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 1956,
+    "section_size": 1328,
     "sha256": "1130e6f46ddc18994c326c404a3e38c4d5e2e57c8e35a647085db850b79ca476",
     "size": 12,
     "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
     "symbol": "lbl_1_rodata_D914",
     "unit_align": 8,
-    "unit_size": 1956,
+    "unit_size": 1328,
     "unit_start": 54712
   },
   "main_rel:lbl_1_rodata_D920": {
@@ -388610,13 +388610,13 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 1956,
+    "section_size": 1328,
     "sha256": "3bff5237c6725552bfd662f724e0f340373b770ae51a0db4b56f569bd43b76e5",
     "size": 56,
     "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
     "symbol": "lbl_1_rodata_D920",
     "unit_align": 8,
-    "unit_size": 1956,
+    "unit_size": 1328,
     "unit_start": 54712
   },
   "main_rel:lbl_1_rodata_D94": {
@@ -388660,13 +388660,13 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 1956,
+    "section_size": 1328,
     "sha256": "cda6ba27fb9aa3ed3d78b83bd634971d20cd34f230b7b3252b37d5c349096e71",
     "size": 32,
     "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
     "symbol": "lbl_1_rodata_D958",
     "unit_align": 8,
-    "unit_size": 1956,
+    "unit_size": 1328,
     "unit_start": 54712
   },
   "main_rel:lbl_1_rodata_D978": {
@@ -388686,13 +388686,13 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 1956,
+    "section_size": 1328,
     "sha256": "15ec7bf0b50732b49f8228e07d24365338f9e3ab994b00af08e5a3bffe55fd8b",
     "size": 12,
     "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
     "symbol": "lbl_1_rodata_D978",
     "unit_align": 8,
-    "unit_size": 1956,
+    "unit_size": 1328,
     "unit_start": 54712
   },
   "main_rel:lbl_1_rodata_D98": {
@@ -388731,13 +388731,13 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 1956,
+    "section_size": 1328,
     "sha256": "b16428bd491754d560390de62532f3401af4929172a36198d0344405211956ab",
     "size": 156,
     "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
     "symbol": "lbl_1_rodata_D984",
     "unit_align": 8,
-    "unit_size": 1956,
+    "unit_size": 1328,
     "unit_start": 54712
   },
   "main_rel:lbl_1_rodata_D9C": {
@@ -388788,13 +388788,13 @@
     "references": [],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 1956,
+    "section_size": 1328,
     "sha256": "f6b273cfbd7674c261c8ce0a8419386dc135547d5bc6a6ec4433698dc2e2e2ba",
     "size": 88,
     "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
     "symbol": "lbl_1_rodata_DA20",
     "unit_align": 8,
-    "unit_size": 1956,
+    "unit_size": 1328,
     "unit_start": 54712
   },
   "main_rel:lbl_1_rodata_DA4": {
@@ -388826,13 +388826,13 @@
     "references": [],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 1956,
+    "section_size": 1328,
     "sha256": "79483702e6adebbbecb67a5d1a6e5bd18f402f967a7568f22e317504eddd1e1a",
     "size": 84,
     "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
     "symbol": "lbl_1_rodata_DA78",
     "unit_align": 8,
-    "unit_size": 1956,
+    "unit_size": 1328,
     "unit_start": 54712
   },
   "main_rel:lbl_1_rodata_DA8": {
@@ -388883,65 +388883,13 @@
     "references": [],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 1956,
+    "section_size": 1328,
     "sha256": "67aaccd3b163a53a1907b22be91d2efad955bd03dd0d56d82a9893a4d2516c4c",
     "size": 28,
     "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
     "symbol": "lbl_1_rodata_DACC",
     "unit_align": 8,
-    "unit_size": 1956,
-    "unit_start": 54712
-  },
-  "main_rel:lbl_1_rodata_DAE8": {
-    "address": 56040,
-    "align": 4,
-    "declarations": [
-      {
-        "declaration": "f32 lbl_1_rodata_DAE8",
-        "path": "src/rel/main_rel/ranking.c"
-      }
-    ],
-    "definition": "const f32 lbl_1_rodata_DAE8",
-    "method": "float-pool",
-    "module": "main_rel",
-    "references": [
-      "fn_1_1598C4"
-    ],
-    "relocations": [],
-    "section": ".rodata",
-    "section_size": 1956,
-    "sha256": "83db04b3bfab17c2e198588b17d95831bcaeb38f3dc87267ca418e6b8d5fb8d8",
-    "size": 4,
-    "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
-    "symbol": "lbl_1_rodata_DAE8",
-    "unit_align": 8,
-    "unit_size": 1956,
-    "unit_start": 54712
-  },
-  "main_rel:lbl_1_rodata_DAF0": {
-    "address": 56048,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "f64 lbl_1_rodata_DAF0",
-        "path": "src/rel/main_rel/ranking.c"
-      }
-    ],
-    "definition": "const f64 lbl_1_rodata_DAF0",
-    "method": "float-pool",
-    "module": "main_rel",
-    "references": [
-      "fn_1_1598C4"
-    ],
-    "relocations": [],
-    "section": ".rodata",
-    "section_size": 1956,
-    "sha256": "2b2979f362d94c89fe17a6e01637f14332de063fe7a544bdc5facfc046f4169f",
-    "size": 8,
-    "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
-    "symbol": "lbl_1_rodata_DAF0",
-    "unit_align": 8,
-    "unit_size": 1956,
+    "unit_size": 1328,
     "unit_start": 54712
   },
   "main_rel:lbl_1_rodata_DAF8": {
@@ -388981,14 +388929,14 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 1956,
+    "section_size": 612,
     "sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
     "size": 64,
-    "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
+    "source": "rel/main_rel/data/lbl_1_rodata_DAF8.c",
     "symbol": "lbl_1_rodata_DAF8",
     "unit_align": 8,
-    "unit_size": 1956,
-    "unit_start": 54712
+    "unit_size": 612,
+    "unit_start": 56056
   },
   "main_rel:lbl_1_rodata_DB0": {
     "address": 3504,
@@ -389031,14 +388979,14 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 1956,
+    "section_size": 612,
     "sha256": "e91a72bc356dbc23a91386f5de9e4f83e15b095a031fcb3ee2327ffcafd66654",
     "size": 32,
-    "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
+    "source": "rel/main_rel/data/lbl_1_rodata_DAF8.c",
     "symbol": "lbl_1_rodata_DB38",
     "unit_align": 8,
-    "unit_size": 1956,
-    "unit_start": 54712
+    "unit_size": 612,
+    "unit_start": 56056
   },
   "main_rel:lbl_1_rodata_DB4": {
     "address": 3508,
@@ -389076,14 +389024,14 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 1956,
+    "section_size": 612,
     "sha256": "715bafffd33889729f2f7a26a728ad7808b6be81ed3a368cd29314588159fee1",
     "size": 60,
-    "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
+    "source": "rel/main_rel/data/lbl_1_rodata_DAF8.c",
     "symbol": "lbl_1_rodata_DB58",
     "unit_align": 8,
-    "unit_size": 1956,
-    "unit_start": 54712
+    "unit_size": 612,
+    "unit_start": 56056
   },
   "main_rel:lbl_1_rodata_DB8": {
     "address": 3512,
@@ -389121,14 +389069,14 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 1956,
+    "section_size": 612,
     "sha256": "05cca710ee8561a0d4234e2eecbd6d333123e41222492191c32c152ca85ff7d1",
     "size": 8,
-    "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
+    "source": "rel/main_rel/data/lbl_1_rodata_DAF8.c",
     "symbol": "lbl_1_rodata_DB94",
     "unit_align": 8,
-    "unit_size": 1956,
-    "unit_start": 54712
+    "unit_size": 612,
+    "unit_start": 56056
   },
   "main_rel:lbl_1_rodata_DB9C": {
     "address": 56220,
@@ -389147,14 +389095,14 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 1956,
+    "section_size": 612,
     "sha256": "81751d08275b6c6d5cf33777c513d849fd889ef43324ed79464ece9a2f6969ba",
     "size": 64,
-    "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
+    "source": "rel/main_rel/data/lbl_1_rodata_DAF8.c",
     "symbol": "lbl_1_rodata_DB9C",
     "unit_align": 8,
-    "unit_size": 1956,
-    "unit_start": 54712
+    "unit_size": 612,
+    "unit_start": 56056
   },
   "main_rel:lbl_1_rodata_DBC": {
     "address": 3516,
@@ -389192,14 +389140,14 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 1956,
+    "section_size": 612,
     "sha256": "3484a5ff2c8b285433d90cf09be46518321f39a3cb2beda1c95b4fcb82fe47e5",
     "size": 8,
-    "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
+    "source": "rel/main_rel/data/lbl_1_rodata_DAF8.c",
     "symbol": "lbl_1_rodata_DBDC",
     "unit_align": 8,
-    "unit_size": 1956,
-    "unit_start": 54712
+    "unit_size": 612,
+    "unit_start": 56056
   },
   "main_rel:lbl_1_rodata_DBE4": {
     "address": 56292,
@@ -389218,14 +389166,14 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 1956,
+    "section_size": 612,
     "sha256": "07fe8160824eefbcfbcea1ba59eaa53c0038a8c0ffdfecf7112c574e5bd62428",
     "size": 240,
-    "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
+    "source": "rel/main_rel/data/lbl_1_rodata_DAF8.c",
     "symbol": "lbl_1_rodata_DBE4",
     "unit_align": 8,
-    "unit_size": 1956,
-    "unit_start": 54712
+    "unit_size": 612,
+    "unit_start": 56056
   },
   "main_rel:lbl_1_rodata_DC0": {
     "address": 3520,
@@ -389320,14 +389268,14 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 1956,
+    "section_size": 612,
     "sha256": "6623e12a4bd38e372ed7c3be757402cff6fdf8b3cd3190b7b6b489a918962ecd",
     "size": 8,
-    "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
+    "source": "rel/main_rel/data/lbl_1_rodata_DAF8.c",
     "symbol": "lbl_1_rodata_DCD4",
     "unit_align": 8,
-    "unit_size": 1956,
-    "unit_start": 54712
+    "unit_size": 612,
+    "unit_start": 56056
   },
   "main_rel:lbl_1_rodata_DCDC": {
     "address": 56540,
@@ -389346,14 +389294,14 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 1956,
+    "section_size": 612,
     "sha256": "1dd116c7869bba120a3fc3246f4b756955a1ff3dc9ce2ab0a177502f21c0cbd1",
     "size": 80,
-    "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
+    "source": "rel/main_rel/data/lbl_1_rodata_DAF8.c",
     "symbol": "lbl_1_rodata_DCDC",
     "unit_align": 8,
-    "unit_size": 1956,
-    "unit_start": 54712
+    "unit_size": 612,
+    "unit_start": 56056
   },
   "main_rel:lbl_1_rodata_DD0": {
     "address": 3536,
@@ -389391,14 +389339,14 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 1956,
+    "section_size": 612,
     "sha256": "ea79d27b401bf4b50266c1c764098c53bf911cc8d7e3e26c6651e5af791ff8e5",
     "size": 8,
-    "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
+    "source": "rel/main_rel/data/lbl_1_rodata_DAF8.c",
     "symbol": "lbl_1_rodata_DD2C",
     "unit_align": 8,
-    "unit_size": 1956,
-    "unit_start": 54712
+    "unit_size": 612,
+    "unit_start": 56056
   },
   "main_rel:lbl_1_rodata_DD34": {
     "address": 56628,
@@ -389417,14 +389365,14 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 1956,
+    "section_size": 612,
     "sha256": "4d7261c2846e0df3de0731967fc523485561177fe31aa291209a06d420c519d7",
     "size": 36,
-    "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
+    "source": "rel/main_rel/data/lbl_1_rodata_DAF8.c",
     "symbol": "lbl_1_rodata_DD34",
     "unit_align": 8,
-    "unit_size": 1956,
-    "unit_start": 54712
+    "unit_size": 612,
+    "unit_start": 56056
   },
   "main_rel:lbl_1_rodata_DD4": {
     "address": 3540,
@@ -389471,14 +389419,14 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 1956,
+    "section_size": 612,
     "sha256": "db3aefef05f0dfc29a110d15dbd860630fa5173d7f5d908a57a60984e7495322",
     "size": 4,
-    "source": "rel/main_rel/data/lbl_1_rodata_D5B8.c",
+    "source": "rel/main_rel/data/lbl_1_rodata_DAF8.c",
     "symbol": "lbl_1_rodata_DD58",
     "unit_align": 8,
-    "unit_size": 1956,
-    "unit_start": 54712
+    "unit_size": 612,
+    "unit_start": 56056
   },
   "main_rel:lbl_1_rodata_DD60": {
     "address": 56672,

@@ -101,3 +101,8 @@ The `fn_1_D8D58` caller and definition now share the same state and entry types 
 
 - `lbl_1_data_2ABAC` registers `fn_1_FA6C0` through `fn_1_FB798` as the nine `bg_cas` handlers; the last handler passes `"bg_cas.c"` to `OSPanic`. The next nine-entry row starts at `fn_1_FE5E0`, inside the current `bg_cas.c` mapping. Trace its helpers and pool users before treating all 81 functions as one original TU.
 - The first two production groups, headed by `fn_1_FA6C0` and `fn_1_FB870`, now use the same three-float `Vec3` definition. The latter group also declares the `u32` length that `fn_80008BEC` actually takes. Their existing `.rodata`, `.data` and `.bss` splits are unchanged and all 16 retail hashes pass. Whole-file `tu-check` now reaches the conflict over the pointer argument and return type of `GXLoadTexMtxImm`; the two groups have not been merged.
+
+### `ranking.c`: native conversion constants in `fn_1_1598C4`
+
+- The `0.0999000967f` scale and MWCC's unsigned integer-to-float conversion constant belong to the same 16-byte retail slice, `.rodata 0xDAE8..0xDAF8`. With an ordinary float literal, GC/1.3.2 emits both constants and the natural four-byte alignment gap in retail order. An explicit `const` definition instead duplicates the float when MWCC folds the reference.
+- The unit now owns that slice natively, with identical 540 instruction bytes and all 30 relocations after resolving local constants by address. The `.rodata` bytes also match exactly. The neighboring imported ranges remain unchanged in content and have separate owners on each side. Two import records and one pool map were retired; no `.fzgxpool` helper was involved. All 16 retail hashes and lint pass.

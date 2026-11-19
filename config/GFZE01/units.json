@@ -116379,9 +116379,20 @@
       "lbl_1_rodata_D984",
       "lbl_1_rodata_DA20",
       "lbl_1_rodata_DA78",
-      "lbl_1_rodata_DACC",
-      "lbl_1_rodata_DAE8",
-      "lbl_1_rodata_DAF0",
+      "lbl_1_rodata_DACC"
+    ],
+    "status": "matching",
+    "matching_for": [
+      "GFZE01"
+    ],
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/data/lbl_1_rodata_DAF8.c",
+    "symbols": [
       "lbl_1_rodata_DAF8",
       "lbl_1_rodata_DB38",
       "lbl_1_rodata_DB58",
@@ -139256,10 +139267,7 @@
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/ranking.c",
-    "pool": {
-      "@30": "lbl_1_rodata_DAF0"
-    }
+    "tu": "rel/main_rel/ranking.c"
   },
   {
     "module": "main_rel",
