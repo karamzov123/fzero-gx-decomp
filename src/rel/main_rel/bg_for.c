@@ -1143,11 +1143,6 @@ typedef struct {
     f32 x, y, z, w;
 } DE4B0Quat;
 
-typedef struct {
-    s16 x;
-    s16 y;
-    s16 z;
-} DE4B0Angles;
 
 typedef struct {
     u8 pad_0[0xC];
@@ -1173,7 +1168,7 @@ extern f32 lbl_8006D668(Vec3 *);
 extern void fn_80008BA8(void *, const void *, u32);
 extern void fn_8006E978(DE4B0Quat *, DE4B0Vec *, DE4B0Vec *);
 extern void mathutil_mtxA_from_quat(DE4B0Quat *);
-extern void fn_8006F6A8(DE4B0Angles *);
+
 
 /*
  * The literal pool lbl_1_rodata_6780 is shared by the whole retail TU; the
@@ -1294,7 +1289,7 @@ void fn_1_DE4B0(DE4B0Obj *obj, DE4B0Vec *dir) {
             DE4B0Vec axisB = { 1.0f, 0.0f, 0.0f };
             DE4B0Vec rot;
             DE4B0Quat quat;
-            DE4B0Angles angles;
+            BgForMatrixAngles angles;
             u32 seed;
 
             lbl_8006DBAC(obj->mtx);
@@ -1312,9 +1307,9 @@ void fn_1_DE4B0(DE4B0Obj *obj, DE4B0Vec *dir) {
             fn_8006E978(&quat, &out, dir);
             mathutil_mtxA_from_quat(&quat);
             fn_8006F6A8(&angles);
-            rot.x = 9.58738e-05f * angles.x;
-            rot.y = 9.58738e-05f * angles.y;
-            rot.z = 9.58738e-05f * angles.z;
+            rot.x = 9.58738e-05f * angles.angle_y;
+            rot.y = 9.58738e-05f * angles.angle_x;
+            rot.z = 9.58738e-05f * angles.angle_z;
             fn_1_E5840(obj, &rot);
         } else {
             DE4B0Vec side[1];
@@ -1324,7 +1319,7 @@ void fn_1_DE4B0(DE4B0Obj *obj, DE4B0Vec *dir) {
             DE4B0Vec normal[1];
             DE4B0Vec rot;
             DE4B0Quat quat;
-            DE4B0Angles angles;
+            BgForMatrixAngles angles;
             s32 same;
             f32 d;
 
@@ -1358,9 +1353,9 @@ void fn_1_DE4B0(DE4B0Obj *obj, DE4B0Vec *dir) {
             fn_8006E978(&quat, &out, dir);
             mathutil_mtxA_from_quat(&quat);
             fn_8006F6A8(&angles);
-            rot.x = 9.58738e-05f * angles.x;
-            rot.y = 9.58738e-05f * angles.y;
-            rot.z = 9.58738e-05f * angles.z;
+            rot.x = 9.58738e-05f * angles.angle_y;
+            rot.y = 9.58738e-05f * angles.angle_x;
+            rot.z = 9.58738e-05f * angles.angle_z;
             psvec_scale(&rot, 0.1f, &obj->rot);
         }
         break;
@@ -1419,11 +1414,7 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime7(void) {
     s = 20.0f;
 }
 #pragma section code_type ".text"
-typedef struct Sig_fn_8006F6A8_Fn8006F6A8 {
-    s16 angle_y;
-    s16 angle_x;
-    s16 angle_z;
-} Sig_fn_8006F6A8_Fn8006F6A8;
+
 struct fn_1_DE9C4_Arg0 {
     u8 pad_0[10];
     s16 unk_A;
@@ -1454,7 +1445,7 @@ extern void mathutil_mtxA_rotate_x(s32);
 extern void mathutil_mtxA_rotate_y(s32);
 extern void mathutil_mtxA_rotate_z(s32);
 extern void *fn_1_86254(int);
-extern void fn_8006F6A8(Sig_fn_8006F6A8_Fn8006F6A8 *);
+
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DB30(void);
 extern void lbl_8006E0B4(f32, f32, f32);
@@ -1477,7 +1468,7 @@ void fn_1_DE9C4(struct fn_1_DE9C4_Arg0 *arg0) {
     f32 dz;
     f32 next;
     void *t19;
-    Sig_fn_8006F6A8_Fn8006F6A8 loc_8;
+    BgForMatrixAngles loc_8;
     if (arg0->unk_15C < 0) v4 = 0.0f;
     lbl_8006DAEC();
     lbl_8006D7DC(arg0->unk_16C);
