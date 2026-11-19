@@ -1,4 +1,5 @@
 #include "types.h"
+#include "rel/main_rel/globals.h"
 
 typedef struct {
     f32 x;
@@ -21,13 +22,6 @@ typedef struct {
     s32 unk_1588; /* 0x1588 */
 } BgForLightList;
 
-/* The course state (0xF8 bytes). */
-typedef struct {
-    u8 unk_00[0x3C];
-    BgForLightList *lights; /* 0x3C */
-    u8 unk_40[0xB8];
-} BgForCourse;
-
 /* A camera (0xA0 bytes). */
 typedef struct {
     BgForVec pos; /* 0x00 */
@@ -42,8 +36,6 @@ typedef struct {
     f32 viewMtx[3][4]; /* 0x70 */
 } BgForCamera;
 
-extern BgForCourse lbl_1_data_2A7E0;
-
 extern void OSPanic(const char *file, int line, const char *msg, ...);
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DD14(void *, void *);
@@ -57,7 +49,7 @@ BgForCamera lbl_1_bss_7ADE8;
 
 /* fzgx:begin fn_1_DCBF4 */
 s32 fn_1_DCBF4(s32 type, s32 data) {
-    BgForLightList *list = lbl_1_data_2A7E0.lights;
+    BgForLightList *list = (BgForLightList *)lbl_1_data_2A7E0.unk_3C;
 
     switch (type) {
     case 0:
@@ -156,19 +148,6 @@ void fn_1_DCF54(BgForVec *pos, BgForVec *target, BgForVec *up) {
 // a block can compile standalone and under the prologue. Hand-owned (librarian).
 
 
-typedef struct fn_1_DCF54_Vec3 {
-    u32 x;
-    u32 y;
-    u32 z;
-} fn_1_DCF54_Vec3;
-
-typedef struct State {
-    fn_1_DCF54_Vec3 a;
-    u8 pad[12];
-    fn_1_DCF54_Vec3 b;
-    fn_1_DCF54_Vec3 c;
-} State;
-
 struct fn_1_DCE60_lbl_1_rodata_6750 {
     u32 unk_0;
     u32 unk_4;
@@ -184,7 +163,6 @@ struct fn_1_DCE60_lbl_1_rodata_6750 {
     f32 unk_2C;
 };
 
-extern State lbl_1_bss_7ADE8;
 extern struct fn_1_DCE60_lbl_1_rodata_6750 lbl_1_rodata_6750;
 
 #endif  // GAME_MAIN_REL_BG_FOR_TYPES_H

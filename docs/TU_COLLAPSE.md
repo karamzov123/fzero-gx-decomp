@@ -110,4 +110,4 @@ The `fn_1_D8D58` caller and definition now share the same state and entry types 
 ### `bg_for.c`: compiler profile alignment
 
 - `fn_1_DD4DC`, the only explicitly pinned GC/1.3 unit in this mapping, produces a byte-identical object with GC/1.3.2 under the same production flags (948 bytes of `.text`, 64 relocation entries). It now uses the same compiler as its neighbors. No unit or pool ownership changed.
-- Compiling adjacent `fn_1_DCFA4` and `fn_1_DD4DC` together exposes incompatible declarations of `lbl_1_rodata_6780` and `fn_1_56298`. Whole-file compilation hits a separate conflict earlier: the local course view of `lbl_1_data_2A7E0` does not agree with `globals.h`.
+- Compiling adjacent `fn_1_DCFA4` and `fn_1_DD4DC` together exposes incompatible declarations of `lbl_1_rodata_6780` and `fn_1_56298`. The whole-file probe now uses the shared course-state definition from `globals.h`, keeping the spotlight view at offset `0x3C`, and no longer redeclares the owned camera BSS object with an unused partial type. It now stops at conflicting declarations of `fn_8006F1F0`.
