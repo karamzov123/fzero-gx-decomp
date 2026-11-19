@@ -118143,29 +118143,7 @@
     "extra_cflags": [],
     "tu": "rel/main_rel/effect_car.c",
     "pool": {
-      "...rodata.0": "lbl_1_rodata_2D70",
-      "@21": "lbl_1_rodata_2D70+0x48",
-      "@22": "lbl_1_rodata_2D70+0x4C",
-      "@5": "lbl_1_rodata_2D70",
-      "@23": "lbl_1_rodata_2D70+0x50",
-      "@24": "lbl_1_rodata_2D70+0x58",
-      "@25": "lbl_1_rodata_2D70+0x5C",
-      "@26": "lbl_1_rodata_2D70+0x60",
-      "@27": "lbl_1_rodata_2D70+0x64",
-      "@28": "lbl_1_rodata_2D70+0x68",
-      "@29": "lbl_1_rodata_2D70+0x70",
-      "@30": "lbl_1_rodata_2D70+0x74",
-      "@20": "lbl_1_rodata_2D70+0x40",
-      "@14": "lbl_1_rodata_2D70+0x24",
-      "@31": "lbl_1_rodata_2D70+0x78",
-      "@32": "lbl_1_rodata_2D70+0x7C",
-      "@12": "lbl_1_rodata_2D70+0x1C",
-      "@33": "lbl_1_rodata_2D70+0x80",
-      "@34": "lbl_1_rodata_2D70+0x88",
-      "@35": "lbl_1_rodata_2D70+0x90",
-      "@36": "lbl_1_rodata_2D70+0x94",
-      "@37": "lbl_1_rodata_2D70+0x98",
-      "@38": "lbl_1_rodata_2D70+0x9C"
+      "...rodata.0": "lbl_1_rodata_2D70"
     }
   },
   {
@@ -118182,27 +118160,7 @@
     "extra_cflags": [],
     "tu": "rel/main_rel/effect_car.c",
     "pool": {
-      "...rodata.0": "lbl_1_rodata_2D70",
-      "@44": "lbl_1_rodata_2D70+0x48",
-      "@45": "lbl_1_rodata_2D70+0x4C",
-      "@28": "lbl_1_rodata_2D70",
-      "@52": "lbl_1_rodata_2D70+0x70",
-      "@146": "lbl_1_rodata_2D70+0xAC",
-      "zero$71": "lbl_1_rodata_2D70+0xA0",
-      "@147": "lbl_1_rodata_2D70+0xB0",
-      "@55": "lbl_1_rodata_2D70+0x7C",
-      "@38": "lbl_1_rodata_2D70+0x28",
-      "@43": "lbl_1_rodata_2D70+0x40",
-      "@37": "lbl_1_rodata_2D70+0x24",
-      "@54": "lbl_1_rodata_2D70+0x78",
-      "@35": "lbl_1_rodata_2D70+0x1C",
-      "@56": "lbl_1_rodata_2D70+0x80",
-      "@148": "lbl_1_rodata_2D70+0xB4",
-      "@57": "lbl_1_rodata_2D70+0x88",
-      "@53": "lbl_1_rodata_2D70+0x74",
-      "@58": "lbl_1_rodata_2D70+0x90",
-      "@59": "lbl_1_rodata_2D70+0x94",
-      "@60": "lbl_1_rodata_2D70+0x98"
+      "...rodata.0": "lbl_1_rodata_2D70"
     }
   },
   {
@@ -118230,29 +118188,7 @@
     "extra_cflags": [],
     "tu": "rel/main_rel/effect_car.c",
     "pool": {
-      "...rodata.0": "lbl_1_rodata_2D70",
-      "@46": "lbl_1_rodata_2D70+0xB8",
-      "@47": "lbl_1_rodata_2D70+0xBC",
-      "@48": "lbl_1_rodata_2D70+0xC0",
-      "@32": "lbl_1_rodata_2D70+0x7C",
-      "@36": "lbl_1_rodata_2D70+0x94",
-      "@5": "lbl_1_rodata_2D70",
-      "@20": "lbl_1_rodata_2D70+0x40",
-      "@14": "lbl_1_rodata_2D70+0x24",
-      "@31": "lbl_1_rodata_2D70+0x78",
-      "@29": "lbl_1_rodata_2D70+0x70",
-      "@12": "lbl_1_rodata_2D70+0x1C",
-      "@33": "lbl_1_rodata_2D70+0x80",
-      "@30": "lbl_1_rodata_2D70+0x74",
-      "@35": "lbl_1_rodata_2D70+0x90",
-      "@21": "lbl_1_rodata_2D70+0x48",
-      "@37": "lbl_1_rodata_2D70+0x98",
-      "@49": "lbl_1_rodata_2D70+0xC4",
-      "@50": "lbl_1_rodata_2D70+0xC8",
-      "@26": "lbl_1_rodata_2D70+0x60",
-      "@51": "lbl_1_rodata_2D70+0xD0",
-      "@38": "lbl_1_rodata_2D70+0x9C",
-      "@52": "lbl_1_rodata_2D70+0xD8"
+      "...rodata.0": "lbl_1_rodata_2D70"
     }
   },
   {
@@ -118269,24 +118205,7 @@
     "extra_cflags": [],
     "tu": "rel/main_rel/effect_car.c",
     "pool": {
-      "...rodata.0": "lbl_1_rodata_2D70",
-      "@20": "lbl_1_rodata_2D70+0x40",
-      "@14": "lbl_1_rodata_2D70+0x24",
-      "@30": "lbl_1_rodata_2D70+0x74",
-      "@35": "lbl_1_rodata_2D70+0x90",
-      "@36": "lbl_1_rodata_2D70+0x94",
-      "@12": "lbl_1_rodata_2D70+0x1C",
-      "@53": "lbl_1_rodata_2D70+0xDC",
-      "@21": "lbl_1_rodata_2D70+0x48",
-      "@54": "lbl_1_rodata_2D70+0xE0",
-      "@31": "lbl_1_rodata_2D70+0x78",
-      "@9": "lbl_1_rodata_2D70+0x10",
-      "@34": "lbl_1_rodata_2D70+0x88",
-      "@33": "lbl_1_rodata_2D70+0x80",
-      "@29": "lbl_1_rodata_2D70+0x70",
-      "@55": "lbl_1_rodata_2D70+0xE4",
-      "@52": "lbl_1_rodata_2D70+0xD8",
-      "@5": "lbl_1_rodata_2D70"
+      "...rodata.0": "lbl_1_rodata_2D70"
     }
   },
   {
@@ -118418,42 +118337,7 @@
     "extra_cflags": [],
     "tu": "rel/main_rel/effect_car.c",
     "pool": {
-      "...rodata.0": "lbl_1_rodata_2D70",
-      "@60": "lbl_1_rodata_2D70+0xAC",
-      "@87": "lbl_1_rodata_2D70+0xE4",
-      "@126": "lbl_1_rodata_2D70+0x180",
-      "@127": "lbl_1_rodata_2D70+0x184",
-      "@134": "lbl_1_rodata_2D70+0x1B8",
-      "@144": "lbl_1_rodata_2D70+0x1C8",
-      "@154": "lbl_1_rodata_2D70+0x1D8",
-      "@155": "lbl_1_rodata_2D70+0x1DC",
-      "@132": "lbl_1_rodata_2D70+0x1A8",
-      "@159": "lbl_1_rodata_2D70+0x1F8",
-      "@130": "lbl_1_rodata_2D70+0x198",
-      "@131": "lbl_1_rodata_2D70+0x1A0",
-      "@128": "lbl_1_rodata_2D70+0x188",
-      "@129": "lbl_1_rodata_2D70+0x190",
-      "@133": "lbl_1_rodata_2D70+0x1B0",
-      "@63": "lbl_1_rodata_2D70+0xB8",
-      "@25": "lbl_1_rodata_2D70+0x40",
-      "@24": "lbl_1_rodata_2D70+0x38",
-      "@19": "lbl_1_rodata_2D70+0x24",
-      "@90": "lbl_1_rodata_2D70+0xF0",
-      "@35": "lbl_1_rodata_2D70+0x74",
-      "@156": "lbl_1_rodata_2D70+0x1E0",
-      "@48": "lbl_1_rodata_2D70+0x90",
-      "@143": "lbl_1_rodata_2D70+0x1C0",
-      "@17": "lbl_1_rodata_2D70+0x1C",
-      "@49": "lbl_1_rodata_2D70+0x94",
-      "@83": "lbl_1_rodata_2D70+0xD0",
-      "@158": "lbl_1_rodata_2D70+0x1F0",
-      "@98": "lbl_1_rodata_2D70+0x120",
-      "@118": "lbl_1_rodata_2D70+0x160",
-      "@26": "lbl_1_rodata_2D70+0x48",
-      "@153": "lbl_1_rodata_2D70+0x1D0",
-      "@28": "lbl_1_rodata_2D70+0x50",
-      "@95": "lbl_1_rodata_2D70+0x108",
-      "@157": "lbl_1_rodata_2D70+0x1E8"
+      "...rodata.0": "lbl_1_rodata_2D70"
     }
   },
   {
@@ -118593,20 +118477,7 @@
     "extra_cflags": [],
     "tu": "rel/main_rel/effect_car.c",
     "pool": {
-      "...rodata.0": "lbl_1_rodata_2D70",
-      "@5": "lbl_1_rodata_2D70",
-      "@55": "lbl_1_rodata_2D70+0xAC",
-      "@20": "lbl_1_rodata_2D70+0x40",
-      "@14": "lbl_1_rodata_2D70+0x24",
-      "@78": "lbl_1_rodata_2D70+0xD0",
-      "@82": "lbl_1_rodata_2D70+0xE4",
-      "@125": "lbl_1_rodata_2D70+0x180",
-      "@238": "lbl_1_rodata_2D70+0x298",
-      "@237": "lbl_1_rodata_2D70+0x294",
-      "@155": "lbl_1_rodata_2D70+0x1E0",
-      "@159": "lbl_1_rodata_2D70+0x200",
-      "@30": "lbl_1_rodata_2D70+0x74",
-      "@236": "lbl_1_rodata_2D70+0x290"
+      "...rodata.0": "lbl_1_rodata_2D70"
     }
   },
   {
@@ -118651,26 +118522,7 @@
     "extra_cflags": [],
     "tu": "rel/main_rel/effect_car.c",
     "pool": {
-      "...rodata.0": "lbl_1_rodata_2D70",
-      "@125": "lbl_1_rodata_2D70+0x180",
-      "@292": "lbl_1_rodata_2D70+0x2B8",
-      "@30": "lbl_1_rodata_2D70+0x74",
-      "@20": "lbl_1_rodata_2D70+0x40",
-      "@14": "lbl_1_rodata_2D70+0x24",
-      "@12": "lbl_1_rodata_2D70+0x1C",
-      "@58": "lbl_1_rodata_2D70+0xB8",
-      "@263": "lbl_1_rodata_2D70+0x2AC",
-      "@86": "lbl_1_rodata_2D70+0xF4",
-      "@84": "lbl_1_rodata_2D70+0xEC",
-      "@5": "lbl_1_rodata_2D70",
-      "@31": "lbl_1_rodata_2D70+0x78",
-      "@85": "lbl_1_rodata_2D70+0xF0",
-      "@17": "lbl_1_rodata_2D70+0x30",
-      "@90": "lbl_1_rodata_2D70+0x108",
-      "@294": "lbl_1_rodata_2D70+0x2C8",
-      "@293": "lbl_1_rodata_2D70+0x2C0",
-      "@44": "lbl_1_rodata_2D70+0x94",
-      "@78": "lbl_1_rodata_2D70+0xD0"
+      "...rodata.0": "lbl_1_rodata_2D70"
     }
   },
   {
@@ -118862,18 +118714,7 @@
     "extra_cflags": [],
     "tu": "rel/main_rel/effect_car.c",
     "pool": {
-      "...rodata.0": "lbl_1_rodata_2D70",
-      "@30": "lbl_1_rodata_2D70+0x74",
-      "@159": "lbl_1_rodata_2D70+0x200",
-      "@12": "lbl_1_rodata_2D70+0x1C",
-      "@19": "lbl_1_rodata_2D70+0x38",
-      "@14": "lbl_1_rodata_2D70+0x24",
-      "@20": "lbl_1_rodata_2D70+0x40",
-      "@328": "lbl_1_rodata_2D70+0x358",
-      "@327": "lbl_1_rodata_2D70+0x354",
-      "@25": "lbl_1_rodata_2D70+0x5C",
-      "@59": "lbl_1_rodata_2D70+0xBC",
-      "@314": "lbl_1_rodata_2D70+0x348"
+      "...rodata.0": "lbl_1_rodata_2D70"
     }
   },
   {
@@ -118971,20 +118812,7 @@
     "extra_cflags": [],
     "tu": "rel/main_rel/effect_car.c",
     "pool": {
-      "...rodata.0": "lbl_1_rodata_2D70",
-      "@20": "lbl_1_rodata_2D70+0x40",
-      "@14": "lbl_1_rodata_2D70+0x24",
-      "@78": "lbl_1_rodata_2D70+0xD0",
-      "@42": "lbl_1_rodata_2D70+0x88",
-      "@12": "lbl_1_rodata_2D70+0x1C",
-      "@30": "lbl_1_rodata_2D70+0x74",
-      "@43": "lbl_1_rodata_2D70+0x90",
-      "@5": "lbl_1_rodata_2D70",
-      "@44": "lbl_1_rodata_2D70+0x94",
-      "@21": "lbl_1_rodata_2D70+0x48",
-      "@68": "lbl_1_rodata_2D70+0xC4",
-      "@125": "lbl_1_rodata_2D70+0x180",
-      "@11": "lbl_1_rodata_2D70+0x18"
+      "...rodata.0": "lbl_1_rodata_2D70"
     }
   },
   {
