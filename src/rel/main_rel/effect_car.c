@@ -1,6 +1,7 @@
 #include "types.h"
 #include "rel/main_rel/globals.h"
 #include "rel/main_rel/effect_car.h"
+#include "game/vec3.h"
 #include "rel/main_rel/car.h"
 #include "dolphin/hw_regs.h"
 #include "psvec.h"
@@ -16,12 +17,6 @@ typedef struct {
     u8 mtx[0x70];
     u8 mtx2[0x30];
 } CamObj;
-
-typedef struct Vec3 {
-    f32 x;
-    f32 y;
-    f32 z;
-} Vec3;
 
 typedef struct {
     u8 _pad_000[0x7c];
@@ -181,11 +176,6 @@ struct ModelItem {
     u32 flags;
     char pad[0x1c];
 };
-
-typedef struct {
-    u8 pad0[0x1c];
-    void *field_1c;
-} CarObject;
 
 typedef struct Fn196BC0Object Fn196BC0Object;
 
@@ -789,10 +779,6 @@ struct fn_1_72318_EffectCar {
 
 typedef s32 (*fn_1_8D210_callback)(u32);
 
-typedef struct Vec3f {
-    f32 x, y, z;
-} Vec3f;
-
 typedef struct {
     f32 x;
     f32 y;
@@ -1014,11 +1000,6 @@ void fn_1_68248(Fn1_68248Arg *arg) {
 
 
 typedef struct {
-    u8 pad0[0x1c];
-    void *field_1c;
-} CarObject;
-
-typedef struct {
     u8 pad0[0x12];
     u16 field_12;
     u8 pad14[0x12];
@@ -1061,26 +1042,7 @@ typedef struct {
 } RawVec3;
 
 /* begin game/vec3.h (fork-deltawave784/windows-and-types@8c8d7cc3) */
-#ifndef GAME_VEC3_H
-#define GAME_VEC3_H
-
-// Three-float vector shared by the main_rel type headers (camera, car, font, ghost,
-// live_camera each carried an identical private copy); Vec3f likewise (car, screen_effect,
-// stcoli). Hand-owned (librarian).
-
-
-typedef struct Vec3 {
-    f32 x;
-    f32 y;
-    f32 z;
-} Vec3;
-
-typedef struct Vec3f {
-    f32 x, y, z;
-} Vec3f;
-
-#endif  // GAME_VEC3_H
-
+#include "game/vec3.h"
 /* end game/vec3.h */
 
 typedef struct {

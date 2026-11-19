@@ -95,7 +95,7 @@ The `fn_1_D8D58` caller and definition now share the same state and entry types 
 
 - Retail setup `fn_1_680F8` and registration `fn_1_68248` are adjacent (`.text 0x680F8..0x68284`) and reference the same `"effect_car.c"` filename with line numbers `0xC7` and `0xE2`. Setup is also the sole retail user of the `0x60`-byte BSS object at `0x6C878`. The following function, `fn_1_68284`, uses the literal pool at `0x2D70`; it is not part of this build group.
 - The two functions now compile together with GC/1.3.2, owning `.data 0x1D8A8..0x1D8B8` and `.bss 0x6C878..0x6C8D8` directly. The compiled `.text` is identical to the extracted `0x18C` bytes, with the same 18 relocation offsets, types, symbols and addends. The compiler emits the exact 13-byte filename and 96-byte BSS extent; the three trailing initialized-section alignment bytes are zero in retail and match at link time. Both standalone data sources and their import records were removed. This group uses no pool map or primer and retires none elsewhere. All 16 hashes and lint pass.
-- The whole-file probe still fails at the repeated `CarObject` typedef in the self-contained `fn_1_68284` block. This batch reduces production units from 37 to 36 without claiming that the prefix is a separate original TU.
+- Production units fell from 37 to 36 without claiming that the prefix is a separate original TU. The common prologue and the self-contained `fn_1_68284` block now use a single `CarObject` declaration and the shared `Vec3`/`Vec3f` definitions. The whole-file probe now stops at the duplicate `EventNode` definition.
 
 ### `bg_cas.c`: declaration and boundary checks
 
