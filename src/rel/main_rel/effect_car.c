@@ -106,24 +106,6 @@ typedef struct Fn935E4Car {
     Fn935E4Node *field_1c;
 } Fn935E4Car;
 
-typedef struct Fn195158Data Fn195158Data;
-
-typedef struct Fn195158Object Fn195158Object;
-
-struct Fn195158Data {
-    u8 unk_00[0x08];
-    Fn195158Object *unk_08;
-};
-
-struct Fn195158Object {
-    u8 unk_00[0x0C];
-    f32 unk_0C;
-    u8 unk_10[0x1C];
-    f32 unk_2C;
-    u8 unk_30[0x58];
-    u8 unk_88[0x04];
-};
-
 typedef struct CarR29 {
     u8 unk_00[0x14];
     f32 unk_14;
@@ -175,23 +157,6 @@ struct Model {
     u16 count;
     char pad2[0x26];
     struct ModelItem items[1];
-};
-
-typedef struct Fn195158Car Fn195158Car;
-
-struct Fn195158Car {
-    u8 unk_00[0xA0];
-    s16 unk_A0;
-    s16 unk_A2;
-    s16 unk_A4;
-    u8 unk_A6[0x02];
-    f32 unk_A8;
-    f32 unk_AC;
-    f32 unk_B0;
-    f32 unk_B4;
-    f32 unk_B8;
-    u8 unk_BC[0x94];
-    Fn195158Data *unk_150;
 };
 
 typedef struct {
@@ -870,17 +835,6 @@ void fn_1_68248(Fn1_68248Arg *arg) {
 #include "game/vec3.h"
 /* end game/vec3.h */
 
-typedef struct Fn195158Object Fn195158Object;
-
-struct Fn195158Object {
-    u8 unk_00[0x0C];
-    f32 unk_0C;
-    u8 unk_10[0x1C];
-    f32 unk_2C;
-    u8 unk_30[0x58];
-    u8 unk_88[0x04];
-};
-
 struct ModelItem {
     u32 flags;
     char pad[0x1c];
@@ -907,30 +861,6 @@ typedef struct {
     u8 pad_1e8[0x20];
     u8 entries[0x14][0x20];
 } Fn1_8F5A4_Object;
-
-typedef struct Fn195158Data Fn195158Data;
-
-struct Fn195158Data {
-    u8 unk_00[0x08];
-    Fn195158Object *unk_08;
-};
-
-typedef struct Fn195158Car Fn195158Car;
-
-struct Fn195158Car {
-    u8 unk_00[0xA0];
-    s16 unk_A0;
-    s16 unk_A2;
-    s16 unk_A4;
-    u8 unk_A6[0x02];
-    f32 unk_A8;
-    f32 unk_AC;
-    f32 unk_B0;
-    f32 unk_B4;
-    f32 unk_B8;
-    u8 unk_BC[0x94];
-    Fn195158Data *unk_150;
-};
 
 typedef struct Fn935E4Slot {
     u8 pad0[0xa];
