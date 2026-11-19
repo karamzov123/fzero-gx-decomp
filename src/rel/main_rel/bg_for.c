@@ -364,7 +364,7 @@ extern void fn_80072558(void);
 extern f32 lbl_8006D0B4(f32);
 extern void lbl_8006E0A4(void *);
 extern void lbl_8006E14C(f32);
-extern void lbl_8006D7DC(void *);
+extern void lbl_8006D7DC(const void *);
 extern void lbl_8006DB74(void *);
 
 
@@ -1444,12 +1444,12 @@ struct fn_1_DE9C4_Arg0 {
     u32 *unk_160;
     u32 unk_164;
     f32 *unk_168;
-    u32 unk_16C;
+    const Vec3 *unk_16C;
 };
 extern f32 fn_1_9E14C(u32, void *, f32);
 extern f32 fn_1_9E194(u32, void *, f32);
 extern u32 fn_1_A5594(u32, void *);
-extern u32 lbl_8006D7DC(u32);
+extern void lbl_8006D7DC(const void *);
 extern void mathutil_mtxA_rotate_x(s32);
 extern void mathutil_mtxA_rotate_y(s32);
 extern void mathutil_mtxA_rotate_z(s32);
@@ -1779,7 +1779,7 @@ extern void mathutil_mtxA_rotate_x(s32);
 extern void lbl_8006E0A4(void *);
 extern void lbl_8006DB74(void *);
 extern void lbl_8006DC34(void *);
-extern void lbl_8006D7DC(void *);
+extern void lbl_8006D7DC(const void *);
 extern void lbl_8006DFC4(void *);
 extern void lbl_8006D758(void);
 extern s32 fn_1_DEDC4(void *, void *, void *, DF2A4Vec *, DF2A4Vec *, DF2A4Vec *, DF2A4Vec *, f32);
