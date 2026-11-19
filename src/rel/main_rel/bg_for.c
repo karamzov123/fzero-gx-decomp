@@ -1216,7 +1216,7 @@ __declspec(section ".fzgxpool") void fzgx_pool_primer3(void) {
  * local result stays in memory */
 #pragma opt_propagation off
 
-static inline void cross(DE4B0Vec *a, DE4B0Vec *b, DE4B0Vec *out) {
+static inline void DE4B0_cross(DE4B0Vec *a, DE4B0Vec *b, DE4B0Vec *out) {
     f32 ax;
     f32 ay;
     f32 az;
@@ -1246,7 +1246,7 @@ static inline void cross(DE4B0Vec *a, DE4B0Vec *b, DE4B0Vec *out) {
     dst[2] = z;
 }
 
-static inline f32 dot(DE4B0Vec *a, DE4B0Vec *b) {
+static inline f32 DE4B0_dot(DE4B0Vec *a, DE4B0Vec *b) {
     f32 result;
     f32 ay;
     f32 az;
@@ -1267,7 +1267,7 @@ static inline f32 dot(DE4B0Vec *a, DE4B0Vec *b) {
 }
 
 /* a helper of its own gives the -1.0 and the final scale retail's register order (as in fn_1_DDF80) */
-static inline void flip(DE4B0Vec *v) {
+static inline void DE4B0_flip(DE4B0Vec *v) {
     psvec_scale(v, -1.0f, v);
 }
 
@@ -1340,20 +1340,20 @@ void fn_1_DE4B0(DE4B0Obj *obj, DE4B0Vec *dir) {
             lbl_8006E1C0(&obj->vel, velDir);
             lbl_8006E1C0(&up, &up);
             lbl_8006D668(&up);
-            cross(velDir, dir, side);
-            cross(side, dir, normal);
-            d = -dot(normal, base);
-            if (DE4B0_sign((d + dot(normal, top)) * (d + dot(normal, &obj->pos))) > 0) {
+            DE4B0_cross(velDir, dir, side);
+            DE4B0_cross(side, dir, normal);
+            d = -DE4B0_dot(normal, base);
+            if (DE4B0_sign((d + DE4B0_dot(normal, top)) * (d + DE4B0_dot(normal, &obj->pos))) > 0) {
                 same = 1;
             }
             if (same == 1) {
                 fn_80008BA8(&out, &up, sizeof(DE4B0Vec));
             } else {
-                cross(side, &up, &out);
+                DE4B0_cross(side, &up, &out);
                 lbl_8006D668(&out);
             }
-            if (dot(dir, &out) < 0.0f) {
-                flip(&out);
+            if (DE4B0_dot(dir, &out) < 0.0f) {
+                DE4B0_flip(&out);
             }
             fn_8006E978(&quat, &out, dir);
             mathutil_mtxA_from_quat(&quat);
