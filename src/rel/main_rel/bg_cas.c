@@ -248,9 +248,8 @@ void fn_1_FA89C(SplineMain *arg0) {
 /* fzgx:end fn_1_FA89C */
 
 /* fzgx:begin fn_1_FAB40 */
-typedef struct {
-    f32 x, y, z;
-} Vec3;
+#include "game/vec3.h"
+
 typedef struct {
     f32 value0, value4, value8;
 } Sig_fn_8006F900_Fn8006F900Data;
@@ -731,11 +730,8 @@ int fn_1_FB798(int mode, u32 *value) {
 
 /* fzgx:begin fn_1_FB870 noprologue */
 #include "types.h"
+#include "game/vec3.h"
 #include "rel/main_rel/globals.h"
-
-typedef struct {
-    f32 x, y, z;
-} Vec3;
 
 typedef struct {
     s32 active;      // 0x0
@@ -759,7 +755,7 @@ typedef struct {
     f32 sy[3];         // 0x264
 } CasEntry;
 
-extern void fn_80008BEC(void *dst, int value, int size);
+extern void fn_80008BEC(void *dst, int value, u32 size);
 extern void GXInitTexObjLOD(void *texObj, int minFilter, int magFilter, f32 minLod,
                             f32 maxLod, f32 lodBias, int biasClamp, int edgeLod, int maxAniso);
 extern void lbl_8006D758(void);
