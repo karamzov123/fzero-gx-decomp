@@ -10,16 +10,6 @@
 #include "rel/main_rel/car_test.h"
 
 typedef struct {
-    u8 pad_0[0x148];
-    u8 pad_148[0x20];
-    u8 pad_168[0x40];
-    u8 pad_1a8[0x20];
-    u8 pad_1c8[0x20];
-    u8 pad_1e8[0x20];
-    u8 entries[0x14][0x20];
-} Fn1_8F5A4_Object;
-
-typedef struct {
     u8 pad[0x15];
     u8 code;
 } State;
@@ -59,22 +49,7 @@ struct Fn196968Object {
     void *unk_174;
 };
 
-typedef struct {
-    s32 active;
-    s32 entries[5];
-} Fn1_8F494_Object;
-
 typedef s32 (*fn_1_8D210_callback)(u32);
-
-typedef struct Fn935E4Slot {
-    u8 pad0[0xa];
-    u16 field_a;
-} Fn935E4Slot;
-
-struct ModelItem {
-    u32 flags;
-    char pad[0x1c];
-};
 
 typedef struct Fn196BC0Object Fn196BC0Object;
 
@@ -85,26 +60,6 @@ struct Fn196BC0Object {
     void *resource_1D0;
     void *resource_1D4;
 };
-
-typedef struct Fn935E4Node {
-    u8 pad0[0xa];
-    u16 field_a;
-    u8 pad_c[6];
-    u16 field_12;
-    u8 pad14[0x12];
-    u8 field_26;
-    u8 pad27[1];
-    Fn935E4Slot *field_28;
-    u8 pad2c[8];
-    Fn935E4Slot *field_34;
-    u8 pad38[0x14];
-    u8 field_4c;
-} Fn935E4Node;
-
-typedef struct Fn935E4Car {
-    u8 pad0[0x1c];
-    Fn935E4Node *field_1c;
-} Fn935E4Car;
 
 typedef struct CarR29 {
     u8 unk_00[0x14];
@@ -151,13 +106,6 @@ typedef struct fn_1_8D210_car {
     u8 field_5c[4];
     u32 field_60;
 } fn_1_8D210_car;
-
-struct Model {
-    char pad[0x18];
-    u16 count;
-    char pad2[0x26];
-    struct ModelItem items[1];
-};
 
 typedef struct {
     f32 x;
@@ -653,12 +601,7 @@ extern void lbl_8006DBAC(Vec3 *a);
 extern void fn_1_8E3A4(fn_1_8E3A4_Object *obj);
 extern f32 lbl_8006D534(Vec3 *a, Vec3 *b);
 extern Triple lbl_1_rodata_3BE8;
-extern void fn_1_55210(void *value);
 extern void fn_1_8E7D0();
-extern void fn_1_966A0(Fn1_8F494_Object *obj);
-extern void fn_1_8F5A4(Fn1_8F5A4_Object *obj);
-extern void fn_1_968FC(Fn1_8F5A4_Object *obj);
-extern void fn_1_943F8(CarObject *car, void *name, f32 blend);
 extern u32 lbl_801A66A0;
 extern u32 lbl_801A66C8;
 extern f32 fn_1_8652C(int index);
@@ -835,58 +778,6 @@ void fn_1_68248(Fn1_68248Arg *arg) {
 #include "game/vec3.h"
 /* end game/vec3.h */
 
-struct ModelItem {
-    u32 flags;
-    char pad[0x1c];
-};
-
-struct Model {
-    char pad[0x18];
-    u16 count;
-    char pad2[0x26];
-    struct ModelItem items[1];
-};
-
-typedef struct {
-    s32 active;
-    s32 entries[5];
-} Fn1_8F494_Object;
-
-typedef struct {
-    u8 pad_0[0x148];
-    u8 pad_148[0x20];
-    u8 pad_168[0x40];
-    u8 pad_1a8[0x20];
-    u8 pad_1c8[0x20];
-    u8 pad_1e8[0x20];
-    u8 entries[0x14][0x20];
-} Fn1_8F5A4_Object;
-
-typedef struct Fn935E4Slot {
-    u8 pad0[0xa];
-    u16 field_a;
-} Fn935E4Slot;
-
-typedef struct Fn935E4Node {
-    u8 pad0[0xa];
-    u16 field_a;
-    u8 pad_c[6];
-    u16 field_12;
-    u8 pad14[0x12];
-    u8 field_26;
-    u8 pad27[1];
-    Fn935E4Slot *field_28;
-    u8 pad2c[8];
-    Fn935E4Slot *field_34;
-    u8 pad38[0x14];
-    u8 field_4c;
-} Fn935E4Node;
-
-typedef struct Fn935E4Car {
-    u8 pad0[0x1c];
-    Fn935E4Node *field_1c;
-} Fn935E4Car;
-
 typedef struct Fn1967A8Resource Fn1967A8Resource;
 
 struct Fn1967A8Resource {
@@ -1007,13 +898,8 @@ extern void lbl_8006DBAC(Vec3 *a);
 extern void fn_1_8E3A4(fn_1_8E3A4_Object *obj);
 extern f32 lbl_8006D534(Vec3 *a, Vec3 *b);
 extern Triple lbl_1_rodata_3BE8;
-extern void fn_1_55210(struct Model *);
 /* retail takes (obj, idx, mask, mask2) (fn_1_8F198 passes all four); non-prototype until fn_1_8F45C passes its own four through */
 extern void fn_1_8E7D0();
-extern void fn_1_966A0(Fn1_8F494_Object *obj);
-extern void fn_1_8F5A4(Fn1_8F5A4_Object *obj);
-extern void fn_1_968FC(Fn1_8F5A4_Object *obj);
-extern void fn_1_943F8(Fn935E4Car *, f32, void *);
 
 #endif  // GAME_MAIN_REL_CAR_TYPES_H
 
