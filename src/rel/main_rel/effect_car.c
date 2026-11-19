@@ -9,22 +9,6 @@
 #include "rel/main_rel/effect.h"
 #include "rel/main_rel/car_test.h"
 
-
-
-
-typedef struct {
-    u8 pad_0[0x400];
-    u8 mtx[0x70];
-    u8 mtx2[0x30];
-} CamObj;
-
-typedef struct {
-    u8 _pad_000[0x7c];
-    Vec3 field_07c;
-    u8 _pad_088[0xc4];
-    Vec3 field_14c;
-} Fn184644Object;
-
 typedef struct {
     u8 pad_0[0x148];
     u8 pad_148[0x20];
@@ -36,24 +20,6 @@ typedef struct {
 } Fn1_8F5A4_Object;
 
 typedef struct {
-    u8 pad_0[0x118];
-    u32 unk_118;
-    u32 unk_11C;
-    u8 pad_120[0x20];
-    s32 unk_140;
-    f32 unk_144;
-    f32 unk_148;
-    f32 unk_14C;
-    f32 unk_150;
-} CarSound;
-
-typedef struct {
-    u32 flags;
-    u8 pad_4[0x498];
-    CarSound *sound;
-} fn_1_85F90_Car;
-
-typedef struct {
     u8 pad[0x15];
     u8 code;
 } State;
@@ -62,13 +28,6 @@ typedef struct {
     u8 pad[4];
     State *state;
 } fn_1_8E3A4_Object;
-
-typedef struct {
-    u8 pad0[0x24];
-    void *field_24;
-    f32 field_28;
-    f32 field_2c;
-} OutData;
 
 typedef struct Fn196A68Object Fn196A68Object;
 
@@ -79,15 +38,6 @@ struct Fn196A68Object {
     void *unk_1F0;
     void *unk_1F4;
 };
-
-typedef struct {
-    u8 pad_0[0x4];
-    s32 field_4;
-    s32 field_8;
-    s32 field_c;
-    s32 field_10;
-    s32 field_14;
-} Fn1_8F45C_Object;
 
 typedef struct Fn1967A8Resource Fn1967A8Resource;
 
@@ -114,41 +64,7 @@ typedef struct {
     s32 entries[5];
 } Fn1_8F494_Object;
 
-typedef struct {
-    u8 pad0[0x12];
-    u16 field_12;
-    u8 pad14[0x12];
-    u8 field_26;
-    void *field_28;
-    u8 pad2c[8];
-    void *field_34;
-    u8 pad38[0x14];
-    u8 field_4c;
-} Node;
-
-typedef struct {
-    u8 pad0[0x1c];
-    Node *field_1c;
-    u8 pad20[0x128];
-    u16 field_148;
-    u8 pad14a[6];
-    OutData *field_150;
-    void *field_154;
-} Owner;
-
-typedef struct {
-    u32 entries[41];
-} FnTable;
-
 typedef s32 (*fn_1_8D210_callback)(u32);
-
-struct TargetObj {
-    char pad[0x60];
-    char field_0x60[0xc];
-    f32 field_0x6c;
-    char pad2[0xc];
-    f32 field_0x7c;
-};
 
 typedef struct Fn935E4Slot {
     u8 pad0[0xa];
@@ -189,12 +105,6 @@ typedef struct Fn935E4Car {
     u8 pad0[0x1c];
     Fn935E4Node *field_1c;
 } Fn935E4Car;
-
-typedef struct {
-    u32 x;
-    u32 y;
-    u32 z;
-} Triple;
 
 typedef struct Fn195158Data Fn195158Data;
 
@@ -960,19 +870,6 @@ void fn_1_68248(Fn1_68248Arg *arg) {
 #include "game/vec3.h"
 /* end game/vec3.h */
 
-typedef struct {
-    u8 _pad_000[0x7c];
-    Vec3 field_07c;
-    u8 _pad_088[0xc4];
-    Vec3 field_14c;
-} Fn184644Object;
-
-typedef struct {
-    u32 x;
-    u32 y;
-    u32 z;
-} Triple;
-
 typedef struct Fn195158Object Fn195158Object;
 
 struct Fn195158Object {
@@ -982,14 +879,6 @@ struct Fn195158Object {
     f32 unk_2C;
     u8 unk_30[0x58];
     u8 unk_88[0x04];
-};
-
-struct TargetObj {
-    char pad[0x60];
-    char field_0x60[0xc];
-    f32 field_0x6c;
-    char pad2[0xc];
-    f32 field_0x7c;
 };
 
 struct ModelItem {
@@ -1003,19 +892,6 @@ struct Model {
     char pad2[0x26];
     struct ModelItem items[1];
 };
-
-typedef struct {
-    u32 entries[41];
-} FnTable;
-
-typedef struct {
-    u8 pad_0[0x4];
-    s32 field_4;
-    s32 field_8;
-    s32 field_c;
-    s32 field_10;
-    s32 field_14;
-} Fn1_8F45C_Object;
 
 typedef struct {
     s32 active;
@@ -1076,39 +952,10 @@ typedef struct Fn935E4Node {
     u8 field_4c;
 } Fn935E4Node;
 
-typedef struct {
-    u8 pad0[0x12];
-    u16 field_12;
-    u8 pad14[0x12];
-    u8 field_26;
-    void *field_28;
-    u8 pad2c[8];
-    void *field_34;
-    u8 pad38[0x14];
-    u8 field_4c;
-} Node;
-
 typedef struct Fn935E4Car {
     u8 pad0[0x1c];
     Fn935E4Node *field_1c;
 } Fn935E4Car;
-
-typedef struct {
-    u8 pad0[0x24];
-    void *field_24;
-    f32 field_28;
-    f32 field_2c;
-} OutData;
-
-typedef struct {
-    u8 pad0[0x1c];
-    Node *field_1c;
-    u8 pad20[0x128];
-    u16 field_148;
-    u8 pad14a[6];
-    OutData *field_150;
-    void *field_154;
-} Owner;
 
 typedef struct Fn1967A8Resource Fn1967A8Resource;
 
@@ -1209,30 +1056,6 @@ typedef struct {
     u8 pad[4];
     State *state;
 } fn_1_8E3A4_Object;
-
-typedef struct {
-    u8 pad_0[0x400];
-    u8 mtx[0x70];
-    u8 mtx2[0x30];
-} CamObj;
-
-typedef struct {
-    u8 pad_0[0x118];
-    u32 unk_118;
-    u32 unk_11C;
-    u8 pad_120[0x20];
-    s32 unk_140;
-    f32 unk_144;
-    f32 unk_148;
-    f32 unk_14C;
-    f32 unk_150;
-} CarSound;
-
-typedef struct {
-    u32 flags;
-    u8 pad_4[0x498];
-    CarSound *sound;
-} fn_1_85F90_Car;
 
 extern s32 fn_1_8D210(fn_1_8D210_car *car, fn_1_8D210_callback callback, u32 arg, s32 enable);
 extern void fn_1_95158(Fn195158Car *car);
