@@ -874,7 +874,7 @@ typedef struct {
     f32 one;
 } Pool;
 
-extern const Pool lbl_1_rodata_6780;
+extern const f32 lbl_1_rodata_6780[];
 extern f32 lbl_8006D534(Vec *, Vec *);
 extern f32 lbl_8006D0B4(f32);
 extern void fn_80008BA8(void *, void *, u32);
@@ -941,7 +941,7 @@ static inline void flip(const Pool *pool, Vec *v) {
 }
 
 void fn_1_DDF80(Vec *a, Vec *b, Vec *along, Vec *side, f32 along_scale, f32 side_scale) {
-    const Pool *pool = &lbl_1_rodata_6780;
+    const Pool *pool = (const Pool *)lbl_1_rodata_6780;
     Vec pos;
     f32 c;
     f32 s;
@@ -1074,7 +1074,7 @@ void fn_1_DE180(fn_1_DE180_Obj *obj, Vec3 *dir, f32 radius) {
     f32 k;
     f32 dist;
 
-    pool = &lbl_1_rodata_6780;
+    pool = (const fn_1_DE180_Pool *)lbl_1_rodata_6780;
     if ((obj->flags & 0x8000) != 0) {
         return;
     }
@@ -1772,7 +1772,7 @@ extern void fn_1_E1408(void *, void *);
 typedef struct DF2A4Vec { f32 x, y, z; } DF2A4Vec;
 typedef struct DF2A4Mtx { f32 m[3][4]; } DF2A4Mtx;
 
-extern u8 lbl_1_rodata_6780[];
+extern const f32 lbl_1_rodata_6780[];
 extern void lbl_8006DBAC(void *);
 extern void fn_80008BEC(void *, int, u32);
 extern void fn_8006E2B0(void *, void *);
@@ -1853,7 +1853,7 @@ static inline void fn_1_DF2A4_translation(DF2A4Vec *out) {
 }
 s16 fn_1_DF2A4(DF2A4Vec *pos, DF2A4Vec * __restrict prev, void *mtx, DF2A4Vec *point, DF2A4Vec *normal,
                DF2A4Vec *hit, DF2A4Vec *out, f32 radius, f32 height) {
-    u8 *pool = lbl_1_rodata_6780;
+    const u8 *pool = (const u8 *)lbl_1_rodata_6780;
     DF2A4Mtx mtxB;
     DF2A4Mtx mtxA;
     DF2A4Vec up;
@@ -3071,7 +3071,7 @@ typedef struct {
     f32 unk_CC;
 } E1408Pool;
 
-extern E1408Pool lbl_1_rodata_6780;
+extern const f32 lbl_1_rodata_6780[];
 extern void fn_1_DF6AC(void *, void *, void *, void *, void *, f32, f32, f32, f32, f32, f32);
 extern f32 lbl_8006D0B4(f32);
 extern void lbl_8006D5A4(void *, void *, void *, f32);
@@ -3079,7 +3079,7 @@ extern void lbl_8006D5F0(void *, f32, void *);
 
 /* Earliest time t at which two moving spheres of combined radius r touch. */
 #pragma opt_lifetimes off
-static inline s32 E1408_sweep(E1408Pool *pool, E1408Vec *dp, E1408Vec *dv, f32 r, f32 *t) {
+static inline s32 E1408_sweep(const E1408Pool *pool, E1408Vec *dp, E1408Vec *dv, f32 r, f32 *t) {
     f32 B;
     f32 A;
     f32 C;
@@ -3157,7 +3157,7 @@ s32 fn_1_E1408(E1408Object *a, E1408Object *b) {
     E1408Vec t20;
     E1408Vec t14;
     E1408Vec t8;
-    E1408Pool *pool;
+    const E1408Pool *pool;
     u32 pushA;
     u32 pushB;
     f32 r;
@@ -3165,7 +3165,7 @@ s32 fn_1_E1408(E1408Object *a, E1408Object *b) {
     u64 fa;
     u64 fb;
 
-    pool = &lbl_1_rodata_6780;
+    pool = (const E1408Pool *)lbl_1_rodata_6780;
     if ((a->f138.flags & 0x40) != 0 || (b->f138.flags & 0x40) != 0) {
         return 0;
     }
@@ -3358,7 +3358,7 @@ extern void fn_1_E5A50(void *, void *);
 extern void fn_1_E5A94(void *, void *);
 extern void fn_1_E5AD8(void *, f32);
 extern void fn_80008BA8(void *, void *, u32);
-extern f32 lbl_1_rodata_6780[];
+extern const f32 lbl_1_rodata_6780[];
 
 typedef struct {
     u8 pad0[0x8];
