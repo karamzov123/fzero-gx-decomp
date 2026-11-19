@@ -297,18 +297,6 @@ typedef struct {
     void *value;
 } ResourceHolder;
 
-typedef struct {
-    u8 pad0[0x12];
-    u16 field_12;
-    u8 pad14[0x12];
-    u8 field_26;
-    void *field_28;
-    u8 pad2c[0x8];
-    void *field_34;
-    u8 pad38[0x14];
-    u8 field_4c;
-} EventNode;
-
 typedef struct Fn195158Car Fn195158Car;
 
 struct Fn195158Car {
@@ -997,19 +985,6 @@ void fn_1_68248(Fn1_68248Arg *arg) {
 
 // Types (and the externs that name them) of car.c, hoisted out of its prologue so that
 // a block can compile standalone and under the prologue. Hand-owned (librarian).
-
-
-typedef struct {
-    u8 pad0[0x12];
-    u16 field_12;
-    u8 pad14[0x12];
-    u8 field_26;
-    void *field_28;
-    u8 pad2c[0x8];
-    void *field_34;
-    u8 pad38[0x14];
-    u8 field_4c;
-} EventNode;
 
 typedef struct {
     u8 pad0[0x24];
