@@ -132,9 +132,11 @@ def map_functions(ver: str) -> dict[str, dict[str, tuple[int, int, str]]]:
         us, rg = orig_file(US, mod).read_bytes(), orig_file(ver, mod).read_bytes()
         us_t, rg_t = text_sections(us, mod), text_sections(rg, mod)
         rg_m = [(v, masked(b)) for v, b in rg_t]
-        hits = []
+        hits, fns = [], []
         for line in cfg(US, mod, "symbols.txt").read_text().splitlines():
             m = FUNC_LINE.match(line)
+            if m and int(m.group(3), 16) > 0:
+                fns.append((int(m.group(2), 16), m.group(1), int(m.group(3), 16), m.group(4)))
             if not m or int(m.group(3), 16) < 16:
                 continue
             name, addr, size, tail = m.group(1), int(m.group(2), 16), int(m.group(3), 16), m.group(4)
@@ -155,7 +157,65 @@ def map_functions(ver: str) -> dict[str, dict[str, tuple[int, int, str]]]:
         hits = [h for h in hits if seen[h[1]] == 1]
         keep = lis_keep([(h[0], h[1]) for h in hits])
         out[mod] = {h[2]: (h[1], h[3], h[4]) for i, h in enumerate(hits) if i in keep}
+        out[mod].update(walk_neighbours(us_t, rg_t, fns, out[mod]))
     return out
+
+
+def ends_function(word: bytes) -> bool:
+    w = be32(word, 0)
+    return (w == 0x4E800020 or w == 0x4C000064 or w == 0  # blr, rfi, padding
+            or (w >> 26 == 18 and not w & 1)              # b (no link)
+            or w == 0x4E800420)                           # bctr
+
+
+def walk_neighbours(us_t, rg_t, fns, mapped):
+    """Functions too small or too common to place by search, placed next to a mapped neighbour.
+
+    Walking forward and backward from every placed function, the next USA function sits at the
+    same distance in the region when its masked code is there; stops at the first difference."""
+    def code(sections, addr, size):
+        return next((b[addr - v:addr - v + size] for v, b in sections if v <= addr and addr + size <= v + len(b)), None)
+    order = sorted(fns)  # (us addr, name, size, tail)
+    index = {f[1]: i for i, f in enumerate(order)}
+    placed = {n: a for n, (a, _, _) in mapped.items()}
+    taken = set(placed.values())
+    sizes = {f[1]: f[2] for f in order}
+    spans = sorted((a, a + sizes.get(n, 4)) for n, a in placed.items())
+    found = {}
+    changed = True
+    while changed:
+        changed = False
+        for name in list(placed):
+            if name not in index:
+                continue
+            i = index[name]
+            for step in (1, -1):
+                j = i
+                while 0 <= j + step < len(order):
+                    a_us, a_name = order[j][0], order[j][1]
+                    b_us, b_name, b_size, b_tail = order[j + step]
+                    if b_name in placed:
+                        j += step
+                        continue
+                    b_rg = placed[a_name] + (b_us - a_us)
+                    us_code, rg_code = code(us_t, b_us, b_size), code(rg_t, b_rg, b_size)
+                    if b_rg in taken or not us_code or not rg_code or masked(us_code) != masked(rg_code):
+                        break
+                    # a function starts after one that ended (blr, b, rfi, padding) or a section start;
+                    # otherwise this is the tail of a longer region function (a lone blr, for example)
+                    prev = code(rg_t, b_rg - 4, 4)
+                    if b_size <= 4 or (prev is not None and not ends_function(prev)):
+                        break
+                    lo = bisect.bisect_right(spans, (b_rg, float("inf"))) - 1
+                    if (lo >= 0 and spans[lo][1] > b_rg) or (lo + 1 < len(spans) and spans[lo + 1][0] < b_rg + b_size):
+                        break  # would overlap a function already placed in the region
+                    bisect.insort(spans, (b_rg, b_rg + b_size))
+                    placed[b_name] = b_rg
+                    taken.add(b_rg)
+                    found[b_name] = (b_rg, b_size, b_tail)
+                    changed = True
+                    j += step
+    return found
 
 
 # ---------------------------------------------------------------- 2. split and compare
@@ -805,6 +865,15 @@ def _main(argv=None) -> int:
                     break
 
         # write
+        # DOL addresses the region's RELs relocate against: keep them in the link, as dtk does
+        # for the USA symbols it knows the RELs use
+        rel_refs = set()
+        for rmod in MODS:
+            if rmod == "main":
+                continue
+            for _, (mid, _, add) in rel_relocations(orig_file(ver, rmod).read_bytes()).items():
+                if mid == 0:
+                    rel_refs.add(add)
         for mod in MODS:
             if mod in verbatim:
                 cfg(ver, mod, "symbols.txt").write_text(verbatim[mod])
@@ -813,6 +882,8 @@ def _main(argv=None) -> int:
             for n, (sec, a) in sorted(named[mod].items(), key=lambda kv: (kv[1][1], kv[0])):
                 if n in funcs[mod]:
                     _, size, tail = funcs[mod][n]
+                    if mod == "main" and a in rel_refs and "force_active" not in tail:
+                        tail += " force_active"
                     lines.append(f"{n} = .text:0x{a:08X}; // type:function size:0x{size:X}{tail}")
                 else:
                     kind = ("function" if n in fn_kind else "label") if sec in (".text", ".init") else "object"
@@ -893,6 +964,16 @@ def _main(argv=None) -> int:
                 break
             for dmod, n in dups:
                 a = auto_addr(n, dmod, mod_id, main_secs)
+                if not a and n in named[dmod]:
+                    # dtk recognised this function itself (a runtime signature) elsewhere in the
+                    # region: keep dtk's, drop the placement by neighbours
+                    del named[dmod][n]
+                    fn_kind.discard(n)
+                    path = cfg(ver, dmod, "symbols.txt")
+                    path.write_text("".join(l for l in path.read_text().splitlines(keepends=True)
+                                            if not l.startswith(f"{n} = ")))
+                    print(f"{ver}: {n} left to dtk", file=sys.stderr)
+                    continue
                 if not a:
                     raise SystemExit(f"duplicate region symbol {n} has no derivable address")
                 kind = ("function" if n.startswith("fn_") else "label") if a[0] in (".text", ".init") else "object"
