@@ -7582,9 +7582,6 @@ rel/main_rel/stcoli/fn_1_2DB50.c:
 rel/main_rel/car/fn_1_81408.c:
 	.text       start:0x00081408 end:0x000816E8 align:4
 
-rel/main_rel/bg_for/fn_1_DE180.c:
-	.text       start:0x000DE180 end:0x000DE4B0 align:4
-
 rel/main_rel/driver/fn_1_A89B0.c:
 	.text       start:0x000A89B0 end:0x000A8D4C align:4
 
@@ -8077,7 +8074,7 @@ rel/main_rel/memcard/fn_1_C00EC.c:
 	.text       start:0x000C00EC end:0x000C023C align:4
 
 rel/main_rel/bg_for/fn_1_DDF80.c:
-	.text       start:0x000DDF80 end:0x000DE180 align:4
+	.text       start:0x000DDF80 end:0x000DE4B0 align:4
 
 rel/main_rel/ghost/fn_1_EF5E0.c:
 	.text       start:0x000EF5E0 end:0x000EF764 align:4

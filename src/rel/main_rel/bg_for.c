@@ -866,20 +866,17 @@ void fn_1_DD890(DDObj *arg0, f32 arg1) {
 /* fzgx:begin fn_1_DDF80 noprologue */
 #include "types.h"
 #include "psvec.h"
+#include "game/vec3.h"
 
-typedef struct {
-    f32 x;
-    f32 y;
-    f32 z;
-} Vec;
+typedef Vec3 Vec;
 
 /* bg_for.c's literal pool: -1.0f at 0x0, 0.0f at 0x20, 1.0f at 0x28 */
 typedef struct {
-    f32 unk_0;
+    f32 neg_one;
     u8 pad_4[0x1C];
-    f32 unk_20;
+    f32 zero;
     u8 pad_24[0x4];
-    f32 unk_28;
+    f32 one;
 } Pool;
 
 extern const Pool lbl_1_rodata_6780;
@@ -945,7 +942,7 @@ static inline f32 dot(Vec *a, Vec *b) {
 
 /* a helper of its own gives the -1.0 and the final scale retail's register order */
 static inline void flip(const Pool *pool, Vec *v) {
-    psvec_scale(v, pool->unk_0, v);
+    psvec_scale(v, pool->neg_one, v);
 }
 
 void fn_1_DDF80(Vec *a, Vec *b, Vec *along, Vec *side, f32 along_scale, f32 side_scale) {
@@ -955,16 +952,16 @@ void fn_1_DDF80(Vec *a, Vec *b, Vec *along, Vec *side, f32 along_scale, f32 side
     f32 s;
 
     c = lbl_8006D534(a, b);
-    s = lbl_8006D0B4(pool->unk_28 - (f32)(c * c));
+    s = lbl_8006D0B4(pool->one - (f32)(c * c));
     fn_80008BA8(along, b, sizeof(Vec));
     lbl_8006D5F0(along, along, along_scale * c);
     fn_80008BA8(&pos, a, sizeof(Vec));
     cross(&pos, b, side);
     cross(side, b, side);
-    if (dot(side, side) > pool->unk_20) {
+    if (dot(side, side) > pool->zero) {
         lbl_8006D668(side);
     }
-    if (!(dot(&pos, side) > pool->unk_20)) {
+    if (!(dot(&pos, side) > pool->zero)) {
         flip(pool, side);
     }
     psvec_scale(side, side_scale * s, side);
@@ -977,26 +974,7 @@ void fn_1_DDF80(Vec *a, Vec *b, Vec *along, Vec *side, f32 along_scale, f32 side
 /* fzgx:begin fn_1_DE180 noprologue */
 #include "types.h"
 #include "psvec.h"
-#include "types.h"
-
-/* begin game/vec3.h (deltawave784/windows-and-types@cf9407c75) */
-#ifndef GAME_VEC3_H
-#define GAME_VEC3_H
-
-// Three-float vector shared by the main_rel type headers (camera, car, font, ghost,
-// live_camera each carried an identical private copy); Vec3f likewise (car, screen_effect,
-// stcoli). Hand-owned (librarian).
-
-
-typedef struct Vec3 {
-    f32 x;
-    f32 y;
-    f32 z;
-} Vec3;
-
-#endif  // GAME_VEC3_H
-
-/* end game/vec3.h */
+#include "game/vec3.h"
 
 typedef struct fn_1_DE180_Obj {
     u8 pad_0[0x18];
@@ -1012,16 +990,7 @@ typedef struct fn_1_DE180_Obj {
     u64 flags;
 } fn_1_DE180_Obj;
 
-/* shared literal pool: -1.0f at 0x0, 0.0f at 0x20, 1.0f at 0x28 */
-typedef struct fn_1_DE180_Pool {
-    f32 neg_one;
-    u8 pad_4[0x1C];
-    f32 zero;
-    u8 pad_24[0x4];
-    f32 one;
-} fn_1_DE180_Pool;
-
-extern const fn_1_DE180_Pool lbl_1_rodata_6780;
+typedef Pool fn_1_DE180_Pool;
 
 extern f32 lbl_8006D534(Vec3 *, Vec3 *);
 extern f32 lbl_8006D0B4(f32);

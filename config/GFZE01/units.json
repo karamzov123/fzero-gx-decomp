@@ -57327,17 +57327,7 @@
     "module": "main_rel",
     "source": "rel/main_rel/bg_for/fn_1_DDF80.c",
     "symbols": [
-      "fn_1_DDF80"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bg_for.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bg_for/fn_1_DE180.c",
-    "symbols": [
+      "fn_1_DDF80",
       "fn_1_DE180"
     ],
     "status": "matching",
