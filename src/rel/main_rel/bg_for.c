@@ -2620,79 +2620,7 @@ extern void fn_1_E1408(void *, void *);
 
 #include "psvec.h"
 
-/* bg_for.c's literal pool up to 1.0f at 0x28, so -1.0f, 0.0f and 1.0f land at retail's offsets */
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
-    volatile f32 s;  /* fzgx-allow: S2 pool primer sink */
-    s = -1.0f;
-    s = 0.9999998807907104f;
-    s = 1.0000001192092896f;
-    s = -1.0000001192092896f;
-    s = -0.9999998807907104f;
-}
-static const u32 fzgx_pool_table2[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    d = 1.1920928955078125e-07;
-    s = 0.0f;
-    s = 5.0f;
-    s = 1.0f;
-}
-static const u32 fzgx_pool_table4[1] = {0x00FF00FF};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 0.10000000149011612f;
-    s = 0.5f;
-    s = 10.0f;
-    s = 182.04444885253906f;
-    d = 4503599627370496.0;
-    s = -0.0027222223579883575f;
-}
-static const u32 fzgx_pool_table6[9] = {0x00000000, 0x3F800000, 0x00000000, 0x00000000, 0x3F800000, 0x00000000, 0x3F800000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep6(void) { const u32 *volatile cp; cp = fzgx_pool_table6; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime7(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 9.58738019107841e-05f;
-    s = 1.5f;
-    s = -1.1920928955078125e-07f;
-    s = 1.1920928955078125e-07f;
-    d = 4503601774854144.0;
-    s = 60.0f;
-    s = 1000000.0f;
-    s = 250000.0f;
-    s = 20.0f;
-}
-static const u32 fzgx_pool_table8[6] = {0x00000000, 0x3F800000, 0x00000000, 0x00000000, 0x3F800000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep8(void) { const u32 *volatile cp; cp = fzgx_pool_table8; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime9(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = -0.009999999776482582f;
-    s = 0.009999999776482582f;
-    s = -1.0099999904632568f;
-    s = 9.999999747378752e-05f;
-}
-static const u32 fzgx_pool_table10[3] = {0x00000000, 0x3F800000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep10(void) { const u32 *volatile cp; cp = fzgx_pool_table10; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime11(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 0.9900000095367432f;
-    s = 2.0f;
-    s = -0.0f;
-    d = 216.0;
-    d = 3.1415927410125732;
-    d = 4.0;
-    d = 60.0;
-    s = 1.0099999904632568f;
-    s = 0.05000000074505806f;
-    s = 1.0010000467300415f;
-    s = 0.8999999761581421f;
-    s = 3.0f;
-}
-static const u32 fzgx_pool_table12[1] = {0x3FE00000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep12(void) { const u32 *volatile cp; cp = fzgx_pool_table12; }  /* fzgx-allow: S2 pool primer sink */
-#pragma section code_type ".text"
+extern const f32 lbl_1_rodata_6780[];
 
 typedef Vec3 Vec;
 
@@ -2810,18 +2738,18 @@ static inline f32 dot(Vec *a, Vec *b) {
     return result;
 }
 
-static inline void perp(Vec *a, Vec *b, Vec *out) {
+static inline void perp(const f32 *pool, Vec *a, Vec *b, Vec *out) {
     Vec *n = out;
     cross(a, b, out);
     cross(out, b, out);
-    if (dot(out, out) > 0.0f) {
+    if (dot(out, out) > pool[8]) {
         lbl_8006D668(n);
     }
 }
 
-static inline BOOL clamp(Vec *v, f32 r) {
+static inline BOOL clamp(const f32 *pool, Vec *v, f32 r) {
     Vec *p;
-    if (r < 0.0f) {
+    if (r < pool[8]) {
         return FALSE;
     }
     p = v;
@@ -2833,19 +2761,19 @@ static inline BOOL clamp(Vec *v, f32 r) {
 }
 
 /* a helper of its own for the -1.0 flip, as in fn_1_DDF80 / fn_1_DF6AC */
-static inline void flip(Vec *v) {
-    psvec_scale(v, -1.0f, v);
+static inline void flip(const f32 *pool, Vec *v) {
+    psvec_scale(v, pool[0], v);
 }
 
-static inline void split(Vec *a, Vec *b, Vec *along, Vec *side, f32 along_scale, f32 side_scale, f32 c, f32 s) {
+static inline void split(const f32 *pool, Vec *a, Vec *b, Vec *along, Vec *side, f32 along_scale, f32 side_scale, f32 c, f32 s) {
     Vec pos;
 
     fn_80008BA8(along, b, sizeof(Vec));
     lbl_8006D5F0(along, along, along_scale * c);
     fn_80008BA8(&pos, a, sizeof(Vec));
-    perp(&pos, b, side);
-    if (!(dot(&pos, side) > 0.0f)) {
-        flip(side);
+    perp(pool, &pos, b, side);
+    if (!(dot(&pos, side) > pool[8])) {
+        flip(pool, side);
     }
     psvec_scale(side, side_scale * s, side);
 }
@@ -2853,7 +2781,7 @@ static inline void split(Vec *a, Vec *b, Vec *along, Vec *side, f32 along_scale,
 /* fn_1_DE180's body, which retail inlines here three times; split is fn_1_DDF80's body (as in fn_1_DF6AC)
  * taking the precomputed dot and sqrt */
 #pragma inline_max_size(4096)
-static inline void slide(Obj *obj, Vec *dir, f32 radius) {
+static inline void slide(const f32 *pool, Obj *obj, Vec *dir, f32 radius) {
     Vec push;
     Vec side;
     f32 s;
@@ -2864,23 +2792,24 @@ static inline void slide(Obj *obj, Vec *dir, f32 radius) {
         return;
     }
     dist = lbl_8006D534(&obj->pos, dir);
-    if (dist > 0.0f) {
+    if (dist > pool[8]) {
         return;
     }
-    s = lbl_8006D0B4(1.0f - (f32)(dist * dist));
+    s = lbl_8006D0B4(pool[10] - (f32)(dist * dist));
     k = obj->unk_50;
-    split(&obj->pos, dir, &push, &side, k * -obj->unk_18, k, dist, s);
-    if (clamp(&push, radius) == TRUE) {
+    split(pool, &obj->pos, dir, &push, &side, k * -obj->unk_18, k, dist, s);
+    if (clamp(pool, &push, radius) == TRUE) {
         obj->flags |= 0x8000;
         if ((obj->flags & 0x8000000) == 0) {
             obj->flags |= 0x100000000ULL;
         }
     }
     psvec_add(&push, &side, &obj->pos);
-    psvec_scale(&obj->vel, 1.0f - obj->unk_20, &obj->vel);
+    psvec_scale(&obj->vel, pool[10] - obj->unk_20, &obj->vel);
 }
 
 s32 fn_1_E07B8(Obj *obj) {
+    const f32 *const pool = lbl_1_rodata_6780;
     Vec cur;
     Vec prev;
     Vec ofs;
@@ -2889,6 +2818,7 @@ s32 fn_1_E07B8(Obj *obj) {
     f32 info;
     f32 t;
     f32 sc;
+    f32 scale;
     void *p;
     s32 ret;
     s16 r;
@@ -2899,7 +2829,8 @@ s32 fn_1_E07B8(Obj *obj) {
     if ((obj->flags & 0x20) != 0) {
         return 0;
     }
-    sc = 1.01f * obj->unk_84 * obj->unk_F8;
+    scale = pool[62] * obj->unk_84;
+    sc = scale * obj->unk_F8;
     fn_80008BA8(&cur, &obj->unk_54, sizeof(Vec));
     fn_80008BA8(&prev, &obj->unk_60, sizeof(Vec));
     fn_80008BA8(&ofs, &obj->unk_128, sizeof(Vec));
@@ -2930,7 +2861,7 @@ s32 fn_1_E07B8(Obj *obj) {
                 obj->flags |= 0x8000000;
             }
             psvec_add(&obj->unk_54, &push, &obj->unk_54);
-            slide(obj, &obj->unk_11C, 0.05f * obj->unk_18);
+            slide(pool, obj, &obj->unk_11C, pool[63] * obj->unk_18);
         }
         break;
     case 0:
@@ -2939,7 +2870,7 @@ s32 fn_1_E07B8(Obj *obj) {
             fn_1_15578(&cur, &prev, &t, &hit, 5, &obj->unk_100,
                        ((Entry *)lbl_1_bss_3BE0->unk_C)[obj->unk_100].unk_0, 0, 0, 0) != 0) {
             if ((*(u32 *)((u8 *)p + 0x118) & 4) != 0) {
-                slide(obj, (Vec *)&hit, 0.05f * obj->unk_18);
+                slide(pool, obj, (Vec *)&hit, pool[63] * obj->unk_18);
             }
             ret = 1;
             obj->flags |= 0x40000000;
@@ -2947,10 +2878,10 @@ s32 fn_1_E07B8(Obj *obj) {
             if ((obj->flags & 0x10000) != 0) {
                 fn_80008BA8(&obj->unk_128, &obj->unk_11C, sizeof(Vec));
             }
-            psvec_scale(&ofs, 1.001f, &ofs);
+            psvec_scale(&ofs, pool[64], &ofs);
             psvec_sub(&cur, &ofs, &cur);
             fn_80008BA8(&obj->unk_54, &cur, sizeof(Vec));
-            slide(obj, &obj->unk_11C, 0.05f * obj->unk_18);
+            slide(pool, obj, &obj->unk_11C, pool[63] * obj->unk_18);
         }
         break;
     }
