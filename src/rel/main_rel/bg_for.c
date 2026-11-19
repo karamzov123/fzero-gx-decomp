@@ -877,7 +877,7 @@ typedef struct {
 extern const f32 lbl_1_rodata_6780[];
 extern f32 lbl_8006D534(Vec *, Vec *);
 extern f32 lbl_8006D0B4(f32);
-extern void fn_80008BA8(void *, void *, u32);
+extern void fn_80008BA8(void *, const void *, u32);
 extern void lbl_8006D5F0(Vec *, Vec *, f32);
 extern void lbl_8006D668(Vec *);
 
@@ -989,7 +989,7 @@ typedef Pool fn_1_DE180_Pool;
 
 extern f32 lbl_8006D534(Vec3 *, Vec3 *);
 extern f32 lbl_8006D0B4(f32);
-extern void fn_80008BA8(void *, void *, u32);
+extern void fn_80008BA8(void *, const void *, u32);
 extern void lbl_8006D5F0(Vec3 *, Vec3 *, f32);
 extern void lbl_8006D668(Vec3 *);
 extern void fn_80008BEC(void *, int, u32);
@@ -1987,7 +1987,7 @@ typedef struct {
 
 extern f32 lbl_8006D534(Vec *, Vec *);
 extern f32 lbl_8006D0B4(f32);
-extern void fn_80008BA8(void *, void *, u32);
+extern void fn_80008BA8(void *, const void *, u32);
 extern void fn_80008BEC(void *, int, u32);
 extern void lbl_8006D5F0(Vec *, Vec *, f32);
 extern void lbl_8006D668(Vec *);
@@ -2300,7 +2300,7 @@ typedef struct {
 extern u32 lbl_801A66A0;
 extern f32 lbl_8006D534(Vec *, Vec *);
 extern f32 lbl_8006D0B4(f32);
-extern void fn_80008BA8(void *, void *, u32);
+extern void fn_80008BA8(void *, const void *, u32);
 extern void lbl_8006D5F0(Vec *, Vec *, f32);
 extern void lbl_8006D668(Vec *);
 extern void lbl_8006D5A4(Vec *, Vec *, Vec *, f32);
@@ -2794,7 +2794,7 @@ extern s16 fn_1_DF2A4(Vec *, Vec *, Vec *, Vec *, Vec *, Vec *, Vec *, f32, f32)
 extern void lbl_8006D5A4(Vec *, Vec *, Vec *, f32);
 extern f32 lbl_8006D534(Vec *, Vec *);
 extern f32 lbl_8006D0B4(f32);
-extern void fn_80008BA8(void *, void *, u32);
+extern void fn_80008BA8(void *, const void *, u32);
 extern void lbl_8006D5F0(Vec *, Vec *, f32);
 extern void lbl_8006D668(Vec *);
 extern void fn_80008BEC(void *, int, u32);
@@ -3357,7 +3357,7 @@ extern void fn_1_E5A0C(void *, void *);
 extern void fn_1_E5A50(void *, void *);
 extern void fn_1_E5A94(void *, void *);
 extern void fn_1_E5AD8(void *, f32);
-extern void fn_80008BA8(void *, void *, u32);
+extern void fn_80008BA8(void *, const void *, u32);
 extern const f32 lbl_1_rodata_6780[];
 
 typedef struct {
