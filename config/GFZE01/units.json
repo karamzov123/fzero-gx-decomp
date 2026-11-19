@@ -3822,13 +3822,7 @@
     ],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/customize/emb_paste_editor.c",
-    "pool": {
-      "...rodata.0": "lbl_3_rodata_288",
-      "@18": "lbl_3_rodata_288+0x34",
-      "@50": "lbl_3_rodata_288+0xA8",
-      "@112": "lbl_3_rodata_450"
-    }
+    "tu": "rel/customize/emb_paste_editor.c"
   },
   {
     "module": "customize",
@@ -51061,12 +51055,7 @@
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/accessory.c",
-    "pool": {
-      "...rodata.0": "lbl_1_rodata_7AB8",
-      "@41": "lbl_1_rodata_7B1C",
-      "@42": "lbl_1_rodata_7B20"
-    }
+    "tu": "rel/main_rel/accessory.c"
   },
   {
     "module": "main_rel",
@@ -51664,10 +51653,7 @@
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/accessory.c",
-    "pool": {
-      "...rodata.0": "lbl_1_rodata_7AB8"
-    }
+    "tu": "rel/main_rel/accessory.c"
   },
   {
     "module": "main_rel",
@@ -57327,12 +57313,7 @@
     ],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c",
-    "pool": {
-      "...rodata.0": "lbl_1_rodata_41F0",
-      "@48": "lbl_1_rodata_4244",
-      "@9": "lbl_1_rodata_41FC"
-    }
+    "tu": "rel/main_rel/burner.c"
   },
   {
     "module": "main_rel",
@@ -134696,12 +134677,7 @@
     ],
     "mw_version": "GC/1.3",
     "extra_cflags": [],
-    "tu": "rel/main_rel/phys.c",
-    "pool": {
-      "...rodata.0": "lbl_1_rodata_6780",
-      "@19": "lbl_1_rodata_6780+0x20",
-      "@49": "lbl_1_rodata_6808"
-    }
+    "tu": "rel/main_rel/phys.c"
   },
   {
     "module": "main_rel",
@@ -166322,11 +166298,7 @@
     "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/sel/sel.c",
-    "pool": {
-      "...rodata.0": "lbl_10_rodata_158",
-      "@9": "lbl_10_rodata_1A4"
-    }
+    "tu": "rel/sel/sel.c"
   },
   {
     "module": "sel",

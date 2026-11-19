@@ -883,111 +883,7 @@ extern Obj_3_bss_9F690 lbl_3_bss_9F690;
 
 /* end rel/customize/emb_paste_editor.h */
 
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
-    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 50.0f;
-    s = 500.0f;
-    s = 31.200000762939453f;
-    s = 312.0f;
-    s = 68.0f;
-    s = 20.0f;
-    s = 96.0f;
-    s = 1.3600000143051147f;
-    s = 161.0f;
-    s = 1.015625f;
-    s = 129.0f;
-    s = 15.0f;
-    s = 10.0f;
-    s = 0.0f;
-    s = 86.0f;
-    s = 0.5f;
-    s = 139.0f;
-    s = 75.0f;
-    d = 4503601774854144.0;
-}
-static const unsigned long fzgx_pool_table2[3] = {0xFFFF0000, 0xFFFF0000, 0xFFFFFF00};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const unsigned long *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
-    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 185.0f;
-    s = 180.0f;
-    s = 276.0f;
-    s = 116.0f;
-    s = 7.0f;
-    s = 205.0f;
-    s = 11.399999618530273f;
-    s = 40.0f;
-    s = 65536.0f;
-    s = 60.0f;
-    s = 80.0f;
-    s = 274.0f;
-    s = 0.5833333134651184f;
-    s = 0.5416666865348816f;
-    s = 0.4583333432674408f;
-    d = 4503599627370496.0;
-    s = 320.0f;
-    s = 240.0f;
-    s = 5.0f;
-    s = 6.099999904632568f;
-    s = 0.800000011920929f;
-    s = 228.0f;
-    s = 252.0f;
-    s = 0.10000000149011612f;
-    s = -30.0f;
-    s = 750.0f;
-    s = 48.0f;
-    s = 660.0f;
-    s = 44.0f;
-    s = 24.0f;
-    s = 302.0f;
-    s = 70.0f;
-    s = 330.0f;
-    s = 1.2699999809265137f;
-    s = 390.0f;
-    s = 308.0f;
-    s = 1.0f;
-    s = 368.0f;
-    s = 360.0f;
-    s = 30.0f;
-    s = 0.4000000059604645f;
-    s = 32768.0f;
-    s = 0.90625f;
-    s = 0.921875f;
-    s = 0.9375f;
-}
-static const unsigned long fzgx_pool_table4[25] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x40A00000, 0xC1700000, 0x00000000, 0x40200000, 0xC1700000, 0x00000000, 0x40A00000, 0xC1700000, 0x00000000, 0x40200000, 0xC1700000, 0x00000000, 0x00000000, 0x00000000, 0x40A00000, 0xC1700000, 0x00000000, 0x40200000, 0xC1700000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const unsigned long *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
-    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 55.0f;
-    s = 90000.0f;
-    s = 95.0f;
-    s = 17.0f;
-    s = 354.0f;
-    s = 310.0f;
-    s = 365.0f;
-    s = 143.0f;
-    s = 19.29990005493164f;
-    s = 0.009999999776482582f;
-    s = 0.75f;
-    s = 351.0f;
-    s = 387.0f;
-    s = 0.6000000238418579f;
-    s = 0.699999988079071f;
-    s = 348.0f;
-    s = 384.0f;
-}
-static const unsigned long fzgx_pool_table6[1] = {0xFFFFFFFF};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep6(void) { const unsigned long *volatile cp; cp = fzgx_pool_table6; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime7(void) {
-    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 200.0f;
-    s = 0.05000000074505806f;
-    s = 0.3499999940395355f;
-    s = 0.0005000000237487257f;
-}
-#pragma section code_type ".text"
+
 
 struct InputEntry { u16 unk_0; u8 pad_2[0x12]; };
 struct InputState {
@@ -1022,7 +918,19 @@ typedef struct {
 
 #pragma opt_dead_assignments off
 #pragma opt_propagation off
+typedef struct {
+    u8 pad_0[0x34];
+    f32 zero;    /* 0x034 */
+    u8 pad_38[0x70];
+    f32 five;    /* 0x0A8 */
+    u8 pad_AC[0x11C];
+    f32 scale;   /* 0x1C8: 0.35f */
+} EmbPastePool106FC;
+extern const u8 lbl_3_rodata_288[];
+
 void fn_3_106FC(void) {
+    const EmbPastePool106FC *pool = (const EmbPastePool106FC *)(const void *)&lbl_3_rodata_288;
+
     struct InputEntry *buttons;
     Obj_3_bss_7EDD8 *q;
     u32 index;
@@ -1102,22 +1010,22 @@ void fn_3_106FC(void) {
                 e.slot->unk_24 |= 0x80000000;
                 e.slot->unk_28 = *(u32 *)&r->unk_26;
                 e.slot->unk_2C = r->unk_2A;
-                e.view->eye.z = 5.0f;
-                e.view->eye.x = 0.0f;
-                e.view->eye.y = 0.0f;
-                e.view->at.x = 0.0f;
-                e.view->at.y = 0.0f;
-                e.view->at.z = 0.0f;
-                e.slot->unk_60 = e.slot->unk_64 = 0.35f;
+                e.view->eye.z = pool->five;
+                e.view->eye.x = pool->zero;
+                e.view->eye.y = pool->zero;
+                e.view->at.x = pool->zero;
+                e.view->at.y = pool->zero;
+                e.view->at.z = pool->zero;
+                e.slot->unk_60 = e.slot->unk_64 = pool->scale;
                 *(ViewVecs *)&e.slot->unk_48 = *e.view;
                 r->unk_10 = e.zero;
                 r->unk_C = e.state;
-                e.cam->unk_4 = 0.0f;
-                e.cam->unk_8 = 0.0f;
-                e.cam->unk_C = 5.0f;
-                e.cam->unk_10 = 0.0f;
-                e.cam->unk_14 = 0.0f;
-                e.cam->unk_18 = 0.0f;
+                e.cam->unk_4 = pool->zero;
+                e.cam->unk_8 = pool->zero;
+                e.cam->unk_C = pool->five;
+                e.cam->unk_10 = pool->zero;
+                e.cam->unk_14 = pool->zero;
+                e.cam->unk_18 = pool->zero;
                 *(s16 *)(recs + r->unk_15 * 0x2060) = r->unk_1C;
                 fn_80008BA8((u8 *)e.slot + 0x80,
                             lbl_3_bss_87000.banks[p->unk_3C].items[p->unk_1E + p->unk_1F], 0x2000);

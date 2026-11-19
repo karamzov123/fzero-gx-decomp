@@ -7686,49 +7686,7 @@ next:
 #include "rel/main_rel/globals.h"
 #include "rel/main_rel/background.h"
 
-#pragma section code_type ".fzgxpool"
-static const u32 fzgx_pool_table1[3] = {0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 0.0f;
-    s = 6885000.0f;
-}
-static const u32 fzgx_pool_table3[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep3(void) { const u32 *volatile cp; cp = fzgx_pool_table3; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime4(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    d = 4503599627370496.0;
-}
-static const u32 fzgx_pool_table5[2] = {0x000000FF, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep5(void) { const u32 *volatile cp; cp = fzgx_pool_table5; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime6(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    d = 4503601774854144.0;
-    s = 60.0f;
-}
-static const u32 fzgx_pool_table7[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep7(void) { const u32 *volatile cp; cp = fzgx_pool_table7; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime8(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    d = 0.5;
-    d = 1.0;
-    s = 182.04444885253906f;
-}
-static const u32 fzgx_pool_table9[2] = {0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static inline void fzgx_pool_keep9(void) { const u32 *volatile cp; cp = fzgx_pool_table9; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime10(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 1.0f;
-    s = 0.4000000059604645f;
-    s = 0.01666666753590107f;
-    s = -90000.0f;
-    s = 100.0f;
-    s = -401.0f;
-    s = -0.10000000149011612f;
-    s = 0.009999999776482582f;
-}
-#pragma section code_type ".text"
+
 
 typedef struct {
     f32 x;
@@ -7788,7 +7746,21 @@ extern Obj_1_data_2A7E0_At3C *lbl_801A66CC;
 
 /* Builds the draw-group mask placed objects are tested against (Big Blue swaps its above- and under-water
  * groups by camera height) and records the followed machine and viewport slot for this frame. */
+typedef struct {
+    u8 pad_0[0xC];
+    f32 zero;       /* 0x00C */
+    u8 pad_10[0x44];
+    f32 one;        /* 0x054 */
+    u8 pad_58[0xC];
+    f32 hundred;    /* 0x064: 100.0f */
+    f32 neg_401;    /* 0x068: -401.0f */
+    f32 neg_tenth;  /* 0x06C: -0.1f */
+} BurnerPool9C724;
+extern const u8 lbl_1_rodata_41F0[];
+
 void fn_1_9C724(void) {
+    const BurnerPool9C724 *pool = (const BurnerPool9C724 *)(const void *)&lbl_1_rodata_41F0;
+
     fn_1_9C724_Vec eye;
     fn_1_9C724_Vec pos;
     fn_1_9C724_Progress *progress;
@@ -7826,7 +7798,7 @@ void fn_1_9C724(void) {
         lbl_8006DCA4();
         fn_8006E294(&eye);
         lbl_8006DB30();
-        if ((fn_1_7B054() == 14 && eye.y < 100.0f) || (fn_1_7B054() == 27 && eye.y < -401.0f)) {
+        if ((fn_1_7B054() == 14 && eye.y < pool->hundred) || (fn_1_7B054() == 27 && eye.y < pool->neg_401)) {
             underwater = 1;
         }
     }
@@ -7875,9 +7847,9 @@ void fn_1_9C724(void) {
                 stored = lbl_1_bss_6EA40[slot];
             }
         } else if (camera_is_mode_0x0b() != 0) {
-            z = -0.1f;
-            pos.y = 1.0f;
-            pos.x = 0.0f;
+            z = pool->neg_tenth;
+            pos.y = pool->one;
+            pos.x = pool->zero;
             pos.z = z;
             part = ((fn_1_9C724_Entry *)lbl_1_bss_3BE0->unk_C)->unk_8;
             root_group = part != NULL ? part->unk_38 : 0;
