@@ -879,7 +879,7 @@ extern f32 lbl_8006D534(Vec *, Vec *);
 extern f32 lbl_8006D0B4(f32);
 extern void fn_80008BA8(void *, const void *, u32);
 extern void lbl_8006D5F0(Vec *, Vec *, f32);
-extern void lbl_8006D668(Vec *);
+extern f32 lbl_8006D668(Vec *);
 
 /* opt_common_subs off as in fn_1_DE180, which repeats this code; opt_propagation off keeps the pool pointer
  * in one register from the start, as retail does */
@@ -991,7 +991,7 @@ extern f32 lbl_8006D534(Vec3 *, Vec3 *);
 extern f32 lbl_8006D0B4(f32);
 extern void fn_80008BA8(void *, const void *, u32);
 extern void lbl_8006D5F0(Vec3 *, Vec3 *, f32);
-extern void lbl_8006D668(Vec3 *);
+extern f32 lbl_8006D668(Vec3 *);
 extern void fn_80008BEC(void *, int, u32);
 
 #pragma opt_common_subs off
@@ -1137,11 +1137,7 @@ extern void lbl_8006DB30(void);
 extern void fn_1_E1408(void *, void *);
 
 
-typedef struct {
-    f32 x;
-    f32 y;
-    f32 z;
-} DE4B0Vec;
+typedef Vec3 DE4B0Vec;
 
 typedef struct {
     f32 x, y, z, w;
@@ -1173,7 +1169,7 @@ extern void fn_1_E5840(void *, const void *);
 extern void lbl_8006DBAC(void *);
 extern void lbl_8006E1C0(void *, void *);
 extern void lbl_8006E1B0(void *, void *);
-extern f32 lbl_8006D668(void *);
+extern f32 lbl_8006D668(Vec3 *);
 extern void fn_80008BA8(void *, const void *, u32);
 extern void fn_8006E978(DE4B0Quat *, DE4B0Vec *, DE4B0Vec *);
 extern void mathutil_mtxA_from_quat(DE4B0Quat *);
@@ -1606,7 +1602,7 @@ extern f32 lbl_8006D534(Vec3 *, Vec3 *);
 extern void lbl_8006D5F0(Vec3 *, Vec3 *, f32);
 extern void fn_8006E250(Vec3 *, Vec3 *);
 extern f32 lbl_8006D0E8(f32);
-extern void lbl_8006D668(Vec3 *);
+extern f32 lbl_8006D668(Vec3 *);
 extern void lbl_8006E1C0(Vec3 *, Vec3 *);
 
 /* as in fn_1_DFBBC and fn_1_DF2A4: retail reloads every field at each use and keeps the
@@ -1979,18 +1975,14 @@ extern void fn_1_E1408(void *, void *);
 
 #include "psvec.h"
 
-typedef struct {
-    f32 x;
-    f32 y;
-    f32 z;
-} Vec;
+typedef Vec3 Vec;
 
 extern f32 lbl_8006D534(Vec *, Vec *);
 extern f32 lbl_8006D0B4(f32);
 extern void fn_80008BA8(void *, const void *, u32);
 extern void fn_80008BEC(void *, int, u32);
 extern void lbl_8006D5F0(Vec *, Vec *, f32);
-extern void lbl_8006D668(Vec *);
+extern f32 lbl_8006D668(Vec *);
 
 /* bg_for.c's literal pool up to 1.0f at 0x28, so -1.0f, 0.0f and 1.0f land at retail's offsets */
 #pragma section code_type ".fzgxpool"
@@ -2237,11 +2229,7 @@ static const u32 fzgx_pool_table12[1] = {0x3FE00000};  /* fzgx-allow: A1 retail 
 __declspec(section ".fzgxpool") static void fzgx_pool_keep12(void) { const u32 *volatile cp; cp = fzgx_pool_table12; }  /* fzgx-allow: S2 pool primer sink */
 #pragma section code_type ".text"
 
-typedef struct {
-    f32 x;
-    f32 y;
-    f32 z;
-} Vec;
+typedef Vec3 Vec;
 
 typedef struct {
     u8 pad_0[0x90];
@@ -2302,7 +2290,7 @@ extern f32 lbl_8006D534(Vec *, Vec *);
 extern f32 lbl_8006D0B4(f32);
 extern void fn_80008BA8(void *, const void *, u32);
 extern void lbl_8006D5F0(Vec *, Vec *, f32);
-extern void lbl_8006D668(Vec *);
+extern f32 lbl_8006D668(Vec *);
 extern void lbl_8006D5A4(Vec *, Vec *, Vec *, f32);
 extern void lbl_8006DBAC(void *);
 extern void fn_8006E250(Vec *, Vec *);
@@ -2731,11 +2719,7 @@ static const u32 fzgx_pool_table12[1] = {0x3FE00000};  /* fzgx-allow: A1 retail 
 __declspec(section ".fzgxpool") static void fzgx_pool_keep12(void) { const u32 *volatile cp; cp = fzgx_pool_table12; }  /* fzgx-allow: S2 pool primer sink */
 #pragma section code_type ".text"
 
-typedef struct {
-    f32 x;
-    f32 y;
-    f32 z;
-} Vec;
+typedef Vec3 Vec;
 
 typedef struct {
     u8 pad_0[0xC];
@@ -2796,7 +2780,7 @@ extern f32 lbl_8006D534(Vec *, Vec *);
 extern f32 lbl_8006D0B4(f32);
 extern void fn_80008BA8(void *, const void *, u32);
 extern void lbl_8006D5F0(Vec *, Vec *, f32);
-extern void lbl_8006D668(Vec *);
+extern f32 lbl_8006D668(Vec *);
 extern void fn_80008BEC(void *, int, u32);
 
 #pragma opt_common_subs off
