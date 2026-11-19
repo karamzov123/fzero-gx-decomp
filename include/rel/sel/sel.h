@@ -10,14 +10,13 @@
 // lbl_10_bss_51740: .bss size 0x4, 14 refs from sel.c
 extern u32 lbl_10_bss_51740;
 
-// lbl_10_bss_1C: .bss size 0x3A4, 13 refs from sel.c
+// lbl_10_bss_1C: .bss size 0x390, 13 refs from sel.c
 typedef struct {
     s16 unk_0;  // 11 loads, 4 stores
     u8 pad_2[0x2];
     u32 unk_4;  // 19 loads, 0 stores
-    u8 pad_8[0x39C];
 } Obj_10_bss_1C;
-extern Obj_10_bss_1C lbl_10_bss_1C;
+extern Obj_10_bss_1C lbl_10_bss_1C[6][19];
 
 // lbl_10_bss_14: .bss size 0x4, 12 refs from sel.c
 extern u32 lbl_10_bss_14;

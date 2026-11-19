@@ -3673,16 +3673,16 @@ u32 fn_1_12F118(void) {
 /* fzgx:begin fn_1_12F128 */
 // Stores the current global value in the indexed archive slot.
 void fn_1_12F128(s16 index) {
-    (&lbl_1_bss_8B3A0.unk_E0)[index] = lbl_801A66A0;
+    lbl_1_bss_8B3A0.unk_E0[index] = lbl_801A66A0;
 }
 /* fzgx:end fn_1_12F128 */
 
 /* fzgx:begin fn_1_12F150 */
 // Store the timestamp and two values for one archive entry.
 void fn_1_12F150(s16 index, u32 value_100, u32 value_110) {
-    (&lbl_1_bss_8B3A0.unk_F0)[index] = lbl_801A66A0;
-    (&lbl_1_bss_8B3A0.unk_100)[index] = value_100;
-    (&lbl_1_bss_8B3A0.unk_110)[index] = value_110;
+    lbl_1_bss_8B3A0.unk_F0[index] = lbl_801A66A0;
+    lbl_1_bss_8B3A0.unk_100[index] = value_100;
+    lbl_1_bss_8B3A0.unk_110[index] = value_110;
 }
 /* fzgx:end fn_1_12F150 */
 
@@ -3696,22 +3696,22 @@ void fn_1_12F17C(void) {
 // Reset the archived state counters and values.
 void fn_1_12F194(void) {
     lbl_1_bss_8B3A0.unk_120 = 0;
-    lbl_1_bss_8B3A0.unk_F0 = 0;
-    lbl_1_bss_8B3A0.unk_100 = 0;
-    lbl_1_bss_8B3A0.unk_110 = 0;
-    lbl_1_bss_8B3A0.unk_E0 = 0;
-    lbl_1_bss_8B3A0.unk_F4 = 0;
-    lbl_1_bss_8B3A0.unk_104 = 0;
-    lbl_1_bss_8B3A0.unk_114 = 0;
-    lbl_1_bss_8B3A0.unk_E4 = 0;
-    lbl_1_bss_8B3A0.unk_F8 = 0;
-    lbl_1_bss_8B3A0.unk_108 = 0;
-    lbl_1_bss_8B3A0.unk_118 = 0;
-    lbl_1_bss_8B3A0.unk_E8 = 0;
-    lbl_1_bss_8B3A0.unk_FC = 0;
-    lbl_1_bss_8B3A0.unk_10C = 0;
-    lbl_1_bss_8B3A0.unk_11C = 0;
-    lbl_1_bss_8B3A0.unk_EC = 0;
+    lbl_1_bss_8B3A0.unk_F0[0] = 0;
+    lbl_1_bss_8B3A0.unk_100[0] = 0;
+    lbl_1_bss_8B3A0.unk_110[0] = 0;
+    lbl_1_bss_8B3A0.unk_E0[0] = 0;
+    lbl_1_bss_8B3A0.unk_F0[1] = 0;
+    lbl_1_bss_8B3A0.unk_100[1] = 0;
+    lbl_1_bss_8B3A0.unk_110[1] = 0;
+    lbl_1_bss_8B3A0.unk_E0[1] = 0;
+    lbl_1_bss_8B3A0.unk_F0[2] = 0;
+    lbl_1_bss_8B3A0.unk_100[2] = 0;
+    lbl_1_bss_8B3A0.unk_110[2] = 0;
+    lbl_1_bss_8B3A0.unk_E0[2] = 0;
+    lbl_1_bss_8B3A0.unk_F0[3] = 0;
+    lbl_1_bss_8B3A0.unk_100[3] = 0;
+    lbl_1_bss_8B3A0.unk_110[3] = 0;
+    lbl_1_bss_8B3A0.unk_E0[3] = 0;
 }
 /* fzgx:end fn_1_12F194 */
 

@@ -2261,7 +2261,7 @@ void fn_1_1363F0(s16 arg0, s32 arg1, s32 arg2) {
     fn_1_49410();
     fn_1_494DC(0x22);
     fn_1_496FC(lbl_1_rodata_8A1C, lbl_1_rodata_8A14);
-    index = ((Obj_1_bss_8B3A0 *)((u8 *)&lbl_1_bss_8B3A0 + (s16)lbl_1_bss_8B3A0.unk_9E * 0x20))->unk_E;
+    index = lbl_1_bss_8B3A0.unk_C[(s16)lbl_1_bss_8B3A0.unk_9E].unk_2;
     if (index >= 41) {
         base = fn_1_12F118();
         if (base == fn_1_36AD0()) {
@@ -3168,7 +3168,7 @@ void fn_1_138A04(s32 x, s32 y, s32 idx) {
     FontDrawPacket pkt;
 
     data = (const char *)&lbl_1_data_40F58;
-    kind = (&lbl_1_bss_8B3A0.unk_E)[idx * 16];
+    kind = lbl_1_bss_8B3A0.unk_C[idx].unk_2;
     color = fn_1_141F94(idx);
 
     pkt = lbl_1_rodata_26F8;
@@ -4211,7 +4211,7 @@ void fn_1_13A038(Car *car)
     off = 0;
 
     for (; i < 4; i++) {
-        s16 kind = ((Obj_1_bss_8B3A0 *)((u8 *)&lbl_1_bss_8B3A0 + i * 0x20))->unk_E;
+        s16 kind = lbl_1_bss_8B3A0.unk_C[i].unk_2;
 
         if (kind == -1)
             continue;
