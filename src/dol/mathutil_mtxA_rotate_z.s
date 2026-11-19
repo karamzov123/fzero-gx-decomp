@@ -10,6 +10,7 @@
 /* 8006E424 0006B424  7C 88 02 A6 */	mflr r4
 /* 8006E428 0006B428  4B FF ED 9D */	bl lbl_8006D1C4
 /* 8006E42C 0006B42C  7C 88 03 A6 */	mtlr r4
+.sym mathutil_mtxA_rotate_z_s_c, global
 /* 8006E430 0006B430  3C 80 E0 00 */	lis r4, 0xe000
 /* 8006E434 0006B434  10 02 0C 20 */	ps_merge00 f0, f2, f1
 /* 8006E438 0006B438  E0 64 00 00 */	psq_l f3, 0x0(r4), 0, qr0

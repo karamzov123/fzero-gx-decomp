@@ -1731,6 +1731,7 @@ fn_8006E2D8 = .text:0x8006E2D8; // type:label scope:local
 mathutil_mtxA_rotate_x = .text:0x8006E324; // type:function size:0x74
 mathutil_mtxA_rotate_y = .text:0x8006E398; // type:function size:0x8C
 mathutil_mtxA_rotate_z = .text:0x8006E424; // type:function size:0x74 force_active
+mathutil_mtxA_rotate_z_s_c = .text:0x8006E430; // type:label
 mathutil_mtxA_from_quat = .text:0x8006E498; // type:function size:0xA8
 mathutil_quat_mult = .text:0x8006E540; // type:function size:0x74 force_active
 func_80008378 = .text:0x8006E5B4; // type:function size:0x48 force_active
