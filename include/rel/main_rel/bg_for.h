@@ -2,9 +2,10 @@
 #define REL_MAIN_REL_BG_FOR_H
 
 #include "types.h"
+#include "game/vec3.h"
 #include "rel/main_rel/globals.h"
 
-typedef struct { f32 x, y, z; } DDVec;
+typedef Vec3 DDVec;
 typedef struct { f32 m[3][4]; } DDMtx;
 typedef struct {
     u8 pad0[8];

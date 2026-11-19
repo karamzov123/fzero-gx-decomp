@@ -187,7 +187,7 @@ extern void lbl_8006DAEC(void);
 extern void lbl_8006DB30(void);
 extern void fn_1_56298(f32, f32, f32, f32);
 extern f32 lbl_8006D0B4(f32);
-extern void fn_8006EE70(const void *, s16 *);
+extern void fn_8006EE70(const Vec3 *, s16 *);
 extern void mathutil_mtxA_rotate_z(s32);
 extern void mathutil_mtxA_rotate_y(s32);
 extern void mathutil_mtxA_rotate_x(s32);
@@ -195,7 +195,7 @@ extern void lbl_8006E15C(f32, f32, f32);
 extern void fn_1_556B8(void *);
 extern f64 fabs(f64);
 
-typedef struct DCFA4Vec { f32 x,y,z; } DCFA4Vec;
+typedef Vec3 DCFA4Vec;
 typedef struct DCFA4Mtx { f32 m[3][4]; } DCFA4Mtx;
 static inline void matrix_translation(DCFA4Mtx *m) {
     f32 x, y, z;
@@ -355,7 +355,7 @@ extern void fn_1_55FF0(f32);
 extern void lbl_8006D784(void *);
 extern void lbl_8006DBAC(void *);
 extern void lbl_8006DFE8(const void *);
-extern void fn_8006EE70(const void *, s16 *);
+extern void fn_8006EE70(const Vec3 *, s16 *);
 extern void mathutil_mtxA_rotate_z(s32);
 extern void mathutil_mtxA_rotate_y(s32);
 extern void mathutil_mtxA_rotate_x(s32);
@@ -636,12 +636,7 @@ extern void lbl_8006E15C(f32, f32, f32);
 extern void lbl_8006E14C(f32);
 extern void lbl_8006D784(void *);
 extern f32 lbl_8006D0B4(f32);
-typedef struct Sig_fn_8006EE70_Vec3 {
-    f32 x;
-    f32 y;
-    f32 z;
-} Sig_fn_8006EE70_Vec3;
-extern void fn_8006EE70(const Sig_fn_8006EE70_Vec3 *, s16 *);
+extern void fn_8006EE70(const Vec3 *, s16 *);
 extern void fn_1_A8DD4(const char *, ...);
 extern void fn_1_E50F0(void *, void (*)(const char *, ...));
 extern void fn_1_E5164(void *, void (*)(const char *, ...));
@@ -833,7 +828,7 @@ void fn_1_DD890(DDObj *arg0, f32 arg1) {
         sum += z * z;
         length = lbl_8006D0B4(sum);
         if (!(__fabs(length) < 1.1920928955078125e-07)) {
-            fn_8006EE70((Sig_fn_8006EE70_Vec3 *)&arg0->m110.m[1][2], angles);
+            fn_8006EE70((const Vec3 *)&arg0->m110.m[1][2], angles);
             mathutil_mtxA_rotate_z(angles[2]);
             mathutil_mtxA_rotate_y(angles[1]);
             mathutil_mtxA_rotate_x(angles[0]);
