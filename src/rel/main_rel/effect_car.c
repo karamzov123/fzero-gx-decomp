@@ -29,16 +29,6 @@ struct Fn196A68Object {
     void *unk_1F4;
 };
 
-typedef struct Fn1967A8Resource Fn1967A8Resource;
-
-struct Fn1967A8Resource {
-    u8 unk_00;
-    u8 unk_01[0x07];
-    u32 unk_08;
-    u8 unk_0C[0x10];
-    u32 unk_1C;
-};
-
 typedef struct Fn196968Object Fn196968Object;
 
 struct Fn196968Object {
@@ -586,8 +576,6 @@ extern s32 fn_1_8D210(fn_1_8D210_car *car, fn_1_8D210_callback callback, u32 arg
 extern void fn_1_95158(Fn195158Car *car);
 extern s32 fn_1_97174(EventNode *arg0, s32 arg1, void *arg2);
 extern void fn_1_93734(CarObject *car, void *name);
-extern Fn1967A8Resource *fn_1_41518(void *arg0);
-extern void fn_1_41C18(Fn1967A8Resource *arg0, void *arg1);
 extern u16 fn_1_96968(Fn196968Object *object, void *arg1);
 extern u16 fn_1_969E8(Fn1969E8Owner *owner, void *arg1);
 extern u16 fn_1_96BC0(Fn196BC0Object *object, void *arg1);
@@ -778,16 +766,6 @@ void fn_1_68248(Fn1_68248Arg *arg) {
 #include "game/vec3.h"
 /* end game/vec3.h */
 
-typedef struct Fn1967A8Resource Fn1967A8Resource;
-
-struct Fn1967A8Resource {
-    u8 unk_00;
-    u8 unk_01[0x07];
-    u32 unk_08;
-    u8 unk_0C[0x10];
-    u32 unk_1C;
-};
-
 typedef struct Fn196968Object Fn196968Object;
 
 struct Fn196968Object {
@@ -882,9 +860,6 @@ extern s32 fn_1_8D210(fn_1_8D210_car *car, fn_1_8D210_callback callback, u32 arg
 extern void fn_1_95158(Fn195158Car *car);
 extern s32 fn_1_97174(EventNode *arg0, s32 arg1, void *arg2);
 extern void fn_1_93734(CarObject *arg0, void *arg1);
-extern Fn1967A8Resource *fn_1_41518(void *arg0);
-extern void fn_1_41C18(Fn1967A8Resource *arg0, void *arg1);
-extern void fn_1_41F58(Fn1967A8Resource *arg0, s32 arg1, void (*arg2)(void), void *arg3);
 extern u16 fn_1_96968(Fn196968Object *object, void *arg1);
 extern u16 fn_1_969E8(Fn1969E8Owner *owner, void *arg1);
 extern u16 fn_1_96BC0(Fn196BC0Object *object, void *arg1);
@@ -9559,7 +9534,6 @@ struct fn_1_72318_EffectCar *arg0;
 
 
 
-extern void fn_1_41F58(Fn1967A8Resource *arg0, s32 arg1, void (*arg2)(void), void *arg3);
 /* retail takes (obj, idx, mask, mask2) (fn_1_8F198 passes all four); non-prototype until fn_1_8F45C passes its own four through */
 
 #endif  // GAME_MAIN_REL_CAR_TYPES_H
