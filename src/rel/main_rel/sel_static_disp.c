@@ -11165,7 +11165,7 @@ typedef struct {
     u16 width, height;
     void *pixels;
     FontDrawPacket *secondary;
-    void (*vertex_callback)(FontDrawPacket *packet, FontVertex *vertices);
+    void (*vertex_callback)(const FontDrawPacket *packet, FontVertex *vertices);
     u32 unk_54;
 } Packet;
 
@@ -11307,9 +11307,9 @@ extern void fn_1_148950(s32, Row *);
 extern void fn_1_1490FC(s32, Row *);
 extern void fn_1_1492E0(s32, Row *);
 extern void fn_1_1498B8(s32, f32, s32, s32, s32, s32, s32);
-extern void fn_1_149BF4(FontDrawPacket *, FontVertex *);
-extern void fn_1_149C2C(FontDrawPacket *, FontVertex *);
-extern void fn_1_149C64(FontDrawPacket *, FontVertex *);
+extern void fn_1_149BF4(const FontDrawPacket *, FontVertex *);
+extern void fn_1_149C2C(const FontDrawPacket *, FontVertex *);
+extern void fn_1_149C64(const FontDrawPacket *, FontVertex *);
 
 /* retail .rodata (lbl_1_rodata_92C0) up to this function's own constants at 0x414 */
 #define FZGX_PACKET(cb) \
@@ -12518,9 +12518,9 @@ extern int fn_1_4F734(FontDrawPacket *);
 extern void *fn_1_868C0(s8);
 extern void fn_1_51564(u16, u16, u16, u16, u16, u16);
 extern void fn_1_5158C(FontDrawPacket *, u32, s16, s16);
-extern void fn_1_149BF4(FontDrawPacket *, FontVertex *);
-extern void fn_1_149C2C(FontDrawPacket *, FontVertex *);
-extern void fn_1_149C64(FontDrawPacket *, FontVertex *);
+extern void fn_1_149BF4(const FontDrawPacket *, FontVertex *);
+extern void fn_1_149C2C(const FontDrawPacket *, FontVertex *);
+extern void fn_1_149C64(const FontDrawPacket *, FontVertex *);
 extern u8 lbl_1_data_424D0[];
 extern u8 lbl_1_data_424E4[];
 extern u8 lbl_1_data_424F8[];

@@ -10485,7 +10485,7 @@ extern void fn_1_4965C(u8);
 extern void fn_1_496FC(f32, f32);
 extern void fn_1_50164(void *, f32, f32, f32, f32);
 extern void fn_1_50190(void *, f32, f32, f32, f32, f32, f32);
-extern void fn_3_268D0(FontDrawPacket *, FontVertex *);
+extern void fn_3_268D0(const FontDrawPacket *, FontVertex *);
 extern void fn_80008BA8(void *, void *, u32);
 
 #pragma fp_contract off
@@ -11274,7 +11274,7 @@ void fn_3_278F8(s16 x, s16 y, s16 z, s16 value, s16 id, s16 enabled, s16 level, 
     pkt.z = (f32)z;
     pkt.flags = 10;
     if (cb) {
-        pkt.vertex_callback = (void (*)(FontDrawPacket *, FontVertex *))cb;
+        pkt.vertex_callback = (void (*)(const FontDrawPacket *, FontVertex *))cb;
         pkt.flags |= 0x4000000;
     }
     pkt.alpha = 1.0f;
@@ -11288,7 +11288,7 @@ void fn_3_278F8(s16 x, s16 y, s16 z, s16 value, s16 id, s16 enabled, s16 level, 
         pkt.z = (f32)(z + 1);
         pkt.flags = 10;
         if (cb) {
-            pkt.vertex_callback = (void (*)(FontDrawPacket *, FontVertex *))cb;
+            pkt.vertex_callback = (void (*)(const FontDrawPacket *, FontVertex *))cb;
             pkt.flags |= 0x4000000;
         }
         pkt.alpha = 1.0f;
@@ -11302,7 +11302,7 @@ void fn_3_278F8(s16 x, s16 y, s16 z, s16 value, s16 id, s16 enabled, s16 level, 
         pkt.y = (f32)(y + 16);
         pkt.z = (f32)(z + 1);
         if (cb) {
-            pkt.vertex_callback = (void (*)(FontDrawPacket *, FontVertex *))cb;
+            pkt.vertex_callback = (void (*)(const FontDrawPacket *, FontVertex *))cb;
             pkt.flags |= 0x4000000;
         }
         pkt.scale_x = pkt.scale_y = 0.8f;
@@ -11316,7 +11316,7 @@ void fn_3_278F8(s16 x, s16 y, s16 z, s16 value, s16 id, s16 enabled, s16 level, 
         pkt.y = (f32)(y + 16);
         pkt.z = (f32)(z + 1);
         if (cb) {
-            pkt.vertex_callback = (void (*)(FontDrawPacket *, FontVertex *))cb;
+            pkt.vertex_callback = (void (*)(const FontDrawPacket *, FontVertex *))cb;
             pkt.flags |= 0x4000000;
         }
         pkt.alpha = 1.0f;
@@ -11331,7 +11331,7 @@ void fn_3_278F8(s16 x, s16 y, s16 z, s16 value, s16 id, s16 enabled, s16 level, 
         pkt.y = (f32)(y + 16);
         pkt.z = (f32)(z + 1);
         if (cb) {
-            pkt.vertex_callback = (void (*)(FontDrawPacket *, FontVertex *))cb;
+            pkt.vertex_callback = (void (*)(const FontDrawPacket *, FontVertex *))cb;
             pkt.flags |= 0x4000000;
         }
         pkt.alpha = 1.0f;
@@ -11352,7 +11352,7 @@ void fn_3_278F8(s16 x, s16 y, s16 z, s16 value, s16 id, s16 enabled, s16 level, 
         pulse = 0.125f * lbl_8006D188(182.04444885253906f * (f32)(t * 2 % 360));
         pkt.scale_x = pkt.scale_y = 1.0f + pulse;
         if (cb) {
-            pkt.vertex_callback = (void (*)(FontDrawPacket *, FontVertex *))cb;
+            pkt.vertex_callback = (void (*)(const FontDrawPacket *, FontVertex *))cb;
             pkt.flags |= 0x4000000;
         }
         pkt.alpha = 1.0f;
@@ -11365,7 +11365,7 @@ void fn_3_278F8(s16 x, s16 y, s16 z, s16 value, s16 id, s16 enabled, s16 level, 
         pkt.z = back;
         pkt.flags = 10;
         if (cb) {
-            pkt.vertex_callback = (void (*)(FontDrawPacket *, FontVertex *))cb;
+            pkt.vertex_callback = (void (*)(const FontDrawPacket *, FontVertex *))cb;
             pkt.flags |= 0x4000000;
         }
         pkt.alpha = 1.0f;
@@ -11380,7 +11380,7 @@ void fn_3_278F8(s16 x, s16 y, s16 z, s16 value, s16 id, s16 enabled, s16 level, 
         pkt.z = back;
         pkt.flags = 10;
         if (cb) {
-            pkt.vertex_callback = (void (*)(FontDrawPacket *, FontVertex *))cb;
+            pkt.vertex_callback = (void (*)(const FontDrawPacket *, FontVertex *))cb;
             pkt.flags |= 0x4000000;
         }
         pkt.alpha = 1.0f;
@@ -11399,7 +11399,7 @@ void fn_3_278F8(s16 x, s16 y, s16 z, s16 value, s16 id, s16 enabled, s16 level, 
         pkt.z = (f32)z;
         pkt.flags = 7;
         if (cb) {
-            pkt.vertex_callback = (void (*)(FontDrawPacket *, FontVertex *))cb;
+            pkt.vertex_callback = (void (*)(const FontDrawPacket *, FontVertex *))cb;
             pkt.flags |= 0x4000000;
         }
         pkt.alpha = 1.0f;
@@ -11418,7 +11418,7 @@ void fn_3_278F8(s16 x, s16 y, s16 z, s16 value, s16 id, s16 enabled, s16 level, 
         pkt.z = (f32)z;
         pkt.flags = 0x80005;
         if (cb) {
-            pkt.vertex_callback = (void (*)(FontDrawPacket *, FontVertex *))cb;
+            pkt.vertex_callback = (void (*)(const FontDrawPacket *, FontVertex *))cb;
             pkt.flags |= 0x4000000;
         }
         pkt.alpha = 1.0f;

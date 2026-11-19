@@ -8064,7 +8064,7 @@ u32 fn_8_1394(void) {
     loc_218.color[2] = 255;
     loc_218.alpha = v4;
     loc_218.flags = loc_218.flags | 0x4000000;
-    loc_218.vertex_callback = (void (*)(FontDrawPacket* packet, FontVertex* vertices))(fn_8_0);
+    loc_218.vertex_callback = (void (*)(const FontDrawPacket* packet, FontVertex* vertices))(fn_8_0);
     fn_1_4F734((FontDrawPacket *)&loc_218);
     v8 = (0.75f * v4);
     v9 = (loc_218.flags & 0xFBFFFFFF);
@@ -8091,7 +8091,7 @@ u32 fn_8_1394(void) {
     loc_1C0.color[2] = 255;
     loc_1C0.alpha = 1.0f;
     loc_1C0.flags = loc_1C0.flags | 0x4000000;
-    loc_1C0.vertex_callback = (void (*)(FontDrawPacket* packet, FontVertex* vertices))(fn_8_0);
+    loc_1C0.vertex_callback = (void (*)(const FontDrawPacket* packet, FontVertex* vertices))(fn_8_0);
     fn_1_4F734((FontDrawPacket *)&loc_1C0);
     v14 = 0.75f;
     v15 = (loc_1C0.flags & 0xFBFFFFFF);
@@ -8122,7 +8122,7 @@ u32 fn_8_1394(void) {
     loc_168.color[2] = 255;
     loc_168.alpha = v20;
     loc_168.flags = loc_168.flags | 0x4000000;
-    loc_168.vertex_callback = (void (*)(FontDrawPacket* packet, FontVertex* vertices))(fn_8_0);
+    loc_168.vertex_callback = (void (*)(const FontDrawPacket* packet, FontVertex* vertices))(fn_8_0);
     fn_1_4F734((FontDrawPacket *)&loc_168);
     v24 = (0.75f * v20);
     v25 = (loc_168.flags & 0xFBFFFFFF);
@@ -8156,7 +8156,7 @@ u32 fn_8_1394(void) {
     loc_110.color[2] = 255;
     loc_110.alpha = v29;
     loc_110.flags = loc_110.flags | 0x4000000;
-    loc_110.vertex_callback = (void (*)(FontDrawPacket* packet, FontVertex* vertices))(fn_8_0);
+    loc_110.vertex_callback = (void (*)(const FontDrawPacket* packet, FontVertex* vertices))(fn_8_0);
     fn_1_4F734((FontDrawPacket *)&loc_110);
     v33 = (0.75f * v29);
     v34 = (loc_110.flags & 0xFBFFFFFF);
@@ -8183,7 +8183,7 @@ u32 fn_8_1394(void) {
     loc_B8.color[2] = 255;
     loc_B8.alpha = 1.0f;
     loc_B8.flags = loc_B8.flags | 0x4000000;
-    loc_B8.vertex_callback = (void (*)(FontDrawPacket* packet, FontVertex* vertices))(fn_8_0);
+    loc_B8.vertex_callback = (void (*)(const FontDrawPacket* packet, FontVertex* vertices))(fn_8_0);
     fn_1_4F734((FontDrawPacket *)&loc_B8);
     v40 = (loc_B8.flags & 0xFBFFFFFF);
     loc_B8.flags = v40;
@@ -8458,7 +8458,7 @@ void fn_8_1C90(void) {
     loc_60.color[2] = 255;
     loc_60.alpha = p_lbl_8_rodata_0->unk_8;
     loc_60.flags |= 0x4000000;
-    loc_60.vertex_callback = (void (*)(FontDrawPacket* packet, FontVertex* vertices))(fn_8_0);
+    loc_60.vertex_callback = (void (*)(const FontDrawPacket* packet, FontVertex* vertices))(fn_8_0);
     fn_1_4F734((FontDrawPacket *)&loc_60);
     v10 = p_lbl_8_rodata_0->unk_24;
     v11 = (loc_60.flags & 0xFBFFFFFF);
