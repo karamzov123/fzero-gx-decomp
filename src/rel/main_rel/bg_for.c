@@ -1975,26 +1975,7 @@ extern void fn_80008BEC(void *, int, u32);
 extern void lbl_8006D5F0(Vec *, Vec *, f32);
 extern f32 lbl_8006D668(Vec *);
 
-/* bg_for.c's literal pool up to 1.0f at 0x28, so -1.0f, 0.0f and 1.0f land at retail's offsets */
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
-    volatile f32 s;  /* fzgx-allow: S2 pool primer sink */
-    s = -1.0f;
-    s = 0.9999998807907104f;
-    s = 1.0000001192092896f;
-    s = -1.0000001192092896f;
-    s = -0.9999998807907104f;
-}
-static const u32 fzgx_pool_table2[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    d = 1.1920928955078125e-07;
-    s = 0.0f;
-    s = 5.0f;
-    s = 1.0f;
-}
-#pragma section code_type ".text"
+extern const f32 lbl_1_rodata_6780[];
 
 /* as in fn_1_DDF80 and fn_1_DE180, whose code this repeats: retail reloads each field at every use */
 #pragma opt_common_subs off
@@ -2051,42 +2032,43 @@ static inline f32 dot(Vec *a, Vec *b) {
 }
 
 /* as fn_1_DE180's perp: retail sets up the normalise argument before the test */
-static inline void perp(Vec *a, Vec *b, Vec *out) {
+static inline void perp(const f32 *pool, Vec *a, Vec *b, Vec *out) {
     Vec *n = out;
 
     cross(a, b, out);
     cross(out, b, out);
-    if (dot(out, out) > 0.0f) {
+    if (dot(out, out) > pool[8]) {
         lbl_8006D668(n);
     }
 }
 
 /* a helper of its own gives the -1.0 retail's register order (fn_1_DDF80) */
-static inline void flip(Vec *v) {
-    psvec_scale(v, -1.0f, v);
+static inline void flip(const f32 *pool, Vec *v) {
+    psvec_scale(v, pool[0], v);
 }
 
 /* fn_1_DDF80's body; retail inlines it twice, which needs a larger inline size limit */
 #pragma inline_max_size(4096)
-static inline void split(Vec *a, Vec *b, Vec *along, Vec *side, f32 along_scale, f32 side_scale) {
+static inline void split(const f32 *pool, Vec *a, Vec *b, Vec *along, Vec *side, f32 along_scale, f32 side_scale) {
     Vec pos;
     f32 c;
     f32 s;
 
     c = lbl_8006D534(a, b);
-    s = lbl_8006D0B4(1.0f - (f32)(c * c));
+    s = lbl_8006D0B4(pool[10] - (f32)(c * c));
     fn_80008BA8(along, b, sizeof(Vec));
     lbl_8006D5F0(along, along, along_scale * c);
     fn_80008BA8(&pos, a, sizeof(Vec));
-    perp(&pos, b, side);
-    if (!(dot(&pos, side) > 0.0f)) {
-        flip(side);
+    perp(pool, &pos, b, side);
+    if (!(dot(&pos, side) > pool[8])) {
+        flip(pool, side);
     }
     psvec_scale(side, side_scale * s, side);
 }
 
 void fn_1_DF6AC(Vec *a, Vec *b, Vec *c, Vec *out_b, Vec *out_c, f32 scale_b, f32 scale_c, f32 k0, f32 k1, f32 k2,
                 f32 unused) {
+    const f32 *const pool = lbl_1_rodata_6780;
     Vec along_b;
     Vec along_c;
     Vec side_b;
@@ -2096,21 +2078,23 @@ void fn_1_DF6AC(Vec *a, Vec *b, Vec *c, Vec *out_b, Vec *out_c, f32 scale_b, f32
     f32 len_c;
     f32 u; /* declared before t: retail keeps u in f27 above t in f26 */
     f32 t;
+    f32 weight;
     Vec *src;
 
-    split(b, a, &along_b, &side_b, scale_b, scale_b);
-    split(c, a, &along_c, &side_c, scale_c, scale_c);
+    split(pool, b, a, &along_b, &side_b, scale_b, scale_b);
+    split(pool, c, a, &along_c, &side_c, scale_c, scale_c);
     len_b = lbl_8006D0B4(dot(&along_b, &along_b));
     len_c = lbl_8006D0B4(dot(&along_c, &along_c));
     /* the (f32) casts keep each product a separate fmuls, as retail has no fmadds here */
-    t = ((f32)(len_b * ((1.0f + k2) * k0)) + (f32)(len_c * (f32)(k1 - (f32)(k0 * k2)))) / (k0 + k1);
+    weight = pool[10] + k2;
+    t = ((f32)(len_b * (weight * k0)) + (f32)(len_c * (f32)(k1 - (f32)(k0 * k2)))) / (k0 + k1);
     u = t + (f32)(-k2 * (len_b - len_c));
     src = &along_b;
-    if (dot(src, src) != 0.0f) {
+    if (dot(src, src) != pool[8]) {
         fn_80008BA8(&dir, src, sizeof(Vec));
     } else {
         src = &along_c;
-        if (dot(src, src) != 0.0f) {
+        if (dot(src, src) != pool[8]) {
             fn_80008BA8(&dir, src, sizeof(Vec));
         } else {
             fn_80008BEC(out_b, 0, sizeof(Vec));

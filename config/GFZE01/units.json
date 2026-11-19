@@ -55925,13 +55925,7 @@
     ],
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/bg_for.c",
-    "pool": {
-      "...rodata.0": "lbl_1_rodata_6780",
-      "@39": "lbl_1_rodata_67A8",
-      "@37": "lbl_1_rodata_6780+0x20",
-      "@23": "lbl_1_rodata_6780"
-    }
+    "tu": "rel/main_rel/bg_for.c"
   },
   {
     "module": "main_rel",
