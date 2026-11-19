@@ -17,7 +17,7 @@ extern s16 fn_1_7B054();
 extern s16 fn_1_3F0C8(void);
 extern void fn_1_1067A8(void *arg0, f32 arg1, f32 arg2);
 extern void fn_1_103D28(void *arg0, u32 arg1, f32 arg2);
-extern void fn_1_72648(Obj_1_data_2A7E0 *);
+extern void fn_1_72648(void);
 extern void fn_1_103090(void *);
 extern void fn_1_1030A4(void *);
 extern void *fn_1_54448(s32);
@@ -3100,7 +3100,7 @@ void fn_1_DC2F8(void) {
     Obj_1_data_2A7E0_At3C *obj;
 
     obj = lbl_1_data_2A7E0.unk_3C;
-    fn_1_72648(&lbl_1_data_2A7E0);
+    fn_1_72648();
     fn_1_DC404(obj);
     fn_1_103F10((u8 *)obj + 0x1588);
 }
