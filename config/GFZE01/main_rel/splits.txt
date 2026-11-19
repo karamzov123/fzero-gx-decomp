@@ -7323,9 +7323,6 @@ rel/main_rel/motasglist/fn_1_433E0.c:
 rel/main_rel/stcoli/fn_1_278B8.c:
 	.text       start:0x000278B8 end:0x00027DE4 align:4
 
-rel/main_rel/bg_for/fn_1_DCFA4.c:
-	.text       start:0x000DCFA4 end:0x000DD890 align:4
-
 rel/main_rel/bg_cas/fn_1_FCA10.c:
 	.text       start:0x000FCA10 end:0x000FCF50 align:4
 
@@ -14990,7 +14987,7 @@ rel/main_rel/bg_san/fn_1_DC204.c:
 	.rodata     start:0x000066D0 end:0x00006750 align:8
 
 rel/main_rel/bg_for/fn_1_DCBF4.c:
-	.text       start:0x000DCBF4 end:0x000DCFA4 align:4
+	.text       start:0x000DCBF4 end:0x000DD890 align:4
 	.rodata     start:0x00006750 end:0x00006780 align:8
 	.data       start:0x0003DC78 end:0x0003DC98 align:8
 	.bss        start:0x0007ADE8 end:0x0007AE88 align:8
