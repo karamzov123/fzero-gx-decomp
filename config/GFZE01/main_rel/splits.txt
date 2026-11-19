@@ -5052,9 +5052,6 @@ rel/main_rel/spline/fn_1_F7EDC.c:
 rel/main_rel/game/fn_1_402D4.c:
 	.text       start:0x000402D4 end:0x00040354 align:4
 
-rel/main_rel/bg_for/fn_1_E1934.c:
-	.text       start:0x000E1934 end:0x000E1A00 align:4
-
 rel/main_rel/game/fn_1_3F4FC.c:
 	.text       start:0x0003F4FC end:0x0003F5F8 align:4
 
@@ -14487,7 +14484,7 @@ rel/main_rel/bg_for/fn_1_DF2A4.c:
 	.text       start:0x000DF2A4 end:0x000DF6AC align:4
 
 rel/main_rel/bg_for/fn_1_E1408.c:
-	.text       start:0x000E1408 end:0x000E1934 align:4
+	.text       start:0x000E1408 end:0x000E1A00 align:4
 
 rel/main_rel/font/fn_1_48D80.c:
 	.text       start:0x00048D80 end:0x000492F0 align:4

@@ -3126,7 +3126,7 @@ typedef struct {
     f32 z;
 } E1408Vec;
 
-typedef struct {
+typedef struct E1408Object {
     u8 pad0[0x18];
     f32 field18;
     f32 field1C;
@@ -3322,7 +3322,8 @@ extern void fn_8006F1F0(void *, void *, void *);
 extern void lbl_8006DB74(void *);
 extern void lbl_8006DCDC(void);
 extern void lbl_8006DB30(void);
-extern void fn_1_E1408(void *, void *);
+struct E1408Object;
+extern s32 fn_1_E1408(struct E1408Object *, struct E1408Object *);
 
 typedef struct {
     u8 pad0[0x8];
@@ -3347,7 +3348,7 @@ void fn_1_E1934(Fn1E1934Object *obj, Fn1E1934Object *base, s16 limit) {
     }
 
     while ((s16)index < limit) {
-        fn_1_E1408(obj, &base[index]);
+        fn_1_E1408((struct E1408Object *)obj, (struct E1408Object *)&base[index]);
         index++;
     }
 }
