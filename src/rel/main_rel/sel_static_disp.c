@@ -4347,7 +4347,6 @@ extern void _restgpr_27(void);
 
 #pragma opt_loop_invariants off
 static inline f32 fn_1_13A460_read_pointer(struct fn_1_13A460_Loc * owner) { return owner->f_10; }
-#pragma opt_lifetimes off
 void fn_1_13A460(struct fn_1_13A460_Arg0 *arg0) {
     f32 *fzgx_value_;
     struct fn_1_13A460_Loc loc;
@@ -4400,8 +4399,6 @@ void fn_1_13A460(struct fn_1_13A460_Arg0 *arg0) {
         }
     }
 }
-#pragma opt_lifetimes reset
-
 #pragma opt_loop_invariants reset
 /* fzgx:end fn_1_13A460 */
 

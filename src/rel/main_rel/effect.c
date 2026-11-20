@@ -5936,7 +5936,6 @@ extern void mathutil_mtxA_rotate_x(s32);
 extern void mathutil_mtxA_rotate_y(s32);
 extern void mathutil_mtxA_rotate_z(s32);
 
-#pragma fp_contract off
 static inline void extrapolate(Vec3 *out, Vec3 *prev, Vec3 *a) {
     f64 px, py, pz, ax, ay, az;
     px = fzgx_pool_lbl_1_rodata_2988__fzgx_offset_8 * prev->x;

@@ -6655,7 +6655,6 @@ static void fzgx_data_layout_lbl_4_data_0(void) {
 #pragma section code_type ".text"
 
 #pragma opt_common_subs off
-#pragma opt_loop_invariants off
 #pragma fp_contract off
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u16 fzgx_obj_lbl_4_bss_0;

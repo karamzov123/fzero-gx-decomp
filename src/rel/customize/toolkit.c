@@ -14524,7 +14524,6 @@ static void fzgx_bss_layout(void) {
 }
 #pragma section code_type ".text"
 
-#pragma opt_dead_assignments off
 void fn_3_2C290(fn_3_2C290_Arg *arg0) {
     fn_3_2C290_Mtx mtx;
     fn_3_2C290_Entry *entry;

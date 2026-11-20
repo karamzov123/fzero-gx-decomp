@@ -2516,7 +2516,6 @@ void fn_1_8D08(fn_1_8D08_Camera *cam, f32 arg1) {
             delta = out.flags2 - cam->angle;
             step = weight * delta;
             half = step * fzgx_pool_fzgx_camera_half[0];
-#pragma fp_contract off
             cam->angle = angle + half;
 #pragma fp_contract on
         }

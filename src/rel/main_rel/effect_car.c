@@ -4169,7 +4169,6 @@ static inline f32 CLAMP2(f32 x, f32 lo, f32 hi) {
     return x;
 }
 
-#pragma fp_contract off
 s16 fn_1_6E320(void *car_arg, void *offset_arg, u8 mode, f32 unused) {
     EffCar *car = (EffCar *)car_arg;
     EffVec *offset = (EffVec *)offset_arg;
@@ -4211,7 +4210,6 @@ s16 fn_1_6E320(void *car_arg, void *offset_arg, u8 mode, f32 unused) {
     part.unk_28 = 2.0f;
     ratio = speed / 800.0f;
     scale = CLAMP(ratio, 0.4f, 1.8f);
-#pragma fp_contract off
     rnd = 0.33333334f * (0.8f + (f64)(0.2 * ((f32)(u16)fn_1_584AC() / 32767.0f)));
     part.unk_2C = rnd * scale;
 #pragma fp_contract on

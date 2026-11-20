@@ -5966,7 +5966,6 @@ static inline f32 fn_1_110478_randf(f32 scale) {
  lbl_801A63C0=lbl_801A63C0*0x676A4B6B+0x33CB;
  return scale*((f32)(s32)((lbl_801A63C0>>16)&0x7FFF)/(32767.0f));
 }
-#pragma opt_common_subs off
 static inline void fn_1_110478_loop0(Work *arg0) {
  u32 i1;
  Node *n1;
@@ -6831,7 +6830,6 @@ static inline f32 fn_1_111980_randf(f32 scale) {
  lbl_801A63C0=lbl_801A63C0*0x676A4B6B+0x33CB;
  return scale*((f32)(s32)((lbl_801A63C0>>16)&0x7FFF)/(32767.0f));
 }
-#pragma opt_common_subs off
 static inline void fn_1_111980_loop0(Work *arg0) {
  u32 i1;
  Node *n1;

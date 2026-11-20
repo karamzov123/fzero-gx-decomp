@@ -350,17 +350,8 @@ void fn_1_58248(void) {
 }
 /* fzgx:end fn_1_58248 */
 
-/* fzgx:begin fn_1_584AC noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/avline.h"
-
-extern u32 lbl_801A6410;
-extern u32 fn_1_45D0(u32, u32, unsigned char *, u32);
-extern void fn_1_46B4(u32, u32, void *, u32);
-extern u8 lbl_1_data_1D62C[148];
-extern void fn_1_9F870(void);
-extern void fn_1_58158(void);
+/* fzgx:begin fn_1_584AC */
+extern u32 lbl_1_data_1D628;
 
 // fn_1_584AC: linear congruential generator.
 u32 fn_1_584AC(void) {

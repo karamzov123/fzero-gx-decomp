@@ -39,9 +39,6 @@ rel/sel/name_entry/fn_10_26000.c:
 rel/sel/name_entry/fn_10_26424.c:
 	.text       start:0x00026424 end:0x00026434
 
-rel/sel/sel/fn_10_1E67C.c:
-	.text       start:0x0001E67C end:0x0001E6F4 align:4
-
 rel/sel/sel/fn_10_13D64.c:
 	.text       start:0x00013D64 end:0x00013ECC align:4
 
@@ -95,7 +92,7 @@ rel/sel/sel/fn_10_1C2D8.c:
 	.text       start:0x0001C2D8 end:0x0001D314 align:4
 
 rel/sel/sel/fn_10_1E57C.c:
-	.text       start:0x0001E57C end:0x0001E67C align:4
+	.text       start:0x0001E57C end:0x0001E6F4 align:4
 	.data       start:0x00006670 end:0x000067E0 align:8
 
 rel/sel/sel/fn_10_1E41C.c:

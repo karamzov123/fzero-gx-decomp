@@ -6175,7 +6175,6 @@ static inline const char *fn97288_table(u32 base, s32 index) { const char **tabl
 
 #pragma opt_lifetimes off
 #pragma opt_common_subs on
-#pragma opt_strength_reduction off
 void fn_1_97288(struct fn_1_97288_Arg0 *arg0, f32 arg1) {
     const struct fn_1_97288_lbl_1_rodata_3E48 *p_lbl_1_rodata_3E48;
     struct fn_1_97288_lbl_1_data_209C0 *p_lbl_1_data_209C0;
