@@ -130,7 +130,7 @@ void fn_1_103264(fn_1_D8EEC_LigEntry *arg0, void *arg1) {
     Vec3f loc_8;
     s32 i;
     p_lbl_1_rodata_78D0 = &lbl_1_rodata_78D0;
-    v2 = *(u32 *)((u8 *)arg0 + 0);
+    v2 = *(u32 *)((u8 *)arg0);
     v3 = *(u32 *)((u8 *)lbl_1_bss_38458->unk_8 + 160);
     loc_14 = *(Vec3f *)((u8 *)arg0 + 44);
     if (((*(u32 *)((u8 *)arg0 + 8) >> 30) & 1) != 0) {
@@ -833,7 +833,7 @@ void fn_1_103FCC(void *arg0) {
     t0 = fn_1_5910();
     fn_1_A714C(&loc_14, &loc_10, &loc_C, &loc_8);
     v0 = *(u32 *)((u8 *)arg0 + 8);
-    v1 = *(u32 *)((u8 *)v0 + 0);
+    v1 = *(u32 *)((u8 *)v0);
     v2 = *(u32 *)((u8 *)*(u32 *)((u8 *)v1 + 8) + 8);
     v3 = *(u32 *)((u8 *)v2 + 8);
     lbl_8006DCA4();

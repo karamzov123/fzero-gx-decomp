@@ -1227,13 +1227,13 @@ void _prolog(void) {
     fn_1_48418(2);
     fn_1_159440(2, 0);
     if (lbl_1_bss_6EAD0.unk_0 != 0) {
-        if ((*(u32 *)((u8 *)(lbl_1_bss_6EAD0.unk_0) + 0)) == 0) {
-            (*(u32 *)((u8 *)(lbl_1_bss_6EAD0.unk_0) + 0)) = fn_8004CD70(2U, lbl_1_bss_6EAD0.unk_0 + 0x10, 0x25124U);
+        if ((*(u32 *)((u8 *)(lbl_1_bss_6EAD0.unk_0))) == 0) {
+            (*(u32 *)((u8 *)(lbl_1_bss_6EAD0.unk_0))) = fn_8004CD70(2U, lbl_1_bss_6EAD0.unk_0 + 0x10, 0x25124U);
         }
         if ((*(u32 *)((u8 *)(lbl_1_bss_6EAD0.unk_0) + 4)) == 0) {
             (*(u32 *)((u8 *)(lbl_1_bss_6EAD0.unk_0) + 4)) = fn_8004CD70(2U, lbl_1_bss_6EAD0.unk_0 + 0x4A258, 0x25124U);
         }
-        fn_1_A176C(*(u32 *)((u8 *)(lbl_1_bss_6EAD0.unk_0) + 0), 0x37);
+        fn_1_A176C(*(u32 *)((u8 *)(lbl_1_bss_6EAD0.unk_0)), 0x37);
     }
 }
 #pragma opt_propagation reset

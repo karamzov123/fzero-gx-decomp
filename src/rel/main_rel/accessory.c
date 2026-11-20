@@ -342,7 +342,7 @@ void fn_1_108920(u32 accessory) {
             matrix_address = matrix_base;
             entry_index = 0;
             source_offset = 0;
-            while (entry_index < *(u32 *)((u8 *)entry_count + 0)) {
+            while (entry_index < *(u32 *)((u8 *)entry_count)) {
                 entry_index++;
                 source_address = (*(u32 *)((u8 *)accessory + 100) + source_offset);
                 *(struct fn_1_108920_Copy12 *)matrix_address = *(struct fn_1_108920_Copy12 *)source_address;
@@ -15098,7 +15098,7 @@ void fn_1_118D90(u32 arg0, f32 arg1) {
         v8 = p_lbl_1_rodata_7AB8->unk_68;
         v1 = 1;
         while (v2 < *(u32 *)((u8 *)arg0 + 24)) {
-            if ((*(u8 *)((u8 *)v7 + 0) & 0x1) != 0) {
+            if ((*(u8 *)((u8 *)v7) & 0x1) != 0) {
                 *(u8 *)((u8 *)v7 + 0) = v5;
                 *(f32 *)((u8 *)v7 + 64) = v0;
             } else {

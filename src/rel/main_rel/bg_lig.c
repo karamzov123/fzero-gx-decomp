@@ -342,9 +342,9 @@ struct fn_1_D66F8_Arg2 {
 void fn_1_D66F8(u8 arg0, u8 *arg1, s8 *arg2) {
     u32 sp8;
 
-    sp8 = *(u32 *)((u8 *)(&lbl_1_rodata_6358) + 0);
-    (*(u8 *)((u8 *)(arg1) + 0)) = *(u8 *)((u8 *)(((u8 *)(&sp8) + arg0)) + 0);
-    (*(s8 *)((u8 *)(arg2) + 0)) = (lbl_801A66A0 / ((arg0 + 1) * 0x1E)) & 3;
+    sp8 = *(u32 *)((u8 *)(&lbl_1_rodata_6358));
+    (*(u8 *)((u8 *)(arg1))) = *(u8 *)((u8 *)(((u8 *)(&sp8) + arg0)));
+    (*(s8 *)((u8 *)(arg2))) = (lbl_801A66A0 / ((arg0 + 1) * 0x1E)) & 3;
 }
 /* fzgx:end fn_1_D66F8 */
 

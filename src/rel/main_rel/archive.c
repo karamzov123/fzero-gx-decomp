@@ -882,8 +882,8 @@ void fn_1_12B120(u8 *arg0, void *arg1, void *arg2, s32 *arg3, void *arg4, s32 *a
     var_r21 = 0;
     var_r22 = 0;
     while (var_r21 < 4) {
-        (*(s32 *)((u8 *)(var_r31) + 0)) = -1;
-        (*(s32 *)((u8 *)(var_r23) + 0)) = -1;
+        (*(s32 *)((u8 *)(var_r31))) = -1;
+        (*(s32 *)((u8 *)(var_r23))) = -1;
         (*(s32 *)((u8 *)(var_r23) + 4)) = -1;
         fn_1_12C0EC((Sig_fn_1_12C0EC_FnData *)((*(s32 *)((u8 *)(arg0) + 28)) + var_r22));
         var_r31 = (s32 *)((u8 *)(var_r31) + 4);
@@ -899,7 +899,7 @@ void fn_1_12B120(u8 *arg0, void *arg1, void *arg2, s32 *arg3, void *arg4, s32 *a
             var_r31_2 = 2;
         }
         if (lbl_1_bss_8B3A0.unk_94 & 0x40000000) {
-            temp_r24 = ((*(f32 *)((u8 *)(&lbl_1_rodata_8170) + 0)) / var_r31_2);
+            temp_r24 = ((*(f32 *)((u8 *)(&lbl_1_rodata_8170))) / var_r31_2);
             fn_1_12BF7C((void *)(*(void **)((u8 *)(arg0) + 32)), var_r31_2, (fn_1_A5D88() / var_r31_2), temp_r24);
             fn_1_12BF7C((void *)((u8 *)((*(void **)((u8 *)(arg0) + 32))) + 0x64), 3, (fn_1_A5D88() >> 2U) & 0x3FFF, 0x78U);
         } else if (var_r31_2 == 4) {
@@ -921,7 +921,7 @@ void fn_1_12B120(u8 *arg0, void *arg1, void *arg2, s32 *arg3, void *arg4, s32 *a
         fn_1_12D404(*(u32 *)((u8 *)(arg0) + 4), *(u32 *)((u8 *)(arg0) + 8), *(u32 *)((u8 *)(arg0) + 24), (void *)(arg1), (u32)(arg3), (u32)(arg4), (void *)(*(void **)((u8 *)(arg0) + 40)), *(u32 *)((u8 *)(arg0) + 48), *(u32 *)((u8 *)(arg0) + 52), (u32 *)(&lbl_1_data_407BC), 3U);
     }
     fn_1_435C((void *)(arg2));
-    (*(s32 *)((u8 *)(arg5) + 0)) = fn_1_3F8C((u32)(&lbl_1_data_40A7C), (u32)(&fn_1_132488), (u8 *)(arg0), (void *)(*(void **)((u8 *)(arg0) + 44)));
+    (*(s32 *)((u8 *)(arg5))) = fn_1_3F8C((u32)(&lbl_1_data_40A7C), (u32)(&fn_1_132488), (u8 *)(arg0), (void *)(*(void **)((u8 *)(arg0) + 44)));
     fn_1_12F1E8(0x1E0);
     lbl_1_bss_8B3A0.unk_129 = 1;
 }
@@ -956,10 +956,10 @@ struct fn_1_12B3F8_lbl_1_bss_8B3A0 {
 void fn_1_12B3F8(void *arg0, void *arg1, void *arg2, u32 arg3, u32 arg4, s32 *arg5, s32 arg_sp0) {
     s16 var_r30;
 
-    if ((*(s32 *)((u8 *)(arg5) + 0)) != -1) {
+    if ((*(s32 *)((u8 *)(arg5))) != -1) {
         fn_1_435C((void *)(arg2));
-        fn_1_426C((*(s32 *)((u8 *)(arg5) + 0)));
-        (*(s32 *)((u8 *)(arg5) + 0)) = -1;
+        fn_1_426C((*(s32 *)((u8 *)(arg5))));
+        (*(s32 *)((u8 *)(arg5))) = -1;
     }
     if (!(((struct fn_1_12B3F8_lbl_1_bss_8B3A0 *)&lbl_1_bss_8B3A0)->unk_94 & 0x80000000)) {
         var_r30 = 4;

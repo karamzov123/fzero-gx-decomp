@@ -3726,7 +3726,7 @@ void fn_1_AA54(void *arg0) {
     temp_r31 = fn_1_86678((*(s16 *)((u8 *)(arg0) + 2)));
     temp_r3 = fn_1_86634((*(s16 *)((u8 *)(arg0) + 2)));
     temp_r28 = camera_get_entry_field_0xa8(temp_r3);
-    if (((*(s16 *)((u8 *)(&lbl_1_bss_960) + 0)) != 9) && (fn_1_864E8((*(s16 *)((u8 *)(arg0) + 2))) & 0x10000)) {
+    if (((*(s16 *)((u8 *)(&lbl_1_bss_960))) != 9) && (fn_1_864E8((*(s16 *)((u8 *)(arg0) + 2))) & 0x10000)) {
         camera_set_entry_field_0xa8(temp_r3, 2);
         return;
     }
@@ -3740,7 +3740,7 @@ void fn_1_AA54(void *arg0) {
         }
     } else {
 block_7:
-        if ((*(f64 *)((u8 *)(&lbl_1_rodata_360) + 0)) == fn_1_8664C((*(s16 *)((u8 *)(arg0) + 2)))) {
+        if ((*(f64 *)((u8 *)(&lbl_1_rodata_360))) == fn_1_8664C((*(s16 *)((u8 *)(arg0) + 2)))) {
             camera_set_entry_field_0xa8(temp_r3, 3);
             return;
         }

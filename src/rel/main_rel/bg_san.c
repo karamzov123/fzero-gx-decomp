@@ -1848,7 +1848,7 @@ void fn_1_DA6A8(void *arg0, u32 arg1) {
         var_r3 = (s32)fn_80077B14((void *)arg1);
         var_r7 = 0U;
         var_r6 = 0;
-        while (var_r7 < (*(u32 *)((u8 *)(temp_r30) + 0))) {
+        while (var_r7 < (*(u32 *)((u8 *)(temp_r30)))) {
             var_r7 += 1;
             temp_r5 = (*(u32 *)((u8 *)(arg0) + 28)) + var_r6;
             var_r6 += 0xC;

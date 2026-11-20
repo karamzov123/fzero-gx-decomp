@@ -3098,7 +3098,7 @@ u32 fn_1_4030(u32 arg0) {
     u32 v1;
     u32 v2;
     v0 = *(u32 *)((u8 *)(*(struct fn_1_4030_lbl_1_bss_DA8 *)&lbl_1_bss_DA8).unk_0 + 8);
-    v1 = *(u32 *)((u8 *)v0 + 0);
+    v1 = *(u32 *)((u8 *)v0);
     v2 = arg0;
     if (v1 == 0) {
     v2 = 0;
@@ -3153,7 +3153,7 @@ void fn_1_407C(s32 arg_sp0) {
         if (!(temp_r29 & (1 << var_r27))) {
             var_r24 = (void *)(*(void **)((u8 *)((*(void **)((u8 *)(var_r31) + 24))) + 8));
             while (var_r24 != NULL) {
-                temp_r23 = (s32 (*)(s32))(*(s32 (**)(s32))((u8 *)(var_r24) + 0));
+                temp_r23 = (s32 (*)(s32))(*(s32 (**)(s32))((u8 *)(var_r24)));
                 (*(void **)((u8 *)(temp_r30) + 8)) = (void *)(var_r24);
                 (*(struct fn_1_407C_lbl_1_bss_DAC *)&lbl_1_bss_DAC).unk_0 = temp_r30;
                 (*(struct fn_1_407C_lbl_1_bss_DA8 *)&lbl_1_bss_DA8).unk_0 = temp_r30;

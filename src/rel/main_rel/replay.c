@@ -1177,11 +1177,11 @@ void fn_1_F3BC0(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     v2 = 0;
     while (v2 < loc_10.a[9]) {
     v9 = (u32)&((ReplayDriver_F3BC0 *)lbl_1_bss_7EFD8.unk_40)[v2];
-    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, *(u8 *)((u8 *)v9 + 0), 1, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, *(u8 *)((u8 *)v9), 1, (0x90000 - 16384));
     fn_1_F43F0((u8 *)v0, (u32 *)loc_8, *(u8 *)((u8 *)v9 + 1), 6, (0x90000 - 16384));
     fn_1_F43F0((u8 *)v0, (u32 *)loc_8, *(u8 *)((u8 *)v9 + 4), 5, (0x90000 - 16384));
     fn_1_F43F0((u8 *)v0, (u32 *)loc_8, *(u8 *)((u8 *)v9 + 3), 7, (0x90000 - 16384));
-    if (*(u8 *)((u8 *)v9 + 0) != 0) {
+    if (*(u8 *)((u8 *)v9) != 0) {
     fn_1_F43F0((u8 *)v0, (u32 *)loc_8, *(u8 *)((u8 *)v9 + 2), 2, (0x90000 - 16384));
     v12 = v2 * 0x81C0;
     t20 = (u8 *)(fn_1_36AD0());
@@ -1387,7 +1387,7 @@ s32 fn_1_F45CC(u32 key, ReplayOutput *out) {
         u16 first;
         u16 last;
 
-        first = (*(u16 *)(entry->raw + 0) >> 1) & 0x7fff;
+        first = (*(u16 *)(entry->raw) >> 1) & 0x7fff;
         if (key >= first) {
             last = (*(u16 *)(entry->raw + 4) >> 1) & 0x7fff;
             if (key <= last) {
@@ -1399,7 +1399,7 @@ s32 fn_1_F45CC(u32 key, ReplayOutput *out) {
                 out_count++;
                 *(u16 *)(dst->raw + 0) = first;
                 *(u16 *)(dst->raw + 2) = (*(u16 *)(entry->raw + 4) >> 1) & 0x7fff;
-                dst->raw[4] = (*(u32 *)(entry->raw + 0) >> 14) & 7;
+                dst->raw[4] = (*(u32 *)(entry->raw) >> 14) & 7;
                 dst->raw[5] = (entry->raw[2] >> 1) & 0x1f;
                 dst->raw[6] = (*(u32 *)(entry->raw + 4) >> 12) & 0x1f;
                 dst->raw[7] = (*(u16 *)(entry->raw + 6) >> 7) & 0x1f;

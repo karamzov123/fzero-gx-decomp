@@ -664,8 +664,8 @@ void fn_1_A04C4(void) {
     fn_8006589C((u32)fn_1_9FF54);
     fn_1_44A4();
     fn_80065890();
-    ADXT_Stop(*(u32 *)((u8 *)p_lbl_1_bss_6EA98->unk_38 + 0));
-    fn_8004CAC8(*(u32 *)((u8 *)p_lbl_1_bss_6EA98->unk_38 + 0));
+    ADXT_Stop(*(u32 *)((u8 *)p_lbl_1_bss_6EA98->unk_38));
+    fn_8004CAC8(*(u32 *)((u8 *)p_lbl_1_bss_6EA98->unk_38));
     ADXT_Stop(*(u32 *)((u8 *)p_lbl_1_bss_6EA98->unk_38 + 4));
     fn_8004CAC8(*(u32 *)((u8 *)p_lbl_1_bss_6EA98->unk_38 + 4));
     fn_80008BEC(p_lbl_1_bss_6EA98->unk_38, 0, (0x90000 + 29856));

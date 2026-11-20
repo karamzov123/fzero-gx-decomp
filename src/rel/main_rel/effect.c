@@ -574,7 +574,7 @@ void fn_1_58C6C(void) {
     struct fn_1_58C6C_lbl_1_bss_6C84C_T *var_r31_2;
 
     var_r30 = 0xBE;
-    var_r31 = (struct fn_1_58C6C_lbl_1_bss_6C848_T *)(*(struct fn_1_58C6C_lbl_1_bss_6C848_T **)((u8 *)(&(*(struct fn_1_58C6C_lbl_1_bss_6C848_T * *)&lbl_1_bss_6C848)) + 0));
+    var_r31 = (struct fn_1_58C6C_lbl_1_bss_6C848_T *)(*(struct fn_1_58C6C_lbl_1_bss_6C848_T **)((u8 *)(&(*(struct fn_1_58C6C_lbl_1_bss_6C848_T * *)&lbl_1_bss_6C848))));
     do {
         if ((var_r31->unk_C == 0x19) && ((s8) var_r31->unk_0 != 0) && ((s32) var_r31->unk_1A != 0) && !(var_r31->unk_8 & 0x80000000)) {
             fn_1_620C8((void *)(var_r31));
@@ -583,7 +583,7 @@ void fn_1_58C6C(void) {
         var_r31 = (struct fn_1_58C6C_lbl_1_bss_6C848_T *)((u8 *)(var_r31) + 0xE8);
     } while (var_r30 > 0);
     var_r30_2 = 0xC8;
-    var_r31_2 = (struct fn_1_58C6C_lbl_1_bss_6C84C_T *)(*(struct fn_1_58C6C_lbl_1_bss_6C84C_T **)((u8 *)(&(*(struct fn_1_58C6C_lbl_1_bss_6C84C_T * *)&lbl_1_bss_6C84C)) + 0));
+    var_r31_2 = (struct fn_1_58C6C_lbl_1_bss_6C84C_T *)(*(struct fn_1_58C6C_lbl_1_bss_6C84C_T **)((u8 *)(&(*(struct fn_1_58C6C_lbl_1_bss_6C84C_T * *)&lbl_1_bss_6C84C))));
     do {
         if ((var_r31_2->unk_C == 0x19) && ((s8) var_r31_2->unk_0 != 0) && ((s32) var_r31_2->unk_1A != 0) && !(var_r31_2->unk_8 & 0x80000000)) {
             fn_1_620C8((void *)(var_r31_2));
@@ -19685,7 +19685,7 @@ void fn_1_662D8(Fn662D8Source *arg0) {
     lbl_8006D5F0(&arg0->velocity, &loc_50, v2);
     lbl_8006DC6C(&loc_5C);
     /* Volatile x preserves the locked-cache column's load order. */
-    tx = *(volatile f32 *)((u8 *)&loc_38 + 0);
+    tx = *(volatile f32 *)((u8 *)&loc_38);
     ty = *(f32 *)((u8 *)&loc_38 + 4);
     tz = *(f32 *)((u8 *)&loc_38 + 8);
     *(f32 *)(0xE0000000 + 0x0C) = tx;
@@ -19782,7 +19782,7 @@ void fn_1_662D8(Fn662D8Source *arg0) {
     {
         f32 z, y, x;
         /* Volatile x preserves the locked-cache column's load order. */
-        x = *(volatile f32 *)((u8 *)&loc_38 + 0);
+        x = *(volatile f32 *)((u8 *)&loc_38);
         y = *(f32 *)((u8 *)&loc_38 + 4);
         z = *(f32 *)((u8 *)&loc_38 + 8);
         *(f32 *)(0xE0000000 + 0x0C) = x;

@@ -4931,7 +4931,7 @@ void fn_1_4DEC0(void) {
     var_r31 = 0;
     var_r30 = (u32 *)(&(*(u32 *)&lbl_1_bss_4C688));
     do {
-        if ((s32) (*(u32 *)((u8 *)(var_r30) + 0)) != 0) {
+        if ((s32) (*(u32 *)((u8 *)(var_r30))) != 0) {
             temp_r12 = (s32 (*)(u32 *))(*(s32 (**)(u32 *))((u8 *)(var_r30) + 124));
             if (temp_r12 == NULL) {
                 loc_8 = *(const struct FzgxCopy_88 *)((((((u8 *)(var_r30) + 4))) + 4));
@@ -5386,7 +5386,7 @@ s32 fn_1_4E92C(s32 arg0, u32 arg1, s16 arg2, s16 arg3, u32 arg4) {
     fn_80072864((2U));
     lbl_8006D758();
     fn_80072558();
-    if ((s32) (*(u32 *)((u8 *)(&lbl_1_bss_4E6A8) + 0)) != 0) {
+    if ((s32) (*(u32 *)((u8 *)(&lbl_1_bss_4E6A8))) != 0) {
         loc_8.words[0xC] |= 0x08000000;
         (*(f32 *)((u8 *)(&loc_8) + 52)) = (*((struct fn_1_4E92C_lbl_1_bss_4E6AC *)&lbl_1_bss_4E6AC)).unk_0;
     }
@@ -6171,8 +6171,8 @@ void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg
     u32 temp_r0;
     u32 temp_r0_2;
 
-    temp_f23 = fn_1_48690((*(u32 *)((u8 *)(arg0) + 0)));
-    temp_f24 = (fn_1_486C4((*(u32 *)((u8 *)(arg0) + 0))) - farg4) - farg5;
+    temp_f23 = fn_1_48690((*(u32 *)((u8 *)(arg0))));
+    temp_f24 = (fn_1_486C4((*(u32 *)((u8 *)(arg0)))) - farg4) - farg5;
     temp_f25 = (temp_f23 - farg2) - farg3;
     temp_f26 = (farg0 - farg2) - farg3;
     temp_f23 = (farg1 - farg4) - farg5;
@@ -6188,7 +6188,7 @@ void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg
             var_f22 = *(f32 *)((u8 *)(arg0) + 4);
             break;
         case 2:
-            half = farg0 * (*(f32 *)((u8 *)(&lbl_1_rodata_27A4) + 0));
+            half = farg0 * (*(f32 *)((u8 *)(&lbl_1_rodata_27A4)));
             var_f22 = (*(f32 *)((u8 *)(arg0) + 4)) - half;
             break;
         case 3:
@@ -6202,7 +6202,7 @@ void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg
             var_f30 = *(f32 *)((u8 *)(arg0) + 8);
             break;
         case 2:
-            half = farg1 * (*(f32 *)((u8 *)(&lbl_1_rodata_27A4) + 0));
+            half = farg1 * (*(f32 *)((u8 *)(&lbl_1_rodata_27A4)));
             var_f30 = (*(f32 *)((u8 *)(arg0) + 8)) - half;
             break;
         case 3:
@@ -6210,13 +6210,13 @@ void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg
             break;
         }
         loc_8 = *(struct Pkt88 *)(arg0);
-        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)((u8 *)(arg0) + 0)), (0), (0), (farg2), (farg4));
+        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)((u8 *)(arg0))), (0), (0), (farg2), (farg4));
         (*(f32 *)((u8 *)(&loc_8) + 4)) = var_f22;
         (*(f32 *)((u8 *)(&loc_8) + 8)) = var_f30;
         ((u32 *)(loc_8.words))[0xC] &= 0xFFFFFFF0;
         fn_1_4F734((FontDrawPacket *)((FontDrawPacket *) &loc_8));
         loc_8 = *(struct Pkt88 *)(arg0);
-        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)((u8 *)(arg0) + 0)), (farg2), (0), (temp_f25), (farg4));
+        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)((u8 *)(arg0))), (farg2), (0), (temp_f25), (farg4));
         temp_f29 = temp_f26;
         temp_f29 /= temp_f25;
         (*(f32 *)((u8 *)(&loc_8) + 8)) = var_f30;
@@ -6228,14 +6228,14 @@ void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg
         loc_8 = *(struct Pkt88 *)(arg0);
         temp_f27 = farg2;
         temp_f27 += temp_f25;
-        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)((u8 *)(arg0) + 0)), (temp_f27), (0), (farg3), (farg4));
+        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)((u8 *)(arg0))), (temp_f27), (0), (farg3), (farg4));
         temp_f26 = temp_f26 + temp_f31;
         (*(f32 *)((u8 *)(&loc_8) + 8)) = var_f30;
         (*(f32 *)((u8 *)(&loc_8) + 4)) = temp_f26;
         ((u32 *)(loc_8.words))[0xC] &= 0xFFFFFFF0;
         fn_1_4F734((FontDrawPacket *)((FontDrawPacket *) &loc_8));
         loc_8 = *(struct Pkt88 *)(arg0);
-        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)((u8 *)(arg0) + 0)), (0), (farg4), (farg2), (temp_f24));
+        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)((u8 *)(arg0))), (0), (farg4), (farg2), (temp_f24));
         temp_f28 = temp_f23 / temp_f24;
         (*(f32 *)((u8 *)(&loc_8) + 4)) = var_f22;
         temp_f30 = var_f30 + farg4;
@@ -6244,7 +6244,7 @@ void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg
         (*(f32 *)((u8 *)(&loc_8) + 20)) *= temp_f28;
         fn_1_4F734((FontDrawPacket *)((FontDrawPacket *) &loc_8));
         loc_8 = *(struct Pkt88 *)(arg0);
-        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)((u8 *)(arg0) + 0)), (farg2), (farg4), (temp_f25), (temp_f24));
+        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)((u8 *)(arg0))), (farg2), (farg4), (temp_f25), (temp_f24));
         (*(f32 *)((u8 *)(&loc_8) + 4)) = temp_f31;
         (*(f32 *)((u8 *)(&loc_8) + 8)) = temp_f30;
         (*(f32 *)((u8 *)(&loc_8) + 16)) *= temp_f29;
@@ -6252,7 +6252,7 @@ void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg
         ((u32 *)(loc_8.words))[0xC] &= 0xFFFFFFF0;
         fn_1_4F734((FontDrawPacket *)((FontDrawPacket *) &loc_8));
         loc_8 = *(struct Pkt88 *)(arg0);
-        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)((u8 *)(arg0) + 0)), (temp_f27), (farg4), (farg3), (temp_f24));
+        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)((u8 *)(arg0))), (temp_f27), (farg4), (farg3), (temp_f24));
         (*(f32 *)((u8 *)(&loc_8) + 4)) = temp_f26;
         (*(f32 *)((u8 *)(&loc_8) + 8)) = temp_f30;
         (*(f32 *)((u8 *)(&loc_8) + 20)) *= temp_f28;
@@ -6260,21 +6260,21 @@ void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg
         fn_1_4F734((FontDrawPacket *)((FontDrawPacket *) &loc_8));
         loc_8 = *(struct Pkt88 *)(arg0);
         temp_f28_2 = farg4 + temp_f24;
-        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)((u8 *)(arg0) + 0)), (0), (temp_f28_2), (farg2), (farg5));
+        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)((u8 *)(arg0))), (0), (temp_f28_2), (farg2), (farg5));
         temp_f30_2 = temp_f23 + temp_f30;
         (*(f32 *)((u8 *)(&loc_8) + 4)) = var_f22;
         (*(f32 *)((u8 *)(&loc_8) + 8)) = temp_f30_2;
         ((u32 *)(loc_8.words))[0xC] &= 0xFFFFFFF0;
         fn_1_4F734((FontDrawPacket *)((FontDrawPacket *) &loc_8));
         loc_8 = *(struct Pkt88 *)(arg0);
-        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)((u8 *)(arg0) + 0)), (farg2), (temp_f28_2), (temp_f25), (farg5));
+        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)((u8 *)(arg0))), (farg2), (temp_f28_2), (temp_f25), (farg5));
         (*(f32 *)((u8 *)(&loc_8) + 4)) = temp_f31;
         (*(f32 *)((u8 *)(&loc_8) + 8)) = temp_f30_2;
         (*(f32 *)((u8 *)(&loc_8) + 16)) *= temp_f29;
         ((u32 *)(loc_8.words))[0xC] &= 0xFFFFFFF0;
         fn_1_4F734((FontDrawPacket *)((FontDrawPacket *) &loc_8));
         loc_8 = *(struct Pkt88 *)(arg0);
-        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)((u8 *)(arg0) + 0)), (temp_f27), (temp_f28_2), (farg3), (farg5));
+        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)((u8 *)(arg0))), (temp_f27), (temp_f28_2), (farg3), (farg5));
         (*(f32 *)((u8 *)(&loc_8) + 4)) = temp_f26;
         (*(f32 *)((u8 *)(&loc_8) + 8)) = temp_f30_2;
         ((u32 *)(loc_8.words))[0xC] &= 0xFFFFFFF0;
@@ -6405,10 +6405,10 @@ void fn_1_50A90(void *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
     if ((s32)arg4 > (s32)v5) {
         v6 = arg4;
     }
-    t0 = fn_1_48690(*(u32 *)((u8 *)arg0 + 0));
+    t0 = fn_1_48690(*(u32 *)((u8 *)arg0));
     v7 = ((struct fn_1_50A90_lbl_1_rodata_2758 *)&lbl_1_rodata_2758)->unk_0;
     v8 = (u32)(t0 & 0xFFFF);
-    t1 = fn_1_486C4(*(u32 *)((u8 *)arg0 + 0));
+    t1 = fn_1_486C4(*(u32 *)((u8 *)arg0));
     v9 = (t1 & 0xFFFF);
     v10 = *(u32 *)((u8 *)arg0 + 48);
     v11 = (v10 & 0x3);

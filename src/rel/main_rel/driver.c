@@ -2463,7 +2463,7 @@ void fn_1_A7F84(void *arg0, u32 arg1) {
     case 0:
         lbl_8006D91C(0U);
         mathutil_mtxA_rotate_y(0U);
-        mathutil_mtxA_rotate_x((*(s16 *)((u8 *)(arg0) + 0)));
+        mathutil_mtxA_rotate_x((*(s16 *)((u8 *)(arg0))));
         return;
     case 1:
         lbl_8006D91C(0x4000U);

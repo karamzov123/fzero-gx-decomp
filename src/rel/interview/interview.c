@@ -18094,7 +18094,7 @@ void fn_17_4FE0(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     v3 = (u32)&(*(struct fn_17_4FE0_lbl_801A6410 *)&lbl_801A6410);
     v2 = p_lbl_17_bss_0->unk_308;
     v4 = (u32)&(*(u32 *)&lbl_17_data_63E50);
-    v1 = *(u32 *)((u8 *)v3 + 0);
+    v1 = *(u32 *)((u8 *)v3);
     v3 = 3134;
     t2 = fn_1_46B4(v1, v2, v4, v3);
     v1 = t2;
@@ -18110,7 +18110,7 @@ void fn_17_4FE0(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     v8 = (u32)&(*(struct fn_17_4FE0_lbl_801A6410 *)&lbl_801A6410);
     v6 = p_lbl_17_bss_0->unk_30C;
     v9 = (u32)&(*(u32 *)&lbl_17_data_63E50);
-    v7 = *(u32 *)((u8 *)v8 + 0);
+    v7 = *(u32 *)((u8 *)v8);
     v8 = 3139;
     t4 = fn_1_46B4(v7, v6, v9, v8);
     v7 = t4;
@@ -129768,19 +129768,19 @@ void fn_17_69EC(void *arg0, f32 farg0) {
     if ((*(f32 *)((u8 *)(temp_r4) + 76)) == (*(f32 *)((u8 *)(temp_r4) + 80))) {
         switch ((s16)fn_1_12CB04(fn_1_12C710(*(u32 *)((u8 *)base + 136)))) {  /* irregular */
         case 2:
-            fn_1_935E4((Sig_fn_1_935E4_Fn935E4Car *)((Sig_fn_1_935E4_Fn935E4Car *)(temp_r31)), (void *)(temp_r31 + 0x148), (void *)(arg0), *(f32 *)((u8 *)(&lbl_17_rodata_1C) + 0));
+            fn_1_935E4((Sig_fn_1_935E4_Fn935E4Car *)((Sig_fn_1_935E4_Fn935E4Car *)(temp_r31)), (void *)(temp_r31 + 0x148), (void *)(arg0), *(f32 *)((u8 *)(&lbl_17_rodata_1C)));
             fn_1_935E4((Sig_fn_1_935E4_Fn935E4Car *)(*(Sig_fn_1_935E4_Fn935E4Car **)((u8 *)(&lbl_17_bss_D8) + 8)), (void *)((u8 *)((*(Sig_fn_1_935E4_Fn935E4Car **)((u8 *)(&lbl_17_bss_D8) + 8))) + 0x148), (void *)(arg0), farg0);
             fn_1_935E4((Sig_fn_1_935E4_Fn935E4Car *)(*(Sig_fn_1_935E4_Fn935E4Car **)((u8 *)(&lbl_17_bss_D8) + 12)), (void *)((u8 *)((*(Sig_fn_1_935E4_Fn935E4Car **)((u8 *)(&lbl_17_bss_D8) + 12))) + 0x148), (void *)(arg0), farg0);
             break;
         case 1:
-            fn_1_935E4((Sig_fn_1_935E4_Fn935E4Car *)((Sig_fn_1_935E4_Fn935E4Car *)(temp_r31)), (void *)(temp_r31 + 0x148), (void *)(arg0), *(f32 *)((u8 *)(&lbl_17_rodata_1C) + 0));
+            fn_1_935E4((Sig_fn_1_935E4_Fn935E4Car *)((Sig_fn_1_935E4_Fn935E4Car *)(temp_r31)), (void *)(temp_r31 + 0x148), (void *)(arg0), *(f32 *)((u8 *)(&lbl_17_rodata_1C)));
             fn_1_935E4((Sig_fn_1_935E4_Fn935E4Car *)(*(Sig_fn_1_935E4_Fn935E4Car **)((u8 *)(&lbl_17_bss_D8) + 8)), (void *)((u8 *)((*(Sig_fn_1_935E4_Fn935E4Car **)((u8 *)(&lbl_17_bss_D8) + 8))) + 0x148), (void *)(arg0), farg0);
             break;
         case 0:
             fn_1_935E4((Sig_fn_1_935E4_Fn935E4Car *)((Sig_fn_1_935E4_Fn935E4Car *)(temp_r31)), (void *)(temp_r31 + 0x148), (void *)(arg0), farg0);
             break;
         }
-        (*(u8 *)((u8 *)(&lbl_17_bss_1) + 0)) = 0;
+        (*(u8 *)((u8 *)(&lbl_17_bss_1))) = 0;
     }
 }
 /* fzgx:end fn_17_69EC */

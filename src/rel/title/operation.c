@@ -122,9 +122,9 @@ void fn_8_67F8(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     fn_1_14DBCC((void *)v2);
     v3 = (u32)&lbl_801A6410;
     v4 = (u32)&lbl_8_bss_2B8;
-    v2 = *(u32 *)((u8 *)v3 + 0);
+    v2 = *(u32 *)((u8 *)v3);
     v3 = (u32)&(*(u32 *)&lbl_8_data_8AD4);
-    v1 = *(u32 *)((u8 *)v4 + 0);
+    v1 = *(u32 *)((u8 *)v4);
     v4 = 1035;
     t4 = fn_1_46B4(v2, v1, v3, v4);
     v2 = t4;
@@ -139,9 +139,9 @@ void fn_8_67F8(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     fn_1_14DBCC((void *)v7);
     v8 = (u32)&lbl_801A6410;
     v9 = (u32)&lbl_8_bss_2BC;
-    v7 = *(u32 *)((u8 *)v8 + 0);
+    v7 = *(u32 *)((u8 *)v8);
     v8 = (u32)&(*(u32 *)&lbl_8_data_8AD4);
-    v6 = *(u32 *)((u8 *)v9 + 0);
+    v6 = *(u32 *)((u8 *)v9);
     v9 = 1040;
     t6 = fn_1_46B4(v7, v6, v8, v9);
     v7 = t6;
@@ -192,14 +192,14 @@ u32 fn_8_68F4(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     if (lbl_8_bss_2B0 != 0) {
     v2 = (u32)&lbl_801A6410;
     v1 = (u32)&(*(u32 *)&lbl_8_data_8AD4);
-    v0 = *(u32 *)((u8 *)v2 + 0);
+    v0 = *(u32 *)((u8 *)v2);
     v2 = 1152;
     t0 = fn_1_46B4(v0, lbl_8_bss_2B0, v1, v2);
     v0 = t0;
     }
     v2 = (u32)&lbl_801A6410;
     v1 = (u32)&(*(u32 *)&lbl_8_data_8AD4);
-    v0 = *(u32 *)((u8 *)v2 + 0);
+    v0 = *(u32 *)((u8 *)v2);
     v2 = 1154;
     t1 = fn_1_4630(v0, (0x90000 - 16384), v1, v2);
     v0 = t1;
@@ -7094,7 +7094,7 @@ void fn_8_C7B0(void *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     fn_800728A8(1, 4, 5, 0);
     fn_80072864(2);
     fn_8007245C(512);
-    loc_8 = *(u32 *)((u8 *)arg0 + 0);
+    loc_8 = *(u32 *)((u8 *)arg0);
     fn_800371F8(1, (void *)&loc_8);
     fn_8003462C(128, 7, 4);
     *(f32 *)((u8 *)0xCC008000) = arg3;  /* fzgx-allow: A1,A2 GX FIFO write port */
@@ -8147,7 +8147,7 @@ if ((*(fn_8_DD64_u8 *)&lbl_8_bss_554) != 0) {
 v2 = (fn_8_DD64_s32)(arg0);
 v1 = (fn_8_DD64_u32)&(*(fn_8_DD64_u32 *)&lbl_801A6410);
 v3 = (fn_8_DD64_u32)((fn_8_DD64_u8 *)(fn_8_DD64_u32)p_lbl_8_data_A1E8 + 160);
-v1 = *(fn_8_DD64_u32 *)((fn_8_DD64_u8 *)v1 + 0);
+v1 = *(fn_8_DD64_u32 *)((fn_8_DD64_u8 *)v1);
 v4 = 465;
 fn_1_46B4(v1, v2, (const char *)v3, v4);
 v1 = fn_1_4060();
@@ -8226,14 +8226,14 @@ v12 = (v2 + 11);
 v3 = ((v12 - v3) << 1);
 v1 = (fn_8_DD64_u32)fn_80083CF4((char *)v1, (const char *)v2, v3);
 }
-v2 = (fn_8_DD64_s32)(*(fn_8_DD64_u8 *)((fn_8_DD64_u8 *)arg0 + 0));
+v2 = (fn_8_DD64_s32)(*(fn_8_DD64_u8 *)((fn_8_DD64_u8 *)arg0));
 v1 = (fn_8_DD64_u32)(*(fn_8_DD64_Obj_4_bss_5680_Target * *)&lbl_8_bss_550);
 if ((fn_8_DD64_u32)v2 == *(fn_8_DD64_u8 *)((fn_8_DD64_u8 *)v1 + 13)) {
 fn_8_DD64_u32 b14;
 v2 = (fn_8_DD64_s32)((v0 + 6));
 v1 = (fn_8_DD64_u32)&lbl_801A63D0;
 v3 = 14;
-v1 = *(fn_8_DD64_u32 *)((fn_8_DD64_u8 *)v1 + 0);
+v1 = *(fn_8_DD64_u32 *)((fn_8_DD64_u8 *)v1);
 v10 = (v1 + 44);
 b14 = (v1 + 88);
 v1 = v10;
@@ -8250,7 +8250,7 @@ v1 = sprintf((char *)v1, (const char *)(fn_8_DD64_u32)v2, v3, v4);
 }
 v1 = (fn_8_DD64_u32)(*(fn_8_DD64_Obj_4_bss_5680_Target * *)&lbl_8_bss_550);
 v1 = *(fn_8_DD64_u8 *)((fn_8_DD64_u8 *)v1 + 13);
-v1 = (*(fn_8_DD64_u8 *)((fn_8_DD64_u8 *)arg0 + 0) - v1);
+v1 = (*(fn_8_DD64_u8 *)((fn_8_DD64_u8 *)arg0) - v1);
 if (v1 < 0) {
 v1 += 4;
 }
