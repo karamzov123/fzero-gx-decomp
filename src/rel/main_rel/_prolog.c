@@ -2321,7 +2321,7 @@ sh = 31 - j;
 if (sh == 24) {
 continue;
 }
-if (__rlwnm((bits->held0), (32 - (j)) & 31, 31, 31) ) {
+if (__rlwnm(bits->held0, (32 - j) & 31, 31, 31) ) {
 *t = 0;
 held = 1;
 } else {
@@ -2330,7 +2330,7 @@ if (*t != 0) {
 (*t)--;
 }
 }
-if (*t != 0 || !__rlwnm((bits->enable0), (32 - (j)) & 31, 31, 31) ) {
+if (*t != 0 || !__rlwnm(bits->enable0, (32 - j) & 31, 31, 31) ) {
 bits->out0 &= ~(0x80000000 >> sh);
 } else {
 if (held) {
@@ -2344,7 +2344,7 @@ bits->out0 |= 0x80000000 >> sh;
 t2 = timer1.value;
 lv = level_p.value;
 for (k = 0; k < 12; t2++, lv++, k++) {
-if (__rlwnm((bits->held1), (32 - (k)) & 31, 31, 31) ) {
+if (__rlwnm(bits->held1, (32 - k) & 31, 31, 31) ) {
 *t2 = 0;
 held2 = 1;
 } else {
@@ -2357,7 +2357,7 @@ sh2 = 31 - k;
 mask = 0x80000000 >> sh2;
 bits->out1 &= ~mask;
 cur = *t2;
-if (cur == 0 && __rlwnm((bits->enable1), (32 - (k)) & 31, 31, 31) ) {
+if (cur == 0 && __rlwnm(bits->enable1, (32 - k) & 31, 31, 31) ) {
 old = *lv;
 switch (sh2) {
 case 31:
@@ -3154,7 +3154,7 @@ void fn_1_407C(s32 arg_sp0) {
             var_r24 = (*(void **)((u8 *)((*(void **)((var_r31) + 24))) + 8));
             while (var_r24 != NULL) {
                 temp_r23 = (s32 (*)(s32))(*(s32 (**)(s32))(var_r24));
-                (*(void **)((temp_r30) + 8)) = (var_r24);
+                (*(void **)((temp_r30) + 8)) = var_r24;
                 (*(struct fn_1_407C_lbl_1_bss_DAC *)&lbl_1_bss_DAC).unk_0 = temp_r30;
                 (*(struct fn_1_407C_lbl_1_bss_DA8 *)&lbl_1_bss_DA8).unk_0 = temp_r30;
                 if (((temp_r28 == 0) || ((u8) (temp_r28 & (*(s32 *)((u8 *)(var_r24) + 20))) != 0)) && (temp_r23 != NULL)) {
@@ -3170,14 +3170,14 @@ void fn_1_407C(s32 arg_sp0) {
                         fn_1_43A4();
                     }
                 } else {
-                    var_r24 = (NULL);
+                    var_r24 = NULL;
                 }
                             }
         }
         var_r27 += 1;
         var_r31 += 4;
     } while (var_r27 < 0x20);
-    (*(void **)((temp_r30) + 8)) = (NULL);
+    (*(void **)((temp_r30) + 8)) = NULL;
     (*(struct fn_1_407C_lbl_1_bss_DAC *)&lbl_1_bss_DAC).unk_0 = temp_r30;
     (*(struct fn_1_407C_lbl_1_bss_DA8 *)&lbl_1_bss_DA8).unk_0 = 0;
 }

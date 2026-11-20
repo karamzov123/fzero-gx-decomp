@@ -342,9 +342,9 @@ struct fn_1_D66F8_Arg2 {
 void fn_1_D66F8(u8 arg0, u8 *arg1, s8 *arg2) {
     u32 sp8;
 
-    sp8 = (lbl_1_rodata_6358);
-    (*(arg1)) = *((((u8 *)(&sp8) + arg0)));
-    (*(arg2)) = (lbl_801A66A0 / ((arg0 + 1) * 0x1E)) & 3;
+    sp8 = lbl_1_rodata_6358;
+    (*arg1) = *((((u8 *)(&sp8) + arg0)));
+    (*arg2) = (lbl_801A66A0 / ((arg0 + 1) * 0x1E)) & 3;
 }
 /* fzgx:end fn_1_D66F8 */
 
@@ -691,8 +691,8 @@ void fn_1_D6C10(Vec3 *arg0, f32 arg1) {
     f32 fzgx_pool_f32_0 = 0.0199999996f;
     f32 fzgx_pool_f32_1 = 10.0f;
     /* Spawn one particle near the closest viewer. */
-    v0 = (lbl_801A66A0);
-    v1 = (arg1);
+    v0 = lbl_801A66A0;
+    v1 = arg1;
     v8 = arg1;
     if (v0 % 20 == 0) {
     v1 = (((20.0f) * arg1));
@@ -737,14 +737,14 @@ void fn_1_D6C10(Vec3 *arg0, f32 arg1) {
     v1 = ((f32)v1 / (32767.0f));
     v1 = (f64)((v1) - ((0.5)));
     v1 = (f64)((f64)(fzgx_pool_f32_1) * (f64)(v1));
-    loc_14.unk_3C.x = ((loc_14.unk_3C.x) + (v1));
+    loc_14.unk_3C.x = ((loc_14.unk_3C.x) + v1);
     t9 = fn_1_584AC();
     v3 = t9;
     v1 = (f32)((v3 & 0xFFFF));
     v1 = ((f32)v1 / (32767.0f));
     v1 = (f64)((v1) - ((0.5)));
     v1 = (f64)((f64)(fzgx_pool_f32_1) * (f64)(v1));
-    loc_14.unk_3C.y = ((loc_14.unk_3C.y) + (v1));
+    loc_14.unk_3C.y = ((loc_14.unk_3C.y) + v1);
     t10 = fn_1_584AC();
     v3 = t10;
     v1 = (f32)(v3 & 0xFFFF);
@@ -754,7 +754,7 @@ void fn_1_D6C10(Vec3 *arg0, f32 arg1) {
     v1 = ((f32)v1 / (32767.0f));
     v1 = (f64)((v1) - ((0.5)));
     v1 = (f64)((f64)(fzgx_pool_f32_1) * (f64)(v1));
-    loc_14.unk_3C.z = ((loc_14.unk_3C.z) + (v1));
+    loc_14.unk_3C.z = ((loc_14.unk_3C.z) + v1);
     t11 = fn_1_584AC();
     v3 = t11;
     v32 = (v3 & 0xFFFF) / (32767.0f);
@@ -768,14 +768,14 @@ void fn_1_D6C10(Vec3 *arg0, f32 arg1) {
     v1 = ((f32)v1 / (32767.0f));
     v1 = (f64)((v1) - ((0.5)));
     v1 = (f64)((f64)(fzgx_pool_f32_0) * (f64)(v1));
-    loc_14.unk_48.x = ((loc_14.unk_48.x) + (v1));
+    loc_14.unk_48.x = ((loc_14.unk_48.x) + v1);
     t13 = fn_1_584AC();
     v3 = t13;
     v1 = (f32)((v3 & 0xFFFF));
     v1 = ((f32)v1 / (32767.0f));
     v1 = (f64)((v1) - ((0.5)));
     v1 = (f64)((f64)(fzgx_pool_f32_0) * (f64)(v1));
-    loc_14.unk_48.z = ((loc_14.unk_48.z) + (v1));
+    loc_14.unk_48.z = ((loc_14.unk_48.z) + v1);
     t14 = fn_1_584AC();
     {
     v1 = (t14 & 0xFFFF) / 32767.0f;
@@ -799,12 +799,12 @@ void fn_1_D6C10(Vec3 *arg0, f32 arg1) {
     v3 = t16;
     loc_14.unk_8C = (0.200000003f);
     v1 = (((0.02)) * (((v3 & 0xFFFF) / (32767.0f))));
-    loc_14.unk_88 = (((0.050000000000000003)) + (v1));
+    loc_14.unk_88 = (((0.050000000000000003)) + v1);
     t17 = fn_1_584AC();
     v3 = t17;
     v38 = (v3 & 0xFFFF);
     v1 = (((v38 / (32767.0f))) - ((0.5)));
-    loc_14.unk_AC = (((182.04444885253906)) * (v1));
+    loc_14.unk_AC = (((182.04444885253906)) * v1);
     t18 = fn_1_58E3C(&loc_14);
     v3 = t18;
     v2--;

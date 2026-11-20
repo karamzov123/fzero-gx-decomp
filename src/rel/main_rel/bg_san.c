@@ -241,15 +241,15 @@ void fn_1_D75CC(void) {
     fn_1_4404();
     temp_r4 = *(u32 *)((u8 *)(temp_r30) + 7256);
     if (temp_r4 != 0) {
-        fn_1_DA6A8((&(lbl_1_bss_7AD78)), temp_r4);
-        fn_80008BEC((&(lbl_1_bss_7AD78)), 0, 0x20U);
+        fn_1_DA6A8((&lbl_1_bss_7AD78), temp_r4);
+        fn_80008BEC((&lbl_1_bss_7AD78), 0, 0x20U);
         (*(u32 *)((u8 *)(temp_r30) + 7256)) = 0U;
     }
     temp_r4_2 = *(u32 *)((u8 *)(temp_r30) + 7260);
     if (temp_r4_2 != 0) {
-        temp_r31 = (u32 *)((u8 *)(&(lbl_1_bss_7AD78)) + 0x20);
-        fn_1_DA6A8((temp_r31), temp_r4_2);
-        fn_80008BEC((temp_r31), 0, 0x20U);
+        temp_r31 = (u32 *)((u8 *)(&lbl_1_bss_7AD78) + 0x20);
+        fn_1_DA6A8(temp_r31, temp_r4_2);
+        fn_80008BEC(temp_r31, 0, 0x20U);
         (*(u32 *)((u8 *)(temp_r30) + 7260)) = 0U;
     }
     fn_1_446C();
@@ -410,23 +410,23 @@ void fn_1_D7A10(LigSeg *obj) {
 		if (obj->s5c > 0) {
 			f64 t;
 
-			obj->f3c = (fn_1_D7A10_operand((0.98), (obj->f3c)));
+			obj->f3c = (fn_1_D7A10_operand((0.98), obj->f3c));
 			{
-			    f64 product_value = (obj->f40);
+			    f64 product_value = obj->f40;
 			    product_value *= ((0.98));
-			    obj->f40 = (product_value);
+			    obj->f40 = product_value;
 			}
 			{
-			    f64 product = (obj->f44);
+			    f64 product = obj->f44;
 			    product *= ((0.98));
-			    obj->f44 = (product);
+			    obj->f44 = product;
 			}
 			obj->f40 = obj->f40 - 0.08f;
 			obj->f30 = obj->f30 + obj->f3c;
 			obj->f34 = obj->f34 + obj->f40;
 			obj->f38 = obj->f38 + obj->f44;
 			obj->s58 = obj->s58 + obj->s5a;
-			obj->s5a = (fn_1_D7A10_operand_((0.99), (obj->s5a)));
+			obj->s5a = (fn_1_D7A10_operand_((0.99), obj->s5a));
 			t = 0.02 * (400.0f - obj->f54);
 			obj->f54 = obj->f54 + t;
 			if (obj->s5c < 0x50) {
@@ -996,7 +996,7 @@ extern void fn_800728A8(s32, s32, s32, s32);
         x -= (b)->x;             \
         y -= (b)->y;             \
         z -= (b)->z;             \
-        (len) = x * x;           \
+        len = x * x;           \
         (len) += y * y;          \
         (len) += z * z;          \
     } while (0)
@@ -1848,7 +1848,7 @@ void fn_1_DA6A8(void *arg0, u32 arg1) {
         var_r3 = (s32)fn_80077B14((void *)arg1);
         var_r7 = 0U;
         var_r6 = 0;
-        while (var_r7 < (*(temp_r30))) {
+        while (var_r7 < (*temp_r30)) {
             var_r7 += 1;
             temp_r5 = (*(u32 *)((u8 *)(arg0) + 28)) + var_r6;
             var_r6 += 0xC;
@@ -2768,7 +2768,7 @@ static inline void DB9B0_cross(Vec3 *a, Vec3 *b, Vec3 *out) {
     f32 x = a->y * b->z;
     f32 y = a->z * b->x;
     f32 z = a->x * b->y;
-    z -= ((a->y) * (b->x));
+    z -= ((a->y) * b->x);
     x -= a->z * b->y;
     y -= a->x * b->z;
     out->y = y;

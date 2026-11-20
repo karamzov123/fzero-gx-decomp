@@ -237,7 +237,7 @@ void fn_1_FA89C(SplineMain *arg0) {
         fn_1_A714C(&sp14, &sp10, &spC, &sp8);
         v15 = ((((f32)(s16)(v8 + v6) / v10) - v1) - v14);
         v16 = ((((f32)(s16)(v7 + v5) / v9) - v1) - v13);
-        C_MTXLightPerspective((f32 *)(((0x44) + (v3))), sp14, sp10, (v1 / v16), (-1.0f / v15), ((-v13) / v16), ((-v14) / v15));
+        C_MTXLightPerspective((f32 *)(((0x44) + v3)), sp14, sp10, (v1 / v16), (-1.0f / v15), ((-v13) / v16), ((-v14) / v15));
         fn_1_627C(v2);
         v4 = (SplineEntry *)((u8 *)v4 + 4);
         v3 += 0x30;
@@ -2322,7 +2322,7 @@ void fn_1_FCFA4(void *arg0) {
     if (m == 0) {
         return;
     }
-    f0 = (m->sub.unk_420);
+    f0 = m->sub.unk_420;
     if (f0 != 0 && f0(((u8 *)m + 0x10000)) != 0) {
         return;
     }
@@ -4346,7 +4346,7 @@ void fn_1_FE644(void) {
     out.unk_0.unk_4.unk_0 = (110.0f * f.value);
     out.unk_0.unk_4.unk_1 = (60.0f * f.value);
     out.unk_0.unk_4.unk_2 = (15.0f * f.value);
-    fzgx_value = &(out.unk_4);
+    fzgx_value = &out.unk_4;
     *fzgx_value = out.unk_0.unk_0;
     fn_1_9A7A8(&out.unk_4);
 }
@@ -5004,17 +5004,17 @@ typedef struct {
 } CasDrawParams;
 #define cas_set_color(P, S, A, Z) do { \
     f32 r, g, b; \
-    (S) = 0.2f * (S); \
-    (S) = 0.8f + (S); \
-    r = 0.5f * (1.0f + (S)); \
-    g = 0.8f * (S); \
-    b = 0.5f * (S); \
-    (P)->r = 255.0f * r * (A); \
-    (P)->g = 255.0f * g * (A); \
-    (P)->b = 255.0f * b * (A); \
+    S = 0.2f * S; \
+    S = 0.8f + S; \
+    r = 0.5f * (1.0f + S); \
+    g = 0.8f * S; \
+    b = 0.5f * S; \
+    (P)->r = 255.0f * r * A; \
+    (P)->g = 255.0f * g * A; \
+    (P)->b = 255.0f * b * A; \
     (P)->a = 0xff; \
     (P)->flags |= 4; \
-    (P)->size = (Z); \
+    (P)->size = Z; \
 } while (0)
 
 void fn_1_FFA0C(void *em_raw) {

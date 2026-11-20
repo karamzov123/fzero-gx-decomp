@@ -78,7 +78,7 @@ u32 _prolog(void) {
     struct PrologModule *module;
     module = (struct PrologModule *)(v0 + (u32)OSGetArenaLo());
     sample_lz_decode(data,module);
-    bss = (void *)((((((u32)module) + (31)) + (module->offset))) & ~31);
+    bss = (void *)((((((u32)module) + (31)) + module->offset)) & ~31);
     moduleSize = (u32)bss + module->size - (u32)module;
     OSSetArenaLo(module);
     module = OSAllocFromArenaLo(moduleSize,32);

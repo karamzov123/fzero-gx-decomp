@@ -674,7 +674,7 @@ static inline void change_camera(u32 flags, GameCameraEntry *entries) {
     if ((s16)new_index == old_index) {
         return;
     }
-    fzgx_value = &(game_camera_entries->unk_2);
+    fzgx_value = &game_camera_entries->unk_2;
     *fzgx_value = (s16)new_index;
     fn_1_86254(old_index)->active = -1;
     fn_1_86254((s16)new_index)->active = 0;
@@ -2510,7 +2510,7 @@ void fn_1_8D08(fn_1_8D08_Camera *cam, f32 arg1) {
         {
             f64 angle = cam->angle;
             f32 delta;
-            f32 weight = (cam->lerp);
+            f32 weight = cam->lerp;
             f32 step;
             f64 half;
             delta = out.flags2 - cam->angle;
@@ -3209,7 +3209,7 @@ else
 arg0->unk_8 = ((f32)((arg0->unk_8) + ((fov) - (arg0->unk_8)) * (P64(fzgx_pool_rodata_lbl_1_rodata_200_C8)))) ;
 arg0->unk_84 = t7;
 } else
-arg0->unk_8 = ((arg0->unk_8) + ((rate) * ((fov) - (arg0->unk_8)))) ;
+arg0->unk_8 = ((arg0->unk_8) + ((rate) * ((fov) - arg0->unk_8))) ;
 }
 arg0->unk_8C.y = ((f32)((arg0->unk_8C.y) + ((x) - (arg0->unk_8C.y)) * (P64(fzgx_pool_rodata_lbl_1_rodata_200_D8)))) ;
 arg0->unk_8C.z = ((f32)((arg0->unk_8C.z) + ((y) - (arg0->unk_8C.z)) * (P64(fzgx_pool_rodata_lbl_1_rodata_200_D8)))) ;
@@ -3659,13 +3659,13 @@ f32 fn_1_A888(void *arg0) {
     fzgx_live_ = pos.y;
     fn_1_A888_setpos(pos.z, fzgx_live_, fzgx_live);
 
-    fzgx_value = &(v3c.x);
+    fzgx_value = &v3c.x;
     *fzgx_value = (ro_pool->c_30);
-    v3c.y = (ro_pool->c_190);
-    v3c.z = (ro_pool->c_194);
+    v3c.y = ro_pool->c_190;
+    v3c.z = ro_pool->c_194;
     lbl_8006E1B0(&v3c, &v30);
 
-    v3c.y = (ro_pool->c_198);
+    v3c.y = ro_pool->c_198;
     lbl_8006E1B0(&v3c, &v24);
 
     w3 = fn_1_20A5C(&v24, &w2);
@@ -3681,16 +3681,16 @@ f32 fn_1_A888(void *arg0) {
     fn_8006E250(&v30, &v30);
 
     t = (ro_pool->c_100) + v30.y;
-    if (t < (ro_pool->c_1a0)) {
-        val.value = (ro_pool->c_1a0);
-    } else if (t > (ro_pool->c_1a8)) {
-        val.value = (ro_pool->c_1a8);
+    if (t < ro_pool->c_1a0) {
+        val.value = ro_pool->c_1a0;
+    } else if (t > ro_pool->c_1a8) {
+        val.value = ro_pool->c_1a8;
     } else {
         val.value = t;
     }
-    res = (f32)val.value / (ro_pool->c_1a8);
+    res = (f32)val.value / ro_pool->c_1a8;
     if (flag) {
-        res = (ro_pool->c_0);
+        res = ro_pool->c_0;
     }
     cur = self->fov;
     scaled = (ro_pool->c_118) * (res - cur);
@@ -3836,7 +3836,7 @@ void fn_1_ABAC(ABACObject *arg0) {
                 }
             } else {
                 if (((ABACByteFlags *)&lbl_1_bss_CC0[(s8)controller])->increase) {
-                    value.value = (s16)(((1) + (value.value)));
+                    value.value = (s16)(((1) + value.value));
                 }
                 if (((ABACByteFlags *)&lbl_1_bss_CC0[(s8)controller])->decrease) {
                     value.value = value.value - 1;
@@ -4250,7 +4250,7 @@ void fn_1_AFC8(Camera *cam) {
                 cam->unk_1F4 += step;
             }
             cam->unk_1F0 += cam->unk_1F4;
-            cam->unk_1F0 = (((cam->unk_1F0) < (0.0f)) ? (0.0f) : (((cam->unk_1F0) > (1.0f)) ? (1.0f) : (cam->unk_1F0)));
+            cam->unk_1F0 = ((cam->unk_1F0 < (0.0f)) ? (0.0f) : ((cam->unk_1F0 > (1.0f)) ? (1.0f) : cam->unk_1F0));
             t = cam->unk_1F0;
             lbl_8006D5A4(&from.pos, &to.pos, &cam->unk_8C, t);
             lbl_8006D5A4(&from.at, &to.at, &cam->unk_98, t);
@@ -4374,7 +4374,7 @@ void fn_1_B4D4(LiveCamera_fn_1_B4D4 *camera) {
     f64 product_2;
     u32 tmp_ra3;
 
-    if (!(camera->unk_10C)) {
+    if (!camera->unk_10C) {
         camera->saved = camera->position;
         camera->saved2 = camera->position2;
     } else {
@@ -4383,39 +4383,39 @@ void fn_1_B4D4(LiveCamera_fn_1_B4D4 *camera) {
             scale = (0.80000000000000004);
             scale2 = (0.71999999999999997);
             for (i = 0; i < 3; i++) {
-                product = damping * (*((camera->offset.values) + (i)));
+                product = damping * (*((camera->offset.values) + i));
                 camera->velocity.values[i] =
-                    ((*((camera->velocity.values) + (i))) - product);
+                    ((*((camera->velocity.values) + i)) - product);
             }
             for (i = 0; i < 3; i++) {
                 camera->velocity.values[i] =
-                    ((*((camera->velocity.values) + (i))) * scale);
+                    ((*((camera->velocity.values) + i)) * scale);
             }
             for (i = 0; i < 3; i++) {
                 camera->offset.values[i] =
-                    (*((camera->offset.values) + (i))) + (*((camera->velocity.values) + (i)));
+                    (*((camera->offset.values) + i)) + (*((camera->velocity.values) + i));
             }
             {
     u32 fzgx_loop_i_7616;
 for (fzgx_loop_i_7616 = 0; fzgx_loop_i_7616 < 3; fzgx_loop_i_7616++) {
-                product_2 = scale2 * (*((camera->offset2.values) + (fzgx_loop_i_7616)));
+                product_2 = scale2 * (*((camera->offset2.values) + fzgx_loop_i_7616));
                 camera->velocity2.values[fzgx_loop_i_7616] =
-                    ((*((camera->velocity2.values) + (fzgx_loop_i_7616))) - product_2);
+                    ((*((camera->velocity2.values) + fzgx_loop_i_7616)) - product_2);
             }
     i = fzgx_loop_i_7616;
 }
             for (i = 0; i < 3; i++) {
                 camera->velocity2.values[i] =
-                    ((*((camera->velocity2.values) + (i))) * damping);
+                    ((*((camera->velocity2.values) + i)) * damping);
             }
             for (i = 0; i < 3; i++) {
                 camera->offset2.values[i] =
-                    (*((camera->offset2.values) + (i))) + (*((camera->velocity2.values) + (i)));
+                    (*((camera->offset2.values) + i)) + (*((camera->velocity2.values) + i));
             }
         }
         psvec_add(&camera->saved.values[0], &camera->offset.values[0],
                   &camera->position.values[0]);
-        if (!(camera->unk_A8)) {
+        if (!camera->unk_A8) {
             psvec_add(&camera->saved2.values[0], &camera->offset2.values[0],
                       &camera->position2.values[0]);
         }

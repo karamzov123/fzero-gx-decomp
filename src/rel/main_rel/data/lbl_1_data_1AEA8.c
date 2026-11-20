@@ -82,8 +82,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.0416666679f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -100,8 +100,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.020833334f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -118,8 +118,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.0078125f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -136,8 +136,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.010416667f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -154,8 +154,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.0178571437f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -172,8 +172,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.0078125f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -190,8 +190,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.0078125f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -208,8 +208,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.0078125f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -226,8 +226,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.00520833349f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -244,8 +244,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.0250000004f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -262,8 +262,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.010416667f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -280,8 +280,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.020833334f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -298,8 +298,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.00892857183f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -316,8 +316,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.0250000004f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -334,8 +334,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.0166666675f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -352,8 +352,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.015625f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -370,8 +370,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.00961538497f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -388,8 +388,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.0078125f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -406,8 +406,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.0500000007f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -424,8 +424,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.010416667f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -442,8 +442,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.020833334f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -460,8 +460,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.0125000002f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -478,8 +478,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.020833334f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -496,8 +496,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.013888889f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -514,8 +514,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.0113636367f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -532,8 +532,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.013888889f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -550,8 +550,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.0833333358f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -568,8 +568,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.0625f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -586,8 +586,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.00961538497f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -604,8 +604,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.010416667f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -622,8 +622,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.015625f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -640,8 +640,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.0833333358f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -658,8 +658,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.0166666675f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -676,8 +676,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.015625f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -694,8 +694,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.03125f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -712,8 +712,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.00961538497f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -730,8 +730,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.020833334f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -748,8 +748,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.00961538497f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -766,8 +766,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.0073529412f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -784,8 +784,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.020833334f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -802,8 +802,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.013888889f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -820,8 +820,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.013888889f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 },
 {
@@ -838,8 +838,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.0416666679f,
     lbl_1_data_1AE9C,
     0x01200000U,
-    (&lbl_1_data_1A3B8),
-    (&lbl_1_bss_4BBA0),
+    &lbl_1_data_1A3B8,
+    &lbl_1_bss_4BBA0,
     1.0f
 },
 {
@@ -856,8 +856,8 @@ __declspec(section ".data") FontEntry lbl_1_data_1AEA8[44] __attribute__((aligne
     0.015625f,
     lbl_1_data_1AE94,
     0x00000000U,
-    (&lbl_1_data_1AE90),
-    (&lbl_1_bss_4BB9C),
+    &lbl_1_data_1AE90,
+    &lbl_1_bss_4BB9C,
     1.0f
 }
 };

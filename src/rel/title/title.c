@@ -90,9 +90,9 @@ void _prolog(void) {
     s32 t0;
     s32 t1;
     p_lbl_8_bss_0 = (struct _prolog_lbl_8_bss_0 *)&(*(struct _prolog_lbl_8_bss_0 *)&lbl_8_bss_0);
-    t0 = fn_1_45D0((*(struct _prolog_lbl_801A6410 *)&lbl_801A6410).unk_0, 0x173c, &(lbl_8_data_434), 0x2f1);
+    t0 = fn_1_45D0((*(struct _prolog_lbl_801A6410 *)&lbl_801A6410).unk_0, 0x173c, &lbl_8_data_434, 0x2f1);
     p_lbl_8_bss_0->unk_234 = t0;
-    t1 = fn_1_45D0((*(struct _prolog_lbl_801A6410 *)&lbl_801A6410).unk_0, 0x173c, &(lbl_8_data_434), 0x2f2);
+    t1 = fn_1_45D0((*(struct _prolog_lbl_801A6410 *)&lbl_801A6410).unk_0, 0x173c, &lbl_8_data_434, 0x2f2);
     p_lbl_8_bss_0->unk_238 = t1;
     fn_1_3CF0(p_lbl_8_bss_0->unk_234, 0x80);
     fn_1_3CF0(p_lbl_8_bss_0->unk_238, 0x80);
@@ -103,9 +103,9 @@ void _prolog(void) {
     p_lbl_8_bss_0->unk_23C = 0;
     if (lbl_1_bss_964 == 8 && (s32)(*(struct _prolog_lbl_1_bss_58 *)&lbl_1_bss_58).unk_1C != 0) {
     (*(struct _prolog_lbl_1_bss_8B3A0 *)&lbl_1_bss_8B3A0).unk_9E = 0;
-    (lbl_1_bss_968) = 1;
+    lbl_1_bss_968 = 1;
     } else {
-    (lbl_1_bss_96A) = 158;
+    lbl_1_bss_96A = 158;
     }
     p_lbl_8_bss_0->unk_23D = 0;
     fn_1_A8F78();
@@ -7931,7 +7931,7 @@ extern u8 lbl_8_bss_238__fzgx_offset_A;
 
 
 void fn_8_1344(void) {
-    (lbl_8_bss_238__fzgx_offset_A) = 0;
+    lbl_8_bss_238__fzgx_offset_A = 0;
     lbl_8_bss_4.unk_0 = 0.0f;
     fn_1_47F74(1);
     fn_1_47F74(3);
@@ -8218,7 +8218,7 @@ u32 fn_8_1394(void) {
     fzgx_pool_lbl_8_bss_0_gap_1 = 1;
     fzgx_obj_lbl_8_bss_0 = 0;
     } else {
-    (lbl_1_bss_96A) = 158;
+    lbl_1_bss_96A = 158;
     }
     }
     t26 = fn_1_52088();
@@ -8271,7 +8271,7 @@ u32 fn_8_1394(void) {
     fzgx_pool_lbl_8_bss_0_gap_1 = 1;
     fzgx_obj_lbl_8_bss_0 = 0;
     } else {
-    (lbl_1_bss_96A) = 155;
+    lbl_1_bss_96A = 155;
     }
     }
     t41 = fn_1_52088();
@@ -8474,7 +8474,7 @@ void fn_8_1C90(void) {
         }
     } else {
         if (fn_1_4C10() == 0) {
-            (lbl_1_bss_96A) = 158;
+            lbl_1_bss_96A = 158;
         }
     }
 }
@@ -9602,15 +9602,15 @@ void fn_8_4E90(void) {
     p_lbl_8_bss_0->unk_242 = 0;
     fn_8_68D8();
     if (p_lbl_8_bss_0->unk_8 != 0) {
-    fn_1_46B4((*(struct fn_8_4E90_lbl_801A6410 *)&lbl_801A6410).unk_0, p_lbl_8_bss_0->unk_8, &(lbl_8_data_434), 3359);
+    fn_1_46B4((*(struct fn_8_4E90_lbl_801A6410 *)&lbl_801A6410).unk_0, p_lbl_8_bss_0->unk_8, &lbl_8_data_434, 3359);
     p_lbl_8_bss_0->unk_8 = 0;
     }
     t2 = fn_1_7BA08(32, 32, 64);
-    t3 = fn_1_45D0((*(struct fn_8_4E90_lbl_801A6410 *)&lbl_801A6410).unk_0, t2, &(lbl_8_data_434), 3362);
+    t3 = fn_1_45D0((*(struct fn_8_4E90_lbl_801A6410 *)&lbl_801A6410).unk_0, t2, &lbl_8_data_434, 3362);
     p_lbl_8_bss_0->unk_8 = t3;
     fn_1_7BA48(t3);
     fn_1_435C(p_lbl_8_bss_0->unk_238);
-    t6 = fn_1_3F8C(&(lbl_8_data_7CDC), fn_1_7BAF8, p_lbl_8_bss_0->unk_8, 2);
+    t6 = fn_1_3F8C(&lbl_8_data_7CDC, fn_1_7BAF8, p_lbl_8_bss_0->unk_8, 2);
     p_lbl_8_bss_0->unk_288 = t6;
     }
 }
@@ -9773,7 +9773,7 @@ void fn_8_516C(void) {
     p_lbl_8_bss_0->unk_288 = 0;
     }
     if (p_lbl_8_bss_0->unk_8 != 0) {
-    fn_1_46B4((*(struct fn_8_516C_lbl_801A6410 *)&lbl_801A6410).unk_0, p_lbl_8_bss_0->unk_8, (u32)&(lbl_8_data_434), 3405);
+    fn_1_46B4((*(struct fn_8_516C_lbl_801A6410 *)&lbl_801A6410).unk_0, p_lbl_8_bss_0->unk_8, (u32)&lbl_8_data_434, 3405);
     p_lbl_8_bss_0->unk_8 = 0;
     }
     v0 = (*(struct fn_8_516C_lbl_1_bss_7C850 *)&lbl_1_bss_7C850).unk_0;
@@ -9988,7 +9988,7 @@ void fn_8_5514(void) {
     p_lbl_8_bss_0->unk_288 = 0;
     }
     if (p_lbl_8_bss_0->unk_8 != 0) {
-    fn_1_46B4((*(struct fn_8_5514_lbl_801A6410 *)&lbl_801A6410).unk_0, p_lbl_8_bss_0->unk_8, (u32)&(lbl_8_data_434), 3560);
+    fn_1_46B4((*(struct fn_8_5514_lbl_801A6410 *)&lbl_801A6410).unk_0, p_lbl_8_bss_0->unk_8, (u32)&lbl_8_data_434, 3560);
     p_lbl_8_bss_0->unk_8 = 0;
     }
     v0 = (*(struct fn_8_5514_lbl_1_bss_7C850 *)&lbl_1_bss_7C850).unk_0;
@@ -10005,7 +10005,7 @@ extern u8 lbl_8_bss_238__fzgx_offset_A;
 
 void fn_8_55CC(void) {
     if (lbl_8_bss_238__fzgx_offset_5 == 0) {
-    (lbl_8_bss_238__fzgx_offset_A) = 0;
+    lbl_8_bss_238__fzgx_offset_A = 0;
     fn_8_D024();
     }
 }
@@ -10185,7 +10185,7 @@ void fn_8_5B44(void) {
     f32 one;
 
     data = (const char *)&lbl_8_data_0;
-    (*(TitleDisplayState *)&lbl_1_bss_58).unk_0 = (lbl_801A66B4);
+    (*(TitleDisplayState *)&lbl_1_bss_58).unk_0 = lbl_801A66B4;
     one = lbl_8_rodata_8;
     (*(TitleDisplayState *)&lbl_1_bss_58).unk_1 = 1;
     (*(TitleDisplayState *)&lbl_1_bss_58).unk_2 = 0;
@@ -10212,7 +10212,7 @@ void fn_8_5B44(void) {
     (*(TitleDisplayState *)&lbl_1_bss_58).unk_14 = 4;
     (*(TitleDisplayState *)&lbl_1_bss_58).unk_16 = 1;
     (*(TitleDisplayState *)&lbl_1_bss_58).unk_17 = 0;
-    (lbl_1_bss_968) = 8;
+    lbl_1_bss_968 = 8;
 }
 /* fzgx:end fn_8_5B44 */
 
@@ -10412,7 +10412,7 @@ struct fn_8_5FD4_lbl_1_bss_7EFD8 {
 };
 
 #define TITLE_READ(n) fn_1_F453C((struct fn_8_5FD4_Sig_fn_1_F453C_fn_1_F453C_Arg0 *)lbl_8_bss_2B0, \
-                                 (struct fn_8_5FD4_Sig_fn_1_F453C_fn_1_F453C_Arg1 *)&lbl_8_bss_2AC, (n))
+                                 (struct fn_8_5FD4_Sig_fn_1_F453C_fn_1_F453C_Arg1 *)&lbl_8_bss_2AC, n)
 
 static inline f32 title_read_f32(void) {
     u32 bits = TITLE_READ(32);

@@ -393,7 +393,7 @@ void fn_17_3F0(void) {
     fn_80083DB0(lbl_1_bss_198 + 0x480, (const char *)(base + 0x3ef4));
     fn_80083DB0(lbl_1_bss_198 + 0x4c0, (const char *)(base + 0x3f04));
     fn_80083DB0(lbl_1_bss_198 + 0x500, (const char *)(base + 0x3f10));
-    mode = (lbl_801A66B4);
+    mode = lbl_801A66B4;
     neg = -1;
     cfg = &lbl_1_bss_58;
     cfg->unk_0 = mode;
@@ -838,7 +838,7 @@ void fn_17_C9C(void) {
         state->unk_58 |= 0x20000000;
     } else if (index == 8) {
         state->unk_58 |= 0x00200000;
-        fn_1_3FDA8((state->unk_14), state->unk_18);
+        fn_1_3FDA8(state->unk_14, state->unk_18);
         fn_1_4A00(1, 0x1e, state->unk_18);
     } else {
         state->unk_58 |= 1;
@@ -17138,7 +17138,7 @@ static inline Obj_17_bss_D8_AtC *slot_ptr(void *db, u32 offset) {
 #define ROWS ((fn_17_3E08_InterviewVec *)lbl_17_data_62A48)
 #define SEAT_NODE(expr, Type) \
     do { \
-        Type *node = (expr); \
+        Type *node = expr; \
         f32 row_z; \
         f32 row_x; \
         f32 flat; \
@@ -17155,7 +17155,7 @@ static inline Obj_17_bss_D8_AtC *slot_ptr(void *db, u32 offset) {
             break; \
         default: { \
             f64 seat_x = ((f64 *)rod)[0x20] - row_x; \
-            f32 seat_ac = (*((8) + (rod))); \
+            f32 seat_ac = (*((8) + rod)); \
             f32 seat_z = rod[0x3E] - row_z; \
             node->unk_A8 = seat_x; \
             node->unk_AC = seat_ac; \
@@ -18093,7 +18093,7 @@ void fn_17_4FE0(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     fn_1_7F934((void *)v1);
     v3 = (u32)&(*(struct fn_17_4FE0_lbl_801A6410 *)&lbl_801A6410);
     v2 = p_lbl_17_bss_0->unk_308;
-    v4 = (u32)&(lbl_17_data_63E50);
+    v4 = (u32)&lbl_17_data_63E50;
     v1 = *(u32 *)(v3);
     v3 = 3134;
     t2 = fn_1_46B4(v1, v2, v4, v3);
@@ -18109,7 +18109,7 @@ void fn_17_4FE0(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     fn_1_14DBCC((void *)v7);
     v8 = (u32)&(*(struct fn_17_4FE0_lbl_801A6410 *)&lbl_801A6410);
     v6 = p_lbl_17_bss_0->unk_30C;
-    v9 = (u32)&(lbl_17_data_63E50);
+    v9 = (u32)&lbl_17_data_63E50;
     v7 = *(u32 *)(v8);
     v8 = 3139;
     t4 = fn_1_46B4(v7, v6, v9, v8);
@@ -18126,7 +18126,7 @@ void fn_17_4FE0(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     if (p_lbl_17_bss_0->unk_8 != 0) {
     fn_1_FDFF4();
     v12 = (*(struct fn_17_4FE0_lbl_801A6410 *)&lbl_801A6410).unk_0;
-    t7 = fn_1_46B4(v12, p_lbl_17_bss_0->unk_8, (u32)&(lbl_17_data_63E50), 3152);
+    t7 = fn_1_46B4(v12, p_lbl_17_bss_0->unk_8, (u32)&lbl_17_data_63E50, 3152);
     v12 = t7;
     }
 }
@@ -129768,19 +129768,19 @@ void fn_17_69EC(void *arg0, f32 farg0) {
     if ((*(f32 *)((u8 *)(temp_r4) + 76)) == (*(f32 *)((u8 *)(temp_r4) + 80))) {
         switch ((s16)fn_1_12CB04(fn_1_12C710(*(u32 *)(base + 136)))) {  /* irregular */
         case 2:
-            fn_1_935E4((Sig_fn_1_935E4_Fn935E4Car *)((Sig_fn_1_935E4_Fn935E4Car *)(temp_r31)), (void *)(temp_r31 + 0x148), (arg0), (lbl_17_rodata_1C));
-            fn_1_935E4((Sig_fn_1_935E4_Fn935E4Car *)(*(Sig_fn_1_935E4_Fn935E4Car **)((u8 *)(&lbl_17_bss_D8) + 8)), ((u8 *)((*(Sig_fn_1_935E4_Fn935E4Car **)((u8 *)(&lbl_17_bss_D8) + 8))) + 0x148), (arg0), farg0);
-            fn_1_935E4((Sig_fn_1_935E4_Fn935E4Car *)(*(Sig_fn_1_935E4_Fn935E4Car **)((u8 *)(&lbl_17_bss_D8) + 12)), ((u8 *)((*(Sig_fn_1_935E4_Fn935E4Car **)((u8 *)(&lbl_17_bss_D8) + 12))) + 0x148), (arg0), farg0);
+            fn_1_935E4((Sig_fn_1_935E4_Fn935E4Car *)((Sig_fn_1_935E4_Fn935E4Car *)(temp_r31)), (void *)(temp_r31 + 0x148), arg0, lbl_17_rodata_1C);
+            fn_1_935E4((Sig_fn_1_935E4_Fn935E4Car *)(*(Sig_fn_1_935E4_Fn935E4Car **)((u8 *)(&lbl_17_bss_D8) + 8)), ((u8 *)((*(Sig_fn_1_935E4_Fn935E4Car **)((u8 *)(&lbl_17_bss_D8) + 8))) + 0x148), arg0, farg0);
+            fn_1_935E4((Sig_fn_1_935E4_Fn935E4Car *)(*(Sig_fn_1_935E4_Fn935E4Car **)((u8 *)(&lbl_17_bss_D8) + 12)), ((u8 *)((*(Sig_fn_1_935E4_Fn935E4Car **)((u8 *)(&lbl_17_bss_D8) + 12))) + 0x148), arg0, farg0);
             break;
         case 1:
-            fn_1_935E4((Sig_fn_1_935E4_Fn935E4Car *)((Sig_fn_1_935E4_Fn935E4Car *)(temp_r31)), (void *)(temp_r31 + 0x148), (arg0), (lbl_17_rodata_1C));
-            fn_1_935E4((Sig_fn_1_935E4_Fn935E4Car *)(*(Sig_fn_1_935E4_Fn935E4Car **)((u8 *)(&lbl_17_bss_D8) + 8)), ((u8 *)((*(Sig_fn_1_935E4_Fn935E4Car **)((u8 *)(&lbl_17_bss_D8) + 8))) + 0x148), (arg0), farg0);
+            fn_1_935E4((Sig_fn_1_935E4_Fn935E4Car *)((Sig_fn_1_935E4_Fn935E4Car *)(temp_r31)), (void *)(temp_r31 + 0x148), arg0, lbl_17_rodata_1C);
+            fn_1_935E4((Sig_fn_1_935E4_Fn935E4Car *)(*(Sig_fn_1_935E4_Fn935E4Car **)((u8 *)(&lbl_17_bss_D8) + 8)), ((u8 *)((*(Sig_fn_1_935E4_Fn935E4Car **)((u8 *)(&lbl_17_bss_D8) + 8))) + 0x148), arg0, farg0);
             break;
         case 0:
-            fn_1_935E4((Sig_fn_1_935E4_Fn935E4Car *)((Sig_fn_1_935E4_Fn935E4Car *)(temp_r31)), (void *)(temp_r31 + 0x148), (arg0), farg0);
+            fn_1_935E4((Sig_fn_1_935E4_Fn935E4Car *)((Sig_fn_1_935E4_Fn935E4Car *)(temp_r31)), (void *)(temp_r31 + 0x148), arg0, farg0);
             break;
         }
-        (lbl_17_bss_1) = 0;
+        lbl_17_bss_1 = 0;
     }
 }
 /* fzgx:end fn_17_69EC */
@@ -129840,10 +129840,10 @@ void fn_17_6B2C(void) {
 #define LAYOUT_CHECK_JOIN2(a, b) a##b
 #define LAYOUT_CHECK_JOIN(a, b) LAYOUT_CHECK_JOIN2(a, b)
 #define CHECK_SIZE(T, size) \
-    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == (size)) ? 1 : -1]
+    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == size) ? 1 : -1]
 #define CHECK_OFFSET(T, field, offset) \
     typedef char LAYOUT_CHECK_JOIN(LAYOUT_CHECK_JOIN(layout_offset_, T), __LINE__) \
-        [((unsigned long)&((T *)0)->field == (offset)) ? 1 : -1]
+        [((unsigned long)&((T *)0)->field == offset) ? 1 : -1]
 
 #endif
 
@@ -144362,7 +144362,7 @@ void fn_17_7728(struct fn_17_7728_Arg0 *arg0, u32 lab_unused0, u32 lab_unused1) 
  arg0->unk_28=triple.x; arg0->unk_2C=triple.y; arg0->unk_30=triple.z;
  arg0->unk_34=loc.unk_18;arg0->unk_38=loc.unk_1C;arg0->unk_3C=loc.unk_20;
     lab_v = loc.unk_28;
- arg0->unk_20=lab_v;arg0->unk_0=(loc.unk_24);arg0->unk_20=lab_v;
+ arg0->unk_20=lab_v;arg0->unk_0=loc.unk_24;arg0->unk_20=lab_v;
 }
 /* fzgx:end fn_17_7728 */
 
@@ -144547,7 +144547,7 @@ void fn_17_7A74(fn_17_7A74_State *state) {
             state->unk_58 += step;
         }
         state->unk_54 += state->unk_58;
-        state->unk_54 = (((state->unk_54) < (0.0f)) ? (0.0f) : (((state->unk_54) > (1.0f)) ? (1.0f) : (state->unk_54)));
+        state->unk_54 = ((state->unk_54 < (0.0f)) ? (0.0f) : ((state->unk_54 > (1.0f)) ? (1.0f) : state->unk_54));
         t = state->unk_54;
         lbl_8006D5A4(t, &from.unk_4, &to.unk_4, &state->unk_28);
         lbl_8006D5A4(t, &from.unk_10, &to.unk_10, &state->unk_34);
@@ -145202,7 +145202,7 @@ void fn_17_849C(f32 value) {
         params.float18 = 0.0f;
     }
     fzgx_live = params.float18;
-    params.float30 = ((fzgx_live) / 2.0f);
+    params.float30 = (fzgx_live / 2.0f);
     fn_1_4F734(&params);
 
     params.float10 = 30.0f;

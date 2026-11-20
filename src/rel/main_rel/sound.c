@@ -659,7 +659,7 @@ void fn_1_A04C4(void) {
     p_lbl_1_bss_6EA98->unk_28 = lbl_1_rodata_42E0;
     p_lbl_1_bss_6EA98->unk_2C = 255;
     p_lbl_1_bss_6EA98->unk_2D = 0;
-    fn_80008BEC((p_lbl_1_bss_6EA98->unk_30), 0, (0x30000 + -32768));
+    fn_80008BEC(p_lbl_1_bss_6EA98->unk_30, 0, (0x30000 + -32768));
     fn_800658A8((u32)fn_1_A04AC);
     fn_8006589C((u32)fn_1_9FF54);
     fn_1_44A4();
@@ -2769,10 +2769,10 @@ end:
 #define LAYOUT_CHECK_JOIN2(a, b) a##b
 #define LAYOUT_CHECK_JOIN(a, b) LAYOUT_CHECK_JOIN2(a, b)
 #define CHECK_SIZE(T, size) \
-    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == (size)) ? 1 : -1]
+    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == size) ? 1 : -1]
 #define CHECK_OFFSET(T, field, offset) \
     typedef char LAYOUT_CHECK_JOIN(LAYOUT_CHECK_JOIN(layout_offset_, T), __LINE__) \
-        [((unsigned long)&((T *)0)->field == (offset)) ? 1 : -1]
+        [((unsigned long)&((T *)0)->field == offset) ? 1 : -1]
 
 #endif
 
@@ -3109,10 +3109,10 @@ void fn_1_A2210(u8 cue)
 #define LAYOUT_CHECK_JOIN2(a, b) a##b
 #define LAYOUT_CHECK_JOIN(a, b) LAYOUT_CHECK_JOIN2(a, b)
 #define CHECK_SIZE(T, size) \
-    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == (size)) ? 1 : -1]
+    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == size) ? 1 : -1]
 #define CHECK_OFFSET(T, field, offset) \
     typedef char LAYOUT_CHECK_JOIN(LAYOUT_CHECK_JOIN(layout_offset_, T), __LINE__) \
-        [((unsigned long)&((T *)0)->field == (offset)) ? 1 : -1]
+        [((unsigned long)&((T *)0)->field == offset) ? 1 : -1]
 
 #endif
 
@@ -3485,10 +3485,10 @@ void fn_1_A24CC(void) {
 #define LAYOUT_CHECK_JOIN2(a, b) a##b
 #define LAYOUT_CHECK_JOIN(a, b) LAYOUT_CHECK_JOIN2(a, b)
 #define CHECK_SIZE(T, size) \
-    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == (size)) ? 1 : -1]
+    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == size) ? 1 : -1]
 #define CHECK_OFFSET(T, field, offset) \
     typedef char LAYOUT_CHECK_JOIN(LAYOUT_CHECK_JOIN(layout_offset_, T), __LINE__) \
-        [((unsigned long)&((T *)0)->field == (offset)) ? 1 : -1]
+        [((unsigned long)&((T *)0)->field == offset) ? 1 : -1]
 
 #endif
 
@@ -4010,17 +4010,17 @@ void fn_1_A2A70(u32 arg0, s32 arg1) {
             lbl_1_bss_6EAB4__fzgx_offset_C = lbl_1_rodata_446C / arg1;
         }
         if (arg0 & 4) {
-            lbl_1_bss_6F31A__fzgx_offset_6 = (s32)fn_8004BED0((*(void ** *)&(fzgx_obj_lbl_1_bss_6EAD0))[0]);
-            v1 = lbl_1_rodata_446C + (s32)fn_8004BED0((*(void ** *)&(fzgx_obj_lbl_1_bss_6EAD0))[0]);
+            lbl_1_bss_6F31A__fzgx_offset_6 = (s32)fn_8004BED0((*(void ** *)&fzgx_obj_lbl_1_bss_6EAD0)[0]);
+            v1 = lbl_1_rodata_446C + (s32)fn_8004BED0((*(void ** *)&fzgx_obj_lbl_1_bss_6EAD0)[0]);
             fzgx_obj_lbl_1_bss_6EAB4 &= ~1;
             lbl_1_bss_6EAB4__fzgx_offset_8 = v1 / arg1;
         }
         if (arg0 & 8) {
-            lbl_1_bss_6F31A__fzgx_offset_A = (s32)fn_8004BED0((*(void ** *)&(fzgx_obj_lbl_1_bss_6EAD0))[1]);
-            v1 = lbl_1_rodata_446C + (s32)fn_8004BED0((*(void ** *)&(fzgx_obj_lbl_1_bss_6EAD0))[1]);
+            lbl_1_bss_6F31A__fzgx_offset_A = (s32)fn_8004BED0((*(void ** *)&fzgx_obj_lbl_1_bss_6EAD0)[1]);
+            v1 = lbl_1_rodata_446C + (s32)fn_8004BED0((*(void ** *)&fzgx_obj_lbl_1_bss_6EAD0)[1]);
             lbl_1_bss_6EAB4__fzgx_offset_C = v1 / arg1;
             if (arg0 & 0x40) {
-                v0 = (s32)(fn_8004BED0((*(void ** *)&(fzgx_obj_lbl_1_bss_6EAD0))[1]) + 600) / arg1;
+                v0 = (s32)(fn_8004BED0((*(void ** *)&fzgx_obj_lbl_1_bss_6EAD0)[1]) + 600) / arg1;
                 loc_8 = (lbl_1_bss_6EAB4__fzgx_offset_C = v0);
                 lbl_1_bss_6EAB4__fzgx_offset_C = loc_8;
                 if (lbl_1_bss_6EAB4__fzgx_offset_C < lbl_1_rodata_4470) {
@@ -4340,7 +4340,7 @@ tail:
         s32 k = id * 2;
         s8 *p = (s8 *)&lbl_1_bss_6F244__fzgx_offset_8;
 
-        p[k] = ((*((k) + (p))) + 1);
+        p[k] = ((*((k) + p)) + 1);
         p[k + 1] = 0;
         if (p[k] > 6) {
             p[k] = 0;
@@ -4420,7 +4420,7 @@ void fn_1_A31E4(void) {
 
     if (fn_1_3F864() != 0) {
         n = fn_1_3F854();
-        tbl = (state->unk_74C);
+        tbl = state->unk_74C;
         for (i = 0; i < n; i++) {
             id = tbl[i].unk_1;
             flags = fn_1_864E8(id);
@@ -5464,12 +5464,12 @@ void fn_1_A4BC8(void *arg0, void *arg1, FnA4BC8State *state) {
 
     if (!(flags & 0x00010880)) {
         if (state->field_10C && state->field_110 &&
-            !(lbl_1_bss_6F1D8) && (lbl_1_bss_6F1DC) <= 0x2D) {
+            !(lbl_1_bss_6F1D8) && lbl_1_bss_6F1DC <= 0x2D) {
             fn_80067898(0xA9061800);
         }
 
         if ((flags & 0x00040000) &&
-            !(lbl_1_bss_6F1D8) && (lbl_1_bss_6F1DC) <= 0x2D) {
+            !(lbl_1_bss_6F1D8) && lbl_1_bss_6F1DC <= 0x2D) {
             fn_80067898(0xA9092000);
         }
     }
@@ -5527,32 +5527,32 @@ void fn_1_A4DF4(void) {
     u32 v3;
     u32 v4;
     u32 v5;
-    if ((lbl_1_bss_6F1D8) == 0 && (lbl_1_bss_6F1DC) <= 45) {
+    if (lbl_1_bss_6F1D8 == 0 && lbl_1_bss_6F1DC <= 45) {
     v0 = 0xA9090000;
     v0 += 4608;
     fn_80067898(v0);
     }
-    if ((lbl_1_bss_6F1D8) == 0 && (lbl_1_bss_6F1DC) <= 45) {
+    if (lbl_1_bss_6F1D8 == 0 && lbl_1_bss_6F1DC <= 45) {
     v1 = 0xA9090000;
     v1 += 5632;
     fn_80067898(v1);
     }
-    if ((lbl_1_bss_6F1D8) == 0 && (lbl_1_bss_6F1DC) <= 45) {
+    if (lbl_1_bss_6F1D8 == 0 && lbl_1_bss_6F1DC <= 45) {
     v2 = 0xA9090000;
     v2 += 7168;
     fn_80067898(v2);
     }
-    if ((lbl_1_bss_6F1D8) == 0 && (lbl_1_bss_6F1DC) <= 45) {
+    if (lbl_1_bss_6F1D8 == 0 && lbl_1_bss_6F1DC <= 45) {
     v3 = 0xA9090000;
     v3 += 9216;
     fn_80067898(v3);
     }
-    if ((lbl_1_bss_6F1D8) == 0 && (lbl_1_bss_6F1DC) <= 45) {
+    if (lbl_1_bss_6F1D8 == 0 && lbl_1_bss_6F1DC <= 45) {
     v4 = 0xA9090000;
     v4 += 11776;
     fn_80067898(v4);
     }
-    if ((lbl_1_bss_6F1D8) == 0 && (lbl_1_bss_6F1DC) <= 45) {
+    if (lbl_1_bss_6F1D8 == 0 && lbl_1_bss_6F1DC <= 45) {
     v5 = 0xA9090000;
     v5 += 3328;
     fn_80067898(v5);
@@ -6100,7 +6100,7 @@ void fn_1_A5AA0(const char *arg0, Fn1A5AA0Object *arg1) {
 
         if (flag != 0) {
             s = (Fn1A5AA0Section *)arg1->unk0;
-            link = ((((0x1f) + ((u32)s)) + (s->unk48))) & ~0x1f;
+            link = ((((0x1f) + ((u32)s)) + s->unk48)) & ~0x1f;
             sz = (link + s->unk20) - (u32)s;
 
             if (sz > avail) {

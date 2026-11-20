@@ -798,7 +798,7 @@ shift[0x29] = shift[0x2b];
 }
 }
 lbl_10_bss_55CD8->unk_F = 0;
-cnt = (lbl_10_bss_55CD8->unk_E);
+cnt = lbl_10_bss_55CD8->unk_E;
 } else {
 held = (u16 *)(lbl_1_bss_9F8 + 0x10);
 if (((held[lbl_10_bss_55CD8->unk_C * 10] >> 3) & 1) || (((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_10_bss_55CD8->unk_C * 10]) >> 3) & 1)) {

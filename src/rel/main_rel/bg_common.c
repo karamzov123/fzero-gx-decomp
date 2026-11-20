@@ -265,7 +265,7 @@ void fn_1_103264(fn_1_D8EEC_LigEntry *arg0, void *arg1) {
                     lbl_8006D7B0();
                     lbl_8006DB74(loc_48);
                     lbl_8006D758();
-                    v61 = fn_1_103264_operand_((loc_8.x), (loc_8.x));
+                    v61 = fn_1_103264_operand_(loc_8.x, loc_8.x);
                     v61 = __fmadds(loc_8.y, loc_8.y, v61);
                     v61 = __fmadds(loc_8.z, loc_8.z, v61);
                     v61 = lbl_8006D0B4(v61);
@@ -292,7 +292,7 @@ void fn_1_103264(fn_1_D8EEC_LigEntry *arg0, void *arg1) {
                     mathutil_mtxA_rotate_z((s16)(-v17));
                     lbl_8006DB74(loc_48);
                     lbl_8006D758();
-                    v61 = fn_1_103264_operand((loc_8.x), (loc_8.x));
+                    v61 = fn_1_103264_operand(loc_8.x, loc_8.x);
                     v61 = __fmadds(loc_8.y, loc_8.y, v61);
                     v61 = __fmadds(loc_8.z, loc_8.z, v61);
                     v61 = lbl_8006D0B4(v61);
@@ -1207,10 +1207,10 @@ extern void lbl_8006DCA4(void);
 #define LAYOUT_CHECK_JOIN2(a, b) a##b
 #define LAYOUT_CHECK_JOIN(a, b) LAYOUT_CHECK_JOIN2(a, b)
 #define CHECK_SIZE(T, size) \
-    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == (size)) ? 1 : -1]
+    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == size) ? 1 : -1]
 #define CHECK_OFFSET(T, field, offset) \
     typedef char LAYOUT_CHECK_JOIN(LAYOUT_CHECK_JOIN(layout_offset_, T), __LINE__) \
-        [((unsigned long)&((T *)0)->field == (offset)) ? 1 : -1]
+        [((unsigned long)&((T *)0)->field == offset) ? 1 : -1]
 
 #endif
 
@@ -1995,8 +1995,8 @@ void fn_1_105BD8(u32 id, u32 *a, u32 *b, u32 *c, u32 *d) {
         cz = ((Vec3 *)c)->z;
         bx = ((Vec3 *)b)->x;
         cx = ((Vec3 *)c)->x;
-        x = (fn_1_105BD8_operand((bz), (cy))) - cz * ((Vec3 *)b)->y;
-        y = (f32)(((cz) * (bx))) - cx * bz;
+        x = (fn_1_105BD8_operand(bz, cy)) - cz * ((Vec3 *)b)->y;
+        y = (f32)(((cz) * bx)) - cx * bz;
         z = (f32)(cx * ((Vec3 *)b)->y) - cy * bx;
         ((Vec3 *)d)->x = x;
         ((Vec3 *)d)->y = y;
@@ -2579,17 +2579,17 @@ void fn_1_10688C(void) {
         OSReport("already allocated jpeg_decode_ram!\n");
     } else {
         lbl_1_bss_85280__fzgx_offset_4 =
-            fn_1_45D0((lbl_801A6410), lbl_1_bss_854B8__fzgx_offset_6C8, fzgx_obj_lbl_1_data_3F34C, 0x847);
+            fn_1_45D0(lbl_801A6410, lbl_1_bss_854B8__fzgx_offset_6C8, fzgx_obj_lbl_1_data_3F34C, 0x847);
     }
     size = GXGetTexBufferSize(0x80, 0x80, 6, 0, 0);
     lbl_1_bss_854B8__fzgx_offset_6CC = size;
     if (fzgx_obj_lbl_1_data_3F284[0] != 0 || fzgx_obj_lbl_1_data_3F284[1] != 0 || fzgx_obj_lbl_1_bss_85280 != 0) {
         OSReport("already allocated jpeg_buff!\n");
     } else {
-        fzgx_obj_lbl_1_data_3F284[0] = fn_1_4630((lbl_801A6410), size, fzgx_obj_lbl_1_data_3F34C, 0x84F);
+        fzgx_obj_lbl_1_data_3F284[0] = fn_1_4630(lbl_801A6410, size, fzgx_obj_lbl_1_data_3F34C, 0x84F);
         fzgx_obj_lbl_1_data_3F284[1] =
-            fn_1_4630((lbl_801A6410), lbl_1_bss_854B8__fzgx_offset_6CC, fzgx_obj_lbl_1_data_3F34C, 0x850);
-        fzgx_obj_lbl_1_bss_85280 = fn_1_4630((lbl_801A6410), 0x4000, fzgx_obj_lbl_1_data_3F34C, 0x851);
+            fn_1_4630(lbl_801A6410, lbl_1_bss_854B8__fzgx_offset_6CC, fzgx_obj_lbl_1_data_3F34C, 0x850);
+        fzgx_obj_lbl_1_bss_85280 = fn_1_4630(lbl_801A6410, 0x4000, fzgx_obj_lbl_1_data_3F34C, 0x851);
     }
     lbl_1_bss_854B8__fzgx_offset_6D0 = 0;
     lbl_1_bss_854B8__fzgx_offset_6D1 = 0;
@@ -2741,7 +2741,7 @@ void fn_1_106D30(void) {
     return;
 work:
     *(s32 *)((u8 *)&lbl_1_bss_854B8__fzgx_offset_10) = 0;
-    OSCreateThread((&lbl_1_bss_854B8__fzgx_offset_6E0), fn_1_106CAC, 0,
+    OSCreateThread(&lbl_1_bss_854B8__fzgx_offset_6E0, fn_1_106CAC, 0,
                    (&lbl_1_bss_854B8__fzgx_offset_A08) + 0x1000, 0x1000, 0x1E, 1);
     OSResumeThread(&lbl_1_bss_854B8__fzgx_offset_6E0);
 }
@@ -2975,9 +2975,9 @@ static void fzgx_pool_primer(volatile f64 *d, volatile f32 *f) {  /* fzgx-allow:
 #pragma section code_type ".text"
 #define normal_out(dst, factor) do { \
  f32 z,y,x,s; \
- Vec3 *out=(dst); \
+ Vec3 *out=dst; \
  f32 (*a)[4]=(void*)LC_BASE; \
- s=(factor); \
+ s=factor; \
  x=a[0][1]; y=a[1][1]; z=a[2][1]; \
  x*=s; y*=s; z*=s; \
  out->x=x; out->y=y; out->z=z; \
@@ -2986,7 +2986,7 @@ static void fzgx_pool_primer(volatile f64 *d, volatile f32 *f) {  /* fzgx-allow:
 #define TRANSLATE_COL(p, c, sc) \
  p##x=m[0][c]; p##y=m[1][c]; p##z=m[2][c]; \
  p##wz=m[2][3]; p##wy=m[1][3]; p##wx=m[0][3]; \
- p##s=(sc); \
+ p##s=sc; \
  p##z=p##z*p##s+p##wz; p##y=p##y*p##s+p##wy; p##x=p##x*p##s+p##wx; \
  m[0][3]=p##x; m[1][3]=p##y; m[2][3]=p##z
 #pragma opt_lifetimes off

@@ -2248,7 +2248,7 @@ void fn_3_E6F8(void) {
                     camera.roll = 0;
                     camera_update_state(&camera);
                     fn_80072558();
-                    fn_1_FD388(((state3->unk_15 * 0x2060) + ((0x20) + (SRC))), 5.0f / lbl_3_bss_9F640.eye.z);
+                    fn_1_FD388(((state3->unk_15 * 0x2060) + ((0x20) + SRC)), 5.0f / lbl_3_bss_9F640.eye.z);
                 }
             } else {
                 rot1 = rot;

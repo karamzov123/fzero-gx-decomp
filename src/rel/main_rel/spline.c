@@ -161,7 +161,7 @@ void fn_1_F5458(void *arg0, u32 count, f32 value, f32 *samples, void *table) {
                    (f32 *)((u8 *)table + (index << 4) + 16));
         fn_1_F588C((f32 *)work1, (f32 *)((u8 *)table + (index << 4)), (f32 *)((u8 *)table + (index << 4) + 16), ratio);
         fn_1_F588C((f32 *)work0, (f32 *)work3, (f32 *)work2, ratio);
-        lab_t3 = (((lbl_1_rodata_6D6C) * (ratio)) * ((lbl_1_rodata_6D74 - ratio)));
+        lab_t3 = (((lbl_1_rodata_6D6C) * ratio) * ((lbl_1_rodata_6D74 - ratio)));
         fn_1_F588C(arg0, (f32 *)work1, (f32 *)work0, lab_t3);
     }
 }
@@ -1793,7 +1793,7 @@ void fn_1_F7F48(s16 value) {
     if (mask & bit) {
         cond.value = 1;
     }
-    if (((0) == (cond.value))) {
+    if (((0) == cond.value)) {
         if ((fn_1_8D5F0(value) & 0x20000000) == 0) {
             *(u64 *)&lbl_1_bss_7F0C0.unk_48 |= bit;
         }

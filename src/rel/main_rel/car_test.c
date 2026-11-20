@@ -921,25 +921,25 @@ void fn_1_7D6B8(Fn1_7D6B8Arg *arg0) {
             }
             if (var_r4 != 0) {
                 (*((u8 *)(arg0) + 8)) = temp_r0_2;
-                (arg0->field_25) = 0;
-                (arg0->field_26) = 0;
-                (arg0->field_27) = 0;
-                (arg0->field_28) = 0;
-                (arg0->field_29) = 0;
+                arg0->field_25 = 0;
+                arg0->field_26 = 0;
+                arg0->field_27 = 0;
+                arg0->field_28 = 0;
+                arg0->field_29 = 0;
             }
             temp_r3 = *((u8 *)(arg0) + 8);
             shift_idx = (s8) temp_r3;
             if ((shift_idx != temp_r0_2) && ((lbl_1_bss_9F8[0].unk_8 >> 0xBU) & 1)) {
-                temp_r5 = (arg0->field_c);
+                temp_r5 = arg0->field_c;
                 temp_r4 = (s8) (*((u8 *)(arg0) + 7)) * 4;
                 (*(s32 *)(((temp_r5 + temp_r4)))) ^= (1 << shift_idx);
             }
             if ((lbl_1_bss_9F8[0].unk_8 >> 0xAU) & 1) {
                 temp_r3_2 = (s32 *)((arg0->field_c) + ((s8) (*((u8 *)(arg0) + 7)) * 4));
-                if ((*(temp_r3_2)) & 0x80000000) {
-                    memset((temp_r3_2), (0), (4U));
+                if ((*temp_r3_2) & 0x80000000) {
+                    memset(temp_r3_2, (0), (4U));
                 } else {
-                    memset((temp_r3_2), (-1), (4U));
+                    memset(temp_r3_2, (-1), (4U));
                 }
             }
             if ((lbl_1_bss_9F8[0].unk_8 >> 8U) & 1) {
@@ -1014,10 +1014,10 @@ void fn_1_7D6B8(Fn1_7D6B8Arg *arg0) {
             switch ((s8) temp_r0_3) {               /* switch 2; irregular */
             case 0:                                 /* switch 2 */
                 temp_r4_3 = (*(u8 **)(((*(u8 ***)((u8 *)(arg0) + 28)))));
-                (*(temp_r4_3)) = ((*(temp_r4_3)) + var_r5);
+                (*temp_r4_3) = ((*temp_r4_3) + var_r5);
                 temp_r4_4 = (*(u8 **)(((*(u8 ***)((u8 *)(arg0) + 28)))));
-                temp_r3_5 = *(temp_r4_4);
-                (*(temp_r4_4)) = CLAMP_U8(temp_r3_5);
+                temp_r3_5 = *temp_r4_4;
+                (*temp_r4_4) = CLAMP_U8(temp_r3_5);
                 break;
             case 1:                                 /* switch 2 */
                 temp_r4_5 = (*(u8 **)(((*(u8 ***)((u8 *)(arg0) + 28)))));
@@ -1134,10 +1134,10 @@ void fn_1_7D6B8(Fn1_7D6B8Arg *arg0) {
             switch ((s8) temp_r0_5) {               /* switch 4; irregular */
             case 0:                                 /* switch 4 */
                 temp_r4_19 = (*(u8 **)(((*(u8 ***)((u8 *)(arg0) + 28)))));
-                (*(temp_r4_19)) += var_r5;
+                (*temp_r4_19) += var_r5;
                 temp_r4_20 = (*(u8 **)(((*(u8 ***)((u8 *)(arg0) + 28)))));
-                temp_r3_13 = *(temp_r4_20);
-                (*(temp_r4_20)) = CLAMP_U8(temp_r3_13);
+                temp_r3_13 = *temp_r4_20;
+                (*temp_r4_20) = CLAMP_U8(temp_r3_13);
                 return;
             case 1:                                 /* switch 4 */
                 temp_r4_21 = (*(u8 **)(((*(u8 ***)((u8 *)(arg0) + 28)))));
@@ -1810,7 +1810,7 @@ void fn_1_7ECB8(void * arg0, u32 arg1, u32 arg2, f32 arg3) {
     u32 t25;
     u32 t27;
     v0 = *(u32 *)((u8 *)arg0 + 932);
-    v2 = (arg3);
+    v2 = arg3;
     if ((*(u32 *)((u8 *)arg0 + 912) & 0x4000000) != 0) {
     if ((arg2 & 0x40000000) != 0) {
     v1 = 0;
@@ -1837,7 +1837,7 @@ void fn_1_7ECB8(void * arg0, u32 arg1, u32 arg2, f32 arg3) {
     v1 += 96;
     t3 = lbl_8006DB74(v1);
     v1 = t3;
-    v2 = (v4);
+    v2 = v4;
     lbl_8006D848(v2);
     v1 = (u32)&lbl_801A6D00;
     v1 = *(u32 *)(v1);
@@ -1886,7 +1886,7 @@ void fn_1_7ECB8(void * arg0, u32 arg1, u32 arg2, f32 arg3) {
     v1 += 96;
     t14 = lbl_8006DB74(v1);
     v1 = t14;
-    v2 = (v10);
+    v2 = v10;
     lbl_8006D848(v2);
     v1 = (u32)&lbl_801A6D00;
     v1 = *(u32 *)(v1);
@@ -1950,7 +1950,7 @@ void fn_1_7ECB8(void * arg0, u32 arg1, u32 arg2, f32 arg3) {
     v1 += 96;
     t25 = lbl_8006DB74(v1);
     v1 = t25;
-    v2 = (v20);
+    v2 = v20;
     lbl_8006D848(v2);
     v1 = (u32)&lbl_801A6D00;
     v1 = *(u32 *)(v1);

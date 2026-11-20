@@ -456,7 +456,7 @@ void fn_1_155120(void) {
     case 91:
         fn_1_A8EB0(20, 20);
         while ((ch = (q = state->unk_10)->unk_0) != 93) {
-            ch = (state->unk_10->unk_0);
+            ch = state->unk_10->unk_0;
             if ((ch & 0x80) == 0) {
                 state->unk_10 = (RepMemcardChar *)((u8 *)state->unk_10 + 1);
                 state->unk_14++;

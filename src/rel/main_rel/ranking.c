@@ -1043,7 +1043,7 @@ void fn_1_1568C4(void *arg) {
 
     value = state->value;
     key = state->key;
-    if (((0x10000) + (key)) == 0xffff) {
+    if (((0x10000) + key) == 0xffff) {
         if (fn_8006B55C(value, &state->key, &config) >= 0) {
             success = 1;
         }
@@ -1196,7 +1196,7 @@ void fn_1_156C08(void *arg0_p) {
     struct { u8 a[36]; } loc_8;
     v1 = -1.899999976158142f;
     (void)v1; (void)v1;
-    v1 = (f32)(v1 * (arg0->delta));
+    v1 = (f32)(v1 * arg0->delta);
     if (v1 > 25.0f) v1 = 25.0f;
     else if (v1 < -25.0f) v1 = -25.0f;
     v1 += arg0->value;
@@ -1465,7 +1465,7 @@ void fn_1_157070(State *state) {
     f32 amount;
 
     if (state->flags4c & 4) {
-        fzgx_live = (state->value34);
+        fzgx_live = state->value34;
         amount = -state->value48 / fzgx_live;
         amount = (amount - table[14]) / table[15];
         if (amount > table[11]) {
@@ -1477,12 +1477,12 @@ void fn_1_157070(State *state) {
         success.value = 0;
         request.unk0 = 2;
         request.unk4 = (s32)(table[16] * amount) + 300;
-        (*(&(request.unk8)) = (0));
-        fzgx_value__ = &(request.unkc);
+        (*(&request.unk8) = (0));
+        fzgx_value__ = &request.unkc;
         *fzgx_value__ = (u8)((s32)(table[17] * amount) + 80);
         request.unke = 90;
         request.unk10 = 100;
-        fzgx_value = &(request.unk12);
+        fzgx_value = &request.unk12;
         *fzgx_value = 0;
         request.unk14 = 0;
         request.unk18 = 5;
@@ -1834,7 +1834,7 @@ void fn_1_157598(fn_1_157598_RankingState *state) {
     config.value20 = success;
     config.value21 = success;
 
-    if (!(((0x80) & (state->flags)))) {
+    if (!(((0x80) & state->flags))) {
         value = state->value;
         owner = state->owner;
 
@@ -1849,7 +1849,7 @@ void fn_1_157598(fn_1_157598_RankingState *state) {
         }
 
         if (success) {
-            if (!(((0x80) & (state->flags)))) {
+            if (!(((0x80) & state->flags))) {
                 if (fn_8006B6F8(state->value) >= 0) {
                     state->flags |= 0x80;
                 }
@@ -1915,7 +1915,7 @@ void fn_1_1576B4(RankingState *state) {
         config.field20 = success;
         config.field21 = success;
 
-        if (!(((0x100) & (state->flags)))) {
+        if (!(((0x100) & state->flags))) {
             field04 = state->field04;
             data = state->data;
             if ((u32)data == 0xffffffffU) {
@@ -1926,7 +1926,7 @@ void fn_1_1576B4(RankingState *state) {
                 success = 1;
             }
 
-            if (success && !(((0x100) & (state->flags))) &&
+            if (success && !(((0x100) & state->flags)) &&
                 fn_8006B6F8(state->data) >= 0) {
                 state->flags |= 0x100;
             }
@@ -2879,7 +2879,7 @@ s8 fn_1_15906C(u32 arg0, struct RankingEffectObject *arg1, f32 arg2) {
             record->z *= -1.0f;
         }
         obj = record->obj;
-        grid_x = &(record->ix);
+        grid_x = &record->ix;
         *grid_x = (s32)(10.0f + obj->x / 100.0f) < 0 ? 0 : (s32)(10.0f + obj->x / 100.0f) > 19 ? 19 : (s32)(10.0f + obj->x / 100.0f);
         record->iy = (s32)(10.0f + obj->y / 100.0f) < 0 ? 0 : (s32)(10.0f + obj->y / 100.0f) > 19 ? 19 : (s32)(10.0f + obj->y / 100.0f);
         record->iz = (s32)(20.0f + obj->z / 100.0f) < 0 ? 0 : (s32)(20.0f + obj->z / 100.0f) > 39 ? 39 : (s32)(20.0f + obj->z / 100.0f);
@@ -2890,7 +2890,7 @@ s8 fn_1_15906C(u32 arg0, struct RankingEffectObject *arg1, f32 arg2) {
             obj = record->obj;
             obj->x = (100.0f * ix) - 1000.0f;
             obj->y = (100.0f * iy) - 1000.0f;
-            z_component = &(obj->z);
+            z_component = &obj->z;
             *z_component = (f32)(100.0f * (f32)iz) - 2000.0f;
         }
         /* The grid begins after the three-word effect-manager header. */
@@ -3087,7 +3087,7 @@ extern s16 fn_1_14F01C(s16);
 void fn_1_1598C4(s32 arg0, u8 arg1, u8 arg2, u8 arg3, u8 arg4, u8 arg5, u8 arg6, u32 arg7, u64 arg8, u8 arg10) {
     s32 i;
 
-    fn_80008BA8((&lbl_1_bss_8F878), (void *)arg7, 0x10);
+    fn_80008BA8(&lbl_1_bss_8F878, (void *)arg7, 0x10);
 
     for (i = 0; i < 0x10; i += 2) {
         if (*((u8 *)(&lbl_1_bss_8F878) + i) == 0) {

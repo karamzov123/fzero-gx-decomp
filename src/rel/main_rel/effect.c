@@ -185,7 +185,7 @@ void fn_1_584D4(void) {
 
     state->unk_00 = fn_1_4630(lbl_801A6410[0], sizeof(AvlineEntry) * 0xbe, lbl_1_data_1D62C, 0xc1);
     state->unk_04 = fn_1_4630(lbl_801A6410[0], sizeof(AvlineEntry) * 0xc8, lbl_1_data_1D62C, 0xc2);
-    entry = (state->unk_00);
+    entry = state->unk_00;
     state->unk_08 = 0;
     id = 0;
     for (count = 0xbe; count > 0; count--) {
@@ -1099,7 +1099,7 @@ void fn_1_5962C(Fn_1_5962C_State *self) {
 
     if (self->timer < 15.0) {
         rate = 1.0f - 1.0f / (self->timer + 1);
-        self->field_1c = fn_1_5962C_operand((rate), (self->field_1c));
+        self->field_1c = fn_1_5962C_operand(rate, self->field_1c);
         self->field_20 = self->field_20 * rate;
         self->field_24 = self->field_24 * rate;
     }
@@ -2956,20 +2956,20 @@ void fn_1_5B188(struct fx_5b188 *p)
     f32 d;
 
     d = 1.0f / (p->field_10 + 1);
-    p->field_48 = fn_1_5B188_operand((0.96f), (p->field_48));
-    p->field_4C = fn_1_5B188_operand((0.96f), (p->field_4C));
-    p->field_50 = fn_1_5B188_operand((0.96f), (p->field_50));
+    p->field_48 = fn_1_5B188_operand((0.96f), p->field_48);
+    p->field_4C = fn_1_5B188_operand((0.96f), p->field_4C);
+    p->field_50 = fn_1_5B188_operand((0.96f), p->field_50);
     p->field_3C = p->field_3C + p->field_48;
     p->field_40 = p->field_40 + p->field_4C;
     p->field_44 = p->field_44 + p->field_50;
-    p->field_5E = (fn_1_5B188_operand((p->field_5E), (0.99f)));
+    p->field_5E = (fn_1_5B188_operand(p->field_5E, (0.99f)));
     p->field_58 = p->field_58 + p->field_5E;
     p->field_1C = p->field_1C + (fn_1_5B188_operand(((0.4f - p->field_1C)), (0.05f)));
     p->field_20 = p->field_20 + (fn_1_5B188_operand(((0.4f - p->field_20)), (0.0505f)));
     p->field_24 = p->field_24 + (fn_1_5B188_operand(((0.4f - p->field_24)), (0.051f)));
     if (p->field_10 < 15.0f) {
-        p->field_B4 = fn_1_5B188_operand(((1.0f - d)), (p->field_B4));
-        p->field_2C = fn_1_5B188_operand((0.95f), (p->field_2C));
+        p->field_B4 = fn_1_5B188_operand(((1.0f - d)), p->field_B4);
+        p->field_2C = fn_1_5B188_operand((0.95f), p->field_2C);
     } else {
         p->field_B4 = p->field_B4 + (fn_1_5B188_operand(((1.0f - p->field_B4)), (0.2f)));
     }
@@ -3089,7 +3089,7 @@ void fn_1_5B3D0(struct fn_1_5B3D0_Arg0 *arg0) {
     f32 r;
 
     state = &lbl_1_data_1D628;
-    next = ((1103515245) * (state->unk_0)) + 12345;
+    next = ((1103515245) * state->unk_0) + 12345;
     random = ((next >> 16) & 0x7FFF);
     r = 0.1f * (random / 32767.0f);
     state->unk_0 = next;
@@ -3523,8 +3523,8 @@ static inline void fn_1_5B7F8_transform(void *mtx, Fn183D28Vec3 *out, Fn183D28Ve
     Fn183D28Vec3 *source;
     f32 *lc = (f32 *)LC_BASE;
     lbl_8006DC6C(mtx);
-    (dest = (out));
-    (source = (in));
+    (dest = out);
+    (source = in);
     x = *(volatile f32 *)&dest->x; /* fzgx-allow: S2 in-place locked-cache translation load order */
     y = *(volatile f32 *)&dest->y; /* fzgx-allow: S2 preserve locked-cache column load order */
     z = *(volatile f32 *)&dest->z; /* fzgx-allow: S2 preserve locked-cache column load order */
@@ -4776,7 +4776,7 @@ cr = LIT(0x5c) * fzgx_live_;
 out.r = cr * fade;
 cg = LIT(0x5c) * s->f_20;
 out.g = cg * fade;
-cb = LIT(0x5c) * (s->f_24);
+cb = LIT(0x5c) * s->f_24;
 out.b = cb * fade;
 out.a = LIT(0x5c) * fade;
 out.y = LIT(0x150) * scale;
@@ -4940,7 +4940,7 @@ void fn_1_5D378(fn_1_5D378_obj *self)
     v = (s8)fn_1_86634(self->unk_18);
 
     if (fn_1_6EC0(v) != 0 && camera_get_entry_field_0xa4((u8)v) == 0) {
-        fzgx_value = &(self->unk_1c);
+        fzgx_value = &self->unk_1c;
         *fzgx_value = 0.0f;
         self->unk_20 = 0.0f;
         self->unk_24 = 0.0f;
@@ -8258,8 +8258,8 @@ void fn_1_5F654(fn_1_5F654_Effect *effect) {
             f32 fzgx_lc0_y;
             f32 fzgx_lc0_x;
             fzgx_lc0_x = *(volatile f32 *)&pos.x;  /* fzgx-allow: S2 volatile view keeps the verified load order */
-            fzgx_lc0_y = (pos.y);
-            fzgx_lc0_z = (pos.z);
+            fzgx_lc0_y = pos.y;
+            fzgx_lc0_z = pos.z;
             *(f32 *)(0xE0000000 + 0x0C) = fzgx_lc0_x;
             *(f32 *)(0xE0000000 + 0x1C) = fzgx_lc0_y;
             *(f32 *)(0xE0000000 + 0x2C) = fzgx_lc0_z;
@@ -8279,8 +8279,8 @@ void fn_1_5F654(fn_1_5F654_Effect *effect) {
                 f32 fzgx_lc1_y;
                 f32 fzgx_lc1_x;
                 fzgx_lc1_x = *(volatile f32 *)&eye.x;  /* fzgx-allow: S2 volatile view keeps the verified load order */
-                fzgx_lc1_y = (eye.y);
-                fzgx_lc1_z = (eye.z);
+                fzgx_lc1_y = eye.y;
+                fzgx_lc1_z = eye.z;
                 *(f32 *)(0xE0000000 + 0x0C) = fzgx_lc1_x;
                 *(f32 *)(0xE0000000 + 0x1C) = fzgx_lc1_y;
                 *(f32 *)(0xE0000000 + 0x2C) = fzgx_lc1_z;
@@ -10058,7 +10058,7 @@ void fn_1_60C88(Obj_60C88 *this)
     f32 tz, ty, tx;
 
     fn_1_862D4(this->s18, &v);
-    lab_t1 = (*((0) + (lbl_801A6D00)));
+    lab_t1 = (*((0) + lbl_801A6D00));
     fn_1_8636C(this->s18, lab_t1);
 
     tx = v.x;
@@ -10071,7 +10071,7 @@ void fn_1_60C88(Obj_60C88 *this)
     lbl_8006E1B0(&this->v94, &this->v3c);
 
     this->fb4 = (s32)this->i10 * 0.5f;
-    if ((this->f28) > 0.0f) {
+    if (this->f28 > 0.0f) {
         this->f28 = ((this->f28) - 0.3);
     }
 }
@@ -10553,7 +10553,7 @@ void fn_1_61070(Fn161070 *self) {
         const Mat44 *src = (const Mat44 *)(FZGX_CURRENT_MTX_ADDR);
         psvec_set(&vector, src->m[2][3], src->m[1][3], src->m[0][3]);
     }
-    fzgx_live = (vector.x);
+    fzgx_live = vector.x;
     acc = fzgx_live * fzgx_live;
     acc = fn_1_61070_read_pointer(&vector) * fn_1_61070_read_pointer(&vector) + acc;
     acc = vector.z * vector.z + acc;
@@ -10789,7 +10789,7 @@ void fn_1_611EC(struct FxParam *p, u32 unused1, u32 unused2, u32 unused3)
 	p->unk_56 = FxRand();
 	p->unk_58 = FxRand();
 
-	p->unk_38 = fn_1_45D0((lbl_801A6410), 0xF0, lbl_1_data_1D62C, 0x1573);
+	p->unk_38 = fn_1_45D0(lbl_801A6410, 0xF0, lbl_1_data_1D62C, 0x1573);
 }
 /* fzgx:end fn_1_611EC */
 
@@ -11208,7 +11208,7 @@ void fn_1_617A4(struct Fn1_617A4Object *object) {
     const f32 *pool;
     f32 t;
 
-    pool = (&lbl_1_rodata_2950);
+    pool = &lbl_1_rodata_2950;
 
     if (object->unk_10 == 0) {
         lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41c64e6d + 0x3039;
@@ -15904,7 +15904,7 @@ void fn_1_64388(ArgObj *arg0) {
  obj=arg0->obj;
  lbl_8006DCA4(arg0);
  lbl_8006E1B0(&obj->pos,&pos);
- scale=(obj->size)/10.0f;
+ scale=obj->size/10.0f;
  node=obj->node;
  if(pos.z > -1.1920928955078125e-7f) return;
  ratio=fn_1_A71AC();
@@ -17052,7 +17052,7 @@ void fn_1_64FB8(void *arg0) {
     *(f32 *)(p+0x28)=*(f32 *)(p+0x28)+(0.00999999978f)*(*(f32 *)(p+0x2c)-*(f32 *)(p+0x28));
     *(f32 *)(p+0xb4)=0.5f*(f32)*(s32 *)(p+0x10);
     random=(lbl_1_data_1D628)*1103515245u+12345u;
-    (lbl_1_data_1D628)=random;
+    lbl_1_data_1D628=random;
     gain=0.800000012f+0.200000003f*(((random>>16)&0x7fffu)/32767.0f);
     *(f32 *)(p+0x1c)=(255.0f*(0.5f*(1.0f+gain)))/255.0f;
     {
@@ -17469,7 +17469,7 @@ static inline void advance_particle654B0(Particle654B0 *p)
     p->rot[0] += p->rotVel[0];
     p->rot[1] += p->rotVel[1];
     p->scale += p->scaleVel;
-    p->halfAge = fn_1_654B0_operand_((p->age), (0.5f));
+    p->halfAge = fn_1_654B0_operand_(p->age, (0.5f));
     p->damp = p->damp + (fn_1_654B0_operand_(((p->dampTarget - p->damp)), (0.03f)));
 
 }
@@ -17493,11 +17493,11 @@ void fn_1_654B0(Particle654B0 *p)
     advance_particle654B0(p);
     v = 0.8f + (fn_1_654B0_operand_((random_float654B0(random_bits654B0())), (0.2f)));
     p->r = fn_1_654B0_operand_(((0.5f * (1.0f + v))), (255.0f)) / 255.0f;
-    p->g = fn_1_654B0_operand_((v), (136.0f)) / 255.0f;
+    p->g = fn_1_654B0_operand_(v, (136.0f)) / 255.0f;
     p->b = *(const f32 *)&fzgx_pool_table2[0];
 
     if (p->age < 25) {
-        p->r *= fade = 1.0f - (1.0f + fn_1_654B0_operand_((p->age), (-0.04f)));
+        p->r *= fade = 1.0f - (1.0f + fn_1_654B0_operand_(p->age, (-0.04f)));
         p->g *= fade;
         p->b *= fade;
     }
@@ -18268,10 +18268,10 @@ void fn_1_65B5C(EffP *p) {
     p->f3c = p->f3c + p->f48;
     p->f40 = p->f40 + p->f4c;
     p->f44 = p->f44 + p->f50;
-    if (p->f28 > 50.0f * (((p->fb4) / 2.0f))) {
+    if (p->f28 > 50.0f * ((p->fb4 / 2.0f))) {
         fzgx_live_ = p->f2c;
         {
-            f64 product = (fzgx_live_);
+            f64 product = fzgx_live_;
             product *= ((0.9200000137090683));
             p->f2c = product;
         }
@@ -20626,7 +20626,7 @@ void fn_1_67F20(Fn167F20 *obj) {
     obj->value48 *= 0.9f;
     obj->value4c *= 0.9f;
     obj->value50 *= 0.9f;
-    obj->valueac = (fn_1_67F20_operand((0.9f), (obj->valueac)));
+    obj->valueac = (fn_1_67F20_operand((0.9f), obj->valueac));
 
     obj->value48 += 0.001f;
     obj->value3c += obj->value48;
@@ -20638,7 +20638,7 @@ void fn_1_67F20(Fn167F20 *obj) {
 
     current = obj->value28;
     delta = (obj->value2c - current);
-    delta = (fn_1_67F20_operand((delta), (0.01f)));
+    delta = (fn_1_67F20_operand(delta, (0.01f)));
     obj->value28 = current + delta;
 
     if (obj->state < 0x1e) {

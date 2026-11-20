@@ -79,7 +79,7 @@ s32 fn_1_47AD4(BitmapResource *arg0_bmp,s32 arg1,s32 arg2,s32 arg3) {
  s32 len;
  s32 tmp_fn_1_45850;
  fn_8006FDEC();
- name=(const char *)(*((lbl_801A66B4) + (arg0->unk_4)));
+ name=(const char *)(*((lbl_801A66B4) + arg0->unk_4));
  if(fn_1_45730((void *)name,&info)==0) return 0;
  if(arg1==0) *(&lbl_1_data_6CA0.unk_0+arg1*3)=lbl_801A6410;
  handle=*(&lbl_1_data_6CA0.unk_0+arg1*3);

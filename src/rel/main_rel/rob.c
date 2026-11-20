@@ -54,7 +54,7 @@ void fn_1_95EF0(void *arg0, s32 arg_sp0) {
     temp_r3 = (*(void **)((u8 *)(arg0) + 332));
     if (temp_r3 != NULL) {
         fn_1_12ABB4(temp_r3);
-        (*(void **)((u8 *)(arg0) + 332)) = (NULL);
+        (*(void **)((u8 *)(arg0) + 332)) = NULL;
     }
     temp_r4 = *(u32 *)((u8 *)(arg0) + 336);
     if (temp_r4 != 0) {
@@ -64,7 +64,7 @@ void fn_1_95EF0(void *arg0, s32 arg_sp0) {
     temp_r3_2 = (*(void **)((u8 *)(arg0) + 364));
     if (temp_r3_2 != NULL) {
         fn_1_12ABB4(temp_r3_2);
-        (*(void **)((u8 *)(arg0) + 364)) = (NULL);
+        (*(void **)((u8 *)(arg0) + 364)) = NULL;
     }
     temp_r4_2 = *(u32 *)((u8 *)(arg0) + 368);
     if (temp_r4_2 != 0) {
@@ -74,7 +74,7 @@ void fn_1_95EF0(void *arg0, s32 arg_sp0) {
     temp_r3_3 = (*(void **)((u8 *)(arg0) + 396));
     if (temp_r3_3 != NULL) {
         fn_1_12ABB4(temp_r3_3);
-        (*(void **)((u8 *)(arg0) + 396)) = (NULL);
+        (*(void **)((u8 *)(arg0) + 396)) = NULL;
     }
     temp_r4_3 = *(u32 *)((u8 *)(arg0) + 400);
     if (temp_r4_3 != 0) {
@@ -84,7 +84,7 @@ void fn_1_95EF0(void *arg0, s32 arg_sp0) {
     temp_r3_4 = (*(void **)((u8 *)(arg0) + 428));
     if (temp_r3_4 != NULL) {
         fn_1_12ABB4(temp_r3_4);
-        (*(void **)((u8 *)(arg0) + 428)) = (NULL);
+        (*(void **)((u8 *)(arg0) + 428)) = NULL;
     }
     temp_r4_4 = *(u32 *)((u8 *)(arg0) + 432);
     if (temp_r4_4 != 0) {
@@ -94,7 +94,7 @@ void fn_1_95EF0(void *arg0, s32 arg_sp0) {
     temp_r3_5 = (*(void **)((u8 *)(arg0) + 460));
     if (temp_r3_5 != NULL) {
         fn_1_12ABB4(temp_r3_5);
-        (*(void **)((u8 *)(arg0) + 460)) = (NULL);
+        (*(void **)((u8 *)(arg0) + 460)) = NULL;
     }
     temp_r4_5 = *(u32 *)((u8 *)(arg0) + 464);
     if (temp_r4_5 != 0) {
@@ -104,20 +104,20 @@ void fn_1_95EF0(void *arg0, s32 arg_sp0) {
     temp_r3_6 = (*(void **)((u8 *)(arg0) + 492));
     if (temp_r3_6 != NULL) {
         fn_1_12ABB4(temp_r3_6);
-        (*(void **)((u8 *)(arg0) + 492)) = (NULL);
+        (*(void **)((u8 *)(arg0) + 492)) = NULL;
     }
     temp_r4_6 = *(u32 *)((u8 *)(arg0) + 496);
     if (temp_r4_6 != 0) {
         fn_1_46B4(lbl_801A6410.unk_0, temp_r4_6, (const char *)(lbl_1_data_27C00), 0xB51);
         (*(u32 *)((u8 *)(arg0) + 496)) = 0U;
     }
-    var_r28 = (arg0);
+    var_r28 = arg0;
     var_r27 = 0U;
     do {
         temp_r3_7 = (*(void **)((u8 *)(var_r28) + 524));
         if (temp_r3_7 != NULL) {
             fn_1_12ABB4(temp_r3_7);
-            (*(void **)((u8 *)(var_r28) + 524)) = (NULL);
+            (*(void **)((u8 *)(var_r28) + 524)) = NULL;
         }
         temp_r4_7 = *(u32 *)((u8 *)(var_r28) + 528);
         if (temp_r4_7 != 0) {
@@ -5946,10 +5946,10 @@ extern void fn_1_4270C(Fn142AD0Object *object, void *arg1, u32 arg2);
 #define LAYOUT_CHECK_JOIN2(a, b) a##b
 #define LAYOUT_CHECK_JOIN(a, b) LAYOUT_CHECK_JOIN2(a, b)
 #define CHECK_SIZE(T, size) \
-    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == (size)) ? 1 : -1]
+    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == size) ? 1 : -1]
 #define CHECK_OFFSET(T, field, offset) \
     typedef char LAYOUT_CHECK_JOIN(LAYOUT_CHECK_JOIN(layout_offset_, T), __LINE__) \
-        [((unsigned long)&((T *)0)->field == (offset)) ? 1 : -1]
+        [((unsigned long)&((T *)0)->field == offset) ? 1 : -1]
 
 #endif
 

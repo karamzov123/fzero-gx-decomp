@@ -597,8 +597,8 @@ void fn_1_7F3AC(CarFn_1_7F3AC *car, u32 lab_unused0, u32 lab_unused1, u32 lab_un
         } else {
             fn_1_810E4(car->field_3A4);
         }
-        fn_1_46B4(lbl_801A6410, car->field_3A4, (const char *)((&lbl_1_data_1FFF0)), 0x1F7);
-        fzgx_value = &(car->field_3A4);
+        fn_1_46B4(lbl_801A6410, car->field_3A4, (const char *)(&lbl_1_data_1FFF0), 0x1F7);
+        fzgx_value = &car->field_3A4;
         *fzgx_value = 0;
     }
 }
@@ -631,7 +631,7 @@ void *fn_1_7F49C(s16 arg0, s16 arg1, void *arg2) {
     fn_1_7F49C_CarData local;
 
     local = *(fn_1_7F49C_CarData *)lbl_1_rodata_3590;
-    fn_80083DB0( (arg2), (const char *)(local.data[arg0][arg1]));
+    fn_80083DB0( arg2, (const char *)(local.data[arg0][arg1]));
     return arg2;
 }
 /* fzgx:end fn_1_7F49C */
@@ -1421,7 +1421,7 @@ void fn_1_7F954(u32 arg0, u32 arg1) {
     v1++;
 }
     }
-    fn_1_46B4((*((struct fn_1_7F954_lbl_801A6410 *)&lbl_801A6410)).unk_0, arg0, (const char *)((u32)&(lbl_1_data_1FFF0)), 691);
+    fn_1_46B4((*((struct fn_1_7F954_lbl_801A6410 *)&lbl_801A6410)).unk_0, arg0, (const char *)((u32)&lbl_1_data_1FFF0), 691);
     v3 = (*((struct fn_1_7F954_lbl_1_bss_6D82C *)&lbl_1_bss_6D82C)).unk_0;
     v4 = v3;
     if (v3 != 0) {
@@ -1450,7 +1450,7 @@ void fn_1_7FA04(u32 arg0) {
     v1 += 1088;
     v0++;
     }
-    fn_1_46B4((*((struct fn_1_7FA04_lbl_801A6410 *)&lbl_801A6410)).unk_0, arg0, (const char *)((u32)&(lbl_1_data_1FFF0)), 709);
+    fn_1_46B4((*((struct fn_1_7FA04_lbl_801A6410 *)&lbl_801A6410)).unk_0, arg0, (const char *)((u32)&lbl_1_data_1FFF0), 709);
     v2 = (*((struct fn_1_7FA04_lbl_1_bss_6D82C *)&lbl_1_bss_6D82C)).unk_0;
     v3 = v2;
     if (v2 != 0) {
@@ -1633,16 +1633,16 @@ void fn_1_7FD7C(Fn7FD7CArg *arg0)
     lab_t1 = *(char **)((u8 *)tbl + off);
     lab_t1_ = lab_t1;
     fn_80083DB0(buf, lab_t1_);
-    if (((1) == (flag))) {
-        fn_1_801F8(idx, (buf));
+    if (((1) == flag)) {
+        fn_1_801F8(idx, buf);
     }
     fn_80006E10( (u32)(buf));
     for (i = 0; i < 8; i++) {
         if (arg0->unk_08 & (1 << i)) {
             lab_t1__2 = *(char **)((u8 *)tbl + off);
             fn_80083DB0(buf, lab_t1__2);
-            if (((1) == (flag))) {
-                fn_1_801F8(idx, (buf));
+            if (((1) == flag)) {
+                fn_1_801F8(idx, buf);
             }
             if (i != 0) {
                 if (i >= 4) {
@@ -1665,12 +1665,12 @@ for (fzgx_loop_j_1994 = 0; fzgx_loop_j_1994 < 5; fzgx_loop_j_1994++) {
         if (arg0->unk_04 & (1 << fzgx_loop_j_1994)) {
             lab_t1__2 = *(char **)((u8 *)tbl + off);
             fn_80083DB0(buf, lab_t1__2);
-            if (((1) == (flag))) {
-                fn_1_801F8(idx, (buf));
+            if (((1) == flag)) {
+                fn_1_801F8(idx, buf);
             }
-            if (((0) == (fzgx_loop_j_1994))) {
+            if (((0) == fzgx_loop_j_1994)) {
                 sprintf(buf, (char *)(base + 0x1378), buf);
-            } else if (((4) == (fzgx_loop_j_1994))) {
+            } else if (((4) == fzgx_loop_j_1994)) {
                 sprintf(buf, (char *)(base + 0x1380), buf);
             } else {
                 sprintf(buf, (char *)(base + 0x1390), buf, fzgx_loop_j_1994 + 1);
@@ -1685,8 +1685,8 @@ for (fzgx_loop_j_1994 = 0; fzgx_loop_j_1994 < 5; fzgx_loop_j_1994++) {
 }
     lab_t1__2 = *(char **)((u8 *)tbl + off);
     fn_80083DB0(buf, lab_t1__2);
-    if (((1) == (flag))) {
-        fn_1_801F8(idx, (buf));
+    if (((1) == flag)) {
+        fn_1_801F8(idx, buf);
     }
     sprintf(buf, (char *)(base + 0x139c), buf);
     if (fn_1_46C70(buf) == 0xFFFFFFFF) {
@@ -1768,13 +1768,13 @@ void fn_1_801F8(s16 arg0, void *arg1) {
 
     switch (arg0) {
     case 6:
-        fn_80083DB0( (arg1), (const char *)(base + 0x13e4));
+        fn_80083DB0( arg1, (const char *)(base + 0x13e4));
         break;
     case 0:
-        fn_80083DB0( (arg1), (const char *)(base + 0x13ec));
+        fn_80083DB0( arg1, (const char *)(base + 0x13ec));
         break;
     case 1:
-        fn_80083DB0( (arg1), (const char *)(base + 0x13f4));
+        fn_80083DB0( arg1, (const char *)(base + 0x13f4));
         break;
     }
 }
@@ -2194,7 +2194,7 @@ void fn_1_80C18(u8 *arg0, u8 *arg1, s8 arg2) {
     }
 
     i = 0;
-    while (i < (arg2)) {
+    while (i < arg2) {
         if (p0 == 0) {
             break;
         }
@@ -6806,7 +6806,7 @@ void fn_1_83858(struct fn_1_83858_Arg0 *arg0) {
     }
     fn_1_236CC((u32)arg0);
     fn_1_83CB0((Sig_fn_1_83CB0_Fn183CB0Object *)arg0);
-    v17 = (&lbl_1_bss_6D8F4.fzgx_byte_D4);
+    v17 = &lbl_1_bss_6D8F4.fzgx_byte_D4;
     v18 = (*(s16 *)((u8 *)arg0 + 4) << 2);
     v19 = *(u32 *)((u8 *)v17 + v18);
     if ((s32)v19 != 0) {
@@ -8222,14 +8222,14 @@ setTranslation(&car->pos, matrix);
 fn_1_266A8(car);
 }
 }
-for (car = (state->cars), i = 0; i < state->count; i++, car++) {
+for (car = state->cars, i = 0; i < state->count; i++, car++) {
 fn_1_24A4C(car);
 }
-for (car = (state->cars), i = 0; i < state->count; i++, car++) {
+for (car = state->cars, i = 0; i < state->count; i++, car++) {
 fn_1_8A1B4(car, ((void *)0) , racer);
 }
 if (!forced && state->f158 == 0) {
-for (car = (state->cars), i = 0; i < state->count; i++, car++) {
+for (car = state->cars, i = 0; i < state->count; i++, car++) {
 CarInfo850C4 *info = car->info;
 if (!(car->flags & 0x08010000) && racer != ((void *)0) ) {
 s32 ok = info->lap >= racer->lap;
@@ -8240,7 +8240,7 @@ fn_1_250F8(car);
 }
 }
 } else {
-for (car = (state->cars), i = 0; i < state->count; i++, car++) {
+for (car = state->cars, i = 0; i < state->count; i++, car++) {
 car->f184 = 100.0f;
 }
 }
@@ -8249,7 +8249,7 @@ state->racerHook(racer);
 state->racerHook = fn_1_8B9B8;
 racer->slotMask = 0;
 best = state->count;
-for (car = (state->cars), i = 0; i < state->count; i++, car++) {
+for (car = state->cars, i = 0; i < state->count; i++, car++) {
 slot = -1;
 if (!(car->flags & 0x20000000)) {
 if (i < fn_1_3F854()) {
@@ -8269,7 +8269,7 @@ racer->slots[slot] = car->pos;
 }
 }
 if (state->carHook != ((void *)0) ) {
-for (car = (state->cars), i = 0; i < state->count; i++, car++) {
+for (car = state->cars, i = 0; i < state->count; i++, car++) {
 state->carHook(car);
 }
 }
@@ -9343,9 +9343,9 @@ void fn_1_85688(void) {
     i = 0;
     goto loop1_test; /* Keep the verified branch to loop1_test. */
 loop1_body:
-    if ((*((fzgx_obj_lbl_1_bss_6D83C) + (i))).unk_324 != -1) {
-        fn_1_12A734((*((fzgx_obj_lbl_1_bss_6D83C) + (i))).unk_324);
-        (*((fzgx_obj_lbl_1_bss_6D83C) + (i))).unk_324 = -1;
+    if ((*((fzgx_obj_lbl_1_bss_6D83C) + i)).unk_324 != -1) {
+        fn_1_12A734((*((fzgx_obj_lbl_1_bss_6D83C) + i)).unk_324);
+        (*((fzgx_obj_lbl_1_bss_6D83C) + i)).unk_324 = -1;
     }
     i++;
 loop1_test:
@@ -9428,7 +9428,7 @@ s32 fn_1_858A8(s16 *a, s16 *b) {
     obj = (Fn858A8Data *)lbl_1_bss_6D864;
     entry_b = &lbl_1_bss_6D838[ib];
 
-    if (((0) != (obj)) && obj->unk_A7 != 0) {
+    if (((0) != obj) && obj->unk_A7 != 0) {
         u16 index = obj->unk_A7 - 1;
         u8 *data = obj->unk_E2;
 
@@ -9766,11 +9766,11 @@ void fn_1_85F90(void *obj, f32 a, f32 b, f32 c, f32 d, int mode) {
 
     table = (((const f32 *)&lbl_1_rodata_3508));
     child = *(FzgxChild **)((u8 *)obj + 0x49c);
-    if (((0) == (lbl_1_bss_3BE0)) || ((0) == (child))) {
+    if (((0) == lbl_1_bss_3BE0) || ((0) == child)) {
         lbl_8006D7F4(((4)[table]), ((10)[table]), ((348)[table]));
         active = 1;
     } else {
-        fzgx_value = &(child->unk_148);
+        fzgx_value = &child->unk_148;
         dd = d;
         *fzgx_value = b;
         fzgx_value[1] = c;
@@ -9779,11 +9779,11 @@ void fn_1_85F90(void *obj, f32 a, f32 b, f32 c, f32 d, int mode) {
         if (mode < 0) {
             result = fn_1_20A5C(base, &value);
         } else {
-            result = (int)fn_1_21644( (base), &value, (void *)(mode));
+            result = (int)fn_1_21644( base, &value, (void *)(mode));
         }
         child->unk_140 = result;
         child->unk_144 = value;
-        if (lbl_1_bss_3BE0->unk_7D != 0 && ((0) == (result)) && value < ((4)[table])) {
+        if (lbl_1_bss_3BE0->unk_7D != 0 && ((0) == result) && value < ((4)[table])) {
             p = fn_1_14F04() + 0x400;
             fn_1_17920(0, 0, ((4)[table]));
             lbl_8006DBAC( (Vec3 *)(p));
@@ -9801,7 +9801,7 @@ void fn_1_85F90(void *obj, f32 a, f32 b, f32 c, f32 d, int mode) {
     }
     fn_1_23500(obj, a);
     if (child != 0 && active) {
-        (*(&(child->unk_11c)) = (0));
+        (*(&child->unk_11c) = (0));
         child->unk_118 = 0;
     }
 }
@@ -11240,7 +11240,7 @@ f32 fn_1_86A2C_old(void * arg0) {
     v2 = (s8)*(arg0 + 4);
     if (v2 < fzgx_obj_lbl_1_bss_6D84A) {
     v3 = &fzgx_obj_lbl_1_bss_6D83C.fzgx_u8_0;
-    v3 = *(v3);
+    v3 = *v3;
     if (v3 != 0) {
     v3 = (v3 + (v2 * 1088));
     } else {
@@ -11305,7 +11305,7 @@ f32 fn_1_86A2C_old(void * arg0) {
     *(f32 *)(0xE0000000 + 0x0C) = v15;
     *(f32 *)(0xE0000000 + 0x1C) = v16;
     *(f32 *)(0xE0000000 + 0x2C) = v17;
-    v18 = (loc_8);
+    v18 = loc_8;
     lbl_8006E1B0((Fn183D28Vec3 *)v18, (Fn183D28Vec3 *)v18);
     fn_1_681C(*(arg0 + 1141), &loc_20);
     v19 = (((loc_20.a[2] - loc_8[2]) * (loc_20.a[2] - loc_8[2])) + (((loc_20.a[1] - loc_8[1]) * (loc_20.a[1] - loc_8[1])) + ((loc_20.a[0] - loc_8[0]) * (loc_20.a[0] - loc_8[0]))));
@@ -12030,7 +12030,7 @@ void fn_1_87448(Fn1_87448_Obj *self, Fn1_87448_Arg1 *arg1, s8 arg2, int flag, f3
         if (n > lim - 1) {
             break;
         }
-        if (fn_80083970((*((k) + (tab->unk_08))).unk_04, (u8 *)"pos_") != tab->unk_08[k].unk_04) {
+        if (fn_80083970((*((k) + tab->unk_08)).unk_04, (u8 *)"pos_") != tab->unk_08[k].unk_04) {
             row = self->unk_334[arg2].unk_00;
             p = row[k];
             if (p == 0) {
@@ -17272,7 +17272,7 @@ f32 fn_1_8CA70(u32 a, s32 b) {
     span = b - a;
     index = (total - half) + (span - 1);
     value = *((f32 *)(lbl_1_bss_6E160 + (index * 4)));
-    if (!(swapped)) {
+    if (!swapped) {
         return value;
     }
     if (constants->unk_668 == value) {
@@ -17315,7 +17315,7 @@ f32 fn_1_8CAF4(u32 a, s32 b) {
     span = b - a;
     index = (total - half) + (span - 1);
     value = *((f32 *)(lbl_1_bss_6DA80 + (index * 4)));
-    if (!(swapped)) {
+    if (!swapped) {
         return value;
     }
     if (constants->unk_668 == value) {
@@ -18529,7 +18529,7 @@ void fn_1_8D0A4(Fn1_8D0A4State *state) {
         state->result = fn_1_4630(
             (*((void * *)&lbl_801A6410)),
             GXGetTexBufferSize(state->width, state->height, state->arg34, 0, 0),
-            (&lbl_1_data_1FFF0),
+            &lbl_1_data_1FFF0,
             0x1bfc);
     }
 }
@@ -18674,7 +18674,7 @@ u32 fn_1_8D3F8(Fn1_8D3F8Car *car, u32 arg1, u32 (*callback)(u32), u32 arg3) {
 
     lbl_8006DD14(lbl_801A6D00 + 0x30, local_4c);
     fn_80038F10(local_18);
-    GXGetScissor( (&local_08), (&local_0c), (&local_10), (&local_14));
+    GXGetScissor( &local_08, &local_0c, &local_10, &local_14);
     GXGetProjectionv((f32 *)local_30);
     fn_1_550A8();
     C_MTXPerspective( (f32 *)(local_7c), car->field_44, car->field_48, car->field_4c, car->field_50);
@@ -18890,7 +18890,7 @@ void fn_1_8D988(void) {
         car->unk_0 |= 0x04000000;
         tmp_call1 = fn_1_45D0(lbl_801A6410, 0x88, lbl_1_data_1FFF0, 0x1cb0);
         car->unk_484 = tmp_call1;
-        if ((car->unk_484) == 0) {
+        if (car->unk_484 == 0) {
             car->unk_0 &= ~0x04000000;
             continue;
         }
@@ -18955,7 +18955,7 @@ void fn_1_8DAB4(void) {
             object->active = i;
             if (object->resource_holder != 0) {
                 value = (void *)fn_80008E84( (u32)(object->resource_holder->value));
-                fn_1_46B4(lbl_801A6410, (u32)(ResourceHolder *)(object->resource_holder), (const char *)((&lbl_1_data_1FFF0)), 0x1ced);
+                fn_1_46B4(lbl_801A6410, (u32)(ResourceHolder *)(object->resource_holder), (const char *)(&lbl_1_data_1FFF0), 0x1ced);
                 object->resource_holder = 0;
                 fn_80008E84( (u32)(value));
             }
@@ -36635,7 +36635,7 @@ static inline char *lookup(TblEntry *tbl, u32 n, u32 kind, u32 idx) {
 /* Hooks a slot up to animation entry ID; slot 0 also retargets the car node. */
 #define APPLY(S, ID, F) \
     do { \
-        if ((S) == &car->slots[0]) { \
+        if (S == &car->slots[0]) { \
             EventNode *node = car->node; s32 value; void *target; \
             fn_1_95158(car); \
             if (node != 0) { \
@@ -36653,9 +36653,9 @@ static inline char *lookup(TblEntry *tbl, u32 n, u32 kind, u32 idx) {
             } \
             fn_1_93734(car, fn_1_41418((S)->strs, (ID) & 0xffff)); \
         } \
-        fn_1_4270C((S)->data, 0, (ID)); \
-        (S)->id = (ID); \
-        (S)->flag = (F); \
+        fn_1_4270C((S)->data, 0, ID); \
+        (S)->id = ID; \
+        (S)->flag = F; \
     } while (0)
 
 extern u8 fn_1_9012C__fzgx_offset_3D4[];
@@ -37654,7 +37654,7 @@ static inline char *lookup(TblEntry *tbl, u32 n, u32 kind, u32 idx) {
 /* Hooks a slot up to animation entry ID; slot 0 also retargets the car node. */
 #define APPLY(S, ID, F) \
     do { \
-        if ((S) == &car->slots[0]) { \
+        if (S == &car->slots[0]) { \
             EventNode *node = car->node; s32 value; void *target; \
             fn_1_95158(car); \
             if (node != 0) { \
@@ -37672,16 +37672,16 @@ static inline char *lookup(TblEntry *tbl, u32 n, u32 kind, u32 idx) {
             } \
             fn_1_93734(car, fn_1_41418((S)->strs, (ID) & 0xffff)); \
         } \
-        fn_1_4270C((S)->data, 0, (ID)); \
-        (S)->id = (ID); \
-        (S)->flag = (F); \
+        fn_1_4270C((S)->data, 0, ID); \
+        (S)->id = ID; \
+        (S)->flag = F; \
     } while (0)
 
 extern void fn_1_943F8(CarObject *, void *, f32);
 extern void fn_1_42AD0(void *, s32, u16, s32, u16);
 #define APPLYF(S, ID, F) \
     do { flags = 0; \
-        if ((S) == &car->slots[0]) { \
+        if (S == &car->slots[0]) { \
             EventNode *node = car->node; s32 value; void *target; \
             if (node != 0) { \
                 value = fn_1_97174(node, 0, fn_1_41418((S)->data->field_24, (ID) & 0xffff)); \
@@ -37699,9 +37699,9 @@ extern void fn_1_42AD0(void *, s32, u16, s32, u16);
             fn_1_943F8(car, fn_1_41418((S)->strs, (ID) & 0xffff), blend); \
         } \
         if (blend > 50.0f) flags |= 0xc0; else flags |= 0x60; \
-        fn_1_42AD0((S)->data, 0, (ID), blend, flags); \
-        (S)->id = (ID); \
-        (S)->flag = (F); \
+        fn_1_42AD0((S)->data, 0, ID, blend, flags); \
+        (S)->id = ID; \
+        (S)->flag = F; \
     } while (0)
 
 
@@ -38740,10 +38740,10 @@ void fn_1_95238(u32 arg0, EventList *arg1) {
     void *v16;
 
     arg1->field_1 = 0;
-    fzgx_value = &(arg1->field_68);
+    fzgx_value = &arg1->field_68;
     *fzgx_value = lbl_1_rodata_3F6C;
     p_lbl_801A6D00 = (fn_1_95238_lbl_801A6D00 *)&(*((fn_1_95238_lbl_801A6D00 *)&lbl_801A6D00));
-    (*(&(arg1->field_6c)) = (lbl_1_rodata_3F6C));
+    (*(&arg1->field_6c) = lbl_1_rodata_3F6C);
     v2 = (u8 *)arg1;
     v1 = (u8 *)arg1;
     v0 = 0;

@@ -589,18 +589,18 @@ void fn_1_E174(f32 arg0) {
     p_lbl_1_data_43B8 = (struct fn_1_E174_lbl_1_data_43B8 *)&lbl_1_data_43B8;
     p_lbl_1_bss_1148 = (struct fn_1_E174_lbl_1_bss_1148 *)&lbl_1_bss_1148;
     p_lbl_1_rodata_4E0 = (struct fn_1_E174_lbl_1_rodata_4E0 *)&lbl_1_rodata_4E0;
-    if (((10) == (lbl_1_bss_960))) {
+    if (((10) == lbl_1_bss_960)) {
     fn_1_A1CE8((p_lbl_1_data_43B8->unk_148 & 0xFF));
     } else {
-    if (((12) == (lbl_1_bss_960)) || (s32)fn_1_F2F34() != 0) {
+    if (((12) == lbl_1_bss_960) || (s32)fn_1_F2F34() != 0) {
     v0 = p_lbl_1_data_43B8->unk_148;
     v1 = (v0 - 41);
     switch (v1) {
     case 1:
-    fn_1_A1CE8(((((1) + (v0))) & 0xFF));
+    fn_1_A1CE8(((((1) + v0)) & 0xFF));
     break;
     case 2:
-    fn_1_A1CE8(((((1) + (v0))) & 0xFF));
+    fn_1_A1CE8(((((1) + v0)) & 0xFF));
     break;
     default:
     fn_1_A1CE8((v0 & 0xFF));
@@ -671,10 +671,10 @@ void fn_1_E174(f32 arg0) {
     }
     }
     }
-    if (((12) == (lbl_1_bss_960))) {
+    if (((12) == lbl_1_bss_960)) {
     p_lbl_1_bss_9F8 = (struct fn_1_E174_lbl_1_bss_9F8 *)&lbl_1_bss_9F8;
     if (((p_lbl_1_bss_9F8->unk_12 >> 9) & 0x1) != 0) {
-    v3 = (p_lbl_1_rodata_4E0->unk_1C);
+    v3 = p_lbl_1_rodata_4E0->unk_1C;
     v2 = 0xA9010000;
     v6 = (p_lbl_1_bss_1148->unk_2E + 1);
     v7 = p_lbl_1_bss_1148->unk_24;
@@ -687,10 +687,10 @@ void fn_1_E174(f32 arg0) {
     }
     if (((p_lbl_1_bss_9F8->unk_12 >> 8) & 0x1) != 0) {
     v2 = 0xA9010000;
-    v3 = (p_lbl_1_rodata_4E0->unk_1C);
+    v3 = p_lbl_1_rodata_4E0->unk_1C;
     v8 = (p_lbl_1_bss_1148->unk_2E - 1);
     v9 = (-p_lbl_1_bss_1148->unk_24);
-    (*(&(p_lbl_1_data_43B8->unk_14C)) = (60));
+    (*(&p_lbl_1_data_43B8->unk_14C) = (60));
     v2 += 1536;
     fzgx_value = v8;
     p_lbl_1_bss_1148->unk_2E = fzgx_value;
@@ -704,8 +704,8 @@ void fn_1_E174(f32 arg0) {
     p_lbl_1_data_43B8->unk_14C = (v2 - 1);
     } else {
     v3 = p_lbl_1_bss_1148->unk_8;
-    if (v3 != (p_lbl_1_rodata_4E0->unk_14)) {
-    p_lbl_1_bss_1148->unk_8 = (v3 - (p_lbl_1_rodata_4E0->unk_20));
+    if (v3 != p_lbl_1_rodata_4E0->unk_14) {
+    p_lbl_1_bss_1148->unk_8 = (v3 - p_lbl_1_rodata_4E0->unk_20);
     }
     }
     if (p_lbl_1_bss_1148->unk_2E < 0) {
@@ -725,7 +725,7 @@ void fn_1_E174(f32 arg0) {
     if (p_lbl_1_data_43B8->unk_14A >= 44) {
     p_lbl_1_data_43B8->unk_14A = 0;
     }
-    if (p_lbl_1_data_43B8->unk_148 != (v11 = p_lbl_1_data_43B8->unk_14A) && ((0) == (p_lbl_1_data_43B8->unk_14C))) {
+    if (p_lbl_1_data_43B8->unk_148 != (v11 = p_lbl_1_data_43B8->unk_14A) && ((0) == p_lbl_1_data_43B8->unk_14C)) {
     p_lbl_1_data_43B8->unk_148 = v11;
     lbl_1_bss_6F243 = 0;
     if (v11 < 41) {
@@ -793,10 +793,10 @@ void fn_1_E174(f32 arg0) {
     }
     v4 = p_lbl_1_bss_1148->unk_2C;
     v2 = (u32)((u8 *)p_lbl_1_bss_1148 + 24);
-    v14 = (p_lbl_1_rodata_4E0->unk_14);
+    v14 = p_lbl_1_rodata_4E0->unk_14;
     fzgx_live = p_lbl_1_rodata_4E0->unk_0;
-    v15 = (fzgx_live);
-    v16 = (p_lbl_1_rodata_4E0->unk_24);
+    v15 = fzgx_live;
+    v16 = p_lbl_1_rodata_4E0->unk_24;
     v17 = 0;
     while ((s16)v17 < 3) {
     if (((s16)v17) == v4) {
@@ -2339,16 +2339,16 @@ void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
             if ((*(u32 *)((u8 *)arg0 + 12) & 0x80000) == 0) {
                 v3 = (lbl_801A63C0) * 0x676A4B6B + 13259;
                 fzgx_value_ = v3;
-                (lbl_801A63C0) = fzgx_value_;
+                lbl_801A63C0 = fzgx_value_;
                 arg0->unk_12 = ((s32)((v3 >> 16) & 0x7FFF) % 4);
                 v9 = *(s16 *)((u8 *)arg0 + 2);
                 if ((s32)arg0->unk_12 == v9) {
-                    fzgx_value__ = &(arg0->unk_12);
+                    fzgx_value__ = &arg0->unk_12;
                     *fzgx_value__ = (s16)((v9 + 1) % 4);
                 }
             } else {
-                v3 = ((0x676A4B6B) * ((lbl_801A63C0))) + 13259;
-                (lbl_801A63C0) = v3;
+                v3 = ((0x676A4B6B) * (lbl_801A63C0)) + 13259;
+                lbl_801A63C0 = v3;
                 arg0->unk_12 = ((s32)((v3 >> 16) & 0x7FFF) % 6);
                 if (arg0->unk_12 >= 5) {
                     arg0->unk_12 = 4;
@@ -2367,7 +2367,7 @@ void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
             }
         } else {
             v3 = (lbl_801A63C0) * 0x676A4B6B + 13259;
-            (lbl_801A63C0) = v3;
+            lbl_801A63C0 = v3;
             arg0->unk_12 = ((s32)(((0x7FFF) & ((v3 >> 16)))) % 6);
             if (arg0->unk_12 == *(s16 *)((u8 *)arg0 + 2)) {
                 arg0->unk_12 = ((*(s16 *)((u8 *)arg0 + 2) + 1) % 6);
@@ -2397,8 +2397,8 @@ void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
         arg0->unk_64 = 210;
     }
     if ((s8)camera_get_state() == 6) {
-        (lbl_801A63C0) = (lbl_801A63C0) * 0x676A4B6B + 13259;
-        v3 = (((lbl_801A63C0) >> 16) & 0x7FFF);
+        lbl_801A63C0 = (lbl_801A63C0) * 0x676A4B6B + 13259;
+        v3 = ((lbl_801A63C0 >> 16) & 0x7FFF);
         v_div = v3;
         arg0->unk_6 = (v_div % (s8)fn_1_86624());
         if ((fn_1_864E8(arg0->unk_6) & 0x1) == 0) {
@@ -3694,7 +3694,7 @@ void fn_1_1138C(Cam *c)
 
     if (c->type == 5 || c->type <= 1 || c->type == 2) {
         state = (lbl_801A63C0) * 0x676a4b6b + 0x33cb;
-        (lbl_801A63C0) = state;
+        lbl_801A63C0 = state;
         r = (state >> 16) & 0x7fff;
         c->unk_14 = r % 6;
         c->unk_4 = r % 6;
@@ -3797,7 +3797,7 @@ void fn_1_11544(LiveCam *cam) {
             cam->unk_14 = 0;
         }
         if (cam->unk_14 < 0) {
-            fzgx_value = &(cam->unk_14);
+            fzgx_value = &cam->unk_14;
             *fzgx_value = 5;
         }
     }
@@ -3823,7 +3823,7 @@ void fn_1_11544(LiveCam *cam) {
 
     fzgx_live_ = cam->unk_70.x;
     fzgx_live = fzgx_live_;
-    cam->unk_70.x += ((((sp_30.x - fzgx_live)) * ((0.0500000007f))) * (factor));
+    cam->unk_70.x += ((((sp_30.x - fzgx_live)) * ((0.0500000007f))) * factor);
 
     fzgx_y_ = cam->unk_70.y;
     fzgx_y = fzgx_y_;
@@ -4370,9 +4370,9 @@ void fn_1_11E98(Cam11E98 *cam) {
             f32 fzgx_lc0_z;
             f32 fzgx_lc0_y;
             f32 fzgx_lc0_x;
-            fzgx_lc0_x = (point.x);
-            fzgx_lc0_y = (point.y);
-            fzgx_lc0_z = (point.z);
+            fzgx_lc0_x = point.x;
+            fzgx_lc0_y = point.y;
+            fzgx_lc0_z = point.z;
             *(f32 *)(0xE0000000 + 0x0C) = fzgx_lc0_x;
             *(f32 *)(0xE0000000 + 0x1C) = fzgx_lc0_y;
             *(f32 *)(0xE0000000 + 0x2C) = fzgx_lc0_z;

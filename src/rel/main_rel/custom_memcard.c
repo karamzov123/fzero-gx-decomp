@@ -483,7 +483,7 @@ void fn_1_13198C(s16 idx, void *a1, void *a2, EntryObj *a3, EntryObj *a4, s32 mo
                 fn_1_13C16C();
             }
         }
-        p = ((1) + (p));
+        p = ((1) + p);
     }
 }
 
@@ -1060,7 +1060,7 @@ void fn_1_1324C4(void *arg0) {
     lab_t1 = 385;
     fn_1_13EDDC(505, lab_t1, v2, v1, 0);
     fn_1_1363F0(v1, 0, 1);
-    fn_1_1368A0(v2, v1, 0, (lbl_1_rodata_8640.unk_0), lbl_1_rodata_8644, lbl_1_rodata_8648.unk_0, lbl_1_rodata_863C, lbl_1_rodata_863C);
+    fn_1_1368A0(v2, v1, 0, lbl_1_rodata_8640.unk_0, lbl_1_rodata_8644, lbl_1_rodata_8648.unk_0, lbl_1_rodata_863C, lbl_1_rodata_863C);
     fn_1_13750C(23, 66, v2, v1);
     fn_1_13A848(442, 276, 1, v2, 0, lbl_1_rodata_864C, lbl_1_rodata_8650);
     {

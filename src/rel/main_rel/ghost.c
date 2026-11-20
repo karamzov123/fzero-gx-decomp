@@ -343,23 +343,23 @@ s32 fn_1_EB4BC(void) {
 	}
 
 	for (i = 0; i < 127; i++) {
-		if ((*((i) + (lbl_1_bss_77380))).unk_24 != 0 && lbl_1_bss_77380[i].unk_2C != 0) {
-			void* src = (*((i) + (lbl_1_bss_77380))).unk_2C;
+		if ((*((i) + lbl_1_bss_77380)).unk_24 != 0 && lbl_1_bss_77380[i].unk_2C != 0) {
+			void* src = (*((i) + lbl_1_bss_77380)).unk_2C;
 			void* buf;
 
 			fn_80008BA8(&fzgx_obj_lbl_1_bss_7B1AC[i], src, 0x28);
 
-			if ((*((i) + (fzgx_obj_lbl_1_bss_7C584))) != 0) {
-				fn_1_46B4(lbl_801A6410, (*((i) + (fzgx_obj_lbl_1_bss_7C584))), (u8 *)"ghost.c", 0x67c);
+			if ((*((i) + fzgx_obj_lbl_1_bss_7C584)) != 0) {
+				fn_1_46B4(lbl_801A6410, (*((i) + fzgx_obj_lbl_1_bss_7C584)), (u8 *)"ghost.c", 0x67c);
 			}
 
 			buf = fn_1_4630(lbl_801A6410, 0x3e80, (u8 *)"ghost.c", 0x67e);
 			fn_80008BA8(buf, (u8*)src + 0x28, 0x3e80);
-			fn_1_46B4(lbl_801A6410, (*((i) + (lbl_1_bss_77380))).unk_2C, (u8 *)"ghost.c", 0x682);
-			(*((i) + (lbl_1_bss_77380))).unk_2C = 0;
+			fn_1_46B4(lbl_801A6410, (*((i) + lbl_1_bss_77380)).unk_2C, (u8 *)"ghost.c", 0x682);
+			(*((i) + lbl_1_bss_77380)).unk_2C = 0;
 
 			fzgx_obj_lbl_1_bss_7C584[i] = fn_1_4630(lbl_801A6410, 0x3e80, (u8 *)"ghost.c", 0x685);
-			fn_80008BA8((*((i) + (fzgx_obj_lbl_1_bss_7C584))), buf, 0x3e80);
+			fn_80008BA8((*((i) + fzgx_obj_lbl_1_bss_7C584)), buf, 0x3e80);
 			fn_1_46B4(lbl_801A6410, buf, (u8 *)"ghost.c", 0x689);
 		} else {
 			fn_80008BEC(&fzgx_obj_lbl_1_bss_7B1AC[i], 0, 0x28);
@@ -369,21 +369,21 @@ s32 fn_1_EB4BC(void) {
 
 	count = 0;
 	for (i = 0; i < 127; i++) {
-		if ((*((i) + (fzgx_obj_lbl_1_bss_7C584))) != 0) {
+		if ((*((i) + fzgx_obj_lbl_1_bss_7C584)) != 0) {
 			count++;
 		}
 	}
 
 	for (i = 0; i < count - 1; i++) {
 		for (j = i; j < count; j++) {
-			if ((((*((i) + (fzgx_obj_lbl_1_bss_7B1AC))).unk_26) + (((*((i) + (fzgx_obj_lbl_1_bss_7B1AC))).unk_25 * 1000) + ((*((i) + (fzgx_obj_lbl_1_bss_7B1AC))).unk_24 * 60000))) >
-				((((*((j) + (fzgx_obj_lbl_1_bss_7B1AC))).unk_25 * 1000) + (60000 * (*((j) + (fzgx_obj_lbl_1_bss_7B1AC))).unk_24)) + ((*((j) + (fzgx_obj_lbl_1_bss_7B1AC))).unk_26))) {
-				tmp = (*((i) + (fzgx_obj_lbl_1_bss_7B1AC)));
-				fzgx_obj_lbl_1_bss_7B1AC[i] = (*((j) + (fzgx_obj_lbl_1_bss_7B1AC)));
+			if ((((*((i) + fzgx_obj_lbl_1_bss_7B1AC)).unk_26) + (((*((i) + fzgx_obj_lbl_1_bss_7B1AC)).unk_25 * 1000) + ((*((i) + fzgx_obj_lbl_1_bss_7B1AC)).unk_24 * 60000))) >
+				((((*((j) + fzgx_obj_lbl_1_bss_7B1AC)).unk_25 * 1000) + (60000 * (*((j) + fzgx_obj_lbl_1_bss_7B1AC)).unk_24)) + ((*((j) + fzgx_obj_lbl_1_bss_7B1AC)).unk_26))) {
+				tmp = (*((i) + fzgx_obj_lbl_1_bss_7B1AC));
+				fzgx_obj_lbl_1_bss_7B1AC[i] = (*((j) + fzgx_obj_lbl_1_bss_7B1AC));
 				fzgx_obj_lbl_1_bss_7B1AC[j] = tmp;
 
-				tmpbuf = (*((i) + (fzgx_obj_lbl_1_bss_7C584)));
-				fzgx_obj_lbl_1_bss_7C584[i] = (*((j) + (fzgx_obj_lbl_1_bss_7C584)));
+				tmpbuf = (*((i) + fzgx_obj_lbl_1_bss_7C584));
+				fzgx_obj_lbl_1_bss_7C584[i] = (*((j) + fzgx_obj_lbl_1_bss_7C584));
 				fzgx_obj_lbl_1_bss_7C584[j] = tmpbuf;
 			}
 		}
@@ -800,10 +800,10 @@ void fn_1_EB8F4(void)
         return;
     }
     if (lbl_1_bss_8B3A0.unk_90 != (s32)(lbl_1_bss_7E9E8__fzgx_offset_10)) {
-        (lbl_1_bss_7E9E8__fzgx_offset_10) = lbl_1_bss_8B3A0.unk_90;
+        lbl_1_bss_7E9E8__fzgx_offset_10 = lbl_1_bss_8B3A0.unk_90;
         lbl_1_bss_7EA00 = 0;
         fn_1_F1D70();
-        (lbl_1_bss_7EA00__fzgx_offset_10) = 0;
+        lbl_1_bss_7EA00__fzgx_offset_10 = 0;
     }
     {
         u32 padB, padA;
@@ -811,7 +811,7 @@ void fn_1_EB8F4(void)
             ((padA >> 1) & 1) || ((padB >> 1) & 1) || ((lbl_1_bss_9F8.unk_8 >> 9) & 1)) {
             lbl_1_bss_7EA00 = 0;
             fn_1_F1D70();
-            (lbl_1_bss_7EA00__fzgx_offset_10) = 0;
+            lbl_1_bss_7EA00__fzgx_offset_10 = 0;
         }
     }
     if (fn_1_F21B8(lbl_1_bss_8B3A0.unk_90)) {
@@ -828,7 +828,7 @@ void fn_1_EB8F4(void)
     }
     if (count == 0) return;
     oldTimer = (*(u32 *)&lbl_1_bss_7EA00__fzgx_offset_4);
-    (lbl_1_bss_7EA00__fzgx_offset_4) = oldTimer - 1;
+    lbl_1_bss_7EA00__fzgx_offset_4 = oldTimer - 1;
     if (oldTimer > 0) {
         t = (20 - (s32)(lbl_1_bss_7EA00__fzgx_offset_4)) / lbl_1_rodata_6B94;
         if (count < 7) {
@@ -899,7 +899,7 @@ void fn_1_EB8F4(void)
     if (cursor < (s32)(*(u32 *)&lbl_1_bss_7EA00__fzgx_offset_10)) (*(u32 *)&lbl_1_bss_7EA00__fzgx_offset_10) = cursor;
     if (cursor - (s32)(*(u32 *)&lbl_1_bss_7EA00__fzgx_offset_10) > 6) (*(u32 *)&lbl_1_bss_7EA00__fzgx_offset_10) = cursor - 6;
     if ((s32)(lbl_1_bss_7EA00__fzgx_offset_10) < 0) (lbl_1_bss_7EA00__fzgx_offset_10) = 0;
-    if ((lbl_1_bss_7EA00__fzgx_offset_10) > count - 7) (lbl_1_bss_7EA00__fzgx_offset_10) = count - 7;
+    if (lbl_1_bss_7EA00__fzgx_offset_10 > count - 7) (lbl_1_bss_7EA00__fzgx_offset_10) = count - 7;
     if (count > 7) {
         if ((s32)(lbl_1_bss_7EA00__fzgx_offset_10) > 0) {
             arrow = *(DrawPacket *)lbl_1_rodata_26F8;
@@ -914,7 +914,7 @@ void fn_1_EB8F4(void)
             PF(arrow,0x2C) = lbl_1_rodata_6BF8 - lbl_1_rodata_6C00 * __fabs(lbl_8006D188((lbl_801A66A0 << 9)));
             fn_1_4F734(&arrow.packet);
         }
-        if ((lbl_1_bss_7EA00__fzgx_offset_10) < count - 7) {
+        if (lbl_1_bss_7EA00__fzgx_offset_10 < count - 7) {
             arrow = *(DrawPacket *)lbl_1_rodata_26F8;
             PW(arrow,0) = 0x9A00;
             PF(arrow,4) = lbl_1_rodata_6BDC;
@@ -951,7 +951,7 @@ void fn_1_EB8F4(void)
         fn_1_4966C(lbl_1_rodata_6B60, lbl_1_rodata_6B60);
     }
     if (count != 0) {
-        current = (lbl_1_bss_7EA00__fzgx_offset_10);
+        current = lbl_1_bss_7EA00__fzgx_offset_10;
         shown = 0;
         row = 0;
         while (current < 127) {
@@ -1855,10 +1855,10 @@ extern u32 lbl_1_data_3E52C;
 #define LAYOUT_CHECK_JOIN2(a, b) a##b
 #define LAYOUT_CHECK_JOIN(a, b) LAYOUT_CHECK_JOIN2(a, b)
 #define CHECK_SIZE(T, size) \
-    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == (size)) ? 1 : -1]
+    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == size) ? 1 : -1]
 #define CHECK_OFFSET(T, field, offset) \
     typedef char LAYOUT_CHECK_JOIN(LAYOUT_CHECK_JOIN(layout_offset_, T), __LINE__) \
-        [((unsigned long)&((T *)0)->field == (offset)) ? 1 : -1]
+        [((unsigned long)&((T *)0)->field == offset) ? 1 : -1]
 
 #endif
 
@@ -5638,7 +5638,7 @@ void fn_1_F1300(u32 count, GhostVec4 *records, const u8 *xbytes,
         d = fzgx_live * next->w;
         dot = a + b + c + d;
         if (dot < lbl_1_rodata_6B60) {
-            fzgx_value = &(next->x);
+            fzgx_value = &next->x;
             *fzgx_value = -next->x;
             next->y = -next->y;
             next->z = -next->z;
@@ -5922,7 +5922,7 @@ void fn_1_F1A24(void) {
 
     data = lbl_1_data_3E358;
     bss = (u8 *)&lbl_1_bss_7B180;
-    entry = (u32 *)(((0x16b4) + (bss)));
+    entry = (u32 *)(((0x16b4) + bss));
     size = 0xf24000;
     i = 0;
     while (i < bss[0x1754]) {

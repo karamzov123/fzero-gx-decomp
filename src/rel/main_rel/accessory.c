@@ -2010,7 +2010,7 @@ void fn_1_10AD18(Work *arg0) {
  z=a->pos.z-b->pos.z;
  delta.x=x; delta.y=y; delta.z=z;
  len=(f32)(x*x)+y*y+z*z;
- if(len-F(0x9c)>(l->length)) {
+ if(len-F(0x9c)>l->length) {
  inv=lbl_8006D118(len,&len);
  r=lbl_8006D0B4(l->length);
  s=inv*(len-r);
@@ -2857,8 +2857,8 @@ extern void fn_1_10846C(Obj10BA00 *);
 extern void fn_1_128884(void *, void *, s32);
 
 #define LINK(e, p, q)                                                              \
-    obj->edges[e].a = (p);                                                         \
-    obj->edges[e].b = (q);                                                         \
+    obj->edges[e].a = p;                                                         \
+    obj->edges[e].b = q;                                                         \
     obj->edges[e].dist = fn_1_1289BC((const Point1024C4 *)(p), (const Point1024C4 *)(q))
 
 void fn_1_10BA00(Obj10BA00 *obj) {
@@ -3114,7 +3114,7 @@ void fn_1_10BE3C(Work *arg0) {
  z=a->pos.z-b->pos.z;
  delta.x=x; delta.y=y; delta.z=z;
  len=(f32)(x*x)+y*y+z*z;
- if(len-F(0x9c)>(l->length)) {
+ if(len-F(0x9c)>l->length) {
  inv=lbl_8006D118(len,&len);
  r=lbl_8006D0B4(l->length);
  s=inv*(len-r);
@@ -4355,16 +4355,16 @@ void fn_1_10D2F0(Ctx *arg0) {
     pairs = 0;
     for (i = 0, p = arg0->unk_24; i < arg0->unk_18 - 1; i++, p++) {
         if (p->unk_1 == (*((p) + (1))).unk_1) {
-            (*((arg0->unk_28) + (pairs))).a = (u32)p;
-            (*((arg0->unk_28) + (pairs))).b = (u32)(p + 1);
-            (*((arg0->unk_28) + (pairs))).d = fn_1_1289BC(p, p + 1);
+            (*((arg0->unk_28) + pairs)).a = (u32)p;
+            (*((arg0->unk_28) + pairs)).b = (u32)(p + 1);
+            (*((arg0->unk_28) + pairs)).d = fn_1_1289BC(p, p + 1);
             pairs++;
         }
     }
     for (i = 0, p = arg0->unk_24; i < arg0->unk_18 - q; i++, p++) {
-        (*((arg0->unk_28) + (pairs))).a = (u32)p;
-        (*((arg0->unk_28) + (pairs))).b = (u32)(p + q);
-        (*((arg0->unk_28) + (pairs))).d = fn_1_1289BC(p, p + q);
+        (*((arg0->unk_28) + pairs)).a = (u32)p;
+        (*((arg0->unk_28) + pairs)).b = (u32)(p + q);
+        (*((arg0->unk_28) + pairs)).d = fn_1_1289BC(p, p + q);
         pairs++;
     }
     }
@@ -4537,7 +4537,7 @@ void fn_1_10D7D4(Work *arg0) {
  z=a->pos.z-b->pos.z;
  delta.x=x; delta.y=y; delta.z=z;
  len=(f32)(x*x)+y*y+z*z;
- if(len-F(0x9c)>(l->length)) {
+ if(len-F(0x9c)>l->length) {
  inv=lbl_8006D118(len,&len);
  r=lbl_8006D0B4(l->length);
  s=inv*(len-r);
@@ -5214,13 +5214,13 @@ void fn_1_10E3B4(Work *arg0) {
     wn->vel.z += (f64)(0.2 * (wn->pos.z - wn->prev.z));
     wn->vel.x -= (f32)(w1 * fn_1_10E3B4_randf(0.0012f));
     wn->vel.y += (f32)(w1 * (fn_1_10E3B4_randf(0.0048f) - 0.001f));
-    wn->vel.z += (f32)(w1 * (0.0006f * lbl_8006D188((-32768.0f + (65536.0f * ((wi + (lbl_801A66A0)) % 39)) / 39.0f))));
+    wn->vel.z += (f32)(w1 * (0.0006f * lbl_8006D188((-32768.0f + (65536.0f * ((wi + lbl_801A66A0) % 39)) / 39.0f))));
     wn->vel.z += (f32)(w2 * (0.0012f * fn_1_10E3B4_rand()));
     wn->vel.y += (f32)(w2 * (0.002f * fn_1_10E3B4_rand()));
-    wn->vel.x += (f32)(w2 * (0.0006f * lbl_8006D188((-32768.0f + (65536.0f * ((wi + (lbl_801A66A0)) % 29)) / 29.0f))));
+    wn->vel.x += (f32)(w2 * (0.0006f * lbl_8006D188((-32768.0f + (65536.0f * ((wi + lbl_801A66A0) % 29)) / 29.0f))));
    }
   } else {
-   if ((lbl_801A66A0) % 60 < 20) {
+   if (lbl_801A66A0 % 60 < 20) {
     owner = arg0->owner;
     lbl_8006DBAC(owner->model->base + INDEX(arg0->index) * 396 + 136);
     lbl_8006DAEC();
@@ -6081,13 +6081,13 @@ void fn_1_110478(Work *arg0) {
  wn->vel.z+=(f64)((0.2)*(wn->pos.z-wn->prev.z));
  wn->vel.x-=(f32)(w1*fn_1_110478_randf(0.0012f));
  wn->vel.y+=(f32)(w1*fn_1_110478_randf(0.0028f));
- wn->vel.z+=(f32)(w1*((0.0006f)*lbl_8006D188(((-32768.0f)+((65536.0f)*((wi+(lbl_801A66A0))%39))/(39.0f)))));
+ wn->vel.z+=(f32)(w1*((0.0006f)*lbl_8006D188(((-32768.0f)+((65536.0f)*((wi+lbl_801A66A0)%39))/(39.0f)))));
  wn->vel.z+=(f32)(w2*fn_1_110478_randf(0.0012f));
  wn->vel.y+=(f32)(w2*fn_1_110478_randf(0.0023f));
- wn->vel.x+=(f32)(w2*((0.0006f)*lbl_8006D188(((-32768.0f)+((65536.0f)*((wi+(lbl_801A66A0))%29))/(29.0f)))));
+ wn->vel.x+=(f32)(w2*((0.0006f)*lbl_8006D188(((-32768.0f)+((65536.0f)*((wi+lbl_801A66A0)%29))/(29.0f)))));
  }
  } else {
- if((lbl_801A66A0)%60<20) {
+ if(lbl_801A66A0%60<20) {
  owner=arg0->owner;
  model6=owner->model->base+INDEX(arg0->index)*396;
  for(i6=0,n6=arg0->nodes;i6<arg0->count;i6++,n6++) {
@@ -6954,13 +6954,13 @@ void fn_1_111980(Work *arg0) {
  wn->vel.z+=(f64)((0.2)*(wn->pos.z-wn->prev.z));
  wn->vel.x-=(f32)(w1*fn_1_111980_randf(0.0012f));
  wn->vel.y+=(f32)(w1*fn_1_111980_randf(0.0028f));
- wn->vel.z+=(f32)(w1*((0.0006f)*lbl_8006D188(((-32768.0f)+((65536.0f)*((wi+(lbl_801A66A0))%39))/(39.0f)))));
+ wn->vel.z+=(f32)(w1*((0.0006f)*lbl_8006D188(((-32768.0f)+((65536.0f)*((wi+lbl_801A66A0)%39))/(39.0f)))));
  wn->vel.z+=(f32)(w2*fn_1_111980_randf(0.0012f));
  wn->vel.y+=(f32)(w2*fn_1_111980_randf(0.0023f));
- wn->vel.x+=(f32)(w2*((0.0006f)*lbl_8006D188(((-32768.0f)+((65536.0f)*((wi+(lbl_801A66A0))%29))/(29.0f)))));
+ wn->vel.x+=(f32)(w2*((0.0006f)*lbl_8006D188(((-32768.0f)+((65536.0f)*((wi+lbl_801A66A0)%29))/(29.0f)))));
  }
  } else {
- if((lbl_801A66A0)%90<20) {
+ if(lbl_801A66A0%90<20) {
  owner=arg0->owner;
  model6=owner->model->base+INDEX(arg0->index)*396;
  for(i6=0,n6=arg0->nodes;i6<arg0->count;i6++,n6++) {
@@ -9698,7 +9698,7 @@ void fn_1_112F40(fn_1_10D2F0_Obj *obj) {
 
     n = obj->unk_18 / 2;
     obj->unk_1C = (((n - 1)) << 1) + n;
-    obj->unk_28 = (void *)fn_1_4630((lbl_801A6410), obj->unk_1C * sizeof(fn_1_10D2F0_Link), lbl_1_data_40530, 0x1330);
+    obj->unk_28 = (void *)fn_1_4630(lbl_801A6410, obj->unk_1C * sizeof(fn_1_10D2F0_Link), lbl_1_data_40530, 0x1330);
 
     count = 0;
     for (i = 0, a = obj->unk_24; i < obj->unk_18 - 1; i++, a++) {
@@ -9892,7 +9892,7 @@ void fn_1_1132E4(Work *arg0) {
  z=a->pos.z-b->pos.z;
  delta.x=x; delta.y=y; delta.z=z;
  len=(f32)(x*x)+y*y+z*z;
- if(len-F(0x9c)>(l->length)) {
+ if(len-F(0x9c)>l->length) {
  inv=lbl_8006D118(len,&len);
  r=lbl_8006D0B4(l->length);
  s=inv*(len-r);
@@ -15512,7 +15512,7 @@ void fn_1_1192D0(Work *arg0) {
  z=a->pos.z-b->pos.z;
  delta.x=x; delta.y=y; delta.z=z;
  len=(f32)(x*x)+y*y+z*z;
- if(len-F(0x9c)>(l->length)) fn_1_1192D0_constrain(pool,a,b,l,&len,dp);
+ if(len-F(0x9c)>l->length) fn_1_1192D0_constrain(pool,a,b,l,&len,dp);
  }
  }
  }
@@ -16007,8 +16007,8 @@ void fn_1_11A774(Work *arg0) {
  z=a->pos.z-b->pos.z;
  delta.x=x; delta.y=y; delta.z=z;
  len=(f32)(x*x)+y*y+z*z;
- if(len-F(0x9c)>(l->length)) LINKFIX
- if(F(0x1a4)+len<(l->length)) LINKFIX
+ if(len-F(0x9c)>l->length) LINKFIX
+ if(F(0x1a4)+len<l->length) LINKFIX
  }
  }
  SPHERE(532,c404,c68,c68,F(0x408),F(0x40c))
@@ -16373,7 +16373,7 @@ void fn_1_11B958(Work *arg0) {
  z=a->pos.z-b->pos.z;
  delta.x=x; delta.y=y; delta.z=z;
  len=(f32)(x*x)+y*y+z*z;
- if(len-F(0x9c)>(l->length)) {
+ if(len-F(0x9c)>l->length) {
  inv=lbl_8006D118(len,&len);
  r=lbl_8006D0B4(l->length);
  s=inv*(len-r);
@@ -16822,7 +16822,7 @@ void fn_1_11C440(Work *arg0) {
  z=a->pos.z-b->pos.z;
  delta.x=x; delta.y=y; delta.z=z;
  len=(f32)(x*x)+y*y+z*z;
- if(len-F(0x9c)>(l->length)) {
+ if(len-F(0x9c)>l->length) {
  inv=lbl_8006D118(len,&len);
  r=lbl_8006D0B4(l->length);
  s=inv*(len-r);
@@ -18745,7 +18745,7 @@ void fn_1_11F250(Work *arg0) {
  z=a->pos.z-b->pos.z;
  delta.x=x; delta.y=y; delta.z=z;
  len=(f32)(x*x)+y*y+z*z;
- if(len-F(0x9c)>(l->length)) LINKFIX
+ if(len-F(0x9c)>l->length) LINKFIX
  if(F(0x1a4)+len<(l->length) && li<20) LINKFIX
  if((y=a->pos.y)<F(0x68) || b->pos.y<F(0x68)) {
  if(y<F(0x68)) a->pos.y=F(0x248);
@@ -20898,7 +20898,7 @@ void fn_1_124AD4(Work *arg0) {
  z=a->pos.z-b->pos.z;
  delta.x=x; delta.y=y; delta.z=z;
  len=(f32)(x*x)+y*y+z*z;
- if(len-F(0x9c)>(l->length)) {
+ if(len-F(0x9c)>l->length) {
  inv=lbl_8006D118(len,&len);
  r=lbl_8006D0B4(l->length);
  s=inv*(len-r);
@@ -21321,7 +21321,7 @@ void fn_1_1256EC(Work *arg0) {
  z=a->pos.z-b->pos.z;
  delta.x=x; delta.y=y; delta.z=z;
  len=(f32)(x*x)+y*y+z*z;
- if(len-F(0x9c)>(l->length)) {
+ if(len-F(0x9c)>l->length) {
  inv=lbl_8006D118(len,&len);
  r=lbl_8006D0B4(l->length);
  s=inv*(len-r);
@@ -22138,7 +22138,7 @@ void fn_1_126774(Work *arg0) {
  z=a->pos.z-b->pos.z;
  delta.x=x; delta.y=y; delta.z=z;
  len=(f32)(x*x)+y*y+z*z;
- if(len-F(0x9c)>(l->length)) {
+ if(len-F(0x9c)>l->length) {
  inv=lbl_8006D118(len,&len);
  r=lbl_8006D0B4(l->length);
  s=inv*(len-r);
@@ -22573,7 +22573,7 @@ void fn_1_12744C(Work *arg0) {
  z=a->pos.z-b->pos.z;
  delta.x=x; delta.y=y; delta.z=z;
  len=(f32)(x*x)+y*y+z*z;
- if(len-F(0x9c)>(l->length)) {
+ if(len-F(0x9c)>l->length) {
  inv=lbl_8006D118(len,&len);
  r=lbl_8006D0B4(l->length);
  s=inv*(len-r);
@@ -24459,7 +24459,7 @@ void fn_1_12A0E0(DisplayData *arg0)
     fn_1_4954C(-depth);
     fn_8006F78C(&vec, &vec, scale);
     fzgx_live = vec.value0;
-    fn_1_496FC(fzgx_live, (vec.value1));
+    fn_1_496FC(fzgx_live, vec.value1);
     fn_1_49738(fn_1_12A080);
     fn_1_495FC();
     fn_1_495C8(0x11);

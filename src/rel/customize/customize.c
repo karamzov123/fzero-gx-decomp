@@ -901,7 +901,7 @@ void fn_3_B5FC(void) {
     u32 flags;
     s32 ready;
 
-    if ((lbl_3_bss_120) == -1) {
+    if (lbl_3_bss_120 == -1) {
         fn_1_4C10();
     }
 
@@ -918,13 +918,13 @@ void fn_3_B5FC(void) {
 
     if (ready == 0) {
         if ((lbl_3_bss_120) != -1) {
-            s32 value = (lbl_3_bss_120);
-            (lbl_3_bss_120) = -1;
-            (lbl_1_bss_96A) = value;
+            s32 value = lbl_3_bss_120;
+            lbl_3_bss_120 = -1;
+            lbl_1_bss_96A = value;
         } else if (fn_3_B270() == (s16)-1) {
-            fn_1_4A00(0, 15, (lbl_3_bss_20850));
+            fn_1_4A00(0, 15, lbl_3_bss_20850);
             ((u32 *)&lbl_3_bss_243A8)[0] = 0;
-            (lbl_3_bss_120) = 110;
+            lbl_3_bss_120 = 110;
         }
     }
 }
@@ -1076,7 +1076,7 @@ void fn_3_B984(void *entries, u8 *table) {
     u32 offset;
 
     for (i = 0; i < 3; i++) {
-        offset = (i) << 3;
+        offset = i << 3;
         if (table[offset + 0x81a4] != ((u8 *)lbl_3_bss_20)[offset]) {
             for (j = 0; j < 4; j++) {
                 u8 *entry = (u8 *)entries + j * 0x2060;
@@ -1184,7 +1184,7 @@ void fn_3_BA74(void)
     for (i = 0; i < 3; i++) {
         tmp_cse1 = i * 0x360;
         fn_80008BA8((u8 *)*buf + tmp_cse1,
-                    lbl_3_bss_6DE20 + ((*((0x81A4 + i * 8) + (base))) - i * 25) * 0xA20 + tmp_cse1,
+                    lbl_3_bss_6DE20 + ((*((0x81A4 + i * 8) + base)) - i * 25) * 0xA20 + tmp_cse1,
                     0x360);
     }
     lbl_3_bss_7EBA4->unk_390 = 0x4000000;

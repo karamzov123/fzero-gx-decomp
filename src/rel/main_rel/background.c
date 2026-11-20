@@ -116,7 +116,7 @@ typedef u32 (*Sig_fn_1_9CF78_FilterCallback)(u32, void *);
 extern void fn_1_9CF78(void *, Sig_fn_1_9CF78_FilterCallback);
 
 /* Retail TU .data objects in retail order: MWCC addresses them off one section base
-   (lbl_1_data_2A0C0), so the unit defines them; its copy is dropped at integration. */
+   lbl_1_data_2A0C0, so the unit defines them; its copy is dropped at integration. */
 u32 fzgx_obj_lbl_1_data_2A0C0[4] = {1};
 u8 fzgx_pool_fzgx_gap_2A0D0[0x2A7E0 - 0x2A0D0] = {1};
 Obj_1_data_2A7E0 fzgx_obj_lbl_1_data_2A7E0 = {0};
@@ -339,7 +339,7 @@ void fn_1_9DB04(void) {
             if (arr[j.value] <= zero) {
                 continue;
             }
-            lbl_8006DFE8(lbl_1_data_2A7E0.unk_78 + ((0x30) * (j.value)));
+            lbl_8006DFE8(lbl_1_data_2A7E0.unk_78 + ((0x30) * j.value));
             lbl_8006E0B4(fzgx_pool_lbl_1_rodata_41FC, fzgx_pool_lbl_1_rodata_4260__fzgx_offset_34, fzgx_pool_lbl_1_rodata_4260__fzgx_offset_38);
             mathutil_mtxA_rotate_x(angle);
             fn_1_55FF0(arr[j.value]);

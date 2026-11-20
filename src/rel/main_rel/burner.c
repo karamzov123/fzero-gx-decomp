@@ -642,7 +642,7 @@ void fn_1_988DC(void *arg0) {
     tmp = *(s32 *)((u8 *)arg0 + 68);
     *(s32 *)((u8 *)arg0 + 68) = tmp + 1;
     cur = *(s32 *)((u8 *)arg0 + 64);
-    ratio = (cnt) / 900.0f;
+    ratio = cnt / 900.0f;
     switch (cur) {
     case 0:
         if (c20 != 0) {

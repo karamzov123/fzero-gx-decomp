@@ -830,7 +830,7 @@ void fn_3_14778(u16 width, u16 height, u8 arg2, u32 format) {
  * 3 bits of alpha and 4 bits per colour) */
 #define RGB565(r, g, b) ((u16)((((r) & 0xF8) << 8) | (((g) & 0xFC) << 3) | (((b) & 0xF8) >> 3)))
 #define RGB5A3(r, g, b, a)                                                                 \
-    ((a) >= 0xE0 ? (((r) & 0xF8) << 7) | (((g) & 0xF8) << 2) | (((b) & 0xF8) >> 3) | 0x8000 \
+    (a >= 0xE0 ? (((r) & 0xF8) << 7) | (((g) & 0xF8) << 2) | (((b) & 0xF8) >> 3) | 0x8000 \
                  : (((r) & 0xF0) << 4) | ((g) & 0xF0) | (((b) & 0xF0) >> 4) | (((a) & 0xE0) << 7))
 
 /* WARNING: compiler-diff device, not original code (__restrict canvas: the alpha byte is read again before the

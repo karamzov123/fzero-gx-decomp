@@ -2962,7 +2962,7 @@ void fn_1_4BD4C(u32 unused0, u32 unused1, u32 unused2) {
         rows = ((FontElement *)&lbl_1_data_1AEA8)[sp30->unk_0].unk_11;
     }
 
-    prev_unk_0 = *(s8 *)&(sp30->unk_0);
+    prev_unk_0 = *(s8 *)&sp30->unk_0;
     p_d58 = lbl_1_bss_D58;
 
     if (((p_d58[8] >> 1) & 1) != 0) {
@@ -3000,7 +3000,7 @@ void fn_1_4BD4C(u32 unused0, u32 unused1, u32 unused2) {
         prev_unk_4 = sp30->unk_4;
         max_page = ((s32 *)&lbl_1_bss_40BBC)[sp30->unk_0] / page_size;
         if (((p_d58[8] >> 2) & 1) != 0) {
-            if ((s8)++(sp30->unk_4) > max_page) {
+            if ((s8)++sp30->unk_4 > max_page) {
                 sp30->unk_4 = 0;
             }
         }
@@ -4929,9 +4929,9 @@ void fn_1_4DEC0(void) {
     u32 *var_r30;
 
     var_r31 = 0;
-    var_r30 = (u32 *)(&(lbl_1_bss_4C688));
+    var_r30 = (u32 *)(&lbl_1_bss_4C688);
     do {
-        if ((s32) (*(var_r30)) != 0) {
+        if ((s32) (*var_r30) != 0) {
             temp_r12 = (s32 (*)(u32 *))(*(s32 (**)(u32 *))((u8 *)(var_r30) + 124));
             if (temp_r12 == NULL) {
                 loc_8 = *(const struct FzgxCopy_88 *)((((((u8 *)(var_r30) + 4))) + 4));
@@ -5209,7 +5209,7 @@ void fn_1_4E220(struct Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
     v7 = arg1 & 0xFF;
     fn_80073C6C(v7);
     fn_800734A8(v7, v1, arg3 & 0xFF, 255);
-    if (((0) == (arg0->unk_40)) || (((arg0->unk_40) == ((1))))) {
+    if (((0) == arg0->unk_40) || ((arg0->unk_40 == ((1))))) {
         fn_80072C24(v7, 15, 15, 15, 0);
         fn_80072D64(v7, 0, 0, 0, 1, 0);
         fn_80072CC4(v7, 7, 0, 4, 7);
@@ -6188,7 +6188,7 @@ void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg
             var_f22 = *(f32 *)((u8 *)(arg0) + 4);
             break;
         case 2:
-            half = farg0 * (lbl_1_rodata_27A4);
+            half = farg0 * lbl_1_rodata_27A4;
             var_f22 = (*(f32 *)((u8 *)(arg0) + 4)) - half;
             break;
         case 3:
@@ -6202,7 +6202,7 @@ void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg
             var_f30 = *(f32 *)((u8 *)(arg0) + 8);
             break;
         case 2:
-            half = farg1 * (lbl_1_rodata_27A4);
+            half = farg1 * lbl_1_rodata_27A4;
             var_f30 = (*(f32 *)((u8 *)(arg0) + 8)) - half;
             break;
         case 3:
@@ -6210,13 +6210,13 @@ void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg
             break;
         }
         loc_8 = *(struct Pkt88 *)(arg0);
-        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)(arg0)), (0), (0), (farg2), (farg4));
+        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)(arg0)), (0), (0), farg2, farg4);
         (*(f32 *)((u8 *)(&loc_8) + 4)) = var_f22;
         (*(f32 *)((u8 *)(&loc_8) + 8)) = var_f30;
         (loc_8.words)[0xC] &= 0xFFFFFFF0;
         fn_1_4F734((FontDrawPacket *)((FontDrawPacket *) &loc_8));
         loc_8 = *(struct Pkt88 *)(arg0);
-        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)(arg0)), (farg2), (0), (temp_f25), (farg4));
+        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)(arg0)), farg2, (0), temp_f25, farg4);
         temp_f29 = temp_f26;
         temp_f29 /= temp_f25;
         (*(f32 *)((u8 *)(&loc_8) + 8)) = var_f30;
@@ -6228,14 +6228,14 @@ void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg
         loc_8 = *(struct Pkt88 *)(arg0);
         temp_f27 = farg2;
         temp_f27 += temp_f25;
-        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)(arg0)), (temp_f27), (0), (farg3), (farg4));
+        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)(arg0)), temp_f27, (0), farg3, farg4);
         temp_f26 = temp_f26 + temp_f31;
         (*(f32 *)((u8 *)(&loc_8) + 8)) = var_f30;
         (*(f32 *)((u8 *)(&loc_8) + 4)) = temp_f26;
         (loc_8.words)[0xC] &= 0xFFFFFFF0;
         fn_1_4F734((FontDrawPacket *)((FontDrawPacket *) &loc_8));
         loc_8 = *(struct Pkt88 *)(arg0);
-        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)(arg0)), (0), (farg4), (farg2), (temp_f24));
+        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)(arg0)), (0), farg4, farg2, temp_f24);
         temp_f28 = temp_f23 / temp_f24;
         (*(f32 *)((u8 *)(&loc_8) + 4)) = var_f22;
         temp_f30 = var_f30 + farg4;
@@ -6244,7 +6244,7 @@ void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg
         (*(f32 *)((u8 *)(&loc_8) + 20)) *= temp_f28;
         fn_1_4F734((FontDrawPacket *)((FontDrawPacket *) &loc_8));
         loc_8 = *(struct Pkt88 *)(arg0);
-        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)(arg0)), (farg2), (farg4), (temp_f25), (temp_f24));
+        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)(arg0)), farg2, farg4, temp_f25, temp_f24);
         (*(f32 *)((u8 *)(&loc_8) + 4)) = temp_f31;
         (*(f32 *)((u8 *)(&loc_8) + 8)) = temp_f30;
         (*(f32 *)((u8 *)(&loc_8) + 16)) *= temp_f29;
@@ -6252,7 +6252,7 @@ void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg
         (loc_8.words)[0xC] &= 0xFFFFFFF0;
         fn_1_4F734((FontDrawPacket *)((FontDrawPacket *) &loc_8));
         loc_8 = *(struct Pkt88 *)(arg0);
-        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)(arg0)), (temp_f27), (farg4), (farg3), (temp_f24));
+        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)(arg0)), temp_f27, farg4, farg3, temp_f24);
         (*(f32 *)((u8 *)(&loc_8) + 4)) = temp_f26;
         (*(f32 *)((u8 *)(&loc_8) + 8)) = temp_f30;
         (*(f32 *)((u8 *)(&loc_8) + 20)) *= temp_f28;
@@ -6260,21 +6260,21 @@ void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg
         fn_1_4F734((FontDrawPacket *)((FontDrawPacket *) &loc_8));
         loc_8 = *(struct Pkt88 *)(arg0);
         temp_f28_2 = farg4 + temp_f24;
-        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)(arg0)), (0), (temp_f28_2), (farg2), (farg5));
+        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)(arg0)), (0), temp_f28_2, farg2, farg5);
         temp_f30_2 = temp_f23 + temp_f30;
         (*(f32 *)((u8 *)(&loc_8) + 4)) = var_f22;
         (*(f32 *)((u8 *)(&loc_8) + 8)) = temp_f30_2;
         (loc_8.words)[0xC] &= 0xFFFFFFF0;
         fn_1_4F734((FontDrawPacket *)((FontDrawPacket *) &loc_8));
         loc_8 = *(struct Pkt88 *)(arg0);
-        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)(arg0)), (farg2), (temp_f28_2), (temp_f25), (farg5));
+        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)(arg0)), farg2, temp_f28_2, temp_f25, farg5);
         (*(f32 *)((u8 *)(&loc_8) + 4)) = temp_f31;
         (*(f32 *)((u8 *)(&loc_8) + 8)) = temp_f30_2;
         (*(f32 *)((u8 *)(&loc_8) + 16)) *= temp_f29;
         (loc_8.words)[0xC] &= 0xFFFFFFF0;
         fn_1_4F734((FontDrawPacket *)((FontDrawPacket *) &loc_8));
         loc_8 = *(struct Pkt88 *)(arg0);
-        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)(arg0)), (temp_f27), (temp_f28_2), (farg3), (farg5));
+        fn_1_51678((FontDrawPacket *)((FontDrawPacket *) &loc_8), (*(u32 *)(arg0)), temp_f27, temp_f28_2, farg3, farg5);
         (*(f32 *)((u8 *)(&loc_8) + 4)) = temp_f26;
         (*(f32 *)((u8 *)(&loc_8) + 8)) = temp_f30_2;
         (loc_8.words)[0xC] &= 0xFFFFFFF0;
@@ -6859,14 +6859,14 @@ void fn_1_51C74(fn_1_51C74_FontData *obj) {
 {
     f32 z;
     b0.value = t0.value.z;
-    obj->x = (((x) * (b0.value))) / ((u32)fn_1_A5D88() & 0xffff)
+    obj->x = (((x) * b0.value)) / ((u32)fn_1_A5D88() & 0xffff)
         + lbl_1_rodata_2770 * a0 / ((u32)fn_1_A5D88() & 0xffff);
 
     y = obj->y;
     fn_80038F10( (f32*)(Vec4 *)(&t1.value));
     a1 = t1.value.y;
     b1 = t1.value.w;
-    obj->y = ((y) * (b1)) / ((u32)fn_1_A5DB0() & 0xffff)
+    obj->y = ((y) * b1) / ((u32)fn_1_A5DB0() & 0xffff)
         + lbl_1_rodata_276C * a1 / ((u32)fn_1_A5DB0() & 0xffff);
 
     z = obj->z;
@@ -7076,7 +7076,7 @@ f32 fn_1_520F8(s32 value) {
     f32 scaled;
 
     if ((s8)fn_1_A5DC4(value) && (*(s32 *)&lbl_1_bss_4E6A8) != 0) {
-        base = (lbl_1_bss_4E6AC);
+        base = lbl_1_bss_4E6AC;
         scaled = (value - base) * lbl_1_rodata_2788[0];
         return base + scaled;
     }
@@ -9253,7 +9253,7 @@ void fn_1_55210(void *value) {
                 if ((__rlwnm(lbl_1_bss_6C7CC.unk_0, ((i + 1) & 31), 31, 31) != 0)) {
                     obj->entry[i] = fn_1_548AC(0x30);
                     if (((obj->entry)[i]) != 0) {
-                        lbl_8006DD14(((((((((u8 *)lbl_801A66CC))) + ((offset))) + (((0xe0)))))), ((obj->entry)[i]));
+                        lbl_8006DD14(((((((((u8 *)lbl_801A66CC))) + (offset)) + (((0xe0)))))), ((obj->entry)[i]));
                     } else {
                         ok = 0;
                     }
@@ -9333,7 +9333,7 @@ void fn_1_553C4(void *value, void *arg) {
                 if ((__rlwnm(lbl_1_bss_6C7CC.unk_0, ((i + 1) & 31), 31, 31) != 0)) {
                     obj->entry[i] = fn_1_548AC(0x30);
                     if (((obj->entry)[i]) != 0) {
-                        lbl_8006DD14(((((((((u8 *)lbl_801A66CC))) + ((offset))) + (((0xe0)))))), ((obj->entry)[i]));
+                        lbl_8006DD14(((((((((u8 *)lbl_801A66CC))) + (offset)) + (((0xe0)))))), ((obj->entry)[i]));
                     } else {
                         ok = 0;
                     }
@@ -9362,7 +9362,7 @@ typedef struct {
 } Fn1_5557CObject;
 
 void fn_1_5557C(Fn1_5557CObject *value) {
-    if (fn_1_54F5C( (&value->unk_08), value->unk_14, lbl_1_bss_6C7A0)) {
+    if (fn_1_54F5C( &value->unk_08, value->unk_14, lbl_1_bss_6C7A0)) {
         fn_1_55210(value);
         return;
     }
@@ -9381,7 +9381,7 @@ typedef struct {
 } Fn1_555D0Object;
 
 void fn_1_555D0(Fn1_555D0Object *value) {
-    if (fn_1_54F5C( (&value->unk_08), value->unk_14, lbl_1_bss_6C7A0)) {
+    if (fn_1_54F5C( &value->unk_08, value->unk_14, lbl_1_bss_6C7A0)) {
         fn_80072558();
         fn_1_55210(value);
         return;
@@ -9434,7 +9434,7 @@ typedef struct {
 
 /* Finishes the current font operation after testing its scale threshold. */
 void fn_1_556F8(Fn1_556F8Object *value) {
-    if (fn_1_54F5C( (&value->unk_08), value->unk_14, lbl_1_bss_6C7A0)) {
+    if (fn_1_54F5C( &value->unk_08, value->unk_14, lbl_1_bss_6C7A0)) {
         fn_1_563E4( (fn_1_563E4_FontState *)(&lbl_1_bss_6C7A4));
         fn_80077F8C(value);
         fn_1_56530();
@@ -9455,7 +9455,7 @@ typedef struct {
 } Fn1_5575CObject;
 
 void fn_1_5575C(Fn1_5575CObject *value) {
-    if (fn_1_54F5C( (&value->unk_08), value->unk_14, lbl_1_bss_6C7A0)) {
+    if (fn_1_54F5C( &value->unk_08, value->unk_14, lbl_1_bss_6C7A0)) {
         fn_80072558();
         fn_1_563E4( (fn_1_563E4_FontState *)(&lbl_1_bss_6C7A4));
         fn_80077F8C(value);
@@ -9515,8 +9515,8 @@ void fn_1_557C4(void *value) {
         for (i = 0, offset = 0; i < 4; i++, offset += 0x30) {
             if ((__rlwnm(bits->unk_0, ((i + 1) & 0x1f), 31, 31) != 0)) {
                 object->unk_68[i] = fn_1_548AC(0x30);
-                if ((*((object->unk_68) + (i))) != 0) {
-                    lbl_8006DD14(lbl_801A66CC + offset + 0xE0, (*((object->unk_68) + (i))));
+                if ((*((object->unk_68) + i)) != 0) {
+                    lbl_8006DD14(lbl_801A66CC + offset + 0xE0, (*((object->unk_68) + i)));
                 } else {
                     valid = 0;
                 }
@@ -9565,7 +9565,7 @@ void fn_1_55924(void *value, void *arg) {
             if (__rlwnm(flags->unk_0, (i + 1) & 31, 31, 31)) {
                 object->items[i] = fn_1_548AC(0x30);
                 if (object->items[i] != 0) {
-                    lbl_8006DD14((((i * 0x30) + (lbl_801A66CC)) + (0xE0)), object->items[i]);
+                    lbl_8006DD14((((i * 0x30) + lbl_801A66CC) + (0xE0)), object->items[i]);
                 } else {
                     ok = 0;
                 }
@@ -9703,10 +9703,10 @@ void fn_1_55C48(Fn1_55C48Object *value) {
         entry = value;
         state = (Obj_1_bss_6C7CC *)&lbl_1_bss_6C7CC;
         for (i = 0; i < 4; i++) {
-            if (((0) != (entry->unk_68))) {
+            if (((0) != entry->unk_68)) {
                 lab_t0 = i;
                 lab_t0_ = lab_t0;
-                fn_800749B0(lab_t0_, (entry->unk_68));
+                fn_800749B0(lab_t0_, entry->unk_68);
             } else if ((__rlwnm(state->unk_0, ((u32)(i + 1) % 32), 31, 31) != 0)) {
                 lab_t0__2 = i;
                 fn_800749B0(lab_t0__2, 0);
@@ -9730,7 +9730,7 @@ void fn_1_55C48(Fn1_55C48Object *value) {
         for (j = 0, offset = 0; j < 4; j++, offset += 0x30, entry_2 = (Fn1_55C48Object *)((u8 *)entry_2 + 4)) {
             if ((__rlwnm(state->unk_0, ((u32)(j + 1) % 32), 31, 31) != 0)) {
                 lab_t0__2 = j;
-                fn_800749B0(lab_t0__2, (((0xe0) + ((u8 *)*table)) + (offset)));
+                fn_800749B0(lab_t0__2, (((0xe0) + ((u8 *)*table)) + offset));
             } else if ((entry_2->unk_68) != 0) {
                 lab_t0__2 = j;
                 fn_800749B0(lab_t0__2, 0);
@@ -9784,10 +9784,10 @@ void fn_1_55D6C(Fn1_55D6CObject *value) {
         entry = value;
         state = (Obj_1_bss_6C7CC *)&lbl_1_bss_6C7CC;
         for (i = 0; i < 4; i++) {
-            if (((0) != (entry->unk_68))) {
+            if (((0) != entry->unk_68)) {
                 lab_t0 = i;
                 lab_t0_ = lab_t0;
-                fn_800749B0(lab_t0_, (entry->unk_68));
+                fn_800749B0(lab_t0_, entry->unk_68);
             } else if ((__rlwnm(state->unk_0, ((u32)(i + 1) % 32), 31, 31) != 0)) {
                 lab_t0__2 = i;
                 fn_800749B0(lab_t0__2, 0);
@@ -9796,7 +9796,7 @@ void fn_1_55D6C(Fn1_55D6CObject *value) {
         }
     }
 
-    value->unk_80((value->unk_08), value->unk_78, value->unk_7C);
+    value->unk_80(value->unk_08, value->unk_78, value->unk_7C);
     fn_1_56554();
 
     {
@@ -9811,7 +9811,7 @@ void fn_1_55D6C(Fn1_55D6CObject *value) {
         for (j = 0, offset = 0; j < 4; j++, offset += 0x30, entry_2 = (Fn1_55D6CObject *)((u8 *)entry_2 + 4)) {
             if ((__rlwnm(state->unk_0, ((u32)(j + 1) % 32), 31, 31) != 0)) {
                 lab_t0__2 = j;
-                fn_800749B0(lab_t0__2, (((0xe0) + ((u8 *)*table)) + (offset)));
+                fn_800749B0(lab_t0__2, (((0xe0) + ((u8 *)*table)) + offset));
             } else if ((entry_2->unk_68) != 0) {
                 lab_t0__2 = j;
                 fn_800749B0(lab_t0__2, 0);
@@ -9856,10 +9856,10 @@ void fn_1_55EA0(Fn1_55EA0Object *value) {
         entry = value;
         state = (Obj_1_bss_6C7CC *)&lbl_1_bss_6C7CC;
         for (i = 0; i < 4; i++) {
-            if (((0) != (entry->unk_68))) {
+            if (((0) != entry->unk_68)) {
                 lab_t0 = i;
                 lab_t0_ = lab_t0;
-                fn_800749B0(lab_t0_, (entry->unk_68));
+                fn_800749B0(lab_t0_, entry->unk_68);
             } else if ((__rlwnm(state->unk_0, ((u32)(i + 1) % 32), 31, 31) != 0)) {
                 lab_t0__2 = i;
                 fn_800749B0(lab_t0__2, 0);
@@ -9883,7 +9883,7 @@ void fn_1_55EA0(Fn1_55EA0Object *value) {
         for (j = 0, offset = 0; j < 4; j++, offset += 0x30, entry_2 = (Fn1_55EA0Object *)((u8 *)entry_2 + 4)) {
             if ((__rlwnm(state->unk_0, ((u32)(j + 1) % 32), 31, 31) != 0)) {
                 lab_t0__2 = j;
-                fn_800749B0(lab_t0__2, (((0xe0) + ((u8 *)*table)) + (offset)));
+                fn_800749B0(lab_t0__2, (((0xe0) + ((u8 *)*table)) + offset));
             } else if ((entry_2->unk_68) != 0) {
                 lab_t0__2 = j;
                 fn_800749B0(lab_t0__2, 0);
@@ -10100,7 +10100,7 @@ void fn_1_56470(fn_1_56470_FontState *state) {
         if (state->unk_12 != 0) {
             fn_80071ED4(state->unk_13, state->unk_18, state->unk_1C);
             value = state->unk_14;
-            fn_80072014( (&value));
+            fn_80072014( &value);
             fn_800720B0(1);
         } else {
             fn_800720B0(0);
@@ -10123,7 +10123,7 @@ void fn_1_56554(void) {
     Obj_1_bss_6C7A4 *font = &lbl_1_bss_6C7A4;
 
     fn_80074B40( (u8 *)(font));
-    fn_80074C74( (&font->unk_4));
+    fn_80074C74( &font->unk_4);
     lab_t0 = font->unk_C;
     lab_t2 = font->unk_E;
     fn_80074918(lab_t0, font->unk_D, lab_t2);

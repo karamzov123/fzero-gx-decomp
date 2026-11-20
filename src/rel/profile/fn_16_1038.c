@@ -17039,7 +17039,7 @@ void fn_16_1038(void) {
     lbl_1_bss_8B614.q = 0.5f;
     lbl_1_bss_8B614.r = *(const f32 *)fzgx_pool_table_4;
     lbl_16_bss_154__fzgx_offset_0.depth = 30.0f;
-    fzgx_value = &(lbl_1_bss_8B614.flags);
+    fzgx_value = &lbl_1_bss_8B614.flags;
     *fzgx_value = 0;
     lbl_1_bss_8B614.flags |= 0x80000000;
     lbl_1_bss_8B614.flags |= 0x10000000;

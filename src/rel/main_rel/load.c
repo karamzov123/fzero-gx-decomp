@@ -49,10 +49,10 @@ extern void fn_1_48004(s32 value, s32 arg);
 #define LAYOUT_CHECK_JOIN2(a, b) a##b
 #define LAYOUT_CHECK_JOIN(a, b) LAYOUT_CHECK_JOIN2(a, b)
 #define CHECK_SIZE(T, size) \
-    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == (size)) ? 1 : -1]
+    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == size) ? 1 : -1]
 #define CHECK_OFFSET(T, field, offset) \
     typedef char LAYOUT_CHECK_JOIN(LAYOUT_CHECK_JOIN(layout_offset_, T), __LINE__) \
-        [((unsigned long)&((T *)0)->field == (offset)) ? 1 : -1]
+        [((unsigned long)&((T *)0)->field == offset) ? 1 : -1]
 
 #endif
 
@@ -451,10 +451,10 @@ u32 fn_1_458A0(struct fn_1_458A0_Arg0 *arg0, void *arg1, u32 arg2, u32 arg3) {
 #define LAYOUT_CHECK_JOIN2(a, b) a##b
 #define LAYOUT_CHECK_JOIN(a, b) LAYOUT_CHECK_JOIN2(a, b)
 #define CHECK_SIZE(T, size) \
-    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == (size)) ? 1 : -1]
+    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == size) ? 1 : -1]
 #define CHECK_OFFSET(T, field, offset) \
     typedef char LAYOUT_CHECK_JOIN(LAYOUT_CHECK_JOIN(layout_offset_, T), __LINE__) \
-        [((unsigned long)&((T *)0)->field == (offset)) ? 1 : -1]
+        [((unsigned long)&((T *)0)->field == offset) ? 1 : -1]
 
 #endif
 
@@ -1075,10 +1075,10 @@ extern void fn_1_48004(s32 index, s32 image);
 #define LAYOUT_CHECK_JOIN2(a, b) a##b
 #define LAYOUT_CHECK_JOIN(a, b) LAYOUT_CHECK_JOIN2(a, b)
 #define CHECK_SIZE(T, size) \
-    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == (size)) ? 1 : -1]
+    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == size) ? 1 : -1]
 #define CHECK_OFFSET(T, field, offset) \
     typedef char LAYOUT_CHECK_JOIN(LAYOUT_CHECK_JOIN(layout_offset_, T), __LINE__) \
-        [((unsigned long)&((T *)0)->field == (offset)) ? 1 : -1]
+        [((unsigned long)&((T *)0)->field == offset) ? 1 : -1]
 
 #endif
 
@@ -1522,7 +1522,7 @@ s32 fn_1_46838(u32 arg0) {
         }
         for (i = 0; i < 0x400; i++, entry++) {
             if (entry->flag != 0 && entry->id == state[1]) {
-                fzgx_value = &(entry->flag);
+                fzgx_value = &entry->flag;
                 *fzgx_value = 0;
                 fzgx_obj_lbl_1_bss_3DCD8 = entry->value;
             }
@@ -2071,7 +2071,7 @@ __declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
     s = fzgx_obj_lbl_1_bss_384C4;
     s = fzgx_obj_lbl_1_bss_384C8;
     s = fzgx_obj_lbl_1_bss_384CC;
-    s = (*((0) + (fzgx_obj_lbl_1_bss_384D0)));
+    s = (*((0) + fzgx_obj_lbl_1_bss_384D0));
     s = fzgx_obj_lbl_1_bss_384D8[0];
     s = lbl_1_bss_384D8__fzgx_offset_4000[0];
     s = fzgx_obj_lbl_1_bss_3DCD8;

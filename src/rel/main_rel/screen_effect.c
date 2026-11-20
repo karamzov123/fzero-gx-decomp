@@ -457,7 +457,7 @@ void *fn_1_729F8(struct fn_1_729F8_Arg0 *arg0)
     common012:
         color84.bytes.a = (255.0f - (arg0->unk_E0 * 255) / 40.0f);
         color7c = color84.word;
-        fn_800371F8(1, (&color7c));
+        fn_800371F8(1, &color7c);
         fn_1_761B8((struct fn_1_761B8_Arg0 *)arg0, mode);
         fn_1_75D84(v168, (const struct fn_1_75D84_Rect *)&arg0->unk_E8, (struct fn_1_75D84_Size *)&arg0->unk_F8);
         break;
@@ -4339,7 +4339,7 @@ s32 fn_1_79C88(EffectManager *manager, u32 *out, s32 reverse, f32 value) {
 
     node = (EffectNode *)manager->nodes;
     data = (EffectData *)node->resource;
-    if (((0) == (data))) {
+    if (((0) == data)) {
         return 0;
     }
 
@@ -4369,7 +4369,7 @@ s32 fn_1_79C88(EffectManager *manager, u32 *out, s32 reverse, f32 value) {
             inv = rodata[32];
             index = 0;
             while (index < manager->count) {
-                if (value > fn_1_79C88_operand((node->threshold / inv), (factor))) {
+                if (value > fn_1_79C88_operand((node->threshold / inv), factor)) {
                     break;
                 }
                 index++;
@@ -4512,7 +4512,7 @@ n31 = has1 ? n30 - 1 : n30;
 if (tbl->flags & 0x80) {
 result = c->unk_70;
 } else {
-result = (lbl_1_data_4);
+result = lbl_1_data_4;
 }
 lbl_8006E1B0((Fn183D28Vec3 *)obj->unk_8, &pos);
 depth = -pos.z;
@@ -4721,7 +4721,7 @@ n31 = has1 ? n30 - 1 : n30;
 if (tbl->flags & 0x80) {
 result = c->unk_70;
 } else {
-result = (lbl_1_data_4);
+result = lbl_1_data_4;
 }
 lbl_8006E1B0((Fn183D28Vec3 *)obj->unk_8, &pos);
 depth = -pos.z;

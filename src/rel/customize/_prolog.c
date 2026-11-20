@@ -433,7 +433,7 @@ void _prolog(void) {
     fn_3_5CE4(&pos, &rot);
     fzgx_obj_lbl_3_bss_F0.unk_6 = 0;
     fzgx_obj_lbl_3_bss_F0.unk_8 = 0;
-    fzgx_obj_lbl_3_bss_F0.unk_A = (lbl_801A66B4);
+    fzgx_obj_lbl_3_bss_F0.unk_A = lbl_801A66B4;
     count = (*(PrologRecords *)&lbl_1_bss_7F0C0).unk_48F8;
     lbl_3_bss_24370__fzgx_offset_0 = (count > 99999) ? 99999 : count;
     fn_1_465D0(lbl_3_data_1134__fzgx_offset_30, 2);
@@ -2927,7 +2927,7 @@ void fn_3_381C(void) {
         return;
     }
     if (fzgx_obj_lbl_3_bss_120 != -1) {
-        (lbl_1_bss_96A) = fzgx_obj_lbl_3_bss_120;
+        lbl_1_bss_96A = fzgx_obj_lbl_3_bss_120;
         fzgx_obj_lbl_3_bss_120 = -1;
         return;
     }
@@ -3515,7 +3515,7 @@ extern void fn_1_48140(int);
 
 void fn_3_41B0(void) {
     if (lbl_3_data_B8 != -1) {
-        fn_1_435C((lbl_3_bss_20850));
+        fn_1_435C(lbl_3_bss_20850);
         fn_1_426C(lbl_3_data_B8);
         lbl_3_data_B8 = -1;
     }
@@ -4094,7 +4094,7 @@ void fn_3_4C58(void) {
 
     for (j = 0; (s16)j < 4; j++) {
         volatile Copy164 loc = (*(Copy164 *)&lbl_3_rodata_F8); /* Complete the table copy before selecting an entry. */
-        Obj_3_bss_140 *m = (Obj_3_bss_140 *)((u8 *)&lbl_3_bss_140 + ((0x81c0) * (j)));
+        Obj_3_bss_140 *m = (Obj_3_bss_140 *)((u8 *)&lbl_3_bss_140 + ((0x81c0) * j));
         u32 flags = *(volatile u32 *)&m->unk_0; /* Read after the initialization copy. */
         if ((flags & 0x80000000) != 0 && (flags & 0x40000000) == 0) {
             if (lbl_3_bss_2C70C[m->pad_9[0x81a0 - 9]] == 0) {
@@ -4353,7 +4353,7 @@ s32 fn_3_5070(void) {
     lbl_3_bss_18 = (n < 10) ? n : 10;
 
     values.p = 0;
-    menu.p = (&lbl_3_bss_F0);
+    menu.p = &lbl_3_bss_F0;
     state = menu.p->unk_C;
     switch (state) {
     case 0:
@@ -5057,7 +5057,7 @@ void fn_3_5F28(u32 arg0) {
         fn_1_80058(i, (u8 *)p_entry.value);
         p_entry.value->unk_0 = i;
         i++;
-        shift = (p_data->unk_11D0);
+        shift = p_data->unk_11D0;
         p_entry.value->unk_8 = 0;
         p_entry.value->unk_8 |= 0x10;
         p_entry.value->unk_4 = 1 << shift;
@@ -5506,7 +5506,7 @@ void fn_3_679C(void) {
             v0 = 0xA9000000;
             v0 += 1024;
             fn_1_A2D84(v0);
-            (lbl_3_bss_8) = 1;
+            lbl_3_bss_8 = 1;
         }
     } else {
         (*(struct fn_3_679C_fn_3_679C_lbl_3_bss_7E080 *)&lbl_3_bss_7E080).unk_0 = 0;
@@ -5894,7 +5894,7 @@ void fn_3_6D2C(void) {
         if (lbl_3_bss_120 != -1) {
             s32 value = lbl_3_bss_120;
             lbl_3_bss_120 = -1;
-            (lbl_1_bss_96A) = value;
+            lbl_1_bss_96A = value;
         } else if (fn_3_6AC4() == (s16)-1) {
             fn_1_4A00(0, 15, lbl_3_bss_20850);
             (*(u32 (*)[6])&lbl_3_bss_243A8)[0] = 0;
@@ -6468,7 +6468,7 @@ void fn_3_7594(void) {
         if (lbl_3_bss_120 != -1) {
             s32 value = lbl_3_bss_120;
             lbl_3_bss_120 = -1;
-            (lbl_1_bss_96A) = value;
+            lbl_1_bss_96A = value;
         } else {
             fn_1_DCED0(lbl_3_bss_6DD78);
             if (fn_3_7360() == -1) {
@@ -6521,7 +6521,7 @@ void fn_3_7688(void) {
     lbl_3_data_11D8 = -1;
 
     if (lbl_3_data_B8 != -1) {
-        fn_1_435C((lbl_3_bss_20850));
+        fn_1_435C(lbl_3_bss_20850);
         fn_1_426C(lbl_3_data_B8);
         lbl_3_data_B8 = -1;
     }
@@ -6554,7 +6554,7 @@ void fn_3_77B0(void) {
         lbl_3_data_A8[0] = 0x10;
     }
     if (lbl_3_data_A8[0] > 0 && --lbl_3_data_A8[0] == 0) {
-        (lbl_1_bss_96A) = 0x61;
+        lbl_1_bss_96A = 0x61;
     } else {
         fn_1_496FC(lbl_3_rodata_260, lbl_3_rodata_260);
         fn_1_4AE0C((const char *)lbl_3_data_1930);
@@ -7081,7 +7081,7 @@ void fn_3_7E5C(void) {
 extern s32 fn_8008023C(u32, u32, u32);
 
 s32 fn_3_837C(s16 arg0) {
-    return fn_8008023C((u32)(&lbl_3_bss_243C0), (u32)(((u8 *)(&(lbl_3_bss_140)) + (arg0 * 0x81C0))), 0x81C0U) != 0;
+    return fn_8008023C((u32)(&lbl_3_bss_243C0), (u32)(((u8 *)(&lbl_3_bss_140) + (arg0 * 0x81C0))), 0x81C0U) != 0;
 }
 /* fzgx:end fn_3_837C */
 
@@ -10053,9 +10053,9 @@ void fn_3_AC4C(void) {
     fn_3_AC4C_CustomizeEntry *entries = (*(fn_3_AC4C_CustomizeEntry (*)[4])&lbl_3_bss_20860);
     s16 index = lbl_3_bss_F0.unk_8;
 
-    if ((*((entries) + (index))).value != -1) {
-        fn_1_80F1C((s16)(*((entries) + (index))).value, &entries[index]);
-        (*((entries) + (index))).value = -1;
+    if ((*((entries) + index)).value != -1) {
+        fn_1_80F1C((s16)(*((entries) + index)).value, &entries[index]);
+        (*((entries) + index)).value = -1;
     }
 
     fn_1_14DBCC(lbl_3_bss_21960 + index * 0xa20);

@@ -1889,7 +1889,7 @@ void fn_1_A75DC(Fn1A75dcObject *obj, void *arg) {
         Fn1A75dcEntry *item = (Fn1A75dcEntry *)fn_1_A75DC_read_pointer_(entry);
         if (item != 0) {
             s8 slot;
-            if (((0) == (i))) {
+            if (((0) == i)) {
                 slot = fn_1_12C930(index);
             } else {
                 lab_t1 = (i - 1);
@@ -3893,8 +3893,8 @@ void fn_1_AA590(void)
         e->s8_ = -1;
         e->sa = -1;
         e->w30 = 0;
-        e->f34 = (lbl_1_rodata_4CA8);
-        e->f38 = (lbl_1_rodata_4CA8);
+        e->f34 = lbl_1_rodata_4CA8;
+        e->f38 = lbl_1_rodata_4CA8;
         e->b2a = 0;
         e->a1 = -3;
         e->b2b = -3;
@@ -6244,8 +6244,8 @@ static inline void fn_1_AAB98_clear(fn_1_AAB98_Entry *e) {
     e->unk_8 = -1;
     e->unk_A = -1;
     e->unk_30 = 0;
-    e->unk_34 = (lbl_1_rodata_4CA8);
-    e->unk_38 = (lbl_1_rodata_4CA8);
+    e->unk_34 = lbl_1_rodata_4CA8;
+    e->unk_38 = lbl_1_rodata_4CA8;
     e->unk_2A &= ~4;
     e->unk_3C = -1;
     e->unk_40 = -1;

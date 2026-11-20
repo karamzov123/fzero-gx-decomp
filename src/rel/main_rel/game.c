@@ -1294,7 +1294,7 @@ void fn_1_2FDBC(struct fn_1_2FDBC_arg *arg0) {
     sum += lbl_801A66CC->unk_8B5;
     sum += lbl_801A66CC->unk_8B6;
     if (!(arg0->unk_0 & 0x10000)) {
-        fn_1_82EDC(arg0->unk_474, (arg0->unk_6), &loc);
+        fn_1_82EDC(arg0->unk_474, arg0->unk_6, &loc);
         if (((struct fn_1_2FDBC_sub *)fzgx_obj_lbl_1_bss_53F8[0]) != 0) {
             t = ((struct fn_1_2FDBC_sub *)fzgx_obj_lbl_1_bss_53F8[0])->unk_B;
             t *= 0.01f;
@@ -4619,7 +4619,7 @@ int fn_1_32600(FnObj_1_32600* obj) {
         }
     }
 
-    if (((0x00080000) & (fzgx_obj_lbl_1_bss_3C30.unk_0))) {
+    if (((0x00080000) & fzgx_obj_lbl_1_bss_3C30.unk_0)) {
         obj->unk_0 |= 0x10000000;
         return 1;
     }
@@ -7307,7 +7307,7 @@ void fn_1_34E08(void) {
     p_lbl_1_data_5730 = (u8 *)&lbl_1_data_5730;
 {
     s16 v1;
-    v1 = (lbl_1_bss_8B3A0.unk_E);
+    v1 = lbl_1_bss_8B3A0.unk_E;
     if (v1 > 40) {
         u8 *t0 = fn_1_36AD0();
         v1 = 50;
@@ -13882,7 +13882,7 @@ void fn_1_38CF4(void) {
         tmp_call6 = fn_1_86900(i);
         drv_2 = tmp_call6;
         if (drv_2 != NULL) {
-            if (lbl_1_bss_8B3A0[0x14 + ((i) << 5)] != (u8)(1 << drv_2->unk_3B8)) {
+            if (lbl_1_bss_8B3A0[0x14 + (i << 5)] != (u8)(1 << drv_2->unk_3B8)) {
                 if (drv_2->flags & 0x04000000) {
                     for (k = 0; k < 8; k++) {
                         if ((1 << k) == lbl_1_bss_8B3A0[0x14 + i * 0x20]) {
@@ -24185,7 +24185,7 @@ void fn_1_3F4FC(void) {
             sprintf(buffer, (const char *)(dp + 0xd0c), fn_1_7F518(lbl_1_bss_25E9C[i].unk_2, temp, mode));
         }
 
-        fn_1_465D0( (buffer), 1);
+        fn_1_465D0( buffer, 1);
         i++;
     }
 
@@ -24772,7 +24772,7 @@ void fn_1_3FCB0(s32 value) {
     mask >>= 31;
     {
         u32 arithmetic_value = (((lbl_1_bss_3C08[0] | value)));
-        arithmetic_value &= (mask);
+        arithmetic_value &= mask;
         lbl_1_bss_3C08[0] = arithmetic_value;
     }
 }
@@ -26266,7 +26266,7 @@ void fn_1_408E8(void *arg0, u32 arg1, u32 arg2, s32 arg3, s32 arg4, f32 arg5) {
             *(f32 *)((u8 *)arg0 + 8) = p_lbl_1_rodata_BD8->unk_C;
     } else {
         v0_2 = *(f32 *)((u8 *)arg0 + 8);
-        v1 = (p_lbl_1_rodata_BD8->unk_1BC);
+        v1 = p_lbl_1_rodata_BD8->unk_1BC;
         if (v0_2 > v1)
             *(f32 *)((u8 *)arg0 + 8) = v0_2 - v1;
         else {
@@ -26503,7 +26503,7 @@ void fn_1_40E08(u32 arg0) {
     }
 
     value = (lbl_801A63C0) * 0x676A4B6B + 0x33CB;
-    (lbl_801A63C0) = value;
+    lbl_801A63C0 = value;
 
     half = lbl_1_bss_38210 >> 1;
     max = lbl_1_bss_38210 - 5;

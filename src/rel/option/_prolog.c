@@ -1349,7 +1349,7 @@ void fn_4_9B0(void) {
     idx = lbl_1_bss_962;
     p = (struct fn_4_9B0_lbl_4_data_1260_0_E44 *)((u8 *)p + (idx - 75) * 44);
     lbl_1_bss_71688 = p->unk_24;
-    lbl_1_bss_7168C = (p->unk_28);
+    lbl_1_bss_7168C = p->unk_28;
     ((fn_4_9B0_Fn0)p->unk_20)();
 }
 /* fzgx:end fn_4_9B0 */
@@ -2320,7 +2320,7 @@ void fn_4_A0C(void) {
     packet.x = 320.0f;
     packet.y = (f32)((cursor.value * 2 - 2) * 24 + 240);
     packet.z = 0.15f;
-    packet.scale_x = (fn_4_A0C_operand_((78.0), (width))) / 8.0;
+    packet.scale_x = (fn_4_A0C_operand_((78.0), width)) / 8.0;
     packet.scale_y = 3.5f;
     packet.flags = 10;
     packet.alpha = 0.3 * (1.0 + lbl_8006D188(((lbl_4_bss_2 << 10) + 0x4000)));
@@ -3680,8 +3680,8 @@ void fn_4_18B8(void) {
     }
     draw_fan(c2, normx, normy, -0.04f);
     draw_fan(c1, rawx, rawy, -0.049999997f);
-    fn_4_1444(6, 0, c3, c4, DTAB(DA0)[(lbl_801A66B4)]);
-    fn_4_1444(6, 1, c3, c4, DTAB(D6C)[(lbl_801A66B4)]);
+    fn_4_1444(6, 0, c3, c4, DTAB(DA0)[lbl_801A66B4]);
+    fn_4_1444(6, 1, c3, c4, DTAB(D6C)[lbl_801A66B4]);
 
     tx = CLAMP(stick_x, -125, 125);
     ty = CLAMP(stick_y, -125, 125);
@@ -4228,7 +4228,7 @@ fn_1_49410();
 fn_1_49738((u32)fn_1_5233C);
 fn_1_49748(5.0f);
 fn_1_4955C(0.8f, 0.8f);
-if ((lbl_801A66B4) == 5) {
+if (lbl_801A66B4 == 5) {
 sprintf(buf, ((char *)fzgx_pool_data_lbl_4_data_0_14C4), index, value);
 halfH = 90.0f;
 } else {
@@ -4291,7 +4291,7 @@ GXWGFifo.f32 = z;
 GXWGFifo.f32 = top;
 GXWGFifo.f32 = left;
 GXWGFifo.f32 = z;
-if ((lbl_801A66B4) == 5) {
+if (lbl_801A66B4 == 5) {
 fn_1_495C8(9);
 lab_t0 = 320.0f;
 fn_1_496FC(lab_t0, x);
@@ -8298,7 +8298,7 @@ void fn_4_4CB8(s32 arg0, u32 arg1, u32 arg2) {
 
     switch (arg1) {
     case 0:
-        (*((lbl_4_bss_C4) + (v1.value))).unk_0 = v0;
+        (*((lbl_4_bss_C4) + v1.value)).unk_0 = v0;
         break;
     case 1:
         lbl_4_bss_C4[v1.value].unk_2 = v0;
@@ -8310,7 +8310,7 @@ void fn_4_4CB8(s32 arg0, u32 arg1, u32 arg2) {
         lbl_4_bss_C4[v1.value].unk_6 = v0;
         break;
     case 4:
-        (*((v1.value) + (lbl_4_bss_C4))).unk_8 = v0;
+        (*((v1.value) + lbl_4_bss_C4)).unk_8 = v0;
         break;
     case 5:
         lbl_4_bss_C4[v1.value].unk_C = v0;
@@ -8632,7 +8632,7 @@ static inline u32 fn_4_4DF8_get(s32 kind, s32 field) {
     (p).scale_x = (p).scale_y = 1.40625 * (p).scale_x
 
 #define FN_4_4DF8_PLACE(p, kind)                              \
-    if ((kind) == 2) {                                        \
+    if (kind == 2) {                                        \
         (p).x = 192.0 + (p).x;                                \
         (p).y = 142.0 + (p).y;                                \
         (p).scale_y = (p).scale_x;                            \
@@ -10828,7 +10828,7 @@ void fn_4_7938(void) {
     packet.x = 320.0f;
     packet.y = (f32)((cursor.value * 2 - 2) * 24 + 240);
     packet.z = 0.15f;
-    packet.scale_x = (fn_4_7938_operand_((78.0), (width))) / 8.0;
+    packet.scale_x = (fn_4_7938_operand_((78.0), width)) / 8.0;
     packet.scale_y = 3.5f;
     packet.flags = 10;
     packet.alpha = 0.3 * (1.0 + lbl_8006D188(((lbl_4_bss_2 << 10) + 0x4000)));
@@ -11929,7 +11929,7 @@ void fn_4_7DEC(void) {
     packet.x = 320.0f;
     packet.y = (f32)((cursor.value * 2 - 1) * 24 + 240);
     packet.z = 0.15f;
-    packet.scale_x = (fn_4_7DEC_operand_((78.0), (width))) / 8.0;
+    packet.scale_x = (fn_4_7DEC_operand_((78.0), width)) / 8.0;
     packet.scale_y = 3.5f;
     packet.flags = 10;
     packet.alpha = 0.3 * (1.0 + lbl_8006D188(((lbl_4_bss_2 << 10) + 0x4000)));

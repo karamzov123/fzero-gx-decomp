@@ -195,7 +195,7 @@ f32 fn_1_4D14(Obj_1_data_2CDC *obj) {
     f32 value1;
     f32 temp;
 
-    value3 = (obj->unk_4) / 65535.0f;
+    value3 = obj->unk_4 / 65535.0f;
     value = 0x0f;
     if (obj->unk_0 != 0x3c) {
         value = obj->unk_0;
@@ -686,7 +686,7 @@ void fn_1_56B8(void) {
     entry = c->entries;
     for (i = 0; i < count; i++, entry++) {
         scale = fn_1_A6FE8();
-        mode = (c->target->unk_48);
+        mode = c->target->unk_48;
         if ((s8)mode == 1 || (i == 0 && (s8)mode == 3) ||
             (i == 1 && (s8)mode == 4) ||
             (i == 2 && (s8)mode == 5)) {

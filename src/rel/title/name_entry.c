@@ -48,7 +48,7 @@ void fn_8_FF9C(void) {
     }
     fn_1_435C(*(u32 *)((*(struct fn_8_FF9C_lbl_8_bss_550 *)&lbl_8_bss_550).unk_0 + 8));
     fn_1_426C(*(u32 *)((*(struct fn_8_FF9C_lbl_8_bss_550 *)&lbl_8_bss_550).unk_0 + 28));
-    fn_1_46B4(lbl_801A6410.unk_0, (*(struct fn_8_FF9C_lbl_8_bss_550 *)&lbl_8_bss_550).unk_0, (u32)&(lbl_8_data_A288), 1378);
+    fn_1_46B4(lbl_801A6410.unk_0, (*(struct fn_8_FF9C_lbl_8_bss_550 *)&lbl_8_bss_550).unk_0, (u32)&lbl_8_data_A288, 1378);
     (*(struct fn_8_FF9C_lbl_8_bss_550 *)&lbl_8_bss_550).unk_0 = 0;
 }
 /* fzgx:end fn_8_FF9C */

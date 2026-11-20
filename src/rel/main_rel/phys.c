@@ -2866,7 +2866,7 @@ void fn_1_E52F8(Sig_fn_1_E52F8_Arg *arg0, void (*fmt)(const char *, ...))
     lbl_8006DCA4(arg0, fmt);
     fn_1_A71AC();
     fn_8006F828(arg0->unk_54, &v);
-    b = (v.value1);
+    b = v.value1;
     a = v.value0;
     if (fmt == fn_1_4AE0C) {
         fn_1_496FC(a, b);
@@ -3239,8 +3239,8 @@ void fn_1_E594C(struct fn_1_E594C_Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3) {
     inv3 = ~arg3;
     value138 = arg0->unk_138;
     inv2 = ~arg2;
-    arg0->unk_13C = ((value13c) & (inv3));
-    arg0->unk_138 = ((value138) & (inv2));
+    arg0->unk_13C = ((value13c) & inv3);
+    arg0->unk_138 = ((value138) & inv2);
 }
 #pragma peephole reset
 
@@ -4062,7 +4062,7 @@ void fn_1_E733C(u8 *obj, s16 count) {
     s32 v;
     s32 t;
     s16 i;
-    f = (pool->zero);
+    f = pool->zero;
     if (count == 0) {
         return;
     }
@@ -4073,16 +4073,16 @@ void fn_1_E733C(u8 *obj, s16 count) {
         (lbl_1_bss_7B14C)[0] = ((s16 *)lbl_1_bss_7B14C)[0] + 1;
     }
     if (PAD_BIT(lbl_1_bss_9F8.unk_10, 0) || PAD_BIT((&lbl_1_bss_9F8.unk_10)[10], 0)) {
-        f = (pool->neg_tenth);
+        f = pool->neg_tenth;
     }
     if (PAD_BIT(lbl_1_bss_9F8.unk_10, 1) || PAD_BIT((&lbl_1_bss_9F8.unk_10)[10], 1)) {
-        f = (pool->tenth);
+        f = pool->tenth;
     }
     if (PAD_BIT(lbl_1_bss_9F8.unk_0, 8) || PAD_BIT((&lbl_1_bss_9F8.unk_0)[10], 8)) {
-        f = fn_1_E733C_operand((pool->ten), (f));
+        f = fn_1_E733C_operand(pool->ten, f);
     }
     if (PAD_BIT(lbl_1_bss_9F8.unk_0, 9) || PAD_BIT((&lbl_1_bss_9F8.unk_0)[10], 9)) {
-        f = f / (pool->ten);
+        f = f / pool->ten;
     }
     v = ((s16 *)lbl_1_bss_7B14C)[0];
     if (v > 4) {
@@ -5692,7 +5692,7 @@ for(k=0;k<E8938_count_impl(p_lbl_1_bss_7AE88,i) ;k++) {
 visible=0; near=0; middle=0;
 p=E8938_get_impl(p_lbl_1_bss_7AE88,i,k) ;
 lbl_8006DFE8(&p->matrix);
-if(fn_1_54F5C(&p->render->center,p->render->radius,((((p->sx)>(p->sy)?(p->sx):(p->sy)))>(p->sz)?(((p->sx)>(p->sy)?(p->sx):(p->sy))):(p->sz)) )) visible=1;
+if(fn_1_54F5C(&p->render->center,p->render->radius,(((p->sx>p->sy?p->sx:p->sy))>p->sz?((p->sx>p->sy?p->sx:p->sy)):p->sz) )) visible=1;
 difference=p->sector-*v2->field49c->current;
 distance=difference < 0 ? -difference : difference;
 if(distance<2) near=1;

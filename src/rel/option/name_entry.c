@@ -447,7 +447,7 @@ u32 lab_t1;
 fn_800793D4((void *)lbl_801A63D0, 0, 1024);
 v0 = lbl_801A63D0;
 if (lbl_4_bss_5684 != 0) {
-v2 = (arg0);
+v2 = arg0;
 v1 = (u32)&lbl_801A6410;
 v3 = (s32)"name_entry.c";
 v1 = *(u32 *)(v1);
@@ -815,7 +815,7 @@ shift[0x29] = shift[0x2b];
 }
 }
 lbl_4_bss_5680->unk_F = 0;
-cnt = (lbl_4_bss_5680->unk_E);
+cnt = lbl_4_bss_5680->unk_E;
 } else {
 held = (u16 *)((*(u8 (*)[])&lbl_1_bss_9F8) + 0x10);
 if (((held[lbl_4_bss_5680->unk_C * 10] >> 3) & 1) || (((repeat = (u16 *)((*(u8 (*)[])&lbl_1_bss_9F8) + 0x12), repeat[lbl_4_bss_5680->unk_C * 10]) >> 3) & 1)) {
@@ -1042,7 +1042,7 @@ loc_20.z = (0.5f);
 loc_20.flags = 0xA;
 fn_1_4F734(&loc_20);
 }
-if (((lbl_4_bss_5680->unk_0) >> 0x1FU) == 0) {
+if ((lbl_4_bss_5680->unk_0 >> 0x1FU) == 0) {
 if (lbl_801A66B4 == 5) {
 fn_1_1380F0("\226\274\221O\202\360\223\374\202\352\202\304\202\255\202\276\202\263\202\242\201B");
 } else {
@@ -1198,7 +1198,7 @@ var_r27_2 += 1;
 if ((((*(Obj_4_bss_5680_Target **)&lbl_4_bss_5680)->unk_0) >> 0x1FU) == 0) {
 loc_20 = *(FontDrawPacket *)lbl_1_rodata_26F8;
 loc_20.image = 0x8F00;
-loc_20.x = (lbl_4_bss_5680->unk_12);
+loc_20.x = lbl_4_bss_5680->unk_12;
 loc_20.y = (346.0f);
 loc_20.z = (0.119999997f);
 fn_1_4F734(&loc_20);

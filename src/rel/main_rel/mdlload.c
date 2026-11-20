@@ -723,7 +723,7 @@ void fn_1_D4370(void *arg0) {
     } else {
         spC = loc_14.words[0];
         sp10 = loc_18.words[0];
-        loc_1C.words[0] = fn_1_539CC((&sp10), (&spC), ((0.5f) * (*(f32 *)((u8 *)(arg0) + 49216))));
+        loc_1C.words[0] = fn_1_539CC(&sp10, &spC, ((0.5f) * (*(f32 *)((u8 *)(arg0) + 49216))));
         temp_f4_2 = (*(f32 *)((u8 *)(arg0) + 49216)) / (1.64999998f);
         (*(u8 *)(&loc_1C)) = ((*(u8 *)(&loc_1C)) * temp_f4_2);
         (*((u8 *)(&loc_1C) + 1)) = ((*((u8 *)(&loc_1C) + 1)) * temp_f4_2);
@@ -1147,7 +1147,7 @@ static inline f32 distance_squared(f32 *a, f32 *b) {
     f32 dy = a[1];
     f32 dz = a[2];
     dx -= b[0]; dy -= b[1]; dz -= b[2];
-    dx = ((f32)((dx) * (dx)));
+    dx = ((f32)((dx) * dx));
     dx += dy * dy; dx += dz * dz;
     return dx;
 }

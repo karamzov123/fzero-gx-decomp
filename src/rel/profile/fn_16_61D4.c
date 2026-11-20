@@ -194,7 +194,7 @@ void fn_16_61D4(void) {
         pkt.unk_04 = 440.0f;
         pkt.unk_08 = 456.0f;
         pkt.unk_0c = 2.0f;
-        fzgx_value = &(pkt.unk_2c);
+        fzgx_value = &pkt.unk_2c;
         *fzgx_value = 1.0f - val.value;
         pkt.unk_30 = 14;
         pkt.unk_10 *= 1.6f;

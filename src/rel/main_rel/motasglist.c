@@ -220,69 +220,69 @@ void fn_1_41850(void *arg0, s32 arg_sp0) {
             while (var_r27 < (*(u16 *)((u8 *)(arg0) + 16))) {
                 temp_r4 = (((struct fn_1_41850_Node *)(*(void **)((u8 *)(arg0) + 12)))[var_r27].unk_28);
                 if (temp_r4 != NULL) {
-                    fn_1_46B4((lbl_801A6410.unk_0), (temp_r4), "motasglist.c", (0x123));
+                    fn_1_46B4(lbl_801A6410.unk_0, temp_r4, "motasglist.c", (0x123));
                 }
                 var_r28 += 0x34;
                 var_r27 += 1;
                             }
             temp_r4_2 = (*(void **)((u8 *)(arg0) + 20));
             if (temp_r4_2 != NULL) {
-                fn_1_46B4((lbl_801A6410.unk_0), (temp_r4_2), "motasglist.c", (0x125));
+                fn_1_46B4(lbl_801A6410.unk_0, temp_r4_2, "motasglist.c", (0x125));
             }
             temp_r4_3 = (*(void **)((u8 *)(arg0) + 32));
             if (temp_r4_3 != NULL) {
-                fn_1_46B4((lbl_801A6410.unk_0), (temp_r4_3), "motasglist.c", (0x126));
+                fn_1_46B4(lbl_801A6410.unk_0, temp_r4_3, "motasglist.c", (0x126));
             }
         }
-        fn_1_46B4((lbl_801A6410.unk_0), (*(void **)((u8 *)(arg0) + 12)), "motasglist.c", (0x128));
+        fn_1_46B4(lbl_801A6410.unk_0, (*(void **)((u8 *)(arg0) + 12)), "motasglist.c", (0x128));
     } else {
         var_r27_2 = (*(void **)((u8 *)(arg0) + 12));
         while (var_r27_2 != NULL) {
             temp_r4_4 = (*(void **)((u8 *)(var_r27_2) + 40));
             temp_r28 = (*(void **)((u8 *)(var_r27_2) + 48));
             if (temp_r4_4 != NULL) {
-                fn_1_46B4((lbl_801A6410.unk_0), (temp_r4_4), "motasglist.c", (0x12E));
+                fn_1_46B4(lbl_801A6410.unk_0, temp_r4_4, "motasglist.c", (0x12E));
             }
-            fn_1_46B4((lbl_801A6410.unk_0), (var_r27_2), "motasglist.c", (0x12F));
-            var_r27_2 = (temp_r28);
+            fn_1_46B4(lbl_801A6410.unk_0, var_r27_2, "motasglist.c", (0x12F));
+            var_r27_2 = temp_r28;
                     }
         temp_r4_5 = (*(void **)((u8 *)(arg0) + 32));
         if (temp_r4_5 != NULL) {
-            fn_1_46B4((lbl_801A6410.unk_0), (temp_r4_5), "motasglist.c", (0x131));
+            fn_1_46B4(lbl_801A6410.unk_0, temp_r4_5, "motasglist.c", (0x131));
         }
     }
     temp_r4_6 = (*(void **)((u8 *)(arg0) + 40));
     if (temp_r4_6 != NULL) {
-        fn_1_46B4((lbl_801A6410.unk_0), (temp_r4_6), "motasglist.c", (0x133));
+        fn_1_46B4(lbl_801A6410.unk_0, temp_r4_6, "motasglist.c", (0x133));
     }
     temp_r4_7 = (*(void **)((u8 *)(arg0) + 52));
     if (temp_r4_7 != NULL) {
-        fn_1_46B4((lbl_801A6410.unk_0), (temp_r4_7), "motasglist.c", (0x10B));
+        fn_1_46B4(lbl_801A6410.unk_0, temp_r4_7, "motasglist.c", (0x10B));
     }
     temp_r4_8 = (*(void **)((u8 *)(arg0) + 56));
     if (temp_r4_8 != NULL) {
-        fn_1_46B4((lbl_801A6410.unk_0), (temp_r4_8), "motasglist.c", (0x10C));
+        fn_1_46B4(lbl_801A6410.unk_0, temp_r4_8, "motasglist.c", (0x10C));
     }
     temp_r4_9 = (*(void **)((u8 *)(arg0) + 44));
     if (temp_r4_9 != NULL) {
-        fn_1_46B4((lbl_801A6410.unk_0), (temp_r4_9), "motasglist.c", (0x10D));
+        fn_1_46B4(lbl_801A6410.unk_0, temp_r4_9, "motasglist.c", (0x10D));
     }
     temp_r4_10 = (*(void **)((u8 *)(arg0) + 48));
     if (temp_r4_10 != NULL) {
-        fn_1_46B4((lbl_801A6410.unk_0), (temp_r4_10), "motasglist.c", (0x10E));
+        fn_1_46B4(lbl_801A6410.unk_0, temp_r4_10, "motasglist.c", (0x10E));
     }
-    (*(void **)((u8 *)(arg0) + 52)) = (NULL);
+    (*(void **)((u8 *)(arg0) + 52)) = NULL;
     (*((u8 *)(arg0) + 39)) = 0;
-    (*(void **)((u8 *)(arg0) + 56)) = (NULL);
+    (*(void **)((u8 *)(arg0) + 56)) = NULL;
     (*(s32 *)((u8 *)(arg0) + 60)) = 0;
     (*(s32 *)((u8 *)(arg0) + 64)) = 0;
     (*(s16 *)((u8 *)(arg0) + 72)) = 0;
     (*((u8 *)(arg0) + 76)) = 0;
     temp_r4_11 = (*(void **)((u8 *)(arg0) + 8));
     if ((temp_r4_11 != NULL) && !((*(u16 *)((u8 *)(arg0) + 2)) & 2)) {
-        fn_1_46B4((lbl_801A6410.unk_0), (temp_r4_11), "motasglist.c", (0x137));
+        fn_1_46B4(lbl_801A6410.unk_0, temp_r4_11, "motasglist.c", (0x137));
     }
-    fn_1_46B4((lbl_801A6410.unk_0), (arg0), "motasglist.c", (0x138));
+    fn_1_46B4(lbl_801A6410.unk_0, arg0, "motasglist.c", (0x138));
 }
 /* fzgx:end fn_1_41850 */
 
@@ -1103,7 +1103,7 @@ void fn_1_4270C(void *arg0, struct fn_1_4270C_Arg1 *arg1, u32 arg2) {
     *(f32 *)((u8 *)arg0 + 48) = lbl_1_rodata_F54;
     *(f32 *)((u8 *)arg0 + 52) = lbl_1_rodata_F54;
     *(f32 *)((u8 *)arg0 + 56) = lbl_1_rodata_F54;
-    if (((0) != (arg1))) {
+    if (((0) != arg1)) {
         if (*(u16 *)((u8 *)arg0 + 68) >= arg1->unk_4) {
             *(u16 *)((u8 *)arg0 + 68) = arg1->unk_4;
         } else {
@@ -1136,8 +1136,8 @@ void fn_1_4270C(void *arg0, struct fn_1_4270C_Arg1 *arg1, u32 arg2) {
         v5 += 4;
         {
     u32 fzgx_loop_v8_2766;
-for (fzgx_loop_v8_2766 = 3; ((0) != (fzgx_loop_v8_2766)); fzgx_loop_v8_2766--) {
-            if (((1) & (v11))) {
+for (fzgx_loop_v8_2766 = 3; ((0) != fzgx_loop_v8_2766); fzgx_loop_v8_2766--) {
+            if (((1) & v11)) {
                 v12 = v5;
                 v12 = v12 + 4;
                 v13 = *(u16 *)(v5);
@@ -1162,8 +1162,8 @@ for (fzgx_loop_v8_2766 = 3; ((0) != (fzgx_loop_v8_2766)); fzgx_loop_v8_2766--) {
         v18 = v11;
         {
     u32 fzgx_loop_v15_3672;
-for (fzgx_loop_v15_3672 = 3; ((0) != (fzgx_loop_v15_3672)); fzgx_loop_v15_3672--) {
-            if (((1) & (v18))) {
+for (fzgx_loop_v15_3672 = 3; ((0) != fzgx_loop_v15_3672); fzgx_loop_v15_3672--) {
+            if (((1) & v18)) {
                 v19 = v5 + 4;
                 v20 = *(u16 *)(v5);
                 v5 += 2;
@@ -1980,9 +1980,9 @@ extern void lbl_8006E15C(f32, f32, f32);
 
 static inline void mtxA_clear_translation(void) {
     f32 *m = MTXA;
-    m[3] = (lbl_1_rodata_F54);
-    m[7] = (lbl_1_rodata_F54);
-    m[11] = (lbl_1_rodata_F54);
+    m[3] = lbl_1_rodata_F54;
+    m[7] = lbl_1_rodata_F54;
+    m[11] = lbl_1_rodata_F54;
 }
 
 #pragma opt_propagation off
@@ -2011,11 +2011,11 @@ void fn_1_433E0(Fn1433E0Object *object) {
                 t = t * t;
             }
         }
-        object->frame = object->frame + (lbl_1_rodata_F50);
+        object->frame = object->frame + lbl_1_rodata_F50;
     } else {
-        t = (lbl_1_rodata_F50);
-        object->frame = (lbl_1_rodata_F54);
-        object->duration = (lbl_1_rodata_F54);
+        t = lbl_1_rodata_F50;
+        object->frame = lbl_1_rodata_F54;
+        object->duration = lbl_1_rodata_F54;
         object->flags &= ~1;
     }
 
@@ -2048,9 +2048,9 @@ void fn_1_433E0(Fn1433E0Object *object) {
             }
             if (entry->flags & 0x11) {
                 base = entry->value14 * object->scale.x;
-                vec.y = (lbl_1_rodata_F54);
+                vec.y = lbl_1_rodata_F54;
                 vec.x = base;
-                vec.z = (lbl_1_rodata_F54);
+                vec.z = lbl_1_rodata_F54;
                 if (object->flags & 8) {
                     vec.x = base * entry->value24;
                 }
@@ -2077,20 +2077,20 @@ void fn_1_433E0(Fn1433E0Object *object) {
         entry->scale.y = entry->scale.y * object->scale.y;
         entry->scale.z = entry->scale.z * object->scale.z;
 
-        if (t < (lbl_1_rodata_F50)) {
+        if (t < lbl_1_rodata_F50) {
             if ((object->flags & 0x200) && parent != NULL && entry->parent != 0) {
                 mathutil_mtxA_from_quat(&entry->quat);
                 lbl_8006DB74(mtx);
                 mathutil_mtxA_from_quat(&parent->quat);
                 lbl_8006DD7C();
                 lbl_8006DFC4(mtx);
-                fn_8006E5FC( (&q0));
+                fn_8006E5FC( &q0);
                 lbl_8006DBAC(parent->mtx);
                 mtxA_clear_translation();
                 lbl_8006DD7C();
                 lbl_8006DFC4(entry->mtx);
                 mtxA_clear_translation();
-                fn_8006E5FC( (&q1));
+                fn_8006E5FC( &q1);
                 fn_8006E8DC(&q1);
                 fn_8006E8DC(&q0);
                 fn_8006EB4C(&q1, &q0, &q1, t);
@@ -2102,7 +2102,7 @@ void fn_1_433E0(Fn1433E0Object *object) {
                 lbl_8006DFC4(mtx);
             } else {
                 lbl_8006DBAC(entry->mtx);
-                fn_8006E5FC( (&q1));
+                fn_8006E5FC( &q1);
                 fn_8006EB4C(&q1, &entry->quat, &q1, t);
                 mathutil_mtxA_from_quat(&q1);
             }
@@ -2443,7 +2443,7 @@ void fn_1_43E08(Obj *object, Entry *entry, u16 frameA, u16 frameB, f32 value) {
         lbl_8006DFC4(entry->rot58);
     }
 
-    fzgx_value = &(unit.x);
+    fzgx_value = &unit.x;
     *fzgx_value = lbl_1_rodata_F50.unk_0;
     unit.y = lbl_1_rodata_F50.unk_0;
     unit.z = lbl_1_rodata_F50.unk_0;

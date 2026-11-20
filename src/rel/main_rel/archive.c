@@ -509,7 +509,7 @@ void fn_1_12AB38(void *arg0) {
     if (state->unk_4 != 0) {
         u8 *entry = state->entries;
         u32 index = state->unk_0;
-        fn_8006A9B4(((0x4c) + ((index * 0x6c) + (entry))), arg0);
+        fn_8006A9B4(((0x4c) + ((index * 0x6c) + entry)), arg0);
         if (state->unk_8 != 0) {
             fn_80006E10(arg0);
         }
@@ -877,12 +877,12 @@ void fn_1_12B120(u8 *arg0, void *arg1, void *arg2, s32 *arg3, void *arg4, s32 *a
     s32 var_r22;
     s16 var_r21;
 
-    var_r31 = (arg3);
-    var_r23 = (arg4);
+    var_r31 = arg3;
+    var_r23 = arg4;
     var_r21 = 0;
     var_r22 = 0;
     while (var_r21 < 4) {
-        (*(var_r31)) = -1;
+        (*var_r31) = -1;
         (*(s32 *)(var_r23)) = -1;
         (*(s32 *)((u8 *)(var_r23) + 4)) = -1;
         fn_1_12C0EC((Sig_fn_1_12C0EC_FnData *)((*(s32 *)((u8 *)(arg0) + 28)) + var_r22));
@@ -918,10 +918,10 @@ void fn_1_12B120(u8 *arg0, void *arg1, void *arg2, s32 *arg3, void *arg4, s32 *a
         }
         fn_1_12C110(*(u32 *)((arg0) + 12), (*(s16 *)((arg0) + 22)), (*(s16 *)((u8 *)(arg0) + 20)));
         fn_1_12C47C((*(void **)((arg0) + 16)), (fn_1_12F118()), (*(s16 *)((u8 *)(arg0) + 20)));
-        fn_1_12D404(*(u32 *)((arg0) + 4), *(u32 *)((arg0) + 8), *(u32 *)((arg0) + 24), (arg1), (u32)(arg3), (u32)(arg4), (*(void **)((arg0) + 40)), *(u32 *)((arg0) + 48), *(u32 *)((arg0) + 52), (&lbl_1_data_407BC), 3U);
+        fn_1_12D404(*(u32 *)((arg0) + 4), *(u32 *)((arg0) + 8), *(u32 *)((arg0) + 24), arg1, (u32)(arg3), (u32)(arg4), (*(void **)((arg0) + 40)), *(u32 *)((arg0) + 48), *(u32 *)((arg0) + 52), &lbl_1_data_407BC, 3U);
     }
     fn_1_435C(arg2);
-    (*(arg5)) = fn_1_3F8C((u32)(&lbl_1_data_40A7C), (u32)(&fn_1_132488), (arg0), (*(void **)((arg0) + 44)));
+    (*arg5) = fn_1_3F8C((u32)(&lbl_1_data_40A7C), (u32)(&fn_1_132488), arg0, (*(void **)((arg0) + 44)));
     fn_1_12F1E8(0x1E0);
     lbl_1_bss_8B3A0.unk_129 = 1;
 }
@@ -956,14 +956,14 @@ struct fn_1_12B3F8_lbl_1_bss_8B3A0 {
 void fn_1_12B3F8(void *arg0, void *arg1, void *arg2, u32 arg3, u32 arg4, s32 *arg5, s32 arg_sp0) {
     s16 var_r30;
 
-    if ((*(arg5)) != -1) {
+    if ((*arg5) != -1) {
         fn_1_435C(arg2);
-        fn_1_426C((*(arg5)));
-        (*(arg5)) = -1;
+        fn_1_426C((*arg5));
+        (*arg5) = -1;
     }
     if (!(((struct fn_1_12B3F8_lbl_1_bss_8B3A0 *)&lbl_1_bss_8B3A0)->unk_94 & 0x80000000)) {
         var_r30 = 4;
-        fn_1_12DAEC(*(u32 *)((u8 *)(arg0) + 4), *(u32 *)((u8 *)(arg0) + 8), *(u32 *)((u8 *)(arg0) + 24), (arg1), arg3, arg4, *(u32 *)((u8 *)(arg0) + 52));
+        fn_1_12DAEC(*(u32 *)((u8 *)(arg0) + 4), *(u32 *)((u8 *)(arg0) + 8), *(u32 *)((u8 *)(arg0) + 24), arg1, arg3, arg4, *(u32 *)((u8 *)(arg0) + 52));
         fn_1_12C524(*(u32 *)((u8 *)(arg0) + 12));
         if (((struct fn_1_12B3F8_lbl_1_bss_8B3A0 *)&lbl_1_bss_8B3A0)->unk_94 & 0x20000000) {
             var_r30 = 1;
@@ -3469,7 +3469,7 @@ void fn_1_12ECA8(s16 arg0, s16 arg1, void *arg2, void *arg3, void *arg4) {
         p = *(void **)((u8 *)arg2 + 0x150);
         *(u16 *)((u8 *)p + 0x40) |= 1;
         count = 0;
-        scan.value = (arg3);
+        scan.value = arg3;
         while (count < fn_1_12ECA8_map(index)) {
             fn_1_934CC(scan.value, (u8 *)scan.value + 0x148, table);
             p = *(void **)((u8 *)scan.value + 0x150);
