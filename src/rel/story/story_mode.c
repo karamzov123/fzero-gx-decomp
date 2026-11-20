@@ -5163,8 +5163,6 @@ s32 fn_7_2514(void) {
 /* fzgx:end fn_7_2514 */
 
 /* fzgx:begin fn_7_2538 */
-/* WARNING: compiler-diff device, not original code (carried from main: retail keeps fmuls and fadds apart in this function) */
-#pragma fp_contract off
 void fn_7_2538(void) {
     FontDrawPacket pkt1;
     FontDrawPacket pkt2;
@@ -5388,7 +5386,6 @@ void fn_7_2538(void) {
         }
     }
 }
-#pragma fp_contract reset
 /* fzgx:end fn_7_2538 */
 
 /* fzgx:begin fn_7_31F4 */
@@ -5477,14 +5474,13 @@ void fn_7_33F0(void) {
     pkt.z = pkt.z - 0.03f;
     pkt.alpha = 0.5f;
     pkt.image = 0x10000 - 17892;
-    /* WARNING: compiler-diff device, not original code (carried from main: the (f32) casts keep fmuls and fadds apart) */
     wave = lbl_8006D188((s32)(65536.0f * (f32)(lbl_801A66A0 % 15) / 15.0f));
-    pkt.color[0] = (s32)(40.0f + (f32)(40.0f * wave));
+    pkt.color[0] = (s32)(40.0f + 40.0f * wave);
     wave = lbl_8006D188((s32)(65536.0f * (f32)(lbl_801A66A0 % 15) / 15.0f));
-    pkt.color[1] = (s32)(80.0f + (f32)(80.0f * wave));
+    pkt.color[1] = (s32)(80.0f + 80.0f * wave);
     wave = lbl_8006D188((s32)(65536.0f * (f32)(lbl_801A66A0 % 15) / 15.0f));
     pkt.flags = 10;
-    pkt.color[2] = (s32)(80.0f + (f32)(80.0f * wave));
+    pkt.color[2] = (s32)(80.0f + 80.0f * wave);
     fn_1_50A90(&pkt, 7, 7, 474, 90);
     pkt = lbl_1_rodata_26F8;
     pkt.image = 0x10000 - 17894;
@@ -5534,8 +5530,6 @@ void fn_7_33F0(void) {
 /* fzgx:end fn_7_33F0 */
 
 /* fzgx:begin fn_7_3AB0 */
-/* WARNING: compiler-diff device, not original code (carried from main: retail keeps fmuls and fadds apart in this function) */
-#pragma fp_contract off
 void fn_7_3AB0(s32 *timer) {
     f32 f;
     FontDrawPacket pkt;
@@ -5641,7 +5635,6 @@ void fn_7_3AB0(s32 *timer) {
         fn_1_4AE0C("%s", names[lbl_7_bss_10->difficulty]);
     }
 }
-#pragma fp_contract reset
 /* fzgx:end fn_7_3AB0 */
 
 /* fzgx:begin fn_7_3FCC */

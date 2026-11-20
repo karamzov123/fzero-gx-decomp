@@ -231,8 +231,6 @@ struct fn_8_D630_obj {
 };
 #pragma pack()
 
-/* WARNING: compiler-diff device, not original code (opt_common_subs off: retail register order, carried from main) */
-#pragma opt_common_subs off
 static inline s32 fn_4_ADF4_sign(s32 x) { return x < 0 ? -1 : x > 0; }
 void fn_4_ADF4(struct fn_8_D630_obj *arg0)
 {
@@ -385,7 +383,6 @@ break;
 fn_1_4A0D8((const char *)name);
 p->unk_1--;
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_4_ADF4 */
 
 /* fzgx:begin fn_4_B528 */
@@ -405,8 +402,7 @@ static f32 name_entry_glyph_size(s32 index) {
     }
 }
 
-/* WARNING: compiler-diff device, not original code (opt_common_subs, opt_lifetimes and opt_loop_invariants off, carried from main) */
-#pragma opt_common_subs off
+/* WARNING: compiler-diff device, not original code (opt_lifetimes and opt_loop_invariants off, carried from main) */
 #pragma opt_lifetimes off
 #pragma opt_loop_invariants off
 void fn_4_B528(u32 arg0) {
@@ -697,7 +693,6 @@ fn_1_4A0D8((const char *)v0);
 }
 #pragma opt_loop_invariants reset
 #pragma opt_lifetimes reset
-#pragma opt_common_subs reset
 /* fzgx:end fn_4_B528 */
 
 /* fzgx:begin fn_4_BC04 */
@@ -710,8 +705,6 @@ u8 *p8;
 u8 *pC;
 u32 pad;
 } MenuEntry;
-/* WARNING: compiler-diff device, not original code (opt_common_subs off, carried from main) */
-#pragma opt_common_subs off
 void fn_4_BC04(void) {
 void *rp;
 u8 *q;
@@ -998,7 +991,6 @@ lbl_4_bss_5685 = 0;
 end:
 return;
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_4_BC04 */
 
 /* fzgx:begin fn_4_C768 */

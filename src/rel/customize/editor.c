@@ -1064,8 +1064,6 @@ void fn_3_17830(void) {
 #define EDITOR lbl_3_bss_A2410
 #define RGB(i) ((&lbl_3_bss_A2410.unk_10)[i])
 
-/* WARNING: compiler-diff device, not original code (fp_contract off for this function only) */
-#pragma fp_contract off
 void fn_3_17854(void) {
     FontDrawPacket pkt;
     u8 step;
@@ -1261,5 +1259,4 @@ void fn_3_17854(void) {
     pkt.flags = 5;
     fn_1_4F734(&pkt);
 }
-#pragma fp_contract reset
 /* fzgx:end fn_3_17854 */

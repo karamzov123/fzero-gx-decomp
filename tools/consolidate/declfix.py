@@ -70,6 +70,12 @@ def fix(prologue, body, mv, cf, max_iter=40):
                     dropped[name] = ('var', typ, dims)
                     bl[i] = f'{mm.group(1)}{p[1]} {name}{p[2]};'
                 body = '\n'.join(bl); continue
+            m2 = re.search(r"(?:data )?object '(fzgx_\w+)(?:\(\))?' redefined", msg)
+            if m2:   # a tooling-generated primer/table/layout object defined again: give this copy its own name
+                nm = m2.group(1); k = 2
+                while re.search(rf'\b{nm}_{k}\b', prologue + body): k += 1
+                if not re.search(rf'\b{nm}\b', body): return
+                body = re.sub(rf'\b{nm}\b', f'{nm}_{k}', body); continue
             if 'implicit conversion' in msg or 'not a struct/union/class' in msg or 'pointer/array required' in msg or 'function call' in msg or 'is not a struct/union/class member' in msg:
                 if NO_VIEWS: return
                 names = [n for n in dropped if re.search(USE.format(n=re.escape(n)), src)]

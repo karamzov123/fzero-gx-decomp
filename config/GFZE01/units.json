@@ -2971,7 +2971,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/2.5",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/editor.c"
   },
   {
@@ -2989,7 +2992,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/2.5",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/editor.c"
   },
   {
@@ -118171,7 +118177,9 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [
-      "-fp_contract off"
+      "-fp_contract off",
+      "-opt",
+      "nocse"
     ],
     "tu": "rel/option/name_entry.c"
   },
@@ -126527,7 +126535,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/story/story_mode.c"
   },
   {
