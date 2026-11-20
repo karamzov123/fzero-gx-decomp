@@ -121,7 +121,7 @@ extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
 extern u32 fn_1_54298(void);
 extern u32 fn_1_542A8(void);
 extern f32 fn_1_542B8(void);
-extern f32 fn_1_4B1D4(s32 mode, s32 value);
+extern f32 fn_1_4B1D4(s32 mode, u8 *text);
 extern const f64 lbl_1_rodata_10F8;
 extern s32 fn_8008077C(u32 arg0, u32 arg1, u32 arg2);
 extern u8 lbl_1_rodata_FD0[];
@@ -2392,13 +2392,13 @@ void fn_1_4AF64(const char *format, ...) {
 
 /* fzgx:begin fn_1_4B040 */
 void fn_1_4B040(s32 value) {
-    fn_1_4B1D4(0, value);
+    fn_1_4B1D4(0, (u8 *)value);
 }
 /* fzgx:end fn_1_4B040 */
 
 /* fzgx:begin fn_1_4B068 */
 void fn_1_4B068(s32 value) {
-    fn_1_4B1D4(1, value);
+    fn_1_4B1D4(1, (u8 *)value);
 }
 /* fzgx:end fn_1_4B068 */
 
@@ -2434,13 +2434,13 @@ f32 fn_1_4B090(s32 value) {
 
 /* fzgx:begin fn_1_4B16C */
 s32 fn_1_4B16C(s32 value) {
-    return (s32)fn_1_4B1D4(2, value);
+    return (s32)fn_1_4B1D4(2, (u8 *)value);
 }
 /* fzgx:end fn_1_4B16C */
 
 /* fzgx:begin fn_1_4B1A0 */
 s32 fn_1_4B1A0(s32 value) {
-    return (s32)fn_1_4B1D4(3, value);
+    return (s32)fn_1_4B1D4(3, (u8 *)value);
 }
 /* fzgx:end fn_1_4B1A0 */
 
@@ -2453,8 +2453,7 @@ typedef struct FontEntry_4B1D4 {
 
 extern s32 lbl_1_bss_4BA28[2];
 
-f32 fn_1_4B1D4(s32 mode, s32 __fzgx_p1) {
-    u8 *str = (u8 *)__fzgx_p1;
+f32 fn_1_4B1D4(s32 mode, u8 *str) {
     Obj_1_bss_4B9CC * p;
     s32 i;
     Obj_1_bss_4B9CC *state;
@@ -2647,7 +2646,7 @@ void fn_1_4B83C(void *arg0, void *arg1, u32 arg2, const char *arg3) {
     s32 converted;
 
     length = (u32)strlen(arg3);
-    converted = (s32)fn_1_4B1D4(3, arg2 + length);
+    converted = (s32)fn_1_4B1D4(3, (u8 *)(arg2 + length));
     sprintf(arg0, arg1, length + converted);
 }
 /* fzgx:end fn_1_4B83C */
@@ -3628,8 +3627,8 @@ void fn_1_4CE48(Obj_1_bss_4B9CC *obj, f32 limit) {
     s32 count;
 
     saved = lbl_1_bss_4B9CC.unk_1C;
-    first = fn_1_4B1D4(1, (s32)(Obj_1_bss_4B9CC *)(obj));
-    count = (s32)fn_1_4B1D4(3, (s32)(Obj_1_bss_4B9CC *)(obj));
+    first = fn_1_4B1D4(1, (u8 *)obj);
+    count = (s32)fn_1_4B1D4(3, (u8 *)obj);
     count = count - 1;
     adjusted = lbl_1_bss_4B9CC.unk_3C * (f32)count;
     adjusted = first + adjusted;
@@ -3679,8 +3678,8 @@ void fn_1_4CF3C(const char *format, f32 x, ...) {
 
     p_lbl_1_bss_4B9CC = &lbl_1_bss_4B9CC;
     saved = p_lbl_1_bss_4B9CC->unk_1C;
-    first = fn_1_4B1D4(1, (u32)buffer);
-    count = (s32)fn_1_4B1D4(3, (u32)buffer);
+    first = fn_1_4B1D4(1, (u8 *)buffer);
+    count = (s32)fn_1_4B1D4(3, (u8 *)buffer);
     count = count - 1;
     adjusted = p_lbl_1_bss_4B9CC->unk_3C * (f32)count;
     adjusted = first + adjusted;

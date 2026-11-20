@@ -94333,7 +94333,7 @@
     "tu": "rel/main_rel/font.c",
     "pool": {
       "@6": "lbl_1_rodata_10E0",
-      "@19": "lbl_1_rodata_10F8"
+      "@18": "lbl_1_rodata_10F8"
     },
     "collapsed": true,
     "matching_for": ["GFZE01"]

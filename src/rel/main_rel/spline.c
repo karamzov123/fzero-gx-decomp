@@ -15,7 +15,8 @@ extern void fn_8006E8DC(void *);
 extern void fn_1_9A508(Obj_1_data_2A7E0 *arg0);
 extern void fn_1_F5B88(Obj_1_data_2A7E0_At3C *arg0);
 extern void fn_1_9AD88(void);
-extern void fn_1_F65A0(Obj_1_data_2A7E0_At3C *);
+struct fn_1_F65A0_Arg0;
+extern void fn_1_F65A0(struct fn_1_F65A0_Arg0 *effect);
 extern void fn_1_F7578(void);
 extern void fn_8001D32C(u32 *);
 extern void fn_80008BEC(void *dst, s32 value, u32 size);
@@ -348,7 +349,7 @@ void fn_1_F5B3C(void) {
 
     fn_1_9AD88();
     if ((s32)obj->unk_10 != 0) {
-        fn_1_F65A0(obj);
+        fn_1_F65A0((struct fn_1_F65A0_Arg0 *)obj);
     }
 }
 /* fzgx:end fn_1_F5B3C */
@@ -804,8 +805,7 @@ static inline f32 F65SquareAdd(f32 value, f32 sum) {
 
 
 
-void fn_1_F65A0(Obj_1_data_2A7E0_At3C *__fzgx_p0) {
-    struct fn_1_F65A0_Arg0 *obj = (struct fn_1_F65A0_Arg0 *)__fzgx_p0;
+void fn_1_F65A0(struct fn_1_F65A0_Arg0 *obj) {
 #define arg0 effect
     F65Vec quad[4];
     F65Mtx mtxA;
@@ -1156,7 +1156,7 @@ extern void fn_8006E8DC(void *);
 extern void fn_1_9A508(Obj_1_data_2A7E0 *arg0);
 extern void fn_1_F5B88(Obj_1_data_2A7E0_At3C *arg0);
 extern void fn_1_9AD88(void);
-extern void fn_1_F65A0(Obj_1_data_2A7E0_At3C *);
+extern void fn_1_F65A0(struct fn_1_F65A0_Arg0 *effect);
 extern void fn_1_F7578(void);
 extern void fn_8001D32C(u32 *);
 extern void fn_80008BEC(void *dst, s32 value, u32 size);
@@ -3122,7 +3122,7 @@ extern void fn_8006E8DC(void *);
 extern void fn_1_9A508(Obj_1_data_2A7E0 *arg0);
 extern void fn_1_F5B88(Obj_1_data_2A7E0_At3C *arg0);
 extern void fn_1_9AD88(void);
-extern void fn_1_F65A0(Obj_1_data_2A7E0_At3C *);
+extern void fn_1_F65A0(struct fn_1_F65A0_Arg0 *effect);
 extern void fn_1_F7578(void);
 extern void fn_8001D32C(u32 *);
 extern void fn_80008BEC(void *dst, s32 value, u32 size);
