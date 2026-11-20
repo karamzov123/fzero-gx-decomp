@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- dol/fn_80071C04.c --- */
 typedef struct Object {
     u32 flags;
     u16 index;
@@ -22,4 +24,19 @@ void fn_80071C04(Object *obj, Entry *entry) {
     } else {
         fn_800718BC(obj, (u8 *)entry->data + obj->index * 16, entry);
     }
+}
+
+/* --- dol/fn_80071C64.c --- */
+extern u32 fn_80008E34(u32, u32);
+extern u32 lbl_801A6410;
+
+void fn_80071C64(u32 arg0) {
+    fn_80008E34(lbl_801A6410, arg0);
+}
+
+/* --- dol/fn_80071C8C.c --- */
+extern u32 fn_80008E5C(u32, u32);
+
+void fn_80071C8C(u32 arg0) {
+    fn_80008E5C(lbl_801A6410, arg0);
 }

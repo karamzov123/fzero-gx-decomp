@@ -1,6 +1,7 @@
-
 #include "types.h"
 
+
+/* --- rel/movie_module/fn_12_31DFC.c --- */
 typedef struct SFHHandle {
     int state;
     const unsigned char *header;
@@ -102,5 +103,42 @@ int fn_12_31DFC(SFHHandle *handle, unsigned char stream_id, int *result) {
     if (stream == 0) return 0;
     if (sfh_stream_class(stream_id) != 0xC0) return 0;
     *result = stream->codec_bytes[1];
+    return 1;
+}
+
+/* --- rel/movie_module/fn_12_31F44.c --- */
+int fn_12_31F44(SFHHandle *handle, unsigned char stream_id, int *result);
+
+
+
+
+
+
+
+int fn_12_31F44(SFHHandle *handle, unsigned char stream_id, int *result) {
+    const SFHStreamRecord *stream;
+    stream = sfh_find_handle_stream(handle, stream_id);
+    if (stream == 0) return 0;
+    if (sfh_stream_class(stream_id) != 0xC0) return 0;
+    if (stream->codec != 1) return 0;
+    *result = stream->codec_bytes[0];
+    return 1;
+}
+
+/* --- rel/movie_module/fn_12_320A0.c --- */
+int fn_12_320A0(SFHHandle *handle, unsigned char stream_id, int *result);
+
+
+
+
+
+
+
+int fn_12_320A0(SFHHandle *handle, unsigned char stream_id, int *result) {
+    const SFHStreamRecord *stream;
+    stream = sfh_find_handle_stream(handle, stream_id);
+    if (stream == 0) return 0;
+    if (sfh_stream_class(stream_id) != 0xC0) return 0;
+    *result = stream->codec;
     return 1;
 }

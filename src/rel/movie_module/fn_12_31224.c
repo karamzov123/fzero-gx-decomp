@@ -1,6 +1,7 @@
-
 #include "types.h"
 
+
+/* --- rel/movie_module/fn_12_31224.c --- */
 typedef struct SFHHandle {
     int state;
     const unsigned char *header;
@@ -115,5 +116,41 @@ int fn_12_31224(SFHHandle *handle, unsigned char stream_id, int *result) {
     if (stream == 0) return 0;
     if (!sfh_is_effective_video(stream, stream_id)) return 0;
     *result = stream->flags & 1;
+    return 1;
+}
+
+/* --- rel/movie_module/fn_12_313A8.c --- */
+int fn_12_313A8(SFHHandle *handle, unsigned char stream_id, int *result);
+
+
+
+
+
+
+
+int fn_12_313A8(SFHHandle *handle, unsigned char stream_id, int *result) {
+    const SFHStreamRecord *stream;
+    stream = sfh_find_handle_stream(handle, stream_id);
+    if (stream == 0) return 0;
+    if (!sfh_is_effective_video(stream, stream_id)) return 0;
+    *result = stream->picture_type;
+    return 1;
+}
+
+/* --- rel/movie_module/fn_12_31528.c --- */
+int fn_12_31528(SFHHandle *handle, unsigned char stream_id, int *result);
+
+
+
+
+
+
+
+int fn_12_31528(SFHHandle *handle, unsigned char stream_id, int *result) {
+    const SFHStreamRecord *stream;
+    stream = sfh_find_handle_stream(handle, stream_id);
+    if (stream == 0) return 0;
+    if (!sfh_is_effective_video(stream, stream_id)) return 0;
+    *result = stream->color_type;
     return 1;
 }

@@ -1,6 +1,8 @@
 #include "types.h"
 #include "dolphin/dvd.h"
 
+
+/* --- dol/fn_80056294.c --- */
 typedef struct {
     u8 pad[0x34];
     u32 size;
@@ -61,4 +63,10 @@ u32 fn_80056294(char *arg0, u32 arg1, u32 arg2) {
         return 0;
     }
     return size;
+}
+
+/* --- dol/fn_800563F8.c --- */
+void fn_800563F8(u32 arg0, u32 arg1) {
+    lbl_801878C8[0] = arg0;
+    lbl_801878C4[0] = arg1;
 }

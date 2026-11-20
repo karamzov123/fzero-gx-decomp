@@ -1,6 +1,7 @@
-
 #include "types.h"
 
+
+/* --- rel/movie_module/fn_12_30BF8.c --- */
 typedef struct SFHHandle {
     int state;
     const unsigned char *header;
@@ -116,5 +117,42 @@ int fn_12_30BF8(SFHHandle *handle, unsigned char stream_id, int *result) {
     if (!sfh_is_effective_video(stream, stream_id)) return 0;
     *result = stream->gop_m;
     if (*result > 0x3F) *result = -1;
+    return 1;
+}
+
+/* --- rel/movie_module/fn_12_30D8C.c --- */
+int fn_12_30D8C(SFHHandle *handle, unsigned char stream_id, int *result);
+
+
+
+
+
+
+
+int fn_12_30D8C(SFHHandle *handle, unsigned char stream_id, int *result) {
+    const SFHStreamRecord *stream;
+    stream = sfh_find_handle_stream(handle, stream_id);
+    if (stream == 0) return 0;
+    if (!sfh_is_effective_video(stream, stream_id)) return 0;
+    *result = stream->gop_n;
+    if (*result > 0x3F) *result = -1;
+    return 1;
+}
+
+/* --- rel/movie_module/fn_12_30F20.c --- */
+int fn_12_30F20(SFHHandle *handle, unsigned char stream_id, int *result);
+
+
+
+
+
+
+
+int fn_12_30F20(SFHHandle *handle, unsigned char stream_id, int *result) {
+    const SFHStreamRecord *stream;
+    stream = sfh_find_handle_stream(handle, stream_id);
+    if (stream == 0) return 0;
+    if (!sfh_is_effective_video(stream, stream_id)) return 0;
+    *result = stream->expand;
     return 1;
 }

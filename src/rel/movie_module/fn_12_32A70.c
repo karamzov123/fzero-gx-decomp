@@ -1,6 +1,7 @@
-
 #include "types.h"
 
+
+/* --- rel/movie_module/fn_12_32A70.c --- */
 typedef struct SFHHandle {
     int state;
     const unsigned char *header;
@@ -136,6 +137,27 @@ int fn_12_32A70(SFHHandle *handle, unsigned char stream_id, int *result) {
         break;
     default:
         return 0;
+    }
+    return 1;
+}
+
+/* --- rel/movie_module/fn_12_32DBC.c --- */
+int fn_12_32DBC(SFHHandle *handle, unsigned char stream_id, int *result);
+
+
+
+
+
+int fn_12_32DBC(SFHHandle *handle, unsigned char stream_id, int *result) {
+    const unsigned char *header;
+    *result = 0;
+    header = handle->header;
+    if (!sfh_is_analyzable(handle))
+        return 0;
+    if (sfh_find_stream(header, stream_id) != 0) {
+        *result = 1;
+    } else {
+        *result = 0;
     }
     return 1;
 }

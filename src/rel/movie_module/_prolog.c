@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- rel/movie_module/_prolog.c --- */
 extern void fn_12_38AF0(void);
 extern void fn_12_38A2C(void);
 extern void fn_12_38680(void);
@@ -186,4 +188,8 @@ void _prolog(void) {
     lbl_1_bss_B0 = (u32)fn_12_39CA4;
     lbl_1_bss_AC = (u32)fn_12_3A7D8;
     lbl_1_bss_A8 = (u32)fn_12_35E34;
+}
+
+/* --- rel/movie_module/_epilog.c --- */
+void _epilog(void) {
 }

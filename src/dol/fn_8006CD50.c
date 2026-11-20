@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- dol/fn_8006CD50.c --- */
 extern const f32 lbl_801A73A8;
 extern const f32 lbl_801A73AC;
 extern f32 lbl_801A6CA0;
@@ -19,4 +21,21 @@ void fn_8006CD50(void) {
     fn_800737E4((void *)&loc_8, 1);
     lbl_8006D758();
     GXLoadPosMtxImm(lbl_801A6D00, 0);
+}
+
+/* --- dol/fn_8006CDA8.c --- */
+typedef u32 (*fn_8006CDA8_Fn0)(void);
+
+extern u32 fn_8006CE44(void);
+extern u32 lbl_801A6CAC;
+
+void fn_8006CDA8(void) {
+    lbl_8006D758();
+    GXLoadPosMtxImm(lbl_801A6D00, 0);
+    if (lbl_801A6CAC != 0) {
+        ((fn_8006CDA8_Fn0)lbl_801A6CAC)();
+    }
+    lbl_8006D758();
+    GXLoadPosMtxImm(lbl_801A6D00, 0);
+    fn_8006CE44();
 }

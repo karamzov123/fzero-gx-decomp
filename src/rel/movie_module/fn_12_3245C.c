@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- rel/movie_module/fn_12_3245C.c --- */
 typedef struct MovieContext {
     int state;
     void *movie;
@@ -42,5 +44,130 @@ int fn_12_3245C(MovieContext *self, u32 *result) {
     }
 
     *result = movie[0xb3];
+    return 1;
+}
+
+/* --- rel/movie_module/fn_12_324E4.c --- */
+int fn_12_324E4(MovieContext *self, u32 *result) {
+    int kind_ok;
+    int kind;
+    u8 *movie = (u8 *)self->movie;
+    int ok;
+
+    switch (self->state) {
+    case -1: case 0: case 1:
+        ok = 0;
+        break;
+    default:
+        ok = 1;
+        break;
+    }
+
+    if (ok == 0) {
+        ok = 0;
+    } else {
+        kind = self->kind;
+        kind_ok = 0;
+        if (kind == 0x6b || kind >= 0x6e) {
+            kind_ok = 1;
+        }
+        if (!(kind_ok != 0)) {
+            ok = 0;
+        } else {
+            ok = 1;
+        }
+    }
+
+    if (ok == 0) {
+        return 0;
+    }
+
+    *result = movie[0xb2];
+    return 1;
+}
+
+/* --- rel/movie_module/fn_12_3256C.c --- */
+int fn_12_3256C(MovieContext *self, u32 *result) {
+    int kind_ok;
+    int kind;
+    u8 *movie = (u8 *)self->movie;
+    int ok;
+
+    switch (self->state) {
+case -1: case 0: case 1: {
+
+        ok = 0;
+    
+} break;
+default: {
+
+        ok = 1;
+    
+} break;
+}
+
+    if (ok == 0) {
+        ok = 0;
+    } else {
+        kind = self->kind;
+        kind_ok = 0;
+        if (kind == 0x6b || kind >= 0x6e) {
+            kind_ok = 1;
+        }
+        if (!(kind_ok != 0)) {
+            ok = 0;
+        } else {
+            ok = 1;
+        }
+    }
+
+    if (ok == 0) {
+        return 0;
+    }
+
+    *result = ((movie)[0xb1]);
+    return 1;
+}
+
+/* --- rel/movie_module/fn_12_325F4.c --- */
+int fn_12_325F4(MovieContext *self, u32 *result) {
+    int kind_ok;
+    int kind;
+    u8 *movie = (u8 *)self->movie;
+    int ok;
+
+    switch (self->state) {
+case -1: case 0: case 1: {
+
+        ok = 0;
+    
+} break;
+default: {
+
+        ok = 1;
+    
+} break;
+    }
+
+    if (ok == 0) {
+        ok = 0;
+    } else {
+        kind = self->kind;
+        kind_ok = 0;
+        if (kind == 0x6b || kind >= 0x6e) {
+            kind_ok = 1;
+        }
+        if (!(kind_ok != 0)) {
+            ok = 0;
+        } else {
+            ok = 1;
+        }
+    }
+
+    if (ok == 0) {
+        return 0;
+    }
+
+    *result = movie[0xb0];
     return 1;
 }

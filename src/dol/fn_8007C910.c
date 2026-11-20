@@ -1,6 +1,7 @@
-
 #include "types.h"
 
+
+/* --- dol/fn_8007C910.c --- */
 typedef struct decimal {
     char sign;
     char reserved;
@@ -133,3 +134,43 @@ round_done: ;
     z->sig.length = (u8)(i - ib + 1);
 }
 
+/* --- dol/__equals_dec.c --- */
+BOOL __equals_dec(const decimal *x, const decimal *y) {
+    if (x->sig.text[0] == 0) {
+        if (y->sig.text[0] == 0)
+            return 1;
+        return 0;
+    }
+    if (y->sig.text[0] == 0) {
+        if (x->sig.text[0] == 0)
+            return 1;
+        return 0;
+    }
+    if (x->exp == y->exp) {
+        int i;
+        int l = x->sig.length;
+        if (l > y->sig.length) {
+            l = y->sig.length;
+        }
+        for (i = 0; i < l; i++) {
+            if (x->sig.text[i] != y->sig.text[i]) {
+                return 0;
+            }
+        }
+        if (l == x->sig.length) {
+            for (; i < y->sig.length; ++i) {
+                if (y->sig.text[i] != 0) {
+                    return 0;
+                }
+            }
+        } else {
+            for (; i < x->sig.length; ++i) {
+                if (x->sig.text[i] != 0) {
+                    return 0;
+                }
+            }
+        }
+        return 1;
+    }
+    return 0;
+}

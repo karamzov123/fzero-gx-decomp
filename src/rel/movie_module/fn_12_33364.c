@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- rel/movie_module/fn_12_33364.c --- */
 void fn_12_33364(u32 *dst, u32 *src, u32 size) {
     u32 n;
     u32 a;
@@ -50,4 +52,44 @@ void fn_12_33364(u32 *dst, u32 *src, u32 size) {
         dst[15] = d;
         dst += 16;
     }
+}
+
+/* --- rel/movie_module/fn_12_33428.c --- */
+void fn_12_33428(u32 *dst, u32 value, u32 count) {
+    u32 *p = dst + count;
+    u32 n = (count & 0xF) + 1;
+
+    while (--n) {
+        *--p = value;
+    }
+
+    n = (count >> 4) + 1;
+    while (--n) {
+        *--p = value;
+        *--p = value;
+        *--p = value;
+        *--p = value;
+        *--p = value;
+        *--p = value;
+        *--p = value;
+        *--p = value;
+        *--p = value;
+        *--p = value;
+        *--p = value;
+        *--p = value;
+        *--p = value;
+        *--p = value;
+        *--p = value;
+        *--p = value;
+    }
+}
+
+/* --- rel/movie_module/UTY_MulDiv.c --- */
+unsigned int UTY_MulDiv(int multiplicand, int multiplier, int divisor) {
+    if (divisor == 0) {
+        unsigned int limit = 0x80000000u;
+        unsigned int sign = (unsigned int)(multiplicand ^ multiplier) >> 31;
+        return sign == 0 ? limit - 1 : limit;
+    }
+    return (unsigned int)(((long long)multiplicand * multiplier) / divisor);
 }
