@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- rel/movie_module/fn_12_6A18.c --- */
 typedef struct MovieValues {
     u32 value_14;
     u32 value_18;
@@ -20,4 +22,14 @@ int fn_12_6A18(MovieModule *module, MovieValues *result) {
     }
     *result = module->values;
     return 0;
+}
+
+/* --- rel/movie_module/fn_12_6A88.c --- */
+// fn_12_6A88: empty in retail (single blr).
+void fn_12_6A88(void) {
+}
+
+/* --- rel/movie_module/fn_12_6A8C.c --- */
+// fn_12_6A8C: empty in retail (single blr).
+void fn_12_6A8C(void) {
 }

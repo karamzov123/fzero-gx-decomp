@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- rel/movie_module/fn_12_38A2C.c --- */
 typedef struct MoviePlayer {
     void *interface;
     s32 active;
@@ -52,4 +54,14 @@ void fn_12_38A2C(void) {
         fn_80058630();
         fn_12_34E2C();
     }
+}
+
+/* --- rel/movie_module/fn_12_38AD0.c --- */
+u32 fn_12_38AD0(void) {
+    return lbl_12_bss_1BAAC[15];
+}
+
+/* --- rel/movie_module/fn_12_38AE0.c --- */
+u32 fn_12_38AE0(void) {
+    return lbl_12_bss_1BAAC[14];
 }

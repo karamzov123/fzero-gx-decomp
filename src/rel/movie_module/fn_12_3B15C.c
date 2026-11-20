@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- rel/movie_module/fn_12_3B15C.c --- */
 typedef struct SJCK {
     unsigned char *data;
     int len;
@@ -120,4 +122,53 @@ void fn_12_3B15C(MwsStHandle *handle) {
     }
 }
 
+/* --- rel/movie_module/fn_12_3B2EC.c --- */
+typedef struct SfdHandle SfdHandle;
 
+
+
+
+typedef struct MwsStPlayerPrefix {
+    unsigned char reserved_000[0x40];
+    SfdHandle *player;
+    unsigned char reserved_044[424];
+    MwsStHandle sound;
+} MwsStPlayerPrefix;
+
+
+void fn_12_3B2EC(MwsStPlayerPrefix *wrapper);
+
+extern int fn_12_26734(SfdHandle *handle, int element_id, SJ *stream, int channel, int flags);
+
+
+
+void fn_12_3B2EC(MwsStPlayerPrefix *wrapper) {
+    MwsStHandle *sound = &wrapper->sound;
+    SfdHandle *player = wrapper->player;
+    MwsStHandle *backend = sound->backend;
+    SJ *stream = sound->stream;
+    int element_id = sound->element_id;
+    int valid;
+
+    if (lbl_12_data_E90.interface == 0) {
+        valid = 0;
+    } else if (sound->active != 1) {
+        valid = 0;
+    } else if (backend == 0) {
+        valid = 0;
+    } else {
+        valid = 1;
+    }
+
+    if (valid != 1) {
+        return;
+    }
+    if (backend != 0 && mwsst_IsValid(backend) == 1) {
+        void *playback = backend->backend;
+        if (lbl_12_data_E90.interface != 0 && lbl_12_data_E90.interface->stop != 0) {
+            lbl_12_data_E90.interface->stop(playback);
+        }
+    }
+    stream->interface->reset(stream);
+    fn_12_26734(player, element_id + 0xC0, stream, 0, 0);
+}

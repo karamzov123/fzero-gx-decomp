@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- dol/fn_80007B68.c --- */
 extern u32 fn_800744F8(void *value, u32 mask);
 extern void fn_80008204(u32 *value);
 
@@ -29,4 +31,14 @@ void fn_80007B68(void) {
         fn_80008204(&lbl_801A6408);
     }
     lbl_801A6728 = 1;
+}
+
+/* --- dol/fn_80007C2C.c --- */
+extern u32 fn_800744F8(void *, u32);
+
+void fn_80007C2C(void) {
+    u32 loc_8[2];
+    /* frame */
+    loc_8[0] = lbl_801A6408;
+    fn_800744F8(loc_8, (0x1000000 - 1));
 }

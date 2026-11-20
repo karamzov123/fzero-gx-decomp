@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- rel/movie_module/fn_12_24A88.c --- */
 typedef void (*MovieCallback)(void *, s32);
 
 typedef struct MovieObject {
@@ -45,4 +47,13 @@ s32 fn_12_24A88(MovieObject *object, s32 value) {
     }
 
     return value;
+}
+
+/* --- rel/movie_module/fn_12_24B64.c --- */
+void fn_12_24B64(int *value) {
+    value[0] = 0;
+    value[1] = 0;
+    value[2] = 0;
+    value[3] = 0;
+    value[4] = 0;
 }

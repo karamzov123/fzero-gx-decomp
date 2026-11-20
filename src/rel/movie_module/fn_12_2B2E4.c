@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- rel/movie_module/fn_12_2B2E4.c --- */
 struct MovieModule {
     char pad_44[0x44];
     int value;
@@ -19,4 +21,11 @@ int fn_12_2B2E4(struct MovieModule *module) {
         module->value = 1;
         return 0;
     }
+}
+
+/* --- rel/movie_module/fn_12_2B348.c --- */
+extern u32 lbl_12_bss_7C64[137];
+
+u32 fn_12_2B348(void) {
+    return lbl_12_bss_7C64[127];
 }

@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- rel/movie_module/fn_12_2A9DC.c --- */
 typedef struct MovieEntry {
     int type;
     char pad[4];
@@ -66,4 +68,53 @@ MovieEntry *fn_12_2A9DC(MovieObject *movie, int *result) {
     }
     fn_12_24950(&scratch);
     return best;
+}
+
+/* --- rel/movie_module/fn_12_2AAD4.c --- */
+struct fn_12_2AAD4_Arg0 {
+    u32 unk_0;
+};
+
+u32 fn_12_2AAD4(struct fn_12_2AAD4_Arg0 *arg0) {
+    if ((u32)arg0 == 0) { return (u32)arg0; }
+    if ((s32)arg0->unk_0 == 4) {
+    arg0->unk_0 = 2;
+    return (u32)arg0;
+    }
+    arg0->unk_0 = 0;
+}
+
+/* --- rel/movie_module/fn_12_2AB00.c --- */
+struct fn_12_2AB00_Arg0 {
+    u32 unk_0;
+};
+
+u32 fn_12_2AB00(struct fn_12_2AB00_Arg0 *arg0) {
+    if ((u32)arg0 == 0) { return (u32)arg0; }
+    if ((s32)arg0->unk_0 == 4) {
+    arg0->unk_0 = 3;
+    return (u32)arg0;
+    }
+    arg0->unk_0 = 0;
+}
+
+/* --- rel/movie_module/fn_12_2AB2C.c --- */
+void fn_12_2AB2C(int *value) {
+    if (value != 0) {
+        *value = 4;
+    }
+}
+
+/* --- rel/movie_module/fn_12_2AB40.c --- */
+void fn_12_2AB40(int *arg0) {
+    if (arg0 != 0) {
+        *arg0 = 2;
+    }
+}
+
+/* --- rel/movie_module/fn_12_2AB54.c --- */
+void fn_12_2AB54(int* value) {
+    if (value != 0) {
+        *value = 0;
+    }
 }

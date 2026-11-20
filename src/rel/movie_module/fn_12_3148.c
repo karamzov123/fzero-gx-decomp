@@ -1,4 +1,7 @@
 #include "types.h"
+
+
+/* --- rel/movie_module/fn_12_3148.c --- */
 typedef struct Sig_fn_12_48C4_MovieEntry {
  s32 active; u8 unk04[0x38]; f32 unk3c; f32 unk40;
 } Sig_fn_12_48C4_MovieEntry;
@@ -99,4 +102,25 @@ MovieModule *fn_12_3148(u32 arg0, s32 arg1) {
  v1->field_2c = v2;
  lbl_12_bss_10[0]++;
  return v1;
+}
+
+/* --- rel/movie_module/fn_12_33BC.c --- */
+void fn_12_33BC(u32 a, u32 b) {
+    lbl_12_bss_10[2] = a;
+    lbl_12_bss_10[3] = b;
+}
+
+/* --- rel/movie_module/fn_12_33D0.c --- */
+extern s32 lbl_12_bss_8;
+extern void fn_12_4934(void);
+extern void fn_12_35EC(void);
+extern void fn_12_49F8(void);
+
+void fn_12_33D0(void) {
+    if (lbl_12_bss_8 > 0) {
+        fn_12_4934();
+        fn_12_35EC();
+        fn_12_49F8();
+        lbl_12_bss_8--;
+    }
 }

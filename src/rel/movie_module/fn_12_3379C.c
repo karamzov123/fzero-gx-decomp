@@ -1,4 +1,7 @@
 #include "types.h"
+
+
+/* --- rel/movie_module/fn_12_3379C.c --- */
 typedef struct Sig_fn_12_2D470_MovieModuleState {
     u8 pad_0[0x78];
     s32 field_78;
@@ -61,4 +64,25 @@ s32 fn_12_3379C(void *arg0) {
     }
     fn_12_330E0((struct Sig_fn_12_330E0_fn_12_330E0_Arg0 *)((struct Sig_fn_12_330E0_fn_12_330E0_Arg0 *) temp_r3));
     return var_r31;
+}
+
+/* --- rel/movie_module/fn_12_33874.c --- */
+extern u32 MWSFSVM_Error(u32, ...);
+extern u32 fn_12_3A36C(u32);
+extern u32 lbl_12_rodata_1118;
+
+u32 fn_12_33874(u32 arg0) {
+    u32 v0;
+    u32 t0, t1;
+    t0 = fn_12_3A36C(arg0);
+    v0 = t0;
+    if ((s32)t0 == 0) {
+    v0 = (u32)&lbl_12_rodata_1118;
+    t1 = MWSFSVM_Error((u32)v0);
+    v0 = t1;
+    v0 = 0;
+    } else {
+    v0 = *(u32 *)((u8 *)arg0 + 132);
+    }
+    return v0;
 }

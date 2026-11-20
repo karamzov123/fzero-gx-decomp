@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- dol/fn_8004EB00.c --- */
 extern u32 lbl_8017E980[];
 extern u32 OSDisableInterrupts(void);
 extern void OSDisableScheduler(void);
@@ -42,4 +44,32 @@ void fn_8004EB00(void) {
         OSResumeThread(&state->unk_970);
     }
     state->count++;
+}
+
+/* --- dol/fn_8004EBB4.c --- */
+extern u32 fn_80059AB4(void);
+
+void fn_8004EBB4(void) {
+    fn_80059AB4();
+}
+
+/* --- dol/fn_8004EBD4.c --- */
+extern u32 fn_80059B44(void);
+
+void fn_8004EBD4(void) {
+    fn_80059B44();
+}
+
+/* --- dol/fn_8004EBF4.c --- */
+extern u32 fn_80058D24(void);
+
+void fn_8004EBF4(void) {
+    fn_80058D24();
+}
+
+/* --- dol/fn_8004EC14.c --- */
+extern u32 VIWaitForRetrace(void);
+
+void fn_8004EC14(void) {
+    VIWaitForRetrace();
 }

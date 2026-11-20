@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- dol/fn_8004F74C.c --- */
 extern volatile const u32 lbl_80091250[]; /* Preserve the retail read of the version data. */
 
 struct Fn8004F74CState {
@@ -35,4 +37,11 @@ void fn_8004F74C(void) {
         state->field_4 = -1;
     }
     state->field_0++;
+}
+
+/* --- dol/fn_8004F7F8.c --- */
+extern u32 DCInvalidateRange(void);
+
+void fn_8004F7F8(void) {
+    DCInvalidateRange();
 }

@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- dol/fn_80008A4C.c --- */
 extern u32 fn_800720B0(u32);
 extern u32 fn_80072CC4(u32, u32, u32, u32, u32);
 extern u32 fn_80072D64(u32, u32, u32, u32, u32, u32);
@@ -45,4 +47,34 @@ void fn_80008A4C(u32 arg0, u32 arg1, u32 arg2) {
     fn_80073898(0);
     fn_80074788(0);
     fn_8007245C(512);
+}
+
+/* --- dol/fn_80008BA8.c --- */
+extern u32 fn_800791E8(u32, u32);
+extern u32 fn_800794F0(u32, u32);
+extern u32 memcpy(u32, u32, u32);
+
+void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2) {
+    u32 v0;
+    v0 = (arg1 | arg0);
+    if ((v0 & 0x3) != 0) {
+    memcpy(arg0, arg1, arg2);
+    } else {
+    if ((v0 & 0x1F) != 0) {
+    fn_800794F0(arg0, arg1);
+    } else {
+    fn_800791E8(arg0, arg1);
+    }
+    }
+}
+
+/* --- dol/fn_80008BEC.c --- */
+extern void fn_800793D4(void *, int, u32);
+extern void *memset(void *, int, u32);
+void fn_80008BEC(void *dest, int value, u32 size) {
+    if (((u32)dest & 0x1F) == 0) {
+        fn_800793D4(dest, value, size);
+    } else {
+        memset(dest, (u8)value, size);
+    }
 }

@@ -1,5 +1,8 @@
 #include "types.h"
+#include "ppc_ops.h"
 
+
+/* --- rel/movie_module/fn_12_CAE4.c --- */
 typedef s32 MovieCallback;
 
 typedef struct MovieObject {
@@ -60,4 +63,54 @@ s32 fn_12_CAE4(MovieObject *movie, s32 index, MovieCallback callback) {
     }
     callbacks[index] = value;
     return 0;
+}
+
+/* --- rel/movie_module/fn_12_CBC4.c --- */
+// fn_12_CBC4: empty in retail (single blr).
+void fn_12_CBC4(void) {
+}
+
+/* --- rel/movie_module/fn_12_CBC8.c --- */
+extern void fn_12_20178(u32);
+
+s32 fn_12_CBC8(u32 arg0) {
+    u32 v0;
+    s32 v1;
+    s32 t0;
+    u32 movie;
+
+    movie = arg0;
+    lbl_12_bss_5280[0] = movie;
+    if (movie == 0) {
+        t0 = -1;
+    } else if (*(s32 *)((u8 *)movie + 392) != 2) {
+        t0 = -1;
+    } else {
+        t0 = 0;
+    }
+    if (t0 != 0) {
+        return fn_12_A660(0, 0xFF030201);
+    }
+    fn_12_20178(movie);
+    if ((lbl_12_bss_528C[18] & 0x10000000) != 0) {
+        v1 = 0;
+        for (v0 = 256; v0 != 0; v0--) {
+            ppc_dcbi((void *)movie, v1);
+            v1 += 32;
+        }
+    }
+    *(u32 *)((u8 *)movie + 392) = 1;
+    return 0;
+}
+
+/* --- rel/movie_module/fn_12_CCB0.c --- */
+typedef struct MovieData {
+    u8 unk_90[0x90];
+    u32 unk_120;
+    u32 unk_124;
+} MovieData;
+
+void fn_12_CCB0(const MovieData *movie, u32 *first, u32 *second) {
+    *first = movie->unk_120;
+    *second = movie->unk_124;
 }

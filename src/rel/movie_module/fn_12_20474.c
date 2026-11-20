@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- rel/movie_module/fn_12_20474.c --- */
 extern void ADXT_Pause(void *arg0, int arg1);
 extern void fn_12_309B8(void *arg0, int arg1);
 
@@ -24,5 +26,11 @@ int fn_12_20474(MovieModule *arg0) {
         ADXT_Pause(movie, 0);
         fn_12_309B8(movie_module, 0);
     }
+    return 0;
+}
+
+/* --- rel/movie_module/fn_12_204D4.c --- */
+// fn_12_204D4: returns a constant.
+int fn_12_204D4(void) {
     return 0;
 }

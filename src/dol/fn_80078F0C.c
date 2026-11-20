@@ -1,4 +1,7 @@
 #include "types.h"
+
+
+/* --- dol/fn_80078F0C.c --- */
 typedef struct Sig_fn_80071C04_Entry { u32 pad00; u32 data; } Sig_fn_80071C04_Entry;
 typedef struct Sig_fn_80071C04_Object { u32 flags; u16 index; u16 pad06; u32 value; u8 pad0C[0x14]; } Sig_fn_80071C04_Object;
 extern u8 lbl_8015AD38[];
@@ -113,4 +116,22 @@ u32 fn_80078F0C(Model *arg0, Sig_fn_80071C04_Entry *arg1, u32 arg2, u32 arg3) {
         v14++;
     }
     return arg2;
+}
+
+/* --- dol/fn_800791A4.c --- */
+extern u32 fn_800702E4(u32);
+extern u32 fn_8007048C(void);
+extern u32 lbl_801A6DB0;
+extern u32 lbl_801A6DB8;
+extern u8 lbl_801A6DB4;
+
+void fn_800791A4(void) {
+    u32 t0, t1;
+    t0 = fn_8007048C();
+    lbl_801A6DB4 = t0;
+    t1 = fn_800702E4((t0 & 0xFF));
+    lbl_801A6DB0 = t1;
+    if (lbl_801A6DB4 != 0) {
+    lbl_801A6DB8 = 1;
+    }
 }

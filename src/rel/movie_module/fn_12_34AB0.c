@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- rel/movie_module/fn_12_34AB0.c --- */
 struct MovieModule {
     u8 pad_00[0x08];
     int field_08;
@@ -27,4 +29,11 @@ void fn_12_34AB0(struct MovieModule *self, void *arg) {
     } else {
         self->field_74++;
     }
+}
+
+/* --- rel/movie_module/fn_12_34B64.c --- */
+extern void fn_80058FE4(int);
+
+void fn_12_34B64(void) {
+    fn_80058FE4(6);
 }

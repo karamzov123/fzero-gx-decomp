@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- rel/movie_module/fn_12_3454C.c --- */
 typedef struct MovieModule {
     u8 _pad[0x4c];
     void *movie;
@@ -31,4 +33,11 @@ void fn_12_3454C(MovieModule *self, const char *arg1, const char *arg2) {
             MWSFSVM_Error(lbl_12_rodata_13EC, arg1, arg2);
         }
     }
+}
+
+/* --- rel/movie_module/fn_12_34610.c --- */
+extern void fn_80056BE0(void *movie);
+
+void fn_12_34610(MovieModule *module) {
+    fn_80056BE0(module->movie);
 }

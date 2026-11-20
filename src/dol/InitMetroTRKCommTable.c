@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- dol/InitMetroTRKCommTable.c --- */
 struct InitMetroTRKCommTable_gDBCommTable {
     u32 initialize;
     u32 initialize_interrupts;
@@ -104,3 +106,25 @@ s32 InitMetroTRKCommTable(s32 transport) {
     return result;
 }
 
+/* --- dol/TRKEXICallBack.c --- */
+extern u32 OSEnableScheduler(u32, u32);
+extern u32 TRKLoadContext(u32, u32);
+
+void TRKEXICallBack(u32 arg0, u32 arg1) {
+    OSEnableScheduler(arg0, arg1);
+    TRKLoadContext(arg1, 1280);
+}
+
+/* --- dol/TRKTargetContinue.c --- */
+extern u32 ReserveEXI2Port(void);
+extern u32 TRKSwapAndGo(void);
+extern u32 TRKTargetSetStopped(u32);
+extern u32 UnreserveEXI2Port(void);
+
+s32 TRKTargetContinue(void) {
+    TRKTargetSetStopped(0);
+    UnreserveEXI2Port();
+    TRKSwapAndGo();
+    ReserveEXI2Port();
+    return 0;
+}

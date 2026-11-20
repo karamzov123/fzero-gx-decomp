@@ -1,5 +1,7 @@
 #include "types.h"
 #pragma use_lmw_stmw on
+
+/* --- rel/movie_module/fn_12_2B6B0.c --- */
 typedef void (*Sig_fn_12_24A88_MovieCallback)(void *, s32);
 typedef struct Sig_fn_12_24A88_MovieObject {
  u8 pad_0000[0x48]; s32 state; u8 pad_004c[0x940];
@@ -106,4 +108,31 @@ int fn_12_2B6B0(u32 arg0) {
   p_lbl_12_bss_7C64++;
  }
  return result;
+}
+
+/* --- rel/movie_module/fn_12_2B9F8.c --- */
+struct MovieState {
+    char pad_0[4];
+    int value;
+};
+
+struct MovieModule {
+    char pad_0[0x94c];
+    struct MovieState state;
+};
+
+typedef void (*MovieCallback)(struct MovieModule *, void *, struct MovieState *);
+
+extern MovieCallback fn_12_2D73C(struct MovieModule *, int);
+
+void fn_12_2B9F8(struct MovieModule *module, int delta, void *context) {
+    struct MovieState *state;
+    MovieCallback callback;
+
+    state = &module->state;
+    module->state.value += delta;
+    callback = fn_12_2D73C(module, 0x25);
+    if (callback != 0) {
+        callback(module, context, state);
+    }
 }

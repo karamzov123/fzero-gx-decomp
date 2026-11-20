@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- rel/movie_module/fn_12_3310C.c --- */
 extern u32 lbl_12_bss_1B75C[5];
 
 typedef struct MovieEntry {
@@ -37,4 +39,16 @@ MovieEntry *fn_12_3310C(u32 arg0, u32 arg1) {
     last->arg1 = arg1;
     lbl_12_bss_1B75C[1]++;
     return last;
+}
+
+/* --- rel/movie_module/fn_12_33178.c --- */
+extern s32 lbl_12_bss_1B758;
+
+void fn_12_33178(u32 arg0) {
+    if (--lbl_12_bss_1B758 > 0) {
+        return;
+    }
+    lbl_12_bss_1B75C[0] = 0;
+    lbl_12_bss_1B75C[1] = 0;
+    lbl_12_bss_1B75C[2] = 0;
 }

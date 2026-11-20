@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- dol/fn_80057D0C.c --- */
 struct fn_80057D0C_lbl_8018AE18 {
     u32 unk_0;
 };
@@ -24,4 +26,19 @@ u32 fn_80057D0C(u32 arg0, u32 arg1) {
     v0 = *(u32 *)((u8 *)v1 + 0);
     *(u32 *)((u8 *)v1 + 0) = (v0 + 1);
     return v0;
+}
+
+/* --- dol/fn_80057D60.c --- */
+extern u32 fn_80058A20(u32);
+extern u32 lbl_800922F0[];
+
+void fn_80057D60(void) {
+    fn_80058A20((u32)&lbl_800922F0);
+}
+
+/* --- dol/fn_80057D88.c --- */
+u32 fn_80057D88(u32 arg0, u32 arg1, u32 arg2) {
+    u8 *ptr = (u8 *)arg0 + (arg1 << 3);
+    ptr += arg2 << 2;
+    return *(u32 *)(ptr + 0x28);
 }

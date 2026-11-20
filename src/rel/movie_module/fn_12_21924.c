@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- rel/movie_module/fn_12_21924.c --- */
 typedef struct MovieModule {
     u8 pad_0000[0x1c8c];
     int field_1c8c;
@@ -30,5 +32,17 @@ int fn_12_21924(MovieModule *module) {
         }
     }
 
+    return 0;
+}
+
+/* --- rel/movie_module/fn_12_219D8.c --- */
+// fn_12_219D8: returns a constant.
+int fn_12_219D8(void) {
+    return 0;
+}
+
+/* --- rel/movie_module/fn_12_219E0.c --- */
+// fn_12_219E0: returns a constant.
+int fn_12_219E0(void) {
     return 0;
 }

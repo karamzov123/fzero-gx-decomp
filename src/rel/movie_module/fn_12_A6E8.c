@@ -1,6 +1,7 @@
-
 #include "types.h"
 
+
+/* --- rel/movie_module/fn_12_A6E8.c --- */
 typedef struct MPVContext MPVContext;
 
 typedef void (*MPVErrorCallback)(int object, int error);
@@ -304,4 +305,21 @@ int fn_12_A6E8(MPVContext *handle, MPVErrorCallback callback, int object) {
     handle->fields.view_error_info.error_info.fields.view_callback.callback = callback;
     handle->fields.view_error_info.error_info.fields.view_callback_object.callback_object = object;
     return 0;
+}
+
+/* --- rel/movie_module/fn_12_A774.c --- */
+typedef struct MovieState {
+    u32 field_0;
+    u32 field_4;
+    u32 field_8;
+    u32 field_c;
+    u32 field_10;
+} MovieState;
+
+void fn_12_A774(MovieState *movie) {
+    movie->field_0 = 0;
+    movie->field_4 = 0;
+    movie->field_8 = 0;
+    movie->field_c = 0;
+    movie->field_10 = 0;
 }

@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- rel/movie_module/fn_12_2FA90.c --- */
 typedef struct MovieEntry {
     u32 unk00;
     void *unk04;
@@ -38,4 +40,10 @@ int fn_12_2FA90(MovieModule *module, int index, void *arg1, void *arg2) {
             return 0;
         }
     }
+}
+
+/* --- rel/movie_module/fn_12_2FB54.c --- */
+// fn_12_2FB54: returns a constant.
+int fn_12_2FB54(void) {
+    return 0;
 }

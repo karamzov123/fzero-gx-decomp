@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- rel/movie_module/fn_12_388C4.c --- */
 typedef int SfdCallbackObject;
 
 typedef struct SfdHandle SfdHandle;
@@ -106,4 +108,12 @@ void fn_12_388C4(SfdCallbackObject object, int error) {
         break;
     }
     MWSFSVM_Error((bss->fields.view_sdk_mwg_sfd_errstr.mwg_sfd_errstr));
+}
+
+/* --- rel/movie_module/fn_12_38A0C.c --- */
+extern u32 lbl_12_bss_1BAAC[1131];
+
+s32 fn_12_38A0C(s32 arg) {
+    lbl_12_bss_1BAAC[25] = arg;
+    return arg & ~(-(s32)(arg == 0));
 }

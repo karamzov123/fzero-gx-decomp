@@ -1,6 +1,7 @@
 #include "types.h"
-
 #pragma opt_propagation off
+
+/* --- dol/fn_8007ADF0.c --- */
 void fn_8007ADF0(u32 arg0, u32 arg1) {
     u32 total;
     u32 next;
@@ -105,4 +106,36 @@ void fn_8007ADF0(u32 arg0, u32 arg1) {
             *(u32 *)(arg0 + 8) = available;
         }
     }
+}
+
+/* --- dol/fn_8007B028.c --- */
+typedef struct FileNode {
+    u8 pad00[4];
+    u16 flags;
+    u8 pad06[2];
+    u8 type;
+    u8 pad09[0x43];
+    struct FileNode *next;
+} FileNode;
+
+extern u8 __files[320];
+extern s32 fflush(FileNode *);
+
+s32 fn_8007B028(void) {
+    s32 result;
+    FileNode *file;
+
+    file = (FileNode *)&__files;
+    result = 0;
+    while (file != 0) {
+        if (((*(u16 *)((u8 *)file + 4) >> 6) & 7) != 0 &&
+            ((*(u8 *)((u8 *)file + 4) >> 1) & 1) != 0 &&
+            (((u32)*(u8 *)((u8 *)file + 8) >> 5) & 7) == 1) {
+            if (fflush(file) != 0) {
+                result = -1;
+            }
+        }
+        file = file->next;
+    }
+    return result;
 }
