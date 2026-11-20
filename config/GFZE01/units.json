@@ -53323,266 +53323,34 @@
     "module": "main_rel",
     "source": "rel/main_rel/bitmap/fn_1_47AD4.c",
     "symbols": [
-      "fn_1_47AD4"
-    ],
-    "status": "matching",
-    "matching_for": [
-      "GFZE01",
-      "GFZJ01"
-    ],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bitmap.c",
-    "pool": {
-      "@56": "lbl_1_data_1A364"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bitmap/fn_1_47E54.c",
-    "symbols": [
-      "fn_1_47E54"
-    ],
-    "status": "matching",
-    "matching_for": [
-      "GFZE01",
-      "GFZJ01"
-    ],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bitmap.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bitmap/fn_1_47EE4.c",
-    "symbols": [
-      "fn_1_47EE4"
-    ],
-    "status": "matching",
-    "matching_for": [
-      "GFZE01",
-      "GFZJ01"
-    ],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bitmap.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bitmap/fn_1_47F74.c",
-    "symbols": [
-      "fn_1_47F74"
-    ],
-    "status": "matching",
-    "matching_for": [
-      "GFZE01",
-      "GFZJ01"
-    ],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bitmap.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bitmap/fn_1_48004.c",
-    "symbols": [
-      "fn_1_48004"
-    ],
-    "status": "matching",
-    "matching_for": [
-      "GFZE01",
-      "GFZJ01"
-    ],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bitmap.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bitmap/fn_1_4811C.c",
-    "symbols": [
-      "fn_1_4811C"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bitmap.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bitmap/fn_1_48140.c",
-    "symbols": [
-      "fn_1_48140"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bitmap.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bitmap/fn_1_48164.c",
-    "symbols": [
-      "fn_1_48164"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bitmap.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bitmap/fn_1_481E8.c",
-    "symbols": [
-      "fn_1_481E8"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bitmap.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bitmap/fn_1_48214.c",
-    "symbols": [
-      "fn_1_48214"
-    ],
-    "status": "matching",
-    "matching_for": [
-      "GFZE01",
-      "GFZJ01"
-    ],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bitmap.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bitmap/fn_1_48418.c",
-    "symbols": [
-      "fn_1_48418"
-    ],
-    "status": "matching",
-    "matching_for": [
-      "GFZE01",
-      "GFZJ01"
-    ],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bitmap.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bitmap/fn_1_484CC.c",
-    "symbols": [
-      "fn_1_484CC"
-    ],
-    "status": "matching",
-    "matching_for": [
-      "GFZE01",
-      "GFZJ01"
-    ],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bitmap.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bitmap/fn_1_485A8.c",
-    "symbols": [
-      "fn_1_485A8"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bitmap.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bitmap/fn_1_485C8.c",
-    "symbols": [
-      "fn_1_485C8"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bitmap.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bitmap/fn_1_485E8.c",
-    "symbols": [
-      "fn_1_485E8"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bitmap.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bitmap/fn_1_48690.c",
-    "symbols": [
-      "fn_1_48690"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bitmap.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bitmap/fn_1_486C4.c",
-    "symbols": [
-      "fn_1_486C4"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bitmap.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bitmap/fn_1_486F8.c",
-    "symbols": [
-      "fn_1_486F8"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bitmap.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bitmap/fn_1_48730.c",
-    "symbols": [
-      "fn_1_48730"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bitmap.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bitmap/fn_1_4877C.c",
-    "symbols": [
-      "fn_1_4877C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bitmap.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bitmap/fn_1_48780.c",
-    "symbols": [
+      "fn_1_47AD4",
+      "fn_1_47E54",
+      "fn_1_47EE4",
+      "fn_1_47F74",
+      "fn_1_48004",
+      "fn_1_4811C",
+      "fn_1_48140",
+      "fn_1_48164",
+      "fn_1_481E8",
+      "fn_1_48214",
+      "fn_1_48418",
+      "fn_1_484CC",
+      "fn_1_485A8",
+      "fn_1_485C8",
+      "fn_1_485E8",
+      "fn_1_48690",
+      "fn_1_486C4",
+      "fn_1_486F8",
+      "fn_1_48730",
+      "fn_1_4877C",
       "fn_1_48780"
     ],
     "status": "matching",
-    "mw_version": null,
+    "matching_for": [
+      "GFZE01",
+      "GFZJ01"
+    ],
+    "mw_version": "GC/1.3.2",
     "extra_cflags": [],
     "tu": "rel/main_rel/bitmap.c"
   },

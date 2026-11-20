@@ -2,80 +2,56 @@
 #include "rel/main_rel/globals.h"
 #include "rel/main_rel/bitmap.h"
 
-extern void fn_1_48214(int index, int enabled);
-extern void fn_1_4DDC0(void);
-extern void fn_1_4F724(void);
 extern s32 lbl_801A6410;
+extern u32 lbl_801A66B4;
+extern u8 lbl_1_bss_3E000[32];
+extern u32 lbl_1_bss_3E020;
+extern u8 lbl_1_bss_3E024[52];
+extern char lbl_1_data_1A364[4];
+extern char lbl_1_data_1A3AC[5];
+extern u8 lbl_1_data_19098[0x2F0];
+extern u8 lbl_1_data_19FC4[0x2F0];
+extern f32 lbl_1_rodata_10C0[5];
+extern f32 lbl_1_bss_3E05C;
+
 extern void OSPanic(const unsigned char *, ...);
+extern void fn_1_465D0(char *, s32);
 extern int fn_1_45D0(int, int, const unsigned char *, int);
 extern int fn_80008F88(int, int);
 extern void fn_8006FDEC(void);
 extern void fn_80009064(u32 value);
 extern void fn_1_46B4(u32 arg0, u32 arg1, char *arg2, s32 arg3);
-extern void *fn_1_48730(u32 value);
-extern void fn_1_47AD4(BitmapResource *obj, u8 value, int arg2, int arg3);
-extern f32 lbl_1_rodata_10C0[5];
-extern f32 lbl_1_bss_3E05C;
-
-extern void *fn_1_48730(u32 value);
-
-/* fzgx:begin fn_1_47AD4 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/load.h"
-
-extern u32 lbl_1_bss_3DCE4[17];
-extern void *fn_80006DFC(void *arg);
-extern void fn_1_D3214(void);
-extern s32 fn_8000700C(s32 arg0);
-extern void fn_1_3BDC(s32 arg0);
-extern void fn_8000659C(void);
-extern u32 lbl_1_bss_384C4;
-extern void fn_1_46A8C(u32 value);
-extern u32 lbl_1_bss_3DCD8;
-extern u32 lbl_1_bss_3DD28[179];
-extern void fn_1_47EE4(s32);
-extern void fn_1_485C8(s32);
-extern void fn_1_48140(s32 value);
 extern void fn_1_4DDC0(void);
 extern void fn_1_4F724(void);
-
-extern u8 lbl_1_bss_3E024[52];
-extern char lbl_1_data_1A3AC[5];
 extern void fn_80083DB0(void *arg0, void *arg1);
-extern u32 fn_80006CE4(u32);
-extern void *fn_80006DE8(void *);
-extern u32 lbl_801A6410;
-extern void *fn_1_4630(u32 arg0, u32 arg1, u8 *arg2, u32 arg3);
-extern void *fn_1_46B4(u32 arg0, void *arg1, u8 *arg2, u32 arg3);
-extern void strcat(void *arg0, void *arg1);
-extern void fn_1_48004(s32 value, s32 arg);
-
-extern u32 lbl_801A66B4;
-extern u32 lbl_801A6410;
-extern u8 lbl_1_bss_3E000[32];
-extern char lbl_1_data_1A368[9];
-extern void fn_8006FDEC(void);
 extern s32 fn_1_45730(void *, void *);
 extern size_t strlen(const char *);
 extern s32 strncmp(const char *, const char *, size_t);
 extern u32 OSGetArenaHi(void);
 extern void OSSetArenaHi(u32);
-extern u32 OSAllocFromArenaLo(u32,u32);
-extern u32 OSAllocFromArenaHi(u32,u32);
-extern void *fn_1_45D0(u32,u32,void *,u32);
+extern u32 OSAllocFromArenaLo(u32, u32);
+extern u32 OSAllocFromArenaHi(u32, u32);
 extern s32 fn_1_45B2C(void *);
-extern s32 fn_1_458A0(void *,void *,u32,u32);
+extern s32 fn_1_458A0(void *, void *, u32, u32);
 extern s32 fn_1_45850(void *);
-extern u32 fn_1_12860(u32,u32);
-extern u32 fn_1_12F78(void *,u32);
-extern void DCFlushRange(void *,u32);
-extern void fn_1_4877C(void);
+extern u32 fn_1_12860(u32, u32);
+extern u32 fn_1_12F78(void *, u32);
+extern void DCFlushRange(void *, u32);
+
 typedef enum { GX_TF_I4, GX_TF_I8, GX_TF_IA4, GX_TF_IA8, GX_TF_RGB565, GX_TF_RGB5A3, GX_TF_RGBA8, GX_TF_CMPR=14 } GXTexFmt;
 typedef struct { u32 dummy[8]; } GXTexObj;
 typedef enum { GX_CLAMP, GX_REPEAT, GX_MIRROR, GX_MAX_TEXWRAPMODE } GXTexWrapMode;
-extern void GXInitTexObj(GXTexObj *,void *,u16,u16,GXTexFmt,GXTexWrapMode,GXTexWrapMode,u8);
+extern void GXInitTexObj(GXTexObj *, void *, u16, u16, GXTexFmt, GXTexWrapMode, GXTexWrapMode, u8);
 extern void GXInvalidateTexAll(void);
+
+s32 fn_1_47AD4(BitmapResource *arg0, s32 arg1, s32 arg2, s32 arg3);
+void fn_1_48214(s32 index, s32 enabled);
+void fn_1_48418(int index);
+void fn_1_484CC(s32 index);
+void *fn_1_48730(u32 value);
+void fn_1_4877C(void);
+
+/* fzgx:begin fn_1_47AD4 */
 typedef struct {
  u32 unk_0;
  u32 unk_4[1];
@@ -86,7 +62,8 @@ typedef struct {
 } Obj_1_47AD4_Arg0;
 typedef struct { u32 unk_0; u8 pad_4[0x58]; } Sig_1_47AD4_Info;
 typedef struct { u32 unk_0; u32 unk_4; u16 unk_8; u16 unk_A; } Tex_1_47AD4_Entry;
-s32 fn_1_47AD4(Obj_1_47AD4_Arg0 *arg0,s32 arg1,s32 arg2,s32 arg3) {
+s32 fn_1_47AD4(BitmapResource *arg0_bmp,s32 arg1,s32 arg2,s32 arg3) {
+ Obj_1_47AD4_Arg0 *arg0 = (Obj_1_47AD4_Arg0 *)arg0_bmp;
  Tex_1_47AD4_Entry *entry;
  Sig_1_47AD4_Info info;
  u32 dst;
@@ -107,7 +84,7 @@ s32 fn_1_47AD4(Obj_1_47AD4_Arg0 *arg0,s32 arg1,s32 arg2,s32 arg3) {
  if(arg1==0) *(&lbl_1_data_6CA0.unk_0+arg1*3)=lbl_801A6410;
  handle=*(&lbl_1_data_6CA0.unk_0+arg1*3);
  len=(s32)strlen(name);
- if(len>=3 && (len += (u32)name, strncmp((const char *)len-3,(const char *)&".lz",3)==0)) {
+ if(len>=3 && (len += (u32)name, strncmp((const char *)len-3,lbl_1_data_1A364,3)==0)) {
   if(fn_1_458A0(&info,lbl_1_bss_3E000,0x20,0)<0) return 0;
   sizeA=(__lwbrx(lbl_1_bss_3E000,0)+0x27)&~0x1F;
   sizeB=(__lwbrx(lbl_1_bss_3E000,4)+0x1F)&~0x1F;
@@ -116,7 +93,7 @@ s32 fn_1_47AD4(Obj_1_47AD4_Arg0 *arg0,s32 arg1,s32 arg2,s32 arg3) {
     arena=OSGetArenaHi();
     dst=OSAllocFromArenaLo(sizeB+0x10,0x20);
     tmp=OSAllocFromArenaHi(sizeA,0x20);
-   } else dst=(u32)fn_1_45D0(handle,sizeB+0x10,lbl_1_data_1A368,0x12F);
+   } else dst=(u32)fn_1_45D0(handle,sizeB+0x10,(const unsigned char *)lbl_1_data_1A368,0x12F);
   } else dst=arg0->unk_20;
   hdr=(dst+0x2F)&~0x1F;
   if(arg2!=0) {
@@ -131,7 +108,7 @@ s32 fn_1_47AD4(Obj_1_47AD4_Arg0 *arg0,s32 arg1,s32 arg2,s32 arg3) {
   sizeC=(fn_1_45B2C(&info)+0x1F)&~0x1F;
   if(arg3!=0) {
    if(arg2!=0) dst=OSAllocFromArenaLo(sizeC+0x20,0x20);
-   else dst=(u32)fn_1_45D0(handle,sizeC+0x20,lbl_1_data_1A368,0x156);
+   else dst=(u32)fn_1_45D0(handle,sizeC+0x20,(const unsigned char *)lbl_1_data_1A368,0x156);
   } else dst=arg0->unk_20;
   hdr=(dst+0x2F)&~0x1F;
   fn_1_458A0(&info,(void *)hdr,sizeC,0);
@@ -141,7 +118,7 @@ s32 fn_1_47AD4(Obj_1_47AD4_Arg0 *arg0,s32 arg1,s32 arg2,s32 arg3) {
  *(u32 *)dst=*(u32 *)hdr;
  *(u32 *)(dst+4)=hdr+4;
  if(arg2!=0) *(u32 *)(dst+0xC)=OSAllocFromArenaLo(*(u32 *)dst<<5,0x20);
- else *(u32 *)(dst+0xC)=(u32)fn_1_45D0(handle,*(u32 *)dst<<5,lbl_1_data_1A368,0x168);
+ else *(u32 *)(dst+0xC)=(u32)fn_1_45D0(handle,*(u32 *)dst<<5,(const unsigned char *)lbl_1_data_1A368,0x168);
  for(i=0;i<*(u32 *)dst;i++) {
   u32 flags;
   u8 *data;
@@ -161,10 +138,6 @@ s32 fn_1_47AD4(Obj_1_47AD4_Arg0 *arg0,s32 arg1,s32 arg2,s32 arg3) {
 /* fzgx:end fn_1_47AD4 */
 
 /* fzgx:begin fn_1_47E54 */
-extern void OSPanic(const unsigned char *, ...);
-extern void fn_1_465D0(char *, s32);
-extern u32 lbl_801A66B4;
-
 void fn_1_47E54(s32 index) {
     s32 valid;
 
@@ -180,12 +153,7 @@ void fn_1_47E54(s32 index) {
 }
 /* fzgx:end fn_1_47E54 */
 
-/* fzgx:begin fn_1_47EE4 noprologue */
-#include "rel/main_rel/bitmap.h"
-
-extern void OSPanic(const unsigned char *, ...);
-extern void fn_1_47AD4(BitmapResource *object, s32 arg1, s32 arg2, s32 arg3);
-
+/* fzgx:begin fn_1_47EE4 */
 void fn_1_47EE4(s32 index) {
     BitmapResource *object;
     s32 valid;
@@ -205,12 +173,7 @@ void fn_1_47EE4(s32 index) {
 }
 /* fzgx:end fn_1_47EE4 */
 
-/* fzgx:begin fn_1_47F74 noprologue */
-#include "rel/main_rel/bitmap.h"
-
-extern void OSPanic(const unsigned char *, ...);
-extern void fn_1_47AD4(BitmapResource *object, s32 arg1, s32 arg2, s32 arg3);
-
+/* fzgx:begin fn_1_47F74 */
 void fn_1_47F74(s32 index) {
     BitmapResource *object;
     s32 valid;
@@ -230,13 +193,7 @@ void fn_1_47F74(s32 index) {
 }
 /* fzgx:end fn_1_47F74 */
 
-/* fzgx:begin fn_1_48004 noprologue */
-#include "rel/main_rel/bitmap.h"
-
-extern void OSPanic(const u8 *, ...);
-extern void fn_1_47AD4(BitmapResource *, s32, s32, s32);
-extern void fn_1_48418(s32);
-
+/* fzgx:begin fn_1_48004 */
 void fn_1_48004(s32 index, s32 image) {
     BitmapResource *entry;
     s32 valid;
@@ -310,16 +267,7 @@ void fn_1_481E8(int arg0) {
 }
 /* fzgx:end fn_1_481E8 */
 
-/* fzgx:begin fn_1_48214 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bitmap.h"
-
-extern s32 lbl_801A6410;
-extern void fn_8006FDEC(void);
-extern void fn_1_46B4(u32 arg0, u32 arg1, char *arg2, s32 arg3);
-extern void fn_1_484CC(s32);
-
+/* fzgx:begin fn_1_48214 */
 typedef struct {
     u32 unk_0;
     u32 unk_4;
@@ -460,50 +408,13 @@ u32 fn_1_485A8(s32 index) {
 }
 /* fzgx:end fn_1_485A8 */
 
-/* fzgx:begin fn_1_485C8 noprologue */
-#include "types.h"
-
-#include "rel/main_rel/bitmap_resource.h"
-
-extern u32 lbl_1_bss_3E020;
-
+/* fzgx:begin fn_1_485C8 */
 void fn_1_485C8(u32 arg0) {
     lbl_1_bss_3E020 = (u32)lbl_1_data_FCD4[arg0].images;
 }
 /* fzgx:end fn_1_485C8 */
 
-/* fzgx:begin fn_1_485E8 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/load.h"
-
-extern u32 lbl_1_bss_3DCE4[17];
-extern void *fn_80006DFC(void *arg);
-extern void fn_1_D3214(void);
-extern s32 fn_8000700C(s32 arg0);
-extern void fn_1_3BDC(s32 arg0);
-extern void fn_8000659C(void);
-extern u32 lbl_1_bss_384C4;
-extern void fn_1_46A8C(u32 value);
-extern u32 lbl_1_bss_3DCD8;
-extern u32 lbl_1_bss_3DD28[179];
-extern void fn_1_47EE4(s32);
-extern void fn_1_485C8(s32);
-extern void fn_1_48140(s32 value);
-extern void fn_1_4DDC0(void);
-extern void fn_1_4F724(void);
-
-extern u8 lbl_1_bss_3E024[52];
-extern char lbl_1_data_1A3AC[5];
-extern void fn_80083DB0(void *arg0, void *arg1);
-extern u32 fn_80006CE4(u32);
-extern void *fn_80006DE8(void *);
-extern u32 lbl_801A6410;
-extern void *fn_1_4630(u32 arg0, u32 arg1, u8 *arg2, u32 arg3);
-extern void *fn_1_46B4(u32 arg0, void *arg1, u8 *arg2, u32 arg3);
-extern void strcat(void *arg0, void *arg1);
-extern void fn_1_48004(s32 value, s32 arg);
-
+/* fzgx:begin fn_1_485E8 */
 // Find the resource matching value, load its data, and return the destination buffer.
 void *fn_1_485E8(s32 index, s32 value) {
     s32 entry = 0;
@@ -595,47 +506,6 @@ void fn_1_48780(void) {
 /* fzgx:end fn_1_48780 */
 
 /* fzgx:begin fn_1_487EC */
-extern void fn_1_48214(int index, int enabled);
-extern void fn_1_4DDC0(void);
-extern void fn_1_4F724(void);
-extern s32 lbl_801A6410;
-extern void OSPanic(const unsigned char *, ...);
-extern int fn_1_45D0(int, int, const unsigned char *, int);
-extern int fn_80008F88(int, int);
-extern void fn_8006FDEC(void);
-extern void fn_80009064(u32 value);
-extern void fn_1_46B4(u32 arg0, u32 arg1, char *arg2, s32 arg3);
-extern void *fn_1_48730(u32 value);
-extern void fn_1_47AD4(BitmapResource *obj, u8 value, int arg2, int arg3);
-extern f32 lbl_1_rodata_10C0[5];
-extern f32 lbl_1_bss_3E05C;
-
-extern void *fn_1_48730(u32 value);
-
-extern void fn_1_48214(int index, int enabled);
-extern void fn_1_4DDC0(void);
-extern void fn_1_4F724(void);
-extern s32 lbl_801A6410;
-extern void OSPanic(const unsigned char *, ...);
-extern int fn_1_45D0(int, int, const unsigned char *, int);
-extern int fn_80008F88(int, int);
-extern void fn_8006FDEC(void);
-extern void fn_80009064(u32 value);
-extern void fn_1_46B4(u32 arg0, u32 arg1, char *arg2, s32 arg3);
-extern void *fn_1_48730(u32 value);
-extern void fn_1_47AD4(BitmapResource *obj, u8 value, int arg2, int arg3);
-extern f32 lbl_1_rodata_10C0[5];
-extern f32 lbl_1_bss_3E05C;
-
-extern void *fn_1_48730(u32 value);
-
-#ifndef GAME_MAIN_REL_BITMAP_TYPES_H
-#define GAME_MAIN_REL_BITMAP_TYPES_H
-
-#endif  // GAME_MAIN_REL_BITMAP_TYPES_H
-
-extern f32 lbl_1_bss_3E05C;
-
 extern s32 fn_1_48A0C(u32, u32, void *, u32);
 
 typedef struct {

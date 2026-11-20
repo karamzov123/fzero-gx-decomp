@@ -669,48 +669,6 @@ rel/main_rel/load/fn_1_479B0.c:
 rel/main_rel/load/fn_1_47A60.c:
 	.text       start:0x00047A60 end:0x00047AD4
 
-rel/main_rel/bitmap/fn_1_4811C.c:
-	.text       start:0x0004811C end:0x00048140
-
-rel/main_rel/bitmap/fn_1_48140.c:
-	.text       start:0x00048140 end:0x00048164
-
-rel/main_rel/bitmap/fn_1_48164.c:
-	.text       start:0x00048164 end:0x000481E8
-
-rel/main_rel/bitmap/fn_1_481E8.c:
-	.text       start:0x000481E8 end:0x00048214
-
-rel/main_rel/bitmap/fn_1_48418.c:
-	.text       start:0x00048418 end:0x000484CC
-
-rel/main_rel/bitmap/fn_1_484CC.c:
-	.text       start:0x000484CC end:0x000485A8
-
-rel/main_rel/bitmap/fn_1_485A8.c:
-	.text       start:0x000485A8 end:0x000485C8
-
-rel/main_rel/bitmap/fn_1_485E8.c:
-	.text       start:0x000485E8 end:0x00048690
-
-rel/main_rel/bitmap/fn_1_48690.c:
-	.text       start:0x00048690 end:0x000486C4
-
-rel/main_rel/bitmap/fn_1_486C4.c:
-	.text       start:0x000486C4 end:0x000486F8
-
-rel/main_rel/bitmap/fn_1_486F8.c:
-	.text       start:0x000486F8 end:0x00048730
-
-rel/main_rel/bitmap/fn_1_48730.c:
-	.text       start:0x00048730 end:0x0004877C
-
-rel/main_rel/bitmap/fn_1_4877C.c:
-	.text       start:0x0004877C end:0x00048780
-
-rel/main_rel/bitmap/fn_1_48780.c:
-	.text       start:0x00048780 end:0x000487EC
-
 rel/main_rel/font/fn_1_494CC.c:
 	.text       start:0x000494CC end:0x000494DC
 
@@ -4060,9 +4018,6 @@ rel/main_rel/car/fn_1_862A8.c:
 rel/main_rel/car/fn_1_867CC.c:
 	.text       start:0x000867CC end:0x000867F8 align:4
 
-rel/main_rel/bitmap/fn_1_485C8.c:
-	.text       start:0x000485C8 end:0x000485E8 align:4
-
 rel/main_rel/spline/fn_1_F9CA0.c:
 	.text       start:0x000F9CA0 end:0x000F9CD0 align:4
 
@@ -4853,17 +4808,11 @@ rel/main_rel/effect/fn_1_63518.c:
 rel/main_rel/bg_win/fn_1_15E5E4.c:
 	.text       start:0x0015E5E4 end:0x0015E688 align:4
 
-rel/main_rel/bitmap/fn_1_47EE4.c:
-	.text       start:0x00047EE4 end:0x00047F74 align:4
-
 rel/main_rel/_prolog/fn_1_48E8.c:
 	.text       start:0x000048E8 end:0x00004928 align:4
 
 rel/main_rel/camera/fn_1_681C.c:
 	.text       start:0x0000681C end:0x00006898 align:4
-
-rel/main_rel/bitmap/fn_1_47F74.c:
-	.text       start:0x00047F74 end:0x00048004 align:4
 
 rel/main_rel/archive/fn_1_12F028.c:
 	.text       start:0x0012F028 end:0x0012F10C align:4
@@ -4903,9 +4852,6 @@ rel/main_rel/stcoli/fn_1_250F8.c:
 
 rel/main_rel/font/fn_1_519FC.c:
 	.text       start:0x000519FC end:0x00051AC0 align:4
-
-rel/main_rel/bitmap/fn_1_48004.c:
-	.text       start:0x00048004 end:0x0004811C align:4
 
 rel/main_rel/replay/fn_1_F444C.c:
 	.text       start:0x000F444C end:0x000F453C align:4
@@ -5712,9 +5658,6 @@ rel/main_rel/font/fn_1_55EA0.c:
 rel/main_rel/ranking/fn_1_157070.c:
 	.text       start:0x00157070 end:0x00157200 align:4
 
-rel/main_rel/bitmap/fn_1_47E54.c:
-	.text       start:0x00047E54 end:0x00047EE4 align:4
-
 rel/main_rel/ranking/fn_1_156F54.c:
 	.text       start:0x00156F54 end:0x00157070 align:4
 
@@ -5767,9 +5710,6 @@ rel/main_rel/background/fn_1_9F4B4.c:
 
 rel/main_rel/archive/fn_1_12C5E4.c:
 	.text       start:0x0012C5E4 end:0x0012C6BC align:4
-
-rel/main_rel/bitmap/fn_1_48214.c:
-	.text       start:0x00048214 end:0x00048418 align:4
 
 rel/main_rel/effect/fn_1_5D500.c:
 	.text       start:0x0005D500 end:0x0005D718 align:4
@@ -5956,7 +5896,7 @@ rel/main_rel/stcoli/fn_1_2E268.c:
 	.text       start:0x0002E268 end:0x0002E3B4 align:4
 
 rel/main_rel/bitmap/fn_1_47AD4.c:
-	.text       start:0x00047AD4 end:0x00047E54 align:4
+	.text       start:0x00047AD4 end:0x000487EC align:4
 
 rel/main_rel/spline/fn_1_F83F0.c:
 	.text       start:0x000F83F0 end:0x000F8580 align:4
