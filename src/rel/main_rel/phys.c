@@ -979,8 +979,7 @@ void fn_1_E252C(u32 arg0, u32 arg1, Sig_fn_1_E1E9C_fn_1_E1E9C_PhysObj * arg2) {
 }
 /* fzgx:end fn_1_E252C */
 
-/* fzgx:begin fn_1_E2AE8 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_E2AE8 */
 #include "psvec.h"
 
 typedef struct {
@@ -1028,14 +1027,12 @@ typedef struct {
     Arr80 pa;
 } PoolType;
 
-extern PoolType lbl_1_rodata_6780;
 extern s16 fn_1_E5430(s16);
 extern Obj *fn_1_E54A8(s16, s16);
 extern u8 *fn_1_14F04(void);
 extern u32 fn_1_20A5C(void *, void *);
 extern void fn_1_17920(u32, u32, f32);
 extern s16 fn_1_7B054(void);
-extern void fn_80008BA8(void *, void *, u32);
 extern f32 lbl_8006D668(void *);
 
 static inline f32 fn_1_E2AE8_read_pointer(PoolType * owner) { return owner->f0; }
@@ -5889,12 +5886,7 @@ void fn_1_E95B4(void) {
 }
 /* fzgx:end fn_1_E95B4 */
 
-/* fzgx:begin fn_1_E9680 noprologue */
-#include "types.h"
-#include "rel/main_rel/phys.h"
-
-extern void fn_80008BEC(void* dst, int value, int size);
-
+/* fzgx:begin fn_1_E9680 */
 void fn_1_E9680(void) {
     u8* base = (u8*)&lbl_1_bss_7B180;
     u32* p0;

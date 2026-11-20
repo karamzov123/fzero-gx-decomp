@@ -376,13 +376,7 @@ s32 fn_1_12A7C4(void *arg0, void *arg1, void *arg2) {
 }
 /* fzgx:end fn_1_12A7C4 */
 
-/* fzgx:begin fn_1_12A8A4 noprologue */
-#include "types.h"
-#include "rel/main_rel/archive.h"
-
-extern u32 lbl_1_bss_897A0;
-extern u32 lbl_801A6410;
-
+/* fzgx:begin fn_1_12A8A4 */
 typedef struct ArchiveState {
     s32 count;
     s32 loaded;
@@ -390,13 +384,6 @@ typedef struct ArchiveState {
     u8 entries[1];
 } ArchiveState;
 
-extern s32 fn_8006A480(void *arg0, void *arg1, void *arg2);
-extern void *fn_8006A998(void *arg0);
-extern s32 fn_1_45730(void *arg0, void *arg1);
-extern s32 fn_1_45B2C(void *arg0);
-extern void *fn_1_45D0(u32 arg0, u32 arg1, void *arg2, u32 arg3);
-extern void fn_1_458A0(void *arg0, void *arg1, u32 arg2, u32 arg3);
-extern void fn_1_45850(void *arg0);
 extern void OSPanic(u8 *arg0, s32 arg1, u8 *arg2, ...);
 
 #pragma opt_propagation off
@@ -426,7 +413,7 @@ s32 fn_1_12A8A4(u32 arg0, void *arg1) {
         if (fn_1_45730((void *)arg0, info) != 0) {
             s32 aligned;
             aligned = (fn_1_45B2C(info) + 0x1F) & ~0x1F;
-            *(void **)arg1 = fn_1_45D0(lbl_801A6410, aligned,
+            *(void **)arg1 = fn_1_45D0((*(u32 *)&lbl_801A6410), aligned,
                                        lbl_1_data_40608, 0x188);
             fn_1_458A0(info, *(void **)arg1, aligned, 0);
             fn_1_45850(info);
@@ -440,13 +427,7 @@ s32 fn_1_12A8A4(u32 arg0, void *arg1) {
 #pragma opt_propagation reset
 /* fzgx:end fn_1_12A8A4 */
 
-/* fzgx:begin fn_1_12A9BC noprologue */
-#include "types.h"
-#include "rel/main_rel/archive.h"
-
-extern u32 lbl_1_bss_897A0;
-extern u32 lbl_801A6410;
-
+/* fzgx:begin fn_1_12A9BC */
 typedef struct ArchiveState {
     s32 count;
     s32 loaded;
@@ -454,13 +435,6 @@ typedef struct ArchiveState {
     u8 entries[1];
 } ArchiveState;
 
-extern s32 fn_8006A480(void *arg0, void *arg1, void *arg2);
-extern void *fn_8006A998(void *arg0);
-extern s32 fn_1_45730(void *arg0, void *arg1);
-extern s32 fn_1_45B2C(void *arg0);
-extern void *fn_1_45D0(u32 arg0, u32 arg1, void *arg2, u32 arg3);
-extern void fn_1_458A0(void *arg0, void *arg1, u32 arg2, u32 arg3);
-extern void fn_1_45850(void *arg0);
 
 #pragma opt_propagation off
 s32 fn_1_12A9BC(void *arg0, void *arg1) {
@@ -491,7 +465,7 @@ s32 fn_1_12A9BC(void *arg0, void *arg1) {
 {
     s32 aligned;
             aligned = (fn_1_45B2C(info) + 0x1F) & ~0x1F;
-            *(void **)arg1 = fn_1_45D0(lbl_801A6410, aligned,
+            *(void **)arg1 = fn_1_45D0((*(u32 *)&lbl_801A6410), aligned,
                                        lbl_1_data_40608, 0x1AC);
             fn_1_458A0(info, *(void **)arg1, aligned, 0);
 }
@@ -969,9 +943,7 @@ void fn_1_12B3BC(FnObj *arg0, void *arg1, void *arg2, void *arg3,
 }
 /* fzgx:end fn_1_12B3BC */
 
-/* fzgx:begin fn_1_12B3F8 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_12B3F8 */
 struct fn_1_12B3F8_Arg5 {
     u32 unk_0;
 };
@@ -979,12 +951,6 @@ struct fn_1_12B3F8_lbl_1_bss_8B3A0 {
     u8 pad_0[0x94];
     u32 unk_94;
 };
-extern struct fn_1_12B3F8_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0;
-extern void * fn_1_435C(void *);
-extern void fn_1_426C(u32);
-extern u32 fn_1_12DAEC(u32, u32, u32, void *, u32, u32, u32);
-extern u32 fn_1_12C524(u32);
-extern void fn_1_12C000(void *, s16);
 
 
 void fn_1_12B3F8(void *arg0, void *arg1, void *arg2, u32 arg3, u32 arg4, s32 *arg5, s32 arg_sp0) {
@@ -995,16 +961,16 @@ void fn_1_12B3F8(void *arg0, void *arg1, void *arg2, u32 arg3, u32 arg4, s32 *ar
         fn_1_426C((u32) (*(s32 *)((u8 *)(arg5) + 0)));
         (*(s32 *)((u8 *)(arg5) + 0)) = -1;
     }
-    if (!(lbl_1_bss_8B3A0.unk_94 & 0x80000000)) {
+    if (!(((struct fn_1_12B3F8_lbl_1_bss_8B3A0 *)&lbl_1_bss_8B3A0)->unk_94 & 0x80000000)) {
         var_r30 = 4;
         fn_1_12DAEC(*(u32 *)((u8 *)(arg0) + 4), *(u32 *)((u8 *)(arg0) + 8), *(u32 *)((u8 *)(arg0) + 24), (void *)(arg1), arg3, arg4, *(u32 *)((u8 *)(arg0) + 52));
         fn_1_12C524(*(u32 *)((u8 *)(arg0) + 12));
-        if (lbl_1_bss_8B3A0.unk_94 & 0x20000000) {
+        if (((struct fn_1_12B3F8_lbl_1_bss_8B3A0 *)&lbl_1_bss_8B3A0)->unk_94 & 0x20000000) {
             var_r30 = 1;
-        } else if (lbl_1_bss_8B3A0.unk_94 & 0x40000) {
+        } else if (((struct fn_1_12B3F8_lbl_1_bss_8B3A0 *)&lbl_1_bss_8B3A0)->unk_94 & 0x40000) {
             var_r30 = 2;
         }
-        if (lbl_1_bss_8B3A0.unk_94 & 0x40000000) {
+        if (((struct fn_1_12B3F8_lbl_1_bss_8B3A0 *)&lbl_1_bss_8B3A0)->unk_94 & 0x40000000) {
             fn_1_12C000((void *)(*(void **)((u8 *)(arg0) + 36)), 4);
         } else {
             fn_1_12C000((void *)(*(void **)((u8 *)(arg0) + 36)), var_r30);
@@ -1055,64 +1021,16 @@ p->e[i].v[j] = fn_1_151BE8(p->e[i].b, k + j);
 }
 /* fzgx:end fn_1_12B4EC */
 
-/* fzgx:begin fn_1_12B5B4 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/archive.h"
-#include "dolphin/types.h"
-#include "rel/main_rel/archive.h"
-
+/* fzgx:begin fn_1_12B5B4 */
 extern void OSPanic(u8 *arg0, s32 arg1, u8 *arg2, ...);
-extern void fn_1_12A350(void *arg0, s32 arg1);
-extern s32 fn_8006A480(void *arg0, void *arg1, void *arg2);
-extern s32 fn_8006A998(void *arg0);
-extern void fn_8006A9AC(void *arg0);
-extern void fn_1_12AC28(void *arg0, s32 arg1, s32 arg2);
-extern void fn_1_12ADC8(void *arg0, void *arg1, s32 arg2, s32 arg3);
-extern void fn_1_12BB18(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4);
-extern void fn_1_8D168(void *arg);
-extern void fn_1_14DB48(void *arg0, void *arg1, u32 arg2);
-extern void fn_1_14DBCC(void *arg);
-extern u32 fn_1_95120(void *arg);
-extern const struct Table lbl_1_rodata_8230;
-extern u32 lbl_801A66A0;
-extern void fn_1_7B2E8(u8 value);
-extern void fn_1_13C1A0(void);
-extern void *fn_1_3F8C(void *table, void (*callback)(void), void *arg1, void *arg2);
-extern void fn_1_426C(s32 value);
-extern void fn_1_7B4C0(void);
-extern void fn_1_C2454(void);
-extern s32 fn_1_C24A4(void);
-extern u8 fn_1_B7C00(void);
 
-extern s32 lbl_1_bss_897A4;
 extern void *lbl_801A6410;
-extern void fn_1_46B4(void *arg0, void *arg1, unsigned char *arg2, s32 arg3);
 extern void OSPanic(u8 *arg0, s32 arg1, u8 *arg2, ...);
 
 extern void OSPanic(u8 *arg0, s32 arg1, u8 *arg2, ...);
-extern s32 lbl_1_bss_8CA44[10];
 
 extern void OSPanic(u8 *arg0, s32 arg1, u8 *arg2, ...);
-extern void fn_1_435C();
-extern s32 fn_1_45730(void *arg0, void *arg1);
-extern s32 fn_1_45B2C(void *arg0);
-extern void *fn_1_45D0(u32 arg0, u32 arg1, void *arg2, u32 arg3);
-extern void fn_1_458A0(void *arg0, void *arg1, u32 arg2, u32 arg3);
-extern void fn_1_45850(void *arg0);
-extern void fn_8006A9B4(void *arg0, void *arg1);
-extern void fn_80006E10(void *arg0);
-extern u32 fn_1_12DAEC(u32, u32, u32, void *, u32, u32, u32);
-extern u32 fn_1_12C524(u32);
-extern void fn_1_12C000(void *arg, s16 count);
-extern void fn_1_8CED0(void *arg, u16 a, u16 b);
-extern void fn_1_8D0A4(void *arg);
-extern s16 fn_1_12C930(s16 arg);
-extern u8 lbl_1_data_20D1C[180];
-extern u8 lbl_1_bss_8B4EC[128];
-extern void fn_80083DB0(void *arg0, char *arg1);
 extern void strcat(void *arg0, void *arg1);
-extern s32 fn_1_F89E4(u8 value);
 
 
 extern u8* fn_1_36AD0(void);

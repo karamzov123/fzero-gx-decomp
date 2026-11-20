@@ -71,14 +71,7 @@ void fn_1_15555C(void) {
 }
 /* fzgx:end fn_1_15555C */
 
-/* fzgx:begin fn_1_1555B0 noprologue */
-#include "types.h"
-#include "rel/main_rel/ranking.h"
-
-extern void fn_1_12EF80(s16 value, s16 *out_0, s16 *out_1);
-extern void fn_80008BA8(void *arg0, void *arg1, u32 size);
-extern void fn_80008BEC(void *dst, u32 value, u32 size);
-
+/* fzgx:begin fn_1_1555B0 */
 s32 fn_1_1555B0(s32 value) {
     u32 state = (u32)&lbl_1_bss_8EF20;
     s16 index_0;

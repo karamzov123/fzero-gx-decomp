@@ -1477,34 +1477,14 @@ void fn_1_7E9C4(void) {
 }
 /* fzgx:end fn_1_7E9C4 */
 
-/* fzgx:begin fn_1_7EAE8 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/car_test.h"
-
-extern void fn_1_5634C(u32 arg0);
-extern void fn_1_7ECB8(u32 arg0, u32 arg1, u32 arg2);
+/* fzgx:begin fn_1_7EAE8 */
 extern void *lbl_801A6410;
 extern const f64 lbl_1_rodata_3588;
-extern void fn_1_12AB38(const char *);
-extern void *fn_1_45D0(void *, s32, const char *, s32);
-extern void fn_80008BEC(void *, s32, s32);
-extern void fn_1_80F80(void *, u8, void *);
-extern void fn_1_1502BC(void *, void *, void *);
 
-extern void fn_80083DB0(void* arg0, u32 arg1);
-extern void fn_1_801F8(s16 arg0, void* arg1);
 extern const f32 lbl_1_rodata_33AC;
-extern void *fn_1_4630(void *arg0, u32 arg1, void *arg2, u32 arg3);
 extern const f32 lbl_1_rodata_33B0[84];
 extern void *memset(void *dst, int value, u32 size);
-extern void fn_1_46B4(void *arg0, void *arg1, u8 *arg2, s32 arg3);
-extern void fn_1_7F954(void *arg0, s32 arg1);
-extern void fn_1_49614(void);
 extern const f32 lbl_1_rodata_33A8;
-extern void fn_80071ED4(s32 arg0, f32 arg1, f32 arg2);
-extern void fn_80072014(void *arg0);
-extern void fn_800720B0(s32 arg0);
 
 // fn_1_7EAE8: main_rel .text:0x0007EAE8 size 0x24
 // Wrapper that calls fn_1_5634C with argument 0.
@@ -1988,102 +1968,42 @@ void fn_1_7ECB8(void * arg0, u32 arg1, u32 arg2, f32 arg3) {
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_7ECB8 */
 
-/* fzgx:begin fn_1_7F1E8 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/car_test.h"
-
-extern void fn_1_5634C(u32 arg0);
-extern void fn_1_7ECB8(u32 arg0, u32 arg1, u32 arg2);
+/* fzgx:begin fn_1_7F1E8 */
 extern void *lbl_801A6410;
 extern const f64 lbl_1_rodata_3588;
-extern void fn_1_12AB38(const char *);
-extern void *fn_1_45D0(void *, s32, const char *, s32);
-extern void fn_80008BEC(void *, s32, s32);
-extern void fn_1_80F80(void *, u8, void *);
-extern void fn_1_1502BC(void *, void *, void *);
 
-extern void fn_80083DB0(void* arg0, u32 arg1);
-extern void fn_1_801F8(s16 arg0, void* arg1);
 extern const f32 lbl_1_rodata_33AC;
-extern void *fn_1_4630(void *arg0, u32 arg1, void *arg2, u32 arg3);
 extern const f32 lbl_1_rodata_33B0[84];
 extern void *memset(void *dst, int value, u32 size);
-extern void fn_1_46B4(void *arg0, void *arg1, u8 *arg2, s32 arg3);
-extern void fn_1_7F954(void *arg0, s32 arg1);
-extern void fn_1_49614(void);
 extern const f32 lbl_1_rodata_33A8;
-extern void fn_80071ED4(s32 arg0, f32 arg1, f32 arg2);
-extern void fn_80072014(void *arg0);
-extern void fn_800720B0(s32 arg0);
 
 void fn_1_7F1E8(u32 arg0, u32 arg1) {
     fn_1_7ECB8(arg0, arg1, 0x80000000); // fzgx-allow: A1 retail sentinel
 }
 /* fzgx:end fn_1_7F1E8 */
 
-/* fzgx:begin fn_1_7F20C noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/car_test.h"
-
-extern void fn_1_5634C(u32 arg0);
-extern void fn_1_7ECB8(u32 arg0, u32 arg1, u32 arg2);
+/* fzgx:begin fn_1_7F20C */
 extern void *lbl_801A6410;
 extern const f64 lbl_1_rodata_3588;
-extern void fn_1_12AB38(const char *);
-extern void *fn_1_45D0(void *, s32, const char *, s32);
-extern void fn_80008BEC(void *, s32, s32);
-extern void fn_1_80F80(void *, u8, void *);
-extern void fn_1_1502BC(void *, void *, void *);
 
-extern void fn_80083DB0(void* arg0, u32 arg1);
-extern void fn_1_801F8(s16 arg0, void* arg1);
 extern const f32 lbl_1_rodata_33AC;
-extern void *fn_1_4630(void *arg0, u32 arg1, void *arg2, u32 arg3);
 extern const f32 lbl_1_rodata_33B0[84];
 extern void *memset(void *dst, int value, u32 size);
-extern void fn_1_46B4(void *arg0, void *arg1, u8 *arg2, s32 arg3);
-extern void fn_1_7F954(void *arg0, s32 arg1);
-extern void fn_1_49614(void);
 extern const f32 lbl_1_rodata_33A8;
-extern void fn_80071ED4(s32 arg0, f32 arg1, f32 arg2);
-extern void fn_80072014(void *arg0);
-extern void fn_800720B0(s32 arg0);
 
 void fn_1_7F20C(u32 arg0, u32 arg1) {
     fn_1_7ECB8(arg0, arg1, 0x40000000); // fzgx-allow: A1 retail sentinel
 }
 /* fzgx:end fn_1_7F20C */
 
-/* fzgx:begin fn_1_7F230 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/car_test.h"
-
-extern void fn_1_5634C(u32 arg0);
-extern void fn_1_7ECB8(u32 arg0, u32 arg1, u32 arg2);
+/* fzgx:begin fn_1_7F230 */
 extern void *lbl_801A6410;
 extern const f64 lbl_1_rodata_3588;
-extern void fn_1_12AB38(const char *);
-extern void *fn_1_45D0(void *, s32, const char *, s32);
-extern void fn_80008BEC(void *, s32, s32);
-extern void fn_1_80F80(void *, u8, void *);
-extern void fn_1_1502BC(void *, void *, void *);
 
-extern void fn_80083DB0(void* arg0, u32 arg1);
-extern void fn_1_801F8(s16 arg0, void* arg1);
 extern const f32 lbl_1_rodata_33AC;
-extern void *fn_1_4630(void *arg0, u32 arg1, void *arg2, u32 arg3);
 extern const f32 lbl_1_rodata_33B0[84];
 extern void *memset(void *dst, int value, u32 size);
-extern void fn_1_46B4(void *arg0, void *arg1, u8 *arg2, s32 arg3);
-extern void fn_1_7F954(void *arg0, s32 arg1);
-extern void fn_1_49614(void);
 extern const f32 lbl_1_rodata_33A8;
-extern void fn_80071ED4(s32 arg0, f32 arg1, f32 arg2);
-extern void fn_80072014(void *arg0);
-extern void fn_800720B0(s32 arg0);
 
 void fn_1_7F230(u32 arg0, u32 arg1) {
     fn_1_7ECB8(arg0, arg1, 0);

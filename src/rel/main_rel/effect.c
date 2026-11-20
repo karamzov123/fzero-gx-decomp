@@ -358,10 +358,7 @@ void fn_1_58854(void) {
 }
 /* fzgx:end fn_1_58854 */
 
-/* fzgx:begin fn_1_58994 noprologue */
-#include "types.h"
-#include "rel/main_rel/effect.h"
-
+/* fzgx:begin fn_1_58994 */
 typedef struct AvlineVec3 {
     u32 unk_00;
     u32 unk_04;
@@ -423,13 +420,10 @@ typedef struct Effect_63518 {
     u16 unkb0;
 } Effect_63518;
 
-extern void fn_1_3BDC(s32);
 extern s32 fn_1_3F164(void);
 extern void fn_1_9F8FC(void);
 extern void fn_1_5819C(void);
-extern u32 fn_1_58C4(void);
 extern u32 camera_forward_status(void);
-extern u32 fn_1_3C18(s32);
 extern void fn_1_63518(Effect_63518 *);
 
 static inline AvlineHandler *fn_1_58994_array_read(AvlineHandler *array) { return array; }
@@ -1037,27 +1031,7 @@ void fn_1_59514(void *obj) {
 }
 /* fzgx:end fn_1_59514 */
 
-/* fzgx:begin fn_1_5962C noprologue */
-#include "dolphin/types.h"
-
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 60.0f;
-    s = 0.10000000149011612f;
-    s = 32767.0f;
-    s = 0.05000000074505806f;
-    d = 0.07;
-    s = 20000.0f;
-    s = 0.0f;
-    d = 4503599627370496.0;
-    s = 1.0f;
-    s = -0.029999999329447746f;
-    d = 15.0;
-    d = 4503601774854144.0;
-}
-#pragma section code_type ".text"
-
+/* fzgx:begin fn_1_5962C */
 typedef struct {
     f32 x;
     f32 y;
@@ -2954,8 +2928,7 @@ void fn_1_5AC48(fn_1_5AC48_Effect *effect) {
 }
 /* fzgx:end fn_1_5AC48 */
 
-/* fzgx:begin fn_1_5AF28 noprologue */
-#include "dolphin/types.h"
+/* fzgx:begin fn_1_5AF28 */
 #include "psvec.h"
 
 typedef struct {
@@ -2986,19 +2959,7 @@ typedef struct {
     u32 unk_3C;
 } SelfObj;
 
-extern const f32 lbl_1_rodata_2954[2];
-extern const f32 lbl_1_rodata_2978[4];
-extern void lbl_8006D9D8(void *);
-extern void lbl_8006D7B0(void);
-extern void lbl_8006E14C(f32);
-extern s32 fn_1_54E34(Vec3 *, f32);
-extern f32 lbl_8006D0B4(f32);
-extern void lbl_8006DB74(void *);
 extern void lbl_8006D848(f32);
-extern void lbl_8006DFC4(void *);
-extern void fn_1_5621C(f32, f32, f32, f32);
-extern void fn_1_56000(u8, u8, u8);
-extern void fn_1_557C4(void *);
 
 static inline f32 fn_1_5AF28_read_pointer(SelfObj * owner) { return owner->f28; }
 void fn_1_5AF28(SelfObj *arg0) {
@@ -3021,15 +2982,15 @@ void fn_1_5AF28(SelfObj *arg0) {
         fzgx_live_ = dir.z;
         len += fzgx_live_ * fzgx_live_;
         len = lbl_8006D0B4(len);
-        if (len > fn_1_5AF28_read_pointer(arg0) + lbl_1_rodata_2954[0]) {
+        if (len > fn_1_5AF28_read_pointer(arg0) + ((const f32 *)&lbl_1_rodata_2954)[0]) {
             lbl_8006DB74(&pos);
             lbl_8006D848((len - arg0->f28) / len);
             lbl_8006DFC4(&pos);
         }
-        fn_1_5621C(arg0->f1C, arg0->f20, arg0->f24, lbl_1_rodata_2978[0]);
+        fn_1_5621C(arg0->f1C, arg0->f20, arg0->f24, ((const f32 *)&lbl_1_rodata_2978)[0]);
         fn_1_56000(1, 3, 0);
         fn_1_557C4(r);
-        fn_1_5621C(lbl_1_rodata_2978[0], lbl_1_rodata_2978[0], lbl_1_rodata_2978[0], lbl_1_rodata_2978[0]);
+        fn_1_5621C(((const f32 *)&lbl_1_rodata_2978)[0], ((const f32 *)&lbl_1_rodata_2978)[0], ((const f32 *)&lbl_1_rodata_2978)[0], ((const f32 *)&lbl_1_rodata_2978)[0]);
         fn_1_56000(1, 3, 1);
     }
 }

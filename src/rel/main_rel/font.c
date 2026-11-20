@@ -226,11 +226,7 @@ extern const f64 lbl_1_rodata_2758;
 extern void lbl_8006D784(void *arg);
 extern void fn_1_55D6C(void);
 
-/* fzgx:begin fn_1_48C28 noprologue */
-#include "types.h"
-#include "rel/main_rel/font.h"
-
-extern u8 lbl_1_bss_3F60C[];
+/* fzgx:begin fn_1_48C28 */
 extern u8 lbl_1_bss_3E060[];
 extern u32 lbl_801A6410;
 extern void fn_1_46B4(u32, u32, void *, int);
@@ -2670,9 +2666,7 @@ void fn_1_4B8CC(void) {
 }
 /* fzgx:end fn_1_4B8CC */
 
-/* fzgx:begin fn_1_4B8DC noprologue */
-#include "rel/main_rel/font.h"
-
+/* fzgx:begin fn_1_4B8DC */
 extern void fn_1_4B8BC(void);
 extern u32 OSGetArenaHi(void);
 extern s32 fn_80006B70(void *, void *);
@@ -2754,9 +2748,7 @@ void fn_1_4B8DC(void)
 }
 /* fzgx:end fn_1_4B8DC */
 
-/* fzgx:begin fn_1_4BA24 noprologue */
-#include "rel/main_rel/font.h"
-
+/* fzgx:begin fn_1_4BA24 */
 extern u8 lbl_1_bss_4BA80[0xB0];
 extern void fn_1_4B8CC(void);
 extern void OSReport(const char *, ...);
@@ -2832,10 +2824,7 @@ void fn_1_4BA24(u32 arg0, s32 arg1, void *arg2)
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_4BA24 */
 
-/* fzgx:begin fn_1_4BB5C noprologue */
-#include "types.h"
-#include "rel/main_rel/font.h"
-
+/* fzgx:begin fn_1_4BB5C */
 /* one 0x38-byte record of the lbl_1_data_1AEA8 font table */
 typedef struct FontEntry {
     s32 unk_0;
@@ -2913,9 +2902,7 @@ void fn_1_4BD48(void) {
 }
 /* fzgx:end fn_1_4BD48 */
 
-/* fzgx:begin fn_1_4BD4C noprologue */
-#include "rel/main_rel/font.h"
-
+/* fzgx:begin fn_1_4BD4C */
 typedef struct FontElement {
     s32 unk_0;
     u8 unk_4;
@@ -10429,15 +10416,9 @@ void fn_1_55D6C(Fn1_55D6CObject *value) {
 }
 /* fzgx:end fn_1_55D6C */
 
-/* fzgx:begin fn_1_55EA0 noprologue */
-#include "types.h"
-#include "rel/main_rel/font.h"
-
+/* fzgx:begin fn_1_55EA0 */
 extern void lbl_8006DBAC(void *value);
-extern void fn_80072558(void);
-extern void fn_800749B0(s32 index, void *value);
 extern void fn_800781B8(void *value);
-extern u8 lbl_801A66CC[];
 
 typedef struct {
     u8 unk_00[8];

@@ -22982,13 +22982,7 @@ void fn_1_B9C38(s32 index) {
 }
 /* fzgx:end fn_1_B9C38 */
 
-/* fzgx:begin fn_1_B9CCC noprologue */
-#include "types.h"
-#include "rel/main_rel/memcard.h"
-
-extern void fn_80008BEC(void *dst, s32 value, u32 size);
-extern void fn_1_AA6D8(s32 arg0, u8 slot, void *data);
-
+/* fzgx:begin fn_1_B9CCC */
 typedef struct {
     u8 pad_0[0x1];
     s8 unk_1;

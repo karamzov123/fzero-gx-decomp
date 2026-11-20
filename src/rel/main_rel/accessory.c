@@ -375,12 +375,9 @@ void fn_1_108920(u32 accessory) {
 }
 /* fzgx:end fn_1_108920 */
 
-/* fzgx:begin fn_1_108A90 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_108A90 */
 #include "psvec.h"
 
-extern void lbl_8006DBAC(void *);
-extern void lbl_8006E1B0(void *, void *);
 extern f32 lbl_8006D0E8(f32);
 
 typedef struct {
@@ -2386,9 +2383,7 @@ void fn_1_10B7D8(void *accessory) {
 }
 /* fzgx:end fn_1_10B7D8 */
 
-/* fzgx:begin fn_1_10B800 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_10B800 */
 typedef struct { f32 x, y, z; } Vec3;
 
 struct PoolObj {
@@ -2434,9 +2429,6 @@ struct Accessory {
     struct Rec *recs;
 };
 
-extern void *fn_80077B14(void *);
-extern void lbl_8006DBAC(void *);
-extern void lbl_8006E1B0(void *, void *);
 extern void lbl_8006D758(void);
 extern f32 fn_1_1289F0(void *, void *, void *);
 extern void mathutil_mtxA_rotate_y(s16);
@@ -23566,14 +23558,10 @@ f32 fn_1_1289BC(const Point1024C4 *a, const Point1024C4 *b) {
 }
 /* fzgx:end fn_1_1289BC */
 
-/* fzgx:begin fn_1_1289F0 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/accessory.h"
+/* fzgx:begin fn_1_1289F0 */
 #include "psvec.h"
 
 #pragma fp_contract on
-extern f32 lbl_1_rodata_7B58[40];
 extern f32 lbl_8006D6FC(void *, void *);
 extern f32 lbl_8006D0B4(f32);
 

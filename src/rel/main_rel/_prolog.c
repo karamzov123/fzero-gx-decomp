@@ -547,19 +547,13 @@ void fn_1_6D4(struct fn_1_6D4_Data *data) {
 }
 /* fzgx:end fn_1_6D4 */
 
-/* fzgx:begin fn_1_798 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_798 */
 struct fn_1_798_slot {
     u8 unk_0[8];
     s32 value_8;
     u8 unk_C[0x3C];
 };
 
-extern u8 lbl_1_bss_8E6B0[308];
-extern void fn_1_14FCE4(void *data, s32 value);
-extern struct fn_1_798_slot lbl_1_bss_8E7E4[];
-extern void fn_80008BEC(void *data, u32 value, u32 size);
 
 void fn_1_798(void) {
     s32 value;
@@ -569,7 +563,7 @@ void fn_1_798(void) {
     fn_80008BEC(lbl_1_bss_8E7E4, 0, 0x5a4);
     value = -1;
     for (index = 0; index < 0x14; index++) {
-        lbl_1_bss_8E7E4[index].value_8 = value;
+        ((struct fn_1_798_slot *)&lbl_1_bss_8E7E4)[index].value_8 = value;
     }
 }
 /* fzgx:end fn_1_798 */
@@ -897,9 +891,7 @@ void fn_1_E78(void) {
 }
 /* fzgx:end fn_1_E78 */
 
-/* fzgx:begin fn_1_E9C noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_E9C */
 struct fn_1_E9C_lbl_1_bss_960 {
     u16 unk_0;
     u16 unk_2;
@@ -910,7 +902,6 @@ struct fn_1_E9C_lbl_1_bss_960 {
     u32 unk_C;
 };
 
-extern struct fn_1_E9C_lbl_1_bss_960 lbl_1_bss_960;
 
 #pragma peephole off
 #pragma opt_propagation off

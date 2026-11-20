@@ -7824,12 +7824,8 @@ void fn_1_34E08(void) {
 }
 /* fzgx:end fn_1_34E08 */
 
-/* fzgx:begin fn_1_34F38 noprologue */
-#include "rel/main_rel/game.h"
-
-extern f32 lbl_1_rodata_BD8;
+/* fzgx:begin fn_1_34F38 */
 extern u8 lbl_1_bss_6F1E4[85];
-extern Obj_1_bss_3C30 lbl_1_bss_3C30;
 extern u32 fn_8004CD70(int arg0, void* arg1, const char* arg2);
 extern void fn_1_A2E24(int arg0, u32 arg1, int arg2);
 extern void fn_80067344(int arg0, int arg1, u32 arg2, int arg3);
@@ -7888,7 +7884,7 @@ void fn_1_34F38(InitObj* obj) {
 for (fzgx_loop_i_1335 = 0; fzgx_loop_i_1335 < 4; fzgx_loop_i_1335++) {
         s32 id = fzgx_loop_i_1335;
         i.value = id;
-        if (lbl_1_bss_3C30.unk_8 > i.value) {
+        if (((Obj_1_bss_3C30 *)&lbl_1_bss_3C30)->unk_8 > i.value) {
             Obj_1_86254* value = (Obj_1_86254*)fn_1_86254();
             if (value->unk_8 <= *(f32*)(rodata + 0x25c)) {
                 *(u16*)(((8) + (state.value))) = 4;
@@ -25225,9 +25221,7 @@ u8 fn_1_3F264(u32 index) {
 }
 /* fzgx:end fn_1_3F264 */
 
-/* fzgx:begin fn_1_3F2A0 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_3F2A0 */
 typedef struct {
     u32 unk_0;
     u16 unk_4;
@@ -25256,11 +25250,10 @@ typedef struct {
     u32 score[0xC];
 } fn_1_3F2A0_obj;
 
-extern fn_1_3F2A0_obj lbl_1_bss_3C30;
 
 void fn_1_3F2A0(void)
 {
-    s32 lim = !lbl_1_bss_3C30.unk_5 ? (s32)lbl_1_bss_3C30.unk_8 : (s32)lbl_1_bss_3C30.unk_9;
+    s32 lim = !((fn_1_3F2A0_obj *)&lbl_1_bss_3C30)->unk_5 ? (s32)((fn_1_3F2A0_obj *)&lbl_1_bss_3C30)->unk_8 : (s32)((fn_1_3F2A0_obj *)&lbl_1_bss_3C30)->unk_9;
     u8 mode;
     s32 kid;
     s32 j;
@@ -25273,34 +25266,34 @@ void fn_1_3F2A0(void)
     fn_1_3F2A0_rec *p;
 
     for (j = 0; j < lim; i++, j++) {
-        if (!lbl_1_bss_3C30.unk_5) {
-            while (lbl_1_bss_3C30.ids[i] >= lim) {
+        if (!((fn_1_3F2A0_obj *)&lbl_1_bss_3C30)->unk_5) {
+            while (((fn_1_3F2A0_obj *)&lbl_1_bss_3C30)->ids[i] >= lim) {
                 i++;
             }
         }
-        id = lbl_1_bss_3C30.ids[i];
+        id = ((fn_1_3F2A0_obj *)&lbl_1_bss_3C30)->ids[i];
         cnt = 0;
-        p = &lbl_1_bss_3C30.rec[id];
-        if (!lbl_1_bss_3C30.unk_5) {
-            score = lbl_1_bss_3C30.score[id];
+        p = &((fn_1_3F2A0_obj *)&lbl_1_bss_3C30)->rec[id];
+        if (!((fn_1_3F2A0_obj *)&lbl_1_bss_3C30)->unk_5) {
+            score = ((fn_1_3F2A0_obj *)&lbl_1_bss_3C30)->score[id];
             p->unk_4 = score;
-            p->unk_9E = lbl_1_bss_3C30.pair[id];
+            p->unk_9E = ((fn_1_3F2A0_obj *)&lbl_1_bss_3C30)->pair[id];
         } else {
             score = p->unk_4;
         }
-        mode = lbl_1_bss_3C30.unk_5;
-        for (k = 0; k < lbl_1_bss_3C30.unk_9; k++) {
+        mode = ((fn_1_3F2A0_obj *)&lbl_1_bss_3C30)->unk_5;
+        for (k = 0; k < ((fn_1_3F2A0_obj *)&lbl_1_bss_3C30)->unk_9; k++) {
             if (i == k) {
                 continue;
             }
-            kid = lbl_1_bss_3C30.ids[k];
+            kid = ((fn_1_3F2A0_obj *)&lbl_1_bss_3C30)->ids[k];
             if (!mode) {
                 if (kid >= lim) {
                     continue;
                 }
-                other = lbl_1_bss_3C30.score[kid];
+                other = ((fn_1_3F2A0_obj *)&lbl_1_bss_3C30)->score[kid];
             } else {
-                other = lbl_1_bss_3C30.rec[kid].unk_4;
+                other = ((fn_1_3F2A0_obj *)&lbl_1_bss_3C30)->rec[kid].unk_4;
             }
             if (score < other) {
                 cnt++;
@@ -25308,9 +25301,9 @@ void fn_1_3F2A0(void)
                 cnt++;
             }
         }
-        lbl_1_bss_3C30.ord[cnt] = id;
+        ((fn_1_3F2A0_obj *)&lbl_1_bss_3C30)->ord[cnt] = id;
         p->unk_8 = cnt;
-        if (!lbl_1_bss_3C30.unk_A7 && lbl_1_bss_3C30.unk_5) {
+        if (!((fn_1_3F2A0_obj *)&lbl_1_bss_3C30)->unk_A7 && ((fn_1_3F2A0_obj *)&lbl_1_bss_3C30)->unk_5) {
             p->unk_83 = cnt;
         }
     }
@@ -27563,9 +27556,7 @@ update_state:
 }
 /* fzgx:end fn_1_40710 */
 
-/* fzgx:begin fn_1_408E8 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_408E8 */
 struct fn_1_408E8_Copy88 { u32 a[22]; };
 struct fn_1_408E8_lbl_1_rodata_BD8 {
     u8 pad_0[0x4];
@@ -27586,7 +27577,6 @@ struct fn_1_408E8_lbl_1_rodata_BD8 {
     u32 unk_33C;
     f32 unk_340;
 };
-extern struct fn_1_408E8_lbl_1_rodata_BD8 lbl_1_rodata_BD8;
 extern struct fn_1_408E8_Copy88 lbl_1_rodata_26F8;
 extern u32 fn_1_403D4(void *);
 extern u32 fn_1_50A90(void *, s32, s32, s32, s32);
@@ -27843,15 +27833,7 @@ void fn_1_40D44(void) {
 }
 /* fzgx:end fn_1_40D44 */
 
-/* fzgx:begin fn_1_40E08 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/game.h"
-
-extern void fn_1_3F8C(void *arg0, void (*arg1)(void), Obj_1_bss_5138 *arg2, u32 arg3);
-extern u32 lbl_801A63C0;
-extern void fn_1_40BE4(void);
-
+/* fzgx:begin fn_1_40E08 */
 // Initializes the random-selection bounds and schedules the next callback.
 void fn_1_40E08(u32 arg0) {
     u32 value;
@@ -27868,8 +27850,8 @@ void fn_1_40E08(u32 arg0) {
         lbl_1_bss_38210 = 5;
     }
 
-    value = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
-    lbl_801A63C0 = value;
+    value = (*(u32 *)&lbl_801A63C0) * 0x676A4B6B + 0x33CB;
+    (*(u32 *)&lbl_801A63C0) = value;
 
     half = lbl_1_bss_38210 >> 1;
     max = lbl_1_bss_38210 - 5;

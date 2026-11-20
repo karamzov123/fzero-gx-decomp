@@ -204,9 +204,7 @@ u8 fn_1_1350C(void *arg0, u8 *arg1) {
 }
 /* fzgx:end fn_1_1350C */
 
-/* fzgx:begin fn_1_1361C noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_1361C */
 extern u32 fn_1_45B2C(void *p);
 extern void fn_1_45964(void *a, void *buf, int n, u32 off, void *cb);
 extern void fn_1_1383C(void);

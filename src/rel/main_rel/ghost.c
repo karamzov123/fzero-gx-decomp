@@ -4362,17 +4362,13 @@ void fn_1_EFA18(void) {
 }
 /* fzgx:end fn_1_EFA18 */
 
-/* fzgx:begin fn_1_EFA1C noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
+/* fzgx:begin fn_1_EFA1C */
 #include "rel/main_rel/phys.h"
 
 extern void lbl_8006DCA4(void *base, void *arg);
 extern void fn_1_A71AC(void);
 extern void fn_8006F828(void *base, f32 *out);
 extern void fn_1_E4A38(void *base, s32 x, s32 y, void *arg);
-extern void fn_80008BEC(void *dst, void *value, u32 size);
-extern void fn_80008BA8(void *dst, void *value, u32 size);
 extern f32 lbl_1_rodata_67A8;
 extern u32 lbl_1_rodata_6A8C[3];
 extern u32 fn_80083970(const u8* left, const char* right);
@@ -4393,20 +4389,11 @@ extern void fn_1_8D1C8(void *object, void (*callback)(void), int arg);
 extern u32 fn_1_3F8C0(void);
 extern u32 fn_80008E84(u32 value);
 extern u32 lbl_1_bss_7C94C[67];
-extern void fn_1_EE530(void);
-extern u8 lbl_1_bss_7ECB4[72];
 extern void fn_1_BC29C(u8 *);
-extern void fn_1_B9C0C(void);
-extern void fn_1_1596DC(s32);
-extern void fn_1_484CC(s32);
 
-extern void fn_80008BEC(void *dst, void *value, u32 size);
-extern void fn_80008BA8(void *dst, void *value, u32 size);
 
 extern f32 lbl_1_rodata_67A8;
 extern u32 lbl_1_rodata_6A8C[3];
-extern void fn_80008BA8(void *dst, void *value, u32 size);
-extern void fn_1_12EF80(s16 arg, s16 *out_group, s16 *out_entry);
 extern void fn_1_9C724(void);
 extern void fn_1_DD890(void *);
 extern void fn_1_9CC40(void);
@@ -6561,17 +6548,13 @@ u32 fn_1_F22D4(void) {
 }
 /* fzgx:end fn_1_F22D4 */
 
-/* fzgx:begin fn_1_F22E4 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
+/* fzgx:begin fn_1_F22E4 */
 #include "rel/main_rel/phys.h"
 
 extern void lbl_8006DCA4(void *base, void *arg);
 extern void fn_1_A71AC(void);
 extern void fn_8006F828(void *base, f32 *out);
 extern void fn_1_E4A38(void *base, s32 x, s32 y, void *arg);
-extern void fn_80008BEC(void *dst, void *value, u32 size);
-extern void fn_80008BA8(void *dst, void *value, u32 size);
 extern f32 lbl_1_rodata_67A8;
 extern u32 lbl_1_rodata_6A8C[3];
 extern u32 fn_80083970(const u8* left, const char* right);
@@ -6592,20 +6575,11 @@ extern void fn_1_8D1C8(void *object, void (*callback)(void), int arg);
 extern u32 fn_1_3F8C0(void);
 extern u32 fn_80008E84(u32 value);
 extern u32 lbl_1_bss_7C94C[67];
-extern void fn_1_EE530(void);
-extern u8 lbl_1_bss_7ECB4[72];
 extern void fn_1_BC29C(u8 *);
-extern void fn_1_B9C0C(void);
-extern void fn_1_1596DC(s32);
-extern void fn_1_484CC(s32);
 
-extern void fn_80008BEC(void *dst, void *value, u32 size);
-extern void fn_80008BA8(void *dst, void *value, u32 size);
 
 extern f32 lbl_1_rodata_67A8;
 extern u32 lbl_1_rodata_6A8C[3];
-extern void fn_80008BA8(void *dst, void *value, u32 size);
-extern void fn_1_12EF80(s16 arg, s16 *out_group, s16 *out_entry);
 extern void fn_1_9C724(void);
 extern void fn_1_DD890(void *);
 extern void fn_1_9CC40(void);
@@ -6622,17 +6596,13 @@ s16 fn_1_F22E4(s32 arg) {
 }
 /* fzgx:end fn_1_F22E4 */
 
-/* fzgx:begin fn_1_F2338 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
+/* fzgx:begin fn_1_F2338 */
 #include "rel/main_rel/phys.h"
 
 extern void lbl_8006DCA4(void *base, void *arg);
 extern void fn_1_A71AC(void);
 extern void fn_8006F828(void *base, f32 *out);
 extern void fn_1_E4A38(void *base, s32 x, s32 y, void *arg);
-extern void fn_80008BEC(void *dst, void *value, u32 size);
-extern void fn_80008BA8(void *dst, void *value, u32 size);
 extern f32 lbl_1_rodata_67A8;
 extern u32 lbl_1_rodata_6A8C[3];
 extern u32 fn_80083970(const u8* left, const char* right);
@@ -6653,27 +6623,15 @@ extern void fn_1_8D1C8(void *object, void (*callback)(void), int arg);
 extern u32 fn_1_3F8C0(void);
 extern u32 fn_80008E84(u32 value);
 extern u32 lbl_1_bss_7C94C[67];
-extern void fn_1_EE530(void);
-extern u8 lbl_1_bss_7ECB4[72];
 extern void fn_1_BC29C(u8 *);
-extern void fn_1_B9C0C(void);
-extern void fn_1_1596DC(s32);
-extern void fn_1_484CC(s32);
 
-extern void fn_80008BEC(void *dst, void *value, u32 size);
-extern void fn_80008BA8(void *dst, void *value, u32 size);
 
 extern f32 lbl_1_rodata_67A8;
 extern u32 lbl_1_rodata_6A8C[3];
-extern void fn_80008BA8(void *dst, void *value, u32 size);
-extern void fn_1_12EF80(s16 arg, s16 *out_group, s16 *out_entry);
 extern void fn_1_9C724(void);
 extern void fn_1_DD890(void *);
 extern void fn_1_9CC40(void);
 
-#include "types.h"
-
-extern void fn_1_12EF80(s16 value, s16 *arg1, s16 *arg2);
 
 
 
@@ -6933,17 +6891,13 @@ void fn_1_F23E8(void) {
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_1_F23E8 */
 
-/* fzgx:begin fn_1_F2740 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
+/* fzgx:begin fn_1_F2740 */
 #include "rel/main_rel/phys.h"
 
 extern void lbl_8006DCA4(void *base, void *arg);
 extern void fn_1_A71AC(void);
 extern void fn_8006F828(void *base, f32 *out);
 extern void fn_1_E4A38(void *base, s32 x, s32 y, void *arg);
-extern void fn_80008BEC(void *dst, void *value, u32 size);
-extern void fn_80008BA8(void *dst, void *value, u32 size);
 extern f32 lbl_1_rodata_67A8;
 extern u32 lbl_1_rodata_6A8C[3];
 extern u32 fn_80083970(const u8* left, const char* right);
@@ -6964,20 +6918,11 @@ extern void fn_1_8D1C8(void *object, void (*callback)(void), int arg);
 extern u32 fn_1_3F8C0(void);
 extern u32 fn_80008E84(u32 value);
 extern u32 lbl_1_bss_7C94C[67];
-extern void fn_1_EE530(void);
-extern u8 lbl_1_bss_7ECB4[72];
 extern void fn_1_BC29C(u8 *);
-extern void fn_1_B9C0C(void);
-extern void fn_1_1596DC(s32);
-extern void fn_1_484CC(s32);
 
-extern void fn_80008BEC(void *dst, void *value, u32 size);
-extern void fn_80008BA8(void *dst, void *value, u32 size);
 
 extern f32 lbl_1_rodata_67A8;
 extern u32 lbl_1_rodata_6A8C[3];
-extern void fn_80008BA8(void *dst, void *value, u32 size);
-extern void fn_1_12EF80(s16 arg, s16 *out_group, s16 *out_entry);
 extern void fn_1_9C724(void);
 extern void fn_1_DD890(void *);
 extern void fn_1_9CC40(void);

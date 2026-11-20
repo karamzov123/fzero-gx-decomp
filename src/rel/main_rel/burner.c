@@ -8073,29 +8073,22 @@ s32 fn_1_9CE1C(const char *arg0, s32 arg1) {
 }
 /* fzgx:end fn_1_9CE1C */
 
-/* fzgx:begin fn_1_9CF78 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
+/* fzgx:begin fn_1_9CF78 */
 #include "rel/main_rel/background.h"
 
 extern u32 lbl_1_bss_6EA78;
 extern u32 lbl_1_bss_6EA7C;
-extern u32 lbl_801A6410;
-extern void fn_1_46B4(u32, u32, void *, s32);
 extern const f32 lbl_1_rodata_41FC;
 extern u8 fn_1_86624(void);
 extern void *fn_1_14F04(void);
 extern f32 lbl_1_rodata_4244[7];
 extern void fn_1_17920(s32, s32, f32);
 extern void fn_1_85C58(s32, f32);
-extern void lbl_8006DB74(void *);
 
 extern void GXPeekZ(u32, u32, void *);
 extern void GXPokeAlphaRead(u32);
 extern void fn_8003432C(u32, u32, u32 *);
 
-extern s32 fn_8006FC1C(const char *, const char *);
-extern s32 fn_8006FC5C(const char *, const char *, s32);
 extern s32 strlen(const char *);
 
 typedef u32 (*FilterCallback)(u32, void *);

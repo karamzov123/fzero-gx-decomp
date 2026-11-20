@@ -38,24 +38,14 @@ void fn_1_DA34(void) {
 }
 /* fzgx:end fn_1_DA34 */
 
-/* fzgx:begin fn_1_DA6C noprologue */
-#include "types.h"
-#include "rel/main_rel/live_camera.h"
-
-extern s32 fn_1_4C10(void);
-extern s32 fn_1_40BB4(void);
-extern s32 fn_1_F2F34(void);
-extern u32 fn_1_F45A4(void);
-extern u32 fn_1_F4594(void);
+/* fzgx:begin fn_1_DA6C */
 extern void * fn_1_86254(int);
 extern s8 fn_1_86624(void);
-extern void fn_1_6DD0(u32);
 extern void fn_1_8A0C(u32);
 extern u32 fn_1_56B8(void);
 extern u32 fn_1_864E8(int);
 extern void camera_set_selected_value(u8);
 extern void camera_set_result(s16);
-extern void fn_1_5370(u32, u32);
 
 typedef struct {
     u8 pad_0[6];
@@ -189,20 +179,7 @@ void fn_1_DA6C(DA6CArg *arg0) {
 }
 /* fzgx:end fn_1_DA6C */
 
-/* fzgx:begin fn_1_DE14 noprologue */
-#include "types.h"
-#include "rel/main_rel/live_camera.h"
-
-extern s32 fn_1_4C10(void);
-extern s32 fn_1_40BB4(void);
-extern s32 fn_1_F2F34(void);
-extern u32 fn_1_F45A4(void);
-extern u32 fn_1_F4594(void);
-extern f32 lbl_1_rodata_4E0[5];
-extern f32 lbl_1_bss_1160[403];
-extern void fn_1_5370(s32, s16);
-extern void fn_1_6DD0(u32);
-
+/* fzgx:begin fn_1_DE14 */
 typedef struct {
     u8 unk_0;
     u8 unk_1;
@@ -241,7 +218,7 @@ void fn_1_DE14(Fn1DE14State *state) {
         return;
     }
 
-    lbl_1_bss_1160[0] = lbl_1_rodata_4E0[0];
+    ((f32 *)&lbl_1_bss_1160)[0] = ((f32 *)&lbl_1_rodata_4E0)[0];
     if (state->unk_1 == 0) {
         state->unk_0++;
     } else {
@@ -1274,17 +1251,9 @@ void fn_1_EE04(Fn1EE04Context *context) {
 }
 /* fzgx:end fn_1_EE04 */
 
-/* fzgx:begin fn_1_EE44 noprologue */
-#include "types.h"
-#include "rel/main_rel/live_camera.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/live_camera.h"
+/* fzgx:begin fn_1_EE44 */
 #include "psvec.h"
 #include "dolphin/hw_regs.h"
-#include "types.h"
-#include "types.h"
-
 /* begin game/main_rel/live_camera_types.h (deltawave784/fzgx, CC0) */
 #ifndef GAME_MAIN_REL_LIVE_CAMERA_TYPES_H
 #define GAME_MAIN_REL_LIVE_CAMERA_TYPES_H
@@ -1532,8 +1501,6 @@ struct fn_1_EE44_Object {
     f32 unk_100;
 };
 extern u8 fn_1_A5848(void);
-extern s32 fn_1_40BB4(void);
-extern f32 lbl_1_rodata_4E0[];
 extern u8 lbl_1_bss_17C0;
 extern void fn_1_101D0(Sig_fn_1_101D0_Fn_1_101D0_State *);
 extern void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State *);
@@ -1542,7 +1509,6 @@ extern s32 camera_get_state(void);
 extern void *fn_1_8627C(s32);
 extern s16 fn_1_7B054(void);
 extern u32 fn_1_584AC(void);
-extern void fn_1_6DD0(void *);
 extern void fn_1_FB50(void *);
 extern void lbl_8006DD14(void *, void *);
 extern void fn_8006F1F0(void *, void *, void *);
@@ -2261,8 +2227,7 @@ void fn_1_FA84(void) {
 }
 /* fzgx:end fn_1_FA84 */
 
-/* fzgx:begin fn_1_FB50 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_FB50 */
 #include "psvec.h"
 
 extern u32 lbl_1_bss_F5C;

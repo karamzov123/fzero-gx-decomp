@@ -2649,11 +2649,9 @@ void fn_1_44884(Vec3 *dir) {
 #pragma opt_propagation reset
 /* fzgx:end fn_1_44884 */
 
-/* fzgx:begin fn_1_449A8 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_449A8 */
 #include "psvec.h"
 
-extern void lbl_8006DB74(void *mtx);
 extern void fn_8006E978(void *out, void *a, void *b);
 extern void mathutil_mtxA_from_quat(void *q);
 extern void lbl_8006DFC4(void *mtx);

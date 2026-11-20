@@ -7657,29 +7657,19 @@ u32 fn_1_13F72C(s16 arg0, u32 arg1, f32 farg0) {
 }
 /* fzgx:end fn_1_13F72C */
 
-/* fzgx:begin fn_1_13F7F8 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
+/* fzgx:begin fn_1_13F7F8 */
 #include "rel/main_rel/custom_memcard.h"
 
-extern u32 lbl_801A6410;
-extern u8 fn_1_B7C00(void);
 extern s32 fn_1_B7CD4(void);
 extern s32 fn_1_B7C5C(void);
 extern void OSReport(const char* format, ...);
-extern void fn_1_46B4(u32 arg0, void* arg1, u8* arg2, s32 arg3);
-extern void fn_80008BA8(void*, void*, s32);
 extern u32 lbl_1_bss_8CA6C[1605];
 extern void fn_1_1324C4(void *arg0);
 extern void fn_1_132774(void *arg0);
 
-extern u32 lbl_801A6410;
-extern u8 fn_1_B7C00(void);
 extern s32 fn_1_B7CD4(void);
 extern s32 fn_1_B7C5C(void);
 extern void OSReport(const char* format, ...);
-extern void fn_80008BA8(void*, void*, s32);
-extern void fn_1_46B4(u32 arg0, void* arg1, u8* arg2, s32 arg3);
 
 u32 fn_1_13F7F8(s16 arg0, s16 arg1) {
     return ((u32 (*)[6])&lbl_1_data_414D8)[arg0][arg1];
@@ -17666,9 +17656,7 @@ void fn_1_14B4FC(void) {
 }
 /* fzgx:end fn_1_14B4FC */
 
-/* fzgx:begin fn_1_14B500 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_14B500 */
 /* local view of one seat's 0xA0-byte result record at lbl_1_bss_3C30+0xD4 (written by fn_1_2E928) */
 typedef struct {
     u8 pad_0[0x18];
@@ -17702,13 +17690,6 @@ typedef struct {
     u8 pad_1D[0x1B];
 } fn_1_14B500_Entry;
 
-extern fn_1_14B500_Setup lbl_1_bss_3C30;
-extern fn_1_14B500_Entry lbl_1_bss_8EF68[];
-extern u32 lbl_1_bss_8E528;
-extern u32 lbl_1_bss_8E540;
-extern u32 lbl_801A66A4;
-extern s32 fn_1_3F864(void);
-extern void fn_1_A2D84(u32 arg0);
 
 void fn_1_14B500(void) {
     s32 i;
@@ -17718,24 +17699,24 @@ void fn_1_14B500(void) {
 
     /* copy the first 10 seats of the list at +0xE and fields of their records */
     for (i = 0; i < 10; i++) {
-        e = &lbl_1_bss_8EF68[i];
-        e->unk_1A = lbl_1_bss_3C30.unk_E[i];
-        rec = &lbl_1_bss_3C30.unk_D4[e->unk_1A];
-        e->unk_0 = rec->unk_24[lbl_1_bss_3C30.unk_A7];
-        e->unk_4 = rec->unk_38[lbl_1_bss_3C30.unk_A7];
-        e->unk_18 = rec->unk_18[lbl_1_bss_3C30.unk_A7];
+        e = &((fn_1_14B500_Entry *)&lbl_1_bss_8EF68)[i];
+        e->unk_1A = ((fn_1_14B500_Setup *)&lbl_1_bss_3C30)->unk_E[i];
+        rec = &((fn_1_14B500_Setup *)&lbl_1_bss_3C30)->unk_D4[e->unk_1A];
+        e->unk_0 = rec->unk_24[((fn_1_14B500_Setup *)&lbl_1_bss_3C30)->unk_A7];
+        e->unk_4 = rec->unk_38[((fn_1_14B500_Setup *)&lbl_1_bss_3C30)->unk_A7];
+        e->unk_18 = rec->unk_18[((fn_1_14B500_Setup *)&lbl_1_bss_3C30)->unk_A7];
         e->unk_1B = rec->unk_80;
         e->unk_1C = rec->unk_81;
     }
     if (fn_1_3F864() != 0) {
         fn_1_A2D84(0xA9070000);
     }
-    flag = lbl_1_bss_8E540;
+    flag = (*(u32 *)&lbl_1_bss_8E540);
     if (flag != 0) {
-        lbl_1_bss_8E528 = lbl_801A66A4 - 0xbe;
+        (*(u32 *)&lbl_1_bss_8E528) = (*(u32 *)&lbl_801A66A4) - 0xbe;
     }
     if (flag == 0) {
-        lbl_1_bss_8E540 = 1;
+        (*(u32 *)&lbl_1_bss_8E540) = 1;
     }
 }
 /* fzgx:end fn_1_14B500 */

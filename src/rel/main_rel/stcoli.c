@@ -7892,10 +7892,7 @@ void fn_1_1EBD4(Vec3 *arg0, Vec3 *arg1, u32 arg2, Seg *seg, Vec3 *scale, Ctx *ct
 #pragma opt_lifetimes reset
 /* fzgx:end fn_1_1EBD4 */
 
-/* fzgx:begin fn_1_1FB80 noprologue */
-#include "types.h"
-#include "rel/main_rel/stcoli.h"
-
+/* fzgx:begin fn_1_1FB80 */
 extern const struct fn_1_1FB80_lbl_1_rodata_708_pool {
     f32 unk_0;
 } lbl_1_rodata_708;
@@ -7920,7 +7917,6 @@ extern f64 __fabs(f64);
 extern u32 mathutil_mtxA_rotate_x(u32);
 extern u32 mathutil_mtxA_rotate_y(u32);
 extern u32 mathutil_mtxA_rotate_z(u32);
-extern void fn_8006E250(void *, Vec_fn_1_1FB80 *);
 extern void lbl_8006D7DC(void *);
 
 u32 fn_1_1FB80(void *pos, u32 mask) {
@@ -7959,10 +7955,7 @@ u32 fn_1_1FB80(void *pos, u32 mask) {
 }
 /* fzgx:end fn_1_1FB80 */
 
-/* fzgx:begin fn_1_1FC98 noprologue */
-#include "types.h"
-#include "rel/main_rel/stcoli.h"
-
+/* fzgx:begin fn_1_1FC98 */
 extern const struct fn_1_1FC98_lbl_1_rodata_708_pool {
     f32 unk_0;
 } lbl_1_rodata_708;
@@ -7987,7 +7980,6 @@ extern f64 __fabs(f64);
 extern u32 mathutil_mtxA_rotate_x(u32);
 extern u32 mathutil_mtxA_rotate_y(u32);
 extern u32 mathutil_mtxA_rotate_z(u32);
-extern void fn_8006E250(void *, Vec_fn_1_1FC98 *);
 extern void lbl_8006D7DC(void *);
 
 u32 fn_1_1FC98(void *pos, u32 mask) {

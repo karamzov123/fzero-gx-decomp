@@ -1950,8 +1950,7 @@ void fn_1_105AB8(u8 *base, s32 value) {
 }
 /* fzgx:end fn_1_105AB8 */
 
-/* fzgx:begin fn_1_105BD8 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_105BD8 */
 #include "psvec.h"
 
 typedef struct {
@@ -1964,7 +1963,6 @@ extern void fn_1_681C(u8);
 extern void fn_1_6914(u8, u32 *);
 extern void fn_1_6990(u8, u32 *);
 extern s32 camera_get_state(void);
-extern f32 lbl_1_rodata_78E8[19];
 extern f32 lbl_1_rodata_78E0[2];
 extern f32 lbl_8006D668(u32 *);
 
@@ -3991,8 +3989,7 @@ void fn_1_107F74(BgObj *obj, int flag) {
 #pragma peephole reset
 /* fzgx:end fn_1_107F74 */
 
-/* fzgx:begin fn_1_108128 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_108128 */
 #include "psvec.h"
 
 typedef struct {

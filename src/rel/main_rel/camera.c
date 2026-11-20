@@ -3769,10 +3769,7 @@ block_7:
 }
 /* fzgx:end fn_1_AA54 */
 
-/* fzgx:begin fn_1_ABAC noprologue */
-#include "types.h"
-#include "rel/main_rel/camera.h"
-
+/* fzgx:begin fn_1_ABAC */
 typedef struct {
     u8 pad_0[2];
     s16 unk_2;
@@ -3789,7 +3786,6 @@ extern ABACState *fn_1_86254(int);
 extern s32 fn_1_F2F34(void);
 extern s32 camera_get_entry_field_0xa4(u32);
 extern u16 fn_1_86678(int);
-extern s8 fn_1_86634(int);
 extern void fn_1_715C(u8, s32);
 extern u32 fn_1_864E8(int);
 extern s32 fn_1_40BB4(void);
