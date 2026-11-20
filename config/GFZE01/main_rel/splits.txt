@@ -39,9 +39,6 @@ rel/main_rel/camera/camera_init.c:
 rel/main_rel/camera/camera_update_transition.c:
 	.text       start:0x0000AE38 end:0x0000AEB8
 
-rel/main_rel/camera/camera_report_position.c:
-	.text       start:0x0000C228 end:0x0000C268
-
 rel/main_rel/camera/fn_1_C304.c:
 	.text       start:0x0000C304 end:0x0000C35C
 
@@ -149,9 +146,6 @@ rel/main_rel/game/fn_1_3FCD4.c:
 
 rel/main_rel/game/fn_1_3FDA8.c:
 	.text       start:0x0003FDA8 end:0x0003FF90
-
-rel/main_rel/game/fn_1_402A4.c:
-	.text       start:0x000402A4 end:0x000402D4
 
 rel/main_rel/game/fn_1_40D44.c:
 	.text       start:0x00040D44 end:0x00040F78 align:4
@@ -385,10 +379,7 @@ rel/main_rel/car/fn_1_8C9F4.c:
 	.text       start:0x0008C9F4 end:0x0008CA00
 
 rel/main_rel/car/fn_1_8CA00.c:
-	.text       start:0x0008CA00 end:0x0008CA0C
-
-rel/main_rel/car/fn_1_8CA0C.c:
-	.text       start:0x0008CA0C end:0x0008CAF4 align:4
+	.text       start:0x0008CA00 end:0x0008CAF4 align:4
 
 rel/main_rel/car/fn_1_8D1C8.c:
 	.text       start:0x0008D1C8 end:0x0008D1EC
@@ -472,10 +463,7 @@ rel/main_rel/burner/fn_1_9AD20.c:
 	.text       start:0x0009AD20 end:0x0009AF80 align:4
 
 rel/main_rel/burner/fn_1_9CC40.c:
-	.text       start:0x0009CC40 end:0x0009D0EC align:4
-
-rel/main_rel/burner/fn_1_9D230.c:
-	.text       start:0x0009D230 end:0x0009D360 align:4
+	.text       start:0x0009CC40 end:0x0009D360 align:4
 
 rel/main_rel/burner/fn_1_9D360.c:
 	.text       start:0x0009D360 end:0x0009D3E8
@@ -518,9 +506,6 @@ rel/main_rel/driver/fn_1_A96FC.c:
 
 rel/main_rel/memcard/fn_1_AB478.c:
 	.text       start:0x000AB478 end:0x000ABB4C align:4
-
-rel/main_rel/memcard/fn_1_ABC5C.c:
-	.text       start:0x000ABC5C end:0x000ABE88 align:4
 
 rel/main_rel/memcard/fn_1_AC12C.c:
 	.text       start:0x000AC12C end:0x000AC188
@@ -1134,7 +1119,7 @@ rel/main_rel/memcard/fn_1_BF520.c:
 	.text       start:0x000BF520 end:0x000BF600 align:4
 
 rel/main_rel/game/fn_1_3FF90.c:
-	.text       start:0x0003FF90 end:0x000402A4 align:4
+	.text       start:0x0003FF90 end:0x000402D4 align:4
 
 rel/main_rel/car_test/fn_1_7EB0C.c:
 	.text       start:0x0007EB0C end:0x0007EB8C align:4
@@ -1179,7 +1164,7 @@ rel/main_rel/camera/fn_1_857C.c:
 	.text       start:0x0000857C end:0x00008708 align:4
 
 rel/main_rel/camera/fn_1_C178.c:
-	.text       start:0x0000C178 end:0x0000C228 align:4
+	.text       start:0x0000C178 end:0x0000C268 align:4
 
 rel/main_rel/custom_memcard/fn_1_131B90.c:
 	.text       start:0x00131B90 end:0x00132774 align:4
@@ -1572,7 +1557,7 @@ rel/main_rel/font/fn_1_4D494.c:
 	.text       start:0x0004D494 end:0x0004D784 align:4
 
 rel/main_rel/memcard/fn_1_ABB4C.c:
-	.text       start:0x000ABB4C end:0x000ABC5C align:4
+	.text       start:0x000ABB4C end:0x000ABE88 align:4
 
 rel/main_rel/sel_static_disp/fn_1_134EE4.c:
 	.text       start:0x00134EE4 end:0x001358BC align:4
@@ -2330,9 +2315,6 @@ rel/main_rel/live_camera/fn_1_1189C.c:
 
 rel/main_rel/live_camera/fn_1_103B0.c:
 	.text       start:0x000103B0 end:0x000107B8 align:4
-
-rel/main_rel/burner/fn_1_9D0EC.c:
-	.text       start:0x0009D0EC end:0x0009D230 align:4
 
 rel/main_rel/stcoli/fn_1_203E4.c:
 	.text       start:0x000203E4 end:0x000207DC align:4

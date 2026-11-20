@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- dol/cbForUnrecoveredErrorRetry.c --- */
 extern void __DVDStoreErrorCode(s32 error);
 extern void DVDReset(void);
 extern u32 DVDLowStopMotor(u32 callback);
@@ -35,4 +37,11 @@ void cbForUnrecoveredErrorRetry(u32 state) {
             DVDLowStopMotor((u32)cbForStateError);
         }
     }
+}
+
+/* --- dol/fn_80017EA8.c --- */
+extern void cbForStateGoToRetry(void);
+
+u32 fn_80017EA8(void) {
+    return DVDLowStopMotor((u32)cbForStateGoToRetry);
 }

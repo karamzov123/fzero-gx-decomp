@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- dol/__CARDPutControlBlock.c --- */
 extern u32 OSDisableInterrupts(void);
 extern u32 OSRestoreInterrupts(u32);
 
@@ -18,4 +20,19 @@ u32 __CARDPutControlBlock(CARDControlBlock *block, u32 callback) {
     }
     OSRestoreInterrupts(irq);
     return callback;
+}
+
+/* --- dol/CARDGetResultCode.c --- */
+extern u32 lbl_80177960[];
+
+u32 CARDGetResultCode(u32 arg0) {
+    u32 v0;
+    v0 = arg0;
+    if ((s32)arg0 < 0 || (s32)arg0 >= 2) {
+    v0 = -128;
+    return v0;
+    }
+    v0 = (u32)((u8 *)&lbl_80177960 + (v0 * 272));
+    v0 = *(u32 *)((u8 *)v0 + 4);
+    return v0;
 }

@@ -1,5 +1,5 @@
 {
- "generated": 1795194968,
+ "generated": 1795195250,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -2112,7 +2112,7 @@
   {
    "symbol": "fn_3_B6E4",
    "module": "customize",
-   "unit": "rel/customize/customize/fn_3_B6E4.c",
+   "unit": "rel/customize/customize/fn_3_B5FC.c",
    "addr": 46820,
    "size": 672,
    "status": "matched",
@@ -2741,7 +2741,7 @@
   {
    "symbol": "fn_3_11994",
    "module": "customize",
-   "unit": "rel/customize/emb_paste_editor/fn_3_11994.c",
+   "unit": "rel/customize/emb_paste_editor/fn_3_1180C.c",
    "addr": 72084,
    "size": 164,
    "status": "matched",
@@ -4050,7 +4050,7 @@
   {
    "symbol": "fn_3_19C94",
    "module": "customize",
-   "unit": "rel/customize/toolkit/fn_3_19C94.c",
+   "unit": "rel/customize/toolkit/fn_3_19C50.c",
    "addr": 105620,
    "size": 16,
    "status": "matched",
@@ -4067,7 +4067,7 @@
   {
    "symbol": "fn_3_19CA4",
    "module": "customize",
-   "unit": "rel/customize/toolkit/fn_3_19CA4.c",
+   "unit": "rel/customize/toolkit/fn_3_19C50.c",
    "addr": 105636,
    "size": 20,
    "status": "matched",
@@ -4084,7 +4084,7 @@
   {
    "symbol": "fn_3_19CB8",
    "module": "customize",
-   "unit": "rel/customize/toolkit/fn_3_19CA4.c",
+   "unit": "rel/customize/toolkit/fn_3_19C50.c",
    "addr": 105656,
    "size": 20,
    "status": "matched",
@@ -4101,7 +4101,7 @@
   {
    "symbol": "fn_3_19CCC",
    "module": "customize",
-   "unit": "rel/customize/toolkit/fn_3_19CA4.c",
+   "unit": "rel/customize/toolkit/fn_3_19C50.c",
    "addr": 105676,
    "size": 20,
    "status": "matched",
@@ -4118,7 +4118,7 @@
   {
    "symbol": "fn_3_19CE0",
    "module": "customize",
-   "unit": "rel/customize/toolkit/fn_3_19CA4.c",
+   "unit": "rel/customize/toolkit/fn_3_19C50.c",
    "addr": 105696,
    "size": 52,
    "status": "matched",
@@ -4135,7 +4135,7 @@
   {
    "symbol": "fn_3_19D14",
    "module": "customize",
-   "unit": "rel/customize/toolkit/fn_3_19CA4.c",
+   "unit": "rel/customize/toolkit/fn_3_19C50.c",
    "addr": 105748,
    "size": 60,
    "status": "matched",
@@ -4152,7 +4152,7 @@
   {
    "symbol": "fn_3_19D50",
    "module": "customize",
-   "unit": "rel/customize/toolkit/fn_3_19CA4.c",
+   "unit": "rel/customize/toolkit/fn_3_19C50.c",
    "addr": 105808,
    "size": 56,
    "status": "matched",
@@ -9388,7 +9388,7 @@
   {
    "symbol": "OSAllocFromArenaLo",
    "module": "main",
-   "unit": "dol/OSAllocFromArenaLo.c",
+   "unit": "dol/OSSetArenaLo.c",
    "addr": 2147529524,
    "size": 44,
    "status": "matched",
@@ -9405,7 +9405,7 @@
   {
    "symbol": "OSAllocFromArenaHi",
    "module": "main",
-   "unit": "dol/OSAllocFromArenaHi.c",
+   "unit": "dol/OSSetArenaLo.c",
    "addr": 2147529568,
    "size": 32,
    "status": "matched",
@@ -9422,7 +9422,7 @@
   {
    "symbol": "__OSInitAudioSystem",
    "module": "main",
-   "unit": "dol/OSAllocFromArenaHi.c",
+   "unit": "dol/OSSetArenaLo.c",
    "addr": 2147529600,
    "size": 444,
    "status": "matched",
@@ -9439,7 +9439,7 @@
   {
    "symbol": "__OSStopAudioSystem",
    "module": "main",
-   "unit": "dol/OSAllocFromArenaHi.c",
+   "unit": "dol/OSSetArenaLo.c",
    "addr": 2147530044,
    "size": 216,
    "status": "matched",
@@ -10204,7 +10204,7 @@
   {
    "symbol": "__OSGetInterruptHandler",
    "module": "main",
-   "unit": "dol/__OSGetInterruptHandler.c",
+   "unit": "dol/__OSSetInterruptHandler.c",
    "addr": 2147538268,
    "size": 20,
    "status": "matched",
@@ -10782,7 +10782,7 @@
   {
    "symbol": "OSResetSystem",
    "module": "main",
-   "unit": "dol/OSResetSystem.c",
+   "unit": "dol/__OSDoHotReset.c",
    "addr": 2147545004,
    "size": 648,
    "status": "matched",
@@ -11275,7 +11275,7 @@
   {
    "symbol": "UnsetRun",
    "module": "main",
-   "unit": "dol/UnsetRun.c",
+   "unit": "dol/OSEnableScheduler.c",
    "addr": 2147550060,
    "size": 104,
    "status": "matched",
@@ -12159,7 +12159,7 @@
   {
    "symbol": "fn_800133E0",
    "module": "main",
-   "unit": "dol/fn_800133E0.c",
+   "unit": "dol/fn_800133DC.c",
    "addr": 2147562464,
    "size": 72,
    "status": "matched",
@@ -12278,7 +12278,7 @@
   {
    "symbol": "SamplingHandler",
    "module": "main",
-   "unit": "dol/SamplingHandler.c",
+   "unit": "dol/fn_800137C4.c",
    "addr": 2147563828,
    "size": 96,
    "status": "matched",
@@ -12295,7 +12295,7 @@
   {
    "symbol": "PADSetSamplingCallback",
    "module": "main",
-   "unit": "dol/SamplingHandler.c",
+   "unit": "dol/fn_800137C4.c",
    "addr": 2147563924,
    "size": 84,
    "status": "matched",
@@ -12312,7 +12312,7 @@
   {
    "symbol": "fn_800139E8",
    "module": "main",
-   "unit": "dol/SamplingHandler.c",
+   "unit": "dol/fn_800137C4.c",
    "addr": 2147564008,
    "size": 160,
    "status": "matched",
@@ -13689,7 +13689,7 @@
   {
    "symbol": "CategorizeError",
    "module": "main",
-   "unit": "dol/CategorizeError.c",
+   "unit": "dol/_epilog_rel_sample.c",
    "addr": 2147580512,
    "size": 180,
    "status": "matched",
@@ -13757,7 +13757,7 @@
   {
    "symbol": "fn_80017EA8",
    "module": "main",
-   "unit": "dol/fn_80017EA8.c",
+   "unit": "dol/cbForUnrecoveredErrorRetry.c",
    "addr": 2147581608,
    "size": 40,
    "status": "matched",
@@ -14386,7 +14386,7 @@
   {
    "symbol": "__DVDPopWaitingQueue",
    "module": "main",
-   "unit": "dol/__DVDPopWaitingQueue.c",
+   "unit": "dol/__DVDPushWaitingQueue.c",
    "addr": 2147589892,
    "size": 160,
    "status": "matched",
@@ -15644,7 +15644,7 @@
   {
    "symbol": "ARFree",
    "module": "main",
-   "unit": "dol/ARFree.c",
+   "unit": "dol/ARAlloc.c",
    "addr": 2147609020,
    "size": 116,
    "status": "matched",
@@ -16579,7 +16579,7 @@
   {
    "symbol": "fn_80022014",
    "module": "main",
-   "unit": "dol/fn_80022014.c",
+   "unit": "dol/fn_80021FBC.c",
    "addr": 2147622932,
    "size": 8,
    "status": "matched",
@@ -16596,7 +16596,7 @@
   {
    "symbol": "fn_8002201C",
    "module": "main",
-   "unit": "dol/fn_80022014.c",
+   "unit": "dol/fn_80021FBC.c",
    "addr": 2147622940,
    "size": 12,
    "status": "matched",
@@ -16817,7 +16817,7 @@
   {
    "symbol": "fn_80023168",
    "module": "main",
-   "unit": "dol/fn_80023168.c",
+   "unit": "dol/fn_800230A4.c",
    "addr": 2147627368,
    "size": 92,
    "status": "matched",
@@ -16834,7 +16834,7 @@
   {
    "symbol": "fn_800231C4",
    "module": "main",
-   "unit": "dol/fn_800231C4.c",
+   "unit": "dol/fn_800230A4.c",
    "addr": 2147627460,
    "size": 100,
    "status": "matched",
@@ -16851,7 +16851,7 @@
   {
    "symbol": "fn_80023228",
    "module": "main",
-   "unit": "dol/fn_800231C4.c",
+   "unit": "dol/fn_800230A4.c",
    "addr": 2147627560,
    "size": 92,
    "status": "matched",
@@ -16868,7 +16868,7 @@
   {
    "symbol": "fn_80023284",
    "module": "main",
-   "unit": "dol/fn_800231C4.c",
+   "unit": "dol/fn_800230A4.c",
    "addr": 2147627652,
    "size": 272,
    "status": "matched",
@@ -17412,7 +17412,7 @@
   {
    "symbol": "fn_80025D28",
    "module": "main",
-   "unit": "dol/fn_80025D28.c",
+   "unit": "dol/fn_80025D00.c",
    "addr": 2147638568,
    "size": 40,
    "status": "matched",
@@ -17446,7 +17446,7 @@
   {
    "symbol": "fn_80025D5C",
    "module": "main",
-   "unit": "dol/fn_80025D5C.c",
+   "unit": "dol/fn_80025D50.c",
    "addr": 2147638620,
    "size": 188,
    "status": "matched",
@@ -17735,7 +17735,7 @@
   {
    "symbol": "fn_80026FB8",
    "module": "main",
-   "unit": "dol/fn_80026FB8.c",
+   "unit": "dol/fn_80026F4C.c",
    "addr": 2147643320,
    "size": 40,
    "status": "matched",
@@ -18109,7 +18109,7 @@
   {
    "symbol": "fn_80028A78",
    "module": "main",
-   "unit": "dol/fn_80028A78.c",
+   "unit": "dol/fn_800289C0.c",
    "addr": 2147650168,
    "size": 180,
    "status": "matched",
@@ -18160,7 +18160,7 @@
   {
    "symbol": "fn_80028B3C",
    "module": "main",
-   "unit": "dol/fn_80028B3C.c",
+   "unit": "dol/fn_80028B2C.c",
    "addr": 2147650364,
    "size": 388,
    "status": "matched",
@@ -18177,7 +18177,7 @@
   {
    "symbol": "DSPCheckMailToDSP",
    "module": "main",
-   "unit": "dol/DSPCheckMailToDSP.c",
+   "unit": "dol/fn_80028B2C.c",
    "addr": 2147650752,
    "size": 16,
    "status": "matched",
@@ -18194,7 +18194,7 @@
   {
    "symbol": "DSPCheckMailFromDSP",
    "module": "main",
-   "unit": "dol/DSPCheckMailToDSP.c",
+   "unit": "dol/fn_80028B2C.c",
    "addr": 2147650768,
    "size": 16,
    "status": "matched",
@@ -18211,7 +18211,7 @@
   {
    "symbol": "DSPReadMailFromDSP",
    "module": "main",
-   "unit": "dol/DSPCheckMailToDSP.c",
+   "unit": "dol/fn_80028B2C.c",
    "addr": 2147650784,
    "size": 24,
    "status": "matched",
@@ -18228,7 +18228,7 @@
   {
    "symbol": "DSPSendMailToDSP",
    "module": "main",
-   "unit": "dol/DSPCheckMailToDSP.c",
+   "unit": "dol/fn_80028B2C.c",
    "addr": 2147650808,
    "size": 20,
    "status": "matched",
@@ -18245,7 +18245,7 @@
   {
    "symbol": "DSPInit",
    "module": "main",
-   "unit": "dol/DSPCheckMailToDSP.c",
+   "unit": "dol/fn_80028B2C.c",
    "addr": 2147650828,
    "size": 196,
    "status": "matched",
@@ -18279,7 +18279,7 @@
   {
    "symbol": "DSPAddTask",
    "module": "main",
-   "unit": "dol/DSPAddTask.c",
+   "unit": "dol/fn_80028DD0.c",
    "addr": 2147651032,
    "size": 112,
    "status": "matched",
@@ -18296,7 +18296,7 @@
   {
    "symbol": "fn_80028E48",
    "module": "main",
-   "unit": "dol/DSPAddTask.c",
+   "unit": "dol/fn_80028DD0.c",
    "addr": 2147651144,
    "size": 64,
    "status": "matched",
@@ -18313,7 +18313,7 @@
   {
    "symbol": "fn_80028E88",
    "module": "main",
-   "unit": "dol/DSPAddTask.c",
+   "unit": "dol/fn_80028DD0.c",
    "addr": 2147651208,
    "size": 200,
    "status": "matched",
@@ -18330,7 +18330,7 @@
   {
    "symbol": "fn_80028F50",
    "module": "main",
-   "unit": "dol/DSPAddTask.c",
+   "unit": "dol/fn_80028DD0.c",
    "addr": 2147651408,
    "size": 80,
    "status": "matched",
@@ -18551,7 +18551,7 @@
   {
    "symbol": "__CARDReadStatus",
    "module": "main",
-   "unit": "dol/__CARDReadStatus.c",
+   "unit": "dol/__CARDEnableInterrupt.c",
    "addr": 2147654712,
    "size": 240,
    "status": "matched",
@@ -18840,7 +18840,7 @@
   {
    "symbol": "CARDGetResultCode",
    "module": "main",
-   "unit": "dol/CARDGetResultCode.c",
+   "unit": "dol/__CARDPutControlBlock.c",
    "addr": 2147658072,
    "size": 48,
    "status": "matched",
@@ -20285,7 +20285,7 @@
   {
    "symbol": "GXSetCPUFifo",
    "module": "main",
-   "unit": "dol/GXSetCPUFifo.c",
+   "unit": "dol/fn_80031D60.c",
    "addr": 2147687788,
    "size": 272,
    "status": "matched",
@@ -21118,7 +21118,7 @@
   {
    "symbol": "fn_80034378",
    "module": "main",
-   "unit": "dol/fn_80034378.c",
+   "unit": "dol/GXPeekZ.c",
    "addr": 2147697528,
    "size": 68,
    "status": "matched",
@@ -21152,7 +21152,7 @@
   {
    "symbol": "fn_80034444",
    "module": "main",
-   "unit": "dol/fn_80034444.c",
+   "unit": "dol/GXTokenInterruptHandler.c",
    "addr": 2147697732,
    "size": 68,
    "status": "matched",
@@ -22223,7 +22223,7 @@
   {
    "symbol": "fn_80036F24",
    "module": "main",
-   "unit": "dol/fn_80036F24.c",
+   "unit": "dol/fn_80036EDC.c",
    "addr": 2147708708,
    "size": 204,
    "status": "matched",
@@ -22682,7 +22682,7 @@
   {
    "symbol": "fn_80037D40",
    "module": "main",
-   "unit": "dol/fn_80037D40.c",
+   "unit": "dol/fn_80037D14.c",
    "addr": 2147712320,
    "size": 60,
    "status": "matched",
@@ -23158,7 +23158,7 @@
   {
    "symbol": "fn_80039B38",
    "module": "main",
-   "unit": "dol/fn_80039B38.c",
+   "unit": "dol/fn_80039B0C.c",
    "addr": 2147719992,
    "size": 68,
    "status": "matched",
@@ -39665,7 +39665,7 @@
   {
    "symbol": "fn_8007A440",
    "module": "main",
-   "unit": "dol/fn_8007A440.c",
+   "unit": "dol/deallocate_from_fixed_pools.c",
    "addr": 2147984448,
    "size": 720,
    "status": "matched",
@@ -44748,7 +44748,7 @@
   {
    "symbol": "fn_8008F7E4",
    "module": "main",
-   "unit": "dol/fn_8008F7E4.c",
+   "unit": "dol/fn_8008F748.c",
    "addr": 2148071396,
    "size": 84,
    "status": "matched",
@@ -44782,7 +44782,7 @@
   {
    "symbol": "fn_8008F8B0",
    "module": "main",
-   "unit": "dol/fn_8008F8B0.c",
+   "unit": "dol/fn_8008F838.c",
    "addr": 2148071600,
    "size": 64,
    "status": "matched",
@@ -47859,7 +47859,7 @@
   {
    "symbol": "camera_report_position",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/camera_report_position.c",
+   "unit": "rel/main_rel/camera/fn_1_C178.c",
    "addr": 49704,
    "size": 64,
    "status": "matched",
@@ -53299,7 +53299,7 @@
   {
    "symbol": "fn_1_402A4",
    "module": "main_rel",
-   "unit": "rel/main_rel/game/fn_1_402A4.c",
+   "unit": "rel/main_rel/game/fn_1_3FF90.c",
    "addr": 262820,
    "size": 48,
    "status": "matched",
@@ -68599,7 +68599,7 @@
   {
    "symbol": "fn_1_8CA0C",
    "module": "main_rel",
-   "unit": "rel/main_rel/car/fn_1_8CA0C.c",
+   "unit": "rel/main_rel/car/fn_1_8CA00.c",
    "addr": 576012,
    "size": 20,
    "status": "matched",
@@ -68616,7 +68616,7 @@
   {
    "symbol": "fn_1_8CA20",
    "module": "main_rel",
-   "unit": "rel/main_rel/car/fn_1_8CA0C.c",
+   "unit": "rel/main_rel/car/fn_1_8CA00.c",
    "addr": 576032,
    "size": 20,
    "status": "matched",
@@ -68633,7 +68633,7 @@
   {
    "symbol": "fn_1_8CA34",
    "module": "main_rel",
-   "unit": "rel/main_rel/car/fn_1_8CA0C.c",
+   "unit": "rel/main_rel/car/fn_1_8CA00.c",
    "addr": 576052,
    "size": 20,
    "status": "matched",
@@ -68650,7 +68650,7 @@
   {
    "symbol": "fn_1_8CA48",
    "module": "main_rel",
-   "unit": "rel/main_rel/car/fn_1_8CA0C.c",
+   "unit": "rel/main_rel/car/fn_1_8CA00.c",
    "addr": 576072,
    "size": 20,
    "status": "matched",
@@ -68667,7 +68667,7 @@
   {
    "symbol": "fn_1_8CA5C",
    "module": "main_rel",
-   "unit": "rel/main_rel/car/fn_1_8CA0C.c",
+   "unit": "rel/main_rel/car/fn_1_8CA00.c",
    "addr": 576092,
    "size": 20,
    "status": "matched",
@@ -68684,7 +68684,7 @@
   {
    "symbol": "fn_1_8CA70",
    "module": "main_rel",
-   "unit": "rel/main_rel/car/fn_1_8CA0C.c",
+   "unit": "rel/main_rel/car/fn_1_8CA00.c",
    "addr": 576112,
    "size": 132,
    "status": "matched",
@@ -70962,7 +70962,7 @@
   {
    "symbol": "fn_1_9D0EC",
    "module": "main_rel",
-   "unit": "rel/main_rel/burner/fn_1_9D0EC.c",
+   "unit": "rel/main_rel/burner/fn_1_9CC40.c",
    "addr": 643308,
    "size": 324,
    "status": "matched",
@@ -70979,7 +70979,7 @@
   {
    "symbol": "fn_1_9D230",
    "module": "main_rel",
-   "unit": "rel/main_rel/burner/fn_1_9D230.c",
+   "unit": "rel/main_rel/burner/fn_1_9CC40.c",
    "addr": 643632,
    "size": 48,
    "status": "matched",
@@ -70996,7 +70996,7 @@
   {
    "symbol": "fn_1_9D260",
    "module": "main_rel",
-   "unit": "rel/main_rel/burner/fn_1_9D230.c",
+   "unit": "rel/main_rel/burner/fn_1_9CC40.c",
    "addr": 643680,
    "size": 140,
    "status": "matched",
@@ -71013,7 +71013,7 @@
   {
    "symbol": "fn_1_9D2EC",
    "module": "main_rel",
-   "unit": "rel/main_rel/burner/fn_1_9D230.c",
+   "unit": "rel/main_rel/burner/fn_1_9CC40.c",
    "addr": 643820,
    "size": 116,
    "status": "matched",
@@ -74566,7 +74566,7 @@
   {
    "symbol": "fn_1_ABC5C",
    "module": "main_rel",
-   "unit": "rel/main_rel/memcard/fn_1_ABC5C.c",
+   "unit": "rel/main_rel/memcard/fn_1_ABB4C.c",
    "addr": 703580,
    "size": 60,
    "status": "matched",
@@ -74583,7 +74583,7 @@
   {
    "symbol": "fn_1_ABC98",
    "module": "main_rel",
-   "unit": "rel/main_rel/memcard/fn_1_ABC5C.c",
+   "unit": "rel/main_rel/memcard/fn_1_ABB4C.c",
    "addr": 703640,
    "size": 80,
    "status": "matched",
@@ -74600,7 +74600,7 @@
   {
    "symbol": "fn_1_ABCE8",
    "module": "main_rel",
-   "unit": "rel/main_rel/memcard/fn_1_ABC5C.c",
+   "unit": "rel/main_rel/memcard/fn_1_ABB4C.c",
    "addr": 703720,
    "size": 112,
    "status": "matched",
@@ -74617,7 +74617,7 @@
   {
    "symbol": "fn_1_ABD58",
    "module": "main_rel",
-   "unit": "rel/main_rel/memcard/fn_1_ABC5C.c",
+   "unit": "rel/main_rel/memcard/fn_1_ABB4C.c",
    "addr": 703832,
    "size": 80,
    "status": "matched",
@@ -74634,7 +74634,7 @@
   {
    "symbol": "fn_1_ABDA8",
    "module": "main_rel",
-   "unit": "rel/main_rel/memcard/fn_1_ABC5C.c",
+   "unit": "rel/main_rel/memcard/fn_1_ABB4C.c",
    "addr": 703912,
    "size": 16,
    "status": "matched",
@@ -74651,7 +74651,7 @@
   {
    "symbol": "fn_1_ABDB8",
    "module": "main_rel",
-   "unit": "rel/main_rel/memcard/fn_1_ABC5C.c",
+   "unit": "rel/main_rel/memcard/fn_1_ABB4C.c",
    "addr": 703928,
    "size": 92,
    "status": "matched",
@@ -74668,7 +74668,7 @@
   {
    "symbol": "fn_1_ABE14",
    "module": "main_rel",
-   "unit": "rel/main_rel/memcard/fn_1_ABC5C.c",
+   "unit": "rel/main_rel/memcard/fn_1_ABB4C.c",
    "addr": 704020,
    "size": 116,
    "status": "matched",

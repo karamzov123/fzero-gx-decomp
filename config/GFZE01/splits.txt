@@ -33,7 +33,7 @@ dol/OSGetArenaHi.c:
 	.text       start:0x8000B314 end:0x8000B32C align:4
 
 dol/OSSetArenaLo.c:
-	.text       start:0x8000B32C end:0x8000B334
+	.text       start:0x8000B32C end:0x8000B614 align:4
 
 dol/LCEnable.c:
 	.text       start:0x8000B804 end:0x8000B83C
@@ -57,7 +57,7 @@ dol/OSInitThreadQueue.c:
 	.text       start:0x8001029C end:0x800102EC align:4
 
 dol/OSEnableScheduler.c:
-	.text       start:0x8001032C end:0x8001036C
+	.text       start:0x8001032C end:0x800103D4 align:4
 
 dol/fn_80011358.c:
 	.text       start:0x80011358 end:0x8001140C align:4
@@ -69,7 +69,7 @@ dol/SIRefreshSamplingRate.c:
 	.text       start:0x800133B8 end:0x800133DC
 
 dol/fn_800133DC.c:
-	.text       start:0x800133DC end:0x800133E0
+	.text       start:0x800133DC end:0x80013428 align:4
 
 dol/InitializeUART.c:
 	.text       start:0x800157AC end:0x8001581C
@@ -81,16 +81,10 @@ dol/stateTimeout.c:
 	.text       start:0x80017A04 end:0x80017A38
 
 dol/_epilog_rel_sample.c:
-	.text       start:0x80017A38 end:0x80017A60
-
-dol/CategorizeError.c:
-	.text       start:0x80017A60 end:0x80017B14
+	.text       start:0x80017A38 end:0x80017B14 align:4
 
 dol/cbForUnrecoveredError.c:
 	.text       start:0x80017DA8 end:0x80017E10
-
-dol/fn_80017EA8.c:
-	.text       start:0x80017EA8 end:0x80017ED0
 
 dol/__DVDDequeueWaitingQueue.c:
 	.text       start:0x80019FFC end:0x8001A178 align:4
@@ -104,20 +98,11 @@ dol/fn_800211E0.c:
 dol/fn_80021B20.c:
 	.text       start:0x80021B20 end:0x80021BB0 align:4
 
-dol/fn_80022014.c:
-	.text       start:0x80022014 end:0x80022028 align:4
-
 dol/fn_80022420.c:
 	.text       start:0x80022420 end:0x80022BF4 align:4
 
 dol/fn_800230A0.c:
 	.text       start:0x800230A0 end:0x800230A4
-
-dol/fn_80023168.c:
-	.text       start:0x80023168 end:0x800231C4
-
-dol/fn_800231C4.c:
-	.text       start:0x800231C4 end:0x80023394 align:4
 
 dol/fn_800234D0.c:
 	.text       start:0x800234D0 end:0x80023568
@@ -126,13 +111,10 @@ dol/fn_80025C28.c:
 	.text       start:0x80025C28 end:0x80025C70
 
 dol/fn_80025D00.c:
-	.text       start:0x80025D00 end:0x80025D28
-
-dol/fn_80025D28.c:
-	.text       start:0x80025D28 end:0x80025D50
+	.text       start:0x80025D00 end:0x80025D50 align:4
 
 dol/fn_80025D50.c:
-	.text       start:0x80025D50 end:0x80025D5C
+	.text       start:0x80025D50 end:0x80025E18 align:4
 
 dol/fn_80025EEC.c:
 	.text       start:0x80025EEC end:0x80026D70 align:4
@@ -162,10 +144,10 @@ dol/fn_8002857C.c:
 	.text       start:0x8002857C end:0x80028598
 
 dol/fn_80028B2C.c:
-	.text       start:0x80028B2C end:0x80028B3C align:4
+	.text       start:0x80028B2C end:0x80028DD0 align:4
 
 dol/fn_80028DD0.c:
-	.text       start:0x80028DD0 end:0x80028DD8
+	.text       start:0x80028DD0 end:0x80028FA0 align:4
 
 dol/__DSP_exec_task.c:
 	.text       start:0x800293C4 end:0x800296F0 align:4
@@ -186,7 +168,7 @@ dol/CARDFormatAsync.c:
 	.text       start:0x8002E90C end:0x8002E954
 
 dol/fn_80031D60.c:
-	.text       start:0x80031D60 end:0x80031D6C
+	.text       start:0x80031D60 end:0x80031E7C align:4
 
 dol/__GXFifoInit.c:
 	.text       start:0x8003221C end:0x80032268
@@ -269,9 +251,6 @@ dol/gdev_cc_close.c:
 dol/fn_8008F44C.c:
 	.text       start:0x8008F44C end:0x8008F6BC align:4
 
-dol/fn_8008F7E4.c:
-	.text       start:0x8008F7E4 end:0x8008F838
-
 dol/fn_8004A53C.c:
 	.text       start:0x8004A53C end:0x8004A5F4 align:4
 
@@ -308,9 +287,6 @@ dol/fn_8008B6BC.c:
 dol/fn_8008D7B0.c:
 	.text       start:0x8008D7B0 end:0x8008D7C0 align:4
 
-dol/__OSGetInterruptHandler.c:
-	.text       start:0x8000D55C end:0x8000D570 align:4
-
 dol/fn_800510C4.c:
 	.text       start:0x800510C4 end:0x80051448 align:4
 
@@ -344,12 +320,6 @@ dol/fn_8001DF00.c:
 dol/fn_800321D8.c:
 	.text       start:0x800321D8 end:0x8003221C align:4
 
-dol/fn_80034378.c:
-	.text       start:0x80034378 end:0x800343BC align:4
-
-dol/fn_80034444.c:
-	.text       start:0x80034444 end:0x80034488 align:4
-
 dol/PADSetSamplingCallback_Pad.c:
 	.text       start:0x8001DE30 end:0x8001DF00 align:4
 
@@ -361,9 +331,6 @@ dol/fn_8004784C.c:
 
 dol/__OSGetEffectivePriority.c:
 	.text       start:0x800103D4 end:0x800105D0 align:4
-
-dol/UnsetRun.c:
-	.text       start:0x8001036C end:0x800103D4 align:4
 
 dol/GXInitTexCacheRegion.c:
 	.text       start:0x800363DC end:0x800364FC align:4
@@ -451,7 +418,7 @@ dol/fn_80051DC4.c:
 	.text       start:0x80051DC4 end:0x80051E64 align:4
 
 dol/__OSSetInterruptHandler.c:
-	.text       start:0x8000D540 end:0x8000D55C align:4
+	.text       start:0x8000D540 end:0x8000D570 align:4
 
 dol/fn_8002A7AC.c:
 	.text       start:0x8002A7AC end:0x8002A7C4 align:4
@@ -474,14 +441,11 @@ dol/fn_8000BE5C.c:
 dol/AIGetStreamVolRight.c:
 	.text       start:0x8001E304 end:0x8001E5A8 align:4
 
-dol/DSPCheckMailToDSP.c:
-	.text       start:0x80028CC0 end:0x80028DD0 align:4
-
 dol/fn_8003432C.c:
 	.text       start:0x8003432C end:0x80034350 align:4
 
 dol/GXPeekZ.c:
-	.text       start:0x80034350 end:0x80034378 align:4
+	.text       start:0x80034350 end:0x800343BC align:4
 
 dol/fn_800466D4.c:
 	.text       start:0x800466D4 end:0x80046718 align:4
@@ -506,9 +470,6 @@ dol/fn_80026D90.c:
 
 dol/fn_80026E2C.c:
 	.text       start:0x80026E2C end:0x80026E54 align:4
-
-dol/fn_80026FB8.c:
-	.text       start:0x80026FB8 end:0x80026FE0 align:4
 
 dol/fn_80006FE0.c:
 	.text       start:0x80006FE0 end:0x8000700C align:4
@@ -562,7 +523,7 @@ dol/fn_8007A150.c:
 	.text       start:0x8007A150 end:0x8007A23C align:4
 
 dol/fn_80039B0C.c:
-	.text       start:0x80039B0C end:0x80039B38 align:4
+	.text       start:0x80039B0C end:0x80039B7C align:4
 
 dol/fn_80024E3C.c:
 	.text       start:0x80024E3C end:0x80024E6C align:4
@@ -606,14 +567,8 @@ dol/fn_80057728.c:
 dol/fn_800176D8.c:
 	.text       start:0x800176D8 end:0x8001776C align:4
 
-dol/fn_800133E0.c:
-	.text       start:0x800133E0 end:0x80013428 align:4
-
 dol/fn_80021FBC.c:
-	.text       start:0x80021FBC end:0x80022014 align:4
-
-dol/CARDGetResultCode.c:
-	.text       start:0x8002A958 end:0x8002A988 align:4
+	.text       start:0x80021FBC end:0x80022028 align:4
 
 dol/fn_800414D0.c:
 	.text       start:0x800414D0 end:0x80041700 align:4
@@ -762,9 +717,6 @@ dol/__OSLockSramEx.c:
 dol/__OSLockSram.c:
 	.text       start:0x8000F8BC end:0x8000F918 align:4
 
-dol/SamplingHandler.c:
-	.text       start:0x80013934 end:0x80013A88 align:4
-
 dol/fn_80017590.c:
 	.text       start:0x80017590 end:0x800176D8 align:4
 
@@ -777,9 +729,6 @@ dol/cbForStateCoverClosed.c:
 dol/cbForStateReadingFST.c:
 	.text       start:0x800178CC end:0x80017958 align:4
 
-dol/__DVDPopWaitingQueue.c:
-	.text       start:0x80019F04 end:0x80019FA4 align:4
-
 dol/SamplingHandler_Pad.c:
 	.text       start:0x8001DDD0 end:0x8001DE30 align:4
 
@@ -790,7 +739,7 @@ dol/DVDReadAbsAsyncPrio.c:
 	.text       start:0x80019354 end:0x800197A4 align:4
 
 dol/__DVDPushWaitingQueue.c:
-	.text       start:0x80019E9C end:0x80019F04 align:4
+	.text       start:0x80019E9C end:0x80019FA4 align:4
 
 dol/fn_80020874.c:
 	.text       start:0x80020874 end:0x80020928 align:4
@@ -808,25 +757,16 @@ dol/fn_80026EE0.c:
 	.text       start:0x80026EE0 end:0x80026F4C align:4
 
 dol/fn_80026F4C.c:
-	.text       start:0x80026F4C end:0x80026FB8 align:4
+	.text       start:0x80026F4C end:0x80026FE0 align:4
 
 dol/fn_80028424.c:
 	.text       start:0x80028424 end:0x800284A0 align:4
 
-dol/DSPAddTask.c:
-	.text       start:0x80028DD8 end:0x80028FA0 align:4
-
-dol/fn_80025D5C.c:
-	.text       start:0x80025D5C end:0x80025E18 align:4
-
 dol/fn_800289C0.c:
-	.text       start:0x800289C0 end:0x80028A78 align:4
+	.text       start:0x800289C0 end:0x80028B2C align:4
 
 dol/fn_800284A0.c:
 	.text       start:0x800284A0 end:0x800284CC align:4
-
-dol/__CARDReadStatus.c:
-	.text       start:0x80029C38 end:0x80029D28 align:4
 
 dol/fn_800284FC.c:
 	.text       start:0x800284FC end:0x80028540 align:4
@@ -835,7 +775,7 @@ dol/fn_80028598.c:
 	.text       start:0x80028598 end:0x800285DC align:4
 
 dol/__CARDPutControlBlock.c:
-	.text       start:0x8002A8F4 end:0x8002A958 align:4
+	.text       start:0x8002A8F4 end:0x8002A988 align:4
 
 dol/__CARDUnlockedHandler.c:
 	.text       start:0x80029AF4 end:0x80029B78 align:4
@@ -871,7 +811,7 @@ dol/__GXFifoLink.c:
 	.text       start:0x800322AC end:0x800322E8 align:4
 
 dol/GXTokenInterruptHandler.c:
-	.text       start:0x800343BC end:0x80034444 align:4
+	.text       start:0x800343BC end:0x80034488 align:4
 
 dol/GXSetDispCopyGamma.c:
 	.text       start:0x800350F4 end:0x80035110 align:4
@@ -886,7 +826,7 @@ dol/GXSetNumIndStages.c:
 	.text       start:0x80036EB4 end:0x80036EDC align:4
 
 dol/fn_80036EDC.c:
-	.text       start:0x80036EDC end:0x80036F24 align:4
+	.text       start:0x80036EDC end:0x80036FF0 align:4
 
 dol/GXPokeZMode.c:
 	.text       start:0x80034304 end:0x8003432C align:4
@@ -1059,7 +999,7 @@ dol/fn_8008F6BC.c:
 	.text       start:0x8008F6BC end:0x8008F748 align:4
 
 dol/fn_8008F748.c:
-	.text       start:0x8008F748 end:0x8008F7E4 align:4
+	.text       start:0x8008F748 end:0x8008F838 align:4
 
 dol/fn_8008AF58.c:
 	.text       start:0x8008AF58 end:0x8008AFF0 align:4
@@ -1348,10 +1288,10 @@ dol/fn_80028130.c:
 	.text       start:0x80028130 end:0x80028164 align:4
 
 dol/cbForUnrecoveredErrorRetry.c:
-	.text       start:0x80017E10 end:0x80017EA8 align:4
+	.text       start:0x80017E10 end:0x80017ED0 align:4
 
 dol/__CARDEnableInterrupt.c:
-	.text       start:0x80029B78 end:0x80029C38 align:4
+	.text       start:0x80029B78 end:0x80029D28 align:4
 
 dol/GXSetProjectionv.c:
 	.text       start:0x80038B3C end:0x80038BFC align:4
@@ -1368,9 +1308,6 @@ dol/AIStartDMA.c:
 dol/fn_8006CE1C.c:
 	.text       start:0x8006CE1C end:0x8006CFF8 align:4
 
-dol/OSAllocFromArenaLo.c:
-	.text       start:0x8000B334 end:0x8000B360 align:4
-
 dol/GXSetZCompLoc.c:
 	.text       start:0x80037BF4 end:0x80037C2C align:4
 
@@ -1381,7 +1318,7 @@ dol/GXSetCoPlanar.c:
 	.text       start:0x800348DC end:0x80034918 align:4
 
 dol/__OSDoHotReset.c:
-	.text       start:0x8000EF64 end:0x8000EFAC align:4
+	.text       start:0x8000EF64 end:0x8000F234 align:4
 
 dol/fn_8002FC14.c:
 	.text       start:0x8002FC14 end:0x8002FC5C align:4
@@ -1400,9 +1337,6 @@ dol/fn_80063EF4.c:
 
 dol/GXPokeAlphaUpdate.c:
 	.text       start:0x80034214 end:0x80034230 align:4
-
-dol/OSAllocFromArenaHi.c:
-	.text       start:0x8000B360 end:0x8000B614 align:4
 
 dol/fn_80073620.c:
 	.text       start:0x80073620 end:0x80073678 align:4
@@ -1423,7 +1357,7 @@ dol/fn_80070A58.c:
 	.text       start:0x80070A58 end:0x80070AC0 align:4
 
 dol/ARAlloc.c:
-	.text       start:0x8001E954 end:0x8001E9BC align:4
+	.text       start:0x8001E954 end:0x8001EA30 align:4
 
 dol/fn_8006413C.c:
 	.text       start:0x8006413C end:0x800641A8 align:4
@@ -1492,9 +1426,6 @@ dol/fn_80018330.c:
 
 dol/cbForStateError.c:
 	.text       start:0x80017958 end:0x80017A04 align:4
-
-dol/ARFree.c:
-	.text       start:0x8001E9BC end:0x8001EA30 align:4
 
 dol/fn_800829EC.c:
 	.text       start:0x800829EC end:0x80083428 align:4
@@ -1624,16 +1555,13 @@ dol/fn_80054AB0.c:
 	.text       start:0x80054AB0 end:0x80054B6C align:4
 
 dol/fn_800230A4.c:
-	.text       start:0x800230A4 end:0x80023168 align:4
+	.text       start:0x800230A4 end:0x80023394 align:4
 
 dol/fn_800579F0.c:
 	.text       start:0x800579F0 end:0x80057CC4 align:4
 
 dol/fn_80077384.c:
 	.text       start:0x80077384 end:0x80077488 align:4
-
-dol/GXSetCPUFifo.c:
-	.text       start:0x80031D6C end:0x80031E7C align:4
 
 dol/ARStartDMA.c:
 	.text       start:0x8001E864 end:0x8001E954 align:4
@@ -2027,10 +1955,7 @@ dol/__num2dec.c:
 	.text       start:0x8007C3B8 end:0x8007CF18 align:4
 
 dol/deallocate_from_fixed_pools.c:
-	.text       start:0x8007A2E8 end:0x8007A440 align:4
-
-dol/fn_8007A440.c:
-	.text       start:0x8007A440 end:0x8007A710 align:4
+	.text       start:0x8007A2E8 end:0x8007A710 align:4
 
 dol/TRKGetNextEvent.c:
 	.text       start:0x8008885C end:0x80088910 align:4
@@ -2120,9 +2045,6 @@ dol/fn_800411F4.c:
 dol/fn_80021BB0.c:
 	.text       start:0x80021BB0 end:0x80021FBC align:4
 
-dol/fn_80028A78.c:
-	.text       start:0x80028A78 end:0x80028B2C align:4
-
 dol/fn_80021AB8.c:
 	.text       start:0x80021AB8 end:0x80021B20 align:4
 
@@ -2130,7 +2052,7 @@ dol/fn_80077488.c:
 	.text       start:0x80077488 end:0x800775EC align:4
 
 dol/fn_800137C4.c:
-	.text       start:0x800137C4 end:0x80013934 align:4
+	.text       start:0x800137C4 end:0x80013A88 align:4
 
 dol/fn_80005738.c:
 	.text       start:0x80005738 end:0x8000591C align:4
@@ -2208,9 +2130,6 @@ dol/fn_80076134.c:
 
 dol/fn_8008E21C.c:
 	.text       start:0x8008E21C end:0x8008E37C align:4
-
-dol/fn_80028B3C.c:
-	.text       start:0x80028B3C end:0x80028CC0 align:4
 
 dol/fn_80071484.c:
 	.text       start:0x80071484 end:0x80071C04 align:4
@@ -2789,13 +2708,10 @@ dol/fn_80037B94.c:
 	.text       start:0x80037B94 end:0x80037BC0 align:4
 
 dol/fn_80037D14.c:
-	.text       start:0x80037D14 end:0x80037D40 align:4
+	.text       start:0x80037D14 end:0x80037D7C align:4
 
 dol/fn_80037BC0.c:
 	.text       start:0x80037BC0 end:0x80037BF4 align:4
-
-dol/fn_80037D40.c:
-	.text       start:0x80037D40 end:0x80037D7C align:4
 
 dol/fn_800370A0.c:
 	.text       start:0x800370A0 end:0x80037128 align:4
@@ -2808,9 +2724,6 @@ dol/fn_80037190.c:
 
 dol/fn_80037B14.c:
 	.text       start:0x80037B14 end:0x80037B68 align:4
-
-dol/fn_80039B38.c:
-	.text       start:0x80039B38 end:0x80039B7C align:4
 
 dol/GXGetScissor.c:
 	.text       start:0x80038FD8 end:0x80039020 align:4
@@ -2826,9 +2739,6 @@ dol/fn_8003726C.c:
 
 dol/fn_800372E0.c:
 	.text       start:0x800372E0 end:0x80037354 align:4
-
-dol/fn_80036F24.c:
-	.text       start:0x80036F24 end:0x80036FF0 align:4
 
 dol/fn_80037C2C.c:
 	.text       start:0x80037C2C end:0x80037D14 align:4
@@ -3094,7 +3004,7 @@ dol/fn_800288C4.c:
 	.text       start:0x800288C4 end:0x800289C0 align:4
 
 dol/fn_8008F838.c:
-	.text       start:0x8008F838 end:0x8008F8B0 align:4
+	.text       start:0x8008F838 end:0x8008F8F0 align:4
 
 dol/fn_80043798.c:
 	.text       start:0x80043798 end:0x80043B48 align:4
@@ -3155,9 +3065,6 @@ dol/fn_8008EBF8.c:
 
 dol/fn_80089EEC.c:
 	.text       start:0x80089EEC end:0x8008A1CC align:4
-
-dol/fn_8008F8B0.c:
-	.text       start:0x8008F8B0 end:0x8008F8F0 align:4
 
 dol/InitMetroTRKCommTable.c:
 	.text       start:0x8008D4D8 end:0x8008D7B0 align:4
@@ -3341,9 +3248,6 @@ dol/fn_8008E770.c:
 
 dol/fn_8007E69C.c:
 	.text       start:0x8007E69C end:0x8007E96C align:4
-
-dol/OSResetSystem.c:
-	.text       start:0x8000EFAC end:0x8000F234 align:4
 
 dol/fn_8004B4E0.c:
 	.text       start:0x8004B4E0 end:0x8004B7A0 align:4
