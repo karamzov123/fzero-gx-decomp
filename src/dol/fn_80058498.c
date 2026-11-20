@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- dol/fn_80058498.c --- */
 struct SjRing {
     u32 unk0;
     s32 used;
@@ -65,4 +67,23 @@ struct SjRing *fn_80058498(void *a0, u32 a1, u32 a2) {
 
     fn_800576DC();
     return entry;
+}
+
+/* --- dol/fn_80058630.c --- */
+struct Counter {
+    u32 value;
+};
+
+extern u32 memset(u32, u32, u32);
+extern u32 lbl_8018B2A0[];
+extern u32 lbl_8018B2A4[4097];
+
+void fn_80058630(void) {
+    struct Counter *counter;
+    fn_80057728();
+    counter = (struct Counter *)&lbl_8018B2A0;
+    if (--counter->value == 0) {
+        memset((u32)&lbl_8018B2A4, 0, 0x4000);
+    }
+    fn_800576DC();
 }

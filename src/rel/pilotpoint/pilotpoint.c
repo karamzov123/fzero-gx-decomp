@@ -5432,7 +5432,7 @@ char *fn_14_DC6C(s16 group, s16 lang) {
 
 /* fzgx:begin fn_14_DC90 */
 extern void fn_1_4D0A0(void);
-extern void fn_1_4D10C(u32 *, f32, f32);
+extern void fn_1_4D10C(fn_14_1090_Color *, f32, f32);
 
 /* Unknown retail objects: .rodata 0x4F4..0x514, nine colours. No code or data in any REL refers to them. */
 const fn_14_1090_Color lbl_14_rodata_4F4[9] = {
@@ -5499,11 +5499,11 @@ void fn_14_DC90(f32 alpha) {
         fn_1_4AE0C(lbl_14_data_33F0[lbl_801A66B4]);
     }
     if ((lbl_14_bss_9460.unk_0 != 0 || fn_1_B7E98(1) != 0) && lbl_1_bss_962 != 0xAF) {
-        u32 out; /* WARNING: compiler-diff device, not original code (word copy of the colour, carried from main) */
+        fn_14_1090_Color out;
         fn_14_1090_Color c = {0xFF, 0xFF, 0xFF, 0x00};
 
         c.a = 255.0f * alpha;
-        out = *(u32 *)&c;
+        out = c;
         fn_1_4D10C(&out, 0.08f, 30.0f);
     }
 }

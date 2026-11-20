@@ -1179,7 +1179,7 @@ rel/main_rel/camera/fn_1_6400.c:
 	.text       start:0x00006400 end:0x00006514 align:4
 
 rel/main_rel/cloth/fn_1_10240C.c:
-	.text       start:0x0010240C end:0x00102C08 align:4
+	.text       start:0x0010240C end:0x00102FD0 align:4
 
 rel/main_rel/_prolog/fn_1_3238.c:
 	.text       start:0x00003238 end:0x00003308 align:4
@@ -3866,9 +3866,6 @@ rel/main_rel/car/fn_1_86A2C.c:
 rel/main_rel/camera/fn_1_B870.c:
 	.text       start:0x0000B870 end:0x0000BD54 align:4
 
-rel/main_rel/effect_car/fn_1_6ED40.c:
-	.text       start:0x0006ED40 end:0x0006F90C align:4
-
 rel/main_rel/load/fn_1_451E4.c:
 	.text       start:0x000451E4 end:0x00045730 align:4
 	.data       start:0x00006730 end:0x000067B8 align:8
@@ -4076,7 +4073,7 @@ rel/main_rel/accessory/fn_1_10CC38.c:
 	.text       start:0x0010CC38 end:0x0010D2F0 align:4
 
 rel/main_rel/effect_car/fn_1_6E62C.c:
-	.text       start:0x0006E62C end:0x0006ED40 align:4
+	.text       start:0x0006E62C end:0x0006F90C align:4
 
 rel/main_rel/sel_static_disp/fn_1_144254.c:
 	.text       start:0x00144254 end:0x00144A5C align:4
@@ -4285,9 +4282,6 @@ rel/main_rel/bg_common/fn_1_10688C.c:
 
 rel/main_rel/live_camera/fn_1_107B8.c:
 	.text       start:0x000107B8 end:0x00010AF0 align:4
-
-rel/main_rel/cloth/fn_1_102C08.c:
-	.text       start:0x00102C08 end:0x00102FD0 align:4
 
 rel/main_rel/accessory/fn_1_117424.c:
 	.text       start:0x00117424 end:0x001177C4 align:4
