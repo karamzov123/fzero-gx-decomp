@@ -676,9 +676,9 @@ PPReward lbl_14_bss_92FC[54];
 void _prolog(void) {
     u32 buffer[1328];
 
-    lbl_1_bss_7167C[0] = (void *)fn_14_220;
-    lbl_1_bss_71680 = (void *)fn_14_268;
-    lbl_1_bss_71684[0] = (void *)fn_14_2A0;
+    lbl_1_bss_7167C[0] = fn_14_220;
+    lbl_1_bss_71680 = fn_14_268;
+    lbl_1_bss_71684[0] = fn_14_2A0;
 
     lbl_14_bss_14 = fn_1_45D0(lbl_801A6410.unk_0, fn_1_7BA08(0x20, 0x20, 0x40), "pilotpoint.c", 787);
     fn_1_7BA48(lbl_14_bss_14);
@@ -1721,7 +1721,7 @@ void fn_14_2AFC(void) {
     loc_10[0] = 41;
     fn_14_33DC(loc_10);
     v5 = (fn_14_DC2C() & 0xFF) * (0x10000 - 32320);
-    t9 = (u8 *)(fn_1_36AD0());
+    t9 = (fn_1_36AD0());
     *(u32 *)((u8 *)t9 + v5) = (*(u32 *)((u8 *)t9 + v5) | 0xC0000000); /* fzgx-allow: A1 bit-set mask, not an address */
 }
 /* fzgx:end fn_14_2AFC */

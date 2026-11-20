@@ -6623,7 +6623,7 @@ for(j=first;j<=end;j++) {
             case 3: op=0; fn_1_86194(amount); break;
             case 4: base=spec->f10; fp=&car->fieldc; break;
             case 5: base=spec->f14; fp=&car->field10; break;
-            case 6: op=0; fn_1_24F10((void *)car,amount); break;
+            case 6: op=0; fn_1_24F10(car,amount); break;
             case 7: base=spec->f20; fp=&car->field14; break;
             case 8: base=spec->f40; fp=&car->field23c; break;
             default: op=0; break;
@@ -6717,7 +6717,7 @@ for(j=first;j<=end;j++) {
         car=(ActionCar *)fn_1_86254(index);
         fn_1_8627C(index);
         flags=fn_1_864E8(index);
-        fn_1_85F90((void *)car,(void *)-1,y,z,1.0f,x);
+        fn_1_85F90(car,(void *)-1,y,z,1.0f,x);
         fn_1_8B880();
         car->flags=flags|(car->flags&0x400);
         break;
@@ -6738,8 +6738,8 @@ for(j=first;j<=end;j++) {
         flags=fn_1_864E8(index);
         entry=fn_1_214C4(&result,0,x);
         fn_1_17920(entry,0,result);
-        fn_1_207DC((void *)(fn_1_14F04()+0x400),&pos,z);
-        fn_1_85F90((void *)car,entry,y,pos.x,pos.y,pos.z);
+        fn_1_207DC((fn_1_14F04()+0x400),&pos,z);
+        fn_1_85F90(car,entry,y,pos.x,pos.y,pos.z);
         fn_1_8B880();
         car->flags=flags|(car->flags&0x400);
         break;
@@ -6777,7 +6777,7 @@ for(i=first;i<=end;i++) {
         ActionVec b=car->fielda0;
         f32 x=car->field224;
         f32 y=car->field17c;
-        fn_1_25004((void *)car);
+        fn_1_25004(car);
         car->field224=x;car->field17c=y;
         car->field94=a;car->fielda0=b;
         break;

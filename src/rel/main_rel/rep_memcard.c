@@ -472,26 +472,26 @@ void fn_1_155120(void) {
         }
         state->unk_10 = (RepMemcardChar *)((u8 *)state->unk_10 + 1);
         state->unk_14++;
-        ((u8 *)&state->unk_34)[state->unk_1C] = ch;
+        (&state->unk_34)[state->unk_1C] = ch;
         state->unk_1C = state->unk_14 + state->unk_18 * 30;
         break;
     case 10:
         p = (RepMemcardChar *)((u8 *)p + 1);
         state->unk_10 = p;
         state->unk_14++;
-        ((u8 *)&state->unk_34)[state->unk_1C] = 10;
+        (&state->unk_34)[state->unk_1C] = 10;
         break;
     default:
         if ((ch & 0x80) == 0) {
             state->unk_10 = (RepMemcardChar *)((u8 *)state->unk_10 + 1);
             state->unk_14++;
-            ((u8 *)&state->unk_34)[state->unk_1C] = ch;
+            (&state->unk_34)[state->unk_1C] = ch;
         } else {
             next = state->unk_10->unk_1;
             state->unk_10 = (RepMemcardChar *)((u8 *)state->unk_10 + 2);
             state->unk_14 += 2;
-            ((u8 *)&state->unk_34)[state->unk_1C] = ch;
-            ((u8 *)&state->unk_35)[state->unk_1C] = next;
+            (&state->unk_34)[state->unk_1C] = ch;
+            (&state->unk_35)[state->unk_1C] = next;
         }
         break;
     }

@@ -106,12 +106,12 @@ void fn_1_D1848(void) {
 
     
     fn_1_D2F50();
-    fzgx_obj_lbl_1_bss_7ACD8 = fn_1_4630((*(u32 *)&lbl_801A6410), 0x258, (u8 *)"face.c", 0x15F);
+    fzgx_obj_lbl_1_bss_7ACD8 = fn_1_4630((*&lbl_801A6410), 0x258, (u8 *)"face.c", 0x15F);
     fzgx_obj_lbl_1_bss_7ACE8 = 0;
     idx = fn_1_86624();
     *(u8 *)((u8 *)&lbl_1_bss_7ACE0__fzgx_offset_4) = idx;
-    lbl_1_bss_7ACDC = fn_1_4630((*(u32 *)&lbl_801A6410), idx << 2, (u8 *)"face.c", 0x173);
-    lbl_1_bss_7ACE0 = fn_1_4630((*(u32 *)&lbl_801A6410), *(u8 *)((u8 *)&lbl_1_bss_7ACE0__fzgx_offset_4) << 2, (u8 *)"face.c", 0x174);
+    lbl_1_bss_7ACDC = fn_1_4630((*&lbl_801A6410), idx << 2, (u8 *)"face.c", 0x173);
+    lbl_1_bss_7ACE0 = fn_1_4630((*&lbl_801A6410), *(&lbl_1_bss_7ACE0__fzgx_offset_4) << 2, (u8 *)"face.c", 0x174);
     texsize = GXGetTexBufferSize(0x40, 0x40, 5, 0, 0);
     obj = (Obj_1_bss_7ACD8_Target *)fzgx_obj_lbl_1_bss_7ACD8;
     for (i = 0; i < 6; i++) {
@@ -126,7 +126,7 @@ void fn_1_D1848(void) {
         obj->unk_4 = 0xFF;
         obj->unk_0 &= 0x7FFFFFFFu;
         obj->unk_0 = __rlwinm(obj->unk_0, 0, 2, 0);
-        obj->unk_60 = fn_1_45D0((*(u32 *)&lbl_801A6410), texsize, (u8 *)"face.c", 0x18A);
+        obj->unk_60 = fn_1_45D0((*&lbl_801A6410), texsize, (u8 *)"face.c", 0x18A);
         memset((void *)obj->unk_60, 0, 4);
         obj = (Obj_1_bss_7ACD8_Target *)((u8 *)obj + 0x64);
     }
@@ -442,7 +442,7 @@ void fn_1_D1F88(void) {
                 fn_1_46B4(lbl_801A6410, obj->unk_60, lbl_1_data_3DA2C, 0x271);
                 obj->unk_60 = 0;
             }
-            if (i < *(u8*)((u8*)state + 0xD)) {
+            if (i < *((u8*)state + 0xD)) {
                 index = (obj->unk_4 & 0xFF) << 2;
                 if (*(u32*)(state->unk_8 + index) != 0) {
                     fn_80071718(*(u32*)(state->unk_8 + index));
@@ -1093,7 +1093,7 @@ s32 fn_1_D2E44(u32 index) {
 
     if ((s32)lbl_1_bss_7ACE8 != 0) {
         if (index >= 4) {
-            OSPanic((char*)lbl_1_data_3DA2C, 0x4f3, (char*)lbl_1_data_3DB2C);
+            OSPanic((char*)lbl_1_data_3DA2C, 0x4f3, lbl_1_data_3DB2C);
         }
         for (i = 0; (u8)i < lbl_1_bss_7ACE5; i++) {
             values[(u8)i] = fn_1_86810((u8)i);
@@ -1158,10 +1158,10 @@ void fn_1_D2FC0(void) {
         u32 a[16];
     } loc_8;
 
-    fn_80083DB0((void *)&loc_8, "fze.");
-    strcat((void *)&loc_8, "window");
-    strcat((void *)&loc_8, ".rel");
-    fn_1_D3020((void *)&loc_8, (Output *)&lbl_1_bss_7ACF8);
+    fn_80083DB0(&loc_8, "fze.");
+    strcat(&loc_8, "window");
+    strcat(&loc_8, ".rel");
+    fn_1_D3020(&loc_8, (Output *)&lbl_1_bss_7ACF8);
 }
 /* fzgx:end fn_1_D2FC0 */
 

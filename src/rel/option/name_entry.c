@@ -450,7 +450,7 @@ if (lbl_4_bss_5684 != 0) {
 v2 = (arg0);
 v1 = (u32)&lbl_801A6410;
 v3 = (s32)"name_entry.c";
-v1 = *(u32 *)((u8 *)v1);
+v1 = *(u32 *)(v1);
 v4 = 465;
 fn_1_46B4(v1, v2, (const char *)v3, v4);
 v1 = fn_1_4060();
@@ -529,14 +529,14 @@ v12 = (v2 + 11);
 v3 = ((v12 - v3) << 1);
 v1 = (u32)fn_80083CF4((char *)v1, (const char *)v2, v3);
 }
-v2 = (*(u8 *)((u8 *)arg0));
+v2 = (*(u8 *)(arg0));
 v1 = (u32)lbl_4_bss_5680;
-if ((u32)v2 == *(u8 *)((u8 *)v1 + 13)) {
+if ((u32)v2 == *(u8 *)(v1 + 13)) {
 u32 b14;
 v2 = ((v0 + 6));
 v1 = (u32)&lbl_801A63D0;
 v3 = 14;
-v1 = *(u32 *)((u8 *)v1);
+v1 = *(u32 *)(v1);
 v10 = (v1 + 44);
 b14 = (v1 + 88);
 v1 = v10;
@@ -552,8 +552,8 @@ v4 = b14;
 v1 = sprintf((char *)v1, (const char *)v2, v3, v4);
 }
 v1 = (u32)lbl_4_bss_5680;
-v1 = *(u8 *)((u8 *)v1 + 13);
-v1 = (*(u8 *)((u8 *)arg0) - v1);
+v1 = *(u8 *)(v1 + 13);
+v1 = (*(u8 *)(arg0) - v1);
 if (v1 < 0) {
 v1 += 4;
 }
@@ -578,7 +578,7 @@ v15 = 84;
 v16 = name_entry_glyph_size(1);
 { Sig_fn_800081C8_Color color3 = {0, 255, 255, 0}; loc_14 = color3; }
 }
-state_value = *(u16 *)((u8 *)arg0 + 4);
+state_value = *(u16 *)(arg0 + 4);
 v3 = v15 - state_value;
 v6 = 0.2 * v3;
 if ((s32)v6 != 0) {
@@ -591,10 +591,10 @@ v1 = v3 > 0;
 }
 *(u16 *)((u8 *)arg0 + 4) += v1;
 }
-v7 = *(f32 *)((u8 *)arg0 + 8);
+v7 = *(f32 *)(arg0 + 8);
 v6 = 0.2;
 *(f32 *)((u8 *)arg0 + 8) = v7 + v6 * (v16 - v7);
-v1 = *(u8 *)((u8 *)arg0 + 2);
+v1 = *(u8 *)(arg0 + 2);
 v13 = v8->cursor;
 state_value = v1 + 1;
 if (state_value == (s32)v13 || --v1 > (s32)v13) {
@@ -602,7 +602,7 @@ if (state_value == (s32)v13 || --v1 > (s32)v13) {
 } else if (v1 == (s32)v13 || state_value < (s32)v13) {
 *(s8 *)((u8 *)arg0 + 1) = -36;
 }
-v2 = (s8)*(u8 *)((u8 *)arg0 + 1);
+v2 = (s8)*(u8 *)(arg0 + 1);
 v3 = -v2;
 v6 = 0.2 * v3;
 if ((s32)v6 != 0) {
@@ -636,17 +636,17 @@ v3 = (u32)&loc_14;
 v2 = v1 - state_value;
 state_value = (u32)p_lbl_1_rodata_26F8 - 4;
 for (v21 = 11; v21 != 0; v21--) {
-v1 = *(u32 *)((u8 *)state_value + 4);
-v22 = *(u32 *)((u8 *)state_value + 8);
+v1 = *(u32 *)(state_value + 4);
+v22 = *(u32 *)(state_value + 8);
 state_value += 8;
 *(u32 *)((u8 *)v3 + 4) = v1;
 *(u32 *)((u8 *)v3 + 8) = v22;
 v3 += 8;
 }
 loc_18.a[0] = v15;
-v3 = *(u8 *)((u8 *)arg0 + 1);
+v3 = *(u8 *)(arg0 + 1);
 v1 = (s8)v3;
-v26 = v2 * *(f32 *)((u8 *)arg0 + 8);
+v26 = v2 * *(f32 *)(arg0 + 8);
 v5 = (v1 + 320);
 *(f32 *)((u8 *)&loc_18 + 4) = v5 + v26;
 if (__abs(v2) > 0) {
@@ -663,7 +663,7 @@ v7 = *(f32 *)((u8 *)&loc_18 + 4);
 *(f32 *)((u8 *)&loc_18 + 12) = v24;
 loc_18.a[12] = 10;
 v5 = 1.0f;
-v27 = *(f32 *)((u8 *)arg0 + 8) / v25;
+v27 = *(f32 *)(arg0 + 8) / v25;
 *(f32 *)((u8 *)&loc_18 + 20) = v27;
 *(f32 *)((u8 *)&loc_18 + 16) = v27;
 {
@@ -677,12 +677,12 @@ loc_18.a[14] = v1;
 fn_1_4F734((FontDrawPacket *)&loc_18);
 v20 = fn_80083970(v20 + 2, (const u8 *)"\201\350");
 }
-v2 = (s8)*(u8 *)((u8 *)arg0 + 1);
+v2 = (s8)*(u8 *)(arg0 + 1);
 v2 += 320;
 v5 = v2;
-v6 = (f32)(u32)*(u16 *)((u8 *)arg0 + 4);
+v6 = (f32)(u32)*(u16 *)(arg0 + 4);
 fn_1_496FC(v5, v6);
-v18 = *(f32 *)((u8 *)arg0 + 8) / 24.0;
+v18 = *(f32 *)(arg0 + 8) / 24.0;
 fn_1_4955C(v18, v18);
 {
 fn_1_49514(loc_14);
@@ -1195,7 +1195,7 @@ var_r27_2 += 1;
 }
 }
 /* WARNING: compiler-diff device, not original code (pointer view of lbl_4_bss_5680, carried from main) */
-if ((((*(Obj_4_bss_5680_Target **)(void *)&lbl_4_bss_5680)->unk_0) >> 0x1FU) == 0) {
+if ((((*(Obj_4_bss_5680_Target **)&lbl_4_bss_5680)->unk_0) >> 0x1FU) == 0) {
 loc_20 = *(FontDrawPacket *)lbl_1_rodata_26F8;
 loc_20.image = 0x8F00;
 loc_20.x = (lbl_4_bss_5680->unk_12);
@@ -1219,7 +1219,7 @@ case 2:
 var_r4 = base->columns[2] + base->index * 2;
 break;
 }
-strncpy((char *)buf, (const char *)var_r4, 2);
+strncpy((char *)buf, var_r4, 2);
 fn_1_49410();
 fn_1_494DC(0x2A);
 fn_1_495C8(9);
@@ -1303,9 +1303,9 @@ static void name_entry_set_default_name(void) {
     ptr = lbl_4_bss_5680->name;
     if (*ptr == 0) {
         if (lbl_801A66B4 == 5) {
-            fn_80083DB0((char *)ptr, "\203G\203t\203[\203\215");
+            fn_80083DB0(ptr, "\203G\203t\203[\203\215");
         } else {
-            fn_80083DB0((char *)ptr, "\202e\201|\202y\202d\202q\202n");
+            fn_80083DB0(ptr, "\202e\201|\202y\202d\202q\202n");
         }
         {
             MenuColor color = {0x00, 0xFF, 0xFF, 0x00};

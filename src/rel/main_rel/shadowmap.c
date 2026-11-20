@@ -298,7 +298,7 @@ void fn_1_568F8(ShadowMap *map) {
     fn_80072EDC(0, 4);
     fn_800728A8(1, 1, 0, 0);
     fn_80074918(1, 3, 1);
-    fn_80077BAC((void *)fn_1_56724);
+    fn_80077BAC(fn_1_56724);
 
     model = map->model;
     for (i = 0; i < 6; i++) {

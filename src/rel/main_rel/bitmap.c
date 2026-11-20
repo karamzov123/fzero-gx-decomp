@@ -449,7 +449,7 @@ u16 fn_1_48690(u32 unused) {
 /* fzgx:begin fn_1_486C4 */
 // Return the current bitmap height, or the default height when no bitmap is active.
 u16 fn_1_486C4(u32 value) {
-    void *bitmap = (void *)fn_1_48730(value);
+    void *bitmap = fn_1_48730(value);
 
     if (bitmap != 0) {
         return *(u16 *)((u8 *)bitmap + 0xA);

@@ -15,7 +15,7 @@ __declspec(section ".data") u32 lbl_1_data_1C500 __attribute__((aligned(8))) = 0
 
 extern u8 lbl_1_bss_4E6D0[];
 #pragma explicit_zero_data on
-__declspec(section ".data") Obj_1_data_1C504_Target *lbl_1_data_1C504 __attribute__((aligned(4))) = (Obj_1_data_1C504_Target *)((u8 *)&lbl_1_bss_4E6D0);
+__declspec(section ".data") Obj_1_data_1C504_Target *lbl_1_data_1C504 __attribute__((aligned(4))) = (Obj_1_data_1C504_Target *)(&lbl_1_bss_4E6D0);
 #pragma explicit_zero_data reset
 
 

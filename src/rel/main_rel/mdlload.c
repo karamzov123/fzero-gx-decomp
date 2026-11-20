@@ -149,8 +149,8 @@ void *fn_1_D35D4(void *name, void *user) {
         return 0;
     }
 
-    size0 = (__lwbrx((u32 *)lbl_1_bss_3BC0, 0) + 39) & ~31;
-    size1 = (__lwbrx((u32 *)lbl_1_bss_3BC0, 4) + 31) & ~31;
+    size0 = (__lwbrx(lbl_1_bss_3BC0, 0) + 39) & ~31;
+    size1 = (__lwbrx(lbl_1_bss_3BC0, 4) + 31) & ~31;
 
     buffer0 = fn_1_45D0(lbl_801A6410, ((size1 + 31) & ~31) + 32, "mdlload.c", 0x7a);
     data = (u8 *)buffer0 + 32;
@@ -241,8 +241,8 @@ void *fn_1_D38C4(void *name) {
         return 0;
     }
 
-    size = (__lwbrx((void *)lbl_1_bss_3BC0, 0) + 0x27) & ~0x1f;
-    size2 = (__lwbrx((void *)lbl_1_bss_3BC0, 4) + 0x1f) & ~0x1f;
+    size = (__lwbrx(lbl_1_bss_3BC0, 0) + 0x27) & ~0x1f;
+    size2 = (__lwbrx(lbl_1_bss_3BC0, 4) + 0x1f) & ~0x1f;
 
     data = fn_1_45D0(lbl_801A6410, ((size2 + 0x1f) & ~0x1f) + 0x20, "mdlload.c", 0x1d6);
     aligned = (void *)(((u32)data + 0x3f) & ~0x1f);
@@ -286,8 +286,8 @@ void *fn_1_D3A4C(void *name) {
         return 0;
     }
 
-    value0 = __lwbrx((void *)lbl_1_bss_3BC0, 0);
-    value1 = __lwbrx((void *)lbl_1_bss_3BC0, 4);
+    value0 = __lwbrx(lbl_1_bss_3BC0, 0);
+    value1 = __lwbrx(lbl_1_bss_3BC0, 4);
     size = (value1 + 31) & ~31;
     ptr = (u32)fn_1_45D0(lbl_801A6410, (((size + 31) & ~31) + 32), "mdlload.c", 470);
     result = (ptr + 63) & ~31;
@@ -706,32 +706,32 @@ void fn_1_D4370(void *arg0) {
         }
     }
     temp_f4 = *(f32 *)((u8 *)(arg0) + 49216);
-    (*(u8 *)((u8 *)(&loc_18))) = 0xFF;
-    (*(u8 *)((u8 *)(&loc_18) + 1)) = 0xFF;
-    (*(u8 *)((u8 *)(&loc_18) + 2)) = 0xFF;
-    (*(u8 *)((u8 *)(&loc_18) + 3)) = 0x80;
-    (*(u8 *)((u8 *)(&loc_14))) = 0xEB;
-    (*(u8 *)((u8 *)(&loc_14) + 1)) = 0xB4;
-    (*(u8 *)((u8 *)(&loc_14) + 2)) = 0xD2;
-    (*(u8 *)((u8 *)(&loc_14) + 3)) = 0x80;
+    (*(u8 *)((&loc_18))) = 0xFF;
+    (*((u8 *)(&loc_18) + 1)) = 0xFF;
+    (*((u8 *)(&loc_18) + 2)) = 0xFF;
+    (*((u8 *)(&loc_18) + 3)) = 0x80;
+    (*(u8 *)((&loc_14))) = 0xEB;
+    (*((u8 *)(&loc_14) + 1)) = 0xB4;
+    (*((u8 *)(&loc_14) + 2)) = 0xD2;
+    (*((u8 *)(&loc_14) + 3)) = 0x80;
     if (temp_f4 > (0.99000001f)) {
         loc_1C.words[0] = loc_18.words[0];
-        (*(u8 *)((u8 *)(&loc_1C))) = ((*(u8 *)((u8 *)(&loc_1C))) * temp_f4);
-        (*(u8 *)((u8 *)(&loc_1C) + 1)) = ((*(u8 *)((u8 *)(&loc_1C) + 1)) * temp_f4);
-        (*(u8 *)((u8 *)(&loc_1C) + 2)) = ((*(u8 *)((u8 *)(&loc_1C) + 2)) * temp_f4);
-        (*(u8 *)((u8 *)(&loc_1C) + 3)) = ((*(u8 *)((u8 *)(&loc_1C) + 3)) * temp_f4);
+        (*(u8 *)((&loc_1C))) = ((*(u8 *)((&loc_1C))) * temp_f4);
+        (*((u8 *)(&loc_1C) + 1)) = ((*((u8 *)(&loc_1C) + 1)) * temp_f4);
+        (*((u8 *)(&loc_1C) + 2)) = ((*((u8 *)(&loc_1C) + 2)) * temp_f4);
+        (*((u8 *)(&loc_1C) + 3)) = ((*((u8 *)(&loc_1C) + 3)) * temp_f4);
     } else {
         spC = loc_14.words[0];
         sp10 = loc_18.words[0];
-        loc_1C.words[0] = fn_1_539CC((void *)(&sp10), (void *)(&spC), ((0.5f) * (*(f32 *)((u8 *)(arg0) + 49216))));
+        loc_1C.words[0] = fn_1_539CC((&sp10), (&spC), ((0.5f) * (*(f32 *)((u8 *)(arg0) + 49216))));
         temp_f4_2 = (*(f32 *)((u8 *)(arg0) + 49216)) / (1.64999998f);
-        (*(u8 *)((u8 *)(&loc_1C))) = ((*(u8 *)((u8 *)(&loc_1C))) * temp_f4_2);
-        (*(u8 *)((u8 *)(&loc_1C) + 1)) = ((*(u8 *)((u8 *)(&loc_1C) + 1)) * temp_f4_2);
-        (*(u8 *)((u8 *)(&loc_1C) + 2)) = ((*(u8 *)((u8 *)(&loc_1C) + 2)) * temp_f4_2);
-        (*(u8 *)((u8 *)(&loc_1C) + 3)) = ((*(u8 *)((u8 *)(&loc_1C) + 3)) * temp_f4_2);
+        (*(u8 *)((&loc_1C))) = ((*(u8 *)((&loc_1C))) * temp_f4_2);
+        (*((u8 *)(&loc_1C) + 1)) = ((*((u8 *)(&loc_1C) + 1)) * temp_f4_2);
+        (*((u8 *)(&loc_1C) + 2)) = ((*((u8 *)(&loc_1C) + 2)) * temp_f4_2);
+        (*((u8 *)(&loc_1C) + 3)) = ((*((u8 *)(&loc_1C) + 3)) * temp_f4_2);
     }
     sp8 = loc_1C.words[0];
-    fn_1_9A7A8((u32 *)(&sp8));
+    fn_1_9A7A8((&sp8));
 }
 /* fzgx:end fn_1_D4370 */
 
@@ -777,7 +777,7 @@ void fn_1_D47F0(void *base, u32 index) {
     f32 scaled_delta;
     f32 scaled_base;
 
-    entry = (D47F0Entry *)((u8 *)lbl_1_bss_6D620 + index * 0x18);
+    entry = (D47F0Entry *)(lbl_1_bss_6D620 + index * 0x18);
     cached = (D47F0Entry *)((u8 *)base + index * 0x18 + 0xe780);
     fn_1_681C(index, temp);
     result = fn_1_1FB80(temp, 1);
@@ -820,7 +820,7 @@ void fn_1_D4964(u32 arg0) {
     int v10, v18, v15, v19, v21, v16, v25, v33, slope;
     u8 *v9;
     int v40, v47, v35, y, x, v53;
-    fn_80008BEC((void *)(v0 + 32), 0, 512);
+    fn_80008BEC((v0 + 32), 0, 512);
     for (v10=0; v10<16; v10++) {
         for(v15=0;v15<8;v15++) {
             for(v18=0;v18<8;v18++) {
@@ -844,8 +844,8 @@ void fn_1_D4964(u32 arg0) {
             }
         }
     }
-    DCFlushRange((void *)(v0+32),512);
-    fn_80008BEC((void *)(v0+544),0,9216);
+    DCFlushRange((v0+32),512);
+    fn_80008BEC((v0+544),0,9216);
     for(v35=0;v35<4;v35++) {
         *(s16 *)(v0+9768+v35*2)=v35*3+1;
         for(v40=0;v40<8;v40++) {
@@ -858,14 +858,14 @@ void fn_1_D4964(u32 arg0) {
             }
         }
     }
-    DCFlushRange((void *)(v0+544),9216);
-    GXInitTexObj((MdlTexObj *)v0,(void *)(v0+32),32,32,0,1,1,0);
+    DCFlushRange((v0+544),9216);
+    GXInitTexObj((MdlTexObj *)v0,(v0+32),32,32,0,1,1,0);
     GXInitTexObjLOD((MdlTexObj *)v0,1,1,0.0f,0.0f,0.0f,0,0,0);
     {
     int v58, v56;
     for(v56=0;v56<4;v56++) {
         for(v58=0;v58<8;v58++) {
-            GXInitTexObj((MdlTexObj *)(v0+v56*2304+v58*288+800),(void *)(v0+v56*2304+v58*288+544),16,16,2,1,1,0);
+            GXInitTexObj((MdlTexObj *)(v0+v56*2304+v58*288+800),(v0+v56*2304+v58*288+544),16,16,2,1,1,0);
             GXInitTexObjLOD((MdlTexObj *)(v0+v56*2304+v58*288+800),0,0,0.0f,0.0f,0.0f,0,0,0);
         }
     }

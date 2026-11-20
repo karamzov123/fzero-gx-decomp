@@ -26,14 +26,14 @@ void fn_10_26554(void) {
     u8 *p;
 
     fn_1_12EF80(lbl_10_bss_55CE0, &b, &a);
-    fn_1_FA1D8(b, a, (u8 *)lbl_1_bss_7F0C0 + (b * 6 + a) * 0x180 + 0xf8);
+    fn_1_FA1D8(b, a, lbl_1_bss_7F0C0 + (b * 6 + a) * 0x180 + 0xf8);
     if (fn_1_B7E98(0) != 0) {
         fn_1_F7954();
         p = (u8 *)lbl_1_bss_718C0 + 4;
-        fn_80008BA8(p, (u8 *)lbl_1_bss_8B3A0 + 0x9f, 4);
-        fn_80008BA8(p + 4, (u8 *)lbl_1_bss_8B3A0 + 0x8c, 6);
-        fn_80008BA8(p + 0xa, (u8 *)lbl_1_bss_8B3A0 + 0xc, 0x80);
-        if ((u32)((p + 0x8a) - ((u8 *)lbl_1_bss_718C0 + 4)) != 0x8a) {
+        fn_80008BA8(p, lbl_1_bss_8B3A0 + 0x9f, 4);
+        fn_80008BA8(p + 4, lbl_1_bss_8B3A0 + 0x8c, 6);
+        fn_80008BA8(p + 0xa, lbl_1_bss_8B3A0 + 0xc, 0x80);
+        if ((u32)((p + 0x8a) - (lbl_1_bss_718C0 + 4)) != 0x8a) {
             OSPanic(lbl_10_data_6BD0, 0x184, lbl_10_data_6BDC);
         }
         fn_1_B7CE4(1, work);
@@ -155,7 +155,7 @@ void fn_10_266AC(void) {
     fn_80072864(2);
     fn_8007245C(512);
     color = p->unk_A8;
-    fn_800371F8(1, (void *)&color);
+    fn_800371F8(1, &color);
     fn_8003462C(128, 7, 4);
     *(volatile f32 *)((u8 *)0xCC010000 - 32768) = p->unk_6C;  /* fzgx-allow: A1,A2 GX write-gather FIFO hardware address */
     *(volatile f32 *)((u8 *)0xCC010000 - 32768) = p->unk_6C;  /* fzgx-allow: A1,A2 GX write-gather FIFO hardware address */
@@ -177,7 +177,7 @@ void fn_10_266AC(void) {
     packet.y = p->unk_3C;
     packet.z = p->unk_40;
     packet.flags = 10;
-    fn_1_50164((void *)&packet, p->unk_44, p->unk_48, p->unk_4C, p->unk_50);
+    fn_1_50164(&packet, p->unk_44, p->unk_48, p->unk_4C, p->unk_50);
     str = ((u32 *)lbl_10_data_6B2C)[lbl_801A66B4];
     fn_1_4AEC0(1);
     fn_1_4AEB4(p->unk_54);

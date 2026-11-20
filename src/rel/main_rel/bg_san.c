@@ -241,15 +241,15 @@ void fn_1_D75CC(void) {
     fn_1_4404();
     temp_r4 = *(u32 *)((u8 *)(temp_r30) + 7256);
     if (temp_r4 != 0) {
-        fn_1_DA6A8((void *)(&(*(u32 *)&lbl_1_bss_7AD78)), temp_r4);
-        fn_80008BEC((void *)(&(*(u32 *)&lbl_1_bss_7AD78)), 0, 0x20U);
+        fn_1_DA6A8((&(*&lbl_1_bss_7AD78)), temp_r4);
+        fn_80008BEC((&(*&lbl_1_bss_7AD78)), 0, 0x20U);
         (*(u32 *)((u8 *)(temp_r30) + 7256)) = 0U;
     }
     temp_r4_2 = *(u32 *)((u8 *)(temp_r30) + 7260);
     if (temp_r4_2 != 0) {
-        temp_r31 = (u32 *)((u8 *)(&(*(u32 *)&lbl_1_bss_7AD78)) + 0x20);
-        fn_1_DA6A8((void *)(temp_r31), temp_r4_2);
-        fn_80008BEC((void *)(temp_r31), 0, 0x20U);
+        temp_r31 = (u32 *)((u8 *)(&(*&lbl_1_bss_7AD78)) + 0x20);
+        fn_1_DA6A8((temp_r31), temp_r4_2);
+        fn_80008BEC((temp_r31), 0, 0x20U);
         (*(u32 *)((u8 *)(temp_r30) + 7260)) = 0U;
     }
     fn_1_446C();
@@ -550,7 +550,7 @@ void fn_1_D7C44(LigEvt *arg0) {
 	u32 handle;
 
 	src = arg0->unk_8;
-	unk = *(u32 **)((u8 *)lbl_1_bss_38458->unk_8 + 0x170);
+	unk = *(u32 **)(lbl_1_bss_38458->unk_8 + 0x170);
 	lbl_8006DCA4();
 	lbl_8006E1B0(src, stackbuf);
 	lbl_8006D7DC(stackbuf);
@@ -705,7 +705,7 @@ extern s32 fn_1_58C4(void);
 
 // Initializes each lighting entry while the lighting system is available.
 void fn_1_D8388(void *obj) {
-    u8 *entry = (u8 *)obj;
+    u8 *entry = obj;
     s32 i;
 
     if ((u32)fn_1_58C4() < 2) {
@@ -1035,7 +1035,7 @@ void fn_1_D8878(LigSource *src) {
     s16 fade;
 
     env = lbl_1_data_2A7E0.unk_3C;
-    scene = *(void **)((u8 *)lbl_1_bss_38458->unk_8 + 0x170);
+    scene = *(void **)(lbl_1_bss_38458->unk_8 + 0x170);
     src = ((LigObject *)src)->source;
 
     lbl_8006DCA4();
@@ -1783,34 +1783,34 @@ void fn_1_DA3A0(void *arg0) {
      if (v2 + 1 == 11) {
       psvec_sub(v3 + -52, v3 + 16, &loc_20);
       psvec_sub(v3 + -732, v3 + 16, &loc_14);
-      lbl_8006D668((u32 *)&loc_20);
-      lbl_8006D668((u32 *)&loc_14);
+      lbl_8006D668(&loc_20);
+      lbl_8006D668(&loc_14);
       cross(&loc_20, &loc_14, &loc_8);
      } else {
       psvec_sub(v3 + -732, v3 + 16, &loc_20);
       psvec_sub(v3 + 84, v3 + 16, &loc_14);
-      lbl_8006D668((u32 *)&loc_20);
-      lbl_8006D668((u32 *)&loc_14);
+      lbl_8006D668(&loc_20);
+      lbl_8006D668(&loc_14);
       cross(&loc_20, &loc_14, &loc_8);
      }
     } else {
      if (v2 + 1 == 11) {
       psvec_sub(v3 + 764, v3 + 16, &loc_20);
       psvec_sub(v3 + -52, v3 + 16, &loc_14);
-      lbl_8006D668((u32 *)&loc_20);
-      lbl_8006D668((u32 *)&loc_14);
+      lbl_8006D668(&loc_20);
+      lbl_8006D668(&loc_14);
       cross(&loc_20, &loc_14, &loc_8);
      } else {
       psvec_sub(v3 + 84, v3 + 16, &loc_20);
       psvec_sub(v3 + 764, v3 + 16, &loc_14);
-      lbl_8006D668((u32 *)&loc_20);
-      lbl_8006D668((u32 *)&loc_14);
+      lbl_8006D668(&loc_20);
+      lbl_8006D668(&loc_14);
       cross(&loc_20, &loc_14, &loc_8);
      }
     }
     v16 = v3;
     v17 = 0;
-    while (v17 < *(u8 *)(v3 + 2)) {
+    while (v17 < *(v3 + 2)) {
      v18 = *(u16 *)(v16 + 4);
      v16 += 2;
      v17++;
@@ -1844,11 +1844,11 @@ void fn_1_DA6A8(void *arg0, u32 arg1) {
     u32 var_r7;
 
     if (arg0 != NULL) {
-        temp_r30 = (u32 *)(fn_80077B64((void *)arg1));
+        temp_r30 = (fn_80077B64((void *)arg1));
         var_r3 = (s32)fn_80077B14((void *)arg1);
         var_r7 = 0U;
         var_r6 = 0;
-        while (var_r7 < (*(u32 *)((u8 *)(temp_r30)))) {
+        while (var_r7 < (*((temp_r30)))) {
             var_r7 += 1;
             temp_r5 = (*(u32 *)((u8 *)(arg0) + 28)) + var_r6;
             var_r6 += 0xC;
@@ -2211,7 +2211,7 @@ void fn_1_DAE24(void) {
         fn_1_627C(index);
         value++;
     }
-    fn_1_DB138((void *)object);
+    fn_1_DB138(object);
 }
 /* fzgx:end fn_1_DAE24 */
 
@@ -2812,7 +2812,7 @@ void fn_1_DB9B0(void *arg0) {
             s32 next;
             for (v3 = 0; v3 < 15; v3++) {
                 v20 = v3 / 14.0f;
-                fn_1_681C(fn_1_5910(), (u32 *)&loc_50);
+                fn_1_681C(fn_1_5910(), &loc_50);
                 next = v19;
                 v19 = (v19 + 8) % 128;
                 v25 = (DB9B0Point *)(v0 + (next << 4) + 8);
@@ -2851,12 +2851,12 @@ void fn_1_DB9B0(void *arg0) {
             Vec3 loc_20, loc_14, loc_8;
             for (v3_r2 = 0; v3_r2 < 15; v3_r2++) {
                 v49 = v3_r2 / 14.0f;
-                fn_1_681C(fn_1_5910(), (u32 *)&loc_8);
+                fn_1_681C(fn_1_5910(), &loc_8);
                 v43 = v13;
                 v13 = (v13 + 8) % 128;
                 v52 = (DB9B0Point *)((u32)v0 + (v43 << 4) + 2056);
                 psvec_sub(&v52->pos, &loc_8, &loc_44);
-                psvec_sub(&v52->pos, (void *)(v0 + (v13 << 4) + 2056), &loc_38);
+                psvec_sub(&v52->pos, (v0 + (v13 << 4) + 2056), &loc_38);
                 DB9B0_cross(&loc_44, &loc_38, &loc_20);
                 if (0.0 != loc_20.x ||
                     0.0 != loc_20.y ||

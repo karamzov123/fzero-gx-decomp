@@ -141,13 +141,13 @@ s32 fn_16_5F18(u32 arg0) {
     lbl_8006DCDC();
     fn_1_F7870((u32)&lbl_1_data_1E5C0);
     lbl_8006D758();
-    mathutil_mtxA_rotate_x((s32)(182.04444885253906f * (f32)*(s16 *)((u8 *)arg0 + 40)));
+    mathutil_mtxA_rotate_x((s32)(182.04444885253906f * (f32)*(s16 *)(arg0 + 40)));
     mathutil_mtxA_rotate_y((s32)(182.04444885253906f * (lbl_801A66A0[0] % 360)));
     lbl_8006E14C(2.0f);
     lbl_8006DB74((void *)(lbl_801A6D00[0] + 96));
     lbl_8006DFE8((void *)(lbl_801A6D00[0] + 96));
     fn_80072558();
-    v6 = (void *)((u8 *)&lbl_16_bss_220 + (*(s16 *)((u8 *)arg0 + 12) * 1088));
+    v6 = ((u8 *)&lbl_16_bss_220 + (*(s16 *)(arg0 + 12) * 1088));
     fn_1_870BC(v6, 0, v6, 0, lbl_1_bss_8B614.unk_30 & 0xFF, 1.0f);
     return 0;
 }

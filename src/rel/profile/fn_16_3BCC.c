@@ -198,9 +198,9 @@ void fn_16_3BCC(s16 arg0, s16 x, s16 y) {
         fn_1_49514((u32 *)color);
     }
     SET_GRADE(lbl_1_data_416B8[arg0][0]);
-    fn_1_4AE0C("%s\n", (const char *)fn_1_14EE00(grade, buffer, lbl_1_bss_8B614.language));
+    fn_1_4AE0C("%s\n", fn_1_14EE00(grade, buffer, lbl_1_bss_8B614.language));
     SET_GRADE(lbl_1_data_416B8[arg0][1]);
-    fn_1_4AE0C("%s\n", (const char *)fn_1_14EE00(grade, buffer, lbl_1_bss_8B614.language));
+    fn_1_4AE0C("%s\n", fn_1_14EE00(grade, buffer, lbl_1_bss_8B614.language));
     SET_GRADE(lbl_1_data_416B8[arg0][2]);
-    fn_1_4AE0C("%s\n", (const char *)fn_1_14EE00(grade, buffer, lbl_1_bss_8B614.language));
+    fn_1_4AE0C("%s\n", fn_1_14EE00(grade, buffer, lbl_1_bss_8B614.language));
 }

@@ -445,16 +445,16 @@ static void fzgx_data_layout_lbl_8_data_0(void) {
 
 int fn_8_4D8(u32 *obj) {
     
-    f32 *pool = (f32 *)lbl_8_rodata_0;
+    f32 *pool = lbl_8_rodata_0;
 #define steps ((s16 *)fzgx_pool_data_lbl_8_data_0_3D8)  /* {wait, cmd} pairs */
     s16 *cmds;
     s16 cmd;
 
     if ((*((s32 *)&lbl_8_bss_228)) != 0) {
-        (*((s32 *)&lbl_8_bss_228))--;
+        (*(&lbl_8_bss_228))--;
     } else {
         (*((s32 *)&lbl_8_bss_22C))++;
-        (*((s32 *)&lbl_8_bss_228)) = steps[(*((s32 *)&lbl_8_bss_22C)) * 2];
+        (*(&lbl_8_bss_228)) = steps[(*((s32 *)&lbl_8_bss_22C)) * 2];
     }
 
     cmds = &steps[1];
@@ -542,6 +542,6 @@ void fn_8_784(u32 arg0) {
     lbl_8_bss_22C.unk_0 = -1;
     fn_1_5370(1, 0);
     *(u32 *)((u8 *)arg0 + 0) = ((*(u32 *)((u8 *)arg0 + 0) | 0x8200000) | 33033);
-    fn_1_A1588( (void *)(*(u32 *)((u8 *)lbl_1_bss_6EAD0.unk_0)), 1);
+    fn_1_A1588( (void *)(*(u32 *)(lbl_1_bss_6EAD0.unk_0)), 1);
 }
 /* fzgx:end fn_8_784 */

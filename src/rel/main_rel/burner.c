@@ -682,7 +682,7 @@ void fn_1_988DC(void *arg0) {
         if (fn_1_58C4() != 1) {
             break;
         }
-        memset((u8 *)&entry, 0, 0xe8);
+        memset(&entry, 0, 0xe8);
         entry.unk_0c = 6;
         id = *(s16 *)(p + 4);
         entry.unk_18 = id;
@@ -956,14 +956,14 @@ void fn_1_98E18(fn_1_98E18_Burner *b) {
     r += 1.7f;
 
     lbl_8006DCA4();
-    if (fn_1_54E34( (void *)(fn_1_98E18_Vec *)(&p), r)) {
+    if (fn_1_54E34( (fn_1_98E18_Vec *)(&p), r)) {
         lbl_8006DCA4();
         data = fn_1_5448C(&b->pos);
         event = (fn_1_98E18_Event *)fn_1_548AC(0xc);
         if (event != 0) {
             event->callback = fn_1_98F28;
             event->entry = b;
-            fn_1_5489C( (void **)(void *)(data), (void **)(void *)(event));
+            fn_1_5489C( (void **)(data), (void **)(event));
         }
     }
 }
@@ -7759,7 +7759,7 @@ typedef struct {
 extern const u8 lbl_1_rodata_41F0[];
 
 void fn_1_9C724(void) {
-    const BurnerPool9C724 *pool = (const BurnerPool9C724 *)(const void *)&lbl_1_rodata_41F0;
+    const BurnerPool9C724 *pool = (const BurnerPool9C724 *)&lbl_1_rodata_41F0;
 
     fn_1_9C724_Vec eye;
     fn_1_9C724_Vec pos;

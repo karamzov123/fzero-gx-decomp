@@ -1440,7 +1440,7 @@ void fn_1_76218(s32 arg0) {
     while (var_r29_2 < 8U) {
         temp_r28_2 = (struct Sig_fn_1_76448_fn_1_76448_Arg0 *)((u8 *)&lbl_1_bss_6C8EC + (var_r29_2 * 0x10C));
         temp_r4 = temp_r28_2->unk_DC;
-        if ((temp_r4 != 0) && ((*(u8 *)((u8 *)(temp_r28_2) + 264)) == 0)) {
+        if ((temp_r4 != 0) && ((*((u8 *)(temp_r28_2) + 264)) == 0)) {
             if (arg0 != 0) {
                 switch (temp_r4) {
                 case 0xE:
@@ -1544,10 +1544,10 @@ void fn_1_76448(struct fn_1_76448_Arg0 *arg0, u32 arg1) {
     u32 v3;
     v0 = (arg1 & 0xFF);
     v1 = (arg0->unk_DC * 6);
-    v2 = *(u8 *)((u8 *)((u8 *)&lbl_1_data_1D9B8 + v1) + v0);
+    v2 = *(((u8 *)&lbl_1_data_1D9B8 + v1) + v0);
     v3 = (u32)((u8 *)&lbl_1_data_1D960 + (v2 << 3));
-    fn_80074300((arg0->unk_F8 & 0xFFFF), (*(s16 *)((u8 *)(u32)arg0 + 250) & 0xFFFF), (*(s16 *)((u8 *)(u32)arg0 + 252) & 0xFFFF), (*(s16 *)((u8 *)arg0 + 254) & 0xFFFF));
-    fn_80074438((*(s16 *)((u8 *)arg0 + 256) & 0xFFFF), (*(s16 *)((u8 *)arg0 + 258) & 0xFFFF), *(u32 *)((u8 *)v3 + 4), (*(u32 *)((u8 *)arg0 + 244) & 0xFF));
+    fn_80074300((arg0->unk_F8 & 0xFFFF), (*(s16 *)((u32)arg0 + 250) & 0xFFFF), (*(s16 *)((u32)arg0 + 252) & 0xFFFF), (*(s16 *)((u8 *)arg0 + 254) & 0xFFFF));
+    fn_80074438((*(s16 *)((u8 *)arg0 + 256) & 0xFFFF), (*(s16 *)((u8 *)arg0 + 258) & 0xFFFF), *(u32 *)(v3 + 4), (*(u32 *)((u8 *)arg0 + 244) & 0xFF));
     fn_8003526C(arg0->unk_A0[v0], 0);
 }
 /* fzgx:end fn_1_76448 */
@@ -1710,7 +1710,7 @@ u8 lbl_1_data_1DC80[] = "Error!: ScrefcSetModeLocsize   Copy size is zero.\n";
 extern void OSPanic(const char *, int, const char *, ...);
 
 f32 fn_1_76704(void * arg0, void * arg1) {
-    u8 *p = (u8 *)arg0;
+    u8 *p = arg0;
     s32 a;
     s32 b;
     f32 v8;
@@ -3800,7 +3800,7 @@ void fn_1_7926C(s32 arg0) {
     }
 
     if (lbl_1_bss_6D778.unk_0->unk_18 > 1) {
-        fn_80036070((const Sig_fn_80036070_Fn80036070Data *)((u8 *)lbl_1_bss_6D778.unk_0->unk_24 + 0x20),
+        fn_80036070((const Sig_fn_80036070_Fn80036070Data *)(lbl_1_bss_6D778.unk_0->unk_24 + 0x20),
                     &texture2, &width, &height, &format, &unused14, &unused10, &flag);
         texture2 += 0x80000000;
         packet2 = lbl_1_rodata_26F8;
@@ -4512,7 +4512,7 @@ n31 = has1 ? n30 - 1 : n30;
 if (tbl->flags & 0x80) {
 result = c->unk_70;
 } else {
-result = (*(f32 *)&lbl_1_data_4);
+result = (*&lbl_1_data_4);
 }
 lbl_8006E1B0((Fn183D28Vec3 *)obj->unk_8, &pos);
 depth = -pos.z;
@@ -4721,7 +4721,7 @@ n31 = has1 ? n30 - 1 : n30;
 if (tbl->flags & 0x80) {
 result = c->unk_70;
 } else {
-result = (*(f32 *)&lbl_1_data_4);
+result = (*&lbl_1_data_4);
 }
 lbl_8006E1B0((Fn183D28Vec3 *)obj->unk_8, &pos);
 depth = -pos.z;
@@ -5650,8 +5650,8 @@ void fn_1_7B184(void *arg) {
     char buf_08[0x20];
     u8 *base = (u8 *)&lbl_1_data_1DCF0;
 
-    sprintf(buf_48, (const char *)(base + 0x7d0), (const char *)(base + 0x7e0), arg);
-    sprintf(buf_28, (const char *)(base + 0x7e8), (const char *)(base + 0x7e0), arg);
+    sprintf(buf_48, (const char *)(base + 0x7d0), (base + 0x7e0), arg);
+    sprintf(buf_28, (const char *)(base + 0x7e8), (base + 0x7e0), arg);
     sprintf(buf_08, (const char *)(base + 0x810), arg);
 
     fn_1_46DC4(buf_48);

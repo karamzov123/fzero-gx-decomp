@@ -168,19 +168,19 @@ extern void lbl_8006E14C(f32);
 s32 fn_16_69B8(u32 arg0) {
     struct fn_16_69B8_vec3 loc_8 = { 0.0f, 0.0f, 0.0f };
     void *v5;
-    loc_8.y = (-fn_16_6834(*(s16 *)((u8 *)arg0 + 12)));
+    loc_8.y = (-fn_16_6834(*(s16 *)(arg0 + 12)));
     fn_8006F038((void *)(arg0 + 16), (void *)(arg0 + 28), 0);
     lbl_8006DCDC();
     fn_1_F7870((u32)&lbl_1_data_1E5C0);
     lbl_8006D758();
-    mathutil_mtxA_rotate_x((s32)(182.04444885253906f * (s32)*(s16 *)((u8 *)arg0 + 40)));
-    mathutil_mtxA_rotate_y((s32)(182.04444885253906f * (s32)*(s16 *)((u8 *)arg0 + 42)));
-    lbl_8006E0A4((void *)&loc_8);
+    mathutil_mtxA_rotate_x((s32)(182.04444885253906f * (s32)*(s16 *)(arg0 + 40)));
+    mathutil_mtxA_rotate_y((s32)(182.04444885253906f * (s32)*(s16 *)(arg0 + 42)));
+    lbl_8006E0A4(&loc_8);
     lbl_8006E14C(2.0f);
     lbl_8006DB74((void *)(lbl_801A6D00.unk_0 + 96));
     lbl_8006DFE8((void *)(lbl_801A6D00.unk_0 + 96));
     fn_80072558();
-    v5 = (void *)(lbl_16_bss_220 + (*(s16 *)((u8 *)arg0 + 12) * 1088));
+    v5 = (lbl_16_bss_220 + (*(s16 *)(arg0 + 12) * 1088));
     fn_1_870BC((u32)v5, 0, (u32)v5, 0, (lbl_1_bss_8B614.unk_30 & 0xFF), 1.0f);
     return 0;
 }

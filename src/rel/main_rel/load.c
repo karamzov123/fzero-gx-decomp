@@ -557,10 +557,10 @@ u32 fn_1_45964(struct S45964 *arg0, void *arg1, u32 arg2, u32 arg3, u32 arg4) {
     case 1:
         size = arg2;
         DCInvalidateRange(arg1, size);
-        ARQPostRequest(req, 0, 1, 1, arg0->value + offset, arg1, size, (void *)fn_1_45A58);
+        ARQPostRequest(req, 0, 1, 1, arg0->value + offset, arg1, size, fn_1_45A58);
         return 1;
     default:
-        return fn_80006DAC((u8 *)arg0 + 4, arg1, arg2, offset, (void *)fn_1_45A58, (void *)fn_1_45A58, 0);
+        return fn_80006DAC((u8 *)arg0 + 4, arg1, arg2, offset, fn_1_45A58, fn_1_45A58, 0);
     }
 }
 #pragma opt_propagation reset
@@ -1789,7 +1789,7 @@ u32 fn_1_46BA0(u32 arg0, u32 arg1) {
     if ((s32)lbl_1_bss_384C4 == next) {
         return -1;
     }
-    entry = (u32 *)((u8 *)&lbl_1_bss_384D8__fzgx_offset_4000 + index * 12);
+    entry = (u32 *)(&lbl_1_bss_384D8__fzgx_offset_4000 + index * 12);
     fzgx_obj_lbl_1_bss_384C0 = next;
     entry[0] = 12;
     entry[1] = arg0;
@@ -1873,7 +1873,7 @@ s32 fn_1_46BFC(u32 arg0) {
     if ((s32)lbl_1_bss_384C4 == next) {
         return -1;
     }
-    entry = (u32 *)lbl_1_bss_384D8__fzgx_offset_4000;
+    entry = lbl_1_bss_384D8__fzgx_offset_4000;
     entry += current * 3;
     fzgx_obj_lbl_1_bss_384C0 = next;
     entry[0] = 0xc;

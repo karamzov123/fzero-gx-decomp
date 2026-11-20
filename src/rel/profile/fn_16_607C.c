@@ -44,7 +44,7 @@ s32 fn_16_607C(u32 arg0) {
     lbl_8006DCDC();
     fn_1_F7870((u32)&lbl_1_data_1E5C0);
     loc_8 = lbl_16_rodata_1DC;
-    lbl_8006D7DC((void *)&loc_8);
+    lbl_8006D7DC(&loc_8);
     lbl_8006DB74((void *)(lbl_801A6D00.unk_0 + 96));
     lbl_8006DFE8((void *)(lbl_801A6D00.unk_0 + 96));
     fn_80072558();
@@ -58,7 +58,7 @@ s32 fn_16_607C(u32 arg0) {
     v3 = lbl_16_rodata_AC.unk_0;
     elem = arg0;
     i = 0;
-    while (i < (s16)fn_1_12CB04(*(s16 *)((u8 *)arg0 + 12))) {
+    while (i < (s16)fn_1_12CB04(*(s16 *)(arg0 + 12))) {
         *(f32 *)((u8 *)elem + 1540) = v3;
         *(f32 *)((u8 *)elem + 1544) = v3;
         *(f32 *)((u8 *)elem + 1548) = v3;

@@ -342,9 +342,9 @@ struct fn_1_D66F8_Arg2 {
 void fn_1_D66F8(u8 arg0, u8 *arg1, s8 *arg2) {
     u32 sp8;
 
-    sp8 = *(u32 *)((u8 *)(&lbl_1_rodata_6358));
-    (*(u8 *)((u8 *)(arg1))) = *(u8 *)((u8 *)(((u8 *)(&sp8) + arg0)));
-    (*(s8 *)((u8 *)(arg2))) = (lbl_801A66A0 / ((arg0 + 1) * 0x1E)) & 3;
+    sp8 = *((&lbl_1_rodata_6358));
+    (*((arg1))) = *((((u8 *)(&sp8) + arg0)));
+    (*((arg2))) = (lbl_801A66A0 / ((arg0 + 1) * 0x1E)) & 3;
 }
 /* fzgx:end fn_1_D66F8 */
 
@@ -691,7 +691,7 @@ void fn_1_D6C10(Vec3 *arg0, f32 arg1) {
     f32 fzgx_pool_f32_0 = 0.0199999996f;
     f32 fzgx_pool_f32_1 = 10.0f;
     /* Spawn one particle near the closest viewer. */
-    v0 = (*(u32 *)&lbl_801A66A0);
+    v0 = (*&lbl_801A66A0);
     v1 = (arg1);
     v8 = arg1;
     if (v0 % 20 == 0) {
@@ -703,12 +703,12 @@ void fn_1_D6C10(Vec3 *arg0, f32 arg1) {
     v3 = t1;
     v2 = v3;
     v3 = 0;
-    fn_1_681C(v3, (u32 *)loc_8);
+    fn_1_681C(v3, loc_8);
     v4.value = D6C10Distance(arg0, loc_8);
     v5 = 1;
     while (v5 < v2) {
     v3 = (v5 & 0xFF);
-    fn_1_681C(v3, (u32 *)loc_8);
+    fn_1_681C(v3, loc_8);
     v4.value = D6C10Nearest(v4.value, arg0, loc_8);
     v5++;
     }
@@ -728,7 +728,7 @@ void fn_1_D6C10(Vec3 *arg0, f32 arg1) {
     coefficient = product.value;
     }
     v5 = 0x43300000;
-    loc_14.unk_34 = *(u32 *)((u8 *)lbl_1_bss_38458->unk_8 + 360);
+    loc_14.unk_34 = *(u32 *)(lbl_1_bss_38458->unk_8 + 360);
     while ((u8)v2 != 0) {
     loc_14.unk_3C = *arg0;
     t8 = fn_1_584AC();

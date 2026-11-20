@@ -161,7 +161,7 @@ void fn_1_131558(void) {
     u8 request[0x24];
 
     if (state->unk_14 == 0) {
-        OSPanic((const char*)lbl_1_data_40EA4, 0x197, (const char*)lbl_1_data_40F30);
+        OSPanic((const char*)lbl_1_data_40EA4, 0x197, lbl_1_data_40F30);
         state->unk_00 = -1;
         state->unk_08 = -1;
     } else if (state->unk_08 == -1) {
@@ -445,7 +445,7 @@ void fn_1_13198C(s16 idx, void *a1, void *a2, EntryObj *a3, EntryObj *a4, s32 mo
     lbl_8006DB74(buf);
 
     for (v = 0; v < 8; v++) {
-        if (*(u8 *)(((off) + ((0x14) + ((u8 *)&lbl_1_bss_8B3A0)))) & (1 << v)) {
+        if (*(((off) + ((0x14) + ((u8 *)&lbl_1_bss_8B3A0)))) & (1 << v)) {
             break;
         }
     }

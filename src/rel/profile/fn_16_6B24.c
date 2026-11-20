@@ -86,7 +86,7 @@ void fn_16_6B24(void) {
     loc_8.unk_14 = loc_8.unk_14 * p_lbl_16_rodata_58->unk_1DC;
     }
     loc_8.unk_30 = 10;
-    fn_1_8D3F8(lbl_16_bss_154, &loc_8, (void *)fn_16_69B8, &lbl_1_bss_8B614);
+    fn_1_8D3F8(lbl_16_bss_154, &loc_8, fn_16_69B8, &lbl_1_bss_8B614);
     fn_1_133DBC(0);
     p_lbl_1_bss_8B614 = (struct fn_16_6B24_lbl_1_bss_8B614 *)&lbl_1_bss_8B614;
     if (p_lbl_1_bss_8B614->unk_2C == 0) {

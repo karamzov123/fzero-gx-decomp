@@ -42,5 +42,5 @@ void fn_16_2054(void) {
     }
     fn_1_48140((*(s32 *)&((&lbl_16_data_82B54)[lbl_1_bss_8B614.unk_C])));
     temp_r4 = (struct fn_16_2054_lbl_16_bss_220 *)(&(&lbl_16_bss_220)[lbl_1_bss_8B614.unk_C]);
-    fn_1_80F1C(((s16) temp_r4->unk_0[0].unk_324), (void *)(temp_r4));
+    fn_1_80F1C(((s16) temp_r4->unk_0[0].unk_324), (temp_r4));
 }

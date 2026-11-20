@@ -1144,12 +1144,12 @@ void fn_1_9F164(struct fn_1_9F164_Arg0 *arg0, f32 arg1) {
     } else {
         v1 = arg0->unk_0;
     }
-    if ((v0 & 0x4) == 0 && fn_1_54E34((void *)loc_C, v1) == 0) {
+    if ((v0 & 0x4) == 0 && fn_1_54E34(loc_C, v1) == 0) {
         arg0->unk_38 |= 1;
     } else {
         arg0->unk_38 &= ~1;
         loc_8 = arg0->unk_3C;
-        fn_800736C0(0, (void *)&loc_8);
+        fn_800736C0(0, &loc_8);
         fn_8003462C(0x90, 0, 8);
         XF_PUT(lbl_1_rodata_42D0); XF_PUT(lbl_1_rodata_42D0); XF_PUT(lbl_1_rodata_42D0); XF_PUT(lbl_1_rodata_42D0);
         XF_PUT(lbl_1_rodata_42D0); XF_PUT(lbl_1_rodata_42D0); XF_PUT(lbl_1_rodata_42D0); XF_PUT(lbl_1_rodata_42D0);
@@ -1165,13 +1165,13 @@ void fn_1_9F164(struct fn_1_9F164_Arg0 *arg0, f32 arg1) {
         v4 = arg0->unk_0;
         v5 = -v4;
         lbl_8006DAEC();
-        lbl_8006DFC4((void *)&arg0->unk_8[0]);
-        lbl_8006E1D8((lab_t0 = (void *)loc_18), v5, v5, lbl_1_rodata_42D0);
-        lab_t0 = (void *)loc_24;
+        lbl_8006DFC4(&arg0->unk_8[0]);
+        lbl_8006E1D8((lab_t0 = loc_18), v5, v5, lbl_1_rodata_42D0);
+        lab_t0 = loc_24;
         lbl_8006E1D8(lab_t0, v4, v5, lbl_1_rodata_42D0);
-        lab_t0 = (void *)loc_30;
+        lab_t0 = loc_30;
         lbl_8006E1D8(lab_t0, v4, v4, lbl_1_rodata_42D0);
-        lab_t0 = (void *)loc_3C;
+        lab_t0 = loc_3C;
         lbl_8006E1D8(lab_t0, v5, v4, lbl_1_rodata_42D0);
         lbl_8006DB30();
         XF_PUT(loc_18[0]);
@@ -1235,12 +1235,12 @@ void fn_1_9F4B4(struct fn_1_9F4B4_Arg0 *arg0) {
     u32 lab_t0_;
     u32 lab_t0__;
 
-    if (fn_1_54E34((void *)arg0, arg0->unk_C) == 0) {
+    if (fn_1_54E34(arg0, arg0->unk_C) == 0) {
         arg0->unk_12 |= 1;
     } else {
         arg0->unk_12 &= 0xFFFE;
         loc_8 = arg0->unk_14;
-        fn_800736C0(0, (void *)&loc_8);
+        fn_800736C0(0, &loc_8);
         fn_8003462C(0x90, 0, 8);
         *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
         *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
@@ -1287,7 +1287,7 @@ void fn_1_9F4B4(struct fn_1_9F4B4_Arg0 *arg0) {
             f31.value = (-arg0->unk_C);
             f30.value = arg0->unk_C;
             lbl_8006DAEC();
-            lbl_8006E0A4((void *)arg0);
+            lbl_8006E0A4(arg0);
             if (arg0->unk_10 != 0) {
                 mathutil_mtxA_rotate_z(arg0->unk_10);
             }

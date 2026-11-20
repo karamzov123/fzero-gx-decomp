@@ -714,10 +714,10 @@ int fn_1_FB798(int mode, u32 *value) {
 
     case 1: {
         u8 *p = (u8 *)entry + 4;
-        ((u32 *)(p + 4))[*(u8 *)p] = (u32)value;
+        ((u32 *)(p + 4))[*p] = (u32)value;
         *(u8 *)p = *(u8 *)p + 1;
         *value |= 0x80000000;
-        if (*(u8 *)p >= 0x10) {
+        if (*p >= 0x10) {
             OSPanic("bg_cas.c", 0x2f2, "DICE OVER!");
         }
         break;
@@ -2323,7 +2323,7 @@ void fn_1_FCFA4(void *arg0) {
         return;
     }
     f0 = (m->sub.unk_420);
-    if (f0 != 0 && f0((void *)((u8 *)m + 0x10000)) != 0) {
+    if (f0 != 0 && f0(((u8 *)m + 0x10000)) != 0) {
         return;
     }
     if (lbl_1_bss_850C0__fzgx_offset_6.unk_0 != 0) {
@@ -2499,7 +2499,7 @@ void fn_1_FD1D4(fn_1_FD1D4_Fn1FD27CArg0 *arg0, fn_1_FD1D4_Fn1FD27CArg1 *arg1) {
     value = arg0->value;
     lbl_8006DB74(local);
     if (persistent->value != 0 && (*(u32 *)((u8 *)persistent->value + 4) & ~0x7fffffffU) != 0) {
-        result = fn_1_563B8((void *)fn_1_FCF50);
+        result = fn_1_563B8(fn_1_FCF50);
         mode = *(s16 *)persistent->value;
         if (mode == 0) {
             fn_1_7EB8C(value, lbl_1_rodata_761C[0]);
@@ -2582,7 +2582,7 @@ void fn_1_FD27C(fn_1_FD27C_Fn1FD27CArg0 *arg0, fn_1_FD27C_Fn1FD27CArg1 *arg1) {
     value = arg0->value;
     lbl_8006DB74(local);
     if (persistent->value != 0 && (*(u32 *)((u8 *)persistent->value + 4) & ~0x7fffffffU) != 0) {
-        result = fn_1_563B8((void *)fn_1_FCF50);
+        result = fn_1_563B8(fn_1_FCF50);
         mode = *(s16 *)persistent->value;
         if (mode == 0) {
             fn_1_7EB8C(value, lbl_1_rodata_761C[0]);
@@ -2837,12 +2837,12 @@ void fn_1_FD3A8(void *arg0, f32 arg1) {
  *(f32 *)((u8 *)0xE0000000+0x1c)=r1; // fzgx-allow: A2 literal is a data constant in this table, not a pointer cast
  *(f32 *)((u8 *)0xE0000000+0x2c)=r2; // fzgx-allow: A2 literal is a data constant in this table, not a pointer cast
  }
- GXInitTexObj((Sig_GXInitTexObj_GXTexObj *)((u8 *)lbl_1_data_3EFA8+0x20),(u8 *)arg0+0x60,64,64,5,0,0,0);
- {f32 z=p_pool->unk_C; GXInitTexObjLOD((Sig_GXInitTexObjLOD_GXTexObj *)((u8 *)lbl_1_data_3EFA8+0x20),1,1,z,z,z,0,0,0);}
+ GXInitTexObj((Sig_GXInitTexObj_GXTexObj *)(lbl_1_data_3EFA8+0x20),(u8 *)arg0+0x60,64,64,5,0,0,0);
+ {f32 z=p_pool->unk_C; GXInitTexObjLOD((Sig_GXInitTexObjLOD_GXTexObj *)(lbl_1_data_3EFA8+0x20),1,1,z,z,z,0,0,0);}
  fn_800724C8(); fn_8007245C(0x2200); loc_10[0]=p_pool->unk_48;
  fn_80074788(1); fn_800747D0(4,0,0,0,0,2,2); loc_10[1]=loc_10[0]; lab_t1=&loc_10[1]; fn_800371F8(1,lab_t1);
  fn_80074918(1,7,0); fn_800728A8(1,4,5,0); fn_800720B0(0); fn_80072864(2);
- fn_80073778((void *)((u8 *)lbl_1_data_3EFA8+0x20),0);
+ fn_80073778((void *)(lbl_1_data_3EFA8+0x20),0);
  GXLoadTexMtxImm(lbl_801A6D00.unk_0,30,0);
  fn_80074660(1); fn_800745A4(0,0,0,30,0,125); fn_80073678(1); fn_80073898(0); fn_80073C6C(0);
  fn_80072AB0(0,0,0); fn_800734A8(0,0,0,4); fn_80072C24(0,2,8,3,15);
@@ -3663,7 +3663,7 @@ void fn_1_FDD7C(BgCasRacer **arg0, BgCasScene *scene) {
             return;
         }
     }
-    saved = fn_1_563B8((void *)fn_1_FCF50);
+    saved = fn_1_563B8(fn_1_FCF50);
     mode = index;
     fn_1_566EC(1, 0xFF);
     if (racer->unk_32C != NULL) {
@@ -3782,7 +3782,7 @@ void fn_1_FDEC8(fn_1_FDEC8_Racer **arg0, fn_1_FDEC8_Scene *scene) {
         } else {
             value = lbl_1_rodata_761C[0];
         }
-        saved = fn_1_563B8((void *)fn_1_FCF50);
+        saved = fn_1_563B8(fn_1_FCF50);
         mode = index;
         fn_1_566EC(1, 0xFF);
         if (index == 0) {
@@ -4001,7 +4001,7 @@ s16 mode;
 s16 saved;
 f32 alpha;
 lbl_8006DB74(inner);
-obj = ref->value; saved = obj->unk_3BA; if (saved == 3) { obj->unk_3BA = 2; } if (ctx->view != ((void *)0)) { mode = *ctx->view; alpha = (obj->unk_32C == 0) ? 0.5f : 1.0f; prev = fn_1_563B8((void *)fn_1_FCF50); fn_1_566EC(1, 0xff); if (mode == 0) { fn_1_7EB8C(obj, alpha); } else if (obj->unk_390 & 0x4000000) { fn_1_7F20C(obj, mode, alpha); } else { fn_1_7F1E8(obj, mode, alpha); } fn_1_566EC(0, 0); fn_1_563B8(prev); obj->unk_3BA = saved; } ;
+obj = ref->value; saved = obj->unk_3BA; if (saved == 3) { obj->unk_3BA = 2; } if (ctx->view != ((void *)0)) { mode = *ctx->view; alpha = (obj->unk_32C == 0) ? 0.5f : 1.0f; prev = fn_1_563B8(fn_1_FCF50); fn_1_566EC(1, 0xff); if (mode == 0) { fn_1_7EB8C(obj, alpha); } else if (obj->unk_390 & 0x4000000) { fn_1_7F20C(obj, mode, alpha); } else { fn_1_7F1E8(obj, mode, alpha); } fn_1_566EC(0, 0); fn_1_563B8(prev); obj->unk_3BA = saved; } ;
 lbl_8006DBAC(inner);
 }
 static inline void cas_draw_nested(CasObjectRef *ref, CasContext *ctx) {
@@ -4018,7 +4018,7 @@ void *prev;
 s16 mode;
 s16 saved;
 f32 alpha;
-obj = ref->value; saved = obj->unk_3BA; if (saved == 3) { obj->unk_3BA = 2; } if (ctx->view != ((void *)0)) { mode = *ctx->view; alpha = (obj->unk_32C == 0) ? 0.5f : 1.0f; prev = fn_1_563B8((void *)fn_1_FCF50); fn_1_566EC(1, 0xff); if (mode == 0) { fn_1_7EB8C(obj, alpha); } else if (obj->unk_390 & 0x4000000) { fn_1_7F230(obj, mode, alpha); } else { fn_1_7F1E8(obj, mode, alpha); } fn_1_566EC(0, 0); fn_1_563B8(prev); obj->unk_3BA = saved; } ;
+obj = ref->value; saved = obj->unk_3BA; if (saved == 3) { obj->unk_3BA = 2; } if (ctx->view != ((void *)0)) { mode = *ctx->view; alpha = (obj->unk_32C == 0) ? 0.5f : 1.0f; prev = fn_1_563B8(fn_1_FCF50); fn_1_566EC(1, 0xff); if (mode == 0) { fn_1_7EB8C(obj, alpha); } else if (obj->unk_390 & 0x4000000) { fn_1_7F230(obj, mode, alpha); } else { fn_1_7F1E8(obj, mode, alpha); } fn_1_566EC(0, 0); fn_1_563B8(prev); obj->unk_3BA = saved; } ;
 }
 static inline void cas_draw_single(CasObjectRef *ref, CasContext *ctx, CasBase *base) {
 u8 buf[0x30];
@@ -5112,7 +5112,7 @@ void fn_1_FFC60(void *arg0) {
     v2 = (u8 *)arg0 + 20;
     v3 = 32767.0f;
     v4 = 6.0f;
-    v5 = *(u32 *)((u8 *)lbl_1_bss_38458->unk_8 + 160);
+    v5 = *(u32 *)(lbl_1_bss_38458->unk_8 + 160);
     v6 = 1.0f;
     v7 = 0.02f;
     v8 = 15.0f;
@@ -5376,8 +5376,8 @@ void fn_1_FFE7C(void * arg0) {
     v0 = v1 * v1 + v0;
     t4 = lbl_8006D0B4(v0);
     *(f32 *)((u8 *)arg0 + 8) = t4;
-    fn_1_681C(0, (u32 *)loc_8);
-    t6 = fn_1_1FB80((void *)loc_8, 4096);
+    fn_1_681C(0, loc_8);
+    t6 = fn_1_1FB80(loc_8, 4096);
     if (t6 != 0) {
         v6 = 0.0;
     } else {
@@ -5388,7 +5388,7 @@ void fn_1_FFE7C(void * arg0) {
     v4 = 20.0f;
     *(f32 *)((u8 *)arg0 + 12) = (f32)(v2 + (f32)(0.15f * (f32)(v6 - v2)));
     v5 = *(f32 *)((u8 *)arg0 + 8);
-    v6 = (v4 * *(f32 *)((u8 *)arg0 + 12));
+    v6 = (v4 * *((u8 *)arg0 + 12));
     v7 = t6;
     v8 = (v4 * *(f32 *)((u8 *)arg0 + 12));
     if (v5 > v3) {
@@ -5401,7 +5401,7 @@ void fn_1_FFE7C(void * arg0) {
     v6 = v8;
     v8 = (v6 * v12);
     }
-    v14 = (void *)(((u8 *)arg0 + 20));
+    v14 = (((u8 *)arg0 + 20));
     v13 = 20;
     do {
     /* Skip spawning when the active-particle quota is exhausted. */
@@ -5458,10 +5458,10 @@ active:
     *(f32 *)((u8 *)v14 + 8) += (f32)(*(f32 *)((u8 *)v14 + 32) + (f32)(0.05f * (f32)((f32)(fn_1_584AC() & 0xFFFF) / 32767.0f - 0.5f)));
     v70 = 6.0f;
     v71 = 0.0f;
-    while (*(f32 *)((u8 *)v14) < v71) {
+    while (*(f32 *)(v14) < v71) {
         *(f32 *)((u8 *)v14 + 0) += v70;
     }
-    while (*(f32 *)((u8 *)v14) > 6.0f) {
+    while (*(f32 *)(v14) > 6.0f) {
         *(f32 *)((u8 *)v14 + 0) -= 6.0f;
     }
     while (*(f32 *)((u8 *)v14 + 4) < 0.0f) {

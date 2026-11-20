@@ -150,7 +150,7 @@ void fn_1_101AE8(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     if (v2 != 0) {
     v5 = (u32)&(*((struct fn_1_101AE8_lbl_801A6410 *)&lbl_801A6410));
     v3 = (u32)&lbl_1_data_3F17C;
-    v4 = *(u32 *)((u8 *)v5);
+    v4 = *(u32 *)(v5);
     v5 = 257;
     t6 = fn_1_46B4(v4, v2, (void *)(v3), v5);
     v4 = t6;
@@ -996,7 +996,7 @@ void fn_1_103054(void) {
 /* fzgx:begin fn_1_103058 */
 // Runs the cloth update unless the global state is one of the inactive modes.
 void fn_1_103058(void) {
-    s16 state = *(s16 *)(void *)&lbl_1_bss_960;
+    s16 state = *(s16 *)&lbl_1_bss_960;
 
     if (state != 10 && state != 14) {
         fn_1_10576C();

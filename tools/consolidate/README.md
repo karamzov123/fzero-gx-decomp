@@ -21,6 +21,8 @@ Run from the repository root; dry-run first.
 | `tuflag.py [--all]`, `apply_tuflag.py` | is a pragma kind really a TU-wide build flag? (all units of the TU, all regions) |
 | `tuversion.py` | strips all optimizer pragmas of a TU and tries each compiler version x fp_contract |
 | `pairdiag.py`, `merge_prep.py` | why adjacent clean units of a TU do not merge; reconcile their declarations |
+| `steer_prune.py --kind K [--apply]` | removes steering that no longer changes any object: `volatile`, one-member `carrier`s, `register`, `castview` (`*(T *)&x`), `pcast` (`(T)(e)`), `icast` (`(T)x`), `ptrcast` (`(T *)e`), `plus0`; per block, bisected on failure, all regions |
+| `pragma_rank.py`, `pragma_diff.py`, `trysrc.py` | rank pragma setters by words changed; show the asm diff; try a hand rewrite (scoped to one function) against the unit object |
 | `gate.sh` | GFZP01/GFZJ01/GFZE01 builds + lint |
 
 Helpers: `apply_pooled_all.py` (ELF/relocation parsing), `apply_smart_dol_mm.py` (C file merge
@@ -42,3 +44,7 @@ change the object when the pragma is removed.
   setters steer individual functions and need source-shape work.
 - name_entry's volatile target-pointer devices: `volatile` is redundant but a no-op pointer cast
   (`*(T **)ref`) is still required, so the device stays; `x--` replaces a volatile reload of x.
+- steer_prune results (2026-11-20): carriers 24, volatile 128 (hardware/buffer/primer
+  volatiles excluded by pattern), register 67, castview 993, pcast 4496, icast 3126, plus0 280.
+  Remaining instances change code. A member access is not always equivalent to the lifter's
+  byte view: in car_test fn_1_7D6B8 only 7 of 16 offsets convert with an identical object.

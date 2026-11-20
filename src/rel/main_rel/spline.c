@@ -162,7 +162,7 @@ void fn_1_F5458(void *arg0, u32 count, f32 value, f32 *samples, void *table) {
         fn_1_F588C((f32 *)work1, (f32 *)((u8 *)table + (index << 4)), (f32 *)((u8 *)table + (index << 4) + 16), ratio);
         fn_1_F588C((f32 *)work0, (f32 *)work3, (f32 *)work2, ratio);
         lab_t3 = ((((lbl_1_rodata_6D6C)) * ((ratio))) * ((lbl_1_rodata_6D74 - ratio)));
-        fn_1_F588C((f32 *)arg0, (f32 *)work1, (f32 *)work0, lab_t3);
+        fn_1_F588C(arg0, (f32 *)work1, (f32 *)work0, lab_t3);
     }
 }
 /* fzgx:end fn_1_F5458 */
@@ -1603,7 +1603,7 @@ void fn_1_F7A20(void) {
 
 	*(unsigned long long *)&lbl_1_bss_7F0A0.v00 = 0;
 	fn_800793D4((u8 *)&fzgx_obj_lbl_1_bss_7F0C0.elems[0], 0, 0x5360);
-	fzgx_obj_lbl_1_bss_84420.p = (void *)((u8 *)&fzgx_obj_lbl_1_bss_7F0C0.elems[0] + 0x4B5C);
+	fzgx_obj_lbl_1_bss_84420.p = ((u8 *)&fzgx_obj_lbl_1_bss_7F0C0.elems[0] + 0x4B5C);
 	fn_1_F7B2C(&fzgx_obj_lbl_1_bss_7F0C0.elems[0]);
 	fn_1_F7E88();
 	fn_1_F8048();
@@ -2265,7 +2265,7 @@ void fn_1_F8D5C(u32 arg0, u32 arg1) {
     struct fn_1_F8D5C_Copy440 loc_8;
     /* frame */
     loc_8 = *(struct fn_1_F8D5C_Copy440 *)&lbl_1_rodata_6E38;
-    fn_80008BA8((void *)arg1, (const void *)((u8 *)&loc_8 + ((s16)arg0 * 10)), 10);
+    fn_80008BA8((void *)arg1, ((u8 *)&loc_8 + ((s16)arg0 * 10)), 10);
 }
 /* fzgx:end fn_1_F8D5C */
 
@@ -3421,7 +3421,7 @@ void fn_1_FA5A8(s16 index, u8 bit) {
 
     base = lbl_1_bss_84420;
     base += index << 1;
-    value = *(u16 *)((u8 *)base + 0xa);
+    value = *(u16 *)(base + 0xa);
     *(u16 *)((u8 *)base + 0xa) = value | (1 << bit);
 }
 /* fzgx:end fn_1_FA5A8 */
@@ -3442,7 +3442,7 @@ u32 fn_1_FA5E0(u32 arg0, u32 arg1) {
     v1 = 1;
     v2 = (v1 << (arg1 & 0xFF));
     v1 = (lbl_1_bss_84420 + (v0 << 1));
-    v1 = *(u16 *)((u8 *)v1 + 10);
+    v1 = *(u16 *)(v1 + 10);
     v1 = (v1 & v2);
     return v1;
 }

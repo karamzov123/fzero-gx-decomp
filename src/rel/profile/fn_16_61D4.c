@@ -189,7 +189,7 @@ void fn_16_61D4(void) {
         pkt.unk_30 = 14;
         fn_1_8D3F8(&lbl_16_bss_154[25], &pkt, fn_16_607C, &lbl_1_bss_8B614);
         pkt = lbl_1_rodata_26F8;
-        pkt.unk_00 = *(u32 *)((u8 *)&lbl_16_data_830C0[(s16)fn_1_12C930(lbl_1_bss_8B614.unk_0c) * 16]
+        pkt.unk_00 = *(u32 *)(&lbl_16_data_830C0[(s16)fn_1_12C930(lbl_1_bss_8B614.unk_0c) * 16]
                              + lbl_1_bss_8B614.unk_30 * 4);
         pkt.unk_04 = 440.0f;
         pkt.unk_08 = 456.0f;
@@ -213,7 +213,7 @@ void fn_16_61D4(void) {
         return;
     }
     pkt = lbl_1_rodata_26F8;
-    pkt.unk_00 = *(u32 *)((u8 *)&lbl_16_data_830C0[(s16)fn_1_12C930(lbl_1_bss_8B614.unk_0c) * 16]
+    pkt.unk_00 = *(u32 *)(&lbl_16_data_830C0[(s16)fn_1_12C930(lbl_1_bss_8B614.unk_0c) * 16]
                              + lbl_1_bss_8B614.unk_30 * 4);
     pkt.unk_04 = 440.0f;
     pkt.unk_08 = 456.0f;

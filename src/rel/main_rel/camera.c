@@ -300,7 +300,7 @@ void fn_1_681C(u32 index, u32 *output) {
         return;
     }
 
-    mode = *(s8 *)((u8 *)state + 0x48);
+    mode = *(s8 *)(state + 0x48);
 
     switch (mode) {
     case 9:
@@ -353,7 +353,7 @@ void fn_1_6898(u32 index, u32 *output) {
         return;
     }
 
-    mode = *(s8 *)((u8 *)state + 0x48);
+    mode = *(s8 *)(state + 0x48);
 
     switch (mode) {
     case 9:
@@ -406,7 +406,7 @@ void fn_1_6914(u32 index, u32 *output) {
         return;
     }
 
-    mode = *(s8 *)((u8 *)state + 0x48);
+    mode = *(s8 *)(state + 0x48);
 
     switch (mode) {
     case 9:
@@ -459,7 +459,7 @@ void fn_1_6990(u32 index, u32 *output) {
         return;
     }
 
-    mode = *(s8 *)((u8 *)state + 0x48);
+    mode = *(s8 *)(state + 0x48);
 
     switch (mode) {
     case 9:
@@ -777,7 +777,7 @@ u32 fn_1_6D2C(u32 index) {
     switch (mode) {
 case 9: case 10: {
 
-        return *(u32 *)((u8 *)fzgx_obj_live_camera + 0xC);
+        return *(u32 *)(fzgx_obj_live_camera + 0xC);
     
 } break;
 default: {
@@ -868,7 +868,7 @@ void fn_1_6DD0(u8 index) {
 
     lbl_8006DD14((u32)((u8 *)lbl_801A6D00 + 0x30), lbl_801A66CC);
     if (bss->state == 0) {
-        OSPanic((u8 *)lbl_1_data_3318, 0x564, (u8 *)&lbl_1_data_35B0);
+        OSPanic(lbl_1_data_3318, 0x564, (u8 *)&lbl_1_data_35B0);
     }
     if ((bss->state->unk_0 & ((u32)1 << 31)) != 0) {
         *(u32 *)camera_get_state_object() |= ((u32)1 << 31);
@@ -997,7 +997,7 @@ static void fzgx_bss_layout(void) {
 }
 #pragma section code_type ".text"
 
-static inline fn_1_707C_Flag * fn_1_707C_read_pointer(void) { return (fn_1_707C_Flag *)(void *)fzgx_obj_live_camera; }
+static inline fn_1_707C_Flag * fn_1_707C_read_pointer(void) { return (fn_1_707C_Flag *)fzgx_obj_live_camera; }
 s32 fn_1_707C(u8 arg0) {
     u32 i;
     s32 value;
@@ -1009,11 +1009,11 @@ s32 fn_1_707C(u8 arg0) {
     Obj_1_bss_F68_Target *obj;
     fn_1_707C_Entry * fzgx_live;
 
-    if ((obj = (Obj_1_bss_F68_Target *)(void *)fzgx_obj_lbl_1_bss_F68) == 0) {
+    if ((obj = (Obj_1_bss_F68_Target *)fzgx_obj_lbl_1_bss_F68) == 0) {
         return 0;
     }
 
-    fzgx_live = (fn_1_707C_Entry *)(void *)fzgx_obj_game_camera_entries;
+    fzgx_live = (fn_1_707C_Entry *)fzgx_obj_game_camera_entries;
     entries = fzgx_live;
     i = 0;
     id = arg0;
@@ -3394,7 +3394,7 @@ arg0->unk_1F0 = ((arg0->unk_1F0) < (P32(fzgx_pool_rodata_lbl_1_rodata_230)) ? (P
 lbl_8006D5A4(&arg0->unk_1E4, &loc_BC, &arg0->unk_10, arg0->unk_1F0);
 lbl_8006D5A4(&arg0->unk_28, &loc_98, &arg0->unk_28, P32(fzgx_pool_rodata_lbl_1_rodata_200_C0) );
 lbl_8006D5A4(&arg0->unk_64, &loc_C8, &arg0->unk_64, P32(fzgx_pool_rodata_lbl_1_rodata_200_C0) );
-lbl_8006DD14((void *)(entry + (s32)&((Sig_camera_get_target_orientation_camera_get_target_orientation_CameraObject *)0)->unk_EC), &arg0->unk_34);
+lbl_8006DD14((entry + (s32)&((Sig_camera_get_target_orientation_camera_get_target_orientation_CameraObject *)0)->unk_EC), &arg0->unk_34);
 arg0->unk_8 = ((f32)((arg0->unk_8) + ((P64(fzgx_pool_rodata_lbl_1_rodata_200_158)) - (arg0->unk_8)) * (P64(fzgx_pool_rodata_lbl_1_rodata_200_150)))) ;
 break;
 }
@@ -3619,7 +3619,7 @@ typedef struct {
 extern const u8 lbl_1_rodata_200[];
 
 f32 fn_1_A888(void *arg0) {
-    const CameraPoolA888 *ro_pool = (const CameraPoolA888 *)(const void *)&lbl_1_rodata_200;
+    const CameraPoolA888 *ro_pool = (const CameraPoolA888 *)&lbl_1_rodata_200;
 
     f32 fzgx_live_;
     f32 *fzgx_value;
@@ -3726,7 +3726,7 @@ void fn_1_AA54(void *arg0) {
     temp_r31 = fn_1_86678((*(s16 *)((u8 *)(arg0) + 2)));
     temp_r3 = fn_1_86634((*(s16 *)((u8 *)(arg0) + 2)));
     temp_r28 = camera_get_entry_field_0xa8(temp_r3);
-    if (((*(s16 *)((u8 *)(&lbl_1_bss_960))) != 9) && (fn_1_864E8((*(s16 *)((u8 *)(arg0) + 2))) & 0x10000)) {
+    if (((*(s16 *)((&lbl_1_bss_960))) != 9) && (fn_1_864E8((*(s16 *)((u8 *)(arg0) + 2))) & 0x10000)) {
         camera_set_entry_field_0xa8(temp_r3, 2);
         return;
     }
@@ -3740,7 +3740,7 @@ void fn_1_AA54(void *arg0) {
         }
     } else {
 block_7:
-        if ((*(f64 *)((u8 *)(&lbl_1_rodata_360))) == fn_1_8664C((*(s16 *)((u8 *)(arg0) + 2)))) {
+        if ((*(f64 *)((&lbl_1_rodata_360))) == fn_1_8664C((*(s16 *)((u8 *)(arg0) + 2)))) {
             camera_set_entry_field_0xa8(temp_r3, 3);
             return;
         }
@@ -4648,7 +4648,7 @@ void fn_1_B870(void) {
                 offsetA.z = -clamped * (*((1) + (((B870Bss_A48 *)&lbl_1_bss_A48)->stick))) / 60.0;
             }
             offsetB.x = speed * (*((2) + (((B870Bss_A48 *)&lbl_1_bss_A48)->stick))) / 60.0;
-            if (((*(u16 *)&((B870Bss_9F8 *)&lbl_1_bss_9F8)->unk_2) >> 9) & 1) {
+            if (((*&((B870Bss_9F8 *)&lbl_1_bss_9F8)->unk_2) >> 9) & 1) {
                 offsetB.y = clamped * (*((3) + (((B870Bss_A48 *)&lbl_1_bss_A48)->stick))) / 60.0;
             } else {
                 offsetB.z = -clamped * (*((3) + (((B870Bss_A48 *)&lbl_1_bss_A48)->stick))) / 60.0;
@@ -4689,7 +4689,7 @@ void fn_1_B870(void) {
         fzgx_obj_lbl_1_bss_103C = lbl_8006D0B4(dx);
     }
     if (((((B870Bss_9F8 *)&lbl_1_bss_9F8)->unk_2 >> 9) & 1) && camera_flag_1__fzgx_offset_0 != 0) {
-        buttons = (*(u16 *)&(((B870Bss_9F8 *)&lbl_1_bss_9F8)->unk_0));
+        buttons = (*&(((B870Bss_9F8 *)&lbl_1_bss_9F8)->unk_0));
         if (buttons & 1) {
             rot = 0x800;
         } else {

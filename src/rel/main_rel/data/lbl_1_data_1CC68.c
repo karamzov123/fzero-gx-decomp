@@ -18,5 +18,5 @@ __declspec(section ".data") Obj_1_data_1CC74_Target lbl_1_data_1CC68 __attribute
 
 
 #pragma explicit_zero_data on
-__declspec(section ".data") Obj_1_data_1CC74_Target *lbl_1_data_1CC74 __attribute__((aligned(4))) = (Obj_1_data_1CC74_Target *)((u8 *)&lbl_1_data_1CC68);
+__declspec(section ".data") Obj_1_data_1CC74_Target *lbl_1_data_1CC74 __attribute__((aligned(4))) = (Obj_1_data_1CC74_Target *)(&lbl_1_data_1CC68);
 #pragma explicit_zero_data reset

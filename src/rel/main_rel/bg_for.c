@@ -269,7 +269,7 @@ void fn_1_DCFA4(u32 arg0) {
     p_lbl_1_rodata_6780 = (u8 *)&lbl_1_rodata_6780;
 
     if (*(u32 *)(arg0+324) != 0) {
-        flags = *(u64 *)((u8 *)arg0 + 312);
+        flags = *(u64 *)(arg0 + 312);
         if ((flags & 0x20000000ULL) != 0) {
             fn_80008BA8(&loc_74, (void *)(*(u32 *)(arg0+324) + 84), 12);
         } else if ((flags & 0x80000000ULL) != 0) {
@@ -299,7 +299,7 @@ void fn_1_DCFA4(u32 arg0) {
         draw_color(p_lbl_1_rodata_6780, 0);
         draw_vec(&out2, angles2, p_lbl_1_rodata_6780);
         fn_1_56298(*(f32 *)(p_lbl_1_rodata_6780+0x20), *(f32 *)(p_lbl_1_rodata_6780+0x20), *(f32 *)(p_lbl_1_rodata_6780+0x20), *(f32 *)(p_lbl_1_rodata_6780+0x20));
-        if ((*(u64 *)((u8 *)arg0+312) & 0x80000000ULL) != 0) {
+        if ((*(u64 *)(arg0+312) & 0x80000000ULL) != 0) {
             v0 = *(u32 *)(arg0+0x144);
             psvec_sub(&loc_74, (void *)(arg0+0x54), &delta2);
             lbl_8006D784(&m2);
@@ -822,13 +822,13 @@ void fn_1_DD890(DDObj *arg0, f32 arg1) {
         fn_1_56298(v1, v1, v1, v1);
     }
     if ((FLAGS & 4ULL) != 0 || (FLAGS & 0x20000ULL) != 0) {
-        fn_1_E50F0((void *)arg0, fn_1_A8DD4);
+        fn_1_E50F0(arg0, fn_1_A8DD4);
     }
     if ((FLAGS & 0x1000ULL) != 0) {
-        fn_1_E5164((void *)arg0, fn_1_A8DD4);
+        fn_1_E5164(arg0, fn_1_A8DD4);
     }
     if ((FLAGS & 0x200000ULL) != 0) {
-        fn_1_E52F8((void *)arg0, fn_1_A8DD4);
+        fn_1_E52F8(arg0, fn_1_A8DD4);
     }
     v1 = 0.0f;
     fn_1_56298(v1, v1, v1, v1);

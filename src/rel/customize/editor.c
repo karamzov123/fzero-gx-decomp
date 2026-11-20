@@ -972,8 +972,8 @@ void fn_3_17100(void) {
     }
     }
     v0 = (u32)&lbl_1_bss_9F8;
-    v0 = (u32)((u8 *)v0 + 2);
-    v0 = *(u16 *)((u8 *)v0 + (lbl_3_bss_A2410.unk_D * 20));
+    v0 = (u32)(v0 + 2);
+    v0 = *(u16 *)(v0 + (lbl_3_bss_A2410.unk_D * 20));
     if (((v0 >> 4) & 0x1) != 0 || ((v0 >> 5) & 0x1) != 0) {
     v32 = (&lbl_3_bss_A2410.unk_10)[lbl_3_bss_A2410.unk_C];
     fn_3_177AC((Color){lbl_3_bss_A2410.unk_10, lbl_3_bss_A2410.unk_12, lbl_3_bss_A2410.unk_14, 255});
