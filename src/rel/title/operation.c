@@ -295,7 +295,6 @@ extern struct fn_8_6A70_lbl_801A63C0 lbl_801A63C0;
 
 extern u32 fn_8_BD08(void);
 extern void fn_8_67F8(u32, u32, u32, u32);
-extern void fn_1_411A4(u32);
 extern void fn_80008BEC(void *, int, u32);
 
 void fn_8_6A70(void) {

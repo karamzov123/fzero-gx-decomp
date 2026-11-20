@@ -1289,7 +1289,6 @@ void fn_4_894(void) {
 /* fzgx:begin _epilog */
 extern struct _prolog_lbl_1_bss_6EAD0 lbl_1_bss_6EAD0;
 
-extern void fn_1_435C(u32);
 
 struct OptHandle {
     u32 unk_0;

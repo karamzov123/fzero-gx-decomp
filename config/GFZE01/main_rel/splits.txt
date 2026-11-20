@@ -889,11 +889,8 @@ rel/main_rel/bg_win/fn_1_15E1E8.c:
 rel/main_rel/bg_win/fn_1_15E540.c:
 	.text       start:0x0015E540 end:0x0015EC40 align:4
 
-rel/main_rel/_prolog/fn_1_8D4.c:
-	.text       start:0x000008D4 end:0x00000ECC align:4
-
 rel/main_rel/_prolog/fn_1_634.c:
-	.text       start:0x00000634 end:0x000008D4 align:4
+	.text       start:0x00000634 end:0x00000ECC align:4
 
 rel/main_rel/_prolog/fn_1_4404.c:
 	.text       start:0x00004404 end:0x00004438 align:4
@@ -1073,9 +1070,6 @@ rel/main_rel/memcard/fn_1_B5258.c:
 rel/main_rel/bg_cas/fn_1_FD1D4.c:
 	.text       start:0x000FD1D4 end:0x000FD27C align:4
 
-rel/main_rel/accessory/fn_1_1289BC.c:
-	.text       start:0x001289BC end:0x0012907C align:4
-
 rel/main_rel/archive/fn_1_12BF7C.c:
 	.text       start:0x0012BF7C end:0x0012C0EC align:4
 
@@ -1110,7 +1104,7 @@ rel/main_rel/memcard/fn_1_BF520.c:
 	.text       start:0x000BF520 end:0x000BF600 align:4
 
 rel/main_rel/game/fn_1_3FF90.c:
-	.text       start:0x0003FF90 end:0x000402D4 align:4
+	.text       start:0x0003FF90 end:0x0004068C align:4
 
 rel/main_rel/car_test/fn_1_7EB0C.c:
 	.text       start:0x0007EB0C end:0x0007EB8C align:4
@@ -1164,7 +1158,7 @@ rel/main_rel/screen_effect/fn_1_7879C.c:
 	.text       start:0x0007879C end:0x0007880C align:4
 
 rel/main_rel/phys/fn_1_E38D4.c:
-	.text       start:0x000E38D4 end:0x000E39F0 align:4
+	.text       start:0x000E38D4 end:0x000E3C38 align:4
 
 rel/main_rel/camera/fn_1_B81C.c:
 	.text       start:0x0000B81C end:0x0000B870 align:4
@@ -1270,7 +1264,7 @@ rel/main_rel/ranking/fn_1_1574E0.c:
 	.text       start:0x001574E0 end:0x00157598 align:4
 
 rel/main_rel/accessory/fn_1_128884.c:
-	.text       start:0x00128884 end:0x001289BC align:4
+	.text       start:0x00128884 end:0x0012907C align:4
 
 rel/main_rel/enemy_ctrl/fn_1_C771C.c:
 	.text       start:0x000C771C end:0x000C7874 align:4
@@ -1375,9 +1369,6 @@ rel/main_rel/enemy_ctrl/fn_1_C72D4.c:
 
 rel/main_rel/car/fn_1_95120.c:
 	.text       start:0x00095120 end:0x00095158 align:4
-
-rel/main_rel/game/fn_1_402D4.c:
-	.text       start:0x000402D4 end:0x0004068C align:4
 
 rel/main_rel/game/fn_1_3F4FC.c:
 	.text       start:0x0003F4FC end:0x0003F5F8 align:4
@@ -1694,9 +1685,6 @@ rel/main_rel/game/fn_1_3908C.c:
 
 rel/main_rel/_prolog/fn_1_ECC.c:
 	.text       start:0x00000ECC end:0x00001280 align:4
-
-rel/main_rel/phys/fn_1_E39F0.c:
-	.text       start:0x000E39F0 end:0x000E3C38 align:4
 
 rel/main_rel/sound/fn_1_A358C.c:
 	.text       start:0x000A358C end:0x000A3654 align:4
@@ -2908,7 +2896,7 @@ rel/main_rel/memcard/fn_1_BED04.c:
 	.text       start:0x000BED04 end:0x000BF198 align:4
 
 rel/main_rel/motasglist/fn_1_433E0.c:
-	.text       start:0x000433E0 end:0x000438AC align:4
+	.text       start:0x000433E0 end:0x00043E08 align:4
 
 rel/main_rel/stcoli/fn_1_278B8.c:
 	.text       start:0x000278B8 end:0x00027E34 align:4
@@ -3369,9 +3357,6 @@ rel/main_rel/stcoli/fn_1_28184.c:
 
 rel/main_rel/effect_car/fn_1_71768.c:
 	.text       start:0x00071768 end:0x00071D0C align:4
-
-rel/main_rel/motasglist/fn_1_438AC.c:
-	.text       start:0x000438AC end:0x00043E08 align:4
 
 rel/main_rel/effect_car/fn_1_71D0C.c:
 	.text       start:0x00071D0C end:0x000723E0 align:4

@@ -25737,10 +25737,8 @@ extern void fn_1_403D4(Fn408E8Obj *obj);
 /* end game/main_rel/game_types.h */
 
 extern s8 lbl_1_bss_26B5C[30];
-extern u8* fn_1_36AD0(void);
 extern u32 fn_1_34AC0(void *, u32, u32, u32);
 extern void fn_1_8001C(void);
-extern FontDrawPacket lbl_1_rodata_26F8;
 extern void fn_1_50A90(FontDrawPacket *packet, s32 w, s32 h, s32 clipW, s32 clipH);
 extern void fn_1_49514(u32 *value);
 extern void fn_1_49614(void);

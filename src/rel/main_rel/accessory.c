@@ -23442,7 +23442,6 @@ void fn_1_128884(void *arg0, void *arg1, int type) {
 /* fzgx:begin fn_1_1289BC */
 #include "rel/main_rel/cloth.h"
 
-extern u32 fn_1_46B4(u32, u32, void *, u32);
 
 typedef struct Point1024C4 {
     u8 pad[0x10];

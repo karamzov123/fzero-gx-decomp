@@ -68,10 +68,7 @@ rel/customize/toolkit/fn_3_19C50.c:
 	.text       start:0x00019C50 end:0x00019D88 align:4
 
 rel/customize/toolkit/fn_3_19D88.c:
-	.text       start:0x00019D88 end:0x00019E40 align:4
-
-rel/customize/toolkit/fn_3_19E40.c:
-	.text       start:0x00019E40 end:0x0001A264 align:4
+	.text       start:0x00019D88 end:0x0001A264 align:4
 
 rel/customize/toolkit/fn_3_1ACE4.c:
 	.text       start:0x0001ACE4 end:0x0001AEE4 align:4
@@ -107,16 +104,13 @@ rel/customize/_prolog/fn_3_5A50.c:
 	.text       start:0x00005A50 end:0x00005D84 align:4
 
 rel/customize/_prolog/fn_3_7594.c:
-	.text       start:0x00007594 end:0x000077B0 align:4
+	.text       start:0x00007594 end:0x00007CF8 align:4
 
 rel/customize/emb_paste_editor/fn_3_1180C.c:
 	.text       start:0x0001180C end:0x00011A38 align:4
 
 rel/customize/_prolog/fn_3_3438.c:
 	.text       start:0x00003438 end:0x0000368C align:4
-
-rel/customize/_prolog/fn_3_77B0.c:
-	.text       start:0x000077B0 end:0x00007CF8 align:4
 
 rel/customize/emb_memcard/fn_3_F878.c:
 	.text       start:0x0000F878 end:0x0000F948 align:4
@@ -177,7 +171,7 @@ rel/customize/toolkit/fn_3_28378.c:
 	.text       start:0x00028378 end:0x000286BC align:4
 
 rel/customize/_prolog/fn_3_7CF8.c:
-	.text       start:0x00007CF8 end:0x00007E5C align:4
+	.text       start:0x00007CF8 end:0x000083CC align:4
 
 rel/customize/_prolog/fn_3_5F28.c:
 	.text       start:0x00005F28 end:0x00006270 align:4
@@ -392,9 +386,6 @@ rel/customize/emb_paste_editor/fn_3_10260.c:
 
 rel/customize/_prolog/fn_3_5500.c:
 	.text       start:0x00005500 end:0x00005A50 align:4
-
-rel/customize/_prolog/fn_3_7E5C.c:
-	.text       start:0x00007E5C end:0x000083CC align:4
 
 rel/customize/emb_memcard/fn_3_D9A0.c:
 	.text       start:0x0000D9A0 end:0x0000E5D4 align:4

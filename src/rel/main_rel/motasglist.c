@@ -2145,7 +2145,6 @@ typedef struct {
     f32 z;
 } Fn183D28Vec3;
 
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 
 #endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
 #ifndef GAME_MAIN_REL_MOTASGLIST_TYPES_H

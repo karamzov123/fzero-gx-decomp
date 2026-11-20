@@ -6543,8 +6543,6 @@ extern s16 lbl_3_data_A8[6];
 extern const f32 lbl_3_rodata_260;
 extern u8 lbl_3_data_1930[40];
 
-extern int fn_1_4C10(void);
-extern void fn_1_4A00(int, int, u32);
 extern void fn_1_496FC(f32, f32);
 extern void fn_1_4AE0C(const char *, ...);
 
@@ -6581,8 +6579,6 @@ void fn_3_786C(void) {
 /* fzgx:end fn_3_786C */
 
 /* fzgx:begin fn_3_7870 */
-extern void fn_1_435C(u32);
-extern void fn_1_426C(s32);
 
 void fn_3_7870(void) {
     if (lbl_3_data_B8 != -1) {
@@ -6935,14 +6931,7 @@ extern s32 fn_8006FDEC(void);
 extern s32 fn_1_3F8C(char *, void (*)(void), u32, u32);
 extern void fn_1_14E9E4(s16, void *);
 extern s16 fn_1_14F014(void);
-extern void fn_80008BEC(void *, int, u32);
-extern void fn_80008BA8(void *, void *, u32);
-extern void fn_1_12AB38(char *);
-extern u32 fn_1_D3884(char *);
 extern u32 fn_1_12A32C(void *);
-extern void fn_1_12A2B8(u32);
-extern void fn_1_12A2C4(u32);
-extern void fn_1_14D994(void *, u32, int);
 extern void fn_1_151BDC(void *);
 extern s32 fn_1_F809C(s16);
 extern s16 fn_1_14F344(s16);

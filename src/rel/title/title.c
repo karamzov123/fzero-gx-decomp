@@ -236,7 +236,6 @@ extern void fn_1_4FEC(void);
 extern void fn_1_C3378(void);
 extern void fn_1_F7A20(void);
 extern s32 fn_1_3FC38(void);
-extern void fn_1_435C(u32);
 
 void _epilog(void) {
     if (!lbl_801A66B9) {
@@ -10502,10 +10501,6 @@ extern u32 fn_1_47F74(u32);
 extern u32 fn_1_5370(u32, u32);
 extern u32 fn_80008E84(u32);
 extern u32 lbl_8_bss_2B4;
-extern void fn_8_6558(void);
-extern void fn_8_6560(void);
-extern void fn_8_6568(void);
-extern void fn_8_6570(void);
 
 void fn_8_6594(u32 arg0) {
     u32 v0;

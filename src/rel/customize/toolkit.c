@@ -1027,7 +1027,6 @@ typedef struct fn_3_19E40_CustomizeData {
     void *unk_20;
 } fn_3_19E40_CustomizeData;
 
-extern u32 fn_3_17820(fn_3_19E40_CustomizeData *);
 extern void fn_3_1AEE4(void *, u32, u32, u32, u32);
 extern void fn_3_1B008(void *, u32, u32, u32, u32);
 

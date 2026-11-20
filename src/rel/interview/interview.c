@@ -144195,7 +144195,6 @@ __declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
 }
 #pragma section code_type ".text"
 
-extern void fn_17_7728(fn_17_750C_Child *);
 extern void fn_17_7A74(fn_17_750C_Child *);
 
 static inline fn_17_750C_Entry *fn_17_750C_get_entry(s32 mode, s32 kind, s32 index, u32 flags) {

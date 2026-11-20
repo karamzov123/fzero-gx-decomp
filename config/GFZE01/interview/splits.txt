@@ -13,10 +13,7 @@ rel/interview/interview/fn_17_2D24.c:
 	.text       start:0x00002D24 end:0x00003090 align:4
 
 rel/interview/interview/fn_17_4858.c:
-	.text       start:0x00004858 end:0x000049BC align:4
-
-rel/interview/interview/fn_17_49BC.c:
-	.text       start:0x000049BC end:0x00004E50 align:4
+	.text       start:0x00004858 end:0x00004E50 align:4
 
 rel/interview/fn_17_4E50.c:
 	.text       start:0x00004E50 end:0x000050F0 align:4
@@ -31,7 +28,7 @@ rel/interview/interview/fn_17_7020.c:
 	.text       start:0x00007020 end:0x000072BC align:4
 
 rel/interview/fn_17_72BC.c:
-	.text       start:0x000072BC end:0x0000750C align:4
+	.text       start:0x000072BC end:0x00007728 align:4
 
 rel/interview/interview/fn_17_87C0.c:
 	.text       start:0x000087C0 end:0x00008870
@@ -71,9 +68,6 @@ rel/interview/interview/fn_17_6F30.c:
 
 rel/interview/interview/fn_17_8C7C.c:
 	.text       start:0x00008C7C end:0x00008D28 align:4
-
-rel/interview/interview/fn_17_750C.c:
-	.text       start:0x0000750C end:0x00007728 align:4
 
 rel/interview/interview/fn_17_3160.c:
 	.text       start:0x00003160 end:0x0000334C align:4

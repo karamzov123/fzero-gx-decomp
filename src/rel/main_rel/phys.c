@@ -1949,9 +1949,6 @@ extern const LocalStruct lbl_1_rodata_26F8;
 extern s8 fn_1_A5DC4(void);
 extern void fn_1_4E92C(LocalStruct *, u32, u16, u16, u32);
 extern s16 fn_1_E5430(s16);
-extern Obj_1A8 *fn_1_E54A8(s16, s32);
-extern void fn_80077E0C(void *);
-extern void fn_80076134(void);
 
 void fn_1_E39F0(void) {
 

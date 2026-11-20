@@ -778,7 +778,6 @@ void fn_1_958(void) {
 extern u32 OSGetArenaHi(void);
 extern void OSSetArenaHi(u32 arena_hi);
 extern u32 fn_80008BEC(void *, u32, u32);
-extern void fn_80006E10(char *path);
 extern u32 fn_1_12B88(char *path, u8 *dest, u8 *work);
 extern void fn_800074C4(u32 mapped, u8 *data, u32 size, u32 arg3, u32 arg4, u32 arg5);
 extern void fn_800075AC(u8 *data, u32 size, u32 arg2);
