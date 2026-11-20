@@ -7895,7 +7895,8 @@
       "DVDCancel",
       "fn_80019C24",
       "fn_80019C48",
-      "DVDCheckDisk"
+      "DVDCheckDisk",
+      "__DVDPrepareResetAsync"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
@@ -7910,17 +7911,8 @@
       "signed",
       "-common",
       "off"
-    ]
-  },
-  {
-    "module": "main",
-    "source": "dol/DVDCancelStreamAsync.c",
-    "symbols": [
-      "DVDCancelStreamAsync"
     ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "collapsed": true
   },
   {
     "module": "main",
@@ -8024,29 +8016,6 @@
     "own": [
       "DVDLoadFstMessage"
     ]
-  },
-  {
-    "module": "main",
-    "source": "dol/DVDInquiryAsync.c",
-    "symbols": [
-      "DVDInquiryAsync",
-      "DVDReset"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ],
-    "collapsed": true
   },
   {
     "module": "main",
@@ -8159,21 +8128,26 @@
     "module": "main",
     "source": "dol/DVDReadDiskID.c",
     "symbols": [
-      "DVDReadDiskID"
+      "DVDReadDiskID",
+      "DVDCancelStreamAsync",
+      "DVDInquiryAsync",
+      "DVDReset"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/DVDResume.c",
-    "symbols": [
-      "DVDResume"
+    "mw_version": "GC/1.2.5n",
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on",
+      "-fp",
+      "fmadd",
+      "-fp_contract",
+      "off",
+      "-char",
+      "signed",
+      "-common",
+      "off"
     ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "collapsed": true
   },
   {
     "module": "main",
@@ -8397,28 +8371,6 @@
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": null,
     "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/GXGetTexBufferSize.c",
-    "symbols": [
-      "GXGetTexBufferSize",
-      "__GetImageTileCount"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ]
   },
   {
     "module": "main",
@@ -11596,17 +11548,6 @@
   },
   {
     "module": "main",
-    "source": "dol/TRKDispatchMessage.c",
-    "symbols": [
-      "TRKDispatchMessage"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
     "source": "dol/TRKExceptionHandler.c",
     "symbols": [
       "TRKExceptionHandler"
@@ -11634,11 +11575,11 @@
       "TRKGetInput",
       "fn_800894FC",
       "usr_put_initialize",
-      "fn_8008963C"
+      "fn_8008963C",
+      "TRKDispatchMessage"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
     "collapsed": true,
     "matching_for": ["GFZE01"]
   },
@@ -12592,27 +12533,6 @@
     "status": "matching",
     "mw_version": null,
     "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/__DVDPrepareResetAsync.c",
-    "symbols": [
-      "__DVDPrepareResetAsync"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ]
   },
   {
     "module": "main",
@@ -14011,11 +13931,24 @@
     "module": "main",
     "source": "dol/cbForStateCoverClosed.c",
     "symbols": [
-      "cbForStateCoverClosed"
+      "cbForStateCoverClosed",
+      "fn_800186C0"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n",
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on",
+      "-fp",
+      "fmadd",
+      "-fp_contract",
+      "off",
+      "-char",
+      "signed",
+      "-common",
+      "off"
+    ],
+    "collapsed": true
   },
   {
     "module": "main",
@@ -25419,23 +25352,26 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_800186C0.c",
-    "symbols": [
-      "fn_800186C0"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
     "source": "dol/fn_8001989C.c",
     "symbols": [
-      "fn_8001989C"
+      "fn_8001989C",
+      "DVDResume"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n",
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on",
+      "-fp",
+      "fmadd",
+      "-fp_contract",
+      "off",
+      "-char",
+      "signed",
+      "-common",
+      "off"
+    ],
+    "collapsed": true
   },
   {
     "module": "main",
@@ -27122,12 +27058,14 @@
     "module": "main",
     "source": "dol/fn_80035960.c",
     "symbols": [
-      "fn_80035960"
+      "fn_80035960",
+      "GXGetTexBufferSize",
+      "__GetImageTileCount"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.2.5n",
-    "extra_cflags": []
+    "collapsed": true
   },
   {
     "module": "main",
@@ -27441,23 +27379,25 @@
     "module": "main",
     "source": "dol/fn_80038EEC.c",
     "symbols": [
-      "fn_80038EEC"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80038F10.c",
-    "symbols": [
+      "fn_80038EEC",
       "fn_80038F10"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n",
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on",
+      "-fp",
+      "fmadd",
+      "-fp_contract",
+      "off",
+      "-char",
+      "signed",
+      "-common",
+      "off"
+    ],
+    "collapsed": true
   },
   {
     "module": "main",
@@ -35901,7 +35841,10 @@
       "double2hex",
       "longlong2str",
       "long2str",
-      "parse_format"
+      "parse_format",
+      "qsort",
+      "fn_80082908",
+      "fn_80082928"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -35911,26 +35854,6 @@
       "on",
       "-str",
       "reuse,pool,readonly"
-    ]
-  },
-  {
-    "module": "main",
-    "source": "dol/qsort.c",
-    "symbols": [
-      "qsort",
-      "fn_80082908",
-      "fn_80082928"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZP01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-sdata",
-      "8",
-      "-sdata2",
-      "8",
-      "-use_lmw_stmw",
-      "on"
     ],
     "collapsed": true
   },
@@ -115526,7 +115449,17 @@
     "symbols": [
       "fn_12_1EF80",
       "fn_12_1F1AC",
-      "fn_12_1F61C"
+      "fn_12_1F61C",
+      "fn_12_1FADC",
+      "fn_12_2013C",
+      "fn_12_20168",
+      "fn_12_20170",
+      "fn_12_20178",
+      "fn_12_2017C",
+      "fn_12_20184",
+      "fn_12_20188",
+      "fn_12_2018C",
+      "fn_12_2025C"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
@@ -115549,42 +115482,6 @@
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": []
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/fn_12_1FADC.c",
-    "symbols": [
-      "fn_12_1FADC"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-sdata",
-      "8",
-      "-sdata2",
-      "8",
-      "-use_lmw_stmw",
-      "off"
-    ]
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/fn_12_2013C.c",
-    "symbols": [
-      "fn_12_2013C",
-      "fn_12_20168",
-      "fn_12_20170",
-      "fn_12_20178",
-      "fn_12_2017C",
-      "fn_12_20184",
-      "fn_12_20188",
-      "fn_12_2018C",
-      "fn_12_2025C"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "collapsed": true
   },
   {
     "module": "movie_module",
@@ -117209,28 +117106,8 @@
       "fn_12_310A0",
       "fn_12_31224",
       "fn_12_313A8",
-      "fn_12_31528"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "collapsed": true
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/fn_12_316A8.c",
-    "symbols": [
-      "fn_12_316A8"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-O4,p"
-    ]
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/fn_12_31860.c",
-    "symbols": [
+      "fn_12_31528",
+      "fn_12_316A8",
       "fn_12_31860",
       "fn_12_319EC",
       "fn_12_31B5C",
@@ -117255,6 +117132,7 @@
       "fn_12_32DBC"
     ],
     "status": "matching",
+    "mw_version": "GC/1.3.2",
     "collapsed": true
   },
   {
@@ -118697,21 +118575,12 @@
     "source": "rel/movie_module/fn_12_670C.c",
     "symbols": [
       "fn_12_670C",
-      "fn_12_67A4"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/fn_12_683C.c",
-    "symbols": [
+      "fn_12_67A4",
       "fn_12_683C"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.3.2",
+    "collapsed": true
   },
   {
     "module": "movie_module",
@@ -119319,7 +119188,9 @@
     "symbols": [
       "fn_12_D42C",
       "fn_12_D55C",
-      "fn_12_D948"
+      "fn_12_D948",
+      "fn_12_DC78",
+      "fn_12_E0C8"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
@@ -119357,26 +119228,6 @@
       "@7": "lbl_12_rodata_C0",
       "@5": "lbl_12_rodata_60"
     }
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/fn_12_DC78.c",
-    "symbols": [
-      "fn_12_DC78"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/fn_12_E0C8.c",
-    "symbols": [
-      "fn_12_E0C8"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
   },
   {
     "module": "movie_module",

@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- dol/cbForStateCoverClosed.c --- */
 extern void __DVDStoreErrorCode(s32 error);
 extern void DVDReset(void);
 extern void cbForStateError(s32 state);
@@ -27,4 +29,12 @@ void cbForStateCoverClosed(u32 state) {
     } else {
         DVDLowRequestError(cbForStateGettingError);
     }
+}
+
+/* --- dol/fn_800186C0.c --- */
+extern u32 DVDLowWaitCoverClose(u32);
+extern void cbForStateMotorStopped(void);
+
+void fn_800186C0(void) {
+    DVDLowWaitCoverClose((u32)cbForStateMotorStopped);
 }

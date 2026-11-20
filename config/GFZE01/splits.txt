@@ -93,7 +93,7 @@ dol/fn_80017EA8.c:
 	.text       start:0x80017EA8 end:0x80017ED0
 
 dol/DVDReadDiskID.c:
-	.text       start:0x80019500 end:0x800195D4
+	.text       start:0x80019500 end:0x800197A4 align:4
 
 dol/__DVDDequeueWaitingQueue.c:
 	.text       start:0x80019FFC end:0x8001A178 align:4
@@ -210,10 +210,7 @@ dol/fn_8003591C.c:
 	.text       start:0x8003591C end:0x80035960
 
 dol/fn_80038EEC.c:
-	.text       start:0x80038EEC end:0x80038F10
-
-dol/fn_80038F10.c:
-	.text       start:0x80038F10 end:0x80038F48
+	.text       start:0x80038EEC end:0x80038F48 align:4
 
 dol/fn_800421C0.c:
 	.text       start:0x800421C0 end:0x800421CC
@@ -329,9 +326,6 @@ dol/__DBIsExceptionMarked.c:
 dol/fn_8004E580.c:
 	.text       start:0x8004E580 end:0x8004E59C align:4
 
-dol/fn_800186C0.c:
-	.text       start:0x800186C0 end:0x800186E8 align:4
-
 dol/fn_80018108.c:
 	.text       start:0x80018108 end:0x8001813C align:4
 
@@ -345,7 +339,7 @@ dol/ARQInit.c:
 	.text       start:0x80020530 end:0x800205A0 align:4
 
 dol/fn_8001989C.c:
-	.text       start:0x8001989C end:0x800198AC align:4
+	.text       start:0x8001989C end:0x800198FC align:4
 
 dol/fn_8001DF00.c:
 	.text       start:0x8001DF00 end:0x8001DF44 align:4
@@ -781,16 +775,10 @@ dol/cbForStateCheckID2a.c:
 	.text       start:0x80018170 end:0x800181E4 align:4
 
 dol/cbForStateCoverClosed.c:
-	.text       start:0x80018650 end:0x800186C0 align:4
+	.text       start:0x80018650 end:0x800186E8 align:4
 
 dol/cbForStateReadingFST.c:
 	.text       start:0x800178CC end:0x80017958 align:4
-
-dol/DVDCancelStreamAsync.c:
-	.text       start:0x800195D4 end:0x80019690 align:4
-
-dol/DVDInquiryAsync.c:
-	.text       start:0x80019690 end:0x800197A4 align:4
 
 dol/DVDReadAbsAsyncForBS.c:
 	.text       start:0x80019430 end:0x80019500 align:4
@@ -1034,7 +1022,8 @@ dol/TRKGetBuffer.c:
 	.text       start:0x80089218 end:0x80089244 align:4
 
 dol/TRKGetInput.c:
-	.text       start:0x8008949C end:0x800896C4 align:4
+	.text       start:0x8008949C end:0x80089834 align:4
+	.data       start:0x8015B7C0 end:0x8015B82C align:32
 
 dol/fn_800884C0.c:
 	.text       start:0x800884C0 end:0x800885B8 align:4
@@ -1415,9 +1404,6 @@ dol/GXSetPointSize.c:
 dol/fn_80063EF4.c:
 	.text       start:0x80063EF4 end:0x80063F38 align:4
 
-dol/DVDResume.c:
-	.text       start:0x800198AC end:0x800198FC align:4
-
 dol/GXPokeAlphaUpdate.c:
 	.text       start:0x80034214 end:0x80034230 align:4
 
@@ -1703,11 +1689,8 @@ dol/stateBusy.c:
 	.data       start:0x80124018 end:0x80124058 align:8
 
 dol/DVDCancelAsync.c:
-	.text       start:0x800198FC end:0x80019D48 align:4
+	.text       start:0x800198FC end:0x80019E64 align:4
 	.data       start:0x801240A8 end:0x80124110 align:8
-
-dol/__DVDPrepareResetAsync.c:
-	.text       start:0x80019D48 end:0x80019E64 align:4
 
 dol/__DVDCheckWaitingQueue.c:
 	.text       start:0x80019FA4 end:0x80019FFC align:4
@@ -1829,10 +1812,6 @@ dol/GXSetCopyClear.c:
 
 dol/GXClearBoundingBox.c:
 	.text       start:0x800353E8 end:0x80035420 align:4
-
-dol/GXGetTexBufferSize.c:
-	.text       start:0x80035A2C end:0x80035C50 align:4
-	.data       start:0x8012B140 end:0x8012B328 align:32
 
 dol/__GXSetSUTexRegs.c:
 	.text       start:0x8003666C end:0x80036A28 align:4
@@ -2013,14 +1992,11 @@ dol/fclose.c:
 	.text       start:0x8007FA0C end:0x8007FC34 align:4
 
 dol/printf.c:
-	.text       start:0x8008069C end:0x8008279C align:4
+	.text       start:0x8008069C end:0x800829EC align:4
 	.rodata     start:0x80094FC0 end:0x80094FE8 align:8
 	.data       start:0x8015B438 end:0x8015B664 align:8
 	.sdata      start:0x801A6630 end:0x801A6638 align:8
 	.sdata2     start:0x801A74E8 end:0x801A74F0 align:8
-
-dol/qsort.c:
-	.text       start:0x8008279C end:0x800829EC align:4
 
 dol/atoi.c:
 	.text       start:0x80084F1C end:0x80084FDC align:4
@@ -2269,10 +2245,6 @@ dol/fn_80056294.c:
 dol/fn_80024C88.c:
 	.text       start:0x80024C88 end:0x80024D84 align:4
 
-dol/TRKDispatchMessage.c:
-	.text       start:0x800896C4 end:0x80089834 align:4
-	.data       start:0x8015B7C0 end:0x8015B82C align:32
-
 dol/fn_800781B8.c:
 	.text       start:0x800781B8 end:0x80078344 align:4
 
@@ -2459,7 +2431,8 @@ dol/fn_80034834.c:
 	.text       start:0x80034834 end:0x80034890 align:4
 
 dol/fn_80035960.c:
-	.text       start:0x80035960 end:0x80035A2C align:4
+	.text       start:0x80035960 end:0x80035C50 align:4
+	.data       start:0x8012B140 end:0x8012B328 align:32
 
 dol/ddh_cc_read.c:
 	.text       start:0x8008DF6C end:0x8008E058 align:4

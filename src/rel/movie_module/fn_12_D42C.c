@@ -1,7 +1,9 @@
 #include "types.h"
 #include "sofdec/mpvmc_ppc_h2.h"
+#include "sofdec/mpvmc_ppc.h"
 
 
+/* --- rel/movie_module/fn_12_D42C.c --- */
 /* --- rel/movie_module/fn_12_D42C.c --- */
 typedef struct MPVMCContext MPVMCContext;
 
@@ -220,4 +222,51 @@ void fn_12_D948(MPVMCContext *context) {
         }
         break;
     }
+}
+
+/* --- rel/movie_module/fn_12_DC78.c --- */
+/* MPVMC08_OneRef1p: copies an 8x8 chroma block from one reference with no interpolation. The kernel
+ * is chosen by the source address modulo 8 (see sofdec/mpvmc_ppc.h). */
+void fn_12_DC78(MPVMCContext *context) {
+    register const u8 *s = context->reference0;
+    __dcbt((void *)s, 0);
+    switch ((u32)s & 7) {
+    case 0: {
+        MPVMC08_COPY_AL0(context, s);
+        break;
+    }
+    case 4: {
+        MPVMC08_COPY_AL4(context, s);
+        break;
+    }
+    case 2:
+    case 6: {
+        MPVMC08_COPY_AL2(context, s);
+        break;
+    }
+    case 1:
+    case 5: {
+        MPVMC08_COPY_AL1(context, s);
+        break;
+    }
+    case 3:
+    case 7: {
+        MPVMC08_COPY_AL3(context, s);
+        break;
+    }
+    }
+}
+
+/* --- rel/movie_module/fn_12_E0C8.c --- */
+typedef struct {
+    unsigned int field_0;
+    unsigned int field_4;
+    unsigned int field_8;
+    unsigned int field_C;
+} fn_12_E0C8_struct;
+
+extern const fn_12_E0C8_struct lbl_12_rodata_928;
+
+void fn_12_E0C8(fn_12_E0C8_struct *param) {
+    *param = lbl_12_rodata_928;
 }
