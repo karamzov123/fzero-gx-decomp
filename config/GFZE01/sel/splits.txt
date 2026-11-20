@@ -7,7 +7,7 @@ Sections:
 	.bss        type:bss align:32
 
 rel/sel/sel/fn_10_FF08.c:
-	.text       start:0x0000FF08 end:0x0000FF54
+	.text       start:0x0000FF08 end:0x00010168 align:4
 
 rel/sel/sel/fn_10_160BC.c:
 	.text       start:0x000160BC end:0x0001615C
@@ -25,13 +25,7 @@ rel/sel/fn_10_1B660.c:
 	.text       start:0x0001B660 end:0x0001B664
 
 rel/sel/sel/fn_10_1B664.c:
-	.text       start:0x0001B664 end:0x0001B684
-
-rel/sel/sel/fn_10_1B684.c:
-	.text       start:0x0001B684 end:0x0001B6A8
-
-rel/sel/sel/fn_10_1B6A8.c:
-	.text       start:0x0001B6A8 end:0x0001B6CC
+	.text       start:0x0001B664 end:0x0001B6CC align:4
 
 rel/sel/sel/fn_10_21C20.c:
 	.text       start:0x00021C20 end:0x00021C44
@@ -43,10 +37,7 @@ rel/sel/sel/fn_10_2228C.c:
 	.text       start:0x0002228C end:0x00022330
 
 rel/sel/sel/fn_10_2323C.c:
-	.text       start:0x0002323C end:0x0002324C
-
-rel/sel/sel/fn_10_2324C.c:
-	.text       start:0x0002324C end:0x0002325C
+	.text       start:0x0002323C end:0x0002325C align:4
 
 rel/sel/name_entry/fn_10_26000.c:
 	.text       start:0x00026000 end:0x000260D4
@@ -58,10 +49,7 @@ rel/sel/sel/fn_10_1E67C.c:
 	.text       start:0x0001E67C end:0x0001E6F4 align:4
 
 rel/sel/sel/fn_10_13D64.c:
-	.text       start:0x00013D64 end:0x00013E18 align:4
-
-rel/sel/sel/fn_10_13E18.c:
-	.text       start:0x00013E18 end:0x00013ECC align:4
+	.text       start:0x00013D64 end:0x00013ECC align:4
 
 rel/sel/sel/fn_10_1BCD0.c:
 	.text       start:0x0001BCD0 end:0x0001BFC4 align:4
@@ -94,9 +82,6 @@ rel/sel/name_entry/fn_10_260D4.c:
 rel/sel/sel/fn_10_E45C.c:
 	.text       start:0x0000E45C end:0x0000E600 align:4
 
-rel/sel/sel/fn_10_2287C.c:
-	.text       start:0x0002287C end:0x00022998 align:4
-
 rel/sel/sel/fn_10_1772C.c:
 	.text       start:0x0001772C end:0x00017814 align:4
 
@@ -119,9 +104,6 @@ rel/sel/sel/fn_10_1E57C.c:
 	.text       start:0x0001E57C end:0x0001E67C align:4
 	.data       start:0x00006670 end:0x000067E0 align:8
 
-rel/sel/sel/fn_10_FF54.c:
-	.text       start:0x0000FF54 end:0x00010168 align:4
-
 rel/sel/sel/fn_10_F57C.c:
 	.text       start:0x0000F57C end:0x0000FBEC align:4
 
@@ -141,7 +123,7 @@ rel/sel/sel/fn_10_1F3B8.c:
 	.text       start:0x0001F3B8 end:0x0001F688 align:4
 
 rel/sel/sel/fn_10_22760.c:
-	.text       start:0x00022760 end:0x0002287C align:4
+	.text       start:0x00022760 end:0x00022998 align:4
 
 rel/sel/sel/fn_10_1B2F4.c:
 	.text       start:0x0001B2F4 end:0x0001B658 align:4

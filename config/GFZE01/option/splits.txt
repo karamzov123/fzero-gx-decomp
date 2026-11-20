@@ -27,9 +27,6 @@ rel/option/_prolog/fn_4_8DC0.c:
 rel/option/_prolog/fn_4_869C.c:
 	.text       start:0x0000869C end:0x00008720 align:4
 
-rel/option/_prolog/fn_4_9AD0.c:
-	.text       start:0x00009AD0 end:0x00009B20 align:4
-
 rel/option/_prolog/fn_4_4B10.c:
 	.text       start:0x00004B10 end:0x00004B74 align:4
 
@@ -39,47 +36,32 @@ rel/option/_prolog/fn_4_4784.c:
 rel/option/_prolog/fn_4_6678.c:
 	.text       start:0x00006678 end:0x00006720 align:4
 
-rel/option/_prolog/fn_4_EA0.c:
-	.text       start:0x00000EA0 end:0x00000EF8 align:4
-
 rel/option/_prolog/fn_4_406C.c:
 	.text       start:0x0000406C end:0x000040C4 align:4
 
 rel/option/_prolog/fn_4_78E0.c:
 	.text       start:0x000078E0 end:0x00007938 align:4
 
-rel/option/_prolog/fn_4_7D94.c:
-	.text       start:0x00007D94 end:0x00007DEC align:4
-
-rel/option/_prolog/fn_4_8248.c:
-	.text       start:0x00008248 end:0x000082A0 align:4
-
 rel/option/_prolog/fn_4_898C.c:
 	.text       start:0x0000898C end:0x000089E4 align:4
 
 rel/option/_prolog/fn_4_9A78.c:
-	.text       start:0x00009A78 end:0x00009AD0 align:4
+	.text       start:0x00009A78 end:0x00009B20 align:4
 
 rel/option/_prolog/fn_4_A734.c:
-	.text       start:0x0000A734 end:0x0000A78C align:4
+	.text       start:0x0000A734 end:0x0000A82C align:4
 
 rel/option/_prolog/fn_4_9B20.c:
 	.text       start:0x00009B20 end:0x00009C14 align:4
-
-rel/option/_prolog/fn_4_8AE0.c:
-	.text       start:0x00008AE0 end:0x00008B3C align:4
 
 rel/option/_prolog/fn_4_347C.c:
 	.text       start:0x0000347C end:0x00003568 align:4
 
 rel/option/_prolog/fn_4_8A54.c:
-	.text       start:0x00008A54 end:0x00008AE0 align:4
-
-rel/option/_prolog/fn_4_A78C.c:
-	.text       start:0x0000A78C end:0x0000A82C align:4
+	.text       start:0x00008A54 end:0x00008B3C align:4
 
 rel/option/_prolog/fn_4_7CA4.c:
-	.text       start:0x00007CA4 end:0x00007D94 align:4
+	.text       start:0x00007CA4 end:0x00007DEC align:4
 
 rel/option/_prolog/fn_4_9B0.c:
 	.text       start:0x000009B0 end:0x00000A0C align:4
@@ -90,10 +72,10 @@ rel/option/_prolog/fn_4_AB30.c:
 	.bss        start:0x00005628 end:0x00005680 align:8
 
 rel/option/_prolog/fn_4_8158.c:
-	.text       start:0x00008158 end:0x00008248 align:4
+	.text       start:0x00008158 end:0x000082A0 align:4
 
 rel/option/_prolog/fn_4_D7C.c:
-	.text       start:0x00000D7C end:0x00000EA0 align:4
+	.text       start:0x00000D7C end:0x00000EF8 align:4
 
 rel/option/_prolog/fn_4_4B74.c:
 	.text       start:0x00004B74 end:0x00006678 align:4

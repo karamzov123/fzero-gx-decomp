@@ -76,10 +76,10 @@ rel/title/title/fn_8_6570.c:
 	.text       start:0x00006570 end:0x00006594 align:4
 
 rel/title/operation/fn_8_CF70.c:
-	.text       start:0x0000CF70 end:0x0000CF94 align:4
+	.text       start:0x0000CF70 end:0x0000D020 align:4
 
 rel/title/_prolog/fn_8_754.c:
-	.text       start:0x00000754 end:0x00000784 align:4
+	.text       start:0x00000754 end:0x0000082C align:4
 
 rel/title/operation/fn_8_9B04.c:
 	.text       start:0x00009B04 end:0x00009B40 align:4
@@ -113,12 +113,6 @@ rel/title/operation/fn_8_69D8.c:
 
 rel/title/title/fn_8_4E90.c:
 	.text       start:0x00004E90 end:0x00004F64 align:4
-
-rel/title/operation/fn_8_CF94.c:
-	.text       start:0x0000CF94 end:0x0000D020 align:4
-
-rel/title/_prolog/fn_8_784.c:
-	.text       start:0x00000784 end:0x0000082C align:4
 
 rel/title/operation/fn_8_68F4.c:
 	.text       start:0x000068F4 end:0x000069D8 align:4
