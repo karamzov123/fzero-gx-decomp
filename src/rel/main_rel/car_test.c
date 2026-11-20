@@ -746,16 +746,24 @@ typedef struct {
 } Fn1_7D6B8ColorContainer;
 
 typedef struct {
-    void *base;
+    void *base;                 /* 0x00: Fn1_7D6B8Block array */
     u8 field_4;
     u8 field_5;
     u8 field_6;
     u8 field_7;
     u8 field_8;
-    u8 pad_9[0x13];
-    Fn1_7D6B8ColorContainer *unk_1c;
-    u32 field_20;
+    u8 pad_9[3];
+    s32 field_c;
+    u8 pad_10[0x8];
+    void *unk_18;
+    u8 **unk_1c;
+    s32 field_20;
     u8 field_24;
+    s8 field_25;
+    s8 field_26;
+    s8 field_27;
+    s8 field_28;
+    s8 field_29;
 } Fn1_7D6B8Arg;
 
 typedef struct {
@@ -773,7 +781,7 @@ typedef struct {
 
 #pragma opt_dead_assignments off
 #pragma opt_propagation off
-void fn_1_7D6B8(void *arg0) {
+void fn_1_7D6B8(Fn1_7D6B8Arg *arg0) {
     s32 *temp_r3_2;
     Fn1_7D6B8Block *block_entry;
     Fn1_7D6B8Block *block_entry2;
@@ -874,7 +882,7 @@ void fn_1_7D6B8(void *arg0) {
             if ((s8) (*(u8 *)((u8 *)(arg0) + 7)) > 0x28) {
                 (*(u8 *)((u8 *)(arg0) + 7)) = 0U;
             }
-            block_entry = &((Fn1_7D6B8Block *)(*(void **)arg0))[(s8) *(u8 *)((u8 *)arg0 + 7)];
+            block_entry = &((Fn1_7D6B8Block *)((arg0->base)))[(s8) *(u8 *)((u8 *)arg0 + 7)];
             temp_r0_2 = (s8) *block_entry->slots[(s8) *(u8 *)((u8 *)arg0 + 36)].count;
             if ((INPUT_14 >> 0xBU) & 1) {
                 if (PAD_BIT(INPUT_26, 3)) {
@@ -883,7 +891,7 @@ void fn_1_7D6B8(void *arg0) {
                 if (PAD_BIT(INPUT_26, 2)) {
                     var_r6 += 1;
                 }
-                block_entry2 = &((Fn1_7D6B8Block *)(*(u32 *)arg0))[*(s8 *)((u8 *)arg0 + 7)];
+                block_entry2 = &((Fn1_7D6B8Block *)(((u32)arg0->base)))[*(s8 *)((u8 *)arg0 + 7)];
                 temp_r10 = *(s8 *)((u8 *)(arg0) + 36);
                 temp_r8 = (s8) (*(Fn1_7D6B8Info **)block_entry2->slots[temp_r10].info)->unk_18;
                 if (var_r6 != 0) {
@@ -913,21 +921,21 @@ void fn_1_7D6B8(void *arg0) {
             }
             if (var_r4 != 0) {
                 (*(u8 *)((u8 *)(arg0) + 8)) = temp_r0_2;
-                (*(s8 *)((u8 *)(arg0) + 37)) = 0;
-                (*(s8 *)((u8 *)(arg0) + 38)) = 0;
-                (*(s8 *)((u8 *)(arg0) + 39)) = 0;
-                (*(s8 *)((u8 *)(arg0) + 40)) = 0;
-                (*(s8 *)((u8 *)(arg0) + 41)) = 0;
+                ((arg0->field_25)) = 0;
+                ((arg0->field_26)) = 0;
+                ((arg0->field_27)) = 0;
+                ((arg0->field_28)) = 0;
+                ((arg0->field_29)) = 0;
             }
             temp_r3 = *(u8 *)((u8 *)(arg0) + 8);
             shift_idx = (s8) temp_r3;
             if ((shift_idx != temp_r0_2) && ((lbl_1_bss_9F8[0].unk_8 >> 0xBU) & 1)) {
-                temp_r5 = *(s32 *)((u8 *)(arg0) + 12);
+                temp_r5 = (arg0->field_c);
                 temp_r4 = (s8) (*(u8 *)((u8 *)(arg0) + 7)) * 4;
                 (*(s32 *)((u8 *)((temp_r5 + temp_r4)) + 0)) ^= (1 << shift_idx);
             }
             if ((lbl_1_bss_9F8[0].unk_8 >> 0xAU) & 1) {
-                temp_r3_2 = (s32 *)((*(s32 *)((u8 *)(arg0) + 12)) + ((s8) (*(u8 *)((u8 *)(arg0) + 7)) * 4));
+                temp_r3_2 = (s32 *)(((arg0->field_c)) + ((s8) (*(u8 *)((u8 *)(arg0) + 7)) * 4));
                 if ((*(s32 *)((u8 *)(temp_r3_2) + 0)) & 0x80000000) {
                     memset((void *)(temp_r3_2), (0), (4U));
                 } else {
@@ -973,7 +981,7 @@ void fn_1_7D6B8(void *arg0) {
                     mask = 1;
                     temp_r4 = mask << temp_r4_2;
                     mask = temp_r4;
-                    temp_r3_3 = (void *)((*(s32 *)((u8 *)(arg0) + 0)) + ((s8) (*(u8 *)((u8 *)(arg0) + 7)) * 0x440));
+                    temp_r3_3 = (void *)((((s32)arg0->base)) + ((s8) (*(u8 *)((u8 *)(arg0) + 7)) * 0x440));
                 } while (!(temp_r4 & (*(u8 *)((u8 *)(temp_r3_3) + 908))));
                 (*(u8 *)((u8 *)(arg0) + 8)) = fn_1_816E8(temp_r3_3, temp_r4_2);
                 return;
