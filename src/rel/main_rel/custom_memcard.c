@@ -542,12 +542,7 @@ s32 fn_1_131B90(Obj* obj) {
 #pragma opt_propagation reset
 /* fzgx:end fn_1_131B90 */
 
-/* fzgx:begin fn_1_131C08 noprologue */
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
+/* fzgx:begin fn_1_131C08 */
 #include "psvec.h"
 
 /* begin rel/main_rel/custom_memcard.h (fork-deltawave784/windows-and-types@4b722344) */

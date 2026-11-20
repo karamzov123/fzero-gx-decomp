@@ -5065,9 +5065,7 @@ void fn_1_C10C(u8 idx) {
 }
 /* fzgx:end fn_1_C10C */
 
-/* fzgx:begin fn_1_C178 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_C178 */
 typedef struct { u8 pad_0[0x4]; f32 unk_4; u32 unk_8; f32 unk_C; } Bss_104C;
 typedef struct {
     u8 pad_0[0x4]; f32 unk_4; f32 unk_8; f32 unk_C; f32 unk_10; f32 unk_14; f32 unk_18; f32 unk_1C;
@@ -5075,10 +5073,6 @@ typedef struct {
     s16 unk_44; u8 pad_46[0x2A];
 } Obj_1_bss_10D8;
 extern Bss_104C lbl_1_bss_104C;
-extern char lbl_1_data_406C[91];
-extern char lbl_1_data_40C8[96];
-extern Obj_1_bss_10D8 lbl_1_bss_10D8;
-extern void OSReport(char *, ...);
 
 void fn_1_C178(void *self) {
     OSReport(lbl_1_data_406C, lbl_1_bss_104C.unk_8, lbl_1_bss_104C.unk_C,

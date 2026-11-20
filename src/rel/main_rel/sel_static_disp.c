@@ -2073,37 +2073,9 @@ void fn_1_136714(f32 arg0, f32 arg1, f32 arg2, s32 arg3, s32 arg4, s32 arg5,
 }
 /* fzgx:end fn_1_136714 */
 
-/* fzgx:begin fn_1_1368A0 noprologue */
-#include "types.h"
-#include "font.h"
-
+/* fzgx:begin fn_1_1368A0 */
 struct FzgxCopy_4 { u32 words[1]; };
 
-extern f32 lbl_1_rodata_85E8;
-extern f32 lbl_1_rodata_8638;
-extern f32 lbl_1_rodata_863C;
-extern f32 lbl_1_rodata_87DC;
-extern f32 lbl_1_rodata_8A28;
-extern f32 lbl_1_rodata_8A38;
-extern f32 lbl_1_rodata_8A3C;
-extern f32 lbl_1_rodata_8A40;
-extern f32 lbl_1_rodata_8A44;
-extern u32 lbl_1_data_41ACC;
-extern f32 lbl_1_rodata_26F8[22];
-extern s32 lbl_1_rodata_8A34;
-extern void fn_1_137288(s32, u8 *, u8 *, u8 *, s16);
-extern int fn_1_4F734(FontDrawPacket *);
-extern void fn_1_49410(void);
-extern void fn_1_4955C(f32, f32);
-extern void fn_1_4954C(f32);
-extern void fn_1_49738(void (*)(void));
-extern void fn_1_49748(f32);
-extern void fn_1_49514(u32 *);
-extern void fn_1_496FC(f32, f32);
-extern void fn_1_4AE0C(const char *, ...);
-extern void fn_1_51564(u16, u16, u16, u16, u16, u16);
-extern u32 fn_1_5158C(FontDrawPacket *, u32, u32, u32);
-extern s32 fn_1_5233C;
 
 #pragma opt_propagation off
 void fn_1_1368A0(s32 arg0, s16 arg1, s32 arg2, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg4) {

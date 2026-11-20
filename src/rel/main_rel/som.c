@@ -6,15 +6,7 @@ extern u32 lbl_1_bss_3BBC;
 extern void sprintf(char *, const char *, ...);
 extern void fn_1_465D0(char *, int);
 
-/* fzgx:begin fn_1_1304C noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/som.h"
-
-extern u32 lbl_1_bss_3BBC;
-extern int sprintf(char *s, const char *format, ...);
-extern s32 fn_1_465D0(s32 arg0, s32 arg1);
-
+/* fzgx:begin fn_1_1304C */
 typedef void (*SomCallback)(u32);
 
 typedef struct SomSource {
@@ -140,9 +132,7 @@ u32 *fn_1_1304C(SomSource *source, void *image) {
 }
 /* fzgx:end fn_1_1304C */
 
-/* fzgx:begin fn_1_1350C noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
+/* fzgx:begin fn_1_1350C */
 #include "rel/main_rel/live_camera.h"
 
 extern void OSPanic(u8 *file, int line, u8 *message, ...);
@@ -172,7 +162,6 @@ extern void fn_1_862A8(s16, void *);
 extern void lbl_8006DC6C(void *);
 extern void lbl_8006E1B0(void *, void *);
 extern s32 lbl_8006D24C(f32, f32);
-extern int sprintf(char *, const char *, ...);
 
 extern s32 fn_1_45B2C(void *arg0);
 extern void fn_1_458A0(void *arg0, void *arg1, u32 arg2, u32 arg3);

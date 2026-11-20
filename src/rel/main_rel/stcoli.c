@@ -330,13 +330,10 @@ void fn_1_14CB4(void) {
 }
 /* fzgx:end fn_1_14CB4 */
 
-/* fzgx:begin fn_1_14D5C noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
+/* fzgx:begin fn_1_14D5C */
 #include "rel/main_rel/som.h"
 
 extern u32 lbl_1_bss_3BBC;
-extern void sprintf(char *, const char *, ...);
 extern void fn_1_465D0(char *, int);
 
 void fn_1_14D5C(char *arg0, int arg1) {
@@ -15003,13 +15000,8 @@ f32 fn_1_26F34(u32 arg0, f32 arg1, f32 arg2, f32 arg3) {
 }
 /* fzgx:end fn_1_26F34 */
 
-/* fzgx:begin fn_1_278B8 noprologue */
-#include "types.h"
-#include "psvec.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
+/* fzgx:begin fn_1_278B8 */
 #include "rel/main_rel/camera.h"
-#include "types.h"
 
 /* begin game/main_rel/camera_types.h (deltawave784/fzgx, CC0) */
 #ifndef GAME_MAIN_REL_CAMERA_TYPES_H
@@ -15041,11 +15033,11 @@ struct fn_1_AA54_lbl_1_rodata_388 {
 // stcoli). Hand-owned (librarian).
 
 
-typedef struct Vec3 {
+typedef struct Vec3_np_fn_1_278B8 {
     f32 x;
     f32 y;
     f32 z;
-} Vec3;
+} Vec3_np_fn_1_278B8;
 
 typedef struct Vec3f {
     f32 x, y, z;
@@ -15102,16 +15094,13 @@ typedef struct {
 
 extern Outer *lbl_1_bss_38454;
 extern void lbl_8006D9D8(CamEntry *);
-extern struct fn_1_6400_lbl_801A6410 lbl_801A6410;
 extern struct fn_1_AA54_lbl_1_rodata_388 lbl_1_rodata_388;
-extern void fn_1_862D4(u8 index, Vec3 *out);
-extern void fn_1_8658C(u8 index, Vec3 *out);
+extern void fn_1_862D4(u8 index, Vec3_np_fn_1_278B8 *out);
+extern void fn_1_8658C(u8 index, Vec3_np_fn_1_278B8 *out);
 extern void fn_1_AEB8(camera_reset_transition_Camera *);
 extern void fn_1_AFC8(camera_update_transition_Camera *);
-extern Transform *lbl_801A6D00;
-extern CameraStateLocal *lbl_801A66CC;
 extern Bss_104C lbl_1_bss_104C;
-extern void fn_8006F038(Vec3 *arg0, Vec3 *arg1, s16 arg2);
+extern void fn_8006F038(Vec3_np_fn_1_278B8 *arg0, Vec3_np_fn_1_278B8 *arg1, s16 arg2);
 
 #endif  // GAME_MAIN_REL_CAMERA_TYPES_H
 
@@ -15306,16 +15295,10 @@ struct fn_1_278B8_lbl_1_rodata_840 {
     u8 pad_1A0[0x20]; f64 unk_1C0; u8 pad_1C8[0xA8];
     f64 unk_270; f64 unk_278; f64 unk_280; f32 unk_288; f32 unk_28C;
 };
-extern const f32 lbl_1_rodata_840[3];
-extern f64 lbl_8006D0B4(f64);
-extern f64 __fabs(f64);
 extern f32 __fmadds(f32, f32, f32);
 extern u32 fn_1_29044(u32, void *, void *);
 extern void lbl_8006E1C0(void *, void *);
-extern u32 mathutil_mtxA_rotate_y(u32);
-extern void fn_8006E2B0(void *, Vec3 *);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DB30(void);
+extern void fn_8006E2B0(void *, Vec3_np_fn_1_278B8 *);
 
 #pragma opt_common_subs off
 f32 fn_1_278B8(u32 arg0, void *arg1, f32 arg2) {
@@ -15339,10 +15322,10 @@ f32 fn_1_278B8(u32 arg0, void *arg1, f32 arg2) {
     f32 v31, v34;
     void *v35;
     f32 v36, v37;
-    Vec3 loc_2C;
-    Vec3 loc_20;
-    Vec3 loc_14;
-    Vec3 loc_8;
+    Vec3_np_fn_1_278B8 loc_2C;
+    Vec3_np_fn_1_278B8 loc_20;
+    Vec3_np_fn_1_278B8 loc_14;
+    Vec3_np_fn_1_278B8 loc_8;
     f64 t3;
     v0 = (*(u32 *)((u8 *)arg1) & 4);
     psvec_sub((u8 *)arg1 + 20, (u8 *)arg1 + 32, &loc_2C);
@@ -15354,7 +15337,7 @@ f32 fn_1_278B8(u32 arg0, void *arg1, f32 arg2) {
     v4 = (s16)(s32)(v2 * v6);
     mathutil_mtxA_rotate_y((s16)(v4 / 2));
     v5 = &loc_2C;
-    fn_8006E2B0(v5, (Vec3 *)v5);
+    fn_8006E2B0(v5, (Vec3_np_fn_1_278B8 *)v5);
     v1 = loc_2C.x * loc_2C.x;
     tmp___fmadds = __fmadds(loc_2C.y, loc_2C.y, v1);
     v1 = tmp___fmadds;
@@ -15440,12 +15423,12 @@ f32 fn_1_278B8(u32 arg0, void *arg1, f32 arg2) {
         *(f32 *)((u8 *)arg0 + 1408) += v31;
     }
     lbl_8006DB30();
-    loc_8 = *(Vec3 *)((u8 *)arg1 + 76);
+    loc_8 = *(Vec3_np_fn_1_278B8 *)((u8 *)arg1 + 76);
     psvec_add(&loc_8, (u8 *)arg0 + 148, (u8 *)arg0 + 148);
     if (*(u8 *)((u8 *)arg0 + 534) < 6)
         fn_1_29044(arg0, (u8 *)arg1 + 8, (u8 *)arg1 + 76);
     v35 = &loc_8;
-    fn_8006E2B0(v35, (Vec3 *)v35);
+    fn_8006E2B0(v35, (Vec3_np_fn_1_278B8 *)v35);
     if (v0 != 0 && (*(u32 *)arg0 & 0x02000000) == 0) arg2 *= *(f32 *)((u8 *)arg0 + 36);
     v37 = *(f32 *)((u8 *)arg0 + 164);
     *(f32 *)((u8 *)arg0 + 164) = v37 - (f32)(0.125f * arg2);

@@ -2126,18 +2126,10 @@ void fn_1_433E0(Fn1433E0Object *object) {
 #pragma opt_propagation reset
 /* fzgx:end fn_1_433E0 */
 
-/* fzgx:begin fn_1_438AC noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_438AC */
 #include "psvec.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
 #include "rel/main_rel/car_test.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/motasglist.h"
 #include "dolphin/hw_regs.h"
-#include "types.h"
-#include "types.h"
 
 /* begin game/main_rel/car_test_types.h (deltawave784/fzgx@7d73e43f (CC0)) */
 #ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
@@ -2209,8 +2201,6 @@ typedef struct Vec3f {
 
 /* end game/vec3.h */
 
-extern const f32 lbl_1_rodata_F50;
-extern const f32 lbl_1_rodata_F54;
 extern const f32 lbl_1_rodata_F68;
 
 extern int fn_1_442D8(void *, void *, u16, f32, s32);
@@ -2218,8 +2208,6 @@ extern void fn_1_44A74(void *, void *);
 extern void fn_8006E250(Vec3f *, Vec3f *);
 extern void lbl_8006D758(void);
 extern void lbl_8006D7B0(void);
-extern void lbl_8006DB74(void *);
-extern void lbl_8006DBAC(void *);
 extern void lbl_8006DFC4(void *);
 extern void mathutil_mtxA_rotate_x(s32);
 extern void mathutil_mtxA_rotate_y(s32);

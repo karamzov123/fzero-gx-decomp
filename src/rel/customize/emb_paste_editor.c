@@ -1774,23 +1774,7 @@ void fn_3_11974(void) {
 }
 /* fzgx:end fn_3_11974 */
 
-/* fzgx:begin fn_3_11994 noprologue */
-#include "types.h"
-#include "rel/customize/globals.h"
-#include "rel/customize/emb_paste_editor.h"
-
-
-extern u8 lbl_3_bss_8F200[];
-extern void fn_1_FC414(void *, int);
-extern u8 lbl_3_bss_A1778[12];
-extern s16 lbl_1_bss_96A;
-extern void fn_1_4A00(int, int, u32);
-extern void fn_1_FDFF4(void);
-extern void fn_1_435C(u32);
-extern void fn_1_426C(s16);
-extern void fn_80008BA8(struct Sig_fn_8004E278_fn_8004E278_Arg0 *, u32, u32);
-extern void fn_80008BEC(struct Sig_fn_8004E278_fn_8004E278_Arg0 *, int, u32);
-
+/* fzgx:begin fn_3_11994 */
 struct Sig_fn_8004E278_fn_8004E278_Arg0 {
     u32 unk_0;
 };

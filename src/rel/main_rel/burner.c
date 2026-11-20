@@ -8170,9 +8170,7 @@ void fn_1_9CF78(void *arg0, FilterCallback arg1) {
 }
 /* fzgx:end fn_1_9CF78 */
 
-/* fzgx:begin fn_1_9D0EC noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_9D0EC */
 typedef struct NameHolder {
     u8 pad[4];
     char *name;
@@ -8194,9 +8192,6 @@ typedef struct NameRule {
     char *str;
 } NameRule;
 
-extern size_t strlen(const char *);
-extern s32 fn_8006FC5C(const char *, const char *, size_t);
-extern s32 fn_8006FC1C(const char *, const char *);
 
 void fn_1_9D0EC(NameEntry *arg0, s32 arg1, NameRule *arg2, s32 (*arg3)(s32, NameEntry *)) {
     s32 len;

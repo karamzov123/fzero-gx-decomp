@@ -5664,10 +5664,7 @@ void fn_1_7B184(void *arg) {
 }
 /* fzgx:end fn_1_7B184 */
 
-/* fzgx:begin fn_1_7B218 noprologue */
-#include "types.h"
-#include "rel/main_rel/screen_effect.h"
-
+/* fzgx:begin fn_1_7B218 */
 typedef struct {
     u8 pad_0[0x7e0];
     char unk_7e0[0x4c];
@@ -5676,8 +5673,6 @@ typedef struct {
 } ScreenEffectData;
 
 extern u16 fn_1_12EF24(s16 value, s16 index);
-extern void sprintf(char *dst, const char *format, const char *text, ...);
-extern void fn_1_465D0(char *text, s32 mode);
 
 void fn_1_7B218(s32 enabled) {
     char text_a[0x20];

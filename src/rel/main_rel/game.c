@@ -337,50 +337,46 @@ extern u8 lbl_1_A9011300;
 extern u8 lbl_1_A9011100;
 extern u8 lbl_1_A9011000;
 
-/* fzgx:begin fn_1_2FAA0 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/game.h"
-
+/* fzgx:begin fn_1_2FAA0 */
 typedef struct Sig_ADXT_Pause_AdxSjdHandle Sig_ADXT_Pause_AdxSjdHandle;
 
 typedef struct Sig_ADXT_Pause_ADXStream Sig_ADXT_Pause_ADXStream;
 
 typedef struct Sig_ADXT_Pause_AXRNAHandle Sig_ADXT_Pause_AXRNAHandle;
 
-typedef struct Sig_ADXT_Pause_SJCK {
+typedef struct Sig_ADXT_Pause_SJCK_np_fn_1_2FAA0 {
     unsigned char *data;
     int len;
-} Sig_ADXT_Pause_SJCK;
+} Sig_ADXT_Pause_SJCK_np_fn_1_2FAA0;
 
 typedef void (*Sig_ADXT_Pause_SJErrorCallback)(void *object, int error);
 
-typedef struct Sig_ADXT_Pause_SJInterface Sig_ADXT_Pause_SJInterface;
+typedef struct Sig_ADXT_Pause_SJInterface_np_fn_1_2FAA0 Sig_ADXT_Pause_SJInterface_np_fn_1_2FAA0;
 
-typedef struct Sig_ADXT_Pause_SJ Sig_ADXT_Pause_SJ;
+typedef struct Sig_ADXT_Pause_SJ_np_fn_1_2FAA0 Sig_ADXT_Pause_SJ_np_fn_1_2FAA0;
 
-struct Sig_ADXT_Pause_SJ {
-    const Sig_ADXT_Pause_SJInterface *interface;
+struct Sig_ADXT_Pause_SJ_np_fn_1_2FAA0 {
+    const Sig_ADXT_Pause_SJInterface_np_fn_1_2FAA0 *interface;
 };
 
-struct Sig_ADXT_Pause_SJInterface {
+struct Sig_ADXT_Pause_SJInterface_np_fn_1_2FAA0 {
     void *reserved[3];
-    void (*destroy)(Sig_ADXT_Pause_SJ *sj);
-    const void *(*get_uuid)(Sig_ADXT_Pause_SJ *sj);
-    void (*reset)(Sig_ADXT_Pause_SJ *sj);
-    void (*get_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, int max_size, Sig_ADXT_Pause_SJCK *chunk);
-    void (*unget_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, Sig_ADXT_Pause_SJCK *chunk);
-    void (*put_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, Sig_ADXT_Pause_SJCK *chunk);
-    int (*get_num_data)(Sig_ADXT_Pause_SJ *sj, int channel);
-    int (*is_get_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, int size, int *available);
-    void (*entry_error_func)(Sig_ADXT_Pause_SJ *sj, Sig_ADXT_Pause_SJErrorCallback callback, void *object);
+    void (*destroy)(Sig_ADXT_Pause_SJ_np_fn_1_2FAA0 *sj);
+    const void *(*get_uuid)(Sig_ADXT_Pause_SJ_np_fn_1_2FAA0 *sj);
+    void (*reset)(Sig_ADXT_Pause_SJ_np_fn_1_2FAA0 *sj);
+    void (*get_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_2FAA0 *sj, int channel, int max_size, Sig_ADXT_Pause_SJCK_np_fn_1_2FAA0 *chunk);
+    void (*unget_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_2FAA0 *sj, int channel, Sig_ADXT_Pause_SJCK_np_fn_1_2FAA0 *chunk);
+    void (*put_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_2FAA0 *sj, int channel, Sig_ADXT_Pause_SJCK_np_fn_1_2FAA0 *chunk);
+    int (*get_num_data)(Sig_ADXT_Pause_SJ_np_fn_1_2FAA0 *sj, int channel);
+    int (*is_get_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_2FAA0 *sj, int channel, int size, int *available);
+    void (*entry_error_func)(Sig_ADXT_Pause_SJ_np_fn_1_2FAA0 *sj, Sig_ADXT_Pause_SJErrorCallback callback, void *object);
 };
 
 typedef struct Sig_ADXT_Pause_ADX_AMP Sig_ADXT_Pause_ADX_AMP;
 
 typedef struct Sig_ADXT_Pause_LSCObject Sig_ADXT_Pause_LSCObject;
 
-typedef struct Sig_ADXT_Pause_ADXTHandle {
+typedef struct Sig_ADXT_Pause_ADXTHandle_np_fn_1_2FAA0 {
     s8 used;
     s8 status;
     s8 stream_type;
@@ -388,9 +384,9 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     Sig_ADXT_Pause_AdxSjdHandle *decoder;
     Sig_ADXT_Pause_ADXStream *stream;
     Sig_ADXT_Pause_AXRNAHandle *rna;
-    Sig_ADXT_Pause_SJ *stream_sj;
-    Sig_ADXT_Pause_SJ *input_sj;
-    Sig_ADXT_Pause_SJ *output_sj[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_2FAA0 *stream_sj;
+    Sig_ADXT_Pause_SJ_np_fn_1_2FAA0 *input_sj;
+    Sig_ADXT_Pause_SJ_np_fn_1_2FAA0 *output_sj[2];
     u8 *input_buffer;
     s32 input_buffer_size;
     s32 input_extra_size;
@@ -422,8 +418,8 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     s8 paused;
     u8 reserved_73;
     Sig_ADXT_Pause_ADX_AMP *amplifier;
-    Sig_ADXT_Pause_SJ *amplifier_input[2];
-    Sig_ADXT_Pause_SJ *amplifier_output[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_2FAA0 *amplifier_input[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_2FAA0 *amplifier_output[2];
     s32 time_offset;
     s32 eos_sector;
     s32 loop_sample_count;
@@ -440,7 +436,7 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     void *pending_directory;
     s32 pending_file_offset;
     s32 pending_file_sectors;
-} Sig_ADXT_Pause_ADXTHandle;
+} Sig_ADXT_Pause_ADXTHandle_np_fn_1_2FAA0;
 
 typedef struct Sig_ADXT_Stop_AdxSjdHandle Sig_ADXT_Stop_AdxSjdHandle;
 
@@ -448,39 +444,39 @@ typedef struct Sig_ADXT_Stop_ADXStream Sig_ADXT_Stop_ADXStream;
 
 typedef struct Sig_ADXT_Stop_AXRNAHandle Sig_ADXT_Stop_AXRNAHandle;
 
-typedef struct Sig_ADXT_Stop_SJCK {
+typedef struct Sig_ADXT_Stop_SJCK_np_fn_1_2FAA0 {
     unsigned char *data;
     int len;
-} Sig_ADXT_Stop_SJCK;
+} Sig_ADXT_Stop_SJCK_np_fn_1_2FAA0;
 
 typedef void (*Sig_ADXT_Stop_SJErrorCallback)(void *object, int error);
 
-typedef struct Sig_ADXT_Stop_SJInterface Sig_ADXT_Stop_SJInterface;
+typedef struct Sig_ADXT_Stop_SJInterface_np_fn_1_2FAA0 Sig_ADXT_Stop_SJInterface_np_fn_1_2FAA0;
 
-typedef struct Sig_ADXT_Stop_SJ Sig_ADXT_Stop_SJ;
+typedef struct Sig_ADXT_Stop_SJ_np_fn_1_2FAA0 Sig_ADXT_Stop_SJ_np_fn_1_2FAA0;
 
-struct Sig_ADXT_Stop_SJInterface {
+struct Sig_ADXT_Stop_SJInterface_np_fn_1_2FAA0 {
     void *reserved[3];
-    void (*destroy)(Sig_ADXT_Stop_SJ *sj);
-    const void *(*get_uuid)(Sig_ADXT_Stop_SJ *sj);
-    void (*reset)(Sig_ADXT_Stop_SJ *sj);
-    void (*get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int max_size, Sig_ADXT_Stop_SJCK *chunk);
-    void (*unget_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
-    void (*put_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
-    int (*get_num_data)(Sig_ADXT_Stop_SJ *sj, int channel);
-    int (*is_get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int size, int *available);
-    void (*entry_error_func)(Sig_ADXT_Stop_SJ *sj, Sig_ADXT_Stop_SJErrorCallback callback, void *object);
+    void (*destroy)(Sig_ADXT_Stop_SJ_np_fn_1_2FAA0 *sj);
+    const void *(*get_uuid)(Sig_ADXT_Stop_SJ_np_fn_1_2FAA0 *sj);
+    void (*reset)(Sig_ADXT_Stop_SJ_np_fn_1_2FAA0 *sj);
+    void (*get_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_2FAA0 *sj, int channel, int max_size, Sig_ADXT_Stop_SJCK_np_fn_1_2FAA0 *chunk);
+    void (*unget_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_2FAA0 *sj, int channel, Sig_ADXT_Stop_SJCK_np_fn_1_2FAA0 *chunk);
+    void (*put_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_2FAA0 *sj, int channel, Sig_ADXT_Stop_SJCK_np_fn_1_2FAA0 *chunk);
+    int (*get_num_data)(Sig_ADXT_Stop_SJ_np_fn_1_2FAA0 *sj, int channel);
+    int (*is_get_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_2FAA0 *sj, int channel, int size, int *available);
+    void (*entry_error_func)(Sig_ADXT_Stop_SJ_np_fn_1_2FAA0 *sj, Sig_ADXT_Stop_SJErrorCallback callback, void *object);
 };
 
-struct Sig_ADXT_Stop_SJ {
-    const Sig_ADXT_Stop_SJInterface *interface;
+struct Sig_ADXT_Stop_SJ_np_fn_1_2FAA0 {
+    const Sig_ADXT_Stop_SJInterface_np_fn_1_2FAA0 *interface;
 };
 
 typedef struct Sig_ADXT_Stop_ADX_AMP Sig_ADXT_Stop_ADX_AMP;
 
 typedef struct Sig_ADXT_Stop_LSCObject Sig_ADXT_Stop_LSCObject;
 
-typedef struct Sig_ADXT_Stop_ADXTHandle {
+typedef struct Sig_ADXT_Stop_ADXTHandle_np_fn_1_2FAA0 {
     s8 used;
     s8 status;
     s8 stream_type;
@@ -488,9 +484,9 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     Sig_ADXT_Stop_AdxSjdHandle *decoder;
     Sig_ADXT_Stop_ADXStream *stream;
     Sig_ADXT_Stop_AXRNAHandle *rna;
-    Sig_ADXT_Stop_SJ *stream_sj;
-    Sig_ADXT_Stop_SJ *input_sj;
-    Sig_ADXT_Stop_SJ *output_sj[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_2FAA0 *stream_sj;
+    Sig_ADXT_Stop_SJ_np_fn_1_2FAA0 *input_sj;
+    Sig_ADXT_Stop_SJ_np_fn_1_2FAA0 *output_sj[2];
     u8 *input_buffer;
     s32 input_buffer_size;
     s32 input_extra_size;
@@ -522,8 +518,8 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     s8 paused;
     u8 reserved_73;
     Sig_ADXT_Stop_ADX_AMP *amplifier;
-    Sig_ADXT_Stop_SJ *amplifier_input[2];
-    Sig_ADXT_Stop_SJ *amplifier_output[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_2FAA0 *amplifier_input[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_2FAA0 *amplifier_output[2];
     s32 time_offset;
     s32 eos_sector;
     s32 loop_sample_count;
@@ -540,12 +536,12 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     void *pending_directory;
     s32 pending_file_offset;
     s32 pending_file_sectors;
-} Sig_ADXT_Stop_ADXTHandle;
+} Sig_ADXT_Stop_ADXTHandle_np_fn_1_2FAA0;
 
 typedef struct {
     u8 unk[0xb];
     u8 value;
-} Entry;
+} Entry_np_fn_1_2FAA0;
 
 typedef struct {
     u8 pad_0[2];
@@ -553,7 +549,7 @@ typedef struct {
     u8 pad_4[8];
     u32 unk_C;
     u8 pad_10[0x10];
-} Obj_1_bss_25E9C;
+} Obj_1_bss_25E9C_np_fn_1_2FAA0;
 
 typedef struct {
     u8 pad[0x2f8];
@@ -567,115 +563,7 @@ typedef struct {
     u32 value_314;
     u32 value_318;
     u32 value_31c;
-} Fn40710Config;
-extern void fn_1_15E330(s32 index, u32 value, void *arg);
-extern void fn_1_15E5E4(s32 index, void *arg);
-extern void fn_1_15E688(s32 index, u32 value, u8 state, void *arg);
-extern void fn_1_15E3E0(s32 index, u32 value);
-extern void fn_1_15E434(u32 value);
-extern void fn_1_15E540(s32 index, void *arg);
-extern void fn_1_CB404(u8 value);
-extern void fn_1_D07C4(u32 arg0, u32 arg1);
-extern u32 lbl_1_bss_25B84;
-extern u32 OSGetTick(void);
-extern void fn_1_A0978(void);
-extern void fn_1_35174(void);
-extern s32 fn_1_3EFA8(void);
-extern u16 lbl_1_bss_26B5C__fzgx_offset_1E[3];
-extern u16 lbl_1_bss_26300;
-extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_80008BEC(void *dest, int value, u32 size);
-extern u32 fn_1_101C0(void);
-extern u32 fn_1_A11EC(void);
-extern u32 fn_1_435C(u32 value);
-extern void ADXT_Pause(Sig_ADXT_Pause_ADXTHandle *, s32);
-extern void fn_1_4310(u32 arg0);
-extern void fn_1_48004(s32 index, s32 image);
-extern void fn_1_8616C(void);
-extern void fn_1_A1588(u32 arg0, u32 arg1);
-extern void fn_1_D0790(void);
-extern void fn_1_817C0(void);
-extern u32 lbl_1_bss_381FC;
-extern void fn_1_EB080(int mode);
-extern s64 OSGetTime(void);
-extern void fn_1_4A00(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_1_5370(u32 arg0, u32 arg1);
-extern void fn_1_15E27C(void);
-extern void fn_1_4811C(int arg);
-extern void fn_1_A8F78(void);
-extern u8 lbl_1_bss_262F4;
-extern u32 lbl_1_bss_25E74[7];
-extern u8 lbl_1_bss_3C10;
-extern void fn_1_36330(void);
-extern void fn_1_36B10(void);
-extern void fn_1_3C98(void);
-extern void fn_1_37AA8(void);
-extern void fn_1_37E98(void);
-extern f32 lbl_1_bss_26304[4];
-extern u8 lbl_1_bss_26B04[20];
-extern u8 lbl_1_bss_26314[2032];
-extern s16 fn_1_12EF24(s16 row, s16 column);
-extern u8 lbl_1_bss_523C[32];
-extern Entry *lbl_1_bss_53F8[34];
-extern void OSPanic(const void *, u32, const char *, ...);
-extern Obj_1_bss_25E9C lbl_1_bss_25E9C[30];
-extern void fn_1_12AB38(void *arg0);
-extern void fn_1_465D0(char *value, u32 flag);
-extern void* fn_1_7F518(s16 car_type, void* car, s32 initialize);
-extern int sprintf(char *s, const char *format, ...);
-extern void fn_1_451E4(void);
-extern void fn_1_D3214(void);
-extern void VIWaitForRetrace(void);
-extern u32 fn_1_467F4(void);
-extern u32 fn_1_13018(void);
-extern u32 fn_1_46C60(void);
-extern u32 lbl_1_bss_26C2C[2];
-extern u32 lbl_1_bss_262F8[2];
-extern u16 lbl_1_bss_26C68[35526];
-extern u32 lbl_1_bss_3C08[2];
-extern u32 fn_800075AC(u32, u32, u32);
-extern u32 ghost_test_record_flag0(s32 arg);
-extern u32 fn_1_F9D44(u32 arg);
-extern u8 fn_1_F8C50(s32 arg0);
-extern void fn_1_2DB50(void);
-extern void fn_1_3F8C(void *, void *, Obj_1_bss_5138 *, int);
-extern void fn_1_2D888(void);
-extern void fn_1_2D524(void);
-extern u32 fn_1_FA070(void);
-extern int fn_1_FA180(int, u8);
-extern u32 fn_1_F9FEC(void);
-extern void fn_1_A2DC4(u32 arg0);
-extern Fn40710Config lbl_1_rodata_BD8;
-extern u8 lbl_1_bss_26B54[8];
-extern u32 fn_1_40EE4(void);
-extern u32 lbl_801A63D0;
-extern u32 lbl_1_bss_26C34[9];
-extern u8 lbl_1_bss_38218[568];
-extern u32 fn_1_4060(void);
-extern void ARQPostRequest(u8 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7);
-extern u32 lbl_801A63C0;
-extern void fn_1_40BE4(void);
-extern u32 GXGetTexBufferSize(u32, u32, u32, u32, u32);
-extern u32 lbl_1_bss_26B4C;
-extern u8 lbl_1_bss_25E90[8];
-extern s32 fn_1_48B0(u32 arg0, u32 arg1);
-extern void fn_1_40F54(void *arg0);
-extern u32 lbl_801A6CE0;
-extern u32 lbl_1_bss_38454;
-extern u32 fn_80070DE0(u32 arg0);
-extern void fn_1_D3884();
-extern void fn_1_D358C();
-extern void fn_800711A8(Obj_1_bss_38458_Target *target);
-extern void fn_80071718(u32 value);
-extern void fn_1_41134(void *unused, char *value);
-extern void fn_1_411D4(u32, char *);
-extern int DVDConvertPathToEntrynum(char *buffer);
-extern void fn_1_412A0(u32 index);
-extern size_t strlen(const char *str);
-extern int fn_80083BCC(const char *s1, const char *s2);
-extern u8 lbl_1_A9011300;
-extern u8 lbl_1_A9011100;
-extern u8 lbl_1_A9011000;
+} Fn40710Config_np_fn_1_2FAA0;
 
 typedef struct GXColor {
     u8 r, g, b, a;
@@ -861,8 +749,6 @@ typedef struct PadButtons {
 
 extern u32 fn_1_2EE3C(void);
 extern void fn_1_2C7C4(u8 *value, const u8 *target, int step);
-extern void fn_1_A2DC4(u32 arg0);
-extern void OSPanic(const void *, u32, const char *, ...);
 
 static inline s32 fn_1_2FAA0_color_eq(GXColor a, GXColor b) {
     if (a.r != b.r) {
@@ -4259,50 +4145,46 @@ void fn_1_320A4(void)
 }
 /* fzgx:end fn_1_320A4 */
 
-/* fzgx:begin fn_1_32200 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/game.h"
-
+/* fzgx:begin fn_1_32200 */
 typedef struct Sig_ADXT_Pause_AdxSjdHandle Sig_ADXT_Pause_AdxSjdHandle;
 
 typedef struct Sig_ADXT_Pause_ADXStream Sig_ADXT_Pause_ADXStream;
 
 typedef struct Sig_ADXT_Pause_AXRNAHandle Sig_ADXT_Pause_AXRNAHandle;
 
-typedef struct Sig_ADXT_Pause_SJCK {
+typedef struct Sig_ADXT_Pause_SJCK_np_fn_1_32200 {
     unsigned char *data;
     int len;
-} Sig_ADXT_Pause_SJCK;
+} Sig_ADXT_Pause_SJCK_np_fn_1_32200;
 
 typedef void (*Sig_ADXT_Pause_SJErrorCallback)(void *object, int error);
 
-typedef struct Sig_ADXT_Pause_SJInterface Sig_ADXT_Pause_SJInterface;
+typedef struct Sig_ADXT_Pause_SJInterface_np_fn_1_32200 Sig_ADXT_Pause_SJInterface_np_fn_1_32200;
 
-typedef struct Sig_ADXT_Pause_SJ Sig_ADXT_Pause_SJ;
+typedef struct Sig_ADXT_Pause_SJ_np_fn_1_32200 Sig_ADXT_Pause_SJ_np_fn_1_32200;
 
-struct Sig_ADXT_Pause_SJ {
-    const Sig_ADXT_Pause_SJInterface *interface;
+struct Sig_ADXT_Pause_SJ_np_fn_1_32200 {
+    const Sig_ADXT_Pause_SJInterface_np_fn_1_32200 *interface;
 };
 
-struct Sig_ADXT_Pause_SJInterface {
+struct Sig_ADXT_Pause_SJInterface_np_fn_1_32200 {
     void *reserved[3];
-    void (*destroy)(Sig_ADXT_Pause_SJ *sj);
-    const void *(*get_uuid)(Sig_ADXT_Pause_SJ *sj);
-    void (*reset)(Sig_ADXT_Pause_SJ *sj);
-    void (*get_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, int max_size, Sig_ADXT_Pause_SJCK *chunk);
-    void (*unget_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, Sig_ADXT_Pause_SJCK *chunk);
-    void (*put_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, Sig_ADXT_Pause_SJCK *chunk);
-    int (*get_num_data)(Sig_ADXT_Pause_SJ *sj, int channel);
-    int (*is_get_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, int size, int *available);
-    void (*entry_error_func)(Sig_ADXT_Pause_SJ *sj, Sig_ADXT_Pause_SJErrorCallback callback, void *object);
+    void (*destroy)(Sig_ADXT_Pause_SJ_np_fn_1_32200 *sj);
+    const void *(*get_uuid)(Sig_ADXT_Pause_SJ_np_fn_1_32200 *sj);
+    void (*reset)(Sig_ADXT_Pause_SJ_np_fn_1_32200 *sj);
+    void (*get_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_32200 *sj, int channel, int max_size, Sig_ADXT_Pause_SJCK_np_fn_1_32200 *chunk);
+    void (*unget_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_32200 *sj, int channel, Sig_ADXT_Pause_SJCK_np_fn_1_32200 *chunk);
+    void (*put_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_32200 *sj, int channel, Sig_ADXT_Pause_SJCK_np_fn_1_32200 *chunk);
+    int (*get_num_data)(Sig_ADXT_Pause_SJ_np_fn_1_32200 *sj, int channel);
+    int (*is_get_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_32200 *sj, int channel, int size, int *available);
+    void (*entry_error_func)(Sig_ADXT_Pause_SJ_np_fn_1_32200 *sj, Sig_ADXT_Pause_SJErrorCallback callback, void *object);
 };
 
 typedef struct Sig_ADXT_Pause_ADX_AMP Sig_ADXT_Pause_ADX_AMP;
 
 typedef struct Sig_ADXT_Pause_LSCObject Sig_ADXT_Pause_LSCObject;
 
-typedef struct Sig_ADXT_Pause_ADXTHandle {
+typedef struct Sig_ADXT_Pause_ADXTHandle_np_fn_1_32200 {
     s8 used;
     s8 status;
     s8 stream_type;
@@ -4310,9 +4192,9 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     Sig_ADXT_Pause_AdxSjdHandle *decoder;
     Sig_ADXT_Pause_ADXStream *stream;
     Sig_ADXT_Pause_AXRNAHandle *rna;
-    Sig_ADXT_Pause_SJ *stream_sj;
-    Sig_ADXT_Pause_SJ *input_sj;
-    Sig_ADXT_Pause_SJ *output_sj[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_32200 *stream_sj;
+    Sig_ADXT_Pause_SJ_np_fn_1_32200 *input_sj;
+    Sig_ADXT_Pause_SJ_np_fn_1_32200 *output_sj[2];
     u8 *input_buffer;
     s32 input_buffer_size;
     s32 input_extra_size;
@@ -4344,8 +4226,8 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     s8 paused;
     u8 reserved_73;
     Sig_ADXT_Pause_ADX_AMP *amplifier;
-    Sig_ADXT_Pause_SJ *amplifier_input[2];
-    Sig_ADXT_Pause_SJ *amplifier_output[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_32200 *amplifier_input[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_32200 *amplifier_output[2];
     s32 time_offset;
     s32 eos_sector;
     s32 loop_sample_count;
@@ -4362,7 +4244,7 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     void *pending_directory;
     s32 pending_file_offset;
     s32 pending_file_sectors;
-} Sig_ADXT_Pause_ADXTHandle;
+} Sig_ADXT_Pause_ADXTHandle_np_fn_1_32200;
 
 typedef struct Sig_ADXT_Stop_AdxSjdHandle Sig_ADXT_Stop_AdxSjdHandle;
 
@@ -4370,39 +4252,39 @@ typedef struct Sig_ADXT_Stop_ADXStream Sig_ADXT_Stop_ADXStream;
 
 typedef struct Sig_ADXT_Stop_AXRNAHandle Sig_ADXT_Stop_AXRNAHandle;
 
-typedef struct Sig_ADXT_Stop_SJCK {
+typedef struct Sig_ADXT_Stop_SJCK_np_fn_1_32200 {
     unsigned char *data;
     int len;
-} Sig_ADXT_Stop_SJCK;
+} Sig_ADXT_Stop_SJCK_np_fn_1_32200;
 
 typedef void (*Sig_ADXT_Stop_SJErrorCallback)(void *object, int error);
 
-typedef struct Sig_ADXT_Stop_SJInterface Sig_ADXT_Stop_SJInterface;
+typedef struct Sig_ADXT_Stop_SJInterface_np_fn_1_32200 Sig_ADXT_Stop_SJInterface_np_fn_1_32200;
 
-typedef struct Sig_ADXT_Stop_SJ Sig_ADXT_Stop_SJ;
+typedef struct Sig_ADXT_Stop_SJ_np_fn_1_32200 Sig_ADXT_Stop_SJ_np_fn_1_32200;
 
-struct Sig_ADXT_Stop_SJInterface {
+struct Sig_ADXT_Stop_SJInterface_np_fn_1_32200 {
     void *reserved[3];
-    void (*destroy)(Sig_ADXT_Stop_SJ *sj);
-    const void *(*get_uuid)(Sig_ADXT_Stop_SJ *sj);
-    void (*reset)(Sig_ADXT_Stop_SJ *sj);
-    void (*get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int max_size, Sig_ADXT_Stop_SJCK *chunk);
-    void (*unget_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
-    void (*put_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
-    int (*get_num_data)(Sig_ADXT_Stop_SJ *sj, int channel);
-    int (*is_get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int size, int *available);
-    void (*entry_error_func)(Sig_ADXT_Stop_SJ *sj, Sig_ADXT_Stop_SJErrorCallback callback, void *object);
+    void (*destroy)(Sig_ADXT_Stop_SJ_np_fn_1_32200 *sj);
+    const void *(*get_uuid)(Sig_ADXT_Stop_SJ_np_fn_1_32200 *sj);
+    void (*reset)(Sig_ADXT_Stop_SJ_np_fn_1_32200 *sj);
+    void (*get_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_32200 *sj, int channel, int max_size, Sig_ADXT_Stop_SJCK_np_fn_1_32200 *chunk);
+    void (*unget_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_32200 *sj, int channel, Sig_ADXT_Stop_SJCK_np_fn_1_32200 *chunk);
+    void (*put_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_32200 *sj, int channel, Sig_ADXT_Stop_SJCK_np_fn_1_32200 *chunk);
+    int (*get_num_data)(Sig_ADXT_Stop_SJ_np_fn_1_32200 *sj, int channel);
+    int (*is_get_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_32200 *sj, int channel, int size, int *available);
+    void (*entry_error_func)(Sig_ADXT_Stop_SJ_np_fn_1_32200 *sj, Sig_ADXT_Stop_SJErrorCallback callback, void *object);
 };
 
-struct Sig_ADXT_Stop_SJ {
-    const Sig_ADXT_Stop_SJInterface *interface;
+struct Sig_ADXT_Stop_SJ_np_fn_1_32200 {
+    const Sig_ADXT_Stop_SJInterface_np_fn_1_32200 *interface;
 };
 
 typedef struct Sig_ADXT_Stop_ADX_AMP Sig_ADXT_Stop_ADX_AMP;
 
 typedef struct Sig_ADXT_Stop_LSCObject Sig_ADXT_Stop_LSCObject;
 
-typedef struct Sig_ADXT_Stop_ADXTHandle {
+typedef struct Sig_ADXT_Stop_ADXTHandle_np_fn_1_32200 {
     s8 used;
     s8 status;
     s8 stream_type;
@@ -4410,9 +4292,9 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     Sig_ADXT_Stop_AdxSjdHandle *decoder;
     Sig_ADXT_Stop_ADXStream *stream;
     Sig_ADXT_Stop_AXRNAHandle *rna;
-    Sig_ADXT_Stop_SJ *stream_sj;
-    Sig_ADXT_Stop_SJ *input_sj;
-    Sig_ADXT_Stop_SJ *output_sj[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_32200 *stream_sj;
+    Sig_ADXT_Stop_SJ_np_fn_1_32200 *input_sj;
+    Sig_ADXT_Stop_SJ_np_fn_1_32200 *output_sj[2];
     u8 *input_buffer;
     s32 input_buffer_size;
     s32 input_extra_size;
@@ -4444,8 +4326,8 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     s8 paused;
     u8 reserved_73;
     Sig_ADXT_Stop_ADX_AMP *amplifier;
-    Sig_ADXT_Stop_SJ *amplifier_input[2];
-    Sig_ADXT_Stop_SJ *amplifier_output[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_32200 *amplifier_input[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_32200 *amplifier_output[2];
     s32 time_offset;
     s32 eos_sector;
     s32 loop_sample_count;
@@ -4462,12 +4344,12 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     void *pending_directory;
     s32 pending_file_offset;
     s32 pending_file_sectors;
-} Sig_ADXT_Stop_ADXTHandle;
+} Sig_ADXT_Stop_ADXTHandle_np_fn_1_32200;
 
 typedef struct {
     u8 unk[0xb];
     u8 value;
-} Entry;
+} Entry_np_fn_1_32200;
 
 typedef struct {
     u8 pad_0[2];
@@ -4475,7 +4357,7 @@ typedef struct {
     u8 pad_4[8];
     u32 unk_C;
     u8 pad_10[0x10];
-} Obj_1_bss_25E9C;
+} Obj_1_bss_25E9C_np_fn_1_32200;
 
 typedef struct {
     u8 pad[0x2f8];
@@ -4489,115 +4371,7 @@ typedef struct {
     u32 value_314;
     u32 value_318;
     u32 value_31c;
-} Fn40710Config;
-extern void fn_1_15E330(s32 index, u32 value, void *arg);
-extern void fn_1_15E5E4(s32 index, void *arg);
-extern void fn_1_15E688(s32 index, u32 value, u8 state, void *arg);
-extern void fn_1_15E3E0(s32 index, u32 value);
-extern void fn_1_15E434(u32 value);
-extern void fn_1_15E540(s32 index, void *arg);
-extern void fn_1_CB404(u8 value);
-extern void fn_1_D07C4(u32 arg0, u32 arg1);
-extern u32 lbl_1_bss_25B84;
-extern u32 OSGetTick(void);
-extern void fn_1_A0978(void);
-extern void fn_1_35174(void);
-extern s32 fn_1_3EFA8(void);
-extern u16 lbl_1_bss_26B5C__fzgx_offset_1E[3];
-extern u16 lbl_1_bss_26300;
-extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_80008BEC(void *dest, int value, u32 size);
-extern u32 fn_1_101C0(void);
-extern u32 fn_1_A11EC(void);
-extern u32 fn_1_435C(u32 value);
-extern void ADXT_Pause(Sig_ADXT_Pause_ADXTHandle *, s32);
-extern void fn_1_4310(u32 arg0);
-extern void fn_1_48004(s32 index, s32 image);
-extern void fn_1_8616C(void);
-extern void fn_1_A1588(u32 arg0, u32 arg1);
-extern void fn_1_D0790(void);
-extern void fn_1_817C0(void);
-extern u32 lbl_1_bss_381FC;
-extern void fn_1_EB080(int mode);
-extern s64 OSGetTime(void);
-extern void fn_1_4A00(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_1_5370(u32 arg0, u32 arg1);
-extern void fn_1_15E27C(void);
-extern void fn_1_4811C(int arg);
-extern void fn_1_A8F78(void);
-extern u8 lbl_1_bss_262F4;
-extern u32 lbl_1_bss_25E74[7];
-extern u8 lbl_1_bss_3C10;
-extern void fn_1_36330(void);
-extern void fn_1_36B10(void);
-extern void fn_1_3C98(void);
-extern void fn_1_37AA8(void);
-extern void fn_1_37E98(void);
-extern f32 lbl_1_bss_26304[4];
-extern u8 lbl_1_bss_26B04[20];
-extern u8 lbl_1_bss_26314[2032];
-extern s16 fn_1_12EF24(s16 row, s16 column);
-extern u8 lbl_1_bss_523C[32];
-extern Entry *lbl_1_bss_53F8[34];
-extern void OSPanic(const void *, u32, const char *, ...);
-extern Obj_1_bss_25E9C lbl_1_bss_25E9C[30];
-extern void fn_1_12AB38(void *arg0);
-extern void fn_1_465D0(char *value, u32 flag);
-extern void* fn_1_7F518(s16 car_type, void* car, s32 initialize);
-extern int sprintf(char *s, const char *format, ...);
-extern void fn_1_451E4(void);
-extern void fn_1_D3214(void);
-extern void VIWaitForRetrace(void);
-extern u32 fn_1_467F4(void);
-extern u32 fn_1_13018(void);
-extern u32 fn_1_46C60(void);
-extern u32 lbl_1_bss_26C2C[2];
-extern u32 lbl_1_bss_262F8[2];
-extern u16 lbl_1_bss_26C68[35526];
-extern u32 lbl_1_bss_3C08[2];
-extern u32 fn_800075AC(u32, u32, u32);
-extern u32 ghost_test_record_flag0(s32 arg);
-extern u32 fn_1_F9D44(u32 arg);
-extern u8 fn_1_F8C50(s32 arg0);
-extern void fn_1_2DB50(void);
-extern void fn_1_3F8C(void *, void *, Obj_1_bss_5138 *, int);
-extern void fn_1_2D888(void);
-extern void fn_1_2D524(void);
-extern u32 fn_1_FA070(void);
-extern int fn_1_FA180(int, u8);
-extern u32 fn_1_F9FEC(void);
-extern void fn_1_A2DC4(u32 arg0);
-extern Fn40710Config lbl_1_rodata_BD8;
-extern u8 lbl_1_bss_26B54[8];
-extern u32 fn_1_40EE4(void);
-extern u32 lbl_801A63D0;
-extern u32 lbl_1_bss_26C34[9];
-extern u8 lbl_1_bss_38218[568];
-extern u32 fn_1_4060(void);
-extern void ARQPostRequest(u8 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7);
-extern u32 lbl_801A63C0;
-extern void fn_1_40BE4(void);
-extern u32 GXGetTexBufferSize(u32, u32, u32, u32, u32);
-extern u32 lbl_1_bss_26B4C;
-extern u8 lbl_1_bss_25E90[8];
-extern s32 fn_1_48B0(u32 arg0, u32 arg1);
-extern void fn_1_40F54(void *arg0);
-extern u32 lbl_801A6CE0;
-extern u32 lbl_1_bss_38454;
-extern u32 fn_80070DE0(u32 arg0);
-extern void fn_1_D3884();
-extern void fn_1_D358C();
-extern void fn_800711A8(Obj_1_bss_38458_Target *target);
-extern void fn_80071718(u32 value);
-extern void fn_1_41134(void *unused, char *value);
-extern void fn_1_411D4(u32, char *);
-extern int DVDConvertPathToEntrynum(char *buffer);
-extern void fn_1_412A0(u32 index);
-extern size_t strlen(const char *str);
-extern int fn_80083BCC(const char *s1, const char *s2);
-extern u8 lbl_1_A9011300;
-extern u8 lbl_1_A9011100;
-extern u8 lbl_1_A9011000;
+} Fn40710Config_np_fn_1_32200;
 
 typedef struct RaceSetup {
     u32 unk_0;
@@ -5406,10 +5180,7 @@ void fn_1_32A40(Racer *racer) {
 }
 /* fzgx:end fn_1_32A40 */
 
-/* fzgx:begin fn_1_331EC noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/game.h"
+/* fzgx:begin fn_1_331EC */
 #include "font.h"
 #include "font.h"
 
@@ -5419,39 +5190,39 @@ typedef struct Sig_ADXT_Pause_ADXStream Sig_ADXT_Pause_ADXStream;
 
 typedef struct Sig_ADXT_Pause_AXRNAHandle Sig_ADXT_Pause_AXRNAHandle;
 
-typedef struct Sig_ADXT_Pause_SJCK {
+typedef struct Sig_ADXT_Pause_SJCK_np_fn_1_331EC {
     unsigned char *data;
     int len;
-} Sig_ADXT_Pause_SJCK;
+} Sig_ADXT_Pause_SJCK_np_fn_1_331EC;
 
 typedef void (*Sig_ADXT_Pause_SJErrorCallback)(void *object, int error);
 
-typedef struct Sig_ADXT_Pause_SJInterface Sig_ADXT_Pause_SJInterface;
+typedef struct Sig_ADXT_Pause_SJInterface_np_fn_1_331EC Sig_ADXT_Pause_SJInterface_np_fn_1_331EC;
 
-typedef struct Sig_ADXT_Pause_SJ Sig_ADXT_Pause_SJ;
+typedef struct Sig_ADXT_Pause_SJ_np_fn_1_331EC Sig_ADXT_Pause_SJ_np_fn_1_331EC;
 
-struct Sig_ADXT_Pause_SJ {
-    const Sig_ADXT_Pause_SJInterface *interface;
+struct Sig_ADXT_Pause_SJ_np_fn_1_331EC {
+    const Sig_ADXT_Pause_SJInterface_np_fn_1_331EC *interface;
 };
 
-struct Sig_ADXT_Pause_SJInterface {
+struct Sig_ADXT_Pause_SJInterface_np_fn_1_331EC {
     void *reserved[3];
-    void (*destroy)(Sig_ADXT_Pause_SJ *sj);
-    const void *(*get_uuid)(Sig_ADXT_Pause_SJ *sj);
-    void (*reset)(Sig_ADXT_Pause_SJ *sj);
-    void (*get_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, int max_size, Sig_ADXT_Pause_SJCK *chunk);
-    void (*unget_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, Sig_ADXT_Pause_SJCK *chunk);
-    void (*put_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, Sig_ADXT_Pause_SJCK *chunk);
-    int (*get_num_data)(Sig_ADXT_Pause_SJ *sj, int channel);
-    int (*is_get_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, int size, int *available);
-    void (*entry_error_func)(Sig_ADXT_Pause_SJ *sj, Sig_ADXT_Pause_SJErrorCallback callback, void *object);
+    void (*destroy)(Sig_ADXT_Pause_SJ_np_fn_1_331EC *sj);
+    const void *(*get_uuid)(Sig_ADXT_Pause_SJ_np_fn_1_331EC *sj);
+    void (*reset)(Sig_ADXT_Pause_SJ_np_fn_1_331EC *sj);
+    void (*get_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_331EC *sj, int channel, int max_size, Sig_ADXT_Pause_SJCK_np_fn_1_331EC *chunk);
+    void (*unget_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_331EC *sj, int channel, Sig_ADXT_Pause_SJCK_np_fn_1_331EC *chunk);
+    void (*put_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_331EC *sj, int channel, Sig_ADXT_Pause_SJCK_np_fn_1_331EC *chunk);
+    int (*get_num_data)(Sig_ADXT_Pause_SJ_np_fn_1_331EC *sj, int channel);
+    int (*is_get_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_331EC *sj, int channel, int size, int *available);
+    void (*entry_error_func)(Sig_ADXT_Pause_SJ_np_fn_1_331EC *sj, Sig_ADXT_Pause_SJErrorCallback callback, void *object);
 };
 
 typedef struct Sig_ADXT_Pause_ADX_AMP Sig_ADXT_Pause_ADX_AMP;
 
 typedef struct Sig_ADXT_Pause_LSCObject Sig_ADXT_Pause_LSCObject;
 
-typedef struct Sig_ADXT_Pause_ADXTHandle {
+typedef struct Sig_ADXT_Pause_ADXTHandle_np_fn_1_331EC {
     s8 used;
     s8 status;
     s8 stream_type;
@@ -5459,9 +5230,9 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     Sig_ADXT_Pause_AdxSjdHandle *decoder;
     Sig_ADXT_Pause_ADXStream *stream;
     Sig_ADXT_Pause_AXRNAHandle *rna;
-    Sig_ADXT_Pause_SJ *stream_sj;
-    Sig_ADXT_Pause_SJ *input_sj;
-    Sig_ADXT_Pause_SJ *output_sj[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_331EC *stream_sj;
+    Sig_ADXT_Pause_SJ_np_fn_1_331EC *input_sj;
+    Sig_ADXT_Pause_SJ_np_fn_1_331EC *output_sj[2];
     u8 *input_buffer;
     s32 input_buffer_size;
     s32 input_extra_size;
@@ -5493,8 +5264,8 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     s8 paused;
     u8 reserved_73;
     Sig_ADXT_Pause_ADX_AMP *amplifier;
-    Sig_ADXT_Pause_SJ *amplifier_input[2];
-    Sig_ADXT_Pause_SJ *amplifier_output[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_331EC *amplifier_input[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_331EC *amplifier_output[2];
     s32 time_offset;
     s32 eos_sector;
     s32 loop_sample_count;
@@ -5511,7 +5282,7 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     void *pending_directory;
     s32 pending_file_offset;
     s32 pending_file_sectors;
-} Sig_ADXT_Pause_ADXTHandle;
+} Sig_ADXT_Pause_ADXTHandle_np_fn_1_331EC;
 
 typedef struct Sig_ADXT_Stop_AdxSjdHandle Sig_ADXT_Stop_AdxSjdHandle;
 
@@ -5519,39 +5290,39 @@ typedef struct Sig_ADXT_Stop_ADXStream Sig_ADXT_Stop_ADXStream;
 
 typedef struct Sig_ADXT_Stop_AXRNAHandle Sig_ADXT_Stop_AXRNAHandle;
 
-typedef struct Sig_ADXT_Stop_SJCK {
+typedef struct Sig_ADXT_Stop_SJCK_np_fn_1_331EC {
     unsigned char *data;
     int len;
-} Sig_ADXT_Stop_SJCK;
+} Sig_ADXT_Stop_SJCK_np_fn_1_331EC;
 
 typedef void (*Sig_ADXT_Stop_SJErrorCallback)(void *object, int error);
 
-typedef struct Sig_ADXT_Stop_SJInterface Sig_ADXT_Stop_SJInterface;
+typedef struct Sig_ADXT_Stop_SJInterface_np_fn_1_331EC Sig_ADXT_Stop_SJInterface_np_fn_1_331EC;
 
-typedef struct Sig_ADXT_Stop_SJ Sig_ADXT_Stop_SJ;
+typedef struct Sig_ADXT_Stop_SJ_np_fn_1_331EC Sig_ADXT_Stop_SJ_np_fn_1_331EC;
 
-struct Sig_ADXT_Stop_SJInterface {
+struct Sig_ADXT_Stop_SJInterface_np_fn_1_331EC {
     void *reserved[3];
-    void (*destroy)(Sig_ADXT_Stop_SJ *sj);
-    const void *(*get_uuid)(Sig_ADXT_Stop_SJ *sj);
-    void (*reset)(Sig_ADXT_Stop_SJ *sj);
-    void (*get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int max_size, Sig_ADXT_Stop_SJCK *chunk);
-    void (*unget_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
-    void (*put_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
-    int (*get_num_data)(Sig_ADXT_Stop_SJ *sj, int channel);
-    int (*is_get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int size, int *available);
-    void (*entry_error_func)(Sig_ADXT_Stop_SJ *sj, Sig_ADXT_Stop_SJErrorCallback callback, void *object);
+    void (*destroy)(Sig_ADXT_Stop_SJ_np_fn_1_331EC *sj);
+    const void *(*get_uuid)(Sig_ADXT_Stop_SJ_np_fn_1_331EC *sj);
+    void (*reset)(Sig_ADXT_Stop_SJ_np_fn_1_331EC *sj);
+    void (*get_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_331EC *sj, int channel, int max_size, Sig_ADXT_Stop_SJCK_np_fn_1_331EC *chunk);
+    void (*unget_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_331EC *sj, int channel, Sig_ADXT_Stop_SJCK_np_fn_1_331EC *chunk);
+    void (*put_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_331EC *sj, int channel, Sig_ADXT_Stop_SJCK_np_fn_1_331EC *chunk);
+    int (*get_num_data)(Sig_ADXT_Stop_SJ_np_fn_1_331EC *sj, int channel);
+    int (*is_get_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_331EC *sj, int channel, int size, int *available);
+    void (*entry_error_func)(Sig_ADXT_Stop_SJ_np_fn_1_331EC *sj, Sig_ADXT_Stop_SJErrorCallback callback, void *object);
 };
 
-struct Sig_ADXT_Stop_SJ {
-    const Sig_ADXT_Stop_SJInterface *interface;
+struct Sig_ADXT_Stop_SJ_np_fn_1_331EC {
+    const Sig_ADXT_Stop_SJInterface_np_fn_1_331EC *interface;
 };
 
 typedef struct Sig_ADXT_Stop_ADX_AMP Sig_ADXT_Stop_ADX_AMP;
 
 typedef struct Sig_ADXT_Stop_LSCObject Sig_ADXT_Stop_LSCObject;
 
-typedef struct Sig_ADXT_Stop_ADXTHandle {
+typedef struct Sig_ADXT_Stop_ADXTHandle_np_fn_1_331EC {
     s8 used;
     s8 status;
     s8 stream_type;
@@ -5559,9 +5330,9 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     Sig_ADXT_Stop_AdxSjdHandle *decoder;
     Sig_ADXT_Stop_ADXStream *stream;
     Sig_ADXT_Stop_AXRNAHandle *rna;
-    Sig_ADXT_Stop_SJ *stream_sj;
-    Sig_ADXT_Stop_SJ *input_sj;
-    Sig_ADXT_Stop_SJ *output_sj[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_331EC *stream_sj;
+    Sig_ADXT_Stop_SJ_np_fn_1_331EC *input_sj;
+    Sig_ADXT_Stop_SJ_np_fn_1_331EC *output_sj[2];
     u8 *input_buffer;
     s32 input_buffer_size;
     s32 input_extra_size;
@@ -5593,8 +5364,8 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     s8 paused;
     u8 reserved_73;
     Sig_ADXT_Stop_ADX_AMP *amplifier;
-    Sig_ADXT_Stop_SJ *amplifier_input[2];
-    Sig_ADXT_Stop_SJ *amplifier_output[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_331EC *amplifier_input[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_331EC *amplifier_output[2];
     s32 time_offset;
     s32 eos_sector;
     s32 loop_sample_count;
@@ -5611,12 +5382,12 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     void *pending_directory;
     s32 pending_file_offset;
     s32 pending_file_sectors;
-} Sig_ADXT_Stop_ADXTHandle;
+} Sig_ADXT_Stop_ADXTHandle_np_fn_1_331EC;
 
 typedef struct {
     u8 unk[0xb];
     u8 value;
-} Entry;
+} Entry_np_fn_1_331EC;
 
 typedef struct {
     u8 pad_0[2];
@@ -5624,7 +5395,7 @@ typedef struct {
     u8 pad_4[8];
     u32 unk_C;
     u8 pad_10[0x10];
-} Obj_1_bss_25E9C;
+} Obj_1_bss_25E9C_np_fn_1_331EC;
 
 typedef struct {
     u8 pad[0x2f8];
@@ -5638,115 +5409,7 @@ typedef struct {
     u32 value_314;
     u32 value_318;
     u32 value_31c;
-} Fn40710Config;
-extern void fn_1_15E330(s32 index, u32 value, void *arg);
-extern void fn_1_15E5E4(s32 index, void *arg);
-extern void fn_1_15E688(s32 index, u32 value, u8 state, void *arg);
-extern void fn_1_15E3E0(s32 index, u32 value);
-extern void fn_1_15E434(u32 value);
-extern void fn_1_15E540(s32 index, void *arg);
-extern void fn_1_CB404(u8 value);
-extern void fn_1_D07C4(u32 arg0, u32 arg1);
-extern u32 lbl_1_bss_25B84;
-extern u32 OSGetTick(void);
-extern void fn_1_A0978(void);
-extern void fn_1_35174(void);
-extern s32 fn_1_3EFA8(void);
-extern u16 lbl_1_bss_26B5C__fzgx_offset_1E[3];
-extern u16 lbl_1_bss_26300;
-extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_80008BEC(void *dest, int value, u32 size);
-extern u32 fn_1_101C0(void);
-extern u32 fn_1_A11EC(void);
-extern u32 fn_1_435C(u32 value);
-extern void ADXT_Pause(Sig_ADXT_Pause_ADXTHandle *, s32);
-extern void fn_1_4310(u32 arg0);
-extern void fn_1_48004(s32 index, s32 image);
-extern void fn_1_8616C(void);
-extern void fn_1_A1588(u32 arg0, u32 arg1);
-extern void fn_1_D0790(void);
-extern void fn_1_817C0(void);
-extern u32 lbl_1_bss_381FC;
-extern void fn_1_EB080(int mode);
-extern s64 OSGetTime(void);
-extern void fn_1_4A00(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_1_5370(u32 arg0, u32 arg1);
-extern void fn_1_15E27C(void);
-extern void fn_1_4811C(int arg);
-extern void fn_1_A8F78(void);
-extern u8 lbl_1_bss_262F4;
-extern u32 lbl_1_bss_25E74[7];
-extern u8 lbl_1_bss_3C10;
-extern void fn_1_36330(void);
-extern void fn_1_36B10(void);
-extern void fn_1_3C98(void);
-extern void fn_1_37AA8(void);
-extern void fn_1_37E98(void);
-extern f32 lbl_1_bss_26304[4];
-extern u8 lbl_1_bss_26B04[20];
-extern u8 lbl_1_bss_26314[2032];
-extern s16 fn_1_12EF24(s16 row, s16 column);
-extern u8 lbl_1_bss_523C[32];
-extern Entry *lbl_1_bss_53F8[34];
-extern void OSPanic(const void *, u32, const char *, ...);
-extern Obj_1_bss_25E9C lbl_1_bss_25E9C[30];
-extern void fn_1_12AB38(void *arg0);
-extern void fn_1_465D0(char *value, u32 flag);
-extern void* fn_1_7F518(s16 car_type, void* car, s32 initialize);
-extern int sprintf(char *s, const char *format, ...);
-extern void fn_1_451E4(void);
-extern void fn_1_D3214(void);
-extern void VIWaitForRetrace(void);
-extern u32 fn_1_467F4(void);
-extern u32 fn_1_13018(void);
-extern u32 fn_1_46C60(void);
-extern u32 lbl_1_bss_26C2C[2];
-extern u32 lbl_1_bss_262F8[2];
-extern u16 lbl_1_bss_26C68[35526];
-extern u32 lbl_1_bss_3C08[2];
-extern u32 fn_800075AC(u32, u32, u32);
-extern u32 ghost_test_record_flag0(s32 arg);
-extern u32 fn_1_F9D44(u32 arg);
-extern u8 fn_1_F8C50(s32 arg0);
-extern void fn_1_2DB50(void);
-extern void fn_1_3F8C(void *, void *, Obj_1_bss_5138 *, int);
-extern void fn_1_2D888(void);
-extern void fn_1_2D524(void);
-extern u32 fn_1_FA070(void);
-extern int fn_1_FA180(int, u8);
-extern u32 fn_1_F9FEC(void);
-extern void fn_1_A2DC4(u32 arg0);
-extern Fn40710Config lbl_1_rodata_BD8;
-extern u8 lbl_1_bss_26B54[8];
-extern u32 fn_1_40EE4(void);
-extern u32 lbl_801A63D0;
-extern u32 lbl_1_bss_26C34[9];
-extern u8 lbl_1_bss_38218[568];
-extern u32 fn_1_4060(void);
-extern void ARQPostRequest(u8 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7);
-extern u32 lbl_801A63C0;
-extern void fn_1_40BE4(void);
-extern u32 GXGetTexBufferSize(u32, u32, u32, u32, u32);
-extern u32 lbl_1_bss_26B4C;
-extern u8 lbl_1_bss_25E90[8];
-extern s32 fn_1_48B0(u32 arg0, u32 arg1);
-extern void fn_1_40F54(void *arg0);
-extern u32 lbl_801A6CE0;
-extern u32 lbl_1_bss_38454;
-extern u32 fn_80070DE0(u32 arg0);
-extern void fn_1_D3884();
-extern void fn_1_D358C();
-extern void fn_800711A8(Obj_1_bss_38458_Target *target);
-extern void fn_80071718(u32 value);
-extern void fn_1_41134(void *unused, char *value);
-extern void fn_1_411D4(u32, char *);
-extern int DVDConvertPathToEntrynum(char *buffer);
-extern void fn_1_412A0(u32 index);
-extern size_t strlen(const char *str);
-extern int fn_80083BCC(const char *s1, const char *s2);
-extern u8 lbl_1_A9011300;
-extern u8 lbl_1_A9011100;
-extern u8 lbl_1_A9011000;
+} Fn40710Config_np_fn_1_331EC;
 
 
 #ifndef GAME_MAIN_REL_GAME_TYPES_H
@@ -7316,52 +6979,46 @@ void fn_1_34924(u16 *timer) {
 }
 /* fzgx:end fn_1_34924 */
 
-/* fzgx:begin fn_1_34AC0 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/game.h"
-#include "types.h"
-#include "rel/main_rel/game.h"
-
+/* fzgx:begin fn_1_34AC0 */
 typedef struct Sig_ADXT_Pause_AdxSjdHandle Sig_ADXT_Pause_AdxSjdHandle;
 
 typedef struct Sig_ADXT_Pause_ADXStream Sig_ADXT_Pause_ADXStream;
 
 typedef struct Sig_ADXT_Pause_AXRNAHandle Sig_ADXT_Pause_AXRNAHandle;
 
-typedef struct Sig_ADXT_Pause_SJCK {
+typedef struct Sig_ADXT_Pause_SJCK_np_fn_1_34AC0 {
     unsigned char *data;
     int len;
-} Sig_ADXT_Pause_SJCK;
+} Sig_ADXT_Pause_SJCK_np_fn_1_34AC0;
 
 typedef void (*Sig_ADXT_Pause_SJErrorCallback)(void *object, int error);
 
-typedef struct Sig_ADXT_Pause_SJInterface Sig_ADXT_Pause_SJInterface;
+typedef struct Sig_ADXT_Pause_SJInterface_np_fn_1_34AC0 Sig_ADXT_Pause_SJInterface_np_fn_1_34AC0;
 
-typedef struct Sig_ADXT_Pause_SJ Sig_ADXT_Pause_SJ;
+typedef struct Sig_ADXT_Pause_SJ_np_fn_1_34AC0 Sig_ADXT_Pause_SJ_np_fn_1_34AC0;
 
-struct Sig_ADXT_Pause_SJ {
-    const Sig_ADXT_Pause_SJInterface *interface;
+struct Sig_ADXT_Pause_SJ_np_fn_1_34AC0 {
+    const Sig_ADXT_Pause_SJInterface_np_fn_1_34AC0 *interface;
 };
 
-struct Sig_ADXT_Pause_SJInterface {
+struct Sig_ADXT_Pause_SJInterface_np_fn_1_34AC0 {
     void *reserved[3];
-    void (*destroy)(Sig_ADXT_Pause_SJ *sj);
-    const void *(*get_uuid)(Sig_ADXT_Pause_SJ *sj);
-    void (*reset)(Sig_ADXT_Pause_SJ *sj);
-    void (*get_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, int max_size, Sig_ADXT_Pause_SJCK *chunk);
-    void (*unget_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, Sig_ADXT_Pause_SJCK *chunk);
-    void (*put_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, Sig_ADXT_Pause_SJCK *chunk);
-    int (*get_num_data)(Sig_ADXT_Pause_SJ *sj, int channel);
-    int (*is_get_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, int size, int *available);
-    void (*entry_error_func)(Sig_ADXT_Pause_SJ *sj, Sig_ADXT_Pause_SJErrorCallback callback, void *object);
+    void (*destroy)(Sig_ADXT_Pause_SJ_np_fn_1_34AC0 *sj);
+    const void *(*get_uuid)(Sig_ADXT_Pause_SJ_np_fn_1_34AC0 *sj);
+    void (*reset)(Sig_ADXT_Pause_SJ_np_fn_1_34AC0 *sj);
+    void (*get_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_34AC0 *sj, int channel, int max_size, Sig_ADXT_Pause_SJCK_np_fn_1_34AC0 *chunk);
+    void (*unget_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_34AC0 *sj, int channel, Sig_ADXT_Pause_SJCK_np_fn_1_34AC0 *chunk);
+    void (*put_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_34AC0 *sj, int channel, Sig_ADXT_Pause_SJCK_np_fn_1_34AC0 *chunk);
+    int (*get_num_data)(Sig_ADXT_Pause_SJ_np_fn_1_34AC0 *sj, int channel);
+    int (*is_get_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_34AC0 *sj, int channel, int size, int *available);
+    void (*entry_error_func)(Sig_ADXT_Pause_SJ_np_fn_1_34AC0 *sj, Sig_ADXT_Pause_SJErrorCallback callback, void *object);
 };
 
 typedef struct Sig_ADXT_Pause_ADX_AMP Sig_ADXT_Pause_ADX_AMP;
 
 typedef struct Sig_ADXT_Pause_LSCObject Sig_ADXT_Pause_LSCObject;
 
-typedef struct Sig_ADXT_Pause_ADXTHandle {
+typedef struct Sig_ADXT_Pause_ADXTHandle_np_fn_1_34AC0 {
     s8 used;
     s8 status;
     s8 stream_type;
@@ -7369,9 +7026,9 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     Sig_ADXT_Pause_AdxSjdHandle *decoder;
     Sig_ADXT_Pause_ADXStream *stream;
     Sig_ADXT_Pause_AXRNAHandle *rna;
-    Sig_ADXT_Pause_SJ *stream_sj;
-    Sig_ADXT_Pause_SJ *input_sj;
-    Sig_ADXT_Pause_SJ *output_sj[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_34AC0 *stream_sj;
+    Sig_ADXT_Pause_SJ_np_fn_1_34AC0 *input_sj;
+    Sig_ADXT_Pause_SJ_np_fn_1_34AC0 *output_sj[2];
     u8 *input_buffer;
     s32 input_buffer_size;
     s32 input_extra_size;
@@ -7403,8 +7060,8 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     s8 paused;
     u8 reserved_73;
     Sig_ADXT_Pause_ADX_AMP *amplifier;
-    Sig_ADXT_Pause_SJ *amplifier_input[2];
-    Sig_ADXT_Pause_SJ *amplifier_output[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_34AC0 *amplifier_input[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_34AC0 *amplifier_output[2];
     s32 time_offset;
     s32 eos_sector;
     s32 loop_sample_count;
@@ -7421,7 +7078,7 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     void *pending_directory;
     s32 pending_file_offset;
     s32 pending_file_sectors;
-} Sig_ADXT_Pause_ADXTHandle;
+} Sig_ADXT_Pause_ADXTHandle_np_fn_1_34AC0;
 
 typedef struct Sig_ADXT_Stop_AdxSjdHandle Sig_ADXT_Stop_AdxSjdHandle;
 
@@ -7429,39 +7086,39 @@ typedef struct Sig_ADXT_Stop_ADXStream Sig_ADXT_Stop_ADXStream;
 
 typedef struct Sig_ADXT_Stop_AXRNAHandle Sig_ADXT_Stop_AXRNAHandle;
 
-typedef struct Sig_ADXT_Stop_SJCK {
+typedef struct Sig_ADXT_Stop_SJCK_np_fn_1_34AC0 {
     unsigned char *data;
     int len;
-} Sig_ADXT_Stop_SJCK;
+} Sig_ADXT_Stop_SJCK_np_fn_1_34AC0;
 
 typedef void (*Sig_ADXT_Stop_SJErrorCallback)(void *object, int error);
 
-typedef struct Sig_ADXT_Stop_SJInterface Sig_ADXT_Stop_SJInterface;
+typedef struct Sig_ADXT_Stop_SJInterface_np_fn_1_34AC0 Sig_ADXT_Stop_SJInterface_np_fn_1_34AC0;
 
-typedef struct Sig_ADXT_Stop_SJ Sig_ADXT_Stop_SJ;
+typedef struct Sig_ADXT_Stop_SJ_np_fn_1_34AC0 Sig_ADXT_Stop_SJ_np_fn_1_34AC0;
 
-struct Sig_ADXT_Stop_SJInterface {
+struct Sig_ADXT_Stop_SJInterface_np_fn_1_34AC0 {
     void *reserved[3];
-    void (*destroy)(Sig_ADXT_Stop_SJ *sj);
-    const void *(*get_uuid)(Sig_ADXT_Stop_SJ *sj);
-    void (*reset)(Sig_ADXT_Stop_SJ *sj);
-    void (*get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int max_size, Sig_ADXT_Stop_SJCK *chunk);
-    void (*unget_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
-    void (*put_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
-    int (*get_num_data)(Sig_ADXT_Stop_SJ *sj, int channel);
-    int (*is_get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int size, int *available);
-    void (*entry_error_func)(Sig_ADXT_Stop_SJ *sj, Sig_ADXT_Stop_SJErrorCallback callback, void *object);
+    void (*destroy)(Sig_ADXT_Stop_SJ_np_fn_1_34AC0 *sj);
+    const void *(*get_uuid)(Sig_ADXT_Stop_SJ_np_fn_1_34AC0 *sj);
+    void (*reset)(Sig_ADXT_Stop_SJ_np_fn_1_34AC0 *sj);
+    void (*get_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_34AC0 *sj, int channel, int max_size, Sig_ADXT_Stop_SJCK_np_fn_1_34AC0 *chunk);
+    void (*unget_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_34AC0 *sj, int channel, Sig_ADXT_Stop_SJCK_np_fn_1_34AC0 *chunk);
+    void (*put_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_34AC0 *sj, int channel, Sig_ADXT_Stop_SJCK_np_fn_1_34AC0 *chunk);
+    int (*get_num_data)(Sig_ADXT_Stop_SJ_np_fn_1_34AC0 *sj, int channel);
+    int (*is_get_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_34AC0 *sj, int channel, int size, int *available);
+    void (*entry_error_func)(Sig_ADXT_Stop_SJ_np_fn_1_34AC0 *sj, Sig_ADXT_Stop_SJErrorCallback callback, void *object);
 };
 
-struct Sig_ADXT_Stop_SJ {
-    const Sig_ADXT_Stop_SJInterface *interface;
+struct Sig_ADXT_Stop_SJ_np_fn_1_34AC0 {
+    const Sig_ADXT_Stop_SJInterface_np_fn_1_34AC0 *interface;
 };
 
 typedef struct Sig_ADXT_Stop_ADX_AMP Sig_ADXT_Stop_ADX_AMP;
 
 typedef struct Sig_ADXT_Stop_LSCObject Sig_ADXT_Stop_LSCObject;
 
-typedef struct Sig_ADXT_Stop_ADXTHandle {
+typedef struct Sig_ADXT_Stop_ADXTHandle_np_fn_1_34AC0 {
     s8 used;
     s8 status;
     s8 stream_type;
@@ -7469,9 +7126,9 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     Sig_ADXT_Stop_AdxSjdHandle *decoder;
     Sig_ADXT_Stop_ADXStream *stream;
     Sig_ADXT_Stop_AXRNAHandle *rna;
-    Sig_ADXT_Stop_SJ *stream_sj;
-    Sig_ADXT_Stop_SJ *input_sj;
-    Sig_ADXT_Stop_SJ *output_sj[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_34AC0 *stream_sj;
+    Sig_ADXT_Stop_SJ_np_fn_1_34AC0 *input_sj;
+    Sig_ADXT_Stop_SJ_np_fn_1_34AC0 *output_sj[2];
     u8 *input_buffer;
     s32 input_buffer_size;
     s32 input_extra_size;
@@ -7503,8 +7160,8 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     s8 paused;
     u8 reserved_73;
     Sig_ADXT_Stop_ADX_AMP *amplifier;
-    Sig_ADXT_Stop_SJ *amplifier_input[2];
-    Sig_ADXT_Stop_SJ *amplifier_output[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_34AC0 *amplifier_input[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_34AC0 *amplifier_output[2];
     s32 time_offset;
     s32 eos_sector;
     s32 loop_sample_count;
@@ -7521,12 +7178,12 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     void *pending_directory;
     s32 pending_file_offset;
     s32 pending_file_sectors;
-} Sig_ADXT_Stop_ADXTHandle;
+} Sig_ADXT_Stop_ADXTHandle_np_fn_1_34AC0;
 
 typedef struct {
     u8 unk[0xb];
     u8 value;
-} Entry;
+} Entry_np_fn_1_34AC0;
 
 typedef struct {
     u8 pad_0[2];
@@ -7534,7 +7191,7 @@ typedef struct {
     u8 pad_4[8];
     u32 unk_C;
     u8 pad_10[0x10];
-} Obj_1_bss_25E9C;
+} Obj_1_bss_25E9C_np_fn_1_34AC0;
 
 typedef struct {
     u8 pad[0x2f8];
@@ -7548,122 +7205,13 @@ typedef struct {
     u32 value_314;
     u32 value_318;
     u32 value_31c;
-} Fn40710Config;
-extern void fn_1_15E330(s32 index, u32 value, void *arg);
-extern void fn_1_15E5E4(s32 index, void *arg);
-extern void fn_1_15E688(s32 index, u32 value, u8 state, void *arg);
-extern void fn_1_15E3E0(s32 index, u32 value);
-extern void fn_1_15E434(u32 value);
-extern void fn_1_15E540(s32 index, void *arg);
-extern void fn_1_CB404(u8 value);
-extern void fn_1_D07C4(u32 arg0, u32 arg1);
-extern u32 lbl_1_bss_25B84;
-extern u32 OSGetTick(void);
-extern void fn_1_A0978(void);
-extern void fn_1_35174(void);
-extern s32 fn_1_3EFA8(void);
-extern u16 lbl_1_bss_26B5C__fzgx_offset_1E[3];
-extern u16 lbl_1_bss_26300;
-extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_80008BEC(void *dest, int value, u32 size);
-extern u32 fn_1_101C0(void);
-extern u32 fn_1_A11EC(void);
-extern u32 fn_1_435C(u32 value);
-extern void ADXT_Pause(Sig_ADXT_Pause_ADXTHandle *, s32);
-extern void fn_1_4310(u32 arg0);
-extern void fn_1_48004(s32 index, s32 image);
-extern void fn_1_8616C(void);
-extern void fn_1_A1588(u32 arg0, u32 arg1);
-extern void fn_1_D0790(void);
-extern void fn_1_817C0(void);
-extern u32 lbl_1_bss_381FC;
-extern void fn_1_EB080(int mode);
-extern s64 OSGetTime(void);
-extern void fn_1_4A00(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_1_5370(u32 arg0, u32 arg1);
-extern void fn_1_15E27C(void);
-extern void fn_1_4811C(int arg);
-extern void fn_1_A8F78(void);
-extern u8 lbl_1_bss_262F4;
-extern u32 lbl_1_bss_25E74[7];
-extern u8 lbl_1_bss_3C10;
-extern void fn_1_36330(void);
-extern void fn_1_36B10(void);
-extern void fn_1_3C98(void);
-extern void fn_1_37AA8(void);
-extern void fn_1_37E98(void);
-extern f32 lbl_1_bss_26304[4];
-extern u8 lbl_1_bss_26B04[20];
-extern u8 lbl_1_bss_26314[2032];
-extern s16 fn_1_12EF24(s16 row, s16 column);
-extern u8 lbl_1_bss_523C[32];
-extern Entry *lbl_1_bss_53F8[34];
-extern void OSPanic(const void *, u32, const char *, ...);
-extern Obj_1_bss_25E9C lbl_1_bss_25E9C[30];
-extern void fn_1_12AB38(void *arg0);
-extern void fn_1_465D0(char *value, u32 flag);
-extern void* fn_1_7F518(s16 car_type, void* car, s32 initialize);
-extern int sprintf(char *s, const char *format, ...);
-extern void fn_1_451E4(void);
-extern void fn_1_D3214(void);
-extern void VIWaitForRetrace(void);
-extern u32 fn_1_467F4(void);
-extern u32 fn_1_13018(void);
-extern u32 fn_1_46C60(void);
-extern u32 lbl_1_bss_26C2C[2];
-extern u32 lbl_1_bss_262F8[2];
-extern u16 lbl_1_bss_26C68[35526];
-extern u32 lbl_1_bss_3C08[2];
-extern u32 fn_800075AC(u32, u32, u32);
-extern u32 ghost_test_record_flag0(s32 arg);
-extern u32 fn_1_F9D44(u32 arg);
-extern u8 fn_1_F8C50(s32 arg0);
-extern void fn_1_2DB50(void);
-extern void fn_1_3F8C(void *, void *, Obj_1_bss_5138 *, int);
-extern void fn_1_2D888(void);
-extern void fn_1_2D524(void);
-extern u32 fn_1_FA070(void);
-extern int fn_1_FA180(int, u8);
-extern u32 fn_1_F9FEC(void);
-extern void fn_1_A2DC4(u32 arg0);
-extern Fn40710Config lbl_1_rodata_BD8;
-extern u8 lbl_1_bss_26B54[8];
-extern u32 fn_1_40EE4(void);
-extern u32 lbl_801A63D0;
-extern u32 lbl_1_bss_26C34[9];
-extern u8 lbl_1_bss_38218[568];
-extern u32 fn_1_4060(void);
-extern void ARQPostRequest(u8 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7);
-extern u32 lbl_801A63C0;
-extern void fn_1_40BE4(void);
-extern u32 GXGetTexBufferSize(u32, u32, u32, u32, u32);
-extern u32 lbl_1_bss_26B4C;
-extern u8 lbl_1_bss_25E90[8];
-extern s32 fn_1_48B0(u32 arg0, u32 arg1);
-extern void fn_1_40F54(void *arg0);
-extern u32 lbl_801A6CE0;
-extern u32 lbl_1_bss_38454;
-extern u32 fn_80070DE0(u32 arg0);
-extern void fn_1_D3884();
-extern void fn_1_D358C();
-extern void fn_800711A8(Obj_1_bss_38458_Target *target);
-extern void fn_80071718(u32 value);
-extern void fn_1_41134(void *unused, char *value);
-extern void fn_1_411D4(u32, char *);
-extern int DVDConvertPathToEntrynum(char *buffer);
-extern void fn_1_412A0(u32 index);
-extern size_t strlen(const char *str);
-extern int fn_80083BCC(const char *s1, const char *s2);
-extern u8 lbl_1_A9011300;
-extern u8 lbl_1_A9011100;
-extern u8 lbl_1_A9011000;
+} Fn40710Config_np_fn_1_34AC0;
 
 
 extern s16 fn_1_8D7C8(void);
 extern s16 fn_1_12C7B8(s16);
 extern u32 fn_1_8D5F0(s16);
 extern int fn_1_8D72C(s16);
-extern u32 lbl_801A63C0;
 extern u8 lbl_1_bss_2627C[120];
 
 static inline s32 fn_1_34AC0_rand(void) {
@@ -12822,50 +12370,46 @@ void fn_1_384E8(void)
 }
 /* fzgx:end fn_1_384E8 */
 
-/* fzgx:begin fn_1_385A4 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/game.h"
-
+/* fzgx:begin fn_1_385A4 */
 typedef struct Sig_ADXT_Pause_AdxSjdHandle Sig_ADXT_Pause_AdxSjdHandle;
 
 typedef struct Sig_ADXT_Pause_ADXStream Sig_ADXT_Pause_ADXStream;
 
 typedef struct Sig_ADXT_Pause_AXRNAHandle Sig_ADXT_Pause_AXRNAHandle;
 
-typedef struct Sig_ADXT_Pause_SJCK {
+typedef struct Sig_ADXT_Pause_SJCK_np_fn_1_385A4 {
     unsigned char *data;
     int len;
-} Sig_ADXT_Pause_SJCK;
+} Sig_ADXT_Pause_SJCK_np_fn_1_385A4;
 
 typedef void (*Sig_ADXT_Pause_SJErrorCallback)(void *object, int error);
 
-typedef struct Sig_ADXT_Pause_SJInterface Sig_ADXT_Pause_SJInterface;
+typedef struct Sig_ADXT_Pause_SJInterface_np_fn_1_385A4 Sig_ADXT_Pause_SJInterface_np_fn_1_385A4;
 
-typedef struct Sig_ADXT_Pause_SJ Sig_ADXT_Pause_SJ;
+typedef struct Sig_ADXT_Pause_SJ_np_fn_1_385A4 Sig_ADXT_Pause_SJ_np_fn_1_385A4;
 
-struct Sig_ADXT_Pause_SJ {
-    const Sig_ADXT_Pause_SJInterface *interface;
+struct Sig_ADXT_Pause_SJ_np_fn_1_385A4 {
+    const Sig_ADXT_Pause_SJInterface_np_fn_1_385A4 *interface;
 };
 
-struct Sig_ADXT_Pause_SJInterface {
+struct Sig_ADXT_Pause_SJInterface_np_fn_1_385A4 {
     void *reserved[3];
-    void (*destroy)(Sig_ADXT_Pause_SJ *sj);
-    const void *(*get_uuid)(Sig_ADXT_Pause_SJ *sj);
-    void (*reset)(Sig_ADXT_Pause_SJ *sj);
-    void (*get_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, int max_size, Sig_ADXT_Pause_SJCK *chunk);
-    void (*unget_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, Sig_ADXT_Pause_SJCK *chunk);
-    void (*put_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, Sig_ADXT_Pause_SJCK *chunk);
-    int (*get_num_data)(Sig_ADXT_Pause_SJ *sj, int channel);
-    int (*is_get_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, int size, int *available);
-    void (*entry_error_func)(Sig_ADXT_Pause_SJ *sj, Sig_ADXT_Pause_SJErrorCallback callback, void *object);
+    void (*destroy)(Sig_ADXT_Pause_SJ_np_fn_1_385A4 *sj);
+    const void *(*get_uuid)(Sig_ADXT_Pause_SJ_np_fn_1_385A4 *sj);
+    void (*reset)(Sig_ADXT_Pause_SJ_np_fn_1_385A4 *sj);
+    void (*get_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_385A4 *sj, int channel, int max_size, Sig_ADXT_Pause_SJCK_np_fn_1_385A4 *chunk);
+    void (*unget_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_385A4 *sj, int channel, Sig_ADXT_Pause_SJCK_np_fn_1_385A4 *chunk);
+    void (*put_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_385A4 *sj, int channel, Sig_ADXT_Pause_SJCK_np_fn_1_385A4 *chunk);
+    int (*get_num_data)(Sig_ADXT_Pause_SJ_np_fn_1_385A4 *sj, int channel);
+    int (*is_get_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_385A4 *sj, int channel, int size, int *available);
+    void (*entry_error_func)(Sig_ADXT_Pause_SJ_np_fn_1_385A4 *sj, Sig_ADXT_Pause_SJErrorCallback callback, void *object);
 };
 
 typedef struct Sig_ADXT_Pause_ADX_AMP Sig_ADXT_Pause_ADX_AMP;
 
 typedef struct Sig_ADXT_Pause_LSCObject Sig_ADXT_Pause_LSCObject;
 
-typedef struct Sig_ADXT_Pause_ADXTHandle {
+typedef struct Sig_ADXT_Pause_ADXTHandle_np_fn_1_385A4 {
     s8 used;
     s8 status;
     s8 stream_type;
@@ -12873,9 +12417,9 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     Sig_ADXT_Pause_AdxSjdHandle *decoder;
     Sig_ADXT_Pause_ADXStream *stream;
     Sig_ADXT_Pause_AXRNAHandle *rna;
-    Sig_ADXT_Pause_SJ *stream_sj;
-    Sig_ADXT_Pause_SJ *input_sj;
-    Sig_ADXT_Pause_SJ *output_sj[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_385A4 *stream_sj;
+    Sig_ADXT_Pause_SJ_np_fn_1_385A4 *input_sj;
+    Sig_ADXT_Pause_SJ_np_fn_1_385A4 *output_sj[2];
     u8 *input_buffer;
     s32 input_buffer_size;
     s32 input_extra_size;
@@ -12907,8 +12451,8 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     s8 paused;
     u8 reserved_73;
     Sig_ADXT_Pause_ADX_AMP *amplifier;
-    Sig_ADXT_Pause_SJ *amplifier_input[2];
-    Sig_ADXT_Pause_SJ *amplifier_output[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_385A4 *amplifier_input[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_385A4 *amplifier_output[2];
     s32 time_offset;
     s32 eos_sector;
     s32 loop_sample_count;
@@ -12925,7 +12469,7 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     void *pending_directory;
     s32 pending_file_offset;
     s32 pending_file_sectors;
-} Sig_ADXT_Pause_ADXTHandle;
+} Sig_ADXT_Pause_ADXTHandle_np_fn_1_385A4;
 
 typedef struct Sig_ADXT_Stop_AdxSjdHandle Sig_ADXT_Stop_AdxSjdHandle;
 
@@ -12933,39 +12477,39 @@ typedef struct Sig_ADXT_Stop_ADXStream Sig_ADXT_Stop_ADXStream;
 
 typedef struct Sig_ADXT_Stop_AXRNAHandle Sig_ADXT_Stop_AXRNAHandle;
 
-typedef struct Sig_ADXT_Stop_SJCK {
+typedef struct Sig_ADXT_Stop_SJCK_np_fn_1_385A4 {
     unsigned char *data;
     int len;
-} Sig_ADXT_Stop_SJCK;
+} Sig_ADXT_Stop_SJCK_np_fn_1_385A4;
 
 typedef void (*Sig_ADXT_Stop_SJErrorCallback)(void *object, int error);
 
-typedef struct Sig_ADXT_Stop_SJInterface Sig_ADXT_Stop_SJInterface;
+typedef struct Sig_ADXT_Stop_SJInterface_np_fn_1_385A4 Sig_ADXT_Stop_SJInterface_np_fn_1_385A4;
 
-typedef struct Sig_ADXT_Stop_SJ Sig_ADXT_Stop_SJ;
+typedef struct Sig_ADXT_Stop_SJ_np_fn_1_385A4 Sig_ADXT_Stop_SJ_np_fn_1_385A4;
 
-struct Sig_ADXT_Stop_SJInterface {
+struct Sig_ADXT_Stop_SJInterface_np_fn_1_385A4 {
     void *reserved[3];
-    void (*destroy)(Sig_ADXT_Stop_SJ *sj);
-    const void *(*get_uuid)(Sig_ADXT_Stop_SJ *sj);
-    void (*reset)(Sig_ADXT_Stop_SJ *sj);
-    void (*get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int max_size, Sig_ADXT_Stop_SJCK *chunk);
-    void (*unget_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
-    void (*put_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
-    int (*get_num_data)(Sig_ADXT_Stop_SJ *sj, int channel);
-    int (*is_get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int size, int *available);
-    void (*entry_error_func)(Sig_ADXT_Stop_SJ *sj, Sig_ADXT_Stop_SJErrorCallback callback, void *object);
+    void (*destroy)(Sig_ADXT_Stop_SJ_np_fn_1_385A4 *sj);
+    const void *(*get_uuid)(Sig_ADXT_Stop_SJ_np_fn_1_385A4 *sj);
+    void (*reset)(Sig_ADXT_Stop_SJ_np_fn_1_385A4 *sj);
+    void (*get_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_385A4 *sj, int channel, int max_size, Sig_ADXT_Stop_SJCK_np_fn_1_385A4 *chunk);
+    void (*unget_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_385A4 *sj, int channel, Sig_ADXT_Stop_SJCK_np_fn_1_385A4 *chunk);
+    void (*put_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_385A4 *sj, int channel, Sig_ADXT_Stop_SJCK_np_fn_1_385A4 *chunk);
+    int (*get_num_data)(Sig_ADXT_Stop_SJ_np_fn_1_385A4 *sj, int channel);
+    int (*is_get_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_385A4 *sj, int channel, int size, int *available);
+    void (*entry_error_func)(Sig_ADXT_Stop_SJ_np_fn_1_385A4 *sj, Sig_ADXT_Stop_SJErrorCallback callback, void *object);
 };
 
-struct Sig_ADXT_Stop_SJ {
-    const Sig_ADXT_Stop_SJInterface *interface;
+struct Sig_ADXT_Stop_SJ_np_fn_1_385A4 {
+    const Sig_ADXT_Stop_SJInterface_np_fn_1_385A4 *interface;
 };
 
 typedef struct Sig_ADXT_Stop_ADX_AMP Sig_ADXT_Stop_ADX_AMP;
 
 typedef struct Sig_ADXT_Stop_LSCObject Sig_ADXT_Stop_LSCObject;
 
-typedef struct Sig_ADXT_Stop_ADXTHandle {
+typedef struct Sig_ADXT_Stop_ADXTHandle_np_fn_1_385A4 {
     s8 used;
     s8 status;
     s8 stream_type;
@@ -12973,9 +12517,9 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     Sig_ADXT_Stop_AdxSjdHandle *decoder;
     Sig_ADXT_Stop_ADXStream *stream;
     Sig_ADXT_Stop_AXRNAHandle *rna;
-    Sig_ADXT_Stop_SJ *stream_sj;
-    Sig_ADXT_Stop_SJ *input_sj;
-    Sig_ADXT_Stop_SJ *output_sj[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_385A4 *stream_sj;
+    Sig_ADXT_Stop_SJ_np_fn_1_385A4 *input_sj;
+    Sig_ADXT_Stop_SJ_np_fn_1_385A4 *output_sj[2];
     u8 *input_buffer;
     s32 input_buffer_size;
     s32 input_extra_size;
@@ -13007,8 +12551,8 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     s8 paused;
     u8 reserved_73;
     Sig_ADXT_Stop_ADX_AMP *amplifier;
-    Sig_ADXT_Stop_SJ *amplifier_input[2];
-    Sig_ADXT_Stop_SJ *amplifier_output[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_385A4 *amplifier_input[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_385A4 *amplifier_output[2];
     s32 time_offset;
     s32 eos_sector;
     s32 loop_sample_count;
@@ -13025,12 +12569,12 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     void *pending_directory;
     s32 pending_file_offset;
     s32 pending_file_sectors;
-} Sig_ADXT_Stop_ADXTHandle;
+} Sig_ADXT_Stop_ADXTHandle_np_fn_1_385A4;
 
 typedef struct {
     u8 unk[0xb];
     u8 value;
-} Entry;
+} Entry_np_fn_1_385A4;
 
 typedef struct {
     u8 pad_0[2];
@@ -13038,7 +12582,7 @@ typedef struct {
     u8 pad_4[8];
     u32 unk_C;
     u8 pad_10[0x10];
-} Obj_1_bss_25E9C;
+} Obj_1_bss_25E9C_np_fn_1_385A4;
 
 typedef struct {
     u8 pad[0x2f8];
@@ -13052,115 +12596,7 @@ typedef struct {
     u32 value_314;
     u32 value_318;
     u32 value_31c;
-} Fn40710Config;
-extern void fn_1_15E330(s32 index, u32 value, void *arg);
-extern void fn_1_15E5E4(s32 index, void *arg);
-extern void fn_1_15E688(s32 index, u32 value, u8 state, void *arg);
-extern void fn_1_15E3E0(s32 index, u32 value);
-extern void fn_1_15E434(u32 value);
-extern void fn_1_15E540(s32 index, void *arg);
-extern void fn_1_CB404(u8 value);
-extern void fn_1_D07C4(u32 arg0, u32 arg1);
-extern u32 lbl_1_bss_25B84;
-extern u32 OSGetTick(void);
-extern void fn_1_A0978(void);
-extern void fn_1_35174(void);
-extern s32 fn_1_3EFA8(void);
-extern u16 lbl_1_bss_26B5C__fzgx_offset_1E[3];
-extern u16 lbl_1_bss_26300;
-extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_80008BEC(void *dest, int value, u32 size);
-extern u32 fn_1_101C0(void);
-extern u32 fn_1_A11EC(void);
-extern u32 fn_1_435C(u32 value);
-extern void ADXT_Pause(Sig_ADXT_Pause_ADXTHandle *, s32);
-extern void fn_1_4310(u32 arg0);
-extern void fn_1_48004(s32 index, s32 image);
-extern void fn_1_8616C(void);
-extern void fn_1_A1588(u32 arg0, u32 arg1);
-extern void fn_1_D0790(void);
-extern void fn_1_817C0(void);
-extern u32 lbl_1_bss_381FC;
-extern void fn_1_EB080(int mode);
-extern s64 OSGetTime(void);
-extern void fn_1_4A00(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_1_5370(u32 arg0, u32 arg1);
-extern void fn_1_15E27C(void);
-extern void fn_1_4811C(int arg);
-extern void fn_1_A8F78(void);
-extern u8 lbl_1_bss_262F4;
-extern u32 lbl_1_bss_25E74[7];
-extern u8 lbl_1_bss_3C10;
-extern void fn_1_36330(void);
-extern void fn_1_36B10(void);
-extern void fn_1_3C98(void);
-extern void fn_1_37AA8(void);
-extern void fn_1_37E98(void);
-extern f32 lbl_1_bss_26304[4];
-extern u8 lbl_1_bss_26B04[20];
-extern u8 lbl_1_bss_26314[2032];
-extern s16 fn_1_12EF24(s16 row, s16 column);
-extern u8 lbl_1_bss_523C[32];
-extern Entry *lbl_1_bss_53F8[34];
-extern void OSPanic(const void *, u32, const char *, ...);
-extern Obj_1_bss_25E9C lbl_1_bss_25E9C[30];
-extern void fn_1_12AB38(void *arg0);
-extern void fn_1_465D0(char *value, u32 flag);
-extern void* fn_1_7F518(s16 car_type, void* car, s32 initialize);
-extern int sprintf(char *s, const char *format, ...);
-extern void fn_1_451E4(void);
-extern void fn_1_D3214(void);
-extern void VIWaitForRetrace(void);
-extern u32 fn_1_467F4(void);
-extern u32 fn_1_13018(void);
-extern u32 fn_1_46C60(void);
-extern u32 lbl_1_bss_26C2C[2];
-extern u32 lbl_1_bss_262F8[2];
-extern u16 lbl_1_bss_26C68[35526];
-extern u32 lbl_1_bss_3C08[2];
-extern u32 fn_800075AC(u32, u32, u32);
-extern u32 ghost_test_record_flag0(s32 arg);
-extern u32 fn_1_F9D44(u32 arg);
-extern u8 fn_1_F8C50(s32 arg0);
-extern void fn_1_2DB50(void);
-extern void fn_1_3F8C(void *, void *, Obj_1_bss_5138 *, int);
-extern void fn_1_2D888(void);
-extern void fn_1_2D524(void);
-extern u32 fn_1_FA070(void);
-extern int fn_1_FA180(int, u8);
-extern u32 fn_1_F9FEC(void);
-extern void fn_1_A2DC4(u32 arg0);
-extern Fn40710Config lbl_1_rodata_BD8;
-extern u8 lbl_1_bss_26B54[8];
-extern u32 fn_1_40EE4(void);
-extern u32 lbl_801A63D0;
-extern u32 lbl_1_bss_26C34[9];
-extern u8 lbl_1_bss_38218[568];
-extern u32 fn_1_4060(void);
-extern void ARQPostRequest(u8 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7);
-extern u32 lbl_801A63C0;
-extern void fn_1_40BE4(void);
-extern u32 GXGetTexBufferSize(u32, u32, u32, u32, u32);
-extern u32 lbl_1_bss_26B4C;
-extern u8 lbl_1_bss_25E90[8];
-extern s32 fn_1_48B0(u32 arg0, u32 arg1);
-extern void fn_1_40F54(void *arg0);
-extern u32 lbl_801A6CE0;
-extern u32 lbl_1_bss_38454;
-extern u32 fn_80070DE0(u32 arg0);
-extern void fn_1_D3884();
-extern void fn_1_D358C();
-extern void fn_800711A8(Obj_1_bss_38458_Target *target);
-extern void fn_80071718(u32 value);
-extern void fn_1_41134(void *unused, char *value);
-extern void fn_1_411D4(u32, char *);
-extern int DVDConvertPathToEntrynum(char *buffer);
-extern void fn_1_412A0(u32 index);
-extern size_t strlen(const char *str);
-extern int fn_80083BCC(const char *s1, const char *s2);
-extern u8 lbl_1_A9011300;
-extern u8 lbl_1_A9011100;
-extern u8 lbl_1_A9011000;
+} Fn40710Config_np_fn_1_385A4;
 
 typedef struct Sig_fn_1_12F30C_Fn1_12F30CState {
     s32 value;
@@ -15109,50 +14545,46 @@ void fn_1_391F0(void) {
 #pragma opt_propagation reset
 /* fzgx:end fn_1_391F0 */
 
-/* fzgx:begin fn_1_39420 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/game.h"
-
+/* fzgx:begin fn_1_39420 */
 typedef struct Sig_ADXT_Pause_AdxSjdHandle Sig_ADXT_Pause_AdxSjdHandle;
 
 typedef struct Sig_ADXT_Pause_ADXStream Sig_ADXT_Pause_ADXStream;
 
 typedef struct Sig_ADXT_Pause_AXRNAHandle Sig_ADXT_Pause_AXRNAHandle;
 
-typedef struct Sig_ADXT_Pause_SJCK {
+typedef struct Sig_ADXT_Pause_SJCK_np_fn_1_39420 {
     unsigned char *data;
     int len;
-} Sig_ADXT_Pause_SJCK;
+} Sig_ADXT_Pause_SJCK_np_fn_1_39420;
 
 typedef void (*Sig_ADXT_Pause_SJErrorCallback)(void *object, int error);
 
-typedef struct Sig_ADXT_Pause_SJInterface Sig_ADXT_Pause_SJInterface;
+typedef struct Sig_ADXT_Pause_SJInterface_np_fn_1_39420 Sig_ADXT_Pause_SJInterface_np_fn_1_39420;
 
-typedef struct Sig_ADXT_Pause_SJ Sig_ADXT_Pause_SJ;
+typedef struct Sig_ADXT_Pause_SJ_np_fn_1_39420 Sig_ADXT_Pause_SJ_np_fn_1_39420;
 
-struct Sig_ADXT_Pause_SJ {
-    const Sig_ADXT_Pause_SJInterface *interface;
+struct Sig_ADXT_Pause_SJ_np_fn_1_39420 {
+    const Sig_ADXT_Pause_SJInterface_np_fn_1_39420 *interface;
 };
 
-struct Sig_ADXT_Pause_SJInterface {
+struct Sig_ADXT_Pause_SJInterface_np_fn_1_39420 {
     void *reserved[3];
-    void (*destroy)(Sig_ADXT_Pause_SJ *sj);
-    const void *(*get_uuid)(Sig_ADXT_Pause_SJ *sj);
-    void (*reset)(Sig_ADXT_Pause_SJ *sj);
-    void (*get_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, int max_size, Sig_ADXT_Pause_SJCK *chunk);
-    void (*unget_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, Sig_ADXT_Pause_SJCK *chunk);
-    void (*put_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, Sig_ADXT_Pause_SJCK *chunk);
-    int (*get_num_data)(Sig_ADXT_Pause_SJ *sj, int channel);
-    int (*is_get_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, int size, int *available);
-    void (*entry_error_func)(Sig_ADXT_Pause_SJ *sj, Sig_ADXT_Pause_SJErrorCallback callback, void *object);
+    void (*destroy)(Sig_ADXT_Pause_SJ_np_fn_1_39420 *sj);
+    const void *(*get_uuid)(Sig_ADXT_Pause_SJ_np_fn_1_39420 *sj);
+    void (*reset)(Sig_ADXT_Pause_SJ_np_fn_1_39420 *sj);
+    void (*get_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_39420 *sj, int channel, int max_size, Sig_ADXT_Pause_SJCK_np_fn_1_39420 *chunk);
+    void (*unget_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_39420 *sj, int channel, Sig_ADXT_Pause_SJCK_np_fn_1_39420 *chunk);
+    void (*put_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_39420 *sj, int channel, Sig_ADXT_Pause_SJCK_np_fn_1_39420 *chunk);
+    int (*get_num_data)(Sig_ADXT_Pause_SJ_np_fn_1_39420 *sj, int channel);
+    int (*is_get_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_39420 *sj, int channel, int size, int *available);
+    void (*entry_error_func)(Sig_ADXT_Pause_SJ_np_fn_1_39420 *sj, Sig_ADXT_Pause_SJErrorCallback callback, void *object);
 };
 
 typedef struct Sig_ADXT_Pause_ADX_AMP Sig_ADXT_Pause_ADX_AMP;
 
 typedef struct Sig_ADXT_Pause_LSCObject Sig_ADXT_Pause_LSCObject;
 
-typedef struct Sig_ADXT_Pause_ADXTHandle {
+typedef struct Sig_ADXT_Pause_ADXTHandle_np_fn_1_39420 {
     s8 used;
     s8 status;
     s8 stream_type;
@@ -15160,9 +14592,9 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     Sig_ADXT_Pause_AdxSjdHandle *decoder;
     Sig_ADXT_Pause_ADXStream *stream;
     Sig_ADXT_Pause_AXRNAHandle *rna;
-    Sig_ADXT_Pause_SJ *stream_sj;
-    Sig_ADXT_Pause_SJ *input_sj;
-    Sig_ADXT_Pause_SJ *output_sj[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_39420 *stream_sj;
+    Sig_ADXT_Pause_SJ_np_fn_1_39420 *input_sj;
+    Sig_ADXT_Pause_SJ_np_fn_1_39420 *output_sj[2];
     u8 *input_buffer;
     s32 input_buffer_size;
     s32 input_extra_size;
@@ -15194,8 +14626,8 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     s8 paused;
     u8 reserved_73;
     Sig_ADXT_Pause_ADX_AMP *amplifier;
-    Sig_ADXT_Pause_SJ *amplifier_input[2];
-    Sig_ADXT_Pause_SJ *amplifier_output[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_39420 *amplifier_input[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_39420 *amplifier_output[2];
     s32 time_offset;
     s32 eos_sector;
     s32 loop_sample_count;
@@ -15212,7 +14644,7 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     void *pending_directory;
     s32 pending_file_offset;
     s32 pending_file_sectors;
-} Sig_ADXT_Pause_ADXTHandle;
+} Sig_ADXT_Pause_ADXTHandle_np_fn_1_39420;
 
 typedef struct Sig_ADXT_Stop_AdxSjdHandle Sig_ADXT_Stop_AdxSjdHandle;
 
@@ -15220,39 +14652,39 @@ typedef struct Sig_ADXT_Stop_ADXStream Sig_ADXT_Stop_ADXStream;
 
 typedef struct Sig_ADXT_Stop_AXRNAHandle Sig_ADXT_Stop_AXRNAHandle;
 
-typedef struct Sig_ADXT_Stop_SJCK {
+typedef struct Sig_ADXT_Stop_SJCK_np_fn_1_39420 {
     unsigned char *data;
     int len;
-} Sig_ADXT_Stop_SJCK;
+} Sig_ADXT_Stop_SJCK_np_fn_1_39420;
 
 typedef void (*Sig_ADXT_Stop_SJErrorCallback)(void *object, int error);
 
-typedef struct Sig_ADXT_Stop_SJInterface Sig_ADXT_Stop_SJInterface;
+typedef struct Sig_ADXT_Stop_SJInterface_np_fn_1_39420 Sig_ADXT_Stop_SJInterface_np_fn_1_39420;
 
-typedef struct Sig_ADXT_Stop_SJ Sig_ADXT_Stop_SJ;
+typedef struct Sig_ADXT_Stop_SJ_np_fn_1_39420 Sig_ADXT_Stop_SJ_np_fn_1_39420;
 
-struct Sig_ADXT_Stop_SJInterface {
+struct Sig_ADXT_Stop_SJInterface_np_fn_1_39420 {
     void *reserved[3];
-    void (*destroy)(Sig_ADXT_Stop_SJ *sj);
-    const void *(*get_uuid)(Sig_ADXT_Stop_SJ *sj);
-    void (*reset)(Sig_ADXT_Stop_SJ *sj);
-    void (*get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int max_size, Sig_ADXT_Stop_SJCK *chunk);
-    void (*unget_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
-    void (*put_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
-    int (*get_num_data)(Sig_ADXT_Stop_SJ *sj, int channel);
-    int (*is_get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int size, int *available);
-    void (*entry_error_func)(Sig_ADXT_Stop_SJ *sj, Sig_ADXT_Stop_SJErrorCallback callback, void *object);
+    void (*destroy)(Sig_ADXT_Stop_SJ_np_fn_1_39420 *sj);
+    const void *(*get_uuid)(Sig_ADXT_Stop_SJ_np_fn_1_39420 *sj);
+    void (*reset)(Sig_ADXT_Stop_SJ_np_fn_1_39420 *sj);
+    void (*get_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_39420 *sj, int channel, int max_size, Sig_ADXT_Stop_SJCK_np_fn_1_39420 *chunk);
+    void (*unget_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_39420 *sj, int channel, Sig_ADXT_Stop_SJCK_np_fn_1_39420 *chunk);
+    void (*put_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_39420 *sj, int channel, Sig_ADXT_Stop_SJCK_np_fn_1_39420 *chunk);
+    int (*get_num_data)(Sig_ADXT_Stop_SJ_np_fn_1_39420 *sj, int channel);
+    int (*is_get_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_39420 *sj, int channel, int size, int *available);
+    void (*entry_error_func)(Sig_ADXT_Stop_SJ_np_fn_1_39420 *sj, Sig_ADXT_Stop_SJErrorCallback callback, void *object);
 };
 
-struct Sig_ADXT_Stop_SJ {
-    const Sig_ADXT_Stop_SJInterface *interface;
+struct Sig_ADXT_Stop_SJ_np_fn_1_39420 {
+    const Sig_ADXT_Stop_SJInterface_np_fn_1_39420 *interface;
 };
 
 typedef struct Sig_ADXT_Stop_ADX_AMP Sig_ADXT_Stop_ADX_AMP;
 
 typedef struct Sig_ADXT_Stop_LSCObject Sig_ADXT_Stop_LSCObject;
 
-typedef struct Sig_ADXT_Stop_ADXTHandle {
+typedef struct Sig_ADXT_Stop_ADXTHandle_np_fn_1_39420 {
     s8 used;
     s8 status;
     s8 stream_type;
@@ -15260,9 +14692,9 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     Sig_ADXT_Stop_AdxSjdHandle *decoder;
     Sig_ADXT_Stop_ADXStream *stream;
     Sig_ADXT_Stop_AXRNAHandle *rna;
-    Sig_ADXT_Stop_SJ *stream_sj;
-    Sig_ADXT_Stop_SJ *input_sj;
-    Sig_ADXT_Stop_SJ *output_sj[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_39420 *stream_sj;
+    Sig_ADXT_Stop_SJ_np_fn_1_39420 *input_sj;
+    Sig_ADXT_Stop_SJ_np_fn_1_39420 *output_sj[2];
     u8 *input_buffer;
     s32 input_buffer_size;
     s32 input_extra_size;
@@ -15294,8 +14726,8 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     s8 paused;
     u8 reserved_73;
     Sig_ADXT_Stop_ADX_AMP *amplifier;
-    Sig_ADXT_Stop_SJ *amplifier_input[2];
-    Sig_ADXT_Stop_SJ *amplifier_output[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_39420 *amplifier_input[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_39420 *amplifier_output[2];
     s32 time_offset;
     s32 eos_sector;
     s32 loop_sample_count;
@@ -15312,12 +14744,12 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     void *pending_directory;
     s32 pending_file_offset;
     s32 pending_file_sectors;
-} Sig_ADXT_Stop_ADXTHandle;
+} Sig_ADXT_Stop_ADXTHandle_np_fn_1_39420;
 
 typedef struct {
     u8 unk[0xb];
     u8 value;
-} Entry;
+} Entry_np_fn_1_39420;
 
 typedef struct {
     u8 pad_0[2];
@@ -15325,7 +14757,7 @@ typedef struct {
     u8 pad_4[8];
     u32 unk_C;
     u8 pad_10[0x10];
-} Obj_1_bss_25E9C;
+} Obj_1_bss_25E9C_np_fn_1_39420;
 
 typedef struct {
     u8 pad[0x2f8];
@@ -15339,115 +14771,7 @@ typedef struct {
     u32 value_314;
     u32 value_318;
     u32 value_31c;
-} Fn40710Config;
-extern void fn_1_15E330(s32 index, u32 value, void *arg);
-extern void fn_1_15E5E4(s32 index, void *arg);
-extern void fn_1_15E688(s32 index, u32 value, u8 state, void *arg);
-extern void fn_1_15E3E0(s32 index, u32 value);
-extern void fn_1_15E434(u32 value);
-extern void fn_1_15E540(s32 index, void *arg);
-extern void fn_1_CB404(u8 value);
-extern void fn_1_D07C4(u32 arg0, u32 arg1);
-extern u32 lbl_1_bss_25B84;
-extern u32 OSGetTick(void);
-extern void fn_1_A0978(void);
-extern void fn_1_35174(void);
-extern s32 fn_1_3EFA8(void);
-extern u16 lbl_1_bss_26B5C__fzgx_offset_1E[3];
-extern u16 lbl_1_bss_26300;
-extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_80008BEC(void *dest, int value, u32 size);
-extern u32 fn_1_101C0(void);
-extern u32 fn_1_A11EC(void);
-extern u32 fn_1_435C(u32 value);
-extern void ADXT_Pause(Sig_ADXT_Pause_ADXTHandle *, s32);
-extern void fn_1_4310(u32 arg0);
-extern void fn_1_48004(s32 index, s32 image);
-extern void fn_1_8616C(void);
-extern void fn_1_A1588(u32 arg0, u32 arg1);
-extern void fn_1_D0790(void);
-extern void fn_1_817C0(void);
-extern u32 lbl_1_bss_381FC;
-extern void fn_1_EB080(int mode);
-extern s64 OSGetTime(void);
-extern void fn_1_4A00(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_1_5370(u32 arg0, u32 arg1);
-extern void fn_1_15E27C(void);
-extern void fn_1_4811C(int arg);
-extern void fn_1_A8F78(void);
-extern u8 lbl_1_bss_262F4;
-extern u32 lbl_1_bss_25E74[7];
-extern u8 lbl_1_bss_3C10;
-extern void fn_1_36330(void);
-extern void fn_1_36B10(void);
-extern void fn_1_3C98(void);
-extern void fn_1_37AA8(void);
-extern void fn_1_37E98(void);
-extern f32 lbl_1_bss_26304[4];
-extern u8 lbl_1_bss_26B04[20];
-extern u8 lbl_1_bss_26314[2032];
-extern s16 fn_1_12EF24(s16 row, s16 column);
-extern u8 lbl_1_bss_523C[32];
-extern Entry *lbl_1_bss_53F8[34];
-extern void OSPanic(const void *, u32, const char *, ...);
-extern Obj_1_bss_25E9C lbl_1_bss_25E9C[30];
-extern void fn_1_12AB38(void *arg0);
-extern void fn_1_465D0(char *value, u32 flag);
-extern void* fn_1_7F518(s16 car_type, void* car, s32 initialize);
-extern int sprintf(char *s, const char *format, ...);
-extern void fn_1_451E4(void);
-extern void fn_1_D3214(void);
-extern void VIWaitForRetrace(void);
-extern u32 fn_1_467F4(void);
-extern u32 fn_1_13018(void);
-extern u32 fn_1_46C60(void);
-extern u32 lbl_1_bss_26C2C[2];
-extern u32 lbl_1_bss_262F8[2];
-extern u16 lbl_1_bss_26C68[35526];
-extern u32 lbl_1_bss_3C08[2];
-extern u32 fn_800075AC(u32, u32, u32);
-extern u32 ghost_test_record_flag0(s32 arg);
-extern u32 fn_1_F9D44(u32 arg);
-extern u8 fn_1_F8C50(s32 arg0);
-extern void fn_1_2DB50(void);
-extern void fn_1_3F8C(void *, void *, Obj_1_bss_5138 *, int);
-extern void fn_1_2D888(void);
-extern void fn_1_2D524(void);
-extern u32 fn_1_FA070(void);
-extern int fn_1_FA180(int, u8);
-extern u32 fn_1_F9FEC(void);
-extern void fn_1_A2DC4(u32 arg0);
-extern Fn40710Config lbl_1_rodata_BD8;
-extern u8 lbl_1_bss_26B54[8];
-extern u32 fn_1_40EE4(void);
-extern u32 lbl_801A63D0;
-extern u32 lbl_1_bss_26C34[9];
-extern u8 lbl_1_bss_38218[568];
-extern u32 fn_1_4060(void);
-extern void ARQPostRequest(u8 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7);
-extern u32 lbl_801A63C0;
-extern void fn_1_40BE4(void);
-extern u32 GXGetTexBufferSize(u32, u32, u32, u32, u32);
-extern u32 lbl_1_bss_26B4C;
-extern u8 lbl_1_bss_25E90[8];
-extern s32 fn_1_48B0(u32 arg0, u32 arg1);
-extern void fn_1_40F54(void *arg0);
-extern u32 lbl_801A6CE0;
-extern u32 lbl_1_bss_38454;
-extern u32 fn_80070DE0(u32 arg0);
-extern void fn_1_D3884();
-extern void fn_1_D358C();
-extern void fn_800711A8(Obj_1_bss_38458_Target *target);
-extern void fn_80071718(u32 value);
-extern void fn_1_41134(void *unused, char *value);
-extern void fn_1_411D4(u32, char *);
-extern int DVDConvertPathToEntrynum(char *buffer);
-extern void fn_1_412A0(u32 index);
-extern size_t strlen(const char *str);
-extern int fn_80083BCC(const char *s1, const char *s2);
-extern u8 lbl_1_A9011300;
-extern u8 lbl_1_A9011100;
-extern u8 lbl_1_A9011000;
+} Fn40710Config_np_fn_1_39420;
 
 /* sub-object at base+0x30: flag byte at +5, mode byte at +9 */
 typedef struct {
@@ -17814,50 +17138,46 @@ void fn_1_3A330(void)
 }
 /* fzgx:end fn_1_3A330 */
 
-/* fzgx:begin fn_1_3AEC4 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/game.h"
-
+/* fzgx:begin fn_1_3AEC4 */
 typedef struct Sig_ADXT_Pause_AdxSjdHandle Sig_ADXT_Pause_AdxSjdHandle;
 
 typedef struct Sig_ADXT_Pause_ADXStream Sig_ADXT_Pause_ADXStream;
 
 typedef struct Sig_ADXT_Pause_AXRNAHandle Sig_ADXT_Pause_AXRNAHandle;
 
-typedef struct Sig_ADXT_Pause_SJCK {
+typedef struct Sig_ADXT_Pause_SJCK_np_fn_1_3AEC4 {
     unsigned char *data;
     int len;
-} Sig_ADXT_Pause_SJCK;
+} Sig_ADXT_Pause_SJCK_np_fn_1_3AEC4;
 
 typedef void (*Sig_ADXT_Pause_SJErrorCallback)(void *object, int error);
 
-typedef struct Sig_ADXT_Pause_SJInterface Sig_ADXT_Pause_SJInterface;
+typedef struct Sig_ADXT_Pause_SJInterface_np_fn_1_3AEC4 Sig_ADXT_Pause_SJInterface_np_fn_1_3AEC4;
 
-typedef struct Sig_ADXT_Pause_SJ Sig_ADXT_Pause_SJ;
+typedef struct Sig_ADXT_Pause_SJ_np_fn_1_3AEC4 Sig_ADXT_Pause_SJ_np_fn_1_3AEC4;
 
-struct Sig_ADXT_Pause_SJ {
-    const Sig_ADXT_Pause_SJInterface *interface;
+struct Sig_ADXT_Pause_SJ_np_fn_1_3AEC4 {
+    const Sig_ADXT_Pause_SJInterface_np_fn_1_3AEC4 *interface;
 };
 
-struct Sig_ADXT_Pause_SJInterface {
+struct Sig_ADXT_Pause_SJInterface_np_fn_1_3AEC4 {
     void *reserved[3];
-    void (*destroy)(Sig_ADXT_Pause_SJ *sj);
-    const void *(*get_uuid)(Sig_ADXT_Pause_SJ *sj);
-    void (*reset)(Sig_ADXT_Pause_SJ *sj);
-    void (*get_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, int max_size, Sig_ADXT_Pause_SJCK *chunk);
-    void (*unget_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, Sig_ADXT_Pause_SJCK *chunk);
-    void (*put_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, Sig_ADXT_Pause_SJCK *chunk);
-    int (*get_num_data)(Sig_ADXT_Pause_SJ *sj, int channel);
-    int (*is_get_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, int size, int *available);
-    void (*entry_error_func)(Sig_ADXT_Pause_SJ *sj, Sig_ADXT_Pause_SJErrorCallback callback, void *object);
+    void (*destroy)(Sig_ADXT_Pause_SJ_np_fn_1_3AEC4 *sj);
+    const void *(*get_uuid)(Sig_ADXT_Pause_SJ_np_fn_1_3AEC4 *sj);
+    void (*reset)(Sig_ADXT_Pause_SJ_np_fn_1_3AEC4 *sj);
+    void (*get_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_3AEC4 *sj, int channel, int max_size, Sig_ADXT_Pause_SJCK_np_fn_1_3AEC4 *chunk);
+    void (*unget_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_3AEC4 *sj, int channel, Sig_ADXT_Pause_SJCK_np_fn_1_3AEC4 *chunk);
+    void (*put_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_3AEC4 *sj, int channel, Sig_ADXT_Pause_SJCK_np_fn_1_3AEC4 *chunk);
+    int (*get_num_data)(Sig_ADXT_Pause_SJ_np_fn_1_3AEC4 *sj, int channel);
+    int (*is_get_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_3AEC4 *sj, int channel, int size, int *available);
+    void (*entry_error_func)(Sig_ADXT_Pause_SJ_np_fn_1_3AEC4 *sj, Sig_ADXT_Pause_SJErrorCallback callback, void *object);
 };
 
 typedef struct Sig_ADXT_Pause_ADX_AMP Sig_ADXT_Pause_ADX_AMP;
 
 typedef struct Sig_ADXT_Pause_LSCObject Sig_ADXT_Pause_LSCObject;
 
-typedef struct Sig_ADXT_Pause_ADXTHandle {
+typedef struct Sig_ADXT_Pause_ADXTHandle_np_fn_1_3AEC4 {
     s8 used;
     s8 status;
     s8 stream_type;
@@ -17865,9 +17185,9 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     Sig_ADXT_Pause_AdxSjdHandle *decoder;
     Sig_ADXT_Pause_ADXStream *stream;
     Sig_ADXT_Pause_AXRNAHandle *rna;
-    Sig_ADXT_Pause_SJ *stream_sj;
-    Sig_ADXT_Pause_SJ *input_sj;
-    Sig_ADXT_Pause_SJ *output_sj[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_3AEC4 *stream_sj;
+    Sig_ADXT_Pause_SJ_np_fn_1_3AEC4 *input_sj;
+    Sig_ADXT_Pause_SJ_np_fn_1_3AEC4 *output_sj[2];
     u8 *input_buffer;
     s32 input_buffer_size;
     s32 input_extra_size;
@@ -17899,8 +17219,8 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     s8 paused;
     u8 reserved_73;
     Sig_ADXT_Pause_ADX_AMP *amplifier;
-    Sig_ADXT_Pause_SJ *amplifier_input[2];
-    Sig_ADXT_Pause_SJ *amplifier_output[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_3AEC4 *amplifier_input[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_3AEC4 *amplifier_output[2];
     s32 time_offset;
     s32 eos_sector;
     s32 loop_sample_count;
@@ -17917,7 +17237,7 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     void *pending_directory;
     s32 pending_file_offset;
     s32 pending_file_sectors;
-} Sig_ADXT_Pause_ADXTHandle;
+} Sig_ADXT_Pause_ADXTHandle_np_fn_1_3AEC4;
 
 typedef struct Sig_ADXT_Stop_AdxSjdHandle Sig_ADXT_Stop_AdxSjdHandle;
 
@@ -17925,39 +17245,39 @@ typedef struct Sig_ADXT_Stop_ADXStream Sig_ADXT_Stop_ADXStream;
 
 typedef struct Sig_ADXT_Stop_AXRNAHandle Sig_ADXT_Stop_AXRNAHandle;
 
-typedef struct Sig_ADXT_Stop_SJCK {
+typedef struct Sig_ADXT_Stop_SJCK_np_fn_1_3AEC4 {
     unsigned char *data;
     int len;
-} Sig_ADXT_Stop_SJCK;
+} Sig_ADXT_Stop_SJCK_np_fn_1_3AEC4;
 
 typedef void (*Sig_ADXT_Stop_SJErrorCallback)(void *object, int error);
 
-typedef struct Sig_ADXT_Stop_SJInterface Sig_ADXT_Stop_SJInterface;
+typedef struct Sig_ADXT_Stop_SJInterface_np_fn_1_3AEC4 Sig_ADXT_Stop_SJInterface_np_fn_1_3AEC4;
 
-typedef struct Sig_ADXT_Stop_SJ Sig_ADXT_Stop_SJ;
+typedef struct Sig_ADXT_Stop_SJ_np_fn_1_3AEC4 Sig_ADXT_Stop_SJ_np_fn_1_3AEC4;
 
-struct Sig_ADXT_Stop_SJInterface {
+struct Sig_ADXT_Stop_SJInterface_np_fn_1_3AEC4 {
     void *reserved[3];
-    void (*destroy)(Sig_ADXT_Stop_SJ *sj);
-    const void *(*get_uuid)(Sig_ADXT_Stop_SJ *sj);
-    void (*reset)(Sig_ADXT_Stop_SJ *sj);
-    void (*get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int max_size, Sig_ADXT_Stop_SJCK *chunk);
-    void (*unget_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
-    void (*put_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
-    int (*get_num_data)(Sig_ADXT_Stop_SJ *sj, int channel);
-    int (*is_get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int size, int *available);
-    void (*entry_error_func)(Sig_ADXT_Stop_SJ *sj, Sig_ADXT_Stop_SJErrorCallback callback, void *object);
+    void (*destroy)(Sig_ADXT_Stop_SJ_np_fn_1_3AEC4 *sj);
+    const void *(*get_uuid)(Sig_ADXT_Stop_SJ_np_fn_1_3AEC4 *sj);
+    void (*reset)(Sig_ADXT_Stop_SJ_np_fn_1_3AEC4 *sj);
+    void (*get_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_3AEC4 *sj, int channel, int max_size, Sig_ADXT_Stop_SJCK_np_fn_1_3AEC4 *chunk);
+    void (*unget_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_3AEC4 *sj, int channel, Sig_ADXT_Stop_SJCK_np_fn_1_3AEC4 *chunk);
+    void (*put_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_3AEC4 *sj, int channel, Sig_ADXT_Stop_SJCK_np_fn_1_3AEC4 *chunk);
+    int (*get_num_data)(Sig_ADXT_Stop_SJ_np_fn_1_3AEC4 *sj, int channel);
+    int (*is_get_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_3AEC4 *sj, int channel, int size, int *available);
+    void (*entry_error_func)(Sig_ADXT_Stop_SJ_np_fn_1_3AEC4 *sj, Sig_ADXT_Stop_SJErrorCallback callback, void *object);
 };
 
-struct Sig_ADXT_Stop_SJ {
-    const Sig_ADXT_Stop_SJInterface *interface;
+struct Sig_ADXT_Stop_SJ_np_fn_1_3AEC4 {
+    const Sig_ADXT_Stop_SJInterface_np_fn_1_3AEC4 *interface;
 };
 
 typedef struct Sig_ADXT_Stop_ADX_AMP Sig_ADXT_Stop_ADX_AMP;
 
 typedef struct Sig_ADXT_Stop_LSCObject Sig_ADXT_Stop_LSCObject;
 
-typedef struct Sig_ADXT_Stop_ADXTHandle {
+typedef struct Sig_ADXT_Stop_ADXTHandle_np_fn_1_3AEC4 {
     s8 used;
     s8 status;
     s8 stream_type;
@@ -17965,9 +17285,9 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     Sig_ADXT_Stop_AdxSjdHandle *decoder;
     Sig_ADXT_Stop_ADXStream *stream;
     Sig_ADXT_Stop_AXRNAHandle *rna;
-    Sig_ADXT_Stop_SJ *stream_sj;
-    Sig_ADXT_Stop_SJ *input_sj;
-    Sig_ADXT_Stop_SJ *output_sj[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_3AEC4 *stream_sj;
+    Sig_ADXT_Stop_SJ_np_fn_1_3AEC4 *input_sj;
+    Sig_ADXT_Stop_SJ_np_fn_1_3AEC4 *output_sj[2];
     u8 *input_buffer;
     s32 input_buffer_size;
     s32 input_extra_size;
@@ -17999,8 +17319,8 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     s8 paused;
     u8 reserved_73;
     Sig_ADXT_Stop_ADX_AMP *amplifier;
-    Sig_ADXT_Stop_SJ *amplifier_input[2];
-    Sig_ADXT_Stop_SJ *amplifier_output[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_3AEC4 *amplifier_input[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_3AEC4 *amplifier_output[2];
     s32 time_offset;
     s32 eos_sector;
     s32 loop_sample_count;
@@ -18017,12 +17337,12 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     void *pending_directory;
     s32 pending_file_offset;
     s32 pending_file_sectors;
-} Sig_ADXT_Stop_ADXTHandle;
+} Sig_ADXT_Stop_ADXTHandle_np_fn_1_3AEC4;
 
 typedef struct {
     u8 unk[0xb];
     u8 value;
-} Entry;
+} Entry_np_fn_1_3AEC4;
 
 typedef struct {
     u8 pad_0[2];
@@ -18030,7 +17350,7 @@ typedef struct {
     u8 pad_4[8];
     u32 unk_C;
     u8 pad_10[0x10];
-} Obj_1_bss_25E9C;
+} Obj_1_bss_25E9C_np_fn_1_3AEC4;
 
 typedef struct {
     u8 pad[0x2f8];
@@ -18044,115 +17364,7 @@ typedef struct {
     u32 value_314;
     u32 value_318;
     u32 value_31c;
-} Fn40710Config;
-extern void fn_1_15E330(s32 index, u32 value, void *arg);
-extern void fn_1_15E5E4(s32 index, void *arg);
-extern void fn_1_15E688(s32 index, u32 value, u8 state, void *arg);
-extern void fn_1_15E3E0(s32 index, u32 value);
-extern void fn_1_15E434(u32 value);
-extern void fn_1_15E540(s32 index, void *arg);
-extern void fn_1_CB404(u8 value);
-extern void fn_1_D07C4(u32 arg0, u32 arg1);
-extern u32 lbl_1_bss_25B84;
-extern u32 OSGetTick(void);
-extern void fn_1_A0978(void);
-extern void fn_1_35174(void);
-extern s32 fn_1_3EFA8(void);
-extern u16 lbl_1_bss_26B5C__fzgx_offset_1E[3];
-extern u16 lbl_1_bss_26300;
-extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_80008BEC(void *dest, int value, u32 size);
-extern u32 fn_1_101C0(void);
-extern u32 fn_1_A11EC(void);
-extern u32 fn_1_435C(u32 value);
-extern void ADXT_Pause(Sig_ADXT_Pause_ADXTHandle *, s32);
-extern void fn_1_4310(u32 arg0);
-extern void fn_1_48004(s32 index, s32 image);
-extern void fn_1_8616C(void);
-extern void fn_1_A1588(u32 arg0, u32 arg1);
-extern void fn_1_D0790(void);
-extern void fn_1_817C0(void);
-extern u32 lbl_1_bss_381FC;
-extern void fn_1_EB080(int mode);
-extern s64 OSGetTime(void);
-extern void fn_1_4A00(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_1_5370(u32 arg0, u32 arg1);
-extern void fn_1_15E27C(void);
-extern void fn_1_4811C(int arg);
-extern void fn_1_A8F78(void);
-extern u8 lbl_1_bss_262F4;
-extern u32 lbl_1_bss_25E74[7];
-extern u8 lbl_1_bss_3C10;
-extern void fn_1_36330(void);
-extern void fn_1_36B10(void);
-extern void fn_1_3C98(void);
-extern void fn_1_37AA8(void);
-extern void fn_1_37E98(void);
-extern f32 lbl_1_bss_26304[4];
-extern u8 lbl_1_bss_26B04[20];
-extern u8 lbl_1_bss_26314[2032];
-extern s16 fn_1_12EF24(s16 row, s16 column);
-extern u8 lbl_1_bss_523C[32];
-extern Entry *lbl_1_bss_53F8[34];
-extern void OSPanic(const void *, u32, const char *, ...);
-extern Obj_1_bss_25E9C lbl_1_bss_25E9C[30];
-extern void fn_1_12AB38(void *arg0);
-extern void fn_1_465D0(char *value, u32 flag);
-extern void* fn_1_7F518(s16 car_type, void* car, s32 initialize);
-extern int sprintf(char *s, const char *format, ...);
-extern void fn_1_451E4(void);
-extern void fn_1_D3214(void);
-extern void VIWaitForRetrace(void);
-extern u32 fn_1_467F4(void);
-extern u32 fn_1_13018(void);
-extern u32 fn_1_46C60(void);
-extern u32 lbl_1_bss_26C2C[2];
-extern u32 lbl_1_bss_262F8[2];
-extern u16 lbl_1_bss_26C68[35526];
-extern u32 lbl_1_bss_3C08[2];
-extern u32 fn_800075AC(u32, u32, u32);
-extern u32 ghost_test_record_flag0(s32 arg);
-extern u32 fn_1_F9D44(u32 arg);
-extern u8 fn_1_F8C50(s32 arg0);
-extern void fn_1_2DB50(void);
-extern void fn_1_3F8C(void *, void *, Obj_1_bss_5138 *, int);
-extern void fn_1_2D888(void);
-extern void fn_1_2D524(void);
-extern u32 fn_1_FA070(void);
-extern int fn_1_FA180(int, u8);
-extern u32 fn_1_F9FEC(void);
-extern void fn_1_A2DC4(u32 arg0);
-extern Fn40710Config lbl_1_rodata_BD8;
-extern u8 lbl_1_bss_26B54[8];
-extern u32 fn_1_40EE4(void);
-extern u32 lbl_801A63D0;
-extern u32 lbl_1_bss_26C34[9];
-extern u8 lbl_1_bss_38218[568];
-extern u32 fn_1_4060(void);
-extern void ARQPostRequest(u8 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7);
-extern u32 lbl_801A63C0;
-extern void fn_1_40BE4(void);
-extern u32 GXGetTexBufferSize(u32, u32, u32, u32, u32);
-extern u32 lbl_1_bss_26B4C;
-extern u8 lbl_1_bss_25E90[8];
-extern s32 fn_1_48B0(u32 arg0, u32 arg1);
-extern void fn_1_40F54(void *arg0);
-extern u32 lbl_801A6CE0;
-extern u32 lbl_1_bss_38454;
-extern u32 fn_80070DE0(u32 arg0);
-extern void fn_1_D3884();
-extern void fn_1_D358C();
-extern void fn_800711A8(Obj_1_bss_38458_Target *target);
-extern void fn_80071718(u32 value);
-extern void fn_1_41134(void *unused, char *value);
-extern void fn_1_411D4(u32, char *);
-extern int DVDConvertPathToEntrynum(char *buffer);
-extern void fn_1_412A0(u32 index);
-extern size_t strlen(const char *str);
-extern int fn_80083BCC(const char *s1, const char *s2);
-extern u8 lbl_1_A9011300;
-extern u8 lbl_1_A9011100;
-extern u8 lbl_1_A9011000;
+} Fn40710Config_np_fn_1_3AEC4;
 
 typedef struct GameEntryC {
     u8 data[0xA0];
@@ -18460,16 +17672,13 @@ __declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
 }
 #pragma section code_type ".text"
 
-extern u32 fn_1_435C(u32);
 extern void fn_1_426C(u32);
 extern void fn_1_105724(void);
 extern void fn_1_F2EDC(void);
-extern void fn_1_A8F78(void);
 extern s32 fn_1_1547FC(void *);
 extern void fn_1_C47B4(void);
 extern void fn_1_C6F80(u8);
 extern void fn_1_79100(void);
-extern void fn_1_412A0(u32);
 extern void fn_1_E35F0(void);
 extern u32 fn_80008E84(u32);
 
@@ -21687,50 +20896,46 @@ void fn_1_3CE94(void)
 }
 /* fzgx:end fn_1_3CE94 */
 
-/* fzgx:begin fn_1_3DB9C noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/game.h"
-
+/* fzgx:begin fn_1_3DB9C */
 typedef struct Sig_ADXT_Pause_AdxSjdHandle Sig_ADXT_Pause_AdxSjdHandle;
 
 typedef struct Sig_ADXT_Pause_ADXStream Sig_ADXT_Pause_ADXStream;
 
 typedef struct Sig_ADXT_Pause_AXRNAHandle Sig_ADXT_Pause_AXRNAHandle;
 
-typedef struct Sig_ADXT_Pause_SJCK {
+typedef struct Sig_ADXT_Pause_SJCK_np_fn_1_3DB9C {
     unsigned char *data;
     int len;
-} Sig_ADXT_Pause_SJCK;
+} Sig_ADXT_Pause_SJCK_np_fn_1_3DB9C;
 
 typedef void (*Sig_ADXT_Pause_SJErrorCallback)(void *object, int error);
 
-typedef struct Sig_ADXT_Pause_SJInterface Sig_ADXT_Pause_SJInterface;
+typedef struct Sig_ADXT_Pause_SJInterface_np_fn_1_3DB9C Sig_ADXT_Pause_SJInterface_np_fn_1_3DB9C;
 
-typedef struct Sig_ADXT_Pause_SJ Sig_ADXT_Pause_SJ;
+typedef struct Sig_ADXT_Pause_SJ_np_fn_1_3DB9C Sig_ADXT_Pause_SJ_np_fn_1_3DB9C;
 
-struct Sig_ADXT_Pause_SJ {
-    const Sig_ADXT_Pause_SJInterface *interface;
+struct Sig_ADXT_Pause_SJ_np_fn_1_3DB9C {
+    const Sig_ADXT_Pause_SJInterface_np_fn_1_3DB9C *interface;
 };
 
-struct Sig_ADXT_Pause_SJInterface {
+struct Sig_ADXT_Pause_SJInterface_np_fn_1_3DB9C {
     void *reserved[3];
-    void (*destroy)(Sig_ADXT_Pause_SJ *sj);
-    const void *(*get_uuid)(Sig_ADXT_Pause_SJ *sj);
-    void (*reset)(Sig_ADXT_Pause_SJ *sj);
-    void (*get_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, int max_size, Sig_ADXT_Pause_SJCK *chunk);
-    void (*unget_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, Sig_ADXT_Pause_SJCK *chunk);
-    void (*put_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, Sig_ADXT_Pause_SJCK *chunk);
-    int (*get_num_data)(Sig_ADXT_Pause_SJ *sj, int channel);
-    int (*is_get_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, int size, int *available);
-    void (*entry_error_func)(Sig_ADXT_Pause_SJ *sj, Sig_ADXT_Pause_SJErrorCallback callback, void *object);
+    void (*destroy)(Sig_ADXT_Pause_SJ_np_fn_1_3DB9C *sj);
+    const void *(*get_uuid)(Sig_ADXT_Pause_SJ_np_fn_1_3DB9C *sj);
+    void (*reset)(Sig_ADXT_Pause_SJ_np_fn_1_3DB9C *sj);
+    void (*get_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_3DB9C *sj, int channel, int max_size, Sig_ADXT_Pause_SJCK_np_fn_1_3DB9C *chunk);
+    void (*unget_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_3DB9C *sj, int channel, Sig_ADXT_Pause_SJCK_np_fn_1_3DB9C *chunk);
+    void (*put_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_3DB9C *sj, int channel, Sig_ADXT_Pause_SJCK_np_fn_1_3DB9C *chunk);
+    int (*get_num_data)(Sig_ADXT_Pause_SJ_np_fn_1_3DB9C *sj, int channel);
+    int (*is_get_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_3DB9C *sj, int channel, int size, int *available);
+    void (*entry_error_func)(Sig_ADXT_Pause_SJ_np_fn_1_3DB9C *sj, Sig_ADXT_Pause_SJErrorCallback callback, void *object);
 };
 
 typedef struct Sig_ADXT_Pause_ADX_AMP Sig_ADXT_Pause_ADX_AMP;
 
 typedef struct Sig_ADXT_Pause_LSCObject Sig_ADXT_Pause_LSCObject;
 
-typedef struct Sig_ADXT_Pause_ADXTHandle {
+typedef struct Sig_ADXT_Pause_ADXTHandle_np_fn_1_3DB9C {
     s8 used;
     s8 status;
     s8 stream_type;
@@ -21738,9 +20943,9 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     Sig_ADXT_Pause_AdxSjdHandle *decoder;
     Sig_ADXT_Pause_ADXStream *stream;
     Sig_ADXT_Pause_AXRNAHandle *rna;
-    Sig_ADXT_Pause_SJ *stream_sj;
-    Sig_ADXT_Pause_SJ *input_sj;
-    Sig_ADXT_Pause_SJ *output_sj[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_3DB9C *stream_sj;
+    Sig_ADXT_Pause_SJ_np_fn_1_3DB9C *input_sj;
+    Sig_ADXT_Pause_SJ_np_fn_1_3DB9C *output_sj[2];
     u8 *input_buffer;
     s32 input_buffer_size;
     s32 input_extra_size;
@@ -21772,8 +20977,8 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     s8 paused;
     u8 reserved_73;
     Sig_ADXT_Pause_ADX_AMP *amplifier;
-    Sig_ADXT_Pause_SJ *amplifier_input[2];
-    Sig_ADXT_Pause_SJ *amplifier_output[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_3DB9C *amplifier_input[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_3DB9C *amplifier_output[2];
     s32 time_offset;
     s32 eos_sector;
     s32 loop_sample_count;
@@ -21790,7 +20995,7 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     void *pending_directory;
     s32 pending_file_offset;
     s32 pending_file_sectors;
-} Sig_ADXT_Pause_ADXTHandle;
+} Sig_ADXT_Pause_ADXTHandle_np_fn_1_3DB9C;
 
 typedef struct Sig_ADXT_Stop_AdxSjdHandle Sig_ADXT_Stop_AdxSjdHandle;
 
@@ -21798,39 +21003,39 @@ typedef struct Sig_ADXT_Stop_ADXStream Sig_ADXT_Stop_ADXStream;
 
 typedef struct Sig_ADXT_Stop_AXRNAHandle Sig_ADXT_Stop_AXRNAHandle;
 
-typedef struct Sig_ADXT_Stop_SJCK {
+typedef struct Sig_ADXT_Stop_SJCK_np_fn_1_3DB9C {
     unsigned char *data;
     int len;
-} Sig_ADXT_Stop_SJCK;
+} Sig_ADXT_Stop_SJCK_np_fn_1_3DB9C;
 
 typedef void (*Sig_ADXT_Stop_SJErrorCallback)(void *object, int error);
 
-typedef struct Sig_ADXT_Stop_SJInterface Sig_ADXT_Stop_SJInterface;
+typedef struct Sig_ADXT_Stop_SJInterface_np_fn_1_3DB9C Sig_ADXT_Stop_SJInterface_np_fn_1_3DB9C;
 
-typedef struct Sig_ADXT_Stop_SJ Sig_ADXT_Stop_SJ;
+typedef struct Sig_ADXT_Stop_SJ_np_fn_1_3DB9C Sig_ADXT_Stop_SJ_np_fn_1_3DB9C;
 
-struct Sig_ADXT_Stop_SJInterface {
+struct Sig_ADXT_Stop_SJInterface_np_fn_1_3DB9C {
     void *reserved[3];
-    void (*destroy)(Sig_ADXT_Stop_SJ *sj);
-    const void *(*get_uuid)(Sig_ADXT_Stop_SJ *sj);
-    void (*reset)(Sig_ADXT_Stop_SJ *sj);
-    void (*get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int max_size, Sig_ADXT_Stop_SJCK *chunk);
-    void (*unget_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
-    void (*put_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
-    int (*get_num_data)(Sig_ADXT_Stop_SJ *sj, int channel);
-    int (*is_get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int size, int *available);
-    void (*entry_error_func)(Sig_ADXT_Stop_SJ *sj, Sig_ADXT_Stop_SJErrorCallback callback, void *object);
+    void (*destroy)(Sig_ADXT_Stop_SJ_np_fn_1_3DB9C *sj);
+    const void *(*get_uuid)(Sig_ADXT_Stop_SJ_np_fn_1_3DB9C *sj);
+    void (*reset)(Sig_ADXT_Stop_SJ_np_fn_1_3DB9C *sj);
+    void (*get_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_3DB9C *sj, int channel, int max_size, Sig_ADXT_Stop_SJCK_np_fn_1_3DB9C *chunk);
+    void (*unget_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_3DB9C *sj, int channel, Sig_ADXT_Stop_SJCK_np_fn_1_3DB9C *chunk);
+    void (*put_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_3DB9C *sj, int channel, Sig_ADXT_Stop_SJCK_np_fn_1_3DB9C *chunk);
+    int (*get_num_data)(Sig_ADXT_Stop_SJ_np_fn_1_3DB9C *sj, int channel);
+    int (*is_get_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_3DB9C *sj, int channel, int size, int *available);
+    void (*entry_error_func)(Sig_ADXT_Stop_SJ_np_fn_1_3DB9C *sj, Sig_ADXT_Stop_SJErrorCallback callback, void *object);
 };
 
-struct Sig_ADXT_Stop_SJ {
-    const Sig_ADXT_Stop_SJInterface *interface;
+struct Sig_ADXT_Stop_SJ_np_fn_1_3DB9C {
+    const Sig_ADXT_Stop_SJInterface_np_fn_1_3DB9C *interface;
 };
 
 typedef struct Sig_ADXT_Stop_ADX_AMP Sig_ADXT_Stop_ADX_AMP;
 
 typedef struct Sig_ADXT_Stop_LSCObject Sig_ADXT_Stop_LSCObject;
 
-typedef struct Sig_ADXT_Stop_ADXTHandle {
+typedef struct Sig_ADXT_Stop_ADXTHandle_np_fn_1_3DB9C {
     s8 used;
     s8 status;
     s8 stream_type;
@@ -21838,9 +21043,9 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     Sig_ADXT_Stop_AdxSjdHandle *decoder;
     Sig_ADXT_Stop_ADXStream *stream;
     Sig_ADXT_Stop_AXRNAHandle *rna;
-    Sig_ADXT_Stop_SJ *stream_sj;
-    Sig_ADXT_Stop_SJ *input_sj;
-    Sig_ADXT_Stop_SJ *output_sj[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_3DB9C *stream_sj;
+    Sig_ADXT_Stop_SJ_np_fn_1_3DB9C *input_sj;
+    Sig_ADXT_Stop_SJ_np_fn_1_3DB9C *output_sj[2];
     u8 *input_buffer;
     s32 input_buffer_size;
     s32 input_extra_size;
@@ -21872,8 +21077,8 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     s8 paused;
     u8 reserved_73;
     Sig_ADXT_Stop_ADX_AMP *amplifier;
-    Sig_ADXT_Stop_SJ *amplifier_input[2];
-    Sig_ADXT_Stop_SJ *amplifier_output[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_3DB9C *amplifier_input[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_3DB9C *amplifier_output[2];
     s32 time_offset;
     s32 eos_sector;
     s32 loop_sample_count;
@@ -21890,12 +21095,12 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     void *pending_directory;
     s32 pending_file_offset;
     s32 pending_file_sectors;
-} Sig_ADXT_Stop_ADXTHandle;
+} Sig_ADXT_Stop_ADXTHandle_np_fn_1_3DB9C;
 
 typedef struct {
     u8 unk[0xb];
     u8 value;
-} Entry;
+} Entry_np_fn_1_3DB9C;
 
 typedef struct {
     u8 pad_0[2];
@@ -21903,7 +21108,7 @@ typedef struct {
     u8 pad_4[8];
     u32 unk_C;
     u8 pad_10[0x10];
-} Obj_1_bss_25E9C;
+} Obj_1_bss_25E9C_np_fn_1_3DB9C;
 
 typedef struct {
     u8 pad[0x2f8];
@@ -21917,115 +21122,7 @@ typedef struct {
     u32 value_314;
     u32 value_318;
     u32 value_31c;
-} Fn40710Config;
-extern void fn_1_15E330(s32 index, u32 value, void *arg);
-extern void fn_1_15E5E4(s32 index, void *arg);
-extern void fn_1_15E688(s32 index, u32 value, u8 state, void *arg);
-extern void fn_1_15E3E0(s32 index, u32 value);
-extern void fn_1_15E434(u32 value);
-extern void fn_1_15E540(s32 index, void *arg);
-extern void fn_1_CB404(u8 value);
-extern void fn_1_D07C4(u32 arg0, u32 arg1);
-extern u32 lbl_1_bss_25B84;
-extern u32 OSGetTick(void);
-extern void fn_1_A0978(void);
-extern void fn_1_35174(void);
-extern s32 fn_1_3EFA8(void);
-extern u16 lbl_1_bss_26B5C__fzgx_offset_1E[3];
-extern u16 lbl_1_bss_26300;
-extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_80008BEC(void *dest, int value, u32 size);
-extern u32 fn_1_101C0(void);
-extern u32 fn_1_A11EC(void);
-extern u32 fn_1_435C(u32 value);
-extern void ADXT_Pause(Sig_ADXT_Pause_ADXTHandle *, s32);
-extern void fn_1_4310(u32 arg0);
-extern void fn_1_48004(s32 index, s32 image);
-extern void fn_1_8616C(void);
-extern void fn_1_A1588(u32 arg0, u32 arg1);
-extern void fn_1_D0790(void);
-extern void fn_1_817C0(void);
-extern u32 lbl_1_bss_381FC;
-extern void fn_1_EB080(int mode);
-extern s64 OSGetTime(void);
-extern void fn_1_4A00(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_1_5370(u32 arg0, u32 arg1);
-extern void fn_1_15E27C(void);
-extern void fn_1_4811C(int arg);
-extern void fn_1_A8F78(void);
-extern u8 lbl_1_bss_262F4;
-extern u32 lbl_1_bss_25E74[7];
-extern u8 lbl_1_bss_3C10;
-extern void fn_1_36330(void);
-extern void fn_1_36B10(void);
-extern void fn_1_3C98(void);
-extern void fn_1_37AA8(void);
-extern void fn_1_37E98(void);
-extern f32 lbl_1_bss_26304[4];
-extern u8 lbl_1_bss_26B04[20];
-extern u8 lbl_1_bss_26314[2032];
-extern s16 fn_1_12EF24(s16 row, s16 column);
-extern u8 lbl_1_bss_523C[32];
-extern Entry *lbl_1_bss_53F8[34];
-extern void OSPanic(const void *, u32, const char *, ...);
-extern Obj_1_bss_25E9C lbl_1_bss_25E9C[30];
-extern void fn_1_12AB38(void *arg0);
-extern void fn_1_465D0(char *value, u32 flag);
-extern void* fn_1_7F518(s16 car_type, void* car, s32 initialize);
-extern int sprintf(char *s, const char *format, ...);
-extern void fn_1_451E4(void);
-extern void fn_1_D3214(void);
-extern void VIWaitForRetrace(void);
-extern u32 fn_1_467F4(void);
-extern u32 fn_1_13018(void);
-extern u32 fn_1_46C60(void);
-extern u32 lbl_1_bss_26C2C[2];
-extern u32 lbl_1_bss_262F8[2];
-extern u16 lbl_1_bss_26C68[35526];
-extern u32 lbl_1_bss_3C08[2];
-extern u32 fn_800075AC(u32, u32, u32);
-extern u32 ghost_test_record_flag0(s32 arg);
-extern u32 fn_1_F9D44(u32 arg);
-extern u8 fn_1_F8C50(s32 arg0);
-extern void fn_1_2DB50(void);
-extern void fn_1_3F8C(void *, void *, Obj_1_bss_5138 *, int);
-extern void fn_1_2D888(void);
-extern void fn_1_2D524(void);
-extern u32 fn_1_FA070(void);
-extern int fn_1_FA180(int, u8);
-extern u32 fn_1_F9FEC(void);
-extern void fn_1_A2DC4(u32 arg0);
-extern Fn40710Config lbl_1_rodata_BD8;
-extern u8 lbl_1_bss_26B54[8];
-extern u32 fn_1_40EE4(void);
-extern u32 lbl_801A63D0;
-extern u32 lbl_1_bss_26C34[9];
-extern u8 lbl_1_bss_38218[568];
-extern u32 fn_1_4060(void);
-extern void ARQPostRequest(u8 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7);
-extern u32 lbl_801A63C0;
-extern void fn_1_40BE4(void);
-extern u32 GXGetTexBufferSize(u32, u32, u32, u32, u32);
-extern u32 lbl_1_bss_26B4C;
-extern u8 lbl_1_bss_25E90[8];
-extern s32 fn_1_48B0(u32 arg0, u32 arg1);
-extern void fn_1_40F54(void *arg0);
-extern u32 lbl_801A6CE0;
-extern u32 lbl_1_bss_38454;
-extern u32 fn_80070DE0(u32 arg0);
-extern void fn_1_D3884();
-extern void fn_1_D358C();
-extern void fn_800711A8(Obj_1_bss_38458_Target *target);
-extern void fn_80071718(u32 value);
-extern void fn_1_41134(void *unused, char *value);
-extern void fn_1_411D4(u32, char *);
-extern int DVDConvertPathToEntrynum(char *buffer);
-extern void fn_1_412A0(u32 index);
-extern size_t strlen(const char *str);
-extern int fn_80083BCC(const char *s1, const char *s2);
-extern u8 lbl_1_A9011300;
-extern u8 lbl_1_A9011100;
-extern u8 lbl_1_A9011000;
+} Fn40710Config_np_fn_1_3DB9C;
 
 typedef struct GameEntryC {
     u8 data[0xA0];
@@ -22333,18 +21430,15 @@ __declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
 }
 #pragma section code_type ".text"
 
-extern u32 fn_1_435C(u32);
 extern void fn_1_426C(u32);
 extern void fn_1_105724(void);
 extern void fn_1_F2EDC(void);
-extern void fn_1_A8F78(void);
 extern s32 fn_1_1547FC(void *);
 extern void fn_1_156754(s32);
 extern void fn_1_F7578(void);
 extern void fn_1_C47B4(void);
 extern void fn_1_C6F80(u8);
 extern void fn_1_79100(void);
-extern void fn_1_412A0(u32);
 extern void fn_1_E35F0(void);
 extern u32 fn_80008E84(u32);
 
@@ -23034,50 +22128,46 @@ void fn_1_3E628(void) {
 }
 /* fzgx:end fn_1_3E628 */
 
-/* fzgx:begin fn_1_3E62C noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/game.h"
-
+/* fzgx:begin fn_1_3E62C */
 typedef struct Sig_ADXT_Pause_AdxSjdHandle Sig_ADXT_Pause_AdxSjdHandle;
 
 typedef struct Sig_ADXT_Pause_ADXStream Sig_ADXT_Pause_ADXStream;
 
 typedef struct Sig_ADXT_Pause_AXRNAHandle Sig_ADXT_Pause_AXRNAHandle;
 
-typedef struct Sig_ADXT_Pause_SJCK {
+typedef struct Sig_ADXT_Pause_SJCK_np_fn_1_3E62C {
     unsigned char *data;
     int len;
-} Sig_ADXT_Pause_SJCK;
+} Sig_ADXT_Pause_SJCK_np_fn_1_3E62C;
 
 typedef void (*Sig_ADXT_Pause_SJErrorCallback)(void *object, int error);
 
-typedef struct Sig_ADXT_Pause_SJInterface Sig_ADXT_Pause_SJInterface;
+typedef struct Sig_ADXT_Pause_SJInterface_np_fn_1_3E62C Sig_ADXT_Pause_SJInterface_np_fn_1_3E62C;
 
-typedef struct Sig_ADXT_Pause_SJ Sig_ADXT_Pause_SJ;
+typedef struct Sig_ADXT_Pause_SJ_np_fn_1_3E62C Sig_ADXT_Pause_SJ_np_fn_1_3E62C;
 
-struct Sig_ADXT_Pause_SJ {
-    const Sig_ADXT_Pause_SJInterface *interface;
+struct Sig_ADXT_Pause_SJ_np_fn_1_3E62C {
+    const Sig_ADXT_Pause_SJInterface_np_fn_1_3E62C *interface;
 };
 
-struct Sig_ADXT_Pause_SJInterface {
+struct Sig_ADXT_Pause_SJInterface_np_fn_1_3E62C {
     void *reserved[3];
-    void (*destroy)(Sig_ADXT_Pause_SJ *sj);
-    const void *(*get_uuid)(Sig_ADXT_Pause_SJ *sj);
-    void (*reset)(Sig_ADXT_Pause_SJ *sj);
-    void (*get_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, int max_size, Sig_ADXT_Pause_SJCK *chunk);
-    void (*unget_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, Sig_ADXT_Pause_SJCK *chunk);
-    void (*put_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, Sig_ADXT_Pause_SJCK *chunk);
-    int (*get_num_data)(Sig_ADXT_Pause_SJ *sj, int channel);
-    int (*is_get_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, int size, int *available);
-    void (*entry_error_func)(Sig_ADXT_Pause_SJ *sj, Sig_ADXT_Pause_SJErrorCallback callback, void *object);
+    void (*destroy)(Sig_ADXT_Pause_SJ_np_fn_1_3E62C *sj);
+    const void *(*get_uuid)(Sig_ADXT_Pause_SJ_np_fn_1_3E62C *sj);
+    void (*reset)(Sig_ADXT_Pause_SJ_np_fn_1_3E62C *sj);
+    void (*get_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_3E62C *sj, int channel, int max_size, Sig_ADXT_Pause_SJCK_np_fn_1_3E62C *chunk);
+    void (*unget_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_3E62C *sj, int channel, Sig_ADXT_Pause_SJCK_np_fn_1_3E62C *chunk);
+    void (*put_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_3E62C *sj, int channel, Sig_ADXT_Pause_SJCK_np_fn_1_3E62C *chunk);
+    int (*get_num_data)(Sig_ADXT_Pause_SJ_np_fn_1_3E62C *sj, int channel);
+    int (*is_get_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_3E62C *sj, int channel, int size, int *available);
+    void (*entry_error_func)(Sig_ADXT_Pause_SJ_np_fn_1_3E62C *sj, Sig_ADXT_Pause_SJErrorCallback callback, void *object);
 };
 
 typedef struct Sig_ADXT_Pause_ADX_AMP Sig_ADXT_Pause_ADX_AMP;
 
 typedef struct Sig_ADXT_Pause_LSCObject Sig_ADXT_Pause_LSCObject;
 
-typedef struct Sig_ADXT_Pause_ADXTHandle {
+typedef struct Sig_ADXT_Pause_ADXTHandle_np_fn_1_3E62C {
     s8 used;
     s8 status;
     s8 stream_type;
@@ -23085,9 +22175,9 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     Sig_ADXT_Pause_AdxSjdHandle *decoder;
     Sig_ADXT_Pause_ADXStream *stream;
     Sig_ADXT_Pause_AXRNAHandle *rna;
-    Sig_ADXT_Pause_SJ *stream_sj;
-    Sig_ADXT_Pause_SJ *input_sj;
-    Sig_ADXT_Pause_SJ *output_sj[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_3E62C *stream_sj;
+    Sig_ADXT_Pause_SJ_np_fn_1_3E62C *input_sj;
+    Sig_ADXT_Pause_SJ_np_fn_1_3E62C *output_sj[2];
     u8 *input_buffer;
     s32 input_buffer_size;
     s32 input_extra_size;
@@ -23119,8 +22209,8 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     s8 paused;
     u8 reserved_73;
     Sig_ADXT_Pause_ADX_AMP *amplifier;
-    Sig_ADXT_Pause_SJ *amplifier_input[2];
-    Sig_ADXT_Pause_SJ *amplifier_output[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_3E62C *amplifier_input[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_3E62C *amplifier_output[2];
     s32 time_offset;
     s32 eos_sector;
     s32 loop_sample_count;
@@ -23137,7 +22227,7 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     void *pending_directory;
     s32 pending_file_offset;
     s32 pending_file_sectors;
-} Sig_ADXT_Pause_ADXTHandle;
+} Sig_ADXT_Pause_ADXTHandle_np_fn_1_3E62C;
 
 typedef struct Sig_ADXT_Stop_AdxSjdHandle Sig_ADXT_Stop_AdxSjdHandle;
 
@@ -23145,39 +22235,39 @@ typedef struct Sig_ADXT_Stop_ADXStream Sig_ADXT_Stop_ADXStream;
 
 typedef struct Sig_ADXT_Stop_AXRNAHandle Sig_ADXT_Stop_AXRNAHandle;
 
-typedef struct Sig_ADXT_Stop_SJCK {
+typedef struct Sig_ADXT_Stop_SJCK_np_fn_1_3E62C {
     unsigned char *data;
     int len;
-} Sig_ADXT_Stop_SJCK;
+} Sig_ADXT_Stop_SJCK_np_fn_1_3E62C;
 
 typedef void (*Sig_ADXT_Stop_SJErrorCallback)(void *object, int error);
 
-typedef struct Sig_ADXT_Stop_SJInterface Sig_ADXT_Stop_SJInterface;
+typedef struct Sig_ADXT_Stop_SJInterface_np_fn_1_3E62C Sig_ADXT_Stop_SJInterface_np_fn_1_3E62C;
 
-typedef struct Sig_ADXT_Stop_SJ Sig_ADXT_Stop_SJ;
+typedef struct Sig_ADXT_Stop_SJ_np_fn_1_3E62C Sig_ADXT_Stop_SJ_np_fn_1_3E62C;
 
-struct Sig_ADXT_Stop_SJInterface {
+struct Sig_ADXT_Stop_SJInterface_np_fn_1_3E62C {
     void *reserved[3];
-    void (*destroy)(Sig_ADXT_Stop_SJ *sj);
-    const void *(*get_uuid)(Sig_ADXT_Stop_SJ *sj);
-    void (*reset)(Sig_ADXT_Stop_SJ *sj);
-    void (*get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int max_size, Sig_ADXT_Stop_SJCK *chunk);
-    void (*unget_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
-    void (*put_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
-    int (*get_num_data)(Sig_ADXT_Stop_SJ *sj, int channel);
-    int (*is_get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int size, int *available);
-    void (*entry_error_func)(Sig_ADXT_Stop_SJ *sj, Sig_ADXT_Stop_SJErrorCallback callback, void *object);
+    void (*destroy)(Sig_ADXT_Stop_SJ_np_fn_1_3E62C *sj);
+    const void *(*get_uuid)(Sig_ADXT_Stop_SJ_np_fn_1_3E62C *sj);
+    void (*reset)(Sig_ADXT_Stop_SJ_np_fn_1_3E62C *sj);
+    void (*get_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_3E62C *sj, int channel, int max_size, Sig_ADXT_Stop_SJCK_np_fn_1_3E62C *chunk);
+    void (*unget_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_3E62C *sj, int channel, Sig_ADXT_Stop_SJCK_np_fn_1_3E62C *chunk);
+    void (*put_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_3E62C *sj, int channel, Sig_ADXT_Stop_SJCK_np_fn_1_3E62C *chunk);
+    int (*get_num_data)(Sig_ADXT_Stop_SJ_np_fn_1_3E62C *sj, int channel);
+    int (*is_get_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_3E62C *sj, int channel, int size, int *available);
+    void (*entry_error_func)(Sig_ADXT_Stop_SJ_np_fn_1_3E62C *sj, Sig_ADXT_Stop_SJErrorCallback callback, void *object);
 };
 
-struct Sig_ADXT_Stop_SJ {
-    const Sig_ADXT_Stop_SJInterface *interface;
+struct Sig_ADXT_Stop_SJ_np_fn_1_3E62C {
+    const Sig_ADXT_Stop_SJInterface_np_fn_1_3E62C *interface;
 };
 
 typedef struct Sig_ADXT_Stop_ADX_AMP Sig_ADXT_Stop_ADX_AMP;
 
 typedef struct Sig_ADXT_Stop_LSCObject Sig_ADXT_Stop_LSCObject;
 
-typedef struct Sig_ADXT_Stop_ADXTHandle {
+typedef struct Sig_ADXT_Stop_ADXTHandle_np_fn_1_3E62C {
     s8 used;
     s8 status;
     s8 stream_type;
@@ -23185,9 +22275,9 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     Sig_ADXT_Stop_AdxSjdHandle *decoder;
     Sig_ADXT_Stop_ADXStream *stream;
     Sig_ADXT_Stop_AXRNAHandle *rna;
-    Sig_ADXT_Stop_SJ *stream_sj;
-    Sig_ADXT_Stop_SJ *input_sj;
-    Sig_ADXT_Stop_SJ *output_sj[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_3E62C *stream_sj;
+    Sig_ADXT_Stop_SJ_np_fn_1_3E62C *input_sj;
+    Sig_ADXT_Stop_SJ_np_fn_1_3E62C *output_sj[2];
     u8 *input_buffer;
     s32 input_buffer_size;
     s32 input_extra_size;
@@ -23219,8 +22309,8 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     s8 paused;
     u8 reserved_73;
     Sig_ADXT_Stop_ADX_AMP *amplifier;
-    Sig_ADXT_Stop_SJ *amplifier_input[2];
-    Sig_ADXT_Stop_SJ *amplifier_output[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_3E62C *amplifier_input[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_3E62C *amplifier_output[2];
     s32 time_offset;
     s32 eos_sector;
     s32 loop_sample_count;
@@ -23237,12 +22327,12 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     void *pending_directory;
     s32 pending_file_offset;
     s32 pending_file_sectors;
-} Sig_ADXT_Stop_ADXTHandle;
+} Sig_ADXT_Stop_ADXTHandle_np_fn_1_3E62C;
 
 typedef struct {
     u8 unk[0xb];
     u8 value;
-} Entry;
+} Entry_np_fn_1_3E62C;
 
 typedef struct {
     u8 pad_0[2];
@@ -23250,7 +22340,7 @@ typedef struct {
     u8 pad_4[8];
     u32 unk_C;
     u8 pad_10[0x10];
-} Obj_1_bss_25E9C;
+} Obj_1_bss_25E9C_np_fn_1_3E62C;
 
 typedef struct {
     u8 pad[0x2f8];
@@ -23264,115 +22354,7 @@ typedef struct {
     u32 value_314;
     u32 value_318;
     u32 value_31c;
-} Fn40710Config;
-extern void fn_1_15E330(s32 index, u32 value, void *arg);
-extern void fn_1_15E5E4(s32 index, void *arg);
-extern void fn_1_15E688(s32 index, u32 value, u8 state, void *arg);
-extern void fn_1_15E3E0(s32 index, u32 value);
-extern void fn_1_15E434(u32 value);
-extern void fn_1_15E540(s32 index, void *arg);
-extern void fn_1_CB404(u8 value);
-extern void fn_1_D07C4(u32 arg0, u32 arg1);
-extern u32 lbl_1_bss_25B84;
-extern u32 OSGetTick(void);
-extern void fn_1_A0978(void);
-extern void fn_1_35174(void);
-extern s32 fn_1_3EFA8(void);
-extern u16 lbl_1_bss_26B5C__fzgx_offset_1E[3];
-extern u16 lbl_1_bss_26300;
-extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_80008BEC(void *dest, int value, u32 size);
-extern u32 fn_1_101C0(void);
-extern u32 fn_1_A11EC(void);
-extern u32 fn_1_435C(u32 value);
-extern void ADXT_Pause(Sig_ADXT_Pause_ADXTHandle *, s32);
-extern void fn_1_4310(u32 arg0);
-extern void fn_1_48004(s32 index, s32 image);
-extern void fn_1_8616C(void);
-extern void fn_1_A1588(u32 arg0, u32 arg1);
-extern void fn_1_D0790(void);
-extern void fn_1_817C0(void);
-extern u32 lbl_1_bss_381FC;
-extern void fn_1_EB080(int mode);
-extern s64 OSGetTime(void);
-extern void fn_1_4A00(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_1_5370(u32 arg0, u32 arg1);
-extern void fn_1_15E27C(void);
-extern void fn_1_4811C(int arg);
-extern void fn_1_A8F78(void);
-extern u8 lbl_1_bss_262F4;
-extern u32 lbl_1_bss_25E74[7];
-extern u8 lbl_1_bss_3C10;
-extern void fn_1_36330(void);
-extern void fn_1_36B10(void);
-extern void fn_1_3C98(void);
-extern void fn_1_37AA8(void);
-extern void fn_1_37E98(void);
-extern f32 lbl_1_bss_26304[4];
-extern u8 lbl_1_bss_26B04[20];
-extern u8 lbl_1_bss_26314[2032];
-extern s16 fn_1_12EF24(s16 row, s16 column);
-extern u8 lbl_1_bss_523C[32];
-extern Entry *lbl_1_bss_53F8[34];
-extern void OSPanic(const void *, u32, const char *, ...);
-extern Obj_1_bss_25E9C lbl_1_bss_25E9C[30];
-extern void fn_1_12AB38(void *arg0);
-extern void fn_1_465D0(char *value, u32 flag);
-extern void* fn_1_7F518(s16 car_type, void* car, s32 initialize);
-extern int sprintf(char *s, const char *format, ...);
-extern void fn_1_451E4(void);
-extern void fn_1_D3214(void);
-extern void VIWaitForRetrace(void);
-extern u32 fn_1_467F4(void);
-extern u32 fn_1_13018(void);
-extern u32 fn_1_46C60(void);
-extern u32 lbl_1_bss_26C2C[2];
-extern u32 lbl_1_bss_262F8[2];
-extern u16 lbl_1_bss_26C68[35526];
-extern u32 lbl_1_bss_3C08[2];
-extern u32 fn_800075AC(u32, u32, u32);
-extern u32 ghost_test_record_flag0(s32 arg);
-extern u32 fn_1_F9D44(u32 arg);
-extern u8 fn_1_F8C50(s32 arg0);
-extern void fn_1_2DB50(void);
-extern void fn_1_3F8C(void *, void *, Obj_1_bss_5138 *, int);
-extern void fn_1_2D888(void);
-extern void fn_1_2D524(void);
-extern u32 fn_1_FA070(void);
-extern int fn_1_FA180(int, u8);
-extern u32 fn_1_F9FEC(void);
-extern void fn_1_A2DC4(u32 arg0);
-extern Fn40710Config lbl_1_rodata_BD8;
-extern u8 lbl_1_bss_26B54[8];
-extern u32 fn_1_40EE4(void);
-extern u32 lbl_801A63D0;
-extern u32 lbl_1_bss_26C34[9];
-extern u8 lbl_1_bss_38218[568];
-extern u32 fn_1_4060(void);
-extern void ARQPostRequest(u8 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7);
-extern u32 lbl_801A63C0;
-extern void fn_1_40BE4(void);
-extern u32 GXGetTexBufferSize(u32, u32, u32, u32, u32);
-extern u32 lbl_1_bss_26B4C;
-extern u8 lbl_1_bss_25E90[8];
-extern s32 fn_1_48B0(u32 arg0, u32 arg1);
-extern void fn_1_40F54(void *arg0);
-extern u32 lbl_801A6CE0;
-extern u32 lbl_1_bss_38454;
-extern u32 fn_80070DE0(u32 arg0);
-extern void fn_1_D3884();
-extern void fn_1_D358C();
-extern void fn_800711A8(Obj_1_bss_38458_Target *target);
-extern void fn_80071718(u32 value);
-extern void fn_1_41134(void *unused, char *value);
-extern void fn_1_411D4(u32, char *);
-extern int DVDConvertPathToEntrynum(char *buffer);
-extern void fn_1_412A0(u32 index);
-extern size_t strlen(const char *str);
-extern int fn_80083BCC(const char *s1, const char *s2);
-extern u8 lbl_1_A9011300;
-extern u8 lbl_1_A9011100;
-extern u8 lbl_1_A9011000;
+} Fn40710Config_np_fn_1_3E62C;
 
 void fn_1_3E62C(void) {
     if ((s32)lbl_1_bss_25BA0.unk_0 == 0) {
@@ -23592,50 +22574,46 @@ void fn_1_3EA70(void) {
 }
 /* fzgx:end fn_1_3EA70 */
 
-/* fzgx:begin fn_1_3EA90 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/game.h"
-
+/* fzgx:begin fn_1_3EA90 */
 typedef struct Sig_ADXT_Pause_AdxSjdHandle Sig_ADXT_Pause_AdxSjdHandle;
 
 typedef struct Sig_ADXT_Pause_ADXStream Sig_ADXT_Pause_ADXStream;
 
 typedef struct Sig_ADXT_Pause_AXRNAHandle Sig_ADXT_Pause_AXRNAHandle;
 
-typedef struct Sig_ADXT_Pause_SJCK {
+typedef struct Sig_ADXT_Pause_SJCK_np_fn_1_3EA90 {
     unsigned char *data;
     int len;
-} Sig_ADXT_Pause_SJCK;
+} Sig_ADXT_Pause_SJCK_np_fn_1_3EA90;
 
 typedef void (*Sig_ADXT_Pause_SJErrorCallback)(void *object, int error);
 
-typedef struct Sig_ADXT_Pause_SJInterface Sig_ADXT_Pause_SJInterface;
+typedef struct Sig_ADXT_Pause_SJInterface_np_fn_1_3EA90 Sig_ADXT_Pause_SJInterface_np_fn_1_3EA90;
 
-typedef struct Sig_ADXT_Pause_SJ Sig_ADXT_Pause_SJ;
+typedef struct Sig_ADXT_Pause_SJ_np_fn_1_3EA90 Sig_ADXT_Pause_SJ_np_fn_1_3EA90;
 
-struct Sig_ADXT_Pause_SJ {
-    const Sig_ADXT_Pause_SJInterface *interface;
+struct Sig_ADXT_Pause_SJ_np_fn_1_3EA90 {
+    const Sig_ADXT_Pause_SJInterface_np_fn_1_3EA90 *interface;
 };
 
-struct Sig_ADXT_Pause_SJInterface {
+struct Sig_ADXT_Pause_SJInterface_np_fn_1_3EA90 {
     void *reserved[3];
-    void (*destroy)(Sig_ADXT_Pause_SJ *sj);
-    const void *(*get_uuid)(Sig_ADXT_Pause_SJ *sj);
-    void (*reset)(Sig_ADXT_Pause_SJ *sj);
-    void (*get_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, int max_size, Sig_ADXT_Pause_SJCK *chunk);
-    void (*unget_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, Sig_ADXT_Pause_SJCK *chunk);
-    void (*put_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, Sig_ADXT_Pause_SJCK *chunk);
-    int (*get_num_data)(Sig_ADXT_Pause_SJ *sj, int channel);
-    int (*is_get_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, int size, int *available);
-    void (*entry_error_func)(Sig_ADXT_Pause_SJ *sj, Sig_ADXT_Pause_SJErrorCallback callback, void *object);
+    void (*destroy)(Sig_ADXT_Pause_SJ_np_fn_1_3EA90 *sj);
+    const void *(*get_uuid)(Sig_ADXT_Pause_SJ_np_fn_1_3EA90 *sj);
+    void (*reset)(Sig_ADXT_Pause_SJ_np_fn_1_3EA90 *sj);
+    void (*get_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_3EA90 *sj, int channel, int max_size, Sig_ADXT_Pause_SJCK_np_fn_1_3EA90 *chunk);
+    void (*unget_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_3EA90 *sj, int channel, Sig_ADXT_Pause_SJCK_np_fn_1_3EA90 *chunk);
+    void (*put_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_3EA90 *sj, int channel, Sig_ADXT_Pause_SJCK_np_fn_1_3EA90 *chunk);
+    int (*get_num_data)(Sig_ADXT_Pause_SJ_np_fn_1_3EA90 *sj, int channel);
+    int (*is_get_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_3EA90 *sj, int channel, int size, int *available);
+    void (*entry_error_func)(Sig_ADXT_Pause_SJ_np_fn_1_3EA90 *sj, Sig_ADXT_Pause_SJErrorCallback callback, void *object);
 };
 
 typedef struct Sig_ADXT_Pause_ADX_AMP Sig_ADXT_Pause_ADX_AMP;
 
 typedef struct Sig_ADXT_Pause_LSCObject Sig_ADXT_Pause_LSCObject;
 
-typedef struct Sig_ADXT_Pause_ADXTHandle {
+typedef struct Sig_ADXT_Pause_ADXTHandle_np_fn_1_3EA90 {
     s8 used;
     s8 status;
     s8 stream_type;
@@ -23643,9 +22621,9 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     Sig_ADXT_Pause_AdxSjdHandle *decoder;
     Sig_ADXT_Pause_ADXStream *stream;
     Sig_ADXT_Pause_AXRNAHandle *rna;
-    Sig_ADXT_Pause_SJ *stream_sj;
-    Sig_ADXT_Pause_SJ *input_sj;
-    Sig_ADXT_Pause_SJ *output_sj[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_3EA90 *stream_sj;
+    Sig_ADXT_Pause_SJ_np_fn_1_3EA90 *input_sj;
+    Sig_ADXT_Pause_SJ_np_fn_1_3EA90 *output_sj[2];
     u8 *input_buffer;
     s32 input_buffer_size;
     s32 input_extra_size;
@@ -23677,8 +22655,8 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     s8 paused;
     u8 reserved_73;
     Sig_ADXT_Pause_ADX_AMP *amplifier;
-    Sig_ADXT_Pause_SJ *amplifier_input[2];
-    Sig_ADXT_Pause_SJ *amplifier_output[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_3EA90 *amplifier_input[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_3EA90 *amplifier_output[2];
     s32 time_offset;
     s32 eos_sector;
     s32 loop_sample_count;
@@ -23695,7 +22673,7 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     void *pending_directory;
     s32 pending_file_offset;
     s32 pending_file_sectors;
-} Sig_ADXT_Pause_ADXTHandle;
+} Sig_ADXT_Pause_ADXTHandle_np_fn_1_3EA90;
 
 typedef struct Sig_ADXT_Stop_AdxSjdHandle Sig_ADXT_Stop_AdxSjdHandle;
 
@@ -23703,39 +22681,39 @@ typedef struct Sig_ADXT_Stop_ADXStream Sig_ADXT_Stop_ADXStream;
 
 typedef struct Sig_ADXT_Stop_AXRNAHandle Sig_ADXT_Stop_AXRNAHandle;
 
-typedef struct Sig_ADXT_Stop_SJCK {
+typedef struct Sig_ADXT_Stop_SJCK_np_fn_1_3EA90 {
     unsigned char *data;
     int len;
-} Sig_ADXT_Stop_SJCK;
+} Sig_ADXT_Stop_SJCK_np_fn_1_3EA90;
 
 typedef void (*Sig_ADXT_Stop_SJErrorCallback)(void *object, int error);
 
-typedef struct Sig_ADXT_Stop_SJInterface Sig_ADXT_Stop_SJInterface;
+typedef struct Sig_ADXT_Stop_SJInterface_np_fn_1_3EA90 Sig_ADXT_Stop_SJInterface_np_fn_1_3EA90;
 
-typedef struct Sig_ADXT_Stop_SJ Sig_ADXT_Stop_SJ;
+typedef struct Sig_ADXT_Stop_SJ_np_fn_1_3EA90 Sig_ADXT_Stop_SJ_np_fn_1_3EA90;
 
-struct Sig_ADXT_Stop_SJInterface {
+struct Sig_ADXT_Stop_SJInterface_np_fn_1_3EA90 {
     void *reserved[3];
-    void (*destroy)(Sig_ADXT_Stop_SJ *sj);
-    const void *(*get_uuid)(Sig_ADXT_Stop_SJ *sj);
-    void (*reset)(Sig_ADXT_Stop_SJ *sj);
-    void (*get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int max_size, Sig_ADXT_Stop_SJCK *chunk);
-    void (*unget_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
-    void (*put_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
-    int (*get_num_data)(Sig_ADXT_Stop_SJ *sj, int channel);
-    int (*is_get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int size, int *available);
-    void (*entry_error_func)(Sig_ADXT_Stop_SJ *sj, Sig_ADXT_Stop_SJErrorCallback callback, void *object);
+    void (*destroy)(Sig_ADXT_Stop_SJ_np_fn_1_3EA90 *sj);
+    const void *(*get_uuid)(Sig_ADXT_Stop_SJ_np_fn_1_3EA90 *sj);
+    void (*reset)(Sig_ADXT_Stop_SJ_np_fn_1_3EA90 *sj);
+    void (*get_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_3EA90 *sj, int channel, int max_size, Sig_ADXT_Stop_SJCK_np_fn_1_3EA90 *chunk);
+    void (*unget_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_3EA90 *sj, int channel, Sig_ADXT_Stop_SJCK_np_fn_1_3EA90 *chunk);
+    void (*put_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_3EA90 *sj, int channel, Sig_ADXT_Stop_SJCK_np_fn_1_3EA90 *chunk);
+    int (*get_num_data)(Sig_ADXT_Stop_SJ_np_fn_1_3EA90 *sj, int channel);
+    int (*is_get_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_3EA90 *sj, int channel, int size, int *available);
+    void (*entry_error_func)(Sig_ADXT_Stop_SJ_np_fn_1_3EA90 *sj, Sig_ADXT_Stop_SJErrorCallback callback, void *object);
 };
 
-struct Sig_ADXT_Stop_SJ {
-    const Sig_ADXT_Stop_SJInterface *interface;
+struct Sig_ADXT_Stop_SJ_np_fn_1_3EA90 {
+    const Sig_ADXT_Stop_SJInterface_np_fn_1_3EA90 *interface;
 };
 
 typedef struct Sig_ADXT_Stop_ADX_AMP Sig_ADXT_Stop_ADX_AMP;
 
 typedef struct Sig_ADXT_Stop_LSCObject Sig_ADXT_Stop_LSCObject;
 
-typedef struct Sig_ADXT_Stop_ADXTHandle {
+typedef struct Sig_ADXT_Stop_ADXTHandle_np_fn_1_3EA90 {
     s8 used;
     s8 status;
     s8 stream_type;
@@ -23743,9 +22721,9 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     Sig_ADXT_Stop_AdxSjdHandle *decoder;
     Sig_ADXT_Stop_ADXStream *stream;
     Sig_ADXT_Stop_AXRNAHandle *rna;
-    Sig_ADXT_Stop_SJ *stream_sj;
-    Sig_ADXT_Stop_SJ *input_sj;
-    Sig_ADXT_Stop_SJ *output_sj[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_3EA90 *stream_sj;
+    Sig_ADXT_Stop_SJ_np_fn_1_3EA90 *input_sj;
+    Sig_ADXT_Stop_SJ_np_fn_1_3EA90 *output_sj[2];
     u8 *input_buffer;
     s32 input_buffer_size;
     s32 input_extra_size;
@@ -23777,8 +22755,8 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     s8 paused;
     u8 reserved_73;
     Sig_ADXT_Stop_ADX_AMP *amplifier;
-    Sig_ADXT_Stop_SJ *amplifier_input[2];
-    Sig_ADXT_Stop_SJ *amplifier_output[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_3EA90 *amplifier_input[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_3EA90 *amplifier_output[2];
     s32 time_offset;
     s32 eos_sector;
     s32 loop_sample_count;
@@ -23795,12 +22773,12 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     void *pending_directory;
     s32 pending_file_offset;
     s32 pending_file_sectors;
-} Sig_ADXT_Stop_ADXTHandle;
+} Sig_ADXT_Stop_ADXTHandle_np_fn_1_3EA90;
 
 typedef struct {
     u8 unk[0xb];
     u8 value;
-} Entry;
+} Entry_np_fn_1_3EA90;
 
 typedef struct {
     u8 pad_0[2];
@@ -23808,7 +22786,7 @@ typedef struct {
     u8 pad_4[8];
     u32 unk_C;
     u8 pad_10[0x10];
-} Obj_1_bss_25E9C;
+} Obj_1_bss_25E9C_np_fn_1_3EA90;
 
 typedef struct {
     u8 pad[0x2f8];
@@ -23822,115 +22800,7 @@ typedef struct {
     u32 value_314;
     u32 value_318;
     u32 value_31c;
-} Fn40710Config;
-extern void fn_1_15E330(s32 index, u32 value, void *arg);
-extern void fn_1_15E5E4(s32 index, void *arg);
-extern void fn_1_15E688(s32 index, u32 value, u8 state, void *arg);
-extern void fn_1_15E3E0(s32 index, u32 value);
-extern void fn_1_15E434(u32 value);
-extern void fn_1_15E540(s32 index, void *arg);
-extern void fn_1_CB404(u8 value);
-extern void fn_1_D07C4(u32 arg0, u32 arg1);
-extern u32 lbl_1_bss_25B84;
-extern u32 OSGetTick(void);
-extern void fn_1_A0978(void);
-extern void fn_1_35174(void);
-extern s32 fn_1_3EFA8(void);
-extern u16 lbl_1_bss_26B5C__fzgx_offset_1E[3];
-extern u16 lbl_1_bss_26300;
-extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_80008BEC(void *dest, int value, u32 size);
-extern u32 fn_1_101C0(void);
-extern u32 fn_1_A11EC(void);
-extern u32 fn_1_435C(u32 value);
-extern void ADXT_Pause(Sig_ADXT_Pause_ADXTHandle *, s32);
-extern void fn_1_4310(u32 arg0);
-extern void fn_1_48004(s32 index, s32 image);
-extern void fn_1_8616C(void);
-extern void fn_1_A1588(u32 arg0, u32 arg1);
-extern void fn_1_D0790(void);
-extern void fn_1_817C0(void);
-extern u32 lbl_1_bss_381FC;
-extern void fn_1_EB080(int mode);
-extern s64 OSGetTime(void);
-extern void fn_1_4A00(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_1_5370(u32 arg0, u32 arg1);
-extern void fn_1_15E27C(void);
-extern void fn_1_4811C(int arg);
-extern void fn_1_A8F78(void);
-extern u8 lbl_1_bss_262F4;
-extern u32 lbl_1_bss_25E74[7];
-extern u8 lbl_1_bss_3C10;
-extern void fn_1_36330(void);
-extern void fn_1_36B10(void);
-extern void fn_1_3C98(void);
-extern void fn_1_37AA8(void);
-extern void fn_1_37E98(void);
-extern f32 lbl_1_bss_26304[4];
-extern u8 lbl_1_bss_26B04[20];
-extern u8 lbl_1_bss_26314[2032];
-extern s16 fn_1_12EF24(s16 row, s16 column);
-extern u8 lbl_1_bss_523C[32];
-extern Entry *lbl_1_bss_53F8[34];
-extern void OSPanic(const void *, u32, const char *, ...);
-extern Obj_1_bss_25E9C lbl_1_bss_25E9C[30];
-extern void fn_1_12AB38(void *arg0);
-extern void fn_1_465D0(char *value, u32 flag);
-extern void* fn_1_7F518(s16 car_type, void* car, s32 initialize);
-extern int sprintf(char *s, const char *format, ...);
-extern void fn_1_451E4(void);
-extern void fn_1_D3214(void);
-extern void VIWaitForRetrace(void);
-extern u32 fn_1_467F4(void);
-extern u32 fn_1_13018(void);
-extern u32 fn_1_46C60(void);
-extern u32 lbl_1_bss_26C2C[2];
-extern u32 lbl_1_bss_262F8[2];
-extern u16 lbl_1_bss_26C68[35526];
-extern u32 lbl_1_bss_3C08[2];
-extern u32 fn_800075AC(u32, u32, u32);
-extern u32 ghost_test_record_flag0(s32 arg);
-extern u32 fn_1_F9D44(u32 arg);
-extern u8 fn_1_F8C50(s32 arg0);
-extern void fn_1_2DB50(void);
-extern void fn_1_3F8C(void *, void *, Obj_1_bss_5138 *, int);
-extern void fn_1_2D888(void);
-extern void fn_1_2D524(void);
-extern u32 fn_1_FA070(void);
-extern int fn_1_FA180(int, u8);
-extern u32 fn_1_F9FEC(void);
-extern void fn_1_A2DC4(u32 arg0);
-extern Fn40710Config lbl_1_rodata_BD8;
-extern u8 lbl_1_bss_26B54[8];
-extern u32 fn_1_40EE4(void);
-extern u32 lbl_801A63D0;
-extern u32 lbl_1_bss_26C34[9];
-extern u8 lbl_1_bss_38218[568];
-extern u32 fn_1_4060(void);
-extern void ARQPostRequest(u8 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7);
-extern u32 lbl_801A63C0;
-extern void fn_1_40BE4(void);
-extern u32 GXGetTexBufferSize(u32, u32, u32, u32, u32);
-extern u32 lbl_1_bss_26B4C;
-extern u8 lbl_1_bss_25E90[8];
-extern s32 fn_1_48B0(u32 arg0, u32 arg1);
-extern void fn_1_40F54(void *arg0);
-extern u32 lbl_801A6CE0;
-extern u32 lbl_1_bss_38454;
-extern u32 fn_80070DE0(u32 arg0);
-extern void fn_1_D3884();
-extern void fn_1_D358C();
-extern void fn_800711A8(Obj_1_bss_38458_Target *target);
-extern void fn_80071718(u32 value);
-extern void fn_1_41134(void *unused, char *value);
-extern void fn_1_411D4(u32, char *);
-extern int DVDConvertPathToEntrynum(char *buffer);
-extern void fn_1_412A0(u32 index);
-extern size_t strlen(const char *str);
-extern int fn_80083BCC(const char *s1, const char *s2);
-extern u8 lbl_1_A9011300;
-extern u8 lbl_1_A9011100;
-extern u8 lbl_1_A9011000;
+} Fn40710Config_np_fn_1_3EA90;
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u8 fzgx_obj_lbl_1_bss_3C00[4];
@@ -26484,9 +25354,7 @@ int fn_1_40224(void) {
 }
 /* fzgx:end fn_1_40224 */
 
-/* fzgx:begin fn_1_402A4 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
+/* fzgx:begin fn_1_402A4 */
 #include "rel/main_rel/burner.h"
 
 extern u8 lbl_1_rodata_EB4[124];
@@ -26504,7 +25372,6 @@ extern void lbl_8006D7B0(s32);
 extern s32 lbl_8006D24C(f32, f32);
 extern void mathutil_mtxA_rotate_x(s16);
 extern void mathutil_mtxA_rotate_y(s32);
-extern s32 strlen(const char *);
 extern s32 fn_8006FC5C(const char *, const char *, s32);
 extern s32 fn_8006FC1C(const char *, const char *);
 extern u32 fn_1_9D260(void);
@@ -26512,13 +25379,10 @@ extern s32 fn_1_3F0C8(void);
 extern u8 lbl_1_bss_8E51D;
 extern u8 fn_1_7B074(void);
 extern void fn_8006FDEC(void);
-extern void fn_80071718(u32);
-extern void fn_800711A8(u32);
 extern void fn_1_55A84(void (*callback)(void), void *arg0, s32 arg1, s32 arg2);
 extern void *fn_1_12F118(void);
 extern void *fn_1_36AD0(void);
 extern void fn_1_14F6F8(u8 arg0, u8 arg1, u8 arg2, void *arg3);
-extern void fn_80008BA8(void *arg0, const void *arg1, int arg2);
 
 extern u32 lbl_1_rodata_4210;
 extern void fn_80007AB4(u32 *arg0);
@@ -26608,16 +25472,9 @@ int fn_1_40354(void) {
 }
 /* fzgx:end fn_1_40354 */
 
-/* fzgx:begin fn_1_403D4 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/game.h"
+/* fzgx:begin fn_1_403D4 */
 #include "font.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/game.h"
 #include "font.h"
-#include "types.h"
 
 /* begin game/main_rel/game_types.h (deltawave784/fzgx, CC0) */
 #ifndef GAME_MAIN_REL_GAME_TYPES_H
@@ -26631,36 +25488,36 @@ typedef struct Sig_ADXT_Pause_AdxSjdHandle Sig_ADXT_Pause_AdxSjdHandle;
 typedef struct Sig_ADXT_Pause_ADXStream Sig_ADXT_Pause_ADXStream;
 typedef struct Sig_ADXT_Pause_AXRNAHandle Sig_ADXT_Pause_AXRNAHandle;
 
-typedef struct Sig_ADXT_Pause_SJCK {
+typedef struct Sig_ADXT_Pause_SJCK_np_fn_1_403D4 {
     unsigned char *data;
     int len;
-} Sig_ADXT_Pause_SJCK;
+} Sig_ADXT_Pause_SJCK_np_fn_1_403D4;
 
 typedef void (*Sig_ADXT_Pause_SJErrorCallback)(void *object, int error);
-typedef struct Sig_ADXT_Pause_SJInterface Sig_ADXT_Pause_SJInterface;
-typedef struct Sig_ADXT_Pause_SJ Sig_ADXT_Pause_SJ;
+typedef struct Sig_ADXT_Pause_SJInterface_np_fn_1_403D4 Sig_ADXT_Pause_SJInterface_np_fn_1_403D4;
+typedef struct Sig_ADXT_Pause_SJ_np_fn_1_403D4 Sig_ADXT_Pause_SJ_np_fn_1_403D4;
 
-struct Sig_ADXT_Pause_SJ {
-    const Sig_ADXT_Pause_SJInterface *interface;
+struct Sig_ADXT_Pause_SJ_np_fn_1_403D4 {
+    const Sig_ADXT_Pause_SJInterface_np_fn_1_403D4 *interface;
 };
 
-struct Sig_ADXT_Pause_SJInterface {
+struct Sig_ADXT_Pause_SJInterface_np_fn_1_403D4 {
     void *reserved[3];
-    void (*destroy)(Sig_ADXT_Pause_SJ *sj);
-    const void *(*get_uuid)(Sig_ADXT_Pause_SJ *sj);
-    void (*reset)(Sig_ADXT_Pause_SJ *sj);
-    void (*get_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, int max_size, Sig_ADXT_Pause_SJCK *chunk);
-    void (*unget_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, Sig_ADXT_Pause_SJCK *chunk);
-    void (*put_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, Sig_ADXT_Pause_SJCK *chunk);
-    int (*get_num_data)(Sig_ADXT_Pause_SJ *sj, int channel);
-    int (*is_get_chunk)(Sig_ADXT_Pause_SJ *sj, int channel, int size, int *available);
-    void (*entry_error_func)(Sig_ADXT_Pause_SJ *sj, Sig_ADXT_Pause_SJErrorCallback callback, void *object);
+    void (*destroy)(Sig_ADXT_Pause_SJ_np_fn_1_403D4 *sj);
+    const void *(*get_uuid)(Sig_ADXT_Pause_SJ_np_fn_1_403D4 *sj);
+    void (*reset)(Sig_ADXT_Pause_SJ_np_fn_1_403D4 *sj);
+    void (*get_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_403D4 *sj, int channel, int max_size, Sig_ADXT_Pause_SJCK_np_fn_1_403D4 *chunk);
+    void (*unget_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_403D4 *sj, int channel, Sig_ADXT_Pause_SJCK_np_fn_1_403D4 *chunk);
+    void (*put_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_403D4 *sj, int channel, Sig_ADXT_Pause_SJCK_np_fn_1_403D4 *chunk);
+    int (*get_num_data)(Sig_ADXT_Pause_SJ_np_fn_1_403D4 *sj, int channel);
+    int (*is_get_chunk)(Sig_ADXT_Pause_SJ_np_fn_1_403D4 *sj, int channel, int size, int *available);
+    void (*entry_error_func)(Sig_ADXT_Pause_SJ_np_fn_1_403D4 *sj, Sig_ADXT_Pause_SJErrorCallback callback, void *object);
 };
 
 typedef struct Sig_ADXT_Pause_ADX_AMP Sig_ADXT_Pause_ADX_AMP;
 typedef struct Sig_ADXT_Pause_LSCObject Sig_ADXT_Pause_LSCObject;
 
-typedef struct Sig_ADXT_Pause_ADXTHandle {
+typedef struct Sig_ADXT_Pause_ADXTHandle_np_fn_1_403D4 {
     s8 used;
     s8 status;
     s8 stream_type;
@@ -26668,9 +25525,9 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     Sig_ADXT_Pause_AdxSjdHandle *decoder;
     Sig_ADXT_Pause_ADXStream *stream;
     Sig_ADXT_Pause_AXRNAHandle *rna;
-    Sig_ADXT_Pause_SJ *stream_sj;
-    Sig_ADXT_Pause_SJ *input_sj;
-    Sig_ADXT_Pause_SJ *output_sj[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_403D4 *stream_sj;
+    Sig_ADXT_Pause_SJ_np_fn_1_403D4 *input_sj;
+    Sig_ADXT_Pause_SJ_np_fn_1_403D4 *output_sj[2];
     u8 *input_buffer;
     s32 input_buffer_size;
     s32 input_extra_size;
@@ -26702,8 +25559,8 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     s8 paused;
     u8 reserved_73;
     Sig_ADXT_Pause_ADX_AMP *amplifier;
-    Sig_ADXT_Pause_SJ *amplifier_input[2];
-    Sig_ADXT_Pause_SJ *amplifier_output[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_403D4 *amplifier_input[2];
+    Sig_ADXT_Pause_SJ_np_fn_1_403D4 *amplifier_output[2];
     s32 time_offset;
     s32 eos_sector;
     s32 loop_sample_count;
@@ -26720,7 +25577,7 @@ typedef struct Sig_ADXT_Pause_ADXTHandle {
     void *pending_directory;
     s32 pending_file_offset;
     s32 pending_file_sectors;
-} Sig_ADXT_Pause_ADXTHandle;
+} Sig_ADXT_Pause_ADXTHandle_np_fn_1_403D4;
 
 /* begin game/main_rel/adxt_stop_types.h (deltawave784/fzgx, CC0) */
 #ifndef GAME_MAIN_REL_ADXT_STOP_TYPES_H
@@ -26734,36 +25591,36 @@ typedef struct Sig_ADXT_Stop_AdxSjdHandle Sig_ADXT_Stop_AdxSjdHandle;
 typedef struct Sig_ADXT_Stop_ADXStream Sig_ADXT_Stop_ADXStream;
 typedef struct Sig_ADXT_Stop_AXRNAHandle Sig_ADXT_Stop_AXRNAHandle;
 
-typedef struct Sig_ADXT_Stop_SJCK {
+typedef struct Sig_ADXT_Stop_SJCK_np_fn_1_403D4 {
     unsigned char *data;
     int len;
-} Sig_ADXT_Stop_SJCK;
+} Sig_ADXT_Stop_SJCK_np_fn_1_403D4;
 
 typedef void (*Sig_ADXT_Stop_SJErrorCallback)(void *object, int error);
-typedef struct Sig_ADXT_Stop_SJInterface Sig_ADXT_Stop_SJInterface;
-typedef struct Sig_ADXT_Stop_SJ Sig_ADXT_Stop_SJ;
+typedef struct Sig_ADXT_Stop_SJInterface_np_fn_1_403D4 Sig_ADXT_Stop_SJInterface_np_fn_1_403D4;
+typedef struct Sig_ADXT_Stop_SJ_np_fn_1_403D4 Sig_ADXT_Stop_SJ_np_fn_1_403D4;
 
-struct Sig_ADXT_Stop_SJInterface {
+struct Sig_ADXT_Stop_SJInterface_np_fn_1_403D4 {
     void *reserved[3];
-    void (*destroy)(Sig_ADXT_Stop_SJ *sj);
-    const void *(*get_uuid)(Sig_ADXT_Stop_SJ *sj);
-    void (*reset)(Sig_ADXT_Stop_SJ *sj);
-    void (*get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int max_size, Sig_ADXT_Stop_SJCK *chunk);
-    void (*unget_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
-    void (*put_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, Sig_ADXT_Stop_SJCK *chunk);
-    int (*get_num_data)(Sig_ADXT_Stop_SJ *sj, int channel);
-    int (*is_get_chunk)(Sig_ADXT_Stop_SJ *sj, int channel, int size, int *available);
-    void (*entry_error_func)(Sig_ADXT_Stop_SJ *sj, Sig_ADXT_Stop_SJErrorCallback callback, void *object);
+    void (*destroy)(Sig_ADXT_Stop_SJ_np_fn_1_403D4 *sj);
+    const void *(*get_uuid)(Sig_ADXT_Stop_SJ_np_fn_1_403D4 *sj);
+    void (*reset)(Sig_ADXT_Stop_SJ_np_fn_1_403D4 *sj);
+    void (*get_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_403D4 *sj, int channel, int max_size, Sig_ADXT_Stop_SJCK_np_fn_1_403D4 *chunk);
+    void (*unget_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_403D4 *sj, int channel, Sig_ADXT_Stop_SJCK_np_fn_1_403D4 *chunk);
+    void (*put_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_403D4 *sj, int channel, Sig_ADXT_Stop_SJCK_np_fn_1_403D4 *chunk);
+    int (*get_num_data)(Sig_ADXT_Stop_SJ_np_fn_1_403D4 *sj, int channel);
+    int (*is_get_chunk)(Sig_ADXT_Stop_SJ_np_fn_1_403D4 *sj, int channel, int size, int *available);
+    void (*entry_error_func)(Sig_ADXT_Stop_SJ_np_fn_1_403D4 *sj, Sig_ADXT_Stop_SJErrorCallback callback, void *object);
 };
 
-struct Sig_ADXT_Stop_SJ {
-    const Sig_ADXT_Stop_SJInterface *interface;
+struct Sig_ADXT_Stop_SJ_np_fn_1_403D4 {
+    const Sig_ADXT_Stop_SJInterface_np_fn_1_403D4 *interface;
 };
 
 typedef struct Sig_ADXT_Stop_ADX_AMP Sig_ADXT_Stop_ADX_AMP;
 typedef struct Sig_ADXT_Stop_LSCObject Sig_ADXT_Stop_LSCObject;
 
-typedef struct Sig_ADXT_Stop_ADXTHandle {
+typedef struct Sig_ADXT_Stop_ADXTHandle_np_fn_1_403D4 {
     s8 used;
     s8 status;
     s8 stream_type;
@@ -26771,9 +25628,9 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     Sig_ADXT_Stop_AdxSjdHandle *decoder;
     Sig_ADXT_Stop_ADXStream *stream;
     Sig_ADXT_Stop_AXRNAHandle *rna;
-    Sig_ADXT_Stop_SJ *stream_sj;
-    Sig_ADXT_Stop_SJ *input_sj;
-    Sig_ADXT_Stop_SJ *output_sj[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_403D4 *stream_sj;
+    Sig_ADXT_Stop_SJ_np_fn_1_403D4 *input_sj;
+    Sig_ADXT_Stop_SJ_np_fn_1_403D4 *output_sj[2];
     u8 *input_buffer;
     s32 input_buffer_size;
     s32 input_extra_size;
@@ -26805,8 +25662,8 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     s8 paused;
     u8 reserved_73;
     Sig_ADXT_Stop_ADX_AMP *amplifier;
-    Sig_ADXT_Stop_SJ *amplifier_input[2];
-    Sig_ADXT_Stop_SJ *amplifier_output[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_403D4 *amplifier_input[2];
+    Sig_ADXT_Stop_SJ_np_fn_1_403D4 *amplifier_output[2];
     s32 time_offset;
     s32 eos_sector;
     s32 loop_sample_count;
@@ -26823,7 +25680,7 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
     void *pending_directory;
     s32 pending_file_offset;
     s32 pending_file_sectors;
-} Sig_ADXT_Stop_ADXTHandle;
+} Sig_ADXT_Stop_ADXTHandle_np_fn_1_403D4;
 
 #endif  // GAME_MAIN_REL_ADXT_STOP_TYPES_H
 
@@ -26832,7 +25689,7 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
 typedef struct {
     u8 unk[0xb];
     u8 value;
-} Entry;
+} Entry_np_fn_1_403D4;
 
 typedef struct {
     u8 pad_0[2];
@@ -26840,7 +25697,7 @@ typedef struct {
     u8 pad_4[8];
     u32 unk_C;
     u8 pad_10[0x10];
-} Obj_1_bss_25E9C;
+} Obj_1_bss_25E9C_np_fn_1_403D4;
 
 typedef struct {
     u8 pad[0x2f8];
@@ -26854,7 +25711,7 @@ typedef struct {
     u32 value_314;
     u32 value_318;
     u32 value_31c;
-} Fn40710Config;
+} Fn40710Config_np_fn_1_403D4;
 
 struct fn_1_408E8_lbl_1_rodata_BD8 {
     u8 pad_0[0x4];
@@ -26890,133 +25747,25 @@ typedef struct Fn408E8Obj {
     void *data;      /* 0x20 */
 } Fn408E8Obj;
 
-extern void ADXT_Pause(Sig_ADXT_Pause_ADXTHandle *, s32);
-extern Fn40710Config lbl_1_rodata_BD8;
 extern void fn_1_403D4(Fn408E8Obj *obj);
-extern Entry *lbl_1_bss_53F8[34];
-extern Obj_1_bss_25E9C lbl_1_bss_25E9C[30];
 
 #endif  // GAME_MAIN_REL_GAME_TYPES_H
 
 /* end game/main_rel/game_types.h */
 
-extern void fn_1_451E4(void);
-extern void fn_1_D3214(void);
-extern void VIWaitForRetrace(void);
-extern s32 fn_1_467F4(void);
-extern s32 fn_1_13018(void);
-extern u32 lbl_801A6CE0;
-extern u32 lbl_1_bss_38454;
-extern u32 fn_80070DE0(u32 arg0);
-extern void fn_1_40F54(void *arg0);
-extern void fn_1_D3884();
-extern void fn_1_D358C();
-extern int sprintf(char *s, const char *format, ...);
-extern int DVDConvertPathToEntrynum(char *buffer);
-extern void fn_1_412A0(u32 index);
 extern s8 lbl_1_bss_26B5C[30];
 extern u8* fn_1_36AD0(void);
 extern u32 fn_1_34AC0(void *, u32, u32, u32);
 extern void fn_1_8001C(void);
-extern void fn_1_12AB38(void *arg0);
-extern void fn_1_465D0(char *value, u32 flag);
-extern void* fn_1_7F518(s16 car_type, void* car, s32 initialize);
-extern u32 fn_1_435C(u32 value);
-extern void fn_1_4310(u32 arg0);
-extern void fn_1_8616C(void);
-extern u32 fn_1_A11EC(void);
-extern void fn_1_D0790(void);
-extern u32 fn_1_101C0(void);
-extern void fn_1_A1588(u32 arg0, u32 arg1);
-extern void fn_1_48004(s32 index, s32 image);
-extern u32 ghost_test_record_flag0(s32 arg);
-extern u32 fn_1_F9D44(u32 arg);
-extern u8 fn_1_F8C50(s32 arg0);
-extern void fn_1_2DB50(void);
-extern void fn_1_3F8C(void *, void *, Obj_1_bss_5138 *, int);
-extern void fn_1_2D888(void);
-extern void fn_1_2D524(void);
 extern FontDrawPacket lbl_1_rodata_26F8;
 extern void fn_1_50A90(FontDrawPacket *packet, s32 w, s32 h, s32 clipW, s32 clipH);
 extern void fn_1_49514(u32 *value);
 extern void fn_1_49614(void);
-extern u32 lbl_801A63C0;
-extern void fn_1_40BE4(void);
-extern void fn_1_41134(void *unused, char *value);
 extern void fn_1_12F308(void);
 extern int fn_1_4C10(void);
 extern u32 fn_1_12F358(u32);
-extern void fn_1_4A00(s32 fadeIn, u8 steps, u32 arg);
 extern int fn_1_402D4(void);
 extern void fn_1_A2D84(u32 arg0);
-extern void fn_1_15E330(s32 index, u32 value, void *arg);
-extern void fn_1_15E5E4(s32 index, void *arg);
-extern void fn_1_15E688(s32 index, u32 value, u8 state, void *arg);
-extern void fn_1_15E3E0(s32 index, u32 value);
-extern void fn_1_15E434(u32 value);
-extern void fn_1_15E540(s32 index, void *arg);
-extern void fn_1_CB404(u8 value);
-extern void fn_1_D07C4(u32 arg0, u32 arg1);
-extern u32 lbl_1_bss_25B84;
-extern u32 OSGetTick(void);
-extern void fn_1_A0978(void);
-extern void fn_1_35174(void);
-extern s32 fn_1_3EFA8(void);
-extern u16 lbl_1_bss_26B5C__fzgx_offset_1E[3];
-extern u16 lbl_1_bss_26300;
-extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
-extern void fn_80008BEC(void *dest, int value, u32 size);
-extern void fn_1_817C0(void);
-extern u32 lbl_1_bss_381FC;
-extern void fn_1_EB080(int mode);
-extern s64 OSGetTime(void);
-extern void fn_1_5370(u32 arg0, u32 arg1);
-extern void fn_1_15E27C(void);
-extern void fn_1_4811C(int arg);
-extern void fn_1_A8F78(void);
-extern u8 lbl_1_bss_262F4;
-extern u32 lbl_1_bss_25E74[7];
-extern u8 lbl_1_bss_3C10;
-extern void fn_1_36330(void);
-extern void fn_1_36B10(void);
-extern void fn_1_3C98(void);
-extern void fn_1_37AA8(void);
-extern void fn_1_37E98(void);
-extern f32 lbl_1_bss_26304[4];
-extern u8 lbl_1_bss_26B04[20];
-extern u8 lbl_1_bss_26314[2032];
-extern s16 fn_1_12EF24(s16 row, s16 column);
-extern u8 lbl_1_bss_523C[32];
-extern void OSPanic(const char *file, int line, const char *msg, ...);
-extern u32 fn_1_46C60(void);
-extern u32 lbl_1_bss_26C2C[2];
-extern u32 lbl_1_bss_262F8[2];
-extern u16 lbl_1_bss_26C68[35526];
-extern u32 lbl_1_bss_3C08[2];
-extern u32 fn_800075AC(u32, u32, u32);
-extern u32 fn_1_FA070(void);
-extern u32 fn_1_FA180(u8 a, u8 b);
-extern u32 fn_1_F9FEC(void);
-extern void fn_1_A2DC4(u32 arg0);
-extern u8 lbl_1_bss_26B54[8];
-extern u32 fn_1_40EE4(void);
-extern u32 lbl_801A63D0;
-extern u32 lbl_1_bss_26C34[9];
-extern u8 lbl_1_bss_38218[568];
-extern u32 fn_1_4060(void);
-extern void ARQPostRequest(u8 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7);
-extern u32 GXGetTexBufferSize(u32, u32, u32, u32, u32);
-extern u32 lbl_1_bss_26B4C;
-extern u8 lbl_1_bss_25E90[8];
-extern s32 fn_1_48B0(u32 arg0, u32 arg1);
-extern void fn_800711A8(Obj_1_bss_38458_Target *target);
-extern void fn_80071718(u32 value);
-extern void fn_1_411D4(u32 index, char *value);
-extern size_t strlen(const char *str);
-extern int fn_80083BCC(const char *s1, const char *s2);
-extern u8 lbl_1_A9011300;
-extern u8 lbl_1_A9011100;
-extern u8 lbl_1_A9011000;
 extern u16 lbl_1_bss_25B80;
 extern u8 lbl_1_bss_26B18__fzgx_offset_5;
 extern void fn_1_15E260(s32 index);

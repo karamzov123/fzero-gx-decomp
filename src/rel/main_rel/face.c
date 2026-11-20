@@ -137,20 +137,15 @@ void fn_1_D1848(void) {
 #pragma opt_propagation reset
 /* fzgx:end fn_1_D1848 */
 
-/* fzgx:begin fn_1_D19B8 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
+/* fzgx:begin fn_1_D19B8 */
 #include "rel/main_rel/enemy_ctrl.h"
 
 extern u32 lbl_1_bss_7AC48[5];
-extern void *lbl_801A6410;
-extern void fn_1_46B4(void *, u32, void *, u32);
 extern void fn_1_C489C(void);
 extern u32 lbl_1_bss_7AC54[4];
 extern u8 lbl_1_bss_7AC90[12];
 extern u32 lbl_1_rodata_5D40[7];
 extern u32 fn_1_5910(void *);
-extern u8 fn_1_86810(void *);
 extern u32 fn_1_3F7E0(void);
 extern void fn_1_49410(void);
 extern void fn_1_494DC(u32);
@@ -168,7 +163,6 @@ extern const f32 lbl_1_rodata_5D68;
 extern void fn_1_51E60(void *);
 extern const f32 lbl_1_rodata_5D6C;
 extern void fn_1_C8DC0(void);
-extern void fn_80008E84(u32);
 extern const f32 lbl_1_rodata_5D88;
 extern const f32 lbl_1_rodata_5D8C;
 extern void fn_1_4955C(f32, f32);
@@ -189,7 +183,6 @@ extern u8 lbl_1_bss_9C;
 extern void *fn_1_868C0(s8);
 extern void fn_80006E10(u32);
 
-#include "types.h"
 
 void fn_1_D19B8(u8 *arg0) {
     u8 *p_lbl_1_data_3D670;

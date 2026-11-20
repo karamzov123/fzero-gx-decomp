@@ -122,7 +122,7 @@ rel/customize/toolkit/fn_3_19D88.c:
 	.text       start:0x00019D88 end:0x00019E40 align:4
 
 rel/customize/toolkit/fn_3_19E40.c:
-	.text       start:0x00019E40 end:0x0001A1D8 align:4
+	.text       start:0x00019E40 end:0x0001A264 align:4
 
 rel/customize/toolkit/fn_3_1ACE4.c:
 	.text       start:0x0001ACE4 end:0x0001AEE4 align:4
@@ -135,9 +135,6 @@ rel/customize/_prolog/fn_3_3E58.c:
 
 rel/customize/emb_memcard/fn_3_F948.c:
 	.text       start:0x0000F948 end:0x0000F984 align:4
-
-rel/customize/toolkit/fn_3_1A1D8.c:
-	.text       start:0x0001A1D8 end:0x0001A264 align:4
 
 rel/customize/_prolog/fn_3_968C.c:
 	.text       start:0x0000968C end:0x00009710 align:4
