@@ -23,7 +23,6 @@ extern u32 fn_800589BC(struct Block *, s32, struct Block *, struct Block *);
 void fn_800502A0(struct fn_800502A0_Arg0 *arg0) {
     u32 v;
     struct Stream * fzgx_live;
-    u32 value;
     s32 count;
     s32 amount;
     struct Block first;

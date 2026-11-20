@@ -2060,7 +2060,6 @@ void fn_1_80294(Fn80294Entry *entry, Fn80294Car *car, s32 arg2) {
     u32 *list;
     s8 count;
     s8 m;
-    u32 mask;
 
     common = 0;
     if (entry->unk_C & 0x100000) {
@@ -2183,7 +2182,6 @@ void fn_1_80C18(u8 *arg0, u8 *arg1, s8 arg2) {
     u8 *p0;
     u8 *p1;
     s8 i;
-    s8 count;
 
     data = (u8 *)&lbl_1_data_1F1D8;
     fn_1_12AB38(data + 0xe0c);
@@ -3281,7 +3279,6 @@ void fn_1_80F80(u32 *p, s16 idx, s16 mask)
     char **tbl = (char **)fzgx_pool_data_lbl_1_data_1F4FC;
     s32 off = idx;
     u32 *q;
-    s32 m;
     s16 i;
 
     fn_80083DB0(name, tbl[off]);
@@ -6640,7 +6637,6 @@ static void fzgx_bss_layout(void) {
 #pragma section code_type ".text"
 
 void fn_1_83858(struct fn_1_83858_Arg0 *arg0) {
-    u32 v11;
     u8 *table;
     s32 flag_offset;
     f32 *input;
@@ -6649,12 +6645,8 @@ void fn_1_83858(struct fn_1_83858_Arg0 *arg0) {
     f32 v0;
     u32 v1;
     u32 v2;
-    u32 v3;
-    u32 v4;
     f64 v5;
-    f32 v6;
     s32 v7;
-    s32 v8;
     f32 v9;
     f32 v10;
     u8 v12;
@@ -7177,10 +7169,6 @@ f32 fn_1_84038(Fn184038Object *obj, s16 index, u8 use_table, f32 value) {
     f32 *constants = lbl_1_rodata_3508;
     void *entry;
     Fn184038Result result;
-    f32 factor;
-    f32 output;
-    f32 entry_value;
-    f32 coeff;
 
     if (use_table != 0) {
         entry = ((void **)((u8 *)obj->field_3a0 + 0x344))[index];
@@ -10109,7 +10097,6 @@ extern struct fn_1_866B4_state lbl_1_bss_6D820;
 
 #pragma opt_lifetimes off
 s32 fn_1_866B4(u32 arg0) {
-    s16 v6;
     struct fn_1_866B4_state *state;
     struct fn_1_866B4_car *v0;
     s16 v1;
@@ -13989,7 +13976,6 @@ void fn_1_8901C(Fn8901CCar *car) {
     if (car->driver != NULL && (car->driver->flags & 0x60)) {
         Fn8901CDriver *d = car->driver;
         f32 r;
-        f32 t;
         f32 scale;
 
         scale = (d->flags & 0x600000) ? 44.0f : 89.0f;
@@ -18585,9 +18571,6 @@ s32 fn_1_8D210(fn_1_8D210_car *car, fn_1_8D210_callback callback, u32 arg, s32 e
     u8 local_18[0x1c];
     u8 local_8c[52];
     u8 local_4c[64];
-    s32 value_a;
-    s32 value_b;
-    s32 value_c;
     s32 result;
 
     lbl_8006DD14(lbl_801A6D00 + 0x30, local_8c);
@@ -25158,7 +25141,6 @@ void fn_1_900C4(void) {
     p_lbl_1_bss_6E960 = (struct fn_1_900C4_lbl_1_bss_6E960 *)&lbl_1_bss_6E960;
     p_lbl_1_bss_6E960->unk_1C = 1;
 {
-    u32 v0;
     p_lbl_1_bss_6E960->unk_18 = 0;
     p_lbl_1_bss_6E960->unk_20 = 0;
     p_lbl_1_bss_6E960->unk_0 = 0;
@@ -38730,7 +38712,6 @@ void fn_1_95238(u32 arg0, EventList *arg1) {
     u32 v5;
     s32 v7;
     void *v9;
-    u32 v10;
     s32 v11;
     u32 v12;
     struct { u16 value; } v13;

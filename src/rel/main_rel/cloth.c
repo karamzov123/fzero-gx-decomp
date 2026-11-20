@@ -211,7 +211,6 @@ void fn_1_101BC4(u32 arg0) {
 #define v1 v1.value
     u32 v7;
     u32 v8;
-    s32 v9;
     u32 v11;
     s32 v14;
     u32 v12;
@@ -220,19 +219,11 @@ void fn_1_101BC4(u32 arg0) {
     f32 v15;
     f32 v16;
     u32 v17;
-    u32 v18;
-    u32 v19;
     u32 v20;
-    u32 v21;
-    u32 v22;
-    u32 v23;
-    u8 v24;
     u32 v26;
     u32 v27;
     f32 v28;
     f64 v29;
-    f32 v30;
-    f32 v31;
     u32 v33;
     u32 v35;
     u32 v37;
@@ -249,14 +240,9 @@ void fn_1_101BC4(u32 arg0) {
     u32 v51;
     u32 v52;
     f32 v53;
-    u32 v54;
-    u32 v55;
     u32 v59;
     u32 v60;
-    u32 v61;
     f32 v62;
-    u32 v63;
-    u32 v64;
     f32 dz, dy, dx;
     p_lbl_1_rodata_77F8 = &lbl_1_rodata_77F8;
     p_lbl_1_bss_85250 = &lbl_1_bss_85250;

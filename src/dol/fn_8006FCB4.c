@@ -58,8 +58,6 @@ extern u32 lbl_801A6CC0;
 extern u16 lbl_801A6CBC;
 
 void fn_8006FD1C(void) {
-    Fifo **table;
-    u32 index;
     u32 value_c;
     u32 value_8;
 

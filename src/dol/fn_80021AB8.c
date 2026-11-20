@@ -8,7 +8,6 @@ extern u8 lbl_80160C80[16544];
 extern void fn_80028E88(void *);
 
 void fn_80021AB8(void) {
-    u64 time;
 
     if (lbl_801A6B14 == 0) {
         lbl_801A6B18 = OSGetTime();

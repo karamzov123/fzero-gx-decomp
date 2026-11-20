@@ -1018,7 +1018,6 @@ void fn_1_1324C4(void *arg0) {
     s32 v0;
     s16 v1;
     s16 v2;
-    s32 t;
     s32 lab_t1;
 
     v0 = lbl_1_bss_8B3A0.unk_0 == 10;

@@ -158,7 +158,6 @@ static inline void adxt_GetTimeSub(ADXTHandle *handle, s32 *count, s32 *scale) {
     s32 status = handle->status;
     if (status == 3 || status == 4) {
         s32 decoded;
-        s32 buffered;
         *scale = fn_80041684(handle->decoder);
         decoded = fn_800416F8(handle->decoder);
         *count = handle->linked_decoded_samples + (decoded - (fn_8004EE84(handle->rna) + adxt_GetNumSmplObuf(handle)));

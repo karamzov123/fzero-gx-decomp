@@ -669,7 +669,6 @@ void fn_1_15C36C(void) {
     u8 mask;
     u8 flags;
     s32 hit;
-    s32 off;
     f32 values[4];
     f32 *output;
 
@@ -1881,11 +1880,8 @@ void fn_1_15E7F4(void *arg0, s32 arg1) {
     u32 v5_2;
     u32 v13;
     f32 v26;
-    f32 c;
     f32 d;
     void *v16, *v15;
-    f32 v17;
-    f32 v18;
     f32 v19;
     f32 v20;
     f32 v21;
@@ -1955,7 +1951,6 @@ void fn_1_15E7F4(void *arg0, s32 arg1) {
         v15 = &loc_8;
         for (v14 = 0; v14 < 4; v14++) {
             f32 a;
-            f32 b;
             v5 = *(u32 *)v15;
             *(f32 *)((u8 *)&loc_58 + 24) = *(f32 *)v16;
             *(f32 *)((u8 *)&loc_58 + 28) = *(f32 *)((u8 *)v16 + 4);
@@ -2216,7 +2211,6 @@ static void fzgx_string_layout(void) {
 
 void fn_1_15EC40(struct fn_1_15EC40_Arg0 *arg0) {
     s32 positive;
-    struct fn_1_15EC40_lbl_1_rodata_DD58 *p_lbl_1_rodata_DD58;
     u32 tmp_fn_1_58C4;
     u8 v0;
     f32 v3;

@@ -9,7 +9,6 @@ u32 fn_80057774(u32 arg0, s32 arg1, s32 arg2, s32 *arg3) {
     s32 var_r0;
     s32 temp_r3;
     fn_80057774_Fn0 temp_r12;
-    u32 res;
 
     fn_80057728();
     if (arg1 == 0) {

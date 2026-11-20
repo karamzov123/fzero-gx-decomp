@@ -3624,15 +3624,12 @@ f32 fn_1_A888(void *arg0) {
     f32 fzgx_live_;
     f32 *fzgx_value;
     f64 fzgx_live;
-    struct Pool *pool;
     struct Self *self = (struct Self *)arg0;
     struct Ent *ent;
     s32 flag;
     u32 w3;
     u32 w2;
-    volatile u32 z1;  /* fzgx-allow: retail keeps these dead zero stores */
     struct Vec3 pos;
-    volatile u32 z0;  /* fzgx-allow: retail keeps these dead zero stores */
     struct Vec3 v3c;
     struct Vec3 v30;
     struct Vec3 v24;
@@ -3642,7 +3639,6 @@ f32 fn_1_A888(void *arg0) {
     f64 t;
     struct { f64 value; } val;
     f32 cur;
-    f64 delta;
     f64 scaled;
 
     lbl_8006DAEC(self);

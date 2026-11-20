@@ -640,7 +640,6 @@ extern void fn_1_A04AC(void);
 
 void fn_1_A04C4(void) {
     struct fn_1_A04C4_lbl_1_bss_6EA98 *p_lbl_1_bss_6EA98;
-    u32 v0;
     u32 v1;
     u32 v2;
     u32 v3;
@@ -5634,7 +5633,6 @@ extern void fn_80067344(s32, s32, u32, s32);
 extern void fn_80067898(u32);
 
 void fn_1_A514C(s32 index) {
-    u32 offset;
     u32 value;
 
     if (index <= 0x28) {

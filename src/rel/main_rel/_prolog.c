@@ -2781,7 +2781,6 @@ void fn_1_3920(void) {
     u8 flag;
     u32 *q;
     u32 i;
-    u8 zero;
     struct fn_1_3920_Out out[4];
     struct fn_1_3920_In in[4];
 

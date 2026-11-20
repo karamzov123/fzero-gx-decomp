@@ -6,7 +6,6 @@ extern u32 fn_80079FA8(u32);
 extern u32 fn_8007ADF0(u32, u32);
 
 u32 fn_8007AB58(u32 arg0, u32 arg1) {
-    u32 v0;
     u32 v2;
     u32 t0;
     u32 v1;

@@ -3776,7 +3776,6 @@ void fn_1_7926C(s32 arg0) {
     u16 height;
     u8 flag;
     fn_1_7926C_Entry *entry;
-    f32 scale;
     f32 x;
     f32 y;
     f32 w;
@@ -4251,7 +4250,6 @@ void fn_1_79948(void) {
     ScreenFx *e;
     const ScreenFxEntry *ent;
     s32 i;
-    ScreenFx tmp;
 
     if (lbl_1_bss_3BE0 != NULL && lbl_1_bss_3BE0->unk_80 != 0) {
         lbl_1_bss_6D758.active = 1;
@@ -6095,7 +6093,6 @@ void fn_1_7B558(s32 arg0, s32 arg1, u32 x, u32 y, u32 w, u32 h, f32 scale) {
     f32 dist;
     struct { s32 value; s32 offset; } i;
     void *model;
-    void * lab_t0;
 
     if (fn_1_A5DC4() != 0) {
         x = __cvt_fp2unsigned(320.0f - (320.0f * (320.0f - x)) / 427.0f);

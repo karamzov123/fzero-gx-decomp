@@ -821,7 +821,6 @@ void fn_1_F65A0(struct fn_1_F65A0_Arg0 *obj) {
     s32 n;
     F65Node *node;
     s32 k;
-    f32 one;
     f32 scale;
     f32 alpha;
     f32 size;
@@ -830,8 +829,6 @@ void fn_1_F65A0(struct fn_1_F65A0_Arg0 *obj) {
     f32 ratio;
     f32 width;
     f32 len;
-    f32 ex;
-    f32 ey;
     struct fn_1_F65A0_Arg0 *effect;
     s32 i;
     s32 j;
@@ -3290,8 +3287,6 @@ void fn_1_FA1D8(u32 arg0, u32 arg1, SplineTimeTable *table) {
     s32 i;
     s32 k;
     u32 packed;
-    u8 hi;
-    u8 lo;
     u32 min0;
     u32 sec0;
     u32 min1;

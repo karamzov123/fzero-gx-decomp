@@ -12,7 +12,6 @@ extern struct fn_80034834_gx_T *gx;
 void fn_80034834(u32 arg0, u32 arg1, u32 arg2) {
     struct fn_80034834_gx_T *reg;
     u32 command;
-    u32 data;
     // The GX write-gather FIFO is memory-mapped hardware.
     volatile u8 *fifo;
 

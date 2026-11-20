@@ -4326,7 +4326,6 @@ void fn_1_FE644(void) {
     Obj_1_data_2A7E0_At3C *obj;
     Obj_1_FE644_Out out;
     struct { f32 value; } f;
-    f32 t;
 
     obj = lbl_1_data_2A7E0.unk_3C;
     ext = (Obj_1_FE644_Ext *)obj;
@@ -4502,7 +4501,6 @@ typedef struct {
 static inline f32 fn_1_FED34_operand(f32 right, f32 left) { return left + right; }
 void fn_1_FED34(void *arg0) {
     u8 sp8[16];
-    RoData_76A8 *rd;
     s32 var_r30;
     s32 var_r29;
     u8 *var_r28;
@@ -4651,7 +4649,6 @@ void fn_1_FF038(void *owner_raw) {
     f32 dz;
     f32 k;
     f32 alpha;
-    f32 t;
     f32 cr;
     f32 cg;
     f32 cb;
@@ -4703,7 +4700,6 @@ void fn_1_FF038(void *owner_raw) {
                 memset(&sprite, 0, sizeof(sprite));
                 lbl_8006DB74(sprite.mtx);
                 {
-                    f32 rgba[4];
                     k = 0.6f + (f32)(0.4f * ((u16)fn_1_584AC() / 32767.0f));
                     cr = 255.0f * (0.5f * (1.0f + k));
                     cg = 255.0f * (0.8f * k);
@@ -5028,7 +5024,6 @@ void fn_1_FFA0C(void *em_raw) {
     f32 size;
     f32 dist;
     f32 shade;
-    f32 intensity;
 
     p = em->particles;
     obj = *(u8 **)(lbl_1_bss_38458->unk_8 + 0x168);
@@ -5095,11 +5090,9 @@ void fn_1_FFC60(void *arg0) {
     f32 v6;
     f32 v7;
     f32 v8;
-    u32 v9;
     f32 v0;
     u32 t2;
     s32 t3;
-    u32 t4;
     u32 t5;
     if ((u32)fn_1_58C4() < 2) {
         *(u32 *)((u8 *)arg0 + 16) = 1;
@@ -5252,9 +5245,7 @@ static inline s32 fn_1_FFE7C_less_equal(s32 quota, s32 index) {
 }
 
 void fn_1_FFE7C(void * arg0) {
-    struct fn_1_FFE7C_lbl_1_rodata_76A8 *p_lbl_1_rodata_76A8;
     f32 v0;
-    f32 dz;
     f32 v1;
     f32 v2;
     f64 v3;
@@ -5269,71 +5260,20 @@ void fn_1_FFE7C(void * arg0) {
     s32 v13;
     void * v14;
     s32 v8;
-    u32 v15;
     f32 v16;
-    f64 v17;
-    f32 v18;
-    f64 v19;
-    f32 v20;
-    f64 v21;
-    f32 v22;
-    u32 v23;
-    f32 v24;
-    f32 v25;
-    f32 v26;
-    f32 v27;
-    f32 v28;
-    f32 v29;
-    f32 v30;
-    f32 v31;
-    f32 v32;
-    f32 v33;
-    f32 v34;
-    f32 v35;
-    f32 v36;
-    f32 v37;
     f32 v38;
-    u32 v39;
     f32 v40;
     f32 v41;
-    f64 v42;
     f32 v43;
-    f32 v44;
-    f32 v45;
-    f32 v46;
-    f32 v47;
-    f32 v48;
-    f32 v49;
-    f32 v50;
-    f32 v51;
     f32 v52;
-    f32 v53;
-    f32 v54;
     f32 v55;
     f32 v56;
     f32 v57;
     f32 v58;
     f32 v59;
     f32 v60;
-    u32 v61;
-    f32 v62;
-    f32 v63;
-    f32 v64;
-    f32 v65;
-    f32 v66;
-    f32 v67;
-    f32 v68;
-    f32 v69;
     f32 v70;
     f32 v71;
-    f32 v72;
-    f32 v73;
-    f32 v74;
-    f32 v75;
-    f32 v76;
-    f32 v77;
-    f32 v78;
-    f64 v79;
     u32 v80;
     f32 v81;
     struct { f32 a[3]; } loc_20;
@@ -5342,23 +5282,7 @@ void fn_1_FFE7C(void * arg0) {
     /* frame */
     f32 t4;
     u32 t6;
-    u32 t7;
-    u32 t8;
-    u32 t9;
-    u32 t10;
-    u32 t11;
-    u32 t12;
-    u32 t13;
-    u32 t14;
-    u32 t15;
     f32 t16;
-    u32 t17;
-    u32 t18;
-    u32 t19;
-    u32 t20;
-    u32 t21;
-    u32 t22;
-    u32 t23;
     /* 13 instruction(s) not lifted: see the ??? markers */
 
     lbl_8006DBAC((Vec3 *)lbl_801A66CC);
@@ -5619,7 +5543,6 @@ void fn_1_10069C(void *obj_raw) {
     s32 n;
     F65Node *node;
     s32 k;
-    f32 one;
     f32 scale;
     f32 alpha;
     f32 size;
@@ -5628,8 +5551,6 @@ void fn_1_10069C(void *obj_raw) {
     f32 ratio;
     f32 width;
     f32 len;
-    f32 ex;
-    f32 ey;
     struct fn_1_10069C_Arg0 *effect;
     s32 j;
     s32 i;

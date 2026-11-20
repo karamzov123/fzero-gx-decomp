@@ -264,9 +264,6 @@ void fn_1_C489C(void *arg0) {
     f64 v5;
     f32 v6;
     f64 v7;
-    void * table;
-    void *v10;
-    void *v11;
     v0 = *(u32 *)((u8 *)arg0 + 1156);
     v1 = *(u32 *)(v0 + 64);
     fn_800793D4((u8 *)v0, 0, 136);
@@ -1922,7 +1919,6 @@ extern u32 lbl_1_bss_8B5CC[8];
 
 void fn_1_C6F8C(void) {
 	fn_1_C6F8C_Msg msgA;
-	u16 idx;
 	fn_1_C6F8C_Msg msgB;
 	s32 i;
 
@@ -3663,7 +3659,6 @@ extern void fn_1_51E60(u32);
 struct FzgxCopy_88 { u32 words[22]; };
 void fn_1_CADC4(s32 arg0) {
     struct FzgxCopy_88 loc_8;
-    s32 sp4;
     s32 temp_r31;
 
     temp_r31 = fn_1_8652C(arg0);
@@ -3712,7 +3707,6 @@ extern int fn_1_4F734(FontDrawPacket *);
 struct FzgxCopy_88 { u32 words[22]; };
 void fn_1_CAEBC(s32 arg0, s32 arg1, s32 arg2) {
     FontDrawPacket loc_8;
-    s32 sp4;
     s32 temp_r31;
 
     temp_r31 = fn_1_8652C(arg0);
@@ -4123,7 +4117,6 @@ void fn_1_CBC24(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     struct fn_1_CBC24_Copy88 loc_30;
     struct fn_1_CBC24_Copy40 loc_8;
     s32 t0;
-    s32 v11;
     loc_8 = lbl_1_rodata_5E98;
     t0 = fn_1_5910();
     if ((((&lbl_1_data_3D544.unk_0)[t0] >> 25) & 1) != 0) {
@@ -4917,8 +4910,6 @@ void fn_1_CDC8C(void) {
     f32 v_430;
     f32 v_mul;
     f32 v_div;
-    f32 yy;
-    f32 fx;
     f32 t;
 
     n = 0;
@@ -5538,7 +5529,6 @@ void fn_1_CF5B0(void *self) {
     u32 sp8;
     s32 var_r30;
     s32 var_r31;
-    s32 temp_r0;
 
     if (((((u32 *)&lbl_1_data_3D544)[fn_1_5910(self)]) >> 17) & 1) {
         fn_1_3EF14(&lbl_1_bss_3C30);

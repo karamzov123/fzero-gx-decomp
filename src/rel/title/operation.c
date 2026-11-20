@@ -3890,7 +3890,6 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
 #pragma section code_type ".text"
 
 void fn_8_9FB4(void) {
-    Curve_8_9FB4 *curves;
     s32 x;
     s32 end;
     s32 cnt;
@@ -6187,8 +6186,6 @@ extern void fn_8006CE1C(f32);
 
 void fn_8_BAEC(void) {
     struct fn_8_BAEC_lbl_8_bss_2A8 *base;
-    f32 v;
-    u32 t;
 
     base = (struct fn_8_BAEC_lbl_8_bss_2A8 *)&lbl_8_bss_2A8;
     if (base->unk_124 == base->unk_128 / 2) {
@@ -7503,7 +7500,6 @@ void fn_8_D034(void) {
     s32 n;
     s32 m;
     s32 idx;
-    s32 flag;
     f32 x;
     f64 curve;
     f32 alpha;
@@ -9611,7 +9607,6 @@ s32 fn_8_FC5C(void) {
     s32 bit;
     u8 *src;
     s32 i;
-    Obj_8_bss_550_Target *maskstate;
     struct { u8 value; } k;
     struct { s32 value; } n;
     s32 res;

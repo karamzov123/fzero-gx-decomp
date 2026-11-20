@@ -184,7 +184,6 @@ extern void fn_80006E10(u32);
 
 void fn_1_D19B8(u8 *arg0) {
     u8 *p_lbl_1_data_3D670;
-    u32 *p_lbl_1_data_20D1C;
     s32 v2;
     u32 v1;
     u8 v3;

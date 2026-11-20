@@ -1583,7 +1583,6 @@ void fn_1_ACA78(void *arg0) {
     u32 var_r3;
     u8 temp_r0;
     u8 temp_r0_2;
-    u8 var_ctr;
     void *temp_r3;
     void *temp_r3_2;
     void *temp_r3_3;
@@ -9174,7 +9173,6 @@ extern u32 fn_1_1563E8(u32, u32);
 
 void fn_1_B03CC(B03CC_State *arg0) {
     B03CC_Work * fzgx_live;
-    u8 cmd;
     char *base = (char *)&lbl_1_data_35AC8;
     MemcardWork *g = &lbl_1_bss_716C0;
     u8 *slot0;
@@ -9723,8 +9721,6 @@ void fn_1_B03CC(B03CC_State *arg0) {
             break;
         case 0:
             if (arg0->unk_24->unk_0 == 1) {
-                u32 t0;
-                u32 t1;
                 arg0->unk_50 = 1;
                 *(u64 *)((u8 *)arg0 + 0x48) = *(u64 *)((u8 *)arg0->unk_24 + 0x18);
                 g->unk_5C4A = arg0->unk_0;
@@ -14456,20 +14452,15 @@ static inline s32 fn_1_B4AC0_cardReady(s32 chan) {
 
 void fn_1_B4AC0(void) {
 
-    void * v0;
     s32 v1;
     volatile fn_1_B4AC0_Channel *v2; /* state shared with CARD callbacks */
     s32 v3;
     s32 v4;
     s32 v5;
-    u8 v6;
     s32 v7;
     u32 v8;
-    u32 v9;
-    u16 v10;
     u32 unk_1;
     s32 v12;
-    u16 v13;
     u32 unk_2;
     u8 v15;
     u32 v16;
@@ -27220,7 +27211,6 @@ extern void fn_1_50164(f32, f32, f32, f32, void *);
 struct FzgxCopy_88 { u32 words[22]; };
 void fn_1_BF520(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u32 *arg4) {
     struct FzgxCopy_88 loc_8;
-    s32 sp4;
 
     loc_8 = *(const struct FzgxCopy_88 *)((((((&lbl_1_rodata_26F8) + -4))) + 4));
     loc_8.words[0] = 0xC;
@@ -32230,8 +32220,6 @@ void *fn_1_C1CFC(void *src, u32 w, u32 h, f32 scale) {
     u32 sr;
     u32 sg;
     u8 *p;
-    u16 *sp;
-    void *vp;
     u32 sb;
     u32 sa;
 
@@ -34038,7 +34026,6 @@ extern u32 fn_800793D4(u8 *, u32, u32);
 
 void fn_1_C40A0(Racer *racer)
 {
-    u32 idx;
     RacerSub *sub;
     s32 offset;
     u32 i;

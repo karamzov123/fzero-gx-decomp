@@ -804,7 +804,6 @@ void fn_1_48D80(fn_1_48D80_Sprite *sprite) {
     f32 m0;
     f64 half;
     f32 offset;
-    u32 screenH;
 
     v0 = initialV0;
     v1 = initialV1;
@@ -2241,9 +2240,7 @@ typedef struct {
 
 void fn_1_4AC20(fn_1_4AC20_FontData *value) {
     fn_1_4AC20_FontData local = *value;
-    int x_max;
     int x_ok;
-    int y_max;
     int y_ok;
 
     if (lbl_1_bss_4B9CC.unk_45 != 0) {
@@ -2932,7 +2929,6 @@ extern u32 fn_1_4C16C(void);
 
 
 void fn_1_4BD4C(u32 unused0, u32 unused1, u32 unused2) {
-    s8 *fzgx_value;
     u16 *p_d58;
     s32 page_size;
     FontElement *elem;
@@ -4923,7 +4919,6 @@ struct fn_1_4DEC0_Copy88 { u32 a[22]; };
 
 void fn_1_4DEC0(void) {
     struct FzgxCopy_88 loc_8;
-    s32 sp4;
     s32 (*temp_r12)(u32 *);
     s32 var_r31;
     u32 *var_r30;
@@ -5355,7 +5350,6 @@ struct fn_1_4E92C_lbl_801A6D00 {
 s32 fn_1_4E92C(s32 arg0, u32 arg1, s16 arg2, s16 arg3, u32 arg4) {
     struct FzgxCopy_88 loc_60;
     struct FzgxCopy_88 loc_8;
-    s32 sp4;
     s32 var_r31;
 
     loc_60 = *(const struct FzgxCopy_88 *)((arg0 - 4 + 4));
@@ -6151,7 +6145,6 @@ extern int fn_1_4F734(FontDrawPacket *);
 #pragma opt_lifetimes off
 void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg4, f32 farg5) {
     struct Pkt88 loc_8;
-    s32 sp4;
     f32 temp_f31;
     f32 var_f30;
     f32 temp_f29;
@@ -6166,7 +6159,6 @@ void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg
     f32 temp_f23;
     f32 var_f22;
     f32 temp_f30;
-    f32 conv_h;
     u32 temp_r4;
     u32 temp_r0;
     u32 temp_r0_2;
@@ -6758,7 +6750,6 @@ f32 fn_1_51AC0(f32 value) {
     f32 denom;
     f32 result;
     FnData data;
-    u64 padding;
 
     fn_80038F10( (f32*)(&data));
     value0 = data.value0;
@@ -6799,7 +6790,6 @@ typedef struct {
 f32 fn_1_51BFC(f32 value) {
     Fn51BFCData data;
     f32 factor;
-    u32 count;
 
     fn_80038F10( (f32*)(&data));
     factor = data.value;
@@ -8898,7 +8888,6 @@ extern void lbl_8006E1C0(Vec3 *, Vec3 *);
 
 void fn_1_549F4(Vec3 *arg0, Angles *arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
     f32 fzgx_live_;
-    f32 fzgx_live;
     f32 h;
     K *p = (K *)&lbl_1_rodata_2880;
     s16 t1, t2;
@@ -9309,7 +9298,6 @@ void fn_1_553C4(void *value, void *arg) {
     void *result;
     s32 ok;
     s32 i;
-    u32 bit;
 
     if (lbl_1_rodata_28A8 == lbl_1_bss_6C7A4.unk_8) {
         if (*(u16 *)((u8 *)value + 0x1c) == 0) {
@@ -9498,8 +9486,6 @@ void fn_1_557C4(void *value) {
     void *resource;
     s32 valid;
     s32 i;
-    u32 shift;
-    u32 word;
     Obj_1_bss_6C7CC *bits;
 
     resource = (void *)fn_1_5448C((u8 *)value + 8);

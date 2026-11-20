@@ -965,28 +965,15 @@ f32 fzgx_pool_conversions(s32 a, u32 b) {
 #pragma pool_data off
 void fn_1_133E04(s32 arg0, s32 arg1) {
     u32 *p_lbl_1_bss_38460;
-    u32 *p_lbl_801A66A0;
     const f32 *p_lbl_1_rodata_87E8;
     const f32 *p_lbl_1_rodata_87E4;
     const f64 *p_lbl_1_rodata_8810;
-    u32 v0;
-    u32 v1;
-    u32 v2;
-    f32 v3;
     u32 v4;
-    u32 unk_1;
     u32 v6;
-    u32 v7;
-    f64 v8;
-    u32 v9;
-    s32 v10;
-    f32 v11;
     u32 v12;
-    u32 unk_2;
     f32 v14;
     f32 v15;
     u32 v16;
-    u32 unk_3;
     f32 v20;
     f32 v19;
     f64 v18;
@@ -999,39 +986,20 @@ void fn_1_133E04(s32 arg0, s32 arg1) {
     f32 v26;
     f32 v25;
     u32 v27;
-    u32 unk_6;
     f32 v29;
-    f64 v30;
     s32 v32;
     f32 v33;
     u32 v35;
     f32 v36;
     u32 v37;
-    u32 unk_9;
     f32 v39;
     f32 v40;
-    f64 v41;
     s32 v42;
-    f64 v43;
-    u32 v45;
-    f64 v46;
-    f32 v47;
-    f32 v48;
-    f32 v49;
     u32 v50;
     u32 v51;
-    f32 v52;
-    f32 v53;
     u32 v54;
-    f32 v55;
-    f32 v56;
-    f32 v57;
     u32 v58;
-    f32 v59;
-    f32 v60;
-    f32 v61;
     u32 v62;
-    f32 v63;
     FontDrawPacket loc_90;
     struct {
         f32 matrix[3][4];
@@ -1054,8 +1022,6 @@ void fn_1_133E04(s32 arg0, s32 arg1) {
 #define camera_target (&loc_7C)
     /* frame */
     f32 t25;
-    f64 t62;
-    f64 t63;
     s32 t77;
 #define v39 loopCount
 #define v33 v22
@@ -1414,10 +1380,6 @@ void fn_1_134EE4(s32 arg0, s32 arg1, s32 arg2, f32 farg0) {
     FontDrawPacket packet;
     s16 temp_r21;
     s16 temp_r22;
-    s16 temp_r24;
-    f32 temp_f30;
-    f32 temp_f31;
-    f32 temp_f28;
     FontDrawPacket * lab_t0;
     FontDrawPacket * lab_t0_;
 
@@ -2183,54 +2145,6 @@ extern void fn_1_51564(u16, u16, u16, u16, u16, u16);
 extern void fn_1_5158C(FontDrawPacket *, u32, s16, s16);
 
 void fn_1_136CC4(u32 arg0, u32 arg1, u32 arg2, s16 arg3) {
-    f32 v0;
-    f32 v1;
-    f64 v2;
-    f32 v3;
-    f32 v4;
-    f32 v5;
-    u32 v6;
-    f32 v7;
-    f32 v8;
-    f64 v9;
-    f32 v10;
-    f32 v11;
-    f32 v12;
-    u32 v13;
-    f32 v14;
-    f32 v15;
-    f64 v16;
-    f32 v17;
-    f32 v18;
-    f32 v19;
-    u32 v20;
-    s32 v21;
-    s32 v22;
-    f32 v23;
-    f64 v24;
-    u32 v25;
-    f32 v26;
-    f32 v27;
-    f32 v28;
-    f32 v29;
-    s32 v30;
-    s32 v31;
-    f32 v32;
-    f64 v33;
-    u32 v34;
-    f32 v35;
-    f32 v36;
-    f32 v37;
-    f32 v38;
-    s32 v39;
-    s32 v40;
-    f32 v41;
-    f64 v42;
-    u32 v43;
-    f32 v44;
-    f32 v45;
-    f32 v46;
-    f32 v47;
     FontDrawPacket loc_10;
     struct ColorWord color;
     u8 loc_A;
@@ -4717,7 +4631,6 @@ void fn_1_13ABA8(u32 arg0) {
     s32 totalWidth;
     u8 nextBit;
     u32 bitMask;
-    s32 spacingIndex;
     struct { s32 *ptr; s32 offset; } spacing;
     p_lbl_1_data_40F58 = (u8*)&lbl_1_data_40F58;
     totalWidth = 0;
@@ -4875,17 +4788,10 @@ extern void fn_1_51678(FontDrawPacket *, u32, s16, s16, s16, s16);
 
 #pragma opt_common_subs off
 s32 fn_1_13B548(u32 arg0, s32 arg1, s32 arg2, u32 arg3) {
-    f32 initial_z;
     f32 v0;
-    f64 v2;
-    f32 v3;
     u32 v64;
     u32 v4;
     s32 unk_1;
-    u32 v6;
-    u32 v7;
-    s32 v8;
-    u32 v9;
     s32 v1;
     s32 v10;
     s32 v11;
@@ -4899,50 +4805,9 @@ s32 fn_1_13B548(u32 arg0, s32 arg1, s32 arg2, u32 arg3) {
     s32 v18;
     u32 v19;
     s32 v20;
-    f64 v21;
-    f32 v22;
-    f32 v23;
-    f64 v24;
-    u32 v25;
-    f32 v26;
-    f64 v27;
-    u32 v28;
-    f32 v29;
-    u32 v30;
-    u32 v31;
-    s32 v32;
-    u32 v33;
-    s32 v35;
-    s32 v34;
     u32 v36;
     u32 v37;
-    f64 v38;
-    u32 v39;
-    f32 v40;
-    f64 v41;
-    u32 v42;
-    f32 v43;
-    f64 v44;
-    f32 v45;
-    u32 v46;
-    f64 v47;
-    f32 v48;
-    u32 v49;
-    f64 v50;
-    f32 v51;
-    f32 v52;
-    f64 v53;
-    f32 v54;
-    u32 v55;
-    f32 v56;
     f32 overlay_z;
-    f32 v57;
-    f64 v58;
-    f32 v59;
-    u32 v60;
-    f64 v61;
-    f32 v62;
-    u32 v63;
     FontDrawPacket loc_10;
     struct fn_1_13B548_lbl_1_rodata_8C78 loc_C;
     struct fn_1_13B548_lbl_1_rodata_8C78 loc_8;
@@ -5177,7 +5042,6 @@ void fn_1_13C1A0(u8 *arg0) {
     u32 idx;
     f32 var_f31;
     u32 lab_t2;
-    char * lab_t0;
 
     fn_1_133E04((void *)1, 0);
     fn_1_134AD4();
@@ -8010,13 +7874,9 @@ void fn_1_1421D8(u32 arg0, u32 arg1) {
     u32 v2;
     f32 v4;
     s32 v7;
-    u32 v9;
     f32 v10;
     f32 v11;
-    s32 v14;
     f32 v15;
-    f32 v18;
-    s32 v19;
     f32 t15;
     f32 t23;
     fn_1_49410();
@@ -8467,9 +8327,7 @@ void fn_1_142BDC(u32 arg0, u32 arg1, u32 arg2) {
     u32 v6 = arg0;
     u32 arg0_local = arg0;
     s32 v7;
-    u32 v8;
     s32 v9;
-    s32 v10;
     s32 v13;
     s32 v12;
     s32 v15;
@@ -8477,7 +8335,6 @@ void fn_1_142BDC(u32 arg0, u32 arg1, u32 arg2) {
     u32 v23;
     f32 v25;
     u32 v36;
-    f32 v39;
     f32 v40;
     f32 v41;
     FontDrawPacket loc_18;
@@ -8942,10 +8799,8 @@ void fn_1_143780(u32 arg0, u32 arg1, u32 arg2) {
     s32 frame;
     s32 rem;
     u32 a0, b0, a1, b1, a2, b2;
-    f32 sn;
     f32 one;
     f32 t;
-    f32 u;
     Color loc_40;
     Color loc_3C;
     Color loc_38;
@@ -9362,7 +9217,6 @@ void fn_1_143F5C(s32 x, s32 y, s32 idx) {
     u32 list1[2] = {0x18, 0x21};
     fn_1_143F5C_Args args;
     FontDrawPacket packet;
-    u16 width;
 
     args.x = x;
     args.y = y;
@@ -9663,7 +9517,6 @@ void fn_1_144254(s32 arg0, s32 arg1) {
     struct fn_1_144254_Copy88 loc_84;
     struct fn_1_144254_Bounds loc_3C[6];
     u8 loc_28[17];
-    s32 v13;
     s32 v9;
     u8 v14;
     f32 v26, v24;
@@ -12281,7 +12134,6 @@ static inline BOOL fn_1_147A04_range0(s32 mode) {
 
 #pragma opt_propagation off
 void fn_1_147A04(s32 arg0, const fn_1_147A04_Obj *arg1) {
-    const char *src;
     char *v12;
     u32 v10;
     char *v16;
@@ -13639,11 +13491,7 @@ static inline s32 fn_1_1492E0_visible(s32 mode) {
     return result;
 }
 void fn_1_1492E0(s32 arg0, void *arg1) {
-    u32 v0;
     
-    s32 flag0;
-    s32 flag2;
-    s32 flag3;
     char buf[256];
     struct fn_1_1492E0_Copy88 packet;
     struct Results56 a;
@@ -14450,15 +14298,12 @@ void fn_1_14A328(void) {
     void * v3;
     void * v4;
     u8 v5;
-    s32 v6;
-    s32 v7;
     u8 v8;
     u32 v9;
     u32 v10;
     void * v12;
     void * v11;
     u8 v13;
-    s32 v14;
     s32 v15;
     u8 v16;
     u8 v17;
@@ -14466,30 +14311,24 @@ void fn_1_14A328(void) {
     void * v19;
     void * v20;
     u8 v21;
-    s32 v22;
-    s32 v23;
     u8 v24;
     u32 v25;
     u32 v26;
     void * v28;
     void * v27;
     u8 v29;
-    s32 v30;
     s32 v31;
     u8 v32;
     u8 v33;
     void * v34;
     void * v35;
     u8 v36;
-    s32 v37;
-    s32 v38;
     u8 v39;
     u32 v40;
     u32 v41;
     void * v43;
     void * v42;
     u8 v44;
-    s32 v45;
     s32 v46;
     u8 v47;
     u8 v48;
@@ -16721,7 +16560,6 @@ void fn_1_14C6F8(void)
 {
 	Obj_1_bss_8E518 *state = (Obj_1_bss_8E518 *)&lbl_1_bss_8E518;
 	s32 value;
-	s32 left;
 	f32 scale;
 
 	if ((s32)lbl_1_bss_25BA0.unk_0 != 0) {
@@ -18999,7 +18837,6 @@ void *fn_1_14F6F8(void *arg0, void *arg1, void *arg2, DispEntry *out) {
     DispEntry *z;
     void *t3;
     u8 *b3;
-    f32 q;
     f32 blend;
     s32 i;
     s32 delta;

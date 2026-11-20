@@ -13,7 +13,6 @@ extern u32 lbl_801309C0[];
 
 #pragma opt_propagation off
 s32 fn_800501F4(struct fn_800501F4_Arg0 *arg0, s32 arg1) {
-    u32 mask;
     u32 counter;
     s32 result;
     s32 shift;

@@ -106,7 +106,6 @@ void fn_8003FF88(void) {
     u8 *p_lbl_8012B658;
     u32 v0;
     u32 v2;
-    u32 v3;
     Record *records;
     Record *record;
     Descriptor *desc;

@@ -89,14 +89,10 @@ extern void fn_80035110(void *, Sig_fn_80035110_GXBool);
 
 #pragma opt_common_subs off
 void fn_80070774(u32 arg0, u32 arg1, u32 arg2) {
-    u32 t7;
     u32 t5;
     u32 t4;
     struct { u32 value; } t2;
     struct { u32 value; } t0;
-    s32 v5;
-    u32 v4;
-    u32 v3;
     struct { u32 value; } v2;
     struct { u32 value; } v1;
     u32 v0;

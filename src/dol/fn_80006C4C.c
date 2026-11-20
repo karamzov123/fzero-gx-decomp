@@ -68,7 +68,6 @@ u32 fn_80006D1C(struct fn_80006D1C_Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3) {
     u32 v2;
     u32 v3;
     u32 v4;
-    u8 loc_20;
     /* frame */
     u32 t1;
     v0 = (u32)arg0;

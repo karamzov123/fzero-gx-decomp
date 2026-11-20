@@ -979,8 +979,6 @@ void fn_1_1091D4(u32 arg0) {
     }
     {
     f32 v66, v2, v64, v65, v67, v68, v74, v76;
-    u32 offset;
-    Link1091D4 *v61;
     Group1091D4 *v62, *v63;
     u8 v75;
     u32 v3;
@@ -1022,7 +1020,6 @@ void fn_1_1091D4(u32 arg0) {
     }
     }
     {
-    Link1091D4 *v71;
     Group1091D4 *v72, *v73;
     for (v34 = 0; v34 < *(u32 *)(arg0 + 28); v34++) {
     v72 = (*(Link1091D4 **)(arg0 + 40))[v34].a;
@@ -4060,11 +4057,9 @@ void fn_1_10CC38(Rope *arg0) {
  u32 i;
  struct { u8 *value; } base_holder;
 #define base base_holder.value
- s32 j;
  u16 *link;
  u8 *vertices;
  Vec3f loc_20, loc_14, loc_8;
- f64 gravity;
  f32 accel;
  f32 len, scale;
  f32 dx,dy,dz;
@@ -6071,7 +6066,6 @@ void fn_1_110478(Work *arg0) {
  for(wi=0,wn=arg0->nodes;wi<arg0->count;wi++,wn++) {
  f32 w1,w2;
  u32 m;
- s32 rnd;
  m=wi%9;
  w2=(0.2f)+((0.8f)*m)/(9.0f);
  w1=(0.2f)+((0.8f)*(9-m))/(9.0f);
@@ -6944,7 +6938,6 @@ void fn_1_111980(Work *arg0) {
  for(wi=0,wn=arg0->nodes;wi<arg0->count;wi++,wn++) {
  f32 w1,w2;
  u32 m;
- s32 rnd;
  m=wi%9;
  w2=(0.2f)+((0.8f)*m)/(9.0f);
  w1=(0.2f)+((0.8f)*(9-m))/(9.0f);
@@ -10313,8 +10306,6 @@ void fn_1_113C58(AccessoryObjectLocal *arg0) {
     AccessoryVec noise;
     f32 distance;
     u32 k;
-    u32 initCount;
-    AccessoryPoint *initPoint;
     AccessoryPoint *points;
     u8 *matrix;
     AccessoryLink **sorted;
@@ -10330,7 +10321,6 @@ void fn_1_113C58(AccessoryObjectLocal *arg0) {
     AccessoryPoint *a;
     AccessoryPoint *b;
     const u8 *pool = (const u8 *)lbl_1_rodata_7AB8;
-    AccessoryLink *links;
     u32 j;
     if (obj != 0) {
     if (obj->unk_10 != 0) {
@@ -12328,7 +12318,6 @@ f32 fzgx_pool_lit_3C0(void) { return 0.03700000047683716f; }
 #pragma opt_dead_assignments off
 static inline f32 fn_1_11677C_operand(f32 right, f32 left) { return left + right; }
 void fn_1_11677C(void *arg0) {
-    f32 fzgx_live;
     struct fn_1_11677C_Part { u8 pad_0[0x88]; Vec3 matrix; u8 pad_94[0xF8]; };
     Vec3 * lab_t0;
     u32 v16;
@@ -12346,7 +12335,6 @@ void fn_1_11677C(void *arg0) {
     u32 v69, v72, v74, v75, v76;
     f64 v71, v70;
     s32 v77;
-    struct fn_1_11677C_Part *part4;
     u32 v0;
     struct { u32 a[12]; } loc_CC;
     struct { u32 a[12]; } loc_9C;
@@ -14648,18 +14636,13 @@ extern const u8 lbl_1_rodata_7AB8[];
 void fn_1_1188CC(Rope *rope) {
     const AccessoryPool1188CC *pool = (const AccessoryPool1188CC *)&lbl_1_rodata_7AB8;
 
-    u32 i1;
     RopeNode *n7;
     s32 k7;
     u32 i7;
     SkinMtx *skin;
-    u8 *i3;
     u32 i;
     RopeNode *node;
     RopeModel *model;
-    RopeNode *n3;
-    RopeModel *m3;
-    RopeNode *n1;
     u32 j;
     RopeNode *n4;
     u32 i4;
@@ -15055,23 +15038,16 @@ void fn_1_118D90(u32 arg0, f32 arg1) {
     u32 v2;
     u32 v3;
     u32 v5;
-    s32 v6;
     u32 v7;
-    f32 v9;
     u32 v10;
     u32 v11;
     u32 v4;
     u32 v12;
     u32 v13;
     u32 v14;
-    u32 v15;
     u32 v16;
-    u32 v17;
-    u32 v18;
     u32 v19;
-    u32 v20;
     u32 v21;
-    u32 v22;
     u32 v23;
     u32 v24;
     s32 v25;
@@ -20353,7 +20329,6 @@ static inline void sim_pull(SimRope *r, u8 *unused_bone, SimNode *unused_node, u
 }
 void fn_1_123050(SimRope *r) {
     f32 fzgx_live;
-    f32 pair_weight;
     SimVec delta, noise, diff, anchor;
     f32 length;
     SimLink *link;
@@ -20361,12 +20336,10 @@ void fn_1_123050(SimRope *r) {
     u32 i;
     u8 *bone, *vertices;
     s32 j;
-    u32 iterations_value;
     u32 solve_iterations;
     u8 *literal_pool;
     u32 compress_count, pass, ndiv;
     f32 headx, heady, zero, leftx, rightx, chesty, arm_x, arm_y, outerx, lowx, lowy;
-    f32 pull;
     f64 noise_scale, inherit, damping;
 
     literal_pool = (u8 *)fzgx_pool_table_0;
@@ -20621,7 +20594,6 @@ void fn_1_1244F0(Obj1244F0 *obj) {
     u32 i;
     Group1244F0 *g;
     f32 v;
-    u32 j4;
 
     if (obj != NULL) {
         fn_1_10846C(obj);
@@ -21557,10 +21529,7 @@ void fn_1_125DF0(Work *arg0) {
  const u8 *pool=lbl_1_rodata_7AB8;
  u8 *fmodel;
  Node *n1;
- u8 *model3;
  u32 i1;
- Node *n3;
- u32 i3;
  Node *fn;
  u32 fj;
  u8 *model5;
@@ -22284,7 +22253,6 @@ typedef Sig_fn_1_10846C_Group10846C Group;
 typedef struct { Group *a,*b; f32 distance; } Edge;
 void fn_1_126DE8(Sig_fn_1_10846C_Obj10846C *obj) {
  u32 h[1];
- Group *base;
  u32 i,k,j,edgeCount,offset;
  Group *p;
  u32 width;
@@ -24172,7 +24140,6 @@ void fn_1_12999C(void) {
  u8 self;
  u32 j;
  u8 *q;
- f32 lab_t7;
  t3C[0]=p->unk_78; t3C[1]=p->unk_7C; t3C[2]=p->unk_80;
  t2C[0]=p->unk_84; t2C[1]=p->unk_88; t2C[2]=p->unk_8C; t2C[3]=p->unk_90;
  if (*(s16 *)&lbl_1_bss_960 != 2 && *(s16 *)&lbl_1_bss_960 != 9) return;

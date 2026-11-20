@@ -48,7 +48,6 @@ void fn_80076790(void) {
     struct fn_80076790_Vec loc_14;
     struct fn_80076790_Vec loc_8;
     f32 scale;
-    u8 *base;
 
     loc_2C[0] = lbl_80094E20[0];
     loc_2C[1] = lbl_80094E20[1];

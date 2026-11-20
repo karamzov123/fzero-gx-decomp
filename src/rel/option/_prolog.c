@@ -1344,7 +1344,6 @@ struct fn_4_9B0_lbl_4_data_1260 {
 void fn_4_9B0(void) {
     struct fn_4_9B0_lbl_4_data_1260_0_E44 *p;
     s16 idx;
-    u32 v0;
     p = (struct fn_4_9B0_lbl_4_data_1260_0_E44 *)&lbl_4_data_1260;
     idx = lbl_1_bss_962;
     p = (struct fn_4_9B0_lbl_4_data_1260_0_E44 *)((u8 *)p + (idx - 75) * 44);
@@ -5291,7 +5290,6 @@ void fn_4_347C(void) {
     struct fn_4_347C_lbl_4_bss_0 *p_lbl_4_bss_0;
     u32 v0;
     u8 v1;
-    u8 v2;
     u32 t1;
     p_lbl_4_bss_0 = (struct fn_4_347C_lbl_4_bss_0 *)&lbl_4_bss_0;
     fn_1_435C(p_lbl_4_bss_0->unk_8);
@@ -12133,19 +12131,16 @@ void fn_4_82A0(void) {
     u32 mode;
     s32 *language0;
     s32 *language1;
-    const char **table1;
     s32 *language2;
     s32 *language3;
     struct { const char **p; } table3;
     s32 *language4;
     s32 *language5;
     s32 *language6;
-    const char **table7;
     s32 *language7;
     const char **table8;
     s32 *language8;
     const char **table0;
-    const char **table2;
     const char **table4;
     const char **table5;
     const char **table6;
@@ -12350,7 +12345,6 @@ extern u32 fn_1_4A00(u32, u32, u32);
 void fn_4_8720(void) {
     struct fn_4_8720_lbl_4_bss_0 *p = &lbl_4_bss_0;
     struct fn_4_8720_lbl_1_bss_9F8 *q;
-    u16 v;
 
     if (p->unk_10 != 0) {
         if (fn_1_4C10() == 0) {

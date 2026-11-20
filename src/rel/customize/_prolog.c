@@ -4231,8 +4231,6 @@ static void fzgx_bss_layout(void) {
 #pragma section code_type ".text"
 
 void fn_3_4F08(void) {
-    u32 v0;
-    u32 v1;
     struct F0 *f;
     u8 *q;
     s32 i;
@@ -6046,7 +6044,6 @@ extern s16 fn_1_14F014(void);
 void fn_3_6F90(void) {
     s16 values[6];
     struct { s16 * value; } entry;
-    u8 *base;
     s16 i;
     s32 k;
 
@@ -8962,8 +8959,6 @@ void fn_3_990C(void) {
     u8 *data;
     s16 idx;
     u8 i;
-    s32 *slot;
-    CustomizeCtx *ctx;
     u32 flags;
 
     idx = fzgx_obj_lbl_3_bss_F0.idx;

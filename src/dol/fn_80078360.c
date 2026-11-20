@@ -47,7 +47,6 @@ extern void fn_80078D60(s32);
 #pragma opt_loop_invariants off
 #pragma opt_propagation off
 void *fn_80078360(fn_80078360_Arg0 *arg0, u8 *arg1, fn_80078360_Arg2 *arg2, u8 *arg3, fn_80078360_Arg4 *arg4) {
-    u32 v0;
     s32 mask2;
     u32 v1;
     u8 *p;

@@ -251,7 +251,6 @@ void fn_1_1556B4(u8 arg0, u8 arg1) {
     RankEntry *list;
     u32 y;
     s32 j;
-    const char * lab_t1;
 
     if (fzgx_obj_lbl_1_bss_8EF20 == 0) {
         return;
@@ -1456,10 +1455,8 @@ typedef struct {
 void fn_1_157070(State *state) {
     u8 *fzgx_value__;
     f32 fzgx_live;
-    u8 fzgx_value_;
     u16 *fzgx_value;
     f32 *table = lbl_1_rodata_D8C8;
-    u32 handle;
     struct { u32 value; } success;
     Request request;
     f32 amount;
@@ -3313,9 +3310,7 @@ u64 fn_1_15AC10(void) {
     u64 v18;
     u64 v16;
     u64 v76;
-    u64 v78;
     u32 v13;
-    u32 v15;
     s32 v67, v69, v71;
     u8 *v82;
     u32 t0;

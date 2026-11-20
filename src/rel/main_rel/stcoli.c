@@ -3548,7 +3548,6 @@ extern void lbl_8006E0B4(f32, f32, f32);
 void fn_1_18214(Entity *arg0, f32 *arg1, Stack *arg2, f32 t) {
     Cfg *v0 = arg0->cfg;
     u8 *slot;
-    s32 ang;
     f32 a;
     f32 b;
     f32 c;
@@ -3939,7 +3938,6 @@ struct fn_1_18B40_Vec {
 #pragma opt_common_subs off
 void fn_1_18B40(void * arg0, void * arg1, u32 arg2, struct fn_1_18B40_Obj *arg3, struct fn_1_18B40_Vec *arg4, int arg5, void * arg6, void * arg7, f32 arg8, u32 arg9) {
     struct fn_1_18B40_Obj * fzgx_live_;
-    struct fn_1_18B40_Obj * fzgx_live;
     struct fn_1_18B40_Vec saved;
     int i;
 
@@ -4400,7 +4398,6 @@ int fn_1_192E8(Vec3 *arg0, Vec3 *arg1, Vec3 *arg2, Vec3 *arg3,
     s32 *index_ptr;
     f32 depth;
     f32 scale;
-    f32 product;
     p_lbl_1_rodata_6C8 = (struct fn_1_192E8_lbl_1_rodata_6C8 *)&lbl_1_rodata_6C8;
     v0 = (0.5f * arg8);
     v1 = 0.5f;
@@ -8201,9 +8198,7 @@ static inline f32 fn_1_1FFA0_squared_length(f32 x, f32 y, f32 z) {
 /* Closest points between segments p1-p2 and p3-p4; returns their squared distance. */
 f32 fn_1_1FFA0(fn_1_1FFA0_Vec *p1, fn_1_1FFA0_Vec *p2, fn_1_1FFA0_Vec *p3, fn_1_1FFA0_Vec *p4,
                fn_1_1FFA0_Vec *outA, fn_1_1FFA0_Vec *outB) {
-    f32 fzgx_live__;
     f32 fzgx_live_;
-    f32 fzgx_live;
     f32 s;
     fn_1_1FFA0_Vec diff;
     f32 t;
@@ -9563,7 +9558,6 @@ static inline void gx_pos3(f32 x, f32 y, f32 z) {
 #pragma opt_propagation off
 void fn_1_21950(u32 arg0, f32 arg1, f32 arg2) {
     struct fn_1_21950_lbl_1_rodata_6C8 *p_lbl_1_rodata_6C8;
-    f32 v0;
     f32 v11_2;
     u32 v2;
     u32 v5;
@@ -11155,7 +11149,6 @@ extern void lbl_8006E1F0(void *, f32, f32, f32);
 void fn_1_22F90(u8 *arg0, int arg1) {
     f32 fzgx_live_;
     f32 fzgx_live;
-        f32 fzgx_live_2;
     f32 v0;
     f32 v1;
     f32 v2;
@@ -11166,12 +11159,7 @@ void fn_1_22F90(u8 *arg0, int arg1) {
     f32 v11;
     f32 v12;
     f32 v13;
-    f32 v15;
     f64 v4;
-    u16 v8;
-    u32 v14;
-    s32 i;
-    f32 lab_t2;
         fzgx_live = (1.0f);
     v0 = (0.0f); v1 = fzgx_live;
     *(f32 *)((u8 *)arg0+148)=0.0f; *(f32 *)((u8 *)arg0+152)=0.0f; *(f32 *)((u8 *)arg0+156)=0.0f;
@@ -12171,7 +12159,6 @@ static inline f32 distance239C4(Vec3_fn_1_239C4 *a, Vec3_fn_1_239C4 *b) {
 }
 #define DIST(a,b) distance239C4(a,b)
 s32 fn_1_239C4(struct fn_1_239C4_Arg0 *arg0, struct fn_1_239C4_Arg0 *arg1) {
-    const struct fn_1_239C4_lbl_1_rodata_840 *p_lbl_1_rodata_840;
     f32 v84, v85, v88, v89, v64, v65, v2, v6, v58, v59, v7, v3, v1;
     f32 v10, v11;
     f32 v5, v9, v41, v54;
@@ -15298,7 +15285,6 @@ extern void fn_8006E2B0(void *, Vec3_np_fn_1_278B8 *);
 #pragma opt_common_subs off
 f32 fn_1_278B8(u32 arg0, void *arg1, f32 arg2) {
     f64 tmp_call4;
-    struct fn_1_278B8_lbl_1_rodata_840 *p_lbl_1_rodata_840;
     s32 v0;
     f32 tmp___fmadds;
     f32 v1, v2, v3;
@@ -15715,13 +15701,11 @@ extern void lbl_8006E1D8(Vec3 *, f32, f32, f32);
 s32 fn_1_27E34(Object *arg0)
 {
     f32 fzgx_value;
-    Agg * fzgx_live;
     Ctx ctx;
     Vec3 tmp;
     Vec3 out;
     Vec3 cur;
     f32 dist;
-    Agg * fzgx_live_2;
     Mgr *mgr;
     u32 mode;
     Object *obj = arg0;
@@ -16113,7 +16097,6 @@ static inline f32 add28184(f32 k, f32 x, f32 y) {
     return y + product;
 }
 void fn_1_28184(Racer28184 *r) {
-    struct fn_1_28184_Pool *c;
     Vec3_fn_1_28184 pos;
     Vec3_fn_1_28184 proj;
     Vec3_fn_1_28184 delta;
@@ -17456,7 +17439,6 @@ void fn_1_28F08(ScaleInfo *scale, Vec3 *src, f32 bias)
     struct fn_1_28F08_lbl_1_rodata_840_pool *pool_lbl_1_rodata_840 = (struct fn_1_28F08_lbl_1_rodata_840_pool *)&lbl_1_rodata_840;
     Vec3 v;
     Mtx mtx;
-    f32 sum;
     f32 len;
 
     v.x = src->x;
@@ -21228,7 +21210,6 @@ static inline void fn_1_2B524_cross(const Fn2B524_Vec *a, const Fn2B524_Vec *b, 
     out->z = z;
 }
 void fn_1_2B524(Fn2B524_Self *self) {
-    f32 fzgx_live;
     f32 *fzgx_value;
     u32 h;
     u32 a, b;
@@ -22220,7 +22201,6 @@ s32 fn_1_2BF8C(u32 arg0, f32 arg1) {
     f32 v0;
     f64 timer;
     f32 sy, sx;
-    f32 sz;
     u32 v1;
     u32 v2;
     u32 v3;
@@ -22231,9 +22211,6 @@ s32 fn_1_2BF8C(u32 arg0, f32 arg1) {
     u32 v8;
     f64 v9;
     u32 v10;
-    f32 v11;
-    f32 v12;
-    f32 v13;
     f32 v14;
     f32 v15;
     u32 v18;

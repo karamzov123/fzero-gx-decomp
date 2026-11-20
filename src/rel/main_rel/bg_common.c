@@ -1908,7 +1908,6 @@ typedef struct {
 
 void fn_1_105AB8(u8 *base, s32 value) {
     u32 limit;
-    s32 count;
     u8 *entry;
     u8 *other;
     s32 i;
@@ -1918,7 +1917,6 @@ void fn_1_105AB8(u8 *base, s32 value) {
     Work w4;
     u32 pool;
     u32 arg;
-    u32 high;
 
     fn_1_58C4();
     limit = 0x400 / fn_1_58C4();
@@ -3000,7 +2998,6 @@ u32 fn_1_1071E8(u8 *arg0,u32 arg1,void *arg2,void *arg3,void *arg4) {
  f32 loc_C,loc_8;
  s32 v1,v2;
  u32 v6,v5;
- s8 *v7;
  Sig_fn_1_20258_Fn_1_20258 *v4;
  f32 t2;
  f32 pos,sign,width,half;
@@ -3174,8 +3171,6 @@ void fn_1_107930(fn_1_107930_Object *arg) {
     void *v19;
     const char **v16;
     void *v25;
-    u32 *v15;
-    const char **v12;
     fn_1_107930_Entry *v7;
     fn_1_107930_Object *arg0 = arg;
     u32 *v22;

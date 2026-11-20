@@ -73,7 +73,6 @@ void fn_16_6B24(void) {
     struct fn_16_6B24_lbl_16_rodata_58 *p_lbl_16_rodata_58;
     struct fn_16_6B24_lbl_1_bss_8B614 *p_lbl_1_bss_8B614;
     struct fn_16_6B24_loc loc_8;
-    f32 v0;
     f32 v1;
 
     p_lbl_16_rodata_58 = (struct fn_16_6B24_lbl_16_rodata_58 *)&lbl_16_rodata_58;

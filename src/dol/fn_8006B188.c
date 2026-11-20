@@ -32,7 +32,6 @@ extern u32 PADSetSamplingCallback(u32);
 
 void fn_8006B188(void) {
     s32 off;
-    void *handler;
     u8 *base;
     Fn8006B188Entry *entry;
     s32 i;

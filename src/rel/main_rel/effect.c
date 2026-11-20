@@ -1234,9 +1234,7 @@ void fn_1_59770(fn_1_59770_Effect *effect)
     f32 size;
     f32 scale;
     f32 len;
-    f32 dx;
     f32 dy;
-    f32 dz;
     void *target;
 
     target = effect->unk34;
@@ -3176,7 +3174,6 @@ typedef struct Fn1_5B450Object {
 
 void fn_1_5B450(Fn1_5B450Object *arg0) {
     f32 scale;
-    u32 random_value;
     u32 *statep;
     u32 rnd;
     s32 frame;
@@ -5882,7 +5879,6 @@ static inline f32 scale_len_sq(Vec3 *v) {
 }
 
 void fn_1_5DFA4(Fn5DFA4Effect *effect) {
-    struct fn_1_5DFA4_lbl_1_rodata_2950 *k;
     Fn5DFA4Draw draw;
     Fn5DFA4Point b;
     Fn5DFA4Point a;
@@ -7937,7 +7933,6 @@ f32 fn_1_5F5C8(struct fn_1_5F5C8_Arg0 *arg0, f32 arg1) {
     f32 v0;
     u32 v1;
     f32 v2;
-    f32 v3;
     f32 v4;
     f32 v5;
     f32 v6;
@@ -8409,7 +8404,6 @@ void fn_1_5F9B8(fn_1_5F9B8_Effect *effect) {
     void *model;
     s32 players;
     void *player;
-    u32 seed;
     f32 red;
     f32 green;
     f32 blue;
@@ -8946,11 +8940,9 @@ static inline f32 beam_orient(BeamEffect *effect, BeamVec *startArg, BeamVec *en
     f32 len;
     f32 dy;
     f32 dz;
-    f32 dx;
     f32 fzgx_live;
     f32 sumZ;
     f32 sumX;
-    f32 sumY;
     f32 endY;
     f32 startY;
     f32 endZ;
@@ -9526,7 +9518,6 @@ extern f32 lbl_8006D0B4(f32);
 
 #pragma opt_dead_assignments off
 void fn_1_60880(Avl60880Obj *obj) {
-    f32 dragScale;
     f32 fzgx_live;
     Obj_1_data_1CC74_Target *grav = lbl_1_data_1CC74;
     Avl60880Vec up;
@@ -12519,7 +12510,6 @@ void fn_1_620C8(void *arg0)
     void *tex = *(void **)((u8 *)arg0 + 0x38);
     void *obj;
     f32 col;
-    f32 one;
     f32 vp[6];
 
     fn_80038F10(vp);
@@ -15131,7 +15121,6 @@ static inline void fn_1_638E8_locked_cache(f32 **ptr) {
 void fn_1_638E8(struct fn_1_638E8_Arg0 *arg0) {
     f32 *locked_ptr;
     u32 v33;
-    const struct fn_1_638E8_lbl_1_rodata_2950 *p_lbl_1_rodata_2950;
     s16 v2;
     Fn183D28Vec3 *v52;
     Fn183D28Vec3 *v17;
@@ -15140,19 +15129,15 @@ void fn_1_638E8(struct fn_1_638E8_Arg0 *arg0) {
     u8 *v0;
     u32 v35;
     u32 v1;
-    u32 v34;
     u32 v42;
-    s32 v16;
     f64 v18;
     u32 v19;
     f32 v20, v21, v24;
     u32 v25;
     f32 v47, v46, v45, v44, v43;
-    f64 v32;
     f32 v31;
     f32 v30;
     u32 v37;
-    s32 v40;
     u32 v41;
     u32 v49;
     f32 v48, v50, v51, v53;
@@ -15170,9 +15155,7 @@ void fn_1_638E8(struct fn_1_638E8_Arg0 *arg0) {
     s32 t4;
     s32 t5;
     s32 t6;
-    s32 t7;
     s32 t13;
-    s32 t14;
 #define locked (locked_ptr = (f32 *)LC_BASE)
 
     v0 = (u8 *)arg0->unk_8;
@@ -19648,7 +19631,6 @@ void fn_1_662D8(Fn662D8Source *arg0) {
     u8 v13;
     f32 speed_factor;
     f32 velocity_factor;
-    f64 phase;
     f32 size_factor;
     f32 random_z, random_y, random_x;
     f32 random_aux_z;

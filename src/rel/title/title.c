@@ -8030,15 +8030,11 @@ u32 fn_8_1394(void) {
     f32 t31;
     u32 t32;
     f32 t33;
-    u16 t34;
-    u16 t35;
-    u16 t36;
     int t38;
     u32 t39;
     int t40;
     u32 t41;
     s32 t42;
-    u32 t44;
     u32 v45;
     f32 v46;
     f32 v47;
@@ -8391,18 +8387,11 @@ void fn_8_1C90(void) {
     f32 v0;
     s16 v3;
     s16 v2;
-    f32 v5;
-    f32 v4;
     f32 v7;
     f32 v6;
     f32 v8;
-    u32 v9;
     f32 v10;
-    u16 t7;
-    u16 t8;
-    u16 t9;
     u32 v11;
-    s32 v12;
     s32 v13;
     FontDrawPacket loc_B8;
     FontDrawPacket loc_60;
@@ -9903,8 +9892,6 @@ void fn_8_530C(void) {
     struct TitleRodata *rodata = (struct TitleRodata *) &lbl_8_rodata_0;
     struct FzgxCopy88 loc_60;
     struct FzgxCopy88 loc_8;
-    s16 temp_r30;
-    s16 temp_r29;
 
     if (state->unk23d != 0) {
         fn_1_3F038();

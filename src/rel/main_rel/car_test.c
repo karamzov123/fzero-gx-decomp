@@ -1773,15 +1773,10 @@ void fn_1_7ECB8(void * arg0, u32 arg1, u32 arg2, f32 arg3) {
     f64 absZ;
     f32 v3;
     f32 v4;
-    f32 v5;
     f32 v6;
-    f32 v7;
-    f32 v8;
     f32 v9;
     f32 v10;
     u32 v11;
-    f32 v12;
-    f32 v13;
     f32 v14;
     f32 v15;
     f32 v16;

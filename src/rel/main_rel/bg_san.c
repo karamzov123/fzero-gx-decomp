@@ -1031,7 +1031,6 @@ void fn_1_D8878(LigSource *src) {
     f32 size;
     f32 bright;
     f32 scale;
-    f32 strength;
     s16 fade;
 
     env = lbl_1_data_2A7E0.unk_3C;
@@ -1762,9 +1761,6 @@ void fn_1_DA3A0(void *arg0) {
  s32 v1;
  u32 v2;
  u8 *v3;
- f32 v4;
- f32 v5;
- f32 v7;
  u8 *v16;
  u32 v17;
  s32 v18;

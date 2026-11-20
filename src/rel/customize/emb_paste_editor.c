@@ -430,7 +430,6 @@ void fn_3_FD30(void) {
     u32 idx;
     s16 i;
     s16 count;
-    PasteEntry *entry;
     struct { struct InputState *base; } input;
 
     c = (const EditorConsts *)lbl_3_rodata_288;
@@ -690,7 +689,6 @@ void fn_3_104C4(void) {
  u16 v;
  u32 index;
  u32 slot;
- u32 previous;
  u32 state;
  p = (Obj_3_bss_7EDD8 *)&lbl_3_bss_7EDD8;
  if ((((struct InputEntry *)(lbl_1_bss_9F8.unk_12))[index = p->unk_14].unk_0 & 1) ||
@@ -1336,7 +1334,6 @@ void fn_3_10CB8(void) {
     active = __rlwnm(cur->unk_4, 1, 31, 31);
 
     if (__rlwnm(STATE.unk_10, 8, 31, 31) && BLEND < 1.0f) {
-        f32 r;
         STATE.unk_26.x = STATE.unk_26.x + BLEND * (POS_TARGET.x - STATE.unk_26.x);
         STATE.unk_26.y = STATE.unk_26.y + BLEND * (POS_TARGET.y - STATE.unk_26.y);
         CAM.view.a.z = CAM.view.a.z + BLEND * (CAM_TARGET.view.a.z - CAM.view.a.z);
@@ -1750,7 +1747,6 @@ struct fn_3_11930_PasteEntry {
 
 int fn_3_11930(void) {
     u8 i;
-    u8 * base;
 
     for (i = 0; i < 4; i++) {
         struct fn_3_11930_PasteEntry *entry = (struct fn_3_11930_PasteEntry *)(((u8 *)(*(u16 (*)[52])&lbl_3_bss_7EDD8)) + i * 4);
@@ -3022,8 +3018,6 @@ __declspec(section ".fzgxpool") void fzgx_bss_primer(void) {
 void fn_3_12B14(void) {
     Vec3u eye;
     Vec3u at;
-    Sound *snd;
-    Entry *e;
     void ***items;
     u8 k;
     void **data;

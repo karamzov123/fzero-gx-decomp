@@ -44,7 +44,6 @@ void fn_8003DFF8(s32 arg0) {
     s32 id;
     Slot48 *entry;
 
-    u8 *p;
 
     level = OSDisableInterrupts();
     offset = (arg0 * 0x10) & 0xFF0;

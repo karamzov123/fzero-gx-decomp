@@ -1275,7 +1275,6 @@ void fn_1_2FDBC(struct fn_1_2FDBC_arg *arg0) {
     f32 ms;
     f32 t;
     struct fn_1_2FDBC_loc loc;
-    s32 lab_t1;
 
     flag = 0;
     if (fn_1_3EFA8() != 0) {
@@ -4559,7 +4558,6 @@ int fn_1_32600(FnObj_1_32600* obj) {
     const f32* rodata;
     f32 lim;
     f32 fv;
-    u32 count;
     s32 tmp_ra3;
     u32 lab_t0;
 
@@ -4666,7 +4664,6 @@ void fn_1_327F8(struct fn_1_327F8_Arg0 *arg0, u32 arg1) {
     u32 v5;
     u32 v2;
     u32 v3;
-    u32 v4;
 
     v0 = (u8 *)arg0->unk_49C;
     v1 = arg0->unk_475;
@@ -5596,7 +5593,6 @@ void fn_1_331EC(Racer *r) {
   else { f32 v = lbl_1_bss_25C48__fzgx_offset_0[r->id]; v *= 0.01f; fn_1_22B10(&in,v); }
  }
  if(lbl_1_bss_3C30__fzgx_offset_0.flags&0x20000) {
-  Track *rt;
   Track *t=lbl_1_bss_3C30__fzgx_offset_0.track;
   if(!(r->flags&0x4000200)) {
    f32 a,b;
@@ -7299,7 +7295,6 @@ void fn_1_34E08(void) {
     char loc_28[32];
     u8 *p_lbl_1_data_5730;
     s32 v2;
-    u16 v0;
     char loc_8[32];
     u8 *p_lbl_1_bss_26B5C;
     void * lab_t0;
@@ -10463,7 +10458,6 @@ void fn_1_36B10(void)
     s32 n;
     u32 result;
     u32 flags;
-    s16 mode;
 
     fzgx_obj_lbl_1_bss_26B50 = 0;
     lbl_1_bss_25BA0__fzgx_offset_A4 = 0;
@@ -26525,7 +26519,6 @@ u8 fn_1_40ED4(void) {
 
 /* fzgx:begin fn_1_40EE4 */
 u32 fn_1_40EE4(void) {
-    u32 t0;
     return (((lbl_1_bss_3820C * (((GXGetTexBufferSize(320, 224, 1, 0, 0)) + 31) & ~0x1F)) + 0xF20000) + 16384);
 }
 /* fzgx:end fn_1_40EE4 */

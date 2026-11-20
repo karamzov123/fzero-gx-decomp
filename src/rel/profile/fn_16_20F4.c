@@ -46,7 +46,6 @@ s32 fn_16_20F4(void) {
     s32 t;
     f32 v;
     const f32 *pool = lbl_16_rodata_0;
-    u32 c;
     a = lbl_1_bss_8B614.unk_2A + lbl_1_bss_A48[idx].unk_0 / 20;
     a = (a > 0x168) ? 0 : (a < 0 ? 0x168 : a);
     lbl_1_bss_8B614.unk_2A = a;

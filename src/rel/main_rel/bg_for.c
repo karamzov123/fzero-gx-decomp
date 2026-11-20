@@ -245,9 +245,6 @@ static inline void draw_vec(DCFA4Vec *v, s16 *angles, u8 *pool) {
 
 void fn_1_DCFA4(u32 arg0) {
     u8 *p_lbl_1_rodata_6780;
-    u32 v1;
-    u32 v3;
-    u32 v4;
     u64 flags;
     u32 v0;
     DCFA4Mtx m1;
@@ -658,30 +655,14 @@ static inline f32 fn_1_DD890_clamp(f32 value, f32 lower, f32 upper) {
 void fn_1_DD890(DDObj *arg0, f32 arg1) {
     u32 v0;
     f32 v1;
-    u32 v2;
-    u32 v3;
-    u32 v4;
-    u32 v5;
-    u32 v6;
     f32 v7;
-    u32 v8;
-    u32 v9;
-    u32 v10;
     f32 v11;
-    u32 v12;
-    u32 v13;
     f32 v14;
-    u32 v15;
-    u32 v16;
     u32 v17;
     s16 i;
     u32 v18;
     s32 v19;
     f32 v20;
-    f32 t1;
-    f32 t2;
-    f32 t3;
-    f32 t4;
     f32 t6;
     union { f64 value; u32 words[2]; } conversion;
     DDMtx mtx;
@@ -1429,15 +1410,8 @@ extern void lbl_8006DB30(void);
 extern void lbl_8006E0B4(f32, f32, f32);
 
 void fn_1_DE9C4(struct fn_1_DE9C4_Arg0 *arg0) {
-    f32 fzgx_live;
     u32 *v2 = arg0->unk_160;
     f32 v12;
-    f32 t5;
-    f32 t6;
-    f32 t7;
-    f32 t9;
-    f32 t11;
-    f32 t13;
     f32 v16;
     f32 v17;
     f32 v19;
@@ -2475,7 +2449,6 @@ s32 fn_1_DFBBC(DFBBCCar *car, DFBBCObj *obj) {
     f32 spin;
     s32 boost;
     u64 flags;
-    u32 obj_side;
     u64 lo;
 
     mass = car->mass;

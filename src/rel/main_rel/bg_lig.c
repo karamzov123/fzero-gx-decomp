@@ -652,20 +652,8 @@ void fn_1_D6C10(Vec3 *arg0, f32 arg1) {
     struct { f32 value; } v4;
     u32 v5;
     f64 v8;
-    f32 v23;
-    f32 v24;
-    f32 v25;
-    f32 v26;
-    f32 v27;
-    f32 v28;
-    u32 v30;
-    u32 v31;
     f32 v32;
-    f32 v34;
-    f32 v33;
-    f32 v35;
     f32 v36;
-    f32 v37;
     u32 v38;
     f32 coefficient;
     ParticleD6C10 loc_14;
@@ -673,10 +661,6 @@ void fn_1_D6C10(Vec3 *arg0, f32 arg1) {
     /* frame */
     u32 t0;
     s32 t1;
-    f32 t3;
-    f32 t5;
-    f32 t6;
-    void * t7;
     u32 t8;
     u32 t9;
     u32 t10;

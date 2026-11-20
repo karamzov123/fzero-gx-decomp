@@ -3290,7 +3290,6 @@ void fn_10_12D8(void) {
     s16 result;
     s16 value;
     s16 finalValue;
-    s32 handle;
     u8 *audio;
     u32 finalAddress;
     fn_1_435C(lbl_10_bss_49388);
@@ -6718,7 +6717,6 @@ void fn_10_8BB8(void) {
     u8 * p_lbl_1_bss_9C8;
     u32 v0;
     int v1;
-    u32 v2;
     s16 v3;
     s16 v4 = 0;
     struct S14 *p14;
@@ -7113,10 +7111,7 @@ static inline s16 countControllers(void) {
 void fn_10_9788(void *argInput) {
     u32 v0;
     s16 v1;
-    u32 v2;
     u32 v3;
-    u32 v5;
-    u32 v6;
     static const struct NavigationTable nav = {{
         {-1, 4, 1, 2, -1, 3, -1, 7},
         {-1, 3, -1, 0, -1, -1, -1, 4},
@@ -7136,12 +7131,8 @@ void fn_10_9788(void *argInput) {
     s16 movement;
     s16 i;
     s16 j;
-    u32 *devices;
-    struct PadState *pads;
     u8 *state;
     s16 direction;
-    s16 *selection;
-    u32 offset;
     void *arg0 = argInput;
 
     v0 = *(u32 *)((u8 *)arg0 + 164);
@@ -7814,10 +7805,7 @@ static inline void fn_10_AE14_tail(fn_10_AE14_Cursor *cursor, s32 dir, s16 old) 
 
 void fn_10_AE14(fn_10_AE14_Cursor *cursor) {
     struct { s16 value; } i;
-    u8 *ctrl;
     u8 *pad;
-    u8 *ctrls_;
-    u8 *pads_;
     s32 dir;
     dir = 0;
     for (i.value = 0; i.value < 4; i.value++) {
@@ -8974,68 +8962,33 @@ static const u32 fzgx_pool_table_3C[1] = { 0 };
 static const u32 fzgx_pool_table_40[1] = { 0x00F0F0FF };
 
 void fn_10_D044(void) {
-    f32 *p_lbl_10_rodata_158;
-    u8 * p_lbl_1_rodata_26F8;
     struct fn_10_D044_lbl_1_bss_8B3A0 *p_lbl_1_bss_8B3A0;
     u32 v0;
     u32 v1;
     f64 v4;
     f32 v5;
-    f32 v6;
     f32 v2;
-    f32 v7;
-    f32 v8;
-    f32 v9;
-    f32 v10;
-    f32 v11;
-    u32 v12;
     f32 v13;
     f32 v14;
     f32 v15;
     f32 v16;
     f32 v3;
-    u32 v17;
     u32 v18;
     f32 v19;
     f32 v20;
-    u32 v21;
     f32 v22;
-    u32 v25;
     f32 v24;
-    u32 v23;
     u32 v26;
-    u32 v28;
-    u32 v29;
     u32 v30;
     f32 v31;
     f32 v32;
-    s16 v33;
     u32 v34;
     u32 v27;
     s32 v35;
-    f32 v50;
     f32 v36;
-    u32 v37;
-    f32 v38;
-    f32 v39;
-    u32 v40;
-    u32 v41;
-    f32 v42;
-    f32 v43;
-    f64 v44;
-    f32 v45;
-    f32 v46;
-    f32 v47;
-    f32 v48;
-    f32 v49;
     FontDrawPacket loc_8;
     /* frame */
-    u16 t0;
-    int t2;
-    u16 t4;
     int t6;
-    u16 t8;
-    f32 t11;
     int t12;
     v0 = (*(struct fn_10_D044_lbl_1_bss_8B3A0 *)&lbl_1_bss_8B3A0).unk_140;
     v3 = (1.0f);
@@ -11655,12 +11608,9 @@ void fn_10_E600(void) {
     s32 selected;
     s16 kind;
     fn_10_E600_PanelPacket packet;
-    s16 index;
-    u32 previous;
     u32 current;
     s32 countdown;
     s32 angle;
-    f32 wave;
     pool = (*(f32 (*)[19])&lbl_10_rodata_158);
     selected = 0;
     item = (*(fn_10_E600_SelState *)&lbl_1_bss_8B3A0).items + (s16)(lbl_1_bss_962 - 14) * 0x94;
@@ -11969,7 +11919,6 @@ void fn_10_F050(s32 arg0, s32 arg1) {
     u32 * fzgx_live_;
     u32 * fzgx_live;
     struct fn_10_F050_FzgxCopy_88 loc_8;
-    s32 sp4;
     s32 fzgx_loop_var_r22_4659;
     s32 temp_r20;
     s32 var_r21;
@@ -17874,13 +17823,9 @@ static inline f32 fn_10_13ECC_Clamp(f32 value) {
 }
 
 void fn_10_13ECC(void) {
-    u8 *p_lbl_1_rodata_26F8;
-    struct fn_10_13ECC_Entry *entry;
     struct fn_10_13ECC_lbl_801A66B4 *p_lbl_801A66B4;
-    void *v0;
     u32 v3;
     f32 v4, v5, v6, v7, v8;
-    s32 v10;
     s32 v11;
     s16 v13;
     s16 v19;
@@ -17891,7 +17836,6 @@ void fn_10_13ECC(void) {
     s16 v35, v36;
     s32 v25;
     struct fn_10_13ECC_Entry *v27;
-    s32 v28;
     s32 v76;
     struct fn_10_13ECC_Copy144 loc_C4 = {{
         0x00010000, 0x0000A117, 0x0000A118, 0x00000000,
@@ -20038,7 +19982,6 @@ void fn_10_14FDC(SelCupState *state) {
 
             if (levelIdx - 1 == order[i]) {
                 f32 t;
-                f32 k;
                 s32 c;
                 s32 blink;
 
@@ -20251,7 +20194,6 @@ void fn_10_15B20(struct Sig_fn_10_18A50_fn_10_18A50_Arg0 *input, u32 arg1) {
     s16 v18;
     u8 v19;
     u32 v2;
-    void *v26;
     u32 v27;
     f32 v28;
     u32 v29;
@@ -25185,38 +25127,12 @@ static void fzgx_data_layout_lbl_10_data_D00(void) {
 void fn_10_17E44(struct Sig_fn_10_18A50_fn_10_18A50_Arg0 * __restrict arg0, s32 arg1, s32 arg2, f32 arg3) {
     s32 v0;
     f32 v1;
-    f64 v2;
-    f32 v3;
     f32 v4;
     f64 v5;
-    f32 v6;
-    u32 v7;
-    u32 v8;
-    f32 v9;
-    f64 v10;
-    f32 v11;
-    f32 v12;
-    f32 v13;
     f64 v14;
-    f32 v15;
-    u32 v16;
-    f64 v17;
-    u32 v18;
-    f32 v19;
-    f32 v20;
-    f32 v21;
     f64 v22;
     f64 v23;
     void * v24;
-    f32 v25;
-    u32 v26;
-    f64 v27;
-    u32 v28;
-    f32 v29;
-    f32 v30;
-    f32 v31;
-    f32 v32;
-    f32 v33;
     f64 v34;
     f32 v35;
     u32 v36;
@@ -25233,9 +25149,7 @@ void fn_10_17E44(struct Sig_fn_10_18A50_fn_10_18A50_Arg0 * __restrict arg0, s32 
     s32 v47;
     f64 v48;
     s32 v49;
-    u32 v50;
     f32 v51;
-    u32 v52;
     f32 v53;
     f32 v54;
     f32 v55;
@@ -25252,15 +25166,6 @@ void fn_10_17E44(struct Sig_fn_10_18A50_fn_10_18A50_Arg0 * __restrict arg0, s32 
     f32 v66;
     f32 v67;
     f32 v68;
-    f32 v69;
-    u32 v70;
-    f64 v71;
-    u32 v72;
-    f32 v73;
-    f32 v74;
-    f32 v75;
-    f32 v76;
-    f32 v77;
     f64 v78;
     u32 v79;
     s32 v80;
@@ -25269,9 +25174,7 @@ void fn_10_17E44(struct Sig_fn_10_18A50_fn_10_18A50_Arg0 * __restrict arg0, s32 
     u32 v83;
     f64 v84;
     u32 v85;
-    u32 v86;
     f32 v87;
-    u32 v88;
     f32 v89;
     f32 v90;
     f32 v91;
@@ -28156,7 +28059,6 @@ void fn_10_19040(void) {
     s16 v454;
     u32 car;
     u8 sel;
-    u32 flag;
     struct { SelCellRow *rows; } grid;  /* keeps the table base a variable, not a rematerialized temp */
 
     
@@ -33292,7 +33194,6 @@ void fn_10_1A8B0(s16 x, s16 y) {
     f32 k;
     SelSprite sprite;
     u32 color;
-    f32 r;
 
     a = 1.0f;
     player = lbl_1_bss_8B3A0.player;
@@ -37720,11 +37621,8 @@ void fn_10_1C2D8(struct Arg0 *arg0) {
     u32 selection_value;
     u32 v12;
     u32 vb4;
-    u32 t;
-    f32 f0;
     f32 f1;
     f32 f2;
-    f32 f3;
     f32 ratio;
     char buf[0x100];
     FontDrawPacket loc_54;
@@ -39564,7 +39462,6 @@ void fn_10_1D314(struct Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3) {
     s32 yb;
     struct { f32 value; } dy;
     s32 panel_index;
-    u32 *q;
 s32 fzgx_loop_i_182804;
     s32 fzgx_loop_i_179376;
     s32 attribute_loop;
@@ -40608,10 +40505,7 @@ void fzgx_pool_fn_10_1E9CC_1008(void) { fzgx_usep(fzgx_pool_table_1008); }
 #define F(i) (((f32 *)&loc_5C)[i])
 #define FZ_CLAMP01(x) ((x) < 0.0f ? 0.0f : ((x) > 1.0f ? 1.0f : (x)))
 void fn_10_1E9CC(s32 arg0, u32 arg1, s32 arg2, f32 arg3) {
-    f32 fzgx_live;
-    f32 fzgx_live_;
  s32 v2;
- s32 tmp_call3;
  f32 v1,v4,v20,v22,v17,v18;
  f32 h, w;
  struct fn_10_1E9CC_Copy88 loc_5C;
@@ -41301,7 +41195,6 @@ static inline void fn_10_1EF04_draw(f32 value, Obj_1_bss_4B9CC *obj) {
 
 
 void fn_10_1EF04(fn_10_1EF04_Arg * __restrict arg, f32 alpha) {
-    s32 mode;
     f32 width;
     f32 fade;
     f32 a;
@@ -43038,13 +42931,10 @@ void fn_10_1F688(u32 arg0, u32 arg1, f32 arg2) {
     u32 v8;
     s32 v10;
     f32 v12;
-    s32 textureWidth;
     f32 c188, v9, c110, c05, c230, c214, c260, c90, c92, c80, c86, c70;
-    f32 wave;
     f32 textTextureWidth_f;
     f32 width;
     f32 textPadding;
-    f32 textScale;
     s32 tex;
     struct fn_10_1F688_Copy88 packet;
     struct fn_10_1F688_Copy88 loc_38;
@@ -44592,7 +44482,6 @@ void fn_10_210F0(void) {
     s32 temp_r27;
     f32 temp_f31;
     f32 temp_f27;
-    s32 sp4;
     u32 flags;
 
     temp_r27 = (s32)&(*(u8 (*)[])&lbl_1_rodata_26F8)[0];
@@ -48614,44 +48503,15 @@ void fn_10_22998(u32 * arg0) {
     s32 v0;
     u32 v1;
     u32 v3;
-    u32 v4;
-    u32 v5;
-    f32 v6;
-    f32 v7;
     f32 v8;
     void * v9;
     u8 v10;
-    u32 v11;
     f32 v12;
     void * v13;
     void * v14;
     void * v15;
     f32 v16;
-    f32 v17;
-    u8 * v18;
-    f32 v19;
-    f32 v20;
-    f32 v21;
-    u32 v22;
-    u32 v23;
-    f32 v24;
-    u32 v25;
-    f64 v26;
-    f32 v27;
     s32 v28;
-    s32 v29;
-    f32 v30;
-    u32 v31;
-    f32 v32;
-    s32 v33;
-    u32 v34;
-    s32 v35;
-    u32 v36;
-    f32 v37;
-    u32 v38;
-    u32 v39;
-    u32 v40;
-    f32 v41;
     FontDrawPacket loc_1C;
     u32 loc_18;
     u32 loc_14;
@@ -48661,16 +48521,6 @@ void fn_10_22998(u32 * arg0) {
     s16 loc_8;
     /* frame */
     f32 t0;
-    u8 * t50;
-    f32 t51;
-    u8 * t53;
-    int t55;
-    int t56;
-    int t57;
-    int t58;
-    u32 t60;
-    int t61;
-    u32 t65;
     
     
     if (arg0 == 0) {

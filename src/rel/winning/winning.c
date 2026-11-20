@@ -2640,7 +2640,6 @@ void fn_15_4578(void) {
     struct ResultRow *row;
     struct ResultAnimation *anim;
     f32 width;
-    f32 t;
     f32 ease;
     f32 banner_t;
     f32 backdrop_t;

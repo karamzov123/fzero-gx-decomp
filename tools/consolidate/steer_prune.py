@@ -21,6 +21,32 @@ PLUS0 = re.compile(r'\s*\+\s*0(?=\))')
 PCAST = re.compile(r'\((?:f32|f64|s32|u32|s16|u16|s8|u8|int)\)\s*(?=\()')
 CARRIER = re.compile(r'struct \{ *([A-Za-z_][A-Za-z0-9_ ]*?\**) *value; *\} *([A-Za-z_]\w*);')
 
+LOCALDECL = re.compile(r'^[ \t]+(?:(?:const|unsigned|signed|struct|union|volatile)\s+)*[A-Za-z_]\w*(?:\s+[A-Za-z_]\w*)?(?:\s+|\s*\*+\s*)([A-Za-z_]\w*)\s*(?:\[[^\]]*\])*\s*;[ \t]*(?://[^\n]*|/\*[^\n]*\*/)?[ \t]*$')
+
+def unused_locals(seg):
+    """(start, end) of whole-line declarations inside function bodies whose name occurs once in seg."""
+    out = []; stack = []; pos = 0; i = 0
+    code = re.sub(r'/\*.*?\*/|//[^\n]*', lambda m: ' ' * len(m.group(0)), seg, flags=re.S)
+    for line_start in [0] + [m.end() for m in re.finditer(r'\n', seg)]:
+        line_end = seg.find('\n', line_start); line_end = len(seg) if line_end < 0 else line_end
+        line = seg[line_start:line_end]
+        if stack and stack[-1] == 'code':
+            m = LOCALDECL.match(line)
+            if m and not line.lstrip().startswith(('return', 'goto', 'break', 'continue', 'case', 'default')):
+                name = m.group(1)
+                if len(re.findall(rf'\b{re.escape(name)}\b', code)) == 1:
+                    out.append((line_start, min(line_end + 1, len(seg))))
+        for k in range(line_start, line_end):
+            ch = code[k]
+            if ch == '{':
+                before = code[max(0, k - 200):k].rstrip()
+                kind = 'data' if re.search(r'(struct|union|enum)\s*\w*\s*$|=\s*$|\[\s*\]\s*$|,\s*$|\{\s*$', before) else 'code'
+                if before.endswith(')') or re.search(r'\b(else|do)$', before): kind = 'code'
+                stack.append(kind)
+            elif ch == '}' and stack:
+                stack.pop()
+    return out
+
 def candidates(text, lo, hi, kind):
     """(start, end, replacement, extra_edits) edits inside text[lo:hi]."""
     out = []
@@ -38,6 +64,9 @@ def candidates(text, lo, hi, kind):
                             g.append((lo + pos + len(line[:cm.start()].rstrip()), lo + pos + end, ''))
                     out.append(g)
             pos += len(line)
+    elif kind == 'unusedlocal':
+        for s, e in unused_locals(seg):
+            out.append([(lo + s, lo + e, '')])
     elif kind in ('castview', 'register', 'pcast', 'icast', 'ptrcast', 'plus0', 'parens', 'derefaddr', 'soloparen'):
         pos = 0
         for line in seg.splitlines(keepends=True):
@@ -59,7 +88,7 @@ def candidates(text, lo, hi, kind):
                     for m in PARENS.finditer(line[:code_end]):
                         out.append([(lo + pos + m.start(), lo + pos + m.end(), '(' + m.group(1) + ')')])
                 elif kind in ('register', 'pcast', 'icast', 'ptrcast', 'plus0'):
-                    for m in {'register': REG, 'pcast': PCAST, 'icast': ICAST, 'ptrcast': PTRCAST, 'plus0': PLUS0, 'parens': PARENS, 'derefaddr': DEREF, 'soloparen': SOLO}[kind].finditer(line[:code_end]):
+                    for m in {'register': REG, 'pcast': PCAST, 'icast': ICAST, 'ptrcast': PTRCAST, 'plus0': PLUS0, 'parens': PARENS, 'derefaddr': DEREF, 'soloparen': SOLO, 'unusedlocal': LOCALDECL}[kind].finditer(line[:code_end]):
                         out.append([(lo + pos + m.start(), lo + pos + m.end(), '')])
                 else:
                     for m in CAST.finditer(line[:code_end]):
@@ -122,9 +151,9 @@ def run(task):
 
 def main():
     kind = sys.argv[sys.argv.index('--kind') + 1] if '--kind' in sys.argv else 'volatile'
-    args = [a for a in sys.argv[1:] if not a.startswith('--') and a not in ('volatile', 'carrier', 'castview', 'register', 'pcast', 'icast', 'ptrcast', 'plus0', 'parens', 'derefaddr', 'soloparen')]
+    args = [a for a in sys.argv[1:] if not a.startswith('--') and a not in ('volatile', 'carrier', 'castview', 'register', 'pcast', 'icast', 'ptrcast', 'plus0', 'parens', 'derefaddr', 'soloparen', 'unusedlocal')]
     units = json.load(open('config/GFZE01/units.json')); nu = d.ninja_units()
-    pat = {'volatile': VOL, 'carrier': CARRIER, 'castview': CAST, 'register': REG, 'pcast': PCAST, 'icast': ICAST, 'ptrcast': PTRCAST, 'plus0': PLUS0, 'parens': PARENS, 'derefaddr': DEREF, 'soloparen': SOLO}[kind]
+    pat = {'volatile': VOL, 'carrier': CARRIER, 'castview': CAST, 'register': REG, 'pcast': PCAST, 'icast': ICAST, 'ptrcast': PTRCAST, 'plus0': PLUS0, 'parens': PARENS, 'derefaddr': DEREF, 'soloparen': SOLO, 'unusedlocal': LOCALDECL}[kind]
     files = args or sorted(str(p) for p in pathlib.Path('src/rel').glob('**/*.c') if 'movie_module' not in str(p) and pat.search(p.read_text()))
     tasks = []
     for f in files:

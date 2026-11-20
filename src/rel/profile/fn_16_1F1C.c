@@ -26,8 +26,6 @@ void fn_16_1F1C(void) {
     u32 v0;
     s32 b;
     u32 v2;
-    u32 v3;
-    u32 z;
 
     if ((s32)lbl_16_bss_21C == -1) {
         fn_1_4C10();

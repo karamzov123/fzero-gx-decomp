@@ -130,8 +130,6 @@ void fn_8000740C(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
     u32 v0;
     u32 v1;
     u32 v2;
-    u32 unk_1;
-    u8 loc_20;
     Entry *t0;
     u32 t2;
 

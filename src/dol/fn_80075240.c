@@ -84,7 +84,6 @@ void fn_80075240(void) {
     s32 x;
     s32 n;
     struct { u32 value; } dst;
-    u8 *pixel;
 
     lbl_8019F130[2] = 1.0f;
     lbl_8019F130[1] = 1.0f;

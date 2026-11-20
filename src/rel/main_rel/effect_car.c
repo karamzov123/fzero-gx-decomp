@@ -888,7 +888,6 @@ void fn_1_68B6C(s8 a, s8 b) {
     f64 c2_0;
     f32 lenB;
     f32 scale;
-    f32 dot;
     f32 bx, by, bz;
     f32 ax, ay, az;
     f32 k;
@@ -1875,11 +1874,8 @@ void fn_1_6AF70(u32 arg0, void * arg1) {
     f32 v9;
     f32 v64;
     f32 v65;
-    s32 v2;
-    u32 v3;
     f32 v4;
     u32 v5;
-    u32 v13;
     /* side delta and direction: declared highest-to-lowest so dz/dy colour before dx and nz before ny */
     f32 dz;
     f32 dy;
@@ -1890,14 +1886,7 @@ void fn_1_6AF70(u32 arg0, void * arg1) {
     f32 v32;
     s16 v33;
     u32 v34;
-    f32 v35;
-    f32 v36;
-    f32 v37;
-    f32 v38;
-    f32 v39;
-    f32 v40;
     f32 v41;
-    f32 v42;
     u32 v43;
     f32 v44;
     f32 v45;
@@ -1907,28 +1896,16 @@ void fn_1_6AF70(u32 arg0, void * arg1) {
     f32 v49;
     f64 v50;
     f32 v51;
-    f32 v52;
     f32 v53;
     f32 v54;
     f32 v55;
     u32 v56;
     f32 v57;
-    f32 v58;
-    f32 v59;
-    f32 v60;
-    f32 v61;
-    f32 v62;
-    f32 v63;
-    f32 v66;
     f32 v67;
-    f32 v68;
     f32 v69;
-    f32 v70;
     f32 v71;
-    f32 v72;
     f32 v73;
     f32 v74;
-    u32 v76;
     f32 total;
     struct { f32 a[58]; } loc_5C;
     struct { u32 a[12]; } loc_2C;
@@ -1948,10 +1925,6 @@ void fn_1_6AF70(u32 arg0, void * arg1) {
     u16 t3;
     u16 t4;
     u16 t5;
-    f32 t6;
-    f32 t7;
-    f32 t8;
-    u32 t9;
     u16 t10;
     u16 t11;
     u16 t12;
@@ -2284,8 +2257,6 @@ f32 arg2;
     u32 loc_10;
     u32 loc_C;
     u32 loc_8;
-    s32 t1;
-    s16 t2;
     u8 * t3;
     f32 t4;
     u32 t5;
@@ -2599,8 +2570,6 @@ void fn_1_6BFB8(u32 arg0) {
     struct { u32 value; } v21;
     f32 v4;
     f32 v5;
-    f32 v6;
-    f32 v10;
     f32 v40;
     f32 v3;
     f32 v41;
@@ -2884,7 +2853,6 @@ void fn_1_6C87C(Fn1_6C87CCar *car, Fn1_6C87CVec *dir, f32 arg2) {
     Fn1_6C87CVec pos;
     f32 spread;
     f32 t;
-    f32 half;
     f32 push;
     f32 bright;
     u8 n;
@@ -3048,21 +3016,11 @@ static void fzgx_pool_primer_230(void) { /* Preserve this shared literal-pool sl
 
 
 void fn_1_6CF3C(struct fn_1_6CF3C_Arg0 *arg0, struct fn_1_6CF3C_Vec *arg1, f32 arg2, f32 arg3) {
-    struct fn_1_6CF3C_lbl_1_rodata_2D70 *p_lbl_1_rodata_2D70;
     s16 v0;
     u32 v1;
-    f32 v2;
-    f64 v3;
-    f64 v4;
     f64 v7;
     f32 v6;
     f64 v5;
-    f32 v8;
-    s16 v10;
-    f32 v11;
-    f32 v12;
-    f64 v13;
-    f32 v14;
     u8 v15;
     f32 v21;
     f64 v22;
@@ -3070,18 +3028,10 @@ void fn_1_6CF3C(struct fn_1_6CF3C_Arg0 *arg0, struct fn_1_6CF3C_Vec *arg1, f32 a
     f64 v24;
     s16 v25;
     f32 v27;
-    f32 v_scale;
-    f32 v_random_scale;
     struct { u16 a[116]; } loc_8;
     f32 t0;
     f32 t2;
     f32 v16;
-    u32 t5;
-    u32 t6;
-    u32 t7;
-    u32 t8;
-    u32 t10;
-    u32 t11;
 
     t0 = fn_1_8652C(arg0->unk_18);
     memset(&loc_8, 0, 232);
@@ -3385,7 +3335,6 @@ struct Fn1_6D6A8Work {
 // Spawn the car effect with a randomised brightness.
 void fn_1_6D6A8(struct Fn1_6D6A8Car *car) {
     struct Fn1_6D6A8Work work;
-    f32 t;
     f32 ratio;
     f32 scale;
 
@@ -4176,7 +4125,6 @@ s16 fn_1_6E320(void *car_arg, void *offset_arg, u8 mode, f32 unused) {
     f32 diff;
     f64 rnd;
     f32 fade;
-    f32 clamped;
 
     speed = fn_1_8652C(car->unk_18);
     memset(&part, 0, sizeof(part));
@@ -4779,7 +4727,6 @@ void fn_1_6ED40(struct fn_1_6ED40_Arg0 *arg0, void *arg1) {
  f32 color, spread;
  f64 clamp;
  f64 random;
- f32 red;
  f32 *dir = arg1;
  v20=fn_1_8652C(arg0->unk_18);
  if (v20 < 300.0f) return;
@@ -6129,7 +6076,6 @@ void fn_1_7099C(struct fn_1_7099C_Arg0 *arg0, Fn183D28Vec3 *arg1, u32 arg2, f32 
  Fn183D28Vec3 loc_8;
  f32 z,y,x, r, c;
  f64 clamp;
- Obj_1_bss_38458_Target ** res;
  Obj_1_bss_38458_Target **slot;
  v0=arg0->unk_38;
  speed=fn_1_8652C(*(s16 *)&arg0->unk_18);
@@ -6378,7 +6324,6 @@ void fn_1_71024(Fn1_71024Car *car, Fn1_71024Vec *vel, u32 count, f32 scale) {
     u8 *owner;
     f32 ratio;
     f32 s;
-    f32 t;
     f32 r;
     f32 min;
     u32 n;
@@ -6500,7 +6445,6 @@ void fn_1_714A8(struct Fn1_714A8Car *car, f32 *axis, u32 arg2, f32 size) {
     struct Fn1_714A8Work work;
     f32 ratio;
     f32 scale;
-    f32 push;
 
     state = car->field_38;
     memset(&work, 0, sizeof(work));
@@ -6629,18 +6573,6 @@ static inline f32 fn_1_71768_distance(u32 arg0, const f32 *loc_8) {
 #pragma opt_propagation off
 void fn_1_71768(u32 arg0, u32 arg1) {
     struct fn_1_71768_lbl_1_rodata_2D70 *p_lbl_1_rodata_2D70;
-    f32 v_const_1C;
-    f32 v20;
-    f32 v_const_90;
-    f32 v_const_74;
-    f32 v_const_60;
-    f32 v_const_220;
-    f64 v19;
-    f32 v18;
-    f32 v_const_B8;
-    f32 v17;
-    f32 v16;
-    f32 v21;
     typedef struct { f32 x, y, z; } EffectVec;
     u32 v0;
     u8 v22;
@@ -6650,17 +6582,9 @@ void fn_1_71768(u32 arg0, u32 arg1) {
     f32 v3;
     s32 v4;
     f32 v5;
-    f32 v6;
     f32 v7;
     s32 v8;
-    f32 v9;
-    f32 v10;
-    f32 v11;
-    f32 v12;
     f32 v13;
-    f64 v15;
-    u32 unk_2;
-    u32 v24;
     f32 v25;
     f32 v26;
     f64 v27;
@@ -6671,7 +6595,6 @@ void fn_1_71768(u32 arg0, u32 arg1) {
     f32 v32;
     f32 v33;
     f32 v34;
-    u32 v35;
     struct {
         u8 pad_00[12];
         s16 type;
@@ -6682,17 +6605,11 @@ void fn_1_71768(u32 arg0, u32 arg1) {
     } loc_14;
     f32 loc_8[3];
     /* frame */
-    s32 t1;
     f32 t3;
     f32 t5;
-    f32 t6;
     u32 t7;
-    u32 t9;
     u32 t12;
     u32 t13;
-    s16 t14;
-    s16 t15;
-    u32 v35_2;
 
     v0 = *(u32 *)(arg0 + 56);
     p_lbl_1_rodata_2D70 = (struct fn_1_71768_lbl_1_rodata_2D70 *)&(*((const struct fn_1_71768_lbl_1_rodata_2D70 *)&lbl_1_rodata_2D70));

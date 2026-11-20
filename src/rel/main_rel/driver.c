@@ -1880,7 +1880,6 @@ void fn_1_A75DC(Fn1A75dcObject *obj, void *arg) {
     void *first_value;
     char buffer[0x80];
 
-    Fn1A75dcData *data;
     fn_80006E10((u32)"chara/");
     index = obj->unk_328;
     entry = obj;
@@ -2428,7 +2427,6 @@ typedef struct fn_1_95238_lbl_801A6D00 {
 // Initialize the selected car data and build its localized display values.
 void fn_1_A7E60(s8 arg0, s8 arg1, FnA7E60Object *object, s32 arg3, void *arg4) {
     char buffer[0x80];
-    u8 *data;
     s32 index;
     s32 format_value;
 

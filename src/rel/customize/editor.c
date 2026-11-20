@@ -369,7 +369,6 @@ void fn_3_15F44(void) {
     u8 *t0;
     u16 t3;
     u32 t15;
-    f32 t16;
     t0 = (u8 *)fn_3_14074();
     p_flags = &lbl_3_bss_A23EC;
     if ((p_flags->unk_C & 0x20000000) != 0) {
@@ -841,48 +840,16 @@ void fn_3_170E0(void) {
 
 /* fzgx:begin fn_3_17100 noprologue */
 void fn_3_17100(void) {
-    Obj_3_bss_A2410 *p_lbl_3_bss_A2410;
-    Obj_3_bss_A2410 *branchMain;
-    s32 v36;
-    s32 v39;
     s32 v0;
     f32 v1;
-    void * v2;
     s32 v3;
-    s32 v4;
-    s32 v5;
-    s32 v6;
-    u32 v7;
-    f32 v8;
-    u32 v9;
-    u32 v10;
-    f32 v11;
     u32 v12;
-    f32 v13;
     s32 v14;
     s32 v15;
-    void * v16;
-    u8 v17;
-    s32 v18;
     s32 v19;
-    s32 v20;
-    s32 v21;
-    s32 v22;
-    u32 v23;
-    s32 v24;
-    f32 v25;
-    u8 v26;
-    u8 v27;
-    u16 *v28;
-    u8 v29;
-    u8 v30;
-    u16 v31;
     s16 v32;
-    s16 v33;
     s16 v34;
-    u32 v35;
     u16 v37;
-    u32 v38;
     s16 v40;
     u32 v41;
     if ((lbl_3_bss_A2410.unk_8 & 0x40000000) != 0) {

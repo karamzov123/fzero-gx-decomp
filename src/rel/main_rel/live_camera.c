@@ -57,7 +57,6 @@ void fn_1_DA6C(DA6CArg *arg0) {
     s16 temp_r31;
     s32 var_r30;
     s32 var_r3;
-    s32 cnt;
     u32 flags;
     s32 n;
 
@@ -1143,8 +1142,6 @@ u32 fn_1_EBE4(struct fn_1_EBE4_Arg0 *arg0, s32 arg1, u32 arg2, f32 arg3) {
     void * v2;
     struct fn_1_EBE4_lbl_1_bss_1148 *p_lbl_1_bss_1148;
     void * v0;
-    u32 v4;
-    u32 v5;
     struct fn_1_EBE4_lbl_1_data_43B8 *p_lbl_1_data_43B8;
     u32 v3;
     u32 v1;
@@ -1555,7 +1552,6 @@ static inline void update_mode(struct fn_1_EE44_Arg0 *arg0, u8 *pool) {
 void fn_1_EE44(struct fn_1_EE44_Arg0 *arg0, f32 arg1) {
     Obj_1_data_43B8 *p_lbl_1_data_43B8;
     u8 *p_lbl_1_rodata_4E0;
-    u32 v0;
     u16 v1;
     u8 v2;
     u16 v3;
@@ -2314,15 +2310,11 @@ void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
     u8 v0;
     f64 v1;
     u32 v3;
-    u16 v8;
     s16 v9;
-    s16 v21;
     s16 v29;
     s16 v30;
     u32 v28;
-    s32 v32;
     s32 v_div;
-    s32 v_n;
     v0 = (arg0->pad_0)[0];
     if (v0 == 1 && (*(u32 *)((u8 *)arg0 + 12) & 0x80000) != 0) {
         v0 = 4;
@@ -2541,9 +2533,7 @@ void fn_1_10268(Camera_1_10268 *arg) {
     Obj_1_bss_17C4_At0 *e;
     Copy_1_10268 t;
     u32 n;
-    u32 m;
     f32 a;
-    f32 b;
 
     e = &lbl_1_bss_17C4.unk_0[arg->unk_4];
     t = *(Copy_1_10268 *)((u8 *)e + 8);
@@ -4565,7 +4555,6 @@ void fn_1_1212C(Lc1212C *cam) {
     f32 t;
     f64 d;
     f64 h;
-    f32 c;
     f32 rate;
 
     fn_1_862D4(cam->unk_6, &eye);

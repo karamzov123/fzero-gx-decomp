@@ -63,7 +63,6 @@ extern void OSReport(const char *, ...);
 s32 fn_8006A480(struct fn_8006A480_Arg0 *arg0, u32 arg1, struct fn_8006A480_Out *arg2) {
     struct fn_8006A480_Entry *entries;
     s32 idx;
-    s32 flag;
     char buf[0x80];
     entries = arg0->entries;
     idx = fn_8006A554(arg0, arg1, arg2);

@@ -538,9 +538,6 @@ void fn_1_F2F84(void) {
     Obj_1_bss_7EFD8 *p_lbl_1_bss_7EFD8;
     u8 *v1;
     s32 v3;
-    s32 v4;
-    s32 v5;
-    u8 *v6;
     s32 v16;
     struct { s32 value; } v17;
     u8 *v18;
@@ -1326,7 +1323,6 @@ struct fn_1_F453C_Arg1 {
 };
 
 u32 fn_1_F453C(struct fn_1_F453C_Arg0 *arg0, struct fn_1_F453C_Arg1 *arg1, u32 arg2) {
-    u32 v0;
     u32 v1;
     s32 v2;
     u32 v3;

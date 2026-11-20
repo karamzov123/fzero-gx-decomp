@@ -119,7 +119,6 @@ struct fn_8003A91C_Dec {
 
 s32 fn_8003A91C(struct fn_8003A91C_Dec *d) {
     u32 i;
-    s32 j;
     s32 n;
 
     d->mcux = CEIL_DIV(d->width, d->hmax * 8);

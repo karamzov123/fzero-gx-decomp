@@ -1453,7 +1453,6 @@ void fn_3_1A488(void) {
     s32 v1;
     u16 v0;
     u32 v2;
-    u32 v3;
     struct { u32 a[4]; } loc_8;
     u32 t3;
     entries = (struct fn_3_1A488_lbl_1_bss_9F8_8_E20 *)((u8 *)&(*(struct fn_3_1A488_lbl_1_bss_9F8 *)&lbl_1_bss_9F8) + 16);
@@ -3504,7 +3503,6 @@ extern void fn_1_5233C(void *, void *);
 #pragma opt_propagation off
 static inline f32 fn_3_1D338_operand(f32 right, f32 left) { return left * right; }
 void fn_3_1D338(s16 kind) {
-    s16 fzgx_value;
     struct fn_3_1D338_sprite sprite;
     u32 v29;
     f32 f31;
@@ -4298,7 +4296,6 @@ s32 fn_3_1EFE4(void) {
     u32 v33;
     f32 v34;
     u32 v35;
-    f32 v37;
     u32 v38;
     f32 v40;
     u32 v41;
@@ -4616,7 +4613,6 @@ int fn_3_1F958(void) {
  u32 v23;
  s32 v27;
  Obj_3_bss_20 *state;
- struct fn_3_1F958_lbl_3_rodata_768 *p_lbl_3_rodata_768;
  s16 v1;
  s32 special;
  u8 *key0;
@@ -4628,10 +4624,6 @@ int fn_3_1F958(void) {
  s16 v0;
  s32 enabled;
  s32 flag;
- u32 v2;
- u32 v3;
- u32 v4;
- u32 v5;
  f32 v6;
  f32 v7;
  f32 v8;
@@ -6993,12 +6985,7 @@ void fn_3_21300(s16 arg0, s16 arg1, s16 arg2) {
     s16 amount;
     s16 value;
     s16 flag;
-    f32 v1;
-    f32 v2;
-    f32 v3;
-    f32 v4;
     f32 v5;
-    s32 v6;
     u16 t0;
     f32 v38;
     s32 v42;
@@ -7021,9 +7008,6 @@ void fn_3_21300(s16 arg0, s16 arg1, s16 arg2) {
     s16 tens;
     s16 units;
     f32 rowY;
-    f32 sx;
-    f32 sy;
-    f32 scale;
     f32 pulse;
     s32 clamped;
     s32 xpos0;
@@ -7036,7 +7020,6 @@ void fn_3_21300(s16 arg0, s16 arg1, s16 arg2) {
     s32 xpos7;
     s32 xpos8;
     s16 flag2;
-    f32 rowX;
     Obj_3_bss_F0 *p_lbl_3_bss_F0;
 
     p_lbl_3_bss_F0 = &lbl_3_bss_F0;
@@ -8804,7 +8787,6 @@ void fn_3_23724(s16 arg0, s16 arg1, s16 arg2, f32 arg3, f32 arg4, f32 arg5, f32 
     f32 t3;
     f32 t4;
     f32 t5;
-    f32 t6;
     f32 lab_t3;
     t0 = arg4 - 4.0f;
     t1 = t0 - 24.0f;
@@ -9249,9 +9231,6 @@ static inline void fn_3_24138_print_weight(const char *format, const s32 *value)
 void fn_3_24138(u32 arg0, u32 arg1, u32 arg2) {
     Obj_3_bss_F0 *p_lbl_3_bss_F0;
     s16 v0;
-    f32 v1;
-    f32 v2;
-    f32 v3;
     f32 v5;
     s16 first, last;
     struct { char chars[64]; } text;
@@ -9264,7 +9243,6 @@ void fn_3_24138(u32 arg0, u32 arg1, u32 arg2) {
     s16 item;
     s32 weight;
     s16 kind;
-    u16 t0;
     f32 wave;
     p_lbl_3_bss_F0 = (Obj_3_bss_F0 *)&lbl_3_bss_F0;
     v0 = p_lbl_3_bss_F0->unk_A;
@@ -10193,8 +10171,6 @@ void fn_3_268D0(fn_3_268D0_CustomizeObject *self) {
     f32 *table = lbl_3_rodata_768;
     Color color;
     u32 value;
-    s32 x0;
-    s32 y0;
 
     fn_80008BA8(&value, &self->pad054, 4);
     color.bytes[0] = fn_1_151E20(value, 0);
@@ -10396,9 +10372,7 @@ void fn_3_26A34(s16 x, s16 y, s16 z) {
     FontDrawPacket pkt;
     u32 color;
     s16 i;
-    s16 idx;
     u32 obj;
-    Obj_3_bss_20 *st;
     f32 depth2;
     f32 depth;
     u32 value;
@@ -11734,7 +11708,6 @@ static inline void fn_3_286BC_SetViewport(s16 x, s16 y, s16 w, s16 h) {
 void fn_3_286BC(void) {
     s32 x;
     s32 y;
-    s16 yoff;
     s16 col;
     s32 v1;
     u32 edge;
@@ -11764,7 +11737,6 @@ void fn_3_286BC(void) {
     struct fn_3_286BC_Copy88 packet1;
     s16 maxrows;
     Obj_3_bss_2C584 *entry;
-    s16 selected;
     f32 pulse, scale;
     u16 t2;
 
@@ -12769,23 +12741,6 @@ void fn_3_2AAF4(void) {
     f32 v8;
     s32 v9;
     s16 v0;
-    s32 v10;
-    void *v11;
-    s32 v12;
-    void *v13;
-    s32 v14;
-    void *v15;
-    s32 v16;
-    s32 v17;
-    u32 v18;
-    u32 v19;
-    u32 v20;
-    u32 v21;
-    u32 v22;
-    u32 v23;
-    u32 v24;
-    u32 v25;
-    u32 v26;
     f32 v27;
     f32 v28;
     f32 v29;
@@ -13403,10 +13358,8 @@ extern u32 fn_3_2B750(s16, s16);
 extern void fn_1_4AE0C(const char *, ...);
 #define clamp(value, min, max) ((value) < (min) ? (min) : (value) > (max) ? (max) : (value))
 void fn_3_2B268(void) {
-    struct fn_3_2B268_lbl_3_rodata_768 *p_lbl_3_rodata_768;
     f32 v0;
     f32 v1;
-    f32 v2;
     f32 v3;
     f64 v4;
     f32 v5;
@@ -13415,8 +13368,6 @@ void fn_3_2B268(void) {
     f64 v8;
     u32 v9;
     f32 v10;
-    u32 v11;
-    u32 v12;
     u32 loc_C;
     FontDrawPacket loc_68;
     FontDrawPacket loc_10;
@@ -13875,7 +13826,6 @@ void fn_3_2BFB4(void) {
     f32 v4;
     f32 v1;
     f32 v0;
-    char * lab_t0;
     struct { u32 a[66]; } loc_60;
     FontDrawPacket loc_8;
     u32 lab_t3;
@@ -14708,7 +14658,6 @@ void fn_3_2C73C(u32 arg0, fn_3_2C73C_Obj **ctx, fn_3_2C73C_Vec *a, fn_3_2C73C_Ve
                 fn_3_2C73C_Src * __restrict src, f32 value, f32 max) {
     const struct fn_3_2C73C_Pool *pool;
     fn_3_2C73C_Obj *obj;
-    struct fn_3_2C73C_State *st;
     f32 base_y;
     f32 scale_y;
     f32 t;

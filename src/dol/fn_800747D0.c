@@ -142,7 +142,6 @@ extern u32 lbl_801A6D88[2];
 void fn_80074A8C(f32 a, f32 b, f32 c, f32 d) {
     if (lbl_801A7488 != a || lbl_801A7488 != b ||
         lbl_801A7488 != c || lbl_801A7488 != d) {
-        u8 red;
         u8 green;
         u8 blue;
         u8 alpha;
@@ -187,7 +186,6 @@ extern u32 lbl_801A6D7C;
 extern u32 lbl_801A6D84;
 
 void fn_80074BC4(f32 a, f32 b, f32 c, f32 d) {
-    u8 v3;
     if (!(lbl_801A7480 == a &&
           lbl_801A7480 == b &&
           lbl_801A7480 == c &&

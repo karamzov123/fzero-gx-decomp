@@ -536,7 +536,6 @@ void fn_1_9E29C(s32 count, Vec3f *src, ScreenPoint *dst) {
     f32 halfW, halfH;
     f32 dxmax, dymax, cx, cy, xmax, ymax;
     f32 nx, ny;
-    f32 inv;
     f32 t;
     s32 i;
 

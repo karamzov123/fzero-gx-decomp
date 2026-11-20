@@ -867,9 +867,6 @@ extern void fn_1_12F1E8(s32);
 extern s32 fn_1_132488;
 
 void fn_1_12B120(u8 *arg0, void *arg1, void *arg2, s32 *arg3, void *arg4, s32 *arg5, s32 arg_sp0) {
-    s32 sp10;
-    u32 *spC;
-    s32 sp8;
     s32 *var_r31;
     s16 var_r31_2;
     u32 temp_r24;
@@ -2755,17 +2752,7 @@ void fn_1_12D404(u8 *arg0, u8 *arg1, u32 arg2, void *arg3, s32 *arg4, s32 (*arg5
     u8 *p_lbl_1_data_40798;
     void *v0;
     s32 v1;
-    void *v2;
-    u32 v3;
-    s32 *v4;
-    u32 v5;
     s16 v6;
-    u32 v7;
-    void *v8;
-    s32 *v9;
-    void *v10;
-    void *v11;
-    u32 v13;
     s32 value;
     p_lbl_1_bss_8B3A0 = (u8 *)&lbl_1_bss_8B3A0;
     p_lbl_1_data_40798 = (u8 *)&lbl_1_data_40798;

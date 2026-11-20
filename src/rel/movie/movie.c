@@ -520,7 +520,6 @@ void fn_5_320(void) {
 
 /* fzgx:begin fn_5_37C */
 void fn_5_37C(void) {
-    s8 subtitles;
 
     sMode = 0;
     sPauseReq = 0;

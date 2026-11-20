@@ -36,7 +36,6 @@ s32 fn_80025A24(Fn80025A24State *arg0) {
     u32 i;
     u32 j;
     u32 t0;
-    u32 t1;
     u32 *p0;
     u32 *p1;
     u32 *p2;

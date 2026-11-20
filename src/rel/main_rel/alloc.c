@@ -245,7 +245,6 @@ void fn_1_4E60(Obj_1_data_2CDC *obj) {
     f32 ratio;
     f32 value;
     u32 unk8;
-    u32 src;
     Obj_1_data_2CDC *dst;
 
     base = obj->unk_4 / 65535.0f;
@@ -821,8 +820,6 @@ typedef struct {
 
 #pragma opt_propagation off
 void fn_1_5948(u32 arg0) {
-    struct Sig_fn_1_549F4_fn_1_549F4_Arg1 * lab_t1_;
-    struct Sig_fn_1_549F4_Sig_fn_8006F1F0_fn_8006F1F0_Arg0 *lab_t0_;
     f32 v6;
     f32 v7;
     Obj_1_bss_F68_Target **p_lbl_1_bss_F68;

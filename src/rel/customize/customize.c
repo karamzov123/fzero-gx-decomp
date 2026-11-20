@@ -812,7 +812,6 @@ s32 fn_3_B270(void) {
     s16 i;
     s16 row;
     s16 col;
-    s16 sel;
     s16 lo;
     s16 hi;
     u32 money;

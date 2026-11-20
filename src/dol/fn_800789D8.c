@@ -26,11 +26,9 @@ u32 fn_800789D8(struct fn_800789D8_Arg0 *arg0, struct fn_800789D8_Arg1 *entry, u
     s32 v10;
     s32 v5;
     s32 v4;
-    u32 v6;
     u32 v7;
     struct fn_800789D8_Arg1 *arg1 = entry;
     u32 v8;
-    u8 v11;
     u32 v13;
     u32 v12;
     struct { u32 a[16]; } loc_8;

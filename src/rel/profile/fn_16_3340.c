@@ -119,7 +119,6 @@ void fn_16_3340(s16 arg0) {
     s32 textX;
     f32 half;
     f32 t;
-    f32 scale;
     f32 pulse;
     state = (struct ProfileMenuState *)&lbl_1_bss_8B614;
     offset = (state->scroll * -22);

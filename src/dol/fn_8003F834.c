@@ -255,7 +255,6 @@ void fn_8003F834(void) {
         GXWGFifo = lbl_801A71F8;
     }
     {
-        u8 padding[4];
     }
     if (0) {
         setBarColor(*(Sig_fn_80035828_GXColor *)&lbl_801A65E4);

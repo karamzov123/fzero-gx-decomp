@@ -1970,7 +1970,6 @@ void fn_1_ECF88(void) {
     void *v29;
     u32 v28;
     void *v19;
-    u32 v38;
     u16 v39;
     u8 v42;
     s32 v46;
@@ -4942,7 +4941,6 @@ void fn_1_F0168(void)
     u32 *sizeD;
     u16 *flags;
     u32 i;
-    u32 n;
     u8 count;
     GhostDisplayState state;
     char name[0x20];
@@ -5503,7 +5501,6 @@ s32 fn_1_F0E00(s32 idx, s32 *out) {
         u32 hi;
         u16 *vals;
         s8 *hiw;
-        s32 k;
         f32 r;
 
         for (i = 0; v > tbl[i]; i++) {
@@ -6812,7 +6809,6 @@ void fn_1_F23E8(void) {
     GhostVec pos;
     f32 height;
     f32 scale;
-    f32 t;
     f32 lab_t4;
     f32 lab_t4_;
 

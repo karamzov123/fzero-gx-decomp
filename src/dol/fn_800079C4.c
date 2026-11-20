@@ -54,7 +54,6 @@ static inline int byte_equal(u8 *p) {
 
 void fn_80007AB4(u8 *arg0) {
     u32 loc_8[2];
-    u8 b0;
 
     if (byte_equal(arg0)) {
         /* Goto shares the final flag store with the unchanged-value path. */
@@ -83,8 +82,6 @@ extern u32 lbl_801A6F04;
 
 void fn_80007B68(void) {
     u32 loc_8[5];
-    u8 *src;
-    u8 *dst;
 
     loc_8[4] = lbl_801A6F04;
     loc_8[0] = lbl_801A6F04;

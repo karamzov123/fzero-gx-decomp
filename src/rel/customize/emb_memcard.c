@@ -339,7 +339,6 @@ void fn_3_C400(u32 arg0, u32 arg1) {
     s32 clamped2;
     s32 c2;
     f32 v35;
-    f32 alpha_value;
     f32 x;
     f32 v37;
     f32 v38;
@@ -1033,20 +1032,16 @@ static inline Obj_3_bss_7EDC0_At0 *card_slot(u32 offset) { return (Obj_3_bss_7ED
 static inline s32 clamp_menu(s32 n) { return n < 0 ? 0 : n > 10 ? 10 : n; }
 #pragma opt_lifetimes off
 void fn_3_CE94(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
-    s16 v3;
-    struct fn_3_CE94_lbl_3_rodata_288 *p_lbl_3_rodata_288;
     Obj_3_bss_7EDD8 *p_lbl_3_bss_7EDD8;
     s16 v0;
     s32 v1;
     s32 v2;
-    f32 v4;
     u32 v5;
     f64 v6;
     f32 v7;
     f32 v8;
     f32 v9;
     u32 v10;
-    f32 v11;
     f64 v12;
     f32 v13;
     u32 v14;
@@ -1423,8 +1418,6 @@ void fn_3_D9A0(void) {
     Obj_3_bss_7EDD8 *p_lbl_3_bss_7EDD8;
     u32 index;
     s32 fade;
-    s32 v65;
-    u32 v64;
     s16 v19;
     s16 v68;
     u32 v66;
@@ -1641,7 +1634,6 @@ void fn_3_D9A0(void) {
         }
         {
             struct { s32 value; } numerator;
-            f32 clamped;
             numerator.value = fade - v67;
             cn = clamp15(numerator.value);
             d = 15 - v67;
