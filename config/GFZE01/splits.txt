@@ -1925,9 +1925,6 @@ dol/fn_80024E6C.c:
 dol/fn_80025004.c:
 	.text       start:0x80025004 end:0x800251F0 align:4
 
-dol/fn_8003C6D0.c:
-	.text       start:0x8003C6D0 end:0x8003CBB0 align:4
-
 dol/fn_8003CBB0.c:
 	.text       start:0x8003CBB0 end:0x8003CE74 align:4
 
@@ -2245,47 +2242,17 @@ dol/CARDFreeBlocks.c:
 dol/bitrev.c:
 	.text       start:0x8002ABC0 end:0x8002AD2C align:4
 
-dol/InitCallback.c:
-	.text       start:0x8002BA8C end:0x8002BAFC align:4
-
-dol/DoneCallback.c:
-	.text       start:0x8002BAFC end:0x8002BE20 align:4
-
 dol/EraseCallback.c:
 	.text       start:0x8002C194 end:0x8002C4BC align:4
 
 dol/WriteCallback_CARDDir.c:
-	.text       start:0x8002C4C4 end:0x8002C594 align:4
-
-dol/EraseCallback_CARDDir.c:
-	.text       start:0x8002C594 end:0x8002C65C align:4
-
-dol/__CARDUpdateDir.c:
-	.text       start:0x8002C65C end:0x8002C720 align:4
-
-dol/CARDProbeEx.c:
-	.text       start:0x8002D77C end:0x8002D8F8 align:4
+	.text       start:0x8002C4C4 end:0x8002C720 align:4
 
 dol/__CARDMountCallback.c:
-	.text       start:0x8002DD08 end:0x8002DE40 align:4
-
-dol/CARDMountAsync.c:
-	.text       start:0x8002DE40 end:0x8002DFE0 align:4
+	.text       start:0x8002DD08 end:0x8002DFE0 align:4
 
 dol/CARDUnmount.c:
-	.text       start:0x8002E0C4 end:0x8002E170 align:4
-
-dol/FormatCallback.c:
-	.text       start:0x8002E170 end:0x8002E2B4 align:4
-
-dol/__CARDFormatRegionAsync.c:
-	.text       start:0x8002E2B4 end:0x8002E90C align:4
-
-dol/__CARDSeek.c:
-	.text       start:0x8002F140 end:0x8002F2F8 align:4
-
-dol/ReadCallback.c:
-	.text       start:0x8002F2F8 end:0x8002F428 align:4
+	.text       start:0x8002E0C4 end:0x8002E90C align:4
 
 dol/WriteCallback_CARDWrite.c:
 	.text       start:0x8002F5B8 end:0x8002F728 align:4
@@ -2302,20 +2269,14 @@ dol/UpdateIconOffsets.c:
 dol/CARDRenameAsync.c:
 	.text       start:0x8003013C end:0x80030338 align:4
 
-dol/CARDReadAsync.c:
-	.text       start:0x8002F428 end:0x8002F570 align:4
-
 dol/CARDNet.c:
 	.text       start:0x80030690 end:0x80030754 align:4
 
-dol/CARDRdwr.c:
-	.text       start:0x8002BE20 end:0x8002C0A0 align:4
-
 dol/CARDCheck.c:
-	.text       start:0x8002C720 end:0x8002D6B0 align:4
+	.text       start:0x8002C720 end:0x8002DD08 align:4
 
 dol/CARDCreate.c:
-	.text       start:0x8002EDA8 end:0x8002F140 align:4
+	.text       start:0x8002EDA8 end:0x8002F570 align:4
 
 dol/CARDOpen.c:
 	.text       start:0x8002E954 end:0x8002EDA0 align:4
@@ -2345,13 +2306,7 @@ dol/OSClearStack.c:
 	.text       start:0x80011360 end:0x8001140C align:4
 
 dol/__OSGetSystemTime.c:
-	.text       start:0x8001142C end:0x80011490 align:4
-
-dol/__OSTimeToSystemTime.c:
-	.text       start:0x80011490 end:0x800114E8 align:4
-
-dol/GetDates.c:
-	.text       start:0x800114E8 end:0x80011684 align:4
+	.text       start:0x8001142C end:0x80011684 align:4
 
 dol/OSTicksToCalendarTime.c:
 	.text       start:0x80011684 end:0x80011888 align:4
@@ -2379,7 +2334,7 @@ dol/SetExiInterruptMask.c:
 	.text       start:0x80013A88 end:0x80015464 align:4
 
 dol/ProbeBarnacle.c:
-	.text       start:0x80015464 end:0x800155F0 align:4
+	.text       start:0x80015464 end:0x800157AC align:4
 
 dol/OSClearContext.c:
 	.text       start:0x8000BFC8 end:0x8000BFEC align:4
@@ -2448,16 +2403,7 @@ dol/ARStartDMA.c:
 	.text       start:0x8001E864 end:0x8001E954 align:4
 
 dol/ARInit.c:
-	.text       start:0x8001EA30 end:0x8001EAF4 align:4
-
-dol/__ARHandler.c:
-	.text       start:0x8001EAF4 end:0x8001EB6C align:4
-
-dol/__ARChecksize.c:
-	.text       start:0x8001EB6C end:0x80020360 align:4
-
-dol/__ARQServiceQueueLo.c:
-	.text       start:0x80020360 end:0x80020460 align:4
+	.text       start:0x8001EA30 end:0x80020460 align:4
 
 dol/__ARQInterruptServiceRoutine.c:
 	.text       start:0x80020464 end:0x80020530 align:4
@@ -2466,7 +2412,7 @@ dol/ARQPostRequest.c:
 	.text       start:0x800205A0 end:0x800206FC align:4
 
 dol/__CARDUnlock.c:
-	.text       start:0x8002AF34 end:0x8002BA8C align:4
+	.text       start:0x8002AF34 end:0x8002C0A0 align:4
 
 dol/InsertAlarm.c:
 	.text       start:0x8000AC44 end:0x8000AE94 align:4
@@ -2482,9 +2428,6 @@ dol/__OSInterruptInit.c:
 
 dol/OSRegisterResetFunction.c:
 	.text       start:0x8000EE70 end:0x8000EEF4 align:4
-
-dol/__OSEnableBarnacle.c:
-	.text       start:0x800155F0 end:0x800157AC align:4
 
 dol/WriteUARTN.c:
 	.text       start:0x8001581C end:0x80015A38 align:4
@@ -2597,9 +2540,6 @@ dol/AISetStreamVolLeft.c:
 dol/AISetStreamVolRight.c:
 	.text       start:0x8001E2E8 end:0x8001E304 align:4
 
-dol/DoMount.c:
-	.text       start:0x8002D8F8 end:0x8002DD08 align:4
-
 dol/__OSResetSWInterruptHandler.c:
 	.text       start:0x8000F264 end:0x8000F358 align:4
 
@@ -2693,10 +2633,7 @@ dol/GXGetTexBufferSize.c:
 	.data       start:0x8012B140 end:0x8012B328 align:32
 
 dol/__GXSetSUTexRegs.c:
-	.text       start:0x8003666C end:0x800367E8 align:4
-
-dol/__GXSetTmemConfig.c:
-	.text       start:0x800367E8 end:0x80036A28 align:4
+	.text       start:0x8003666C end:0x80036A28 align:4
 
 dol/GXSetTevIndirect.c:
 	.text       start:0x80036A28 end:0x80036AC4 align:4
@@ -2748,9 +2685,6 @@ dol/AIInit.c:
 
 dol/__AI_SRC_INIT.c:
 	.text       start:0x8001E600 end:0x8001E7E4 align:4
-
-dol/IsCard.c:
-	.text       start:0x8002D6B0 end:0x8002D77C align:4
 
 dol/GXSetTevOrder.c:
 	.text       start:0x800375F0 end:0x800377C8 align:4
@@ -3511,17 +3445,11 @@ dol/fn_8004EA94.c:
 dol/fn_80057378.c:
 	.text       start:0x80057378 end:0x8005741C align:4
 
-dol/C_MTXOrtho.c:
-	.text       start:0x80015EE8 end:0x80015F80 align:4
-
 dol/fn_800139E8.c:
 	.text       start:0x800139E8 end:0x80013A88 align:4
 
 dol/fn_80024D84.c:
 	.text       start:0x80024D84 end:0x80024DF0 align:4
-
-dol/C_MTXPerspective.c:
-	.text       start:0x80015E18 end:0x80015EE8 align:4
 
 dol/fn_8008EB8C.c:
 	.text       start:0x8008EB8C end:0x8008EBF8 align:4
@@ -3617,7 +3545,7 @@ dol/fn_80083BCC.c:
 	.text       start:0x80083BCC end:0x80083CF4 align:4
 
 dol/fn_8003B930.c:
-	.text       start:0x8003B930 end:0x8003B9AC align:4
+	.text       start:0x8003B930 end:0x8003BB30 align:4
 
 dol/fn_80030754.c:
 	.text       start:0x80030754 end:0x800307CC align:4
@@ -3717,7 +3645,7 @@ dol/PADProbeCallback.c:
 	.text       start:0x8001C62C end:0x8001C704 align:4
 
 dol/C_MTXFrustum.c:
-	.text       start:0x80015D7C end:0x80015E18 align:4
+	.text       start:0x80015D7C end:0x80015F80 align:4
 
 dol/VI.c:
 	.text       start:0x8001A55C end:0x8001C0C0 align:4
@@ -3948,9 +3876,6 @@ dol/fn_8003AB08.c:
 
 dol/fn_8003B010.c:
 	.text       start:0x8003B010 end:0x8003B63C align:4
-
-dol/fn_8003B9AC.c:
-	.text       start:0x8003B9AC end:0x8003BB30 align:4
 
 dol/fn_8003BB30.c:
 	.text       start:0x8003BB30 end:0x8003BCE4 align:4
@@ -4312,7 +4237,7 @@ dol/fn_8004FF68.c:
 	.text       start:0x8004FF68 end:0x80050180 align:4
 
 dol/fn_8003A1CC.c:
-	.text       start:0x8003A1CC end:0x8003A3D4 align:4
+	.text       start:0x8003A1CC end:0x8003A4E8 align:4
 
 dol/fn_800090A4.c:
 	.text       start:0x800090A4 end:0x80009468 align:4
@@ -4409,9 +4334,6 @@ dol/fn_80041700.c:
 
 dol/fn_800478C0.c:
 	.text       start:0x800478C0 end:0x80047A50 align:4
-
-dol/fn_8003A3D4.c:
-	.text       start:0x8003A3D4 end:0x8003A4E8 align:4
 
 dol/fn_8004CD70.c:
 	.text       start:0x8004CD70 end:0x8004D18C align:4
@@ -4783,7 +4705,7 @@ dol/fn_80023684.c:
 	.text       start:0x80023684 end:0x80023B70 align:4
 
 dol/fn_8003C1A4.c:
-	.text       start:0x8003C1A4 end:0x8003C6D0 align:4
+	.text       start:0x8003C1A4 end:0x8003CBB0 align:4
 
 dol/fn_8003E344.c:
 	.text       start:0x8003E344 end:0x8003E8CC align:4

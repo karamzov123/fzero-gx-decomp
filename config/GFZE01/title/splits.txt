@@ -48,9 +48,6 @@ rel/title/fn_8_6560.c:
 rel/title/fn_8_6568.c:
 	.text       start:0x00006568 end:0x00006570
 
-rel/title/operation/fn_8_68D8.c:
-	.text       start:0x000068D8 end:0x000068F4
-
 rel/title/fn_8_8C44.c:
 	.text       start:0x00008C44 end:0x00008C48
 
@@ -105,17 +102,8 @@ rel/title/title/fn_8_516C.c:
 rel/title/title/fn_8_5514.c:
 	.text       start:0x00005514 end:0x000055CC align:4
 
-rel/title/operation/fn_8_6C50.c:
-	.text       start:0x00006C50 end:0x00006C90 align:4
-
-rel/title/operation/fn_8_69D8.c:
-	.text       start:0x000069D8 end:0x00006A50 align:4
-
 rel/title/title/fn_8_4E90.c:
 	.text       start:0x00004E90 end:0x00004F64 align:4
-
-rel/title/operation/fn_8_68F4.c:
-	.text       start:0x000068F4 end:0x000069D8 align:4
 
 rel/title/title/fn_8_6594.c:
 	.text       start:0x00006594 end:0x0000663C align:4
@@ -124,13 +112,7 @@ rel/title/operation/fn_8_8C48.c:
 	.text       start:0x00008C48 end:0x00008C80 align:4
 
 rel/title/operation/fn_8_67F8.c:
-	.text       start:0x000067F8 end:0x000068D8 align:4
-
-rel/title/operation/fn_8_6A50.c:
-	.text       start:0x00006A50 end:0x00006A70 align:4
-
-rel/title/title/fn_8_B7C.c:
-	.text       start:0x00000B7C end:0x00000BD8 align:4
+	.text       start:0x000067F8 end:0x00006A70 align:4
 
 rel/title/title/fn_8_5218.c:
 	.text       start:0x00005218 end:0x0000530C align:4
@@ -148,7 +130,7 @@ rel/title/operation/fn_8_C7B0.c:
 	.text       start:0x0000C7B0 end:0x0000C9A8 align:4
 
 rel/title/operation/fn_8_6A70.c:
-	.text       start:0x00006A70 end:0x00006C50 align:4
+	.text       start:0x00006A70 end:0x00006C90 align:4
 
 rel/title/operation/fn_8_BAEC.c:
 	.text       start:0x0000BAEC end:0x0000BC04 align:4
@@ -157,7 +139,7 @@ rel/title/title/_prolog.c:
 	.text       start:0x0000082C end:0x00000954 align:4
 
 rel/title/title/_epilog.c:
-	.text       start:0x00000AF0 end:0x00000B7C align:4
+	.text       start:0x00000AF0 end:0x00000BD8 align:4
 
 rel/title/title/fn_8_530C.c:
 	.text       start:0x0000530C end:0x00005514 align:4

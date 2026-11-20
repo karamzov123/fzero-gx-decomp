@@ -6,9 +6,6 @@ Sections:
 	.data       type:data align:8
 	.bss        type:bss align:8
 
-rel/option/_prolog/fn_4_894.c:
-	.text       start:0x00000894 end:0x000008DC align:4
-
 rel/option/_prolog/fn_4_D10.c:
 	.text       start:0x00000D10 end:0x00000D7C align:4
 
@@ -63,9 +60,6 @@ rel/option/_prolog/fn_4_8A54.c:
 rel/option/_prolog/fn_4_7CA4.c:
 	.text       start:0x00007CA4 end:0x00007DEC align:4
 
-rel/option/_prolog/fn_4_9B0.c:
-	.text       start:0x000009B0 end:0x00000A0C align:4
-
 rel/option/_prolog/fn_4_AB30.c:
 	.text       start:0x0000AB30 end:0x0000ADF4 align:4
 	.data       start:0x00002F00 end:0x00002F78 align:8
@@ -82,10 +76,10 @@ rel/option/_prolog/fn_4_4B74.c:
 	.data       start:0x00000000 end:0x00002AE8 align:8
 
 rel/option/_prolog/fn_4_800.c:
-	.text       start:0x00000800 end:0x00000894 align:4
+	.text       start:0x00000800 end:0x000008DC align:4
 
 rel/option/_prolog/_epilog.c:
-	.text       start:0x000008DC end:0x000009B0 align:4
+	.text       start:0x000008DC end:0x00000A0C align:4
 
 rel/option/_prolog/fn_4_8720.c:
 	.text       start:0x00008720 end:0x0000898C align:4
