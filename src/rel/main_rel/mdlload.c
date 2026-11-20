@@ -706,17 +706,17 @@ void fn_1_D4370(void *arg0) {
         }
     }
     temp_f4 = *(f32 *)((u8 *)(arg0) + 49216);
-    (*(u8 *)((&loc_18))) = 0xFF;
+    (*(u8 *)(&loc_18)) = 0xFF;
     (*((u8 *)(&loc_18) + 1)) = 0xFF;
     (*((u8 *)(&loc_18) + 2)) = 0xFF;
     (*((u8 *)(&loc_18) + 3)) = 0x80;
-    (*(u8 *)((&loc_14))) = 0xEB;
+    (*(u8 *)(&loc_14)) = 0xEB;
     (*((u8 *)(&loc_14) + 1)) = 0xB4;
     (*((u8 *)(&loc_14) + 2)) = 0xD2;
     (*((u8 *)(&loc_14) + 3)) = 0x80;
     if (temp_f4 > (0.99000001f)) {
         loc_1C.words[0] = loc_18.words[0];
-        (*(u8 *)((&loc_1C))) = ((*(u8 *)((&loc_1C))) * temp_f4);
+        (*(u8 *)(&loc_1C)) = ((*(u8 *)(&loc_1C)) * temp_f4);
         (*((u8 *)(&loc_1C) + 1)) = ((*((u8 *)(&loc_1C) + 1)) * temp_f4);
         (*((u8 *)(&loc_1C) + 2)) = ((*((u8 *)(&loc_1C) + 2)) * temp_f4);
         (*((u8 *)(&loc_1C) + 3)) = ((*((u8 *)(&loc_1C) + 3)) * temp_f4);
@@ -725,13 +725,13 @@ void fn_1_D4370(void *arg0) {
         sp10 = loc_18.words[0];
         loc_1C.words[0] = fn_1_539CC((&sp10), (&spC), ((0.5f) * (*(f32 *)((u8 *)(arg0) + 49216))));
         temp_f4_2 = (*(f32 *)((u8 *)(arg0) + 49216)) / (1.64999998f);
-        (*(u8 *)((&loc_1C))) = ((*(u8 *)((&loc_1C))) * temp_f4_2);
+        (*(u8 *)(&loc_1C)) = ((*(u8 *)(&loc_1C)) * temp_f4_2);
         (*((u8 *)(&loc_1C) + 1)) = ((*((u8 *)(&loc_1C) + 1)) * temp_f4_2);
         (*((u8 *)(&loc_1C) + 2)) = ((*((u8 *)(&loc_1C) + 2)) * temp_f4_2);
         (*((u8 *)(&loc_1C) + 3)) = ((*((u8 *)(&loc_1C) + 3)) * temp_f4_2);
     }
     sp8 = loc_1C.words[0];
-    fn_1_9A7A8((&sp8));
+    fn_1_9A7A8(&sp8);
 }
 /* fzgx:end fn_1_D4370 */
 
@@ -1147,7 +1147,7 @@ static inline f32 distance_squared(f32 *a, f32 *b) {
     f32 dy = a[1];
     f32 dz = a[2];
     dx -= b[0]; dy -= b[1]; dz -= b[2];
-    dx = ((f32)(((dx)) * ((dx))));
+    dx = ((f32)((dx) * (dx)));
     dx += dy * dy; dx += dz * dz;
     return dx;
 }

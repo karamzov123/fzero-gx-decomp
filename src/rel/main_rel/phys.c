@@ -4079,7 +4079,7 @@ void fn_1_E733C(u8 *obj, s16 count) {
         f = (pool->tenth);
     }
     if (PAD_BIT(lbl_1_bss_9F8.unk_0, 8) || PAD_BIT((&lbl_1_bss_9F8.unk_0)[10], 8)) {
-        f = fn_1_E733C_operand(((pool->ten)), (f));
+        f = fn_1_E733C_operand((pool->ten), (f));
     }
     if (PAD_BIT(lbl_1_bss_9F8.unk_0, 9) || PAD_BIT((&lbl_1_bss_9F8.unk_0)[10], 9)) {
         f = f / (pool->ten);

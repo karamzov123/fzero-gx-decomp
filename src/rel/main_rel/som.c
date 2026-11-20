@@ -184,7 +184,7 @@ u8 fn_1_1350C(void *arg0, u8 *arg1) {
     /* volatile: the index counter is a live shared object, read and advanced as written */
     result = arg1[*(volatile u32 *)&lbl_1_bss_3B28];
     /* volatile: the index counter is a live shared object, read and advanced as written */
-    (*&lbl_1_bss_3B28)++;
+    (lbl_1_bss_3B28)++;
     /* volatile: the index counter is a live shared object, read and advanced as written */
     if (*(volatile u32 *)&lbl_1_bss_3B28 >= *(volatile u32 *)&lbl_1_data_5180) {
         lbl_1_bss_3B28 = 0;

@@ -15,6 +15,7 @@ REG = re.compile(r'\bregister\s+')
 ICAST = re.compile(r'\((?:f32|f64|s32|u32|s16|u16|s8|u8|int)\)\s*(?=[A-Za-z_])')
 PTRCAST = re.compile(r'\((?:const\s+)?(?:void|u8|s8|char|u16|s16|u32|s32|f32)\s*\*\)\s*(?=[&A-Za-z_(])')
 PARENS = re.compile(r'\(\((&?[A-Za-z_]\w*(?:(?:->|\.)[A-Za-z_]\w*)*)\)\)')
+DEREF = re.compile(r'\*\s*(\(*)\s*&\s*([A-Za-z_]\w*(?:(?:->|\.)[A-Za-z_]\w*)*)\s*(\)*)')
 PLUS0 = re.compile(r'\s*\+\s*0(?=\))')
 PCAST = re.compile(r'\((?:f32|f64|s32|u32|s16|u16|s8|u8|int)\)\s*(?=\()')
 CARRIER = re.compile(r'struct \{ *([A-Za-z_][A-Za-z0-9_ ]*?\**) *value; *\} *([A-Za-z_]\w*);')
@@ -36,16 +37,22 @@ def candidates(text, lo, hi, kind):
                             g.append((lo + pos + len(line[:cm.start()].rstrip()), lo + pos + end, ''))
                     out.append(g)
             pos += len(line)
-    elif kind in ('castview', 'register', 'pcast', 'icast', 'ptrcast', 'plus0', 'parens'):
+    elif kind in ('castview', 'register', 'pcast', 'icast', 'ptrcast', 'plus0', 'parens', 'derefaddr'):
         pos = 0
         for line in seg.splitlines(keepends=True):
             if not SKIP.search(line) and not line.lstrip().startswith(('//', '/*', '*', '#')):
                 cm = re.search(r'//|/\*', line); code_end = cm.start() if cm else len(line)
-                if kind == 'parens':
+                if kind == 'derefaddr':
+                    for m in DEREF.finditer(line[:code_end]):
+                        k = min(len(m.group(1)), len(m.group(3)))
+                        if len(m.group(1)) > k: continue   # an opening paren that closes later: leave it
+                        tail = m.group(3)[k:]
+                        out.append([(lo + pos + m.start(), lo + pos + m.end(), '(' + m.group(2) + ')' + tail)])
+                elif kind == 'parens':
                     for m in PARENS.finditer(line[:code_end]):
                         out.append([(lo + pos + m.start(), lo + pos + m.end(), '(' + m.group(1) + ')')])
                 elif kind in ('register', 'pcast', 'icast', 'ptrcast', 'plus0'):
-                    for m in {'register': REG, 'pcast': PCAST, 'icast': ICAST, 'ptrcast': PTRCAST, 'plus0': PLUS0, 'parens': PARENS}[kind].finditer(line[:code_end]):
+                    for m in {'register': REG, 'pcast': PCAST, 'icast': ICAST, 'ptrcast': PTRCAST, 'plus0': PLUS0, 'parens': PARENS, 'derefaddr': DEREF}[kind].finditer(line[:code_end]):
                         out.append([(lo + pos + m.start(), lo + pos + m.end(), '')])
                 else:
                     for m in CAST.finditer(line[:code_end]):
@@ -108,9 +115,9 @@ def run(task):
 
 def main():
     kind = sys.argv[sys.argv.index('--kind') + 1] if '--kind' in sys.argv else 'volatile'
-    args = [a for a in sys.argv[1:] if not a.startswith('--') and a not in ('volatile', 'carrier', 'castview', 'register', 'pcast', 'icast', 'ptrcast', 'plus0', 'parens')]
+    args = [a for a in sys.argv[1:] if not a.startswith('--') and a not in ('volatile', 'carrier', 'castview', 'register', 'pcast', 'icast', 'ptrcast', 'plus0', 'parens', 'derefaddr')]
     units = json.load(open('config/GFZE01/units.json')); nu = d.ninja_units()
-    pat = {'volatile': VOL, 'carrier': CARRIER, 'castview': CAST, 'register': REG, 'pcast': PCAST, 'icast': ICAST, 'ptrcast': PTRCAST, 'plus0': PLUS0, 'parens': PARENS}[kind]
+    pat = {'volatile': VOL, 'carrier': CARRIER, 'castview': CAST, 'register': REG, 'pcast': PCAST, 'icast': ICAST, 'ptrcast': PTRCAST, 'plus0': PLUS0, 'parens': PARENS, 'derefaddr': DEREF}[kind]
     files = args or sorted(str(p) for p in pathlib.Path('src/rel').glob('**/*.c') if 'movie_module' not in str(p) and pat.search(p.read_text()))
     tasks = []
     for f in files:

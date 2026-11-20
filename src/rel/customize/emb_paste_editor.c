@@ -1732,7 +1732,7 @@ void fn_3_118BC(void) {
     fn_3_11A38();
     p = lbl_1_bss_9F8;
     p += 4;
-    v = ((p))[lbl_3_bss_7EDD8.unk_14 * 10];
+    v = (p)[lbl_3_bss_7EDD8.unk_14 * 10];
     if (((v >> 4) & 1) || ((v >> 9) & 1)) {
         fn_1_A2D84(0xa9010200);
         lbl_3_bss_7EDD8.unk_C = lbl_3_bss_7EDD8.unk_10;
@@ -1787,7 +1787,7 @@ void fn_3_11994(s16 arg0, s16 arg1, s32 arg2, s32 arg3, s32 arg_sp0) {
         if (arg0 != var_r30) {
             temp_r5 = var_r30 * 0x2060;
             temp_r4 = (void *)(arg2 + temp_r5);
-            if (arg1 == (*(s16 *)((temp_r4)))) {
+            if (arg1 == (*(s16 *)(temp_r4))) {
                 if ((*(s32 *)((u8 *)(temp_r4) + 4)) & 0x80000000) {
                     fn_80008BA8((struct Sig_fn_8004E278_fn_8004E278_Arg0 *)(arg3 + temp_r5), (u32)(temp_r4), 0x2060U);
                 }

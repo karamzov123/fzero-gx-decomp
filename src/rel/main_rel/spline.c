@@ -161,7 +161,7 @@ void fn_1_F5458(void *arg0, u32 count, f32 value, f32 *samples, void *table) {
                    (f32 *)((u8 *)table + (index << 4) + 16));
         fn_1_F588C((f32 *)work1, (f32 *)((u8 *)table + (index << 4)), (f32 *)((u8 *)table + (index << 4) + 16), ratio);
         fn_1_F588C((f32 *)work0, (f32 *)work3, (f32 *)work2, ratio);
-        lab_t3 = ((((lbl_1_rodata_6D6C)) * ((ratio))) * ((lbl_1_rodata_6D74 - ratio)));
+        lab_t3 = (((lbl_1_rodata_6D6C) * (ratio)) * ((lbl_1_rodata_6D74 - ratio)));
         fn_1_F588C(arg0, (f32 *)work1, (f32 *)work0, lab_t3);
     }
 }

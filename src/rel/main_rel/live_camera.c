@@ -1210,7 +1210,7 @@ u32 fn_1_EBE4(struct fn_1_EBE4_Arg0 *arg0, s32 arg1, u32 arg2, f32 arg3) {
     *(u8 *)((u8 *)arg0 + 0) = 0;
     p_lbl_1_data_43B8->unk_14A = 42;
     lbl_1_bss_6F243 = 0;
-    if (((p_lbl_1_data_43B8->unk_148)) != 42) {
+    if ((p_lbl_1_data_43B8->unk_148) != 42) {
     p_lbl_1_data_43B8->unk_148 = 42;
     }
     v6 = (u32)&lbl_1_bss_6EAD0;
@@ -2337,9 +2337,9 @@ void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
     } else {
         if (v0 == 0) {
             if ((*(u32 *)((u8 *)arg0 + 12) & 0x80000) == 0) {
-                v3 = (*&lbl_801A63C0) * 0x676A4B6B + 13259;
+                v3 = (lbl_801A63C0) * 0x676A4B6B + 13259;
                 fzgx_value_ = v3;
-                (*&lbl_801A63C0) = fzgx_value_;
+                (lbl_801A63C0) = fzgx_value_;
                 arg0->unk_12 = ((s32)((v3 >> 16) & 0x7FFF) % 4);
                 v9 = *(s16 *)((u8 *)arg0 + 2);
                 if ((s32)arg0->unk_12 == v9) {
@@ -2347,8 +2347,8 @@ void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
                     *fzgx_value__ = (s16)((v9 + 1) % 4);
                 }
             } else {
-                v3 = ((0x676A4B6B) * ((*&lbl_801A63C0))) + 13259;
-                (*&lbl_801A63C0) = v3;
+                v3 = ((0x676A4B6B) * ((lbl_801A63C0))) + 13259;
+                (lbl_801A63C0) = v3;
                 arg0->unk_12 = ((s32)((v3 >> 16) & 0x7FFF) % 6);
                 if (arg0->unk_12 >= 5) {
                     arg0->unk_12 = 4;
@@ -2366,8 +2366,8 @@ void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
                 }
             }
         } else {
-            v3 = (*&lbl_801A63C0) * 0x676A4B6B + 13259;
-            (*&lbl_801A63C0) = v3;
+            v3 = (lbl_801A63C0) * 0x676A4B6B + 13259;
+            (lbl_801A63C0) = v3;
             arg0->unk_12 = ((s32)(((0x7FFF) & ((v3 >> 16)))) % 6);
             if (arg0->unk_12 == *(s16 *)((u8 *)arg0 + 2)) {
                 arg0->unk_12 = ((*(s16 *)((u8 *)arg0 + 2) + 1) % 6);
@@ -2397,8 +2397,8 @@ void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
         arg0->unk_64 = 210;
     }
     if ((s8)camera_get_state() == 6) {
-        (*&lbl_801A63C0) = (*&lbl_801A63C0) * 0x676A4B6B + 13259;
-        v3 = (((*&lbl_801A63C0) >> 16) & 0x7FFF);
+        (lbl_801A63C0) = (lbl_801A63C0) * 0x676A4B6B + 13259;
+        v3 = (((lbl_801A63C0) >> 16) & 0x7FFF);
         v_div = v3;
         arg0->unk_6 = (v_div % (s8)fn_1_86624());
         if ((fn_1_864E8(arg0->unk_6) & 0x1) == 0) {
@@ -3693,8 +3693,8 @@ void fn_1_1138C(Cam *c)
     extern const f32 lbl_1_rodata_604;
 
     if (c->type == 5 || c->type <= 1 || c->type == 2) {
-        state = (*&lbl_801A63C0) * 0x676a4b6b + 0x33cb;
-        (*&lbl_801A63C0) = state;
+        state = (lbl_801A63C0) * 0x676a4b6b + 0x33cb;
+        (lbl_801A63C0) = state;
         r = (state >> 16) & 0x7fff;
         c->unk_14 = r % 6;
         c->unk_4 = r % 6;

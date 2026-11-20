@@ -392,7 +392,7 @@ void fn_1_14DE8(u32 index) {
         return;
     }
 
-    entry = ((fn_1_14DE8_StcoliEntry **)((&lbl_1_data_54B4)))[index];
+    entry = ((fn_1_14DE8_StcoliEntry **)(&lbl_1_data_54B4))[index];
     if (entry == 0) {
         return;
     }
@@ -3233,7 +3233,7 @@ int fn_1_17C6C(int current, int next, int limit) {
             next = 0;
         }
 
-        if (!(*(Root **)&(*&lbl_1_bss_3BE0))->slots[current].entry->active) {
+        if (!(*(Root **)&(lbl_1_bss_3BE0))->slots[current].entry->active) {
             break;
         }
         if (current == 0x8b && fn_1_7B054(current) == 3) {
@@ -9676,12 +9676,12 @@ void fn_1_21BE4(Fn_1_21BE4 *self, void *arg) {
     if ((self->flags & 0x800) != 0) {
         value2 = self->field3c;
     } else {
-        value2 = (*(&lbl_1_rodata_6D0));
+        value2 = (lbl_1_rodata_6D0);
     }
     if ((self->flags & 0x400) != 0) {
         value1 = self->field40;
     } else {
-        value1 = (*(&lbl_1_rodata_6D0));
+        value1 = (lbl_1_rodata_6D0);
     }
     fn_1_21950( (u32)(arg), value1, value2);
 }
@@ -9709,12 +9709,12 @@ void fn_1_21CA0(Fn_1_21CA0 *self, void *arg) {
     if ((self->flags & 0x800) != 0) {
         value2 = self->field3c;
     } else {
-        value2 = (*(&lbl_1_rodata_6D0));
+        value2 = (lbl_1_rodata_6D0);
     }
     if ((self->flags & 0x400) != 0) {
         value1 = self->field40;
     } else {
-        value1 = (*(&lbl_1_rodata_6D0));
+        value1 = (lbl_1_rodata_6D0);
     }
     fn_1_21950( (u32)(arg), value1, value2);
 }
@@ -10516,7 +10516,7 @@ typedef struct {
 } fn_1_229EC_ctrl;
 
 
-static inline f32 fn_1_229EC_operand_(f32 right, f32 left) { return ((((left)) * ((right)))); }
+static inline f32 fn_1_229EC_operand_(f32 right, f32 left) { return (((left) * (right))); }
 
 
 
@@ -10560,7 +10560,7 @@ void fn_1_229EC(fn_1_229EC_ctrl *ctrl, f32 *out_pos, f32 *out_mag)
 
     if (mag < 0.0f) {
         lab_t1 = (0.05f);
-        delta = ((((delta)) * (lab_t1)));
+        delta = (((delta) * (lab_t1)));
     }
 
     *out_mag = *out_mag + (f32)(((f32)((f32)((1000.0f)) * (f32)((delta))))) / ctrl->divisor;
@@ -12211,14 +12211,14 @@ s32 fn_1_239C4(struct fn_1_239C4_Arg0 *arg0, struct fn_1_239C4_Arg0 *arg1) {
         lbl_8006D5F0(&loc_94,&loc_94,lbl_1_rodata_92C__fzgx_offset_24);
         psvec_add((&arg0->pos), &loc_94, &loc_94);
         lbl_8006D5F0((&arg0->vel), &loc_7C, (lbl_1_rodata_92C__fzgx_offset_1C*v2));
-    } else { loc_94 = *(&arg0->prevPos); loc_7C = *(&arg0->vel); }
+    } else { loc_94 = (arg0->prevPos); loc_7C = (arg0->vel); }
     v1 = DIST((&arg1->prevPos),(&arg1->pos));
     if (v1 > lbl_1_rodata_92C__fzgx_offset_1C) {
         psvec_sub((&arg1->pos), (&arg1->prevPos), &loc_88);
         lbl_8006D5F0(&loc_88,&loc_88,lbl_1_rodata_92C__fzgx_offset_24);
         psvec_add((&arg1->pos), &loc_88, &loc_88);
         lbl_8006D5F0((&arg1->vel), &loc_70, (lbl_1_rodata_92C__fzgx_offset_1C*v6));
-    } else { loc_88 = *(&arg1->prevPos); loc_70 = *(&arg1->vel); }
+    } else { loc_88 = (arg1->prevPos); loc_70 = (arg1->vel); }
     if (!fn_1_251F8(&loc_94,(&arg0->pos),&loc_88,(&arg1->pos),&loc_C,&loc_8,v10,v11)) {
         if (!loc_8) { CLEAR_PAIR(); }
         return 0;
@@ -12287,7 +12287,7 @@ s32 fn_1_239C4(struct fn_1_239C4_Arg0 *arg0, struct fn_1_239C4_Arg0 *arg1) {
         if (U(arg0,0)&0x20000000) v84 = lbl_1_rodata_854;
         if (U(arg1,0)&0x20000000) v85 = lbl_1_rodata_854;
         psvec_scale(&loc_58,v84,&loc_28);
-        if (LENGTH((&arg0->vel)) > lbl_1_rodata_854__fzgx_offset_4 &&
+        if (LENGTH(&arg0->vel) > lbl_1_rodata_854__fzgx_offset_4 &&
             LENGTH(&loc_58) > lbl_1_rodata_854__fzgx_offset_4) {
             v88 = lbl_8006D6FC((&arg0->vel),&loc_58);
             if (v88 > lbl_1_rodata_84C) v88 = lbl_1_rodata_84C;
@@ -12297,7 +12297,7 @@ s32 fn_1_239C4(struct fn_1_239C4_Arg0 *arg0, struct fn_1_239C4_Arg0 *arg1) {
         }
         psvec_add(&loc_28,&loc_7C,(&arg0->vel));
         psvec_scale(&loc_4C,v85,&loc_28);
-        if (LENGTH((&arg1->vel)) > lbl_1_rodata_854__fzgx_offset_4 &&
+        if (LENGTH(&arg1->vel) > lbl_1_rodata_854__fzgx_offset_4 &&
             LENGTH(&loc_4C) > lbl_1_rodata_854__fzgx_offset_4) {
             v89 = lbl_8006D6FC((&arg1->vel),&loc_4C);
             if (v89 > lbl_1_rodata_84C) v89 = lbl_1_rodata_84C;
@@ -12316,7 +12316,7 @@ s32 fn_1_239C4(struct fn_1_239C4_Arg0 *arg0, struct fn_1_239C4_Arg0 *arg1) {
         } else {
             if (!(U(arg1,0)&0x200) && (U(arg1,0)&0x20008) && !(U(arg0,0)&0x20008)) v99 = 0;
         }
-        lbl_8006DBAC((&arg0->vecEC));
+        lbl_8006DBAC(&arg0->vecEC);
         psvec_scale(&loc_64,lbl_1_rodata_954__fzgx_offset_10,&loc_1C);
         fn_8006E2B0(&loc_1C,&loc_1C);
         fn_8006E2B0(&loc_58,&loc_10);
@@ -12329,7 +12329,7 @@ s32 fn_1_239C4(struct fn_1_239C4_Arg0 *arg0, struct fn_1_239C4_Arg0 *arg1) {
         if (U(arg1,0)&0x80) damage0 *= lbl_1_rodata_954__fzgx_offset_1C;
         if (v98 && !B(arg0,0x4c5) && fn_1_24F10((Sig_fn_1_24F10_Fn_1_24F10 *)arg0,damage0)) v94 = 1;
         fn_1_F7338(S(arg0,0x474),(void *)4,(void *)12);
-        lbl_8006DBAC((&arg1->vecEC));
+        lbl_8006DBAC(&arg1->vecEC);
         psvec_scale(&loc_64,lbl_1_rodata_85C,&loc_1C);
         fn_8006E2B0(&loc_1C,&loc_1C);
         fn_8006E2B0(&loc_4C,&loc_10);
@@ -19920,12 +19920,12 @@ s32 fn_1_2A500(void *self, Vec3 *out, Vec3 *pos, void *a, void *b, f32 *outF)
         d = d + dy * dy;
         d = d + dz * dz;
 
-        f = (((&lbl_1_rodata_854))[0] - res.scale) * lbl_8006D0B4(d);
+        f = ((&lbl_1_rodata_854)[0] - res.scale) * lbl_8006D0B4(d);
 
         *out = res.v;
         found_2 = 1;
     } else {
-        f = ((&lbl_1_rodata_84C))[0];
+        f = (&lbl_1_rodata_84C)[0];
         found_2 = 0;
     }
 
@@ -20745,8 +20745,8 @@ f32 fn_1_2B478(void *arg0) {
     void *temp_r5;
 
     temp_r5 = (*(void **)((u8 *)(arg0) + 1180));
-    if (!((*(s32 *)((u8 *)(temp_r5) + 124)) & 0x01800000) || ((*(f32 *)((u8 *)(arg0) + 456)) <= (*((&(*&lbl_1_rodata_84C)))))) {
-        return *((&(*&lbl_1_rodata_854)));
+    if (!((*(s32 *)((u8 *)(temp_r5) + 124)) & 0x01800000) || ((*(f32 *)((u8 *)(arg0) + 456)) <= (*((&(lbl_1_rodata_84C)))))) {
+        return *((&(lbl_1_rodata_854)));
     }
     (*(f32 *)(((*(struct fn_1_2B478_lbl_801A66CC *)&lbl_801A66CC).unk_0) + 212)) = (f32) -(*(f32 *)((lbl_801A6D00.unk_0) + 8));
     (*(f32 *)(((*(struct fn_1_2B478_lbl_801A66CC *)&lbl_801A66CC).unk_0) + 216)) = (f32) -(*(f32 *)((lbl_801A6D00.unk_0) + 24));
@@ -21618,7 +21618,7 @@ void fn_1_2BA48(St *p) {
 	p->unk_50d = n;
 	if ((u8)n >= (u16)v) {
 		if (!(p->unk_0 & 0x2)) {
-			z = ((&lbl_1_rodata_84C))[0];
+			z = (&lbl_1_rodata_84C)[0];
 			p->unk_94 = z;
 			p->unk_98 = z;
 			p->unk_9c = z;
@@ -24522,14 +24522,14 @@ s32 fn_1_2DF98(void)
         lbl_1_bss_5104__fzgx_offset_4[3] &= 0xFE;
     }
 
-    if ((*&lbl_1_bss_6F316) != 0 && fzgx_obj_lbl_1_bss_25B84 != 0) {
+    if ((lbl_1_bss_6F316) != 0 && fzgx_obj_lbl_1_bss_25B84 != 0) {
         if (lbl_1_data_5B7C == 5) {
             fn_1_A1588((void *)lbl_1_bss_6EAD0.unk_0->unk_0, 0x18);
         } else {
             fn_1_A1588((void *)lbl_1_bss_6EAD0.unk_0->unk_0, 0x10);
         }
         ADXT_Stop((void *)lbl_1_bss_6EAD0.unk_0->unk_4);
-        (*&lbl_1_bss_6F316) = 0;
+        (lbl_1_bss_6F316) = 0;
         if (lbl_1_data_5B7C == 1) {
             saved = (void *)fn_1_435C( (u32)(fzgx_obj_lbl_1_bss_25B88));
             fn_1_40E08(0x12C);
@@ -24547,7 +24547,7 @@ s32 fn_1_2DF98(void)
         if (*lbl_1_bss_25B88__fzgx_offset_4 == 0x10) {
             if (fzgx_obj_lbl_1_bss_25B84 != 0) {
                 if (lbl_1_data_5B7C == 5) {
-                    u32 msg = (*&lbl_1_rodata_D18);
+                    u32 msg = (lbl_1_rodata_D18);
                     fn_1_49F0(&msg);
                 } else {
                     u32 msg2 = ((u32 *)&lbl_1_rodata_D1C)[0];
@@ -24836,10 +24836,10 @@ void fn_1_2E1B8(void) {
         if (active) {
             struct CallbackObject *object = &fzgx_obj_lbl_1_bss_3C30;
             u32 result;
-            (*&lbl_1_bss_25B9C) = 0;
+            (lbl_1_bss_25B9C) = 0;
             if (object->unk_C0 != 0) {
                 result = object->unk_C0(object);
-                if (result & 4) (*&lbl_1_bss_25B9C) = 1;
+                if (result & 4) (lbl_1_bss_25B9C) = 1;
                 if (result & 2) fn_1_304A8();
                 if (result & 1) return;
             }

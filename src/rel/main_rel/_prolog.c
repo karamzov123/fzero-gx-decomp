@@ -3153,7 +3153,7 @@ void fn_1_407C(s32 arg_sp0) {
         if (!(temp_r29 & (1 << var_r27))) {
             var_r24 = (*(void **)((u8 *)((*(void **)((var_r31) + 24))) + 8));
             while (var_r24 != NULL) {
-                temp_r23 = (s32 (*)(s32))(*(s32 (**)(s32))((var_r24)));
+                temp_r23 = (s32 (*)(s32))(*(s32 (**)(s32))(var_r24));
                 (*(void **)((temp_r30) + 8)) = (var_r24);
                 (*(struct fn_1_407C_lbl_1_bss_DAC *)&lbl_1_bss_DAC).unk_0 = temp_r30;
                 (*(struct fn_1_407C_lbl_1_bss_DA8 *)&lbl_1_bss_DA8).unk_0 = temp_r30;

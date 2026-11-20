@@ -451,10 +451,10 @@ int fn_8_4D8(u32 *obj) {
     s16 cmd;
 
     if ((*((s32 *)&lbl_8_bss_228)) != 0) {
-        (*(&lbl_8_bss_228))--;
+        (lbl_8_bss_228)--;
     } else {
         (*((s32 *)&lbl_8_bss_22C))++;
-        (*(&lbl_8_bss_228)) = steps[(*((s32 *)&lbl_8_bss_22C)) * 2];
+        (lbl_8_bss_228) = steps[(*((s32 *)&lbl_8_bss_22C)) * 2];
     }
 
     cmds = &steps[1];

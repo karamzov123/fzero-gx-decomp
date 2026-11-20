@@ -4512,7 +4512,7 @@ n31 = has1 ? n30 - 1 : n30;
 if (tbl->flags & 0x80) {
 result = c->unk_70;
 } else {
-result = (*&lbl_1_data_4);
+result = (lbl_1_data_4);
 }
 lbl_8006E1B0((Fn183D28Vec3 *)obj->unk_8, &pos);
 depth = -pos.z;
@@ -4721,7 +4721,7 @@ n31 = has1 ? n30 - 1 : n30;
 if (tbl->flags & 0x80) {
 result = c->unk_70;
 } else {
-result = (*&lbl_1_data_4);
+result = (lbl_1_data_4);
 }
 lbl_8006E1B0((Fn183D28Vec3 *)obj->unk_8, &pos);
 depth = -pos.z;

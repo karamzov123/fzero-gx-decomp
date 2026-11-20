@@ -1179,7 +1179,7 @@ void fn_3_1A068(void) {
         lbl_3_bss_A2458[0] = 1;
         *(u32 *)&(*(u8 (*)[28])&lbl_3_bss_A2438)[4] = 0x40000000;
         (*(u8 (*)[28])&lbl_3_bss_A2438)[0xE] = 0;
-        (*&lbl_3_bss_A179C) = 0;
+        (lbl_3_bss_A179C) = 0;
     } else {
         fn_3_BE88();
     }
@@ -1240,7 +1240,7 @@ void fn_3_1A0F4(u8 *arg0) {
         fzgx_obj_lbl_3_bss_A2458 = 1;
         fzgx_obj_lbl_3_bss_A2438.unk_4 = 0x40000000;
         fzgx_obj_lbl_3_bss_A2438.unk_E = 0;
-        (*&lbl_3_bss_A179C) = 0;
+        (lbl_3_bss_A179C) = 0;
         if (fn_8008023C(fzgx_obj_lbl_3_bss_A2454, *(u32 *)(arg0 + 0x20), 0x2000) != 0) {
             fn_3_1445C();
         }
@@ -8825,7 +8825,7 @@ void fn_3_23724(s16 arg0, s16 arg1, s16 arg2, f32 arg3, f32 arg4, f32 arg5, f32 
         : ((t3 = 24.0f) + (t1 * (((arg5) < 0.0f) ? 0.0f : (((arg5) > 1.0f) ? 1.0f : (arg5)))) > t0 - (((t2) / 2.0f)))
         ? t0 - (((t2) / 2.0f))
         : t3 + (t1 * (((arg5) < 0.0f) ? 0.0f : (((arg5) > 1.0f) ? 1.0f : (arg5))));
-    t5 = ((((arg1)) + ((t4))));
+    t5 = (((arg1) + (t4)));
     u.field08 = t5;
     u.field0C = (arg2 - 1);
     u.field10[8] = 10;
@@ -12588,7 +12588,7 @@ void fn_3_2A2F8(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s32 arg4) {
     digit = (lbl_3_bss_24370 / 100) % 10;
     loc_8 = *(const FontDrawPacket *)(&lbl_1_rodata_26F8);
     loc_8.image = 0xA300;
-    loc_8.x = ((((((arg0)) + ((arg3)))) + (3)));
+    loc_8.x = (((((arg0) + (arg3))) + (3)));
     loc_8.y = arg1;
     loc_8.z = (arg2 - 2);
     fn_1_51564(0, 0, 0x10, 0x14, 0xA, 1);

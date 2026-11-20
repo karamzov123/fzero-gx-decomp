@@ -40,13 +40,13 @@ void fn_16_CAC(void) {
         if (lbl_16_bss_21C.unk_0 != -1) {
             temp_r4 = lbl_16_bss_21C.unk_0;
             lbl_16_bss_21C.unk_0 = -1U;
-            (*((&lbl_1_bss_96A))) = temp_r4;
+            (lbl_1_bss_96A) = temp_r4;
             return;
         }
         temp_r3 = fn_16_E20();
         if (temp_r3 != 0) {
             fn_1_4A00(0, 0xF, lbl_16_bss_150.unk_0);
-            (*((&lbl_16_bss_B0B4))) = 0;
+            (lbl_16_bss_B0B4) = 0;
         }
         if (temp_r3 == -1) {
             lbl_1_bss_8B614.unk_4 |= 0x80000000;

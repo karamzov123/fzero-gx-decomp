@@ -2579,17 +2579,17 @@ void fn_1_10688C(void) {
         OSReport("already allocated jpeg_decode_ram!\n");
     } else {
         lbl_1_bss_85280__fzgx_offset_4 =
-            fn_1_45D0((*&lbl_801A6410), lbl_1_bss_854B8__fzgx_offset_6C8, fzgx_obj_lbl_1_data_3F34C, 0x847);
+            fn_1_45D0((lbl_801A6410), lbl_1_bss_854B8__fzgx_offset_6C8, fzgx_obj_lbl_1_data_3F34C, 0x847);
     }
     size = GXGetTexBufferSize(0x80, 0x80, 6, 0, 0);
     lbl_1_bss_854B8__fzgx_offset_6CC = size;
     if (fzgx_obj_lbl_1_data_3F284[0] != 0 || fzgx_obj_lbl_1_data_3F284[1] != 0 || fzgx_obj_lbl_1_bss_85280 != 0) {
         OSReport("already allocated jpeg_buff!\n");
     } else {
-        fzgx_obj_lbl_1_data_3F284[0] = fn_1_4630((*&lbl_801A6410), size, fzgx_obj_lbl_1_data_3F34C, 0x84F);
+        fzgx_obj_lbl_1_data_3F284[0] = fn_1_4630((lbl_801A6410), size, fzgx_obj_lbl_1_data_3F34C, 0x84F);
         fzgx_obj_lbl_1_data_3F284[1] =
-            fn_1_4630((*&lbl_801A6410), lbl_1_bss_854B8__fzgx_offset_6CC, fzgx_obj_lbl_1_data_3F34C, 0x850);
-        fzgx_obj_lbl_1_bss_85280 = fn_1_4630((*&lbl_801A6410), 0x4000, fzgx_obj_lbl_1_data_3F34C, 0x851);
+            fn_1_4630((lbl_801A6410), lbl_1_bss_854B8__fzgx_offset_6CC, fzgx_obj_lbl_1_data_3F34C, 0x850);
+        fzgx_obj_lbl_1_bss_85280 = fn_1_4630((lbl_801A6410), 0x4000, fzgx_obj_lbl_1_data_3F34C, 0x851);
     }
     lbl_1_bss_854B8__fzgx_offset_6D0 = 0;
     lbl_1_bss_854B8__fzgx_offset_6D1 = 0;
@@ -2733,7 +2733,7 @@ static void fzgx_bss_layout(void) {
 #pragma section code_type ".text"
 
 void fn_1_106D30(void) {
-    if (OSIsThreadTerminated((&lbl_1_bss_854B8__fzgx_offset_6E0))) {
+    if (OSIsThreadTerminated(&lbl_1_bss_854B8__fzgx_offset_6E0)) {
         if ((2) != (*(s32 *)(&lbl_1_bss_854B8__fzgx_offset_10))) {
             goto work;  /* fzgx: retail's second return is a branch pair (bne 0x38; b 0x70); only a goto keeps it */
         }
@@ -2743,7 +2743,7 @@ work:
     *(s32 *)((u8 *)&lbl_1_bss_854B8__fzgx_offset_10) = 0;
     OSCreateThread((&lbl_1_bss_854B8__fzgx_offset_6E0), fn_1_106CAC, 0,
                    (&lbl_1_bss_854B8__fzgx_offset_A08) + 0x1000, 0x1000, 0x1E, 1);
-    OSResumeThread((&lbl_1_bss_854B8__fzgx_offset_6E0));
+    OSResumeThread(&lbl_1_bss_854B8__fzgx_offset_6E0);
 }
 /* fzgx:end fn_1_106D30 */
 

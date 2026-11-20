@@ -24772,7 +24772,7 @@ void fn_1_3FCB0(s32 value) {
     mask >>= 31;
     {
         u32 arithmetic_value = (((lbl_1_bss_3C08[0] | value)));
-        arithmetic_value &= ((mask));
+        arithmetic_value &= (mask);
         lbl_1_bss_3C08[0] = arithmetic_value;
     }
 }
@@ -26502,8 +26502,8 @@ void fn_1_40E08(u32 arg0) {
         lbl_1_bss_38210 = 5;
     }
 
-    value = (*&lbl_801A63C0) * 0x676A4B6B + 0x33CB;
-    (*&lbl_801A63C0) = value;
+    value = (lbl_801A63C0) * 0x676A4B6B + 0x33CB;
+    (lbl_801A63C0) = value;
 
     half = lbl_1_bss_38210 >> 1;
     max = lbl_1_bss_38210 - 5;

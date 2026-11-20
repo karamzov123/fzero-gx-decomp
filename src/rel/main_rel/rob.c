@@ -53,7 +53,7 @@ void fn_1_95EF0(void *arg0, s32 arg_sp0) {
 
     temp_r3 = (*(void **)((u8 *)(arg0) + 332));
     if (temp_r3 != NULL) {
-        fn_1_12ABB4((temp_r3));
+        fn_1_12ABB4(temp_r3);
         (*(void **)((u8 *)(arg0) + 332)) = (NULL);
     }
     temp_r4 = *(u32 *)((u8 *)(arg0) + 336);
@@ -63,7 +63,7 @@ void fn_1_95EF0(void *arg0, s32 arg_sp0) {
     }
     temp_r3_2 = (*(void **)((u8 *)(arg0) + 364));
     if (temp_r3_2 != NULL) {
-        fn_1_12ABB4((temp_r3_2));
+        fn_1_12ABB4(temp_r3_2);
         (*(void **)((u8 *)(arg0) + 364)) = (NULL);
     }
     temp_r4_2 = *(u32 *)((u8 *)(arg0) + 368);
@@ -73,7 +73,7 @@ void fn_1_95EF0(void *arg0, s32 arg_sp0) {
     }
     temp_r3_3 = (*(void **)((u8 *)(arg0) + 396));
     if (temp_r3_3 != NULL) {
-        fn_1_12ABB4((temp_r3_3));
+        fn_1_12ABB4(temp_r3_3);
         (*(void **)((u8 *)(arg0) + 396)) = (NULL);
     }
     temp_r4_3 = *(u32 *)((u8 *)(arg0) + 400);
@@ -83,7 +83,7 @@ void fn_1_95EF0(void *arg0, s32 arg_sp0) {
     }
     temp_r3_4 = (*(void **)((u8 *)(arg0) + 428));
     if (temp_r3_4 != NULL) {
-        fn_1_12ABB4((temp_r3_4));
+        fn_1_12ABB4(temp_r3_4);
         (*(void **)((u8 *)(arg0) + 428)) = (NULL);
     }
     temp_r4_4 = *(u32 *)((u8 *)(arg0) + 432);
@@ -93,7 +93,7 @@ void fn_1_95EF0(void *arg0, s32 arg_sp0) {
     }
     temp_r3_5 = (*(void **)((u8 *)(arg0) + 460));
     if (temp_r3_5 != NULL) {
-        fn_1_12ABB4((temp_r3_5));
+        fn_1_12ABB4(temp_r3_5);
         (*(void **)((u8 *)(arg0) + 460)) = (NULL);
     }
     temp_r4_5 = *(u32 *)((u8 *)(arg0) + 464);
@@ -103,7 +103,7 @@ void fn_1_95EF0(void *arg0, s32 arg_sp0) {
     }
     temp_r3_6 = (*(void **)((u8 *)(arg0) + 492));
     if (temp_r3_6 != NULL) {
-        fn_1_12ABB4((temp_r3_6));
+        fn_1_12ABB4(temp_r3_6);
         (*(void **)((u8 *)(arg0) + 492)) = (NULL);
     }
     temp_r4_6 = *(u32 *)((u8 *)(arg0) + 496);
@@ -116,7 +116,7 @@ void fn_1_95EF0(void *arg0, s32 arg_sp0) {
     do {
         temp_r3_7 = (*(void **)((u8 *)(var_r28) + 524));
         if (temp_r3_7 != NULL) {
-            fn_1_12ABB4((temp_r3_7));
+            fn_1_12ABB4(temp_r3_7);
             (*(void **)((u8 *)(var_r28) + 524)) = (NULL);
         }
         temp_r4_7 = *(u32 *)((u8 *)(var_r28) + 528);

@@ -597,7 +597,7 @@ void fn_1_7F3AC(CarFn_1_7F3AC *car, u32 lab_unused0, u32 lab_unused1, u32 lab_un
         } else {
             fn_1_810E4(car->field_3A4);
         }
-        fn_1_46B4(lbl_801A6410, car->field_3A4, (const char *)(((&lbl_1_data_1FFF0))), 0x1F7);
+        fn_1_46B4(lbl_801A6410, car->field_3A4, (const char *)((&lbl_1_data_1FFF0)), 0x1F7);
         fzgx_value = &(car->field_3A4);
         *fzgx_value = 0;
     }
@@ -1421,7 +1421,7 @@ void fn_1_7F954(u32 arg0, u32 arg1) {
     v1++;
 }
     }
-    fn_1_46B4((*((struct fn_1_7F954_lbl_801A6410 *)&lbl_801A6410)).unk_0, arg0, (const char *)((u32)&(*(&lbl_1_data_1FFF0))), 691);
+    fn_1_46B4((*((struct fn_1_7F954_lbl_801A6410 *)&lbl_801A6410)).unk_0, arg0, (const char *)((u32)&(lbl_1_data_1FFF0)), 691);
     v3 = (*((struct fn_1_7F954_lbl_1_bss_6D82C *)&lbl_1_bss_6D82C)).unk_0;
     v4 = v3;
     if (v3 != 0) {
@@ -1450,7 +1450,7 @@ void fn_1_7FA04(u32 arg0) {
     v1 += 1088;
     v0++;
     }
-    fn_1_46B4((*((struct fn_1_7FA04_lbl_801A6410 *)&lbl_801A6410)).unk_0, arg0, (const char *)((u32)&(*(&lbl_1_data_1FFF0))), 709);
+    fn_1_46B4((*((struct fn_1_7FA04_lbl_801A6410 *)&lbl_801A6410)).unk_0, arg0, (const char *)((u32)&(lbl_1_data_1FFF0)), 709);
     v2 = (*((struct fn_1_7FA04_lbl_1_bss_6D82C *)&lbl_1_bss_6D82C)).unk_0;
     v3 = v2;
     if (v2 != 0) {
@@ -6806,7 +6806,7 @@ void fn_1_83858(struct fn_1_83858_Arg0 *arg0) {
     }
     fn_1_236CC((u32)arg0);
     fn_1_83CB0((Sig_fn_1_83CB0_Fn183CB0Object *)arg0);
-    v17 = ((&lbl_1_bss_6D8F4.fzgx_byte_D4));
+    v17 = (&lbl_1_bss_6D8F4.fzgx_byte_D4);
     v18 = (*(s16 *)((u8 *)arg0 + 4) << 2);
     v19 = *(u32 *)((u8 *)v17 + v18);
     if ((s32)v19 != 0) {
@@ -18529,7 +18529,7 @@ void fn_1_8D0A4(Fn1_8D0A4State *state) {
         state->result = fn_1_4630(
             (*((void * *)&lbl_801A6410)),
             GXGetTexBufferSize(state->width, state->height, state->arg34, 0, 0),
-            ((&lbl_1_data_1FFF0)),
+            (&lbl_1_data_1FFF0),
             0x1bfc);
     }
 }
@@ -18955,7 +18955,7 @@ void fn_1_8DAB4(void) {
             object->active = i;
             if (object->resource_holder != 0) {
                 value = (void *)fn_80008E84( (u32)(object->resource_holder->value));
-                fn_1_46B4(lbl_801A6410, (u32)(ResourceHolder *)(object->resource_holder), (const char *)(((&lbl_1_data_1FFF0))), 0x1ced);
+                fn_1_46B4(lbl_801A6410, (u32)(ResourceHolder *)(object->resource_holder), (const char *)((&lbl_1_data_1FFF0)), 0x1ced);
                 object->resource_holder = 0;
                 fn_80008E84( (u32)(value));
             }
@@ -25168,7 +25168,7 @@ void fn_1_900C4(void) {
     lbl_1_data_27924 = 1;
     p_lbl_1_bss_6E960->unk_10 = 0;
     p_lbl_1_bss_6E960->unk_14 = 0;
-    fn_1_95210((lbl_1_data_27920.unk_0));
+    fn_1_95210(lbl_1_data_27920.unk_0);
 }
 }
 /* fzgx:end fn_1_900C4 */

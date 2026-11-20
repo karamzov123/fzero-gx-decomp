@@ -1980,9 +1980,9 @@ extern void lbl_8006E15C(f32, f32, f32);
 
 static inline void mtxA_clear_translation(void) {
     f32 *m = MTXA;
-    m[3] = (*&lbl_1_rodata_F54);
-    m[7] = (*&lbl_1_rodata_F54);
-    m[11] = (*&lbl_1_rodata_F54);
+    m[3] = (lbl_1_rodata_F54);
+    m[7] = (lbl_1_rodata_F54);
+    m[11] = (lbl_1_rodata_F54);
 }
 
 #pragma opt_propagation off
@@ -2011,11 +2011,11 @@ void fn_1_433E0(Fn1433E0Object *object) {
                 t = t * t;
             }
         }
-        object->frame = object->frame + (*&lbl_1_rodata_F50);
+        object->frame = object->frame + (lbl_1_rodata_F50);
     } else {
-        t = (*&lbl_1_rodata_F50);
-        object->frame = (*&lbl_1_rodata_F54);
-        object->duration = (*&lbl_1_rodata_F54);
+        t = (lbl_1_rodata_F50);
+        object->frame = (lbl_1_rodata_F54);
+        object->duration = (lbl_1_rodata_F54);
         object->flags &= ~1;
     }
 
@@ -2048,9 +2048,9 @@ void fn_1_433E0(Fn1433E0Object *object) {
             }
             if (entry->flags & 0x11) {
                 base = entry->value14 * object->scale.x;
-                vec.y = (*&lbl_1_rodata_F54);
+                vec.y = (lbl_1_rodata_F54);
                 vec.x = base;
-                vec.z = (*&lbl_1_rodata_F54);
+                vec.z = (lbl_1_rodata_F54);
                 if (object->flags & 8) {
                     vec.x = base * entry->value24;
                 }
@@ -2061,7 +2061,7 @@ void fn_1_433E0(Fn1433E0Object *object) {
                     tmp = entry->offsetC4;
                 }
                 vec = tmp;
-                if (t < (*&lbl_1_rodata_F50) && (entry->flags & 0x40)) {
+                if (t < (lbl_1_rodata_F50) && (entry->flags & 0x40)) {
                     base = entry->value180.x * (entry->value174.x / entry->scale.x);
                     vec.x = base + (f32)(t * (vec.x - base));
                     base = entry->value180.y * (entry->value174.y / entry->scale.y);
@@ -2077,7 +2077,7 @@ void fn_1_433E0(Fn1433E0Object *object) {
         entry->scale.y = entry->scale.y * object->scale.y;
         entry->scale.z = entry->scale.z * object->scale.z;
 
-        if (t < (*&lbl_1_rodata_F50)) {
+        if (t < (lbl_1_rodata_F50)) {
             if ((object->flags & 0x200) && parent != NULL && entry->parent != 0) {
                 mathutil_mtxA_from_quat(&entry->quat);
                 lbl_8006DB74(mtx);

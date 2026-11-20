@@ -577,7 +577,7 @@ void fn_1_58C6C(void) {
     var_r31 = (struct fn_1_58C6C_lbl_1_bss_6C848_T *)(*(struct fn_1_58C6C_lbl_1_bss_6C848_T **)((&(*(struct fn_1_58C6C_lbl_1_bss_6C848_T * *)&lbl_1_bss_6C848))));
     do {
         if ((var_r31->unk_C == 0x19) && ((s8) var_r31->unk_0 != 0) && ((s32) var_r31->unk_1A != 0) && !(var_r31->unk_8 & 0x80000000)) {
-            fn_1_620C8((var_r31));
+            fn_1_620C8(var_r31);
         }
         var_r30 -= 1;
         var_r31 = (struct fn_1_58C6C_lbl_1_bss_6C848_T *)((u8 *)(var_r31) + 0xE8);
@@ -586,7 +586,7 @@ void fn_1_58C6C(void) {
     var_r31_2 = (struct fn_1_58C6C_lbl_1_bss_6C84C_T *)(*(struct fn_1_58C6C_lbl_1_bss_6C84C_T **)((&(*(struct fn_1_58C6C_lbl_1_bss_6C84C_T * *)&lbl_1_bss_6C84C))));
     do {
         if ((var_r31_2->unk_C == 0x19) && ((s8) var_r31_2->unk_0 != 0) && ((s32) var_r31_2->unk_1A != 0) && !(var_r31_2->unk_8 & 0x80000000)) {
-            fn_1_620C8((var_r31_2));
+            fn_1_620C8(var_r31_2);
         }
         var_r30_2 -= 1;
         var_r31_2 = (struct fn_1_58C6C_lbl_1_bss_6C84C_T *)((u8 *)(var_r31_2) + 0xE8);
@@ -6007,7 +6007,7 @@ f32 fn_1_5E3C4(struct fn_1_5E3C4_Arg0 *arg0, f32 arg1) {
     f32 v12;
     v0 = arg1;
     if (arg0->unk_B2 == 1) {
-        if (((0) == ((s32)(*&arg0->unk_10)))) {
+        if (((0) == ((s32)(arg0->unk_10)))) {
             v1 = lbl_1_data_1D628 * 0x41C64E6D + 12345;
             v2 = 4503599627370496.0;
             v4 = 0.25f;
@@ -6018,7 +6018,7 @@ f32 fn_1_5E3C4(struct fn_1_5E3C4_Arg0 *arg0, f32 arg1) {
             arg0->unk_10 = (s32)(v6 * (v5 + (f32)(v4 * (v0 / (32767.0f)))));
         }
     } else {
-        if (((0) == ((s32)(*&arg0->unk_10)))) {
+        if (((0) == ((s32)(arg0->unk_10)))) {
             v7 = lbl_1_data_1D628 * 0x41C64E6D + 12345;
             v8 = 4503599627370496.0;
             v10 = 0.25f;
@@ -10789,7 +10789,7 @@ void fn_1_611EC(struct FxParam *p, u32 unused1, u32 unused2, u32 unused3)
 	p->unk_56 = FxRand();
 	p->unk_58 = FxRand();
 
-	p->unk_38 = fn_1_45D0((*&lbl_801A6410), 0xF0, lbl_1_data_1D62C, 0x1573);
+	p->unk_38 = fn_1_45D0((lbl_801A6410), 0xF0, lbl_1_data_1D62C, 0x1573);
 }
 /* fzgx:end fn_1_611EC */
 
@@ -11208,7 +11208,7 @@ void fn_1_617A4(struct Fn1_617A4Object *object) {
     const f32 *pool;
     f32 t;
 
-    pool = ((&lbl_1_rodata_2950));
+    pool = (&lbl_1_rodata_2950);
 
     if (object->unk_10 == 0) {
         lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41c64e6d + 0x3039;
@@ -11676,7 +11676,7 @@ fn_1_61D08_EffectObject *obj;
     f32 initial;
     f32 value;
 
-    data = (u8 *)((&lbl_1_data_1C698));
+    data = (u8 *)(&lbl_1_data_1C698);
     obj->unk_38 = (void *)fn_1_45D0(lbl_801A6410, 0x24, data + 0xf94, 0x17a6);
     child = (EffectChild *)obj->unk_38;
     size = GXGetTexBufferSize(0x14, 0xe, 0, 0, 0);
@@ -17051,8 +17051,8 @@ void fn_1_64FB8(void *arg0) {
     lbl_8006E1B0(&offset,p+0x3c);
     *(f32 *)(p+0x28)=*(f32 *)(p+0x28)+(0.00999999978f)*(*(f32 *)(p+0x2c)-*(f32 *)(p+0x28));
     *(f32 *)(p+0xb4)=0.5f*(f32)*(s32 *)(p+0x10);
-    random=(*&lbl_1_data_1D628)*1103515245u+12345u;
-    (*&lbl_1_data_1D628)=random;
+    random=(lbl_1_data_1D628)*1103515245u+12345u;
+    (lbl_1_data_1D628)=random;
     gain=0.800000012f+0.200000003f*(((random>>16)&0x7fffu)/32767.0f);
     *(f32 *)(p+0x1c)=(255.0f*(0.5f*(1.0f+gain)))/255.0f;
     {
@@ -18271,7 +18271,7 @@ void fn_1_65B5C(EffP *p) {
     if (p->f28 > 50.0f * (((p->fb4) / 2.0f))) {
         fzgx_live_ = p->f2c;
         {
-            f64 product = ((fzgx_live_));
+            f64 product = (fzgx_live_);
             product *= ((0.9200000137090683));
             p->f2c = product;
         }

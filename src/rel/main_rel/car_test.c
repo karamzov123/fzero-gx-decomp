@@ -882,7 +882,7 @@ void fn_1_7D6B8(Fn1_7D6B8Arg *arg0) {
             if ((s8) (*((u8 *)(arg0) + 7)) > 0x28) {
                 (*((u8 *)(arg0) + 7)) = 0U;
             }
-            block_entry = &((Fn1_7D6B8Block *)((arg0->base)))[(s8) *((u8 *)arg0 + 7)];
+            block_entry = &((Fn1_7D6B8Block *)(arg0->base))[(s8) *((u8 *)arg0 + 7)];
             temp_r0_2 = (s8) *block_entry->slots[(s8) *((u8 *)arg0 + 36)].count;
             if ((INPUT_14 >> 0xBU) & 1) {
                 if (PAD_BIT(INPUT_26, 3)) {
@@ -921,11 +921,11 @@ void fn_1_7D6B8(Fn1_7D6B8Arg *arg0) {
             }
             if (var_r4 != 0) {
                 (*((u8 *)(arg0) + 8)) = temp_r0_2;
-                ((arg0->field_25)) = 0;
-                ((arg0->field_26)) = 0;
-                ((arg0->field_27)) = 0;
-                ((arg0->field_28)) = 0;
-                ((arg0->field_29)) = 0;
+                (arg0->field_25) = 0;
+                (arg0->field_26) = 0;
+                (arg0->field_27) = 0;
+                (arg0->field_28) = 0;
+                (arg0->field_29) = 0;
             }
             temp_r3 = *((u8 *)(arg0) + 8);
             shift_idx = (s8) temp_r3;
@@ -935,8 +935,8 @@ void fn_1_7D6B8(Fn1_7D6B8Arg *arg0) {
                 (*(s32 *)(((temp_r5 + temp_r4)))) ^= (1 << shift_idx);
             }
             if ((lbl_1_bss_9F8[0].unk_8 >> 0xAU) & 1) {
-                temp_r3_2 = (s32 *)(((arg0->field_c)) + ((s8) (*((u8 *)(arg0) + 7)) * 4));
-                if ((*((temp_r3_2))) & 0x80000000) {
+                temp_r3_2 = (s32 *)((arg0->field_c) + ((s8) (*((u8 *)(arg0) + 7)) * 4));
+                if ((*(temp_r3_2)) & 0x80000000) {
                     memset((temp_r3_2), (0), (4U));
                 } else {
                     memset((temp_r3_2), (-1), (4U));
@@ -1014,10 +1014,10 @@ void fn_1_7D6B8(Fn1_7D6B8Arg *arg0) {
             switch ((s8) temp_r0_3) {               /* switch 2; irregular */
             case 0:                                 /* switch 2 */
                 temp_r4_3 = (*(u8 **)(((*(u8 ***)((u8 *)(arg0) + 28)))));
-                (*((temp_r4_3))) = ((*((temp_r4_3))) + var_r5);
+                (*(temp_r4_3)) = ((*(temp_r4_3)) + var_r5);
                 temp_r4_4 = (*(u8 **)(((*(u8 ***)((u8 *)(arg0) + 28)))));
-                temp_r3_5 = *((temp_r4_4));
-                (*((temp_r4_4))) = CLAMP_U8(temp_r3_5);
+                temp_r3_5 = *(temp_r4_4);
+                (*(temp_r4_4)) = CLAMP_U8(temp_r3_5);
                 break;
             case 1:                                 /* switch 2 */
                 temp_r4_5 = (*(u8 **)(((*(u8 ***)((u8 *)(arg0) + 28)))));
@@ -1070,10 +1070,10 @@ void fn_1_7D6B8(Fn1_7D6B8Arg *arg0) {
             switch ((s8) temp_r0_4) {               /* switch 3; irregular */
             case 0:                                 /* switch 3 */
                 temp_r4_11 = (*(void **)((u8 *)(arg0) + 24));
-                (*(u8 *)((temp_r4_11))) = ((*(u8 *)((temp_r4_11))) + var_r5);
+                (*(u8 *)(temp_r4_11)) = ((*(u8 *)(temp_r4_11)) + var_r5);
                 temp_r4_12 = (*(void **)((u8 *)(arg0) + 24));
-                temp_r3_9 = *(u8 *)((temp_r4_12));
-                (*(u8 *)((temp_r4_12))) = CLAMP_U8(temp_r3_9);
+                temp_r3_9 = *(u8 *)(temp_r4_12);
+                (*(u8 *)(temp_r4_12)) = CLAMP_U8(temp_r3_9);
                 break;
             case 1:                                 /* switch 3 */
                 temp_r4_13 = (*(void **)((u8 *)(arg0) + 24));
@@ -1134,10 +1134,10 @@ void fn_1_7D6B8(Fn1_7D6B8Arg *arg0) {
             switch ((s8) temp_r0_5) {               /* switch 4; irregular */
             case 0:                                 /* switch 4 */
                 temp_r4_19 = (*(u8 **)(((*(u8 ***)((u8 *)(arg0) + 28)))));
-                (*((temp_r4_19))) += var_r5;
+                (*(temp_r4_19)) += var_r5;
                 temp_r4_20 = (*(u8 **)(((*(u8 ***)((u8 *)(arg0) + 28)))));
-                temp_r3_13 = *((temp_r4_20));
-                (*((temp_r4_20))) = CLAMP_U8(temp_r3_13);
+                temp_r3_13 = *(temp_r4_20);
+                (*(temp_r4_20)) = CLAMP_U8(temp_r3_13);
                 return;
             case 1:                                 /* switch 4 */
                 temp_r4_21 = (*(u8 **)(((*(u8 ***)((u8 *)(arg0) + 28)))));

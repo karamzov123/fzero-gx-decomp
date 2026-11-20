@@ -438,9 +438,9 @@ void fn_1_13198C(s16 idx, void *a1, void *a2, EntryObj *a3, EntryObj *a4, s32 mo
     lbl_8006DCDC();
     fn_1_F7870((u32)&lbl_1_data_1E5C0);
 
-    mask[0] = (*((((lbl_1_rodata_8610)) + ((0)))));
-    mask[1] = (*((((lbl_1_rodata_8610)) + ((1)))));
-    mask[2] = (*((((lbl_1_rodata_8610)) + ((2)))));
+    mask[0] = (*(((lbl_1_rodata_8610) + ((0)))));
+    mask[1] = (*(((lbl_1_rodata_8610) + ((1)))));
+    mask[2] = (*(((lbl_1_rodata_8610) + ((2)))));
     lbl_8006D7DC(mask);
     lbl_8006DB74(buf);
 
