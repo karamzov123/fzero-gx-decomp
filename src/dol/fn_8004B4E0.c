@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- dol/fn_8004B4E0.c --- */
 typedef struct StmSource StmSource;
 
 typedef struct StmSourceVtbl {
@@ -85,4 +87,7 @@ AdxStm *fn_8004B4E0(StmSource *src, s32 kind) {
     return adxstm_CreateIn(src, config[1], config[2]);
 }
 
-
+/* --- dol/fn_8004B79C.c --- */
+// fn_8004B79C: empty in retail (single blr).
+void fn_8004B79C(void) {
+}

@@ -1,7 +1,7 @@
 #include "types.h"
-
 #pragma use_lmw_stmw on
 
+/* --- dol/fn_80044EF8.c --- */
 typedef void (*AdxGetWriteInfo)(void *, s32 *, s32 *, s32 *);
 typedef void (*AdxAddWriteInfo)(void *, s32, s32);
 
@@ -194,4 +194,25 @@ void fn_80044EF8(AdxBasicDecoder *base)
             adxb_FinishDecode(base);
         }
     }
+}
+
+/* --- dol/fn_800452FC.c --- */
+/* --- dol/fn_800452FC.c --- */
+typedef struct {
+    u8 pad[0x90];
+    u32 field;
+} Fn800452FCObject;
+
+u32 fn_800452FC(Fn800452FCObject *object) {
+    return object->field;
+}
+
+/* --- dol/fn_80045304.c --- */
+struct fn_80045304_Arg0 {
+    u8 pad_0[0x94];
+    u32 unk_94;
+};
+
+u32 fn_80045304(struct fn_80045304_Arg0 *arg0) {
+    return arg0->unk_94;
 }

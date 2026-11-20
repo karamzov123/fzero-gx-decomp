@@ -1,4 +1,7 @@
 #include "types.h"
+
+
+/* --- dol/fn_8003B63C.c --- */
 struct T_ {
     u8 pad_0[0x10];
     u32 unk_10;
@@ -90,4 +93,36 @@ void fn_8003B63C(u8 *self, u8 idx, s16 *out) {
         }
         i++;
     }
+}
+
+/* --- dol/fn_8003B798.c --- */
+extern u32 fn_8003D42C();
+
+u32 fn_8003B798(u32 arg0, u32 arg1) {
+    u32 v;
+    u32 n;
+    s32 i;
+
+    v = fn_8003D42C(arg0, arg1);
+    n = arg1 & 0xFF;
+    if (n == 1) {
+        return v;
+    }
+    if (n == 2) {
+        return (v << 1) + fn_8003D42C(arg0);
+    }
+    if (n == 3) {
+        v = (v << 1) + fn_8003D42C(arg0);
+        return (v << 1) + fn_8003D42C(arg0);
+    }
+    v = (v << 1) + fn_8003D42C(arg0);
+    v = (v << 1) + fn_8003D42C(arg0);
+    v = (v << 1) + fn_8003D42C(arg0);
+    if (n == 4) {
+        return v;
+    }
+    for (i = 4; i < (s32)n; i++) {
+        v = (v << 1) + fn_8003D42C(arg0);
+    }
+    return v;
 }

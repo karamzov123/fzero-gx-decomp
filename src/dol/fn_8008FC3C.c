@@ -1,6 +1,9 @@
 #include <dolphin/types.h>
 #include "sdk_addresses.h"
+#include "types.h"
 
+
+/* --- dol/fn_8008FC3C.c --- */
 vu32 __EXIRegs[16] : FZGX_ADDR___EXIRegs;
 
 BOOL fn_8008FC3C(void *buf, s32 len, u32 type) {
@@ -24,4 +27,17 @@ BOOL fn_8008FC3C(void *buf, s32 len, u32 type) {
         }
     }
     return TRUE;
+}
+
+/* --- dol/AMC_IsStub.c --- */
+/* --- dol/AMC_IsStub.c --- */
+// AMC_IsStub: returns a constant.
+int AMC_IsStub(void) {
+    return 0;
+}
+
+/* --- dol/Hu_IsStub.c --- */
+// Hu_IsStub: returns a constant.
+int Hu_IsStub(void) {
+    return 0;
 }

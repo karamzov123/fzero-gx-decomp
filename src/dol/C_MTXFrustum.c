@@ -2,6 +2,7 @@
 
 
 /* --- dol/C_MTXFrustum.c --- */
+/* --- dol/C_MTXFrustum.c --- */
 extern const f32 lbl_801A6F60;
 extern const f32 lbl_801A6F64;
 extern const f32 lbl_801A6F68;
@@ -121,4 +122,18 @@ void C_MTXOrtho(Fn80015EE8Out *out, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 
     out->f13 = lbl_801A6F68;
     out->f14 = lbl_801A6F68;
     out->f15 = lbl_801A6F60;
+}
+
+/* --- dol/__DVDInitWA.c --- */
+extern u32 CommandList[];
+extern u32 NextCommandNumber;
+extern u32 OSInitAlarm(u32);
+extern u32 __DVDLowSetWAType(u32, u32);
+
+u32 __DVDInitWA(void) {
+    u32 t0;
+    NextCommandNumber = 0;
+    CommandList[0] = -1;
+    t0 = __DVDLowSetWAType(0, 0);
+    return OSInitAlarm(t0);
 }

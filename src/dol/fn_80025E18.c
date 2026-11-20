@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- dol/fn_80025E18.c --- */
 typedef struct {
     s16 v;
     s16 pad;
@@ -44,4 +46,16 @@ void fn_80025E18(void) {
     lbl_801A6B80 = 0;
     lbl_801A6B84 = 0;
     lbl_801A6B88 = 1;
+}
+
+/* --- dol/fn_80025EE0.c --- */
+/* --- dol/fn_80025EE0.c --- */
+// fn_80025EE0: empty in retail (single blr).
+void fn_80025EE0(void) {
+}
+
+/* --- dol/fn_80025EE4.c --- */
+
+void fn_80025EE4(u32 arg0) {
+    lbl_801A6B88 = arg0;
 }

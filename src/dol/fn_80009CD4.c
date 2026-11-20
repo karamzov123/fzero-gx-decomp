@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- dol/fn_80009CD4.c --- */
 struct fn_80009CD4_Copy8 { u32 a[2]; };
 struct fn_80009CD4_lbl_8015BEE0 { u32 unk_0, unk_4, unk_8, unk_C, unk_10; };
 extern u32 lbl_8015BEE0[8];
@@ -128,4 +130,14 @@ s32 fn_80009CD4(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
         lbl_801A6738 = lbl_8015BEE0[4];
     }
     return -v27;
+}
+
+/* --- dol/fn_80009FA4.c --- */
+u32 fn_80009FA4(u32 arg0) {
+    return *(u32 *)((u8 *)lbl_801A6744 + (arg0 * 12));
+}
+
+/* --- dol/fn_80009FB4.c --- */
+u32 fn_80009FB4(u32 arg0) {
+    return *(u32 *)((u8 *)arg0 + -24);
 }

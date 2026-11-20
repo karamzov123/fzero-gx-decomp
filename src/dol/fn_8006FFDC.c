@@ -2,6 +2,7 @@
 
 
 /* --- dol/fn_8006FFDC.c --- */
+/* --- dol/fn_8006FFDC.c --- */
 extern u16 lbl_801A6CC4;
 
 s32 fn_8003401C(u16);                           /* extern */
@@ -70,4 +71,11 @@ void fn_800700B4(void) {
     do {
         GXGetGPStatus(&v3, &v3, &v2, &v1, &v0);
     } while (v2 != 1);
+}
+
+/* --- dol/fn_800700F4.c --- */
+extern u8 lbl_801A6CB4;
+
+void fn_800700F4(void) {
+    lbl_801A6CB4 = 1;
 }

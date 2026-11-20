@@ -1,5 +1,5 @@
 {
- "generated": 1795171173,
+ "generated": 1795171466,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -7229,7 +7229,7 @@
   {
    "symbol": "fn_80006354",
    "module": "main",
-   "unit": "dol/fn_80006354.c",
+   "unit": "dol/fn_80006334.c",
    "addr": 2147509076,
    "size": 88,
    "status": "matched",
@@ -7246,7 +7246,7 @@
   {
    "symbol": "fn_800063AC",
    "module": "main",
-   "unit": "dol/fn_80006354.c",
+   "unit": "dol/fn_80006334.c",
    "addr": 2147509164,
    "size": 496,
    "status": "matched",
@@ -7382,7 +7382,7 @@
   {
    "symbol": "fn_80006AFC",
    "module": "main",
-   "unit": "dol/fn_80006AFC.c",
+   "unit": "dol/fn_80006AEC.c",
    "addr": 2147511036,
    "size": 52,
    "status": "matched",
@@ -7467,7 +7467,7 @@
   {
    "symbol": "fn_80006C2C",
    "module": "main",
-   "unit": "dol/fn_80006C2C.c",
+   "unit": "dol/fn_80006BDC.c",
    "addr": 2147511340,
    "size": 32,
    "status": "matched",
@@ -7552,7 +7552,7 @@
   {
    "symbol": "fn_80006DE8",
    "module": "main",
-   "unit": "dol/fn_80006DE8.c",
+   "unit": "dol/fn_80006C4C.c",
    "addr": 2147511784,
    "size": 20,
    "status": "matched",
@@ -7569,7 +7569,7 @@
   {
    "symbol": "fn_80006DFC",
    "module": "main",
-   "unit": "dol/fn_80006DE8.c",
+   "unit": "dol/fn_80006C4C.c",
    "addr": 2147511804,
    "size": 20,
    "status": "matched",
@@ -7586,7 +7586,7 @@
   {
    "symbol": "fn_80006E10",
    "module": "main",
-   "unit": "dol/fn_80006E10.c",
+   "unit": "dol/fn_80006C4C.c",
    "addr": 2147511824,
    "size": 464,
    "status": "matched",
@@ -7688,7 +7688,7 @@
   {
    "symbol": "fn_800075AC",
    "module": "main",
-   "unit": "dol/fn_800075AC.c",
+   "unit": "dol/fn_800074C4.c",
    "addr": 2147513772,
    "size": 168,
    "status": "matched",
@@ -8130,7 +8130,7 @@
   {
    "symbol": "fn_80008E30",
    "module": "main",
-   "unit": "dol/fn_80008E30.c",
+   "unit": "dol/fn_80008DB4.c",
    "addr": 2147520048,
    "size": 4,
    "status": "matched",
@@ -8147,7 +8147,7 @@
   {
    "symbol": "fn_80008E34",
    "module": "main",
-   "unit": "dol/fn_80008E34.c",
+   "unit": "dol/fn_80008DB4.c",
    "addr": 2147520052,
    "size": 40,
    "status": "matched",
@@ -8164,7 +8164,7 @@
   {
    "symbol": "fn_80008E5C",
    "module": "main",
-   "unit": "dol/fn_80008E34.c",
+   "unit": "dol/fn_80008DB4.c",
    "addr": 2147520092,
    "size": 40,
    "status": "matched",
@@ -8181,7 +8181,7 @@
   {
    "symbol": "fn_80008E84",
    "module": "main",
-   "unit": "dol/fn_80008E34.c",
+   "unit": "dol/fn_80008DB4.c",
    "addr": 2147520132,
    "size": 68,
    "status": "matched",
@@ -8198,7 +8198,7 @@
   {
    "symbol": "fn_80008EC8",
    "module": "main",
-   "unit": "dol/fn_80008E34.c",
+   "unit": "dol/fn_80008DB4.c",
    "addr": 2147520200,
    "size": 152,
    "status": "matched",
@@ -8215,7 +8215,7 @@
   {
    "symbol": "fn_80008F60",
    "module": "main",
-   "unit": "dol/fn_80008E34.c",
+   "unit": "dol/fn_80008DB4.c",
    "addr": 2147520352,
    "size": 40,
    "status": "matched",
@@ -8232,7 +8232,7 @@
   {
    "symbol": "fn_80008F88",
    "module": "main",
-   "unit": "dol/fn_80008E34.c",
+   "unit": "dol/fn_80008DB4.c",
    "addr": 2147520392,
    "size": 40,
    "status": "matched",
@@ -8351,7 +8351,7 @@
   {
    "symbol": "fn_8000961C",
    "module": "main",
-   "unit": "dol/fn_8000961C.c",
+   "unit": "dol/fn_80009468.c",
    "addr": 2147522076,
    "size": 532,
    "status": "matched",
@@ -8368,7 +8368,7 @@
   {
    "symbol": "fn_80009830",
    "module": "main",
-   "unit": "dol/fn_80009830.c",
+   "unit": "dol/fn_80009468.c",
    "addr": 2147522608,
    "size": 632,
    "status": "matched",
@@ -8385,7 +8385,7 @@
   {
    "symbol": "fn_80009AA8",
    "module": "main",
-   "unit": "dol/fn_80009830.c",
+   "unit": "dol/fn_80009468.c",
    "addr": 2147523240,
    "size": 516,
    "status": "matched",
@@ -8402,7 +8402,7 @@
   {
    "symbol": "fn_80009CAC",
    "module": "main",
-   "unit": "dol/fn_80009830.c",
+   "unit": "dol/fn_80009468.c",
    "addr": 2147523756,
    "size": 40,
    "status": "matched",
@@ -8436,7 +8436,7 @@
   {
    "symbol": "fn_80009FA4",
    "module": "main",
-   "unit": "dol/fn_80009FA4.c",
+   "unit": "dol/fn_80009CD4.c",
    "addr": 2147524516,
    "size": 16,
    "status": "matched",
@@ -8453,7 +8453,7 @@
   {
    "symbol": "fn_80009FB4",
    "module": "main",
-   "unit": "dol/fn_80009FB4.c",
+   "unit": "dol/fn_80009CD4.c",
    "addr": 2147524532,
    "size": 8,
    "status": "matched",
@@ -12193,7 +12193,7 @@
   {
    "symbol": "fn_800134DC",
    "module": "main",
-   "unit": "dol/fn_800134DC.c",
+   "unit": "dol/fn_80013428.c",
    "addr": 2147562716,
    "size": 240,
    "status": "matched",
@@ -12244,7 +12244,7 @@
   {
    "symbol": "fn_8001375C",
    "module": "main",
-   "unit": "dol/fn_8001375C.c",
+   "unit": "dol/fn_800136E8.c",
    "addr": 2147563356,
    "size": 104,
    "status": "matched",
@@ -12312,7 +12312,7 @@
   {
    "symbol": "fn_800139E8",
    "module": "main",
-   "unit": "dol/fn_800139E8.c",
+   "unit": "dol/PADSetSamplingCallback.c",
    "addr": 2147564008,
    "size": 160,
    "status": "matched",
@@ -13009,7 +13009,7 @@
   {
    "symbol": "__DVDInitWA",
    "module": "main",
-   "unit": "dol/__DVDInitWA.c",
+   "unit": "dol/C_MTXFrustum.c",
    "addr": 2147573632,
    "size": 64,
    "status": "matched",
@@ -13553,7 +13553,7 @@
   {
    "symbol": "DVDGetTransferredSize",
    "module": "main",
-   "unit": "dol/DVDGetTransferredSize.c",
+   "unit": "dol/fn_800176D8.c",
    "addr": 2147579644,
    "size": 108,
    "status": "matched",
@@ -13570,7 +13570,7 @@
   {
    "symbol": "fn_80017768",
    "module": "main",
-   "unit": "dol/fn_80017768.c",
+   "unit": "dol/fn_800176D8.c",
    "addr": 2147579752,
    "size": 4,
    "status": "matched",
@@ -15814,7 +15814,7 @@
   {
    "symbol": "fn_8002071C",
    "module": "main",
-   "unit": "dol/fn_8002071C.c",
+   "unit": "dol/fn_800206FC.c",
    "addr": 2147616540,
    "size": 8,
    "status": "matched",
@@ -15831,7 +15831,7 @@
   {
    "symbol": "fn_80020724",
    "module": "main",
-   "unit": "dol/fn_8002071C.c",
+   "unit": "dol/fn_800206FC.c",
    "addr": 2147616548,
    "size": 84,
    "status": "matched",
@@ -16001,7 +16001,7 @@
   {
    "symbol": "fn_80020A28",
    "module": "main",
-   "unit": "dol/fn_80020A28.c",
+   "unit": "dol/fn_80020A0C.c",
    "addr": 2147617320,
    "size": 148,
    "status": "matched",
@@ -16069,7 +16069,7 @@
   {
    "symbol": "fn_80020D58",
    "module": "main",
-   "unit": "dol/fn_80020D58.c",
+   "unit": "dol/fn_80020CB0.c",
    "addr": 2147618136,
    "size": 228,
    "status": "matched",
@@ -16086,7 +16086,7 @@
   {
    "symbol": "fn_80020E3C",
    "module": "main",
-   "unit": "dol/fn_80020E3C.c",
+   "unit": "dol/fn_80020CB0.c",
    "addr": 2147618364,
    "size": 16,
    "status": "matched",
@@ -16120,7 +16120,7 @@
   {
    "symbol": "fn_80020E80",
    "module": "main",
-   "unit": "dol/fn_80020E80.c",
+   "unit": "dol/fn_80020E4C.c",
    "addr": 2147618432,
    "size": 32,
    "status": "matched",
@@ -16137,7 +16137,7 @@
   {
    "symbol": "fn_80020EA0",
    "module": "main",
-   "unit": "dol/fn_80020EA0.c",
+   "unit": "dol/fn_80020E4C.c",
    "addr": 2147618464,
    "size": 28,
    "status": "matched",
@@ -16154,7 +16154,7 @@
   {
    "symbol": "fn_80020EBC",
    "module": "main",
-   "unit": "dol/fn_80020EA0.c",
+   "unit": "dol/fn_80020E4C.c",
    "addr": 2147618492,
    "size": 32,
    "status": "matched",
@@ -16171,7 +16171,7 @@
   {
    "symbol": "fn_80020EDC",
    "module": "main",
-   "unit": "dol/fn_80020EA0.c",
+   "unit": "dol/fn_80020E4C.c",
    "addr": 2147618524,
    "size": 32,
    "status": "matched",
@@ -16188,7 +16188,7 @@
   {
    "symbol": "fn_80020EFC",
    "module": "main",
-   "unit": "dol/fn_80020EA0.c",
+   "unit": "dol/fn_80020E4C.c",
    "addr": 2147618556,
    "size": 32,
    "status": "matched",
@@ -16205,7 +16205,7 @@
   {
    "symbol": "fn_80020F1C",
    "module": "main",
-   "unit": "dol/fn_80020EA0.c",
+   "unit": "dol/fn_80020E4C.c",
    "addr": 2147618588,
    "size": 52,
    "status": "matched",
@@ -16222,7 +16222,7 @@
   {
    "symbol": "fn_80020F50",
    "module": "main",
-   "unit": "dol/fn_80020EA0.c",
+   "unit": "dol/fn_80020E4C.c",
    "addr": 2147618640,
    "size": 28,
    "status": "matched",
@@ -16239,7 +16239,7 @@
   {
    "symbol": "fn_80020F6C",
    "module": "main",
-   "unit": "dol/fn_80020EA0.c",
+   "unit": "dol/fn_80020E4C.c",
    "addr": 2147618668,
    "size": 28,
    "status": "matched",
@@ -16256,7 +16256,7 @@
   {
    "symbol": "fn_80020F88",
    "module": "main",
-   "unit": "dol/fn_80020EA0.c",
+   "unit": "dol/fn_80020E4C.c",
    "addr": 2147618696,
    "size": 28,
    "status": "matched",
@@ -16341,7 +16341,7 @@
   {
    "symbol": "fn_80021200",
    "module": "main",
-   "unit": "dol/fn_80021200.c",
+   "unit": "dol/fn_800211E0.c",
    "addr": 2147619328,
    "size": 60,
    "status": "matched",
@@ -16392,7 +16392,7 @@
   {
    "symbol": "fn_80021910",
    "module": "main",
-   "unit": "dol/fn_80021910.c",
+   "unit": "dol/fn_800218EC.c",
    "addr": 2147621136,
    "size": 4,
    "status": "matched",
@@ -16409,7 +16409,7 @@
   {
    "symbol": "fn_80021914",
    "module": "main",
-   "unit": "dol/fn_80021910.c",
+   "unit": "dol/fn_800218EC.c",
    "addr": 2147621140,
    "size": 20,
    "status": "matched",
@@ -16426,7 +16426,7 @@
   {
    "symbol": "fn_80021928",
    "module": "main",
-   "unit": "dol/fn_80021910.c",
+   "unit": "dol/fn_800218EC.c",
    "addr": 2147621160,
    "size": 8,
    "status": "matched",
@@ -16698,7 +16698,7 @@
   {
    "symbol": "fn_800224EC",
    "module": "main",
-   "unit": "dol/fn_800224EC.c",
+   "unit": "dol/fn_80022420.c",
    "addr": 2147624172,
    "size": 1800,
    "status": "matched",
@@ -16868,7 +16868,7 @@
   {
    "symbol": "fn_80023284",
    "module": "main",
-   "unit": "dol/fn_80023284.c",
+   "unit": "dol/fn_80023228.c",
    "addr": 2147627652,
    "size": 272,
    "status": "matched",
@@ -16953,7 +16953,7 @@
   {
    "symbol": "fn_800235D4",
    "module": "main",
-   "unit": "dol/fn_800235D4.c",
+   "unit": "dol/fn_80023568.c",
    "addr": 2147628500,
    "size": 72,
    "status": "matched",
@@ -16970,7 +16970,7 @@
   {
    "symbol": "fn_8002361C",
    "module": "main",
-   "unit": "dol/fn_8002361C.c",
+   "unit": "dol/fn_80023568.c",
    "addr": 2147628572,
    "size": 28,
    "status": "matched",
@@ -17480,7 +17480,7 @@
   {
    "symbol": "fn_80025EE0",
    "module": "main",
-   "unit": "dol/fn_80025EE0.c",
+   "unit": "dol/fn_80025E18.c",
    "addr": 2147639008,
    "size": 4,
    "status": "matched",
@@ -17497,7 +17497,7 @@
   {
    "symbol": "fn_80025EE4",
    "module": "main",
-   "unit": "dol/fn_80025EE0.c",
+   "unit": "dol/fn_80025E18.c",
    "addr": 2147639012,
    "size": 8,
    "status": "matched",
@@ -17769,7 +17769,7 @@
   {
    "symbol": "fn_8002805C",
    "module": "main",
-   "unit": "dol/fn_8002805C.c",
+   "unit": "dol/fn_80026FE0.c",
    "addr": 2147647580,
    "size": 52,
    "status": "matched",
@@ -18313,7 +18313,7 @@
   {
    "symbol": "fn_80028E88",
    "module": "main",
-   "unit": "dol/fn_80028E88.c",
+   "unit": "dol/fn_80028E48.c",
    "addr": 2147651208,
    "size": 200,
    "status": "matched",
@@ -18330,7 +18330,7 @@
   {
    "symbol": "fn_80028F50",
    "module": "main",
-   "unit": "dol/fn_80028F50.c",
+   "unit": "dol/fn_80028E48.c",
    "addr": 2147651408,
    "size": 80,
    "status": "matched",
@@ -18738,7 +18738,7 @@
   {
    "symbol": "fn_8002A74C",
    "module": "main",
-   "unit": "dol/fn_8002A74C.c",
+   "unit": "dol/fn_8002A744.c",
    "addr": 2147657548,
    "size": 40,
    "status": "matched",
@@ -19503,7 +19503,7 @@
   {
    "symbol": "DoUnmount",
    "module": "main",
-   "unit": "dol/DoUnmount.c",
+   "unit": "dol/fn_8002DFE0.c",
    "addr": 2147672104,
    "size": 156,
    "status": "matched",
@@ -19894,7 +19894,7 @@
   {
    "symbol": "DeleteCallback",
    "module": "main",
-   "unit": "dol/DeleteCallback.c",
+   "unit": "dol/fn_8002F8EC.c",
    "addr": 2147678516,
    "size": 164,
    "status": "matched",
@@ -20438,7 +20438,7 @@
   {
    "symbol": "__GXFifoReadDisable",
    "module": "main",
-   "unit": "dol/__GXFifoReadDisable.c",
+   "unit": "dol/__GXFifoReadEnable.c",
    "addr": 2147689100,
    "size": 32,
    "status": "matched",
@@ -21203,7 +21203,7 @@
   {
    "symbol": "fn_8003458C",
    "module": "main",
-   "unit": "dol/fn_8003458C.c",
+   "unit": "dol/__GXPEInit.c",
    "addr": 2147698060,
    "size": 160,
    "status": "matched",
@@ -21679,7 +21679,7 @@
   {
    "symbol": "fn_800356B8",
    "module": "main",
-   "unit": "dol/fn_800356B8.c",
+   "unit": "dol/fn_80035680.c",
    "addr": 2147702456,
    "size": 124,
    "status": "matched",
@@ -22291,7 +22291,7 @@
   {
    "symbol": "fn_800370E4",
    "module": "main",
-   "unit": "dol/fn_800370E4.c",
+   "unit": "dol/fn_800370A0.c",
    "addr": 2147709156,
    "size": 68,
    "status": "matched",
@@ -22937,7 +22937,7 @@
   {
    "symbol": "GXLoadTexMtxImm",
    "module": "main",
-   "unit": "dol/GXLoadTexMtxImm.c",
+   "unit": "dol/GXSetCurrentMtx.c",
    "addr": 2147716404,
    "size": 180,
    "status": "matched",
@@ -23294,7 +23294,7 @@
   {
    "symbol": "fn_8003A760",
    "module": "main",
-   "unit": "dol/fn_8003A760.c",
+   "unit": "dol/fn_8003A680.c",
    "addr": 2147723104,
    "size": 444,
    "status": "matched",
@@ -23311,7 +23311,7 @@
   {
    "symbol": "fn_8003A91C",
    "module": "main",
-   "unit": "dol/fn_8003A91C.c",
+   "unit": "dol/fn_8003A680.c",
    "addr": 2147723548,
    "size": 492,
    "status": "matched",
@@ -23379,7 +23379,7 @@
   {
    "symbol": "fn_8003B798",
    "module": "main",
-   "unit": "dol/fn_8003B798.c",
+   "unit": "dol/fn_8003B63C.c",
    "addr": 2147727256,
    "size": 272,
    "status": "matched",
@@ -24161,7 +24161,7 @@
   {
    "symbol": "fn_80041458",
    "module": "main",
-   "unit": "dol/fn_80041458.c",
+   "unit": "dol/fn_80041330.c",
    "addr": 2147751000,
    "size": 8,
    "status": "matched",
@@ -24178,7 +24178,7 @@
   {
    "symbol": "fn_80041460",
    "module": "main",
-   "unit": "dol/fn_80041460.c",
+   "unit": "dol/fn_80041330.c",
    "addr": 2147751008,
    "size": 112,
    "status": "matched",
@@ -24399,7 +24399,7 @@
   {
    "symbol": "fn_800416CC",
    "module": "main",
-   "unit": "dol/fn_800416CC.c",
+   "unit": "dol/fn_800414D0.c",
    "addr": 2147751628,
    "size": 8,
    "status": "matched",
@@ -24416,7 +24416,7 @@
   {
    "symbol": "fn_800416D4",
    "module": "main",
-   "unit": "dol/fn_800416CC.c",
+   "unit": "dol/fn_800414D0.c",
    "addr": 2147751636,
    "size": 8,
    "status": "matched",
@@ -24433,7 +24433,7 @@
   {
    "symbol": "fn_800416DC",
    "module": "main",
-   "unit": "dol/fn_800416CC.c",
+   "unit": "dol/fn_800414D0.c",
    "addr": 2147751644,
    "size": 8,
    "status": "matched",
@@ -24450,7 +24450,7 @@
   {
    "symbol": "fn_800416E4",
    "module": "main",
-   "unit": "dol/fn_800416CC.c",
+   "unit": "dol/fn_800414D0.c",
    "addr": 2147751652,
    "size": 12,
    "status": "matched",
@@ -24467,7 +24467,7 @@
   {
    "symbol": "fn_800416F0",
    "module": "main",
-   "unit": "dol/fn_800416CC.c",
+   "unit": "dol/fn_800414D0.c",
    "addr": 2147751664,
    "size": 8,
    "status": "matched",
@@ -24484,7 +24484,7 @@
   {
    "symbol": "fn_800416F8",
    "module": "main",
-   "unit": "dol/fn_800416CC.c",
+   "unit": "dol/fn_800414D0.c",
    "addr": 2147751672,
    "size": 8,
    "status": "matched",
@@ -24620,7 +24620,7 @@
   {
    "symbol": "fn_8004216C",
    "module": "main",
-   "unit": "dol/fn_8004216C.c",
+   "unit": "dol/fn_800420F4.c",
    "addr": 2147754348,
    "size": 4,
    "status": "matched",
@@ -24637,7 +24637,7 @@
   {
    "symbol": "fn_80042170",
    "module": "main",
-   "unit": "dol/fn_80042170.c",
+   "unit": "dol/fn_800420F4.c",
    "addr": 2147754352,
    "size": 40,
    "status": "matched",
@@ -24654,7 +24654,7 @@
   {
    "symbol": "fn_80042198",
    "module": "main",
-   "unit": "dol/fn_80042170.c",
+   "unit": "dol/fn_800420F4.c",
    "addr": 2147754392,
    "size": 40,
    "status": "matched",
@@ -24892,7 +24892,7 @@
   {
    "symbol": "fn_800433D0",
    "module": "main",
-   "unit": "dol/fn_800433D0.c",
+   "unit": "dol/fn_800433A4.c",
    "addr": 2147759056,
    "size": 36,
    "status": "matched",
@@ -24909,7 +24909,7 @@
   {
    "symbol": "fn_800433F4",
    "module": "main",
-   "unit": "dol/fn_800433F4.c",
+   "unit": "dol/fn_800433A4.c",
    "addr": 2147759092,
    "size": 56,
    "status": "matched",
@@ -24926,7 +24926,7 @@
   {
    "symbol": "fn_8004342C",
    "module": "main",
-   "unit": "dol/fn_800433F4.c",
+   "unit": "dol/fn_800433A4.c",
    "addr": 2147759148,
    "size": 52,
    "status": "matched",
@@ -25181,7 +25181,7 @@
   {
    "symbol": "fn_800452FC",
    "module": "main",
-   "unit": "dol/fn_800452FC.c",
+   "unit": "dol/fn_80044EF8.c",
    "addr": 2147767036,
    "size": 8,
    "status": "matched",
@@ -25198,7 +25198,7 @@
   {
    "symbol": "fn_80045304",
    "module": "main",
-   "unit": "dol/fn_800452FC.c",
+   "unit": "dol/fn_80044EF8.c",
    "addr": 2147767044,
    "size": 8,
    "status": "matched",
@@ -25249,7 +25249,7 @@
   {
    "symbol": "fn_8004538C",
    "module": "main",
-   "unit": "dol/fn_8004538C.c",
+   "unit": "dol/fn_8004530C.c",
    "addr": 2147767180,
    "size": 24,
    "status": "matched",
@@ -25266,7 +25266,7 @@
   {
    "symbol": "fn_800453A4",
    "module": "main",
-   "unit": "dol/fn_800453A4.c",
+   "unit": "dol/fn_8004530C.c",
    "addr": 2147767204,
    "size": 112,
    "status": "matched",
@@ -25283,7 +25283,7 @@
   {
    "symbol": "fn_80045414",
    "module": "main",
-   "unit": "dol/fn_80045414.c",
+   "unit": "dol/fn_8004530C.c",
    "addr": 2147767316,
    "size": 8,
    "status": "matched",
@@ -25300,7 +25300,7 @@
   {
    "symbol": "fn_8004541C",
    "module": "main",
-   "unit": "dol/fn_8004541C.c",
+   "unit": "dol/fn_8004530C.c",
    "addr": 2147767324,
    "size": 76,
    "status": "matched",
@@ -25317,7 +25317,7 @@
   {
    "symbol": "fn_80045468",
    "module": "main",
-   "unit": "dol/fn_8004541C.c",
+   "unit": "dol/fn_8004530C.c",
    "addr": 2147767400,
    "size": 76,
    "status": "matched",
@@ -25334,7 +25334,7 @@
   {
    "symbol": "fn_800454B4",
    "module": "main",
-   "unit": "dol/fn_800454B4.c",
+   "unit": "dol/fn_8004530C.c",
    "addr": 2147767476,
    "size": 16,
    "status": "matched",
@@ -25351,7 +25351,7 @@
   {
    "symbol": "fn_800454C4",
    "module": "main",
-   "unit": "dol/fn_800454B4.c",
+   "unit": "dol/fn_8004530C.c",
    "addr": 2147767492,
    "size": 8,
    "status": "matched",
@@ -25368,7 +25368,7 @@
   {
    "symbol": "fn_800454CC",
    "module": "main",
-   "unit": "dol/fn_800454B4.c",
+   "unit": "dol/fn_8004530C.c",
    "addr": 2147767500,
    "size": 8,
    "status": "matched",
@@ -25385,7 +25385,7 @@
   {
    "symbol": "fn_800454D4",
    "module": "main",
-   "unit": "dol/fn_800454B4.c",
+   "unit": "dol/fn_8004530C.c",
    "addr": 2147767508,
    "size": 8,
    "status": "matched",
@@ -25402,7 +25402,7 @@
   {
    "symbol": "fn_800454DC",
    "module": "main",
-   "unit": "dol/fn_800454B4.c",
+   "unit": "dol/fn_8004530C.c",
    "addr": 2147767516,
    "size": 8,
    "status": "matched",
@@ -25419,7 +25419,7 @@
   {
    "symbol": "fn_800454E4",
    "module": "main",
-   "unit": "dol/fn_800454B4.c",
+   "unit": "dol/fn_8004530C.c",
    "addr": 2147767524,
    "size": 24,
    "status": "matched",
@@ -25436,7 +25436,7 @@
   {
    "symbol": "fn_800454FC",
    "module": "main",
-   "unit": "dol/fn_800454B4.c",
+   "unit": "dol/fn_8004530C.c",
    "addr": 2147767548,
    "size": 8,
    "status": "matched",
@@ -25453,7 +25453,7 @@
   {
    "symbol": "fn_80045504",
    "module": "main",
-   "unit": "dol/fn_800454B4.c",
+   "unit": "dol/fn_8004530C.c",
    "addr": 2147767556,
    "size": 8,
    "status": "matched",
@@ -25470,7 +25470,7 @@
   {
    "symbol": "fn_8004550C",
    "module": "main",
-   "unit": "dol/fn_800454B4.c",
+   "unit": "dol/fn_8004530C.c",
    "addr": 2147767564,
    "size": 8,
    "status": "matched",
@@ -25487,7 +25487,7 @@
   {
    "symbol": "fn_80045514",
    "module": "main",
-   "unit": "dol/fn_800454B4.c",
+   "unit": "dol/fn_8004530C.c",
    "addr": 2147767572,
    "size": 8,
    "status": "matched",
@@ -25504,7 +25504,7 @@
   {
    "symbol": "fn_8004551C",
    "module": "main",
-   "unit": "dol/fn_8004551C.c",
+   "unit": "dol/fn_8004530C.c",
    "addr": 2147767580,
    "size": 108,
    "status": "matched",
@@ -25606,7 +25606,7 @@
   {
    "symbol": "fn_800455B8",
    "module": "main",
-   "unit": "dol/fn_800455B8.c",
+   "unit": "dol/fn_80045594.c",
    "addr": 2147767736,
    "size": 232,
    "status": "matched",
@@ -25708,7 +25708,7 @@
   {
    "symbol": "fn_80045FA4",
    "module": "main",
-   "unit": "dol/fn_80045FA4.c",
+   "unit": "dol/fn_80045F58.c",
    "addr": 2147770276,
    "size": 72,
    "status": "matched",
@@ -25725,7 +25725,7 @@
   {
    "symbol": "fn_80045FEC",
    "module": "main",
-   "unit": "dol/fn_80045FA4.c",
+   "unit": "dol/fn_80045F58.c",
    "addr": 2147770348,
    "size": 52,
    "status": "matched",
@@ -25895,7 +25895,7 @@
   {
    "symbol": "fn_80046758",
    "module": "main",
-   "unit": "dol/fn_80046758.c",
+   "unit": "dol/fn_80046718.c",
    "addr": 2147772248,
    "size": 16,
    "status": "matched",
@@ -25912,7 +25912,7 @@
   {
    "symbol": "fn_80046768",
    "module": "main",
-   "unit": "dol/fn_80046768.c",
+   "unit": "dol/fn_80046718.c",
    "addr": 2147772264,
    "size": 156,
    "status": "matched",
@@ -25929,7 +25929,7 @@
   {
    "symbol": "fn_80046804",
    "module": "main",
-   "unit": "dol/fn_80046804.c",
+   "unit": "dol/fn_80046718.c",
    "addr": 2147772420,
    "size": 56,
    "status": "matched",
@@ -25946,7 +25946,7 @@
   {
    "symbol": "fn_8004683C",
    "module": "main",
-   "unit": "dol/fn_8004683C.c",
+   "unit": "dol/fn_80046718.c",
    "addr": 2147772476,
    "size": 360,
    "status": "matched",
@@ -26031,7 +26031,7 @@
   {
    "symbol": "fn_80046C28",
    "module": "main",
-   "unit": "dol/fn_80046C28.c",
+   "unit": "dol/fn_80046AC0.c",
    "addr": 2147773480,
    "size": 240,
    "status": "matched",
@@ -26320,7 +26320,7 @@
   {
    "symbol": "fn_80047ADC",
    "module": "main",
-   "unit": "dol/fn_80047ADC.c",
+   "unit": "dol/fn_80047A50.c",
    "addr": 2147777244,
    "size": 28,
    "status": "matched",
@@ -26337,7 +26337,7 @@
   {
    "symbol": "fn_80047AF8",
    "module": "main",
-   "unit": "dol/fn_80047ADC.c",
+   "unit": "dol/fn_80047A50.c",
    "addr": 2147777272,
    "size": 12,
    "status": "matched",
@@ -26694,7 +26694,7 @@
   {
    "symbol": "fn_8004AC4C",
    "module": "main",
-   "unit": "dol/fn_8004AC4C.c",
+   "unit": "dol/fn_8004AC04.c",
    "addr": 2147789900,
    "size": 12,
    "status": "matched",
@@ -26711,7 +26711,7 @@
   {
    "symbol": "fn_8004AC58",
    "module": "main",
-   "unit": "dol/fn_8004AC58.c",
+   "unit": "dol/fn_8004AC04.c",
    "addr": 2147789912,
    "size": 300,
    "status": "matched",
@@ -26728,7 +26728,7 @@
   {
    "symbol": "fn_8004AD84",
    "module": "main",
-   "unit": "dol/fn_8004AC58.c",
+   "unit": "dol/fn_8004AC04.c",
    "addr": 2147790212,
    "size": 112,
    "status": "matched",
@@ -26745,7 +26745,7 @@
   {
    "symbol": "fn_8004ADF4",
    "module": "main",
-   "unit": "dol/fn_8004AC58.c",
+   "unit": "dol/fn_8004AC04.c",
    "addr": 2147790324,
    "size": 132,
    "status": "matched",
@@ -26762,7 +26762,7 @@
   {
    "symbol": "fn_8004AE78",
    "module": "main",
-   "unit": "dol/fn_8004AE78.c",
+   "unit": "dol/fn_8004AC04.c",
    "addr": 2147790456,
    "size": 28,
    "status": "matched",
@@ -26779,7 +26779,7 @@
   {
    "symbol": "fn_8004AE94",
    "module": "main",
-   "unit": "dol/fn_8004AE94.c",
+   "unit": "dol/fn_8004AC04.c",
    "addr": 2147790484,
    "size": 80,
    "status": "matched",
@@ -26830,7 +26830,7 @@
   {
    "symbol": "fn_8004B0EC",
    "module": "main",
-   "unit": "dol/fn_8004B0EC.c",
+   "unit": "dol/fn_8004AEF0.c",
    "addr": 2147791084,
    "size": 148,
    "status": "matched",
@@ -26898,7 +26898,7 @@
   {
    "symbol": "fn_8004B79C",
    "module": "main",
-   "unit": "dol/fn_8004B79C.c",
+   "unit": "dol/fn_8004B4E0.c",
    "addr": 2147792796,
    "size": 4,
    "status": "matched",
@@ -26983,7 +26983,7 @@
   {
    "symbol": "fn_8004B9A4",
    "module": "main",
-   "unit": "dol/fn_8004B9A4.c",
+   "unit": "dol/fn_8004B974.c",
    "addr": 2147793316,
    "size": 148,
    "status": "matched",
@@ -27000,7 +27000,7 @@
   {
    "symbol": "fn_8004BA38",
    "module": "main",
-   "unit": "dol/fn_8004BA38.c",
+   "unit": "dol/fn_8004B974.c",
    "addr": 2147793464,
    "size": 8,
    "status": "matched",
@@ -27051,7 +27051,7 @@
   {
    "symbol": "fn_8004BBC4",
    "module": "main",
-   "unit": "dol/fn_8004BBC4.c",
+   "unit": "dol/fn_8004BBA4.c",
    "addr": 2147793860,
    "size": 4,
    "status": "matched",
@@ -27068,7 +27068,7 @@
   {
    "symbol": "fn_8004BBC8",
    "module": "main",
-   "unit": "dol/fn_8004BBC4.c",
+   "unit": "dol/fn_8004BBA4.c",
    "addr": 2147793864,
    "size": 4,
    "status": "matched",
@@ -27085,7 +27085,7 @@
   {
    "symbol": "fn_8004BBCC",
    "module": "main",
-   "unit": "dol/fn_8004BBCC.c",
+   "unit": "dol/fn_8004BBA4.c",
    "addr": 2147793868,
    "size": 64,
    "status": "matched",
@@ -27170,7 +27170,7 @@
   {
    "symbol": "fn_8004BE90",
    "module": "main",
-   "unit": "dol/fn_8004BE90.c",
+   "unit": "dol/fn_8004BD5C.c",
    "addr": 2147794576,
    "size": 8,
    "status": "matched",
@@ -27629,7 +27629,7 @@
   {
    "symbol": "fn_8004E1B0",
    "module": "main",
-   "unit": "dol/fn_8004E1B0.c",
+   "unit": "dol/fn_8004E190.c",
    "addr": 2147803568,
    "size": 52,
    "status": "matched",
@@ -27646,7 +27646,7 @@
   {
    "symbol": "fn_8004E1E4",
    "module": "main",
-   "unit": "dol/fn_8004E1B0.c",
+   "unit": "dol/fn_8004E190.c",
    "addr": 2147803620,
    "size": 32,
    "status": "matched",
@@ -27663,7 +27663,7 @@
   {
    "symbol": "fn_8004E204",
    "module": "main",
-   "unit": "dol/fn_8004E204.c",
+   "unit": "dol/fn_8004E190.c",
    "addr": 2147803652,
    "size": 52,
    "status": "matched",
@@ -27680,7 +27680,7 @@
   {
    "symbol": "fn_8004E238",
    "module": "main",
-   "unit": "dol/fn_8004E238.c",
+   "unit": "dol/fn_8004E190.c",
    "addr": 2147803704,
    "size": 56,
    "status": "matched",
@@ -27697,7 +27697,7 @@
   {
    "symbol": "fn_8004E270",
    "module": "main",
-   "unit": "dol/fn_8004E270.c",
+   "unit": "dol/fn_8004E190.c",
    "addr": 2147803760,
    "size": 8,
    "status": "matched",
@@ -27714,7 +27714,7 @@
   {
    "symbol": "fn_8004E278",
    "module": "main",
-   "unit": "dol/fn_8004E278.c",
+   "unit": "dol/fn_8004E190.c",
    "addr": 2147803768,
    "size": 56,
    "status": "matched",
@@ -27731,7 +27731,7 @@
   {
    "symbol": "fn_8004E2B0",
    "module": "main",
-   "unit": "dol/fn_8004E2B0.c",
+   "unit": "dol/fn_8004E190.c",
    "addr": 2147803824,
    "size": 28,
    "status": "matched",
@@ -27748,7 +27748,7 @@
   {
    "symbol": "fn_8004E2CC",
    "module": "main",
-   "unit": "dol/fn_8004E2B0.c",
+   "unit": "dol/fn_8004E190.c",
    "addr": 2147803852,
    "size": 16,
    "status": "matched",
@@ -27765,7 +27765,7 @@
   {
    "symbol": "fn_8004E2DC",
    "module": "main",
-   "unit": "dol/fn_8004E2DC.c",
+   "unit": "dol/fn_8004E190.c",
    "addr": 2147803868,
    "size": 36,
    "status": "matched",
@@ -27782,7 +27782,7 @@
   {
    "symbol": "fn_8004E300",
    "module": "main",
-   "unit": "dol/fn_8004E300.c",
+   "unit": "dol/fn_8004E190.c",
    "addr": 2147803904,
    "size": 36,
    "status": "matched",
@@ -27799,7 +27799,7 @@
   {
    "symbol": "fn_8004E324",
    "module": "main",
-   "unit": "dol/fn_8004E324.c",
+   "unit": "dol/fn_8004E190.c",
    "addr": 2147803940,
    "size": 48,
    "status": "matched",
@@ -28190,7 +28190,7 @@
   {
    "symbol": "fn_8004ED80",
    "module": "main",
-   "unit": "dol/fn_8004ED80.c",
+   "unit": "dol/fn_8004ED3C.c",
    "addr": 2147806592,
    "size": 4,
    "status": "matched",
@@ -28207,7 +28207,7 @@
   {
    "symbol": "fn_8004ED84",
    "module": "main",
-   "unit": "dol/fn_8004ED84.c",
+   "unit": "dol/fn_8004ED3C.c",
    "addr": 2147806596,
    "size": 32,
    "status": "matched",
@@ -28224,7 +28224,7 @@
   {
    "symbol": "fn_8004EDA4",
    "module": "main",
-   "unit": "dol/fn_8004ED84.c",
+   "unit": "dol/fn_8004ED3C.c",
    "addr": 2147806628,
    "size": 32,
    "status": "matched",
@@ -28241,7 +28241,7 @@
   {
    "symbol": "fn_8004EDC4",
    "module": "main",
-   "unit": "dol/fn_8004ED84.c",
+   "unit": "dol/fn_8004ED3C.c",
    "addr": 2147806660,
    "size": 32,
    "status": "matched",
@@ -28258,7 +28258,7 @@
   {
    "symbol": "fn_8004EDE4",
    "module": "main",
-   "unit": "dol/fn_8004ED84.c",
+   "unit": "dol/fn_8004ED3C.c",
    "addr": 2147806692,
    "size": 32,
    "status": "matched",
@@ -28275,7 +28275,7 @@
   {
    "symbol": "fn_8004EE04",
    "module": "main",
-   "unit": "dol/fn_8004ED84.c",
+   "unit": "dol/fn_8004ED3C.c",
    "addr": 2147806724,
    "size": 32,
    "status": "matched",
@@ -28292,7 +28292,7 @@
   {
    "symbol": "fn_8004EE24",
    "module": "main",
-   "unit": "dol/fn_8004ED84.c",
+   "unit": "dol/fn_8004ED3C.c",
    "addr": 2147806756,
    "size": 32,
    "status": "matched",
@@ -28309,7 +28309,7 @@
   {
    "symbol": "fn_8004EE44",
    "module": "main",
-   "unit": "dol/fn_8004ED84.c",
+   "unit": "dol/fn_8004ED3C.c",
    "addr": 2147806788,
    "size": 32,
    "status": "matched",
@@ -28326,7 +28326,7 @@
   {
    "symbol": "fn_8004EE64",
    "module": "main",
-   "unit": "dol/fn_8004ED84.c",
+   "unit": "dol/fn_8004ED3C.c",
    "addr": 2147806820,
    "size": 32,
    "status": "matched",
@@ -28343,7 +28343,7 @@
   {
    "symbol": "fn_8004EE84",
    "module": "main",
-   "unit": "dol/fn_8004ED84.c",
+   "unit": "dol/fn_8004ED3C.c",
    "addr": 2147806852,
    "size": 32,
    "status": "matched",
@@ -28360,7 +28360,7 @@
   {
    "symbol": "fn_8004EEA4",
    "module": "main",
-   "unit": "dol/fn_8004ED84.c",
+   "unit": "dol/fn_8004ED3C.c",
    "addr": 2147806884,
    "size": 32,
    "status": "matched",
@@ -28377,7 +28377,7 @@
   {
    "symbol": "fn_8004EEC4",
    "module": "main",
-   "unit": "dol/fn_8004ED84.c",
+   "unit": "dol/fn_8004ED3C.c",
    "addr": 2147806916,
    "size": 32,
    "status": "matched",
@@ -28700,7 +28700,7 @@
   {
    "symbol": "fn_800501EC",
    "module": "main",
-   "unit": "dol/fn_800501EC.c",
+   "unit": "dol/fn_80050180.c",
    "addr": 2147811820,
    "size": 8,
    "status": "matched",
@@ -28921,7 +28921,7 @@
   {
    "symbol": "fn_800510D8",
    "module": "main",
-   "unit": "dol/fn_800510D8.c",
+   "unit": "dol/fn_800510C4.c",
    "addr": 2147815640,
    "size": 880,
    "status": "matched",
@@ -29448,7 +29448,7 @@
   {
    "symbol": "fn_80053A38",
    "module": "main",
-   "unit": "dol/fn_80053A38.c",
+   "unit": "dol/fn_80053A30.c",
    "addr": 2147826232,
    "size": 76,
    "status": "matched",
@@ -29567,7 +29567,7 @@
   {
    "symbol": "fn_80053EB0",
    "module": "main",
-   "unit": "dol/fn_80053EB0.c",
+   "unit": "dol/fn_80053EA0.c",
    "addr": 2147827376,
    "size": 136,
    "status": "matched",
@@ -29635,7 +29635,7 @@
   {
    "symbol": "fn_800542B4",
    "module": "main",
-   "unit": "dol/fn_800542B4.c",
+   "unit": "dol/fn_800541EC.c",
    "addr": 2147828404,
    "size": 8,
    "status": "matched",
@@ -29652,7 +29652,7 @@
   {
    "symbol": "fn_800542BC",
    "module": "main",
-   "unit": "dol/fn_800542B4.c",
+   "unit": "dol/fn_800541EC.c",
    "addr": 2147828412,
    "size": 12,
    "status": "matched",
@@ -29669,7 +29669,7 @@
   {
    "symbol": "fn_800542C8",
    "module": "main",
-   "unit": "dol/fn_800542C8.c",
+   "unit": "dol/fn_800541EC.c",
    "addr": 2147828424,
    "size": 140,
    "status": "matched",
@@ -29941,7 +29941,7 @@
   {
    "symbol": "fn_800555C0",
    "module": "main",
-   "unit": "dol/fn_800555C0.c",
+   "unit": "dol/fn_80055580.c",
    "addr": 2147833280,
    "size": 4,
    "status": "matched",
@@ -29958,7 +29958,7 @@
   {
    "symbol": "fn_800555C4",
    "module": "main",
-   "unit": "dol/fn_800555C4.c",
+   "unit": "dol/fn_80055580.c",
    "addr": 2147833284,
    "size": 96,
    "status": "matched",
@@ -30536,7 +30536,7 @@
   {
    "symbol": "fn_8005710C",
    "module": "main",
-   "unit": "dol/fn_8005710C.c",
+   "unit": "dol/fn_800570DC.c",
    "addr": 2147840268,
    "size": 8,
    "status": "matched",
@@ -30553,7 +30553,7 @@
   {
    "symbol": "fn_80057114",
    "module": "main",
-   "unit": "dol/fn_80057114.c",
+   "unit": "dol/fn_800570DC.c",
    "addr": 2147840276,
    "size": 216,
    "status": "matched",
@@ -30757,7 +30757,7 @@
   {
    "symbol": "fn_80057B34",
    "module": "main",
-   "unit": "dol/fn_80057B34.c",
+   "unit": "dol/fn_800579F0.c",
    "addr": 2147842868,
    "size": 20,
    "status": "matched",
@@ -30774,7 +30774,7 @@
   {
    "symbol": "fn_80057B48",
    "module": "main",
-   "unit": "dol/fn_80057B34.c",
+   "unit": "dol/fn_800579F0.c",
    "addr": 2147842888,
    "size": 12,
    "status": "matched",
@@ -30791,7 +30791,7 @@
   {
    "symbol": "fn_80057B54",
    "module": "main",
-   "unit": "dol/fn_80057B34.c",
+   "unit": "dol/fn_800579F0.c",
    "addr": 2147842900,
    "size": 8,
    "status": "matched",
@@ -30808,7 +30808,7 @@
   {
    "symbol": "fn_80057B5C",
    "module": "main",
-   "unit": "dol/fn_80057B5C.c",
+   "unit": "dol/fn_800579F0.c",
    "addr": 2147842908,
    "size": 64,
    "status": "matched",
@@ -30825,7 +30825,7 @@
   {
    "symbol": "fn_80057B9C",
    "module": "main",
-   "unit": "dol/fn_80057B5C.c",
+   "unit": "dol/fn_800579F0.c",
    "addr": 2147842972,
    "size": 296,
    "status": "matched",
@@ -30910,7 +30910,7 @@
   {
    "symbol": "fn_80057DA0",
    "module": "main",
-   "unit": "dol/fn_80057DA0.c",
+   "unit": "dol/fn_80057D0C.c",
    "addr": 2147843488,
    "size": 8,
    "status": "matched",
@@ -30927,7 +30927,7 @@
   {
    "symbol": "fn_80057DA8",
    "module": "main",
-   "unit": "dol/fn_80057DA0.c",
+   "unit": "dol/fn_80057D0C.c",
    "addr": 2147843496,
    "size": 8,
    "status": "matched",
@@ -30944,7 +30944,7 @@
   {
    "symbol": "fn_80057DB0",
    "module": "main",
-   "unit": "dol/fn_80057DA0.c",
+   "unit": "dol/fn_80057D0C.c",
    "addr": 2147843504,
    "size": 8,
    "status": "matched",
@@ -30961,7 +30961,7 @@
   {
    "symbol": "fn_80057DB8",
    "module": "main",
-   "unit": "dol/fn_80057DB8.c",
+   "unit": "dol/fn_80057D0C.c",
    "addr": 2147843512,
    "size": 268,
    "status": "matched",
@@ -30995,7 +30995,7 @@
   {
    "symbol": "fn_80058070",
    "module": "main",
-   "unit": "dol/fn_80058070.c",
+   "unit": "dol/fn_80057EC4.c",
    "addr": 2147844208,
    "size": 348,
    "status": "matched",
@@ -31012,7 +31012,7 @@
   {
    "symbol": "fn_800581CC",
    "module": "main",
-   "unit": "dol/fn_80058070.c",
+   "unit": "dol/fn_80057EC4.c",
    "addr": 2147844556,
    "size": 436,
    "status": "matched",
@@ -31029,7 +31029,7 @@
   {
    "symbol": "fn_80058380",
    "module": "main",
-   "unit": "dol/fn_80058070.c",
+   "unit": "dol/fn_80057EC4.c",
    "addr": 2147844992,
    "size": 92,
    "status": "matched",
@@ -31063,7 +31063,7 @@
   {
    "symbol": "fn_80058434",
    "module": "main",
-   "unit": "dol/fn_80058434.c",
+   "unit": "dol/fn_800583DC.c",
    "addr": 2147845172,
    "size": 12,
    "status": "matched",
@@ -31080,7 +31080,7 @@
   {
    "symbol": "fn_80058440",
    "module": "main",
-   "unit": "dol/fn_80058434.c",
+   "unit": "dol/fn_800583DC.c",
    "addr": 2147845184,
    "size": 8,
    "status": "matched",
@@ -31097,7 +31097,7 @@
   {
    "symbol": "fn_80058448",
    "module": "main",
-   "unit": "dol/fn_80058448.c",
+   "unit": "dol/fn_800583DC.c",
    "addr": 2147845192,
    "size": 80,
    "status": "matched",
@@ -31250,7 +31250,7 @@
   {
    "symbol": "fn_80058A20",
    "module": "main",
-   "unit": "dol/fn_80058A20.c",
+   "unit": "dol/fn_800589BC.c",
    "addr": 2147846688,
    "size": 32,
    "status": "matched",
@@ -31403,7 +31403,7 @@
   {
    "symbol": "fn_80058EE4",
    "module": "main",
-   "unit": "dol/fn_80058EE4.c",
+   "unit": "dol/fn_80058ED4.c",
    "addr": 2147847908,
    "size": 16,
    "status": "matched",
@@ -31930,7 +31930,7 @@
   {
    "symbol": "fn_8005A59C",
    "module": "main",
-   "unit": "dol/fn_8005A59C.c",
+   "unit": "dol/fn_8005A588.c",
    "addr": 2147853724,
    "size": 12,
    "status": "matched",
@@ -31947,7 +31947,7 @@
   {
    "symbol": "fn_8005A5A8",
    "module": "main",
-   "unit": "dol/fn_8005A5A8.c",
+   "unit": "dol/fn_8005A588.c",
    "addr": 2147853736,
    "size": 20,
    "status": "matched",
@@ -31964,7 +31964,7 @@
   {
    "symbol": "fn_8005A5BC",
    "module": "main",
-   "unit": "dol/fn_8005A5A8.c",
+   "unit": "dol/fn_8005A588.c",
    "addr": 2147853756,
    "size": 88,
    "status": "matched",
@@ -31981,7 +31981,7 @@
   {
    "symbol": "fn_8005A614",
    "module": "main",
-   "unit": "dol/fn_8005A5A8.c",
+   "unit": "dol/fn_8005A588.c",
    "addr": 2147853844,
    "size": 20,
    "status": "matched",
@@ -31998,7 +31998,7 @@
   {
    "symbol": "fn_8005A628",
    "module": "main",
-   "unit": "dol/fn_8005A5A8.c",
+   "unit": "dol/fn_8005A588.c",
    "addr": 2147853864,
    "size": 32,
    "status": "matched",
@@ -32015,7 +32015,7 @@
   {
    "symbol": "fn_8005A648",
    "module": "main",
-   "unit": "dol/fn_8005A5A8.c",
+   "unit": "dol/fn_8005A588.c",
    "addr": 2147853896,
    "size": 32,
    "status": "matched",
@@ -32032,7 +32032,7 @@
   {
    "symbol": "fn_8005A668",
    "module": "main",
-   "unit": "dol/fn_8005A668.c",
+   "unit": "dol/fn_8005A588.c",
    "addr": 2147853928,
    "size": 16,
    "status": "matched",
@@ -32049,7 +32049,7 @@
   {
    "symbol": "fn_8005A678",
    "module": "main",
-   "unit": "dol/fn_8005A668.c",
+   "unit": "dol/fn_8005A588.c",
    "addr": 2147853944,
    "size": 8,
    "status": "matched",
@@ -32066,7 +32066,7 @@
   {
    "symbol": "fn_8005A680",
    "module": "main",
-   "unit": "dol/fn_8005A668.c",
+   "unit": "dol/fn_8005A588.c",
    "addr": 2147853952,
    "size": 8,
    "status": "matched",
@@ -32083,7 +32083,7 @@
   {
    "symbol": "fn_8005A688",
    "module": "main",
-   "unit": "dol/fn_8005A668.c",
+   "unit": "dol/fn_8005A588.c",
    "addr": 2147853960,
    "size": 16,
    "status": "matched",
@@ -32423,7 +32423,7 @@
   {
    "symbol": "fn_8005BE68",
    "module": "main",
-   "unit": "dol/fn_8005BE68.c",
+   "unit": "dol/fn_8005BE48.c",
    "addr": 2147860072,
    "size": 24,
    "status": "matched",
@@ -32440,7 +32440,7 @@
   {
    "symbol": "fn_8005BE80",
    "module": "main",
-   "unit": "dol/fn_8005BE68.c",
+   "unit": "dol/fn_8005BE48.c",
    "addr": 2147860096,
    "size": 24,
    "status": "matched",
@@ -32457,7 +32457,7 @@
   {
    "symbol": "fn_8005BE98",
    "module": "main",
-   "unit": "dol/fn_8005BE68.c",
+   "unit": "dol/fn_8005BE48.c",
    "addr": 2147860120,
    "size": 20,
    "status": "matched",
@@ -33290,7 +33290,7 @@
   {
    "symbol": "fn_80065AC4",
    "module": "main",
-   "unit": "dol/fn_80065AC4.c",
+   "unit": "dol/fn_80065A7C.c",
    "addr": 2147900100,
    "size": 12,
    "status": "matched",
@@ -33307,7 +33307,7 @@
   {
    "symbol": "fn_80065AD0",
    "module": "main",
-   "unit": "dol/fn_80065AD0.c",
+   "unit": "dol/fn_80065A7C.c",
    "addr": 2147900112,
    "size": 56,
    "status": "matched",
@@ -33681,7 +33681,7 @@
   {
    "symbol": "fn_8006A480",
    "module": "main",
-   "unit": "dol/fn_8006A480.c",
+   "unit": "dol/fn_8006A3DC.c",
    "addr": 2147918976,
    "size": 212,
    "status": "matched",
@@ -33783,7 +33783,7 @@
   {
    "symbol": "fn_8006A9B4",
    "module": "main",
-   "unit": "dol/fn_8006A9B4.c",
+   "unit": "dol/fn_8006A998.c",
    "addr": 2147920308,
    "size": 108,
    "status": "matched",
@@ -34497,7 +34497,7 @@
   {
    "symbol": "fn_8006CD50",
    "module": "main",
-   "unit": "dol/fn_8006CD50.c",
+   "unit": "dol/fn_8006CD20.c",
    "addr": 2147929424,
    "size": 88,
    "status": "matched",
@@ -34514,7 +34514,7 @@
   {
    "symbol": "fn_8006CDA8",
    "module": "main",
-   "unit": "dol/fn_8006CD50.c",
+   "unit": "dol/fn_8006CD20.c",
    "addr": 2147929512,
    "size": 84,
    "status": "matched",
@@ -35891,7 +35891,7 @@
   {
    "symbol": "fn_8006F78C",
    "module": "main",
-   "unit": "dol/fn_8006F78C.c",
+   "unit": "dol/fn_8006F774.c",
    "addr": 2147940236,
    "size": 156,
    "status": "matched",
@@ -35908,7 +35908,7 @@
   {
    "symbol": "fn_8006F828",
    "module": "main",
-   "unit": "dol/fn_8006F78C.c",
+   "unit": "dol/fn_8006F774.c",
    "addr": 2147940392,
    "size": 216,
    "status": "matched",
@@ -35925,7 +35925,7 @@
   {
    "symbol": "fn_8006F900",
    "module": "main",
-   "unit": "dol/fn_8006F900.c",
+   "unit": "dol/fn_8006F774.c",
    "addr": 2147940608,
    "size": 164,
    "status": "matched",
@@ -35942,7 +35942,7 @@
   {
    "symbol": "fn_8006F9A4",
    "module": "main",
-   "unit": "dol/fn_8006F9A4.c",
+   "unit": "dol/fn_8006F774.c",
    "addr": 2147940772,
    "size": 128,
    "status": "matched",
@@ -35959,7 +35959,7 @@
   {
    "symbol": "fn_8006FA24",
    "module": "main",
-   "unit": "dol/fn_8006F9A4.c",
+   "unit": "dol/fn_8006F774.c",
    "addr": 2147940900,
    "size": 252,
    "status": "matched",
@@ -36095,7 +36095,7 @@
   {
    "symbol": "fn_8006FF8C",
    "module": "main",
-   "unit": "dol/fn_8006FF8C.c",
+   "unit": "dol/fn_8006FEFC.c",
    "addr": 2147942284,
    "size": 48,
    "status": "matched",
@@ -36112,7 +36112,7 @@
   {
    "symbol": "fn_8006FFBC",
    "module": "main",
-   "unit": "dol/fn_8006FF8C.c",
+   "unit": "dol/fn_8006FEFC.c",
    "addr": 2147942332,
    "size": 8,
    "status": "matched",
@@ -36129,7 +36129,7 @@
   {
    "symbol": "fn_8006FFC4",
    "module": "main",
-   "unit": "dol/fn_8006FF8C.c",
+   "unit": "dol/fn_8006FEFC.c",
    "addr": 2147942340,
    "size": 8,
    "status": "matched",
@@ -36146,7 +36146,7 @@
   {
    "symbol": "fn_8006FFCC",
    "module": "main",
-   "unit": "dol/fn_8006FF8C.c",
+   "unit": "dol/fn_8006FEFC.c",
    "addr": 2147942348,
    "size": 16,
    "status": "matched",
@@ -36231,7 +36231,7 @@
   {
    "symbol": "fn_800700F4",
    "module": "main",
-   "unit": "dol/fn_800700F4.c",
+   "unit": "dol/fn_8006FFDC.c",
    "addr": 2147942644,
    "size": 12,
    "status": "matched",
@@ -36367,7 +36367,7 @@
   {
    "symbol": "fn_8007075C",
    "module": "main",
-   "unit": "dol/fn_8007075C.c",
+   "unit": "dol/fn_80070704.c",
    "addr": 2147944284,
    "size": 24,
    "status": "matched",
@@ -36452,7 +36452,7 @@
   {
    "symbol": "fn_80070D60",
    "module": "main",
-   "unit": "dol/fn_80070D60.c",
+   "unit": "dol/fn_80070CF8.c",
    "addr": 2147945824,
    "size": 52,
    "status": "matched",
@@ -36469,7 +36469,7 @@
   {
    "symbol": "fn_80070D94",
    "module": "main",
-   "unit": "dol/fn_80070D94.c",
+   "unit": "dol/fn_80070CF8.c",
    "addr": 2147945876,
    "size": 76,
    "status": "matched",
@@ -36486,7 +36486,7 @@
   {
    "symbol": "fn_80070DE0",
    "module": "main",
-   "unit": "dol/fn_80070DE0.c",
+   "unit": "dol/fn_80070CF8.c",
    "addr": 2147945952,
    "size": 16,
    "status": "matched",
@@ -36503,7 +36503,7 @@
   {
    "symbol": "fn_80070DF0",
    "module": "main",
-   "unit": "dol/fn_80070DE0.c",
+   "unit": "dol/fn_80070CF8.c",
    "addr": 2147945968,
    "size": 16,
    "status": "matched",
@@ -36520,7 +36520,7 @@
   {
    "symbol": "fn_80070E00",
    "module": "main",
-   "unit": "dol/fn_80070DE0.c",
+   "unit": "dol/fn_80070CF8.c",
    "addr": 2147945984,
    "size": 28,
    "status": "matched",
@@ -36673,7 +36673,7 @@
   {
    "symbol": "fn_80071470",
    "module": "main",
-   "unit": "dol/fn_80071470.c",
+   "unit": "dol/fn_80071100.c",
    "addr": 2147947632,
    "size": 20,
    "status": "matched",
@@ -36877,7 +36877,7 @@
   {
    "symbol": "fn_80071CB4",
    "module": "main",
-   "unit": "dol/fn_80071CB4.c",
+   "unit": "dol/fn_80071C04.c",
    "addr": 2147949748,
    "size": 12,
    "status": "matched",
@@ -36894,7 +36894,7 @@
   {
    "symbol": "fn_80071CC0",
    "module": "main",
-   "unit": "dol/fn_80071CC0.c",
+   "unit": "dol/fn_80071C04.c",
    "addr": 2147949760,
    "size": 32,
    "status": "matched",
@@ -36911,7 +36911,7 @@
   {
    "symbol": "fn_80071CE0",
    "module": "main",
-   "unit": "dol/fn_80071CE0.c",
+   "unit": "dol/fn_80071C04.c",
    "addr": 2147949792,
    "size": 8,
    "status": "matched",
@@ -36928,7 +36928,7 @@
   {
    "symbol": "fn_80071CE8",
    "module": "main",
-   "unit": "dol/fn_80071CE8.c",
+   "unit": "dol/fn_80071C04.c",
    "addr": 2147949800,
    "size": 36,
    "status": "matched",
@@ -36945,7 +36945,7 @@
   {
    "symbol": "fn_80071D0C",
    "module": "main",
-   "unit": "dol/fn_80071CE8.c",
+   "unit": "dol/fn_80071C04.c",
    "addr": 2147949836,
    "size": 32,
    "status": "matched",
@@ -36962,7 +36962,7 @@
   {
    "symbol": "fn_80071D2C",
    "module": "main",
-   "unit": "dol/fn_80071D2C.c",
+   "unit": "dol/fn_80071C04.c",
    "addr": 2147949868,
    "size": 4,
    "status": "matched",
@@ -37166,7 +37166,7 @@
   {
    "symbol": "fn_800723F8",
    "module": "main",
-   "unit": "dol/fn_800723F8.c",
+   "unit": "dol/fn_80072270.c",
    "addr": 2147951608,
    "size": 12,
    "status": "matched",
@@ -37183,7 +37183,7 @@
   {
    "symbol": "fn_80072404",
    "module": "main",
-   "unit": "dol/fn_80072404.c",
+   "unit": "dol/fn_80072270.c",
    "addr": 2147951620,
    "size": 88,
    "status": "matched",
@@ -37200,7 +37200,7 @@
   {
    "symbol": "fn_8007245C",
    "module": "main",
-   "unit": "dol/fn_80072404.c",
+   "unit": "dol/fn_80072270.c",
    "addr": 2147951708,
    "size": 108,
    "status": "matched",
@@ -37217,7 +37217,7 @@
   {
    "symbol": "fn_800724C8",
    "module": "main",
-   "unit": "dol/fn_800724C8.c",
+   "unit": "dol/fn_80072270.c",
    "addr": 2147951816,
    "size": 4,
    "status": "matched",
@@ -38135,7 +38135,7 @@
   {
    "symbol": "fn_80074A8C",
    "module": "main",
-   "unit": "dol/fn_80074A8C.c",
+   "unit": "dol/fn_80074A60.c",
    "addr": 2147961484,
    "size": 180,
    "status": "matched",
@@ -38152,7 +38152,7 @@
   {
    "symbol": "fn_80074B40",
    "module": "main",
-   "unit": "dol/fn_80074A8C.c",
+   "unit": "dol/fn_80074A60.c",
    "addr": 2147961664,
    "size": 132,
    "status": "matched",
@@ -38169,7 +38169,7 @@
   {
    "symbol": "fn_80074BC4",
    "module": "main",
-   "unit": "dol/fn_80074A8C.c",
+   "unit": "dol/fn_80074A60.c",
    "addr": 2147961796,
    "size": 176,
    "status": "matched",
@@ -38186,7 +38186,7 @@
   {
    "symbol": "fn_80074C74",
    "module": "main",
-   "unit": "dol/fn_80074A8C.c",
+   "unit": "dol/fn_80074A60.c",
    "addr": 2147961972,
    "size": 128,
    "status": "matched",
@@ -38203,7 +38203,7 @@
   {
    "symbol": "fn_80074CF4",
    "module": "main",
-   "unit": "dol/fn_80074CF4.c",
+   "unit": "dol/fn_80074A60.c",
    "addr": 2147962100,
    "size": 20,
    "status": "matched",
@@ -38220,7 +38220,7 @@
   {
    "symbol": "fn_80074D08",
    "module": "main",
-   "unit": "dol/fn_80074CF4.c",
+   "unit": "dol/fn_80074A60.c",
    "addr": 2147962120,
    "size": 16,
    "status": "matched",
@@ -38237,7 +38237,7 @@
   {
    "symbol": "fn_80074D18",
    "module": "main",
-   "unit": "dol/fn_80074CF4.c",
+   "unit": "dol/fn_80074A60.c",
    "addr": 2147962136,
    "size": 16,
    "status": "matched",
@@ -38254,7 +38254,7 @@
   {
    "symbol": "fn_80074D28",
    "module": "main",
-   "unit": "dol/fn_80074D28.c",
+   "unit": "dol/fn_80074A60.c",
    "addr": 2147962152,
    "size": 64,
    "status": "matched",
@@ -38271,7 +38271,7 @@
   {
    "symbol": "fn_80074D68",
    "module": "main",
-   "unit": "dol/fn_80074D68.c",
+   "unit": "dol/fn_80074A60.c",
    "addr": 2147962216,
    "size": 16,
    "status": "matched",
@@ -38288,7 +38288,7 @@
   {
    "symbol": "fn_80074D78",
    "module": "main",
-   "unit": "dol/fn_80074D68.c",
+   "unit": "dol/fn_80074A60.c",
    "addr": 2147962232,
    "size": 16,
    "status": "matched",
@@ -38696,7 +38696,7 @@
   {
    "symbol": "fn_80077A20",
    "module": "main",
-   "unit": "dol/fn_80077A20.c",
+   "unit": "dol/fn_80077A18.c",
    "addr": 2147973664,
    "size": 176,
    "status": "matched",
@@ -38713,7 +38713,7 @@
   {
    "symbol": "fn_80077AD0",
    "module": "main",
-   "unit": "dol/fn_80077A20.c",
+   "unit": "dol/fn_80077A18.c",
    "addr": 2147973840,
    "size": 52,
    "status": "matched",
@@ -38730,7 +38730,7 @@
   {
    "symbol": "fn_80077B04",
    "module": "main",
-   "unit": "dol/fn_80077B04.c",
+   "unit": "dol/fn_80077A18.c",
    "addr": 2147973892,
    "size": 16,
    "status": "matched",
@@ -38747,7 +38747,7 @@
   {
    "symbol": "fn_80077B14",
    "module": "main",
-   "unit": "dol/fn_80077B14.c",
+   "unit": "dol/fn_80077A18.c",
    "addr": 2147973908,
    "size": 80,
    "status": "matched",
@@ -38764,7 +38764,7 @@
   {
    "symbol": "fn_80077B64",
    "module": "main",
-   "unit": "dol/fn_80077B14.c",
+   "unit": "dol/fn_80077A18.c",
    "addr": 2147973988,
    "size": 72,
    "status": "matched",
@@ -38781,7 +38781,7 @@
   {
    "symbol": "fn_80077BAC",
    "module": "main",
-   "unit": "dol/fn_80077BAC.c",
+   "unit": "dol/fn_80077A18.c",
    "addr": 2147974060,
    "size": 16,
    "status": "matched",
@@ -38798,7 +38798,7 @@
   {
    "symbol": "fn_80077BBC",
    "module": "main",
-   "unit": "dol/fn_80077BBC.c",
+   "unit": "dol/fn_80077A18.c",
    "addr": 2147974076,
    "size": 24,
    "status": "matched",
@@ -38815,7 +38815,7 @@
   {
    "symbol": "fn_80077BD4",
    "module": "main",
-   "unit": "dol/fn_80077BBC.c",
+   "unit": "dol/fn_80077A18.c",
    "addr": 2147974100,
    "size": 364,
    "status": "matched",
@@ -38832,7 +38832,7 @@
   {
    "symbol": "fn_80077D40",
    "module": "main",
-   "unit": "dol/fn_80077BBC.c",
+   "unit": "dol/fn_80077A18.c",
    "addr": 2147974464,
    "size": 204,
    "status": "matched",
@@ -38849,7 +38849,7 @@
   {
    "symbol": "fn_80077E0C",
    "module": "main",
-   "unit": "dol/fn_80077BBC.c",
+   "unit": "dol/fn_80077A18.c",
    "addr": 2147974668,
    "size": 112,
    "status": "matched",
@@ -39070,7 +39070,7 @@
   {
    "symbol": "fn_80078BC4",
    "module": "main",
-   "unit": "dol/fn_80078BC4.c",
+   "unit": "dol/fn_800789D8.c",
    "addr": 2147978180,
    "size": 100,
    "status": "matched",
@@ -39087,7 +39087,7 @@
   {
    "symbol": "fn_80078C28",
    "module": "main",
-   "unit": "dol/fn_80078BC4.c",
+   "unit": "dol/fn_800789D8.c",
    "addr": 2147978280,
    "size": 180,
    "status": "matched",
@@ -39104,7 +39104,7 @@
   {
    "symbol": "fn_80078CDC",
    "module": "main",
-   "unit": "dol/fn_80078BC4.c",
+   "unit": "dol/fn_800789D8.c",
    "addr": 2147978460,
    "size": 108,
    "status": "matched",
@@ -39835,7 +39835,7 @@
   {
    "symbol": "fn_8007B1CC",
    "module": "main",
-   "unit": "dol/fn_8007B1CC.c",
+   "unit": "dol/fn_8007B0B4.c",
    "addr": 2147987916,
    "size": 220,
    "status": "matched",
@@ -39852,7 +39852,7 @@
   {
    "symbol": "fn_8007B2A8",
    "module": "main",
-   "unit": "dol/fn_8007B2A8.c",
+   "unit": "dol/fn_8007B0B4.c",
    "addr": 2147988136,
    "size": 144,
    "status": "matched",
@@ -40073,7 +40073,7 @@
   {
    "symbol": "__prep_buffer",
    "module": "main",
-   "unit": "dol/__prep_buffer.c",
+   "unit": "dol/fn_8007EC80.c",
    "addr": 2148003152,
    "size": 52,
    "status": "matched",
@@ -40090,7 +40090,7 @@
   {
    "symbol": "__end_critical_region",
    "module": "main",
-   "unit": "dol/__prep_buffer.c",
+   "unit": "dol/fn_8007EC80.c",
    "addr": 2148003204,
    "size": 4,
    "status": "matched",
@@ -40107,7 +40107,7 @@
   {
    "symbol": "__begin_critical_region",
    "module": "main",
-   "unit": "dol/__prep_buffer.c",
+   "unit": "dol/fn_8007EC80.c",
    "addr": 2148003208,
    "size": 4,
    "status": "matched",
@@ -40124,7 +40124,7 @@
   {
    "symbol": "__kill_critical_regions",
    "module": "main",
-   "unit": "dol/__prep_buffer.c",
+   "unit": "dol/fn_8007EC80.c",
    "addr": 2148003212,
    "size": 4,
    "status": "matched",
@@ -40141,7 +40141,7 @@
   {
    "symbol": "fn_8007ED90",
    "module": "main",
-   "unit": "dol/fn_8007ED90.c",
+   "unit": "dol/fn_8007EC80.c",
    "addr": 2148003216,
    "size": 36,
    "status": "matched",
@@ -40226,7 +40226,7 @@
   {
    "symbol": "fn_8007F508",
    "module": "main",
-   "unit": "dol/fn_8007F508.c",
+   "unit": "dol/fn_8007F48C.c",
    "addr": 2148005128,
    "size": 380,
    "status": "matched",
@@ -40413,7 +40413,7 @@
   {
    "symbol": "__memrchr",
    "module": "main",
-   "unit": "dol/__memrchr.c",
+   "unit": "dol/fn_8008023C.c",
    "addr": 2148008584,
    "size": 44,
    "status": "matched",
@@ -40430,7 +40430,7 @@
   {
    "symbol": "memchr",
    "module": "main",
-   "unit": "dol/memchr.c",
+   "unit": "dol/fn_8008023C.c",
    "addr": 2148008628,
    "size": 44,
    "status": "matched",
@@ -40821,7 +40821,7 @@
   {
    "symbol": "fn_80082928",
    "module": "main",
-   "unit": "dol/fn_80082928.c",
+   "unit": "dol/fn_80082908.c",
    "addr": 2148018472,
    "size": 196,
    "status": "matched",
@@ -40991,7 +40991,7 @@
   {
    "symbol": "fn_80083CF4",
    "module": "main",
-   "unit": "dol/fn_80083CF4.c",
+   "unit": "dol/fn_80083BCC.c",
    "addr": 2148023540,
    "size": 76,
    "status": "matched",
@@ -41008,7 +41008,7 @@
   {
    "symbol": "strcat",
    "module": "main",
-   "unit": "dol/fn_80083CF4.c",
+   "unit": "dol/fn_80083BCC.c",
    "addr": 2148023616,
    "size": 44,
    "status": "matched",
@@ -41025,7 +41025,7 @@
   {
    "symbol": "strncpy",
    "module": "main",
-   "unit": "dol/fn_80083CF4.c",
+   "unit": "dol/fn_80083BCC.c",
    "addr": 2148023660,
    "size": 68,
    "status": "matched",
@@ -41042,7 +41042,7 @@
   {
    "symbol": "fn_80083DB0",
    "module": "main",
-   "unit": "dol/fn_80083DB0.c",
+   "unit": "dol/fn_80083BCC.c",
    "addr": 2148023728,
    "size": 184,
    "status": "matched",
@@ -41059,7 +41059,7 @@
   {
    "symbol": "strlen",
    "module": "main",
-   "unit": "dol/strlen.c",
+   "unit": "dol/fn_80083BCC.c",
    "addr": 2148023912,
    "size": 28,
    "status": "matched",
@@ -41076,7 +41076,7 @@
   {
    "symbol": "fn_80083E84",
    "module": "main",
-   "unit": "dol/fn_80083E84.c",
+   "unit": "dol/fn_80083BCC.c",
    "addr": 2148023940,
    "size": 140,
    "status": "matched",
@@ -41195,7 +41195,7 @@
   {
    "symbol": "fn_80085814",
    "module": "main",
-   "unit": "dol/fn_80085814.c",
+   "unit": "dol/fn_8008580C.c",
    "addr": 2148030484,
    "size": 208,
    "status": "matched",
@@ -41688,7 +41688,7 @@
   {
    "symbol": "fn_80088764",
    "module": "main",
-   "unit": "dol/fn_80088764.c",
+   "unit": "dol/TRKDestructEvent.c",
    "addr": 2148042596,
    "size": 24,
    "status": "matched",
@@ -41977,7 +41977,7 @@
   {
    "symbol": "fn_80089174",
    "module": "main",
-   "unit": "dol/fn_80089174.c",
+   "unit": "dol/fn_80089144.c",
    "addr": 2148045172,
    "size": 64,
    "status": "matched",
@@ -41994,7 +41994,7 @@
   {
    "symbol": "fn_800891B4",
    "module": "main",
-   "unit": "dol/fn_80089174.c",
+   "unit": "dol/fn_80089144.c",
    "addr": 2148045236,
    "size": 100,
    "status": "matched",
@@ -42147,7 +42147,7 @@
   {
    "symbol": "usr_put_initialize",
    "module": "main",
-   "unit": "dol/usr_put_initialize.c",
+   "unit": "dol/TRKGetInput.c",
    "addr": 2148046392,
    "size": 4,
    "status": "matched",
@@ -42164,7 +42164,7 @@
   {
    "symbol": "fn_8008963C",
    "module": "main",
-   "unit": "dol/fn_8008963C.c",
+   "unit": "dol/TRKGetInput.c",
    "addr": 2148046396,
    "size": 136,
    "status": "matched",
@@ -42385,7 +42385,7 @@
   {
    "symbol": "fn_8008A5BC",
    "module": "main",
-   "unit": "dol/fn_8008A5BC.c",
+   "unit": "dol/fn_8008A5AC.c",
    "addr": 2148050364,
    "size": 88,
    "status": "matched",
@@ -42402,7 +42402,7 @@
   {
    "symbol": "fn_8008A614",
    "module": "main",
-   "unit": "dol/fn_8008A5BC.c",
+   "unit": "dol/fn_8008A5AC.c",
    "addr": 2148050452,
    "size": 88,
    "status": "matched",
@@ -42419,7 +42419,7 @@
   {
    "symbol": "fn_8008A66C",
    "module": "main",
-   "unit": "dol/fn_8008A5BC.c",
+   "unit": "dol/fn_8008A5AC.c",
    "addr": 2148050540,
    "size": 120,
    "status": "matched",
@@ -42436,7 +42436,7 @@
   {
    "symbol": "fn_8008A6E4",
    "module": "main",
-   "unit": "dol/fn_8008A5BC.c",
+   "unit": "dol/fn_8008A5AC.c",
    "addr": 2148050660,
    "size": 100,
    "status": "matched",
@@ -42453,7 +42453,7 @@
   {
    "symbol": "fn_8008A748",
    "module": "main",
-   "unit": "dol/fn_8008A748.c",
+   "unit": "dol/fn_8008A5AC.c",
    "addr": 2148050760,
    "size": 12,
    "status": "matched",
@@ -42589,7 +42589,7 @@
   {
    "symbol": "fn_8008AF40",
    "module": "main",
-   "unit": "dol/fn_8008AF40.c",
+   "unit": "dol/fn_8008AD00.c",
    "addr": 2148052800,
    "size": 8,
    "status": "matched",
@@ -42606,7 +42606,7 @@
   {
    "symbol": "fn_8008AF48",
    "module": "main",
-   "unit": "dol/fn_8008AF40.c",
+   "unit": "dol/fn_8008AD00.c",
    "addr": 2148052808,
    "size": 8,
    "status": "matched",
@@ -42623,7 +42623,7 @@
   {
    "symbol": "fn_8008AF50",
    "module": "main",
-   "unit": "dol/fn_8008AF40.c",
+   "unit": "dol/fn_8008AD00.c",
    "addr": 2148052816,
    "size": 8,
    "status": "matched",
@@ -43320,7 +43320,7 @@
   {
    "symbol": "EnableMetroTRKInterrupts",
    "module": "main",
-   "unit": "dol/EnableMetroTRKInterrupts.c",
+   "unit": "dol/fn_8008D154.c",
    "addr": 2148061612,
    "size": 32,
    "status": "matched",
@@ -43388,7 +43388,7 @@
   {
    "symbol": "InitializeProgramEndTrap",
    "module": "main",
-   "unit": "dol/InitializeProgramEndTrap.c",
+   "unit": "dol/TRKUARTInterruptHandler.c",
    "addr": 2148061872,
    "size": 88,
    "status": "matched",
@@ -43405,7 +43405,7 @@
   {
    "symbol": "TRK_board_display",
    "module": "main",
-   "unit": "dol/InitializeProgramEndTrap.c",
+   "unit": "dol/TRKUARTInterruptHandler.c",
    "addr": 2148061960,
    "size": 48,
    "status": "matched",
@@ -43422,7 +43422,7 @@
   {
    "symbol": "UnreserveEXI2Port",
    "module": "main",
-   "unit": "dol/InitializeProgramEndTrap.c",
+   "unit": "dol/TRKUARTInterruptHandler.c",
    "addr": 2148062008,
    "size": 48,
    "status": "matched",
@@ -43626,7 +43626,7 @@
   {
    "symbol": "fn_8008D7CC",
    "module": "main",
-   "unit": "dol/fn_8008D7CC.c",
+   "unit": "dol/fn_8008D7C0.c",
    "addr": 2148063180,
    "size": 220,
    "status": "matched",
@@ -43643,7 +43643,7 @@
   {
    "symbol": "fn_8008D8A8",
    "module": "main",
-   "unit": "dol/fn_8008D7CC.c",
+   "unit": "dol/fn_8008D7C0.c",
    "addr": 2148063400,
    "size": 132,
    "status": "matched",
@@ -43745,7 +43745,7 @@
   {
    "symbol": "udp_cc_post_stop",
    "module": "main",
-   "unit": "dol/udp_cc_post_stop.c",
+   "unit": "dol/fn_8008DCCC.c",
    "addr": 2148064648,
    "size": 8,
    "status": "matched",
@@ -43762,7 +43762,7 @@
   {
    "symbol": "udp_cc_pre_continue",
    "module": "main",
-   "unit": "dol/udp_cc_post_stop.c",
+   "unit": "dol/fn_8008DCCC.c",
    "addr": 2148064656,
    "size": 8,
    "status": "matched",
@@ -43779,7 +43779,7 @@
   {
    "symbol": "udp_cc_peek",
    "module": "main",
-   "unit": "dol/udp_cc_post_stop.c",
+   "unit": "dol/fn_8008DCCC.c",
    "addr": 2148064664,
    "size": 8,
    "status": "matched",
@@ -43796,7 +43796,7 @@
   {
    "symbol": "udp_cc_write",
    "module": "main",
-   "unit": "dol/udp_cc_post_stop.c",
+   "unit": "dol/fn_8008DCCC.c",
    "addr": 2148064672,
    "size": 8,
    "status": "matched",
@@ -43813,7 +43813,7 @@
   {
    "symbol": "udp_cc_read",
    "module": "main",
-   "unit": "dol/udp_cc_post_stop.c",
+   "unit": "dol/fn_8008DCCC.c",
    "addr": 2148064680,
    "size": 8,
    "status": "matched",
@@ -43830,7 +43830,7 @@
   {
    "symbol": "udp_cc_close",
    "module": "main",
-   "unit": "dol/udp_cc_post_stop.c",
+   "unit": "dol/fn_8008DCCC.c",
    "addr": 2148064688,
    "size": 8,
    "status": "matched",
@@ -43847,7 +43847,7 @@
   {
    "symbol": "udp_cc_open",
    "module": "main",
-   "unit": "dol/udp_cc_post_stop.c",
+   "unit": "dol/fn_8008DCCC.c",
    "addr": 2148064696,
    "size": 8,
    "status": "matched",
@@ -43864,7 +43864,7 @@
   {
    "symbol": "udp_cc_shutdown",
    "module": "main",
-   "unit": "dol/udp_cc_post_stop.c",
+   "unit": "dol/fn_8008DCCC.c",
    "addr": 2148064704,
    "size": 8,
    "status": "matched",
@@ -43881,7 +43881,7 @@
   {
    "symbol": "udp_cc_initialize",
    "module": "main",
-   "unit": "dol/udp_cc_post_stop.c",
+   "unit": "dol/fn_8008DCCC.c",
    "addr": 2148064712,
    "size": 8,
    "status": "matched",
@@ -43898,7 +43898,7 @@
   {
    "symbol": "ddh_cc_initinterrupts",
    "module": "main",
-   "unit": "dol/ddh_cc_initinterrupts.c",
+   "unit": "dol/fn_8008DCCC.c",
    "addr": 2148064720,
    "size": 36,
    "status": "matched",
@@ -43915,7 +43915,7 @@
   {
    "symbol": "ddh_cc_peek",
    "module": "main",
-   "unit": "dol/ddh_cc_initinterrupts.c",
+   "unit": "dol/fn_8008DCCC.c",
    "addr": 2148064756,
    "size": 112,
    "status": "matched",
@@ -43932,7 +43932,7 @@
   {
    "symbol": "ddh_cc_post_stop",
    "module": "main",
-   "unit": "dol/ddh_cc_initinterrupts.c",
+   "unit": "dol/fn_8008DCCC.c",
    "addr": 2148064868,
    "size": 36,
    "status": "matched",
@@ -43949,7 +43949,7 @@
   {
    "symbol": "ddh_cc_pre_continue",
    "module": "main",
-   "unit": "dol/ddh_cc_initinterrupts.c",
+   "unit": "dol/fn_8008DCCC.c",
    "addr": 2148064904,
    "size": 36,
    "status": "matched",
@@ -44017,7 +44017,7 @@
   {
    "symbol": "ddh_cc_open",
    "module": "main",
-   "unit": "dol/ddh_cc_open.c",
+   "unit": "dol/ddh_cc_close.c",
    "addr": 2148065376,
    "size": 36,
    "status": "matched",
@@ -44034,7 +44034,7 @@
   {
    "symbol": "ddh_cc_shutdown",
    "module": "main",
-   "unit": "dol/ddh_cc_shutdown.c",
+   "unit": "dol/ddh_cc_close.c",
    "addr": 2148065412,
    "size": 8,
    "status": "matched",
@@ -44051,7 +44051,7 @@
   {
    "symbol": "ddh_cc_initialize",
    "module": "main",
-   "unit": "dol/ddh_cc_initialize.c",
+   "unit": "dol/ddh_cc_close.c",
    "addr": 2148065420,
    "size": 136,
    "status": "matched",
@@ -44068,7 +44068,7 @@
   {
    "symbol": "fn_8008E114",
    "module": "main",
-   "unit": "dol/ddh_cc_initialize.c",
+   "unit": "dol/ddh_cc_close.c",
    "addr": 2148065556,
    "size": 264,
    "status": "matched",
@@ -44119,7 +44119,7 @@
   {
    "symbol": "fn_8008E374",
    "module": "main",
-   "unit": "dol/fn_8008E374.c",
+   "unit": "dol/fn_8008E21C.c",
    "addr": 2148066164,
    "size": 8,
    "status": "matched",
@@ -44255,7 +44255,7 @@
   {
    "symbol": "gdev_cc_open",
    "module": "main",
-   "unit": "dol/gdev_cc_open.c",
+   "unit": "dol/gdev_cc_close.c",
    "addr": 2148066836,
    "size": 36,
    "status": "matched",
@@ -44272,7 +44272,7 @@
   {
    "symbol": "gdev_cc_shutdown",
    "module": "main",
-   "unit": "dol/gdev_cc_shutdown.c",
+   "unit": "dol/gdev_cc_close.c",
    "addr": 2148066872,
    "size": 8,
    "status": "matched",
@@ -44289,7 +44289,7 @@
   {
    "symbol": "gdev_cc_initialize",
    "module": "main",
-   "unit": "dol/gdev_cc_initialize.c",
+   "unit": "dol/gdev_cc_close.c",
    "addr": 2148066880,
    "size": 136,
    "status": "matched",
@@ -44323,7 +44323,7 @@
   {
    "symbol": "fn_8008E718",
    "module": "main",
-   "unit": "dol/fn_8008E718.c",
+   "unit": "dol/MWTRACE.c",
    "addr": 2148067096,
    "size": 36,
    "status": "matched",
@@ -44340,7 +44340,7 @@
   {
    "symbol": "fn_8008E73C",
    "module": "main",
-   "unit": "dol/fn_8008E718.c",
+   "unit": "dol/MWTRACE.c",
    "addr": 2148067132,
    "size": 48,
    "status": "matched",
@@ -44357,7 +44357,7 @@
   {
    "symbol": "fn_8008E76C",
    "module": "main",
-   "unit": "dol/fn_8008E76C.c",
+   "unit": "dol/MWTRACE.c",
    "addr": 2148067180,
    "size": 4,
    "status": "matched",
@@ -44493,7 +44493,7 @@
   {
    "symbol": "fn_8008ED30",
    "module": "main",
-   "unit": "dol/fn_8008ED30.c",
+   "unit": "dol/fn_8008ECE0.c",
    "addr": 2148068656,
    "size": 64,
    "status": "matched",
@@ -44510,7 +44510,7 @@
   {
    "symbol": "fn_8008ED70",
    "module": "main",
-   "unit": "dol/fn_8008ED70.c",
+   "unit": "dol/fn_8008ECE0.c",
    "addr": 2148068720,
    "size": 64,
    "status": "matched",
@@ -44527,7 +44527,7 @@
   {
    "symbol": "fn_8008EDB0",
    "module": "main",
-   "unit": "dol/fn_8008EDB0.c",
+   "unit": "dol/fn_8008ECE0.c",
    "addr": 2148068784,
    "size": 64,
    "status": "matched",
@@ -44561,7 +44561,7 @@
   {
    "symbol": "fn_8008EEAC",
    "module": "main",
-   "unit": "dol/fn_8008EEAC.c",
+   "unit": "dol/fn_8008EDF0.c",
    "addr": 2148069036,
    "size": 44,
    "status": "matched",
@@ -44901,7 +44901,7 @@
   {
    "symbol": "AMC_IsStub",
    "module": "main",
-   "unit": "dol/AMC_IsStub.c",
+   "unit": "dol/fn_8008FC3C.c",
    "addr": 2148073172,
    "size": 8,
    "status": "matched",
@@ -44918,7 +44918,7 @@
   {
    "symbol": "Hu_IsStub",
    "module": "main",
-   "unit": "dol/AMC_IsStub.c",
+   "unit": "dol/fn_8008FC3C.c",
    "addr": 2148073180,
    "size": 8,
    "status": "matched",

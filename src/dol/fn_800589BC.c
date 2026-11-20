@@ -1,6 +1,7 @@
 #include "types.h"
 
 
+/* --- dol/fn_800589BC.c --- */
 struct fn_800589BC_Arg2 {
     u32 unk_0;
     u32 unk_4;
@@ -28,4 +29,11 @@ u32 fn_800589BC(u32 arg0, u32 arg1, struct fn_800589BC_Arg2 *arg2, struct fn_800
     v1 = arg2->unk_0;
     arg3->unk_0 = (v1 + arg2->unk_4);
     return v1;
+}
+
+/* --- dol/fn_80058A20.c --- */
+extern u32 fn_800595A4(void);
+
+void fn_80058A20(void) {
+    fn_800595A4();
 }

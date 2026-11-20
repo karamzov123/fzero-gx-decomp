@@ -2,6 +2,7 @@
 
 
 /* --- dol/fn_80071100.c --- */
+/* --- dol/fn_80071100.c --- */
 typedef u32 (*fn_80071100_Fn0)(u32, u32, u32);
 
 extern u32 fn_80078DA8(u32, u32, u32);
@@ -230,4 +231,15 @@ void fn_800713E0(struct fn_800713E0_Arg0 *arg0, u32 arg1) {
         offset += 8;
         i++;
     }
+}
+
+/* --- dol/fn_80071470.c --- */
+struct fn_80071470_E16_u32 { u32 unk_0; u8 pad_4[0xC]; };
+struct fn_80071470_Arg0 {
+    u8 pad_0[0x8];
+    struct fn_80071470_E16_u32 unk_8[1];
+};
+
+u32 fn_80071470(struct fn_80071470_Arg0 *arg0, u32 arg1) {
+    return ((u32)arg0 + arg0->unk_8[arg1].unk_0);
 }

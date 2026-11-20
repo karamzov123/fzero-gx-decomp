@@ -2,6 +2,7 @@
 
 
 /* --- dol/fn_8008E21C.c --- */
+/* --- dol/fn_8008E21C.c --- */
 struct Sig_fn_8008E718_fn_8008E718_Arg0 {
     u32 unk_0;
 };
@@ -67,4 +68,14 @@ void fn_8008E324(struct fn_8008E324_Arg0 *arg0, u32 arg1, u32 arg2) {
     *(u32 *)((u8 *)(u32)arg0 + 16) = 0;
     *(u32 *)((u8 *)(u32)arg0 + 20) = *(u32 *)((u8 *)(u32)arg0 + 12);
     fn_8008E76C(((u32)arg0 + 24), v0, arg2);
+}
+
+/* --- dol/fn_8008E374.c --- */
+struct fn_8008E374_Arg0 {
+    u8 pad_0[0x10];
+    u32 unk_10;
+};
+
+u32 fn_8008E374(struct fn_8008E374_Arg0 *arg0) {
+    return arg0->unk_10;
 }

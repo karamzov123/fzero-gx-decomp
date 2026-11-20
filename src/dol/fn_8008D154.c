@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- dol/fn_8008D154.c --- */
 struct fn_8008D154_lbl_801A5638 {
     u32 unk_0;
 };
@@ -22,4 +24,11 @@ u32 fn_8008D154(u32 arg0) {
     if (arg0 <= 0x80000000) { return arg0; }
     }
     return ((arg0 & 0x3FFFFFFF) | 0x80000000);
+}
+
+/* --- dol/EnableMetroTRKInterrupts.c --- */
+extern u32 fn_8008D440(void);
+
+void EnableMetroTRKInterrupts(void) {
+    fn_8008D440();
 }

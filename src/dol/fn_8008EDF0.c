@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- dol/fn_8008EDF0.c --- */
 struct fn_8008EDF0_Arg0 {
     u32 unk_0;
 };
@@ -54,4 +56,14 @@ u32 fn_8008EDF0(struct fn_8008EDF0_Arg0 *arg0, u32 arg1) {
     t10 = fn_8008EC78(v0);
     v0 = t10;
     return v0;
+}
+
+/* --- dol/fn_8008EEAC.c --- */
+extern void fn_8008EDB0(void);
+extern void fn_8008EB8C(void (*callback)(void));
+extern void fn_8008ED30(void);
+
+void fn_8008EEAC(void) {
+    fn_8008EB8C(fn_8008EDB0);
+    fn_8008ED30();
 }
