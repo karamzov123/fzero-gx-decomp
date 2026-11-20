@@ -1477,7 +1477,7 @@ void fn_1_157070(State *state) {
         success.value = 0;
         request.unk0 = 2;
         request.unk4 = (s32)(table[16] * amount) + 300;
-        (*(&request.unk8) = (0));
+        (request.unk8 = (0));
         fzgx_value__ = &request.unkc;
         *fzgx_value__ = (u8)((s32)(table[17] * amount) + 80);
         request.unke = 90;

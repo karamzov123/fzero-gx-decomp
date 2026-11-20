@@ -241,8 +241,8 @@ void fn_1_D75CC(void) {
     fn_1_4404();
     temp_r4 = *(u32 *)((u8 *)(temp_r30) + 7256);
     if (temp_r4 != 0) {
-        fn_1_DA6A8((&lbl_1_bss_7AD78), temp_r4);
-        fn_80008BEC((&lbl_1_bss_7AD78), 0, 0x20U);
+        fn_1_DA6A8(&lbl_1_bss_7AD78, temp_r4);
+        fn_80008BEC(&lbl_1_bss_7AD78, 0, 0x20U);
         (*(u32 *)((u8 *)(temp_r30) + 7256)) = 0U;
     }
     temp_r4_2 = *(u32 *)((u8 *)(temp_r30) + 7260);

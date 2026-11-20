@@ -1149,9 +1149,9 @@ void fn_10_24BD0(void) {
         {
             u32 v = (*(NameEntryState * *)&lbl_10_bss_55CD8)->tab_pulse;
             struct NameEntryColor tab_color = {0, 0, 0, 0};
-                        tab_color.channels[0] = (u8)((v * 0x10) & 0xF0);
-            tab_color.channels[1] = (u8)((v * 0x10) & 0xF0);
-            tab_color.channels[2] = (u8)((v * 0x10) & 0xF0);
+                        tab_color.channels[0] = ((v * 0x10) & 0xF0);
+            tab_color.channels[1] = ((v * 0x10) & 0xF0);
+            tab_color.channels[2] = ((v * 0x10) & 0xF0);
             *(u32 *)packet.color_add = *(u32 *)&tab_color;
             temp_f0 = ((1.0) + v / (12.0));
             packet.scale_y = temp_f0;
@@ -1163,9 +1163,9 @@ void fn_10_24BD0(void) {
         {
             u32 v = (*(NameEntryState * *)&lbl_10_bss_55CD8)->up_pulse;
             struct NameEntryColor left_color = {0, 0, 0, 0};
-                        left_color.channels[0] = (u8)((v * 0x10) & 0xF0);
-            left_color.channels[1] = (u8)((v * 0x10) & 0xF0);
-            left_color.channels[2] = (u8)((v * 0x10) & 0xF0);
+                        left_color.channels[0] = ((v * 0x10) & 0xF0);
+            left_color.channels[1] = ((v * 0x10) & 0xF0);
+            left_color.channels[2] = ((v * 0x10) & 0xF0);
             *(u32 *)packet.color_add = *(u32 *)&left_color;
             temp_f0_2 = ((1.0) + v / (12.0));
             packet.scale_y = temp_f0_2;
@@ -1181,9 +1181,9 @@ void fn_10_24BD0(void) {
         {
             u32 v = (*(NameEntryState * *)&lbl_10_bss_55CD8)->left_pulse;
             struct NameEntryColor right_color = {0, 0, 0, 0};
-                        right_color.channels[0] = (u8)((v * 0x10) & 0xF0);
-            right_color.channels[1] = (u8)((v * 0x10) & 0xF0);
-            right_color.channels[2] = (u8)((v * 0x10) & 0xF0);
+                        right_color.channels[0] = ((v * 0x10) & 0xF0);
+            right_color.channels[1] = ((v * 0x10) & 0xF0);
+            right_color.channels[2] = ((v * 0x10) & 0xF0);
             *(u32 *)packet.color_add = *(u32 *)&right_color;
             temp_f0_3 = ((1.0) + v / (12.0));
             packet.scale_y = temp_f0_3;

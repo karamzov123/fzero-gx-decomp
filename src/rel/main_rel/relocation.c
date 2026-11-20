@@ -41,7 +41,7 @@ void fn_1_A5C98(Fn1A5C98Object *self) {
         OSUnlink(self->unk0);
 
         v1 = (u32)lbl_1_bss_6F5C4;
-        v1 = (u32)(v1 + (lbl_1_bss_6F5C0 << 2));
+        v1 = (v1 + (lbl_1_bss_6F5C0 << 2));
         if (*(u32 *)(v1 - 4) != (u32)self) {
             OSPanic((*(u8 (*)[84])&lbl_1_data_34140), 0x78, (*(char (*)[31])&lbl_1_data_34194));
         }

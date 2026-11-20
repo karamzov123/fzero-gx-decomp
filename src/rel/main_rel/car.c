@@ -1425,7 +1425,7 @@ void fn_1_7F954(u32 arg0, u32 arg1) {
     v3 = (*((struct fn_1_7F954_lbl_1_bss_6D82C *)&lbl_1_bss_6D82C)).unk_0;
     v4 = v3;
     if (v3 != 0) {
-    fn_80071718( (u32)(v4));
+    fn_80071718( (v4));
     (*((struct fn_1_7F954_lbl_1_bss_6D82C *)&lbl_1_bss_6D82C)).unk_0 = 0;
     }
 }
@@ -2798,7 +2798,7 @@ void fn_1_80F1C(s32 arg0, void *arg1) {
         fn_1_12A734((s16)arg0);
     }
     if (lbl_1_bss_6D82C.unk_0 != 0) {
-        fn_80071718( (u32)(lbl_1_bss_6D82C.unk_0));
+        fn_80071718( (lbl_1_bss_6D82C.unk_0));
         lbl_1_bss_6D82C.unk_0 = 0;
     }
 }
@@ -3324,12 +3324,12 @@ void fn_1_810E4(u32 arg0) {
     while ((s16)v0 < 3) {
     v2 = *(u32 *)(v1 + 4);
     if (v2 != 0) {
-    fn_80071718( (u32)(v2));
+    fn_80071718( (v2));
     *(u32 *)((u8 *)v1 + 4) = 0;
     }
     v3 = *(u32 *)(v1);
     if (v3 != 0) {
-    fn_800711A8( (u32)(v3));
+    fn_800711A8( (v3));
     *(u32 *)((u8 *)v1 + 0) = 0;
     }
     v1 += 8;
@@ -6742,7 +6742,7 @@ void fn_1_83858(struct fn_1_83858_Arg0 *arg0) {
     switch (v12) {
     case 1:
     v2 = (u32)&lbl_1_bss_C70;
-    v2 = (u32)(v2 + ((s8)*((u8 *)arg0 + 1140) * 20));
+    v2 = (v2 + ((s8)*((u8 *)arg0 + 1140) * 20));
     *(f32 *)((u8 *)(u32)arg0 + 504) = *(f32 *)((u8 *)v2 + 8);
     v5 = (*(f32 *)((u8 *)arg0 + 508));
     *(f32 *)((u8 *)(u32)arg0 + 508) = (f32)(f64)((f64)(v5) * (f64)(__fabs(v5)));
@@ -6757,7 +6757,7 @@ void fn_1_83858(struct fn_1_83858_Arg0 *arg0) {
     fn_1_83694((u32)arg0);
     } else {
     v2 = (u32)&lbl_1_bss_C70;
-    v2 = (u32)(v2 + v13 * 20);
+    v2 = (v2 + v13 * 20);
     *(f32 *)((u8 *)(u32)arg0 + 504) = *(f32 *)((u8 *)v2 + 8);
     v5 = (*(f32 *)((u8 *)arg0 + 508));
     *(f32 *)((u8 *)(u32)arg0 + 508) = (f32)(f64)((f64)(v5) * (f64)(__fabs(v5)));
@@ -6772,7 +6772,7 @@ void fn_1_83858(struct fn_1_83858_Arg0 *arg0) {
     fn_1_83694((u32)arg0);
     } else {
     v2 = (u32)&lbl_1_bss_C70;
-    v2 = (u32)(v2 + v14 * 20);
+    v2 = (v2 + v14 * 20);
     *(f32 *)((u8 *)(u32)arg0 + 504) = *(f32 *)((u8 *)v2 + 8);
     v5 = (*(f32 *)((u8 *)arg0 + 508));
     *(f32 *)((u8 *)(u32)arg0 + 508) = (f32)(f64)((f64)(v5) * (f64)(__fabs(v5)));
@@ -9801,7 +9801,7 @@ void fn_1_85F90(void *obj, f32 a, f32 b, f32 c, f32 d, int mode) {
     }
     fn_1_23500(obj, a);
     if (child != 0 && active) {
-        (*(&child->unk_11c) = (0));
+        (child->unk_11c = (0));
         child->unk_118 = 0;
     }
 }
@@ -19911,7 +19911,7 @@ void fn_1_8E188(void) {
 // Releases both pending resource handles when the secondary handle is active.
 void fn_1_8E1E8(void) {
     if (lbl_1_bss_6E958.unk_4 != 0) {
-        fn_80071718( (u32)(lbl_1_bss_6E958.unk_4));
+        fn_80071718( (lbl_1_bss_6E958.unk_4));
         fn_800711A8(lbl_1_bss_6E958.unk_0);
         lbl_1_bss_6E958.unk_4 = 0;
         lbl_1_bss_6E958.unk_0 = 0;
@@ -36496,7 +36496,7 @@ void fn_1_934CC(CarObject *arg0, EventObject *arg1, u32 arg2) {
             }
             *(u16 *)((u8 *)target + 0xa) = (u16)value;
         }
-        fn_1_93734( (u32)(CarObject *)(arg0), (u32)(fn_1_41418(arg1->field_c, result & 0xffff)));
+        fn_1_93734( (u32)(CarObject *)(arg0), (fn_1_41418(arg1->field_c, result & 0xffff)));
     }
     fn_1_4270C(arg1->field_8, 0, result & 0xffff);
     *(u16 *)arg1 = (u16)result;
@@ -38743,7 +38743,7 @@ void fn_1_95238(u32 arg0, EventList *arg1) {
     fzgx_value = &arg1->field_68;
     *fzgx_value = lbl_1_rodata_3F6C;
     p_lbl_801A6D00 = (fn_1_95238_lbl_801A6D00 *)&(*((fn_1_95238_lbl_801A6D00 *)&lbl_801A6D00));
-    (*(&arg1->field_6c) = lbl_1_rodata_3F6C);
+    (arg1->field_6c = lbl_1_rodata_3F6C);
     v2 = (u8 *)arg1;
     v1 = (u8 *)arg1;
     v0 = 0;

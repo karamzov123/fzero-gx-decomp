@@ -20745,8 +20745,8 @@ f32 fn_1_2B478(void *arg0) {
     void *temp_r5;
 
     temp_r5 = (*(void **)((u8 *)(arg0) + 1180));
-    if (!((*(s32 *)((u8 *)(temp_r5) + 124)) & 0x01800000) || ((*(f32 *)((u8 *)(arg0) + 456)) <= (*((&lbl_1_rodata_84C))))) {
-        return *((&lbl_1_rodata_854));
+    if (!((*(s32 *)((u8 *)(temp_r5) + 124)) & 0x01800000) || ((*(f32 *)((u8 *)(arg0) + 456)) <= lbl_1_rodata_84C)) {
+        return (lbl_1_rodata_854);
     }
     (*(f32 *)(((*(struct fn_1_2B478_lbl_801A66CC *)&lbl_801A66CC).unk_0) + 212)) = (f32) -(*(f32 *)((lbl_801A6D00.unk_0) + 8));
     (*(f32 *)(((*(struct fn_1_2B478_lbl_801A66CC *)&lbl_801A66CC).unk_0) + 216)) = (f32) -(*(f32 *)((lbl_801A6D00.unk_0) + 24));

@@ -216,10 +216,10 @@ fn_800371F8(1, &color);
 }
 fn_8003462C(128, 7, 4);
 depth = 0.002f;
-VERT(pos->x+(((u32)(lo) + 0x80000000)) *width/25165824.0f , pos->y, pos->z-depth);
-VERT(pos->x+(((u32)(hi) + 0x80000000)) *width/25165824.0f , pos->y, pos->z-depth);
-VERT(pos->x+(((u32)(hi) + 0x80000000)) *width/25165824.0f , pos->y+height, pos->z-depth);
-VERT(pos->x+(((u32)(lo) + 0x80000000)) *width/25165824.0f , pos->y+height, pos->z-depth);
+VERT(pos->x+(((lo) + 0x80000000)) *width/25165824.0f , pos->y, pos->z-depth);
+VERT(pos->x+(((hi) + 0x80000000)) *width/25165824.0f , pos->y, pos->z-depth);
+VERT(pos->x+(((hi) + 0x80000000)) *width/25165824.0f , pos->y+height, pos->z-depth);
+VERT(pos->x+(((lo) + 0x80000000)) *width/25165824.0f , pos->y+height, pos->z-depth);
 if (head) {
 block = (HeapBlock *)head->size;
 while (block) {

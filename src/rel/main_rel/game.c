@@ -9831,7 +9831,7 @@ void fn_1_36A94(u32 arg0, u32 arg1) {
     u32 stride = 0x81c0;
     u32 offset = (arg0 & 0xFF) * stride;
 
-    fn_80008BA8( (u32)(entry + offset), (u32)(arg1), stride);
+    fn_80008BA8( (u32)(entry + offset), (arg1), stride);
 }
 /* fzgx:end fn_1_36A94 */
 
@@ -9843,7 +9843,7 @@ u8* fn_1_36AD0(void) {
 
 /* fzgx:begin fn_1_36ADC */
 void fn_1_36ADC(void) {
-    fn_80008BEC(lbl_1_bss_5480, (int)(0), 0x20700);
+    fn_80008BEC(lbl_1_bss_5480, (0), 0x20700);
 }
 /* fzgx:end fn_1_36ADC */
 
@@ -21516,9 +21516,9 @@ void fn_1_3DDAC(void) {
     fn_1_4811C(0x94);
 
     fn_1_48004(0x8a, 1);
-    fn_1_435C( (u32)(lbl_1_bss_25CA4.unk_0));
+    fn_1_435C( (lbl_1_bss_25CA4.unk_0));
     fn_1_4310(0x20000);
-    fn_1_435C( (u32)(lbl_1_bss_25B88.unk_0));
+    fn_1_435C( (lbl_1_bss_25B88.unk_0));
     fn_1_4310(0x2c3);
 
     fn_1_A1588(lbl_1_bss_6EAD0.unk_0->unk_0, 0x1e);
@@ -22103,9 +22103,9 @@ void fn_1_3DE80(void)
 /* fzgx:begin fn_1_3E5D0 */
 // Resets both state objects and advances the game initialization sequence.
 void fn_1_3E5D0(void) {
-    fn_1_435C( (u32)(lbl_1_bss_25B88.unk_0));
+    fn_1_435C( (lbl_1_bss_25B88.unk_0));
     fn_1_4310(0);
-    fn_1_435C( (u32)(lbl_1_bss_25CA4.unk_0));
+    fn_1_435C( (lbl_1_bss_25CA4.unk_0));
     fn_1_4310(0);
     fn_1_4811C(0x8a);
     fn_1_A8F78();
@@ -23796,7 +23796,7 @@ void fn_1_3EF14(void *arg1) {
         current_mode() == 16) {
         fn_80008BA8( (u32)(arg1), (u32)(&lbl_1_bss_3C30), 0x14b8);
     } else {
-        fn_80008BEC(arg1, (int)(0), 0x14b8);
+        fn_80008BEC(arg1, (0), 0x14b8);
     }
 }
 /* fzgx:end fn_1_3EF14 */
@@ -25151,7 +25151,7 @@ u32 fn_1_3FCF8(void) {
     *(u8 *)((u8 *)v1 + 1143) = 0;
     *(u8 *)((u8 *)v1 + 1020) = 0;
     *(u16 *)((u8 *)v1 + 1016) = 0;
-    v1 = (u32)(v1 + 960);
+    v1 = (v1 + 960);
     }
     v1 = 0x80000000;
     t0 = fn_800075AC(v1, 8192, 1);
@@ -26788,7 +26788,7 @@ void fn_1_412A0(u32 index) {
     
 
     if (lbl_1_bss_38460__fzgx_offset_38[index] != 0) {
-        fn_80071718( (u32)(lbl_1_bss_38460__fzgx_offset_38[index]));
+        fn_80071718( (lbl_1_bss_38460__fzgx_offset_38[index]));
     }
 
     if (fzgx_obj_lbl_1_bss_38460[index] != 0) {

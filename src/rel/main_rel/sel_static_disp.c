@@ -6863,7 +6863,7 @@ void fn_1_13F9F0(void) {
             if (((FnObject *)((u32 *)lbl_1_bss_8E404)[slot])->unk_3A4 != 0) {
                 fn_1_7F3AC((void *)((u32 *)lbl_1_bss_8E404)[slot]);
             }
-            fn_1_46B4(lbl_801A6410, (u32)(((u32 *)lbl_1_bss_8E404)[slot]), (const char *)(lbl_1_data_419E0), 0x153E);
+            fn_1_46B4(lbl_801A6410, (((u32 *)lbl_1_bss_8E404)[slot]), (const char *)(lbl_1_data_419E0), 0x153E);
         }
         ((u32 *)lbl_1_bss_8E404)[slot] = 0;
     }

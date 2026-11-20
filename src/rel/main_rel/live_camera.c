@@ -690,7 +690,7 @@ void fn_1_E174(f32 arg0) {
     v3 = p_lbl_1_rodata_4E0->unk_1C;
     v8 = (p_lbl_1_bss_1148->unk_2E - 1);
     v9 = (-p_lbl_1_bss_1148->unk_24);
-    (*(&p_lbl_1_data_43B8->unk_14C) = (60));
+    (p_lbl_1_data_43B8->unk_14C = (60));
     v2 += 1536;
     fzgx_value = v8;
     p_lbl_1_bss_1148->unk_2E = fzgx_value;
@@ -816,7 +816,7 @@ void fn_1_E174(f32 arg0) {
     if (v3 > v15) {
     *(f32 *)((u8 *)v2 + 0) = v15;
     }
-    v2 = (u32)(v2 + 4);
+    v2 = (v2 + 4);
     v17++;
     }
     }
@@ -2347,7 +2347,7 @@ void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
                     *fzgx_value__ = (s16)((v9 + 1) % 4);
                 }
             } else {
-                v3 = ((0x676A4B6B) * (lbl_801A63C0)) + 13259;
+                v3 = ((0x676A4B6B) * lbl_801A63C0) + 13259;
                 lbl_801A63C0 = v3;
                 arg0->unk_12 = ((s32)((v3 >> 16) & 0x7FFF) % 6);
                 if (arg0->unk_12 >= 5) {

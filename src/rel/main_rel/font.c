@@ -9253,7 +9253,7 @@ void fn_1_55210(void *value) {
                 if ((__rlwnm(lbl_1_bss_6C7CC.unk_0, ((i + 1) & 31), 31, 31) != 0)) {
                     obj->entry[i] = fn_1_548AC(0x30);
                     if (((obj->entry)[i]) != 0) {
-                        lbl_8006DD14(((((((((u8 *)lbl_801A66CC))) + (offset)) + (((0xe0)))))), ((obj->entry)[i]));
+                        lbl_8006DD14(((((((((u8 *)lbl_801A66CC))) + offset) + (((0xe0)))))), ((obj->entry)[i]));
                     } else {
                         ok = 0;
                     }
@@ -9333,7 +9333,7 @@ void fn_1_553C4(void *value, void *arg) {
                 if ((__rlwnm(lbl_1_bss_6C7CC.unk_0, ((i + 1) & 31), 31, 31) != 0)) {
                     obj->entry[i] = fn_1_548AC(0x30);
                     if (((obj->entry)[i]) != 0) {
-                        lbl_8006DD14(((((((((u8 *)lbl_801A66CC))) + (offset)) + (((0xe0)))))), ((obj->entry)[i]));
+                        lbl_8006DD14(((((((((u8 *)lbl_801A66CC))) + offset) + (((0xe0)))))), ((obj->entry)[i]));
                     } else {
                         ok = 0;
                     }

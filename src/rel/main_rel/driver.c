@@ -2065,7 +2065,7 @@ void fn_1_A79D8(u32 arg0, struct fn_1_A79D8_Vec *arg1) {
 
     obj->vec = *arg1;
     fn_1_A8528(obj, 0);
-    fn_1_A8270( (struct fn_1_A8270_Arg0 *)(obj), (s32)(0));
+    fn_1_A8270( (struct fn_1_A8270_Arg0 *)(obj), (0));
     obj->vec = old;
 }
 /* fzgx:end fn_1_A79D8 */
@@ -2078,14 +2078,14 @@ void fn_1_A7A70(void) {
     for (index = 0; index < 0x2c; index++) {
         entries = (u32 *)lbl_1_bss_6F638;
         if (entries[index] != 0) {
-            fn_1_46B4( (u32)(lbl_801A6410), (u32)(entries[index]), "driver.c", 0x168);
+            fn_1_46B4( (u32)(lbl_801A6410), (entries[index]), "driver.c", 0x168);
             entries = (u32 *)lbl_1_bss_6F638;
             entries[index] = 0;
         }
     }
 
     if (lbl_1_bss_6F638 != 0) {
-        fn_1_46B4( (u32)(lbl_801A6410), (u32)(lbl_1_bss_6F638), "driver.c", 0x169);
+        fn_1_46B4( (u32)(lbl_801A6410), (lbl_1_bss_6F638), "driver.c", 0x169);
         lbl_1_bss_6F638 = 0;
     }
 }
