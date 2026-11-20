@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- rel/movie_module/fn_12_39678.c --- */
 struct fn_12_39678_Arg0 {
     u8 pad_0[8];
     s32 status;
@@ -137,4 +139,60 @@ finish:
     arg0->requested = 1;
     fn_12_35014(arg0, arg2, arg3);
     fn_12_35010(arg0, arg2, arg3);
+}
+
+/* --- rel/movie_module/fn_12_39930.c --- */
+/* --- rel/movie_module/fn_12_39930.c --- */
+extern char lbl_12_rodata_2670[46];
+extern char lbl_12_rodata_26A0[41];
+
+void fn_12_39930(void *object, void *argument) {
+    if (fn_12_3A36C(object) == 0) {
+        MWSFSVM_Error(lbl_12_rodata_2670);
+    } else if (argument == 0) {
+        MWSFSVM_Error(lbl_12_rodata_26A0);
+    } else {
+        fn_12_39678(object, argument, 0, -1);
+    }
+}
+
+/* --- rel/movie_module/fn_12_399B4.c --- */
+typedef struct Fn12_399B4_Object {
+    u8 _pad[0x40];
+    u32 value;
+} Fn12_399B4_Object;
+
+extern s32 fn_12_2B138(u32 value);
+extern char lbl_12_rodata_26CC[46];
+
+s32 fn_12_399B4(Fn12_399B4_Object *object) {
+    s32 result = fn_12_2B138(object->value);
+
+    switch (result) {
+    case 1:
+        return 1;
+    case 0:
+        return 0;
+    default:
+        MWSFSVM_Error(lbl_12_rodata_26CC, result);
+        return 0;
+    }
+}
+
+/* --- rel/movie_module/fn_12_39A18.c --- */
+typedef struct Fn12_39A18_Object {
+    u8 unk0[0x40];
+    u32 unk40;
+} Fn12_39A18_Object;
+
+extern s32 fn_12_2B634(u32 value);
+extern const char lbl_12_rodata_26FC[27];
+
+s32 fn_12_39A18(Fn12_39A18_Object *object) {
+    if (fn_12_2B634(object->unk40) != 0) {
+        fn_12_38A0C(-0x133);
+        MWSFSVM_Error(lbl_12_rodata_26FC);
+        return -0x133;
+    }
+    return 0;
 }

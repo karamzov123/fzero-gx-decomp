@@ -3,7 +3,10 @@
 #include <dolphin/os/OSContext.h>
 #include <dolphin/os/OSInterrupt.h>
 #include <dolphin/os/OSRtc.h>
+#include "types.h"
 
+
+/* --- dol/UnlockSram.c --- */
 struct OSRtcBss {
     SramControlBlock Scb;
 };
@@ -69,4 +72,14 @@ BOOL UnlockSram(BOOL commit, u32 offset) {
     (bss->Scb).locked = 0;
     OSRestoreInterrupts((bss->Scb).enabled);
     return (bss->Scb).sync;
+}
+
+/* --- dol/__OSUnlockSram.c --- */
+void __OSUnlockSram(u32 arg0) {
+    UnlockSram(arg0, 0);
+}
+
+/* --- dol/__OSUnlockSramEx.c --- */
+void __OSUnlockSramEx(u32 arg0) {
+    UnlockSram(arg0, 20);
 }

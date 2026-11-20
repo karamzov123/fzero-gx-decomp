@@ -1,6 +1,7 @@
-
 #include "types.h"
 
+
+/* --- dol/TRKInitializeMessageBuffers.c --- */
 enum {
     DS_NoError = 0x0,
     DS_StepError = 0x1,
@@ -49,4 +50,10 @@ DSError TRKInitializeMessageBuffers(void) {
         fn_8008AF40(&lbl_801A36E8[i]);
     }
     return DS_NoError;
+}
+
+/* --- dol/fn_80089380.c --- */
+// fn_80089380: returns a constant.
+int fn_80089380(void) {
+    return 0;
 }

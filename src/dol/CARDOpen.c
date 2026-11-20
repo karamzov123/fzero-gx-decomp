@@ -1,5 +1,8 @@
 #include <dolphin/card/CARDPriv.h>
+#include "types.h"
 
+
+/* --- dol/CARDOpen.c --- */
 extern DVDDiskID lbl_80177B80;
 
 extern CARDDir *fn_8002C4BC(CARDControl *card);
@@ -96,4 +99,10 @@ s32 CARDClose(CARDFileInfo *fileInfo) {
         return result;
     fileInfo->chan = -1;
     return __CARDPutControlBlock(card, 0);
+}
+
+/* --- dol/fn_8002EDA0.c --- */
+// fn_8002EDA0: returns a constant.
+int fn_8002EDA0(void) {
+    return 0;
 }

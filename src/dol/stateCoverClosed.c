@@ -5,7 +5,10 @@
 #include <dolphin/os/OSTime.h>
 #include <dolphin/types.h>
 #include "sdk_addresses.h"
+#include "types.h"
 
+
+/* --- dol/stateCoverClosed.c --- */
 struct dvdBss {
     unsigned char padding_0[64];
     DVDCommandBlock DummyCommandBlock;
@@ -59,4 +62,13 @@ void stateCoverClosed() {
         OSSetAlarm(&(bss->ResetAlarm), ((1150) * (((u32)__OSBusClock / 4) / 1000)), AlarmHandler);
         break;
     }
+}
+
+/* --- dol/stateCoverClosed_CMD.c --- */
+extern u32 DVDLowReadDiskID(u32, u32);
+extern u32 lbl_8015CE60[];
+extern void cbForStateCoverClosed(void);
+
+void stateCoverClosed_CMD(void) {
+    DVDLowReadDiskID((u32)&lbl_8015CE60, (u32)cbForStateCoverClosed);
 }

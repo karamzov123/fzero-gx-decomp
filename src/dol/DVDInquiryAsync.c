@@ -1,5 +1,10 @@
 #include "types.h"
+#include <types.h>
+#include <dolphin/types.h>
+#include "sdk_addresses.h"
 
+
+/* --- dol/DVDInquiryAsync.c --- */
 typedef struct DVDCommandBlock {
     u8 _pad00[0x8];
     u32 state;
@@ -57,4 +62,22 @@ u32 DVDInquiryAsync(DVDCommandBlock *block, void *address, void *callback) {
 
     OSRestoreInterrupts(interrupts);
     return result + (u32)alignment;
+}
+
+/* --- dol/DVDReset.c --- */
+void DVDLowReset();
+
+vu32 __DIRegs[16] : FZGX_ADDR___DIRegs;
+
+extern vu32 ResumeFromHere;
+
+// Hardware or OS state can change asynchronously.
+extern volatile BOOL ResetRequired; // fzgx-allow: S2 SDK asynchronous state
+
+void DVDReset(void) {
+    DVDLowReset();
+    __DIRegs[0] = 0x2a;
+    __DIRegs[1] = __DIRegs[1];
+    ResetRequired = 0;
+    ResumeFromHere = 0;
 }

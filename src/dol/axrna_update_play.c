@@ -1,6 +1,7 @@
-
 #include "types.h"
 
+
+/* --- dol/axrna_update_play.c --- */
 typedef struct SJCK {
     unsigned char *data;
     int len;
@@ -228,4 +229,43 @@ void axrna_update_play(AXRNAHandle *handle) {
             handle->play_position -= 0x1000;
         }
     }
+}
+
+/* --- dol/fn_8005B010.c --- */
+/* --- dol/fn_8005B010.c --- */
+typedef u32 (*fn_8005B010_Fn0)(u32, u32);
+
+u32 fn_8005B010(u32 arg0) {
+    u32 v0;
+    u32 t0;
+    v0 = arg0;
+    if (arg0 == 0) {
+    v0 = -1;
+    } else {
+    v0 = (v0 + ((s8)*(u8 *)((u8 *)v0 + 3) << 2));
+    v0 = *(u32 *)((u8 *)v0 + 52);
+    t0 = ((fn_8005B010_Fn0)*(u32 *)((u8 *)*(u32 *)((u8 *)v0 + 0) + 36))(v0, 0);
+    v0 = t0;
+    v0 = ((u32)v0 >> 1);
+    }
+    return v0;
+}
+
+/* --- dol/fn_8005B068.c --- */
+typedef u32 (*fn_8005B068_Fn0)(u32, u32);
+
+s32 fn_8005B068(u32 arg0) {
+    u32 v0;
+    u32 t0;
+    v0 = arg0;
+    if (arg0 == 0) {
+        v0 = -1;
+    } else {
+        v0 = (v0 + ((s8)*(u8 *)((u8 *)v0 + 3) << 2));
+        v0 = *(u32 *)((u8 *)v0 + 52);
+        t0 = ((fn_8005B068_Fn0)*(u32 *)((u8 *)*(u32 *)((u8 *)v0 + 0) + 36))(v0, 0);
+        v0 = t0;
+        v0 = (4096 - ((u32)v0 >> 1));
+    }
+    return v0;
 }

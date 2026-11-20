@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- rel/movie_module/fn_12_4D4.c --- */
 extern char lbl_12_rodata_3C[2];
 extern char lbl_12_rodata_40[9];
 extern s32 fn_8008023C(u32, const char *, s32);
@@ -24,4 +26,15 @@ void fn_12_4D4(u32 movie, s32 count, u32 *result, u32 *duration) {
         p++;
         i++;
     }
+}
+
+/* --- rel/movie_module/fn_12_59C.c --- */
+extern char lbl_12_rodata_38[2];
+extern s32 strncmp(void *movie, char *name, s32 value);
+
+s32 fn_12_59C(void *movie, s32 index) {
+    if (movie == 0 || index < 0) {
+        return 0;
+    }
+    return strncmp((char *)movie + 0x13, lbl_12_rodata_38, 1) == 0;
 }

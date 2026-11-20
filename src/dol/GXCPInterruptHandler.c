@@ -3,7 +3,10 @@
 #include <dolphin/os/OSContext.h>
 #include <dolphin/os/OSThread.h>
 #include <dolphin/types.h>
+#include "types.h"
 
+
+/* --- dol/GXCPInterruptHandler.c --- */
 typedef struct _GXTexObj {
     u32 texture_filter;
     u32 texture_lod;
@@ -296,4 +299,31 @@ void GXCPInterruptHandler(s16 p1, OSContext *context) {
     if ((gx->cpEnable >> 5 & 1) && (gx->cpStatus >> 4 & 1)) {
         GXBreakPointHandler(context);
     }
+}
+
+/* --- dol/GXInitFifoBase.c --- */
+struct GXInitFifoBase_Arg0 {
+    u32 unk_0;
+    u32 unk_4;
+    u32 unk_8;
+    u8 pad_C[0x10];
+    u32 unk_1C;
+};
+
+extern void fn_80031D60(struct GXInitFifoBase_Arg0 *, u32, u32);
+extern void GXInitFifoPtrs(struct GXInitFifoBase_Arg0 *, u32, u32);
+
+void GXInitFifoBase(struct GXInitFifoBase_Arg0 *arg0, u32 arg1, u32 arg2) {
+    u32 v0;
+    u32 lab_t1;
+
+    v0 = arg2 - 4;
+    v0 = arg1 + v0;
+    arg0->unk_0 = arg1;
+    arg0->unk_4 = v0;
+    arg0->unk_8 = arg2;
+    arg0->unk_1C = 0;
+    lab_t1 = arg2 - 0x4000;
+    fn_80031D60(arg0, lab_t1, __rlwinm(arg2, 31, 1, 26));
+    GXInitFifoPtrs(arg0, arg1, arg1);
 }

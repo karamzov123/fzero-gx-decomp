@@ -1,8 +1,10 @@
 #include "sdk_addresses.h"
 #include <dolphin/os.h>
-
-void *memcpy(void *dest, const void *src, size_t n);
+#include "types.h"
 #pragma peephole off
+
+/* --- dol/__OSInitSystemCall.c --- */
+void *memcpy(void *dest, const void *src, size_t n);
 
 void __OSSystemCallVectorStart();
 
@@ -15,4 +17,9 @@ void __OSInitSystemCall() {
     DCFlushRangeNoSync(addr, 0x100);
     __sync();
     ICInvalidateRange(addr, 0x100);
+}
+
+/* --- dol/fn_80010140.c --- */
+// fn_80010140: empty in retail (single blr).
+void fn_80010140(void) {
 }

@@ -1,7 +1,10 @@
 #include <types.h>
 #include <dolphin/os/OSInterrupt.h>
 #include <dolphin/types.h>
+#include "types.h"
 
+
+/* --- dol/GXSetGPFifo.c --- */
 typedef struct _GXTexObj {
     u32 texture_filter;
     u32 texture_lod;
@@ -303,4 +306,11 @@ void GXSetGPFifo(GXFifoObj *fifo) {
     __GXWriteFifoIntReset(1, 1);
     __GXFifoReadEnable();
     OSRestoreInterrupts(interrupts);
+}
+
+/* --- dol/fn_80031FF4.c --- */
+extern u32 __GXSaveCPUFifoAux(void);
+
+u32 fn_80031FF4(void) {
+    return __GXSaveCPUFifoAux();
 }

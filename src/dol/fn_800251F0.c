@@ -1,5 +1,8 @@
 #include "types.h"
+#pragma peephole off
+#pragma peephole reset
 
+/* --- dol/fn_800251F0.c --- */
 typedef struct fn_800251F0_Chorus {
     s32 *lastLeft[3];
     s32 *lastRight[3];
@@ -55,4 +58,19 @@ s32 fn_800251F0(fn_800251F0_Chorus *c) {
     }
     OSRestoreInterrupts(old);
     return 0;
+}
+
+/* --- dol/fn_800253F0.c --- */
+struct fn_800253F0_Arg0 {
+    u32 unk_0;
+};
+
+extern u32 (*lbl_801A64FC)(u32);
+
+s32 fn_800253F0(struct fn_800253F0_Arg0 *arg0) {
+    u32 t0;
+    t0 = OSDisableInterrupts();
+    lbl_801A64FC(arg0->unk_0);
+    OSRestoreInterrupts(t0);
+    return 1;
 }

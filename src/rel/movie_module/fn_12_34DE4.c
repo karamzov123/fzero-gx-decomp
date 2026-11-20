@@ -2,6 +2,7 @@
 
 
 /* --- rel/movie_module/fn_12_34DE4.c --- */
+/* --- rel/movie_module/fn_12_34DE4.c --- */
 extern void fn_8005912C(u32, void *, void *, void *);
 extern u32 lbl_12_bss_1B9A8[2];
 
@@ -60,4 +61,14 @@ extern void fn_8004ADF4(void);
 
 void fn_12_34EE4(void) {
     fn_8004ADF4();
+}
+
+/* --- rel/movie_module/fn_12_34F04.c --- */
+extern u32 fn_8004AC04(u32, u32);
+extern u32 fn_8004B180(u32, u32, u32, u32, u32);
+
+void fn_12_34F04(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
+    fn_8004B0EC((void *)arg0);
+    fn_8004B180(arg0, arg1, arg2, arg3, arg4);
+    fn_8004AC04(arg0, arg4);
 }

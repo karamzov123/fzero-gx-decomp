@@ -1,8 +1,10 @@
 #include <types.h>
 #include <dolphin/os/OSInterrupt.h>
 #include <dolphin/types.h>
+#include "types.h"
 
 
+/* --- dol/__GXSaveCPUFifoAux.c --- */
 /* --- dol/__GXSaveCPUFifoAux.c --- */
 typedef struct _GXFifoObj {
     void *base;
@@ -297,4 +299,56 @@ void GXGetGPStatus(GXBool *overhi, GXBool *underlow, GXBool *readIdle, GXBool *c
     *readIdle = (gx->cpStatus >> 2) & 1;
     *cmdIdle = (gx->cpStatus >> 3) & 1;
     *brkpt = (gx->cpStatus >> 4) & 1;
+}
+
+/* --- dol/GXGetFifoPtrs.c --- */
+typedef struct {
+    u8 pad[128];
+} GXFifoObj_u1;
+
+struct __GXFifoObj {
+    u8 *base;
+    u8 *top;
+    u32 size;
+    u32 hiWatermark;
+    u32 loWatermark;
+    void *rdPtr;
+    void *wrPtr;
+    s32 count;
+    u8 bind_cpu;
+    u8 bind_gp;
+};
+
+void (*DVDLowClearCallback())(u32);
+
+
+
+extern struct __GXFifoObj *lbl_801A6BF0;
+
+extern struct __GXFifoObj *lbl_801A6BF4;
+
+void GXGetFifoPtrs(GXFifoObj_u1 *fifo, void **readPtr, void **writePtr) {
+    struct __GXFifoObj *realFifo = (struct __GXFifoObj *)fifo;
+    if (realFifo == lbl_801A6BF0) {
+        realFifo->wrPtr = ((void *)((u32)((0x8000 << 16) + (u32)(__piReg[5] & 0xFBFFFFFF))));
+    }
+    if (realFifo == lbl_801A6BF4) {
+        do {
+            u32 temp = __cpReg[29] << 16;
+            temp |= __cpReg[28];
+            realFifo->rdPtr = ((void *)((u32)((0x8000 << 16) + (u32)(temp))));
+        } while (0);
+        do {
+            u32 temp = __cpReg[25] << 16;
+            temp |= __cpReg[24];
+            realFifo->count = temp;
+        } while (0);
+    } else {
+        realFifo->count = (u8 *)realFifo->wrPtr - (u8 *)realFifo->rdPtr;
+        if (realFifo->count < 0) {
+            realFifo->count += realFifo->size;
+        }
+    }
+    *readPtr = realFifo->rdPtr;
+    *writePtr = realFifo->wrPtr;
 }

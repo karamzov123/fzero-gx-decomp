@@ -3,6 +3,7 @@
 
 
 /* --- dol/fn_8003B930.c --- */
+/* --- dol/fn_8003B930.c --- */
 typedef struct Fn8003B930Data {
     u8 pad_10[0x10];
     u32 field_10;
@@ -44,5 +45,20 @@ void fn_8003B9AC(register void *d, register void *a, register void *b, register 
 
     for (i = 0; i < n; i += 4) {
         psq2_merge4(d, a, b, c, k0, k1, k2, k3)
+    }
+}
+
+/* --- dol/fn_8003BB30.c --- */
+void fn_8003BB30(register void *d, register void *a, register void *b, register void *c, u32 n) {
+    register f32 k0 = lbl_801A7194;
+    register f32 k1 = lbl_801A7198;
+    register f32 k2 = lbl_801A719C;
+    register f32 k3 = lbl_801A71A0;
+    register f32 t1, t2, t3;
+    u32 i;
+
+    psq27_merge2_setup(k1, k2, k3)
+    for (i = 0; i < n; i += 2) {
+        psq27_merge2(d, a, b, c, k0, t1, t2, t3)
     }
 }

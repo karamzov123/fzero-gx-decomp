@@ -1,6 +1,7 @@
-
 #include "types.h"
 
+
+/* --- dol/fn_80044A94.c --- */
 typedef struct AdxXpndParams {
     union {
         unsigned char padding_extent[20];
@@ -223,4 +224,19 @@ int fn_80044A94(AdxBasicDecoder *d, signed char *input, int length) {
     d->fields.view_format_type.format_type = 4;
     d->fields.view_codec_type.codec_type = codec;
     return data_length;
+}
+
+/* --- dol/fn_80044C0C.c --- */
+extern u32 fn_8008023C(u32, u32, u32);
+extern u32 lbl_80090090[];
+extern u32 lbl_80090098[];
+
+s32 fn_80044C0C(u32 arg0) {
+    u32 v0;
+    if ((s32)fn_8008023C(arg0, (u32)&lbl_80090090, 4) == 0 || (s32)fn_8008023C(arg0, (u32)&lbl_80090098, 4) == 0) {
+    v0 = 1;
+    } else {
+    v0 = 0;
+    }
+    return v0;
 }

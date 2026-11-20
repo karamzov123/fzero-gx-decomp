@@ -2,6 +2,7 @@
 
 
 /* --- dol/fn_8004AEF0.c --- */
+/* --- dol/fn_8004AEF0.c --- */
 typedef struct Stream {
     s8 used;
     s8 status;
@@ -116,4 +117,51 @@ void fn_8004B0EC(Fn8004B0EC *self) {
     }
     self->unk41 = 0;
     fn_80059AB4();
+}
+
+/* --- dol/fn_8004B180.c --- */
+void fn_8004B180(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
+    u32 v0;
+    fn_80059B44();
+    *(u32 *)((u8 *)arg0 + 12) = arg3;
+    v0 = (arg4 << 11);
+    *(u32 *)((u8 *)arg0 + 16) = v0;
+    *(u32 *)((u8 *)arg0 + 76) = arg1;
+    *(u32 *)((u8 *)arg0 + 80) = arg2;
+    *(u8 *)((u8 *)arg0 + 65) = 1;
+    fn_80059AB4();
+}
+
+/* --- dol/fn_8004B1DC.c --- */
+extern void *memset(void *, int, u32);
+
+
+
+
+void fn_8004B1DC(Stream *arg0) {
+    if (arg0 != NULL) {
+        stopStream(arg0);
+        do {
+            execServer();
+        } while (arg0->status != 1 || arg0->flags20 != 0);
+        stopStream(arg0);
+        do {
+            execServer();
+        } while (arg0->status != 1 || arg0->flags20 != 0);
+        endStatus(arg0);
+        fn_80059B44();
+        if (arg0->f45 == 1) {
+            arg0->f42 = 1;
+        }
+        arg0->f41 = 0;
+        fn_80059AB4();
+        for (;;) {
+            if (arg0->f45 == 0) {
+                break;
+            }
+            execServer();
+        }
+        arg0->used = 0;
+        memset(arg0, 0, 0x5C);
+    }
 }

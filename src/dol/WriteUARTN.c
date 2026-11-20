@@ -1,7 +1,10 @@
 #include <dolphin/exi/EXIPriv.h>
 #include <dolphin/exi.h>
 #include <dolphin/os/OSInterrupt.h>
+#include "types.h"
 
+
+/* --- dol/WriteUARTN.c --- */
 extern s32 lbl_801A6840;
 
 extern u32 lbl_801A6844;
@@ -72,4 +75,21 @@ u32 WriteUARTN(const void *buf, unsigned long len) {
     EXIUnlock(lbl_801A6840);
     OSRestoreInterrupts(enabled);
     return error;
+}
+
+/* --- dol/DBInit.c --- */
+extern u32 __DBInterface;
+extern u32 DBVerbose;
+extern void __DBExceptionDestination(void);
+void DBInit(void) {
+    u32 *base;
+    u32 t0;
+
+    // fzgx-allow: A1 DB hardware register
+    base = (u32 *)0x80000000;  /* fzgx-allow: A2 unnamed OS/hardware memory */
+    t0 = (u32)base + 0x40;
+    __DBInterface = t0;
+    // fzgx-allow: A1 DB hardware register
+    base[0x12] = (u32)__DBExceptionDestination + (u32)base;
+    DBVerbose = 1;
 }
