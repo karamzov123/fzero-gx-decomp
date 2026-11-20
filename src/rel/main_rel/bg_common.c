@@ -3930,7 +3930,6 @@ typedef struct {
     u8 str2[0xc];
 } BgData;
 
-#pragma opt_loop_invariants off
 #pragma opt_propagation off
 static inline void apply_bg_material(BgData *base, s32 idx) {
     u8 *material = (u8 *)&base->mats[1];

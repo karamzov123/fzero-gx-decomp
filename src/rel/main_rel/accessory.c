@@ -874,7 +874,6 @@ extern void fn_1_128884(void *, void *, s32);
 #pragma opt_common_subs on
 #pragma opt_dead_assignments off
 #pragma opt_propagation on
-#pragma opt_loop_invariants off
 void fn_1_1091D4(u32 arg0) {
     f32 fzgx_live;
     struct fn_1_1091D4_lbl_1_rodata_7AB8 *p_lbl_1_rodata_7AB8;

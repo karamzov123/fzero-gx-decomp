@@ -4423,7 +4423,7 @@ s32 fn_1_79C88(EffectManager *manager, u32 *out, s32 reverse, f32 value) {
 }
 /* fzgx:end fn_1_79C88 */
 
-/* fzgx:begin fn_1_79E54 noprologue */
+/* fzgx:begin fn_1_79E54 */
 typedef signed long s32;
 
 
@@ -4443,10 +4443,8 @@ f32 z;
 } Fn183D28Vec3;
 
 
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 
 
-extern f32 lbl_1_data_4;
 
 
 typedef struct {
@@ -4488,7 +4486,6 @@ extern f32 fn_1_A71AC(void);
 extern struct fn_1_7A240_lbl_1_rodata_3278 lbl_1_rodata_3278;
 extern CameraLike *lbl_801A6D00;
 extern void *fn_1_7A67C(Sig_fn_1_7A67C_EffectTable *);
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 static inline f32 effect_clamp_final(f32 low, f32 high, f32 value)
 {
 if (value < low) {
@@ -4537,7 +4534,7 @@ n31 = has1 ? n30 - 1 : n30;
 if (tbl->flags & 0x80) {
 result = c->unk_70;
 } else {
-result = lbl_1_data_4;
+result = (*(f32 *)&lbl_1_data_4);
 }
 lbl_8006E1B0((Fn183D28Vec3 *)obj->unk_8, &pos);
 depth = -pos.z;
@@ -4633,7 +4630,7 @@ return ((void *)0) ;
 }
 /* fzgx:end fn_1_79E54 */
 
-/* fzgx:begin fn_1_7A240 noprologue */
+/* fzgx:begin fn_1_7A240 */
 typedef signed long s32;
 
 
@@ -4653,10 +4650,8 @@ f32 z;
 } Fn183D28Vec3;
 
 
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 
 
-extern f32 lbl_1_data_4;
 
 
 typedef struct {
@@ -4698,7 +4693,6 @@ extern f32 fn_1_A71AC(void);
 extern struct fn_1_7A240_lbl_1_rodata_3278 lbl_1_rodata_3278;
 extern CameraLike *lbl_801A6D00;
 extern void *fn_1_7A67C(Sig_fn_1_7A67C_EffectTable *);
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 static inline f32 effect_clamp_final(f32 low, f32 high, f32 value)
 {
 if (value < low) {
@@ -4749,7 +4743,7 @@ n31 = has1 ? n30 - 1 : n30;
 if (tbl->flags & 0x80) {
 result = c->unk_70;
 } else {
-result = lbl_1_data_4;
+result = (*(f32 *)&lbl_1_data_4);
 }
 lbl_8006E1B0((Fn183D28Vec3 *)obj->unk_8, &pos);
 depth = -pos.z;

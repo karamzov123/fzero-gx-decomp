@@ -7347,12 +7347,8 @@ f32 fn_1_843BC(Fn1843BCObject *obj) {
 }
 /* fzgx:end fn_1_843BC */
 
-/* fzgx:begin fn_1_84408 noprologue */
-#include "types.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
+/* fzgx:begin fn_1_84408 */
 #include "rel/main_rel/car_test.h"
-#include "rel/main_rel/car.h"
 
 /* begin game/main_rel/car_test_types.h (deltawave784/fzgx, CC0) */
 #ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
@@ -7427,8 +7423,6 @@ typedef struct {
 extern s8 fn_1_84408(CarTestCar *);
 extern void fn_1_8E084(CarTestCar *, u32 *, s32);
 extern s8 fn_1_84124(Fn183D28Car *, s8, s8, u8 *);
-extern void lbl_8006DFE8(Fn183D28Vec3 *);
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 extern s8 fn_1_84644(Fn183D28Body *);
 
 #endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H

@@ -18033,10 +18033,7 @@ void fn_1_28F08(ScaleInfo *scale, Vec3 *src, f32 bias)
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_28F08 */
 
-/* fzgx:begin fn_1_29044 noprologue */
-#include "types.h"
-#include "psvec.h"
-
+/* fzgx:begin fn_1_29044 */
 /* begin game/vec3.h (deltawave784/windows-and-types@cf9407c75) */
 #ifndef GAME_VEC3_H
 #define GAME_VEC3_H
@@ -18046,32 +18043,32 @@ void fn_1_28F08(ScaleInfo *scale, Vec3 *src, f32 bias)
 // stcoli). Hand-owned (librarian).
 
 
-typedef struct Vec3 {
+typedef struct Vec3_fn_1_29044 {
     f32 x;
     f32 y;
     f32 z;
-} Vec3;
+} Vec3_fn_1_29044;
 
 #endif  // GAME_VEC3_H
 
 /* end game/vec3.h */
 
-extern void fn_8006E2B0(void *, Vec3 *);
+extern void fn_8006E2B0(void *, Vec3_fn_1_29044 *);
 
 typedef struct {
     u8 pad[0xA0];
-    Vec3 v;
+    Vec3_fn_1_29044 v;
 } Object29044;
 
 /* Volatile preserves the ordered input stack copy before the call. */
-static inline void copy_vec(volatile Vec3 *out, f32 z, f32 y, f32 x)
+static inline void copy_vec(volatile Vec3_fn_1_29044 *out, f32 z, f32 y, f32 x)
 {
     out->x = x;
     out->y = y;
     out->z = z;
 }
 
-static inline void cross_vec(const Vec3 *a, const Vec3 *b, Vec3 *out)
+static inline void cross_vec(const Vec3_fn_1_29044 *a, const Vec3_fn_1_29044 *b, Vec3_fn_1_29044 *out)
 {
     f32 ax = a->x;
     f32 ay = a->y;
@@ -18091,11 +18088,11 @@ static inline void cross_vec(const Vec3 *a, const Vec3 *b, Vec3 *out)
     out->z = z;
 }
 
-void fn_1_29044(Object29044 *self, Vec3 *vec, void *arg2)
+void fn_1_29044(Object29044 *self, Vec3_fn_1_29044 *vec, void *arg2)
 {
-    Vec3 result;
-    Vec3 cross;
-    Vec3 input;
+    Vec3_fn_1_29044 result;
+    Vec3_fn_1_29044 cross;
+    Vec3_fn_1_29044 input;
 
     copy_vec(&input, vec->z, vec->y, vec->x);
     fn_8006E2B0(arg2, &result);

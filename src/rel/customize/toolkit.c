@@ -901,13 +901,9 @@ void fn_3_19C50(void) {
 }
 /* fzgx:end fn_3_19C50 */
 
-/* fzgx:begin fn_3_19C94 noprologue */
-#include "types.h"
-
-extern u8 lbl_3_bss_A2438[28];
-
+/* fzgx:begin fn_3_19C94 */
 u8 fn_3_19C94(void) {
-    return lbl_3_bss_A2438[0xe];
+    return ((u8 *)&lbl_3_bss_A2438)[0xe];
 }
 /* fzgx:end fn_3_19C94 */
 

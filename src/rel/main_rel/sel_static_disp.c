@@ -20316,9 +20316,7 @@ int fn_1_14E944(const Fn1_14E944Entry *arg0, const Fn1_14E944Entry *arg1) {
 }
 /* fzgx:end fn_1_14E944 */
 
-/* fzgx:begin fn_1_14E96C noprologue */
-#include "dolphin/types.h"
-
+/* fzgx:begin fn_1_14E96C */
 typedef struct CompareEntry {
     s16 index;
     f32 value;
@@ -20333,9 +20331,7 @@ s32 fn_1_14E96C(const CompareEntry *a, const CompareEntry *b)
 }
 /* fzgx:end fn_1_14E96C */
 
-/* fzgx:begin fn_1_14E9A8 noprologue */
-#include "dolphin/types.h"
-
+/* fzgx:begin fn_1_14E9A8 */
 typedef struct CompareEntry {
     s16 index;
     f32 value;

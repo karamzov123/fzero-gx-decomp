@@ -5958,7 +5958,7 @@ u8 fn_1_F1B84(void) {
 }
 /* fzgx:end fn_1_F1B84 */
 
-/* fzgx:begin fn_1_F1B94 noprologue */
+/* fzgx:begin fn_1_F1B94 */
 typedef signed short s16;
 typedef signed long s32;
 
@@ -5971,7 +5971,6 @@ typedef unsigned long u32;
 typedef float f32;
 
 
-extern s16 lbl_1_bss_960;
 
 
 typedef struct {
@@ -6188,8 +6187,7 @@ u8 pad_3B4C[0x30];
 u32 unk_3B7C;
 u8 arr_3B80[0x58];
 u32 unk_3BD8;
-} Obj_1_bss_7B180;
-extern Obj_1_bss_7B180 lbl_1_bss_7B180;
+} Obj_1_bss_7B180_fn_1_F1B94;
 
 
 extern u8 *fn_1_3F0D8(u32 index, f32 *value, u8 *flag);

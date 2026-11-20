@@ -550,7 +550,7 @@ void fn_1_ABB24(fn_1_ABB24_MemcardArg *arg) {
 }
 /* fzgx:end fn_1_ABB24 */
 
-/* fzgx:begin fn_1_ABB4C noprologue */
+/* fzgx:begin fn_1_ABB4C */
 typedef signed long s32;
 
 typedef unsigned char u8;
@@ -568,8 +568,7 @@ u8 pad_C[0x4];
 u16 unk_10; /* 56 loads, 0 stores */
 u16 unk_12; /* 53 loads, 0 stores */
 u8 pad_14[0x3C];
-} Obj_1_bss_9F8;
-extern Obj_1_bss_9F8 lbl_1_bss_9F8;
+} Obj_1_bss_9F8_fn_1_ABB4C;
 
 extern void fn_1_A2DC4(u32);
 typedef struct {
@@ -591,19 +590,19 @@ MemcardState *state;
 s32 value;
 if ((arg->unk_2A & 1) == 0) {
 state = (MemcardState *)arg->unk_24;
-if (((lbl_1_bss_9F8.unk_10 & 1) != 0 ||
-(lbl_1_bss_9F8.unk_12 & 1) != 0) &&
+if (((((Obj_1_bss_9F8_fn_1_ABB4C *)&lbl_1_bss_9F8)->unk_10 & 1) != 0 ||
+(((Obj_1_bss_9F8_fn_1_ABB4C *)&lbl_1_bss_9F8)->unk_12 & 1) != 0) &&
 state->unk_1 == 1) {
 fn_1_A2DC4(0xA9011300 );
 state->unk_1 = 0;
 /* Volatile prevents the compiler from reusing the first status read. */
-} else if ((((*((volatile u16 *)&lbl_1_bss_9F8.unk_10) >> 1) & 1) != 0 ||
-((lbl_1_bss_9F8.unk_12 >> 1) & 1) != 0) &&
+} else if ((((*((volatile u16 *)&((Obj_1_bss_9F8_fn_1_ABB4C *)&lbl_1_bss_9F8)->unk_10) >> 1) & 1) != 0 ||
+((((Obj_1_bss_9F8_fn_1_ABB4C *)&lbl_1_bss_9F8)->unk_12 >> 1) & 1) != 0) &&
 state->unk_1 == 0) {
 fn_1_A2DC4(0xA9011300 );
 state->unk_1 = 1;
 }
-if (((lbl_1_bss_9F8.unk_8 >> 8) & 1) != 0) {
+if (((((Obj_1_bss_9F8_fn_1_ABB4C *)&lbl_1_bss_9F8)->unk_8 >> 8) & 1) != 0) {
 fn_1_A2DC4(0xA9011100 );
 value = 1;
 } else {

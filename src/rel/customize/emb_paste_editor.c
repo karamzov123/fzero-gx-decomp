@@ -916,7 +916,6 @@ typedef struct {
 #define BANK_COUNT(p) (lbl_3_bss_87000.banks[(p)->unk_3C].count)
 #define CLAMP(x, lo, hi) (((x) < (lo)) ? (lo) : (((x) > (hi)) ? (hi) : (x)))
 
-#pragma opt_dead_assignments off
 #pragma opt_propagation off
 typedef struct {
     u8 pad_0[0x34];

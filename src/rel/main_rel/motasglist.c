@@ -1713,16 +1713,9 @@ void fn_1_433A4(Fn1433A4Object *dst, Fn1433A4Object *src) {
 }
 /* fzgx:end fn_1_433A4 */
 
-/* fzgx:begin fn_1_433E0 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/motasglist.h"
+/* fzgx:begin fn_1_433E0 */
 #include "dolphin/hw_regs.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/motasglist.h"
 #include "dolphin/hw_regs.h"
-#include "types.h"
 
 /* begin game/main_rel/motasglist_types.h (deltawave784/fzgx, CC0) */
 #ifndef GAME_MAIN_REL_MOTASGLIST_TYPES_H
@@ -1954,7 +1947,7 @@ typedef struct Fn143058Object {
     f32 value2;
 } Fn143058Object;
 
-struct fn_1_41850_lbl_801A6410 {
+struct fn_1_41850_lbl_801A6410_fn_1_433E0 {
     u32 unk_0;
 };
 
@@ -1965,7 +1958,6 @@ extern void fn_1_438AC(Fn142E74Object *object, Fn142E74Entry *entry, s32 arg2);
 extern void fn_1_433E0(Fn1433E0Object *object);
 extern void fn_1_4300C(Fn14300CObject *object);
 extern void fn_1_43E08(Fn143058Object *object, u8 *entry, void *arg2, void *arg3, f32 value);
-extern struct fn_1_41850_lbl_801A6410 lbl_801A6410;
 extern void fn_8006E8DC(Fn1433E0Quat *);
 extern void fn_8006EB4C(Fn1433E0Quat *, Fn1433E0Quat *, Fn1433E0Quat *, f32);
 
@@ -1974,24 +1966,6 @@ extern void fn_8006EB4C(Fn1433E0Quat *, Fn1433E0Quat *, Fn1433E0Quat *, f32);
 /* end game/main_rel/motasglist_types.h */
 
 extern void * fn_1_41BDC();
-extern void fn_1_41328(void *arg0);
-extern void lbl_8006DBAC(void *value);
-extern void fn_8006E5FC(f32 *arg0);
-extern void fn_1_43264(void *arg0, f32 arg1);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DB30(void);
-extern void lbl_8006D668(void *vector);
-extern void fn_1_449A8(void *vector);
-extern void lbl_8006DB74(void *value);
-extern u32 lbl_1_bss_384CC;
-extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
-extern const f64 lbl_1_rodata_F40;
-extern const f32 lbl_1_rodata_F34;
-extern const f32 lbl_1_rodata_F30;
-extern const f64 lbl_1_rodata_F48;
-extern const f32 lbl_1_rodata_F38;
-extern const f32 lbl_1_rodata_F50;
-extern const f32 lbl_1_rodata_F54;
 extern const f32 lbl_1_rodata_F68;
 extern const f32 lbl_1_rodata_F6C;
 extern f32 lbl_8006D188(s32);
@@ -2007,9 +1981,9 @@ extern void lbl_8006E15C(f32, f32, f32);
 
 static inline void mtxA_clear_translation(void) {
     f32 *m = MTXA;
-    m[3] = lbl_1_rodata_F54;
-    m[7] = lbl_1_rodata_F54;
-    m[11] = lbl_1_rodata_F54;
+    m[3] = (*(const f32 *)&lbl_1_rodata_F54);
+    m[7] = (*(const f32 *)&lbl_1_rodata_F54);
+    m[11] = (*(const f32 *)&lbl_1_rodata_F54);
 }
 
 #pragma opt_propagation off
@@ -2038,11 +2012,11 @@ void fn_1_433E0(Fn1433E0Object *object) {
                 t = t * t;
             }
         }
-        object->frame = object->frame + lbl_1_rodata_F50;
+        object->frame = object->frame + (*(const f32 *)&lbl_1_rodata_F50);
     } else {
-        t = lbl_1_rodata_F50;
-        object->frame = lbl_1_rodata_F54;
-        object->duration = lbl_1_rodata_F54;
+        t = (*(const f32 *)&lbl_1_rodata_F50);
+        object->frame = (*(const f32 *)&lbl_1_rodata_F54);
+        object->duration = (*(const f32 *)&lbl_1_rodata_F54);
         object->flags &= ~1;
     }
 
@@ -2075,9 +2049,9 @@ void fn_1_433E0(Fn1433E0Object *object) {
             }
             if (entry->flags & 0x11) {
                 base = entry->value14 * object->scale.x;
-                vec.y = lbl_1_rodata_F54;
+                vec.y = (*(const f32 *)&lbl_1_rodata_F54);
                 vec.x = base;
-                vec.z = lbl_1_rodata_F54;
+                vec.z = (*(const f32 *)&lbl_1_rodata_F54);
                 if (object->flags & 8) {
                     vec.x = base * entry->value24;
                 }
@@ -2088,7 +2062,7 @@ void fn_1_433E0(Fn1433E0Object *object) {
                     tmp = entry->offsetC4;
                 }
                 vec = tmp;
-                if (t < lbl_1_rodata_F50 && (entry->flags & 0x40)) {
+                if (t < (*(const f32 *)&lbl_1_rodata_F50) && (entry->flags & 0x40)) {
                     base = entry->value180.x * (entry->value174.x / entry->scale.x);
                     vec.x = base + (f32)(t * (vec.x - base));
                     base = entry->value180.y * (entry->value174.y / entry->scale.y);
@@ -2104,7 +2078,7 @@ void fn_1_433E0(Fn1433E0Object *object) {
         entry->scale.y = entry->scale.y * object->scale.y;
         entry->scale.z = entry->scale.z * object->scale.z;
 
-        if (t < lbl_1_rodata_F50) {
+        if (t < (*(const f32 *)&lbl_1_rodata_F50)) {
             if ((object->flags & 0x200) && parent != NULL && entry->parent != 0) {
                 mathutil_mtxA_from_quat(&entry->quat);
                 lbl_8006DB74(mtx);

@@ -896,30 +896,19 @@ s32 fn_3_B270(void) {
 }
 /* fzgx:end fn_3_B270 */
 
-/* fzgx:begin fn_3_B5FC noprologue */
-#include "types.h"
-
-extern s32 lbl_3_bss_120;
-extern u32 lbl_3_bss_F0[12];
-extern s32 fn_1_4C10(void);
-extern s16 fn_3_B270(void);
-extern u16 lbl_1_bss_96A;
-extern u32 lbl_3_bss_20850;
-extern u32 lbl_3_bss_243A8[6];
-extern void fn_1_4A00(s32, s32, u32);
-
+/* fzgx:begin fn_3_B5FC */
 void fn_3_B5FC(void) {
     u32 flags;
     s32 ready;
 
-    if (lbl_3_bss_120 == -1) {
+    if ((*(s32 *)&lbl_3_bss_120) == -1) {
         fn_1_4C10();
     }
 
-    flags = lbl_3_bss_F0[9];
+    flags = ((u32 *)&lbl_3_bss_F0)[9];
     if ((flags & (~((u32)-1 >> 1))) != 0 &&
         (flags & 1) == 0 &&
-        (lbl_3_bss_F0[0] & 2) == 0) {
+        (((u32 *)&lbl_3_bss_F0)[0] & 2) == 0) {
         ready = 1;
     } else if (fn_1_4C10() != 0) {
         ready = 1;
@@ -928,14 +917,14 @@ void fn_3_B5FC(void) {
     }
 
     if (ready == 0) {
-        if (lbl_3_bss_120 != -1) {
-            s32 value = lbl_3_bss_120;
-            lbl_3_bss_120 = -1;
-            lbl_1_bss_96A = (u16)value;
+        if ((*(s32 *)&lbl_3_bss_120) != -1) {
+            s32 value = (*(s32 *)&lbl_3_bss_120);
+            (*(s32 *)&lbl_3_bss_120) = -1;
+            (*(u16 *)&lbl_1_bss_96A) = (u16)value;
         } else if (fn_3_B270() == (s16)-1) {
-            fn_1_4A00(0, 15, lbl_3_bss_20850);
-            lbl_3_bss_243A8[0] = 0;
-            lbl_3_bss_120 = 110;
+            fn_1_4A00(0, 15, (*(u32 *)&lbl_3_bss_20850));
+            ((u32 *)&lbl_3_bss_243A8)[0] = 0;
+            (*(s32 *)&lbl_3_bss_120) = 110;
         }
     }
 }

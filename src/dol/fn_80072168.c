@@ -64,7 +64,6 @@ struct fn_80072168_gx {
 extern struct fn_80072168_lbl_8019E250 lbl_8019E250[];
 extern struct fn_80072168_gx *gx;
 
-#pragma opt_common_subs off
 #pragma opt_propagation off
 static inline void fn_80072168_write_bp_impl(u32 value) {
     u32 data = value;
@@ -98,4 +97,3 @@ void fn_80072168(s32 arg0) {
         fn_80072168_write_bp(p->unk_24 = v & 0xFF1FFFFF, 0x61);
     }
 }
-#pragma opt_common_subs reset
