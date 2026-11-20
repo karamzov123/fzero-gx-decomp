@@ -80,7 +80,7 @@ extern s16 fn_1_F7B80(void);
 #include "types.h"
 
 typedef struct {
-    volatile u8 field_0; /* Preserve the retail reload after calls and stores. */
+    u8 field_0;
     u8 pad[3];
     u32 field_4[1];
 } Part;
@@ -179,14 +179,16 @@ static inline void helper_c(Bss20 *bss20) {
     lbl_3_bss_20[103] = 6;
 }
 
-static inline u32 fn_3_0_operand(u32 right, u32 left) { left *= right; return left; }
 #pragma opt_dead_assignments off
-static inline volatile s16 *fn_3_0_array_read(volatile s16 *array) { return array; } /* Preserve the retail reload after calls and stores. */
 void fn_3_0(u32 arg0, s32 arg1) {
     struct { Bss20 *value; } bss20;
-    s32 offset = (fn_3_0_operand(((0x81c0)), (((s16)arg0))));
-    u8 *p = (u8 *)&lbl_3_bss_140 + offset;
-    u32 flags = *(u32 *)p;
+    s32 offset = (s16)arg0;
+    u8 *p;
+    u32 flags;
+
+    offset *= 0x81C0;
+    p = (u8 *)&lbl_3_bss_140 + offset;
+    flags = *(u32 *)p;
 
     if (flags & 0x80000000) {
         if (flags & 0x40000000) {
@@ -197,7 +199,7 @@ void fn_3_0(u32 arg0, s32 arg1) {
             bss20.value = (Bss20 *)lbl_3_bss_20;
             for (i = 0; i < 3; i++) {
                 bss20.value->indices[i] = fn_1_14F118(bss20.value->parts[i].field_0, i);
-                if (fn_3_0_array_read(bss20.value->indices)[i] == -1) {
+                if (bss20.value->indices[i] == -1) {
                     flag = 1;
                 }
                 if (arg1 != 0 && fn_1_F809C(bss20.value->parts[i].field_0) == 0) {

@@ -10181,10 +10181,10 @@ extern const f32 lbl_8_rodata_8;  // = 1.0f (retail literal pool)
 extern char *fn_80083DB0(char *, const char *);
 
 void fn_8_5B44(void) {
-    struct { const char *value; } data;  // TU .data base held across the copies
+    const char * data;  // TU .data base held across the copies
     f32 one;
 
-    data.value = (const char *)&lbl_8_data_0;
+    data = (const char *)&lbl_8_data_0;
     (*(TitleDisplayState *)&lbl_1_bss_58).unk_0 = (*(u32 *)&lbl_801A66B4);
     one = lbl_8_rodata_8;
     (*(TitleDisplayState *)&lbl_1_bss_58).unk_1 = 1;
@@ -10203,11 +10203,11 @@ void fn_8_5B44(void) {
     (*(TitleDisplayState *)&lbl_1_bss_58).unk_1C = 0;
 
     if ((*(TitleDisplayState *)&lbl_1_bss_58).unk_15 == 2) {
-        fn_80083DB0(lbl_1_bss_198, data.value + 0x7e2c);
+        fn_80083DB0(lbl_1_bss_198, data + 0x7e2c);
     } else {
-        fn_80083DB0(lbl_1_bss_198, data.value + 0x7e3c);
+        fn_80083DB0(lbl_1_bss_198, data + 0x7e3c);
     }
-    fn_80083DB0(lbl_1_bss_198 + 0x40, data.value + 0x7e4c);
+    fn_80083DB0(lbl_1_bss_198 + 0x40, data + 0x7e4c);
 
     (*(TitleDisplayState *)&lbl_1_bss_58).unk_14 = 4;
     (*(TitleDisplayState *)&lbl_1_bss_58).unk_16 = 1;

@@ -6184,7 +6184,7 @@ void fn_1_97288(struct fn_1_97288_Arg0 *arg0, f32 arg1) {
     u32 v6;
     u32 v8;
     u32 v7;
-    struct { f32 value; } zero;
+    f32 zero;
     f32 v9;
     u32 v13;
     u32 v14;

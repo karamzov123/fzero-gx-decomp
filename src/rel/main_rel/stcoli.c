@@ -2862,9 +2862,9 @@ u32 fn_1_17098(void *arg0, u32 arg1, u32 v1, u32 arg3, u32 arg4, ColiContext *ct
         }
         lbl_8006D758();
         {
-            struct { struct Sig_fn_1_18B40_fn_1_18B40_Vec *value; } output;
-            output.value = (struct Sig_fn_1_18B40_fn_1_18B40_Vec *)vector;
-            coli_dispatch(arg0, arg1, v1, obj, output.value, ctx, arg6, index, t);
+            struct Sig_fn_1_18B40_fn_1_18B40_Vec * output;
+            output = (struct Sig_fn_1_18B40_fn_1_18B40_Vec *)vector;
+            coli_dispatch(arg0, arg1, v1, obj, output, ctx, arg6, index, t);
         }
         fn_1_18B40(arg0, (void *)arg1, v1, obj, (struct Sig_fn_1_18B40_fn_1_18B40_Vec *)vector, item, ctx, arg6, t, index);
         lbl_801A66CC->total++;

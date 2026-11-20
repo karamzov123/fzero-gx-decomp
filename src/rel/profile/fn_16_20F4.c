@@ -37,7 +37,7 @@ extern void fn_1_A2D84(u32);
 #pragma opt_propagation off
 static inline const f32 *fn_16_20F4_array_read(const f32 *array) { return array; }
 s32 fn_16_20F4(void) {
-    struct { volatile u16 *value; } p; /* Controller flags are read on each test. */
+    volatile u16 * p; /* Controller flags are read on each test. */
     volatile u16 *q;
     s32 idx = lbl_1_bss_8B614.unk_8;
     s16 flag = 0;
@@ -59,9 +59,9 @@ s32 fn_16_20F4(void) {
     lbl_1_bss_8B614.unk_18 = v;
     {
     s32 offset = idx * 20;
-    p.value = (u16 *)((u8 *)lbl_1_bss_9F8 + offset);
-    p.value += 4;
-    if ((*p.value >> 4) & 1) {
+    p = (u16 *)((u8 *)lbl_1_bss_9F8 + offset);
+    p += 4;
+    if ((*p >> 4) & 1) {
         fn_1_A2D84(0xA9010000);
         lbl_1_bss_8B614.unk_2C = lbl_1_bss_8B614.unk_2C != 1;
     }
@@ -79,7 +79,7 @@ s32 fn_16_20F4(void) {
         lbl_1_bss_8B614.unk_30 = t;
         fn_1_A2D84(0xA9010000);
     }
-    if ((*p.value >> 9) & 1) {
+    if ((*p >> 9) & 1) {
         fn_1_A2D84(0xA9010000 + 0x200);
         return -1;
     }

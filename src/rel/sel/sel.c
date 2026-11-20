@@ -9691,7 +9691,7 @@ f64 unk_6F0;
 f64 unk_6F8;
 };
 
-typedef struct { u32 value; } EntryColor;
+typedef u32 EntryColor;
 
 struct fn_8_D630_obj {
 u8 unk_0;
@@ -26185,7 +26185,7 @@ f64 unk_6F0;
 f64 unk_6F8;
 };
 
-typedef struct { u32 value; } EntryColor;
+typedef u32 EntryColor;
 
 struct fn_8_D630_obj {
 u8 unk_0;
@@ -30533,7 +30533,7 @@ f64 unk_6F0;
 f64 unk_6F8;
 };
 
-typedef struct { u32 value; } EntryColor;
+typedef u32 EntryColor;
 
 struct fn_8_D630_obj {
 u8 unk_0;
@@ -39568,8 +39568,8 @@ void fn_10_1D314(struct Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3) {
     u32 *q;
 s32 fzgx_loop_i_182804;
     s32 fzgx_loop_i_179376;
-    struct { s32 value; } attribute_loop;
-#define fzgx_loop_i_176323 attribute_loop.value
+    s32 attribute_loop;
+#define fzgx_loop_i_176323 attribute_loop
     s32 fzgx_loop_i_177468;
     s32 x;
 
@@ -45191,12 +45191,12 @@ loc_60.z = (*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) +
 fn_1_50164((*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0xb78))) ,(*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x54c))) ,(*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x65c))) ,(*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x3c0))) ,&loc_60);
 fn_1_141338((u8)loc_A,320,240,45,(*(f32 *)((u8 *)((struct fn_10_21E30_lbl_10_rodata_158 *)constants) + (0x44))) );
 {
-struct { u8 *value; } table;
+u8 * table;
 u32 offset = ((s16 *)&loc_C)[v9] * 24;
 offset += v12;
-table.value = data_base + 0x1fdc;
+table = data_base + 0x1fdc;
 sprintf((char *)&loc_B8, (char *)data_base + 0x5b70,
-*(char **)(table.value + offset));
+*(char **)(table + offset));
 }
 fn_1_49410();
 fn_1_494DC(8);

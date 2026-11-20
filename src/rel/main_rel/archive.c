@@ -798,7 +798,7 @@ void fn_1_12AF7C(void) {
     u32 tbl[4];
     s16 g, r;
     u32 b;
-    struct { s16 value; } a;
+    s16 a;
     s16 i, k, l, j;
 
     tbl[0] = lbl_1_rodata_8160[0];
@@ -810,12 +810,12 @@ void fn_1_12AF7C(void) {
         for (j = 0; j < 4; j++) {
             for (k = 0; k < 3; k++) {
                 for (l = 0; l < 1; l++) {
-                    a.value = LD & 0xFF;
+                    a = LD & 0xFF;
                     r = (u8)((tbl[j] >> 24) + (LD >> 24));
                     g = (u8)(((tbl[j] >> 16) & 0xFF) + ((LD >> 16) & 0xFF));
                     b = ((tbl[j] >> 8) & 0xFF) + ((LD >> 8) & 0xFF);
                     ((u32 (*)[4][3][1])&lbl_1_bss_8B2E0.unk_0)[i][j][k][l] =
-                        (u32)(s16)a.value | ((r << 24) | (g << 16) | ((b << 8) & 0xFF00));
+                        (u32)(s16)a | ((r << 24) | (g << 16) | ((b << 8) & 0xFF00));
                 }
             }
         }

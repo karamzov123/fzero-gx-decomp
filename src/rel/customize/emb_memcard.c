@@ -1556,27 +1556,27 @@ void fn_3_D9A0(void) {
         loc_8.flags = 5;
         fn_1_4F734(&loc_8);
         {
-            struct { s32 value; } sum;
+            s32 sum;
             n = p_selected->unk_1F * 62;
-            sum.value = n;
-            sum.value += v19;
-            loc_8.x = (f32)(sum.value + 80);
+            sum = n;
+            sum += v19;
+            loc_8.x = (f32)(sum + 80);
             loc_8.flags |= 0x80000;
             fn_1_4F734(&loc_8);
             n = p_selected->unk_1F * 62;
-            sum.value = n;
-            sum.value += v19;
-            loc_8.x = (f32)(sum.value + 31);
+            sum = n;
+            sum += v19;
+            loc_8.x = (f32)(sum + 31);
             loc_8.y = 368.0f;
             loc_8.z = 60.0f;
             loc_8.flags = 0x100005;
             fn_1_4F734(&loc_8);
             {
-                struct { u32 value; } final_sum;
+                u32 final_sum;
                 n = p_selected->unk_1F * 62;
-                final_sum.value = v19;
-                final_sum.value = n + final_sum.value;
-                loc_8.x = (f32)(s32)(final_sum.value + 80);
+                final_sum = v19;
+                final_sum = n + final_sum;
+                loc_8.x = (f32)(s32)(final_sum + 80);
                 loc_8.flags |= 0x80000;
                 fn_1_4F734(&loc_8);
             }
@@ -1641,7 +1641,7 @@ void fn_3_D9A0(void) {
         }
         {
             struct { s32 value; } numerator;
-            struct { f32 value; } clamped;
+            f32 clamped;
             numerator.value = fade - v67;
             cn = clamp15(numerator.value);
             d = 15 - v67;

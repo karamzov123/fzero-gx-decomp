@@ -995,8 +995,8 @@ static inline void fn_1_F38C0_finish(Obj_1_bss_7EFD8 *state, u8 z0, u8 z1) {
 }
 
 void fn_1_F38C0(void) {
-    struct { Obj_1_bss_7EFD8 *value; } w;
-    #define p (w.value)
+    Obj_1_bss_7EFD8 * w;
+    #define p (w)
     struct { u8 *value; } first;
     #define start (first.value)
     u8 *end;

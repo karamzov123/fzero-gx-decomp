@@ -7219,8 +7219,8 @@ extern void lbl_8006E14C(f32);
 #pragma opt_propagation off
 #pragma opt_lifetimes off
 void fn_8_CC4C(u32 x, u32 y) {
-struct { u32 value; } model;
-#define v2 model.value
+u32 model;
+#define v2 model
 u32 arg1 = y;
 u32 arg0 = x;
 struct fn_8_CC4C_lbl_8_rodata_160 *p_lbl_8_rodata_160;

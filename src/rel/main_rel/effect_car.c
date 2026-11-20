@@ -6129,7 +6129,7 @@ void fn_1_7099C(struct fn_1_7099C_Arg0 *arg0, Fn183D28Vec3 *arg1, u32 arg2, f32 
  Fn183D28Vec3 loc_8;
  f32 z,y,x, r, c;
  f64 clamp;
- struct { Obj_1_bss_38458_Target **value; } res;
+ Obj_1_bss_38458_Target ** res;
  Obj_1_bss_38458_Target **slot;
  v0=arg0->unk_38;
  speed=fn_1_8652C(*(s16 *)&arg0->unk_18);

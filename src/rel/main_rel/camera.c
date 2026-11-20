@@ -656,28 +656,28 @@ extern CameraObject *fn_1_86254(s32 index);
 static inline void change_camera(u32 flags, GameCameraEntry *entries) {
     s16 *fzgx_value;
     s16 old_index;
-    struct { u32 value; } new_index;
+    u32 new_index;
 
     old_index = entries->unk_2;
-    new_index.value = old_index;
+    new_index = old_index;
     if (((flags >> 1) & 1) != 0) {
-        new_index.value = old_index + 1;
-        if ((s16)new_index.value == fn_1_86624()) {
-            new_index.value = 0;
+        new_index = old_index + 1;
+        if ((s16)new_index == fn_1_86624()) {
+            new_index = 0;
         }
     } else if ((flags & 1) != 0) {
-        new_index.value = old_index - 1;
-        if ((s16)new_index.value < 0) {
-            new_index.value = (s16)(fn_1_86624() - 1);
+        new_index = old_index - 1;
+        if ((s16)new_index < 0) {
+            new_index = (s16)(fn_1_86624() - 1);
         }
     }
-    if ((s16)new_index.value == old_index) {
+    if ((s16)new_index == old_index) {
         return;
     }
     fzgx_value = &(game_camera_entries->unk_2);
-    *fzgx_value = (s16)new_index.value;
+    *fzgx_value = (s16)new_index;
     fn_1_86254(old_index)->active = -1;
-    fn_1_86254((s16)new_index.value)->active = 0;
+    fn_1_86254((s16)new_index)->active = 0;
 }
 #pragma opt_propagation off
 void fn_1_6BC0(u32 lab_unused0, u32 lab_unused1, u32 lab_unused2) {
@@ -3090,13 +3090,13 @@ static inline void fn_1_90E0_call_lbl_8006E0B4(f32 a0, f32 a1, f32 a2) { lbl_800
 #pragma opt_propagation off
 #pragma opt_lifetimes off
 void fn_1_90E0(struct fn_1_90E0_Arg0 *arg0) {
-register struct { Sig_camera_get_target_orientation_camera_get_target_orientation_CameraObject *value; } obj3;
+register Sig_camera_get_target_orientation_camera_get_target_orientation_CameraObject * obj3;
 register Sig_camera_get_target_orientation_camera_get_target_orientation_CameraObject *t3;
 s8 v0;
 s32 v1;
 u32 v2;
 signed int v3;
-register struct { Sig_camera_get_target_orientation_camera_get_target_orientation_CameraObject *value; } target_state90;
+register Sig_camera_get_target_orientation_camera_get_target_orientation_CameraObject * target_state90;
 s16 v4;
 M90 loc_134;
 Output90 loc_110;

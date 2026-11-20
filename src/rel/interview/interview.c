@@ -16948,9 +16948,9 @@ void fn_17_3A28(s32 a, s16 b, s16 c) {
         table.value = (void **)(((u8 *)fzgx_pool_data_lbl_17_data_0_630C0));
         fn_1_934CC(obj, obj + 0x148, table.value[c]);
     } else {
-        struct { s16 *value; } table;
-        table.value = (s16 *)(((u8 *)fzgx_pool_data_lbl_17_data_0_62C34));
-        switch (table.value[*(s32 *)(lbl_17_bss_D8__fzgx_offset_0[0] + 0x88)]) {
+        s16 * table;
+        table = (s16 *)(((u8 *)fzgx_pool_data_lbl_17_data_0_62C34));
+        switch (table[*(s32 *)(lbl_17_bss_D8__fzgx_offset_0[0] + 0x88)]) {
         case 3:
         case 4:
             fn_1_934CC(obj, obj + 0x148, ((u8 *)fzgx_pool_data_lbl_17_data_0_64060));
@@ -144856,7 +144856,7 @@ void fn_17_802C(void) {
     struct { f32 value; } v13;
     struct { f32 value; } v14;
     struct { f32 value; } v15;
-    struct { s32 value; } v16;
+    s32 v16;
     f32 v17;
     s32 v22;
     s32 v23;
@@ -144905,9 +144905,9 @@ void fn_17_802C(void) {
         v14.value = v13.value - ((f32)(v12 + 30 - v11) / (30.0f));
         v14.value = (v14.value < v15.value) ? v15.value : ((v14.value > v13.value) ? v13.value : v14.value);
         v17 = v14.value;
-        v16.value = (*(struct dat_s *)&lbl_17_data_63058).unk_38;
-        if (v11 >= v16.value && (pb->unk_F9 != 0 || pb->unk_FA != 0)) {
-            v9.value = (f32)(v16.value + 30 - v11) / (30.0f);
+        v16 = (*(struct dat_s *)&lbl_17_data_63058).unk_38;
+        if (v11 >= v16 && (pb->unk_F9 != 0 || pb->unk_FA != 0)) {
+            v9.value = (f32)(v16 + 30 - v11) / (30.0f);
             v9.value = (v9.value < fn_17_802C_read_pointer()) ? fn_17_802C_read_pointer() : ((v9.value > fn_17_802C_read_pointer__()) ? fn_17_802C_read_pointer__() : v9.value);
             v17 = v9.value;
         }

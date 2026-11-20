@@ -10313,7 +10313,7 @@ void fn_1_113C58(AccessoryObjectLocal *arg0) {
     AccessoryVec noise;
     f32 distance;
     u32 k;
-    struct {u32 value;} initCount;
+    u32 initCount;
     AccessoryPoint *initPoint;
     AccessoryPoint *points;
     u8 *matrix;
@@ -10403,11 +10403,11 @@ void fn_1_113C58(AccessoryObjectLocal *arg0) {
             a = link->unk_0;
             b = link->unk_4;
             if (a && b) {
-                struct { f32 value; } stretched;
+                f32 stretched;
                 psvec_sub(&a->unk_10, &b->unk_10, &delta);
                 distance = __fmadds(delta.z, delta.z, __fmadds(delta.y, delta.y, delta.x * delta.x));
-                stretched.value = distance - F(0x9C);
-                if (stretched.value > link->unk_8) {
+                stretched = distance - F(0x9C);
+                if (stretched > link->unk_8) {
                     f32 reciprocal = lbl_8006D118(&distance, distance);
                     f32 f1 = lbl_8006D0B4(link->unk_8);
                     f32 massB, massA;
@@ -23706,11 +23706,11 @@ void fn_1_128F54(void) {
     u32 spell_call;
 
 {
-    struct { u32 value; } fzgx_loop_inner_count_553;
+    u32 fzgx_loop_inner_count_553;
     u32 fzgx_loop_outer_count_553;
     spell_call = fn_1_86624();
 
-    fzgx_loop_inner_count_553.value = spell_call;
+    fzgx_loop_inner_count_553 = spell_call;
     fzgx_loop_outer_count_553 = fn_1_58C4();
     i = 0;
     while (i < fzgx_loop_outer_count_553) {
@@ -23725,7 +23725,7 @@ void fn_1_128F54(void) {
             fzgx_loop_found_1003 = 0;
             fzgx_loop_limit_1003 = lbl_1_rodata_806C[0];
             j = 0;
-            while (j < fzgx_loop_inner_count_553.value) {
+            while (j < fzgx_loop_inner_count_553) {
                 if (item.value != j) {
                     f32 value = fn_1_8CAF4(item.value, j);
                     if (!(value > fzgx_loop_limit_1003)) {
@@ -23752,7 +23752,7 @@ void fn_1_128F54(void) {
         }
         i++;
     }
-    inner_count = fzgx_loop_inner_count_553.value;
+    inner_count = fzgx_loop_inner_count_553;
     outer_count = fzgx_loop_outer_count_553;
 }
 }
