@@ -424,10 +424,10 @@ static inline void initialize_entry(PasteSlot *slot, EditorSave *state, u8 *char
 void fn_3_FD30(void) {
     struct { EditorSave *value; } pw;
 #define p pw.value
-    register const EditorConsts *c;
+    const EditorConsts *c;
     u32 sel;
     s32 next;
-    register u32 idx;
+    u32 idx;
     s16 i;
     s16 count;
     PasteEntry *entry;
@@ -703,7 +703,7 @@ void fn_3_104C4(void) {
   if ((s32)lbl_3_bss_7EDD8.unk_18 == 1) fn_1_A2D84(0xA9010000);
   lbl_3_bss_7EDD8.unk_18 = 0;
  }
- v = lbl_1_bss_9F8.unk_8[*(u8 *)&p->unk_14].unk_0;
+ v = lbl_1_bss_9F8.unk_8[p->unk_14].unk_0;
  if (((v >> 9) & 1) || (((v >> 8) & 1) && (s32)lbl_3_bss_7EDD8.unk_18 == 0)) {
   if ((lbl_1_bss_9F8.unk_8[*(volatile u8 *)&p->unk_14].unk_0 >> 8) & 1) /* Retail reloads the input selector. */
    fn_1_A2D84(0xA9010100);
@@ -711,7 +711,7 @@ void fn_3_104C4(void) {
   lbl_3_bss_7EDD8.unk_18 = 0;
   lbl_3_bss_7EDD8.unk_C = 0x40000000;
  }
- if (((lbl_1_bss_9F8.unk_8[*(u8 *)&p->unk_14].unk_0 >> 8) & 1) && (s32)lbl_3_bss_7EDD8.unk_18 != 0) {
+ if (((lbl_1_bss_9F8.unk_8[p->unk_14].unk_0 >> 8) & 1) && (s32)lbl_3_bss_7EDD8.unk_18 != 0) {
   fn_1_A2D84(0xA9010100);
   slot = (u32)&lbl_3_bss_7EE40;
   index = lbl_3_bss_7EDD8.unk_15;

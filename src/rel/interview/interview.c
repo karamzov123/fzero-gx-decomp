@@ -17038,10 +17038,10 @@ u8 lbl_17_bss_D8__fzgx_offset_21;
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
-    s = *(u8 *)&fzgx_obj_lbl_17_bss_0;
-    s = *(u8 *)&fzgx_obj_lbl_17_bss_1;
-    s = *(u8 *)&lbl_17_bss_2;
-    s = *(u8 *)&lbl_17_bss_3;
+    s = fzgx_obj_lbl_17_bss_0;
+    s = fzgx_obj_lbl_17_bss_1;
+    s = lbl_17_bss_2;
+    s = lbl_17_bss_3;
     s = *(u8 *)&lbl_17_bss_3__fzgx_offset_1;
     s = *(u8 *)&lbl_17_bss_C;
     s = *(u8 *)&lbl_17_bss_10;
@@ -17056,8 +17056,8 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&lbl_17_bss_60__fzgx_offset_74;
     s = *(u8 *)&fzgx_obj_lbl_17_bss_D6;
     s = *(u8 *)&fzgx_obj_lbl_17_bss_D8;
-    s = *(u8 *)&lbl_17_bss_D8__fzgx_offset_20;
-    s = *(u8 *)&lbl_17_bss_D8__fzgx_offset_21;
+    s = lbl_17_bss_D8__fzgx_offset_20;
+    s = lbl_17_bss_D8__fzgx_offset_21;
 }
 #pragma section code_type ".text"
 
@@ -128844,10 +128844,10 @@ u16 lbl_17_bss_D8__fzgx_offset_20;
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
-    s = *(u8 *)&lbl_17_bss_0;
-    s = *(u8 *)&lbl_17_bss_1;
-    s = *(u8 *)&lbl_17_bss_2;
-    s = *(u8 *)&lbl_17_bss_3;
+    s = lbl_17_bss_0;
+    s = lbl_17_bss_1;
+    s = lbl_17_bss_2;
+    s = lbl_17_bss_3;
     s = *(u8 *)&lbl_17_bss_3__fzgx_offset_1;
     s = *(u8 *)&lbl_17_bss_C;
     s = *(u8 *)&lbl_17_bss_10;

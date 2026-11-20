@@ -1832,7 +1832,7 @@ s16 fn_1_DF2A4(DF2A4Vec *pos, DF2A4Vec * __restrict prev, void *mtx, DF2A4Vec *p
     f32 finalY, finalX;
     f32 dist;
     f32 boundSquared;
-    register f32 cosv;
+    f32 cosv;
     f32 firstY, firstX;
     f32 secondY, secondX;
     f32 dd;

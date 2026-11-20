@@ -2,13 +2,15 @@
 carriers (`struct { T value; } x;` -> `T x;`, `x.value` -> `x`).  Per block: all candidates of the
 block at once, else one at a time; screen with GFZE01, confirm with every region of the unit.
 Pool-primer sinks (.fzgxpool / fzgx-allow lines) are never touched.
-Usage: steer_prune.py [--apply] [--kind volatile|carrier] [FILE...]"""
+Usage: steer_prune.py [--apply] [--kind volatile|carrier|castview|register] [FILE...]"""
 import sys, re, json, tempfile, pathlib, collections, concurrent.futures
 sys.path.insert(0, str(pathlib.Path(__file__).parent)); sys.path.insert(0, 'tools')
 import devprobe as d, pragma_prune as pp
 SKIP = re.compile(r'fzgxpool|fzgx-allow|fzgx_pool|prime|\bcp\b|FIFO|Fifo|GXW|PPCWGPipe|FZGX_ADDR|0x[cC][cC]0|0xE0000000|locked|[Rr]egs\b|hardware|cursor|write offset|toggle|interrupt|callback|scratch area')
 WHY = re.compile(r'volatile|reload|re-?read|[Rr]etail|[Pp]reserve|fzgx')
 VOL = re.compile(r'\bvolatile\b\s*')
+CAST = re.compile(r'\*\(\s*(?:const\s+)?[A-Za-z_]\w*\s*\*\s*\)\s*&\s*(\(?)([A-Za-z_]\w*(?:(?:\.|->)[A-Za-z_]\w*)*)(\)?)(?![\w\[(.]|->)')
+REG = re.compile(r'\bregister\s+')
 CARRIER = re.compile(r'struct \{ *([A-Za-z_][A-Za-z0-9_ ]*?\**) *value; *\} *([A-Za-z_]\w*);')
 
 def candidates(text, lo, hi, kind):
@@ -27,6 +29,19 @@ def candidates(text, lo, hi, kind):
                         if line[cm.start():cm.start() + 2] == '//' or line.rstrip().endswith('*/'):
                             g.append((lo + pos + len(line[:cm.start()].rstrip()), lo + pos + end, ''))
                     out.append(g)
+            pos += len(line)
+    elif kind in ('castview', 'register'):
+        pos = 0
+        for line in seg.splitlines(keepends=True):
+            if not SKIP.search(line) and not line.lstrip().startswith(('//', '/*', '*', '#')):
+                cm = re.search(r'//|/\*', line); code_end = cm.start() if cm else len(line)
+                if kind == 'register':
+                    for m in REG.finditer(line[:code_end]):
+                        out.append([(lo + pos + m.start(), lo + pos + m.end(), '')])
+                else:
+                    for m in CAST.finditer(line[:code_end]):
+                        if bool(m.group(1)) != bool(m.group(3)): continue   # unbalanced parenthesis capture
+                        out.append([(lo + pos + m.start(), lo + pos + m.end(), m.group(2))])
             pos += len(line)
     else:
         for m in CARRIER.finditer(seg):
@@ -77,10 +92,10 @@ def run(task):
     return (path, text, removed)
 
 def main():
-    kind = 'carrier' if '--kind' in sys.argv and sys.argv[sys.argv.index('--kind') + 1] == 'carrier' else 'volatile'
-    args = [a for a in sys.argv[1:] if not a.startswith('--') and a not in ('volatile', 'carrier')]
+    kind = sys.argv[sys.argv.index('--kind') + 1] if '--kind' in sys.argv else 'volatile'
+    args = [a for a in sys.argv[1:] if not a.startswith('--') and a not in ('volatile', 'carrier', 'castview', 'register')]
     units = json.load(open('config/GFZE01/units.json')); nu = d.ninja_units()
-    pat = VOL if kind == 'volatile' else CARRIER
+    pat = {'volatile': VOL, 'carrier': CARRIER, 'castview': CAST, 'register': REG}[kind]
     files = args or sorted(str(p) for p in pathlib.Path('src/rel').glob('**/*.c') if 'movie_module' not in str(p) and pat.search(p.read_text()))
     tasks = []
     for f in files:

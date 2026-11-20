@@ -942,7 +942,7 @@ void fn_1_68B6C(s8 a, s8 b) {
     upB.z -= 0.8 * dir.z;
     lbl_8006D5F0(1.6f, &dir, &dir);
     {
-        register f32 length;
+        f32 length;
         Vec68B6C *r = (Vec68B6C *)rel;
         length = r->x * r->x;
         length = __fmadds(r->y, r->y, length);
@@ -986,9 +986,9 @@ void fn_1_68B6C(s8 a, s8 b) {
     for (effectType = 1; effectType < 2; effectType++) {
     memset(&effect, 0, 0xe8);
     {
-        register f32 v0, v1;
+        f32 v0, v1;
         f32 v2, v3;
-        register f32 lengthA, lengthB;
+        f32 lengthA, lengthB;
         v0 = velA.x;
         lengthA = v0 * v0;
         v1 = velA.y;
@@ -1028,9 +1028,9 @@ void fn_1_68B6C(s8 a, s8 b) {
     effect.tangent.y += spread_r1 * ((f32)fn_1_584AC() / cRand - c0_5);
     effect.tangent.z += spread_r1 * ((f32)fn_1_584AC() / cRand - c0_5);
     {
-        register f32 tz, d, uz, uy;
+        f32 tz, d, uz, uy;
         f64 ux;
-        register f32 ty, tx, projection;
+        f32 ty, tx, projection;
         tx = effect.tangent.x;
         ux = upA.x;
         tz = effect.tangent.z;
@@ -4795,7 +4795,7 @@ void fn_1_6ED40(struct fn_1_6ED40_Arg0 *arg0, void *arg1) {
  f32 y;
  f32 x;
  /* Volatile preserves the retail translation-column load order. */
- x=*(f32 *)&arg0->unk_3C;
+ x=arg0->unk_3C;
  y=arg0->unk_40;
  z=arg0->unk_44;
  *(f32 *)(0xe0000000+0xc)=x;
@@ -5516,7 +5516,7 @@ void fn_1_6FFA0(Fn6FFA0Car *car, u32 arg1, u32 arg2) {
     Fn6FFA0Vec dir;
     Fn6FFA0Work work;
     Fn6FFA0Vec tmp;
-    register f32 *matrix;
+    f32 *matrix;
     Fn6FFA0Vec *velocity;
     u16 n;
     u32 random;
@@ -6647,7 +6647,7 @@ void fn_1_71768(u32 arg0, u32 arg1) {
     f32 v14;
     s16 v1;
     s32 v2;
-    register f32 v3;
+    f32 v3;
     s32 v4;
     f32 v5;
     f32 v6;

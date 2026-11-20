@@ -493,9 +493,9 @@ static inline s32 fn_1_F5D94_rnd(void) {
 #define RND() ((f32)fn_1_F5D94_rnd() / 32767.0f)
 
 static inline f32 fn_1_F5D94_distance(fn_1_9CCE8_Vec3 *a, fn_1_9CCE8_Vec3 *b) {
-    register f32 dx = a->x;
-    register f32 dy = a->y;
-    register f32 dz = a->z;
+    f32 dx = a->x;
+    f32 dy = a->y;
+    f32 dz = a->z;
     dx -= b->x;
     dy -= b->y;
     dz -= b->z;
@@ -515,7 +515,7 @@ static inline f32 fn_1_F5D94_reciprocal(f32 value) {
     return 1.0f / (1.0f + (f32)(2.5f * value));
 }
 void fn_1_F5D94(void *arg0) {
-    register f32 v5;
+    f32 v5;
     f32 v0, v1, v2, v6, v9, v10, v11;
     s32 v12;
     void *v13 = arg0;
@@ -834,7 +834,7 @@ void fn_1_F65A0(struct fn_1_F65A0_Arg0 *obj) {
     f32 ey;
     struct fn_1_F65A0_Arg0 *effect;
     s32 i;
-    register s32 j;
+    s32 j;
     s16 angle;
 
     effect = obj;
@@ -1591,7 +1591,7 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_1_bss_7F0C0;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_84420;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_84428;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_84450;
+    s = fzgx_obj_lbl_1_bss_84450;
     s = *(u8 *)&fzgx_pool_lbl_1_bss_7F0A0_gap_84451;
     s = *(u8 *)&fzgx_pool_lbl_1_bss_7F0A0_gap_84451_fill_84452;
 }

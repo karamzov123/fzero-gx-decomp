@@ -823,7 +823,7 @@ typedef struct {
 void fn_1_5948(u32 arg0) {
     struct Sig_fn_1_549F4_fn_1_549F4_Arg1 * lab_t1_;
     struct Sig_fn_1_549F4_Sig_fn_8006F1F0_fn_8006F1F0_Arg0 *lab_t0_;
-    register f32 v6;
+    f32 v6;
     f32 v7;
     Obj_1_bss_F68_Target **p_lbl_1_bss_F68;
     u8 *p_lbl_1_data_32A8;

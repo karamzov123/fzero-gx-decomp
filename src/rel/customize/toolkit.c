@@ -1457,7 +1457,7 @@ void fn_3_1A488(void) {
     struct { u32 a[4]; } loc_8;
     u32 t3;
     entries = (struct fn_3_1A488_lbl_1_bss_9F8_8_E20 *)((u8 *)&(*(struct fn_3_1A488_lbl_1_bss_9F8 *)&lbl_1_bss_9F8) + 16);
-    v0 = *(u8 *)&lbl_3_bss_A2438.unk_0;
+    v0 = lbl_3_bss_A2438.unk_0;
     if ((entries[v0].unk_0 & 1) != 0 ||
         (((1) & (*(u16 *)((u8 *)&(*(struct fn_3_1A488_lbl_1_bss_9F8 *)&lbl_1_bss_9F8) + v0 * 20 + 18)))) != 0) {
         Obj_3_bss_A2438 *st = &lbl_3_bss_A2438;
@@ -1493,7 +1493,7 @@ void fn_3_1A488(void) {
     }
     {
         Obj_3_bss_A2438 *st = &lbl_3_bss_A2438;
-        v2 = (u16)((*(u8 *)&st->unk_0)[entries]).unk_0;
+        v2 = (u16)((st->unk_0)[entries]).unk_0;
         if (((v2 >> 9) & 1) != 0 ||
             (st->unk_10 == 0 && ((v2 >> 8) & 1) != 0)) {
             fn_1_A2D84(0xA9150500);
@@ -7037,7 +7037,7 @@ void fn_3_21300(s16 arg0, s16 arg1, s16 arg2) {
     s32 xpos8;
     s16 flag2;
     f32 rowX;
-    register Obj_3_bss_F0 *p_lbl_3_bss_F0;
+    Obj_3_bss_F0 *p_lbl_3_bss_F0;
 
     p_lbl_3_bss_F0 = &lbl_3_bss_F0;
     v0 = p_lbl_3_bss_F0->unk_A;

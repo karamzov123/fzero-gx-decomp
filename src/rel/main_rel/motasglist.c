@@ -2419,7 +2419,7 @@ void fn_1_43E08(Obj *object, Entry *entry, u16 frameA, u16 frameB, f32 value) {
     {
         f32 z, y, x;
         /* volatile read keeps x's load ahead of y and z, as retail schedules it */
-        x = *(f32 *)&pos.x;
+        x = pos.x;
         y = pos.y;
         z = pos.z;
         LC_MTX[3] = x;

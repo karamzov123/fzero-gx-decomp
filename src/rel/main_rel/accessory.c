@@ -12338,7 +12338,7 @@ void fn_1_11677C(void *arg0) {
     u32 v13, v14, v15;
     s32 v20;
     f32 v25, v38, v34, v35, v36, v37, v33, v39, v29, v28, v40;
-    register u8 *v46;
+    u8 *v46;
     s32 v41, v42;
     u32 v43, v44;
     f32 v45, v47, v48, v49, v50, v52;
@@ -12455,10 +12455,10 @@ void fn_1_11677C(void *arg0) {
     lab_t0 = (Vec3 *)&loc_9C;
     lbl_8006DBAC(lab_t0);
     {
-    register u8 *v46;
-    register u32 v4;
+    u8 *v46;
+    u32 v4;
     {
-    register u8 *v4;
+    u8 *v4;
     v4 = *(u8 **)((u8 *)arg0 + 36);
     v41 = 0;
     while ((u32)v41 < *(u32 *)((u8 *)arg0 + 24)) {
@@ -12474,7 +12474,7 @@ void fn_1_11677C(void *arg0) {
     lbl_8006E0B4(-*(f32 *)((u8 *)v3 + 16), -*(f32 *)((u8 *)v3 + 20), -*(f32 *)((u8 *)v3 + 24));
     }
     {
-    register u8 *v4;
+    u8 *v4;
     v4 = *(u8 **)((u8 *)arg0 + 36);
     v42 = 0;
     while ((u32)v42 < *(u32 *)((u8 *)arg0 + 24)) {
@@ -20361,8 +20361,8 @@ void fn_1_123050(SimRope *r) {
     u32 i;
     u8 *bone, *vertices;
     s32 j;
-    register u32 iterations_value;
-    register u32 solve_iterations;
+    u32 iterations_value;
+    u32 solve_iterations;
     u8 *literal_pool;
     u32 compress_count, pass, ndiv;
     f32 headx, heady, zero, leftx, rightx, chesty, arm_x, arm_y, outerx, lowx, lowy;
@@ -22288,9 +22288,9 @@ void fn_1_126DE8(Sig_fn_1_10846C_Obj10846C *obj) {
  u32 i,k,j,edgeCount,offset;
  Group *p;
  u32 width;
- register Group *q,*row;
+ Group *q,*row;
  u32 n;
- register u32 j2;
+ u32 j2;
  if (!obj) return;
  if (*(s32 *)((u8 *)obj->config+0x88)==27) width=13;
  else if (*(s32 *)((u8 *)obj->config+0x88)==4) width=15;
@@ -22325,7 +22325,7 @@ void fn_1_126DE8(Sig_fn_1_10846C_Obj10846C *obj) {
  Group *bb[1];
  for(kk[0]=0,bb[0]=obj->groups;kk[0]<obj->groupCount/width;kk[0]++,bb[0]+=width) {
   for(i=0,p=bb[0];i<width;i++,p++) {
-   register Group *zQ;
+   Group *zQ;
    for(j2=i+1,zQ=p+1;j2<width;j2++,zQ++)
     if(p->p10.z<zQ->p10.z) fn_1_128884(p,zQ,0x44);
   }

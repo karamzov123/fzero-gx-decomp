@@ -5438,7 +5438,7 @@ extern void fn_8006E2B0(Fn5D91CVec *, Fn5D91CVec *);
 static inline void set_translation(Fn5D91CObj *obj) {
     f32 x, y, z;
     /* volatile: keeps x's load first (locked-cache column idiom). */
-    x = *(f32 *)&obj->unk_94;
+    x = obj->unk_94;
     y = obj->unk_98;
     z = obj->unk_9c;
     *(f32 *)(0xE0000000 + 0x0C) = x;
@@ -7695,7 +7695,7 @@ f64 v26,v25,v24;
 f64 v31;
 f32 v33,v40,v41,v42,v50,v49,v48,v43,v55,v60,v61,v20,v62,v63;
 f32 t2,t4,t5,t6,t33,t41,lz;
-register u32 v52;
+u32 v52;
 u32 v54,v76;
 Fn5EB98Vertex verts[16];
 struct { u32 a[12]; } loc_DC;
@@ -10469,7 +10469,7 @@ void fn_1_60F84(fn_1_60F84_Effect *obj)
     if (obj->age < 20) {
         t = 1.0f + (f32)(-0.05f * (f32)obj->age);
         /* the common factor is CSE'd by the compiler; a named local would
-           coalesce it with the chain and move the color load's register */
+           coalesce it with the chain and move the color load's */
         obj->color_1c = obj->color_1c * (1.0f - t);
         obj->color_20 = obj->color_20 * (1.0f - t);
         obj->color_24 = obj->color_24 * (1.0f - t);
@@ -15158,7 +15158,7 @@ void fn_1_638E8(struct fn_1_638E8_Arg0 *arg0) {
     f32 v48, v50, v51, v53;
     f32 v57, v58, v59;
     f32 v54, v55;
-    register f32 v61;
+    f32 v61;
     struct { f32 a[12]; } loc_80;
     struct { u32 a[12]; } loc_50;
     struct Sig_fn_1_9EA94_fn_1_9EA94_Arg0 loc_38;
@@ -15307,7 +15307,7 @@ void fn_1_638E8(struct fn_1_638E8_Arg0 *arg0) {
         locked[7] = loc_14.y;
         locked[11] = loc_14.z;
         if (fn_1_54E34((void *)(v42 + 8), v54) != 0) {
-            register f32 y;
+            f32 y;
             y = loc_14.y;
             v61 = loc_14.x * loc_14.x;
             v61 = __fmadds(y, y, v61);
@@ -17357,8 +17357,8 @@ void fn_1_652F4(fn_1_652F4_Effect *effect) {
     ParticleData data;
     fn_1_652F4_EffectData *object;
     void *owner;
-    register f32 color_scale;
-    register f32 scale;
+    f32 color_scale;
+    f32 scale;
     void *manager;
     s16 level;
 
@@ -17477,7 +17477,7 @@ static inline void advance_particle654B0(Particle654B0 *p)
 static inline u32 random_bits654B0(void)
 {
     /* fzgx-allow: shared generator accesses retain their volatile ordering. */
-    return ((*(u32 *)&lbl_1_data_1D628 = *(u32 *)&lbl_1_data_1D628 * 0x41C64E6D + 12345) >> 16) & 0x7FFFu;
+    return ((lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41C64E6D + 12345) >> 16) & 0x7FFFu;
 }
 
 static inline f32 random_float654B0(f32 bits)

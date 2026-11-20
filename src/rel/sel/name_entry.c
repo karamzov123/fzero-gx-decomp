@@ -854,7 +854,7 @@ lbl_10_bss_55CD8->unk_F = 0;
 }
 }
 {
-register Obj_10_bss_55CD8_Target **ref = &lbl_10_bss_55CD8;
+Obj_10_bss_55CD8_Target **ref = &lbl_10_bss_55CD8;
 /* Observe the shared state pointer independently before this update stage. */
 Obj_10_bss_55CD8_Target *before = *(Obj_10_bss_55CD8_Target **)ref;
 Obj_10_bss_55CD8_Target *after;
@@ -874,7 +874,7 @@ after->unk_10 = 1;
 }
 }
 {
-register Obj_10_bss_55CD8_Target **smoothRef = &lbl_10_bss_55CD8;
+Obj_10_bss_55CD8_Target **smoothRef = &lbl_10_bss_55CD8;
 /* Observe the shared state pointer again for the animation update. */
 Obj_10_bss_55CD8_Target *phase = *(Obj_10_bss_55CD8_Target **)smoothRef;
 u32 old12;

@@ -78,8 +78,8 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_1_bss_7ACD8;
     s = *(u8 *)&lbl_1_bss_7ACDC;
     s = *(u8 *)&lbl_1_bss_7ACE0;
-    s = *(u8 *)&lbl_1_bss_7ACE0__fzgx_offset_4;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_7ACE5;
+    s = lbl_1_bss_7ACE0__fzgx_offset_4;
+    s = fzgx_obj_lbl_1_bss_7ACE5;
     s = *(u8 *)&fzgx_pool_lbl_1_bss_7ACD8_gap_7ACE6;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_7ACE8;
 }

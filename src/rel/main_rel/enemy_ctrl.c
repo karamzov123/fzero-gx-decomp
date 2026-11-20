@@ -6449,7 +6449,7 @@ f32 phase;
 f32 t0;
 int t5;
 t0 = lbl_8006D21C((s32)(f32)(lbl_1_rodata_606C * (f32)(lbl_1_rodata_5CB0 * arg0)));
-loc_20 = *(FontDrawPacket *)&lbl_1_rodata_26F8;
+loc_20 = lbl_1_rodata_26F8;
 loc_20.image = (0x10000 - 27611);
 fn_1_51564(0, 0, 16, 14, 2, 5);
 p_lbl_1_bss_3C30 = &lbl_1_bss_3C30;
@@ -6469,7 +6469,7 @@ v7 = 0;
 v8 = (Fn183D28Vec3 *)&lbl_1_bss_3C30;
 do {
 if ((p_lbl_1_bss_3C30->unk_1405 & (1 << v7)) != 0) {
-loc_20 = *(FontDrawPacket *)&lbl_1_rodata_26F8;
+loc_20 = lbl_1_rodata_26F8;
 v9 = lbl_801A66A0 >> 5;
 v12 = v7 + (v5 - v9 % v5);
 loc_20.image = 0x9425;
@@ -6505,7 +6505,7 @@ phase = (f32)((lbl_801A66A0 - ((v18 * 60U) >> 1)) % ((fn_1_EB0B0() * 60U) >> 1))
 phase /= (f32)((fn_1_EB0B0() * 60U) >> 1);
 phase = phase * lbl_1_rodata_6070;
 fn_1_51564(0, 0, 8, 14, 4, 5);
-loc_20 = *(FontDrawPacket *)&lbl_1_rodata_26F8;
+loc_20 = lbl_1_rodata_26F8;
 loc_20.image = (0x10000 - 27611);
 fn_1_5158C(&loc_20, loc_20.image, 2, 2);
 loc_20.z = lbl_1_rodata_26F8.z - phase;
@@ -6514,7 +6514,7 @@ loc_20.x = (arg1 + loc_8.value0) - lbl_1_rodata_5DCC;
 loc_20.y = arg2 + loc_8.value1;
 loc_20.flags = 10;
 fn_1_4F734(&loc_20);
-loc_20 = *(FontDrawPacket *)&lbl_1_rodata_26F8;
+loc_20 = lbl_1_rodata_26F8;
 v11 = v18 + 3;
 loc_20.image = (0x10000 - 27611);
 v14 = v11 & 3;

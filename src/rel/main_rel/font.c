@@ -799,11 +799,11 @@ void fn_1_48D80(fn_1_48D80_Sprite *sprite) {
     f32 u1;
     f32 t0;
     f32 t1;
-    register f32 m2;
-    register f32 m1;
-    register f32 m0;
+    f32 m2;
+    f32 m1;
+    f32 m0;
     f64 half;
-    register f32 offset;
+    f32 offset;
     u32 screenH;
 
     v0 = initialV0;
@@ -3000,7 +3000,7 @@ void fn_1_4BD4C(u32 unused0, u32 unused1, u32 unused2) {
         prev_unk_4 = sp30->unk_4;
         max_page = ((s32 *)&lbl_1_bss_40BBC)[sp30->unk_0] / page_size;
         if (((p_d58[8] >> 2) & 1) != 0) {
-            if ((s8)++(*(s8 *)&(sp30->unk_4)) > max_page) {
+            if ((s8)++(sp30->unk_4) > max_page) {
                 sp30->unk_4 = 0;
             }
         }
@@ -5772,7 +5772,7 @@ void fn_1_4EDAC(FontDrawPacket *arg0, f32 arg1, f32 arg2) {
         /* volatile: preserve the retail RGB channel read order. */
         green = *(volatile u8 *)&packet->color.g;
         /* volatile: preserve the retail RGB channel read order. */
-        blue = *(u8 *)&packet->color.b;
+        blue = packet->color.b;
         /* volatile: retain the retail red-before-green stack stores. */
         *(volatile u8 *)&color.r = red;
         /* volatile: retain the retail red-before-green stack stores. */
@@ -6084,7 +6084,7 @@ void fn_1_4FD64(f32 arg0) {
         if (fl & 0x400000) {
             fn_1_48D80((u32)e);
         } else if (fl & 0x800000) {
-            if (*(u32 *)&e->unk_30 & 0x2000000) continue;
+            if (e->unk_30 & 0x2000000) continue;
             {
                 f32 sc = fn_1_519AC(e->unk_40);
                 sc = (f32)e->unk_44 * sc;
@@ -6097,7 +6097,7 @@ void fn_1_4FD64(f32 arg0) {
                 fn_1_4EDAC((FontDrawPacket *)e, (f32)e->unk_44, (f32)e->unk_46);
             }
         } else {
-            if (*(u32 *)&e->unk_30 & 0x2000000) continue;
+            if (e->unk_30 & 0x2000000) continue;
             {
                 u32 pk;
                 BitmapImages *q;

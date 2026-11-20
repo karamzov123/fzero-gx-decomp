@@ -517,14 +517,14 @@ static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_8EF20;
     s = *(u8 *)&lbl_1_bss_8EF20__fzgx_offset_4;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_8EF68;
-    s = *(u8 *)&lbl_1_bss_8EF68__fzgx_offset_1;
+    s = fzgx_obj_lbl_1_bss_8EF68;
+    s = lbl_1_bss_8EF68__fzgx_offset_1;
     s = *(u8 *)&lbl_1_bss_8EF68__fzgx_offset_2;
     s = *(u8 *)&lbl_1_bss_8EF68__fzgx_offset_4;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_8F3E0;
     s = *(u8 *)&lbl_1_bss_8F3E4__fzgx_offset_0;
     s = *(u8 *)&lbl_1_bss_8F3E4__fzgx_offset_4;
-    s = *(u8 *)&lbl_1_bss_8F3E4__fzgx_offset_15;
+    s = lbl_1_bss_8F3E4__fzgx_offset_15;
     s = *(u8 *)&lbl_1_bss_8F3E4__fzgx_offset_16;
     s = *(u8 *)&lbl_1_bss_8F3FC;
     s = *(u8 *)&lbl_1_bss_8F420;

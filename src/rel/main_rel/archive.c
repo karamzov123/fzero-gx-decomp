@@ -155,7 +155,7 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_1_bss_897A4;
     s = *(u8 *)&lbl_1_bss_897A8;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_897AC;
-    s = *(u8 *)&lbl_1_bss_897AC__fzgx_offset_1;
+    s = lbl_1_bss_897AC__fzgx_offset_1;
     s = *(u8 *)&lbl_1_bss_897AC__fzgx_offset_2;
     s = *(u8 *)&lbl_1_bss_897AC__fzgx_offset_4;
     s = *(u8 *)&lbl_1_bss_897AC__fzgx_offset_1B14;
@@ -334,7 +334,7 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&lbl_1_bss_897A4;
     s = *(u8 *)&lbl_1_bss_897A8;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_897AC;
-    s = *(u8 *)&lbl_1_bss_897AC__fzgx_offset_1;
+    s = lbl_1_bss_897AC__fzgx_offset_1;
     s = *(u8 *)&lbl_1_bss_897AC__fzgx_offset_2;
     s = *(u8 *)&lbl_1_bss_897AC__fzgx_offset_4;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_8B2E0;

@@ -3000,7 +3000,7 @@ void fn_1_A89B0(fn_1_A89B0_Obj *obj, fn_1_A89B0_Arg1 *arg1, s32 side) {
 
     lbl_8006D758();
     /* Keep the source translation loads ordered before locked-cache writes. */
-    tx = *(f32 *)&ofs->x;
+    tx = ofs->x;
     ty = ofs->y;
     tz = ofs->z;
     MTXA[0][3] = tx;
@@ -3858,19 +3858,19 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_1_bss_71808;
     s = *(u8 *)&lbl_1_bss_7180C;
     s = *(u8 *)&lbl_1_bss_71810;
-    s = *(u8 *)&lbl_1_bss_71810__fzgx_offset_A0;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_718B1;
+    s = lbl_1_bss_71810__fzgx_offset_A0;
+    s = fzgx_obj_lbl_1_bss_718B1;
     s = *(u8 *)&fzgx_pool_lbl_1_bss_716C0_gap_718B2;
     s = *(u8 *)&fzgx_pool_lbl_1_bss_716C0_gap_718B2_fill_718B3;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_718B4;
-    s = *(u8 *)&lbl_1_bss_718B8;
-    s = *(u8 *)&lbl_1_bss_718B8__fzgx_offset_1;
+    s = lbl_1_bss_718B8;
+    s = lbl_1_bss_718B8__fzgx_offset_1;
     s = *(u8 *)&lbl_1_bss_718B9__fzgx_offset_1;
     s = *(u8 *)&lbl_1_bss_718B9__fzgx_offset_3;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_718C0;
     s = *(u8 *)&lbl_1_bss_718C0__fzgx_offset_4;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_718E0;
-    s = *(u8 *)&lbl_1_bss_718E0__fzgx_offset_1;
+    s = fzgx_obj_lbl_1_bss_718E0;
+    s = lbl_1_bss_718E0__fzgx_offset_1;
     s = *(u8 *)&lbl_1_bss_718E0__fzgx_offset_2;
     s = *(u8 *)&lbl_1_bss_718E0__fzgx_offset_4;
     s = *(u8 *)&lbl_1_bss_718E0__fzgx_offset_59E0;
@@ -4187,21 +4187,21 @@ u16 lbl_1_bss_772C8__fzgx_offset_40;
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_716C0;
-    s = *(u8 *)&lbl_1_bss_716C0__fzgx_offset_1;
+    s = fzgx_obj_lbl_1_bss_716C0;
+    s = lbl_1_bss_716C0__fzgx_offset_1;
     s = *(u8 *)&lbl_1_bss_716C0__fzgx_offset_2;
     s = *(u8 *)&lbl_1_bss_716C0__fzgx_offset_4;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_716C8;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_71808;
     s = *(u8 *)&lbl_1_bss_7180C;
     s = *(u8 *)&lbl_1_bss_71810;
-    s = *(u8 *)&lbl_1_bss_71810__fzgx_offset_A0;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_718B1;
+    s = lbl_1_bss_71810__fzgx_offset_A0;
+    s = fzgx_obj_lbl_1_bss_718B1;
     s = *(u8 *)&fzgx_pool_lbl_1_bss_716C0_gap_718B2;
     s = *(u8 *)&fzgx_pool_lbl_1_bss_716C0_gap_718B2_fill_718B3;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_718B4;
-    s = *(u8 *)&lbl_1_bss_718B8;
-    s = *(u8 *)&lbl_1_bss_718B8__fzgx_offset_1;
+    s = lbl_1_bss_718B8;
+    s = lbl_1_bss_718B8__fzgx_offset_1;
     s = *(u8 *)&lbl_1_bss_718B9__fzgx_offset_1;
     s = *(u8 *)&lbl_1_bss_718B9__fzgx_offset_3;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_718C0;
@@ -6185,12 +6185,12 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&lbl_1_bss_71808__fzgx_offset_0;
     /* Native section-order primer. */ (void)*(volatile u8 *)&lbl_1_bss_7180C__fzgx_offset_0;
     s = *(u8 *)&lbl_1_bss_71810;
-    s = *(u8 *)&lbl_1_bss_71810__fzgx_offset_A0;
-    s = *(u8 *)&lbl_1_bss_718B1;
-    s = *(u8 *)&lbl_1_bss_718B2;
+    s = lbl_1_bss_71810__fzgx_offset_A0;
+    s = lbl_1_bss_718B1;
+    s = lbl_1_bss_718B2;
     s = *(u8 *)&fzgx_pool_lbl_1_bss_718B3;
     s = *(u8 *)&fzgx_pool_lbl_1_bss_718B4_fill;
-    s = *(u8 *)&lbl_1_bss_772C8__fzgx_offset_40;
+    s = lbl_1_bss_772C8__fzgx_offset_40;
 }
 #pragma section code_type ".text"
 

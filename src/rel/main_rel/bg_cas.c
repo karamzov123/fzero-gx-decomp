@@ -5254,7 +5254,7 @@ static inline s32 fn_1_FFE7C_less_equal(s32 quota, s32 index) {
 void fn_1_FFE7C(void * arg0) {
     struct fn_1_FFE7C_lbl_1_rodata_76A8 *p_lbl_1_rodata_76A8;
     f32 v0;
-    register f32 dz;
+    f32 dz;
     f32 v1;
     f32 v2;
     f64 v3;

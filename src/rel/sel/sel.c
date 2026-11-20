@@ -22943,8 +22943,7 @@ void fn_10_1615C(struct Sig_fn_10_18A50_fn_10_18A50_Arg0 *arg0,s32 arg1) {
  #define c6d8 (*(const struct fn_10_1615C_Color *)fzgx_pool_init_fzgx_pool_table59.v)
  const u32 *poolResources = fzgx_pool_init_fzgx_pool_table1.v;
  const u32 *resourceTable = fzgx_pool_init_fzgx_pool_table1.v;
- register 
- s32 v3;
+  s32 v3;
  f32 v5;
  s32 v18;
  u32 color;
@@ -22964,7 +22963,7 @@ void fn_10_1615C(struct Sig_fn_10_18A50_fn_10_18A50_Arg0 *arg0,s32 arg1) {
  s16 t;
  f32 fade;
  s32 active;
- register s64 sx;
+ s64 sx;
  fn_1_12EF80(lbl_10_bss_5568C,&loc_A,&loc_8);
  RESET();
  {
@@ -40066,12 +40065,12 @@ s32 lbl_10_bss_55B04__fzgx_offset_28;
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
-    s = *(u8 *)&fzgx_obj_lbl_10_bss_55680;
+    s = fzgx_obj_lbl_10_bss_55680;
     s = *(u8 *)&fzgx_pool_lbl_10_bss_55680_gap_55681;
     s = *(u8 *)&fzgx_pool_lbl_10_bss_55680_gap_55681_fill_55682;
     s = *(u8 *)&lbl_10_bss_55684;
     s = *(u8 *)&lbl_10_bss_55688;
-    s = *(u8 *)&fzgx_obj_lbl_10_bss_5568C;
+    s = fzgx_obj_lbl_10_bss_5568C;
     s = *(u8 *)&fzgx_pool_lbl_10_bss_55680_gap_5568D;
     s = *(u8 *)&fzgx_pool_lbl_10_bss_55680_gap_5568D_fill_5568E;
     s = *(u8 *)&fzgx_obj_lbl_10_bss_55690;

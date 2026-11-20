@@ -514,15 +514,15 @@ u32 lbl_1_bss_3DD28__fzgx_offset_28C[16];
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_384C0;
-    s = *(u8 *)&lbl_1_bss_384C0__fzgx_offset_1;
+    s = fzgx_obj_lbl_1_bss_384C0;
+    s = lbl_1_bss_384C0__fzgx_offset_1;
     s = *(u8 *)&lbl_1_bss_384C0__fzgx_offset_2;
     s = *(u8 *)&lbl_1_bss_384C4;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_384C8;
     s = *(u8 *)&lbl_1_bss_384CC;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_384D0;
-    s = *(u8 *)&lbl_1_bss_384D0__fzgx_offset_4;
-    s = *(u8 *)&lbl_1_bss_384D0__fzgx_offset_5;
+    s = lbl_1_bss_384D0__fzgx_offset_4;
+    s = lbl_1_bss_384D0__fzgx_offset_5;
     s = *(u8 *)&lbl_1_bss_384D0__fzgx_offset_6;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_384D8;
     s = *(u8 *)&lbl_1_bss_3DCD8;
@@ -599,19 +599,19 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_1_bss_384C8;
     s = *(u8 *)&lbl_1_bss_384CC;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_384D0;
-    s = *(u8 *)&lbl_1_bss_384D0__fzgx_offset_4;
-    s = *(u8 *)&lbl_1_bss_384D0__fzgx_offset_5;
+    s = lbl_1_bss_384D0__fzgx_offset_4;
+    s = lbl_1_bss_384D0__fzgx_offset_5;
     s = *(u8 *)&lbl_1_bss_384D0__fzgx_offset_6;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_384D8;
     s = *(u8 *)&lbl_1_bss_3DCD8;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_3DCDC;
-    s = *(u8 *)&lbl_1_bss_3DCE4;
-    s = *(u8 *)&lbl_1_bss_3DCE4__fzgx_offset_1;
+    s = lbl_1_bss_3DCE4;
+    s = lbl_1_bss_3DCE4__fzgx_offset_1;
     s = *(u8 *)&lbl_1_bss_3DCE4__fzgx_offset_2;
     s = *(u8 *)&lbl_1_bss_3DCE4__fzgx_offset_4;
     s = *(u8 *)&lbl_1_bss_3DD28;
-    s = *(u8 *)&lbl_1_bss_3DD28__fzgx_offset_28C;
-    s = *(u8 *)&lbl_1_bss_3DD28__fzgx_offset_28D;
+    s = lbl_1_bss_3DD28__fzgx_offset_28C;
+    s = lbl_1_bss_3DD28__fzgx_offset_28D;
     s = *(u8 *)&lbl_1_bss_3DD28__fzgx_offset_28E;
     s = *(u8 *)&lbl_1_bss_3DD28__fzgx_offset_290;
 }
@@ -1767,8 +1767,8 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&lbl_1_bss_384CC;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_384D0;
     s = *(u8 *)&lbl_1_bss_384D8__fzgx_offset_0;
-    s = *(u8 *)&lbl_1_bss_384D8__fzgx_offset_4000;
-    s = *(u8 *)&lbl_1_bss_384D8__fzgx_offset_4001;
+    s = lbl_1_bss_384D8__fzgx_offset_4000;
+    s = lbl_1_bss_384D8__fzgx_offset_4001;
     s = *(u8 *)&lbl_1_bss_384D8__fzgx_offset_4002;
     s = *(u8 *)&lbl_1_bss_384D8__fzgx_offset_4004;
 }

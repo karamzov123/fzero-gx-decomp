@@ -3878,7 +3878,7 @@ void fn_1_18784(u32 arg0, Motion *a, Vec3 *b, void *c, f32 d)
         s2 = (cf->f28 != 0) ? fn_1_9E14C(cf->f04, cf->f28, d) : a->f18;
 {
     f32 bx;
-        bx = (*(f32 *)&(b->x));
+        bx = (b->x);
         sm = scx + s2;
         scx = scx * bx;
         tmp___fabs = __fabs(scx);
@@ -3898,10 +3898,10 @@ void fn_1_18784(u32 arg0, Motion *a, Vec3 *b, void *c, f32 d)
         p->f7c |= mask;
         if ((a->f00 & 0x800000) != 0 && a->f0c == 1) {
             Cfg *c2 = (*(Src **)&(a->f10))->cfg;
-            p->d0 = (*(f32 *)&(b->x));
+            p->d0 = (b->x);
             p->d1 = (c2->f28 != 0) ? fn_1_9E14C(c2->f04, c2->f28, d) : (*(Src **)&(a->f10))->f18;
         } else if ((a->f00 & 0x200000) == 0) {
-            p->d0 = (a->f00 & 0x400000) ? px : (*(f32 *)&(b->x));
+            p->d0 = (a->f00 & 0x400000) ? px : (b->x);
             p->d1 = pl->one;
         }
         if ((a->f00 & 0x400000) != 0) {
@@ -8467,7 +8467,7 @@ void fn_1_203E4(fn_1_203E4_Obj *obj, s32 noOut, Vec3 *out, f32 pos, f32 scale, f
         lbl_8006DC6C(obj);
         mtx = MTXA;
         /* Preserve the retail order of translation-column loads. */
-        tx = *(f32 *)&obj->unk_70;
+        tx = obj->unk_70;
         ty = obj->unk_74;
         tz = obj->unk_78;
         ((0)[mtx])[3] = tx;
@@ -8890,7 +8890,7 @@ s32 fn_1_20A5C(fn_1_20A5C_Vec *pos, f32 *out_t) {
                     ee = fn_1_20A5C_dot(&e, &e);
                     dist = lbl_8006D0B4(ee);
                 } else if (0.0f <= t && t <= 1.0f) {
-                    register f32 s = t;
+                    f32 s = t;
                     psvec_scale(&d, s, &lbl_801A66CC->delta);
                     psvec_add(&e, &lbl_801A66CC->delta, &e);
                     psvec_add(&rec->a, &lbl_801A66CC->delta, &closest);
@@ -9930,7 +9930,7 @@ void fn_1_21F18(StcoliDrawEntity *entity, f32 *scale, f32 time) {
     f32 half;
     f32 c;
     f32 zero;
-    register f32 t;
+    f32 t;
     StcoliCurveOwner *owner;
     StcoliCurveSrc *src;
 
@@ -9974,7 +9974,7 @@ void fn_1_21F18(StcoliDrawEntity *entity, f32 *scale, f32 time) {
         {
             /* Preserve the literal-component read order. */
             volatile StcoliPool6C8 *components = pool;
-            register f32 n = components->neg_half;
+            f32 n = components->neg_half;
             f32 z = components->zero;
             f32 x;
             f32 y = n + t;
@@ -14595,7 +14595,7 @@ void fn_1_266A8(CollisionObject *obj)
         }
     } else if (obj->flags & 0x10) {
         if (!(LENGTH(obj->velocity) / obj->scale < 0.046296296296296294)) {
-            register f32 len;
+            f32 len;
             lbl_8006E1F0(&up, 0.0f, 1.0f, 0.0f);
             k = lbl_8006D6FC(&up, &obj->normal);
             /* speed and dot are dead here; retail reuses their registers for
@@ -22220,7 +22220,7 @@ s32 fn_1_2BF8C(u32 arg0, f32 arg1) {
     f32 v0;
     f64 timer;
     f32 sy, sx;
-    register f32 sz;
+    f32 sz;
     u32 v1;
     u32 v2;
     u32 v3;
@@ -22731,13 +22731,13 @@ static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_3C00;
     s = *(u8 *)&fzgx_pool_gap_3C04;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_3C10;
+    s = fzgx_obj_lbl_1_bss_3C10;
     s = *(u8 *)&fzgx_pool_gap_3C11;
     s = *(u8 *)&fzgx_pool_gap_3C12;
     s = *(u8 *)&fzgx_pool_gap_3C13;
     s = *(u8 *)&fzgx_pool_gap_3C14;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_3C1C;
-    s = *(u8 *)&lbl_1_bss_3C1C__fzgx_offset_4;
+    s = lbl_1_bss_3C1C__fzgx_offset_4;
     s = *(u8 *)&fzgx_pool_gap_3C21;
     s = *(u8 *)&fzgx_pool_gap_3C22;
     s = *(u8 *)&fzgx_pool_gap_3C23;
@@ -22748,7 +22748,7 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_1_bss_3C30;
     s = *(u8 *)&fzgx_pool_gap_50EC;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_5100;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_5104;
+    s = fzgx_obj_lbl_1_bss_5104;
     s = *(u8 *)&fzgx_pool_gap_5105;
     s = *(u8 *)&fzgx_pool_gap_5106;
     s = *(u8 *)&fzgx_pool_gap_5107;
@@ -23118,8 +23118,8 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_1_bss_3C00;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_3C04;
     s = *(u8 *)&lbl_1_bss_3C08;
-    s = *(u8 *)&lbl_1_bss_3C10;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_3C11;
+    s = lbl_1_bss_3C10;
+    s = fzgx_obj_lbl_1_bss_3C11;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_3C12;
     s = *(u8 *)&lbl_1_bss_3C12__fzgx_offset_2;
     s = *(u8 *)&lbl_1_bss_3C12__fzgx_offset_4;
@@ -23134,11 +23134,11 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_1_bss_5100;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_5104;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_5138;
-    s = *(u8 *)&lbl_1_bss_5138__fzgx_offset_EC;
+    s = lbl_1_bss_5138__fzgx_offset_EC;
     s = *(u8 *)&lbl_1_bss_5138__fzgx_offset_F0;
     s = *(u8 *)&lbl_1_bss_5138__fzgx_offset_F4;
     s = *(u8 *)&lbl_1_bss_5138__fzgx_offset_F8;
-    s = *(u8 *)&lbl_1_bss_5138__fzgx_offset_FC;
+    s = lbl_1_bss_5138__fzgx_offset_FC;
     s = *(u8 *)&lbl_1_bss_5138__fzgx_offset_100;
 }
 #pragma section code_type ".text"
@@ -23962,10 +23962,10 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_1_bss_3C04;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_3C08;
     s = *(u8 *)&lbl_1_bss_3C08__fzgx_offset_4;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_3C10;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_3C11;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_3C12;
-    s = *(u8 *)&lbl_1_bss_3C12__fzgx_offset_1;
+    s = fzgx_obj_lbl_1_bss_3C10;
+    s = fzgx_obj_lbl_1_bss_3C11;
+    s = fzgx_obj_lbl_1_bss_3C12;
+    s = lbl_1_bss_3C12__fzgx_offset_1;
     s = *(u8 *)&lbl_1_bss_3C12__fzgx_offset_2;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_3C1C;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_3C2A;
@@ -24813,8 +24813,8 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_1_bss_3C04;
     s = *(u8 *)&lbl_1_bss_3C08__fzgx_offset_0;
     s = *(u8 *)&lbl_1_bss_3C08__fzgx_offset_4;
-    s = *(u8 *)&lbl_1_bss_3C10;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_3C11;
+    s = lbl_1_bss_3C10;
+    s = fzgx_obj_lbl_1_bss_3C11;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_3C12;
     s = *(u8 *)&lbl_1_bss_3C12__fzgx_offset_2;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_3C1C;
@@ -25373,7 +25373,7 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_pool_gap_3C04;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_3C30;
     s = *(u8 *)&fzgx_pool_gap_50EC;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_5104;
+    s = fzgx_obj_lbl_1_bss_5104;
     s = *(u8 *)&fzgx_pool_gap_5105;
     s = *(u8 *)&fzgx_pool_gap_5106;
     s = *(u8 *)&fzgx_pool_gap_5107;
@@ -25384,7 +25384,7 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_pool_gap_25BE4;
     s = *(u8 *)&lbl_1_bss_25BA0__fzgx_offset_46;
     s = *(u8 *)&lbl_1_bss_25BA0__fzgx_offset_48;
-    s = *(u8 *)&lbl_1_bss_25BA0__fzgx_offset_4A;
+    s = lbl_1_bss_25BA0__fzgx_offset_4A;
     s = *(u8 *)&fzgx_pool_gap_25BEB;
     s = *(u8 *)&lbl_1_bss_25BA0__fzgx_offset_4C;
     s = *(u8 *)&lbl_1_bss_25BA0__fzgx_offset_50;
@@ -25634,7 +25634,7 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_1_bss_3C00;
     s = *(u8 *)&fzgx_pool_gap_3C04;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_3C1C;
-    s = *(u8 *)&lbl_1_bss_3C1C__fzgx_offset_4;
+    s = lbl_1_bss_3C1C__fzgx_offset_4;
     s = *(u8 *)&fzgx_pool_gap_3C21;
     s = *(u8 *)&fzgx_pool_gap_3C22;
     s = *(u8 *)&fzgx_pool_gap_3C23;
@@ -25643,18 +25643,18 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_pool_gap_3C2C;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_3C30;
     s = *(u8 *)&fzgx_pool_gap_50EC;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_5104;
+    s = fzgx_obj_lbl_1_bss_5104;
     s = *(u8 *)&fzgx_pool_gap_5105;
     s = *(u8 *)&fzgx_pool_gap_5106;
     s = *(u8 *)&fzgx_pool_gap_5107;
     s = *(u8 *)&fzgx_pool_gap_5108;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_5138;
-    s = *(u8 *)&lbl_1_bss_5138__fzgx_offset_EC;
+    s = lbl_1_bss_5138__fzgx_offset_EC;
     s = *(u8 *)&fzgx_pool_gap_5225;
     s = *(u8 *)&fzgx_pool_gap_5226;
     s = *(u8 *)&fzgx_pool_gap_5227;
     s = *(u8 *)&fzgx_pool_gap_5228;
-    s = *(u8 *)&lbl_1_bss_5138__fzgx_offset_FC;
+    s = lbl_1_bss_5138__fzgx_offset_FC;
     s = *(u8 *)&fzgx_pool_gap_5235;
     s = *(u8 *)&fzgx_pool_gap_5236;
     s = *(u8 *)&fzgx_pool_gap_5237;
@@ -25896,7 +25896,7 @@ static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_3C00;
     s = *(u8 *)&fzgx_pool_gap_3C04;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_5104;
+    s = fzgx_obj_lbl_1_bss_5104;
     s = *(u8 *)&fzgx_pool_gap_5105;
     s = *(u8 *)&fzgx_pool_gap_5106;
     s = *(u8 *)&fzgx_pool_gap_5107;

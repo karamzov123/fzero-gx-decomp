@@ -1819,12 +1819,12 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_1_bss_1148;
     s = *(u8 *)&lbl_1_bss_1148__fzgx_offset_8;
     s = *(u8 *)&lbl_1_bss_1148__fzgx_offset_C;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_115C;
+    s = fzgx_obj_lbl_1_bss_115C;
     s = *(u8 *)&fzgx_pool_gap_bss_115D;
     s = *(u8 *)&fzgx_pool_lbl_1_bss_1148_gap_115D_fill_115E;
     s = *(u8 *)&lbl_1_bss_1160;
     s = *(u8 *)&lbl_1_bss_1160__fzgx_offset_C;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_17AC;
+    s = fzgx_obj_lbl_1_bss_17AC;
     s = *(u8 *)&fzgx_pool_gap_bss_17AD;
     s = *(u8 *)&fzgx_pool_lbl_1_bss_1148_gap_17AD_fill_17AE;
 }
@@ -3096,7 +3096,7 @@ __declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
     volatile u8 s;  /* fzgx-allow: S2 pool primer sink */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_1148;
     s = *(u8 *)&fzgx_pool_gap_115C;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_17B4;
+    s = fzgx_obj_lbl_1_bss_17B4;
     s = *(u8 *)&fzgx_pool_fzgx_obj_lbl_1_bss_17B4__b1;
     s = *(u8 *)&fzgx_pool_fzgx_obj_lbl_1_bss_17B4__b2;
     s = *(u8 *)&fzgx_pool_fzgx_obj_lbl_1_bss_17B4__b3;
@@ -3375,7 +3375,7 @@ __declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
     volatile u8 s;  /* fzgx-allow: S2 pool primer sink */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_1148;
     s = *(u8 *)&fzgx_pool_gap_115C;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_17B4;
+    s = fzgx_obj_lbl_1_bss_17B4;
     s = *(u8 *)&fzgx_pool_fzgx_obj_lbl_1_bss_17B4__b1;
     s = *(u8 *)&fzgx_pool_fzgx_obj_lbl_1_bss_17B4__b2;
     s = *(u8 *)&fzgx_pool_fzgx_obj_lbl_1_bss_17B4__b3;
@@ -3707,7 +3707,7 @@ void fn_1_1138C(Cam *c)
         f32 ay;
         f32 ax;
         /* Read the translation column before updating locked cache. */
-        ax = *(f32 *)&a.x;
+        ax = a.x;
         ay = a.y;
         az = a.z;
         *(f32 *)(0xE000000C) = ax;

@@ -2307,7 +2307,7 @@ void fn_1_772E0(void) {
     values[2] = *(const f32 *)&lbl_1_rodata_31A0;
     values[3] = lbl_1_rodata_31B0[0] * first[8];
     values[4] = lbl_1_rodata_31B0[0] * first[9];
-    values[5] = *(const f32 *)&lbl_1_rodata_31A0;
+    values[5] = lbl_1_rodata_31A0;
     fn_80073A58(1, values, 1);
     fn_800739E0(0, 0, 0);
     lbl_8006D784(second);

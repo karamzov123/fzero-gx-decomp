@@ -59,7 +59,7 @@ static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_7EFD0;
     s = *(u8 *)&fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD2;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_7EFD4;
+    s = fzgx_obj_lbl_1_bss_7EFD4;
     s = *(u8 *)&fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5;
     s = *(u8 *)&fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5_fill_7EFD6;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_7EFD8;
@@ -153,7 +153,7 @@ static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_7EFD0;
     s = *(u8 *)&fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD2;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_7EFD4;
+    s = fzgx_obj_lbl_1_bss_7EFD4;
     s = *(u8 *)&fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5;
     s = *(u8 *)&fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5_fill_7EFD6;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_7EFD8;
@@ -360,7 +360,7 @@ static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_7EFD0;
     s = *(u8 *)&fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD2;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_7EFD4;
+    s = fzgx_obj_lbl_1_bss_7EFD4;
     s = *(u8 *)&fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5;
     s = *(u8 *)&fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5_fill_7EFD6;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_7EFD8;
@@ -415,7 +415,7 @@ static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_7EFD0;
     s = *(u8 *)&fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD2;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_7EFD4;
+    s = fzgx_obj_lbl_1_bss_7EFD4;
     s = *(u8 *)&fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5;
     s = *(u8 *)&fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5_fill_7EFD6;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_7EFD8;

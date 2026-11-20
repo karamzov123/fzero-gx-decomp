@@ -224,20 +224,20 @@ u32 fzgx_obj_lbl_1_bss_8FDA8[53];
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_8F8E0;
-    s = *(u8 *)&lbl_1_bss_8F8E0__fzgx_offset_1;
+    s = fzgx_obj_lbl_1_bss_8F8E0;
+    s = lbl_1_bss_8F8E0__fzgx_offset_1;
     s = *(u8 *)&lbl_1_bss_8F8E0__fzgx_offset_2;
     s = *(u8 *)&lbl_1_bss_8F8E0__fzgx_offset_4;
-    s = *(u8 *)&lbl_1_bss_8F8E0__fzgx_offset_20;
-    s = *(u8 *)&lbl_1_bss_8F8E0__fzgx_offset_21;
+    s = lbl_1_bss_8F8E0__fzgx_offset_20;
+    s = lbl_1_bss_8F8E0__fzgx_offset_21;
     s = *(u8 *)&lbl_1_bss_8F8E0__fzgx_offset_22;
     s = *(u8 *)&lbl_1_bss_8F8E0__fzgx_offset_24;
-    s = *(u8 *)&lbl_1_bss_8F980;
-    s = *(u8 *)&lbl_1_bss_8F980__fzgx_offset_1;
+    s = lbl_1_bss_8F980;
+    s = lbl_1_bss_8F980__fzgx_offset_1;
     s = *(u8 *)&lbl_1_bss_8F980__fzgx_offset_2;
     s = *(u8 *)&lbl_1_bss_8F980__fzgx_offset_4;
-    s = *(u8 *)&lbl_1_bss_8F9A0;
-    s = *(u8 *)&lbl_1_bss_8F9A0__fzgx_offset_1;
+    s = lbl_1_bss_8F9A0;
+    s = lbl_1_bss_8F9A0__fzgx_offset_1;
     s = *(u8 *)&lbl_1_bss_8F9A0__fzgx_offset_2;
     s = *(u8 *)&lbl_1_bss_8F9A0__fzgx_offset_4;
     s = *(u8 *)&lbl_1_bss_8FD60;
@@ -1516,7 +1516,7 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_1_bss_8FD68;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_8FDA8;
     s = *(u8 *)&lbl_1_bss_8FDA8__fzgx_offset_D0;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_8FE7C;
+    s = fzgx_obj_lbl_1_bss_8FE7C;
 }
 #pragma section code_type ".text"
 
@@ -1612,7 +1612,7 @@ static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_8FD68;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_8FDA8;
-    s = *(u8 *)&lbl_1_bss_8FE7C;
+    s = lbl_1_bss_8FE7C;
     s = *(u8 *)&fzgx_pool_lbl_1_bss_8FD68_gap_8FE7D;
     s = *(u8 *)&fzgx_pool_lbl_1_bss_8FD68_gap_8FE7D_fill_8FE7E;
     s = *(u8 *)&lbl_1_bss_8FE80;

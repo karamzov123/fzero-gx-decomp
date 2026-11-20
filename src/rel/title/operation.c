@@ -519,7 +519,7 @@ static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_8_bss_3D0;
     s = *(u8 *)&fzgx_pool_lbl_8_bss_3D0_fill_3D4;
-    s = *(u8 *)&lbl_8_bss_540;
+    s = lbl_8_bss_540;
     s = *(u8 *)&fzgx_pool_lbl_8_bss_3D0_gap_541;
     s = *(u8 *)&fzgx_pool_lbl_8_bss_3D0_gap_541_fill_542;
     s = *(u8 *)&lbl_8_bss_544;
@@ -991,7 +991,7 @@ static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_8_bss_3D0;
     s = *(u8 *)&fzgx_pool_lbl_8_bss_3D0_fill_3D4;
-    s = *(u8 *)&lbl_8_bss_540;
+    s = lbl_8_bss_540;
     s = *(u8 *)&fzgx_pool_lbl_8_bss_3D0_gap_541;
     s = *(u8 *)&fzgx_pool_lbl_8_bss_3D0_gap_541_fill_542;
     s = *(u8 *)&lbl_8_bss_544;
@@ -1938,7 +1938,7 @@ static void fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_8_bss_3D0;
     s = *(u8 *)&fzgx_pool_lbl_8_bss_3D0_fill_3D4;
-    s = *(u8 *)&lbl_8_bss_540;
+    s = lbl_8_bss_540;
     s = *(u8 *)&fzgx_pool_lbl_8_bss_3D0_gap_541;
     s = *(u8 *)&fzgx_pool_lbl_8_bss_3D0_gap_541_fill_542;
     s = *(u8 *)&lbl_8_bss_544;
@@ -5906,7 +5906,7 @@ void fn_8_B380(void) {
 
     s32 dur;
     OpSprite *logo;
-    register OpSprite *banner;
+    OpSprite *banner;
     OpCurve *curves;
     OpCurve *curvesY;
     OpCurve *curvesZ;
@@ -7382,7 +7382,7 @@ s32 lbl_8_bss_544__fzgx_offset_8;
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
     volatile u8 v;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
-    v = *(u8 *)&lbl_8_bss_540;
+    v = lbl_8_bss_540;
     v = *(u8 *)&lbl_8_bss_544;
     v = *(u8 *)&lbl_8_bss_544__fzgx_offset_4;
     v = *(u8 *)&lbl_8_bss_544__fzgx_offset_8;
@@ -8635,7 +8635,7 @@ if (alternate == 0) {
 }
 }
 {
-register Obj_10_bss_55CD8_Target **ref = &(*(Obj_10_bss_55CD8_Target * *)&lbl_8_bss_550);
+Obj_10_bss_55CD8_Target **ref = &(*(Obj_10_bss_55CD8_Target * *)&lbl_8_bss_550);
 /* Observe the shared state pointer independently before this update stage. */
 Obj_10_bss_55CD8_Target *before = *(Obj_10_bss_55CD8_Target **)ref;
 Obj_10_bss_55CD8_Target *after;
@@ -8655,7 +8655,7 @@ after->unk_10 = 1;
 }
 }
 {
-register Obj_10_bss_55CD8_Target **smoothRef = &(*(Obj_10_bss_55CD8_Target * *)&lbl_8_bss_550);
+Obj_10_bss_55CD8_Target **smoothRef = &(*(Obj_10_bss_55CD8_Target * *)&lbl_8_bss_550);
 /* Observe the shared state pointer again for the animation update. */
 Obj_10_bss_55CD8_Target *phase = *(Obj_10_bss_55CD8_Target **)smoothRef;
 fn_8_E440_u32 old12;

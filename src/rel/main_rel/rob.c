@@ -8471,7 +8471,7 @@ u32 fn_1_97F80(Fn197F80Object *rob, const char *name) {
     rob->unk_4A8 = resource;
     rob->unk_4AC = *(void **)resource;
     rob->unk_4B0 = (u8 *)resource + 4;
-    rob->unk_4B4 = fn_1_4630(*(u32 *)&lbl_801A6410,
+    rob->unk_4B4 = fn_1_4630(lbl_801A6410,
                             (length + 0x20) & ~0x1f,
                             (const char *)(data + 0x7240), 0xfa9);
     fn_80083DB0(rob->unk_4B4, name);

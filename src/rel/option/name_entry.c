@@ -871,7 +871,7 @@ lbl_4_bss_5680->unk_F = 0;
 }
 }
 {
-register Obj_4_bss_5680_Target **ref = &lbl_4_bss_5680;
+Obj_4_bss_5680_Target **ref = &lbl_4_bss_5680;
 /* Observe the shared state pointer independently before this update stage. */
 /* WARNING: compiler-diff device, not original code (no-op pointer cast: retail reloads the target pointer; a plain *ref read differs, carried from main) */
 Obj_4_bss_5680_Target *before = *(Obj_4_bss_5680_Target **)ref;
@@ -892,7 +892,7 @@ after->unk_10 = 1;
 }
 }
 {
-register Obj_4_bss_5680_Target **smoothRef = &lbl_4_bss_5680;
+Obj_4_bss_5680_Target **smoothRef = &lbl_4_bss_5680;
 /* Observe the shared state pointer again for the animation update. */
 /* WARNING: compiler-diff device, not original code (no-op pointer cast: retail reloads the target pointer; a plain *ref read differs, carried from main) */
 Obj_4_bss_5680_Target *phase = *(Obj_4_bss_5680_Target **)smoothRef;

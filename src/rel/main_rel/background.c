@@ -878,7 +878,7 @@ void fn_1_9EA94(Obj_1_9EA94_Target *arg0) {
     fn_8007245C(0x2200);
     lbl_8006DAEC();
     lbl_8006D758();
-    GXLoadPosMtxImm(*(u32 *)&lbl_801A6D00, 0);
+    GXLoadPosMtxImm(lbl_801A6D00, 0);
     lbl_8006DB30();
     loc_8 = arg0->unk_14;
     fn_800736C0(0, &loc_8);
