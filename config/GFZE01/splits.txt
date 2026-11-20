@@ -66,10 +66,7 @@ dol/_ExitProcess.c:
 	.text       start:0x800118FC end:0x8001191C
 
 dol/SIRefreshSamplingRate.c:
-	.text       start:0x800133B8 end:0x800133DC
-
-dol/fn_800133DC.c:
-	.text       start:0x800133DC end:0x80013428 align:4
+	.text       start:0x800133B8 end:0x80013428 align:4
 
 dol/InitializeUART.c:
 	.text       start:0x800157AC end:0x8001581C
@@ -78,10 +75,7 @@ dol/DVDLowBreak.c:
 	.text       start:0x80016D50 end:0x80016DF8 align:4
 
 dol/stateTimeout.c:
-	.text       start:0x80017A04 end:0x80017A38
-
-dol/_epilog_rel_sample.c:
-	.text       start:0x80017A38 end:0x80017B14 align:4
+	.text       start:0x80017A04 end:0x80017B14 align:4
 
 dol/cbForUnrecoveredError.c:
 	.text       start:0x80017DA8 end:0x80017E10
@@ -102,7 +96,7 @@ dol/fn_80022420.c:
 	.text       start:0x80022420 end:0x80022BF4 align:4
 
 dol/fn_800230A0.c:
-	.text       start:0x800230A0 end:0x800230A4
+	.text       start:0x800230A0 end:0x80023394 align:4
 
 dol/fn_800234D0.c:
 	.text       start:0x800234D0 end:0x80023568
@@ -111,10 +105,7 @@ dol/fn_80025C28.c:
 	.text       start:0x80025C28 end:0x80025C70
 
 dol/fn_80025D00.c:
-	.text       start:0x80025D00 end:0x80025D50 align:4
-
-dol/fn_80025D50.c:
-	.text       start:0x80025D50 end:0x80025E18 align:4
+	.text       start:0x80025D00 end:0x80025E18 align:4
 
 dol/fn_80025EEC.c:
 	.text       start:0x80025EEC end:0x80026D70 align:4
@@ -143,9 +134,6 @@ dol/fn_80028568.c:
 dol/fn_8002857C.c:
 	.text       start:0x8002857C end:0x80028598
 
-dol/fn_80028B2C.c:
-	.text       start:0x80028B2C end:0x80028DD0 align:4
-
 dol/fn_80028DD0.c:
 	.text       start:0x80028DD0 end:0x80028FA0 align:4
 
@@ -166,9 +154,6 @@ dol/fn_8002A7C4.c:
 
 dol/CARDFormatAsync.c:
 	.text       start:0x8002E90C end:0x8002E954
-
-dol/fn_80031D60.c:
-	.text       start:0x80031D60 end:0x80031E7C align:4
 
 dol/__GXFifoInit.c:
 	.text       start:0x8003221C end:0x80032268
@@ -440,12 +425,6 @@ dol/fn_8000BE5C.c:
 
 dol/AIGetStreamVolRight.c:
 	.text       start:0x8001E304 end:0x8001E5A8 align:4
-
-dol/fn_8003432C.c:
-	.text       start:0x8003432C end:0x80034350 align:4
-
-dol/GXPeekZ.c:
-	.text       start:0x80034350 end:0x800343BC align:4
 
 dol/fn_800466D4.c:
 	.text       start:0x800466D4 end:0x80046718 align:4
@@ -754,16 +733,13 @@ dol/fn_80020CB0.c:
 	.text       start:0x80020CB0 end:0x80020E4C align:4
 
 dol/fn_80026EE0.c:
-	.text       start:0x80026EE0 end:0x80026F4C align:4
-
-dol/fn_80026F4C.c:
-	.text       start:0x80026F4C end:0x80026FE0 align:4
+	.text       start:0x80026EE0 end:0x80026FE0 align:4
 
 dol/fn_80028424.c:
 	.text       start:0x80028424 end:0x800284A0 align:4
 
 dol/fn_800289C0.c:
-	.text       start:0x800289C0 end:0x80028B2C align:4
+	.text       start:0x800289C0 end:0x80028DD0 align:4
 
 dol/fn_800284A0.c:
 	.text       start:0x800284A0 end:0x800284CC align:4
@@ -778,7 +754,7 @@ dol/__CARDPutControlBlock.c:
 	.text       start:0x8002A8F4 end:0x8002A988 align:4
 
 dol/__CARDUnlockedHandler.c:
-	.text       start:0x80029AF4 end:0x80029B78 align:4
+	.text       start:0x80029AF4 end:0x80029D28 align:4
 
 dol/WriteCallback.c:
 	.text       start:0x8002C0C0 end:0x8002C194 align:4
@@ -790,7 +766,7 @@ dol/EraseCallback_CARDWrite.c:
 	.text       start:0x8002F728 end:0x8002F7D8 align:4
 
 dol/GXInitFifoPtrs.c:
-	.text       start:0x80031CF0 end:0x80031D60 align:4
+	.text       start:0x80031CF0 end:0x80031E7C align:4
 
 dol/__GXFifoReadEnable.c:
 	.text       start:0x80032268 end:0x800322AC align:4
@@ -829,7 +805,7 @@ dol/fn_80036EDC.c:
 	.text       start:0x80036EDC end:0x80036FF0 align:4
 
 dol/GXPokeZMode.c:
-	.text       start:0x80034304 end:0x8003432C align:4
+	.text       start:0x80034304 end:0x800343BC align:4
 
 dol/GXSetTlutRegionCallback.c:
 	.text       start:0x800365A0 end:0x800365B4 align:4
@@ -1290,9 +1266,6 @@ dol/fn_80028130.c:
 dol/cbForUnrecoveredErrorRetry.c:
 	.text       start:0x80017E10 end:0x80017ED0 align:4
 
-dol/__CARDEnableInterrupt.c:
-	.text       start:0x80029B78 end:0x80029D28 align:4
-
 dol/GXSetProjectionv.c:
 	.text       start:0x80038B3C end:0x80038BFC align:4
 
@@ -1553,9 +1526,6 @@ dol/fn_80047A50.c:
 
 dol/fn_80054AB0.c:
 	.text       start:0x80054AB0 end:0x80054B6C align:4
-
-dol/fn_800230A4.c:
-	.text       start:0x800230A4 end:0x80023394 align:4
 
 dol/fn_800579F0.c:
 	.text       start:0x800579F0 end:0x80057CC4 align:4

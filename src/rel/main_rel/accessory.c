@@ -24162,9 +24162,7 @@ void fn_1_12907C(void) {
 #pragma opt_propagation reset
 /* fzgx:end fn_1_12907C */
 
-/* fzgx:begin fn_1_12999C noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_12999C */
 struct Vec3 { f32 x; f32 y; f32 z; };
 struct Obj_t {
  u32 unk_0; u8 pad_4[0x148]; u8 unk_14C[4]; u8 pad_150[0x325];
@@ -24442,10 +24440,9 @@ void fn_1_12A080(void) {
 #pragma opt_propagation reset
 /* fzgx:end fn_1_12A080 */
 
-/* fzgx:begin fn_1_12A0E0 noprologue */
+/* fzgx:begin fn_1_12A0E0 */
 #include "dolphin/hw_regs.h"
 #include "dolphin/types.h"
-#include "rel/main_rel/accessory.h"
 #include "psvec.h"
 
 extern void fn_1_520A0(void);
@@ -24465,7 +24462,6 @@ extern void fn_1_4955C(f32, f32);
 extern void fn_1_4966C(f32, f32);
 extern void fn_1_4A0D8(const char *);
 extern void fn_1_520CC(void);
-extern void lbl_8006DBAC(void *);
 extern int fn_80083BCC(const char *, const char *);
 typedef struct { f32 value0, value1, value2; } Sig_fn_8006F78C_Fn8006F78CData;
 extern void fn_8006F78C(void *, Sig_fn_8006F78C_Fn8006F78CData *, f32);

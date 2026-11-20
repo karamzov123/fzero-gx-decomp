@@ -2923,11 +2923,8 @@ void fn_1_1071C0(void) {
 }
 /* fzgx:end fn_1_1071C0 */
 
-/* fzgx:begin fn_1_1071E8 noprologue */
+/* fzgx:begin fn_1_1071E8 */
 #include "dolphin/hw_regs.h"
-#include "types.h"
-#include "rel/main_rel/bg_common.h"
-#include "types.h"
 #include "psvec.h"
 
 /* begin game/vec3.h (fork-deltawave784/windows-and-types@b1e6f2df) */
@@ -2967,7 +2964,6 @@ extern u8 lbl_1_bss_86EC4__fzgx_offset_3[5];
 extern u32 fn_1_17920(u32, void *, f32);
 extern u32 fn_1_214C4(void *, u32, f32);
 extern void lbl_8006DC6C(void *);
-extern void lbl_8006DBAC(void *);
 extern void lbl_8006E15C(f32,f32,f32);
 extern void mathutil_mtxA_rotate_z(s32);
 extern void lbl_8006E0B4(f32,f32,f32);

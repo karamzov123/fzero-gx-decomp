@@ -131,12 +131,8 @@ void fn_1_DCF54(BgForVec *pos, BgForVec *target, BgForVec *up) {
 }
 /* fzgx:end fn_1_DCF54 */
 
-/* fzgx:begin fn_1_DCFA4 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
+/* fzgx:begin fn_1_DCFA4 */
 #include "rel/main_rel/bg_for.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
 #include "rel/main_rel/bg_for.h"
 #include "psvec.h"
 
@@ -183,8 +179,6 @@ extern void lbl_8006D784(void *);
 extern void lbl_8006DBAC(void *);
 extern void lbl_8006DFE8(const void *);
 extern void fn_1_DDF80(Vec3 *, Vec3 *, Vec3 *, Vec3 *, f32, f32);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DB30(void);
 extern void fn_1_56298(f32, f32, f32, f32);
 extern f32 lbl_8006D0B4(f32);
 extern void fn_8006EE70(const Vec3 *, s16 *);
@@ -326,21 +320,11 @@ void fn_1_DCFA4(u32 arg0) {
 }
 /* fzgx:end fn_1_DCFA4 */
 
-/* fzgx:begin fn_1_DD4DC noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
+/* fzgx:begin fn_1_DD4DC */
 #include "rel/main_rel/bg_for.h"
-#include "types.h"
 #include "rel/main_rel/bg_for.h"
 
-extern void OSPanic(const char *, int, const char *, ...);
 extern struct fn_1_DCE60_lbl_1_rodata_6750 lbl_1_rodata_6750;
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DD14(void *, void *);
-extern void fn_1_A7024(f32, f32, f32, f32);
-extern void lbl_8006DB74(void *);
-extern void lbl_8006DCDC(void);
-extern void lbl_8006DB30(void);
 extern void fn_1_E1408(void *, void *);
 
 
@@ -365,7 +349,6 @@ extern f32 lbl_8006D0B4(f32);
 extern void lbl_8006E0A4(void *);
 extern void lbl_8006E14C(f32);
 extern void lbl_8006D7DC(const void *);
-extern void lbl_8006DB74(void *);
 
 
 typedef struct {

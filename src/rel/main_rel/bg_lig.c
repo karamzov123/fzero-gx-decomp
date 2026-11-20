@@ -6,13 +6,10 @@ extern void fn_80008BA8(void *arg0, void *arg1, int arg2);
 extern u32 lbl_801A66A0;
 extern u32 lbl_1_rodata_6358;
 
-/* fzgx:begin fn_1_D5C70 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
+/* fzgx:begin fn_1_D5C70 */
 #include "sdk_addresses.h"
 
 extern void OSPanic(const char *file, int line, const char *msg, ...);
-extern u32 lbl_801A66A0;
 extern u32 lbl_801A63C0;
 extern u32 lbl_801A66C8;
 extern void *memset(void *dst, int value, u32 size);
@@ -119,7 +116,7 @@ s32 fn_1_D5C70(u32 arg0, u32 *arg1) {
 }
 /* fzgx:end fn_1_D5C70 */
 
-/* fzgx:begin fn_1_D5FA8 noprologue */
+/* fzgx:begin fn_1_D5FA8 */
 typedef union PPCWGPipe {
 u8 u8;
 u16 u16;

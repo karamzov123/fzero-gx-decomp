@@ -1943,7 +1943,7 @@ void fn_1_1576B4(RankingState *state) {
 #pragma opt_propagation reset
 /* fzgx:end fn_1_1576B4 */
 
-/* fzgx:begin fn_1_1577D0 noprologue */
+/* fzgx:begin fn_1_1577D0 */
 extern f32 lbl_1_rodata_D920;
 extern u8 lbl_1_data_4A430[];
 extern u8 lbl_1_data_4B368[];
@@ -1988,7 +1988,7 @@ f32 fn_1_1577D0(u32 arg0, u32 arg1, f32 arg2) {
 }
 /* fzgx:end fn_1_1577D0 */
 
-/* fzgx:begin fn_1_157820 noprologue */
+/* fzgx:begin fn_1_157820 */
 void fn_1_157820(void) {
     u8 index;
 
@@ -2012,7 +2012,7 @@ void fn_1_157820(void) {
 }
 /* fzgx:end fn_1_157820 */
 
-/* fzgx:begin fn_1_1578C4 noprologue */
+/* fzgx:begin fn_1_1578C4 */
 void fn_1_1578C4(void) {
     s8 v0;
     u32 t2;

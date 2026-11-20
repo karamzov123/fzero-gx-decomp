@@ -1618,9 +1618,7 @@ void fn_1_A116C(void) {
 }
 /* fzgx:end fn_1_A116C */
 
-/* fzgx:begin fn_1_A11EC noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_A11EC */
 typedef struct SoundEntry {
     u32 unk_0;
     u8 pad_4[0x2C];
@@ -1753,9 +1751,6 @@ __declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
 }
 #pragma section code_type ".text"
 
-extern void fn_80008BEC(void *, s32, s32);
-extern void fn_1_A2E24(u32 arg0, u32 arg1, s32 arg2);
-extern void fn_1_A2DF4(s32, void *, s32);
 
 /* fn_1_A2DF4 passes its second argument, a sound command code, on as a pointer */
 static inline void sound_send_command(s32 channel, u32 command, s32 value) {

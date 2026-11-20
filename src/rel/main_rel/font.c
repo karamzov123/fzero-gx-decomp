@@ -1465,9 +1465,7 @@ u16 fn_1_499BC(const u8 *value) {
 }
 /* fzgx:end fn_1_499BC */
 
-/* fzgx:begin fn_1_49B70 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_49B70 */
 typedef struct {
     u8 pad_0[0x10];
     u32 unk_10;
@@ -1614,11 +1612,7 @@ s32 fn_1_49B70(u8 *arg0, UnkArg1 *arg1) {
 char lbl_1_data_1C0B4[2] = " ";
 /* fzgx:end fn_1_49B70 */
 
-/* fzgx:begin fn_1_49F08 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/font.h"
-
+/* fzgx:begin fn_1_49F08 */
 typedef struct FontCharEntry {
     const u8 *unk_0;
     s8 unk_4;

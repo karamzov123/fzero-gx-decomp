@@ -19185,11 +19185,7 @@ void fn_1_3B7D4(void)
 }
 /* fzgx:end fn_1_3B7D4 */
 
-/* fzgx:begin fn_1_3C880 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/game.h"
-
+/* fzgx:begin fn_1_3C880 */
 typedef u32 (*GameStepFn)(void);
 typedef s32 (*GameModeFn)(void);
 typedef struct {
@@ -19562,17 +19558,14 @@ extern u8 lbl_1_rodata_DB38[];
 extern void fn_1_156754(s32);
 extern void fn_1_F7578(void);
 extern void fn_1_A0D20(void);
-extern u32 fn_1_435C(u32 value);
 extern void fn_1_426C(u32);
 extern void fn_1_8DAB4(void);
-extern void fn_1_A8F78(void);
 extern void fn_1_2CBAC(void);
 extern void fn_1_1547FC(void);
 extern void fn_1_C47B4(void);
 extern void fn_1_C6F80(s32);
 extern u32 fn_80008E84(u32);
 extern void fn_1_79100(void);
-extern void fn_1_412A0(s32);
 extern void fn_1_E35F0(void);
 extern void fn_1_D1F88(void);
 
@@ -24388,11 +24381,9 @@ void fn_1_3F8D0(void) {
 }
 /* fzgx:end fn_1_3F8D0 */
 
-/* fzgx:begin fn_1_3F8EC noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_3F8EC */
 #include "dolphin/hw_regs.h"
 #include "psvec.h"
-#include "rel/main_rel/game.h"
 extern s16 lbl_1_bss_3C1C__fzgx_offset_E;
 
 #pragma section code_type ".fzgxpool"
@@ -24599,7 +24590,6 @@ typedef struct {
     f32 unk_2d8;
 } PoolObj;
 
-extern const f32 lbl_1_rodata_BD8;
 extern u32 lbl_801A66A0;
 extern u32 lbl_801A6D00;
 extern u32 lbl_1_bss_38460[21];

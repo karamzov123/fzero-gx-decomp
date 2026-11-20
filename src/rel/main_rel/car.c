@@ -2208,19 +2208,8 @@ void fn_1_80C18(u8 *arg0, u8 *arg1, s8 arg2) {
 }
 /* fzgx:end fn_1_80C18 */
 
-/* fzgx:begin fn_1_80CC4 noprologue */
-#include "rel/main_rel/car.h"
-
-extern s32 fn_1_8171C(s32);
+/* fzgx:begin fn_1_80CC4 */
 extern s16 fn_1_12A32C(char *);
-extern void fn_1_12AB38(void *);
-extern u32 fn_1_12AC00(void *);
-extern void fn_1_12A2B8(u32);
-extern void fn_1_80294(void *, void *, u32);
-extern void fn_80008BEC(void *, int, u32);
-extern void fn_80008BA8(void *, void *, u32);
-extern char *fn_80083DB0(char *, const char *);
-extern int sprintf(char *, const char *, ...);
 
 typedef struct {
     u16 unk_0;

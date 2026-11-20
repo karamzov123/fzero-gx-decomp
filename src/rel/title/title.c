@@ -8349,7 +8349,7 @@ void fn_8_1C18(void) {
 }
 /* fzgx:end fn_8_1C18 */
 
-/* fzgx:begin fn_8_1C90 noprologue */
+/* fzgx:begin fn_8_1C90 */
 struct fn_8_1C90_Copy88 { u32 a[22]; };
 struct fn_8_1C90_lbl_8_rodata_0 {
     f32 unk_0;
@@ -8382,8 +8382,6 @@ extern int fn_1_4F734(FontDrawPacket *);
 extern u16 fn_1_48690(u32);
 extern u16 fn_1_486C4(u32);
 extern u32 fn_8_0();
-extern u32 lbl_1_rodata_26F8;
-extern u32 lbl_801A66A0;
 extern void fn_1_51678(FontDrawPacket *, u32, s16, s16, s16, s16);
 
 void fn_8_1C90(void) {
@@ -8622,7 +8620,7 @@ void fn_8_2124(u32 arg0, u8 *arg1, f32 arg2) {
 }
 /* fzgx:end fn_8_2124 */
 
-/* fzgx:begin fn_8_23AC noprologue */
+/* fzgx:begin fn_8_23AC */
 extern void fn_1_49410(void);
 extern void fn_1_4954C(f32);
 extern void fn_1_4955C(f32, f32);

@@ -32,9 +32,7 @@ extern u32 fn_1_FBFE4();
 extern void fn_1_FB96C(int);
 extern u32 fn_1_105AB8(u32, u32);
 
-/* fzgx:begin fn_1_D720C noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
+/* fzgx:begin fn_1_D720C */
 #include "rel/main_rel/bg_lig.h"
 
 extern void fn_80008BA8(void *arg0, void *arg1, int arg2);
@@ -44,16 +42,10 @@ extern void fn_1_7269C(u32, s32, u32);
 extern void fn_1_5948(s32 index);
 extern void fn_1_D8388(void *obj);
 extern void fn_1_627C(s32 index);
-extern void *fn_1_9D260();
 struct LigDrawEntry;
 extern void fn_1_D7B7C(struct LigDrawEntry *base);
-extern void fn_1_9AD88(void);
 extern void *memset(void *dst, int value, u32 size);
-extern void lbl_8006DCA4(void);
 extern s32 fn_1_54E34(void *obj, f32 value);
-extern void *fn_1_54448(s32 value);
-extern void *fn_1_548AC(s32 value);
-extern void fn_1_5489C(void *obj, void *arg);
 struct LigLightObj;
 extern void fn_1_D83E4(struct LigLightObj *obj, u32 index);
 struct LigSeg;
@@ -70,8 +62,6 @@ extern void fn_1_DA6A8(void *, u32);
 extern void fn_80008BEC(void *, int, u32);
 extern void fn_1_446C(void);
 extern void fn_1_76BF8(void);
-extern void fn_1_72648(void);
-extern void fn_1_9AD54(void);
 
 void fn_1_D720C(void) {
     u32 local[4] = {0, 0x0280012C, 0, 1};
@@ -82,16 +72,14 @@ void fn_1_D720C(void) {
 }
 /* fzgx:end fn_1_D720C */
 
-/* fzgx:begin fn_1_D7274 noprologue */
+/* fzgx:begin fn_1_D7274 */
 #include "rel/main_rel/bg_lig.h"
 
 extern s32 fn_1_58C4(void);
-extern void fn_1_9A508(void);
 extern void fn_1_D79E4(void *);
 extern u8 fn_1_5300(void);
 extern void fn_1_77B80(u32);
 extern void fn_1_76BF8(void);
-extern void fn_1_72648(void);
 
 extern void fn_1_4404(void);
 extern void fn_1_DA6A8(void *, u32);
@@ -167,7 +155,7 @@ void fn_1_D7274(void) {
 #pragma opt_pointer_analysis reset
 /* fzgx:end fn_1_D7274 */
 
-/* fzgx:begin fn_1_D744C noprologue */
+/* fzgx:begin fn_1_D744C */
 extern void fn_80008BA8(void *arg0, void *arg1, int arg2);
 extern u32 lbl_801A63D0;
 extern u32 fn_1_76504(s32, void *, s32);
@@ -175,18 +163,12 @@ extern void fn_1_7269C(u32, s32, u32);
 extern void fn_1_5948(s32 index);
 extern void fn_1_D8388(void *obj);
 extern void fn_1_627C(s32 index);
-extern void *fn_1_9D260(Obj_1_data_2A7E0 *data);
 struct LigDrawEntry;
 extern void fn_1_D7B7C(struct LigDrawEntry *base);
-extern void fn_1_9AD88(void);
 extern void *memset(void *dst, int value, u32 size);
 
 
-extern void lbl_8006DCA4(void);
 extern s32 fn_1_54E34(void *obj, f32 value);
-extern void *fn_1_54448(s32 value);
-extern void *fn_1_548AC(s32 value);
-extern void fn_1_5489C(void *obj, void *arg);
 
 extern s32 fn_1_58C4(void);
 extern void fn_1_5948(s32 index);
@@ -209,7 +191,7 @@ void fn_1_D744C(void) {
 }
 /* fzgx:end fn_1_D744C */
 
-/* fzgx:begin fn_1_D74C4 noprologue */
+/* fzgx:begin fn_1_D74C4 */
 // Initializes background-light data and installs the completion callback.
 void fn_1_D74C4(void) {
     Obj_1_bss_7AD78 *tmp;
@@ -243,9 +225,7 @@ void fn_1_D74C4(void) {
 }
 /* fzgx:end fn_1_D74C4 */
 
-/* fzgx:begin fn_1_D75CC noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_D75CC */
 struct fn_1_D75CC_lbl_1_data_2A7E0 {
     u8 pad_0[0x3C];
     u32 unk_3C;
@@ -279,7 +259,7 @@ void fn_1_D75CC(void) {
 }
 /* fzgx:end fn_1_D75CC */
 
-/* fzgx:begin fn_1_D7688 noprologue */
+/* fzgx:begin fn_1_D7688 */
 void fn_1_D7688(void) {
     Obj_1_data_2A7E0_At3C *obj = lbl_1_data_2A7E0.unk_3C;
     void *value = fn_1_9D260(&lbl_1_data_2A7E0);
@@ -290,13 +270,13 @@ void fn_1_D7688(void) {
 }
 /* fzgx:end fn_1_D7688 */
 
-/* fzgx:begin fn_1_D76EC noprologue */
+/* fzgx:begin fn_1_D76EC */
 // fn_1_D76EC: empty in retail (single blr).
 void fn_1_D76EC(void) {
 }
 /* fzgx:end fn_1_D76EC */
 
-/* fzgx:begin fn_1_D76F0 noprologue */
+/* fzgx:begin fn_1_D76F0 */
 // Copies a three-component float vector into the indexed light buffer entry.
 void fn_1_D76F0(const f32 *src, s16 index) {
     f32 *dst = (f32 *)lbl_1_data_2A7E0.unk_3C;
@@ -308,7 +288,7 @@ void fn_1_D76F0(const f32 *src, s16 index) {
 }
 /* fzgx:end fn_1_D76F0 */
 
-/* fzgx:begin fn_1_D7724 noprologue */
+/* fzgx:begin fn_1_D7724 */
 typedef struct {
     u32 x;
     u32 y;
@@ -324,11 +304,7 @@ void fn_1_D7724(Vec3Bits *dst, s16 index) {
 }
 /* fzgx:end fn_1_D7724 */
 
-/* fzgx:begin fn_1_D7758 noprologue */
-#include "types.h"
-#include "game/vec3.h"
-#include "rel/main_rel/globals.h"
-
+/* fzgx:begin fn_1_D7758 */
 typedef Vec3 Vec;
 
 /* one of the 20 records of 0x30 bytes from lbl_1_data_2A7E0.unk_3C + 0x30 (fn_1_D79E4 clears them) */
@@ -399,15 +375,13 @@ void fn_1_D7758(Vec *pos, f32 scale) {
 #pragma fp_contract reset
 /* fzgx:end fn_1_D7758 */
 
-/* fzgx:begin fn_1_D79E4 noprologue */
+/* fzgx:begin fn_1_D79E4 */
 void fn_1_D79E4(void *obj) {
     memset((u8 *)obj + 0x30, 0, 0x3c0);
 }
 /* fzgx:end fn_1_D79E4 */
 
-/* fzgx:begin fn_1_D7A10 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_D7A10 */
 typedef struct LigSeg {
 	u8 pad0[0x30];
 	f32 f30;
@@ -471,9 +445,7 @@ void fn_1_D7A10(LigSeg *obj) {
 }
 /* fzgx:end fn_1_D7A10 */
 
-/* fzgx:begin fn_1_D7B7C noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_D7B7C */
 typedef struct LigDrawEntry {
     u8 pad0[0x24];
     f32 value;
@@ -489,14 +461,11 @@ typedef struct {
     LigDrawEntry *entry;
 } LigEvent;
 
-extern void lbl_8006DCA4(void);
 
 
 extern s32 fn_1_54E34(void *obj, f32 value);
 extern void *fn_1_5448C(LigDrawEntry *entry);
-extern void *fn_1_548AC(s32 size);
 extern void fn_1_D7C44(struct LigEvt *);
-extern void fn_1_5489C(void *data, void *event);
 
 void fn_1_D7B7C(LigDrawEntry *base) {
     void *data;
@@ -522,7 +491,7 @@ void fn_1_D7B7C(LigDrawEntry *base) {
 }
 /* fzgx:end fn_1_D7B7C */
 
-/* fzgx:begin fn_1_D7C44 noprologue */
+/* fzgx:begin fn_1_D7C44 */
 #include "rel/main_rel/background.h"
 
 typedef struct {
@@ -540,7 +509,6 @@ typedef struct LigEvt {
 } LigEvt;
 
 extern void *memset(void *dst, int value, u32 size);
-extern void lbl_8006DCA4(void);
 extern void lbl_8006E1B0(void *a, void *b);
 extern void lbl_8006D7DC(void *a);
 extern void lbl_8006DB74(void *a);
@@ -621,9 +589,7 @@ void fn_1_D7C44(LigEvt *arg0) {
 }
 /* fzgx:end fn_1_D7C44 */
 
-/* fzgx:begin fn_1_D7EF4 noprologue */
-#include "types.h"
-#include "game/vec3.h"
+/* fzgx:begin fn_1_D7EF4 */
 #include "mathutil_vec_cross_prod.h"
 #include "rel/main_rel/bg_lig.h"
 
@@ -734,7 +700,7 @@ void fn_1_D7EF4(LigParticle *e, u32 index) {
 }
 /* fzgx:end fn_1_D7EF4 */
 
-/* fzgx:begin fn_1_D8388 noprologue */
+/* fzgx:begin fn_1_D8388 */
 extern s32 fn_1_58C4(void);
 
 // Initializes each lighting entry while the lighting system is available.
@@ -753,12 +719,8 @@ void fn_1_D8388(void *obj) {
 }
 /* fzgx:end fn_1_D8388 */
 
-/* fzgx:begin fn_1_D83E4 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
+/* fzgx:begin fn_1_D83E4 */
 #include "rel/main_rel/bg_lig.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
 #include "rel/main_rel/bg_lig.h"
 
 /* begin game/main_rel/bg_lig_types.h (deltawave784/fzgx, CC0) */
@@ -770,8 +732,6 @@ void fn_1_D8388(void *obj) {
 
 
 
-extern void fn_1_103090(void *entry);
-extern void fn_1_1030A4(void *entry);
 extern void fn_1_1030D4(fn_1_D8D58_LigEntry *entry, void *arg);
 
 #endif  // GAME_MAIN_REL_BG_LIG_TYPES_H
@@ -915,7 +875,7 @@ void fn_1_D83E4(LigLightObj *obj, u32 index) {
 #pragma opt_propagation reset
 /* fzgx:end fn_1_D83E4 */
 
-/* fzgx:begin fn_1_D8784 noprologue */
+/* fzgx:begin fn_1_D8784 */
 struct LigSource;
 extern void fn_1_D8878(struct LigSource *);
 typedef void (*LigCallback)(struct LigSource *);
@@ -970,10 +930,7 @@ void fn_1_D8784(fn_1_D8784_LigObject *obj) {
 }
 /* fzgx:end fn_1_D8784 */
 
-/* fzgx:begin fn_1_D8878 noprologue */
-#include "types.h"
-#include "game/vec3.h"
-#include "rel/main_rel/globals.h"
+/* fzgx:begin fn_1_D8878 */
 #include "rel/main_rel/background.h"
 
 typedef Vec3 LigVec;
@@ -996,7 +953,6 @@ typedef struct {
 } LigObject;
 
 extern f32 lbl_8006D0B4(f32);
-extern void lbl_8006DCA4(void);
 extern void lbl_8006E1B0(void *src, void *dst);
 extern void lbl_8006D7DC(void *vec);
 extern void mathutil_mtxA_rotate_z(s16 angle);
@@ -1149,9 +1105,7 @@ void fn_1_D8878(LigSource *src) {
 }
 /* fzgx:end fn_1_D8878 */
 
-/* fzgx:begin fn_1_D8CA8 noprologue */
-extern void fn_1_103090(void *entry);
-
+/* fzgx:begin fn_1_D8CA8 */
 void fn_1_D8CA8(fn_1_D8CA8_LigObject *obj) {
     s32 count = obj->count;
     fn_1_D8CA8_LigEntry *entry = obj->entries;
@@ -1165,9 +1119,7 @@ void fn_1_D8CA8(fn_1_D8CA8_LigObject *obj) {
 }
 /* fzgx:end fn_1_D8CA8 */
 
-/* fzgx:begin fn_1_D8D08 noprologue */
-extern void fn_1_1030A4(void *entry);
-
+/* fzgx:begin fn_1_D8D08 */
 void fn_1_D8D08(LigContainer *container) {
     s32 count = container->count;
     fn_1_D8D08_LigEntry *entry = container->entries;
@@ -1180,8 +1132,7 @@ void fn_1_D8D08(LigContainer *container) {
 }
 /* fzgx:end fn_1_D8D08 */
 
-/* fzgx:begin fn_1_D8D58 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_D8D58 */
 #include "rel/main_rel/bg_lig.h"
 
 extern u32 lbl_801A66A0;
@@ -1223,9 +1174,7 @@ void fn_1_D8D58(fn_1_D8D58_LigObject *obj, void *arg) {
 }
 /* fzgx:end fn_1_D8D58 */
 
-/* fzgx:begin fn_1_D8EEC noprologue */
-extern void fn_1_103264(void *entry, void *arg);
-
+/* fzgx:begin fn_1_D8EEC */
 // Applies the operation to each entry in the object.
 void fn_1_D8EEC(LigContainer *obj, void *arg) {
     s32 count = obj->count;
@@ -1239,7 +1188,7 @@ void fn_1_D8EEC(LigContainer *obj, void *arg) {
 }
 /* fzgx:end fn_1_D8EEC */
 
-/* fzgx:begin fn_1_D8F4C noprologue */
+/* fzgx:begin fn_1_D8F4C */
 typedef struct {
     u8 pad_0[0x24];
     u32 unk_24;
@@ -1278,7 +1227,7 @@ u32 fn_1_D8F4C(s32 index, FnInput *input) {
 /* fzgx:end fn_1_D8F4C */
 
 
-/* fzgx:begin fn_1_D8FC4 noprologue */
+/* fzgx:begin fn_1_D8FC4 */
 typedef struct {
     u32 unk_0;
     u8 pad_4[0x4];
@@ -1339,8 +1288,7 @@ s32 fn_1_D8FC4(s32 arg0, s32 arg1) {
 }
 /* fzgx:end fn_1_D8FC4 */
 
-/* fzgx:begin fn_1_D9224 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_D9224 */
 #include "mathutil.h"
 
 typedef struct {
@@ -1623,7 +1571,7 @@ void fn_1_D9224(fn_1_D9224_State *state, void *model) {
 }
 /* fzgx:end fn_1_D9224 */
 
-/* fzgx:begin fn_1_D9D8C noprologue */
+/* fzgx:begin fn_1_D9D8C */
 typedef struct {
     f32 x;
     f32 y;
@@ -1782,11 +1730,7 @@ void fn_1_D9D8C(fn_1_D9D8C_State *state, void *model, s32 index) {
 }
 /* fzgx:end fn_1_D9D8C */
 
-/* fzgx:begin fn_1_DA3A0 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_san.h"
-#include "types.h"
+/* fzgx:begin fn_1_DA3A0 */
 #include "psvec.h"
 #include "rel/main_rel/bg_lig.h"
 
@@ -1881,7 +1825,7 @@ void fn_1_DA3A0(void *arg0) {
 }
 /* fzgx:end fn_1_DA3A0 */
 
-/* fzgx:begin fn_1_DA6A8 noprologue */
+/* fzgx:begin fn_1_DA6A8 */
 extern void fn_1_46B4(u32, u32, const char *, int);
 struct fn_1_DA6A8_Copy12 { u32 a[3]; };
 struct fn_1_DA6A8_lbl_801A6410 {
@@ -1941,9 +1885,7 @@ void fn_1_DA7B8(void) {
 }
 /* fzgx:end fn_1_DA7B8 */
 
-/* fzgx:begin fn_1_DA7E4 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_DA7E4 */
 struct fn_1_DA7E4_Sub {
     u8 pad_0[0x9A0];
     u32 blk[141];
@@ -1958,12 +1900,7 @@ struct fn_1_DA7E4_lbl_1_data_2A7E0 {
     struct fn_1_DA7E4_Sub *unk_3C;
 };
 
-extern void fn_1_FB87C(u32 *, u32);
-extern u32 fn_1_FBFE4();
 extern u32 fn_1_58C4();
-extern void fn_1_103D28(void *, u32, f32);
-extern void fn_1_9A508(void);
-extern void fn_1_FB96C(int);
 
 void fn_1_DA7E4(void) {
     struct fn_1_DA7E4_Sub *obj;
@@ -2246,14 +2183,10 @@ void fn_1_DADA8(void) {
 }
 /* fzgx:end fn_1_DADA8 */
 
-/* fzgx:begin fn_1_DAE24 noprologue */
-#include "types.h"
-
-extern void fn_1_9AD54(void);
+/* fzgx:begin fn_1_DAE24 */
 extern u32 fn_1_58C4();
 extern s32 fn_1_5948();
 
-extern s16 fn_1_3F0C8(void);
 extern void fn_1_106084(void *target, s32 index, f32 x, f32 y, f32 z);
 extern void fn_1_627C();
 extern void fn_1_DB138();
@@ -2318,9 +2251,7 @@ void fn_1_DAF90(void) {
 }
 /* fzgx:end fn_1_DAF90 */
 
-/* fzgx:begin fn_1_DAF94 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_DAF94 */
 extern u32 fn_1_58C4();
 
 typedef struct V3 { f32 x, y, z; } V3;
@@ -2568,9 +2499,7 @@ void fn_1_DB268(Fn1DB268_Effect *effect) {
 }
 /* fzgx:end fn_1_DB268 */
 
-/* fzgx:begin fn_1_DB53C noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_DB53C */
 typedef struct DB53CVec {
     f32 x;
     f32 y;
@@ -2642,7 +2571,6 @@ extern u32 fn_1_58C4();
 extern s32 fn_1_6F84(void);
 extern f32 fn_1_DC084();
 extern s32 fn_1_54E34(DB53CVec *, f32);
-extern s16 fn_1_3F0C8(void);
 extern s16 camera_get_mode(void);
 extern s32 camera_get_flags(void);
 extern u32 camera_forward_status(void);
@@ -3058,9 +2986,7 @@ void fn_1_DC264(void) {
 }
 /* fzgx:end fn_1_DC264 */
 
-/* fzgx:begin fn_1_DC268 noprologue */
-#include "rel/main_rel/bg_san.h"
-
+/* fzgx:begin fn_1_DC268 */
 void fn_1_9AD54(void);
 
 void fn_1_DCB10(void);
@@ -3180,11 +3106,7 @@ void fn_1_DC404(fn_1_DC404_Container *container) {
 }
 /* fzgx:end fn_1_DC404 */
 
-/* fzgx:begin fn_1_DC454 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-
-
+/* fzgx:begin fn_1_DC454 */
 extern u32 lbl_801A66A0;
 extern f32 lbl_8006D188(s32);
 extern void fn_1_1030D4(void *entry, void *arg);
@@ -3263,10 +3185,7 @@ void fn_1_DC5E8(Obj_1_data_2A7E0_At3C *container, s32 arg) {
 }
 /* fzgx:end fn_1_DC5E8 */
 
-/* fzgx:begin fn_1_DC648 noprologue */
-#include "types.h"
-
-
+/* fzgx:begin fn_1_DC648 */
 extern void fn_1_681C(u8, void *);
 extern s32 fn_1_1FB80(u8 *, s32);
 
@@ -3315,9 +3234,7 @@ void fn_1_DC6FC(void *context) {
 }
 /* fzgx:end fn_1_DC6FC */
 
-/* fzgx:begin fn_1_DC764 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
+/* fzgx:begin fn_1_DC764 */
 #include "dolphin/hw_regs.h"
 
 /* .rodata 0x66D0: the literals fn_1_DC208 and fn_1_DC454 pool before this function's own */
