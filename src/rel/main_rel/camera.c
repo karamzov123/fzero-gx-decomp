@@ -4866,11 +4866,7 @@ void fn_1_BD54(void) {
 #pragma fp_contract reset
 /* fzgx:end fn_1_BD54 */
 
-/* fzgx:begin fn_1_BFA0 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/camera.h"
-
+/* fzgx:begin fn_1_BFA0 */
 extern u32 fn_1_CC5C(void);
 extern void lbl_8006D9D8(void *);
 extern void lbl_8006E14C(f32);
@@ -4904,7 +4900,7 @@ u8 fzgx_obj_camera_state;
 u8 camera_state__fzgx_offset_1;
 u16 camera_state__fzgx_offset_2;
 u32 camera_state__fzgx_offset_4[8];
-u32 lbl_1_bss_103C;
+u8 lbl_1_bss_103C[4];
 f32 lbl_1_bss_1040;
 f32 lbl_1_bss_1044;
 u8 fzgx_obj_camera_flag_0;
@@ -4994,9 +4990,7 @@ void camera_save_slot(u8 index) {
 }
 /* fzgx:end camera_save_slot */
 
-/* fzgx:begin fn_1_C10C noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_C10C */
 typedef struct {
     u32 unk_0;
     u32 unk_4;
@@ -5016,7 +5010,7 @@ typedef struct {
     CameraPreset current;
     u8 pad_2C[0x9C];
     CameraPreset presets[1];
-} CameraState;
+} CameraState_np_fn_1_C10C;
 
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
@@ -5025,15 +5019,15 @@ u8 lbl_1_bss_1014;
 u8 fzgx_pool_lbl_1_bss_1010_gap_1015;
 u16 fzgx_pool_lbl_1_bss_1010_gap_1015_fill_1016;
 CameraPreset fzgx_obj_camera_state;
-u32 lbl_1_bss_103C;
-u32 lbl_1_bss_1040;
-u32 lbl_1_bss_1044;
+u8 lbl_1_bss_103C[4];
+f32 lbl_1_bss_1040;
+f32 lbl_1_bss_1044;
 u8 fzgx_obj_camera_flag_0;
 u8 fzgx_obj_camera_flag_1;
 u16 fzgx_pool_lbl_1_bss_1010_gap_104A;
 u32 lbl_1_bss_104C[16];
-u32 lbl_1_bss_108C[13];
-u32 lbl_1_bss_10C0[6];
+u8 lbl_1_bss_108C[52];
+f32 lbl_1_bss_10C0[6];
 CameraPreset fzgx_obj_lbl_1_bss_10D8[1];
 u32 lbl_1_bss_10D8__fzgx_offset_24[19];
 
@@ -5583,11 +5577,7 @@ void fn_1_C770(void) {
 }
 /* fzgx:end fn_1_C770 */
 
-/* fzgx:begin fn_1_CC5C noprologue */
-#include "types.h"
-#include "types.h"
-#include "types.h"
-
+/* fzgx:begin fn_1_CC5C */
 #ifndef REL_MAIN_REL_CAMERA_H
 #define REL_MAIN_REL_CAMERA_H
 #ifndef REL_MAIN_REL_GLOBALS_H
@@ -5612,9 +5602,9 @@ typedef struct {
     u16 unk_10;  // 18 loads, 0 stores
     u16 unk_12;  // 4 loads, 0 stores
     u8 pad_14[0x4];
-} Obj_1_bss_D58;
+} Obj_1_bss_D58_np_fn_1_CC5C;
 #endif
-extern Obj_1_bss_D58 lbl_1_bss_D58;
+extern Obj_1_bss_D58_np_fn_1_CC5C lbl_1_bss_D58;
 
 #endif  // REL_MAIN_REL_CAMERA_H
 
@@ -5705,16 +5695,16 @@ u8 fzgx_obj_camera_state;
 u8 camera_state__fzgx_offset_1;
 u16 camera_state__fzgx_offset_2;
 u32 camera_state__fzgx_offset_4[8];
-u32 lbl_1_bss_103C;
-u32 lbl_1_bss_1040;
-u32 lbl_1_bss_1044;
+u8 lbl_1_bss_103C[4];
+f32 lbl_1_bss_1040;
+f32 lbl_1_bss_1044;
 u8 fzgx_obj_camera_flag_0;
 u8 fzgx_obj_camera_flag_1;
 u16 fzgx_pool_lbl_1_bss_1010_gap_104A;
 u32 fzgx_obj_lbl_1_bss_104C;
 u32 lbl_1_bss_104C__fzgx_offset_4[15];
-u32 lbl_1_bss_108C[13];
-u32 lbl_1_bss_10C0[6];
+u8 lbl_1_bss_108C[52];
+f32 lbl_1_bss_10C0[6];
 u8 fzgx_obj_lbl_1_bss_10D8;
 u8 lbl_1_bss_10D8__fzgx_offset_1;
 u16 lbl_1_bss_10D8__fzgx_offset_2;

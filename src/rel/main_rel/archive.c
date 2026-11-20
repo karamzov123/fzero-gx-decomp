@@ -1058,9 +1058,7 @@ void fn_1_12B5B4(s16 arg0, s16 arg1)
 }
 /* fzgx:end fn_1_12B5B4 */
 
-/* fzgx:begin fn_1_12B664 noprologue */
-#include "rel/main_rel/archive.h"
-
+/* fzgx:begin fn_1_12B664 */
 extern void fn_1_A2D84(u32);
 extern int fn_1_8623C(void);
 extern u8 *fn_1_36AD0(void);
@@ -1117,7 +1115,7 @@ typedef struct lbl_1_bss_8B3A0_t {
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 lbl_1_bss_8B3A0_t fzgx_obj_lbl_1_bss_8B3A0;
-u32 lbl_1_bss_8B4EC[32];
+u8 lbl_1_bss_8B4EC[128];
 u32 fzgx_obj_lbl_1_bss_8B56C[24];
 u32 lbl_1_bss_8B5CC[8];
 u32 fzgx_obj_lbl_1_bss_8B5EC;

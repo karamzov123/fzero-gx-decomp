@@ -4159,10 +4159,7 @@ void fn_1_A2E5C(s32 arg0, s32 arg1) {
 }
 /* fzgx:end fn_1_A2E5C */
 
-/* fzgx:begin fn_1_A2FC8 noprologue */
-#include "types.h"
-#include "rel/main_rel/sound.h"
-
+/* fzgx:begin fn_1_A2FC8 */
 typedef struct {
     u8 unk_0;
     u8 unk_1;
@@ -4176,7 +4173,6 @@ typedef struct {
 } CounterPair;
 
 extern u32 fn_1_864E8(u32 arg0);
-extern void fn_80067344(s32 arg0, s32 arg1, u32 arg2, u32 arg3);
 extern void fn_80067898(u32 arg0);
 
 extern const f32 lbl_1_rodata_4530;
@@ -4191,9 +4187,9 @@ u32 fzgx_obj_lbl_1_bss_6EA98;
 u32 fzgx_obj_lbl_1_bss_6EA9C[2];
 u8 lbl_1_bss_6EAA4;
 u8 fzgx_pool_lbl_1_bss_6EA98_gap_6EAA5;
-u8 lbl_1_bss_6EAA6;
+s8 lbl_1_bss_6EAA6;
 u8 fzgx_pool_lbl_1_bss_6EA98_gap_6EAA7;
-u32 lbl_1_bss_6EAA8[2];
+u8 lbl_1_bss_6EAA8[8];
 u8 lbl_1_bss_6EAB0;
 u8 fzgx_pool_lbl_1_bss_6EA98_gap_6EAB1;
 u16 fzgx_pool_lbl_1_bss_6EA98_gap_6EAB1_fill_6EAB2;

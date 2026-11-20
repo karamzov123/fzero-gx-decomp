@@ -211,7 +211,7 @@ rel/main_rel/font/fn_1_5415C.c:
 	.text       start:0x0005415C end:0x000549F4 align:4
 
 rel/main_rel/font/fn_1_54DCC.c:
-	.text       start:0x00054DCC end:0x00055118 align:4
+	.text       start:0x00054DCC end:0x00055210 align:4
 
 rel/main_rel/font/fn_1_5557C.c:
 	.text       start:0x0005557C end:0x00055C48 align:4
@@ -868,10 +868,7 @@ rel/main_rel/rep_memcard/fn_1_154708.c:
 	.bss        start:0x0008ED90 end:0x0008EF20 align:8
 
 rel/main_rel/ranking/fn_1_1554D0.c:
-	.text       start:0x001554D0 end:0x001556B4 align:4
-
-rel/main_rel/ranking/fn_1_155F7C.c:
-	.text       start:0x00155F7C end:0x00155FB4 align:4
+	.text       start:0x001554D0 end:0x00155FB4 align:4
 
 rel/main_rel/ranking/fn_1_1586A8.c:
 	.text       start:0x001586A8 end:0x0015903C align:4
@@ -944,9 +941,6 @@ rel/main_rel/spline/fn_1_F9EE4.c:
 
 rel/main_rel/_prolog/fn_1_45D0.c:
 	.text       start:0x000045D0 end:0x00004630 align:4
-
-rel/main_rel/camera/fn_1_C038.c:
-	.text       start:0x0000C038 end:0x0000C10C align:4
 
 rel/main_rel/font/fn_1_4CDE4.c:
 	.text       start:0x0004CDE4 end:0x0004D10C align:4
@@ -1762,7 +1756,7 @@ rel/main_rel/font/fn_1_55C48.c:
 	.text       start:0x00055C48 end:0x00055D6C align:4
 
 rel/main_rel/camera/fn_1_BFA0.c:
-	.text       start:0x0000BFA0 end:0x0000C038 align:4
+	.text       start:0x0000BFA0 end:0x0000C10C align:4
 
 rel/main_rel/screen_effect/fn_1_79654.c:
 	.text       start:0x00079654 end:0x00079C88 align:4
@@ -2003,9 +1997,6 @@ rel/main_rel/sound/fn_1_A5AA0.c:
 
 rel/main_rel/load/fn_1_46BFC.c:
 	.text       start:0x00046BFC end:0x00046C70 align:4
-
-rel/main_rel/font/fn_1_55118.c:
-	.text       start:0x00055118 end:0x00055210 align:4
 
 rel/main_rel/enemy_ctrl/fn_1_C7AA0.c:
 	.text       start:0x000C7AA0 end:0x000C7CBC align:4
@@ -3096,9 +3087,6 @@ rel/main_rel/game/fn_1_37E98.c:
 
 rel/main_rel/custom_memcard/fn_1_132774.c:
 	.text       start:0x00132774 end:0x00132FB4 align:4
-
-rel/main_rel/ranking/fn_1_1556B4.c:
-	.text       start:0x001556B4 end:0x00155F7C align:4
 
 rel/main_rel/stcoli/fn_1_29044.c:
 	.text       start:0x00029044 end:0x000290E8 align:4

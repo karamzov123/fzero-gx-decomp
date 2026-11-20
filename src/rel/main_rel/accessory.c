@@ -3192,18 +3192,11 @@ void fn_1_10BE3C(Work *arg0) {
 }
 /* fzgx:end fn_1_10BE3C */
 
-/* fzgx:begin fn_1_10C4E4 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/accessory.h"
+/* fzgx:begin fn_1_10C4E4 */
 #include "rel/main_rel/cloth.h"
 #include "psvec.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/accessory.h"
 #include "rel/main_rel/cloth.h"
 #include "psvec.h"
-#include "types.h"
 
 /* begin game/main_rel/accessory_types.h (deltawave784/fzgx, CC0) */
 #ifndef GAME_MAIN_REL_ACCESSORY_TYPES_H
@@ -3495,14 +3488,11 @@ extern void fn_1_108920(void *accessory);
 extern void *fn_80077B14(void *);
 extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
 extern void fn_80008BEC(void *dest, int value, u32 size);
-extern const f32 lbl_1_rodata_7B1C;
-extern const f32 lbl_1_rodata_7B20;
 extern void fn_8006E250(void *, void *);
 extern void fn_800737E4(void *, s32);
 extern void fn_80074918(u8 arg0, s32 arg1, u8 arg2);
 extern s32 fn_1_14D670(void);
 extern u32 lbl_801A66A0;
-extern u8 fn_1_86678(int index);
 extern u32 lbl_1_bss_897AC[1741];
 extern u32 lbl_1_bss_897A4;
 extern u32 lbl_1_bss_897A8;
@@ -3512,9 +3502,7 @@ extern void lbl_8006E1B0(void *, void *);
 extern void lbl_8006DC20(void);
 extern const f64 lbl_1_rodata_7BF8;
 extern void fn_80008BA8(void *dst, void *src, int size);
-extern s32 fn_1_45D0();
 extern void fn_1_105744(void);
-extern s32 fn_1_106DB4(u32 arg0, u32 arg1);
 extern void fn_1_9D0EC(u32, u32, void*, void*);
 extern void fn_1_103AA8(void);
 extern u32 lbl_1_bss_85288[2];
@@ -3533,11 +3521,9 @@ extern void lbl_8006E0B4(f32, f32, f32);
 extern void lbl_8006E14C(f32);
 extern void lbl_8006DB74(void *);
 extern void fn_80072558(void);
-extern char *fn_80083DB0(char *dst, const char *src);
 extern void *fn_1_55210(void *);
 extern void * fn_1_548AC(u32 amount);
 extern void *fn_1_5448C(void *);
-extern void fn_1_5489C(void **arg0, void **arg1);
 extern void fn_1_12A0E0(u8 *p);
 
 #pragma section code_type ".fzgxpool"

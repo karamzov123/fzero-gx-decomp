@@ -9105,10 +9105,7 @@ void fn_1_550E0(void) {
 }
 /* fzgx:end fn_1_550E0 */
 
-/* fzgx:begin fn_1_55118 noprologue */
-#include "types.h"
-#include "rel/main_rel/font.h"
-
+/* fzgx:begin fn_1_55118 */
 extern u32 lbl_801A6410;
 extern const f32 lbl_1_rodata_28A8;
 extern void fn_800777D4(void);
@@ -9167,7 +9164,7 @@ u32 lbl_1_bss_6C79C;
 f32 fzgx_obj_lbl_1_bss_6C7A0;
 InitSettings fzgx_obj_lbl_1_bss_6C7A4;
 lbl_1_bss_6C7CC_t fzgx_obj_lbl_1_bss_6C7CC;
-u32 lbl_1_bss_6C7DC[25];
+u8 lbl_1_bss_6C7DC[100];
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {

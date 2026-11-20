@@ -11324,10 +11324,7 @@ end:
 }
 /* fzgx:end fn_1_37AA8 */
 
-/* fzgx:begin fn_1_37E98 noprologue */
-#include "types.h"
-#include "rel/main_rel/game.h"
-
+/* fzgx:begin fn_1_37E98 */
 typedef u32 (*fn_1_37E98_Fn0)(void);
 typedef u32 (*fn_1_37E98_Fn1)(u32);
 typedef u32 (*fn_1_37E98_Fn2)(void);
@@ -11711,11 +11708,11 @@ u32 fzgx_obj_lbl_1_bss_50EC[5];
 u32 fzgx_obj_lbl_1_bss_5100;
 u32 fzgx_obj_lbl_1_bss_5104[13];
 u32 fzgx_obj_lbl_1_bss_5138[65];
-u32 lbl_1_bss_523C[8];
+u8 lbl_1_bss_523C[32];
 u32 fzgx_obj_lbl_1_bss_525C[102];
 u16 fzgx_obj_lbl_1_bss_53F4;
 u16 fzgx_pool_lbl_1_bss_3C00_gap_53F6;
-u32 lbl_1_bss_53F8[34];
+Entry * lbl_1_bss_53F8[34];
 u32 lbl_1_bss_5480__fzgx_offset_0[31200];
 u8 fzgx_pool_fzgx_game_gap_23C00[0x1F88];
 u32 fzgx_obj_lbl_1_bss_25B88;
@@ -24115,11 +24112,7 @@ s32 fn_1_3F440(u8 index) {
 }
 /* fzgx:end fn_1_3F440 */
 
-/* fzgx:begin fn_1_3F4B8 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/game.h"
-
+/* fzgx:begin fn_1_3F4B8 */
 extern u32 lbl_1_bss_26C5C;
 
 typedef struct lbl_1_bss_3C30_t {
@@ -24139,7 +24132,7 @@ u32 fzgx_obj_lbl_1_bss_50EC[5];
 u32 fzgx_obj_lbl_1_bss_5100;
 u32 fzgx_obj_lbl_1_bss_5104[13];
 u32 fzgx_obj_lbl_1_bss_5138[65];
-u32 lbl_1_bss_523C[8];
+u8 lbl_1_bss_523C[32];
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {

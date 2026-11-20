@@ -165,7 +165,7 @@ dol/fn_80033E7C.c:
 	.text       start:0x80033E7C end:0x8003401C align:4
 
 dol/GXPokeDither.c:
-	.text       start:0x800342E8 end:0x80034304
+	.text       start:0x800342E8 end:0x800343BC align:4
 
 dol/GXFinishInterruptHandler.c:
 	.text       start:0x80034488 end:0x8003462C align:4
@@ -803,9 +803,6 @@ dol/GXSetNumIndStages.c:
 
 dol/fn_80036EDC.c:
 	.text       start:0x80036EDC end:0x80036FF0 align:4
-
-dol/GXPokeZMode.c:
-	.text       start:0x80034304 end:0x800343BC align:4
 
 dol/GXSetTlutRegionCallback.c:
 	.text       start:0x800365A0 end:0x800365B4 align:4

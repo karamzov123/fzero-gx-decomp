@@ -104,14 +104,9 @@ s32 fn_1_1555B0(s32 value) {
 }
 /* fzgx:end fn_1_1555B0 */
 
-/* fzgx:begin fn_1_1556B4 noprologue */
-#include "types.h"
-#include "rel/main_rel/ranking.h"
-
+/* fzgx:begin fn_1_1556B4 */
 extern void fn_1_12EF80(s16 value, s16 *out_0, s16 *out_1);
 extern void fn_1_3EF14(void *);
-extern void fn_80008BA8(void *arg0, void *arg1, u32 size);
-extern void fn_80008BEC(void *dst, u32 value, u32 size);
 extern s16 *strncpy(char *, const char *, size_t);
 extern size_t strlen(const char *);
 
@@ -167,7 +162,7 @@ u32 fzgx_obj_lbl_1_bss_8F3E0;
 s32 lbl_1_bss_8F3E4__fzgx_offset_0;
 u8 lbl_1_bss_8F3E4__fzgx_offset_4[0x14];
 u32 lbl_1_bss_8F3FC[9];
-u32 lbl_1_bss_8F420[2];
+u8 lbl_1_bss_8F420[8];
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
@@ -428,7 +423,7 @@ void fn_1_155FA8(u32 value) {
 }
 /* fzgx:end fn_1_155FA8 */
 
-/* fzgx:begin fn_1_155FB4 noprologue */
+/* fzgx:begin fn_1_155FB4 */
 typedef signed long s32;
 
 typedef unsigned char u8;
@@ -469,13 +464,13 @@ u8 pad_D9[0x7];
 u32 unk_E0; /* 1 loads, 0 stores */
 u8 pad_E4[0x2C];
 u8 unk_110; /* 0 loads, 2 stores */
-} Obj_1_bss_8EF20_At0;
+} Obj_1_bss_8EF20_At0_np_fn_1_155FB4;
 typedef struct {
-Obj_1_bss_8EF20_At0 *unk_0; /* 17 loads, 3 stores */
+Obj_1_bss_8EF20_At0_np_fn_1_155FB4 *unk_0; /* 17 loads, 3 stores */
 u8 pad_4[0x3C];
 u32 unk_40; /* 1 loads, 2 stores */
 u8 pad_44[0x4];
-} Obj_1_bss_8EF20;
+} Obj_1_bss_8EF20_np_fn_1_155FB4;
 
 extern void fn_1_3EF14(void *);
 extern char *strncpy(char *, const char *, size_t);
@@ -515,7 +510,7 @@ char lbl_1_bss_8F3E4__fzgx_offset_4[0x11];
 u8 lbl_1_bss_8F3E4__fzgx_offset_15;
 u16 lbl_1_bss_8F3E4__fzgx_offset_16;
 u32 lbl_1_bss_8F3FC[9];
-u32 lbl_1_bss_8F420[2];
+u8 lbl_1_bss_8F420[8];
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {

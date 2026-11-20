@@ -1,5 +1,5 @@
 {
- "generated": 1795197950,
+ "generated": 1795198550,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -21067,7 +21067,7 @@
   {
    "symbol": "GXPokeZMode",
    "module": "main",
-   "unit": "dol/GXPokeZMode.c",
+   "unit": "dol/GXPokeDither.c",
    "addr": 2147697412,
    "size": 40,
    "status": "matched",
@@ -21084,7 +21084,7 @@
   {
    "symbol": "fn_8003432C",
    "module": "main",
-   "unit": "dol/GXPokeZMode.c",
+   "unit": "dol/GXPokeDither.c",
    "addr": 2147697452,
    "size": 36,
    "status": "matched",
@@ -21101,7 +21101,7 @@
   {
    "symbol": "GXPeekZ",
    "module": "main",
-   "unit": "dol/GXPokeZMode.c",
+   "unit": "dol/GXPokeDither.c",
    "addr": 2147697488,
    "size": 40,
    "status": "matched",
@@ -21118,7 +21118,7 @@
   {
    "symbol": "fn_80034378",
    "module": "main",
-   "unit": "dol/GXPokeZMode.c",
+   "unit": "dol/GXPokeDither.c",
    "addr": 2147697528,
    "size": 68,
    "status": "matched",
@@ -47791,7 +47791,7 @@
   {
    "symbol": "fn_1_C038",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_C038.c",
+   "unit": "rel/main_rel/camera/fn_1_BFA0.c",
    "addr": 49208,
    "size": 108,
    "status": "matched",
@@ -47808,7 +47808,7 @@
   {
    "symbol": "camera_save_slot",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_C038.c",
+   "unit": "rel/main_rel/camera/fn_1_BFA0.c",
    "addr": 49316,
    "size": 104,
    "status": "matched",
@@ -58637,7 +58637,7 @@
   {
    "symbol": "fn_1_55118",
    "module": "main_rel",
-   "unit": "rel/main_rel/font/fn_1_55118.c",
+   "unit": "rel/main_rel/font/fn_1_54DCC.c",
    "addr": 348440,
    "size": 248,
    "status": "matched",
@@ -97720,7 +97720,7 @@
   {
    "symbol": "fn_1_1556B4",
    "module": "main_rel",
-   "unit": "rel/main_rel/ranking/fn_1_1556B4.c",
+   "unit": "rel/main_rel/ranking/fn_1_1554D0.c",
    "addr": 1398452,
    "size": 2248,
    "status": "matched",
@@ -97737,7 +97737,7 @@
   {
    "symbol": "fn_1_155F7C",
    "module": "main_rel",
-   "unit": "rel/main_rel/ranking/fn_1_155F7C.c",
+   "unit": "rel/main_rel/ranking/fn_1_1554D0.c",
    "addr": 1400700,
    "size": 16,
    "status": "matched",
@@ -97754,7 +97754,7 @@
   {
    "symbol": "fn_1_155F8C",
    "module": "main_rel",
-   "unit": "rel/main_rel/ranking/fn_1_155F7C.c",
+   "unit": "rel/main_rel/ranking/fn_1_1554D0.c",
    "addr": 1400716,
    "size": 16,
    "status": "matched",
@@ -97771,7 +97771,7 @@
   {
    "symbol": "fn_1_155F9C",
    "module": "main_rel",
-   "unit": "rel/main_rel/ranking/fn_1_155F7C.c",
+   "unit": "rel/main_rel/ranking/fn_1_1554D0.c",
    "addr": 1400732,
    "size": 12,
    "status": "matched",
@@ -97788,7 +97788,7 @@
   {
    "symbol": "fn_1_155FA8",
    "module": "main_rel",
-   "unit": "rel/main_rel/ranking/fn_1_155F7C.c",
+   "unit": "rel/main_rel/ranking/fn_1_1554D0.c",
    "addr": 1400744,
    "size": 12,
    "status": "matched",

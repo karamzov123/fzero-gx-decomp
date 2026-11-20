@@ -8206,12 +8206,16 @@
     "module": "main",
     "source": "dol/GXPokeDither.c",
     "symbols": [
-      "GXPokeDither"
+      "GXPokeDither",
+      "GXPokeZMode",
+      "fn_8003432C",
+      "GXPeekZ",
+      "fn_80034378"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n",
+    "collapsed": true
   },
   {
     "module": "main",
@@ -8222,20 +8226,6 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/GXPokeZMode.c",
-    "symbols": [
-      "GXPokeZMode",
-      "fn_8003432C",
-      "GXPeekZ",
-      "fn_80034378"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
   },
   {
     "module": "main",
@@ -39744,40 +39734,17 @@
     "module": "main_rel",
     "source": "rel/main_rel/camera/fn_1_BFA0.c",
     "symbols": [
-      "fn_1_BFA0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/camera.c",
-    "pool": {
-      "...bss.0": "lbl_1_bss_1010",
-      "fzgx_obj_lbl_1_bss_1010": "lbl_1_bss_1010",
-      "lbl_1_bss_1014": "lbl_1_bss_1014",
-      "fzgx_obj_camera_state": "camera_state",
-      "camera_state__fzgx_offset_1": "camera_state+0x1",
-      "camera_state__fzgx_offset_2": "camera_state+0x2",
-      "camera_state__fzgx_offset_4": "camera_state+0x4",
-      "lbl_1_bss_103C": "lbl_1_bss_103C",
-      "lbl_1_bss_1040": "lbl_1_bss_1040",
-      "lbl_1_bss_1044": "lbl_1_bss_1044",
-      "fzgx_obj_camera_flag_0": "camera_flag_0"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/camera/fn_1_C038.c",
-    "symbols": [
+      "fn_1_BFA0",
       "fn_1_C038",
       "camera_save_slot"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
+    "matching_for": ["GFZE01"],
+    "mw_version": "GC/1.3.2",
     "tu": "rel/main_rel/camera.c",
     "pool": {
-      "@6": "lbl_1_rodata_478"
+      "...bss.0": "lbl_1_bss_1010",
+      "@24": "lbl_1_rodata_478"
     },
     "collapsed": true
   },
@@ -94923,31 +94890,15 @@
       "fn_1_54E34",
       "fn_1_54F5C",
       "fn_1_550A8",
-      "fn_1_550E0"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/font.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_55118.c",
-    "symbols": [
+      "fn_1_550E0",
       "fn_1_55118"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
     "tu": "rel/main_rel/font.c",
+    "collapsed": true,
     "pool": {
-      "...bss.0": "lbl_1_bss_6C798",
-      "lbl_1_bss_6C798": "lbl_1_bss_6C798",
-      "lbl_1_bss_6C79C": "lbl_1_bss_6C79C",
-      "fzgx_obj_lbl_1_bss_6C7A0": "lbl_1_bss_6C7A0",
-      "fzgx_obj_lbl_1_bss_6C7A4": "lbl_1_bss_6C7A4",
-      "fzgx_obj_lbl_1_bss_6C7CC": "lbl_1_bss_6C7CC",
-      "lbl_1_bss_6C7DC": "lbl_1_bss_6C7DC"
+      "...bss.0": "lbl_1_bss_6C798"
     }
   },
   {
@@ -103266,43 +103217,8 @@
     "symbols": [
       "fn_1_1554D0",
       "fn_1_15555C",
-      "fn_1_1555B0"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/ranking.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/ranking/fn_1_1556B4.c",
-    "symbols": [
-      "fn_1_1556B4"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/ranking.c",
-    "pool": {
-      "...bss.0": "lbl_1_bss_8EF20",
-      "fzgx_obj_lbl_1_bss_8EF20": "lbl_1_bss_8EF20",
-      "lbl_1_bss_8EF20__fzgx_offset_4": "lbl_1_bss_8EF20+0x4",
-      "lbl_1_bss_8EF20__fzgx_offset_40": "lbl_1_bss_8EF20+0x40",
-      "lbl_1_bss_8EF20__fzgx_offset_44": "lbl_1_bss_8EF20+0x44",
-      "fzgx_obj_lbl_1_bss_8EF68": "lbl_1_bss_8EF68",
-      "lbl_1_bss_8EF68__fzgx_offset_230": "lbl_1_bss_8EF68+0x230",
-      "fzgx_obj_lbl_1_bss_8F3E0": "lbl_1_bss_8F3E0",
-      "lbl_1_bss_8F3E4__fzgx_offset_0": "lbl_1_bss_8F3E4",
-      "lbl_1_bss_8F3E4__fzgx_offset_4": "lbl_1_bss_8F3E4+0x4",
-      "lbl_1_bss_8F3FC": "lbl_1_bss_8F3FC",
-      "lbl_1_bss_8F420": "lbl_1_bss_8F420"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/ranking/fn_1_155F7C.c",
-    "symbols": [
+      "fn_1_1555B0",
+      "fn_1_1556B4",
       "fn_1_155F7C",
       "fn_1_155F8C",
       "fn_1_155F9C",
@@ -103310,8 +103226,12 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/ranking.c"
+    "tu": "rel/main_rel/ranking.c",
+    "collapsed": true,
+    "pool": {
+      "...bss.0": "lbl_1_bss_8EF20"
+    },
+    "matching_for": ["GFZE01"]
   },
   {
     "module": "main_rel",
