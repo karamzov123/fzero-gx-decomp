@@ -17,9 +17,6 @@ dol/fn_80006334.c:
 dol/fn_800068F4.c:
 	.text       start:0x800068F4 end:0x8000691C align:4
 
-dol/fn_80006AEC.c:
-	.text       start:0x80006AEC end:0x80006B30 align:4
-
 dol/fn_80006B30.c:
 	.text       start:0x80006B30 end:0x80006B4C
 
@@ -262,9 +259,6 @@ dol/fn_8005A94C.c:
 
 dol/fn_8006589C.c:
 	.text       start:0x8006589C end:0x800658A8
-
-dol/fn_8006CD20.c:
-	.text       start:0x8006CD20 end:0x8006CDFC align:4
 
 dol/fn_8006FEFC.c:
 	.text       start:0x8006FEFC end:0x8006FFDC align:4
@@ -1410,10 +1404,10 @@ dol/fn_80087BA4.c:
 	.text       start:0x80087BA4 end:0x80087C44 align:4
 
 dol/GXGetProjectionv.c:
-	.text       start:0x80038BFC end:0x80038C5C align:4
+	.text       start:0x80038BFC end:0x80038CAC align:4
 
 dol/fn_8006CCC8.c:
-	.text       start:0x8006CCC8 end:0x8006CD20 align:4
+	.text       start:0x8006CCC8 end:0x8006CDFC align:4
 
 dol/fn_80028130.c:
 	.text       start:0x80028130 end:0x80028164 align:4
@@ -2128,29 +2122,20 @@ dol/floor.c:
 dol/modf.c:
 	.text       start:0x800882EC end:0x800884C0 align:4
 
-dol/wcstombs.c:
-	.text       start:0x8007FF18 end:0x80080030 align:4
-
 dol/ldexp.c:
 	.text       start:0x80088128 end:0x800882EC align:4
 
 dol/frexp.c:
 	.text       start:0x8008809C end:0x80088128 align:4
 
-dol/__num2dec_internal.c:
-	.text       start:0x8007C55C end:0x8007C910 align:4
-
 dol/__num2dec.c:
-	.text       start:0x8007C3B8 end:0x8007C55C align:4
+	.text       start:0x8007C3B8 end:0x8007CF18 align:4
 
 dol/deallocate_from_fixed_pools.c:
 	.text       start:0x8007A2E8 end:0x8007A440 align:4
 
 dol/fn_8007A440.c:
 	.text       start:0x8007A440 end:0x8007A710 align:4
-
-dol/mbtowc.c:
-	.text       start:0x80080030 end:0x80080518 align:4
 
 dol/TRKGetNextEvent.c:
 	.text       start:0x8008885C end:0x80088910 align:4
@@ -2270,9 +2255,6 @@ dol/fn_80030380.c:
 dol/fn_80055DF4.c:
 	.text       start:0x80055DF4 end:0x80055EC0 align:4
 
-dol/fn_8003E8CC.c:
-	.text       start:0x8003E8CC end:0x8003E958 align:4
-
 dol/fn_8003462C.c:
 	.text       start:0x8003462C end:0x8003471C align:4
 
@@ -2306,7 +2288,7 @@ dol/fn_80030848.c:
 	.text       start:0x80030848 end:0x8003086C align:4
 
 dol/fn_8006B55C.c:
-	.text       start:0x8006B55C end:0x8006B92C align:4
+	.text       start:0x8006B55C end:0x8006BA74 align:4
 
 dol/fn_8006CDFC.c:
 	.text       start:0x8006CDFC end:0x8006CE1C align:4
@@ -2388,7 +2370,7 @@ dol/fn_8006E5FC.c:
 	.text       start:0x8006E5FC end:0x8006E7E4 align:4
 
 dol/fn_8000691C.c:
-	.text       start:0x8000691C end:0x80006AEC align:4
+	.text       start:0x8000691C end:0x80006B30 align:4
 
 dol/fn_80005EDC.c:
 	.text       start:0x80005EDC end:0x800060D8 align:4
@@ -2444,7 +2426,7 @@ dol/fn_8004F74C.c:
 	.text       start:0x8004F74C end:0x8004FAA8 align:4
 
 dol/fn_8007FE70.c:
-	.text       start:0x8007FE70 end:0x8007FF18 align:4
+	.text       start:0x8007FE70 end:0x80080518 align:4
 
 dol/fn_8006E8DC.c:
 	.text       start:0x8006E8DC end:0x8006ED0C align:4
@@ -2821,9 +2803,6 @@ dol/PADInit.c:
 dol/PADTypeAndStatusCallback.c:
 	.text       start:0x8001C704 end:0x8001CA30 align:4
 
-dol/fn_8007C910.c:
-	.text       start:0x8007C910 end:0x8007CF18 align:4
-
 dol/data/__OSDriveBlock.c:
 	.bss        start:0x8015BF20 end:0x8015BF50 align:8
 
@@ -2859,9 +2838,6 @@ dol/PSMTXQuat.c:
 
 dol/__AICallbackStackSwitch.c:
 	.text       start:0x8001E5A8 end:0x8001E600 align:4
-
-dol/GXLoadPosMtxImm.c:
-	.text       start:0x80038C5C end:0x80038CAC align:4
 
 dol/GXLoadNrmMtxImm.c:
 	.text       start:0x80038CAC end:0x80038DE8 align:4
@@ -3637,7 +3613,7 @@ dol/fn_80023684.c:
 	.text       start:0x80023684 end:0x80023B70 align:4
 
 dol/fn_8003E344.c:
-	.text       start:0x8003E344 end:0x8003E8CC align:4
+	.text       start:0x8003E344 end:0x8003E958 align:4
 
 dol/fn_8005CBF4.c:
 	.text       start:0x8005CBF4 end:0x8005D258 align:4
@@ -3659,9 +3635,6 @@ dol/fn_800384FC.c:
 
 dol/fn_80067974.c:
 	.text       start:0x80067974 end:0x80067DE4 align:4
-
-dol/fn_8006B92C.c:
-	.text       start:0x8006B92C end:0x8006BA74 align:4
 
 dol/fn_80068BFC.c:
 	.text       start:0x80068BFC end:0x80068EB4 align:4

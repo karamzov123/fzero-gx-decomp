@@ -88,7 +88,7 @@ rel/option/_prolog/_prolog.c:
 	.text       start:0x000005F8 end:0x00000800 align:4
 
 rel/option/_prolog/fn_4_250.c:
-	.text       start:0x00000250 end:0x000002D4 align:4
+	.text       start:0x00000250 end:0x000005F8 align:4
 
 rel/option/_prolog/fn_4_4834.c:
 	.text       start:0x00004834 end:0x00004B10 align:4
@@ -138,9 +138,6 @@ rel/option/_prolog/fn_4_28FC.c:
 
 rel/option/_prolog/fn_4_8E38.c:
 	.text       start:0x00008E38 end:0x00009A78 align:4
-
-rel/option/_prolog/fn_4_2D4.c:
-	.text       start:0x000002D4 end:0x000005F8 align:4
 
 rel/option/_prolog/fn_4_3568.c:
 	.text       start:0x00003568 end:0x0000406C align:4

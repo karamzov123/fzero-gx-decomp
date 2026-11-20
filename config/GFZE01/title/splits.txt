@@ -82,7 +82,7 @@ rel/title/operation/fn_8_9B04.c:
 	.text       start:0x00009B04 end:0x00009B40 align:4
 
 rel/title/operation/fn_8_D5F4.c:
-	.text       start:0x0000D5F4 end:0x0000D630 align:4
+	.text       start:0x0000D5F4 end:0x0000DD64 align:4
 
 rel/title/title/fn_8_AA8.c:
 	.text       start:0x00000AA8 end:0x00000AF0 align:4
@@ -117,9 +117,6 @@ rel/title/operation/fn_8_67F8.c:
 rel/title/title/fn_8_5218.c:
 	.text       start:0x00005218 end:0x0000530C align:4
 
-rel/title/operation/fn_8_CC2C.c:
-	.text       start:0x0000CC2C end:0x0000CC4C align:4
-
 rel/title/operation/fn_8_8C80.c:
 	.text       start:0x00008C80 end:0x00008E00 align:4
 
@@ -127,7 +124,7 @@ rel/title/operation/fn_8_BC04.c:
 	.text       start:0x0000BC04 end:0x0000BD08 align:4
 
 rel/title/operation/fn_8_C7B0.c:
-	.text       start:0x0000C7B0 end:0x0000C9A8 align:4
+	.text       start:0x0000C7B0 end:0x0000CC4C align:4
 
 rel/title/operation/fn_8_6A70.c:
 	.text       start:0x00006A70 end:0x00006C90 align:4
@@ -159,9 +156,6 @@ rel/title/operation/fn_8_6F1C.c:
 
 rel/title/operation/fn_8_79C0.c:
 	.text       start:0x000079C0 end:0x00007C4C align:4
-
-rel/title/operation/fn_8_C9A8.c:
-	.text       start:0x0000C9A8 end:0x0000CC2C align:4
 
 rel/title/title/fn_8_663C.c:
 	.text       start:0x0000663C end:0x000067B0 align:4
@@ -235,9 +229,6 @@ rel/title/operation/fn_8_86FC.c:
 rel/title/operation/fn_8_CC4C.c:
 	.text       start:0x0000CC4C end:0x0000CF58 align:4
 
-rel/title/operation/fn_8_D630.c:
-	.text       start:0x0000D630 end:0x0000DD64 align:4
-
 rel/title/operation/fn_8_7C4C.c:
 	.text       start:0x00007C4C end:0x00007EFC align:4
 
@@ -254,16 +245,13 @@ rel/title/title/fn_8_5840.c:
 	.text       start:0x00005840 end:0x00005C4C align:4
 
 rel/title/operation/fn_8_DD64.c:
-	.text       start:0x0000DD64 end:0x0000E440 align:4
+	.text       start:0x0000DD64 end:0x0000EFA4 align:4
 
 rel/title/operation/fn_8_D034.c:
 	.text       start:0x0000D034 end:0x0000D5F4 align:4
 
 rel/title/operation/fn_8_C038.c:
 	.text       start:0x0000C038 end:0x0000C7B0 align:4
-
-rel/title/operation/fn_8_E440.c:
-	.text       start:0x0000E440 end:0x0000EFA4 align:4
 
 rel/title/title/fn_8_5FD4.c:
 	.text       start:0x00005FD4 end:0x00006558 align:4

@@ -3,6 +3,7 @@
 #pragma use_lmw_stmw on
 
 /* --- rel/movie_module/fn_12_3DBDC.c --- */
+/* --- rel/movie_module/fn_12_3DBDC.c --- */
 // fn_12_3DBDC: empty in retail (single blr).
 void fn_12_3DBDC(void) {
 }
@@ -407,4 +408,111 @@ void fn_12_3E394(const Matrix3 *a, const Matrix3 *b, Matrix3 *out) {
     out->m[6] = a->m[6] * b->m[0] + a->m[7] * b->m[3] + a->m[8] * b->m[6];
     out->m[7] = a->m[6] * b->m[1] + a->m[7] * b->m[4] + a->m[8] * b->m[7];
     out->m[8] = a->m[6] * b->m[2] + a->m[7] * b->m[5] + a->m[8] * b->m[8];
+}
+
+/* --- rel/movie_module/fn_12_3E500.c --- */
+void fn_12_3E500(CFTMtx3D matrix, CFTMtx3D inverse);
+
+void fn_12_3E500(CFTMtx3D matrix, CFTMtx3D inverse) {
+    float determinant;
+    float scale;
+    float a;
+    float b;
+    float c;
+    float d;
+    float e;
+    float f;
+    float g;
+    float h;
+    float i;
+    a = matrix[0][0];
+    b = matrix[0][1];
+    c = matrix[0][2];
+    d = matrix[1][0];
+    e = matrix[1][1];
+    f = matrix[1][2];
+    g = matrix[2][0];
+    h = matrix[2][1];
+    i = matrix[2][2];
+    scale = 1.0f;
+    determinant = (a * e * i + b * f * g + c * d * h) - (a * f * h + b * d * i + c * e * g);
+    inverse[0][0] = scale * ((e * i - f * h) / determinant);
+    inverse[0][1] = scale * (-(b * i - c * h) / determinant);
+    inverse[0][2] = scale * ((b * f - c * e) / determinant);
+    inverse[1][0] = scale * (-(d * i - f * g) / determinant);
+    inverse[1][1] = scale * ((a * i - c * g) / determinant);
+    inverse[1][2] = scale * (-(a * f - c * d) / determinant);
+    inverse[2][0] = scale * ((d * h - e * g) / determinant);
+    inverse[2][1] = scale * (-(a * h - b * g) / determinant);
+    inverse[2][2] = scale * ((a * e - b * d) / determinant);
+}
+
+/* --- rel/movie_module/fn_12_3E688.c --- */
+void fn_12_3E688(CFTConvTable luma, CFTConvTable chroma_u, CFTConvTable chroma_v);
+
+void fn_12_3E688(CFTConvTable luma, CFTConvTable chroma_u, CFTConvTable chroma_v) {
+    int i;
+    int j;
+    int v;
+    int t;
+    j = 0;
+    v = 0;
+    while (j < 0x10) {
+        luma[j++] = v++;
+        luma[j++] = v;
+        v += 2;
+    }
+    while (j < 0xB0) {
+        luma[j] = v;
+        luma[j + 1] = v;
+        j += 2;
+        v++;
+    }
+    while (j < 0xC0) {
+        luma[j] = v;
+        v++;
+        j++;
+    }
+    while (j < 0x100) {
+        t = 0xFF;
+        if (v < 0xFF) {
+            t = v;
+        }
+        luma[j] = t;
+        v += 2;
+        j++;
+    }
+    j = 0x80;
+    v = j;
+    while (j > 0x68) {
+        chroma_u[j] = v;
+        chroma_v[j] = v;
+        chroma_u[j - 1] = v;
+        chroma_v[j - 1] = v;
+        chroma_u[j - 2] = v;
+        chroma_v[j - 2] = v;
+        j -= 3;
+        v--;
+    }
+    for (i = j; i >= 0; i--) {
+        chroma_u[i] = i * v / j;
+        chroma_v[i] = i * v / j;
+    }
+    v = 0x80;
+    t = v;
+    while (v < 0x98) {
+        chroma_u[v] = t;
+        chroma_v[v] = t;
+        chroma_u[v + 1] = t;
+        chroma_v[v + 1] = t;
+        chroma_u[v + 2] = t;
+        chroma_v[v + 2] = t;
+        v += 3;
+        t++;
+    }
+    i = v;
+    for (; v <= 0xFF; v++) {
+        chroma_u[v] = t + (0xFF - t) * (v - i) / (0xFF - i);
+        chroma_v[v] = t + (0xFF - t) * (v - i) / (0xFF - i);
+    }
 }

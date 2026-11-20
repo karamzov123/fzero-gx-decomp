@@ -6,9 +6,6 @@ Sections:
 	.data       type:data align:8
 	.bss        type:bss align:32
 
-rel/sel/sel/fn_10_FF08.c:
-	.text       start:0x0000FF08 end:0x00010168 align:4
-
 rel/sel/sel/fn_10_160BC.c:
 	.text       start:0x000160BC end:0x0001615C
 
@@ -26,9 +23,6 @@ rel/sel/fn_10_1B660.c:
 
 rel/sel/sel/fn_10_1B664.c:
 	.text       start:0x0001B664 end:0x0001B6CC align:4
-
-rel/sel/sel/fn_10_21C20.c:
-	.text       start:0x00021C20 end:0x00021C44
 
 rel/sel/sel/fn_10_21DA8.c:
 	.text       start:0x00021DA8 end:0x00021E30
@@ -139,7 +133,7 @@ rel/sel/sel/fn_10_13ECC.c:
 	.data       start:0x00005FA0 end:0x00005FD0 align:8
 
 rel/sel/sel/fn_10_21978.c:
-	.text       start:0x00021978 end:0x00021C20 align:4
+	.text       start:0x00021978 end:0x00021C44 align:4
 
 rel/sel/sel/fn_10_12C14.c:
 	.text       start:0x00012C14 end:0x00012E34 align:4
@@ -154,7 +148,7 @@ rel/sel/sel/fn_10_18DD0.c:
 	.text       start:0x00018DD0 end:0x00019040 align:4
 
 rel/sel/sel/fn_10_FBEC.c:
-	.text       start:0x0000FBEC end:0x0000FF08 align:4
+	.text       start:0x0000FBEC end:0x00010168 align:4
 
 rel/sel/sel/fn_10_14C84.c:
 	.text       start:0x00014C84 end:0x00014FDC align:4

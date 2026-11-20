@@ -208,7 +208,7 @@ rel/movie_module/fn_12_2FB5C.c:
 	.text       start:0x0002FB5C end:0x0002FC40 align:4
 
 rel/movie_module/fn_12_2FC40.c:
-	.text       start:0x0002FC40 end:0x0002FE60 align:4
+	.text       start:0x0002FC40 end:0x00030930 align:4
 
 rel/movie_module/fn_12_3310C.c:
 	.text       start:0x0003310C end:0x000331A8 align:4
@@ -328,7 +328,7 @@ rel/movie_module/fn_12_3D730.c:
 	.text       start:0x0003D730 end:0x0003D740 align:4
 
 rel/movie_module/fn_12_3DBDC.c:
-	.text       start:0x0003DBDC end:0x0003E500 align:4
+	.text       start:0x0003DBDC end:0x0003EBEC align:4
 
 rel/movie_module/fn_12_2145C.c:
 	.text       start:0x0002145C end:0x000215A4 align:4
@@ -392,7 +392,7 @@ rel/movie_module/mpvvlc2_InitDcSizC.c:
 	.text       start:0x0000E3BC end:0x00010F3C align:4
 
 rel/movie_module/sfxzmv_MakeOrgZ32TblByDirect.c:
-	.text       start:0x000044A8 end:0x00004A38 align:4
+	.text       start:0x000044A8 end:0x00004CEC align:4
 
 rel/movie_module/MWSFSVM_Error.c:
 	.text       start:0x00034B88 end:0x00034D1C align:4
@@ -728,9 +728,6 @@ rel/movie_module/fn_12_B9E8.c:
 rel/movie_module/fn_12_2396C.c:
 	.text       start:0x0002396C end:0x00023BFC align:4
 
-rel/movie_module/fn_12_4A38.c:
-	.text       start:0x00004A38 end:0x00004CEC align:4
-
 rel/movie_module/fn_12_33C78.c:
 	.text       start:0x00033C78 end:0x00034084 align:4
 
@@ -838,12 +835,6 @@ rel/movie_module/fn_12_2C0F8.c:
 rel/movie_module/fn_12_2D288.c:
 	.text       start:0x0002D288 end:0x0002D500 align:4
 
-rel/movie_module/fn_12_3E500.c:
-	.text       start:0x0003E500 end:0x0003E688 align:4
-
-rel/movie_module/fn_12_3E688.c:
-	.text       start:0x0003E688 end:0x0003EBEC align:4
-
 rel/movie_module/fn_12_D42C.c:
 	.text       start:0x0000D42C end:0x0000DC78 align:4
 
@@ -857,7 +848,7 @@ rel/movie_module/fn_12_8BD8.c:
 	.text       start:0x00008BD8 end:0x00008F80 align:4
 
 rel/movie_module/fn_12_6ECC.c:
-	.text       start:0x00006ECC end:0x00006FEC align:4
+	.text       start:0x00006ECC end:0x000073A0 align:4
 
 rel/movie_module/fn_12_2C9C4.c:
 	.text       start:0x0002C9C4 end:0x0002CC24 align:4
@@ -899,14 +890,8 @@ rel/movie_module/fn_12_B598.c:
 rel/movie_module/fn_12_3B65C.c:
 	.text       start:0x0003B65C end:0x0003BEF0 align:4
 
-rel/movie_module/fn_12_2FE60.c:
-	.text       start:0x0002FE60 end:0x00030930 align:4
-
 rel/movie_module/fn_12_341C.c:
 	.text       start:0x0000341C end:0x000034A8 align:4
-
-rel/movie_module/fn_12_6FEC.c:
-	.text       start:0x00006FEC end:0x000073A0 align:4
 
 rel/movie_module/fn_12_26D68.c:
 	.text       start:0x00026D68 end:0x000270AC align:4
