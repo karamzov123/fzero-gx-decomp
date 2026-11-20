@@ -37,7 +37,7 @@ extern void fn_1_A2D84(u32);
 #pragma opt_propagation off
 static inline const f32 *fn_16_20F4_array_read(const f32 *array) { return array; }
 s32 fn_16_20F4(void) {
-    volatile u16 * p; /* Controller flags are read on each test. */
+    u16 * p; /* Controller flags are read on each test. */
     volatile u16 *q;
     s32 idx = lbl_1_bss_8B614.unk_8;
     s16 flag = 0;

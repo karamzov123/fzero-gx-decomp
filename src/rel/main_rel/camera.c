@@ -881,7 +881,7 @@ void fn_1_6DD0(u8 index) {
         break;
     default: {
         /* volatile: retail preserves this byte read/modify/write for a zero mask. */
-        F6DD0SetFlag((volatile F6DD0Entry *)(bss->entries + index * 0x1FC), 0);
+        F6DD0SetFlag((F6DD0Entry *)(bss->entries + index * 0x1FC), 0);
         break;
     }
     }
@@ -2412,11 +2412,11 @@ void fn_1_8D08(fn_1_8D08_Camera *cam, f32 arg1) {
         /* Preserve ordered vector initialization around the locked-cache accesses. */
         c = *(volatile const u32 *)fzgx_pool_fzgx_camera_up_z;
         /* Preserve ordered vector initialization around the locked-cache accesses. */
-        ((volatile u32 *)&up)[0] = a;
+        ((u32 *)&up)[0] = a;
         /* Preserve ordered vector initialization around the locked-cache accesses. */
-        ((volatile u32 *)&up)[1] = b;
+        ((u32 *)&up)[1] = b;
         /* Preserve ordered vector initialization around the locked-cache accesses. */
-        ((volatile u32 *)&up)[2] = c;
+        ((u32 *)&up)[2] = c;
         lbl_8006E1C0(&up, &cam->unk_64);
     }
     {
@@ -2476,13 +2476,13 @@ void fn_1_8D08(fn_1_8D08_Camera *cam, f32 arg1) {
         /* Preserve ordered vector initialization around the locked-cache accesses. */
         b = *(volatile const u32 *)fzgx_pool_fzgx_camera_fwd_y;
         /* Preserve ordered vector initialization around the locked-cache accesses. */
-        ((volatile u32 *)&cam->unk_98)[0] = a;
+        ((u32 *)&cam->unk_98)[0] = a;
         /* Preserve ordered vector initialization around the locked-cache accesses. */
-        ((volatile u32 *)&cam->unk_98)[1] = b;
+        ((u32 *)&cam->unk_98)[1] = b;
         /* Preserve ordered vector initialization around the locked-cache accesses. */
         b = *(volatile const u32 *)fzgx_pool_fzgx_camera_fwd_z;
         /* Preserve ordered vector initialization around the locked-cache accesses. */
-        ((volatile u32 *)&cam->unk_98)[2] = b;
+        ((u32 *)&cam->unk_98)[2] = b;
     }
     {
         fn_1_8D08_Vec pos2;
@@ -3830,7 +3830,7 @@ void fn_1_ABAC(ABACObject *arg0) {
                     value.value = value.value + 1;
                 }
                 /* Volatile input flags are sampled separately for each direction. */
-                if (abac_decrease(*(volatile u16 *)((u8 *)&lbl_1_bss_9F8.unk_10 + (s8)controller * 0x14)) ||
+                if (abac_decrease(*(u16 *)((u8 *)&lbl_1_bss_9F8.unk_10 + (s8)controller * 0x14)) ||
                     abac_decrease(((Obj_1_bss_9F8 *)((u8 *)&lbl_1_bss_9F8 + (s8)controller * 0x14))->unk_12)) {
                     value.value = value.value - 1;
                 }
@@ -4648,7 +4648,7 @@ void fn_1_B870(void) {
                 offsetA.z = -clamped * (*((1) + (((B870Bss_A48 *)&lbl_1_bss_A48)->stick))) / 60.0;
             }
             offsetB.x = speed * (*((2) + (((B870Bss_A48 *)&lbl_1_bss_A48)->stick))) / 60.0;
-            if (((*(volatile u16 *)&((B870Bss_9F8 *)&lbl_1_bss_9F8)->unk_2) >> 9) & 1) { /* Retail reloads the mode for the second stick. */
+            if (((*(u16 *)&((B870Bss_9F8 *)&lbl_1_bss_9F8)->unk_2) >> 9) & 1) {
                 offsetB.y = clamped * (*((3) + (((B870Bss_A48 *)&lbl_1_bss_A48)->stick))) / 60.0;
             } else {
                 offsetB.z = -clamped * (*((3) + (((B870Bss_A48 *)&lbl_1_bss_A48)->stick))) / 60.0;
@@ -4689,7 +4689,7 @@ void fn_1_B870(void) {
         fzgx_obj_lbl_1_bss_103C = lbl_8006D0B4(dx);
     }
     if (((((B870Bss_9F8 *)&lbl_1_bss_9F8)->unk_2 >> 9) & 1) && camera_flag_1__fzgx_offset_0 != 0) {
-        buttons = (*(u16 volatile *)&(((B870Bss_9F8 *)&lbl_1_bss_9F8)->unk_0)) /* Retail reloads this field. */;
+        buttons = (*(u16 *)&(((B870Bss_9F8 *)&lbl_1_bss_9F8)->unk_0));
         if (buttons & 1) {
             rot = 0x800;
         } else {

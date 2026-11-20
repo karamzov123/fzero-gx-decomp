@@ -186,7 +186,7 @@ p->unk_4 = (u16)(s32)((f64)(u32)c4 + dd);
 } else {
 e = fn_4_ADF4_sign(t4);
 /* Retail rereads the position after selecting the one-step adjustment. */
-p->unk_4 = *(volatile u16 *)&p->unk_4 + e;
+p->unk_4 = *(u16 *)&p->unk_4 + e;
 }
 {
 u16 c6 = p->unk_6;
@@ -197,7 +197,7 @@ p->unk_6 = (u16)(s32)((f64)(u32)c6 + dd);
 } else {
 e = fn_4_ADF4_sign(t6);
 /* Retail rereads the position after selecting the one-step adjustment. */
-p->unk_6 = *(volatile u16 *)&p->unk_6 + e;
+p->unk_6 = *(u16 *)&p->unk_6 + e;
 }
 }
 }
@@ -856,7 +856,7 @@ lbl_10_bss_55CD8->unk_F = 0;
 {
 register Obj_10_bss_55CD8_Target **ref = &lbl_10_bss_55CD8;
 /* Observe the shared state pointer independently before this update stage. */
-Obj_10_bss_55CD8_Target *before = *(Obj_10_bss_55CD8_Target *volatile *)ref;
+Obj_10_bss_55CD8_Target *before = *(Obj_10_bss_55CD8_Target **)ref;
 Obj_10_bss_55CD8_Target *after;
 s32 prev;
 prev = *(s8 *)&before->unk_10;
@@ -876,7 +876,7 @@ after->unk_10 = 1;
 {
 register Obj_10_bss_55CD8_Target **smoothRef = &lbl_10_bss_55CD8;
 /* Observe the shared state pointer again for the animation update. */
-Obj_10_bss_55CD8_Target *phase = *(Obj_10_bss_55CD8_Target *volatile *)smoothRef;
+Obj_10_bss_55CD8_Target *phase = *(Obj_10_bss_55CD8_Target **)smoothRef;
 u32 old12;
 s32 x;
 f64 d;
@@ -1522,7 +1522,7 @@ fn_10_25888_s32 fn_10_25888(void) {
         {
             u32 flags = lbl_10_bss_55CD8->unk_0;
             /* Retail reloads the target pointer after reading its flags. */
-            (*(Obj_4_bss_5680_Target * volatile *)&lbl_10_bss_55CD8)->unk_0 = flags & ~0x40000000;
+            (*(Obj_4_bss_5680_Target * *)&lbl_10_bss_55CD8)->unk_0 = flags & ~0x40000000;
         }
     }
     if (lbl_10_bss_55CD8->unk_0 >> 31) {

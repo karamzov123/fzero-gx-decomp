@@ -1629,7 +1629,7 @@ static inline u32 fn_1_30054_rand(void)
 static inline void fn_1_30054_prepare(void)
 {
     /* Volatile view keeps the pre-call state read separate from the post-call access. */
-    fn_1_46A8C(((volatile BurnerWork *)&lbl_1_bss_8B5F4)->unk_4);
+    fn_1_46A8C(((BurnerWork *)&lbl_1_bss_8B5F4)->unk_4);
 }
 
 void fn_1_30054(void)

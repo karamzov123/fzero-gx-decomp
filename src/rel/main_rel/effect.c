@@ -4425,7 +4425,7 @@ void fn_1_5CA00(struct fn_1_5CA00_Arg0 *arg0) {
  else {
  f32 x0,x1,z1,y0,z0,y1,sx,sy,mx,sz,factor,dx,dz,dy,sq;
  /* Reload the endpoint snapshot after the degenerate-transform branch. */
- x1=*(volatile f32 *)&loc_3C.x; x0=*(volatile f32 *)&loc_30.x;
+ x1=*(f32 *)&loc_3C.x; x0=*(f32 *)&loc_30.x;
  y1=*(volatile f32 *)&loc_3C.y; y0=*(volatile f32 *)&loc_30.y;  /* fzgx-allow: S2 volatile view keeps the verified load order */
  dx=x1-x0; sx=x1+x0;
  z1=*(volatile f32 *)&loc_3C.z; z0=*(volatile f32 *)&loc_30.z;  /* fzgx-allow: S2 volatile view keeps the verified load order */
@@ -5438,7 +5438,7 @@ extern void fn_8006E2B0(Fn5D91CVec *, Fn5D91CVec *);
 static inline void set_translation(Fn5D91CObj *obj) {
     f32 x, y, z;
     /* volatile: keeps x's load first (locked-cache column idiom). */
-    x = *(volatile f32 *)&obj->unk_94;
+    x = *(f32 *)&obj->unk_94;
     y = obj->unk_98;
     z = obj->unk_9c;
     *(f32 *)(0xE0000000 + 0x0C) = x;
@@ -6007,7 +6007,7 @@ f32 fn_1_5E3C4(struct fn_1_5E3C4_Arg0 *arg0, f32 arg1) {
     f32 v12;
     v0 = arg1;
     if (arg0->unk_B2 == 1) {
-        if (((0) == ((s32)(*(u32 volatile *)&arg0->unk_10)))) { /* Retail requires a distinct field reload. */
+        if (((0) == ((s32)(*(u32 *)&arg0->unk_10)))) {
             v1 = lbl_1_data_1D628 * 0x41C64E6D + 12345;
             v2 = 4503599627370496.0;
             v4 = 0.25f;
@@ -6018,7 +6018,7 @@ f32 fn_1_5E3C4(struct fn_1_5E3C4_Arg0 *arg0, f32 arg1) {
             arg0->unk_10 = (s32)(f32)(v6 * (f32)(v5 + (f32)(v4 * (f32)(v0 / (32767.0f)))));
         }
     } else {
-        if (((0) == ((s32)(*(u32 volatile *)&arg0->unk_10)))) { /* Retail requires a distinct field reload. */
+        if (((0) == ((s32)(*(u32 *)&arg0->unk_10)))) {
             v7 = lbl_1_data_1D628 * 0x41C64E6D + 12345;
             v8 = 4503599627370496.0;
             v10 = 0.25f;
@@ -17477,7 +17477,7 @@ static inline void advance_particle654B0(Particle654B0 *p)
 static inline u32 random_bits654B0(void)
 {
     /* fzgx-allow: shared generator accesses retain their volatile ordering. */
-    return ((*(volatile u32 *)&lbl_1_data_1D628 = *(volatile u32 *)&lbl_1_data_1D628 * 0x41C64E6D + 12345) >> 16) & 0x7FFFu;
+    return ((*(u32 *)&lbl_1_data_1D628 = *(u32 *)&lbl_1_data_1D628 * 0x41C64E6D + 12345) >> 16) & 0x7FFFu;
 }
 
 static inline f32 random_float654B0(f32 bits)
@@ -19940,7 +19940,7 @@ struct fn_1_67414_Arg0 {
 
 void fn_1_67414(struct fn_1_67414_Arg0 *arg0) {
     // Volatile preserves the retail load-after-store ordering for the pooled value.
-    volatile const f32 *value = (volatile const f32 *)&lbl_1_rodata_2954;
+    const f32 *value = (const f32 *)&lbl_1_rodata_2954;
     arg0->unk_10 = 30;
     arg0->unk_b4 = *value;
 }

@@ -1036,7 +1036,7 @@ typedef struct {
 void fn_1_F3AB0(Obj_1_bss_7EFD8 *obj) {
     f32 values[3];
     // The retail routine reserves this volatile scratch area for replay records.
-    volatile u8 data[0xf80];
+    u8 data[0xf80];
     ReplayEntry_F3AB0 *entry;
     s32 count;
     s32 i;

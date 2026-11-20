@@ -821,8 +821,8 @@ typedef struct {
     u8 pad_0[8];
     u16 unk_8;
     u8 pad_A[6];
-    volatile u16 unk_10; /* Volatile: retail rereads controller flags for each direction. */
-    volatile u16 unk_12; /* Volatile: retail rereads alternate controller flags for each direction. */
+    u16 unk_10;
+    u16 unk_12;
 } fn_3_E64_Controller;
 
 typedef struct fn_3_78C8_CustomizeEntry {
@@ -3726,7 +3726,7 @@ typedef struct {
     u16 unk_8;
     u8 pad_A[6];
     volatile u16 unk_10; /* Volatile: retail rereads controller flags for each direction. */
-    volatile u16 unk_12; /* Volatile: retail rereads alternate controller flags for each direction. */
+    u16 unk_12;
 } Controller;
 extern Controller lbl_1_bss_9F8[];
 extern u32 lbl_3_bss_2C584[98];
@@ -5211,7 +5211,7 @@ typedef struct {
     u8 pad_2[0x6];
     u16 unk_8;
     u8 pad_A[0x6];
-    volatile u16 unk_10; /* Volatile: retail rereads these flags for each direction test. */
+    u16 unk_10;
     u16 unk_12;
 } Pad_1_bss_9F8;
 
@@ -9249,8 +9249,8 @@ typedef struct {
     u8 pad0[0x8];
     volatile u16 held;    /* 0x08 */
     u8 padA[0x6];
-    volatile u16 down;    /* 0x10 */
-    volatile u16 repeat;  /* 0x12 */
+    u16 down;    /* 0x10 */
+    u16 repeat;  /* 0x12 */
 } fn_3_A12C_Pad;
 
 typedef struct {

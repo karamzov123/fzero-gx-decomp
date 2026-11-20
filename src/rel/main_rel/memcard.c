@@ -596,7 +596,7 @@ state->unk_1 == 1) {
 fn_1_A2DC4(0xA9011300 );
 state->unk_1 = 0;
 /* Volatile prevents the compiler from reusing the first status read. */
-} else if ((((*((volatile u16 *)&((Obj_1_bss_9F8_fn_1_ABB4C *)&lbl_1_bss_9F8)->unk_10) >> 1) & 1) != 0 ||
+} else if ((((*((u16 *)&((Obj_1_bss_9F8_fn_1_ABB4C *)&lbl_1_bss_9F8)->unk_10) >> 1) & 1) != 0 ||
 ((((Obj_1_bss_9F8_fn_1_ABB4C *)&lbl_1_bss_9F8)->unk_12 >> 1) & 1) != 0) &&
 state->unk_1 == 0) {
 fn_1_A2DC4(0xA9011300 );
@@ -7263,7 +7263,7 @@ void fn_1_AD264(CardTask *a)
             a->unk_0A = -1;
         } else if ((lbl_1_bss_9F8.unk_8 >> 8) & 1) {
             a->unk_03 = 2;
-        } else if (((lbl_1_bss_9F8.unk_8 >> 11) & 1) && !((*(volatile CardMgr **)&a->unk_24 /* Retail reloads this field. */)->unk_08 & 2)) {
+        } else if (((lbl_1_bss_9F8.unk_8 >> 11) & 1) && !((*(CardMgr **)&a->unk_24)->unk_08 & 2)) {
             if (a->unk_0C != 0) {
                 while (CARDUnmount(a->unk_00) == -1) {
                 }
@@ -7305,7 +7305,7 @@ void fn_1_AD264(CardTask *a)
                     lbl_1_bss_718B1 = 1;
                 }
             }
-        } else if (((*(volatile u16 *)&lbl_1_bss_9F8.unk_8 /* Retail reloads this field. */ >> 10) & 1) && ((*(volatile CardMgr **)&a->unk_24 /* Retail reloads this field. */)->unk_08 & 0x400)) {
+        } else if (((*(u16 *)&lbl_1_bss_9F8.unk_8 /* Retail reloads this field. */ >> 10) & 1) && ((*(volatile CardMgr **)&a->unk_24 /* Retail reloads this field. */)->unk_08 & 0x400)) {
             a->unk_03 = 5;
             a->unk_24->unk_08 &= ~0x400;
             a->unk_24->unk_08 |= 0x200;
@@ -7471,9 +7471,9 @@ void fn_1_AD264(CardTask *a)
                 if (a->unk_24->unk_08 & 0x10000) {
                     buf = m->unk_94;
                     *(u16 *)(buf + 0x2200) = m->unk_18;
-                    m = (*(CardMgr * volatile *)&(a->unk_24)); /* Retail reloads the pointer between statements. */
+                    m = (*(CardMgr * *)&(a->unk_24));
                     *(u16 *)(buf + 0x7580) = m->unk_18 >> 16;
-                    m = (*(CardMgr * volatile *)&(a->unk_24)); /* Retail reloads the pointer between statements. */
+                    m = (*(CardMgr * *)&(a->unk_24));
                     *(u16 *)(buf + 0x2060) = m->unk_18 >> 32;
                     m = (*(CardMgr * volatile *)&(a->unk_24)); /* Retail reloads the pointer between statements. */
                     *(u16 *)(buf + 0x2066) = m->unk_18 >> 48;
@@ -8016,8 +8016,8 @@ switch (fzgx_live->unk_04) {
             if (wait == 0) {
                 break;
             }
-            (*(u32 volatile *)&(lbl_1_bss_718B4)) /* Retail stores before the call reload. */ = a->unk_24->unk_04;
-            fn_1_46B4(lbl_801A6410.unk_0, (u32)(*(CardMgr * volatile *)&(a->unk_24)) /* Retail reloads after the store. */, (const char *)("memcard.c"), 1004);
+            (*(u32 *)&(lbl_1_bss_718B4)) = a->unk_24->unk_04;
+            fn_1_46B4(lbl_801A6410.unk_0, (u32)(*(CardMgr * *)&(a->unk_24)), (const char *)("memcard.c"), 1004);
             a->unk_24 = 0;
             a->unk_02 = 0xFF;
             a->unk_03 = 0xFF;
@@ -8034,8 +8034,8 @@ switch (fzgx_live->unk_04) {
             lbl_1_bss_772C8 = 0;
             lbl_1_bss_718B8 = 1;
         } else if (((lbl_1_bss_9F8.unk_8 >> 8) & 1)) {
-            (*(u32 volatile *)&(lbl_1_bss_718B4)) /* Retail stores before the call reload. */ = a->unk_24->unk_04;
-            fn_1_46B4(lbl_801A6410.unk_0, (u32)(*(CardMgr * volatile *)&(a->unk_24)) /* Retail reloads after the store. */, (const char *)("memcard.c"), 1004);
+            (*(u32 *)&(lbl_1_bss_718B4)) = a->unk_24->unk_04;
+            fn_1_46B4(lbl_801A6410.unk_0, (u32)(*(CardMgr * *)&(a->unk_24)), (const char *)("memcard.c"), 1004);
             a->unk_24 = 0;
             a->unk_02 = 0xFF;
             a->unk_03 = 0xFF;
@@ -8173,7 +8173,7 @@ typedef struct MemcardWork {
     u8 unk_1F1;
     u8 pad_1F2[0x2];
     /* polled by the state machine while the async card path writes it */
-    volatile u32 unk_1F4;
+    u32 unk_1F4;
     u8 unk_1F8;
     u8 pad_1F9[0x5A0F];
     u8 unk_5C08;
@@ -9289,7 +9289,7 @@ void fn_1_B03CC(B03CC_State *arg0) {
             } else if ((u8 *)arg0 == slot0 + 0xa0) {
                 g->unk_1F1 = 1;
             }
-        } else if ((((*(u16 volatile *)&(lbl_1_bss_9F8.unk_8)) /* Retail reloads this field. */ >> 10) & 1) && (((B03CC_Work *)*(void **)((u8 *)arg0 + 0x24))->unk_8 & 0x400)) {
+        } else if ((((*(u16 *)&(lbl_1_bss_9F8.unk_8)) >> 10) & 1) && (((B03CC_Work *)*(void **)((u8 *)arg0 + 0x24))->unk_8 & 0x400)) {
             arg0->unk_3 = 5;
             ((B03CC_Work *)*(void **)((u8 *)arg0 + 0x24))->unk_8 &= ~0x400;
             ((B03CC_Work *)*(void **)((u8 *)arg0 + 0x24))->unk_8 |= 0x200;
@@ -9807,7 +9807,7 @@ void fn_1_B03CC(B03CC_State *arg0) {
                 flag = 1;
             }
             if (flag != 0) {
-                (*(u32 volatile *)&(g->unk_1F4)) /* Retail stores before the call reload. */ = arg0->unk_24->unk_4;
+                (*(u32 *)&(g->unk_1F4)) = arg0->unk_24->unk_4;
                 fn_1_46B4(lbl_801A6410, (*(B03CC_Work * volatile *)&(arg0->unk_24)) /* Retail reloads after the store. */, base + 0x6cf0, 0x3ec);
                 arg0->unk_24 = 0;
                 arg0->unk_2 = 0xff;
@@ -9826,7 +9826,7 @@ void fn_1_B03CC(B03CC_State *arg0) {
                 g->unk_1F8 = 1;
             }
         } else if ((lbl_1_bss_9F8.unk_8 >> 8) & 1) {
-            (*(u32 volatile *)&(g->unk_1F4)) /* Retail stores before the call reload. */ = arg0->unk_24->unk_4;
+            (*(u32 *)&(g->unk_1F4)) = arg0->unk_24->unk_4;
             fn_1_46B4(lbl_801A6410, (*(B03CC_Work * volatile *)&(arg0->unk_24)) /* Retail reloads after the store. */, base + 0x6cf0, 0x3ec);
             arg0->unk_24 = 0;
             arg0->unk_2 = 0xff;
@@ -9935,9 +9935,9 @@ void fn_1_B171C(void *arg0) {
  else p->unk_3 = p->unk_5;
  p->unk_8 = -1; p->unk_A = -1; p->unk_2A &= ~4;
  /* The alternate action resamples the live input rather than using the earlier snapshot. */
- } else if ((((volatile Obj_1_bss_9F8 *)input)->unk_8 >> 10) & 1) {
+ } else if ((((Obj_1_bss_9F8 *)input)->unk_8 >> 10) & 1) {
  /* Fetch the current card-state pointer when processing the newly sampled action. */
- if (((volatile CardContext *)p)->unk_24->unk_8 & 0x400) {
+ if (((CardContext *)p)->unk_24->unk_8 & 0x400) {
  p->unk_3 = 5; p->unk_24->unk_8 &= ~0x400; p->unk_24->unk_8 |= 0x200;
  p->unk_2A &= ~4; p->unk_2A |= 0x10;
  }
@@ -10236,7 +10236,7 @@ void fn_1_B22AC(MemcardCtx *ctx, s32 kind) {
     }
     entry->unk_1 = kind;
     value = *(volatile u32 *)&info->unk_40;  /* fzgx-allow: S2 volatile view keeps the verified load order */
-    entry->unk_24 = (*(MemcardWork *volatile *)&ctx->unk_24)->unk_40;
+    entry->unk_24 = (*(MemcardWork **)&ctx->unk_24)->unk_40;
     entry->unk_28 = ctx->unk_24->unk_44;
     ctx->unk_2D++;
     ctx->unk_24->unk_08 |= 0x20;
@@ -11015,8 +11015,8 @@ rec = record_address((u8 *)fzgx_live->unk_DC, off);
                 }
                 if (flag != 0) {
                     u32 t4 = ctx->unk_24->unk_04;
-                    (*(u32 volatile *)&(p->unk_1F4)) /* Retail stores before the call reload. */ = t4;
-                    fn_1_46B4(lbl_801A6410, (u32)(*(UnkWork_1_B277C * volatile *)&(ctx->unk_24)) /* Retail reloads after the store. */, data + 0x6cf0, 0x3ec);
+                    (*(u32 *)&(p->unk_1F4)) = t4;
+                    fn_1_46B4(lbl_801A6410, (u32)(*(UnkWork_1_B277C * *)&(ctx->unk_24)), data + 0x6cf0, 0x3ec);
                     ctx->unk_24 = 0;
                     ctx->unk_02 = 0xff;
                     ctx->unk_03 = 0xff;
@@ -11034,8 +11034,8 @@ rec = record_address((u8 *)fzgx_live->unk_DC, off);
                     p->unk_1F8 = 1;
                 }
             } else if (((lbl_1_bss_9F8.unk_8 >> 8) & 1) != 0) {
-                (*(u32 volatile *)&(p->unk_1F4)) /* Retail stores before the call reload. */ = ctx->unk_24->unk_04;
-                fn_1_46B4(lbl_801A6410, (u32)(*(UnkWork_1_B277C * volatile *)&(ctx->unk_24)) /* Retail reloads after the store. */, data + 0x6cf0, 0x3ec);
+                (*(u32 *)&(p->unk_1F4)) = ctx->unk_24->unk_04;
+                fn_1_46B4(lbl_801A6410, (u32)(*(UnkWork_1_B277C * *)&(ctx->unk_24)), data + 0x6cf0, 0x3ec);
                 ctx->unk_24 = 0;
                 ctx->unk_02 = 0xff;
                 ctx->unk_03 = 0xff;
@@ -11510,7 +11510,7 @@ void fn_1_B40C0(void *arg0)
                 s->unk_A = -1;
                 s->unk_2A &= ~4;
             /* Sample the input and work pointer again for the format action. */
-            } else if ((((((volatile B40InputBits *)&lbl_1_bss_9F8.unk_8)->c.value >> 10) & 1)) && ((*(B40Work *volatile *)&s->unk_24)->unk_8 & 0x400)) {
+            } else if ((((((B40InputBits *)&lbl_1_bss_9F8.unk_8)->c.value >> 10) & 1)) && ((*(B40Work **)&s->unk_24)->unk_8 & 0x400)) {
                 s->unk_3 = 5;
                 s->unk_24->unk_8 &= ~0x400;
                 s->unk_24->unk_8 |= 0x200;

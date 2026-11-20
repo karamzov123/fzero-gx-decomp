@@ -17430,13 +17430,13 @@ void fn_17_424C(void) {
 typedef struct {
     u8 pad[0x88];
     // Hardware-style shared state must be read exactly as published.
-    volatile int value;
+    int value;
 } fn_17_4540_InterviewState;
 
 typedef struct {
     u8 pad[0xc];
     // Hardware-style shared state must be read exactly as published.
-    volatile s16 value;
+    s16 value;
 } fn_17_4540_InterviewData;
 
 

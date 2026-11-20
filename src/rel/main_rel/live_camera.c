@@ -3707,7 +3707,7 @@ void fn_1_1138C(Cam *c)
         f32 ay;
         f32 ax;
         /* Read the translation column before updating locked cache. */
-        ax = *(volatile f32 *)&a.x;
+        ax = *(f32 *)&a.x;
         ay = a.y;
         az = a.z;
         *(f32 *)(0xE000000C) = ax;
@@ -5167,7 +5167,7 @@ extern u32 *fn_1_1304C(Obj_1_bss_3B30 *, u32);
 u32 fn_1_12FD4(u32 arg0, u32 arg1, u32 arg2) {
     u32 *t0;
     /* Publish the cleared header before updating the request fields. */
-    volatile LiveCameraRequest *obj = (volatile LiveCameraRequest *)&lbl_1_bss_3B30;
+    volatile LiveCameraRequest *obj = (LiveCameraRequest *)&lbl_1_bss_3B30;
     obj->unk_0 = 0;
     obj->unk_80 = arg1;
     obj->unk_84 = 0;

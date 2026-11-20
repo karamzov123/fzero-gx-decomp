@@ -873,8 +873,8 @@ lbl_4_bss_5680->unk_F = 0;
 {
 register Obj_4_bss_5680_Target **ref = &lbl_4_bss_5680;
 /* Observe the shared state pointer independently before this update stage. */
-/* WARNING: compiler-diff device, not original code (volatile read: retail reloads the target pointer, carried from main) */
-Obj_4_bss_5680_Target *before = *(Obj_4_bss_5680_Target *volatile *)ref;
+/* WARNING: compiler-diff device, not original code (no-op pointer cast: retail reloads the target pointer; a plain *ref read differs, carried from main) */
+Obj_4_bss_5680_Target *before = *(Obj_4_bss_5680_Target **)ref;
 Obj_4_bss_5680_Target *after;
 s32 prev;
 prev = *(s8 *)&before->unk_10;
@@ -894,8 +894,8 @@ after->unk_10 = 1;
 {
 register Obj_4_bss_5680_Target **smoothRef = &lbl_4_bss_5680;
 /* Observe the shared state pointer again for the animation update. */
-/* WARNING: compiler-diff device, not original code (volatile read: retail reloads the target pointer, carried from main) */
-Obj_4_bss_5680_Target *phase = *(Obj_4_bss_5680_Target *volatile *)smoothRef;
+/* WARNING: compiler-diff device, not original code (no-op pointer cast: retail reloads the target pointer; a plain *ref read differs, carried from main) */
+Obj_4_bss_5680_Target *phase = *(Obj_4_bss_5680_Target **)smoothRef;
 u32 old12;
 s32 x;
 f64 d;
@@ -1413,8 +1413,8 @@ s32 fn_4_D420(void) {
         {
             u32 flags = lbl_4_bss_5680->unk_0;
             /* Retail reloads the target pointer after reading its flags. */
-            /* WARNING: compiler-diff device, not original code (volatile pointer store, carried from main) */
-            (*(Obj_4_bss_5680_Target * volatile *)&lbl_4_bss_5680)->unk_0 = flags & ~0x40000000;
+            /* WARNING: compiler-diff device, not original code (no-op pointer cast on the store target: retail reloads the pointer, carried from main) */
+            (*(Obj_4_bss_5680_Target * *)&lbl_4_bss_5680)->unk_0 = flags & ~0x40000000;
         }
     }
     if (lbl_4_bss_5680->unk_0 >> 31) {

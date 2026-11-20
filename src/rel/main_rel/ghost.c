@@ -1997,7 +1997,7 @@ void fn_1_ECF88(void) {
             p_lbl_1_bss_7B180->unk_38C0 = (p_lbl_1_bss_7B180->unk_38C0 + 1) & mask;
         }
         /* Volatile: this flag read is a separate snapshot after the counter update. */
-        if ((*(volatile u32 *)v3 & 8) != 0) {
+        if ((*(u32 *)v3 & 8) != 0) {
             p_lbl_1_bss_7B180->unk_38B8++;
         } else if (p_lbl_1_bss_7B180->unk_38B8 != 0) {
             p_lbl_1_bss_7B180->unk_38B8 = 0;
@@ -2116,7 +2116,7 @@ packed_flag:
                 /* Keep the current-lap snapshot for the following comparisons. */
                 s32 currentLap;
                 /* Volatile: retain this lap snapshot for both comparisons below. */
-                if ((s8)p_lbl_1_bss_7B180->unk_38A5 != (currentLap = *(volatile s8 *)&p_lbl_1_bss_7B180->unk_38A4)) {
+                if ((s8)p_lbl_1_bss_7B180->unk_38A5 != (currentLap = *(s8 *)&p_lbl_1_bss_7B180->unk_38A4)) {
                     v42 = p_lbl_1_bss_7B180->unk_38A6;
                     if (currentLap > (s8)v42 && (s8)v42 < 3) {
                         p_lbl_1_bss_7B180->unk_38A6 = v42 + 1;

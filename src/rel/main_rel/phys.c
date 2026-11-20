@@ -628,7 +628,7 @@ static const u32 fzgx_pool_table_0[10] = {0xbf800000, 0x3f7ffffe, 0x3f800001, 0x
 #pragma section code_type ".fzgxpool"
 static void fzgx_pool_primer_0(s32 value) {
     volatile f32 f; /* Intentional volatile: retain shared retail pool literals. */
-    volatile f64 d; /* Intentional volatile: retain shared retail pool literals. */
+    f64 d;
     f = 1.0000000000000000f;
 }
 #pragma section code_type ".text"
@@ -649,7 +649,7 @@ static const u32 fzgx_pool_table_4C[9] = {0x0, 0x3f800000, 0x0, 0x0, 0x3f800000,
 #pragma section code_type ".fzgxpool"
 static void fzgx_pool_primer_2(s32 value) {
     volatile f32 f; /* Intentional volatile: retain shared retail pool literals. */
-    volatile f64 d; /* Intentional volatile: retain shared retail pool literals. */
+    f64 d;
     f = 0.000095873801910784096f;
     f = 1.5000000000000000f;
     f = -1.1920928955078125e-7f;
@@ -660,7 +660,7 @@ static void fzgx_pool_primer_2(s32 value) {
 #pragma section code_type ".fzgxpool"
 static void fzgx_pool_primer_3(s32 value) {
     volatile f32 f; /* Intentional volatile: retain shared retail pool literals. */
-    volatile f64 d; /* Intentional volatile: retain shared retail pool literals. */
+    f64 d;
     f = 60.000000000000000f;
     f = 1000000.0000000000f;
     f = 250000.00000000000f;
@@ -671,7 +671,7 @@ static const u32 fzgx_pool_table_98[6] = {0x0, 0x3f800000, 0x0, 0x0, 0x3f800000,
 #pragma section code_type ".fzgxpool"
 static void fzgx_pool_primer_4(s32 value) {
     volatile f32 f; /* Intentional volatile: retain shared retail pool literals. */
-    volatile f64 d; /* Intentional volatile: retain shared retail pool literals. */
+    f64 d;
     f = -0.0099999997764825821f;
     f = 0.0099999997764825821f;
     f = -1.0099999904632568f;

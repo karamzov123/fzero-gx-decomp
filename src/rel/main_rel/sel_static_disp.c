@@ -7519,7 +7519,7 @@ void fn_1_141360(u32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5)
             idx = j;
         }
     }
-    t = (*(const f32 volatile *)&lbl_1_rodata_87AC) /* Retail reloads this object. */ * (lbl_1_rodata_863C + (lbl_8006D188((s32)(fn_1_141360_operand((lbl_1_rodata_87E8), (lbl_1_rodata_8B2C * (f32)(u32)(lbl_801A66A0[0] & 3)))))));
+    t = (*(const f32 *)&lbl_1_rodata_87AC) * (lbl_1_rodata_863C + (lbl_8006D188((s32)(fn_1_141360_operand((lbl_1_rodata_87E8), (lbl_1_rodata_8B2C * (f32)(u32)(lbl_801A66A0[0] & 3)))))));
     u = t * lbl_1_rodata_85F0;
     v = lbl_1_rodata_8A24 + u;
     v = arg5 * v;
@@ -14842,7 +14842,7 @@ fn_1_A2D84(0xA9010400U);
 }
 elapsed = lbl_801A66A4 - p->unk_10;
 if (elapsed > arg2) {
-if (elapsed >= (*(u32 volatile *)&(p->unk_3C)) /* Retail reloads this field. */) {
+if (elapsed >= (*(u32 *)&(p->unk_3C))) {
 cur.value = *pos;
 lo.value = 0.0f;
 delta = 0.2f * ((f32)*target - cur.value);
@@ -20620,7 +20620,7 @@ void fn_1_151054(State151054 *arg0) {
                 }
                 if (entry->unk_1828 > pool[0x5C/4] || entry->unk_182C != pool[0x5C/4]) {
                     /* Keep the reset's independent pool read; do not reuse the comparison load. */
-                    entry->unk_1828 = *(volatile const f32 *)&pool[0x5C/4];
+                    entry->unk_1828 = *(const f32 *)&pool[0x5C/4];
                 }
                 if (entry->unk_185C) {
                     entry->unk_1824 = clamp151054(entry->unk_1828 + entry->unk_1824, arg0->unk_2734, arg0->unk_2730);

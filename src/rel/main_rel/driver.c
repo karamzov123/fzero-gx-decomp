@@ -3000,7 +3000,7 @@ void fn_1_A89B0(fn_1_A89B0_Obj *obj, fn_1_A89B0_Arg1 *arg1, s32 side) {
 
     lbl_8006D758();
     /* Keep the source translation loads ordered before locked-cache writes. */
-    tx = *(volatile f32 *)&ofs->x;
+    tx = *(f32 *)&ofs->x;
     ty = ofs->y;
     tz = ofs->z;
     MTXA[0][3] = tx;

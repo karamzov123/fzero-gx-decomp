@@ -547,7 +547,7 @@ if (rec.unk_0 & 0x1000) {
 a = fzgx_obj_lbl_1_bss_8EF20;
 for (i = 9; i >= 0; i--) {
 /* record fields other than the loop-invariant id are re-read on every pass: retail reloads them inside the loop */
-#define VRF(f) (((volatile Rec_155FB4 *)&rec)->f)
+#define VRF(f) (((Rec_155FB4 *)&rec)->f)
 if ((a)[i].unk_0 == rec.unk_1444 && a[i].unk_18 == VRF(unk_145C)
 && a[i].unk_1A == VRF(unk_145E) && a[i].pad_1B[0] == VRF(unk_145F)
 && a[i].pad_1B[1] == VRF(unk_1460) && a[i].pad_1B[2] == VRF(unk_1461)

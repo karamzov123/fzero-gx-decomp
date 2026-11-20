@@ -6,7 +6,8 @@ Usage: steer_prune.py [--apply] [--kind volatile|carrier] [FILE...]"""
 import sys, re, json, tempfile, pathlib, collections, concurrent.futures
 sys.path.insert(0, str(pathlib.Path(__file__).parent)); sys.path.insert(0, 'tools')
 import devprobe as d, pragma_prune as pp
-SKIP = re.compile(r'fzgxpool|fzgx-allow|fzgx_pool|prime|\bcp\b')
+SKIP = re.compile(r'fzgxpool|fzgx-allow|fzgx_pool|prime|\bcp\b|FIFO|Fifo|GXW|PPCWGPipe|FZGX_ADDR|0x[cC][cC]0|0xE0000000|locked|[Rr]egs\b|hardware|cursor|write offset|toggle|interrupt|callback|scratch area')
+WHY = re.compile(r'volatile|reload|re-?read|[Rr]etail|[Pp]reserve|fzgx')
 VOL = re.compile(r'\bvolatile\b\s*')
 CARRIER = re.compile(r'struct \{ *([A-Za-z_][A-Za-z0-9_ ]*?\**) *value; *\} *([A-Za-z_]\w*);')
 
@@ -18,8 +19,14 @@ def candidates(text, lo, hi, kind):
         pos = 0
         for line in seg.splitlines(keepends=True):
             if not SKIP.search(line) and not line.lstrip().startswith(('//', '/*', '*')):
-                for m in VOL.finditer(line):
-                    out.append([(lo + pos + m.start(), lo + pos + m.end(), '')])
+                cm = re.search(r'//|/\*', line); code_end = cm.start() if cm else len(line)
+                for m in VOL.finditer(line[:code_end]):
+                    g = [(lo + pos + m.start(), lo + pos + m.end(), '')]
+                    if cm and WHY.search(line[cm.start():]):   # the comment explains the steering: drop it
+                        end = len(line.rstrip('\n'))
+                        if line[cm.start():cm.start() + 2] == '//' or line.rstrip().endswith('*/'):
+                            g.append((lo + pos + len(line[:cm.start()].rstrip()), lo + pos + end, ''))
+                    out.append(g)
             pos += len(line)
     else:
         for m in CARRIER.finditer(seg):
@@ -31,7 +38,7 @@ def candidates(text, lo, hi, kind):
     return out
 
 def apply_edits(text, groups):
-    edits = sorted((e for g in groups for e in g), key=lambda e: -e[0])
+    edits = sorted({e for g in groups for e in g}, key=lambda e: -e[0])
     for s, e, r in edits: text = text[:s] + r + text[e:]
     return text
 

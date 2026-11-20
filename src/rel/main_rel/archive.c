@@ -1099,9 +1099,9 @@ typedef struct {
 /* 0x14-byte pad state records at lbl_1_bss_9F8 */
 typedef struct {
     u8 pad_0[0xA];
-    volatile u16 unk_A;  /* volatile: each button test re-reads the word */
+    u16 unk_A;
     u8 pad_C[0x6];
-    volatile u16 unk_12; /* volatile: each button test re-reads the word */
+    u16 unk_12;
 } Pad_12B664;
 
 #define PAD(i) (*(Obj_1_bss_9F8 *)((u8 *)&lbl_1_bss_9F8.unk_0 + (u32)(s32)(i) * 0x14))
@@ -1145,7 +1145,7 @@ void fn_1_12B664(s16 idx, Menu_12B664 *obj, Slot_12B664 *slots)
     u32 *src;
     u8 c;
     struct { s16 value; } m;
-    volatile u16 *buttons; /* volatile: each button test re-reads the word */
+    u16 *buttons;
 
     if (obj->unk_94 & 0x02000000) {
         return;
@@ -1159,7 +1159,7 @@ void fn_1_12B664(s16 idx, Menu_12B664 *obj, Slot_12B664 *slots)
                 sel = i;
             }
         }
-        buttons = (volatile u16 *)&lbl_1_bss_9F8.unk_0; /* volatile: each button test re-reads the word */
+        buttons = (u16 *)&lbl_1_bss_9F8.unk_0;
         buttons += (u32)(s32)idx * 10;
         if ((*(buttons += 5) >> 4) & 1) {
             t = sel + 1;
@@ -1178,7 +1178,7 @@ void fn_1_12B664(s16 idx, Menu_12B664 *obj, Slot_12B664 *slots)
             }
         }
         old = sel;
-        buttons = (volatile u16 *)&lbl_1_bss_9F8.unk_0; /* volatile: each button test re-reads the word */
+        buttons = (u16 *)&lbl_1_bss_9F8.unk_0;
         buttons += (u32)(s32)idx * 10;
         if ((*(buttons += 9) >> 8) & 1) {
             t = sel + 1;

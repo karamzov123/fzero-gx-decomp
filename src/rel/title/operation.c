@@ -8637,7 +8637,7 @@ if (alternate == 0) {
 {
 register Obj_10_bss_55CD8_Target **ref = &(*(Obj_10_bss_55CD8_Target * *)&lbl_8_bss_550);
 /* Observe the shared state pointer independently before this update stage. */
-Obj_10_bss_55CD8_Target *before = *(Obj_10_bss_55CD8_Target *volatile *)ref;
+Obj_10_bss_55CD8_Target *before = *(Obj_10_bss_55CD8_Target **)ref;
 Obj_10_bss_55CD8_Target *after;
 fn_8_E440_s32 prev;
 prev = *(fn_8_E440_s8 *)&before->unk_10;
@@ -8657,7 +8657,7 @@ after->unk_10 = 1;
 {
 register Obj_10_bss_55CD8_Target **smoothRef = &(*(Obj_10_bss_55CD8_Target * *)&lbl_8_bss_550);
 /* Observe the shared state pointer again for the animation update. */
-Obj_10_bss_55CD8_Target *phase = *(Obj_10_bss_55CD8_Target *volatile *)smoothRef;
+Obj_10_bss_55CD8_Target *phase = *(Obj_10_bss_55CD8_Target **)smoothRef;
 fn_8_E440_u32 old12;
 fn_8_E440_s32 x;
 fn_8_E440_f64 d;
@@ -9135,7 +9135,7 @@ var_f31 = (fn_8_EFA4_f32)((0.5) + (fn_8_EFA4_f64)(fn_8_EFA4_f32)(c - 0xA) / (6.0
 } else {
 var_f31 = (fn_8_EFA4_f32)((0.5) + (fn_8_EFA4_f64)(fn_8_EFA4_f32)(0xA - c) / (20.0));
 }
-(*(Obj_4_bss_5680_Target * (*)[1])&lbl_8_bss_550)[0]->unk_3A = (*(fn_8_EFA4_u8 volatile *)&((*(Obj_4_bss_5680_Target * (*)[1])&lbl_8_bss_550)[0]->unk_3A)) /* Retail reloads this field. */ - 1;
+(*(Obj_4_bss_5680_Target * (*)[1])&lbl_8_bss_550)[0]->unk_3A = (*(fn_8_EFA4_u8 *)&((*(Obj_4_bss_5680_Target * (*)[1])&lbl_8_bss_550)[0]->unk_3A)) - 1;
 } else {
 var_f31 = (1.0f);
 }
@@ -9646,7 +9646,7 @@ s32 fn_8_FC5C(void) {
         }
         c2.v = lbl_8_bss_550->unk_0;
         /* Retail reloads the target pointer after reading its flags. */
-        (*(Obj_8_bss_550_Target * volatile *)&lbl_8_bss_550)->unk_0 = c2.v & ~0x40000000;
+        (*(Obj_8_bss_550_Target * *)&lbl_8_bss_550)->unk_0 = c2.v & ~0x40000000;
     }
     if (lbl_8_bss_550->unk_0 >> 31) {
         return 1;

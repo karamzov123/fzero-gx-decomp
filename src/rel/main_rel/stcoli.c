@@ -881,7 +881,7 @@ typedef struct {
 extern f32 fn_1_1FFA0(void *, void *, void *, void *, void *, void *);
 extern f32 lbl_8006D668(void *);
 /* reloaded on every access in retail, including after the paired-single stores */
-extern fn_1_15248_Work *volatile lbl_801A66CC;
+extern fn_1_15248_Work *lbl_801A66CC;
 extern void lbl_8006DF44(void);
 extern f32 (*lbl_801A6D00)[4];
 
@@ -3055,7 +3055,7 @@ struct FnObj {
 
 extern struct FnObj *lbl_801A66CC;
 
-static inline f32 vec_dist(const volatile f32 *a, const f32 *b) /* volatile: locks the load order of the three components */
+static inline f32 vec_dist(const f32 *a, const f32 *b)
 {
     f32 dx = a[0];
     f32 dy;
@@ -3878,7 +3878,7 @@ void fn_1_18784(u32 arg0, Motion *a, Vec3 *b, void *c, f32 d)
         s2 = (cf->f28 != 0) ? fn_1_9E14C(cf->f04, cf->f28, d) : a->f18;
 {
     f32 bx;
-        bx = (*(f32 volatile *)&(b->x)) /* Retail reloads this field. */;
+        bx = (*(f32 *)&(b->x));
         sm = scx + s2;
         scx = scx * bx;
         tmp___fabs = __fabs(scx);
@@ -3897,11 +3897,11 @@ void fn_1_18784(u32 arg0, Motion *a, Vec3 *b, void *c, f32 d)
     if (p != 0) {
         p->f7c |= mask;
         if ((a->f00 & 0x800000) != 0 && a->f0c == 1) {
-            Cfg *c2 = (*(Src *volatile *)&(a->f10))->cfg; /* Retail reloads this field. */
-            p->d0 = (*(f32 volatile *)&(b->x)) /* Retail reloads this field. */;
-            p->d1 = (c2->f28 != 0) ? fn_1_9E14C(c2->f04, c2->f28, d) : (*(Src *volatile *)&(a->f10))->f18 /* Retail reloads this field. */;
+            Cfg *c2 = (*(Src **)&(a->f10))->cfg;
+            p->d0 = (*(f32 *)&(b->x));
+            p->d1 = (c2->f28 != 0) ? fn_1_9E14C(c2->f04, c2->f28, d) : (*(Src **)&(a->f10))->f18;
         } else if ((a->f00 & 0x200000) == 0) {
-            p->d0 = (a->f00 & 0x400000) ? px : (*(f32 volatile *)&(b->x)) /* Retail reloads this field. */;
+            p->d0 = (a->f00 & 0x400000) ? px : (*(f32 *)&(b->x));
             p->d1 = pl->one;
         }
         if ((a->f00 & 0x400000) != 0) {
@@ -8467,7 +8467,7 @@ void fn_1_203E4(fn_1_203E4_Obj *obj, s32 noOut, Vec3 *out, f32 pos, f32 scale, f
         lbl_8006DC6C(obj);
         mtx = MTXA;
         /* Preserve the retail order of translation-column loads. */
-        tx = *(volatile f32 *)&obj->unk_70;
+        tx = *(f32 *)&obj->unk_70;
         ty = obj->unk_74;
         tz = obj->unk_78;
         ((0)[mtx])[3] = tx;
@@ -9357,7 +9357,7 @@ s32 fn_1_214C4(f32 *out, s32 start, f32 x) {
         x -= *(f32 *)lbl_1_bss_3BE0->unk_90;
     }
     /* Reload the shared table pointer after normalizing the position. */
-    tbl = *(Obj_1_bss_3BE0_Target *volatile *)&lbl_1_bss_3BE0;
+    tbl = *(Obj_1_bss_3BE0_Target **)&lbl_1_bss_3BE0;
     p = loc;
     for (i = 0; i < n; i++) {
         Seg *s;

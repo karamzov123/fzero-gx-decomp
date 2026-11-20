@@ -2962,7 +2962,7 @@ void fn_1_4BD4C(u32 unused0, u32 unused1, u32 unused2) {
         rows = ((FontElement *)&lbl_1_data_1AEA8)[sp30->unk_0].unk_11;
     }
 
-    prev_unk_0 = *(s8 volatile *)&(sp30->unk_0) /* Retail reloads this field. */;
+    prev_unk_0 = *(s8 *)&(sp30->unk_0);
     p_d58 = lbl_1_bss_D58;
 
     if (((p_d58[8] >> 1) & 1) != 0) {
@@ -3000,7 +3000,7 @@ void fn_1_4BD4C(u32 unused0, u32 unused1, u32 unused2) {
         prev_unk_4 = sp30->unk_4;
         max_page = ((s32 *)&lbl_1_bss_40BBC)[sp30->unk_0] / page_size;
         if (((p_d58[8] >> 2) & 1) != 0) {
-            if ((s8)++(*(s8 volatile *)&(sp30->unk_4)) /* Retail reloads this field. */ > max_page) {
+            if ((s8)++(*(s8 *)&(sp30->unk_4)) > max_page) {
                 sp30->unk_4 = 0;
             }
         }
@@ -5772,7 +5772,7 @@ void fn_1_4EDAC(FontDrawPacket *arg0, f32 arg1, f32 arg2) {
         /* volatile: preserve the retail RGB channel read order. */
         green = *(volatile u8 *)&packet->color.g;
         /* volatile: preserve the retail RGB channel read order. */
-        blue = *(volatile u8 *)&packet->color.b;
+        blue = *(u8 *)&packet->color.b;
         /* volatile: retain the retail red-before-green stack stores. */
         *(volatile u8 *)&color.r = red;
         /* volatile: retain the retail red-before-green stack stores. */
@@ -6084,7 +6084,7 @@ void fn_1_4FD64(f32 arg0) {
         if (fl & 0x400000) {
             fn_1_48D80((u32)e);
         } else if (fl & 0x800000) {
-            if (*(volatile u32 *)&e->unk_30 & 0x2000000) continue; // volatile: preserve retail's second flags load.
+            if (*(u32 *)&e->unk_30 & 0x2000000) continue;
             {
                 f32 sc = fn_1_519AC(e->unk_40);
                 sc = (f32)e->unk_44 * sc;
@@ -6097,7 +6097,7 @@ void fn_1_4FD64(f32 arg0) {
                 fn_1_4EDAC((FontDrawPacket *)e, (f32)e->unk_44, (f32)e->unk_46);
             }
         } else {
-            if (*(volatile u32 *)&e->unk_30 & 0x2000000) continue; // volatile: preserve retail's second flags load.
+            if (*(u32 *)&e->unk_30 & 0x2000000) continue;
             {
                 u32 pk;
                 BitmapImages *q;
@@ -8483,7 +8483,7 @@ typedef struct fn_1_542C4_FontState {
 } fn_1_542C4_FontState;
 
 // Volatile preserves the repeated loads of the shared font state.
-#define FONT_STATE ((volatile fn_1_542C4_FontState *)lbl_801A66CC)
+#define FONT_STATE ((fn_1_542C4_FontState *)lbl_801A66CC)
 
 // Store the current font parameters and notify the font system.
 void fn_1_542C4(void *arg0, void *arg1, f32 arg2, f32 arg3, f32 arg4) {
@@ -8736,7 +8736,7 @@ typedef struct fn_1_54848_FontState {
 } fn_1_54848_FontState;
 
 // Volatile forces each global-state access to retain the retail load ordering.
-typedef volatile fn_1_54848_FontState fn_1_54848_VolatileFontState;
+typedef fn_1_54848_FontState fn_1_54848_VolatileFontState;
 
 // Synchronize the current and previous font-state values for the next update.
 void fn_1_54848(void) {
@@ -8761,13 +8761,13 @@ typedef struct fn_1_54868_FontState {
 // Copies the current font state's two counter values into its active fields.
 void fn_1_54868(u32 arg0, u32 arg1) {
     // Volatile access preserves the first retail global-pointer load.
-    ((volatile fn_1_54868_FontState *)lbl_801A66CC)->unk_1a4 = arg0;
+    ((fn_1_54868_FontState *)lbl_801A66CC)->unk_1a4 = arg0;
     // Volatile access preserves the second retail global-pointer load.
-    ((volatile fn_1_54868_FontState *)lbl_801A66CC)->unk_1a8 = arg1;
+    ((fn_1_54868_FontState *)lbl_801A66CC)->unk_1a8 = arg1;
     // Volatile access preserves the third retail global-pointer load.
-    ((volatile fn_1_54868_FontState *)lbl_801A66CC)->unk_1a0 = ((volatile fn_1_54868_FontState *)lbl_801A66CC)->unk_1a4;
+    ((fn_1_54868_FontState *)lbl_801A66CC)->unk_1a0 = ((fn_1_54868_FontState *)lbl_801A66CC)->unk_1a4;
     // Volatile access preserves the fourth retail global-pointer load.
-    ((volatile fn_1_54868_FontState *)lbl_801A66CC)->unk_1ac = ((volatile fn_1_54868_FontState *)lbl_801A66CC)->unk_1a8;
+    ((fn_1_54868_FontState *)lbl_801A66CC)->unk_1ac = ((fn_1_54868_FontState *)lbl_801A66CC)->unk_1a8;
 }
 /* fzgx:end fn_1_54868 */
 

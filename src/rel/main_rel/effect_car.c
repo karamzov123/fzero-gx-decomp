@@ -4795,7 +4795,7 @@ void fn_1_6ED40(struct fn_1_6ED40_Arg0 *arg0, void *arg1) {
  f32 y;
  f32 x;
  /* Volatile preserves the retail translation-column load order. */
- x=*(volatile f32 *)&arg0->unk_3C;
+ x=*(f32 *)&arg0->unk_3C;
  y=arg0->unk_40;
  z=arg0->unk_44;
  *(f32 *)(0xe0000000+0xc)=x;

@@ -4302,7 +4302,7 @@ void fn_1_10D2F0(Ctx *arg0) {
                         }
                 } else {
                     /* Reload once for both negative-side tests, as retail does. */
-                    f32 negative_zero = *(const volatile f32 *)&pool->zero;
+                    f32 negative_zero = *(const f32 *)&pool->zero;
                     if (p->v.z < negative_zero && e->v.z < negative_zero) {
                         if (p->v.y < e->v.y) {
                             fn_1_128884(p, e, 0x44);

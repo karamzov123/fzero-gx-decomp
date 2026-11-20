@@ -5208,7 +5208,7 @@ void fn_10_5230(void) {
         fn_1_9A958(kinds[(*((s8 *)&lbl_1_bss_9C))], 1);
         fn_1_46B44(fn_10_C654, (void *)(&(*((fn_10_5230_lbl_1_bss_8B5F4 *)&lbl_1_bss_8B5F4)).unk_4));
         /* fzgx-allow: S2 retail reads unk_4 again off a fresh base after the call */
-        (*((fn_10_5230_lbl_1_bss_8B5F4 *)&lbl_1_bss_8B5F4)).unk_8 = ((volatile fn_10_5230_lbl_1_bss_8B5F4 *)&(*((fn_10_5230_lbl_1_bss_8B5F4 *)&lbl_1_bss_8B5F4)))->unk_4;
+        (*((fn_10_5230_lbl_1_bss_8B5F4 *)&lbl_1_bss_8B5F4)).unk_8 = ((fn_10_5230_lbl_1_bss_8B5F4 *)&(*((fn_10_5230_lbl_1_bss_8B5F4 *)&lbl_1_bss_8B5F4)))->unk_4;
         fn_1_46EA8(1);
         fn_1_4100C();
         fn_1_41104(2);
@@ -5225,7 +5225,7 @@ void fn_10_5230(void) {
         fn_1_9A958(gs->unk_90, 1);
         fn_1_46B44(fn_10_C654, (void *)(&(*((fn_10_5230_lbl_1_bss_8B5F4 *)&lbl_1_bss_8B5F4)).unk_4));
         /* fzgx-allow: S2 retail reads unk_4 again off a fresh base after the call */
-        (*((fn_10_5230_lbl_1_bss_8B5F4 *)&lbl_1_bss_8B5F4)).unk_8 = ((volatile fn_10_5230_lbl_1_bss_8B5F4 *)&(*((fn_10_5230_lbl_1_bss_8B5F4 *)&lbl_1_bss_8B5F4)))->unk_4;
+        (*((fn_10_5230_lbl_1_bss_8B5F4 *)&lbl_1_bss_8B5F4)).unk_8 = ((fn_10_5230_lbl_1_bss_8B5F4 *)&(*((fn_10_5230_lbl_1_bss_8B5F4 *)&lbl_1_bss_8B5F4)))->unk_4;
         fn_1_4100C();
         fn_1_41104(2);
         fn_1_47E54(0xBB);
@@ -33414,7 +33414,7 @@ extern void fn_1_53FE4(void *,u8);
 static inline void setconfig_impl(Config *c, f32 z,f32 y,f32 x) { c->a38=x;c->a3c=y;c->a40=z;c->a44=x;c->a48=y;c->a4c=x; }
 static inline void setdesc_impl(Desc *d, f32 z,f32 y,f32 x) { d->x=x;d->y=y;d->z=z;d->mode=10; }
 /* Volatile pool view keeps the first component load ahead of the stores. */
-#define setdesc(p,zz,yy,xx) setdesc_impl(p,zz,yy,*(const volatile f32 *)&(xx))
+#define setdesc(p,zz,yy,xx) setdesc_impl(p,zz,yy,*(const f32 *)&(xx))
 #pragma opt_common_subs off
 #pragma opt_dead_assignments off
 void fn_10_1AD5C(void) {
@@ -33440,7 +33440,7 @@ void fn_10_1AD5C(void) {
  if(lbl_1_bss_8CA28) { desc.sx*=F(0x254); desc.sy*=F(0x254); }
  { f32 zero,z,y,x;
  /* Volatile views preserve the four component reads before the writes. */
- x=*(const volatile f32 *)&F(0x48); zero=*(const volatile f32 *)&F(0x4c); y=*(const volatile f32 *)&F(0x80c); z=*(const volatile f32 *)&F(0x810);
+ x=*(const f32 *)&F(0x48); zero=*(const f32 *)&F(0x4c); y=*(const f32 *)&F(0x80c); z=*(const f32 *)&F(0x810);
  config.a38=x; config.a3c=y; config.a40=z; config.a44=x; config.a48=zero; config.a4c=zero;
  }
  config.flag=(u8)fn_1_D66B0();
@@ -33450,7 +33450,7 @@ void fn_10_1AD5C(void) {
  if(lbl_1_bss_8CA28) { desc.sx*=F(0x254); desc.sy*=F(0x254); }
  { f32 z,y,x;
  /* Volatile views retain the first two component reads before the writes. */
- x=*(const volatile f32 *)&F(0x4c); y=*(const volatile f32 *)&F(0x48); z=F(0xf60);
+ x=*(const f32 *)&F(0x4c); y=*(const f32 *)&F(0x48); z=F(0xf60);
  setconfig_impl(&config,z,y,x);
  }
  fn_1_8CED0(&lbl_10_bss_5197C,640,396);
@@ -33483,7 +33483,7 @@ void fn_10_1AD5C(void) {
  last=lbl_1_rodata_26F8;
  { f32 z,y,x;
  /* Volatile views preserve component reads ahead of the descriptor stores. */
- x=*(const volatile f32 *)&F(0xf68); y=*(const volatile f32 *)&F(0xf6c); z=*(const volatile f32 *)&F(0x114);
+ x=*(const f32 *)&F(0xf68); y=*(const f32 *)&F(0xf6c); z=*(const f32 *)&F(0x114);
  last.x=x; last.y=y; last.z=z; last.mode=10; last.flags=0x9500;
  }
  fn_1_53FE4(&last,0);

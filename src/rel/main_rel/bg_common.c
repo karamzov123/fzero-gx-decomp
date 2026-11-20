@@ -2749,7 +2749,7 @@ work:
 
 /* fzgx:begin fn_1_106DB4 */
 s32 fn_1_106DB4(u32 arg0, u32 arg1) {
-    volatile u32 *counter;  /* fzgx: count is re-read after each store in the retail loop */
+    u32 *counter;
     u8 *entry;
 
     switch (arg0) {
