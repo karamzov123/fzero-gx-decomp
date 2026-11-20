@@ -3364,11 +3364,9 @@ void fn_1_5B3D0(struct fn_1_5B3D0_Arg0 *arg0) {
     state = &lbl_1_data_1D628;
     next = ((1103515245) * (state->unk_0)) + 12345;
     random = (u32)((next >> 16) & 0x7FFF);
-    r = (f32)((f32)random);
-    { f32 __reg_value_r = r / (32767.0f); r = __reg_value_r; }
-    r = (f32)((0.100000001f) * r);
+    r = 0.1f * ((f32)random / 32767.0f);
     state->unk_0 = next;
-    arg0->unk_10 = (s32)((60.0f) * ((0.125f) + r));
+    arg0->unk_10 = (s32)(60.0f * (0.125f + r));
 }
 /* fzgx:end fn_1_5B3D0 */
 
@@ -21809,10 +21807,7 @@ void fn_1_67F20(Fn167F20 *obj) {
     obj->value44 += obj->value50;
     obj->valueae += obj->valueac;
 
-    current = obj->value88;
-    { f32 __reg_value_delta = obj->value8c - current; delta = __reg_value_delta; }
-    delta = (f32)(fn_1_67F20_operand((delta), (0.05f)));
-    obj->value88 = current + delta;
+    obj->value88 += (f32)(0.05f * (obj->value8c - obj->value88));
 
     current = obj->value28;
     delta = (f32)(obj->value2c - current);

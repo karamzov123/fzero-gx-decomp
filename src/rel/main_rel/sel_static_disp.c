@@ -2434,8 +2434,8 @@ void fn_1_1368A0(s32 arg0, s16 arg1, s32 arg2, f32 farg0, f32 farg1, f32 farg2, 
     }
     fn_1_51564((u16)(0U), (u16)(0U), (u16)(0x10U), (u16)(0x10U), (u16)(3U), (u16)(2U));
     loc_14 = *(const FontDrawPacket *)((u8 *)(&lbl_1_rodata_26F8));
-    { f32 __reg_value_prod = farg2 * farg3; prod = __reg_value_prod; }
-    temp_f31 = farg0 + prod;
+    prod2 = farg2 * farg3;
+    temp_f31 = farg0 + prod2;
     loc_14.x = temp_f31;
     loc_14.image = 0x9A21;
     prod2 = (*(f32 *)((u8 *)(&lbl_1_rodata_8638) + 0)) * farg4;
@@ -2700,7 +2700,8 @@ void fn_1_1373B0(s16 arg0, u8* arg1, u8* arg2, u8* arg3, s16 arg4) {
         s16 value;
     } info;
 
-    { u8* __reg_value_base = (void*)fn_1_12F118(); base.value = __reg_value_base; }
+    tmp = (u8*)fn_1_12F118();
+    base.value = tmp;
     if (base.value == (void*)fn_1_36AD0()) {
         tmp = ((arg4 * 0x81c0) + (base.value));
     } else {

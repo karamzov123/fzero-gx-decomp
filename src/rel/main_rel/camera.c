@@ -659,16 +659,16 @@ static inline void change_camera(u32 flags, GameCameraEntry *entries) {
     struct { u32 value; } new_index;
 
     old_index = entries->unk_2;
-    { s32 __reg_value_new_index = old_index; new_index.value = __reg_value_new_index; }
+    new_index.value = old_index;
     if (((flags >> 1) & 1) != 0) {
-        { s32 __reg_value_new_index = old_index + 1; new_index.value = __reg_value_new_index; }
+        new_index.value = old_index + 1;
         if ((s16)new_index.value == fn_1_86624()) {
-            { s32 __reg_value_new_index = 0; new_index.value = __reg_value_new_index; }
+            new_index.value = 0;
         }
     } else if ((flags & 1) != 0) {
-        { s32 __reg_value_new_index = old_index - 1; new_index.value = __reg_value_new_index; }
+        new_index.value = old_index - 1;
         if ((s16)new_index.value < 0) {
-            { s32 __reg_value_new_index = (s16)(fn_1_86624() - 1); new_index.value = __reg_value_new_index; }
+            new_index.value = (s16)(fn_1_86624() - 1);
         }
     }
     if ((s16)new_index.value == old_index) {

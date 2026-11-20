@@ -160,13 +160,11 @@ void fn_1_15B970(BgWinStringTable *obj) {
 #include "types.h"
 
 char *fn_1_15BA78(char *name) {
-    BgWinStringTable * table;
     u32 index;
+    BgWinStringTable *table;
     u32 name_length;
 
-    /* WARNING: compiler-diff device, not original code: direct typed global
-     * assignment without this staging copy still differs by 13 aligned words. */
-    { BgWinStringTable * __reg_value_table = (*(BgWinStringTable * *)&lbl_1_bss_8F8D0); table = __reg_value_table; }
+    table = *(BgWinStringTable **)&lbl_1_bss_8F8D0;
     if (table == 0) {
         return name;
     }
