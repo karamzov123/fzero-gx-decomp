@@ -1,5 +1,5 @@
 {
- "generated": 1795167675,
+ "generated": 1795168251,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -10051,7 +10051,7 @@
   {
    "symbol": "Decode",
    "module": "main",
-   "unit": "dol/Decode.c",
+   "unit": "dol/GetFontCode.c",
    "addr": 2147535972,
    "size": 372,
    "status": "matched",
@@ -10238,7 +10238,7 @@
   {
    "symbol": "SetInterruptMask",
    "module": "main",
-   "unit": "dol/SetInterruptMask.c",
+   "unit": "dol/__OSInterruptInit.c",
    "addr": 2147538404,
    "size": 728,
    "status": "matched",
@@ -10255,7 +10255,7 @@
   {
    "symbol": "__OSMaskInterrupts",
    "module": "main",
-   "unit": "dol/__OSMaskInterrupts.c",
+   "unit": "dol/__OSInterruptInit.c",
    "addr": 2147539132,
    "size": 136,
    "status": "matched",
@@ -10272,7 +10272,7 @@
   {
    "symbol": "__OSUnmaskInterrupts",
    "module": "main",
-   "unit": "dol/__OSUnmaskInterrupts.c",
+   "unit": "dol/__OSInterruptInit.c",
    "addr": 2147539268,
    "size": 136,
    "status": "matched",
@@ -10289,7 +10289,7 @@
   {
    "symbol": "__OSDispatchInterrupt",
    "module": "main",
-   "unit": "dol/__OSDispatchInterrupt.c",
+   "unit": "dol/__OSInterruptInit.c",
    "addr": 2147539404,
    "size": 836,
    "status": "matched",
@@ -10476,7 +10476,7 @@
   {
    "symbol": "__OSModuleInit",
    "module": "main",
-   "unit": "dol/__OSModuleInit.c",
+   "unit": "dol/OSUnlink.c",
    "addr": 2147542908,
    "size": 24,
    "status": "matched",
@@ -10544,7 +10544,7 @@
   {
    "symbol": "MEMIntrruptHandler",
    "module": "main",
-   "unit": "dol/MEMIntrruptHandler.c",
+   "unit": "dol/OnReset.c",
    "addr": 2147543016,
    "size": 108,
    "status": "matched",
@@ -11088,7 +11088,7 @@
   {
    "symbol": "OSGetWirelessID",
    "module": "main",
-   "unit": "dol/OSGetWirelessID.c",
+   "unit": "dol/OSSetProgressiveMode.c",
    "addr": 2147549068,
    "size": 132,
    "status": "matched",
@@ -11105,7 +11105,7 @@
   {
    "symbol": "OSSetWirelessID",
    "module": "main",
-   "unit": "dol/OSSetWirelessID.c",
+   "unit": "dol/OSSetProgressiveMode.c",
    "addr": 2147549200,
    "size": 172,
    "status": "matched",
@@ -12346,7 +12346,7 @@
   {
    "symbol": "EXIImm",
    "module": "main",
-   "unit": "dol/EXIImm.c",
+   "unit": "dol/SetExiInterruptMask.c",
    "addr": 2147564412,
    "size": 604,
    "status": "matched",
@@ -12363,7 +12363,7 @@
   {
    "symbol": "EXIImmEx",
    "module": "main",
-   "unit": "dol/EXIImmEx.c",
+   "unit": "dol/SetExiInterruptMask.c",
    "addr": 2147565016,
    "size": 160,
    "status": "matched",
@@ -12380,7 +12380,7 @@
   {
    "symbol": "EXIDma",
    "module": "main",
-   "unit": "dol/EXIDma.c",
+   "unit": "dol/SetExiInterruptMask.c",
    "addr": 2147565176,
    "size": 236,
    "status": "matched",
@@ -12397,7 +12397,7 @@
   {
    "symbol": "EXISync",
    "module": "main",
-   "unit": "dol/EXISync.c",
+   "unit": "dol/SetExiInterruptMask.c",
    "addr": 2147565412,
    "size": 588,
    "status": "matched",
@@ -12414,7 +12414,7 @@
   {
    "symbol": "EXIClearInterrupts",
    "module": "main",
-   "unit": "dol/EXIClearInterrupts.c",
+   "unit": "dol/SetExiInterruptMask.c",
    "addr": 2147566000,
    "size": 72,
    "status": "matched",
@@ -12431,7 +12431,7 @@
   {
    "symbol": "EXISetExiCallback",
    "module": "main",
-   "unit": "dol/EXISetExiCallback.c",
+   "unit": "dol/SetExiInterruptMask.c",
    "addr": 2147566072,
    "size": 124,
    "status": "matched",
@@ -12448,7 +12448,7 @@
   {
    "symbol": "__EXIProbe",
    "module": "main",
-   "unit": "dol/__EXIProbe.c",
+   "unit": "dol/SetExiInterruptMask.c",
    "addr": 2147566196,
    "size": 372,
    "status": "matched",
@@ -12465,7 +12465,7 @@
   {
    "symbol": "EXIProbe",
    "module": "main",
-   "unit": "dol/EXIProbe.c",
+   "unit": "dol/SetExiInterruptMask.c",
    "addr": 2147566568,
    "size": 128,
    "status": "matched",
@@ -12482,7 +12482,7 @@
   {
    "symbol": "EXIProbeEx",
    "module": "main",
-   "unit": "dol/EXIProbeEx.c",
+   "unit": "dol/SetExiInterruptMask.c",
    "addr": 2147566696,
    "size": 180,
    "status": "matched",
@@ -12499,7 +12499,7 @@
   {
    "symbol": "EXIAttach",
    "module": "main",
-   "unit": "dol/EXIAttach.c",
+   "unit": "dol/SetExiInterruptMask.c",
    "addr": 2147566876,
    "size": 268,
    "status": "matched",
@@ -12516,7 +12516,7 @@
   {
    "symbol": "EXIDetach",
    "module": "main",
-   "unit": "dol/EXIDetach.c",
+   "unit": "dol/SetExiInterruptMask.c",
    "addr": 2147567144,
    "size": 188,
    "status": "matched",
@@ -12533,7 +12533,7 @@
   {
    "symbol": "EXISelect",
    "module": "main",
-   "unit": "dol/EXISelect.c",
+   "unit": "dol/SetExiInterruptMask.c",
    "addr": 2147567332,
    "size": 300,
    "status": "matched",
@@ -12550,7 +12550,7 @@
   {
    "symbol": "EXIDeselect",
    "module": "main",
-   "unit": "dol/EXIDeselect.c",
+   "unit": "dol/SetExiInterruptMask.c",
    "addr": 2147567632,
    "size": 272,
    "status": "matched",
@@ -12567,7 +12567,7 @@
   {
    "symbol": "EXIIntrruptHandler",
    "module": "main",
-   "unit": "dol/EXIIntrruptHandler.c",
+   "unit": "dol/SetExiInterruptMask.c",
    "addr": 2147567904,
    "size": 200,
    "status": "matched",
@@ -12584,7 +12584,7 @@
   {
    "symbol": "TCIntrruptHandler",
    "module": "main",
-   "unit": "dol/TCIntrruptHandler.c",
+   "unit": "dol/SetExiInterruptMask.c",
    "addr": 2147568104,
    "size": 536,
    "status": "matched",
@@ -12601,7 +12601,7 @@
   {
    "symbol": "EXTIntrruptHandler",
    "module": "main",
-   "unit": "dol/EXTIntrruptHandler.c",
+   "unit": "dol/SetExiInterruptMask.c",
    "addr": 2147568640,
    "size": 208,
    "status": "matched",
@@ -12618,7 +12618,7 @@
   {
    "symbol": "EXIInit",
    "module": "main",
-   "unit": "dol/EXIInit.c",
+   "unit": "dol/SetExiInterruptMask.c",
    "addr": 2147568848,
    "size": 468,
    "status": "matched",
@@ -12635,7 +12635,7 @@
   {
    "symbol": "EXILock",
    "module": "main",
-   "unit": "dol/EXILock.c",
+   "unit": "dol/SetExiInterruptMask.c",
    "addr": 2147569316,
    "size": 244,
    "status": "matched",
@@ -12652,7 +12652,7 @@
   {
    "symbol": "EXIUnlock",
    "module": "main",
-   "unit": "dol/EXIUnlock.c",
+   "unit": "dol/SetExiInterruptMask.c",
    "addr": 2147569560,
    "size": 220,
    "status": "matched",
@@ -12669,7 +12669,7 @@
   {
    "symbol": "EXIGetState",
    "module": "main",
-   "unit": "dol/EXIGetState.c",
+   "unit": "dol/SetExiInterruptMask.c",
    "addr": 2147569780,
    "size": 24,
    "status": "matched",
@@ -12686,7 +12686,7 @@
   {
    "symbol": "UnlockedHandler",
    "module": "main",
-   "unit": "dol/UnlockedHandler.c",
+   "unit": "dol/SetExiInterruptMask.c",
    "addr": 2147569804,
    "size": 40,
    "status": "matched",
@@ -12703,7 +12703,7 @@
   {
    "symbol": "EXIGetID",
    "module": "main",
-   "unit": "dol/EXIGetID.c",
+   "unit": "dol/SetExiInterruptMask.c",
    "addr": 2147569844,
    "size": 944,
    "status": "matched",
@@ -13145,7 +13145,7 @@
   {
    "symbol": "DVDLowWaitCoverClose",
    "module": "main",
-   "unit": "dol/DVDLowWaitCoverClose.c",
+   "unit": "dol/DVDLowSeek.c",
    "addr": 2147575888,
    "size": 44,
    "status": "matched",
@@ -13162,7 +13162,7 @@
   {
    "symbol": "DVDLowReadDiskID",
    "module": "main",
-   "unit": "dol/DVDLowReadDiskID.c",
+   "unit": "dol/DVDLowSeek.c",
    "addr": 2147575932,
    "size": 164,
    "status": "matched",
@@ -13179,7 +13179,7 @@
   {
    "symbol": "DVDLowStopMotor",
    "module": "main",
-   "unit": "dol/DVDLowStopMotor.c",
+   "unit": "dol/DVDLowSeek.c",
    "addr": 2147576096,
    "size": 140,
    "status": "matched",
@@ -13196,7 +13196,7 @@
   {
    "symbol": "DVDLowRequestError",
    "module": "main",
-   "unit": "dol/DVDLowRequestError.c",
+   "unit": "dol/DVDLowSeek.c",
    "addr": 2147576236,
    "size": 140,
    "status": "matched",
@@ -13213,7 +13213,7 @@
   {
    "symbol": "DVDLowInquiry",
    "module": "main",
-   "unit": "dol/DVDLowInquiry.c",
+   "unit": "dol/DVDLowSeek.c",
    "addr": 2147576376,
    "size": 156,
    "status": "matched",
@@ -13230,7 +13230,7 @@
   {
    "symbol": "DVDLowAudioStream",
    "module": "main",
-   "unit": "dol/DVDLowAudioStream.c",
+   "unit": "dol/DVDLowSeek.c",
    "addr": 2147576532,
    "size": 152,
    "status": "matched",
@@ -13247,7 +13247,7 @@
   {
    "symbol": "DVDLowRequestAudioStatus",
    "module": "main",
-   "unit": "dol/DVDLowRequestAudioStatus.c",
+   "unit": "dol/DVDLowSeek.c",
    "addr": 2147576684,
    "size": 140,
    "status": "matched",
@@ -13264,7 +13264,7 @@
   {
    "symbol": "DVDLowAudioBufferConfig",
    "module": "main",
-   "unit": "dol/DVDLowAudioBufferConfig.c",
+   "unit": "dol/DVDLowSeek.c",
    "addr": 2147576824,
    "size": 156,
    "status": "matched",
@@ -13281,7 +13281,7 @@
   {
    "symbol": "DVDLowReset",
    "module": "main",
-   "unit": "dol/DVDLowReset.c",
+   "unit": "dol/DVDLowSeek.c",
    "addr": 2147576980,
    "size": 188,
    "status": "matched",
@@ -13451,7 +13451,7 @@
   {
    "symbol": "DVDGetCurrentDir",
    "module": "main",
-   "unit": "dol/DVDGetCurrentDir.c",
+   "unit": "dol/entryToPath.c",
    "addr": 2147578796,
    "size": 196,
    "status": "matched",
@@ -13468,7 +13468,7 @@
   {
    "symbol": "DVDChangeDir",
    "module": "main",
-   "unit": "dol/DVDChangeDir.c",
+   "unit": "dol/entryToPath.c",
    "addr": 2147578992,
    "size": 96,
    "status": "matched",
@@ -14879,7 +14879,7 @@
   {
    "symbol": "PADClamp",
    "module": "main",
-   "unit": "dol/PADClamp.c",
+   "unit": "dol/ClampStick.c",
    "addr": 2147598832,
    "size": 276,
    "status": "matched",
@@ -14896,7 +14896,7 @@
   {
    "symbol": "UpdateOrigin",
    "module": "main",
-   "unit": "dol/UpdateOrigin.c",
+   "unit": "dol/ClampStick.c",
    "addr": 2147599108,
    "size": 420,
    "status": "matched",
@@ -15134,7 +15134,7 @@
   {
    "symbol": "SPEC1_MakeStatus",
    "module": "main",
-   "unit": "dol/SPEC1_MakeStatus.c",
+   "unit": "dol/SPEC0_MakeStatus.c",
    "addr": 2147604060,
    "size": 372,
    "status": "matched",
@@ -15151,7 +15151,7 @@
   {
    "symbol": "SPEC2_MakeStatus",
    "module": "main",
-   "unit": "dol/SPEC2_MakeStatus.c",
+   "unit": "dol/SPEC0_MakeStatus.c",
    "addr": 2147604432,
    "size": 1016,
    "status": "matched",
@@ -15168,7 +15168,7 @@
   {
    "symbol": "PADSetAnalogMode",
    "module": "main",
-   "unit": "dol/PADSetAnalogMode.c",
+   "unit": "dol/SPEC0_MakeStatus.c",
    "addr": 2147605448,
    "size": 116,
    "status": "matched",
@@ -15321,7 +15321,7 @@
   {
    "symbol": "AISetStreamPlayState",
    "module": "main",
-   "unit": "dol/AISetStreamPlayState.c",
+   "unit": "dol/AIStopDMA.c",
    "addr": 2147606524,
    "size": 216,
    "status": "matched",
@@ -15508,7 +15508,7 @@
   {
    "symbol": "__AISHandler",
    "module": "main",
-   "unit": "dol/__AISHandler.c",
+   "unit": "dol/AIInit.c",
    "addr": 2147607680,
    "size": 124,
    "status": "matched",
@@ -15525,7 +15525,7 @@
   {
    "symbol": "__AIDHandler",
    "module": "main",
-   "unit": "dol/__AIDHandler.c",
+   "unit": "dol/AIInit.c",
    "addr": 2147607804,
    "size": 172,
    "status": "matched",
@@ -18228,7 +18228,7 @@
   {
    "symbol": "DSPSendMailToDSP",
    "module": "main",
-   "unit": "dol/DSPSendMailToDSP.c",
+   "unit": "dol/DSPReadMailFromDSP.c",
    "addr": 2147650808,
    "size": 20,
    "status": "matched",
@@ -18245,7 +18245,7 @@
   {
    "symbol": "DSPInit",
    "module": "main",
-   "unit": "dol/DSPInit.c",
+   "unit": "dol/DSPReadMailFromDSP.c",
    "addr": 2147650828,
    "size": 196,
    "status": "matched",
@@ -18415,7 +18415,7 @@
   {
    "symbol": "__DSP_remove_task",
    "module": "main",
-   "unit": "dol/__DSP_remove_task.c",
+   "unit": "dol/__DSP_insert_task.c",
    "addr": 2147653520,
    "size": 148,
    "status": "matched",
@@ -18500,7 +18500,7 @@
   {
    "symbol": "__CARDTxHandler",
    "module": "main",
-   "unit": "dol/__CARDTxHandler.c",
+   "unit": "dol/__CARDExiHandler.c",
    "addr": 2147654220,
    "size": 168,
    "status": "matched",
@@ -18602,7 +18602,7 @@
   {
    "symbol": "Retry",
    "module": "main",
-   "unit": "dol/Retry.c",
+   "unit": "dol/TimeoutHandler.c",
    "addr": 2147655288,
    "size": 556,
    "status": "matched",
@@ -18619,7 +18619,7 @@
   {
    "symbol": "UnlockedCallback",
    "module": "main",
-   "unit": "dol/UnlockedCallback.c",
+   "unit": "dol/TimeoutHandler.c",
    "addr": 2147655844,
    "size": 272,
    "status": "matched",
@@ -18636,7 +18636,7 @@
   {
    "symbol": "__CARDStart",
    "module": "main",
-   "unit": "dol/__CARDStart.c",
+   "unit": "dol/TimeoutHandler.c",
    "addr": 2147656116,
    "size": 436,
    "status": "matched",
@@ -18653,7 +18653,7 @@
   {
    "symbol": "__CARDReadSegment",
    "module": "main",
-   "unit": "dol/__CARDReadSegment.c",
+   "unit": "dol/TimeoutHandler.c",
    "addr": 2147656552,
    "size": 308,
    "status": "matched",
@@ -18670,7 +18670,7 @@
   {
    "symbol": "__CARDWritePage",
    "module": "main",
-   "unit": "dol/__CARDWritePage.c",
+   "unit": "dol/TimeoutHandler.c",
    "addr": 2147656860,
    "size": 284,
    "status": "matched",
@@ -18687,7 +18687,7 @@
   {
    "symbol": "__CARDEraseSector",
    "module": "main",
-   "unit": "dol/__CARDEraseSector.c",
+   "unit": "dol/TimeoutHandler.c",
    "addr": 2147657144,
    "size": 224,
    "status": "matched",
@@ -18874,7 +18874,7 @@
   {
    "symbol": "__CARDSync",
    "module": "main",
-   "unit": "dol/__CARDSync.c",
+   "unit": "dol/CARDFreeBlocks.c",
    "addr": 2147658456,
    "size": 152,
    "status": "matched",
@@ -19146,7 +19146,7 @@
   {
    "symbol": "__CARDAllocBlock",
    "module": "main",
-   "unit": "dol/__CARDAllocBlock.c",
+   "unit": "dol/EraseCallback.c",
    "addr": 2147664476,
    "size": 280,
    "status": "matched",
@@ -19163,7 +19163,7 @@
   {
    "symbol": "__CARDFreeBlock",
    "module": "main",
-   "unit": "dol/__CARDFreeBlock.c",
+   "unit": "dol/EraseCallback.c",
    "addr": 2147664756,
    "size": 156,
    "status": "matched",
@@ -19180,7 +19180,7 @@
   {
    "symbol": "__CARDUpdateFatBlock",
    "module": "main",
-   "unit": "dol/__CARDUpdateFatBlock.c",
+   "unit": "dol/EraseCallback.c",
    "addr": 2147664912,
    "size": 172,
    "status": "matched",
@@ -19928,7 +19928,7 @@
   {
    "symbol": "CARDDeleteAsync",
    "module": "main",
-   "unit": "dol/CARDDeleteAsync.c",
+   "unit": "dol/CARDFastDeleteAsync.c",
    "addr": 2147678980,
    "size": 272,
    "status": "matched",
@@ -19979,7 +19979,7 @@
   {
    "symbol": "CARDGetStatus",
    "module": "main",
-   "unit": "dol/CARDGetStatus.c",
+   "unit": "dol/UpdateIconOffsets.c",
    "addr": 2147679828,
    "size": 300,
    "status": "matched",
@@ -19996,7 +19996,7 @@
   {
    "symbol": "CARDSetStatusAsync",
    "module": "main",
-   "unit": "dol/CARDSetStatusAsync.c",
+   "unit": "dol/UpdateIconOffsets.c",
    "addr": 2147680128,
    "size": 372,
    "status": "matched",
@@ -20353,7 +20353,7 @@
   {
    "symbol": "GXGetGPStatus",
    "module": "main",
-   "unit": "dol/GXGetGPStatus.c",
+   "unit": "dol/__GXSaveCPUFifoAux.c",
    "addr": 2147688688,
    "size": 80,
    "status": "matched",
@@ -44833,7 +44833,7 @@
   {
    "symbol": "fn_8008F9D8",
    "module": "main",
-   "unit": "dol/fn_8008F9D8.c",
+   "unit": "dol/fn_8008F92C.c",
    "addr": 2148071896,
    "size": 220,
    "status": "matched",
@@ -44850,7 +44850,7 @@
   {
    "symbol": "fn_8008FAB4",
    "module": "main",
-   "unit": "dol/fn_8008FAB4.c",
+   "unit": "dol/fn_8008F92C.c",
    "addr": 2148072116,
    "size": 220,
    "status": "matched",
@@ -44867,7 +44867,7 @@
   {
    "symbol": "fn_8008FB90",
    "module": "main",
-   "unit": "dol/fn_8008FB90.c",
+   "unit": "dol/fn_8008F92C.c",
    "addr": 2148072336,
    "size": 172,
    "status": "matched",

@@ -2,6 +2,8 @@
 #include <dolphin/os/OSModule.h>
 #include "sdk_addresses.h"
 
+
+/* --- dol/OSUnlink.c --- */
 void fn_8000DD64(OSModuleInfo *module);
 
 OSModuleQueue __OSModuleInfoList : FZGX_ADDR___OSModuleInfoList;
@@ -76,4 +78,10 @@ BOOL OSUnlink(OSModuleInfo *oldModule) {
     moduleHeader->impOffset -= (u32)moduleHeader;
     oldModule->sectionInfoOffset -= (u32)moduleHeader;
     return 1;
+}
+
+/* --- dol/__OSModuleInit.c --- */
+void __OSModuleInit(void) {
+    __OSModuleInfoList.head = __OSModuleInfoList.tail = 0;
+    __OSStringTable = 0;
 }

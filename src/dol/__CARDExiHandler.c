@@ -1,5 +1,7 @@
 #include <dolphin/card/CARDPriv.h>
 
+
+/* --- dol/__CARDExiHandler.c --- */
 void OSCancelAlarm(OSAlarm *alarm);
 
 s32 Retry(s32 chan);
@@ -37,5 +39,23 @@ fatal:
     if (callback) {
         card->exiCallback = 0;
         callback(chan, result);
+    }
+}
+
+/* --- dol/__CARDTxHandler.c --- */
+BOOL EXIProbe(s32 chan);
+
+
+void __CARDTxHandler(s32 chan, OSContext *context) {
+    CARDControl *card;
+    CARDCallback callback;
+    BOOL err;
+    card = &lbl_80177960[chan];
+    err = !EXIDeselect(chan);
+    EXIUnlock(chan);
+    callback = card->txCallback;
+    if (callback) {
+        card->txCallback = 0;
+        callback(chan, (!err && EXIProbe(chan)) ? 0 : -3);
     }
 }

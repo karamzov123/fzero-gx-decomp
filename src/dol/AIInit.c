@@ -6,6 +6,8 @@
 #include <dolphin/types.h>
 #include "sdk_addresses.h"
 
+
+/* --- dol/AIInit.c --- */
 typedef void (*AISCallback)(u32 count);
 
 typedef void (*AIDCallback)();
@@ -91,4 +93,48 @@ void AIInit(u8 *stack) {
     __OSSetInterruptHandler(8, __AISHandler);
     __OSUnmaskInterrupts(0x800000);
     lbl_801A69B0 = 1;
+}
+
+/* --- dol/__AISHandler.c --- */
+void __AISHandler(s16 interrupt, OSContext *context) {
+    OSContext tmpContext;
+    __AIRegs[0] |= 8;
+    OSClearContext(&tmpContext);
+    OSSetCurrentContext(&tmpContext);
+    if (lbl_801A69A0 != ((void *)0)) {
+        lbl_801A69A0(__AIRegs[2]);
+    }
+    OSClearContext(&tmpContext);
+    OSSetCurrentContext(context);
+}
+
+/* --- dol/__AIDHandler.c --- */
+vu16 __DSPRegs[32] : FZGX_ADDR___DSPRegs;
+
+
+
+// Hardware or OS state can change asynchronously.
+extern volatile s32 lbl_801A69B4; // fzgx-allow: S2 SDK asynchronous state
+
+void __AICallbackStackSwitch(register AIDCallback cb);
+
+void __AICallbackStackSwitch(register AIDCallback cb);
+
+void __AIDHandler(s16 interrupt, OSContext *context) {
+    OSContext tempContext;
+    u32 temp = __DSPRegs[5];
+    __DSPRegs[5] = (temp & ~0xA0) | 8;
+    OSClearContext(&tempContext);
+    OSSetCurrentContext(&tempContext);
+    if (lbl_801A69A4 && !lbl_801A69B4) {
+        lbl_801A69B4 = 1;
+        if (lbl_801A69A8) {
+            __AICallbackStackSwitch(lbl_801A69A4);
+        } else {
+            lbl_801A69A4();
+        }
+        lbl_801A69B4 = 0;
+    }
+    OSClearContext(&tempContext);
+    OSSetCurrentContext(context);
 }

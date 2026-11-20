@@ -3116,31 +3116,10 @@ dol/fn_800829EC.c:
 	.text       start:0x800829EC end:0x80082A7C align:4
 
 dol/__CARDExiHandler.c:
-	.text       start:0x80029934 end:0x80029A4C align:4
-
-dol/__CARDTxHandler.c:
-	.text       start:0x80029A4C end:0x80029AF4 align:4
+	.text       start:0x80029934 end:0x80029AF4 align:4
 
 dol/TimeoutHandler.c:
-	.text       start:0x80029DD4 end:0x80029E78 align:4
-
-dol/Retry.c:
-	.text       start:0x80029E78 end:0x8002A0A4 align:4
-
-dol/UnlockedCallback.c:
-	.text       start:0x8002A0A4 end:0x8002A1B4 align:4
-
-dol/__CARDStart.c:
-	.text       start:0x8002A1B4 end:0x8002A368 align:4
-
-dol/__CARDReadSegment.c:
-	.text       start:0x8002A368 end:0x8002A49C align:4
-
-dol/__CARDWritePage.c:
-	.text       start:0x8002A49C end:0x8002A5B8 align:4
-
-dol/__CARDEraseSector.c:
-	.text       start:0x8002A5B8 end:0x8002A698 align:4
+	.text       start:0x80029DD4 end:0x8002A698 align:4
 
 dol/__CARDSetDiskID.c:
 	.text       start:0x8002A774 end:0x8002A7AC align:4
@@ -3149,10 +3128,7 @@ dol/__CARDGetControlBlock.c:
 	.text       start:0x8002A83C end:0x8002A8F4 align:4
 
 dol/CARDFreeBlocks.c:
-	.text       start:0x8002A988 end:0x8002AAD8 align:4
-
-dol/__CARDSync.c:
-	.text       start:0x8002AAD8 end:0x8002AB70 align:4
+	.text       start:0x8002A988 end:0x8002AB70 align:4
 
 dol/bitrev.c:
 	.text       start:0x8002ABC0 end:0x8002AD2C align:4
@@ -3164,16 +3140,7 @@ dol/DoneCallback.c:
 	.text       start:0x8002BAFC end:0x8002BE20 align:4
 
 dol/EraseCallback.c:
-	.text       start:0x8002C194 end:0x8002C25C align:4
-
-dol/__CARDAllocBlock.c:
-	.text       start:0x8002C25C end:0x8002C374 align:4
-
-dol/__CARDFreeBlock.c:
-	.text       start:0x8002C374 end:0x8002C410 align:4
-
-dol/__CARDUpdateFatBlock.c:
-	.text       start:0x8002C410 end:0x8002C4BC align:4
+	.text       start:0x8002C194 end:0x8002C4BC align:4
 
 dol/WriteCallback_CARDDir.c:
 	.text       start:0x8002C4C4 end:0x8002C594 align:4
@@ -3215,25 +3182,16 @@ dol/CARDWriteAsync.c:
 	.text       start:0x8002F7D8 end:0x8002F8EC align:4
 
 dol/CARDFastDeleteAsync.c:
-	.text       start:0x8002F9D8 end:0x8002FB04 align:4
-
-dol/CARDDeleteAsync.c:
-	.text       start:0x8002FB04 end:0x8002FC14 align:4
+	.text       start:0x8002F9D8 end:0x8002FC14 align:4
 
 dol/UpdateIconOffsets.c:
-	.text       start:0x8002FC5C end:0x8002FE54 align:4
-
-dol/CARDSetStatusAsync.c:
-	.text       start:0x8002FF80 end:0x800300F4 align:4
+	.text       start:0x8002FC5C end:0x800300F4 align:4
 
 dol/CARDRenameAsync.c:
 	.text       start:0x8003013C end:0x80030338 align:4
 
 dol/CARDReadAsync.c:
 	.text       start:0x8002F428 end:0x8002F570 align:4
-
-dol/CARDGetStatus.c:
-	.text       start:0x8002FE54 end:0x8002FF80 align:4
 
 dol/CARDNet.c:
 	.text       start:0x80030690 end:0x80030754 align:4
@@ -3253,15 +3211,6 @@ dol/CARDOpen.c:
 dol/L2GlobalInvalidate.c:
 	.text       start:0x8000B8C0 end:0x8000B958 align:4
 
-dol/SetInterruptMask.c:
-	.text       start:0x8000D5E4 end:0x8000D8BC align:4
-
-dol/__OSMaskInterrupts.c:
-	.text       start:0x8000D8BC end:0x8000D944 align:4
-
-dol/__OSUnmaskInterrupts.c:
-	.text       start:0x8000D944 end:0x8000D9CC align:4
-
 dol/Relocate.c:
 	.text       start:0x8000DD74 end:0x8000E030 align:4
 
@@ -3269,16 +3218,10 @@ dol/Undo.c:
 	.text       start:0x8000E370 end:0x8000E5A8 align:4
 
 dol/OSUnlink.c:
-	.text       start:0x8000E5A8 end:0x8000E77C align:4
-
-dol/__OSModuleInit.c:
-	.text       start:0x8000E77C end:0x8000E794 align:4
+	.text       start:0x8000E5A8 end:0x8000E794 align:4
 
 dol/OnReset.c:
-	.text       start:0x8000E7AC end:0x8000E7E8 align:4
-
-dol/MEMIntrruptHandler.c:
-	.text       start:0x8000E7E8 end:0x8000E854 align:4
+	.text       start:0x8000E7AC end:0x8000E854 align:4
 
 dol/WriteSram.c:
 	.text       start:0x8000F670 end:0x8000F788 align:4
@@ -3314,80 +3257,14 @@ dol/OSIsThreadTerminated.c:
 	.text       start:0x800102B8 end:0x800102EC align:4
 
 dol/OSSetProgressiveMode.c:
-	.text       start:0x8000FEE8 end:0x8000FF8C align:4
-
-dol/OSGetWirelessID.c:
-	.text       start:0x8000FF8C end:0x80010010 align:4
-
-dol/OSSetWirelessID.c:
-	.text       start:0x80010010 end:0x800100BC align:4
+	.text       start:0x8000FEE8 end:0x800100BC align:4
 
 dol/__OSInitSram.c:
 	.bss        start:0x8015BFC0 end:0x8015C014 align:32
 	.text       start:0x8000F788 end:0x8000F8BC align:4
 
 dol/SetExiInterruptMask.c:
-	.text       start:0x80013A88 end:0x80013B7C align:4
-
-dol/EXIImm.c:
-	.text       start:0x80013B7C end:0x80013DD8 align:4
-
-dol/EXIImmEx.c:
-	.text       start:0x80013DD8 end:0x80013E78 align:4
-
-dol/EXIDma.c:
-	.text       start:0x80013E78 end:0x80013F64 align:4
-
-dol/EXISync.c:
-	.text       start:0x80013F64 end:0x800141B0 align:4
-
-dol/EXIClearInterrupts.c:
-	.text       start:0x800141B0 end:0x800141F8 align:4
-
-dol/EXISetExiCallback.c:
-	.text       start:0x800141F8 end:0x80014274 align:4
-
-dol/__EXIProbe.c:
-	.text       start:0x80014274 end:0x800143E8 align:4
-
-dol/EXIProbe.c:
-	.text       start:0x800143E8 end:0x80014468 align:4
-
-dol/EXIProbeEx.c:
-	.text       start:0x80014468 end:0x8001451C align:4
-
-dol/EXIAttach.c:
-	.text       start:0x8001451C end:0x80014628 align:4
-
-dol/EXIDetach.c:
-	.text       start:0x80014628 end:0x800146E4 align:4
-
-dol/EXISelect.c:
-	.text       start:0x800146E4 end:0x80014810 align:4
-
-dol/EXIDeselect.c:
-	.text       start:0x80014810 end:0x80014920 align:4
-
-dol/EXIIntrruptHandler.c:
-	.text       start:0x80014920 end:0x800149E8 align:4
-
-dol/TCIntrruptHandler.c:
-	.text       start:0x800149E8 end:0x80014C00 align:4
-
-dol/EXTIntrruptHandler.c:
-	.text       start:0x80014C00 end:0x80014CD0 align:4
-
-dol/EXILock.c:
-	.text       start:0x80014EA4 end:0x80014F98 align:4
-
-dol/EXIUnlock.c:
-	.text       start:0x80014F98 end:0x80015074 align:4
-
-dol/EXIGetState.c:
-	.text       start:0x80015074 end:0x8001508C align:4
-
-dol/UnlockedHandler.c:
-	.text       start:0x8001508C end:0x800150B4 align:4
+	.text       start:0x80013A88 end:0x80015464 align:4
 
 dol/ProbeBarnacle.c:
 	.text       start:0x80015464 end:0x800155F0 align:4
@@ -3492,19 +3369,10 @@ dol/DecrementerExceptionCallback.c:
 	.text       start:0x8000B094 end:0x8000B2C4 align:4
 
 dol/__OSInterruptInit.c:
-	.text       start:0x8000D570 end:0x8000D5E4 align:4
-
-dol/__OSDispatchInterrupt.c:
-	.text       start:0x8000D9CC end:0x8000DD10 align:4
+	.text       start:0x8000D570 end:0x8000DD10 align:4
 
 dol/OSRegisterResetFunction.c:
 	.text       start:0x8000EE70 end:0x8000EEF4 align:4
-
-dol/EXIInit.c:
-	.text       start:0x80014CD0 end:0x80014EA4 align:4
-
-dol/EXIGetID.c:
-	.text       start:0x800150B4 end:0x80015464 align:4
 
 dol/__OSEnableBarnacle.c:
 	.text       start:0x800155F0 end:0x800157AC align:4
@@ -3515,12 +3383,6 @@ dol/WriteUARTN.c:
 dol/AlarmHandlerForTimeout.c:
 	.text       start:0x80016324 end:0x80016394 align:4
 
-dol/DVDLowWaitCoverClose.c:
-	.text       start:0x80016850 end:0x8001687C align:4
-
-dol/DVDLowReset.c:
-	.text       start:0x80016C94 end:0x80016D50 align:4
-
 dol/DVDFastOpen.c:
 	.text       start:0x800170EC end:0x80017160 align:4
 
@@ -3528,13 +3390,7 @@ dol/DVDOpen.c:
 	.text       start:0x80017160 end:0x80017228 align:4
 
 dol/entryToPath.c:
-	.text       start:0x8001724C end:0x800173AC align:4
-
-dol/DVDGetCurrentDir.c:
-	.text       start:0x800173AC end:0x80017470 align:4
-
-dol/DVDChangeDir.c:
-	.text       start:0x80017470 end:0x800174D0 align:4
+	.text       start:0x8001724C end:0x800174D0 align:4
 
 dol/DVDInit.c:
 	.text       start:0x8001776C end:0x800178CC align:4
@@ -3576,7 +3432,7 @@ dol/ErrorCode2Num.c:
 	.text       start:0x8001A05C end:0x8001A178 align:4
 
 dol/__GXSaveCPUFifoAux.c:
-	.text       start:0x80032014 end:0x800320F0 align:4
+	.text       start:0x80032014 end:0x80032140 align:4
 
 dol/GXPokeBlendMode.c:
 	.text       start:0x80034230 end:0x800342B8 align:4
@@ -3591,46 +3447,25 @@ dol/GXReadXfRasMetric.c:
 	.text       start:0x80039B7C end:0x80039C40 align:4
 
 dol/DSPReadMailFromDSP.c:
-	.text       start:0x80028CE0 end:0x80028CF8 align:4
-
-dol/DSPSendMailToDSP.c:
-	.text       start:0x80028CF8 end:0x80028D0C align:4
+	.text       start:0x80028CE0 end:0x80028DD0 align:4
 
 dol/__DSPHandler.c:
 	.text       start:0x80028FA0 end:0x800293C4 align:4
 
 dol/__DSP_insert_task.c:
-	.text       start:0x800296F0 end:0x80029790 align:4
-
-dol/__DSP_remove_task.c:
-	.text       start:0x80029790 end:0x80029824 align:4
+	.text       start:0x800296F0 end:0x80029824 align:4
 
 dol/ClampStick.c:
-	.text       start:0x8001C0C0 end:0x8001C1F0 align:4
-
-dol/UpdateOrigin.c:
-	.text       start:0x8001C304 end:0x8001C4A8 align:4
+	.text       start:0x8001C0C0 end:0x8001C4A8 align:4
 
 dol/SPEC0_MakeStatus.c:
-	.text       start:0x8001D4E8 end:0x8001D65C align:4
-
-dol/SPEC1_MakeStatus.c:
-	.text       start:0x8001D65C end:0x8001D7D0 align:4
-
-dol/PADSetAnalogMode.c:
-	.text       start:0x8001DBC8 end:0x8001DC3C align:4
-
-dol/PADClamp.c:
-	.text       start:0x8001C1F0 end:0x8001C304 align:4
+	.text       start:0x8001D4E8 end:0x8001DC3C align:4
 
 dol/PADOriginUpdateCallback.c:
 	.text       start:0x8001C56C end:0x8001C62C align:4
 
 dol/PADReceiveCheckCallback.c:
 	.text       start:0x8001CA30 end:0x8001CB64 align:4
-
-dol/SPEC2_MakeStatus.c:
-	.text       start:0x8001D7D0 end:0x8001DBC8 align:4
 
 dol/__PADDisableRecalibration.c:
 	.text       start:0x8001DE84 end:0x8001DF00 align:4
@@ -3639,10 +3474,7 @@ dol/AIInitDMA.c:
 	.text       start:0x8001DF44 end:0x8001DFCC align:4
 
 dol/AIStopDMA.c:
-	.text       start:0x8001DFE4 end:0x8001DFFC align:4
-
-dol/AISetStreamPlayState.c:
-	.text       start:0x8001DFFC end:0x8001E0D4 align:4
+	.text       start:0x8001DFE4 end:0x8001E0D4 align:4
 
 dol/AISetDSPSampleRate.c:
 	.text       start:0x8001E0E4 end:0x8001E1C4 align:4
@@ -3655,12 +3487,6 @@ dol/AISetStreamVolLeft.c:
 
 dol/AISetStreamVolRight.c:
 	.text       start:0x8001E2E8 end:0x8001E304 align:4
-
-dol/__AISHandler.c:
-	.text       start:0x8001E480 end:0x8001E4FC align:4
-
-dol/__AIDHandler.c:
-	.text       start:0x8001E4FC end:0x8001E5A8 align:4
 
 dol/DoMount.c:
 	.text       start:0x8002D8F8 end:0x8002DD08 align:4
@@ -3697,9 +3523,6 @@ dol/GXCPInterruptHandler.c:
 
 dol/GXSetGPFifo.c:
 	.text       start:0x80031E7C end:0x80031FF4 align:4
-
-dol/GXGetGPStatus.c:
-	.text       start:0x800320F0 end:0x80032140 align:4
 
 dol/__GXXfVtxSpecs.c:
 	.text       start:0x80032370 end:0x800324C8 align:4
@@ -3811,11 +3634,8 @@ dol/GXSetClipMode.c:
 dol/__GXSetMatrixIndex.c:
 	.text       start:0x80039088 end:0x8003910C align:4
 
-dol/DSPInit.c:
-	.text       start:0x80028D0C end:0x80028DD0 align:4
-
 dol/AIInit.c:
-	.text       start:0x8001E314 end:0x8001E480 align:4
+	.text       start:0x8001E314 end:0x8001E5A8 align:4
 
 dol/__AI_SRC_INIT.c:
 	.text       start:0x8001E600 end:0x8001E7E4 align:4
@@ -3833,28 +3653,7 @@ dol/GXSetTevOp.c:
 	.text       start:0x80037014 end:0x800370A0 align:4
 
 dol/DVDLowSeek.c:
-	.text       start:0x800167BC end:0x80016850 align:4
-
-dol/DVDLowReadDiskID.c:
-	.text       start:0x8001687C end:0x80016920 align:4
-
-dol/DVDLowStopMotor.c:
-	.text       start:0x80016920 end:0x800169AC align:4
-
-dol/DVDLowRequestError.c:
-	.text       start:0x800169AC end:0x80016A38 align:4
-
-dol/DVDLowInquiry.c:
-	.text       start:0x80016A38 end:0x80016AD4 align:4
-
-dol/DVDLowAudioStream.c:
-	.text       start:0x80016AD4 end:0x80016B6C align:4
-
-dol/DVDLowRequestAudioStatus.c:
-	.text       start:0x80016B6C end:0x80016BF8 align:4
-
-dol/DVDLowAudioBufferConfig.c:
-	.text       start:0x80016BF8 end:0x80016C94 align:4
+	.text       start:0x800167BC end:0x80016D50 align:4
 
 dol/fn_8003458C.c:
 	.text       start:0x8003458C end:0x8003462C align:4
@@ -4127,10 +3926,7 @@ dol/TRKNubMainLoop.c:
 	.text       start:0x80088648 end:0x80088740 align:4
 
 dol/GetFontCode.c:
-	.text       start:0x8000CAC8 end:0x8000CC64 align:4
-
-dol/Decode.c:
-	.text       start:0x8000CC64 end:0x8000CDD8 align:4
+	.text       start:0x8000CAC8 end:0x8000CDD8 align:4
 
 dol/__GXDefaultTexRegionCallback.c:
 	.text       start:0x800307CC end:0x80030848 align:4
@@ -5767,16 +5563,7 @@ dol/InitMetroTRKCommTable.c:
 	.text       start:0x8008D4D8 end:0x8008D744 align:4
 
 dol/fn_8008F92C.c:
-	.text       start:0x8008F92C end:0x8008F9D8 align:4
-
-dol/fn_8008F9D8.c:
-	.text       start:0x8008F9D8 end:0x8008FAB4 align:4
-
-dol/fn_8008FAB4.c:
-	.text       start:0x8008FAB4 end:0x8008FB90 align:4
-
-dol/fn_8008FB90.c:
-	.text       start:0x8008FB90 end:0x8008FC3C align:4
+	.text       start:0x8008F92C end:0x8008FC3C align:4
 
 dol/fn_80033EB0.c:
 	.text       start:0x80033EB0 end:0x8003401C align:4

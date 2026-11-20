@@ -1,6 +1,8 @@
 #include <dolphin/os.h>
 #include <dolphin/os/OSRtc.h>
 
+
+/* --- dol/OSSetProgressiveMode.c --- */
 struct OSRtcBss {
     SramControlBlock Scb;
 };
@@ -42,4 +44,44 @@ void OSSetProgressiveMode(u32 mode) {
     sram->flags &= ~0x80;
     sram->flags |= mode;
     __OSUnlockSram(1);
+}
+
+/* --- dol/OSGetWirelessID.c --- */
+OSSramEx *__OSLockSramEx();
+
+
+
+static inline OSSramEx *__OSLockSramEx() { return LockSram(sizeof(OSSram)); }
+
+BOOL UnlockSram(BOOL commit, u32 offset);
+
+static inline BOOL __OSUnlockSramEx(BOOL commit) { return UnlockSram(commit, sizeof(OSSram)); }
+
+u16 OSGetWirelessID(s32 channel) {
+    OSSramEx *sram;
+    u16 id;
+    sram = __OSLockSramEx();
+    id = sram->wirelessPadID[channel];
+    __OSUnlockSramEx(0);
+    return id;
+}
+
+/* --- dol/OSSetWirelessID.c --- */
+OSSramEx *__OSLockSramEx();
+
+
+
+
+BOOL UnlockSram(BOOL commit, u32 offset);
+
+
+void OSSetWirelessID(s32 channel, u16 id) {
+    OSSramEx *sram;
+    sram = __OSLockSramEx();
+    if (sram->wirelessPadID[channel] != id) {
+        sram->wirelessPadID[channel] = id;
+        __OSUnlockSramEx(1);
+        return;
+    }
+    __OSUnlockSramEx(0);
 }

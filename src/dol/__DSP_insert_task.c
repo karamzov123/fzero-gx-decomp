@@ -1,6 +1,8 @@
 #include <types.h>
 #include <dolphin/dsp.h>
 
+
+/* --- dol/__DSP_insert_task.c --- */
 extern DSPTaskInfo *lbl_801A6BBC;
 
 extern DSPTaskInfo *lbl_801A6BB4;
@@ -34,5 +36,27 @@ void __DSP_insert_task(DSPTaskInfo *task) {
             task->prev = lbl_801A6BB4;
             lbl_801A6BB4 = task;
         }
+    }
+}
+
+/* --- dol/__DSP_remove_task.c --- */
+void __DSP_remove_task(DSPTaskInfo *task) {
+    task->flags = 0x00000000;
+    task->state = 3;
+    if (lbl_801A6BB8 == task) {
+        if (task->next) {
+            lbl_801A6BB8 = (task->next);
+            task->next->prev = 0;
+        } else {
+            lbl_801A6BB8 = lbl_801A6BB4 = lbl_801A6BBC = 0;
+        }
+    } else if (lbl_801A6BB4 == task) {
+        lbl_801A6BB4 = (task->prev);
+        task->prev->next = 0;
+        lbl_801A6BBC = lbl_801A6BB8;
+    } else {
+        lbl_801A6BBC = task->next;
+        task->prev->next = task->next;
+        task->next->prev = task->prev;
     }
 }
