@@ -670,6 +670,8 @@ def resolve(p: Project, tu_source: str, v, apply: bool = True,
                 # a definer's field accesses need its own struct pointer)
                 if _same(a, b):
                     return True
+                if not a.split() or not b.split():  # an empty (K&R `f()`) parameter spelling
+                    return False
                 ia, ib = a.split()[-1] in INTS and '*' not in a, b.split()[-1] in INTS and '*' not in b
                 return ia != ib and ('*' in a or '*' in b) and a != '...' and b != '...'
 

@@ -1036,8 +1036,7 @@ var_f31 = (f32)((0.5) + (f64)(f32)(c - 0xA) / (6.0));
 } else {
 var_f31 = (f32)((0.5) + (f64)(f32)(0xA - c) / (20.0));
 }
-/* WARNING: compiler-diff device, not original code (volatile read: retail reloads this field, carried from main) */
-lbl_4_bss_5680->unk_3A = (*(u8 volatile *)&(lbl_4_bss_5680->unk_3A)) /* Retail reloads this field. */ - 1;
+lbl_4_bss_5680->unk_3A--;
 } else {
 var_f31 = (1.0f);
 }

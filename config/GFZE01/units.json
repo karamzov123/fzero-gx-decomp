@@ -1044,17 +1044,10 @@
     "module": "customize",
     "source": "rel/customize/_prolog/fn_3_77B0.c",
     "symbols": [
-      "fn_3_77B0"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/_prolog.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/_prolog/fn_3_7870.c",
-    "symbols": [
+      "fn_3_77B0",
+      "fn_3_7864",
+      "fn_3_7868",
+      "fn_3_786C",
       "fn_3_7870",
       "fn_3_78C8",
       "fn_3_7A08",
@@ -1062,10 +1055,9 @@
       "fn_3_7B94"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
     "tu": "rel/customize/_prolog.c",
-    "collapsed": true
+    "collapsed": true,
+    "matching_for": ["GFZE01"]
   },
   {
     "module": "customize",
@@ -3641,193 +3633,23 @@
     "module": "customize",
     "source": "rel/customize/fn_3_1304C.c",
     "symbols": [
-      "fn_3_1304C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emb_paste_editor.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/fn_3_13050.c",
-    "symbols": [
-      "fn_3_13050"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emb_paste_editor.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/fn_3_13054.c",
-    "symbols": [
-      "fn_3_13054"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emb_paste_editor.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/fn_3_13058.c",
-    "symbols": [
-      "fn_3_13058"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emb_paste_editor.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/fn_3_1305C.c",
-    "symbols": [
-      "fn_3_1305C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emb_paste_editor.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/fn_3_13060.c",
-    "symbols": [
-      "fn_3_13060"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emb_paste_editor.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/fn_3_13064.c",
-    "symbols": [
-      "fn_3_13064"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emb_paste_editor.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/fn_3_13068.c",
-    "symbols": [
-      "fn_3_13068"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emb_paste_editor.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/fn_3_1306C.c",
-    "symbols": [
-      "fn_3_1306C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emb_paste_editor.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/fn_3_13070.c",
-    "symbols": [
-      "fn_3_13070"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emb_paste_editor.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/fn_3_13074.c",
-    "symbols": [
-      "fn_3_13074"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emb_paste_editor.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/fn_3_13078.c",
-    "symbols": [
+      "fn_3_1304C",
+      "fn_3_13050",
+      "fn_3_13054",
+      "fn_3_13058",
+      "fn_3_1305C",
+      "fn_3_13060",
+      "fn_3_13064",
+      "fn_3_13068",
+      "fn_3_1306C",
+      "fn_3_13070",
+      "fn_3_13074",
       "fn_3_13078"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/emb_paste_editor.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/fn_3_2B774.c",
-    "symbols": [
-      "fn_3_2B774"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/toolkit.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/fn_3_7864.c",
-    "symbols": [
-      "fn_3_7864"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/_prolog.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/fn_3_7868.c",
-    "symbols": [
-      "fn_3_7868"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/_prolog.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/fn_3_786C.c",
-    "symbols": [
-      "fn_3_786C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/_prolog.c"
+    "tu": "rel/customize/emb_paste_editor.c",
+    "collapsed": true
   },
   {
     "module": "customize",
@@ -5134,7 +4956,8 @@
     "source": "rel/customize/toolkit/fn_3_2B268.c",
     "symbols": [
       "fn_3_2B268",
-      "fn_3_2B750"
+      "fn_3_2B750",
+      "fn_3_2B774"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -5751,39 +5574,29 @@
   },
   {
     "module": "interview",
-    "source": "rel/interview/fn_17_49B8.c",
-    "symbols": [
-      "fn_17_49B8"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/interview/interview.c"
-  },
-  {
-    "module": "interview",
     "source": "rel/interview/fn_17_4E50.c",
     "symbols": [
-      "fn_17_4E50"
+      "fn_17_4E50",
+      "fn_17_4E54",
+      "fn_17_4FE0"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/interview/interview.c"
+    "tu": "rel/interview/interview.c",
+    "collapsed": true
   },
   {
     "module": "interview",
     "source": "rel/interview/fn_17_72BC.c",
     "symbols": [
-      "fn_17_72BC"
+      "fn_17_72BC",
+      "fn_17_72C0",
+      "fn_17_74C0"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/interview/interview.c"
+    "tu": "rel/interview/interview.c",
+    "collapsed": true
   },
   {
     "module": "interview",
@@ -6228,13 +6041,13 @@
     "source": "rel/interview/interview/fn_17_4858.c",
     "symbols": [
       "fn_17_4858",
-      "fn_17_48D0"
+      "fn_17_48D0",
+      "fn_17_49B8"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/interview/interview.c"
+    "tu": "rel/interview/interview.c",
+    "collapsed": true
   },
   {
     "module": "interview",
@@ -6260,19 +6073,6 @@
       "@19": "lbl_17_data_0+0x64140"
     },
     "matching_for": ["GFZE01"]
-  },
-  {
-    "module": "interview",
-    "source": "rel/interview/interview/fn_17_4E54.c",
-    "symbols": [
-      "fn_17_4E54",
-      "fn_17_4FE0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/interview/interview.c"
   },
   {
     "module": "interview",
@@ -6649,19 +6449,6 @@
       "@43": "lbl_17_rodata_20"
     },
     "matching_for": ["GFZE01"]
-  },
-  {
-    "module": "interview",
-    "source": "rel/interview/interview/fn_17_72C0.c",
-    "symbols": [
-      "fn_17_72C0",
-      "fn_17_74C0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/interview/interview.c"
   },
   {
     "module": "interview",
@@ -124196,37 +123983,17 @@
     "module": "sel",
     "source": "rel/sel/fn_10_1B658.c",
     "symbols": [
-      "fn_10_1B658"
+      "fn_10_1B658",
+      "fn_10_1B65C",
+      "fn_10_1B660",
+      "fn_10_1B664",
+      "fn_10_1B684",
+      "fn_10_1B6A8"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/sel/sel.c"
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/fn_10_1B65C.c",
-    "symbols": [
-      "fn_10_1B65C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/sel/sel.c"
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/fn_10_1B660.c",
-    "symbols": [
-      "fn_10_1B660"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/sel/sel.c"
+    "tu": "rel/sel/sel.c",
+    "collapsed": true
   },
   {
     "module": "sel",
@@ -125422,19 +125189,6 @@
       "@9": "lbl_10_rodata_158+0x44",
       "@10": "lbl_10_rodata_158+0x48"
     }
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/sel/fn_10_1B664.c",
-    "symbols": [
-      "fn_10_1B664",
-      "fn_10_1B684",
-      "fn_10_1B6A8"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/sel/sel.c"
   },
   {
     "module": "sel",
@@ -126653,14 +126407,17 @@
     "module": "title",
     "source": "rel/title/_prolog/fn_8_4D8.c",
     "symbols": [
-      "fn_8_4D8"
+      "fn_8_4D8",
+      "fn_8_6FC"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
     "tu": "rel/title/_prolog.c",
     "pool": {
       "...data.0": "lbl_8_data_0"
-    }
+    },
+    "collapsed": true,
+    "mw_version": "GC/1.3.2"
   },
   {
     "module": "title",
@@ -127786,117 +127543,26 @@
     "module": "title",
     "source": "rel/title/fn_8_4E8C.c",
     "symbols": [
-      "fn_8_4E8C"
+      "fn_8_4E8C",
+      "fn_8_4E90"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/title/title.c"
-  },
-  {
-    "module": "title",
-    "source": "rel/title/fn_8_520C.c",
-    "symbols": [
-      "fn_8_520C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/title/title.c"
-  },
-  {
-    "module": "title",
-    "source": "rel/title/fn_8_5210.c",
-    "symbols": [
-      "fn_8_5210"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/title/title.c"
-  },
-  {
-    "module": "title",
-    "source": "rel/title/fn_8_5214.c",
-    "symbols": [
-      "fn_8_5214"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/title/title.c"
+    "tu": "rel/title/title.c",
+    "collapsed": true
   },
   {
     "module": "title",
     "source": "rel/title/fn_8_5C4C.c",
     "symbols": [
-      "fn_8_5C4C"
+      "fn_8_5C4C",
+      "fn_8_5C50",
+      "fn_8_5C54"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/title/title.c"
-  },
-  {
-    "module": "title",
-    "source": "rel/title/fn_8_5C50.c",
-    "symbols": [
-      "fn_8_5C50"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/title/title.c"
-  },
-  {
-    "module": "title",
-    "source": "rel/title/fn_8_6558.c",
-    "symbols": [
-      "fn_8_6558"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/title/title.c"
-  },
-  {
-    "module": "title",
-    "source": "rel/title/fn_8_6560.c",
-    "symbols": [
-      "fn_8_6560"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/title/title.c"
-  },
-  {
-    "module": "title",
-    "source": "rel/title/fn_8_6568.c",
-    "symbols": [
-      "fn_8_6568"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/title/title.c"
-  },
-  {
-    "module": "title",
-    "source": "rel/title/fn_8_6FC.c",
-    "symbols": [
-      "fn_8_6FC"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/title/_prolog.c"
+    "tu": "rel/title/title.c",
+    "collapsed": true
   },
   {
     "module": "title",
@@ -127910,108 +127576,20 @@
   },
   {
     "module": "title",
-    "source": "rel/title/fn_8_8C44.c",
-    "symbols": [
-      "fn_8_8C44"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/title/operation.c"
-  },
-  {
-    "module": "title",
-    "source": "rel/title/fn_8_9B40.c",
-    "symbols": [
-      "fn_8_9B40"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/title/operation.c"
-  },
-  {
-    "module": "title",
-    "source": "rel/title/fn_8_BD8.c",
-    "symbols": [
-      "fn_8_BD8"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/title/title.c"
-  },
-  {
-    "module": "title",
-    "source": "rel/title/fn_8_BDC.c",
-    "symbols": [
-      "fn_8_BDC"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/title/title.c"
-  },
-  {
-    "module": "title",
-    "source": "rel/title/fn_8_BE0.c",
-    "symbols": [
-      "fn_8_BE0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/title/title.c"
-  },
-  {
-    "module": "title",
     "source": "rel/title/fn_8_CF58.c",
     "symbols": [
-      "fn_8_CF58"
+      "fn_8_CF58",
+      "fn_8_CF60",
+      "fn_8_CF68",
+      "fn_8_CF70",
+      "fn_8_CF94",
+      "fn_8_D020",
+      "fn_8_D024"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/title/operation.c"
-  },
-  {
-    "module": "title",
-    "source": "rel/title/fn_8_CF60.c",
-    "symbols": [
-      "fn_8_CF60"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/title/operation.c"
-  },
-  {
-    "module": "title",
-    "source": "rel/title/fn_8_CF68.c",
-    "symbols": [
-      "fn_8_CF68"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/title/operation.c"
-  },
-  {
-    "module": "title",
-    "source": "rel/title/fn_8_D020.c",
-    "symbols": [
-      "fn_8_D020"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/title/operation.c"
+    "tu": "rel/title/operation.c",
+    "collapsed": true,
+    "matching_for": ["GFZE01"]
   },
   {
     "module": "title",
@@ -128365,31 +127943,45 @@
     "module": "title",
     "source": "rel/title/operation/fn_8_89B8.c",
     "symbols": [
-      "fn_8_89B8"
+      "fn_8_89B8",
+      "fn_8_8C44"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
     "tu": "rel/title/operation.c",
     "pool": {
       "...rodata.0": "lbl_8_rodata_160",
-      "@13": "lbl_8_rodata_188",
       "@5": "lbl_8_rodata_160",
-      "@8": "lbl_8_rodata_160+0x10",
-      "@7": "lbl_8_rodata_160+0xC",
       "@6": "lbl_8_rodata_160+0x8",
-      "@22": "lbl_8_rodata_194",
-      "@23": "lbl_8_rodata_198",
-      "@24": "lbl_8_rodata_19C",
+      "@7": "lbl_8_rodata_160+0xC",
+      "@8": "lbl_8_rodata_160+0x10",
       "@9": "lbl_8_rodata_160+0x18",
-      "@25": "lbl_8_rodata_1A0",
+      "@10": "lbl_8_rodata_160+0x1C",
+      "@11": "lbl_8_rodata_160+0x20",
       "@12": "lbl_8_rodata_160+0x24",
-      "@26": "lbl_8_rodata_1A4",
-      "@27": "lbl_8_rodata_1A8",
-      "@89": "lbl_8_rodata_1D8",
-      "@11": "lbl_8_rodata_160+0x20"
-    }
+      "@13": "lbl_8_rodata_160+0x28",
+      "@17": "lbl_8_rodata_160+0x30",
+      "@22": "lbl_8_rodata_160+0x34",
+      "@23": "lbl_8_rodata_160+0x38",
+      "@24": "lbl_8_rodata_160+0x3C",
+      "@25": "lbl_8_rodata_160+0x40",
+      "@26": "lbl_8_rodata_160+0x44",
+      "@27": "lbl_8_rodata_160+0x48",
+      "@31": "lbl_8_rodata_160+0x4C",
+      "@33": "lbl_8_rodata_160+0x50",
+      "@35": "lbl_8_rodata_160+0x54",
+      "@37": "lbl_8_rodata_160+0x58",
+      "@39": "lbl_8_rodata_160+0x5C",
+      "@41": "lbl_8_rodata_160+0x60",
+      "@56": "lbl_8_rodata_160+0x64",
+      "@60": "lbl_8_rodata_160+0x68",
+      "@62": "lbl_8_rodata_160+0x6C",
+      "@64": "lbl_8_rodata_160+0x70",
+      "@66": "lbl_8_rodata_160+0x74",
+      "@89": "lbl_8_rodata_160+0x78"
+    },
+    "collapsed": true
   },
   {
     "module": "title",
@@ -128448,12 +128040,13 @@
     "module": "title",
     "source": "rel/title/operation/fn_8_9B04.c",
     "symbols": [
-      "fn_8_9B04"
+      "fn_8_9B04",
+      "fn_8_9B40"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/title/operation.c"
+    "tu": "rel/title/operation.c",
+    "collapsed": true,
+    "matching_for": ["GFZE01"]
   },
   {
     "module": "title",
@@ -129018,29 +128611,6 @@
   },
   {
     "module": "title",
-    "source": "rel/title/operation/fn_8_CF70.c",
-    "symbols": [
-      "fn_8_CF70",
-      "fn_8_CF94"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/title/operation.c"
-  },
-  {
-    "module": "title",
-    "source": "rel/title/operation/fn_8_D024.c",
-    "symbols": [
-      "fn_8_D024"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/title/operation.c"
-  },
-  {
-    "module": "title",
     "source": "rel/title/operation/fn_8_D034.c",
     "symbols": [
       "fn_8_D034"
@@ -129208,12 +128778,13 @@
     "source": "rel/title/title/_epilog.c",
     "symbols": [
       "_epilog",
-      "fn_8_B7C"
+      "fn_8_B7C",
+      "fn_8_BD8",
+      "fn_8_BDC",
+      "fn_8_BE0"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
     "tu": "rel/title/title.c",
     "collapsed": true
   },
@@ -129226,18 +128797,6 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/title/title.c"
-  },
-  {
-    "module": "title",
-    "source": "rel/title/title/fn_8_4E90.c",
-    "symbols": [
-      "fn_8_4E90"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
     "extra_cflags": [],
     "tu": "rel/title/title.c"
   },
@@ -129257,13 +128816,15 @@
     "module": "title",
     "source": "rel/title/title/fn_8_516C.c",
     "symbols": [
-      "fn_8_516C"
+      "fn_8_516C",
+      "fn_8_520C",
+      "fn_8_5210",
+      "fn_8_5214"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/title/title.c"
+    "tu": "rel/title/title.c",
+    "collapsed": true
   },
   {
     "module": "title",
@@ -129362,34 +128923,17 @@
   },
   {
     "module": "title",
-    "source": "rel/title/title/fn_8_5C54.c",
-    "symbols": [
-      "fn_8_5C54"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/title/title.c"
-  },
-  {
-    "module": "title",
     "source": "rel/title/title/fn_8_5FD4.c",
     "symbols": [
-      "fn_8_5FD4"
-    ],
-    "status": "matching",
-    "tu": "rel/title/title.c"
-  },
-  {
-    "module": "title",
-    "source": "rel/title/title/fn_8_6570.c",
-    "symbols": [
+      "fn_8_5FD4",
+      "fn_8_6558",
+      "fn_8_6560",
+      "fn_8_6568",
       "fn_8_6570"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/title/title.c"
+    "tu": "rel/title/title.c",
+    "collapsed": true
   },
   {
     "module": "title",

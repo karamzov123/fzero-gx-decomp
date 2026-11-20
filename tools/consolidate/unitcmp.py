@@ -1,0 +1,34 @@
+"""Compare every unit compiled from SRC (a TU container or a standalone file) between git HEAD
+and the working tree: SAME means byte-identical objects under the unit's exact flags.
+Usage: unitcmp.py src/rel/option/name_entry.c [...]"""
+import sys, json, subprocess, tempfile, pathlib
+sys.path.insert(0, str(pathlib.Path(__file__).parent)); sys.path.insert(0, 'tools')
+import devprobe as d
+from fzgx import tufile
+
+def main():
+    units = json.load(open('config/GFZE01/units.json'))
+    nu = d.ninja_units(); bad = 0
+    for path in sys.argv[1:]:
+        rel = str(pathlib.Path(path).relative_to('src'))
+        old = subprocess.run(['git', 'show', f'HEAD:{path}'], capture_output=True, text=True).stdout
+        new = pathlib.Path(path).read_text()
+        for u in units:
+            if u.get('tu') == rel:
+                g = lambda t: tufile.units_gen_text(tufile.parse(t), u['symbols']); key = f"build/GFZE01/gen/{u['source']}"
+            elif u['source'] == rel and not u.get('tu'):
+                g = lambda t: t; key = f"src/{rel}"
+            else:
+                continue
+            go, gn = g(old), g(new)
+            if go == gn: continue
+            mv, cf = nu[key]
+            with tempfile.TemporaryDirectory() as td:
+                a = d.compile_text(go, mv, cf, td); b = d.compile_text(gn, mv, cf, td)
+            st = 'SAME' if a == b and a is not None else ('FAIL' if b is None else 'DIFF')
+            bad += st != 'SAME'
+            print(f'{st} {u["source"]} ({len(u["symbols"])} fns)')
+    sys.exit(1 if bad else 0)
+
+if __name__ == '__main__':
+    main()
