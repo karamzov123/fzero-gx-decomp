@@ -625,9 +625,7 @@ void fn_1_68248(Fn1_68248Arg *arg) {
 /* fzgx:begin fn_1_68284 */
 /* Clamp x to [lo, hi]. */
 static inline f32 clampf(f32 lo, f32 hi, f32 x) {
-    if (x < lo) return lo;
-    if (x > hi) return hi;
-    return x;
+    return (x < lo) ? lo : ((x > hi) ? hi : x);
 }
 
 #define F32_AT(p, o) (*(f32 *)((u8 *)(p) + (o)))
@@ -649,26 +647,6 @@ static inline f32 effect_distance(const f32 *p, const f32 *q) {
     return lbl_8006D0B4(x);
 }
 #define DISTANCE() effect_distance((f32 *)&loc_5C,loc_8)
-
-#pragma section code_type ".fzgxpool"
-/* Primes the literal pool in retail order (lbl_1_rodata_2D70). */
-void fzgx_pool_fn_1_68284(f32 *out) {
-    out[0] = 0.0f;
-    out[1] = -1.0f;
-    out[2] = 25.0f;
-    out[3] = 15.0f;
-    out[4] = 8.0f;
-    out[5] = 150.0f;
-    out[6] = 10.0f;
-    out[7] = 0.5f;
-    out[8] = 0.125f;
-    out[9] = 32767.0f;
-    out[10] = 30.0f;
-    out[11] = 20.0f;
-    out[12] = 1200.0f;
-    out[13] = 0.15f;
-}
-#pragma section code_type ".text"
 
 static inline void fn_1_68284_cross(const Vec3f *a, const Vec3f *b, f32 *out) {
     f32 ax, ay, az, bx, by, bz;
@@ -834,6 +812,13 @@ void fn_1_68284(u32 arg0) {
     } else U32_AT(arg0,8) |= 0x2000;
     if (flags & 0x800000) fn_1_106EA4(0.15f);
 }
+#undef F32_AT
+#undef U32_AT
+#undef S32_AT
+#undef S16_AT
+#undef U16_AT
+#undef S8_AT
+#undef DISTANCE
 /* fzgx:end fn_1_68284 */
 
 /* fzgx:begin fn_1_68B68 */
@@ -865,48 +850,6 @@ typedef struct Effect68B6C {
     u8 padAe[0xa];
     u32 mtx[12];
 } Effect68B6C;
-
-/* Primes the shared effect-car literal pool in retail order. */
-#pragma section code_type ".fzgxpool"
-void fzgx_pool_primer_68B6C(f32 *f, f64 *d) {
-    f[0] = 0.0f;
-    f[1] = -1.0f;
-    f[2] = 25.0f;
-    f[3] = 15.0f;
-    f[4] = 8.0f;
-    f[5] = 150.0f;
-    f[6] = 10.0f;
-    f[7] = 0.5f;
-    f[8] = 0.125f;
-    f[9] = 32767.0f;
-    f[10] = 30.0f;
-    f[11] = 20.0f;
-    f[12] = 1200.0f;
-    f[13] = 0.15f;
-    d[0] = 4503601774854144.0;
-    d[1] = 4503599627370496.0;
-    f[14] = 255.0f;
-    f[15] = 102.0f;
-    d[2] = 0.8;
-    f[16] = 1.6f;
-    f[17] = 3.0f;
-    f[18] = 0.01f;
-    f[19] = 0.6f;
-    d[3] = 0.3;
-    f[20] = 0.7f;
-    f[21] = 0.2f;
-    f[22] = 0.4f;
-    f[23] = 0.1f;
-    f[24] = 1.5f;
-    d[4] = 2.0;
-    f[25] = 0.8f;
-    f[26] = 1.0f;
-    f[27] = 85.0f;
-    f[28] = 0.25f;
-}
-#pragma section code_type ".text"
-
-
 
 static inline f32 dot68B6C(f32 ax, f32 ay, f32 az, f32 bx, f32 by, f32 bz) {
     f32 v = ax * bx;
@@ -1143,6 +1086,7 @@ void fn_1_68B6C(s8 a, s8 b) {
     fn_1_6E140((Vec3_T *)&posB, (Vec3_T *)&velB, k);
 }
 #pragma opt_lifetimes reset
+#pragma fp_contract reset
 /* fzgx:end fn_1_68B6C */
 
 /* fzgx:begin fn_1_694A4 */
@@ -1171,46 +1115,6 @@ typedef struct Effect694A4 {
     u8 padAE[0xa];
     u32 mtx[12];
 } Effect694A4;
-
-/* Primes the shared effect-car literal pool in retail order. */
-#pragma section code_type ".fzgxpool"
-void fzgx_pool_primer_694A4(f32 *f, f64 *d) {
-    f[0] = 0.0f;
-    f[1] = -1.0f;
-    f[2] = 25.0f;
-    f[3] = 15.0f;
-    f[4] = 8.0f;
-    f[5] = 150.0f;
-    f[6] = 10.0f;
-    f[7] = 0.5f;
-    f[8] = 0.125f;
-    f[9] = 32767.0f;
-    f[10] = 30.0f;
-    f[11] = 20.0f;
-    f[12] = 1200.0f;
-    f[13] = 0.15f;
-    d[0] = 4503601774854144.0;
-    d[1] = 4503599627370496.0;
-    f[14] = 255.0f;
-    f[15] = 102.0f;
-    d[2] = 0.8;
-    f[16] = 1.6f;
-    f[17] = 3.0f;
-    f[18] = 0.01f;
-    f[19] = 0.6f;
-    d[3] = 0.3;
-    f[20] = 0.7f;
-    f[21] = 0.2f;
-    f[22] = 0.4f;
-    f[23] = 0.1f;
-    f[24] = 1.5f;
-    d[4] = 2.0;
-    f[25] = 0.8f;
-    f[26] = 1.0f;
-    f[27] = 85.0f;
-    f[28] = 0.25f;
-}
-#pragma section code_type ".text"
 
 static inline f32 dot694A4(f32 ax, f32 ay, f32 az, f32 bx, f32 by, f32 bz) {
     f32 v = ax * bx;
@@ -1392,60 +1296,6 @@ typedef struct Effect69BCC {
     u8 padB4[0x4];
     u32 mtx[12];
 } Effect69BCC;
-
-#pragma section code_type ".fzgxpool"
-void fzgx_pool_primer_69BCC_0(f32 *f, f64 *d) {
-    f[0] = 0.0f;
-    f[1] = -1.0f;
-    f[2] = 25.0f;
-    f[3] = 15.0f;
-    f[4] = 8.0f;
-    f[5] = 150.0f;
-    f[6] = 10.0f;
-    f[7] = 0.5f;
-    f[8] = 0.125f;
-    f[9] = 32767.0f;
-    f[10] = 30.0f;
-    f[11] = 20.0f;
-    f[12] = 1200.0f;
-    f[13] = 0.15f;
-    d[0] = 4503601774854144.0;
-    d[1] = 4503599627370496.0;
-    f[14] = 255.0f;
-    f[15] = 102.0f;
-    d[2] = 0.8;
-    f[16] = 1.6f;
-    f[17] = 3.0f;
-    f[18] = 0.01f;
-    f[19] = 0.6f;
-    d[3] = 0.3;
-    f[20] = 0.7f;
-    f[21] = 0.2f;
-    f[22] = 0.4f;
-    f[23] = 0.1f;
-    f[24] = 1.5f;
-    d[4] = 2.0;
-    f[25] = 0.8f;
-    f[26] = 1.0f;
-    f[27] = 85.0f;
-    f[28] = 0.25f;
-}
-#pragma section code_type ".text"
-const u32 fzgx_pool_table_69BCC[3] = { 0, 0, 0 };
-#pragma section code_type ".fzgxpool"
-void fzgx_pool_primer_69BCC_1(f32 *f, f64 *d) {
-    f[0] = 100.0f;
-    f[1] = 3.5f;
-    f[2] = 23.0f;
-    f[3] = 60.0f;
-    f[4] = 4.0f;
-    f[5] = 0.00000011920928955078125f;
-    f[6] = 136.0f;
-    f[7] = 0.03f;
-    d[0] = 0.5;
-    f[8] = 0.3f;
-}
-#pragma section code_type ".text"
 
 static inline f32 dot69BCC(f32 x, f32 y, f32 z) {
     f32 v = x * x;
@@ -1703,64 +1553,6 @@ void fn_1_69BCC(Effect69BCC *effect) {
 /* fzgx:end fn_1_69BCC */
 
 /* fzgx:begin fn_1_6A7A4 */
-/* Volatile writes preserve the shared literal-pool order used by the effect-car functions. */
-#pragma section code_type ".fzgxpool"
-void fzgx_pool_primer_A7_0(f32 *f, f64 *d) {
-    f[0] = 0.0f;
-    f[1] = -1.0f;
-    f[2] = 25.0f;
-    f[3] = 15.0f;
-    f[4] = 8.0f;
-    f[5] = 150.0f;
-    f[6] = 10.0f;
-    f[7] = 0.5f;
-    f[8] = 0.125f;
-    f[9] = 32767.0f;
-    f[10] = 30.0f;
-    f[11] = 20.0f;
-    f[12] = 1200.0f;
-    f[13] = 0.15f;
-    d[0] = 4503601774854144.0;
-    d[1] = 4503599627370496.0;
-    f[14] = 255.0f;
-    f[15] = 102.0f;
-    d[2] = 0.8;
-    f[16] = 1.6f;
-    f[17] = 3.0f;
-    f[18] = 0.01f;
-    f[19] = 0.6f;
-    d[3] = 0.3;
-    f[20] = 0.7f;
-    f[21] = 0.2f;
-    f[22] = 0.4f;
-    f[23] = 0.1f;
-    f[24] = 1.5f;
-    d[4] = 2.0;
-    f[25] = 0.8f;
-    f[26] = 1.0f;
-    f[27] = 85.0f;
-    f[28] = 0.25f;
-}
-#pragma section code_type ".text"
-const u32 fzgx_pool_table_A0[3] = { 0, 0, 0 };
-#pragma section code_type ".fzgxpool"
-void fzgx_pool_primer_A7_1(f32 *f, f64 *d) {
-    f[0] = 100.0f;
-    f[1] = 3.5f;
-    f[2] = 23.0f;
-    f[3] = 60.0f;
-    f[4] = 4.0f;
-    f[5] = 0.00000011920928955078125f;
-    f[6] = 136.0f;
-    f[7] = 0.03f;
-    d[0] = 0.5;
-    f[8] = 0.3f;
-    f[9] = 128.0f;
-    f[10] = 224.0f;
-    f[11] = 500.0f;
-}
-#pragma section code_type ".text"
-
 typedef struct VecA7 {
     f32 x, y, z;
 } VecA7;
@@ -1936,6 +1728,9 @@ void fn_1_6A7A4(u32 arg0, void *arg1) {
         v2 += 0x5c;
     } while (--v3 > 0);
 }
+#undef F
+#undef D
+#undef CARF
 /* fzgx:end fn_1_6A7A4 */
 
 /* fzgx:begin fn_1_6AF70 */
