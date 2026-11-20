@@ -1221,7 +1221,6 @@ void fn_1_133E04(s32 arg0, s32 arg1) {
     v42 = (s32)v40;
     v23 = 0;
     while ((f32)v23 < v39) {
-#pragma fp_contract off
     loc_30[2] = (f64)(v23 - 5) * fn_80088598(*p_lbl_1_rodata_87E4, *p_lbl_1_rodata_8810) - (f32)((f32)(lbl_801A66A0 % (u32)v42) / v40) * fn_80088598(*p_lbl_1_rodata_87E4, *p_lbl_1_rodata_8810);
 /* Preserve the two separately rounded double products. */
     lbl_8006DCA4();
@@ -3406,7 +3405,6 @@ extern Color lbl_1_rodata_8B8C;
 extern Color lbl_1_rodata_8B90;
 extern Color lbl_1_rodata_8B94;
 
-#pragma fp_contract off
 void fn_1_139440(f32 value, s32 x, s32 y, s32 w, s32 h, s16 machine, s16 index) {
     s16 xs[302];
     s16 ys[302];
@@ -3500,7 +3498,6 @@ void fn_1_139440(f32 value, s32 x, s32 y, s32 w, s32 h, s16 machine, s16 index) 
     fn_800720B0(0);
     fn_80072864(2);
 }
-#pragma fp_contract reset
 /* fzgx:end fn_1_139440 */
 
 /* fzgx:begin fn_1_139A3C */
@@ -5267,7 +5264,6 @@ extern const f32 lbl_1_rodata_85F0;
 
 
 #pragma pool_data off
-#pragma fp_contract off
 #pragma opt_propagation off
 void fn_1_13C5EC(u8 arg0) {
     FontDrawPacket packet;
@@ -5421,7 +5417,6 @@ void fn_1_13C5EC(u8 arg0) {
     }
 }
 #pragma opt_propagation reset
-#pragma fp_contract reset
 #pragma pool_data reset
 /* fzgx:end fn_1_13C5EC */
 
@@ -6574,7 +6569,6 @@ static inline f32 stat_clamp(f32 x, f32 lo, f32 hi) {
     return r;
 }
 
-#pragma fp_contract off
 #pragma opt_common_subs off
 #pragma opt_lifetimes off
 void fn_1_13EF64(s16 x, s16 y, s16 z, StatRecord *rec, s32 image, StatColor *colorp, void *callback, f32 alpha) {
@@ -6713,7 +6707,6 @@ void fn_1_13EF64(s16 x, s16 y, s16 z, StatRecord *rec, s32 image, StatColor *col
 }
 #pragma opt_lifetimes reset
 #pragma opt_common_subs reset
-#pragma fp_contract reset
 /* fzgx:end fn_1_13EF64 */
 
 /* fzgx:begin fn_1_13F72C */
@@ -12287,7 +12280,6 @@ static inline BOOL fn_1_147A04_range0(s32 mode) {
 }
 
 #pragma opt_propagation off
-#pragma fp_contract off
 void fn_1_147A04(s32 arg0, const fn_1_147A04_Obj *arg1) {
     const char *src;
     char *v12;
@@ -20100,7 +20092,6 @@ extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 
 /* end game/main_rel/car_test_types.h */
 
-#pragma fp_contract off
 
 typedef struct {
     u8 pad_0[0x8];

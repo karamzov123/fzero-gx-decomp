@@ -529,7 +529,6 @@ extern void fn_80038F10(f32 *);
 
 /* Projects camera-space points to clamped screen coordinates. */
 #pragma push
-#pragma fp_contract off
 void fn_1_9E29C(s32 count, Vec3f *src, ScreenPoint *dst) {
     Vec3f p;
     f32 proj[7];

@@ -3267,7 +3267,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/emb_paste_editor.c",
     "pool": {
       "...bss.0": "lbl_3_bss_7EDC0",
@@ -3283,7 +3286,11 @@
       "fn_3_104C4"
     ],
     "status": "matching",
-    "tu": "rel/customize/emb_paste_editor.c"
+    "tu": "rel/customize/emb_paste_editor.c",
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "customize",
@@ -3294,7 +3301,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/emb_paste_editor.c"
   },
   {
@@ -3305,7 +3315,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/emb_paste_editor.c"
   },
   {
@@ -3317,7 +3330,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/emb_paste_editor.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_288",
@@ -3342,7 +3358,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/emb_paste_editor.c",
     "pool": {
       "...data.0": "lbl_3_data_1A40",
@@ -3370,7 +3389,11 @@
     ],
     "status": "matching",
     "tu": "rel/customize/emb_paste_editor.c",
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "customize",
@@ -3381,7 +3404,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/emb_paste_editor.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_288",
@@ -3403,7 +3429,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/emb_paste_editor.c"
   },
   {
@@ -3414,7 +3443,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/emb_paste_editor.c"
   },
   {
@@ -3426,7 +3458,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/emb_paste_editor.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_288",
@@ -3454,7 +3489,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/emb_paste_editor.c"
   },
   {
@@ -3466,7 +3504,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/emb_paste_editor.c",
     "pool": {
       "...bss.0": "lbl_3_bss_7EDC0",
@@ -3501,7 +3542,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/emb_paste_editor.c"
   },
   {
@@ -3512,7 +3556,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/emb_paste_editor.c"
   },
   {
@@ -3559,7 +3606,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/emb_paste_editor.c",
     "pool": {
       "lbl_3_bss_9F664__fzgx_offset_1": "lbl_3_bss_9F664+0x1"
@@ -3574,7 +3624,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/emb_paste_editor.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_288",
@@ -3633,7 +3686,11 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "tu": "rel/customize/emb_paste_editor.c",
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "customize",
@@ -3644,7 +3701,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "pool": {
       "...bss.0": "lbl_3_bss_A2438",
@@ -3661,7 +3721,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c"
   },
   {
@@ -3673,7 +3736,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_6A0",
@@ -3734,7 +3800,11 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "tu": "rel/customize/toolkit.c",
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "customize",
@@ -3761,7 +3831,11 @@
     "collapsed": true,
     "pool": {
       "...bss.0": "lbl_3_bss_A2438"
-    }
+    },
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "customize",
@@ -3771,7 +3845,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c"
   },
   {
@@ -3786,7 +3863,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "collapsed": true
   },
@@ -3800,7 +3880,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "collapsed": true
   },
@@ -3812,7 +3895,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c"
   },
   {
@@ -3823,7 +3909,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c"
   },
   {
@@ -3833,7 +3922,11 @@
       "fn_3_1B130"
     ],
     "status": "matching",
-    "tu": "rel/customize/toolkit.c"
+    "tu": "rel/customize/toolkit.c",
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "customize",
@@ -3887,7 +3980,11 @@
       "@43": "lbl_3_rodata_6A0+0xA8",
       "@44": "lbl_3_rodata_6A0+0xAC",
       "@45": "lbl_3_rodata_6A0+0xB0"
-    }
+    },
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "customize",
@@ -3944,7 +4041,11 @@
       "@54": "lbl_3_rodata_6A0+0xBC",
       "@55": "lbl_3_rodata_6A0+0xC0",
       "@56": "lbl_3_rodata_6A0+0xC4"
-    }
+    },
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "customize",
@@ -4001,7 +4102,11 @@
       "@89": "lbl_3_rodata_6A0+0xBC",
       "@90": "lbl_3_rodata_6A0+0xC0",
       "@91": "lbl_3_rodata_6A0+0xC4"
-    }
+    },
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "customize",
@@ -4012,7 +4117,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_768",
@@ -4060,7 +4168,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_768",
@@ -4102,7 +4213,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_768",
@@ -4123,7 +4237,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_768",
@@ -4143,7 +4260,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_768",
@@ -4162,7 +4282,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "pool": {
       "@13": "lbl_3_rodata_960"
@@ -4177,7 +4300,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_768",
@@ -4197,7 +4323,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_768",
@@ -4216,7 +4345,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_768",
@@ -4236,7 +4368,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_768",
@@ -4256,7 +4391,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_768",
@@ -4276,7 +4414,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_768",
@@ -4300,7 +4441,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_768",
@@ -4328,7 +4472,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_768",
@@ -4455,7 +4602,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_768",
@@ -4506,7 +4656,11 @@
       "@100": "lbl_3_rodata_768+0x3D0",
       "@105": "lbl_3_rodata_768+0x3D4"
     },
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "customize",
@@ -4517,7 +4671,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_768",
@@ -4538,7 +4695,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_768",
@@ -4555,7 +4715,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_768",
@@ -4579,7 +4742,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c"
   },
   {
@@ -4591,7 +4757,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_768",
@@ -4609,7 +4778,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c"
   },
   {
@@ -4621,7 +4793,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_768",
@@ -4640,7 +4815,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "pool": {
       "@26": "lbl_3_rodata_800"
@@ -4844,7 +5022,11 @@
       "@443": "lbl_3_rodata_768+0x5F0",
       "@444": "lbl_3_rodata_768+0x5F4"
     },
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "customize",
@@ -4855,7 +5037,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_768",
@@ -4904,7 +5089,11 @@
       "@196": "lbl_3_rodata_768+0x620",
       "@197": "lbl_3_rodata_768+0x628"
     },
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "customize",
@@ -4915,7 +5104,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_768",
@@ -5143,7 +5335,11 @@
       "@415": "lbl_3_rodata_768+0x6A0",
       "@416": "lbl_3_rodata_768+0x6A4"
     },
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "customize",
@@ -5154,7 +5350,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_768",
@@ -5172,7 +5371,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c"
   },
   {
@@ -5184,7 +5386,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c"
   },
   {
@@ -5196,7 +5401,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "pool": {
       "...bss.0": "lbl_3_bss_A2460",
@@ -5332,7 +5540,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/customize/toolkit.c",
     "pool": {
       "...bss.0": "lbl_3_bss_A2460",
@@ -5542,7 +5753,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c"
   },
   {
@@ -5556,7 +5770,11 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "tu": "rel/interview/interview.c",
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "interview",
@@ -5574,7 +5792,11 @@
     "pool": {
       "...bss.0": "lbl_17_bss_0"
     },
-    "mw_version": "GC/1.3.2"
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "interview",
@@ -5589,7 +5811,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c"
   },
   {
@@ -5601,7 +5826,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c"
   },
   {
@@ -5613,7 +5841,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c",
     "pool": {
       "@26": "lbl_17_rodata_3C",
@@ -5648,7 +5879,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c",
     "pool": {
       "...rodata.0": "lbl_17_rodata_0",
@@ -5683,7 +5917,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c",
     "pool": {
       "...rodata.0": "lbl_17_rodata_0",
@@ -5715,7 +5952,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c",
     "pool": {
       "@17": "lbl_17_rodata_20",
@@ -5755,7 +5995,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c"
   },
   {
@@ -5772,7 +6015,11 @@
     "pool": {
       "...bss.0": "lbl_17_bss_0"
     },
-    "matching_for": ["GFZE01"]
+    "matching_for": ["GFZE01"],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "interview",
@@ -5783,7 +6030,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c",
     "pool": {
       "...bss.0": "lbl_17_bss_0",
@@ -5820,7 +6070,11 @@
       "...rodata.0": "lbl_17_rodata_0",
       "...bss.0": "lbl_17_bss_0"
     },
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "interview",
@@ -5831,7 +6085,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c"
   },
   {
@@ -5843,7 +6100,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c",
     "pool": {
       "...rodata.0": "lbl_17_rodata_0",
@@ -5893,7 +6153,11 @@
     "pool": {
       "...bss.0": "lbl_17_bss_0",
       "...data.0": "lbl_17_data_0"
-    }
+    },
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "interview",
@@ -5904,7 +6168,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c",
     "pool": {
       "...bss.0": "lbl_17_bss_0",
@@ -5941,7 +6208,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c"
   },
   {
@@ -5969,7 +6239,11 @@
       "@71": "lbl_17_bss_0+0x1B0",
       "@72": "lbl_17_bss_0+0x1B4"
     },
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "interview",
@@ -5980,7 +6254,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c",
     "pool": {
       "...rodata.0": "lbl_17_rodata_0",
@@ -6040,7 +6317,11 @@
       "@34": "lbl_17_data_0+0x64134",
       "@35": "lbl_17_data_0+0x64140"
     },
-    "mw_version": "GC/1.3.2"
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "interview",
@@ -6052,7 +6333,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c",
     "pool": {
       "@176": "lbl_17_rodata_68",
@@ -6091,7 +6375,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c",
     "pool": {
       "...data.0": "lbl_17_data_0",
@@ -6126,7 +6413,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c"
   },
   {
@@ -6221,7 +6511,11 @@
       "@249": "lbl_17_rodata_0+0x240",
       "@250": "lbl_17_rodata_0+0x244",
       "@251": "lbl_17_rodata_0+0x248"
-    }
+    },
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "interview",
@@ -6244,7 +6538,11 @@
       "@38": "lbl_17_bss_0+0x254",
       "@39": "lbl_17_bss_0+0x258"
     },
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "interview",
@@ -6255,7 +6553,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c"
   },
   {
@@ -6266,7 +6567,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c"
   },
   {
@@ -6277,7 +6581,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c"
   },
   {
@@ -6289,7 +6596,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c"
   },
   {
@@ -6301,7 +6611,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c",
     "pool": {
       "...data.0": "lbl_17_data_0",
@@ -6323,7 +6636,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c",
     "pool": {
       "@33": "lbl_17_rodata_18",
@@ -6361,7 +6677,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c"
   },
   {
@@ -6373,7 +6692,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c",
     "pool": {
       "...bss.0": "lbl_17_bss_0",
@@ -6416,7 +6738,11 @@
       "...bss.0": "lbl_17_bss_0",
       "@43": "lbl_17_rodata_20"
     },
-    "matching_for": ["GFZE01"]
+    "matching_for": ["GFZE01"],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "interview",
@@ -6427,7 +6753,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c",
     "pool": {
       "...bss.0": "lbl_17_bss_0",
@@ -6458,7 +6787,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c",
     "pool": {
       "...rodata.0": "lbl_17_rodata_0",
@@ -6483,7 +6815,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c",
     "pool": {
       "...rodata.0": "lbl_17_rodata_0",
@@ -6500,7 +6835,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c",
     "pool": {
       "...rodata.0": "lbl_17_rodata_0",
@@ -6519,7 +6857,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c",
     "pool": {
       "...rodata.0": "lbl_17_rodata_0",
@@ -6537,7 +6878,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c",
     "pool": null
   },
@@ -6550,7 +6894,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c",
     "pool": null
   },
@@ -6563,7 +6910,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c",
     "pool": {
       "...rodata.0": "lbl_17_rodata_0",
@@ -6584,7 +6934,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c",
     "pool": {
       "...rodata.0": "lbl_17_rodata_0",
@@ -6602,7 +6955,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c",
     "pool": {
       "...rodata.0": "lbl_17_rodata_0",
@@ -6619,7 +6975,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c",
     "pool": null
   },
@@ -6632,7 +6991,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c",
     "pool": {
       "...rodata.0": "lbl_17_rodata_0",
@@ -6649,7 +7011,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c",
     "pool": {
       "...rodata.0": "lbl_17_rodata_0",
@@ -6676,7 +7041,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c",
     "pool": {
       "...rodata.0": "lbl_17_rodata_0",
@@ -6694,7 +7062,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c"
   },
   {
@@ -6706,7 +7077,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c"
   },
   {
@@ -6718,7 +7092,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/interview/interview.c",
     "pool": {
       "...bss.0": "lbl_17_bss_0",
@@ -36479,7 +36856,11 @@
       "@155": "lbl_1_data_2A0C0+0xA4",
       "@156": "lbl_1_data_2A0C0+0xA8"
     },
-    "matching_for": ["GFZE01"]
+    "matching_for": ["GFZE01"],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -36490,7 +36871,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/background.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_42A0",
@@ -36539,7 +36923,11 @@
       "@78": "lbl_1_rodata_42D4",
       "@77": "lbl_1_rodata_42C0"
     },
-    "matching_for": ["GFZE01"]
+    "matching_for": ["GFZE01"],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -36550,7 +36938,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/background.c"
   },
   {
@@ -36562,7 +36953,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/background.c"
   },
   {
@@ -36574,7 +36968,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/background.c"
   },
   {
@@ -36586,7 +36983,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/background.c"
   },
   {
@@ -41940,7 +42340,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/custom_memcard.c"
   },
   {
@@ -41951,7 +42354,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/custom_memcard.c"
   },
   {
@@ -41962,7 +42368,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/custom_memcard.c"
   },
   {
@@ -41973,7 +42382,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/custom_memcard.c"
   },
   {
@@ -41994,7 +42406,11 @@
     "pool": {
       "...bss.0": "lbl_1_bss_8CA40"
     },
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -42012,7 +42428,11 @@
     "pool": {
       "@161": "lbl_1_rodata_8608"
     },
-    "matching_for": ["GFZE01"]
+    "matching_for": ["GFZE01"],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -42023,7 +42443,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/custom_memcard.c",
     "pool": {
       "@100": "lbl_1_rodata_8600",
@@ -42038,7 +42461,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/custom_memcard.c",
     "pool": {
       "@20": "lbl_1_rodata_8600"
@@ -92749,7 +93175,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c"
   },
   {
@@ -92760,7 +93189,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_5168"
@@ -92775,7 +93207,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_5168",
@@ -92809,7 +93244,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c"
   },
   {
@@ -92821,7 +93259,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "...data.0": "lbl_1_data_3D290",
@@ -92837,7 +93278,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c"
   },
   {
@@ -92848,7 +93292,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c"
   },
   {
@@ -92861,7 +93308,11 @@
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "@30": "lbl_1_rodata_5C00"
-    }
+    },
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -92871,7 +93322,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c"
   },
   {
@@ -92883,7 +93337,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "@22": "lbl_1_rodata_5C00"
@@ -92898,7 +93355,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "@20": "lbl_1_rodata_5C00"
@@ -92913,7 +93373,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "@10": "lbl_1_rodata_5C00"
@@ -92928,7 +93391,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "@89": "lbl_1_rodata_5CE8",
@@ -92946,7 +93412,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "@73": "lbl_1_rodata_5CE8",
@@ -92962,7 +93431,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "@68": "lbl_1_rodata_5CE8",
@@ -92978,7 +93450,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c",
     "matching_for": ["GFZE01", "GFZP01"]
   },
@@ -92990,7 +93465,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "@21": "lbl_1_rodata_5C00"
@@ -93005,7 +93483,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "@10": "lbl_1_rodata_5C00"
@@ -93020,7 +93501,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "@19": "lbl_1_rodata_5C00"
@@ -93036,7 +93520,11 @@
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "@43": "lbl_1_rodata_5C00"
-    }
+    },
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -93046,7 +93534,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c"
   },
   {
@@ -93057,7 +93548,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "@8": "lbl_1_rodata_5C00"
@@ -93076,7 +93570,11 @@
       "@57": "lbl_1_rodata_5D04",
       "@61": "lbl_1_rodata_5C00",
       "@58": "lbl_1_rodata_5CFC"
-    }
+    },
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -93086,7 +93584,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c"
   },
   {
@@ -93097,7 +93598,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "@14": "lbl_1_rodata_5C00",
@@ -93113,7 +93617,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "@85": "lbl_1_rodata_5CE8"
@@ -93130,7 +93637,11 @@
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "@11": "lbl_1_rodata_5C00"
-    }
+    },
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -93141,7 +93652,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c"
   },
   {
@@ -93153,7 +93667,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "@21": "lbl_1_rodata_5C00"
@@ -93168,7 +93685,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "@21": "lbl_1_rodata_5C00",
@@ -93184,7 +93704,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "@9": "lbl_1_rodata_5C00"
@@ -93199,7 +93722,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "@26": "lbl_1_rodata_5C00"
@@ -93213,7 +93739,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c"
   },
   {
@@ -93224,7 +93753,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "@61": "lbl_1_rodata_5C00"
@@ -93238,7 +93770,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "@112": "lbl_1_rodata_5C00",
@@ -93254,7 +93789,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "@6": "lbl_1_rodata_5FB8",
@@ -93273,7 +93811,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c"
   },
   {
@@ -93284,7 +93825,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c"
   },
   {
@@ -93295,7 +93839,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "@6": "lbl_1_rodata_5C00"
@@ -93310,7 +93857,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c"
   },
   {
@@ -93322,7 +93872,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c"
   },
   {
@@ -93334,7 +93887,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "@30": "lbl_1_rodata_5C00",
@@ -93350,7 +93906,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c"
   },
   {
@@ -93365,7 +93924,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "@45": "lbl_1_rodata_5C00"
@@ -93380,7 +93942,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c"
   },
   {
@@ -93396,7 +93961,11 @@
       "@62": "lbl_1_rodata_5C00",
       "@60": "lbl_1_rodata_5CD8",
       "@67": "lbl_1_rodata_5CE8"
-    }
+    },
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -93422,7 +93991,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/enemy_ctrl.c",
     "collapsed": true,
     "pool": {
@@ -93447,7 +94019,11 @@
       "@63": "lbl_1_rodata_6078+0x18",
       "@65": "lbl_1_rodata_6078+0x20"
     },
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -103817,7 +104393,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/screen_effect.c"
   },
   {
@@ -103853,7 +104432,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/2.5",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/screen_effect.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_3180",
@@ -103869,7 +104451,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/screen_effect.c",
     "pool": {
       "@6": "lbl_1_rodata_31A0"
@@ -103884,7 +104469,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/2.5",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/screen_effect.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_3180",
@@ -103910,7 +104498,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/screen_effect.c",
     "pool": {
       "@12": "lbl_1_rodata_31D8"
@@ -103925,7 +104516,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/screen_effect.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_3180",
@@ -104021,7 +104615,11 @@
       "@63": "lbl_1_rodata_3180+0xDC",
       "@64": "lbl_1_rodata_3180+0xE8"
     },
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -104032,7 +104630,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/screen_effect.c",
     "pool": {
       "...bss.0": "lbl_1_bss_6D600",
@@ -104051,7 +104652,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/screen_effect.c"
   },
   {
@@ -104094,7 +104698,11 @@
       "@118": "lbl_1_rodata_3278+0xA0",
       "@119": "lbl_1_rodata_3278+0xA4"
     },
-    "matching_for": ["GFZE01", "GFZP01"]
+    "matching_for": ["GFZE01", "GFZP01"],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -104127,7 +104735,11 @@
       "@64": "lbl_1_rodata_3278+0xA0",
       "@65": "lbl_1_rodata_3278+0xA4",
       "@66": "lbl_1_rodata_3278+0xA8"
-    }
+    },
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -104137,7 +104749,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/screen_effect.c"
   },
   {
@@ -104147,7 +104762,11 @@
       "fn_1_79E54"
     ],
     "status": "matching",
-    "tu": "rel/main_rel/screen_effect.c"
+    "tu": "rel/main_rel/screen_effect.c",
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -104156,7 +104775,11 @@
       "fn_1_7A240"
     ],
     "status": "matching",
-    "tu": "rel/main_rel/screen_effect.c"
+    "tu": "rel/main_rel/screen_effect.c",
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -104169,7 +104792,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/screen_effect.c",
     "collapsed": true,
     "pool": {
@@ -104186,7 +104812,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/screen_effect.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_3278",
@@ -104203,7 +104832,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/screen_effect.c",
     "pool": {
       "...data.0": "lbl_1_data_1DCF0"
@@ -104271,7 +104903,11 @@
       "@178": "lbl_1_data_1DCF0+0x82C",
       "@179": "lbl_1_data_1DCF0+0x840"
     },
-    "matching_for": ["GFZE01"]
+    "matching_for": ["GFZE01"],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -104282,7 +104918,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/screen_effect.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_3278",
@@ -104321,7 +104960,11 @@
       "@82": "lbl_1_rodata_86F8",
       "@83": "lbl_1_rodata_86FC"
     },
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -104332,7 +104975,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@8": "lbl_1_rodata_8608",
@@ -104353,7 +104999,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -104364,7 +105013,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -104382,7 +105034,11 @@
       "@12": "lbl_1_rodata_8860",
       "@13": "lbl_1_rodata_8878"
     },
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -104394,7 +105050,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@30": "lbl_1_rodata_8600",
@@ -104417,6 +105076,8 @@
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [
+      "-fp_contract",
+      "off",
       "-pool",
       "off"
     ],
@@ -104436,7 +105097,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@29": "lbl_1_rodata_8600"
@@ -104450,7 +105114,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@12": "lbl_1_rodata_8600"
@@ -104464,7 +105131,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -104479,7 +105149,11 @@
       "@17": "lbl_1_rodata_8A4C",
       "@19": "lbl_1_rodata_8600",
       "@16": "lbl_1_rodata_87DC"
-    }
+    },
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -104489,7 +105163,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -104500,7 +105177,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -104515,7 +105195,11 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "tu": "rel/main_rel/sel_static_disp.c",
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -104529,7 +105213,11 @@
       "@28": "lbl_1_rodata_8600",
       "@33": "lbl_1_rodata_8608",
       "@26": "lbl_1_rodata_85F0"
-    }
+    },
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -104540,7 +105228,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -104552,7 +105243,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@43": "lbl_1_rodata_8600",
@@ -104572,7 +105266,11 @@
       "@14": "lbl_1_rodata_8600",
       "@11": "lbl_1_rodata_86D0",
       "@12": "lbl_1_rodata_8A50"
-    }
+    },
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -104583,7 +105281,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@10": "lbl_1_rodata_8600",
@@ -104605,7 +105306,11 @@
       "@6": "lbl_1_rodata_8600",
       "@20": "lbl_1_rodata_8608"
     },
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -104616,7 +105321,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@78": "lbl_1_rodata_8600"
@@ -104630,7 +105338,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -104641,7 +105352,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@20": "lbl_1_rodata_8600"
@@ -104673,7 +105387,11 @@
       "@92": "lbl_1_rodata_8BEC",
       "@93": "lbl_1_rodata_87D0"
     },
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -104683,7 +105401,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@30": "lbl_1_rodata_8600"
@@ -104697,7 +105418,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@23": "lbl_1_rodata_8600"
@@ -104712,7 +105436,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@9": "lbl_1_rodata_8600"
@@ -104728,7 +105455,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@17": "lbl_1_rodata_8600"
@@ -104743,7 +105473,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -104756,7 +105489,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@9": "lbl_1_rodata_8600"
@@ -104773,7 +105509,11 @@
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@67": "lbl_1_rodata_8600"
-    }
+    },
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -104785,7 +105525,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "collapsed": true,
     "pool": {
@@ -104802,7 +105545,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@99": "lbl_1_rodata_8600",
@@ -104835,7 +105581,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@48": "lbl_1_rodata_8600"
@@ -104858,7 +105607,11 @@
       "@39": "lbl_1_rodata_8600",
       "@83": "lbl_1_rodata_8608"
     },
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -104868,7 +105621,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@16": "lbl_1_rodata_8600",
@@ -104883,7 +105639,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -104894,7 +105653,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -104905,7 +105667,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -104916,7 +105681,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@93": "lbl_1_rodata_8600"
@@ -104940,7 +105708,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@14": "lbl_1_rodata_8600"
@@ -104957,7 +105728,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -104969,7 +105743,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@174": "lbl_1_rodata_8600",
@@ -104987,7 +105764,11 @@
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@103": "lbl_1_rodata_8600"
-    }
+    },
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -104997,7 +105778,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -105008,7 +105792,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@14": "lbl_1_rodata_8600"
@@ -105022,7 +105809,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -105034,7 +105824,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@21": "lbl_1_rodata_8608",
@@ -105050,7 +105843,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "collapsed": true,
     "pool": {
@@ -105065,7 +105861,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@13": "lbl_1_rodata_8600"
@@ -105089,7 +105888,11 @@
       "@20": "lbl_1_rodata_8600",
       "@64": "lbl_1_rodata_85F0"
     },
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -105100,7 +105903,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "lbl_1_bss_26B18__fzgx_offset_6": "lbl_1_bss_26B18+0x6"
@@ -105114,7 +105920,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_92C0",
@@ -105129,7 +105938,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@22": "lbl_1_rodata_93E8"
@@ -105144,7 +105956,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@24": "lbl_1_rodata_93E8",
@@ -105160,7 +105975,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_92C0",
@@ -105177,7 +105995,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@53": "lbl_1_rodata_93E8",
@@ -105192,7 +106013,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_92C0",
@@ -105259,7 +106083,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_92C0",
@@ -105274,7 +106101,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_92C0",
@@ -105290,7 +106120,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@37": "lbl_1_rodata_93E8",
@@ -105319,7 +106152,11 @@
       "@24": "lbl_1_rodata_92C0+0x40C",
       "@25": "lbl_1_rodata_92C0+0x410"
     },
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -105330,7 +106167,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@22": "lbl_1_rodata_93E8",
@@ -105351,7 +106191,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -105363,7 +106206,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_92C0",
@@ -105503,7 +106349,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "...data.0": "lbl_1_data_42198",
@@ -105522,7 +106371,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@55": "lbl_1_rodata_93E8"
@@ -105538,7 +106390,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@6": "lbl_1_rodata_93E8",
@@ -105554,7 +106409,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_92C0",
@@ -105571,7 +106429,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_92C0",
@@ -105589,7 +106450,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_92C0",
@@ -105610,7 +106474,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@66": "lbl_1_rodata_93E8",
@@ -105626,7 +106493,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/2.5",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_92C0",
@@ -105644,7 +106514,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_92C0",
@@ -105668,7 +106541,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/2.5",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_92C0",
@@ -105795,7 +106671,11 @@
       "@246": "lbl_1_data_42198+0x548",
       "@247": "lbl_1_data_42198+0x54C"
     },
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -105805,7 +106685,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -105821,7 +106704,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "collapsed": true,
     "pool": {
@@ -105836,7 +106722,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -105853,7 +106742,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "matching_for": ["GFZE01"]
   },
@@ -105866,7 +106758,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -105878,7 +106773,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -105892,7 +106790,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "matching_for": ["GFZE01"]
   },
@@ -105904,7 +106805,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -105916,7 +106820,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@129": "lbl_1_rodata_99B0",
@@ -105952,7 +106859,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -105964,7 +106874,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_9828",
@@ -105996,7 +106909,11 @@
       "@90": "lbl_1_rodata_99B0",
       "@91": "lbl_1_rodata_99A8"
     },
-    "matching_for": ["GFZE01"]
+    "matching_for": ["GFZE01"],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -106007,7 +106924,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@58": "lbl_1_rodata_99B0",
@@ -106060,7 +106980,11 @@
       "...bss.0": "lbl_1_bss_8E518",
       "@104": "lbl_1_rodata_99B0",
       "@105": "lbl_1_rodata_99A8"
-    }
+    },
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -106071,7 +106995,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@59": "lbl_1_rodata_99B0",
@@ -106102,7 +107029,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -106114,7 +107044,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -106125,7 +107058,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -106137,7 +107073,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -106149,7 +107088,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -106161,7 +107103,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -106173,7 +107118,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -106185,7 +107133,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {}
   },
@@ -106198,7 +107149,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@113": "lbl_1_rodata_99B0",
@@ -106243,7 +107197,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "@21": "lbl_1_rodata_99B0"
@@ -106278,7 +107235,11 @@
       "@109": "lbl_1_rodata_9828+0x1AC",
       "@166": "lbl_1_rodata_9828+0x798",
       "@167": "lbl_1_rodata_9828+0x79C"
-    }
+    },
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -106289,7 +107250,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "...data.0": "lbl_1_data_42878",
@@ -106310,7 +107274,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -106320,7 +107287,11 @@
       "fn_1_14D994"
     ],
     "status": "matching",
-    "tu": "rel/main_rel/sel_static_disp.c"
+    "tu": "rel/main_rel/sel_static_disp.c",
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -106336,7 +107307,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "collapsed": true,
     "pool": {
@@ -106351,7 +107325,11 @@
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "tu": "rel/main_rel/sel_static_disp.c"
+    "tu": "rel/main_rel/sel_static_disp.c",
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -106362,7 +107340,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -106374,7 +107355,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -106386,7 +107370,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -106398,7 +107385,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -106410,7 +107400,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -106422,7 +107415,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -106439,7 +107435,11 @@
     "status": "matching",
     "mw_version": "GC/2.0",
     "tu": "rel/main_rel/sel_static_disp.c",
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -106452,7 +107452,11 @@
     "status": "matching",
     "mw_version": "GC/2.0",
     "tu": "rel/main_rel/sel_static_disp.c",
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -106462,7 +107466,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -106475,7 +107482,11 @@
     "status": "matching",
     "tu": "rel/main_rel/sel_static_disp.c",
     "collapsed": true,
-    "matching_for": ["GFZE01"]
+    "matching_for": ["GFZE01"],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -106489,7 +107500,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "collapsed": true,
     "pool": {
@@ -106504,7 +107518,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -106515,7 +107532,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -106526,7 +107546,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -106539,7 +107562,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "matching_for": ["GFZE01", "GFZJ01"]
   },
@@ -106551,7 +107577,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -106562,7 +107591,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_99D8",
@@ -106578,7 +107610,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -106590,7 +107625,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -106601,7 +107639,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -106635,7 +107676,11 @@
       "@217": "lbl_1_data_43E78+0x14",
       "@219": "lbl_1_data_43E78+0x18"
     },
-    "matching_for": ["GFZE01"]
+    "matching_for": ["GFZE01"],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -106672,7 +107717,11 @@
       "@26": "lbl_1_rodata_CF40+0x60",
       "@27": "lbl_1_rodata_CF40+0x64"
     },
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
@@ -106682,7 +107731,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_CF40"
@@ -106698,7 +107750,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -106709,7 +107764,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -106721,7 +107779,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/main_rel/sel_static_disp.c"
   },
   {
@@ -124081,6 +125142,8 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [
+      "-fp_contract",
+      "off",
       "-inline",
       "on,noauto"
     ],
@@ -124101,7 +125164,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -124120,7 +125186,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -124136,7 +125205,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": null
   },
@@ -124148,7 +125220,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": null
   },
@@ -124160,7 +125235,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": null
   },
@@ -124172,7 +125250,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": null
   },
@@ -124185,7 +125266,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -124204,7 +125288,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -124223,7 +125310,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -124243,7 +125333,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -124263,7 +125356,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -124281,7 +125377,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/2.5",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -124305,7 +125404,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -124327,7 +125429,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "@18": "lbl_10_rodata_1E0",
@@ -124344,7 +125449,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -124361,7 +125469,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c"
   },
   {
@@ -124373,7 +125484,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -124393,7 +125507,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -124409,7 +125526,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -124431,7 +125551,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -124447,7 +125570,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c"
   },
   {
@@ -124459,7 +125585,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -124482,7 +125611,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/2.5",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -124500,7 +125632,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "lbl_10_bss_51750__fzgx_offset_2": "lbl_10_bss_51750+0x2"
@@ -124515,7 +125650,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "@30": "lbl_10_rodata_1E8",
@@ -124534,7 +125672,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/2.5",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -124555,7 +125696,11 @@
     "tu": "rel/sel/sel.c",
     "pool": {
       "@40": "lbl_10_rodata_1E8"
-    }
+    },
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "sel",
@@ -124566,7 +125711,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -124583,7 +125731,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -124601,7 +125752,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "@6": "lbl_10_rodata_1E0",
@@ -124617,7 +125771,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c"
   },
   {
@@ -124881,7 +126038,11 @@
       "@416": "lbl_10_rodata_158+0x81C",
       "@417": "lbl_10_rodata_158+0x820",
       "@418": "lbl_10_rodata_158+0x824"
-    }
+    },
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "sel",
@@ -124892,7 +126053,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -124909,7 +126073,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -124927,7 +126094,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -124945,7 +126115,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/2.5",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "collapsed": true
   },
@@ -124958,7 +126131,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -124977,7 +126153,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -124993,7 +126172,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c"
   },
   {
@@ -125005,7 +126187,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "@5": "lbl_10_rodata_158+0x44",
@@ -125025,7 +126210,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c"
   },
   {
@@ -125364,7 +126552,11 @@
       "@828": "lbl_10_rodata_158+0xF6C",
       "@829": "lbl_10_rodata_158+0xF70"
     },
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "sel",
@@ -125375,7 +126567,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -125400,7 +126595,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": null
   },
@@ -125413,7 +126611,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -125430,7 +126631,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -125450,7 +126654,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -125480,7 +126687,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": null
   },
@@ -125493,7 +126703,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -125525,7 +126738,11 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "tu": "rel/sel/sel.c",
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "sel",
@@ -125535,7 +126752,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c"
   },
   {
@@ -125547,7 +126767,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -125573,7 +126796,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -125597,7 +126823,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -125615,7 +126844,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -125636,7 +126868,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "@46": "lbl_10_rodata_1E0",
@@ -126078,7 +127313,11 @@
       "@1011": "lbl_10_rodata_158+0x1290",
       "@1012": "lbl_10_rodata_158+0x1294"
     },
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "sel",
@@ -126088,7 +127327,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": null
   },
@@ -126100,7 +127342,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c"
   },
   {
@@ -126112,7 +127357,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c"
   },
   {
@@ -126123,7 +127371,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c"
   },
   {
@@ -126135,7 +127386,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "@27": "lbl_10_rodata_1E8",
@@ -126155,7 +127409,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c"
   },
   {
@@ -126167,7 +127424,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "@6": "lbl_10_rodata_1E0",
@@ -126184,7 +127444,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c"
   },
   {
@@ -126196,7 +127459,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -126216,7 +127482,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -126236,7 +127505,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -126254,7 +127526,11 @@
       "fn_10_E034"
     ],
     "status": "matching",
-    "tu": "rel/sel/sel.c"
+    "tu": "rel/sel/sel.c",
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "sel",
@@ -126264,7 +127540,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": null
   },
@@ -126277,7 +127556,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": null
   },
@@ -126290,7 +127572,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/sel/sel.c",
     "pool": {
       "...rodata.0": "lbl_10_rodata_158",
@@ -126445,7 +127730,11 @@
       "@129": "lbl_10_rodata_158+0x260",
       "@130": "lbl_10_rodata_158+0x264"
     },
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "sel",
@@ -126464,7 +127753,11 @@
       "...data.0": "lbl_10_data_D00",
       "@6": "lbl_10_rodata_158+0x88"
     },
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "story",
@@ -127768,7 +129061,11 @@
     ],
     "status": "matching",
     "tu": "rel/title/operation.c",
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "title",
@@ -127779,7 +129076,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c",
     "pool": {
       "...rodata.0": "lbl_8_rodata_160",
@@ -127812,7 +129112,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c",
     "pool": {
       "...rodata.0": "lbl_8_rodata_160",
@@ -127837,7 +129140,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c",
     "pool": {
       "...rodata.0": "lbl_8_rodata_160",
@@ -127867,7 +129173,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c",
     "pool": {
       "...rodata.0": "lbl_8_rodata_160",
@@ -127893,7 +129202,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c",
     "pool": {
       "...rodata.0": "lbl_8_rodata_160",
@@ -127918,7 +129230,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c",
     "pool": {
       "...rodata.0": "lbl_8_rodata_160",
@@ -127943,7 +129258,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c",
     "pool": {
       "...rodata.0": "lbl_8_rodata_160",
@@ -127973,7 +129291,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c",
     "pool": {
       "...rodata.0": "lbl_8_rodata_160",
@@ -128003,7 +129324,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c",
     "pool": {
       "...rodata.0": "lbl_8_rodata_160",
@@ -128028,7 +129352,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c",
     "pool": {
       "...rodata.0": "lbl_8_rodata_160",
@@ -128058,7 +129385,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c",
     "pool": {
       "...rodata.0": "lbl_8_rodata_160",
@@ -128117,7 +129447,11 @@
       "@66": "lbl_8_rodata_160+0x74",
       "@89": "lbl_8_rodata_160+0x78"
     },
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "title",
@@ -128127,7 +129461,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c"
   },
   {
@@ -128138,7 +129475,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c"
   },
   {
@@ -128150,7 +129490,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c",
     "pool": {
       "...rodata.0": "lbl_8_rodata_160",
@@ -128169,7 +129512,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c"
   },
   {
@@ -128210,7 +129556,11 @@
       "@90": "lbl_8_bss_2A8+0x120",
       "@91": "lbl_8_bss_2A8+0x124"
     },
-    "mw_version": "GC/1.3.2"
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "title",
@@ -128221,7 +129571,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c",
     "pool": {
       "...rodata.0": "lbl_8_rodata_160",
@@ -128260,7 +129613,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c",
     "pool": {
       "...rodata.0": "lbl_8_rodata_160",
@@ -128286,7 +129642,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c",
     "pool": {
       "...rodata.0": "lbl_8_rodata_160",
@@ -128310,7 +129669,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c",
     "pool": {
       "...rodata.0": "lbl_8_rodata_160",
@@ -128334,7 +129696,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c",
     "pool": {
       "...rodata.0": "lbl_8_rodata_160",
@@ -128373,7 +129738,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c",
     "pool": {
       "...rodata.0": "lbl_8_rodata_160",
@@ -128409,7 +129777,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c",
     "pool": {
       "...rodata.0": "lbl_8_rodata_160",
@@ -128469,7 +129840,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c",
     "pool": {
       "...rodata.0": "lbl_8_rodata_160",
@@ -128491,7 +129865,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c",
     "pool": {
       "@8": "lbl_8_rodata_188"
@@ -128505,7 +129882,10 @@
     ],
     "status": "matching",
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c",
     "pool": {
       "@8": "lbl_8_rodata_188"
@@ -128520,7 +129900,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c",
     "pool": {
       "...rodata.0": "lbl_8_rodata_160",
@@ -128619,7 +130002,11 @@
       "@167": "lbl_8_rodata_160+0x1D8",
       "@168": "lbl_8_rodata_160+0x1DC",
       "@169": "lbl_8_rodata_160+0x1E0"
-    }
+    },
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "title",
@@ -128728,7 +130115,11 @@
       "@182": "lbl_8_rodata_160+0x1F8",
       "@183": "lbl_8_rodata_160+0x1FC",
       "@184": "lbl_8_rodata_160+0x200"
-    }
+    },
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "title",
@@ -128739,7 +130130,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c",
     "pool": {
       "@32": "lbl_8_rodata_368+0x98",
@@ -128800,7 +130194,11 @@
       "@34": "lbl_8_rodata_408+0x6F0",
       "@35": "lbl_8_rodata_408+0x6F8"
     },
-    "matching_for": ["GFZE01"]
+    "matching_for": ["GFZE01"],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "title",
@@ -128835,7 +130233,11 @@
       "@128": "lbl_8_rodata_408+0x750",
       "@129": "lbl_8_rodata_408+0x754"
     },
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "title",
@@ -128846,7 +130248,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c",
     "pool": {
       "...rodata.0": "lbl_8_rodata_408",
@@ -128863,7 +130268,10 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c",
     "pool": {
       "...rodata.0": "lbl_8_rodata_408",
@@ -128891,7 +130299,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": null,
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
     "tu": "rel/title/operation.c"
   },
   {

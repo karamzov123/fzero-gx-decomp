@@ -759,7 +759,6 @@ static inline f32 cpu_dist2(f32 *a, f32 *b) {
     return cpu_madd(a, b, y);
 }
 
-#pragma fp_contract off
 
 /* deal this machine in or out of every route slot */
 static inline void cpu_deal_slots(Machine *car, CpuBlock *ai) {
@@ -1688,7 +1687,6 @@ void fn_1_C4ABC(Machine *car) {
     ai->unk_14 = ai->unk_14 * side;
     ai->last_pos = prog->unk_100;
 }
-#pragma fp_contract reset
 /* fzgx:end fn_1_C4ABC */
 
 /* fzgx:begin fn_1_C6ED4 */
@@ -2731,7 +2729,6 @@ extern const f32 lbl_1_rodata_5CE4;
 extern const u32 lbl_1_rodata_5C90;
 extern const u32 lbl_1_rodata_5C94;
 
-#pragma fp_contract off
 s16 fn_1_C8294(const EnemyCtrlEntry *entries, u8 count, s32 flag) {
     FontDrawPacket packet;
     FontDrawPacket head;
@@ -2898,7 +2895,6 @@ s16 fn_1_C8294(const EnemyCtrlEntry *entries, u8 count, s32 flag) {
     }
     return result;
 }
-#pragma fp_contract reset
 /* fzgx:end fn_1_C8294 */
 
 /* fzgx:begin fn_1_C8DC0 noprologue */
@@ -4808,7 +4804,6 @@ y += 4;
 #include "types.h"
 #include "font.h"
 
-#pragma fp_contract off
 
 typedef struct {
     s32 *unk_0;
@@ -5176,7 +5171,6 @@ void fn_1_CDC8C(void) {
 #include "types.h"
 #include "font.h"
 
-#pragma fp_contract off
 
 typedef struct {
     s32 *unk_0;

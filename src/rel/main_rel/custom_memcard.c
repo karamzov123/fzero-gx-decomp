@@ -779,7 +779,6 @@ extern void fn_1_FCFA4(Sig_fn_1_FCFA4_CasObj *);
 extern void fn_1_FD27C(Sig_fn_1_FCFA4_CasObj *, Sig_fn_1_FCFA4_CasEntry *);
 extern void fn_1_FDD7C(Sig_fn_1_FCFA4_CasObj *, Sig_fn_1_FCFA4_CasEntry *);
 
-#pragma fp_contract off
 static inline void fn_1_131C08_update(u32 index, s32 active)
 {
     if (active == 0) {

@@ -4546,7 +4546,6 @@ struct TitleAnimationState {
     u8 pad9E[0x7E]; s32 unk_11C; s32 unk_120;
     s32 unk_124; s32 unk_128;
 };
-#pragma fp_contract off
 void fn_8_A954(void) {
     struct TitleAnimationState *s = (struct TitleAnimationState *)&lbl_8_bss_2A8;
     s32 position;
@@ -4591,7 +4590,6 @@ void fn_8_A954(void) {
     s->unk_24 = 0;
     s->unk_9C = (s16)((*(u32 *)&lbl_801A66A0) << 9);
 }
-#pragma fp_contract reset
 /* fzgx:end fn_8_A954 */
 
 /* fzgx:begin fn_8_ABBC */
@@ -7776,7 +7774,6 @@ extern void fn_1_A2D84(fn_8_D630_u32);
 extern int fn_1_4F734(fn_8_D630_FontDrawPacket *);
 extern void fn_1_4A0D8(const char *);
 #pragma pool_data on
-#pragma fp_contract off
 #pragma opt_common_subs off
 static inline fn_8_D630_s32 fn_4_ADF4_sign(fn_8_D630_s32 x) { return x < 0 ? -1 : x > 0; }
 void fn_8_D630(struct fn_8_D630_obj *arg0)
@@ -8082,7 +8079,6 @@ extern void fn_1_4966C(fn_8_DD64_f32, fn_8_DD64_f32);
 extern void fn_1_496FC(fn_8_DD64_f32, fn_8_DD64_f32);
 extern void fn_1_4A0D8(const char *);
 struct Sig_fn_800081C8_Color { fn_8_DD64_u8 r, g, b, a; };
-#pragma fp_contract off
 #pragma opt_common_subs off
 #pragma opt_lifetimes off
 #pragma opt_loop_invariants off

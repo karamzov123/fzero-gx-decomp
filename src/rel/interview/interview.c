@@ -1685,7 +1685,6 @@ static inline s16 fn_17_1DA4_entry(s32 kind, s16 row, s16 col, s16 i) {
 }
 
 /* retail computes the colour fades with separate fmul and fadd, never fmadd */
-#pragma fp_contract off
 void fn_17_1DA4(void) {
     s16 dir;
     s16 i;
@@ -1762,7 +1761,6 @@ void fn_17_1DA4(void) {
         fn_1_A2D84(0xA91A0400);
     }
 }
-#pragma fp_contract reset
 /* fzgx:end fn_17_1DA4 */
 
 /* fzgx:begin fn_17_2414 */
@@ -3096,7 +3094,6 @@ extern f32 lbl_8006D188(s32);
 extern s8 fn_1_A5DC4(void);
 extern u32 lbl_801A66A0;
 
-#pragma fp_contract off
 void fn_17_3410(void) {
     f32 scale;
     f32 value;

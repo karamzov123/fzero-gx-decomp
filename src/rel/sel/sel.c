@@ -10756,7 +10756,6 @@ static inline s32 SelLastRowVisible(void) {
     return fn_1_F9FEC() != 0;
 }
 
-#pragma fp_contract off
 void fn_10_D5D4(void) {
     FontDrawPacket packet;
     f32 alpha_small;
@@ -10839,7 +10838,6 @@ void fn_10_D5D4(void) {
         }
     }
 }
-#pragma fp_contract reset
 /* fzgx:end fn_10_D5D4 */
 
 /* fzgx:begin fn_10_DAF8 */
@@ -15173,7 +15171,6 @@ extern void fn_1_49514(u32 *);
 extern u32 fn_1_12F118(void);
 extern u32 fn_10_21C20(s16 row, s16 column);
 
-#pragma fp_contract off
 void fn_10_111E8(void) {
     s16 xs[19] = {-100, -100, -100, -100, 49, 105, 159, 213, 267, 321, 375, 429, 483, 537, 594, 1000, 1000, 1000, 1000};
     FontDrawPacket packet;
@@ -15297,7 +15294,6 @@ void fn_10_111E8(void) {
         }
     }
 }
-#pragma fp_contract reset
 /* fzgx:end fn_10_111E8 */
 
 /* fzgx:begin fn_10_117D0 */
@@ -15888,7 +15884,6 @@ static inline void sel_clear_flash_if_idle(const s16 *timer, SelColor *color) {
     }
 }
 
-#pragma fp_contract off
 
 /* Retail inlines this per-player draw; MWCC needs the raised limit to inline a body this size. */
 #pragma inline_max_size(4096)
@@ -16111,7 +16106,6 @@ void fn_10_12024(void) {
     }
     fn_80008BA8(lbl_10_bss_1C, backup, sizeof(backup));
 }
-#pragma fp_contract reset
 /* fzgx:end fn_10_12024 */
 
 /* fzgx:begin fn_10_12C14 noprologue */
@@ -16377,7 +16371,6 @@ extern u32 fn_10_13128(void *);
 extern void fn_1_8D1C8(void *, u32 (*)(void *), SelVec *);
 extern s32 fn_1_4FC50(FontDrawPacket *, u32, u16, u16, u32);
 
-#pragma fp_contract off
 void fn_10_12C14(void) {
     SelState *state = &lbl_1_bss_8B3A0;
     FontDrawPacket packet;
@@ -16413,7 +16406,6 @@ void fn_10_12C14(void) {
     fn_1_4FC50(&packet, lbl_10_bss_51788.image, lbl_10_bss_51788.width, lbl_10_bss_51788.height,
                lbl_10_bss_51788.format);
 }
-#pragma fp_contract reset
 /* fzgx:end fn_10_12C14 */
 
 /* fzgx:begin fn_10_12E34 */
@@ -16793,7 +16785,6 @@ void fzgx_pool_primer_7(void) {
 }
 #pragma section code_type ".text"
 
-#pragma fp_contract off
 
 s32 fn_10_13128(SelVec *arg0, f32 arg1) {
     s16 id;
@@ -33031,7 +33022,6 @@ s32 fn_10_1A760(s16 *id) {
 /* fzgx:begin fn_10_1A8B0 noprologue */
 #include "types.h"
 
-#pragma fp_contract off
 
 typedef struct Sig_fn_10_C258_SelContext {
     u8 pad[0xa4];
@@ -35015,7 +35005,6 @@ extern void fn_1_49590(f32);
 extern void fn_1_496FC(f32, f32);
 extern int sprintf(char *s, const char *format, ...);
 
-#pragma fp_contract off
 void fn_10_1B6CC(void) {
     FontDrawPacket packet;
     SelEntry entry;
@@ -35181,7 +35170,6 @@ void fn_10_1B6CC(void) {
         fn_10_1D314(e);
     }
 }
-#pragma fp_contract reset
 /* fzgx:end fn_10_1B6CC */
 
 /* fzgx:begin fn_10_1BCD0 noprologue */
@@ -44590,7 +44578,6 @@ extern s32 fn_10_C694;
 
 extern u16 lbl_801A66C4;
 
-#pragma fp_contract off
 void fn_10_210F0(void) {
     const f32 *cp;
     struct fn_10_210F0_FzgxCopy_88 loc_8;

@@ -370,7 +370,6 @@ extern void GXLoadTexMtxImm(void *, u32, u32);
 extern void GXSetAlphaCompare(s32, s32, s32, s32, s32);
 
 union Color { struct {u8 r, g, b, a;} bytes; u32 word; };
-#pragma fp_contract off
 
 /* The four vec3 rows and the colour/scratch words are members of a single
    aggregate each in the original; splitting them changes the stack layout. */
@@ -1245,7 +1244,6 @@ void *fn_1_729F8(struct fn_1_729F8_Arg0 *arg0)
 
 u8 lbl_1_data_1DB9C[] = "Error!: draw_quad   (s,t) is wrong\n";
 
-#pragma fp_contract reset
 /* fzgx:end fn_1_729F8 */
 
 /* fzgx:begin fn_1_75D84 noprologue */
@@ -2503,7 +2501,6 @@ void fn_1_77B80(u32 arg0) {
 /* fzgx:begin fn_1_77C5C noprologue */
 #include "types.h"
 
-#pragma fp_contract off
 
 typedef struct Elem {
     s16 x;

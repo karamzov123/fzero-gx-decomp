@@ -9832,7 +9832,6 @@ extern void fn_3_1C278(s16, s16, s16, s16, void *, f32);
 
 #define CLAMP(x, lo, hi) ((x) < (lo) ? (lo) : ((x) > (hi) ? (hi) : (x)))
 
-#pragma fp_contract off
 
 void fn_3_255DC(void) {
     s16 mode;
@@ -10164,7 +10163,6 @@ void fn_3_255DC(void) {
     fn_3_23A1C(0x5A, 0x5A, 0xA, 0x97, 0);
     fn_3_1C278(lbl_3_bss_20.machine, lbl_3_bss_20.parts[0].id, lbl_3_bss_20.parts[1].id, lbl_3_bss_20.parts[2].id, NULL, 1.0f);
 }
-#pragma fp_contract reset
 /* fzgx:end fn_3_255DC */
 
 /* fzgx:begin fn_3_268D0 */
@@ -10394,7 +10392,6 @@ extern void fn_1_50190(void *, f32, f32, f32, f32, f32, f32);
 extern void fn_3_268D0(const FontDrawPacket *, FontVertex *);
 extern void fn_80008BA8(void *, void *, u32);
 
-#pragma fp_contract off
 void fn_3_26A34(s16 x, s16 y, s16 z) {
     FontDrawPacket pkt;
     u32 color;
@@ -12423,7 +12420,6 @@ static inline void draw_slot(s16 idx, f32 alpha) {
 }
 
 /* retail keeps the halving multiplies apart from the subtracts (fmuls; fsubs, no fnmsubs) */
-#pragma fp_contract off
 void fn_3_29C94(void) {
     s16 *p8;
     Obj_3_bss_F0 *st;
@@ -12523,7 +12519,6 @@ void fn_3_29C94(void) {
         draw_slot(*p8, 1.0f);
     }
 }
-#pragma fp_contract reset
 /* fzgx:end fn_3_29C94 */
 
 /* fzgx:begin fn_3_2A2F8 */
@@ -14531,7 +14526,6 @@ extern void fn_80074188(s16, s16, s16, s16);
 extern void fn_1_5233C(void *, void *);
 extern struct fn_3_1A1D8_lbl_1_bss_9F8 lbl_1_bss_9F8;
 
-#pragma fp_contract off
 
 #define CLAMP(v, lo, hi) ((v) < (lo) ? (lo) : ((v) > (hi) ? (hi) : (v)))
 

@@ -1325,7 +1325,6 @@ static inline f32 clamp_blend(f32 *bound, f32 blend) {
     return *bound;
 }
 
-#pragma fp_contract off
 void fn_3_10CB8(void) {
     PasteEntry *cur;
     PasteEntry *bak;
@@ -1439,7 +1438,6 @@ void fn_3_10CB8(void) {
         }
     }
 }
-#pragma fp_contract reset
 /* fzgx:end fn_3_10CB8 */
 
 /* fzgx:begin fn_3_113AC noprologue */
@@ -1978,7 +1976,6 @@ static inline void set_vec(fn_3_11A38_Vec *v, f32 x, f32 y, f32 z) {
     v->z = z;
 }
 
-#pragma fp_contract off
 #pragma opt_dead_assignments off
 void fn_3_11A38(void) {
     fn_3_11A38_Vec hi;
@@ -2081,7 +2078,6 @@ void fn_3_11A38(void) {
         set_vec(&VIEW.view.a, pos.x, pos.y, dist);
     }
 }
-#pragma fp_contract reset
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_3_11A38 */
 
