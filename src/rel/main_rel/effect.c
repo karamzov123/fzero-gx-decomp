@@ -2555,159 +2555,7 @@ void fn_1_5ABCC(Fn1_5ABCCOutput *out) {
 }
 /* fzgx:end fn_1_5ABCC */
 
-/* fzgx:begin fn_1_5AC48 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/effect.h"
-
-typedef struct fn_1_58D38_EffectEntry {
-    s8 unk_00;
-    u8 pad_01[7];
-    u32 unk_08;
-    s16 unk_0C;
-    u8 pad_0E[0x0C];
-    u16 unk_1A;
-    u8 pad_1C[0xCC];
-} fn_1_58D38_EffectEntry;
-
-struct fn_1_5BF70_lbl_1_rodata_2950 {
-    u8 pad_0[0x8];
-    f32 unk_8;
-    u8 pad_C[0x14];
-    f64 unk_20;
-    u8 pad_28[0xC8];
-    f64 unk_F0;
-    f64 unk_F8;
-    u8 pad_100[0x30];
-    f64 unk_130;
-};
-
-typedef struct {
-    u8 unk00[0x18];
-    s16 value18;
-    u8 unk1A[2];
-    f32 value1C;
-    f32 value20;
-    f32 value24;
-    f32 value28;
-    u8 unk2C[8];
-    void *field34;
-    u8 unk38[0x1c];
-    s16 value54;
-    s16 value56;
-} fn_1_5FEBC_EffectData;
-
-typedef struct {
-    u8 unk00[8];
-    fn_1_5FEBC_EffectData *data;
-} fn_1_5FEBC_EffectObject;
-
-typedef struct {
-    u8 pad_0[0x10];
-    u32 unk_10;
-    u8 pad_14[0x20];
-    u32 unk_34;
-    void *unk_38;
-    u8 pad_3c[0x18];
-    s16 unk_54;
-    u8 pad_56[0x4];
-    u16 unk_5a;
-    u8 pad_5c[0x58];
-    f32 unk_b4;
-} fn_1_61D08_EffectObject;
-
-typedef struct {
-    u8 pad_00[0x8];
-    void *unk_08;
-} fn_1_652F4_Effect;
-
-typedef struct {
-    u8 pad20[0x20];
-    void *unk_20;
-} Fn1_61E60Node;
-
-typedef struct {
-    u8 pad38[0x38];
-    Fn1_61E60Node *unk_38;
-} Fn1_61E60Object;
-extern void fn_1_62360(fn_1_58D38_EffectEntry *arg0);
-extern u32 fn_1_3FC58(void);
-extern void *memcpy(void *, const void *, u32);
-extern void fn_1_862D4(s16 value, void *result);
-extern f32 lbl_8006D0B4(f32 value);
-extern s32 fn_1_54E34(void *arg0, f32 arg1);
-extern void lbl_8006D7B0(void);
-extern void lbl_8006D9D8(void *);
-extern void mathutil_mtxA_rotate_z(int);
-extern const f32 lbl_1_rodata_2950;
-extern void fn_1_8636C();
-extern void fn_1_867CC(s16 value, void *out);
-extern void mathutil_mtxA_rotate_y(s16 value);
-extern void mathutil_mtxA_rotate_x(s16 value);
-extern void lbl_8006DB74(void *);
-extern int fn_1_9F914(const void *src0, const void *src1);
-extern const f32 lbl_1_rodata_2AA0[21];
-extern f32 lbl_1_rodata_29AC[5];
-extern void *memset(void *, int, u32);
-extern void *lbl_801A6D00;
-extern void fn_1_55FC4(f32 value);
-extern void fn_1_55FF0(f32 value);
-extern void fn_1_5557C(void *object);
-extern void fn_1_555D0(void *object);
-extern void lbl_8006E1B0(void *src, void *dst);
-extern void lbl_8006E14C(f32);
-extern void *lbl_801A6410;
-extern s32 fn_1_45D0();
-extern u32 GXGetTexBufferSize(u16, u16, u32, u32, u8);
-extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
-extern void fn_1_4730(u32 value, u32 count, u32 size, const char *file, int line);
-extern void lbl_8006DCA4();
-extern void lbl_8006D7DC(void *obj);
-extern void *fn_1_868C0(s8 index);
-extern void *fn_1_86254(int index);
-extern void lbl_8006D95C(s32);
-extern void lbl_8006DFC4(void *);
-extern void fn_1_3BDC(u32 arg0);
-extern u32 fn_1_3C18(s32 arg0);
-extern void fn_80008BEC(void *dest, int value, u32 size);
-extern void fn_80008BA8(void *, void *, int);
-extern void fn_1_680F8(void);
-extern void fn_1_68284(void);
-extern void fn_1_68B68(void);
-extern void fn_1_68248(void);
-extern void fn_1_69BBC(void);
-extern void fn_1_69BCC(void);
-extern f32 lbl_1_rodata_2978[4];
-extern f32 lbl_1_rodata_2AF4[14];
-extern void fn_1_5EB98(void);
-extern void fn_1_5FEBC(fn_1_5FEBC_EffectObject *object);
-extern f32 lbl_1_rodata_2A5C[5];
-extern int fn_1_61D08();
-extern void fn_1_61EF4(void);
-extern void fn_1_620C4(void);
-extern f32 lbl_1_rodata_2B2C[145];
-extern void fn_1_638E8(void);
-extern const f32 lbl_1_rodata_2A70[12];
-extern void fn_1_64388(void);
-extern void fn_1_652F4(fn_1_652F4_Effect *effect);
-extern void fn_1_65748(void);
-extern void *fn_1_5448C(void *);
-extern int fn_1_61E60();
-extern void fn_1_5489C(void **arg0, void **arg1);
-extern void *fn_1_548AC(u32 size);
-extern u32 fn_1_3FC8C(void);
-extern const f32 lbl_1_rodata_29A4;
-extern f64 lbl_1_rodata_2988;
-extern u32 fn_1_620C8(void *);
-extern f32 fn_1_8652C(int index);
-extern void fn_1_557C4(void *value);
-extern void fn_1_56000(u8 value0, u8 value1, u8 value2);
-extern void fn_1_5621C(f32 value0, f32 value1, f32 value2, f32 value3);
-extern const f32 lbl_1_rodata_29C0;
-extern const f32 lbl_1_rodata_29F0;
-extern u32 fn_1_58C4(void);
-extern const f64 lbl_1_rodata_2954;
-
+/* fzgx:begin fn_1_5AC48 */
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
@@ -2756,8 +2604,95 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
     s = 0.30000001192092896f;
     s = -0.004000000189989805f;
     s = 0.01666666753590107f;
+    s = 65536.0f;
+    s = 4096.0f;
+    s = 0.9599999785423279f;
+    s = 0.4000000059604645f;
+    s = 0.05050000175833702f;
+    s = 0.050999999046325684f;
+    s = 0.949999988079071f;
 }
 #pragma section code_type ".text"
+
+typedef struct fn_1_58D38_EffectEntry_fn_1_5AC48 {
+    s8 unk_00;
+    u8 pad_01[7];
+    u32 unk_08;
+    s16 unk_0C;
+    u8 pad_0E[0x0C];
+    u16 unk_1A;
+    u8 pad_1C[0xCC];
+} fn_1_58D38_EffectEntry_fn_1_5AC48;
+
+struct fn_1_5BF70_lbl_1_rodata_2950_fn_1_5AC48 {
+    u8 pad_0[0x8];
+    f32 unk_8;
+    u8 pad_C[0x14];
+    f64 unk_20;
+    u8 pad_28[0xC8];
+    f64 unk_F0;
+    f64 unk_F8;
+    u8 pad_100[0x30];
+    f64 unk_130;
+};
+
+typedef struct {
+    u8 unk00[0x18];
+    s16 value18;
+    u8 unk1A[2];
+    f32 value1C;
+    f32 value20;
+    f32 value24;
+    f32 value28;
+    u8 unk2C[8];
+    void *field34;
+    u8 unk38[0x1c];
+    s16 value54;
+    s16 value56;
+} fn_1_5FEBC_EffectData_fn_1_5AC48;
+
+typedef struct {
+    u8 unk00[8];
+    fn_1_5FEBC_EffectData_fn_1_5AC48 *data;
+} fn_1_5FEBC_EffectObject_fn_1_5AC48;
+
+typedef struct {
+    u8 pad_0[0x10];
+    u32 unk_10;
+    u8 pad_14[0x20];
+    u32 unk_34;
+    void *unk_38;
+    u8 pad_3c[0x18];
+    s16 unk_54;
+    u8 pad_56[0x4];
+    u16 unk_5a;
+    u8 pad_5c[0x58];
+    f32 unk_b4;
+} fn_1_61D08_EffectObject_fn_1_5AC48;
+
+typedef struct {
+    u8 pad_00[0x8];
+    void *unk_08;
+} fn_1_652F4_Effect_fn_1_5AC48;
+
+typedef struct {
+    u8 pad20[0x20];
+    void *unk_20;
+} Fn1_61E60Node_fn_1_5AC48;
+
+typedef struct {
+    u8 pad38[0x38];
+    Fn1_61E60Node_fn_1_5AC48 *unk_38;
+} Fn1_61E60Object_fn_1_5AC48;
+extern void *memcpy(void *, const void *, u32);
+extern void mathutil_mtxA_rotate_z(int);
+extern void mathutil_mtxA_rotate_y(s16 value);
+extern void mathutil_mtxA_rotate_x(s16 value);
+extern void *memset(void *, int, u32);
+extern void *lbl_801A6D00;
+extern void *lbl_801A6410;
+extern u32 GXGetTexBufferSize(u16, u16, u32, u32, u8);
+
 
 
 typedef struct {
@@ -2948,63 +2883,7 @@ void fn_1_5B074(void) {
 }
 /* fzgx:end fn_1_5B074 */
 
-/* fzgx:begin fn_1_5B078 noprologue */
-#include "dolphin/types.h"
-#include "rel/main_rel/effect.h"
-
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 60.0f;
-    s = 0.10000000149011612f;
-    s = 32767.0f;
-    s = 0.05000000074505806f;
-    d = 0.07;
-    s = 20000.0f;
-    s = 0.0f;
-    d = 4503599627370496.0;
-    s = 1.0f;
-    s = -0.029999999329447746f;
-    d = 15.0;
-    d = 4503601774854144.0;
-    d = 1.5;
-    d = 0.5;
-}
-static const u32 fzgx_pool_table2[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 0.5f;
-    s = 8.0f;
-    s = 255.0f;
-    s = 15.0f;
-    s = 0.20000000298023224f;
-    s = 0.07999999821186066f;
-    s = 0.25f;
-    s = 0.9800000190734863f;
-    s = 0.9900000095367432f;
-    s = 40.0f;
-    s = 20.0f;
-    s = 1.5f;
-    s = 0.44999998807907104f;
-    s = -2.0f;
-    s = 0.0833333358168602f;
-    s = 0.15000000596046448f;
-    s = 0.125f;
-    s = -0.4000000059604645f;
-    s = -0.30000001192092896f;
-    s = 2.0f;
-    s = 250.0f;
-    d = 0.6;
-    d = 0.4;
-    s = 0.30000001192092896f;
-    s = -0.004000000189989805f;
-    s = 0.01666666753590107f;
-    s = 65536.0f;
-    s = 4096.0f;
-    s = 0.9599999785423279f;
-}
-#pragma section code_type ".text"
+/* fzgx:begin fn_1_5B078 */
 
 struct fx_5b078_out {
     u8 pad_00[0x10];
@@ -3042,66 +2921,7 @@ void fn_1_5B078(struct fx_5b078_out *out)
 }
 /* fzgx:end fn_1_5B078 */
 
-/* fzgx:begin fn_1_5B188 noprologue */
-#include "dolphin/types.h"
-
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 60.0f;
-    s = 0.10000000149011612f;
-    s = 32767.0f;
-    s = 0.05000000074505806f;
-    d = 0.07;
-    s = 20000.0f;
-    s = 0.0f;
-    d = 4503599627370496.0;
-    s = 1.0f;
-    s = -0.029999999329447746f;
-    d = 15.0;
-    d = 4503601774854144.0;
-    d = 1.5;
-    d = 0.5;
-}
-static const u32 fzgx_pool_table2[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 0.5f;
-    s = 8.0f;
-    s = 255.0f;
-    s = 15.0f;
-    s = 0.20000000298023224f;
-    s = 0.07999999821186066f;
-    s = 0.25f;
-    s = 0.9800000190734863f;
-    s = 0.9900000095367432f;
-    s = 40.0f;
-    s = 20.0f;
-    s = 1.5f;
-    s = 0.44999998807907104f;
-    s = -2.0f;
-    s = 0.0833333358168602f;
-    s = 0.15000000596046448f;
-    s = 0.125f;
-    s = -0.4000000059604645f;
-    s = -0.30000001192092896f;
-    s = 2.0f;
-    s = 250.0f;
-    d = 0.6;
-    d = 0.4;
-    s = 0.30000001192092896f;
-    s = -0.004000000189989805f;
-    s = 0.01666666753590107f;
-    s = 65536.0f;
-    s = 4096.0f;
-    s = 0.9599999785423279f;
-    s = 0.4000000059604645f;
-    s = 0.05050000175833702f;
-    s = 0.050999999046325684f;
-    s = 0.949999988079071f;
-}
-#pragma section code_type ".text"
+/* fzgx:begin fn_1_5B188 */
 
 #pragma section code_type ".text"
 
@@ -3277,10 +3097,7 @@ void fn_1_5B3D0(struct fn_1_5B3D0_Arg0 *arg0) {
 }
 /* fzgx:end fn_1_5B3D0 */
 
-/* fzgx:begin fn_1_5B450 noprologue */
-#include "types.h"
-#include "rel/main_rel/effect.h"
-
+/* fzgx:begin fn_1_5B450 */
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
@@ -3340,10 +3157,7 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
 #pragma section code_type ".text"
 #pragma opt_propagation off
 
-extern u32 lbl_801A6D00;
 extern s32 fn_1_8645C(s16, u32);
-extern void lbl_8006E1B0(void *, void *);
-extern u32 lbl_1_data_1D628;
 
 typedef struct Fn1_5B450Object {
     u8 pad_00[0x10];
@@ -3368,7 +3182,7 @@ void fn_1_5B450(Fn1_5B450Object *arg0) {
     s32 frame;
     f32 t;
 
-    fn_1_8645C(arg0->unk_18, lbl_801A6D00);
+    fn_1_8645C(arg0->unk_18, (*(u32 *)&lbl_801A6D00));
     lbl_8006E1B0((u8 *)arg0 + 0x94, (u8 *)arg0 + 0x3c);
 
     scale = 0.95f;
@@ -3507,18 +3321,6 @@ void fn_1_5B578(Obj_1_5B578_T *p)
 /* fzgx:end fn_1_5B578 */
 
 /* fzgx:begin fn_1_5B6F0 */
-// fn_1_5B6F0: empty in retail (single blr).
-void fn_1_5B6F0(void) {
-}
-/* fzgx:end fn_1_5B6F0 */
-
-/* fzgx:begin fn_1_5B6F4 */
-typedef struct Fn15B6F4 {
-    u8 _pad00[0x10];
-    s32 unk_10;
-    s32 unk_14;
-} Fn15B6F4;
-
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
@@ -3585,6 +3387,19 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
     d = 3.0;
 }
 #pragma section code_type ".text"
+
+// fn_1_5B6F0: empty in retail (single blr).
+void fn_1_5B6F0(void) {
+}
+/* fzgx:end fn_1_5B6F0 */
+
+/* fzgx:begin fn_1_5B6F4 */
+typedef struct Fn15B6F4 {
+    u8 _pad00[0x10];
+    s32 unk_10;
+    s32 unk_14;
+} Fn15B6F4;
+
 void fn_1_5B6F4(Fn15B6F4 *obj) {
     u32 seed = lbl_1_data_1D628 * 1103515245 + 12345;
     f32 r = (f32)((seed >> 16) & 0x7FFF) / 32767.0f;
@@ -3620,19 +3435,13 @@ void fn_1_5B780(Fn15B780 *effect) {
 }
 /* fzgx:end fn_1_5B780 */
 
-/* fzgx:begin fn_1_5B7F8 noprologue */
-#include "types.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
+/* fzgx:begin fn_1_5B7F8 */
 #include "rel/main_rel/car_test.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
 #include "rel/main_rel/car.h"
 #include "dolphin/hw_regs.h"
 #include "psvec.h"
 #include "game/vec3.h"
 #include "game/vec3.h"
-#include "rel/main_rel/effect.h"
 #include "dolphin/os/OSFastCast.h"
 #include "dolphin/os/OSCache.h"
 
@@ -3650,7 +3459,6 @@ typedef struct {
     f32 z;
 } Fn183D28Vec3;
 
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 
 #endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
 #ifndef GAME_MAIN_REL_CAR_TYPES_H
@@ -3688,74 +3496,11 @@ typedef struct {
 } fn_1_5B7F8_Point;
 
 extern f32 lbl_8006D188(s32);
-extern u32 lbl_8006DCA4(void);
 extern void fn_1_57A70(u16, fn_1_5B7F8_Point *);
 extern void *lbl_8006DC6C(void *);
 extern void fn_1_57714(u8);
 extern void fn_1_57720(u32, u32, u32, u32);
-extern void fn_1_862D4(int, Fn183D28Vec3 *);
-extern void fn_1_8636C(int, void *);
 
-#pragma section code_type ".fzgxpool"
-/* Primes the TU literal pool (lbl_1_rodata_2950) in retail order. */
-void fzgx_pool_fn_1_5B7F8_a(f32 *f, f64 *d, u32 u) {
-    f[0] = 60.0f;
-    f[1] = 0.1f;
-    f[2] = 32767.0f;
-    f[3] = 0.05f;
-    d[0] = 0.07;
-    f[4] = 20000.0f;
-    f[5] = (f32)u;
-}
-void fzgx_pool_fn_1_5B7F8_b(f32 *f, f64 *d, s32 s) {
-    f[6] = 1.0f;
-    f[7] = -0.03f;
-    d[1] = 15.0;
-    f[8] = (f32)s;
-}
-void fzgx_pool_fn_1_5B7F8_c(f32 *f, f64 *d) {
-    d[2] = 1.5;
-    d[3] = 0.5;
-    f[9] = 0.0f;
-    f[10] = 0.5f;
-    f[11] = 8.0f;
-    f[12] = 255.0f;
-    f[13] = 15.0f;
-    f[14] = 0.2f;
-    f[15] = 0.08f;
-    f[16] = 0.25f;
-    f[17] = 0.98f;
-    f[18] = 0.99f;
-    f[19] = 40.0f;
-    f[20] = 20.0f;
-    f[21] = 1.5f;
-    f[22] = 0.45f;
-    f[23] = -2.0f;
-    f[24] = 0.0833333358f;
-    f[25] = 0.15f;
-    f[26] = 0.125f;
-    f[27] = -0.4f;
-    f[28] = -0.3f;
-    f[29] = 2.0f;
-    f[30] = 250.0f;
-    d[4] = 0.6;
-    d[5] = 0.4;
-    f[31] = 0.3f;
-    f[32] = -0.004f;
-    f[33] = 0.0166666675f;
-    f[34] = 65536.0f;
-    f[35] = 4096.0f;
-    f[36] = 0.96f;
-    f[37] = 0.4f;
-    f[38] = 0.0505f;
-    f[39] = 0.051f;
-    f[40] = 0.95f;
-    f[41] = 0.9f;
-    d[6] = 150.0;
-    d[7] = 10.0;
-    d[8] = 3.0;
-}
-#pragma section code_type ".text"
 
 #define FN_1_5B7F8_RAND() \
     (lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41C64E6D + 12345, \
@@ -3928,21 +3673,6 @@ void fn_1_5B7F8(struct fn_1_5B7F8_Arg0 *e) {
 /* fzgx:end fn_1_5B7F8 */
 
 /* fzgx:begin fn_1_5BF6C */
-// fn_1_5BF6C: empty in retail (single blr).
-void fn_1_5BF6C(void) {
-}
-/* fzgx:end fn_1_5BF6C */
-
-/* fzgx:begin fn_1_5BF70 */
-struct fn_1_5BF70_Arg0 {
-    u8 pad_0[0x10];
-    s32 unk_10;
-};
-struct fn_1_5BF70_lbl_1_data_1D628 {
-    u32 unk_0;
-};
-
-
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
@@ -4022,6 +3752,22 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime7(void) {
     d = 50.0;
 }
 #pragma section code_type ".text"
+
+// fn_1_5BF6C: empty in retail (single blr).
+void fn_1_5BF6C(void) {
+}
+/* fzgx:end fn_1_5BF6C */
+
+/* fzgx:begin fn_1_5BF70 */
+struct fn_1_5BF70_Arg0 {
+    u8 pad_0[0x10];
+    s32 unk_10;
+};
+struct fn_1_5BF70_lbl_1_data_1D628 {
+    u32 unk_0;
+};
+
+
 void fn_1_5BF70(struct fn_1_5BF70_Arg0 *arg0) {
     u32 seed;
     f32 normalized;
@@ -4056,20 +3802,14 @@ void fn_1_5BFF0(struct fn_1_5BFF0_Arg0 *arg0) {
 }
 /* fzgx:end fn_1_5BFF0 */
 
-/* fzgx:begin fn_1_5C058 noprologue */
+/* fzgx:begin fn_1_5C058 */
 #include "dolphin/hw_regs.h"
-#include "types.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
 #include "rel/main_rel/car_test.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
 #include "rel/main_rel/car.h"
 #include "dolphin/hw_regs.h"
 #include "psvec.h"
 #include "game/vec3.h"
 #include "game/vec3.h"
-#include "rel/main_rel/effect.h"
 #include "dolphin/os/OSFastCast.h"
 
 /* begin game/main_rel/car_test_types.h (fork-deltawave784/windows-and-types@842a08a9) */
@@ -4086,7 +3826,6 @@ typedef struct {
     f32 z;
 } Fn183D28Vec3;
 
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 
 #endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
 #ifndef GAME_MAIN_REL_CAR_TYPES_H
@@ -4118,59 +3857,16 @@ struct fn_1_5C058_Arg0 {
 };
 extern void fn5C058PoolF(f32);
 extern void fn5C058PoolD(f64);
-#pragma section code_type ".fzgxpool"
-#pragma force_active on
-static void fzgx_fn5C058PoolPrimer(void) {
-    fn5C058PoolF(60.0f); fn5C058PoolF(0.1f);
-    fn5C058PoolF(32767.0f); fn5C058PoolF(0.05f);
-    fn5C058PoolD(0.07); fn5C058PoolF(20000.0f);
-    fn5C058PoolD(4503599627370496.0);
-    fn5C058PoolF(1.0f); fn5C058PoolF(-0.03f);
-    fn5C058PoolD(15.0); fn5C058PoolD(4503601774854144.0);
-    fn5C058PoolD(1.5); fn5C058PoolD(0.5);
-    fn5C058PoolF(0.0f); fn5C058PoolF(0.5f);
-    fn5C058PoolF(8.0f); fn5C058PoolF(255.0f);
-    fn5C058PoolF(15.0f); fn5C058PoolF(0.2f);
-    fn5C058PoolF(0.08f); fn5C058PoolF(0.25f);
-    fn5C058PoolF(0.98f); fn5C058PoolF(0.99f);
-    fn5C058PoolF(40.0f); fn5C058PoolF(20.0f);
-    fn5C058PoolF(1.5f); fn5C058PoolF(0.45f);
-    fn5C058PoolF(-2.0f); fn5C058PoolF(1.0f / 12.0f);
-    fn5C058PoolF(0.15f); fn5C058PoolF(0.125f);
-    fn5C058PoolF(-0.4f); fn5C058PoolF(-0.3f);
-    fn5C058PoolF(2.0f); fn5C058PoolF(250.0f);
-    fn5C058PoolD(0.6); fn5C058PoolD(0.4);
-    fn5C058PoolF(0.3f); fn5C058PoolF(-0.004f);
-    fn5C058PoolF(1.0f / 60.0f); fn5C058PoolF(65536.0f);
-    fn5C058PoolF(4096.0f); fn5C058PoolF(0.96f);
-    fn5C058PoolF(0.4f); fn5C058PoolF(0.0505f);
-    fn5C058PoolF(0.051f); fn5C058PoolF(0.95f);
-    fn5C058PoolF(0.9f); fn5C058PoolD(150.0);
-    fn5C058PoolD(10.0); fn5C058PoolD(3.0);
-}
-static const union { u32 w[3]; const Fn183D28Vec3 v; } fzgx_pool_init_fn5C058PrimerVector = {{  /* fzgx-allow: A1 retail data bytes and bindings */
-    0x0, 0x3DCCCCCD, 0xC019999A  /* fzgx-allow: A1 retail data bytes */
-}};
-static void fn5C058PoolPrimer2(void) {
-    fn5C058PoolF(5.0f); fn5C058PoolD(1.2);
-    fn5C058PoolD(0.1); fn5C058PoolF(10.0f);
-    fn5C058PoolF(18.0f); fn5C058PoolD(0.7);
-    fn5C058PoolD(50.0);
-}
-#pragma section code_type ".text"
 #pragma force_active reset
 static const union { u32 w[3]; const Fn183D28Vec3 v; } fzgx_pool_init_fn5C058ZeroVector = {{  /* fzgx-allow: A1 retail data bytes and bindings */
     0x0, 0x3DCCCCCD, 0xC019999A  /* fzgx-allow: A1 retail data bytes */
 }};
 typedef struct { Fn183D28Vec3 pos; s32 color; } Fn5C058Vertex;
 extern f32 lbl_8006D188(u32);
-extern u32 lbl_8006DCA4(void);
 extern void lbl_8006DC6C(void *);
 extern void fn_1_57714(u8);
 extern void fn_1_57720(u32, u32, u32, u32);
 extern void fn_1_57A70(u16, Fn5C058Vertex *);
-extern void fn_1_862D4(int, Triple *);
-extern void fn_1_8636C(int, void *);
 
 static inline void fn5C058Translation(volatile f32 *mtx, volatile Fn183D28Vec3 *v) {  /* fzgx-allow: S2 volatile keeps the verified access order */
     f32 x, y, z;
@@ -4360,17 +4056,8 @@ void fn_1_5C784(EffectWork *self) {
 }
 /* fzgx:end fn_1_5C784 */
 
-/* fzgx:begin fn_1_5C83C noprologue */
-#include "types.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/effect.h"
-#include "dolphin/types.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
+/* fzgx:begin fn_1_5C83C */
 #include "rel/main_rel/car_test.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/effect.h"
 #include "psvec.h"
 
 #ifndef GAME_MAIN_REL_EFFECT_TYPES_H
@@ -4382,9 +4069,7 @@ void fn_1_5C784(EffectWork *self) {
 
 #endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
 
-extern void fn_1_862D4(s16 value, void *result);
 
-extern void fn_1_8636C();
 
 extern void fn_8006FA24(void *, void *, void *, f32);
 
@@ -5280,9 +4965,7 @@ void fn_1_5D4FC(void) {
 }
 /* fzgx:end fn_1_5D4FC */
 
-/* fzgx:begin fn_1_5D500 noprologue */
-#include "rel/main_rel/effect.h"
-
+/* fzgx:begin fn_1_5D500 */
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
@@ -5392,7 +5075,6 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime11(void) {
 }
 #pragma section code_type ".text"
 extern u32 fn_1_86514(int);
-extern u32 fn_1_867CC(u32, void *);
 extern s8 fn_1_86634(int);
 extern s32 fn_1_6EC0(u8);
 extern s16 camera_get_entry_field_0xa4(u32);
@@ -8314,9 +7996,7 @@ void fn_1_5F5C4(void) {
 }
 /* fzgx:end fn_1_5F5C4 */
 
-/* fzgx:begin fn_1_5F5C8 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_5F5C8 */
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
@@ -8386,7 +8066,6 @@ struct fn_1_5F5C8_lbl_1_rodata_2950 {
     f32 unk_B8;
 };
 
-extern struct fn_1_5F5C8_lbl_1_data_1D628 lbl_1_data_1D628;
 const f32 fzgx_pool_lbl_1_rodata_2950 = 60.0f;
 const u8 fzgx_pool_lbl_1_rodata_2954[4] = {0x3D,0xCC,0xCC,0xCD};
 const f32 fzgx_pool_lbl_1_rodata_2954__fzgx_offset_4 = 32767.0f;
@@ -8413,12 +8092,12 @@ f32 fn_1_5F5C8(struct fn_1_5F5C8_Arg0 *arg0, f32 arg1) {
     f32 v6;
     v0 = arg1;
     if ((s32)arg0->unk_10 == 0) {
-    v1 = (((12345) + ((lbl_1_data_1D628.unk_0 * (0x41C60000 + 20077)))));
+    v1 = (((12345) + ((((struct fn_1_5F5C8_lbl_1_data_1D628 *)&lbl_1_data_1D628)->unk_0 * (0x41C60000 + 20077)))));
     v2 = (4503599627370496.0);
     v4 = (0.25f);
     v5 = (0.300000012f);
     v6 = (60.0f);
-    lbl_1_data_1D628.unk_0 = v1;
+    ((struct fn_1_5F5C8_lbl_1_data_1D628 *)&lbl_1_data_1D628)->unk_0 = v1;
     v0 = (f32)(u32)((v1 >> 16) & 0x7FFF);
     arg0->unk_10 = (s32)(f32)(v6 * (f32)(v5 + (f32)(v4 * (f32)(v0 / ((32767.0f))))));
     }
@@ -8803,10 +8482,7 @@ void fn_1_5F654(fn_1_5F654_Effect *effect) {
 }
 /* fzgx:end fn_1_5F654 */
 
-/* fzgx:begin fn_1_5F9B8 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/effect.h"
+/* fzgx:begin fn_1_5F9B8 */
 #include "dolphin/os/OSFastCast.h"
 #include "dolphin/hw_regs.h"
 #include "psvec.h"
@@ -8856,21 +8532,10 @@ typedef struct {
     void *model;
 } fn_1_5F9B8_Assets;
 
-extern void fn_1_867CC(s16 value, void *out);
-extern void *fn_1_868C0(s8 index);
-extern void *fn_1_86254(int index);
-extern int fn_1_9F914(const void *src0, const void *src1);
-extern s32 fn_1_54E34(void *arg0, f32 arg1);
 extern void fn_1_9EA94(void *light);
-extern void lbl_8006D9D8(void *);
-extern void lbl_8006D95C(s32);
 extern void mathutil_mtxA_rotate_x(s16 value);
 extern void *memset(void *, int, u32);
-extern void lbl_8006DB74(void *);
-extern void lbl_8006D7B0(void);
-extern f32 lbl_8006D0B4(f32 value);
 extern void lbl_8006D848(f32);
-extern void lbl_8006DFC4(void *);
 extern void fn_80074788(u32);
 extern void fn_80072864(u32);
 extern void fn_800745A4(u32, s32, s32, u32, u32, u32);
@@ -10843,12 +10508,8 @@ void fn_1_60F80(void) {
 }
 /* fzgx:end fn_1_60F80 */
 
-/* fzgx:begin fn_1_60F84 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/effect.h"
-
-typedef struct fn_1_58D38_EffectEntry {
+/* fzgx:begin fn_1_60F84 */
+typedef struct fn_1_58D38_EffectEntry_fn_1_60F84 {
     s8 unk_00;
     u8 pad_01[7];
     u32 unk_08;
@@ -10856,9 +10517,9 @@ typedef struct fn_1_58D38_EffectEntry {
     u8 pad_0E[0x0C];
     u16 unk_1A;
     u8 pad_1C[0xCC];
-} fn_1_58D38_EffectEntry;
+} fn_1_58D38_EffectEntry_fn_1_60F84;
 
-struct fn_1_5BF70_lbl_1_rodata_2950 {
+struct fn_1_5BF70_lbl_1_rodata_2950_fn_1_60F84 {
     u8 pad_0[0x8];
     f32 unk_8;
     u8 pad_C[0x14];
@@ -10883,12 +10544,12 @@ typedef struct {
     u8 unk38[0x1c];
     s16 value54;
     s16 value56;
-} fn_1_5FEBC_EffectData;
+} fn_1_5FEBC_EffectData_fn_1_60F84;
 
 typedef struct {
     u8 unk00[8];
-    fn_1_5FEBC_EffectData *data;
-} fn_1_5FEBC_EffectObject;
+    fn_1_5FEBC_EffectData_fn_1_60F84 *data;
+} fn_1_5FEBC_EffectObject_fn_1_60F84;
 
 typedef struct {
     u8 pad_0[0x10];
@@ -10902,101 +10563,32 @@ typedef struct {
     u16 unk_5a;
     u8 pad_5c[0x58];
     f32 unk_b4;
-} fn_1_61D08_EffectObject;
+} fn_1_61D08_EffectObject_fn_1_60F84;
 
 typedef struct {
     u8 pad_00[0x8];
     void *unk_08;
-} fn_1_652F4_Effect;
+} fn_1_652F4_Effect_fn_1_60F84;
 
 typedef struct {
     u8 pad20[0x20];
     void *unk_20;
-} Fn1_61E60Node;
+} Fn1_61E60Node_fn_1_60F84;
 
 typedef struct {
     u8 pad38[0x38];
-    Fn1_61E60Node *unk_38;
-} Fn1_61E60Object;
-extern void fn_1_62360(fn_1_58D38_EffectEntry *arg0);
-extern u32 fn_1_3FC58(void);
+    Fn1_61E60Node_fn_1_60F84 *unk_38;
+} Fn1_61E60Object_fn_1_60F84;
 extern void *memcpy(void *, const void *, u32);
-extern void fn_1_862D4(s16 value, void *result);
-extern f32 lbl_8006D0B4(f32 value);
-extern s32 fn_1_54E34(void *arg0, f32 arg1);
-extern void lbl_8006D7B0(void);
-extern void lbl_8006D9D8(void *);
 extern void mathutil_mtxA_rotate_z(int);
-extern const f32 lbl_1_rodata_2950;
-extern void fn_1_8636C();
-extern void fn_1_867CC(s16 value, void *out);
 extern void mathutil_mtxA_rotate_y(s16 value);
 extern void mathutil_mtxA_rotate_x(s16 value);
-extern void lbl_8006DB74(void *);
-extern int fn_1_9F914(const void *src0, const void *src1);
-extern const f32 lbl_1_rodata_2AA0[21];
-extern f32 lbl_1_rodata_29AC[5];
 extern void *memset(void *, int, u32);
 extern void *lbl_801A6D00;
-extern void fn_1_55FC4(f32 value);
-extern void fn_1_55FF0(f32 value);
-extern void fn_1_5557C(void *object);
-extern void fn_1_555D0(void *object);
-extern void lbl_8006E1B0(void *src, void *dst);
-extern void lbl_8006E14C(f32);
 extern void *lbl_801A6410;
-extern s32 fn_1_45D0();
 extern u32 GXGetTexBufferSize(u16, u16, u32, u32, u8);
-extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
-extern void fn_1_4730(u32 value, u32 count, u32 size, const char *file, int line);
-extern void lbl_8006DCA4();
-extern void lbl_8006D7DC(void *obj);
-extern void *fn_1_868C0(s8 index);
-extern void *fn_1_86254(int index);
-extern void lbl_8006D95C(s32);
-extern void lbl_8006DFC4(void *);
-extern void fn_1_3BDC(u32 arg0);
-extern u32 fn_1_3C18(s32 arg0);
-extern void fn_80008BEC(void *dest, int value, u32 size);
-extern void fn_80008BA8(void *, void *, int);
-extern void fn_1_680F8(void);
-extern void fn_1_68284(void);
-extern void fn_1_68B68(void);
-extern void fn_1_68248(void);
-extern void fn_1_69BBC(void);
-extern void fn_1_69BCC(void);
-extern f32 lbl_1_rodata_2978[4];
-extern f32 lbl_1_rodata_2AF4[14];
-extern void fn_1_5EB98(void);
-extern void fn_1_5FEBC(fn_1_5FEBC_EffectObject *object);
-extern f32 lbl_1_rodata_2A5C[5];
-extern int fn_1_61D08();
-extern void fn_1_61EF4(void);
-extern void fn_1_620C4(void);
-extern f32 lbl_1_rodata_2B2C[145];
-extern void fn_1_638E8(void);
-extern const f32 lbl_1_rodata_2A70[12];
-extern void fn_1_64388(void);
-extern void fn_1_652F4(fn_1_652F4_Effect *effect);
-extern void fn_1_65748(void);
-extern void *fn_1_5448C(void *);
-extern int fn_1_61E60();
-extern void fn_1_5489C(void **arg0, void **arg1);
-extern void *fn_1_548AC(u32 size);
-extern u32 fn_1_3FC8C(void);
-extern const f32 lbl_1_rodata_29A4;
-extern f64 lbl_1_rodata_2988;
-extern u32 fn_1_620C8(void *);
-extern f32 fn_1_8652C(int index);
-extern void fn_1_557C4(void *value);
-extern void fn_1_56000(u8 value0, u8 value1, u8 value2);
-extern void fn_1_5621C(f32 value0, f32 value1, f32 value2, f32 value3);
-extern const f32 lbl_1_rodata_29C0;
-extern const f32 lbl_1_rodata_29F0;
-extern u32 fn_1_58C4(void);
-extern const f64 lbl_1_rodata_2954;
 
-/* Shared literal pool primer: lays out lbl_1_rodata_2950 in retail order so the
+/* Shared literal pool primer: lays out (*(const f32 *)&lbl_1_rodata_2950) in retail order so the
    function's own literals dedupe onto retail's offsets (0xcc, 0x118, 0x38, 0x28, 0x1a0). */
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
@@ -11262,12 +10854,7 @@ void fn_1_61070(Fn161070 *self) {
 #pragma opt_propagation reset
 /* fzgx:end fn_1_61070 */
 
-/* fzgx:begin fn_1_611EC noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "dolphin/types.h"
-#include "rel/main_rel/effect.h"
-
+/* fzgx:begin fn_1_611EC */
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
@@ -11433,8 +11020,6 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime21(void) {
 }
 #pragma section code_type ".text"
 
-extern s32 fn_1_45D0(u32, u32, u8 *, u32);
-extern u32 lbl_801A6410;
 
 struct FxParam {
 	u8 pad_00[0x0E];
@@ -11475,7 +11060,7 @@ void fn_1_611EC(struct FxParam *p, u32 unused1, u32 unused2, u32 unused3)
 	p->unk_56 = FxRand();
 	p->unk_58 = FxRand();
 
-	p->unk_38 = fn_1_45D0(lbl_801A6410, 0xF0, lbl_1_data_1D62C, 0x1573);
+	p->unk_38 = fn_1_45D0((*(u32 *)&lbl_801A6410), 0xF0, lbl_1_data_1D62C, 0x1573);
 }
 /* fzgx:end fn_1_611EC */
 
@@ -11796,6 +11381,7 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime21(void) {
 
 
 
+
 struct Fn1_61640Pool {
     u8 _pad00[0x28];
     f32 initial;
@@ -11911,58 +11497,7 @@ void fn_1_617A4(struct Fn1_617A4Object *object) {
 }
 /* fzgx:end fn_1_617A4 */
 
-/* fzgx:begin fn_1_618B8 noprologue */
-#include "dolphin/types.h"
-
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 60.0f;
-    s = 0.10000000149011612f;
-    s = 32767.0f;
-    s = 0.05000000074505806f;
-    d = 0.07;
-    s = 20000.0f;
-    s = 0.0f;
-    d = 4503599627370496.0;
-    s = 1.0f;
-    s = -0.029999999329447746f;
-    d = 15.0;
-    d = 4503601774854144.0;
-    d = 1.5;
-    d = 0.5;
-}
-static const u32 fzgx_pool_table2[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 0.5f;
-    s = 8.0f;
-    s = 255.0f;
-    s = 15.0f;
-    s = 0.20000000298023224f;
-    s = 0.07999999821186066f;
-    s = 0.25f;
-    s = 0.9800000190734863f;
-    s = 0.9900000095367432f;
-    s = 40.0f;
-    s = 20.0f;
-    s = 1.5f;
-    s = 0.44999998807907104f;
-    s = -2.0f;
-    s = 0.0833333358168602f;
-    s = 0.15000000596046448f;
-    s = 0.125f;
-    s = -0.4000000059604645f;
-    s = -0.30000001192092896f;
-    s = 2.0f;
-    s = 250.0f;
-    d = 0.6;
-    d = 0.4;
-    s = 0.30000001192092896f;
-    s = -0.004000000189989805f;
-}
-#pragma section code_type ".text"
+/* fzgx:begin fn_1_618B8 */
 
 struct obj_state {
 	u8 pad00[0x10];
@@ -14771,9 +14306,7 @@ void fn_1_633BC(void) {
 }
 /* fzgx:end fn_1_633BC */
 
-/* fzgx:begin fn_1_633C0 noprologue */
-#include "rel/main_rel/effect.h"
-
+/* fzgx:begin fn_1_633C0 */
 typedef struct { f32 x, y, z; } FxVec;
 typedef struct {
     u8 pad0[0x10];
@@ -14788,10 +14321,8 @@ typedef struct {
     FxVec unk94;
 } FxObj633C0;
 
-extern void fn_1_862D4(int, void *);
 extern void fn_1_8645C(int, void *);
 extern void *lbl_8006DC6C(void *);
-extern void lbl_8006E1B0(void *, void *);
 
 
 /* Establish the native shared literal pool in retail order. */
@@ -14957,18 +14488,11 @@ void fn_1_63518(Effect_63518 *effect) {
 }
 /* fzgx:end fn_1_63518 */
 
-/* fzgx:begin fn_1_635BC noprologue */
-#include "types.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
+/* fzgx:begin fn_1_635BC */
 #include "rel/main_rel/car.h"
 #include "dolphin/hw_regs.h"
 #include "psvec.h"
-#include "types.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
 #include "rel/main_rel/car_test.h"
-#include "rel/main_rel/effect.h"
 
 /* begin game/main_rel/car_types.h (deltawave784/fzgx, CC0) */
 #ifndef GAME_MAIN_REL_CAR_TYPES_H
@@ -15427,7 +14951,6 @@ extern s8 fn_1_84408(CarTestCar *);
 extern void fn_1_8E084(CarTestCar *, u32 *, s32);
 extern s8 fn_1_84124(Fn183D28Car *, s8, s8, u8 *);
 extern void lbl_8006DFE8(Fn183D28Vec3 *);
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 extern s8 fn_1_84644(Fn183D28Body *);
 
 #endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
@@ -15645,7 +15168,6 @@ typedef struct {
 } Fn1635BCEffect;
 
 extern u32 fn_1_864E8(int);
-extern void fn_1_862D4(int, Fn183D28Vec3 *);
 extern void fn_1_8645C(int, void *);
 extern void *lbl_8006DC6C(void *);
 extern void mathutil_mtxA_rotate_y(s16);
@@ -16725,9 +16247,7 @@ void fn_1_645D0(void) {
 }
 /* fzgx:end fn_1_645D0 */
 
-/* fzgx:begin fn_1_645D4 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_645D4 */
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
     volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
@@ -16926,11 +16446,8 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime25(void) {
 typedef struct { f32 x, y, z; } V3;
 struct A { u8 pad_0[0x18]; s16 unk_18; };
 extern u32 lbl_801A63C0;
-extern void fn_1_862D4(int, V3 *);
-extern void fn_1_8636C(int, void *);
 extern void lbl_8006D5A4(void *, void *, void *, f32);
 extern void lbl_8006DC6C(void *);
-extern void lbl_8006E1B0(void *, void *);
 
 #pragma opt_common_subs off
 #pragma opt_propagation off
@@ -17566,85 +17083,6 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
     d = 0.4;
     s = 0.30000001192092896f;
     s = -0.004000000189989805f;
-}
-#pragma section code_type ".text"
-
-typedef struct {
-    u8 pad_00[0x10];
-    s32 unk_10;
-} Fn_1_64F2C_Object;
-
-
-void fn_1_64F2C(Fn_1_64F2C_Object *obj) {
-    f32 random;
-    f32 scaled;
-    f32 offset;
-
-    if (obj->unk_10 == 0) {
-{
-    u32 value;
-        value = lbl_1_data_1D628 * 0x41c64e6d + 0x3039;
-        lbl_1_data_1D628 = value;
-        random = (f32)((value >> 16) & 0x7fff) / 32767.0f;
-}
-        scaled = 0.25f * random;
-        offset = 0.3f + scaled;
-        obj->unk_10 = (s32)(60.0f * offset);
-    }
-}
-/* fzgx:end fn_1_64F2C */
-
-/* fzgx:begin fn_1_64FB8 noprologue */
-#include "types.h"
-#include "dolphin/hw_regs.h"
-
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 60.0f;
-    s = 0.10000000149011612f;
-    s = 32767.0f;
-    s = 0.05000000074505806f;
-    d = 0.07;
-    s = 20000.0f;
-    s = 0.0f;
-    d = 4503599627370496.0;
-    s = 1.0f;
-    s = -0.029999999329447746f;
-    d = 15.0;
-    d = 4503601774854144.0;
-    d = 1.5;
-    d = 0.5;
-}
-static const u32 fzgx_pool_table2[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 0.5f;
-    s = 8.0f;
-    s = 255.0f;
-    s = 15.0f;
-    s = 0.20000000298023224f;
-    s = 0.07999999821186066f;
-    s = 0.25f;
-    s = 0.9800000190734863f;
-    s = 0.9900000095367432f;
-    s = 40.0f;
-    s = 20.0f;
-    s = 1.5f;
-    s = 0.44999998807907104f;
-    s = -2.0f;
-    s = 0.0833333358168602f;
-    s = 0.15000000596046448f;
-    s = 0.125f;
-    s = -0.4000000059604645f;
-    s = -0.30000001192092896f;
-    s = 2.0f;
-    s = 250.0f;
-    d = 0.6;
-    d = 0.4;
-    s = 0.30000001192092896f;
-    s = -0.004000000189989805f;
     s = 0.01666666753590107f;
     s = 65536.0f;
     s = 4096.0f;
@@ -17815,19 +17253,44 @@ __declspec(section ".fzgxpool") static void fzgx_pool_keep32(void) { const u32 *
 static const u32 fzgx_pool_table33[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
 __declspec(section ".fzgxpool") static void fzgx_pool_keep33(void) { const u32 *volatile cp; cp = fzgx_pool_table33; }  /* fzgx-allow: S2 pool primer sink */
 #pragma section code_type ".text"
+
+
+typedef struct {
+    u8 pad_00[0x10];
+    s32 unk_10;
+} Fn_1_64F2C_Object;
+
+
+void fn_1_64F2C(Fn_1_64F2C_Object *obj) {
+    f32 random;
+    f32 scaled;
+    f32 offset;
+
+    if (obj->unk_10 == 0) {
+{
+    u32 value;
+        value = lbl_1_data_1D628 * 0x41c64e6d + 0x3039;
+        lbl_1_data_1D628 = value;
+        random = (f32)((value >> 16) & 0x7fff) / 32767.0f;
+}
+        scaled = 0.25f * random;
+        offset = 0.3f + scaled;
+        obj->unk_10 = (s32)(60.0f * offset);
+    }
+}
+/* fzgx:end fn_1_64F2C */
+
+/* fzgx:begin fn_1_64FB8 */
+#include "dolphin/hw_regs.h"
+
 typedef struct { u32 x,y,z; } ClosureEffectWords;
 typedef struct { f32 x,y,z; } ClosureEffectVec;
 typedef struct { f32 values[12]; } ClosureEffectMatrix;
-extern void *fn_1_86254(int);
-extern void fn_1_862D4(int,void *);
-extern void fn_1_8636C(int,void *);
 extern s32 fn_1_6EC0(u8);
 extern s16 camera_get_entry_field_0xa4(u32);
 extern void lbl_8006DC6C(void *);
-extern void lbl_8006E1B0(void *,void *);
 extern void mathutil_mtxA_rotate_y(s16);
 extern void mathutil_mtxA_rotate_x(s16);
-extern u32 lbl_1_data_1D628;
 #pragma fp_contract off
 #pragma opt_propagation off
 void fn_1_64FB8(void *arg0) {
@@ -17876,8 +17339,8 @@ void fn_1_64FB8(void *arg0) {
     lbl_8006E1B0(&offset,p+0x3c);
     *(f32 *)(p+0x28)=*(f32 *)(p+0x28)+(0.00999999978f)*(*(f32 *)(p+0x2c)-*(f32 *)(p+0x28));
     *(f32 *)(p+0xb4)=0.5f*(f32)*(s32 *)(p+0x10);
-    random=lbl_1_data_1D628*1103515245u+12345u;
-    lbl_1_data_1D628=random;
+    random=(*(u32 *)&lbl_1_data_1D628)*1103515245u+12345u;
+    (*(u32 *)&lbl_1_data_1D628)=random;
     gain=0.800000012f+0.200000003f*((f32)((random>>16)&0x7fffu)/32767.0f);
     *(f32 *)(p+0x1c)=(255.0f*(0.5f*(1.0f+gain)))/255.0f;
     {
@@ -19250,17 +18713,11 @@ void fn_1_65E88(void) {
 }
 /* fzgx:end fn_1_65E88 */
 
-/* fzgx:begin fn_1_65E8C noprologue */
-#include "types.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
+/* fzgx:begin fn_1_65E8C */
 #include "rel/main_rel/car_test.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
 #include "rel/main_rel/car.h"
 #include "dolphin/hw_regs.h"
 #include "psvec.h"
-#include "types.h"
 
 /* begin game/main_rel/car_test_types.h (fork-deltawave784/windows-and-types@4b722344) */
 #ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
@@ -19276,7 +18733,6 @@ typedef struct {
     f32 z;
 } Fn183D28Vec3;
 
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 
 #endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
 #ifndef GAME_MAIN_REL_CAR_TYPES_H
@@ -19545,10 +19001,6 @@ typedef struct Effect65E8C {
 extern u32 lbl_801A66A0;
 extern f32 lbl_8006D188(s32);
 extern void lbl_8006DC6C(void *);
-extern void fn_1_862D4(int, Triple *);
-extern void fn_1_8636C(int, void *);
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
-extern void lbl_8006DB74(void *);
 
 void fn_1_65E8C(Effect65E8C *eff) {
     s32 moving;
@@ -20948,14 +20400,9 @@ void fn_1_6767C(void) {
 }
 /* fzgx:end fn_1_6767C */
 
-/* fzgx:begin fn_1_67680 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_67680 */
 #include "psvec.h"
-#include "rel/main_rel/effect.h"
 
-extern void *fn_1_86254(int);
-extern u32 fn_1_3FC8C(void);
-extern u32 fn_1_3FC58(void);
 extern void *memcpy(void *, const void *, u32);
 extern void *memset(void *, int, u32);
 

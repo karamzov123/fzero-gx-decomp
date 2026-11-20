@@ -2486,55 +2486,12 @@ void fn_1_158980(void) {
 }
 /* fzgx:end fn_1_158980 */
 
-/* fzgx:begin fn_1_158984 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/ranking.h"
-#include "types.h"
+/* fzgx:begin fn_1_158984 */
 #include "psvec.h"
-#include "rel/main_rel/ranking.h"
 
-extern u32 lbl_801A6410[];
-extern void fn_1_46B4(u32, Obj_1_bss_8EF20_At0 *, u8 *, u32);
-extern Obj_1_bss_8EF20_At0 *fn_1_4630(u32, u32, u8 *, u32);
-extern void fn_1_451C(void);
-extern void fn_1_A1340(void);
-extern s16 lbl_1_bss_962;
-extern s16 lbl_1_bss_96A;
-extern void fn_1_A1360(void);
-extern void fn_1_A1364(void);
-extern u8 lbl_1_bss_8F420[8];
-extern f32 lbl_1_rodata_D8C8[18];
-extern void fn_80008BEC(void *dst, int value, int size);
-extern void fn_1_1568C4(void *);
-extern void fn_80008BA8(void *, void *, int);
-extern void fn_1_1574E0(Obj_1_bss_8F428 *entry, u32 value);
-extern void fn_8006B7B4(void *);
-extern void fn_8006B870(void);
-extern void fn_1_157950(void);
-extern void fn_1_157FC8(void);
-extern u32 fn_1_157920(void);
-extern void fn_1_4060(void);
-extern void fn_1_9AD88(void);
-extern void fn_1_1594AC(int index, int flag);
 extern void OSReport(const char *format, ...);
-extern void fn_1_465D0(void *object, int value);
-extern void fn_1_9AD54(void);
 
-extern void fn_1_1568C4(void *entry);
 
-extern u32 lbl_801A6410[];
-extern void fn_1_46B4(u32, Obj_1_bss_8EF20_At0 *, u8 *, u32);
-extern Obj_1_bss_8EF20_At0 *fn_1_4630(u32, u32, u8 *, u32);
-extern void fn_1_1569E8(void *entry);
-extern void fn_1_12EF80(s16 value, s16 *out_0, s16 *out_1);
-extern s32 fn_1_156218(u32 arg, void *out0, void *out1, void *out2);
-extern u32 lbl_1_bss_8F3FC[9];
-extern s16 fn_1_159804(s16 value, RankingArchive *entry);
-extern void fn_1_4811C(s16 value);
-extern void fn_1_48004(s16 value, u32 arg);
-extern u32 lbl_1_rodata_DAF8[16];
-extern void fn_1_9A508(void);
 
 
 struct fn_1_158984_Arg0 {
@@ -2591,7 +2548,6 @@ extern u32 fn_1_5948(u32);
 extern u32 fn_1_627C(u32);
 extern void *fn_1_8627C(s32);
 extern void fn_1_681C(u32, u32 *);
-extern void fn_1_9AD54(void);
 extern void fn_1_9A7A8(u32 *);
 
 #pragma section code_type ".fzgxpool"

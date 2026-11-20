@@ -620,10 +620,8 @@ if (obj->slots[j] != -1) {
 }
 /* fzgx:end fn_1_E1E9C */
 
-/* fzgx:begin fn_1_E252C noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_E252C */
 #include "psvec.h"
-#include "rel/main_rel/phys.h"
 
 #pragma force_active on
 static const u32 fzgx_pool_table_0[10] = {0xbf800000, 0x3f7ffffe, 0x3f800001, 0xbf800001, 0xbf7ffffe, 0x0, 0x3e800000, 0x0, 0x0, 0x40a00000};
@@ -756,7 +754,6 @@ struct fn_1_E252C_lbl_801A63C0 {
 
 extern Sig_fn_1_E86FC_StringValueTable * fn_1_7B064(void);
 extern struct fn_1_E252C_lbl_1_bss_384B4 lbl_1_bss_384B4;
-extern const struct fn_1_E252C_lbl_1_rodata_6780 lbl_1_rodata_6780;
 extern struct fn_1_E252C_lbl_801A63C0 lbl_801A63C0;
 extern u32 fn_1_E86FC(Sig_fn_1_E86FC_StringValueTable *, const char *);
 extern void fn_1_E1E9C(Sig_fn_1_E1E9C_fn_1_E1E9C_PhysObj *);
@@ -1120,11 +1117,8 @@ void fn_1_E2AE8(void) {
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_1_E2AE8 */
 
-/* fzgx:begin fn_1_E2DCC noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_E2DCC */
 #include "psvec.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/phys.h"
 
 #pragma section code_type ".fzgxpool"
 static const u32 fzgx_pool_table1[6] = {0xBF800000, 0x3F7FFFFE, 0x3F800001, 0xBF800001, 0xBF7FFFFE, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
@@ -1264,8 +1258,6 @@ extern PhysObj *fn_1_E54A8(s16, s16);
 extern s16 fn_1_7B054(void);
 /* retail evaluates the float argument first; the definition passes it through unnamed */
 extern f32 fn_1_9E14C(f32, u32, u32);
-extern void fn_80008BEC(void *dst, s32 value, u32 size);
-extern void fn_80008BA8(void *dst, void *src, u32 size);
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DB30(void);
 extern void lbl_8006D7DC(Vec3 *);
@@ -1791,11 +1783,7 @@ void fn_1_E38D4(void) {
 }
 /* fzgx:end fn_1_E38D4 */
 
-/* fzgx:begin fn_1_E39F0 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/phys.h"
-
+/* fzgx:begin fn_1_E39F0 */
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
@@ -1960,11 +1948,8 @@ typedef struct Obj_1A8 {
 extern const LocalStruct lbl_1_rodata_26F8;
 extern s8 fn_1_A5DC4(void);
 extern void fn_1_4E92C(LocalStruct *, u32, u16, u16, u32);
-extern void fn_1_9C724(void);
 extern s16 fn_1_E5430(s16);
 extern Obj_1A8 *fn_1_E54A8(s16, s32);
-extern void fn_1_DD890(Obj_1A8 *);
-extern void fn_1_9CC40(void);
 extern void fn_80077E0C(void *);
 extern void fn_80076134(void);
 
@@ -3336,18 +3321,13 @@ void fn_1_E5AD8(void *base, f32 value) {
 }
 /* fzgx:end fn_1_E5AD8 */
 
-/* fzgx:begin fn_1_E5AE0 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/phys.h"
-
+/* fzgx:begin fn_1_E5AE0 */
 extern u32 lbl_1_rodata_6A98[50];
 extern void fn_1_57714(u8 arg);
 extern f32 lbl_1_rodata_67B4[19];
 extern const f64 lbl_1_rodata_6800;
 typedef struct { f32 x; f32 y; f32 z; } E5AE0Vec;
 extern void fn_1_5773C(E5AE0Vec *a, E5AE0Vec *b, u8 *c);
-extern void fn_80008BEC(void *dst, int value, u32 size);
 
 #pragma opt_common_subs off
 void fn_1_E5AE0(s16 a, s16 b, f32 w, f32 h) {
@@ -4141,13 +4121,7 @@ void fn_1_E733C(u8 *obj, s16 count) {
 }
 /* fzgx:end fn_1_E733C */
 
-/* fzgx:begin fn_1_E7524 noprologue */
-#include "types.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/phys.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/phys.h"
+/* fzgx:begin fn_1_E7524 */
 #include "psvec.h"
 
 #ifndef GAME_MAIN_REL_PHYS_TYPES_H
@@ -4155,7 +4129,6 @@ void fn_1_E733C(u8 *obj, s16 count) {
 
 #endif  // GAME_MAIN_REL_PHYS_TYPES_H
 
-extern f32 lbl_1_rodata_6780[236];
 
 extern void fn_1_4AE0C(const char* format, ...);
 extern void fn_1_496FC(f32 value1, f32 value2);
@@ -4304,60 +4277,16 @@ void fn_1_E7524(PhysDebugObj *obj) {
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_E7524 */
 
-/* fzgx:begin fn_1_E7764 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/phys.h"
-
-extern void lbl_8006DCA4(void *base, void *arg);
-extern void fn_1_A71AC(void);
-extern void fn_8006F828(void *base, f32 *out);
-extern void fn_1_E4A38(void *base, s32 x, s32 y, void *arg);
-extern void fn_80008BEC(void *dst, void *value, u32 size);
-extern void fn_80008BA8(void *dst, void *value, u32 size);
-extern f32 lbl_1_rodata_67A8;
-extern u32 lbl_1_rodata_6A8C[3];
-extern u32 fn_80083970(const u8* left, const char* right);
+/* fzgx:begin fn_1_E7764 */
 extern u32 strlen(const char* string);
-extern void fn_1_8CED0(void* object, s32 value0, s32 value1);
-extern void fn_1_8D0A4(void* object);
-extern void fn_800734A8(u32, u32, u32, u32);
-extern void fn_80072EDC(u32, s32);
-extern void fn_800745A4(u32, s32, s32, u32, s32, s32);
-extern void fn_80073778(void *, u32);
-extern void fn_80015C1C(void *, f32, f32, f32, f32, f32, f32, f32, f32, f32);
-extern void lbl_8006DFFC(void *, void *, void *);
 extern void GXLoadTexMtxImm(void *, u32, s32);
-extern f32 lbl_1_rodata_6780[236];
-extern f32 fn_1_A6FE8(void);
-extern void fn_1_E8938(void);
-extern void fn_1_8D1C8(void *object, void (*callback)(void), int arg);
-extern u32 fn_1_3F8C0(void);
-extern u32 fn_80008E84(u32 value);
-extern u32 lbl_1_bss_7C94C[67];
-extern void fn_1_EE530(void);
-extern u8 lbl_1_bss_7ECB4[72];
-extern void fn_1_BC29C(u8 *);
-extern void fn_1_B9C0C(void);
-extern void fn_1_1596DC(s32);
-extern void fn_1_484CC(s32);
 
-extern void fn_80008BEC(void *dst, void *value, u32 size);
-extern void fn_80008BA8(void *dst, void *value, u32 size);
 
-extern f32 lbl_1_rodata_67A8;
-extern u32 lbl_1_rodata_6A8C[3];
-extern void fn_80008BA8(void *dst, void *value, u32 size);
-extern void fn_1_12EF80(s16 arg, s16 *out_group, s16 *out_entry);
-extern void fn_1_9C724(void);
-extern void fn_1_DD890(void *);
-extern void fn_1_9CC40(void);
 
 extern u8 lbl_1_data_3DDA8[];
 extern void fn_1_E1C10(void);
 extern void fn_1_E1A00(void *, u8 *);
 extern void fn_1_E252C(s16, s16, void *);
-extern void fn_80008BA8(void *dst, void *value, u32 size);
 
 /* local view of one 0x1A8-byte entry of the six tables at lbl_1_bss_7AE88 */
 typedef struct {

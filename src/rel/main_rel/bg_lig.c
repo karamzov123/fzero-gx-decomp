@@ -476,10 +476,7 @@ void fn_1_D6748(Vec3_D6748 *a, Vec3_D6748 *b, s16 kind) {
 }
 /* fzgx:end fn_1_D6748 */
 
-/* fzgx:begin fn_1_D6C10 noprologue */
-#include "types.h"
-#include "rel/main_rel/bg_lig.h"
-
+/* fzgx:begin fn_1_D6C10 */
 #pragma section code_type ".fzgxpool"
 static const unsigned long fzgx_pool_table1[3] = {0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
 __declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const unsigned long *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
@@ -597,7 +594,6 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime29(void) {
 extern f32 lbl_8006D0B4(f32);
 extern s16 fn_1_58E3C(void *);
 extern s32 fn_1_58C4(void);
-extern u32 lbl_801A66A0;
 extern u32 fn_1_584AC(void);
 extern s32 fn_1_66B8(void *, f32);
 
@@ -698,7 +694,7 @@ void fn_1_D6C10(Vec3 *arg0, f32 arg1) {
     f32 fzgx_pool_f32_0 = 0.0199999996f;
     f32 fzgx_pool_f32_1 = 10.0f;
     /* Spawn one particle near the closest viewer. */
-    v0 = lbl_801A66A0;
+    v0 = (*(u32 *)&lbl_801A66A0);
     v1 = (f32)(arg1);
     v8 = arg1;
     if (v0 % 20 == 0) {

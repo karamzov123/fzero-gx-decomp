@@ -1825,11 +1825,7 @@ void fn_1_30054(void)
 }
 /* fzgx:end fn_1_30054 */
 
-/* fzgx:begin fn_1_304A8 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/game.h"
-
+/* fzgx:begin fn_1_304A8 */
 typedef u32 (*GameStepFn)(void);
 typedef struct {
     u32 unk_0;
@@ -1955,7 +1951,6 @@ static void fzgx_bss_layout(void) {
 
 
 extern void fn_1_3F2A0(void);
-extern void fn_1_4A00(s32, s32, u32);
 extern void fn_1_469BC(void);
 extern void fn_1_8DBA4(s32);
 
@@ -2015,11 +2010,7 @@ void fn_1_304A8(void)
 }
 /* fzgx:end fn_1_304A8 */
 
-/* fzgx:begin fn_1_30824 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/game.h"
-
+/* fzgx:begin fn_1_30824 */
 typedef u32 (*GameStepFn)(void);
 typedef struct {
     u32 unk_0;
@@ -2257,22 +2248,17 @@ static void fzgx_bss_layout(void) {
 
 
 extern u32 fn_1_434C(void);
-extern u32 fn_1_435C(u32 value);
 extern void fn_1_426C(u32);
 extern s32 fn_1_F2F58(void);
 extern void fn_1_F37F4(void);
 extern void fn_1_F7308(void);
 extern void fn_1_F2E50(s32);
-extern void fn_1_5370(s32, s32);
 extern void fn_1_E3778(void);
 extern void fn_1_EA314(s32);
 extern void fn_1_D1F88(void);
 extern void fn_1_3F2A0(void);
-extern void fn_1_4A00(s32, s32, u32);
 extern void fn_1_469BC(void);
 extern void fn_1_8DBA4(s32);
-extern void fn_1_4060(void);
-extern void fn_1_A1588(u32, s32);
 
 void fn_1_30824(void)
 {
@@ -2403,11 +2389,7 @@ void fn_1_30824(void)
 }
 /* fzgx:end fn_1_30824 */
 
-/* fzgx:begin fn_1_30D84 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/game.h"
-
+/* fzgx:begin fn_1_30D84 */
 typedef u32 (*GameStepFn)(void);
 typedef struct {
     u32 unk_0;
@@ -2645,22 +2627,17 @@ static void fzgx_bss_layout(void) {
 
 
 extern u32 fn_1_434C(void);
-extern u32 fn_1_435C(u32 value);
 extern void fn_1_426C(u32);
 extern s32 fn_1_F2F58(void);
 extern void fn_1_F37F4(void);
 extern void fn_1_F7308(void);
 extern void fn_1_F2E50(s32);
-extern void fn_1_5370(s32, s32);
 extern void fn_1_E3778(void);
 extern void fn_1_EA314(s32);
 extern void fn_1_D1F88(void);
 extern void fn_1_3F2A0(void);
-extern void fn_1_4A00(s32, s32, u32);
 extern void fn_1_469BC(void);
 extern void fn_1_8DBA4(s32);
-extern void fn_1_4060(void);
-extern void fn_1_A1588(u32, s32);
 
 void fn_1_30D84(void)
 {
@@ -2784,11 +2761,7 @@ void fn_1_30D84(void)
 }
 /* fzgx:end fn_1_30D84 */
 
-/* fzgx:begin fn_1_3129C noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/game.h"
-
+/* fzgx:begin fn_1_3129C */
 typedef u32 (*GameStepFn)(void);
 typedef struct {
     u32 unk_0;
@@ -3026,22 +2999,17 @@ static void fzgx_bss_layout(void) {
 
 
 extern u32 fn_1_434C(void);
-extern u32 fn_1_435C(u32 value);
 extern void fn_1_426C(u32);
 extern s32 fn_1_F2F58(void);
 extern void fn_1_F37F4(void);
 extern void fn_1_F7308(void);
 extern void fn_1_F2E50(s32);
-extern void fn_1_5370(s32, s32);
 extern void fn_1_E3778(void);
 extern void fn_1_EA314(s32);
 extern void fn_1_D1F88(void);
 extern void fn_1_3F2A0(void);
-extern void fn_1_4A00(s32, s32, u32);
 extern void fn_1_469BC(void);
 extern void fn_1_8DBA4(s32);
-extern void fn_1_4060(void);
-extern void fn_1_A1588(u32, s32);
 
 static inline s32 fzgx_mode(void)
 {
@@ -10331,11 +10299,7 @@ void fn_1_36ADC(void) {
 }
 /* fzgx:end fn_1_36ADC */
 
-/* fzgx:begin fn_1_36B10 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/game.h"
-
+/* fzgx:begin fn_1_36B10 */
 typedef u32 (*GameStepFn)(void);
 typedef s32 (*GameModeFn)(void);
 typedef struct {
@@ -10839,7 +10803,6 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime18(void) {
 
 extern s16 lbl_1_bss_968;
 extern void fn_1_3F2A0(void);
-extern void fn_1_4A00(s32, s32, u32);
 extern void fn_1_469BC(void);
 extern void fn_1_8DBA4(s32);
 extern s32 fn_1_402D4(void);
@@ -10852,7 +10815,6 @@ extern void fn_1_F2EDC(void);
 extern void fn_1_F2EFC(void);
 extern void fn_1_33A20(void);
 extern void fn_1_A0C68(void);
-extern void fn_1_A2DC4(u32);
 extern void fn_1_1280(s32);
 
 static inline s32 fn_1_36B10_ready(void)
@@ -16559,11 +16521,7 @@ void fn_1_395CC(void)
 }
 /* fzgx:end fn_1_395CC */
 
-/* fzgx:begin fn_1_39C60 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/game.h"
-
+/* fzgx:begin fn_1_39C60 */
 typedef u32 (*GameStepFn)(void);
 typedef struct {
     u32 unk_0;
@@ -16794,7 +16752,6 @@ static void fzgx_bss_layout(void) {
 extern s32 fn_1_EB200(void);
 extern void fn_1_A2210(u8);
 extern void fn_1_3F2A0(void);
-extern void fn_1_4A00(s32, s32, u32);
 extern void fn_1_469BC(void);
 extern void fn_1_8DBA4(s32);
 
@@ -16873,9 +16830,7 @@ void fn_1_39C60(void)
 }
 /* fzgx:end fn_1_39C60 */
 
-/* fzgx:begin fn_1_3A044 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_3A044 */
 typedef struct GameEntryC {
     u8 data[0xA0];
 } GameEntryC;
@@ -17182,20 +17137,16 @@ __declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
 }
 #pragma section code_type ".text"
 
-extern u32 fn_1_435C(u32);
 extern void fn_1_426C(u32);
 extern void fn_1_105724(void);
 extern void fn_1_F2EDC(void);
-extern void fn_1_A8F78(void);
 extern s32 fn_1_1547FC(void *);
 extern void fn_1_C47B4(void);
 extern void fn_1_C6F80(u8);
 extern void fn_1_79100(void);
-extern void fn_1_412A0(u32);
 extern void fn_1_E35F0(void);
 extern u32 fn_80008E84(u32);
 typedef struct { s32 unk_0; } Obj_1_bss_381F8;
-extern Obj_1_bss_381F8 lbl_1_bss_381F8;
 
 static inline void game_copy_names(void) {
     s32 i;
@@ -17209,9 +17160,9 @@ static inline void game_copy_names(void) {
 void fn_1_3A044(void) {
     u32 v;
 
-    if (lbl_1_bss_381F8.unk_0 != -1) {
+    if (((Obj_1_bss_381F8 *)&lbl_1_bss_381F8)->unk_0 != -1) {
         fn_1_435C(fzgx_obj_lbl_1_bss_25CA4);
-        fn_1_426C(lbl_1_bss_381F8.unk_0);
+        fn_1_426C(((Obj_1_bss_381F8 *)&lbl_1_bss_381F8)->unk_0);
     }
     fn_1_A8F78();
     if (lbl_1_bss_25CD0__fzgx_offset_19C != 0) {
@@ -18605,11 +18556,7 @@ void fn_1_3AEC4(void) {
 }
 /* fzgx:end fn_1_3AEC4 */
 
-/* fzgx:begin fn_1_3B11C noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/game.h"
-
+/* fzgx:begin fn_1_3B11C */
 typedef u32 (*GameStepFn)(void);
 typedef struct {
     u32 unk_0;
@@ -18875,10 +18822,8 @@ static void fzgx_bss_layout(void) {
 
 extern const u32 lbl_1_rodata_E54;
 extern const u16 lbl_1_rodata_DBDC[];
-extern u32 fn_1_435C(u32 value);
 extern void fn_1_426C(u32);
 extern void fn_1_8D988(void);
-extern void fn_1_5370(s32, s32);
 extern void fn_1_A0C68(void);
 extern void fn_1_14A17C(void);
 extern void fn_1_156754(s32);
@@ -18887,7 +18832,6 @@ extern s32 fn_1_F2F58(void);
 extern void fn_1_F37F4(void);
 extern void fn_1_F2EDC(void);
 extern void fn_1_F7308(void);
-extern void fn_1_D0790(void);
 extern void fn_1_1280(s32);
 extern void fn_1_49F0(void *);
 extern void fn_1_4068C(void *);
@@ -18899,10 +18843,7 @@ extern s32 fn_1_8623C(void);
 extern void *fn_1_86900(s8);
 extern void *fn_1_868C0(s32);
 extern s16 fn_1_12C930(s16);
-extern void fn_1_4811C(s32);
-extern void fn_1_48004(s32, s32);
 extern void fn_1_3F2A0(void);
-extern void fn_1_4A00(s32, s32, u32);
 extern void fn_1_469BC(void);
 extern void fn_1_8DBA4(s32);
 
@@ -20561,9 +20502,7 @@ void fn_1_3C880(void)
 }
 /* fzgx:end fn_1_3C880 */
 
-/* fzgx:begin fn_1_3CDB0 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_3CDB0 */
 typedef struct GameState30 {
     u32 flags;
     u8 pad_4;
@@ -20573,9 +20512,9 @@ typedef struct GameState30 {
     u8 pad_9[0x14B3];
 } GameState30;
 
-typedef struct Obj_1_bss_7EFD8 {
+typedef struct Obj_1_bss_7EFD8_fn_1_3CDB0 {
     u32 unk_0;
-} Obj_1_bss_7EFD8;
+} Obj_1_bss_7EFD8_fn_1_3CDB0;
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u32 fzgx_obj_lbl_1_bss_3C00;
@@ -20821,10 +20760,7 @@ __declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
 }
 #pragma section code_type ".text"
 
-extern Obj_1_bss_7EFD8 lbl_1_bss_7EFD8;
 extern void fn_1_1280(u32);
-extern void fn_1_D0790(void);
-extern void *fn_1_435C(u32);
 extern s32 fn_1_F2F58(void);
 extern void fn_1_F37F4(void);
 extern void fn_1_426C(u32);
@@ -20838,12 +20774,12 @@ void fn_1_3CDB0(void) {
     fzgx_obj_lbl_1_bss_3C30.flags |= 0x2000;
     fn_1_435C(fzgx_obj_lbl_1_bss_25B88[0]);
     if (fzgx_obj_lbl_1_bss_3C30.flags & 0x800000) {
-        if (lbl_1_bss_7EFD8.unk_0 != 0) {
+        if (((Obj_1_bss_7EFD8_fn_1_3CDB0 *)&lbl_1_bss_7EFD8)->unk_0 != 0) {
             if (fn_1_F2F58() != 0) {
                 fn_1_F37F4();
             }
-            fn_1_426C(lbl_1_bss_7EFD8.unk_0);
-            lbl_1_bss_7EFD8.unk_0 = 0;
+            fn_1_426C(((Obj_1_bss_7EFD8_fn_1_3CDB0 *)&lbl_1_bss_7EFD8)->unk_0);
+            ((Obj_1_bss_7EFD8_fn_1_3CDB0 *)&lbl_1_bss_7EFD8)->unk_0 = 0;
         }
         fn_1_F2EDC();
     }
@@ -22505,10 +22441,7 @@ void fn_1_3DDAC(void) {
 }
 /* fzgx:end fn_1_3DDAC */
 
-/* fzgx:begin fn_1_3DE80 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/game.h"
+/* fzgx:begin fn_1_3DE80 */
 #include "font.h"
 
 typedef struct {
@@ -22953,7 +22886,6 @@ extern u16 fn_1_48690(u32);
 extern u16 fn_1_486C4(u32);
 extern s32 fn_1_402D4(void);
 extern void fn_1_3F2A0(void);
-extern void fn_1_4A00(s32, s32, u32);
 extern void fn_1_469BC(void);
 extern void fn_1_8DBA4(s32);
 extern u32 lbl_1_rodata_26F8;
@@ -23467,11 +23399,7 @@ void fn_1_3E670(void) {
 }
 /* fzgx:end fn_1_3E670 */
 
-/* fzgx:begin fn_1_3E6D8 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/game.h"
-
+/* fzgx:begin fn_1_3E6D8 */
 typedef u32 (*GameStepFn)(void);
 typedef struct {
     u32 unk_0;
@@ -23597,7 +23525,6 @@ static void fzgx_bss_layout(void) {
 
 
 extern void fn_1_3F2A0(void);
-extern void fn_1_4A00(s32, s32, u32);
 extern void fn_1_469BC(void);
 extern void fn_1_8DBA4(s32);
 
@@ -24271,9 +24198,7 @@ void fn_1_3EA90(u8 count, u8 *name_src, u8 *code_src, u32 *value_src) {
 }
 /* fzgx:end fn_1_3EA90 */
 
-/* fzgx:begin fn_1_3EB78 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_3EB78 */
 typedef struct GameState30 {
     u32 flags;
     u8 pad_4[4];
@@ -24538,7 +24463,6 @@ __declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
 }
 #pragma section code_type ".text"
 
-extern u8 lbl_1_bss_8B3A0[];
 
 void fn_1_3EB78(u8 count, u8 *names, u8 *codes, u32 *values) {
     s32 i;
@@ -24561,7 +24485,7 @@ void fn_1_3EB78(u8 count, u8 *names, u8 *codes, u32 *values) {
             fzgx_obj_lbl_1_bss_2627C[n] = values[i];
         }
         fzgx_obj_lbl_1_bss_25E98[n] = i;
-        fzgx_obj_lbl_1_bss_25C48[n] = lbl_1_bss_8B3A0[0x9F + i];
+        fzgx_obj_lbl_1_bss_25C48[n] = ((u8 *)&lbl_1_bss_8B3A0)[0x9F + i];
         n++;
     }
     fzgx_obj_lbl_1_bss_3C00[0] = n;

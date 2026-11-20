@@ -750,14 +750,11 @@ void fn_1_15C4EC(fn_1_15C4EC_Arg *__restrict arg0) {
 }
 /* fzgx:end fn_1_15C4EC */
 
-/* fzgx:begin fn_1_15C5A4 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_15C5A4 */
 extern f32 lbl_1_rodata_DD58;
 extern f64 lbl_1_rodata_DD60;
 extern u32 __cvt_fp2unsigned(f32);
 extern u32 fn_80074188(u32, u32, u32, u32);
-extern u32 lbl_1_bss_8FD68;
 
 #pragma opt_common_subs off
 #pragma opt_dead_assignments off

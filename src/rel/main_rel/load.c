@@ -1436,8 +1436,7 @@ u32 fn_1_467F4(void) {
 }
 /* fzgx:end fn_1_467F4 */
 
-/* fzgx:begin fn_1_46838 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_46838 */
 #include "dolphin/dvd.h"
 
 typedef struct {

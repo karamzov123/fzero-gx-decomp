@@ -2451,9 +2451,7 @@ void fn_1_1067A8(void *arg0, f32 arg1, f32 arg2) {
 }
 /* fzgx:end fn_1_1067A8 */
 
-/* fzgx:begin fn_1_10688C noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_10688C */
 extern s32 fn_1_465D0(char *, s32);
 extern s32 fn_1_467F4(void);
 extern void fn_1_451E4(void);
@@ -2470,7 +2468,6 @@ extern void OSReport(const char *, ...);
 extern void OSPanic(const char *, int, const char *, ...);
 extern u32 GXGetTexBufferSize(u16, u16, u32, u8, u8);
 extern void GXInitTexObj(void *, void *, u16, u16, u32, u32, u32, u8);
-extern u32 lbl_801A6410;
 extern u32 lbl_1_bss_38460[21];
 
 /* local views of the two models this function reads from the common model list (lbl_1_bss_38460[2]): a texture
@@ -2584,17 +2581,17 @@ void fn_1_10688C(void) {
         OSReport("already allocated jpeg_decode_ram!\n");
     } else {
         lbl_1_bss_85280__fzgx_offset_4 =
-            fn_1_45D0(lbl_801A6410, lbl_1_bss_854B8__fzgx_offset_6C8, fzgx_obj_lbl_1_data_3F34C, 0x847);
+            fn_1_45D0((*(u32 *)&lbl_801A6410), lbl_1_bss_854B8__fzgx_offset_6C8, fzgx_obj_lbl_1_data_3F34C, 0x847);
     }
     size = GXGetTexBufferSize(0x80, 0x80, 6, 0, 0);
     lbl_1_bss_854B8__fzgx_offset_6CC = size;
     if (fzgx_obj_lbl_1_data_3F284[0] != 0 || fzgx_obj_lbl_1_data_3F284[1] != 0 || fzgx_obj_lbl_1_bss_85280 != 0) {
         OSReport("already allocated jpeg_buff!\n");
     } else {
-        fzgx_obj_lbl_1_data_3F284[0] = fn_1_4630(lbl_801A6410, size, fzgx_obj_lbl_1_data_3F34C, 0x84F);
+        fzgx_obj_lbl_1_data_3F284[0] = fn_1_4630((*(u32 *)&lbl_801A6410), size, fzgx_obj_lbl_1_data_3F34C, 0x84F);
         fzgx_obj_lbl_1_data_3F284[1] =
-            fn_1_4630(lbl_801A6410, lbl_1_bss_854B8__fzgx_offset_6CC, fzgx_obj_lbl_1_data_3F34C, 0x850);
-        fzgx_obj_lbl_1_bss_85280 = fn_1_4630(lbl_801A6410, 0x4000, fzgx_obj_lbl_1_data_3F34C, 0x851);
+            fn_1_4630((*(u32 *)&lbl_801A6410), lbl_1_bss_854B8__fzgx_offset_6CC, fzgx_obj_lbl_1_data_3F34C, 0x850);
+        fzgx_obj_lbl_1_bss_85280 = fn_1_4630((*(u32 *)&lbl_801A6410), 0x4000, fzgx_obj_lbl_1_data_3F34C, 0x851);
     }
     lbl_1_bss_854B8__fzgx_offset_6D0 = 0;
     lbl_1_bss_854B8__fzgx_offset_6D1 = 0;
@@ -3295,43 +3292,9 @@ void fn_1_107C4C(void *arg) {
 }
 /* fzgx:end fn_1_107C4C */
 
-/* fzgx:begin fn_1_107C74 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_common.h"
-#include "types.h"
-#include "rel/main_rel/bg_common.h"
-
-extern f32 lbl_1_rodata_78E8[19];
-extern void fn_1_103B00();
-extern f32 lbl_1_rodata_7934[11];
-extern void fn_1_9E5B8(void *);
-extern void *fn_1_54448(s32 arg0);
-extern void fn_1_103FCC(void);
-extern void fn_1_10688C(void);
-extern void fn_1_106B68(void);
-extern s32 fn_1_5910(void);
-extern f32 lbl_1_rodata_7960[43];
-extern f32 lbl_1_rodata_7A40[2];
-extern s32 fn_1_58C4(void);
-extern void lbl_8006DCA4(void);
-extern void fn_1_57714(s32 arg0);
-extern void fn_1_57720(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
-extern void fn_1_57CD0(s32 arg0, void *arg1);
-extern u8 lbl_1_bss_86EC4;
-extern void fn_80008BEC(void *arg0, int arg1, int arg2);
-extern void fn_1_1088B8(void *arg);
-extern void lbl_8006DBAC(void *arg);
-extern void lbl_8006E1B0(void *arg0, void *arg1);
-extern void fn_1_107F74(void *arg0, int arg1);
-extern u32 lbl_801A6410;
-extern u32 lbl_1_data_3F284[2];
+/* fzgx:begin fn_1_107C74 */
 extern s32 OSIsThreadTerminated(void *arg0);
 extern void OSCancelThread(void *arg0);
-extern void fn_1_46B4(s32 arg0, s32 arg1, u8 *arg2, s32 arg3);
-extern void fn_1_469BC(void);
-extern void fn_1_466B0(s32 arg0, s32 arg1);
-extern u32 lbl_1_bss_85288[2];
 
 
 typedef struct {
@@ -3385,11 +3348,8 @@ typedef struct {
 
 extern u32 lbl_1_bss_88B4C;
 extern f64 __fabs(f64);
-extern void fn_1_1088B8(void *arg);
 extern void fn_1_107930(void *arg);
 extern void fn_1_107E90(void *arg);
-extern void lbl_8006DBAC(void *arg);
-extern void lbl_8006E1B0(void *arg0, void *arg1);
 extern void lbl_8006DD14(void *arg0, void *arg1);
 
 extern u8 fn_1_1091D4__fzgx_offset_0[];

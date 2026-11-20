@@ -697,10 +697,7 @@ void fn_1_A04C4(void) {
 }
 /* fzgx:end fn_1_A04C4 */
 
-/* fzgx:begin fn_1_A0680 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/sound.h"
+/* fzgx:begin fn_1_A0680 */
 #include "dolphin/hw_regs.h"
 #include "dolphin/os/OSTime.h"
 
@@ -722,9 +719,6 @@ typedef struct {
 extern void fn_1_A04C4(void);
 extern void fn_1_A0D7C(void);
 extern u32 fn_8004CD70(s32, void *, s32);
-extern void fn_80008BEC(void *, s32, s32);
-extern void fn_1_A2DF4(s32, void *, s32);
-extern void fn_1_A2E24(u32 arg0, u32 arg1, s32 arg2);
 
 /* fn_1_A2DF4 passes its second argument, a sound command code, on as a pointer */
 static inline void fn_1_A0680_send(s32 channel, u32 command, s32 value) {
@@ -4590,9 +4584,7 @@ void fn_1_A358C(s32 arg0) {
 }
 /* fzgx:end fn_1_A358C */
 
-/* fzgx:begin fn_1_A3654 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_A3654 */
 typedef struct SoundCarEntry {
     u8 unk_0;
     u8 unk_1;
@@ -4609,7 +4601,6 @@ extern f32 fn_1_8652C(void *);
 extern u32 fn_1_864E8(void *);
 extern u32 fn_1_864FC(void *);
 extern SoundCar *fn_1_86254(void *);
-extern s32 fn_80067898(u32);
 extern u32 lbl_801A66C8[];
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
@@ -5107,8 +5098,7 @@ u8 fn_1_A3D5C(void *obj, s8 *pan, s8 *span, u8 *vol) {
 }
 /* fzgx:end fn_1_A3D5C */
 
-/* fzgx:begin fn_1_A4268 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_A4268 */
 #include "dolphin/os/OSFastCast.h"
 
 /* The sound TU's .bss (retail lbl_1_bss_6EA98): retail addresses every
@@ -5160,9 +5150,6 @@ extern const f32 lbl_1_rodata_458C;
 extern const f32 lbl_1_rodata_4590;
 extern const f32 lbl_1_rodata_4564;
 extern s32 fn_1_58C4(void);
-extern s32 fn_80063094(s32, void *, s32);
-extern s32 fn_80067344(u32, u32, u32, u32);
-extern s32 fn_80067898(u32);
 extern u32 fn_1_864E8(void *);
 extern s32 fn_1_3F864(void);
 extern void *fn_1_86254(void *);
@@ -5824,13 +5811,9 @@ void fn_1_A5590(void) {
 }
 /* fzgx:end fn_1_A5590 */
 
-/* fzgx:begin fn_1_A5594 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_A5594 */
 #include "dolphin/os/OSFastCast.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
 #include "rel/main_rel/car_test.h"
-#include "rel/main_rel/sound.h"
 
 /* begin game/main_rel/car_test_types.h (deltawave784/fzgx@13b0aeca (CC0)) */
 #ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
@@ -5919,8 +5902,6 @@ extern u32 lbl_8006DCA4(void);
 extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 extern void fn_8006EF10(void *, s16 *, s16 *);
 extern u32 OSGetSoundMode(void);
-extern s32 fn_80067344(u32, u32, u32, u32);
-extern s32 fn_80067898(u32);
 
 extern const f32 lbl_1_rodata_48C4; /* 250000.0f */
 extern const f32 lbl_1_rodata_4470; /* 1.0f */

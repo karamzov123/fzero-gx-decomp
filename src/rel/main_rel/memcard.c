@@ -16095,7 +16095,7 @@ void fn_1_B5F20(void) {
 #pragma pool_data reset
 /* fzgx:end fn_1_B5F20 */
 
-/* fzgx:begin fn_1_B6B28 noprologue */
+/* fzgx:begin fn_1_B6B28 */
 typedef signed short s16;
 typedef signed long s32;
 
@@ -16139,7 +16139,6 @@ typedef struct {
 u8 r, g, b, a;
 } Color_1_B6B28;
 typedef char *StrRow_1_B6B28[6];
-extern s16 lbl_1_bss_960;
 extern s32 lbl_801A66B4;
 extern u8 fn_1_B7C00(void);
 extern void fn_1_4FD64(void);
@@ -18451,7 +18450,7 @@ u8 idx;
 s32 ready;
 struct { u32 value; } status0, status1;
 Color_1_B6B28 tint4, tint3, tint2, tint1;
-if (lbl_1_bss_960 == 9) {
+if ((*(s16 *)&lbl_1_bss_960) == 9) {
 if (fn_1_B7C00() != 0) {
 fn_1_4FD64();
 }
@@ -24872,8 +24871,7 @@ void fn_1_BC29C(void) {
 }
 /* fzgx:end fn_1_BC29C */
 
-/* fzgx:begin fn_1_BC310 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_BC310 */
 #include "font.h"
 #include "dolphin/os/OSTime.h"
 #include "dolphin/hw_regs.h"
@@ -25194,7 +25192,6 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime18(void) {
 }
 #pragma section code_type ".text"
 extern s32 lbl_801A66B4;
-extern s16 lbl_1_bss_960;
 extern const FontDrawPacket lbl_1_rodata_26F8;
 
 extern f32 lbl_8006D188(s16);
@@ -25743,7 +25740,7 @@ void fn_1_BC310(McMenu *menu) {
                 fn_1_49514(tint);
             }
             fn_1_4CF3C(MSG(83), 55.0f);
-            if (lbl_1_bss_960 == 2) {
+            if ((*(s16 *)&lbl_1_bss_960) == 2) {
                 ghost_a = file->info;
                 ghost_b = NULL;
             } else {
@@ -25895,7 +25892,7 @@ void fn_1_BC310(McMenu *menu) {
             s32 lit_panel;
 
             fn_1_496FC(380.0f, panel_y);
-            if (lbl_1_bss_960 == 2 && ((menu->flags & 0x20) || (menu->flags & 4))) {
+            if ((*(s16 *)&lbl_1_bss_960) == 2 && ((menu->flags & 0x20) || (menu->flags & 4))) {
                 lit_panel = 1;
             } else {
                 lit_panel = 0;
@@ -25918,7 +25915,7 @@ void fn_1_BC310(McMenu *menu) {
                                    menu->cursor < menu->count[menu->card] - 1) {
                             Color grey = {0x80, 0x80, 0x80, 0x00};
                             fn_1_49514(grey);
-                        } else if (lbl_1_bss_960 == 2 && (menu->flags & 0x20)) {
+                        } else if ((*(s16 *)&lbl_1_bss_960) == 2 && (menu->flags & 0x20)) {
                             Color grey = {0x80, 0x80, 0x80, 0x00};
                             fn_1_49514(grey);
                         } else {
@@ -26000,7 +25997,7 @@ void fn_1_BC310(McMenu *menu) {
         fn_1_495C8(0);
         fn_1_496FC(64.0f, 340.0f);
         if (fzgx_obj_lbl_1_bss_77380[menu->card][menu->cursor].type == 2) {
-            if (lbl_1_bss_960 == 2) {
+            if ((*(s16 *)&lbl_1_bss_960) == 2) {
                 ghost_a = fzgx_obj_lbl_1_bss_77380[menu->card][menu->cursor].info;
                 ghost_b = NULL;
             } else {
@@ -26012,7 +26009,7 @@ void fn_1_BC310(McMenu *menu) {
                 fn_1_BF700(ghost_a->unk_0, 0, 1, 0x166, 0x14A, 1.2f, 1.2f, 0.0600000024f);
                 fn_1_BF9C4(ghost_a->unk_1, 0xFD, 0x15E, 0.75f, 0.0600000024f);
                 fn_1_BFCF8(ghost_a->unk_2, ghost_a->unk_3, ghost_a->unk_4, 0x214, 0x176, 1.0f, 0.0600000024f);
-                if (lbl_1_bss_960 == 2) {
+                if ((*(s16 *)&lbl_1_bss_960) == 2) {
                     fn_1_C0374(0x214, 0x160, 0.6f, ghost_a->unk_0, ghost_a->unk_6, ghost_a->unk_7, ghost_a->unk_8, ghost_a->unk_9, 0.0600000024f);
                 } else if (ghost_a->unk_0 >= 0x29 && ghost_a->unk_6 != 0) {
                     fn_1_1358BC(0x214, 0x160, 10, ghost_a->unk_0, lbl_801A66B4, ghost_a->unk_7, ghost_a->unk_8,
@@ -26025,7 +26022,7 @@ void fn_1_BC310(McMenu *menu) {
                 fn_1_BF700(ghost_b->unk_0, 0, 1, 0x166, 0x14A, 1.2f, 1.2f, 0.0600000024f);
                 fn_1_BF9C4(ghost_b->unk_1, 0xFD, 0x15E, 0.75f, 0.0600000024f);
                 fn_1_BFCF8(ghost_b->unk_24, ghost_b->unk_25, ghost_b->unk_26, 0x214, 0x176, 1.0f, 0.0600000024f);
-                if (lbl_1_bss_960 == 2) {
+                if ((*(s16 *)&lbl_1_bss_960) == 2) {
                     fn_1_C0374(0x214, 0x160, 0.6f, ghost_b->unk_0, ghost_b->unk_4, ghost_b->unk_5, ghost_b->unk_6, ghost_b->unk_7, 0.0600000024f);
                 } else if (ghost_b->unk_0 >= 0x29 && ghost_b->unk_4 != 0) {
                     fn_1_1358BC(0x214, 0x160, 10, ghost_b->unk_0, lbl_801A66B4, ghost_b->unk_5, ghost_b->unk_6,
@@ -26050,7 +26047,7 @@ void fn_1_BC310(McMenu *menu) {
             key = &fzgx_obj_lbl_1_bss_7A39C[menu->card][menu->cursor];
             fn_1_BF9C4(key->unk_0, 0xFD, 0x15E, 0.75f, 0.0600000024f);
             fn_1_BF700(key->unk_3, i, 1, 0x16A, 0x14A, 1.2f, 1.2f, 0.0600000024f);
-            if (lbl_1_bss_960 == 2) {
+            if ((*(s16 *)&lbl_1_bss_960) == 2) {
                 fn_1_C0374(0x214, 0x172, 0.6f, key->unk_3, key->unk_4, key->unk_5, key->unk_6, key->unk_7, 0.0600000024f);
             } else if (key->unk_3 >= 0x29 && key->unk_4 != 0) {
                 fn_1_1358BC(0x214, 0x172, 10, key->unk_3, lbl_801A66B4, key->unk_5, key->unk_6, key->unk_7,

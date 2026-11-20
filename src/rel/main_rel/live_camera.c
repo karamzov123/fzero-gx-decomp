@@ -2285,9 +2285,7 @@ void fn_1_FB50(LiveCamera *camera) {
 }
 /* fzgx:end fn_1_FB50 */
 
-/* fzgx:begin fn_1_FCB0 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_FCB0 */
 typedef struct {
     u8 pad_0[0x6];
     s16 unk_6;
@@ -2303,14 +2301,11 @@ typedef struct {
 
 extern const f64 lbl_1_rodata_558[5];
 extern s32 camera_get_state(void);
-extern const f64 lbl_1_rodata_548[2];
-extern u32 lbl_801A63C0;
 extern u32 fn_1_107B8(Sig_fn_1_101D0_Fn_1_101D0_State *);
 extern u32 fn_1_864E8(int);
 extern u8 fn_1_86624(void);
 extern void camera_set_result(s16);
 extern void camera_set_selected_value(u8);
-extern void fn_1_5370(s8, u32);
 
 void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
     s16 *fzgx_value__;
@@ -2342,9 +2337,9 @@ void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
     } else {
         if (v0 == 0) {
             if ((*(u32 *)((u8 *)arg0 + 12) & 0x80000) == 0) {
-                v3 = lbl_801A63C0 * 0x676A4B6B + 13259;
+                v3 = (*(u32 *)&lbl_801A63C0) * 0x676A4B6B + 13259;
                 fzgx_value_ = v3;
-                lbl_801A63C0 = fzgx_value_;
+                (*(u32 *)&lbl_801A63C0) = fzgx_value_;
                 arg0->unk_12 = (s16)((s32)((v3 >> 16) & 0x7FFF) % 4);
                 v9 = *(s16 *)((u8 *)arg0 + 2);
                 if ((s32)arg0->unk_12 == v9) {
@@ -2352,8 +2347,8 @@ void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
                     *fzgx_value__ = (s16)((v9 + 1) % 4);
                 }
             } else {
-                v3 = ((0x676A4B6B) * (lbl_801A63C0)) + 13259;
-                lbl_801A63C0 = v3;
+                v3 = ((0x676A4B6B) * ((*(u32 *)&lbl_801A63C0))) + 13259;
+                (*(u32 *)&lbl_801A63C0) = v3;
                 arg0->unk_12 = (s16)((s32)((v3 >> 16) & 0x7FFF) % 6);
                 if ((s32)arg0->unk_12 >= 5) {
                     arg0->unk_12 = 4;
@@ -2371,8 +2366,8 @@ void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
                 }
             }
         } else {
-            v3 = lbl_801A63C0 * 0x676A4B6B + 13259;
-            lbl_801A63C0 = v3;
+            v3 = (*(u32 *)&lbl_801A63C0) * 0x676A4B6B + 13259;
+            (*(u32 *)&lbl_801A63C0) = v3;
             arg0->unk_12 = (s16)((s32)(((0x7FFF) & ((v3 >> 16)))) % 6);
             if ((s32)arg0->unk_12 == *(s16 *)((u8 *)arg0 + 2)) {
                 arg0->unk_12 = (s16)((*(s16 *)((u8 *)arg0 + 2) + 1) % 6);
@@ -2402,8 +2397,8 @@ void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
         arg0->unk_64 = 210;
     }
     if ((s8)camera_get_state() == 6) {
-        lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 13259;
-        v3 = (s32)((lbl_801A63C0 >> 16) & 0x7FFF);
+        (*(u32 *)&lbl_801A63C0) = (*(u32 *)&lbl_801A63C0) * 0x676A4B6B + 13259;
+        v3 = (s32)(((*(u32 *)&lbl_801A63C0) >> 16) & 0x7FFF);
         v_div = v3;
         arg0->unk_6 = (s16)(v_div % (s32)(s8)fn_1_86624());
         if ((fn_1_864E8(arg0->unk_6) & 0x1) == 0) {
@@ -3656,17 +3651,10 @@ void fn_1_10AF0(LiveCamState *cam) {
 }
 /* fzgx:end fn_1_10AF0 */
 
-/* fzgx:begin fn_1_1138C noprologue */
-#include "rel/main_rel/live_camera.h"
-
+/* fzgx:begin fn_1_1138C */
 typedef struct { f32 x, y, z; } V3;
-extern u32 lbl_801A63C0;
 extern const f64 lbl_1_rodata_540;
-extern void fn_1_8636C(int, void *);
 extern void fn_1_862D4(int, V3 *);
-extern u32 fn_1_862A8(u32, V3 *);
-extern void *lbl_8006DC6C(void *);
-extern void lbl_8006E1B0(void *, void *);
 
 typedef struct {
     u8 type;
@@ -3705,8 +3693,8 @@ void fn_1_1138C(Cam *c)
     extern const f32 lbl_1_rodata_604;
 
     if (c->type == 5 || c->type <= 1 || c->type == 2) {
-        state = lbl_801A63C0 * 0x676a4b6b + 0x33cb;
-        lbl_801A63C0 = state;
+        state = (*(u32 *)&lbl_801A63C0) * 0x676a4b6b + 0x33cb;
+        (*(u32 *)&lbl_801A63C0) = state;
         r = (state >> 16) & 0x7fff;
         c->unk_14 = r % 6;
         c->unk_4 = r % 6;
@@ -4166,10 +4154,7 @@ void fn_1_11ABC(LiveCamera *camera) {
 #pragma opt_propagation reset
 /* fzgx:end fn_1_11ABC */
 
-/* fzgx:begin fn_1_11C08 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/live_camera.h"
+/* fzgx:begin fn_1_11C08 */
 #include "dolphin/hw_regs.h"
 
 typedef struct {
@@ -4194,14 +4179,9 @@ typedef struct {
     fn_1_11C08_Vec unk_70;
 } fn_1_11C08_Camera;
 
-extern s32 fn_1_40BB4(void);
-extern void fn_1_8636C(s16, void *);
 extern void fn_1_862D4(s16, fn_1_11C08_Vec *);
-extern void fn_1_862A8(s16, fn_1_11C08_Vec *);
 extern u32 fn_1_20A5C(fn_1_11C08_Vec *, u32 *);
 extern void fn_1_15578(fn_1_11C08_Vec *, fn_1_11C08_Vec *, u32 *, fn_1_11C08_Vec *, s32, u32 *, s32, s32, s32, s32);
-extern void lbl_8006DC6C(void *);
-extern void lbl_8006E1B0(fn_1_11C08_Vec *, fn_1_11C08_Vec *);
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DB30(void);
 

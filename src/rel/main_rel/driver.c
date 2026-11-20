@@ -3762,151 +3762,48 @@ void fn_1_AA538(void) {
 }
 /* fzgx:end fn_1_AA538 */
 
-/* fzgx:begin fn_1_AA590 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/driver.h"
-
+/* fzgx:begin fn_1_AA590 */
 extern void *lbl_801A6410;
-extern void fn_80071718(void *value);
-extern void fn_800711A8(void *value);
-extern void fn_1_46B4(void *arg0, void *arg1, void *arg2, s32 arg3);
-extern void fn_1_A7E60(s32 arg0, s8 arg1, s32 arg2, s32 arg3, s32 arg4);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DBAC(void *arg0);
-extern void lbl_8006E0A4(void *arg0);
-extern void fn_8006F6A8(void *arg0);
-extern void lbl_8006DB30(void);
-extern void fn_1_A861C(void *arg0, void *arg1);
-extern void fn_1_A8834(void *arg0, void *arg1);
-extern void fn_1_A89B0(void *arg0, void *arg1, s32 arg2);
-extern void fn_1_3920(void);
-extern void fn_1_A8D4C(void);
-extern void fn_1_A8D64(void);
-extern void fn_8001A78C(void (*func)(void));
-extern void fn_8001A7D0(void (*func)(void));
-extern void fn_1_A9420(u8 value);
-extern void fn_1_A948C(int);
-extern void fn_1_A943C(int, int);
-extern void fn_1_A9464(u16 arg0, u16 arg1);
-extern void fn_1_A942C(u8 value);
-extern void fn_1_A96BC(void);
 extern void (*lbl_1_bss_7167C)(void);
-extern void fn_1_A5C98(void *);
-extern u8 lbl_1_bss_716C8[320];
 
 extern void (*lbl_1_bss_71680)(void);
 
 extern void (*lbl_1_bss_7167C)(void);
-extern void fn_1_A9420(u8 value);
-extern void fn_1_A9464(u16 arg0, u16 arg1);
-extern u32 fn_1_451C(void);
 extern void sprintf(void *buffer, char *format, ...);
-extern void fn_1_A5AA0(void *buffer, void *destination);
-extern u32 lbl_1_bss_71670;
 
 extern void (*lbl_1_bss_71684)(void);
 
 extern void (*lbl_1_bss_71688)(void);
 
 extern void (*lbl_1_bss_7168C)(void);
-extern void fn_1_A8528(void *arg0, void *arg1);
-extern u32 fn_1_A7024(f32, f32, f32, f32);
-extern u32 fn_80074918(u32, u32, u32);
 
 extern void *lbl_801A6410;
-extern void fn_80071718(void *value);
-extern void fn_800711A8(void *value);
-extern void fn_1_46B4(void *arg0, void *arg1, void *arg2, s32 arg3);
-extern void fn_1_A7E60(s32 arg0, s8 arg1, s32 arg2, s32 arg3, s32 arg4);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DBAC(void *arg0);
-extern void lbl_8006E0A4(void *arg0);
-extern void fn_8006F6A8(void *arg0);
-extern void lbl_8006DB30(void);
-extern void fn_1_A861C(void *arg0, void *arg1);
-extern void fn_1_A8834(void *arg0, void *arg1);
-extern void fn_1_A89B0(void *arg0, void *arg1, s32 arg2);
-extern void fn_1_3920(void);
-extern void fn_1_A8D4C(void);
-extern void fn_1_A8D64(void);
-extern void fn_8001A78C(void (*func)(void));
-extern void fn_8001A7D0(void (*func)(void));
-extern void fn_1_A9420(u8 value);
-extern void fn_1_A948C(int);
-extern void fn_1_A943C(int, int);
-extern void fn_1_A9464(u16 arg0, u16 arg1);
-extern void fn_1_A942C(u8 value);
-extern void fn_1_A96BC(void);
 extern void (*lbl_1_bss_7167C)(void);
-extern void fn_1_A5C98(void *);
-extern u8 lbl_1_bss_716C8[320];
 
 extern void (*lbl_1_bss_71680)(void);
 
 extern void (*lbl_1_bss_7167C)(void);
-extern void fn_1_A9420(u8 value);
-extern void fn_1_A9464(u16 arg0, u16 arg1);
-extern u32 fn_1_451C(void);
 extern void sprintf(void *buffer, char *format, ...);
-extern void fn_1_A5AA0(void *buffer, void *destination);
-extern u32 lbl_1_bss_71670;
 
 extern void (*lbl_1_bss_71684)(void);
 
 extern void (*lbl_1_bss_71688)(void);
 
 extern void (*lbl_1_bss_7168C)(void);
-extern void fn_1_A8528(void *arg0, void *arg1);
-extern u32 fn_1_A7024(f32, f32, f32, f32);
-extern u32 fn_80074918(u32, u32, u32);
 
 extern void *lbl_801A6410;
-extern void fn_80071718(void *value);
-extern void fn_800711A8(void *value);
-extern void fn_1_46B4(void *arg0, void *arg1, void *arg2, s32 arg3);
-extern void fn_1_A7E60(s32 arg0, s8 arg1, s32 arg2, s32 arg3, s32 arg4);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DBAC(void *arg0);
-extern void lbl_8006E0A4(void *arg0);
-extern void fn_8006F6A8(void *arg0);
-extern void lbl_8006DB30(void);
-extern void fn_1_A861C(void *arg0, void *arg1);
-extern void fn_1_A8834(void *arg0, void *arg1);
-extern void fn_1_A89B0(void *arg0, void *arg1, s32 arg2);
-extern void fn_1_3920(void);
-extern void fn_1_A8D4C(void);
-extern void fn_1_A8D64(void);
-extern void fn_8001A78C(void (*func)(void));
-extern void fn_8001A7D0(void (*func)(void));
-extern void fn_1_A9420(u8 value);
-extern void fn_1_A948C(int);
-extern void fn_1_A943C(int, int);
-extern void fn_1_A9464(u16 arg0, u16 arg1);
-extern void fn_1_A942C(u8 value);
-extern void fn_1_A96BC(void);
 extern void (*lbl_1_bss_7167C)(void);
-extern void fn_1_A5C98(void *);
-extern u8 lbl_1_bss_716C8[320];
 
 extern void (*lbl_1_bss_71680)(void);
 
 extern void (*lbl_1_bss_7167C)(void);
-extern void fn_1_A9420(u8 value);
-extern void fn_1_A9464(u16 arg0, u16 arg1);
-extern u32 fn_1_451C(void);
 extern void sprintf(void *buffer, char *format, ...);
-extern void fn_1_A5AA0(void *buffer, void *destination);
-extern u32 lbl_1_bss_71670;
 
 extern void (*lbl_1_bss_71684)(void);
 
 extern void (*lbl_1_bss_71688)(void);
 
 extern void (*lbl_1_bss_7168C)(void);
-extern void fn_1_A8528(void *arg0, void *arg1);
-extern u32 fn_1_A7024(f32, f32, f32, f32);
-extern u32 fn_80074918(u32, u32, u32);
 
 
 typedef struct Ent {
@@ -3929,8 +3826,6 @@ typedef struct G {
     s32 n5c00; s32 n5c04;
 } G;
 
-extern const f32 lbl_1_rodata_4CA8;
-extern u32 fn_1_C3378(void);
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u32 fzgx_obj_lbl_1_bss_716C0[2];
@@ -3998,8 +3893,8 @@ void fn_1_AA590(void)
         e->s8_ = -1;
         e->sa = -1;
         e->w30 = 0;
-        e->f34 = lbl_1_rodata_4CA8;
-        e->f38 = lbl_1_rodata_4CA8;
+        e->f34 = (*(const f32 *)&lbl_1_rodata_4CA8);
+        e->f38 = (*(const f32 *)&lbl_1_rodata_4CA8);
         e->b2a = 0;
         e->a1 = -3;
         e->b2b = -3;
@@ -6194,151 +6089,48 @@ void fn_1_AA6D8(u8 kind, u8 slot, DriverParam *param) {
 }
 /* fzgx:end fn_1_AA6D8 */
 
-/* fzgx:begin fn_1_AAB98 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/driver.h"
-
+/* fzgx:begin fn_1_AAB98 */
 extern void *lbl_801A6410;
-extern void fn_80071718(void *value);
-extern void fn_800711A8(void *value);
-extern void fn_1_46B4(void *arg0, void *arg1, void *arg2, s32 arg3);
-extern void fn_1_A7E60(s32 arg0, s8 arg1, s32 arg2, s32 arg3, s32 arg4);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DBAC(void *arg0);
-extern void lbl_8006E0A4(void *arg0);
-extern void fn_8006F6A8(void *arg0);
-extern void lbl_8006DB30(void);
-extern void fn_1_A861C(void *arg0, void *arg1);
-extern void fn_1_A8834(void *arg0, void *arg1);
-extern void fn_1_A89B0(void *arg0, void *arg1, s32 arg2);
-extern void fn_1_3920(void);
-extern void fn_1_A8D4C(void);
-extern void fn_1_A8D64(void);
-extern void fn_8001A78C(void (*func)(void));
-extern void fn_8001A7D0(void (*func)(void));
-extern void fn_1_A9420(u8 value);
-extern void fn_1_A948C(int);
-extern void fn_1_A943C(int, int);
-extern void fn_1_A9464(u16 arg0, u16 arg1);
-extern void fn_1_A942C(u8 value);
-extern void fn_1_A96BC(void);
 extern void (*lbl_1_bss_7167C)(void);
-extern void fn_1_A5C98(void *);
-extern u8 lbl_1_bss_716C8[320];
 
 extern void (*lbl_1_bss_71680)(void);
 
 extern void (*lbl_1_bss_7167C)(void);
-extern void fn_1_A9420(u8 value);
-extern void fn_1_A9464(u16 arg0, u16 arg1);
-extern u32 fn_1_451C(void);
 extern void sprintf(void *buffer, char *format, ...);
-extern void fn_1_A5AA0(void *buffer, void *destination);
-extern u32 lbl_1_bss_71670;
 
 extern void (*lbl_1_bss_71684)(void);
 
 extern void (*lbl_1_bss_71688)(void);
 
 extern void (*lbl_1_bss_7168C)(void);
-extern void fn_1_A8528(void *arg0, void *arg1);
-extern u32 fn_1_A7024(f32, f32, f32, f32);
-extern u32 fn_80074918(u32, u32, u32);
 
 extern void *lbl_801A6410;
-extern void fn_80071718(void *value);
-extern void fn_800711A8(void *value);
-extern void fn_1_46B4(void *arg0, void *arg1, void *arg2, s32 arg3);
-extern void fn_1_A7E60(s32 arg0, s8 arg1, s32 arg2, s32 arg3, s32 arg4);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DBAC(void *arg0);
-extern void lbl_8006E0A4(void *arg0);
-extern void fn_8006F6A8(void *arg0);
-extern void lbl_8006DB30(void);
-extern void fn_1_A861C(void *arg0, void *arg1);
-extern void fn_1_A8834(void *arg0, void *arg1);
-extern void fn_1_A89B0(void *arg0, void *arg1, s32 arg2);
-extern void fn_1_3920(void);
-extern void fn_1_A8D4C(void);
-extern void fn_1_A8D64(void);
-extern void fn_8001A78C(void (*func)(void));
-extern void fn_8001A7D0(void (*func)(void));
-extern void fn_1_A9420(u8 value);
-extern void fn_1_A948C(int);
-extern void fn_1_A943C(int, int);
-extern void fn_1_A9464(u16 arg0, u16 arg1);
-extern void fn_1_A942C(u8 value);
-extern void fn_1_A96BC(void);
 extern void (*lbl_1_bss_7167C)(void);
-extern void fn_1_A5C98(void *);
-extern u8 lbl_1_bss_716C8[320];
 
 extern void (*lbl_1_bss_71680)(void);
 
 extern void (*lbl_1_bss_7167C)(void);
-extern void fn_1_A9420(u8 value);
-extern void fn_1_A9464(u16 arg0, u16 arg1);
-extern u32 fn_1_451C(void);
 extern void sprintf(void *buffer, char *format, ...);
-extern void fn_1_A5AA0(void *buffer, void *destination);
-extern u32 lbl_1_bss_71670;
 
 extern void (*lbl_1_bss_71684)(void);
 
 extern void (*lbl_1_bss_71688)(void);
 
 extern void (*lbl_1_bss_7168C)(void);
-extern void fn_1_A8528(void *arg0, void *arg1);
-extern u32 fn_1_A7024(f32, f32, f32, f32);
-extern u32 fn_80074918(u32, u32, u32);
 
 extern void *lbl_801A6410;
-extern void fn_80071718(void *value);
-extern void fn_800711A8(void *value);
-extern void fn_1_46B4(void *arg0, void *arg1, void *arg2, s32 arg3);
-extern void fn_1_A7E60(s32 arg0, s8 arg1, s32 arg2, s32 arg3, s32 arg4);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DBAC(void *arg0);
-extern void lbl_8006E0A4(void *arg0);
-extern void fn_8006F6A8(void *arg0);
-extern void lbl_8006DB30(void);
-extern void fn_1_A861C(void *arg0, void *arg1);
-extern void fn_1_A8834(void *arg0, void *arg1);
-extern void fn_1_A89B0(void *arg0, void *arg1, s32 arg2);
-extern void fn_1_3920(void);
-extern void fn_1_A8D4C(void);
-extern void fn_1_A8D64(void);
-extern void fn_8001A78C(void (*func)(void));
-extern void fn_8001A7D0(void (*func)(void));
-extern void fn_1_A9420(u8 value);
-extern void fn_1_A948C(int);
-extern void fn_1_A943C(int, int);
-extern void fn_1_A9464(u16 arg0, u16 arg1);
-extern void fn_1_A942C(u8 value);
-extern void fn_1_A96BC(void);
 extern void (*lbl_1_bss_7167C)(void);
-extern void fn_1_A5C98(void *);
-extern u8 lbl_1_bss_716C8[320];
 
 extern void (*lbl_1_bss_71680)(void);
 
 extern void (*lbl_1_bss_7167C)(void);
-extern void fn_1_A9420(u8 value);
-extern void fn_1_A9464(u16 arg0, u16 arg1);
-extern u32 fn_1_451C(void);
 extern void sprintf(void *buffer, char *format, ...);
-extern void fn_1_A5AA0(void *buffer, void *destination);
-extern u32 lbl_1_bss_71670;
 
 extern void (*lbl_1_bss_71684)(void);
 
 extern void (*lbl_1_bss_71688)(void);
 
 extern void (*lbl_1_bss_7168C)(void);
-extern void fn_1_A8528(void *arg0, void *arg1);
-extern u32 fn_1_A7024(f32, f32, f32, f32);
-extern u32 fn_80074918(u32, u32, u32);
 
 
 typedef struct {
@@ -6402,8 +6194,6 @@ static void fzgx_bss_layout(void) {
 }
 #pragma section code_type ".text"
 
-extern const f32 lbl_1_rodata_4CA8;
-extern void fn_1_A2DC4(u32);
 
 
 static inline int fn_1_AAB98_confirm(void) {
@@ -6454,8 +6244,8 @@ static inline void fn_1_AAB98_clear(fn_1_AAB98_Entry *e) {
     e->unk_8 = -1;
     e->unk_A = -1;
     e->unk_30 = 0;
-    e->unk_34 = lbl_1_rodata_4CA8;
-    e->unk_38 = lbl_1_rodata_4CA8;
+    e->unk_34 = (*(const f32 *)&lbl_1_rodata_4CA8);
+    e->unk_38 = (*(const f32 *)&lbl_1_rodata_4CA8);
     e->unk_2A &= ~4;
     e->unk_3C = -1;
     e->unk_40 = -1;

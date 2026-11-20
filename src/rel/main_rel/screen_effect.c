@@ -2480,11 +2480,8 @@ void fn_1_77384(fn_1_77384_Work *work) {
 }
 /* fzgx:end fn_1_77384 */
 
-/* fzgx:begin fn_1_77B80 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_77B80 */
 extern u32 lbl_1_bss_6D1A8[278];
-extern const f32 lbl_1_rodata_31A0;
 
 extern u32 fn_80036104(void);
 extern u32 GXGetTexObjHeight(u32 arg0);
@@ -2764,9 +2761,7 @@ u8 fn_1_7879C(u32 arg0) {
 }
 /* fzgx:end fn_1_7879C */
 
-/* fzgx:begin fn_1_7880C noprologue */
-#include "dolphin/types.h"
-
+/* fzgx:begin fn_1_7880C */
 #pragma section code_type ".fzgxpool"
 static const u32 fzgx_pool_table1[8] = {0xFFFFFFFF, 0xFFFFFFFF, 0xFF910000, 0xFF760044, 0x6600FF32, 0x94009494, 0xCB0005CF, 0x00FF0000};  /* fzgx-allow: A1 retail pool bytes */
 __declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
@@ -2818,7 +2813,6 @@ typedef struct {
     f32 x, y, z;
 } Vec3;
 
-extern void fn_80072864(u32);
 extern void fn_80072558(void);
 extern u32 lbl_8006DCA4(void);
 extern void lbl_8006E0A4(void *);
@@ -2846,9 +2840,7 @@ void fn_1_7880C(void)
 }
 /* fzgx:end fn_1_7880C */
 
-/* fzgx:begin fn_1_788B0 noprologue */
-#include "dolphin/types.h"
-
+/* fzgx:begin fn_1_788B0 */
 #pragma section code_type ".fzgxpool"
 static const u32 fzgx_pool_table1[8] = {0xFFFFFFFF, 0xFFFFFFFF, 0xFF910000, 0xFF760044, 0x6600FF32, 0x94009494, 0xCB0005CF, 0x00FF0000};  /* fzgx-allow: A1 retail pool bytes */
 __declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
@@ -2903,7 +2895,6 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime6(void) {
 #pragma section code_type ".text"
 
 typedef struct { f32 x, y, z; } Vec3;
-extern void fn_80072864(u32);
 extern u32 lbl_8006DCA4(void);
 extern void lbl_8006E0A4(void *);
 extern void lbl_8006E13C(void *);
@@ -2960,15 +2951,10 @@ void fn_1_789AC(void) {
 }
 /* fzgx:end fn_1_789AC */
 
-/* fzgx:begin fn_1_789E8 noprologue */
-#include "types.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
+/* fzgx:begin fn_1_789E8 */
 #include "rel/main_rel/car.h"
 #include "dolphin/hw_regs.h"
 #include "psvec.h"
-#include "types.h"
-#include "rel/main_rel/screen_effect.h"
 
 /* begin game/main_rel/car_types.h (deltawave784/fzgx, CC0) */
 #ifndef GAME_MAIN_REL_CAR_TYPES_H
@@ -3338,7 +3324,6 @@ extern void lbl_8006E1F0(Vec3f *, f32, f32, f32);
 extern void lbl_8006E2C0(Vec3f *, f32, f32, f32);
 extern void fn_8006E250(Vec3f *, Vec3f *);
 extern void fn_1_B81C(Vec3f *, Vec3f *, s32);
-extern void lbl_8006DBAC(Vec3 *a);
 extern void fn_1_8E3A4(fn_1_8E3A4_Object *obj);
 extern f32 lbl_8006D534(Vec3 *a, Vec3 *b);
 extern Triple lbl_1_rodata_3BE8;
@@ -3687,10 +3672,8 @@ void fn_1_791B0(void) {
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_791B0 */
 
-/* fzgx:begin fn_1_7926C noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_7926C */
 #include "font.h"
-#include "rel/main_rel/screen_effect.h"
 
 #pragma section code_type ".fzgxpool"
 static const u32 fzgx_pool_table1[1] = {0x04050000};  /* fzgx-allow: A1 retail pool bytes */
@@ -3773,7 +3756,6 @@ typedef struct fn_1_7926C_Entry {
 } fn_1_7926C_Entry;
 
 extern FontDrawPacket lbl_1_rodata_26F8;
-extern void fn_1_4E638(s32);
 extern void fn_1_51914(const FontDrawPacket *);
 extern void fn_1_51990(FontDrawPacket *);
 extern void fn_1_D07E0(f32, f32, f32);
@@ -5723,8 +5705,7 @@ void fn_1_7B218(s32 enabled) {
 }
 /* fzgx:end fn_1_7B218 */
 
-/* fzgx:begin fn_1_7B2E8 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_7B2E8 */
 #include "psvec.h"
 
 typedef struct {

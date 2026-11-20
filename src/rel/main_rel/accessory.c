@@ -451,9 +451,7 @@ void fn_1_108A90(fn_1_108A90_Self *self, s32 idx, f32 radius, f32 cx, f32 cy, f3
 }
 /* fzgx:end fn_1_108A90 */
 
-/* fzgx:begin fn_1_108BD0 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_108BD0 */
 #pragma section code_type ".fzgxpool"
 static const u32 fzgx_pool_table1[4] = {0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
 __declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
@@ -533,9 +531,6 @@ typedef struct {
 
 extern const char *lbl_1_data_3FCAC[];
 extern u32 fn_80083970(const char *, const char *);
-extern void lbl_8006DBAC(void *);
-extern void lbl_8006E1B0(void *, void *);
-extern void lbl_8006D668(void *);
 extern f32 lbl_8006D0B4(f32);
 
 void fn_1_108BD0(Fn1108BD0_Object *object, s32 joint_index, f32 margin, f32 x, f32 y, f32 z) {
@@ -1057,9 +1052,7 @@ void fn_1_1091D4(u32 arg0) {
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_1091D4 */
 
-/* fzgx:begin fn_1_10976C noprologue */
-#include "types.h"
-#include "rel/main_rel/accessory.h"
+/* fzgx:begin fn_1_10976C */
 #include "mathutil_vec_cross_prod.h"
 #include "mathutil_mtxA_translate_col.h"
 
@@ -1117,16 +1110,8 @@ typedef struct {
     u32 pad14, count, linkCount, pad20; RopeNode *nodes; RopeLink *links;
 } RopeWork;
 
-extern void *fn_80077B14(void *);
-extern void lbl_8006DBAC(void *);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DBE4(void);
-extern void lbl_8006E1B0(RopeVec *, RopeVec *);
-extern void lbl_8006DC20(void);
 extern f32 lbl_8006D118(f32, f32 *);
 extern f32 lbl_8006D0B4(f32);
-extern void lbl_8006D668(RopeVec *);
-extern void fn_8006E250(RopeVec *, void *);
 
 #define ROPE_BASE(w) ((w)->owner->model->base + ((u32 *)&lbl_1_data_3FFBC)[(w)->index] * 0x18c)
 
@@ -4792,8 +4777,7 @@ void fn_1_10DDE4(Rope *rope) {
 }
 /* fzgx:end fn_1_10DDE4 */
 
-/* fzgx:begin fn_1_10E3B4 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_10E3B4 */
 #include "psvec.h"
 
 #pragma section code_type ".fzgxpool"
@@ -4967,18 +4951,10 @@ typedef struct { f32 x,y,z; } Sig_fn_1_1286F4_Vec3f;
 struct Sig_fn_80077B14_fn_80077B14_Arg0 {
  u8 pad_0[4]; u32 unk_4; u8 pad_8[0x18]; u32 unk_20;
 };
-extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
 extern void fn_1_1286F4(Sig_fn_1_1286F4_Vec3f *);
-extern void lbl_8006DBAC(void *);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DBE4(void);
-extern void lbl_8006DC20(void);
-extern void lbl_8006E1B0(Vec *, Vec *);
 extern f32 lbl_8006D118(f32, f32 *);
 extern f32 lbl_8006D0B4(f32);
 extern f32 lbl_8006D0E8(f32);
-extern void fn_8006E250(Vec *, Vec *);
-extern f32 lbl_8006D668(void *);
 extern f32 lbl_8006D188(s32);
 typedef struct Node {
  u8 flags, pad1, count, pad3;
@@ -4992,9 +4968,7 @@ typedef struct { u8 pad[0x8c]; s32 kind; u8 pad90[0x148 - 0x90]; u8 unk148[8]; M
 typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
  struct Sig_fn_80077B14_fn_80077B14_Arg0 *obj;
  u32 pad14, count, linkCount, pad20; Node *nodes; Link *links; } Work;
-extern u8 lbl_1_data_3F510[];
 extern u32 lbl_801A63C0;
-extern u32 lbl_801A66A0;
 extern const char *fn_1_950E8(void *);
 extern int fn_80083BCC(const char *, const char *);
 extern void fn_1_108128(void *, s32);
@@ -5257,13 +5231,13 @@ void fn_1_10E3B4(Work *arg0) {
     wn->vel.z += (f64)(0.2 * (wn->pos.z - wn->prev.z));
     wn->vel.x -= (f32)(w1 * fn_1_10E3B4_randf(0.0012f));
     wn->vel.y += (f32)(w1 * (fn_1_10E3B4_randf(0.0048f) - 0.001f));
-    wn->vel.z += (f32)(w1 * (0.0006f * lbl_8006D188((s32)(-32768.0f + (65536.0f * (f32)((wi + lbl_801A66A0) % 39)) / 39.0f))));
+    wn->vel.z += (f32)(w1 * (0.0006f * lbl_8006D188((s32)(-32768.0f + (65536.0f * (f32)((wi + (*(u32 *)&lbl_801A66A0)) % 39)) / 39.0f))));
     wn->vel.z += (f32)(w2 * (0.0012f * fn_1_10E3B4_rand()));
     wn->vel.y += (f32)(w2 * (0.002f * fn_1_10E3B4_rand()));
-    wn->vel.x += (f32)(w2 * (0.0006f * lbl_8006D188((s32)(-32768.0f + (65536.0f * (f32)((wi + lbl_801A66A0) % 29)) / 29.0f))));
+    wn->vel.x += (f32)(w2 * (0.0006f * lbl_8006D188((s32)(-32768.0f + (65536.0f * (f32)((wi + (*(u32 *)&lbl_801A66A0)) % 29)) / 29.0f))));
    }
   } else {
-   if (lbl_801A66A0 % 60 < 20) {
+   if ((*(u32 *)&lbl_801A66A0) % 60 < 20) {
     owner = arg0->owner;
     lbl_8006DBAC(owner->model->base + INDEX(arg0->index) * 396 + 136);
     lbl_8006DAEC();
@@ -5669,14 +5643,8 @@ void fn_1_110008(fn_1_10D2F0_Obj *obj) {
 }
 /* fzgx:end fn_1_110008 */
 
-/* fzgx:begin fn_1_110478 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_110478 */
 #include "psvec.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
 
 #pragma section code_type ".fzgxpool"
 static const u32 fzgx_pool_table1[6] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
@@ -5850,7 +5818,6 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime28(void) {
 #define REL_MAIN_REL_GLOBALS_H
 
 // lbl_1_data_3FFBC: .data size 0x574, referenced by 31 functions, shape {}
-extern u8 lbl_1_data_3FFBC[0x574];
 
 #endif  // REL_MAIN_REL_GLOBALS_H
 #ifndef REL_MAIN_REL_CAR_TEST_H
@@ -5866,7 +5833,6 @@ typedef struct {
     f32 z;
 } Fn183D28Vec3;
 
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 
 #endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
 
@@ -5901,16 +5867,10 @@ struct Sig_fn_80077B14_fn_80077B14_Arg0 {
  u8 pad_0[4]; u32 unk_4; u8 pad_8[0x18]; u32 unk_20;
 };
 typedef struct { f32 x,y,z; } Sig_fn_1_1286F4_Vec3f;
-extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
 extern void fn_1_1286F4(Sig_fn_1_1286F4_Vec3f *);
-extern void lbl_8006DBAC(Vec3 *);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DBE4(void);
-extern void lbl_8006DC20(void);
 extern f32 lbl_8006D118(f32, f32 *);
 extern f32 lbl_8006D0B4(f32);
 extern f32 lbl_8006D0E8(f32);
-extern void fn_8006E250(Vec3f *, Vec3f *);
 extern const u8 lbl_1_rodata_7AB8[];
 typedef struct Node {
  u8 flags, pad1, count, pad3;
@@ -5926,7 +5886,6 @@ typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
  u32 pad14,count,linkCount,pad20; Node *nodes; Link *links; } Work;
 #define F(o) (*(const f32 *)(pool+(o)))
 #define D(o) (*(const f64 *)(pool+(o)))
-extern u8 lbl_1_data_3F510[];
 extern u32 lbl_801A63C0;
 extern const char *fn_1_950E8(void *);
 extern int fn_80083BCC(const char *, const char *);
@@ -5961,8 +5920,6 @@ static inline void fn_1_110478_sphere(Work *arg0, u32 base, f32 cx, f32 cy, f32 
 #define SPHERE(BASE, CX, CY, CZ, RADIUS, STRENGTH) fn_1_110478_sphere(arg0, BASE, CX, CY, CZ, RADIUS, STRENGTH);
 
 
-extern u32 lbl_801A66A0;
-extern f32 lbl_8006D668(void *);
 static inline f32 fn_1_110478_measure(Node *a, Node *b, Fn183D28Vec3 *dp) {
  f32 x;
  f32 y;
@@ -6142,13 +6099,13 @@ void fn_1_110478(Work *arg0) {
  wn->vel.z+=(f64)((0.2)*(wn->pos.z-wn->prev.z));
  wn->vel.x-=(f32)(w1*fn_1_110478_randf(0.0012f));
  wn->vel.y+=(f32)(w1*fn_1_110478_randf(0.0028f));
- wn->vel.z+=(f32)(w1*((0.0006f)*lbl_8006D188((s32)((-32768.0f)+((65536.0f)*(f32)((wi+lbl_801A66A0)%39))/(39.0f)))));
+ wn->vel.z+=(f32)(w1*((0.0006f)*lbl_8006D188((s32)((-32768.0f)+((65536.0f)*(f32)((wi+(*(u32 *)&lbl_801A66A0))%39))/(39.0f)))));
  wn->vel.z+=(f32)(w2*fn_1_110478_randf(0.0012f));
  wn->vel.y+=(f32)(w2*fn_1_110478_randf(0.0023f));
- wn->vel.x+=(f32)(w2*((0.0006f)*lbl_8006D188((s32)((-32768.0f)+((65536.0f)*(f32)((wi+lbl_801A66A0)%29))/(29.0f)))));
+ wn->vel.x+=(f32)(w2*((0.0006f)*lbl_8006D188((s32)((-32768.0f)+((65536.0f)*(f32)((wi+(*(u32 *)&lbl_801A66A0))%29))/(29.0f)))));
  }
  } else {
- if(lbl_801A66A0%60<20) {
+ if((*(u32 *)&lbl_801A66A0)%60<20) {
  owner=arg0->owner;
  model6=owner->model->base+INDEX(arg0->index)*396;
  for(i6=0,n6=arg0->nodes;i6<arg0->count;i6++,n6++) {
@@ -6551,14 +6508,8 @@ void fn_1_111510(fn_1_10D2F0_Obj *obj) {
 }
 /* fzgx:end fn_1_111510 */
 
-/* fzgx:begin fn_1_111980 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_111980 */
 #include "psvec.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
 
 #pragma section code_type ".fzgxpool"
 static const u32 fzgx_pool_table1[6] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
@@ -6732,7 +6683,6 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime28(void) {
 #define REL_MAIN_REL_GLOBALS_H
 
 // lbl_1_data_3FFBC: .data size 0x574, referenced by 31 functions, shape {}
-extern u8 lbl_1_data_3FFBC[0x574];
 
 #endif  // REL_MAIN_REL_GLOBALS_H
 #ifndef REL_MAIN_REL_CAR_TEST_H
@@ -6748,7 +6698,6 @@ typedef struct {
     f32 z;
 } Fn183D28Vec3;
 
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 
 #endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
 
@@ -6783,16 +6732,10 @@ struct Sig_fn_80077B14_fn_80077B14_Arg0 {
  u8 pad_0[4]; u32 unk_4; u8 pad_8[0x18]; u32 unk_20;
 };
 typedef struct { f32 x,y,z; } Sig_fn_1_1286F4_Vec3f;
-extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
 extern void fn_1_1286F4(Sig_fn_1_1286F4_Vec3f *);
-extern void lbl_8006DBAC(Vec3 *);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DBE4(void);
-extern void lbl_8006DC20(void);
 extern f32 lbl_8006D118(f32, f32 *);
 extern f32 lbl_8006D0B4(f32);
 extern f32 lbl_8006D0E8(f32);
-extern void fn_8006E250(Vec3f *, Vec3f *);
 extern const u8 lbl_1_rodata_7AB8[];
 typedef struct Node {
  u8 flags, pad1, count, pad3;
@@ -6808,7 +6751,6 @@ typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
  u32 pad14,count,linkCount,pad20; Node *nodes; Link *links; } Work;
 #define F(o) (*(const f32 *)(pool+(o)))
 #define D(o) (*(const f64 *)(pool+(o)))
-extern u8 lbl_1_data_3F510[];
 extern u32 lbl_801A63C0;
 extern const char *fn_1_950E8(void *);
 extern int fn_80083BCC(const char *, const char *);
@@ -6843,8 +6785,6 @@ static inline void fn_1_111980_sphere(Work *arg0, u32 base, f32 cx, f32 cy, f32 
 #define SPHERE(BASE, CX, CY, CZ, RADIUS, STRENGTH) fn_1_111980_sphere(arg0, BASE, CX, CY, CZ, RADIUS, STRENGTH);
 
 
-extern u32 lbl_801A66A0;
-extern f32 lbl_8006D668(void *);
 static inline f32 fn_1_111980_measure(Node *a, Node *b, Fn183D28Vec3 *dp) {
  f32 x;
  f32 y;
@@ -7033,13 +6973,13 @@ void fn_1_111980(Work *arg0) {
  wn->vel.z+=(f64)((0.2)*(wn->pos.z-wn->prev.z));
  wn->vel.x-=(f32)(w1*fn_1_111980_randf(0.0012f));
  wn->vel.y+=(f32)(w1*fn_1_111980_randf(0.0028f));
- wn->vel.z+=(f32)(w1*((0.0006f)*lbl_8006D188((s32)((-32768.0f)+((65536.0f)*(f32)((wi+lbl_801A66A0)%39))/(39.0f)))));
+ wn->vel.z+=(f32)(w1*((0.0006f)*lbl_8006D188((s32)((-32768.0f)+((65536.0f)*(f32)((wi+(*(u32 *)&lbl_801A66A0))%39))/(39.0f)))));
  wn->vel.z+=(f32)(w2*fn_1_111980_randf(0.0012f));
  wn->vel.y+=(f32)(w2*fn_1_111980_randf(0.0023f));
- wn->vel.x+=(f32)(w2*((0.0006f)*lbl_8006D188((s32)((-32768.0f)+((65536.0f)*(f32)((wi+lbl_801A66A0)%29))/(29.0f)))));
+ wn->vel.x+=(f32)(w2*((0.0006f)*lbl_8006D188((s32)((-32768.0f)+((65536.0f)*(f32)((wi+(*(u32 *)&lbl_801A66A0))%29))/(29.0f)))));
  }
  } else {
- if(lbl_801A66A0%90<20) {
+ if((*(u32 *)&lbl_801A66A0)%90<20) {
  owner=arg0->owner;
  model6=owner->model->base+INDEX(arg0->index)*396;
  for(i6=0,n6=arg0->nodes;i6<arg0->count;i6++,n6++) {
@@ -10945,9 +10885,7 @@ void fn_1_1145C8(Accessory1145C8 *obj) {
 }
 /* fzgx:end fn_1_1145C8 */
 
-/* fzgx:begin fn_1_11492C noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_11492C */
 #pragma section code_type ".text"
 
 #pragma section code_type ".fzgxpool"
@@ -11192,13 +11130,7 @@ typedef struct { f32 x,y,z; } Sig_fn_1_1286F4_Vec3f;
 struct Sig_fn_80077B14_fn_80077B14_Arg0 {
  u8 pad_0[4]; u32 unk_4; u8 pad_8[0x18]; u32 unk_20;
 };
-extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
 extern void fn_1_1286F4(Sig_fn_1_1286F4_Vec3f *);
-extern void lbl_8006DBAC(void *);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DBE4(void);
-extern void lbl_8006DC20(void);
-extern void lbl_8006E1B0(Vec *, Vec *);
 extern f32 lbl_8006D118(f32, f32 *);
 extern f32 lbl_8006D0B4(f32);
 typedef struct Node {
@@ -11213,7 +11145,6 @@ typedef struct { u8 pad[0x88]; s32 kind; u8 pad8c[0x150 - 0x8c]; Model *model; }
 typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
  struct Sig_fn_80077B14_fn_80077B14_Arg0 *obj;
  u32 pad14, count, linkCount, pad20; Node *nodes; Link *links; } Work;
-extern u32 lbl_1_data_3FFBC[];
 extern u32 lbl_801A63C0;
 extern void fn_1_108A90(Work *, s32, f32, f32, f32, f32);
 extern void fn_1_109114(Work *);
@@ -11263,7 +11194,7 @@ void fn_1_11492C(Work *arg0) {
   fn_80077B14(arg0->obj);
   if (arg0->flags & 2) {
    arg0->flags &= ~2;
-   lbl_8006DBAC(arg0->owner->model->base + lbl_1_data_3FFBC[arg0->index] * 396 + 136);
+   lbl_8006DBAC(arg0->owner->model->base + ((u32 *)&lbl_1_data_3FFBC)[arg0->index] * 396 + 136);
    lbl_8006DAEC();
    for (i1 = 0, n1 = arg0->nodes; i1 < arg0->count; i1++, n1++) {
     lbl_8006DBE4();
@@ -11281,7 +11212,7 @@ void fn_1_11492C(Work *arg0) {
     n2->vel.y -= 9.8f / 60.0f / 60.0f;
    }
   }
-  model3 = arg0->owner->model->base + lbl_1_data_3FFBC[arg0->index] * 396;
+  model3 = arg0->owner->model->base + ((u32 *)&lbl_1_data_3FFBC)[arg0->index] * 396;
   for (i3 = 0, n3 = arg0->nodes; i3 < arg0->count; i3++, n3++) {
    lbl_8006DBAC(model3 + 136);
    lbl_8006DAEC();
@@ -11357,7 +11288,7 @@ void fn_1_11492C(Work *arg0) {
     fn_1_108A90(arg0, 12, 0.1f, 0.0f, 0.0f, 0.0f);
     fn_1_108A90(arg0, 7, 0.1f, 0.0f, 0.0f, 0.0f);
    } else if (kind == 4) {
-    model4 = arg0->owner->model->base + lbl_1_data_3FFBC[arg0->index] * 396;
+    model4 = arg0->owner->model->base + ((u32 *)&lbl_1_data_3FFBC)[arg0->index] * 396;
     for (i4 = 0, n4 = arg0->nodes; i4 < 10; i4++, n4++) {
      if (!(n4->flags & 1)) {
       f32 dx, dy, dz;
@@ -11379,7 +11310,7 @@ void fn_1_11492C(Work *arg0) {
     fn_1_108A90(arg0, 23, 0.106f, 0.051f, 0.0f, 0.0f);
     fn_1_108A90(arg0, 23, 0.105f, 0.086f, 0.0f, 0.0f);
    } else if (kind == 35) {
-    model5 = arg0->owner->model->base + lbl_1_data_3FFBC[arg0->index] * 396;
+    model5 = arg0->owner->model->base + ((u32 *)&lbl_1_data_3FFBC)[arg0->index] * 396;
     for (i5 = 0, n5 = arg0->nodes; i5 < 10; i5++, n5++) {
      if (!(n5->flags & 1)) {
       f32 dx, dy, dz;
@@ -11679,8 +11610,7 @@ void fn_1_115B58(Fn115B58Object *obj) {
 }
 /* fzgx:end fn_1_115B58 */
 
-/* fzgx:begin fn_1_115BE8 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_115BE8 */
 #include "psvec.h"
 
 #pragma section code_type ".text"
@@ -11935,20 +11865,12 @@ typedef f32 Mtx[3][4];
 struct Sig_fn_80077B14_fn_80077B14_Arg0 {
  u8 pad_0[4]; u32 unk_4; u8 pad_8[0x18]; u32 unk_20;
 };
-extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
-extern void lbl_8006DBAC(void *);
-extern void lbl_8006E1B0(Vec *, Vec *);
 extern f32 lbl_8006D0B4(f32);
 extern f32 lbl_8006D0E8(f32);
-extern f32 lbl_8006D668(Vec *);
 extern void fn_8006E978(Quat *, Vec *, Vec *);
 extern void mathutil_mtxA_from_quat(Quat *);
-extern void lbl_8006DB74(Mtx);
 extern void lbl_8006D758(void);
 extern void lbl_8006E0A4(Vec *);
-extern void lbl_8006DFC4(Mtx);
-extern void lbl_8006E0B4(f32, f32, f32);
-extern void fn_8006E250(Vec *, Vec *);
 typedef struct Node {
  u8 flags, pad1, count, pad3;
  u16 links[6];
@@ -11960,9 +11882,6 @@ typedef struct { u8 pad[0x150]; Model *model; } Owner;
 typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
  struct Sig_fn_80077B14_fn_80077B14_Arg0 *obj;
  u32 pad14, count, linkCount, pad20; Node *nodes; } Work;
-extern u32 lbl_1_data_3FFBC[];
-extern s16 lbl_1_bss_962;
-extern Vec lbl_1_bss_89750;
 extern void fn_1_108BD0(Work *, s32, f32, f32, f32, f32);
 
 typedef struct {
@@ -12041,7 +11960,7 @@ void fn_1_115BE8(Work *arg0) {
  f32 dz;
  f32 dy;
  f32 len;
- if (lbl_1_bss_962 != 184 && arg0 && arg0->obj) {
+ if ((*(s16 *)&lbl_1_bss_962) != 184 && arg0 && arg0->obj) {
   fn_80077B14(arg0->obj);
   for (i = 0, n = arg0->nodes; i < arg0->count; i++, n++) {
    if (!(n->flags & 1)) {
@@ -12053,7 +11972,7 @@ void fn_1_115BE8(Work *arg0) {
     n->vel.y -= 9.8f / 60.0f / 60.0f;
    }
   }
-  model = arg0->owner->model->base + lbl_1_data_3FFBC[arg0->index] * 396;
+  model = arg0->owner->model->base + ((u32 *)&lbl_1_data_3FFBC)[arg0->index] * 396;
   for (i = 0, n = arg0->nodes; i < arg0->count; i++, n++) {
    if (n->flags & 1) {
     lbl_8006DBAC(model + 136);
@@ -12072,7 +11991,7 @@ void fn_1_115BE8(Work *arg0) {
   Vec target;
   sum = lsum;
   cnt = 0;
-  lbl_8006DBAC(arg0->owner->model->base + lbl_1_data_3FFBC[arg0->index] * 396 + 136);
+  lbl_8006DBAC(arg0->owner->model->base + ((u32 *)&lbl_1_data_3FFBC)[arg0->index] * 396 + 136);
   for (i = 0, n = arg0->nodes; i < arg0->count; i++, n++) {
    if (!(n->flags & 1)) {
     cnt++;
@@ -12102,7 +12021,7 @@ void fn_1_115BE8(Work *arg0) {
   fn_8006E978(&q, &lsum, &sum);
   mathutil_mtxA_from_quat(&q);
   lbl_8006DB74(mtx);
-  lbl_8006DBAC(arg0->owner->model->base + lbl_1_data_3FFBC[arg0->index] * 396 + 136);
+  lbl_8006DBAC(arg0->owner->model->base + ((u32 *)&lbl_1_data_3FFBC)[arg0->index] * 396 + 136);
   for (i = 0, n = arg0->nodes; i < arg0->count; i++, n++) {
    if (!(n->flags & 1)) {
     lbl_8006E1B0(&n->local, &n->pos);
@@ -12128,10 +12047,10 @@ void fn_1_115BE8(Work *arg0) {
    sum.y += n->pos.y;
    sum.z += n->pos.z;
   }
-  lbl_1_bss_89750.x = sum.x / (f32)cnt;
-  lbl_1_bss_89750.y = sum.y / (f32)cnt;
-  lbl_1_bss_89750.z = sum.z / (f32)cnt;
-  model = arg0->owner->model->base + lbl_1_data_3FFBC[arg0->index] * 396;
+  ((Vec *)&lbl_1_bss_89750)->x = sum.x / (f32)cnt;
+  ((Vec *)&lbl_1_bss_89750)->y = sum.y / (f32)cnt;
+  ((Vec *)&lbl_1_bss_89750)->z = sum.z / (f32)cnt;
+  model = arg0->owner->model->base + ((u32 *)&lbl_1_data_3FFBC)[arg0->index] * 396;
   for (i = 0, n = arg0->nodes; i < arg0->count; i++, n++) {
    lbl_8006DBAC(model + 136);
    lbl_8006E1B0(&n->local, &target);
@@ -23747,9 +23666,7 @@ void fn_1_128E8C(u32 unused, FnData *data) {
 }
 /* fzgx:end fn_1_128E8C */
 
-/* fzgx:begin fn_1_128F10 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_128F10 */
 extern const f32 lbl_1_rodata_8068;
 
 typedef struct {
@@ -23762,7 +23679,7 @@ typedef struct {
     f32 unk_18;
     f32 unk_1C;
     u8 unk_20;
-} Obj_1_bss_89760;
+} Obj_1_bss_89760_fn_1_128F10;
 
 
 typedef struct lbl_1_bss_89760_t {

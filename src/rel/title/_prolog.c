@@ -193,7 +193,7 @@ extern u8 lbl_8_bss_C;
 extern u8 lbl_8_bss_20[];
 
 /* fzgx:begin fn_8_0 */
-/* fzgx:begin fn_8_0 noprologue */
+/* fzgx:begin fn_8_0 */
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
     volatile f32 s;  /* fzgx-allow: S2 pool primer sinks */

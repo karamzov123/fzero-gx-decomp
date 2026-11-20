@@ -6378,9 +6378,7 @@ void fn_1_97288(struct fn_1_97288_Arg0 *arg0, f32 arg1) {
 #pragma opt_lifetimes reset
 /* fzgx:end fn_1_97288 */
 
-/* fzgx:begin fn_1_977BC noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_977BC */
 /* fzgx:begin fn_1_977BC noprologue */
 
 typedef struct { f32 x, y, z; } RobVec;
@@ -8258,7 +8256,6 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime12(void) {
 
 extern u32 lbl_801A63C0;
 extern char *fn_1_41418(RobNames *, u32);
-extern int fn_80083BCC(const char *, const char *);
 extern void lbl_8006DCA4(void);
 extern void lbl_8006E0B4(f32, f32, f32);
 extern void mathutil_mtxA_rotate_z(s16);

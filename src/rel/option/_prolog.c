@@ -2921,8 +2921,7 @@ void fn_4_1444(u16 depth, s32 left, fn_4_1444_Color border, fn_4_1444_Color fill
 }
 /* fzgx:end fn_4_1444 */
 
-/* fzgx:begin fn_4_18B8 noprologue */
-#include "dolphin/types.h"
+/* fzgx:begin fn_4_18B8 */
 #include "dolphin/hw_regs.h"
 
 /* begin dolphin/gx.h (deltawave784/fzgx, CC0) */
@@ -3097,7 +3096,6 @@ typedef struct {
 u8 r, g, b, a;
 } GXColor;
 /* GX write-gather pipe: every store is a FIFO push, so it must stay volatile. */
-extern s32 lbl_801A66B4;
 extern void fn_1_5233C(void);
 extern void fn_1_49410(void);
 extern void fn_1_49738(u32);
@@ -3517,7 +3515,6 @@ typedef struct FontDrawPacket {
 #define DTAB(x) ((char **)fzgx_pool_data_lbl_4_data_0_##x)
 #define CLAMP(v, lo, hi) ((v) < (lo) ? (lo) : ((v) > (hi) ? (hi) : (v)))
 
-extern FontDrawPacket lbl_1_rodata_26F8;
 extern void fn_80072344(void);
 extern void fn_8006CD2C(f32 *, f32 *);
 extern s8 fn_1_A5DC4(void);
@@ -3574,7 +3571,7 @@ static inline void draw_marker(f32 ox, f32 x, f32 y) {
     y *= 1.1f;
     x = ox + x;
     y = 210.0f - y;
-    packet = lbl_1_rodata_26F8;
+    packet = (*(FontDrawPacket *)&lbl_1_rodata_26F8);
     packet.x = x;
     packet.y = y;
     packet.z = 0.03f;
@@ -3684,8 +3681,8 @@ void fn_4_18B8(void) {
     }
     draw_fan(c2, normx, normy, -0.04f);
     draw_fan(c1, rawx, rawy, -0.049999997f);
-    fn_4_1444(6, 0, c3, c4, DTAB(DA0)[lbl_801A66B4]);
-    fn_4_1444(6, 1, c3, c4, DTAB(D6C)[lbl_801A66B4]);
+    fn_4_1444(6, 0, c3, c4, DTAB(DA0)[(*(s32 *)&lbl_801A66B4)]);
+    fn_4_1444(6, 1, c3, c4, DTAB(D6C)[(*(s32 *)&lbl_801A66B4)]);
 
     tx = CLAMP(stick_x, -125, 125);
     ty = CLAMP(stick_y, -125, 125);
@@ -3702,8 +3699,7 @@ void fn_4_18B8(void) {
 }
 /* fzgx:end fn_4_18B8 */
 
-/* fzgx:begin fn_4_2394 noprologue */
-#include "dolphin/types.h"
+/* fzgx:begin fn_4_2394 */
 #include "dolphin/hw_regs.h"
 
 /* begin dolphin/gx.h (deltawave784/fzgx, CC0) */
@@ -3889,7 +3885,6 @@ typedef struct {
 u8 r, g, b, a;
 } GXColor;
 /* GX write-gather pipe: every store is a FIFO push, so it must stay volatile. */
-extern s32 lbl_801A66B4;
 extern void fn_1_5233C(void);
 extern void fn_1_49410(void);
 extern void fn_1_49738(u32);
@@ -3907,7 +3902,7 @@ extern void fn_1_49590(f32);
 extern void fn_1_4A0D8(const char *);
 extern void fn_1_4AE0C(const char *, ...);
 static inline void fn_4_2394_shadow(void) {
-if (lbl_801A66B4 != 5) {
+if ((*(s32 *)&lbl_801A66B4) != 5) {
 fn_1_495B0(0x80000000);
 fn_1_49590(0.5f);
 }
@@ -4234,7 +4229,7 @@ fn_1_49410();
 fn_1_49738((u32)fn_1_5233C);
 fn_1_49748(5.0f);
 fn_1_4955C(0.8f, 0.8f);
-if (lbl_801A66B4 == 5) {
+if ((*(s32 *)&lbl_801A66B4) == 5) {
 sprintf(buf, ((char *)fzgx_pool_data_lbl_4_data_0_14C4), index, value);
 halfH = 90.0f;
 } else {
@@ -4297,7 +4292,7 @@ GXWGFifo.f32 = z;
 GXWGFifo.f32 = top;
 GXWGFifo.f32 = left;
 GXWGFifo.f32 = z;
-if (lbl_801A66B4 == 5) {
+if ((*(s32 *)&lbl_801A66B4) == 5) {
 fn_1_495C8(9);
 lab_t0 = 320.0f;
 fn_1_496FC(lab_t0, x);
@@ -6780,15 +6775,9 @@ fn_1_53BD8(0,(*(f32 *)(((u8 *)fzgx_pool_rodata_lbl_4_rodata_0_50))),(*(f32 *)(((
 }
 /* fzgx:end fn_4_40C4 */
 
-/* fzgx:begin fn_4_467C noprologue */
-#include "types.h"
-
-extern s32 lbl_801A66B4;
-
+/* fzgx:begin fn_4_467C */
 extern void fn_4_2D4(u8, u32);
 extern void fn_4_40C4(u8, u32);
-extern void fn_1_1380F0(u32);
-extern void fn_1_13ABA8(u32);
 
 
 extern u8 fn_4_347C__fzgx_offset_0[];

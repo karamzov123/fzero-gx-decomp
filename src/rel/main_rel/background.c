@@ -349,14 +349,8 @@ void fn_1_9DB04(void) {
 }
 /* fzgx:end fn_1_9DB04 */
 
-/* fzgx:begin fn_1_9DDA8 noprologue */
-#include "types.h"
-#include "dolphin/types.h"
+/* fzgx:begin fn_1_9DDA8 */
 #include "dolphin/hw_regs.h"
-#include "types.h"
-#include "dolphin/types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/background.h"
 #include "dolphin/hw_regs.h"
 
 /* begin game/main_rel/background_types.h (deltawave784/fzgx, CC0) */
@@ -660,16 +654,8 @@ void fn_1_9E5B8(Obj_1_bss_6EA80_Target *node) {
 }
 /* fzgx:end fn_1_9E5B8 */
 
-/* fzgx:begin fn_1_9E608 noprologue */
-#include "types.h"
-#include "dolphin/types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/background.h"
+/* fzgx:begin fn_1_9E608 */
 #include "dolphin/hw_regs.h"
-#include "types.h"
-#include "dolphin/types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/background.h"
 #include "dolphin/hw_regs.h"
 
 /* begin game/main_rel/background_types.h (deltawave784/fzgx, CC0) */
