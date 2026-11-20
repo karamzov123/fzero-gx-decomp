@@ -92,9 +92,6 @@ dol/cbForUnrecoveredError.c:
 dol/fn_80017EA8.c:
 	.text       start:0x80017EA8 end:0x80017ED0
 
-dol/DVDReadDiskID.c:
-	.text       start:0x80019500 end:0x800197A4 align:4
-
 dol/__DVDDequeueWaitingQueue.c:
 	.text       start:0x80019FFC end:0x8001A178 align:4
 
@@ -780,9 +777,6 @@ dol/cbForStateCoverClosed.c:
 dol/cbForStateReadingFST.c:
 	.text       start:0x800178CC end:0x80017958 align:4
 
-dol/DVDReadAbsAsyncForBS.c:
-	.text       start:0x80019430 end:0x80019500 align:4
-
 dol/__DVDPopWaitingQueue.c:
 	.text       start:0x80019F04 end:0x80019FA4 align:4
 
@@ -793,7 +787,7 @@ dol/__DVDClearWaitingQueue.c:
 	.text       start:0x80019E64 end:0x80019E9C align:4
 
 dol/DVDReadAbsAsyncPrio.c:
-	.text       start:0x80019354 end:0x80019430 align:4
+	.text       start:0x80019354 end:0x800197A4 align:4
 
 dol/__DVDPushWaitingQueue.c:
 	.text       start:0x80019E9C end:0x80019F04 align:4

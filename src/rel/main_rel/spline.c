@@ -607,19 +607,11 @@ void fn_1_F5D94(void *arg0) {
 }
 /* fzgx:end fn_1_F5D94 */
 
-/* fzgx:begin fn_1_F65A0 noprologue */
-#include "types.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
+/* fzgx:begin fn_1_F65A0 */
 #include "rel/main_rel/burner.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
 #include "rel/main_rel/camera.h"
 #include "game/vec3.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
 #include "rel/main_rel/car_test.h"
-#include "rel/main_rel/globals.h"
 #include "dolphin/gx.h"
 
 #ifndef GAME_MAIN_REL_BURNER_TYPES_H
@@ -707,7 +699,6 @@ typedef struct F65Color { u8 r, g, b, a; } F65Color;
 typedef struct F65Mtx { f32 m[3][4]; } F65Mtx;
 
 extern f32 lbl_8006D668(void *);
-extern f32 lbl_8006D0B4(f32);
 extern s32 fn_1_54E34(void *, f32);
 extern u32 GXLoadPosMtxImm(u32, u32);
 extern u32 fn_800720B0(u32);
@@ -813,7 +804,8 @@ static inline f32 F65SquareAdd(f32 value, f32 sum) {
 
 
 
-void fn_1_F65A0(struct fn_1_F65A0_Arg0 *obj) {
+void fn_1_F65A0(Obj_1_data_2A7E0_At3C *__fzgx_p0) {
+    struct fn_1_F65A0_Arg0 *obj = (struct fn_1_F65A0_Arg0 *)__fzgx_p0;
 #define arg0 effect
     F65Vec quad[4];
     F65Mtx mtxA;

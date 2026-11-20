@@ -2444,10 +2444,7 @@ s32 fn_1_4B1A0(s32 value) {
 }
 /* fzgx:end fn_1_4B1A0 */
 
-/* fzgx:begin fn_1_4B1D4 noprologue */
-#include "types.h"
-#include "rel/main_rel/font.h"
-
+/* fzgx:begin fn_1_4B1D4 */
 typedef struct FontEntry_4B1D4 {
     s32 unk_0;
     u8 pad_4[0x30];
@@ -2456,7 +2453,8 @@ typedef struct FontEntry_4B1D4 {
 
 extern s32 lbl_1_bss_4BA28[2];
 
-f32 fn_1_4B1D4(s32 mode, u8 *str) {
+f32 fn_1_4B1D4(s32 mode, s32 __fzgx_p1) {
+    u8 *str = (u8 *)__fzgx_p1;
     Obj_1_bss_4B9CC * p;
     s32 i;
     Obj_1_bss_4B9CC *state;
