@@ -438,7 +438,7 @@ void fn_1_108A90(fn_1_108A90_Self *self, s32 idx, f32 radius, f32 cx, f32 cy, f3
         dy = dy - center.y;
         dz = (*e).vec.z;
         dz = dz - center.z;
-        d2 = (f32)(dx * dx);
+        d2 = (dx * dx);
         d2 = d2 + dy * dy;
         d2 = d2 + dz * dz;
         if (d2 < sq) {
@@ -704,7 +704,7 @@ void fn_1_108EEC(fn_1_108EEC_Arg *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, 
             b = n->unk_10;
             dx = n->unk_10.x - v.x;
             c.x = dx;
-            len2 = (f32)(dx * dx);
+            len2 = (dx * dx);
             dy = n->unk_10.y - v.y;
             c.y = dy;
             len2 = len2 + dy * dy;
@@ -933,7 +933,7 @@ void fn_1_1091D4(u32 arg0) {
     }
     }
     }
-    v34 = ((u32)(*(u32 *)((u8 *)arg0 + 24) - 2) >> 1);
+    v34 = ((*(u32 *)((u8 *)arg0 + 24) - 2) >> 1);
     t5 = ((v34 - 1) << 1) + 4;
     *(u32 *)((u8 *)arg0 + 28) = v34 + t5;
     v1 = lbl_801A6410;
@@ -999,7 +999,7 @@ void fn_1_1091D4(u32 arg0) {
     } else {
     fzgx_live = p_lbl_1_rodata_7AB8->unk_70;
     v66 = fzgx_live;
-    v66 = (f32)(v66 * (-v64));
+    v66 = (v66 * (-v64));
     }
     if (v64 > p_lbl_1_rodata_7AB8->unk_78 || v66 > v65) {
     v63->unk_40 = v66;
@@ -1013,7 +1013,7 @@ void fn_1_1091D4(u32 arg0) {
     } else {
     fzgx_live = p_lbl_1_rodata_7AB8->unk_70;
     v66 = fzgx_live;
-    v66 = (f32)(v66 * (-v67));
+    v66 = (v66 * (-v67));
     }
     if (v67 > p_lbl_1_rodata_7AB8->unk_78 || v66 > v64) {
     v62->unk_40 = v66;
@@ -1826,7 +1826,7 @@ void fn_1_10A8D0(Graph_10A8D0 *g) {
     p = &g->nodes[g->nodeCount / 2];
     for (i = g->nodeCount / 2; i < g->nodeCount; i++, p++) {
         half = g->nodeCount / 2;
-        p->value = pool->d_neg_one * __fabs(lbl_8006D188((s16)(((i - half) << 15) / half + 0x4000)));
+        p->value = pool->d_neg_one * __fabs(lbl_8006D188((((i - half) << 15) / half + 0x4000)));
         p->value *= pool->three_qtr;
         p->value -= pool->quarter;
     }
@@ -2909,7 +2909,7 @@ void fn_1_10BA00(Obj10BA00 *obj) {
         for (i = 0; i < 4; i++) {
             for (j = 0; j < 4; j++) {
                 if (1.1920929e-07f + obj->groups[i * 4 + j].weight < 0.0f) {
-                    obj->groups[i * 4 + j].weight = -fn_1_128AAC((s32)(8.0 - (i + j)), 2.0f);
+                    obj->groups[i * 4 + j].weight = -fn_1_128AAC((8.0 - (i + j)), 2.0f);
                     obj->groups[i * 4 + j].weight *= 0.00390625f;
                 }
             }
@@ -4086,7 +4086,7 @@ void fn_1_10CC38(Rope *arg0) {
  if (!(p_r2->flags & 1)) {
  p_r2->prev=p_r2->pos;
  p_r2->pos.x+=p_r2->vel.x; p_r2->pos.y+=p_r2->vel.y; p_r2->pos.z+=p_r2->vel.z;
- p_r2->pos.y=(f32)(p_r2->pos.y-pool->unk_58);
+ p_r2->pos.y=(p_r2->pos.y-pool->unk_58);
  p_r2->vel.y-=pool->unk_60;
  }
  }
@@ -4133,7 +4133,7 @@ void fn_1_10CC38(Rope *arg0) {
  if(!(q->flags&1)) {
  dx_r2=q->pos.x-loc_20.x; loc_14.x=dx_r2;
  dy_r2=q->pos.y-loc_20.y; loc_14.y=dy_r2;
- len_r2=dy_r2*dy_r2+(f32)(dx_r2*dx_r2);
+ len_r2=dy_r2*dy_r2+(dx_r2*dx_r2);
  dz_r2=q->pos.z-loc_20.z;
  len_r2=dz_r2*dz_r2+len_r2; loc_14.z=dz_r2;
  if(len_r2<pool->unk_158) {
@@ -4714,7 +4714,7 @@ void fn_1_10DDE4(Rope *rope) {
     rows = (rope->unk_18 - (p - rope->unk_24)) / cols.value;
     for (j = 0; j < rows; j++) {
         for (c = 0; c < cols.value; c++) {
-            p[c].unk_40 = -(f32)(j + 1) / (f32)(rows + 1);
+            p[c].unk_40 = -(f32)(j + 1) / (rows + 1);
         }
         for (c = 0, n = p; c < cols.value; c++, n++) {
             for (m = c + 1, q = n + 1; m < cols.value; m++, q++) {
@@ -5058,11 +5058,11 @@ static inline void fn_1_10E3B4_sphere4(Work *arg0, u32 count, u32 base, f32 cx, 
 }
 static inline f32 fn_1_10E3B4_randf(f32 scale) {
  lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
- return scale * ((f32)(s32)((lbl_801A63C0 >> 16) & 0x7FFF) / 32767.0f);
+ return scale * ((s32)((lbl_801A63C0 >> 16) & 0x7FFF) / 32767.0f);
 }
 static inline f32 fn_1_10E3B4_rand(void) {
  lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
- return (f32)(s32)((lbl_801A63C0 >> 16) & 0x7FFF) / 32767.0f;
+ return (s32)((lbl_801A63C0 >> 16) & 0x7FFF) / 32767.0f;
 }
 
 #pragma opt_common_subs off
@@ -5204,7 +5204,7 @@ void fn_1_10E3B4(Work *arg0) {
     if (wi >= 3) {
      s32 m = (wi - 3) % n;
      w2 = 0.2f + (0.8f * (f32)m) / 9.0f;
-     w1 = 0.2f + (0.8f * (f32)(n - m)) / 9.0f;
+     w1 = 0.2f + (0.8f * (n - m)) / 9.0f;
     } else {
      w1 = 0.0f;
     }
@@ -5214,10 +5214,10 @@ void fn_1_10E3B4(Work *arg0) {
     wn->vel.z += (f64)(0.2 * (wn->pos.z - wn->prev.z));
     wn->vel.x -= (f32)(w1 * fn_1_10E3B4_randf(0.0012f));
     wn->vel.y += (f32)(w1 * (fn_1_10E3B4_randf(0.0048f) - 0.001f));
-    wn->vel.z += (f32)(w1 * (0.0006f * lbl_8006D188((s32)(-32768.0f + (65536.0f * (f32)((wi + (*(u32 *)&lbl_801A66A0)) % 39)) / 39.0f))));
+    wn->vel.z += (f32)(w1 * (0.0006f * lbl_8006D188((-32768.0f + (65536.0f * ((wi + (*(u32 *)&lbl_801A66A0)) % 39)) / 39.0f))));
     wn->vel.z += (f32)(w2 * (0.0012f * fn_1_10E3B4_rand()));
     wn->vel.y += (f32)(w2 * (0.002f * fn_1_10E3B4_rand()));
-    wn->vel.x += (f32)(w2 * (0.0006f * lbl_8006D188((s32)(-32768.0f + (65536.0f * (f32)((wi + (*(u32 *)&lbl_801A66A0)) % 29)) / 29.0f))));
+    wn->vel.x += (f32)(w2 * (0.0006f * lbl_8006D188((-32768.0f + (65536.0f * ((wi + (*(u32 *)&lbl_801A66A0)) % 29)) / 29.0f))));
    }
   } else {
    if ((*(u32 *)&lbl_801A66A0) % 60 < 20) {
@@ -5589,7 +5589,7 @@ void fn_1_110008(fn_1_10D2F0_Obj *obj) {
 
         for (k = 0; k < rows; k++, a += 9) {
             for (i = 0; i < 9; i++) {
-                a[i].unk_40 = -(f32)(k + 1) / (f32)(rows + 1);
+                a[i].unk_40 = -(f32)(k + 1) / (rows + 1);
             }
             b = a;
             for (i = 0; i < 9; i++, b++) {
@@ -5947,7 +5947,7 @@ static inline void fn_1_110478_constrain(const u8 *pool, Node *a, Node *b, Link 
 #undef delta
 static inline f32 fn_1_110478_randf(f32 scale) {
  lbl_801A63C0=lbl_801A63C0*0x676A4B6B+0x33CB;
- return scale*((f32)(s32)((lbl_801A63C0>>16)&0x7FFF)/(32767.0f));
+ return scale*((s32)((lbl_801A63C0>>16)&0x7FFF)/(32767.0f));
 }
 static inline void fn_1_110478_loop0(Work *arg0) {
  u32 i1;
@@ -6074,17 +6074,17 @@ void fn_1_110478(Work *arg0) {
  s32 rnd;
  m=wi%9;
  w2=(0.2f)+((0.8f)*(f32)m)/(9.0f);
- w1=(0.2f)+((0.8f)*(f32)(9-m))/(9.0f);
+ w1=(0.2f)+((0.8f)*(9-m))/(9.0f);
  wn->vel.x*=(0.8); wn->vel.y*=(0.8); wn->vel.z*=(0.8);
  wn->vel.x+=(f64)((0.2)*(wn->pos.x-wn->prev.x));
  wn->vel.y+=(f64)((0.2)*(wn->pos.y-wn->prev.y));
  wn->vel.z+=(f64)((0.2)*(wn->pos.z-wn->prev.z));
  wn->vel.x-=(f32)(w1*fn_1_110478_randf(0.0012f));
  wn->vel.y+=(f32)(w1*fn_1_110478_randf(0.0028f));
- wn->vel.z+=(f32)(w1*((0.0006f)*lbl_8006D188((s32)((-32768.0f)+((65536.0f)*(f32)((wi+(*(u32 *)&lbl_801A66A0))%39))/(39.0f)))));
+ wn->vel.z+=(f32)(w1*((0.0006f)*lbl_8006D188(((-32768.0f)+((65536.0f)*((wi+(*(u32 *)&lbl_801A66A0))%39))/(39.0f)))));
  wn->vel.z+=(f32)(w2*fn_1_110478_randf(0.0012f));
  wn->vel.y+=(f32)(w2*fn_1_110478_randf(0.0023f));
- wn->vel.x+=(f32)(w2*((0.0006f)*lbl_8006D188((s32)((-32768.0f)+((65536.0f)*(f32)((wi+(*(u32 *)&lbl_801A66A0))%29))/(29.0f)))));
+ wn->vel.x+=(f32)(w2*((0.0006f)*lbl_8006D188(((-32768.0f)+((65536.0f)*((wi+(*(u32 *)&lbl_801A66A0))%29))/(29.0f)))));
  }
  } else {
  if((*(u32 *)&lbl_801A66A0)%60<20) {
@@ -6453,7 +6453,7 @@ void fn_1_111510(fn_1_10D2F0_Obj *obj) {
 
         for (k = 0; k < rows; k++, a += 9) {
             for (i = 0; i < 9; i++) {
-                a[i].unk_40 = -(f32)(k + 1) / (f32)(rows + 1);
+                a[i].unk_40 = -(f32)(k + 1) / (rows + 1);
             }
             b = a;
             for (i = 0; i < 9; i++, b++) {
@@ -6811,7 +6811,7 @@ static inline void fn_1_111980_constrain(const u8 *pool, Node *a, Node *b, Link 
 #undef delta
 static inline f32 fn_1_111980_randf(f32 scale) {
  lbl_801A63C0=lbl_801A63C0*0x676A4B6B+0x33CB;
- return scale*((f32)(s32)((lbl_801A63C0>>16)&0x7FFF)/(32767.0f));
+ return scale*((s32)((lbl_801A63C0>>16)&0x7FFF)/(32767.0f));
 }
 static inline void fn_1_111980_loop0(Work *arg0) {
  u32 i1;
@@ -6947,17 +6947,17 @@ void fn_1_111980(Work *arg0) {
  s32 rnd;
  m=wi%9;
  w2=(0.2f)+((0.8f)*(f32)m)/(9.0f);
- w1=(0.2f)+((0.8f)*(f32)(9-m))/(9.0f);
+ w1=(0.2f)+((0.8f)*(9-m))/(9.0f);
  wn->vel.x*=(0.8); wn->vel.y*=(0.8); wn->vel.z*=(0.8);
  wn->vel.x+=(f64)((0.2)*(wn->pos.x-wn->prev.x));
  wn->vel.y+=(f64)((0.2)*(wn->pos.y-wn->prev.y));
  wn->vel.z+=(f64)((0.2)*(wn->pos.z-wn->prev.z));
  wn->vel.x-=(f32)(w1*fn_1_111980_randf(0.0012f));
  wn->vel.y+=(f32)(w1*fn_1_111980_randf(0.0028f));
- wn->vel.z+=(f32)(w1*((0.0006f)*lbl_8006D188((s32)((-32768.0f)+((65536.0f)*(f32)((wi+(*(u32 *)&lbl_801A66A0))%39))/(39.0f)))));
+ wn->vel.z+=(f32)(w1*((0.0006f)*lbl_8006D188(((-32768.0f)+((65536.0f)*((wi+(*(u32 *)&lbl_801A66A0))%39))/(39.0f)))));
  wn->vel.z+=(f32)(w2*fn_1_111980_randf(0.0012f));
  wn->vel.y+=(f32)(w2*fn_1_111980_randf(0.0023f));
- wn->vel.x+=(f32)(w2*((0.0006f)*lbl_8006D188((s32)((-32768.0f)+((65536.0f)*(f32)((wi+(*(u32 *)&lbl_801A66A0))%29))/(29.0f)))));
+ wn->vel.x+=(f32)(w2*((0.0006f)*lbl_8006D188(((-32768.0f)+((65536.0f)*((wi+(*(u32 *)&lbl_801A66A0))%29))/(29.0f)))));
  }
  } else {
  if((*(u32 *)&lbl_801A66A0)%90<20) {
@@ -9656,7 +9656,7 @@ void fn_1_112F40(fn_1_10D2F0_Obj *obj) {
     if (obj == NULL) {
         return;
     }
-    fn_1_10846C( (u32)(fn_1_10D2F0_Obj *)(obj));
+    fn_1_10846C( (fn_1_10D2F0_Obj *)(obj));
 
     for (i = 0, a = obj->unk_24; i < obj->unk_18; i++, a++) {
         if (a->unk_0 & 1) {
@@ -10106,7 +10106,7 @@ void fn_1_1137E4(Rope *rope) {
             if (b->flags & 1) {
                 b->mass = 0.0f;
             } else {
-                b->mass = (f32)(i + 1) / (f32)rows;
+                b->mass = (i + 1) / (f32)rows;
                 b->mass *= -(1.0 - (f64)(0.8 * lbl_8006D188(32768.0f * m / 12.0f)));
             }
         }
@@ -10827,7 +10827,7 @@ void fn_1_1145C8(Accessory1145C8 *obj) {
 
         rows = obj->count / 5;
         for (i = 0, row = obj->nodes; i < rows; i++, row += 5) {
-            value = -(f32)i / (f32)(rows - 1);
+            value = -(f32)i / (rows - 1);
             row[0].value = value;
             row[1].value = value;
             row[2].value = value;
@@ -13716,7 +13716,7 @@ void fn_1_1177C4(Rope *rope) {
                 n->mass = -0.5f;
                 n->flags = 1;
             } else {
-                f32 t = (f32)(i / 6) / 17.0f;
+                f32 t = (i / 6) / 17.0f;
                 n->mass = -t * t;
                 n->flags = 0;
             }
@@ -16160,7 +16160,7 @@ void fn_1_11B4E4(Obj11B4E4 *obj) {
             if (g == obj->unk_18 / 8 - 1) {
                 dst->unk_40 = 0.0f;
             } else {
-                dst->unk_40 = t / (f32)(obj->unk_18 / 8 - 1);
+                dst->unk_40 = t / (obj->unk_18 / 8 - 1);
             }
         }
     }
@@ -16610,7 +16610,7 @@ void fn_1_11BFCC(Obj11BFCC *obj) {
             if (g.v == (obj->count >> 3) - 1) {
                 dest->unk_40 = lbl_1_rodata_7B20.unk_0;
             } else {
-                dest->unk_40 = -(f32)g.v / (f32)((obj->count >> 3) - 1);
+                dest->unk_40 = -(f32)g.v / ((obj->count >> 3) - 1);
             }
         }
     }
@@ -18436,7 +18436,7 @@ void fn_1_11ED0C(fn_1_10D2F0_Obj *obj) {
 
         for (k = 0; k < rows; k++, a += 11) {
             for (i = 0; i < 11; i++) {
-                a[i].unk_40 = -(f32)(k + 1) / (f32)(rows + 1);
+                a[i].unk_40 = -(f32)(k + 1) / (rows + 1);
             }
             for (i = 0, b = a; i < 11; i++, b++) {
                 for (m = i + 1, e = b + 1; m < 11; m++, e++) {
@@ -18919,7 +18919,7 @@ void fn_1_1201E4(Rope *rope) {
     rows = (rope->unk_18 - (p - rope->unk_24)) / cols;
     for (j = 0; j < rows; j++) {
         for (c = 0; c < cols; c++) {
-            p[c].unk_40 = -(f32)(j + 1) / (f32)(rows + 1);
+            p[c].unk_40 = -(f32)(j + 1) / (rows + 1);
         }
         for (c = 0, n = p; c < cols; c++, n++) {
             for (m = c + 1, q = n + 1; m < cols; m++, q++) {
@@ -19420,7 +19420,7 @@ extern u32 lbl_801A63C0;
 
 static inline f32 fn_1_120804_rand(void) {
     lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
-    return (f32)(s32)((lbl_801A63C0 >> 16) & 0x7FFF) / 32767.0f;
+    return (s32)((lbl_801A63C0 >> 16) & 0x7FFF) / 32767.0f;
 }
 
 #define LINKFIX                                                   \
@@ -19607,25 +19607,25 @@ void fn_1_120804(AccWork *arg0) {
                 s32 q;
                 m = wi % cols;
                 w2 = 0.2f + (0.8f * (f32)m) / 9.0f;
-                w1 = 0.2f + (0.8f * (f32)(cols - m)) / 9.0f;
+                w1 = 0.2f + (0.8f * (cols - m)) / 9.0f;
                 psvec_scale(&wn->vel, 0.8f, &wn->vel);
                 psvec_sub(&wn->pos, &wn->prev, &d);
                 psvec_scale_add(&wn->vel, &d, 0.2f, &wn->vel);
                 wn->vel.z += (f32)(w1 * (0.0012f * fn_1_120804_rand()));
                 if (wi < arg0->count / 2) {
-                    wn->vel.y += (f32)(w1 * ((f32)((0.0038f + (0.001f * (f32)wi) / (f32)(arg0->count / 2)) * fn_1_120804_rand()) - 0.001f));
+                    wn->vel.y += (f32)(w1 * ((f32)((0.0038f + (0.001f * (f32)wi) / (arg0->count / 2)) * fn_1_120804_rand()) - 0.001f));
                 } else {
-                    wn->vel.y += (f32)(w1 * ((f32)((0.0038f + (0.001f * (f32)(arg0->count - wi)) / (f32)(arg0->count / 2)) * fn_1_120804_rand()) - 0.001f));
+                    wn->vel.y += (f32)(w1 * ((f32)((0.0038f + (0.001f * (arg0->count - wi)) / (arg0->count / 2)) * fn_1_120804_rand()) - 0.001f));
                 }
                 q = wi / 4;
-                wn->vel.x += (f32)(w1 * (0.0006f * lbl_8006D188((s32)(-32768.0f + (65536.0f * (f32)((q + lbl_801A66A0) % 39)) / 39.0f))));
+                wn->vel.x += (f32)(w1 * (0.0006f * lbl_8006D188((-32768.0f + (65536.0f * ((q + lbl_801A66A0) % 39)) / 39.0f))));
                 wn->vel.x += (f32)(w2 * (0.0012f * fn_1_120804_rand()));
                 if (wi < arg0->count / 2) {
-                    wn->vel.y += (f32)(w2 * ((0.0015f + (0.0005f * (f32)wi) / (f32)(arg0->count / 2)) * fn_1_120804_rand()));
+                    wn->vel.y += (f32)(w2 * ((0.0015f + (0.0005f * (f32)wi) / (arg0->count / 2)) * fn_1_120804_rand()));
                 } else {
-                    wn->vel.y += (f32)(w2 * ((0.0015f + (0.0005f * (f32)(arg0->count - wi)) / (f32)(arg0->count / 2)) * fn_1_120804_rand()));
+                    wn->vel.y += (f32)(w2 * ((0.0015f + (0.0005f * (arg0->count - wi)) / (arg0->count / 2)) * fn_1_120804_rand()));
                 }
-                wn->vel.z -= (f32)(w2 * (0.0006f * lbl_8006D188((s32)(-32768.0f + (65536.0f * (f32)((q + lbl_801A66A0) % 29)) / 29.0f))));
+                wn->vel.z -= (f32)(w2 * (0.0006f * lbl_8006D188((-32768.0f + (65536.0f * ((q + lbl_801A66A0) % 29)) / 29.0f))));
             }
         } else {
             for (wi = 0, wn = arg0->nodes; wi < arg0->count; wi++, wn++) {
@@ -19635,25 +19635,25 @@ void fn_1_120804(AccWork *arg0) {
                 s32 q;
                 m = wi % cols;
                 w2 = 0.2f + (0.8f * (f32)m) / 9.0f;
-                w1 = 0.2f + (0.8f * (f32)(cols - m)) / 9.0f;
+                w1 = 0.2f + (0.8f * (cols - m)) / 9.0f;
                 psvec_scale(&wn->vel, 0.8f, &wn->vel);
                 psvec_sub(&wn->pos, &wn->prev, &d);
                 psvec_scale_add(&wn->vel, &d, 0.2f, &wn->vel);
                 wn->vel.x -= (f32)(w1 * (0.0012f * fn_1_120804_rand()));
                 if (wi < arg0->count / 2) {
-                    wn->vel.y += (f32)(w1 * ((f32)((0.0038f + (0.001f * (f32)wi) / (f32)(arg0->count / 2)) * fn_1_120804_rand()) - 0.001f));
+                    wn->vel.y += (f32)(w1 * ((f32)((0.0038f + (0.001f * (f32)wi) / (arg0->count / 2)) * fn_1_120804_rand()) - 0.001f));
                 } else {
-                    wn->vel.y += (f32)(w1 * ((f32)((0.0038f + (0.001f * (f32)(arg0->count - wi)) / (f32)(arg0->count / 2)) * fn_1_120804_rand()) - 0.001f));
+                    wn->vel.y += (f32)(w1 * ((f32)((0.0038f + (0.001f * (arg0->count - wi)) / (arg0->count / 2)) * fn_1_120804_rand()) - 0.001f));
                 }
                 q = wi / 4;
-                wn->vel.z += (f32)(w1 * (0.0006f * lbl_8006D188((s32)(-32768.0f + (65536.0f * (f32)((q + lbl_801A66A0) % 39)) / 39.0f))));
+                wn->vel.z += (f32)(w1 * (0.0006f * lbl_8006D188((-32768.0f + (65536.0f * ((q + lbl_801A66A0) % 39)) / 39.0f))));
                 wn->vel.z += (f32)(w2 * (0.0012f * fn_1_120804_rand()));
                 if (wi < arg0->count / 2) {
-                    wn->vel.y += (f32)(w2 * ((0.0015f + (0.0005f * (f32)wi) / (f32)(arg0->count / 2)) * fn_1_120804_rand()));
+                    wn->vel.y += (f32)(w2 * ((0.0015f + (0.0005f * (f32)wi) / (arg0->count / 2)) * fn_1_120804_rand()));
                 } else {
-                    wn->vel.y += (f32)(w2 * ((0.0015f + (0.0005f * (f32)(arg0->count - wi)) / (f32)(arg0->count / 2)) * fn_1_120804_rand()));
+                    wn->vel.y += (f32)(w2 * ((0.0015f + (0.0005f * (arg0->count - wi)) / (arg0->count / 2)) * fn_1_120804_rand()));
                 }
-                wn->vel.x += (f32)(w2 * (0.0006f * lbl_8006D188((s32)(-32768.0f + (65536.0f * (f32)((q + lbl_801A66A0) % 29)) / 29.0f))));
+                wn->vel.x += (f32)(w2 * (0.0006f * lbl_8006D188((-32768.0f + (65536.0f * ((q + lbl_801A66A0) % 29)) / 29.0f))));
             }
         }
     } else {
@@ -19822,7 +19822,7 @@ void fn_1_122348(Obj122348 *obj) {
 
     for (k = 0; k < rounds; k++) {
         for (i = 0; i < n; i++) {
-            start[i].unk40 = -(f32)(k + 1) / (f32)(rounds + 1);
+            start[i].unk40 = -(f32)(k + 1) / (rounds + 1);
         }
         h = start;
         for (j = 0; j < n; j++, h++) {
@@ -20131,7 +20131,7 @@ void fn_1_12295C(Rope *rope) {
     rows = (rope->unk_18 - (p - rope->unk_24)) / cols;
     for (j = 0; j < rows; j++) {
         for (i = 0; i < cols; i++) {
-            p[i].unk_40 = -(f32)(j + 1) / (f32)(rows + 1);
+            p[i].unk_40 = -(f32)(j + 1) / (rows + 1);
         }
         for (i = 0, n = p; i < cols; i++, n++) {
             for (m = i + 1, q = n + 1; m < cols; m++, q++) {
@@ -20690,7 +20690,7 @@ void fn_1_1244F0(Obj1244F0 *obj) {
 
         for (i = 0; i < rows; i++, p += 9) {
             for (j = 0; j < 9; j += 3) {
-                v = -(f32)(i + 1) / (f32)(rows + 1);
+                v = -(f32)(i + 1) / (rows + 1);
                 p[j].f40 = v;
                 p[j + 1].f40 = v;
                 p[j + 2].f40 = v;
@@ -21926,7 +21926,7 @@ void fn_1_1262A4(ClothObj1262A4 *obj) {
         src = sorted;
         for (m = 0; m < 8; m++, dst++, src++) {
             *dst = *src;
-            dst->weight = t / (f32)(obj->nodeCount / 8 - 1);
+            dst->weight = t / (obj->nodeCount / 8 - 1);
         }
     }
 
@@ -22350,7 +22350,7 @@ void fn_1_126DE8(Sig_fn_1_10846C_Obj10846C *obj) {
  yzRow[0]++;
  nn[0]=(obj->groupCount-(yzRow[0]-obj->groups))/width;
  for(k=0;k<nn[0];k++,yzRow[0]+=width) {
-  for(i=0;i<width;i++) yzRow[0][i].weight=-(f32)(k+1)/(f32)(nn[0]+1);
+  for(i=0;i<width;i++) yzRow[0][i].weight=-(f32)(k+1)/(nn[0]+1);
   for(h[0]=0,p=yzRow[0];h[0]<width;h[0]++,p++) {
    for(j=h[0]+1,q=p+1;j<width;j++,q++) {
     if(p->p10.z>0.0f && q->p10.z>0.0f && p->p10.y>q->p10.y)
@@ -23358,11 +23358,11 @@ void fn_1_1286F4(Vec3f *out) {
         b = lbl_801A63C0;
         lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
         c = lbl_801A63C0;
-        fx = -0.00019999999494757503f + (f32)(0.00039999998989515007f * ((f32)(s32)((a >> 16) & 0x7FFF) / 32767.0f));
+        fx = -0.00019999999494757503f + (f32)(0.00039999998989515007f * ((s32)((a >> 16) & 0x7FFF) / 32767.0f));
         lbl_1_bss_88B40.x = fx;
-        fy = -9.999999747378752e-05f + (f32)(0.00019999999494757503f * ((f32)(s32)((b >> 16) & 0x7FFF) / 32767.0f));
+        fy = -9.999999747378752e-05f + (f32)(0.00019999999494757503f * ((s32)((b >> 16) & 0x7FFF) / 32767.0f));
         lbl_1_bss_88B40.y = fy;
-        fz = -0.00019999999494757503f + (f32)(0.00039999998989515007f * ((f32)(s32)((c >> 16) & 0x7FFF) / 32767.0f));
+        fz = -0.00019999999494757503f + (f32)(0.00039999998989515007f * ((s32)((c >> 16) & 0x7FFF) / 32767.0f));
         lbl_1_bss_88B40.z = fz;
         len = (f32)(fx * fx) + fy * fy + fz * fz;
         if (len > 1.6000001778593287e-05f) {
@@ -23569,7 +23569,7 @@ u8 fn_1_128E10(u8 value) {
     i = 1;
     while (i < 15) {
         entry = ((u8 *)&table)[i];
-        if ((s32)entry == (s32)(value & 0xFF)) {
+        if ((s32)entry == (value & 0xFF)) {
             break;
         }
         i++;
@@ -24203,7 +24203,7 @@ void fn_1_12999C(void) {
  fn_1_862A8(i,&v20);
  if(idx!=-1) {
  if(((0)[lbl_1_bss_89780]) != 0) {
- if(fn_1_D66BC((void *)(u32)(u8)idx,o48)!=0) {
+ if(fn_1_D66BC((void *)(u8)idx,o48)!=0) {
  fn_1_129D9C(o->unk_14C,&v20,o48,0,0,self,0,val);
  continue;
  }
@@ -24454,7 +24454,7 @@ void fn_1_12A0E0(DisplayData *arg0)
     z = *(f32 *)(LC_BASE + 0x2C);
     x = *(f32 *)(LC_BASE + 0xC);
     y = *(f32 *)(LC_BASE + 0x1C);
-    depth = (f32)(*(f64 *)(pool + 0xE8) - *(f64 *)(pool + 0xF0) / z);
+    depth = (*(f64 *)(pool + 0xE8) - *(f64 *)(pool + 0xF0) / z);
     psvec_set(&vec, z, y, x);
     fn_1_4954C(-depth);
     fn_8006F78C(&vec, &vec, scale);

@@ -410,23 +410,23 @@ void fn_1_D7A10(LigSeg *obj) {
 		if (obj->s5c > 0) {
 			f64 t;
 
-			obj->f3c = (f32)(fn_1_D7A10_operand((0.98), (obj->f3c)));
+			obj->f3c = (fn_1_D7A10_operand((0.98), (obj->f3c)));
 			{
-			    f64 product_value = (f64)((obj->f40));
-			    product_value *= (f64)((0.98));
-			    obj->f40 = (f32)(product_value);
+			    f64 product_value = ((obj->f40));
+			    product_value *= ((0.98));
+			    obj->f40 = (product_value);
 			}
 			{
-			    f64 product = (f64)((obj->f44));
-			    product *= (f64)((0.98));
-			    obj->f44 = (f32)(product);
+			    f64 product = ((obj->f44));
+			    product *= ((0.98));
+			    obj->f44 = (product);
 			}
 			obj->f40 = obj->f40 - 0.08f;
 			obj->f30 = obj->f30 + obj->f3c;
 			obj->f34 = obj->f34 + obj->f40;
 			obj->f38 = obj->f38 + obj->f44;
 			obj->s58 = obj->s58 + obj->s5a;
-			obj->s5a = (s16)(fn_1_D7A10_operand_((0.99), (obj->s5a)));
+			obj->s5a = (fn_1_D7A10_operand_((0.99), (obj->s5a)));
 			t = 0.02 * (400.0f - obj->f54);
 			obj->f54 = obj->f54 + t;
 			if (obj->s5c < 0x50) {
@@ -538,7 +538,7 @@ extern void lbl_8006D758(void);
    symbols.txt. A plain `static` would emit it out of line and add 28 bytes of .text,
    which is what failed the 16-target link. Matches fn_1_D7C44_array_read below. */
 static inline u8 scale_to_byte(f32 value, f32 scale) {
-	return (u8)(value * scale);
+	return (value * scale);
 }
 
 static inline u32 fn_1_D7C44_array_read(s32 index, u32 *array) { return array[index]; }
@@ -558,9 +558,9 @@ void fn_1_D7C44(LigEvt *arg0) {
 	memset(&obj, 0, 0x40);
 	lbl_8006DB74(obj.mtx);
 	obj.width = 0.70710677f * src->unk_24;
-	obj.color.bytes[0] = scale_to_byte((f32)(u8)src->unk_18, 1.0f);
-	obj.color.bytes[1] = scale_to_byte((f32)(u8)src->unk_1c, 1.0f);
-	obj.color.bytes[2] = scale_to_byte((f32)(u8)src->unk_20, 1.0f);
+	obj.color.bytes[0] = scale_to_byte((u8)src->unk_18, 1.0f);
+	obj.color.bytes[1] = scale_to_byte((u8)src->unk_1c, 1.0f);
+	obj.color.bytes[2] = scale_to_byte((u8)src->unk_20, 1.0f);
 	obj.color.bytes[3] = 0xFF;
 	obj.flags |= 2;
 	obj.height = 2.0 * obj.width;
@@ -1070,9 +1070,9 @@ void fn_1_D8878(LigSource *src) {
     scale = LIG_CLAMP01(dist);
     bright = env->unk_6C0;
     packet.width = 0.70710677f * size;
-    packet.color.bytes[0] = (u8)(bright * ((f32)(u8)src->r * scale));
-    packet.color.bytes[1] = (u8)(bright * ((f32)(u8)src->g * scale));
-    packet.color.bytes[2] = (u8)(bright * ((f32)(u8)src->b * scale));
+    packet.color.bytes[0] = (bright * ((u8)src->r * scale));
+    packet.color.bytes[1] = (bright * ((u8)src->g * scale));
+    packet.color.bytes[2] = (bright * ((u8)src->b * scale));
     packet.color.bytes[3] = 0xFF;
 
     if (scale * bright < 0.1f) {
@@ -1160,11 +1160,11 @@ void fn_1_D8D58(fn_1_D8D58_LigObject *obj, void *arg) {
             entry->z = y;
         } else {
             entry->x = __fabs(lbl_8006D188(
-                (s32)((f32)lbl_801A66A0 * 182.04444885253906f)));
+                ((f32)lbl_801A66A0 * 182.04444885253906f)));
             entry->y = __fabs(lbl_8006D188(
-                (s32)((f32)lbl_801A66A0 * 182.04444885253906f * 0.5)));
+                ((f32)lbl_801A66A0 * 182.04444885253906f * 0.5)));
             entry->z = __fabs(lbl_8006D188(
-                (s32)((f32)lbl_801A66A0 * 182.04444885253906f * 2.0)));
+                ((f32)lbl_801A66A0 * 182.04444885253906f * 2.0)));
         }
 
         fn_1_1030D4(entry, arg);
@@ -1542,7 +1542,7 @@ void fn_1_D9224(fn_1_D9224_State *state, void *model) {
         state->unk_14[41] = tmp;
 
         for (i = 0, a = &state->unk_14[31]; i < state->unk_C - 31; i++, a++) {
-            f = (f32)((s32)i / 11 + 1) / 12.0f;
+            f = ((s32)i / 11 + 1) / 12.0f;
             a->unk_40 = -CLAMP_D9224(f, 0.0f, 1.0f);
             if (i == 0 || i == 10) {
                 a->unk_40 = 0.0f;
@@ -1622,7 +1622,7 @@ extern u32 lbl_801A63C0;
  * callers' scale and offset are applied in double precision, as retail does */
 static inline f64 randf_D9D8C(void) {
     lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
-    return (f32)(s32)((lbl_801A63C0 >> 16) & 0x7FFF) / 32767.0f;
+    return (s32)((lbl_801A63C0 >> 16) & 0x7FFF) / 32767.0f;
 }
 
 static inline f32 sqlen_D9D8C(f32 x, f32 y, f32 z) {
@@ -1848,7 +1848,7 @@ void fn_1_DA6A8(void *arg0, u32 arg1) {
         var_r3 = (s32)fn_80077B14((void *)arg1);
         var_r7 = 0U;
         var_r6 = 0;
-        while (var_r7 < (u32) (*(u32 *)((u8 *)(temp_r30) + 0))) {
+        while (var_r7 < (*(u32 *)((u8 *)(temp_r30) + 0))) {
             var_r7 += 1;
             temp_r5 = (*(u32 *)((u8 *)(arg0) + 28)) + var_r6;
             var_r6 += 0xC;
@@ -2824,13 +2824,13 @@ void fn_1_DB9B0(void *arg0) {
                     0.0 != loc_68.z) {
                     lbl_8006D5F0(&loc_68, &loc_74, 0.5f);
                 }
-                psvec_scale(&loc_74, (f32)((2.5 * *(f32 *)((u8 *)v1 + 32)) * (1.0 + v20)), &loc_5C);
+                psvec_scale(&loc_74, ((2.5 * *(f32 *)((u8 *)v1 + 32)) * (1.0 + v20)), &loc_5C);
                 v33 = (f32)__fabs(lbl_8006D188(lbl_8006D46C(lbl_8006D534(&loc_8C, &loc_80))));
-                v34 = (s32)(v33 * (255.0f * lbl_8006D188((s32)(32768.0f * v20))));
+                v34 = (v33 * (255.0f * lbl_8006D188((32768.0f * v20))));
                 if (*(s32 *)((u8 *)arg0 + 16) < 248) {
-                    v34 = (s32)((f32)(u32)(u8)v34 * ((f32)(*(s32 *)((u8 *)arg0 + 16) - 128) / 120.0f));
+                    v34 = ((u8)v34 * ((*(s32 *)((u8 *)arg0 + 16) - 128) / 120.0f));
                 }
-                v34 = (s32)((f32)(u32)(u8)v34 * *(f32 *)((u8 *)arg0 + 20));
+                v34 = ((u8)v34 * *(f32 *)((u8 *)arg0 + 20));
                 {
                 f32 positionX = ((volatile DB9B0Point *)v25)->pos.x;  /* fzgx-allow: S2 volatile view keeps the verified load order */
                 f32 offsetX = loc_5C.x;
@@ -2854,20 +2854,20 @@ void fn_1_DB9B0(void *arg0) {
                 fn_1_681C((u8)fn_1_5910(), (u32 *)&loc_8);
                 v43 = v13;
                 v13 = (v13 + 8) % 128;
-                v52 = (DB9B0Point *)((u32)v0 + (u32)(v43 << 4) + 2056);
+                v52 = (DB9B0Point *)((u32)v0 + (v43 << 4) + 2056);
                 psvec_sub(&v52->pos, &loc_8, &loc_44);
-                psvec_sub(&v52->pos, (void *)((u32)v0 + (u32)(v13 << 4) + 2056), &loc_38);
+                psvec_sub(&v52->pos, (void *)((u32)v0 + (v13 << 4) + 2056), &loc_38);
                 DB9B0_cross(&loc_44, &loc_38, &loc_20);
                 if (0.0 != loc_20.x ||
                     0.0 != loc_20.y ||
                     0.0 != loc_20.z) {
                     lbl_8006D5F0(&loc_20, &loc_2C, 0.5f);
                 }
-                psvec_scale(&loc_2C, (f32)((2.5 * *(f32 *)((u8 *)v1 + 32)) * (1.0 + v49)), &loc_14);
+                psvec_scale(&loc_2C, ((2.5 * *(f32 *)((u8 *)v1 + 32)) * (1.0 + v49)), &loc_14);
                 v62 = (f32)__fabs(lbl_8006D188(lbl_8006D46C(lbl_8006D534(&loc_44, &loc_38))));
-                v63 = (s32)(v62 * (255.0f * lbl_8006D188((s32)(32768.0f * v49))));
+                v63 = (v62 * (255.0f * lbl_8006D188((32768.0f * v49))));
                 if (*(s32 *)((u8 *)arg0 + 16) < 248) {
-                    v63 = (s32)((f32)(u32)(u8)v63 * ((f32)(*(s32 *)((u8 *)arg0 + 16) - 128) / 120.0f));
+                    v63 = ((u8)v63 * ((*(s32 *)((u8 *)arg0 + 16) - 128) / 120.0f));
                 }
                 {
                     f32 baseX = ((volatile DB9B0Point *)v52)->pos.x;  /* fzgx-allow: S2 volatile view keeps the verified load order */
@@ -3145,11 +3145,11 @@ void fn_1_DC454(SanContainer *container, void *arg) {
             entry->value34 = 0.0f;
         } else {
             entry->value2c = (f32)__fabs(lbl_8006D188(
-                (s32)(182.04444885253906f * (f32)lbl_801A66A0)));
+                (182.04444885253906f * (f32)lbl_801A66A0)));
             entry->value30 = (f32)__fabs(lbl_8006D188(
-                (s32)(((((f32)lbl_801A66A0) * (182.04444885253906f)) * (0.5)))));
+                (((((f32)lbl_801A66A0) * (182.04444885253906f)) * (0.5)))));
             entry->value34 = (f32)__fabs(lbl_8006D188(
-                (s32)(2.0 * (182.04444885253906f * (f32)lbl_801A66A0))));
+                (2.0 * (182.04444885253906f * (f32)lbl_801A66A0))));
         }
         fn_1_1030D4(entry, saved_arg);
         count--;

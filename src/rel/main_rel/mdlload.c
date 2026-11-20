@@ -510,9 +510,9 @@ void fn_1_D3FDC(void *arg0, void *arg1) {
             entry->green = 0.0f;
             entry->blue = 0.0f;
         } else {
-            entry->red = __fabs(lbl_8006D188((s32)(182.04444885253906f * (f32)lbl_801A66A0)));
-            entry->green = __fabs(lbl_8006D188((s32)(0.5 * (182.04444885253906f * (f32)lbl_801A66A0))));
-            entry->blue = __fabs(lbl_8006D188((s32)(2.0 * (182.04444885253906f * (f32)lbl_801A66A0))));
+            entry->red = __fabs(lbl_8006D188((182.04444885253906f * (f32)lbl_801A66A0)));
+            entry->green = __fabs(lbl_8006D188((0.5 * (182.04444885253906f * (f32)lbl_801A66A0))));
+            entry->blue = __fabs(lbl_8006D188((2.0 * (182.04444885253906f * (f32)lbl_801A66A0))));
         }
         fn_1_1030D4(entry, arg1);
         count--;
@@ -568,7 +568,7 @@ void fn_1_D41D8(void) {
             s32 divisor;
             s32 remainder;
 
-            random_value = (s32)(lbl_801A63C0 * 0x676A4B6B + 0x33CB);
+            random_value = (lbl_801A63C0 * 0x676A4B6B + 0x33CB);
             lbl_801A63C0 = (u32)random_value;
             random_value = ((u32)random_value >> 16) & 0x7FFF;
             divisor = (u16)item->unk_C;
@@ -655,19 +655,19 @@ void fn_1_D4370(void *arg0) {
     s32 idx;
 
     temp_r30 = (struct D4370State *)((u8 *)(arg0) + 0xC040);
-    if ((s32) (*(s32 *)((u8 *)(arg0) + 49268)) != 0) {
+    if ((*(s32 *)((u8 *)(arg0) + 49268)) != 0) {
         temp_r30->unk_34 = temp_r30->unk_34 - 1;
         if (temp_r30->unk_34 <= 0) {
             var_r4 = temp_r30;
             var_r5 = 0;
             temp_r9 = (lbl_801A63C0 * 0x676A4B6B) + 0x33CB;
             lbl_801A63C0 = temp_r9;
-            temp_r30->unk_8 = (s32) ((s32)((temp_r9 >> 0x10U) & 0x7FFF) % 3) + 1;
+            temp_r30->unk_8 = ((s32)((temp_r9 >> 0x10U) & 0x7FFF) % 3) + 1;
             temp_r30->unk_4 = 0;
             while (var_r5 < temp_r30->unk_8) {
                 temp_r9_2 = (lbl_801A63C0 * 0x676A4B6B) + 0x33CB;
                 lbl_801A63C0 = temp_r9_2;
-                temp_r7 = (u32) ((temp_r9_2 >> 0x10U) & 0x7FFF) >> 0x1FU;
+                temp_r7 = ((temp_r9_2 >> 0x10U) & 0x7FFF) >> 0x1FU;
                 if (((((temp_r9_2 >> 0x10U) & 1) ^ temp_r7) - temp_r7) != 0) {
                     var_f0 = (1.0f);
                 } else {
@@ -677,7 +677,7 @@ void fn_1_D4370(void *arg0) {
                 var_r5 += 1;
                 temp_r6 = (lbl_801A63C0 * 0x676A4B6B) + 0x33CB;
                 lbl_801A63C0 = temp_r6;
-                var_r4->arr20[0] = (s32) ((s32)((temp_r6 >> 0x10U) & 0x7FFF) % 60) + 0xA;
+                var_r4->arr20[0] = ((s32)((temp_r6 >> 0x10U) & 0x7FFF) % 60) + 0xA;
                 var_r4 = (struct D4370State *)((u8 *)(var_r4) + 4);
             }
             temp_r30->unk_38 = temp_r30->arr20[temp_r30->unk_4];
@@ -693,9 +693,9 @@ void fn_1_D4370(void *arg0) {
             if ((*(f32 *)((u8 *)(arg0) + 49216)) <= (0.0f)) {
                 temp_r4_2 = (lbl_801A63C0 * 0x676A4B6B) + 0x33CB;
                 lbl_801A63C0 = temp_r4_2;
-                temp_r30->unk_34 = (s32) ((s32)((temp_r4_2 >> 0x10U) & 0x7FFF) % 180) + 0x78;
+                temp_r30->unk_34 = ((s32)((temp_r4_2 >> 0x10U) & 0x7FFF) % 180) + 0x78;
                 temp_r30->unk_38 = 0;
-                (*(f32 *)((u8 *)(arg0) + 49216)) = (f32) (0.0f);
+                (*(f32 *)((u8 *)(arg0) + 49216)) = (0.0f);
             }
         } else if (temp_r30->unk_38 <= 0) {
             temp_r30->unk_4 = idx + 1;
@@ -716,19 +716,19 @@ void fn_1_D4370(void *arg0) {
     (*(u8 *)((u8 *)(&loc_14) + 3)) = 0x80;
     if (temp_f4 > (0.99000001f)) {
         loc_1C.words[0] = loc_18.words[0];
-        (*(u8 *)((u8 *)(&loc_1C) + 0)) = (u8) ((f32) (*(u8 *)((u8 *)(&loc_1C) + 0)) * temp_f4);
-        (*(u8 *)((u8 *)(&loc_1C) + 1)) = (u8) ((f32) (*(u8 *)((u8 *)(&loc_1C) + 1)) * temp_f4);
-        (*(u8 *)((u8 *)(&loc_1C) + 2)) = (u8) ((f32) (*(u8 *)((u8 *)(&loc_1C) + 2)) * temp_f4);
-        (*(u8 *)((u8 *)(&loc_1C) + 3)) = (u8) ((f32) (*(u8 *)((u8 *)(&loc_1C) + 3)) * temp_f4);
+        (*(u8 *)((u8 *)(&loc_1C) + 0)) = ((*(u8 *)((u8 *)(&loc_1C) + 0)) * temp_f4);
+        (*(u8 *)((u8 *)(&loc_1C) + 1)) = ((*(u8 *)((u8 *)(&loc_1C) + 1)) * temp_f4);
+        (*(u8 *)((u8 *)(&loc_1C) + 2)) = ((*(u8 *)((u8 *)(&loc_1C) + 2)) * temp_f4);
+        (*(u8 *)((u8 *)(&loc_1C) + 3)) = ((*(u8 *)((u8 *)(&loc_1C) + 3)) * temp_f4);
     } else {
         spC = loc_14.words[0];
         sp10 = loc_18.words[0];
-        loc_1C.words[0] = fn_1_539CC((void *)(&sp10), (void *)(&spC), (f32)((0.5f) * (*(f32 *)((u8 *)(arg0) + 49216))));
+        loc_1C.words[0] = fn_1_539CC((void *)(&sp10), (void *)(&spC), ((0.5f) * (*(f32 *)((u8 *)(arg0) + 49216))));
         temp_f4_2 = (*(f32 *)((u8 *)(arg0) + 49216)) / (1.64999998f);
-        (*(u8 *)((u8 *)(&loc_1C) + 0)) = (u8) ((f32) (*(u8 *)((u8 *)(&loc_1C) + 0)) * temp_f4_2);
-        (*(u8 *)((u8 *)(&loc_1C) + 1)) = (u8) ((f32) (*(u8 *)((u8 *)(&loc_1C) + 1)) * temp_f4_2);
-        (*(u8 *)((u8 *)(&loc_1C) + 2)) = (u8) ((f32) (*(u8 *)((u8 *)(&loc_1C) + 2)) * temp_f4_2);
-        (*(u8 *)((u8 *)(&loc_1C) + 3)) = (u8) ((f32) (*(u8 *)((u8 *)(&loc_1C) + 3)) * temp_f4_2);
+        (*(u8 *)((u8 *)(&loc_1C) + 0)) = ((*(u8 *)((u8 *)(&loc_1C) + 0)) * temp_f4_2);
+        (*(u8 *)((u8 *)(&loc_1C) + 1)) = ((*(u8 *)((u8 *)(&loc_1C) + 1)) * temp_f4_2);
+        (*(u8 *)((u8 *)(&loc_1C) + 2)) = ((*(u8 *)((u8 *)(&loc_1C) + 2)) * temp_f4_2);
+        (*(u8 *)((u8 *)(&loc_1C) + 3)) = ((*(u8 *)((u8 *)(&loc_1C) + 3)) * temp_f4_2);
     }
     sp8 = loc_1C.words[0];
     fn_1_9A7A8((u32 *)(&sp8));
@@ -1147,7 +1147,7 @@ static inline f32 distance_squared(f32 *a, f32 *b) {
     f32 dy = a[1];
     f32 dz = a[2];
     dx -= b[0]; dy -= b[1]; dz -= b[2];
-    dx = ((f32)((f32)((dx)) * (f32)((dx))));
+    dx = ((f32)(((dx)) * ((dx))));
     dx += dy * dy; dx += dz * dz;
     return dx;
 }

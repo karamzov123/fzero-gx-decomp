@@ -643,7 +643,7 @@ s32 fn_1_152A28(s16 id, s16 y, s16 x, GridCell *table, s16 rows, s16 cols) {
     s16 ent;
     s16 grp;
     s32 res;
-    s16 total = (s16)(rows * cols);
+    s16 total = (rows * cols);
 
     if (lbl_1_bss_8B3A0.flags & 0x20000) {
         fn_1_152970(&grp, &ent, id, CELL_HIDDEN | CELL_LOCKED, table, rows, cols);
@@ -652,13 +652,13 @@ s32 fn_1_152A28(s16 id, s16 y, s16 x, GridCell *table, s16 rows, s16 cols) {
     }
     if (x != 0) {
         do {
-            ent = (s16)((ent + x + total) % cols);
+            ent = ((ent + x + total) % cols);
             res = fn_1_1528D0(grp, ent, table, rows, cols);
         } while ((s16)res < 0);
     }
     if (y != 0) {
         do {
-            grp = (s16)((grp + y + total) % rows);
+            grp = ((grp + y + total) % rows);
             res = fn_1_1528D0(grp, ent, table, rows, cols);
         } while ((s16)res < 0);
     }
@@ -672,7 +672,7 @@ s32 fn_1_152CB4(s32 id, s16 y, s16 x, GridCell *table, s16 rows, s16 cols) {
     s16 grp;
     s16 prev;
     s32 res;
-    s16 total = (s16)(rows * cols);
+    s16 total = (rows * cols);
     s16 saved;
 
     if (lbl_1_bss_8B3A0.flags & 0x20000) {
@@ -684,7 +684,7 @@ s32 fn_1_152CB4(s32 id, s16 y, s16 x, GridCell *table, s16 rows, s16 cols) {
     if (x != 0) {
         do {
             prev = ent;
-            ent = (s16)((ent + x + total) % cols);
+            ent = ((ent + x + total) % cols);
             if (x > 0 && prev > ent) {
                 break;
             }
@@ -702,7 +702,7 @@ s32 fn_1_152CB4(s32 id, s16 y, s16 x, GridCell *table, s16 rows, s16 cols) {
     if (y != 0) {
         do {
             prev = grp;
-            grp = (s16)((grp + y + total) % rows);
+            grp = ((grp + y + total) % rows);
             if (y > 0 && prev > grp) {
                 break;
             }
@@ -749,7 +749,7 @@ static inline s16 grid_scan_ent(s16 grp, s16 ent, s16 step, GridCell *table, s16
 }
 
 s32 fn_1_152FAC(s16 idx, s32 id, s16 y, s16 x, GridCell *table, s16 rows, s16 cols) {
-    s16 total = (s16)(rows * cols);
+    s16 total = (rows * cols);
     s16 grp;
     s16 ent;
     s16 lo;
@@ -764,7 +764,7 @@ s32 fn_1_152FAC(s16 idx, s32 id, s16 y, s16 x, GridCell *table, s16 rows, s16 co
     }
     if (x != 0) {
         do {
-            ent = (s16)((ent + x + total) % cols);
+            ent = ((ent + x + total) % cols);
             id = fn_1_1528D0(lbl_1_bss_8B3A0.anchor[idx].grp, ent, table, rows, cols);
             if ((s16)id < 0) {
                 lo_cnt = grid_scan_grp(lbl_1_bss_8B3A0.anchor[idx].grp, ent, -1, table, rows, cols, &lo);
@@ -785,7 +785,7 @@ s32 fn_1_152FAC(s16 idx, s32 id, s16 y, s16 x, GridCell *table, s16 rows, s16 co
     }
     if (y != 0) {
         do {
-            grp = (s16)((grp + y + total) % rows);
+            grp = ((grp + y + total) % rows);
             id = fn_1_1528D0(grp, lbl_1_bss_8B3A0.anchor[idx].ent, table, rows, cols);
             if ((s16)id < 0) {
                 lo_cnt = grid_scan_ent(grp, lbl_1_bss_8B3A0.anchor[idx].ent, -1, table, rows, cols, &lo);

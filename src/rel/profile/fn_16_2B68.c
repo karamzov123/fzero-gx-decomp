@@ -102,9 +102,9 @@ void fn_16_2B68(s16 index) {
         t1 = CLAMP01(ratio);
         if (lbl_1_bss_8B614.unk_4C & 0x10000000) {
             alpha = t1;
-            width = (s16) (32.0f + (f32) (28.0f * t0));
+            width = (32.0f + (f32) (28.0f * t0));
         } else if (lbl_1_bss_8B614.unk_4C & 0x08000000) {
-            width = (s16) (32.0f + (f32) (28.0f * (1.0f - t1)));
+            width = (32.0f + (f32) (28.0f * (1.0f - t1)));
             alpha = 1.0f - t0;
         } else {
             alpha = 1.0f;

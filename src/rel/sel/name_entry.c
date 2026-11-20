@@ -182,7 +182,7 @@ u16 c4 = p->unk_4;
 s32 t4 = (s32)p->unk_8 - (s32)c4;
 f64 dd = 0.21 * (f64)t4;
 if ((s32)dd != 0) {
-p->unk_4 = (u16)(s32)((f64)(u32)c4 + dd);
+p->unk_4 = ((u32)c4 + dd);
 } else {
 e = fn_4_ADF4_sign(t4);
 /* Retail rereads the position after selecting the one-step adjustment. */
@@ -193,7 +193,7 @@ u16 c6 = p->unk_6;
 s32 t6 = (s32)p->unk_A - (s32)c6;
 dd = 0.21 * (f64)t6;
 if ((s32)dd != 0) {
-p->unk_6 = (u16)(s32)((f64)(u32)c6 + dd);
+p->unk_6 = ((u32)c6 + dd);
 } else {
 e = fn_4_ADF4_sign(t6);
 /* Retail rereads the position after selecting the one-step adjustment. */
@@ -204,7 +204,7 @@ p->unk_6 = *(u16 *)&p->unk_6 + e;
 fn_1_49514(p->color);
 fn_1_496FC((f32)p->unk_4, (f32)p->unk_6);
 {
-f64 scale_d = 1.6666666666666667 * (0.5 + (f32)(0x18 - p->unk_1) / 48.0f);
+f64 scale_d = 1.6666666666666667 * (0.5 + (0x18 - p->unk_1) / 48.0f);
 fn_1_4955C(scale_d, scale_d);
 }
 if (p->unk_1 == 1) {
@@ -798,7 +798,7 @@ shift[0x29] = shift[0x2b];
 }
 }
 lbl_10_bss_55CD8->unk_F = 0;
-cnt = (u8)(lbl_10_bss_55CD8->unk_E);
+cnt = (lbl_10_bss_55CD8->unk_E);
 } else {
 held = (u16 *)(lbl_1_bss_9F8 + 0x10);
 if (((held[lbl_10_bss_55CD8->unk_C * 10] >> 3) & 1) || (((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_10_bss_55CD8->unk_C * 10]) >> 3) & 1)) {
@@ -887,7 +887,7 @@ old12 = smooth->unk_12;
 x = smooth->unk_E * 56 + 98 - old12;
 d = 0.3 * (f64)x;
 if ((s32)d != 0) {
-smooth->unk_12 = (s32)((f64)old12 + d);
+smooth->unk_12 = ((f64)old12 + d);
 } else {
 s32 step;
 if (x < 0) {
@@ -911,10 +911,10 @@ if (lbl_10_bss_55CD8->unk_17 != 0) {
 lbl_10_bss_55CD8->unk_17 = lbl_10_bss_55CD8->unk_17 - 1;
 }
 q = lbl_1_bss_9F8 + 0x10;
-if (((*(u16 *)(q + lbl_10_bss_55CD8->unk_C * 20) >> 3) & 1) || ((*(u16 *)((u32)(lbl_1_bss_9F8 + 0x12) + lbl_10_bss_55CD8->unk_C * 20) >> 3) & 1)) {
+if (((*(u16 *)(q + lbl_10_bss_55CD8->unk_C * 20) >> 3) & 1) || ((*(u16 *)((lbl_1_bss_9F8 + 0x12) + lbl_10_bss_55CD8->unk_C * 20) >> 3) & 1)) {
 lbl_10_bss_55CD8->unk_14 = 8;
 }
-if (((*(u16 *)(q + lbl_10_bss_55CD8->unk_C * 20) >> 2) & 1) || ((*(u16 *)((u32)(lbl_1_bss_9F8 + 0x12) + lbl_10_bss_55CD8->unk_C * 20) >> 2) & 1)) {
+if (((*(u16 *)(q + lbl_10_bss_55CD8->unk_C * 20) >> 2) & 1) || ((*(u16 *)((lbl_1_bss_9F8 + 0x12) + lbl_10_bss_55CD8->unk_C * 20) >> 2) & 1)) {
 lbl_10_bss_55CD8->unk_15 = 8;
 }
 if ((*(u16 *)(q + lbl_10_bss_55CD8->unk_C * 20) & 1) || ((repeat = (u16 *)(lbl_1_bss_9F8 + 0x12), repeat[lbl_10_bss_55CD8->unk_C * 10]) & 1) ||
@@ -1034,9 +1034,9 @@ extern void fn_1_495B0(u32);
 
 static inline f32 name_entry_pulse_scale(u8 c) {
     if (c > 9) {
-        return (f32)(0.5 + (f64)(f32)(c - 10) / 6.0);
+        return (0.5 + (f32)(c - 10) / 6.0);
     }
-    return (f32)(0.5 + (f64)(f32)(10 - c) / 20.0);
+    return (0.5 + (f32)(10 - c) / 20.0);
 }
 void fn_10_24BD0(void) {
 
@@ -1134,7 +1134,7 @@ void fn_10_24BD0(void) {
         packet.y = (178.0f);
         packet.z = (0.150000006f);
         packet.flags = 0xA;
-        packet.rotation_z = (s16)(((*(NameEntryState * *)&lbl_10_bss_55CD8)->rotation << 8) & 0xFF00);
+        packet.rotation_z = (((*(NameEntryState * *)&lbl_10_bss_55CD8)->rotation << 8) & 0xFF00);
         if ((1.0) != pulse_scale) {
             packet.scale_y = pulse_scale;
             packet.scale_x = pulse_scale;
@@ -1153,7 +1153,7 @@ void fn_10_24BD0(void) {
             tab_color.channels[1] = (u8)((v * 0x10) & 0xF0);
             tab_color.channels[2] = (u8)((v * 0x10) & 0xF0);
             *(u32 *)packet.color_add = *(u32 *)&tab_color;
-            temp_f0 = (f32)((1.0) + (f64)v / (12.0));
+            temp_f0 = ((1.0) + (f64)v / (12.0));
             packet.scale_y = temp_f0;
             packet.scale_x = temp_f0;
         }
@@ -1167,7 +1167,7 @@ void fn_10_24BD0(void) {
             left_color.channels[1] = (u8)((v * 0x10) & 0xF0);
             left_color.channels[2] = (u8)((v * 0x10) & 0xF0);
             *(u32 *)packet.color_add = *(u32 *)&left_color;
-            temp_f0_2 = (f32)((1.0) + (f64)v / (12.0));
+            temp_f0_2 = ((1.0) + (f64)v / (12.0));
             packet.scale_y = temp_f0_2;
             packet.scale_x = temp_f0_2;
         }
@@ -1185,7 +1185,7 @@ void fn_10_24BD0(void) {
             right_color.channels[1] = (u8)((v * 0x10) & 0xF0);
             right_color.channels[2] = (u8)((v * 0x10) & 0xF0);
             *(u32 *)packet.color_add = *(u32 *)&right_color;
-            temp_f0_3 = (f32)((1.0) + (f64)v / (12.0));
+            temp_f0_3 = ((1.0) + (f64)v / (12.0));
             packet.scale_y = temp_f0_3;
             packet.scale_x = temp_f0_3;
         }
@@ -1199,7 +1199,7 @@ void fn_10_24BD0(void) {
             cursor_color.channels[1] = (u8)((v * 0x10) & 0xF0);
             cursor_color.channels[2] = (u8)((v * 0x10) & 0xF0);
             *(u32 *)packet.color_add = *(u32 *)&cursor_color;
-            temp_f0_4 = (f32)((1.0) + (f64)v / (12.0));
+            temp_f0_4 = ((1.0) + (f64)v / (12.0));
             packet.scale_y = temp_f0_4;
             packet.scale_x = temp_f0_4;
         }
@@ -1226,7 +1226,7 @@ void fn_10_24BD0(void) {
             *(struct NameEntryPacketWords *)&packet =
                 *(struct NameEntryPacketWords *)(*(u8 (*)[])&lbl_1_rodata_26F8);
             packet.image = 0x8F00;
-            packet.x = (f32)((*(NameEntryState * *)&lbl_10_bss_55CD8)->selection_x);
+            packet.x = ((*(NameEntryState * *)&lbl_10_bss_55CD8)->selection_x);
             packet.y = (346.0f);
             packet.z = (0.119999997f);
             fn_1_4F734((FontDrawPacket *)&packet);
@@ -1668,7 +1668,7 @@ void fn_10_25E1C(void) {
                 }
             }
             if (i != 5) {
-                if (fn_1_F89E4((u8)(i + 1)) == 0) {
+                if (fn_1_F89E4((i + 1)) == 0) {
                     goto set_neg; // shared tail: retail merges both -1 arms
                 }
             }

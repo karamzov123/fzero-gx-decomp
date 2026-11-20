@@ -3162,9 +3162,9 @@ fovt = ((t7) < (P32(fzgx_pool_rodata_lbl_1_rodata_230))) ? (P32(fzgx_pool_rodata
 if (bad90(fovt)) fovt = P32(fzgx_pool_rodata_lbl_1_rodata_230) ;
 fovt /= P32(fzgx_pool_rodata_lbl_1_rodata_200_90) ;
 fov = P32(fzgx_pool_rodata_lbl_1_rodata_200_94) * (f32)(fovt * fovt);
-x = loc_110.x0 + (f32)(fovt * (loc_110.x1 - loc_110.x0));
-y = loc_110.y0 + (f32)(fovt * (loc_110.y1 - loc_110.y0));
-angle = loc_110.a0 + (f32)(fovt * (loc_110.a1 - loc_110.a0));
+x = loc_110.x0 + (fovt * (loc_110.x1 - loc_110.x0));
+y = loc_110.y0 + (fovt * (loc_110.y1 - loc_110.y0));
+angle = loc_110.a0 + (fovt * (loc_110.a1 - loc_110.a0));
 if ((s8)camera_get_state() == 1) fov /= P32(fzgx_pool_rodata_lbl_1_rodata_200_98) ;
 fov = 55.0f + fov;
 if (arg0->unk_A4 == 3) {
@@ -3175,9 +3175,9 @@ angle = loc_110.a0;
 }
 if (arg0->unk_A4 < 5) {
 fn_1_A888(arg0);
-x += (f32)(arg0->unk_70 * (loc_110.x2 - x));
-y += (f32)(arg0->unk_70 * (loc_110.y2 - y));
-angle = angle + (f32)(arg0->unk_70 * (loc_110.a2 - angle)) / 2.0;
+x += (arg0->unk_70 * (loc_110.x2 - x));
+y += (arg0->unk_70 * (loc_110.y2 - y));
+angle = angle + (arg0->unk_70 * (loc_110.a2 - angle)) / 2.0;
 }
 rate = (FOVRATE90(t7) < P32(fzgx_pool_rodata_lbl_1_rodata_200_9C)) ? P32(fzgx_pool_rodata_lbl_1_rodata_200_9C) : (FOVRATE90(t7) > 0.05) ? 0.05 : FOVRATE90(t7);
 if (t8 & 0x400040) {
@@ -3209,7 +3209,7 @@ else
 arg0->unk_8 = ((f32)((arg0->unk_8) + ((fov) - (arg0->unk_8)) * (P64(fzgx_pool_rodata_lbl_1_rodata_200_C8)))) ;
 arg0->unk_84 = t7;
 } else
-arg0->unk_8 = ((arg0->unk_8) + (f32)((rate) * ((fov) - (arg0->unk_8)))) ;
+arg0->unk_8 = ((arg0->unk_8) + ((rate) * ((fov) - (arg0->unk_8)))) ;
 }
 arg0->unk_8C.y = ((f32)((arg0->unk_8C.y) + ((x) - (arg0->unk_8C.y)) * (P64(fzgx_pool_rodata_lbl_1_rodata_200_D8)))) ;
 arg0->unk_8C.z = ((f32)((arg0->unk_8C.z) + ((y) - (arg0->unk_8C.z)) * (P64(fzgx_pool_rodata_lbl_1_rodata_200_D8)))) ;
@@ -3481,7 +3481,7 @@ mathutil_mtxA_rotate_x__fzgx_offset_C(loc_24, loc_20);
 fn_8006E2B0(&loc_50, &loc_5C);
 {
 s16 yaw = -lbl_8006D24C(loc_5C.x, loc_5C.y);
-fn_8006F038(&arg0->unk_10, &arg0->unk_28, (s16)(arg0->unk_1FA + yaw));
+fn_8006F038(&arg0->unk_10, &arg0->unk_28, (arg0->unk_1FA + yaw));
 }
 } else {
 fn_8006F1F0(&arg0->unk_10, &arg0->unk_64, &arg0->unk_28);
@@ -3650,7 +3650,7 @@ f32 fn_1_A888(void *arg0) {
     if (ent == 0) {
         return (ro_pool->c_30);
     }
-    flag = (s32)(((*(u32 *)((u8 *)ent + 0x7C)) >> 24) & 1);
+    flag = (((*(u32 *)((u8 *)ent + 0x7C)) >> 24) & 1);
     fn_1_862D4((void *)(s32)self->id, &pos);
     fn_1_8636C((s32)self->id, &big);
     lbl_8006DC6C(&big);
@@ -3694,7 +3694,7 @@ f32 fn_1_A888(void *arg0) {
     }
     cur = self->fov;
     scaled = (ro_pool->c_118) * (res - cur);
-    self->fov = (f32)(cur + scaled);
+    self->fov = (cur + scaled);
     lbl_8006DB30();
     return res;
 }
@@ -3723,28 +3723,28 @@ void fn_1_AA54(void *arg0) {
     u8 temp_r31;
     u8 temp_r3;
 
-    temp_r31 = fn_1_86678((s32) (*(s16 *)((u8 *)(arg0) + 2)));
-    temp_r3 = fn_1_86634((s32) (*(s16 *)((u8 *)(arg0) + 2)));
+    temp_r31 = fn_1_86678((*(s16 *)((u8 *)(arg0) + 2)));
+    temp_r3 = fn_1_86634((*(s16 *)((u8 *)(arg0) + 2)));
     temp_r28 = camera_get_entry_field_0xa8((u32) temp_r3);
-    if (((s16) (*(s16 *)((u8 *)(&lbl_1_bss_960) + 0)) != 9) && (fn_1_864E8((s32) (*(s16 *)((u8 *)(arg0) + 2))) & 0x10000)) {
+    if (((*(s16 *)((u8 *)(&lbl_1_bss_960) + 0)) != 9) && (fn_1_864E8((*(s16 *)((u8 *)(arg0) + 2))) & 0x10000)) {
         camera_set_entry_field_0xa8(temp_r3, 2);
         return;
     }
-    if (!(fn_1_864E8((s32) (*(s16 *)((u8 *)(arg0) + 2))) & 1)) {
-        if (fn_1_864E8((s32) (*(s16 *)((u8 *)(arg0) + 2))) & 0x800) {
+    if (!(fn_1_864E8((*(s16 *)((u8 *)(arg0) + 2))) & 1)) {
+        if (fn_1_864E8((*(s16 *)((u8 *)(arg0) + 2))) & 0x800) {
             camera_set_entry_field_0xa8(temp_r3, 5);
             return;
         }
-        if (!(fn_1_864E8((s32) (*(s16 *)((u8 *)(arg0) + 2))) & 0x80)) {
+        if (!(fn_1_864E8((*(s16 *)((u8 *)(arg0) + 2))) & 0x80)) {
             goto block_7; /* Preserves the retail branch. */
         }
     } else {
 block_7:
-        if ((f64) (*(f64 *)((u8 *)(&lbl_1_rodata_360) + 0)) == (f64) (f64) fn_1_8664C((s32) (*(s16 *)((u8 *)(arg0) + 2)))) {
+        if ((*(f64 *)((u8 *)(&lbl_1_rodata_360) + 0)) == (f64) fn_1_8664C((*(s16 *)((u8 *)(arg0) + 2)))) {
             camera_set_entry_field_0xa8(temp_r3, 3);
             return;
         }
-        if (fn_1_8664C((s32) (*(s16 *)((u8 *)(arg0) + 2))) == 0x14) {
+        if (fn_1_8664C((*(s16 *)((u8 *)(arg0) + 2))) == 0x14) {
             camera_set_entry_field_0xa8(temp_r3, 0);
             return;
         }
@@ -4383,13 +4383,13 @@ void fn_1_B4D4(LiveCamera_fn_1_B4D4 *camera) {
             scale = (0.80000000000000004);
             scale2 = (0.71999999999999997);
             for (i = 0; i < 3; i++) {
-                product = damping * (f64)(*((camera->offset.values) + (i)));
+                product = damping * (*((camera->offset.values) + (i)));
                 camera->velocity.values[i] =
-                    (f32)((f64)(*((camera->velocity.values) + (i))) - product);
+                    ((*((camera->velocity.values) + (i))) - product);
             }
             for (i = 0; i < 3; i++) {
                 camera->velocity.values[i] =
-                    (f32)((f64)(*((camera->velocity.values) + (i))) * scale);
+                    ((*((camera->velocity.values) + (i))) * scale);
             }
             for (i = 0; i < 3; i++) {
                 camera->offset.values[i] =
@@ -4398,15 +4398,15 @@ void fn_1_B4D4(LiveCamera_fn_1_B4D4 *camera) {
             {
     u32 fzgx_loop_i_7616;
 for (fzgx_loop_i_7616 = 0; fzgx_loop_i_7616 < 3; fzgx_loop_i_7616++) {
-                product_2 = scale2 * (f64)(*((camera->offset2.values) + (fzgx_loop_i_7616)));
+                product_2 = scale2 * (*((camera->offset2.values) + (fzgx_loop_i_7616)));
                 camera->velocity2.values[fzgx_loop_i_7616] =
-                    (f32)((f64)(*((camera->velocity2.values) + (fzgx_loop_i_7616))) - product_2);
+                    ((*((camera->velocity2.values) + (fzgx_loop_i_7616))) - product_2);
             }
     i = fzgx_loop_i_7616;
 }
             for (i = 0; i < 3; i++) {
                 camera->velocity2.values[i] =
-                    (f32)((f64)(*((camera->velocity2.values) + (i))) * damping);
+                    ((*((camera->velocity2.values) + (i))) * damping);
             }
             for (i = 0; i < 3; i++) {
                 camera->offset2.values[i] =
@@ -4939,14 +4939,14 @@ void fn_1_C038(s32 value, f32 start, f32 end) {
     f32 converted;
 
     difference = end - start;
-    ratio = difference / (f32)(((u32)(value * value)) >> 2);
+    ratio = difference / (((u32)(value * value)) >> 2);
 
     lbl_1_bss_10C0[0] = start;
     lbl_1_bss_10C0[1] = end;
     lbl_1_bss_10C0[4] = lbl_1_rodata_49C;
 
     lbl_1_bss_10C0[5] = ratio;
-    converted = (f32)(u32)value;
+    converted = (u32)value;
     lbl_1_bss_10C0[3] = converted;
     lbl_1_bss_10C0[2] = converted;
 }

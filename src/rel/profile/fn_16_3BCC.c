@@ -158,12 +158,12 @@ void fn_16_3BCC(s16 arg0, s16 x, s16 y) {
         if (lbl_1_bss_8B614.flags & 0x10000000) {
             t = clamp01((f32)lbl_1_bss_8B614.timer / ((f32)lbl_1_bss_8B614.duration / 2.0f));
             half = (f32)lbl_1_bss_8B614.duration / 2.0f;
-            h = (s32)(17.0f + (f32)(75.0f * t));
+            h = (17.0f + (f32)(75.0f * t));
             alpha = clamp01(((f32)lbl_1_bss_8B614.timer - half) / half);
         } else if (lbl_1_bss_8B614.flags & 0x08000000) {
             half = (f32)lbl_1_bss_8B614.duration / 2.0f;
             t = clamp01(((f32)lbl_1_bss_8B614.timer - half) / half);
-            h = (s32)(17.0f + (f32)(75.0f * (1.0f - t)));
+            h = (17.0f + (f32)(75.0f * (1.0f - t)));
             alpha = 1.0f - clamp01((f32)lbl_1_bss_8B614.timer / half);
         } else {
             h = (s32)height;
@@ -178,7 +178,7 @@ void fn_16_3BCC(s16 arg0, s16 x, s16 y) {
     packet.x = (f32)shift + (left = (f32)x - width);
     packet.y = top = (f32)y - height;
     packet.z = 10.0f;
-    fn_1_50164(&packet, width, (f32)(s16)h, 8.0f, 8.0f);
+    fn_1_50164(&packet, width, (s16)h, 8.0f, 8.0f);
     fn_1_495A0(alpha);
     innerTop = 10.0f + top;
     innerLeft = 10.0f + left;

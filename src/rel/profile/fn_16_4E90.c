@@ -224,10 +224,10 @@ void fn_16_4E90(void) {
         packet.flags = 0x10000A;
         *(u32 *)packet.color = color0[0];
         if (active && (flags & 0x60000000)) {
-            sine = lbl_8006D188((s32)(182.04444885253906f * (180.0f * RATIO())));
+            sine = lbl_8006D188((182.04444885253906f * (180.0f * RATIO())));
             packet.scale_x *= 1.0f + (f32)(0.5f * sine);
             packet.scale_y *= 1.0f + (f32)(0.5f * sine);
-            packet.alpha = 1.0f - (f32)(0.5f * sine);
+            packet.alpha = 1.0f - (0.5f * sine);
         }
         fn_1_4F734(&packet);
         packet = lbl_1_rodata_26F8;
@@ -238,10 +238,10 @@ void fn_16_4E90(void) {
         packet.flags = 10;
         *(u32 *)packet.color = color1[0];
         if ((state->flags & 0x80000000) && (state->flags & 0x60000000)) {
-            sine = lbl_8006D188((s32)(182.04444885253906f * (180.0f * RATIO())));
+            sine = lbl_8006D188((182.04444885253906f * (180.0f * RATIO())));
             packet.scale_x *= 1.0f + (f32)(0.5f * sine);
             packet.scale_y *= 1.0f + (f32)(0.5f * sine);
-            packet.alpha = 1.0f - (f32)(0.5f * sine);
+            packet.alpha = 1.0f - (0.5f * sine);
         }
         fn_1_4F734(&packet);
         packet = lbl_1_rodata_26F8;
@@ -252,7 +252,7 @@ void fn_16_4E90(void) {
         packet.flags = 0x8000A;
         *(u32 *)packet.color = color2[0];
         if ((state->flags & 0x80000000) && (state->flags & 0x60000000)) {
-            sine = lbl_8006D188((s32)(182.04444885253906f * (180.0f * RATIO())));
+            sine = lbl_8006D188((182.04444885253906f * (180.0f * RATIO())));
             packet.scale_x *= 1.0f + (f32)(0.3f * sine);
             packet.scale_y *= 1.0f + (f32)(0.3f * sine);
             packet.alpha = 1.0f - (f32)(0.5f * sine);
@@ -266,7 +266,7 @@ void fn_16_4E90(void) {
         packet.flags = 10;
         *(u32 *)packet.color = color3[0];
         if ((state->flags & 0x80000000) && (state->flags & 0x60000000)) {
-            sine = lbl_8006D188((s32)(182.04444885253906f * (180.0f * RATIO())));
+            sine = lbl_8006D188((182.04444885253906f * (180.0f * RATIO())));
             packet.scale_x *= 1.0f + (f32)(0.3f * sine);
             packet.scale_y *= 1.0f + (f32)(0.3f * sine);
             packet.alpha = 1.0f - (f32)(0.5f * sine);

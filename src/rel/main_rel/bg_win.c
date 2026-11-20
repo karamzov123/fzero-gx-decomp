@@ -374,10 +374,10 @@ s32 fn_1_15BCDC(u32 *commands) {
     while (*scan != 0xFFFFFFFF) {
         u32 event = *scan;
         if (controller == 0) {
-            controller = (u16)(event & 0xf);
+            controller = (event & 0xf);
         }
         if ((event >> 24) == 2) {
-            held_buttons = (u16)((u16)held_buttons | (u16)(event >> 4));
+            held_buttons = ((u16)held_buttons | (u16)(event >> 4));
         }
         scan++;
         command_count++;
@@ -393,7 +393,7 @@ s32 fn_1_15BCDC(u32 *commands) {
     for (command_index = 0; command_index < command_count; command_index++) {
         u32 command = commands[(u16)(command_count - command_index - 1)];
         /* Buttons occupy bits 4..19, below the command-type byte. */
-        u16 buttons = (u16)(command >> 4);
+        u16 buttons = (command >> 4);
         u16 recorded = history[(u16)((history_end - history_index) % 32)];
         if ((command >> 24) == 2) {
             continue;
@@ -765,7 +765,7 @@ f32 fn_1_15C5A4(void * arg0, void * arg1) {
     f32 v3;
     f32 v4;
     f32 v5;
-    v0 = (s32)(f32)(*(f32 *)((u8 *)arg0 + 84) / lbl_1_rodata_DD58);
+    v0 = (*(f32 *)((u8 *)arg0 + 84) / lbl_1_rodata_DD58);
     v1 = (v0 << 4);
     fn_80074188(__cvt_fp2unsigned(*(f32 *)((u8 *)&lbl_1_bss_8FD68 + v1)),
         __cvt_fp2unsigned(*(f32 *)((u8 *)&lbl_1_bss_8FD68 + v1 + 4)),
@@ -956,12 +956,12 @@ void fn_1_15C6C0(s32 arg0, s32 arg1) {
     if (rank1.words[0] > (record = entry->times[lbl_1_bss_3C30.unk_A7]) || record < lbl_1_bss_3C30.unk_1464) {
         if (lbl_1_bss_3C30.unk_5 == 2 && fn_1_F1B94()) {
             other = fn_1_486C4(0x9420);
-            y = (s32)(240.0f - (f32)(height / 2) - (f32)(width / 2));
-            otherY = (s32)(240.0f + (f32)(height / 2) + (f32)(other / 2));
+            y = (240.0f - (height / 2) - (width / 2));
+            otherY = (240.0f + (height / 2) + (other / 2));
         } else {
             other = fn_1_486C4(0x941B);
-            y = (s32)(240.0f - (f32)(height / 2) - (f32)(width / 2));
-            otherY = (s32)(240.0f + (f32)(height / 2) + (f32)(other / 2));
+            y = (240.0f - (height / 2) - (width / 2));
+            otherY = (240.0f + (height / 2) + (other / 2));
         }
     } else {
         if (lbl_1_bss_3C30.unk_5 == 2 && fn_1_F1B94()) { y = 240; otherY = 0; }
@@ -984,7 +984,7 @@ void fn_1_15C6C0(s32 arg0, s32 arg1) {
             stretch = 1.0f + growth;
             p.scale_x *= stretch;
             p.scale_y /= stretch;
-            SET_COLOR(p, (s32)((f32)(255.0f * growth) / 10.0f));
+            SET_COLOR(p, ((255.0f * growth) / 10.0f));
             CONVERT(p);
             fn_1_4F734(&p);
         } else {
@@ -1005,14 +1005,14 @@ void fn_1_15C6C0(s32 arg0, s32 arg1) {
         }
         total += strips.strips[5].w;
         total += (f32)strips.strips[0].h * lbl_8006D21C(0xAAA);
-        x = 320.0f - (f32)(total / 2);
+        x = 320.0f - (total / 2);
         for (i = 0; i < 6; i++) {
             if (arg0 <= 480 - i * 5 && arg0 >= start) {
                 f32 zoom;
-                zoom = (f32)arg0 - (f32)(480 - (i + 1) * 5);
+                zoom = (f32)arg0 - (480 - (i + 1) * 5);
                 if (zoom < 1.0f) {
                     if (zoom < 0.0f && zoom > -10.0f) {
-                        zoom = 1.0f + (f32)(0.25f * lbl_8006D188((s32)((32768.0f * -zoom) / 10.0f)));
+                        zoom = 1.0f + (0.25f * lbl_8006D188(((32768.0f * -zoom) / 10.0f)));
                     } else {
                         zoom = 1.0f;
                     }
@@ -1021,22 +1021,22 @@ void fn_1_15C6C0(s32 arg0, s32 arg1) {
                 p.image = 0x941B;
                 fn_1_51678(&p, p.image, strips.strips[i].x, strips.strips[i].y,
                            strips.strips[i].w, strips.strips[i].h);
-                p.x = (f32)(x + strips.strips[i].w / 2);
+                p.x = (x + strips.strips[i].w / 2);
                 p.y = (f32)y;
                 p.z = 100.0f - zoom;
-                p.alpha = 1.0f - (f32)(0.5f * (zoom - 1.0f)) / 5.0f;
+                p.alpha = 1.0f - (0.5f * (zoom - 1.0f)) / 5.0f;
                 if (arg0 < start + 10) {
-                    stretch3 = 2.0f * (f32)(start + 10 - arg0);
+                    stretch3 = 2.0f * (start + 10 - arg0);
                     p.scale_x *= stretch3;
                     p.scale_y /= stretch3;
-                    SET_COLOR(p, (s32)((f32)(255.0f * stretch3) / 10.0f));
+                    SET_COLOR(p, ((255.0f * stretch3) / 10.0f));
                     p.alpha = 1.0f - stretch3 / 20.0f;
                 }
                 p.scale_x *= zoom;
                 p.scale_y *= zoom;
                 CONVERT(p);
                 p.vertex_callback = (VertexCallback)fn_1_15C5A4;
-                SET_VALUE(p, fn_1_51B84((f32)strips.strips[i].h * lbl_8006D21C(0xAAA)) + (f32)(arg1 * 1000000));
+                SET_VALUE(p, fn_1_51B84((f32)strips.strips[i].h * lbl_8006D21C(0xAAA)) + (arg1 * 1000000));
                 p.flags = 0x400000A;
                 fn_1_4F734(&p);
                 x += strips.strips[i].w;
@@ -1077,21 +1077,21 @@ void fn_1_15C6C0(s32 arg0, s32 arg1) {
             p.y = (f32)otherY;
             p.flags = 0x400000A;
             clamped = arg0 < 420 ? 420 : arg0 > 480 ? 480 : arg0;
-            fade4 = (f32)(480 - clamped) / 60.0f;
+            fade4 = (480 - clamped) / 60.0f;
             p.alpha = fade4;
             if (work == 1 && fade4 < 1.0f) {
                 f32 amount = 1.0f - fade4;
-                f32 growth = 1.0f + (f32)(10.0f * amount);
-                p.x = 320.0f + (f32)(5120.0f * amount);
+                f32 growth = 1.0f + (10.0f * amount);
+                p.x = 320.0f + (5120.0f * amount);
                 p.scale_x *= growth;
                 p.scale_y /= growth;
                 p.alpha = fade4 / 1.5f;
             }
             if (arg0 < start + 10) {
-                stretch4 = 2.0f * (f32)(start + 10 - arg0);
+                stretch4 = 2.0f * (start + 10 - arg0);
                 p.scale_x *= stretch4;
                 p.scale_y /= stretch4;
-                SET_COLOR(p, (s32)((f32)(255.0f * stretch4) / 10.0f));
+                SET_COLOR(p, ((255.0f * stretch4) / 10.0f));
                 p.alpha = 1.0f - stretch4 / 20.0f;
             }
             CONVERT(p);
@@ -1099,7 +1099,7 @@ void fn_1_15C6C0(s32 arg0, s32 arg1) {
             SET_VALUE(p, (f32)arg1);
             fn_1_4F734(&p);
             if (work == 1 && p.alpha < 1.0f) {
-                p.x = 320.0f - (f32)(5120.0f * (1.0f - p.alpha));
+                p.x = 320.0f - (5120.0f * (1.0f - p.alpha));
                 p.x = fn_1_519FC(p.x);
                 fn_1_4F734(&p);
             }
@@ -1108,9 +1108,9 @@ void fn_1_15C6C0(s32 arg0, s32 arg1) {
         place = fn_1_149FB4(arg1);
         number = place + 1;
         suffix = fn_1_15C6C0_ordinal(number);
-        scale = 20.0f - (f32)(start - arg0);
+        scale = 20.0f - (start - arg0);
         if (scale < 1.0f) scale = 1.0f;
-        fade5 = 1.0f - (f32)(0.5f * (scale - 1.0f)) / 20.0f;
+        fade5 = 1.0f - (0.5f * (scale - 1.0f)) / 20.0f;
         if (arg0 == start - 5) fn_1_A5244(place);
         if (place < 3) {
             p = lbl_1_rodata_26F8;
@@ -1118,7 +1118,7 @@ void fn_1_15C6C0(s32 arg0, s32 arg1) {
             fn_1_51564(0, 0, 112, fn_1_486C4(p.image), 3, 1);
             fn_1_5158C(&p, p.image, place, 0);
             p.x = 320.0f;
-            p.y = (f32)(((fn_1_486C4(p.image) >> 1) & 0x7FFF) + 144);
+            p.y = (((fn_1_486C4(p.image) >> 1) & 0x7FFF) + 144);
             p.scale_x *= scale;
             p.scale_y *= scale;
             p.alpha = fade5;
@@ -1148,7 +1148,7 @@ void fn_1_15C6C0(s32 arg0, s32 arg1) {
             fn_1_51564(0, 0, 112, (fn_1_486C4(p.image) >> 1) & 0x7FFF, 5, 2);
             fn_1_5158C(&p, p.image, number % 5, number / 5);
             p.x = 320.0f;
-            p.y = (f32)((s32)((fn_1_486C4(p.image) >> 1) & 0x7FFF) / 2 + 144);
+            p.y = (((fn_1_486C4(p.image) >> 1) & 0x7FFF) / 2 + 144);
             p.scale_x *= scale;
             p.scale_y *= scale;
             p.alpha = fade5;
@@ -1179,7 +1179,7 @@ void fn_1_15C6C0(s32 arg0, s32 arg1) {
             digit = number % 10;
             fn_1_5158C(&p, p.image, digit % 5, digit / 5);
             p.x = 320.0f;
-            p.y = (f32)((s32)((fn_1_486C4(p.image) >> 1) & 0x7FFF) / 2 + 144);
+            p.y = (((fn_1_486C4(p.image) >> 1) & 0x7FFF) / 2 + 144);
             stretch5 = 0.9f * scale;
             p.scale_x *= stretch5;
             p.scale_y *= scale;
@@ -1194,8 +1194,8 @@ void fn_1_15C6C0(s32 arg0, s32 arg1) {
             fn_1_51564(0, 0, 112, (fn_1_486C4(p.image) >> 1) & 0x7FFF, 5, 2);
             digit = number / 10;
             fn_1_5158C(&p, p.image, digit % 5, digit / 5);
-            p.x = 320.0f - (f32)(50.0f * scale);
-            p.y = (f32)((s32)((fn_1_486C4(p.image) >> 1) & 0x7FFF) / 2 + 144);
+            p.x = 320.0f - (50.0f * scale);
+            p.y = (((fn_1_486C4(p.image) >> 1) & 0x7FFF) / 2 + 144);
             p.scale_x *= stretch5;
             p.scale_y *= scale;
             p.flags = 0x400000B;
@@ -1962,7 +1962,7 @@ void fn_1_15E7F4(void *arg0, s32 arg1) {
             *(f32 *)((u8 *)&loc_58 + 32) = *(f32 *)((u8 *)v16 + 8);
             *(f32 *)((u8 *)&loc_58 + 36) = *(f32 *)((u8 *)v16 + 12);
             (loc_58.a)[12] = v5 | 0x4000000;
-            v19 = (1.0f) - (f32)(s32)(120 - *(u8 *)((u8 *)arg0 + 2)) / (10.0f);
+            v19 = (1.0f) - (120 - *(u8 *)((u8 *)arg0 + 2)) / (10.0f);
             v20 = (40.0f) * v19;
             offset = (350.0f) * v19;
             if (v14 & 1) v20 = -v20;
@@ -1980,7 +1980,7 @@ void fn_1_15E7F4(void *arg0, s32 arg1) {
             v21 = (1.0f);
             v4 = (1.39999998f) * v4;
             if (v4 > v21) v4 = v21;
-            v22 = (s32)((255.0f) * v4);
+            v22 = ((255.0f) * v4);
             *(u8 *)((u8 *)&loc_58 + 62) = v22;
             *(u8 *)((u8 *)&loc_58 + 61) = v22;
             *(u8 *)((u8 *)&loc_58 + 60) = v22;
@@ -1991,7 +1991,7 @@ void fn_1_15E7F4(void *arg0, s32 arg1) {
             v24 = (f32)v5_2 / (10.0f);
             *(f32 *)((u8 *)&loc_58 + 44) = v24;
             v25 = (v23 - v24) * (v23 - v24);
-            v4 = (f32)((90.0f) * v25);
+            v4 = ((90.0f) * v25);
             *(f32 *)((u8 *)&loc_58 + 8) -= v4;
             v26 = v23 + (f32)((2.0f) * v25);
             v4 = fn_1_58C4() == 1 ? (1.0f) : (0.800000012f);
@@ -2485,12 +2485,12 @@ void fn_1_15EFEC(s32 arg0) {
  t10 = lbl_8006D188((s16)((120-v11)*1092));
  t11 = lbl_8006D0B4(pool_1c - (f32)(t10*t10));
  loc_60.scale_y *= t11;
- v13 = (s32)(pool_30 * t10);
+ v13 = (pool_30 * t10);
  loc_60.color_add[2] = v13; loc_60.color_add[1] = v13; loc_60.color_add[0] = v13;
  } else if (v11 < 8) {
  v14 = pool_100;
  v15 = pool_5c;
- v16 = (f32)(u32)v11*v14;
+ v16 = (u32)v11*v14;
  loc_60.alpha = v16;
  v17 = v12*v16;
  loc_60.scale_y = v17;
@@ -2515,9 +2515,9 @@ void fn_1_15EFEC(s32 arg0) {
  loc_8.vertex_callback = (void (*)(const FontDrawPacket*,FontVertex*))fn_1_15C4EC;
  *(f32*)((u8*)&loc_8+84) = (f32)index;
  v23 = fn_1_58C4()==1 ? pool_1c : pool_20;
- loc_8.scale_x *= (f32)(pool_ec*v23);
+ loc_8.scale_x *= (pool_ec*v23);
  v24 = fn_1_58C4()==1 ? pool_1c : pool_20;
- loc_8.scale_y *= (f32)(pool_ec*v24);
+ loc_8.scale_y *= (pool_ec*v24);
  if (fn_1_58C4()>1) {
  v25 = pool_20;
  v26 = loc_8.scale_x*v25;
@@ -2527,12 +2527,12 @@ void fn_1_15EFEC(s32 arg0) {
  v27 = player.p->unk_1;
  if (v27>90) {
  t21 = lbl_8006D188((s16)((120-v27)*1092));
- v28 = (s32)(pool_30*t21);
+ v28 = (pool_30*t21);
  loc_8.color_add[2]=v28; loc_8.color_add[1]=v28; loc_8.color_add[0]=v28;
  } else if (v27<8) {
  v29=pool_100;
  v30=pool_5c;
- v31=(f32)(u32)v27*v29;
+ v31=(u32)v27*v29;
  loc_8.alpha=v31;
  v32=loc_8.scale_y*v31;
  loc_8.scale_y=v32;
@@ -2545,10 +2545,10 @@ void fn_1_15EFEC(s32 arg0) {
  v33=player.p->unk_3;
  if (v33 && (p_lbl_1_data_3D544[v2]&0x1000000)) {
  if (v33>75) {
- v34=(f32)(s32)(90-v33)/pool_170;
+ v34=(90-v33)/pool_170;
  v35=pool_3c*v34;
  } else if (v33<15) {
- v34=(f32)(u32)v33/pool_170;
+ v34=(u32)v33/pool_170;
  v35=pool_3c*v34;
  } else { v35=pool_3c; v34=pool_1c; }
  fn_1_494DC(10);
@@ -2565,9 +2565,9 @@ void fn_1_15EFEC(s32 arg0) {
  }
  if (player.p->unk_9 && (p_lbl_1_data_3D544[v2]&0x400000)) fn_1_15EC40(player.p);
  else player.p->unk_0 &= ~0x18;
- v34=(f32)(u32)player.p->unk_3/pool_170;
+ v34=(u32)player.p->unk_3/pool_170;
  if (v34>pool_1c) v34=pool_1c;
- player.p->unk_30 = (f32)(u32)player.p->unk_8-v34;
+ player.p->unk_30 = (u32)player.p->unk_8-v34;
  fn_1_49728(0);
 }
 /* fzgx:end fn_1_15EFEC */

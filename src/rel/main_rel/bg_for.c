@@ -730,9 +730,9 @@ void fn_1_DD890(DDObj *arg0, f32 arg1) {
         lbl_8006DBAC((Vec3 *)&arg0->mC4);
         if (S(10) == 5 || S(10) == 1) {
             struct fn_1_DD890_lbl_801A66A0 *clock = (struct fn_1_DD890_lbl_801A66A0 *)&lbl_801A66A0;
-            v19 = (u32)(clock->unk_0 * 6) % 360;
+            v19 = (clock->unk_0 * 6) % 360;
             v20 = 182.04444885253906f;
-            mathutil_mtxA_rotate_y((s32)(v20 * (f32)(u32)v19));
+            mathutil_mtxA_rotate_y((v20 * (u32)v19));
         }
         lbl_8006DB74(&mtx);
         fn_1_9BBE4((void *)lbl_1_bss_3BE0->unk_54, S(14), S(14), (Fn183D28Vec3 *)&mtx);
@@ -1450,13 +1450,13 @@ void fn_1_DE9C4(struct fn_1_DE9C4_Arg0 *arg0) {
     if (arg0->unk_15C < 0) v4 = 0.0f;
     lbl_8006DAEC();
     lbl_8006D7DC(arg0->unk_16C);
-    mathutil_mtxA_rotate_z((s32)(182.04444885253906f * arg0->unk_168[2]));
-    mathutil_mtxA_rotate_y((s32)(182.04444885253906f * arg0->unk_168[1]));
-    mathutil_mtxA_rotate_x((s32)(182.04444885253906f * arg0->unk_168[0]));
+    mathutil_mtxA_rotate_z((182.04444885253906f * arg0->unk_168[2]));
+    mathutil_mtxA_rotate_y((182.04444885253906f * arg0->unk_168[1]));
+    mathutil_mtxA_rotate_x((182.04444885253906f * arg0->unk_168[0]));
     lbl_8006E0B4(fn_1_9E14C(v2[6], (void *)v2[7], v4), fn_1_9E14C(v2[8], (void *)v2[9], v4), fn_1_9E14C(v2[10], (void *)v2[11], v4));
-    mathutil_mtxA_rotate_z((s32)(182.04444885253906f * fn_1_9E14C(v2[4], (void *)v2[5], v4)));
-    mathutil_mtxA_rotate_y((s32)(182.04444885253906f * fn_1_9E14C(v2[2], (void *)v2[3], v4)));
-    mathutil_mtxA_rotate_x((s32)(182.04444885253906f * fn_1_9E14C(v2[0], (void *)v2[1], v4)));
+    mathutil_mtxA_rotate_z((182.04444885253906f * fn_1_9E14C(v2[4], (void *)v2[5], v4)));
+    mathutil_mtxA_rotate_y((182.04444885253906f * fn_1_9E14C(v2[2], (void *)v2[3], v4)));
+    mathutil_mtxA_rotate_x((182.04444885253906f * fn_1_9E14C(v2[0], (void *)v2[1], v4)));
     psvec_set(&arg0->unk_54, *(f32 *)(0xE0000000 + 0x2C), *(f32 *)(0xE0000000 + 0x1C), *(f32 *)(0xE0000000 + 0x0C));
     fn_8006F6A8(&loc_8);
     arg0->unk_78 = 9.58738019107841e-05f * (f32)loc_8.angle_y;
@@ -2064,7 +2064,7 @@ void fn_1_DF6AC(Vec *a, Vec *b, Vec *c, Vec *out_b, Vec *out_c, f32 scale_b, f32
     len_c = lbl_8006D0B4(dot(&along_c, &along_c));
     /* the (f32) casts keep each product a separate fmuls, as retail has no fmadds here */
     weight = pool[10] + k2;
-    t = ((f32)(len_b * (weight * k0)) + (f32)(len_c * (f32)(k1 - (f32)(k0 * k2)))) / (k0 + k1);
+    t = ((f32)(len_b * (weight * k0)) + (f32)(len_c * (k1 - (f32)(k0 * k2)))) / (k0 + k1);
     u = t + (f32)(-k2 * (len_b - len_c));
     src = &along_b;
     if (dot(src, src) != pool[8]) {
@@ -3053,7 +3053,7 @@ s32 fn_1_E1408(E1408Object *a, E1408Object *b) {
     psvec_sub(&b->pos, &a->pos, &n);
 
     fa = E1408_flags(0, 0, (u32)b->f138.flags, (u64)(u32)a->f138.flags);
-    pushA = (u32)(fa >> 32);
+    pushA = (fa >> 32);
     pushB = (u32)fa;
 
     if (pushB == 1) {

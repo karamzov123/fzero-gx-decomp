@@ -129,7 +129,7 @@ s32 fn_4_0(u32 out0, u32 a, u32 b, s32 index, u32 select)
     }
     if (x) n = -1;
     if (y) n++;
-    if ((u32)(b - a) == 1) {
+    if ((b - a) == 1) {
         if (n == -1) res = a;
         else if (n == 1) res = b;
     } else {
@@ -1128,7 +1128,7 @@ void fn_4_2D4(u32 arg0, char *arg1) {
     packet.scale_x = fn_4_2D4_operand(78.0, right) / 8.0;
     packet.scale_y = 3.5f;
     packet.flags = 10;
-    packet.alpha = 0.3 * (1.0 + lbl_8006D188((s16)((lbl_4_bss_2 << 10) + 0x4000)));
+    packet.alpha = 0.3 * (1.0 + lbl_8006D188(((lbl_4_bss_2 << 10) + 0x4000)));
     *(fn_4_2D4_Color4 *)packet.color = *(const fn_4_2D4_Color4 *)fzgx_pool_init_fzgx_pool_table2.v;
     fn_1_4F734(&packet);
     fn_1_53BD8(0, 320.0f, 240.0f, 96.0 + width, 48.0 + *(const f32 *)fzgx_pool_72, 0.025f);
@@ -1227,10 +1227,10 @@ void _prolog(void) {
     fn_1_48418(2);
     fn_1_159440(2, 0);
     if ((u32) lbl_1_bss_6EAD0.unk_0 != 0) {
-        if ((u32) (*(u32 *)((u8 *)(lbl_1_bss_6EAD0.unk_0) + 0)) == 0) {
+        if ((*(u32 *)((u8 *)(lbl_1_bss_6EAD0.unk_0) + 0)) == 0) {
             (*(u32 *)((u8 *)(lbl_1_bss_6EAD0.unk_0) + 0)) = fn_8004CD70(2U, lbl_1_bss_6EAD0.unk_0 + 0x10, 0x25124U);
         }
-        if ((u32) (*(u32 *)((u8 *)(lbl_1_bss_6EAD0.unk_0) + 4)) == 0) {
+        if ((*(u32 *)((u8 *)(lbl_1_bss_6EAD0.unk_0) + 4)) == 0) {
             (*(u32 *)((u8 *)(lbl_1_bss_6EAD0.unk_0) + 4)) = fn_8004CD70(2U, lbl_1_bss_6EAD0.unk_0 + 0x4A258, 0x25124U);
         }
         fn_1_A176C(*(u32 *)((u8 *)(lbl_1_bss_6EAD0.unk_0) + 0), 0x37);
@@ -2323,7 +2323,7 @@ void fn_4_A0C(void) {
     packet.scale_x = (fn_4_A0C_operand_((78.0), (width))) / 8.0;
     packet.scale_y = 3.5f;
     packet.flags = 10;
-    packet.alpha = 0.3 * (1.0 + lbl_8006D188((s16)((lbl_4_bss_2 << 10) + 0x4000)));
+    packet.alpha = 0.3 * (1.0 + lbl_8006D188(((lbl_4_bss_2 << 10) + 0x4000)));
     *(Color4 *)packet.color = *(const Color4 *)fzgx_pool_init_fzgx_pool_table2.v;
     fn_1_4F734(&packet);
 
@@ -6718,7 +6718,7 @@ fn_1_495C8(9);
 if(lbl_801A66B4!=5) { fn_1_495B0(0x80000000); fn_1_49590((*(f32 *)(((u8 *)fzgx_pool_rodata_lbl_4_rodata_0_8)))); }
 for(i=0;i<4;i++) {
 char *text;
-y=(f32)(280+(i*2-3)*24);
+y=(280+(i*2-3)*24);
 fn_1_496FC((*(f32 *)(((u8 *)fzgx_pool_rodata_lbl_4_rodata_0_50))),y);
 if(__rlwnm(lbl_4_bss_10__fzgx_offset_AA, (32 - i) & 31, 31, 31)) text=(char *)lbl_4_data_8D8__fzgx_offset_8[lbl_801A66B4];
 else text=(char *)lbl_4_data_8F8__fzgx_offset_8[lbl_801A66B4];
@@ -7712,13 +7712,13 @@ void fn_4_4834(void) {
             break;
         }
         if (((lbl_1_bss_9F8.unk_10 >> 1) & 1) || ((lbl_1_bss_9F8.unk_12 >> 1) & 1)) {
-            p_lbl_4_bss_0->unk_BA = (u8)(p_lbl_4_bss_0->unk_BA &
+            p_lbl_4_bss_0->unk_BA = (p_lbl_4_bss_0->unk_BA &
                 ~(0x80000000u >> (31 - p_lbl_4_bss_0->unk_BD)));
             fn_1_A2D84(0xA9010000);
         } else if (((lbl_1_bss_9F8.unk_10 & 1) != 0) || ((lbl_1_bss_9F8.unk_12 & 1) != 0)) {
             fn_1_A2D84(0xA9010000);
             flag = !__rlwnm(p_lbl_4_bss_0->unk_BA, (32 - p_lbl_4_bss_0->unk_BD) & 31, 31, 31);
-            p_lbl_4_bss_0->unk_BA = (u8)(p_lbl_4_bss_0->unk_BA |
+            p_lbl_4_bss_0->unk_BA = (p_lbl_4_bss_0->unk_BA |
                 (0x80000000u >> (31 - p_lbl_4_bss_0->unk_BD)));
         }
         fn_1_F755C(p_lbl_4_bss_0->unk_BA);
@@ -10831,7 +10831,7 @@ void fn_4_7938(void) {
     packet.scale_x = (fn_4_7938_operand_((78.0), (width))) / 8.0;
     packet.scale_y = 3.5f;
     packet.flags = 10;
-    packet.alpha = 0.3 * (1.0 + lbl_8006D188((s16)((lbl_4_bss_2 << 10) + 0x4000)));
+    packet.alpha = 0.3 * (1.0 + lbl_8006D188(((lbl_4_bss_2 << 10) + 0x4000)));
     *(Color4 *)packet.color = *(const Color4 *)fzgx_pool_init_fzgx_pool_table2.v;
     fn_1_4F734(&packet);
 
@@ -11932,7 +11932,7 @@ void fn_4_7DEC(void) {
     packet.scale_x = (fn_4_7DEC_operand_((78.0), (width))) / 8.0;
     packet.scale_y = 3.5f;
     packet.flags = 10;
-    packet.alpha = 0.3 * (1.0 + lbl_8006D188((s16)((lbl_4_bss_2 << 10) + 0x4000)));
+    packet.alpha = 0.3 * (1.0 + lbl_8006D188(((lbl_4_bss_2 << 10) + 0x4000)));
     *(Color4 *)packet.color = *(const Color4 *)fzgx_pool_init_fzgx_pool_table2.v;
     fn_1_4F734(&packet);
 

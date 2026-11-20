@@ -1787,7 +1787,7 @@ void fn_3_11994(s16 arg0, s16 arg1, s32 arg2, s32 arg3, s32 arg_sp0) {
         if (arg0 != (s32) var_r30) {
             temp_r5 = var_r30 * 0x2060;
             temp_r4 = (void *)(arg2 + temp_r5);
-            if (arg1 == (s16) (*(s16 *)((u8 *)(temp_r4) + 0))) {
+            if (arg1 == (*(s16 *)((u8 *)(temp_r4) + 0))) {
                 if ((*(s32 *)((u8 *)(temp_r4) + 4)) & 0x80000000) {
                     fn_80008BA8((struct Sig_fn_8004E278_fn_8004E278_Arg0 *)(arg3 + temp_r5), (u32)(temp_r4), 0x2060U);
                 }
@@ -2712,7 +2712,7 @@ void fn_3_11FF0(void) {
                 if ((i == oldCount + (packed >> 13) - 3 && fn_1_F7BE4(0x15)) ||
                     (i == oldCount + (packed >> 13) - 2 && fn_1_F7BE4(0x21)) ||
                     (i == oldCount + (packed >> 13) - 1 && fn_1_F7BE4(0x21)) ||
-                    fn_1_F7BE4((s16)(i - oldCount))) {
+                    fn_1_F7BE4((i - oldCount))) {
                     lbl_3_bss_87000.flags[count] = 1;
                     lbl_3_bss_87000.items[count] = fn_1_45D0(HEAP, 0x2000, fzgx_pool_native_lbl_3_data_1A40_file, 0xAE3);
                     fn_80008BEC(lbl_3_bss_87000.items[count], 0, 0x2000);
@@ -3032,7 +3032,7 @@ void fn_3_12B14(void) {
     u8 i;
     u8 j;
 
-    fn_1_FC414(fzgx_obj_lbl_3_bss_8F200, (void *)(s32)(1));
+    fn_1_FC414(fzgx_obj_lbl_3_bss_8F200, (void *)(1));
     eye = lbl_3_bss_9F690__fzgx_offset_38 = lbl_3_rodata_4C8;
     at = lbl_3_bss_9F690__fzgx_offset_44 = lbl_3_rodata_4D4;
     fzgx_obj_lbl_3_bss_9F690.eye = eye;

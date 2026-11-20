@@ -3403,8 +3403,8 @@ int fn_1_17FCC(int a, int b, int c) {
         entry = (fn_1_17FCC_StcoliEntry *)lbl_1_bss_3BE0->unk_C + b;
         fb = 0;
         fa = 0;
-        fn_1_17D5C( (Node *)(u32)(last->unk_8), &fa);
-        fn_1_17D5C( (Node *)(u32)(entry->unk_8), &fb);
+        fn_1_17D5C( (Node *)(last->unk_8), &fa);
+        fn_1_17D5C( (Node *)(entry->unk_8), &fb);
         if ((fa & 0x01000000) != 0 && (fb & 0x00800000) != 0) {
             break;
         }
@@ -4402,7 +4402,7 @@ int fn_1_192E8(Vec3 *arg0, Vec3 *arg1, Vec3 *arg2, Vec3 *arg3,
     f32 scale;
     f32 product;
     p_lbl_1_rodata_6C8 = (struct fn_1_192E8_lbl_1_rodata_6C8 *)&lbl_1_rodata_6C8;
-    v0 = (f32)(0.5f * arg8);
+    v0 = (0.5f * arg8);
     v1 = 0.5f;
     if (arg8 > 0.0f) {
         v1 = -0.5f;
@@ -4463,7 +4463,7 @@ int fn_1_192E8(Vec3 *arg0, Vec3 *arg1, Vec3 *arg2, Vec3 *arg3,
                 dot_x = arg6->table->normal.x;
                 /* Keep the normal's y read in the scalar dot-product local. */
                 dot_y = *(volatile f32 *)&arg6->table->normal.y;
-                dot_x = (f32)(dot_x * normal.x);
+                dot_x = (dot_x * normal.x);
                 /* The z read follows the first product in the dot kernel. */
                 dot_z = *(volatile f32 *)&arg6->table->normal.z;
                 dot_x = dot_y * normal.y + dot_x;
@@ -4484,7 +4484,7 @@ int fn_1_192E8(Vec3 *arg0, Vec3 *arg1, Vec3 *arg2, Vec3 *arg3,
             contact->position = position;
             psvec_sub_scale_add(arg0, arg1, t, &position, &contact->point);
             contact->normal = normal;
-            depth = (f32)(*arg5 * (f32)(arg8 * (v0 + arg2->x))) - 0.5f;
+            depth = (f32)(*arg5 * (arg8 * (v0 + arg2->x))) - 0.5f;
             if (depth < zero) {
                 scale = arg8 * -depth;
                 x = *(volatile f32 *)LC_BASE;  /* fzgx-allow: S2 volatile view keeps the verified load order */
@@ -6701,13 +6701,13 @@ void fn_1_1D0CC(Vec3 *arg0, Vec3 *arg1, u32 arg2, Segment *arg3, Vec3 *arg4, Col
             v0.y = 0.0f;
             v0.z = 0.0f;
         } else {
-            len2 = (f32)(v1.x * v1.x) + (f32)(v1.y * v1.y);
+            len2 = (v1.x * v1.x) + (v1.y * v1.y);
             if (len2 < 1.0f) {
                 use_world = 0;
             } else {
                 f32 r = lbl_8006D0E8(len2);
-                v0.x = v1.x + (f32)(2000.0f * (f32)(v1.x * r));
-                v0.y = v1.y + (f32)(2000.0f * (f32)(v1.y * r));
+                v0.x = v1.x + (f32)(2000.0f * (v1.x * r));
+                v0.y = v1.y + (f32)(2000.0f * (v1.y * r));
                 v0.z = 0.0f;
             }
         }
@@ -6723,7 +6723,7 @@ void fn_1_1D0CC(Vec3 *arg0, Vec3 *arg1, u32 arg2, Segment *arg3, Vec3 *arg4, Col
     contact = &lbl_801A66CC->unk_1E4[0];
     sign = bit0 ? 1.0f : -1.0f;
     psvec_sub(&v0, &v1, &d);
-    inside = !(sign * ((f32)(v0.x * v0.x) + (f32)(v0.y * v0.y) - 0.25f) >= 0.0f);
+    inside = !(sign * ((v0.x * v0.x) + (v0.y * v0.y) - 0.25f) >= 0.0f);
     /* retail clears bit 29 with rlwinm from a freshly loaded 0x20000000, which `&= ~0x20000000` does not give */
     if (inside) mask = __rlwinm(mask, 0, 3, 1);
     ok[0] = allowed(arg5, arg3, arg7, 2);
@@ -6756,7 +6756,7 @@ void fn_1_1D0CC(Vec3 *arg0, Vec3 *arg1, u32 arg2, Segment *arg3, Vec3 *arg4, Col
         }
     }
     out = ok[0];
-    if (!out) out = sign * ((f32)(v1.x * v1.x) + (f32)(v1.y * v1.y) - 0.25f) >= 0.0f;
+    if (!out) out = sign * ((v1.x * v1.x) + (v1.y * v1.y) - 0.25f) >= 0.0f;
     if (test2 && found == 0 && (!out || (ok[1] = allowed(arg5, arg3, arg7, 29))) && !inside && (arg2 & 0x02000000)) {
         crossed |= 0x02000000;
         if (contact->unk_C == 0) {
@@ -6786,7 +6786,7 @@ void fn_1_1D0CC(Vec3 *arg0, Vec3 *arg1, u32 arg2, Segment *arg3, Vec3 *arg4, Col
         contact->unk_20.z = tmp.z = 0.0f;
         lbl_8006E1C0(&contact->unk_20, &contact->unk_20);
         lbl_8006D668(&contact->unk_20);
-        depth = sign * (0.5f - lbl_8006D0B4((f32)(v0.x * v0.x) + (f32)(v0.y * v0.y)));
+        depth = sign * (0.5f - lbl_8006D0B4((v0.x * v0.x) + (v0.y * v0.y)));
         if (depth > 0.0f) {
             lbl_8006D5F0(&tmp, &tmp, depth);
             tmp.x *= arg4->x;
@@ -7109,7 +7109,7 @@ void fn_1_1DCD8(Vec3 *arg0, Vec3 *arg1, u32 arg2, Segment *arg3, Vec3 *arg4, Col
         } else if (half > 1.0f) {
             half = 1.0f;
         }
-        lbl_8006D1BC((s32)(32768.0f * half), &sn, &cs);
+        lbl_8006D1BC((32768.0f * half), &sn, &cs);
         half = 0.5f * cs;
     }
     fn_1_18784(arg2, arg3, arg4, arg6, arg8);
@@ -7130,13 +7130,13 @@ void fn_1_1DCD8(Vec3 *arg0, Vec3 *arg1, u32 arg2, Segment *arg3, Vec3 *arg4, Col
             v0.y = 0.0f;
             v0.z = 0.0f;
         } else {
-            len2 = (f32)(v1.x * v1.x) + (f32)(v1.y * v1.y);
+            len2 = (v1.x * v1.x) + (v1.y * v1.y);
             if (len2 < 1.0f) {
                 use_world = 0;
             } else {
                 f32 r = lbl_8006D0E8(len2);
-                v0.x = v1.x + (f32)(2000.0f * (f32)(v1.x * r));
-                v0.y = v1.y + (f32)(2000.0f * (f32)(v1.y * r));
+                v0.x = v1.x + (f32)(2000.0f * (v1.x * r));
+                v0.y = v1.y + (f32)(2000.0f * (v1.y * r));
                 v0.z = 0.0f;
             }
         }
@@ -7188,7 +7188,7 @@ void fn_1_1DCD8(Vec3 *arg0, Vec3 *arg1, u32 arg2, Segment *arg3, Vec3 *arg4, Col
             }
         }
     } else {
-        a = (f32)(d.x * d.x) + (f32)(d.y * d.y);
+        a = (d.x * d.x) + (d.y * d.y);
         b = (f32)(d.x * v1.x) + (f32)(d.y * v1.y);
         c = fn_1_1DCD8_dot2(&v1, &v1) - 0.25f;
         if ((f32)(b * b) - (f32)(a * c) >= 0.0f) {
@@ -7625,13 +7625,13 @@ void fn_1_1EBD4(Vec3 *arg0, Vec3 *arg1, u32 arg2, Seg *seg, Vec3 *scale, Ctx *ct
         b.x /= width;
         b.y /= width;
         psvec_sub(&a, &b, &d);
-        ra = (f32)(a.x * a.x) + (f32)(a.y * a.y) - quarter;
-        rb = (f32)(b.x * b.x) + (f32)(b.y * b.y) - quarter;
+        ra = (a.x * a.x) + (a.y * a.y) - quarter;
+        rb = (b.x * b.x) + (b.y * b.y) - quarter;
         inside = sgn * ra <= zero;
         if (inside) outer &= ~(0x80000000 >> side);
         if (ra > zero && rb > zero) edge &= ~(0x80000000 >> side);
         allowed = fn_1_1EBD4_allowed(ctx, seg, id, side);
-        da = (f32)(d.x * d.x) + (f32)(d.y * d.y);
+        da = (d.x * d.x) + (d.y * d.y);
         db = (f32)(d.x * b.x) + (f32)(d.y * b.y);
         disc = (f32)(db * db) - (f32)(da * rb);
         if (disc >= zero) {
@@ -7666,7 +7666,7 @@ void fn_1_1EBD4(Vec3 *arg0, Vec3 *arg1, u32 arg2, Seg *seg, Vec3 *scale, Ctx *ct
             c->unk_20.z = e.z = zero;
             lbl_8006E1C0(&c->unk_20, &c->unk_20);
             lbl_8006D668(&c->unk_20);
-            depth = sgn * (0.5f - lbl_8006D0B4((f32)(a.x * a.x) + (f32)(a.y * a.y)));
+            depth = sgn * (0.5f - lbl_8006D0B4((a.x * a.x) + (a.y * a.y)));
             if (depth > zero) {
                 lbl_8006D5F0(&e, depth, &e);
                 e.x *= width;
@@ -8510,7 +8510,7 @@ void fn_1_203E4(fn_1_203E4_Obj *obj, s32 noOut, Vec3 *out, f32 pos, f32 scale, f
                     fn_1_203E4_flip(k->zero, k->minusOne);
                 }
             } else {
-                pos = (f32)(pos - (f32)(sign * half)) / (poolHalf - (f64)(k->two * half));
+                pos = (pos - (f32)(sign * half)) / (poolHalf - (f64)(k->two * half));
                 fn_1_203E4_translate_curve(mtx = MTXA, poolHalf * (sign * obj->unk_3C));
                 mathutil_mtxA_rotate_z((s32)(k->angleScale * pos));
                 fn_1_203E4_translate_y(mtx = MTXA, k->half * -obj->unk_40);
@@ -9940,7 +9940,7 @@ void fn_1_21F18(StcoliDrawEntity *entity, f32 *scale, f32 time) {
     half = pool->half;
     p = pts;
     for (i = 0, angle = 0; i < 16; i++, angle += 0x1000) {
-        c = half * lbl_8006D188((s16)(angle + 0x4000));
+        c = half * lbl_8006D188((angle + 0x4000));
         p->x = half * lbl_8006D188((s16)angle);
         p->y = c;
         p->z = zero;
@@ -10560,7 +10560,7 @@ void fn_1_229EC(fn_1_229EC_ctrl *ctrl, f32 *out_pos, f32 *out_mag)
 
     if (mag < 0.0f) {
         lab_t1 = (0.05f);
-        delta = ((f32)((f32)((delta)) * (f32)(lab_t1)));
+        delta = ((((delta)) * (lab_t1)));
     }
 
     *out_mag = *out_mag + (f32)(((f32)((f32)((1000.0f)) * (f32)((delta))))) / ctrl->divisor;
@@ -11402,7 +11402,7 @@ void fn_1_23500(Fn_1_23500 *self, f32 value) {
         self->field200 = one;
         self->field481 = 0x5a;
     }
-    fn_1_8A190(self, (void *)(int)(1));
+    fn_1_8A190(self, (void *)(1));
 }
 /* fzgx:end fn_1_23500 */
 
@@ -12210,14 +12210,14 @@ s32 fn_1_239C4(struct fn_1_239C4_Arg0 *arg0, struct fn_1_239C4_Arg0 *arg1) {
         psvec_sub((&arg0->pos), (&arg0->prevPos), &loc_94);
         lbl_8006D5F0(&loc_94,&loc_94,lbl_1_rodata_92C__fzgx_offset_24);
         psvec_add((&arg0->pos), &loc_94, &loc_94);
-        lbl_8006D5F0((&arg0->vel), &loc_7C, (f32)(lbl_1_rodata_92C__fzgx_offset_1C*v2));
+        lbl_8006D5F0((&arg0->vel), &loc_7C, (lbl_1_rodata_92C__fzgx_offset_1C*v2));
     } else { loc_94 = *(&arg0->prevPos); loc_7C = *(&arg0->vel); }
     v1 = DIST((&arg1->prevPos),(&arg1->pos));
     if (v1 > lbl_1_rodata_92C__fzgx_offset_1C) {
         psvec_sub((&arg1->pos), (&arg1->prevPos), &loc_88);
         lbl_8006D5F0(&loc_88,&loc_88,lbl_1_rodata_92C__fzgx_offset_24);
         psvec_add((&arg1->pos), &loc_88, &loc_88);
-        lbl_8006D5F0((&arg1->vel), &loc_70, (f32)(lbl_1_rodata_92C__fzgx_offset_1C*v6));
+        lbl_8006D5F0((&arg1->vel), &loc_70, (lbl_1_rodata_92C__fzgx_offset_1C*v6));
     } else { loc_88 = *(&arg1->prevPos); loc_70 = *(&arg1->vel); }
     if (!(s32)fn_1_251F8(&loc_94,(&arg0->pos),&loc_88,(&arg1->pos),&loc_C,&loc_8,v10,v11)) {
         if (!loc_8) { CLEAR_PAIR(); }
@@ -12906,7 +12906,7 @@ void fn_1_25004(Fn_1_25004_Obj *self) {
     result = (Fn_1_25004_Result *)fn_1_868C0((s8)self->field04);
     if ((self->flags58c & 0x10) == 0) {
         if ((s8)self->field474 != -1) {
-            fn_1_F7338((s8)self->field474, (void *)(int)(2), (void *)(int)(0x1e));
+            fn_1_F7338((s8)self->field474, (void *)(2), (void *)(0x1e));
         }
         zero = (0.0f);
         self->flags00 |= 0x800;
@@ -14413,7 +14413,7 @@ static inline f32 collision_vector_squared(const CollisionVec3 *v)
 {
     f32 sum; f32 x; f32 y; f32 z;
     x=v->x; y=v->y;
-    sum = (f32)(x*x); sum += y*y;
+    sum = (x*x); sum += y*y;
     z=v->z; sum += z*z;
     return sum;
 }
@@ -14872,12 +14872,12 @@ f32 fn_1_26F34(u32 arg0, f32 arg1, f32 arg2, f32 arg3) {
  if(!(v0&0x400) && v5<K(130)) v5=K(C);
  if(v5>K(114)) {
   if(!(v0&0x400)) { U(0)|=0x400; B(0x481)=1; }
-  if(U(0)&0x8000) F(0xdc)=(f32)(F(0xdc)+v5);
+  if(U(0)&0x8000) F(0xdc)=(F(0xdc)+v5);
   else if(F(0xdc)>K(C)) { F(0x224)=K(14); U(0)|=0x180000; F(0xdc)=K(C); }
  } else {
   v6=F(0xdc);
   if(v6>K(C)) {
-   v7=(f32)(v6-K(78));
+   v7=(v6-K(78));
    F(0xdc)=v7;
    if(v7<K(C)) F(0xdc)=K(C);
    if(!(U(0)&0x8000)) F(0x224)=K(C);
@@ -14885,9 +14885,9 @@ f32 fn_1_26F34(u32 arg0, f32 arg1, f32 arg2, f32 arg3) {
  }
  v1=U(0);
  if(v1&0x8000) {
-  F(0x224)=(f32)(K(250)*F(0xdc)); B(0x241)=0; B(0x240)=0; return -arg1;
+  F(0x224)=(K(250)*F(0xdc)); B(0x241)=0; B(0x240)=0; return -arg1;
  }
- arg1=(f32)(arg1/F(8));
+ arg1=(arg1/F(8));
  if((s8)B(0x474)!=-1) {
   v9=(v1>>6)&1;
   if(H(0x4c6)) { U(0)=v1&~0x40; H(0x4c6)--; }
@@ -14895,99 +14895,99 @@ f32 fn_1_26F34(u32 arg0, f32 arg1, f32 arg2, f32 arg3) {
  }
  v1=U(0);
  if(v1&0x400000) {
-  v16=(f32)(K(14)-(f32)(F(0x228)/(f32)(K(254)*F(0x230))));
-  v14=(s32)(f32)(K(1C)*(f32)(K(258)*F(0x234)));
+  v16=(K(14)-(F(0x228)/(K(254)*F(0x230))));
+  v14=(K(1C)*(K(258)*F(0x234)));
   fn_1_2A3E4((Sig_fn_1_2A3E4_Fn_1_2A3E4 *)arg0);
   if((u8)v14>B(0x18a)) B(0x18a)=v14;
   U(0)&=~0x40; U(0)|=0x20;
   if(v16<K(68)) v16=K(68);
-  F(0x228)=(f32)(F(0x228)+(f32)((f32)(K(78)*F(0x230))*v16));
+  F(0x228)=(F(0x228)+(f32)((K(78)*F(0x230))*v16));
   fn_1_F7338(*(s8 *)((u8 *)arg0+0x474),(void *)3,(void *)15);
   if(B(0x4b2)<100) B(0x4b2)++;
  } else if(B(0x18a)) {
   U(0)=v1&~0x40; U(0)|=0x20;
  } else if((v1&0x40) && F(0x184)>K(14) && v5>K(C)) {
-  v16=(f32)(K(14)-(f32)(F(0x228)/(f32)(K(254)*F(0x230))));
+  v16=(K(14)-(F(0x228)/(K(254)*F(0x230))));
   fn_1_2A3E4((Sig_fn_1_2A3E4_Fn_1_2A3E4 *)arg0);
-  v14=(s32)(f32)(K(258)*F(0x234));
+  v14=(K(258)*F(0x234));
   B(0x18a)=v14; B(0x18b)=v14;
   U(0)|=0x20; U(0)&=~0x200000;
   if(v16<K(68)) v16=K(68);
   if(B(0x217)<100) B(0x217)++;
-  F(0x228)=(f32)(F(0x228)+(f32)(F(0x230)*v16));
+  F(0x228)=(F(0x228)+(f32)(F(0x230)*v16));
   fn_1_F7338(*(s8 *)((u8 *)arg0+0x474),(void *)1,(void *)15);
  } else {
   U(0)&=0xffdfff9f;
-  F(0x228)=(f32)(F(0x228)-(f32)((f32)(K(34)+(f32)(K(1C)*F(0x228)))/K(258)));
+  F(0x228)=(F(0x228)-((K(34)+(f32)(K(1C)*F(0x228)))/K(258)));
  }
  if(U(0)&8) {
   v28=F(0x228);
-  F(0x228)=(f32)(v28-(f32)((f32)(K(25C)+(f32)(K(1C)*v28))/K(258)));
+  F(0x228)=(v28-((K(25C)+(f32)(K(1C)*v28))/K(258)));
   v5 *= K(104);
  } else {
   v30=F(0x228);
-  F(0x228)=(f32)(v30-(f32)((f32)(K(78)+(f32)(K(1C)*v30))/K(258)));
+  F(0x228)=(v30-((K(78)+(f32)(K(1C)*v30))/K(258)));
  }
  if(F(0x228)<K(C)) F(0x228)=K(C);
- v5 *= (f32)(K(28)*F(0x220));
+ v5 *= (K(28)*F(0x220));
  if(U(0)&0x20) {
-  if(B(0x18b)) { F(0x184)=(f32)(F(0x184)-(f32)(K(260)*F(0x4dc))); B(0x18b)--; }
+  if(B(0x18b)) { F(0x184)=(F(0x184)-(f32)(K(260)*F(0x4dc))); B(0x18b)--; }
   if(--B(0x18a)==0 && F(0x17c)>K(264)) {
-   v36=(f32)((f32)(F(0x17c)-K(264))/K(258));
+   v36=((F(0x17c)-K(264))/K(258));
    if(v36>K(168)) v36=K(168);
-   if(v36>(f32)(u32)H(0x4c6)) H(0x4c6)=(s32)v36;
+   if(v36>(u32)H(0x4c6)) H(0x4c6)=(s32)v36;
   }
   if(F(0x184)<K(C8)) {
    F(0x184)=K(C8); B(0x18b)=0;
    if(U(0)&0x200000) {
-    v14=(s32)(f32)(K(1C)*(f32)(K(258)*F(0x234)));
+    v14=(K(1C)*(K(258)*F(0x234)));
     if(B(0x18a)>(u8)v14) B(0x18a)=v14;
    } else B(0x18a)=0;
   }
  }
  {
  f32 v40, v42, v43, v44;
- v41=(f32)(v5/K(2C));
+ v41=(v5/K(2C));
  v2=F(0x22c);
- v40=(f32)(K(28)*v2);
+ v40=(K(28)*v2);
  v41+=F(0x224);
  v45=K(78);
- v44=(f32)((f32)(K(30)+v40)+(f32)(F(0x228)*v45));
+ v44=((K(30)+v40)+(f32)(F(0x228)*v45));
  v42=F(8); v43=K(C);
- arg2=(f32)((f32)(arg2*F(0x220))/v42);
- v2=(f32)(v41-arg1);
- v49=(f32)(v41/v44);
+ arg2=((arg2*F(0x220))/v42);
+ v2=(v41-arg1);
+ v49=(v41/v44);
  if(v49<v43) v49=v43;
- v49 *= (f32)(K(34)*(f32)(F(0x220)*(f32)(K(38)+F(0x220))));
+ v49 *= (K(34)*(F(0x220)*(K(38)+F(0x220))));
  v1=U(0);
  if(v1&0x400040) v49=K(C);
  else if(v1&0x20) { if(v42>K(44)) v49 *= K(1C); else v49 *= K(130); }
  }
  if(v2>K(C) && (arg1<K(C) || ((U(0x218)>>29)&1))) v49 *= K(3C);
- v52=(f32)((f32)(K(14)-arg3)*(f32)((f32)(v2*v49)+(f32)(arg2*F(0x238))));
- if(F(0x200)<K(14)) v52=(f32)(v52*(f32)(K(40)+(f32)(K(11C)*F(0x200))));
- F(0x224)=(f32)(v41-v52);
+ v52=((K(14)-arg3)*((f32)(v2*v49)+(f32)(arg2*F(0x238))));
+ if(F(0x200)<K(14)) v52=(v52*(K(40)+(f32)(K(11C)*F(0x200))));
+ F(0x224)=(v41-v52);
  if(F(0x204)>K(40)) { if(B(0x197)<30) B(0x197)++; } else B(0x197)=0;
  if(U(0x58c)&4) {
-  if(B(0x197)>=15) v54=(f32)(F(0x204)*(f32)(K(1C)*v49)); else v54=K(C);
- } else v54=(f32)(F(0x204)*(f32)(K(1C)*v49));
+  if(B(0x197)>=15) v54=(F(0x204)*(K(1C)*v49)); else v54=K(C);
+ } else v54=(F(0x204)*(K(1C)*v49));
  if(v54>K(A4)) v54=K(A4);
- if(v54>F(0x224)) F(0x224)=K(C); else F(0x224)=(f32)(F(0x224)-v54);
+ if(v54>F(0x224)) F(0x224)=K(C); else F(0x224)=(F(0x224)-v54);
  if(F(0x224)>F(0x23c)) F(0x224)-=F(0x23c); else F(0x224)=K(C);
  if(!(v54>K(C))) {
   v60=K(14); if(!(U(0)&0x2000)) v60=K(130);
-  if(arg1<K(C)) v2=(f32)(v2*(f32)(K(1C)*v60));
-  else if(v2<K(C)) v2=(f32)(v2*(f32)(K(1C)*v60));
+  if(arg1<K(C)) v2=(v2*(K(1C)*v60));
+  else if(v2<K(C)) v2=(v2*(K(1C)*v60));
  }
  if(B(0x241)) {
-  F(0x224)=(f32)(F(0x224)*(f32)(K(14)-(f32)(K(38)*sq_f32((f32)((f32)(u32)B(0x240)/(f32)(K(25C)*(f32)(u32)B(0x241)))))));
+  F(0x224)=(F(0x224)*(K(14)-(f32)(K(38)*sq_f32(((u32)B(0x240)/(K(25C)*(u32)B(0x241)))))));
   if(B(0x240)>B(0x241) || F(0x224)<=K(C)) { B(0x240)=0; B(0x241)=0; }
   else B(0x240)++;
  }
  v1=U(0);
  if(v1&0x80) {
-  v66=(f32)(F(0x17c)/K(16C)); if(v66>K(14)) v66=K(14);
-  v2=(f32)(v2*(f32)(K(68)-(f32)(K(98)*v66)));
+  v66=(F(0x17c)/K(16C)); if(v66>K(14)) v66=K(14);
+  v2=(v2*(K(68)-(f32)(K(98)*v66)));
  }
  if(v1&0x200020) { if(F(8)>K(44)) v2=K(268)*v2; else v2=K(264)*v2; }
  else v2=K(44)*v2;
@@ -15325,11 +15325,11 @@ f32 fn_1_278B8(u32 arg0, void *arg1, f32 arg2) {
     v0 = (*(u32 *)((u8 *)arg1) & 4);
     psvec_sub((u8 *)arg1 + 20, (u8 *)arg1 + 32, &loc_2C);
     lbl_8006DAEC();
-    v1 = (f32)(*(f32 *)((u8 *)arg0 + 508) * *(f32 *)((u8 *)arg0 + 32));
+    v1 = (*(f32 *)((u8 *)arg0 + 508) * *(f32 *)((u8 *)arg0 + 32));
     v2 = 182.04444885253906f;
-    v3 = -(v1 + (f32)(*(f32 *)((u8 *)arg0 + 504) * *(f32 *)((u8 *)arg0 + 28)));
+    v3 = -(v1 + (*(f32 *)((u8 *)arg0 + 504) * *(f32 *)((u8 *)arg0 + 28)));
     v6 = v3 < -45.0f ? -45.0f : (v3 > 45.0f ? 45.0f : v3);
-    v4 = (s16)(s32)(v2 * v6);
+    v4 = (v2 * v6);
     mathutil_mtxA_rotate_y((s16)(v4 / 2));
     v5 = &loc_2C;
     fn_8006E2B0(v5, (Vec3_np_fn_1_278B8 *)v5);
@@ -15344,7 +15344,7 @@ f32 fn_1_278B8(u32 arg0, void *arg1, f32 arg2) {
     loc_14.y = v6;
     loc_14.x = 1.0f;
     loc_14.z = v6;
-    v7 = (f32)(t3 / 1000.0);
+    v7 = (t3 / 1000.0);
     v11 = loc_2C.x;
     v8 = 0;
     if (v0 == 0 && (*(u32 *)arg1 & 0x10) != 0) v8 = 1;
@@ -15405,7 +15405,7 @@ f32 fn_1_278B8(u32 arg0, void *arg1, f32 arg2) {
                     v28 = (f64)0.3f;
                     v27 *= v28 + (f64)0.7f * __fabs(*(f32 *)((u8 *)arg0 + 508));
                 }
-                v31 *= 0.1f + (f32)(v27 * v24);
+                v31 *= 0.1f + (v27 * v24);
             } else v31 *= 0.1f;
         } else v31 *= v19;
         v29 = *(u32 *)((u8 *)arg0 + 536);
@@ -17487,7 +17487,7 @@ void fn_1_28F08(ScaleInfo *scale, Vec3 *src, f32 bias)
     fzgx_live = v.y;
     len = lbl_8006D0B4(fn_1_28F08_operand((v.x * v.x), (fzgx_live * fzgx_live)) + fn_1_28F08_read_pointer(&v) * fn_1_28F08_read_pointer(&v));
 
-    fn_8006E7E4(&v, &v, (s32)(pool_lbl_1_rodata_840->unk_2AC * len));
+    fn_8006E7E4(&v, &v, (pool_lbl_1_rodata_840->unk_2AC * len));
     lbl_8006DAEC();
     mathutil_mtxA_from_quat(&v);
     lbl_8006DB74(&mtx);
@@ -18829,7 +18829,7 @@ void fn_1_29800(struct S *p) {
             }
         }
         if (p->b483 > 60) {
-            t = (f32)(s32)(p->b483 - 60) / 120.0f;
+            t = (p->b483 - 60) / 120.0f;
             if (t > 1.0f) {
                 t = 1.0f;
             }
@@ -19158,7 +19158,7 @@ static inline void fn_1_29A0C_present(Machine *m)
     lbl_8006DAEC();
     v = m->unk_30C / -m->unk_254;
     v = CLAMP(v - 1.0f, -0.2f, 0.2f);
-    mathutil_mtxA_rotate_x((s32)(182.04444885253906f * (30.0f * v)));
+    mathutil_mtxA_rotate_x((182.04444885253906f * (30.0f * v)));
     lbl_8006DB74(&m->unk_5E0);
     lbl_8006DB30();
 }
@@ -19204,8 +19204,8 @@ void fn_1_29A0C(Machine *m)
     }
     m->unk_5D4 = m->unk_5D4 + (f32)(0.05f * (sway - m->unk_5D4));
     a = m->unk_5D4;
-    t = (s16)(182.04444885253906f * (0.5f * (a * lbl_8006D188((s16)(lbl_801A66A0 * 0x109)))));
-    bounce = 0.006f * (a * lbl_8006D188((s16)(lbl_801A66A0 * 0x1A3)));
+    t = (s16)(182.04444885253906f * (0.5f * (a * lbl_8006D188((lbl_801A66A0 * 0x109)))));
+    bounce = 0.006f * (a * lbl_8006D188((lbl_801A66A0 * 0x1A3)));
     if (m->unk_481 < 90 && m->unk_6 > 40) {
         bounce = bounce + (f32)(0.5f * (1.0f - m->unk_481 / 90.0f));
     }
@@ -19217,9 +19217,9 @@ void fn_1_29A0C(Machine *m)
     LC[11] = 0.0f;
     lbl_8006DB74(&m->unk_EC);
     fn_1_29A0C_present(m);
-    mathutil_mtxA_rotate_z((s32)(10430.3779296875f * (m->unk_4EC / m->unk_B4)));
-    mathutil_mtxA_rotate_y((s32)(10430.3779296875f * (m->unk_4E8 / m->unk_B0)));
-    mathutil_mtxA_rotate_x((s32)(10430.3779296875f * (m->unk_4E4 / m->unk_AC)));
+    mathutil_mtxA_rotate_z((10430.3779296875f * (m->unk_4EC / m->unk_B4)));
+    mathutil_mtxA_rotate_y((10430.3779296875f * (m->unk_4E8 / m->unk_B0)));
+    mathutil_mtxA_rotate_x((10430.3779296875f * (m->unk_4E4 / m->unk_AC)));
     lbl_8006DAEC();
     if (m->unk_58C & 0x20) {
         lbl_8006DBAC(&m->unk_14C);
@@ -19228,7 +19228,7 @@ void fn_1_29A0C(Machine *m)
         lbl_8006D758();
         if (m->unk_0 & 0x400) {
             m->unk_4D8 = m->unk_4D8 + (f32)(0.05f * (m->unk_4D4 - m->unk_4D8));
-            mathutil_mtxA_rotate_y((s32)(182.04444885253906f * m->unk_4D8));
+            mathutil_mtxA_rotate_y((182.04444885253906f * m->unk_4D8));
         }
         speed = fn_1_29A0C_length(&m->unk_94) / m->unk_8 / 4.62962962962963;
         scale = m->unk_1C / 15.0f;
@@ -19251,14 +19251,14 @@ void fn_1_29A0C(Machine *m)
         } else if (a < -0.5f) {
             a = -0.5f;
         }
-        mathutil_mtxA_rotate_x((s32)(10430.3779296875f * pitch));
+        mathutil_mtxA_rotate_x((10430.3779296875f * pitch));
         angle += (s16)(10430.3779296875f * -a);
         if (angle > 0x238E) {
             angle = 0x238E;
         } else if (angle < -0x238E) {
             angle = -0x238E;
         }
-        mathutil_mtxA_rotate_z((s32)(angle + t));
+        mathutil_mtxA_rotate_z((angle + t));
         fn_8006E5FC(&q);
         fn_8006EB4C(&m->unk_5C4, &m->unk_5C4, &q, 0.2f);
         mathutil_mtxA_from_quat(&m->unk_5C4);
@@ -19286,8 +19286,8 @@ void fn_1_29A0C(Machine *m)
     amp = 5.999999848427251e-05f * m->unk_478;
     hash = (*(u32 *)(&m->unk_94.z)) ^ ((*(u32 *)(&m->unk_94.x)) ^ (*(u32 *)(&m->unk_94.y)));
     t = amp * ((u16)(hash ^ m->unk_A0) / 65536.0f);
-    mathutil_mtxA_rotate_z((s32)(10430.3779296875f * (amp * ((u16)(hash ^ (*(u32 *)(&m->unk_A4))) / 65536.0f))));
-    mathutil_mtxA_rotate_x((s32)(10430.3779296875f * t));
+    mathutil_mtxA_rotate_z((10430.3779296875f * (amp * ((u16)(hash ^ (*(u32 *)(&m->unk_A4))) / 65536.0f))));
+    mathutil_mtxA_rotate_x((10430.3779296875f * t));
     if (m->unk_0 & 0x20) {
         f32 w = m->unk_C8;
         if (w < 0.0f) {
@@ -19916,7 +19916,7 @@ s32 fn_1_2A500(void *self, Vec3 *out, Vec3 *pos, void *a, void *b, f32 *outF)
         dz = dz - pos->z;
         dy = dy - pos->y;
         dx = dx - pos->x;
-        d = (f32)(dx * dx);
+        d = (dx * dx);
         d = d + dy * dy;
         d = d + dz * dz;
 
@@ -20029,7 +20029,7 @@ int fn_1_2A8D0(Sig_fn_1_2A694_O * arg0, u8 * arg1, u32 * arg2, u32 arg3, Sig_fn_
     lbl_8006DAEC();
     loc_14 = *(struct fn_1_2A8D0_Copy12 *)(arg1 + 24);
     v0 = arg0->field49c;
-    v2 = fn_1_15578(&loc_14, arg1 + 12, &loc_10, &loc_20, arg3, &v0->v9c, (void *)(u32)(v0->v98), (void *)(u32 *)(arg2), arg0->field498, arg0);
+    v2 = fn_1_15578(&loc_14, arg1 + 12, &loc_10, &loc_20, arg3, &v0->v9c, (void *)(v0->v98), (void *)(u32 *)(arg2), arg0->field498, arg0);
     lbl_8006DB30();
     if (arg2 != 0) {
         v1 = arg2[0];
@@ -20074,7 +20074,7 @@ int fn_1_2A8D0(Sig_fn_1_2A694_O * arg0, u8 * arg1, u32 * arg2, u32 arg3, Sig_fn_
                 t5 = fn_1_868C0((s8)arg0->id);
                 if (!(arg0->field58c & 0x10)) {
                     if (arg0->v474 != -1) {
-                        fn_1_F7338(arg0->v474, (void *)(int)(2), (void *)(int)(30));
+                        fn_1_F7338(arg0->v474, (void *)(2), (void *)(30));
                     }
                     arg0->flags |= 0x800;
                     arg0->flags |= 0x80;
@@ -21488,9 +21488,9 @@ void fn_1_2B684(Fn2B684Obj *obj) {
     f32 sq;
 
     hash = obj->seed7C ^ obj->seed80 ^ obj->seed84;
-    dir.x = (f32)(2.0f * ((f32)((hash ^ *(u32 *)&obj->posA0.x) & 0xFFFF) / 65536.0f)) - 1.0f;
+    dir.x = (f32)(2.0f * (((hash ^ *(u32 *)&obj->posA0.x) & 0xFFFF) / 65536.0f)) - 1.0f;
     dir.y = 0.0f;
-    dir.z = (f32)(2.0f * ((f32)((hash ^ *(u32 *)&obj->posA0.y) & 0xFFFF) / 65536.0f)) - 1.0f;
+    dir.z = (f32)(2.0f * (((hash ^ *(u32 *)&obj->posA0.y) & 0xFFFF) / 65536.0f)) - 1.0f;
     t = dir.x;
     if (t > 0.0f) {
         t += 0.5f;
@@ -21546,7 +21546,7 @@ void fn_1_2B684(Fn2B684Obj *obj) {
             if (lbl_8006D0B4(sq) > 0.1f) {
                 sq = fn_1_2B684_square(dot);
                 t = 1.0f - sq;
-                fn_8006E7E4(&q, &axis, (s32)(1365.0f * t));
+                fn_8006E7E4(&q, &axis, (1365.0f * t));
                 mathutil_mtxA_from_quat(&q);
                 lbl_8006DFC4(obj->mtx14C);
                 lbl_8006DB74(obj->mtx14C);
@@ -21630,7 +21630,7 @@ void fn_1_2BA48(St *p) {
 				p->unk_58c = p->unk_58c | 0x100;
 				g->unk_390 = g->unk_390 | 0x200000;
 				if ((s8)p->unk_474 != -1) {
-					fn_1_F7338((s32)(s8)p->unk_474, (void *)(s32)(2), (void *)(s32)(0x1e));
+					fn_1_F7338((s8)p->unk_474, (void *)(2), (void *)(0x1e));
 				}
 			}
 			if (*lbl_801A66C8 + p->unk_4 == 0) {
@@ -21932,7 +21932,7 @@ f32 fn_1_2BD30(StcoliObj2BD30 *obj, StcoliOut2BD30 *out, Vec3 *src) {
     fn_8006E250(src, &out->dir);
     fn_8006E2B0(obj->ref, &local);
     psvec_sub(&out->dir, &local, &out->dir);
-    lengthSquared = (f32)(out->dir.x * out->dir.x);
+    lengthSquared = (out->dir.x * out->dir.x);
     lengthSquared += out->dir.y * out->dir.y;
     lengthSquared += out->dir.z * out->dir.z;
     if (lbl_8006D0B4(lengthSquared) > pool->eps) {
@@ -21972,7 +21972,7 @@ f32 fn_1_2BD30(StcoliObj2BD30 *obj, StcoliOut2BD30 *out, Vec3 *src) {
     if (fn_1_2BD30_nonfinite(vx) || fn_1_2BD30_nonfinite(vy = obj->velY) || fn_1_2BD30_nonfinite(vz = fn_1_2BD30_read_pointer(obj))) {
         out->speed = pool->zero;
     } else {
-        lengthSquared = (f32)(vx * vx);
+        lengthSquared = (vx * vx);
         lengthSquared += vy * vy;
         lengthSquared += vz * vz;
         out->speed = lbl_8006D0B4(lengthSquared) / obj->scale;
@@ -22257,7 +22257,7 @@ s32 fn_1_2BF8C(u32 arg0, f32 arg1) {
     *(u32 *)((u8 *)arg0 + 1300) = -1;
     (*(u8 *)((u8 *)arg0 + 1496))--;
     }
-    v0 = (f32)(arg1);
+    v0 = (arg1);
     if (*(u16 *)((u8 *)arg0 + 532) != 0) {
     *(u32 *)((u8 *)arg0 + 1300) = -1;
     *(u8 *)((u8 *)arg0 + 1496) = 60;
@@ -22331,9 +22331,9 @@ s32 fn_1_2BF8C(u32 arg0, f32 arg1) {
     } else {
     v9 = (*(f64 *)(((u8 *)fzgx_pool_rodata_lbl_1_rodata_860)));
     timer = (*(f64 *)(((u8 *)fzgx_pool_rodata_lbl_1_rodata_840_380)));
-    if ((f64)(u32)v8 < timer) {
+    if ((u32)v8 < timer) {
     timer = (*(f64 *)(((u8 *)fzgx_pool_rodata_lbl_1_rodata_840_388)));
-    if (timer == (f64)(u32)v8 && (s8)*(u8 *)((u8 *)arg0 + 1141) != -1) {
+    if (timer == (u32)v8 && (s8)*(u8 *)((u8 *)arg0 + 1141) != -1) {
     v8 = 0x4000000;
     v10 = *(u32 *)((u8 *)arg0 + 0);
     if ((v10 & (v8 + 512)) == 0) {
@@ -22343,15 +22343,15 @@ s32 fn_1_2BF8C(u32 arg0, f32 arg1) {
     }
     }
     v8 = *(u16 *)((u8 *)arg0 + 532);
-    v0 = (f32)((f32)(u32)(v8 - 60));
+    v0 = ((v8 - 60));
     if (v0 < (*(f32 *)(((u8 *)fzgx_pool_rodata_lbl_1_rodata_840_8)))) {
-    v0 = (f32)(*(f32 *)((u8 *)arg0 + 1308));
+    v0 = (*(f32 *)((u8 *)arg0 + 1308));
     *(f32 *)((u8 *)arg0 + 1308) = (f32)(v0 - (*(f32 *)(((u8 *)fzgx_pool_rodata_lbl_1_rodata_840_390))));
     } else {
-    v0 = (f32)(*(f32 *)((u8 *)arg0 + 1308));
+    v0 = (*(f32 *)((u8 *)arg0 + 1308));
     *(f32 *)((u8 *)arg0 + 1308) = (f32)(v0 + (*(f32 *)(((u8 *)fzgx_pool_rodata_lbl_1_rodata_840_390))));
     }
-    v0 = (f32)(*(f32 *)((u8 *)arg0 + 1304));
+    v0 = (*(f32 *)((u8 *)arg0 + 1304));
     *(f32 *)((u8 *)arg0 + 1304) = (f32)(v0 + *(f32 *)((u8 *)arg0 + 1308));
     *(f32 *)((u8 *)arg0 + 1304) = fn_1_2BF8C_clamp(*(f32 *)((u8 *)arg0 + 1304), (*(f32 *)fzgx_pool_rodata_lbl_1_rodata_84C));
     *(f32 *)((u8 *)lbl_801A66CC.unk_0 + 212) = *(f32 *)((u8 *)arg0 + 1324);
@@ -22362,10 +22362,10 @@ s32 fn_1_2BF8C(u32 arg0, f32 arg1) {
     v8 += 212;
     loc_8.a[1] = *(f32 *)((u8 *)arg0 + 1456);
     loc_8.a[2] = *(f32 *)((u8 *)arg0 + 1472);
-    v0 = (f32)(*(f32 *)((u8 *)arg0 + 1304));
+    v0 = (*(f32 *)((u8 *)arg0 + 1304));
     t13 = (void *)(lbl_8006D5A4((void *)v8, (u32)&loc_8, (void *)(arg0 + 124), v0));
     v8 = (u16)(t13);
-    v0 = (f32)(*(f32 *)((u8 *)arg0 + 1304));
+    v0 = (*(f32 *)((u8 *)arg0 + 1304));
     v8 = (arg0 + 1312);
     fn_80008DB4((void *)v8, v0, (void *)(arg0 + 1428), (void *)(arg0 + 236));
     v14 = (*(f32 *)(((u8 *)fzgx_pool_rodata_lbl_1_rodata_84C)));
@@ -22373,7 +22373,7 @@ s32 fn_1_2BF8C(u32 arg0, f32 arg1) {
     *(f32 *)((u8 *)arg0 + 280) = v14;
     *(f32 *)((u8 *)arg0 + 264) = v14;
     *(f32 *)((u8 *)arg0 + 248) = v14;
-    v0 = (f32)(*(f32 *)((u8 *)arg0 + 1304));
+    v0 = (*(f32 *)((u8 *)arg0 + 1304));
     fn_80008DB4((void *)v8, v0, (void *)(arg0 + 1428), (void *)(arg0 + 332));
     *(f32 *)((u8 *)arg0 + 344) = *(f32 *)((u8 *)arg0 + 124);
     *(f32 *)((u8 *)arg0 + 360) = *(f32 *)((u8 *)arg0 + 128);
@@ -22440,7 +22440,7 @@ s32 fn_1_2BF8C(u32 arg0, f32 arg1) {
     }
     } else {
     if (v8 < 180) {
-    if (timer == (f64)(u32)v8) {
+    if (timer == (u32)v8) {
     v24 = (*(f32 *)(((u8 *)fzgx_pool_rodata_lbl_1_rodata_84C)));
     v8 = (arg0 + 236);
     *(f32 *)((u8 *)arg0 + 1304) = v24;
@@ -22498,7 +22498,7 @@ u32 fn_1_2C688(u32 arg0, u32 arg1, u32 arg2) {
     v3 = v2;
     v4 = 0;
     v5 = 192;
-    t0 = (u32)memset( (void *)(u32)(v3), v4, v5);
+    t0 = (u32)memset( (void *)(v3), v4, v5);
     v3 = t0;
     v3 = (v2 + 8);
     *(u32 *)((u8 *)v2 + 0) = v3;
@@ -22511,7 +22511,7 @@ u32 fn_1_2C688(u32 arg0, u32 arg1, u32 arg2) {
     if (v3 != 0) {
     v4 = 0;
     v5 = 404;
-    t1 = (u32)memset( (void *)(u32)(v3), v4, v5);
+    t1 = (u32)memset( (void *)(v3), v4, v5);
     v3 = t1;
     }
     v6 = *(u32 *)((u8 *)arg0 + 1180);
@@ -22519,7 +22519,7 @@ u32 fn_1_2C688(u32 arg0, u32 arg1, u32 arg2) {
     v3 = v6;
     v4 = 0;
     v5 = 279;
-    t2 = (u32)memset( (void *)(u32)(v3), v4, v5);
+    t2 = (u32)memset( (void *)(v3), v4, v5);
     v3 = t2;
     v4 = (v6 + 184);
     *(u32 *)((u8 *)v6 + 128) = 0;
@@ -23208,7 +23208,7 @@ if (((s32)lbl_1_bss_5138__fzgx_offset_F0==0) && ((s32)lbl_1_bss_5138__fzgx_offse
 if (fn_1_EB248()!=0 || fn_1_154C84()!=0) {
 if ((u32)lbl_1_bss_5138__fzgx_offset_F4==0) return;
 if ((u32)lbl_1_bss_5138__fzgx_offset_F4>0xFU) lbl_1_bss_5138__fzgx_offset_F4=0xF;
-else lbl_1_bss_5138__fzgx_offset_F4=(u32)((s32)lbl_1_bss_5138__fzgx_offset_F4-1);
+else lbl_1_bss_5138__fzgx_offset_F4=((s32)lbl_1_bss_5138__fzgx_offset_F4-1);
 goto block_43; /* fzgx-allow: S1 retail shares this tail block between both branches */
 } else {
 if ((s16)fzgx_obj_lbl_1_bss_3C2A>=0x2A) {
@@ -23223,7 +23223,7 @@ lbl_1_bss_5138__fzgx_offset_F4=0; lbl_1_bss_5138__fzgx_offset_F8=0; return;
 }
 block_43:;
 if ((u32)lbl_1_bss_5138__fzgx_offset_F4<0xFU) var_f31=(f32)lbl_1_bss_5138__fzgx_offset_F4/15.0f;
-else if ((u32)lbl_1_bss_5138__fzgx_offset_F4>0xA5U) var_f31=1.0f-((f32)(lbl_1_bss_5138__fzgx_offset_F4-0xA5)/15.0f);
+else if ((u32)lbl_1_bss_5138__fzgx_offset_F4>0xA5U) var_f31=1.0f-((lbl_1_bss_5138__fzgx_offset_F4-0xA5)/15.0f);
 else var_f31=1.0f;
 var_f30=10.0f*var_f31; if (var_f30>1.0f) var_f30=1.0f;
 var_f29=1.25f*(var_f31-0.100000001f); if (var_f29<0.0f) var_f29=0.0f;
@@ -23232,9 +23232,9 @@ fn_1_49410(); fn_1_495FC(); fn_1_4954C(0.000600000028f); fn_1_49590(0.400000006f
 if ((u32)lbl_1_bss_5138__fzgx_offset_F8==0) lbl_1_bss_5138__fzgx_offset_F8=(u32)fn_1_15BA78((&lbl_1_data_5BF8)[var_r28]);
 lab_t0=(const char *)lbl_1_bss_5138__fzgx_offset_F8;
 temp_f27=fn_1_4B068(lab_t0); temp_f28=fn_1_4B090((const char *)lbl_1_bss_5138__fzgx_offset_F8);
-temp_f26=temp_f27; temp_f26*=0.5f; lab_t1=70.0f; temp_f26=((f32)((f32)(lab_t1) + (f32)(temp_f26)));
+temp_f26=temp_f27; temp_f26*=0.5f; lab_t1=70.0f; temp_f26=(((lab_t1) + (temp_f26)));
 fn_1_496FC(temp_f26,36.0f); fn_1_4A0D8((const char *)lbl_1_bss_5138__fzgx_offset_F8);
-loc_8=*(const struct FzgxCopy_88 *)((((s32)(((u8 *)(&lbl_1_rodata_26F8)+-4)))+4));
+loc_8=*(const struct FzgxCopy_88 *)((((((u8 *)(&lbl_1_rodata_26F8)+-4)))+4));
 temp_f7=45.0f+temp_f28;
 (*(f32 *)((u8 *)&loc_8+4))=temp_f26;
 (*(f32 *)((u8 *)&loc_8+8))=16.0f+(f32)(0.5f*temp_f7);
@@ -23242,7 +23242,7 @@ temp_f7=45.0f+temp_f28;
 (loc_8.words)[0xC]=0xA;
 (*(f32 *)((u8 *)&loc_8+44))=var_f31;
 (loc_8.words)[0]=2;
-fn_1_50A90(&loc_8,(u32)(s32)(18.0f*var_f30),(u32)(s32)(45.0f*var_f30),(u32)(s32)((50.0f+temp_f27)*var_f29),(u32)(s32)(temp_f7*var_f29));
+fn_1_50A90(&loc_8,(s32)(18.0f*var_f30),(s32)(45.0f*var_f30),(s32)((50.0f+temp_f27)*var_f29),(s32)(temp_f7*var_f29));
 }
 #pragma opt_propagation reset
 /* fzgx:end fn_1_2D038 */
@@ -23678,7 +23678,7 @@ void fn_1_2D888(fn_1_2D888_Box *box) {
     h = box->h * scale;
     text = lbl_1_rodata_26F8;
     text.x = box->x;
-    text.y = (s32)(box->y - 10) + (f32)(0.5f * box->h);
+    text.y = (box->y - 10) + (f32)(0.5f * box->h);
     text.z = 0.0008f;
     text.count = 10;
     text.alpha = box->t;
@@ -23768,7 +23768,7 @@ void fn_1_2DB50(Obj_1_bss_5138 *obj) {
         fn_1_A2DC4(0xA9011100);
     }
     if (++obj->unk_E0 > 0x78) {
-        t = (f32)(s32)(obj->unk_E0 - 0x78);
+        t = (obj->unk_E0 - 0x78);
         if (t > 15.0f) {
             fn_1_2DB50_transition(obj, 0, &threshold);
             if (obj->unk_E1 == 2) {
@@ -25092,7 +25092,7 @@ void fn_1_2E3B4(Arg0 *arg0, Arg1 *arg1) {
 
         if (arg1->unk_D8 >= (f32)lbl_1_bss_3C30.unk_146E) {
             distance = arg1->unk_D8;
-            arg0->unk_98 = (s32)(distance - (f32)lbl_1_bss_3C30.unk_146E);
+            arg0->unk_98 = (distance - (f32)lbl_1_bss_3C30.unk_146E);
             if (arg0->unk_98 > 1000) {
                 arg0->unk_98 = 1000;
             }
@@ -25536,8 +25536,8 @@ s32 fn_1_2EBB8(u32 flags, u8 kind) {
         width = 200.0f;
     }
     lbl_1_bss_25BA0__fzgx_offset_90 = 40.0f + width;
-    lbl_1_bss_25BA0__fzgx_offset_94 = 30.0f + (f32)(count * 24);
-    lbl_1_data_5AB4__fzgx_offset_BC -= (f32)(count * 10);
+    lbl_1_bss_25BA0__fzgx_offset_94 = 30.0f + (count * 24);
+    lbl_1_data_5AB4__fzgx_offset_BC -= (count * 10);
     return lbl_1_bss_25BA0__fzgx_offset_94;
 }
 /* fzgx:end fn_1_2EBB8 */
@@ -26108,7 +26108,7 @@ void fn_1_2F294(void) {
             }
             a *= lbl_1_bss_25BA0__fzgx_offset_60[n].a / 255.0f;
             fn_1_495A0(a);
-            fn_1_496FC(lbl_1_data_5AB4__fzgx_offset_B8, 10.0f + (lbl_1_data_5AB4__fzgx_offset_BC + (f32)(n * 24)));
+            fn_1_496FC(lbl_1_data_5AB4__fzgx_offset_B8, 10.0f + (lbl_1_data_5AB4__fzgx_offset_BC + (n * 24)));
             name = fn_1_15BA78(lbl_1_data_5EC8__fzgx_offset_8[i]);
             fn_1_4A0D8(name);
             name_width = fn_1_4B068(name);
@@ -26118,7 +26118,7 @@ void fn_1_2F294(void) {
             n++;
         }
     }
-    height = (f32)(n * 12 + 40);
+    height = (n * 12 + 40);
     {
         GXColor white = {0xFF, 0xFF, 0xFF, 0x00};
         fn_1_49514((u32 *)&white);
@@ -26156,7 +26156,7 @@ void fn_1_2F294(void) {
         if (fade > 1.0f) {
             fade = 1.0f;
         }
-        fn_1_50A90(&packet, 18, w, (s32)width, (s32)(fade * (80.0f + (f32)(n * 24))));
+        fn_1_50A90(&packet, 18, w, (s32)width, (s32)(fade * (80.0f + (n * 24))));
 
         if (lbl_1_bss_25BA0__fzgx_offset_5C > 0.0f) {
             fn_1_494DC(0x2A);
@@ -26187,7 +26187,7 @@ void fn_1_2F294(void) {
                     alpha = 0.0f;
                 }
                 fn_1_495A0(alpha);
-                fn_1_496FC((lbl_1_data_5AB4__fzgx_offset_C0 - 100.0f) + (f32)(i * 200),
+                fn_1_496FC((lbl_1_data_5AB4__fzgx_offset_C0 - 100.0f) + (i * 200),
                            (70.0f + lbl_1_data_5AB4__fzgx_offset_C4) + 30.0f * fade);
                 fn_1_4A0D8(fn_1_15BA78(answers[i]));
             }

@@ -202,7 +202,7 @@ void fn_1_153B24(BgTowWork *work) {
         if (work->level[i] <= -0.923f) {
             work->timer[i] = -0.95f;
             work->level[i] = -0.923f;
-            work->step[i] = (s32)((work->level[i] - 0.005f) / -0.032f);
+            work->step[i] = ((work->level[i] - 0.005f) / -0.032f);
         }
 
         if (work->level[i] == -0.923f) {
@@ -211,7 +211,7 @@ void fn_1_153B24(BgTowWork *work) {
                 work->wait[i] = 0.0f;
                 work->timer[i] = 0.031f;
                 work->level[i] = 0.005f;
-                work->step[i] = (s32)((work->level[i] - 0.005f) / -0.032f);
+                work->step[i] = ((work->level[i] - 0.005f) / -0.032f);
             }
         }
     }
@@ -429,7 +429,7 @@ s32 fn_1_154410(s32 kind, BgTowObj *obj) {
         work->windows[work->windowCount] = obj;
         work->timer[work->windowCount] = -0.95f + (f32)(0.981f * bg_tow_randf());
         work->level[work->windowCount] = 0.005f + (f32)(-0.928f * bg_tow_randf());
-        work->step[work->windowCount] = (s32)((work->level[work->windowCount] - 0.005f) / -0.032f);
+        work->step[work->windowCount] = ((work->level[work->windowCount] - 0.005f) / -0.032f);
         work->wait[work->windowCount] = 0.0f;
         lbl_8006D7DC(&obj->pos);
         mathutil_mtxA_rotate_z(obj->rotZ);

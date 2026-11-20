@@ -713,11 +713,11 @@ void fn_1_E174(f32 arg0) {
     p_lbl_1_bss_1148->unk_2E = (v2 - 1);
     }
     v2 = p_lbl_1_bss_1148->unk_608;
-    if (p_lbl_1_bss_1148->unk_2E > (s32)(v2 - 1)) {
+    if (p_lbl_1_bss_1148->unk_2E > (v2 - 1)) {
     p_lbl_1_bss_1148->unk_2E = 0;
     }
     v2 = (u32)((u8 *)(u32)p_lbl_1_bss_1148 + 1548);
-    v10 = (s16)(*(s16 *)((u8 *)v2 + (p_lbl_1_bss_1148->unk_2E << 1)));
+    v10 = (*(s16 *)((u8 *)v2 + (p_lbl_1_bss_1148->unk_2E << 1)));
     p_lbl_1_data_43B8->unk_14A = v10;
     if (v10 < 0) {
     p_lbl_1_data_43B8->unk_14A = 43;
@@ -1210,7 +1210,7 @@ u32 fn_1_EBE4(struct fn_1_EBE4_Arg0 *arg0, s32 arg1, u32 arg2, f32 arg3) {
     *(u8 *)((u8 *)arg0 + 0) = 0;
     p_lbl_1_data_43B8->unk_14A = 42;
     lbl_1_bss_6F243 = 0;
-    if (((s16)(p_lbl_1_data_43B8->unk_148)) != 42) {
+    if (((p_lbl_1_data_43B8->unk_148)) != 42) {
     p_lbl_1_data_43B8->unk_148 = 42;
     }
     v6 = (u32)&lbl_1_bss_6EAD0;
@@ -2263,11 +2263,11 @@ void fn_1_FB50(LiveCamera *camera) {
             for (i = 0; i < 3; i++) {
                 product = damping * (f64)camera->offset.values[i];
                 camera->velocity.values[i] =
-                    (f32)((f64)camera->velocity.values[i] - product);
+                    ((f64)camera->velocity.values[i] - product);
             }
             for (i = 0; i < 3; i++) {
                 camera->velocity.values[i] =
-                    (f32)((f64)camera->velocity.values[i] * lbl_1_rodata_588);
+                    ((f64)camera->velocity.values[i] * lbl_1_rodata_588);
             }
             for (i = 0; i < 3; i++) {
                 camera->offset.values[i] =
@@ -2327,7 +2327,7 @@ void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
     if (v0 == 1 && (*(u32 *)((u8 *)arg0 + 12) & 0x80000) != 0) {
         v0 = 4;
         arg0->unk_12 = v0;
-        v1 = (f64)(u32)arg0->unk_64;
+        v1 = (u32)arg0->unk_64;
         if (v1 > (210.0)) {
             arg0->unk_64 = 0;
         } else {
@@ -2340,7 +2340,7 @@ void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
                 v3 = (*(u32 *)&lbl_801A63C0) * 0x676A4B6B + 13259;
                 fzgx_value_ = v3;
                 (*(u32 *)&lbl_801A63C0) = fzgx_value_;
-                arg0->unk_12 = (s16)((s32)((v3 >> 16) & 0x7FFF) % 4);
+                arg0->unk_12 = ((s32)((v3 >> 16) & 0x7FFF) % 4);
                 v9 = *(s16 *)((u8 *)arg0 + 2);
                 if ((s32)arg0->unk_12 == v9) {
                     fzgx_value__ = &(arg0->unk_12);
@@ -2349,7 +2349,7 @@ void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
             } else {
                 v3 = ((0x676A4B6B) * ((*(u32 *)&lbl_801A63C0))) + 13259;
                 (*(u32 *)&lbl_801A63C0) = v3;
-                arg0->unk_12 = (s16)((s32)((v3 >> 16) & 0x7FFF) % 6);
+                arg0->unk_12 = ((s32)((v3 >> 16) & 0x7FFF) % 6);
                 if ((s32)arg0->unk_12 >= 5) {
                     arg0->unk_12 = 4;
                 }
@@ -2358,19 +2358,19 @@ void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
                         s32 v10 = (s16)(*(s16 *)((u8 *)arg0 + 4));
                         fn_1_107B8(arg0);
                         if (v10 == (s32)arg0->unk_14) {
-                            arg0->unk_12 = (s16)((*(s16 *)((u8 *)arg0 + 2) + 1) % 5);
+                            arg0->unk_12 = ((*(s16 *)((u8 *)arg0 + 2) + 1) % 5);
                         }
                     } else {
-                        arg0->unk_12 = (s16)((*(s16 *)((u8 *)arg0 + 2) + 1) % 5);
+                        arg0->unk_12 = ((*(s16 *)((u8 *)arg0 + 2) + 1) % 5);
                     }
                 }
             }
         } else {
             v3 = (*(u32 *)&lbl_801A63C0) * 0x676A4B6B + 13259;
             (*(u32 *)&lbl_801A63C0) = v3;
-            arg0->unk_12 = (s16)((s32)(((0x7FFF) & ((v3 >> 16)))) % 6);
+            arg0->unk_12 = ((s32)(((0x7FFF) & ((v3 >> 16)))) % 6);
             if ((s32)arg0->unk_12 == *(s16 *)((u8 *)arg0 + 2)) {
-                arg0->unk_12 = (s16)((*(s16 *)((u8 *)arg0 + 2) + 1) % 6);
+                arg0->unk_12 = ((*(s16 *)((u8 *)arg0 + 2) + 1) % 6);
             }
             if ((s32)arg0->unk_12 == 5) {
                 arg0->unk_12 = 4;
@@ -2380,17 +2380,17 @@ void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
                     arg0->unk_12 = 3;
                 }
                 if ((arg0->pad_0)[0] == 2) {
-                    arg0->unk_12 = (s16)((*(s16 *)((u8 *)arg0 + 2) + 1) % 3);
+                    arg0->unk_12 = ((*(s16 *)((u8 *)arg0 + 2) + 1) % 3);
                 }
             }
             if ((s8)camera_get_state() == 6) {
                 if ((s32)arg0->unk_12 == 2) {
-                    arg0->unk_12 = (s16)(((s32)arg0->unk_12 + 1) % 3);
+                    arg0->unk_12 = (((s32)arg0->unk_12 + 1) % 3);
                 }
             }
         }
     }
-    v1 = (f64)(u32)arg0->unk_64;
+    v1 = (u32)arg0->unk_64;
     if (v1 > (210.0)) {
         arg0->unk_64 = 0;
     } else {
@@ -2398,9 +2398,9 @@ void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
     }
     if ((s8)camera_get_state() == 6) {
         (*(u32 *)&lbl_801A63C0) = (*(u32 *)&lbl_801A63C0) * 0x676A4B6B + 13259;
-        v3 = (s32)(((*(u32 *)&lbl_801A63C0) >> 16) & 0x7FFF);
+        v3 = (((*(u32 *)&lbl_801A63C0) >> 16) & 0x7FFF);
         v_div = v3;
-        arg0->unk_6 = (s16)(v_div % (s32)(s8)fn_1_86624());
+        arg0->unk_6 = (v_div % (s8)fn_1_86624());
         if ((fn_1_864E8(arg0->unk_6) & 0x1) == 0) {
             v28 = 0x8000880;
             if ((fn_1_864E8(arg0->unk_6) & v28) != 0) {
@@ -2410,7 +2410,7 @@ void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
                     fzgx_value = v30;
                     fzgx_value += 1;
                     arg0->unk_6 = fzgx_value;
-                    if ((s32)arg0->unk_6 >= (s32)(s8)fn_1_86624()) {
+                    if ((s32)arg0->unk_6 >= (s8)fn_1_86624()) {
                         arg0->unk_6 = 0;
                     }
                     if ((s32)arg0->unk_6 < 0) {
@@ -2553,7 +2553,7 @@ void fn_1_10268(Camera_1_10268 *arg) {
     ((Bss_1_17D0 *)&lbl_1_bss_17D0)->unk_0 = lbl_1_rodata_4F4[0];
     ((Bss_1_17D0 *)&lbl_1_bss_17D0)->unk_4 = lbl_1_rodata_4E0[0];
     ((Bss_1_17D0 *)&lbl_1_bss_17D0)->unk_10 = lbl_1_rodata_4F4[0];
-    ((Bss_1_17D0 *)&lbl_1_bss_17D0)->unk_14 = lbl_1_rodata_4E0[0] / (f32)((n * n) >> 2);
+    ((Bss_1_17D0 *)&lbl_1_bss_17D0)->unk_14 = lbl_1_rodata_4E0[0] / ((n * n) >> 2);
     a = (f32)n;
     ((Bss_1_17D0 *)&lbl_1_bss_17D0)->unk_C = a;
     ((Bss_1_17D0 *)&lbl_1_bss_17D0)->unk_8 = a;
@@ -2976,7 +2976,7 @@ void fn_1_103B0(LiveCamState *cam) {
             lbl_8006D5A4(&from.pos, &to.pos, &cam->pos, t);
             lbl_8006D5A4(&from.target, &to.target, &cam->target, t);
             cam->fov = from.fov + (f32)(t * (to.fov - from.fov));
-            cam->roll = from.roll + (s16)(s32)(t * (f32)(to.roll - from.roll));
+            cam->roll = from.roll + (s16)(t * (to.roll - from.roll));
             break;
         case 3:
             lbl_1_bss_17D0.unk_8 -= 1.0f;
@@ -2989,13 +2989,13 @@ void fn_1_103B0(LiveCamState *cam) {
             lbl_8006D5A4(&from.pos, &to.pos, &cam->pos, t);
             lbl_8006D5A4(&from.target, &to.target, &cam->target, t);
             cam->fov = from.fov + (f32)(t * (to.fov - from.fov));
-            cam->roll = from.roll + (s16)(s32)(t * (f32)(to.roll - from.roll));
+            cam->roll = from.roll + (s16)(t * (to.roll - from.roll));
             break;
         case 2:
             lbl_8006D5A4(&cam->pos, &to.pos, &cam->pos, key->rate);
             lbl_8006D5A4(&cam->target, &to.target, &cam->target, key->rate);
             cam->fov = cam->fov + (f32)(key->rate * (to.fov - cam->fov));
-            cam->roll = cam->roll + (s32)(key->rate * (f32)(to.roll - cam->roll));
+            cam->roll = cam->roll + (s32)(key->rate * (to.roll - cam->roll));
             break;
         }
     }
@@ -3598,7 +3598,7 @@ void fn_1_10AF0(LiveCamState *cam) {
                 tmp.z = RAND_FLOAT();
                 shake = tmp;
                 lbl_8006D5F0(&shake, &shake, CLAMP(0.875 + -0.125f * d, 0.0, 0.5));
-                live_camera_set_shake((s32)(30.0f * (1.0f + RAND_FLOAT())), &shake);
+                live_camera_set_shake((30.0f * (1.0f + RAND_FLOAT())), &shake);
             }
         }
         break;
@@ -3718,9 +3718,9 @@ void fn_1_1138C(Cam *c)
     c->unk_4C = a;
     fn_1_862A8(c->unk_6, &b);
     t.value = (f32)lbl_1_data_4484.unk_0;
-    c->unk_70 = c->unk_70 + (f32)(t.value * (f32)(lbl_1_rodata_604 * (b.x - c->unk_70)));
-    c->unk_74 = c->unk_74 + (f32)(t.value * (f32)(lbl_1_rodata_604 * (b.y - c->unk_74)));
-    c->unk_78 = c->unk_78 + (f32)(t.value * (f32)(lbl_1_rodata_604 * (b.z - c->unk_78)));
+    c->unk_70 = c->unk_70 + (f32)(t.value * (lbl_1_rodata_604 * (b.x - c->unk_70)));
+    c->unk_74 = c->unk_74 + (f32)(t.value * (lbl_1_rodata_604 * (b.y - c->unk_74)));
+    c->unk_78 = c->unk_78 + (f32)(t.value * (lbl_1_rodata_604 * (b.z - c->unk_78)));
     {
         Obj_1_data_4754 *base = &lbl_1_data_4754;
         fn_1_1138C_read_pointer(c, base, c->unk_4);
@@ -4120,7 +4120,7 @@ void fn_1_11ABC(LiveCamera *camera) {
         s16 result;
 
         value = (next << 1) >> 17;
-        result = (s16)(value % 9);
+        result = (value % 9);
         lbl_801A63C0 = next;
         camera->unk_14 = result;
         camera->unk_4 = result;
@@ -4688,7 +4688,7 @@ void fn_1_12620(s32 arg0) {
     u8 *base = lbl_1_data_43B8;
     char buf[0x74];
 
-    fn_80006E10((u32)(base + 0x280));
+    fn_80006E10((base + 0x280));
     if (*(s16 *)&lbl_1_bss_960 == 0xA) {
         sprintf(buf, (const char *)(base + 0x284), arg0);
         if (fn_1_465D0((s32)buf, 1) == -1) {
@@ -4723,7 +4723,7 @@ void fn_1_12620(s32 arg0) {
         }
     }
     if (arg0 == 0x32) {
-        fn_80006E10((u32)(base + 0x350));
+        fn_80006E10((base + 0x350));
         return;
     }
     sprintf(buf, (const char *)(base + 0x354), arg0);
@@ -4736,7 +4736,7 @@ void fn_1_12620(s32 arg0) {
         sprintf(buf, (const char *)(base + 0x388));
         fn_1_465D0((s32)buf, 1);
     }
-    fn_80006E10((u32)(base + 0x350));
+    fn_80006E10((base + 0x350));
 }
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_12620 */

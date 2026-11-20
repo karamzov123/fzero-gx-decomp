@@ -1644,25 +1644,25 @@ u32 fn_1_1DF0(u16 *state, s8 *values, u32 flags) {
     }
     if ((selected >> 20) & 1) {
         u32 value = (u8)values[4];
-        if ((u32)(u8)result < value) {
+        if ((u8)result < value) {
             result = value;
         }
     }
     if ((selected >> 21) & 1) {
         u32 value = (u8)values[5];
-        if ((u32)(u8)result < value) {
+        if ((u8)result < value) {
             result = value;
         }
     }
     if ((selected >> 22) & 1) {
         u32 value = (u8)values[6];
-        if ((u32)(u8)result < value) {
+        if ((u8)result < value) {
             result = value;
         }
     }
     if ((selected >> 23) & 1) {
         u32 value = (u8)values[7];
-        if ((u32)(u8)result < value) {
+        if ((u8)result < value) {
             result = value;
         }
     }
@@ -3148,7 +3148,7 @@ void fn_1_407C(s32 arg_sp0) {
     temp_r30 = (*(struct fn_1_407C_lbl_1_bss_DAC *)&lbl_1_bss_DAC).unk_0;
     var_r31 = temp_r30;
     temp_r29 = *(s32 *)((u8 *)(temp_r30) + 16);
-    temp_r28 = (u8) (*(s32 *)((u8 *)(temp_r30) + 20));
+    temp_r28 = (*(s32 *)((u8 *)(temp_r30) + 20));
     do {
         if (!(temp_r29 & (1 << var_r27))) {
             var_r24 = (void *)(*(void **)((u8 *)((*(void **)((u8 *)(var_r31) + 24))) + 8));
@@ -3160,7 +3160,7 @@ void fn_1_407C(s32 arg_sp0) {
                 if (((temp_r28 == 0) || ((u8) (temp_r28 & (*(s32 *)((u8 *)(var_r24) + 20))) != 0)) && (temp_r23 != NULL)) {
                     fn_1_3BDC(5U);
                     temp_r23(*(s32 *)((u8 *)(var_r24) + 4));
-                    (*(s32 *)((u8 *)(var_r24) + 28)) = (s32) ((*(s32 *)((u8 *)(var_r24) + 28)) + fn_1_3C18(5));
+                    (*(s32 *)((u8 *)(var_r24) + 28)) = ((*(s32 *)((u8 *)(var_r24) + 28)) + fn_1_3C18(5));
                 }
                 (*(struct fn_1_407C_lbl_1_bss_DAC *)&lbl_1_bss_DAC).unk_0 = temp_r30;
                 (*(struct fn_1_407C_lbl_1_bss_DA8 *)&lbl_1_bss_DA8).unk_0 = temp_r30;
@@ -3714,8 +3714,8 @@ struct fn_1_48B0_lbl_801A6CF8 {
 
 s32 fn_1_48B0(u32 arg0, u32 arg1) {
     s32 v0;
-    v0 = (arg1 * ((u32)(lbl_801A6CF8.unk_0 - arg0) / (u32)arg1));
-    if ((u32)(arg1 * ((u32)(lbl_801A6CF8.unk_0 - arg0) / (u32)arg1)) < lbl_801A6CFC) {
+    v0 = (arg1 * ((lbl_801A6CF8.unk_0 - arg0) / (u32)arg1));
+    if ((arg1 * ((lbl_801A6CF8.unk_0 - arg0) / (u32)arg1)) < lbl_801A6CFC) {
     v0 = 0;
     return v0;
     }

@@ -392,7 +392,7 @@ void fn_1_101BC4(u32 arg0) {
             v6 = v2 + 1;
             while (v6 < p_lbl_1_bss_85250->unk_1C) {
                 if (((Obj_1_bss_85250_At18 *)v1)->unk_1 == ((Obj_1_bss_85250_At18 *)v37)->unk_1 &&
-                    __fabs((f32)(((Obj_1_bss_85250_At18 *)v1)->unk_14 - ((Obj_1_bss_85250_At18 *)v37)->unk_14)) < v3 &&
+                    __fabs((((Obj_1_bss_85250_At18 *)v1)->unk_14 - ((Obj_1_bss_85250_At18 *)v37)->unk_14)) < v3 &&
                     ((Obj_1_bss_85250_At18 *)v1)->unk_18 > ((Obj_1_bss_85250_At18 *)v37)->unk_18)
                     fn_1_10240C(v1, v37, 68);
                 v6++;
@@ -409,8 +409,8 @@ void fn_1_101BC4(u32 arg0) {
             while (v6 < p_lbl_1_bss_85250->unk_1C) {
                 if (((Obj_1_bss_85250_At18 *)v1)->unk_1 == ((Obj_1_bss_85250_At18 *)v39)->unk_1) {
                     v40 = p_lbl_1_rodata_77F8->unk_88;
-                    if (__fabs((f32)(((Obj_1_bss_85250_At18 *)v1)->unk_14 - ((Obj_1_bss_85250_At18 *)v39)->unk_14)) < v40 &&
-                        __fabs((f32)(((Obj_1_bss_85250_At18 *)v1)->unk_18 - ((Obj_1_bss_85250_At18 *)v39)->unk_18)) < v40 &&
+                    if (__fabs((((Obj_1_bss_85250_At18 *)v1)->unk_14 - ((Obj_1_bss_85250_At18 *)v39)->unk_14)) < v40 &&
+                        __fabs((((Obj_1_bss_85250_At18 *)v1)->unk_18 - ((Obj_1_bss_85250_At18 *)v39)->unk_18)) < v40 &&
                         *(f32 *)(v1 + 16) > *(f32 *)(v39 + 16))
                         fn_1_10240C(v1, v39, 68);
                 }
@@ -429,7 +429,7 @@ void fn_1_101BC4(u32 arg0) {
                 v45 = ((Obj_1_bss_85250_At18 *)v44)->unk_14;
                 v46 = ((Obj_1_bss_85250_At18 *)v44)->unk_58;
                 v5 = p_lbl_1_rodata_77F8->unk_88;
-                if (__fabs((f32)(v45 - v46)) < v5) {
+                if (__fabs((v45 - v46)) < v5) {
                     if (__fabs(v45) < v5 && __fabs(v46) < v5)
                         p_lbl_1_bss_85250->unk_28++;
                     p_lbl_1_bss_85250->unk_2C++;
@@ -450,7 +450,7 @@ void fn_1_101BC4(u32 arg0) {
         while (v2 < p_lbl_1_bss_85250->unk_1C - 1) {
             if (((Obj_1_bss_85250_At18 *)v4)->unk_1 == 1 && ((Obj_1_bss_85250_At18 *)v4)->unk_45 == 1) {
                 v50 = ((Obj_1_bss_85250_At18 *)v4)->unk_14;
-                if (__fabs((f32)(v50 - ((Obj_1_bss_85250_At18 *)v4)->unk_58)) < p_lbl_1_rodata_77F8->unk_88) {
+                if (__fabs((v50 - ((Obj_1_bss_85250_At18 *)v4)->unk_58)) < p_lbl_1_rodata_77F8->unk_88) {
                     v51 = v4 + 68;
                     *(u32 *)((u32)p_lbl_1_bss_85250->unk_20 + v6_2 * 24) = v4;
                     *(u32 *)((u32)p_lbl_1_bss_85250->unk_20 + v6_2 * 24 + 4) = v51;
@@ -478,7 +478,7 @@ void fn_1_101BC4(u32 arg0) {
             v59 = (u32)p_lbl_1_bss_85250->unk_18 + v2 * 68 + 68;
             for (; v60 < p_lbl_1_bss_85250->unk_1C; v60++, v59 += 68) {
                 if (((Obj_1_bss_85250_At18 *)v4)->unk_1 == 1 && ((Obj_1_bss_85250_At18 *)v59)->unk_1 == 1 &&
-                    __fabs((f32)(((Obj_1_bss_85250_At18 *)v4)->unk_18 - ((Obj_1_bss_85250_At18 *)v59)->unk_18)) < v3) {
+                    __fabs((((Obj_1_bss_85250_At18 *)v4)->unk_18 - ((Obj_1_bss_85250_At18 *)v59)->unk_18)) < v3) {
                     *(u32 *)((u32)p_lbl_1_bss_85250->unk_20 + v6_2 * 24) = v4;
                     *(u32 *)((u32)p_lbl_1_bss_85250->unk_20 + v6_2 * 24 + 4) = v59;
                     v15 = fn_1_1024C4( (const Point1024C4 *)((const Sig_fn_1_1024C4_Point1024C4 *)v4), (const Point1024C4 *)((const Sig_fn_1_1024C4_Point1024C4 *)v59));

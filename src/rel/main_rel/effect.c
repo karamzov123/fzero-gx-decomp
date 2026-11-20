@@ -1097,8 +1097,8 @@ void fn_1_5962C(Fn_1_5962C_State *self) {
     self->field_94 = self->field_94 + (f32)(0.05f * (self->field_98 - self->field_94));
     self->field_28 = self->field_28 + (f32)(0.1f * (self->field_2c - self->field_28));
 
-    if ((f64)(s32)self->timer < 15.0) {
-        rate = 1.0f - 1.0f / (f32)(self->timer + 1);
+    if ((s32)self->timer < 15.0) {
+        rate = 1.0f - 1.0f / (self->timer + 1);
         self->field_1c = fn_1_5962C_operand((rate), (self->field_1c));
         self->field_20 = self->field_20 * rate;
         self->field_24 = self->field_24 * rate;
@@ -1375,7 +1375,7 @@ void fn_1_59A74(struct fn_1_59A74_Arg0 *arg0) {
     arg0->unk_1A = (0x10000 - 1);
     v0 = ((lbl_1_data_1D628 * (0x41C60000 + 20077)) + 12345);
     lbl_1_data_1D628 = v0;
-    v1 = (f32)(u32)((v0 >> 16) & 0x7FFF);
+    v1 = ((v0 >> 16) & 0x7FFF);
     v2 = v1 / 32767.0f;
     v3 = 0.5f * v2;
     v4 = 0.1f + v3;
@@ -1394,7 +1394,7 @@ typedef struct fn_1_59B00_Effect {
 
 void fn_1_59B00(fn_1_59B00_Effect *effect) {
     if ((f32)effect->frame < 15.0f) {
-        effect->value = effect->value * (1.0f - 1.0f / (f32)(effect->frame + 1));
+        effect->value = effect->value * (1.0f - 1.0f / (effect->frame + 1));
     } else {
         f32 delta = (effect->target - effect->value) * 0.2f;
 
@@ -1548,9 +1548,9 @@ void fn_1_59CC8(struct Fn159CC8Object *arg0) {
         f32 scaled;
 
         lbl_1_data_1D628 = seed;
-        value = (f32)((seed >> 16) & 0x7FFF);
+        value = ((seed >> 16) & 0x7FFF);
         scaled = 0.25f * (value / 32767.0f);
-        arg0->unk_10 = (s32)(60.0f * (0.08f + scaled));
+        arg0->unk_10 = (60.0f * (0.08f + scaled));
     }
 }
 /* fzgx:end fn_1_59CC8 */
@@ -2153,7 +2153,7 @@ static inline f32 fn_1_59EE4_vec_len(Fn59EE4Vec *v) {
 
 static inline f32 fn_1_59EE4_randf(void) {
     SEED = SEED * 0x41C64E6D + 0x3039;
-    return (f32)((SEED >> 16) & 0x7FFF) / 32767.0f;
+    return ((SEED >> 16) & 0x7FFF) / 32767.0f;
 }
 
 static inline f32 fn_1_59EE4_jitter(f32 amount) {
@@ -2263,7 +2263,7 @@ void fn_1_59EE4(Fn59EE4Effect *effect) {
     out = &verts[1];
     step = 1.0f / 12.0f;
     for (i = 5; i > 0; i--) {
-        t = 1.0f - (f32)((f32)(i + 1) * step);
+        t = 1.0f - (f32)((i + 1) * step);
         cur.x = fn_1_9E14C(2, CURVE_x, t);
         cur.y = fn_1_9E14C(2, CURVE_y, t);
         cur.z = fn_1_9E14C(2, CURVE_z, t);
@@ -2459,7 +2459,7 @@ void fn_1_5A8DC(Arg_5A8DC *arg0) {
  fn_8006EF10(&loc_8,&loc_2C.unk_54,&loc_2C.unk_56);
  loc_2C.unk_28 = 0.3f;
  lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41C64E6D + 12345;
- loc_2C.unk_2C = 0.3f + (f32)(0.2f * ((f32)((lbl_1_data_1D628 >> 16)&0x7FFF) / 32767.0f));
+ loc_2C.unk_2C = 0.3f + (f32)(0.2f * (((lbl_1_data_1D628 >> 16)&0x7FFF) / 32767.0f));
  loc_2C.unk_1C = arg0->unk_1C;
  if ((s32)fn_1_3FC58() == 0) {
   i = allocate_5A8DC();
@@ -2548,10 +2548,10 @@ void fn_1_5ABCC(Fn1_5ABCCOutput *out) {
     u32 value;
     value = lbl_1_data_1D628 * 0x41c64e6d + 0x3039;
     lbl_1_data_1D628 = value;
-    t = (f32)((value >> 16) & 0x7fff);
+    t = ((value >> 16) & 0x7fff);
 }
     scaled = (0.25f) * (t / (32767.0f));
-    out->unk_10 = (s32)((60.0f) * ((0.25f) + scaled));
+    out->unk_10 = ((60.0f) * ((0.25f) + scaled));
 }
 /* fzgx:end fn_1_5ABCC */
 
@@ -2775,7 +2775,7 @@ slot_found:
 /* Linear congruential random value in [0, 1]. */
 static inline f32 fn_1_5AC48_rand(void) {
     lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41c64e6d + 0x3039;
-    return (f32)((lbl_1_data_1D628 >> 16) & 0x7fff) / 32767.0f;
+    return ((lbl_1_data_1D628 >> 16) & 0x7fff) / 32767.0f;
 }
 
 void fn_1_5AC48(fn_1_5AC48_Effect *effect) {
@@ -2804,7 +2804,7 @@ void fn_1_5AC48(fn_1_5AC48_Effect *effect) {
     fn_1_5AC48_spawn(&spawn);
 
     if ((f32)effect->unk_10 < 15.0f) {
-        effect->unk_28 *= 1.0f - 1.0f / (f32)(effect->unk_10 + 1);
+        effect->unk_28 *= 1.0f - 1.0f / (effect->unk_10 + 1);
     }
 }
 /* fzgx:end fn_1_5AC48 */
@@ -2905,17 +2905,17 @@ void fn_1_5B078(struct fx_5b078_out *out)
     lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41C64E6Du + 0x3039u;
     rnd = lbl_1_data_1D628;
     n = (rnd >> 16) & 0x7FFFu;
-    out->field_10 = (s32)(((f32)(n / 32767.0f * 0.1f) + 0.125f) * 60.0f);
+    out->field_10 = (((f32)(n / 32767.0f * 0.1f) + 0.125f) * 60.0f);
 
     lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41C64E6Du + 0x3039u;
     rnd = lbl_1_data_1D628;
     n = (rnd >> 16) & 0x7FFFu;
-    out->field_58 = (s16)((n / 32767.0f - 0.5f) * 65536.0f);
+    out->field_58 = ((n / 32767.0f - 0.5f) * 65536.0f);
 
     lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41C64E6Du + 0x3039u;
     rnd = lbl_1_data_1D628;
     n_2 = (rnd >> 16) & 0x7FFFu;
-    out->field_5e = (s16)((n_2 / 32767.0f - 0.5f) * 4096.0f);
+    out->field_5e = ((n_2 / 32767.0f - 0.5f) * 4096.0f);
 
     out->field_b4 = 0.5f;
 }
@@ -2955,23 +2955,23 @@ void fn_1_5B188(struct fx_5b188 *p)
 {
     f32 d;
 
-    d = 1.0f / (f32)(s32)(p->field_10 + 1);
+    d = 1.0f / (p->field_10 + 1);
     p->field_48 = fn_1_5B188_operand((0.96f), (p->field_48));
     p->field_4C = fn_1_5B188_operand((0.96f), (p->field_4C));
     p->field_50 = fn_1_5B188_operand((0.96f), (p->field_50));
     p->field_3C = p->field_3C + p->field_48;
     p->field_40 = p->field_40 + p->field_4C;
     p->field_44 = p->field_44 + p->field_50;
-    p->field_5E = (s16)(fn_1_5B188_operand(((f32)p->field_5E), (0.99f)));
+    p->field_5E = (fn_1_5B188_operand(((f32)p->field_5E), (0.99f)));
     p->field_58 = p->field_58 + p->field_5E;
-    p->field_1C = p->field_1C + (f32)(fn_1_5B188_operand(((0.4f - p->field_1C)), (0.05f)));
-    p->field_20 = p->field_20 + (f32)(fn_1_5B188_operand(((0.4f - p->field_20)), (0.0505f)));
-    p->field_24 = p->field_24 + (f32)(fn_1_5B188_operand(((0.4f - p->field_24)), (0.051f)));
-    if ((f32)(s32)p->field_10 < 15.0f) {
+    p->field_1C = p->field_1C + (fn_1_5B188_operand(((0.4f - p->field_1C)), (0.05f)));
+    p->field_20 = p->field_20 + (fn_1_5B188_operand(((0.4f - p->field_20)), (0.0505f)));
+    p->field_24 = p->field_24 + (fn_1_5B188_operand(((0.4f - p->field_24)), (0.051f)));
+    if ((s32)p->field_10 < 15.0f) {
         p->field_B4 = fn_1_5B188_operand(((1.0f - d)), (p->field_B4));
         p->field_2C = fn_1_5B188_operand((0.95f), (p->field_2C));
     } else {
-        p->field_B4 = p->field_B4 + (f32)(fn_1_5B188_operand(((1.0f - p->field_B4)), (0.2f)));
+        p->field_B4 = p->field_B4 + (fn_1_5B188_operand(((1.0f - p->field_B4)), (0.2f)));
     }
 }
 #pragma opt_common_subs reset
@@ -3090,7 +3090,7 @@ void fn_1_5B3D0(struct fn_1_5B3D0_Arg0 *arg0) {
 
     state = &lbl_1_data_1D628;
     next = ((1103515245) * (state->unk_0)) + 12345;
-    random = (u32)((next >> 16) & 0x7FFF);
+    random = ((next >> 16) & 0x7FFF);
     r = 0.1f * ((f32)random / 32767.0f);
     state->unk_0 = next;
     arg0->unk_10 = (s32)(60.0f * (0.125f + r));
@@ -3196,7 +3196,7 @@ void fn_1_5B450(Fn1_5B450Object *arg0) {
 
     frame = arg0->unk_10;
     if ((f32)frame < 60.0f) {
-        t = 1.0f - 1.0f / (f32)(frame + 1);
+        t = 1.0f - 1.0f / (frame + 1);
         arg0->unk_1c *= t;
         arg0->unk_20 *= 0.99f * t;
         arg0->unk_24 *= scale * t;
@@ -3295,7 +3295,7 @@ void fn_1_5B578(Obj_1_5B578_T *p)
     if (fn_1_54E34(&child->vec, p->unk_28) == 0) {
         return;
     }
-    entity = (Obj_1_5B578_Entity_T *)(u32)((Obj_1_5B578_World_T *)(u32)((Obj_1_5B578_Scene_T *)lbl_1_bss_38458->pad_0)->unk_8)->unk_70;
+    entity = (Obj_1_5B578_Entity_T *)((Obj_1_5B578_World_T *)((Obj_1_5B578_Scene_T *)lbl_1_bss_38458->pad_0)->unk_8)->unk_70;
     lbl_8006D7B0();
     d = p->unk_28 / entity->unk_14;
     lbl_8006E14C(d * t);
@@ -3402,11 +3402,11 @@ typedef struct Fn15B6F4 {
 
 void fn_1_5B6F4(Fn15B6F4 *obj) {
     u32 seed = lbl_1_data_1D628 * 1103515245 + 12345;
-    f32 r = (f32)((seed >> 16) & 0x7FFF) / 32767.0f;
+    f32 r = ((seed >> 16) & 0x7FFF) / 32767.0f;
     f64 d = 10.0 * ((f64)r - 3.0);
 
     lbl_1_data_1D628 = seed;
-    obj->unk_10 = (s32)(150.0 + d);
+    obj->unk_10 = (150.0 + d);
     obj->unk_14 = obj->unk_10 - 20;
 }
 /* fzgx:end fn_1_5B6F4 */
@@ -3504,7 +3504,7 @@ extern void fn_1_57720(u32, u32, u32, u32);
 
 #define FN_1_5B7F8_RAND() \
     (lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41C64E6D + 12345, \
-     (f32)((lbl_1_data_1D628 >> 16) & 0x7FFF) / 32767.0f)
+     ((lbl_1_data_1D628 >> 16) & 0x7FFF) / 32767.0f)
 
 /* lbl_1_data_1D6C0 is a table of (y, z) offsets, 8 bytes per point. */
 typedef struct {
@@ -3775,9 +3775,9 @@ void fn_1_5BF70(struct fn_1_5BF70_Arg0 *arg0) {
 
     seed = lbl_1_data_1D628 * 0x41c64e6d + 0x3039;
     lbl_1_data_1D628 = seed;
-    normalized = (f32)((seed >> 16) & 0x7fff) / 32767.0f;
+    normalized = ((seed >> 16) & 0x7fff) / 32767.0f;
     value = 10.0 * ((f64)normalized - 3.0);
-    arg0->unk_10 = (s32)(value + 50.0);
+    arg0->unk_10 = (value + 50.0);
 }
 /* fzgx:end fn_1_5BF70 */
 
@@ -3798,7 +3798,7 @@ void fn_1_5BFF0(struct fn_1_5BFF0_Arg0 *arg0) {
     if (arg0->unk_AC >= 15) {
     arg0->unk_AC = 15;
     }
-    arg0->unk_B4 = (lbl_1_rodata_29A4 * (f32)(s32)arg0->unk_10);
+    arg0->unk_B4 = (lbl_1_rodata_29A4 * (s32)arg0->unk_10);
 }
 /* fzgx:end fn_1_5BFF0 */
 
@@ -3927,9 +3927,9 @@ void fn_1_5C058(struct fn_1_5C058_Arg0 *arg0) {
         v14 = (f32)(5.0f * (fn5C058Random() - 0.5f)) + (f32)(255.0f * arg0->unk_20);
         v16 = (f32)(5.0f * (fn5C058Random() - 0.5f)) + (f32)(255.0f * arg0->unk_24);
     } else {
-        v13 = 255.0f * (f32)(arg0->unk_1C * v4);
-        v14 = 255.0f * (f32)(arg0->unk_20 * v4);
-        v16 = 255.0f * (f32)(arg0->unk_24 * v4);
+        v13 = 255.0f * (arg0->unk_1C * v4);
+        v14 = 255.0f * (arg0->unk_20 * v4);
+        v16 = 255.0f * (arg0->unk_24 * v4);
     }
     loc_14[0] = __OSf32tou8(v13);
     loc_14[1] = __OSf32tou8(v14);
@@ -3957,7 +3957,7 @@ void fn_1_5C058(struct fn_1_5C058_Arg0 *arg0) {
         loc_18.x += arg0->unk_94;
     }
     if (arg0->unk_10 >= 10) {
-        v42 = (s32)(10.0f + (f32)(19.0f * (fn5C058Random() - 0.5f)));
+        v42 = (10.0f + (f32)(19.0f * (fn5C058Random() - 0.5f)));
     } else {
         v42 = arg0->unk_10;
     }
@@ -4047,7 +4047,7 @@ void fn_1_5C784(EffectWork *self) {
         u32 value = lbl_1_data_1D628 * 0x41C64E6D + 0x3039;
         lbl_1_data_1D628 = value;
         value = (value >> 16) & 0x7FFF;
-        self->unk_10 = (s32)((60.0f) * ((0.100000001f) + (f32)value / (32767.0f)));
+        self->unk_10 = ((60.0f) * ((0.100000001f) + (f32)value / (32767.0f)));
     }
     self->unk_3c = self->unk_94;
     fn_1_8636C(self->unk_18, &self->unk_b8);
@@ -4222,9 +4222,9 @@ void fn_1_5C83C(struct Fn1_5C83CObject *self) {
     if (age < 24.0) {
         /* the common factor is CSE'd by the compiler; writing it out per
            component keeps the color load ahead of the literal */
-        self->color_1c = self->color_1c * (1.0f - 1.0f / (f32)(age + 1));
-        self->color_20 = self->color_20 * (1.0f - 1.0f / (f32)(age + 1));
-        self->color_24 = self->color_24 * (1.0f - 1.0f / (f32)(age + 1));
+        self->color_1c = self->color_1c * (1.0f - 1.0f / (age + 1));
+        self->color_20 = self->color_20 * (1.0f - 1.0f / (age + 1));
+        self->color_24 = self->color_24 * (1.0f - 1.0f / (age + 1));
     }
 }
 /* fzgx:end fn_1_5C83C */
@@ -4408,7 +4408,7 @@ void fn_1_5CA00(struct fn_1_5CA00_Arg0 *arg0) {
  memset(&d,0,64);
  scale=FIELD(40);
  d.width=0.7071067690849304f*scale;
- red=(s32)(255.0f*FIELD(28)); d.r=red; d.g=(u8)(255.0f*FIELD(32)); d.b=(u8)(255.0f*FIELD(36)); init_draw_metadata(&d);
+ red=(255.0f*FIELD(28)); d.r=red; d.g=(255.0f*FIELD(32)); d.b=(255.0f*FIELD(36)); init_draw_metadata(&d);
  if(mode==1) COLORS((u8)d.r) else COLORS((u8)d.r)
  zero=0.0f; half=0.5f;
  draw_mtx=d.mtx;
@@ -4705,7 +4705,7 @@ void fn_1_5D020(Fx *p) {
     p->unk88 = p->unk88 + (f32)(0.05f * (p->unk8c - p->unk88));
     p->unk28 = p->unk28 + (f32)(0.01f * (p->unk2c - p->unk28));
     p->unkae += p->unkac;
-    g = 1.0f - 1.0f / (f32)(p->unk10 + 1);
+    g = 1.0f - 1.0f / (p->unk10 + 1);
     w = p->unk1c;
     p->unk1c = w * g;
     p->unk20 *= g;
@@ -4934,7 +4934,7 @@ void fn_1_5D378(fn_1_5D378_obj *self)
     if (self->unk_10 == 0) {
         a = rnd_unit();
         a = 0.1f * a;
-        self->unk_10 = (s32)((0.4f + a) * 60.0f);
+        self->unk_10 = ((0.4f + a) * 60.0f);
     }
 
     v = (s8)fn_1_86634(self->unk_18);
@@ -5106,7 +5106,7 @@ void fn_1_5D500(EffectUpdate *arg0)
         arg0->unk_24 += (f32)(0.05f * -arg0->unk_24);
     } else {
         lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41C64E6D + 12345;
-        random = 0.5f + (f32)(0.1f * ((f32)((lbl_1_data_1D628 >> 16) & 0x7FFF) / 32767.0f));
+        random = 0.5f + (f32)(0.1f * (((lbl_1_data_1D628 >> 16) & 0x7FFF) / 32767.0f));
         arg0->unk_1C = (204.0f * (0.5f * (1.0f + random))) / 255.0f;
         arg0->unk_20 = (85.0f * random) / 255.0f;
         arg0->unk_24 = 0.0f;
@@ -5198,7 +5198,7 @@ x = fn_1_64760_array_read(m, 3);
 y = fn_1_64760_array_read(m, 7);
 z = fn_1_64760_array_read(m, 11);
 psvec_set(v, z, y, x);
-sum = (f32) (fn_1_64760_array_read(v, 0) * fn_1_64760_array_read(v, 0));
+sum = (fn_1_64760_array_read(v, 0) * fn_1_64760_array_read(v, 0));
 sum = sum + fn_1_64760_array_read(v, 1) * fn_1_64760_array_read(v, 1);
 sum = sum + z * z;
 distance = lbl_8006D0B4(sum);
@@ -5211,9 +5211,9 @@ memset(&work, 0, 0x40);
 lbl_8006DB74(&work.sub);
 alpha = pool[0x150 / 4] * self->value28;
 work.alpha = alpha;
-work.red = (u8) (pool[0x5c / 4] * self->value1c);
-work.green = (u8) (pool[0x5c / 4] * self->value20);
-work.blue = (u8) (pool[0x5c / 4] * self->value24);
+work.red = (pool[0x5c / 4] * self->value1c);
+work.green = (pool[0x5c / 4] * self->value20);
+work.blue = (pool[0x5c / 4] * self->value24);
 work.alphaByte = 0xff;
 work.alpha2 = alpha;
 fn_1_9F914(&work, object);
@@ -5370,11 +5370,11 @@ void fn_1_5D88C(struct Fn15D88C *self) {
         f32 value28;
         lbl_1_data_1D628 = lbl_1_data_1D628 * 1103515245 + 12345;
         value28 = lbl_1_rodata_2978[0];
-        self->value54 = (u16)((lbl_1_data_1D628 >> 16) & 0x7fff);
+        self->value54 = ((lbl_1_data_1D628 >> 16) & 0x7fff);
         lbl_1_data_1D628 = lbl_1_data_1D628 * 1103515245 + 12345;
-        self->value56 = (u16)((lbl_1_data_1D628 >> 16) & 0x7fff);
+        self->value56 = ((lbl_1_data_1D628 >> 16) & 0x7fff);
         lbl_1_data_1D628 = lbl_1_data_1D628 * 1103515245 + 12345;
-        self->value58 = (u16)((lbl_1_data_1D628 >> 16) & 0x7fff);
+        self->value58 = ((lbl_1_data_1D628 >> 16) & 0x7fff);
         self->value28 = value28;
     }
     self->flags |= 0x40000000;
@@ -5502,7 +5502,7 @@ void fn_1_5D91C(Fn5D91CObj *obj) {
         fn_8006E2B0(&obj->unk_48, &vel);
         if (pos.y < -0.5f) {
             lbl_1_data_1D628 = lbl_1_data_1D628 * 1103515245 + 12345;
-            vel.y = -1.0f * vel.y + (f64)(vel.y * ((f32)((lbl_1_data_1D628 >> 16) & 0x7FFF) / 32767.0f - 0.5));
+            vel.y = -1.0f * vel.y + (f64)(vel.y * (((lbl_1_data_1D628 >> 16) & 0x7FFF) / 32767.0f - 0.5));
             lbl_8006E1C0(&up, &up);
             vel.x = vel.x + (f64)(0.2 * up.x * vel.y);
             vel.y = vel.y + (f64)(0.2 * up.y * vel.y);
@@ -5531,11 +5531,11 @@ void fn_1_5D91C(Fn5D91CObj *obj) {
         obj->unk_48.z *= len;
         len = length(&obj->unk_48);
         lbl_1_data_1D628 = lbl_1_data_1D628 * 1103515245 + 12345;
-        obj->unk_48.x += (f32)(0.1f * (len * ((f32)((lbl_1_data_1D628 >> 16) & 0x7FFF) / 32767.0f - 0.5f)));
+        obj->unk_48.x += (f32)(0.1f * (len * (((lbl_1_data_1D628 >> 16) & 0x7FFF) / 32767.0f - 0.5f)));
         lbl_1_data_1D628 = lbl_1_data_1D628 * 1103515245 + 12345;
-        obj->unk_48.y += (f32)(0.1f * (len * ((f32)((lbl_1_data_1D628 >> 16) & 0x7FFF) / 32767.0f - 0.5f)));
+        obj->unk_48.y += (f32)(0.1f * (len * (((lbl_1_data_1D628 >> 16) & 0x7FFF) / 32767.0f - 0.5f)));
         lbl_1_data_1D628 = lbl_1_data_1D628 * 1103515245 + 12345;
-        obj->unk_48.z += (f32)(0.1f * (len * ((f32)((lbl_1_data_1D628 >> 16) & 0x7FFF) / 32767.0f - 0.5f)));
+        obj->unk_48.z += (f32)(0.1f * (len * (((lbl_1_data_1D628 >> 16) & 0x7FFF) / 32767.0f - 0.5f)));
         obj->unk_48.y += -0.03f;
         obj->unk_3c.x += obj->unk_48.x;
         obj->unk_3c.y += obj->unk_48.y;
@@ -5547,7 +5547,7 @@ void fn_1_5D91C(Fn5D91CObj *obj) {
             fn_8006E2B0(&obj->unk_48, &vel);
             if (pos.y < -0.5f) {
                 lbl_1_data_1D628 = lbl_1_data_1D628 * 1103515245 + 12345;
-                vel.y = -1.0f * vel.y + (f64)(vel.y * ((f32)((lbl_1_data_1D628 >> 16) & 0x7FFF) / 32767.0f - 0.5));
+                vel.y = -1.0f * vel.y + (f64)(vel.y * (((lbl_1_data_1D628 >> 16) & 0x7FFF) / 32767.0f - 0.5));
                 vel.z = 0.95f * vel.z;
             }
             lbl_8006E1B0(&pos, &obj->unk_3c);
@@ -6014,8 +6014,8 @@ f32 fn_1_5E3C4(struct fn_1_5E3C4_Arg0 *arg0, f32 arg1) {
             v5 = 0.400000006f;
             lbl_1_data_1D628 = v1;
             v6 = 60.0f;
-            v0 = (f32)(u32)((v1 >> 16) & 0x7FFF);
-            arg0->unk_10 = (s32)(f32)(v6 * (f32)(v5 + (f32)(v4 * (f32)(v0 / (32767.0f)))));
+            v0 = ((v1 >> 16) & 0x7FFF);
+            arg0->unk_10 = (s32)(v6 * (v5 + (f32)(v4 * (v0 / (32767.0f)))));
         }
     } else {
         if (((0) == ((s32)(*(u32 *)&arg0->unk_10)))) {
@@ -6025,8 +6025,8 @@ f32 fn_1_5E3C4(struct fn_1_5E3C4_Arg0 *arg0, f32 arg1) {
             v11 = 0.0799999982f;
             v12 = 60.0f;
             lbl_1_data_1D628 = v7;
-            v0 = (f32)(u32)((v7 >> 16) & 0x7FFF);
-            arg0->unk_10 = (s32)(f32)(v12 * (f32)(v11 + (f32)(v10 * (f32)(v0 / (32767.0f)))));
+            v0 = ((v7 >> 16) & 0x7FFF);
+            arg0->unk_10 = (s32)(v12 * (v11 + (f32)(v10 * (v0 / (32767.0f)))));
         }
     }
     return v0;
@@ -7682,7 +7682,7 @@ static inline f32 Fn5EB98Length(const f32 *v) { f32 z=v[2], x=v[0], y=v[1]; f32 
  * compiler): a named helper local here changes the loop's register numbering */
 static inline f32 Fn5EB98Rand(void) {
     lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41C64E6D + 12345;
-    return (f32)((lbl_1_data_1D628 >> 16) & 0x7FFF) / 32767.0f;
+    return ((lbl_1_data_1D628 >> 16) & 0x7FFF) / 32767.0f;
 }
 void fn_1_5EB98(struct fn_1_5EB98_Arg0 *arg0, u32 arg1, u32 arg2) {
 u32 v0;
@@ -7720,16 +7720,16 @@ v4 = loc_30.y-loc_3C.y;
 v5 = loc_30.z-loc_3C.z;
 loc_24[0]=v3; loc_24[1]=v4; loc_24[2]=v5;
 t2=v3*v3; t2=v4*v4+t2; t2=v5*v5+t2; t2=lbl_8006D0B4(t2);
-v14=(f32)((*(f32 *)((u8 *)(v0)+(180))) *(f32)(0.45f*(*(f32 *)((u8 *)(v0)+(180))) ))*
-(f32)(0.2f+(f32)(0.8f*Fn5EB98Rand() ));
+v14=((*(f32 *)((u8 *)(v0)+(180))) *(0.45f*(*(f32 *)((u8 *)(v0)+(180))) ))*
+(0.2f+(f32)(0.8f*Fn5EB98Rand() ));
 if(v14>1.0f) {
 colorR=255.0f*(*(f32 *)((u8 *)(v0)+(28))) ;
 colorG=255.0f*(*(f32 *)((u8 *)(v0)+(32))) ;
 colorB=255.0f*(*(f32 *)((u8 *)(v0)+(36))) ;
 } else {
-colorR=255.0f*(f32)((*(f32 *)((u8 *)(v0)+(28))) *v14);
-colorG=255.0f*(f32)((*(f32 *)((u8 *)(v0)+(32))) *v14);
-colorB=255.0f*(f32)((*(f32 *)((u8 *)(v0)+(36))) *v14);
+colorR=255.0f*((*(f32 *)((u8 *)(v0)+(28))) *v14);
+colorG=255.0f*((*(f32 *)((u8 *)(v0)+(32))) *v14);
+colorB=255.0f*((*(f32 *)((u8 *)(v0)+(36))) *v14);
 }
 loc_20.r=__OSf32tou8(colorR); loc_20.g=__OSf32tou8(colorG); loc_20.b=__OSf32tou8(colorB); loc_20.a=255;
 v19=-2.0f*(*(f32 *)((u8 *)(v0)+(180))) ;
@@ -7759,7 +7759,7 @@ verts[0].pos=loc_3C;
 verts[0].color=loc_20;
 vout=&verts[1];
 for(v44=14; v44>0; v44--) {
-v42=1.0f - (f32)((f32)(v44+1) / 16.0f);
+v42=1.0f - (f32)((v44+1) / 16.0f);
 t4=fn_1_9E14C(2,(Sig_fn_1_9DDA8_fn_1_9DDA8_CurveKey *)(((u8 *)fzgx_pool_init_lbl_1_data_1D7A8.v)),v42);
 t5=fn_1_9E14C(2,(Sig_fn_1_9DDA8_fn_1_9DDA8_CurveKey *)(((u8 *)fzgx_pool_init_lbl_1_data_1D7D0.v)),v42);
 t6=fn_1_9E14C(2,(Sig_fn_1_9DDA8_fn_1_9DDA8_CurveKey *)(((u8 *)fzgx_pool_init_lbl_1_data_1D7F8.v)),v42);
@@ -7775,21 +7775,21 @@ vout->pos.z=t6+(f32)(v43*v50);
 vout->color=loc_20; vout++;
 }
 vout->pos=loc_30; vout->color=loc_20;
-if((s32)(((*(u32 *)((u8 *)(v0)+(16))) <<1)+3)>(*(s16 *)((u8 *)(v0)+(172))) ) fn_1_57714((u8)(*(s16 *)((u8 *)(v0)+(172))) );
-else fn_1_57714((u8)(((*(u32 *)((u8 *)(v0)+(16))) <<1)+3));
+if((s32)(((*(u32 *)((u8 *)(v0)+(16))) <<1)+3)>(*(s16 *)((u8 *)(v0)+(172))) ) fn_1_57714((*(s16 *)((u8 *)(v0)+(172))) );
+else fn_1_57714((((*(u32 *)((u8 *)(v0)+(16))) <<1)+3));
 fn_1_57720(1,1,1,0);
 lbl_8006DCA4();
 fn_1_57A70(16,verts);
 v52=lbl_1_data_1D628;
 v52*=0x41C64E6D;
 v52+=12345;
-v60=(f32)((v52>>16)&0x7FFF)/32767.0f;
+v60=((v52>>16)&0x7FFF)/32767.0f;
 v54=(u32)((void **)(lbl_1_bss_38458->unk_8))[40];
 v55=0.25f*(*(f32 *)((u8 *)(v0)+(180))) ;
 *(volatile u32 *)&lbl_1_data_1D628 =v52; /* fzgx-allow: S2 preserve the generator update */
 v61=1.0f+v55;
 v62=0.125f+(f32)(0.5f*v55);
-v63=255.0f*(f32)(v62*(f32)(1.0f+v60));
+v63=255.0f*(v62*(1.0f+v60));
 fn_80074788(0); fn_80072864(0);
 fn_800745A4(0,1,4,60,0,125);
 fn_800734A8(0,0,0,255); fn_80072AB0(0,0,0);
@@ -7806,7 +7806,7 @@ if(fn_1_54E34((void *)(v54+8),v61)!=0) {
 psvec_set(loc_24,*(f32 *)(0xE0000000+0x2C),*(f32 *)(0xE0000000+0x1C),*(f32 *)(0xE0000000+0xC));
 t33=Fn5EB98Length(loc_24);
 if(t33>0.1f+v61) {
-lbl_8006DB74(&loc_AC); lbl_8006D848((f32)(t33-v61)/t33); lbl_8006DFC4(&loc_AC);
+lbl_8006DB74(&loc_AC); lbl_8006D848((t33-v61)/t33); lbl_8006DFC4(&loc_AC);
 }
 *(Fn5EB98Vec *)&loc_54=*(Fn5EB98Vec *)(v54+8);
 (*(f32 *)((u8 *)(&loc_54)+(12))) =0.7071067690849304f*v61; (*(u16 *)((u8 *)(&loc_54)+(16))) =0;
@@ -7817,7 +7817,7 @@ if(fn_1_54E34((void *)(v54+8),v61)!=0) {
 psvec_set(loc_24,*(f32 *)(0xE0000000+0x2C),*(f32 *)(0xE0000000+0x1C),*(f32 *)(0xE0000000+0xC));
 t41=Fn5EB98Length(loc_24);
 if(t41>0.1f+v61) {
-lbl_8006DB74(&loc_AC); lbl_8006D848((f32)(t41-v61)/t41); lbl_8006DFC4(&loc_AC);
+lbl_8006DB74(&loc_AC); lbl_8006D848((t41-v61)/t41); lbl_8006DFC4(&loc_AC);
 }
 *(Fn5EB98Vec *)&loc_54=*(Fn5EB98Vec *)(v54+8);
 (*(f32 *)((u8 *)(&loc_54)+(12))) =0.7071067690849304f*v61; (*(u16 *)((u8 *)(&loc_54)+(16))) =0;
@@ -7832,9 +7832,9 @@ v27=2.5f*(*(f32 *)((u8 *)(v0)+(40))) ;
 v28=0.7071067690849304f*v27;
 (*(f32 *)((u8 *)(&loc_6C)+(0))) =v28;
 lbl_1_data_1D628 =lbl_1_data_1D628 *0x41C64E6D+12345;
-loc_6C.a[60]=(s32)(f32)(255.0f*(*(f32 *)((u8 *)(v0)+(28))) );
-loc_6C.a[61]=(s32)(f32)(255.0f*(*(f32 *)((u8 *)(v0)+(32))) );
-loc_6C.a[62]=(s32)(f32)(255.0f*(*(f32 *)((u8 *)(v0)+(36))) );
+loc_6C.a[60]=(255.0f*(*(f32 *)((u8 *)(v0)+(28))) );
+loc_6C.a[61]=(255.0f*(*(f32 *)((u8 *)(v0)+(32))) );
+loc_6C.a[62]=(255.0f*(*(f32 *)((u8 *)(v0)+(36))) );
 loc_6C.a[63]=255; (*(f32 *)((u8 *)(&loc_6C)+(4))) =v28;
 fn_1_9F914(&loc_6C,(void *)v76);
 }
@@ -7949,8 +7949,8 @@ f32 fn_1_5F5C8(struct fn_1_5F5C8_Arg0 *arg0, f32 arg1) {
     v5 = (0.300000012f);
     v6 = (60.0f);
     ((struct fn_1_5F5C8_lbl_1_data_1D628 *)&lbl_1_data_1D628)->unk_0 = v1;
-    v0 = (f32)(u32)((v1 >> 16) & 0x7FFF);
-    arg0->unk_10 = (s32)(f32)(v6 * (f32)(v5 + (f32)(v4 * (f32)(v0 / ((32767.0f))))));
+    v0 = ((v1 >> 16) & 0x7FFF);
+    arg0->unk_10 = (s32)(v6 * (v5 + (f32)(v4 * (v0 / ((32767.0f))))));
     }
     return v0;
 }
@@ -8305,7 +8305,7 @@ void fn_1_5F654(fn_1_5F654_Effect *effect) {
         u32 seed = lbl_1_data_1D628 * 0x41C64E6D + 0x3039;
 
         lbl_1_data_1D628 = seed;
-        t = 0.8f + (f32)(0.2f * ((f32)((seed >> 16) & 0x7FFF) / 32767.0f));
+        t = 0.8f + (f32)(0.2f * (((seed >> 16) & 0x7FFF) / 32767.0f));
     }
     effect->color[0] = (255.0f * (0.5f * (1.0f + t))) / 255.0f;
     effect->color[1] = (85.0f * t) / 255.0f;
@@ -8438,9 +8438,9 @@ void fn_1_5F9B8(fn_1_5F9B8_Effect *effect) {
     size = 0.70710677f * effect->size;
     *(f32 *)(data + 0) = size;
     color_scale = 255.0f;
-    data[60] = (u8)(s32)(color_scale * effect->red);
-    data[61] = (u8)(s32)(color_scale * effect->green);
-    data[62] = (u8)(s32)(color_scale * effect->blue);
+    data[60] = (color_scale * effect->red);
+    data[61] = (color_scale * effect->green);
+    data[62] = (color_scale * effect->blue);
     data[63] = 0xff;
     *(f32 *)(data + 4) = size;
     fn_1_9F914(data, model);
@@ -8449,7 +8449,7 @@ void fn_1_5F9B8(fn_1_5F9B8_Effect *effect) {
     base = 0.1f * effect->scale;
     radius = 1.0f + base;
     half = 0.5f * base;
-    brightness = 255.0f * ((0.125f + half) * (1.0f + (f32)(((lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41c64e6d + 0x3039) >> 16) & 0x7fff) / 32767.0f));
+    brightness = 255.0f * ((0.125f + half) * (1.0f + (((lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41c64e6d + 0x3039) >> 16) & 0x7fff) / 32767.0f));
 
     fn_80074788(0);
     fn_80072864(0);
@@ -8594,9 +8594,9 @@ void fn_1_5FEBC(fn_1_5FEBC_EffectObject *object) {
     size = size * effect->value28;
     *(f32 *)(data + 0) = size;
     color_scale = (((const f32 *)&lbl_1_rodata_29AC))[0];
-    data[60] = (u8)(s32)(color_scale * effect->value1C);
-    data[61] = (u8)(s32)(color_scale * effect->value20);
-    data[62] = (u8)(s32)(color_scale * effect->value24);
+    data[60] = (color_scale * effect->value1C);
+    data[61] = (color_scale * effect->value20);
+    data[62] = (color_scale * effect->value24);
     data[63] = 0xff;
     *(f32 *)(data + 4) = size;
     fn_1_9F914(data, owner);
@@ -8773,8 +8773,8 @@ static inline u16 urand(void) {
 void fn_1_5FFB0(struct fn_1_5FFB0_p *p) {
     lbl_1_bss_6C86C = 30;
     lbl_1_bss_6C870 = 8;
-    p->unk_14 = (s32)(lbl_1_bss_6C870 * (0.8f + 0.5f * ((f32)urand() / 32767.0f)));
-    p->unk_10 = (s32)(p->unk_14 + lbl_1_bss_6C86C * (0.8f + 0.2f * ((f32)urand() / 32767.0f)));
+    p->unk_14 = (lbl_1_bss_6C870 * (0.8f + 0.5f * ((f32)urand() / 32767.0f)));
+    p->unk_10 = (p->unk_14 + lbl_1_bss_6C86C * (0.8f + 0.2f * ((f32)urand() / 32767.0f)));
     p->unk_38 = fn_1_45D0(lbl_801A6410, 0xA0, lbl_1_data_1D62C, 0x1254);
     p->unk_54 = urand() % 4;
 }
@@ -9288,7 +9288,7 @@ void fn_1_60734(Fn60734 *effect) {
     if (effect->unk_10 == 0) {
         value = lbl_1_data_1D628 * 1103515245 + 12345;
         lbl_1_data_1D628 = value;
-        effect->unk_10 = (s32)(210.0 + 60.0f * ((f32)((value >> 16) & 0x7fff) / 32767.0f));
+        effect->unk_10 = (210.0 + 60.0f * (((value >> 16) & 0x7fff) / 32767.0f));
     }
 
     effect->unk_0e = 0;
@@ -9296,8 +9296,8 @@ void fn_1_60734(Fn60734 *effect) {
         f64 prod;
         value = lbl_1_data_1D628 * 1103515245 + 12345;
         lbl_1_data_1D628 = value;
-        prod = 0.02 * ((f32)((value >> 16) & 0x7fff) / 32767.0f);
-        effect->unk_28 = (f32)(prod + 0.02);
+        prod = 0.02 * (((value >> 16) & 0x7fff) / 32767.0f);
+        effect->unk_28 = (prod + 0.02);
     }
 
     value = lbl_1_data_1D628 * 1103515245 + 12345;
@@ -9815,7 +9815,7 @@ void fn_1_60B80(Sig_fn_1_60B80_Obj *obj, u32 lab_unused0, u32 lab_unused1, u32 l
     fzgx_live = obj->unk_28;
     fn_1_55FC4(fzgx_live);
     if (obj->unk_10 < 12) {
-        v *= 0.0833333358168602f * (f32)(s32)obj->unk_10;
+        v *= 0.0833333358168602f * (s32)obj->unk_10;
     }
     if (v < 1.0) {
         fn_1_55FF0(v);
@@ -10070,9 +10070,9 @@ void fn_1_60C88(Obj_60C88 *this)
 
     lbl_8006E1B0(&this->v94, &this->v3c);
 
-    this->fb4 = (f32)(s32)this->i10 * 0.5f;
+    this->fb4 = (s32)this->i10 * 0.5f;
     if ((this->f28) > 0.0f) {
-        this->f28 = (f32)((f64)(this->f28) - 0.3);
+        this->f28 = ((this->f28) - 0.3);
     }
 }
 #pragma opt_propagation reset
@@ -10569,9 +10569,9 @@ void fn_1_61070(Fn161070 *self) {
     lbl_8006DB74(data.mtx);
     scale = pool[0x54] * self->field28;
     data.field0 = scale;
-    data.color[0] = (u8)(pool[0x17] * self->field1c);
-    data.color[1] = (u8)(pool[0x17] * self->field20);
-    data.color[2] = (u8)(pool[0x17] * self->field24);
+    data.color[0] = (pool[0x17] * self->field1c);
+    data.color[1] = (pool[0x17] * self->field20);
+    data.color[2] = (pool[0x17] * self->field24);
     data.color[3] = 0xff;
     data.field4 = scale;
     fn_1_9F914(&data, id);
@@ -10775,14 +10775,14 @@ void fn_1_611EC(struct FxParam *p, u32 unused1, u32 unused2, u32 unused3)
 	if (p->unk_10 == 0) {
 		f32 t = FxRand() / 32767.0f;
 		f64 d = 12.0 * t;
-		p->unk_10 = (s32)(12.0 + d);
+		p->unk_10 = (12.0 + d);
 	}
 
 	p->unk_0E = 0;
 
 	if (0.0f == p->f_28) {
 		f32 t = FxRand() / 32767.0f;
-		p->f_28 = (f32)(1.0 + t);
+		p->f_28 = (1.0 + t);
 	}
 
 	p->unk_54 = FxRand();
@@ -11212,16 +11212,16 @@ void fn_1_617A4(struct Fn1_617A4Object *object) {
 
     if (object->unk_10 == 0) {
         lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41c64e6d + 0x3039;
-        object->unk_10 = (s32)((60.0f) *
-            ((0.100000001f) + (f32)(u32)((lbl_1_data_1D628 >> 16) & 0x7fff) / (32767.0f)));
+        object->unk_10 = ((60.0f) *
+            ((0.100000001f) + ((lbl_1_data_1D628 >> 16) & 0x7fff) / (32767.0f)));
     }
 
     lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41c64e6d + 0x3039;
-    t = (0.0299999993f) * ((f32)(u32)((lbl_1_data_1D628 >> 16) & 0x7fff) / (32767.0f));
+    t = (0.0299999993f) * (((lbl_1_data_1D628 >> 16) & 0x7fff) / (32767.0f));
     object->unk_94 = (0.0700000003f) + t;
 
     lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41c64e6d + 0x3039;
-    t = (0.100000001f) * ((f32)(u32)((lbl_1_data_1D628 >> 16) & 0x7fff) / (32767.0f));
+    t = (0.100000001f) * (((lbl_1_data_1D628 >> 16) & 0x7fff) / (32767.0f));
     object->unk_98 = (0.0700000003f) + t;
 }
 /* fzgx:end fn_1_617A4 */
@@ -11270,7 +11270,7 @@ void fn_1_618B8(struct obj_state *p)
 	p->f28 = (f32)(0.2f * (p->f2c - p->f28)) + p->f28;
 	t = p->timer;
 	if ((f64)t < 15.0) {
-		f32 k = 1.0f - 1.0f / (f32)(t + 1);
+		f32 k = 1.0f - 1.0f / (t + 1);
 
 		fzgx_live_ = p->f1c;
 		fzgx_live = fzgx_live_;
@@ -11689,12 +11689,12 @@ fn_1_61D08_EffectObject *obj;
 
     random = ((0x41c64e6d) * (*(u32 *)(data + 0xf90))) + 0x3039;
     *(u32 *)(data + 0xf90) = random;
-    obj->unk_54 = (u16)((random >> 16) & 0x7fff);
+    obj->unk_54 = ((random >> 16) & 0x7fff);
 
     random = ((0x41c64e6d) * (*(u32 *)(data + 0xf90))) + 0x3039;
     *(u32 *)(data + 0xf90) = random;
-    value = (f32)((random >> 16) & 0x7fff);
-    obj->unk_5a = (s16)(4096.0f * (value / 32767.0f - 0.5f));
+    value = ((random >> 16) & 0x7fff);
+    obj->unk_5a = (4096.0f * (value / 32767.0f - 0.5f));
 
     obj->unk_34 = ((EffectInner *)(u8 *)lbl_1_bss_38458->unk_8)->unk_130;
     return 1;
@@ -12285,7 +12285,7 @@ Obj *self;
     if (self->n10 > 15) {
         self->fb4 = self->fb4 + (f32)(0.1f * (1.0f - self->fb4));
     } else {
-        self->fb4 = self->fb4 * (1.0f - 1.0f / (f32)(self->n10 + 1));
+        self->fb4 = self->fb4 * (1.0f - 1.0f / (self->n10 + 1));
     }
     return 1;
 }
@@ -12523,8 +12523,8 @@ void fn_1_620C8(void *arg0)
     f32 vp[6];
 
     fn_80038F10(vp);
-    w = (s32)((vp[2] < 40.0f) ? vp[2] : 40.0f);
-    h = (s32)((vp[3] < 28.0f) ? vp[3] : 28.0f);
+    w = ((vp[2] < 40.0f) ? vp[2] : 40.0f);
+    h = ((vp[3] < 28.0f) ? vp[3] : 28.0f);
     hw = w >> 1;
     hh = h >> 1;
     fn_80038EEC(vp[0], vp[1], (f32)w, (f32)h, 0.0f, 1.0f);
@@ -12769,9 +12769,9 @@ void fn_1_62360(void *arg0) {
  radius=5.0*(lbl_1_data_1D8A4-(f32)*(s32 *)((u8 *)arg0+0x10))/lbl_1_data_1D8A4;
  middle=1.5f*radius;
  outer=3.5f*radius;
-lbl_8006D188((s32)(65536.0f*(f32)(*(s32 *)((u8 *)arg0+0x10)%(2*(s32)lbl_1_data_1D8A4))/(f32)(2*(s32)lbl_1_data_1D8A4)));
-alpha=(s32)(180.0f*lbl_8006D188((s32)(65536.0f*(f32)(*(s32 *)((u8 *)arg0+0x10)%(2*(s32)lbl_1_data_1D8A4))/(f32)(2*(s32)lbl_1_data_1D8A4))));
-endalpha=(s32)(0.0f*lbl_8006D188((s32)(65536.0f*(f32)(*(s32 *)((u8 *)arg0+0x10)%(2*(s32)lbl_1_data_1D8A4))/(f32)(2*(s32)lbl_1_data_1D8A4))));
+lbl_8006D188((65536.0f*(*(s32 *)((u8 *)arg0+0x10)%(2*(s32)lbl_1_data_1D8A4))/(2*(s32)lbl_1_data_1D8A4)));
+alpha=(180.0f*lbl_8006D188((65536.0f*(*(s32 *)((u8 *)arg0+0x10)%(2*(s32)lbl_1_data_1D8A4))/(2*(s32)lbl_1_data_1D8A4))));
+endalpha=(0.0f*lbl_8006D188((65536.0f*(*(s32 *)((u8 *)arg0+0x10)%(2*(s32)lbl_1_data_1D8A4))/(2*(s32)lbl_1_data_1D8A4))));
 fn_800724C8();
 fn_8007245C(0xa00);
 fn_80074918(1,7,0);
@@ -12779,8 +12779,8 @@ GXLoadPosMtxImm(lbl_801A6D00,0);
 fn_8003462C(0x98,0,42);
 center=0.0f;
 for(i=0;i<=20;i++){
- inneralpha=(u8)((u8)center);
- lbl_8006D1B8((s16)(i*65536/20),&sc);
+ inneralpha=((u8)center);
+ lbl_8006D1B8((i*65536/20),&sc);
 WGPIPE.f32=center+(f32)(radius*sc.c);
 y1=center+(f32)(radius*sc.s);
 y2=center+(f32)(middle*sc.s);
@@ -12796,7 +12796,7 @@ fn_8003462C(0x98,0,42);
 center=0.0f;
 
 for(i=0;i<=20;i++){
-lbl_8006D1B8((s16)(i*65536/20),&sc);
+lbl_8006D1B8((i*65536/20),&sc);
 WGPIPE.f32=center+(f32)(middle*sc.c);
 y1=center+(f32)(middle*sc.s);
 y2=center+(f32)(outer*sc.s);
@@ -13144,7 +13144,7 @@ void fn_1_62AF8(struct fn_1_62AF8_obj *obj) {
         lbl_1_data_1D628 = random;
         r15 = (random >> 16) & 0x7FFF;
         ratio = (f32)r15 / 32767.0f;
-        obj->unk_10 = (s32)(30.0 + 60.0f * ratio);
+        obj->unk_10 = (30.0 + 60.0f * ratio);
     }
 
     obj->unk_0E = 0;
@@ -13164,7 +13164,7 @@ void fn_1_62AF8(struct fn_1_62AF8_obj *obj) {
 
         da = 0.02 * qa;
         db = 0.5 * qb;
-        obj->unk_28 = (f32)((5.0f * (f32)(0.02 + da)) * (0.5 + db));
+        obj->unk_28 = ((5.0f * (f32)(0.02 + da)) * (0.5 + db));
     }
 
     random = lbl_1_data_1D628 * 0x41C64E6D + 0x3039;
@@ -13683,9 +13683,9 @@ void fn_1_62E9C(struct Eff62E9C *e) {
     if (e->unk_10 < 12) {
         alpha *= 0.083333336f * (f32)e->unk_10;
     }
-    pkt.color[0] = (u8)(s32)(dist * (255.0f * e->r * alpha));
-    pkt.color[1] = (u8)(s32)(dist * (255.0f * e->g * alpha));
-    pkt.color[2] = (u8)(s32)(dist * (255.0f * e->b * alpha));
+    pkt.color[0] = (dist * (255.0f * e->r * alpha));
+    pkt.color[1] = (dist * (255.0f * e->g * alpha));
+    pkt.color[2] = (dist * (255.0f * e->b * alpha));
     /* Publish the alpha and second size component in packet order. */
     *(volatile u8 *)&pkt.color[3] = (u8)(s32)(255.0f * dist);
     /* Volatile preserves this size store after the alpha-byte store. */
@@ -13945,7 +13945,7 @@ void fn_1_6313C(Fx *p) {
     p->unk88 = p->unk88 + (f32)(0.05f * (p->unk8c - p->unk88));
     p->unk28 = p->unk28 + (f32)(0.01f * (p->unk2c - p->unk28));
     p->unkae += p->unkac;
-    g = 1.0f - 1.0f / (f32)(p->unk10 + 1);
+    g = 1.0f - 1.0f / (p->unk10 + 1);
     w = p->unk1c;
     p->unk1c = w * g;
     p->unk20 *= g;
@@ -14010,7 +14010,7 @@ void fn_1_632D4(struct fn_1_632D4_obj *obj) {
     data.unk_04 = size;
     data.blue = blue;
 
-    fn_1_9F914(&data, (const void *)(int)(id));
+    fn_1_9F914(&data, (const void *)(id));
 }
 /* fzgx:end fn_1_632D4 */
 
@@ -14125,7 +14125,7 @@ void fn_1_633C0(FxObj633C0 *obj) {
         u32 r;
         r = lbl_1_data_1D628 * 0x41C64E6D + 0x3039;
         lbl_1_data_1D628 = r;
-        obj->unk10 = (s32)(60.0f * (0.2f + (f32)((0.2f * ((f32)((r >> 16) & 0x7FFF) / 32767.0f)))));
+        obj->unk10 = (60.0f * (0.2f + (f32)((0.2f * (((r >> 16) & 0x7FFF) / 32767.0f)))));
     }
     fn_1_862D4(obj->unk18, &a);
     fn_1_8645C(obj->unk18, &b);
@@ -14939,7 +14939,7 @@ void fn_1_635BC(Fn1635BCEffect *e) {
 
     e->unk_B4 = 0.5f * (f32)e->timer;
     lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41C64E6D + 12345;
-    rnd = 0.8f + (f32)(0.2f * ((f32)((lbl_1_data_1D628 >> 16) & 0x7FFF) / 32767.0f));
+    rnd = 0.8f + (f32)(0.2f * (((lbl_1_data_1D628 >> 16) & 0x7FFF) / 32767.0f));
     e->r = 255.0f * (0.5f * (1.0f + rnd)) / 255.0f;
     scale = 136.0f * rnd / 255.0f;
     e->g = scale;
@@ -15188,11 +15188,11 @@ void fn_1_638E8(struct fn_1_638E8_Arg0 *arg0) {
     if (t4 != 0) {
         t5 = fn_1_5910();
         switch (t5) {
-        case 0: v2 = (s16)((*(s16 *)((u8 *)v0 + 172) - 1) % 8); break;
-        case 1: v2 = (s16)((*(s16 *)((u8 *)v0 + 174) - 1) % 8); break;
-        case 2: v2 = (s16)((*(s16 *)((u8 *)v0 + 176) - 1) % 8); break;
-        case 3: v2 = (s16)((*(s16 *)((u8 *)v0 + 88) - 1) % 8); break;
-        default: v2 = (s16)((*(s16 *)((u8 *)v0 + 172) - 1) % 8); break;
+        case 0: v2 = ((*(s16 *)((u8 *)v0 + 172) - 1) % 8); break;
+        case 1: v2 = ((*(s16 *)((u8 *)v0 + 174) - 1) % 8); break;
+        case 2: v2 = ((*(s16 *)((u8 *)v0 + 176) - 1) % 8); break;
+        case 3: v2 = ((*(s16 *)((u8 *)v0 + 88) - 1) % 8); break;
+        default: v2 = ((*(s16 *)((u8 *)v0 + 172) - 1) % 8); break;
         }
     } else {
         struct fn_1_638E8_row *v15;
@@ -15210,12 +15210,12 @@ void fn_1_638E8(struct fn_1_638E8_Arg0 *arg0) {
         lbl_8006E1B0((Fn183D28Vec3 *)(v0 + 60), v17 + 1);
         v18 = 0.5;
         v19 = lbl_801A66CC.unk_0;
-        loc_20.x = v18 * (f32)(*(f32 *)((u8 *)v0 + 60) + *(f32 *)((u8 *)v0 + 96));
-        loc_20.y = v18 * (f32)(*(f32 *)((u8 *)v0 + 64) + *(f32 *)((u8 *)v0 + 100));
-        loc_20.z = v18 * (f32)(*(f32 *)((u8 *)v0 + 68) + *(f32 *)((u8 *)v0 + 104));
-        v20 = v18 * (f32)(lbl_801A6D00->unk_3C + *(f32 *)((u8 *)v19 + 12));
-        v21 = v18 * (f32)(lbl_801A6D00->unk_4C + *(f32 *)((u8 *)v19 + 28));
-        v24 = v18 * (f32)(lbl_801A6D00->unk_5C + *(f32 *)((u8 *)v19 + 44));
+        loc_20.x = v18 * (*(f32 *)((u8 *)v0 + 60) + *(f32 *)((u8 *)v0 + 96));
+        loc_20.y = v18 * (*(f32 *)((u8 *)v0 + 64) + *(f32 *)((u8 *)v0 + 100));
+        loc_20.z = v18 * (*(f32 *)((u8 *)v0 + 68) + *(f32 *)((u8 *)v0 + 104));
+        v20 = v18 * (lbl_801A6D00->unk_3C + *(f32 *)((u8 *)v19 + 12));
+        v21 = v18 * (lbl_801A6D00->unk_4C + *(f32 *)((u8 *)v19 + 28));
+        v24 = v18 * (lbl_801A6D00->unk_5C + *(f32 *)((u8 *)v19 + 44));
         fn_8006F9A4(0.5f, (Vec3 *)v19, (Vec3 *)((u32)lbl_801A6D00 + 48), &loc_80);
         loc_80.a[3] = v20;
         loc_80.a[7] = v21;
@@ -15225,10 +15225,10 @@ void fn_1_638E8(struct fn_1_638E8_Arg0 *arg0) {
         v25 = *(u32 *)((u8 *)v0 + 20);
         if ((s32)v25 < 8) {
             *(u32 *)((u8 *)v0 + 20) = v25 + 2;
-            v2 = (s16)(((s16)v14 + 2) % 8);
+            v2 = (((s16)v14 + 2) % 8);
         } else {
             *(u32 *)((u8 *)v0 + 20) = 8;
-            v2 = (s16)(((s16)v14 + 2) % 8);
+            v2 = (((s16)v14 + 2) % 8);
         }
         t13 = fn_1_5910();
         switch (t13) {
@@ -15256,7 +15256,7 @@ void fn_1_638E8(struct fn_1_638E8_Arg0 *arg0) {
         v52 = &v38->a[v2] + fn_1_5910() * 8;
         v48 = v30 * *(f32 *)((u8 *)v0 + 180);
         v41 = v35 / *(u32 *)((u8 *)v0 + 20);
-        v50 = v48 * (f32)(v31 - (f32)v41);
+        v50 = v48 * (v31 - (f32)v41);
         v37 = lbl_1_bss_38458->unk_8;
         v42 = *(u32 *)((u8 *)v37 + 112);
         v37 = lbl_1_data_1D628 * v33 + 12345;
@@ -15265,8 +15265,8 @@ void fn_1_638E8(struct fn_1_638E8_Arg0 *arg0) {
         v51 = v43 * v50;
         v53 = v45 + (f32)(v46 * v50);
         v54 = v30 + v51;
-        v55 = v44 * (f32)(v53 * (f32)(v31 + (f32)((f32)v49 / v47)));
-        v55 = v55 * (f32)(v31 - (f32)(v35 / *(u32 *)((u8 *)v0 + 20)));
+        v55 = v44 * (v53 * (v31 + ((f32)v49 / v47)));
+        v55 = v55 * (v31 - (v35 / *(u32 *)((u8 *)v0 + 20)));
         fn_1_638E8_locked_cache(&locked_ptr);
         if ((u8)v1 != 0) {
             v54 = v54 * fzgx_pool_scale_d0[0];
@@ -15315,7 +15315,7 @@ void fn_1_638E8(struct fn_1_638E8_Arg0 *arg0) {
             v61 = lbl_8006D0B4(v61);
             if (v61 > 0.1f + v54) {
                 lbl_8006DB74(&loc_50);
-                lbl_8006D848((f32)(v61 - v54) / v61);
+                lbl_8006D848((v61 - v54) / v61);
                 lbl_8006DFC4(&loc_50);
             }
             loc_38.unk_0 = *(Fn183D28Vec3 *)(v42 + 8);
@@ -15324,7 +15324,7 @@ void fn_1_638E8(struct fn_1_638E8_Arg0 *arg0) {
             fn_1_9EA94(&loc_38);
         }
         v35++;
-        v2 = (s16)(((s16)v2 + 1) % 8);
+        v2 = (((s16)v2 + 1) % 8);
     }
 }
 /* fzgx:end fn_1_638E8 */
@@ -15582,7 +15582,7 @@ void fn_1_640A4(u8 *arg0) {
     *(f32 *)(o + 0x4c) = *(f32 *)(o + 0x4c) * temp_f2;
     *(f32 *)(o + 0x50) = *(f32 *)(o + 0x50) * temp_f2;
     *(s16 *)(o + 0xac) = (s16) ((f32) (*(s16 *)(o + 0xac)) * temp_f2);
-    if (!(((u32) (*(u32 *)(o + 8)) >> 0x11U) & 1)) {
+    if (!(((*(u32 *)(o + 8)) >> 0x11U) & 1)) {
         *(f32 *)(o + 0x4c) += (0.00800000038f);
     } else {
         *(f32 *)(o + 0x4c) += (0.00400000019f);
@@ -16172,11 +16172,11 @@ void fn_1_645D4(struct A *arg0) {
 {
     V3 rnd = {0.0f, 0.0f, 0.0f};
     lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
-    rnd.x = 0.2 * ((f32)(s32)((lbl_801A63C0 >> 16) & 0x7FFF) / 32767.0f);
+    rnd.x = 0.2 * ((s32)((lbl_801A63C0 >> 16) & 0x7FFF) / 32767.0f);
     lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
-    rnd.y = 0.2 * ((f32)(s32)((lbl_801A63C0 >> 16) & 0x7FFF) / 32767.0f);
+    rnd.y = 0.2 * ((s32)((lbl_801A63C0 >> 16) & 0x7FFF) / 32767.0f);
     lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB;
-    rnd.z = 0.2 * ((f32)(s32)((lbl_801A63C0 >> 16) & 0x7FFF) / 32767.0f);
+    rnd.z = 0.2 * ((s32)((lbl_801A63C0 >> 16) & 0x7FFF) / 32767.0f);
     rnd2 = rnd;
 }
     lbl_8006D5A4((u8 *)arg0 + 0x94, &rnd2, (u8 *)arg0 + 0x94, 0.05f);
@@ -16271,7 +16271,7 @@ x = fn_1_64760_array_read(m, 3);
 y = fn_1_64760_array_read(m, 7);
 z = fn_1_64760_array_read(m, 11);
 psvec_set(v, z, y, x);
-sum = (f32) (fn_1_64760_array_read(v, 0) * fn_1_64760_array_read(v, 0));
+sum = (fn_1_64760_array_read(v, 0) * fn_1_64760_array_read(v, 0));
 sum = sum + fn_1_64760_array_read(v, 1) * fn_1_64760_array_read(v, 1);
 sum = sum + z * z;
 distance = lbl_8006D0B4(sum);
@@ -16284,9 +16284,9 @@ memset(&work, 0, 0x40);
 lbl_8006DB74(&work.sub);
 alpha = pool[0x150 / 4] * self->value28;
 work.alpha = alpha;
-work.red = (u8) (pool[0x5c / 4] * self->value1c);
-work.green = (u8) (pool[0x5c / 4] * self->value20);
-work.blue = (u8) (pool[0x5c / 4] * self->value24);
+work.red = (pool[0x5c / 4] * self->value1c);
+work.green = (pool[0x5c / 4] * self->value20);
+work.blue = (pool[0x5c / 4] * self->value24);
 work.alphaByte = 0xff;
 work.alpha2 = alpha;
 fn_1_9F914(&work, object);
@@ -16724,10 +16724,10 @@ void fn_1_64E1C(void * arg0) {
     struct { f32 a[3]; } loc_8;
     v0 = *(f32 *)((u8 *)arg0 + 44);
     v1 = *(u32 *)((u8 *)arg0 + 52);
-    loc_8.a[0] = (f32)(*(f32 *)((u8 *)arg0 + 60) + (f32)(v0 * *(f32 *)((u8 *)arg0 + 160)));
-    loc_8.a[1] = (f32)(*(f32 *)((u8 *)arg0 + 64) + (f32)(v0 * *(f32 *)((u8 *)arg0 + 164)));
+    loc_8.a[0] = (*(f32 *)((u8 *)arg0 + 60) + (f32)(v0 * *(f32 *)((u8 *)arg0 + 160)));
+    loc_8.a[1] = (*(f32 *)((u8 *)arg0 + 64) + (f32)(v0 * *(f32 *)((u8 *)arg0 + 164)));
     v2 = *(f32 *)((u8 *)arg0 + 68);
-    loc_8.a[2] = (f32)(v2 + (f32)(v0 * *(f32 *)((u8 *)arg0 + 168)));
+    loc_8.a[2] = (v2 + (f32)(v0 * *(f32 *)((u8 *)arg0 + 168)));
     v3 = *(f32 *)((u8 *)arg0 + 40);
     lbl_8006D9D8((u32)&loc_8);
     mathutil_mtxA_rotate_y(*(s16 *)((u8 *)arg0 + 86));
@@ -16738,7 +16738,7 @@ void fn_1_64E1C(void * arg0) {
     fn_80072558();
     v4 = *(u32 *)((u8 *)arg0 + 16);
     if ((s32)v4 < 20) {
-        v5 = (f32)(lbl_1_rodata_295C * (f32)(s32)v4);
+        v5 = (lbl_1_rodata_295C * (s32)v4);
     } else {
         v5 = lbl_1_rodata_2978;
     }
@@ -16983,11 +16983,11 @@ void fn_1_64F2C(Fn_1_64F2C_Object *obj) {
     u32 value;
         value = lbl_1_data_1D628 * 0x41c64e6d + 0x3039;
         lbl_1_data_1D628 = value;
-        random = (f32)((value >> 16) & 0x7fff) / 32767.0f;
+        random = ((value >> 16) & 0x7fff) / 32767.0f;
 }
         scaled = 0.25f * random;
         offset = 0.3f + scaled;
-        obj->unk_10 = (s32)(60.0f * offset);
+        obj->unk_10 = (60.0f * offset);
     }
 }
 /* fzgx:end fn_1_64F2C */
@@ -17053,7 +17053,7 @@ void fn_1_64FB8(void *arg0) {
     *(f32 *)(p+0xb4)=0.5f*(f32)*(s32 *)(p+0x10);
     random=(*(u32 *)&lbl_1_data_1D628)*1103515245u+12345u;
     (*(u32 *)&lbl_1_data_1D628)=random;
-    gain=0.800000012f+0.200000003f*((f32)((random>>16)&0x7fffu)/32767.0f);
+    gain=0.800000012f+0.200000003f*(((random>>16)&0x7fffu)/32767.0f);
     *(f32 *)(p+0x1c)=(255.0f*(0.5f*(1.0f+gain)))/255.0f;
     {
         f32 spread=(136.0f*gain)/255.0f;
@@ -17379,9 +17379,9 @@ void fn_1_652F4(fn_1_652F4_Effect *effect) {
         scale = (((f32 *)&lbl_1_rodata_2AA0))[0];
         data.value = scale * object->unk_28;
     color_scale = lbl_1_rodata_29AC[0];
-    data.color[0] = (u8)(s32)(color_scale * object->unk_1c);
-    data.color[1] = (u8)(s32)(color_scale * object->unk_20);
-    data.color[2] = (u8)(s32)(color_scale * object->unk_24);
+    data.color[0] = (color_scale * object->unk_1c);
+    data.color[1] = (color_scale * object->unk_20);
+    data.color[2] = (color_scale * object->unk_24);
     data.color[3] = 0xff;
     data.value2 = data.value;
     fn_1_9F914(&data, manager);
@@ -17410,7 +17410,7 @@ void fn_1_65424(fn_1_65424_EffectObject *object) {
     if (object->unk_10 == 0) {
         next = lbl_1_data_1D628 * 0x41C64E6D + 0x3039;
         lbl_1_data_1D628 = next;
-        object->unk_10 = (s32)(60.0f * (0.3f + 0.25f * ((f32)(((0x7FFF) & ((next >> 16)))) / 32767.0f)));
+        object->unk_10 = (60.0f * (0.3f + 0.25f * ((((0x7FFF) & ((next >> 16)))) / 32767.0f)));
     }
 }
 #pragma fp_contract reset
@@ -17470,7 +17470,7 @@ static inline void advance_particle654B0(Particle654B0 *p)
     p->rot[1] += p->rotVel[1];
     p->scale += p->scaleVel;
     p->halfAge = fn_1_654B0_operand_(((f32)p->age), (0.5f));
-    p->damp = p->damp + (f32)(fn_1_654B0_operand_(((p->dampTarget - p->damp)), (0.03f)));
+    p->damp = p->damp + (fn_1_654B0_operand_(((p->dampTarget - p->damp)), (0.03f)));
 
 }
 
@@ -17491,7 +17491,7 @@ void fn_1_654B0(Particle654B0 *p)
     f32 fade;
 
     advance_particle654B0(p);
-    v = 0.8f + (f32)(fn_1_654B0_operand_((random_float654B0((f32)random_bits654B0())), (0.2f)));
+    v = 0.8f + (fn_1_654B0_operand_((random_float654B0((f32)random_bits654B0())), (0.2f)));
     p->r = fn_1_654B0_operand_(((0.5f * (1.0f + v))), (255.0f)) / 255.0f;
     p->g = fn_1_654B0_operand_((v), (136.0f)) / 255.0f;
     p->b = *(const f32 *)&fzgx_pool_table2[0];
@@ -17691,7 +17691,7 @@ void fn_1_65748(fn_1_65748_Event *event) {
     effect = event->unk_8;
     model = ((fn_1_65748_Assets *)lbl_1_bss_38458->unk_8)->unk_A8;
     base = 0.1f * effect->unk_B4;
-    brightness = 255.0f * ((0.125f + (f32)(0.5f * base)) * (1.0f + (f32)(((lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41c64e6d + 0x3039) >> 16) & 0x7fff) / 32767.0f));
+    brightness = 255.0f * ((0.125f + (f32)(0.5f * base)) * (1.0f + (((lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41c64e6d + 0x3039) >> 16) & 0x7fff) / 32767.0f));
 
     fn_80074788(0);
     fn_80072864(0);
@@ -17998,7 +17998,7 @@ void fn_1_65AB0(Fn165AB0Object *obj) {
         } else {
             result.value = factor;
         }
-        obj->value_10 = (s32)((f32)obj->value_10 * result.value);
+        obj->value_10 = ((f32)obj->value_10 * result.value);
     }
 }
 /* fzgx:end fn_1_65AB0 */
@@ -18271,8 +18271,8 @@ void fn_1_65B5C(EffP *p) {
     if (p->f28 > 50.0f * (((p->fb4) / 2.0f))) {
         fzgx_live_ = p->f2c;
         {
-            f64 product = (f64)((fzgx_live_));
-            product *= (f64)((0.9200000137090683));
+            f64 product = ((fzgx_live_));
+            product *= ((0.9200000137090683));
             p->f2c = product;
         }
     }
@@ -18380,7 +18380,7 @@ void fn_1_65CDC(struct Fn1_65CDC *self) {
 	y = fn_1_65CDC_array_read(m, 7);
 	z = fn_1_65CDC_array_read(m, 11);
 	psvec_set(v, z, y, x);
-	sum = (f32) (fn_1_65CDC_array_read(v, 0) * fn_1_65CDC_array_read(v, 0));
+	sum = (fn_1_65CDC_array_read(v, 0) * fn_1_65CDC_array_read(v, 0));
 	sum = sum + fn_1_65CDC_array_read(v, 1) * fn_1_65CDC_array_read(v, 1);
 	sum = sum + z * z;
 	distance = lbl_8006D0B4(sum);
@@ -18393,9 +18393,9 @@ void fn_1_65CDC(struct Fn1_65CDC *self) {
 	lbl_8006DB74(&work.sub);
 	alpha = pool[0x150 / 4] * self->value28;
 	work.alpha = alpha;
-	work.red = (u8) (pool[0x5c / 4] * self->value1c);
-	work.green = (u8) (pool[0x5c / 4] * self->value20);
-	work.blue = (u8) (pool[0x5c / 4] * self->value24);
+	work.red = (pool[0x5c / 4] * self->value1c);
+	work.green = (pool[0x5c / 4] * self->value20);
+	work.blue = (pool[0x5c / 4] * self->value24);
 	work.alphaByte = 0xff;
 	work.alpha2 = alpha;
 	fn_1_9F914(&work, object);
@@ -18735,7 +18735,7 @@ void fn_1_65E8C(Effect65E8C *eff) {
     fn_1_862D4(eff->mtxId, (Triple *)&pos);
     fn_1_8636C(eff->mtxId, mtx);
     if (moving != 0) {
-        bob = 0.3 * lbl_8006D188((s32)(182.04444885253906f * (f32)lbl_801A66A0));
+        bob = 0.3 * lbl_8006D188((182.04444885253906f * (f32)lbl_801A66A0));
         lbl_8006DC6C(mtx);
         /* set the current matrix's translation */
         {
@@ -18761,7 +18761,7 @@ void fn_1_65E8C(Effect65E8C *eff) {
         eff->velY *= 0.98;
         eff->velZ *= 0.98;
     }
-    eff->spinScale = 768.0f * lbl_8006D188((s32)(182.04444885253906f * (f32)lbl_801A66A0));
+    eff->spinScale = 768.0f * lbl_8006D188((182.04444885253906f * (f32)lbl_801A66A0));
     eff->rotY += eff->velY;
     eff->rotZ += eff->velZ;
     lbl_8006DB74(eff->unk_B8);
@@ -19042,8 +19042,8 @@ void fn_1_660EC(ObjFx_T *this)
     u32 g;
     u32 buf[12];
 
-    scale = (this->unk_10 < 0x14) ? 0.05f * (f32)(s32)this->unk_10 : 1.0f;
-    lbl_8006D7F4((f32)((u32)(lbl_801A66A0 % 30)) / 29.0f, 0.0f, 0.0f);
+    scale = (this->unk_10 < 0x14) ? 0.05f * (s32)this->unk_10 : 1.0f;
+    lbl_8006D7F4(((lbl_801A66A0 % 30)) / 29.0f, 0.0f, 0.0f);
     lbl_8006DB74(buf);
     g = *(u32 *)(lbl_1_bss_38458->unk_8 + 0x1F0);
     lbl_8006D9D8(&this->pad_3C[0], lbl_1_bss_38458->unk_8);
@@ -19272,7 +19272,7 @@ void fn_1_66254(fn_1_66254_output *output) {
     seed = *state;
     value = seed * 0x41c64e6d;
     value += 0x3039;
-    coordinate = 0.8f + (f32)(0.2f * ((f32)((value >> 16) & 0x7fff) / 32767.0f));
+    coordinate = 0.8f + (f32)(0.2f * (((value >> 16) & 0x7fff) / 32767.0f));
     *state = value;
     field_2c = 3.5f * coordinate;
     field_28 = 0.5f * coordinate;
@@ -19566,9 +19566,9 @@ static inline void effect_cross_store(const Fn183D28Vec3 *a, const Fn183D28Vec3 
     ay = a->y;
     az = a->z;
     ax = a->x;
-    x = (f32)(ay * b->z);
-    y = (f32)(az * b->x);
-    z = (f32)(ax * b->y);
+    x = (ay * b->z);
+    y = (az * b->x);
+    z = (ax * b->y);
     x = x - az * b->y;
     y = y - ax * b->z;
     z = z - ay * b->x;
@@ -19585,7 +19585,7 @@ static inline u32 effect_aux_jitter(Fn183D28Vec3 *v) {
     u32 z;
     x = effect_random();
     y = effect_random();
-    v->x += (f32)(0.25f * (f32)(x - 0.5f));
+    v->x += (f32)(0.25f * (x - 0.5f));
     /* Materialize the y component before the remaining RNG samples. */
     *(volatile f32 *)&v->y = v->y + (f32)(0.25f * (f32)(y - 0.5f));
     z = effect_rand();
@@ -19734,11 +19734,11 @@ void fn_1_662D8(Fn662D8Source *arg0) {
         effect.param_28 = 0.1 + clamped;
         effect.param_2C = 30.0 + (f64)(5.0 * effect_random());
         size_factor = 0.8f + (f32)(0.2f * effect_random());
-        effect.color_x = (f32)(255.0f * (f32)(0.5f * (1.0f + size_factor))) / 255.0f;
-        effect.color_y = (f32)(224.0f * size_factor) / 255.0f;
-        effect.color_z = (f32)(176.0f * size_factor) / 255.0f;
+        effect.color_x = (255.0f * (0.5f * (1.0f + size_factor))) / 255.0f;
+        effect.color_y = (224.0f * size_factor) / 255.0f;
+        effect.color_z = (176.0f * size_factor) / 255.0f;
         effect.param_88 = 0.0003 * effect_random();
-        effect.param_8C = (f32)(0.02 + t4 / 1000.0f);
+        effect.param_8C = (0.02 + t4 / 1000.0f);
         effect.unk_AC = 364;
         effect_emit(&effect);
         memset(&effect, 0, 0xE8);
@@ -19760,8 +19760,8 @@ void fn_1_662D8(Fn662D8Source *arg0) {
         size_factor = 0.8f + (f32)(0.2f * effect_random());
         effect.life = 22;
         effect.angle_z = effect_rand();
-        effect.color_x = (f32)(255.0f * (f32)(0.5f * (1.0f + size_factor))) / 255.0f;
-        effect.color_y = (f32)(136.0f * size_factor) / 255.0f;
+        effect.color_x = (255.0f * (0.5f * (1.0f + size_factor))) / 255.0f;
+        effect.color_y = (136.0f * size_factor) / 255.0f;
         effect_emit(&effect);
         v13--;
     }
@@ -19773,8 +19773,8 @@ void fn_1_662D8(Fn662D8Source *arg0) {
     {
         angle_y = effect_rand();
         effect.angle_y = angle_y;
-        effect.unk_5A = (s16)(16.0f + (f32)(4096.0f * effect_random()));
-        effect.unk_5C = (s16)(16.0f + (f32)(4096.0f * effect_random()));
+        effect.unk_5A = (16.0f + (f32)(4096.0f * effect_random()));
+        effect.unk_5C = (16.0f + (f32)(4096.0f * effect_random()));
     }
     effect.param_28 = 3.0f * (fzgx_pool_primer_D0() + (f32)(0.6f * effect_random2()));
     effect.param_2C = 6.0f * (0.8f + (f32)(0.2f * effect_random2()));
@@ -19799,20 +19799,20 @@ void fn_1_662D8(Fn662D8Source *arg0) {
         loc_20 = loc_8;
         lbl_8006E1B0(&loc_20, &effect.pos);
     }
-    effect.anchor.x = (f32)(0.5f * (effect.pos.x + (*(Fn183D28Vec3 *)&loc_38).x));
-    effect.anchor.y = (f32)(0.5f * (effect.pos.y + (*(Fn183D28Vec3 *)&loc_38).y));
-    effect.anchor.z = (f32)(0.5f * (effect.pos.z + (*(Fn183D28Vec3 *)&loc_38).z));
+    effect.anchor.x = (0.5f * (effect.pos.x + (*(Fn183D28Vec3 *)&loc_38).x));
+    effect.anchor.y = (0.5f * (effect.pos.y + (*(Fn183D28Vec3 *)&loc_38).y));
+    effect.anchor.z = (0.5f * (effect.pos.z + (*(Fn183D28Vec3 *)&loc_38).z));
     effect.aux.x = arg0->drift.x;
     effect.aux.y = arg0->drift.y;
     effect.aux.z = arg0->drift.z;
     {
         u32 sample = effect_aux_jitter(&effect.aux);
         random_aux_z = effect_size_random(sample);
-        effect.aux.z += (f32)(0.25f * (f32)(random_aux_z - 0.5f));
+        effect.aux.z += (f32)(0.25f * (random_aux_z - 0.5f));
         v9 = effect_size_random(effect_rand());
         size_factor = 0.8f + effect_multiply(0.2f, v9);
-        effect.color_x = effect_multiply((f32)(255.0f * (f32)(0.5f * (1.0f + size_factor))) / 255.0f, 1.0f);
-        size_factor = (f32)(85.0f * size_factor) / 255.0f;
+        effect.color_x = effect_multiply((255.0f * (0.5f * (1.0f + size_factor))) / 255.0f, 1.0f);
+        size_factor = (85.0f * size_factor) / 255.0f;
         effect.color_y = size_factor;
         effect.color_z = effect_multiply(size_factor, 0.0f);
     }
@@ -19907,7 +19907,7 @@ void fn_1_67294(Obj *arg0)
 	lbl_8006D9D8(&t->unk_3C);
 	lbl_8006D7B0();
 	psvec_set(&v, *(f32 *)(0xE0000000 + 0x2C), *(f32 *)(0xE0000000 + 0x1C), *(f32 *)(0xE0000000 + 0x0C));
-	d = (f32)(v.x * v.x);
+	d = (v.x * v.x);
 	fzgx_live = v.y;
 	d = fzgx_live * fzgx_live + d;
 	fzgx_live_ = v.z;
@@ -19921,9 +19921,9 @@ void fn_1_67294(Obj *arg0)
 	lbl_8006DB74(&buf.unk_8);
 	s = pool->e[0x54] * t->unk_28;
 	buf.unk_0 = s;
-	buf.unk_3C = (u8)(pool->e[0x17] * t->unk_1C);
-	buf.unk_3D = (u8)(pool->e[0x17] * t->unk_20);
-	buf.unk_3E = (u8)(pool->e[0x17] * t->unk_24);
+	buf.unk_3C = (pool->e[0x17] * t->unk_1C);
+	buf.unk_3D = (pool->e[0x17] * t->unk_20);
+	buf.unk_3E = (pool->e[0x17] * t->unk_24);
 	buf.unk_3F = 0xFF;
 	buf.unk_4 = s;
 	fn_1_9F914(&buf, (const void *)g);
@@ -20088,7 +20088,7 @@ void fn_1_6755C(FnObj_6755C *obj) {
     *(f32 *)(data + 4) = f3;
     f0 = f0 * f1;
     data[0x3e] = (u8)f0;
-    fn_1_9F914(data, (const void *)(u32)(manager));
+    fn_1_9F914(data, (const void *)(manager));
 }
 /* fzgx:end fn_1_6755C */
 
@@ -20310,14 +20310,14 @@ void fn_1_67680(void *arg0) {
     F(arg0,76)+= -0.015;
     psvec_add((u8 *)arg0+60,(u8 *)arg0+72,(u8 *)arg0+60);
     v3=F(arg0,136);
-    F(arg0,136)=v3+(f32)(0.03f*(f32)(F(arg0,140)-v3));
-    if(I(arg0,16)<40) F(arg0,180)=(f32)(F(arg0,180)*(f32)((f32)I(arg0,16)/40.0f));
+    F(arg0,136)=v3+(f32)(0.03f*(F(arg0,140)-v3));
+    if(I(arg0,16)<40) F(arg0,180)=(F(arg0,180)*((f32)I(arg0,16)/40.0f));
     n=I(arg0,16);
     if(n<40) {
         /* the fade factor is re-spelled per component: MWCC CSEs the register-only expression */
         F(arg0,28)*=1.0f-(f32)(1.0f+(f32)(-0.025f*(f32)n));
         F(arg0,32)*=1.0f-(f32)(1.0f+(f32)(-0.025f*(f32)n));
-        F(arg0,36)*=1.0f-(f32)(1.0f+(f32)(-0.025f*(f32)n));
+        F(arg0,36)*=1.0f-(1.0f+(-0.025f*(f32)n));
     }
     t0=fn_1_86254(S(arg0,24));
     memset(loc_8,0,232);
@@ -20328,7 +20328,7 @@ void fn_1_67680(void *arg0) {
     for(v16=1;v16>0;v16--) {
         V(loc_8,60)=V(arg0,60);
         V(loc_8,72)=V(arg0,72);
-        I(loc_8,16)=(s32)(F(arg0,180)*(60.0f*(0.5f+(f32)(0.2f*frand()))));
+        I(loc_8,16)=(F(arg0,180)*(60.0f*(0.5f+(f32)(0.2f*frand()))));
         F(loc_8,72)*=0.9f;
         F(loc_8,76)*=0.9f;
         F(loc_8,80)*=0.9f;
@@ -20336,11 +20336,11 @@ void fn_1_67680(void *arg0) {
         F(loc_8,64)-=F(loc_8,76);
         F(loc_8,68)-=F(loc_8,80);
         F(loc_8,40)=F(arg0,40)*(F(arg0,180)*(0.3f+(f32)(0.2f*frand())));
-        F(loc_8,44)=F(arg0,40)*(F(arg0,180)*(10.0+(f32)(5.0f*frand())));
+        F(loc_8,44)=F(arg0,40)*(F(arg0,180)*(10.0+(5.0f*frand())));
         v42=0.8f+(f32)(0.2f*frand());
         F(loc_8,28)=(255.0f*(0.5f*(1.0f+v42)))/255.0f;
-        F(loc_8,32)=(f32)(224.0f*v42)/255.0f;
-        F(loc_8,36)=(f32)(176.0f*v42)/255.0f;
+        F(loc_8,32)=(224.0f*v42)/255.0f;
+        F(loc_8,36)=(176.0f*v42)/255.0f;
         F(loc_8,136)=0.003*frand();
         F(loc_8,140)=0.02f;
         S(loc_8,172)=364;
@@ -20442,7 +20442,7 @@ void fn_1_67D0C(Obj *arg0)
 	lbl_8006D9D8(&t->unk_3C);
 	lbl_8006D7B0();
 	psvec_set(&v, *(f32 *)(0xE0000000 + 0x2C), *(f32 *)(0xE0000000 + 0x1C), *(f32 *)(0xE0000000 + 0x0C));
-	d = (f32)(v.x * v.x);
+	d = (v.x * v.x);
 	fzgx_live = v.y;
 	d = fzgx_live * fzgx_live + d;
 	fzgx_live_ = v.z;
@@ -20456,9 +20456,9 @@ void fn_1_67D0C(Obj *arg0)
 	lbl_8006DB74(&buf.unk_8);
 	s = pool->e[0x54] * a;
 	buf.unk_0 = s;
-	buf.unk_3C = (u8)(pool->e[0x17] * t->unk_1C);
-	buf.unk_3D = (u8)(pool->e[0x17] * t->unk_20);
-	buf.unk_3E = (u8)(pool->e[0x17] * t->unk_24);
+	buf.unk_3C = (pool->e[0x17] * t->unk_1C);
+	buf.unk_3D = (pool->e[0x17] * t->unk_20);
+	buf.unk_3E = (pool->e[0x17] * t->unk_24);
 	buf.unk_3F = 0xFF;
 	buf.unk_4 = s;
 	fn_1_9F914(&buf, (const void *)g);
@@ -20584,7 +20584,7 @@ void fn_1_67E94(u8 *object) {
         value = lbl_1_data_1D628 * 0x41c64e6d + 0x3039;
         lbl_1_data_1D628 = value;
         *(s32 *)(object + 0x10) = (s32)(60.0f *
-            (0.2f + (f32)((value & 0x7fff8000) >> 16) / 32767.0f));
+            (0.2f + ((value & 0x7fff8000) >> 16) / 32767.0f));
     } else {
         pool_pad(value);
     }
@@ -20626,7 +20626,7 @@ void fn_1_67F20(Fn167F20 *obj) {
     obj->value48 *= 0.9f;
     obj->value4c *= 0.9f;
     obj->value50 *= 0.9f;
-    obj->valueac = (s16)(fn_1_67F20_operand((0.9f), ((f32)obj->valueac)));
+    obj->valueac = (fn_1_67F20_operand((0.9f), ((f32)obj->valueac)));
 
     obj->value48 += 0.001f;
     obj->value3c += obj->value48;
@@ -20637,8 +20637,8 @@ void fn_1_67F20(Fn167F20 *obj) {
     obj->value88 += (f32)(0.05f * (obj->value8c - obj->value88));
 
     current = obj->value28;
-    delta = (f32)(obj->value2c - current);
-    delta = (f32)(fn_1_67F20_operand((delta), (0.01f)));
+    delta = (obj->value2c - current);
+    delta = (fn_1_67F20_operand((delta), (0.01f)));
     obj->value28 = current + delta;
 
     if (obj->state < 0x1e) {

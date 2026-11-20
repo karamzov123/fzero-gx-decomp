@@ -1989,7 +1989,7 @@ void fn_17_2414(void) {
 
             fn_1_49514(&color);
         }
-        fn_1_496FC(320.0f, 250.0f + (f32)(scale * (f32)(i * 38)));
+        fn_1_496FC(320.0f, 250.0f + (scale * (i * 38)));
         if (fzgx_obj_lbl_17_bss_54 == 5) {
             fn_1_4AEC0(1);
             fn_1_4955C(scale, scale);
@@ -2024,7 +2024,7 @@ void fn_17_2414(void) {
     }
     width += 48.0f;
     width += 50.0f;
-    fn_1_50A90(&packet, 18, 45, width * scale, scale * (75.0f + (f32)(i * 38)));
+    fn_1_50A90(&packet, 18, 45, width * scale, scale * (75.0f + (i * 38)));
     {
         fn_17_2414_Color color = {0xFF, 0xFF, 0xFF, 0x00};
 
@@ -3114,15 +3114,15 @@ void fn_17_3410(void) {
         cam->pos.z = -0.01f;
         cam->scale += 0.013 * (6.450000286102295e-05 - cam->scale);
         if (cam->unk_1E != 0) {
-            cam->unk_1E = 32768.0f * -lbl_8006D188(65536.0f * (f32)(cam->count % 1620) / 1620.0f) - 32768.0f;
+            cam->unk_1E = 32768.0f * -lbl_8006D188(65536.0f * (cam->count % 1620) / 1620.0f) - 32768.0f;
         }
         lbl_17_bss_170.active = 1;
         lbl_17_bss_170.unk_18 = 1.0f;
         lbl_17_bss_170.unk_1C = lbl_801A66A0 << 5;
         lbl_17_bss_170.unk_20 = lbl_801A66A0 << 9;
-        lbl_17_bss_170.unk_22 = (s32)(4096.0f * lbl_8006D188(65536.0f * (f32)(lbl_801A66A0 % 900) / 900.0f)) - 0x1000;
+        lbl_17_bss_170.unk_22 = (s32)(4096.0f * lbl_8006D188(65536.0f * (lbl_801A66A0 % 900) / 900.0f)) - 0x1000;
         lbl_17_bss_170.unk_24 = -(lbl_801A66A0 << 8);
-        lbl_17_bss_170.unk_26 = 4096.0f * lbl_8006D188(65536.0f * (f32)(lbl_801A66A0 % 600) / 600.0f);
+        lbl_17_bss_170.unk_26 = 4096.0f * lbl_8006D188(65536.0f * (lbl_801A66A0 % 600) / 600.0f);
         lbl_17_bss_170.count++;
     } else {
         scale = 240.0f / lbl_8006D21C(0x71c);
@@ -3146,9 +3146,9 @@ void fn_17_3410(void) {
         lbl_17_bss_170.unk_1C = lbl_801A66A0 << 4;
         lbl_17_bss_170.unk_1E = -(lbl_801A66A0 << 8);
         lbl_17_bss_170.unk_20 = lbl_801A66A0 << 10;
-        lbl_17_bss_170.unk_22 = (s32)(4096.0f * lbl_8006D188(65536.0f * (f32)(lbl_801A66A0 % 900) / 900.0f)) - 0x1000;
+        lbl_17_bss_170.unk_22 = (s32)(4096.0f * lbl_8006D188(65536.0f * (lbl_801A66A0 % 900) / 900.0f)) - 0x1000;
         lbl_17_bss_170.unk_24 = -(lbl_801A66A0 << 9);
-        lbl_17_bss_170.unk_26 = 4096.0f * lbl_8006D188(65536.0f * (f32)(lbl_801A66A0 % 600) / 600.0f);
+        lbl_17_bss_170.unk_26 = 4096.0f * lbl_8006D188(65536.0f * (lbl_801A66A0 % 600) / 600.0f);
     }
 }
 /* fzgx:end fn_17_3410 */
@@ -17624,8 +17624,8 @@ void fn_17_456C(void) {
             for (i = 0; i < 30; i++) {
                 s32 row = (s16)(i / 10);
                 fn_17_456C_Vec3 pos = {0.0f, 0.16f, 0.0f};
-                pos.x = 1.5f - (f32)(0.3f * (i - row * 10));
-                pos.z = -0.15f + (f32)(0.3f * row);
+                pos.x = 1.5f - (0.3f * (i - row * 10));
+                pos.z = -0.15f + (0.3f * row);
                 arg = pos;
                 lbl_8006D9D8(&arg);
                 fn_80072558();
@@ -17641,8 +17641,8 @@ void fn_17_456C(void) {
             for (i = 0; i < 144; i++) {
                 s32 row = (s16)(i / 18);
                 fn_17_456C_Vec3 pos = {0.0f, -1.8f, 0.0f};
-                pos.x = 7.2000003f - (f32)(0.8f * (i - row * 18));
-                pos.z = -21.0f - (f32)(0.8f * row);
+                pos.x = 7.2000003f - (0.8f * (i - row * 18));
+                pos.z = -21.0f - (0.8f * row);
                 obj->pos = pos;
                 fn_1_92530(obj);
             }
@@ -18031,7 +18031,7 @@ void fn_17_4E54(void) {
             fn_1_87610(state->object_308, state->object_308);
             fn_1_875B4(state->object_308, constants[6],
                        state->object_308,
-                       (s8)((fn_17_4E54_InterviewObject *)state->object_308)->index_3ba);
+                       ((fn_17_4E54_InterviewObject *)state->object_308)->index_3ba);
             lbl_8006DC20();
         }
         lbl_8006DBAC(matrix);
@@ -129360,16 +129360,16 @@ void fn_17_613C(void) {
         params.y = 175.0f;
         params.unk_0C = 100.0f;
         params.unk_30 = 5;
-        params.scale_x *= (f32)(124 / fn_1_48690(params.font));
-        params.scale_y *= (f32)(137 / fn_1_486C4(params.font));
+        params.scale_x *= (124 / fn_1_48690(params.font));
+        params.scale_y *= (137 / fn_1_486C4(params.font));
         params.unk_2C = 0.7f;
     } else {
         params.x = 37.0f;
         params.y = 175.0f;
         params.unk_0C = 100.0f;
         params.unk_30 = 5;
-        params.scale_x *= (f32)(158 / fn_1_48690(params.font));
-        params.scale_y *= (f32)(137 / fn_1_486C4(params.font));
+        params.scale_x *= (158 / fn_1_48690(params.font));
+        params.scale_y *= (137 / fn_1_486C4(params.font));
         params.unk_2C = 0.7f;
     }
     params.color = fzgx_pool_color;
@@ -144534,14 +144534,14 @@ void fn_17_7A74(fn_17_7A74_State *state) {
         t = 1.0 - (f32)state->unk_22 / (f32)state->unk_24;
         lbl_8006D5A4(t, &from.unk_4, &to.unk_4, &state->unk_28);
         lbl_8006D5A4(t, &from.unk_10, &to.unk_10, &state->unk_34);
-        state->unk_0 = from.unk_1C + (f32)(t * (to.unk_1C - from.unk_1C));
+        state->unk_0 = from.unk_1C + (t * (to.unk_1C - from.unk_1C));
         state->unk_20 = from.unk_20 + (s16)(t * (to.unk_20 - from.unk_20));
         break;
     case 3:
         frames = state->unk_24;
-        step = 1.0f / (f32)(frames * frames / 4);
+        step = 1.0f / (frames * frames / 4);
         /* retail converts both counts as unsigned; MWCC turns the halving into a multiply by the pooled 0.5f */
-        if ((f32)(u32)state->unk_22 < (f32)frames / 2.0f) {
+        if ((u32)state->unk_22 < (f32)frames / 2.0f) {
             state->unk_58 -= step;
         } else {
             state->unk_58 += step;
@@ -144551,13 +144551,13 @@ void fn_17_7A74(fn_17_7A74_State *state) {
         t = state->unk_54;
         lbl_8006D5A4(t, &from.unk_4, &to.unk_4, &state->unk_28);
         lbl_8006D5A4(t, &from.unk_10, &to.unk_10, &state->unk_34);
-        state->unk_0 = from.unk_1C + (f32)(t * (to.unk_1C - from.unk_1C));
+        state->unk_0 = from.unk_1C + (t * (to.unk_1C - from.unk_1C));
         state->unk_20 = from.unk_20 + (s16)(t * (to.unk_20 - from.unk_20));
         break;
     case 2:
         lbl_8006D5A4(entry->unk_4, &state->unk_28, &to.unk_4, &state->unk_28);
         lbl_8006D5A4(entry->unk_4, &state->unk_34, &to.unk_10, &state->unk_34);
-        state->unk_0 = state->unk_0 + (f32)(entry->unk_4 * (to.unk_1C - state->unk_0));
+        state->unk_0 = state->unk_0 + (entry->unk_4 * (to.unk_1C - state->unk_0));
         state->unk_20 = state->unk_20 + (s32)(entry->unk_4 * (to.unk_20 - state->unk_20));
         break;
     }
@@ -144886,12 +144886,12 @@ void fn_17_802C(void) {
     v1 = (*(struct dat_s *)&lbl_17_data_63058).unk_28;
     if (v0 >= v1) {
         v2 = fn_17_802C_read_pointer__();
-        v3.value = v2 - ((f32)(v1 + 120 - v0) / (120.0f));
+        v3.value = v2 - ((v1 + 120 - v0) / (120.0f));
         v4.value = (v3.value < fn_17_802C_read_pointer()) ? fn_17_802C_read_pointer() : ((v3.value > v2) ? v2 : v3.value);
         v6 = v4.value;
         v5 = (*(struct dat_s *)&lbl_17_data_63058).unk_30;
         if (v0 >= v5 && pb->unk_F8 != 3) {
-            v9.value = (f32)(v5 + 30 - v0) / (30.0f);
+            v9.value = (v5 + 30 - v0) / (30.0f);
             v9.value = (v9.value < fn_17_802C_read_pointer()) ? fn_17_802C_read_pointer() : ((v9.value > fn_17_802C_read_pointer__()) ? fn_17_802C_read_pointer__() : v9.value);
             v6 = v9.value;
         }
@@ -144902,12 +144902,12 @@ void fn_17_802C(void) {
     if (v11 >= v12 && pb->unk_F8 != 3) {
         v13.value = fn_17_802C_read_pointer__();
         v15.value = fn_17_802C_read_pointer();
-        v14.value = v13.value - ((f32)(v12 + 30 - v11) / (30.0f));
+        v14.value = v13.value - ((v12 + 30 - v11) / (30.0f));
         v14.value = (v14.value < v15.value) ? v15.value : ((v14.value > v13.value) ? v13.value : v14.value);
         v17 = v14.value;
         v16 = (*(struct dat_s *)&lbl_17_data_63058).unk_38;
         if (v11 >= v16 && (pb->unk_F9 != 0 || pb->unk_FA != 0)) {
-            v9.value = (f32)(v16 + 30 - v11) / (30.0f);
+            v9.value = (v16 + 30 - v11) / (30.0f);
             v9.value = (v9.value < fn_17_802C_read_pointer()) ? fn_17_802C_read_pointer() : ((v9.value > fn_17_802C_read_pointer__()) ? fn_17_802C_read_pointer__() : v9.value);
             v17 = v9.value;
         }
@@ -144924,7 +144924,7 @@ void fn_17_802C(void) {
             pb->unk_FB = 0;
         } else {
             v25 = fn_17_802C_read_pointer__();
-            v26 = v25 - ((f32)(v23 + 30 - v22) / (30.0f));
+            v26 = v25 - ((v23 + 30 - v22) / (30.0f));
             v26 = (v26 < fn_17_802C_read_pointer()) ? fn_17_802C_read_pointer() : ((v26 > v25) ? v25 : v26);
             pb->unk_110 = v26;
         }
@@ -144944,7 +144944,7 @@ void fn_17_802C(void) {
             pb->unk_FB = 0;
         } else {
             v37 = fn_17_802C_read_pointer__();
-            v34 = v37 - ((f32)(v32 + 30 - v31) / (30.0f));
+            v34 = v37 - ((v32 + 30 - v31) / (30.0f));
             v34 = (v34 < fn_17_802C_read_pointer()) ? fn_17_802C_read_pointer() : ((v34 > v37) ? v37 : v34);
             pb->unk_114 = v34;
         }
@@ -145193,7 +145193,7 @@ void fn_17_849C(f32 value) {
         params.float14 = t;
         params.float18 = t;
         if (params.float14 > k) {
-            v = k - ((f32)(k * ((0)[lbl_17_bss_354])) - k);
+            v = k - ((k * ((0)[lbl_17_bss_354])) - k);
             fzgx_value = (v < 0.0f) ? 0.0f : ((v > k) ? k : v);
             params.float18 = fzgx_value;
         }
@@ -145214,7 +145214,7 @@ void fn_17_849C(f32 value) {
         params.float14 = t;
         params.float18 = t;
         if (params.float14 > k_2) {
-            v_2 = k_2 - ((f32)(k_2 * ((0)[lbl_17_bss_354])) - k_2);
+            v_2 = k_2 - ((k_2 * ((0)[lbl_17_bss_354])) - k_2);
             fzgx_value_ = (v_2 < 0.0f) ? 0.0f : ((v_2 > k_2) ? k_2 : v_2);
             params.float18 = fzgx_value_;
         }

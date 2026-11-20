@@ -361,7 +361,7 @@ void fn_3_C400(u32 arg0, u32 arg1) {
         c = v0 - 5;
         if (c < 0) clamped = 0;
         else { clamped = 10; if (c <= 10) clamped = c; }
-        offset = (s32)((f32)(50.0f * (f32)clamped) - 500.0f);
+        offset = ((f32)(50.0f * (f32)clamped) - 500.0f);
         c = v0 - 15;
         if (c < 0) clamped = 0;
         else { clamped = 10; if (c <= 10) clamped = c; }
@@ -371,7 +371,7 @@ void fn_3_C400(u32 arg0, u32 arg1) {
         c2 = v0 - 5;
         if (c2 < 0) clamped2 = 0;
         else { clamped2 = 10; if (c2 <= 10) clamped2 = c2; }
-        offset = (s32)((f32)(31.2f * (f32)clamped2) - 312.0f);
+        offset = ((f32)(31.2f * (f32)clamped2) - 312.0f);
         c2 = v0 - 15;
         if (c2 < 0) clamped2 = 0;
         else { clamped2 = 10; if (c2 <= 10) clamped2 = c2; }
@@ -380,7 +380,7 @@ void fn_3_C400(u32 arg0, u32 arg1) {
     v6 = offset;
     if (v7 >= 0) {
         INIT();
-        x = (f32)(v6 + 25);
+        x = (v6 + 25);
         pkt.image = 0x8924;
         pkt.y = 68.0f;
         pkt.x = x;
@@ -403,7 +403,7 @@ void fn_3_C400(u32 arg0, u32 arg1) {
     }
     if (v7 >= 0) {
         INIT();
-        x = (f32)(v6 + 25);
+        x = (v6 + 25);
         pkt.image = 0x8924;
         pkt.y = 96.0f;
         pkt.x = x;
@@ -427,7 +427,7 @@ void fn_3_C400(u32 arg0, u32 arg1) {
     }
     if (v7 >= 0) {
         INIT();
-        x = (f32)(v6 + 25);
+        x = (v6 + 25);
         pkt.image = 0x8924;
         pkt.y = 161.0f;
         pkt.x = x;
@@ -457,9 +457,9 @@ void fn_3_C400(u32 arg0, u32 arg1) {
     while ((u8)v40 < 4) {
         pkt = *(FontDrawPacket *)p_lbl_1_rodata_26F8;
         if ((s8)fn_1_A5DC4() != 0 && (u8)v40 == 0)
-            pkt.x = (f32)((u8)v40 * 69 + 65);
+            pkt.x = ((u8)v40 * 69 + 65);
         else
-            pkt.x = (f32)((u8)v40 * 69 + 66);
+            pkt.x = ((u8)v40 * 69 + 66);
         pkt.y = 129.0f;
         pkt.z = 15.0f;
         v38 = 0.0f;
@@ -473,7 +473,7 @@ void fn_3_C400(u32 arg0, u32 arg1) {
             pkt.scale_x = v37 / 10.0f;
         }
         pkt.scale_y = v39;
-        pkt.rotation_z = (s16)((f32)alpha / v36);
+        pkt.rotation_z = ((f32)alpha / v36);
         if (v38 != pkt.scale_x && v38 != pkt.scale_y) {
             slot = (Obj_3_bss_7EE40 *)((u8 *)&lbl_3_bss_7EE40 + (u8)v40 * 0x2060);
             if (slot->unk_24 & 0x80000000) {
@@ -535,7 +535,7 @@ void fn_3_C400(u32 arg0, u32 arg1) {
     }
     if (v6 + 38 + fn_1_48690(0x8914) >= 0) {
         INIT();
-        x = (f32)(v6 + 38);
+        x = (v6 + 38);
         pkt.image = 0x8914;
         pkt.y = 75.0f;
         pkt.x = x;
@@ -1075,7 +1075,7 @@ void fn_3_CE94(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     v5 = 0x8918;
     v6 = 4503601774854144.0;
     loc_14.image = v5;
-    v7 = (f32)(s32)(v0 + 38);
+    v7 = (v0 + 38);
     loc_14.x = v7;
     loc_14.y = 185.0f;
     loc_14.z = 15.0f;
@@ -1083,7 +1083,7 @@ void fn_3_CE94(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     fn_1_4F734(&loc_14);
     loc_14 = *(FontDrawPacket *)&lbl_1_rodata_26F8;
     v8 = 7.0f;
-    v9 = (f32)(s32)(v0 + 30);
+    v9 = (v0 + 30);
     loc_14.image = 12;
     loc_14.x = v9;
     loc_14.y = 180.0f;
@@ -1094,7 +1094,7 @@ void fn_3_CE94(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     v10 = v0 + 32;
     v12 = 4503601774854144.0;
     loc_14.image = 0x8921;
-    v13 = (f32)(s32)v10;
+    v13 = (s32)v10;
     loc_14.x = v13;
     loc_14.y = 205.0f;
     loc_14.z = 15.0f;
@@ -1110,14 +1110,14 @@ void fn_3_CE94(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
             v14 = 0x891E;
             v15 = 4503601774854144.0;
             loc_14.image = v14;
-            loc_14.x = (f32)(s32)v10;
-            loc_14.y = (f32)(lbl_3_bss_7EDD8.unk_1C * 25 + 214);
+            loc_14.x = (s32)v10;
+            loc_14.y = (lbl_3_bss_7EDD8.unk_1C * 25 + 214);
             loc_14.z = 15.0f;
             *(f32 *)((u8 *)&loc_14 + 0x2C) = 0.5f;
             if ((__rlwnm(lbl_3_bss_7EDD8.unk_C, 32 - (28), 31, 31))) {
-                loc_14.color[0] = (40.0f + (f32)(40.0f * lbl_8006D188((s32)((f32)(65536.0f * (f32)(lbl_801A66A0 % 60)) / 60.0f))));
-                loc_14.color[1] = (80.0f + (f32)(80.0f * lbl_8006D188((s32)((f32)(65536.0f * (f32)(lbl_801A66A0 % 60)) / 60.0f))));
-                loc_14.color[2] = (80.0f + (f32)(80.0f * lbl_8006D188((s32)((f32)(65536.0f * (f32)(lbl_801A66A0 % 60)) / 60.0f))));
+                loc_14.color[0] = (40.0f + (f32)(40.0f * lbl_8006D188((s32)((65536.0f * (lbl_801A66A0 % 60)) / 60.0f))));
+                loc_14.color[1] = (80.0f + (f32)(80.0f * lbl_8006D188((s32)((65536.0f * (lbl_801A66A0 % 60)) / 60.0f))));
+                loc_14.color[2] = (80.0f + (f32)(80.0f * lbl_8006D188((s32)((65536.0f * (lbl_801A66A0 % 60)) / 60.0f))));
                 loc_14.flags = 5;
             } else {
                 loc_14.color[0] = 80;
@@ -1145,22 +1145,22 @@ void fn_3_CE94(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
         }
         x0.value = v0 + 40;
         y0 = dy0;
-        fn_1_496FC((f32)x0.value, (f32)(y0 + 219));
+        fn_1_496FC((f32)x0.value, (y0 + 219));
         fn_1_4AE0C(fzgx_format, fzgx_text_240[lbl_801A66B4]);
-        fn_1_496FC((f32)x0.value, (f32)(y0 + 244));
+        fn_1_496FC((f32)x0.value, (y0 + 244));
         fn_1_4AE0C(fzgx_format, fzgx_text_27C[lbl_801A66B4]);
-        fn_1_496FC((f32)x0.value, (f32)(y0 + 269));
+        fn_1_496FC((f32)x0.value, (y0 + 269));
         fn_1_4AE0C(fzgx_format, fzgx_text_2B8[lbl_801A66B4]);
         if (lbl_801A66B4 != 5) fn_1_4955C(0.5416666865348816f, 0.5416666865348816f);
         else fn_1_4955C(0.4583333432674408f, 0.4583333432674408f);
         fn_1_14EA74(*((u8 *)&lbl_3_bss_7EE40 + 0x81A4), buffer, (s16)lbl_801A66B4);
         x1 = v0 + 158;
-        fn_1_496FC((f32)x1, (f32)(y0 + 220));
+        fn_1_496FC((f32)x1, (y0 + 220));
         fn_1_4AE0C(fzgx_format, buffer);
-        fn_1_496FC((f32)x1, (f32)(y0 + 245));
+        fn_1_496FC((f32)x1, (y0 + 245));
         fn_1_14EA74(*((u8 *)&lbl_3_bss_7EE40 + 0x81AC), buffer, (s16)lbl_801A66B4);
         fn_1_4AE0C(fzgx_format, buffer);
-        fn_1_496FC((f32)x1, (f32)(y0 + 270));
+        fn_1_496FC((f32)x1, (y0 + 270));
         fn_1_14EA74(*((u8 *)&lbl_3_bss_7EE40 + 0x81B4), buffer, (s16)lbl_801A66B4);
         fn_1_4AE0C(fzgx_format, buffer);
     } else {
@@ -1180,19 +1180,19 @@ void fn_3_CE94(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
             if (((slot)[-0x7E60]) == 4) {
                 x2 = v0 + 40;
                 y1 = dy1;
-                fn_1_496FC((f32)x2, (f32)(y1 + 219));
+                fn_1_496FC((f32)x2, (y1 + 219));
                 fn_1_4AE0C(fzgx_format, fzgx_text_304[lbl_801A66B4]);
-                fn_1_496FC((f32)x2, (f32)(y1 + 244));
+                fn_1_496FC((f32)x2, (y1 + 244));
                 fn_1_4AE0C(fzgx_format, fzgx_text_354[lbl_801A66B4]);
             }
             if (((slot)[-0x7E60]) == 40) {
                 y2 = dy1;
                 x1 = v0 + 40;
-                fn_1_496FC((f32)x1, (f32)(y2 + 219));
+                fn_1_496FC((f32)x1, (y2 + 219));
                 fn_1_4AE0C(fzgx_format, fzgx_text_3A4[lbl_801A66B4]);
-                fn_1_496FC((f32)x1, (f32)(y2 + 244));
+                fn_1_496FC((f32)x1, (y2 + 244));
                 fn_1_4AE0C(fzgx_format, fzgx_text_3F8[lbl_801A66B4]);
-                fn_1_496FC((f32)x1, (f32)(y2 + 269));
+                fn_1_496FC((f32)x1, (y2 + 269));
                 fn_1_4AE0C(fzgx_format, fzgx_text_44C[lbl_801A66B4]);
             }
         }
@@ -1454,13 +1454,13 @@ void fn_3_D9A0(void) {
         v2 = lbl_3_bss_7EDD8.unk_24;
         n = (s16)v2 < 0 ? 0 : v2 > 15 ? 15 : v2;
         d = v2 - 15;
-        v0 = (s32)(f32)(-30.0f + (f32)(750.0f - (f32)(48.0f * (f32)n)));
+        v0 = (-30.0f + (750.0f - (f32)(48.0f * (f32)n)));
         v1 = (s16)clamp15(d);
     } else {
         v4 = lbl_3_bss_7EDD8.unk_24;
         n = (s16)v4 < 0 ? 0 : v4 > 15 ? 15 : v4;
         d = v4 - 15;
-        v0 = (s32)(f32)(660.0f - (f32)(44.0f * (f32)n));
+        v0 = (660.0f - (f32)(44.0f * (f32)n));
         v1 = (s16)clamp15(d);
     }
     loc_8 = *(FontDrawPacket *)&(*(u8 (*)[])&lbl_1_rodata_26F8);
@@ -1502,13 +1502,13 @@ void fn_3_D9A0(void) {
     loc_8 = *(FontDrawPacket *)&(*(u8 (*)[])&lbl_1_rodata_26F8);
     v19 = (s16)v0;
     loc_8.image = 0x8915;
-    loc_8.x = (f32)(s32)(v19 + 38);
+    loc_8.x = (v19 + 38);
     loc_8.y = 308.0f;
     loc_8.z = 60.0f;
     loc_8.flags = 5;
     fn_1_4F734(&loc_8);
     loc_8 = *(FontDrawPacket *)&(*(u8 (*)[])&lbl_1_rodata_26F8);
-    loc_8.x = (f32)(s32)(v19 + 405);
+    loc_8.x = (v19 + 405);
     p_lbl_3_bss_7EDD8 = &lbl_3_bss_7EDD8;
     loc_8.image = 0x891C;
     loc_8.y = 308.0f;
@@ -1522,7 +1522,7 @@ void fn_3_D9A0(void) {
     fn_1_4F734(&loc_8);
     loc_8 = *(FontDrawPacket *)&(*(u8 (*)[])&lbl_1_rodata_26F8);
     loc_8.image = 0x891D;
-    loc_8.x = (f32)(s32)(v19 + 510);
+    loc_8.x = (v19 + 510);
     loc_8.y = 308.0f;
     loc_8.z = 60.0f;
     if (p_lbl_3_bss_7EDD8->unk_3C == 1) {
@@ -1534,7 +1534,7 @@ void fn_3_D9A0(void) {
     fn_1_4F734(&loc_8);
     loc_8 = *(FontDrawPacket *)&(*(u8 (*)[])&lbl_1_rodata_26F8);
     loc_8.image = 0x891B;
-    loc_8.x = (f32)(s32)(v19 + 300);
+    loc_8.x = (v19 + 300);
     loc_8.y = 308.0f;
     loc_8.z = 60.0f;
     if (p_lbl_3_bss_7EDD8->unk_3C == 2) {
@@ -1550,7 +1550,7 @@ void fn_3_D9A0(void) {
         loc_8.image = 0x890B;
         n = p_selected->unk_1F * 62;
         n += v19;
-        loc_8.x = (f32)(n + 31);
+        loc_8.x = (n + 31);
         loc_8.y = 320.0f;
         loc_8.z = 60.0f;
         loc_8.flags = 5;
@@ -1560,13 +1560,13 @@ void fn_3_D9A0(void) {
             n = p_selected->unk_1F * 62;
             sum = n;
             sum += v19;
-            loc_8.x = (f32)(sum + 80);
+            loc_8.x = (sum + 80);
             loc_8.flags |= 0x80000;
             fn_1_4F734(&loc_8);
             n = p_selected->unk_1F * 62;
             sum = n;
             sum += v19;
-            loc_8.x = (f32)(sum + 31);
+            loc_8.x = (sum + 31);
             loc_8.y = 368.0f;
             loc_8.z = 60.0f;
             loc_8.flags = 0x100005;
@@ -1576,7 +1576,7 @@ void fn_3_D9A0(void) {
                 n = p_selected->unk_1F * 62;
                 final_sum = v19;
                 final_sum = n + final_sum;
-                loc_8.x = (f32)(s32)(final_sum + 80);
+                loc_8.x = (s32)(final_sum + 80);
                 loc_8.flags |= 0x80000;
                 fn_1_4F734(&loc_8);
             }
@@ -1585,29 +1585,29 @@ void fn_3_D9A0(void) {
     loc_8 = *(FontDrawPacket *)&(*(u8 (*)[])&lbl_1_rodata_26F8);
     p_arrow = &lbl_3_bss_7EDD8;
     loc_8.image = 0x8901;
-    loc_8.x = (f32)(s32)(v19 + 30);
+    loc_8.x = (v19 + 30);
     loc_8.y = 360.0f;
     loc_8.z = 30.0f;
     loc_8.flags = 10;
     if (p_arrow->unk_1E != 0) {
-        v47 = lbl_8006D188((s32)(f32)(32768.0f * (f32)((f32)(u32)p_arrow->unk_20 / 10.0f)));
-        v51 = (f32)(0.4f * v47);
-        loc_8.scale_x = (f32)(1.0f + v51);
+        v47 = lbl_8006D188((s32)(32768.0f * ((u32)p_arrow->unk_20 / 10.0f)));
+        v51 = (0.4f * v47);
+        loc_8.scale_x = (1.0f + v51);
         loc_8.scale_y = loc_8.scale_x;
-        loc_8.alpha = (f32)(1.0f - v51);
+        loc_8.alpha = (1.0f - v51);
         fn_1_4F734(&loc_8);
         if (p_arrow->unk_20 < 10) {
             p_arrow->unk_20++;
         }
     }
-    if ((s32)(p_arrow->unk_1E + 9) < (s32)((struct fn_3_D9A0_lbl_3_bss_87000 *)&lbl_3_bss_87000)->unk_0[p_lbl_3_bss_7EDD8->unk_3C].unk_0) {
+    if ((p_arrow->unk_1E + 9) < ((struct fn_3_D9A0_lbl_3_bss_87000 *)&lbl_3_bss_87000)->unk_0[p_lbl_3_bss_7EDD8->unk_3C].unk_0) {
         p_bottom = &lbl_3_bss_7EDD8;
-        v47 = lbl_8006D188((s32)(f32)(32768.0f * (f32)((f32)(u32)p_bottom->unk_21 / 10.0f)));
-        v57 = (f32)(0.4f * v47);
-        loc_8.scale_x = (f32)(1.0f + v57);
+        v47 = lbl_8006D188((s32)(32768.0f * ((u32)p_bottom->unk_21 / 10.0f)));
+        v57 = (0.4f * v47);
+        loc_8.scale_x = (1.0f + v57);
         loc_8.scale_y = loc_8.scale_x;
-        loc_8.alpha = (f32)(1.0f - v57);
-        loc_8.x = (f32)(s32)(v19 + 610);
+        loc_8.alpha = (1.0f - v57);
+        loc_8.x = (v19 + 610);
         loc_8.flags |= 0x80000;
         fn_1_4F734(&loc_8);
         if (p_bottom->unk_21 < 10) {
@@ -1633,11 +1633,11 @@ void fn_3_D9A0(void) {
         if ((s8)fn_1_A5DC4() != 0) {
             n = clamp15(fade - v67);
             d = clamp15(15 - v67);
-            loc_8.scale_x = (f32)(0.90625f * (f32)n) / (f32)d;
+            loc_8.scale_x = (0.90625f * (f32)n) / (f32)d;
         } else {
             n = clamp15(fade - v67);
             d = clamp15(15 - v67);
-            loc_8.scale_x = (f32)(0.921875f * (f32)n) / (f32)d;
+            loc_8.scale_x = (0.921875f * (f32)n) / (f32)d;
         }
         {
             struct { s32 value; } numerator;
@@ -1646,8 +1646,8 @@ void fn_3_D9A0(void) {
             cn = clamp15(numerator.value);
             d = 15 - v67;
             cd = clamp15(d);
-            v40 = (f32)(numerator.value * (s32)v66) / (f32)d;
-            loc_8.scale_y = (f32)(0.9375f * (f32)cn) / (f32)cd;
+            v40 = (numerator.value * (s32)v66) / (f32)d;
+            loc_8.scale_y = (0.9375f * (f32)cn) / (f32)cd;
             *(u16 *)((u8 *)&loc_8 + 0x28) = (u16)v40;
         }
         entry = &((struct fn_3_D9A0_lbl_3_bss_87000 *)&lbl_3_bss_87000)->unk_0[p_lbl_3_bss_7EDD8->unk_3C];
@@ -2301,7 +2301,7 @@ void fn_3_E6F8(void) {
             packet2.y = 240.0f;
             packet2.z = 5.0f;
             packet2.flags = 10;
-            fn_1_50A90(&packet2,7,7,(s32)(31.200000762939453f*clamp_fade(fade)),(s32)(6.099999904632568f*clamp_fade(fade)));
+            fn_1_50A90(&packet2,7,7,(31.200000762939453f*clamp_fade(fade)),(6.099999904632568f*clamp_fade(fade)));
             if (state3_2->unk_22 == 10) {
                 fn_1_4955C(0.800000011920929f,0.800000011920929f);
                 fn_1_495C8(9);
@@ -2546,7 +2546,7 @@ void fn_3_F044(void) {
     } else {
         v1 = v0 > 0 ? 0 : v0;
     }
-    v2 = (s16)(-(v1 * 62 + 930));
+    v2 = (-(v1 * 62 + 930));
     COPY();
     v3 = v2 + 82;
     packet.id = 0x8927;

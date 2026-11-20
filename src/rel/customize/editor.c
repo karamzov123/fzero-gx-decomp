@@ -379,11 +379,11 @@ void fn_3_15F44(void) {
         v1 = p_flags->unk_14 + 1;
         p_flags->unk_14 = v1 < 0 ? 0 : v1 > 5 ? 5 : v1;
     }
-    v0 = 64 / (s32)(p_lbl_3_bss_A23EC = &lbl_3_bss_A23EC)->unk_11;
+    v0 = 64 / (p_lbl_3_bss_A23EC = &lbl_3_bss_A23EC)->unk_11;
     v4 = *(s16 *)(t0 + 16);
     v6 = *(s16 *)(t0 + 18);
-    v3 = (s16)(v0 / 2);
-    v5 = (s16)(v0 / 2);
+    v3 = (v0 / 2);
+    v5 = (v0 / 2);
     if (v4 - v3 < 0) v4 = v3;
     else if (v4 + v3 >= 64) v4 = 64 - v3;
     if (v6 - v5 < 0) v6 = v5;
@@ -413,7 +413,7 @@ void fn_3_15F44(void) {
     fn_1_4F734((FontDrawPacket *)&loc_C);
     t3 = fn_1_48690(loc_C.a[0]);
     v15 = 4503601774854144.0;
-    PF(4) = (f32)(s32)((t3 & 0xFFFF) + 184);
+    PF(4) = ((t3 & 0xFFFF) + 184);
     loc_C.a[12] |= 0x80000;
     fn_1_4F734((FontDrawPacket *)&loc_C);
     if ((*(u32 *)t0 & 0x80000000) != 0) fn_3_16E14(192, 105);
@@ -428,7 +428,7 @@ void fn_3_15F44(void) {
     v21 = 0.5f;
     loc_C.a[0] = v18;
     PF(4) = v16; PF(8) = v17; PF(12) = v19;
-    PF(44) = v21 + (f32)(v22 / 10.0f);
+    PF(44) = v21 + (v22 / 10.0f);
     loc_C.a[12] = 5;
     fn_1_4F734((FontDrawPacket *)&loc_C);
     v23 = 420.0f;
@@ -454,10 +454,10 @@ void fn_3_15F44(void) {
     v31 = v29 << 1;
     v32 = 4503601774854144.0;
     v33 = v6;
-    v34 = (f32)(s32)(202 + 4 * (v29 * (v3 + (*(s16 *)(t0 + 16) - v30))) + v31);
+    v34 = (202 + 4 * (v29 * (v3 + (*(s16 *)(t0 + 16) - v30))) + v31);
     PF(4) = v34;
     v35 = 94 + 4 * (v29 * (v5 + (*(s16 *)(t0 + 18) - v33))) + v31;
-    PF(8) = (f32)(s32)v35;
+    PF(8) = (s32)v35;
     PF(12) = 29.0f;
     loc_C.a[12] = 10;
     fn_1_4F734((FontDrawPacket *)&loc_C);
@@ -471,7 +471,7 @@ void fn_3_15F44(void) {
     v40 = 50.0f;
     PF(4) = 320.0f;
     PF(8) = 232.0f; PF(12) = 50.0f;
-    PF(16) = PF(20) = 4.0f * (f32)(u32)v36;
+    PF(16) = PF(20) = 4.0f * (u32)v36;
     loc_C.a[12] = 0x400000A;
     loc_C.named.callback = (void (*)(void))fn_1_52690;
     if (v36 > 1) fn_1_517EC((FontDrawPacket *)&loc_C, v30-v3, v33-v5, v3<<1, v5<<1, 64, 64);
@@ -493,16 +493,16 @@ void fn_3_15F44(void) {
     v48 = 65535.0f;
     loc_8 = t15;
     v52 = (lbl_3_bss_A23EC.unk_17 * p_lbl_3_bss_A23EC->unk_11) & 0xFF;
-    v53 = v48 * (f32)(u32)(v46 % 120);
+    v53 = v48 * (v46 % 120);
     v54 = (lbl_3_bss_A23EC.unk_18 * p_lbl_3_bss_A23EC->unk_11) & 0xFF;
-    v56 = (s32)(64.0f * (f32)(1.0f + lbl_8006D188((s32)(v53 / 119.0f))));
+    v56 = (64.0f * (1.0f + lbl_8006D188((s32)(v53 / 119.0f))));
 
     loc_C = *(EditPacket *)lbl_1_rodata_26F8;
     v36 = p_lbl_3_bss_A23EC->unk_11;
     PF(4) = 320.0f;
     PF(8) = 232.0f;
     PF(12) = 30.0f;
-    PF(16) = PF(20) = 4.0f * (f32)(u32)v36;
+    PF(16) = PF(20) = 4.0f * (u32)v36;
     loc_C.a[12] = 10;
     loc_C.named.callback = (void (*)(void))fn_1_52690;
     if (!__rlwnm(p_flags->unk_C, 3, 31, 31)) {
@@ -528,7 +528,7 @@ void fn_3_15F44(void) {
     loc_C.a[12] = 5;
     if (!__rlwnm(p_flags->unk_C, 3, 31, 31)) {
         PB(0x38) = PB(0x39) = PB(0x3A) = 255 - (u8)v56 * 2;
-        PB(0x3C) = PB(0x3D) = PB(0x3E) = (u8)((u8)v56 * 2);
+        PB(0x3C) = PB(0x3D) = PB(0x3E) = ((u8)v56 * 2);
     } else {
         PB(0x38) = PB(0x39) = PB(0x3A) = 255;
         PB(0x3C) = PB(0x3D) = PB(0x3A) = 0;
@@ -692,13 +692,13 @@ for (k = 0; (u8)k < (u8)count; k++) {
 		c = (u8)k;
 
 		n = ((u8)k + 1) * width;
-		pkt.unk_4 = (f32)(s32)(n + 191);
+		pkt.unk_4 = (s32)(n + 191);
 		pkt.unk_8 = 105.0f;
 		pkt.unk_10 = 0.06f;
 		pkt.unk_14 = 10.68f;
 		fn_1_4F734((FontDrawPacket *)&pkt);
 		pkt.unk_4 = 192.0f;
-		pkt.unk_8 = (f32)(s32)(n + 104);
+		pkt.unk_8 = (s32)(n + 104);
 		pkt.unk_10 = 10.68f;
 		if (c >= lo && c < hi) {
 			pkt.unk_14 = 0.04f;
@@ -909,7 +909,7 @@ void fn_3_17100(void) {
     }
     if (((lbl_1_bss_9F8[lbl_3_bss_A2410.unk_D].unk_12 >> 6) & 0x1) != 0) {
     v0 = lbl_3_bss_A2410.unk_C;
-    if ((s32)(v0 + 4) < 16) {
+    if ((v0 + 4) < 16) {
     v12 = (v0 << 2);
     lbl_3_bss_A2410.unk_8 = 0x40000000;
     *(u32 *)&lbl_3_bss_A2410.unk_0 = *(u32 *)((u8 *)&lbl_3_data_35C0 + v12);
@@ -975,11 +975,11 @@ void fn_3_17100(void) {
     v0 = (u32)((u8 *)v0 + 2);
     v0 = *(u16 *)((u8 *)v0 + (lbl_3_bss_A2410.unk_D * 20));
     if (((v0 >> 4) & 0x1) != 0 || ((v0 >> 5) & 0x1) != 0) {
-    v32 = (s16)(&lbl_3_bss_A2410.unk_10)[lbl_3_bss_A2410.unk_C];
+    v32 = (&lbl_3_bss_A2410.unk_10)[lbl_3_bss_A2410.unk_C];
     fn_3_177AC((Color){lbl_3_bss_A2410.unk_10, lbl_3_bss_A2410.unk_12, lbl_3_bss_A2410.unk_14, 255});
     v0 = (u32)&lbl_3_bss_A2410;
     if ((*(s16 *)((u8 *)v0 + 32)) > 40) {
-    v1 = (f32)(lbl_1_bss_BF0[lbl_3_bss_A2410.unk_D].unk_8);
+    v1 = (lbl_1_bss_BF0[lbl_3_bss_A2410.unk_D].unk_8);
     if (v1 < 0.0f) {
     v34 = -8;
     } else {
@@ -988,7 +988,7 @@ void fn_3_17100(void) {
     v34 = (s16)v34;
     } else {
     if ((*(s16 *)((u8 *)v0 + 32)) > 20) {
-    v1 = (f32)(lbl_1_bss_BF0[lbl_3_bss_A2410.unk_D].unk_8);
+    v1 = (lbl_1_bss_BF0[lbl_3_bss_A2410.unk_D].unk_8);
     if (v1 < 0.0f) {
     v34 = -4;
     } else {
@@ -996,7 +996,7 @@ void fn_3_17100(void) {
     }
     v34 = (s16)v34;
     } else {
-    v1 = (f32)(lbl_1_bss_BF0[lbl_3_bss_A2410.unk_D].unk_8);
+    v1 = (lbl_1_bss_BF0[lbl_3_bss_A2410.unk_D].unk_8);
     if (v1 < 0.0f) {
     v34 = -1;
     } else {
@@ -1013,7 +1013,7 @@ void fn_3_17100(void) {
     (&lbl_3_bss_A2410.unk_10)[lbl_3_bss_A2410.unk_C] = ((&lbl_3_bss_A2410.unk_10)[lbl_3_bss_A2410.unk_C] + (s16)v34) < 0 ? 0 : ((&lbl_3_bss_A2410.unk_10)[lbl_3_bss_A2410.unk_C] + (s16)v34) > 255 ? 255 : ((&lbl_3_bss_A2410.unk_10)[lbl_3_bss_A2410.unk_C] + (s16)v34);
     }
     }
-    v1 = (f32)(lbl_1_bss_BF0[lbl_3_bss_A2410.unk_D].unk_8);
+    v1 = (lbl_1_bss_BF0[lbl_3_bss_A2410.unk_D].unk_8);
     if (__fabs(v1) >= 0.8f) {
     v40 = *(s16 *)((u8 *)v0 + 32);
     *(u16 *)((u8 *)v0 + 32) = (v40 + 1);

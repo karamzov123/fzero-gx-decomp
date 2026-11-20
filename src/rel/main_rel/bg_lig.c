@@ -216,20 +216,20 @@ fn_800371F8(1, &color);
 }
 fn_8003462C(128, 7, 4);
 depth = 0.002f;
-VERT(pos->x+((f32)((u32)(lo) + 0x80000000)) *width/25165824.0f , pos->y, pos->z-depth);
-VERT(pos->x+((f32)((u32)(hi) + 0x80000000)) *width/25165824.0f , pos->y, pos->z-depth);
-VERT(pos->x+((f32)((u32)(hi) + 0x80000000)) *width/25165824.0f , pos->y+height, pos->z-depth);
-VERT(pos->x+((f32)((u32)(lo) + 0x80000000)) *width/25165824.0f , pos->y+height, pos->z-depth);
+VERT(pos->x+(((u32)(lo) + 0x80000000)) *width/25165824.0f , pos->y, pos->z-depth);
+VERT(pos->x+(((u32)(hi) + 0x80000000)) *width/25165824.0f , pos->y, pos->z-depth);
+VERT(pos->x+(((u32)(hi) + 0x80000000)) *width/25165824.0f , pos->y+height, pos->z-depth);
+VERT(pos->x+(((u32)(lo) + 0x80000000)) *width/25165824.0f , pos->y+height, pos->z-depth);
 if (head) {
 block = (HeapBlock *)head->size;
 while (block) {
 HeapColor color = { 0xFF, 0x00, 0x00, 0xFF };
 fn_800371F8(1, &color);
 fn_8003462C(128, 7, 4);
-VERT(pos->x+((f32)((u32)(block) + 0x80000000)) *width/25165824.0f , pos->y, pos->z-depth);
-VERT(pos->x+width*((f32)((u32)((u32)block+block->size) + 0x80000000)) /25165824.0f , pos->y, pos->z-depth);
-VERT(pos->x+width*((f32)((u32)((u32)block+block->size) + 0x80000000)) /25165824.0f , pos->y+height, pos->z-depth);
-VERT(pos->x+((f32)((u32)(block) + 0x80000000)) *width/25165824.0f , pos->y+height, pos->z-depth);
+VERT(pos->x+(((u32)(block) + 0x80000000)) *width/25165824.0f , pos->y, pos->z-depth);
+VERT(pos->x+width*((((u32)block+block->size) + 0x80000000)) /25165824.0f , pos->y, pos->z-depth);
+VERT(pos->x+width*((((u32)block+block->size) + 0x80000000)) /25165824.0f , pos->y+height, pos->z-depth);
+VERT(pos->x+(((u32)(block) + 0x80000000)) *width/25165824.0f , pos->y+height, pos->z-depth);
 block = block->next;
 }
 head = head->next;
@@ -253,10 +253,10 @@ fn_800371F8(1, &blink);
 index++;
 }
 fn_8003462C(128, 7, 4);
-VERT(pos->x+((f32)((u32)(head) + 0x80000000)) *width/25165824.0f , pos->y, pos->z-depth);
-VERT(pos->x+width*((f32)((u32)((u32)head+head->size) + 0x80000000)) /25165824.0f , pos->y, pos->z-depth);
-VERT(pos->x+width*((f32)((u32)((u32)head+head->size) + 0x80000000)) /25165824.0f , pos->y+height, pos->z-depth);
-VERT(pos->x+((f32)((u32)(head) + 0x80000000)) *width/25165824.0f , pos->y+height, pos->z-depth);
+VERT(pos->x+(((u32)(head) + 0x80000000)) *width/25165824.0f , pos->y, pos->z-depth);
+VERT(pos->x+width*((((u32)head+head->size) + 0x80000000)) /25165824.0f , pos->y, pos->z-depth);
+VERT(pos->x+width*((((u32)head+head->size) + 0x80000000)) /25165824.0f , pos->y+height, pos->z-depth);
+VERT(pos->x+(((u32)(head) + 0x80000000)) *width/25165824.0f , pos->y+height, pos->z-depth);
 head = head->next;
 }
 }
@@ -344,7 +344,7 @@ void fn_1_D66F8(u8 arg0, u8 *arg1, s8 *arg2) {
 
     sp8 = *(u32 *)((u8 *)(&lbl_1_rodata_6358) + 0);
     (*(u8 *)((u8 *)(arg1) + 0)) = *(u8 *)((u8 *)(((u8 *)(&sp8) + arg0)) + 0);
-    (*(s8 *)((u8 *)(arg2) + 0)) = (lbl_801A66A0 / (u32) ((arg0 + 1) * 0x1E)) & 3;
+    (*(s8 *)((u8 *)(arg2) + 0)) = (lbl_801A66A0 / ((arg0 + 1) * 0x1E)) & 3;
 }
 /* fzgx:end fn_1_D66F8 */
 
@@ -692,10 +692,10 @@ void fn_1_D6C10(Vec3 *arg0, f32 arg1) {
     f32 fzgx_pool_f32_1 = 10.0f;
     /* Spawn one particle near the closest viewer. */
     v0 = (*(u32 *)&lbl_801A66A0);
-    v1 = (f32)(arg1);
+    v1 = (arg1);
     v8 = arg1;
     if (v0 % 20 == 0) {
-    v1 = (f32)((f32)((20.0f) * arg1));
+    v1 = (((20.0f) * arg1));
     t0 = fn_1_66B8(arg0, v1);
     v3 = t0;
     if ((s32)v3 != 0) {
@@ -733,63 +733,63 @@ void fn_1_D6C10(Vec3 *arg0, f32 arg1) {
     loc_14.unk_3C = *arg0;
     t8 = fn_1_584AC();
     v3 = t8;
-    v1 = (f32)((f32)(u32)(v3 & 0xFFFF));
-    v1 = (f32)((f32)v1 / (32767.0f));
-    v1 = (f64)((f64)(v1) - (f64)((0.5)));
+    v1 = (f32)((v3 & 0xFFFF));
+    v1 = ((f32)v1 / (32767.0f));
+    v1 = (f64)((v1) - ((0.5)));
     v1 = (f64)((f64)(fzgx_pool_f32_1) * (f64)(v1));
-    loc_14.unk_3C.x = (f32)(f64)((f64)(loc_14.unk_3C.x) + (f64)(v1));
+    loc_14.unk_3C.x = ((loc_14.unk_3C.x) + (v1));
     t9 = fn_1_584AC();
     v3 = t9;
-    v1 = (f32)((f32)(u32)(v3 & 0xFFFF));
-    v1 = (f32)((f32)v1 / (32767.0f));
-    v1 = (f64)((f64)(v1) - (f64)((0.5)));
+    v1 = (f32)((v3 & 0xFFFF));
+    v1 = ((f32)v1 / (32767.0f));
+    v1 = (f64)((v1) - ((0.5)));
     v1 = (f64)((f64)(fzgx_pool_f32_1) * (f64)(v1));
-    loc_14.unk_3C.y = (f32)(f64)((f64)(loc_14.unk_3C.y) + (f64)(v1));
+    loc_14.unk_3C.y = ((loc_14.unk_3C.y) + (v1));
     t10 = fn_1_584AC();
     v3 = t10;
-    v1 = (f32)(u32)(v3 & 0xFFFF);
+    v1 = (f32)(v3 & 0xFFFF);
     {
     loc_14.unk_48 = D6C10InitialVelocity();
     }
-    v1 = (f32)((f32)v1 / (32767.0f));
-    v1 = (f64)((f64)(v1) - (f64)((0.5)));
+    v1 = ((f32)v1 / (32767.0f));
+    v1 = (f64)((v1) - ((0.5)));
     v1 = (f64)((f64)(fzgx_pool_f32_1) * (f64)(v1));
-    loc_14.unk_3C.z = (f32)(f64)((f64)(loc_14.unk_3C.z) + (f64)(v1));
+    loc_14.unk_3C.z = ((loc_14.unk_3C.z) + (v1));
     t11 = fn_1_584AC();
     v3 = t11;
-    v32 = (f32)(u32)(v3 & 0xFFFF) / (32767.0f);
+    v32 = (v3 & 0xFFFF) / (32767.0f);
     v32 = (0.5f) * v32;
     v32 = (1.5f) + v32;
     v32 = (60.0f) * v32;
     loc_14.unk_10 = (s32)v32;
     t12 = fn_1_584AC();
     v3 = t12;
-    v1 = (f32)((f32)(u32)(v3 & 0xFFFF));
-    v1 = (f32)((f32)v1 / (32767.0f));
-    v1 = (f64)((f64)(v1) - (f64)((0.5)));
+    v1 = (f32)((v3 & 0xFFFF));
+    v1 = ((f32)v1 / (32767.0f));
+    v1 = (f64)((v1) - ((0.5)));
     v1 = (f64)((f64)(fzgx_pool_f32_0) * (f64)(v1));
-    loc_14.unk_48.x = (f32)(f64)((f64)(loc_14.unk_48.x) + (f64)(v1));
+    loc_14.unk_48.x = ((loc_14.unk_48.x) + (v1));
     t13 = fn_1_584AC();
     v3 = t13;
-    v1 = (f32)((f32)(u32)(v3 & 0xFFFF));
-    v1 = (f32)((f32)v1 / (32767.0f));
-    v1 = (f64)((f64)(v1) - (f64)((0.5)));
+    v1 = (f32)((v3 & 0xFFFF));
+    v1 = ((f32)v1 / (32767.0f));
+    v1 = (f64)((v1) - ((0.5)));
     v1 = (f64)((f64)(fzgx_pool_f32_0) * (f64)(v1));
-    loc_14.unk_48.z = (f32)(f64)((f64)(loc_14.unk_48.z) + (f64)(v1));
+    loc_14.unk_48.z = ((loc_14.unk_48.z) + (v1));
     t14 = fn_1_584AC();
     {
-    v1 = (f32)(u32)(t14 & 0xFFFF) / 32767.0f;
+    v1 = (t14 & 0xFFFF) / 32767.0f;
     loc_14.unk_B2 = 14;
     loc_14.unk_3C.x -= loc_14.unk_48.x;
-    loc_14.unk_48.y += (0.10000000000000001) + (f32)(coefficient * (f32)v1);
+    loc_14.unk_48.y += (0.10000000000000001) + (coefficient * (f32)v1);
     loc_14.unk_28 = (f32)v8;
-    loc_14.unk_2C = (f32)((30.0) * v8);
+    loc_14.unk_2C = ((30.0) * v8);
     }
     loc_14.unk_3C.y -= loc_14.unk_48.y;
     loc_14.unk_3C.z -= loc_14.unk_48.z;
     t15 = fn_1_584AC();
     v3 = t15;
-    v36 = (f32)(u32)(v3 & 0xFFFF) / (32767.0f);
+    v36 = (v3 & 0xFFFF) / (32767.0f);
     v36 = (0.200000003f) * v36;
     v36 = (0.800000012f) + v36;
     loc_14.unk_1C = ((221.0f) * ((0.5f) * ((1.0f) + v36))) / (255.0f);
@@ -798,13 +798,13 @@ void fn_1_D6C10(Vec3 *arg0, f32 arg1) {
     t16 = fn_1_584AC();
     v3 = t16;
     loc_14.unk_8C = (0.200000003f);
-    v1 = (f64)((f64)((0.02)) * (f64)((f32)((f32)(u32)(v3 & 0xFFFF) / (32767.0f))));
-    loc_14.unk_88 = (f32)(f64)((f64)((0.050000000000000003)) + (f64)(v1));
+    v1 = (((0.02)) * (((v3 & 0xFFFF) / (32767.0f))));
+    loc_14.unk_88 = (((0.050000000000000003)) + (v1));
     t17 = fn_1_584AC();
     v3 = t17;
     v38 = (v3 & 0xFFFF);
-    v1 = (f64)((f64)((f32)((f32)(u32)v38 / (32767.0f))) - (f64)((0.5)));
-    loc_14.unk_AC = (s32)(f64)((f64)((182.04444885253906)) * (f64)(v1));
+    v1 = ((((u32)v38 / (32767.0f))) - ((0.5)));
+    loc_14.unk_AC = (((182.04444885253906)) * (v1));
     t18 = fn_1_58E3C(&loc_14);
     v3 = t18;
     v2--;

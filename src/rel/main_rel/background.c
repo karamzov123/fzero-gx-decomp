@@ -414,11 +414,11 @@ f32 fn_1_9DDA8(s32 count, BackgroundCurveKey *keys, s32 derivative, f32 t) {
             a = t - p->time;
             dt = keys->time - p->time;
             d = p->value - keys->value;
-            m0 = (f32)(dt * p->tanOut);
+            m0 = (dt * p->tanOut);
             u = a / dt;
-            s = m0 + (f32)(dt * keys->tanIn);
-            return m0 + ((f32)((f32)(u * u) * (((f32)(2.0f * d) + s) / 3.0f))
-                         - (f32)(u * ((m0 + ((f32)(3.0f * d) + s)) / 2.0f)));
+            s = m0 + (dt * keys->tanIn);
+            return m0 + (((u * u) * (((2.0f * d) + s) / 3.0f))
+                         - (u * ((m0 + ((3.0f * d) + s)) / 2.0f)));
         }
     } else {
         switch (p->type) {
@@ -429,18 +429,18 @@ f32 fn_1_9DDA8(s32 count, BackgroundCurveKey *keys, s32 derivative, f32 t) {
             a = t - p->time;
             u = a / dt;
             lin = p->value * (1.0 - u);
-            return lin + (f32)(keys->value * u);
+            return lin + (keys->value * u);
         default:
             a = t - p->time;
             dt = keys->time - p->time;
             u = a / dt;
-            u2 = (f32)(u * u);
-            u3 = (f32)(u2 * u);
+            u2 = (u * u);
+            u3 = (u2 * u);
             w = u3 - u2;
-            e = (f32)(2.0f * w) - u2;
+            e = (2.0f * w) - u2;
             b = u + (w - u2);
-            return ((f32)((1.0f + e) * p->value) - (f32)(e * keys->value))
-                   + (f32)(dt * ((f32)(p->tanOut * b) + (f32)(w * keys->tanIn)));
+            return (((1.0f + e) * p->value) - (e * keys->value))
+                   + (dt * ((p->tanOut * b) + (w * keys->tanIn)));
         }
     }
 }
@@ -500,7 +500,7 @@ void fn_1_9E1D0(void) {
                 GXPeekZ((u16)entry->unk_0, (u16)entry->unk_2, &entry->unk_4);
                 GXPokeAlphaRead(2);
                 fn_8003432C((u16)entry->unk_0, (u16)entry->unk_2, &result);
-                entry->unk_8 = (u8)(result >> 24);
+                entry->unk_8 = (result >> 24);
             }
             count--;
             entry++;
@@ -1284,7 +1284,7 @@ void fn_1_9F4B4(struct fn_1_9F4B4_Arg0 *arg0) {
         *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
         fn_8003462C(0x80, 0, 4);
         {
-            f31.value = (f32)(-arg0->unk_C);
+            f31.value = (-arg0->unk_C);
             f30.value = arg0->unk_C;
             lbl_8006DAEC();
             lbl_8006E0A4((void *)arg0);

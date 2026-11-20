@@ -220,24 +220,24 @@ void fn_1_FA89C(SplineMain *arg0) {
     while (v2 < t0) {
         fn_1_5948(v2);
         GXGetScissor(&v4->f104, &v4->f114, &v4->f124, &v4->f134);
-        t3 = (u32)((f32)v4->f124 / v0->f164);
+        t3 = ((f32)v4->f124 / v0->f164);
         v4->f144 = t3;
-        t4 = (u32)((f32)v4->f134 / v0->f164);
+        t4 = ((f32)v4->f134 / v0->f164);
         v4->f154 = t4;
         v5 = v4->f124;
         v6 = v4->f134;
         v7 = v4->f104;
         v8 = v4->f114;
-        v9 = (s16)(v7 + (v5 >> 1));
-        v10 = (s16)(v8 + (v6 >> 1));
-        v11 = (f32)((f32)(s16)v7 / (f32)(s16)v9);
-        v12 = (f32)(s16)v8;
-        v13 = (f32)(v11 - v1);
-        v14 = (f32)((f32)(v12 / (f32)(s16)v10) - v1);
+        v9 = (v7 + (v5 >> 1));
+        v10 = (v8 + (v6 >> 1));
+        v11 = ((f32)(s16)v7 / (s16)v9);
+        v12 = (s16)v8;
+        v13 = (v11 - v1);
+        v14 = ((v12 / (s16)v10) - v1);
         fn_1_A714C(&sp14, &sp10, &spC, &sp8);
-        v15 = (f32)((f32)((f32)((f32)(s16)(v8 + v6) / (f32)(s16)v10) - v1) - v14);
-        v16 = (f32)((f32)((f32)((f32)(s16)(v7 + v5) / (f32)(s16)v9) - v1) - v13);
-        C_MTXLightPerspective((f32 *)(((0x44) + (v3))), sp14, sp10, (f32)(v1 / v16), (f32)(-1.0f / v15), (f32)((-v13) / v16), (f32)((-v14) / v15));
+        v15 = ((((f32)(s16)(v8 + v6) / (s16)v10) - v1) - v14);
+        v16 = ((((f32)(s16)(v7 + v5) / (s16)v9) - v1) - v13);
+        C_MTXLightPerspective((f32 *)(((0x44) + (v3))), sp14, sp10, (v1 / v16), (-1.0f / v15), ((-v13) / v16), ((-v14) / v15));
         fn_1_627C(v2);
         v4 = (SplineEntry *)((u8 *)v4 + 4);
         v3 += 0x30;
@@ -4340,12 +4340,12 @@ void fn_1_FE644(void) {
         ext->unk_1B1E4++;
     }
     if (ext->unk_1B1E4 > 0x4B0) {
-        f.value = BG_CAS_CLAMP(0.0f, 1.0f, (f32)(s16)(ext->unk_1B1E4 - 0x4B0) / 6600.0f);
+        f.value = BG_CAS_CLAMP(0.0f, 1.0f, (s16)(ext->unk_1B1E4 - 0x4B0) / 6600.0f);
     }
     { Obj_1_FE644_Pack zero = {0}; out.unk_0 = zero; }
-    out.unk_0.unk_4.unk_0 = (u8)(s32)(110.0f * f.value);
-    out.unk_0.unk_4.unk_1 = (u8)(s32)(60.0f * f.value);
-    out.unk_0.unk_4.unk_2 = (u8)(s32)(15.0f * f.value);
+    out.unk_0.unk_4.unk_0 = (110.0f * f.value);
+    out.unk_0.unk_4.unk_1 = (60.0f * f.value);
+    out.unk_0.unk_4.unk_2 = (15.0f * f.value);
     fzgx_value = &(out.unk_4);
     *fzgx_value = out.unk_0.unk_0;
     fn_1_9A7A8(&out.unk_4);
@@ -4427,9 +4427,9 @@ void fn_1_FE7D8(u8 *arg0, s32 arg1) {
         d.x = e->to.x - e->from.x;
         d.y = e->to.y - e->from.y;
         d.z = e->to.z - e->from.z;
-        lbl_8006D5F0(&d, &p->vel, (f32)(e->unk_E >> 7) * (15.0f + 4.0f * RANDF()) / 10.0f);
+        lbl_8006D5F0(&d, &p->vel, (e->unk_E >> 7) * (15.0f + 4.0f * RANDF()) / 10.0f);
         p->size = 2.0f + 2.0f * RANDF();
-        p->size *= (f32)(e->unk_C >> 7) / 10.0f;
+        p->size *= (e->unk_C >> 7) / 10.0f;
     } else {
         p->life = 200.0f + 400.0f * RANDF();
         {
@@ -4543,7 +4543,7 @@ void fn_1_FED34(void *arg0) {
     temp_delta = (0.100000001f) * (var_f31 - temp_f3);
     temp_f1 = (100.0f);
     *(f32 *)((u8 *)arg0 + 0x430) = temp_f3 + temp_delta;
-    var_r29 = (s32)(temp_f1 * *(f32 *)((u8 *)arg0 + 0x430));
+    var_r29 = (temp_f1 * *(f32 *)((u8 *)arg0 + 0x430));
     do {
         s32 count = *(s32 *)(var_r28 + 4);
         if (count != 0) {
@@ -4708,9 +4708,9 @@ void fn_1_FF038(void *owner_raw) {
                     cr = 255.0f * (0.5f * (1.0f + k));
                     cg = 255.0f * (0.8f * k);
                     cb = 255.0f * (0.3f * k);
-                    sprite.color[0] = (s32)(cr * e->alpha);
-                    sprite.color[1] = (s32)(cg * e->alpha);
-                    sprite.color[2] = (s32)(cb * e->alpha);
+                    sprite.color[0] = (cr * e->alpha);
+                    sprite.color[1] = (cg * e->alpha);
+                    sprite.color[2] = (cb * e->alpha);
                     sprite.color[3] = 0xFF;
                     sprite.flags |= 4;
                 }
@@ -4934,7 +4934,7 @@ void fn_1_FF420(void *em_raw) {
     p = em->particles;
     memset(p, 0, sizeof(em->particles));
     for (i = 0; i < 20; i++, p++) {
-        p->life = (s32)(30.0f + (f32)(10.0f * RAND_FRAC()));
+        p->life = (30.0f + (f32)(10.0f * RAND_FRAC()));
         p->pos = em->pos;
         p->prev = em->pos;
         v = em->vel.x;
@@ -4964,7 +4964,7 @@ void fn_1_FF6B8(void *em_raw) {
             p->life--;
         }
         if (p->life <= 0 && em->active > 0) {
-            p->life = (s32)(30.0f + (f32)(10.0f * RAND_FRAC()));
+            p->life = (30.0f + (f32)(10.0f * RAND_FRAC()));
             p->pos = em->pos;
             p->prev = em->pos;
             v = em->vel.x;
@@ -5058,7 +5058,7 @@ void fn_1_FFA0C(void *em_raw) {
                 memset(&params, 0, sizeof(params));
                 lbl_8006DB74(params.mtx);
                 params.scale = 0.70710677f * size;
-                shade = (f32)(u16)fn_1_584AC() / 32767.0f;
+                shade = (u16)fn_1_584AC() / 32767.0f;
                 cas_set_color(&params, shade, p->scale, size);
                 fn_1_1011CC(0, 1);
                 fn_800728A8(1, 4, 1, 0);
@@ -5388,18 +5388,18 @@ void fn_1_FFE7C(void * arg0) {
     v4 = 20.0f;
     *(f32 *)((u8 *)arg0 + 12) = (f32)(v2 + (f32)(0.15f * (f32)(v6 - v2)));
     v5 = *(f32 *)((u8 *)arg0 + 8);
-    v6 = (f32)(v4 * *(f32 *)((u8 *)arg0 + 12));
+    v6 = (v4 * *(f32 *)((u8 *)arg0 + 12));
     v7 = t6;
-    v8 = (s32)(f32)(v4 * *(f32 *)((u8 *)arg0 + 12));
+    v8 = (v4 * *(f32 *)((u8 *)arg0 + 12));
     if (v5 > v3) {
     v9 = 2.0f;
     v6 = 1.5f;
-    v10 = (f32)(v5 - v9);
+    v10 = (v5 - v9);
     v6 = fn_1_FFE7C_clamp(v10, v6, v9);
     v11 = 4503601774854144.0;
-    v12 = (f32)(1.0f / v6);
-    v6 = (f32)(s32)v8;
-    v8 = (s32)(f32)(v6 * v12);
+    v12 = (1.0f / v6);
+    v6 = (s32)v8;
+    v8 = (v6 * v12);
     }
     v14 = (void *)(((u8 *)arg0 + 20));
     v13 = 20;
@@ -5446,11 +5446,11 @@ active:
     v59 = *(f32 *)((u8 *)v14 + 24);
     *(f32 *)((u8 *)v14 + 24) = (f32)(v59 + (f32)(v52 * (f32)(v55 - v59)));
     v60 = *(f32 *)((u8 *)v14 + 28);
-    v38 = (f32)((f32)(v38 - v60));
-    v38 = (f32)((f32)(v52 * v38));
-    v38 = (f32)((f32)(v60 + v38));
+    v38 = (f32)((v38 - v60));
+    v38 = ((v52 * v38));
+    v38 = ((v60 + v38));
     *(f32 *)((u8 *)v14 + 28) = v38;
-    v38 = (f32)(*(f32 *)((u8 *)v14 + 32));
+    v38 = (*(f32 *)((u8 *)v14 + 32));
     *(f32 *)((u8 *)v14 + 32) = (f32)(v38 + (f32)(v52 * (f32)(v56 - v38)));
     *(fn_1_9CCE8_Vec3 *)((u8 *)v14 + 12) = *(fn_1_9CCE8_Vec3 *)v14;
     *(f32 *)((u8 *)v14 + 0) += (f32)(*(f32 *)((u8 *)v14 + 24) + (f32)(0.05f * (f32)((f32)(fn_1_584AC() & 0xFFFF) / 32767.0f - 0.5f)));
@@ -5478,11 +5478,11 @@ active:
     }
     (*(s32 *)((u8 *)v14 + 48))--;
     v80 = *(u32 *)((u8 *)v14 + 48);
-    if ((f32)(s32)v80 < 15.0f) {
+    if ((s32)v80 < 15.0f) {
     *(f32 *)((u8 *)v14 + 36) *= (f32)(s32)v80 / (f32)(s32)(v80 + 1);
     } else {
     v81 = *(f32 *)((u8 *)v14 + 36);
-    v38 = (f32)(0.2f);
+    v38 = (0.2f);
     *(f32 *)((u8 *)v14 + 36) = (f32)(v81 + (f32)(v38 * (f32)(1.0f - v81)));
     }
     if ((s32)*(u32 *)((u8 *)v14 + 48) <= 0) {

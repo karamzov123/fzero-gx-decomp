@@ -64,7 +64,7 @@ static inline s32 fn_16_4490_number(s16 arg) {
 
 static inline void fn_16_4490_digits(FontDrawPacket *packet, u32 code, s32 number, int tens) {
     s16 digit = tens ? number/10 : number%10;
-    fn_1_5158C(packet, code, (s16)(digit%10), (s16)(digit/10));
+    fn_1_5158C(packet, code, (digit%10), (digit/10));
 }
 
 void fn_16_4490(s16 arg0, u32 arg1, u32 arg2, u32 arg3, f32 arg4, f32 arg5, f32 arg6) {

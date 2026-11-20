@@ -296,7 +296,7 @@ void fn_1_48214(s32 index, s32 enabled) {
             low = 1;
         }
         i = (s16)low;
-        end = (s16)(index + 1);
+        end = (index + 1);
     }
 
     record = &lbl_1_data_FCD4[i];

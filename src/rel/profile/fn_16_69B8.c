@@ -173,8 +173,8 @@ s32 fn_16_69B8(u32 arg0) {
     lbl_8006DCDC();
     fn_1_F7870((u32)&lbl_1_data_1E5C0);
     lbl_8006D758();
-    mathutil_mtxA_rotate_x((s32)(182.04444885253906f * (f32)(s32)*(s16 *)((u8 *)arg0 + 40)));
-    mathutil_mtxA_rotate_y((s32)(182.04444885253906f * (f32)(s32)*(s16 *)((u8 *)arg0 + 42)));
+    mathutil_mtxA_rotate_x((s32)(182.04444885253906f * (s32)*(s16 *)((u8 *)arg0 + 40)));
+    mathutil_mtxA_rotate_y((s32)(182.04444885253906f * (s32)*(s16 *)((u8 *)arg0 + 42)));
     lbl_8006E0A4((void *)&loc_8);
     lbl_8006E14C(2.0f);
     lbl_8006DB74((void *)(lbl_801A6D00.unk_0 + 96));

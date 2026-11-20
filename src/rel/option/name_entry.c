@@ -281,7 +281,7 @@ u16 c4 = p->unk_4;
 s32 t4 = (s32)p->unk_8 - (s32)c4;
 f64 dd = 0.21 * (f64)t4;
 if ((s32)dd != 0) {
-p->unk_4 = (u16)(s32)((f64)(u32)c4 + dd);
+p->unk_4 = ((u32)c4 + dd);
 } else {
 e = fn_4_ADF4_sign(t4);
 /* Retail rereads the position after selecting the one-step adjustment. */
@@ -293,7 +293,7 @@ u16 c6 = p->unk_6;
 s32 t6 = (s32)p->unk_A - (s32)c6;
 dd = 0.21 * (f64)t6;
 if ((s32)dd != 0) {
-p->unk_6 = (u16)(s32)((f64)(u32)c6 + dd);
+p->unk_6 = ((u32)c6 + dd);
 } else {
 e = fn_4_ADF4_sign(t6);
 /* Retail rereads the position after selecting the one-step adjustment. */
@@ -306,7 +306,7 @@ col1 = p->unk_D;
 fn_1_49514(&col1);
 fn_1_496FC((f32)p->unk_4, (f32)p->unk_6);
 {
-f64 scale_d = 1.6666666666666667 * (0.5 + (f32)(0x18 - p->unk_1) / 48.0f);
+f64 scale_d = 1.6666666666666667 * (0.5 + (0x18 - p->unk_1) / 48.0f);
 fn_1_4955C(scale_d, scale_d);
 }
 if (p->unk_1 == 1) {
@@ -447,7 +447,7 @@ u32 lab_t1;
 fn_800793D4((void *)lbl_801A63D0, 0, 1024);
 v0 = lbl_801A63D0;
 if (lbl_4_bss_5684 != 0) {
-v2 = (s32)(arg0);
+v2 = (arg0);
 v1 = (u32)&lbl_801A6410;
 v3 = (s32)"name_entry.c";
 v1 = *(u32 *)((u8 *)v1 + 0);
@@ -467,7 +467,7 @@ v19 = v8->cursor;
 v3 = (v19 - 10);
 v1 = (v19 + 11);
 if (v3 >= 0 && (s32)(v19 + 11) <= (s32)v8->length) {
-v2 = (s32)((u32)v8->chars);
+v2 = ((u32)v8->chars);
 v1 = v0;
 v9 = (v3 << 1);
 v3 = 42;
@@ -477,7 +477,7 @@ v1 = (u32)strncpy((char *)v1, (const char *)v2, v3);
 v10 = v19 - 10;
 v10 = v8->length + v10;
 if (v10 < 0) {
-v2 = (s32)((u32)v8->chars);
+v2 = ((u32)v8->chars);
 v1 = v0;
 { s32 __reg_value_v2 = (v2 + (v19 << 1)); v2 = __reg_value_v2; }
 lab_t0 = v1;
@@ -491,7 +491,7 @@ v1 = v0;
 v3 = ((v10 + 10) << 1);
 v1 = (u32)fn_80083CF4((char *)v1, (const char *)v2, v3);
 } else {
-v2 = (s32)((u32)v8->chars);
+v2 = ((u32)v8->chars);
 v1 = v0;
 { s32 __reg_value_v2 = (v2 + (v10 << 1)); v2 = __reg_value_v2; }
 lab_t0 = v1;
@@ -500,7 +500,7 @@ v1 = fn_80083DB0((void *)lab_t0, (const void *)lab_t1);
 v1 = v8->cursor;
 v10 = (v1 + 11);
 if ((s32)v10 > (s32)v8->length) {
-v2 = (s32)((u32)v8->chars);
+v2 = ((u32)v8->chars);
 v1 = v0;
 v1 = (u32)strcat((char *)v1, (const char *)v2);
 v1 = v0;
@@ -508,14 +508,14 @@ v1 = v0;
 v3 = ((v10 - v8->length) << 1);
 v1 = (u32)fn_80083CF4((char *)v1, (const char *)v2, v3);
 } else {
-v2 = (s32)((u32)v8->chars);
+v2 = ((u32)v8->chars);
 v1 = v0;
 v3 = (v10 << 1);
 v1 = (u32)fn_80083CF4((char *)v1, (const char *)v2, v3);
 }
 }
 } else {
-v2 = (s32)((u32)v8->chars);
+v2 = ((u32)v8->chars);
 v1 = v0;
 { s32 __reg_value_v2 = (v2 + (v3 << 1)); v2 = __reg_value_v2; }
 lab_t0 = v1;
@@ -529,11 +529,11 @@ v12 = (v2 + 11);
 v3 = ((v12 - v3) << 1);
 v1 = (u32)fn_80083CF4((char *)v1, (const char *)v2, v3);
 }
-v2 = (s32)(*(u8 *)((u8 *)arg0 + 0));
+v2 = (*(u8 *)((u8 *)arg0 + 0));
 v1 = (u32)lbl_4_bss_5680;
 if ((u32)v2 == *(u8 *)((u8 *)v1 + 13)) {
 u32 b14;
-v2 = (s32)((v0 + 6));
+v2 = ((v0 + 6));
 v1 = (u32)&lbl_801A63D0;
 v3 = 14;
 v1 = *(u32 *)((u8 *)v1 + 0);
@@ -646,8 +646,8 @@ v3 += 8;
 loc_18.a[0] = v15;
 v3 = *(u8 *)((u8 *)arg0 + 1);
 v1 = (s8)v3;
-v26 = (f32)(s32)v2 * *(f32 *)((u8 *)arg0 + 8);
-v5 = (f32)(v1 + 320);
+v26 = (s32)v2 * *(f32 *)((u8 *)arg0 + 8);
+v5 = (v1 + 320);
 *(f32 *)((u8 *)&loc_18 + 4) = v5 + v26;
 if (__abs((s32)v2) > 0) {
 v3 = 1;
@@ -815,7 +815,7 @@ shift[0x29] = shift[0x2b];
 }
 }
 lbl_4_bss_5680->unk_F = 0;
-cnt = (u8)(lbl_4_bss_5680->unk_E);
+cnt = (lbl_4_bss_5680->unk_E);
 } else {
 held = (u16 *)((*(u8 (*)[])&lbl_1_bss_9F8) + 0x10);
 if (((held[lbl_4_bss_5680->unk_C * 10] >> 3) & 1) || (((repeat = (u16 *)((*(u8 (*)[])&lbl_1_bss_9F8) + 0x12), repeat[lbl_4_bss_5680->unk_C * 10]) >> 3) & 1)) {
@@ -906,7 +906,7 @@ old12 = smooth->unk_12;
 x = smooth->unk_E * 56 + 98 - old12;
 d = 0.3 * (f64)x;
 if ((s32)d != 0) {
-smooth->unk_12 = (s32)((f64)old12 + d);
+smooth->unk_12 = ((f64)old12 + d);
 } else {
 s32 step;
 if (x < 0) {
@@ -930,10 +930,10 @@ if (lbl_4_bss_5680->unk_17 != 0) {
 lbl_4_bss_5680->unk_17 = lbl_4_bss_5680->unk_17 - 1;
 }
 q = (*(u8 (*)[])&lbl_1_bss_9F8) + 0x10;
-if (((*(u16 *)(q + lbl_4_bss_5680->unk_C * 20) >> 3) & 1) || ((*(u16 *)((u32)((*(u8 (*)[])&lbl_1_bss_9F8) + 0x12) + lbl_4_bss_5680->unk_C * 20) >> 3) & 1)) {
+if (((*(u16 *)(q + lbl_4_bss_5680->unk_C * 20) >> 3) & 1) || ((*(u16 *)(((*(u8 (*)[])&lbl_1_bss_9F8) + 0x12) + lbl_4_bss_5680->unk_C * 20) >> 3) & 1)) {
 lbl_4_bss_5680->unk_14 = 8;
 }
-if (((*(u16 *)(q + lbl_4_bss_5680->unk_C * 20) >> 2) & 1) || ((*(u16 *)((u32)((*(u8 (*)[])&lbl_1_bss_9F8) + 0x12) + lbl_4_bss_5680->unk_C * 20) >> 2) & 1)) {
+if (((*(u16 *)(q + lbl_4_bss_5680->unk_C * 20) >> 2) & 1) || ((*(u16 *)(((*(u8 (*)[])&lbl_1_bss_9F8) + 0x12) + lbl_4_bss_5680->unk_C * 20) >> 2) & 1)) {
 lbl_4_bss_5680->unk_15 = 8;
 }
 if ((*(u16 *)(q + lbl_4_bss_5680->unk_C * 20) & 1) || ((repeat = (u16 *)((*(u8 (*)[])&lbl_1_bss_9F8) + 0x12), repeat[lbl_4_bss_5680->unk_C * 10]) & 1) ||
@@ -1024,9 +1024,9 @@ u8 c = lbl_4_bss_5680->unk_3A;
 struct fn_4_C768_NameRow *base = (struct fn_4_C768_NameRow *)lbl_4_bss_5680->unk_3C + lbl_4_bss_5680->unk_D;
 if (c != 0) {
 if (c > 9) {
-var_f31 = (f32)((0.5) + (f64)(f32)(c - 0xA) / (6.0));
+var_f31 = ((0.5) + (f32)(c - 0xA) / (6.0));
 } else {
-var_f31 = (f32)((0.5) + (f64)(f32)(0xA - c) / (20.0));
+var_f31 = ((0.5) + (f32)(0xA - c) / (20.0));
 }
 lbl_4_bss_5680->unk_3A--;
 } else {
@@ -1102,7 +1102,7 @@ loc_20.x = (320.0f);
 loc_20.y = (178.0f);
 loc_20.z = (0.150000006f);
 loc_20.flags = 0xA;
-loc_20.rotation_z = (s16)(((u32)lbl_4_bss_5680->unk_11 << 24) >> 16);
+loc_20.rotation_z = (((u32)lbl_4_bss_5680->unk_11 << 24) >> 16);
 if ((1.0) != var_f31) {
 loc_20.scale_y = var_f31;
 loc_20.scale_x = var_f31;
@@ -1118,11 +1118,11 @@ loc_20.y = (110.0f);
 u8 v = lbl_4_bss_5680->unk_14;
 union fn_4_C768_Clr clr_18 = {{0, 0, 0, 0}};
 u8 *cb = clr_18.channels;
-cb[0] = (u8)((v * 0x10) & 0xF0);
-cb[1] = (u8)((v * 0x10) & 0xF0);
-cb[2] = (u8)((v * 0x10) & 0xF0);
+cb[0] = ((v * 0x10) & 0xF0);
+cb[1] = ((v * 0x10) & 0xF0);
+cb[2] = ((v * 0x10) & 0xF0);
 loc_20.color_add.word = clr_18.w;
-temp_f0 = (f32)((1.0) + (f64)v / (12.0));
+temp_f0 = ((1.0) + (f64)v / (12.0));
 loc_20.scale_y = temp_f0;
 loc_20.scale_x = temp_f0;
 }
@@ -1133,11 +1133,11 @@ loc_20.image = 0x8F02;
 u8 v = lbl_4_bss_5680->unk_15;
 union fn_4_C768_Clr clr_14 = {{0, 0, 0, 0}};
 u8 *cb = clr_14.channels;
-cb[0] = (u8)((v * 0x10) & 0xF0);
-cb[1] = (u8)((v * 0x10) & 0xF0);
-cb[2] = (u8)((v * 0x10) & 0xF0);
+cb[0] = ((v * 0x10) & 0xF0);
+cb[1] = ((v * 0x10) & 0xF0);
+cb[2] = ((v * 0x10) & 0xF0);
 loc_20.color_add.word = clr_14.w;
-temp_f0_2 = (f32)((1.0) + (f64)v / (12.0));
+temp_f0_2 = ((1.0) + (f64)v / (12.0));
 loc_20.scale_y = temp_f0_2;
 loc_20.scale_x = temp_f0_2;
 }
@@ -1152,11 +1152,11 @@ loc_20.image = 0x8F04;
 u8 v = lbl_4_bss_5680->unk_16;
 union fn_4_C768_Clr clr_10 = {{0, 0, 0, 0}};
 u8 *cb = clr_10.channels;
-cb[0] = (u8)((v * 0x10) & 0xF0);
-cb[1] = (u8)((v * 0x10) & 0xF0);
-cb[2] = (u8)((v * 0x10) & 0xF0);
+cb[0] = ((v * 0x10) & 0xF0);
+cb[1] = ((v * 0x10) & 0xF0);
+cb[2] = ((v * 0x10) & 0xF0);
 loc_20.color_add.word = clr_10.w;
-temp_f0_3 = (f32)((1.0) + (f64)v / (12.0));
+temp_f0_3 = ((1.0) + (f64)v / (12.0));
 loc_20.scale_y = temp_f0_3;
 loc_20.scale_x = temp_f0_3;
 }
@@ -1167,11 +1167,11 @@ loc_20.flags |= 0x80000;
 u8 v = lbl_4_bss_5680->unk_17;
 union fn_4_C768_Clr clr_C = {{0, 0, 0, 0}};
 u8 *cb = clr_C.channels;
-cb[0] = (u8)((v * 0x10) & 0xF0);
-cb[1] = (u8)((v * 0x10) & 0xF0);
-cb[2] = (u8)((v * 0x10) & 0xF0);
+cb[0] = ((v * 0x10) & 0xF0);
+cb[1] = ((v * 0x10) & 0xF0);
+cb[2] = ((v * 0x10) & 0xF0);
 loc_20.color_add.word = clr_C.w;
-temp_f0_4 = (f32)((1.0) + (f64)v / (12.0));
+temp_f0_4 = ((1.0) + (f64)v / (12.0));
 loc_20.scale_y = temp_f0_4;
 loc_20.scale_x = temp_f0_4;
 }
@@ -1181,7 +1181,7 @@ loc_20 = *(FontDrawPacket *)lbl_1_rodata_26F8;
 loc_20.y = (378.0f);
 loc_20.image = 0x8F09;
 loc_20.z = (0.129999995f);
-temp_f0_5 = (f32)(1.1 + 0.25 * lbl_8006D188((s16)((lbl_801A66A0 << 8) & 0xFF00)));
+temp_f0_5 = (1.1 + 0.25 * lbl_8006D188(((lbl_801A66A0 << 8) & 0xFF00)));
 loc_20.flags = 0xA;
 loc_20.scale_y = temp_f0_5;
 loc_20.scale_x = temp_f0_5;
@@ -1198,7 +1198,7 @@ var_r27_2 += 1;
 if ((((*(Obj_4_bss_5680_Target **)(void *)&lbl_4_bss_5680)->unk_0) >> 0x1FU) == 0) {
 loc_20 = *(FontDrawPacket *)lbl_1_rodata_26F8;
 loc_20.image = 0x8F00;
-loc_20.x = (f32)(lbl_4_bss_5680->unk_12);
+loc_20.x = (lbl_4_bss_5680->unk_12);
 loc_20.y = (346.0f);
 loc_20.z = (0.119999997f);
 fn_1_4F734(&loc_20);

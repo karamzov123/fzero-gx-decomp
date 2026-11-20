@@ -364,7 +364,7 @@ void fn_1_D1C94(void) {
                     fn_1_D2F84();
                     return;
                 }
-                if ((u32)count <= (u32)(p->unk_D - 1)) {
+                if ((u32)count <= (p->unk_D - 1)) {
                     u32 v = res & 0xFF;
                     obj->unk_10 = v;
                     obj->unk_14 = v;
@@ -559,9 +559,9 @@ void fn_1_D2110(FaceObj *o) {
         o->pos.z = fzgx_live + 0.1 * (1.8f - fzgx_live);
     } else if (o->timer != 0) {
         s = (f32)o->timer / 10.0f;
-        tx = 0.5 * (s * ((f32)(u16)fn_1_584AC() / 32767.0f - 0.5));
-        ty = s * ((f32)(u16)fn_1_584AC() / 32767.0f - 0.5);
-        tz = 1.8f + s * ((f32)(u16)fn_1_584AC() / 32767.0f - 0.5);
+        tx = 0.5 * (s * ((u16)fn_1_584AC() / 32767.0f - 0.5));
+        ty = s * ((u16)fn_1_584AC() / 32767.0f - 0.5);
+        tz = 1.8f + s * ((u16)fn_1_584AC() / 32767.0f - 0.5);
         o->pos.x = o->pos.x + 0.2 * (tx - o->pos.x);
         o->pos.y = o->pos.y + 0.2 * (ty - o->pos.y);
         fzgx_live = o->pos.z;
@@ -962,7 +962,7 @@ void fn_1_D27B8(void) {
                     if (energy < 15.0f) {
                         period = 15;
                     }
-                    t = (f32)(lbl_801A66A0 % period) / (f32)period;
+                    t = (lbl_801A66A0 % period) / (f32)period;
                     t = t < 0.1f ? 0.1f : (t > 1.0f ? 1.0f : t);
                     fn_80074CF4(1.0f, t, t);
                 } else {
@@ -1005,8 +1005,8 @@ void fn_1_D27B8(void) {
                                 }
                             }
                             seed = racer->unk94 ^ racer->unk98 ^ racer->unk9C;
-                            a = (f32)((seed ^ racer->unkA4) & 0xFFFF) / 65536.0f;
-                            b = (f32)((seed ^ racer->unkA0) & 0xFFFF) / 65536.0f;
+                            a = ((seed ^ racer->unkA4) & 0xFFFF) / 65536.0f;
+                            b = ((seed ^ racer->unkA0) & 0xFFFF) / 65536.0f;
                             k = 4e-5f * racer->unk478;
                             rx = k * a;
                             ry = k * b;

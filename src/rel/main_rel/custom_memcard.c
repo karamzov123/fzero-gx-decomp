@@ -782,14 +782,14 @@ extern void fn_1_FDD7C(Sig_fn_1_FCFA4_CasObj *, Sig_fn_1_FCFA4_CasEntry *);
 static inline void fn_1_131C08_update(u32 index, s32 active)
 {
     if (active == 0) {
-        ((u16 *)lbl_1_bss_8E3C8)[index] = (s32)(lbl_1_rodata_8620 * (f32)(lbl_801A66A0 % 360));
+        ((u16 *)lbl_1_bss_8E3C8)[index] = (lbl_1_rodata_8620 * (lbl_801A66A0 % 360));
     } else {
         u16 *angles = (u16 *)lbl_1_bss_8E3C8;
         s32 angle = angles[index];
         if (angle < 0x7555) {
-            angles[index] = (s32)((f64)(u32)angle + lbl_1_rodata_8628 * (lbl_1_rodata_8630 - (f32)(u32)angle));
+            angles[index] = ((u32)angle + lbl_1_rodata_8628 * (lbl_1_rodata_8630 - (u32)angle));
         } else {
-            angles[index] = (s32)((f64)(u32)angle + lbl_1_rodata_8628 * (lbl_1_rodata_8634 - (f32)(u32)angle));
+            angles[index] = ((u32)angle + lbl_1_rodata_8628 * (lbl_1_rodata_8634 - (u32)angle));
         }
     }
 }
@@ -1216,7 +1216,7 @@ void fn_1_132774(void *arg0) {
                         break;
                     }
                 }
-                fn_1_496FC(lbl_1_rodata_8658, (f32)(i * 24 + 100));
+                fn_1_496FC(lbl_1_rodata_8658, (i * 24 + 100));
                 fn_1_4AE0C((const char *)lbl_1_data_41930, i + 1, bit);
             }
         }

@@ -1313,7 +1313,7 @@ void fn_14_1090(void) {
             } else if (elapsed + row->sprite_frames <= lbl_14_bss_8) {
                 t = 1.0f;
             } else {
-                t = (f32)(lbl_14_bss_8 - elapsed) / (f32)row->sprite_frames;
+                t = (lbl_14_bss_8 - elapsed) / (f32)row->sprite_frames;
             }
             if (t > 0.0f && sprite->x != -1 && sprite->y != -1) {
                 if (t < 1.0f) {
@@ -1353,7 +1353,7 @@ void fn_14_1090(void) {
             } else if (elapsed + row->count_frames <= lbl_14_bss_8) {
                 t = 1.0f;
             } else {
-                t = (f32)(lbl_14_bss_8 - elapsed) / (f32)row->count_frames;
+                t = (lbl_14_bss_8 - elapsed) / (f32)row->count_frames;
             }
             if (t > 0.0f) {
                 if (row->index != 11 && (u32)(row->index - 12) > 1) {
@@ -2808,7 +2808,7 @@ void fn_14_6044(s16 arg0, s16 arg1) {
     cnt1 = 0;
     scale = (f32)fn_1_A5DB0() / 480.0f;
     lbl_14_bss_92E8.x = arg0 + 0x202;
-    lbl_14_bss_92E8.y = (f32)(arg1 + 16) * scale;
+    lbl_14_bss_92E8.y = (arg1 + 16) * scale;
     lbl_14_bss_92E8.w = 62;
     lbl_14_bss_92E8.h = 62.0f * scale;
     spr = lbl_1_rodata_26F8;
@@ -3609,7 +3609,7 @@ void fn_14_82E4(s16 arg0, s16 arg1, s16 arg2) {
     f32 t;
     s32 d;
 
-    t = lbl_8006D188(65536.0f * (f32)(((s32)lbl_801A66A0 % 60) % 120) / 120.0f);
+    t = lbl_8006D188(65536.0f * (((s32)lbl_801A66A0 % 60) % 120) / 120.0f);
     n = arg2 / 60;
     fn_1_49410();
     x = 320.0f + (f32)arg0;
@@ -3625,7 +3625,7 @@ void fn_14_82E4(s16 arg0, s16 arg1, s16 arg2) {
         fn_14_1090_Color c = {0x00, 0x00, 0xFA, 0x00};
         fn_1_49514(&c);
     }
-    t = 0.3f + (f32)(0.4f * t);
+    t = 0.3f + (0.4f * t);
     fn_1_495A0(t);
     fn_1_494DC(0x18);
     fn_1_495C8(9);
@@ -3796,7 +3796,7 @@ static void draw_bar(f32 scale) {
     pkt.y = 402.0f;
     pkt.z = 10.0f;
     pkt.flags = 0xA;
-    fn_1_50A90(&pkt, 7, 7, (s32)(400.0f * scale), (s32)(36.0f * scale));
+    fn_1_50A90(&pkt, 7, 7, (400.0f * scale), (36.0f * scale));
 }
 
 static void draw_frame(f32 alpha, f32 y) {
@@ -3809,9 +3809,9 @@ static void draw_frame(f32 alpha, f32 y) {
     pkt.z = 10.0f;
     pkt.flags = 0xA;
     if (lbl_801A66B4 != 5) {
-        fn_1_50A90(&pkt, 7, 7, (s32)(548.0f * alpha), (s32)(134.0f * alpha));
+        fn_1_50A90(&pkt, 7, 7, (548.0f * alpha), (134.0f * alpha));
     } else {
-        fn_1_50A90(&pkt, 7, 7, (s32)(586.0f * alpha), (s32)(134.0f * alpha));
+        fn_1_50A90(&pkt, 7, 7, (586.0f * alpha), (134.0f * alpha));
     }
 }
 
@@ -3824,7 +3824,7 @@ static void draw_box(s16 n) {
     pkt.y = 329.0f;
     pkt.z = 10.0f;
     pkt.flags = 0xA;
-    fn_1_50A90(&pkt, 7, 7, (s32)(14.21f * n), (s32)(3.2f * n));
+    fn_1_50A90(&pkt, 7, 7, (14.21f * n), (3.2f * n));
 }
 
 /* Unknown retail object: .rodata 0x314, 4 bytes (colour 00 80 80 FF). No code or data in any REL refers to it. */
@@ -4594,7 +4594,7 @@ void fn_14_B484(void) {
     FontDrawPacket pkt;
 
     if (lbl_14_bss_0 > 450) {
-        dx = 0.03333333507180214f * (640.0f * (f32)(30 - (480 - lbl_14_bss_0)));
+        dx = 0.03333333507180214f * (640.0f * (30 - (480 - lbl_14_bss_0)));
     } else {
         dx = 0.0f;
     }
@@ -4645,7 +4645,7 @@ void fn_14_B484(void) {
 
     pkt = lbl_1_rodata_26F8;
     pkt.image = 0x9103;
-    pkt.x = (346.0f + (f32)((v - 50) * 15 / 50)) - dx;
+    pkt.x = (346.0f + ((v - 50) * 15 / 50)) - dx;
     pkt.y = 217.0f;
     pkt.flags = 10;
     pkt.z -= 0.001f;
@@ -5030,7 +5030,7 @@ void fn_14_C850(fn_14_1090_Score *score, f32 t) {
                 c = '0' + value % 10;
                 value = value / 10;
             }
-            if ((f32)(i + 2) / (f32)total < t2) {
+            if ((i + 2) / (f32)total < t2) {
                 fn_1_496FC(score->x - offset, y);
                 fn_1_4955C(score->scale_x, score->scale_y);
                 fn_1_4AE0C("%c", c);

@@ -545,7 +545,7 @@ u32 fn_1_45964(struct S45964 *arg0, void *arg1, u32 arg2, u32 arg3, u32 arg4) {
     u8 *req;
 
     i = lbl_1_bss_384D0__fzgx_offset_4;
-    n = (u8)(i + 1);
+    n = (i + 1);
     lbl_1_bss_384D0__fzgx_offset_4 = i + 1;
     indexBytes = i << 2;
     req = lbl_1_bss_3DD28__fzgx_offset_8C[i];
@@ -1238,7 +1238,7 @@ int fn_1_46144(LoadArchive *archive, s32 locked, s32 named) {
     archive->end = size + offset;
     fzgx_obj_lbl_1_bss_384D0 = 1;
     DCInvalidateRange(lbl_1_bss_3DD28__fzgx_offset_4 + offset, size);
-    ARQPostRequest(&request, 0, 1, 1, aram + offset, (u32)(lbl_1_bss_3DD28__fzgx_offset_4 + offset), size, (ARQCallback)fn_1_45890);
+    ARQPostRequest(&request, 0, 1, 1, aram + offset, (lbl_1_bss_3DD28__fzgx_offset_4 + offset), size, (ARQCallback)fn_1_45890);
     while (fn_1_46144_busy()) {
         fn_1_D3214();
     }
@@ -2326,8 +2326,8 @@ void fn_1_47330(Pos *pos, f32 width, f32 height) {
         if (draw) {
             fn_8003462C(128, 7, 4);
             VERT(pos->x + (f32)entry->unk_8 * width / 16777216.0f, pos->y, pos->z - 0.002f);
-            VERT(pos->x + width * (f32)(entry->unk_8 + entry->unk_c) / 16777216.0f, pos->y, pos->z - 0.002f);
-            VERT(pos->x + width * (f32)(entry->unk_8 + entry->unk_c) / 16777216.0f, pos->y + height, pos->z - 0.002f);
+            VERT(pos->x + width * (entry->unk_8 + entry->unk_c) / 16777216.0f, pos->y, pos->z - 0.002f);
+            VERT(pos->x + width * (entry->unk_8 + entry->unk_c) / 16777216.0f, pos->y + height, pos->z - 0.002f);
             VERT(pos->x + (f32)entry->unk_8 * width / 16777216.0f, pos->y + height, pos->z - 0.002f);
         }
     }

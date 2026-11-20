@@ -1089,7 +1089,7 @@ void fn_3_B984(void *entries, u8 *table) {
             }
             fn_1_FDFF4();
             fn_1_FC4E0((u8 *)lbl_3_bss_2C7C0 +
-                (s32)((s16 *)lbl_3_bss_F0)[4] * 0x10440, 1);
+                ((s16 *)lbl_3_bss_F0)[4] * 0x10440, 1);
         }
     }
 }

@@ -36,11 +36,11 @@ void fn_16_2054(void) {
     struct fn_16_2054_lbl_16_bss_220 *temp_r4;
 
     if ((s32) lbl_16_data_82B00.unk_0 != -1) {
-        fn_1_435C((u32)(lbl_16_bss_150.unk_0));
-        fn_1_426C((u32)(lbl_16_data_82B00.unk_0));
+        fn_1_435C((lbl_16_bss_150.unk_0));
+        fn_1_426C((lbl_16_data_82B00.unk_0));
         lbl_16_data_82B00.unk_0 = -1U;
     }
-    fn_1_48140((s32)(*(s32 *)&((&lbl_16_data_82B54)[lbl_1_bss_8B614.unk_C])));
+    fn_1_48140((*(s32 *)&((&lbl_16_data_82B54)[lbl_1_bss_8B614.unk_C])));
     temp_r4 = (struct fn_16_2054_lbl_16_bss_220 *)(&(&lbl_16_bss_220)[lbl_1_bss_8B614.unk_C]);
-    fn_1_80F1C((s32)((s32) (s16) temp_r4->unk_0[0].unk_324), (void *)(temp_r4));
+    fn_1_80F1C(((s16) temp_r4->unk_0[0].unk_324), (void *)(temp_r4));
 }

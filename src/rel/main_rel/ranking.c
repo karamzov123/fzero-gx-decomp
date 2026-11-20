@@ -1293,7 +1293,7 @@ void fn_1_156D9C(void *slot_p)
         if ((v = 10.0f * slot->unk_44) > 60.0f) {
             v = 60.0f;
         }
-        idx = (s32)((10.0f + v) * c);
+        idx = ((10.0f + v) * c);
     }
 
     digit = (u8)(*(u8 *)((u8 *)&lbl_1_data_49B20 + slot->unk_4d % 5));
@@ -1660,12 +1660,12 @@ void fn_1_157358(fn_1_157358_RankingState *state) {
         value *= table[21];
 
         if (state->flags & 0x40) {
-            u8 converted = (u8)(s32)value;
+            u8 converted = (s32)value;
             if (converted == state->value30) {
                 return;
             }
         }
-        state->value30 = (u8)(s32)value;
+        state->value30 = (s32)value;
     } else {
         if (!(state->flags & 0x40)) {
             return;
@@ -2130,7 +2130,7 @@ void fn_1_157950(void) {
     v1 = lbl_1_bss_8F574;
     v4 = v1;
     v3 = 0.0f;
-    v2 = (f32)(v0 - (f32)(448.0f / lbl_1_bss_8F570));
+    v2 = (v0 - (448.0f / lbl_1_bss_8F570));
     while (*(s16 *)v4 != -2) {
         v3 += (f32)*(s16*)v4 / lbl_1_bss_8F570;
         if (v3 >= v2 && v3 <= lbl_1_bss_8F56C) {
@@ -2309,7 +2309,7 @@ void fn_1_157FC8(void) {
     v2 = lbl_1_bss_8F574;
     while ((v3 = *(s16 *)v2->pad_0) != -2) {
         v4 = lbl_1_bss_8F56C;
-        if ((f32)v3 <= v4 && (f32)(end = v3 + v2->unk_2) > v4) {
+        if ((f32)v3 <= v4 && (end = v3 + v2->unk_2) > v4) {
             x = v2->unk_4;
             y = v2->unk_6;
             alpha = 1.0f;
@@ -2613,9 +2613,9 @@ void fn_1_158984(void) {
     slot = (RankingSlot *)((u8 *)data + 0xFA0C);
     for (i = 0; i < (s32)data->unk_0; i++, slot++) {
         if ((s32)data->unk_4 == 2) {
-            slot->spin.x = lbl_8006D188((s32)(65536.0f * (f32)(lbl_801A66A0.unk_0 % 300) / 300.0f));
-            slot->spin.y = lbl_8006D188((s32)(65536.0f * (f32)(lbl_801A66A0.unk_0 % 600) / 600.0f));
-            slot->spin.z = lbl_8006D188((s32)(65536.0f * (f32)(lbl_801A66A0.unk_0 % 900) / 900.0f));
+            slot->spin.x = lbl_8006D188((s32)(65536.0f * (lbl_801A66A0.unk_0 % 300) / 300.0f));
+            slot->spin.y = lbl_8006D188((s32)(65536.0f * (lbl_801A66A0.unk_0 % 600) / 600.0f));
+            slot->spin.z = lbl_8006D188((s32)(65536.0f * (lbl_801A66A0.unk_0 % 900) / 900.0f));
             spin_y = 768.0f;
             spin_z = 1280.0f;
             slot->model->angle_x += (s32)(256.0f * slot->spin.x);
@@ -2623,9 +2623,9 @@ void fn_1_158984(void) {
             slot->model->angle_z += (s32)(spin_z * slot->spin.z);
         } else {
             damp = 0.01;
-            slot->model->angle_x = (s32)((f64)slot->model->angle_x + (f64)(damp * -slot->model->angle_x));
-            slot->model->angle_y = (s32)((f64)slot->model->angle_y + (f64)(damp * -slot->model->angle_y));
-            slot->model->angle_z = (s32)((f64)slot->model->angle_z + (f64)(damp * -slot->model->angle_z));
+            slot->model->angle_x = ((f64)slot->model->angle_x + (f64)(damp * -slot->model->angle_x));
+            slot->model->angle_y = ((f64)slot->model->angle_y + (f64)(damp * -slot->model->angle_y));
+            slot->model->angle_z = ((f64)slot->model->angle_z + (f64)(damp * -slot->model->angle_z));
         }
         slot->model->flags &= 0xFEFFFFFF;
         if (slot->active != 0 && ((s32)data->unk_4 == 1 || (s32)data->unk_4 >= 3)) {
@@ -2857,7 +2857,7 @@ s8 fn_1_15906C(u32 arg0, struct RankingEffectObject *arg1, f32 arg2) {
             record->time = 60;
         } else record->flag = 0;
         #pragma fp_contract off
-        magnitude = (f32)(10.0 * (0.8 + (f64)((f32)random15() / 32767.0f) * 0.2));
+        magnitude = (10.0 * (0.8 + ((f32)random15() / 32767.0f) * 0.2));
         axis = random15() % 3;
         switch (axis) {
         case 0: {
@@ -2888,8 +2888,8 @@ s8 fn_1_15906C(u32 arg0, struct RankingEffectObject *arg1, f32 arg2) {
             s32 iy = record->iy;
             s32 iz = record->iz;
             obj = record->obj;
-            obj->x = (f32)(100.0f * (f32)ix) - 1000.0f;
-            obj->y = (f32)(100.0f * (f32)iy) - 1000.0f;
+            obj->x = (100.0f * (f32)ix) - 1000.0f;
+            obj->y = (100.0f * (f32)iy) - 1000.0f;
             z_component = &(obj->z);
             *z_component = (f32)(100.0f * (f32)iz) - 2000.0f;
         }
@@ -2971,7 +2971,7 @@ int fn_1_159588(int arg) {
     int value;
     RankingArchive *entry;
 
-    index = (s16)((arg >> 8) & 0xffff);
+    index = ((arg >> 8) & 0xffff);
     if (((s32 *)lbl_1_bss_8F588)[index] != 0) {
         entry = &lbl_1_data_4C810[((s32 *)lbl_1_bss_8F588)[index]];
         count = entry->head;
@@ -3106,7 +3106,7 @@ void fn_1_1598C4(s32 arg0, u8 arg1, u8 arg2, u8 arg3, u8 arg4, u8 arg5, u8 arg6,
     ((struct fn_1_1598C4_lbl_1_bss_8F878 *)&lbl_1_bss_8F878)->unk_34 = arg0 & 0x3FFFF;
     ((struct fn_1_1598C4_lbl_1_bss_8F878 *)&lbl_1_bss_8F878)->unk_39 = arg1;
     ((struct fn_1_1598C4_lbl_1_bss_8F878 *)&lbl_1_bss_8F878)->unk_3D = arg6;
-    ((struct fn_1_1598C4_lbl_1_bss_8F878 *)&lbl_1_bss_8F878)->unk_3E = (u8)(s32)(0.0999000967f * (f32)arg5);
+    ((struct fn_1_1598C4_lbl_1_bss_8F878 *)&lbl_1_bss_8F878)->unk_3E = (0.0999000967f * (f32)arg5);
 
     if (arg1 >= 0x29U) {
         if ((s32)arg2 < fn_1_14F01C(0)) {

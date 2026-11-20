@@ -4714,7 +4714,7 @@ void fn_1_327F8(struct fn_1_327F8_Arg0 *arg0, u32 arg1) {
                 }
             }
             if (arg0->unk_475 != -1) {
-                fn_1_15E330(arg0->unk_475, v3, (void *)(u32)((*((struct fn_1_327F8_lbl_1_bss_25B88 *)&lbl_1_bss_25B88)).unk_0));
+                fn_1_15E330(arg0->unk_475, v3, (void *)((*((struct fn_1_327F8_lbl_1_bss_25B88 *)&lbl_1_bss_25B88)).unk_0));
             }
         }
     }
@@ -5526,9 +5526,9 @@ static inline void apply_handicap(Input *in, Racer *r, f32 diff) {
  diff*=0.00033333333f;
  in->fc += (f32)(1.1f*diff);
  in->f8 += (f32)(0.3f*diff);
- in->f10 += (f32)(0.3f*(f32)(in->f10*diff));
- in->f44 -= (f32)(0.7f*(f32)(in->f44*diff));
- in->f34 += (f32)(0.2f*(f32)(in->f34*diff));
+ in->f10 += (f32)(0.3f*(in->f10*diff));
+ in->f44 -= (f32)(0.7f*(in->f44*diff));
+ in->f34 += (f32)(0.2f*(in->f34*diff));
  r->factor=1.0f-(f32)(0.2f*diff);
 }
 void fn_1_331EC(Racer *r) {
@@ -16566,7 +16566,7 @@ void fn_1_3A2C4(void) {
     fn_1_EB080(1);
     time = OSGetTime();
     lo = (u32)time;
-    hi = (u32)(time >> 32);
+    hi = (time >> 32);
     lbl_1_bss_3C30.unk_14A4 = lo;
     lbl_1_bss_3C30.unk_14A0 = hi;
     lbl_1_bss_3C30.unk_1494 = lo;
@@ -21996,7 +21996,7 @@ void fn_1_3DE80(void)
     fn_1_98590();
     fn_1_59290();
     fn_1_3FC68(0);
-    t = (f32)(s32)fzgx_obj_lbl_1_bss_26C28 / 600.0f;
+    t = (s32)fzgx_obj_lbl_1_bss_26C28 / 600.0f;
     if (t > 1.0f) {
         t = 1.0f;
     }
@@ -22030,7 +22030,7 @@ void fn_1_3DE80(void)
     packet.scale_y = packet.scale_y * (480.0f / (f32)fn_1_486C4(packet.image));
     *(u32 *)packet.color = fzgx_pool_color0[0];
     packet.flags = 10;
-    packet.alpha = FN_1_3DE80_CLAMP(0.25f * (f32)((s32)fzgx_obj_lbl_1_bss_26C28 - 240) / 60.0f);
+    packet.alpha = FN_1_3DE80_CLAMP(0.25f * ((s32)fzgx_obj_lbl_1_bss_26C28 - 240) / 60.0f);
     packet.z = 60.0f;
     fn_1_4F734(&packet);
 
@@ -22042,7 +22042,7 @@ void fn_1_3DE80(void)
     packet.scale_y *= 3.0f;
     *(u32 *)packet.color = fzgx_pool_color1[0];
     packet.flags = 10;
-    packet.alpha = FN_1_3DE80_CLAMP(0.25f * (f32)((s32)fzgx_obj_lbl_1_bss_26C28 - 240) / 60.0f);
+    packet.alpha = FN_1_3DE80_CLAMP(0.25f * ((s32)fzgx_obj_lbl_1_bss_26C28 - 240) / 60.0f);
     packet.z = 50.0f;
     fn_1_4F734(&packet);
 
@@ -22051,7 +22051,7 @@ void fn_1_3DE80(void)
     packet.x = 320.0f;
     packet.y = 240.0f;
     packet.flags = 10;
-    packet.alpha = FN_1_3DE80_CLAMP(0.5f * (f32)((s32)fzgx_obj_lbl_1_bss_26C28 - 60) / 60.0f);
+    packet.alpha = FN_1_3DE80_CLAMP(0.5f * ((s32)fzgx_obj_lbl_1_bss_26C28 - 60) / 60.0f);
     packet.z = 40.0f;
     fn_1_4F734(&packet);
 
@@ -24001,7 +24001,7 @@ u8 fn_1_3F264(u32 index) {
         return entry->value;
     }
 
-    return (u8)(&lbl_1_bss_25C48.unk_0)[masked];
+    return (&lbl_1_bss_25C48.unk_0)[masked];
 }
 /* fzgx:end fn_1_3F264 */
 
@@ -24037,7 +24037,7 @@ typedef struct {
 
 void fn_1_3F2A0(void)
 {
-    s32 lim = !((fn_1_3F2A0_obj *)&lbl_1_bss_3C30)->unk_5 ? (s32)((fn_1_3F2A0_obj *)&lbl_1_bss_3C30)->unk_8 : (s32)((fn_1_3F2A0_obj *)&lbl_1_bss_3C30)->unk_9;
+    s32 lim = !((fn_1_3F2A0_obj *)&lbl_1_bss_3C30)->unk_5 ? (s32)((fn_1_3F2A0_obj *)&lbl_1_bss_3C30)->unk_8 : ((fn_1_3F2A0_obj *)&lbl_1_bss_3C30)->unk_9;
     u8 mode;
     s32 kid;
     s32 j;
@@ -24310,7 +24310,7 @@ void fn_1_3F800(u32 value) {
 // Stores a value and its scaled companion in the shared game state.
 void fn_1_3F810(u8 value, u32 input) {
     lbl_1_bss_3C30.unk_146C = value;
-    lbl_1_bss_3C30.unk_146D = (u8)((input / 5) >> 1);
+    lbl_1_bss_3C30.unk_146D = ((input / 5) >> 1);
 }
 /* fzgx:end fn_1_3F810 */
 
@@ -24672,7 +24672,7 @@ void fn_1_3F8EC(f32 arg0) {
                         lbl_8006DCA4();
                         lbl_8006E1B0(&vec, &vec);
                         fn_8006EF10(&vec, &xa, &ya);
-                        lbl_8006D7F4((0.0f), (f32)(lbl_801A66A0 % 15) / (14.0f), (0.0f));
+                        lbl_8006D7F4((0.0f), (lbl_801A66A0 % 15) / (14.0f), (0.0f));
                         lbl_8006DB74(lbl_801A6D00 + 0x60);
                         lbl_8006D7F4((0.0f), (-0.100000001f), (-2.0f));
                         mathutil_mtxA_rotate_y(ya);
@@ -24771,8 +24771,8 @@ void fn_1_3FCB0(s32 value) {
     mask |= value;
     mask >>= 31;
     {
-        u32 arithmetic_value = (u32)(((lbl_1_bss_3C08[0] | (u32)value)));
-        arithmetic_value &= (u32)(((u32)mask));
+        u32 arithmetic_value = (((lbl_1_bss_3C08[0] | (u32)value)));
+        arithmetic_value &= (((u32)mask));
         lbl_1_bss_3C08[0] = arithmetic_value;
     }
 }
@@ -25964,7 +25964,7 @@ void fn_1_403D4(Fn408E8Obj *obj) {
     fn_1_494DC(0x2a);
     fn_1_4955C(0.75f, 0.75f * obj->fade);
 
-    obj->width = (f32)(s32)(150.0f + fn_1_4B068(text));
+    obj->width = (s32)(150.0f + fn_1_4B068(text));
     if (obj->width < 360.0f) {
         obj->width = 360.0f;
     }
@@ -25994,7 +25994,7 @@ void fn_1_403D4(Fn408E8Obj *obj) {
             alpha = 0.0f;
         }
         fn_1_495A0(alpha);
-        fn_1_496FC((obj->x - 90.0f) + (f32)(i * 180), textH + (obj->y + 20.0f * fade));
+        fn_1_496FC((obj->x - 90.0f) + (i * 180), textH + (obj->y + 20.0f * fade));
         fn_1_4A0D8(fn_1_15BA78((char *)labels[i]));
     }
 }
@@ -26286,13 +26286,13 @@ void fn_1_408E8(void *arg0, u32 arg1, u32 arg2, s32 arg3, s32 arg4, f32 arg5) {
     case 1:
         if (*(u32 *)((u8 *)arg0 + 32) != 0) break;
     case 0:
-        v6 = (s32)(*(f32 *)((u8 *)arg0 + 24) * v4);
-        v7_2 = (s32)(*(f32 *)((u8 *)arg0 + 28) * v4);
+        v6 = (*(f32 *)((u8 *)arg0 + 24) * v4);
+        v7_2 = (*(f32 *)((u8 *)arg0 + 28) * v4);
         break;
     case 2:
         fn_1_403D4(arg0);
         v6 = (s32)*(f32 *)((u8 *)arg0 + 24);
-        v7_2 = (s32)(*(f32 *)((u8 *)arg0 + 28) * v4);
+        v7_2 = (*(f32 *)((u8 *)arg0 + 28) * v4);
         break;
     default: return;
     }
@@ -26304,8 +26304,8 @@ void fn_1_408E8(void *arg0, u32 arg1, u32 arg2, s32 arg3, s32 arg4, f32 arg5) {
     packet.a[0] = 2;
     v8 = *(f32 *)((u8 *)arg0 + 8);
     *(f32 *)&packet.a[11] = v8;
-    width = (s32)(p_lbl_1_rodata_BD8->unk_1DC * (f32)(p_lbl_1_rodata_BD8->unk_44 * v8));
-    height = (s32)(p_lbl_1_rodata_BD8->unk_1DC * (f32)(p_lbl_1_rodata_BD8->unk_3C * v8));
+    width = (p_lbl_1_rodata_BD8->unk_1DC * (p_lbl_1_rodata_BD8->unk_44 * v8));
+    height = (p_lbl_1_rodata_BD8->unk_1DC * (p_lbl_1_rodata_BD8->unk_3C * v8));
     if (width > 18 || v6 > 18) width = 18;
     if (height > 45 || v7_2 > 45) height = 45;
     lab_t3 = v6;

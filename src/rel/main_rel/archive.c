@@ -216,7 +216,7 @@ u32 fn_1_12A4B0(void *arg0, s32 arg1, s32 arg2) {
             OSPanic(strings + 8, 0xD2, strings + 0xD0);
             return 0;
         }
-        slot = (u8 *)((u32)((u8 *)&fzgx_obj_lbl_1_bss_897AC[0]) + 0x68);
+        slot = (u8 *)(((u8 *)&fzgx_obj_lbl_1_bss_897AC[0]) + 0x68);
         fn_1_12FD4(arg0, *(u32 *)((u8 *)slot + fzgx_obj_lbl_1_bss_897A0 * 0x6C));
         lab_t0 = (void *)(*(u32 *)((u8 *)slot + fzgx_obj_lbl_1_bss_897A0 * 0x6C));
         DCFlushRange(lab_t0, aligned);
@@ -815,7 +815,7 @@ void fn_1_12AF7C(void) {
                     g = (u8)(((tbl[j] >> 16) & 0xFF) + ((LD >> 16) & 0xFF));
                     b = ((tbl[j] >> 8) & 0xFF) + ((LD >> 8) & 0xFF);
                     ((u32 (*)[4][3][1])&lbl_1_bss_8B2E0.unk_0)[i][j][k][l] =
-                        (u32)(s16)a | ((r << 24) | (g << 16) | ((b << 8) & 0xFF00));
+                        (s16)a | ((r << 24) | (g << 16) | ((b << 8) & 0xFF00));
                 }
             }
         }
@@ -899,8 +899,8 @@ void fn_1_12B120(u8 *arg0, void *arg1, void *arg2, s32 *arg3, void *arg4, s32 *a
             var_r31_2 = 2;
         }
         if (lbl_1_bss_8B3A0.unk_94 & 0x40000000) {
-            temp_r24 = (u32) ((*(f32 *)((u8 *)(&lbl_1_rodata_8170) + 0)) / (f32) var_r31_2);
-            fn_1_12BF7C((void *)(*(void **)((u8 *)(arg0) + 32)), var_r31_2, (u32) ((s32) fn_1_A5D88() / var_r31_2), temp_r24);
+            temp_r24 = ((*(f32 *)((u8 *)(&lbl_1_rodata_8170) + 0)) / (f32) var_r31_2);
+            fn_1_12BF7C((void *)(*(void **)((u8 *)(arg0) + 32)), var_r31_2, ((s32) fn_1_A5D88() / var_r31_2), temp_r24);
             fn_1_12BF7C((void *)((u8 *)((*(void **)((u8 *)(arg0) + 32))) + 0x64), 3, (fn_1_A5D88() >> 2U) & 0x3FFF, 0x78U);
         } else if (var_r31_2 == 4) {
             fn_1_12BF7C((void *)(*(void **)((u8 *)(arg0) + 32)), var_r31_2, 0xA0U, 0x78U);
@@ -916,8 +916,8 @@ void fn_1_12B120(u8 *arg0, void *arg1, void *arg2, s32 *arg3, void *arg4, s32 *a
         } else {
             fn_1_12BF7C((void *)(*(void **)((u8 *)(arg0) + 36)), var_r31_2, 0x280U, 0x18CU);
         }
-        fn_1_12C110(*(u32 *)((u8 *)(arg0) + 12), (u32) (*(s16 *)((u8 *)(arg0) + 22)), (u32) (*(s16 *)((u8 *)(arg0) + 20)));
-        fn_1_12C47C((void *)(*(void **)((u8 *)(arg0) + 16)), (void *)(fn_1_12F118()), (s32) (*(s16 *)((u8 *)(arg0) + 20)));
+        fn_1_12C110(*(u32 *)((u8 *)(arg0) + 12), (*(s16 *)((u8 *)(arg0) + 22)), (*(s16 *)((u8 *)(arg0) + 20)));
+        fn_1_12C47C((void *)(*(void **)((u8 *)(arg0) + 16)), (void *)(fn_1_12F118()), (*(s16 *)((u8 *)(arg0) + 20)));
         fn_1_12D404(*(u32 *)((u8 *)(arg0) + 4), *(u32 *)((u8 *)(arg0) + 8), *(u32 *)((u8 *)(arg0) + 24), (void *)(arg1), (u32)(arg3), (u32)(arg4), (void *)(*(void **)((u8 *)(arg0) + 40)), *(u32 *)((u8 *)(arg0) + 48), *(u32 *)((u8 *)(arg0) + 52), (u32 *)(&lbl_1_data_407BC), 3U);
     }
     fn_1_435C((void *)(arg2));
@@ -956,9 +956,9 @@ struct fn_1_12B3F8_lbl_1_bss_8B3A0 {
 void fn_1_12B3F8(void *arg0, void *arg1, void *arg2, u32 arg3, u32 arg4, s32 *arg5, s32 arg_sp0) {
     s16 var_r30;
 
-    if ((s32) (*(s32 *)((u8 *)(arg5) + 0)) != -1) {
+    if ((*(s32 *)((u8 *)(arg5) + 0)) != -1) {
         fn_1_435C((void *)(arg2));
-        fn_1_426C((u32) (*(s32 *)((u8 *)(arg5) + 0)));
+        fn_1_426C((*(s32 *)((u8 *)(arg5) + 0)));
         (*(s32 *)((u8 *)(arg5) + 0)) = -1;
     }
     if (!(((struct fn_1_12B3F8_lbl_1_bss_8B3A0 *)&lbl_1_bss_8B3A0)->unk_94 & 0x80000000)) {
@@ -1160,7 +1160,7 @@ void fn_1_12B664(s16 idx, Menu_12B664 *obj, Slot_12B664 *slots)
             }
         }
         buttons = (u16 *)&lbl_1_bss_9F8.unk_0;
-        buttons += (u32)(s32)idx * 10;
+        buttons += (s32)idx * 10;
         if ((*(buttons += 5) >> 4) & 1) {
             t = sel + 1;
             sel = WRAP(t);
@@ -1179,7 +1179,7 @@ void fn_1_12B664(s16 idx, Menu_12B664 *obj, Slot_12B664 *slots)
         }
         old = sel;
         buttons = (u16 *)&lbl_1_bss_9F8.unk_0;
-        buttons += (u32)(s32)idx * 10;
+        buttons += (s32)idx * 10;
         if ((*(buttons += 9) >> 8) & 1) {
             t = sel + 1;
             sel = WRAP(t);
@@ -3479,7 +3479,7 @@ void fn_1_12ECA8(s16 arg0, s16 arg1, void *arg2, void *arg3, void *arg4) {
         }
     }
 
-    p = (u8 *)lbl_1_bss_8B5CC + ((s32)(s16)arg0 << 3);
+    p = (u8 *)lbl_1_bss_8B5CC + ((s16)arg0 << 3);
     *(void **)p = arg2;
     *(void **)((u8 *)p + 4) = arg3;
     *(void **)((u8 *)arg4 + 0xc) = (void *)fn_1_12E424;
@@ -4122,10 +4122,10 @@ void fn_1_12F4A8(Machine *m) {
         ai->unk_10 = 0.0f;
         if (near && !(m->flags & 0x2800000)) {
             ai->throttle = 0.3f;
-            ai->lateral = -0.42f + (f32)(0.84f * (f32)((m->id >> 1) & 1));
+            ai->lateral = -0.42f + (f32)(0.84f * ((m->id >> 1) & 1));
         } else {
             ai->throttle = 0.3f;
-            ai->lateral = -0.225f + (f32)(0.15f * (f32)(m->id % 4));
+            ai->lateral = -0.225f + (f32)(0.15f * (m->id % 4));
         }
         fn_1_130B8C(ai, self);
         break;
@@ -4187,7 +4187,7 @@ void fn_1_12F4A8(Machine *m) {
                     ai->lateral = pos + r / self->unk_68;
                 }
                 found = 1;
-                ai->throttle = 1.0f + (f32)(0.05f * (f32)(ai->mode - 5));
+                ai->throttle = 1.0f + (f32)(0.05f * (ai->mode - 5));
             }
         }
         switch (ai->mode) {
@@ -4201,7 +4201,7 @@ void fn_1_12F4A8(Machine *m) {
             }
         case 6:
             if (__fabs(selfRatio - leaderRatio) < 0.15f &&
-                self->unk_F8 - leader->unk_F8 < 20.0f * (f32)(s32)(((pad->flags >> 5) & 1) + 1) && !found &&
+                self->unk_F8 - leader->unk_F8 < 20.0f * (s32)(((pad->flags >> 5) & 1) + 1) && !found &&
                 self->unk_F8 > 5.0f + leader->unk_F8 && !(m->flags & 0x20) && !level &&
                 (pad->flags & 0x20008)) {
                 m->flags |= 8;
@@ -4305,7 +4305,7 @@ void fn_1_12F4A8(Machine *m) {
             }
         } else if (fn_1_864E8(1) & 0x880) {
             ai->throttle = 1.3f;
-            if ((f32)__abs((s32)(leader->unk_F8 - self->unk_F8)) < 5.0f) {
+            if ((f32)__abs((leader->unk_F8 - self->unk_F8)) < 5.0f) {
                 ai->lateral = leader->unk_108 / leader->unk_68;
             }
         } else {
@@ -4381,9 +4381,9 @@ void fn_1_12F4A8(Machine *m) {
                 ai->unk_10 = 0.5f;
             }
             ai->throttle = 0.6f;
-            ai->lateral = -0.38f + (f32)(0.76f * (f32)((m->id >> 1) & 1));
+            ai->lateral = -0.38f + (f32)(0.76f * ((m->id >> 1) & 1));
         } else {
-            ai->lateral = -0.225f + (f32)(0.15f * (f32)(m->id % 4));
+            ai->lateral = -0.225f + (f32)(0.15f * (m->id % 4));
             if (far) {
                 ai->throttle = 0.5f;
             } else {
@@ -4411,7 +4411,7 @@ void fn_1_12F4A8(Machine *m) {
         } else {
             cpu_pedals(ai, 1.0f, 0.0f);
         }
-        ai->lateral = -0.38f + (f32)(0.76f * (f32)((m->id >> 1) & 1));
+        ai->lateral = -0.38f + (f32)(0.76f * ((m->id >> 1) & 1));
         fn_1_130B8C(ai, self);
         break;
     case 25: {

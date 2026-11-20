@@ -111,9 +111,9 @@ void fn_16_2EEC(s16 index, s16 x, s16 y) {
         t1 = CLAMP01(ratio);
         if (lbl_1_bss_8B614.unk_4C & 0x10000000) {
             alpha = t1;
-            width = (s16) (32.0f + (f32) (44.0f * t0));
+            width = (32.0f + (f32) (44.0f * t0));
         } else if (lbl_1_bss_8B614.unk_4C & 0x08000000) {
-            width = (s16) (32.0f + (f32) (44.0f * (1.0f - t1)));
+            width = (32.0f + (f32) (44.0f * (1.0f - t1)));
             alpha = 1.0f - t0;
         } else {
             alpha = 1.0f;

@@ -718,7 +718,7 @@ void fn_15_3AC(void) {
             r = lbl_801A63C0;
             do {
                 r = r * 0x676A4B6B + 0x33CB;
-                idx = (s16)((s32)((r >> 16) & 0x7FFF) % 41);
+                idx = ((s32)((r >> 16) & 0x7FFF) % 41);
             } while ((mask & ((u64)1 << idx)) != 0);
             lbl_801A63C0 = r;
             mask |= (u64)1 << idx;
@@ -1279,15 +1279,15 @@ void fn_15_11DC(void) {
                 live->unk_5C += 2;
             }
             frame = lbl_15_bss_18;
-            value = 1.0f - (f32)(timeline->results_start + 30 - frame) / 30.0f;
+            value = 1.0f - (timeline->results_start + 30 - frame) / 30.0f;
             fade = winning_clamp(value, 0.0f, 1.0f);
             if (frame >= lbl_15_data_90.results_end && (lbl_15_bss_34 || lbl_15_bss_35)) {
-                value = (f32)(lbl_15_data_90.results_end + 30 - frame) / 30.0f;
+                value = (lbl_15_data_90.results_end + 30 - frame) / 30.0f;
                 fade = winning_clamp(value, 0.0f, 1.0f);
             }
             previous_scale = lbl_15_bss_60;
-            scale_step = 0.01 * (f64)(2.0f - previous_scale);
-            lbl_15_bss_60 = (f32)((f64)previous_scale + scale_step);
+            scale_step = 0.01 * (2.0f - previous_scale);
+            lbl_15_bss_60 = ((f64)previous_scale + scale_step);
             packet = lbl_1_rodata_26F8;
             packet.x = 320.0f;
             packet.y = 240.0f;
@@ -1349,7 +1349,7 @@ void fn_15_11DC(void) {
             if (lbl_15_bss_18 >= lbl_15_data_90.hide_result_at) {
                 lbl_15_bss_36 = 0;
             } else {
-                value = 1.0f - (f32)(timeline->results_end + 30 - lbl_15_bss_18) / 30.0f;
+                value = 1.0f - (timeline->results_end + 30 - lbl_15_bss_18) / 30.0f;
                 lbl_15_bss_44 = winning_clamp(value, 0.0f, 1.0f);
             }
             if ((s32)skip != 0) {
@@ -1363,7 +1363,7 @@ void fn_15_11DC(void) {
             if (lbl_15_bss_18 >= lbl_15_data_90.hide_result_at) {
                 lbl_15_bss_36 = 0;
             } else {
-                value = 1.0f - (f32)(timeline->results_end + 30 - lbl_15_bss_18) / 30.0f;
+                value = 1.0f - (timeline->results_end + 30 - lbl_15_bss_18) / 30.0f;
                 lbl_15_bss_48 = winning_clamp(value, 0.0f, 1.0f);
             }
             if ((s32)skip != 0) {
@@ -2664,7 +2664,7 @@ void fn_15_4578(void) {
             banner_t = 1.0f - ((f32)lbl_15_bss_18 - 540.0f) / 60.0f;
             alpha = winning_clamp(banner_t, 0.0f, 1.0f);
         } else {
-            banner_t = (f32)(lbl_15_bss_18 - 300) / 60.0f;
+            banner_t = (lbl_15_bss_18 - 300) / 60.0f;
             alpha = winning_clamp(banner_t, 0.0f, 1.0f);
         }
         switch (racer) {
@@ -2722,7 +2722,7 @@ void fn_15_4578(void) {
     end = start.value;
     end += 400;
     count = 7;
-    fade_start = (s32)((f32)end - 60.0f);
+    fade_start = ((f32)end - 60.0f);
     if (lbl_15_bss_154 == 5) count = 4;
     if (frame.value == start.value) {
         if (lbl_15_bss_154 == 5) {
@@ -2874,7 +2874,7 @@ void fn_15_4578(void) {
                 backdrop_t = 1.0f - alpha;
                 alpha = winning_clamp(backdrop_t,0.0f,1.0f);
                 packet.alpha = alpha;
-                fn_1_50A90(&packet,18,45,width,(s32)(height_2*alpha));
+                fn_1_50A90(&packet,18,45,width,(height_2*alpha));
             }
             if (lbl_15_bss_154 == 5 && (s16)i == 1) {
                 switch (racer) {

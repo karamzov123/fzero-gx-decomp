@@ -85,7 +85,7 @@ void fn_1_4A00(s32 enabled, u8 mode, void *value) {
 
     if (data->unk_6 != -1) {
         fn_1_4BB0();
-        lbl_1_data_2CDC.unk_4 = (u16)(s16)(65535.0f * fn_1_4D14(&lbl_1_data_2CDC));
+        lbl_1_data_2CDC.unk_4 = (65535.0f * fn_1_4D14(&lbl_1_data_2CDC));
     } else if (enabled != 0) {
         data->unk_4 = -1;
     } else {
@@ -248,7 +248,7 @@ void fn_1_4E60(Obj_1_data_2CDC *obj) {
     u32 src;
     Obj_1_data_2CDC *dst;
 
-    base = (f32)(u32)obj->unk_4 / 65535.0f;
+    base = (u32)obj->unk_4 / 65535.0f;
     max = (obj->unk_0 == 0x3c) ? 0xf : obj->unk_0;
     c1 = obj->unk_1;
     if (c1 > max) {
@@ -281,7 +281,7 @@ void fn_1_4E60(Obj_1_data_2CDC *obj) {
     }
     if ((obj->unk_3 & 1) == 0) {
         obj->unk_6 = -1;
-        obj->unk_4 = (s16)(65535.0f * value);
+        obj->unk_4 = (65535.0f * value);
         fn_1_4060();
     }
 }
@@ -686,7 +686,7 @@ void fn_1_56B8(void) {
     entry = c->entries;
     for (i = 0; i < count; i++, entry++) {
         scale = fn_1_A6FE8();
-        mode = (u8)(c->target->unk_48);
+        mode = (c->target->unk_48);
         if ((s8)mode == 1 || (i == 0 && (s8)mode == 3) ||
             (i == 1 && (s8)mode == 4) ||
             (i == 2 && (s8)mode == 5)) {
@@ -854,8 +854,8 @@ void fn_1_5948(u32 arg0) {
         fn_1_A7024(*(f32 *)((u8 *)v4 + 0x1C), (v7 = fn_1_A6FE8()), lbl_1_rodata_18C, lbl_1_rodata_190);
         return;
     }
-    v9 = (f32)(u32)fn_1_A5D88();
-    v10 = (f32)(u32)fn_1_A5DB0();
+    v9 = (u32)fn_1_A5D88();
+    v10 = (u32)fn_1_A5DB0();
     switch ((s32)arg0) {
     case 0:
         switch (CAM_MODE) {
@@ -1073,9 +1073,9 @@ void fn_1_5948(u32 arg0) {
     lbl_8006DD14(v41, (u8 *)lbl_801A6D00 + 0x30);
     fn_1_54E00(v43);
     v47 = lbl_1_rodata_18C;
-    if (v38 < lbl_1_rodata_1AC) v47 = (f32)(v47 * lbl_1_rodata_1B0);
-    else if (v38 < lbl_1_rodata_1B8) v47 = (f32)(v47 * lbl_1_rodata_1C0);
-    else if (v38 < lbl_1_rodata_1C8) v47 = (f32)(v47 * lbl_1_rodata_1D0);
+    if (v38 < lbl_1_rodata_1AC) v47 = (v47 * lbl_1_rodata_1B0);
+    else if (v38 < lbl_1_rodata_1B8) v47 = (v47 * lbl_1_rodata_1C0);
+    else if (v38 < lbl_1_rodata_1C8) v47 = (v47 * lbl_1_rodata_1D0);
     if ((s8)fn_1_A5DC4() != 0) {
         switch (*((u8 *)p_lbl_1_bss_F68 + 0xD)) {
         case 0: break;

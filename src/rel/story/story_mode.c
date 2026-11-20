@@ -5210,7 +5210,7 @@ void fn_7_2538(void) {
         cam.at.y = 0.0f;
         cam.at.z = 0.0f;
         if (lbl_7_bss_30 == 3) {
-            cam.eye.z = -8.5f + 0.3f * (f32)(30 - lbl_7_bss_4);
+            cam.eye.z = -8.5f + 0.3f * (30 - lbl_7_bss_4);
         }
         fn_8006F038(&cam.eye, &cam.at, 0);
     }
@@ -5280,7 +5280,7 @@ void fn_7_2538(void) {
         fn_1_49748(2.0f);
         fn_1_4955C(0.75f, 0.75f);
         fn_1_496FC(320.0f, 250.0f);
-        fn_1_495A0(0.75f + 0.25f * lbl_8006D188((s32)(65536.0f * (f32)(lbl_801A66A0 % 30) / 30.0f)));
+        fn_1_495A0(0.75f + 0.25f * lbl_8006D188((65536.0f * (lbl_801A66A0 % 30) / 30.0f)));
         fn_1_4AE0C("NEW!");
     }
     if (chapter > 0) {
@@ -5316,7 +5316,7 @@ void fn_7_2538(void) {
             pkt5.scale_y = 0.5f;
             fn_1_4F734(&pkt5);
         } else {
-            fn_1_50A90(&pkt5, 640, 3, 640, (s32)(82.0f * ((f32)(lbl_7_bss_28 - 100) / 100.0f)));
+            fn_1_50A90(&pkt5, 640, 3, 640, (s32)(82.0f * ((lbl_7_bss_28 - 100) / 100.0f)));
         }
         if (lbl_7_bss_28 != 200) {
             return;
@@ -5350,9 +5350,9 @@ void fn_7_2538(void) {
             pkt5.flags = 10;
             pkt5.alpha = 0.5f;
             pkt5.image = 0x10000 - 17892;
-            pkt5.color[0] = (s32)(40.0f + 40.0f * lbl_8006D188((s32)(16384.0f + 65536.0f * (f32)(lbl_7_bss_C % 60) / 60.0f)));
-            pkt5.color[1] = (s32)(80.0f + 80.0f * lbl_8006D188((s32)(16384.0f + 65536.0f * (f32)(lbl_7_bss_C % 60) / 60.0f)));
-            pkt5.color[2] = (s32)(80.0f + 80.0f * lbl_8006D188((s32)(16384.0f + 65536.0f * (f32)(lbl_7_bss_C % 60) / 60.0f)));
+            pkt5.color[0] = (40.0f + 40.0f * lbl_8006D188((16384.0f + 65536.0f * (lbl_7_bss_C % 60) / 60.0f)));
+            pkt5.color[1] = (80.0f + 80.0f * lbl_8006D188((16384.0f + 65536.0f * (lbl_7_bss_C % 60) / 60.0f)));
+            pkt5.color[2] = (80.0f + 80.0f * lbl_8006D188((16384.0f + 65536.0f * (lbl_7_bss_C % 60) / 60.0f)));
             fn_1_50A90(&pkt5, 7, 7, 128, 24);
             if (chapter > 0) {
                 fn_1_49410();
@@ -5454,7 +5454,7 @@ void fn_7_33F0(void) {
         pkt.scale_y = 0.5f;
         fn_1_4F734(&pkt);
     } else {
-        fn_1_50A90(&pkt, 640, 3, 640, (s32)(136.0f * ((f32)(lbl_7_bss_28 - 100) / 100.0f)));
+        fn_1_50A90(&pkt, 640, 3, 640, (s32)(136.0f * ((lbl_7_bss_28 - 100) / 100.0f)));
     }
     if (lbl_7_bss_28 != 200) {
         return;
@@ -5474,13 +5474,13 @@ void fn_7_33F0(void) {
     pkt.z = pkt.z - 0.03f;
     pkt.alpha = 0.5f;
     pkt.image = 0x10000 - 17892;
-    wave = lbl_8006D188((s32)(65536.0f * (f32)(lbl_801A66A0 % 15) / 15.0f));
-    pkt.color[0] = (s32)(40.0f + 40.0f * wave);
-    wave = lbl_8006D188((s32)(65536.0f * (f32)(lbl_801A66A0 % 15) / 15.0f));
-    pkt.color[1] = (s32)(80.0f + 80.0f * wave);
-    wave = lbl_8006D188((s32)(65536.0f * (f32)(lbl_801A66A0 % 15) / 15.0f));
+    wave = lbl_8006D188((65536.0f * (lbl_801A66A0 % 15) / 15.0f));
+    pkt.color[0] = (40.0f + 40.0f * wave);
+    wave = lbl_8006D188((65536.0f * (lbl_801A66A0 % 15) / 15.0f));
+    pkt.color[1] = (80.0f + 80.0f * wave);
+    wave = lbl_8006D188((65536.0f * (lbl_801A66A0 % 15) / 15.0f));
     pkt.flags = 10;
-    pkt.color[2] = (s32)(80.0f + 80.0f * wave);
+    pkt.color[2] = (80.0f + 80.0f * wave);
     fn_1_50A90(&pkt, 7, 7, 474, 90);
     pkt = lbl_1_rodata_26F8;
     pkt.image = 0x10000 - 17894;

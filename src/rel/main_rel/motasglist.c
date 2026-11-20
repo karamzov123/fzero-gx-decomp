@@ -217,59 +217,59 @@ void fn_1_41850(void *arg0, s32 arg_sp0) {
         if (!(temp_r3 & 4)) {
             var_r27 = 0;
             var_r28 = 0;
-            while (var_r27 < (s32) (*(u16 *)((u8 *)(arg0) + 16))) {
+            while (var_r27 < (*(u16 *)((u8 *)(arg0) + 16))) {
                 temp_r4 = (void *)(((struct fn_1_41850_Node *)(*(void **)((u8 *)(arg0) + 12)))[var_r27].unk_28);
                 if (temp_r4 != NULL) {
-                    fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4), "motasglist.c", (s32)(0x123));
+                    fn_1_46B4((lbl_801A6410.unk_0), (void *)(temp_r4), "motasglist.c", (0x123));
                 }
                 var_r28 += 0x34;
                 var_r27 += 1;
                             }
             temp_r4_2 = (void *)(*(void **)((u8 *)(arg0) + 20));
             if (temp_r4_2 != NULL) {
-                fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_2), "motasglist.c", (s32)(0x125));
+                fn_1_46B4((lbl_801A6410.unk_0), (void *)(temp_r4_2), "motasglist.c", (0x125));
             }
             temp_r4_3 = (void *)(*(void **)((u8 *)(arg0) + 32));
             if (temp_r4_3 != NULL) {
-                fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_3), "motasglist.c", (s32)(0x126));
+                fn_1_46B4((lbl_801A6410.unk_0), (void *)(temp_r4_3), "motasglist.c", (0x126));
             }
         }
-        fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(*(void **)((u8 *)(arg0) + 12)), "motasglist.c", (s32)(0x128));
+        fn_1_46B4((lbl_801A6410.unk_0), (void *)(*(void **)((u8 *)(arg0) + 12)), "motasglist.c", (0x128));
     } else {
         var_r27_2 = (void *)(*(void **)((u8 *)(arg0) + 12));
         while (var_r27_2 != NULL) {
             temp_r4_4 = (void *)(*(void **)((u8 *)(var_r27_2) + 40));
             temp_r28 = (void *)(*(void **)((u8 *)(var_r27_2) + 48));
             if (temp_r4_4 != NULL) {
-                fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_4), "motasglist.c", (s32)(0x12E));
+                fn_1_46B4((lbl_801A6410.unk_0), (void *)(temp_r4_4), "motasglist.c", (0x12E));
             }
-            fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(var_r27_2), "motasglist.c", (s32)(0x12F));
+            fn_1_46B4((lbl_801A6410.unk_0), (void *)(var_r27_2), "motasglist.c", (0x12F));
             var_r27_2 = (void *)(temp_r28);
                     }
         temp_r4_5 = (void *)(*(void **)((u8 *)(arg0) + 32));
         if (temp_r4_5 != NULL) {
-            fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_5), "motasglist.c", (s32)(0x131));
+            fn_1_46B4((lbl_801A6410.unk_0), (void *)(temp_r4_5), "motasglist.c", (0x131));
         }
     }
     temp_r4_6 = (void *)(*(void **)((u8 *)(arg0) + 40));
     if (temp_r4_6 != NULL) {
-        fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_6), "motasglist.c", (s32)(0x133));
+        fn_1_46B4((lbl_801A6410.unk_0), (void *)(temp_r4_6), "motasglist.c", (0x133));
     }
     temp_r4_7 = (void *)(*(void **)((u8 *)(arg0) + 52));
     if (temp_r4_7 != NULL) {
-        fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_7), "motasglist.c", (s32)(0x10B));
+        fn_1_46B4((lbl_801A6410.unk_0), (void *)(temp_r4_7), "motasglist.c", (0x10B));
     }
     temp_r4_8 = (void *)(*(void **)((u8 *)(arg0) + 56));
     if (temp_r4_8 != NULL) {
-        fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_8), "motasglist.c", (s32)(0x10C));
+        fn_1_46B4((lbl_801A6410.unk_0), (void *)(temp_r4_8), "motasglist.c", (0x10C));
     }
     temp_r4_9 = (void *)(*(void **)((u8 *)(arg0) + 44));
     if (temp_r4_9 != NULL) {
-        fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_9), "motasglist.c", (s32)(0x10D));
+        fn_1_46B4((lbl_801A6410.unk_0), (void *)(temp_r4_9), "motasglist.c", (0x10D));
     }
     temp_r4_10 = (void *)(*(void **)((u8 *)(arg0) + 48));
     if (temp_r4_10 != NULL) {
-        fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_10), "motasglist.c", (s32)(0x10E));
+        fn_1_46B4((lbl_801A6410.unk_0), (void *)(temp_r4_10), "motasglist.c", (0x10E));
     }
     (*(void **)((u8 *)(arg0) + 52)) = (void *)(NULL);
     (*(s8 *)((u8 *)(arg0) + 39)) = 0;
@@ -280,9 +280,9 @@ void fn_1_41850(void *arg0, s32 arg_sp0) {
     (*(s8 *)((u8 *)(arg0) + 76)) = 0;
     temp_r4_11 = (void *)(*(void **)((u8 *)(arg0) + 8));
     if ((temp_r4_11 != NULL) && !((*(u16 *)((u8 *)(arg0) + 2)) & 2)) {
-        fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(temp_r4_11), "motasglist.c", (s32)(0x137));
+        fn_1_46B4((lbl_801A6410.unk_0), (void *)(temp_r4_11), "motasglist.c", (0x137));
     }
-    fn_1_46B4((u32)(lbl_801A6410.unk_0), (void *)(arg0), "motasglist.c", (s32)(0x138));
+    fn_1_46B4((lbl_801A6410.unk_0), (void *)(arg0), "motasglist.c", (0x138));
 }
 /* fzgx:end fn_1_41850 */
 
@@ -519,7 +519,7 @@ void fn_1_41E34(fn_1_41E34_MotasglistData *data, u32 index, MotasglistResult *re
 
     result->first = entry_a->id;
     result->second = entry_b->id;
-    delta = (f32)(entry_b->frame - entry_a->frame);
+    delta = (entry_b->frame - entry_a->frame);
     if (lbl_1_rodata_F34 == delta) {
         delta = lbl_1_rodata_F30;
     }
@@ -1364,7 +1364,7 @@ void fn_1_42AD0(Fn1_42AD0_Skel *skel, void *data, u32 arg2, u16 blend, u32 flags
         }
     }
     fn_1_4270C(skel, data, arg2);
-    new_length = (s32)(skel->anim.end - skel->anim.start);
+    new_length = (skel->anim.end - skel->anim.start);
     if (keep) {
         skel->flags |= 1;
         skel->prev_anim.speed *= length / new_length;
@@ -2006,7 +2006,7 @@ void fn_1_433E0(Fn1433E0Object *object) {
     if (object->frame < object->duration) {
         t = object->frame / object->duration;
         if (object->flags & 0xC00) {
-            t = lbl_8006D188((s32)(lbl_1_rodata_F68 * (lbl_1_rodata_F6C * t)));
+            t = lbl_8006D188((lbl_1_rodata_F68 * (lbl_1_rodata_F6C * t)));
             if (object->flags & 0x800) {
                 t = t * t;
             }
@@ -2286,9 +2286,9 @@ void fn_1_438AC(Fn142E74Object *arg0, Fn142E74Entry *arg1, s32 arg2) {
     rot.z = lbl_1_rodata_F54;
     lbl_8006DFC4((u8 *)arg1 + 40);
     if ((arg0->flags & 2) != 0) {
-        mathutil_mtxA_rotate_z((s32)(lbl_1_rodata_F68 * (f32)((s8)(*(u8 **)((u8 *)arg1 + 208))[3] * 45)));
-        mathutil_mtxA_rotate_y((s32)(lbl_1_rodata_F68 * (f32)((s8)(*(u8 **)((u8 *)arg1 + 208))[2] * 45)));
-        mathutil_mtxA_rotate_x((s32)(lbl_1_rodata_F68 * (f32)((s8)(*(u8 **)((u8 *)arg1 + 208))[1] * 45)));
+        mathutil_mtxA_rotate_z((lbl_1_rodata_F68 * ((s8)(*(u8 **)((u8 *)arg1 + 208))[3] * 45)));
+        mathutil_mtxA_rotate_y((lbl_1_rodata_F68 * ((s8)(*(u8 **)((u8 *)arg1 + 208))[2] * 45)));
+        mathutil_mtxA_rotate_x((lbl_1_rodata_F68 * ((s8)(*(u8 **)((u8 *)arg1 + 208))[1] * 45)));
     }
     if ((*(u16 *)((u8 *)arg1 + 4) & 1) != 0) {
         lbl_8006DB74((u8 *)arg1 + 136);
@@ -2300,9 +2300,9 @@ void fn_1_438AC(Fn142E74Object *arg0, Fn142E74Entry *arg1, s32 arg2) {
             if ((**(u8 **)((u8 *)arg1 + 208) & 16) != 0) rot.y = -rot.y;
             if ((**(u8 **)((u8 *)arg1 + 208) & 32) != 0) rot.z = -rot.z;
         }
-        mathutil_mtxA_rotate_z((s32)(lbl_1_rodata_F68 * rot.z));
-        mathutil_mtxA_rotate_y((s32)(lbl_1_rodata_F68 * rot.y));
-        mathutil_mtxA_rotate_x((s32)(lbl_1_rodata_F68 * rot.x));
+        mathutil_mtxA_rotate_z((lbl_1_rodata_F68 * rot.z));
+        mathutil_mtxA_rotate_y((lbl_1_rodata_F68 * rot.y));
+        mathutil_mtxA_rotate_x((lbl_1_rodata_F68 * rot.x));
     } else if ((*(u16 *)((u8 *)arg1 + 4) & 4) == 0) {
         lbl_8006DFC4((u8 *)arg1 + 88);
     }
@@ -2436,9 +2436,9 @@ void fn_1_43E08(Obj *object, Entry *entry, u16 frameA, u16 frameB, f32 value) {
             rot.x = -rot.x;
             rot.y = -rot.y;
         }
-        mathutil_mtxA_rotate_z((s32)(lbl_1_rodata_F68.unk_0 * rot.z));
-        mathutil_mtxA_rotate_y((s32)(lbl_1_rodata_F68.unk_0 * rot.y));
-        mathutil_mtxA_rotate_x((s32)(lbl_1_rodata_F68.unk_0 * rot.x));
+        mathutil_mtxA_rotate_z((lbl_1_rodata_F68.unk_0 * rot.z));
+        mathutil_mtxA_rotate_y((lbl_1_rodata_F68.unk_0 * rot.y));
+        mathutil_mtxA_rotate_x((lbl_1_rodata_F68.unk_0 * rot.x));
     } else {
         lbl_8006DFC4(entry->rot58);
     }
@@ -2507,7 +2507,7 @@ extern const f64 lbl_1_rodata_F58, lbl_1_rodata_F60;
                 keys += i;                                                                          \
                 key = keys;                                                                         \
                 start = key[0].frame;                                                               \
-                duration = (f32)((s32)key[1].frame - (s32)start);                                   \
+                duration = ((s32)key[1].frame - (s32)start);                                   \
                 t = (arg3 - (f32)start) / duration;                                                 \
                 value = key[0].value;                                                               \
                 a = key[1].value;                                                                   \
@@ -2524,7 +2524,7 @@ extern const f64 lbl_1_rodata_F58, lbl_1_rodata_F60;
                     negprod = lbl_1_rodata_F78 * t3;                                                \
                     value = (f32)(value * (lbl_1_rodata_F50 + ((f32)(2.0f * t3) - three))) +        \
                             (f32)(a * (negprod + three));                                           \
-                    value = value + (f32)((f32)(lbl_1_rodata_F7C * duration) *                      \
+                    value = value + (f32)((lbl_1_rodata_F7C * duration) *                      \
                                           ((f32)(b * (t + (t3 - (f32)(2.0f * t2)))) +               \
                                            (f32)(c * (t3 - t2))));                                  \
                     break;                                                                          \
@@ -2827,9 +2827,9 @@ void fn_1_44A74(Obj *object, Node *entry) {
         a = chain[0]->unk_14;
         b = entry->unk_14;
         bb = b * b;
-        x = ((f32)(a * a) - bb + (f32)(len * len)) / (lbl_1_rodata_F74 * len);
+        x = ((a * a) - bb + (f32)(len * len)) / (lbl_1_rodata_F74 * len);
         if (a > x) {
-            h = lbl_8006D0B4((f32)(a * a) - (f32)(x * x));
+            h = lbl_8006D0B4((a * a) - (f32)(x * x));
         } else {
             x = a;
             h = lbl_1_rodata_F54;

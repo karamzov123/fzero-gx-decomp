@@ -642,7 +642,7 @@ void fn_1_988DC(void *arg0) {
     tmp = *(s32 *)((u8 *)arg0 + 68);
     *(s32 *)((u8 *)arg0 + 68) = tmp + 1;
     cur = *(s32 *)((u8 *)arg0 + 64);
-    ratio = (f32)(cnt) / 900.0f;
+    ratio = (cnt) / 900.0f;
     switch (cur) {
     case 0:
         if (c20 != 0) {
@@ -661,12 +661,12 @@ void fn_1_988DC(void *arg0) {
         if (*(u32 *)((u8 *)arg0 + 64) == 2) {
             scale = 0.8 * ratio;
             old = *(f32 *)((u8 *)arg0 + 116);
-            v = (f32)((f64)old * (1.0 + scale));
+            v = ((f64)old * (1.0 + scale));
             *(f32 *)((u8 *)arg0 + 116) = v;
         } else {
             scale = 0.1 * ratio;
             old = *(f32 *)((u8 *)arg0 + 116);
-            v = (f32)((f64)old * (1.0 + scale));
+            v = ((f64)old * (1.0 + scale));
             *(f32 *)((u8 *)arg0 + 116) = v;
         }
         v = *(f32 *)((u8 *)arg0 + 116);
@@ -726,7 +726,7 @@ void fn_1_988DC(void *arg0) {
     if (*(s16 *)&lbl_1_bss_960 != 0xe) {
         v = *(f32 *)(p + 512);
         var_f0 = v < 0.0 ? 0.0 : (v > 1.0 ? 1.0 : (f64)v);
-        var_f4 = (f32)((f64)var_f4 * var_f0);
+        var_f4 = ((f64)var_f4 * var_f0);
     }
     if (*(u16 *)(p + 532) != 0) {
         var_f4 *= 0.0f;
@@ -737,10 +737,10 @@ void fn_1_988DC(void *arg0) {
     if (i != 0) {
         if (*(u32 *)((u8 *)arg0 + 64) == 2) {
             scale = 0.8 * ratio;
-            var_f4 = (f32)((f64)var_f4 * (1.0 + scale));
+            var_f4 = ((f64)var_f4 * (1.0 + scale));
         } else {
             scale = 0.1 * ratio;
-            var_f4 = (f32)((f64)var_f4 * (1.0 + scale));
+            var_f4 = ((f64)var_f4 * (1.0 + scale));
         }
     }
     old = *(f32 *)((u8 *)arg0 + 116);
@@ -1121,7 +1121,7 @@ void fn_1_98F28(fn_1_98F28_Event *event) {
         size *= 1.0f + (b->speed - 1.0f) / 40.0f;
     }
     if (b->boost) {
-        size *= 1.0f + (f32)(b->boost * b->boost) / 900.0f / 5.0f;
+        size *= 1.0f + (b->boost * b->boost) / 900.0f / 5.0f;
     }
     fade = 1.0f - (f32)(0.05f * (b->flags & 1));
     dist = fn_1_A71AC();
@@ -1266,7 +1266,7 @@ void fn_1_98F28(fn_1_98F28_Event *event) {
         memset(buf, 0, 0x1e1);
         lbl_8006DCA4();
         lbl_8006E1B0(&b->pos, &pos);
-        edge = (f32)(1.0 - __fabs(lbl_8006D534(&pos, &fwd)));
+        edge = (1.0 - __fabs(lbl_8006D534(&pos, &fwd)));
         fa = 0.11313709f * (10.0f + (f32)(80.0f * edge));
         fa = -(fa * size / (pos.z * dist));
         if (fa > 0.05f) {
@@ -1307,9 +1307,9 @@ void fn_1_98F28(fn_1_98F28_Event *event) {
             while (rem > 0.0f) {
                 lbl_8006E1B0(&pos, &b->trail[lbl_1_bss_6EA08][n]);
                 pp->pos = pos;
-                pp->pos.x += (f32)(0.2f * ((f32)(u16)fn_1_584AC() / 32767.0f - 0.5f));
-                pp->pos.y += (f32)(0.2f * ((f32)(u16)fn_1_584AC() / 32767.0f - 0.5f));
-                pp->pos.z += (f32)(0.2f * ((f32)(u16)fn_1_584AC() / 32767.0f - 0.5f));
+                pp->pos.x += (f32)(0.2f * ((u16)fn_1_584AC() / 32767.0f - 0.5f));
+                pp->pos.y += (f32)(0.2f * ((u16)fn_1_584AC() / 32767.0f - 0.5f));
+                pp->pos.z += (f32)(0.2f * ((u16)fn_1_584AC() / 32767.0f - 0.5f));
                 pp->size = 0.70710677f * sz;
                 pp->rot = ang;
                 if (rem < 4.0f) {
@@ -1411,9 +1411,9 @@ void fn_1_98F28(fn_1_98F28_Event *event) {
                             }
                             {
                                 lbl_8006E1B0(cur, pp);
-                                pp->pos.x += (f32)(0.15f * ((f32)(u16)fn_1_584AC() / 32767.0f - 0.5f));
-                                pp->pos.y += (f32)(0.15f * ((f32)(u16)fn_1_584AC() / 32767.0f - 0.5f));
-                                pp->pos.z += (f32)(0.15f * ((f32)(u16)fn_1_584AC() / 32767.0f - 0.5f));
+                                pp->pos.x += (f32)(0.15f * ((u16)fn_1_584AC() / 32767.0f - 0.5f));
+                                pp->pos.y += (f32)(0.15f * ((u16)fn_1_584AC() / 32767.0f - 0.5f));
+                                pp->pos.z += (f32)(0.15f * ((u16)fn_1_584AC() / 32767.0f - 0.5f));
                                 pp->size = 0.70710677f * sz * fn_1_98F28_clamp(2.0f * d2, 0.1f, 1.0f);
                                 pp->rot = ang;
                                 if (rem < 4.0f) {
@@ -1478,7 +1478,7 @@ f32 fn_1_9A0A8(u8 *p)
     u8 id;
     id = p[0x475];
     if (fn_1_6EC0(id)) {
-        if ((u32)(s8)p[0x475] == fn_1_5910()) {
+        if ((s8)p[0x475] == fn_1_5910()) {
             fn_1_681C(p[0x475], v);
             a = v[0] - *(f32 *)(p + 0x7c);
             b = v[1];
@@ -5916,7 +5916,7 @@ void fn_1_9ADCC(Obj_1_data_2A7E0_At3C *arg0, s32 arg1) {
                     arg0 = (Obj_1_data_2A7E0_At3C *)arg0->unk_4;
                     c = entry->unk_8;
                     temp[0] = 0x4d;
-                    temp[1] = (u8)(c + 0x30);
+                    temp[1] = (c + 0x30);
                     temp[2] = 0;
                     ret = fn_1_41488(((BurnerParent *)arg0)->unk_24, temp);
                     if (ret == 0xffffffff) {
@@ -6089,7 +6089,7 @@ static inline s32 fn_1_9AF80_restart(fn_1_9AF80_List *list) {
     for (; j < list->count; j++, entry++) {
         frame = &entry->frame[lbl_1_data_2A7E0.unk_60];
         if (*frame >= 0) {
-            owner->frame = (f32)entry->lo + (f32)(*frame % (entry->hi - entry->lo));
+            owner->frame = (f32)entry->lo + (*frame % (entry->hi - entry->lo));
             fn_1_42E74(owner);
             found = 1;
             break;
@@ -7470,7 +7470,7 @@ void fn_1_9BBE4(void *arg0, u32 arg1, u32 arg2, Fn183D28Vec3 *arg3) {
             v20 = K_ONE;
         } else {
             if ((v17 & 0x100000) != 0) {
-                lbl_8006D1BC((s16)(v16 + (STATE.unk_44 << 8)), &loc_24, &loc_20);
+                lbl_8006D1BC((v16 + (STATE.unk_44 << 8)), &loc_24, &loc_20);
                 lbl_8006D9E8(loc_24, K_ZERO, loc_20);
             } else {
                 lbl_8006DCA4();
@@ -7949,7 +7949,7 @@ void fn_1_9CCE8(s32 arg0) {
     case 2:
         fn_8006E294(&value);
         result = lbl_8006D24C(value.z, value.y);
-        mathutil_mtxA_rotate_x((s16)(result - 0x4000));
+        mathutil_mtxA_rotate_x((result - 0x4000));
         break;
     case 3:
         fn_8006E294(&value);

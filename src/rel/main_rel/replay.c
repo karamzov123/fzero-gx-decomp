@@ -518,7 +518,7 @@ u32 fn_1_F2F58(void) {
     if ((flags & 1) == 0) {
         return 0;
     }
-    return (u32)__cntlzw((u32)((flags >> 2) & 1)) >> 5;
+    return (u32)__cntlzw(((flags >> 2) & 1)) >> 5;
 }
 /* fzgx:end fn_1_F2F58 */
 
@@ -1256,7 +1256,7 @@ void fn_1_F3BC0(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     fn_1_F43F0((u8 *)v0, (u32 *)loc_8, ((ReplaySamples_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->samples[v2].c, 8, (0x90000 - 16384));
     v2++;
     }
-    fn_1_154CD0((u32)v0, ((((u32)(loc_8[0] + 7) >> 3) + 31) & ~0x1F));
+    fn_1_154CD0((u32)v0, ((((loc_8[0] + 7) >> 3) + 31) & ~0x1F));
     fn_1_7899C();
 }
 /* fzgx:end fn_1_F3BC0 */

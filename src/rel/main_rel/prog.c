@@ -138,7 +138,7 @@ void fn_1_A5DEC(void) {
         start = OSGetTick();
         do {
             ticks = (OS_BUS_CLOCK >> 2) / 1000;
-        } while ((u32)((OSGetTick() / ticks) - (start / ticks)) < 500);
+        } while (((OSGetTick() / ticks) - (start / ticks)) < 500);
         fn_1_3308();
         if (PAD_BIT(lbl_1_bss_9F8[0].button, 9) || PAD_BIT(lbl_1_bss_9F8[1].button, 9) ||
             PAD_BIT(lbl_1_bss_9F8[2].button, 9) || PAD_BIT(lbl_1_bss_9F8[3].button, 9) ||
@@ -251,7 +251,7 @@ s32 fn_1_A6480(void) {
     switch (state) {
     case 0:
         fn_8006CE1C(0.0f);
-        if (((u32)__cntlzw((u32)((-2147483647 - 1) - OSGetResetCode())) >> 5) != 0) {
+        if (((u32)__cntlzw(((-2147483647 - 1) - OSGetResetCode())) >> 5) != 0) {
             lbl_1_data_341B8->state = 2;
         } else {
             if (buttonA != 0) {
@@ -305,7 +305,7 @@ s32 fn_1_A66FC(s32 value) {
     s32 result;
 
     lbl_1_bss_6F5F4 = value;
-    if (((u32)__cntlzw((u32)((-2147483647 - 1) - OSGetResetCode())) >> 5) != 0) {
+    if (((u32)__cntlzw(((-2147483647 - 1) - OSGetResetCode())) >> 5) != 0) {
         if (OSGetProgressiveMode() != 0) {
             result = 1;
         } else {
@@ -574,7 +574,7 @@ void fn_1_A7024(f32 fovy, f32 aspect, f32 near, f32 far) {
     lbl_1_bss_6F608.near = near;
     lbl_1_bss_6F608.far = far;
     lbl_1_bss_6F608.aspect = aspect;
-    lbl_1_bss_6F608.tan = lbl_8006D21C((s32)(182.04444885253906 * (0.5 * fovy)));
+    lbl_1_bss_6F608.tan = lbl_8006D21C((182.04444885253906 * (0.5 * fovy)));
     lbl_1_bss_6F608.invTan = 1.0 / lbl_1_bss_6F608.tan;
 }
 /* fzgx:end fn_1_A7024 */
