@@ -200,13 +200,13 @@ void fn_1_A5F44(void) {
         fn_1_4AF10(progQuestion[lbl_801A66B4]);
         fn_1_496FC(256.0f, 258.0f);
         fn_1_4AF10(yes[lbl_801A66B4]);
-        if ((s32)lbl_1_data_341B8->progressive == 1 && (s32)lbl_1_data_341B8->state != 5) {
+        if ((s32)lbl_1_data_341B8->progressive == 1 && lbl_1_data_341B8->state != 5) {
             fn_1_496FC(256.0f, 258.0f);
             fn_1_4A0D8(cursorYes[lbl_801A66B4]);
         }
         fn_1_496FC(384.0f, 258.0f);
         fn_1_4AF10(no[lbl_801A66B4]);
-        if ((s32)lbl_1_data_341B8->progressive != 1 && (s32)lbl_1_data_341B8->state != 5) {
+        if ((s32)lbl_1_data_341B8->progressive != 1 && lbl_1_data_341B8->state != 5) {
             fn_1_496FC(384.0f, 258.0f);
             fn_1_4A0D8(cursorNo[lbl_801A66B4]);
         }
@@ -220,7 +220,7 @@ void fn_1_A5F44(void) {
         } else {
             fn_1_4AF10(interlace[lbl_801A66B4]);
         }
-        if ((s32)lbl_801A66B4 != 5) {
+        if (lbl_801A66B4 != 5) {
             fn_1_496FC(320.0f, 258.0f);
             fn_1_4AF10(wasSet[lbl_801A66B4]);
         }
@@ -446,7 +446,7 @@ void fn_1_A6870(u32 *mode) {
     fn_1_A7024(loc_14, fn_1_A6FE8(), loc_C, loc_8);
 
     rmode = lbl_801A6CF4;
-    fn_80038EEC(0.0f, 0.0f, (f32)rmode->fbWidth, (f32)rmode->efbHeight, 0.0f, 1.0f);
+    fn_80038EEC(0.0f, 0.0f, rmode->fbWidth, rmode->efbHeight, 0.0f, 1.0f);
     fn_80074188(0, 0, lbl_801A6CF4->fbWidth, lbl_801A6CF4->efbHeight);
     fn_80034ECC(lbl_801A6CF4->aa, lbl_801A6CF4->sample_pattern[0], 1, lbl_801A6CF4->vfilter);
 
@@ -466,7 +466,7 @@ void fn_1_A6870(u32 *mode) {
 
 /* fzgx:begin fn_1_A6E68 */
 void fn_1_A6E68(void) {
-    if (448.0f == (f32)lbl_801A6CF4->xfbHeight) {
+    if (448.0f == lbl_801A6CF4->xfbHeight) {
         fn_1_A9868();
         {
             ProgColor color = {0xFF, 0x00, 0x00, 0xFF};
@@ -564,7 +564,7 @@ f32 fn_1_A6FE8(void) {
 void fn_1_A7024(f32 fovy, f32 aspect, f32 near, f32 far) {
     f32 bits;
 
-    fovy = fovy < 0.5 ? 0.5 : (fovy > 135.0 ? 135.0 : (f64)fovy);
+    fovy = fovy < 0.5 ? 0.5 : (fovy > 135.0 ? 135.0 : fovy);
     bits = fovy;
     if (((*(u32 *)&bits & 0x7F800000) - 0x7F800000) == 0) {
         fovy = 55.0f;

@@ -416,17 +416,17 @@ void fn_1_F5B88(Obj_1_data_2A7E0_At3C *arg0) {
     arg0->unk_4 = target->unk_24;
 
     for (i = 0; i < 36; i++, node++) {
-        node->unk_0.x = 6.0f * ((f32)rand_next() / 32767.0f);
-        node->unk_0.y = 6.0f * ((f32)rand_next() / 32767.0f);
-        node->unk_0.z = 6.0f * ((f32)rand_next() / 32767.0f);
+        node->unk_0.x = 6.0f * (rand_next() / 32767.0f);
+        node->unk_0.y = 6.0f * (rand_next() / 32767.0f);
+        node->unk_0.z = 6.0f * (rand_next() / 32767.0f);
         node->unk_C = node->unk_0;
         node->unk_18 = 0.0f;
         node->unk_1C = 0.0f;
         node->unk_20 = 0.0f;
         node->unk_24 = 0.0f;
-        node->unk_2C = 0.019999999552965164f * (((f32)rand_next() / 32767.0f) + 1.0f);
+        node->unk_2C = 0.019999999552965164f * ((rand_next() / 32767.0f) + 1.0f);
         node->unk_28 = node->unk_2C;
-        node->unk_30 = (15.0f * ((f32)rand_next() / 32767.0f));
+        node->unk_30 = (15.0f * (rand_next() / 32767.0f));
     }
 }
 /* fzgx:end fn_1_F5B88 */
@@ -540,7 +540,7 @@ void fn_1_F5D94(void *arg0) {
         v10 = v5 - v9;
         v6 = fn_1_F5D94_clamp(v10, v6, v9);
         v11 = 1.0f / v6;
-        v8 = ((f32)v8 * v11);
+        v8 = (v8 * v11);
     }
     v13 = (u8 *)v13 + 20;
     for (v12 = 36; v12 > 0; v12--) {
@@ -593,7 +593,7 @@ void fn_1_F5D94(void *arg0) {
             while (F(8) < 0.0f) F(8) += 6.0f;
             while (F(8) > 6.0f) F(8) -= 6.0f;
             I(48)--;
-            if ((f32)I(48) < 15.0f) {
+            if (I(48) < 15.0f) {
                 F(36) = F(36) * ((f32)I(48) / (I(48) + 1));
             } else {
                 F(36) = F(36) + (f32)(0.2f * (1.0f - F(36)));
@@ -1129,7 +1129,7 @@ extern void fn_1_F73A8(int, void *, void *);
 void fn_1_F7338(int arg0, void *arg1, void *arg2) {
     s8 value;
 
-    value = (s8)fn_1_866B4((s8)arg0);
+    value = fn_1_866B4(arg0);
     if (value >= 0) {
         switch (fn_1_864FC(value) & 0x10) {
         case 0:
@@ -2194,7 +2194,7 @@ u8 fn_1_F8C50(s32 arg0) {
     u32 shift = 32 - (arg0 * 2);
     u32 value = ((struct fn_1_F8C50_lbl_1_bss_7F0C0 *)&lbl_1_bss_7F0C0)->unk_4910;
     shift &= 31;
-    return (u8)__rlwnm(value, shift, 31, 31);
+    return __rlwnm(value, shift, 31, 31);
 }
 /* fzgx:end fn_1_F8C50 */
 
@@ -3433,7 +3433,7 @@ u32 fn_1_FA5E0(u32 arg0, u32 arg1) {
     s16 v0;
     u32 v1;
     u32 v2;
-    v0 = (s16)arg0;
+    v0 = arg0;
     v1 = arg0;
     if (v0 >= 41) {
     v1 = 0;

@@ -118,7 +118,7 @@ void fn_1_4A00(s32 enabled, u8 mode, void *value) {
     lbl_1_data_2CDC.unk_0 = mode;
     lbl_1_data_2CDC.unk_C = (u32)value;
     allocated = (void *)fn_1_435C((u32)value);
-    data->unk_6 = (s16)fn_1_3F8C(lbl_1_data_2CEC, (void (*)(void))fn_1_4E60, (u32)&lbl_1_data_2CDC, 0);
+    data->unk_6 = fn_1_3F8C(lbl_1_data_2CEC, (void (*)(void))fn_1_4E60, (u32)&lbl_1_data_2CDC, 0);
     fn_1_4010(data->unk_6, fn_1_4DE0);
     fn_1_435C((u32)allocated);
 }
@@ -149,7 +149,7 @@ f32 fn_1_4C24(void) {
         return (-1.0f);
     }
 
-    ratio = (f32)lbl_1_data_2CDC.unk_1 / (f32)lbl_1_data_2CDC.unk_0;
+    ratio = (f32)lbl_1_data_2CDC.unk_1 / lbl_1_data_2CDC.unk_0;
     if (ratio < (0.0f)) {
         return (0.0f);
     }
@@ -195,7 +195,7 @@ f32 fn_1_4D14(Obj_1_data_2CDC *obj) {
     f32 value1;
     f32 temp;
 
-    value3 = ((f32)obj->unk_4) / 65535.0f;
+    value3 = (obj->unk_4) / 65535.0f;
     value = 0x0f;
     if (obj->unk_0 != 0x3c) {
         value = obj->unk_0;
@@ -203,7 +203,7 @@ f32 fn_1_4D14(Obj_1_data_2CDC *obj) {
     if (obj->unk_1 > value) {
         value1 = 1.0f;
     } else {
-        value1 = ((f32)obj->unk_1) / (f32)value;
+        value1 = ((f32)obj->unk_1) / value;
     }
 
     if (obj->unk_3 & 2) {
@@ -248,13 +248,13 @@ void fn_1_4E60(Obj_1_data_2CDC *obj) {
     u32 src;
     Obj_1_data_2CDC *dst;
 
-    base = (u32)obj->unk_4 / 65535.0f;
+    base = obj->unk_4 / 65535.0f;
     max = (obj->unk_0 == 0x3c) ? 0xf : obj->unk_0;
     c1 = obj->unk_1;
     if (c1 > max) {
         ratio = 1.0f;
     } else {
-        ratio = (f32)c1 / (f32)max;
+        ratio = (f32)c1 / max;
     }
     if (obj->unk_3 & 2) {
         value = base * (1.0f - ratio);
@@ -405,7 +405,7 @@ u8 fn_1_5300(void) {
     } else {
         value = 0;
     }
-    return (u8)value;
+    return value;
 }
 /* fzgx:end fn_1_5300 */
 
@@ -429,7 +429,7 @@ u8 fn_1_5348(void) {
     } else {
         value = 0;
     }
-    return (u8)value;
+    return value;
 }
 /* fzgx:end fn_1_5348 */
 
@@ -537,7 +537,7 @@ s8 fn_1_5370(s8 arg0, s32 arg1) {
         break;
     }
 
-    switch ((s8)state->unk_0->unk_48) {
+    switch (state->unk_0->unk_48) {
     case 0:
         num = 1;
         break;
@@ -584,7 +584,7 @@ s8 fn_1_5370(s8 arg0, s32 arg1) {
             f *= 0.5;
         }
         if ((s8)kind == 0) {
-            item->unk_2 = (u16)arg1;
+            item->unk_2 = arg1;
         }
         fn_1_8D08(item, f);
         fn_1_435C(state->unk_0->unk_50);
@@ -854,9 +854,9 @@ void fn_1_5948(u32 arg0) {
         fn_1_A7024(*(f32 *)((u8 *)v4 + 0x1C), (v7 = fn_1_A6FE8()), lbl_1_rodata_18C, lbl_1_rodata_190);
         return;
     }
-    v9 = (u32)fn_1_A5D88();
-    v10 = (u32)fn_1_A5DB0();
-    switch ((s32)arg0) {
+    v9 = fn_1_A5D88();
+    v10 = fn_1_A5DB0();
+    switch (arg0) {
     case 0:
         switch (CAM_MODE) {
         case 0: case 9: break;
@@ -1008,7 +1008,7 @@ void fn_1_5948(u32 arg0) {
         viewport->unk_5C = lbl_1_rodata_194;
         lab_t1 = lbl_1_rodata_188;
         fn_80038EEC(lbl_1_rodata_188, lab_t1, v9, v10, lbl_1_rodata_188, lbl_1_rodata_194);
-        fn_80074188(0, 0, (u32)v9, (u32)v10);
+        fn_80074188(0, 0, v9, v10);
     } else {
         Obj_1_bss_F68_Target *viewport;
         u32 viewportOffset;
@@ -1023,7 +1023,7 @@ void fn_1_5948(u32 arg0) {
         v13 *= v10;
         lab_t1 = v11;
         fn_80038EEC(v14, lab_t1, v12, v13, v15, v16);
-        fn_80074188((u32)v14, (u32)v11, (u32)v12, (u32)v13);
+        fn_80074188(v14, v11, v12, v13);
     }
     if ((arg0 == 0 && (CAM_MODE == 9 || (u8)(CAM_MODE - 9) <= 1)) ||
         (arg0 == 3 && CAM_MODE == 6)) {
@@ -1137,14 +1137,14 @@ void fn_1_627C(void) {
     s8 signedMode;
     Obj_1_bss_F68_Target *obj = lbl_1_bss_F68;
     u8 mode = obj->unk_48;
-    signedMode = (s8)mode;
+    signedMode = mode;
     if (signedMode == 11 || (obj->unk_0 & 0x80000000) || (s8)mode == 0 || signedMode == 9) {
         return;
     }
     width = fn_1_A5D88();
     height = fn_1_A5DB0();
     fn_80038EEC(lbl_1_rodata_188, lbl_1_rodata_188, width, height, lbl_1_rodata_188, lbl_1_rodata_194);
-    fn_80074188(0, 0, (u32)width, (u32)height);
+    fn_80074188(0, 0, width, height);
 }
 /* fzgx:end fn_1_627C */
 

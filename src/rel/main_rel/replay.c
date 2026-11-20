@@ -593,16 +593,16 @@ void fn_1_F2F84(void) {
         v18 = (u8 *)p_lbl_1_bss_7EFD8->unk_40 + v17.value * 5;
         if (v17.value < loc_8.a[8]) v18[0] = 1;
         else v18[0] = 0;
-        v18[1] = fn_1_3F23C((u8)v17.value);
+        v18[1] = fn_1_3F23C(v17.value);
         if (v18[0] != 0) {
-            v18[2] = fn_1_3F250((u8)v17.value);
+            v18[2] = fn_1_3F250(v17.value);
             for (bit = 0; bit < 8; bit++) {
                 if ((u8)(1 << bit) == v18[2]) {
                     v18[2] = bit;
                     break;
                 }
             }
-            v18[3] = fn_1_3F264((u8)v17.value);
+            v18[3] = fn_1_3F264(v17.value);
         } else v18[3] = 50;
         v16 += 5;
         v17.value++;
@@ -714,7 +714,7 @@ return (*(ReplayFlags_F326C *)&lbl_1_bss_7EFD4) .paused;
 }
 static inline void replay_update_last(ReplayState_F3574 *state, ReplayTrack_F326C *track, s8 count, s32 i, u8 value) {
 s32 j;
-u32 offset = (u32)i + 2;
+u32 offset = i + 2;
 if (value != ((u8 *)track)[offset]) {
 for (j = 0; j < count; j++) {
 if (((u8 *)track)[offset] == fn_1_86810(j)) {
@@ -755,7 +755,7 @@ state->frame++;
 if (track->count >= 4) {
 return;
 }
-count = (s8)fn_1_86624();
+count = fn_1_86624();
 for (i = 0; i < count; i++) {
 value = fn_1_86810(i);
 if (((ReplayStateView_F326C *)state)->done[i] != 0) {
@@ -888,7 +888,7 @@ if (state->frame - event->start < 60 && event->kind == kind) {
 hit = 0;
 switch (event->kind) {
 case 0:
-if ((s32)event->value == value) {
+if (event->value == value) {
 hit = 1;
 } else {
 event->value = value;
@@ -959,7 +959,7 @@ void fn_1_F37F4(void) {
             fn_1_86678(index) != -1 &&
             ((u8 *)(*(u32 (*)[17])&lbl_1_bss_7EFD8))[index + 0x24] == 0 &&
             (fn_1_864E8(index) & 0x10000) != 0) {
-            fn_1_F3574((*(u32 (*)[17])&lbl_1_bss_7EFD8), (u8)index, (u8)index, 6, fn_1_86810(index));
+            fn_1_F3574((*(u32 (*)[17])&lbl_1_bss_7EFD8), index, index, 6, fn_1_86810(index));
         }
     }
 }
@@ -1009,8 +1009,8 @@ void fn_1_F38C0(void) {
     p->unk_10 = 9300;
     p->unk_14 = 0x10000 - 9736;
     fn_80008BEC((u8 *)p + 0x28, 0, 16);
-    n = (s8)fn_1_86624();
-    if ((s8)fn_1_86624() > 4) {
+    n = fn_1_86624();
+    if (fn_1_86624() > 4) {
         n = 4;
     }
     end = start + n * 7;
@@ -1058,7 +1058,7 @@ void fn_1_F3AB0(Obj_1_bss_7EFD8 *obj) {
     }
 
     obj->unk_4++;
-    count = fn_1_F45CC((u16)obj->unk_4, (void *)data);
+    count = fn_1_F45CC(obj->unk_4, (void *)data);
     if (count <= 0) {
         return;
     }
@@ -1165,17 +1165,17 @@ void fn_1_F3BC0(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     fn_1_3EF14((u8 *)&loc_10);
     fn_1_F43F0((u8 *)v0, (u32 *)loc_8, (OSGetTick() & 0xFF), 8, (0x90000 - 16384));
     fn_1_F43F0((u8 *)v0, (u32 *)loc_8, 5, 7, (0x90000 - 16384));
-    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, (s16)fn_1_7B054(), 6, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, fn_1_7B054(), 6, (0x90000 - 16384));
     fn_1_F43F0((u8 *)v0, (u32 *)loc_8, lbl_1_bss_7EFD8.unk_40->unk_98, 32, (0x90000 - 16384));
     fn_1_F43F0((u8 *)v0, (u32 *)loc_8, lbl_1_bss_7EFD8.unk_40->unk_9C, 32, (0x90000 - 16384));
-    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, (u32)loc_10.a[9], 5, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, loc_10.a[9], 5, (0x90000 - 16384));
     fn_1_F43F0((u8 *)v0, (u32 *)loc_8, lbl_1_bss_8B3A0.unk_8, 3, (0x90000 - 16384));
-    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, (u32)loc_10.a[5], 2, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, loc_10.a[5], 2, (0x90000 - 16384));
     fn_1_F43F0((u8 *)v0, (u32 *)loc_8, ((*(u32 *)&loc_10 & 0x20000) != 0), 1, (0x90000 - 16384));
-    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, (u32)loc_10.a[4], 7, (0x90000 - 16384));
+    fn_1_F43F0((u8 *)v0, (u32 *)loc_8, loc_10.a[4], 7, (0x90000 - 16384));
     v3 = 0;
     v2 = 0;
-    while ((u32)v2 < loc_10.a[9]) {
+    while (v2 < loc_10.a[9]) {
     v9 = (u32)&((ReplayDriver_F3BC0 *)lbl_1_bss_7EFD8.unk_40)[v2];
     fn_1_F43F0((u8 *)v0, (u32 *)loc_8, *(u8 *)((u8 *)v9 + 0), 1, (0x90000 - 16384));
     fn_1_F43F0((u8 *)v0, (u32 *)loc_8, *(u8 *)((u8 *)v9 + 1), 6, (0x90000 - 16384));
@@ -1194,7 +1194,7 @@ void fn_1_F3BC0(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     v9 = 0;
     do {
     t20 = (u8 *)fn_1_36AD0();
-    ghostOffset = (s32)v12 + (s32)v9;
+    ghostOffset = v12 + v9;
     ReplayWriteGhostByte_F3BC0(t20[ghostOffset], v0, loc_8);
     } while (++v9 < 33216);
     }
@@ -1204,19 +1204,19 @@ void fn_1_F3BC0(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     }
     v3 = (v3 & 0xFF);
     v2 = 0;
-    while ((u32)v2 < v3) {
+    while (v2 < v3) {
     fn_1_F43F0((u8 *)v0, (u32 *)loc_8, (&lbl_1_bss_7EFD8.unk_3C)[v2], 1, (0x90000 - 16384));
     v2++;
     }
     v2 = 0;
-    while ((u32)v2 < v3) {
+    while (v2 < v3) {
     fn_1_F43F0((u8 *)v0, (u32 *)loc_8, ((&lbl_1_bss_7EFD8.unk_38)[v2] - 1), 2, (0x90000 - 16384));
     v2++;
     }
     fn_1_F43F0((u8 *)v0, (u32 *)loc_8, lbl_1_bss_7EFD8.unk_8, 20, (0x90000 - 16384));
     fn_1_F43F0((u8 *)v0, (u32 *)loc_8, *(u16 *)((u8 *)lbl_1_bss_7EFD8.unk_40 + 0xFEF0), 8, (0x90000 - 16384));
     v2 = 0;
-    while ((u32)v2 < *(u16 *)((u8 *)(v28 = (u32)lbl_1_bss_7EFD8.unk_40) + 0xFEF0)) {
+    while (v2 < *(u16 *)((u8 *)(v28 = (u32)lbl_1_bss_7EFD8.unk_40) + 0xFEF0)) {
     fn_1_F43F0((u8 *)v0, (u32 *)loc_8, ((ReplayData_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->entries[v2].a, 14, (0x90000 - 16384));
     fn_1_F43F0((u8 *)v0, (u32 *)loc_8, ((ReplayData_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->entries[v2].e, 14, (0x90000 - 16384));
     fn_1_F43F0((u8 *)v0, (u32 *)loc_8, ((ReplayData_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->entries[v2].b, 4, (0x90000 - 16384));
@@ -1226,7 +1226,7 @@ void fn_1_F3BC0(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     fn_1_F43F0((u8 *)v0, (u32 *)loc_8, ((ReplayData_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->entries[v2].g, 5, (0x90000 - 16384));
     fn_1_F43F0((u8 *)v0, (u32 *)loc_8, ((ReplayData_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->entries[v2].h, 5, (0x90000 - 16384));
     v9 = 0;
-    while ((u32)v9 < lbl_1_bss_7EFD8.unk_18) {
+    while (v9 < lbl_1_bss_7EFD8.unk_18) {
     fn_1_F444C((u8 *)v0, (u32 *)loc_8, (0x90000 - 16384), ((ReplayData_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->entries[v2].first[v9][0]);
     fn_1_F444C((u8 *)v0, (u32 *)loc_8, (0x90000 - 16384), ((ReplayData_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->entries[v2].first[v9][1]);
     fn_1_F444C((u8 *)v0, (u32 *)loc_8, (0x90000 - 16384), ((ReplayData_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->entries[v2].first[v9][2]);
@@ -1246,7 +1246,7 @@ void fn_1_F3BC0(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     ((Obj_1_bss_7EFD8_At40 *)v28)->unk_A0 = ((Obj_1_bss_7EFD8_At40 *)v28)->unk_A2;
     fn_1_F43F0((u8 *)v0, (u32 *)loc_8, lbl_1_bss_7EFD8.unk_40->unk_A0, 14, (0x90000 - 16384));
     v2 = 0;
-    while ((u32)v2 <= ((Obj_1_bss_7EFD8_At40 *)(v28 = (u32)lbl_1_bss_7EFD8.unk_40))->unk_A0) {
+    while (v2 <= ((Obj_1_bss_7EFD8_At40 *)(v28 = (u32)lbl_1_bss_7EFD8.unk_40))->unk_A0) {
     fn_1_F43F0((u8 *)v0, (u32 *)loc_8, ((ReplaySamples_F3BC0 *)v28)->samples[v2].a, 8, (0x90000 - 16384));
     fn_1_F43F0((u8 *)v0, (u32 *)loc_8, ((ReplaySamples_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->samples[v2].d, 8, (0x90000 - 16384));
     fn_1_F43F0((u8 *)v0, (u32 *)loc_8, ((ReplaySamples_F3BC0 *)lbl_1_bss_7EFD8.unk_40)->samples[v2].e, 7, (0x90000 - 16384));
@@ -1335,7 +1335,7 @@ u32 fn_1_F453C(struct fn_1_F453C_Arg0 *arg0, struct fn_1_F453C_Arg1 *arg1, u32 a
     v2 = 0;
     while (v1 != 0) {
         v3 = arg1->unk_0;
-        if (((1 << (v3 & 0x7)) & arg0->unk_0[((u32)v3 >> 3)]) != 0) {
+        if (((1 << (v3 & 0x7)) & arg0->unk_0[(v3 >> 3)]) != 0) {
             v2 = v2 | (1 << (v1 - 1));
         }
         v1--;

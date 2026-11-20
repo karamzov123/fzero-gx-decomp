@@ -5289,7 +5289,7 @@ void fn_7_2538(void) {
         pkt3.x = 40.0f;
         pkt3.y = 200.0f;
         pkt3.flags = 10;
-        pkt3.scale_x = pkt3.scale_y = 1.0f + 0.5f * (f32)lbl_7_bss_34[0] / 15.0f;
+        pkt3.scale_x = pkt3.scale_y = 1.0f + 0.5f * lbl_7_bss_34[0] / 15.0f;
         fn_1_4F734(&pkt3);
     }
     if (chapter < 9 && fn_1_F9CA0(0, chapter + 1)) {
@@ -5299,7 +5299,7 @@ void fn_7_2538(void) {
         pkt4.y = 200.0f;
         pkt4.flags = 10;
         pkt4.rotation_z = -32768;
-        pkt4.scale_x = pkt4.scale_y = 1.0f + 0.5f * (f32)lbl_7_bss_34[1] / 15.0f;
+        pkt4.scale_x = pkt4.scale_y = 1.0f + 0.5f * lbl_7_bss_34[1] / 15.0f;
         fn_1_4F734(&pkt4);
     }
     {
@@ -5312,7 +5312,7 @@ void fn_7_2538(void) {
         pkt5.y = 356.0f;
         pkt5.flags = 10;
         if (lbl_7_bss_28 <= 100) {
-            pkt5.scale_x = 80.0f * (f32)lbl_7_bss_28 / 100.0f;
+            pkt5.scale_x = 80.0f * lbl_7_bss_28 / 100.0f;
             pkt5.scale_y = 0.5f;
             fn_1_4F734(&pkt5);
         } else {
@@ -5450,7 +5450,7 @@ void fn_7_33F0(void) {
     pkt.y = y;
     pkt.flags = 10;
     if (lbl_7_bss_28 <= 100) {
-        pkt.scale_x = 80.0f * (f32)lbl_7_bss_28 / 100.0f;
+        pkt.scale_x = 80.0f * lbl_7_bss_28 / 100.0f;
         pkt.scale_y = 0.5f;
         fn_1_4F734(&pkt);
     } else {
@@ -6016,10 +6016,10 @@ void fn_7_44DC(void) {
             packet.image = 18;
             packet.x = 0.0f;
             packet.y = 0.0f;
-            packet.z = 300.0f - (f32)i;
+            packet.z = 300.0f - i;
             packet.flags = 5;
-            packet.scale_x *= 640.0f / (f32)fn_1_48690(18);
-            packet.scale_y *= 480.0f / (f32)fn_1_48690(18);
+            packet.scale_x *= 640.0f / fn_1_48690(18);
+            packet.scale_y *= 480.0f / fn_1_48690(18);
             *(GXColor *)packet.color = lbl_7_bss_1970[i];
             packet.alpha = lbl_7_bss_197C[i];
             fn_1_4F734(&packet);
@@ -6142,47 +6142,47 @@ s32 fn_7_4648(StoryContext *context, StoryTrigger *arg1) {
         radius = trigger->unk_14;
         switch (trigger->unk_4) {
         case 0:
-            v1 = fn_7_4E28(b, fn_1_E5568((s16)a), c);
+            v1 = fn_7_4E28(b, fn_1_E5568(a), c);
             break;
         case 1:
             if (b == -1) {
                 b = (32 - c) & 31;
-                for (c = 0; c < fn_1_E5430((s16)a); c++) {
-                    if (__rlwnm(fn_1_E57C4(fn_1_E54A8((s16)a, (s16)c)), b, 31, 31)) {
+                for (c = 0; c < fn_1_E5430(a); c++) {
+                    if (__rlwnm(fn_1_E57C4(fn_1_E54A8(a, c)), b, 31, 31)) {
                         v1 = 1;
                         break;
                     }
                 }
             } else {
-                v1 = __rlwnm(fn_1_E57C4(fn_1_E54A8((s16)a, (s16)b)), (32 - c) & 31, 31, 31) ? 1 : 0;
+                v1 = __rlwnm(fn_1_E57C4(fn_1_E54A8(a, b)), (32 - c) & 31, 31, 31) ? 1 : 0;
             }
             break;
         case 2:
             if (b == -1) {
-                for (b = 0; b < fn_1_E5430((s16)a); b++) {
-                    u32 flags = fn_1_E57C4(fn_1_E54A8((s16)a, (s16)b));
+                for (b = 0; b < fn_1_E5430(a); b++) {
+                    u32 flags = fn_1_E57C4(fn_1_E54A8(a, b));
                     if (flags & c) {
                         v1 = 1;
                         break;
                     }
                 }
             } else {
-                u32 flags = fn_1_E57C4(fn_1_E54A8((s16)a, (s16)b));
+                u32 flags = fn_1_E57C4(fn_1_E54A8(a, b));
                 v1 = (flags & c) != 0;
             }
             break;
         case 3: {
-            u64 flags = *(u64 *)&fn_1_E54A8((s16)a, (s16)b)->flags138;
+            u64 flags = *(u64 *)&fn_1_E54A8(a, b)->flags138;
             if (flags & (s64)c) v1 = 1;
             break;
         }
         case 4: {
-            u64 flags = *(u64 *)&fn_1_E54A8((s16)a, (s16)b)->flags138;
+            u64 flags = *(u64 *)&fn_1_E54A8(a, b)->flags138;
             if (flags & ((s64)c << 32)) v1 = 1;
             break;
         }
         case 5: {
-            StoryEventObject *object = fn_1_E54A8((s16)a, (s16)b);
+            StoryEventObject *object = fn_1_E54A8(a, b);
             StoryVehicle *vehicle = fn_1_86254(c);
             v1 = fn_7_4EF8(4, storyDistanceSquared(&object->pos, &vehicle->pos), radius*radius);
             break;
@@ -6258,7 +6258,7 @@ s32 fn_7_4648(StoryContext *context, StoryTrigger *arg1) {
         vehicle = fn_1_86254(id);
         switch (kind) {
         case 0: current = vehicle->unk_184; break;
-        case 1: current = (f32)fn_1_86810(id); break;
+        case 1: current = fn_1_86810(id); break;
         default: OSReport("Trigger Error\n"); break;
         }
         v1 = fn_7_4EF8(op, current, value);
@@ -6537,54 +6537,54 @@ void fn_7_4FD0(StoryContext *arg0,StoryTrigger *arg1) {
         case 0:
             if(value!=-1) {
                 s32 group=(s16)index;
-                StoryEventObject *obj=(StoryEventObject *)fn_1_E54A8(group,(s16)value);
+                StoryEventObject *obj=(StoryEventObject *)fn_1_E54A8(group,value);
                 obj->flags13C |= extra;
             } else {
     s16 k;
-for(k=0;(s16)k<(s16)fn_1_E5430((s16)index);k++) {
-                StoryEventObject *obj=(StoryEventObject *)fn_1_E54A8((s16)index,k); obj->flags13C |= extra;
+for(k=0;k<fn_1_E5430(index);k++) {
+                StoryEventObject *obj=(StoryEventObject *)fn_1_E54A8(index,k); obj->flags13C |= extra;
             }
 }
             break;
         case 1:
             if(value!=-1) {
                 s32 group=(s16)index;
-                StoryEventObject *obj=(StoryEventObject *)fn_1_E54A8(group,(s16)value);
+                StoryEventObject *obj=(StoryEventObject *)fn_1_E54A8(group,value);
                 obj->flags138 |= extra;
             } else {
     s16 k;
-for(k=0;(s16)k<(s16)fn_1_E5430((s16)index);k++) {
-                StoryEventObject *obj=(StoryEventObject *)fn_1_E54A8((s16)index,k); obj->flags138 |= extra;
+for(k=0;k<fn_1_E5430(index);k++) {
+                StoryEventObject *obj=(StoryEventObject *)fn_1_E54A8(index,k); obj->flags138 |= extra;
             }
 }
             break;
         case 2:
             if(value!=-1) {
                 s32 group=(s16)index;
-                clear_object_flags((StoryEventObject *)fn_1_E54A8(group,(s16)value),0,extra);
+                clear_object_flags((StoryEventObject *)fn_1_E54A8(group,value),0,extra);
             }
             else {
                 s16 k;
-                for(k=0;(s16)k<(s16)fn_1_E5430((s16)index);k++)
-                    clear_object_flags((StoryEventObject *)fn_1_E54A8((s16)index,k),0,extra);
+                for(k=0;k<fn_1_E5430(index);k++)
+                    clear_object_flags((StoryEventObject *)fn_1_E54A8(index,k),0,extra);
             }
             break;
         case 3:
             if(value!=-1) {
                 s32 group=(s16)index;
-                clear_object_flags((StoryEventObject *)fn_1_E54A8(group,(s16)value),extra,0);
+                clear_object_flags((StoryEventObject *)fn_1_E54A8(group,value),extra,0);
             }
             else {
                 s16 k;
-                for(k=0;(s16)k<(s16)fn_1_E5430((s16)index);k++)
-                    clear_object_flags((StoryEventObject *)fn_1_E54A8((s16)index,k),extra,0);
+                for(k=0;k<fn_1_E5430(index);k++)
+                    clear_object_flags((StoryEventObject *)fn_1_E54A8(index,k),extra,0);
             }
             break;
         case 4: {
             u32 id=(value<<4)|extra;
             s32 j;
-for(j=0;j<(s16)fn_1_E5430((s16)index);j++) {
-                StoryEventObject *obj=(StoryEventObject *)fn_1_E54A8((s16)index,(s16)j);
+for(j=0;j<fn_1_E5430(index);j++) {
+                StoryEventObject *obj=(StoryEventObject *)fn_1_E54A8(index,j);
                 if(obj->unk_E==id) clear_object_flags(obj,0,0x2000);
             }
             break;
@@ -6612,9 +6612,9 @@ for(j=first;j<=end;j++) {
             case 9:
                 if(op==1) {base=100.0f;sp=&car->field5da;fp=&car->field184;}
                 else {
-                    base=(f32)car->field5da; fp=&car->field184; sp=0;
-                    if(op==2 && car->field184+amount>(f32)car->field5da)
-                        amount=(f32)car->field5da-car->field184;
+                    base=car->field5da; fp=&car->field184; sp=0;
+                    if(op==2 && car->field184+amount>car->field5da)
+                        amount=car->field5da-car->field184;
                 }
                 break;
             case 0: base=spec->f4; fp=&car->field8; break;
@@ -6631,7 +6631,7 @@ for(j=first;j<=end;j++) {
             if(amount==-10000000.0f) amount=base;
             if(sp) switch(op) {
             case 0: break;
-            case 1: *sp=(s32)amount; break;
+            case 1: *sp=amount; break;
             case 2: *sp+=(s32)amount; break;
             case 3: *sp-=(s32)amount; break;
             default: OSReport("Action Error\n"); break;
@@ -6681,7 +6681,7 @@ for(j=first;j<=end;j++) {
         else {end=selector;first=selector;}
         mask=0x80000000U>>value; notvalue=~value; notmask=~mask;
         for(i=first;i<=end;i++) {
-            Racer *racer=(Racer *)fn_1_868C0((s8)i);
+            Racer *racer=(Racer *)fn_1_868C0(i);
             switch(op) {
             case 0: racer->flags390=value; break;
             case 1: racer->flags390|=mask; break;
@@ -6701,15 +6701,15 @@ for(j=first;j<=end;j++) {
         else if(first==98) {end=lbl_7_bss_1998-1;first=1;}
         else end=first;
         for(i=first;i<=end;i++) {
-            void *racer=fn_1_868C0((s8)i);
+            void *racer=fn_1_868C0(i);
             fn_1_8E448(racer,value);
         }
         break;
     }
     case 12: {
-        f32 x=(f32)arg1->unk_8;
+        f32 x=arg1->unk_8;
         f32 z=arg1->unk_14;
-        f32 y=(f32)arg1->unk_C;
+        f32 y=arg1->unk_C;
         ActionCar *car;
         u32 flags;
         u32 index;
@@ -6723,9 +6723,9 @@ for(j=first;j<=end;j++) {
         break;
     }
     case 13: {
-        f32 x=(f32)arg1->unk_8;
+        f32 x=arg1->unk_8;
         f32 z=arg1->unk_14;
-        f32 y=(f32)arg1->unk_C;
+        f32 y=arg1->unk_C;
         ActionCar *car;
         u32 flags;
         f32 result;
@@ -6804,7 +6804,7 @@ for(i=first;i<=end;i++) {
     case 19:
         op=arg1->unk_4; index=arg1->unk_8;
         switch(op) {
-        case 0: camera_set_entry_field_0xa8(0,(s16)index);break;
+        case 0: camera_set_entry_field_0xa8(0,index);break;
         default: OSReport("Action Error\n");break;
         }
         break;

@@ -1287,7 +1287,7 @@ void fn_15_11DC(void) {
             }
             previous_scale = lbl_15_bss_60;
             scale_step = 0.01 * (2.0f - previous_scale);
-            lbl_15_bss_60 = ((f64)previous_scale + scale_step);
+            lbl_15_bss_60 = (previous_scale + scale_step);
             packet = lbl_1_rodata_26F8;
             packet.x = 320.0f;
             packet.y = 240.0f;
@@ -2660,8 +2660,8 @@ void fn_15_4578(void) {
         racer = snapshot[0xA6];
     }
     if (lbl_15_bss_18 >= 300 && lbl_15_bss_18 < 600) {
-        if ((f32)lbl_15_bss_18 > 540.0f) {
-            banner_t = 1.0f - ((f32)lbl_15_bss_18 - 540.0f) / 60.0f;
+        if (lbl_15_bss_18 > 540.0f) {
+            banner_t = 1.0f - (lbl_15_bss_18 - 540.0f) / 60.0f;
             alpha = winning_clamp(banner_t, 0.0f, 1.0f);
         } else {
             banner_t = (lbl_15_bss_18 - 300) / 60.0f;
@@ -2684,7 +2684,7 @@ void fn_15_4578(void) {
         packet.flags = 10;
         packet.alpha = alpha;
         fn_1_4F734(&packet);
-        fn_1_141360(racer, (s32)packet.x, (s32)packet.y, 10, 1.0f, alpha);
+        fn_1_141360(racer, packet.x, packet.y, 10, 1.0f, alpha);
         fn_1_520CC();
         fn_1_49410();
         fn_1_494DC(6);
@@ -2697,7 +2697,7 @@ void fn_15_4578(void) {
         fn_1_4A0D8("F-ZERO GRAND PRIX\n");
         fn_1_496FC(320.0f, 296.0f);
         fn_1_4955C(1.5f, 1.5f);
-        fn_1_4AE0C("%s\n", lbl_15_data_1C80[lbl_801A66B4][(s16)racer]);
+        fn_1_4AE0C("%s\n", lbl_15_data_1C80[lbl_801A66B4][racer]);
         fn_1_496FC(320.0f, 324.0f);
         fn_1_4955C(0.8f, 0.8f);
         fn_1_4AE0C("%s", lbl_15_data_1D50[lbl_801A66B4][lbl_15_bss_3C]);
@@ -2722,12 +2722,12 @@ void fn_15_4578(void) {
     end = start.value;
     end += 400;
     count = 7;
-    fade_start = ((f32)end - 60.0f);
+    fade_start = (end - 60.0f);
     if (lbl_15_bss_154 == 5) count = 4;
     if (frame.value == start.value) {
         if (lbl_15_bss_154 == 5) {
             memcpy(lbl_15_bss_158, lbl_15_data_132C[lbl_801A66B4], (s16)count * sizeof(ResultRow));
-            sprintf(lbl_15_bss_158[0].anim.label, "%s", lbl_15_data_1C80[lbl_801A66B4][(s16)racer]);
+            sprintf(lbl_15_bss_158[0].anim.label, "%s", lbl_15_data_1C80[lbl_801A66B4][racer]);
             if (!(lbl_15_bss_14 & 0x20000000)) {
                 result = &lbl_15_bss_2C->result;
                 sprintf(lbl_15_bss_158[1].anim.value, "%d", result->rank + 1);
@@ -2779,7 +2779,7 @@ void fn_15_4578(void) {
                 fn_1_496FC(height, 160.0f + y.value);
                 fn_1_495A0(1.0f);
                 fn_1_4A0D8("F-ZERO GRAND PRIX\n");
-                fn_1_4AE0C("%s", lbl_15_data_1C80[lbl_801A66B4][(s16)racer]);
+                fn_1_4AE0C("%s", lbl_15_data_1C80[lbl_801A66B4][racer]);
                 offset_2 = anim->x;
                 x = 211.0f + anim->y;
                 fn_1_4955C(0.84f, 0.84f);
@@ -2897,7 +2897,7 @@ void fn_15_4578(void) {
                 packet.alpha = alpha;
                 packet.flags = 10;
                 fn_1_4F734(&packet);
-                fn_1_141360(racer, (s32)packet.x, (s32)packet.y, 10, 1.56f, alpha);
+                fn_1_141360(racer, packet.x, packet.y, 10, 1.56f, alpha);
                 fn_1_520CC();
             }
         }
@@ -2956,7 +2956,7 @@ void fn_15_5460(f32 alpha) {
     packet.alpha = alpha;
     packet.flags = 10;
     fn_1_4F734(&packet);
-    fn_1_141360(4, (s32)packet.x, (s32)packet.y, 2, 1.0f, alpha);
+    fn_1_141360(4, packet.x, packet.y, 2, 1.0f, alpha);
     fn_1_520CC();
     fn_1_49410();
     fn_1_494DC(6);

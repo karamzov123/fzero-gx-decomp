@@ -173,7 +173,7 @@ void fn_16_61D4(void) {
 
     if ((lbl_1_bss_8B614.unk_4c & /* fzgx-allow: A1 flag bit test */ 0x80000000) != 0
         && (lbl_1_bss_8B614.unk_4c & 0x04000000) != 0) {
-        t = (f32)lbl_1_bss_8B614.unk_52 / fn_16_61D4_operand(0.5f, (f32)lbl_1_bss_8B614.unk_54);
+        t = lbl_1_bss_8B614.unk_52 / fn_16_61D4_operand(0.5f, lbl_1_bss_8B614.unk_54);
         if (t < 0.0f) {
             val.value = 0.0f;
         } else if (t > 1.0f) {

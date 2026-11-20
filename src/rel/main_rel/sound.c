@@ -1561,7 +1561,7 @@ void fn_1_A0D7C(void) {
         }
         break;
     case 4:
-        if ((s16)lbl_1_bss_962 == 61) break;
+        if (lbl_1_bss_962 == 61) break;
         DVDOpen((const char *)lbl_1_data_33F0C.unk_C, &loc_44);
         length_44 = loc_44.length;
         buffer_44 = fn_1_45D0(lbl_801A6410.unk_0, length_44 = (length_44 + 31) & ~31, lbl_1_data_33F1C, 766);
@@ -2048,24 +2048,24 @@ void fn_1_A1588(void *h, u8 track) {
     if (h == handles[0]) {
         u32 flags = S_FLAGS;
         S_FLAGS = flags & ~4;
-        if (flags & 1) S_VOLUME[0] = ((s16 *)&lbl_1_data_2D93C)[(u8)track];
+        if (flags & 1) S_VOLUME[0] = ((s16 *)&lbl_1_data_2D93C)[track];
         else {
             S_FADE0 = lbl_1_rodata_42E0;
-            S_TARGET0 = ((s16 *)&lbl_1_data_2D93C)[(u8)track];
+            S_TARGET0 = ((s16 *)&lbl_1_data_2D93C)[track];
         }
     }
     if (h == handles[1]) {
         u32 flags = S_FLAGS;
         S_FLAGS = flags & ~8;
         if (flags & 2) {
-            S_VOLUME[1] = ((s16 *)&lbl_1_data_2D93C)[(u8)track];
+            S_VOLUME[1] = ((s16 *)&lbl_1_data_2D93C)[track];
         } else {
             S_FADE1 = lbl_1_rodata_42E4;
-            S_TARGET1 = ((s16 *)&lbl_1_data_2D93C)[(u8)track];
+            S_TARGET1 = ((s16 *)&lbl_1_data_2D93C)[track];
         }
     }
-    index = (u8)track;
-    fn_8004D18C(h, ((const char **)&lbl_1_data_2D7B8)[(u8)track]);
+    index = track;
+    fn_8004D18C(h, ((const char **)&lbl_1_data_2D7B8)[track]);
     flags = S_FLAGS;
     if (flags & 3) {
         if (flags & 1) S_TARGET0 = lbl_1_rodata_42E8;
@@ -2486,7 +2486,7 @@ void fn_1_A1964(u8 arg) {
   if (!S_DISABLED && h != 0 && h != -1) setup(h, handles, 66);
  } else {
   h = handles[0];
-  if (!S_DISABLED && h != 0 && h != -1) setup(h, handles, (u8)id);
+  if (!S_DISABLED && h != 0 && h != -1) setup(h, handles, id);
  }
 }
 #pragma opt_propagation reset
@@ -2513,7 +2513,7 @@ void fn_1_A1CE8(u32 arg0) {
         } else if ((u8)arg0 == 0x2C) {
             v = 0x300;
         }
-        fn_80067898(0xA8000000 | (s16)v);
+        fn_80067898(0xA8000000 | v);
         lbl_1_bss_6F243 = 1;
     }
 }
@@ -2694,10 +2694,10 @@ static inline void play(u8 track) {
     if (h == handles[0]) {
         u32 flags = S_FLAGS;
         S_FLAGS = flags & ~4;
-        if (flags & 1) S_VOLUME[0] = ((s16 *)&lbl_1_data_2D93C)[(u8)track];
+        if (flags & 1) S_VOLUME[0] = ((s16 *)&lbl_1_data_2D93C)[track];
         else {
             f32 fade = lbl_1_rodata_42E0;
-            f32 volume = ((s16 *)&lbl_1_data_2D93C)[(u8)track];
+            f32 volume = ((s16 *)&lbl_1_data_2D93C)[track];
             S_FADE0 = fade;
             S_TARGET0 = volume;
         }
@@ -2706,16 +2706,16 @@ static inline void play(u8 track) {
         u32 flags = S_FLAGS;
         S_FLAGS = flags & ~8;
         if (flags & 2) {
-            S_VOLUME[1] = ((s16 *)&lbl_1_data_2D93C)[(u8)track];
+            S_VOLUME[1] = ((s16 *)&lbl_1_data_2D93C)[track];
         } else {
             f32 fade = lbl_1_rodata_42E4;
-            f32 volume = ((s16 *)&lbl_1_data_2D93C)[(u8)track];
+            f32 volume = ((s16 *)&lbl_1_data_2D93C)[track];
             S_FADE1 = fade;
             S_TARGET1 = volume;
         }
     }
-    index = (u8)track;
-    fn_8004D18C(h, ((const char **)&lbl_1_data_2D7B8)[(u8)track]);
+    index = track;
+    fn_8004D18C(h, ((const char **)&lbl_1_data_2D7B8)[track]);
     flags = S_FLAGS;
     if (flags & 3) {
         if (flags & 1) S_TARGET0 = lbl_1_rodata_42E8;
@@ -2740,7 +2740,7 @@ void fn_1_A1DCC(u8 arg0) {
         if (++S_CYCLE > 5) S_CYCLE = 0;
         play(lbl_1_rodata_43AC[S_CYCLE]);
     } else {
-        play((u8)track);
+        play(track);
     }
 end:
     return;
@@ -3448,7 +3448,7 @@ void fn_1_A24CC(void) {
     if (first > 0x2D) {
         slot = -1;
     } else {
-        slot = (s8)lbl_1_rodata_43B4[first * 4];
+        slot = lbl_1_rodata_43B4[first * 4];
     }
 
     if (id == 0xFF) {
@@ -3750,7 +3750,7 @@ void fn_1_A266C(void) {
     /* stream 1 fade in (retail reads the stream 0 fader for the volume) */
     if ((fzgx_obj_lbl_1_bss_6EAB4 & 2) && fzgx_obj_lbl_1_bss_6EAD0->unk_4 != 0 && fzgx_obj_lbl_1_bss_6F31A == 0) {
         lbl_1_bss_6F31A__fzgx_offset_A += lbl_1_bss_6EAB4__fzgx_offset_C;
-        vol = (s32)lbl_1_bss_6F31A__fzgx_offset_6;
+        vol = lbl_1_bss_6F31A__fzgx_offset_6;
         if (lbl_1_bss_6F31A__fzgx_offset_2[1] > vol) {
             fn_8004BF0C(fzgx_obj_lbl_1_bss_6EAD0->unk_4, vol);
         } else {
@@ -4003,26 +4003,26 @@ void fn_1_A2A70(u32 arg0, s32 arg1) {
     if (arg1 > 0) {
         if (arg0 & 1) {
             fzgx_obj_lbl_1_bss_6EAB4 &= ~4;
-            lbl_1_bss_6EAB4__fzgx_offset_8 = lbl_1_rodata_446C / (f32)arg1;
+            lbl_1_bss_6EAB4__fzgx_offset_8 = lbl_1_rodata_446C / arg1;
         }
         if (arg0 & 2) {
             fzgx_obj_lbl_1_bss_6EAB4 &= ~8;
-            lbl_1_bss_6EAB4__fzgx_offset_C = lbl_1_rodata_446C / (f32)arg1;
+            lbl_1_bss_6EAB4__fzgx_offset_C = lbl_1_rodata_446C / arg1;
         }
         if (arg0 & 4) {
             lbl_1_bss_6F31A__fzgx_offset_6 = (s32)fn_8004BED0((*(void ** *)&(fzgx_obj_lbl_1_bss_6EAD0))[0]);
             v1 = lbl_1_rodata_446C + (s32)fn_8004BED0((*(void ** *)&(fzgx_obj_lbl_1_bss_6EAD0))[0]);
             fzgx_obj_lbl_1_bss_6EAB4 &= ~1;
-            lbl_1_bss_6EAB4__fzgx_offset_8 = v1 / (f32)arg1;
+            lbl_1_bss_6EAB4__fzgx_offset_8 = v1 / arg1;
         }
         if (arg0 & 8) {
             lbl_1_bss_6F31A__fzgx_offset_A = (s32)fn_8004BED0((*(void ** *)&(fzgx_obj_lbl_1_bss_6EAD0))[1]);
             v1 = lbl_1_rodata_446C + (s32)fn_8004BED0((*(void ** *)&(fzgx_obj_lbl_1_bss_6EAD0))[1]);
-            lbl_1_bss_6EAB4__fzgx_offset_C = v1 / (f32)arg1;
+            lbl_1_bss_6EAB4__fzgx_offset_C = v1 / arg1;
             if (arg0 & 0x40) {
                 v0 = (s32)(fn_8004BED0((*(void ** *)&(fzgx_obj_lbl_1_bss_6EAD0))[1]) + 600) / arg1;
-                loc_8 = (lbl_1_bss_6EAB4__fzgx_offset_C = (f32)v0);
-                lbl_1_bss_6EAB4__fzgx_offset_C = (f32)loc_8;
+                loc_8 = (lbl_1_bss_6EAB4__fzgx_offset_C = v0);
+                lbl_1_bss_6EAB4__fzgx_offset_C = loc_8;
                 if (lbl_1_bss_6EAB4__fzgx_offset_C < lbl_1_rodata_4470) {
                     lbl_1_bss_6EAB4__fzgx_offset_C = lbl_1_rodata_4470;
                 }
@@ -4279,7 +4279,7 @@ void fn_1_A2FC8(s32 arg0, f32 arg1, u32 unused2, u32 unused3, u32 unused4) {
     f32 f0;
     struct { f32 value; } f1;
 
-    for (i = 0; i < (s8)lbl_1_bss_6F2C4; i++) {
+    for (i = 0; i < lbl_1_bss_6F2C4; i++) {
         if (id == ((SoundEntry *)&fzgx_obj_lbl_1_bss_6F1E4)[i].unk_1) {
             idx = i;
             found = 1;
@@ -5197,14 +5197,14 @@ void fn_1_A4268(void *arg0, u32 arg1, u32 arg2, u32 arg3) {
     v4 = 0;
     v5 = 0;
     if ((u32)t0 > 1) {
-        for (i = 0; i < (u32)t0; i++) {
+        for (i = 0; i < t0; i++) {
             v0 = fzgx_pool_obj_sound_chans[i].id;
             if ((u32)v0 != 255 && (fn_1_864E8((void *)v0) & 0x2) != 0) {
                 v4 = i;
                 break;
             }
         }
-        for (j = 0; j < (u32)t0; j++) {
+        for (j = 0; j < t0; j++) {
             v0 = fzgx_pool_obj_sound_chans[j].id;
             if ((u32)v0 != 255) {
                 v7 = 0;
@@ -6093,7 +6093,7 @@ void fn_1_A5AA0(const char *arg0, Fn1A5AA0Object *arg1) {
 
     if (fn_80006B70(arg0, buf) != 0) {
         avail = ((u32)fn_80006DE8(buf) + 0x1f) & ~0x1f;
-        flag = (s32)avail;
+        flag = avail;
         arg1->unk0 = (void *)fn_1_45D0(lbl_801A6410, avail, (const char *)(p + 0x150), 0x48);
         flag = fn_80006D1C(buf, (u32)arg1->unk0, flag, 0);
         fn_80006CE4(buf);

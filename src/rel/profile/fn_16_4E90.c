@@ -201,7 +201,7 @@ void fn_16_4E90(void) {
     u32 color;
     FontDrawPacket packet;
 
-    scale = (f32)fn_1_A5DB0() / 480.0f;
+    scale = fn_1_A5DB0() / 480.0f;
     if (fn_1_A5DC4()) {
         lbl_16_bss_860C0.width = 373;
         if (fn_1_F7B80() < 5) lbl_16_bss_860C0.width = 220;

@@ -579,8 +579,8 @@ void fn_1_9E29C(s32 count, Vec3f *src, ScreenPoint *dst) {
                 p.y = ymax;
                 p.x = cx + t * (p.x - cx);
             }
-            dst[i].x = (s16)p.x;
-            dst[i].y = (s16)p.y;
+            dst[i].x = p.x;
+            dst[i].y = p.y;
             dst[i].flags = 0;
         }
     }

@@ -88,7 +88,7 @@ void fn_1_D332C(u16 *data) {
         state->unk_9 = 1;
     }
 
-    if ((f64)state->unk_A > lbl_1_rodata_6158) {
+    if (state->unk_A > lbl_1_rodata_6158) {
         state->unk_0 = 1;
     }
 

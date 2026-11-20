@@ -179,10 +179,10 @@ switch (p->unk_0) {
 case 1:
 {
 u16 c4 = p->unk_4;
-s32 t4 = (s32)p->unk_8 - (s32)c4;
-f64 dd = 0.21 * (f64)t4;
+s32 t4 = p->unk_8 - c4;
+f64 dd = 0.21 * t4;
 if ((s32)dd != 0) {
-p->unk_4 = ((u32)c4 + dd);
+p->unk_4 = (c4 + dd);
 } else {
 e = fn_4_ADF4_sign(t4);
 /* Retail rereads the position after selecting the one-step adjustment. */
@@ -190,10 +190,10 @@ p->unk_4 = *(u16 *)&p->unk_4 + e;
 }
 {
 u16 c6 = p->unk_6;
-s32 t6 = (s32)p->unk_A - (s32)c6;
-dd = 0.21 * (f64)t6;
+s32 t6 = p->unk_A - c6;
+dd = 0.21 * t6;
 if ((s32)dd != 0) {
-p->unk_6 = ((u32)c6 + dd);
+p->unk_6 = (c6 + dd);
 } else {
 e = fn_4_ADF4_sign(t6);
 /* Retail rereads the position after selecting the one-step adjustment. */
@@ -202,7 +202,7 @@ p->unk_6 = *(u16 *)&p->unk_6 + e;
 }
 }
 fn_1_49514(p->color);
-fn_1_496FC((f32)p->unk_4, (f32)p->unk_6);
+fn_1_496FC(p->unk_4, p->unk_6);
 {
 f64 scale_d = 1.6666666666666667 * (0.5 + (0x18 - p->unk_1) / 48.0f);
 fn_1_4955C(scale_d, scale_d);
@@ -221,7 +221,7 @@ fn_1_A2D84(0xA9010100);
 ph = p->color;
 {
 f32 quarter = 0.25f;
-f = (f32)p->unk_1 * quarter;
+f = p->unk_1 * quarter;
 {
 ph.r += (255 - ph.r) * f;
 ph.g += (255 - ph.g) * f;
@@ -229,17 +229,17 @@ ph.b += (255 - ph.b) * f;
 }
 }
 fn_1_49514(ph);
-fn_1_496FC((f32)p->unk_4, (f32)p->unk_6);
+fn_1_496FC(p->unk_4, p->unk_6);
 {
-f64 scale_d = 1.6666666666666667 * (1.0 + 0.5 * (f64)f);
+f64 scale_d = 1.6666666666666667 * (1.0 + 0.5 * f);
 fn_1_4955C(scale_d, scale_d);
 }
 loc_20 = *(FontDrawPacket *)(&lbl_1_rodata_26F8);
 loc_20.image = 0x8F09;
-loc_20.x = (f32)p->unk_4;
-loc_20.y = (f32)p->unk_6;
+loc_20.x = p->unk_4;
+loc_20.y = p->unk_6;
 loc_20.z = 0.13f;
-loc_20.scale_x = loc_20.scale_y = (1.5 + 2.0 * (f64)f);
+loc_20.scale_x = loc_20.scale_y = (1.5 + 2.0 * f);
 loc_20.flags = 0xA;
 fn_1_4F734((FontDrawPacket *)&loc_20);
 if (p->unk_1 == 1) {
@@ -253,7 +253,7 @@ name[1] = p->name[1];
 break;
 case 3:
 fn_1_49514(p->color);
-fn_1_496FC((f32)p->unk_4, (f32)p->unk_6);
+fn_1_496FC(p->unk_4, p->unk_6);
 fn_1_4955C(1.6666666f, 1.6666666f);
 break;
 case 4:
@@ -263,13 +263,13 @@ fn_1_4060();
 return;
 }
 fn_1_49514(p->color);
-fn_1_496FC((f32)p->unk_4, (f32)p->unk_6);
+fn_1_496FC(p->unk_4, p->unk_6);
 {
 f64 scale_d = 1.6666666666666667 * (1.0 + 0.5 * (f32)(0x10 - p->unk_1));
 fn_1_4955C(scale_d, scale_d);
 }
 {
-f32 alpha = (f32)p->unk_1;
+f32 alpha = p->unk_1;
 alpha *= 0.0625f;
 fn_1_495A0(alpha);
 }
@@ -885,9 +885,9 @@ phase->unk_11 = phase->unk_11 - phase->unk_10;
 smooth = *smoothRef;
 old12 = smooth->unk_12;
 x = smooth->unk_E * 56 + 98 - old12;
-d = 0.3 * (f64)x;
+d = 0.3 * x;
 if ((s32)d != 0) {
-smooth->unk_12 = ((f64)old12 + d);
+smooth->unk_12 = (old12 + d);
 } else {
 s32 step;
 if (x < 0) {
@@ -1123,7 +1123,7 @@ void fn_10_24BD0(void) {
         packet.y = (352.0f);
         packet.z = (0.159999996f);
         do {
-            packet.x = (f32)char_index;
+            packet.x = char_index;
             fn_1_4F734((FontDrawPacket *)&packet);
             empty_index += 1;
             char_index += 0x38;
@@ -1153,7 +1153,7 @@ void fn_10_24BD0(void) {
             tab_color.channels[1] = (u8)((v * 0x10) & 0xF0);
             tab_color.channels[2] = (u8)((v * 0x10) & 0xF0);
             *(u32 *)packet.color_add = *(u32 *)&tab_color;
-            temp_f0 = ((1.0) + (f64)v / (12.0));
+            temp_f0 = ((1.0) + v / (12.0));
             packet.scale_y = temp_f0;
             packet.scale_x = temp_f0;
         }
@@ -1167,7 +1167,7 @@ void fn_10_24BD0(void) {
             left_color.channels[1] = (u8)((v * 0x10) & 0xF0);
             left_color.channels[2] = (u8)((v * 0x10) & 0xF0);
             *(u32 *)packet.color_add = *(u32 *)&left_color;
-            temp_f0_2 = ((1.0) + (f64)v / (12.0));
+            temp_f0_2 = ((1.0) + v / (12.0));
             packet.scale_y = temp_f0_2;
             packet.scale_x = temp_f0_2;
         }
@@ -1185,7 +1185,7 @@ void fn_10_24BD0(void) {
             right_color.channels[1] = (u8)((v * 0x10) & 0xF0);
             right_color.channels[2] = (u8)((v * 0x10) & 0xF0);
             *(u32 *)packet.color_add = *(u32 *)&right_color;
-            temp_f0_3 = ((1.0) + (f64)v / (12.0));
+            temp_f0_3 = ((1.0) + v / (12.0));
             packet.scale_y = temp_f0_3;
             packet.scale_x = temp_f0_3;
         }
@@ -1199,7 +1199,7 @@ void fn_10_24BD0(void) {
             cursor_color.channels[1] = (u8)((v * 0x10) & 0xF0);
             cursor_color.channels[2] = (u8)((v * 0x10) & 0xF0);
             *(u32 *)packet.color_add = *(u32 *)&cursor_color;
-            temp_f0_4 = ((1.0) + (f64)v / (12.0));
+            temp_f0_4 = ((1.0) + v / (12.0));
             packet.scale_y = temp_f0_4;
             packet.scale_x = temp_f0_4;
         }
@@ -1253,8 +1253,8 @@ void fn_10_24BD0(void) {
         fn_1_495C8(9);
         fn_1_496FC((321.0f), (178.0f));
         {
-            f64 t = (2.1666666666666665) * (f64)pulse_scale;
-            fn_1_4955C((f32)t, (f32)t);
+            f64 t = (2.1666666666666665) * pulse_scale;
+            fn_1_4955C(t, t);
         }
         fn_1_4A0D8((const char *)buf);
         packet = *(FontDrawPacket *)(*(u8 (*)[])&lbl_1_rodata_26F8);
@@ -1324,7 +1324,7 @@ static void name_entry_set_default_name(void) {
                 i++;
             }
         }
-        lbl_10_bss_55CD8->unk_E = (u8)i;
+        lbl_10_bss_55CD8->unk_E = i;
     }
 }
 extern void *fn_1_45D0(u32, u32, const char *, u32);
@@ -1683,9 +1683,9 @@ void fn_10_25E1C(void) {
     }
 
     if (result != -1) {
-        lbl_10_bss_55CE0 = (u8)result;
+        lbl_10_bss_55CE0 = result;
     } else {
-        lbl_10_bss_55CE0 = (u8)fn_1_12EF24(state->value, 0);
+        lbl_10_bss_55CE0 = fn_1_12EF24(state->value, 0);
     }
 
     fn_1_14A1AC(lbl_1_bss_8E51D);

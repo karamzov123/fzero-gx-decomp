@@ -26,7 +26,7 @@ void fn_16_CAC(void) {
     s32 var_r0;
     u32 temp_r4;
 
-    if ((s32) lbl_16_bss_21C.unk_0 == -1) {
+    if (lbl_16_bss_21C.unk_0 == -1) {
         fn_1_4C10();
     }
     if ((lbl_1_bss_8B614.unk_4C & 0x80000000) && !(lbl_1_bss_8B614.unk_4C & 1) && !(lbl_1_bss_8B614.unk_4 & 0x10000000)) {
@@ -40,7 +40,7 @@ void fn_16_CAC(void) {
         if (lbl_16_bss_21C.unk_0 != -1) {
             temp_r4 = lbl_16_bss_21C.unk_0;
             lbl_16_bss_21C.unk_0 = -1U;
-            (*(u16 *)((u8 *)(&lbl_1_bss_96A) + 0)) = (u16) temp_r4;
+            (*(u16 *)((u8 *)(&lbl_1_bss_96A) + 0)) = temp_r4;
             return;
         }
         temp_r3 = fn_16_E20();

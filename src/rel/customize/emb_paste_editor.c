@@ -418,7 +418,7 @@ static inline s16 count_used(PasteSlot *slot) {
 
 static inline void initialize_entry(PasteSlot *slot, EditorSave *state, u8 *character) {
     state->unk_C = 0x8000000;
-    fn_3_12FD4(0, (u8)state->unk_1C, character[0x328], &slot->e[0].unk_10, &slot->e[0].unk_14);
+    fn_3_12FD4(0, state->unk_1C, character[0x328], &slot->e[0].unk_10, &slot->e[0].unk_14);
 }
 
 void fn_3_FD30(void) {
@@ -1416,7 +1416,7 @@ void fn_3_10CB8(void) {
             dir = -1;
         }
         if (dir) {
-            n = (s16)held + 1;
+            n = held + 1;
             s->unk_50 = CLAMP(n, 0, 255);
         } else {
             s->unk_50 = 0;
@@ -1784,7 +1784,7 @@ void fn_3_11994(s16 arg0, s16 arg1, s32 arg2, s32 arg3, s32 arg_sp0) {
 
     var_r30 = 0;
     while (var_r30 < 4U) {
-        if (arg0 != (s32) var_r30) {
+        if (arg0 != var_r30) {
             temp_r5 = var_r30 * 0x2060;
             temp_r4 = (void *)(arg2 + temp_r5);
             if (arg1 == (*(s16 *)((u8 *)(temp_r4) + 0))) {
@@ -3138,7 +3138,7 @@ void fn_3_12E4C(Customize *self, u8 index, Vec3 *first, Vec3 *second) {
     if (self->flags & 0x04000000) {
         data = (Data *)(*(u8 (*)[2400])&lbl_3_data_246C);
         data = (Data *)((u8 *)data +
-                        ((u8)((self->indices)[(u32)index * 0x1b0]) << 5));
+                        ((u8)((self->indices)[index * 0x1b0]) << 5));
         *first = data->first;
         *second = data->second;
         return;
@@ -3152,14 +3152,14 @@ void fn_3_12E4C(Customize *self, u8 index, Vec3 *first, Vec3 *second) {
             *second = data->second;
             return;
         }
-        data = (Data *)((u8 *)(*(u32 (*)[352])&lbl_3_data_1EEC) + ((u8)state << 5));
+        data = (Data *)((u8 *)(*(u32 (*)[352])&lbl_3_data_1EEC) + (state << 5));
         *first = data->first;
         *second = data->second;
         return;
     }
 
-    if ((u8)state == 0x28) {
-        special = (SpecialData *)((u8 *)(*(u32 (*)[352])&lbl_3_data_1EEC) + ((u8)index << 5));
+    if (state == 0x28) {
+        special = (SpecialData *)((u8 *)(*(u32 (*)[352])&lbl_3_data_1EEC) + (index << 5));
         *first = special->first;
         *second = special->second;
         return;

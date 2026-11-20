@@ -342,7 +342,7 @@ void fn_1_108920(u32 accessory) {
             matrix_address = matrix_base;
             entry_index = 0;
             source_offset = 0;
-            while ((u32)entry_index < *(u32 *)((u8 *)entry_count + 0)) {
+            while (entry_index < *(u32 *)((u8 *)entry_count + 0)) {
                 entry_index++;
                 source_address = (*(u32 *)((u8 *)accessory + 100) + source_offset);
                 *(struct fn_1_108920_Copy12 *)matrix_address = *(struct fn_1_108920_Copy12 *)source_address;
@@ -581,9 +581,9 @@ void fn_1_108BD0(Fn1108BD0_Object *object, s32 joint_index, f32 margin, f32 x, f
                 sum.z += part->pos.z;
             }
         }
-        sum.x /= (f32)n;
-        sum.y /= (f32)n;
-        sum.z /= (f32)n;
+        sum.x /= n;
+        sum.y /= n;
+        sum.z /= n;
         dz = sum.z - pos.z;
         dy = sum.y - pos.y;
         dist = sum.x - pos.x;
@@ -882,7 +882,7 @@ void fn_1_1091D4(u32 arg0) {
     fn_1_10846C(v1);
     {
     Group1091D4 *v6 = *(Group1091D4 **)((u8 *)arg0 + 36);
-    for (v5 = 0; (u32)v5 < *(u32 *)((u8 *)arg0 + 24); v5++, v6++) {
+    for (v5 = 0; v5 < *(u32 *)((u8 *)arg0 + 24); v5++, v6++) {
     if (v6->flags & 1) {
     v6->unk_40 = p_lbl_1_rodata_7AB8->unk_64;
     v6->flags = 0;
@@ -1040,7 +1040,7 @@ void fn_1_1091D4(u32 arg0) {
     }
     }
     }
-    if ((u8)v75 == 0) break;
+    if (v75 == 0) break;
     } while ((u16)v3-- != 0);
     }
     }
@@ -1594,7 +1594,7 @@ static inline void fn_1_10A6A0_attach_parts(fn_1_10A6A0_Object *self, u8 *tbl)
 
     p = self->unk_24;
     for (i = 0; i < self->unk_18; i++, p++) {
-        for (j = 0; j < (s32)p->unk_2; j++) {
+        for (j = 0; j < p->unk_2; j++) {
             fn_8006E250(&p->unk_10, tbl + p->unk_4[j] * 64);
         }
     }
@@ -2293,7 +2293,7 @@ static inline void fn_1_10B5A8_attach_parts(fn_1_10B5A8_Object *self, u8 *tbl)
 
     p = self->unk_24;
     for (i = 0; i < self->unk_18; i++, p++) {
-        for (j = 0; j < (s32)p->unk_2; j++) {
+        for (j = 0; j < p->unk_2; j++) {
             fn_8006E250(&p->unk_10, tbl + p->unk_4[j] * 64);
         }
     }
@@ -3944,7 +3944,7 @@ void fn_1_10C9B0(Fn10C9B0List *list) {
         neg = -(f32)i;
         for (n = 0; n < 3; n++) {
             if (1.1920929e-07f + list->entries[i * 3 + n].unk_40 < 0.0f) {
-                list->entries[i * 3 + n].unk_40 = neg / (f32)groups;
+                list->entries[i * 3 + n].unk_40 = neg / groups;
             }
         }
     }
@@ -5203,7 +5203,7 @@ void fn_1_10E3B4(Work *arg0) {
    for (wi = 0, wn = arg0->nodes; wi < arg0->count; wi++, wn++) {
     if (wi >= 3) {
      s32 m = (wi - 3) % n;
-     w2 = 0.2f + (0.8f * (f32)m) / 9.0f;
+     w2 = 0.2f + (0.8f * m) / 9.0f;
      w1 = 0.2f + (0.8f * (n - m)) / 9.0f;
     } else {
      w1 = 0.0f;
@@ -6073,7 +6073,7 @@ void fn_1_110478(Work *arg0) {
  u32 m;
  s32 rnd;
  m=wi%9;
- w2=(0.2f)+((0.8f)*(f32)m)/(9.0f);
+ w2=(0.2f)+((0.8f)*m)/(9.0f);
  w1=(0.2f)+((0.8f)*(9-m))/(9.0f);
  wn->vel.x*=(0.8); wn->vel.y*=(0.8); wn->vel.z*=(0.8);
  wn->vel.x+=(f64)((0.2)*(wn->pos.x-wn->prev.x));
@@ -6946,7 +6946,7 @@ void fn_1_111980(Work *arg0) {
  u32 m;
  s32 rnd;
  m=wi%9;
- w2=(0.2f)+((0.8f)*(f32)m)/(9.0f);
+ w2=(0.2f)+((0.8f)*m)/(9.0f);
  w1=(0.2f)+((0.8f)*(9-m))/(9.0f);
  wn->vel.x*=(0.8); wn->vel.y*=(0.8); wn->vel.z*=(0.8);
  wn->vel.x+=(f64)((0.2)*(wn->pos.x-wn->prev.x));
@@ -11134,7 +11134,7 @@ static inline s32 fn_1_11492C_irand(void) {
  return (lbl_801A63C0 >> 16) & 0x7FFF;
 }
 static inline f32 fn_1_11492C_rand01(void) {
- return (f32)fn_1_11492C_irand() / 32767.0f;
+ return fn_1_11492C_irand() / 32767.0f;
 }
 static inline f32 fn_1_11492C_randf(f32 scale) {
  return scale * fn_1_11492C_rand01();
@@ -11984,15 +11984,15 @@ void fn_1_115BE8(Work *arg0) {
     lsum.z += tmp.z;
    }
   }
-  sum.x /= (f32)cnt;
-  sum.y /= (f32)cnt;
-  sum.z /= (f32)cnt;
+  sum.x /= cnt;
+  sum.y /= cnt;
+  sum.z /= cnt;
   sum.x -= root->pos.x;
   sum.y -= root->pos.y;
   sum.z -= root->pos.z;
-  lsum.x /= (f32)cnt;
-  lsum.y /= (f32)cnt;
-  lsum.z /= (f32)cnt;
+  lsum.x /= cnt;
+  lsum.y /= cnt;
+  lsum.z /= cnt;
   lsum.x -= root->pos.x;
   lsum.y -= root->pos.y;
   lsum.z -= root->pos.z;
@@ -12027,9 +12027,9 @@ void fn_1_115BE8(Work *arg0) {
    sum.y += n->pos.y;
    sum.z += n->pos.z;
   }
-  ((Vec *)&lbl_1_bss_89750)->x = sum.x / (f32)cnt;
-  ((Vec *)&lbl_1_bss_89750)->y = sum.y / (f32)cnt;
-  ((Vec *)&lbl_1_bss_89750)->z = sum.z / (f32)cnt;
+  ((Vec *)&lbl_1_bss_89750)->x = sum.x / cnt;
+  ((Vec *)&lbl_1_bss_89750)->y = sum.y / cnt;
+  ((Vec *)&lbl_1_bss_89750)->z = sum.z / cnt;
   model = arg0->owner->model->base + ((u32 *)&lbl_1_data_3FFBC)[arg0->index] * 396;
   for (i = 0, n = arg0->nodes; i < arg0->count; i++, n++) {
    lbl_8006DBAC(model + 136);
@@ -12357,7 +12357,7 @@ void fn_1_11677C(void *arg0) {
     v5 = *(u32 *)((u8 *)arg0 + 36);
     v6 = v5;
     v7 = 0;
-    while ((u32)v7 < (v8 = *(u32 *)((u8 *)arg0 + 24))) {
+    while (v7 < (v8 = *(u32 *)((u8 *)arg0 + 24))) {
     if ((*(u8 *)((u8 *)v6) & 1) == 0) {
     *(struct fn_1_11677C_Copy12 *)((u8 *)v6 + 28) =
         *(struct fn_1_11677C_Copy12 *)((u8 *)v6 + 16);
@@ -12414,7 +12414,7 @@ void fn_1_11677C(void *arg0) {
     lbl_8006DBAC(lab_t0);
     v4 = *(u32 *)((u8 *)arg0 + 36);
     v20 = 0;
-    while ((u32)v20 < *(u32 *)((u8 *)arg0 + 24)) {
+    while (v20 < *(u32 *)((u8 *)arg0 + 24)) {
     if ((*(u8 *)((u8 *)v4) & 1) == 0) {
     v2++;
     loc_90.x += *(f32 *)((u8 *)v4 + 16);
@@ -12428,9 +12428,9 @@ void fn_1_11677C(void *arg0) {
     v20++;
     v4 += 68;
     }
-    loc_90.x /= (f32)v2;
-    v28 = loc_90.y / (f32)v2;
-    v29 = loc_90.z / (f32)v2;
+    loc_90.x /= v2;
+    v28 = loc_90.y / v2;
+    v29 = loc_90.z / v2;
     loc_90.y = v28;
     loc_90.z = v29;
     v33 = *(f32 *)((u8 *)v3 + 16);
@@ -12438,10 +12438,10 @@ void fn_1_11677C(void *arg0) {
     v36 = *(f32 *)((u8 *)v3 + 20);
     loc_90.y = v28 - v36;
     v38 = *(f32 *)((u8 *)v3 + 24);
-    loc_84.x /= (f32)v2;
-    v12 = loc_84.y / (f32)v2;
+    loc_84.x /= v2;
+    v12 = loc_84.y / v2;
     loc_84.y = v12;
-    loc_84.z /= (f32)v2;
+    loc_84.z /= v2;
     v39 = v29 - v38;
     loc_90.z = v39;
     loc_84.x -= v33;
@@ -12461,7 +12461,7 @@ void fn_1_11677C(void *arg0) {
     u8 *v4;
     v4 = *(u8 **)((u8 *)arg0 + 36);
     v41 = 0;
-    while ((u32)v41 < *(u32 *)((u8 *)arg0 + 24)) {
+    while (v41 < *(u32 *)((u8 *)arg0 + 24)) {
     if ((*(u8 *)((u8 *)v4) & 1) == 0) {
     lbl_8006E1B0((Fn183D28Vec3 *)(v4 + 40), (Fn183D28Vec3 *)(v4 + 16));
     }
@@ -12477,7 +12477,7 @@ void fn_1_11677C(void *arg0) {
     u8 *v4;
     v4 = *(u8 **)((u8 *)arg0 + 36);
     v42 = 0;
-    while ((u32)v42 < *(u32 *)((u8 *)arg0 + 24)) {
+    while (v42 < *(u32 *)((u8 *)arg0 + 24)) {
     if ((*(u8 *)((u8 *)v4) & 1) == 0) {
     lbl_8006E1B0((Fn183D28Vec3 *)(v4 + 16), (Fn183D28Vec3 *)(v4 + 16));
     }
@@ -12494,7 +12494,7 @@ void fn_1_11677C(void *arg0) {
     v0 = *(u32 *)((u8 *)v0 + 8);
     v46 = (u8 *)v0;
     v46 += v44 * 396;
-    while ((u32)v4 < *(u32 *)((u8 *)arg0 + 24)) {
+    while (v4 < *(u32 *)((u8 *)arg0 + 24)) {
     lbl_8006DBAC((Vec3 *)(v46 + 136));
     lbl_8006E1B0((Fn183D28Vec3 *)(v3 + 40), (Fn183D28Vec3 *)&loc_50);
     v47 = *(f32 *)((u8 *)v3 + 16) - loc_50.a[0];
@@ -12643,7 +12643,7 @@ void fn_1_11677C(void *arg0) {
     lbl_8006DBAC((&((struct fn_1_11677C_Part *)*(u32 *)((u8 *)v75 + 8))[((u32 *)lbl_1_data_3FFBC)[*(u32 *)((u8 *)arg0 + 8)]].matrix));
     v2 = *(u32 *)((u8 *)arg0 + 36);
     v77 = 0;
-    while ((u32)v77 < *(u32 *)((u8 *)arg0 + 24)) {
+    while (v77 < *(u32 *)((u8 *)arg0 + 24)) {
     v76 = v2;
     v4 = 0;
     while ((s32)v4 < (s32)*(u8 *)((u8 *)v2 + 2)) {
@@ -12807,7 +12807,7 @@ void fn_1_1171B8(Obj *obj) {
             for (j = 0; j < per; j++) {
                 idx = i * per + j;
                 if (1.1920928955078125e-07f + obj->unk_24[idx].unk_40 < 0.0f) {
-                    obj->unk_24[idx].unk_40 = -(f32)i / (f32)n;
+                    obj->unk_24[idx].unk_40 = -(f32)i / n;
                 }
             }
         }
@@ -14279,7 +14279,7 @@ void fn_1_117D5C(Rope *rope) {
             if (!(n7->flags & 1)) {
                 lbl_8006DBAC(&model7->mtx);
                 lbl_8006E1B0(&n7->local, &tmp);
-                scale = (f32)i7 / (f32)rope->count2;
+                scale = (f32)i7 / rope->count2;
                 scale = 1.0f - scale;
                 b2.x = (tmp.x - n7->pos.x) * (0.2f * scale * (1.0f + n7->mass));
                 b2.y = (tmp.y - n7->pos.y) * (0.2f * scale * (1.0f + n7->mass));
@@ -15097,7 +15097,7 @@ void fn_1_118D90(u32 arg0, f32 arg1) {
         v5 = 0;
         v8 = p_lbl_1_rodata_7AB8->unk_68;
         v1 = 1;
-        while ((u32)v2 < *(u32 *)((u8 *)arg0 + 24)) {
+        while (v2 < *(u32 *)((u8 *)arg0 + 24)) {
             if ((*(u8 *)((u8 *)v7 + 0) & 0x1) != 0) {
                 *(u8 *)((u8 *)v7 + 0) = v5;
                 *(f32 *)((u8 *)v7 + 64) = v0;
@@ -15724,7 +15724,7 @@ void fn_1_11A158(fn_1_10D2F0_Obj *obj) {
         for (i = 0; i < rows; i++, p += 13) {
             num = -(f32)(i + 1);
             for (j = 0; j < 13; j++) {
-                p[j].unk_40 = num / (f32)div;
+                p[j].unk_40 = num / div;
             }
             for (j = 0, a = p; j < 13; j++, a++) {
                 for (k = j + 1, b = a + 1; k < 13; k++, b++) {
@@ -17026,9 +17026,9 @@ void fn_1_11CAB4(NodeSet *set) {
                 center.z += n_2->pos.z;
             }
         }
-        center.x /= (f32)active;
-        center.y /= (f32)active;
-        center.z /= (f32)active;
+        center.x /= active;
+        center.y /= active;
+        center.z /= active;
 
         maxDist = 0.0f;
         n_2 = set->nodes;
@@ -19606,14 +19606,14 @@ void fn_1_120804(AccWork *arg0) {
                 f32 w1, w2;
                 s32 q;
                 m = wi % cols;
-                w2 = 0.2f + (0.8f * (f32)m) / 9.0f;
+                w2 = 0.2f + (0.8f * m) / 9.0f;
                 w1 = 0.2f + (0.8f * (cols - m)) / 9.0f;
                 psvec_scale(&wn->vel, 0.8f, &wn->vel);
                 psvec_sub(&wn->pos, &wn->prev, &d);
                 psvec_scale_add(&wn->vel, &d, 0.2f, &wn->vel);
                 wn->vel.z += (f32)(w1 * (0.0012f * fn_1_120804_rand()));
                 if (wi < arg0->count / 2) {
-                    wn->vel.y += (f32)(w1 * ((f32)((0.0038f + (0.001f * (f32)wi) / (arg0->count / 2)) * fn_1_120804_rand()) - 0.001f));
+                    wn->vel.y += (f32)(w1 * ((f32)((0.0038f + (0.001f * wi) / (arg0->count / 2)) * fn_1_120804_rand()) - 0.001f));
                 } else {
                     wn->vel.y += (f32)(w1 * ((f32)((0.0038f + (0.001f * (arg0->count - wi)) / (arg0->count / 2)) * fn_1_120804_rand()) - 0.001f));
                 }
@@ -19621,7 +19621,7 @@ void fn_1_120804(AccWork *arg0) {
                 wn->vel.x += (f32)(w1 * (0.0006f * lbl_8006D188((-32768.0f + (65536.0f * ((q + lbl_801A66A0) % 39)) / 39.0f))));
                 wn->vel.x += (f32)(w2 * (0.0012f * fn_1_120804_rand()));
                 if (wi < arg0->count / 2) {
-                    wn->vel.y += (f32)(w2 * ((0.0015f + (0.0005f * (f32)wi) / (arg0->count / 2)) * fn_1_120804_rand()));
+                    wn->vel.y += (f32)(w2 * ((0.0015f + (0.0005f * wi) / (arg0->count / 2)) * fn_1_120804_rand()));
                 } else {
                     wn->vel.y += (f32)(w2 * ((0.0015f + (0.0005f * (arg0->count - wi)) / (arg0->count / 2)) * fn_1_120804_rand()));
                 }
@@ -19634,14 +19634,14 @@ void fn_1_120804(AccWork *arg0) {
                 f32 w1, w2;
                 s32 q;
                 m = wi % cols;
-                w2 = 0.2f + (0.8f * (f32)m) / 9.0f;
+                w2 = 0.2f + (0.8f * m) / 9.0f;
                 w1 = 0.2f + (0.8f * (cols - m)) / 9.0f;
                 psvec_scale(&wn->vel, 0.8f, &wn->vel);
                 psvec_sub(&wn->pos, &wn->prev, &d);
                 psvec_scale_add(&wn->vel, &d, 0.2f, &wn->vel);
                 wn->vel.x -= (f32)(w1 * (0.0012f * fn_1_120804_rand()));
                 if (wi < arg0->count / 2) {
-                    wn->vel.y += (f32)(w1 * ((f32)((0.0038f + (0.001f * (f32)wi) / (arg0->count / 2)) * fn_1_120804_rand()) - 0.001f));
+                    wn->vel.y += (f32)(w1 * ((f32)((0.0038f + (0.001f * wi) / (arg0->count / 2)) * fn_1_120804_rand()) - 0.001f));
                 } else {
                     wn->vel.y += (f32)(w1 * ((f32)((0.0038f + (0.001f * (arg0->count - wi)) / (arg0->count / 2)) * fn_1_120804_rand()) - 0.001f));
                 }
@@ -19649,7 +19649,7 @@ void fn_1_120804(AccWork *arg0) {
                 wn->vel.z += (f32)(w1 * (0.0006f * lbl_8006D188((-32768.0f + (65536.0f * ((q + lbl_801A66A0) % 39)) / 39.0f))));
                 wn->vel.z += (f32)(w2 * (0.0012f * fn_1_120804_rand()));
                 if (wi < arg0->count / 2) {
-                    wn->vel.y += (f32)(w2 * ((0.0015f + (0.0005f * (f32)wi) / (arg0->count / 2)) * fn_1_120804_rand()));
+                    wn->vel.y += (f32)(w2 * ((0.0015f + (0.0005f * wi) / (arg0->count / 2)) * fn_1_120804_rand()));
                 } else {
                     wn->vel.y += (f32)(w2 * ((0.0015f + (0.0005f * (arg0->count - wi)) / (arg0->count / 2)) * fn_1_120804_rand()));
                 }
@@ -19958,7 +19958,7 @@ static inline void fn_1_12277C_attach_parts(fn_1_12277C_Object *self, u8 *tbl)
 
     p = self->unk_24;
     for (i = 0; i < self->unk_18; i++, p++) {
-        for (j = 0; j < (s32)p->unk_2; j++) {
+        for (j = 0; j < p->unk_2; j++) {
             fn_8006E250(&p->unk_10, tbl + p->unk_4[j] * 64);
         }
     }
@@ -21116,7 +21116,7 @@ void fn_1_1250D0(fn_1_10D2F0_Obj *obj) {
         for (i = 0; i < rows; i++, p += 13) {
             num = -(f32)(i + 1);
             for (j = 0; j < 13; j++) {
-                p[j].unk_40 = num / (f32)div;
+                p[j].unk_40 = num / div;
             }
             for (j = 0, a = p; j < 13; j++, a++) {
                 for (k = j + 1, b = a + 1; k < 13; k++, b++) {
@@ -21606,7 +21606,7 @@ void fn_1_125DF0(Work *arg0) {
  model6=arg0->owner->model->base+INDEX(arg0->index)*396;
  for(i6=0,n6=arg0->nodes;i6<arg0->count;i6++,n6++) {
  f32 s;
- s=__fabs((f64)n6->weight);
+ s=__fabs(n6->weight);
  s*=s;
  if(s<F(0x1c8)) s=F(0x1c8);
  if(s>F(0x52c)) s=F(0x52c);
@@ -23569,7 +23569,7 @@ u8 fn_1_128E10(u8 value) {
     i = 1;
     while (i < 15) {
         entry = ((u8 *)&table)[i];
-        if ((s32)entry == (value & 0xFF)) {
+        if (entry == (value & 0xFF)) {
             break;
         }
         i++;
@@ -23715,7 +23715,7 @@ void fn_1_128F54(void) {
     i = 0;
     while (i < fzgx_loop_outer_count_553) {
         item.value = fn_1_6B48(i);
-        if ((u32)item.value == 0xFFFFFFFF) {
+        if (item.value == 0xFFFFFFFF) {
             ((f32 *)&lbl_1_bss_89770)[i] = lbl_1_rodata_8068;
             ((u32 *)&lbl_1_bss_89760)[i] = 0;
         } else {
@@ -23888,7 +23888,7 @@ void fn_1_12907C(void) {
     {
         Car_12907C *car = fn_1_8627C(id);
         dh = height - car->height;
-        tilt = (s16)car->angle;
+        tilt = car->angle;
     }
     scale = 1.0f;
     if (dh > 40.0f) {
@@ -24189,12 +24189,12 @@ void fn_1_12999C(void) {
  val=fn_1_A71AC();
  n=fn_1_40B20();
  if (*(s16 *)&lbl_1_bss_960 == 9) mode=lbl_1_bss_9C[7];
- for(i=0;i<(s32)buf[9];i++) {
+ for(i=0;i<buf[9];i++) {
  o=(struct Obj_t *)fn_1_86254(i);
  if(o->unk_0 & 0x8000880) continue;
  sub=(u8 *)o->unk_49C;
- if(o->unk_475 != -1 && fn_1_5910() == (u32)o->unk_475) continue;
- idx=fn_1_12A24C((s8)i);
+ if(o->unk_475 != -1 && fn_1_5910() == o->unk_475) continue;
+ idx=fn_1_12A24C(i);
  self=(i==n);
  if(mode==0 || sub[0x115]>=3) {
  if(idx==-1 && !self) continue;
@@ -24480,7 +24480,7 @@ void fn_1_12A0E0(DisplayData *arg0)
 
 /* fzgx:begin fn_1_12A24C */
 s8 fn_1_12A24C(s8 arg) {
-    if ((s8)fn_1_86678((s32)arg) == -1) {
+    if ((s8)fn_1_86678(arg) == -1) {
         return -1;
     }
     return arg;

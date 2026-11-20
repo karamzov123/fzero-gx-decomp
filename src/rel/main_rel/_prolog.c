@@ -713,7 +713,7 @@ void fn_1_814(struct fn_1_814_Arg0 *arg0) {
         v2 = unk_4 & ~0x1F;
         t3 = OSGetArenaHi();
         v3 = t3 - v2;
-        fn_1_458A0(&loc_8, (u32)v3, v2, 0);
+        fn_1_458A0(&loc_8, v3, v2, 0);
         fn_1_45850(&loc_8);
         OSSetArenaHi(v3);
     }
@@ -875,7 +875,7 @@ void fn_1_E34(void) {
     do {
     fn_1_156754(v0);
     v0++;
-    } while ((s32)v0 < 4);
+    } while (v0 < 4);
 }
 /* fzgx:end fn_1_E34 */
 
@@ -1712,10 +1712,10 @@ s8 fn_1_1FE8(u16 *arg0, struct fn_1_1FE8_Arg1 *arg1, u32 arg2, s8 arg3) {
     }
     v1 = arg2 & 0x3f0;
     if (!v1) return v5;
-    if ((v1 >> 4) & 1) { if (v5 < __abs((s8)arg1->unk_0)) v5 = arg1->unk_0; }
-    if ((v1 >> 5) & 1) { if (v5 < __abs((s8)arg1->unk_1)) v5 = arg1->unk_1; }
-    if ((v1 >> 6) & 1) { if (v5 < __abs((s8)arg1->unk_2)) v5 = arg1->unk_2; }
-    if ((v1 >> 7) & 1) { if (v5 < __abs((s8)arg1->unk_3)) v5 = arg1->unk_3; }
+    if ((v1 >> 4) & 1) { if (v5 < __abs(arg1->unk_0)) v5 = arg1->unk_0; }
+    if ((v1 >> 5) & 1) { if (v5 < __abs(arg1->unk_1)) v5 = arg1->unk_1; }
+    if ((v1 >> 6) & 1) { if (v5 < __abs(arg1->unk_2)) v5 = arg1->unk_2; }
+    if ((v1 >> 7) & 1) { if (v5 < __abs(arg1->unk_3)) v5 = arg1->unk_3; }
     if ((v1 >> 8) & 1) { if (v5 < __abs(arg1->unk_5 - arg1->unk_4)) v5 = arg1->unk_5 - arg1->unk_4; }
     if ((v1 >> 9) & 1) { s32 v27 = arg1->unk_6 - arg1->unk_7; if (v5 < __abs(v27)) v5 = v27; }
     return v5;
@@ -3599,7 +3599,7 @@ s32 fn_1_45D0(u32 arg0, u32 arg1) {
     v0 = arg0;
     if ((s32)arg1 == 0) {
     v0 = (u32)&lbl_1_data_2C74;
-    t0 = OSReport((u32)v0, arg1);
+    t0 = OSReport(v0, arg1);
     v0 = t0;
     v0 = 0;
     } else {
@@ -3630,7 +3630,7 @@ u32 fn_1_4630(u32 arg0, u32 arg1) {
     v1 = arg0;
     if (arg1 == 0) {
     v0 = (u32)&lbl_1_data_2C74;
-    t0 = OSReport((u32)v0, arg1);
+    t0 = OSReport(v0, arg1);
     v0 = t0;
     v1 = 0;
     } else {
@@ -3714,8 +3714,8 @@ struct fn_1_48B0_lbl_801A6CF8 {
 
 s32 fn_1_48B0(u32 arg0, u32 arg1) {
     s32 v0;
-    v0 = (arg1 * ((lbl_801A6CF8.unk_0 - arg0) / (u32)arg1));
-    if ((arg1 * ((lbl_801A6CF8.unk_0 - arg0) / (u32)arg1)) < lbl_801A6CFC) {
+    v0 = (arg1 * ((lbl_801A6CF8.unk_0 - arg0) / arg1));
+    if ((arg1 * ((lbl_801A6CF8.unk_0 - arg0) / arg1)) < lbl_801A6CFC) {
     v0 = 0;
     return v0;
     }

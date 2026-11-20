@@ -970,15 +970,15 @@ void fn_1_15C6C0(s32 arg0, s32 arg1) {
 
     if (lbl_1_bss_3C30.unk_5 == 2 && fn_1_F1B94()) {
         work = 480 - arg0;
-        fade = CLAMP((f32)work / 120.0f, 0.0f, 1.0f);
+        fade = CLAMP(work / 120.0f, 0.0f, 1.0f);
         if (fn_1_F1B94() == 1) {
-            f32 amount = CLAMP((f32)work / 10.0f, 0.0f, 1.0f);
+            f32 amount = CLAMP(work / 10.0f, 0.0f, 1.0f);
             f32 growth;
             p = lbl_1_rodata_26F8;
             growth = 20.0f * (1.0f - amount);
             p.image = 0x9434;
             p.x = 320.0f;
-            p.y = (f32)y;
+            p.y = y;
             p.flags = 10;
             p.alpha = amount;
             stretch = 1.0f + growth;
@@ -991,7 +991,7 @@ void fn_1_15C6C0(s32 arg0, s32 arg1) {
             p = lbl_1_rodata_26F8;
             p.image = 0x9420;
             p.x = 320.0f;
-            p.y = (f32)y;
+            p.y = y;
             p.flags = 10;
             CONVERT(p);
             p.alpha = fade;
@@ -1004,7 +1004,7 @@ void fn_1_15C6C0(s32 arg0, s32 arg1) {
             total++;
         }
         total += strips.strips[5].w;
-        total += (f32)strips.strips[0].h * lbl_8006D21C(0xAAA);
+        total += strips.strips[0].h * lbl_8006D21C(0xAAA);
         x = 320.0f - (total / 2);
         for (i = 0; i < 6; i++) {
             if (arg0 <= 480 - i * 5 && arg0 >= start) {
@@ -1022,7 +1022,7 @@ void fn_1_15C6C0(s32 arg0, s32 arg1) {
                 fn_1_51678(&p, p.image, strips.strips[i].x, strips.strips[i].y,
                            strips.strips[i].w, strips.strips[i].h);
                 p.x = (x + strips.strips[i].w / 2);
-                p.y = (f32)y;
+                p.y = y;
                 p.z = 100.0f - zoom;
                 p.alpha = 1.0f - (0.5f * (zoom - 1.0f)) / 5.0f;
                 if (arg0 < start + 10) {
@@ -1036,7 +1036,7 @@ void fn_1_15C6C0(s32 arg0, s32 arg1) {
                 p.scale_y *= zoom;
                 CONVERT(p);
                 p.vertex_callback = (VertexCallback)fn_1_15C5A4;
-                SET_VALUE(p, fn_1_51B84((f32)strips.strips[i].h * lbl_8006D21C(0xAAA)) + (arg1 * 1000000));
+                SET_VALUE(p, fn_1_51B84(strips.strips[i].h * lbl_8006D21C(0xAAA)) + (arg1 * 1000000));
                 p.flags = 0x400000A;
                 fn_1_4F734(&p);
                 x += strips.strips[i].w;
@@ -1052,7 +1052,7 @@ void fn_1_15C6C0(s32 arg0, s32 arg1) {
         best = lbl_1_bss_3C30.unk_1464;
         fn_1_128E8C((u8)b, &time);
         current = time.s * 1000 + time.m * 60000 + time.ms;
-        if (time.valid == 0 || (u32)current == 0x7FFFF) bad = 1;
+        if (time.valid == 0 || current == 0x7FFFF) bad = 1;
         if (current > best) bad = 1;
         fn_1_156218(lbl_1_bss_3C30.unk_6, &rank4, &rank5, &rank6);
         if (rank4.words[0] > (record2 = entry2->times[lbl_1_bss_3C30.unk_A7])) {
@@ -1064,7 +1064,7 @@ void fn_1_15C6C0(s32 arg0, s32 arg1) {
             }
         } else if (bad && record2 < lbl_1_bss_3C30.unk_1464) {
             work = 0;
-        } else if ((u32)current > record2) {
+        } else if (current > record2) {
             work = 0;
             if (fn_1_3F864() && arg0 == 420) fn_1_A2D84(0xA9072A00);
         } else {
@@ -1074,7 +1074,7 @@ void fn_1_15C6C0(s32 arg0, s32 arg1) {
             p = lbl_1_rodata_26F8;
             p.image = id;
             p.x = 320.0f;
-            p.y = (f32)otherY;
+            p.y = otherY;
             p.flags = 0x400000A;
             clamped = arg0 < 420 ? 420 : arg0 > 480 ? 480 : arg0;
             fade4 = (480 - clamped) / 60.0f;
@@ -1096,7 +1096,7 @@ void fn_1_15C6C0(s32 arg0, s32 arg1) {
             }
             CONVERT(p);
             p.vertex_callback = (VertexCallback)fn_1_15C4EC;
-            SET_VALUE(p, (f32)arg1);
+            SET_VALUE(p, arg1);
             fn_1_4F734(&p);
             if (work == 1 && p.alpha < 1.0f) {
                 p.x = 320.0f - (5120.0f * (1.0f - p.alpha));
@@ -1125,7 +1125,7 @@ void fn_1_15C6C0(s32 arg0, s32 arg1) {
             p.flags = 0x400000B;
             CONVERT(p);
             p.vertex_callback = (VertexCallback)fn_1_15C4EC;
-            SET_VALUE(p, (f32)arg1);
+            SET_VALUE(p, arg1);
             fn_1_4F734(&p);
 
             p = lbl_1_rodata_26F8;
@@ -1140,7 +1140,7 @@ void fn_1_15C6C0(s32 arg0, s32 arg1) {
             p.flags = 0x4000005;
             CONVERT(p);
             p.vertex_callback = (VertexCallback)fn_1_15C4EC;
-            SET_VALUE(p, (f32)arg1);
+            SET_VALUE(p, arg1);
             fn_1_4F734(&p);
         } else if (place < 9) {
             p = lbl_1_rodata_26F8;
@@ -1155,7 +1155,7 @@ void fn_1_15C6C0(s32 arg0, s32 arg1) {
             p.flags = 0x400000B;
             CONVERT(p);
             p.vertex_callback = (VertexCallback)fn_1_15C4EC;
-            SET_VALUE(p, (f32)arg1);
+            SET_VALUE(p, arg1);
             fn_1_4F734(&p);
 
             p = lbl_1_rodata_26F8;
@@ -1170,7 +1170,7 @@ void fn_1_15C6C0(s32 arg0, s32 arg1) {
             p.flags = 0x4000005;
             CONVERT(p);
             p.vertex_callback = (VertexCallback)fn_1_15C4EC;
-            SET_VALUE(p, (f32)arg1);
+            SET_VALUE(p, arg1);
             fn_1_4F734(&p);
         } else {
             p = lbl_1_rodata_26F8;
@@ -1186,7 +1186,7 @@ void fn_1_15C6C0(s32 arg0, s32 arg1) {
             p.flags = 0x400000A;
             CONVERT(p);
             p.vertex_callback = (VertexCallback)fn_1_15C4EC;
-            SET_VALUE(p, (f32)arg1);
+            SET_VALUE(p, arg1);
             fn_1_4F734(&p);
 
             p = lbl_1_rodata_26F8;
@@ -1201,7 +1201,7 @@ void fn_1_15C6C0(s32 arg0, s32 arg1) {
             p.flags = 0x400000B;
             CONVERT(p);
             p.vertex_callback = (VertexCallback)fn_1_15C4EC;
-            SET_VALUE(p, (f32)arg1);
+            SET_VALUE(p, arg1);
             fn_1_4F734(&p);
 
             p = lbl_1_rodata_26F8;
@@ -1216,7 +1216,7 @@ void fn_1_15C6C0(s32 arg0, s32 arg1) {
             p.flags = 0x4000005;
             CONVERT(p);
             p.vertex_callback = (VertexCallback)fn_1_15C4EC;
-            SET_VALUE(p, (f32)arg1);
+            SET_VALUE(p, arg1);
             fn_1_4F734(&p);
         }
     }
@@ -1314,8 +1314,8 @@ void fn_1_15DD7C(int arg0) {
     s.unk_30 = 10;
 
     if (fn_1_58C4() > 1 || lbl_1_bss_3C30.unk_13F6 == 0) {
-        if (240.0f < (f32)arg0) {
-            s.unk_2C = ((f32)arg0 - 240.0f) / 60.0f * 2.0f;
+        if (240.0f < arg0) {
+            s.unk_2C = (arg0 - 240.0f) / 60.0f * 2.0f;
             if (s.unk_2C > 1.0f) {
                 s.unk_2C = 1.0f;
             }
@@ -1324,14 +1324,14 @@ void fn_1_15DD7C(int arg0) {
             s.unk_2C = 1.0f;
         }
     } else {
-        if (240.0f < (f32)arg0) {
-            f32 u = ((f32)arg0 - 240.0f) / 60.0f;
+        if (240.0f < arg0) {
+            f32 u = (arg0 - 240.0f) / 60.0f;
             if (u > 1.0f) {
                 u = 1.0f;
             }
             s.unk_2C = 1.0f - u;
-        } else if ((f32)arg0 < 60.0f) {
-            s.unk_2C = (f32)arg0 / 60.0f;
+        } else if (arg0 < 60.0f) {
+            s.unk_2C = arg0 / 60.0f;
         } else {
             s.unk_2C = 1.0f;
         }
@@ -1988,7 +1988,7 @@ void fn_1_15E7F4(void *arg0, s32 arg1) {
         v5_2 = *(u8 *)((u8 *)arg0 + 2);
         if (v5_2 < 10) {
             v23 = (1.0f);
-            v24 = (f32)v5_2 / (10.0f);
+            v24 = v5_2 / (10.0f);
             *(f32 *)((u8 *)&loc_58 + 44) = v24;
             v25 = (v23 - v24) * (v23 - v24);
             v4 = ((90.0f) * v25);
@@ -2490,7 +2490,7 @@ void fn_1_15EFEC(s32 arg0) {
  } else if (v11 < 8) {
  v14 = pool_100;
  v15 = pool_5c;
- v16 = (u32)v11*v14;
+ v16 = v11*v14;
  loc_60.alpha = v16;
  v17 = v12*v16;
  loc_60.scale_y = v17;
@@ -2532,7 +2532,7 @@ void fn_1_15EFEC(s32 arg0) {
  } else if (v27<8) {
  v29=pool_100;
  v30=pool_5c;
- v31=(u32)v27*v29;
+ v31=v27*v29;
  loc_8.alpha=v31;
  v32=loc_8.scale_y*v31;
  loc_8.scale_y=v32;
@@ -2548,7 +2548,7 @@ void fn_1_15EFEC(s32 arg0) {
  v34=(90-v33)/pool_170;
  v35=pool_3c*v34;
  } else if (v33<15) {
- v34=(u32)v33/pool_170;
+ v34=v33/pool_170;
  v35=pool_3c*v34;
  } else { v35=pool_3c; v34=pool_1c; }
  fn_1_494DC(10);
@@ -2565,9 +2565,9 @@ void fn_1_15EFEC(s32 arg0) {
  }
  if (player.p->unk_9 && (p_lbl_1_data_3D544[v2]&0x400000)) fn_1_15EC40(player.p);
  else player.p->unk_0 &= ~0x18;
- v34=(u32)player.p->unk_3/pool_170;
+ v34=player.p->unk_3/pool_170;
  if (v34>pool_1c) v34=pool_1c;
- player.p->unk_30 = (u32)player.p->unk_8-v34;
+ player.p->unk_30 = player.p->unk_8-v34;
  fn_1_49728(0);
 }
 /* fzgx:end fn_1_15EFEC */

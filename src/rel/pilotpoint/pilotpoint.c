@@ -961,7 +961,7 @@ void fn_14_904(void) {
         score->prev = 0;
     }
     fn_1_3EF14(&race);
-    player = race.a + (u8)fn_14_DC2C() * 160 + 212;
+    player = race.a + fn_14_DC2C() * 160 + 212;
     lbl_14_data_2C20[0].cur = *(s16 *)(player + 0x84) / 10 * 10;
     lbl_14_data_2C20[1].cur = *(s16 *)(player + 0x86) / 10 * 10;
     lbl_14_data_2C20[2].cur = *(s16 *)(player + 0x88) / 10 * 10;
@@ -2806,7 +2806,7 @@ void fn_14_6044(s16 arg0, s16 arg1) {
 
     cnt0 = 0;
     cnt1 = 0;
-    scale = (f32)fn_1_A5DB0() / 480.0f;
+    scale = fn_1_A5DB0() / 480.0f;
     lbl_14_bss_92E8.x = arg0 + 0x202;
     lbl_14_bss_92E8.y = (arg1 + 16) * scale;
     lbl_14_bss_92E8.w = 62;
@@ -2930,7 +2930,7 @@ void fn_14_6494(void) {
     f32 scale;
 
     s = lbl_1_rodata_26F8;
-    scale = (f32)fn_1_A5DB0() / 480.0f;
+    scale = fn_1_A5DB0() / 480.0f;
     lbl_14_bss_92F0.x = 0x117;
     lbl_14_bss_92F0.w = 0x54;
     lbl_14_bss_92F0.y = 314.0f * scale;
@@ -3612,8 +3612,8 @@ void fn_14_82E4(s16 arg0, s16 arg1, s16 arg2) {
     t = lbl_8006D188(65536.0f * (((s32)lbl_801A66A0 % 60) % 120) / 120.0f);
     n = arg2 / 60;
     fn_1_49410();
-    x = 320.0f + (f32)arg0;
-    y.value = 240.0f + (f32)arg1;
+    x = 320.0f + arg0;
+    y.value = 240.0f + arg1;
     fn_1_496FC(x, y.value);
     fn_1_494DC(0x17);
     fn_1_495C8(9);
@@ -3702,19 +3702,19 @@ void fn_14_8600(void) {
 
     n = 0;
     tick = OSGetTick() % 6;
-    lbl_14_bss_92FC[(s16)n].kind = 0;
-    lbl_14_bss_92FC[(s16)n].id = 0x20;
-    lbl_14_bss_92FC[(s16)n].image = lbl_14_data_2F64[tick];
-    n += lbl_14_bss_92FC[(s16)n].image != 0x8D00;
+    lbl_14_bss_92FC[n].kind = 0;
+    lbl_14_bss_92FC[n].id = 0x20;
+    lbl_14_bss_92FC[n].image = lbl_14_data_2F64[tick];
+    n += lbl_14_bss_92FC[n].image != 0x8D00;
 
     lbl_14_bss_92FC[(s16)n].kind = 1;
     lbl_14_bss_92FC[(s16)n].id = OSGetTick() % 10 + 0x1F;
     lbl_14_bss_92FC[(s16)n].image = lbl_14_data_2F88[lbl_14_bss_92FC[(s16)n].id - 0x1F];
     n = n + 1;
 
-    n += fn_14_8600_AddGroup((s16)n, 2, 0);
-    n += fn_14_8600_AddGroup((s16)n, 3, 1);
-    n += fn_14_8600_AddGroup((s16)n, 4, 2);
+    n += fn_14_8600_AddGroup(n, 2, 0);
+    n += fn_14_8600_AddGroup(n, 3, 1);
+    n += fn_14_8600_AddGroup(n, 4, 2);
 
     lbl_14_bss_92FC[(s16)n].kind = 5;
     lbl_14_bss_92FC[(s16)n].id = 0;
@@ -5037,7 +5037,7 @@ void fn_14_C850(fn_14_1090_Score *score, f32 t) {
                 buf[0] = c;
                 buf[1] = 0;
                 offset = offset + fn_1_4B068(buf);
-            } else if ((f32)i / (f32)total < t2) {
+            } else if ((f32)i / total < t2) {
                 fn_1_496FC(score->x - offset, y);
                 fn_1_4955C(score->scale_x, score->scale_y);
                 c = '0' + pp_rand() % 10;

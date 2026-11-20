@@ -6,11 +6,13 @@ Usage: steer_prune.py [--apply] [--kind volatile|carrier|castview|register] [FIL
 import sys, re, json, tempfile, pathlib, collections, concurrent.futures
 sys.path.insert(0, str(pathlib.Path(__file__).parent)); sys.path.insert(0, 'tools')
 import devprobe as d, pragma_prune as pp
+from fzgx import tufile
 SKIP = re.compile(r'fzgxpool|fzgx-allow|fzgx_pool|prime|\bcp\b|FIFO|Fifo|GXW|PPCWGPipe|FZGX_ADDR|0x[cC][cC]0|0xE0000000|locked|[Rr]egs\b|hardware|cursor|write offset|toggle|interrupt|callback|scratch area')
 WHY = re.compile(r'volatile|reload|re-?read|[Rr]etail|[Pp]reserve|fzgx')
 VOL = re.compile(r'\bvolatile\b\s*')
 CAST = re.compile(r'\*\(\s*(?:const\s+)?[A-Za-z_]\w*\s*\*\s*\)\s*&\s*(\(?)([A-Za-z_]\w*(?:(?:\.|->)[A-Za-z_]\w*)*)(\)?)(?![\w\[(.]|->)')
 REG = re.compile(r'\bregister\s+')
+ICAST = re.compile(r'\((?:f32|f64|s32|u32|s16|u16|s8|u8|int)\)\s*(?=[A-Za-z_])')
 PCAST = re.compile(r'\((?:f32|f64|s32|u32|s16|u16|s8|u8|int)\)\s*(?=\()')
 CARRIER = re.compile(r'struct \{ *([A-Za-z_][A-Za-z0-9_ ]*?\**) *value; *\} *([A-Za-z_]\w*);')
 
@@ -31,13 +33,13 @@ def candidates(text, lo, hi, kind):
                             g.append((lo + pos + len(line[:cm.start()].rstrip()), lo + pos + end, ''))
                     out.append(g)
             pos += len(line)
-    elif kind in ('castview', 'register', 'pcast'):
+    elif kind in ('castview', 'register', 'pcast', 'icast'):
         pos = 0
         for line in seg.splitlines(keepends=True):
             if not SKIP.search(line) and not line.lstrip().startswith(('//', '/*', '*', '#')):
                 cm = re.search(r'//|/\*', line); code_end = cm.start() if cm else len(line)
-                if kind in ('register', 'pcast'):
-                    for m in (REG if kind == 'register' else PCAST).finditer(line[:code_end]):
+                if kind in ('register', 'pcast', 'icast'):
+                    for m in {'register': REG, 'pcast': PCAST, 'icast': ICAST}[kind].finditer(line[:code_end]):
                         out.append([(lo + pos + m.start(), lo + pos + m.end(), '')])
                 else:
                     for m in CAST.finditer(line[:code_end]):
@@ -71,32 +73,38 @@ def run(task):
             gens[u['source']] = pp.gen(u, text)
             base1[u['source']] = d.compile_text(gens[u['source']], *profs[u['source']], td)
             if base1[u['source']] is None: return (path, text, 0)
+        def gen_all(cand):
+            tf = tufile.parse(cand) if any(u.get('tu') for u in us) else None
+            return {u['source']: (tufile.units_gen_text(tf, u['symbols']) if u.get('tu') else cand) for u in us}
         def ok(cand):
-            changed = [u for u in us if pp.gen(u, cand) != gens[u['source']]]
+            g_all = gen_all(cand)
+            changed = [u for u in us if g_all[u['source']] != gens[u['source']]]
             for u in changed:   # screen: GFZE01 only
-                if d.compile_text(pp.gen(u, cand), *profs[u['source']], td) != base1[u['source']]: return False
+                if d.compile_text(g_all[u['source']], *profs[u['source']], td) != base1[u['source']]: return False
             for u in changed:   # confirm: every region
                 if u['source'] not in baseall: baseall[u['source']] = d.compile_all(gens[u['source']], *profs[u['source']], td, u)
-                if d.compile_all(pp.gen(u, cand), *profs[u['source']], td, u) != baseall[u['source']]: return False
-            for u in changed: gens[u['source']] = pp.gen(u, cand); baseall.pop(u['source'], None)
+                if d.compile_all(g_all[u['source']], *profs[u['source']], td, u) != baseall[u['source']]: return False
+            for u in changed: gens[u['source']] = g_all[u['source']]; baseall.pop(u['source'], None)
             return True
         # walk blocks from the end so earlier offsets stay valid
         for lo, hi in reversed(blocks(text)):
             cs = candidates(text, lo, hi, kind)
             if not cs: continue
-            cand = apply_edits(text, cs)
-            if ok(cand): text = cand; removed += len(cs); continue
-            if len(cs) == 1: continue
-            for g in reversed(cs):   # from the end of the block: offsets of earlier ones unaffected
-                cand = apply_edits(text, [g])
-                if ok(cand): text = cand; removed += 1
+            def bisect(group):
+                nonlocal text, removed
+                cand = apply_edits(text, group)
+                if ok(cand): text = cand; removed += len(group); return
+                if len(group) == 1: return
+                h = len(group) // 2
+                bisect(group[h:]); bisect(group[:h])   # later offsets first: earlier ones stay valid
+            bisect(cs)
     return (path, text, removed)
 
 def main():
     kind = sys.argv[sys.argv.index('--kind') + 1] if '--kind' in sys.argv else 'volatile'
-    args = [a for a in sys.argv[1:] if not a.startswith('--') and a not in ('volatile', 'carrier', 'castview', 'register', 'pcast')]
+    args = [a for a in sys.argv[1:] if not a.startswith('--') and a not in ('volatile', 'carrier', 'castview', 'register', 'pcast', 'icast')]
     units = json.load(open('config/GFZE01/units.json')); nu = d.ninja_units()
-    pat = {'volatile': VOL, 'carrier': CARRIER, 'castview': CAST, 'register': REG, 'pcast': PCAST}[kind]
+    pat = {'volatile': VOL, 'carrier': CARRIER, 'castview': CAST, 'register': REG, 'pcast': PCAST, 'icast': ICAST}[kind]
     files = args or sorted(str(p) for p in pathlib.Path('src/rel').glob('**/*.c') if 'movie_module' not in str(p) and pat.search(p.read_text()))
     tasks = []
     for f in files:
@@ -109,7 +117,9 @@ def main():
     tasks.sort(key=lambda t: -len(pathlib.Path(t[0]).read_text()))
     tot = 0; out = []
     with concurrent.futures.ProcessPoolExecutor(14) as ex:
-        for path, text, n in ex.map(run, tasks):
+        futs = [ex.submit(run, tk) for tk in tasks]
+        for fu in concurrent.futures.as_completed(futs):
+            path, text, n = fu.result()
             if n: out.append((path, text)); tot += n; print(f'{n:5d} {path}', flush=True)
     print('removable', kind, tot)
     if '--apply' in sys.argv:

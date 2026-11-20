@@ -156,40 +156,40 @@ void fn_16_3BCC(s16 arg0, s16 x, s16 y) {
     height = 92.0f;
     if (lbl_1_bss_8B614.flags & 0x80000000) {
         if (lbl_1_bss_8B614.flags & 0x10000000) {
-            t = clamp01((f32)lbl_1_bss_8B614.timer / ((f32)lbl_1_bss_8B614.duration / 2.0f));
-            half = (f32)lbl_1_bss_8B614.duration / 2.0f;
+            t = clamp01(lbl_1_bss_8B614.timer / (lbl_1_bss_8B614.duration / 2.0f));
+            half = lbl_1_bss_8B614.duration / 2.0f;
             h = (17.0f + (f32)(75.0f * t));
-            alpha = clamp01(((f32)lbl_1_bss_8B614.timer - half) / half);
+            alpha = clamp01((lbl_1_bss_8B614.timer - half) / half);
         } else if (lbl_1_bss_8B614.flags & 0x08000000) {
-            half = (f32)lbl_1_bss_8B614.duration / 2.0f;
-            t = clamp01(((f32)lbl_1_bss_8B614.timer - half) / half);
+            half = lbl_1_bss_8B614.duration / 2.0f;
+            t = clamp01((lbl_1_bss_8B614.timer - half) / half);
             h = (17.0f + (f32)(75.0f * (1.0f - t)));
-            alpha = 1.0f - clamp01((f32)lbl_1_bss_8B614.timer / half);
+            alpha = 1.0f - clamp01(lbl_1_bss_8B614.timer / half);
         } else {
-            h = (s32)height;
+            h = height;
             alpha = 1.0f;
         }
     } else {
-        h = (s32)height;
+        h = height;
         alpha = 1.0f;
     }
     packet = lbl_1_rodata_26F8;
     packet.image = 12;
-    packet.x = (f32)shift + (left = (f32)x - width);
-    packet.y = top = (f32)y - height;
+    packet.x = shift + (left = x - width);
+    packet.y = top = y - height;
     packet.z = 10.0f;
     fn_1_50164(&packet, width, (s16)h, 8.0f, 8.0f);
     fn_1_495A0(alpha);
     innerTop = 10.0f + top;
     innerLeft = 10.0f + left;
-    fn_1_496FC((f32)shift + innerLeft, innerTop);
+    fn_1_496FC(shift + innerLeft, innerTop);
     fn_1_4AE0C("%s\n", LABEL(11));
     fn_1_4AE0C("%s\n", LABEL(12));
     fn_1_4AE0C("%s\n", LABEL(13));
     fn_1_4AE0C("%s\n", LABEL(14));
     fn_1_4AE0C("%s\n", LABEL(15));
     fn_1_4AE0C("%s\n", LABEL(16));
-    fn_1_496FC((f32)shift + (19.0f + (labelWidth + innerLeft)), innerTop);
+    fn_1_496FC(shift + (19.0f + (labelWidth + innerLeft)), innerTop);
     fn_1_4AE0C("%s\n", lbl_16_bss_A8[arg0]->unk_180[lbl_1_bss_8B614.language]);
     fn_1_4AE0C("%s\n", lbl_16_bss_A8[arg0]->unk_0[lbl_1_bss_8B614.language]);
     fn_1_4AE0C("%4dkg\n", (s16)lbl_1_data_28060[arg0].unk_4);

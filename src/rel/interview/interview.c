@@ -2798,7 +2798,7 @@ void fn_17_3160(void) {
     if (!(((*(fn_17_3160_Pad *)&lbl_1_bss_D58).unk_2 >> 9) & 1) && (fzgx_obj_lbl_17_bss_58 & 2147483648U) != 0) {
         fn_17_58E0();
     }
-    switch ((s32)lbl_17_bss_FA__fzgx_offset_3E) {
+    switch (lbl_17_bss_FA__fzgx_offset_3E) {
     case 0: {
         u32 local0;
         local0 = fzgx_pool_lbl_17_rodata_E0_4[0];
@@ -3063,8 +3063,8 @@ static void fzgx_pool_primer_1(s32 n, u32 u) {
          -1.5881868e-23f},
     };
     fzgx_sink(&head);
-    fzgx_sink_f((f32)u);
-    fzgx_sink_f((f32)n);
+    fzgx_sink_f(u);
+    fzgx_sink_f(n);
 }
 
 static void fzgx_pool_primer_2(void) {
@@ -17154,10 +17154,10 @@ static inline Obj_17_bss_D8_AtC *slot_ptr(void *db, u32 offset) {
             node->unk_B0 = flat; \
             break; \
         default: { \
-            f64 seat_x = ((f64 *)rod)[0x20] - (f64)row_x; \
+            f64 seat_x = ((f64 *)rod)[0x20] - row_x; \
             f32 seat_ac = (*((8) + (rod))); \
             f32 seat_z = rod[0x3E] - row_z; \
-            node->unk_A8 = (f32)seat_x; \
+            node->unk_A8 = seat_x; \
             node->unk_AC = seat_ac; \
             node->unk_B0 = seat_z; \
         } break; \
@@ -17198,7 +17198,7 @@ void fn_17_416C(void) {
     s32 i;
 
     for (i = 0; i < 8; i++) {
-        fn_1_9818C((s16)lbl_17_bss_34[i]);
+        fn_1_9818C(lbl_17_bss_34[i]);
         lbl_17_bss_34[i] = (u32)-1;
         if ((*(u32 (*)[8])&lbl_17_bss_D8)[i] != 0) {
             fn_1_8F494((void *)(*(u32 (*)[8])&lbl_17_bss_D8)[i]);
@@ -17416,8 +17416,8 @@ void fn_17_424C(void) {
 
         for (i = 0, entry = lbl_17_bss_198__fzgx_offset_4; i < 15; i++, entry++) {
             v = base;
-            v.x = 3.0f * ((f32)fn_17_424C_rand(&seed) / 32767.0f - 0.5f);
-            v.y = 3.0f + (f32)fn_17_424C_rand(&seed) / 32767.0f;
+            v.x = 3.0f * (fn_17_424C_rand(&seed) / 32767.0f - 0.5f);
+            v.y = 3.0f + fn_17_424C_rand(&seed) / 32767.0f;
             entry->unk_0 = v;
             entry->unk_C = zero;
         }
@@ -17572,7 +17572,7 @@ static void fzgx_pool_primer_0(s32 n) {
          -1.5881868e-23f, 176.0f, 0.0f},
     };
     fzgx_sink(&head);
-    fzgx_sink_f((f32)n);
+    fzgx_sink_f(n);
 }
 
 static void fzgx_pool_primer_1(void) {
@@ -17882,7 +17882,7 @@ void fn_17_49DC(void) {
     lbl_17_bss_198__fzgx_offset_16C = 0;
     mode = fzgx_obj_lbl_17_bss_10;
     fn_80008BEC(&entry, 0, sizeof(entry));
-    fn_1_80058((s8)mode->unk_5, &entry);
+    fn_1_80058(mode->unk_5, &entry);
     entry.unk_0 = 0;
     entry.unk_2 = mode->unk_5;
     entry.unk_4 = 1;
@@ -18096,7 +18096,7 @@ void fn_17_4FE0(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     v4 = (u32)&(*(u32 *)&lbl_17_data_63E50);
     v1 = *(u32 *)((u8 *)v3 + 0);
     v3 = 3134;
-    t2 = fn_1_46B4(v1, v2, (u32)v4, v3);
+    t2 = fn_1_46B4(v1, v2, v4, v3);
     v1 = t2;
     p_lbl_17_bss_0->unk_308 = 0;
     }
@@ -18112,7 +18112,7 @@ void fn_17_4FE0(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     v9 = (u32)&(*(u32 *)&lbl_17_data_63E50);
     v7 = *(u32 *)((u8 *)v8 + 0);
     v8 = 3139;
-    t4 = fn_1_46B4(v7, v6, (u32)v9, v8);
+    t4 = fn_1_46B4(v7, v6, v9, v8);
     v7 = t4;
     p_lbl_17_bss_0->unk_30C = 0;
     }
@@ -143729,7 +143729,7 @@ void fn_17_6D60(Event *event) {
  char name[0x80];
  Model *first=(*(Model * (*)[])&lbl_17_bss_D8)[0];
  s16 type=fn_1_12C710(first->index);
- const char *prefix=(*(const char * (*)[])&lbl_1_data_20D1C)[fn_1_12C930((s16)first->index)];
+ const char *prefix=(*(const char * (*)[])&lbl_1_data_20D1C)[fn_1_12C930(first->index)];
  Model *model=(*(Model * (*)[])&lbl_17_bss_D8)[0];
  sprintf(name,data+0x417c,prefix,event->index+1);
  switch(fn_1_12CB04(type)) {
@@ -143739,7 +143739,7 @@ void fn_17_6D60(Event *event) {
  case 1:{Model *p;fn_1_97204(model,name);{s16 index=event->index;event=(Event*)(*(Model * (*)[])&lbl_17_bss_D8)[2];sprintf(name,data+0x4194,index+1);fn_1_97204((Model*)event,name);}break;}
  case 0:fn_1_97204(model,name);break;
  }
- {s32 offset=(s16)type*2;const char *times=data+0x2c88;s16 delay=*(const s16*)(times+offset);
+ {s32 offset=type*2;const char *times=data+0x2c88;s16 delay=*(const s16*)(times+offset);
  (*(s16 (*)[])&lbl_17_bss_D6)[0]=delay;lbl_1_bss_6EAB4&=~0x2c;
  fn_8004BF0C((*(Chain * (*)[])&lbl_1_bss_6EAD0)[0]->handle,delay);}
 }
@@ -143796,26 +143796,26 @@ u16 lbl_17_bss_D8__fzgx_offset_20;
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
     volatile u32 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
-    s = (u32)lbl_17_bss_0;
-    s = (u32)lbl_17_bss_1;
-    s = (u32)lbl_17_bss_2;
-    s = (u32)lbl_17_bss_3;
-    s = (u32)lbl_17_bss_3__fzgx_offset_1;
-    s = (u32)lbl_17_bss_3__fzgx_offset_5;
-    s = (u32)lbl_17_bss_C;
-    s = (u32)lbl_17_bss_10;
-    s = (u32)lbl_17_bss_14;
-    s = (u32)lbl_17_bss_18[0];
-    s = (u32)lbl_17_bss_20;
-    s = (u32)lbl_17_bss_24[0];
-    s = (u32)lbl_17_bss_34[0];
-    s = (u32)lbl_17_bss_54;
-    s = (u32)lbl_17_bss_58[0];
-    s = (u32)lbl_17_bss_60.flags;
-    s = (u32)lbl_17_bss_60__fzgx_offset_74;
-    s = (u32)lbl_17_bss_D6;
+    s = lbl_17_bss_0;
+    s = lbl_17_bss_1;
+    s = lbl_17_bss_2;
+    s = lbl_17_bss_3;
+    s = lbl_17_bss_3__fzgx_offset_1;
+    s = lbl_17_bss_3__fzgx_offset_5;
+    s = lbl_17_bss_C;
+    s = lbl_17_bss_10;
+    s = lbl_17_bss_14;
+    s = lbl_17_bss_18[0];
+    s = lbl_17_bss_20;
+    s = lbl_17_bss_24[0];
+    s = lbl_17_bss_34[0];
+    s = lbl_17_bss_54;
+    s = lbl_17_bss_58[0];
+    s = lbl_17_bss_60.flags;
+    s = lbl_17_bss_60__fzgx_offset_74;
+    s = lbl_17_bss_D6;
     s = (u32)lbl_17_bss_D8.field4;
-    s = (u32)lbl_17_bss_D8__fzgx_offset_20;
+    s = lbl_17_bss_D8__fzgx_offset_20;
 }
 #pragma section code_type ".text"
 
@@ -144034,7 +144034,7 @@ u32 fn_17_72C0(u32 arg0) {
     char * lab_t0;
 
     fn_80006E10((char *)(base + 0x4464));
-    name = (*(u32 (*)[])&lbl_1_data_20D1C)[(s16)fn_1_12C930((s16)arg0)];
+    name = (*(u32 (*)[])&lbl_1_data_20D1C)[(s16)fn_1_12C930(arg0)];
     switch (lbl_17_bss_54) {
     case 5:
         lab_t0 = buf;
@@ -144531,7 +144531,7 @@ void fn_17_7A74(fn_17_7A74_State *state) {
     switch (entry->unk_50) {
     case 0:
         /* the (f32) casts on the products keep them out of fmadds, as in retail */
-        t = 1.0 - (f32)state->unk_22 / (f32)state->unk_24;
+        t = 1.0 - (f32)state->unk_22 / state->unk_24;
         lbl_8006D5A4(t, &from.unk_4, &to.unk_4, &state->unk_28);
         lbl_8006D5A4(t, &from.unk_10, &to.unk_10, &state->unk_34);
         state->unk_0 = from.unk_1C + (t * (to.unk_1C - from.unk_1C));
@@ -144541,7 +144541,7 @@ void fn_17_7A74(fn_17_7A74_State *state) {
         frames = state->unk_24;
         step = 1.0f / (frames * frames / 4);
         /* retail converts both counts as unsigned; MWCC turns the halving into a multiply by the pooled 0.5f */
-        if ((u32)state->unk_22 < (f32)frames / 2.0f) {
+        if ((u32)state->unk_22 < frames / 2.0f) {
             state->unk_58 -= step;
         } else {
             state->unk_58 += step;
@@ -146008,7 +146008,7 @@ void fn_17_8E68(s16 arg0, s16 arg1) {
     fn_1_4954C(2.0f);
     fn_1_4955C(0.7f, 0.7f);
     fn_1_495FC();
-    fn_1_496FC((f32)arg0, (f32)arg1);
+    fn_1_496FC(arg0, arg1);
     fn_1_49590(0.5f);
     if (time.hour < 12) {
         fn_1_4AE0C((*(char (*)[16])&lbl_17_data_644E8), time.mon + 1, time.mday,

@@ -123,7 +123,7 @@ static inline void helper(Bss20 *bss20) {
             bss20->parts[i].field_0 = fn_1_14F090(i, *pIndex);
         }
         for (j = 0; (s16)j < 1; j++) {
-            bss20->parts[i].field_4[j] = fn_1_151BE8(bss20->parts[i].field_0, (s16)j);
+            bss20->parts[i].field_4[j] = fn_1_151BE8(bss20->parts[i].field_0, j);
         }
     }
     lbl_3_bss_20[103] = 6;
@@ -148,7 +148,7 @@ static inline void helper_b(Bss20 *bss20) {
             bss20->parts[i].field_0 = fn_1_14F090(i, bss20->indices[i]);
         }
         for (j = 0; (s16)j < 1; j++) {
-            bss20->parts[i].field_4[j] = fn_1_151BE8(bss20->parts[i].field_0, (s16)j);
+            bss20->parts[i].field_4[j] = fn_1_151BE8(bss20->parts[i].field_0, j);
         }
     }
     lbl_3_bss_20[103] = 6;
@@ -173,7 +173,7 @@ static inline void helper_c(Bss20 *bss20) {
             bss20->parts[i].field_0 = fn_1_14F090(i, bss20->indices[i]);
         }
         for (j = 0; (s16)j < 1; j++) {
-            bss20->parts[i].field_4[j] = fn_1_151BE8(bss20->parts[i].field_0, (s16)j);
+            bss20->parts[i].field_4[j] = fn_1_151BE8(bss20->parts[i].field_0, j);
         }
     }
     lbl_3_bss_20[103] = 6;
@@ -1506,7 +1506,7 @@ void fn_3_131C(s32 arg0, void *arg1) {
     fn_1_4955C(v0, v0);
     fn_1_4954C(0.09000000357627869f);
     fn_1_495C8(9);
-    fn_1_496FC(320.0f, (f32)arg0);
+    fn_1_496FC(320.0f, arg0);
     fn_1_4966C(-1.0f, 8.0f);
 
     if (lbl_801A66B4 != 5) {
@@ -1518,15 +1518,15 @@ void fn_3_131C(s32 arg0, void *arg1) {
     fn_3_BFC(scratch, arg1, (*(char (*)[])&lbl_3_data_15CC),
              *(const char **)((*(u8 (*)[])&lbl_3_data_E80) +
                               (*(u8 (*)[])&lbl_3_bss_2437C)[0] * 0x18 +
-                              (u32)lbl_801A66B4 * 4));
+                              lbl_801A66B4 * 4));
     fn_3_BFC(scratch, scratch, (*(char (*)[])&lbl_3_data_15CC),
              *(const char **)((*(u8 (*)[])&lbl_3_data_E80) +
                               (*(u8 (*)[])&lbl_3_bss_2437C)[0] * 0x18 +
-                              (u32)lbl_801A66B4 * 4));
+                              lbl_801A66B4 * 4));
     fn_3_BFC(scratch, scratch, (*(char (*)[])&lbl_3_data_15CC),
              *(const char **)((*(u8 (*)[])&lbl_3_data_E80) +
                               (*(u8 (*)[])&lbl_3_bss_2437C)[0] * 0x18 +
-                              (u32)lbl_801A66B4 * 4));
+                              lbl_801A66B4 * 4));
     fn_1_4A0D8(scratch);
     fn_1_4AEC0(0);
     fn_1_4AEB4(0.0f);
@@ -2006,7 +2006,7 @@ static void fzgx_rodata_layout_a(void) {
     s = fzgx_rodata_14;
     s = fzgx_rodata_18;
     s = fzgx_rodata_1C;
-    s = (f32)u;
+    s = u;
 }
 #pragma section code_type ".text"
 
@@ -2064,7 +2064,7 @@ static void fzgx_rodata_layout_d(void) {
     s = fzgx_rodata_74;
     s = fzgx_rodata_78;
     s = fzgx_rodata_7C;
-    s = (f32)i;
+    s = i;
 }
 #pragma section code_type ".text"
 
@@ -2232,7 +2232,7 @@ void fn_3_15A0(void) {
         }
     }
     if (save_frame < 10) {
-        progress = (f32)save_frame / fzgx_rodata_B4;
+        progress = save_frame / fzgx_rodata_B4;
         remaining = fzgx_rodata_A8 - progress;
         size = fzgx_rodata_4 * remaining;
         size *= remaining;
@@ -2694,24 +2694,24 @@ u32 fn_3_368C(void) {
     if ((v2 & 0x40000000) != 0 && (s32)p_lbl_3_data_0->unk_B8 == -1) {
     t1 = fn_3_7CF8();
     v3 = t1;
-    v3 = (u32)((u8 *)(u32)p_lbl_3_data_0 + 5736);
-    t2 = fn_1_3F8C((u32)v3, (u32)fn_3_255DC, 0, 8);
+    v3 = (u32)((u8 *)p_lbl_3_data_0 + 5736);
+    t2 = fn_1_3F8C(v3, (u32)fn_3_255DC, 0, 8);
     v3 = t2;
     p_lbl_3_data_0->unk_B8 = v3;
     } else {
     if ((v3 & 0x20000000) != 0 && (s32)p_lbl_3_data_0->unk_B8 == -1) {
     t3 = fn_3_9800();
     v3 = t3;
-    v3 = (u32)((u8 *)(u32)p_lbl_3_data_0 + 5752);
-    t4 = fn_1_3F8C((u32)v3, (u32)fn_3_273F4, 0, 8);
+    v3 = (u32)((u8 *)p_lbl_3_data_0 + 5752);
+    t4 = fn_1_3F8C(v3, (u32)fn_3_273F4, 0, 8);
     v3 = t4;
     p_lbl_3_data_0->unk_B8 = v3;
     } else {
     if ((v3 & 0x10000000) != 0 && (s32)p_lbl_3_data_0->unk_B8 == -1) {
     t5 = fn_3_4218();
     v3 = t5;
-    v3 = (u32)((u8 *)(u32)p_lbl_3_data_0 + 5768);
-    t6 = fn_1_3F8C((u32)v3, (u32)fn_3_29508, 0, 8);
+    v3 = (u32)((u8 *)p_lbl_3_data_0 + 5768);
+    t6 = fn_1_3F8C(v3, (u32)fn_3_29508, 0, 8);
     v3 = t6;
     p_lbl_3_data_0->unk_B8 = v3;
     } else {
@@ -2719,8 +2719,8 @@ u32 fn_3_368C(void) {
     if ((v3 & 0x4000000) != 0 && (s32)p_lbl_3_data_0->unk_B8 == -1) {
     t7 = fn_3_4C58();
     v3 = t7;
-    v3 = (u32)((u8 *)(u32)p_lbl_3_data_0 + 5784);
-    t8 = fn_1_3F8C((u32)v3, (u32)fn_3_29C94, 0, 8);
+    v3 = (u32)((u8 *)p_lbl_3_data_0 + 5784);
+    t8 = fn_1_3F8C(v3, (u32)fn_3_29C94, 0, 8);
     v3 = t8;
     p_lbl_3_data_0->unk_B8 = v3;
     } else {
@@ -2728,8 +2728,8 @@ u32 fn_3_368C(void) {
     v3 = 163;
     t9 = fn_1_47F74(v3);
     v3 = t9;
-    v3 = (u32)((u8 *)(u32)p_lbl_3_data_0 + 5800);
-    t10 = fn_1_3F8C((u32)v3, (u32)fn_3_2AAF4, 0, 8);
+    v3 = (u32)((u8 *)p_lbl_3_data_0 + 5800);
+    t10 = fn_1_3F8C(v3, (u32)fn_3_2AAF4, 0, 8);
     v3 = t10;
     p_lbl_3_data_0->unk_B8 = v3;
     }
@@ -2927,7 +2927,7 @@ void fn_3_381C(void) {
         return;
     }
     if (fzgx_obj_lbl_3_bss_120 != -1) {
-        (*(u16 *)&lbl_1_bss_96A) = (u16)fzgx_obj_lbl_3_bss_120;
+        (*(u16 *)&lbl_1_bss_96A) = fzgx_obj_lbl_3_bss_120;
         fzgx_obj_lbl_3_bss_120 = -1;
         return;
     }
@@ -3284,7 +3284,7 @@ void fn_3_3AE8(s16 arg0, MenuEntry *arg1, s16 arg2) {
                 ((lbl_1_bss_9F8[state->unk_6].unk_12 >> 2) & 1)) {
                 d++;
             }
-            max = (s16)arg0;
+            max = arg0;
             sel = lbl_1_bss_970.unk_4 + d;
             if (sel > max) {
                 sel = 0;
@@ -3382,7 +3382,7 @@ u32 fn_3_3E58(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     v0 = (u32)fn_3_2C164;
     v2 = 0;
     v3 = 8;
-    t2 = fn_1_3F8C((u32)v1, (u32)v0, v2, v3);
+    t2 = fn_1_3F8C(v1, v0, v2, v3);
     v1 = t2;
     p_lbl_3_data_0->unk_B8 = v1;
     }
@@ -3453,7 +3453,7 @@ void fn_3_3F20(void) {
         if (lbl_3_bss_120 != -1) {
             s32 value = lbl_3_bss_120;
             lbl_3_bss_120 = -1;
-            lbl_1_bss_96A = (u16)value;
+            lbl_1_bss_96A = value;
         } else {
             err.value = 0;
             errCount.value = 0;
@@ -4581,7 +4581,7 @@ static inline void fn_3_131C_body(s32 y, char *text) {
     fn_1_4955C(scale, scale);
     fn_1_4954C(0.09000000357627869f);
     fn_1_495C8(9);
-    fn_1_496FC(320.0f, (f32)y);
+    fn_1_496FC(320.0f, y);
     fn_1_4966C(-1.0f, 8.0f);
     if (lbl_801A66B4 != 5) {
         fn_1_495B0(0x80000000);
@@ -5053,8 +5053,8 @@ void fn_3_5F28(u32 arg0) {
     p_data = (struct Data *)&(*(struct Data *)&lbl_3_data_0);
     p_entry.value = (struct fn_3_5F28_Entry *)&(*(struct fn_3_5F28_Entry (*)[41])&lbl_3_bss_7DB60);
     i = 0;
-    while ((s16)i < 41) {
-        fn_1_80058((s8)i, (u8 *)p_entry.value);
+    while (i < 41) {
+        fn_1_80058(i, (u8 *)p_entry.value);
         p_entry.value->unk_0 = i;
         i++;
         shift = (p_data->unk_11D0);
@@ -5070,7 +5070,7 @@ void fn_3_5F28(u32 arg0) {
     fn_1_12A2B8(0);
 
     i = 0;
-    while ((s16)i < 41) {
+    while (i < 41) {
         (*(struct Base *)&lbl_3_bss_20854).unk_0[i].unk_324 = p_data->unk_11D4;
         i++;
     }
@@ -5186,11 +5186,11 @@ void fn_3_61B8(void) {
     if ((s32)p_lbl_3_data_0->unk_B8 == -1) {
     t0 = fn_8006FDEC();
     v1 = t0;
-    v1 = (u32)((u8 *)(u32)p_lbl_3_data_0 + 5800);
+    v1 = (u32)((u8 *)p_lbl_3_data_0 + 5800);
     v0 = (u32)fn_3_2AAF4;
     v2 = 0;
     v3 = 8;
-    t1 = fn_1_3F8C((u32)v1, (u32)v0, v2, v3);
+    t1 = fn_1_3F8C(v1, v0, v2, v3);
     v1 = t1;
     p_lbl_3_data_0->unk_B8 = v1;
     }
@@ -5199,7 +5199,7 @@ void fn_3_61B8(void) {
     (*(struct fn_3_61B8_fn_3_61B8_lbl_3_bss_120 *)&lbl_3_bss_120).unk_0 = -1;
     fn_1_47F74(163);
     fn_1_A176C(*(u32 *)((u8 *)(*(struct fn_3_61B8_fn_3_61B8_lbl_1_bss_6EAD0 *)&lbl_1_bss_6EAD0).unk_0 + 0), 15);
-    fn_1_15BB34((u32)((u8 *)(u32)p_lbl_3_data_0 + 4444));
+    fn_1_15BB34((u32)((u8 *)p_lbl_3_data_0 + 4444));
 }
 /* fzgx:end fn_3_61B8 */
 
@@ -5827,7 +5827,7 @@ s32 fn_3_6AC4(void) {
 
         cost = entry->unk_4;
         id = entry->unk_0;
-        if (fn_1_F9028(id) == 0 && lbl_1_bss_7F0C0.unk_48F8 >= (u32)cost) {
+        if (fn_1_F9028(id) == 0 && lbl_1_bss_7F0C0.unk_48F8 >= cost) {
             lbl_1_bss_7F0C0.unk_48F8 -= cost;
             fn_1_F946C(id);
             fn_1_F9888(id);
@@ -5894,7 +5894,7 @@ void fn_3_6D2C(void) {
         if (lbl_3_bss_120 != -1) {
             s32 value = lbl_3_bss_120;
             lbl_3_bss_120 = -1;
-            (*(u16 *)&lbl_1_bss_96A) = (u16)value;
+            (*(u16 *)&lbl_1_bss_96A) = value;
         } else if (fn_3_6AC4() == (s16)-1) {
             fn_1_4A00(0, 15, lbl_3_bss_20850);
             (*(u32 (*)[6])&lbl_3_bss_243A8)[0] = 0;
@@ -6413,7 +6413,7 @@ s32 fn_3_7360(void) {
 
         id = entry->unk_0;
         cost = entry->unk_A;
-        if (fn_1_F809C(id) == 0 && lbl_1_bss_7F0C0.unk_48F8 >= (u32)cost) {
+        if (fn_1_F809C(id) == 0 && lbl_1_bss_7F0C0.unk_48F8 >= cost) {
             lbl_1_bss_7F0C0.unk_48F8 -= cost;
             fn_1_F8214(id);
             fzgx_obj_lbl_3_bss_8 = 1;
@@ -6468,7 +6468,7 @@ void fn_3_7594(void) {
         if (lbl_3_bss_120 != -1) {
             s32 value = lbl_3_bss_120;
             lbl_3_bss_120 = -1;
-            (*(u16 *)&lbl_1_bss_96A) = (u16)value;
+            (*(u16 *)&lbl_1_bss_96A) = value;
         } else {
             fn_1_DCED0(lbl_3_bss_6DD78);
             if (fn_3_7360() == -1) {
@@ -6616,13 +6616,13 @@ void fn_3_78C8(s32 enabled) {
                 s16 index = fn_1_14F344(i);
                 fn_3_78C8_CustomizeEntry *entry = &(*(fn_3_78C8_CustomizeEntry (*)[3])&lbl_3_bss_20)[index];
 
-                entry->values[entry->count++] = (s16)i;
+                entry->values[entry->count++] = i;
             }
         } else if (fn_1_F809C(i) != 0) {
             s16 index = fn_1_14F344(i);
             fn_3_78C8_CustomizeEntry *entry = &(*(fn_3_78C8_CustomizeEntry (*)[3])&lbl_3_bss_20)[index];
 
-            entry->values[entry->count++] = (s16)i;
+            entry->values[entry->count++] = i;
         }
         i++;
     }
@@ -7033,7 +7033,7 @@ void fn_3_7E5C(void) {
         if (!(RECORD(fzgx_obj_lbl_3_bss_F0.unk_8)->unk_0 & 0x40000000)) {
             for (i = 0; i < 3; i++) {
                 for (j = 0; (s16)j < 1; j++) {
-                    u32 v = fn_1_151BE8(fzgx_obj_lbl_3_bss_20.unk_0[i].unk_0, (s16)j);
+                    u32 v = fn_1_151BE8(fzgx_obj_lbl_3_bss_20.unk_0[i].unk_0, j);
 
                     fzgx_obj_lbl_3_bss_20.unk_0[i].unk_4[j] = v;
                     *(u32 *)((u8 *)&lbl_3_bss_140 + i * 8 + fzgx_obj_lbl_3_bss_F0.unk_8 * 0x81C0 + j * 4 + 0x81A8) = v;
@@ -7305,7 +7305,7 @@ s32 fn_3_83CC(void)
                 fn_3_BD00(step, 0, (s16)(step * 5), 0x04000001);
         }
         for (i = 0; i < 41; i++) {
-            if (lbl_3_bss_20.machine == (s16)lbl_3_bss_7EBB0[i]) {
+            if (lbl_3_bss_20.machine == lbl_3_bss_7EBB0[i]) {
                 selected = i;
                 break;
             }
@@ -8297,7 +8297,7 @@ void fn_3_9710(u32 arg0, u32 arg1) {
     }
     v1 = 25;
     v0 = (u32)&lbl_3_bss_6DE20;
-    fn_1_14DC68((void *)(u32)v0, v1);
+    fn_1_14DC68((void *)v0, v1);
     v0 = 0;
     fn_1_12A2B8(v0);
     v0 = (u32)&(*(struct fn_3_9710_fn_3_9710_lbl_3_data_11D8 *)&lbl_3_data_11D8);
@@ -9171,8 +9171,8 @@ s32 fn_3_9CA8(void) {
     lbl_3_bss_20.level = WRAP(count, 0, 2);
     entry = &lbl_3_bss_20.slot[lbl_3_bss_20.cur].data[lbl_3_bss_20.sel[lbl_3_bss_20.cur]];
     got = fn_1_151E20(*entry, lbl_3_bss_20.level);
-    sum = got + (s16)value;
-    value_2 = (s16)CLAMP(sum, 0, 0xFF);
+    sum = got + value;
+    value_2 = CLAMP(sum, 0, 0xFF);
     fn_1_151E74(entry, lbl_3_bss_20.level, value_2);
 
     if (lbl_3_bss_7EC08 > value_2) {

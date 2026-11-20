@@ -127,13 +127,13 @@ void fn_16_3340(s16 arg0) {
     if ((s8)fn_1_A5DC4()) {
         shift = 94;
     }
-    t = (f32)fn_1_A5DB0() / 480.0f;
+    t = fn_1_A5DB0() / 480.0f;
     lbl_16_bss_860C0.unk_4 = 520;
     lbl_16_bss_860C0.unk_2 = (142.0f * t);
     lbl_16_bss_860C0.unk_0 = 0;
     lbl_16_bss_860C0.unk_6 = 206;
     if ((lbl_1_bss_8B614.flags & 0x80000000) && (lbl_1_bss_8B614.flags & 0x02000000)) {
-        progress = clamp01((f32)lbl_1_bss_8B614.timer / (f32)lbl_1_bss_8B614.duration);
+        progress = clamp01((f32)lbl_1_bss_8B614.timer / lbl_1_bss_8B614.duration);
         if (lbl_1_bss_8B614.duration > 0) {
             offset = ((state->scroll - 1) * -22) - (f32)(22.0f * progress);
         } else {
@@ -144,15 +144,15 @@ void fn_16_3340(s16 arg0) {
     }
     if (lbl_1_bss_8B614.flags & 0x80000000) {
         if (lbl_1_bss_8B614.flags & 0x10000000) {
-            t = clamp01((f32)lbl_1_bss_8B614.timer / ((f32)lbl_1_bss_8B614.duration / 2.0f));
-            half = (f32)lbl_1_bss_8B614.duration / 2.0f;
+            t = clamp01(lbl_1_bss_8B614.timer / (lbl_1_bss_8B614.duration / 2.0f));
+            half = lbl_1_bss_8B614.duration / 2.0f;
             height = (32.0f + (f32)(236.0f * t));
-            alpha = clamp01(((f32)lbl_1_bss_8B614.timer - half) / half);
+            alpha = clamp01((lbl_1_bss_8B614.timer - half) / half);
         } else if (lbl_1_bss_8B614.flags & 0x08000000) {
-            half = (f32)lbl_1_bss_8B614.duration / 2.0f;
-            t = clamp01(((f32)lbl_1_bss_8B614.timer - half) / half);
+            half = lbl_1_bss_8B614.duration / 2.0f;
+            t = clamp01((lbl_1_bss_8B614.timer - half) / half);
             height = (32.0f + (f32)(236.0f * (1.0f - t)));
-            alpha = 1.0f - clamp01((f32)lbl_1_bss_8B614.timer / half);
+            alpha = 1.0f - clamp01(lbl_1_bss_8B614.timer / half);
         } else {
             alpha = 1.0f;
             height = 268;
@@ -177,7 +177,7 @@ void fn_16_3340(s16 arg0) {
     fn_1_4962C();
     fn_1_495A0(1.0f);
     textX = 34 - shift;
-    fn_1_496FC((f32)textX, 107.0f);
+    fn_1_496FC(textX, 107.0f);
     color = fzgx_pool_table_98[0];
     fn_1_49514(&color);
     fn_1_4954C(0.5f);
@@ -194,7 +194,7 @@ void fn_16_3340(s16 arg0) {
     default:
         break;
     }
-    fn_1_496FC((f32)textX, 141.0f + offset);
+    fn_1_496FC(textX, 141.0f + offset);
     fn_1_495A0(alpha);
     fn_1_4954C(0.5f);
     fn_1_49738((u32)fn_16_2528);
@@ -214,10 +214,10 @@ void fn_16_3340(s16 arg0) {
         PI(packet,48) = 10;
         PF(packet,16) *= 0.7529412f + (f32)(0.3f * pulse);
         PF(packet,20) *= 0.7529412f + (f32)(0.3f * pulse);
-        fn_1_51678(&packet, PI(packet,0), 0, 0, 20, (s16)fn_1_486C4(PI(packet,0)));
+        fn_1_51678(&packet, PI(packet,0), 0, 0, 20, fn_1_486C4(PI(packet,0)));
         fn_1_4F734(&packet);
     }
-    if ((s16)lbl_16_bss_860B8[0] - 10 - state->scroll > 0) {
+    if (lbl_16_bss_860B8[0] - 10 - state->scroll > 0) {
         pulse = lbl_8006D188((182.04445f * (180.0f * progress)));
         if (lbl_1_bss_8B614.duration < 0) {
             pulse = 0.0f;
@@ -231,7 +231,7 @@ void fn_16_3340(s16 arg0) {
         PI(packet,48) = 10;
         PF(packet,16) *= 0.7529412f + (f32)(0.3f * pulse);
         PF(packet,20) *= 0.7529412f + (f32)(0.3f * pulse);
-        fn_1_51678(&packet, PI(packet,0), 20, 0, 20, (s16)fn_1_486C4(PI(packet,0)));
+        fn_1_51678(&packet, PI(packet,0), 20, 0, 20, fn_1_486C4(PI(packet,0)));
         fn_1_4F734(&packet);
     }
 }

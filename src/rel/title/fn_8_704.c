@@ -26,7 +26,7 @@ int fn_8_704(void) {
     struct fn_8_704_lbl_1_bss_9F8 * g;
     s8 v;
     lbl_8_bss_0 = 1;
-    v = (s8)lbl_1_bss_9C8.unk_A;
+    v = lbl_1_bss_9C8.unk_A;
     g = &lbl_1_bss_9F8;
     if (v == 0 && (g->unk_8 & 0x1000) != 0) {
         lbl_1_bss_8B3A0.unk_9E = zero;

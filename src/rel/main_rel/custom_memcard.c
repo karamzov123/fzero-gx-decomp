@@ -171,7 +171,7 @@ void fn_1_131558(void) {
         fn_80008BEC(request, 0, 0x24);
         request[0] = 3;
         *(void**)((u8*)request + 0x0C) = state->unk_140;
-        fn_1_AA6D8(4, (u8)state->unk_08, request);
+        fn_1_AA6D8(4, state->unk_08, request);
         state->unk_04 = 7;
     }
 }
@@ -457,7 +457,7 @@ void fn_1_13198C(s16 idx, void *a1, void *a2, EntryObj *a3, EntryObj *a4, s32 mo
     fzgx_value = lbl_1_rodata_861C;
     cur->unk_AC = fzgx_value;
     cur->unk_B0 = lbl_1_rodata_861C;
-    fn_1_8E728(cur, (u8)v);
+    fn_1_8E728(cur, v);
     if (1 == mode) {
         fn_1_13C134();
     }
@@ -473,7 +473,7 @@ void fn_1_13198C(s16 idx, void *a1, void *a2, EntryObj *a3, EntryObj *a4, s32 mo
             p->unk_AC = lbl_1_rodata_861C;
             p->unk_B0 = lbl_1_rodata_861C;
             if (p->unk_98 != v) {
-                fn_1_8E728(p, (u8)v);
+                fn_1_8E728(p, v);
             }
             if (1 == mode) {
                 fn_1_13C134();
@@ -832,7 +832,7 @@ s32 fn_1_131C08(struct fn_1_131C08_Arg0 *arg0, f32 arg1)
     p_lbl_1_bss_8B3A0 = (Obj_1_bss_8B3A0 *)&lbl_1_bss_8B3A0;
     if ((p_lbl_1_bss_8B3A0->unk_94 & 0x40000000) && !(u8)fn_1_D6698()) {
         if (arg0->unk_64 != (u8)fn_1_D66B0()) {
-            fn_1_D66F8((u8)arg0->unk_64, &loc_9, &loc_8);
+            fn_1_D66F8(arg0->unk_64, &loc_9, &loc_8);
             if ((s8)loc_9 != -1) {
                 v6 = loc_8;
                 v7 = (s8)loc_9;
@@ -886,15 +886,15 @@ s32 fn_1_131C08(struct fn_1_131C08_Arg0 *arg0, f32 arg1)
         lbl_8006DFE8((u8 *)lbl_801A6D00 + 0x60);
         fn_80072558();
         if (v2 == 1) fn_1_13C134();
-        fn_1_870BC(model, (s8)arg0->unk_14, model, 0, v6, lbl_1_rodata_863C);
+        fn_1_870BC(model, arg0->unk_14, model, 0, v6, lbl_1_rodata_863C);
         if (v2 == 1) fn_1_13C16C();
-    } else if ((s16)lbl_1_bss_962 != 0x14 && (s16)lbl_1_bss_96A != 0x14) {
+    } else if (lbl_1_bss_962 != 0x14 && lbl_1_bss_96A != 0x14) {
         index = v7 - 0x29;
         entry = fn_1_12F118();
         if (entry == fn_1_36AD0()) {
             if ((p_lbl_1_bss_8B3A0->unk_94 & 0x40000000)) {
                 if ((u8)fn_1_D6698()) index = v0;
-                else index = fn_1_D66B8((u8)arg0->unk_64);
+                else index = fn_1_D66B8(arg0->unk_64);
             } else index = v0;
         }
         entry += index * 0x81C0;
@@ -906,10 +906,10 @@ s32 fn_1_131C08(struct fn_1_131C08_Arg0 *arg0, f32 arg1)
             fn_1_14E2DC((u8 *)arg0->unk_10 + index * 0xA20, arg0->unk_14, lbl_1_rodata_863C);
         } else {
             model = (fn_1_568F8_Data *)((u8 *)arg0->unk_C + entry[0x81A0] * 0x440);
-            fn_1_870BC(model, (s8)arg0->unk_14, model, 0, v6, lbl_1_rodata_863C);
+            fn_1_870BC(model, arg0->unk_14, model, 0, v6, lbl_1_rodata_863C);
         }
     }
-    if ((s16)lbl_1_bss_962 != 0x14 && (s16)lbl_1_bss_96A != 0x14) {
+    if (lbl_1_bss_962 != 0x14 && lbl_1_bss_96A != 0x14) {
         pool = fn_1_12F118();
         selected = v0;
         if (lbl_1_bss_962 == 0x10) {
@@ -926,8 +926,8 @@ s32 fn_1_131C08(struct fn_1_131C08_Arg0 *arg0, f32 arg1)
             if (entry[7] == 0) return 0;
             lbl_8006DFE8(matrix);
             fn_80072558();
-            if (fn_1_13F8B0((u8)selected)) {
-                fn_1_FCFA4(fn_1_13F8B0((u8)selected));
+            if (fn_1_13F8B0(selected)) {
+                fn_1_FCFA4(fn_1_13F8B0(selected));
             }
         } else if (lbl_1_bss_962 == 0x24) {
             object = fn_1_7F428((u8)selected);
@@ -1275,8 +1275,8 @@ void fn_1_132774(void *arg0) {
         packet.image = 0x12;
         packet.x = lbl_1_rodata_8678;
         packet.y = lbl_1_rodata_867C;
-        packet.scale_x *= lbl_1_rodata_8680 / (f32)fn_1_48690(packet.image);
-        packet.scale_y *= lbl_1_rodata_8684 / (f32)fn_1_486C4(packet.image);
+        packet.scale_x *= lbl_1_rodata_8680 / fn_1_48690(packet.image);
+        packet.scale_y *= lbl_1_rodata_8684 / fn_1_486C4(packet.image);
         packet.z = lbl_1_rodata_8688;
         *(u32 *)packet.color = lbl_1_rodata_8654;
         packet.alpha = lbl_1_rodata_85F0;
@@ -1449,18 +1449,18 @@ void fn_1_132FB4(void) {
             packet.image = 0x10000 - 0x61EC;
             fn_1_51564(0, 0, 0x18, 0x14, 2, 2);
             fn_1_5158C(&packet, packet.image, (s16)(var_r28 % 2), (s16)(var_r28 / 2));
-            packet.x = (f32)var_r31;
+            packet.x = var_r31;
             packet.y = lbl_1_rodata_86B4;
             fn_1_4F734(&packet);
             strncpy(pbuf, (const char *)(*(u32 *)((u8 *)tblA + var_r26)), 0x10);
             packet = *(FontDrawPacket *)lbl_1_rodata_26F8;
             packet.image = 12;
             *(u32 *)((u8 *)&packet + 0x30) = 5;
-            packet.x = (f32)var_r31;
+            packet.x = var_r31;
             packet.y = lbl_1_rodata_86B8;
             fn_1_50164(lbl_1_rodata_86BC, lbl_1_rodata_86C0, lbl_1_rodata_86C4, lbl_1_rodata_86C4, &packet);
             fn_1_49410();
-            fn_1_496FC((f32)var_r30, lbl_1_rodata_86C8);
+            fn_1_496FC(var_r30, lbl_1_rodata_86C8);
             fn_1_495C8(1);
             fn_1_4955C(lbl_1_rodata_86CC, lbl_1_rodata_86CC);
             fn_1_49590(lbl_1_rodata_85F0);
@@ -1468,7 +1468,7 @@ void fn_1_132FB4(void) {
             fn_1_495B0((0x3u << 30));
             fn_1_4CE48((Obj_1_bss_4B9CC *)pbuf, lbl_1_rodata_86D0);
             fn_1_49410();
-            lab_t0 = (f32)var_r30;
+            lab_t0 = var_r30;
             fn_1_496FC(lab_t0, lbl_1_rodata_8658);
             fn_1_495C8(1);
             fn_1_4955C(lbl_1_rodata_86D4, lbl_1_rodata_86D4);

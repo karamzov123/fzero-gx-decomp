@@ -661,12 +661,12 @@ void fn_1_988DC(void *arg0) {
         if (*(u32 *)((u8 *)arg0 + 64) == 2) {
             scale = 0.8 * ratio;
             old = *(f32 *)((u8 *)arg0 + 116);
-            v = ((f64)old * (1.0 + scale));
+            v = (old * (1.0 + scale));
             *(f32 *)((u8 *)arg0 + 116) = v;
         } else {
             scale = 0.1 * ratio;
             old = *(f32 *)((u8 *)arg0 + 116);
-            v = ((f64)old * (1.0 + scale));
+            v = (old * (1.0 + scale));
             *(f32 *)((u8 *)arg0 + 116) = v;
         }
         v = *(f32 *)((u8 *)arg0 + 116);
@@ -725,8 +725,8 @@ void fn_1_988DC(void *arg0) {
     var_f4 = *(f32 *)(p + 548);
     if (*(s16 *)&lbl_1_bss_960 != 0xe) {
         v = *(f32 *)(p + 512);
-        var_f0 = v < 0.0 ? 0.0 : (v > 1.0 ? 1.0 : (f64)v);
-        var_f4 = ((f64)var_f4 * var_f0);
+        var_f0 = v < 0.0 ? 0.0 : (v > 1.0 ? 1.0 : v);
+        var_f4 = (var_f4 * var_f0);
     }
     if (*(u16 *)(p + 532) != 0) {
         var_f4 *= 0.0f;
@@ -737,10 +737,10 @@ void fn_1_988DC(void *arg0) {
     if (i != 0) {
         if (*(u32 *)((u8 *)arg0 + 64) == 2) {
             scale = 0.8 * ratio;
-            var_f4 = ((f64)var_f4 * (1.0 + scale));
+            var_f4 = (var_f4 * (1.0 + scale));
         } else {
             scale = 0.1 * ratio;
-            var_f4 = ((f64)var_f4 * (1.0 + scale));
+            var_f4 = (var_f4 * (1.0 + scale));
         }
     }
     old = *(f32 *)((u8 *)arg0 + 116);
@@ -1372,11 +1372,11 @@ void fn_1_98F28(fn_1_98F28_Event *event) {
             sz *= size;
                         if (i < (s32)lbl_1_bss_6EA08) {
                             age = i + 4;
-                            age -= (s32)lbl_1_bss_6EA08;
+                            age -= lbl_1_bss_6EA08;
                         } else {
-                            age = i - (s32)lbl_1_bss_6EA08;
+                            age = i - lbl_1_bss_6EA08;
                         }
-                        g = g * (0.25f * (f32)age);
+                        g = g * (0.25f * age);
                         c.x = bright * (color.x * g);
                         c.y = bright * (cy * g);
                         c.z = bright * (cz * g);
@@ -6262,7 +6262,7 @@ void fn_1_9AF80(fn_1_9AF80_Obj *obj, s32 count, s32 reset) {
                 t = len;
             }
         } else {
-            t -= (f32)(len * (f32)fpscr_floor(t / len));
+            t -= (f32)(len * fpscr_floor(t / len));
         }
         t += anim->start;
         t /= 60.0f;

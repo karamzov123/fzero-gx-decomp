@@ -172,7 +172,7 @@ u8 fn_1_1350C(void *arg0, u8 *arg1) {
     if (lbl_1_bss_3B28 == 0) {
         size = lbl_1_data_5180;
         /* volatile: the shared streaming state is read in program order, not CSEd or hoisted */
-        if (*(volatile u32 *)&lbl_1_bss_3B2C + *(volatile u32 *)&lbl_1_data_5180 > (u32)fn_1_45B2C(arg0)) {
+        if (*(volatile u32 *)&lbl_1_bss_3B2C + *(volatile u32 *)&lbl_1_data_5180 > fn_1_45B2C(arg0)) {
             size = (fn_1_45B2C(arg0) - lbl_1_bss_3B2C + 0x1F) & ~0x1F;
         }
         if (size > 0) {

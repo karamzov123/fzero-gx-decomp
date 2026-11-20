@@ -86,7 +86,7 @@ s32 fn_1_1555B0(s32 value) {
     }
 
     *(u32 *)(state + 0x40) = value;
-    fn_1_12EF80((s16)value, &index_0, &index_1);
+    fn_1_12EF80(value, &index_0, &index_1);
     table = (u32)&lbl_1_bss_7F0C0 + (index_1 + index_0 * 6) * 0x180;
 
     for (i = 0; i < 10; i++) {
@@ -194,7 +194,7 @@ static inline s32 fn_1_1555B0_local(s32 value) {
     }
 
     lbl_1_bss_8EF20__fzgx_offset_40 = value;
-    fn_1_12EF80((s16)value, &index_0, &index_1);
+    fn_1_12EF80(value, &index_0, &index_1);
     table = (u32)&lbl_1_bss_7F0C0 + (index_1 + index_0 * 6) * 0x180;
 
     for (i = 0; i < 10; i++) {
@@ -257,7 +257,7 @@ void fn_1_1556B4(u8 arg0, u8 arg1) {
         return;
     }
 
-    fn_1_1555B0_local((s32)lbl_1_bss_8EF20__fzgx_offset_40);
+    fn_1_1555B0_local(lbl_1_bss_8EF20__fzgx_offset_40);
 
     e = fzgx_obj_lbl_1_bss_8EF20;
     count = 0;
@@ -633,7 +633,7 @@ s32 fn_1_156218(u32 id, void *out0, void *out1, void *out2)
     s32 index;
     s32 i;
 
-    fn_1_12EF80((s16)id, &row, &column);
+    fn_1_12EF80(id, &row, &column);
     index = column + row * 6;
     for (i = 0; i < 10; i++) {
         if (*(u16 *)&((Obj_1_bss_7F0C0 *)((u8 *)&lbl_1_bss_7F0C0 + index * 0x180 + i * 0x20))->unk_110 != 0) {
@@ -1201,7 +1201,7 @@ void fn_1_156C08(void *arg0_p) {
     else if (v1 < -25.0f) v1 = -25.0f;
     v1 += arg0->value;
     negative = v1 < 0.0f;
-    v7 = (f32)__fabs(v1);
+    v7 = __fabs(v1);
     if (v7 > 30.0f) {
         v7 = (f32)(1.5f * (v7 - 30.0f)) + 30.0f;
         if (v7 > 170.0f) {
@@ -1660,12 +1660,12 @@ void fn_1_157358(fn_1_157358_RankingState *state) {
         value *= table[21];
 
         if (state->flags & 0x40) {
-            u8 converted = (s32)value;
+            u8 converted = value;
             if (converted == state->value30) {
                 return;
             }
         }
-        state->value30 = (s32)value;
+        state->value30 = value;
     } else {
         if (!(state->flags & 0x40)) {
             return;
@@ -2011,7 +2011,7 @@ void fn_1_157820(void) {
 void fn_1_1578C4(void) {
     s8 v0;
     u32 t2;
-    v0 = (s8)lbl_1_bss_8F568;
+    v0 = lbl_1_bss_8F568;
     switch (v0) {
     case 0:
     fn_1_157950();
@@ -2140,7 +2140,7 @@ void fn_1_157950(void) {
             if (pos < v4->unk_E) alpha = pos / v4->unk_E;
             else if (pos > 448.0f-v4->unk_E) alpha = (448.0f-pos) / v4->unk_E;
             if (lbl_1_bss_8F580 < 30)
-                alpha = (f32)lbl_1_bss_8F580 / 30.0f;
+                alpha = lbl_1_bss_8F580 / 30.0f;
             switch (v4->unk_10) {
             case 0: {
                 u32 color;
@@ -2149,7 +2149,7 @@ void fn_1_157950(void) {
                 fn_1_49748(5.0f);
                 fn_1_495C8((s8)v4->unk_8);
                 fn_1_49590(0.5f);
-                fn_1_4955C((f32)v4->unk_C/24.0f,(f32)v4->unk_E/24.0f);
+                fn_1_4955C(v4->unk_C/24.0f,v4->unk_E/24.0f);
                 color = v4->unk_14; fn_1_49514(&color);
                 break;
             }
@@ -2159,7 +2159,7 @@ void fn_1_157950(void) {
                 fn_1_495B0(FONT_DRAW_FLAGS);
                 fn_1_495C8((s8)v4->unk_8);
                 fn_1_49590(0.5f);
-                fn_1_4955C((f32)v4->unk_C/18.0f,(f32)v4->unk_E/18.0f);
+                fn_1_4955C(v4->unk_C/18.0f,v4->unk_E/18.0f);
                 color = v4->unk_14; fn_1_49514(&color);
                 break;
             }
@@ -2170,7 +2170,7 @@ void fn_1_157950(void) {
                 fn_1_49748(3.0f);
                 fn_1_495C8((s8)v4->unk_8);
                 fn_1_49590(0.5f);
-                fn_1_4955C((f32)v4->unk_C/24.0f,(f32)v4->unk_E/24.0f);
+                fn_1_4955C(v4->unk_C/24.0f,v4->unk_E/24.0f);
                 color = v4->unk_14; fn_1_49514(&color);
                 break;
             }
@@ -2182,7 +2182,7 @@ void fn_1_157950(void) {
                 fn_1_49748(1.0f);
                 fn_1_495C8((s8)v4->unk_8);
                 fn_1_49590(0.5f);
-                fn_1_4955C((f32)v4->unk_C/24.0f,(f32)v4->unk_E/24.0f);
+                fn_1_4955C(v4->unk_C/24.0f,v4->unk_E/24.0f);
                 color = v4->unk_14; fn_1_49514(&color);
                 break;
             }
@@ -2222,14 +2222,14 @@ void fn_1_157950(void) {
                 break;
             }
             }
-            fn_1_496FC((f32)v4->unk_4,pos);
+            fn_1_496FC(v4->unk_4,pos);
             fn_1_495A0(alpha);
             if ((s32)v4->unk_10 != 6) fn_1_4CF3C((const char*)v4->unk_18,284.0f-v4->unk_4);
             else fn_1_4AE0C((const char*)v4->unk_18);
         }
         v4 = (Obj_1_bss_8F574_At0*)((u8*)v4+0x1c);
     }
-    if ((f32)v4->unk_2 < lbl_1_bss_8F56C)
+    if (v4->unk_2 < lbl_1_bss_8F56C)
         lbl_1_bss_8F57C = 1;
 }
 /* fzgx:end fn_1_157950 */
@@ -2309,15 +2309,15 @@ void fn_1_157FC8(void) {
     v2 = lbl_1_bss_8F574;
     while ((v3 = *(s16 *)v2->pad_0) != -2) {
         v4 = lbl_1_bss_8F56C;
-        if ((f32)v3 <= v4 && (end = v3 + v2->unk_2) > v4) {
+        if (v3 <= v4 && (end = v3 + v2->unk_2) > v4) {
             x = v2->unk_4;
             y = v2->unk_6;
             alpha = 1.0f;
-            elapsed = v4 - (f32)v3;
+            elapsed = v4 - v3;
             if (elapsed <= 30.0f) {
                 alpha = elapsed / 30.0f;
             }
-            remaining = (f32)end - v4;
+            remaining = end - v4;
             if (remaining <= 30.0f && remaining >= 0.0f) {
                 alpha = remaining / 30.0f;
             }
@@ -2326,13 +2326,13 @@ void fn_1_157FC8(void) {
                 switch (v2->unk_10) {
                 case 0: {
                     u32 color;
-                    fn_1_496FC((f32)x, (f32)y);
+                    fn_1_496FC(x, y);
                     fn_1_495B0(FONT_DRAW_TEXT_FLAGS);
                     fn_1_49738(fn_1_5233C);
                     fn_1_49748(5.0f);
                     fn_1_495C8((s8)v2->unk_8);
                     fn_1_49590(0.5f);
-                    fn_1_4955C((f32)v2->unk_C / 24.0f, (f32)v2->unk_E / 24.0f);
+                    fn_1_4955C(v2->unk_C / 24.0f, v2->unk_E / 24.0f);
                     color = v2->unk_14;
                     fn_1_49514(&color);
                     break;
@@ -2340,38 +2340,38 @@ void fn_1_157FC8(void) {
                 case 1: {
                     u32 color;
                     fn_1_494DC(5);
-                    fn_1_496FC((f32)x, (f32)y);
+                    fn_1_496FC(x, y);
                     fn_1_495B0(FONT_DRAW_TEXT_FLAGS);
                     fn_1_495C8((s8)v2->unk_8);
                     fn_1_49590(0.5f);
-                    fn_1_4955C((f32)v2->unk_C / 18.0f, (f32)v2->unk_E / 18.0f);
+                    fn_1_4955C(v2->unk_C / 18.0f, v2->unk_E / 18.0f);
                     color = v2->unk_14;
                     fn_1_49514(&color);
                     break;
                 }
                 case 2: {
                     u32 color;
-                    fn_1_496FC((f32)x, (f32)y);
+                    fn_1_496FC(x, y);
                     fn_1_495B0(FONT_DRAW_TEXT_FLAGS);
                     fn_1_49738(fn_1_5233C);
                     fn_1_49748(3.0f);
                     fn_1_495C8((s8)v2->unk_8);
                     fn_1_49590(0.5f);
-                    fn_1_4955C((f32)v2->unk_C / 24.0f, (f32)v2->unk_E / 24.0f);
+                    fn_1_4955C(v2->unk_C / 24.0f, v2->unk_E / 24.0f);
                     color = v2->unk_14;
                     fn_1_49514(&color);
                     break;
                 }
                 case 6: {
                     u32 color;
-                    fn_1_496FC((f32)x, (f32)y);
+                    fn_1_496FC(x, y);
                     fn_1_495B0(FONT_DRAW_TEXT_FLAGS);
                     fn_1_4965C(2);
                     fn_1_49738(fn_1_5233C);
                     fn_1_49748(1.0f);
                     fn_1_495C8((s8)v2->unk_8);
                     fn_1_49590(0.5f);
-                    fn_1_4955C((f32)v2->unk_C / 24.0f, (f32)v2->unk_E / 24.0f);
+                    fn_1_4955C(v2->unk_C / 24.0f, v2->unk_E / 24.0f);
                     color = v2->unk_14;
                     fn_1_49514(&color);
                     break;
@@ -2422,7 +2422,7 @@ void fn_1_157FC8(void) {
             v2 = (Obj_1_bss_8F574_At0 *)((u8 *)v2 + 0x1C);
         }
     }
-    if ((f32)v2->unk_2 < lbl_1_bss_8F56C) {
+    if (v2->unk_2 < lbl_1_bss_8F56C) {
         lbl_1_bss_8F578 = 0;
     }
 }
@@ -2600,7 +2600,7 @@ void fn_1_158984(void) {
     count = fn_1_58C4();
     for (i = 0; i < count; i++) {
         fn_1_5948(i);
-        mode = (s16)camera_get_mode();
+        mode = camera_get_mode();
         if (mode >= 0) {
             camera = fn_1_8627C(mode);
             if (camera != 0) {
@@ -2623,9 +2623,9 @@ void fn_1_158984(void) {
             slot->model->angle_z += (s32)(spin_z * slot->spin.z);
         } else {
             damp = 0.01;
-            slot->model->angle_x = ((f64)slot->model->angle_x + (f64)(damp * -slot->model->angle_x));
-            slot->model->angle_y = ((f64)slot->model->angle_y + (f64)(damp * -slot->model->angle_y));
-            slot->model->angle_z = ((f64)slot->model->angle_z + (f64)(damp * -slot->model->angle_z));
+            slot->model->angle_x = (slot->model->angle_x + (f64)(damp * -slot->model->angle_x));
+            slot->model->angle_y = (slot->model->angle_y + (f64)(damp * -slot->model->angle_y));
+            slot->model->angle_z = (slot->model->angle_z + (f64)(damp * -slot->model->angle_z));
         }
         slot->model->flags &= 0xFEFFFFFF;
         if (slot->active != 0 && ((s32)data->unk_4 == 1 || (s32)data->unk_4 >= 3)) {
@@ -2845,7 +2845,7 @@ s8 fn_1_15906C(u32 arg0, struct RankingEffectObject *arg1, f32 arg2) {
     s32 axis;
     struct RankingEffectObject *obj;
     effects = lbl_1_data_2A7E0.unk_3C;
-    switch ((s32)arg0) {
+    switch (arg0) {
     case 0:
         if (arg1 == 0) break;
         arg1->unk_3C = 0;
@@ -2857,7 +2857,7 @@ s8 fn_1_15906C(u32 arg0, struct RankingEffectObject *arg1, f32 arg2) {
             record->time = 60;
         } else record->flag = 0;
         #pragma fp_contract off
-        magnitude = (10.0 * (0.8 + ((f32)random15() / 32767.0f) * 0.2));
+        magnitude = (10.0 * (0.8 + (random15() / 32767.0f) * 0.2));
         axis = random15() % 3;
         switch (axis) {
         case 0: {
@@ -2888,8 +2888,8 @@ s8 fn_1_15906C(u32 arg0, struct RankingEffectObject *arg1, f32 arg2) {
             s32 iy = record->iy;
             s32 iz = record->iz;
             obj = record->obj;
-            obj->x = (100.0f * (f32)ix) - 1000.0f;
-            obj->y = (100.0f * (f32)iy) - 1000.0f;
+            obj->x = (100.0f * ix) - 1000.0f;
+            obj->y = (100.0f * iy) - 1000.0f;
             z_component = &(obj->z);
             *z_component = (f32)(100.0f * (f32)iz) - 2000.0f;
         }
@@ -3106,20 +3106,20 @@ void fn_1_1598C4(s32 arg0, u8 arg1, u8 arg2, u8 arg3, u8 arg4, u8 arg5, u8 arg6,
     ((struct fn_1_1598C4_lbl_1_bss_8F878 *)&lbl_1_bss_8F878)->unk_34 = arg0 & 0x3FFFF;
     ((struct fn_1_1598C4_lbl_1_bss_8F878 *)&lbl_1_bss_8F878)->unk_39 = arg1;
     ((struct fn_1_1598C4_lbl_1_bss_8F878 *)&lbl_1_bss_8F878)->unk_3D = arg6;
-    ((struct fn_1_1598C4_lbl_1_bss_8F878 *)&lbl_1_bss_8F878)->unk_3E = (0.0999000967f * (f32)arg5);
+    ((struct fn_1_1598C4_lbl_1_bss_8F878 *)&lbl_1_bss_8F878)->unk_3E = (0.0999000967f * arg5);
 
     if (arg1 >= 0x29U) {
-        if ((s32)arg2 < fn_1_14F01C(0)) {
+        if (arg2 < fn_1_14F01C(0)) {
             ((struct fn_1_1598C4_lbl_1_bss_8F878 *)&lbl_1_bss_8F878)->unk_3A = arg2;
         } else {
             ((struct fn_1_1598C4_lbl_1_bss_8F878 *)&lbl_1_bss_8F878)->unk_3A = 0;
         }
-        if ((s32)arg3 < fn_1_14F01C(1)) {
+        if (arg3 < fn_1_14F01C(1)) {
             ((struct fn_1_1598C4_lbl_1_bss_8F878 *)&lbl_1_bss_8F878)->unk_3B = arg3;
         } else {
             ((struct fn_1_1598C4_lbl_1_bss_8F878 *)&lbl_1_bss_8F878)->unk_3B = 0;
         }
-        if ((s32)arg4 < fn_1_14F01C(2)) {
+        if (arg4 < fn_1_14F01C(2)) {
             ((struct fn_1_1598C4_lbl_1_bss_8F878 *)&lbl_1_bss_8F878)->unk_3C = arg4;
             return;
         }

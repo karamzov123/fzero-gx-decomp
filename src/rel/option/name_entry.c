@@ -278,10 +278,10 @@ switch (p->unk_0) {
 case 1:
 {
 u16 c4 = p->unk_4;
-s32 t4 = (s32)p->unk_8 - (s32)c4;
-f64 dd = 0.21 * (f64)t4;
+s32 t4 = p->unk_8 - c4;
+f64 dd = 0.21 * t4;
 if ((s32)dd != 0) {
-p->unk_4 = ((u32)c4 + dd);
+p->unk_4 = (c4 + dd);
 } else {
 e = fn_4_ADF4_sign(t4);
 /* Retail rereads the position after selecting the one-step adjustment. */
@@ -290,10 +290,10 @@ p->unk_4 = *(volatile u16 *)&p->unk_4 + e;
 }
 {
 u16 c6 = p->unk_6;
-s32 t6 = (s32)p->unk_A - (s32)c6;
-dd = 0.21 * (f64)t6;
+s32 t6 = p->unk_A - c6;
+dd = 0.21 * t6;
 if ((s32)dd != 0) {
-p->unk_6 = ((u32)c6 + dd);
+p->unk_6 = (c6 + dd);
 } else {
 e = fn_4_ADF4_sign(t6);
 /* Retail rereads the position after selecting the one-step adjustment. */
@@ -304,7 +304,7 @@ p->unk_6 = *(volatile u16 *)&p->unk_6 + e;
 }
 col1 = p->unk_D;
 fn_1_49514(&col1);
-fn_1_496FC((f32)p->unk_4, (f32)p->unk_6);
+fn_1_496FC(p->unk_4, p->unk_6);
 {
 f64 scale_d = 1.6666666666666667 * (0.5 + (0x18 - p->unk_1) / 48.0f);
 fn_1_4955C(scale_d, scale_d);
@@ -323,7 +323,7 @@ fn_1_A2D84(0xA9010100);
 *(u32 *)ph = p->unk_D;
 {
 f32 quarter = 0.25f;
-f = (f32)p->unk_1 * quarter;
+f = p->unk_1 * quarter;
 {
 ph[0] += (255 - ph[0]) * f;
 ph[1] += (255 - ph[1]) * f;
@@ -332,17 +332,17 @@ ph[2] += (255 - ph[2]) * f;
 }
 col2 = *(u32 *)ph;
 fn_1_49514(&col2);
-fn_1_496FC((f32)p->unk_4, (f32)p->unk_6);
+fn_1_496FC(p->unk_4, p->unk_6);
 {
-f64 scale_d = 1.6666666666666667 * (1.0 + 0.5 * (f64)f);
+f64 scale_d = 1.6666666666666667 * (1.0 + 0.5 * f);
 fn_1_4955C(scale_d, scale_d);
 }
 loc_20 = *(FontDrawPacket *)lbl_1_rodata_26F8;
 loc_20.image = 0x8F09;
-loc_20.x = (f32)p->unk_4;
-loc_20.y = (f32)p->unk_6;
+loc_20.x = p->unk_4;
+loc_20.y = p->unk_6;
 loc_20.z = 0.13f;
-loc_20.scale_x = loc_20.scale_y = (1.5 + 2.0 * (f64)f);
+loc_20.scale_x = loc_20.scale_y = (1.5 + 2.0 * f);
 loc_20.flags = 0xA;
 fn_1_4F734((FontDrawPacket *)&loc_20);
 if (p->unk_1 == 1) {
@@ -357,7 +357,7 @@ break;
 case 3:
 col3 = p->unk_D;
 fn_1_49514(&col3);
-fn_1_496FC((f32)p->unk_4, (f32)p->unk_6);
+fn_1_496FC(p->unk_4, p->unk_6);
 fn_1_4955C(1.6666666f, 1.6666666f);
 break;
 case 4:
@@ -368,13 +368,13 @@ return;
 }
 col4 = p->unk_D;
 fn_1_49514(&col4);
-fn_1_496FC((f32)p->unk_4, (f32)p->unk_6);
+fn_1_496FC(p->unk_4, p->unk_6);
 {
 f64 scale_d = 1.6666666666666667 * (1.0 + 0.5 * (f32)(0x10 - p->unk_1));
 fn_1_4955C(scale_d, scale_d);
 }
 {
-f32 alpha = (f32)p->unk_1;
+f32 alpha = p->unk_1;
 alpha *= 0.0625f;
 fn_1_495A0(alpha);
 }
@@ -466,7 +466,7 @@ v8 = (struct OptionNameEntry *)v1 + *(u8 *)arg0;
 v19 = v8->cursor;
 v3 = (v19 - 10);
 v1 = (v19 + 11);
-if (v3 >= 0 && (s32)(v19 + 11) <= (s32)v8->length) {
+if (v3 >= 0 && (s32)(v19 + 11) <= v8->length) {
 v2 = ((u32)v8->chars);
 v1 = v0;
 v9 = (v3 << 1);
@@ -499,7 +499,7 @@ lab_t1 = v2;
 v1 = fn_80083DB0((void *)lab_t0, (const void *)lab_t1);
 v1 = v8->cursor;
 v10 = (v1 + 11);
-if ((s32)v10 > (s32)v8->length) {
+if (v10 > v8->length) {
 v2 = ((u32)v8->chars);
 v1 = v0;
 v1 = (u32)strcat((char *)v1, (const char *)v2);
@@ -549,7 +549,7 @@ v1 = v0;
 v3 = v10;
 v4 = b14;
 { s32 __reg_value_v2 = (s32)"%s\201@\201@\201@%s"; v2 = __reg_value_v2; }
-v1 = sprintf((char *)v1, (const char *)(u32)v2, v3, v4);
+v1 = sprintf((char *)v1, (const char *)v2, v3, v4);
 }
 v1 = (u32)lbl_4_bss_5680;
 v1 = *(u8 *)((u8 *)v1 + 13);
@@ -580,7 +580,7 @@ v16 = name_entry_glyph_size(1);
 }
 state_value = *(u16 *)((u8 *)arg0 + 4);
 v3 = v15 - state_value;
-v6 = 0.2 * (f64)v3;
+v6 = 0.2 * v3;
 if ((s32)v6 != 0) {
 *(u16 *)((u8 *)arg0 + 4) = (s32)((f64)(u32)state_value + v6);
 } else {
@@ -604,7 +604,7 @@ if (state_value == (s32)v13 || --v1 > (s32)v13) {
 }
 v2 = (s8)*(u8 *)((u8 *)arg0 + 1);
 v3 = -v2;
-v6 = 0.2 * (f64)v3;
+v6 = 0.2 * v3;
 if ((s32)v6 != 0) {
 *(u8 *)((u8 *)arg0 + 1) = (s32)((f64)v2 + v6);
 } else {
@@ -646,14 +646,14 @@ v3 += 8;
 loc_18.a[0] = v15;
 v3 = *(u8 *)((u8 *)arg0 + 1);
 v1 = (s8)v3;
-v26 = (s32)v2 * *(f32 *)((u8 *)arg0 + 8);
+v26 = v2 * *(f32 *)((u8 *)arg0 + 8);
 v5 = (v1 + 320);
 *(f32 *)((u8 *)&loc_18 + 4) = v5 + v26;
-if (__abs((s32)v2) > 0) {
+if (__abs(v2) > 0) {
 v3 = 1;
-if ((s32)v2 < 0) v3 = -1;
-state_value = (s32)v2 >> 31;
-v1 = state_value ^ (s32)v2;
+if (v2 < 0) v3 = -1;
+state_value = v2 >> 31;
+v1 = state_value ^ v2;
 v1 -= state_value;
 v6 = 12.0;
 v7 = *(f32 *)((u8 *)&loc_18 + 4);
@@ -679,7 +679,7 @@ v20 = fn_80083970(v20 + 2, (const u8 *)"\201\350");
 }
 v2 = (s8)*(u8 *)((u8 *)arg0 + 1);
 v2 += 320;
-v5 = (f32)v2;
+v5 = v2;
 v6 = (f32)(u32)*(u16 *)((u8 *)arg0 + 4);
 fn_1_496FC(v5, v6);
 v18 = *(f32 *)((u8 *)arg0 + 8) / 24.0;
@@ -904,9 +904,9 @@ phase->unk_11 = phase->unk_11 - phase->unk_10;
 smooth = *smoothRef;
 old12 = smooth->unk_12;
 x = smooth->unk_E * 56 + 98 - old12;
-d = 0.3 * (f64)x;
+d = 0.3 * x;
 if ((s32)d != 0) {
-smooth->unk_12 = ((f64)old12 + d);
+smooth->unk_12 = (old12 + d);
 } else {
 s32 step;
 if (x < 0) {
@@ -1091,7 +1091,7 @@ var_r28 = 0x62;
 loc_20.y = (352.0f);
 loc_20.z = (0.159999996f);
 do {
-loc_20.x = (f32)var_r28;
+loc_20.x = var_r28;
 fn_1_4F734(&loc_20);
 var_r27 += 1;
 var_r28 += 0x38;
@@ -1122,7 +1122,7 @@ cb[0] = ((v * 0x10) & 0xF0);
 cb[1] = ((v * 0x10) & 0xF0);
 cb[2] = ((v * 0x10) & 0xF0);
 loc_20.color_add.word = clr_18.w;
-temp_f0 = ((1.0) + (f64)v / (12.0));
+temp_f0 = ((1.0) + v / (12.0));
 loc_20.scale_y = temp_f0;
 loc_20.scale_x = temp_f0;
 }
@@ -1137,7 +1137,7 @@ cb[0] = ((v * 0x10) & 0xF0);
 cb[1] = ((v * 0x10) & 0xF0);
 cb[2] = ((v * 0x10) & 0xF0);
 loc_20.color_add.word = clr_14.w;
-temp_f0_2 = ((1.0) + (f64)v / (12.0));
+temp_f0_2 = ((1.0) + v / (12.0));
 loc_20.scale_y = temp_f0_2;
 loc_20.scale_x = temp_f0_2;
 }
@@ -1156,7 +1156,7 @@ cb[0] = ((v * 0x10) & 0xF0);
 cb[1] = ((v * 0x10) & 0xF0);
 cb[2] = ((v * 0x10) & 0xF0);
 loc_20.color_add.word = clr_10.w;
-temp_f0_3 = ((1.0) + (f64)v / (12.0));
+temp_f0_3 = ((1.0) + v / (12.0));
 loc_20.scale_y = temp_f0_3;
 loc_20.scale_x = temp_f0_3;
 }
@@ -1171,7 +1171,7 @@ cb[0] = ((v * 0x10) & 0xF0);
 cb[1] = ((v * 0x10) & 0xF0);
 cb[2] = ((v * 0x10) & 0xF0);
 loc_20.color_add.word = clr_C.w;
-temp_f0_4 = ((1.0) + (f64)v / (12.0));
+temp_f0_4 = ((1.0) + v / (12.0));
 loc_20.scale_y = temp_f0_4;
 loc_20.scale_x = temp_f0_4;
 }
@@ -1188,7 +1188,7 @@ loc_20.scale_x = temp_f0_5;
 var_r27_2 = lbl_4_bss_5680->unk_E;
 var_r28_2 = (var_r27_2 * 0x38) + 0x7C;
 while (var_r27_2 < 8) {
-loc_20.x = (f32)var_r28_2;
+loc_20.x = var_r28_2;
 fn_1_4F734(&loc_20);
 var_r28_2 += 0x38;
 var_r27_2 += 1;
@@ -1225,8 +1225,8 @@ fn_1_494DC(0x2A);
 fn_1_495C8(9);
 fn_1_496FC((321.0f), (178.0f));
 {
-f64 t = (2.1666666666666665) * (f64)var_f31;
-fn_1_4955C((f32)t, (f32)t);
+f64 t = (2.1666666666666665) * var_f31;
+fn_1_4955C(t, t);
 }
 fn_1_4A0D8((const char *)buf);
 loc_20 = *(FontDrawPacket *)lbl_1_rodata_26F8;

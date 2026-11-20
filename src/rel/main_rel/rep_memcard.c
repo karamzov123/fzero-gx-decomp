@@ -522,7 +522,7 @@ u8 *fn_1_15530C(u8 *text) {
     {
         f32 value;
         text++;
-        value = (f32)fn_80083E84(text);
+        value = fn_80083E84(text);
         while ((*text >= '0' && *text <= '9') || *text == '.') {
             text++;
         }
@@ -563,7 +563,7 @@ u8 *fn_1_15530C(u8 *text) {
     {
         f32 value;
         text++;
-        value = (f32)fn_80083E84(text);
+        value = fn_80083E84(text);
         while ((*text >= '0' && *text <= '9') || *text == '.') {
             text++;
         }

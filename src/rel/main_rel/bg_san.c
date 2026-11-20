@@ -206,7 +206,7 @@ void fn_1_D74C4(void) {
     count = fn_1_58C4();
     for (i = 0; i < count; i++) {
         fn_1_5948(i);
-        fn_1_D83E4((struct LigLightObj *)obj, (u32)i);
+        fn_1_D83E4((struct LigLightObj *)obj, i);
         fn_1_627C(i);
     }
 
@@ -617,7 +617,7 @@ static inline s32 rand15(void) {
 
 // A rand15() value as a float in [-0.5, 0.5].
 static inline f32 lig_randf(s32 r) {
-    return (f32)r / 32767.0f - 0.5f;
+    return r / 32767.0f - 0.5f;
 }
 
 // out = base + dir * len
@@ -676,7 +676,7 @@ void fn_1_D7EF4(LigParticle *e, u32 index) {
     lbl_8006D668(&dir);
     fn_1_A714C(&a, &b, &c, &d);
     pos = eye;
-    t = (f32)(1.5f * ((f32)rand15() / 32767.0f)) - 0.5f;
+    t = (f32)(1.5f * (rand15() / 32767.0f)) - 0.5f;
     base = scale / 10.0f;
     r = rand15();
     dist = base + (c + (f32)(t * (100.0f - c)));
@@ -693,7 +693,7 @@ void fn_1_D7EF4(LigParticle *e, u32 index) {
     e->scale.x = 170.0f * k;
     e->scale.y = 120.0f * k;
     e->scale.z = 32.0f * k;
-    e->value = (90.0f + base) * (0.6f + (f32)(0.4f * ((f32)rand15() / 32767.0f)));
+    e->value = (90.0f + base) * (0.6f + (f32)(0.4f * (rand15() / 32767.0f)));
     e->phase = rand15();
     e->step = 768.0f * lig_randf(rand15());
     e->count = 15;
@@ -1060,7 +1060,7 @@ void fn_1_D8878(LigSource *src) {
 
     fade = src->fade;
     if (fade > 0) {
-        dist *= 1.0f - (f32)fade / 15.0f;
+        dist *= 1.0f - fade / 15.0f;
     }
 
     memset(&packet, 0, sizeof(packet));
@@ -1160,11 +1160,11 @@ void fn_1_D8D58(fn_1_D8D58_LigObject *obj, void *arg) {
             entry->z = y;
         } else {
             entry->x = __fabs(lbl_8006D188(
-                ((f32)lbl_801A66A0 * 182.04444885253906f)));
+                (lbl_801A66A0 * 182.04444885253906f)));
             entry->y = __fabs(lbl_8006D188(
-                ((f32)lbl_801A66A0 * 182.04444885253906f * 0.5)));
+                (lbl_801A66A0 * 182.04444885253906f * 0.5)));
             entry->z = __fabs(lbl_8006D188(
-                ((f32)lbl_801A66A0 * 182.04444885253906f * 2.0)));
+                (lbl_801A66A0 * 182.04444885253906f * 2.0)));
         }
 
         fn_1_1030D4(entry, arg);
@@ -2798,7 +2798,7 @@ void fn_1_DB9B0(void *arg0) {
     DB9B0Point *v52;
     f32 v20, v33, v49, v62;
     s32 v34, v63, v43;
-    if ((u32)fn_1_58C4() < 2) {
+    if (fn_1_58C4() < 2) {
         v0 = (u8 *)arg0 + 24;
         v1 = *(Sig_fn_1_DB9B0_DB53CObj **)arg0;
         if (*(s32 *)((u8 *)arg0 + 16) >= 128) {
@@ -2811,8 +2811,8 @@ void fn_1_DB9B0(void *arg0) {
             DB9B0Point *v25;
             s32 next;
             for (v3 = 0; v3 < 15; v3++) {
-                v20 = (f32)v3 / 14.0f;
-                fn_1_681C((u8)fn_1_5910(), (u32 *)&loc_50);
+                v20 = v3 / 14.0f;
+                fn_1_681C(fn_1_5910(), (u32 *)&loc_50);
                 next = v19;
                 v19 = (v19 + 8) % 128;
                 v25 = (DB9B0Point *)(v0 + (next << 4) + 8);
@@ -2825,7 +2825,7 @@ void fn_1_DB9B0(void *arg0) {
                     lbl_8006D5F0(&loc_68, &loc_74, 0.5f);
                 }
                 psvec_scale(&loc_74, ((2.5 * *(f32 *)((u8 *)v1 + 32)) * (1.0 + v20)), &loc_5C);
-                v33 = (f32)__fabs(lbl_8006D188(lbl_8006D46C(lbl_8006D534(&loc_8C, &loc_80))));
+                v33 = __fabs(lbl_8006D188(lbl_8006D46C(lbl_8006D534(&loc_8C, &loc_80))));
                 v34 = (v33 * (255.0f * lbl_8006D188((32768.0f * v20))));
                 if (*(s32 *)((u8 *)arg0 + 16) < 248) {
                     v34 = ((u8)v34 * ((*(s32 *)((u8 *)arg0 + 16) - 128) / 120.0f));
@@ -2850,13 +2850,13 @@ void fn_1_DB9B0(void *arg0) {
             Vec3 loc_2C = { 0.5f, 0.0f, 0.0f };
             Vec3 loc_20, loc_14, loc_8;
             for (v3_r2 = 0; v3_r2 < 15; v3_r2++) {
-                v49 = (f32)v3_r2 / 14.0f;
-                fn_1_681C((u8)fn_1_5910(), (u32 *)&loc_8);
+                v49 = v3_r2 / 14.0f;
+                fn_1_681C(fn_1_5910(), (u32 *)&loc_8);
                 v43 = v13;
                 v13 = (v13 + 8) % 128;
                 v52 = (DB9B0Point *)((u32)v0 + (v43 << 4) + 2056);
                 psvec_sub(&v52->pos, &loc_8, &loc_44);
-                psvec_sub(&v52->pos, (void *)((u32)v0 + (v13 << 4) + 2056), &loc_38);
+                psvec_sub(&v52->pos, (void *)(v0 + (v13 << 4) + 2056), &loc_38);
                 DB9B0_cross(&loc_44, &loc_38, &loc_20);
                 if (0.0 != loc_20.x ||
                     0.0 != loc_20.y ||
@@ -2864,7 +2864,7 @@ void fn_1_DB9B0(void *arg0) {
                     lbl_8006D5F0(&loc_20, &loc_2C, 0.5f);
                 }
                 psvec_scale(&loc_2C, ((2.5 * *(f32 *)((u8 *)v1 + 32)) * (1.0 + v49)), &loc_14);
-                v62 = (f32)__fabs(lbl_8006D188(lbl_8006D46C(lbl_8006D534(&loc_44, &loc_38))));
+                v62 = __fabs(lbl_8006D188(lbl_8006D46C(lbl_8006D534(&loc_44, &loc_38))));
                 v63 = (v62 * (255.0f * lbl_8006D188((32768.0f * v49))));
                 if (*(s32 *)((u8 *)arg0 + 16) < 248) {
                     v63 = ((u8)v63 * ((*(s32 *)((u8 *)arg0 + 16) - 128) / 120.0f));
@@ -2918,7 +2918,7 @@ f32 fn_1_DC084(Vec3 *pos) {
     fn_1_681C(0, &point);
     best = lbl_8006D0B4(distance_squared(pos, &point));
     for (i = 1; i < count; i++) {
-        fn_1_681C((u8)i, &point);
+        fn_1_681C(i, &point);
         best = best < lbl_8006D0B4(distance_squared(pos, &point))
                    ? best
                    : lbl_8006D0B4(distance_squared(pos, &point));
@@ -2947,9 +2947,9 @@ int fn_1_DC1C0(int arg0, int arg1) {
     case 0:
         if ((s32)obj->unk_10 < 20) {
             BgSanEntry *entry = (BgSanEntry *)obj;
-            entry += (s32)obj->unk_10;
+            entry += obj->unk_10;
             entry->unk_14 = arg1;
-            obj->unk_10 = (s32)obj->unk_10 + 1;
+            obj->unk_10 = obj->unk_10 + 1;
         }
         break;
     default:
@@ -3144,12 +3144,12 @@ void fn_1_DC454(SanContainer *container, void *arg) {
             entry->value30 = 0.0f;
             entry->value34 = 0.0f;
         } else {
-            entry->value2c = (f32)__fabs(lbl_8006D188(
-                (182.04444885253906f * (f32)lbl_801A66A0)));
-            entry->value30 = (f32)__fabs(lbl_8006D188(
-                (((((f32)lbl_801A66A0) * (182.04444885253906f)) * (0.5)))));
-            entry->value34 = (f32)__fabs(lbl_8006D188(
-                (2.0 * (182.04444885253906f * (f32)lbl_801A66A0))));
+            entry->value2c = __fabs(lbl_8006D188(
+                (182.04444885253906f * lbl_801A66A0)));
+            entry->value30 = __fabs(lbl_8006D188(
+                ((((lbl_801A66A0) * (182.04444885253906f)) * (0.5)))));
+            entry->value34 = __fabs(lbl_8006D188(
+                (2.0 * (182.04444885253906f * lbl_801A66A0))));
         }
         fn_1_1030D4(entry, saved_arg);
         count--;
@@ -3196,8 +3196,8 @@ void fn_1_DC648(void *object) {
     u8 local;
     s32 value;
 
-    index = (u32)fn_1_5910();
-    fn_1_681C((u8)index, &local);
+    index = fn_1_5910();
+    fn_1_681C(index, &local);
     direction = fn_1_1FB80(&local, 1);
     offset = (index << 1) + 0x2264;
     if ((direction & 1) != 0) {

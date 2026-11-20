@@ -1441,7 +1441,7 @@ void fn_1_DE9C4(struct fn_1_DE9C4_Arg0 *arg0) {
     f32 v16;
     f32 v17;
     f32 v19;
-    f32 v4 = (f32)arg0->unk_15C / 60.0f;
+    f32 v4 = arg0->unk_15C / 60.0f;
     f32 dx;
     f32 dz;
     f32 next;
@@ -1459,13 +1459,13 @@ void fn_1_DE9C4(struct fn_1_DE9C4_Arg0 *arg0) {
     mathutil_mtxA_rotate_x((182.04444885253906f * fn_1_9E14C(v2[0], (void *)v2[1], v4)));
     psvec_set(&arg0->unk_54, *(f32 *)(0xE0000000 + 0x2C), *(f32 *)(0xE0000000 + 0x1C), *(f32 *)(0xE0000000 + 0x0C));
     fn_8006F6A8(&loc_8);
-    arg0->unk_78 = 9.58738019107841e-05f * (f32)loc_8.angle_y;
-    arg0->unk_7C = 9.58738019107841e-05f * (f32)loc_8.angle_x;
-    arg0->unk_80 = 9.58738019107841e-05f * (f32)loc_8.angle_z;
+    arg0->unk_78 = 9.58738019107841e-05f * loc_8.angle_y;
+    arg0->unk_7C = 9.58738019107841e-05f * loc_8.angle_x;
+    arg0->unk_80 = 9.58738019107841e-05f * loc_8.angle_z;
     lbl_8006DB30();
     if ((arg0->unk_138 & 8192) == 0) arg0->unk_15C++;
     if (*(s16 *)&lbl_1_bss_960 == 9 && arg0->unk_A == 2) {
-        next = (f32)arg0->unk_15C / 60.0f;
+        next = arg0->unk_15C / 60.0f;
         v16 = fn_1_9E194(v2[8], (void *)v2[9], v4);
         v17 = fn_1_9E194(v2[8], (void *)v2[9], next);
         if (v16 < v17) {
@@ -3052,9 +3052,9 @@ s32 fn_1_E1408(E1408Object *a, E1408Object *b) {
     lbl_8006D5A4(&b->vel, &b->pos, &b->pos, t);
     psvec_sub(&b->pos, &a->pos, &n);
 
-    fa = E1408_flags(0, 0, (u32)b->f138.flags, (u64)(u32)a->f138.flags);
+    fa = E1408_flags(0, 0, b->f138.flags, (u64)(u32)a->f138.flags);
     pushA = (fa >> 32);
-    pushB = (u32)fa;
+    pushB = fa;
 
     if (pushB == 1) {
         lbl_8006D5F0(&n, pool->unk_74 * r, &t20);
@@ -3117,7 +3117,7 @@ void fn_1_E1934(Fn1E1934Object *obj, Fn1E1934Object *base, s16 limit) {
         index = obj->field8 + 1;
     }
 
-    while ((s16)index < limit) {
+    while (index < limit) {
         fn_1_E1408((struct E1408Object *)obj, (struct E1408Object *)&base[index]);
         index++;
     }
@@ -3276,8 +3276,8 @@ void fn_1_E1A00(Fn1E1A00Object *obj, u8 *str) {
                 f32 ten = (10.0f);
 
                 obj->field58 = ten;
-                obj->field5C = ten * (f32)obj->field8;
-                obj->field54 = (3.0f) * (f32)obj->fieldA;
+                obj->field5C = ten * obj->field8;
+                obj->field54 = (3.0f) * obj->fieldA;
                 fn_80008BA8(&obj->pad60[0], &obj->field54, 12);
             }
             break;

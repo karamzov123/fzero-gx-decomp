@@ -706,7 +706,7 @@ void fn_1_D6C10(Vec3 *arg0, f32 arg1) {
     fn_1_681C(v3, (u32 *)loc_8);
     v4.value = D6C10Distance(arg0, loc_8);
     v5 = 1;
-    while ((u32)v5 < (u32)v2) {
+    while (v5 < v2) {
     v3 = (v5 & 0xFF);
     fn_1_681C(v3, (u32 *)loc_8);
     v4.value = D6C10Nearest(v4.value, arg0, loc_8);
@@ -725,7 +725,7 @@ void fn_1_D6C10(Vec3 *arg0, f32 arg1) {
     loc_14.unk_C = 13;
     v2 = 1;
     loc_14.unk_1A = (0x10000 - 1);
-    coefficient = (f32)product.value;
+    coefficient = product.value;
     }
     v5 = 0x43300000;
     loc_14.unk_34 = *(u32 *)((u8 *)lbl_1_bss_38458->unk_8 + 360);
@@ -761,7 +761,7 @@ void fn_1_D6C10(Vec3 *arg0, f32 arg1) {
     v32 = (0.5f) * v32;
     v32 = (1.5f) + v32;
     v32 = (60.0f) * v32;
-    loc_14.unk_10 = (s32)v32;
+    loc_14.unk_10 = v32;
     t12 = fn_1_584AC();
     v3 = t12;
     v1 = (f32)((v3 & 0xFFFF));
@@ -782,7 +782,7 @@ void fn_1_D6C10(Vec3 *arg0, f32 arg1) {
     loc_14.unk_B2 = 14;
     loc_14.unk_3C.x -= loc_14.unk_48.x;
     loc_14.unk_48.y += (0.10000000000000001) + (coefficient * (f32)v1);
-    loc_14.unk_28 = (f32)v8;
+    loc_14.unk_28 = v8;
     loc_14.unk_2C = ((30.0) * v8);
     }
     loc_14.unk_3C.y -= loc_14.unk_48.y;
@@ -803,7 +803,7 @@ void fn_1_D6C10(Vec3 *arg0, f32 arg1) {
     t17 = fn_1_584AC();
     v3 = t17;
     v38 = (v3 & 0xFFFF);
-    v1 = ((((u32)v38 / (32767.0f))) - ((0.5)));
+    v1 = (((v38 / (32767.0f))) - ((0.5)));
     loc_14.unk_AC = (((182.04444885253906)) * (v1));
     t18 = fn_1_58E3C(&loc_14);
     v3 = t18;

@@ -120,7 +120,7 @@ s32 fn_1_6514(s32 value) {
         return 0;
     }
 
-    mode = (s8)camera->unk_48;
+    mode = camera->unk_48;
     switch (mode) {
     case 9:
         return 2;
@@ -873,7 +873,7 @@ void fn_1_6DD0(u8 index) {
     if ((bss->state->unk_0 & ((u32)1 << 31)) != 0) {
         *(u32 *)camera_get_state_object() |= ((u32)1 << 31);
     }
-    mode = (s8)bss->state->unk_48;
+    mode = bss->state->unk_48;
     switch (mode) {
     case 9:
     case 10:
@@ -1032,7 +1032,7 @@ for (fzgx_loop_i_1063 = 0; fzgx_loop_i_1063 < count; fzgx_loop_i_1063++) {
         } else {
             value = cur->unk_2;
         }
-        if ((u32)value == id) {
+        if (value == id) {
             return 1;
         }
         cur = (fn_1_707C_Entry *)((u8 *)cur + 0x1FC);
@@ -1809,7 +1809,7 @@ void fn_1_847C(s8 mode) {
     i = 0;
     while (i < state->unk_14) {
         if (fn_1_86634(i) == 0) {
-            state->unk_8->unk_6 = (s16)i;
+            state->unk_8->unk_6 = i;
             break;
         }
         i++;
@@ -2175,7 +2175,7 @@ void fn_1_8B10(fn_1_8B10_CameraObject *camera, CameraOutput *output) {
     CameraTarget *target;
     CameraData *data;
 
-    target = fn_1_868C0((s8)camera->kind);
+    target = fn_1_868C0(camera->kind);
     if (camera->index == 0 && target != 0 && (data = target->data) != 0) {
         output->x0 = lbl_1_rodata_200 + data->x;
         output->y0 = data->y;
@@ -2732,7 +2732,7 @@ static void fzgx_pool_conversion_lbl_1_rodata_200_40(void) {
     b = *(u8 *)fzgx_pool_rodata_lbl_1_rodata_230;
     b = *(u8 *)fzgx_pool_rodata_lbl_1_rodata_200_34;
     d = 0.5;
-    s = (f32)i;
+    s = i;
 }
 #pragma section code_type ".text"
 static const u32 fzgx_pool_rodata_lbl_1_rodata_200_48[3] = {  /* fzgx-allow: A1 retail data bytes and bindings */
@@ -3131,8 +3131,8 @@ Sig_camera_get_target_orientation_camera_get_target_orientation_CameraObject *ob
 } transition_state90;
 #define bad transition_state90.invalid
 
-v0 = (s8)fn_1_86678(arg0->unk_2);
-if ((u32)v0 == 0xFFFFFFFF) {
+v0 = fn_1_86678(arg0->unk_2);
+if (v0 == 0xFFFFFFFF) {
 v1 = 0;
 } else {
 switch (fn_1_3BB0(v0) & 0xFF) {
@@ -3646,13 +3646,13 @@ f32 fn_1_A888(void *arg0) {
     f64 scaled;
 
     lbl_8006DAEC(self);
-    ent = fn_1_8627C((s32)self->id);
+    ent = fn_1_8627C(self->id);
     if (ent == 0) {
         return (ro_pool->c_30);
     }
     flag = (((*(u32 *)((u8 *)ent + 0x7C)) >> 24) & 1);
-    fn_1_862D4((void *)(s32)self->id, &pos);
-    fn_1_8636C((s32)self->id, &big);
+    fn_1_862D4((void *)self->id, &pos);
+    fn_1_8636C(self->id, &big);
     lbl_8006DC6C(&big);
 
     fzgx_live = pos.x;
@@ -3668,7 +3668,7 @@ f32 fn_1_A888(void *arg0) {
     v3c.y = (ro_pool->c_198);
     lbl_8006E1B0(&v3c, &v24);
 
-    w3 = (u32)fn_1_20A5C(&v24, &w2);
+    w3 = fn_1_20A5C(&v24, &w2);
     fn_1_15578(&v30, &v24, &w2, &v18, 0x80000 + 1, &w3, 1, 0, 0, 0);
     lbl_8006DC6C(&big);
 
@@ -3725,7 +3725,7 @@ void fn_1_AA54(void *arg0) {
 
     temp_r31 = fn_1_86678((*(s16 *)((u8 *)(arg0) + 2)));
     temp_r3 = fn_1_86634((*(s16 *)((u8 *)(arg0) + 2)));
-    temp_r28 = camera_get_entry_field_0xa8((u32) temp_r3);
+    temp_r28 = camera_get_entry_field_0xa8(temp_r3);
     if (((*(s16 *)((u8 *)(&lbl_1_bss_960) + 0)) != 9) && (fn_1_864E8((*(s16 *)((u8 *)(arg0) + 2))) & 0x10000)) {
         camera_set_entry_field_0xa8(temp_r3, 2);
         return;
@@ -3740,7 +3740,7 @@ void fn_1_AA54(void *arg0) {
         }
     } else {
 block_7:
-        if ((*(f64 *)((u8 *)(&lbl_1_rodata_360) + 0)) == (f64) fn_1_8664C((*(s16 *)((u8 *)(arg0) + 2)))) {
+        if ((*(f64 *)((u8 *)(&lbl_1_rodata_360) + 0)) == fn_1_8664C((*(s16 *)((u8 *)(arg0) + 2)))) {
             camera_set_entry_field_0xa8(temp_r3, 3);
             return;
         }
@@ -3866,7 +3866,7 @@ extern void fn_1_8658C(u8 index, Vec3 *out);
 
 // Computes the displacement between two camera positions.
 void camera_get_position_delta(u32 index, Vec3 *out) {
-    u8 idx = (u8)index;
+    u8 idx = index;
     Vec3 first;
     Vec3 second;
 
@@ -4235,7 +4235,7 @@ void fn_1_AFC8(Camera *cam) {
     if (cam->unk_78 > 0) {
         switch (preset->unk_50) {
         case 0:
-            t = 1.0 - (f32)cam->unk_78 / (f32)preset->unk_0;
+            t = 1.0 - (f32)cam->unk_78 / preset->unk_0;
             lbl_8006D5A4(&from.pos, &to.pos, &cam->unk_8C, t);
             lbl_8006D5A4(&from.at, &to.at, &cam->unk_98, t);
             cam->unk_8 = from.unk_1C + (f32)(t * (to.unk_1C - from.unk_1C));
@@ -4846,7 +4846,7 @@ void fn_1_BD54(void) {
     } else {
         lbl_8006E0B4(fzgx_obj_lbl_1_bss_1010, 15.0f, 60.0f);
     }
-    mathutil_mtxA_rotate_x((s16)lbl_1_data_4068);
+    mathutil_mtxA_rotate_x(lbl_1_data_4068);
     track_follow(&t, &a);
     fn_8006FB20(lbl_1_bss_104C__fzgx_offset_10, 0.9f);
     lbl_8006DB74(lbl_1_bss_104C__fzgx_offset_10);
@@ -5241,7 +5241,7 @@ void fn_1_C3B8(void) {
 
     switch (lbl_1_bss_104C.state) {
     case 0:
-        t = (f32)lbl_1_bss_104C.counter / (f32)lbl_1_bss_104C.total;
+        t = (f32)lbl_1_bss_104C.counter / lbl_1_bss_104C.total;
         lbl_8006D5A4(&from.pos, &to.pos, &fzgx_obj_camera_state.pos, t);
         lbl_8006D5A4(&from.at, &to.at, &fzgx_obj_camera_state.at, t);
         fzgx_obj_camera_state.unk_1C = from.unk_1C + (f32)(t * (to.unk_1C - from.unk_1C));
@@ -5817,7 +5817,7 @@ void fn_1_CC5C(void) {
         fn_1_4954C(2.0f);
         fn_1_4955C(0.5f, 0.5f);
         fn_1_495FC();
-        fn_1_496FC((f32)x, (f32)y);
+        fn_1_496FC(x, y);
 
         SELECT_COLOR(0);
         fn_1_4A0D8(fzgx_pool_fn_1_CC5C_fmt_1C0);

@@ -141,7 +141,7 @@ Out *fn_1_41518(In *p) {
     out->unk_2C = (SigData *)fn_1_45D0(lbl_801A6410.unk_0, ((arg0->unk_21 << 4) + 31) & ~31, "motasglist.c", 0x82);
     out->unk_30 = (SigData *)fn_1_45D0(lbl_801A6410.unk_0, ((arg0->unk_21 << 4) + 31) & ~31, "motasglist.c", 0x83);
     sig.value = (const SigData *)lbl_1_data_6710;
-    for (i = 0; i < (s32)arg0->unk_21; i++) {
+    for (i = 0; i < arg0->unk_21; i++) {
         fn_1_42458((SigData *)((u8 *)out->unk_2C + i * 16), sig.value);
         fn_1_42458((SigData *)((u8 *)out->unk_30 + i * 16), sig.value);
     }
@@ -150,14 +150,14 @@ Out *fn_1_41518(In *p) {
         const Src *s = (const Src *)((u8 *)arg0 + arg0->unk_08);
         u32 *paths = (u32 *)((u8 *)arg0 + arg0->unk_0C);
         const Ent8 *e = (const Ent8 *)((u8 *)arg0 + arg0->unk_24);
-        for (i = 0; i < (s32)arg0->unk_06; i++) {
+        for (i = 0; i < arg0->unk_06; i++) {
             Ent12 *d = &out->unk_28[i];
             d->unk_00 = out->unk_14 + e[i].unk_04;
             d->unk_04 = out->unk_0C + e[i].unk_00;
             d->unk_08 = e[i].unk_02;
             d->unk_0A = 0;
         }
-        for (i = 0; i < (s32)arg0->unk_04; i++) {
+        for (i = 0; i < arg0->unk_04; i++) {
             Elem *d = &out->unk_0C[k = i];
             d->unk_00 = s[k].unk_00;
             d->unk_04 = s[k].unk_04;
@@ -376,7 +376,7 @@ void fn_1_41C18(MotaList *arg0, u32 arg1) {
     arg0->unk_04 = arg1;
     fn_1_41328((Sig_fn_1_41328_RelocData *)arg1);
     if (arg0->unk_02 & 4) {
-        for (i = 0; i < (s32)arg0->unk_10; i++) {
+        for (i = 0; i < arg0->unk_10; i++) {
             entry = &arg0->unk_0C[i];
             index = fn_1_41488((Sig_fn_1_41488_Fn41488Data *)arg1,
                              (const char *)arg0->unk_14 + entry->unk_1C);
@@ -523,10 +523,10 @@ void fn_1_41E34(fn_1_41E34_MotasglistData *data, u32 index, MotasglistResult *re
     if (lbl_1_rodata_F34 == delta) {
         delta = lbl_1_rodata_F30;
     }
-    result->value = (data->object->value - (f32)entry_a->frame) / delta;
+    result->value = (data->object->value - entry_a->frame) / delta;
     if (result->first == result->second) {
-        start = (f32)entry_a->offset;
-        end = (f32)entry_b->offset;
+        start = entry_a->offset;
+        end = entry_b->offset;
         value = result->value * (end - start);
         result->value = start + value;
         result->value = result->value / lbl_1_rodata_F38;
@@ -669,7 +669,7 @@ Fn42044Key *fn_1_42044(Fn42044Data *data, s32 track) {
     node = fn_1_42044_node(entry, flags);
 
     t = &node->tracks[track];
-    frame = (s32)data->timer->time;
+    frame = data->timer->time;
     if (data->index >= data->entryCount) {
         keys = data->extKeys;
     } else {
@@ -820,7 +820,7 @@ Fn42254Key *fn_1_42254(Fn42254Data *data, s32 track) {
     node = fn_1_42254_node(entry, flags);
 
     t = &node->tracks[track];
-    frame = (s32)data->timer->time;
+    frame = data->timer->time;
     if (data->index >= data->entryCount) {
         keys = data->extKeys;
     } else {
@@ -1128,7 +1128,7 @@ void fn_1_4270C(void *arg0, struct fn_1_4270C_Arg1 *arg1, u32 arg2) {
     v6 = 0;
     v4 = 0;
     v5 += 4;
-    while ((u32)v6 < v2) {
+    while (v6 < v2) {
         v7 = *(u16 *)((u8 *)v5);
         v9 = 0;
         v10 = 0;
@@ -1318,7 +1318,7 @@ void fn_1_42AD0(Fn1_42AD0_Skel *skel, void *data, u32 arg2, u16 blend, u32 flags
         return;
     }
     start = skel->anim.start;
-    length = (f32)skel->anim.end - start;
+    length = skel->anim.end - start;
     progress = (skel->anim.frame - start) / length;
     fn_1_433A4(&skel->prev_anim, &skel->anim);
     keep = flags & 2;
@@ -1381,7 +1381,7 @@ void fn_1_42AD0(Fn1_42AD0_Skel *skel, void *data, u32 arg2, u16 blend, u32 flags
     if (mode & 1) {
         f32 offset = new_length * progress;
 
-        skel->anim.frame = (f32)skel->anim.start + offset;
+        skel->anim.frame = skel->anim.start + offset;
     }
     if (mode & 4) {
         skel->flags |= 0x20;
@@ -1662,16 +1662,16 @@ void fn_1_43264(struct Fn143264Object *arg0, f32 arg1) {
     f32 step;
     if (arg0->flags & 2) return;
     step = arg1 * arg0->speed;
-    start = (f32)arg0->start;
-    end = (f32)arg0->end;
+    start = arg0->start;
+    end = arg0->end;
     arg0->flags &= ~4;
     if ((arg0->position += step) > end) {
         if (arg0->flags & 1) {
             arg0->position = end;
             arg0->flags |= 2;
         } else {
-            restart = (f32)arg0->restart;
-            arg0->start = (s32)restart;
+            restart = arg0->restart;
+            arg0->start = restart;
             arg0->position -= end + step - restart;
             arg0->count++;
             arg0->flags |= 4;
@@ -2493,22 +2493,22 @@ extern const f64 lbl_1_rodata_F58, lbl_1_rodata_F60;
             fn_1_442D8_Key *key;                                                                    \
             u32 start;                                                                              \
             f32 c, b, a, value, duration, t, t3, t2, three, negprod;                                \
-            if (arg3 < (f32)keys[0].frame) {                                                        \
+            if (arg3 < keys[0].frame) {                                                        \
                 value = keys[0].value;                                                              \
-            } else if (arg3 >= (f32)keys[count - 1].frame) {                                        \
+            } else if (arg3 >= keys[count - 1].frame) {                                        \
                 value = keys[count - 1].value;                                                      \
             } else {                                                                                \
                 key = keys;                                                                         \
                 i = 0;                                                                              \
-                while (arg3 >= (f32)key[1].frame) {                                                 \
+                while (arg3 >= key[1].frame) {                                                 \
                     key++;                                                                          \
                     i++;                                                                            \
                 }                                                                                   \
                 keys += i;                                                                          \
                 key = keys;                                                                         \
                 start = key[0].frame;                                                               \
-                duration = ((s32)key[1].frame - (s32)start);                                   \
-                t = (arg3 - (f32)start) / duration;                                                 \
+                duration = (key[1].frame - (s32)start);                                   \
+                t = (arg3 - start) / duration;                                                 \
                 value = key[0].value;                                                               \
                 a = key[1].value;                                                                   \
                 b = key[0].tanOut;                                                                  \

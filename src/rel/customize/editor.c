@@ -457,7 +457,7 @@ void fn_3_15F44(void) {
     v34 = (202 + 4 * (v29 * (v3 + (*(s16 *)(t0 + 16) - v30))) + v31);
     PF(4) = v34;
     v35 = 94 + 4 * (v29 * (v5 + (*(s16 *)(t0 + 18) - v33))) + v31;
-    PF(8) = (s32)v35;
+    PF(8) = v35;
     PF(12) = 29.0f;
     loc_C.a[12] = 10;
     fn_1_4F734((FontDrawPacket *)&loc_C);
@@ -471,7 +471,7 @@ void fn_3_15F44(void) {
     v40 = 50.0f;
     PF(4) = 320.0f;
     PF(8) = 232.0f; PF(12) = 50.0f;
-    PF(16) = PF(20) = 4.0f * (u32)v36;
+    PF(16) = PF(20) = 4.0f * v36;
     loc_C.a[12] = 0x400000A;
     loc_C.named.callback = (void (*)(void))fn_1_52690;
     if (v36 > 1) fn_1_517EC((FontDrawPacket *)&loc_C, v30-v3, v33-v5, v3<<1, v5<<1, 64, 64);
@@ -502,7 +502,7 @@ void fn_3_15F44(void) {
     PF(4) = 320.0f;
     PF(8) = 232.0f;
     PF(12) = 30.0f;
-    PF(16) = PF(20) = 4.0f * (u32)v36;
+    PF(16) = PF(20) = 4.0f * v36;
     loc_C.a[12] = 10;
     loc_C.named.callback = (void (*)(void))fn_1_52690;
     if (!__rlwnm(p_flags->unk_C, 3, 31, 31)) {
@@ -689,7 +689,7 @@ void fn_3_16E14(s16 x, s16 y) {
 	{
     s32 k;
 for (k = 0; (u8)k < (u8)count; k++) {
-		c = (u8)k;
+		c = k;
 
 		n = ((u8)k + 1) * width;
 		pkt.unk_4 = (s32)(n + 191);
@@ -719,18 +719,18 @@ void fn_3_16FD0(void *arg0) {
     u32 i;
     for (i = 0; i < 64; i++) {
         BorderColor top = color;
-        fn_3_14794(arg0, (s16)i, 0, &top);
+        fn_3_14794(arg0, i, 0, &top);
         {
             BorderColor bottom = color;
-            fn_3_14794(arg0, (s16)i, 63, &bottom);
+            fn_3_14794(arg0, i, 63, &bottom);
         }
     }
     for (i = 0; i < 64; i++) {
         BorderColor left = color;
-        fn_3_14794(arg0, 0, (s16)i, &left);
+        fn_3_14794(arg0, 0, i, &left);
         {
             BorderColor right = color;
-            fn_3_14794(arg0, 63, (s16)i, &right);
+            fn_3_14794(arg0, 63, i, &right);
         }
     }
 }

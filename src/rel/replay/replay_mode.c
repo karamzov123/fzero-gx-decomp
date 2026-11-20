@@ -264,7 +264,7 @@ void fn_13_0(void) {
             if (ver < 2) {
                 lbl_1_bss_26B80[i].unk_3 = fn_1_F453C(lbl_13_bss_0, &lbl_13_bss_4, 7);
             }
-            idx = (u8)n;
+            idx = n;
             locC[idx] = lbl_1_bss_26B80[i].unk_1;
             loc8[idx] = lbl_1_bss_26B80[i].unk_2;
             if ((u8)fn_1_F453C(lbl_13_bss_0, &lbl_13_bss_4, 1) != 0) {

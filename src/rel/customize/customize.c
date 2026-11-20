@@ -920,7 +920,7 @@ void fn_3_B5FC(void) {
         if ((*(s32 *)&lbl_3_bss_120) != -1) {
             s32 value = (*(s32 *)&lbl_3_bss_120);
             (*(s32 *)&lbl_3_bss_120) = -1;
-            (*(u16 *)&lbl_1_bss_96A) = (u16)value;
+            (*(u16 *)&lbl_1_bss_96A) = value;
         } else if (fn_3_B270() == (s16)-1) {
             fn_1_4A00(0, 15, (*(u32 *)&lbl_3_bss_20850));
             ((u32 *)&lbl_3_bss_243A8)[0] = 0;
@@ -1076,10 +1076,10 @@ void fn_3_B984(void *entries, u8 *table) {
     u32 offset;
 
     for (i = 0; i < 3; i++) {
-        offset = ((u32)i) << 3;
+        offset = (i) << 3;
         if (table[offset + 0x81a4] != ((u8 *)lbl_3_bss_20)[offset]) {
             for (j = 0; j < 4; j++) {
-                u8 *entry = (u8 *)entries + (u32)j * 0x2060;
+                u8 *entry = (u8 *)entries + j * 0x2060;
                 if ((*(u32 *)(entry + 0x24) & ((u32)1 << 31)) != 0) {
                     s16 *field = (s16 *)(entry + 0x20);
                     if (*field == i) {

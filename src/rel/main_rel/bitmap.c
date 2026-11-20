@@ -83,7 +83,7 @@ s32 fn_1_47AD4(BitmapResource *arg0_bmp,s32 arg1,s32 arg2,s32 arg3) {
  if(fn_1_45730((void *)name,&info)==0) return 0;
  if(arg1==0) *(&lbl_1_data_6CA0.unk_0+arg1*3)=lbl_801A6410;
  handle=*(&lbl_1_data_6CA0.unk_0+arg1*3);
- len=(s32)strlen(name);
+ len=strlen(name);
  if(len>=3 && (len += (u32)name, strncmp((const char *)len-3,lbl_1_data_1A364,3)==0)) {
   if(fn_1_458A0(&info,lbl_1_bss_3E000,0x20,0)<0) return 0;
   sizeA=(__lwbrx(lbl_1_bss_3E000,0)+0x27)&~0x1F;
@@ -93,7 +93,7 @@ s32 fn_1_47AD4(BitmapResource *arg0_bmp,s32 arg1,s32 arg2,s32 arg3) {
     arena=OSGetArenaHi();
     dst=OSAllocFromArenaLo(sizeB+0x10,0x20);
     tmp=OSAllocFromArenaHi(sizeA,0x20);
-   } else dst=(u32)fn_1_45D0(handle,sizeB+0x10,(const unsigned char *)lbl_1_data_1A368,0x12F);
+   } else dst=fn_1_45D0(handle,sizeB+0x10,(const unsigned char *)lbl_1_data_1A368,0x12F);
   } else dst=arg0->unk_20;
   hdr=(dst+0x2F)&~0x1F;
   if(arg2!=0) {
@@ -108,7 +108,7 @@ s32 fn_1_47AD4(BitmapResource *arg0_bmp,s32 arg1,s32 arg2,s32 arg3) {
   sizeC=(fn_1_45B2C(&info)+0x1F)&~0x1F;
   if(arg3!=0) {
    if(arg2!=0) dst=OSAllocFromArenaLo(sizeC+0x20,0x20);
-   else dst=(u32)fn_1_45D0(handle,sizeC+0x20,(const unsigned char *)lbl_1_data_1A368,0x156);
+   else dst=fn_1_45D0(handle,sizeC+0x20,(const unsigned char *)lbl_1_data_1A368,0x156);
   } else dst=arg0->unk_20;
   hdr=(dst+0x2F)&~0x1F;
   fn_1_458A0(&info,(void *)hdr,sizeC,0);
@@ -118,7 +118,7 @@ s32 fn_1_47AD4(BitmapResource *arg0_bmp,s32 arg1,s32 arg2,s32 arg3) {
  *(u32 *)dst=*(u32 *)hdr;
  *(u32 *)(dst+4)=hdr+4;
  if(arg2!=0) *(u32 *)(dst+0xC)=OSAllocFromArenaLo(*(u32 *)dst<<5,0x20);
- else *(u32 *)(dst+0xC)=(u32)fn_1_45D0(handle,*(u32 *)dst<<5,(const unsigned char *)lbl_1_data_1A368,0x168);
+ else *(u32 *)(dst+0xC)=fn_1_45D0(handle,*(u32 *)dst<<5,(const unsigned char *)lbl_1_data_1A368,0x168);
  for(i=0;i<*(u32 *)dst;i++) {
   u32 flags;
   u8 *data;
@@ -129,7 +129,7 @@ s32 fn_1_47AD4(BitmapResource *arg0_bmp,s32 arg1,s32 arg2,s32 arg3) {
    GXInitTexObj((GXTexObj *)(*(u32 *)(dst+0xC)+i*0x20),data,entry->unk_8,entry->unk_A,(GXTexFmt)(flags&0x1F),GX_CLAMP,GX_CLAMP,0);
  }
  GXInvalidateTexAll();
- arg0->unk_24=(u8)arg1;
+ arg0->unk_24=arg1;
  arg0->unk_0=1;
  arg0->unk_20=dst;
  fn_1_4877C();
@@ -295,7 +295,7 @@ void fn_1_48214(s32 index, s32 enabled) {
         } else {
             low = 1;
         }
-        i = (s16)low;
+        i = low;
         end = (index + 1);
     }
 
@@ -942,7 +942,7 @@ int fn_1_48A0C(int ch, int idx, Obj_1_data_1AEA8 *font, int noLoad) {
     if (lbl_1_bss_3E060[tex] == 0) {
         OSPanic((const char *)(((u8 *)fzgx_pool_data_lbl_1_data_1BCC8)), 0x150, (const char *)(((u8 *)fzgx_pool_data_lbl_1_data_1A3B8_1918)));
     }
-    fn_1_4BA24((u8)idx, ch, (void *)lbl_1_bss_3E060[tex]);
+    fn_1_4BA24(idx, ch, (void *)lbl_1_bss_3E060[tex]);
 
     fmt = 0;
     code = ((u16 *)font->unk_2C)[ch];

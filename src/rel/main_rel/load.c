@@ -358,7 +358,7 @@ u32 fn_1_45850(struct fn_1_45850_Arg0 *arg0) {
     u32 t0;
 
     v0 = (u32)arg0;
-    switch ((s32)arg0->unk_0) {
+    switch (arg0->unk_0) {
     case 1:
         v0 = 1;
         break;
@@ -414,7 +414,7 @@ u32 fn_1_458A0(struct fn_1_458A0_Arg0 *arg0, void *arg1, u32 arg2, u32 arg3) {
     struct { u32 value; } len;
     struct { u32 value; } lab_t1;
     len.value = arg2;
-    switch ((s32)arg0->unk_0) {
+    switch (arg0->unk_0) {
     case 1:
         set_load_flag();
         lab_t1.value = len.value;
@@ -1228,7 +1228,7 @@ int fn_1_46144(LoadArchive *archive, s32 locked, s32 named) {
     }
     fzgx_obj_lbl_1_bss_384D0 = 1;
     DCInvalidateRange(lbl_1_bss_3DD28__fzgx_offset_4, 0x20);
-    ARQPostRequest(&request, 0, 1, 1, aram, (u32)lbl_1_bss_3DD28__fzgx_offset_4, 0x20, (ARQCallback)fn_1_45890);
+    ARQPostRequest(&request, 0, 1, 1, aram, lbl_1_bss_3DD28__fzgx_offset_4, 0x20, (ARQCallback)fn_1_45890);
     while (fn_1_46144_busy()) {
         fn_1_D3214();
     }
@@ -1865,7 +1865,7 @@ s32 fn_1_46BFC(u32 arg0) {
 
     
     value = lbl_1_bss_958[0];
-    current = (s32)fzgx_obj_lbl_1_bss_384C0;
+    current = fzgx_obj_lbl_1_bss_384C0;
     next = current + 1;
     if (next >= 0x200) {
         next = 0;
@@ -2278,10 +2278,10 @@ void fn_1_47330(Pos *pos, f32 width, f32 height) {
         fn_800371F8(1, &color);
     }
     fn_8003462C(128, 7, 4);
-    VERT(pos->x + (f32)fzgx_obj_lbl_1_bss_3DCDC * width / 16777216.0f, pos->y, pos->z - 0.002f);
-    VERT(pos->x + (f32)fzgx_obj_lbl_1_bss_3DFF4 * width / 16777216.0f, pos->y, pos->z - 0.002f);
-    VERT(pos->x + (f32)fzgx_obj_lbl_1_bss_3DFF4 * width / 16777216.0f, pos->y + height, pos->z - 0.002f);
-    VERT(pos->x + (f32)fzgx_obj_lbl_1_bss_3DCDC * width / 16777216.0f, pos->y + height, pos->z - 0.002f);
+    VERT(pos->x + fzgx_obj_lbl_1_bss_3DCDC * width / 16777216.0f, pos->y, pos->z - 0.002f);
+    VERT(pos->x + fzgx_obj_lbl_1_bss_3DFF4 * width / 16777216.0f, pos->y, pos->z - 0.002f);
+    VERT(pos->x + fzgx_obj_lbl_1_bss_3DFF4 * width / 16777216.0f, pos->y + height, pos->z - 0.002f);
+    VERT(pos->x + fzgx_obj_lbl_1_bss_3DCDC * width / 16777216.0f, pos->y + height, pos->z - 0.002f);
 
     entry = fzgx_obj_lbl_1_bss_384D8;
     for (i = 0; i < 0x400; i++, entry++) {
@@ -2325,10 +2325,10 @@ void fn_1_47330(Pos *pos, f32 width, f32 height) {
         }
         if (draw) {
             fn_8003462C(128, 7, 4);
-            VERT(pos->x + (f32)entry->unk_8 * width / 16777216.0f, pos->y, pos->z - 0.002f);
+            VERT(pos->x + entry->unk_8 * width / 16777216.0f, pos->y, pos->z - 0.002f);
             VERT(pos->x + width * (entry->unk_8 + entry->unk_c) / 16777216.0f, pos->y, pos->z - 0.002f);
             VERT(pos->x + width * (entry->unk_8 + entry->unk_c) / 16777216.0f, pos->y + height, pos->z - 0.002f);
-            VERT(pos->x + (f32)entry->unk_8 * width / 16777216.0f, pos->y + height, pos->z - 0.002f);
+            VERT(pos->x + entry->unk_8 * width / 16777216.0f, pos->y + height, pos->z - 0.002f);
         }
     }
 }

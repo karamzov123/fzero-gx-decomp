@@ -61,7 +61,7 @@ void fn_16_B24(void) {
     v2 = 0;
     while ((u32)(s16)v2 < 41) {
         if ((s16)v2 != 30 && (s32)fn_1_F7BE4(v2) != 0) {
-            v4 = (s16)v1;
+            v4 = v1;
             v1++;
             p_lbl_16_bss_B060->unk_0[v4] = v2;
         }

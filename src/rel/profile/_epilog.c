@@ -38,7 +38,7 @@ void _epilog(void) {
     p_lbl_16_bss_0 = (struct _epilog_lbl_16_bss_0 *)&lbl_16_bss_0;
     v1 = 0;
     v2 = (Sig_fn_1_8D168_Fn1_8D168State *)(void *)(((u8 *)p_lbl_16_bss_0 + 0x154));
-    while ((u32)(s16)v1 < 2) {
+    while ((u32)v1 < 2) {
         fn_1_8D168(v2);
         v2 = (Sig_fn_1_8D168_Fn1_8D168State *)(void *)(((u8 *)v2 + 0x64));
         v1++;

@@ -152,7 +152,7 @@ void fn_1_101AE8(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     v3 = (u32)&lbl_1_data_3F17C;
     v4 = *(u32 *)((u8 *)v5 + 0);
     v5 = 257;
-    t6 = fn_1_46B4(v4, v2, (void *)((u32)v3), v5);
+    t6 = fn_1_46B4(v4, v2, (void *)(v3), v5);
     v4 = t6;
     p_lbl_1_bss_85250->unk_18 = 0;
     }
@@ -1091,7 +1091,7 @@ void fn_1_1030D4(fn_1_1030D4_Arg *arg) {
             t = len;
         }
     } else {
-        t -= (f32)(len * (f32)fpscr_floor(t / len));
+        t -= (f32)(len * fpscr_floor(t / len));
     }
     t += anim->start;
     t /= lbl_1_rodata_78D0;

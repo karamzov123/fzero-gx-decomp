@@ -289,7 +289,7 @@ void fn_16_6508(void) {
     pkt = lbl_1_rodata_26F8;
     state = &lbl_1_bss_8B614;
     pkt.x = 320.0f;
-    pkt.y = 240.0f + (f32)lbl_1_rodata_8558[state->unk_c];
+    pkt.y = 240.0f + lbl_1_rodata_8558[state->unk_c];
     pkt.z = 300.0f;
     pkt.flags = 10;
     fn_1_8D3F8(lbl_16_bss_154, &pkt, fn_16_5F18, state);
@@ -313,20 +313,20 @@ void fn_16_6508(void) {
     }
     y = x - 20;
 
-    fn_1_496FC((f32)y, 56.0f);
+    fn_1_496FC(y, 56.0f);
     fn_1_4954C(5.0f);
     fn_1_4955C(0.6666667f, 0.6666667f);
     fn_1_4AE0C(((char *)fzgx_pool_data_lbl_16_data_82DB0_69C));
     fn_1_4955C(0.5f, 0.5f);
-    fn_1_496FC((f32)x, 56.0f);
+    fn_1_496FC(x, 56.0f);
     fn_1_4AE0C(fn_16_6508_array_read(namesA, lbl_1_bss_8B614.unk_a));
 
     if (fn_1_FA1A8(state->unk_c) == 1) {
-        fn_1_496FC((f32)y, 74.0f);
+        fn_1_496FC(y, 74.0f);
         fn_1_4955C(0.6666667f, 0.6666667f);
         fn_1_4AE0C(((char *)fzgx_pool_data_lbl_16_data_82DB0_6A4));
         fn_1_4955C(0.5f, 0.5f);
-        fn_1_496FC((f32)x, 74.0f);
+        fn_1_496FC(x, 74.0f);
         fn_1_4AE0C(fn_16_6508_array_read(namesB, lbl_1_bss_8B614.unk_a));
     }
 

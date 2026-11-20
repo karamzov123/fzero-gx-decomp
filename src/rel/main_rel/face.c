@@ -200,10 +200,10 @@ void fn_1_D19B8(u8 *arg0) {
     fn_1_465D0((char *)(p_lbl_1_data_3D670 + 0x480), 3);
     i = 0;
     while (i < (s8)fn_1_86624()) {
-        v1 = ((*(u32 (*)[0x2d])&lbl_1_data_20D1C))[(s16)fn_1_12C930((s8)fn_1_12C7B8((s8)fn_1_86690((s8)i)))];
-        fn_1_868C0((s8)i);
+        v1 = ((*(u32 (*)[0x2d])&lbl_1_data_20D1C))[(s16)fn_1_12C930((s8)fn_1_12C7B8(fn_1_86690(i)))];
+        fn_1_868C0(i);
         v2 = 31 - __cntlzw((s8)*arg0);
-        v3 = (u8)v2;
+        v3 = v2;
         v3 %= 4;
         if (v3 != 0 && v3 != 4) {
             sprintf(loc_88, (const char *)(p_lbl_1_data_3D670 + 0x2c4), v1, v3);
@@ -214,7 +214,7 @@ void fn_1_D19B8(u8 *arg0) {
     }
 
     if ((*(s16 *)&lbl_1_bss_960) == 9) {
-        v6 = (s8)lbl_1_bss_9C;
+        v6 = lbl_1_bss_9C;
         switch (v6) {
         case 3:
             sprintf(loc_8, (const char *)(p_lbl_1_data_3D670 + 0x3d0));
@@ -370,7 +370,7 @@ void fn_1_D1C94(void) {
                     obj->unk_14 = v;
                     obj->unk_18 = i;
                     obj->unk_4 = i;
-                    obj->unk_8 = (s16)fn_1_12C7B8(fn_1_86690((s8)i));
+                    obj->unk_8 = fn_1_12C7B8(fn_1_86690(i));
                     obj->unk_3C = 0;
                     obj->unk_38 = 0;
                     obj->unk_1C = 20;
@@ -397,13 +397,13 @@ void fn_1_D1C94(void) {
                     return;
                 }
                 lim = p->unk_D - 1;
-                if ((s32)(res & 0xFF) <= lim && (u32)count <= (u32)lim) {
+                if ((s32)(res & 0xFF) <= lim && (u32)count <= lim) {
                     u32 v = res & 0xFF;
                     obj->unk_10 = v;
                     obj->unk_14 = v;
                     obj->unk_18 = fn_1_3F440(res);
                     obj->unk_4 = fzgx_loop_i_3321;
-                    obj->unk_8 = (s16)fn_1_12C7B8(fn_1_86690((s8)fzgx_loop_i_3321));
+                    obj->unk_8 = fn_1_12C7B8(fn_1_86690(fzgx_loop_i_3321));
                     obj->unk_3C = 0;
                     obj->unk_38 = 0;
                     obj->unk_1C = 20;
@@ -558,7 +558,7 @@ void fn_1_D2110(FaceObj *o) {
         fzgx_live = o->pos.z;
         o->pos.z = fzgx_live + 0.1 * (1.8f - fzgx_live);
     } else if (o->timer != 0) {
-        s = (f32)o->timer / 10.0f;
+        s = o->timer / 10.0f;
         tx = 0.5 * (s * ((u16)fn_1_584AC() / 32767.0f - 0.5));
         ty = s * ((u16)fn_1_584AC() / 32767.0f - 0.5);
         tz = 1.8f + s * ((u16)fn_1_584AC() / 32767.0f - 0.5);
@@ -695,7 +695,7 @@ void fn_1_D2404(void) {
             if (mgr->unk10 != 0) {
                 continue;
             }
-            player = (s8)j;
+            player = j;
             for (m = 0; m < mgr->countC; m++) {
                 id = m;
                 slot = fn_1_D2E44(id);
@@ -861,7 +861,7 @@ static void fzgx_pool_layout(FaceVec *out, f32 *f, f64 *d, u32 u) {
     f[3] = 32767.0f;
     d[2] = 1.8f;
     d[3] = 0.2;
-    f[4] = (f32)u;
+    f[4] = u;
 }
 
 /* layout primer: this function's literals at 0x58-0x6B */
@@ -972,7 +972,7 @@ void fn_1_D27B8(void) {
                 lbl_8006D758();
                 fn_80074300(512, 352, 128, 128);
                 size = 64.0;
-                fn_80074438((s32)size, (s32)size, 5, 1);
+                fn_80074438(size, size, 5, 1);
                 face_set_color();
                 fn_8003526C(e->unk60, 1);
                 fn_80007C2C();

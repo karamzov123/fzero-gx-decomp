@@ -8133,7 +8133,7 @@ u32 fn_8_1394(void) {
     lbl_8_bss_20__fzgx_offset_200 = (1.0f - v20);
     fn_1_52088();
     }
-    if ((s32)fn_1_3FC38() != 0 && (s32)fzgx_obj_lbl_8_bss_228 == 1200) {
+    if (fn_1_3FC38() != 0 && (s32)fzgx_obj_lbl_8_bss_228 == 1200) {
     fn_1_5370(4, 0);
     fn_1_3FC68(0);
     }
@@ -8207,7 +8207,7 @@ u32 fn_8_1394(void) {
     loc_270.a[0] = (loc_270.a[0] | 4);
     }
     }
-    if ((s32)v41 == 15 && (s32)fn_1_4C10() == 0) {
+    if ((s32)v41 == 15 && fn_1_4C10() == 0) {
     fzgx_obj_lbl_8_bss_242 = 1;
     }
     if (fzgx_obj_lbl_8_bss_242 != 0) {
@@ -8250,9 +8250,9 @@ u32 fn_8_1394(void) {
     loc_8 = *(struct fn_8_1394_Copy88 *)&lbl_1_rodata_26F8;
     loc_8.a[0] = 258;
     v49 = ((fn_1_486C4(loc_8.a[0]) >> 2) & 0x3FFF);
-    v50 = (s16)fn_1_48690(loc_8.a[0]);
+    v50 = fn_1_48690(loc_8.a[0]);
     v51 = (s16)(((fn_1_486C4(loc_8.a[0]) >> 2) & 0x3FFF) * 3);
-    fn_1_51678((FontDrawPacket *)&loc_8, loc_8.a[0], 0, (s16)v51, v50, v49);
+    fn_1_51678((FontDrawPacket *)&loc_8, loc_8.a[0], 0, v51, v50, v49);
     v52 = 320.0f;
     v46 = 362.0f;
     *(f32 *)((u8 *)&loc_8 + 4) = v52;
@@ -8428,10 +8428,10 @@ void fn_8_1C90(void) {
     if (p_lbl_8_bss_0->unk_2 != 0 && (lbl_801A66A0 & 0x18) != 0) {
         loc_8 = *(FontDrawPacket *)&lbl_1_rodata_26F8;
         loc_8.image = 258;
-        v2 = ((fn_1_486C4((u32)loc_8.image) >> 2) & 0x3FFF);
-        v3 = (s16)fn_1_48690((u32)loc_8.image);
-        fn_1_51678((FontDrawPacket *)&loc_8, (u32)loc_8.image, 0,
-                   (((fn_1_486C4((u32)loc_8.image) >> 2) & 0x3FFF) * 3),
+        v2 = ((fn_1_486C4(loc_8.image) >> 2) & 0x3FFF);
+        v3 = fn_1_48690(loc_8.image);
+        fn_1_51678((FontDrawPacket *)&loc_8, loc_8.image, 0,
+                   (((fn_1_486C4(loc_8.image) >> 2) & 0x3FFF) * 3),
                    v3, v2);
         loc_8.x = p_lbl_8_rodata_0->unk_0;
         loc_8.y = p_lbl_8_rodata_0->unk_4;
@@ -10094,7 +10094,7 @@ void fn_8_5608(void) {
         loc_8.words[0] = 0x102;
         fn_1_51678((FontDrawPacket *)&loc_8, loc_8.words[0], 0,
                    (((fn_1_486C4(loc_8.words[0]) >> 2) & 0x3FFF) * 3),
-                   (s16)fn_1_48690(loc_8.words[0]),
+                   fn_1_48690(loc_8.words[0]),
                    ((fn_1_486C4(0x102) >> 2) & 0x3FFF));
         *(f32 *)((u8 *)&loc_8 + 4) = rodata->unk0;
         *(f32 *)((u8 *)&loc_8 + 8) = rodata->unk4;

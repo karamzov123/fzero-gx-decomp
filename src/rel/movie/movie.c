@@ -1288,10 +1288,10 @@ void fn_5_20FC(void) {
     case 2:
         lbl_1_bss_184(sPlayer, &sFrame);
         fn_5_3E54(sCmdIndex);
-        frameScale = 30000.0f / (f32)sFrame.rate;
+        frameScale = 30000.0f / sFrame.rate;
         while (sSubtitleText != 0) {
             fn_5_3E74(&subtitle);
-            start = (f32)subtitle.start * frameScale;
+            start = subtitle.start * frameScale;
             end = frameScale * (subtitle.start + subtitle.length);
             duration = end - start;
             if (start > sFrame.frame || sFrame.frame >= end) {
@@ -1309,7 +1309,7 @@ void fn_5_20FC(void) {
                 fn_1_4965C(4);
             } else {
                 fn_1_4965C(2);
-                fn_1_4955C((f32)subtitle.size / 32.0f, (f32)subtitle.size / 24.0f);
+                fn_1_4955C(subtitle.size / 32.0f, subtitle.size / 24.0f);
             }
             fn_1_495C8(1);
             fn_1_49590(0.5f);
@@ -1496,25 +1496,25 @@ void fn_5_2E00(void) {
     case 4:
         fn_1_520A0();
         fn_1_52088();
-        x = (f32)sPosX + (f32)((screenW - (s16)((f32)sWidth * sScaleX)) / 2.0f);
+        x = sPosX + (f32)((screenW - (s16)(sWidth * sScaleX)) / 2.0f);
         h = sHeight;
-        y = (f32)sPosY + (f32)((screenH - (s16)((f32)h * sScaleX)) / 2.0f);
+        y = sPosY + (f32)((screenH - (s16)(h * sScaleX)) / 2.0f);
         loc_78 = TEMPLATE;
-        width = ((f32)sWidth * sScaleX) / 8.0f;
+        width = (sWidth * sScaleX) / 8.0f;
         loc_78.x = (s16)x;
         loc_78.y = (480.0f * (s16)y) / screenH;
         loc_78.z += 0.1f;
         loc_78.image = 18;
         loc_78.scale_x *= width;
-        loc_78.scale_y *= ((480.0f * ((f32)h * sScaleY)) / screenH) / 8.0f;
+        loc_78.scale_y *= ((480.0f * (h * sScaleY)) / screenH) / 8.0f;
         *(GXColor *)loc_78.color = (GXColor){0, 0, 0, 255};
         fn_1_4E724(&loc_78);
         if (entry->type == 3) {
             loc_78 = TEMPLATE;
             loc_78.y = (480.0f * (s16)y) / screenH;
             loc_78.x = (s16)x;
-            loc_78.scale_x *= ((f32)sWidth * sScaleX) / 320.0f;
-            loc_78.scale_y *= ((480.0f * ((f32)sHeight * sScaleY)) / screenH) / 240.0f;
+            loc_78.scale_x *= (sWidth * sScaleX) / 320.0f;
+            loc_78.scale_y *= ((480.0f * (sHeight * sScaleY)) / screenH) / 240.0f;
             loc_78.image = entry->arg + 0x8701;
             fn_1_4E724(&loc_78);
         } else if (entry->type == 4) {
@@ -1522,8 +1522,8 @@ void fn_5_2E00(void) {
                 loc_78 = TEMPLATE;
                 loc_78.y = (480.0f * (s16)y) / screenH;
                 loc_78.x = (s16)x;
-                loc_78.scale_x *= ((f32)sWidth * sScaleX) / 320.0f;
-                loc_78.scale_y *= ((480.0f * ((f32)sHeight * sScaleY)) / screenH) / 224.0f;
+                loc_78.scale_x *= (sWidth * sScaleX) / 320.0f;
+                loc_78.scale_y *= ((480.0f * (sHeight * sScaleY)) / screenH) / 224.0f;
                 loc_78.color_add[0] = 160;
                 loc_78.color_add[1] = 128;
                 loc_78.color_add[2] = 80;
@@ -1602,16 +1602,16 @@ void fn_5_2E00(void) {
             fn_80072864(2);
             fn_8003462C(128, 0, 4);
             h = sHeight;
-            left = (f32)sPosX + (f32)((screenW - ((f32)sWidth * sScaleX)) / 2.0f);
-            top = (f32)sPosY + (f32)((screenH - (f32)((f32)h * sScaleX)) / 2.0f);
-            right = left + ((f32)sWidth * sScaleX);
+            left = sPosX + (f32)((screenW - (sWidth * sScaleX)) / 2.0f);
+            top = sPosY + (f32)((screenH - (f32)(h * sScaleX)) / 2.0f);
+            right = left + (sWidth * sScaleX);
             GXWGFifo.f32 = right;
             GXWGFifo.f32 = top;
             GXWGFifo.f32 = FIFO_Z;
             GXWGFifo.u16 = 1;
             GXWGFifo.u16 = 0;
             GXWGFifo.f32 = right;
-            bottom = top + (f32)((f32)h * sScaleY);
+            bottom = top + (f32)(h * sScaleY);
             GXWGFifo.f32 = bottom;
             GXWGFifo.f32 = FIFO_Z;
             GXWGFifo.u16 = 1;
@@ -1633,11 +1633,11 @@ void fn_5_2E00(void) {
     fn_1_520A0();
     fn_1_52088();
     loc_20 = TEMPLATE;
-    loc_20.x = (s16)((f32)sPosX + (f32)((screenW - (s16)((f32)sWidth * sScaleX)) / 2.0f));
-    loc_20.y = (480.0f * (s16)((f32)sPosY + (f32)((screenH - (s16)((f32)sHeight * sScaleX)) / 2.0f))) / screenH;
+    loc_20.x = (s16)(sPosX + (f32)((screenW - (s16)(sWidth * sScaleX)) / 2.0f));
+    loc_20.y = (480.0f * (s16)(sPosY + (f32)((screenH - (s16)(sHeight * sScaleX)) / 2.0f))) / screenH;
     loc_20.z = 0.10001f;
-    loc_20.scale_x = ((f32)sWidth * sScaleX) / 8.0f;
-    loc_20.scale_y = ((480.0f * ((f32)sHeight * sScaleY)) / screenH) / 8.0f;
+    loc_20.scale_x = (sWidth * sScaleX) / 8.0f;
+    loc_20.scale_y = ((480.0f * (sHeight * sScaleY)) / screenH) / 8.0f;
     loc_20.flags = 5;
     loc_20.image = 18;
     *(GXColor *)loc_20.color = (GXColor){0, 0, 0, 0};

@@ -361,20 +361,20 @@ void fn_3_137AC(void) {
     if (__rlwnm(lbl_3_bss_A17A0.flags, 7, 31, 31)) {
         fn_1_13ABA8(0x20000000);
     } else {
-        if ((u8)fn_3_19C94() == 9) {
+        if (fn_3_19C94() == 9) {
             if ((u8)fn_3_19CE0() == 0) {
                 fn_1_13ABA8(0x2A200000);
             } else {
                 fn_1_13ABA8(0x28200000);
             }
-        } else if ((u8)fn_3_19C94() == 10) {
+        } else if (fn_3_19C94() == 10) {
             if ((u8)fn_3_19CE0() == 0) {
                 fn_1_13ABA8(0x29200000);
             } else {
                 fn_1_13ABA8(0x28200000);
             }
-        } else if ((u8)fn_3_19C94() == 16 || (u8)fn_3_19C94() == 15
-                   || (u8)fn_3_19C94() == 12 || (u8)fn_3_19C94() == 17) {
+        } else if (fn_3_19C94() == 16 || fn_3_19C94() == 15
+                   || fn_3_19C94() == 12 || fn_3_19C94() == 17) {
             fn_1_13ABA8(0x28000000);
         } else {
             fn_1_13ABA8(0x28200000);
@@ -411,7 +411,7 @@ void fn_3_137AC(void) {
                 c = n;
             }
         }
-        fn_3_18960((s16)c);
+        fn_3_18960(c);
         fn_3_15F44(lbl_3_bss_A17A0.unk_14);
         fn_3_17854(lbl_3_bss_A17A0.unk_14);
         fn_3_BF1C();
@@ -504,10 +504,10 @@ u32 fn_3_13D98(const char *path, u32 *out) {
         }
         if (size != 0) {
             for (i = 0; i < count; i++) {
-                lbl_3_bss_A176C[(u8)i] = fn_1_45D0(lbl_801A6410, 0x2000, "emblem.c", 0x236);
-                fn_80008BEC((void *)lbl_3_bss_A176C[(u8)i], 0, 0x2000);
+                lbl_3_bss_A176C[i] = fn_1_45D0(lbl_801A6410, 0x2000, "emblem.c", 0x236);
+                fn_80008BEC((void *)lbl_3_bss_A176C[i], 0, 0x2000);
                 fn_1_458A0(header, buffer, 0x2000, ((i << 13) + 0x1f) & ~0x1f);
-                fn_80008BA8((void *)lbl_3_bss_A176C[(u8)i], buffer, 0x2000);
+                fn_80008BA8((void *)lbl_3_bss_A176C[i], buffer, 0x2000);
             }
             fn_1_45850(header);
         }
@@ -894,7 +894,7 @@ u32 fn_3_149AC(u8 *data, s16 x, s16 y) {
     u8 hi;
     u8 lo;
 
-    switch ((s32)lbl_3_bss_A23E0) {
+    switch (lbl_3_bss_A23E0) {
     default:
     case 6:
         /* All unsupported formats share the common return. */

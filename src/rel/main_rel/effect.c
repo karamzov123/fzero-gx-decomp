@@ -576,7 +576,7 @@ void fn_1_58C6C(void) {
     var_r30 = 0xBE;
     var_r31 = (struct fn_1_58C6C_lbl_1_bss_6C848_T *)(*(struct fn_1_58C6C_lbl_1_bss_6C848_T **)((u8 *)(&(*(struct fn_1_58C6C_lbl_1_bss_6C848_T * *)&lbl_1_bss_6C848)) + 0));
     do {
-        if (((s16) var_r31->unk_C == 0x19) && ((s8) var_r31->unk_0 != 0) && ((s32) var_r31->unk_1A != 0) && !(var_r31->unk_8 & 0x80000000)) {
+        if ((var_r31->unk_C == 0x19) && ((s8) var_r31->unk_0 != 0) && ((s32) var_r31->unk_1A != 0) && !(var_r31->unk_8 & 0x80000000)) {
             fn_1_620C8((void *)(var_r31));
         }
         var_r30 -= 1;
@@ -585,7 +585,7 @@ void fn_1_58C6C(void) {
     var_r30_2 = 0xC8;
     var_r31_2 = (struct fn_1_58C6C_lbl_1_bss_6C84C_T *)(*(struct fn_1_58C6C_lbl_1_bss_6C84C_T **)((u8 *)(&(*(struct fn_1_58C6C_lbl_1_bss_6C84C_T * *)&lbl_1_bss_6C84C)) + 0));
     do {
-        if (((s16) var_r31_2->unk_C == 0x19) && ((s8) var_r31_2->unk_0 != 0) && ((s32) var_r31_2->unk_1A != 0) && !(var_r31_2->unk_8 & 0x80000000)) {
+        if ((var_r31_2->unk_C == 0x19) && ((s8) var_r31_2->unk_0 != 0) && ((s32) var_r31_2->unk_1A != 0) && !(var_r31_2->unk_8 & 0x80000000)) {
             fn_1_620C8((void *)(var_r31_2));
         }
         var_r30_2 -= 1;
@@ -617,7 +617,7 @@ void fn_1_58D38(void) {
         count = 190;
         do {
             if (entry->unk_0C == 25 &&
-                (s32)entry->unk_00 != 0 &&
+                entry->unk_00 != 0 &&
                 entry->unk_1A != (s16)0 &&
                 (entry->unk_08 & ~0x7fffffff) == 0) {
                 fn_1_62360(entry);
@@ -630,7 +630,7 @@ void fn_1_58D38(void) {
         count = 200;
         do {
             if (entry->unk_0C == 25 &&
-                (s32)entry->unk_00 != 0 &&
+                entry->unk_00 != 0 &&
                 entry->unk_1A != (s16)0 &&
                 (entry->unk_08 & ~0x7fffffff) == 0) {
                 fn_1_62360(entry);
@@ -1097,7 +1097,7 @@ void fn_1_5962C(Fn_1_5962C_State *self) {
     self->field_94 = self->field_94 + (f32)(0.05f * (self->field_98 - self->field_94));
     self->field_28 = self->field_28 + (f32)(0.1f * (self->field_2c - self->field_28));
 
-    if ((s32)self->timer < 15.0) {
+    if (self->timer < 15.0) {
         rate = 1.0f - 1.0f / (self->timer + 1);
         self->field_1c = fn_1_5962C_operand((rate), (self->field_1c));
         self->field_20 = self->field_20 * rate;
@@ -1393,7 +1393,7 @@ typedef struct fn_1_59B00_Effect {
 } fn_1_59B00_Effect;
 
 void fn_1_59B00(fn_1_59B00_Effect *effect) {
-    if ((f32)effect->frame < 15.0f) {
+    if (effect->frame < 15.0f) {
         effect->value = effect->value * (1.0f - 1.0f / (effect->frame + 1));
     } else {
         f32 delta = (effect->target - effect->value) * 0.2f;
@@ -1600,7 +1600,7 @@ void fn_1_59D54(fn_1_59D54_Effect *effect) {
     effect->accumulator_y += effect->scale_y;
     effect->accumulator_z += effect->scale_z;
 
-    effect->intensity = 0.5f * (f32)effect->frame;
+    effect->intensity = 0.5f * effect->frame;
 
     fn_1_862D4(effect->effect_id, coords);
 
@@ -2803,7 +2803,7 @@ void fn_1_5AC48(fn_1_5AC48_Effect *effect) {
     spawn.unk_1C = effect->unk_1C;
     fn_1_5AC48_spawn(&spawn);
 
-    if ((f32)effect->unk_10 < 15.0f) {
+    if (effect->unk_10 < 15.0f) {
         effect->unk_28 *= 1.0f - 1.0f / (effect->unk_10 + 1);
     }
 }
@@ -2962,12 +2962,12 @@ void fn_1_5B188(struct fx_5b188 *p)
     p->field_3C = p->field_3C + p->field_48;
     p->field_40 = p->field_40 + p->field_4C;
     p->field_44 = p->field_44 + p->field_50;
-    p->field_5E = (fn_1_5B188_operand(((f32)p->field_5E), (0.99f)));
+    p->field_5E = (fn_1_5B188_operand((p->field_5E), (0.99f)));
     p->field_58 = p->field_58 + p->field_5E;
     p->field_1C = p->field_1C + (fn_1_5B188_operand(((0.4f - p->field_1C)), (0.05f)));
     p->field_20 = p->field_20 + (fn_1_5B188_operand(((0.4f - p->field_20)), (0.0505f)));
     p->field_24 = p->field_24 + (fn_1_5B188_operand(((0.4f - p->field_24)), (0.051f)));
-    if ((s32)p->field_10 < 15.0f) {
+    if (p->field_10 < 15.0f) {
         p->field_B4 = fn_1_5B188_operand(((1.0f - d)), (p->field_B4));
         p->field_2C = fn_1_5B188_operand((0.95f), (p->field_2C));
     } else {
@@ -2992,14 +2992,14 @@ void fn_1_5B30C(struct fn_1_5B30C_Arg0 *arg0) {
     v0 = arg0->unk_34;
     lbl_8006D9D8((void *)((u32)arg0 + 60));
     lbl_8006D7B0();
-    lbl_8006E14C((*(f32 *)((u8 *)(u32)arg0 + 40) / *(f32 *)((u8 *)v0 + 20)));
-    t3 = fn_1_54E34((void *)(v0 + 8), *(f32 *)((u8 *)(u32)arg0 + 40));
+    lbl_8006E14C((*(f32 *)((u8 *)arg0 + 40) / *(f32 *)((u8 *)v0 + 20)));
+    t3 = fn_1_54E34((void *)(v0 + 8), *(f32 *)((u8 *)arg0 + 40));
     v1 = t3;
     if ((s32)t3 != 0) {
-    v1 = *(s16 *)((u8 *)(u32)arg0 + 88);
+    v1 = *(s16 *)((u8 *)arg0 + 88);
     mathutil_mtxA_rotate_z(v1);
-    v2 = *(f32 *)((u8 *)(u32)arg0 + 28);
-    fn_1_5621C(v2, *(f32 *)((u8 *)(u32)arg0 + 32), *(f32 *)((u8 *)(u32)arg0 + 36), *(f32 *)((u8 *)(u32)arg0 + 180));
+    v2 = *(f32 *)((u8 *)arg0 + 28);
+    fn_1_5621C(v2, *(f32 *)((u8 *)arg0 + 32), *(f32 *)((u8 *)arg0 + 36), *(f32 *)((u8 *)arg0 + 180));
     v1 = 1;
     fn_1_56000(v1, 3, 0);
     v1 = v0;
@@ -3091,7 +3091,7 @@ void fn_1_5B3D0(struct fn_1_5B3D0_Arg0 *arg0) {
     state = &lbl_1_data_1D628;
     next = ((1103515245) * (state->unk_0)) + 12345;
     random = ((next >> 16) & 0x7FFF);
-    r = 0.1f * ((f32)random / 32767.0f);
+    r = 0.1f * (random / 32767.0f);
     state->unk_0 = next;
     arg0->unk_10 = (s32)(60.0f * (0.125f + r));
 }
@@ -3195,7 +3195,7 @@ void fn_1_5B450(Fn1_5B450Object *arg0) {
     arg0->unk_28 += arg0->unk_2c;
 
     frame = arg0->unk_10;
-    if ((f32)frame < 60.0f) {
+    if (frame < 60.0f) {
         t = 1.0f - 1.0f / (frame + 1);
         arg0->unk_1c *= t;
         arg0->unk_20 *= 0.99f * t;
@@ -3403,7 +3403,7 @@ typedef struct Fn15B6F4 {
 void fn_1_5B6F4(Fn15B6F4 *obj) {
     u32 seed = lbl_1_data_1D628 * 1103515245 + 12345;
     f32 r = ((seed >> 16) & 0x7FFF) / 32767.0f;
-    f64 d = 10.0 * ((f64)r - 3.0);
+    f64 d = 10.0 * (r - 3.0);
 
     lbl_1_data_1D628 = seed;
     obj->unk_10 = (150.0 + d);
@@ -3431,7 +3431,7 @@ void fn_1_5B780(Fn15B780 *effect) {
             effect->step = 14;
         }
     }
-    effect->result = lbl_1_rodata_29A4 * (f32)effect->current;
+    effect->result = lbl_1_rodata_29A4 * effect->current;
 }
 /* fzgx:end fn_1_5B780 */
 
@@ -3587,7 +3587,7 @@ void fn_1_5B7F8(struct fn_1_5B7F8_Arg0 *e) {
         fn_1_5B7F8_transform(mtx, (Fn183D28Vec3 *)position.xyz, &position.pos, &dir);
     }
 
-    t = 0.05f * (f32)e->unk_10;
+    t = 0.05f * e->unk_10;
     if (t > 1.0f) {
         r = 255.0f * e->unk_1C + 5.0f * (FN_1_5B7F8_RAND() - 0.5f);
         g = 255.0f * e->unk_20 + 5.0f * (FN_1_5B7F8_RAND() - 0.5f);
@@ -3776,7 +3776,7 @@ void fn_1_5BF70(struct fn_1_5BF70_Arg0 *arg0) {
     seed = lbl_1_data_1D628 * 0x41c64e6d + 0x3039;
     lbl_1_data_1D628 = seed;
     normalized = ((seed >> 16) & 0x7fff) / 32767.0f;
-    value = 10.0 * ((f64)normalized - 3.0);
+    value = 10.0 * (normalized - 3.0);
     arg0->unk_10 = (value + 50.0);
 }
 /* fzgx:end fn_1_5BF70 */
@@ -3921,7 +3921,7 @@ void fn_1_5C058(struct fn_1_5C058_Arg0 *arg0) {
     loc_18 = fzgx_pool_init_fn5C058ZeroVector.v;
     lbl_8006DC6C(&loc_68);
     fn5C058TransformVector(&loc_24, &loc_18);
-    v4 = 0.05f * (f32)arg0->unk_10;
+    v4 = 0.05f * arg0->unk_10;
     if (v4 > 1.0f) {
         v13 = (f32)(5.0f * (fn5C058Random() - 0.5f)) + (f32)(255.0f * arg0->unk_1C);
         v14 = (f32)(5.0f * (fn5C058Random() - 0.5f)) + (f32)(255.0f * arg0->unk_20);
@@ -3950,7 +3950,7 @@ void fn_1_5C058(struct fn_1_5C058_Arg0 *arg0) {
         fn5C058Translation((f32 *)cache, &loc_24);
         lbl_8006E1B0(&loc_30, &v23->pos);
         v23->color = *(u32 *)loc_14;
-        v41 = 0.1 * (f64)v24;
+        v41 = 0.1 * v24;
         v23->pos.x += (f32)(v41 * (fn5C058Random() - 0.5f));
         v23->pos.y += (f32)(v41 * (fn5C058Random() - 0.5f));
         v23->pos.z += (f32)(v41 * (fn5C058Random() - 0.5f));
@@ -4047,7 +4047,7 @@ void fn_1_5C784(EffectWork *self) {
         u32 value = lbl_1_data_1D628 * 0x41C64E6D + 0x3039;
         lbl_1_data_1D628 = value;
         value = (value >> 16) & 0x7FFF;
-        self->unk_10 = ((60.0f) * ((0.100000001f) + (f32)value / (32767.0f)));
+        self->unk_10 = ((60.0f) * ((0.100000001f) + value / (32767.0f)));
     }
     self->unk_3c = self->unk_94;
     fn_1_8636C(self->unk_18, &self->unk_b8);
@@ -4304,13 +4304,13 @@ struct Draw5CA { f32 width,height; u32 mtx[12]; u32 flags; s8 r; u8 g,b,a; };
 static void fzgx_fn_1_5CA00_pool0(u32 u) {
  volatile f32 f; volatile f64 d;  /* fzgx-allow: S2 volatile keeps the verified access order */
  f=60.0f; f=0.1f; f=32767.0f; f=0.05f;
- d=0.07; f=20000.0f; d=(f64)u;
+ d=0.07; f=20000.0f; d=u;
 }
 #pragma section code_type ".text"
 #pragma section code_type ".fzgxpool"
 static void fzgx_fn_1_5CA00_pool1(s32 s) {
  volatile f32 f; volatile f64 d;  /* fzgx-allow: S2 volatile keeps the verified access order */
- f=1.0f; f=-0.03f; d=15.0; d=(f64)s;
+ f=1.0f; f=-0.03f; d=15.0; d=s;
 }
 #pragma section code_type ".text"
 #pragma section code_type ".fzgxpool"
@@ -4402,8 +4402,8 @@ void fn_1_5CA00(struct fn_1_5CA00_Arg0 *arg0) {
  lbl_8006E1B0((Fn183D28Vec3 *)((u8 *)arg0+148),&loc_30);
  lbl_8006DCA4();
  lbl_8006E1B0(&loc_3C,&loc_3C); lbl_8006E1B0(&loc_30,&loc_30);
- if ((s32)fn_1_6EC0((u8)fn_1_5910()) && arg0->unk_18==(s16)camera_get_mode()) mode=1;
- else if((s32)fn_1_6EC0((u8)fn_1_5910())) mode=2;
+ if (fn_1_6EC0(fn_1_5910()) && arg0->unk_18==camera_get_mode()) mode=1;
+ else if(fn_1_6EC0(fn_1_5910())) mode=2;
  else mode=3;
  memset(&d,0,64);
  scale=FIELD(40);
@@ -4921,7 +4921,7 @@ static inline f32 rnd_unit(void)
 
     lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41c64e6d + 0x3039;
     r = (lbl_1_data_1D628 >> 16) & 0x7fff;
-    return (f32)r / 32767.0f;
+    return r / 32767.0f;
 }
 
 void fn_1_5D378(fn_1_5D378_obj *self)
@@ -4939,7 +4939,7 @@ void fn_1_5D378(fn_1_5D378_obj *self)
 
     v = (s8)fn_1_86634(self->unk_18);
 
-    if (fn_1_6EC0((u8)v) != 0 && (s16)camera_get_entry_field_0xa4((u8)v) == 0) {
+    if (fn_1_6EC0(v) != 0 && camera_get_entry_field_0xa4((u8)v) == 0) {
         fzgx_value = &(self->unk_1c);
         *fzgx_value = 0.0f;
         self->unk_20 = 0.0f;
@@ -5099,7 +5099,7 @@ void fn_1_5D500(EffectUpdate *arg0)
     }
     fn_1_867CC(arg0->unk_18, &arg0->unk_3C);
     camera = fn_1_86634(arg0->unk_18);
-    if (fn_1_6EC0((u8)camera) && camera_get_entry_field_0xa4((u8)camera) == 0) {
+    if (fn_1_6EC0(camera) && camera_get_entry_field_0xa4((u8)camera) == 0) {
         arg0->unk_1C += (f32)(0.05f * -arg0->unk_1C);
         fzgx_live = arg0->unk_20;
         arg0->unk_20 += (f32)(0.05f * -fzgx_live);
@@ -6255,10 +6255,10 @@ mathutil_mtxA_rotate_y(S(0x56)); mathutil_mtxA_rotate_x(S(0x54));
 {Fn183D28Vec3 v={0.0f,0.0f,0.0f};((f32 *)&v)[2]=-F(0x28);offset=v;}
 lbl_8006E1B0(&offset,(Fn183D28Vec3 *)((u8 *)arg0+0x3c));
 if(!active) {F(0x94)+=F(0xa0);F(0x98)+=F(0xa4);F(0x9c)+=F(0xa8);}
-F(0xb4)=0.5f*((f32)I(0x10)<0.0f ? 0.0f : (f32)I(0x10)>15.0f ? 15.0f : (f32)I(0x10));
+F(0xb4)=0.5f*(I(0x10)<0.0f ? 0.0f : I(0x10)>15.0f ? 15.0f : I(0x10));
 if(I(0x10)<20 && !active) {
 x=F(0x1c);
-f=1.0f-(1.0f+(f32)(-0.05f*(f32)I(0x10)));
+f=1.0f-(1.0f+(f32)(-0.05f*I(0x10)));
 F(0x1c)=x*f;F(0x20)*=f;F(0x24)*=f;
 }
 if(!active) {
@@ -7763,7 +7763,7 @@ v42=1.0f - (f32)((v44+1) / 16.0f);
 t4=fn_1_9E14C(2,(Sig_fn_1_9DDA8_fn_1_9DDA8_CurveKey *)(((u8 *)fzgx_pool_init_lbl_1_data_1D7A8.v)),v42);
 t5=fn_1_9E14C(2,(Sig_fn_1_9DDA8_fn_1_9DDA8_CurveKey *)(((u8 *)fzgx_pool_init_lbl_1_data_1D7D0.v)),v42);
 t6=fn_1_9E14C(2,(Sig_fn_1_9DDA8_fn_1_9DDA8_CurveKey *)(((u8 *)fzgx_pool_init_lbl_1_data_1D7F8.v)),v42);
-if((*(u16 *)((u8 *)(v0)+(178))) ==1) v43=(f32)v31;
+if((*(u16 *)((u8 *)(v0)+(178))) ==1) v43=v31;
 else v43=0.25f;
 v48 = Fn5EB98Rand();
 v48 -= 0.5f;
@@ -8300,7 +8300,7 @@ void fn_1_5F654(fn_1_5F654_Effect *effect) {
         lbl_8006E1B0(&tail, &effect->pos);
     }
 
-    effect->alpha = 0.5f * (f32)effect->frame;
+    effect->alpha = 0.5f * effect->frame;
     {
         u32 seed = lbl_1_data_1D628 * 0x41C64E6D + 0x3039;
 
@@ -8317,7 +8317,7 @@ void fn_1_5F654(fn_1_5F654_Effect *effect) {
     }
     if (effect->frame < 20) {
         f32 fade;
-        effect->color[0] *= (fade = 1.0f - (1.0f + (f32)(-0.05f * (f32)effect->frame)));
+        effect->color[0] *= (fade = 1.0f - (1.0f + (f32)(-0.05f * effect->frame)));
         effect->color[1] *= fade;
         effect->color[2] *= fade;
     }
@@ -8422,7 +8422,7 @@ void fn_1_5F9B8(fn_1_5F9B8_Effect *effect) {
     f32 dist;
 
     fn_1_867CC(effect->id, camera);
-    players = *(s16 *)((u8 *)fn_1_868C0((s8)effect->id) + 0x3ba);
+    players = *(s16 *)((u8 *)fn_1_868C0(effect->id) + 0x3ba);
     player = fn_1_86254(effect->id);
     if (players >= 3 && *(s8 *)((u8 *)player + 0x475) == -1) {
         return;
@@ -8773,8 +8773,8 @@ static inline u16 urand(void) {
 void fn_1_5FFB0(struct fn_1_5FFB0_p *p) {
     lbl_1_bss_6C86C = 30;
     lbl_1_bss_6C870 = 8;
-    p->unk_14 = (lbl_1_bss_6C870 * (0.8f + 0.5f * ((f32)urand() / 32767.0f)));
-    p->unk_10 = (p->unk_14 + lbl_1_bss_6C86C * (0.8f + 0.2f * ((f32)urand() / 32767.0f)));
+    p->unk_14 = (lbl_1_bss_6C870 * (0.8f + 0.5f * (urand() / 32767.0f)));
+    p->unk_10 = (p->unk_14 + lbl_1_bss_6C86C * (0.8f + 0.2f * (urand() / 32767.0f)));
     p->unk_38 = fn_1_45D0(lbl_801A6410, 0xA0, lbl_1_data_1D62C, 0x1254);
     p->unk_54 = urand() % 4;
 }
@@ -8830,7 +8830,7 @@ void fn_1_601B4(EffectState *effect) {
         s32 numerator = effect->unk_10;
         s32 denominator = lbl_1_bss_6C86C;
 
-        effect->unk_b4 = (f32)numerator / (f32)denominator;
+        effect->unk_b4 = (f32)numerator / denominator;
     }
 }
 /* fzgx:end fn_1_601B4 */
@@ -9815,7 +9815,7 @@ void fn_1_60B80(Sig_fn_1_60B80_Obj *obj, u32 lab_unused0, u32 lab_unused1, u32 l
     fzgx_live = obj->unk_28;
     fn_1_55FC4(fzgx_live);
     if (obj->unk_10 < 12) {
-        v *= 0.0833333358168602f * (s32)obj->unk_10;
+        v *= 0.0833333358168602f * obj->unk_10;
     }
     if (v < 1.0) {
         fn_1_55FF0(v);
@@ -10057,9 +10057,9 @@ void fn_1_60C88(Obj_60C88 *this)
     void * lab_t1;
     f32 tz, ty, tx;
 
-    fn_1_862D4((int)this->s18, &v);
+    fn_1_862D4(this->s18, &v);
     lab_t1 = (*((0) + (lbl_801A6D00)));
-    fn_1_8636C((int)this->s18, lab_t1);
+    fn_1_8636C(this->s18, lab_t1);
 
     tx = v.x;
     ty = v.y;
@@ -10190,8 +10190,8 @@ void fn_1_60D54(u8 *arg0) {
     obj = *(void **)(arg0 + 0x34);
     intensity = 0.25f * *(f32 *)(arg0 + 0xb4);
     scale = (0.125f + (f32)(0.25f * intensity)) *
-            (1.0f + (f32)fn_1_60D54_rand() / 32767.0f);
-    size = 0.2 * (*(f32 *)(arg0 + 0x28) * (0.800000011920929 + (t = 0.2 * ((f32)fn_1_60D54_rand() / 32767.0f))));
+            (1.0f + fn_1_60D54_rand() / 32767.0f);
+    size = 0.2 * (*(f32 *)(arg0 + 0x28) * (0.800000011920929 + (t = 0.2 * (fn_1_60D54_rand() / 32767.0f))));
     memset(&light, 0, 0x40);
     r = scale * *(f32 *)(arg0 + 0x1c);
     g = scale * *(f32 *)(arg0 + 0x20);
@@ -10467,7 +10467,7 @@ void fn_1_60F84(fn_1_60F84_Effect *obj)
     obj->size = obj->size + d;
 
     if (obj->age < 20) {
-        t = 1.0f + (f32)(-0.05f * (f32)obj->age);
+        t = 1.0f + (f32)(-0.05f * obj->age);
         /* the common factor is CSE'd by the compiler; a named local would
            coalesce it with the chain and move the color load's */
         obj->color_1c = obj->color_1c * (1.0f - t);
@@ -11167,7 +11167,7 @@ void fn_1_61640(struct Fn1_61640Object *object) {
     fn_1_55FC4(object->field_28);
 
     if (object->field_10 < 12) {
-        value *= (0.0833333358f) * (f32)object->field_10;
+        value *= (0.0833333358f) * object->field_10;
     }
     if (value < (1.0)) {
         fn_1_55FF0(value);
@@ -11269,7 +11269,7 @@ void fn_1_618B8(struct obj_state *p)
 	p->f94 = (f32)(0.05f * (p->f98 - p->f94)) + p->f94;
 	p->f28 = (f32)(0.2f * (p->f2c - p->f28)) + p->f28;
 	t = p->timer;
-	if ((f64)t < 15.0) {
+	if (t < 15.0) {
 		f32 k = 1.0f - 1.0f / (t + 1);
 
 		fzgx_live_ = p->f1c;
@@ -12278,7 +12278,7 @@ Obj *self;
     lbl_8006DA50();
     lbl_8006DF44();
     lbl_8006E1B0( (Fn183D28Vec3 *)(void *)(self->m3c), (Fn183D28Vec3 *)(void *)(self->m3c));
-    self->s5a = 0.98f * (f32)self->s5a;
+    self->s5a = 0.98f * self->s5a;
     self->s54 += self->s5a;
     self->f2c *= 1.06f;
     self->f28 += self->f2c;
@@ -12527,8 +12527,8 @@ void fn_1_620C8(void *arg0)
     h = ((vp[3] < 28.0f) ? vp[3] : 28.0f);
     hw = w >> 1;
     hh = h >> 1;
-    fn_80038EEC(vp[0], vp[1], (f32)w, (f32)h, 0.0f, 1.0f);
-    fn_80074188((s32)vp[0], (s32)vp[1], w, h);
+    fn_80038EEC(vp[0], vp[1], w, h, 0.0f, 1.0f);
+    fn_80074188(vp[0], vp[1], w, h);
     col = *(f32 *)((u8 *)arg0 + 0xB4);
     obj = *(void **)((u8 *)arg0 + 0x34);
     lbl_8006DFE8((u8 *)arg0 + 0xB8);
@@ -12550,7 +12550,7 @@ void fn_1_620C8(void *arg0)
     fn_8003526C(*(void **)((u8 *)tex + 0x20), 1);
     GXInitTexObj((Sig_GXInitTexObj_GXTexObj *)tex, *(void **)((u8 *)tex + 0x20), hw, hh, 0, 0, 0, 0);
     fn_80038EEC(vp[0], vp[1], vp[2], vp[3], vp[4], vp[5]);
-    fn_80074188((s32)vp[0], (s32)vp[1], (s32)vp[2], (s32)vp[3]);
+    fn_80074188(vp[0], vp[1], vp[2], vp[3]);
 }
 /* fzgx:end fn_1_620C8 */
 
@@ -13143,7 +13143,7 @@ void fn_1_62AF8(struct fn_1_62AF8_obj *obj) {
         random = lbl_1_data_1D628 * 0x41C64E6D + 0x3039;
         lbl_1_data_1D628 = random;
         r15 = (random >> 16) & 0x7FFF;
-        ratio = (f32)r15 / 32767.0f;
+        ratio = r15 / 32767.0f;
         obj->unk_10 = (30.0 + 60.0f * ratio);
     }
 
@@ -13157,10 +13157,10 @@ void fn_1_62AF8(struct fn_1_62AF8_obj *obj) {
         f64 db;
 
         r15a = (lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41C64E6D + 0x3039) >> 16 & 0x7FFF;
-        qa = (f32)r15a / 32767.0f;
+        qa = r15a / 32767.0f;
 
         r15b = (lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41C64E6D + 0x3039) >> 16 & 0x7FFF;
-        qb = (f32)r15b / 32767.0f;
+        qb = r15b / 32767.0f;
 
         da = 0.02 * qa;
         db = 0.5 * qb;
@@ -13681,7 +13681,7 @@ void fn_1_62E9C(struct Eff62E9C *e) {
     lbl_8006DB74(pkt.mtx);
     pkt.unk_0 = 0.70710677f * e->size;
     if (e->unk_10 < 12) {
-        alpha *= 0.083333336f * (f32)e->unk_10;
+        alpha *= 0.083333336f * e->unk_10;
     }
     pkt.color[0] = (dist * (255.0f * e->r * alpha));
     pkt.color[1] = (dist * (255.0f * e->g * alpha));
@@ -14937,7 +14937,7 @@ void fn_1_635BC(Fn1635BCEffect *e) {
     offset = tmp;
     lbl_8006E1B0(&offset, &e->pos);
 
-    e->unk_B4 = 0.5f * (f32)e->timer;
+    e->unk_B4 = 0.5f * e->timer;
     lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41C64E6D + 12345;
     rnd = 0.8f + (f32)(0.2f * (((lbl_1_data_1D628 >> 16) & 0x7FFF) / 32767.0f));
     e->r = 255.0f * (0.5f * (1.0f + rnd)) / 255.0f;
@@ -14945,7 +14945,7 @@ void fn_1_635BC(Fn1635BCEffect *e) {
     e->g = scale;
     e->b = scale;
     if (e->timer < 30) {
-        e->r *= scale = 1.0f - (1.0f + (f32)(-0.03f * (f32)e->timer));
+        e->r *= scale = 1.0f - (1.0f + (f32)(-0.03f * e->timer));
         e->g *= scale;
         e->b *= scale;
     }
@@ -15225,10 +15225,10 @@ void fn_1_638E8(struct fn_1_638E8_Arg0 *arg0) {
         v25 = *(u32 *)((u8 *)v0 + 20);
         if ((s32)v25 < 8) {
             *(u32 *)((u8 *)v0 + 20) = v25 + 2;
-            v2 = (((s16)v14 + 2) % 8);
+            v2 = ((v14 + 2) % 8);
         } else {
             *(u32 *)((u8 *)v0 + 20) = 8;
-            v2 = (((s16)v14 + 2) % 8);
+            v2 = ((v14 + 2) % 8);
         }
         t13 = fn_1_5910();
         switch (t13) {
@@ -15256,7 +15256,7 @@ void fn_1_638E8(struct fn_1_638E8_Arg0 *arg0) {
         v52 = &v38->a[v2] + fn_1_5910() * 8;
         v48 = v30 * *(f32 *)((u8 *)v0 + 180);
         v41 = v35 / *(u32 *)((u8 *)v0 + 20);
-        v50 = v48 * (v31 - (f32)v41);
+        v50 = v48 * (v31 - v41);
         v37 = lbl_1_bss_38458->unk_8;
         v42 = *(u32 *)((u8 *)v37 + 112);
         v37 = lbl_1_data_1D628 * v33 + 12345;
@@ -15265,7 +15265,7 @@ void fn_1_638E8(struct fn_1_638E8_Arg0 *arg0) {
         v51 = v43 * v50;
         v53 = v45 + (f32)(v46 * v50);
         v54 = v30 + v51;
-        v55 = v44 * (v53 * (v31 + ((f32)v49 / v47)));
+        v55 = v44 * (v53 * (v31 + (v49 / v47)));
         v55 = v55 * (v31 - (v35 / *(u32 *)((u8 *)v0 + 20)));
         fn_1_638E8_locked_cache(&locked_ptr);
         if ((u8)v1 != 0) {
@@ -15324,7 +15324,7 @@ void fn_1_638E8(struct fn_1_638E8_Arg0 *arg0) {
             fn_1_9EA94(&loc_38);
         }
         v35++;
-        v2 = (((s16)v2 + 1) % 8);
+        v2 = ((v2 + 1) % 8);
     }
 }
 /* fzgx:end fn_1_638E8 */
@@ -15570,7 +15570,7 @@ void fn_1_640A4(u8 *arg0) {
 
     o[0] = 2;
     temp_r0 = lbl_1_bss_6C860 + 1;
-    lbl_1_bss_6C860 = (u32) temp_r0;
+    lbl_1_bss_6C860 = temp_r0;
     if (temp_r0 > 0x96) {
         o[0] = 3;
     }
@@ -15604,7 +15604,7 @@ void fn_1_640A4(u8 *arg0) {
     if (*(f32 *)(o + 0x2c) > (50.0f)) {
         temp_r0 = *(s32 *)(o + 0x10);
         if (temp_r0 < 0xDC) {
-            var_f1 = (f32) temp_r0;
+            var_f1 = temp_r0;
             var_f1 = (0.0045454544f) * var_f1;
         } else {
             var_f1 = (1.0f);
@@ -15612,7 +15612,7 @@ void fn_1_640A4(u8 *arg0) {
     } else {
         temp_r0 = *(s32 *)(o + 0x10);
         if (temp_r0 < 0x46) {
-            var_f1 = (f32) temp_r0;
+            var_f1 = temp_r0;
             var_f1 = (0.0142857144f) * var_f1;
         } else {
             var_f1 = (1.0f);
@@ -17364,7 +17364,7 @@ void fn_1_652F4(fn_1_652F4_Effect *effect) {
 
     object = effect->unk_08;
     fn_1_867CC(object->unk_18, temp);
-    level = *(s16 *)((u8 *)fn_1_868C0((s8)object->unk_18) + 0x3ba);
+    level = *(s16 *)((u8 *)fn_1_868C0(object->unk_18) + 0x3ba);
     owner = fn_1_86254(object->unk_18);
     if (level >= 3 && *(s8 *)((u8 *)owner + 0x475) == -1) {
         return;
@@ -17458,8 +17458,8 @@ static inline void advance_particle654B0(Particle654B0 *p)
     fzgx_live[1] *= keep;
     fzgx_live = p->vel;
     fzgx_live[2] *= keep;
-    p->rotVel[0] = fn_1_654B0_operand_((0.98f), ((f32)p->rotVel[0]));
-    p->rotVel[1] = fn_1_654B0_operand_((0.98f), ((f32)p->rotVel[1]));
+    p->rotVel[0] = fn_1_654B0_operand_((0.98f), (p->rotVel[0]));
+    p->rotVel[1] = fn_1_654B0_operand_((0.98f), (p->rotVel[1]));
     fzgx_live = p->vel;
     p->pos[0] += fzgx_live[0];
     fzgx_live = p->vel;
@@ -17469,7 +17469,7 @@ static inline void advance_particle654B0(Particle654B0 *p)
     p->rot[0] += p->rotVel[0];
     p->rot[1] += p->rotVel[1];
     p->scale += p->scaleVel;
-    p->halfAge = fn_1_654B0_operand_(((f32)p->age), (0.5f));
+    p->halfAge = fn_1_654B0_operand_((p->age), (0.5f));
     p->damp = p->damp + (fn_1_654B0_operand_(((p->dampTarget - p->damp)), (0.03f)));
 
 }
@@ -17491,13 +17491,13 @@ void fn_1_654B0(Particle654B0 *p)
     f32 fade;
 
     advance_particle654B0(p);
-    v = 0.8f + (fn_1_654B0_operand_((random_float654B0((f32)random_bits654B0())), (0.2f)));
+    v = 0.8f + (fn_1_654B0_operand_((random_float654B0(random_bits654B0())), (0.2f)));
     p->r = fn_1_654B0_operand_(((0.5f * (1.0f + v))), (255.0f)) / 255.0f;
     p->g = fn_1_654B0_operand_((v), (136.0f)) / 255.0f;
     p->b = *(const f32 *)&fzgx_pool_table2[0];
 
     if (p->age < 25) {
-        p->r *= fade = 1.0f - (1.0f + fn_1_654B0_operand_(((f32)p->age), (-0.04f)));
+        p->r *= fade = 1.0f - (1.0f + fn_1_654B0_operand_((p->age), (-0.04f)));
         p->g *= fade;
         p->b *= fade;
     }
@@ -17998,7 +17998,7 @@ void fn_1_65AB0(Fn165AB0Object *obj) {
         } else {
             result.value = factor;
         }
-        obj->value_10 = ((f32)obj->value_10 * result.value);
+        obj->value_10 = (obj->value_10 * result.value);
     }
 }
 /* fzgx:end fn_1_65AB0 */
@@ -18280,14 +18280,14 @@ void fn_1_65B5C(EffP *p) {
     one = 1.0f;
     if (p->fb4 > one) {
         if (p->i10 < 50) {
-            s = one - (one + (f32)(-0.02 * (f64)p->i10));
+            s = one - (one + (f32)(-0.02 * p->i10));
             fzgx_live = p->f1c;
             p->f1c = fzgx_live * s;
             p->f20 = p->f20 * s;
             p->f24 = p->f24 * s;
         }
     } else if (p->i10 < 40) {
-        t = -0.025f * (f32)p->i10;
+        t = -0.025f * p->i10;
         s = one - (one + t);
         fzgx_live = p->f1c;
         p->f1c = fzgx_live * s;
@@ -18735,7 +18735,7 @@ void fn_1_65E8C(Effect65E8C *eff) {
     fn_1_862D4(eff->mtxId, (Triple *)&pos);
     fn_1_8636C(eff->mtxId, mtx);
     if (moving != 0) {
-        bob = 0.3 * lbl_8006D188((182.04444885253906f * (f32)lbl_801A66A0));
+        bob = 0.3 * lbl_8006D188((182.04444885253906f * lbl_801A66A0));
         lbl_8006DC6C(mtx);
         /* set the current matrix's translation */
         {
@@ -18761,7 +18761,7 @@ void fn_1_65E8C(Effect65E8C *eff) {
         eff->velY *= 0.98;
         eff->velZ *= 0.98;
     }
-    eff->spinScale = 768.0f * lbl_8006D188((182.04444885253906f * (f32)lbl_801A66A0));
+    eff->spinScale = 768.0f * lbl_8006D188((182.04444885253906f * lbl_801A66A0));
     eff->rotY += eff->velY;
     eff->rotZ += eff->velZ;
     lbl_8006DB74(eff->unk_B8);
@@ -19042,7 +19042,7 @@ void fn_1_660EC(ObjFx_T *this)
     u32 g;
     u32 buf[12];
 
-    scale = (this->unk_10 < 0x14) ? 0.05f * (s32)this->unk_10 : 1.0f;
+    scale = (this->unk_10 < 0x14) ? 0.05f * this->unk_10 : 1.0f;
     lbl_8006D7F4(((lbl_801A66A0 % 30)) / 29.0f, 0.0f, 0.0f);
     lbl_8006DB74(buf);
     g = *(u32 *)(lbl_1_bss_38458->unk_8 + 0x1F0);
@@ -19592,7 +19592,7 @@ static inline u32 effect_aux_jitter(Fn183D28Vec3 *v) {
     return z;
 }
 static inline f32 effect_size_random(u32 sample) {
-    f32 z = (f32)sample / 32767.0f;
+    f32 z = sample / 32767.0f;
     return z;
 }
 static inline s32 effect_slot(void) {
@@ -19672,9 +19672,9 @@ void fn_1_662D8(Fn662D8Source *arg0) {
     fn_1_8658C(v0, &loc_2C);
     t4 = fn_1_8652C(arg0->car);
     if (t4 < 100.0f) {
-        if ((s32)effect_rand() % 3 != 0) return;
+        if (effect_rand() % 3 != 0) return;
     } else {
-        if ((s32)effect_rand() % 3 == 0) return;
+        if (effect_rand() % 3 == 0) return;
     }
     v8 = arg0->unk_28;
     arg0->unk_28 = v8 + (f32)(0.01f * (arg0->unk_2C - v8));
@@ -19719,7 +19719,7 @@ void fn_1_662D8(Fn662D8Source *arg0) {
         pz = effect.pos.z;
         effect.vel = arg0->drift;
         random_x = 60.0f * (0.9f + (f32)(0.6f * effect_random()));
-        effect.life = (s32)random_x;
+        effect.life = random_x;
         effect.vel.x += (f64)(fzgx_pool_primer_D0() * (effect_random() - 0.5));
         randvz = effect_random();
         effect.vel.z += (f64)(fzgx_pool_primer_D0() * (randvz - 0.5));
@@ -20060,9 +20060,9 @@ void fn_1_6755C(FnObj_6755C *obj) {
     Root_6755C *root;
     u32 manager;
 
-    root = (Root_6755C *)(u32)lbl_1_bss_38458->unk_8;
+    root = (Root_6755C *)lbl_1_bss_38458->unk_8;
     manager = root->unk_120;
-    fn_1_8636C(obj->unk_18, temp, (u32)root);
+    fn_1_8636C(obj->unk_18, temp, root);
     lbl_8006D9D8((u8 *)obj + 0x3c);
     lbl_8006DFC4(temp);
     lbl_8006D95C(0);
@@ -20077,17 +20077,17 @@ void fn_1_6755C(FnObj_6755C *obj) {
     f0 = obj->unk_1c;
     f0 = f2 * f0;
     f0 = f0 * f1;
-    data[0x3c] = (u8)f0;
+    data[0x3c] = f0;
     f0 = obj->unk_20;
     f0 = f2 * f0;
     f0 = f0 * f1;
-    data[0x3d] = (u8)f0;
+    data[0x3d] = f0;
     f0 = obj->unk_24;
     f0 = f2 * f0;
     data[0x3f] = 0xff;
     *(f32 *)(data + 4) = f3;
     f0 = f0 * f1;
-    data[0x3e] = (u8)f0;
+    data[0x3e] = f0;
     fn_1_9F914(data, (const void *)(manager));
 }
 /* fzgx:end fn_1_6755C */
@@ -20311,13 +20311,13 @@ void fn_1_67680(void *arg0) {
     psvec_add((u8 *)arg0+60,(u8 *)arg0+72,(u8 *)arg0+60);
     v3=F(arg0,136);
     F(arg0,136)=v3+(f32)(0.03f*(F(arg0,140)-v3));
-    if(I(arg0,16)<40) F(arg0,180)=(F(arg0,180)*((f32)I(arg0,16)/40.0f));
+    if(I(arg0,16)<40) F(arg0,180)=(F(arg0,180)*(I(arg0,16)/40.0f));
     n=I(arg0,16);
     if(n<40) {
         /* the fade factor is re-spelled per component: MWCC CSEs the register-only expression */
-        F(arg0,28)*=1.0f-(f32)(1.0f+(f32)(-0.025f*(f32)n));
-        F(arg0,32)*=1.0f-(f32)(1.0f+(f32)(-0.025f*(f32)n));
-        F(arg0,36)*=1.0f-(1.0f+(-0.025f*(f32)n));
+        F(arg0,28)*=1.0f-(f32)(1.0f+(f32)(-0.025f*n));
+        F(arg0,32)*=1.0f-(f32)(1.0f+(f32)(-0.025f*n));
+        F(arg0,36)*=1.0f-(1.0f+(-0.025f*n));
     }
     t0=fn_1_86254(S(arg0,24));
     memset(loc_8,0,232);
@@ -20626,7 +20626,7 @@ void fn_1_67F20(Fn167F20 *obj) {
     obj->value48 *= 0.9f;
     obj->value4c *= 0.9f;
     obj->value50 *= 0.9f;
-    obj->valueac = (fn_1_67F20_operand((0.9f), ((f32)obj->valueac)));
+    obj->valueac = (fn_1_67F20_operand((0.9f), (obj->valueac)));
 
     obj->value48 += 0.001f;
     obj->value3c += obj->value48;

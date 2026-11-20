@@ -220,9 +220,9 @@ void fn_1_FA89C(SplineMain *arg0) {
     while (v2 < t0) {
         fn_1_5948(v2);
         GXGetScissor(&v4->f104, &v4->f114, &v4->f124, &v4->f134);
-        t3 = ((f32)v4->f124 / v0->f164);
+        t3 = (v4->f124 / v0->f164);
         v4->f144 = t3;
-        t4 = ((f32)v4->f134 / v0->f164);
+        t4 = (v4->f134 / v0->f164);
         v4->f154 = t4;
         v5 = v4->f124;
         v6 = v4->f134;
@@ -230,13 +230,13 @@ void fn_1_FA89C(SplineMain *arg0) {
         v8 = v4->f114;
         v9 = (v7 + (v5 >> 1));
         v10 = (v8 + (v6 >> 1));
-        v11 = ((f32)(s16)v7 / (s16)v9);
+        v11 = ((f32)(s16)v7 / v9);
         v12 = (s16)v8;
         v13 = (v11 - v1);
-        v14 = ((v12 / (s16)v10) - v1);
+        v14 = ((v12 / v10) - v1);
         fn_1_A714C(&sp14, &sp10, &spC, &sp8);
-        v15 = ((((f32)(s16)(v8 + v6) / (s16)v10) - v1) - v14);
-        v16 = ((((f32)(s16)(v7 + v5) / (s16)v9) - v1) - v13);
+        v15 = ((((f32)(s16)(v8 + v6) / v10) - v1) - v14);
+        v16 = ((((f32)(s16)(v7 + v5) / v9) - v1) - v13);
         C_MTXLightPerspective((f32 *)(((0x44) + (v3))), sp14, sp10, (v1 / v16), (-1.0f / v15), ((-v13) / v16), ((-v14) / v15));
         fn_1_627C(v2);
         v4 = (SplineEntry *)((u8 *)v4 + 4);
@@ -326,7 +326,7 @@ static inline void visibility(u8 *selected, DrawList *list, Vec3 *pos) {
     Vec3 *origin;
     f32 dx, dy, dz;
     count = fn_1_58C4();
-    for (i = 0; (s32)i < count; i++) {
+    for (i = 0; i < count; i++) {
         fn_1_5948(i);
         lbl_8006DCA4();
         fn_1_681C((u8)i, pos);
@@ -377,7 +377,7 @@ void fn_1_FAB40(void) {
         return;
     selected.value = 1;
     visibility(&selected.value, list, &pos);
-    fn_1_76BD0((u8)obj->unk_16C, selected.value);
+    fn_1_76BD0(obj->unk_16C, selected.value);
     count = fn_1_58C4();
     for (i = 0; (s32)i < count; i++) {
         fn_1_5948(i);
@@ -397,7 +397,7 @@ void fn_1_FAB40(void) {
                 lbl_8006E13C(&record_2->scale);
                 fn_80072558();
                 fn_800724C8();
-                fn_80073778(fn_1_72714((u8)list->image, 0), 0);
+                fn_80073778(fn_1_72714(list->image, 0), 0);
                 fn_80072864(2);
                 fn_800745A4(0, 0, 0, 30, 0, 125);
                 fn_800734A8(0, 0, 0, 255);
@@ -562,11 +562,11 @@ static inline void spline_fade_pass(void) {
             obj2->unk_154++;
         }
         limit = (obj2->unk_8 % 4 == 0) ? 240.0f : 120.0f;
-        if ((f32)obj2->unk_154 > limit) {
+        if (obj2->unk_154 > limit) {
             obj2->unk_154 = 0;
             fn_1_E5930(obj2, 3);
         } else {
-            rem = limit - (f32)obj2->unk_154;
+            rem = limit - obj2->unk_154;
             if (rem < 30.0f) {
                 t = rem / 30.0f;
                 fn_1_E57F4(spline_clamp01(t), obj2);
@@ -602,9 +602,9 @@ static inline void spline_spawn_loop(s16 n) {
 
             /* position: box center offset by a random point of the box */
             psvec_scale(&lbl_1_bss_84428.unk_1C, -0.5f, &tmp);
-            dx = lbl_1_bss_84428.unk_1C * ((f32)spline_rand() / 32767.0f);
-            dy = lbl_1_bss_84428.unk_20 * ((f32)spline_rand() / 32767.0f);
-            dz = lbl_1_bss_84428.unk_24 * ((f32)spline_rand() / 32767.0f);
+            dx = lbl_1_bss_84428.unk_1C * (spline_rand() / 32767.0f);
+            dy = lbl_1_bss_84428.unk_20 * (spline_rand() / 32767.0f);
+            dz = lbl_1_bss_84428.unk_24 * (spline_rand() / 32767.0f);
             tmp.x += dx;
             tmp.y += dy;
             tmp.z += dz;
@@ -2051,7 +2051,7 @@ void fn_1_FCA10(void) {
     fn_800736C0(0, &color);
 
     for (i = 0; (u16)i < 4; i++) {
-        j = (u16)i;
+        j = i;
         fn_800735C8(j, 12);
         fn_80073620(j, 28);
     }
@@ -2332,7 +2332,7 @@ void fn_1_FCFA4(void *arg0) {
     if ((m->unk_C & 0x40000000) != 0) {
         p = (Ctx *)m->unk_0;
         status = camera_get_status();
-        state = (u8)camera_get_state();
+        state = camera_get_state();
         lim = (u8)fn_1_3F854();
         if (p == 0) {
             ok = 0;
@@ -2340,7 +2340,7 @@ void fn_1_FCFA4(void *arg0) {
             cur = ((u8 *)&lbl_1_data_3EFB0)[p->unk_320];
             if ((s16)status == 2 && state == 6) {
                 tmp_call4 = camera_get_output();
-                if (!((s16)tmp_call4 == p->unk_320)) {
+                if (!(tmp_call4 == p->unk_320)) {
                     ok = 0;
                 } else {
                     goto allowed; /* fzgx-allow: S1 shared success block matches retail control flow */
@@ -2351,7 +2351,7 @@ void fn_1_FCFA4(void *arg0) {
                 /* fzgx-allow: S2 retail reloads the counter independently of the saved value */
                 nxt = (u8)(((volatile u8 *)&lbl_1_data_3EFB0)[p->unk_320] + 1);
                 ((u8 *)&lbl_1_data_3EFB0)[p->unk_320] = nxt;
-                if ((u32)nxt >= (u32)lim) {
+                if (nxt >= lim) {
                     ((u8 *)&lbl_1_data_3EFB0)[p->unk_320] = 0;
                 }
                 if (!(cur == p->unk_320)) {
@@ -2504,7 +2504,7 @@ void fn_1_FD1D4(fn_1_FD1D4_Fn1FD27CArg0 *arg0, fn_1_FD1D4_Fn1FD27CArg1 *arg1) {
         if (mode == 0) {
             fn_1_7EB8C(value, lbl_1_rodata_761C[0]);
         } else {
-            fn_1_7F230(value, (s32)mode, lbl_1_rodata_761C[0]);
+            fn_1_7F230(value, mode, lbl_1_rodata_761C[0]);
         }
         lbl_8006DBAC(local);
         fn_1_563B8(result);
@@ -2587,7 +2587,7 @@ void fn_1_FD27C(fn_1_FD27C_Fn1FD27CArg0 *arg0, fn_1_FD27C_Fn1FD27CArg1 *arg1) {
         if (mode == 0) {
             fn_1_7EB8C(value, lbl_1_rodata_761C[0]);
         } else {
-            fn_1_7F20C(value, (s32)mode, lbl_1_rodata_761C[0]);
+            fn_1_7F20C(value, mode, lbl_1_rodata_761C[0]);
         }
         lbl_8006DBAC(local);
         fn_1_563B8(result);
@@ -4464,7 +4464,7 @@ void fn_1_FEC7C(void *object) {
     entry = (u8 *)object + 0x434;
     memset(entry, 0, 0x1ADB0);
     index = 0;
-    while (index < (count = (s32)lbl_1_bss_3BE0->unk_A4)) {
+    while (index < (count = lbl_1_bss_3BE0->unk_A4)) {
         fn_1_FE7D8(entry, 1);
         fn_1_FF420(entry);
         index++;
@@ -4988,7 +4988,7 @@ void fn_1_FF6B8(void *em_raw) {
         p->rot += p->rotVel;
         p->size *= 0.98;
         if (p->life < 20) {
-            p->scale *= (f32)p->life / 20.0f;
+            p->scale *= p->life / 20.0f;
         }
     }
 }
@@ -5398,7 +5398,7 @@ void fn_1_FFE7C(void * arg0) {
     v6 = fn_1_FFE7C_clamp(v10, v6, v9);
     v11 = 4503601774854144.0;
     v12 = (1.0f / v6);
-    v6 = (s32)v8;
+    v6 = v8;
     v8 = (v6 * v12);
     }
     v14 = (void *)(((u8 *)arg0 + 20));

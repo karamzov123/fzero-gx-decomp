@@ -433,8 +433,8 @@ s32 fn_1_D3E90(void) {
     u8 data[8];
 
     value = camera_get_mode();
-    if (value != -1 && fn_1_6EC0((u8)fn_1_5910()) != 0 &&
-        (fn_1_864E8((s16)value) & 0x20) != 0) {
+    if (value != -1 && fn_1_6EC0(fn_1_5910()) != 0 &&
+        (fn_1_864E8(value) & 0x20) != 0) {
         return 1;
     }
 
@@ -442,7 +442,7 @@ s32 fn_1_D3E90(void) {
         return 1;
     }
 
-    fn_1_681C((u8)fn_1_5910(), data);
+    fn_1_681C(fn_1_5910(), data);
     return fn_1_1FB80(data, 1);
 }
 /* fzgx:end fn_1_D3E90 */
@@ -510,9 +510,9 @@ void fn_1_D3FDC(void *arg0, void *arg1) {
             entry->green = 0.0f;
             entry->blue = 0.0f;
         } else {
-            entry->red = __fabs(lbl_8006D188((182.04444885253906f * (f32)lbl_801A66A0)));
-            entry->green = __fabs(lbl_8006D188((0.5 * (182.04444885253906f * (f32)lbl_801A66A0))));
-            entry->blue = __fabs(lbl_8006D188((2.0 * (182.04444885253906f * (f32)lbl_801A66A0))));
+            entry->red = __fabs(lbl_8006D188((182.04444885253906f * lbl_801A66A0)));
+            entry->green = __fabs(lbl_8006D188((0.5 * (182.04444885253906f * lbl_801A66A0))));
+            entry->blue = __fabs(lbl_8006D188((2.0 * (182.04444885253906f * lbl_801A66A0))));
         }
         fn_1_1030D4(entry, arg1);
         count--;
@@ -569,8 +569,8 @@ void fn_1_D41D8(void) {
             s32 remainder;
 
             random_value = (lbl_801A63C0 * 0x676A4B6B + 0x33CB);
-            lbl_801A63C0 = (u32)random_value;
-            random_value = ((u32)random_value >> 16) & 0x7FFF;
+            lbl_801A63C0 = random_value;
+            random_value = (random_value >> 16) & 0x7FFF;
             divisor = (u16)item->unk_C;
             remainder = random_value % divisor;
             if ((remainder >> 7) == 0) {
@@ -608,8 +608,8 @@ static inline f32 d42dist(D42Vec *a, D42Vec *b) {
 void fn_1_D42A8(u32 arg0, int arg1) {
     D42Vec a;
     D42Vec b;
-    fn_1_681C((u8)arg1, &a);
-    fn_1_6898((u8)arg1, &b);
+    fn_1_681C(arg1, &a);
+    fn_1_6898(arg1, &b);
     ((f32 *)arg0)[arg1] = d42dist(&a, &b) < 30.0f ? d42dist(&a, &b) : 30.0f;
 }
 #pragma opt_common_subs reset

@@ -639,7 +639,7 @@ s32 fn_9_120C(ColchgCar *car) {
     mathutil_mtxA_rotate_y(((lbl_801A66A0 % 360) * 182.04444885253906f));
     lbl_8006E14C(2.0f);
     fn_80072558();
-    fn_1_870BC(car, (s8)color, car, 0, (u8)car->unk_3B8, 1.0f);
+    fn_1_870BC(car, color, car, 0, car->unk_3B8, 1.0f);
     return 0;
 }
 /* fzgx:end fn_9_120C */
@@ -654,7 +654,7 @@ s32 fn_9_1310(ColchgCar *car) {
     mathutil_mtxA_rotate_y((182.04444885253906f * (lbl_801A66A0 % 360)));
     lbl_8006E14C(2.0f);
     fn_80072558();
-    fn_1_870BC(car, (s8)color, car, 0, (u8)car->unk_3B8, 1.0f);
+    fn_1_870BC(car, color, car, 0, car->unk_3B8, 1.0f);
     return 0;
 }
 /* fzgx:end fn_9_1310 */
