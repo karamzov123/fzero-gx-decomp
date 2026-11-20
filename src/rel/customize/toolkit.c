@@ -11507,8 +11507,6 @@ void fn_3_28378(s16 arg0, s16 arg1, s16 arg2, s32 arg3) {
 /* fzgx:end fn_3_28378 */
 
 /* fzgx:begin fn_3_286BC */
-#include "font.h"
-
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
     volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
@@ -11786,6 +11784,9 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime39(void) {
 }
 #pragma section code_type ".text"
 
+#include "font.h"
+
+
 typedef struct { f32 x, y, z; } fn_3_286BC_Vec;
 struct fn_3_286BC_Copy88 { u32 a[22]; };
 
@@ -11987,22 +11988,8 @@ void fn_3_286BC(void) {
 #include "font.h"
 
 #pragma force_active on
-static const u32 fzgx_pool_table_0[] = {0x3F333333,0xFFFFFF00,0xFFFF0000,0xFF000000,0x0000FF00,0xFFF200FF,0xFFFF0000,0x3EEAAAAB,0x438E0000,0x43A48000,0x42C80000,0x3F6AAAAB,0x43B40000,0x3F0AAAAB,0x43DC8000,0x43A60000,0x43AC8000,0x43B30000,0x3EF99999,0x43C58000,0x43A58000,0x43B38000,0x43A00000,0x43B50000,0x43480000,0x43A18000,0x43BE8000,0x41500000,0x3C008081,0x40C00000,0x40E00000,0x3E189899,0x3E048485,0x43040000,0x43160000,0x3F4CCCCD,0x3E99999A,0x00000000};
-#pragma section code_type ".fzgxpool"
-void fzgx_pool_prime_a(volatile f64 *p) { *p = 4503601774854144.0; }  /* fzgx-allow: S2 volatile keeps the verified access order */
-#pragma section code_type ".text"
-static const u32 fzgx_pool_table_a0[] = {0x00004A00,0x00005400,0x00003800,0x00003E00,0x00003700,0x00005500,0x00003000,0x00003500,0x00003A00,0x00004000,0x00004400,0x00005000,0x00003300,0x00002E00,0x00003100,0x00004F00,0x00003900,0x00003D00,0x00004C00,0x00003F00,0x00004800,0x00005200,0x00004500,0x00005300,0x00003C00,0x00005600,0x00004300,0x00004200,0x00003200,0x00002F00,0x00003400,0x00003600,0x00004D00,0x00004600,0x00004100,0x00005100,0x00004E00,0x00004700,0x00003B00,0x00004B00,0x00004900,0xFFF200FF,0xFFFF0000,0x43BE0000,0x43A70000,0x3ED00000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x43F00000,0x44200000,0x42780000,0x3FABABAC,0x41000000};
-#pragma section code_type ".fzgxpool"
-void fzgx_pool_prime_b(volatile f32 *p) { *p = 0.125f; *p = 1.0f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
-#pragma section code_type ".text"
 static const u32 fzgx_pool_table_18c[] = {0x3F000000,0x43570000,0x40400000,0x43340000,0x42B40000,0x43700000,0x42300000,0x42B3CCCD,0x42200000,0x46800000,0x47800000,0x42700000,0x42A00000,0x43E60000,0x3F2AAAAB,0x3F1B9B9C,0xC0400000,0x00000000,0x3F1E9E9F,0x3F018182,0x43580000,0x3E4CCCCD,0x430C0000,0x437A0000,0x43C80000,0x44098000,0x3EEEEEEF};  /* fzgx-allow: A1 retail pool bytes */
-#pragma section code_type ".fzgxpool"
-void fzgx_pool_prime_c(volatile f64 *p) { *p = 4503599627370496.0; }  /* fzgx-allow: S2 volatile keeps the verified access order */
-#pragma section code_type ".text"
 static const u32 fzgx_pool_table_200[] = {0x00000000,0x41200000,0xC0A00000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0xBF000000};  /* fzgx-allow: A1 retail pool bytes */
-#pragma section code_type ".fzgxpool"
-void fzgx_pool_prime_d(volatile f32 *p) { *p = 182.04444885253906f; }  /* fzgx-allow: S2 volatile keeps the verified access order */
-#pragma section code_type ".text"
 #pragma force_active reset
 
 

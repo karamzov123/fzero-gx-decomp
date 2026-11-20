@@ -439,16 +439,13 @@ rel/customize/_prolog/_epilog.c:
 	.text       start:0x00000944 end:0x00000AF8 align:4
 
 rel/customize/toolkit/fn_3_286BC.c:
-	.text       start:0x000286BC end:0x00028EBC align:4
+	.text       start:0x000286BC end:0x00029508 align:4
 
 rel/customize/_prolog/fn_3_5070.c:
 	.text       start:0x00005070 end:0x00005500 align:4
 
 rel/customize/toolkit/fn_3_1857C.c:
 	.text       start:0x0001857C end:0x00018614 align:4
-
-rel/customize/toolkit/fn_3_28EBC.c:
-	.text       start:0x00028EBC end:0x00029508 align:4
 
 rel/customize/_prolog/fn_3_7038.c:
 	.text       start:0x00007038 end:0x00007360 align:4

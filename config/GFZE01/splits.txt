@@ -3297,9 +3297,6 @@ dol/fn_80054B6C.c:
 dol/fn_80055304.c:
 	.text       start:0x80055304 end:0x80055580 align:4
 
-dol/fn_80053090.c:
-	.text       start:0x80053090 end:0x80053A84 align:4
-
 dol/fn_80078F0C.c:
 	.text       start:0x80078F0C end:0x800791E8 align:4
 
@@ -3536,7 +3533,7 @@ dol/fn_8005D258.c:
 	.text       start:0x8005D258 end:0x8005D5A4 align:4
 
 dol/fn_80051F38.c:
-	.text       start:0x80051F38 end:0x80053090 align:4
+	.text       start:0x80051F38 end:0x80053A84 align:4
 
 dol/fn_80066C14.c:
 	.text       start:0x80066C14 end:0x800672E4 align:4

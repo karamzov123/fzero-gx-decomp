@@ -124,7 +124,7 @@ rel/title/operation/fn_8_BC04.c:
 	.text       start:0x0000BC04 end:0x0000BD08 align:4
 
 rel/title/operation/fn_8_C7B0.c:
-	.text       start:0x0000C7B0 end:0x0000CC4C align:4
+	.text       start:0x0000C7B0 end:0x0000CF58 align:4
 
 rel/title/operation/fn_8_6A70.c:
 	.text       start:0x00006A70 end:0x00006C90 align:4
@@ -225,9 +225,6 @@ rel/title/operation/fn_8_8440.c:
 
 rel/title/operation/fn_8_86FC.c:
 	.text       start:0x000086FC end:0x000089B8 align:4
-
-rel/title/operation/fn_8_CC4C.c:
-	.text       start:0x0000CC4C end:0x0000CF58 align:4
 
 rel/title/operation/fn_8_7C4C.c:
 	.text       start:0x00007C4C end:0x00007EFC align:4
