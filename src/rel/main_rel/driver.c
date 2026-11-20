@@ -2861,34 +2861,6 @@ extern void (*lbl_1_bss_71688)(void);
 
 /* The TU's shared literal pool (lbl_1_rodata_4A28 .. +0x58) in retail order, so the
  * function's own literals dedupe onto retail's displacements. */
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
-    volatile f32 s;  /* fzgx-allow: S2 pool primer sink */
-    s = 0.0f;
-    s = -0.1f;
-    s = 0.1f;
-    s = 5.0f;
-    s = 0.5f;
-    s = 50.0f;
-    s = 10.0f;
-    s = 57.2957763671875f;
-    s = -10.0f;
-    s = 0.2f;
-    s = -30.0f;
-    s = 1.8518518f;
-    s = -1.8518518f;
-    s = 4.166666507720947f;
-    s = 25.0f;
-    s = 30.0f;
-    s = 182.04444885253906f;
-    s = 0.46296295523643494f;
-    s = 1.0f;
-    s = 15.0f;
-    s = 45.0f;
-    s = -45.0f;
-    s = 0.75f;
-}
-#pragma section code_type ".text"
 
 void fn_1_A8834(FnA8834Camera *cam, FnA8834Vehicle *veh) {
     lbl_8006DAEC();
@@ -2931,38 +2903,6 @@ void fn_1_A8834(FnA8834Camera *cam, FnA8834Vehicle *veh) {
 
 /* fzgx:begin fn_1_A89B0 */
 /* primes the shared literal pool lbl_1_rodata_4A28 in retail order */
-#pragma section code_type ".fzgxpool"
-void fzgx_pool_A89B0(f32 *o) {
-    o[0] = 0.0f;
-    o[1] = -0.1f;
-    o[2] = 0.1f;
-    o[3] = 5.0f;
-    o[4] = 0.5f;
-    o[5] = 50.0f;
-    o[6] = 10.0f;
-    o[7] = 57.295776f;
-    o[8] = -10.0f;
-    o[9] = 0.2f;
-    o[10] = -30.0f;
-    o[11] = 1.8518518f;
-    o[12] = -1.8518518f;
-    o[13] = 4.1666667f;
-    o[14] = 25.0f;
-    o[15] = 30.0f;
-    o[16] = 182.04445f;
-    o[17] = 0.46296296f;
-    o[18] = 1.0f;
-    o[19] = 15.0f;
-    o[20] = 45.0f;
-    o[21] = -45.0f;
-    o[22] = 0.75f;
-    o[23] = 0.05f;
-    o[24] = -0.05f;
-    o[25] = -60.0f;
-    o[26] = 0.02f;
-    o[27] = 2.0f;
-}
-#pragma section code_type ".text"
 
 #define MTXA ((f32 (*)[4])0xE0000000)
 

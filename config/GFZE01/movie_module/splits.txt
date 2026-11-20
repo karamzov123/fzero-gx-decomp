@@ -40,7 +40,7 @@ rel/movie_module/fn_12_354C.c:
 	.text       start:0x0000354C end:0x00003570
 
 rel/movie_module/fn_12_35EC.c:
-	.text       start:0x000035EC end:0x00003710 align:4
+	.text       start:0x000035EC end:0x00003DB8 align:4
 
 rel/movie_module/fn_12_4CEC.c:
 	.text       start:0x00004CEC end:0x00004D14
@@ -122,12 +122,6 @@ rel/movie_module/fn_12_20474.c:
 
 rel/movie_module/fn_12_213D8.c:
 	.text       start:0x000213D8 end:0x0002145C align:4
-
-rel/movie_module/fn_12_214B0.c:
-	.text       start:0x000214B0 end:0x00021554
-
-rel/movie_module/fn_12_21554.c:
-	.text       start:0x00021554 end:0x000215A4 align:4
 
 rel/movie_module/fn_12_215A4.c:
 	.text       start:0x000215A4 end:0x000215CC
@@ -366,9 +360,6 @@ rel/movie_module/fn_12_309B0.c:
 rel/movie_module/fn_12_3310C.c:
 	.text       start:0x0003310C end:0x000331A8 align:4
 
-rel/movie_module/fn_12_335A4.c:
-	.text       start:0x000335A4 end:0x000335B8
-
 rel/movie_module/fn_12_338C4.c:
 	.text       start:0x000338C4 end:0x00033A44 align:4
 
@@ -466,10 +457,7 @@ rel/movie_module/fn_12_3858C.c:
 	.text       start:0x0003858C end:0x00038680
 
 rel/movie_module/fn_12_38D94.c:
-	.text       start:0x00038D94 end:0x00038DC8 align:4
-
-rel/movie_module/fn_12_38E24.c:
-	.text       start:0x00038E24 end:0x00038F04
+	.text       start:0x00038D94 end:0x00038F04 align:4
 
 rel/movie_module/fn_12_3901C.c:
 	.text       start:0x0003901C end:0x000390E4
@@ -541,7 +529,7 @@ rel/movie_module/fn_12_3E394.c:
 	.text       start:0x0003E394 end:0x0003E500
 
 rel/movie_module/fn_12_2145C.c:
-	.text       start:0x0002145C end:0x000214B0 align:4
+	.text       start:0x0002145C end:0x000215A4 align:4
 
 rel/movie_module/fn_12_59C.c:
 	.text       start:0x0000059C end:0x000005EC align:4
@@ -659,13 +647,10 @@ rel/movie_module/fn_12_2BAE0.c:
 	.text       start:0x0002BAE0 end:0x0002BCF4 align:4
 
 rel/movie_module/fn_12_147C.c:
-	.text       start:0x0000147C end:0x00001578 align:4
+	.text       start:0x0000147C end:0x00001F84 align:4
 
 rel/movie_module/fn_12_11A8.c:
 	.text       start:0x000011A8 end:0x0000132C align:4
-
-rel/movie_module/fn_12_38DC8.c:
-	.text       start:0x00038DC8 end:0x00038E24 align:4
 
 rel/movie_module/mwSfdDestroy.c:
 	.text       start:0x00036088 end:0x00036208 align:4
@@ -674,7 +659,7 @@ rel/movie_module/MWSFCRE_ResetSfdHn.c:
 	.text       start:0x0003753C end:0x0003763C align:4
 
 rel/movie_module/MPVCDEC_IntraBlocks.c:
-	.text       start:0x000073A0 end:0x000077F4 align:4
+	.text       start:0x000073A0 end:0x00007870 align:4
 
 rel/movie_module/fn_12_B254.c:
 	.text       start:0x0000B254 end:0x0000B3E0 align:4
@@ -684,9 +669,6 @@ rel/movie_module/fn_12_336CC.c:
 
 rel/movie_module/fn_12_354BC.c:
 	.text       start:0x000354BC end:0x00035548 align:4
-
-rel/movie_module/fn_12_77F4.c:
-	.text       start:0x000077F4 end:0x00007870 align:4
 
 rel/movie_module/fn_12_249BC.c:
 	.text       start:0x000249BC end:0x00024A88 align:4
@@ -708,9 +690,6 @@ rel/movie_module/fn_12_202FC.c:
 
 rel/movie_module/fn_12_C60.c:
 	.text       start:0x00000C60 end:0x00000D38 align:4
-
-rel/movie_module/fn_12_2A85C.c:
-	.text       start:0x0002A85C end:0x0002A9DC align:4
 
 rel/movie_module/fn_12_A1C4.c:
 	.text       start:0x0000A1C4 end:0x0000A2C4 align:4
@@ -734,10 +713,10 @@ rel/movie_module/fn_12_2D74C.c:
 	.text       start:0x0002D74C end:0x0002D888 align:4
 
 rel/movie_module/fn_12_332DC.c:
-	.text       start:0x000332DC end:0x00033364 align:4
+	.text       start:0x000332DC end:0x000334FC align:4
 
 rel/movie_module/fn_12_334FC.c:
-	.text       start:0x000334FC end:0x000335A4 align:4
+	.text       start:0x000334FC end:0x000335B8 align:4
 
 rel/movie_module/fn_12_3A598.c:
 	.text       start:0x0003A598 end:0x0003A600 align:4
@@ -759,9 +738,6 @@ rel/movie_module/fn_12_24B80.c:
 
 rel/movie_module/fn_12_245C4.c:
 	.text       start:0x000245C4 end:0x000247BC align:4
-
-rel/movie_module/fn_12_33364.c:
-	.text       start:0x00033364 end:0x000334FC align:4
 
 rel/movie_module/fn_12_818.c:
 	.text       start:0x00000818 end:0x000008DC align:4
@@ -1110,9 +1086,6 @@ rel/movie_module/fn_12_D0B8.c:
 rel/movie_module/fn_12_349CC.c:
 	.text       start:0x000349CC end:0x00034AB0 align:4
 
-rel/movie_module/fn_12_3A64.c:
-	.text       start:0x00003A64 end:0x00003DB8 align:4
-
 rel/movie_module/fn_12_2DBD4.c:
 	.text       start:0x0002DBD4 end:0x0002DEB0 align:4
 
@@ -1140,9 +1113,6 @@ rel/movie_module/fn_12_31860.c:
 rel/movie_module/fn_12_21C8.c:
 	.text       start:0x000021C8 end:0x00002F04 align:4
 
-rel/movie_module/fn_12_72F4.c:
-	.text       start:0x000072F4 end:0x000073A0 align:4
-
 rel/movie_module/fn_12_3DCF0.c:
 	.text       start:0x0003DCF0 end:0x0003E09C align:4
 
@@ -1153,7 +1123,7 @@ rel/movie_module/fn_12_1EF80.c:
 	.text       start:0x0001EF80 end:0x0001FADC align:4
 
 rel/movie_module/fn_12_2A6FC.c:
-	.text       start:0x0002A6FC end:0x0002A85C align:4
+	.text       start:0x0002A6FC end:0x0002A9DC align:4
 
 rel/movie_module/fn_12_35B08.c:
 	.text       start:0x00035B08 end:0x00035D74 align:4
@@ -1302,7 +1272,7 @@ rel/movie_module/fn_12_341C.c:
 	.text       start:0x0000341C end:0x000034A8 align:4
 
 rel/movie_module/fn_12_6FEC.c:
-	.text       start:0x00006FEC end:0x000072F4 align:4
+	.text       start:0x00006FEC end:0x000073A0 align:4
 
 rel/movie_module/fn_12_26D68.c:
 	.text       start:0x00026D68 end:0x000270AC align:4
@@ -1343,9 +1313,6 @@ rel/movie_module/fn_12_28304.c:
 rel/movie_module/fn_12_38AF0.c:
 	.text       start:0x00038AF0 end:0x00038D94 align:4
 
-rel/movie_module/fn_12_1578.c:
-	.text       start:0x00001578 end:0x00001F84 align:4
-
 rel/movie_module/fn_12_27884.c:
 	.text       start:0x00027884 end:0x00027C58 align:4
 
@@ -1366,9 +1333,6 @@ rel/movie_module/fn_12_38704.c:
 
 rel/movie_module/fn_12_D88.c:
 	.text       start:0x00000D88 end:0x00000F70 align:4
-
-rel/movie_module/fn_12_3710.c:
-	.text       start:0x00003710 end:0x00003A64 align:4
 
 rel/movie_module/fn_12_BBC0.c:
 	.text       start:0x0000BBC0 end:0x0000C218 align:4
