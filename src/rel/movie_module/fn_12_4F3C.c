@@ -1,6 +1,8 @@
 #include "types.h"
 #include "sofdec/mpvidct_ppc.h"
 
+
+/* --- rel/movie_module/fn_12_4F3C.c --- */
 typedef struct MPVBlockCtx {
     s8 coded[0x2C];
     f32 *coefficients;
@@ -112,4 +114,9 @@ void fn_12_4F3C(MPVBlockCtx *ctx, s32 mask) {
         outp++;
         flag++;
     }
+}
+
+/* --- rel/movie_module/fn_12_52C4.c --- */
+void fn_12_52C4(void *arg) {
+    fn_12_4F3C(arg, -1);
 }

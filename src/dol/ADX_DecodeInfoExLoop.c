@@ -2,6 +2,7 @@
 
 
 /* --- dol/ADX_DecodeInfoExLoop.c --- */
+/* --- dol/ADX_DecodeInfoExLoop.c --- */
 typedef union AdxHeaderMagic {
     unsigned short value;
     struct {
@@ -293,4 +294,99 @@ int ADX_ScanInfoCode(signed char *buffer, int buffer_len, short *data_len) {
         *data_len = 0;
         return -1;
     }
+}
+
+/* --- dol/fn_80046D94.c --- */
+/* ADX_GetCoefficient (adx_dcd.c, CRI ADX): IIR prediction coefficients for a cutoff. */
+
+extern const f32 lbl_80090938;
+extern const f64 lbl_80090940;
+extern const f64 lbl_80090948;
+extern const f64 lbl_80090950;
+extern const f32 lbl_80090958;
+extern const f32 lbl_8009095C;
+extern const f32 lbl_80090960;
+extern const f32 lbl_80090964;
+extern f64 __frsqrte(f64);
+extern f64 fn_80087E80(f32);
+
+static f64 fn_80046D94_refine(f64 x) {
+    f64 r;
+    r = __frsqrte(x);
+    r = lbl_80090948 * r * (lbl_80090950 - x * (r * r));
+    r = lbl_80090948 * r * (lbl_80090950 - x * (r * r));
+    r = lbl_80090948 * r * (lbl_80090950 - x * (r * r));
+    return x * r;
+}
+
+void fn_80046D94(s32 arg0, s32 arg1, short *arg2, short *arg3) {
+    volatile f32 sa; /* retail rounds each square root through a float stack slot */
+    volatile f32 sb; /* retail rounds each square root through a float stack slot */
+    volatile f32 vr; /* retail rounds each square root through a float stack slot */
+    f32 v;
+    f32 ang;
+    f32 d;
+    f32 e;
+    f32 t;
+    ang = (f32)fn_80087E80(lbl_80090938 * (f32)arg0 / (f32)arg1);
+    sa = (f32)fn_80046D94_refine(lbl_80090940);
+    d = sa - ang;
+    sb = (f32)fn_80046D94_refine(lbl_80090940);
+    e = sb - lbl_80090958;
+    v = (d + e) * (d - e);
+    if (v > lbl_8009095C) {
+        vr = (f32)fn_80046D94_refine(v);
+        v = vr;
+    }
+    t = (d - v) / e;
+    *arg2 = lbl_80090960 * (lbl_80090964 * t);
+    *arg3 = lbl_80090960 * (-t * t);
+}
+
+/* --- dol/fn_80046F7C.c --- */
+extern u32 lbl_8017B028[3];
+
+void fn_80046F7C(u32 value) {
+    lbl_8017B028[0] = value;
+}
+
+/* --- dol/fn_80046F88.c --- */
+/* ADXERR_ItoA2, from the CC0 MK Deception decomp (adx_errs.c) */
+
+extern unsigned long strlen(const char *string);
+extern char *fn_80083CF4(char *destination, const char *source, unsigned long size);
+extern signed char lbl_8017B038[32];
+
+static inline void adxerr_itoa(int value, signed char* string, int length)
+{
+    int i;
+    int n;
+    int l;
+
+    for (i = 0; i < 32; i++) {
+        string[i] = value % 10;
+        value /= 10;
+        if (value == 0) {
+            string[i] = '\0';
+            break;
+        }
+    }
+
+    l = strlen((const char*)lbl_8017B038);
+    n = length - 1;
+    if (l < n) {
+        n = l;
+    }
+    for (i = 0; i < n; i++) {
+        string[i] = lbl_8017B038[n - 1 - i];
+    }
+    string[i] = '\0';
+}
+
+void fn_80046F88(int value1, int value2, signed char* string, int length)
+{
+    adxerr_itoa(value1, string, length);
+    fn_80083CF4((char*)string, " ", length - strlen((const char*)string) - 1);
+    adxerr_itoa(value2, string + strlen((const char*)string),
+                4 - strlen((const char*)string));
 }

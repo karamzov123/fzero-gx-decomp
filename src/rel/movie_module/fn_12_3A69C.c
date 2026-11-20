@@ -1,5 +1,7 @@
 #include "types.h"
 
+
+/* --- rel/movie_module/fn_12_3A69C.c --- */
 typedef struct Fn12_39A68_Object {
     u8 _pad0[4];
     s32 unk4;
@@ -68,4 +70,31 @@ s32 fn_12_3A69C(Fn12_39A68_Object *object) {
     }
     skipped = ply_get_skip_dec(object);
     return skipped + fn_12_33874(object);
+}
+
+/* --- rel/movie_module/fn_12_3A784.c --- */
+typedef struct Fn12_3A784_Object {
+    u8 _pad0[0x4];
+    s32 value;
+    u8 _pad8[0x40];
+    u32 result;
+} Fn12_3A784_Object;
+
+extern char lbl_12_rodata_2CC4[45];
+
+u32 fn_12_3A784(Fn12_3A784_Object *object) {
+    s32 value;
+
+    if (object == 0) {
+        value = 0;
+    } else {
+        value = object->value;
+    }
+
+    if (value == 0) {
+        MWSFSVM_Error(lbl_12_rodata_2CC4);
+        return 0;
+    }
+
+    return object->result;
 }

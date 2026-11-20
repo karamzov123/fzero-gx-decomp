@@ -1,10 +1,13 @@
 #include "types.h"
+#include "dolphin/types.h"
+#include "dolphin/hw_regs.h"
+
+
+/* --- dol/fn_800384FC.c --- */
 /* begin dolphin/gx.h (deltawave784/fzgx, CC0) */
 #ifndef DOLPHIN_GX_H
 #define DOLPHIN_GX_H
 
-#include "dolphin/types.h"
-#include "dolphin/hw_regs.h"
 
 /* The GX write-gather pipe: one memory-mapped port at GX_FIFO_BASE (dolphin/hw_regs.h), written through
    the member whose width the command needs. Declared as an MWCC absolute object: every store is
@@ -159,4 +162,9 @@ void fn_800384FC(u8 numMajor, u8 numMinor) {
 
     GXSetVtxDescv(lbl_80178118);
     GXSetVtxAttrFmtv(3, lbl_80178118__fzgx_offset_D8);
+}
+
+/* --- dol/fn_80038878.c --- */
+// fn_80038878: empty in retail (single blr).
+void fn_80038878(void) {
 }
