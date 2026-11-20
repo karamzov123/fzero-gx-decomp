@@ -40,7 +40,7 @@ rel/interview/interview/fn_17_7020.c:
 	.text       start:0x00007020 end:0x00007098
 
 rel/interview/interview/fn_17_71C0.c:
-	.text       start:0x000071C0 end:0x000071DC
+	.text       start:0x000071C0 end:0x000072BC align:4
 
 rel/interview/fn_17_72BC.c:
 	.text       start:0x000072BC end:0x000072C0
@@ -53,9 +53,6 @@ rel/interview/interview/fn_17_8D28.c:
 
 rel/interview/interview/fn_17_67C4.c:
 	.text       start:0x000067C4 end:0x00006848 align:4
-
-rel/interview/interview/fn_17_71DC.c:
-	.text       start:0x000071DC end:0x000072BC align:4
 
 rel/interview/interview/fn_17_4E54.c:
 	.text       start:0x00004E54 end:0x000050F0 align:4
