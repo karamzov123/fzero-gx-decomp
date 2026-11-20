@@ -2322,7 +2322,6 @@ void fn_1_772E0(void) {
 
 extern u32 lbl_1_bss_6C8D8;
 
-#pragma fp_contract off
 
 char lbl_1_data_1DCB4[] = "Error!:noise_update";
 

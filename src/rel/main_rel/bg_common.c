@@ -71,7 +71,6 @@ extern void lbl_8006D9D8(CamEntry *);
 /* end game/main_rel/camera_types.h */
 /* game/vec3.h: inlined above */
 
-#pragma fp_contract on
 
 typedef struct Sig_fn_1_9E598_Node Sig_fn_1_9E598_Node;
 struct Sig_fn_1_9E598_Node { Sig_fn_1_9E598_Node *next; };
@@ -764,7 +763,6 @@ static void fzgx_shared_pool_primer(void) {
 #pragma section code_type ".text"
 
 extern f32 __fmadds(f32, f32, f32);
-#pragma fp_contract on
 void fn_1_103FCC(void *arg0) {
     u32 v2;
     f32 v4;

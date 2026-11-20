@@ -6169,12 +6169,10 @@ static inline f32 fn97288_clamp(f32 x, const struct fn_1_97288_lbl_1_rodata_3E48
     return x < (0.0f) ? (0.0f) : x > d->unk_6418 ? d->unk_6418 : x;
 }
 /* integer address sum keeps the table base (addi rT, base, 0x6400) separate from the lwzx index */
-#pragma opt_propagation off
 static inline const char *fn97288_table(u32 base, s32 index) { const char **table = (const char **)(base + 0x6400); return table[index]; }
 #pragma opt_propagation off
 
 #pragma opt_lifetimes off
-#pragma opt_common_subs on
 void fn_1_97288(struct fn_1_97288_Arg0 *arg0, f32 arg1) {
     const struct fn_1_97288_lbl_1_rodata_3E48 *p_lbl_1_rodata_3E48;
     struct fn_1_97288_lbl_1_data_209C0 *p_lbl_1_data_209C0;

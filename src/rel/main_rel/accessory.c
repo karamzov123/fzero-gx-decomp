@@ -866,9 +866,7 @@ extern u32 lbl_801A6410;
 extern void fn_1_10846C(u32);
 extern void fn_1_128884(void *, void *, s32);
 
-#pragma opt_common_subs on
 #pragma opt_dead_assignments off
-#pragma opt_propagation on
 void fn_1_1091D4(u32 arg0) {
     f32 fzgx_live;
     struct fn_1_1091D4_lbl_1_rodata_7AB8 *p_lbl_1_rodata_7AB8;
@@ -1049,7 +1047,6 @@ void fn_1_1091D4(u32 arg0) {
 }
 #pragma opt_dead_assignments reset
 
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_1091D4 */
 
 /* fzgx:begin fn_1_10976C */
@@ -10311,7 +10308,6 @@ static inline void reset_points(AccessoryObjectLocal *obj) {
         lbl_8006E1B0(&p->unk_28, &p->unk_10);
     }
 }
-#pragma fp_contract on
 void fn_1_113C58(AccessoryObjectLocal *arg0) {
     AccessoryVec delta;
     AccessoryVec noise;
@@ -12331,7 +12327,6 @@ f32 fzgx_pool_lit_3C0(void) { return 0.03700000047683716f; }
 
 #pragma opt_dead_assignments off
 static inline f32 fn_1_11677C_operand(f32 right, f32 left) { return left + right; }
-#pragma opt_common_subs on
 void fn_1_11677C(void *arg0) {
     f32 fzgx_live;
     struct fn_1_11677C_Part { u8 pad_0[0x88]; Vec3 matrix; u8 pad_94[0xF8]; };
@@ -12663,7 +12658,6 @@ void fn_1_11677C(void *arg0) {
     }
     }
 }
-#pragma opt_common_subs reset
 
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_1_11677C */
@@ -20271,13 +20265,7 @@ static inline f32 sim_dot(const SimVec *v) {
     return result;
 }
 
-#pragma opt_propagation off
-#pragma opt_lifetimes off
-#pragma opt_lifetimes on
 
-#pragma opt_propagation off
-#pragma opt_lifetimes off
-#pragma opt_lifetimes on
 static inline void sim_sphere(SimRope *r, s32 bone, f32 x, f32 y, f32 z,
                              u32 radius2_offset, u32 radius_offset, u8 *pool) {
     SimVec center, delta;
@@ -20304,29 +20292,12 @@ static inline void sim_sphere(SimRope *r, s32 bone, f32 x, f32 y, f32 z,
     }
 }
 
-#pragma opt_propagation on
-#pragma fp_contract on
 #define pool literal_pool
-#pragma opt_common_subs off
-#pragma opt_lifetimes on
-#pragma opt_propagation off
-#pragma opt_lifetimes off
-#pragma opt_lifetimes on
-#pragma opt_propagation on
-#pragma opt_propagation on
-#pragma opt_lifetimes on
 #pragma inline_max_size(4096)
-#pragma opt_lifetimes on
-#pragma opt_propagation on
 #pragma opt_common_subs off
-#pragma opt_lifetimes on
-#pragma opt_propagation off
-#pragma opt_propagation on
-#pragma opt_lifetimes on
 #undef pool
 #define pool literal_pool
 #undef fzgx_pool_table_0
-#pragma opt_propagation on
 static inline void sim_upload(SimRope *r, u8 *vertices) {
     u32 pass;
     s32 j;
@@ -23462,7 +23433,6 @@ f32 fn_1_1289BC(const Point1024C4 *a, const Point1024C4 *b) {
 /* fzgx:begin fn_1_1289F0 */
 #include "psvec.h"
 
-#pragma fp_contract on
 extern f32 lbl_8006D6FC(void *, void *);
 extern f32 lbl_8006D0B4(f32);
 

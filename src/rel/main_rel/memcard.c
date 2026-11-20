@@ -18417,7 +18417,6 @@ static inline Color_1_B6B28 tint_level4(u32 rgb) {
 static inline Color_1_B6B28 tint_level3(u32 rgb) { return tint_level4(rgb); }
 static inline Color_1_B6B28 tint_level2(u32 rgb) { return tint_level3(rgb); }
 static inline Color_1_B6B28 tint_level1(u32 rgb) { return tint_level2(rgb); }
-#pragma peephole on
 #undef draw_tint_1
 #undef draw_tint_2
 #undef draw_tint_3

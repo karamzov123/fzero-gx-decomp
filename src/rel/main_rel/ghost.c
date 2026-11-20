@@ -1926,7 +1926,6 @@ extern void fn_1_F143C(FnObject *obj, s32 index, const f32 *a, const f32 *b, voi
 /* end game/main_rel/ghost_types.h */
 /* game/vec3.h: inlined above */
 
-#pragma fp_contract on
 
 extern const f32 lbl_1_rodata_6C94;
 extern const f32 lbl_1_rodata_6BD0;
@@ -1952,7 +1951,6 @@ extern void fn_8006F5C4(s16 *, s16 *, s16 *);
 extern void ghost_pack_bits(u32 *, const u32 *, const u32 *, const u32 *);
 extern void lbl_8006DBAC(Vec3 *);
 
-#pragma fp_contract on
 void fn_1_ECF88(void) {
     Obj_1_bss_7B180 *p_lbl_1_bss_7B180;
     u32 v0;
@@ -2148,7 +2146,6 @@ packed_flag:
 #include "types.h"
 #include "psvec.h"
 
-#pragma fp_contract on
 
 typedef struct { f32 x, y, z; } GVec;
 typedef struct { u8 r, g, b, a; } GColor;
@@ -3019,7 +3016,6 @@ extern u8 lbl_1_data_3E73C[0x158];
 
 /* end rel/main_rel/ghost.h */
 
-#pragma fp_contract on
 typedef struct Sig_fn_1_87610_Fn187610Data {
  u8 pad_000[2]; s8 field_002; u8 pad_003[0x205]; u8 field_208[0x120];
 } Sig_fn_1_87610_Fn187610Data;

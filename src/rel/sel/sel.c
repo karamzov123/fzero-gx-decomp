@@ -23849,7 +23849,6 @@ extern void fn_1_4CE48(Obj_1_bss_4B9CC *, f32);
 extern void fn_1_50164(f32, f32, f32, f32, void *);
 extern void fn_1_52250(struct Sig_fn_1_52250_fn_1_52250_Arg0 *, struct Sig_fn_1_52250_fn_1_52250_Arg1 *);
 
-#pragma opt_common_subs off
 extern u8 fn_10_13ECC__fzgx_offset_938[];
 extern u8 fn_10_13ECC__fzgx_offset_940[];
 extern u8 fn_10_13ECC__fzgx_offset_948[];
@@ -38888,7 +38887,6 @@ extern void *fn_1_5417C(u8);
 extern f64 __fabs(f64);
 extern int sprintf(char *, const char *, ...);
 
-#pragma opt_common_subs off
 extern u8 fn_10_13ECC__fzgx_offset_938[];
 extern u8 fn_10_13ECC__fzgx_offset_940[];
 extern u8 fn_10_13ECC__fzgx_offset_948[];
@@ -39566,7 +39564,6 @@ static char fzgx_pool_native_lbl_10_data_D00_str_5A64[0x20] = {0x82, 0xC6, 0x82,
 static char fzgx_pool_native_lbl_10_data_D00_str_5A84[0x4] = {0x25, 0x33, 0x64, 0x00}; /* fzgx-allow: A1 measured pool bytes and bindings */
 static union {u32 words[2]; char view[0x8];} fzgx_pool_native_lbl_10_data_D00_str_5A88 = {{0x25737300, (u32)fn_10_1E57C__fzgx_offset_30}}; /* fzgx-allow: A1 measured pool bytes and bindings */
 
-#pragma opt_common_subs on
 #pragma opt_common_subs off
 void fn_10_1D314(struct Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3) {
     char buf[256];

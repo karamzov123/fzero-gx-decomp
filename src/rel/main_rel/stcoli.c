@@ -8405,7 +8405,6 @@ extern void mathutil_mtxA_rotate_z__fzgx_offset_C(f32, f32);
 extern void OSReport(const char *, ...);
 extern void OSPanic(const char *, int, const char *, ...);
 
-#pragma opt_propagation off
 /* mtxA translation along its x axis */
 static inline void fn_1_203E4_translate_x(f32 (*mtx)[4], f32 d) {
     f32 x, y, z;
@@ -10343,7 +10342,6 @@ s32 fn_1_224F8(StcoliGateVec *start, StcoliGateVec *end, u32 *mask) {
 /* fzgx:end fn_1_224F8 */
 
 /* fzgx:begin fn_1_2277C */
-#pragma fp_contract on
 
 typedef struct StcoliVec_fn_1_2277C {
     f32 x, y, z;
@@ -12152,7 +12150,6 @@ extern void fn_8006E2B0(void *, Vec3_fn_1_239C4 *);
 #define S(p,o) (*(s8 *)((u8 *)(p)+(o)))
 #define V(p,o) ((Vec3_fn_1_239C4 *)((u8 *)(p)+(o)))
 #define CLEAR_PAIR() do { U(arg0,0x514) &= ~(0x80000000U >> H(arg1,4)); U(arg1,0x514) &= ~(0x80000000U >> H(arg0,4)); } while (0)
-#pragma fp_contract on
 static inline f32 length239C4(Vec3_fn_1_239C4 *p) {
     f32 x = p->x, y = p->y, z = p->z;
     f32 v1 = x*x;
@@ -13672,7 +13669,6 @@ __declspec(section ".fzgxpool") f64 fzgx_pool_p1A0(void) { return 0.925925925925
 __declspec(section ".fzgxpool") f64 fzgx_pool_p1A8(void) { return 5.555555555555555; }
 __declspec(section ".fzgxpool") f32 fzgx_pool_p1B0(void) { return 1.13f; }
 
-#pragma fp_contract on
 void fn_1_25480(Fn_1_25480_Obj *p)
 {
     Vec3f push;
@@ -14252,7 +14248,6 @@ s32 fn_1_25A14(fn_1_25A14_Machine *m)
 
 /* end game/vec3.h */
 
-#pragma fp_contract on
 
 typedef struct { f32 x, y, z; } CollisionVec3;
 
@@ -16103,7 +16098,6 @@ extern void lbl_8006D5F0(Vec3_fn_1_28184 *, f32, Vec3_fn_1_28184 *);
 extern void fn_8006E2B0(Vec3_fn_1_28184 *, Vec3_fn_1_28184 *);
 extern void lbl_8006E1C0(Vec3_fn_1_28184 *, Vec3_fn_1_28184 *);
 
-#pragma fp_contract on
 #pragma opt_common_subs off
 static inline f32 norm28184(Vec3_fn_1_28184 *v) {
     f32 n = v->x * v->x;
@@ -16118,7 +16112,6 @@ static inline f32 add28184(f32 k, f32 x, f32 y) {
     f32 product = k * x;
     return y + product;
 }
-#pragma fp_contract on
 void fn_1_28184(Racer28184 *r) {
     struct fn_1_28184_Pool *c;
     Vec3_fn_1_28184 pos;
@@ -18496,7 +18489,6 @@ typedef struct fn_1_294D0_Body {
     u16 boostTimer;      /* 0x4E0 */
 } fn_1_294D0_Body;
 
-#pragma fp_contract on
 void fn_1_294D0(fn_1_294D0_Body *p) {
     f32 scale1;
     f32 scale2;
@@ -18583,7 +18575,6 @@ void fn_1_294D0(fn_1_294D0_Body *p) {
     }
     psvec_sub(&p->vel, &push, &p->vel);
 }
-#pragma fp_contract reset
 /* fzgx:end fn_1_294D0 */
 
 /* fzgx:begin fn_1_29800 */
@@ -21449,7 +21440,6 @@ __declspec(section ".fzgxpool") void fzgx_pool6_fn_1_2B684(void) {
     fzgx_use_f(1365.0f);
 }
 
-#pragma opt_propagation off
 static inline void fn_1_2B684_cross(Vec3f *a, Vec3f *b, Vec3f *out) {
     f32 ax = a->x, ay = a->y, bz = b->z;
     f32 az = a->z, bx = b->x, by = b->y;
@@ -21464,7 +21454,6 @@ static inline void fn_1_2B684_cross(Vec3f *a, Vec3f *b, Vec3f *out) {
     out->y = y;
     out->z = z;
 }
-#pragma opt_propagation reset
 
 static inline f32 fn_1_2B684_clamp(f32 t) {
     if (t < 0.0f) return 0.0f;

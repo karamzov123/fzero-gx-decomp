@@ -3656,7 +3656,6 @@ typedef struct Sig_parse_format_MkVaListState {
 typedef Sig_parse_format___va_list Sig_parse_format_va_list;
 
 
-#pragma opt_common_subs off
 void fn_1_4CF3C(const char *format, f32 x, ...) {
     Obj_1_bss_4B9CC *p_lbl_1_bss_4B9CC;
     char buffer[512];
@@ -3683,7 +3682,6 @@ void fn_1_4CF3C(const char *format, f32 x, ...) {
     fn_1_4A0D8((const char *)buffer);
     p_lbl_1_bss_4B9CC->unk_1C = saved;
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_4CF3C */
 
 /* fzgx:begin fn_1_4D0A0 */
@@ -4992,7 +4990,6 @@ Slot *fn_1_4DF60(void) {
 /* fzgx:begin fn_1_4E060 */
 #include "rel/main_rel/font.h"
 
-#pragma opt_unroll_loops off
 void fn_1_4E060(void) {
     Obj_1_bss_4C688 *p;
     u32 count;

@@ -911,7 +911,6 @@ typedef struct Object4247C {
 } Object4247C;
 
 #pragma opt_propagation off
-#pragma fp_contract on
 static inline void fn_1_4247C_set(Vec4247C *v) {
     v->x = lbl_1_rodata_F50;
     v->y = lbl_1_rodata_F50;

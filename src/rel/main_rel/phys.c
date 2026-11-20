@@ -5367,7 +5367,6 @@ extern u32 lbl_1_data_3DC98;
  * is what the retail streams show. Pointers are untyped so every per-block Vec
  * typedef can be passed without a cast. */
 /* ab = a - b */
-#pragma fp_contract on
 typedef struct E8938Vec { f32 x, y, z; } E8938Vec;
 typedef struct E8938State { u8 pad0[0x90]; s32 *current; } E8938State;
 typedef struct Sig_fn_1_24F10_Fn_1_24F10 {
