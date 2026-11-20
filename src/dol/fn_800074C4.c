@@ -1,5 +1,4 @@
 #include "types.h"
-#pragma opt_propagation off
 
 /* --- dol/fn_800074C4.c --- */
 extern u32 fn_80007654(u32);

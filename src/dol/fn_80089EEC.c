@@ -22,7 +22,6 @@ extern u8 lbl_80095890[];
 extern void *memset(void *,s32,u32);
 extern u32 MWTRACE(u32,...);
 
-#pragma opt_common_subs off
 #pragma opt_lifetimes off
 s32 fn_80089EEC(Sig_fn_80089EEC_TRKBuffer *arg0) {
     u8 *p_lbl_80095890 = (u8 *)&lbl_80095890;
@@ -74,4 +73,3 @@ s32 fn_80089EEC(Sig_fn_80089EEC_TRKBuffer *arg0) {
     return v12.value;
 }
 #pragma opt_lifetimes reset
-#pragma opt_common_subs reset

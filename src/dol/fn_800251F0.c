@@ -1,6 +1,4 @@
 #include "types.h"
-#pragma peephole off
-#pragma peephole reset
 
 /* --- dol/fn_800251F0.c --- */
 typedef struct fn_800251F0_Chorus {

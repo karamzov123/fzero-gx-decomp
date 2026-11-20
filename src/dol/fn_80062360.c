@@ -79,7 +79,6 @@ static u8 *fn_80062360_table(Obj_801A6C80_Target *obj, s32 found) {
     u8 *row = obj->unk_0[found];
     return *(u8 **)(row + 8);
 }
-#pragma opt_propagation off
 
 /* Step past the first sel+1 record offsets of the table. */
 static inline u32 *fn_80062360_skip(u32 *p, u32 sel) {
@@ -150,7 +149,6 @@ void fn_80062360(u32 slot, u32 sel) {
             }
         }
 
-#pragma opt_propagation off
         obj = lbl_801A6C80;
         lbl_80192D68[slot].active = 1;
         base = fn_80062360_table(obj, found);

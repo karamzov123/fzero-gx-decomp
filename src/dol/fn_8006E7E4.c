@@ -19,7 +19,6 @@ typedef struct {
     f32 z;
 } Vec3;
 
-#pragma fp_contract on
 
 #pragma opt_common_subs off
 void fn_8006E7E4(Vec4 *arg0, Vec3 *arg1, s32 arg2) {
