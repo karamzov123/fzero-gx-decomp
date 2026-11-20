@@ -4897,17 +4897,11 @@ u32 *fn_1_1289C(u32 *raw_args) {
 }
 /* fzgx:end fn_1_1289C */
 
-/* fzgx:begin fn_1_12B88 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_12B88 */
 #include "rel/main_rel/live_camera.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
 #include "rel/main_rel/live_camera.h"
 #include "psvec.h"
 #include "dolphin/hw_regs.h"
-#include "types.h"
-#include "types.h"
-
 /* begin game/main_rel/live_camera_types.h (deltawave784/fzgx, CC0) */
 #ifndef GAME_MAIN_REL_LIVE_CAMERA_TYPES_H
 #define GAME_MAIN_REL_LIVE_CAMERA_TYPES_H

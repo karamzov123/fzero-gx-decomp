@@ -5031,8 +5031,7 @@ u8 *fn_1_4DDB0(void) {
 }
 /* fzgx:end fn_1_4DDB0 */
 
-/* fzgx:begin fn_1_4DDC0 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_4DDC0 */
 #include "rel/main_rel/font.h"
 
 #pragma opt_unroll_loops off
@@ -5047,8 +5046,7 @@ void fn_1_4DDC0(void) {
 }
 /* fzgx:end fn_1_4DDC0 */
 
-/* fzgx:begin fn_1_4DE04 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_4DE04 */
 #include "rel/main_rel/font.h"
 
 u32 fn_1_4DE04(void) {
@@ -5151,8 +5149,7 @@ Slot *fn_1_4DF60(void) {
 }
 /* fzgx:end fn_1_4DF60 */
 
-/* fzgx:begin fn_1_4E060 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_4E060 */
 #include "rel/main_rel/font.h"
 
 #pragma opt_unroll_loops off
@@ -6739,8 +6736,7 @@ void fn_1_51564(u16 first, u16 second, u16 third, u16 fourth, u16 fifth, u16 six
 }
 /* fzgx:end fn_1_51564 */
 
-/* fzgx:begin fn_1_5158C noprologue */
-#include "dolphin/types.h"
+/* fzgx:begin fn_1_5158C */
 #include "rel/main_rel/font.h"
 
 typedef struct FontDrawPacket FontDrawPacket;

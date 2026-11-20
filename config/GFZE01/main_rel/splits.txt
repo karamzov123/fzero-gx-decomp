@@ -105,9 +105,6 @@ rel/main_rel/live_camera/fn_1_EE04.c:
 rel/main_rel/live_camera/fn_1_10138.c:
 	.text       start:0x00010138 end:0x00010268 align:4
 
-rel/main_rel/live_camera/fn_1_12F78.c:
-	.text       start:0x00012F78 end:0x00012FD4
-
 rel/main_rel/live_camera/fn_1_13018.c:
 	.text       start:0x00013018 end:0x0001304C
 
@@ -324,9 +321,6 @@ rel/main_rel/font/fn_1_4BD48.c:
 rel/main_rel/font/fn_1_4D274.c:
 	.text       start:0x0004D274 end:0x0004D2AC
 
-rel/main_rel/font/fn_1_4DE44.c:
-	.text       start:0x0004DE44 end:0x0004E060 align:4
-
 rel/main_rel/font/fn_1_4E500.c:
 	.text       start:0x0004E500 end:0x0004E724 align:4
 
@@ -343,7 +337,7 @@ rel/main_rel/font/fn_1_50164.c:
 	.text       start:0x00050164 end:0x00050190
 
 rel/main_rel/font/fn_1_51564.c:
-	.text       start:0x00051564 end:0x0005158C
+	.text       start:0x00051564 end:0x00051678 align:4
 
 rel/main_rel/font/fn_1_51990.c:
 	.text       start:0x00051990 end:0x000519AC
@@ -1115,9 +1109,6 @@ rel/main_rel/bg_cas/fn_1_10144C.c:
 rel/main_rel/cloth/fn_1_102FD0.c:
 	.text       start:0x00102FD0 end:0x001030D4 align:4
 
-rel/main_rel/bg_common/fn_1_103AA8.c:
-	.text       start:0x00103AA8 end:0x00103B00 align:4
-
 rel/main_rel/bg_common/fn_1_103F10.c:
 	.text       start:0x00103F10 end:0x00103FCC align:4
 
@@ -1135,9 +1126,6 @@ rel/main_rel/bg_common/fn_1_106EA4.c:
 
 rel/main_rel/bg_common/fn_1_1071C0.c:
 	.text       start:0x001071C0 end:0x001071E8
-
-rel/main_rel/bg_common/fn_1_107900.c:
-	.text       start:0x00107900 end:0x00107930
 
 rel/main_rel/bg_common/fn_1_107C4C.c:
 	.text       start:0x00107C4C end:0x00107C74
@@ -1316,9 +1304,6 @@ rel/main_rel/sel_static_disp/fn_1_14C7F4.c:
 rel/main_rel/sel_static_disp/fn_1_14D5CC.c:
 	.text       start:0x0014D5CC end:0x0014D994 align:4
 
-rel/main_rel/sel_static_disp/fn_1_14DE80.c:
-	.text       start:0x0014DE80 end:0x0014DEC8 align:4
-
 rel/main_rel/sel_static_disp/fn_1_14E054.c:
 	.text       start:0x0014E054 end:0x0014E09C align:4
 
@@ -1472,9 +1457,6 @@ rel/main_rel/font/fn_1_4CE48.c:
 rel/main_rel/font/fn_1_4CDE4.c:
 	.text       start:0x0004CDE4 end:0x0004CE48 align:4
 
-rel/main_rel/font/fn_1_4E0A4.c:
-	.text       start:0x0004E0A4 end:0x0004E220 align:4
-
 rel/main_rel/font/fn_1_521B8.c:
 	.text       start:0x000521B8 end:0x00052250 align:4
 
@@ -1604,7 +1586,7 @@ rel/main_rel/load/fn_1_45850.c:
 	.text       start:0x00045850 end:0x000458A0 align:4
 
 rel/main_rel/font/fn_1_4DC20.c:
-	.text       start:0x0004DC20 end:0x0004DDC0 align:4
+	.text       start:0x0004DC20 end:0x0004E220 align:4
 
 rel/main_rel/car/fn_1_87074.c:
 	.text       start:0x00087074 end:0x000870BC align:4
@@ -1635,7 +1617,7 @@ rel/main_rel/stcoli/fn_1_21644.c:
 	.text       start:0x00021644 end:0x000216F0 align:4
 
 rel/main_rel/ranking/fn_1_156198.c:
-	.text       start:0x00156198 end:0x00156C08 align:4
+	.text       start:0x00156198 end:0x00156F54 align:4
 
 rel/main_rel/accessory/fn_1_127FB8.c:
 	.text       start:0x00127FB8 end:0x001286F4 align:4
@@ -2243,7 +2225,7 @@ rel/main_rel/sel_static_disp/fn_1_139D60.c:
 	.text       start:0x00139D60 end:0x00139F18 align:4
 
 rel/main_rel/live_camera/fn_1_12620.c:
-	.text       start:0x00012620 end:0x00012B88 align:4
+	.text       start:0x00012620 end:0x00012FD4 align:4
 
 rel/main_rel/font/fn_1_4E92C.c:
 	.text       start:0x0004E92C end:0x0004EB74 align:4
@@ -2977,13 +2959,7 @@ rel/main_rel/sel_static_disp/fn_1_14BC40.c:
 	.text       start:0x0014BC40 end:0x0014BCBC align:4
 
 rel/main_rel/bg_common/fn_1_10780C.c:
-	.text       start:0x0010780C end:0x00107900 align:4
-
-rel/main_rel/font/fn_1_4DDC0.c:
-	.text       start:0x0004DDC0 end:0x0004DE04 align:4
-
-rel/main_rel/font/fn_1_4E060.c:
-	.text       start:0x0004E060 end:0x0004E0A4 align:4
+	.text       start:0x0010780C end:0x00107930 align:4
 
 rel/main_rel/sel_static_disp/fn_1_14E9A8.c:
 	.text       start:0x0014E9A8 end:0x0014E9E4 align:4
@@ -3090,9 +3066,6 @@ rel/main_rel/font/fn_1_4BA24.c:
 rel/main_rel/bg_cas/fn_1_FD3A8.c:
 	.text       start:0x000FD3A8 end:0x000FD844 align:4
 
-rel/main_rel/font/fn_1_5158C.c:
-	.text       start:0x0005158C end:0x00051678 align:4
-
 rel/main_rel/car/fn_1_87448.c:
 	.text       start:0x00087448 end:0x000875B4 align:4
 
@@ -3101,9 +3074,6 @@ rel/main_rel/sel_static_disp/fn_1_13A460.c:
 
 rel/main_rel/enemy_ctrl/fn_1_CA440.c:
 	.text       start:0x000CA440 end:0x000CA690 align:4
-
-rel/main_rel/ranking/fn_1_156D9C.c:
-	.text       start:0x00156D9C end:0x00156F54 align:4
 
 rel/main_rel/stcoli/fn_1_229EC.c:
 	.text       start:0x000229EC end:0x00022B10 align:4
@@ -3270,9 +3240,6 @@ rel/main_rel/game/fn_1_3F5F8.c:
 
 rel/main_rel/font/fn_1_53E40.c:
 	.text       start:0x00053E40 end:0x00053FE4 align:4
-
-rel/main_rel/ranking/fn_1_156C08.c:
-	.text       start:0x00156C08 end:0x00156D9C align:4
 
 rel/main_rel/sound/fn_1_A1CE8.c:
 	.text       start:0x000A1CE8 end:0x000A1DCC align:4
@@ -3599,10 +3566,7 @@ rel/main_rel/car/fn_1_7F658.c:
 	.text       start:0x0007F658 end:0x0007F934 align:4
 
 rel/main_rel/sel_static_disp/fn_1_14DD68.c:
-	.text       start:0x0014DD68 end:0x0014DDF4 align:4
-
-rel/main_rel/sel_static_disp/fn_1_14DDF4.c:
-	.text       start:0x0014DDF4 end:0x0014DE80 align:4
+	.text       start:0x0014DD68 end:0x0014DEC8 align:4
 
 rel/main_rel/data/lbl_1_data_4440.c:
 	.data       start:0x00004440 end:0x00004508 align:8
@@ -4110,9 +4074,6 @@ rel/main_rel/stcoli/fn_1_294D0.c:
 rel/main_rel/effect/fn_1_5F654.c:
 	.text       start:0x0005F654 end:0x0005F9B8 align:4
 
-rel/main_rel/live_camera/fn_1_12B88.c:
-	.text       start:0x00012B88 end:0x00012F78 align:4
-
 rel/main_rel/stcoli/fn_1_25480.c:
 	.text       start:0x00025480 end:0x00025870 align:4
 
@@ -4226,9 +4187,6 @@ rel/main_rel/archive/fn_1_12D404.c:
 
 rel/main_rel/live_camera/fn_1_12FD4.c:
 	.text       start:0x00012FD4 end:0x00013018 align:4
-
-rel/main_rel/font/fn_1_4DE04.c:
-	.text       start:0x0004DE04 end:0x0004DE44 align:4
 
 rel/main_rel/sound/fn_1_A3A1C.c:
 	.text       start:0x000A3A1C end:0x000A3BD8 align:4
@@ -4421,7 +4379,7 @@ rel/main_rel/sel_static_disp/fn_1_143780.c:
 	.text       start:0x00143780 end:0x00143E7C align:4
 
 rel/main_rel/bg_common/fn_1_103264.c:
-	.text       start:0x00103264 end:0x00103AA8 align:4
+	.text       start:0x00103264 end:0x00103B00 align:4
 
 rel/main_rel/stcoli/fn_1_266A8.c:
 	.text       start:0x000266A8 end:0x00026F34 align:4

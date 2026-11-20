@@ -33,16 +33,10 @@ extern void fn_1_469BC(void);
 extern void fn_1_466B0(s32 arg0, s32 arg1);
 extern u32 lbl_1_bss_85288[2];
 
-/* fzgx:begin fn_1_103264 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_103264 */
 #include "psvec.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
 #include "rel/main_rel/bg_lig.h"
-#include "types.h"
-#include "rel/main_rel/globals.h"
 #include "rel/main_rel/camera.h"
-#include "types.h"
 #include "rel/main_rel/bg_common.h"
 
 #ifndef GAME_MAIN_REL_BG_LIG_TYPES_H
@@ -3079,8 +3073,7 @@ u32 fn_1_1071E8(u8 *arg0,u32 arg1,void *arg2,void *arg3,void *arg4) {
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_1_1071E8 */
 
-/* fzgx:begin fn_1_10780C noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_10780C */
 #include "psvec.h"
 
 extern f32 lbl_8006D668(u32 *);

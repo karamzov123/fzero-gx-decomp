@@ -19550,9 +19550,7 @@ void fn_1_14DC68(fn_1_14DC68_StaticDispEntry *arg0, s16 arg1) {
 }
 /* fzgx:end fn_1_14DC68 */
 
-/* fzgx:begin fn_1_14DD68 noprologue */
-#include "dolphin/types.h"
-
+/* fzgx:begin fn_1_14DD68 */
 extern s16 fn_1_14F344(s16);
 
 static inline u8 *fn_1_14DD68_find(u8 *base) {
@@ -19579,9 +19577,7 @@ void *fn_1_14DD68(void *arg0) {
 }
 /* fzgx:end fn_1_14DD68 */
 
-/* fzgx:begin fn_1_14DDF4 noprologue */
-#include "dolphin/types.h"
-
+/* fzgx:begin fn_1_14DDF4 */
 extern s16 fn_1_14F344(s16);
 
 static inline u8 *fn_1_14DDF4_find(u8 *base) {

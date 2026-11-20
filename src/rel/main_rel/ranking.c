@@ -951,8 +951,8 @@ typedef struct {
     u8 unk_4c;
 } fn_1_1567A8_Entry;
 
-extern void fn_1_156C08(fn_1_1567A8_Entry *);
-extern void fn_1_156D9C(fn_1_1567A8_Entry *);
+extern void fn_1_156C08(void *);
+extern void fn_1_156D9C(void *);
 extern void fn_1_157070(fn_1_1567A8_Entry *);
 extern void fn_1_156F54(fn_1_1567A8_Entry *);
 extern void fn_1_157200(fn_1_1567A8_Entry *);
@@ -969,7 +969,7 @@ void fn_1_1567A8(s32 index) {
     value = entry->unk_4;
     if (entry->unk_4 + 0x10000 != 0xffff) {
         field_value = entry->unk_34;
-        if (lbl_1_rodata_D8C8[0] == field_value) {
+        if (0.0f == field_value) {
             if (entry->unk_4 + 0x10000 == 0xffff) {
                 return;
             } else {
@@ -1030,8 +1030,8 @@ typedef struct {
     u8 _pad1C[0x14];
 } fn_1_1568C4_RankingConfig;
 
-extern s32 fn_8006B55C(u32, u32 *, fn_1_1568C4_RankingConfig *);
-extern s32 fn_8006B628(u32, fn_1_1568C4_RankingConfig *);
+extern s32 fn_8006B55C(u32, u32 *, void *);
+extern s32 fn_8006B628(u32, void *);
 extern s32 fn_8006B6F8(u32);
 
 #pragma opt_propagation off
@@ -1187,29 +1187,20 @@ void fn_1_156B18(void *arg) {
 /* fzgx:end fn_1_156B18 */
 
 /* fzgx:begin fn_1_156C08 */
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 0.0f; s = -1.899999976158142f; s = 25.0f; s = -25.0f;
-    s = 30.0f; s = 1.5f; s = 170.0f; s = 0.5f; s = 248.0f; s = 10.0f;
-}
-#pragma section code_type ".text"
 typedef struct Sig_fn_8006B55C_Fn8006B55CFlags { u8 flag7:1; u8 flag6:1; u8 rest:6; } Sig_fn_8006B55C_Fn8006B55CFlags;
 typedef struct Sig_fn_8006B55C_Fn8006B55CData {
     u8 flags_pad[4]; Sig_fn_8006B55C_Fn8006B55CFlags flags; u8 _pad0[3];
     u16 value; u8 _pad1[0x44]; u8 payload[1];
 } Sig_fn_8006B55C_Fn8006B55CData;
 extern f64 __fabs(f64);
-extern s32 fn_8006B55C(Sig_fn_8006B55C_Fn8006B55CData *, u32 *, u8 *);
-extern s32 fn_8006B628(u32, u8 *);
-extern s32 fn_8006B6F8(u32);
 extern f32 lbl_1_rodata_D8C8[18];
 typedef struct {
     u32 flags; Sig_fn_8006B55C_Fn8006B55CData *data; u32 pad8; u32 handle;
     u8 pad10[0x28]; f32 value; f32 delta;
 } Sig_fn_1_156C08_Entry;
 #pragma opt_propagation off
-void fn_1_156C08(Sig_fn_1_156C08_Entry *arg0) {
+void fn_1_156C08(void *arg0_p) {
+    Sig_fn_1_156C08_Entry *arg0 = (Sig_fn_1_156C08_Entry *)arg0_p;
     f32 v1; f32 v3; s32 v13; s32 v13_2; f32 v7; s32 negative; u32 *ph;
     f32 *pool = lbl_1_rodata_D8C8;
     Sig_fn_8006B55C_Fn8006B55CData *data;
@@ -1244,7 +1235,7 @@ void fn_1_156C08(Sig_fn_1_156C08_Entry *arg0) {
     handle = arg0->handle; data = arg0->data;
     if (handle == (u32)-1) {
         ph = &arg0->handle;
-        if (fn_8006B55C(data, ph, (u8 *)&loc_8) < 0) {
+        if (fn_8006B55C((u32)data, ph, (u8 *)&loc_8) < 0) {
         } else { v13 = 1; }
     } else {
         if (fn_8006B628(handle, (u8 *)&loc_8) < 0) {
@@ -1256,30 +1247,7 @@ void fn_1_156C08(Sig_fn_1_156C08_Entry *arg0) {
 }
 /* fzgx:end fn_1_156C08 */
 
-/* fzgx:begin fn_1_156D9C noprologue */
-#include "dolphin/types.h"
-#include "rel/main_rel/ranking.h"
-
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 0.0f;
-    s = -1.899999976158142f;
-    s = 25.0f;
-    s = -25.0f;
-    s = 30.0f;
-    s = 1.5f;
-    s = 170.0f;
-    s = 0.5f;
-    s = 248.0f;
-    s = 10.0f;
-    s = 60.0f;
-    s = 1.0f;
-    s = 1000.0f;
-    s = 0.10000000149011612f;
-}
-#pragma section code_type ".text"
-
+/* fzgx:begin fn_1_156D9C */
 typedef struct {
     s32 unk_00;
     u32 unk_04;
@@ -1310,13 +1278,11 @@ typedef struct {
     s8 unk_21;
 } RankEntry;
 
-extern s32 fn_8006B55C(u32, void *, void *);
-extern s32 fn_8006B628(u32, void *);
-extern s32 fn_8006B6F8(u32);
 
 #pragma opt_dead_assignments off
-void fn_1_156D9C(RankSlot *slot)
+void fn_1_156D9C(void *slot_p)
 {
+    RankSlot *slot = (RankSlot *)slot_p;
     u32 digit;
     s32 idx;
     RankEntry entry;
@@ -1362,7 +1328,7 @@ void fn_1_156D9C(RankSlot *slot)
     id = slot->unk_18;
     data = slot->unk_04;
     if (id + 0x10000 == 0xffff) {
-        if (fn_8006B55C(data, &slot->unk_18, &entry) >= 0) {
+        if (fn_8006B55C(data, (u32 *)&slot->unk_18, &entry) >= 0) {
             ok = 1;
         }
     } else {
