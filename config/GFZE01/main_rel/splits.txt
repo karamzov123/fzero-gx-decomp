@@ -2488,43 +2488,7 @@ rel/main_rel/face/fn_1_D1F88.c:
 	.text       start:0x000D1F88 end:0x000D2110
 
 rel/main_rel/face/fn_1_D2D24.c:
-	.text       start:0x000D2D24 end:0x000D2D38
-
-rel/main_rel/face/fn_1_D2D38.c:
-	.text       start:0x000D2D38 end:0x000D2D48
-
-rel/main_rel/face/fn_1_D2D48.c:
-	.text       start:0x000D2D48 end:0x000D2D58
-
-rel/main_rel/face/fn_1_D2D58.c:
-	.text       start:0x000D2D58 end:0x000D2E18
-
-rel/main_rel/face/fn_1_D2E18.c:
-	.text       start:0x000D2E18 end:0x000D2E44
-
-rel/main_rel/face/fn_1_D2E44.c:
-	.text       start:0x000D2E44 end:0x000D2F50
-
-rel/main_rel/face/fn_1_D2F50.c:
-	.text       start:0x000D2F50 end:0x000D2F84
-
-rel/main_rel/face/fn_1_D2F84.c:
-	.text       start:0x000D2F84 end:0x000D2FB0
-
-rel/main_rel/face/fn_1_D2FB0.c:
-	.text       start:0x000D2FB0 end:0x000D2FC0
-
-rel/main_rel/face/fn_1_D3144.c:
-	.text       start:0x000D3144 end:0x000D3178
-
-rel/main_rel/face/fn_1_D3178.c:
-	.text       start:0x000D3178 end:0x000D31AC
-
-rel/main_rel/face/fn_1_D31AC.c:
-	.text       start:0x000D31AC end:0x000D31E0
-
-rel/main_rel/face/fn_1_D31E0.c:
-	.text       start:0x000D31E0 end:0x000D3214
+	.text       start:0x000D2D24 end:0x000D2FC0 align:4
 
 rel/main_rel/phys/fn_1_E50F0.c:
 	.text       start:0x000E50F0 end:0x000E5164
@@ -4186,9 +4150,6 @@ rel/main_rel/archive/fn_1_131084.c:
 rel/main_rel/game/fn_1_40EE4.c:
 	.text       start:0x00040EE4 end:0x00040F34 align:4
 
-rel/main_rel/face/fn_1_D3020.c:
-	.text       start:0x000D3020 end:0x000D3144 align:4
-
 rel/main_rel/font/fn_1_56470.c:
 	.text       start:0x00056470 end:0x00056530 align:4
 
@@ -5491,7 +5452,8 @@ rel/main_rel/ghost/fn_1_EB330.c:
 	.text       start:0x000EB330 end:0x000EB4BC align:4
 
 rel/main_rel/face/fn_1_D2FC0.c:
-	.text       start:0x000D2FC0 end:0x000D3020 align:4
+	.text       start:0x000D2FC0 end:0x000D3214 align:4
+	.data       start:0x0003DB40 end:0x0003DBC0 align:8
 
 rel/main_rel/replay/fn_1_F2DDC.c:
 	.text       start:0x000F2DDC end:0x000F2E50 align:4
@@ -13199,12 +13161,6 @@ rel/main_rel/data/lbl_1_data_3D858.c:
 
 rel/main_rel/data/lbl_1_data_3D860.c:
 	.data       start:0x0003D860 end:0x0003D868 align:8
-
-rel/main_rel/data/lbl_1_data_3DB40.c:
-	.data       start:0x0003DB40 end:0x0003DB58 align:8
-
-rel/main_rel/data/lbl_1_data_3DB58.c:
-	.data       start:0x0003DB58 end:0x0003DBC0 align:8
 
 rel/main_rel/data/lbl_1_data_3DBC0.c:
 	.data       start:0x0003DBC0 end:0x0003DBC8 align:8

@@ -26,7 +26,11 @@ extern u32 lbl_801A6CE0;
 extern u32 lbl_801A6CFC;
 extern void* fn_1_48E8(u32, u32);
 extern void OSLink(void*, void*);
-extern void OSReport(char*, ...);
+extern void OSReport(const char*, ...);
+extern u32 fn_80008E84(u32);
+extern u8 lbl_1_bss_7ACF8[8];
+extern void fn_80083DB0(void *, const void *);
+extern void strcat(void *, const void *);
 
 /* fzgx:begin fn_1_D1780 */
 void fn_1_D1780(void) {
@@ -509,7 +513,11 @@ extern u32 lbl_801A6CE0;
 extern u32 lbl_801A6CFC;
 extern void* fn_1_48E8(u32, u32);
 extern void OSLink(void*, void*);
-extern void OSReport(char*, ...);
+extern void OSReport(const char*, ...);
+extern u32 fn_80008E84(u32);
+extern u8 lbl_1_bss_7ACF8[8];
+extern void fn_80083DB0(void *, const void *);
+extern void strcat(void *, const void *);
 
 typedef struct {
     f32 x;
@@ -1119,118 +1127,15 @@ s32 fn_1_D2E44(u32 index) {
 }
 /* fzgx:end fn_1_D2E44 */
 
-/* fzgx:begin fn_1_D2F50 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/enemy_ctrl.h"
-
-extern u32 lbl_1_bss_7AC48[5];
-extern void *lbl_801A6410;
-extern void fn_1_46B4(void *, u32, void *, u32);
-extern void fn_1_C489C(void);
-extern u32 lbl_1_bss_7AC54[4];
-extern u8 lbl_1_bss_7AC90[12];
-extern u32 lbl_1_rodata_5D40[7];
-extern u32 fn_1_5910(void *);
-extern u8 fn_1_86810(void *);
-extern u32 fn_1_3F7E0(void);
-extern void fn_1_49410(void);
-extern void fn_1_494DC(u32);
-extern const f32 lbl_1_rodata_5C3C;
-extern const f32 lbl_1_rodata_5D18;
-extern void fn_1_496FC(f32, f32);
-extern void fn_1_495C8(u32);
-extern void fn_1_49728(u32);
-extern void fn_1_4AE0C(void *, ...);
-extern const f32 lbl_1_rodata_5D5C;
-extern const f32 lbl_1_rodata_5D60;
-extern f32 lbl_1_rodata_26F8[22];
-extern const f32 lbl_1_rodata_5D64;
-extern const f32 lbl_1_rodata_5D68;
-extern void fn_1_51E60(void *);
-extern const f32 lbl_1_rodata_5D6C;
-extern void fn_1_C8DC0(void);
-extern void fn_80008E84(u32);
-extern const f32 lbl_1_rodata_5D88;
-extern const f32 lbl_1_rodata_5D8C;
-extern void fn_1_4955C(f32, f32);
-extern const f32 lbl_1_rodata_5CD4;
-extern const f32 lbl_1_rodata_5D90;
-extern void fn_1_4966C(f32, f32);
-extern const f64 lbl_1_rodata_5C00;
-extern const f32 lbl_1_rodata_5CFC;
-extern const f32 lbl_1_rodata_5DC8;
-extern const f32 lbl_1_rodata_5E0C;
-extern int sprintf(char *, const char *, ...);
-extern s16 fn_1_12C7B8(s16);
-extern s32 fn_1_465D0(char *, s32);
-extern s8 fn_1_86690(s8);
-extern u32 fn_1_12C930(u32);
-extern u8 fn_1_86624(void);
-extern u8 lbl_1_bss_9C;
-extern void *fn_1_868C0(s8);
-extern void fn_80006E10(u32);
-
+/* fzgx:begin fn_1_D2F50 */
 // Stores the initialized enemy-control handle for later subsystem updates.
+extern struct { u32 unk_0; } lbl_1_data_3D928;
 void fn_1_D2F50(void) {
-    u32 fn_80008E84(u32);
-
     lbl_1_data_3D928.unk_0 = fn_80008E84(lbl_1_data_3D924);
 }
 /* fzgx:end fn_1_D2F50 */
 
-/* fzgx:begin fn_1_D2F84 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/enemy_ctrl.h"
-
-extern u32 lbl_1_bss_7AC48[5];
-extern void *lbl_801A6410;
-extern void fn_1_46B4(void *, u32, void *, u32);
-extern void fn_1_C489C(void);
-extern u32 lbl_1_bss_7AC54[4];
-extern u8 lbl_1_bss_7AC90[12];
-extern u32 lbl_1_rodata_5D40[7];
-extern u32 fn_1_5910(void *);
-extern u8 fn_1_86810(void *);
-extern u32 fn_1_3F7E0(void);
-extern void fn_1_49410(void);
-extern void fn_1_494DC(u32);
-extern const f32 lbl_1_rodata_5C3C;
-extern const f32 lbl_1_rodata_5D18;
-extern void fn_1_496FC(f32, f32);
-extern void fn_1_495C8(u32);
-extern void fn_1_49728(u32);
-extern void fn_1_4AE0C(void *, ...);
-extern const f32 lbl_1_rodata_5D5C;
-extern const f32 lbl_1_rodata_5D60;
-extern f32 lbl_1_rodata_26F8[22];
-extern const f32 lbl_1_rodata_5D64;
-extern const f32 lbl_1_rodata_5D68;
-extern void fn_1_51E60(void *);
-extern const f32 lbl_1_rodata_5D6C;
-extern void fn_1_C8DC0(void);
-extern void fn_80008E84(u32);
-extern const f32 lbl_1_rodata_5D88;
-extern const f32 lbl_1_rodata_5D8C;
-extern void fn_1_4955C(f32, f32);
-extern const f32 lbl_1_rodata_5CD4;
-extern const f32 lbl_1_rodata_5D90;
-extern void fn_1_4966C(f32, f32);
-extern const f64 lbl_1_rodata_5C00;
-extern const f32 lbl_1_rodata_5CFC;
-extern const f32 lbl_1_rodata_5DC8;
-extern const f32 lbl_1_rodata_5E0C;
-extern int sprintf(char *, const char *, ...);
-extern s16 fn_1_12C7B8(s16);
-extern s32 fn_1_465D0(char *, s32);
-extern s8 fn_1_86690(s8);
-extern u32 fn_1_12C930(u32);
-extern u8 fn_1_86624(void);
-extern u8 lbl_1_bss_9C;
-extern void *fn_1_868C0(s8);
-extern void fn_80006E10(u32);
-
+/* fzgx:begin fn_1_D2F84 */
 void fn_1_D2F84(void) {
     fn_80008E84(lbl_1_data_3D928.unk_0);
 }
@@ -1242,40 +1147,7 @@ u32 fn_1_D2FB0(void) {
 }
 /* fzgx:end fn_1_D2FB0 */
 
-/* fzgx:begin fn_1_D2FC0 noprologue */
-#include "types.h"
-
-extern u32 fn_1_D3020(void *, void *);
-extern u8 lbl_1_bss_7ACF8[8];
-extern void fn_80083DB0(void *, void *);
-extern void strcat(void *, void *);
-
-extern void OSReport(const char *, ...);
-#pragma section code_type ".fzgxpool"
-static void fzgx_string_layout(void) {
-    /* fzgx-allow: S2 layout primer: MWCC emits string literals in first-use order; the section is dropped at integration */
-    OSReport("fze.");
-    OSReport("window");
-    OSReport(".rel");
-}
-#pragma section code_type ".text"
-
-void fn_1_D2FC0(void) {
-    struct {
-        u32 a[16];
-    } loc_8;
-
-    
-    fn_80083DB0((void *)&loc_8, (void *)(u32)("fze."));
-    strcat((void *)&loc_8, (void *)(u32)("window"));
-    strcat((void *)&loc_8, (void *)(u32)(".rel"));
-    fn_1_D3020((void *)&loc_8, (void *)&lbl_1_bss_7ACF8);
-}
-/* fzgx:end fn_1_D2FC0 */
-
-/* fzgx:begin fn_1_D3020 */
-#include "types.h"
-
+/* fzgx:begin fn_1_D2FC0 */
 typedef struct LocalData {
     u8 unk_0[0x34];
     u32 size;
@@ -1296,7 +1168,21 @@ typedef struct Allocated {
 extern int DVDOpen(void*, LocalData*);
 extern int fn_80006354(LocalData*, void*, u32, u32);
 extern void DVDClose(LocalData*);
+void fn_1_D3020(void* unused, Output* output);
 
+void fn_1_D2FC0(void) {
+    struct {
+        u32 a[16];
+    } loc_8;
+
+    fn_80083DB0((void *)&loc_8, "fze.");
+    strcat((void *)&loc_8, "window");
+    strcat((void *)&loc_8, ".rel");
+    fn_1_D3020((void *)&loc_8, (Output *)&lbl_1_bss_7ACF8);
+}
+/* fzgx:end fn_1_D2FC0 */
+
+/* fzgx:begin fn_1_D3020 */
 void fn_1_D3020(void* unused, Output* output) {
     LocalData local;
     Allocated* object;
@@ -1315,7 +1201,7 @@ void fn_1_D3020(void* unused, Output* output) {
         object = fn_1_48E8(size, 0x20);
         output->data = object;
     } else {
-        OSReport((*(char (*)[51])&lbl_1_data_3DB58));
+        OSReport("Caution : Debug Window can't use. (Arena problem)\n");
         return;
     }
     if (fn_80006354(&local, output->data, size, 0) != 0) {
@@ -1329,7 +1215,7 @@ void fn_1_D3020(void* unused, Output* output) {
         object = output->data;
         object->init();
     } else {
-        OSReport((*(char (*)[51])&lbl_1_data_3DB8C));
+        OSReport("Caution : Debug Window can't use. (Cant read DVD)\n");
         output->data = 0;
     }
     DVDClose(&local);
