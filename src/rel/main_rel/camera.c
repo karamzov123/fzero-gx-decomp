@@ -2517,7 +2517,6 @@ void fn_1_8D08(fn_1_8D08_Camera *cam, f32 arg1) {
             step = weight * delta;
             half = step * fzgx_pool_fzgx_camera_half[0];
             cam->angle = angle + half;
-#pragma fp_contract on
         }
         lbl_8006DC6C(fn_1_8D08_read_pointer__(cam));
         {
@@ -2646,7 +2645,6 @@ extern void fn_8006E250(Vec3f *, Vec3f *);
 
 extern void lbl_8006DBAC(Vec3 *a);
 
-#pragma fp_contract off
 typedef struct Sig_camera_get_target_orientation_camera_get_target_orientation_CameraObject {
 u8 pad_0[0xEC];
 f32 unk_EC[3][4];
@@ -3088,11 +3086,7 @@ v->z = z;
 #define CLAMP90(cur, hi) ((RATE90(cur) < 0.08) ? 0.08 : (RATE90(cur) > (hi)) ? (hi) : RATE90(cur))
 /* speed-dependent fov blend rate, clamped to [0.01, 0.05] */
 #define FOVRATE90(speed) (0.05 - 4e-5f * (speed))
-#pragma opt_propagation off
-#pragma opt_lifetimes off
 static inline void fn_1_90E0_call_lbl_8006E0B4(f32 a0, f32 a1, f32 a2) { lbl_8006E0B4(a0, a1, a2); }
-#pragma opt_propagation on
-#pragma opt_lifetimes on
 #pragma opt_propagation off
 #pragma opt_lifetimes off
 void fn_1_90E0(struct fn_1_90E0_Arg0 *arg0) {
@@ -3260,9 +3254,7 @@ trans90((V90 *)&loc_D4);
 lbl_8006E1B0(&arg0->unk_8C, &arg0->unk_10);
 trans90(&arg0->unk_10);
 mathutil_mtxA_rotate_x(arg0->unk_6);
-#pragma fp_contract on
 project90(&arg0->unk_28, P32(fzgx_pool_rodata_lbl_1_rodata_200_34) );
-#pragma fp_contract off
 if (fn_1_8683C(arg0->unk_2) != 0)
 fn_1_869E0(arg0->unk_2, &loc_C8);
 else {
@@ -3393,7 +3385,6 @@ trans90((V90 *)&loc_D4);
 lbl_8006E1B0(&loc_80, &loc_8C);
 trans90(&loc_8C);
 mathutil_mtxA_rotate_x(loc_110.a0);
-#pragma fp_contract on
 project90(&loc_98, P32(fzgx_pool_rodata_lbl_1_rodata_200_34) );
 #pragma fp_contract off
 if ((f32)(u32)(fn_1_8664C(arg0->unk_2) - 20) < P32(fzgx_pool_rodata_lbl_1_rodata_200_168) ) arg0->unk_1F4 -= P32(fzgx_pool_rodata_lbl_1_rodata_200_16C) ;

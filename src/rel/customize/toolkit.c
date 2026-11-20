@@ -14532,8 +14532,6 @@ extern void fn_1_5233C(void *, void *);
 extern struct fn_3_1A1D8_lbl_1_bss_9F8 lbl_1_bss_9F8;
 
 #pragma fp_contract off
-#pragma opt_lifetimes off
-#pragma opt_propagation off
 
 #define CLAMP(v, lo, hi) ((v) < (lo) ? (lo) : ((v) > (hi) ? (hi) : (v)))
 
@@ -14700,7 +14698,6 @@ static inline void fn_3_2C73C_set(fn_3_2C73C_Vec *out, f32 z, f32 y, f32 x) {
 
 extern const struct fn_3_2C73C_Pool lbl_3_rodata_768;
 
-#pragma opt_propagation on
 static inline void fn_3_2C73C_lerp(fn_3_2C73C_Vec *a, fn_3_2C73C_Vec *b,
     fn_3_2C73C_Src * __restrict src, f32 inv, f32 ratio) {
     f32 x, y, z;

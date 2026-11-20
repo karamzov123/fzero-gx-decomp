@@ -1028,7 +1028,6 @@ static union { u32 w[1]; char v[4]; } fzgx_pool_init_fzgx_format = {{  /* fzgx-a
 #define fzgx_text_44C fzgx_pool_init_fzgx_text_44C.v
 #define fzgx_data_464 fzgx_pool_init_fzgx_data_464.v
 #define fzgx_format fzgx_pool_init_fzgx_format.v
-#pragma opt_pointer_analysis off
 static inline Obj_3_bss_7EDC0_At0 *card_slot(u32 offset) { return (Obj_3_bss_7EDC0_At0 *)((u8 *)lbl_3_bss_7EDC0.unk_0 + offset); }
 #pragma opt_pointer_analysis on
 static inline s32 clamp_menu(s32 n) { return n < 0 ? 0 : n > 10 ? 10 : n; }

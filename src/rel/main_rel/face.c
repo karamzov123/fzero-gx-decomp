@@ -93,9 +93,7 @@ static void fzgx_string_layout(void) {
 }
 #pragma section code_type ".text"
 
-#pragma peephole off
 static inline u32 fn_1_D1848_array_read(s32 index, u32 *array) { return array[index]; }
-#pragma peephole reset
 
 #pragma opt_propagation off
 void fn_1_D1848(void) {

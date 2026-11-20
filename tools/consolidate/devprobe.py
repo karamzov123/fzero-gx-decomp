@@ -10,13 +10,25 @@ def ninja_units():
     txt = pathlib.Path('build.ninja').read_text().replace('$\n', '')
     res = {}
     for st in re.split(r'\n(?=build )', txt):
-        m = re.match(r'build (.*?): (mwcc_batch|mwcc_pool|mwcc_sjis|mwcc) (.*?)(?:\||\n)', st)
+        m = re.match(r'build (.*?):\s+(mwcc_batch|mwcc_pool|mwcc_sjis|mwcc)\s(.*?)(?:\||\n)', st)
         if not m: continue
         kv = dict(re.findall(r'\n\s+(\w+) = (.*)', st))
         ins = [x for x in m.group(3).split() if x.endswith('.c')]
         for i in ins:
             res[i] = (kv.get('mw_version'), kv.get('cflags'))
     return res
+
+VERSIONS = ('GFZE01', 'GFZJ01', 'GFZP01')
+
+def versions_of(unit):
+    return [v for v in VERSIONS if v in (unit.get('matching_for') or VERSIONS)]
+
+def compile_all(code, mv, cflags, td, unit):
+    """Objects for every region the unit builds for (flags differ only in -DVERSION_*)."""
+    out = []
+    for v in versions_of(unit):
+        out.append(compile_text(code, mv, cflags.replace('-DVERSION_GFZE01', f'-DVERSION_{v}').replace('build/GFZE01/include', f'build/{v}/include'), td))
+    return out
 
 def compile_text(code, mv, cflags, td):
     cp = pathlib.Path(td) / 'u.c'; op = pathlib.Path(td) / 'u.o'

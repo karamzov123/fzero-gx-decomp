@@ -28,8 +28,8 @@ def main():
             if key not in nu: continue  # not built for this version
             mv, cf = nu[key]
             with tempfile.TemporaryDirectory() as td:
-                a = d.compile_text(go, mv, cf, td); b = d.compile_text(gn, mv, cf, td)
-            st = 'SAME' if a == b and a is not None else ('FAIL' if b is None else 'DIFF')
+                a = d.compile_all(go, mv, cf, td, u); b = d.compile_all(gn, mv, cf, td, u)
+            st = 'SAME' if a == b and None not in a else ('FAIL' if None in b else 'DIFF')
             bad += st != 'SAME'
             print(f'{st} {u["source"]} ({len(u["symbols"])} fns)')
     sys.exit(1 if bad else 0)

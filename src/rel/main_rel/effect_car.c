@@ -828,7 +828,6 @@ void fn_1_68B68(void) {
 /* fzgx:end fn_1_68B68 */
 
 /* fzgx:begin fn_1_68B6C */
-#pragma fp_contract on
 
 typedef struct Effect68B6C {
     u8 pad0[0x8];
@@ -2530,7 +2529,6 @@ f32 arg2;
 
 #define FIELD(type, ptr, offset) (*(type *)((u8 *)(ptr) + (offset)))
 #define RAND() ((f32)(u16)fn_1_584AC() / 32767.0f)
-#pragma fp_contract on
 #pragma section code_type ".fzgxpool"
 static void fzgx_pool_primer_0(void) {
     /* Volatile stores prime the shared literal pool in retail order. */
@@ -2593,7 +2591,6 @@ static inline f32 fn_1_6BFB8_min(f32 distance, u32 p, f32 *v) {
 #define fn_1_6BFB8_nearest(d,p,v) (*(d) = fn_1_6BFB8_min(*(d),p,v))
 #define LENGTH() fn_1_6BFB8_length(v0,loc_8)
 
-#pragma fp_contract on
 void fn_1_6BFB8(u32 arg0) {
     u32 v0;
     u32 v9;
@@ -3049,7 +3046,6 @@ static void fzgx_pool_primer_228(void) { /* Preserve this shared literal-pool sl
 static void fzgx_pool_primer_230(void) { /* Preserve this shared literal-pool slot. */ volatile f32 x; x = 20000.0f; }
 #pragma section code_type ".text"
 
-#pragma fp_contract on
 
 void fn_1_6CF3C(struct fn_1_6CF3C_Arg0 *arg0, struct fn_1_6CF3C_Vec *arg1, f32 arg2, f32 arg3) {
     struct fn_1_6CF3C_lbl_1_rodata_2D70 *p_lbl_1_rodata_2D70;
@@ -4212,7 +4208,6 @@ s16 fn_1_6E320(void *car_arg, void *offset_arg, u8 mode, f32 unused) {
     scale = CLAMP(ratio, 0.4f, 1.8f);
     rnd = 0.33333334f * (0.8f + (f64)(0.2 * ((f32)(u16)fn_1_584AC() / 32767.0f)));
     part.unk_2C = rnd * scale;
-#pragma fp_contract on
     fade = speed / 1200.0f;
     car->unk_B4 = 0.5 * CLAMP2(fade, 0.0f, 1.0f);
     if (car->unk_18 == camera_get_mode() && (u32)fn_1_58C4() == 1) {

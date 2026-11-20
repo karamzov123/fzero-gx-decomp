@@ -165,7 +165,6 @@ extern struct fn_1_DCE60_lbl_1_rodata_6750 lbl_1_rodata_6750;
 
 /* end game/main_rel/bg_for_types.h */
 
-#pragma fp_contract on
 
 extern const f32 lbl_1_rodata_6780[];
 extern void fn_80008BA8(void *, const void *, u32);
@@ -328,7 +327,6 @@ extern struct fn_1_DCE60_lbl_1_rodata_6750 lbl_1_rodata_6750;
 extern void fn_1_E1408(void *, void *);
 
 
-#pragma fp_contract on
 
 extern const f32 lbl_1_rodata_6780[];
 extern void fn_1_E57F4(void *, f32);
@@ -360,7 +358,6 @@ typedef struct {
     void *p38;
 } DDModels;
 
-#pragma fp_contract on
 #pragma opt_propagation off
 void fn_1_DD4DC(DDObj *obj) {
     const f32 *pool = lbl_1_rodata_6780;
@@ -658,7 +655,6 @@ static inline f32 fn_1_DD890_clamp(f32 value, f32 lower, f32 upper) {
     return value;
 }
 
-#pragma fp_contract on
 void fn_1_DD890(DDObj *arg0, f32 arg1) {
     u32 v0;
     f32 v1;
@@ -978,7 +974,6 @@ extern f32 lbl_8006D668(Vec3 *);
 extern void fn_80008BEC(void *, int, u32);
 
 #pragma opt_common_subs off
-#pragma opt_propagation on
 
 static inline void fn_1_DE180_cross(Vec3 *a, Vec3 *b, Vec3 *out) {
     f32 ay = a->y;
@@ -1736,7 +1731,6 @@ extern void fn_1_E1408(void *, void *);
 
 #include "psvec.h"
 
-#pragma fp_contract on
 #pragma opt_propagation off
 
 typedef struct DF2A4Vec { f32 x, y, z; } DF2A4Vec;

@@ -24,8 +24,8 @@ def prune(task):
         base = {}
         gens = {u['source']: gen(u, text) for u in us}
         for u in us:
-            base[u['source']] = d.compile_text(gens[u['source']], *profs[u['source']], td)
-        if any(v is None for v in base.values()): return (path, text, [], 'base-fail')
+            base[u['source']] = d.compile_all(gens[u['source']], *profs[u['source']], td, u)
+        if any(None in v for v in base.values()): return (path, text, [], 'base-fail')
         pos = 0
         while True:
             m = SETTER.search(text, pos)
@@ -42,7 +42,7 @@ def prune(task):
             for u in us:
                 g = gen(u, cand)
                 if g == gens[u['source']]: continue
-                o = d.compile_text(g, *profs[u['source']], td)
+                o = d.compile_all(g, *profs[u['source']], td, u)
                 if o != base[u['source']]: ok = False; break
                 newg[u['source']] = g
             if ok:

@@ -11087,7 +11087,6 @@ typedef struct fn_1_86A2C_Car {
 #define CLAMP(x, lo, hi) ((x) < (lo) ? (lo) : ((x) > (hi) ? (hi) : (x)))
 
 #pragma opt_propagation off
-#pragma peephole on
 f32 fn_1_86A2C(register fn_1_86A2C_Car *car) {
     f32 result;
     s8 slot;

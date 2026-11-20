@@ -3879,13 +3879,11 @@ static inline void fn5C058Translation(volatile f32 *mtx, volatile Fn183D28Vec3 *
     mtx[11] = z;
 }
 
-#pragma opt_propagation off
 static inline void fn5C058TransformVector(Fn183D28Vec3 *out, Fn183D28Vec3 *in) {
     Fn183D28Vec3 *translated = out;
     fn5C058Translation((f32 *)LC_BASE, translated);
     lbl_8006E1B0(in, translated);
 }
-#pragma opt_propagation reset
 
 static inline int fn5C058CacheInit(volatile f32 **cache) {  /* fzgx-allow: S2 volatile keeps the verified access order */
     *cache = (f32 *)LC_BASE;
@@ -4740,7 +4738,6 @@ extern int fn_1_9F914(const void *a, const void *b);
 #define LIT(off) (*(const f32 *)(pool + (off)))
 static inline f32 fn_1_5D1B8_scaled(f32 product, f32 scale) { return product; }
 #pragma opt_common_subs off
-#pragma peephole on
 void fn_1_5D1B8(Self *self)
 {
 f32 fzgx_live_;
@@ -4785,7 +4782,6 @@ out.a = LIT(0x5c) * fade;
 out.y = LIT(0x150) * scale;
 fn_1_9F914(&out, obj);
 }
-#pragma peephole reset
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_5D1B8 */
 
@@ -5877,7 +5873,6 @@ static inline void extrapolate(Vec3 *out, Vec3 *prev, Vec3 *a) {
     out->y = py - ay;
     out->z = pz - az;
 }
-#pragma fp_contract on
 #pragma opt_common_subs off
 static inline f32 scale_len_sq(Vec3 *v) {
     f32 result = v->x * v->x;
@@ -5886,7 +5881,6 @@ static inline f32 scale_len_sq(Vec3 *v) {
     return result;
 }
 
-#pragma fp_contract on
 void fn_1_5DFA4(Fn5DFA4Effect *effect) {
     struct fn_1_5DFA4_lbl_1_rodata_2950 *k;
     Fn5DFA4Draw draw;
@@ -6360,7 +6354,6 @@ extern f32 fn_1_9E14C(u32, Sig_fn_1_9DDA8_fn_1_9DDA8_CurveKey *, f32);
 
 extern f32 lbl_8006D0B4(f32);
 
-#pragma fp_contract on
 
 extern f32 lbl_8006D668(void *);
 
@@ -6902,7 +6895,6 @@ extern u8 fn_1_59500__fzgx_offset_0[];
 
 #endif
 
-#pragma fp_contract on
 
 /* retail .data objects of this TU, in retail order (defined before the pool
  * primers so the .data section base is created before the .rodata one) */
@@ -8405,7 +8397,6 @@ extern void fn_800720B0(u32);
 extern void fn_800728A8(s32, s32, s32, s32);
 extern void fn_80073778(void *, s32);
 
-#pragma fp_contract on
 
 void fn_1_5F9B8(fn_1_5F9B8_Effect *effect) {
     u8 camera[12];
@@ -8943,7 +8934,6 @@ typedef struct {
 
 
 
-#pragma opt_lifetimes off
 static inline f32 beam_orient(BeamEffect *effect, BeamVec *startArg, BeamVec *endArg, const BeamConstants *constants)
 {
     f32 fzgx_value;
@@ -11259,7 +11249,6 @@ struct obj_state {
 	f32 f98;
 };
 
-#pragma peephole on
 #pragma opt_propagation off
 void fn_1_618B8(struct obj_state *p)
 {
@@ -11294,7 +11283,6 @@ void fn_1_618B8(struct obj_state *p)
 #pragma opt_propagation reset
 
 
-#pragma peephole reset
 /* fzgx:end fn_1_618B8 */
 
 /* fzgx:begin fn_1_619E4 noprologue */
@@ -15029,7 +15017,6 @@ extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 
 /* end game/main_rel/car_test_types.h */
 
-#pragma fp_contract on
 #pragma pool_data on
 #pragma force_active on
 static const u32 fzgx_pool_table_0[] = {0x42700000};
@@ -15901,7 +15888,6 @@ extern void fn_1_56000(u8,u8,u8);
 extern void fn_1_5621C(f32,f32,f32,f32);
 extern void fn_1_556B8(void *);
 extern void fn_80072558(void);
-#pragma fp_contract on
 #pragma opt_common_subs off
 static inline f32 fn_1_64388_read_pointer_(Vec3 * owner) { return owner->y; }
 #pragma opt_dead_assignments off
@@ -17499,7 +17485,6 @@ static inline f32 random_float654B0(f32 bits)
     return bits / 32767.0f;
 }
 
-#pragma scheduling on
 void fn_1_654B0(Particle654B0 *p)
 {
     f32 v;
@@ -19644,7 +19629,6 @@ typedef Fn662D8Effect Fn662D8Source;
 #define drift vel
 #define velocity anchor
 
-#pragma fp_contract on
 static inline f32 effect_multiply(f32 a, f32 b) {
     return a * b;
 }
@@ -19657,7 +19641,6 @@ static inline f32 effect_sqnorm(const Fn183D28Vec3 *v) {
     result = z * z + result;
     return result;
 }
-#pragma fp_contract on
 void fn_1_662D8(Fn662D8Source *arg0) {
     s16 angle_y;
     s16 v0;
