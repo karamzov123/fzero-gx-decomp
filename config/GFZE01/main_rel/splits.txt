@@ -16,25 +16,7 @@ rel/main_rel/_prolog/fn_1_446C.c:
 	.text       start:0x0000446C end:0x0000451C align:4
 
 rel/main_rel/alloc/fn_1_4928.c:
-	.text       start:0x00004928 end:0x00004A00 align:4
-
-rel/main_rel/alloc/fn_1_4BB0.c:
-	.text       start:0x00004BB0 end:0x00004C24 align:4
-
-rel/main_rel/alloc/fn_1_4CAC.c:
-	.text       start:0x00004CAC end:0x00004CD8 align:4
-
-rel/main_rel/alloc/fn_1_4D14.c:
-	.text       start:0x00004D14 end:0x00004DE0
-
-rel/main_rel/alloc/fn_1_4FEC.c:
-	.text       start:0x00004FEC end:0x00005300 align:4
-
-rel/main_rel/alloc/fn_1_5300.c:
-	.text       start:0x00005300 end:0x00005328
-
-rel/main_rel/alloc/fn_1_5328.c:
-	.text       start:0x00005328 end:0x00005370 align:4
+	.text       start:0x00004928 end:0x00005370 align:4
 
 rel/main_rel/alloc/fn_1_58C4.c:
 	.text       start:0x000058C4 end:0x00005948 align:4
@@ -2111,9 +2093,6 @@ rel/main_rel/font/fn_1_4AF10.c:
 rel/main_rel/driver/fn_1_AAEB0.c:
 	.text       start:0x000AAEB0 end:0x000AB478 align:4
 
-rel/main_rel/alloc/fn_1_4CD8.c:
-	.text       start:0x00004CD8 end:0x00004D14 align:4
-
 rel/main_rel/burner/fn_1_9AA2C.c:
 	.text       start:0x0009AA2C end:0x0009AABC align:4
 
@@ -2182,9 +2161,6 @@ rel/main_rel/car/fn_1_84038.c:
 
 rel/main_rel/stcoli/fn_1_23500.c:
 	.text       start:0x00023500 end:0x000235C8 align:4
-
-rel/main_rel/alloc/fn_1_4C24.c:
-	.text       start:0x00004C24 end:0x00004CAC align:4
 
 rel/main_rel/effect/fn_1_617A4.c:
 	.text       start:0x000617A4 end:0x000618B8 align:4
@@ -2278,9 +2254,6 @@ rel/main_rel/game/fn_1_327F8.c:
 
 rel/main_rel/accessory/fn_1_10A43C.c:
 	.text       start:0x0010A43C end:0x0010A6A0 align:4
-
-rel/main_rel/alloc/fn_1_4DE0.c:
-	.text       start:0x00004DE0 end:0x00004E60 align:4
 
 rel/main_rel/font/fn_1_49410.c:
 	.text       start:0x00049410 end:0x00049680 align:4
@@ -2408,9 +2381,6 @@ rel/main_rel/stcoli/fn_1_287E8.c:
 
 rel/main_rel/effect/fn_1_62AF8.c:
 	.text       start:0x00062AF8 end:0x00062C84 align:4
-
-rel/main_rel/alloc/fn_1_4A00.c:
-	.text       start:0x00004A00 end:0x00004BB0 align:4
 
 rel/main_rel/font/fn_1_55C48.c:
 	.text       start:0x00055C48 end:0x00055D6C align:4
@@ -2699,9 +2669,6 @@ rel/main_rel/sel_static_disp/fn_1_141360.c:
 
 rel/main_rel/sound/fn_1_A5AA0.c:
 	.text       start:0x000A5AA0 end:0x000A5C98 align:4
-
-rel/main_rel/alloc/fn_1_4E60.c:
-	.text       start:0x00004E60 end:0x00004FEC align:4
 
 rel/main_rel/load/fn_1_46BFC.c:
 	.text       start:0x00046BFC end:0x00046C60 align:4

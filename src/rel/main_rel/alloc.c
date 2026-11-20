@@ -7,8 +7,6 @@ extern void OSPanic(const char *message, int line, const char *file, ...);
 extern void fn_80009AA8(u32 value, u32 count, const char *file, int line);
 extern u32 fn_1_435C(u32 value);
 extern void fn_1_426C(s16 value);
-extern f32 lbl_1_rodata_160;
-extern f32 lbl_1_rodata_164[2];
 extern u32 lbl_1_bss_F5C;
 extern u32 lbl_1_bss_F60[2];
 extern s32 fn_8008023C(Obj_1_bss_7AC20 *, u32 *, u32);
@@ -26,8 +24,15 @@ extern void fn_1_E174(void);
 extern void fn_1_F3D0(LiveCamera *);
 s32 fn_1_3FC28(void);
 void fn_1_3EF14(u32 *);
-extern f32 lbl_1_rodata_16C;
 extern void fn_8006CE1C(f32);
+extern void fn_1_4BB0(void);
+extern f32 fn_1_4D14(Obj_1_data_2CDC *);
+extern void fn_1_4CD8(void);
+extern void fn_1_4E60(Obj_1_data_2CDC *);
+extern void fn_1_4DE0(Obj_1_data_2CDC *, u32);
+extern void fn_1_4010(s32, void (*)(Obj_1_data_2CDC *, u32));
+extern void fn_8006CDFC(u32 *);
+extern void fn_1_4060(void);
 
 /* fzgx:begin fn_1_4928 */
 typedef struct {
@@ -73,30 +78,14 @@ void fn_1_49F0(u32 *value) {
 }
 /* fzgx:end fn_1_49F0 */
 
-/* fzgx:begin fn_1_4A00 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/alloc.h"
-
-extern void fn_1_4BB0(void);
-extern f32 fn_1_4D14(Obj_1_data_2CDC *data);
-extern const f32 lbl_1_rodata_160;
-extern const f32 lbl_1_rodata_164;
-extern void fn_1_4CD8(void);
-extern void fn_8006CE1C(f32 value);
-extern u32 fn_1_435C(void *value);
-extern void fn_1_4E60(void);
-extern s16 fn_1_3F8C(u8 *data, void (*callback)(void), Obj_1_data_2CDC *object, u32 count);
-extern void fn_1_4DE0(void);
-extern void fn_1_4010(s32 value, void (*callback)(void));
-
+/* fzgx:begin fn_1_4A00 */
 void fn_1_4A00(s32 enabled, u8 mode, void *value) {
     Obj_1_data_2CDC *data = &lbl_1_data_2CDC;
     void *allocated;
 
     if (data->unk_6 != -1) {
         fn_1_4BB0();
-        lbl_1_data_2CDC.unk_4 = (u16)(s16)(lbl_1_rodata_160 * fn_1_4D14(&lbl_1_data_2CDC));
+        lbl_1_data_2CDC.unk_4 = (u16)(s16)(65535.0f * fn_1_4D14(&lbl_1_data_2CDC));
     } else if (enabled != 0) {
         data->unk_4 = -1;
     } else {
@@ -105,7 +94,7 @@ void fn_1_4A00(s32 enabled, u8 mode, void *value) {
     lbl_1_data_2CDC.unk_3 = 0;
     if (mode == 0) {
         if (enabled != 0) fn_1_4CD8();
-        else fn_8006CE1C(lbl_1_rodata_164);
+        else fn_8006CE1C(1.0f);
         return;
     }
     if (enabled != 0) {
@@ -118,7 +107,7 @@ void fn_1_4A00(s32 enabled, u8 mode, void *value) {
     } else {
         lbl_1_data_2CDC.unk_3 |= 4;
         if (lbl_1_data_2CDC.unk_4 > 0xff00) {
-            fn_8006CE1C(lbl_1_rodata_164);
+            fn_8006CE1C(1.0f);
             lbl_1_data_2CDC.unk_4 = -1;
             return;
         }
@@ -128,10 +117,10 @@ void fn_1_4A00(s32 enabled, u8 mode, void *value) {
     lbl_1_data_2CDC.unk_2 = 1;
     lbl_1_data_2CDC.unk_0 = mode;
     lbl_1_data_2CDC.unk_C = (u32)value;
-    allocated = (void *)fn_1_435C(value);
-    data->unk_6 = (s16)fn_1_3F8C(lbl_1_data_2CEC, fn_1_4E60, &lbl_1_data_2CDC, 0);
+    allocated = (void *)fn_1_435C((u32)value);
+    data->unk_6 = (s16)fn_1_3F8C(lbl_1_data_2CEC, (void (*)(void))fn_1_4E60, (u32)&lbl_1_data_2CDC, 0);
     fn_1_4010(data->unk_6, fn_1_4DE0);
-    fn_1_435C(allocated);
+    fn_1_435C((u32)allocated);
 }
 /* fzgx:end fn_1_4A00 */
 
@@ -153,24 +142,8 @@ int fn_1_4C10(void) {
 /* fzgx:end fn_1_4C10 */
 
 /* fzgx:begin fn_1_4C24 */
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 65535.0f;
-    s = 1.0f;
-    s = -1.0f;
-    s = 0.0f;
-    d = 4503599627370496.0;
-}
-#pragma section code_type ".text"
-
-extern f32 lbl_1_rodata_160;
-
 f32 fn_1_4C24(void) {
-    f32 *rodata;
     f32 ratio;
-
-    rodata = &lbl_1_rodata_160;
 
     if ((lbl_1_data_2CDC.unk_3 & 1) == 0) {
         return (-1.0f);
@@ -200,8 +173,6 @@ void fn_1_4CC0(void) {
 /* fzgx:end fn_1_4CC0 */
 
 /* fzgx:begin fn_1_4CD8 */
-#include "types.h"
-
 struct fn_1_4CD8_lbl_1_data_2CDC {
     u8 pad_0[0x8];
     u32 unk_8;
@@ -217,36 +188,28 @@ void fn_1_4CD8(void) {
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_1_4CD8 */
 
-/* fzgx:begin fn_1_4D14 pool */
-typedef struct Fn14D14Data {
-    u8 value0;
-    u8 value1;
-    u8 unk2;
-    u8 flags;
-    u16 value4;
-} Fn14D14Data;
-
-f32 fn_1_4D14(Fn14D14Data *data) {
+/* fzgx:begin fn_1_4D14 */
+f32 fn_1_4D14(Obj_1_data_2CDC *obj) {
     f32 value3;
     u8 value;
     f32 value1;
     f32 temp;
 
-    value3 = ((f32)data->value4) / lbl_1_rodata_160;
+    value3 = ((f32)obj->unk_4) / 65535.0f;
     value = 0x0f;
-    if (data->value0 != 0x3c) {
-        value = data->value0;
+    if (obj->unk_0 != 0x3c) {
+        value = obj->unk_0;
     }
-    if (data->value1 > value) {
-        value1 = lbl_1_rodata_164[0];
+    if (obj->unk_1 > value) {
+        value1 = 1.0f;
     } else {
-        value1 = ((f32)data->value1) / (f32)value;
+        value1 = ((f32)obj->unk_1) / (f32)value;
     }
 
-    if (data->flags & 2) {
-        value1 = value3 * (lbl_1_rodata_164[0] - value1);
+    if (obj->unk_3 & 2) {
+        value1 = value3 * (1.0f - value1);
     } else {
-        temp = lbl_1_rodata_164[0] - value3;
+        temp = 1.0f - value3;
         temp = temp * value1;
         value1 = value3 + temp;
     }
@@ -255,22 +218,17 @@ f32 fn_1_4D14(Fn14D14Data *data) {
 /* fzgx:end fn_1_4D14 */
 
 /* fzgx:begin fn_1_4DE0 */
-extern f32 lbl_1_rodata_16C;
-extern f32 lbl_1_rodata_164[2];
-
-void fn_8006CE1C(f32);
-
 #pragma opt_dead_assignments off
 void fn_1_4DE0(Obj_1_data_2CDC *obj, u32 arg1) {
     if (arg1 == 1) {
         obj->unk_3 &= 0xFE;
         if (obj->unk_3 & 2) {
             Obj_1_data_2CDC *p;
-            fn_8006CE1C(lbl_1_rodata_16C);
+            fn_8006CE1C(0.0f);
             p = &lbl_1_data_2CDC;
             p->unk_8 = lbl_1_data_2CD8;
         } else {
-            fn_8006CE1C((*((0) + (lbl_1_rodata_164))));
+            fn_8006CE1C(1.0f);
         }
         obj->unk_6 = -1;
     }
@@ -279,22 +237,6 @@ void fn_1_4DE0(Obj_1_data_2CDC *obj, u32 arg1) {
 /* fzgx:end fn_1_4DE0 */
 
 /* fzgx:begin fn_1_4E60 */
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 65535.0f;
-    s = 1.0f;
-    s = -1.0f;
-    s = 0.0f;
-    d = 4503599627370496.0;
-}
-#pragma section code_type ".text"
-
-extern u32 lbl_1_data_2CD8;
-extern void fn_8006CDFC(u32 *);
-extern void fn_8006CE1C(f32);
-extern void fn_1_4060(void);
-
 #pragma opt_dead_assignments off
 void fn_1_4E60(Obj_1_data_2CDC *obj) {
     f32 base;
@@ -1153,8 +1095,6 @@ extern void OSPanic(const char *message, int line, const char *file, ...);
 extern void fn_80009AA8(u32 value, u32 count, const char *file, int line);
 extern u32 fn_1_435C(u32 value);
 extern void fn_1_426C(s16 value);
-extern f32 lbl_1_rodata_160;
-extern f32 lbl_1_rodata_164[2];
 extern u32 lbl_1_bss_F5C;
 extern u32 lbl_1_bss_F60[2];
 extern s32 fn_8008023C(Obj_1_bss_7AC20 *, u32 *, u32);
@@ -1172,8 +1112,15 @@ extern void fn_1_E174(void);
 extern void fn_1_F3D0(LiveCamera *);
 s32 fn_1_3FC28(void);
 void fn_1_3EF14(u32 *);
-extern f32 lbl_1_rodata_16C;
 extern void fn_8006CE1C(f32);
+extern void fn_1_4BB0(void);
+extern f32 fn_1_4D14(Obj_1_data_2CDC *);
+extern void fn_1_4CD8(void);
+extern void fn_1_4E60(Obj_1_data_2CDC *);
+extern void fn_1_4DE0(Obj_1_data_2CDC *, u32);
+extern void fn_1_4010(s32, void (*)(Obj_1_data_2CDC *, u32));
+extern void fn_8006CDFC(u32 *);
+extern void fn_1_4060(void);
 
 extern u16 fn_1_A5D88(void);
 extern u16 fn_1_A5DB0(void);

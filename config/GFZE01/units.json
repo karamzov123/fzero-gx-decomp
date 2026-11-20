@@ -42327,160 +42327,40 @@
     "source": "rel/main_rel/alloc/fn_1_4928.c",
     "symbols": [
       "fn_1_4928",
-      "fn_1_49F0"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/alloc.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/alloc/fn_1_4A00.c",
-    "symbols": [
-      "fn_1_4A00"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/alloc.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/alloc/fn_1_4BB0.c",
-    "symbols": [
+      "fn_1_49F0",
+      "fn_1_4A00",
       "fn_1_4BB0",
-      "fn_1_4C10"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/alloc.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/alloc/fn_1_4C24.c",
-    "symbols": [
-      "fn_1_4C24"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/alloc.c",
-    "pool": {
-      "...rodata.0": "lbl_1_rodata_160",
-      "@9": "lbl_1_rodata_170",
-      "@8": "lbl_1_rodata_16C",
-      "@6": "lbl_1_rodata_164"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/alloc/fn_1_4CAC.c",
-    "symbols": [
+      "fn_1_4C10",
+      "fn_1_4C24",
       "fn_1_4CAC",
-      "fn_1_4CC0"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/alloc.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/alloc/fn_1_4CD8.c",
-    "symbols": [
-      "fn_1_4CD8"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/alloc.c",
-    "pool": {
-      "@6": "lbl_1_rodata_16C"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/alloc/fn_1_4D14.c",
-    "symbols": [
-      "fn_1_4D14"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/alloc.c",
-    "pool": {
-      "@17": "lbl_1_rodata_170"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/alloc/fn_1_4DE0.c",
-    "symbols": [
-      "fn_1_4DE0"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/alloc.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/alloc/fn_1_4E60.c",
-    "symbols": [
-      "fn_1_4E60"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/alloc.c",
-    "pool": {
-      "...rodata.0": "lbl_1_rodata_160",
-      "@9": "lbl_1_rodata_170",
-      "@5": "lbl_1_rodata_160",
-      "@6": "lbl_1_rodata_164",
-      "@8": "lbl_1_rodata_16C"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/alloc/fn_1_4FEC.c",
-    "symbols": [
+      "fn_1_4CC0",
+      "fn_1_4CD8",
+      "fn_1_4D14",
+      "fn_1_4DE0",
+      "fn_1_4E60",
       "fn_1_4FEC",
       "fn_1_4FFC",
       "fn_1_509C",
       "fn_1_5104",
       "fn_1_5124",
-      "fn_1_52E0"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/alloc.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/alloc/fn_1_5300.c",
-    "symbols": [
-      "fn_1_5300"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/alloc.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/alloc/fn_1_5328.c",
-    "symbols": [
+      "fn_1_52E0",
+      "fn_1_5300",
       "fn_1_5328",
       "fn_1_5348"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/alloc.c"
+    "tu": "rel/main_rel/alloc.c",
+    "collapsed": true,
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_160",
+      "@45": "lbl_1_rodata_160",
+      "@46": "lbl_1_rodata_160+0x4",
+      "@68": "lbl_1_rodata_160+0x8",
+      "@69": "lbl_1_rodata_160+0xC",
+      "@71": "lbl_1_rodata_160+0x10"
+    }
   },
   {
     "module": "main_rel",
