@@ -35,7 +35,7 @@ u8 fn_8003A1CC(Fn8003A1CC_Info *info) {
     u16 length;
     u16 numVals;
 
-    length = (u16)((info->c[0] << 8) | info->c[1]);
+    length = ((info->c[0] << 8) | info->c[1]);
     info->c += 2;
     length -= 2;
 
@@ -84,7 +84,7 @@ s32 fn_8003A3D4(u8 *arg0) {
 
     *(u8 **)(arg0 + 0x400) += 2;
     count = *(*(u8 **)(arg0 + 0x400))++;
-    if (count != *(u8 *)(arg0 + 0x41C)) {
+    if (count != *(arg0 + 0x41C)) {
         return 6;
     }
 
@@ -98,20 +98,20 @@ s32 fn_8003A3D4(u8 *arg0) {
         s32 diff;
 
         (*(u8 **)(arg0 + 0x400)) = (*(u8 **)(arg0 + 0x400)) + 1;
-        val = (u8)(*(*(u8 **)(((0x400) + (arg0))))++);
+        val = (*(*(u8 **)(((0x400) + arg0)))++);
         hi = val >> 4;
         *(u8 *)(p.value + 0x6C4) = hi;
         lo = val & 0xF;
         *(u8 *)(p.value + 0x6C5) = lo;
-        if (!(*(u8 *)(((0x418) + (arg0))) & (1 << hi))) {
+        if (!(*(((0x418) + arg0)) & (1 << hi))) {
             return 9;
         }
-        if (!(*(u8 *)(((0x418) + (arg0))) & (1 << (lo + 1)))) {
+        if (!(*(((0x418) + arg0)) & (1 << (lo + 1)))) {
             return 9;
         }
 
-        diff = *(u8 *)(arg0 + 0x41B) - *(u8 *)(((0x6C2) + (p.value)));
-        unk8 = (u16)(*(u32 *)(p.value + 0x6C8));
+        diff = *(arg0 + 0x41B) - *(((0x6C2) + p.value));
+        unk8 = (*(u32 *)(p.value + 0x6C8));
         shift = 16 >> diff;
         *(u32 *)(p.value + 0x6D0) = *(u32 *)(arg0 + 0x7B4);
         *(u32 *)(arg0 + 0x7B4) += ((u16)unk8) * ((u16)shift);

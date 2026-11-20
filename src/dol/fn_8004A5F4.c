@@ -70,7 +70,7 @@ void fn_8004A5F4(ADXStream *arg0) {
                 sectors = fn_800549F0(arg0->file);
                 bytes = sectors << 11;
                 fn_80054930(arg0->file, 0, 0);
-                if ((u32)arg0->file_size + 0x80010000u == 0xF800u) {
+                if (arg0->file_size + 0x80010000u == 0xF800u) {
                     arg0->file_size = bytes;
                 } else {
                     if (arg0->file_offset > sectors) {

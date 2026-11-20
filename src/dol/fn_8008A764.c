@@ -12,9 +12,9 @@ void fn_8008A764(u32 arg0, u32 arg1) {
     v0 = 0;
     v1 = (u8 *)arg0;
     while (v0 < (s32)arg1) {
-        MWTRACE(8, (lbl_80095A6C), v1[v0]);
+        MWTRACE(8, lbl_80095A6C, v1[v0]);
         if (v0 % 16 == 15) {
-            MWTRACE(8, (lbl_80095A74));
+            MWTRACE(8, lbl_80095A74);
         }
         v0++;
     }
@@ -104,7 +104,7 @@ s32 fn_8008A91C(void *arg0, u32 *arg1) {
         *arg1 = 0;
         result = fn_8008AB20((void *)unk_8, &unk_10, 3, 3, 0);
         if (!result) {
-            buffer_ptr = (void *)TRKGetBuffer(unk_10);
+            buffer_ptr = TRKGetBuffer(unk_10);
         }
         if (!result) {
             *arg1 = *(u32 *)((u8 *)buffer_ptr + 0x20);
@@ -146,13 +146,13 @@ u32 fn_8008AA04(const char *name, u8 type, u32 *status, u32 *length, void *buffe
     result = (u32)TRKAppendBuffer_ui8((void *)local_8, &request, 0x40);
     if (!result) {
         result = strlen(name);
-        result = (u32)TRKAppendBuffer_ui8((void *)local_8, (void *)name, result + 1);
+        result = (u32)TRKAppendBuffer_ui8((void *)local_8, name, result + 1);
     }
     if (!result) {
         *length = 0;
         result = fn_8008AB20((void *)local_8, &local_10, 7, 3, 0);
         if (!result) {
-            buf = (void *)TRKGetBuffer(local_10);
+            buf = TRKGetBuffer(local_10);
         }
         *length = *(u32 *)((u8 *)buf + 0x20);
         *status = *(u32 *)((u8 *)buf + 0x18);

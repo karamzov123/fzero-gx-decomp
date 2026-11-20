@@ -136,13 +136,13 @@ void fn_80070774(u32 arg0, u32 arg1, u32 arg2) {
     lbl_801A6D30->unk_C = 0;
     lbl_801A6D30->unk_10 = 0;
     fn_80071D30();
-    fn_80038EEC(0.0f, 0.0f, (f32)(u32)lbl_801A6CF4->unk_4, (f32)(u32)lbl_801A6CF4->unk_6,
+    fn_80038EEC(0.0f, 0.0f, lbl_801A6CF4->unk_4, lbl_801A6CF4->unk_6,
                 0.0f, 1.0f);
     fn_80074188(0, 0, lbl_801A6CF4->unk_4, lbl_801A6CF4->unk_6);
     fn_8007423C(0, 0, lbl_801A6CF4->unk_4, lbl_801A6CF4->unk_6);
     fn_800743C4(lbl_801A6CF4->unk_4, lbl_801A6CF4->unk_8);
-    GXSetDispCopyYScale((f32)(u32)lbl_801A6CF4->unk_8 / (f32)(u32)lbl_801A6CF4->unk_6);
-    fn_80034ECC(lbl_801A6CF4->unk_19, (lbl_801A6CF4->unk_1A), 1, lbl_801A6CF4->unk_32);
+    GXSetDispCopyYScale((f32)lbl_801A6CF4->unk_8 / lbl_801A6CF4->unk_6);
+    fn_80034ECC(lbl_801A6CF4->unk_19, lbl_801A6CF4->unk_1A, 1, lbl_801A6CF4->unk_32);
     if ((s32)arg2 != 0) {
         fn_80037C2C(Sig_fn_80037C2C_GX_PF_RGBA6_Z24, Sig_fn_80037C2C_GX_ZC_LINEAR);
         fn_80037D14(1);
@@ -152,7 +152,7 @@ void fn_80070774(u32 arg0, u32 arg1, u32 arg2) {
         fn_80037D14(0);
     }
     loc_8 = lbl_801A7918;
-    fn_800744F8((void *)&loc_8, 0xFFFFFF);
+    fn_800744F8(&loc_8, 0xFFFFFF);
     fn_80035110((void *)lbl_801A6D30->unk_4, 1);
     fn_80035110((void *)lbl_801A6D30->unk_8, 0);
     fn_80035110((void *)lbl_801A6D30->unk_4, 0);

@@ -17,19 +17,19 @@ u32 fn_80057EC4(u8 *arg0, s32 arg1, struct fn_80057EC4_Arg2 *arg2) {
     s32 b;
 
     if ((s32)arg2->unk_4 > 0) {
-        if (*(u32 *)((u8 *)arg2 + 0) == 0) {
+        if (*(u32 *)(arg2) == 0) {
             return (u32)arg0;
         }
         fn_80057728();
         if (arg1 == 0) {
             t = *(s32 *)(arg0 + 0x20);
-            a = *(s32 *)(arg0 + 0x14) + t - (s32)arg2->unk_4;
-            b = (s32)*(u32 *)((u8 *)arg2 + 0) - *(s32 *)(arg0 + 0x1c);
+            a = *(s32 *)(arg0 + 0x14) + t - arg2->unk_4;
+            b = (s32)*(u32 *)(arg2) - *(s32 *)(arg0 + 0x1c);
             if (a % t == b % t) {
                 *(s32 *)(arg0 + 0x14) = a % t;
                 *(u32 *)(arg0 + 0x10) += arg2->unk_4;
             } else {
-                temp_r12 = (s32 (*)(s32, s32))(*(s32 (**)(s32, s32))((u8 *)arg0 + 0x38));
+                temp_r12 = (s32 (*)(s32, s32))(*(s32 (**)(s32, s32))(arg0 + 0x38));
                 if (temp_r12 != NULL) {
                     temp_r12(*(s32 *)(arg0 + 0x3c), -3);
                 }
@@ -37,13 +37,13 @@ u32 fn_80057EC4(u8 *arg0, s32 arg1, struct fn_80057EC4_Arg2 *arg2) {
             *(u32 *)(arg0 + 0x28) -= arg2->unk_4;
         } else if (arg1 == 1) {
             t = *(s32 *)(arg0 + 0x20);
-            a = *(s32 *)(arg0 + 0x18) + t - (s32)arg2->unk_4;
-            b = (s32)*(u32 *)((u8 *)arg2 + 0) - *(s32 *)(arg0 + 0x1c);
+            a = *(s32 *)(arg0 + 0x18) + t - arg2->unk_4;
+            b = (s32)*(u32 *)(arg2) - *(s32 *)(arg0 + 0x1c);
             if (a % t == b % t) {
                 *(s32 *)(arg0 + 0x18) = a % t;
                 *(u32 *)(arg0 + 0xc) += arg2->unk_4;
             } else {
-                temp_r12 = (s32 (*)(s32, s32))(*(s32 (**)(s32, s32))((u8 *)arg0 + 0x38));
+                temp_r12 = (s32 (*)(s32, s32))(*(s32 (**)(s32, s32))(arg0 + 0x38));
                 if (temp_r12 != NULL) {
                     temp_r12(*(s32 *)(arg0 + 0x3c), -3);
                 }
@@ -52,7 +52,7 @@ u32 fn_80057EC4(u8 *arg0, s32 arg1, struct fn_80057EC4_Arg2 *arg2) {
         } else {
             arg2->unk_4 = 0;
             *(u32 *)((u8 *)arg2 + 0) = 0;
-            temp_r12 = (s32 (*)(s32, s32))(*(s32 (**)(s32, s32))((u8 *)arg0 + 0x38));
+            temp_r12 = (s32 (*)(s32, s32))(*(s32 (**)(s32, s32))(arg0 + 0x38));
             if (temp_r12 != NULL) {
                 temp_r12(*(s32 *)(arg0 + 0x3c), -3);
             }
@@ -109,19 +109,19 @@ void fn_80058070(SjRing* p, int mode, SjSpan* span)
                 {
                     char* d = (char*)offset + (int)p->unk1C;
                     d = (char*)p->unk20 + (int)d;
-                    memcpy(d, (void*)span->ptr, n);
+                    memcpy(d, span->ptr, n);
                 }
             }
         }
 
         {
-            int end_offset = (int)span->ptr - (int)p->unk1C + span->len;
+            int end_offset = span->ptr - p->unk1C + span->len;
             if (end_offset > p->unk20) {
                 int n = end_offset - p->unk20;
                 if (span->len < n) {
                     n = span->len;
                 }
-                memcpy((void*)p->unk1C, (char*)p->unk1C + (end_offset - n), n);
+                memcpy(p->unk1C, p->unk1C + (end_offset - n), n);
             }
         }
 

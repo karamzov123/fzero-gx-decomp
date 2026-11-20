@@ -88,7 +88,7 @@ s32 fn_80023684(Reverb *r, f32 room, f32 time, f32 mix, f32 damp, f32 pre, f32 w
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
             delay_init(&r->ap[i * 3 + j], &lbl_80128160[j]);
-            r->gain[i * 3 + j] = fn_800885B8(10.0f, (f32)(lbl_80128160[j] * -3) / rate);
+            r->gain[i * 3 + j] = fn_800885B8(10.0f, (lbl_80128160[j] * -3) / rate);
         }
         for (j = 0; j < 2; j++) {
             delay_init(&r->comb[i * 3 + j], &lbl_80128160[3 + j]);
@@ -107,7 +107,7 @@ s32 fn_80023684(Reverb *r, f32 room, f32 time, f32 mix, f32 damp, f32 pre, f32 w
     r->damp = 1.0f - (0.05f + (f32)(0.8f * r->damp));
 
     if (0.0f != pre) {
-        r->preLen = (s32)(32000.0f * pre);
+        r->preLen = (32000.0f * pre);
         for (k = 0; k < 3; k++) {
             r->preBuf[k] = lbl_801A64F8(r->preLen * 4);
             memset(r->preBuf[k], 0, r->preLen * 4);

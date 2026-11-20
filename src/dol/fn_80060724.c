@@ -38,7 +38,7 @@ extern Fn80060724Channel lbl_80192D68[16];
 /* 0..127 level -> attenuation in 0.1 dB units, as in fn_8005C5C8; zero means silence */
 #define LEVEL(dst, v)                                                    \
     if ((v) != 0) {                                                      \
-        dst = (s32)(10.0 * (20.0 * fn_80088578((f32)(v) / 127.0f)));     \
+        dst = (10.0 * (20.0 * fn_80088578(v / 127.0f)));     \
     } else {                                                             \
         dst = -904;                                                      \
     }

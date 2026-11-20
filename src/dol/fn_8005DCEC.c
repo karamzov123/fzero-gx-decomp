@@ -291,7 +291,7 @@ extern void fn_80060BDC(u32);
 extern void fn_80028424(void *);
 
 static inline void fn_8005DB68(s16 arg0, f32 arg1, s16 arg2, s16 *arg3, s16 *arg4) {
-    u32 idx = ((s32)arg0 / 4 - 1) & 0xFF;
+    u32 idx = (arg0 / 4 - 1) & 0xFF;
     f32 a;
     f32 b;
 
@@ -437,7 +437,7 @@ void fn_8005DCEC(u16 *arg0, u8 arg1) {
         }
     } else {
         n = (((lbl_801A6C80->unk_444 >> 4) & 0xF) << 7) | key;
-        if ((s32)n <= (s32)hdr->count) {
+        if ((s32)n <= hdr->count) {
             note = &((SndNote *)&hdr->min)[n];
         }
     }
@@ -588,12 +588,12 @@ void fn_8005DCEC(u16 *arg0, u8 arg1) {
     if (lbl_801A6C80->unk_462 == 0) {
         if (wave->stereo == 1) {
             pan = 0x40;
-            vol = (s16)(0.75f * (f32)(left + right) + (f32)vol);
+            vol = (s16)(0.75f * (left + right) + vol);
         } else {
             left = -20.0 * fn_80088578(sqrt((f32)((127 - pan) / 127)));
             right = 20.0 * fn_80088578(sqrt((f32)(pan / 127)));
             pan = 0x40;
-            vol = (s16)(0.75f * (f32)(left + right) + (f32)vol);
+            vol = (s16)(0.75f * (left + right) + vol);
         }
     }
 
@@ -607,24 +607,24 @@ void fn_8005DCEC(u16 *arg0, u8 arg1) {
     if (note->unk_15 != 0 || p == 0) {
         fx = lbl_801A6C80->slot[arg1].unk_A;
         if (lbl_801A6C80->slot[arg1].unk_B != 0) {
-            rev = 10.0 * (20.0 * fn_80088578((f32)lbl_801A6C80->slot[arg1].unk_B / 127.0f));
+            rev = 10.0 * (20.0 * fn_80088578(lbl_801A6C80->slot[arg1].unk_B / 127.0f));
         } else {
             rev = -904;
         }
         if (lbl_801A6C80->slot[arg1].unk_C != 0) {
-            cho = 10.0 * (20.0 * fn_80088578((f32)lbl_801A6C80->slot[arg1].unk_C / 127.0f));
+            cho = 10.0 * (20.0 * fn_80088578(lbl_801A6C80->slot[arg1].unk_C / 127.0f));
         } else {
             cho = -904;
         }
     } else {
         fx = note->unk_16;
         if (note->unk_17 != 0) {
-            rev = 10.0 * (20.0 * fn_80088578((f32)note->unk_17 / 127.0f));
+            rev = 10.0 * (20.0 * fn_80088578(note->unk_17 / 127.0f));
         } else {
             rev = -904;
         }
         if (note->unk_18 != 0) {
-            cho = 10.0 * (20.0 * fn_80088578((f32)note->unk_18 / 127.0f));
+            cho = 10.0 * (20.0 * fn_80088578(note->unk_18 / 127.0f));
         } else {
             cho = -904;
         }
@@ -763,7 +763,7 @@ void fn_8005DCEC(u16 *arg0, u8 arg1) {
             env = 1200;
         }
     } else if (t < 0) {
-        env = note->unk_28 - fn_scale((s32)__fabs(t), 1200, arg1);
+        env = note->unk_28 - fn_scale(__fabs(t), 1200, arg1);
         if (env < 0) {
             env = 0;
         }
@@ -779,7 +779,7 @@ void fn_8005DCEC(u16 *arg0, u8 arg1) {
             env2 = 120;
         }
     } else if (t < 0) {
-        env2 = note->unk_2A - fn_scale((s32)__fabs(t), 120, arg1);
+        env2 = note->unk_2A - fn_scale(__fabs(t), 120, arg1);
         if (env2 < 0) {
             env2 = 0;
         }

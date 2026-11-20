@@ -95,8 +95,8 @@ void fn_80053DB4(struct fn_80053DB4_Arg0 *obj, u32 arg1, u32 ch, void *arg3) {
 
     p = (u32 *)((u8 *)obj + (ch << 2));
     buf = (u8 *)obj + (ch << 12);
-    p[1] = ((*((1) + (p))) - 0x40) & 0x3FF;
-    idx = (*((1) + (p)));
+    p[1] = ((*((1) + p)) - 0x40) & 0x3FF;
+    idx = (*((1) + p));
     unkC = obj->unk_C;
     addr = buf + 0x14 + (idx << 2);
     lbl_801873C0[0] = fn_80053A30();
@@ -106,9 +106,9 @@ void fn_80053DB4(struct fn_80053DB4_Arg0 *obj, u32 arg1, u32 ch, void *arg3) {
     }
     fn_80051F38(arg1, unkC, addr);
     lbl_801873C0[4] = fn_80053A30();
-    idx = (*((1) + (p)));
+    idx = (*((1) + p));
     lbl_801873C0[0] = fn_80053A30();
-    (*((idx >> 6) + (lbl_80130BC0)))((u8 *)((u32 *)(buf + 0x14) + idx), obj->unk_10, arg3);
+    (*((idx >> 6) + lbl_80130BC0))(((u32 *)(buf + 0x14) + idx), obj->unk_10, arg3);
     lbl_801873C0[4] = fn_80053A30();
 }
 
@@ -155,15 +155,15 @@ void fn_80053EB0(struct fn_80053EB0_Arg0 *arg0) {
     v0 = t0;
     } else {
     if ((s8)arg0->unk_5 == 1) {
-    v0 = *(u32 *)((u8 *)(u32)arg0 + 12);
-    v1 = *(u32 *)((u8 *)v0 + 0);
-    t1 = ((fn_80053EB0_Fn0)*(u32 *)((u8 *)v1 + 36))(v0, 1);
+    v0 = *(u32 *)((u8 *)arg0 + 12);
+    v1 = *(u32 *)(v0);
+    t1 = ((fn_80053EB0_Fn0)*(u32 *)(v1 + 36))(v0, 1);
     v0 = t1;
     if ((s32)v0 >= 36) {
-    v0 = *(u32 *)((u8 *)(u32)arg0 + 0);
+    v0 = *(u32 *)(arg0);
     t2 = fn_80051448(v0);
     v0 = t2;
-    v0 = *(u32 *)((u8 *)(u32)arg0 + 0);
+    v0 = *(u32 *)(arg0);
     t3 = fn_800510D8(v0);
     v0 = t3;
     v0 = 1;

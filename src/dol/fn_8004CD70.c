@@ -172,7 +172,7 @@ extern const f32 lbl_80091064[];
 ADXTHandle *fn_8004CD70(s32 arg0, void *arg1, s32 arg2) {
 struct fn_8004CD70_lbl_80178CBC_0_E192 *v2;
 u8 *v0 = (u8 *)(((u32)arg1 + 63) & ~0x3F);
-s32 v1 = arg2 - (v0 - (u8 *)arg1);
+s32 v1 = arg2 - (v0 - arg1);
 s32 channels = arg0;
 s32 v5;
 s32 v17;
@@ -195,7 +195,7 @@ v2->unk_28 = 36;
 u8 *base = v2->unk_20;
 s32 extra = v2->unk_28;
 s32 size = v2->unk_24;
-v2->unk_AC = (u8 *)(size + extra + (u32)base);
+v2->unk_AC = (size + extra + base);
 }
 v2->unk_2C = v0;
 v2->unk_30 = 8192;
@@ -215,7 +215,7 @@ if ((v2->unk_94 = fn_800571EC(v2->unk_10)) == 0) { fn_8004CAC8((ADXTHandle *)v2)
 fn_8005710C(v2->unk_94, v2->unk_8);
 v2->unk_38 = 60;
 v2->unk_3C = v2->unk_24 / 2048;
-v2->unk_3E = (s32)(lbl_80091064[0] * (f32)v2->unk_3C);
+v2->unk_3E = (lbl_80091064[0] * v2->unk_3C);
 v2->unk_40 = 0;
 for (v17 = 0; v17 < channels; v17++) v2->unk_42[v17] = -128;
 v2->unk_46 = 0;

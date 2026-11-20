@@ -128,7 +128,7 @@ void fn_800643F4(u16 cmd) {
                 }
                 v = *p;
                 if (v != 0) {
-                    (*(u8 **)&chan->unk_588[0][0x1C]) = (u8 *)((u32)v + (u32)hdr.data);
+                    (*(u8 **)&chan->unk_588[0][0x1C]) = (u8 *)(v + (u32)hdr.data);
                 } else {
                     (*(u8 **)&chan->unk_588[0][0x1C]) = NULL;
                 }

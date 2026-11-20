@@ -60,7 +60,7 @@ void fn_8000691C(void) {
         lbl_801A66DA = 1;
     }
 
-    d = (f64)lbl_801A66D9;
+    d = lbl_801A66D9;
     if (d > lbl_801A6EF8) {
         VIWaitForRetrace();
         VISetBlack(1);

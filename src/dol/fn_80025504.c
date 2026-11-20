@@ -46,7 +46,7 @@ void fn_80025504(struct Source *arg0, struct Args *arg1) {
     v16 = arg0->unk_4;
     v17 = arg0->unk_8;
     v5 = v1 % 3;
-    v12 = (*((arg1->buffers) + (v5)));
+    v12 = (*((arg1->buffers) + v5));
     v13 = (*((arg1->buffers) + (v5 + 3)));
     v14 = (*((arg1->buffers) + (v5 + 6)));
     for (v11 = 0; v11 < 160; v11++) {
@@ -54,7 +54,7 @@ void fn_80025504(struct Source *arg0, struct Args *arg1) {
         *v13++ = *v16++;
         *v14++ = *v17++;
     }
-    arg1->unk_84 = (((s32)arg1->unk_60 >> 16) + 1);
+    arg1->unk_84 = ((arg1->unk_60 >> 16) + 1);
     arg1->unk_80 = ((arg1->unk_60 & 0xFFFF) << 16);
     v42 = (arg1->unk_64 - 1);
     arg1->unk_64 = v42;

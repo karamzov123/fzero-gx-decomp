@@ -66,7 +66,7 @@ s32 fn_8008EFE0(u8 *arg0, u32 arg1) {
         if (arg1 - fzgx_loop_off_1266 >= 4) n = 4;
         else n = fzgx_loop_rem_1266;
         for (i = 0; i < n; i++) {
-            (arg0 + fzgx_loop_off_1266)[i] = (u8)(loc_20 >> (8 * (3 - i)));
+            (arg0 + fzgx_loop_off_1266)[i] = (loc_20 >> (8 * (3 - i)));
         }
         idx++;
         fzgx_loop_off_1266 += 4;

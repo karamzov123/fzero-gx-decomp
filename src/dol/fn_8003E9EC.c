@@ -51,14 +51,14 @@ void fn_8003E9EC(u32 arg0) {
     counter = lbl_801A6C54;
     lbl_801A6C74 = arg0;
     lbl_801A6C60 = __OSCoreClock / 60 * 3;
-    lbl_801A6C64 = (f32)(u32)((counter + 1) * 7);
+    lbl_801A6C64 = ((counter + 1) * 7);
     lbl_801A6C68 = __OSBusClock / 120;
     v = lbl_801A6C64;
     p->unk_5C = v;
     p->unk_4C = v;
     p->unk_3C = v;
     p->unk_34 = v;
-    fzgx_value = &(p->unk_2C);
+    fzgx_value = &p->unk_2C;
     *fzgx_value = v;
     p->unk_C = v;
     w = (616.0f);
@@ -66,7 +66,7 @@ void fn_8003E9EC(u32 arg0) {
     p->unk_28 = (616.0f);
     p->unk_20 = (616.0f);
     p->unk_18 = (616.0f);
-    p->unk_84 = (f32)(u32)((counter + 2) * 19);
+    p->unk_84 = ((counter + 2) * 19);
     p->unk_8C = p->unk_84;
 }
 #pragma opt_propagation reset

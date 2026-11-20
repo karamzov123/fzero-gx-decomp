@@ -7,7 +7,7 @@ extern void __CARDSyncCallback(void);
 s32 fn_8002FC14(u32 arg0, void *arg1) {
     s32 result;
 
-    result = CARDDeleteAsync(arg0, arg1, (void *)__CARDSyncCallback);
+    result = CARDDeleteAsync(arg0, arg1, __CARDSyncCallback);
     if (result < 0) {
         return result;
     } else {

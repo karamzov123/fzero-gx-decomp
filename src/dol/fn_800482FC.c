@@ -78,7 +78,7 @@ static inline s32 fn_80048340_put8(struct fn_80048340_stream *arg1,
         (*(fn_80048340_FnB *)(arg1->vtable + 28))(arg1, 0, &blk);
         return 0;
     }
-    memcpy((void *)blk.ptr, (const void *)p, 1);
+    memcpy(blk.ptr, p, 1);
     (*(fn_80048340_FnC *)(arg1->vtable + 32))(arg1, 1, &blk);
     return 1;
 }
@@ -93,7 +93,7 @@ static inline s32 fn_80048340_put16(struct fn_80048340_stream *arg1,
         (*(fn_80048340_FnB *)(arg1->vtable + 28))(arg1, 0, &blk);
         return 0;
     }
-    dst = (s16 *)blk.ptr;
+    dst = blk.ptr;
     *dst = *(const s16 *)p;
     (*(fn_80048340_FnC *)(arg1->vtable + 32))(arg1, 1, &blk);
     return 1;
@@ -109,7 +109,7 @@ static inline s32 fn_80048340_put16n(struct fn_80048340_stream *arg1,
         (*(fn_80048340_FnB *)(arg1->vtable + 28))(arg1, 0, &blk);
         return 0;
     }
-    dst = (s16 *)blk.ptr;
+    dst = blk.ptr;
     *dst = *(const s16 *)p;
     (*(fn_80048340_FnC *)(arg1->vtable + 32))(arg1, 1, &blk);
     return 1;
@@ -125,7 +125,7 @@ static inline s32 fn_80048340_put32(struct fn_80048340_stream *arg1,
         (*(fn_80048340_FnB *)(arg1->vtable + 28))(arg1, 0, &blk);
         return 0;
     }
-    dst = (s32 *)blk.ptr;
+    dst = blk.ptr;
     *dst = *p;
     (*(fn_80048340_FnC *)(arg1->vtable + 32))(arg1, 1, &blk);
     return 1;
@@ -140,7 +140,7 @@ static inline s32 fn_80048340_putBytes(struct fn_80048340_stream *arg1,
         (*(fn_80048340_FnB *)(28 + arg1->vtable))(arg1, 0, &blk);
         return 0;
     }
-    memcpy((void *)blk.ptr, src, n & 0xffff);
+    memcpy(blk.ptr, src, n & 0xffff);
     (*(fn_80048340_FnC *)(arg1->vtable + 32))(arg1, 1, &blk);
     return n;
 }
@@ -163,12 +163,12 @@ s32 fn_80048340(struct fn_80048340_data *arg0, struct fn_80048340_stream *arg1) 
     volatile s32 d; /* volatile: staged slot survives the stream callbacks */
     u16 vi;
 
-    len = strlen((const char *)*(u32 *)&lbl_8012B8FC[0]);
+    len = strlen((const char *)(lbl_8012B8FC)[0]);
 {
     struct fn_80048340_block blk;
     (*(fn_80048340_FnA *)(arg1->vtable + 24))(arg1, 0, 0x7fffffff, &blk);
     size = blk.size;
-    (*(fn_80048340_FnB *)(((28) + (arg1->vtable))))(arg1, 0, &blk);
+    (*(fn_80048340_FnB *)(((28) + arg1->vtable)))(arg1, 0, &blk);
 }
     if (size < arg0->unk_48 + 4) {
         return 0;
@@ -328,7 +328,7 @@ s32 fn_80048340(struct fn_80048340_data *arg0, struct fn_80048340_stream *arg1) 
         }
         count++;
     }
-    if (fn_80048340_putBytes(arg1, (const void *)*(u32 *)&lbl_8012B8FC[0],
+    if (fn_80048340_putBytes(arg1, (const void *)(lbl_8012B8FC)[0],
                              len) != len) {
         goto fail; /* error: single shared failure exit */
     }

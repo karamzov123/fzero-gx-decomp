@@ -30,7 +30,7 @@ s32 fn_8008D7CC(u32 arg0, u32 arg1, s32 arg2) {
         mode = 2;
     }
 
-    value = fn_8008CB38(0xD4, arg0, arg1, (u8)mode);
+    value = fn_8008CB38(0xD4, arg0, arg1, mode);
     switch (value) {
     case 0:
         return 0;
@@ -58,7 +58,7 @@ s32 fn_8008D8A8(u32 arg0) {
     t1 = fn_8008CB30(v0, arg0);
     v0 = t1;
     v1 = (v0 & 0xFF);
-    switch ((s32)v1) {
+    switch (v1) {
     case 0:
     v0 = 0;
     break;

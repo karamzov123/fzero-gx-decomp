@@ -14,5 +14,5 @@ extern f64 lbl_801A7008;
 void fn_80028130(Fn80028130Data *data, u32 value0, u32 value1) {
     data->value2 = 0;
     data->value0 = value0;
-    data->value1 = (f32)value1;
+    data->value1 = value1;
 }

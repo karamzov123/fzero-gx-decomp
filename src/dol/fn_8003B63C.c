@@ -59,8 +59,8 @@ void fn_8003B63C(u8 *self, u8 idx, s16 *out) {
     __dcbz(out, 0x60);
     d = (D_ *)(self + (u8)((tab[0x6c5] << 1) + 1) * 0xa8 + 0x420);
     if (n != 0) {
-        v = (s16)fn_8003B798((u32)self, n & 0xFF);
-        if ((s32)__cntlzw(v) > (s32)(32 - n)) {
+        v = fn_8003B798((u32)self, n & 0xFF);
+        if (__cntlzw(v) > (32 - n)) {
             v = (-1 << n) + v;
             v++;
         }
@@ -79,7 +79,7 @@ void fn_8003B63C(u8 *self, u8 idx, s16 *out) {
         if (m != 0) {
             i += t;
             w = fn_8003B798((u32)self, m);
-            if ((s32)__cntlzw(w) > (s32)(32 - m)) {
+            if (__cntlzw(w) > (32 - m)) {
                 w = (-1 << m) + w;
                 w++;
             }

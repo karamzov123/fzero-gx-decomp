@@ -67,13 +67,13 @@ s32 fn_8008D92C(const char * arg0, Sig_fn_8008D92C_FileMode * arg1, Sig_fn_8008D
         v0 = 1;
     } else {
         u8 v5;
-        v1 = *(u8 *)((u8 *)arg1 + 0);
-        v0 = *(u8 *)((u8 *)arg1 + 1);
+        v1 = *(u8 *)(arg1);
+        v0 = *((u8 *)arg1 + 1);
         v2 = ((v1 >> 6) & 0x3);
         v3 = ((v1 >> 3) & 0x7);
         v0 = ((v0 >> 3) & 0x1);
         v5 = 0;
-        switch ((s32)v2) {
+        switch (v2) {
         case 0:
             v5 |= 1;
             break;
@@ -84,7 +84,7 @@ s32 fn_8008D92C(const char * arg0, Sig_fn_8008D92C_FileMode * arg1, Sig_fn_8008D
             v5 |= 4;
             break;
         }
-        switch ((s32)v3) {
+        switch (v3) {
         case 1:
             v5 |= 1;
             break;
@@ -108,7 +108,7 @@ s32 fn_8008D92C(const char * arg0, Sig_fn_8008D92C_FileMode * arg1, Sig_fn_8008D
         t1 = fn_8008CB28(v0, (u32)arg0, v5, (u32)arg2);
         v0 = t1;
         v7 = (v0 & 0xFF);
-        switch ((s32)v7) {
+        switch (v7) {
         case 0:
             v0 = 0;
             break;

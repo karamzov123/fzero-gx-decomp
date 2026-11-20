@@ -42,15 +42,15 @@ void fn_8006B188(void) {
         i = 0;
         off = 0;
         do {
-            entry = (Fn8006B188Entry *)((u32)base + i * 0x1248);
+            entry = (Fn8006B188Entry *)(base + i * 0x1248);
             fn_8006B92C((u8 *)entry + 0x50);
             fn_8006B048(entry, i);
-            fn_80013428(i, (void *)fn_8006AA20);
+            fn_80013428(i, fn_8006AA20);
             fn_800137C4(i, (u8 *)entry + 0xc);
             i++;
             off += 0x1248;
         } while (i < 4);
-        PADSetSamplingCallback((u32)(void *)fn_8006AF94);
+        PADSetSamplingCallback((u32)fn_8006AF94);
         lbl_801A6C88 = 1;
     }
 }

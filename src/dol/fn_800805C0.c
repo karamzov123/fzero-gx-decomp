@@ -16,7 +16,7 @@ void fn_800805C0(void *arg0, const void *arg1, size_t arg2) {
 {
     u32 v1;
     v1 = (-(u32)arg0) & 3;
-    v2 = (u8 *)arg0;
+    v2 = arg0;
     v2 = v2 - 1;
     v3 = arg2;
     v4 = v1;

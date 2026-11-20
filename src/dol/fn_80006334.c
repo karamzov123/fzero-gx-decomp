@@ -30,7 +30,7 @@ u32 fn_80006354(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     while ((s8)lbl_801A66DB != 0) {
         fn_8000659C();
     }
-    return *(u32 *)((u8 *)arg0 + 52);
+    return *(u32 *)(arg0 + 52);
 }
 
 /* --- dol/fn_800063AC.c --- */
@@ -114,7 +114,7 @@ void fn_800063AC(u32 arg0, u32 arg1, u32 arg2) {
         font = OSAllocFromArenaHi(0x10120, 32);
         temp = OSAllocFromArenaHi(0x3000, 32);
     }
-    fn_8000CEBC((Sig_fn_8000CEBC_OSFontHeader *)font, (void *)temp);
+    fn_8000CEBC((Sig_fn_8000CEBC_OSFontHeader *)font, temp);
     group = (StringGroup *)lbl_801A66F4;
     for (groupIndex = 0; groupIndex < (s32)lbl_801A66F0; groupIndex++, group++) {
         strings = group->stringList;

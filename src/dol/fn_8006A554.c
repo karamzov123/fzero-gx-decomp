@@ -75,7 +75,7 @@ s32 fn_8006A554(struct fn_8006A554_Arg0 *arg0, u8 *p, struct fn_8006A554_Out *ar
             if (((ent->unk_0 & 0xFF000000) == 0 ? 0 : 1) != 0 || flag != 1) {
                 s32 f = ent->unk_0;
                 u8 *t = p;
-                u8 *s = (u8 *)((u32)arg0->names + (f & 0x00FFFFFF));
+                u8 *s = (arg0->names + (f & 0x00FFFFFF));
                 s32 m = 1;
                 while (*s != 0) {
                     s32 c1 = fn_8007ED90(*s++);
@@ -103,7 +103,7 @@ s32 fn_8006A554(struct fn_8006A554_Arg0 *arg0, u8 *p, struct fn_8006A554_Out *ar
             return i;
         }
         idx = i;
-        p = (u8 *)((u32)len + (u32)p);
+        p = (u8 *)(len + (u32)p);
         p = p + 1;
     }
 }
@@ -183,7 +183,7 @@ static inline BOOL ARCConvertEntrynumToPath(ARCHandle *handle, s32 entrynum, cha
     ARCEntry *FSTEntries;
 
     FSTEntries = (ARCEntry *)handle->FSTStart;
-    loc = fn_8006A768(handle, (u32)entrynum, path, maxlen);
+    loc = fn_8006A768(handle, entrynum, path, maxlen);
 
     if (loc == maxlen) {
         path[maxlen - 1] = '\0';
@@ -203,5 +203,5 @@ static inline BOOL ARCConvertEntrynumToPath(ARCHandle *handle, s32 entrynum, cha
 }
 
 BOOL fn_8006A8CC(ARCHandle *handle, char *path, u32 maxlen) {
-    return ARCConvertEntrynumToPath(handle, (s32)handle->currDir, path, maxlen);
+    return ARCConvertEntrynumToPath(handle, handle->currDir, path, maxlen);
 }

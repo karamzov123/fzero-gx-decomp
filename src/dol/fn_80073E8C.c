@@ -41,7 +41,7 @@ void fn_80073E8C(s32 arg0, s32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, s32
     s32 wrap2;
 
     v0 = arg2 & 0xFFFF;
-    switch ((s32)v0) {
+    switch (v0) {
     case 256: v1 = 1; break;
     case 128: v1 = 2; break;
     case 64: v1 = 3; break;
@@ -49,7 +49,7 @@ void fn_80073E8C(s32 arg0, s32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, s32
     case 16: v1 = 5; break;
     default: v1 = 0; break;
     }
-    switch ((s32)(arg3 & 0xFFFF)) {
+    switch ((arg3 & 0xFFFF)) {
     case 256: wrap2 = 1; break;
     case 128: wrap2 = 2; break;
     case 64: wrap2 = 3; break;
@@ -57,19 +57,19 @@ void fn_80073E8C(s32 arg0, s32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, s32
     case 16: wrap2 = 5; break;
     default: wrap2 = 0; break;
     }
-    matrix.a = (f32)(arg4 & 0xFFFF) * lbl_801A7470;
+    matrix.a = (arg4 & 0xFFFF) * lbl_801A7470;
     matrix.b = lbl_801A7474;
     matrix.c = lbl_801A7474;
     matrix.d = lbl_801A7474;
-    matrix.e = (f32)(arg5 & 0xFFFF) * lbl_801A7470;
+    matrix.e = (arg5 & 0xFFFF) * lbl_801A7470;
     matrix.f = lbl_801A7474;
     if (arg7 != 0) {
-        if ((s32)arg7 <= 3) {
-            entry = (Entry *)((u8 *)lbl_801A6D38 + ((s32)arg7 - 1) * 0x1C + 0x894);
-        } else if ((s32)arg7 <= 7) {
-            entry = (Entry *)((u8 *)lbl_801A6D38 + ((s32)arg7 - 5) * 0x1C + 0x894);
-        } else if ((s32)arg7 <= 11) {
-            entry = (Entry *)((u8 *)lbl_801A6D38 + ((s32)arg7 - 9) * 0x1C + 0x894);
+        if (arg7 <= 3) {
+            entry = (Entry *)(lbl_801A6D38 + (arg7 - 1) * 0x1C + 0x894);
+        } else if (arg7 <= 7) {
+            entry = (Entry *)(lbl_801A6D38 + (arg7 - 5) * 0x1C + 0x894);
+        } else if (arg7 <= 11) {
+            entry = (Entry *)(lbl_801A6D38 + (arg7 - 9) * 0x1C + 0x894);
         }
         if (entry->unk_18 != 10 || fn_8008023C(entry, &matrix, 0x18) != 0) {
             fn_80036AC4(arg7, &matrix, 10);
@@ -78,15 +78,15 @@ void fn_80073E8C(s32 arg0, s32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, s32
         }
     }
     tev = (TevEntry *)(lbl_801A6D38 + (arg0 << 5) + 0x8E8);
-    if (tev->unk_00 != (s32)arg1 ||
-        tev->unk_04 != (s32)arg6 ||
-        tev->unk_08 != (s32)arg8 ||
-        tev->unk_0C != (s32)arg7 ||
+    if (tev->unk_00 != arg1 ||
+        tev->unk_04 != arg6 ||
+        tev->unk_08 != arg8 ||
+        tev->unk_0C != arg7 ||
         tev->unk_10 != (s32)v1 ||
         tev->unk_14 != wrap2 ||
         tev->unk_18 != 0 ||
         tev->unk_19 != 1 ||
-        tev->unk_1C != (s32)arg9) {
+        tev->unk_1C != arg9) {
         GXSetTevIndirect(arg0, arg1, arg6, arg8, arg7, v1, wrap2, 0, 1, arg9);
         tev->unk_00 = arg1;
         tev->unk_04 = arg6;

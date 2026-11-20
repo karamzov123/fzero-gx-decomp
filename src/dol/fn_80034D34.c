@@ -10,7 +10,7 @@ typedef struct GXData {
 extern GXData *const gx;
 
 #define SET_REG_FIELD(reg, mask, shift, val) \
-    ((reg) = ((reg) & ~((mask) << (shift))) | ((u32)(val) << (shift)))
+    (reg = ((reg) & ~(mask << shift)) | (val << shift))
 
 void fn_80034D34(u32 flags) {
     u8 first = (flags & 1) == 1;

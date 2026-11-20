@@ -53,7 +53,7 @@ extern void fn_80072270(void *);
 void fn_800737E4(struct fn_800737E4_Arg0 *arg0, s32 arg1) {
     struct fn_800737E4_Local local;
 
-    local.unk_0 = (f32)arg1;
+    local.unk_0 = arg1;
     switch (arg1) {
     case 0:
         local.unk_4 = arg0->unk_0;

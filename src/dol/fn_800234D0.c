@@ -26,8 +26,8 @@ void fn_800234D0(Fn800234D0State *state, f32 value) {
     if (value_low > 0x40000) {
         value_high = 0x40000;
     }
-    state->value_high = (u16)(value_high >> 16);
-    state->value_low = (u16)value_high;
+    state->value_high = (value_high >> 16);
+    state->value_low = value_high;
     state->flags |= 0x80000;
     OSRestoreInterrupts(level);
 }

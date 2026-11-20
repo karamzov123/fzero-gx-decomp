@@ -41,24 +41,24 @@ DSError fn_8008C87C(const void *addr, size_t length, ValidMemoryOptions readWrit
     const u8 *start;
     const u8 *end;
     int i;
-    start = (const u8 *)addr;
+    start = addr;
     end = ((const u8 *)addr + (length - 1));
     if (end < start)
         return DS_InvalidMemory;
-    for (i = 0; (i < (s32)(sizeof(lbl_80095B20) / sizeof(memRange))); i++) {
-        if ((start <= (const u8 *)lbl_80095B20[i].end) &&
-            (end >= (const u8 *)lbl_80095B20[i].start)) {
+    for (i = 0; (i < (sizeof(lbl_80095B20) / sizeof(memRange))); i++) {
+        if ((start <= lbl_80095B20[i].end) &&
+            (end >= lbl_80095B20[i].start)) {
             if (((readWriteable == VALIDMEM_Readable) && !lbl_80095B20[i].readable) ||
                 ((readWriteable == VALIDMEM_Writeable) && !lbl_80095B20[i].writeable)) {
                 err = DS_InvalidMemory;
             } else {
                 err = DS_NoError;
-                if (start < (const u8 *)lbl_80095B20[i].start)
-                    err = fn_8008C87C(start, (u32)((const u8 *)lbl_80095B20[i].start - start),
+                if (start < lbl_80095B20[i].start)
+                    err = fn_8008C87C(start, (lbl_80095B20[i].start - start),
                                       readWriteable);
-                if ((err == DS_NoError) && (end > (const u8 *)lbl_80095B20[i].end))
-                    err = fn_8008C87C((const u8 *)lbl_80095B20[i].end,
-                                      (u32)(end - (const u8 *)lbl_80095B20[i].end), readWriteable);
+                if ((err == DS_NoError) && (end > lbl_80095B20[i].end))
+                    err = fn_8008C87C(lbl_80095B20[i].end,
+                                      (end - lbl_80095B20[i].end), readWriteable);
             }
             break;
         }

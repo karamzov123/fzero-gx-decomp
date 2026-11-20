@@ -89,7 +89,7 @@ void fn_80053F38(struct fn_80053F38_Arg0 *arg0) {
     obj2 = arg0->unk_C;
     if ((s8)arg0->unk_7 == 1) {
         t = ((fn_80053F38_Fn0) * (u32 *)(*(u32 *)obj2 + 0x24))(obj2, 1);
-        if (!(t)) {
+        if (!t) {
             t = fn_80050180((struct Sig_fn_80050180_Arg0 *)arg0->unk_8);
             if (t == 1) {
                 arg0->unk_5 = 3;

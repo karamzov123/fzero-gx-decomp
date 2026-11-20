@@ -232,11 +232,11 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&lbl_8017A288__fzgx_offset_C;
     s = *(u8 *)&lbl_8017A288__fzgx_offset_E;
     s = *(u8 *)&lbl_8017A288__fzgx_offset_10;
-    s = *(u8 *)lbl_800900A0;
+    s = *lbl_800900A0;
     s = *(u8 *)lbl_800900A0__fzgx_offset_30;
-    s = *(u8 *)lbl_800900A0__fzgx_offset_830;
-    s = *(u8 *)lbl_800900A0__fzgx_offset_838;
-    s = *(u8 *)lbl_800900A0__fzgx_offset_858;
+    s = *lbl_800900A0__fzgx_offset_830;
+    s = *lbl_800900A0__fzgx_offset_838;
+    s = *lbl_800900A0__fzgx_offset_858;
 }
 #pragma section code_type ".text"
 
@@ -264,19 +264,19 @@ static inline s32 adxb_MakeEncryptionKey(s32 sample_count, s16 *state, s16 *mult
     *increment = 0;
     key = lbl_800900A0__fzgx_offset_30[0x100];
     for (i = 0; i < 8; i++) {
-        key = ADXB_SKG_MIX(key, (s8)key_text[i]);
+        key = ADXB_SKG_MIX(key, key_text[i]);
     }
     state_key = key;
     key = lbl_800900A0__fzgx_offset_30[0x200];
     for (i = 0; i < 8; i++) {
-        key = ADXB_SKG_MIX(key, (s8)key_text[i]);
+        key = ADXB_SKG_MIX(key, key_text[i]);
     }
     multiplier_key = key;
     key = lbl_800900A0__fzgx_offset_30[0x300];
     *state = state_key;
     *multiplier = multiplier_key;
     for (i = 0; i < 8; i++) {
-        key = ADXB_SKG_MIX(key, (s8)key_text[i]);
+        key = ADXB_SKG_MIX(key, key_text[i]);
     }
     *increment = key;
     return 0;

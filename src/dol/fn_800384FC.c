@@ -130,7 +130,7 @@ void fn_800384FC(u8 numMajor, u8 numMinor) {
         z0 = radius * fn_80088624(a);
         z1 = radius * fn_80088624(b);
 
-        fn_8003462C(0x98, 3, (u16)((numMinor + 1) * 2));
+        fn_8003462C(0x98, 3, ((numMinor + 1) * 2));
         for (j = 0; j <= numMinor; j++) {
             c = j * minorStep;
             x = fn_80088624(c);

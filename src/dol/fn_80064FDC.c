@@ -76,13 +76,13 @@ void fn_80064FDC(u8 arg0, struct fn_80064FDC_Arg1 *arg1) {
             adjustment = 0;
             if (*(u8 *)(lbl_801A6C80 + v8 + 0x589) & 2) {
                 v11 = v1 + lbl_801A6C80;
-                v12 = *(u8 *)(v11 + 0x495);
-                volume.value = *(u8 *)(v11 + 0x493);
+                v12 = *(v11 + 0x495);
+                volume.value = *(v11 + 0x493);
                 if (v12 != 64) adjustment = ((s8)v12 - 64) << 1;
             } else {
                 v11 = v1 + lbl_801A6C80;
-                v12 = *(u8 *)(v11 + 0x494);
-                volume.value = *(u8 *)(v11 + 0x492);
+                v12 = *(v11 + 0x494);
+                volume.value = *(v11 + 0x492);
                 if (v12 != 64) adjustment = ((s8)v12 - 64) << 1;
             }
             v15 = (s8)volume.value + adjustment;
@@ -96,7 +96,7 @@ void fn_80064FDC(u8 arg0, struct fn_80064FDC_Arg1 *arg1) {
                 if (v19 != 0) *(u8 **)(v17 + 0x5a4) = v18 + v19;
                 else *(u8 **)(v17 + 0x5a4) = 0;
             } else {
-                v22 = (*((u8 *)v17 + 0x58c));
+                v22 = (*(v17 + 0x58c));
                 v23 = v18 + *(u32 *)(v18 + 28);
                 v24.value = (u16 *)v23;
                 for (v25.value = 0; v25.value <= v22; v25.value++) v24.value++;

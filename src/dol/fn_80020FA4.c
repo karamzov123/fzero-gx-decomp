@@ -27,7 +27,7 @@ void fn_80020FA4(void) {
     u8 *b[3];
     u8 *c[3];
 
-    v0 = ((u8 *)(base) + (s32)(lbl_801A6AE0 * 1920));
+    v0 = ((base) + (lbl_801A6AE0 * 1920));
     v1 = base + lbl_801A6AE4 * 1920;
     lbl_801A6AD0 = v0;
     lbl_801A6AD4 = v1;
@@ -39,7 +39,7 @@ void fn_80020FA4(void) {
             u8 *p = base + lbl_801A6AF0 * 1920;
             a[0] = p;
             a[1] = p + 0x280;
-            a[2] = ((0x500) + (p));
+            a[2] = ((0x500) + p);
             a[3] = p + 0x1b80;
             DCInvalidateRange(((0)[a]), 0x780);
             DCInvalidateRange(a[3], 0x280);

@@ -87,7 +87,7 @@ u32 fn_80008EC8(void *arenaStart, void *arenaEnd, s32 maxHeaps) {
     lbl_801A6740 = maxHeaps;
 
     for (i = 0; i < (s32)lbl_801A6740; i++) {
-        hd = (HeapDesc *)((u8 *)lbl_801A6744 + i * 12);
+        hd = (HeapDesc *)(lbl_801A6744 + i * 12);
         hd->field_0x0 = -1;
         hd->field_0x4 = hd->field_0x8 = 0;
     }

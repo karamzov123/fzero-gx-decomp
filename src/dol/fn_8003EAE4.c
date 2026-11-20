@@ -140,7 +140,7 @@ u32 __OSCoreClock : (0x80000000 + 0xFC);
 volatile f32 __GXWGFifo : FZGX_ADDR_GXFIFO;
 
 static inline f32 fn_8003EC44_Height(u32 ticks, f32 scale) {
-    return lbl_801A71F4 * ((f32)ticks / ((f32)lbl_801A6C68 * scale));
+    return lbl_801A71F4 * (ticks / (lbl_801A6C68 * scale));
 }
 
 void fn_8003EC44(struct fn_8003EC44_Arg0 *arg0) {
@@ -188,12 +188,12 @@ void fn_8003EC44(struct fn_8003EC44_Arg0 *arg0) {
     total = lbl_801A6C60;
     v1 = arg0->unk_10;
     v2 = (v1 - v0);
-    v10 = (f32)(u32)v2 / (f32)(u32)(__OSCoreClock / 60);
-    v11 = (f32)(lbl_801A71F0 + lbl_801A6C64);
-    v5 = (f32)(lbl_801A71C8 * (f32)((f32)(u32)v0 / (f32)(u32)total));
-    v12 = (f32)(lbl_801A71C8 * (f32)((f32)(u32)v1 / (f32)(u32)total));
+    v10 = (f32)v2 / (__OSCoreClock / 60);
+    v11 = (lbl_801A71F0 + lbl_801A6C64);
+    v5 = (lbl_801A71C8 * ((f32)v0 / total));
+    v12 = (lbl_801A71C8 * ((f32)v1 / total));
     v13 = v5;
-    loc_1C = (f32)(lbl_801A6C70 - v5);
+    loc_1C = (lbl_801A6C70 - v5);
     v6 = (*(u32 *)&loc_1C);
     v9 = (v6 & 0x7FFFFFFF);
     (*(u32 *)&loc_1C) = v9;
@@ -211,7 +211,7 @@ void fn_8003EC44(struct fn_8003EC44_Arg0 *arg0) {
             v15 = 4;
             fn_8003462C(128, 0, v15);
             __GXWGFifo = v13;
-            v14 = (f32)(v11 + v18);
+            v14 = (v11 + v18);
             __GXWGFifo = v11;
             __GXWGFifo = lbl_801A71F8;
             __GXWGFifo = v13;
@@ -222,7 +222,7 @@ void fn_8003EC44(struct fn_8003EC44_Arg0 *arg0) {
             __GXWGFifo = lbl_801A71F8;
             __GXWGFifo = v12;
             __GXWGFifo = v11;
-            v11 = (f32)(v11 + v18);
+            v11 = (v11 + v18);
             __GXWGFifo = lbl_801A71F8;
         }
         v18 = fn_8003EC44_Height(*(u32 *)((u8 *)arg0 + 76) - *(u32 *)((u8 *)arg0 + 72), v10);
@@ -232,7 +232,7 @@ void fn_8003EC44(struct fn_8003EC44_Arg0 *arg0) {
             v15 = 4;
             fn_8003462C(128, 0, v15);
             __GXWGFifo = v13;
-            v14 = (f32)(v11 + v18);
+            v14 = (v11 + v18);
             __GXWGFifo = v11;
             __GXWGFifo = lbl_801A71F8;
             __GXWGFifo = v13;
@@ -243,7 +243,7 @@ void fn_8003EC44(struct fn_8003EC44_Arg0 *arg0) {
             __GXWGFifo = lbl_801A71F8;
             __GXWGFifo = v12;
             __GXWGFifo = v11;
-            v11 = (f32)(v11 + v18);
+            v11 = (v11 + v18);
             __GXWGFifo = lbl_801A71F8;
         }
         v18 = fn_8003EC44_Height(*(u32 *)((u8 *)arg0 + 84) - *(u32 *)((u8 *)arg0 + 80), v10);
@@ -253,7 +253,7 @@ void fn_8003EC44(struct fn_8003EC44_Arg0 *arg0) {
             v15 = 4;
             fn_8003462C(128, 0, v15);
             __GXWGFifo = v13;
-            v14 = (f32)(v11 + v18);
+            v14 = (v11 + v18);
             __GXWGFifo = v11;
             __GXWGFifo = lbl_801A71F8;
             __GXWGFifo = v13;
@@ -264,7 +264,7 @@ void fn_8003EC44(struct fn_8003EC44_Arg0 *arg0) {
             __GXWGFifo = lbl_801A71F8;
             __GXWGFifo = v12;
             __GXWGFifo = v11;
-            v11 = (f32)(v11 + v18);
+            v11 = (v11 + v18);
             __GXWGFifo = lbl_801A71F8;
         }
         v18 = fn_8003EC44_Height(*(u32 *)((u8 *)arg0 + 92) - *(u32 *)((u8 *)arg0 + 88), v10);
@@ -274,7 +274,7 @@ void fn_8003EC44(struct fn_8003EC44_Arg0 *arg0) {
             v15 = 4;
             fn_8003462C(128, 0, v15);
             __GXWGFifo = v13;
-            v14 = (f32)(v11 + v18);
+            v14 = (v11 + v18);
             __GXWGFifo = v11;
             __GXWGFifo = lbl_801A71F8;
             __GXWGFifo = v13;
@@ -285,7 +285,7 @@ void fn_8003EC44(struct fn_8003EC44_Arg0 *arg0) {
             __GXWGFifo = lbl_801A71F8;
             __GXWGFifo = v12;
             __GXWGFifo = v11;
-            v11 = (f32)(v11 + v18);
+            v11 = (v11 + v18);
             __GXWGFifo = lbl_801A71F8;
         }
         v18 = fn_8003EC44_Height(*(u32 *)((u8 *)arg0 + 100) - *(u32 *)((u8 *)arg0 + 96), v10);
@@ -295,7 +295,7 @@ void fn_8003EC44(struct fn_8003EC44_Arg0 *arg0) {
             v15 = 4;
             fn_8003462C(128, 0, v15);
             __GXWGFifo = v13;
-            v14 = (f32)(v11 + v18);
+            v14 = (v11 + v18);
             __GXWGFifo = v11;
             __GXWGFifo = lbl_801A71F8;
             __GXWGFifo = v13;
@@ -306,7 +306,7 @@ void fn_8003EC44(struct fn_8003EC44_Arg0 *arg0) {
             __GXWGFifo = lbl_801A71F8;
             __GXWGFifo = v12;
             __GXWGFifo = v11;
-            v11 = (f32)(v11 + v18);
+            v11 = (v11 + v18);
             __GXWGFifo = lbl_801A71F8;
         }
         v18 = fn_8003EC44_Height(*(u32 *)((u8 *)arg0 + 108) - *(u32 *)((u8 *)arg0 + 104), v10);
@@ -316,7 +316,7 @@ void fn_8003EC44(struct fn_8003EC44_Arg0 *arg0) {
             v15 = 4;
             fn_8003462C(128, 0, v15);
             __GXWGFifo = v13;
-            v14 = (f32)(v11 + v18);
+            v14 = (v11 + v18);
             __GXWGFifo = v11;
             __GXWGFifo = lbl_801A71F8;
             __GXWGFifo = v13;
@@ -327,7 +327,7 @@ void fn_8003EC44(struct fn_8003EC44_Arg0 *arg0) {
             __GXWGFifo = lbl_801A71F8;
             __GXWGFifo = v12;
             __GXWGFifo = v11;
-            v11 = (f32)(v11 + v18);
+            v11 = (v11 + v18);
             __GXWGFifo = lbl_801A71F8;
         }
         v18 = fn_8003EC44_Height(*(u32 *)((u8 *)arg0 + 116) - *(u32 *)((u8 *)arg0 + 112), v10);
@@ -337,7 +337,7 @@ void fn_8003EC44(struct fn_8003EC44_Arg0 *arg0) {
             v15 = 4;
             fn_8003462C(128, 0, v15);
             __GXWGFifo = v13;
-            v14 = (f32)(v11 + v18);
+            v14 = (v11 + v18);
             __GXWGFifo = v11;
             __GXWGFifo = lbl_801A71F8;
             __GXWGFifo = v13;
@@ -348,7 +348,7 @@ void fn_8003EC44(struct fn_8003EC44_Arg0 *arg0) {
             __GXWGFifo = lbl_801A71F8;
             __GXWGFifo = v12;
             __GXWGFifo = v11;
-            v11 = (f32)(v11 + v18);
+            v11 = (v11 + v18);
             __GXWGFifo = lbl_801A71F8;
         }
         v18 = fn_8003EC44_Height(*(u32 *)((u8 *)arg0 + 124) - *(u32 *)((u8 *)arg0 + 120), v10);
@@ -358,7 +358,7 @@ void fn_8003EC44(struct fn_8003EC44_Arg0 *arg0) {
             v15 = 4;
             fn_8003462C(128, 0, v15);
             __GXWGFifo = v13;
-            v14 = (f32)(v11 + v18);
+            v14 = (v11 + v18);
             __GXWGFifo = v11;
             __GXWGFifo = lbl_801A71F8;
             __GXWGFifo = v13;
@@ -369,7 +369,7 @@ void fn_8003EC44(struct fn_8003EC44_Arg0 *arg0) {
             __GXWGFifo = lbl_801A71F8;
             __GXWGFifo = v12;
             __GXWGFifo = v11;
-            v11 = (f32)(v11 + v18);
+            v11 = (v11 + v18);
             __GXWGFifo = lbl_801A71F8;
         }
         v18 = fn_8003EC44_Height(*(u32 *)((u8 *)arg0 + 132) - *(u32 *)((u8 *)arg0 + 128), v10);
@@ -379,7 +379,7 @@ void fn_8003EC44(struct fn_8003EC44_Arg0 *arg0) {
             v15 = 4;
             fn_8003462C(128, 0, v15);
             __GXWGFifo = v13;
-            v14 = (f32)(v11 + v18);
+            v14 = (v11 + v18);
             __GXWGFifo = v11;
             __GXWGFifo = lbl_801A71F8;
             __GXWGFifo = v13;
@@ -390,7 +390,7 @@ void fn_8003EC44(struct fn_8003EC44_Arg0 *arg0) {
             __GXWGFifo = lbl_801A71F8;
             __GXWGFifo = v12;
             __GXWGFifo = v11;
-            v11 = (f32)(v11 + v18);
+            v11 = (v11 + v18);
             __GXWGFifo = lbl_801A71F8;
         }
         *(u32 *)((u8 *)arg0 + 136) = ((u32)*(u32 *)((u8 *)arg0 + 136) >> 1);
@@ -403,7 +403,7 @@ void fn_8003EC44(struct fn_8003EC44_Arg0 *arg0) {
             v15 = 4;
             fn_8003462C(128, 0, v15);
             __GXWGFifo = v13;
-            v14 = (f32)(v11 + v18);
+            v14 = (v11 + v18);
             __GXWGFifo = v11;
             __GXWGFifo = lbl_801A71F8;
             __GXWGFifo = v13;
@@ -418,9 +418,9 @@ void fn_8003EC44(struct fn_8003EC44_Arg0 *arg0) {
         }
     }
     if ((s32)lbl_801A65F8 != 0) {
-        v18 = (f32)(lbl_801A71F0 + (lbl_801A71F4 + (lbl_801A71F0 + lbl_801A6C64)));
+        v18 = (lbl_801A71F0 + (lbl_801A71F4 + (lbl_801A71F0 + lbl_801A6C64)));
         v59 = (*(u32 *)((u8 *)arg0 + 36) - *(u32 *)((u8 *)arg0 + 32));
-        v11 = lbl_801A71FC * (((f32)(u32)(*(u32 *)((u8 *)arg0 + 52) - *(u32 *)((u8 *)arg0 + 48)) / (f32)(u32)v2) / 2.0f);
+        v11 = lbl_801A71FC * (((f32)(*(u32 *)((u8 *)arg0 + 52) - *(u32 *)((u8 *)arg0 + 48)) / v2) / 2.0f);
         if (v11 > lbl_801A71E4) {
             c10 = lbl_801A65BC;
             fn_80035828(4, &c10);
@@ -443,7 +443,7 @@ void fn_8003EC44(struct fn_8003EC44_Arg0 *arg0) {
         fn_80035828(4, &c11);
         fn_8003462C(128, 0, 4);
         v64 = lbl_801A71FC + v18;
-        v65 = v64 - (lbl_801A71FC * (f32)(u32)v59) / (f32)(u32)v2;
+        v65 = v64 - (lbl_801A71FC * v59) / v2;
         __GXWGFifo = v13;
         __GXWGFifo = v65;
         __GXWGFifo = lbl_801A71F8;
@@ -464,7 +464,7 @@ void fn_8003EC44(struct fn_8003EC44_Arg0 *arg0) {
         v69 = (*(u32 *)((u8 *)arg0 + 156) - *(u32 *)((u8 *)arg0 + 152));
         v70 = v69 + v68;
         if (v2 >= v70) {
-            v11 = (lbl_801A71FC * (f32)(u32)(v2 - v70)) / (f32)(u32)v2;
+            v11 = (lbl_801A71FC * (v2 - v70)) / v2;
             if (v11 > lbl_801A71E4) {
                 c12 = lbl_801A65E8;
                 fn_80035828(4, &c12);
@@ -488,7 +488,7 @@ void fn_8003EC44(struct fn_8003EC44_Arg0 *arg0) {
     if ((s32)lbl_801A6600[0] != 0) {
         v18 = lbl_801A71FC + (lbl_801A7208 + (lbl_801A71FC + (lbl_801A71F4 + (lbl_801A71F0 + lbl_801A6C64))));
         v72 = (*(u32 *)((u8 *)arg0 + 164) - *(u32 *)((u8 *)arg0 + 160));
-        v11 = (lbl_801A71FC * (f32)(u32)v72) / (f32)(u32)v2;
+        v11 = (lbl_801A71FC * v72) / v2;
         if (v11 > lbl_801A71E4) {
             c13 = lbl_801A65EC;
             fn_80035828(4, &c13);

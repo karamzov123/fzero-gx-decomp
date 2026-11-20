@@ -52,10 +52,10 @@ extern Obj_801A6C80_Target *lbl_801A6C80;
 #define LAYOUT_CHECK_JOIN2(a, b) a##b
 #define LAYOUT_CHECK_JOIN(a, b) LAYOUT_CHECK_JOIN2(a, b)
 #define CHECK_SIZE(T, size) \
-    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == (size)) ? 1 : -1]
+    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == size) ? 1 : -1]
 #define CHECK_OFFSET(T, field, offset) \
     typedef char LAYOUT_CHECK_JOIN(LAYOUT_CHECK_JOIN(layout_offset_, T), __LINE__) \
-        [((unsigned long)&((T *)0)->field == (offset)) ? 1 : -1]
+        [((unsigned long)&((T *)0)->field == offset) ? 1 : -1]
 
 #endif
 
@@ -148,7 +148,7 @@ s32 fn_80068BFC(u32 arg0,u32 arg1,u32 arg2,u32 arg3,u32 arg4,u32 arg5) {
     OSRestoreInterrupts(arg4);
     for (i = 0; i < 64; i++) buffer[i] = 0;
     lbl_801A6C7C = 1;
-    ARQPostRequest((ARQRequest *)lbl_80193B28,0,0,1,(u32)buffer,STATE->unk_1a4,0x100,fn_80065AD0);
+    ARQPostRequest((ARQRequest *)lbl_80193B28,0,0,1,buffer,STATE->unk_1a4,0x100,fn_80065AD0);
     while (lbl_801A6C7C != 0) {}
     lbl_801A6C7C = 1;
     ARQPostRequest((ARQRequest *)lbl_80193B28,0,0,1,lbl_801A7348,STATE->unk_1a4 + 0x100,0x20e0,fn_80065AC4);

@@ -19,13 +19,13 @@ struct fn_8006060C_Entry {
 void fn_8006060C(u32 arg0) {
     struct fn_8006060C_Entry *entries = (struct fn_8006060C_Entry *)lbl_80192D68;
     u32 i;
-    struct { u32 value; } key;
-#define id key.value
+    u32 key;
+#define id key
     struct { volatile u8 *value; } cursor; /* Preserve observable record reads. */
 #define script cursor.value
     struct { u32 value; } counter;
 #define j counter.value
-    key.value = arg0;
+    key = arg0;
     for (i = 0; i < 16; i++) {
         if (id == entries[i].state) {
             if (entries[i].active) {

@@ -97,7 +97,7 @@ static inline void loadPositionMatrix(void *mtx, u32 index) {
 #define lbl_801A7210 25.0f
 
 static inline f32 scaleTicks(u32 step, u32 n) {
-    return lbl_801A71C8 * ((f32)(n * step) / (f32)lbl_801A6C60);
+    return lbl_801A71C8 * ((n * step) / (f32)lbl_801A6C60);
 }
 #define SCALE(n) (lbl_801A71C8 * ((f32)(u32)(n) / (f32)lbl_801A6C60))
 #define DATA(n) (*(f32 *)(p_lbl_8012B658 + (n)))
@@ -127,7 +127,7 @@ void fn_8003FF88(void) {
             lbl_801A6590 = lbl_801A6C4C[lbl_801A6C44].ticks / (__OSCoreClock / 60) + 1;
         }
         lbl_801A6C60 = (__OSCoreClock / 60) * lbl_801A6590;
-        lbl_801A6594 = lbl_801A71C8 / (f32)lbl_801A6590;
+        lbl_801A6594 = lbl_801A71C8 / lbl_801A6590;
         total = SCALE(lbl_801A6C4C[lbl_801A6C44].ticks);
         loadPositionMatrix(lbl_80178C18, 0);
         fn_80035828(4, lbl_801A6598);
@@ -219,15 +219,15 @@ void fn_8003FF88(void) {
                     GXSetLineWidth(32, 0);
                     fn_8003462C(0xA8, 0, 2);
                     y = (id + 1) * 7;
-                    position(SCALE(record->start), (f32)y, lbl_801A71F8);
-                    position(SCALE(record->end), (f32)y, lbl_801A71F8);
+                    position(SCALE(record->start), y, lbl_801A71F8);
+                    position(SCALE(record->end), y, lbl_801A71F8);
                     delta = record->value2C - record->value28;
                     if (delta != 0) {
                         x = SCALE(delta + record->start);
                         fn_80035828(4, lbl_801A65A8);
                         fn_8003462C(0xA8, 0, 2);
-                        position(SCALE(record->start), (f32)y, lbl_801A71F8);
-                        position(x, (f32)y, lbl_801A71F8);
+                        position(SCALE(record->start), y, lbl_801A71F8);
+                        position(x, y, lbl_801A71F8);
                     }
                     if (record->value10 != 0) {
                         if (record->flag == 0) {
@@ -241,9 +241,9 @@ void fn_8003FF88(void) {
                             GXSetLineWidth(6, 0);
                             fn_8003462C(0xA8, 0, 4);
                             position(SCALE(record->valueC), lbl_801A6C64, lbl_801A71F8);
-                            position(SCALE(record->start), (f32)y, lbl_801A71F8);
+                            position(SCALE(record->start), y, lbl_801A71F8);
                             position(SCALE(record->value10), lbl_801A6C64, lbl_801A71F8);
-                            position(SCALE(record->end), (f32)y, lbl_801A71F8);
+                            position(SCALE(record->end), y, lbl_801A71F8);
                         } else {
                             fn_80035828(4, lbl_801A65A4);
                             GXSetLineWidth(32, 0);
@@ -255,9 +255,9 @@ void fn_8003FF88(void) {
                             GXSetLineWidth(6, 0);
                             fn_8003462C(0xA8, 0, 4);
                             position(SCALE(record->value1C), lbl_801A6C64, lbl_801A71F8);
-                            position(SCALE(record->value18), (f32)y, lbl_801A71F8);
+                            position(SCALE(record->value18), y, lbl_801A71F8);
                             position(SCALE(record->value10), lbl_801A6C64, lbl_801A71F8);
-                            position(SCALE(record->end), (f32)y, lbl_801A71F8);
+                            position(SCALE(record->end), y, lbl_801A71F8);
                         }
                     }
                     break;
@@ -266,15 +266,15 @@ void fn_8003FF88(void) {
                     GXSetLineWidth(32, 0);
                     fn_8003462C(0xA8, 0, 2);
                     y = (id + 1) * 7;
-                    position(SCALE(record->start), (f32)y, lbl_801A71F8);
-                    position(SCALE(record->end), (f32)y, lbl_801A71F8);
+                    position(SCALE(record->start), y, lbl_801A71F8);
+                    position(SCALE(record->end), y, lbl_801A71F8);
                     delta = record->value2C - record->value28;
                     if (delta != 0) {
                         x = SCALE(delta + record->start);
                         fn_80035828(4, lbl_801A65A8);
                         fn_8003462C(0xA8, 0, 2);
-                        position(SCALE(record->start), (f32)y, lbl_801A71F8);
-                        position(x, (f32)y, lbl_801A71F8);
+                        position(SCALE(record->start), y, lbl_801A71F8);
+                        position(x, y, lbl_801A71F8);
                     }
                     break;
                 case 2:

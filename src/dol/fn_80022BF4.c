@@ -58,10 +58,10 @@ void fn_80022BF4(u32 arg0) {
                 f = *(u16 *)(node + 0x144);
                 pa = (struct Table54 *)(tbl + ((f >> 7) & 0x7c));
                 pb = (struct Table54 *)(tbl + ((f >> 2) & 0x7c));
-                v6 = ((((pa->value)) + (((pb->value)) + ((0x8c)))));
+                v6 = (((pa->value) + ((pb->value) + ((0x8c)))));
                 acc = v6 + acc;
                 pc = (struct Table14 *)(tbl + ((f & 15) << 2));
-                acc = ((pc->value) + (acc));
+                acc = ((pc->value) + acc);
                 if (lbl_801A6B60 > acc) {
                     fn_800224EC(node);
                 } else {

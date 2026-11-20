@@ -118,10 +118,10 @@ void fn_80062360(u32 slot, u32 sel) {
     struct { u8 key; u8 (*value)[16]; } row_cursor;
 #define rows row_cursor.value
     s8 i;
-    struct { u32 *value; } pointer;
-#define p pointer.value
-    struct { s8 value; } counter;
-#define k counter.value
+    u32 * pointer;
+#define p pointer
+    s8 counter;
+#define k counter
     u8 *base;
     u8 *table;
     u8 *rec;

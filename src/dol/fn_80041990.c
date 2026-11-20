@@ -46,7 +46,7 @@ void fn_80041990(Sig_fn_80041990_AdxSjdHandle *arg0) {
     u32 v19;
     struct Sig_fn_800589BC_fn_800589BC_Arg3 loc_10;
     struct Sig_fn_800589BC_fn_800589BC_Arg2 loc_8;
-    if ((s8)*(u8 *)((u8 *)arg0 + 1) == 2) {
+    if ((s8)*((u8 *)arg0 + 1) == 2) {
         v1.value = *(u32 *)((u8 *)arg0 + 4);
         if ((s32)fn_80045414((struct Sig_fn_80045414_fn_80045414_Arg0 *)v1.value) == 0)
             fn_80041BF8((struct Sig_fn_80041BF8_fn_80041BF8_Arg0 *)arg0);
@@ -84,7 +84,7 @@ void fn_80041990(Sig_fn_80041990_AdxSjdHandle *arg0) {
             *(u32 *)((u8 *)arg0 + 68) += v5.value;
             fn_8004530C((struct Sig_fn_8004530C_fn_8004530C_Arg0 *)v2);
         }
-        v15 = *(s16 *)((u8 *)v1.value + 152);
+        v15 = *(s16 *)(v1.value + 152);
         if ((s32)v15 == 10 || v15 == 20 || v15 == 11 || v15 == 15) {
             v16.value = *(u32 *)((u8 *)arg0 + 4);
             v17 = fn_8004550C((struct Sig_fn_8004550C_fn_8004550C_Arg0 *)v16.value);
@@ -96,7 +96,7 @@ void fn_80041990(Sig_fn_80041990_AdxSjdHandle *arg0) {
             *(u32 *)((u8 *)arg0 + 48) += v18;
             *(u32 *)((u8 *)arg0 + 52) += v19;
         }
-    } else if ((s8)*(u8 *)((u8 *)arg0 + 1) == 1) {
+    } else if ((s8)*((u8 *)arg0 + 1) == 1) {
         fn_80041EF8(arg0);
     }
 }

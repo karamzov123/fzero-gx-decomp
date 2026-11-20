@@ -19,7 +19,7 @@ typedef struct GXData {
 extern GXData *const gx;
 
 #define SET_REG_FIELD(reg, size, shift, val) \
-    ((reg) = __rlwimi((reg), (val), (shift), 32 - (shift) - (size), 31 - (shift)))
+    (reg = __rlwimi(reg, val, shift, 32 - (shift) - size, 31 - shift))
 
 void fn_80037BC0(u8 compare_enable, s32 func, u8 update_enable) {
     u32 reg = gx->zmode;

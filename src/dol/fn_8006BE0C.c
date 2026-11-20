@@ -234,7 +234,7 @@ s32 fn_8006C190(struct fn_8006C190_Arg0 *arg0, u32 arg1) {
                 v10 = (arg0->unk_38 >> 16) & 0xFF;
                 if (v10 < 64) v4 = lbl_8019E014[0].unk_0[v10];
                 else if (v10 < 128) v4 = lbl_8019E014[0].unk_0[127-v10];
-                else if (v10 < 192) v4 = -(*((0) + (lbl_8019E014))).unk_0[v10-128];
+                else if (v10 < 192) v4 = -(*((0) + lbl_8019E014)).unk_0[v10-128];
                 else v4 = -lbl_8019E014[0].unk_0[255-v10];
                 v8 = v4;
                 break;

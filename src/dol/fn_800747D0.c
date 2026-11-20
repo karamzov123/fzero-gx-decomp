@@ -146,11 +146,11 @@ void fn_80074A8C(f32 a, f32 b, f32 c, f32 d) {
         u8 green;
         u8 blue;
         u8 alpha;
-        green = (u8)(lbl_801A7484 * b);
-        blue = (u8)(lbl_801A7484 * c);
-        alpha = (u8)(lbl_801A7484 * d);
+        green = (lbl_801A7484 * b);
+        blue = (lbl_801A7484 * c);
+        alpha = (lbl_801A7484 * d);
         lbl_801A6D88[0] = 1;
-        lbl_801A6D80[0] = ((u8)(lbl_801A7484 * a));
+        lbl_801A6D80[0] = ((lbl_801A7484 * a));
         lbl_801A6D80[1] = green;
         lbl_801A6D80[2] = blue;
         lbl_801A6D80[3] = alpha;
@@ -193,9 +193,9 @@ void fn_80074BC4(f32 a, f32 b, f32 c, f32 d) {
           lbl_801A7480 == c &&
           lbl_801A7480 == d)) {
         f32 scale = lbl_801A7484;
-        u8 v0 = (u8)(scale * a);
-        u8 v1 = (u8)(scale * b);
-        u8 v2 = (u8)(scale * c);
+        u8 v0 = (scale * a);
+        u8 v1 = (scale * b);
+        u8 v2 = (scale * c);
 
         lbl_801A6D84 = 1;
         *((u8 *)&lbl_801A6D7C) = v0;

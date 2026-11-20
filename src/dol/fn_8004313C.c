@@ -49,8 +49,8 @@ s32 fn_8004313C(u8 *buf, s32 size, s16 *dataOffset, s8 *encoding, s8 *bits, s8 *
      * prologue's stmw, as retail does. Comparing two addresses (no other value) leaves the entry
      * schedule and every register as they are. CRI built ADX with a compiler build we do not have,
      * whose loads carry that dependence without help. */
-    escaped = (void *)&sampleCount == (void *)&samplesPerBlock;
-    escaped = (void *)&samplesPerBlock == (void *)&codec;
+    escaped = &sampleCount == &samplesPerBlock;
+    escaped = (void *)&samplesPerBlock == &codec;
     for (i = 0; i < size; i++) {
         if (fn_8008023C(&buf[i], lbl_8012B6F0.at_0, 4) == 0) {
             break;

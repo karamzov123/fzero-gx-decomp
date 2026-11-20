@@ -22,23 +22,23 @@ void fn_80070620(s32 arg0) {
     switch (temp_r3) {                              /* irregular */
     case 0:
         if (arg0 != 0) {
-            (*(u32 *)((u8 *)(&lbl_801A6CF4) + 0)) = (u32)(lbl_8012B030);
+            lbl_801A6CF4 = (u32)(lbl_8012B030);
         } else {
-            (*(u32 *)((u8 *)(&lbl_801A6CF4) + 0)) = (u32)(lbl_8012AFB8);
+            lbl_801A6CF4 = (u32)(lbl_8012AFB8);
         }
         break;
     case 1:
-        (*(u32 *)((u8 *)(&lbl_801A6CF4) + 0)) = (u32)(lbl_8012B0A8);
+        lbl_801A6CF4 = (u32)(lbl_8012B0A8);
         break;
     case 2:
-        (*(u32 *)((u8 *)(&lbl_801A6CF4) + 0)) = (u32)(lbl_8012B06C);
+        lbl_801A6CF4 = (u32)(lbl_8012B06C);
         break;
     default:
-        OSPanic((const char *)((s8 *) lbl_8015AA78), 0x157, (const char *)((s8 *) lbl_8015AB24));
+        OSPanic((const char *)(lbl_8015AA78), 0x157, (const char *)(lbl_8015AB24));
         break;
     }
-    GXAdjustForOverscan(*(u32 *)((u8 *)(&lbl_801A6CF4) + 0), (u32 *)(lbl_8019E150), 0, 0x10);
-    (*(u32 *)((u8 *)(&lbl_801A6CF4) + 0)) = (u32)(lbl_8019E150);
-    VIConfigure((u32 *)(lbl_8019E150));
-    (*(u8 *)((u8 *)(&lbl_801A6CEA) + 0)) = 1;
+    GXAdjustForOverscan(lbl_801A6CF4, lbl_8019E150, 0, 0x10);
+    lbl_801A6CF4 = (u32)(lbl_8019E150);
+    VIConfigure(lbl_8019E150);
+    lbl_801A6CEA = 1;
 }

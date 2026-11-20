@@ -22,7 +22,7 @@ void fn_80047464(u32 arg0, u32 arg1) {
     if (p_lbl_8017B030->unk_0 != 0) {
         ((fn_80047464_Fn0)p_lbl_8017B030->unk_0)(
             p_lbl_8017B030->unk_4,
-            (void *)((u8 *)p_lbl_8017B030 + 40));
+            ((u8 *)p_lbl_8017B030 + 40));
     }
     SVM_CallErr((u32)((u8 *)p_lbl_8017B030 + 40));
 }

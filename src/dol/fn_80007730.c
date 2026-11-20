@@ -46,7 +46,7 @@ u32 fn_800077E0(u32 key) {
     tab[0] = fn_800079C4(key);
     tab[1] = fn_80007A00(key);
     for (i = 0; i < 2; i++) {
-        base = (u8 *)fn_800079A0(tab[i]);
+        base = fn_800079A0(tab[i]);
         p = base;
         for (j = 0; j < 8; j++) {
             if (((p[0] >> 7) & 1) && i == ((p[3] >> 6) & 1) && hi == (p[3] & 0x3F) && h == ((*(u32 *)p >> 7) & 0xFFFFFF)) {

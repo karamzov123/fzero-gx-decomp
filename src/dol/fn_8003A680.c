@@ -138,7 +138,7 @@ s32 fn_8003A91C(struct fn_8003A91C_Dec *d) {
             return 11;
         }
         while (n-- > 0) {
-            d->mcu[d->nblocks++] = (u8)i;
+            d->mcu[d->nblocks++] = i;
         }
         c->pred = 0;
     }

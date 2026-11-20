@@ -60,23 +60,23 @@ s32 fn_80069FCC(SndNote *note, u8 channel) {
     }
     v = *p;
     if (v != 0) {
-        level = 20.0 * fn_80088578((f32)v / 255.0f);
+        level = 20.0 * fn_80088578(v / 255.0f);
     } else {
         level = -960.0f;
     }
     if (lbl_801A6C80->unk_5A08 != 0) {
-        level += (f32)(20.0 * fn_80088578((f32)lbl_801A6C80->unk_5A08 / 127.0f));
+        level += (f32)(20.0 * fn_80088578(lbl_801A6C80->unk_5A08 / 127.0f));
     } else {
         level = -960.0f;
     }
     if (lbl_801A6C80->mix[channel].unk_E != 0) {
-        level += (f32)(20.0 * fn_80088578((f32)lbl_801A6C80->mix[channel].unk_E / 127.0f));
+        level += (f32)(20.0 * fn_80088578(lbl_801A6C80->mix[channel].unk_E / 127.0f));
     } else {
         level = -960.0f;
     }
     result = lbl_801A6C80->unk_5A14[channel];
     if (lbl_801A6C80->unk_461 != 0) {
-        level += (f32)(20.0 * fn_80088578((f32)lbl_801A6C80->unk_461 / 127.0f));
+        level += (f32)(20.0 * fn_80088578(lbl_801A6C80->unk_461 / 127.0f));
     } else {
         level = -960.0f;
     }

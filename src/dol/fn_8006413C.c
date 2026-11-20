@@ -13,7 +13,7 @@ void fn_8006413C(void *arg0) {
 
     i = 0;
     while ((i & 0xFF) < 0x10) {
-        if (*(u32 *)((u8 *)(u32)lbl_801A6C80 + (((u8)i) << 4)) + 0x10000 != 0xFFFF) {
+        if (*(u32 *)(lbl_801A6C80 + (((u8)i) << 4)) + 0x10000 != 0xFFFF) {
             fn_80063F38(arg0, i);
         }
         i++;

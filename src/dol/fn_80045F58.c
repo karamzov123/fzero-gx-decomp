@@ -246,7 +246,7 @@ s32 fn_800462F8(struct fn_800462F8_Arg0 *arg0, u32 arg1, u32 arg2) {
 
     arg0->unk_2 = 1;
     result = fn_800463E4(arg1, arg2, &local,
-                         (u8 *)&arg0->unk_c, (u8 *)&arg0->unk_d, (u8 *)&arg0->unk_f,
+                         &arg0->unk_c, (u8 *)&arg0->unk_d, (u8 *)&arg0->unk_f,
                          (u8 *)&arg0->unk_e, (u8 *)&arg0->unk_14, (u8 *)&arg0->unk_18,
                          (u8 *)&arg0->unk_10, (u32 *)&arg0->unk_9a);
     if (result < 0) {

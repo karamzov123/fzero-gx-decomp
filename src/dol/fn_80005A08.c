@@ -23,7 +23,7 @@ void fn_80005A08(void) {
     void *temp_r29;
     u32 temp_r28;
 
-    temp_r29 = (void *)(OSGetArenaLo());
+    temp_r29 = (OSGetArenaLo());
     temp_r28 = OSGetArenaHi();
     fn_80005AD0((u32)(lbl_8015B920));
     var_r30 = 0;
@@ -34,7 +34,7 @@ void fn_80005A08(void) {
     var_r30_2 = 0;
     do {
         fn_8006FD1C();
-        fn_80005B10((u8 *)(lbl_8015B920));
+        fn_80005B10(lbl_8015B920);
         fn_80005E0C();
         fn_80005E0C();
         fn_8006FDEC();

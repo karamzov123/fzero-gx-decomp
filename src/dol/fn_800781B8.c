@@ -38,7 +38,7 @@ void fn_800781B8(Sig_fn_80078768_Sig_fn_80078C28_Sig_fn_800786B0_Fn800786B0Arg0 
     u8 *temp_r29;
     u32 var_b;
 
-    temp_r29 = (u8 *)((u8 *)(arg0) + 0x40);
+    temp_r29 = ((u8 *)(arg0) + 0x40);
     var_r3 = lbl_801A6D38->unk_18;
     var_r30 = (Sig_fn_80078768_Sig_fn_80078538_Sig_fn_800786B0_Fn800786B0Data *)((u8 *)(arg0) + (*(s32 *)((u8 *)(arg0) + 32)));
     if ((s32) var_r3 != 0) {
@@ -51,23 +51,23 @@ void fn_800781B8(Sig_fn_80078768_Sig_fn_80078C28_Sig_fn_800786B0_Fn800786B0Arg0 
     } else if ((temp_r3 & 8) && !(temp_r3 & 0x40)) {
         fn_80078538(var_r30);
     }
-    if ((u32) lbl_801A6D90 == 0) {
+    if (lbl_801A6D90 == 0) {
         fn_800756B0((u32)(arg0), (u32)(var_r30));
     }
     if ((*(u32 *)((u8 *)(arg0) + 4)) & 0x18) {
-        fn_80078768(arg0, var_r30, (u8 *)(temp_r29), 0);
+        fn_80078768(arg0, var_r30, temp_r29, 0);
     } else {
         s32 var_i;
-        for (var_i = 0; var_i < (s32) arg0->count_a; var_i++) {
+        for (var_i = 0; var_i < arg0->count_a; var_i++) {
             u8 *var_p;
             s32 var_j;
             var_p = (u8 *) var_r30 + 0x60;
             for (var_j = 0; var_j < 2; var_j++) {
-                if (*(u8 *)((u8 *) var_r30 + 0x13) & (1 << var_j)) {
+                if (*((u8 *) var_r30 + 0x13) & (1 << var_j)) {
                     var_p += *(u32 *)((u8 *) var_r30 + 0x28 + var_j * 4);
                 }
             }
-            if (*(u8 *)((u8 *) var_r30 + 0x13) & 0xC) {
+            if (*((u8 *) var_r30 + 0x13) & 0xC) {
                 u32 var_a;
                 var_a = *(u32 *)(var_p + 8);
                 var_b = *(u32 *)(var_p + 0xc);
@@ -78,11 +78,11 @@ void fn_800781B8(Sig_fn_80078768_Sig_fn_80078C28_Sig_fn_800786B0_Fn800786B0Arg0 
             var_r30 = (Sig_fn_80078768_Sig_fn_80078538_Sig_fn_800786B0_Fn800786B0Data *) var_p;
         }
         var_r28 = 0;
-        while (var_r28 < (s32) arg0->count_b) {
-            var_r30 = (Sig_fn_80078768_Sig_fn_80078538_Sig_fn_800786B0_Fn800786B0Data *)(fn_800789D8(arg0, var_r30, (u8 *)(temp_r29)));
+        while (var_r28 < arg0->count_b) {
+            var_r30 = (Sig_fn_80078768_Sig_fn_80078538_Sig_fn_800786B0_Fn800786B0Data *)(fn_800789D8(arg0, var_r30, temp_r29));
             var_r28 += 1;
         }
     }
-    (*(u32 *)((u8 *)(arg0) + 4)) = (u32) ((*(u32 *)((u8 *)(arg0) + 4)) & 0xFFFFFF9F);
-    fn_80078CDC(((u32) (*(u32 *)((u8 *)(arg0) + 4)) >> 2U) & 1);
+    (*(u32 *)((u8 *)(arg0) + 4)) = ((*(u32 *)((u8 *)(arg0) + 4)) & 0xFFFFFF9F);
+    fn_80078CDC(((*(u32 *)((u8 *)(arg0) + 4)) >> 2U) & 1);
 }

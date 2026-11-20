@@ -28,7 +28,7 @@ s32 fn_80030380(s32 arg0, s32 arg1, u32 arg2) {
     if ((arg1 < 0) || (arg1 >= 0x7F)) {
         return -0x80;
     }
-    temp_r3 = __CARDGetControlBlock((s32)(arg0), (CARDControl * *)(&sp14));
+    temp_r3 = __CARDGetControlBlock(arg0, (CARDControl * *)(&sp14));
     if (temp_r3 < 0) {
         return temp_r3;
     }
@@ -39,7 +39,7 @@ s32 fn_80030380(s32 arg0, s32 arg1, u32 arg2) {
         var_r31 = __CARDIsPublic((CARDDir *)(temp_r30));
     }
     if (var_r31 >= 0) {
-        memcpy((u32)(arg2), (u32)((u32)(temp_r30)), (u32)(0x40U));
+        memcpy(arg2, (u32)(temp_r30), (0x40U));
     }
-    return __CARDPutControlBlock((Sig___CARDPutControlBlock_CARDControlBlock *)((Sig___CARDPutControlBlock_CARDControlBlock *) sp14), (u32)((u32) var_r31));
+    return __CARDPutControlBlock((Sig___CARDPutControlBlock_CARDControlBlock *)((Sig___CARDPutControlBlock_CARDControlBlock *) sp14), var_r31);
 }

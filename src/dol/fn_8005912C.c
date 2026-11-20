@@ -68,9 +68,9 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&lbl_8018FF78__fzgx_offset_1C0;
     s = *(u8 *)&lbl_8018FF78__fzgx_offset_1E0;
     s = *(u8 *)&lbl_80092350__fzgx_offset_30;
-    s = *(u8 *)lbl_80092384;
-    s = *(u8 *)lbl_80092384__fzgx_offset_48;
-    s = *(u8 *)lbl_80092384__fzgx_offset_70;
+    s = *lbl_80092384;
+    s = *lbl_80092384__fzgx_offset_48;
+    s = *lbl_80092384__fzgx_offset_70;
 }
 #pragma section code_type ".text"
 

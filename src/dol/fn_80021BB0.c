@@ -55,11 +55,11 @@ void fn_80021BB0(void) {
 
     lbl_801A6B24 = 0;
     lbl_801A6B28 = 0;
-    OSInitThreadQueue((void *)lbl_801A6B30);
+    OSInitThreadQueue(lbl_801A6B30);
     if (!fn_80028DD0()) {
         DSPInit();
     }
-    DSPAddTask((void *)&state->unk780);
+    DSPAddTask(&state->unk780);
     while (!lbl_801A6B24) {
     }
 }

@@ -32,7 +32,7 @@ void fn_800243C4(struct fn_800243C4_Arg0 *arg0, struct fn_800243C4_Arg1 *arg1) {
     f64 v0;
     f64 v2;
 
-    if (!(arg1->unk_1C4)) {
+    if (!arg1->unk_1C4) {
         v3 = arg0->unk_8;
         v4 = arg0->unk_4;
         v5 = arg0->unk_0;
@@ -41,11 +41,11 @@ void fn_800243C4(struct fn_800243C4_Arg0 *arg0, struct fn_800243C4_Arg1 *arg1) {
         v0 = (0.5f);
         v2 = (0.0f);
         i = 0;
-        while ((((0xFF) & (i))) < 3) {
-            switch ((s32)(((0xFF) & (i)))) {
+        while ((((0xFF) & i)) < 3) {
+            switch ((((0xFF) & i))) {
             case 0:
-                if ((0.0f) != (arg1->unk_1A8)) {
-                    f32 t = (0.5f) * (arg1->unk_1A8);
+                if ((0.0f) != arg1->unk_1A8) {
+                    f32 t = (0.5f) * arg1->unk_1A8;
                     fn_80023B70(v5, v4, t, (1.0f) - t);
                 }
                 fn_80023D00(v5, (u32)arg1, 0);

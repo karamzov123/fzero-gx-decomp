@@ -9,8 +9,8 @@ void fn_80023568(u32 arg0, u32 arg1) {
     s32 v0;
     u32 v2;
     s32 v1;
-    v0 = (arg1 + 0);
-    v1 = (arg0 + 0);
+    v0 = arg1;
+    v1 = arg0;
     v2 = (v1 + 492);
     OSDisableInterrupts(arg0, arg1);
     *(u16 *)((u8 *)v2 + 0) = *(u16 *)((u8 *)v0 + 0);

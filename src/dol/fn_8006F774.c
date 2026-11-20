@@ -121,11 +121,11 @@ void fn_8006F9A4(f32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     struct { u32 a[4]; } loc_8;
 
     lbl_8006DBAC((void *)arg1);
-    fn_8006E5FC((void *)&loc_28);
+    fn_8006E5FC(&loc_28);
     lbl_8006DBAC((void *)arg2);
-    fn_8006E5FC((void *)&loc_18);
-    fn_8006EB4C((void *)&loc_8, (void *)&loc_28, (void *)&loc_18, arg0);
-    mathutil_mtxA_from_quat((void *)&loc_8);
+    fn_8006E5FC(&loc_18);
+    fn_8006EB4C(&loc_8, &loc_28, &loc_18, arg0);
+    mathutil_mtxA_from_quat(&loc_8);
     lbl_8006DC34(arg3);
 }
 

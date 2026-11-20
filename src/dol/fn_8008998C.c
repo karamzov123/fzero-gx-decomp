@@ -252,13 +252,13 @@ s32 fn_80089C5C(struct fn_80089C5C_TRKBuffer *arg0) {
         result = TRKTargetAccessDefault(f1C, f20, (Sig_TRKTargetAccessDefault_TRKBuffer *)self, &size, 0);
         break;
     case 1:
-        result = fn_8008C124(f1C, f20, (u32)self, (void *)&size, 0);
+        result = fn_8008C124(f1C, f20, (u32)self, &size, 0);
         break;
     case 2:
         result = fn_8008BFB4(f1C, f20, (Sig_fn_8008BFB4_TRKBuffer *)self, &size, 0);
         break;
     case 3:
-        result = fn_8008BB7C(f1C, f20, (u32)self, (void *)&size, 0);
+        result = fn_8008BB7C(f1C, f20, (u32)self, &size, 0);
         break;
     default:
         result = 0x703;

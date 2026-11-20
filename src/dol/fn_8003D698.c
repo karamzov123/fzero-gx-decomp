@@ -44,7 +44,7 @@ void fn_8003D698(u32 arg0) {
     s32 cur;
 
     if (((arg0 & 0xFFFF) < 0xe000) ||
-        (((s32)((arg0 & 0xFFFF) >> 8) & 0xf) != (s32)lbl_801A6C30) || lbl_801A6C40 == 0) {
+        (((s32)((arg0 & 0xFFFF) >> 8) & 0xf) != lbl_801A6C30) || lbl_801A6C40 == 0) {
         if (lbl_801A6C3C != 0) {
             lbl_801A6C3C(arg0);
         }

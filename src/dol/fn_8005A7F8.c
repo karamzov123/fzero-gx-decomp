@@ -29,7 +29,7 @@ void fn_8005A7F8(AdxtSlot *p, s32 rate) {
         p->rate = rate;
         adj = (rate * 1124 + 1124) / 1125;
         v0 = rate / 32000;
-        v1 = (u16)((rate << 8) / 125);
+        v1 = ((rate << 8) / 125);
         {
     s32 fzgx_loop_i_651;
 for (fzgx_loop_i_651 = 0; fzgx_loop_i_651 < p->count; fzgx_loop_i_651++) {

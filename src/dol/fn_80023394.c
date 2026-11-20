@@ -7,7 +7,7 @@ void fn_80023394(u32 arg0, u32 arg1) {
     u32 *v0;
     u32 *v1;
 
-    v0 = (u32 *)((u8 *)arg0 + 438);
+    v0 = (u32 *)(arg0 + 438);
     v1 = (u32 *)arg1;
     OSDisableInterrupts();
     v0[0] = v1[0];

@@ -50,11 +50,11 @@ s32 fn_8006B294(s32 index, u32 *out) {
         *out = entry->value;
         return -3;
     }
-    if (fn_80013428(index, (void *)fn_8006AA20) != -1) {
+    if (fn_80013428(index, fn_8006AA20) != -1) {
     fn_8006B048(entry, index);
     data = (u8 *)entry + 0xc;
     fn_800137C4(index, data);
-    state = ((s8 *)lbl_80199670)[offset + 0x14];
+    state = (lbl_80199670)[offset + 0x14];
     switch (state) {
     case -1:
         ((s8 *)lbl_80199670)[offset + 0x4d] = -1;
@@ -63,7 +63,7 @@ s32 fn_8006B294(s32 index, u32 *out) {
         fn_8006AE90((u8 *)entry + 0x44, data, (u8 *)entry + 0x18);
         break;
     }
-    ((s8 *)lbl_80199670)[offset + 0x4d] = 0;
+    (lbl_80199670)[offset + 0x4d] = 0;
     *out = (u32)entry;
     entry->unk_0 = index;
     entry->value = *out;

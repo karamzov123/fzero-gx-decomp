@@ -38,14 +38,14 @@ void fn_800074C4(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5) {
     p0 = arg0;
     p1 = arg1;
     i = 0;
-    n = (((0xFFF) + ((arg2) + (((s32)arg1 & 0xFFF))))) >> 12;
+    n = (((0xFFF) + ((arg2) + ((arg1 & 0xFFF))))) >> 12;
     while (i < n) {
         t0 = (Entry *)fn_80007730(p0);
         if (t0 == 0) {
             OSPanic((u8 *)&lbl_801A6400, 461, (u8 *)&lbl_801221A0);
         }
         t0->b = fn_80007654(p0);
-        t0->d = (u32)((u8 *)p0) >> 22;
+        t0->d = (u32)(p0) >> 22;
         t0->f = v3;
         t0->g = v4;
         t0->i = v5;
@@ -76,7 +76,7 @@ void fn_800075AC(u32 arg0, u32 arg1, u32 arg2) {
     u8 *offset;
 
     base = (void *)(arg0 & ~0xFFF);
-    offset = (u8 *)page_span(base);
+    offset = page_span(base);
     arg1 += (u32)offset;
     flags = arg2 ? 3 : 0;
     n = arg1 >> 12;

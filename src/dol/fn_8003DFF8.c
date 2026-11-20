@@ -57,10 +57,10 @@ void fn_8003DFF8(s32 arg0) {
     }
     switch (entry->unk04) {
     case 2:
-        fn_8003401C((u32)(((u16)id + 0x10000 + (((lbl_801A6C30 << 8) & 0xFF00))) - 0x1000));
+        fn_8003401C((((u16)id + 0x10000 + (((lbl_801A6C30 << 8) & 0xFF00))) - 0x1000));
         break;
     case 1:
-        fn_8003401C((u32)(((u16)id + 0x10000 + (((lbl_801A6C30 << 8) & 0xFF00))) - 0x1000));
+        fn_8003401C((((u16)id + 0x10000 + (((lbl_801A6C30 << 8) & 0xFF00))) - 0x1000));
         /* fallthrough */
     case 0:
         lbl_801A6C4C[lbl_801A6C44].entries[id].unk08 = fn_8000A050();

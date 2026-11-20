@@ -47,7 +47,7 @@ u32 fn_80070E1C(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     ((fn_80070E1C_Fn5)lbl_801A6D14)(t0);
     ((fn_80070E1C_Fn6)lbl_801A6D10)(t0);
     if (*(u32 *)alloc != 0x47434D46) {
-        OSReport((const char *)("invalid model format<%s>\n"), arg0);
+        OSReport(("invalid model format<%s>\n"), arg0);
         return 0;
     }
     fn_80078F0C(alloc, arg1, 0, (u32)("Single Load Model"));

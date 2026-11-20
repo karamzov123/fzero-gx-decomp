@@ -21,7 +21,7 @@ void fn_8007264C(u32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4) {
     if (entry->unk_0 != arg1 ||
         entry->unk_4 != arg2 ||
         entry->unk_8 != arg3 ||
-        entry->unk_c != (u8)arg4) {
+        entry->unk_c != arg4) {
         entry->unk_0 = arg1;
         entry->unk_4 = arg2;
         entry->unk_8 = arg3;

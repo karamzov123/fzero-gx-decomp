@@ -77,7 +77,7 @@ u32 fn_80006D1C(struct fn_80006D1C_Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3) {
     v3 = arg3;
     if ((s32)arg0->unk_0 != 1) {
     v0 = (u32)&lbl_801220F0;
-    fn_80006BDC((u32)v0, v1);
+    fn_80006BDC(v0, v1);
     v1 = arg1;
     v2 = arg2;
     v3 = arg3;

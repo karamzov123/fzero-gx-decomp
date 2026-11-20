@@ -13,7 +13,7 @@ void fn_800743C4(s32 a, u32 b) {
     if (lbl_801A6D38->unk_B04 != (u16)a ||
         lbl_801A6D38->unk_B06 != (u16)b) {
         fn_80034B7C(a, b);
-        lbl_801A6D38->unk_B04 = (u16)a;
-        lbl_801A6D38->unk_B06 = (u16)b;
+        lbl_801A6D38->unk_B04 = a;
+        lbl_801A6D38->unk_B06 = b;
     }
 }

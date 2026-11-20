@@ -37,7 +37,7 @@ volatile PPCWGPipe
     GXFIFO : FZGX_ADDR_GXFIFO; // fzgx-allow: S2 SDK asynchronous state
 
 #define SET_REG_FIELD(reg, size, shift, val) \
-    ((reg) = ((reg) & ~(((1 << (size)) - 1) << (shift))) | ((u32)(val) << (shift)))
+    (reg = ((reg) & ~(((1 << size) - 1) << shift)) | ((u32)(val) << shift))
 
 void fn_800377F8(GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXColor color) {
     u32 fogclr;
@@ -99,8 +99,8 @@ void fn_800377F8(GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXCo
             B_expn--;
         }
 
-        a = A / (f32)(1 << (B_expn + 1));
-        b_m = (u32)(8.388638e6f * B_mant);
+        a = A / (1 << (B_expn + 1));
+        b_m = (8.388638e6f * B_mant);
         b_s = B_expn + 1;
         c = C;
 

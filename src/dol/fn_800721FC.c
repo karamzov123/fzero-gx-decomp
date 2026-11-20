@@ -18,7 +18,7 @@ void fn_800721FC(f32 arg0, f32 arg1, f32 arg2, f32 arg3) {
 
     lbl_8019E250[0].unk_4 = arg2;
     lbl_8019E250[0].unk_8 = arg3;
-    C_MTXPerspective((void *)&loc_8, arg0, arg1, arg2, arg3);
+    C_MTXPerspective(&loc_8, arg0, arg1, arg2, arg3);
     v0 = loc_8.a[0];
     lbl_8019F008[0] = lbl_801A745C;
     lbl_8019F008[1] = v0;

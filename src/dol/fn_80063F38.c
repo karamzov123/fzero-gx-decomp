@@ -108,7 +108,7 @@ void fn_80063F38(u16 event, u8 channel) {
     s8 delta;
     struct { u8 value; } k;
 
-    delta = (s8)((s8)((lbl_801A6C80->w444 >> 8) & 0x7F) - 0x40);
+    delta = ((s8)((lbl_801A6C80->w444 >> 8) & 0x7F) - 0x40);
     for (i = 0; i < 0x10; i++) {
         for (j = 0; j < 4; j++) {
             k.value = lbl_801A6C80->pair[channel][i][j];

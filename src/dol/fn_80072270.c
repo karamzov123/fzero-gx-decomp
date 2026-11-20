@@ -35,7 +35,7 @@ void fn_80072270(struct fn_80072270_Arg0 *arg0, u32 arg1, f32 arg2, f32 arg3) {
     ((f32 *)lbl_8019F008)[4] = arg0->unk_10;
     ((f32 *)lbl_8019F008)[5] = arg0->unk_14;
     ((f32 *)lbl_8019F008)[6] = arg0->unk_18;
-    GXSetProjectionv((void *)lbl_8019F008);
+    GXSetProjectionv(lbl_8019F008);
 }
 
 /* --- dol/fn_80072344.c --- */

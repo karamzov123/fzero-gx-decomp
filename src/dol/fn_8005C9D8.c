@@ -66,7 +66,7 @@ static void fzgx_data_layout_lbl_800929D8(void) {
 #pragma section code_type ".text"
 
 static inline void fn_8005C9D8_levels(u8 *tbl, s16 arg0, f32 arg1, s16 arg2, s32 *arg3, s32 *arg4) {
-    u32 idx = ((s32)arg0 / 4 - 1) & 0xFF;
+    u32 idx = (arg0 / 4 - 1) & 0xFF;
     f32 a;
     f32 b;
 

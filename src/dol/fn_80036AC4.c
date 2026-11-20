@@ -39,7 +39,7 @@ volatile PPCWGPipe
     GXFIFO : FZGX_ADDR_GXFIFO; // fzgx-allow: S2 SDK asynchronous state
 
 #define SET_REG_FIELD(reg, size, shift, val) \
-    ((reg) = ((reg) & ~(((1 << (size)) - 1) << (shift))) | ((u32)(val) << (shift)))
+    (reg = ((reg) & ~(((1 << size) - 1) << shift)) | ((val) << shift))
 
 void fn_80036AC4(GXIndTexMtxID mtx_id, const f32 offset[2][3], s8 scale_exp) {
     s32 mtx[6];

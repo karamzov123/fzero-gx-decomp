@@ -72,7 +72,7 @@ s32 fn_8008A1CC(struct Sig_fn_8008A1CC_TRKBuffer *arg0) {
     v0 = *(u32 *)((u8 *)arg0 + 32);
     v1 = *(u16 *)((u8 *)arg0 + 28);
     v2 = (arg0->data)[8];
-    MWTRACE(1, (u32)((u8 *)(u32)p_lbl_80095890) + 384, (arg0->data)[4], v0, v1, v2);
+    MWTRACE(1, (p_lbl_80095890) + 384, (arg0->data)[4], v0, v1, v2);
     if (v2 & 2) {
         memset(&respA, 0, 0x40);
         respA.flag = 0x80;
@@ -83,15 +83,15 @@ s32 fn_8008A1CC(struct Sig_fn_8008A1CC_TRKBuffer *arg0) {
     }
     out = v1;
     fn_80089144((struct Sig_fn_80089144_fn_80089144_Arg0 *)arg0, 0x40);
-    TRKReadBuffer((Sig_TRKReadBuffer_TRKBuffer *)arg0, (void *)&buf, out);
+    TRKReadBuffer((Sig_TRKReadBuffer_TRKBuffer *)arg0, &buf, out);
     err = fn_8008C730((u32)&buf, v0, &out, (((u32)v2 >> 3) & 1) ^ 1, 0);
     fn_80089174((struct struct_fn_80089174_fn_80089174_Arg0 *)arg0, 0);
     if (err == 0) {
         memset(&respB, 0, 0x40);
         respB.length = 0x40;
         respB.flag = 0x80;
-        respB.status = (u8)err;
-        err = TRKAppendBuffer((Sig_TRKAppendBuffer_TRKBuffer *)arg0, (const void *)&respB, 0x40);
+        respB.status = err;
+        err = TRKAppendBuffer((Sig_TRKAppendBuffer_TRKBuffer *)arg0, &respB, 0x40);
     }
     if (err != 0) {
         switch (err) {
@@ -105,13 +105,13 @@ s32 fn_8008A1CC(struct Sig_fn_8008A1CC_TRKBuffer *arg0) {
         memset(&respC, 0, 0x40);
         respC.flag = 0x80;
         respC.length = 0x40;
-        respC.status = (u8)err;
+        respC.status = err;
         fn_8008D398((u32)&respC, 0x40);
         return 0;
     }
-    MWTRACE(1, (u32)((u8 *)(u32)p_lbl_80095890) + 0x60);
+    MWTRACE(1, ((u32)p_lbl_80095890) + 0x60);
     err_2 = fn_80088B00((struct Sig_fn_80088B00_fn_80088B00_Arg0 *)arg0);
-    MWTRACE(1, (u32)((u8 *)(u32)p_lbl_80095890) + 0x80, err_2);
+    MWTRACE(1, ((u32)p_lbl_80095890) + 0x80, err_2);
     return err_2;
 }
 #pragma opt_lifetimes reset
@@ -160,7 +160,7 @@ s32 fn_8008A3C0(struct fn_8008A3C0_Arg0 *arg0) {
     v0 = arg0->unk_20;
     v1 = arg0->unk_1c;
     v2 = arg0->unk_18;
-    MWTRACE(1, (u32)(base + 0x1b0), arg0->unk_14, v0, v1, v2);
+    MWTRACE(1, (base + 0x1b0), arg0->unk_14, v0, v1, v2);
 
     if ((v2 & 0x2) != 0) {        memset(&bufA, 0, 0x40);
         bufA.unk_4 = 0x80;
@@ -212,9 +212,9 @@ s32 fn_8008A3C0(struct fn_8008A3C0_Arg0 *arg0) {
         return 0;
     }
 
-    MWTRACE(1, (u32)(base + 0x60));
+    MWTRACE(1, (base + 0x60));
     v4 = fn_80088B00((struct Sig_fn_80088B00_fn_80088B00_Arg0 *)arg0);
-    MWTRACE(1, (u32)(base + 0x80), v4);
+    MWTRACE(1, (base + 0x80), v4);
     return v4;
 }
 

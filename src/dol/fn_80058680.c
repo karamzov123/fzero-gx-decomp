@@ -28,7 +28,7 @@ void fn_80058680(void) {
         v1 = 0;
         v0 = (u32)&lbl_8018B2A4;
         v2 = 16384;
-        t1 = memset((u32)v0, v1, v2);
+        t1 = memset(v0, v1, v2);
         v0 = t1;
     }
     v3 = lbl_8018B2A0[0].unk_0;

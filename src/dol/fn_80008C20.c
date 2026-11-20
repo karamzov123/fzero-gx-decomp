@@ -58,7 +58,7 @@ void fn_80008C20(fn_80008C20_Vec *arg0, fn_80008C20_Vec *arg1, fn_80008C20_Vec *
         return;
     }
     p = (f32 *)((lbl_801A6D00)[0]);
-    p[0] = (t.x);
+    p[0] = t.x;
     p[1] = t2.x;
     p[2] = v.x;
     p[3] = arg0->x;

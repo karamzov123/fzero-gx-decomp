@@ -61,7 +61,7 @@ u32 fn_80056A50(s32 *arg0, s32 arg1) {
         return 0;
     }
 
-    return (u32)arg0[i * 8 + 15];
+    return arg0[i * 8 + 15];
 }
 
 /* --- dol/fn_80056B50.c --- */
@@ -96,11 +96,11 @@ u32 fn_80056BE0(u32 arg0) {
     v0 = arg0;
     if (arg0 == 0) {
     v0 = (u32)&lbl_80092188;
-    t0 = fn_800565FC((u32)v0);
+    t0 = fn_800565FC(v0);
     v0 = t0;
     v0 = -1;
     } else {
-    v0 = *(u32 *)((u8 *)v0 + 36);
+    v0 = *(u32 *)(v0 + 36);
     }
     return v0;
 }
@@ -113,11 +113,11 @@ u32 fn_80056C20(u32 arg0) {
     v0 = arg0;
     if (arg0 == 0) {
         v0 = (u32)&lbl_80092188;
-        t0 = fn_800565FC((u32)v0);
+        t0 = fn_800565FC(v0);
         v0 = t0;
         v0 = -1;
     } else {
-        v0 = *(s8 *)((u8 *)v0 + 1);
+        v0 = *(s8 *)(v0 + 1);
     }
     return v0;
 }

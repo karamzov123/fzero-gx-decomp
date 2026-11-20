@@ -268,7 +268,7 @@ extern f64 fn_80088598(f64, f64);
 
 /* Power curve sample at x / 128; the conversions share one stack slot only when inlined. */
 static inline f32 curve(s32 x) {
-    return (f32)fn_80088598((f32)x * lbl_801A7370, lbl_801A7374);
+    return fn_80088598(x * lbl_801A7370, lbl_801A7374);
 }
 
 void fn_8006B99C(void) {
@@ -280,6 +280,6 @@ void fn_8006B99C(void) {
         } else {
             v1 = lbl_801A7378 + lbl_801A737C * curve(v0);
         }
-        lbl_8019DF90[v0] = (s32)v1;
+        lbl_8019DF90[v0] = v1;
     }
 }

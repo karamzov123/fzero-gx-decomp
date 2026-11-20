@@ -17,7 +17,7 @@ s32 fn_8008DC10(void *arg0, void *arg1, u32 *arg2) {
     v0 = *arg2;
     v1 = fn_8008CB20(0xd0, 1, &v0, arg1);
     *arg2 = v0;
-    switch ((s32)(v1 & 0xff)) {
+    switch ((v1 & 0xff)) {
     case 0:
         return 0;
     case 2:

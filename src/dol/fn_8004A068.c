@@ -162,7 +162,7 @@ static inline void adxsje_iirflt_set_hist(
 
 static inline s16 adxsje_clamp_iir_s16(s32 value)
 {
-    return (s16)(((value > -0x8000 ? value : -0x8000) < 0x7FFF)
+    return (((value > -0x8000 ? value : -0x8000) < 0x7FFF)
                      ? (value > -0x8000 ? value : -0x8000)
                      : 0x7FFF);
 }
@@ -230,7 +230,7 @@ s32 fn_8004A068(AdxSjeHandle* encoder, s32 channel)
         adxsje_prdflt_exec(filter, sample, index);
 
         residual = filter == 0 ? 0 : filter->residual[index];
-        value = (s32)((s16)residual * filter->gain);
+        value = ((s16)residual * filter->gain);
         clipped = adxsje_clamp_to_s16(value);
         if (clipped < 0) {
             code = (clipped - 0x924) / 4681;

@@ -21,7 +21,7 @@ typedef struct GXData {
 extern GXData *const gx;
 
 #define SET_REG_FIELD(reg, size, shift, val) \
-    ((reg) = __rlwimi((reg), (val), (shift), 32 - (shift) - (size), 31 - (shift)))
+    (reg = __rlwimi(reg, val, shift, 32 - (shift) - size, 31 - shift))
 
 void fn_800370A0(s32 stage, s32 a, s32 b, s32 c, s32 d) {
     u32 reg = gx->tevc[stage];
@@ -47,7 +47,7 @@ typedef union PPCWGPipe {
 volatile PPCWGPipe GXWGFifo : GX_FIFO_BASE;  /* fzgx-allow: A2,S2 GX write-gather FIFO (hw_regs.h) */
 
 #define SET_REG_FIELD(reg, size, shift, val) \
-    ((reg) = __rlwimi((reg), (val), (shift), 32 - (shift) - (size), 31 - (shift)))
+    (reg = __rlwimi(reg, val, shift, 32 - (shift) - size, 31 - shift))
 #define GX_WRITE_RAS_REG(reg) \
     do { \
         GXWGFifo.u8 = 0x61; \

@@ -22,6 +22,6 @@ void fn_80034890(s32 mode) {
     }
 
     state = (GxState *)gx;
-    state->field204 = (state->field204 & 0xffff3fff) | ((u32)mode << 14);
+    state->field204 = (state->field204 & 0xffff3fff) | (mode << 14);
     state->field4f4 |= 4;
 }

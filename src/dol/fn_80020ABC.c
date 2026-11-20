@@ -15,9 +15,9 @@ void fn_80020ABC(u32 arg0) {
     u32 v1;
     u32 t0;
     t0 = OSDisableInterrupts(arg0);
-    v0 = (t0 + 0);
-    fn_80020A28((arg0 + 0));
-    if (*(u16 *)((u8 *)arg0 + 326) == 1) {
+    v0 = t0;
+    fn_80020A28(arg0);
+    if (*(u16 *)(arg0 + 326) == 1) {
     *(u32 *)((u8 *)arg0 + 32) = 1;
     }
     fn_80022E68(arg0);
@@ -25,5 +25,5 @@ void fn_80020ABC(u32 arg0) {
     *(u32 *)((u8 *)arg0 + 0) = v1;
     lbl_8015D100[0].unk_0 = arg0;
     *(u32 *)((u8 *)arg0 + 12) = 0;
-    OSRestoreInterrupts((v0 + 0));
+    OSRestoreInterrupts(v0);
 }

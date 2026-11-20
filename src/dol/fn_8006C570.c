@@ -45,7 +45,7 @@ s32 fn_8006C570(struct fn_8006C570_Arg0 *arg0, struct fn_8006C570_Arg1 *arg1, s3
     negative = (u32)arg2 >> 31;
     result = magnitude;
     duration = arg1->unk_0;
-    if (current < (u32)duration) {
+    if (current < duration) {
         start = arg1->unk_8;
         result = interpolate(start, magnitude, current, duration);
     } else {
@@ -129,14 +129,14 @@ s32 fn_8006C6E8(struct fn_8006C6E8_Arg0 *arg0, struct fn_8006C6E8_Arg1 *arg1) {
     s32 delta;
 
     count = arg0->unk_38;
-    current = *(s32 *)((u8 *)arg0->unk_24 + 0xc);
+    current = *(s32 *)(arg0->unk_24 + 0xc);
     if (current < count) {
         delta = current - count;
         value = delta * arg1->unk_4 / 0x20000;
         if (-(s32)arg1->unk_2 > value) {
             value = -(s32)arg1->unk_2;
         }
-        if ((s32)arg1->unk_2 < value) {
+        if (arg1->unk_2 < value) {
             value = arg1->unk_2;
         }
         return -value;
@@ -149,7 +149,7 @@ s32 fn_8006C6E8(struct fn_8006C6E8_Arg0 *arg0, struct fn_8006C6E8_Arg1 *arg1) {
         if (-((s32)arg1->unk_3) > value) {
             value = -((s32)arg1->unk_3);
         }
-        if ((s32)arg1->unk_3 < value) {
+        if (arg1->unk_3 < value) {
             value = arg1->unk_3;
         }
         return -value;
@@ -177,7 +177,7 @@ s32 fn_8006C788(struct fn_8006C788_Arg0 *arg0, struct fn_8006C788_Arg1 *arg1) {
     s32 limit;
     s32 value;
 
-    current = *(s32 *)((u8 *)arg0->unk_24 + 0x64);
+    current = *(s32 *)(arg0->unk_24 + 0x64);
     if (current < 0) {
         scale = -arg1->unk_4;
         limit = arg1->unk_2;

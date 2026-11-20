@@ -20,7 +20,7 @@ s32 fn_80065B08(u32 arg0, u32 lab_unused0, u32 lab_unused1, u32 lab_unused2) {
  v5 = *(u32 *)v2;
  v1 += v5;
  v6 = (u32)lbl_801A6C80 + v4 * 4;
- v7 = *(u32 *)((u8 *)v6 + 256);
+ v7 = *(u32 *)(v6 + 256);
  v8 = v7;
  *(u32 *)((u8 *)v6 + 320) = v5;
  v8 = v8 + v5;
@@ -39,7 +39,7 @@ s32 fn_80065B08(u32 arg0, u32 lab_unused0, u32 lab_unused1, u32 lab_unused2) {
  for(v22=1;v22<16;v22++) {
  v23=*(u32 *)v2;
  v24=(u32)lbl_801A6C80+v22*4;
- v25=*(u32 *)((u8 *)v24+424);
+ v25=*(u32 *)(v24+424);
  v26=v25;
  *(u32 *)((u8 *)v24+488)=v23;
  v26=v26+v23;

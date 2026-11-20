@@ -57,7 +57,7 @@ void fn_8007E69C(decimal *result, const decimal *x, const decimal *y) {
         accumulator /= 10;
     }
 
-    result->exp = (s16)(x->exp + y->exp);
+    result->exp = (x->exp + y->exp);
 
     if (accumulator > 0) {
         *--ip = (u8)accumulator;
@@ -67,7 +67,7 @@ void fn_8007E69C(decimal *result, const decimal *x, const decimal *y) {
     for (i = 0; i < SIGDIGLEN && ip < ep; i++, ip++) {
         result->sig.text[i] = *ip;
     }
-    result->sig.length = (u8)i;
+    result->sig.length = i;
 
     if (ip < ep && *ip >= 5) {
         if (*ip == 5) {

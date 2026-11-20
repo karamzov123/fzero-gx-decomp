@@ -39,7 +39,7 @@ u32 fn_80056730(u32 arg0, u32 arg1) {
     v0 = arg0;
     if (arg0 == 0) {
     v0 = (u32)&lbl_80092188;
-    t0 = fn_800565FC((u32)v0);
+    t0 = fn_800565FC(v0);
     v0 = t0;
     } else {
     *(u8 *)((u8 *)v0 + 3) = arg1;
@@ -74,11 +74,11 @@ u32 fn_800567AC(u32 arg0) {
     v0 = arg0;
     if (arg0 == 0) {
     v0 = (u32)&lbl_80092188;
-    t0 = fn_800565FC((u32)v0);
+    t0 = fn_800565FC(v0);
     v0 = t0;
     v0 = -1;
     } else {
-    v0 = *(u32 *)((u8 *)v0 + 20);
+    v0 = *(u32 *)(v0 + 20);
     }
     return v0;
 }
@@ -92,12 +92,12 @@ u32 fn_800567EC(u32 arg0, u32 arg1) {
     v0 = arg0;
     if (arg0 == 0) {
     v0 = (u32)&lbl_80092188;
-    t0 = fn_800565FC((u32)v0);
+    t0 = fn_800565FC(v0);
     v0 = t0;
     } else {
-    if ((s32)arg1 < 0 || (s32)arg1 > (s32)*(u32 *)((u8 *)v0 + 24)) {
+    if ((s32)arg1 < 0 || (s32)arg1 > (s32)*(u32 *)(v0 + 24)) {
     v0 = (u32)&lbl_800921AC;
-    t1 = fn_800565FC((u32)v0, arg1);
+    t1 = fn_800565FC(v0, arg1);
     v0 = t1;
     } else {
     *(u32 *)((u8 *)v0 + 20) = arg1;
@@ -128,7 +128,7 @@ u32 fn_80056850(u32 arg0, u32 arg1) {
     v0 = arg0;
     if (arg0 == 0) {
     v0 = (u32)&lbl_80092188;
-    fn_800565FC((u32)v0);
+    fn_800565FC(v0);
     v0 = 0;
     } else {
     tbl = (Table *)arg0;
@@ -139,7 +139,7 @@ u32 fn_80056850(u32 arg0, u32 arg1) {
     }
     if (v3 == 16) {
     v0 = (u32)&lbl_800921D0;
-    fn_800565FC((u32)v0, arg1);
+    fn_800565FC(v0, arg1);
     v0 = 0;
     } else {
     v0 = tbl->entries[v3].val;

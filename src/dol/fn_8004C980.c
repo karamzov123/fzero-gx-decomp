@@ -35,7 +35,7 @@ void fn_8004C980(struct fn_8004C980_Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3, u3
     u32 v3;
     u32 v4;
 
-    fn_8004A550(arg0->unk_8, (s32)arg0->unk_3E << 11, (s32)arg0->unk_3C << 11);
+    fn_8004A550(arg0->unk_8, arg0->unk_3E << 11, arg0->unk_3C << 11);
     fn_8004AC04(arg0->unk_8, 25);
     fn_8004AC4C(arg0->unk_8, 0, 0);
     fn_8004AE94(arg0->unk_8, 0);
@@ -46,8 +46,8 @@ void fn_8004C980(struct fn_8004C980_Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3, u3
     v0 = *(u32 *)((u8 *)arg0 + 16);
     v1 = (u32)arg0;
     v2 = 0;
-    while (v2 < (s8)*(u8 *)((u8 *)arg0 + 3)) {
-        ((struct fn_8004C980_Callback *)(*(u32 *)((u8 *)*(u32 *)((u8 *)v1 + 24))))->fn(
+    while (v2 < (s8)*((u8 *)arg0 + 3)) {
+        ((struct fn_8004C980_Callback *)(*(u32 *)((u8 *)*(u32 *)(v1 + 24))))->fn(
             *(u32 *)((u8 *)v1 + 24),
             *(u32 *)((u8 *)*(u32 *)((u8 *)v1 + 24)));
         v1 += 4;

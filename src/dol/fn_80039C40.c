@@ -50,7 +50,7 @@ s32 fn_80039C40(Dec *d) {
     d->width = (d->ptr[0] << 8) | d->ptr[1];
     d->ptr += 2;
     d->numComp = *d->ptr++;
-    if (((3) != (d->numComp)) && ((((d->numComp)) != ((1))))) {
+    if (((3) != d->numComp) && (((d->numComp) != ((1))))) {
         return 6;
     }
     for (i = 0; i < d->numComp; i++) {

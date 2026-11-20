@@ -11,9 +11,9 @@ extern u8 lbl_8018FEE0[];
 extern void strncpy(void *, void *, int);
 
 void fn_800595A4(u32 arg0) {
-    strncpy((void *)&lbl_8018FEE0, (void *)arg0, 127);
+    strncpy(&lbl_8018FEE0, (void *)arg0, 127);
     if (lbl_8018FF60[0].unk_0 != 0) {
         ((fn_800595A4_Fn0)lbl_8018FF60[0].unk_0)(
-            lbl_8018FF60[0].unk_4, (void *)&lbl_8018FEE0);
+            lbl_8018FF60[0].unk_4, &lbl_8018FEE0);
     }
 }

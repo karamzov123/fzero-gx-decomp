@@ -11,7 +11,7 @@ int fn_80083BCC(const char *s1, const char *s2) {
     u32 rb = *right;
     u32 lw;
     u32 rw;
-    s32 diff = (s32)(lb - rb);
+    s32 diff = (lb - rb);
 
     if (diff != 0)
         return diff;
@@ -25,7 +25,7 @@ int fn_80083BCC(const char *s1, const char *s2) {
         for (n = 3 - align; n != 0; --n) {
             lb = *++left;
             rb = *++right;
-            diff = (s32)(lb - rb);
+            diff = (lb - rb);
             if (diff != 0)
                 return diff;
             if (lb == 0)
@@ -53,7 +53,7 @@ int fn_80083BCC(const char *s1, const char *s2) {
 byte_cmp:
     lb = *left;
     rb = *right;
-    diff = (s32)(lb - rb);
+    diff = (lb - rb);
     if (diff != 0)
         return diff;
 
@@ -62,7 +62,7 @@ byte_loop:
         return 0;
     do {
         lb = *++left;
-        diff = (s32)(lb - *++right);
+        diff = (lb - *++right);
         if (diff != 0)
             return diff;
     } while (lb != 0);
@@ -193,7 +193,7 @@ void fn_80083E84(u32 arg0) {
 
     loc_10.a[0] = arg0;
     loc_10.a[1] = 0;
-    value = fn_80083F10((0x80000000 - 1), (u32)fn_800829EC, (void *)&loc_10, (void *)&loc_8, (void *)&loc_C);
+    value = fn_80083F10((0x80000000 - 1), (u32)fn_800829EC, &loc_10, &loc_8, &loc_C);
     abs_value = __fabs(value);
     if ((s32)loc_C != 0 || (lbl_801A74F8 != value && (abs_value < lbl_801A6650[0] || abs_value > lbl_801A6658[0]))) {
         lbl_801A6DE0[0] = 34;

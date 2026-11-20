@@ -125,11 +125,11 @@ void fn_80026FE0(void) {
             case 0:
                 e->unk_3E = get_curve(base, e->unk_1C + e->unk_28);
                 e->unk_42 = get_curve(base, e->unk_1C + e->unk_28);
-                e->unk_46 = get_curve(base, (((((e->unk_1C)) + ((e->unk_2C))) + ((-30)))));
+                e->unk_46 = get_curve(base, ((((e->unk_1C) + e->unk_2C) + ((-30)))));
                 if (e->unk_04 & 0x1) {
                     e->unk_4A = get_curve(base, e->unk_0C + e->unk_28);
                     e->unk_4E = get_curve(base, e->unk_0C + e->unk_28);
-                    e->unk_52 = get_curve(base, (((((e->unk_0C)) + ((e->unk_2C))) + ((-30)))));
+                    e->unk_52 = get_curve(base, ((((e->unk_0C) + e->unk_2C) + ((-30)))));
                 } else {
                     e->unk_4A = get_curve(base, e->unk_1C + e->unk_0C + e->unk_28);
                     e->unk_4E = get_curve(base, e->unk_1C + e->unk_0C + e->unk_28);
@@ -194,7 +194,7 @@ void fn_80026FE0(void) {
         }
         if (f7 != 0) {
             c->unk_19C = e->unk_38;
-            c->unk_19E = (s16)((e->unk_3A - e->unk_38) / 160);
+            c->unk_19E = ((e->unk_3A - e->unk_38) / 160);
             c->unk_1C |= 0x200;
         }
         if (f6 != 0) {

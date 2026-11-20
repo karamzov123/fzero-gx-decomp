@@ -11,7 +11,7 @@ typedef struct GXData {
 extern GXData *const gx;
 
 #define SET_REG_FIELD(reg, size, shift, val) \
-    ((reg) = ((u32)(reg) & ~(((1 << (size)) - 1) << (shift))) | ((u32)(val) << (shift)))
+    (reg = ((reg) & ~(((1 << size) - 1) << shift)) | (val << shift))
 
 extern void __GetImageTileCount(s32 fmt, u16 width, u16 height, u32 *row_tiles, u32 *col_tiles, u32 *cmp_tiles);
 

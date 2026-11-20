@@ -44,7 +44,7 @@ struct fn_80020EBC_Arg0 {
 
 
 void fn_80020EBC(struct fn_80020EBC_Arg0 *arg0) {
-    arg0->unk_0 = (u32)((u8 *)((u8 *)&lbl_8015D200 + (lbl_801A6AE4 * 1920)) + 640);
+    arg0->unk_0 = (u32)(((u8 *)&lbl_8015D200 + (lbl_801A6AE4 * 1920)) + 640);
 }
 
 /* --- dol/fn_80020EDC.c --- */
@@ -54,7 +54,7 @@ struct fn_80020EDC_Arg0 {
 
 
 void fn_80020EDC(struct fn_80020EDC_Arg0 *arg0) {
-    arg0->unk_0 = (u32)((u8 *)((u8 *)&lbl_8015D200 + (lbl_801A6AE4 * 1920)) + 1280);
+    arg0->unk_0 = (u32)(((u8 *)&lbl_8015D200 + (lbl_801A6AE4 * 1920)) + 1280);
 }
 
 /* --- dol/fn_80020EFC.c --- */
@@ -65,7 +65,7 @@ struct fn_80020EFC_Arg0 {
 extern u32 lbl_8015E880[];
 
 void fn_80020EFC(struct fn_80020EFC_Arg0 *arg0) {
-    arg0->unk_0 = (u32)((u8 *)((u8 *)&lbl_8015E880 + (lbl_801A6AE4 * 1920)) + 1280);
+    arg0->unk_0 = (u32)(((u8 *)&lbl_8015E880 + (lbl_801A6AE4 * 1920)) + 1280);
 }
 
 /* --- dol/fn_80020F1C.c --- */

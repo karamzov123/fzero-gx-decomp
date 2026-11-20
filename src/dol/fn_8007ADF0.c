@@ -17,7 +17,7 @@ void fn_8007ADF0(u32 arg0, u32 arg1) {
     *(u32 *)(arg0 + arg1 - 8) = *(u32 *)(arg0 + 0xc);
     *(u32 *)(arg0 + 0x14) = arg0 | 1;
     *(u32 *)(arg0 + 0x10) = arg1 - 0x18;
-    end = ((arg1) + (block));
+    end = ((arg1) + block);
     *(u32 *)(end - 0x1c) = arg1 - 0x18;
     *(u32 *)(arg0 + 8) = arg1 - 0x18;
     *(u32 *)(arg0 + (*(u32 *)(arg0 + 0xc) & ~7) - 4) = 0;
@@ -129,8 +129,8 @@ s32 fn_8007B028(void) {
     result = 0;
     while (file != 0) {
         if (((*(u16 *)((u8 *)file + 4) >> 6) & 7) != 0 &&
-            ((*(u8 *)((u8 *)file + 4) >> 1) & 1) != 0 &&
-            (((u32)*(u8 *)((u8 *)file + 8) >> 5) & 7) == 1) {
+            ((*((u8 *)file + 4) >> 1) & 1) != 0 &&
+            (((u32)*((u8 *)file + 8) >> 5) & 7) == 1) {
             if (fflush(file) != 0) {
                 result = -1;
             }

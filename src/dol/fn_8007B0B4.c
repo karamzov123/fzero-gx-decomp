@@ -253,9 +253,9 @@ extern unsigned char lbl_8015B100[];
 
 extern unsigned char lbl_8015B200[];
 
-static inline int isdigit(int c) { return (int)(lbl_8015B100[(unsigned char)c] & 0x10); }
+static inline int isdigit(int c) { return (lbl_8015B100[(unsigned char)c] & 0x10); }
 
-static inline int _tolower(int c) { return c == -1 ? -1 : (int)lbl_8015B200[(unsigned char)c]; }
+static inline int _tolower(int c) { return c == -1 ? -1 : lbl_8015B200[(unsigned char)c]; }
 
 void __num2dec_internal(decimal *d, f64 x);
 
@@ -349,7 +349,7 @@ f64 fn_8007B338(const decimal *d) {
     case '0':
         return fn_80087E58(0.0, d->sign == 0 ? 1.0 : -1.0);
     case 'I':
-        return fn_80087E58((f64)(*(f32 *)lbl_801A664C), d->sign == 0 ? 1.0 : -1.0);
+        return fn_80087E58((*(f32 *)lbl_801A664C), d->sign == 0 ? 1.0 : -1.0);
     case 'N': {
         f64 result;
         u64 *ll = (u64 *)&result;
@@ -371,7 +371,7 @@ f64 fn_8007B338(const decimal *d) {
                 if (isdigit(c)) {
                     c -= '0';
                 } else {
-                    c = (u8)(_tolower(c) - 'a' + 10);
+                    c = (_tolower(c) - 'a' + 10);
                 }
                 if (c != 0) {
                     placed_non_zero = 1;
@@ -407,7 +407,7 @@ f64 fn_8007B338(const decimal *d) {
             u32 ival = 0;
             int j;
             f64 temp1, temp2;
-            int ndig = (int)(e - i) % 8;
+            int ndig = (e - i) % 8;
             if (ndig == 0)
                 ndig = 8;
             for (j = 0; j < ndig; ++j, ++i) {
@@ -429,8 +429,8 @@ f64 fn_8007B338(const decimal *d) {
         do {
             decimal max;
             decimal feedback1;
-            if ((((sizeof(first_guess) == sizeof(f32)) ? __fpclassifyf((f32)(first_guess))
-                                                       : __fpclassifyd((f64)(first_guess))) == 2)) {
+            if ((((sizeof(first_guess) == sizeof(f32)) ? __fpclassifyf(first_guess)
+                                                       : __fpclassifyd(first_guess)) == 2)) {
                 __str2dec(&max, "179769313486231580793729011405303420", 308);
                 if (__less_dec(&max, &dec))
                     break;
@@ -445,8 +445,8 @@ f64 fn_8007B338(const decimal *d) {
                 u64 *ull = (u64 *)&next_guess;
                 ++*ull;
                 if ((((sizeof(next_guess) == sizeof(f32))
-                          ? __fpclassifyf((f32)(next_guess))
-                          : __fpclassifyd((f64)(next_guess))) == 2)) {
+                          ? __fpclassifyf(next_guess)
+                          : __fpclassifyd(next_guess)) == 2)) {
                     first_guess = next_guess;
                     break;
                 }
@@ -456,8 +456,8 @@ f64 fn_8007B338(const decimal *d) {
                     first_guess = next_guess;
                     ++*ull;
                     if ((((sizeof(next_guess) == sizeof(f32))
-                              ? __fpclassifyf((f32)(next_guess))
-                              : __fpclassifyd((f64)(next_guess))) == 2)) {
+                              ? __fpclassifyf(next_guess)
+                              : __fpclassifyd(next_guess)) == 2)) {
                         first_guess = next_guess;
                         goto done; /* next_guess reached infinity: value settled */
                     }

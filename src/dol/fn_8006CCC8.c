@@ -25,9 +25,9 @@ void fn_8006CCC8(void) {
     lbl_801A6CAC = 0;
     lbl_801A6CA8 = lbl_801A7398;
     value_e = data->value_e;
-    lbl_801A6CA4 = (f32)value_e;
+    lbl_801A6CA4 = value_e;
     value_10 = data->value_10;
-    lbl_801A6CA0 = (f32)value_10;
+    lbl_801A6CA0 = value_10;
 }
 
 /* --- dol/fn_8006CD20.c --- */
@@ -68,8 +68,8 @@ void fn_8006CD50(void) {
     f32 value;
 
     value = lbl_801A73A8;
-    C_MTXOrtho((void *)&loc_8, value, lbl_801A6CA0, value, lbl_801A6CA4, value, lbl_801A73AC);
-    fn_800737E4((void *)&loc_8, 1);
+    C_MTXOrtho(&loc_8, value, lbl_801A6CA0, value, lbl_801A6CA4, value, lbl_801A73AC);
+    fn_800737E4(&loc_8, 1);
     lbl_8006D758();
     GXLoadPosMtxImm(lbl_801A6D00, 0);
 }

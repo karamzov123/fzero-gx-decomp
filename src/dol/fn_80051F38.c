@@ -12,7 +12,7 @@ void fn_80051F38(u32 arg0, f32 *m, void *arg2) {
     f32 *in = (f32 *)arg0;
     f32 *base;
     f32 *row;
-    f32 *out = (f32 *)arg2;
+    f32 *out = arg2;
     f32 *lo1;
     f32 *hi1;
     f32 *lo2;

@@ -41,7 +41,7 @@ void fn_8006AF94(void) {
     i = 0;
     base = lbl_80199670;
     do {
-        entry = (Fn8006AF94Entry *)((u32)base + i * 0x1248);
+        entry = (Fn8006AF94Entry *)(base + i * 0x1248);
         if (entry->flags.flag7) {
             out = (Fn8006AF94Out *)((u8 *)entry + 0xc);
             fn_800137C4(i, out);

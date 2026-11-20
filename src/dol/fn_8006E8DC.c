@@ -129,8 +129,8 @@ void fn_8006EB4C(Vec4_u1 *arg0, const Vec4_u1 *arg1, const Vec4_u1 *arg2, f32 ar
         bw = -bw;
     }
     if (lbl_801A73D8 - dot > lbl_801A73E8) {
-        ang = (f32)fn_80088538(dot);
-        s = (f32)fn_800883E8(ang);
+        ang = fn_80088538(dot);
+        s = fn_800883E8(ang);
         w0 = lbl_801A73D8 - arg3;
         w0 = fn_800883E8(w0 * ang) / s;
         w1 = fn_800883E8(arg3 * ang) / s;

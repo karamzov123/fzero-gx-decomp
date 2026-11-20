@@ -62,7 +62,7 @@ void fn_8005FDE0(u32 arg0) {
     s32 event;
     u32 v0;
     u32 command;
-    v0 = ((u32)arg0 >> 24);
+    v0 = (arg0 >> 24);
     command = arg0 & 0xff700000;
     event = (arg0 >> 16) & 0x7f;
     lbl_801A6C80->unk_444 = arg0;
@@ -155,7 +155,7 @@ void fn_8005FDE0(u32 arg0) {
                 case 0x11:
                     {
                         u32 id = event + 0xa000;
-                        fn_80064230((u16)id, 0xa004);
+                        fn_80064230(id, 0xa004);
                         fn_800641A8(0xa004);
                         fn_800647B8((u16)id);
                     }
@@ -217,7 +217,7 @@ void fn_8005FDE0(u32 arg0) {
                 }
                 break;
             case 4:
-                switch ((s32)command) {
+                switch (command) {
                 case (s32)0xa4000000:
                     fn_8006331C(((0x2c)[lbl_801A6C80->pad_448]), value);
                     break;
@@ -250,8 +250,8 @@ void fn_8005FDE0(u32 arg0) {
             case 2:
                 {
                     u32 id = event + 0xb000;
-                    fn_800643F4((u16)id);
-                    fn_80064A30((u16)id, 0x0f00000f);
+                    fn_800643F4(id);
+                    fn_80064A30(id, 0x0f00000f);
                 }
                 break;
             case 7:

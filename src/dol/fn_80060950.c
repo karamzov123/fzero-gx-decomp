@@ -84,26 +84,26 @@ s16 fn_80060950(Fn80060950Info *info, u8 value, u8 index, f32 *out_db, s16 *out_
     }
     b = *p;
     if (b != 0) {
-        db = 20.0 * fn_80088578((f32)b / 255.0f);
+        db = 20.0 * fn_80088578(b / 255.0f);
     } else {
         db = -960.0f;
     }
     b = lbl_80192D68[index].unk_3;
     if (b != 0) {
-        db += (f32)(20.0 * fn_80088578((f32)b / 127.0f));
+        db += (f32)(20.0 * fn_80088578(b / 127.0f));
     } else {
         db = -960.0f;
     }
     b = lbl_80192D68[index].unk_E;
     if (b != 0) {
-        db += (f32)(20.0 * fn_80088578((f32)b / 127.0f));
+        db += (f32)(20.0 * fn_80088578(b / 127.0f));
     } else {
         db = -960.0f;
     }
     level = lbl_801A6C80->unk_5A74[index];
     b = lbl_801A6C80->unk_461;
     if (b != 0) {
-        db += (f32)(20.0 * fn_80088578((f32)b / 127.0f));
+        db += (f32)(20.0 * fn_80088578(b / 127.0f));
     } else {
         db = -960.0f;
     }

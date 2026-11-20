@@ -351,14 +351,14 @@ void fn_80060C54(u8 key, SndRegion *region, u8 track, u8 index) {
         if (lbl_801A6C80->unk_462 == 0) {
             if (wave->stereo == 1) {
                 pan = 0x40;
-                vol = 0.75f * (f32)(left + right) + (f32)vol;
+                vol = 0.75f * (left + right) + vol;
             } else {
                 x = (127 - (s16)pan) / 127;
                 left = -20.0 * fn_80088578(sqrt(x));
                 x = (s16)pan / 127;
                 right = 20.0 * fn_80088578(sqrt(x));
                 pan = 0x40;
-                vol = 0.75f * (f32)(left + right) + (f32)vol;
+                vol = 0.75f * (left + right) + vol;
             }
         }
         fader = lbl_80092B38[region->fader];

@@ -142,7 +142,7 @@ void fn_80075240(void) {
                     n = row * 4 + col;
                     {
                         s32 address;
-                        address = (s32)(tile * 64 + n * 2);
+                        address = (tile * 64 + n * 2);
                         address += dst.value;
                         *(u8 *)(address + 0) = 0;
                         *(u8 *)(address + 1) = 0;

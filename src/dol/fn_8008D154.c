@@ -17,7 +17,7 @@ u32 fn_8008D154(u32 arg0) {
     if (arg0 >= v0) {
     if (arg0 < (v1 + 16384)) {
     v1 = (u32)&gTRKCPUState;
-    if ((*(u32 *)((u8 *)v1 + 568) & 0x3) != 0) { return arg0; }
+    if ((*(u32 *)(v1 + 568) & 0x3) != 0) { return arg0; }
     }
     }
     if (arg0 >= 0x7E000000) {

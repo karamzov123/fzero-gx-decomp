@@ -81,11 +81,11 @@ void fn_80073A58(int index, void *arg, s8 value) {
     }
 
     if (index <= 3) {
-        entry = (Entry_u2 *)((u8 *)lbl_801A6D38 + (index - 1) * 0x1c + 0x894);
+        entry = (Entry_u2 *)(lbl_801A6D38 + (index - 1) * 0x1c + 0x894);
     } else if (index <= 7) {
-        entry = (Entry_u2 *)((u8 *)lbl_801A6D38 + (index - 5) * 0x1c + 0x894);
+        entry = (Entry_u2 *)(lbl_801A6D38 + (index - 5) * 0x1c + 0x894);
     } else if (index <= 11) {
-        entry = (Entry_u2 *)((u8 *)lbl_801A6D38 + (index - 9) * 0x1c + 0x894);
+        entry = (Entry_u2 *)(lbl_801A6D38 + (index - 9) * 0x1c + 0x894);
     }
 
     if (entry->unk_18 == value) {

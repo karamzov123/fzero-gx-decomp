@@ -160,9 +160,9 @@ s32 DVDReadPrio(DVDFileInfo *fileInfo, void *addr, s32 length, s32 offset, s32 p
     if (!((0 <= offset + length) && (offset + length < fileInfo->length + 32))) {
         OSPanic("dvdfs.c", 818, "DVDRead(): specified area is out of the file  ");
     }
-    block = &(fileInfo->cBlock);
+    block = &fileInfo->cBlock;
     result =
-        DVDReadAbsAsyncPrio(block, addr, length, (s32)(fileInfo->startAddr + offset), fn_800176D8, prio);
+        DVDReadAbsAsyncPrio(block, addr, length, (fileInfo->startAddr + offset), fn_800176D8, prio);
     if (result == (0)) {
         return -1;
     }
@@ -171,7 +171,7 @@ s32 DVDReadPrio(DVDFileInfo *fileInfo, void *addr, s32 length, s32 offset, s32 p
 // Hardware or OS state can change asynchronously.
         state = ((volatile DVDCommandBlock *)block)->state;
         if (state == 0) {
-            retVal = (s32)block->transferredSize;
+            retVal = block->transferredSize;
             break;
         }
         if (state == -1) {

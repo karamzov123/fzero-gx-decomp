@@ -24,19 +24,19 @@ extern void fn_80064FDC(u32, void *);
 extern void fn_8006331C(u8, u8);
 
 static inline void set_selected(u32 slot, u8 selected) {
-    ((struct StateEntry *)((u8 *)lbl_801A6C80 + 8))[slot + 0x48].selected = selected;
+    ((struct StateEntry *)(lbl_801A6C80 + 8))[slot + 0x48].selected = selected;
 }
 static inline void set_mode(u32 slot, u8 mode) {
-    ((struct StateEntry *)((u8 *)lbl_801A6C80 + 8))[slot + 0x48].mode = mode;
+    ((struct StateEntry *)(lbl_801A6C80 + 8))[slot + 0x48].mode = mode;
 }
 static inline u8 available(u8 index) {
     u8 *entry = (u8 *)lbl_801A6C80 + index * 0x20;
-    struct { u8 value; } result;
-    result.value = 0;
+    u8 result;
+    result = 0;
     if (!(entry[0x589] & 1)) {
-        result.value = 1;
+        result = 1;
     }
-    return result.value;
+    return result;
 }
 static inline void clear_full(u8 index) {
     *(u8 *)((u8 *)lbl_801A6C80 + index * 0x20 + 0x588) = 0;
@@ -96,7 +96,7 @@ void fn_80065528(u32 force) {
         u16 *table;
         table = (u16 *)(resource + 0x3c);
         data = resource + *(u32 *)(resource + 0x18);
-        if (selected > (u32)((*table >> 8) - 1)) return;
+        if (selected > ((*table >> 8) - 1)) return;
         n = 0;
         while (n <= selected + 1) {
             table++;

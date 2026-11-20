@@ -21,7 +21,7 @@ s32 fn_8008F29C(u8 *arg0, u32 arg1) {
     v0 = arg0;
     loc_28.a[0] = arg1;
     v1 = 0;
-    while (!(v1)) {
+    while (!v1) {
         v1 = fn_8008EBF8(5);
     }
     if (v1 == 0) return 1;
@@ -47,10 +47,10 @@ s32 fn_8008F29C(u8 *arg0, u32 arg1) {
     }
     fn_8008EC78();
     v8 = 0;
-    while (((0) == (v8))) {
+    while (((0) == v8)) {
         v8 = fn_8008EBF8(5);
     }
-    if (((0) == (v8))) return 1;
+    if (((0) == v8)) return 1;
     loc_10[0] = 0x10000;
     fn_8008E9B4(fn_8008E770((u32)loc_10, 2, 1, 0));
     fn_8008E9B4(fn_8008E770((u32)&loc_24, 2, 0, 0));

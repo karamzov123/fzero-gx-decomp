@@ -19,7 +19,7 @@ extern GXData *const gx;
 volatile PPCWGPipe GXWGFifo : GX_FIFO_BASE;  /* fzgx-allow: A2,S2 GX write-gather FIFO (hw_regs.h) */
 
 #define SET_REG_FIELD(reg, size, shift, val) \
-    ((reg) = ((u32)(reg) & ~(((1 << (size)) - 1) << (shift))) | ((u32)(val) << (shift)))
+    (reg = ((reg) & ~(((1 << size) - 1) << shift)) | (val << shift))
 #define GET_REG_FIELD(reg, size, shift) (((reg) >> (shift)) & ((1 << (size)) - 1))
 #define GX_WRITE_RAS_REG(reg) \
     do { \

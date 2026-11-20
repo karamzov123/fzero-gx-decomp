@@ -43,7 +43,7 @@ extern Fn8005C5C8Root *lbl_801A6C80;
 /* 0..127 level byte -> attenuation in 0.1 dB units; zero means silence */
 #define LEVEL(dst, v)                                                    \
     if ((v) != 0) {                                                      \
-        dst = (s32)(10.0 * (20.0 * fn_80088578((f32)(v) / 127.0f)));     \
+        dst = (10.0 * (20.0 * fn_80088578(v / 127.0f)));     \
     } else {                                                             \
         dst = -904;                                                      \
     }

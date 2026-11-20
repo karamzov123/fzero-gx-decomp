@@ -33,7 +33,7 @@ s32 fn_80067344(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     s32 ret;
     s32 val;
 
-    val = (0x1F & (arg0)) + ((((arg1 - 1) & 0xF) << 24));
+    val = (0x1F & arg0) + ((((arg1 - 1) & 0xF) << 24));
     val = val + arg2;
     if (arg2 != 0) {
         switch (arg2) {

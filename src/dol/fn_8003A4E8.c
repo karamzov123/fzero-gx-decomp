@@ -35,12 +35,12 @@ s32 fn_8003A4E8(Ctx *d, u32 idx, u8 *counts) {
     fzgx_live = fzgx_live_;
     ((idx & 0xFF)[d->entries]).str = (u8 *)fzgx_live;
     fzgx_live_2 = (d->cursor);
-    base = n + (s32)(u32)fzgx_live_2;
+    base = n + (u32)fzgx_live_2;
     d->cursor = (u32 *)(base + 1);
     t = 0;
     for (i = 1; i <= 16; i++) {
         n = ((i - 1)[counts]);
-        c.value = (s8)i;
+        c.value = i;
         for (k = 0; k != n; k++) {
             ((idx & 0xFF)[d->entries]).str[t] = c.value;
             t++;

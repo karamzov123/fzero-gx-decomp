@@ -16,7 +16,7 @@ void fn_800230A4(void *arg0, s32 arg1) {
     void *temp_r4;
 
     temp_r3 = OSDisableInterrupts();
-    temp_r4 = (void *)((u8 *)(arg0) + 0x138);
+    temp_r4 = ((u8 *)(arg0) + 0x138);
     switch (arg1) {                                 /* irregular */
     case 0:
         (*(s16 *)((u8 *)(temp_r4) + 8)) = 2;
@@ -37,7 +37,7 @@ void fn_800230A4(void *arg0, s32 arg1) {
         (*(s16 *)((u8 *)(temp_r4) + 10)) = 2;
         break;
     }
-    (*(s32 *)((u8 *)(arg0) + 28)) = (s32) ((*(s32 *)((u8 *)(arg0) + 28)) | 1);
+    (*(s32 *)((u8 *)(arg0) + 28)) = ((*(s32 *)((u8 *)(arg0) + 28)) | 1);
     OSRestoreInterrupts(temp_r3);
 }
 

@@ -16,10 +16,10 @@
 #define LAYOUT_CHECK_JOIN2(a, b) a##b
 #define LAYOUT_CHECK_JOIN(a, b) LAYOUT_CHECK_JOIN2(a, b)
 #define CHECK_SIZE(T, size) \
-    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == (size)) ? 1 : -1]
+    typedef char LAYOUT_CHECK_JOIN(layout_size_, T)[(sizeof(T) == size) ? 1 : -1]
 #define CHECK_OFFSET(T, field, offset) \
     typedef char LAYOUT_CHECK_JOIN(LAYOUT_CHECK_JOIN(layout_offset_, T), __LINE__) \
-        [((unsigned long)&((T *)0)->field == (offset)) ? 1 : -1]
+        [((unsigned long)&((T *)0)->field == offset) ? 1 : -1]
 
 #endif
 
@@ -207,7 +207,7 @@ static void fzgx_bss_layout(void) {
 __declspec(section ".fzgxpool") void fzgx_pool_primer(void) {
     fzgx_sink("E02080860 ADXT_SetKeyString: parameter error");
     fzgx_sink("E02080818 ADXT_GetDecNumSmpl: parameter error");
-    fzgx_sinkf((f32)fzgx_int);
+    fzgx_sinkf(fzgx_int);
 }
 
 __declspec(section ".fzgxpool") void fzgx_pool_primer2(void) {
@@ -274,7 +274,7 @@ void fn_8004C164(ADXTHandle *handle, s32 *count, s32 *scale) {
             *count = handle->playback_time;
         }
         adxt_GetTimeSub(handle, &count2, &scale2);
-        diff = 1000.0f * ((f32)count2 / (f32)scale2 - (f32)*count / (f32)lbl_8017E594);
+        diff = 1000.0f * ((f32)count2 / scale2 - (f32)*count / lbl_8017E594);
         lbl_8017E58C__fzgx_offset_4 = diff;
         if (diff > 60.0f || diff < -60.0f) {
             if (lbl_8012B910[0] == 1) {
@@ -284,7 +284,7 @@ void fn_8004C164(ADXTHandle *handle, s32 *count, s32 *scale) {
                 lbl_8017E568 = saved;
                 lbl_8017E56C__fzgx_offset_4++;
             }
-            handle->playback_time = (u32)((f32)lbl_8017E594 * ((f32)count2 / (f32)scale2));
+            handle->playback_time = (lbl_8017E594 * ((f32)count2 / scale2));
             handle->playback_start_vsync = lbl_80178CB8[0];
         }
     } else if (status == 5) {

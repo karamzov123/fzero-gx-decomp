@@ -108,7 +108,7 @@ void fn_80028164(Fn80028164Arg0 *arg0) {
             green += node->value10;
             break;
         case 7:
-            random_value = (s32)((f32)(s32)node->value28 * node->value24);
+            random_value = ((s32)node->value28 * node->value24);
             green += random_value;
             break;
         case 8:
@@ -130,15 +130,15 @@ void fn_80028164(Fn80028164Arg0 *arg0) {
             color += node->value10;
             break;
         case 14:
-            random_value = (s32)((f32)(s32)node->value28 * node->value24);
+            random_value = ((s32)node->value28 * node->value24);
             blue += random_value;
             break;
         case 15:
-            random_value = (s32)((f32)(s32)node->value28 * node->value24);
+            random_value = ((s32)node->value28 * node->value24);
             alpha += random_value;
             break;
         case 16:
-            random_value = (s32)((f32)(s32)node->value28 * node->value24);
+            random_value = ((s32)node->value28 * node->value24);
             color += random_value;
             break;
         }

@@ -45,7 +45,7 @@ void fn_8005B464(u32 arg0) {
         i = 0;
         while (i < ((fn_8005B464_Obj *)arg0)->count) {
             if (p->field38 != 0) {
-                p->field38->vtable->fn0((void *)p->field38);
+                p->field38->vtable->fn0(p->field38);
             }
             if (p->field10 != 0) {
                 fn_8005BE98(p->field10);

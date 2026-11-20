@@ -54,13 +54,13 @@ u32 fn_800137C4(u32 channel, struct SIOutput *response) {
     } else {
         entry->status = 0;
         if (response != 0) {
-            response->buttons = (u16)(si_response.word0 >> 16);
-            response->data[0] = (u8)(si_response.word0 >> 8);
+            response->buttons = (si_response.word0 >> 16);
+            response->data[0] = (si_response.word0 >> 8);
             response->data[1] = (u8)si_response.word0 - 0x80;
-            response->data[2] = (u8)(si_response.word1 >> 24);
-            response->data[3] = (u8)(si_response.word1 >> 16);
-            response->data[4] = (u8)(si_response.word1 >> 8);
-            response->data[5] = (u8)si_response.word1;
+            response->data[2] = (si_response.word1 >> 24);
+            response->data[3] = (si_response.word1 >> 16);
+            response->data[4] = (si_response.word1 >> 8);
+            response->data[5] = si_response.word1;
         }
     }
 

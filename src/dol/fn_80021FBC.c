@@ -16,7 +16,7 @@ void fn_80021FBC(void) {
     u32 t0;
     t0 = OSDisableInterrupts();
     lbl_801A6B20 = 0;
-    v0 = (t0 + 0);
+    v0 = t0;
     fn_80028E48((u32)&lbl_80160C80);
     OSSleepThread((u32)&lbl_801A6B30);
     AIStopDMA();

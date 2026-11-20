@@ -15,7 +15,7 @@ extern u32 fn_80046020(u32);
 void fn_80044E7C(struct fn_80044E7C_Arg0 *arg0) {
     s16 v0;
     v0 = arg0->unk_98;
-    if ((s16)v0 == 0) {
+    if (v0 == 0) {
     fn_80044EF8((u32)arg0);
     } else {
     if (v0 == 10) {

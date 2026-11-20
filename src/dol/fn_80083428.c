@@ -27,7 +27,7 @@ const char *fn_80083428(const char *format_string, ScanFormat *format);
 
 extern unsigned char lbl_8015B100[];
 
-static inline int isdigit(int c) { return (int)(lbl_8015B100[(unsigned char)c] & 0x10); }
+static inline int isdigit(int c) { return (lbl_8015B100[(unsigned char)c] & 0x10); }
 
 const char *fn_80083428(const char *format_string, ScanFormat *format) {
     const char *cursor = format_string;

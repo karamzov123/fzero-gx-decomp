@@ -31,7 +31,7 @@ static void update(struct Entry *e, s32 *src) {
             v = -20;
         }
         e->unk_0 = *src;
-        nv = (s16)(-v);
+        nv = (-v);
         *src = *src - v * 160;
         e->unk_4 = nv;
     } else {

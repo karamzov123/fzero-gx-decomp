@@ -31,7 +31,7 @@ Fn800517C0Object *fn_800517C0(Fn800517C0Object *obj, unsigned int size) {
     memset(obj, 0, size);
     lbl_80187330[i] = (u32)obj;
     entry = (Fn800517C0Object *)lbl_80187330[i];
-    entry->field_346 = (u8)i;
+    entry->field_346 = i;
     resource = fn_80053A84((u8 *)entry + 0xbb8, 0x2014);
     entry->field_350 = (u32)resource;
     if (resource == 0) {

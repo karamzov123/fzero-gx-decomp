@@ -42,21 +42,21 @@ s32 fn_80089EEC(Sig_fn_80089EEC_TRKBuffer *arg0) {
     loc_8C.unk_4=128;
     *(u32 *)&loc_8C=1128;
     fn_80089174((struct Sig_fn_80089174_fn_80089174_Arg0 *)arg0,0);
-    MWTRACE(4,(u32)(p_lbl_80095890+152),arg0->length);
+    MWTRACE(4,(p_lbl_80095890+152),arg0->length);
     TRKAppendBuffer_ui8((Sig_TRKAppendBuffer_ui8_TRKBuffer *)arg0,(const u8 *)&loc_8C,64);
-    MWTRACE(4,(u32)(p_lbl_80095890+152),arg0->length);
+    MWTRACE(4,(p_lbl_80095890+152),arg0->length);
     v10=TRKTargetAccessDefault(0,36,(Sig_TRKTargetAccessDefault_TRKBuffer *)arg0,(size_t *)&loc_8,1);
-    MWTRACE(4,(u32)(p_lbl_80095890+192),v10);
-    MWTRACE(4,(u32)(p_lbl_80095890+152),arg0->length);
+    MWTRACE(4,(p_lbl_80095890+192),v10);
+    MWTRACE(4,(p_lbl_80095890+152),arg0->length);
     if (!v10) v10=fn_8008C124(0,33,(u32)arg0,&loc_8,1);
-    MWTRACE(4,(u32)(p_lbl_80095890+248),v10);
-    MWTRACE(4,(u32)(p_lbl_80095890+152),arg0->length);
+    MWTRACE(4,(p_lbl_80095890+248),v10);
+    MWTRACE(4,(p_lbl_80095890+152),arg0->length);
     if (!v10) v10=fn_8008BFB4(0,96,(Sig_fn_8008BFB4_TRKBuffer *)arg0,(size_t *)&loc_8,1);
-    MWTRACE(4,(u32)(p_lbl_80095890+288),v10);
-    MWTRACE(4,(u32)(p_lbl_80095890+152),arg0->length);
+    MWTRACE(4,(p_lbl_80095890+288),v10);
+    MWTRACE(4,(p_lbl_80095890+152),arg0->length);
     if (!v10) v10=fn_8008BB7C(0,31,(u32)arg0,&loc_8,1);
-    MWTRACE(4,(u32)(p_lbl_80095890+336),v10);
-    MWTRACE(4,(u32)(p_lbl_80095890+152),arg0->length);
+    MWTRACE(4,(p_lbl_80095890+336),v10);
+    MWTRACE(4,(p_lbl_80095890+152),arg0->length);
     if (v10) {
         switch(v10) {
         case 1795:v10=18;break; case 1793:v10=20;break; case 1794:v10=21;break;
@@ -68,9 +68,9 @@ s32 fn_80089EEC(Sig_fn_80089EEC_TRKBuffer *arg0) {
         fn_8008D398((u32)&loc_C,64);
         return 0;
     }
-    MWTRACE(1,(u32)(p_lbl_80095890+96));
+    MWTRACE(1,(p_lbl_80095890+96));
     v12.value=fn_80088B00((struct Sig_fn_80088B00_fn_80088B00_Arg0 *)arg0);
-    MWTRACE(1,(u32)(p_lbl_80095890+128),v12.value);
+    MWTRACE(1,(p_lbl_80095890+128),v12.value);
     return v12.value;
 }
 #pragma opt_lifetimes reset

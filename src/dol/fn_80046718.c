@@ -49,11 +49,11 @@ s32 fn_80046804(u32 arg0, u32 arg1, struct fn_80046804_Arg2 *arg2) {
     v0 = -1;
     return v0;
     }
-    if (*(u16 *)((u8 *)v0 + 0) != 32769) {
+    if (*(u16 *)(v0) != 32769) {
     v0 = -2;
     return v0;
     }
-    v1 = *(s16 *)((u8 *)v0 + 2);
+    v1 = *(s16 *)(v0 + 2);
     v0 = 0;
     arg2->unk_0 = (v1 + 4);
     return v0;
@@ -137,7 +137,7 @@ int fn_8004683C(u8 *buffer, int buffer_len, int *ainf_len, u8 ainf[16],
     ainf_offset = version == 4 ? 0x20 : 0x14;
     {
         u8 *q = (u8 *)(ainf_offset + (u32)base);
-        tag = ((u32)((q)[4]) << 24) | ((u32)((q)[5]) << 16) | ((u32)((q)[6]) << 8) | (u32)((q)[7]);
+        tag = (((q)[4]) << 24) | (((q)[5]) << 16) | (((q)[6]) << 8) | ((q)[7]);
     }
     if (tag != 0x41494E46) {
         return -2;

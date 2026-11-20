@@ -23,7 +23,7 @@ void fn_8008D028(void) {
     u32 v0;
 
     v0 = lbl_801A5638[0].unk_0;
-    if (v0 <= 0x44 && (u32)(v0 + 0x4000) > 0x44 && (gTRKCPUState[0x238 / 4] & 3) != 0) {
+    if (v0 <= 0x44 && (v0 + 0x4000) > 0x44 && (gTRKCPUState[0x238 / 4] & 3) != 0) {
         v2 = 0x44; /* fzgx-allow: A1 low physical word */
     } else {
         v2 = 0x80000044; /* fzgx-allow: A1 cached alias of the low physical word */

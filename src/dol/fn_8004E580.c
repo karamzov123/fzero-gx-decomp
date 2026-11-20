@@ -7,5 +7,5 @@ struct fn_8004E580_lbl_8017E984 {
 };
 
 u32 fn_8004E580(void) {
-    return ((u32)((-lbl_8017E984.unk_0) | lbl_8017E984.unk_0) >> 31);
+    return (((-lbl_8017E984.unk_0) | lbl_8017E984.unk_0) >> 31);
 }

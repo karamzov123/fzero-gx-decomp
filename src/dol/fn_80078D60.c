@@ -14,11 +14,11 @@ extern u32 func_8008D6BC(u32);
 void fn_80078D60(s32 arg0) {
     u32 temp_r3;
 
-    if ((s32) (*(u32 *)((u8 *)(&lbl_801A6D9C) + 0)) != arg0) {
-        (*(u32 *)((u8 *)(&lbl_801A6D9C) + 0)) = (u32) arg0;
-        temp_r3 = ((*(struct fn_80078D60_gx_T **)((u8 *)(&gx) + 0))->unk_204 & 0xFFFF3FFF) | (arg0 << 0xE);
-        (*(struct fn_80078D60_gx_T **)((u8 *)(&gx) + 0))->unk_204 = temp_r3;
-        func_8008D6BC((u32)(temp_r3));
+    if ((s32) (lbl_801A6D9C) != arg0) {
+        lbl_801A6D9C = arg0;
+        temp_r3 = ((*(struct fn_80078D60_gx_T **)(&gx))->unk_204 & 0xFFFF3FFF) | (arg0 << 0xE);
+        (*(struct fn_80078D60_gx_T **)(&gx))->unk_204 = temp_r3;
+        func_8008D6BC(temp_r3);
     }
 }
 

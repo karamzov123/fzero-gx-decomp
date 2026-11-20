@@ -78,10 +78,10 @@ u32 fn_8005782C(SJ *sj, int channel, SJCK *chunk) {
             position = memory->read_position;
             position = position - chunk_len;
             clamped_position = position > 0 ? position : 0;
-            fzgx_value = &(memory->read_position);
+            fzgx_value = &memory->read_position;
             *fzgx_value = clamped_position;
             position = memory->available + chunk->len;
-            fzgx_value_ = &(memory->available);
+            fzgx_value_ = &memory->available;
             *fzgx_value_ = memory->buffer_size < position ? memory->buffer_size : position;
             fzgx_live__ = memory->buffer;
             fzgx_live_ = fzgx_live__;
@@ -90,7 +90,7 @@ u32 fn_8005782C(SJ *sj, int channel, SJCK *chunk) {
                 memory->error_callback(memory->error_object, -3);
             }
         } else {
-            (*( int * )(&(chunk->len)) = (0));
+            (*( int * )(&chunk->len) = (0));
             chunk->data = 0;
             if (memory->error_callback != 0) {
                 memory->error_callback(memory->error_object, -3);

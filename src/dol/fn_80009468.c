@@ -64,7 +64,7 @@ s32 *fn_8000961C(s32 arg0) {
     s32 v0, v1, v2, v3, v4;
     s32 *p;
 
-    idx = (s32)lbl_801A6730;
+    idx = lbl_801A6730;
     if (idx != -1) {
         v0 = lbl_801A6410;
         v1 = lbl_801A6744;
@@ -97,7 +97,7 @@ s32 *fn_8000961C(s32 arg0) {
         }
         return 0;
     }
-    p = (s32 *)((u8 *)lbl_801A6744 + arg0 * 12);
+    p = (s32 *)(lbl_801A6744 + arg0 * 12);
     if (*p < 0) {
         if (idx != -1) {
             lbl_8015BE40[idx * 5] = lbl_801A6410;
@@ -150,7 +150,7 @@ void *fn_80009830(s32 arg0, s32 arg1) {
     s32 d;
 
     if ((s32)lbl_801A6730 != -1) {
-        idx = (s32)lbl_801A6730;
+        idx = lbl_801A6730;
         lbl_8015BEE0[0] = lbl_801A6410;
         lbl_8015BEE0[1] = lbl_801A6744;
         lbl_8015BEE0[2] = lbl_801A6740;
@@ -167,8 +167,8 @@ void *fn_80009830(s32 arg0, s32 arg1) {
     Node *head;
     Node *first;
     arg0 = arg0 * 12;
-    head = (Node *)((u8 *)lbl_801A6744 + arg0);
-    key = ((u32)arg1 + 0x3F) & 0xFFFFFFE0;
+    head = (Node *)(lbl_801A6744 + arg0);
+    key = (arg1 + 0x3F) & 0xFFFFFFE0;
     first = head->f4;
     for (cur = first; cur != NULL; cur = cur->f4) {
         if (key <= cur->f8) {
@@ -178,7 +178,7 @@ void *fn_80009830(s32 arg0, s32 arg1) {
 
     if (cur == NULL) {
         if ((s32)lbl_801A6730 != -1) {
-            idx = (s32)lbl_801A6730;
+            idx = lbl_801A6730;
             lbl_8015BE40[idx * 5] = lbl_801A6410;
             lbl_8015BE40[idx * 5 + 1] = lbl_801A6744;
             lbl_8015BE40[idx * 5 + 2] = lbl_801A6740;
@@ -237,7 +237,7 @@ void *fn_80009830(s32 arg0, s32 arg1) {
 }
 
     if ((s32)lbl_801A6730 != -1) {
-        idx = (s32)lbl_801A6730;
+        idx = lbl_801A6730;
         lbl_8015BE40[idx * 5] = lbl_801A6410;
         lbl_8015BE40[idx * 5 + 1] = lbl_801A6744;
         lbl_8015BE40[idx * 5 + 2] = lbl_801A6740;

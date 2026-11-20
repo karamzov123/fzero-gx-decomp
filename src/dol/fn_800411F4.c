@@ -199,7 +199,7 @@ void fn_800411F4(void) {
     struct adx_inisBss *bss = &lbl_80178CA8;
 
     *(volatile u32 *)&lbl_80090010; /* The SDK probes the pooled version word. */
-    if ((bss->fields.view_sdk_adxt_init_cnt.adxt_init_cnt) == 0) {
+    if (bss->fields.view_sdk_adxt_init_cnt.adxt_init_cnt == 0) {
         fn_80046758();
         fn_80046738();
         fn_80058754();
@@ -214,18 +214,18 @@ void fn_800411F4(void) {
         fn_80058BFC();
         fn_8004EF48(fn_800413EC, 0);
         fn_800566BC(fn_800413C8, 0);
-        memset((bss->fields.view_sdk_adxt_obj.adxt_obj), 0,
-               sizeof((bss->fields.view_sdk_adxt_obj.adxt_obj)));
+        memset(bss->fields.view_sdk_adxt_obj.adxt_obj, 0,
+               sizeof(bss->fields.view_sdk_adxt_obj.adxt_obj));
         if (fn_8004E580() == 1 && lbl_8012B6E8 == 1) {
             fn_8005912C(2, 1, fn_80041354, 0);
-            (bss->fields.view_sdk_adxt_svr_fs_id.adxt_svr_fs_id) = fn_80059428(4, fn_80041330, 0);
-            (bss->fields.view_sdk_adxt_svr_main_id.adxt_svr_main_id) =
+            bss->fields.view_sdk_adxt_svr_fs_id.adxt_svr_fs_id = fn_80059428(4, fn_80041330, 0);
+            bss->fields.view_sdk_adxt_svr_main_id.adxt_svr_main_id =
                 fn_80059428(5, fn_800413A4, 0);
         } else {
-            (bss->fields.view_sdk_adxt_svr_main_id.adxt_svr_main_id) =
+            bss->fields.view_sdk_adxt_svr_main_id.adxt_svr_main_id =
                 fn_80059428(5, fn_80041378, 0);
         }
-        (bss->fields.view_sdk_adxt_vsync_cnt.adxt_vsync_cnt) = 0;
+        bss->fields.view_sdk_adxt_vsync_cnt.adxt_vsync_cnt = 0;
 
         fn_80046718();
     }

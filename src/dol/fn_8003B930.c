@@ -27,7 +27,7 @@ u8 fn_8003B930(int value, Fn8003B930Data* data) {
         cursor += 4;
         index += 1;
     }
-    return *(u8*)((((result) + (data->field_5c[index])) + (data->field_10)));
+    return *(u8*)((((result) + (data->field_5c[index])) + data->field_10));
 }
 
 /* --- dol/fn_8003B9AC.c --- */

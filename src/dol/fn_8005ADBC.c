@@ -47,11 +47,11 @@ void fn_8005ADBC(struct fn_8005ADBC_Arg0 *arg0) {
     index_bits = value & 0x7FFFFFFF;
     sign = index_bits >> 31;
     entry = &lbl_80191D4C[(s32)(sign + index_bits) >> 1];
-    slot = (s32)(((value & 1) ^ sign) - sign);
-    slot4 = (u32)slot << 2;
+    slot = (((value & 1) ^ sign) - sign);
+    slot4 = slot << 2;
     state = (s32 *)(slot4 + (u32)((u8 *)entry + 0x60));
     if (*state == 1) {
-        pair = (u8 *)entry + ((u32)slot << 3);
+        pair = (u8 *)entry + (slot << 3);
         entry->obj_30[slot]->vtable->fn(entry->obj_30[slot], 0, pair + 0x40);
         entry->obj_38[slot]->vtable->fn(entry->obj_38[slot], 1, pair + 0x50);
         *state = 0;

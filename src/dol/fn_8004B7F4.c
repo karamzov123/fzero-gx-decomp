@@ -155,7 +155,7 @@ s32 fn_8004B974(u32 arg0, u32 arg1, struct fn_8004B974_Arg2 *arg2) {
     v0 = 0;
     return v0;
     }
-    if (*(u16 *)((u8 *)v0 + 0) != 32769) {
+    if (*(u16 *)(v0) != 32769) {
     v0 = 0;
     return v0;
     }
@@ -257,20 +257,20 @@ static inline void adxt_ExecServers(struct adx_tlkBss *bss) {
         fn_80046718();
         return;
     }
-    (bss->adxt_tsvr_enter_cnt) = 1;
+    bss->adxt_tsvr_enter_cnt = 1;
     fn_80046718();
     fn_80046738();
     fn_80041700();
-    (bss->adxt_tsvr_enter_cnt) = 2;
+    bss->adxt_tsvr_enter_cnt = 2;
     entry = lbl_80178CBC;
     for (index = 0; index < ADXT_MAX_HANDLES; index++, entry++) {
         if (entry->used == 1) {
             fn_8004D220(entry);
         }
     }
-    (bss->adxt_tsvr_enter_cnt) = 3;
+    bss->adxt_tsvr_enter_cnt = 3;
     fn_8004EE44();
-    (bss->adxt_tsvr_enter_cnt) = 0;
+    bss->adxt_tsvr_enter_cnt = 0;
     fn_80046718();
 }
 
@@ -285,11 +285,11 @@ s32 fn_8004BA40(ADXTHandle *handle, s32 samples) {
     }
     discarded = fn_8004ED84(handle->rna, samples);
     adxt_ExecServers(bss);
-    saved_time_mode = (bss->adxt_time_mode);
-    (bss->adxt_time_mode) = 0;
+    saved_time_mode = bss->adxt_time_mode;
+    bss->adxt_time_mode = 0;
     fn_8004C164(handle, &count, &scale);
-    (bss->adxt_time_mode) = saved_time_mode;
-    handle->playback_time = (u32)((f32)(bss->adxt_time_unit) * ((f32)count / (f32)scale));
+    bss->adxt_time_mode = saved_time_mode;
+    handle->playback_time = ((bss->adxt_time_unit) * ((f32)count / scale));
     handle->playback_start_vsync = lbl_80178CB8;
     return discarded;
 }

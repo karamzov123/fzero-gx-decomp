@@ -105,7 +105,7 @@ void fn_800285DC(struct fn_800285DC_Arg0 *arg0) {
             break;
         case 7:
             fn_80028A78(&node->b8);
-            acc_d += (s32)((f32)node->i28 * node->f24);
+            acc_d += (s32)(node->i28 * node->f24);
             break;
         case 8:
             acc_c += *(u32 *)&node->b8;
@@ -130,15 +130,15 @@ void fn_800285DC(struct fn_800285DC_Arg0 *arg0) {
             break;
         case 14:
             fn_80028A78(&node->b8);
-            acc_c += (s32)((f32)node->i28 * node->f24);
+            acc_c += (s32)(node->i28 * node->f24);
             break;
         case 15:
             fn_80028A78(&node->b8);
-            acc_b += (s32)((f32)node->i28 * node->f24);
+            acc_b += (s32)(node->i28 * node->f24);
             break;
         case 16:
             fn_80028A78(&node->b8);
-            acc_a += (s32)((f32)node->i28 * node->f24);
+            acc_a += (s32)(node->i28 * node->f24);
             break;
         }
         node = node->next;

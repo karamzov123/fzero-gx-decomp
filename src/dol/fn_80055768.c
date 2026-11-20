@@ -17,5 +17,5 @@ s32 fn_80055768(u32 arg0) {
         }
         return 0;
     }
-    return *(s8 *)((u8 *)arg0 + 2);
+    return *(s8 *)(arg0 + 2);
 }

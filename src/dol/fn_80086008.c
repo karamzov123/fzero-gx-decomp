@@ -172,7 +172,7 @@ double fn_80086008(double x, double y)
 	   but ANSI C says a right shift of a signed negative quantity is
 	   implementation defined.  */
 
-	if (((((int)hx >> 31) + 1) | yisint) == 0) {
+	if ((((hx >> 31) + 1) | yisint) == 0) {
 		errno = 33;
 		return (double)NAN;
 	};
@@ -208,7 +208,7 @@ double fn_80086008(double x, double y)
 			n -= 53;
 			ix = __HI(ax);
 		}
-		n += ((ix) >> 20) - 0x3ff;
+		n += (ix >> 20) - 0x3ff;
 		j = ix & 0x000fffff;
 		/* determine interval */
 		ix = j | 0x3ff00000; /* normalize ix */
@@ -259,7 +259,7 @@ double fn_80086008(double x, double y)
 	}
 
 	s = one; /* s (sign of result -ve**odd) = -1 else = 1 */
-	if (((((int)hx >> 31) + 1) | (yisint - 1)) == 0)
+	if ((((hx >> 31) + 1) | (yisint - 1)) == 0)
 		s = -one; /* (-ve)**(odd int) */
 
 	/* split up y into y1+y2 and compute (y1+y2)*(t1+t2) */

@@ -72,7 +72,7 @@ int fn_8003BE1C(u8 *data, JpegInfo *info) {
         } else if (marker >= 0xC0 && marker <= 0xFE) {
             len = data[1] | (data[0] << 8);
             data += 2;
-            for (j = 0; j < (u32)(len - 2); j++) {
+            for (j = 0; j < (len - 2); j++) {
                 data++;
             }
         } else {

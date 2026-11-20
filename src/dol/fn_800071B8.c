@@ -141,7 +141,7 @@ void fn_8000740C(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
         v1 = (u32)&lbl_801A6400;
         v2 = (u32)&lbl_801221A0;
         v0 = 461;
-        OSPanic((u8 *)(u32)v1, v0, (u8 *)(u32)v2);
+        OSPanic((u8 *)v1, v0, (u8 *)v2);
     }
     t2 = fn_80007654(arg0);
     t0->b = t2;

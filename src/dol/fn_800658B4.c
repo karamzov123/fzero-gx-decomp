@@ -18,7 +18,7 @@ extern u32 lbl_801A6C78;
 
 static inline s32 fn_800658B4_push(u32 value) {
     s32 status = 0;
-    if ((s8)lbl_801A6C80->unk_464 != 0) {
+    if (lbl_801A6C80->unk_464 != 0) {
         status = -3;
     } else {
         lbl_801A6C80->unk_464 = -1;

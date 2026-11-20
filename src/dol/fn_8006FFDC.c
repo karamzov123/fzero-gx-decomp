@@ -11,9 +11,9 @@ s32 fn_8003401C(u16);                           /* extern */
 u16 fn_8006FFDC(void) {
     u16 temp_r31;
 
-    temp_r31 = *(u16 *)((u8 *)(&lbl_801A6CC4) + 0);
-    fn_8003401C(*(u16 *)((u8 *)(&lbl_801A6CC4) + 0));
-    (*(u16 *)((u8 *)(&lbl_801A6CC4) + 0)) += 1;
+    temp_r31 = lbl_801A6CC4;
+    fn_8003401C(lbl_801A6CC4);
+    (lbl_801A6CC4) += 1;
     return temp_r31;
 }
 

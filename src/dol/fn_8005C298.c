@@ -92,7 +92,7 @@ if (t > 1200) {
 t = 1200;
 }
 } else if (v < 0) {
-t = (s32)__fabs((f64)v);
+t = __fabs(v);
 t *= 1200;
 t >>= 7;
 t *= slot->unk13;
@@ -111,17 +111,17 @@ v = in.ptr->unkF;
 if (v > 0) {
 t = (v + 1) * 120;
 t >>= 7;
-t *= (&((Fn8005C298Slot *)(state)->unk_588)[(u8)(s)]) ->unk13;
+t *= (&((Fn8005C298Slot *)(state)->unk_588)[s]) ->unk13;
 t >>= 7;
 t = param->unk2A + t;
 if (t > 120) {
 t = 120;
 }
 } else if (v < 0) {
-t = (s32)__fabs((f64)v);
+t = __fabs(v);
 t *= 120;
 t >>= 7;
-t *= (&((Fn8005C298Slot *)(state)->unk_588)[(u8)(s)]) ->unk13;
+t *= (&((Fn8005C298Slot *)(state)->unk_588)[s]) ->unk13;
 t >>= 7;
 t = param->unk2A - t;
 if (t < 0) {

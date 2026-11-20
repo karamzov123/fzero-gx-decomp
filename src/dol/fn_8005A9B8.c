@@ -196,7 +196,7 @@ static inline void axrna_flash(AXRNAHandle *handle) {
 }
 
 void fn_8005A9B8(AXRNAHandle *handle) {
-    if (!(handle)) {
+    if (!handle) {
         return;
     }
     if (axrna_get_play_switch(handle) == 1) {

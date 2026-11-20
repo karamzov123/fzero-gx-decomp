@@ -149,7 +149,7 @@ void fn_80067974(void) {
     WORK->ready = 0;
     tick = OSGetTick();
     /* OSTicksToMilliseconds, rounded */
-    elapsed = (u32)floor((f32)(0.5 + (f32)(((tick - WORK->lastTick) * 8) / (OS_TIMER_CLOCK / 125000)) / 1000.0));
+    elapsed = floor((f32)(0.5 + (f32)(((tick - WORK->lastTick) * 8) / (OS_TIMER_CLOCK / 125000)) / 1000.0));
     WORK->elapsed = elapsed;
     if (elapsed != 0) {
         for (i = 0; i < 0x10; i++) {

@@ -135,7 +135,7 @@ void fn_8007CF18(decimal *d, s32 n) {
     default:
         fn_8007CF18(&tmp, n / 2);
         fn_8007E69C(d, &tmp, &tmp);
-        if (((1) & (n))) {
+        if (((1) & n)) {
             save = *d;
             if (n > 0) {
                 tmp.exp = 0;

@@ -44,7 +44,7 @@ AdxtWork *fn_80053A84(AdxtWork *arg0, u32 size) {
 
     memset(arg0, 0, size);
     {
-        u32 offset = (u32)index * sizeof(AdxtWork *);
+        u32 offset = index * sizeof(AdxtWork *);
         AdxtWork **slots = g->slots;
         *(AdxtWork **)((u8 *)slots + offset) = arg0;
         work = *(AdxtWork **)((u8 *)slots + offset);

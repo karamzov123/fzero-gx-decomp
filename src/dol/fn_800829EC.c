@@ -95,7 +95,7 @@ extern u64 __strtoull(int base, int max_width, int (*ReadProc)(void *, int, int)
 
 void exit(int);
 
-static inline int isspace(int c) { return (int)(lbl_8015B100[(u8)c] & (0x02 | 0x04)); }
+static inline int isspace(int c) { return (lbl_8015B100[(u8)c] & (0x02 | 0x04)); }
 
 const char *fn_80083428(const char *format_string, scan_format *format);
 
@@ -299,7 +299,7 @@ int fn_80082A7C(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char
                        ((read_char = ((*ReadProc)(ReadProcArg, 0, __GetAChar))) != -1)) {
                     c = read_char;
                     if (format.argument_options == wchar_argument) {
-                        mbtowc(((wchar_t *)arg_ptr), (char *)(&c), 1);
+                        mbtowc(((wchar_t *)arg_ptr), &c, 1);
                         (wchar_t *)arg_ptr++;
                     } else {
                         *arg_ptr++ = c;
@@ -351,7 +351,7 @@ int fn_80082A7C(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char
                        ((c = ((*ReadProc)(ReadProcArg, 0, __GetAChar))) != -1) &&
                        (format.char_set[(u8)c >> 3] & (1 << (c & 7)))) {
                     if (format.argument_options == wchar_argument) {
-                        mbtowc(((wchar_t *)arg_ptr), (char *)&c, 1);
+                        mbtowc(((wchar_t *)arg_ptr), &c, 1);
                         arg_ptr = (char *)((wchar_t *)arg_ptr + 1);
                     } else {
                         *arg_ptr++ = c;

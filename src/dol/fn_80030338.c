@@ -7,7 +7,7 @@ extern void __CARDSyncCallback(void);
 s32 fn_80030338(u32 arg0, u32 arg1, u32 arg2) {
     s32 status;
 
-    status = CARDRenameAsync(arg0, (void *)arg1, (void *)arg2, (void *)__CARDSyncCallback);
+    status = CARDRenameAsync(arg0, (void *)arg1, (void *)arg2, __CARDSyncCallback);
     if (status < 0) {
         return status;
     }

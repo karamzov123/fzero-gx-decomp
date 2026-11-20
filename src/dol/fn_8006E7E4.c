@@ -35,7 +35,7 @@ void fn_8006E7E4(Vec4 *arg0, Vec3 *arg1, s32 arg2) {
         arg0->z = lbl_801A73D4;
         arg0->w = lbl_801A73D8;
     } else {
-        s16 a = (s16)arg2;
+        s16 a = arg2;
         f32 s = lbl_8006D188(a >> 1);
         scale = lbl_8006D0E8(length_squared);
         scale *= s;

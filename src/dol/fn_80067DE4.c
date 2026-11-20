@@ -83,7 +83,7 @@ u32 fn_80067DE4(void) {
 	}
 
 	base_2 = (Base *)lbl_801A6C80;
-	switch ((s32)base_2->unk_470) {
+	switch (base_2->unk_470) {
 	case 0:
 		fn_80024DF0(fzgx_obj_lbl_801939B4);
 		break;
@@ -100,7 +100,7 @@ u32 fn_80067DE4(void) {
 	fn_800211E0(0, 0);
 
 	base_2 = (Base *)lbl_801A6C80;
-	switch ((s32)base_2->unk_471) {
+	switch (base_2->unk_471) {
 	case 0:
 		fn_80024DF0(fzgx_obj_lbl_80193860);
 		break;

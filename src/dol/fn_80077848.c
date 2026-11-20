@@ -107,7 +107,7 @@ u32 fn_80077AD0(struct fn_80077AD0_Arg0 *arg0, u32 arg1) {
     v0 = arg1;
     v2 = 0;
     v1 = 0;
-    while (v2 < (s32)arg0->unk_1E) {
+    while (v2 < arg0->unk_1E) {
         v2++;
         *(u32 *)((u8 *)lbl_801A6DA4 + v1) = v0;
         v0 += 48;
@@ -144,10 +144,10 @@ s32 fn_80077B14(struct fn_80077B14_Arg0 *arg0) {
     v1 = ((u32)arg0 + v0);
     v2 = v1;
     if ((arg0->unk_4 & 0x18) != 0) {
-    v2 = (v2 + *(u32 *)((u8 *)v2 + 8));
+    v2 = (v2 + *(u32 *)(v2 + 8));
     } else {
     v2 = (u32)&lbl_8015AD48;
-    t0 = OSReport((u32)v2);
+    t0 = OSReport(v2);
     v2 = t0;
     v2 = 0;
     }
@@ -166,10 +166,10 @@ s32 fn_80077B64(struct fn_80077B64_Arg0 *arg0) {
     u32 t0;
     v0 = (u32)arg0;
     if ((arg0->unk_4 & 0x18) != 0) {
-    v0 = (v0 + *(u32 *)((u8 *)v0 + 32));
+    v0 = (v0 + *(u32 *)(v0 + 32));
     } else {
     v0 = (u32)&lbl_8015AD48;
-    t0 = OSReport((u32)v0);
+    t0 = OSReport(v0);
     v0 = t0;
     v0 = 0;
     }
@@ -209,7 +209,7 @@ static inline u32 fn_80077BD4_entry(u32 entry) {
     node = entry + *(u32 *)(entry + 32);
     sum = 0;
     j = 0;
-    while (j < (u32)(*(u16 *)(entry + 26) + *(u16 *)(entry + 28))) {
+    while (j < (*(u16 *)(entry + 26) + *(u16 *)(entry + 28))) {
         u32 n;
         n = fn_80072404(*(u32 *)(node + 28), 0);
         if ((*(u32 *)(entry + 4) & 0x18) != 0) {
@@ -261,7 +261,7 @@ u32 fn_80077BD4(u32 arg0, u32 arg1, u32 arg2) {
     total = 0;
     i = 0;
     off = 0;
-    while (i < *(u32 *)(arg0 + 0)) {
+    while (i < *(u32 *)(arg0)) {
         entry = *(u32 *)(*(u32 *)(arg0 + 8) + off);
         if (entry != 0) {
             total += fn_80077BD4_entry(entry);

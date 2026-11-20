@@ -76,25 +76,25 @@ s16 fn_8005D258(Fn8005D258Arg0 *arg0, Fn8005D258Info *info, u8 slot, u8 count, f
         }
         v = *p;
         if (v != 0) {
-            level = 20.0 * fn_80088578((f32)v / 255.0f);
+            level = 20.0 * fn_80088578(v / 255.0f);
         } else {
             level = -960.0f;
         }
         v = info->unk_9;
         if (v != 0) {
-            level += (f32)(20.0 * fn_80088578((f32)v / 255.0f));
+            level += (f32)(20.0 * fn_80088578(v / 255.0f));
         } else {
             level = -960.0f;
         }
         v = lbl_801A6C80->slot[slot].unk_7;
         if (v != 0) {
-            level += (f32)(20.0 * fn_80088578((f32)v / 127.0f));
+            level += (f32)(20.0 * fn_80088578(v / 127.0f));
         } else {
             level = -960.0f;
         }
         v = lbl_801A6C80->slot[slot].unk_10;
         if (v != 0) {
-            level += (f32)(20.0 * fn_80088578((f32)v / 127.0f));
+            level += (f32)(20.0 * fn_80088578(v / 127.0f));
         } else {
             level = -960.0f;
         }
@@ -103,7 +103,7 @@ s16 fn_8005D258(Fn8005D258Arg0 *arg0, Fn8005D258Info *info, u8 slot, u8 count, f
         } else {
             v = lbl_801A6C80->mix[lbl_801A6C80->unk_45B].unk_9;
             if (v != 0) {
-                level += (f32)(20.0 * fn_80088578((f32)v / 127.0f));
+                level += (f32)(20.0 * fn_80088578(v / 127.0f));
             } else {
                 level = -960.0f;
             }
@@ -111,7 +111,7 @@ s16 fn_8005D258(Fn8005D258Arg0 *arg0, Fn8005D258Info *info, u8 slot, u8 count, f
         }
         v = lbl_801A6C80->unk_461;
         if (v != 0) {
-            level += (f32)(20.0 * fn_80088578((f32)v / 127.0f));
+            level += (f32)(20.0 * fn_80088578(v / 127.0f));
         } else {
             level = -960.0f;
         }
