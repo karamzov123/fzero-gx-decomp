@@ -59,8 +59,8 @@ dol/fn_80011358.c:
 dol/_ExitProcess.c:
 	.text       start:0x800118FC end:0x8001191C
 
-dol/fn_800133DC.c:
-	.text       start:0x800133DC end:0x80013428 align:4
+dol/si/SISteering.c:
+	.text       start:0x800133DC end:0x800137C4 align:4
 
 dol/DVDLowBreak.c:
 	.text       start:0x80016D50 end:0x80016DC0 align:4
@@ -576,9 +576,6 @@ dol/fn_800421CC.c:
 
 dol/fn_800622B0.c:
 	.text       start:0x800622B0 end:0x80062360 align:4
-
-dol/fn_800136E8.c:
-	.text       start:0x800136E8 end:0x800137C4 align:4
 
 dol/fn_80089244.c:
 	.text       start:0x80089244 end:0x8008930C align:4
@@ -1675,9 +1672,6 @@ dol/fn_8006B3F0.c:
 dol/fn_80072270.c:
 	.text       start:0x80072270 end:0x800724CC align:4
 
-dol/fn_80013428.c:
-	.text       start:0x80013428 end:0x800135CC align:4
-
 dol/fn_8008EB4C.c:
 	.text       start:0x8008EB4C end:0x8008EB8C align:4
 
@@ -1745,9 +1739,6 @@ dol/fn_80078768.c:
 
 dol/TRKTargetInterrupt.c:
 	.text       start:0x8008B940 end:0x8008BAD0 align:4
-
-dol/fn_800135CC.c:
-	.text       start:0x800135CC end:0x800136E8 align:4
 
 dol/fn_80056294.c:
 	.text       start:0x80056294 end:0x8005640C align:4

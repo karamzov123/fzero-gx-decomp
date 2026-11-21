@@ -9304,10 +9304,15 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_800133DC.c",
+    "source": "dol/si/SISteering.c",
     "symbols": [
       "fn_800133DC",
-      "fn_800133E0"
+      "fn_800133E0",
+      "fn_80013428",
+      "fn_800134DC",
+      "fn_800135CC",
+      "fn_800136E8",
+      "fn_8001375C"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
@@ -22107,40 +22112,6 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80013428.c",
-    "symbols": [
-      "fn_80013428",
-      "fn_800134DC"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [],
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_800135CC.c",
-    "symbols": [
-      "fn_800135CC"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_800136E8.c",
-    "symbols": [
-      "fn_800136E8",
-      "fn_8001375C"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [],
     "collapsed": true
   },
   {
