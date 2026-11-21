@@ -1,15 +1,11 @@
 #include "types.h"
 
 
-/* --- dol/fn_80025EEC.c --- */
-extern u32 lbl_801A6B88[2];
+extern s32 lbl_801A6B80;
+extern s32 lbl_801A6B84;
+extern u32 lbl_801A6B88;
+extern u32 lbl_801A6B8C;
 
-u32 fn_80025EEC(void) {
-    return lbl_801A6B88[0];
-}
-
-/* --- dol/fn_80025EF4.c --- */
-/* MIXInitChannel, from the CC0 MK Deception decomp (mix.c) */
 
 typedef struct AXPBMIX {
     unsigned short vL, vDeltaL, vR, vDeltaR;
@@ -121,7 +117,8 @@ struct MIXChannel {
 };
 extern struct MIXChannel lbl_80176160[64];
 /* defined in the retail TU: MWCC hoists its address */
-u16 lbl_80128990[965] = {
+extern u8 lbl_80128990[];
+static u16 __MIXVolumeTable[965] = {
     0x0000, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001,
     0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001,
     0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001,
@@ -230,9 +227,166 @@ static inline u32 __MIXGetVolume(s32 attenuation) {
     } else if (attenuation >= 60) {
         volume = 0xFF64;
     } else {
-        volume = lbl_80128990[attenuation + 904];
+        volume = __MIXVolumeTable[attenuation + 904];
     }
     return volume;
+}
+
+
+
+typedef struct {
+    u8 pad0[0x14];
+    u32 x;
+    u32 y;
+    u32 pad1c;
+    u32 unk20;
+    u32 unk24;
+    u32 unk28;
+    u32 unk2c;
+    u32 unk30;
+    u32 unk34;
+    u8 pad1[0x950];
+    s16 half[128];
+    s16 extra[128];
+} Fn80025D5CObject;
+
+typedef struct {
+    u8 pad0[0x78c];
+    u32 words[128];
+    s16 half[128];
+    s16 extra[128];
+} Fn80025D5CTable;
+
+typedef struct SoundChan {
+    u8 pad_00[0x1C];
+    u32 unk_1C;
+    u8 pad_20[0x124];
+    u16 unk_144;
+    u8 pad_146[4];
+    u16 unk_14A[18];
+    u8 pad_16E[0x2E];
+    u16 unk_19C;
+    s16 unk_19E;
+} SoundChan;
+
+typedef struct SoundEntry {
+    SoundChan *chan;
+    u32 unk_04;
+    s32 unk_08;
+    s32 unk_0C;
+    s32 unk_10;
+    u8 pad_14[8];
+    s32 unk_1C;
+    s32 unk_20;
+    s32 unk_24;
+    s32 unk_28;
+    s32 unk_2C;
+    s32 unk_30;
+    s32 unk_34;
+    u16 unk_38;
+    u16 unk_3A;
+    u16 unk_3C;
+    u16 unk_3E;
+    u16 unk_40;
+    u16 unk_42;
+    u16 unk_44;
+    u16 unk_46;
+    u16 unk_48;
+    u16 unk_4A;
+    u16 unk_4C;
+    u16 unk_4E;
+    u16 unk_50;
+    u16 unk_52;
+    u16 unk_54;
+    u16 unk_56;
+    u16 unk_58;
+    u16 unk_5A;
+    u16 unk_5C;
+    u16 unk_5E;
+} SoundEntry;
+
+
+
+void fn_80025D5C(struct MIXChannel *channel) {
+    Fn80025D5CObject *obj = (Fn80025D5CObject *)channel;
+    Fn80025D5CTable *table = (Fn80025D5CTable *)lbl_80128990;
+    u32 x = obj->x;
+    u32 y = obj->y;
+    u32 dx = 0x7f - x;
+    u32 dy = 0x7f - y;
+
+    if (lbl_801A6B88 == 3) {
+        obj->unk20 = table->half[x];
+        obj->unk24 = table->half[dx];
+        obj->unk28 = table->half[dy];
+        obj->unk2c = table->half[y];
+        obj->unk30 = table->extra[dx];
+        obj->unk34 = table->extra[x];
+    } else {
+        obj->unk20 = table->words[x];
+        obj->unk24 = table->words[dx];
+        obj->unk28 = table->words[dy];
+        obj->unk2c = table->words[y];
+    }
+}
+
+typedef struct {
+    s16 v;
+    s16 pad;
+} Fn80025E18Pair;
+
+typedef struct {
+    u32 unk0;
+    u32 unk4;
+    u32 unk8;
+    s32 unkC;
+    s32 unk10;
+    u32 x;
+    u32 y;
+    u32 unk1C;
+    u32 unk20[6];
+    Fn80025E18Pair pairs[10];
+} Fn80025E18Entry;
+
+
+
+void fn_80025E18(void) {
+    s32 i;
+
+    for (i = 0; i < 64; i++) {
+        lbl_80176160[i].mode = 0x50000000;
+        lbl_80176160[i].input = 0;
+        lbl_80176160[i].aux_a = -0x3c0;
+        lbl_80176160[i].aux_b = -0x3c0;
+        lbl_80176160[i].fader = 0;
+        lbl_80176160[i].pan = 0x40;
+        lbl_80176160[i].surround_pan = 0x7f;
+        lbl_80176160[i].vBS = 0;
+        lbl_80176160[i].vBR = 0;
+        lbl_80176160[i].vBL = 0;
+        lbl_80176160[i].vAS = 0;
+        lbl_80176160[i].vAR = 0;
+        lbl_80176160[i].vAL = 0;
+        lbl_80176160[i].vS = 0;
+        lbl_80176160[i].vR = 0;
+        lbl_80176160[i].vL = 0;
+        lbl_80176160[i].v = 0;
+        fn_80025D5C(&lbl_80176160[i]);
+    }
+    lbl_801A6B80 = 0;
+    lbl_801A6B84 = 0;
+    lbl_801A6B88 = 1;
+}
+
+void fn_80025EE0(void) {
+}
+
+void fn_80025EE4(u32 arg0) {
+    lbl_801A6B88 = arg0;
+}
+
+u32 fn_80025EEC(void) {
+    return lbl_801A6B88;
 }
 
 void fn_80025EF4(AXVPB *voice, u32 mode, int input, int aux_a, int aux_b, int pan, int surround_pan,
@@ -257,7 +411,7 @@ void fn_80025EF4(AXVPB *voice, u32 mode, int input, int aux_a, int aux_b, int pa
         channel->v = __MIXGetVolume(input);
     }
     mixer_control = 0;
-    switch (lbl_801A6B88[0]) {
+    switch (lbl_801A6B88) {
     case 0:
         channel->vL = __MIXGetVolume(channel->fader + channel->volumes[2]);
         channel->vR = __MIXGetVolume(channel->fader + channel->volumes[2]);
@@ -378,4 +532,405 @@ void fn_80025EF4(AXVPB *voice, u32 mode, int input, int aux_a, int aux_b, int pa
     voice->pb.mixerCtrl = mixer_control;
     voice->sync |= (1UL << 1) | (1UL << 4) | (1UL << 9);
     OSRestoreInterrupts(enabled);
+}
+
+struct fn_80026D70_Arg0 {
+    u8 pad_0[0x18];
+    u32 unk_18;
+};
+
+struct fn_80026D90_Arg0 {
+    u8 pad_0[0x18];
+    u32 unk_18;
+};
+
+struct fn_80026DB8_Arg0 {
+    u8 pad_0[0x18];
+    u32 unk_18;
+};
+
+u32 fn_80026D70(struct fn_80026D70_Arg0 *arg0) {
+    u32 v0;
+    v0 = (u32)((u8 *)&lbl_80176160 + (arg0->unk_18 * 96));
+    *(u32 *)((u8 *)v0 + 0) = 0;
+    return v0;
+}
+
+u32 fn_80026D90(struct fn_80026D90_Arg0 *arg0, u32 arg1) {
+    u32 v0;
+    v0 = (u32)((u8 *)&lbl_80176160 + (arg0->unk_18 * 96));
+    *(u32 *)((u8 *)v0 + 8) = arg1;
+    *(u32 *)((u8 *)v0 + 4) = (*(u32 *)((u8 *)v0 + 4) | 0x10000000);
+    return v0;
+}
+
+u32 fn_80026DB8(struct fn_80026DB8_Arg0 *arg0) {
+    return *(u32 *)((u8 *)&lbl_80176160 + (arg0->unk_18 * 96) + 8);
+}
+
+struct fn_80026DD4_Arg0 {
+    u8 pad_0[0x18];
+    u32 unk_18;
+};
+
+u32 fn_80026DD4(struct fn_80026DD4_Arg0 *arg0) {
+    u32 v0;
+    v0 = (u32)((u8 *)&lbl_80176160 + (arg0->unk_18 * 96));
+    *(u32 *)((u8 *)v0 + 4) = (lbl_80176160[arg0->unk_18].mode & ~0x1);
+    *(u32 *)((u8 *)v0 + 4) = (*(u32 *)((u8 *)v0 + 4) | 0x40000000);
+    return v0;
+}
+
+struct fn_80026E04_Arg0 {
+    u8 pad_0[0x18];
+    u32 unk_18;
+};
+
+u32 fn_80026E04(struct fn_80026E04_Arg0 *arg0) {
+    u32 v0;
+    v0 = (u32)((u8 *)&lbl_80176160 + (arg0->unk_18 * 96));
+    *(u32 *)((u8 *)v0 + 4) = ((lbl_80176160[arg0->unk_18].mode | 0x40000000) | 1);
+    return v0;
+}
+
+struct fn_80026E2C_Arg0 {
+    u8 pad_0[0x18];
+    u32 unk_18;
+};
+
+u32 fn_80026E2C(struct fn_80026E2C_Arg0 *arg0, u32 arg1) {
+    u32 v0;
+    v0 = (u32)((u8 *)&lbl_80176160 + (arg0->unk_18 * 96));
+    *(u32 *)((u8 *)v0 + 12) = arg1;
+    *(u32 *)((u8 *)v0 + 4) = (*(u32 *)((u8 *)v0 + 4) | 0x40000000);
+    return v0;
+}
+
+void fn_80026E54(AXVPB *p) {
+    struct MIXChannel *c = &lbl_80176160[p->index];
+    *(volatile u32 *)&c->mode &= 0xFFFFFFFD; /* fzgx-allow: S2 two-step flag update */
+    *(volatile u32 *)&c->mode |= 0x40000000; /* fzgx-allow: S2 two-step flag update */
+}
+
+struct fn_80026E84_Arg0 {
+    u8 pad_0[0x18];
+    u32 unk_18;
+};
+
+u32 fn_80026E84(struct fn_80026E84_Arg0 *arg0) {
+    u32 v0;
+    v0 = (u32)((u8 *)&lbl_80176160 + (arg0->unk_18 * 96));
+    *(u32 *)((u8 *)v0 + 4) = ((lbl_80176160[arg0->unk_18].mode | 0x40000000) | 2);
+    return v0;
+}
+
+struct fn_80026EAC_Arg0 {
+    u8 pad_0[0x18];
+    u32 unk_18;
+};
+
+u32 fn_80026EAC(struct fn_80026EAC_Arg0 *arg0, u32 arg1) {
+    u32 v0;
+    if (lbl_801A6B88 == 3) { return (u32)arg0; }
+    v0 = (u32)((u8 *)&lbl_80176160 + (arg0->unk_18 * 96));
+    *(u32 *)((u8 *)v0 + 16) = arg1;
+    *(u32 *)((u8 *)v0 + 4) = (*(u32 *)((u8 *)v0 + 4) | 0x40000000);
+    return v0;
+}
+
+struct fn_80026EE0_Arg0 {
+    u8 pad_0[0x18];
+    u32 unk_18;
+};
+
+struct fn_80026F4C_Arg0 {
+    u8 pad_0[0x18];
+    u32 unk_18;
+};
+
+struct fn_80026FB8_Arg0 {
+    u8 pad_0[0x18];
+    u32 unk_18;
+};
+
+void fn_80026EE0(struct fn_80026EE0_Arg0 *arg0, s32 arg1) {
+    u32 v0;
+    v0 = (u32)((u8 *)&lbl_80176160 + (arg0->unk_18 * 96));
+    if (arg1 < 0) {
+        arg1 = 0;
+    } else if (arg1 > 127) {
+        arg1 = 127;
+    }
+    *(u32 *)((u8 *)v0 + 20) = arg1;
+    fn_80025D5C((struct MIXChannel *)v0);
+    *(u32 *)((u8 *)v0 + 4) = (*(u32 *)((u8 *)v0 + 4) | 0x40000000);
+}
+
+void fn_80026F4C(struct fn_80026F4C_Arg0 *arg0, s32 arg1) {
+    u32 v0;
+
+    v0 = (u32)((u8 *)&lbl_80176160 + (arg0->unk_18 * 96));
+    if (arg1 < 0) {
+        arg1 = 0;
+    } else if (arg1 > 0x7f) {
+        arg1 = 0x7f;
+    }
+    *(s32 *)((u8 *)v0 + 24) = arg1;
+    fn_80025D5C((struct MIXChannel *)v0);
+    *(u32 *)((u8 *)v0 + 4) = (*(u32 *)((u8 *)v0 + 4) | 0x40000000);
+}
+
+u32 fn_80026FB8(struct fn_80026FB8_Arg0 *arg0, u32 arg1) {
+    u32 v0;
+    v0 = (u32)((u8 *)&lbl_80176160 + (arg0->unk_18 * 96));
+    *(u32 *)((u8 *)v0 + 28) = arg1;
+    *(u32 *)((u8 *)v0 + 4) = (*(u32 *)((u8 *)v0 + 4) | 0x40000000);
+    return v0;
+}
+
+static inline s32 get_curve(u8 *base, s32 idx) {
+    s32 r;
+    if (idx <= -904) {
+        r = 0;
+    } else if (idx >= 60) {
+        r = 0xFF64;
+    } else {
+        r = *(u16 *)(base + (idx << 1) + 0x710);
+    }
+    return r;
+}
+
+void fn_80026FE0(void) {
+    SoundEntry *e;
+    s32 f6;
+    SoundChan *c;
+    s32 f7;
+    u32 flags;
+    u8 *base;
+    u16 *p;
+    s32 d;
+    s32 i;
+
+    base = (u8 *)lbl_80128990;
+    for (i = 0; i < 64; i++) {
+        e = &((SoundEntry *)lbl_80176160)[i];
+        c = e->chan;
+        f7 = 0;
+        f6 = 0;
+        if (c == NULL) {
+            continue;
+        }
+        flags = 0;
+        if (e->unk_04 & 0x20000000) {
+            e->unk_38 = e->unk_3A;
+            f7 = 1;
+            e->unk_04 &= ~0x20000000;
+        }
+        if (e->unk_04 & 0x10000000) {
+            if (e->unk_04 & 0x4) {
+                e->unk_3A = 0;
+            } else {
+                e->unk_3A = get_curve(base, e->unk_08);
+            }
+            e->unk_04 &= ~0x10000000;
+            e->unk_04 |= 0x20000000;
+            f7 = 1;
+        }
+        if (e->unk_04 & 0x80000000) {
+            e->unk_3C = e->unk_3E;
+            e->unk_40 = e->unk_42;
+            e->unk_44 = e->unk_46;
+            e->unk_48 = e->unk_4A;
+            e->unk_4C = e->unk_4E;
+            e->unk_50 = e->unk_52;
+            e->unk_54 = e->unk_56;
+            e->unk_58 = e->unk_5A;
+            e->unk_5C = e->unk_5E;
+            e->unk_04 &= ~0x80000000;
+            f6 = 1;
+        }
+        if (e->unk_04 & 0x40000000) {
+            switch (lbl_801A6B88) {
+            case 0:
+                e->unk_3E = get_curve(base, e->unk_1C + e->unk_28);
+                e->unk_42 = get_curve(base, e->unk_1C + e->unk_28);
+                e->unk_46 = get_curve(base, ((((e->unk_1C) + e->unk_2C) + ((-30)))));
+                if (e->unk_04 & 0x1) {
+                    e->unk_4A = get_curve(base, e->unk_0C + e->unk_28);
+                    e->unk_4E = get_curve(base, e->unk_0C + e->unk_28);
+                    e->unk_52 = get_curve(base, ((((e->unk_0C) + e->unk_2C) + ((-30)))));
+                } else {
+                    e->unk_4A = get_curve(base, e->unk_1C + e->unk_0C + e->unk_28);
+                    e->unk_4E = get_curve(base, e->unk_1C + e->unk_0C + e->unk_28);
+                    e->unk_52 = get_curve(base, e->unk_1C + e->unk_0C + e->unk_2C - 30);
+                }
+                if (e->unk_04 & 0x2) {
+                    e->unk_56 = get_curve(base, e->unk_10 + e->unk_28);
+                    e->unk_5A = get_curve(base, e->unk_10 + e->unk_28);
+                    e->unk_5E = get_curve(base, e->unk_10 + e->unk_2C - 30);
+                } else {
+                    e->unk_56 = get_curve(base, e->unk_1C + e->unk_10 + e->unk_28);
+                    e->unk_5A = get_curve(base, e->unk_1C + e->unk_10 + e->unk_28);
+                    e->unk_5E = get_curve(base, e->unk_1C + e->unk_10 + e->unk_2C - 30);
+                }
+                break;
+            case 1:
+            case 2:
+                e->unk_3E = get_curve(base, e->unk_1C + e->unk_20 + e->unk_28);
+                e->unk_42 = get_curve(base, e->unk_1C + e->unk_24 + e->unk_28);
+                e->unk_46 = get_curve(base, e->unk_1C + e->unk_2C - 30);
+                if (e->unk_04 & 0x1) {
+                    e->unk_4A = get_curve(base, e->unk_0C + e->unk_20 + e->unk_28);
+                    e->unk_4E = get_curve(base, e->unk_0C + e->unk_24 + e->unk_28);
+                    e->unk_52 = get_curve(base, e->unk_0C + e->unk_2C - 30);
+                } else {
+                    e->unk_4A = get_curve(base, e->unk_1C + e->unk_0C + e->unk_20 + e->unk_28);
+                    e->unk_4E = get_curve(base, e->unk_1C + e->unk_0C + e->unk_24 + e->unk_28);
+                    e->unk_52 = get_curve(base, e->unk_1C + e->unk_0C + e->unk_2C - 30);
+                }
+                if (e->unk_04 & 0x2) {
+                    e->unk_56 = get_curve(base, e->unk_10 + e->unk_20 + e->unk_28);
+                    e->unk_5A = get_curve(base, e->unk_10 + e->unk_24 + e->unk_28);
+                    e->unk_5E = get_curve(base, e->unk_10 + e->unk_2C - 30);
+                } else {
+                    e->unk_56 = get_curve(base, e->unk_1C + e->unk_10 + e->unk_20 + e->unk_28);
+                    e->unk_5A = get_curve(base, e->unk_1C + e->unk_10 + e->unk_24 + e->unk_28);
+                    e->unk_5E = get_curve(base, e->unk_1C + e->unk_10 + e->unk_2C - 30);
+                }
+                break;
+            case 3:
+                e->unk_3E = get_curve(base, e->unk_1C + e->unk_20 + e->unk_28);
+                e->unk_42 = get_curve(base, e->unk_1C + e->unk_24 + e->unk_28);
+                e->unk_56 = get_curve(base, e->unk_1C + e->unk_30 + e->unk_2C);
+                e->unk_5A = get_curve(base, e->unk_1C + e->unk_34 + e->unk_2C);
+                if (e->unk_04 & 0x1) {
+                    e->unk_4A = get_curve(base, e->unk_0C + e->unk_20 + e->unk_28);
+                    e->unk_4E = get_curve(base, e->unk_0C + e->unk_24 + e->unk_28);
+                    e->unk_52 = get_curve(base, e->unk_0C + e->unk_30 + e->unk_2C);
+                    e->unk_5E = get_curve(base, e->unk_0C + e->unk_34 + e->unk_2C);
+                } else {
+                    e->unk_4A = get_curve(base, e->unk_1C + e->unk_0C + e->unk_20 + e->unk_28);
+                    e->unk_4E = get_curve(base, e->unk_1C + e->unk_0C + e->unk_24 + e->unk_28);
+                    e->unk_52 = get_curve(base, e->unk_1C + e->unk_0C + e->unk_30 + e->unk_2C);
+                    e->unk_5E = get_curve(base, e->unk_1C + e->unk_0C + e->unk_34 + e->unk_2C);
+                }
+                flags |= 0x4000;
+                break;
+            }
+            e->unk_04 &= ~0x40000000;
+            e->unk_04 |= 0x80000000;
+            f6 = 1;
+        }
+        if (f7 != 0) {
+            c->unk_19C = e->unk_38;
+            c->unk_19E = ((e->unk_3A - e->unk_38) / 160);
+            c->unk_1C |= 0x200;
+        }
+        if (f6 != 0) {
+            u16 v;
+
+            p = c->unk_14A;
+            v = e->unk_3C;
+            *p++ = v;
+            if (v != 0) {
+                flags |= 0x1;
+            }
+            d = (e->unk_3E - e->unk_3C) / 160;
+            *p++ = d;
+            if ((u16)d != 0) {
+                flags |= 0x8;
+            }
+            v = e->unk_40;
+            *p++ = v;
+            if (v != 0) {
+                flags |= 0x2;
+            }
+            d = (e->unk_42 - e->unk_40) / 160;
+            *p++ = d;
+            if ((u16)d != 0) {
+                flags |= 0x8;
+            }
+            v = e->unk_48;
+            *p++ = v;
+            if (v != 0) {
+                flags |= 0x10;
+            }
+            d = (e->unk_4A - e->unk_48) / 160;
+            *p++ = d;
+            if ((u16)d != 0) {
+                flags |= 0x40;
+            }
+            v = e->unk_4C;
+            *p++ = v;
+            if (v != 0) {
+                flags |= 0x20;
+            }
+            d = (e->unk_4E - e->unk_4C) / 160;
+            *p++ = d;
+            if ((u16)d != 0) {
+                flags |= 0x40;
+            }
+            v = e->unk_54;
+            *p++ = v;
+            if (v != 0) {
+                flags |= 0x200;
+            }
+            d = (e->unk_56 - e->unk_54) / 160;
+            *p++ = d;
+            if ((u16)d != 0) {
+                flags |= 0x800;
+            }
+            v = e->unk_58;
+            *p++ = v;
+            if (v != 0) {
+                flags |= 0x400;
+            }
+            d = (e->unk_5A - e->unk_58) / 160;
+            *p++ = d;
+            if ((u16)d != 0) {
+                flags |= 0x800;
+            }
+            v = e->unk_5C;
+            *p++ = v;
+            if (v != 0) {
+                flags |= 0x1000;
+            }
+            d = (e->unk_5E - e->unk_5C) / 160;
+            *p++ = d;
+            if ((u16)d != 0) {
+                flags |= 0x2000;
+            }
+            v = e->unk_44;
+            *p++ = v;
+            if (v != 0) {
+                flags |= 0x4;
+            }
+            d = (e->unk_46 - e->unk_44) / 160;
+            *p++ = d;
+            if ((u16)d != 0) {
+                flags |= 0x8;
+            }
+            v = e->unk_50;
+            *p++ = v;
+            if (v != 0) {
+                flags |= 0x80;
+            }
+            d = (e->unk_52 - e->unk_50) / 160;
+            *p++ = d;
+            if ((u16)d != 0) {
+                flags |= 0x100;
+            }
+            c->unk_144 = flags;
+            c->unk_1C |= 0x12;
+        }
+    }
+    if (lbl_801A6B84 > lbl_801A6B80) {
+        lbl_801A6B80++;
+        AISetStreamVolLeft(base[0xB8C + lbl_801A6B80]);
+        AISetStreamVolRight(base[0xB8C + lbl_801A6B80]);
+    } else if (lbl_801A6B84 < lbl_801A6B80) {
+        lbl_801A6B80--;
+        AISetStreamVolLeft(base[0xB8C + lbl_801A6B80]);
+        AISetStreamVolRight(base[0xB8C + lbl_801A6B80]);
+    }
 }

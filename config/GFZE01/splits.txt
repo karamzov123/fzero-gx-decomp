@@ -89,14 +89,8 @@ dol/fn_80025C28.c:
 dol/fn_80025D00.c:
 	.text       start:0x80025D00 end:0x80025D5C align:4
 
-dol/fn_80025D5C.c:
-	.text       start:0x80025D5C end:0x80025E18 align:4
-
-dol/fn_80025EEC.c:
-	.text       start:0x80025EEC end:0x80026D70 align:4
-
-dol/fn_80026E54.c:
-	.text       start:0x80026E54 end:0x80026E84
+dol/mix/mix.c:
+	.text       start:0x80025D5C end:0x8002805C
 
 dol/fn_80028090.c:
 	.text       start:0x80028090 end:0x800280F0
@@ -337,15 +331,6 @@ dol/fn_80051DC4.c:
 dol/__OSSetInterruptHandler.c:
 	.text       start:0x8000D540 end:0x8000DD10 align:4
 
-dol/fn_80026E04.c:
-	.text       start:0x80026E04 end:0x80026E2C align:4
-
-dol/fn_80026E84.c:
-	.text       start:0x80026E84 end:0x80026EAC align:4
-
-dol/fn_80026DD4.c:
-	.text       start:0x80026DD4 end:0x80026E04 align:4
-
 dol/fn_8000BE5C.c:
 	.text       start:0x8000BE5C end:0x8000BE68 align:4
 
@@ -364,12 +349,6 @@ dol/fn_80047C08.c:
 dol/fn_80022E5C.c:
 	.text       start:0x80022E5C end:0x80022EA4 align:4
 
-dol/fn_80026D70.c:
-	.text       start:0x80026D70 end:0x80026DD4 align:4
-
-dol/fn_80026E2C.c:
-	.text       start:0x80026E2C end:0x80026E54 align:4
-
 dol/fn_80006FE0.c:
 	.text       start:0x80006FE0 end:0x8000700C align:4
 
@@ -387,9 +366,6 @@ dol/fn_8004E4DC.c:
 
 dol/fn_80020E4C.c:
 	.text       start:0x80020E4C end:0x80020FA4 align:4
-
-dol/fn_80026EAC.c:
-	.text       start:0x80026EAC end:0x80026EE0 align:4
 
 dol/fn_8004B7A0.c:
 	.text       start:0x8004B7A0 end:0x8004B7F4 align:4
@@ -639,9 +615,6 @@ dol/fn_80020CB0.c:
 
 dol/fn_80020D58.c:
 	.text       start:0x80020D58 end:0x80020E4C align:4
-
-dol/fn_80026EE0.c:
-	.text       start:0x80026EE0 end:0x80026FE0 align:4
 
 dol/fn_80028424.c:
 	.text       start:0x80028424 end:0x800288C4 align:4
@@ -2003,9 +1976,6 @@ dol/fn_80083428.c:
 	.text       start:0x80083428 end:0x80083970 align:4
 	.data       start:0x8015B668 end:0x8015B738 align:8
 
-dol/fn_80026FE0.c:
-	.text       start:0x80026FE0 end:0x8002805C align:4
-
 dol/fn_8002805C.c:
 	.text       start:0x8002805C end:0x80028090 align:4
 
@@ -2244,9 +2214,6 @@ dol/fn_80080518.c:
 
 dol/fn_8006FB20.c:
 	.text       start:0x8006FB20 end:0x8006FC1C align:4
-
-dol/fn_80025E18.c:
-	.text       start:0x80025E18 end:0x80025EEC align:4
 
 dol/fn_80065D70.c:
 	.text       start:0x80065D70 end:0x80065F34 align:4
