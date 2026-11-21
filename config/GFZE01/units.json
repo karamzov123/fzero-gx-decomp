@@ -23728,7 +23728,7 @@
       "fn_80035960"
     ],
     "status": "matching",
-    "matching_for": ["GFZE01"],
+    "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.2.5n",
     "extra_cflags": [],
     "pool": {
