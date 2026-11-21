@@ -307,8 +307,8 @@ typedef struct _GXData {
     f32 vpHt;
     f32 vpNearz;
     f32 vpFarz;
-    f32 zOffset;
-    f32 zScale;
+    u8 fgRange;
+    f32 fgSideX;
     u32 tImage0[8];
     u32 tMode0[8];
     u32 texmapId[16];
@@ -319,10 +319,12 @@ typedef struct _GXData {
     u32 perfSel;
     GXBool inDispList;
     GXBool dlSaveContext;
+    u8 abtWaitPECopy;
     u8 dirtyVAT;
     u32 dirtyState;
 } GXData;
 
+#ifndef DOLPHIN_GX_H
 typedef union {
     u8 u8;
     u16 u16;
@@ -335,6 +337,7 @@ typedef union {
     f32 f32;
     f64 f64;
 } PPCWGPipe;
+#endif
 
 typedef enum {
     VI_TVMODE_NTSC_INT = ((((0)) << 2) + ((0))),

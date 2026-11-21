@@ -169,7 +169,7 @@ dol/fn_8003591C.c:
 	.text       start:0x8003591C end:0x80035960
 
 dol/fn_80038EEC.c:
-	.text       start:0x80038EEC end:0x80038F48 align:4
+	.text       start:0x80038EEC end:0x8003910C align:4
 
 dol/fn_800421C0.c:
 	.text       start:0x800421C0 end:0x800421CC
@@ -745,9 +745,6 @@ dol/__GXFifoReadEnable.c:
 dol/__GXWriteFifoIntEnable.c:
 	.text       start:0x800322E8 end:0x80032324 align:4
 
-dol/GXPokeAlphaMode.c:
-	.text       start:0x800341EC end:0x80034200 align:4
-
 dol/GXSetNumTexGens.c:
 	.text       start:0x80033D4C end:0x80033D8C align:4
 
@@ -773,7 +770,7 @@ dol/GXSetNumIndStages.c:
 	.text       start:0x80036EB4 end:0x80036EDC align:4
 
 dol/fn_80036EDC.c:
-	.text       start:0x80036EDC end:0x80036FF0 align:4
+	.text       start:0x80036EDC end:0x80037014 align:4
 
 dol/GXSetNumTevStages.c:
 	.text       start:0x800377C8 end:0x800377F8 align:4
@@ -1216,9 +1213,6 @@ dol/fn_8007F48C.c:
 dol/fn_80072A50.c:
 	.text       start:0x80072A50 end:0x800735C8 align:4
 
-dol/GXGetProjectionv.c:
-	.text       start:0x80038BFC end:0x80038CAC align:4
-
 dol/fn_8006CCC8.c:
 	.text       start:0x8006CCC8 end:0x8006CDFC align:4
 
@@ -1228,14 +1222,11 @@ dol/fn_80028130.c:
 dol/cbForUnrecoveredErrorRetry.c:
 	.text       start:0x80017E10 end:0x80017ED0 align:4
 
-dol/GXSetProjectionv.c:
-	.text       start:0x80038B3C end:0x80038BFC align:4
-
 dol/GXDrawDone.c:
-	.text       start:0x8003416C end:0x800341EC align:4
+	.text       start:0x8003416C end:0x80034200 align:4
 
 dol/GXSetTexRegionCallback.c:
-	.text       start:0x8003658C end:0x800365B4 align:4
+	.text       start:0x8003658C end:0x80036A28 align:4
 
 dol/AIStartDMA.c:
 	.text       start:0x8001DFCC end:0x8001DFE4 align:4
@@ -1250,7 +1241,7 @@ dol/__GXWriteFifoIntReset.c:
 	.text       start:0x80032324 end:0x80032360 align:4
 
 dol/GXSetCoPlanar.c:
-	.text       start:0x800348DC end:0x80034918 align:4
+	.text       start:0x800348DC end:0x8003493C align:4
 
 dol/__OSDoHotReset.c:
 	.text       start:0x8000EF64 end:0x8000F234 align:4
@@ -1263,9 +1254,6 @@ dol/fn_800300F4.c:
 
 dol/__DBExceptionDestinationAux.c:
 	.text       start:0x80015A60 end:0x80015AA8 align:4
-
-dol/GXSetPointSize.c:
-	.text       start:0x800347EC end:0x80034834 align:4
 
 dol/fn_80063EF4.c:
 	.text       start:0x80063EF4 end:0x80063F38 align:4
@@ -1614,85 +1602,25 @@ dol/GXSetDrawDone.c:
 	.text       start:0x800340D4 end:0x8003416C align:4
 
 dol/__GXSendFlushPrim.c:
-	.text       start:0x8003471C end:0x800347A4 align:4
-
-dol/GXSetLineWidth.c:
-	.text       start:0x800347A4 end:0x800347EC align:4
-
-dol/__GXSetGenMode.c:
-	.text       start:0x80034918 end:0x8003493C align:4
+	.text       start:0x8003471C end:0x80034890 align:4
 
 dol/GXAdjustForOverscan.c:
-	.text       start:0x8003493C end:0x80034A5C align:4
-
-dol/GXSetDispCopySrc.c:
-	.text       start:0x80034A5C end:0x80034AEC align:4
-
-dol/GXSetTexCopySrc.c:
-	.text       start:0x80034AEC end:0x80034B7C align:4
-
-dol/GXSetDispCopyFrame2Field.c:
-	.text       start:0x80034D0C end:0x80034D34 align:4
-
-dol/GXSetDispCopyYScale.c:
-	.text       start:0x80034D9C end:0x80034E64 align:4
-
-dol/GXSetCopyClear.c:
-	.text       start:0x80034E64 end:0x80034ECC align:4
-
-dol/GXClearBoundingBox.c:
-	.text       start:0x800353E8 end:0x80035420 align:4
-
-dol/__GXSetSUTexRegs.c:
-	.text       start:0x8003666C end:0x80036A28 align:4
+	.text       start:0x8003493C end:0x80034D34 align:4
 
 dol/GXSetTevIndirect.c:
-	.text       start:0x80036A28 end:0x80036AC4 align:4
-
-dol/GXSetIndTexCoordScale.c:
-	.text       start:0x80036C24 end:0x80036DA0 align:4
-
-dol/GXSetIndTexOrder.c:
-	.text       start:0x80036DA0 end:0x80036EB4 align:4
-
-dol/__GXFlushTextureState.c:
-	.text       start:0x80036FF0 end:0x80037014 align:4
-
-dol/GXSetTevKColorSel.c:
-	.text       start:0x80037354 end:0x800373C0 align:4
-
-dol/GXSetTevKAlphaSel.c:
-	.text       start:0x800373C0 end:0x8003742C align:4
-
-dol/GXSetTevSwapMode.c:
-	.text       start:0x8003742C end:0x80037480 align:4
-
-dol/GXSetTevSwapModeTable.c:
-	.text       start:0x80037480 end:0x80037518 align:4
-
-dol/GXSetAlphaCompare.c:
-	.text       start:0x80037518 end:0x8003756C align:4
-
-dol/GXSetZTexture.c:
-	.text       start:0x8003756C end:0x800375F0 align:4
+	.text       start:0x80036A28 end:0x80036EB4 align:4
 
 dol/GXSetFogRangeAdj.c:
-	.text       start:0x80037A14 end:0x80037B14 align:4
+	.text       start:0x80037A14 end:0x80037B94 align:4
 
 dol/GXSetFieldMask.c:
 	.text       start:0x80037D7C end:0x80037DB4 align:4
 
 dol/GXSetProjection.c:
-	.text       start:0x80038A88 end:0x80038B3C align:4
-
-dol/GXSetClipMode.c:
-	.text       start:0x80039060 end:0x8003910C align:4
+	.text       start:0x80038A88 end:0x80038EEC align:4
 
 dol/__AI_SRC_INIT.c:
 	.text       start:0x8001E600 end:0x8001E864 align:4
-
-dol/GXSetTevOrder.c:
-	.text       start:0x800375F0 end:0x800377C8 align:4
 
 dol/stateCoverClosed.c:
 	.text       start:0x80018554 end:0x80018650 align:4
@@ -1917,17 +1845,11 @@ dol/fn_8008C87C.c:
 dol/fn_8004FC94.c:
 	.text       start:0x8004FC94 end:0x800501F4 align:4
 
-dol/fn_80034ECC.c:
-	.text       start:0x80034ECC end:0x800350F4 align:4
-
 dol/stateReady.c:
 	.text       start:0x800187CC end:0x800189FC align:4
 
 dol/fn_8004C794.c:
 	.text       start:0x8004C794 end:0x8004C980 align:4
-
-dol/fn_8003526C.c:
-	.text       start:0x8003526C end:0x800353E8 align:4
 
 dol/fn_8004DE70.c:
 	.text       start:0x8004DE70 end:0x8004DFF0 align:4
@@ -2004,7 +1926,7 @@ dol/fn_8006A3DC.c:
 	.text       start:0x8006A3DC end:0x8006A554 align:4
 
 dol/fn_80035110.c:
-	.text       start:0x80035110 end:0x8003526C align:4
+	.text       start:0x80035110 end:0x80035420 align:4
 
 dol/fn_8005795C.c:
 	.text       start:0x8005795C end:0x800579F0 align:4
@@ -2233,18 +2155,12 @@ dol/fn_8007E96C.c:
 dol/fn_8000591C.c:
 	.text       start:0x8000591C end:0x80005A08 align:4
 
-dol/fn_80034834.c:
-	.text       start:0x80034834 end:0x80034890 align:4
-
 dol/fn_80035960.c:
 	.text       start:0x80035960 end:0x80035C50 align:4
 	.data       start:0x8012B140 end:0x8012B328 align:32
 
 dol/ddh_cc_read.c:
 	.text       start:0x8008DF6C end:0x8008E058 align:4
-
-dol/GXSetScissor.c:
-	.text       start:0x80038F48 end:0x80038FD8 align:4
 
 dol/fn_8006496C.c:
 	.text       start:0x8006496C end:0x80064A30 align:4
@@ -2302,9 +2218,6 @@ dol/fn_8006F6A8.c:
 
 dol/fn_8005741C.c:
 	.text       start:0x8005741C end:0x80057728 align:4
-
-dol/GXSetScissorBoxOffset.c:
-	.text       start:0x80039020 end:0x80039060 align:4
 
 dol/__init_cpp.c:
 	.text       start:0x800118A8 end:0x800118FC align:4
@@ -2516,9 +2429,6 @@ dol/PSMTXQuat.c:
 dol/__AICallbackStackSwitch.c:
 	.text       start:0x8001E5A8 end:0x8001E600 align:4
 
-dol/GXLoadNrmMtxImm.c:
-	.text       start:0x80038CAC end:0x80038DE8 align:4
-
 dol/fn_80078344.c:
 	.text       start:0x80078344 end:0x80078360 align:4
 
@@ -2595,10 +2505,7 @@ dol/func_80008378.c:
 	.text       start:0x8006E5B4 end:0x8006E5FC align:4
 
 dol/fn_80034D34.c:
-	.text       start:0x80034D34 end:0x80034D9C align:4
-
-dol/fn_80037B68.c:
-	.text       start:0x80037B68 end:0x80037B94 align:4
+	.text       start:0x80034D34 end:0x800350F4 align:4
 
 dol/fn_80037B94.c:
 	.text       start:0x80037B94 end:0x80037BF4 align:4
@@ -2610,34 +2517,10 @@ dol/fn_800370A0.c:
 	.text       start:0x800370A0 end:0x80037128 align:4
 
 dol/fn_80037128.c:
-	.text       start:0x80037128 end:0x80037190 align:4
-
-dol/fn_80037190.c:
-	.text       start:0x80037190 end:0x800371F8 align:4
-
-dol/fn_80037B14.c:
-	.text       start:0x80037B14 end:0x80037B68 align:4
-
-dol/GXGetScissor.c:
-	.text       start:0x80038FD8 end:0x80039020 align:4
-
-dol/fn_80034B7C.c:
-	.text       start:0x80034B7C end:0x80034BB8 align:4
-
-dol/fn_800371F8.c:
-	.text       start:0x800371F8 end:0x8003726C align:4
-
-dol/fn_8003726C.c:
-	.text       start:0x8003726C end:0x800372E0 align:4
-
-dol/fn_800372E0.c:
-	.text       start:0x800372E0 end:0x80037354 align:4
+	.text       start:0x80037128 end:0x800377C8 align:4
 
 dol/fn_80037C2C.c:
 	.text       start:0x80037C2C end:0x80037D14 align:4
-
-dol/fn_80038DE8.c:
-	.text       start:0x80038DE8 end:0x80038EEC align:4
 
 dol/fn_80033650.c:
 	.text       start:0x80033650 end:0x800336EC align:4
@@ -2650,15 +2533,6 @@ dol/fn_80035828.c:
 
 dol/fn_8003401C.c:
 	.text       start:0x8003401C end:0x800340D4 align:4
-
-dol/fn_800365B4.c:
-	.text       start:0x800365B4 end:0x8003666C align:4
-
-dol/fn_80034BB8.c:
-	.text       start:0x80034BB8 end:0x80034D0C align:4
-
-dol/fn_80036AC4.c:
-	.text       start:0x80036AC4 end:0x80036C24 align:4
 
 dol/fn_80005B10.c:
 	.text       start:0x80005B10 end:0x80005E0C align:4
