@@ -351,3 +351,41 @@ s32 CARDMountAsync(s32 chan, void *workArea, CARDCallback detachCallback,
     card->unlockCallback = 0;
     return DoMount(chan);
 }
+
+extern s32 __CARDSync(s32 chan);
+extern void __CARDSyncCallback(s32 chan, s32 result);
+
+s32 fn_8002DFE0(s32 chan, void *workArea, CARDCallback detachCallback) {
+    s32 status = CARDMountAsync(chan, workArea, detachCallback, __CARDSyncCallback);
+    if (status < 0) {
+        return status;
+    }
+    return __CARDSync(chan);
+}
+
+void DoUnmount(s32 chan, s32 result) {
+    CARDControl *card;
+    BOOL enabled;
+    card = &lbl_80177960[chan];
+    enabled = OSDisableInterrupts();
+    if (card->attached) {
+        EXISetExiCallback(chan, 0);
+        EXIDetach(chan);
+        OSCancelAlarm(&card->alarm);
+        card->attached = 0;
+        card->result = result;
+        card->mountStep = 0;
+    }
+    OSRestoreInterrupts(enabled);
+}
+
+s32 CARDUnmount(s32 chan) {
+    CARDControl *card;
+    s32 result;
+    result = __CARDGetControlBlock(chan, &card);
+    if (result < 0) {
+        return result;
+    }
+    DoUnmount(chan, -3);
+    return 0;
+}

@@ -112,3 +112,21 @@ s32 CARDGetSerialNo(s32 chan, u64 *serialNo) {
     *serialNo = code;
     return __CARDPutControlBlock(card, 0);
 }
+
+struct fn_80030754_Local {
+    u8 pad_0[0x34];
+    u8 unk_34;
+    u8 pad_35[0x0B];
+};
+extern s32 fn_80030380(s32 chan, s32 fileNo, void *stat);
+
+s32 fn_80030754(s32 chan, s32 fileNo, u8 attr, CARDCallback callback) {
+    struct fn_80030754_Local local;
+    s32 result;
+    result = fn_80030380(chan, fileNo, &local);
+    if (result < 0) {
+        return result;
+    }
+    local.unk_34 = attr;
+    return fn_8003043C(chan, fileNo, (fn_8003043C_Entry *)&local, callback);
+}

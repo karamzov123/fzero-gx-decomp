@@ -71,7 +71,6 @@ static inline void ReadApploader(OSTime time1) {
 
 void Run();
 
-void fn_8000EB04();
 
 static inline BOOL IsStreamEnabled(void) {
     if (fn_80019C48()->streaming) {
@@ -82,6 +81,10 @@ static inline BOOL IsStreamEnabled(void) {
 
 
 #pragma peephole off
+void fn_8000EB04(s32 result, DVDCommandBlock *block) {
+    lbl_801A67C8 = 1;
+}
+
 void __OSReboot(u16 resetCode, u32 bootDol) {
     OSContext exceptionContext;
     OSTime time;
@@ -142,3 +145,8 @@ void __OSReboot(u16 resetCode, u32 bootDol) {
 }
 #pragma peephole reset
 
+
+void fn_8000EE50(void *start, void *end) {
+    lbl_801A67C0 = start;
+    lbl_801A67C4 = end;
+}

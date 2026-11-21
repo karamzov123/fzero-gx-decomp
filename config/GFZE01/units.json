@@ -7436,13 +7436,16 @@
   },
   {
     "module": "main",
-    "source": "dol/IsCard.c",
+    "source": "dol/card/CARDMount.c",
     "symbols": [
       "IsCard",
       "CARDProbeEx",
       "DoMount",
       "__CARDMountCallback",
-      "CARDMountAsync"
+      "CARDMountAsync",
+      "fn_8002DFE0",
+      "DoUnmount",
+      "CARDUnmount"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
@@ -7520,16 +7523,6 @@
     "symbols": [
       "CARDRenameAsync",
       "fn_80030338"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/CARDUnmount.c",
-    "symbols": [
-      "CARDUnmount"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
@@ -10099,18 +10092,6 @@
   },
   {
     "module": "main",
-    "source": "dol/__CARDUnlock.c",
-    "symbols": [
-      "__CARDUnlock",
-      "InitCallback",
-      "DoneCallback"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
     "source": "dol/card/CARDRdwr.c",
     "symbols": [
       "BlockReadCallback",
@@ -10161,37 +10142,11 @@
   },
   {
     "module": "main",
-    "source": "dol/__DSPHandler.c",
+    "source": "dol/dsp/dsp_task.c",
     "symbols": [
-      "__DSPHandler"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/__DSP_exec_task.c",
-    "symbols": [
+      "__DSPHandler",
       "__DSP_exec_task",
-      "__DSP_boot_task"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true,
-    "pool": {
-      "...data.0": "lbl_8012A8C8",
-      "@149": "lbl_8012A8C8",
-      "@150": "lbl_8012A8C8+0x20",
-      "@151": "lbl_8012A8C8+0x50",
-      "@152": "lbl_8012A8C8+0x80",
-      "@153": "lbl_8012A8C8+0xB0",
-      "@154": "lbl_8012A8C8+0xE0"
-    }
-  },
-  {
-    "module": "main",
-    "source": "dol/__DSP_insert_task.c",
-    "symbols": [
+      "__DSP_boot_task",
       "__DSP_insert_task",
       "__DSP_remove_task",
       "fn_80029824"
@@ -10199,7 +10154,10 @@
     "status": "matching",
     "mw_version": "GC/1.2.5n",
     "collapsed": true,
-    "matching_for": ["GFZE01"]
+    "matching_for": ["GFZE01"],
+    "pool": {
+      "...data.0": "lbl_8012A8C8"
+    }
   },
   {
     "module": "main",
@@ -10453,31 +10411,6 @@
     "mw_version": null,
     "extra_cflags": [],
     "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/__OSReboot.c",
-    "symbols": [
-      "__OSReboot"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ],
-    "pool": {
-      "...bss.0": "lbl_8015BFA0",
-      "lbl_8015BFA0": "lbl_8015BFA0"
-    }
   },
   {
     "module": "main",
@@ -11091,11 +11024,14 @@
   },
   {
     "module": "main",
-    "source": "dol/bitrev.c",
+    "source": "dol/card/CARDUnlock.c",
     "symbols": [
       "bitrev",
       "ReadArrayUnlock",
-      "DummyLen"
+      "DummyLen",
+      "__CARDUnlock",
+      "InitCallback",
+      "DoneCallback"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
@@ -22220,23 +22156,20 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_8000EB04.c",
+    "source": "dol/__OSReboot.c",
     "symbols": [
-      "fn_8000EB04"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8000EE50.c",
-    "symbols": [
+      "fn_8000EB04",
+      "__OSReboot",
       "fn_8000EE50"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
-    "collapsed": true
+    "extra_cflags": [],
+    "collapsed": true,
+    "pool": {
+      "...bss.0": "lbl_8015BFA0",
+      "lbl_8015BFA0": "lbl_8015BFA0"
+    }
   },
   {
     "module": "main",
@@ -23430,18 +23363,6 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_8002DFE0.c",
-    "symbols": [
-      "fn_8002DFE0",
-      "DoUnmount"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [],
-    "collapsed": true
-  },
-  {
-    "module": "main",
     "source": "dol/card/CARDDelete.c",
     "symbols": [
       "DeleteCallback",
@@ -23467,26 +23388,16 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_8003043C.c",
+    "source": "dol/card/CARDNet.c",
     "symbols": [
       "fn_8003043C",
-      "CARDGetSerialNo"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80030754.c",
-    "symbols": [
+      "CARDGetSerialNo",
       "fn_80030754"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.2.5n",
-    "extra_cflags": []
+    "collapsed": true
   },
   {
     "module": "main",

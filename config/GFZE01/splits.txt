@@ -41,11 +41,8 @@ dol/fn_8000DD60.c:
 dol/OSLink.c:
 	.text       start:0x8000E310 end:0x8000E854 align:4
 
-dol/fn_8000EB04.c:
-	.text       start:0x8000EB04 end:0x8000EB10
-
-dol/fn_8000EE50.c:
-	.text       start:0x8000EE50 end:0x8000EE5C align:4
+dol/__OSReboot.c:
+	.text       start:0x8000EB04 end:0x8000EE5C align:4
 
 dol/fn_8000EE5C.c:
 	.text       start:0x8000EE5C end:0x8000EEF4 align:4
@@ -136,9 +133,6 @@ dol/fn_80028DD0.c:
 
 dol/fn_80028F50.c:
 	.text       start:0x80028F50 end:0x80028FA0 align:4
-
-dol/__DSP_exec_task.c:
-	.text       start:0x800293C4 end:0x800296F0 align:4
 
 dol/__CARDExtHandler.c:
 	.text       start:0x8002985C end:0x80029934
@@ -1212,9 +1206,6 @@ dol/AlarmHandler.c:
 dol/card/CARDDelete.c:
 	.text       start:0x8002F934 end:0x8002FC5C align:4
 
-dol/fn_8002DFE0.c:
-	.text       start:0x8002DFE0 end:0x8002E0C4 align:4
-
 dol/fn_80058ED4.c:
 	.text       start:0x80058ED4 end:0x80058EF4 align:4
 
@@ -1236,14 +1227,11 @@ dol/__CARDGetControlBlock.c:
 dol/CARDFreeBlocks.c:
 	.text       start:0x8002A988 end:0x8002ABC0 align:4
 
-dol/bitrev.c:
-	.text       start:0x8002ABC0 end:0x8002AF34 align:4
+dol/card/CARDUnlock.c:
+	.text       start:0x8002ABC0 end:0x8002BE20 align:4
 
 dol/WriteCallback_CARDDir.c:
 	.text       start:0x8002C4C4 end:0x8002C720 align:4
-
-dol/CARDUnmount.c:
-	.text       start:0x8002E0C4 end:0x8002E170 align:4
 
 dol/card/CARDFormat.c:
 	.text       start:0x8002E170 end:0x8002E954 align:4
@@ -1260,8 +1248,8 @@ dol/card/CARDRename.c:
 dol/CARDCheck.c:
 	.text       start:0x8002C720 end:0x8002D6B0 align:4
 
-dol/IsCard.c:
-	.text       start:0x8002D6B0 end:0x8002DFE0 align:4
+dol/card/CARDMount.c:
+	.text       start:0x8002D6B0 end:0x8002E170 align:4
 
 dol/CARDCreate.c:
 	.text       start:0x8002EDA8 end:0x8002F140 align:4
@@ -1356,9 +1344,6 @@ dol/ARQPostRequest.c:
 dol/fn_800206FC.c:
 	.text       start:0x800206FC end:0x80020874 align:4
 
-dol/__CARDUnlock.c:
-	.text       start:0x8002AF34 end:0x8002BE20 align:4
-
 dol/card/CARDRdwr.c:
 	.text       start:0x8002BE20 end:0x8002C0C0 align:4
 
@@ -1395,11 +1380,8 @@ dol/DVDCancelAsync.c:
 	.text       start:0x800198FC end:0x80019E64 align:4
 	.data       start:0x801240A8 end:0x80124110 align:8
 
-dol/__DSPHandler.c:
-	.text       start:0x80028FA0 end:0x800293C4 align:4
-
-dol/__DSP_insert_task.c:
-	.text       start:0x800296F0 end:0x80029828 align:4
+dol/dsp/dsp_task.c:
+	.text       start:0x80028FA0 end:0x80029828 align:4
 
 dol/__CARDSyncCallback.c:
 	.text       start:0x80029828 end:0x8002985C align:4
@@ -2040,9 +2022,6 @@ dol/fn_80083E84.c:
 dol/fn_8003B930.c:
 	.text       start:0x8003B930 end:0x8003BCE4 align:4
 
-dol/fn_80030754.c:
-	.text       start:0x80030754 end:0x800307CC align:4
-
 dol/fn_8006F6A8.c:
 	.text       start:0x8006F6A8 end:0x8006F774 align:4
 
@@ -2139,9 +2118,6 @@ dol/fstload.c:
 dol/OSFont.c:
 	.text       start:0x8000CDD8 end:0x8000CE30 align:4
 
-dol/__OSReboot.c:
-	.text       start:0x8000EB10 end:0x8000EE50 align:4
-
 dol/fn_80049BF4.c:
 	.text       start:0x80049BF4 end:0x8004A068 align:4
 
@@ -2166,8 +2142,8 @@ dol/TRKPostInterruptEvent.c:
 dol/fn_80076CD4.c:
 	.text       start:0x80076CD4 end:0x80077240 align:4
 
-dol/fn_8003043C.c:
-	.text       start:0x8003043C end:0x80030754 align:4
+dol/card/CARDNet.c:
+	.text       start:0x8003043C end:0x800307CC align:4
 
 dol/fn_8000D1F0.c:
 	.text       start:0x8000D1F0 end:0x8000D4F4 align:4
