@@ -1,5 +1,5 @@
 {
- "generated": 1795227010,
+ "generated": 1795227347,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -20557,7 +20557,7 @@
   {
    "symbol": "GXSetVtxDesc",
    "module": "main",
-   "unit": "dol/GXSetVtxDesc.c",
+   "unit": "dol/fn_80032360.c",
    "addr": 2147689672,
    "size": 848,
    "status": "matched",
@@ -20574,7 +20574,7 @@
   {
    "symbol": "GXSetVtxDescv",
    "module": "main",
-   "unit": "dol/GXSetVtxDescv.c",
+   "unit": "dol/fn_80032360.c",
    "addr": 2147690520,
    "size": 884,
    "status": "matched",
@@ -20591,7 +20591,7 @@
   {
    "symbol": "__GXSetVCD",
    "module": "main",
-   "unit": "dol/__GXSetVCD.c",
+   "unit": "dol/fn_80032360.c",
    "addr": 2147691404,
    "size": 84,
    "status": "matched",
@@ -20608,7 +20608,7 @@
   {
    "symbol": "__GXCalculateVLim",
    "module": "main",
-   "unit": "dol/__GXCalculateVLim.c",
+   "unit": "dol/fn_80032360.c",
    "addr": 2147691488,
    "size": 292,
    "status": "matched",
@@ -20625,7 +20625,7 @@
   {
    "symbol": "GXGetVtxDesc",
    "module": "main",
-   "unit": "dol/GXGetVtxDesc.c",
+   "unit": "dol/fn_80032360.c",
    "addr": 2147691780,
    "size": 436,
    "status": "matched",
@@ -23073,7 +23073,7 @@
   {
    "symbol": "__GXSetMatrixIndex",
    "module": "main",
-   "unit": "dol/__GXSetMatrixIndex.c",
+   "unit": "dol/GXSetClipMode.c",
    "addr": 2147717256,
    "size": 132,
    "status": "matched",

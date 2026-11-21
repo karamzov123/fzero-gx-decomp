@@ -8051,28 +8051,6 @@
   },
   {
     "module": "main",
-    "source": "dol/GXGetVtxDesc.c",
-    "symbols": [
-      "GXGetVtxDesc"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ]
-  },
-  {
-    "module": "main",
     "source": "dol/GXInit.c",
     "symbols": [
       "fn_8003086C",
@@ -8300,11 +8278,13 @@
     "module": "main",
     "source": "dol/GXSetClipMode.c",
     "symbols": [
-      "GXSetClipMode"
+      "GXSetClipMode",
+      "__GXSetMatrixIndex"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n"
+    "mw_version": "GC/1.2.5n",
+    "collapsed": true
   },
   {
     "module": "main",
@@ -8671,50 +8651,6 @@
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ]
-  },
-  {
-    "module": "main",
-    "source": "dol/GXSetVtxDesc.c",
-    "symbols": [
-      "GXSetVtxDesc"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ]
-  },
-  {
-    "module": "main",
-    "source": "dol/GXSetVtxDescv.c",
-    "symbols": [
-      "GXSetVtxDescv"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
     "mw_version": "GC/1.2.5n",
     "extra_cflags": [
       "-use_lmw_stmw",
@@ -11052,28 +10988,6 @@
   },
   {
     "module": "main",
-    "source": "dol/__GXCalculateVLim.c",
-    "symbols": [
-      "__GXCalculateVLim"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ]
-  },
-  {
-    "module": "main",
     "source": "dol/__GXDefaultTexRegionCallback.c",
     "symbols": [
       "__GXDefaultTexRegionCallback"
@@ -11193,16 +11107,6 @@
   },
   {
     "module": "main",
-    "source": "dol/__GXSetMatrixIndex.c",
-    "symbols": [
-      "__GXSetMatrixIndex"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
     "source": "dol/__GXSetSUTexRegs.c",
     "symbols": [
       "__GXSetSUTexRegs",
@@ -11212,28 +11116,6 @@
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.2.5n",
     "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/__GXSetVCD.c",
-    "symbols": [
-      "__GXSetVCD"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ]
   },
   {
     "module": "main",
@@ -24528,10 +24410,15 @@
     "symbols": [
       "fn_80032360",
       "fn_80032368",
-      "__GXXfVtxSpecs"
+      "__GXXfVtxSpecs",
+      "GXSetVtxDesc",
+      "GXSetVtxDescv",
+      "__GXSetVCD",
+      "__GXCalculateVLim",
+      "GXGetVtxDesc"
     ],
     "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
+    "matching_for": ["GFZE01"],
     "mw_version": "GC/1.2.5n",
     "collapsed": true,
     "extra_cflags": [

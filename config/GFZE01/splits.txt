@@ -153,7 +153,8 @@ dol/__GXFifoInit.c:
 	.text       start:0x8003221C end:0x80032268
 
 dol/fn_80032360.c:
-	.text       start:0x80032360 end:0x800324C8 align:4
+	.text       start:0x80032360 end:0x80032EB8 align:4
+	.data       start:0x8012AD40 end:0x8012AE78 align:32
 
 dol/fn_80033E7C.c:
 	.text       start:0x80033E7C end:0x8003401C align:4
@@ -1629,21 +1630,6 @@ dol/GXCPInterruptHandler.c:
 dol/GXSetGPFifo.c:
 	.text       start:0x80031E7C end:0x80032014 align:4
 
-dol/GXSetVtxDesc.c:
-	.text       start:0x800324C8 end:0x80032818 align:4
-	.data       start:0x8012AD40 end:0x8012ADA8 align:32
-
-dol/GXSetVtxDescv.c:
-	.text       start:0x80032818 end:0x80032B8C align:4
-	.data       start:0x8012ADA8 end:0x8012AE10 align:8
-
-dol/__GXSetVCD.c:
-	.text       start:0x80032B8C end:0x80032BE0 align:4
-
-dol/GXGetVtxDesc.c:
-	.text       start:0x80032D04 end:0x80032EB8 align:4
-	.data       start:0x8012AE10 end:0x8012AE78 align:16
-
 dol/GXGetVtxAttrFmt.c:
 	.text       start:0x800336EC end:0x80033D4C align:4
 	.data       start:0x8012AF00 end:0x8012AFB8 align:8
@@ -1724,10 +1710,7 @@ dol/GXSetProjection.c:
 	.text       start:0x80038A88 end:0x80038B3C align:4
 
 dol/GXSetClipMode.c:
-	.text       start:0x80039060 end:0x80039088 align:4
-
-dol/__GXSetMatrixIndex.c:
-	.text       start:0x80039088 end:0x8003910C align:4
+	.text       start:0x80039060 end:0x8003910C align:4
 
 dol/__AI_SRC_INIT.c:
 	.text       start:0x8001E600 end:0x8001E864 align:4
@@ -2267,9 +2250,6 @@ dol/fn_8007AA7C.c:
 
 dol/fn_80032EB8.c:
 	.text       start:0x80032EB8 end:0x80032F80 align:4
-
-dol/__GXCalculateVLim.c:
-	.text       start:0x80032BE0 end:0x80032D04 align:4
 
 dol/fn_8007E96C.c:
 	.text       start:0x8007E96C end:0x8007EA58 align:4
