@@ -9110,15 +9110,6 @@
   },
   {
     "module": "main",
-    "source": "dol/OSGetProgressiveMode.c",
-    "symbols": [
-      "OSGetProgressiveMode"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
     "source": "dol/OSGetResetButtonState.c",
     "symbols": [
       "OSGetResetButtonState",
@@ -9135,15 +9126,6 @@
     "source": "dol/OSGetResetCode.c",
     "symbols": [
       "OSGetResetCode"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/OSGetSoundMode.c",
-    "symbols": [
-      "OSGetSoundMode"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n"
@@ -9315,19 +9297,6 @@
     "mw_version": null,
     "extra_cflags": [],
     "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/OSSetProgressiveMode.c",
-    "symbols": [
-      "OSSetProgressiveMode",
-      "OSGetWirelessID",
-      "OSSetWirelessID"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true,
-    "matching_for": ["GFZE01", "GFZJ01"]
   },
   {
     "module": "main",
@@ -10616,19 +10585,6 @@
   },
   {
     "module": "main",
-    "source": "dol/UnlockSram.c",
-    "symbols": [
-      "UnlockSram",
-      "__OSUnlockSram",
-      "__OSUnlockSramEx"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
     "source": "dol/UpdateIconOffsets.c",
     "symbols": [
       "UpdateIconOffsets",
@@ -10704,12 +10660,30 @@
   },
   {
     "module": "main",
-    "source": "dol/WriteSram.c",
+    "source": "dol/os/OSRtc.c",
     "symbols": [
-      "WriteSram"
+      "WriteSram",
+      "__OSInitSram",
+      "__OSLockSram",
+      "__OSLockSramEx",
+      "UnlockSram",
+      "__OSUnlockSram",
+      "__OSUnlockSramEx",
+      "__OSSyncSram",
+      "__OSReadROM",
+      "OSGetSoundMode",
+      "OSGetProgressiveMode",
+      "OSSetProgressiveMode",
+      "OSGetWirelessID",
+      "OSSetWirelessID"
     ],
     "status": "matching",
-    "mw_version": "GC/1.2.5n"
+    "mw_version": "GC/1.2.5n",
+    "collapsed": true,
+    "matching_for": ["GFZE01"],
+    "pool": {
+      "...bss.0": "Scb_8015BFC0"
+    }
   },
   {
     "module": "main",
@@ -11221,19 +11195,6 @@
   },
   {
     "module": "main",
-    "source": "dol/__OSInitSram.c",
-    "symbols": [
-      "__OSInitSram"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.2.5n",
-    "pool": {
-      "...bss.0": "Scb_8015BFC0"
-    }
-  },
-  {
-    "module": "main",
     "source": "dol/__OSInitSystemCall.c",
     "symbols": [
       "__OSInitSystemCall",
@@ -11270,24 +11231,6 @@
     "mw_version": null,
     "extra_cflags": [],
     "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/__OSLockSram.c",
-    "symbols": [
-      "__OSLockSram"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/__OSLockSramEx.c",
-    "symbols": [
-      "__OSLockSramEx"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -11352,17 +11295,6 @@
     "symbols": [
       "__OSSetInterruptHandler",
       "__OSGetInterruptHandler"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/__OSSyncSram.c",
-    "symbols": [
-      "__OSSyncSram",
-      "__OSReadROM"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",

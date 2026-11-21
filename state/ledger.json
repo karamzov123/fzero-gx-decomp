@@ -1,5 +1,5 @@
 {
- "generated": 1795227347,
+ "generated": 1795227835,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -10884,7 +10884,7 @@
   {
    "symbol": "WriteSram",
    "module": "main",
-   "unit": "dol/WriteSram.c",
+   "unit": "dol/os/OSRtc.c",
    "addr": 2147546736,
    "size": 280,
    "status": "matched",
@@ -10901,7 +10901,7 @@
   {
    "symbol": "__OSInitSram",
    "module": "main",
-   "unit": "dol/__OSInitSram.c",
+   "unit": "dol/os/OSRtc.c",
    "addr": 2147547016,
    "size": 308,
    "status": "matched",
@@ -10918,7 +10918,7 @@
   {
    "symbol": "__OSLockSram",
    "module": "main",
-   "unit": "dol/__OSLockSram.c",
+   "unit": "dol/os/OSRtc.c",
    "addr": 2147547324,
    "size": 92,
    "status": "matched",
@@ -10935,7 +10935,7 @@
   {
    "symbol": "__OSLockSramEx",
    "module": "main",
-   "unit": "dol/__OSLockSramEx.c",
+   "unit": "dol/os/OSRtc.c",
    "addr": 2147547416,
    "size": 92,
    "status": "matched",
@@ -10952,7 +10952,7 @@
   {
    "symbol": "UnlockSram",
    "module": "main",
-   "unit": "dol/UnlockSram.c",
+   "unit": "dol/os/OSRtc.c",
    "addr": 2147547508,
    "size": 776,
    "status": "matched",
@@ -10969,7 +10969,7 @@
   {
    "symbol": "__OSUnlockSram",
    "module": "main",
-   "unit": "dol/UnlockSram.c",
+   "unit": "dol/os/OSRtc.c",
    "addr": 2147548284,
    "size": 36,
    "status": "matched",
@@ -10986,7 +10986,7 @@
   {
    "symbol": "__OSUnlockSramEx",
    "module": "main",
-   "unit": "dol/UnlockSram.c",
+   "unit": "dol/os/OSRtc.c",
    "addr": 2147548320,
    "size": 36,
    "status": "matched",
@@ -11003,7 +11003,7 @@
   {
    "symbol": "__OSSyncSram",
    "module": "main",
-   "unit": "dol/__OSSyncSram.c",
+   "unit": "dol/os/OSRtc.c",
    "addr": 2147548356,
    "size": 16,
    "status": "matched",
@@ -11020,7 +11020,7 @@
   {
    "symbol": "__OSReadROM",
    "module": "main",
-   "unit": "dol/__OSSyncSram.c",
+   "unit": "dol/os/OSRtc.c",
    "addr": 2147548372,
    "size": 292,
    "status": "matched",
@@ -11037,7 +11037,7 @@
   {
    "symbol": "OSGetSoundMode",
    "module": "main",
-   "unit": "dol/OSGetSoundMode.c",
+   "unit": "dol/os/OSRtc.c",
    "addr": 2147548664,
    "size": 128,
    "status": "matched",
@@ -11054,7 +11054,7 @@
   {
    "symbol": "OSGetProgressiveMode",
    "module": "main",
-   "unit": "dol/OSGetProgressiveMode.c",
+   "unit": "dol/os/OSRtc.c",
    "addr": 2147548792,
    "size": 112,
    "status": "matched",
@@ -11071,7 +11071,7 @@
   {
    "symbol": "OSSetProgressiveMode",
    "module": "main",
-   "unit": "dol/OSSetProgressiveMode.c",
+   "unit": "dol/os/OSRtc.c",
    "addr": 2147548904,
    "size": 164,
    "status": "matched",
@@ -11088,7 +11088,7 @@
   {
    "symbol": "OSGetWirelessID",
    "module": "main",
-   "unit": "dol/OSSetProgressiveMode.c",
+   "unit": "dol/os/OSRtc.c",
    "addr": 2147549068,
    "size": 132,
    "status": "matched",
@@ -11105,7 +11105,7 @@
   {
    "symbol": "OSSetWirelessID",
    "module": "main",
-   "unit": "dol/OSSetProgressiveMode.c",
+   "unit": "dol/os/OSRtc.c",
    "addr": 2147549200,
    "size": 172,
    "status": "matched",

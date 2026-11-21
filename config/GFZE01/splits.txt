@@ -249,9 +249,6 @@ dol/fn_80065890.c:
 dol/fn_800658A8.c:
 	.text       start:0x800658A8 end:0x800658B4 align:4
 
-dol/__OSSyncSram.c:
-	.text       start:0x8000FCC4 end:0x8000FDF8 align:4
-
 dol/fn_8008A754.c:
 	.text       start:0x8008A754 end:0x8008A764 align:4
 
@@ -675,12 +672,6 @@ dol/os/OSAlarm.c:
 
 dol/fn_8000CE30.c:
 	.text       start:0x8000CE30 end:0x8000D1F0 align:4
-
-dol/__OSLockSramEx.c:
-	.text       start:0x8000F918 end:0x8000F974 align:4
-
-dol/__OSLockSram.c:
-	.text       start:0x8000F8BC end:0x8000F918 align:4
 
 dol/fn_80017590.c:
 	.text       start:0x80017590 end:0x800176D8 align:4
@@ -1312,17 +1303,11 @@ dol/__OSUnlockAllMutex.c:
 dol/fn_80083970.c:
 	.text       start:0x80083970 end:0x80083B8C align:4
 
-dol/OSGetProgressiveMode.c:
-	.text       start:0x8000FE78 end:0x8000FEE8 align:4
-
 dol/fn_8008EC78.c:
 	.text       start:0x8008EC78 end:0x8008ECE0 align:4
 
 dol/SeekTwiceBeforeRead.c:
 	.text       start:0x800164A4 end:0x80016524 align:4
-
-dol/OSGetSoundMode.c:
-	.text       start:0x8000FDF8 end:0x8000FE78 align:4
 
 dol/OSError.c:
 	.text       start:0x8000C41C end:0x8000CAC8 align:4
@@ -1422,8 +1407,9 @@ dol/CARDOpen.c:
 dol/L2GlobalInvalidate.c:
 	.text       start:0x8000B8C0 end:0x8000BAB8 align:4
 
-dol/WriteSram.c:
-	.text       start:0x8000F670 end:0x8000F788 align:4
+dol/os/OSRtc.c:
+	.text       start:0x8000F670 end:0x800100BC align:4
+	.bss        start:0x8015BFC0 end:0x8015C014 align:32
 
 dol/__OSInitSystemCall.c:
 	.text       start:0x800100DC end:0x80010144 align:4
@@ -1439,13 +1425,6 @@ dol/__OSCacheInit.c:
 
 dol/Link.c:
 	.text       start:0x8000E030 end:0x8000E310 align:4
-
-dol/OSSetProgressiveMode.c:
-	.text       start:0x8000FEE8 end:0x800100BC align:4
-
-dol/__OSInitSram.c:
-	.bss        start:0x8015BFC0 end:0x8015C014 align:32
-	.text       start:0x8000F788 end:0x8000F8BC align:4
 
 dol/SetExiInterruptMask.c:
 	.text       start:0x80013A88 end:0x80015464 align:4
@@ -1467,9 +1446,6 @@ dol/OSGetResetCode.c:
 
 dol/__OSInitMemoryProtection.c:
 	.text       start:0x8000E96C end:0x8000EA84 align:4
-
-dol/UnlockSram.c:
-	.text       start:0x8000F974 end:0x8000FCC4 align:4
 
 dol/DCInvalidateRange.c:
 	.text       start:0x8000B628 end:0x8000B654 align:4
