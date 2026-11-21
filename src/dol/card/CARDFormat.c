@@ -140,3 +140,9 @@ s32 __CARDFormatRegionAsync(s32 chan, u16 encode, CARDCallback callback) {
     }
     return result;
 }
+
+extern u16 fn_8002A744(s32 chan, CARDCallback callback);
+
+s32 CARDFormatAsync(s32 chan, CARDCallback callback) {
+    return __CARDFormatRegionAsync(chan, fn_8002A744(chan, callback), callback);
+}

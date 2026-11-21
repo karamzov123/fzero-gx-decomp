@@ -9,6 +9,15 @@
 
 vu16 __DSPRegs[32] : FZGX_ADDR___DSPRegs;
 
+u32 ARGetDMAStatus(void) {
+    u32 v0;
+    u32 t0;
+    t0 = OSDisableInterrupts();
+    v0 = (*(u16 *)0xCC00500A & 0x200); /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+    OSRestoreInterrupts(t0);
+    return v0;
+}
+
 void ARStartDMA(u32 type, u32 mainmem_addr, u32 aram_addr, u32 length) {
     BOOL enabled;
     enabled = OSDisableInterrupts();

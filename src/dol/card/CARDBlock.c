@@ -4,11 +4,37 @@
 
 /* --- dol/EraseCallback.c --- */
 /* --- dol/EraseCallback.c --- */
-void WriteCallback(s32 chan, s32 result);
 
 void EraseCallback(s32 chan, s32 result);
 
 extern CARDControl lbl_80177960[2];
+
+void WriteCallback(s32 chan, s32 result) {
+    CARDControl *card;
+    CARDCallback callback;
+
+    card = &lbl_80177960[chan];
+    if (result >= 0) {
+        u16 *fat0 = (u16 *)((u8 *)card->workArea + 0x6000);
+        u16 *fat1 = (u16 *)((u8 *)card->workArea + 0x8000);
+        if (card->currentFat == fat0) {
+            card->currentFat = fat1;
+            memcpy(fat1, fat0, 0x2000);
+        } else {
+            card->currentFat = fat0;
+            memcpy(fat0, fat1, 0x2000);
+        }
+    }
+    if (!card->apiCallback) {
+        __CARDPutControlBlock(card, result);
+    }
+    callback = card->eraseCallback;
+    if (callback) {
+        card->eraseCallback = 0;
+        callback(chan, result);
+    }
+}
+
 
 static inline u16 *__CARDGetFatBlock(CARDControl *card) { return card->currentFat; }
 

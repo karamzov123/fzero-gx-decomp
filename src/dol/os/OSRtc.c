@@ -16,7 +16,14 @@
 SramControlBlock Scb_8015BFC0 __attribute__((aligned(32)));
 #define Scb Scb_8015BFC0
 
-void WriteSramCallback(s32 chan, OSContext *context);
+BOOL WriteSram(void *buffer, u32 offset, u32 size);
+
+void WriteSramCallback(s32 chan, OSContext *context) {
+    Scb.sync = WriteSram(Scb.sram + Scb.offset, Scb.offset, RTC_SRAM_SIZE - Scb.offset);
+    if (Scb.sync) {
+        Scb.offset = RTC_SRAM_SIZE;
+    }
+}
 
 static inline BOOL ReadSram(void *buffer) {
     BOOL err;

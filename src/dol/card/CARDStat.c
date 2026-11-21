@@ -140,3 +140,14 @@ s32 CARDSetStatusAsync(s32 chan, s32 fileNo, CARDStat *stat, CARDCallback callba
     }
     return result;
 }
+
+extern s32 __CARDSync(s32 chan);
+extern void __CARDSyncCallback(s32 chan, s32 result);
+
+s32 fn_800300F4(s32 chan, s32 fileNo, CARDStat *stat) {
+    s32 status = CARDSetStatusAsync(chan, fileNo, stat, __CARDSyncCallback);
+    if (status < 0) {
+        return status;
+    }
+    return __CARDSync(chan);
+}

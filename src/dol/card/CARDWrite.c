@@ -110,3 +110,14 @@ s32 CARDWriteAsync(CARDFileInfo *fileInfo, const void *buf, s32 length, s32 offs
     }
     return result;
 }
+
+extern s32 __CARDSync(s32 chan);
+extern void __CARDSyncCallback(s32 chan, s32 result);
+
+s32 fn_8002F8EC(CARDFileInfo *fileInfo, const void *buf, s32 length, s32 offset) {
+    s32 result = CARDWriteAsync(fileInfo, buf, length, offset, __CARDSyncCallback);
+    if (result < 0) {
+        return result;
+    }
+    return __CARDSync(fileInfo->chan);
+}

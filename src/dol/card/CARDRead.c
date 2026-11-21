@@ -155,3 +155,14 @@ s32 CARDReadAsync(CARDFileInfo *fileInfo, void *buf, s32 length, s32 offset,
         __CARDPutControlBlock(card, result);
     return result;
 }
+
+extern s32 __CARDSync(s32 chan);
+extern void __CARDSyncCallback(s32 chan, s32 result);
+
+s32 fn_8002F570(CARDFileInfo *fileInfo, void *buf, s32 length, s32 offset) {
+    s32 result = CARDReadAsync(fileInfo, buf, length, offset, __CARDSyncCallback);
+    if (result < 0) {
+        return result;
+    }
+    return __CARDSync(fileInfo->chan);
+}

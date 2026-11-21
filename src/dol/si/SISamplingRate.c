@@ -54,3 +54,7 @@ void SISetSamplingRate(u32 msec) {
     SISetXY((__VIRegs[54] & 1 ? 2u : 1u) * xy[msec].line, xy[msec].count);
     OSRestoreInterrupts(enabled);
 }
+
+void SIRefreshSamplingRate(void) {
+    SISetSamplingRate(SamplingRate);
+}

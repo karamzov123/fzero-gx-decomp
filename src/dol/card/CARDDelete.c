@@ -4,7 +4,24 @@
 void fn_80029824(s32 chan, s32 result);
 CARDDir *fn_8002C4BC(CARDControl *card);
 
-void DeleteCallback(s32 chan, s32 result);
+extern CARDControl lbl_80177960[2];
+extern s32 __CARDFreeBlock(s32 chan, u16 nBlock, CARDCallback callback);
+
+void DeleteCallback(s32 chan, s32 result) {
+    CARDControl *card = &lbl_80177960[chan];
+    CARDCallback callback = card->apiCallback;
+    card->apiCallback = 0;
+    if (result >= 0) {
+        result = __CARDFreeBlock(chan, card->startBlock, callback);
+        if (result >= 0) {
+            return;
+        }
+    }
+    __CARDPutControlBlock(card, result);
+    if (callback != 0) {
+        callback(chan, result);
+    }
+}
 
 s32 CARDFastDeleteAsync(s32 chan, s32 fileNo, CARDCallback callback) {
     CARDControl *card;

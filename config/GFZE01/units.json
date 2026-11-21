@@ -7389,22 +7389,6 @@
   },
   {
     "module": "main",
-    "source": "dol/ar/ar.c",
-    "symbols": [
-      "ARStartDMA",
-      "ARAlloc",
-      "ARFree",
-      "ARInit",
-      "__ARHandler",
-      "__ARChecksize"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true,
-    "matching_for": ["GFZE01"]
-  },
-  {
-    "module": "main",
     "source": "dol/AlarmHandler.c",
     "symbols": [
       "AlarmHandler"
@@ -7479,37 +7463,17 @@
   },
   {
     "module": "main",
-    "source": "dol/__CARDSeek.c",
+    "source": "dol/card/CARDRead.c",
     "symbols": [
       "__CARDSeek",
       "ReadCallback",
-      "CARDReadAsync"
+      "CARDReadAsync",
+      "fn_8002F570"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
     "collapsed": true,
     "matching_for": ["GFZE01", "GFZJ01"]
-  },
-  {
-    "module": "main",
-    "source": "dol/card/CARDDelete.c",
-    "symbols": [
-      "CARDFastDeleteAsync",
-      "CARDDeleteAsync",
-      "fn_8002FC14"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/CARDFormatAsync.c",
-    "symbols": [
-      "CARDFormatAsync"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -7573,10 +7537,11 @@
   },
   {
     "module": "main",
-    "source": "dol/FormatCallback.c",
+    "source": "dol/card/CARDFormat.c",
     "symbols": [
       "FormatCallback",
-      "__CARDFormatRegionAsync"
+      "__CARDFormatRegionAsync",
+      "CARDFormatAsync"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
@@ -7888,20 +7853,6 @@
     "mw_version": null,
     "extra_cflags": [],
     "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/EraseCallback.c",
-    "symbols": [
-      "EraseCallback",
-      "__CARDAllocBlock",
-      "__CARDFreeBlock",
-      "__CARDUpdateFatBlock",
-      "fn_8002C4BC"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
   },
   {
     "module": "main",
@@ -8528,26 +8479,29 @@
   },
   {
     "module": "main",
-    "source": "dol/OSGetResetButtonState.c",
+    "source": "dol/os/OSRtc.c",
     "symbols": [
-      "OSGetResetButtonState",
-      "fn_8000F5F0"
+      "WriteSramCallback",
+      "WriteSram",
+      "__OSInitSram",
+      "__OSLockSram",
+      "__OSLockSramEx",
+      "UnlockSram",
+      "__OSUnlockSram",
+      "__OSUnlockSramEx",
+      "__OSSyncSram",
+      "__OSReadROM",
+      "OSGetSoundMode",
+      "OSGetProgressiveMode",
+      "OSSetProgressiveMode",
+      "OSGetWirelessID",
+      "OSSetWirelessID"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/WriteSramCallback.c",
-    "symbols": [
-      "WriteSramCallback"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
+    "collapsed": true,
+    "pool": {}
   },
   {
     "module": "main",
@@ -9397,17 +9351,6 @@
   },
   {
     "module": "main",
-    "source": "dol/SIRefreshSamplingRate.c",
-    "symbols": [
-      "SIRefreshSamplingRate"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true,
-    "matching_for": ["GFZE01"]
-  },
-  {
-    "module": "main",
     "source": "dol/fn_800133DC.c",
     "symbols": [
       "fn_800133DC",
@@ -9420,16 +9363,19 @@
   },
   {
     "module": "main",
-    "source": "dol/SISetSamplingRate.c",
+    "source": "dol/si/SISamplingRate.c",
     "symbols": [
-      "SISetSamplingRate"
+      "SISetSamplingRate",
+      "SIRefreshSamplingRate"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
     "pool": {
       "...data.0": "XYNTSC",
       "@14": "XYNTSC+0x60"
-    }
+    },
+    "collapsed": true,
+    "matching_for": ["GFZE01"]
   },
   {
     "module": "main",
@@ -9952,11 +9898,12 @@
   },
   {
     "module": "main",
-    "source": "dol/UpdateIconOffsets.c",
+    "source": "dol/card/CARDStat.c",
     "symbols": [
       "UpdateIconOffsets",
       "CARDGetStatus",
-      "CARDSetStatusAsync"
+      "CARDSetStatusAsync",
+      "fn_800300F4"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
@@ -10005,13 +9952,19 @@
   },
   {
     "module": "main",
-    "source": "dol/WriteCallback.c",
+    "source": "dol/card/CARDBlock.c",
     "symbols": [
-      "WriteCallback"
+      "WriteCallback",
+      "EraseCallback",
+      "__CARDAllocBlock",
+      "__CARDFreeBlock",
+      "__CARDUpdateFatBlock",
+      "fn_8002C4BC"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n",
+    "extra_cflags": [],
+    "collapsed": true
   },
   {
     "module": "main",
@@ -10019,38 +9972,12 @@
     "symbols": [
       "WriteCallback_CARDWrite",
       "EraseCallback_CARDWrite",
-      "CARDWriteAsync"
+      "CARDWriteAsync",
+      "fn_8002F8EC"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
     "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/os/OSRtc.c",
-    "symbols": [
-      "WriteSram",
-      "__OSInitSram",
-      "__OSLockSram",
-      "__OSLockSramEx",
-      "UnlockSram",
-      "__OSUnlockSram",
-      "__OSUnlockSramEx",
-      "__OSSyncSram",
-      "__OSReadROM",
-      "OSGetSoundMode",
-      "OSGetProgressiveMode",
-      "OSSetProgressiveMode",
-      "OSGetWirelessID",
-      "OSSetWirelessID"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true,
-    "matching_for": ["GFZE01"],
-    "pool": {
-      "...bss.0": "Scb_8015BFC0"
-    }
   },
   {
     "module": "main",
@@ -10097,13 +10024,20 @@
   },
   {
     "module": "main",
-    "source": "dol/ARGetDMAStatus.c",
+    "source": "dol/ar/ar.c",
     "symbols": [
-      "ARGetDMAStatus"
+      "ARGetDMAStatus",
+      "ARStartDMA",
+      "ARAlloc",
+      "ARFree",
+      "ARInit",
+      "__ARHandler",
+      "__ARChecksize"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
-    "collapsed": true
+    "collapsed": true,
+    "matching_for": ["GFZE01"]
   },
   {
     "module": "main",
@@ -10177,12 +10111,14 @@
   },
   {
     "module": "main",
-    "source": "dol/BlockReadCallback.c",
+    "source": "dol/card/CARDRdwr.c",
     "symbols": [
       "BlockReadCallback",
       "__CARDRead",
       "BlockWriteCallback",
-      "__CARDWrite"
+      "__CARDWrite",
+      "fn_8002C0A0",
+      "fn_8002C0B8"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
@@ -10556,12 +10492,16 @@
   },
   {
     "module": "main",
-    "source": "dol/__OSResetSWInterruptHandler.c",
+    "source": "dol/os/OSResetSW.c",
     "symbols": [
-      "__OSResetSWInterruptHandler"
+      "__OSResetSWInterruptHandler",
+      "OSGetResetButtonState",
+      "fn_8000F5F0"
     ],
     "status": "matching",
-    "mw_version": "GC/1.2.5n"
+    "mw_version": "GC/1.2.5n",
+    "collapsed": true,
+    "matching_for": ["GFZE01"]
   },
   {
     "module": "main",
@@ -23490,18 +23430,6 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_8002C0A0.c",
-    "symbols": [
-      "fn_8002C0A0",
-      "fn_8002C0B8"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "collapsed": true
-  },
-  {
-    "module": "main",
     "source": "dol/fn_8002DFE0.c",
     "symbols": [
       "fn_8002DFE0",
@@ -23514,45 +23442,17 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_8002F570.c",
+    "source": "dol/card/CARDDelete.c",
     "symbols": [
-      "fn_8002F570"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8002F8EC.c",
-    "symbols": [
-      "fn_8002F8EC"
+      "DeleteCallback",
+      "CARDFastDeleteAsync",
+      "CARDDeleteAsync",
+      "fn_8002FC14"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
     "extra_cflags": [],
     "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/DeleteCallback.c",
-    "symbols": [
-      "DeleteCallback"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [],
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_800300F4.c",
-    "symbols": [
-      "fn_800300F4"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
   },
   {
     "module": "main",

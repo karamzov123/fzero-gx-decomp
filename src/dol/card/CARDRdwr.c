@@ -179,3 +179,11 @@ s32 __CARDWrite(s32 chan, u32 addr, s32 length, void *dst, CARDCallback callback
     card->buffer = dst;
     return __CARDWritePage(chan, BlockWriteCallback);
 }
+
+s32 fn_8002C0A0(s32 chan) {
+    return lbl_80177960[chan].xferred;
+}
+
+u16 *fn_8002C0B8(CARDControl *card) {
+    return card->currentFat;
+}

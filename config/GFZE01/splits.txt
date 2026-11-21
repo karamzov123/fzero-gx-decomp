@@ -62,9 +62,6 @@ dol/fn_80011358.c:
 dol/_ExitProcess.c:
 	.text       start:0x800118FC end:0x8001191C
 
-dol/SIRefreshSamplingRate.c:
-	.text       start:0x800133B8 end:0x800133DC align:4
-
 dol/fn_800133DC.c:
 	.text       start:0x800133DC end:0x80013428 align:4
 
@@ -154,9 +151,6 @@ dol/fn_8002A744.c:
 
 dol/fn_8002A7C4.c:
 	.text       start:0x8002A7C4 end:0x8002A83C
-
-dol/CARDFormatAsync.c:
-	.text       start:0x8002E90C end:0x8002E954
 
 dol/gx/GXAttr.c:
 	.text       start:0x80032370 end:0x80033D8C align:4
@@ -381,9 +375,6 @@ dol/__OSSetInterruptHandler.c:
 
 dol/fn_8002A7AC.c:
 	.text       start:0x8002A7AC end:0x8002A7C4 align:4
-
-dol/fn_8002C0A0.c:
-	.text       start:0x8002C0A0 end:0x8002C0C0 align:4
 
 dol/fn_80026E04.c:
 	.text       start:0x80026E04 end:0x80026E2C align:4
@@ -697,11 +688,8 @@ dol/__CARDPutControlBlock.c:
 dol/__CARDUnlockedHandler.c:
 	.text       start:0x80029AF4 end:0x80029D28 align:4
 
-dol/WriteCallback.c:
-	.text       start:0x8002C0C0 end:0x8002C194 align:4
-
-dol/fn_8002F570.c:
-	.text       start:0x8002F570 end:0x8002F5B8 align:4
+dol/card/CARDBlock.c:
+	.text       start:0x8002C0C0 end:0x8002C4C4 align:4
 
 dol/fn_800433A4.c:
 	.text       start:0x800433A4 end:0x80043460 align:4
@@ -1156,9 +1144,6 @@ dol/fn_8006CE1C.c:
 dol/__OSDoHotReset.c:
 	.text       start:0x8000EF64 end:0x8000F234 align:4
 
-dol/fn_800300F4.c:
-	.text       start:0x800300F4 end:0x8003013C align:4
-
 dol/fn_80063EF4.c:
 	.text       start:0x80063EF4 end:0x80063F38 align:4
 
@@ -1221,11 +1206,8 @@ dol/__set_debug_bba.c:
 dol/AlarmHandler.c:
 	.text       start:0x80018510 end:0x80018554 align:4
 
-dol/fn_8002F8EC.c:
-	.text       start:0x8002F8EC end:0x8002F934 align:4
-
-dol/DeleteCallback.c:
-	.text       start:0x8002F934 end:0x8002F9D8 align:4
+dol/card/CARDDelete.c:
+	.text       start:0x8002F934 end:0x8002FC5C align:4
 
 dol/fn_8002DFE0.c:
 	.text       start:0x8002DFE0 end:0x8002E0C4 align:4
@@ -1254,26 +1236,20 @@ dol/CARDFreeBlocks.c:
 dol/bitrev.c:
 	.text       start:0x8002ABC0 end:0x8002AF34 align:4
 
-dol/EraseCallback.c:
-	.text       start:0x8002C194 end:0x8002C4C4 align:4
-
 dol/WriteCallback_CARDDir.c:
 	.text       start:0x8002C4C4 end:0x8002C720 align:4
 
 dol/CARDUnmount.c:
 	.text       start:0x8002E0C4 end:0x8002E170 align:4
 
-dol/FormatCallback.c:
-	.text       start:0x8002E170 end:0x8002E90C align:4
+dol/card/CARDFormat.c:
+	.text       start:0x8002E170 end:0x8002E954 align:4
 
 dol/card/CARDWrite.c:
-	.text       start:0x8002F5B8 end:0x8002F8EC align:4
+	.text       start:0x8002F5B8 end:0x8002F934 align:4
 
-dol/card/CARDDelete.c:
-	.text       start:0x8002F9D8 end:0x8002FC5C align:4
-
-dol/UpdateIconOffsets.c:
-	.text       start:0x8002FC5C end:0x800300F4 align:4
+dol/card/CARDStat.c:
+	.text       start:0x8002FC5C end:0x8003013C align:4
 
 dol/card/CARDRename.c:
 	.text       start:0x8003013C end:0x80030380 align:4
@@ -1287,18 +1263,14 @@ dol/IsCard.c:
 dol/CARDCreate.c:
 	.text       start:0x8002EDA8 end:0x8002F140 align:4
 
-dol/__CARDSeek.c:
-	.text       start:0x8002F140 end:0x8002F570 align:4
+dol/card/CARDRead.c:
+	.text       start:0x8002F140 end:0x8002F5B8 align:4
 
 dol/CARDOpen.c:
 	.text       start:0x8002E954 end:0x8002EDA8 align:4
 
 dol/L2GlobalInvalidate.c:
 	.text       start:0x8000B8C0 end:0x8000BAB8 align:4
-
-dol/os/OSRtc.c:
-	.text       start:0x8000F670 end:0x800100BC align:4
-	.bss        start:0x8015BFC0 end:0x8015C014 align:32
 
 dol/__OSInitSystemCall.c:
 	.text       start:0x800100DC end:0x80010144 align:4
@@ -1372,9 +1344,6 @@ dol/fn_800579F0.c:
 dol/fn_80077384.c:
 	.text       start:0x80077384 end:0x80077488 align:4
 
-dol/ar/ar.c:
-	.text       start:0x8001E864 end:0x80020360 align:4
-
 dol/__ARQServiceQueueLo.c:
 	.text       start:0x80020360 end:0x80020530 align:4
 
@@ -1387,8 +1356,8 @@ dol/fn_800206FC.c:
 dol/__CARDUnlock.c:
 	.text       start:0x8002AF34 end:0x8002BE20 align:4
 
-dol/BlockReadCallback.c:
-	.text       start:0x8002BE20 end:0x8002C0A0 align:4
+dol/card/CARDRdwr.c:
+	.text       start:0x8002BE20 end:0x8002C0C0 align:4
 
 dol/__OSInterruptInit.c:
 	.text       start:0x8000D570 end:0x8000DD10 align:4
@@ -1456,8 +1425,8 @@ dol/AIStopDMA.c:
 dol/AISetDSPSampleRate.c:
 	.text       start:0x8001E0E4 end:0x8001E304 align:4
 
-dol/__OSResetSWInterruptHandler.c:
-	.text       start:0x8000F264 end:0x8000F358 align:4
+dol/os/OSResetSW.c:
+	.text       start:0x8000F264 end:0x8000F610 align:4
 
 dol/OSExitThread.c:
 	.text       start:0x80010A10 end:0x80010AF4 align:4
@@ -1474,11 +1443,9 @@ dol/OSSleepThread.c:
 dol/OSWakeupThread.c:
 	.text       start:0x80011194 end:0x80011298 align:4
 
-dol/OSGetResetButtonState.c:
-	.text       start:0x8000F358 end:0x8000F610 align:4
-
-dol/WriteSramCallback.c:
-	.text       start:0x8000F610 end:0x8000F670 align:4
+dol/os/OSRtc.c:
+	.text       start:0x8000F610 end:0x800100BC align:4
+	.bss        start:0x8015BFC0 end:0x8015C014 align:32
 
 dol/gx/GXFifo.c:
 	.text       start:0x80031B50 end:0x80032370 align:4
@@ -1498,8 +1465,8 @@ dol/gx/GXTransform.c:
 dol/__AI_SRC_INIT.c:
 	.text       start:0x8001E600 end:0x8001E828 align:4
 
-dol/ARGetDMAStatus.c:
-	.text       start:0x8001E828 end:0x8001E864 align:4
+dol/ar/ar.c:
+	.text       start:0x8001E828 end:0x80020360 align:4
 
 dol/stateCoverClosed.c:
 	.text       start:0x80018554 end:0x80018650 align:4
@@ -2205,8 +2172,8 @@ dol/fn_80022028.c:
 dol/fn_80008FB0.c:
 	.text       start:0x80008FB0 end:0x80009064 align:4
 
-dol/SISetSamplingRate.c:
-	.text       start:0x800132D4 end:0x800133B8 align:4
+dol/si/SISamplingRate.c:
+	.text       start:0x800132D4 end:0x800133DC align:4
 
 dol/__DVDInterruptHandler.c:
 	.text       start:0x80015FC0 end:0x800162A0 align:4
