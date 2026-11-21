@@ -19,6 +19,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).parent)); sys.path.insert(0, 'tool
 import devprobe as d, objsig
 
 TUMAP = 'state/tumap/GFZE01_main.json'
+OWNERS = {}   # unit source -> {data section: index of the piece that defines it}
 
 
 def func_spans(text, name):
@@ -49,7 +50,11 @@ def functions_of(obj_bytes, td):
     t = sg['sections'].get('.text', b'')
     fn = {n: (v, sz) for n, s, v, sz, _ in sg['defs'] if s == '.text' and sz}
     rel = {}
+    # compiler-private labels renumber between compiles: compare them by section and offset
+    private = {n: (s, v) for n, s, v, sz, _ in sg['defs'] if re.fullmatch(r'@\d+', n)}
     for off, typ, nm, add in sg['relocs'].get('.text', []):
+        if nm in private:
+            nm, add = private[nm][0], private[nm][1] + add
         for f, (v, sz) in fn.items():
             if v <= off < v + sz:
                 rel.setdefault(f, []).append((off - v, typ, nm if typ != 10 else '<b>', add))
@@ -93,16 +98,25 @@ def try_split(src, u, runs, mv, cf):
         if None in base: return None, 'base'
         bf, bsecs = functions_of(base[0], td)
         total = 0
-        for (t, syms), code in zip(runs, pieces):
+        owners = {}
+        for k, ((t, syms), code) in enumerate(zip(runs, pieces)):
             o = d.compile_all(code, mv, cf, td, u)
             if None in o: return None, f'compile {t}'
             pf, psecs = functions_of(o[0], td)
             if set(pf) != set(syms): return None, f'functions {t}: {sorted(set(pf) ^ set(syms))[:4]}'
             for s in syms:
                 if pf[s] != bf[s]: return None, f'differs {s}'
-            if any(v for k, v in psecs.items() if k not in ('.text', '.comment') and v): return None, f'extra sections {t}'
+            for sec, size in psecs.items():
+                if sec in ('.text', '.comment') or not size:
+                    continue
+                # a data section moves whole to the one piece that defines it
+                if sec in owners or size != bsecs.get(sec): return None, f'section {sec} in {t}'
+                owners[sec] = k
             total += psecs.get('.text', 0)
         if total != bsecs.get('.text', 0): return None, 'text size'
+        if set(owners) != {s for s, v in bsecs.items() if v and s not in ('.text', '.comment')}:
+            return None, 'data section lost'
+    OWNERS[src] = owners
     return pieces, 'ok'
 
 
@@ -122,7 +136,7 @@ def main():
         if u['module'] != 'main' or u.get('data') or u.get('tu') or u.get('pool') or u.get('asm'): continue
         if only and u['source'] not in only: continue
         secs = re.findall(r'(\.\w+)\s+start', blocks.get(u['source'], ''))
-        if secs != ['.text']: continue
+        if not secs or secs[0] != '.text': continue
         runs = plan(u['source'], u, tu_of)
         if not runs: continue
         key = f"src/{u['source']}"
@@ -145,6 +159,10 @@ def main():
             new_units.append(nu_)
             lo = syms[ss[0]][0]; hi = syms[ss[-1]][0] + syms[ss[-1]][1]
             block = f"{src}:\n\t.text       start:0x{lo:08X} end:0x{hi:08X} align:4\n"
+            for line in blocks[u['source']].splitlines(keepends=True):
+                sec = line.split()[0]
+                if OWNERS[u['source']].get(sec) == k:
+                    block += line
             if k == 0:
                 sp_text = re.sub(rf'^{re.escape(u["source"])}:\n(?:\t.*\n)*', block, sp_text, count=1, flags=re.M)
                 anchor = block

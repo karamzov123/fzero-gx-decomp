@@ -7934,7 +7934,16 @@
       "fn_80031FF4",
       "__GXSaveCPUFifoAux",
       "GXGetGPStatus",
-      "GXGetFifoPtrs"
+      "GXGetFifoPtrs",
+      "fn_800321D8",
+      "__GXFifoInit",
+      "__GXFifoReadEnable",
+      "__GXFifoReadDisable",
+      "__GXFifoLink",
+      "__GXWriteFifoIntEnable",
+      "__GXWriteFifoIntReset",
+      "fn_80032360",
+      "fn_80032368"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
@@ -7976,7 +7985,12 @@
       "GXPokeAlphaUpdate",
       "GXPokeBlendMode",
       "GXPokeColorUpdate",
-      "GXPokeDstAlpha"
+      "GXPokeDstAlpha",
+      "GXPokeDither",
+      "GXPokeZMode",
+      "fn_8003432C",
+      "GXPeekZ",
+      "fn_80034378"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
@@ -7989,8 +8003,7 @@
     "source": "dol/GXFinishInterruptHandler.c",
     "symbols": [
       "GXFinishInterruptHandler",
-      "__GXPEInit",
-      "fn_8003458C"
+      "__GXPEInit"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
@@ -7999,14 +8012,14 @@
   },
   {
     "module": "main",
-    "source": "dol/GXFlush.c",
+    "source": "dol/fn_8003458C.c",
     "symbols": [
-      "GXFlush"
+      "fn_8003458C"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n",
+    "collapsed": true
   },
   {
     "module": "main",
@@ -8068,14 +8081,18 @@
       "fn_80035680",
       "fn_80035690",
       "fn_800356AC",
-      "fn_800356B8"
+      "fn_800356B8",
+      "fn_80035734",
+      "fn_80035828",
+      "fn_8003591C",
+      "fn_80035960"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
     "pool": {
-      "@15": "lbl_801A7088",
-      "@16": "lbl_801A70A0",
-      "@17": "lbl_801A70B4"
+      "@17": "lbl_801A7088",
+      "@18": "lbl_801A70A0",
+      "@19": "lbl_801A70B4"
     },
     "collapsed": true,
     "matching_for": ["GFZE01", "GFZJ01"]
@@ -8140,21 +8157,6 @@
   },
   {
     "module": "main",
-    "source": "dol/GXPokeDither.c",
-    "symbols": [
-      "GXPokeDither",
-      "GXPokeZMode",
-      "fn_8003432C",
-      "GXPeekZ",
-      "fn_80034378"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
     "source": "dol/GXReadXfRasMetric.c",
     "symbols": [
       "GXReadXfRasMetric"
@@ -8199,16 +8201,18 @@
     "module": "main",
     "source": "dol/GXSetMisc.c",
     "symbols": [
-      "GXSetMisc"
+      "GXSetMisc",
+      "GXFlush"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.2.5n",
-    "extra_cflags": []
+    "extra_cflags": [],
+    "collapsed": true
   },
   {
     "module": "main",
-    "source": "dol/GXSetProjection.c",
+    "source": "dol/gx/GXTransform.c",
     "symbols": [
       "GXSetProjection",
       "GXSetProjectionv",
@@ -8217,7 +8221,14 @@
       "GXLoadNrmMtxImm",
       "GXSetCurrentMtx",
       "GXLoadTexMtxImm",
-      "fn_80038DE8"
+      "fn_80038DE8",
+      "fn_80038EEC",
+      "fn_80038F10",
+      "GXSetScissor",
+      "GXGetScissor",
+      "GXSetScissorBoxOffset",
+      "GXSetClipMode",
+      "__GXSetMatrixIndex"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
@@ -8232,13 +8243,16 @@
   },
   {
     "module": "main",
-    "source": "dol/GXSetTevIndirect.c",
+    "source": "dol/gx/GXBump.c",
     "symbols": [
       "GXSetTevIndirect",
       "fn_80036AC4",
       "GXSetIndTexCoordScale",
       "GXSetIndTexOrder",
-      "GXSetNumIndStages"
+      "GXSetNumIndStages",
+      "fn_80036EDC",
+      "fn_80036F24",
+      "__GXFlushTextureState"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
@@ -8246,7 +8260,11 @@
     "collapsed": true,
     "pool": {
       "@44": "lbl_801A70F0"
-    }
+    },
+    "extra_cflags": [
+      "-inline",
+      "on,noauto"
+    ]
   },
   {
     "module": "main",
@@ -10599,40 +10617,6 @@
   },
   {
     "module": "main",
-    "source": "dol/__GXFifoInit.c",
-    "symbols": [
-      "__GXFifoInit"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/__GXFifoLink.c",
-    "symbols": [
-      "__GXFifoLink"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/__GXFifoReadEnable.c",
-    "symbols": [
-      "__GXFifoReadEnable",
-      "__GXFifoReadDisable"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "collapsed": true
-  },
-  {
-    "module": "main",
     "source": "dol/__GXInitGX.c",
     "symbols": [
       "__GXInitGX"
@@ -10694,28 +10678,6 @@
     "pool": {
       "@81": "lbl_801A7080"
     }
-  },
-  {
-    "module": "main",
-    "source": "dol/__GXWriteFifoIntEnable.c",
-    "symbols": [
-      "__GXWriteFifoIntEnable"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/__GXWriteFifoIntReset.c",
-    "symbols": [
-      "__GXWriteFifoIntReset"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
   },
   {
     "module": "main",
@@ -23932,20 +23894,8 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_800321D8.c",
+    "source": "dol/__GXXfVtxSpecs.c",
     "symbols": [
-      "fn_800321D8"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80032360.c",
-    "symbols": [
-      "fn_80032360",
-      "fn_80032368",
       "__GXXfVtxSpecs",
       "GXSetVtxDesc",
       "GXSetVtxDescv",
@@ -24078,42 +24028,8 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_80035734.c",
+    "source": "dol/GXGetTexBufferSize.c",
     "symbols": [
-      "fn_80035734"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80035828.c",
-    "symbols": [
-      "fn_80035828"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8003591C.c",
-    "symbols": [
-      "fn_8003591C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80035960.c",
-    "symbols": [
-      "fn_80035960",
       "GXGetTexBufferSize",
       "__GetImageTileCount"
     ],
@@ -24121,19 +24037,6 @@
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.2.5n",
     "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80036EDC.c",
-    "symbols": [
-      "fn_80036EDC",
-      "fn_80036F24",
-      "__GXFlushTextureState"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true,
-    "matching_for": ["GFZE01", "GFZJ01"]
   },
   {
     "module": "main",
@@ -24225,23 +24128,6 @@
       "...bss.0": "lbl_801783A0",
       "lbl_801783A0": "lbl_801783A0"
     }
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80038EEC.c",
-    "symbols": [
-      "fn_80038EEC",
-      "fn_80038F10",
-      "GXSetScissor",
-      "GXGetScissor",
-      "GXSetScissorBoxOffset",
-      "GXSetClipMode",
-      "__GXSetMatrixIndex"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
   },
   {
     "module": "main",

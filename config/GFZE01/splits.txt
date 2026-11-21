@@ -149,27 +149,18 @@ dol/fn_8002A7C4.c:
 dol/CARDFormatAsync.c:
 	.text       start:0x8002E90C end:0x8002E954
 
-dol/__GXFifoInit.c:
-	.text       start:0x8003221C end:0x80032268
-
-dol/fn_80032360.c:
-	.text       start:0x80032360 end:0x80032EB8 align:4
+dol/__GXXfVtxSpecs.c:
+	.text       start:0x80032370 end:0x80032EB8 align:4
 	.data       start:0x8012AD40 end:0x8012AE78 align:32
 
 dol/fn_80033E7C.c:
 	.text       start:0x80033E7C end:0x8003401C align:4
 
-dol/GXPokeDither.c:
-	.text       start:0x800342E8 end:0x800343BC align:4
-
 dol/GXFinishInterruptHandler.c:
-	.text       start:0x80034488 end:0x8003462C align:4
+	.text       start:0x80034488 end:0x8003458C align:4
 
-dol/fn_8003591C.c:
-	.text       start:0x8003591C end:0x80035960
-
-dol/fn_80038EEC.c:
-	.text       start:0x80038EEC end:0x8003910C align:4
+dol/fn_8003458C.c:
+	.text       start:0x8003458C end:0x8003462C align:4
 
 dol/fn_800421C0.c:
 	.text       start:0x800421C0 end:0x800421CC
@@ -293,9 +284,6 @@ dol/fn_8001989C.c:
 
 dol/fn_8001DF00.c:
 	.text       start:0x8001DF00 end:0x8001DF44 align:4
-
-dol/fn_800321D8.c:
-	.text       start:0x800321D8 end:0x8003221C align:4
 
 dol/PADSetSamplingCallback_Pad.c:
 	.text       start:0x8001DE30 end:0x8001DF00 align:4
@@ -520,9 +508,6 @@ dol/fn_800280F0.c:
 dol/fn_80023638.c:
 	.text       start:0x80023638 end:0x80023B70 align:4
 
-dol/GXFlush.c:
-	.text       start:0x80033E20 end:0x80033E7C align:4
-
 dol/stateCheckID2.c:
 	.text       start:0x800181E4 end:0x80018330 align:4
 
@@ -733,23 +718,11 @@ dol/WriteCallback.c:
 dol/fn_8002F570.c:
 	.text       start:0x8002F570 end:0x8002F5B8 align:4
 
-dol/__GXFifoReadEnable.c:
-	.text       start:0x80032268 end:0x800322AC align:4
-
-dol/__GXWriteFifoIntEnable.c:
-	.text       start:0x800322E8 end:0x80032324 align:4
-
-dol/__GXFifoLink.c:
-	.text       start:0x800322AC end:0x800322E8 align:4
-
 dol/GXTokenInterruptHandler.c:
 	.text       start:0x800343BC end:0x80034488 align:4
 
 dol/GXLoadTexObj.c:
 	.text       start:0x80036388 end:0x8003658C align:4
-
-dol/fn_80036EDC.c:
-	.text       start:0x80036EDC end:0x80037014 align:4
 
 dol/fn_800433A4.c:
 	.text       start:0x800433A4 end:0x80043460 align:4
@@ -1196,7 +1169,7 @@ dol/cbForUnrecoveredErrorRetry.c:
 	.text       start:0x80017E10 end:0x80017ED0 align:4
 
 dol/GXDrawDone.c:
-	.text       start:0x8003416C end:0x800342E8 align:4
+	.text       start:0x8003416C end:0x800343BC align:4
 
 dol/GXSetTexRegionCallback.c:
 	.text       start:0x8003658C end:0x80036A28 align:4
@@ -1206,9 +1179,6 @@ dol/AIStartDMA.c:
 
 dol/fn_8006CE1C.c:
 	.text       start:0x8006CE1C end:0x8006CFF8 align:4
-
-dol/__GXWriteFifoIntReset.c:
-	.text       start:0x80032324 end:0x80032360 align:4
 
 dol/__OSDoHotReset.c:
 	.text       start:0x8000EF64 end:0x8000F234 align:4
@@ -1544,7 +1514,7 @@ dol/OSGetResetButtonState.c:
 	.text       start:0x8000F358 end:0x8000F670 align:4
 
 dol/gx/GXFifo.c:
-	.text       start:0x80031B50 end:0x800321D8 align:4
+	.text       start:0x80031B50 end:0x80032370 align:4
 
 dol/GXGetVtxAttrFmt.c:
 	.text       start:0x800336EC end:0x80033D8C align:4
@@ -1556,14 +1526,14 @@ dol/gx/GXGeometry.c:
 dol/gx/GXFrameBuf.c:
 	.text       start:0x8003493C end:0x80035420 align:4
 
-dol/GXSetTevIndirect.c:
-	.text       start:0x80036A28 end:0x80036EDC align:4
+dol/gx/GXBump.c:
+	.text       start:0x80036A28 end:0x80037014 align:4
 
 dol/gx/GXPixel.c:
 	.text       start:0x80037A14 end:0x80037E30 align:4
 
-dol/GXSetProjection.c:
-	.text       start:0x80038A88 end:0x80038EEC align:4
+dol/gx/GXTransform.c:
+	.text       start:0x80038A88 end:0x8003910C align:4
 
 dol/__AI_SRC_INIT.c:
 	.text       start:0x8001E600 end:0x8001E864 align:4
@@ -1746,7 +1716,7 @@ dol/__GXDefaultTexRegionCallback.c:
 	.text       start:0x800307CC end:0x80030848 align:4
 
 dol/GXInitLightDistAttn.c:
-	.text       start:0x800355B0 end:0x80035734 align:4
+	.text       start:0x800355B0 end:0x80035A2C align:4
 
 dol/GXInitTexObj.c:
 	.text       start:0x80035C50 end:0x80035EC4 align:4
@@ -2084,7 +2054,7 @@ dol/fn_8008EB8C.c:
 	.text       start:0x8008EB8C end:0x8008EBF8 align:4
 
 dol/GXSetMisc.c:
-	.text       start:0x80033D8C end:0x80033E20 align:4
+	.text       start:0x80033D8C end:0x80033E7C align:4
 
 dol/fn_8007AA7C.c:
 	.text       start:0x8007AA7C end:0x8007AB58 align:4
@@ -2098,8 +2068,8 @@ dol/fn_8007E96C.c:
 dol/fn_8000591C.c:
 	.text       start:0x8000591C end:0x80005A08 align:4
 
-dol/fn_80035960.c:
-	.text       start:0x80035960 end:0x80035C50 align:4
+dol/GXGetTexBufferSize.c:
+	.text       start:0x80035A2C end:0x80035C50 align:4
 	.data       start:0x8012B140 end:0x8012B328 align:32
 
 dol/ddh_cc_read.c:
@@ -2449,12 +2419,6 @@ dol/func_80008378.c:
 
 dol/fn_80033650.c:
 	.text       start:0x80033650 end:0x800336EC align:4
-
-dol/fn_80035734.c:
-	.text       start:0x80035734 end:0x80035828 align:4
-
-dol/fn_80035828.c:
-	.text       start:0x80035828 end:0x8003591C align:4
 
 dol/fn_8003401C.c:
 	.text       start:0x8003401C end:0x8003416C align:4

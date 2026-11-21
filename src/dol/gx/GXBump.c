@@ -3,6 +3,7 @@
 #include <types.h>
 #include "sdk_addresses.h"
 #include "types.h"
+#include "dolphin/hw_regs.h"
 
 void GXSetTevIndirect(GXTevStageID tevStage, GXIndTexStageID texStage, GXIndTexFormat texFmt,
                  GXIndTexBiasSel biasSel, GXIndTexMtxID mtxID, GXIndTexWrap wrapS,
@@ -196,4 +197,53 @@ void GXSetNumIndStages(u32 arg0) {
     struct GXState *state = (struct GXState *)gx;
     state->state_204 = (state->state_204 & 0xFFF8FFFF) | ((arg0 & 0xFF) << 16);
     state->state_4F4 |= 6;
+}
+
+void GXSetTevIndirect(GXTevStageID tevStage, GXIndTexStageID texStage, GXIndTexFormat texFmt,
+                      GXIndTexBiasSel biasSel, GXIndTexMtxID mtxID, GXIndTexWrap wrapS,
+                      GXIndTexWrap wrapT, u8 addPrev, u8 utcLod, GXIndTexAlphaSel alphaSel);
+
+void fn_80036EDC(GXTevStageID tevStage) {
+    GXSetTevIndirect(tevStage, GX_INDTEXSTAGE0, GX_ITF_8, GX_ITB_NONE, GX_ITM_OFF, GX_ITW_OFF,
+                     GX_ITW_OFF, 0, 0, GX_ITBA_OFF);
+}
+
+#define GET_REG_FIELD(reg, size, shift) (((reg) >> (shift)) & ((1 << (size)) - 1))
+
+void fn_80036F24(void) {
+    u32 stage_count;
+    u32 i;
+    u32 tex_map;
+    u32 new_mask;
+
+    new_mask = 0;
+    stage_count = GET_REG_FIELD(gx->genMode, 3, 16);
+    for (i = 0; i < stage_count; i++) {
+        switch (i) {
+        case 0:
+            tex_map = GET_REG_FIELD(gx->iref, 3, 0);
+            break;
+        case 1:
+            tex_map = GET_REG_FIELD(gx->iref, 3, 6);
+            break;
+        case 2:
+            tex_map = GET_REG_FIELD(gx->iref, 3, 12);
+            break;
+        case 3:
+            tex_map = GET_REG_FIELD(gx->iref, 3, 18);
+            break;
+        }
+        new_mask |= 1 << tex_map;
+    }
+    if ((gx->bpMask & 0xff) != new_mask) {
+        SET_REG_FIELD(gx->bpMask, 8, 0, new_mask);
+        GX_WRITE_RAS_REG(gx->bpMask);
+        gx->bpSentNot = 0;
+    }
+}
+
+void __GXFlushTextureState(void) {
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.s32 = gx->bpMask;
+    gx->bpSentNot = 0;
 }

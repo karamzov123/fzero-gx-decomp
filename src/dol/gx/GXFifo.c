@@ -29,6 +29,8 @@ void __GXWriteFifoIntReset(u8 hiWatermarkClr, u8 loWatermarkClr);
 void GXInitFifoPtrs(GXFifoObj *fifo, void *readPtr, void *writePtr);
 void fn_80031D60(GXFifoObj *fifo, u32 hiWatermark, u32 loWatermark);
 void __GXSaveCPUFifoAux(GXFifoObj *fifo);
+OSThread *fn_800102AC(void);
+void *__OSSetInterruptHandler(s16 interrupt, void (*handler)(s16, OSContext *));
 
 static inline void GXOverflowHandler(void) {
     lbl_801A6C08 += 1;
@@ -225,4 +227,57 @@ void GXGetFifoPtrs(GXFifoObj *fifo, void **readPtr, void **writePtr) {
     }
     *readPtr = fifo->read_ptr;
     *writePtr = fifo->write_ptr;
+}
+
+GXBreakPtCallback fn_800321D8(GXBreakPtCallback callback) {
+    GXBreakPtCallback old = lbl_801A6C04;
+    BOOL enabled = OSDisableInterrupts();
+
+    lbl_801A6C04 = callback;
+    OSRestoreInterrupts(enabled);
+    return old;
+}
+
+void __GXFifoInit(void) {
+    __OSSetInterruptHandler(17, GXCPInterruptHandler);
+    __OSUnmaskInterrupts(0x4000);
+    lbl_801A6BF8 = fn_800102AC();
+    lbl_801A6C00 = 0;
+    lbl_801A6BF0 = 0;
+    lbl_801A6BF4 = 0;
+}
+
+void __GXFifoReadEnable(void) {
+    gx->cpEnable = (gx->cpEnable & ~1) | 1;
+    __cpReg[1] = gx->cpEnable;
+}
+
+void __GXFifoReadDisable(void) {
+    gx->cpEnable = gx->cpEnable & ~1;
+    __cpReg[1] = gx->cpEnable;
+}
+
+void __GXFifoLink(u8 en) {
+    gx->cpEnable = (gx->cpEnable & ~(1 << 4)) | ((en ? 1 : 0) << 4);
+    __cpReg[1] = gx->cpEnable;
+}
+
+void __GXWriteFifoIntEnable(u8 hiWatermarkEn, u8 loWatermarkEn) {
+    gx->cpEnable = (gx->cpEnable & ~4) | (hiWatermarkEn << 2);
+    gx->cpEnable = (gx->cpEnable & ~8) | (loWatermarkEn << 3);
+    __cpReg[1] = gx->cpEnable;
+}
+
+void __GXWriteFifoIntReset(u8 hiWatermarkClr, u8 loWatermarkClr) {
+    gx->cpClr = (gx->cpClr & ~1) | hiWatermarkClr;
+    gx->cpClr = (gx->cpClr & ~2) | (loWatermarkClr << 1);
+    __cpReg[2] = gx->cpClr;
+}
+
+GXFifoObj *fn_80032360(void) {
+    return lbl_801A6BF0;
+}
+
+GXFifoObj *fn_80032368(void) {
+    return lbl_801A6BF4;
 }

@@ -142,17 +142,19 @@ def integer_views(text, canon):
 
 
 def normalize_externs(text):
-    """The OS interrupt calls come from their SDK header; __peReg is one volatile u16 block."""
+    """The OS interrupt calls come from their SDK header; __peReg and __cpReg are volatile u16 blocks."""
     text = re.sub(r'^extern\s+\w+\s+OS(?:Disable|Restore)Interrupts\([^)]*\);\n', '', text, flags=re.M)
     text = re.sub(r'\bOSDisableInterrupts\(\s*\w+\s*\)', 'OSDisableInterrupts()', text)
-    v = re.search(r'struct\s+(\w+___peReg_T)\s*\{([^{}]*)\}\s*;\n?', text)
-    if v:
-        fields = layout(v.group(2))
-        text = text[:v.start()] + text[v.end():]
-        text = re.sub(rf'^extern\s+struct\s+{v.group(1)}\s*\*\s*__peReg\s*;',
-                      'extern volatile u16 *__peReg;', text, flags=re.M)
-        text = re.sub(r'__peReg->(\w+)', lambda m: f'__peReg[{fields[m.group(1)][0] // 2}]', text)
-    return re.sub(r'^extern\s+u16\s*\*\s*__peReg\s*;', 'extern volatile u16 *__peReg;', text, flags=re.M)
+    for reg in ('__peReg', '__cpReg'):
+        decl = f'extern volatile u16 *{reg};'
+        v = re.search(rf'struct\s+(\w+_{reg}_T)\s*\{{([^{{}}]*)\}}\s*;\n?', text)
+        if v:
+            fields = layout(v.group(2))
+            text = text[:v.start()] + text[v.end():]
+            text = re.sub(rf'^extern\s+struct\s+{v.group(1)}\s*\*\s*{reg}\s*;', decl, text, flags=re.M)
+            text = re.sub(rf'{reg}->(\w+)', lambda m: f'{reg}[{fields[m.group(1)][0] // 2}]', text)
+        text = re.sub(rf'^extern\s+(?:u16|vu16)\s*\*\s*{reg}\s*;', decl, text, flags=re.M)
+    return text
 
 
 def view_field(canon, views, name):

@@ -4,9 +4,9 @@
  "note": "draft evidence map; not consumed by tooling",
  "summary": {
   "functions": 2230,
-  "assigned": 908,
+  "assigned": 948,
   "bytes": 567556,
-  "assigned_bytes": 237116,
+  "assigned_bytes": 248248,
   "tus": 153,
   "conflicts": 2,
   "string_anchored": 13
@@ -1357,13 +1357,18 @@
    "file": "GXInit.c",
    "text": [
     "800307CC",
-    "80030848"
+    "80031B50"
    ],
    "functions": [
-    "__GXDefaultTexRegionCallback"
+    "__GXDefaultTexRegionCallback",
+    "fn_80030848",
+    "fn_8003086C",
+    "GXInit",
+    "__GXInitGX"
    ],
    "how": {
-    "sdkimport": 1
+    "sdkimport": 1,
+    "sdk-order": 4
    },
    "lib": "gx"
   },
@@ -1371,7 +1376,7 @@
    "file": "GXFifo.c",
    "text": [
     "80031B50",
-    "800321D8"
+    "80032370"
    ],
    "functions": [
     "GXCPInterruptHandler",
@@ -1383,12 +1388,22 @@
     "fn_80031FF4",
     "__GXSaveCPUFifoAux",
     "GXGetGPStatus",
-    "GXGetFifoPtrs"
+    "GXGetFifoPtrs",
+    "fn_800321D8",
+    "__GXFifoInit",
+    "__GXFifoReadEnable",
+    "__GXFifoReadDisable",
+    "__GXFifoLink",
+    "__GXWriteFifoIntEnable",
+    "__GXWriteFifoIntReset",
+    "fn_80032360",
+    "fn_80032368"
    ],
    "how": {
     "sdkimport": 5,
     "donor-name": 3,
-    "between": 2
+    "between": 2,
+    "sdk-order": 9
    },
    "lib": "gx"
   },
@@ -1427,10 +1442,13 @@
   {
    "file": "GXMisc.c",
    "text": [
-    "80033EB0",
-    "8003432C"
+    "80033D8C",
+    "8003458C"
    ],
    "functions": [
+    "GXSetMisc",
+    "GXFlush",
+    "fn_80033E7C",
     "fn_80033EB0",
     "fn_8003401C",
     "GXSetDrawDone",
@@ -1442,22 +1460,32 @@
     "GXPokeColorUpdate",
     "GXPokeDstAlpha",
     "GXPokeDither",
-    "GXPokeZMode"
+    "GXPokeZMode",
+    "fn_8003432C",
+    "GXPeekZ",
+    "fn_80034378",
+    "GXTokenInterruptHandler",
+    "fn_80034444",
+    "GXFinishInterruptHandler",
+    "__GXPEInit"
    ],
    "how": {
     "sdkimport": 4,
     "between": 1,
-    "donor-name": 7
+    "donor-name": 7,
+    "sdk-order": 10
    },
    "lib": "gx"
   },
   {
    "file": "GXGeometry.c",
    "text": [
-    "8003471C",
+    "8003458C",
     "8003493C"
    ],
    "functions": [
+    "fn_8003458C",
+    "fn_8003462C",
     "__GXSendFlushPrim",
     "GXSetLineWidth",
     "GXSetPointSize",
@@ -1469,7 +1497,8 @@
    "how": {
     "sdkimport": 3,
     "donor-name": 2,
-    "between": 2
+    "between": 2,
+    "sdk-order": 2
    },
    "lib": "gx"
   },
@@ -1504,14 +1533,24 @@
   {
    "file": "GXLight.c",
    "text": [
-    "800355B0",
-    "80035680"
+    "80035420",
+    "80035A2C"
    ],
    "functions": [
-    "GXInitLightDistAttn"
+    "fn_80035420",
+    "GXInitLightDistAttn",
+    "fn_80035680",
+    "fn_80035690",
+    "fn_800356AC",
+    "fn_800356B8",
+    "fn_80035734",
+    "fn_80035828",
+    "fn_8003591C",
+    "fn_80035960"
    ],
    "how": {
-    "sdkimport": 1
+    "sdkimport": 1,
+    "sdk-order": 9
    },
    "lib": "gx"
   },
@@ -1607,10 +1646,11 @@
   {
    "file": "GXPixel.c",
    "text": [
-    "80037A14",
+    "800377F8",
     "80037E30"
    ],
    "functions": [
+    "fn_800377F8",
     "GXSetFogRangeAdj",
     "fn_80037B14",
     "fn_80037B68",
@@ -1626,7 +1666,8 @@
    "how": {
     "sdkimport": 2,
     "between": 8,
-    "donor-name": 1
+    "donor-name": 1,
+    "sdk-order": 1
    },
    "lib": "gx"
   },
@@ -1677,14 +1718,20 @@
   {
    "file": "GXPerf.c",
    "text": [
-    "80039B7C",
+    "8003910C",
     "80039C40"
    ],
    "functions": [
+    "GXSetGPMetric",
+    "fn_80039954",
+    "GXClearGPMetric",
+    "fn_80039B0C",
+    "fn_80039B38",
     "GXReadXfRasMetric"
    ],
    "how": {
-    "sdkimport": 1
+    "sdkimport": 1,
+    "sdk-order": 5
    },
    "lib": "gx"
   },
@@ -5658,321 +5705,6 @@
    ]
   },
   {
-   "name": "fn_80030848",
-   "addr": "80030848",
-   "size": 36,
-   "candidates": [
-    "GXInit.c",
-    "GXFifo.c"
-   ]
-  },
-  {
-   "name": "fn_8003086C",
-   "addr": "8003086C",
-   "size": 400,
-   "candidates": [
-    "GXInit.c",
-    "GXFifo.c"
-   ]
-  },
-  {
-   "name": "GXInit",
-   "addr": "800309FC",
-   "size": 2192,
-   "candidates": [
-    "GXInit.c",
-    "GXFifo.c"
-   ]
-  },
-  {
-   "name": "__GXInitGX",
-   "addr": "8003128C",
-   "size": 2244,
-   "candidates": [
-    "GXInit.c",
-    "GXFifo.c"
-   ]
-  },
-  {
-   "name": "fn_800321D8",
-   "addr": "800321D8",
-   "size": 68,
-   "candidates": [
-    "GXFifo.c",
-    "GXAttr.c"
-   ]
-  },
-  {
-   "name": "__GXFifoInit",
-   "addr": "8003221C",
-   "size": 76,
-   "candidates": [
-    "GXFifo.c",
-    "GXAttr.c"
-   ]
-  },
-  {
-   "name": "__GXFifoReadEnable",
-   "addr": "80032268",
-   "size": 36,
-   "candidates": [
-    "GXFifo.c",
-    "GXAttr.c"
-   ]
-  },
-  {
-   "name": "__GXFifoReadDisable",
-   "addr": "8003228C",
-   "size": 32,
-   "candidates": [
-    "GXFifo.c",
-    "GXAttr.c"
-   ]
-  },
-  {
-   "name": "__GXFifoLink",
-   "addr": "800322AC",
-   "size": 60,
-   "candidates": [
-    "GXFifo.c",
-    "GXAttr.c"
-   ]
-  },
-  {
-   "name": "__GXWriteFifoIntEnable",
-   "addr": "800322E8",
-   "size": 60,
-   "candidates": [
-    "GXFifo.c",
-    "GXAttr.c"
-   ]
-  },
-  {
-   "name": "__GXWriteFifoIntReset",
-   "addr": "80032324",
-   "size": 60,
-   "candidates": [
-    "GXFifo.c",
-    "GXAttr.c"
-   ]
-  },
-  {
-   "name": "fn_80032360",
-   "addr": "80032360",
-   "size": 8,
-   "candidates": [
-    "GXFifo.c",
-    "GXAttr.c"
-   ]
-  },
-  {
-   "name": "fn_80032368",
-   "addr": "80032368",
-   "size": 8,
-   "candidates": [
-    "GXFifo.c",
-    "GXAttr.c"
-   ]
-  },
-  {
-   "name": "GXSetMisc",
-   "addr": "80033D8C",
-   "size": 148,
-   "candidates": [
-    "GXAttr.c",
-    "GXMisc.c"
-   ]
-  },
-  {
-   "name": "GXFlush",
-   "addr": "80033E20",
-   "size": 92,
-   "candidates": [
-    "GXAttr.c",
-    "GXMisc.c"
-   ]
-  },
-  {
-   "name": "fn_80033E7C",
-   "addr": "80033E7C",
-   "size": 52,
-   "candidates": [
-    "GXAttr.c",
-    "GXMisc.c"
-   ]
-  },
-  {
-   "name": "fn_8003432C",
-   "addr": "8003432C",
-   "size": 36,
-   "candidates": [
-    "GXMisc.c",
-    "GXGeometry.c"
-   ]
-  },
-  {
-   "name": "GXPeekZ",
-   "addr": "80034350",
-   "size": 40,
-   "candidates": [
-    "GXMisc.c",
-    "GXGeometry.c"
-   ]
-  },
-  {
-   "name": "fn_80034378",
-   "addr": "80034378",
-   "size": 68,
-   "candidates": [
-    "GXMisc.c",
-    "GXGeometry.c"
-   ]
-  },
-  {
-   "name": "GXTokenInterruptHandler",
-   "addr": "800343BC",
-   "size": 136,
-   "candidates": [
-    "GXMisc.c",
-    "GXGeometry.c"
-   ]
-  },
-  {
-   "name": "fn_80034444",
-   "addr": "80034444",
-   "size": 68,
-   "candidates": [
-    "GXMisc.c",
-    "GXGeometry.c"
-   ]
-  },
-  {
-   "name": "GXFinishInterruptHandler",
-   "addr": "80034488",
-   "size": 132,
-   "candidates": [
-    "GXMisc.c",
-    "GXGeometry.c"
-   ]
-  },
-  {
-   "name": "__GXPEInit",
-   "addr": "8003450C",
-   "size": 128,
-   "candidates": [
-    "GXMisc.c",
-    "GXGeometry.c"
-   ]
-  },
-  {
-   "name": "fn_8003458C",
-   "addr": "8003458C",
-   "size": 160,
-   "candidates": [
-    "GXMisc.c",
-    "GXGeometry.c"
-   ]
-  },
-  {
-   "name": "fn_8003462C",
-   "addr": "8003462C",
-   "size": 240,
-   "candidates": [
-    "GXMisc.c",
-    "GXGeometry.c"
-   ]
-  },
-  {
-   "name": "fn_80035420",
-   "addr": "80035420",
-   "size": 400,
-   "candidates": [
-    "GXFrameBuf.c",
-    "GXLight.c"
-   ]
-  },
-  {
-   "name": "fn_80035680",
-   "addr": "80035680",
-   "size": 16,
-   "candidates": [
-    "GXLight.c",
-    "GXTexture.c"
-   ]
-  },
-  {
-   "name": "fn_80035690",
-   "addr": "80035690",
-   "size": 28,
-   "candidates": [
-    "GXLight.c",
-    "GXTexture.c"
-   ]
-  },
-  {
-   "name": "fn_800356AC",
-   "addr": "800356AC",
-   "size": 12,
-   "candidates": [
-    "GXLight.c",
-    "GXTexture.c"
-   ]
-  },
-  {
-   "name": "fn_800356B8",
-   "addr": "800356B8",
-   "size": 124,
-   "candidates": [
-    "GXLight.c",
-    "GXTexture.c"
-   ]
-  },
-  {
-   "name": "fn_80035734",
-   "addr": "80035734",
-   "size": 244,
-   "candidates": [
-    "GXLight.c",
-    "GXTexture.c"
-   ]
-  },
-  {
-   "name": "fn_80035828",
-   "addr": "80035828",
-   "size": 244,
-   "candidates": [
-    "GXLight.c",
-    "GXTexture.c"
-   ]
-  },
-  {
-   "name": "fn_8003591C",
-   "addr": "8003591C",
-   "size": 68,
-   "candidates": [
-    "GXLight.c",
-    "GXTexture.c"
-   ]
-  },
-  {
-   "name": "fn_80035960",
-   "addr": "80035960",
-   "size": 204,
-   "candidates": [
-    "GXLight.c",
-    "GXTexture.c"
-   ]
-  },
-  {
-   "name": "fn_800377F8",
-   "addr": "800377F8",
-   "size": 540,
-   "candidates": [
-    "GXTev.c",
-    "GXPixel.c"
-   ]
-  },
-  {
    "name": "fn_80037E30",
    "addr": "80037E30",
    "size": 1740,
@@ -6015,51 +5747,6 @@
    "candidates": [
     "GXPixel.c",
     "GXDisplayList.c"
-   ]
-  },
-  {
-   "name": "GXSetGPMetric",
-   "addr": "8003910C",
-   "size": 2120,
-   "candidates": [
-    "GXTransform.c",
-    "GXPerf.c"
-   ]
-  },
-  {
-   "name": "fn_80039954",
-   "addr": "80039954",
-   "size": 424,
-   "candidates": [
-    "GXTransform.c",
-    "GXPerf.c"
-   ]
-  },
-  {
-   "name": "GXClearGPMetric",
-   "addr": "80039AFC",
-   "size": 16,
-   "candidates": [
-    "GXTransform.c",
-    "GXPerf.c"
-   ]
-  },
-  {
-   "name": "fn_80039B0C",
-   "addr": "80039B0C",
-   "size": 44,
-   "candidates": [
-    "GXTransform.c",
-    "GXPerf.c"
-   ]
-  },
-  {
-   "name": "fn_80039B38",
-   "addr": "80039B38",
-   "size": 68,
-   "candidates": [
-    "GXTransform.c",
-    "GXPerf.c"
    ]
   },
   {

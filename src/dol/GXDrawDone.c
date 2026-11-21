@@ -1,6 +1,6 @@
-#include "types.h"
 #include <dolphin/gx.h>
 #include <dolphin/gx/GXPriv.h>
+#include "types.h"
 #include <dolphin/os/OSInterrupt.h>
 #include <types.h>
 #include <dolphin/types.h>
@@ -120,4 +120,55 @@ void GXPokeDstAlpha(GXBool enable, u8 alpha) {
     (val) = (val & ~(((1 << (1)) - 1) << (31 - (0x17) - (1) + 1))) |
             ((int)(enable) << (31 - (0x17) - (1) + 1));
     __peReg[2] = val;
+}
+
+// The PE register is memory-mapped hardware and must not be cached.
+
+void GXPokeDither(u8 value) {
+    u16 current = __peReg[1];
+    __peReg[1] = (u16)((current & ~(1 << 2)) | ((value & 0xFF) << 2));
+}
+
+// The PE register is memory-mapped hardware and must not be cached.
+
+void GXPokeZMode(u32 arg0, u32 arg1, u32 arg2) {
+    u32 value;
+    value = arg0 & 0xFF;
+    value = (value & ~(7u << 1)) | (arg1 << 1);
+    value = (value & ~(1u << 4)) | ((arg2 & 0xFF) << 4);
+    *__peReg = (u16)value;
+}
+
+struct fn_8003432C_Arg2 {
+    u32 unk_0;
+};
+
+u32 fn_8003432C(u32 arg0, u32 arg1, struct fn_8003432C_Arg2 *arg2) {
+    u32 v0;
+    v0 = ((((((arg0 & 0xFFFF) << 2) | 0xC8000000) & 0xFFC00FFF) | ((arg1 & 0xFFFF) << 12)) & 0xFF3FFFFF);
+    arg2->unk_0 = *(u32 *)((u8 *)v0 + 0);
+    return v0;
+}
+
+struct GXPeekZ_Arg2 {
+    u32 unk_0;
+};
+
+u32 GXPeekZ(u32 arg0, u32 arg1, struct GXPeekZ_Arg2 *arg2) {
+    u32 v0;
+    v0 = (((((((arg0 & 0xFFFF) << 2) | 0xC8000000) & 0xFFC00FFF) | ((arg1 & 0xFFFF) << 12)) & 0xFF3FFFFF) | 0x400000);
+    arg2->unk_0 = *(u32 *)((u8 *)v0 + 0);
+    return v0;
+}
+
+extern u32 lbl_801A6C10;
+
+u32 fn_80034378(u32 arg0) {
+    u32 v0;
+    u32 t0;
+    v0 = lbl_801A6C10;
+    t0 = OSDisableInterrupts();
+    lbl_801A6C10 = arg0;
+    OSRestoreInterrupts(t0);
+    return v0;
 }
