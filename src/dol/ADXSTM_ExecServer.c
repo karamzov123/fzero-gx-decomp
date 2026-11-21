@@ -8,9 +8,7 @@ struct fn_8004A53C_Arg0 {
     u32 unk_10;
 };
 
-u32 fn_8004A53C(struct fn_8004A53C_Arg0 *arg0) {
-    return arg0->unk_10;
-}
+u32 fn_8004A53C(struct fn_8004A53C_Arg0 *arg0);
 
 /* --- dol/fn_8004A544.c --- */
 struct fn_8004A544_Arg0 {
@@ -18,10 +16,7 @@ struct fn_8004A544_Arg0 {
     u32 unk_28;
 };
 
-s32 fn_8004A544(struct fn_8004A544_Arg0 *arg0, u32 arg1) {
-    arg0->unk_28 = arg1;
-    return 1;
-}
+s32 fn_8004A544(struct fn_8004A544_Arg0 *arg0, u32 arg1);
 
 /* --- dol/fn_8004A550.c --- */
 typedef struct Fn8004A550Data {
@@ -30,11 +25,7 @@ typedef struct Fn8004A550Data {
     s32 field18;
 } Fn8004A550Data;
 
-s32 fn_8004A550(Fn8004A550Data *data, s32 value4, s32 value5) {
-    data->field18 = value4;
-    data->field14 = value5;
-    return 1;
-}
+s32 fn_8004A550(Fn8004A550Data *data, s32 value4, s32 value5);
 
 /* --- dol/fn_8004A560.c --- */
 struct fn_8004A560_Arg0 {
@@ -49,11 +40,7 @@ struct fn_8004A560_Arg2 {
     u32 unk_0;
 };
 
-s32 fn_8004A560(struct fn_8004A560_Arg0 *arg0, struct fn_8004A560_Arg1 *arg1, struct fn_8004A560_Arg2 *arg2) {
-    arg1->unk_0 = arg0->unk_18;
-    arg2->unk_0 = arg0->unk_14;
-    return 1;
-}
+s32 fn_8004A560(struct fn_8004A560_Arg0 *arg0, struct fn_8004A560_Arg1 *arg1, struct fn_8004A560_Arg2 *arg2);
 
 /* --- dol/ADXSTM_ExecServer.c --- */
 typedef struct SJCK {
