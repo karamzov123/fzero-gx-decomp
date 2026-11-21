@@ -1,5 +1,5 @@
 {
- "generated": 1795218670,
+ "generated": 1795223799,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -9422,7 +9422,7 @@
   {
    "symbol": "__OSInitAudioSystem",
    "module": "main",
-   "unit": "dol/OSSetArenaLo.c",
+   "unit": "dol/__OSInitAudioSystem.c",
    "addr": 2147529600,
    "size": 444,
    "status": "matched",
@@ -9439,7 +9439,7 @@
   {
    "symbol": "__OSStopAudioSystem",
    "module": "main",
-   "unit": "dol/OSSetArenaLo.c",
+   "unit": "dol/__OSInitAudioSystem.c",
    "addr": 2147530044,
    "size": 216,
    "status": "matched",
@@ -11632,7 +11632,7 @@
   {
    "symbol": "__init_user",
    "module": "main",
-   "unit": "dol/OSTicksToCalendarTime.c",
+   "unit": "dol/__init_user.c",
    "addr": 2147555464,
    "size": 32,
    "status": "matched",
@@ -12788,7 +12788,7 @@
   {
    "symbol": "DBInit",
    "module": "main",
-   "unit": "dol/WriteUARTN.c",
+   "unit": "dol/DBInit.c",
    "addr": 2147572280,
    "size": 40,
    "status": "matched",
@@ -13009,7 +13009,7 @@
   {
    "symbol": "__DVDInitWA",
    "module": "main",
-   "unit": "dol/C_MTXFrustum.c",
+   "unit": "dol/__DVDInitWA.c",
    "addr": 2147573632,
    "size": 64,
    "status": "matched",
@@ -13349,7 +13349,7 @@
   {
    "symbol": "__DVDFSInit",
    "module": "main",
-   "unit": "dol/DVDLowBreak.c",
+   "unit": "dol/__DVDFSInit.c",
    "addr": 2147577280,
    "size": 56,
    "status": "matched",
@@ -14437,7 +14437,7 @@
   {
    "symbol": "ErrorCode2Num",
    "module": "main",
-   "unit": "dol/__DVDDequeueWaitingQueue.c",
+   "unit": "dol/ErrorCode2Num.c",
    "addr": 2147590236,
    "size": 284,
    "status": "matched",
@@ -14471,7 +14471,7 @@
   {
    "symbol": "DVDCompareDiskID",
    "module": "main",
-   "unit": "dol/__DVDStoreErrorCode.c",
+   "unit": "dol/DVDCompareDiskID.c",
    "addr": 2147590644,
    "size": 248,
    "status": "matched",
@@ -14488,7 +14488,7 @@
   {
    "symbol": "__DVDPrintFatalMessage",
    "module": "main",
-   "unit": "dol/__DVDStoreErrorCode.c",
+   "unit": "dol/__DVDPrintFatalMessage.c",
    "addr": 2147590892,
    "size": 48,
    "status": "matched",
@@ -14896,7 +14896,7 @@
   {
    "symbol": "UpdateOrigin",
    "module": "main",
-   "unit": "dol/ClampStick.c",
+   "unit": "dol/UpdateOrigin.c",
    "addr": 2147599108,
    "size": 420,
    "status": "matched",
@@ -15712,7 +15712,7 @@
   {
    "symbol": "__ARQServiceQueueLo",
    "module": "main",
-   "unit": "dol/ARInit.c",
+   "unit": "dol/__ARQServiceQueueLo.c",
    "addr": 2147615584,
    "size": 256,
    "status": "matched",
@@ -15729,7 +15729,7 @@
   {
    "symbol": "fn_80020460",
    "module": "main",
-   "unit": "dol/ARInit.c",
+   "unit": "dol/__ARQServiceQueueLo.c",
    "addr": 2147615840,
    "size": 4,
    "status": "matched",
@@ -15746,7 +15746,7 @@
   {
    "symbol": "__ARQInterruptServiceRoutine",
    "module": "main",
-   "unit": "dol/ARInit.c",
+   "unit": "dol/__ARQServiceQueueLo.c",
    "addr": 2147615844,
    "size": 204,
    "status": "matched",
@@ -19010,7 +19010,7 @@
   {
    "symbol": "BlockReadCallback",
    "module": "main",
-   "unit": "dol/__CARDUnlock.c",
+   "unit": "dol/BlockReadCallback.c",
    "addr": 2147663392,
    "size": 220,
    "status": "matched",
@@ -19027,7 +19027,7 @@
   {
    "symbol": "__CARDRead",
    "module": "main",
-   "unit": "dol/__CARDUnlock.c",
+   "unit": "dol/BlockReadCallback.c",
    "addr": 2147663612,
    "size": 100,
    "status": "matched",
@@ -19044,7 +19044,7 @@
   {
    "symbol": "BlockWriteCallback",
    "module": "main",
-   "unit": "dol/__CARDUnlock.c",
+   "unit": "dol/BlockReadCallback.c",
    "addr": 2147663712,
    "size": 220,
    "status": "matched",
@@ -19061,7 +19061,7 @@
   {
    "symbol": "__CARDWrite",
    "module": "main",
-   "unit": "dol/__CARDUnlock.c",
+   "unit": "dol/BlockReadCallback.c",
    "addr": 2147663932,
    "size": 100,
    "status": "matched",
@@ -19401,7 +19401,7 @@
   {
    "symbol": "IsCard",
    "module": "main",
-   "unit": "dol/CARDCheck.c",
+   "unit": "dol/IsCard.c",
    "addr": 2147669680,
    "size": 204,
    "status": "matched",
@@ -19418,7 +19418,7 @@
   {
    "symbol": "CARDProbeEx",
    "module": "main",
-   "unit": "dol/CARDCheck.c",
+   "unit": "dol/IsCard.c",
    "addr": 2147669884,
    "size": 380,
    "status": "matched",
@@ -19435,7 +19435,7 @@
   {
    "symbol": "DoMount",
    "module": "main",
-   "unit": "dol/CARDCheck.c",
+   "unit": "dol/IsCard.c",
    "addr": 2147670264,
    "size": 1040,
    "status": "matched",
@@ -19537,7 +19537,7 @@
   {
    "symbol": "FormatCallback",
    "module": "main",
-   "unit": "dol/CARDUnmount.c",
+   "unit": "dol/FormatCallback.c",
    "addr": 2147672432,
    "size": 324,
    "status": "matched",
@@ -19554,7 +19554,7 @@
   {
    "symbol": "__CARDFormatRegionAsync",
    "module": "main",
-   "unit": "dol/CARDUnmount.c",
+   "unit": "dol/FormatCallback.c",
    "addr": 2147672756,
    "size": 1624,
    "status": "matched",
@@ -19758,7 +19758,7 @@
   {
    "symbol": "__CARDSeek",
    "module": "main",
-   "unit": "dol/CARDCreate.c",
+   "unit": "dol/__CARDSeek.c",
    "addr": 2147676480,
    "size": 440,
    "status": "matched",
@@ -19775,7 +19775,7 @@
   {
    "symbol": "ReadCallback",
    "module": "main",
-   "unit": "dol/CARDCreate.c",
+   "unit": "dol/__CARDSeek.c",
    "addr": 2147676920,
    "size": 304,
    "status": "matched",
@@ -19792,7 +19792,7 @@
   {
    "symbol": "CARDReadAsync",
    "module": "main",
-   "unit": "dol/CARDCreate.c",
+   "unit": "dol/__CARDSeek.c",
    "addr": 2147677224,
    "size": 328,
    "status": "matched",
@@ -21356,7 +21356,7 @@
   {
    "symbol": "GXAdjustForOverscan",
    "module": "main",
-   "unit": "dol/__GXSetGenMode.c",
+   "unit": "dol/GXAdjustForOverscan.c",
    "addr": 2147699004,
    "size": 288,
    "status": "matched",
@@ -40294,7 +40294,7 @@
   {
    "symbol": "fseek",
    "module": "main",
-   "unit": "dol/fclose.c",
+   "unit": "dol/fseek.c",
    "addr": 2148006856,
    "size": 108,
    "status": "matched",
@@ -41076,7 +41076,7 @@
   {
    "symbol": "fn_80083E84",
    "module": "main",
-   "unit": "dol/fn_80083BCC.c",
+   "unit": "dol/fn_80083E84.c",
    "addr": 2148023940,
    "size": 140,
    "status": "matched",

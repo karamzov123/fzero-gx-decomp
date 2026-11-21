@@ -7373,7 +7373,17 @@
     "symbols": [
       "ARInit",
       "__ARHandler",
-      "__ARChecksize",
+      "__ARChecksize"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.2.5n",
+    "collapsed": true,
+    "matching_for": ["GFZE01"]
+  },
+  {
+    "module": "main",
+    "source": "dol/__ARQServiceQueueLo.c",
+    "symbols": [
       "__ARQServiceQueueLo",
       "fn_80020460",
       "__ARQInterruptServiceRoutine"
@@ -7462,7 +7472,16 @@
       "__CARDVerify",
       "CARDCheckExAsync",
       "CARDCheckAsync",
-      "CARDCheck",
+      "CARDCheck"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.2.5n",
+    "collapsed": true
+  },
+  {
+    "module": "main",
+    "source": "dol/IsCard.c",
+    "symbols": [
       "IsCard",
       "CARDProbeEx",
       "DoMount"
@@ -7477,7 +7496,17 @@
     "symbols": [
       "CreateCallbackFat",
       "CARDCreateAsync",
-      "CARDCreate",
+      "CARDCreate"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.2.5n",
+    "collapsed": true,
+    "matching_for": ["GFZE01", "GFZJ01"]
+  },
+  {
+    "module": "main",
+    "source": "dol/__CARDSeek.c",
+    "symbols": [
       "__CARDSeek",
       "ReadCallback",
       "CARDReadAsync"
@@ -7559,7 +7588,16 @@
     "module": "main",
     "source": "dol/CARDUnmount.c",
     "symbols": [
-      "CARDUnmount",
+      "CARDUnmount"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.2.5n",
+    "collapsed": true
+  },
+  {
+    "module": "main",
+    "source": "dol/FormatCallback.c",
+    "symbols": [
       "FormatCallback",
       "__CARDFormatRegionAsync"
     ],
@@ -7582,7 +7620,17 @@
     "symbols": [
       "C_MTXFrustum",
       "C_MTXPerspective",
-      "C_MTXOrtho",
+      "C_MTXOrtho"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.2.5n",
+    "extra_cflags": [],
+    "collapsed": true
+  },
+  {
+    "module": "main",
+    "source": "dol/__DVDInitWA.c",
+    "symbols": [
       "__DVDInitWA"
     ],
     "status": "matching",
@@ -7605,7 +7653,16 @@
     "source": "dol/ClampStick.c",
     "symbols": [
       "ClampStick",
-      "PADClamp",
+      "PADClamp"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.2.5n",
+    "collapsed": true
+  },
+  {
+    "module": "main",
+    "source": "dol/UpdateOrigin.c",
+    "symbols": [
       "UpdateOrigin"
     ],
     "status": "matching",
@@ -7812,7 +7869,17 @@
     "symbols": [
       "DVDLowBreak",
       "DVDLowClearCallback",
-      "__DVDLowSetWAType",
+      "__DVDLowSetWAType"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.2.5n",
+    "collapsed": true,
+    "matching_for": ["GFZE01", "GFZJ01"]
+  },
+  {
+    "module": "main",
+    "source": "dol/__DVDFSInit.c",
+    "symbols": [
       "__DVDFSInit"
     ],
     "status": "matching",
@@ -9488,7 +9555,16 @@
     "symbols": [
       "OSSetArenaLo",
       "OSAllocFromArenaLo",
-      "OSAllocFromArenaHi",
+      "OSAllocFromArenaHi"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.2.5n",
+    "collapsed": true
+  },
+  {
+    "module": "main",
+    "source": "dol/__OSInitAudioSystem.c",
+    "symbols": [
       "__OSInitAudioSystem",
       "__OSStopAudioSystem"
     ],
@@ -9575,7 +9651,16 @@
     "module": "main",
     "source": "dol/OSTicksToCalendarTime.c",
     "symbols": [
-      "OSTicksToCalendarTime",
+      "OSTicksToCalendarTime"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.2.5n",
+    "collapsed": true
+  },
+  {
+    "module": "main",
+    "source": "dol/__init_user.c",
+    "symbols": [
       "__init_user"
     ],
     "status": "matching",
@@ -10906,7 +10991,16 @@
     "module": "main",
     "source": "dol/WriteUARTN.c",
     "symbols": [
-      "WriteUARTN",
+      "WriteUARTN"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.2.5n",
+    "collapsed": true
+  },
+  {
+    "module": "main",
+    "source": "dol/DBInit.c",
+    "symbols": [
       "DBInit"
     ],
     "status": "matching",
@@ -11022,7 +11116,16 @@
     "symbols": [
       "__CARDUnlock",
       "InitCallback",
-      "DoneCallback",
+      "DoneCallback"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.2.5n",
+    "collapsed": true
+  },
+  {
+    "module": "main",
+    "source": "dol/BlockReadCallback.c",
+    "symbols": [
       "BlockReadCallback",
       "__CARDRead",
       "BlockWriteCallback",
@@ -11144,7 +11247,16 @@
     "module": "main",
     "source": "dol/__DVDDequeueWaitingQueue.c",
     "symbols": [
-      "__DVDDequeueWaitingQueue",
+      "__DVDDequeueWaitingQueue"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.2.5n",
+    "collapsed": true
+  },
+  {
+    "module": "main",
+    "source": "dol/ErrorCode2Num.c",
+    "symbols": [
       "ErrorCode2Num"
     ],
     "status": "matching",
@@ -11179,8 +11291,26 @@
     "module": "main",
     "source": "dol/__DVDStoreErrorCode.c",
     "symbols": [
-      "__DVDStoreErrorCode",
-      "DVDCompareDiskID",
+      "__DVDStoreErrorCode"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.2.5n",
+    "collapsed": true
+  },
+  {
+    "module": "main",
+    "source": "dol/DVDCompareDiskID.c",
+    "symbols": [
+      "DVDCompareDiskID"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.2.5n",
+    "collapsed": true
+  },
+  {
+    "module": "main",
+    "source": "dol/__DVDPrintFatalMessage.c",
+    "symbols": [
       "__DVDPrintFatalMessage"
     ],
     "status": "matching",
@@ -11298,7 +11428,17 @@
     "module": "main",
     "source": "dol/__GXSetGenMode.c",
     "symbols": [
-      "__GXSetGenMode",
+      "__GXSetGenMode"
+    ],
+    "status": "matching",
+    "matching_for": ["GFZE01", "GFZJ01"],
+    "mw_version": "GC/1.2.5n",
+    "collapsed": true
+  },
+  {
+    "module": "main",
+    "source": "dol/GXAdjustForOverscan.c",
+    "symbols": [
       "GXAdjustForOverscan"
     ],
     "status": "matching",
@@ -22582,7 +22722,17 @@
     "module": "main",
     "source": "dol/fclose.c",
     "symbols": [
-      "fclose",
+      "fclose"
+    ],
+    "status": "matching",
+    "matching_for": ["GFZE01", "GFZP01"],
+    "mw_version": "GC/1.3.2",
+    "collapsed": true
+  },
+  {
+    "module": "main",
+    "source": "dol/fseek.c",
+    "symbols": [
       "fseek"
     ],
     "status": "matching",
@@ -31672,7 +31822,18 @@
       "strcat",
       "strncpy",
       "fn_80083DB0",
-      "strlen",
+      "strlen"
+    ],
+    "status": "matching",
+    "matching_for": ["GFZE01", "GFZP01"],
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "collapsed": true
+  },
+  {
+    "module": "main",
+    "source": "dol/fn_80083E84.c",
+    "symbols": [
       "fn_80083E84"
     ],
     "status": "matching",

@@ -33,10 +33,3 @@ void OSTicksToCalendarTime(OSTime ticks, OSCalendarTime *td) {
     td->min = (secs / 60) % 60;
     td->sec = secs % 60;
 }
-
-/* --- dol/__init_user.c --- */
-extern void __init_cpp(void);
-
-void __init_user(void) {
-    __init_cpp();
-}

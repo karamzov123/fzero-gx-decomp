@@ -33,7 +33,10 @@ dol/OSGetArenaHi.c:
 	.text       start:0x8000B314 end:0x8000B32C align:4
 
 dol/OSSetArenaLo.c:
-	.text       start:0x8000B32C end:0x8000B614 align:4
+	.text       start:0x8000B32C end:0x8000B380 align:4
+
+dol/__OSInitAudioSystem.c:
+	.text       start:0x8000B380 end:0x8000B614 align:4
 
 dol/LCEnable.c:
 	.text       start:0x8000B804 end:0x8000B83C
@@ -72,7 +75,10 @@ dol/InitializeUART.c:
 	.text       start:0x800157AC end:0x8001581C
 
 dol/DVDLowBreak.c:
-	.text       start:0x80016D50 end:0x80016DF8 align:4
+	.text       start:0x80016D50 end:0x80016DC0 align:4
+
+dol/__DVDFSInit.c:
+	.text       start:0x80016DC0 end:0x80016DF8 align:4
 
 dol/stateTimeout.c:
 	.text       start:0x80017A04 end:0x80017B14 align:4
@@ -81,7 +87,10 @@ dol/cbForUnrecoveredError.c:
 	.text       start:0x80017DA8 end:0x80017E10
 
 dol/__DVDDequeueWaitingQueue.c:
-	.text       start:0x80019FFC end:0x8001A178 align:4
+	.text       start:0x80019FFC end:0x8001A05C align:4
+
+dol/ErrorCode2Num.c:
+	.text       start:0x8001A05C end:0x8001A178 align:4
 
 dol/PADControlMotor.c:
 	.text       start:0x8001D3E4 end:0x8001D488
@@ -514,7 +523,13 @@ dol/DVDGetCommandBlockStatus.c:
 	.text       start:0x800197A4 end:0x800197F0 align:4
 
 dol/__DVDStoreErrorCode.c:
-	.text       start:0x8001A178 end:0x8001A31C align:4
+	.text       start:0x8001A178 end:0x8001A1F4 align:4
+
+dol/DVDCompareDiskID.c:
+	.text       start:0x8001A1F4 end:0x8001A2EC align:4
+
+dol/__DVDPrintFatalMessage.c:
+	.text       start:0x8001A2EC end:0x8001A31C align:4
 
 dol/fn_80020ABC.c:
 	.text       start:0x80020ABC end:0x80020B3C align:4
@@ -1419,7 +1434,10 @@ dol/__CARDMountCallback.c:
 	.text       start:0x8002DD08 end:0x8002DFE0 align:4
 
 dol/CARDUnmount.c:
-	.text       start:0x8002E0C4 end:0x8002E90C align:4
+	.text       start:0x8002E0C4 end:0x8002E170 align:4
+
+dol/FormatCallback.c:
+	.text       start:0x8002E170 end:0x8002E90C align:4
 
 dol/WriteCallback_CARDWrite.c:
 	.text       start:0x8002F5B8 end:0x8002F728 align:4
@@ -1437,10 +1455,16 @@ dol/CARDRenameAsync.c:
 	.text       start:0x8003013C end:0x80030338 align:4
 
 dol/CARDCheck.c:
-	.text       start:0x8002C720 end:0x8002DD08 align:4
+	.text       start:0x8002C720 end:0x8002D6B0 align:4
+
+dol/IsCard.c:
+	.text       start:0x8002D6B0 end:0x8002DD08 align:4
 
 dol/CARDCreate.c:
-	.text       start:0x8002EDA8 end:0x8002F570 align:4
+	.text       start:0x8002EDA8 end:0x8002F140 align:4
+
+dol/__CARDSeek.c:
+	.text       start:0x8002F140 end:0x8002F570 align:4
 
 dol/CARDOpen.c:
 	.text       start:0x8002E954 end:0x8002EDA8 align:4
@@ -1455,7 +1479,10 @@ dol/__OSInitSystemCall.c:
 	.text       start:0x800100DC end:0x80010144 align:4
 
 dol/OSTicksToCalendarTime.c:
-	.text       start:0x80011684 end:0x800118A8 align:4
+	.text       start:0x80011684 end:0x80011888 align:4
+
+dol/__init_user.c:
+	.text       start:0x80011888 end:0x800118A8 align:4
 
 dol/__OSCacheInit.c:
 	.text       start:0x8000BAB8 end:0x8000BBAC align:4
@@ -1534,13 +1561,19 @@ dol/ARStartDMA.c:
 	.text       start:0x8001E864 end:0x8001E954 align:4
 
 dol/ARInit.c:
-	.text       start:0x8001EA30 end:0x80020530 align:4
+	.text       start:0x8001EA30 end:0x80020360 align:4
+
+dol/__ARQServiceQueueLo.c:
+	.text       start:0x80020360 end:0x80020530 align:4
 
 dol/ARQPostRequest.c:
 	.text       start:0x800205A0 end:0x80020874 align:4
 
 dol/__CARDUnlock.c:
-	.text       start:0x8002AF34 end:0x8002C0A0 align:4
+	.text       start:0x8002AF34 end:0x8002BE20 align:4
+
+dol/BlockReadCallback.c:
+	.text       start:0x8002BE20 end:0x8002C0A0 align:4
 
 dol/OSCancelAlarm.c:
 	.text       start:0x8000AF78 end:0x8000B094 align:4
@@ -1552,7 +1585,10 @@ dol/__OSInterruptInit.c:
 	.text       start:0x8000D570 end:0x8000DD10 align:4
 
 dol/WriteUARTN.c:
-	.text       start:0x8001581C end:0x80015A60 align:4
+	.text       start:0x8001581C end:0x80015A38 align:4
+
+dol/DBInit.c:
+	.text       start:0x80015A38 end:0x80015A60 align:4
 
 dol/AlarmHandlerForTimeout.c:
 	.text       start:0x80016324 end:0x80016394 align:4
@@ -1606,7 +1642,10 @@ dol/__DSP_insert_task.c:
 	.text       start:0x800296F0 end:0x8002985C align:4
 
 dol/ClampStick.c:
-	.text       start:0x8001C0C0 end:0x8001C4A8 align:4
+	.text       start:0x8001C0C0 end:0x8001C304 align:4
+
+dol/UpdateOrigin.c:
+	.text       start:0x8001C304 end:0x8001C4A8 align:4
 
 dol/SPEC0_MakeStatus.c:
 	.text       start:0x8001D4E8 end:0x8001DC3C align:4
@@ -1682,7 +1721,10 @@ dol/GXSetLineWidth.c:
 	.text       start:0x800347A4 end:0x800347EC align:4
 
 dol/__GXSetGenMode.c:
-	.text       start:0x80034918 end:0x80034A5C align:4
+	.text       start:0x80034918 end:0x8003493C align:4
+
+dol/GXAdjustForOverscan.c:
+	.text       start:0x8003493C end:0x80034A5C align:4
 
 dol/GXSetDispCopySrc.c:
 	.text       start:0x80034A5C end:0x80034AEC align:4
@@ -1878,7 +1920,10 @@ dol/fflush.c:
 	.text       start:0x8007F8D4 end:0x8007FA0C align:4
 
 dol/fclose.c:
-	.text       start:0x8007FA0C end:0x8007FC34 align:4
+	.text       start:0x8007FA0C end:0x8007FBC8 align:4
+
+dol/fseek.c:
+	.text       start:0x8007FBC8 end:0x8007FC34 align:4
 
 dol/printf.c:
 	.text       start:0x8008069C end:0x800829EC align:4
@@ -2360,7 +2405,10 @@ dol/fn_80063094.c:
 	.text       start:0x80063094 end:0x8006331C align:4
 
 dol/fn_80083BCC.c:
-	.text       start:0x80083BCC end:0x80083F10 align:4
+	.text       start:0x80083BCC end:0x80083E84 align:4
+
+dol/fn_80083E84.c:
+	.text       start:0x80083E84 end:0x80083F10 align:4
 
 dol/fn_8003B930.c:
 	.text       start:0x8003B930 end:0x8003BCE4 align:4
@@ -2436,7 +2484,10 @@ dol/PADProbeCallback.c:
 	.text       start:0x8001C62C end:0x8001C704 align:4
 
 dol/C_MTXFrustum.c:
-	.text       start:0x80015D7C end:0x80015FC0 align:4
+	.text       start:0x80015D7C end:0x80015F80 align:4
+
+dol/__DVDInitWA.c:
+	.text       start:0x80015F80 end:0x80015FC0 align:4
 
 dol/VI.c:
 	.text       start:0x8001A55C end:0x8001C0C0 align:4
