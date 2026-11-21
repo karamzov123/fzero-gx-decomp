@@ -42,6 +42,16 @@ def merge_c_files_smart(paths):
                 else:
                     for nm in names:
                         seen_type_bodies[nm] = norm
+            elif s.startswith('typedef ') and s.endswith(';') and '{' not in s:
+                # single-line typedef (scalar, pointer or function-pointer): rename a conflicting one
+                norm = re.sub(r'\s+', ' ', s)
+                fm = re.search(r'\(\s*\*\s*(\w+)\s*\)\s*\(', norm)
+                nm = fm.group(1) if fm else (re.search(r'(\w+)\s*(?:\[[^\]]*\])*\s*;$', norm) or [None, None])[1]
+                if nm:
+                    if nm in seen_type_bodies and seen_type_bodies[nm] != norm:
+                        renames[nm] = f'{nm}_u{fidx}'
+                    else:
+                        seen_type_bodies.setdefault(nm, norm)
             i += 1
         if renames:
             for old_nm, new_nm in sorted(renames.items(), key=lambda x: -len(x[0])):
@@ -66,6 +76,15 @@ def merge_c_files_smart(paths):
                     full = l
                 key = re.sub(r'\s+', ' ', full.strip())
                 if key not in seen_at: seen_at.add(key); out.append(full)
+            elif (re.match(r'^(?:static\s+)?[A-Za-z_][\w\s\*]*\b(\w+)\s*\([^;{}]*\)\s*;$', s)
+                  and not s.startswith(('extern ', 'typedef ', 'return ', 'else ')) and l[:1].strip()):
+                # a top-level prototype repeated by a later file: keep the first spelling
+                fn_m = re.search(r'\b(\w+)\s*\([^;{}]*\)\s*;$', s)
+                if fn_m and fn_m.group(1) in seen_fn_decls:
+                    pass
+                else:
+                    if fn_m: seen_fn_decls.add(fn_m.group(1))
+                    out.append(l)
             elif s.startswith('extern ') and s.endswith(';'):
                 key = re.sub(r'\s+', ' ', s)
                 if key not in seen_ext:

@@ -91,7 +91,7 @@ rel/movie_module/fn_12_21AE4.c:
 	.text       start:0x00021AE4 end:0x00021B70
 
 rel/movie_module/fn_12_21B70.c:
-	.text       start:0x00021B70 end:0x00021D30 align:4
+	.text       start:0x00021B70 end:0x00021DD4 align:4
 
 rel/movie_module/fn_12_22FB4.c:
 	.text       start:0x00022FB4 end:0x00023410 align:4
@@ -339,9 +339,6 @@ rel/movie_module/fn_12_35694.c:
 rel/movie_module/fn_12_AB60.c:
 	.text       start:0x0000AB60 end:0x0000AE70 align:4
 
-rel/movie_module/fn_12_21D30.c:
-	.text       start:0x00021D30 end:0x00021DD4 align:4
-
 rel/movie_module/fn_12_2507C.c:
 	.text       start:0x0002507C end:0x000250D0 align:4
 
@@ -358,7 +355,7 @@ rel/movie_module/fn_12_24EA0.c:
 	.text       start:0x00024EA0 end:0x0002507C align:4
 
 rel/movie_module/fn_12_21DD4.c:
-	.text       start:0x00021DD4 end:0x00022008 align:4
+	.text       start:0x00021DD4 end:0x00022254 align:4
 
 rel/movie_module/fn_12_39CA4.c:
 	.text       start:0x00039CA4 end:0x0003A018 align:4
@@ -379,9 +376,6 @@ rel/movie_module/mpvabdec.c:
 
 rel/movie_module/mpvvlc2_InitDcSizC.c:
 	.text       start:0x0000E3BC end:0x00010F3C align:4
-
-rel/movie_module/sfxzmv_MakeOrgZ32TblByDirect.c:
-	.text       start:0x000044A8 end:0x00004CEC align:4
 
 rel/movie_module/MWSFSVM_Error.c:
 	.text       start:0x00034B88 end:0x00034D1C align:4
@@ -613,7 +607,7 @@ rel/movie_module/fn_12_E0F4.c:
 	.text       start:0x0000E0F4 end:0x0000E3BC align:4
 
 rel/movie_module/fn_12_3DB8.c:
-	.text       start:0x00003DB8 end:0x000044A8 align:4
+	.text       start:0x00003DB8 end:0x00004CEC align:4
 
 rel/movie_module/fn_12_346BC.c:
 	.text       start:0x000346BC end:0x00034798 align:4
@@ -872,9 +866,6 @@ rel/movie_module/fn_12_27C58.c:
 
 rel/movie_module/fn_12_24C48.c:
 	.text       start:0x00024C48 end:0x00024D68 align:4
-
-rel/movie_module/fn_12_22008.c:
-	.text       start:0x00022008 end:0x00022254 align:4
 
 rel/movie_module/fn_12_22254.c:
 	.text       start:0x00022254 end:0x00022390 align:4
