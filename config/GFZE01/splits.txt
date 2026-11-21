@@ -153,12 +153,6 @@ dol/__GXXfVtxSpecs.c:
 	.text       start:0x80032370 end:0x80032EB8 align:4
 	.data       start:0x8012AD40 end:0x8012AE78 align:32
 
-dol/fn_80033E7C.c:
-	.text       start:0x80033E7C end:0x8003401C align:4
-
-dol/GXFinishInterruptHandler.c:
-	.text       start:0x80034488 end:0x8003458C align:4
-
 dol/fn_8003458C.c:
 	.text       start:0x8003458C end:0x8003462C align:4
 
@@ -718,9 +712,6 @@ dol/WriteCallback.c:
 dol/fn_8002F570.c:
 	.text       start:0x8002F570 end:0x8002F5B8 align:4
 
-dol/GXTokenInterruptHandler.c:
-	.text       start:0x800343BC end:0x80034488 align:4
-
 dol/GXLoadTexObj.c:
 	.text       start:0x80036388 end:0x8003658C align:4
 
@@ -1168,9 +1159,6 @@ dol/fn_80028130.c:
 dol/cbForUnrecoveredErrorRetry.c:
 	.text       start:0x80017E10 end:0x80017ED0 align:4
 
-dol/GXDrawDone.c:
-	.text       start:0x8003416C end:0x800343BC align:4
-
 dol/GXSetTexRegionCallback.c:
 	.text       start:0x8003658C end:0x80036A28 align:4
 
@@ -1456,9 +1444,6 @@ dol/DVDCancelAsync.c:
 	.text       start:0x800198FC end:0x80019E64 align:4
 	.data       start:0x801240A8 end:0x80124110 align:8
 
-dol/GXInitTexObjLOD.c:
-	.text       start:0x80035EC4 end:0x80036388 align:4
-
 dol/GXReadXfRasMetric.c:
 	.text       start:0x80039B7C end:0x80039C40 align:4
 
@@ -1516,10 +1501,6 @@ dol/OSGetResetButtonState.c:
 dol/gx/GXFifo.c:
 	.text       start:0x80031B50 end:0x80032370 align:4
 
-dol/GXGetVtxAttrFmt.c:
-	.text       start:0x800336EC end:0x80033D8C align:4
-	.data       start:0x8012AF00 end:0x8012AFB8 align:8
-
 dol/gx/GXGeometry.c:
 	.text       start:0x8003471C end:0x8003493C align:4
 
@@ -1573,10 +1554,6 @@ dol/OSSetThreadPriority.c:
 
 dol/fn_80078D60.c:
 	.text       start:0x80078D60 end:0x80078F0C align:4
-
-dol/GXSetVtxAttrFmt.c:
-	.text       start:0x80032F80 end:0x80033650 align:4
-	.data       start:0x8012AE78 end:0x8012AF00 align:8
 
 dol/ADXB_ExecOneWav4.c:
 	.text       start:0x800425D0 end:0x80042D24 align:4
@@ -1714,13 +1691,6 @@ dol/GetFontCode.c:
 
 dol/__GXDefaultTexRegionCallback.c:
 	.text       start:0x800307CC end:0x80030848 align:4
-
-dol/GXInitLightDistAttn.c:
-	.text       start:0x800355B0 end:0x80035A2C align:4
-
-dol/GXInitTexObj.c:
-	.text       start:0x80035C50 end:0x80035EC4 align:4
-	.data       start:0x8012B328 end:0x8012B368 align:8
 
 dol/TRKReadBuffer_ui8.c:
 	.text       start:0x80088C34 end:0x80088CCC align:4
@@ -1904,8 +1874,8 @@ dol/fn_80005EDC.c:
 dol/fn_800747D0.c:
 	.text       start:0x800747D0 end:0x80074D88 align:4
 
-dol/fn_80035420.c:
-	.text       start:0x80035420 end:0x800355B0 align:4
+dol/gx/GXLight.c:
+	.text       start:0x80035420 end:0x80035A2C align:4
 	.data       start:0x8012B120 end:0x8012B13C align:32
 
 dol/fn_8002420C.c:
@@ -2053,14 +2023,15 @@ dol/fn_80024D84.c:
 dol/fn_8008EB8C.c:
 	.text       start:0x8008EB8C end:0x8008EBF8 align:4
 
-dol/GXSetMisc.c:
-	.text       start:0x80033D8C end:0x80033E7C align:4
+dol/gx/GXMisc.c:
+	.text       start:0x80033D8C end:0x8003458C align:4
 
 dol/fn_8007AA7C.c:
 	.text       start:0x8007AA7C end:0x8007AB58 align:4
 
 dol/fn_80032EB8.c:
-	.text       start:0x80032EB8 end:0x80032F80 align:4
+	.text       start:0x80032EB8 end:0x80033D8C align:4
+	.data       start:0x8012AE78 end:0x8012AFB8 align:8
 
 dol/fn_8007E96C.c:
 	.text       start:0x8007E96C end:0x8007EA58 align:4
@@ -2069,8 +2040,8 @@ dol/fn_8000591C.c:
 	.text       start:0x8000591C end:0x80005A08 align:4
 
 dol/GXGetTexBufferSize.c:
-	.text       start:0x80035A2C end:0x80035C50 align:4
-	.data       start:0x8012B140 end:0x8012B328 align:32
+	.text       start:0x80035A2C end:0x80036388 align:4
+	.data       start:0x8012B140 end:0x8012B368 align:32
 
 dol/ddh_cc_read.c:
 	.text       start:0x8008DF6C end:0x8008E058 align:4
@@ -2416,12 +2387,6 @@ dol/mathutil_mtxA_rotate_z.c:
 
 dol/func_80008378.c:
 	.text       start:0x8006E5B4 end:0x8006E5FC align:4
-
-dol/fn_80033650.c:
-	.text       start:0x80033650 end:0x800336EC align:4
-
-dol/fn_8003401C.c:
-	.text       start:0x8003401C end:0x8003416C align:4
 
 dol/fn_80005B10.c:
 	.text       start:0x80005B10 end:0x80005E0C align:4

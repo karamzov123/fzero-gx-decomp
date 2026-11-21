@@ -7977,41 +7977,6 @@
   },
   {
     "module": "main",
-    "source": "dol/GXDrawDone.c",
-    "symbols": [
-      "GXDrawDone",
-      "GXPokeAlphaMode",
-      "GXPokeAlphaRead",
-      "GXPokeAlphaUpdate",
-      "GXPokeBlendMode",
-      "GXPokeColorUpdate",
-      "GXPokeDstAlpha",
-      "GXPokeDither",
-      "GXPokeZMode",
-      "fn_8003432C",
-      "GXPeekZ",
-      "fn_80034378"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [],
-    "collapsed": true,
-    "matching_for": ["GFZE01", "GFZJ01"]
-  },
-  {
-    "module": "main",
-    "source": "dol/GXFinishInterruptHandler.c",
-    "symbols": [
-      "GXFinishInterruptHandler",
-      "__GXPEInit"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
     "source": "dol/fn_8003458C.c",
     "symbols": [
       "fn_8003458C"
@@ -8019,34 +7984,6 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/GXGetVtxAttrFmt.c",
-    "symbols": [
-      "GXGetVtxAttrFmt",
-      "GXGetVtxAttrFmtv",
-      "GXSetArray",
-      "GXInvalidateVtxCache",
-      "GXSetTexCoordGen2",
-      "GXSetNumTexGens"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ],
     "collapsed": true
   },
   {
@@ -8072,74 +8009,6 @@
       "lbl_801A6BE8",
       "resetFuncRegistered$63"
     ]
-  },
-  {
-    "module": "main",
-    "source": "dol/GXInitLightDistAttn.c",
-    "symbols": [
-      "GXInitLightDistAttn",
-      "fn_80035680",
-      "fn_80035690",
-      "fn_800356AC",
-      "fn_800356B8",
-      "fn_80035734",
-      "fn_80035828",
-      "fn_8003591C",
-      "fn_80035960"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "pool": {
-      "@17": "lbl_801A7088",
-      "@18": "lbl_801A70A0",
-      "@19": "lbl_801A70B4"
-    },
-    "collapsed": true,
-    "matching_for": ["GFZE01", "GFZJ01"]
-  },
-  {
-    "module": "main",
-    "source": "dol/GXInitTexObj.c",
-    "symbols": [
-      "GXInitTexObj"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.2.5n",
-    "pool": {
-      "@63": "lbl_801A70C0",
-      "@61": "lbl_801A70B8"
-    }
-  },
-  {
-    "module": "main",
-    "source": "dol/GXInitTexObjLOD.c",
-    "symbols": [
-      "GXInitTexObjLOD",
-      "fn_80036058",
-      "fn_80036070",
-      "fn_800360D8",
-      "GXGetTexObjWidth",
-      "GXGetTexObjHeight",
-      "fn_80036104",
-      "fn_8003610C",
-      "fn_800361F0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "pool": {
-      "@25": "lbl_801A70C8",
-      "@26": "lbl_801A70CC",
-      "@27": "lbl_801A70D0",
-      "@28": "lbl_801A70D4",
-      "@29": "lbl_801A70D8",
-      "@30": "lbl_801A70DC",
-      "@31": "lbl_801A70B8",
-      "@41": "lbl_801A70C0",
-      "@44": "lbl_801A70E8"
-    },
-    "collapsed": true
   },
   {
     "module": "main",
@@ -8199,10 +8068,30 @@
   },
   {
     "module": "main",
-    "source": "dol/GXSetMisc.c",
+    "source": "dol/gx/GXMisc.c",
     "symbols": [
       "GXSetMisc",
-      "GXFlush"
+      "GXFlush",
+      "fn_80033E7C",
+      "fn_80033EB0",
+      "fn_8003401C",
+      "GXSetDrawDone",
+      "GXDrawDone",
+      "GXPokeAlphaMode",
+      "GXPokeAlphaRead",
+      "GXPokeAlphaUpdate",
+      "GXPokeBlendMode",
+      "GXPokeColorUpdate",
+      "GXPokeDstAlpha",
+      "GXPokeDither",
+      "GXPokeZMode",
+      "fn_8003432C",
+      "GXPeekZ",
+      "fn_80034378",
+      "GXTokenInterruptHandler",
+      "fn_80034444",
+      "GXFinishInterruptHandler",
+      "__GXPEInit"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
@@ -8301,41 +8190,6 @@
       "fn_800365B4",
       "__GXSetSUTexRegs",
       "__GXSetTmemConfig"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/GXSetVtxAttrFmt.c",
-    "symbols": [
-      "GXSetVtxAttrFmt",
-      "GXSetVtxAttrFmtv"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ]
-  },
-  {
-    "module": "main",
-    "source": "dol/GXTokenInterruptHandler.c",
-    "symbols": [
-      "GXTokenInterruptHandler",
-      "fn_80034444"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
@@ -23925,7 +23779,16 @@
     "source": "dol/fn_80032EB8.c",
     "symbols": [
       "fn_80032EB8",
-      "GXClearVtxDesc"
+      "GXClearVtxDesc",
+      "GXSetVtxAttrFmt",
+      "GXSetVtxAttrFmtv",
+      "fn_80033650",
+      "GXGetVtxAttrFmt",
+      "GXGetVtxAttrFmtv",
+      "GXSetArray",
+      "GXInvalidateVtxCache",
+      "GXSetTexCoordGen2",
+      "GXSetNumTexGens"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
@@ -23943,53 +23806,6 @@
       "-common",
       "off"
     ]
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80033650.c",
-    "symbols": [
-      "fn_80033650"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ]
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80033E7C.c",
-    "symbols": [
-      "fn_80033E7C",
-      "fn_80033EB0"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true,
-    "matching_for": ["GFZE01", "GFZJ01"]
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8003401C.c",
-    "symbols": [
-      "fn_8003401C",
-      "GXSetDrawDone"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [],
-    "collapsed": true
   },
   {
     "module": "main",
@@ -24004,39 +23820,71 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_80035420.c",
+    "source": "dol/gx/GXLight.c",
     "symbols": [
-      "fn_80035420"
+      "fn_80035420",
+      "GXInitLightDistAttn",
+      "fn_80035680",
+      "fn_80035690",
+      "fn_800356AC",
+      "fn_800356B8",
+      "fn_80035734",
+      "fn_80035828",
+      "fn_8003591C",
+      "fn_80035960"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
-    "mw_version": null,
+    "mw_version": "GC/1.2.5n",
     "extra_cflags": [],
     "pool": {
-      "@22": "lbl_801A7088",
-      "@23": "lbl_801A708C",
-      "@24": "lbl_801A7090",
-      "@25": "lbl_801A7094",
-      "@26": "lbl_801A7098",
-      "@27": "lbl_801A709C",
-      "@28": "lbl_801A70A0",
-      "@29": "lbl_801A70A4",
-      "@30": "lbl_801A70A8",
-      "@31": "lbl_801A70AC",
-      "@32": "lbl_801A70B0"
-    }
+      "@24": "lbl_801A7088",
+      "@25": "lbl_801A708C",
+      "@26": "lbl_801A7090",
+      "@27": "lbl_801A7094",
+      "@28": "lbl_801A7098",
+      "@29": "lbl_801A709C",
+      "@30": "lbl_801A70A0",
+      "@31": "lbl_801A70A4",
+      "@32": "lbl_801A70A8",
+      "@33": "lbl_801A70AC",
+      "@34": "lbl_801A70B0",
+      "@50": "lbl_801A70B4"
+    },
+    "collapsed": true
   },
   {
     "module": "main",
     "source": "dol/GXGetTexBufferSize.c",
     "symbols": [
       "GXGetTexBufferSize",
-      "__GetImageTileCount"
+      "__GetImageTileCount",
+      "GXInitTexObj",
+      "GXInitTexObjLOD",
+      "fn_80036058",
+      "fn_80036070",
+      "fn_800360D8",
+      "GXGetTexObjWidth",
+      "GXGetTexObjHeight",
+      "fn_80036104",
+      "fn_8003610C",
+      "fn_800361F0"
     ],
     "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
+    "matching_for": ["GFZE01"],
     "mw_version": "GC/1.2.5n",
-    "collapsed": true
+    "collapsed": true,
+    "pool": {
+      "@191": "lbl_801A70B8",
+      "@193": "lbl_801A70C0",
+      "@218": "lbl_801A70C8",
+      "@219": "lbl_801A70CC",
+      "@220": "lbl_801A70D0",
+      "@221": "lbl_801A70D4",
+      "@222": "lbl_801A70D8",
+      "@223": "lbl_801A70DC",
+      "@235": "lbl_801A70E8"
+    }
   },
   {
     "module": "main",

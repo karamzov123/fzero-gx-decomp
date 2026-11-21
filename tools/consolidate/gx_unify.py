@@ -14,7 +14,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).parent))
 import gx_header
 
 HDR = pathlib.Path('include/dolphin/gx/GXPriv.h')
-SIZES = {'u8': 1, 's8': 1, 'char': 1, 'GXBool': 1, 'u16': 2, 's16': 2, 'u32': 4, 's32': 4, 'int': 4,
+SIZES = {'float': 4, 'u8': 1, 's8': 1, 'char': 1, 'GXBool': 1, 'u16': 2, 's16': 2, 'u32': 4, 's32': 4, 'int': 4,
          'f32': 4, 'GXAttrType': 4, 'GXPerf0': 4, 'GXPerf1': 4, 'GXTexRegionCallback': 4,
          'GXTlutRegionCallback': 4, 'GXTexRegion': 16, 'GXTlutRegion': 16}
 ALIGN = {'GXTexRegion': 4, 'GXTlutRegion': 4}
@@ -25,7 +25,7 @@ SET_REG_FIELD = ('#define SET_REG_FIELD(reg, size, shift, val) \\\n'
                  '    ((reg) = ((reg) & ~(((1 << (size)) - 1) << (shift))) | ((val) << (shift)))\n')
 SET_REG_FIELD_RLWIMI = ('#define SET_REG_FIELD_RLWIMI(reg, size, shift, val) \\\n'
                         '    ((reg) = __rlwimi((reg), (val), (shift), 32 - (shift) - (size), 31 - (shift)))\n')
-VIEW = re.compile(r'(?:typedef\s+)?struct\s+(\w*(?:_gx_T|GXContext|GXData\w*))\s*\{([^{}]*)\}\s*(\w*)\s*;\n?')
+VIEW = re.compile(r'(?:typedef\s+)?struct\s+(\w*(?:_gx_T|GXContext|GXState|GXData\w*))\s*\{([^{}]*)\}\s*(\w*)\s*;\n?')
 
 
 class Unsupported(Exception):
@@ -145,6 +145,7 @@ def normalize_externs(text):
     """The OS interrupt calls come from their SDK header; __peReg and __cpReg are volatile u16 blocks."""
     text = re.sub(r'^extern\s+\w+\s+OS(?:Disable|Restore)Interrupts\([^)]*\);\n', '', text, flags=re.M)
     text = re.sub(r'\bOSDisableInterrupts\(\s*\w+\s*\)', 'OSDisableInterrupts()', text)
+    text = re.sub(r'^extern\s+void\s+OS(?:ClearContext|SetCurrentContext)\(void \*\);\n', '', text, flags=re.M)
     for reg in ('__peReg', '__cpReg'):
         decl = f'extern volatile u16 *{reg};'
         v = re.search(rf'struct\s+(\w+_{reg}_T)\s*\{{([^{{}}]*)\}}\s*;\n?', text)
@@ -189,6 +190,7 @@ def unify(text, rlwimi=False):
     text = strip_header_types(text)
     text = normalize_macros(text, rlwimi)
     text = normalize_externs(text)
+    text = re.sub(r'\bgx->fields\.view_(\w+)\.\1\b', r'gx->\1', text)
     text = re.sub(r'^extern\s+[^;\n]*\bgx\s*;\n?', '', text, flags=re.M)
     text = re.sub(r'^(?://[^\n]*\n)?volatile\s+PPCWGPipe\s+(?:GXWGFifo|GXFIFO)\s*:[^\n]*\n?', '', text, flags=re.M)
     text = re.sub(r'^(?://[^\n]*\n)?volatile\s+PPCWGPipe\s*\n\s*(?:GXWGFifo|GXFIFO)\s*:[^\n]*\n?', '', text, flags=re.M)

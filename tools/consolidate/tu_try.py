@@ -36,9 +36,14 @@ def funcs(obj, td, tag, pool=None):
     # section-relative references (`...bss.0 + n`) name the symbol defined at that offset
     sec_of = {n: (s, v) for n, s, v, sz, b in sg['defs']}
     named = {(s, v): n for n, s, v, sz, b in sg['defs'] if n and not n.startswith('.') and not LOCAL.match(n) and b != 0 or (n and not n.startswith('.') and not LOCAL.match(n))}
+    # a private label (literal, jump table) renumbers and moves in a merge: compare its contents
+    private = {n: (s, v, sz) for n, s, v, sz, _ in sg['defs'] if LOCAL.match(n)}
     for off, typ, nm, add in sg['relocs'].get('.text', []):
         if pool is not None and LOCAL.match(nm) and nm in pool:
             nm, extra = target(pool[nm]); add += extra
+        elif nm in private:
+            s, v, sz = private[nm]; data = sg['sections'].get(s)
+            nm = f'<{s}:{data[v:v + sz].hex() if isinstance(data, bytes) else sz}>'
         elif nm.startswith('.') and nm in sec_of:
             s, v = sec_of[nm]
             if (s, v + add) in named:
@@ -65,6 +70,8 @@ def derive_pool(cand_sg, cand_fn_addr, ref):
         site = None if f is None or f not in ref else next(
             (r for r in ref[f][1]
              if r[1] == typ and r[0] == ((off - cand_fn_addr[f][0]) & ~3 if typ == 109 else off - cand_fn_addr[f][0])), None)
+        if site is not None and site[2].startswith('<'):
+            continue   # private in the old unit too: funcs compares it by contents
         if site is None or LOCAL.match(site[2]):
             bad.append(nm); continue
         delta = site[3] - add
