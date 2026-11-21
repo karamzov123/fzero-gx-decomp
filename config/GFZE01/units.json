@@ -7587,15 +7587,6 @@
   },
   {
     "module": "main",
-    "source": "dol/CARDWriteAsync.c",
-    "symbols": [
-      "CARDWriteAsync"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
     "source": "dol/C_MTXFrustum.c",
     "symbols": [
       "C_MTXFrustum",
@@ -7917,15 +7908,6 @@
     "status": "matching",
     "mw_version": "GC/1.2.5n",
     "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/EraseCallback_CARDWrite.c",
-    "symbols": [
-      "EraseCallback_CARDWrite"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -8863,15 +8845,6 @@
     "mw_version": null,
     "extra_cflags": [],
     "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/InitializeUART.c",
-    "symbols": [
-      "InitializeUART"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -10008,10 +9981,12 @@
   },
   {
     "module": "main",
-    "source": "dol/ProbeBarnacle.c",
+    "source": "dol/exi/EXIUart.c",
     "symbols": [
       "ProbeBarnacle",
-      "__OSEnableBarnacle"
+      "__OSEnableBarnacle",
+      "InitializeUART",
+      "WriteUARTN"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
@@ -10781,12 +10756,15 @@
   },
   {
     "module": "main",
-    "source": "dol/WriteCallback_CARDWrite.c",
+    "source": "dol/card/CARDWrite.c",
     "symbols": [
-      "WriteCallback_CARDWrite"
+      "WriteCallback_CARDWrite",
+      "EraseCallback_CARDWrite",
+      "CARDWriteAsync"
     ],
     "status": "matching",
-    "mw_version": "GC/1.2.5n"
+    "mw_version": "GC/1.2.5n",
+    "collapsed": true
   },
   {
     "module": "main",
@@ -10796,16 +10774,6 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/WriteUARTN.c",
-    "symbols": [
-      "WriteUARTN"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
   },
   {
     "module": "main",

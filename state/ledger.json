@@ -1,5 +1,5 @@
 {
- "generated": 1795226341,
+ "generated": 1795226682,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -12720,7 +12720,7 @@
   {
    "symbol": "ProbeBarnacle",
    "module": "main",
-   "unit": "dol/ProbeBarnacle.c",
+   "unit": "dol/exi/EXIUart.c",
    "addr": 2147570788,
    "size": 396,
    "status": "matched",
@@ -12737,7 +12737,7 @@
   {
    "symbol": "__OSEnableBarnacle",
    "module": "main",
-   "unit": "dol/ProbeBarnacle.c",
+   "unit": "dol/exi/EXIUart.c",
    "addr": 2147571184,
    "size": 444,
    "status": "matched",
@@ -12754,7 +12754,7 @@
   {
    "symbol": "InitializeUART",
    "module": "main",
-   "unit": "dol/InitializeUART.c",
+   "unit": "dol/exi/EXIUart.c",
    "addr": 2147571628,
    "size": 112,
    "status": "matched",
@@ -12771,7 +12771,7 @@
   {
    "symbol": "WriteUARTN",
    "module": "main",
-   "unit": "dol/WriteUARTN.c",
+   "unit": "dol/exi/EXIUart.c",
    "addr": 2147571740,
    "size": 540,
    "status": "matched",
@@ -19826,7 +19826,7 @@
   {
    "symbol": "WriteCallback_CARDWrite",
    "module": "main",
-   "unit": "dol/WriteCallback_CARDWrite.c",
+   "unit": "dol/card/CARDWrite.c",
    "addr": 2147677624,
    "size": 368,
    "status": "matched",
@@ -19843,7 +19843,7 @@
   {
    "symbol": "EraseCallback_CARDWrite",
    "module": "main",
-   "unit": "dol/EraseCallback_CARDWrite.c",
+   "unit": "dol/card/CARDWrite.c",
    "addr": 2147677992,
    "size": 176,
    "status": "matched",
@@ -19860,7 +19860,7 @@
   {
    "symbol": "CARDWriteAsync",
    "module": "main",
-   "unit": "dol/CARDWriteAsync.c",
+   "unit": "dol/card/CARDWrite.c",
    "addr": 2147678168,
    "size": 276,
    "status": "matched",

@@ -80,7 +80,7 @@ def main():
     sp = pathlib.Path('config/GFZE01/splits.txt'); text = sp.read_text()
     rng = []
     for s in srcs:
-        m = re.search(rf'^{re.escape(s)}:\n\t\.text\s+start:0x([0-9A-F]+) end:0x([0-9A-F]+) align:4\n(?=\n|\S|$)', text, re.M)
+        m = re.search(rf'^{re.escape(s)}:\n\t\.text\s+start:0x([0-9A-F]+) end:0x([0-9A-F]+)(?: align:4)?\n(?=\n|\S|$)', text, re.M)
         if not m: print('unit has non-text splits or is missing:', s); return 1
         rng.append((int(m.group(1), 16), int(m.group(2), 16), s))
     rng.sort()
