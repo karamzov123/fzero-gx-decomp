@@ -100,7 +100,7 @@ def merge_c_files_smart(paths):
                 else:
                     if fn_m: seen_fn_decls.add(fn_m.group(1))
                     out.append(l)
-            elif s.startswith('extern ') and s.endswith(';') and (re.search(r'\b(\w+)\s*\([^;]*\)\s*;$', s) or re.search(r'\b(\w+)\s*(?:\[[^\]]*\])*\s*;$', s)).group(1) in hdr:
+            elif s.startswith('extern ') and s.endswith(';') and (lambda _m: bool(_m and _m.group(1) in hdr))(re.search(r'\b(\w+)\s*\([^;]*\)\s*;$', s) or re.search(r'\b(\w+)\s*(?:\[[^\]]*\])*\s*;$', s)):
                 pass   # declared by an included header
             elif s.startswith('extern ') and s.endswith(';'):
                 key = re.sub(r'\s+', ' ', s)
