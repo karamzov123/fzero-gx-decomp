@@ -8,9 +8,6 @@
 #include <dolphin/os/OSInterrupt.h>
 
 
-/* --- dol/fn_800289C0.c --- */
-/* --- dol/fn_800289C0.c --- */
-/* --- dol/fn_800289C0.c --- */
 struct fn_800289C0_Arg0 {
     u8 pad_0[0x8];
     s32 unk_8;
@@ -34,7 +31,6 @@ void fn_800289C0(struct fn_800289C0_Arg0 *arg0) {
     }
 }
 
-/* --- dol/fn_80028A1C.c --- */
 struct fn_80028A1C_Arg0 {
     u8 pad_0[0x8];
     s32 unk_8;
@@ -58,7 +54,6 @@ void fn_80028A1C(struct fn_80028A1C_Arg0 *arg0) {
     }
 }
 
-/* --- dol/fn_80028A78.c --- */
 struct fn_80028A78_Arg0 {
     f32 *unk_0;
     u32 unk_4;
@@ -92,23 +87,18 @@ void fn_80028A78(struct fn_80028A78_Arg0 *arg0) {
     arg0->unk_1C = arg0->unk_14 - difference;
 }
 
-/* --- dol/fn_80028B2C.c --- */
-/* --- dol/fn_80028B2C.c --- */
-/* --- dol/fn_80028B2C.c --- */
 extern f32 lbl_801A6B98;
 
 void fn_80028B2C(f32 arg0) {
     lbl_801A6B98 = arg0;
 }
 
-/* --- dol/fn_80028B34.c --- */
 extern f32 lbl_801A6B9C;
 
 void fn_80028B34(f32 arg0) {
     lbl_801A6B9C = arg0;
 }
 
-/* --- dol/fn_80028B3C.c --- */
 struct fn_80028B3C_Arg0 {
     u8 pad_0[0x8];
     f32 unk_8;
@@ -175,20 +165,14 @@ void fn_80028B3C(struct fn_80028B3C_Arg0 *arg0) {
     arg0->unk_28 = (s32)(lbl_801A7054 * (arg0->unk_10 / lbl_801A6B9C));
 }
 
-/* --- dol/DSPCheckMailToDSP.c --- */
-/* --- dol/DSPCheckMailToDSP.c --- */
-/* --- dol/DSPCheckMailToDSP.c --- */
 u32 DSPCheckMailToDSP(void) {
     return ((*(u16 *)0xCC005000 >> 15) & 0x1);  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
 }
 
-/* --- dol/DSPCheckMailFromDSP.c --- */
 u32 DSPCheckMailFromDSP(void) {
     return ((*(u16 *)0xCC005004 >> 15) & 0x1);  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
 }
 
-/* --- dol/DSPReadMailFromDSP.c --- */
-/* --- dol/DSPReadMailFromDSP.c --- */
 vu16 __DSPRegs[32] : FZGX_ADDR___DSPRegs;
 
 u32 DSPReadMailFromDSP() {
@@ -199,13 +183,11 @@ u32 DSPReadMailFromDSP() {
     return reg1 << 16 | reg2;
 }
 
-/* --- dol/DSPSendMailToDSP.c --- */
 void DSPSendMailToDSP(u32 mail) {
     __DSPRegs[0] = mail >> 16;
     __DSPRegs[1] = mail;
 }
 
-/* --- dol/DSPInit.c --- */
 struct dspMessages {
     char padding_0[72];
     char message_48[30];
@@ -296,4 +278,55 @@ void DSPInit(void) {
     lbl_801A6BB8 = lbl_801A6BB4 = lbl_801A6BBC = lbl_801A6BB0 = ((void *)0);
     lbl_801A6BA0 = 1;
     OSRestoreInterrupts(old);
+}
+
+extern void __DSP_insert_task(DSPTaskInfo *);
+extern void __DSP_boot_task(DSPTaskInfo *);
+extern u32 lbl_801A6BA8;
+extern DSPTaskInfo *lbl_801A6BAC;
+
+u32 fn_80028DD0(void) {
+    return lbl_801A6BA0;
+}
+
+DSPTaskInfo *DSPAddTask(DSPTaskInfo *task) {
+    BOOL enabled = OSDisableInterrupts();
+    __DSP_insert_task(task);
+    task->state = 0;
+    task->flags = 1;
+    OSRestoreInterrupts(enabled);
+    if (task == lbl_801A6BB8) {
+        __DSP_boot_task(task);
+    }
+    return task;
+}
+
+DSPTaskInfo *fn_80028E48(DSPTaskInfo *task) {
+    BOOL enabled = OSDisableInterrupts();
+    task->flags |= 2;
+    OSRestoreInterrupts(enabled);
+    return task;
+}
+
+DSPTaskInfo *fn_80028E88(DSPTaskInfo *task) {
+    BOOL enabled = OSDisableInterrupts();
+    if (lbl_801A6BBC == task) {
+        lbl_801A6BAC = task;
+        lbl_801A6BA8 = 1;
+        OSRestoreInterrupts(enabled);
+        return task;
+    }
+    if (task->priority < lbl_801A6BBC->priority) {
+        lbl_801A6BAC = task;
+        lbl_801A6BA8 = 1;
+        if (lbl_801A6BBC->state == 1) {
+            BOOL inner = OSDisableInterrupts();
+            __DSPRegs[5] = (__DSPRegs[5] & ~0xA8) | 2;
+            OSRestoreInterrupts(inner);
+        }
+        OSRestoreInterrupts(enabled);
+        return task;
+    }
+    OSRestoreInterrupts(enabled);
+    return 0;
 }

@@ -7339,36 +7339,18 @@
   },
   {
     "module": "main",
-    "source": "dol/__ARQServiceQueueLo.c",
+    "source": "dol/ar/arq.c",
     "symbols": [
       "__ARQServiceQueueLo",
       "fn_80020460",
-      "__ARQInterruptServiceRoutine"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true,
-    "matching_for": ["GFZE01"]
-  },
-  {
-    "module": "main",
-    "source": "dol/ARQInit.c",
-    "symbols": [
-      "ARQInit"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/ARQPostRequest.c",
-    "symbols": [
+      "__ARQInterruptServiceRoutine",
+      "ARQInit",
       "ARQPostRequest"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
     "collapsed": true,
-    "matching_for": ["GFZE01", "GFZJ01"]
+    "matching_for": ["GFZE01"]
   },
   {
     "module": "main",
@@ -23287,7 +23269,7 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_800289C0.c",
+    "source": "dol/dsp/dsp.c",
     "symbols": [
       "fn_800289C0",
       "fn_80028A1C",
@@ -23299,17 +23281,7 @@
       "DSPCheckMailFromDSP",
       "DSPReadMailFromDSP",
       "DSPSendMailToDSP",
-      "DSPInit"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true,
-    "matching_for": ["GFZE01", "GFZJ01"]
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80028DD0.c",
-    "symbols": [
+      "DSPInit",
       "fn_80028DD0",
       "DSPAddTask",
       "fn_80028E48",
@@ -23317,7 +23289,8 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
-    "collapsed": true
+    "collapsed": true,
+    "matching_for": ["GFZE01", "GFZJ01"]
   },
   {
     "module": "main",

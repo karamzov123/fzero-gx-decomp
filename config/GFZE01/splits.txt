@@ -128,9 +128,6 @@ dol/fn_80028568.c:
 dol/fn_8002857C.c:
 	.text       start:0x8002857C end:0x80028598
 
-dol/fn_80028DD0.c:
-	.text       start:0x80028DD0 end:0x80028F50 align:4
-
 dol/fn_80028F50.c:
 	.text       start:0x80028F50 end:0x80028FA0 align:4
 
@@ -263,9 +260,6 @@ dol/fn_8001813C.c:
 
 dol/__OSReschedule.c:
 	.text       start:0x800107F8 end:0x80010A10 align:4
-
-dol/ARQInit.c:
-	.text       start:0x80020530 end:0x800205A0 align:4
 
 dol/fn_8001989C.c:
 	.text       start:0x8001989C end:0x800198FC align:4
@@ -667,8 +661,8 @@ dol/fn_80026EE0.c:
 dol/fn_80028424.c:
 	.text       start:0x80028424 end:0x800284A0 align:4
 
-dol/fn_800289C0.c:
-	.text       start:0x800289C0 end:0x80028DD0 align:4
+dol/dsp/dsp.c:
+	.text       start:0x800289C0 end:0x80028F50 align:4
 
 dol/fn_800284A0.c:
 	.text       start:0x800284A0 end:0x800284CC align:4
@@ -1335,11 +1329,8 @@ dol/fn_800579F0.c:
 dol/fn_80077384.c:
 	.text       start:0x80077384 end:0x80077488 align:4
 
-dol/__ARQServiceQueueLo.c:
-	.text       start:0x80020360 end:0x80020530 align:4
-
-dol/ARQPostRequest.c:
-	.text       start:0x800205A0 end:0x800206FC align:4
+dol/ar/arq.c:
+	.text       start:0x80020360 end:0x800206FC align:4
 
 dol/fn_800206FC.c:
 	.text       start:0x800206FC end:0x80020874 align:4
