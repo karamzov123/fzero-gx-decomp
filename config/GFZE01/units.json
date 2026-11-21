@@ -7859,24 +7859,39 @@
   },
   {
     "module": "main",
-    "source": "dol/AlarmHandlerForTimeout.c",
+    "source": "dol/dvd/dvdlow.c",
     "symbols": [
-      "AlarmHandlerForTimeout"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/AlarmHandler_dvdlow.c",
-    "symbols": [
-      "AlarmHandler_dvdlow"
+      "__DVDInitWA",
+      "__DVDInterruptHandler",
+      "AlarmHandler_dvdlow",
+      "AlarmHandlerForTimeout",
+      "Read",
+      "SeekTwiceBeforeRead",
+      "DVDLowRead",
+      "DVDLowSeek",
+      "DVDLowWaitCoverClose",
+      "DVDLowReadDiskID",
+      "DVDLowStopMotor",
+      "DVDLowRequestError",
+      "DVDLowInquiry",
+      "DVDLowAudioStream",
+      "DVDLowRequestAudioStatus",
+      "DVDLowAudioBufferConfig",
+      "DVDLowReset",
+      "DVDLowBreak",
+      "DVDLowClearCallback",
+      "__DVDLowSetWAType"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
     "pool": {
-      "...bss.0": "CommandList"
-    }
+      "...bss.0": "CommandList",
+      "CommandList_8015CD70": "CommandList",
+      "AlarmForTimeout": "AlarmForTimeout"
+    },
+    "matching_for": [
+      "GFZE01"
+    ]
   },
   {
     "module": "main",
@@ -7995,17 +8010,6 @@
       "C_MTXFrustum",
       "C_MTXPerspective",
       "C_MTXOrtho"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [],
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/__DVDInitWA.c",
-    "symbols": [
-      "__DVDInitWA"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
@@ -8158,46 +8162,6 @@
   },
   {
     "module": "main",
-    "source": "dol/DVDConvertPathToEntrynum.c",
-    "symbols": [
-      "DVDConvertPathToEntrynum"
-    ],
-    "status": "matching",
-    "matching_for": [
-      "GFZE01",
-      "GFZJ01"
-    ],
-    "mw_version": "GC/1.2.5n",
-    "pool": {
-      "@110": "lbl_80123E28",
-      "@109": "lbl_801A6470"
-    }
-  },
-  {
-    "module": "main",
-    "source": "dol/DVDFastOpen.c",
-    "symbols": [
-      "DVDFastOpen",
-      "DVDOpen",
-      "DVDClose",
-      "entryToPath",
-      "DVDGetCurrentDir",
-      "DVDChangeDir",
-      "DVDReadAsyncPrio"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true,
-    "pool": {
-      "@21": "lbl_80123EF0"
-    },
-    "matching_for": [
-      "GFZE01",
-      "GFZJ01"
-    ]
-  },
-  {
-    "module": "main",
     "source": "dol/DVDGetCommandBlockStatus.c",
     "symbols": [
       "DVDGetCommandBlockStatus"
@@ -8235,70 +8199,35 @@
   },
   {
     "module": "main",
-    "source": "dol/DVDLowBreak.c",
+    "source": "dol/dvd/dvdfs.c",
     "symbols": [
-      "DVDLowBreak",
-      "DVDLowClearCallback",
-      "__DVDLowSetWAType"
+      "__DVDFSInit",
+      "DVDConvertPathToEntrynum",
+      "DVDFastOpen",
+      "DVDOpen",
+      "DVDClose",
+      "entryToPath",
+      "DVDGetCurrentDir",
+      "DVDChangeDir",
+      "DVDReadAsyncPrio",
+      "fn_80017590",
+      "DVDReadPrio",
+      "fn_800176D8",
+      "DVDGetTransferredSize",
+      "fn_80017768"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
     "collapsed": true,
-    "matching_for": [
-      "GFZE01",
-      "GFZJ01"
-    ]
-  },
-  {
-    "module": "main",
-    "source": "dol/__DVDFSInit.c",
-    "symbols": [
-      "__DVDFSInit"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true,
-    "matching_for": [
-      "GFZE01",
-      "GFZJ01"
-    ]
-  },
-  {
-    "module": "main",
-    "source": "dol/DVDLowRead.c",
-    "symbols": [
-      "DVDLowRead"
-    ],
-    "status": "matching",
     "matching_for": [
       "GFZE01"
     ],
-    "mw_version": "GC/1.2.5n",
     "pool": {
-      "...bss.0": "CommandList"
+      "@113": "lbl_801A6470",
+      "@114": "lbl_80123E28",
+      "@135": "lbl_80123EF0",
+      "@234": "lbl_80123F5C"
     }
-  },
-  {
-    "module": "main",
-    "source": "dol/DVDLowSeek.c",
-    "symbols": [
-      "DVDLowSeek",
-      "DVDLowWaitCoverClose",
-      "DVDLowReadDiskID",
-      "DVDLowStopMotor",
-      "DVDLowRequestError",
-      "DVDLowInquiry",
-      "DVDLowAudioStream",
-      "DVDLowRequestAudioStatus",
-      "DVDLowAudioBufferConfig",
-      "DVDLowReset"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true,
-    "matching_for": [
-      "GFZE01"
-    ]
   },
   {
     "module": "main",
@@ -8770,9 +8699,41 @@
   },
   {
     "module": "main",
-    "source": "dol/Link.c",
+    "source": "dol/os/OSLink.c",
     "symbols": [
-      "Link"
+      "fn_8000DD60",
+      "fn_8000DD64",
+      "fn_8000DD68",
+      "Relocate",
+      "Link",
+      "OSLink",
+      "OSLinkFixed",
+      "Undo",
+      "OSUnlink",
+      "__OSModuleInit"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.2.5n",
+    "extra_cflags": [
+      "-inline",
+      "on,noauto"
+    ],
+    "pool": {
+      "@60": "lbl_80123A90",
+      "@187": "lbl_80123AB8"
+    },
+    "matching_for": [
+      "GFZE01"
+    ]
+  },
+  {
+    "module": "main",
+    "source": "dol/fn_8000E794.c",
+    "symbols": [
+      "fn_8000E794",
+      "fn_8000E7A0",
+      "OnReset",
+      "MEMIntrruptHandler"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n"
@@ -9065,27 +9026,6 @@
     "mw_version": null,
     "extra_cflags": [],
     "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/OSLink.c",
-    "symbols": [
-      "OSLink",
-      "OSLinkFixed",
-      "Undo",
-      "OSUnlink",
-      "__OSModuleInit",
-      "fn_8000E794",
-      "fn_8000E7A0",
-      "OnReset",
-      "MEMIntrruptHandler"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true,
-    "pool": {
-      "@59": "lbl_80123AB8"
-    }
   },
   {
     "module": "main",
@@ -9733,18 +9673,6 @@
   },
   {
     "module": "main",
-    "source": "dol/Read.c",
-    "symbols": [
-      "Read"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "pool": {
-      "...bss.0": "CommandList"
-    }
-  },
-  {
-    "module": "main",
     "source": "dol/RealMode.c",
     "symbols": [
       "RealMode"
@@ -9964,15 +9892,6 @@
     ],
     "mw_version": null,
     "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/SeekTwiceBeforeRead.c",
-    "symbols": [
-      "SeekTwiceBeforeRead"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -10740,21 +10659,6 @@
   },
   {
     "module": "main",
-    "source": "dol/__DVDInterruptHandler.c",
-    "symbols": [
-      "__DVDInterruptHandler"
-    ],
-    "status": "matching",
-    "matching_for": [
-      "GFZE01"
-    ],
-    "mw_version": "GC/1.2.5n",
-    "pool": {
-      "...bss.0": "CommandList"
-    }
-  },
-  {
-    "module": "main",
     "source": "dol/DVDCompareDiskID.c",
     "symbols": [
       "DVDCompareDiskID"
@@ -10936,23 +10840,6 @@
   },
   {
     "module": "main",
-    "source": "dol/__OSInterruptInit.c",
-    "symbols": [
-      "__OSInterruptInit",
-      "SetInterruptMask",
-      "__OSMaskInterrupts",
-      "__OSUnmaskInterrupts",
-      "__OSDispatchInterrupt"
-    ],
-    "status": "matching",
-    "matching_for": [
-      "GFZE01"
-    ],
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
     "source": "dol/__OSLoadFPUContext.c",
     "symbols": [
       "__OSLoadFPUContext"
@@ -10999,11 +10886,19 @@
     "source": "dol/__OSSetInterruptHandler.c",
     "symbols": [
       "__OSSetInterruptHandler",
-      "__OSGetInterruptHandler"
+      "__OSGetInterruptHandler",
+      "__OSInterruptInit",
+      "SetInterruptMask",
+      "__OSMaskInterrupts",
+      "__OSUnmaskInterrupts",
+      "__OSDispatchInterrupt"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
-    "collapsed": true
+    "collapsed": true,
+    "matching_for": [
+      "GFZE01"
+    ]
   },
   {
     "module": "main",
@@ -24410,25 +24305,6 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_8000DD60.c",
-    "symbols": [
-      "fn_8000DD60",
-      "fn_8000DD64",
-      "fn_8000DD68",
-      "Relocate"
-    ],
-    "status": "matching",
-    "matching_for": [
-      "GFZE01"
-    ],
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true,
-    "pool": {
-      "@60": "lbl_80123A90"
-    }
-  },
-  {
-    "module": "main",
     "source": "dol/__OSReboot.c",
     "symbols": [
       "fn_8000EB04",
@@ -24477,41 +24353,6 @@
     "status": "matching",
     "mw_version": "GC/1.2.5n",
     "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80017590.c",
-    "symbols": [
-      "fn_80017590",
-      "DVDReadPrio"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true,
-    "pool": {
-      "@26": "lbl_80123F5C",
-      "@25": "lbl_801A6470"
-    },
-    "matching_for": [
-      "GFZE01",
-      "GFZJ01"
-    ]
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_800176D8.c",
-    "symbols": [
-      "fn_800176D8",
-      "DVDGetTransferredSize",
-      "fn_80017768"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [],
-    "collapsed": true,
-    "matching_for": [
-      "GFZE01"
-    ]
   },
   {
     "module": "main",

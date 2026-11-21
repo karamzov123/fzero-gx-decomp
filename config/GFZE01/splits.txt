@@ -35,11 +35,11 @@ dol/__OSInitAudioSystem.c:
 dol/LCEnable.c:
 	.text       start:0x8000B804 end:0x8000B83C
 
-dol/fn_8000DD60.c:
-	.text       start:0x8000DD60 end:0x8000E030 align:4
+dol/os/OSLink.c:
+	.text       start:0x8000DD60 end:0x8000E794 align:4
 
-dol/OSLink.c:
-	.text       start:0x8000E310 end:0x8000E854 align:4
+dol/fn_8000E794.c:
+	.text       start:0x8000E794 end:0x8000E854 align:4
 
 dol/__OSReboot.c:
 	.text       start:0x8000EB04 end:0x8000EE5C align:4
@@ -53,11 +53,8 @@ dol/_ExitProcess.c:
 dol/si/SISteering.c:
 	.text       start:0x800133DC end:0x800137C4 align:4
 
-dol/DVDLowBreak.c:
-	.text       start:0x80016D50 end:0x80016DC0 align:4
-
-dol/__DVDFSInit.c:
-	.text       start:0x80016DC0 end:0x80016DF8 align:4
+dol/dvd/dvdfs.c:
+	.text       start:0x80016DC0 end:0x8001776C align:4
 
 dol/stateTimeout.c:
 	.text       start:0x80017A04 end:0x80017B14 align:4
@@ -332,7 +329,7 @@ dol/fn_80051DC4.c:
 	.text       start:0x80051DC4 end:0x80051E64 align:4
 
 dol/__OSSetInterruptHandler.c:
-	.text       start:0x8000D540 end:0x8000D570 align:4
+	.text       start:0x8000D540 end:0x8000DD10 align:4
 
 dol/fn_80026E04.c:
 	.text       start:0x80026E04 end:0x80026E2C align:4
@@ -450,9 +447,6 @@ dol/stateCheckID2.c:
 
 dol/fn_80057728.c:
 	.text       start:0x80057728 end:0x80057774 align:4
-
-dol/fn_800176D8.c:
-	.text       start:0x800176D8 end:0x8001776C align:4
 
 dol/fn_80021FBC.c:
 	.text       start:0x80021FBC end:0x80022028 align:4
@@ -582,9 +576,6 @@ dol/fn_80007C60.c:
 
 dol/os/OSAlarm.c:
 	.text       start:0x8000ABE8 end:0x8000B2C4 align:4
-
-dol/fn_80017590.c:
-	.text       start:0x80017590 end:0x800176D8 align:4
 
 dol/cbForStateCheckID2a.c:
 	.text       start:0x80018170 end:0x800181E4 align:4
@@ -1126,9 +1117,6 @@ dol/fn_80083970.c:
 dol/fn_8008EC78.c:
 	.text       start:0x8008EC78 end:0x8008ECE0 align:4
 
-dol/SeekTwiceBeforeRead.c:
-	.text       start:0x800164A4 end:0x80016524 align:4
-
 dol/OSError.c:
 	.text       start:0x8000C41C end:0x8000CAC8 align:4
 	.sdata      start:0x801A6430 end:0x801A6438 align:8
@@ -1218,9 +1206,6 @@ dol/__init_user.c:
 dol/__OSCacheInit.c:
 	.text       start:0x8000BAB8 end:0x8000BBAC align:4
 
-dol/Link.c:
-	.text       start:0x8000E030 end:0x8000E310 align:4
-
 dol/SetExiInterruptMask.c:
 	.text       start:0x80013A88 end:0x80015464 align:4
 
@@ -1287,17 +1272,8 @@ dol/fn_800206FC.c:
 dol/card/CARDRdwr.c:
 	.text       start:0x8002BE20 end:0x8002C0C0 align:4
 
-dol/__OSInterruptInit.c:
-	.text       start:0x8000D570 end:0x8000DD10 align:4
-
 dol/DBInit.c:
 	.text       start:0x80015A38 end:0x80015AA8 align:4
-
-dol/AlarmHandlerForTimeout.c:
-	.text       start:0x80016324 end:0x80016394 align:4
-
-dol/DVDFastOpen.c:
-	.text       start:0x800170EC end:0x80017590 align:4
 
 dol/DVDInit.c:
 	.text       start:0x8001776C end:0x800178CC align:4
@@ -1383,9 +1359,6 @@ dol/stateCoverClosed.c:
 
 dol/gx/GXTev.c:
 	.text       start:0x80037014 end:0x800377F8 align:4
-
-dol/DVDLowSeek.c:
-	.text       start:0x800167BC end:0x80016D50 align:4
 
 dol/fn_800218EC.c:
 	.text       start:0x800218EC end:0x80021AB8 align:4
@@ -1584,9 +1557,6 @@ dol/TRKTargetAccessDefault.c:
 
 dol/fn_80083F10.c:
 	.text       start:0x80083F10 end:0x80084F1C align:4
-
-dol/DVDConvertPathToEntrynum.c:
-	.text       start:0x80016DF8 end:0x800170EC align:4
 
 dol/fn_8008C87C.c:
 	.text       start:0x8008C87C end:0x8008CB20 align:4
@@ -1996,8 +1966,8 @@ dol/PADProbeCallback.c:
 dol/C_MTXFrustum.c:
 	.text       start:0x80015D7C end:0x80015F80 align:4
 
-dol/__DVDInitWA.c:
-	.text       start:0x80015F80 end:0x80015FC0 align:4
+dol/dvd/dvdlow.c:
+	.text       start:0x80015F80 end:0x80016DC0
 
 dol/VI.c:
 	.text       start:0x8001A55C end:0x8001C0C0 align:4
@@ -2063,18 +2033,6 @@ dol/fn_80008FB0.c:
 
 dol/si/SISamplingRate.c:
 	.text       start:0x800132D4 end:0x800133DC align:4
-
-dol/__DVDInterruptHandler.c:
-	.text       start:0x80015FC0 end:0x800162A0 align:4
-
-dol/AlarmHandler_dvdlow.c:
-	.text       start:0x800162A0 end:0x80016324 align:4
-
-dol/Read.c:
-	.text       start:0x80016394 end:0x800164A4 align:4
-
-dol/DVDLowRead.c:
-	.text       start:0x80016524 end:0x800167BC align:4
 
 dol/PADRead.c:
 	.text       start:0x8001CF80 end:0x8001D488 align:4
