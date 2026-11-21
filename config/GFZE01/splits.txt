@@ -26,11 +26,8 @@ dol/fn_80006BDC.c:
 dol/PPCDisableSpeculation.c:
 	.text       start:0x8000A0CC end:0x8000A0F4
 
-dol/OSGetArenaHi.c:
-	.text       start:0x8000B314 end:0x8000B32C align:4
-
-dol/OSSetArenaLo.c:
-	.text       start:0x8000B32C end:0x8000B380 align:4
+dol/os/OSArena.c:
+	.text       start:0x8000B314 end:0x8000B380 align:4
 
 dol/__OSInitAudioSystem.c:
 	.text       start:0x8000B380 end:0x8000B614 align:4
@@ -80,11 +77,8 @@ dol/stateTimeout.c:
 dol/cbForUnrecoveredError.c:
 	.text       start:0x80017DA8 end:0x80017E10
 
-dol/__DVDDequeueWaitingQueue.c:
-	.text       start:0x80019FFC end:0x8001A05C align:4
-
-dol/ErrorCode2Num.c:
-	.text       start:0x8001A05C end:0x8001A178 align:4
+dol/dvd/dvderror.c:
+	.text       start:0x8001A05C end:0x8001A1F4 align:4
 
 dol/PADControlMotor.c:
 	.text       start:0x8001D3E4 end:0x8001D488
@@ -507,9 +501,6 @@ dol/fn_80024E3C.c:
 dol/DVDGetCommandBlockStatus.c:
 	.text       start:0x800197A4 end:0x800197F0 align:4
 
-dol/__DVDStoreErrorCode.c:
-	.text       start:0x8001A178 end:0x8001A1F4 align:4
-
 dol/DVDCompareDiskID.c:
 	.text       start:0x8001A1F4 end:0x8001A2EC align:4
 
@@ -708,14 +699,11 @@ dol/cbForStateReadingFST.c:
 dol/SamplingHandler_Pad.c:
 	.text       start:0x8001DDD0 end:0x8001DE30 align:4
 
-dol/__DVDClearWaitingQueue.c:
-	.text       start:0x80019E64 end:0x80019E9C align:4
+dol/dvd/dvdqueue.c:
+	.text       start:0x80019E64 end:0x8001A05C align:4
 
 dol/DVDReadAbsAsyncPrio.c:
 	.text       start:0x80019354 end:0x800197A4 align:4
-
-dol/__DVDPushWaitingQueue.c:
-	.text       start:0x80019E9C end:0x80019FA4 align:4
 
 dol/fn_80020874.c:
 	.text       start:0x80020874 end:0x80020928 align:4
@@ -1580,9 +1568,6 @@ dol/stateBusy.c:
 dol/DVDCancelAsync.c:
 	.text       start:0x800198FC end:0x80019E64 align:4
 	.data       start:0x801240A8 end:0x80124110 align:8
-
-dol/__DVDCheckWaitingQueue.c:
-	.text       start:0x80019FA4 end:0x80019FFC align:4
 
 dol/__GXSaveCPUFifoAux.c:
 	.text       start:0x80032014 end:0x800321D8 align:4

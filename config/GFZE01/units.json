@@ -9186,11 +9186,14 @@
   },
   {
     "module": "main",
-    "source": "dol/OSGetArenaHi.c",
+    "source": "dol/os/OSArena.c",
     "symbols": [
       "OSGetArenaHi",
       "OSGetArenaLo",
-      "OSSetArenaHi"
+      "OSSetArenaHi",
+      "OSSetArenaLo",
+      "OSAllocFromArenaLo",
+      "OSAllocFromArenaHi"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
@@ -9380,18 +9383,6 @@
     "mw_version": null,
     "extra_cflags": [],
     "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/OSSetArenaLo.c",
-    "symbols": [
-      "OSSetArenaLo",
-      "OSAllocFromArenaLo",
-      "OSAllocFromArenaHi"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
   },
   {
     "module": "main",
@@ -11031,26 +11022,12 @@
   },
   {
     "module": "main",
-    "source": "dol/__DVDCheckWaitingQueue.c",
+    "source": "dol/dvd/dvdqueue.c",
     "symbols": [
-      "__DVDCheckWaitingQueue"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/__DVDClearWaitingQueue.c",
-    "symbols": [
-      "__DVDClearWaitingQueue"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/__DVDDequeueWaitingQueue.c",
-    "symbols": [
+      "__DVDClearWaitingQueue",
+      "__DVDPushWaitingQueue",
+      "__DVDPopWaitingQueue",
+      "__DVDCheckWaitingQueue",
       "__DVDDequeueWaitingQueue"
     ],
     "status": "matching",
@@ -11059,13 +11036,18 @@
   },
   {
     "module": "main",
-    "source": "dol/ErrorCode2Num.c",
+    "source": "dol/dvd/dvderror.c",
     "symbols": [
-      "ErrorCode2Num"
+      "ErrorCode2Num",
+      "__DVDStoreErrorCode"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-inline",
+      "on,noauto"
+    ]
   },
   {
     "module": "main",
@@ -11079,27 +11061,6 @@
     "pool": {
       "...bss.0": "CommandList"
     }
-  },
-  {
-    "module": "main",
-    "source": "dol/__DVDPushWaitingQueue.c",
-    "symbols": [
-      "__DVDPushWaitingQueue",
-      "__DVDPopWaitingQueue"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/__DVDStoreErrorCode.c",
-    "symbols": [
-      "__DVDStoreErrorCode"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
   },
   {
     "module": "main",

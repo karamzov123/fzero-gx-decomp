@@ -34,6 +34,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('candidate'); ap.add_argument('--units', required=True)
     ap.add_argument('--apply', action='store_true'); ap.add_argument('--as', dest='dest')
+    ap.add_argument('--extra', default='', help='extra compiler flags for the TU, e.g. "-inline on"; recorded in extra_cflags')
     a = ap.parse_args()
     srcs = a.units.split(',')
     units = json.load(open('config/GFZE01/units.json')); byu = {u['source']: u for u in units}
@@ -42,6 +43,7 @@ def main():
     mf = [v for v in VERSIONS if all(v in (u.get('matching_for') or VERSIONS) for u in us)]
     lead = dict(us[0], matching_for=mf)
     mv, cf = nu['src/' + srcs[0]]
+    if a.extra: cf = cf + ' ' + a.extra
     own = set(s for u in us for s in u['symbols'])
     cand = pathlib.Path(a.candidate).read_text()
     ok = True
@@ -94,6 +96,7 @@ def main():
     syms = [s for _, _, src in rng for s in byu[src]['symbols']]
     merged = dict(byu[first], source=dest, symbols=syms, collapsed=True)
     merged['mw_version'] = mv
+    if a.extra: merged['extra_cflags'] = list(merged.get('extra_cflags') or []) + a.extra.split()
     if mf != list(VERSIONS): merged['matching_for'] = mf
     else: merged.pop('matching_for', None)
     out = []

@@ -1,5 +1,5 @@
 {
- "generated": 1795225910,
+ "generated": 1795226341,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -9320,7 +9320,7 @@
   {
    "symbol": "OSGetArenaHi",
    "module": "main",
-   "unit": "dol/OSGetArenaHi.c",
+   "unit": "dol/os/OSArena.c",
    "addr": 2147529492,
    "size": 8,
    "status": "matched",
@@ -9337,7 +9337,7 @@
   {
    "symbol": "OSGetArenaLo",
    "module": "main",
-   "unit": "dol/OSGetArenaHi.c",
+   "unit": "dol/os/OSArena.c",
    "addr": 2147529500,
    "size": 8,
    "status": "matched",
@@ -9354,7 +9354,7 @@
   {
    "symbol": "OSSetArenaHi",
    "module": "main",
-   "unit": "dol/OSGetArenaHi.c",
+   "unit": "dol/os/OSArena.c",
    "addr": 2147529508,
    "size": 8,
    "status": "matched",
@@ -9371,7 +9371,7 @@
   {
    "symbol": "OSSetArenaLo",
    "module": "main",
-   "unit": "dol/OSSetArenaLo.c",
+   "unit": "dol/os/OSArena.c",
    "addr": 2147529516,
    "size": 8,
    "status": "matched",
@@ -9388,7 +9388,7 @@
   {
    "symbol": "OSAllocFromArenaLo",
    "module": "main",
-   "unit": "dol/OSSetArenaLo.c",
+   "unit": "dol/os/OSArena.c",
    "addr": 2147529524,
    "size": 44,
    "status": "matched",
@@ -9405,7 +9405,7 @@
   {
    "symbol": "OSAllocFromArenaHi",
    "module": "main",
-   "unit": "dol/OSSetArenaLo.c",
+   "unit": "dol/os/OSArena.c",
    "addr": 2147529568,
    "size": 32,
    "status": "matched",
@@ -14352,7 +14352,7 @@
   {
    "symbol": "__DVDClearWaitingQueue",
    "module": "main",
-   "unit": "dol/__DVDClearWaitingQueue.c",
+   "unit": "dol/dvd/dvdqueue.c",
    "addr": 2147589732,
    "size": 56,
    "status": "matched",
@@ -14369,7 +14369,7 @@
   {
    "symbol": "__DVDPushWaitingQueue",
    "module": "main",
-   "unit": "dol/__DVDPushWaitingQueue.c",
+   "unit": "dol/dvd/dvdqueue.c",
    "addr": 2147589788,
    "size": 104,
    "status": "matched",
@@ -14386,7 +14386,7 @@
   {
    "symbol": "__DVDPopWaitingQueue",
    "module": "main",
-   "unit": "dol/__DVDPushWaitingQueue.c",
+   "unit": "dol/dvd/dvdqueue.c",
    "addr": 2147589892,
    "size": 160,
    "status": "matched",
@@ -14403,7 +14403,7 @@
   {
    "symbol": "__DVDCheckWaitingQueue",
    "module": "main",
-   "unit": "dol/__DVDCheckWaitingQueue.c",
+   "unit": "dol/dvd/dvdqueue.c",
    "addr": 2147590052,
    "size": 88,
    "status": "matched",
@@ -14420,7 +14420,7 @@
   {
    "symbol": "__DVDDequeueWaitingQueue",
    "module": "main",
-   "unit": "dol/__DVDDequeueWaitingQueue.c",
+   "unit": "dol/dvd/dvdqueue.c",
    "addr": 2147590140,
    "size": 96,
    "status": "matched",
@@ -14437,7 +14437,7 @@
   {
    "symbol": "ErrorCode2Num",
    "module": "main",
-   "unit": "dol/ErrorCode2Num.c",
+   "unit": "dol/dvd/dvderror.c",
    "addr": 2147590236,
    "size": 284,
    "status": "matched",
@@ -14454,7 +14454,7 @@
   {
    "symbol": "__DVDStoreErrorCode",
    "module": "main",
-   "unit": "dol/__DVDStoreErrorCode.c",
+   "unit": "dol/dvd/dvderror.c",
    "addr": 2147590520,
    "size": 124,
    "status": "matched",
