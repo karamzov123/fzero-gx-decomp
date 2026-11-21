@@ -7462,28 +7462,6 @@
   },
   {
     "module": "main",
-    "source": "dol/CARDFreeBlocks.c",
-    "symbols": [
-      "CARDFreeBlocks",
-      "__CARDSync",
-      "OnReset_CARDBios"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/CARDInit.c",
-    "symbols": [
-      "CARDInit"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
     "source": "dol/CARDOpen.c",
     "symbols": [
       "__CARDCompareFileName",
@@ -10016,64 +9994,6 @@
   },
   {
     "module": "main",
-    "source": "dol/__CARDClearStatus.c",
-    "symbols": [
-      "__CARDClearStatus",
-      "TimeoutHandler",
-      "Retry",
-      "UnlockedCallback",
-      "__CARDStart",
-      "__CARDReadSegment",
-      "__CARDWritePage",
-      "__CARDEraseSector"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/__CARDExiHandler.c",
-    "symbols": [
-      "__CARDExiHandler",
-      "__CARDTxHandler"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/__CARDExtHandler.c",
-    "symbols": [
-      "__CARDExtHandler"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/__CARDGetControlBlock.c",
-    "symbols": [
-      "__CARDGetControlBlock"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/__CARDPutControlBlock.c",
-    "symbols": [
-      "__CARDPutControlBlock",
-      "CARDGetResultCode"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
     "source": "dol/card/CARDRdwr.c",
     "symbols": [
       "BlockReadCallback",
@@ -10082,18 +10002,6 @@
       "__CARDWrite",
       "fn_8002C0A0",
       "fn_8002C0B8"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/__CARDUnlockedHandler.c",
-    "symbols": [
-      "__CARDUnlockedHandler",
-      "__CARDEnableInterrupt",
-      "__CARDReadStatus"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
@@ -10143,9 +10051,35 @@
   },
   {
     "module": "main",
-    "source": "dol/__CARDSyncCallback.c",
+    "source": "dol/card/CARDBios.c",
     "symbols": [
-      "__CARDSyncCallback"
+      "__CARDSyncCallback",
+      "__CARDExtHandler",
+      "__CARDExiHandler",
+      "__CARDTxHandler",
+      "__CARDUnlockedHandler",
+      "__CARDEnableInterrupt",
+      "__CARDReadStatus",
+      "__CARDClearStatus",
+      "TimeoutHandler",
+      "Retry",
+      "UnlockedCallback",
+      "__CARDStart",
+      "__CARDReadSegment",
+      "__CARDWritePage",
+      "__CARDEraseSector",
+      "CARDInit",
+      "fn_8002A744",
+      "fn_8002A74C",
+      "__CARDSetDiskID",
+      "fn_8002A7AC",
+      "fn_8002A7C4",
+      "__CARDGetControlBlock",
+      "__CARDPutControlBlock",
+      "CARDGetResultCode",
+      "CARDFreeBlocks",
+      "__CARDSync",
+      "OnReset_CARDBios"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
@@ -23301,38 +23235,6 @@
     "status": "matching",
     "mw_version": "GC/1.2.5n",
     "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8002A744.c",
-    "symbols": [
-      "fn_8002A744",
-      "fn_8002A74C",
-      "__CARDSetDiskID"
-    ],
-    "status": "matching",
-    "collapsed": true,
-    "mw_version": "GC/2.0p1"
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8002A7AC.c",
-    "symbols": [
-      "fn_8002A7AC"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8002A7C4.c",
-    "symbols": [
-      "fn_8002A7C4"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
   },
   {
     "module": "main",

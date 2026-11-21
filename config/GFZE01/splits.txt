@@ -131,18 +131,6 @@ dol/fn_8002857C.c:
 dol/fn_80028F50.c:
 	.text       start:0x80028F50 end:0x80028FA0 align:4
 
-dol/__CARDExtHandler.c:
-	.text       start:0x8002985C end:0x80029934
-
-dol/__CARDClearStatus.c:
-	.text       start:0x80029D28 end:0x8002A698 align:4
-
-dol/fn_8002A744.c:
-	.text       start:0x8002A744 end:0x8002A7AC align:4
-
-dol/fn_8002A7C4.c:
-	.text       start:0x8002A7C4 end:0x8002A83C
-
 dol/gx/GXAttr.c:
 	.text       start:0x80032370 end:0x80033D8C align:4
 	.data       start:0x8012AD40 end:0x8012AFB8 align:32
@@ -360,9 +348,6 @@ dol/fn_80051DC4.c:
 
 dol/__OSSetInterruptHandler.c:
 	.text       start:0x8000D540 end:0x8000D570 align:4
-
-dol/fn_8002A7AC.c:
-	.text       start:0x8002A7AC end:0x8002A7C4 align:4
 
 dol/fn_80026E04.c:
 	.text       start:0x80026E04 end:0x80026E2C align:4
@@ -672,12 +657,6 @@ dol/fn_800284FC.c:
 
 dol/fn_80028598.c:
 	.text       start:0x80028598 end:0x800285DC align:4
-
-dol/__CARDPutControlBlock.c:
-	.text       start:0x8002A8F4 end:0x8002A988 align:4
-
-dol/__CARDUnlockedHandler.c:
-	.text       start:0x80029AF4 end:0x80029D28 align:4
 
 dol/card/CARDBlock.c:
 	.text       start:0x8002C0C0 end:0x8002C4C4 align:4
@@ -1212,15 +1191,6 @@ dol/cbForStateError.c:
 dol/fn_800829EC.c:
 	.text       start:0x800829EC end:0x80083428 align:4
 
-dol/__CARDExiHandler.c:
-	.text       start:0x80029934 end:0x80029AF4 align:4
-
-dol/__CARDGetControlBlock.c:
-	.text       start:0x8002A83C end:0x8002A8F4 align:4
-
-dol/CARDFreeBlocks.c:
-	.text       start:0x8002A988 end:0x8002ABC0 align:4
-
 dol/card/CARDUnlock.c:
 	.text       start:0x8002ABC0 end:0x8002BE20 align:4
 
@@ -1374,8 +1344,8 @@ dol/DVDCancelAsync.c:
 dol/dsp/dsp_task.c:
 	.text       start:0x80028FA0 end:0x80029828 align:4
 
-dol/__CARDSyncCallback.c:
-	.text       start:0x80029828 end:0x8002985C align:4
+dol/card/CARDBios.c:
+	.text       start:0x80029828 end:0x8002ABC0 align:4
 
 dol/ClampStick.c:
 	.text       start:0x8001C0C0 end:0x8001C304 align:4
@@ -1888,9 +1858,6 @@ dol/fn_8004B7F4.c:
 
 dol/fn_8004DFF0.c:
 	.text       start:0x8004DFF0 end:0x8004E098 align:4
-
-dol/CARDInit.c:
-	.text       start:0x8002A698 end:0x8002A744 align:4
 
 dol/OSGetTick.c:
 	.text       start:0x80011424 end:0x80011684 align:4
