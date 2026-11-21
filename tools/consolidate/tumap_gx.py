@@ -20,7 +20,9 @@ RANGES = {
     'GXGeometry.c': (0x8003458C, 0x8003493C), 'GXFrameBuf.c': (0x8003493C, 0x80035420),
     'GXLight.c': (0x80035420, 0x80035A2C), 'GXTexture.c': (0x80035A2C, 0x80036A28),
     'GXBump.c': (0x80036A28, 0x80037014), 'GXTev.c': (0x80037014, 0x800377F8),
-    'GXPixel.c': (0x800377F8, 0x80037E30), 'GXTransform.c': (0x80038A88, 0x8003910C),
+    'GXPixel.c': (0x800377F8, 0x80037E30), 'GXDraw.c': (0x80037E30, 0x80038878),
+    'GXStubs.c': (0x80038878, 0x8003887C), 'GXDisplayList.c': (0x8003887C, 0x80038A88),
+    'GXTransform.c': (0x80038A88, 0x8003910C),
     'GXPerf.c': (0x8003910C, 0x80039C40),
 }
 
@@ -36,6 +38,11 @@ def main():
     by_file = {t['file']: t for t in m['tus']}
     added = 0
     for file, (lo, hi) in RANGES.items():
+        if file not in by_file:
+            t = {'file': file, 'text': [f'{lo:08X}', f'{hi:08X}'], 'functions': [], 'how': {}, 'lib': 'gx'}
+            m['tus'].append(t)
+            by_file[file] = t
+            m['summary']['tus'] = len(m['tus'])
         t = by_file[file]
         inside = sorted((a, n) for n, (a, _) in syms.items() if lo <= a < hi)
         wrong = [n for _, n in inside if placed.get(n, file) != file]
@@ -48,6 +55,7 @@ def main():
             added += len(new)
         t['functions'] = [n for _, n in inside]
         t['text'] = [f'{lo:08X}', f'{hi:08X}']
+    m['tus'].sort(key=lambda t: int(t['text'][0], 16))
     now = {f for t in m['tus'] for f in t['functions']}
     moved = [u for u in m['unassigned'] if u['name'] in now]
     m['unassigned'] = [u for u in m['unassigned'] if u['name'] not in now]

@@ -7956,17 +7956,6 @@
   },
   {
     "module": "main",
-    "source": "dol/GXDisplayList.c",
-    "symbols": [
-      "GXCallDisplayList"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
     "source": "dol/gx/GXGeometry.c",
     "symbols": [
       "fn_8003458C",
@@ -7983,30 +7972,6 @@
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.2.5n",
     "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/GXInit.c",
-    "symbols": [
-      "fn_8003086C",
-      "GXInit"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [],
-    "pool": {
-      "peCount$1": "lbl_801A6BD8",
-      "time$2": "lbl_801A6BE0",
-      "calledOnce$3": "lbl_801A6BE8",
-      "resetFuncRegistered$32": "resetFuncRegistered$63"
-    },
-    "own": [
-      "lbl_801A6BD8",
-      "lbl_801A6BE0",
-      "lbl_801A6BE8",
-      "resetFuncRegistered$63"
-    ]
   },
   {
     "module": "main",
@@ -10404,34 +10369,38 @@
     "collapsed": true
   },
   {
+    "source": "dol/gx/GXInit.c",
     "module": "main",
-    "source": "dol/__GXDefaultTexRegionCallback.c",
     "symbols": [
-      "__GXDefaultTexRegionCallback"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/__GXInitGX.c",
-    "symbols": [
+      "__GXDefaultTexRegionCallback",
+      "fn_80030848",
+      "fn_8003086C",
+      "GXInit",
       "__GXInitGX"
     ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.2.5n",
-    "extra_cflags": [],
+    "matching_for": ["GFZE01"],
+    "collapsed": true,
     "pool": {
-      "@3": "lbl_801A705C",
-      "@4": "lbl_801A7060",
-      "@5": "lbl_801A7064",
-      "@66": "lbl_801A7068",
-      "@67": "lbl_801A706C",
-      "@70": "lbl_801A7078",
-      "@68": "lbl_801A7070"
-    }
+      "peCount$12": "lbl_801A6BD8",
+      "time$13": "lbl_801A6BE0",
+      "calledOnce$14": "lbl_801A6BE8",
+      "resetFuncRegistered$43": "resetFuncRegistered$63",
+      "@118": "lbl_801A705C",
+      "@119": "lbl_801A7060",
+      "@120": "lbl_801A7064",
+      "@181": "lbl_801A7068",
+      "@182": "lbl_801A706C",
+      "@183": "lbl_801A7070",
+      "@185": "lbl_801A7078"
+    },
+    "status": "matching",
+    "own": [
+      "lbl_801A6BD8",
+      "lbl_801A6BE0",
+      "lbl_801A6BE8",
+      "resetFuncRegistered$63"
+    ]
   },
   {
     "module": "main",
@@ -14083,30 +14052,6 @@
       "lbl_80176160",
       "lbl_80177960",
       "lbl_80177B80"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_80178118.c",
-    "symbols": [
-      "lbl_80178118"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_801783A0.c",
-    "symbols": [
-      "lbl_801783A0"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -23664,17 +23609,6 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_80030848.c",
-    "symbols": [
-      "fn_80030848"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
     "source": "dol/gx/GXAttr.c",
     "symbols": [
       "__GXXfVtxSpecs",
@@ -23827,74 +23761,50 @@
     "collapsed": true
   },
   {
+    "source": "dol/gx/GXDraw.c",
     "module": "main",
-    "source": "dol/fn_80037E30.c",
     "symbols": [
-      "fn_80037E30"
+      "fn_80037E30",
+      "fn_800384FC"
     ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
     "mw_version": "GC/1.2.5n",
+    "matching_for": ["GFZE01"],
+    "collapsed": true,
     "pool": {
-      "...bss.0": "lbl_80178118",
-      "@89": "lbl_801A7134",
-      "@90": "lbl_801A7138",
-      "@91": "lbl_801A713C",
-      "@95": "lbl_801A7148",
-      "@97": "lbl_801A7150",
-      "@92": "lbl_801A7130",
-      "@93": "lbl_801A7140"
-    }
+      "@90": "lbl_801A7134",
+      "@91": "lbl_801A7138",
+      "@92": "lbl_801A713C",
+      "@93": "lbl_801A7130",
+      "@94": "lbl_801A7140",
+      "@96": "lbl_801A7148",
+      "@98": "lbl_801A7150",
+      "@125": "lbl_801A7158"
+    },
+    "status": "matching"
   },
   {
+    "source": "dol/gx/GXStubs.c",
     "module": "main",
-    "source": "dol/fn_800384FC.c",
     "symbols": [
-      "fn_800384FC",
       "fn_80038878"
     ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
     "mw_version": "GC/1.2.5n",
-    "pool": {
-      "...bss.0": "lbl_80178118",
-      "@32": "lbl_801A7150",
-      "@28": "lbl_801A7138",
-      "@29": "lbl_801A7158",
-      "@34": "lbl_801A7148",
-      "@30": "lbl_801A7134"
-    },
-    "collapsed": true
+    "collapsed": true,
+    "status": "matching",
+    "matching_for": ["GFZE01"]
   },
   {
+    "source": "dol/gx/GXDisplayList.c",
     "module": "main",
-    "source": "dol/fn_8003887C.c",
     "symbols": [
-      "fn_8003887C"
+      "fn_8003887C",
+      "fn_80038944",
+      "GXCallDisplayList"
     ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.2.5n",
-    "extra_cflags": [],
-    "pool": {
-      "...bss.0": "lbl_801783A0",
-      "lbl_801783A0": "lbl_801783A0"
-    }
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80038944.c",
-    "symbols": [
-      "fn_80038944"
-    ],
-    "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [],
-    "pool": {
-      "...bss.0": "lbl_801783A0",
-      "lbl_801783A0": "lbl_801783A0"
-    }
+    "collapsed": true,
+    "status": "matching"
   },
   {
     "module": "main",

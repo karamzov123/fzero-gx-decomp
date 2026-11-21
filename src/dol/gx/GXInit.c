@@ -1,26 +1,302 @@
+#include <dolphin/gx.h>
+#include <dolphin/gx/GXPriv.h>
+#include <dolphin/os/OSReset.h>
+#include <dolphin/os/OSTime.h>
+
 #pragma peephole off
-#include "types.h"
 
-typedef u8 GXBool;
 
-typedef enum _GXCompare {
-    GX_NEVER,
-    GX_LESS,
-    GX_EQUAL,
-    GX_LEQUAL,
-    GX_GREATER,
-    GX_NEQUAL,
-    GX_GEQUAL,
-    GX_ALWAYS,
-} GXCompare;
 
-typedef enum _GXAlphaOp {
-    GX_AOP_AND,
-    GX_AOP_OR,
-    GX_AOP_XOR,
-    GX_AOP_XNOR,
-    GX_MAX_ALPHAOP,
-} GXAlphaOp;
+typedef enum _GXCITexFmt {
+    GX_TF_C4 = 0x8,
+    GX_TF_C8 = 0x9,
+    GX_TF_C14X2 = 0xA,
+} GXCITexFmt;
+
+
+
+
+
+
+
+
+GXTexFmt fn_80036104(const GXTexObj *to);
+
+
+GXTexRegion *__GXDefaultTexRegionCallback(const GXTexObj *t_obj, GXTexMapID unused) {
+    GXTexFmt fmt = fn_80036104(t_obj);
+    if (fmt != GX_TF_C4 && fmt != GX_TF_C8 && fmt != GX_TF_C14X2) {
+        return &gx->TexRegions0[gx->nextTexRgn++ & 7];
+    } else {
+        return &gx->TexRegions1[gx->nextTexRgnCI++ & 3];
+    }
+}
+
+GXTlutRegion *fn_80030848(u32 index) {
+    if (index >= 0x14) {
+        return 0;
+    }
+    return &gx->TlutRegions[index];
+}
+
+extern volatile u16 *__cpReg; /* hardware register */
+extern u32 GXResetFuncInfo[];
+extern u32 GXSetCPUFifo(u32);
+extern u32 PPCMfhid2(void);
+extern u32 __GXFifoInit(void);
+void __GXInitGX(void);
+extern u32 __GXVersion;
+extern u32 __memReg;
+extern u32 __peReg;
+extern u32 __piReg;
+extern u8 gxData[];
+extern void GXInitFifoBase(struct __GXFifoObj *, u32, u32);
+extern void GXInitTexCacheRegion(GXTexRegion *, u8, u32, s32, u32, s32);
+extern void GXInitTlutRegion(GXTlutRegion *, u32, u32);
+extern void GXSetGPFifo(struct __GXFifoObj *);
+extern void GXSetMisc(u32, u32);
+extern void OSRegisterResetFunction(OSResetFunctionInfo *);
+extern void OSRegisterVersion(const char *);
+extern void PPCMthid2(u32);
+extern void PPCMtwpar(u32);
+extern void __GXFlushTextureState(void);
+extern void __GXPEInit(void);
+extern void __GXSetTmemConfig(u32);
+extern vu32 __MEMRegs[];
+extern vu32 __PIRegs[];
+extern vu32 __CPRegs[];
+#define GX_FIFO_U8 (*(volatile u8 *)0xCC008000) /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+#define GX_FIFO_U32 (*(volatile u32 *)0xCC008000) /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+extern OSTime OSGetTime(void);
+
+
+extern u32 fn_80009FF4(void);
+extern u32 fn_800321D8(u32);
+extern u32 fn_80033EB0(void);
+extern u32 fn_80034378(u32);
+extern u32 fn_80034444(u32);
+
+#pragma peephole off
+#pragma opt_propagation off
+s32 fn_8003086C(s32 arg0) {
+    static u32 peCount;
+    static OSTime time;
+    static u32 calledOnce;
+    u32 prev;
+    u32 hi;
+    u32 lo;
+    volatile u16 *p50;  /* fzgx-allow: S2 memory-mapped register */
+    volatile u16 *p46;  /* fzgx-allow: S2 memory-mapped register */
+    OSTime now;
+    u32 v;
+    s64 diff;
+
+    if (arg0 == 0) {
+        if (calledOnce == 0) {
+            p46 = (volatile u16 *)(__memReg + 0x4e);  /* fzgx-allow: S2 memory-mapped register */
+            p50 = (volatile u16 *)(__memReg + 0x50);  /* fzgx-allow: S2 memory-mapped register */
+            hi = *p46;
+            do {
+                prev = hi;
+                hi = *p46;
+                lo = *p50;
+            } while (hi != prev);
+            peCount = (hi << 16) | lo;
+            now = OSGetTime();
+            time = now;
+            calledOnce = 1;
+            return 0;
+        }
+        now = OSGetTime();
+        p46 = (volatile u16 *)(__memReg + 0x4e);  /* fzgx-allow: S2 memory-mapped register */
+        p50 = (volatile u16 *)(__memReg + 0x50);  /* fzgx-allow: S2 memory-mapped register */
+        hi = *p46;
+        do {
+            prev = hi;
+            hi = *p46;
+            lo = *p50;
+        } while (hi != prev);
+        v = (hi << 16) | lo;
+        if ((now - time) < 10) {
+            return 0;
+        }
+        if (v != peCount) {
+            time = now;
+            peCount = v;
+            return 0;
+        }
+    } else {
+        fn_800321D8(0);
+        fn_80034378(0);
+        fn_80034444(0);
+        GX_FIFO_U32 = 0;
+        GX_FIFO_U32 = 0;
+        GX_FIFO_U32 = 0;
+        GX_FIFO_U32 = 0;
+        GX_FIFO_U32 = 0;
+        GX_FIFO_U32 = 0;
+        GX_FIFO_U32 = 0;
+        GX_FIFO_U32 = 0;
+        fn_80009FF4();
+        *(volatile u16 *)((u32)__cpReg + 2) = 0; /* hardware register */  /* fzgx-allow: S2 memory-mapped register */
+        *(volatile u16 *)((u32)__cpReg + 4) = 3; /* hardware register */  /* fzgx-allow: S2 memory-mapped register */
+        gx->abtWaitPECopy = 1;
+        fn_80033EB0();
+    }
+    return 1;
+}
+
+
+#pragma opt_propagation reset
+
+
+#pragma peephole reset
+#pragma peephole off
+void * GXInit(u32 arg0, u32 arg1, u32 arg2) {
+    static u32 resetFuncRegistered;
+    u8 *p_gxData_80177BA0;
+    u32 v0;
+    u32 v1;
+    u32 v2;
+    u32 v4;
+    s32 v11;
+    u32 v5;
+    u32 v6;
+    u32 v12;
+    u32 v30;
+    s32 v34;
+    s32 v66;
+    u32 v63;
+    u32 v65;
+    s32 v88;
+    s32 v94;
+    s32 v101;
+    s32 v106;
+    u32 v109;
+    u32 v110;
+    u32 v111;
+    u32 t8;
+    p_gxData_80177BA0 = (u8 *)&gxData;
+    OSRegisterVersion((const char *)__GXVersion);
+    gx->inDispList = 0;
+    gx->dlSaveContext = 1;
+    gx->abtWaitPECopy = 1;
+    gx->tcsManEnab = 0;
+    gx->tevTcEnab = 0;
+    GXSetMisc(1, 0);
+    v0 = 0xCC000000; /* fzgx-allow: A1,A2 OSPhysicalToUncached(0x0C000000), as in the SDK */
+    __piReg = 0xCC003000; /* fzgx-allow: A1,A2 OSPhysicalToUncached(0x0C003000) */
+    __cpReg = (volatile u16 *)0xCC000000; /* fzgx-allow: A1,A2 OSPhysicalToUncached(0x0C000000) */
+    __peReg = 0xCC001000; /* fzgx-allow: A1,A2 OSPhysicalToUncached(0x0C001000) */
+    __memReg = 0xCC004000; /* fzgx-allow: A1,A2 OSPhysicalToUncached(0x0C004000) */
+    __GXFifoInit();
+    GXInitFifoBase((struct __GXFifoObj *)(p_gxData_80177BA0 + 1272), arg0, arg1);
+    GXSetCPUFifo((u32)p_gxData_80177BA0 + 1272);
+    GXSetGPFifo((struct __GXFifoObj *)((u32)&gxData + 1272));
+    if (resetFuncRegistered == 0) {
+        OSRegisterResetFunction((OSResetFunctionInfo *)&GXResetFuncInfo);
+        resetFuncRegistered = 1;
+    }
+    __GXPEInit();
+    t8 = PPCMfhid2();
+    PPCMtwpar((0xC010000 + -32768));
+    PPCMthid2((t8 | 0x40000000));
+    gx->genMode = 0;
+    v4 = ((u32)gx + 516);
+    v5 = ((u32)gx + 292);
+    v6 = ((u32)gx + 124);
+    *(u32 *)v4 = (*(u32 *)v4 & 0xFFFFFF);
+    gx->bpMask = 255;
+    *(u32 *)v5 = ((*(u32 *)v5 & 0xFFFFFF) | 0xF000000);
+    gx->lpSize = 0;
+    *(u32 *)v6 = ((*(u32 *)v6 & 0xFFFFFF) | 0x22000000);
+    for (v11 = 0; (u32)v11 < 16; v11++) {
+        gx->tevc[v11] = 0;
+        gx->teva[v11] = 0;
+        gx->tref[(u32)v11 >> 1] = 0;
+        gx->texmapId[v11] = 255;
+        gx->tevc[v11] = (gx->tevc[v11] & 0xFFFFFF) | ((0xC0 + v11 * 2) << 24);
+        gx->teva[v11] = (gx->teva[v11] & 0xFFFFFF) | ((0xC1 + v11 * 2) << 24);
+        gx->tevKsel[(u32)v11 >> 1] = (gx->tevKsel[(u32)v11 >> 1] & 0xFFFFFF) | ((((u32)v11 >> 1) + 0xF6) << 24);
+        gx->tref[(u32)v11 >> 1] = (gx->tref[(u32)v11 >> 1] & 0xFFFFFF) | ((((u32)v11 >> 1) + 0x28) << 24);
+    }
+    gx->iref = 0;
+    v30 = ((u32)gx + 288);
+    *(u32 *)v30 = ((*(u32 *)v30 & 0xFFFFFF) | 0x27000000);
+    for (v34 = 0; (u32)v34 < 8; v34++) {
+        gx->suTs0[v34] = 0;
+        gx->suTs1[v34] = 0;
+        gx->suTs0[v34] = (gx->suTs0[v34] & 0xFFFFFF) | ((0x30 + v34 * 2) << 24);
+        gx->suTs1[v34] = (gx->suTs1[v34] & 0xFFFFFF) | ((0x31 + v34 * 2) << 24);
+    }
+    gx->suScis0 = (gx->suScis0 & 0xFFFFFF) | 0x20000000;
+    gx->suScis1 = (gx->suScis1 & 0xFFFFFF) | 0x21000000;
+    gx->cmode0 = (gx->cmode0 & 0xFFFFFF) | 0x41000000;
+    gx->cmode1 = (gx->cmode1 & 0xFFFFFF) | 0x42000000;
+    gx->zmode = (gx->zmode & 0xFFFFFF) | 0x40000000;
+    gx->peCtrl = (gx->peCtrl & 0xFFFFFF) | 0x43000000;
+    v63 = (u32)gx + 508;
+    *(u32 *)v63 = *(u32 *)v63 & 0xFFFFFE7F;
+    gx->dirtyState = 0;
+    gx->dirtyVAT = 0;
+    v65 = *(u32 *)0x800000F8 / 500; /* fzgx-allow: A1,A2 __OSBusClock lowmem global */
+    __GXFlushTextureState();
+    GX_FIFO_U8 = 97;
+    GX_FIFO_U32 = (v65 >> 11) | 0x69000400;
+    __GXFlushTextureState();
+    GX_FIFO_U8 = 97;
+    GX_FIFO_U32 = (v65 / 4224) | 0x46000200;
+    for (v11 = 0; (u32)v11 < 8; v11++) {
+        gx->vatA[v11] = (gx->vatA[v11] & 0xBFFFFFFF) | 0x40000000;
+        gx->vatB[v11] = (gx->vatB[v11] & 0x7FFFFFFF) | 0x80000000;
+        GX_FIFO_U8 = 8;
+        GX_FIFO_U8 = v11 | 0x80;
+        GX_FIFO_U32 = gx->vatB[v11];
+    }
+    GX_FIFO_U8 = 16;
+    GX_FIFO_U32 = 4096;
+    GX_FIFO_U32 = 63;
+    GX_FIFO_U8 = 16;
+    GX_FIFO_U32 = 4114;
+    GX_FIFO_U32 = 1;
+    GX_FIFO_U8 = 97;
+    GX_FIFO_U32 = 0x5800000F;
+    for (v88 = 0; (u32)v88 < 8; v88++) {
+        GXInitTexCacheRegion(&gx->TexRegions0[v88], 0, v88 << 15, 0, (v88 << 15) + 0x80000, 0);
+    }
+    for (v94 = 0; (u32)v94 < 4; v94++) {
+        GXInitTexCacheRegion(&gx->TexRegions1[v94], 0, (v94 * 2 + 8) << 15, 0, (v94 * 2 + 9) << 15, 0);
+    }
+    for (v101 = 0; (u32)v101 < 16; v101++) {
+        GXInitTlutRegion(&gx->TlutRegions[v101], (v101 << 13) + 0xC0000, 16);
+    }
+    for (v106 = 0; (u32)v106 < 4; v106++) {
+        GXInitTlutRegion(&gx->TlutRegions[v106 + 16], (v106 << 15) + 0xE0000, 64);
+    }
+    __cpReg[3] = 0;
+    v110 = (u32)gx + 1260;
+    *(u32 *)v110 = *(u32 *)v110 & 0xFFFFFF0F;
+    GX_FIFO_U8 = 8;
+    GX_FIFO_U8 = 32;
+    GX_FIFO_U32 = gx->perfSel;
+    GX_FIFO_U8 = 16;
+    GX_FIFO_U32 = 4102;
+    GX_FIFO_U32 = 0;
+    GX_FIFO_U8 = 97;
+    GX_FIFO_U32 = 0x23000000;
+    GX_FIFO_U8 = 97;
+    GX_FIFO_U32 = 0x24000000;
+    GX_FIFO_U8 = 97;
+    GX_FIFO_U32 = 0x67000000;
+    __GXSetTmemConfig(0);
+    __GXInitGX();
+    return ((u8 *)(u32)p_gxData_80177BA0 + 1272);
+}
+#pragma peephole reset
+#pragma peephole off
+
+
+
 
 typedef enum _GXZFmt16 {
     GX_ZC_LINEAR,
@@ -46,146 +322,18 @@ typedef enum _GXPixelFmt {
     GX_PF_YUV420,
 } GXPixelFmt;
 
-typedef enum _GXAttr {
-    GX_VA_PNMTXIDX,
-    GX_VA_TEX0MTXIDX,
-    GX_VA_TEX1MTXIDX,
-    GX_VA_TEX2MTXIDX,
-    GX_VA_TEX3MTXIDX,
-    GX_VA_TEX4MTXIDX,
-    GX_VA_TEX5MTXIDX,
-    GX_VA_TEX6MTXIDX,
-    GX_VA_TEX7MTXIDX,
-    GX_VA_POS,
-    GX_VA_NRM,
-    GX_VA_CLR0,
-    GX_VA_CLR1,
-    GX_VA_TEX0,
-    GX_VA_TEX1,
-    GX_VA_TEX2,
-    GX_VA_TEX3,
-    GX_VA_TEX4,
-    GX_VA_TEX5,
-    GX_VA_TEX6,
-    GX_VA_TEX7,
-    GX_POS_MTX_ARRAY,
-    GX_NRM_MTX_ARRAY,
-    GX_TEX_MTX_ARRAY,
-    GX_LIGHT_ARRAY,
-    GX_VA_NBT,
-    GX_VA_MAX_ATTR,
-    GX_VA_NULL = 0xFF,
-} GXAttr;
 
-typedef enum _GXAttrType {
-    GX_NONE,
-    GX_DIRECT,
-    GX_INDEX8,
-    GX_INDEX16,
-} GXAttrType;
 
-typedef enum _GXTexFmt {
-    GX_TF_I4 = 0x0,
-    GX_TF_I8 = 0x1,
-    GX_TF_IA4 = 0x2,
-    GX_TF_IA8 = 0x3,
-    GX_TF_RGB565 = 0x4,
-    GX_TF_RGB5A3 = 0x5,
-    GX_TF_RGBA8 = 0x6,
-    GX_TF_CMPR = 0xE,
-    GX_CTF_R4 = 0x0 | 0x20,
-    GX_CTF_RA4 = 0x2 | 0x20,
-    GX_CTF_RA8 = 0x3 | 0x20,
-    GX_CTF_YUVA8 = 0x6 | 0x20,
-    GX_CTF_A8 = 0x7 | 0x20,
-    GX_CTF_R8 = 0x8 | 0x20,
-    GX_CTF_G8 = 0x9 | 0x20,
-    GX_CTF_B8 = 0xA | 0x20,
-    GX_CTF_RG8 = 0xB | 0x20,
-    GX_CTF_GB8 = 0xC | 0x20,
-    GX_TF_Z8 = 0x1 | 0x10,
-    GX_TF_Z16 = 0x3 | 0x10,
-    GX_TF_Z24X8 = 0x6 | 0x10,
-    GX_CTF_Z4 = 0x0 | 0x10 | 0x20,
-    GX_CTF_Z8M = 0x9 | 0x10 | 0x20,
-    GX_CTF_Z8L = 0xA | 0x10 | 0x20,
-    GX_CTF_Z16L = 0xC | 0x10 | 0x20,
-    GX_TF_A8 = GX_CTF_A8,
-} GXTexFmt;
 
-typedef enum _GXTexMapID {
-    GX_TEXMAP0,
-    GX_TEXMAP1,
-    GX_TEXMAP2,
-    GX_TEXMAP3,
-    GX_TEXMAP4,
-    GX_TEXMAP5,
-    GX_TEXMAP6,
-    GX_TEXMAP7,
-    GX_MAX_TEXMAP,
-    GX_TEXMAP_NULL = 0xFF,
-    GX_TEX_DISABLE = 0x100,
-} GXTexMapID;
 
-typedef enum _GXTexCoordID {
-    GX_TEXCOORD0,
-    GX_TEXCOORD1,
-    GX_TEXCOORD2,
-    GX_TEXCOORD3,
-    GX_TEXCOORD4,
-    GX_TEXCOORD5,
-    GX_TEXCOORD6,
-    GX_TEXCOORD7,
-    GX_MAX_TEXCOORD,
-    GX_TEXCOORD_NULL = 0xFF,
-} GXTexCoordID;
 
-typedef enum _GXTevStageID {
-    GX_TEVSTAGE0,
-    GX_TEVSTAGE1,
-    GX_TEVSTAGE2,
-    GX_TEVSTAGE3,
-    GX_TEVSTAGE4,
-    GX_TEVSTAGE5,
-    GX_TEVSTAGE6,
-    GX_TEVSTAGE7,
-    GX_TEVSTAGE8,
-    GX_TEVSTAGE9,
-    GX_TEVSTAGE10,
-    GX_TEVSTAGE11,
-    GX_TEVSTAGE12,
-    GX_TEVSTAGE13,
-    GX_TEVSTAGE14,
-    GX_TEVSTAGE15,
-    GX_MAX_TEVSTAGE,
-} GXTevStageID;
 
-typedef enum _GXTevMode {
-    GX_MODULATE,
-    GX_DECAL,
-    GX_BLEND,
-    GX_REPLACE,
-    GX_PASSCLR,
-} GXTevMode;
 
 typedef enum _GXTexMtxType {
     GX_MTX3x4,
     GX_MTX2x4,
 } GXTexMtxType;
 
-typedef enum _GXTexGenType {
-    GX_TG_MTX3x4,
-    GX_TG_MTX2x4,
-    GX_TG_BUMP0,
-    GX_TG_BUMP1,
-    GX_TG_BUMP2,
-    GX_TG_BUMP3,
-    GX_TG_BUMP4,
-    GX_TG_BUMP5,
-    GX_TG_BUMP6,
-    GX_TG_BUMP7,
-    GX_TG_SRTG,
-} GXTexGenType;
 
 typedef enum _GXPosNrmMtx {
     GX_PNMTX0 = 0,
@@ -214,42 +362,7 @@ typedef enum _GXTexMtx {
     GX_IDENTITY = 60,
 } GXTexMtx;
 
-typedef enum _GXChannelID {
-    GX_COLOR0,
-    GX_COLOR1,
-    GX_ALPHA0,
-    GX_ALPHA1,
-    GX_COLOR0A0,
-    GX_COLOR1A1,
-    GX_COLOR_ZERO,
-    GX_ALPHA_BUMP,
-    GX_ALPHA_BUMPN,
-    GX_COLOR_NULL = 0xFF,
-} GXChannelID;
 
-typedef enum _GXTexGenSrc {
-    GX_TG_POS,
-    GX_TG_NRM,
-    GX_TG_BINRM,
-    GX_TG_TANGENT,
-    GX_TG_TEX0,
-    GX_TG_TEX1,
-    GX_TG_TEX2,
-    GX_TG_TEX3,
-    GX_TG_TEX4,
-    GX_TG_TEX5,
-    GX_TG_TEX6,
-    GX_TG_TEX7,
-    GX_TG_TEXCOORD0,
-    GX_TG_TEXCOORD1,
-    GX_TG_TEXCOORD2,
-    GX_TG_TEXCOORD3,
-    GX_TG_TEXCOORD4,
-    GX_TG_TEXCOORD5,
-    GX_TG_TEXCOORD6,
-    GX_TG_COLOR0,
-    GX_TG_COLOR1,
-} GXTexGenSrc;
 
 typedef enum _GXBlendMode {
     GX_BM_NONE,
@@ -345,192 +458,19 @@ typedef enum _GXLightID {
     GX_LIGHT_NULL = 0,
 } GXLightID;
 
-typedef enum _GXTexOffset {
-    GX_TO_ZERO,
-    GX_TO_SIXTEENTH,
-    GX_TO_EIGHTH,
-    GX_TO_FOURTH,
-    GX_TO_HALF,
-    GX_TO_ONE,
-    GX_MAX_TEXOFFSET,
-} GXTexOffset;
 
 typedef enum _GXCullMode { GX_CULL_NONE, GX_CULL_FRONT, GX_CULL_BACK, GX_CULL_ALL } GXCullMode;
 
-typedef enum _GXTevSwapSel {
-    GX_TEV_SWAP0 = 0,
-    GX_TEV_SWAP1,
-    GX_TEV_SWAP2,
-    GX_TEV_SWAP3,
-    GX_MAX_TEVSWAP
-} GXTevSwapSel;
 
-typedef enum _GXTevColorChan { GX_CH_RED = 0, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA } GXTevColorChan;
 
-typedef enum _GXFogType {
-    GX_FOG_NONE = 0,
-    GX_FOG_LIN = 2,
-    GX_FOG_EXP = 4,
-    GX_FOG_EXP2 = 5,
-    GX_FOG_REVEXP = 6,
-    GX_FOG_REVEXP2 = 7
-} GXFogType;
 
-typedef enum _GXTevKColorSel {
-    GX_TEV_KCSEL_1 = 0x00,
-    GX_TEV_KCSEL_7_8 = 0x01,
-    GX_TEV_KCSEL_3_4 = 0x02,
-    GX_TEV_KCSEL_5_8 = 0x03,
-    GX_TEV_KCSEL_1_2 = 0x04,
-    GX_TEV_KCSEL_3_8 = 0x05,
-    GX_TEV_KCSEL_1_4 = 0x06,
-    GX_TEV_KCSEL_1_8 = 0x07,
-    GX_TEV_KCSEL_K0 = 0x0C,
-    GX_TEV_KCSEL_K1 = 0x0D,
-    GX_TEV_KCSEL_K2 = 0x0E,
-    GX_TEV_KCSEL_K3 = 0x0F,
-    GX_TEV_KCSEL_K0_R = 0x10,
-    GX_TEV_KCSEL_K1_R = 0x11,
-    GX_TEV_KCSEL_K2_R = 0x12,
-    GX_TEV_KCSEL_K3_R = 0x13,
-    GX_TEV_KCSEL_K0_G = 0x14,
-    GX_TEV_KCSEL_K1_G = 0x15,
-    GX_TEV_KCSEL_K2_G = 0x16,
-    GX_TEV_KCSEL_K3_G = 0x17,
-    GX_TEV_KCSEL_K0_B = 0x18,
-    GX_TEV_KCSEL_K1_B = 0x19,
-    GX_TEV_KCSEL_K2_B = 0x1A,
-    GX_TEV_KCSEL_K3_B = 0x1B,
-    GX_TEV_KCSEL_K0_A = 0x1C,
-    GX_TEV_KCSEL_K1_A = 0x1D,
-    GX_TEV_KCSEL_K2_A = 0x1E,
-    GX_TEV_KCSEL_K3_A = 0x1F
-} GXTevKColorSel;
 
-typedef enum _GXTevKAlphaSel {
-    GX_TEV_KASEL_1 = 0x00,
-    GX_TEV_KASEL_7_8 = 0x01,
-    GX_TEV_KASEL_3_4 = 0x02,
-    GX_TEV_KASEL_5_8 = 0x03,
-    GX_TEV_KASEL_1_2 = 0x04,
-    GX_TEV_KASEL_3_8 = 0x05,
-    GX_TEV_KASEL_1_4 = 0x06,
-    GX_TEV_KASEL_1_8 = 0x07,
-    GX_TEV_KASEL_K0_R = 0x10,
-    GX_TEV_KASEL_K1_R = 0x11,
-    GX_TEV_KASEL_K2_R = 0x12,
-    GX_TEV_KASEL_K3_R = 0x13,
-    GX_TEV_KASEL_K0_G = 0x14,
-    GX_TEV_KASEL_K1_G = 0x15,
-    GX_TEV_KASEL_K2_G = 0x16,
-    GX_TEV_KASEL_K3_G = 0x17,
-    GX_TEV_KASEL_K0_B = 0x18,
-    GX_TEV_KASEL_K1_B = 0x19,
-    GX_TEV_KASEL_K2_B = 0x1A,
-    GX_TEV_KASEL_K3_B = 0x1B,
-    GX_TEV_KASEL_K0_A = 0x1C,
-    GX_TEV_KASEL_K1_A = 0x1D,
-    GX_TEV_KASEL_K2_A = 0x1E,
-    GX_TEV_KASEL_K3_A = 0x1F
-} GXTevKAlphaSel;
 
-typedef enum _GXZTexOp {
-    GX_ZT_DISABLE,
-    GX_ZT_ADD,
-    GX_ZT_REPLACE,
-    GX_MAX_ZTEXOP,
-} GXZTexOp;
 
-typedef enum _GXIndTexStageID {
-    GX_INDTEXSTAGE0,
-    GX_INDTEXSTAGE1,
-    GX_INDTEXSTAGE2,
-    GX_INDTEXSTAGE3,
-    GX_MAX_INDTEXSTAGE,
-} GXIndTexStageID;
 
-typedef enum _GXIndTexScale {
-    GX_ITS_1,
-    GX_ITS_2,
-    GX_ITS_4,
-    GX_ITS_8,
-    GX_ITS_16,
-    GX_ITS_32,
-    GX_ITS_64,
-    GX_ITS_128,
-    GX_ITS_256,
-    GX_MAX_ITSCALE,
-} GXIndTexScale;
 
-typedef enum _GXPerf0 {
-    GX_PERF0_VERTICES,
-    GX_PERF0_CLIP_VTX,
-    GX_PERF0_CLIP_CLKS,
-    GX_PERF0_XF_WAIT_IN,
-    GX_PERF0_XF_WAIT_OUT,
-    GX_PERF0_XF_XFRM_CLKS,
-    GX_PERF0_XF_LIT_CLKS,
-    GX_PERF0_XF_BOT_CLKS,
-    GX_PERF0_XF_REGLD_CLKS,
-    GX_PERF0_XF_REGRD_CLKS,
-    GX_PERF0_CLIP_RATIO,
-    GX_PERF0_TRIANGLES,
-    GX_PERF0_TRIANGLES_CULLED,
-    GX_PERF0_TRIANGLES_PASSED,
-    GX_PERF0_TRIANGLES_SCISSORED,
-    GX_PERF0_TRIANGLES_0TEX,
-    GX_PERF0_TRIANGLES_1TEX,
-    GX_PERF0_TRIANGLES_2TEX,
-    GX_PERF0_TRIANGLES_3TEX,
-    GX_PERF0_TRIANGLES_4TEX,
-    GX_PERF0_TRIANGLES_5TEX,
-    GX_PERF0_TRIANGLES_6TEX,
-    GX_PERF0_TRIANGLES_7TEX,
-    GX_PERF0_TRIANGLES_8TEX,
-    GX_PERF0_TRIANGLES_0CLR,
-    GX_PERF0_TRIANGLES_1CLR,
-    GX_PERF0_TRIANGLES_2CLR,
-    GX_PERF0_QUAD_0CVG,
-    GX_PERF0_QUAD_NON0CVG,
-    GX_PERF0_QUAD_1CVG,
-    GX_PERF0_QUAD_2CVG,
-    GX_PERF0_QUAD_3CVG,
-    GX_PERF0_QUAD_4CVG,
-    GX_PERF0_AVG_QUAD_CNT,
-    GX_PERF0_CLOCKS,
-    GX_PERF0_NONE,
-} GXPerf0;
 
-typedef enum _GXPerf1 {
-    GX_PERF1_TEXELS,
-    GX_PERF1_TX_IDLE,
-    GX_PERF1_TX_REGS,
-    GX_PERF1_TX_MEMSTALL,
-    GX_PERF1_TC_CHECK1_2,
-    GX_PERF1_TC_CHECK3_4,
-    GX_PERF1_TC_CHECK5_6,
-    GX_PERF1_TC_CHECK7_8,
-    GX_PERF1_TC_MISS,
-    GX_PERF1_VC_ELEMQ_FULL,
-    GX_PERF1_VC_MISSQ_FULL,
-    GX_PERF1_VC_MEMREQ_FULL,
-    GX_PERF1_VC_STATUS7,
-    GX_PERF1_VC_MISSREP_FULL,
-    GX_PERF1_VC_STREAMBUF_LOW,
-    GX_PERF1_VC_ALL_STALLS,
-    GX_PERF1_VERTICES,
-    GX_PERF1_FIFO_REQ,
-    GX_PERF1_CALL_REQ,
-    GX_PERF1_VC_MISS_REQ,
-    GX_PERF1_CP_ALL_REQ,
-    GX_PERF1_CLOCKS,
-    GX_PERF1_NONE,
-} GXPerf1;
 
-typedef enum _GXClipMode {
-    GX_CLIP_ENABLE = 0,
-    GX_CLIP_DISABLE = 1,
-} GXClipMode;
 
 typedef enum _GXFBClamp {
     GX_CLAMP_NONE = 0,
@@ -538,11 +478,6 @@ typedef enum _GXFBClamp {
     GX_CLAMP_BOTTOM = 2,
 } GXFBClamp;
 
-typedef enum _GXCopyMode {
-    GX_COPY_PROGRESSIVE = 0,
-    GX_COPY_INTLC_EVEN = 2,
-    GX_COPY_INTLC_ODD = 3,
-} GXCopyMode;
 
 typedef enum _GXAlphaReadMode {
     GX_READ_00,
@@ -613,63 +548,15 @@ typedef struct OSThread {
     u32 *stackEnd;
 } OSThread;
 
-typedef enum {
-    VI_TVMODE_NTSC_INT = (((0) << 2) + (0)),
-    VI_TVMODE_NTSC_DS = (((0) << 2) + (1)),
-    VI_TVMODE_NTSC_PROG = (((0) << 2) + (2)),
-    VI_TVMODE_3 = 3,
-    VI_TVMODE_PAL_INT = (((1) << 2) + (0)),
-    VI_TVMODE_PAL_DS = (((1) << 2) + (1)),
-    VI_TVMODE_EURGB60_INT = (((5) << 2) + (0)),
-    VI_TVMODE_EURGB60_DS = (((5) << 2) + (1)),
-    VI_TVMODE_MPAL_INT = (((2) << 2) + (0)),
-    VI_TVMODE_MPAL_DS = (((2) << 2) + (1)),
-    VI_TVMODE_DEBUG_INT = (((3) << 2) + (0)),
-    VI_TVMODE_DEBUG_PAL_INT = (((4) << 2) + (0)),
-    VI_TVMODE_DEBUG_PAL_DS = (((4) << 2) + (1)),
-} VITVMode;
 
-typedef enum { VI_XFBMODE_SF = 0, VI_XFBMODE_DF } VIXFBMode;
 
-typedef struct _GXRenderModeObj {
-    VITVMode viTVmode;
-    u16 fbWidth;
-    u16 efbHeight;
-    u16 xfbHeight;
-    u16 viXOrigin;
-    u16 viYOrigin;
-    u16 viWidth;
-    u16 viHeight;
-    VIXFBMode xFBmode;
-    u8 field_rendering;
-    u8 aa;
-    u8 sample_pattern[12][2];
-    u8 vfilter[7];
-} GXRenderModeObj;
 
-typedef struct _GXColor {
-    u8 r, g, b, a;
-} GXColor;
 
-typedef struct _GXTexObj {
-    u32 dummy[8];
-} GXTexObj;
 
-typedef struct _GXTexRegion {
-    u32 dummy[4];
-} GXTexRegion;
 
-typedef struct _GXTlutRegion {
-    u32 dummy[4];
-} GXTlutRegion;
 
-typedef struct _GXFogAdjTable {
-    u16 r[10];
-} GXFogAdjTable;
 
-typedef GXTexRegion *(*GXTexRegionCallback)(GXTexObj *t_obj, GXTexMapID id);
 
-typedef GXTlutRegion *(*GXTlutRegionCallback)(u32 idx);
 
 typedef struct OSMutex {
     OSThreadQueue queue;
@@ -680,85 +567,6 @@ typedef struct OSMutex {
 
 struct OSContext;
 
-struct __GXData_struct {
-    u16 vNum;
-    u16 bpSent;
-    u16 unk04;
-    u16 vLim;
-    u32 cpEnable;
-    u32 cpStatus;
-    u32 cpClr;
-    u32 vcdLo;
-    u32 vcdHi;
-    u32 vatA[8];
-    u32 vatB[8];
-    u32 vatC[8];
-    u32 lpSize;
-    u32 matIdxA;
-    u32 matIdxB;
-    u32 indexBase[4];
-    u32 indexStride[4];
-    u32 ambColor[2];
-    u32 matColor[2];
-    u32 suTs0[8];
-    u32 suTs1[8];
-    u32 suScis0;
-    u32 suScis1;
-    u32 tref[8];
-    u32 iref;
-    u32 bpMask;
-    u32 IndTexScale0;
-    u32 IndTexScale1;
-    u32 tevc[16];
-    u32 teva[16];
-    u32 tevKsel[8];
-    u32 cmode0;
-    u32 cmode1;
-    u32 zmode;
-    u32 peCtrl;
-    u32 cpDispSrc;
-    u32 cpDispSize;
-    u32 cpDispStride;
-    u32 cpDisp;
-    u32 cpTexSrc;
-    u32 cpTexSize;
-    u32 cpTexStride;
-    u32 cpTex;
-    u8 cpTexZ;
-    u32 genMode;
-    GXTexRegion TexRegions[8];
-    GXTexRegion TexRegionsCI[4];
-    u32 nextTexRgn;
-    u32 nextTexRgnCI;
-    GXTlutRegion TlutRegions[20];
-    GXTexRegion *(*texRegionCallback)(GXTexObj *, GXTexMapID);
-    GXTlutRegion *(*tlutRegionCallback)(u32);
-    GXAttrType nrmType;
-    u8 hasNrms;
-    u8 hasBiNrms;
-    u32 projType;
-    float projMtx[6];
-    float vpLeft;
-    float vpTop;
-    float vpWd;
-    float vpHt;
-    float vpNearz;
-    float vpFarz;
-    u8 fgRange;
-    float fgSideX;
-    u32 tImage0[8];
-    u32 tMode0[8];
-    u32 texmapId[16];
-    u32 tcsManEnab;
-    u32 pad0;
-    GXPerf0 perf0;
-    GXPerf1 perf1;
-    u32 perfSel;
-    u8 inDispList;
-    u8 dlSaveContext;
-    u8 dirtyVAT;
-    u32 dirtyState;
-};
 
 void __GXInitGX();
 
@@ -926,9 +734,7 @@ void (*DVDLowClearCallback())(u32);
 
 u32 VIGetTvFormat(void);
 
-extern struct __GXData_struct *gx;
 
-GXTexRegion *__GXDefaultTexRegionCallback(GXTexObj *t_obj, GXTexMapID unused);
 
 GXTlutRegion *fn_80030848(u32 idx);
 
@@ -1017,7 +823,7 @@ void __GXInitGX() {
     fn_80035828(GX_COLOR1A1, white);
     GXInvalidateTexAll();
     {
-        struct __GXData_struct *p = gx;
+        GXData *p = gx;
         p->nextTexRgn = 0;
         p->nextTexRgnCI = 0;
     }

@@ -4,10 +4,10 @@
  "note": "draft evidence map; not consumed by tooling",
  "summary": {
   "functions": 2230,
-  "assigned": 948,
+  "assigned": 953,
   "bytes": 567556,
-  "assigned_bytes": 248248,
-  "tus": 153,
+  "assigned_bytes": 251296,
+  "tus": 155,
   "conflicts": 2,
   "string_anchored": 13
  },
@@ -1672,16 +1672,48 @@
    "lib": "gx"
   },
   {
+   "file": "GXDraw.c",
+   "text": [
+    "80037E30",
+    "80038878"
+   ],
+   "functions": [
+    "fn_80037E30",
+    "fn_800384FC"
+   ],
+   "how": {
+    "sdk-order": 2
+   },
+   "lib": "gx"
+  },
+  {
+   "file": "GXStubs.c",
+   "text": [
+    "80038878",
+    "8003887C"
+   ],
+   "functions": [
+    "fn_80038878"
+   ],
+   "how": {
+    "sdk-order": 1
+   },
+   "lib": "gx"
+  },
+  {
    "file": "GXDisplayList.c",
    "text": [
-    "80038A18",
+    "8003887C",
     "80038A88"
    ],
    "functions": [
+    "fn_8003887C",
+    "fn_80038944",
     "GXCallDisplayList"
    ],
    "how": {
-    "donor-name": 1
+    "donor-name": 1,
+    "sdk-order": 2
    },
    "lib": "gx"
   },
@@ -5702,51 +5734,6 @@
    "candidates": [
     "CARDNet.c",
     "GXInit.c"
-   ]
-  },
-  {
-   "name": "fn_80037E30",
-   "addr": "80037E30",
-   "size": 1740,
-   "candidates": [
-    "GXPixel.c",
-    "GXDisplayList.c"
-   ]
-  },
-  {
-   "name": "fn_800384FC",
-   "addr": "800384FC",
-   "size": 892,
-   "candidates": [
-    "GXPixel.c",
-    "GXDisplayList.c"
-   ]
-  },
-  {
-   "name": "fn_80038878",
-   "addr": "80038878",
-   "size": 4,
-   "candidates": [
-    "GXPixel.c",
-    "GXDisplayList.c"
-   ]
-  },
-  {
-   "name": "fn_8003887C",
-   "addr": "8003887C",
-   "size": 200,
-   "candidates": [
-    "GXPixel.c",
-    "GXDisplayList.c"
-   ]
-  },
-  {
-   "name": "fn_80038944",
-   "addr": "80038944",
-   "size": 212,
-   "candidates": [
-    "GXPixel.c",
-    "GXDisplayList.c"
    ]
   },
   {

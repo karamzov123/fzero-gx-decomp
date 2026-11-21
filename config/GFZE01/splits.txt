@@ -1668,8 +1668,9 @@ dol/TRKInitializeMessageBuffers.c:
 dol/GetFontCode.c:
 	.text       start:0x8000CAC8 end:0x8000CDD8 align:4
 
-dol/__GXDefaultTexRegionCallback.c:
-	.text       start:0x800307CC end:0x80030848 align:4
+dol/gx/GXInit.c:
+	.text       start:0x800307CC end:0x80031B50 align:4
+	.sbss       start:0x801A6BD8 end:0x801A6BF0 align:8
 
 dol/TRKReadBuffer_ui8.c:
 	.text       start:0x80088C34 end:0x80088CCC align:4
@@ -1771,9 +1772,6 @@ dol/nubinit.c:
 
 dol/fn_80025C70.c:
 	.text       start:0x80025C70 end:0x80025D00 align:4
-
-dol/fn_80030848.c:
-	.text       start:0x80030848 end:0x8003086C align:4
 
 dol/fn_8006B55C.c:
 	.text       start:0x8006B55C end:0x8006BA74 align:4
@@ -1917,9 +1915,6 @@ dol/fn_80007730.c:
 
 dol/fn_80024308.c:
 	.text       start:0x80024308 end:0x80024378 align:4
-
-dol/__GXInitGX.c:
-	.text       start:0x8003128C end:0x80031B50 align:4
 
 dol/__OSThreadInit.c:
 	.text       start:0x80010144 end:0x8001029C align:4
@@ -2159,9 +2154,6 @@ dol/fn_8007CF18.c:
 
 dol/misc_io.c:
 	.text       start:0x8008067C end:0x8008069C align:4
-
-dol/GXDisplayList.c:
-	.text       start:0x80038A18 end:0x80038A88 align:4
 
 dol/fstload.c:
 	.text       start:0x8001A31C end:0x8001A55C align:4
@@ -2635,9 +2627,6 @@ dol/fn_8005DCEC.c:
 dol/fn_80060C54.c:
 	.text       start:0x80060C54 end:0x800622B0 align:4
 
-dol/fn_80038944.c:
-	.text       start:0x80038944 end:0x80038A18 align:4
-
 dol/fn_80050BD4.c:
 	.text       start:0x80050BD4 end:0x800510C4 align:4
 
@@ -2791,9 +2780,6 @@ dol/fn_800744F8.c:
 dol/fn_8006C570.c:
 	.text       start:0x8006C570 end:0x8006CCC8 align:4
 
-dol/fn_8003887C.c:
-	.text       start:0x8003887C end:0x80038944 align:4
-
 dol/fn_8003A680.c:
 	.text       start:0x8003A680 end:0x8003AB08 align:4
 
@@ -2884,9 +2870,6 @@ dol/fn_800756B0.c:
 dol/fn_8004C164.c:
 	.text       start:0x8004C164 end:0x8004C658 align:4
 
-dol/fn_800384FC.c:
-	.text       start:0x800384FC end:0x8003887C align:4
-
 dol/fn_80068BFC.c:
 	.text       start:0x80068BFC end:0x80068EB4 align:4
 
@@ -2941,15 +2924,19 @@ dol/fn_800248D4.c:
 dol/fn_8003B63C.c:
 	.text       start:0x8003B63C end:0x8003B8A8 align:4
 
-dol/GXInit.c:
-	.text       start:0x8003086C end:0x8003128C align:4
-	.sbss       start:0x801A6BD8 end:0x801A6BF0 align:8
-
 dol/fn_8003FF88.c:
 	.text       start:0x8003FF88 end:0x800410A4 align:4
 
-dol/fn_80037E30.c:
-	.text       start:0x80037E30 end:0x800384FC align:4
+dol/gx/GXDraw.c:
+	.text       start:0x80037E30 end:0x80038878 align:4
+	.bss        start:0x80178118 end:0x801783A0 align:8
+
+dol/gx/GXStubs.c:
+	.text       start:0x80038878 end:0x8003887C align:4
+
+dol/gx/GXDisplayList.c:
+	.text       start:0x8003887C end:0x80038A88 align:4
+	.bss        start:0x801783A0 end:0x801788C0 align:8
 
 dol/fn_8006953C.c:
 	.text       start:0x8006953C end:0x80069AE0 align:4
@@ -3199,9 +3186,6 @@ dol/data/__DVDLowPrev.c:
 
 dol/data/lbl_8015CF68.c:
 	.bss        start:0x8015D0B0 end:0x80177BA0 align:8
-
-dol/data/lbl_80178118.c:
-	.bss        start:0x80178118 end:0x801783A0 align:8
 
 dol/data/lbl_8019E150.c:
 	.bss        start:0x8019E150 end:0x801A50B8 align:8
@@ -3582,9 +3566,6 @@ dol/data/lbl_801A6680.c:
 
 dol/data/lbl_801A6688.c:
 	.sdata      start:0x801A6688 end:0x801A6689 align:8
-
-dol/data/lbl_801783A0.c:
-	.bss        start:0x801783A0 end:0x801788C0 align:8
 
 dol/data/lbl_801788C0.c:
 	.bss        start:0x801788C0 end:0x801789C0 align:8
