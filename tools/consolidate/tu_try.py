@@ -180,7 +180,11 @@ def main():
         merged['extra_cflags'] = list(merged.get('extra_cflags') or []) + a.extra.split()
     if mf != list(VERSIONS): merged['matching_for'] = mf
     else: merged.pop('matching_for', None)
-    if pooled: merged['pool'] = dict(sorted(new_pool.items(), key=lambda kv: int(kv[0][1:])))
+    if pooled:
+        nonlocal_pool = {k: v for u in us for k, v in (u.get('pool') or {}).items() if not LOCAL.match(k) and k in cand}
+        merged_pool = dict(sorted(new_pool.items(), key=lambda kv: int(kv[0][1:])))
+        merged_pool.update(nonlocal_pool)
+        merged['pool'] = merged_pool
     else: merged.pop('pool', None)
     out = []
     for u in units:

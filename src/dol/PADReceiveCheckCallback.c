@@ -4,6 +4,7 @@
 #include <dolphin/os/OSContext.h>
 #include <dolphin/os/OSInterrupt.h>
 #include <dolphin/si.h>
+#include "sdk_addresses.h"
 
 typedef struct PADStatus {
     u16 button;
@@ -52,8 +53,6 @@ static inline void PADDisable(s32 chan) {
     OSRestoreInterrupts(enabled);
 }
 
-void PADOriginUpdateCallback(s32 chan, u32 error, OSContext *context);
-
 void PADReceiveCheckCallback(s32 chan, u32 type) {
     u32 error;
     u32 chanBit;
@@ -71,4 +70,87 @@ void PADReceiveCheckCallback(s32 chan, u32 type) {
             PADDisable(chan);
         }
     }
+}
+
+typedef unsigned int uint;
+
+void *memset(void *dest, int value, size_t n);
+
+extern int __cntlzw(uint);
+
+extern void __DVDAudioBufferConfig(struct DVDCommandBlock *block, unsigned long enable,
+                                   unsigned long size,
+                                   void (*callback)(long, struct DVDCommandBlock *));
+
+void PADTypeAndStatusCallback(s32 chan, u32 type);
+
+extern s32 lbl_801A64B4;
+
+extern u32 lbl_801A64C0;
+
+extern u32 lbl_801A697C__fzgx_offset_4;
+
+extern u32 lbl_801A6984;
+
+static void DoReset();
+
+static inline void DoReset() {
+    u32 chanBit;
+    lbl_801A64B4 = __cntlzw(lbl_801A697C__fzgx_offset_4);
+    if (lbl_801A64B4 != 32) {
+        (void)0;
+        chanBit = (0x80000000 >> lbl_801A64B4);
+        lbl_801A697C__fzgx_offset_4 &= ~chanBit;
+        memset(&lbl_8015D0C0[lbl_801A64B4], 0, sizeof(PADStatus));
+        SIGetTypeAsync(lbl_801A64B4, PADTypeAndStatusCallback);
+    }
+}
+
+int PADReset(u32 mask) {
+    BOOL enabled;
+    u32 disableBits;
+    (void)0;
+    enabled = OSDisableInterrupts();
+    mask |= lbl_801A6990;
+    lbl_801A6990 = 0;
+    mask &= ~(lbl_801A6988 | lbl_801A698C);
+    lbl_801A697C__fzgx_offset_4 |= mask;
+    disableBits = lbl_801A697C__fzgx_offset_4 & lbl_801A697C;
+    lbl_801A697C &= ~mask;
+    if (lbl_801A64C0 == 4) {
+        lbl_801A6984 |= mask;
+    }
+    SIDisablePolling(disableBits);
+    if (lbl_801A64B4 == 0x20) {
+        DoReset();
+    }
+    OSRestoreInterrupts(enabled);
+    return 1;
+}
+
+extern void __DVDAudioBufferConfig(struct DVDCommandBlock *block, unsigned long enable,
+                                   unsigned long size,
+                                   void (*callback)(long, struct DVDCommandBlock *));
+
+extern u8 __gUnknown800030E3 : FZGX_ADDR___gUnknown800030E3;
+
+BOOL PADRecalibrate(u32 mask) {
+    BOOL enabled;
+    u32 disableBits;
+    (void)0;
+    enabled = OSDisableInterrupts();
+    mask |= lbl_801A6990;
+    lbl_801A6990 = 0;
+    mask &= ~(lbl_801A6988 | lbl_801A698C);
+    lbl_801A697C__fzgx_offset_4 |= mask;
+    disableBits = lbl_801A697C__fzgx_offset_4 & lbl_801A697C;
+    lbl_801A697C &= ~mask;
+    if (!(__gUnknown800030E3 & 0x40)) {
+        lbl_801A6984 |= mask;
+    }
+    SIDisablePolling(disableBits);
+    if (lbl_801A64B4 == 32)
+        DoReset();
+    OSRestoreInterrupts(enabled);
+    return 1;
 }

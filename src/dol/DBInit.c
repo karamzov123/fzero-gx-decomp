@@ -3,8 +3,6 @@
 #include <dolphin/os/OSInterrupt.h>
 #include "types.h"
 
-
-/* --- dol/WriteUARTN.c --- */
 extern s32 lbl_801A6840;
 
 extern u32 lbl_801A6844;
@@ -26,7 +24,6 @@ static inline int QueueLength(void) {
 
 u32 WriteUARTN(const void *buf, unsigned long len);
 
-/* --- dol/DBInit.c --- */
 extern u32 __DBInterface;
 extern u32 DBVerbose;
 extern void __DBExceptionDestination(void);
@@ -41,4 +38,18 @@ void DBInit(void) {
     // fzgx-allow: A1 DB hardware register
     base[0x12] = (u32)__DBExceptionDestination + (u32)base;
     DBVerbose = 1;
+}
+
+extern char lbl_80123E10[24];
+extern void OSReport(const char *, u32, ...);
+extern void PPCHalt(void);
+
+void __DBExceptionDestinationAux(void) {
+    u32 context = *(u32 *)0xc0; /* fzgx-allow: A2 zero-page context pointer */
+    void *exception_context = (void *)(context + 0x80000000);
+    u8 pad[1] __attribute__((aligned(8)));
+
+    OSReport(lbl_80123E10, context);
+    OSDumpContext(exception_context);
+    PPCHalt();
 }

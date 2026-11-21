@@ -92,7 +92,3 @@ Fn80028E88Data *fn_80028E88(Fn80028E88Data *data) {
     OSRestoreInterrupts(level);
     return 0;
 }
-
-/* --- dol/fn_80028F50.c --- */
-void fn_80028F50(u32 arg, ...) {
-}

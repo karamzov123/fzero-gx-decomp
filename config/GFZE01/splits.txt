@@ -45,10 +45,13 @@ dol/fn_8000EB04.c:
 	.text       start:0x8000EB04 end:0x8000EB10
 
 dol/fn_8000EE50.c:
-	.text       start:0x8000EE50 end:0x8000EEF4 align:4
+	.text       start:0x8000EE50 end:0x8000EE5C align:4
+
+dol/fn_8000EE5C.c:
+	.text       start:0x8000EE5C end:0x8000EEF4 align:4
 
 dol/OSInitThreadQueue.c:
-	.text       start:0x8001029C end:0x800102EC align:4
+	.text       start:0x8001029C end:0x8001032C align:4
 
 dol/OSEnableScheduler.c:
 	.text       start:0x8001032C end:0x800103D4 align:4
@@ -60,7 +63,10 @@ dol/_ExitProcess.c:
 	.text       start:0x800118FC end:0x8001191C
 
 dol/SIRefreshSamplingRate.c:
-	.text       start:0x800133B8 end:0x80013428 align:4
+	.text       start:0x800133B8 end:0x800133DC align:4
+
+dol/fn_800133DC.c:
+	.text       start:0x800133DC end:0x80013428 align:4
 
 dol/DVDLowBreak.c:
 	.text       start:0x80016D50 end:0x80016DC0 align:4
@@ -77,9 +83,6 @@ dol/cbForUnrecoveredError.c:
 dol/dvd/dvderror.c:
 	.text       start:0x8001A05C end:0x8001A1F4 align:4
 
-dol/PADControlMotor.c:
-	.text       start:0x8001D3E4 end:0x8001D488
-
 dol/fn_800211E0.c:
 	.text       start:0x800211E0 end:0x8002123C align:4
 
@@ -87,7 +90,10 @@ dol/fn_80021B20.c:
 	.text       start:0x80021B20 end:0x80021BB0 align:4
 
 dol/fn_80022420.c:
-	.text       start:0x80022420 end:0x80022BF4 align:4
+	.text       start:0x80022420 end:0x800224E4 align:4
+
+dol/fn_800224E4.c:
+	.text       start:0x800224E4 end:0x80022BF4 align:4
 
 dol/fn_800230A0.c:
 	.text       start:0x800230A0 end:0x80023394 align:4
@@ -129,7 +135,10 @@ dol/fn_8002857C.c:
 	.text       start:0x8002857C end:0x80028598
 
 dol/fn_80028DD0.c:
-	.text       start:0x80028DD0 end:0x80028FA0 align:4
+	.text       start:0x80028DD0 end:0x80028F50 align:4
+
+dol/fn_80028F50.c:
+	.text       start:0x80028F50 end:0x80028FA0 align:4
 
 dol/__DSP_exec_task.c:
 	.text       start:0x800293C4 end:0x800296F0 align:4
@@ -222,8 +231,8 @@ dol/fn_8004A530.c:
 dol/fn_8003D690.c:
 	.text       start:0x8003D690 end:0x8003D698 align:4
 
-dol/fn_8004115C.c:
-	.text       start:0x8004115C end:0x800411F4 align:4
+dol/ADXT_Finish.c:
+	.text       start:0x80041164 end:0x800411F4 align:4
 
 dol/fn_80065890.c:
 	.text       start:0x80065890 end:0x8006589C align:4
@@ -297,9 +306,6 @@ dol/fn_800288B4.c:
 
 dol/fn_800209DC.c:
 	.text       start:0x800209DC end:0x800209FC align:4
-
-dol/fn_80022E68.c:
-	.text       start:0x80022E68 end:0x80022EA4 align:4
 
 dol/fn_800209FC.c:
 	.text       start:0x800209FC end:0x80020ABC align:4
@@ -404,13 +410,10 @@ dol/fn_80047C08.c:
 	.text       start:0x80047C08 end:0x80047C94 align:4
 
 dol/fn_80022E5C.c:
-	.text       start:0x80022E5C end:0x80022E68 align:4
+	.text       start:0x80022E5C end:0x80022EA4 align:4
 
 dol/fn_80026D70.c:
-	.text       start:0x80026D70 end:0x80026D90 align:4
-
-dol/fn_80026D90.c:
-	.text       start:0x80026D90 end:0x80026DD4 align:4
+	.text       start:0x80026D70 end:0x80026DD4 align:4
 
 dol/fn_80026E2C.c:
 	.text       start:0x80026E2C end:0x80026E54 align:4
@@ -487,9 +490,6 @@ dol/fn_8007A23C.c:
 dol/fn_80044E7C.c:
 	.text       start:0x80044E7C end:0x80044EF8 align:4
 
-dol/OSDisableScheduler.c:
-	.text       start:0x800102EC end:0x8001032C align:4
-
 dol/fn_800280F0.c:
 	.text       start:0x800280F0 end:0x80028130 align:4
 
@@ -526,9 +526,6 @@ dol/fn_800775EC.c:
 dol/DVDGetDriveStatus.c:
 	.text       start:0x800197F0 end:0x8001989C align:4
 
-dol/OnReset_CARDBios.c:
-	.text       start:0x8002AB70 end:0x8002ABC0 align:4
-
 dol/fn_80023438.c:
 	.text       start:0x80023438 end:0x800234D0 align:4
 
@@ -536,7 +533,10 @@ dol/fn_800565F0.c:
 	.text       start:0x800565F0 end:0x800565FC align:4
 
 dol/fn_80023568.c:
-	.text       start:0x80023568 end:0x80023638 align:4
+	.text       start:0x80023568 end:0x800235D4 align:4
+
+dol/fn_800235D4.c:
+	.text       start:0x800235D4 end:0x80023638 align:4
 
 dol/fn_8005A74C.c:
 	.text       start:0x8005A74C end:0x8005A7F8 align:4
@@ -610,9 +610,6 @@ dol/fn_800421CC.c:
 dol/fn_800622B0.c:
 	.text       start:0x800622B0 end:0x80062360 align:4
 
-dol/fn_8001D32C.c:
-	.text       start:0x8001D32C end:0x8001D3E4 align:4
-
 dol/fn_800136E8.c:
 	.text       start:0x800136E8 end:0x800137C4 align:4
 
@@ -671,7 +668,10 @@ dol/fn_80023394.c:
 	.text       start:0x80023394 end:0x80023438 align:4
 
 dol/fn_80020CB0.c:
-	.text       start:0x80020CB0 end:0x80020E4C align:4
+	.text       start:0x80020CB0 end:0x80020D58 align:4
+
+dol/fn_80020D58.c:
+	.text       start:0x80020D58 end:0x80020E4C align:4
 
 dol/fn_80026EE0.c:
 	.text       start:0x80026EE0 end:0x80026FE0 align:4
@@ -707,7 +707,7 @@ dol/fn_800433A4.c:
 	.text       start:0x800433A4 end:0x80043460 align:4
 
 dol/fn_800410A4.c:
-	.text       start:0x800410A4 end:0x8004115C align:4
+	.text       start:0x800410A4 end:0x80041164 align:4
 
 dol/fn_8004BD5C.c:
 	.text       start:0x8004BD5C end:0x8004BE98 align:4
@@ -1156,14 +1156,8 @@ dol/fn_8006CE1C.c:
 dol/__OSDoHotReset.c:
 	.text       start:0x8000EF64 end:0x8000F234 align:4
 
-dol/fn_8002FC14.c:
-	.text       start:0x8002FC14 end:0x8002FC5C align:4
-
 dol/fn_800300F4.c:
 	.text       start:0x800300F4 end:0x8003013C align:4
-
-dol/__DBExceptionDestinationAux.c:
-	.text       start:0x80015A60 end:0x80015AA8 align:4
 
 dol/fn_80063EF4.c:
 	.text       start:0x80063EF4 end:0x80063F38 align:4
@@ -1185,9 +1179,6 @@ dol/fn_80058680.c:
 
 dol/fn_80070A58.c:
 	.text       start:0x80070A58 end:0x80070AC0 align:4
-
-dol/ARAlloc.c:
-	.text       start:0x8001E954 end:0x8001EA30 align:4
 
 dol/fn_8006413C.c:
 	.text       start:0x8006413C end:0x800641A8 align:4
@@ -1231,13 +1222,13 @@ dol/AlarmHandler.c:
 	.text       start:0x80018510 end:0x80018554 align:4
 
 dol/fn_8002F8EC.c:
-	.text       start:0x8002F8EC end:0x8002F9D8 align:4
+	.text       start:0x8002F8EC end:0x8002F934 align:4
+
+dol/DeleteCallback.c:
+	.text       start:0x8002F934 end:0x8002F9D8 align:4
 
 dol/fn_8002DFE0.c:
 	.text       start:0x8002DFE0 end:0x8002E0C4 align:4
-
-dol/fn_80030338.c:
-	.text       start:0x80030338 end:0x80030380 align:4
 
 dol/fn_80058ED4.c:
 	.text       start:0x80058ED4 end:0x80058EF4 align:4
@@ -1258,13 +1249,16 @@ dol/__CARDGetControlBlock.c:
 	.text       start:0x8002A83C end:0x8002A8F4 align:4
 
 dol/CARDFreeBlocks.c:
-	.text       start:0x8002A988 end:0x8002AB70 align:4
+	.text       start:0x8002A988 end:0x8002ABC0 align:4
 
 dol/bitrev.c:
 	.text       start:0x8002ABC0 end:0x8002AF34 align:4
 
 dol/EraseCallback.c:
-	.text       start:0x8002C194 end:0x8002C720 align:4
+	.text       start:0x8002C194 end:0x8002C4C4 align:4
+
+dol/WriteCallback_CARDDir.c:
+	.text       start:0x8002C4C4 end:0x8002C720 align:4
 
 dol/CARDUnmount.c:
 	.text       start:0x8002E0C4 end:0x8002E170 align:4
@@ -1275,14 +1269,14 @@ dol/FormatCallback.c:
 dol/card/CARDWrite.c:
 	.text       start:0x8002F5B8 end:0x8002F8EC align:4
 
-dol/CARDFastDeleteAsync.c:
-	.text       start:0x8002F9D8 end:0x8002FC14 align:4
+dol/card/CARDDelete.c:
+	.text       start:0x8002F9D8 end:0x8002FC5C align:4
 
 dol/UpdateIconOffsets.c:
 	.text       start:0x8002FC5C end:0x800300F4 align:4
 
-dol/CARDRenameAsync.c:
-	.text       start:0x8003013C end:0x80030338 align:4
+dol/card/CARDRename.c:
+	.text       start:0x8003013C end:0x80030380 align:4
 
 dol/CARDCheck.c:
 	.text       start:0x8002C720 end:0x8002D6B0 align:4
@@ -1378,17 +1372,17 @@ dol/fn_800579F0.c:
 dol/fn_80077384.c:
 	.text       start:0x80077384 end:0x80077488 align:4
 
-dol/ARStartDMA.c:
-	.text       start:0x8001E864 end:0x8001E954 align:4
-
-dol/ARInit.c:
-	.text       start:0x8001EA30 end:0x80020360 align:4
+dol/ar/ar.c:
+	.text       start:0x8001E864 end:0x80020360 align:4
 
 dol/__ARQServiceQueueLo.c:
 	.text       start:0x80020360 end:0x80020530 align:4
 
 dol/ARQPostRequest.c:
-	.text       start:0x800205A0 end:0x80020874 align:4
+	.text       start:0x800205A0 end:0x800206FC align:4
+
+dol/fn_800206FC.c:
+	.text       start:0x800206FC end:0x80020874 align:4
 
 dol/__CARDUnlock.c:
 	.text       start:0x8002AF34 end:0x8002BE20 align:4
@@ -1400,7 +1394,7 @@ dol/__OSInterruptInit.c:
 	.text       start:0x8000D570 end:0x8000DD10 align:4
 
 dol/DBInit.c:
-	.text       start:0x80015A38 end:0x80015A60 align:4
+	.text       start:0x80015A38 end:0x80015AA8 align:4
 
 dol/AlarmHandlerForTimeout.c:
 	.text       start:0x80016324 end:0x80016394 align:4
@@ -1433,7 +1427,10 @@ dol/__DSPHandler.c:
 	.text       start:0x80028FA0 end:0x800293C4 align:4
 
 dol/__DSP_insert_task.c:
-	.text       start:0x800296F0 end:0x8002985C align:4
+	.text       start:0x800296F0 end:0x80029828 align:4
+
+dol/__CARDSyncCallback.c:
+	.text       start:0x80029828 end:0x8002985C align:4
 
 dol/ClampStick.c:
 	.text       start:0x8001C0C0 end:0x8001C304 align:4
@@ -1448,7 +1445,7 @@ dol/PADOriginUpdateCallback.c:
 	.text       start:0x8001C56C end:0x8001C62C align:4
 
 dol/PADReceiveCheckCallback.c:
-	.text       start:0x8001CA30 end:0x8001CB64 align:4
+	.text       start:0x8001CA30 end:0x8001CD68 align:4
 
 dol/AIInitDMA.c:
 	.text       start:0x8001DF44 end:0x8001DFCC align:4
@@ -1466,7 +1463,7 @@ dol/OSExitThread.c:
 	.text       start:0x80010A10 end:0x80010AF4 align:4
 
 dol/OSCancelThread.c:
-	.text       start:0x80010AF4 end:0x80010CB0 align:4
+	.text       start:0x80010AF4 end:0x80010F38 align:4
 
 dol/OSSuspendThread.c:
 	.text       start:0x80010F38 end:0x800110A8 align:4
@@ -1478,7 +1475,10 @@ dol/OSWakeupThread.c:
 	.text       start:0x80011194 end:0x80011298 align:4
 
 dol/OSGetResetButtonState.c:
-	.text       start:0x8000F358 end:0x8000F670 align:4
+	.text       start:0x8000F358 end:0x8000F610 align:4
+
+dol/WriteSramCallback.c:
+	.text       start:0x8000F610 end:0x8000F670 align:4
 
 dol/gx/GXFifo.c:
 	.text       start:0x80031B50 end:0x80032370 align:4
@@ -1496,7 +1496,10 @@ dol/gx/GXTransform.c:
 	.text       start:0x80038A88 end:0x8003910C align:4
 
 dol/__AI_SRC_INIT.c:
-	.text       start:0x8001E600 end:0x8001E864 align:4
+	.text       start:0x8001E600 end:0x8001E828 align:4
+
+dol/ARGetDMAStatus.c:
+	.text       start:0x8001E828 end:0x8001E864 align:4
 
 dol/stateCoverClosed.c:
 	.text       start:0x80018554 end:0x80018650 align:4
@@ -2116,9 +2119,6 @@ dol/fn_80083428.c:
 dol/fn_80026FE0.c:
 	.text       start:0x80026FE0 end:0x80028090 align:4
 
-dol/OSResumeThread.c:
-	.text       start:0x80010CB0 end:0x80010F38 align:4
-
 dol/fn_80072614.c:
 	.text       start:0x80072614 end:0x8007264C align:4
 
@@ -2220,14 +2220,8 @@ dol/Read.c:
 dol/DVDLowRead.c:
 	.text       start:0x80016524 end:0x800167BC align:4
 
-dol/PADReset.c:
-	.text       start:0x8001CB64 end:0x8001CC64 align:4
-
-dol/PADRecalibrate.c:
-	.text       start:0x8001CC64 end:0x8001CD68 align:4
-
 dol/PADRead.c:
-	.text       start:0x8001CF80 end:0x8001D32C align:4
+	.text       start:0x8001CF80 end:0x8001D488 align:4
 
 dol/OnReset_Pad.c:
 	.text       start:0x8001DC3C end:0x8001DDD0 align:4
@@ -2649,7 +2643,10 @@ dol/fn_80089EEC.c:
 	.text       start:0x80089EEC end:0x8008A1CC align:4
 
 dol/InitMetroTRKCommTable.c:
-	.text       start:0x8008D4D8 end:0x8008D7B0 align:4
+	.text       start:0x8008D4D8 end:0x8008D77C align:4
+
+dol/TRKTargetContinue.c:
+	.text       start:0x8008D77C end:0x8008D7B0 align:4
 
 dol/fn_80042D24.c:
 	.text       start:0x80042D24 end:0x8004313C align:4

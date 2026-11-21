@@ -114,17 +114,3 @@ void TRKEXICallBack(u32 arg0, u32 arg1) {
     OSEnableScheduler(arg0, arg1);
     TRKLoadContext(arg1, 1280);
 }
-
-/* --- dol/TRKTargetContinue.c --- */
-extern u32 ReserveEXI2Port(void);
-extern u32 TRKSwapAndGo(void);
-extern u32 TRKTargetSetStopped(u32);
-extern u32 UnreserveEXI2Port(void);
-
-s32 TRKTargetContinue(void) {
-    TRKTargetSetStopped(0);
-    UnreserveEXI2Port();
-    TRKSwapAndGo();
-    ReserveEXI2Port();
-    return 0;
-}

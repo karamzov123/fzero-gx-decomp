@@ -4,10 +4,10 @@
  "note": "draft evidence map; not consumed by tooling",
  "summary": {
   "functions": 2230,
-  "assigned": 953,
+  "assigned": 1239,
   "bytes": 567556,
-  "assigned_bytes": 251296,
-  "tus": 155,
+  "assigned_bytes": 326456,
+  "tus": 172,
   "conflicts": 2,
   "string_anchored": 13
  },
@@ -71,10 +71,11 @@
   {
    "file": "OS.c",
    "text": [
-    "8000A224",
+    "8000A0FC",
     "8000ABE8"
    ],
    "functions": [
+    "__OSFPRInit",
     "OSGetConsoleType",
     "ClearArena",
     "InquiryCallback",
@@ -93,7 +94,8 @@
    "how": {
     "sdkimport": 7,
     "donor-name": 6,
-    "between": 1
+    "between": 1,
+    "sdk-order": 1
    },
    "lib": "os"
   },
@@ -156,26 +158,49 @@
   {
    "file": "OSCache.c",
    "text": [
-    "8000B8C0",
+    "8000B614",
     "8000BBAC"
    ],
    "functions": [
+    "DCEnable",
+    "DCInvalidateRange",
+    "DCFlushRange",
+    "DCStoreRange",
+    "DCFlushRangeNoSync",
+    "ICInvalidateRange",
+    "ICFlashInvalidate",
+    "ICEnable",
+    "__LCEnable",
+    "LCEnable",
+    "LCDisable",
+    "LCLoadBlocks",
+    "LCStoreBlocks",
+    "fn_8000B8AC",
     "L2GlobalInvalidate",
     "DMAErrorHandler",
     "__OSCacheInit"
    ],
    "how": {
-    "sdkimport": 3
+    "sdkimport": 3,
+    "sdk-order": 14
    },
    "lib": "os"
   },
   {
    "file": "OSContext.c",
    "text": [
-    "8000BFC8",
+    "8000BBAC",
     "8000C41C"
    ],
    "functions": [
+    "__OSLoadFPUContext",
+    "__OSSaveFPUContext",
+    "OSSaveFPUContext",
+    "OSSetCurrentContext",
+    "fn_8000BE5C",
+    "OSSaveContext",
+    "OSLoadContext",
+    "fn_8000BFC0",
     "OSClearContext",
     "OSInitContext",
     "OSDumpContext",
@@ -184,7 +209,8 @@
    ],
    "how": {
     "sdkimport": 3,
-    "donor-name": 2
+    "donor-name": 2,
+    "sdk-order": 8
    },
    "lib": "os"
   },
@@ -210,15 +236,19 @@
    "file": "OSFont.c",
    "text": [
     "8000CAC8",
-    "8000CE30"
+    "8000D4F4"
    ],
    "functions": [
     "GetFontCode",
     "Decode",
-    "OSGetFontEncode"
+    "OSGetFontEncode",
+    "fn_8000CE30",
+    "fn_8000CEBC",
+    "fn_8000D1F0"
    ],
    "how": {
-    "sdkimport": 3
+    "sdkimport": 3,
+    "sdk-order": 3
    },
    "lib": "os"
   },
@@ -250,10 +280,13 @@
   {
    "file": "OSLink.c",
    "text": [
-    "8000DD74",
+    "8000DD60",
     "8000E794"
    ],
    "functions": [
+    "fn_8000DD60",
+    "fn_8000DD64",
+    "fn_8000DD68",
     "Relocate",
     "Link",
     "OSLink",
@@ -264,17 +297,20 @@
    ],
    "how": {
     "sdkimport": 5,
-    "donor-name": 2
+    "donor-name": 2,
+    "sdk-order": 3
    },
    "lib": "os"
   },
   {
    "file": "OSMemory.c",
    "text": [
-    "8000E7AC",
+    "8000E794",
     "8000EA84"
    ],
    "functions": [
+    "fn_8000E794",
+    "fn_8000E7A0",
     "OnReset",
     "MEMIntrruptHandler",
     "Config24MB",
@@ -284,7 +320,8 @@
    ],
    "how": {
     "sdkimport": 3,
-    "donor-name": 3
+    "donor-name": 3,
+    "sdk-order": 2
    },
    "lib": "os"
   },
@@ -305,24 +342,29 @@
   {
    "file": "OSReboot.c",
    "text": [
-    "8000EB10",
-    "8000EE50"
+    "8000EAF4",
+    "8000EE5C"
    ],
    "functions": [
-    "__OSReboot"
+    "Run",
+    "fn_8000EB04",
+    "__OSReboot",
+    "fn_8000EE50"
    ],
    "how": {
-    "donor-name": 1
+    "donor-name": 1,
+    "sdk-order": 3
    },
    "lib": "os"
   },
   {
    "file": "OSReset.c",
    "text": [
-    "8000EE70",
+    "8000EE5C",
     "8000F264"
    ],
    "functions": [
+    "fn_8000EE5C",
     "OSRegisterResetFunction",
     "Reset",
     "__OSDoHotReset",
@@ -331,7 +373,8 @@
    ],
    "how": {
     "sdkimport": 2,
-    "donor-name": 3
+    "donor-name": 3,
+    "sdk-order": 1
    },
    "lib": "os"
   },
@@ -339,24 +382,27 @@
    "file": "OSResetSW.c",
    "text": [
     "8000F264",
-    "8000F5F0"
+    "8000F610"
    ],
    "functions": [
     "__OSResetSWInterruptHandler",
-    "OSGetResetButtonState"
+    "OSGetResetButtonState",
+    "fn_8000F5F0"
    ],
    "how": {
-    "sdkimport": 2
+    "sdkimport": 2,
+    "sdk-order": 1
    },
    "lib": "os"
   },
   {
    "file": "OSRtc.c",
    "text": [
-    "8000F670",
+    "8000F610",
     "800100BC"
    ],
    "functions": [
+    "WriteSramCallback",
     "WriteSram",
     "__OSInitSram",
     "__OSLockSram",
@@ -375,7 +421,8 @@
    "how": {
     "sdkimport": 6,
     "between": 5,
-    "donor-name": 3
+    "donor-name": 3,
+    "sdk-order": 1
    },
    "lib": "os"
   },
@@ -383,25 +430,30 @@
    "file": "OSSync.c",
    "text": [
     "800100BC",
-    "80010140"
+    "80010144"
    ],
    "functions": [
     "SystemCallVector",
-    "__OSInitSystemCall"
+    "__OSInitSystemCall",
+    "fn_80010140"
    ],
    "how": {
     "donor-name": 1,
-    "sdkimport": 1
+    "sdkimport": 1,
+    "sdk-order": 1
    },
    "lib": "os"
   },
   {
    "file": "OSThread.c",
    "text": [
-    "800102B8",
+    "80010144",
     "8001140C"
    ],
    "functions": [
+    "__OSThreadInit",
+    "OSInitThreadQueue",
+    "fn_800102AC",
     "OSIsThreadTerminated",
     "OSDisableScheduler",
     "OSEnableScheduler",
@@ -424,7 +476,8 @@
    "how": {
     "sdkimport": 9,
     "donor-name": 8,
-    "between": 1
+    "between": 1,
+    "sdk-order": 3
    },
    "lib": "os"
   },
@@ -468,7 +521,7 @@
    "file": "SIBios.c",
    "text": [
     "8001191C",
-    "8001317C"
+    "800132D4"
    ],
    "functions": [
     "SIBusy",
@@ -494,11 +547,13 @@
     "SIGetType",
     "SIGetTypeAsync",
     "SIDecodeType",
-    "SIProbe"
+    "SIProbe",
+    "fn_8001317C"
    ],
    "how": {
     "donor-name": 8,
-    "sdkimport": 16
+    "sdkimport": 16,
+    "sdk-order": 1
    },
    "lib": "si"
   },
@@ -515,6 +570,43 @@
    "how": {
     "sdkimport": 1,
     "donor-name": 1
+   },
+   "lib": "si"
+  },
+  {
+   "file": "SISteering.c",
+   "text": [
+    "800133DC",
+    "800137C4"
+   ],
+   "functions": [
+    "fn_800133DC",
+    "fn_800133E0",
+    "fn_80013428",
+    "fn_800134DC",
+    "fn_800135CC",
+    "fn_800136E8",
+    "fn_8001375C"
+   ],
+   "how": {
+    "sdk-order": 7
+   },
+   "lib": "si"
+  },
+  {
+   "file": "SISteeringAuto.c",
+   "text": [
+    "800137C4",
+    "80013A88"
+   ],
+   "functions": [
+    "fn_800137C4",
+    "SamplingHandler",
+    "PADSetSamplingCallback",
+    "fn_800139E8"
+   ],
+   "how": {
+    "sdk-order": 4
    },
    "lib": "si"
   },
@@ -664,7 +756,7 @@
    "file": "dvdfs.c",
    "text": [
     "80016DC0",
-    "800176D8"
+    "8001776C"
    ],
    "functions": [
     "__DVDFSInit",
@@ -677,13 +769,17 @@
     "DVDChangeDir",
     "DVDReadAsyncPrio",
     "fn_80017590",
-    "DVDReadPrio"
+    "DVDReadPrio",
+    "fn_800176D8",
+    "DVDGetTransferredSize",
+    "fn_80017768"
    ],
    "how": {
     "donor-name": 2,
     "string": 3,
     "sdkimport": 5,
-    "between": 1
+    "between": 1,
+    "sdk-order": 3
    },
    "lib": "dvd"
   },
@@ -830,10 +926,13 @@
   {
    "file": "vi.c",
    "text": [
-    "8001A814",
+    "8001A55C",
     "8001C0C0"
    ],
    "functions": [
+    "__VIRetraceHandler",
+    "fn_8001A78C",
+    "fn_8001A7D0",
     "getTiming",
     "__VIInit",
     "VIInit",
@@ -855,7 +954,8 @@
     "donor-name": 8,
     "sdkimport": 6,
     "string": 1,
-    "between": 1
+    "between": 1,
+    "sdk-order": 3
    },
    "lib": "vi"
   },
@@ -878,7 +978,7 @@
    "file": "Pad.c",
    "text": [
     "8001C304",
-    "8001DF00"
+    "8001DF44"
    ],
    "functions": [
     "UpdateOrigin",
@@ -901,12 +1001,14 @@
     "OnReset_Pad",
     "SamplingHandler_Pad",
     "PADSetSamplingCallback_Pad",
-    "__PADDisableRecalibration"
+    "__PADDisableRecalibration",
+    "fn_8001DF00"
    ],
    "how": {
     "sdkimport": 8,
     "donor-name": 9,
-    "between": 4
+    "between": 4,
+    "sdk-order": 1
    },
    "lib": "pad"
   },
@@ -914,7 +1016,7 @@
    "file": "ai.c",
    "text": [
     "8001DF44",
-    "8001E7E4"
+    "8001E828"
    ],
    "functions": [
     "AIInitDMA",
@@ -934,11 +1036,13 @@
     "__AISHandler",
     "__AIDHandler",
     "__AICallbackStackSwitch",
-    "__AI_SRC_INIT"
+    "__AI_SRC_INIT",
+    "fn_8001E7E4"
    ],
    "how": {
     "sdkimport": 11,
-    "donor-name": 7
+    "donor-name": 7,
+    "sdk-order": 1
    },
    "lib": "ai"
   },
@@ -984,6 +1088,78 @@
    "lib": "ar"
   },
   {
+   "file": "AX.c",
+   "text": [
+    "800206FC",
+    "80020874"
+   ],
+   "functions": [
+    "fn_800206FC",
+    "fn_8002071C",
+    "fn_80020724",
+    "fn_80020778",
+    "fn_800207B4",
+    "fn_800207E8",
+    "fn_80020800"
+   ],
+   "how": {
+    "sdk-order": 7
+   },
+   "lib": "ax"
+  },
+  {
+   "file": "AXAlloc.c",
+   "text": [
+    "80020874",
+    "80020D58"
+   ],
+   "functions": [
+    "fn_80020874",
+    "fn_80020928",
+    "fn_800209DC",
+    "fn_800209FC",
+    "fn_80020A0C",
+    "fn_80020A28",
+    "fn_80020ABC",
+    "fn_80020B3C",
+    "fn_80020CB0"
+   ],
+   "how": {
+    "sdk-order": 9
+   },
+   "lib": "ax"
+  },
+  {
+   "file": "AXAux.c",
+   "text": [
+    "80020D58",
+    "8002123C"
+   ],
+   "functions": [
+    "fn_80020D58",
+    "fn_80020E3C",
+    "fn_80020E4C",
+    "fn_80020E80",
+    "fn_80020EA0",
+    "fn_80020EBC",
+    "fn_80020EDC",
+    "fn_80020EFC",
+    "fn_80020F1C",
+    "fn_80020F50",
+    "fn_80020F6C",
+    "fn_80020F88",
+    "fn_80020FA4",
+    "fn_800211E0",
+    "fn_800211EC",
+    "fn_800211F8",
+    "fn_80021200"
+   ],
+   "how": {
+    "sdk-order": 17
+   },
+   "lib": "ax"
+  },
+  {
    "file": "AXCL.c",
    "text": [
     "8002123C",
@@ -1000,33 +1176,163 @@
   {
    "file": "AXOut.c",
    "text": [
-    "80021B2C",
-    "80021B84"
+    "800218EC",
+    "80021FBC"
    ],
    "functions": [
-    "fn_80021B2C"
+    "fn_800218EC",
+    "fn_80021910",
+    "fn_80021914",
+    "fn_80021928",
+    "fn_80021930",
+    "fn_80021AB8",
+    "fn_80021B20",
+    "fn_80021B2C",
+    "cbForCancelAllSync",
+    "fn_80021BB0",
+    "fn_80021C7C"
    ],
    "how": {
-    "sdkimport": 1
+    "sdkimport": 1,
+    "sdk-order": 10
    },
    "lib": "ax"
   },
   {
-   "file": "dsp.c",
+   "file": "AXSPB.c",
    "text": [
-    "80028CC0",
-    "80028DD0"
+    "80021FBC",
+    "800224E4"
    ],
    "functions": [
+    "fn_80021FBC",
+    "fn_80022014",
+    "fn_8002201C",
+    "fn_80022028",
+    "fn_80022420",
+    "fn_8002244C",
+    "fn_80022450"
+   ],
+   "how": {
+    "sdk-order": 7
+   },
+   "lib": "ax"
+  },
+  {
+   "file": "AXVPB.c",
+   "text": [
+    "800224E4",
+    "800235D4"
+   ],
+   "functions": [
+    "fn_800224E4",
+    "fn_800224EC",
+    "fn_80022BF4",
+    "fn_80022E5C",
+    "fn_80022E68",
+    "fn_80022EA4",
+    "fn_800230A0",
+    "fn_800230A4",
+    "fn_80023168",
+    "fn_800231C4",
+    "fn_80023228",
+    "fn_80023284",
+    "fn_80023394",
+    "fn_80023438",
+    "fn_800234D0",
+    "fn_80023568"
+   ],
+   "how": {
+    "sdk-order": 16
+   },
+   "lib": "ax"
+  },
+  {
+   "file": "AXProf.c",
+   "text": [
+    "800235D4",
+    "80023684"
+   ],
+   "functions": [
+    "fn_800235D4",
+    "fn_8002361C",
+    "fn_80023638"
+   ],
+   "how": {
+    "sdk-order": 3
+   },
+   "lib": "ax"
+  },
+  {
+   "file": "mix.c",
+   "text": [
+    "80025EE4",
+    "8002805C"
+   ],
+   "functions": [
+    "fn_80025EE4",
+    "fn_80025EEC",
+    "fn_80025EF4",
+    "fn_80026D70",
+    "fn_80026D90",
+    "fn_80026DB8",
+    "fn_80026DD4",
+    "fn_80026E04",
+    "fn_80026E2C",
+    "fn_80026E54",
+    "fn_80026E84",
+    "fn_80026EAC",
+    "fn_80026EE0",
+    "fn_80026F4C",
+    "fn_80026FB8",
+    "fn_80026FE0"
+   ],
+   "how": {
+    "sdk-order": 16
+   },
+   "lib": "mix"
+  },
+  {
+   "file": "dsp.c",
+   "text": [
+    "800289C0",
+    "80028F50"
+   ],
+   "functions": [
+    "fn_800289C0",
+    "fn_80028A1C",
+    "fn_80028A78",
+    "fn_80028B2C",
+    "fn_80028B34",
+    "fn_80028B3C",
     "DSPCheckMailToDSP",
     "DSPCheckMailFromDSP",
     "DSPReadMailFromDSP",
     "DSPSendMailToDSP",
-    "DSPInit"
+    "DSPInit",
+    "fn_80028DD0",
+    "DSPAddTask",
+    "fn_80028E48",
+    "fn_80028E88"
    ],
    "how": {
     "donor-name": 2,
-    "sdkimport": 3
+    "sdkimport": 3,
+    "sdk-order": 10
+   },
+   "lib": "dsp"
+  },
+  {
+   "file": "dsp_debug.c",
+   "text": [
+    "80028F50",
+    "80028FA0"
+   ],
+   "functions": [
+    "fn_80028F50"
+   ],
+   "how": {
+    "sdk-order": 1
    },
    "lib": "dsp"
   },
@@ -1034,18 +1340,20 @@
    "file": "dsp_task.c",
    "text": [
     "80028FA0",
-    "80029824"
+    "80029828"
    ],
    "functions": [
     "__DSPHandler",
     "__DSP_exec_task",
     "__DSP_boot_task",
     "__DSP_insert_task",
-    "__DSP_remove_task"
+    "__DSP_remove_task",
+    "fn_80029824"
    ],
    "how": {
     "sdkimport": 4,
-    "donor-name": 1
+    "donor-name": 1,
+    "sdk-order": 1
    },
    "lib": "dsp"
   },
@@ -1053,7 +1361,7 @@
    "file": "CARDBios.c",
    "text": [
     "80029828",
-    "8002AB70"
+    "8002ABC0"
    ],
    "functions": [
     "__CARDSyncCallback",
@@ -1081,12 +1389,14 @@
     "__CARDPutControlBlock",
     "CARDGetResultCode",
     "CARDFreeBlocks",
-    "__CARDSync"
+    "__CARDSync",
+    "OnReset_CARDBios"
    ],
    "how": {
     "donor-name": 9,
     "sdkimport": 13,
-    "between": 4
+    "between": 4,
+    "sdk-order": 1
    },
    "lib": "card"
   },
@@ -1114,33 +1424,39 @@
    "file": "CARDRdwr.c",
    "text": [
     "8002BE20",
-    "8002C0A0"
+    "8002C0C0"
    ],
    "functions": [
     "BlockReadCallback",
     "__CARDRead",
     "BlockWriteCallback",
-    "__CARDWrite"
+    "__CARDWrite",
+    "fn_8002C0A0",
+    "fn_8002C0B8"
    ],
    "how": {
-    "donor-name": 4
+    "donor-name": 4,
+    "sdk-order": 2
    },
    "lib": "card"
   },
   {
    "file": "CARDBlock.c",
    "text": [
-    "8002C194",
-    "8002C4BC"
+    "8002C0C0",
+    "8002C4C4"
    ],
    "functions": [
+    "WriteCallback",
     "EraseCallback",
     "__CARDAllocBlock",
     "__CARDFreeBlock",
-    "__CARDUpdateFatBlock"
+    "__CARDUpdateFatBlock",
+    "fn_8002C4BC"
    ],
    "how": {
-    "sdkimport": 4
+    "sdkimport": 4,
+    "sdk-order": 2
    },
    "lib": "card"
   },
@@ -1226,7 +1542,7 @@
    "file": "CARDOpen.c",
    "text": [
     "8002E954",
-    "8002EDA0"
+    "8002EDA8"
    ],
    "functions": [
     "__CARDCompareFileName",
@@ -1234,11 +1550,13 @@
     "__CARDIsPublic",
     "__CARDGetFileNo",
     "CARDOpen",
-    "CARDClose"
+    "CARDClose",
+    "fn_8002EDA0"
    ],
    "how": {
     "donor-name": 3,
-    "sdkimport": 3
+    "sdkimport": 3,
+    "sdk-order": 1
    },
    "lib": "card"
   },
@@ -1263,15 +1581,17 @@
    "file": "CARDRead.c",
    "text": [
     "8002F140",
-    "8002F570"
+    "8002F5B8"
    ],
    "functions": [
     "__CARDSeek",
     "ReadCallback",
-    "CARDReadAsync"
+    "CARDReadAsync",
+    "fn_8002F570"
    ],
    "how": {
-    "sdkimport": 3
+    "sdkimport": 3,
+    "sdk-order": 1
    },
    "lib": "card"
   },
@@ -1279,16 +1599,18 @@
    "file": "CARDWrite.c",
    "text": [
     "8002F5B8",
-    "8002F8EC"
+    "8002F934"
    ],
    "functions": [
     "WriteCallback_CARDWrite",
     "EraseCallback_CARDWrite",
-    "CARDWriteAsync"
+    "CARDWriteAsync",
+    "fn_8002F8EC"
    ],
    "how": {
     "sdkimport": 2,
-    "between": 1
+    "between": 1,
+    "sdk-order": 1
    },
    "lib": "card"
   },
@@ -1296,16 +1618,18 @@
    "file": "CARDDelete.c",
    "text": [
     "8002F934",
-    "8002FC14"
+    "8002FC5C"
    ],
    "functions": [
     "DeleteCallback",
     "CARDFastDeleteAsync",
-    "CARDDeleteAsync"
+    "CARDDeleteAsync",
+    "fn_8002FC14"
    ],
    "how": {
     "donor-name": 1,
-    "sdkimport": 2
+    "sdkimport": 2,
+    "sdk-order": 1
    },
    "lib": "card"
   },
@@ -1313,15 +1637,17 @@
    "file": "CARDStat.c",
    "text": [
     "8002FC5C",
-    "800300F4"
+    "8003013C"
    ],
    "functions": [
     "UpdateIconOffsets",
     "CARDGetStatus",
-    "CARDSetStatusAsync"
+    "CARDSetStatusAsync",
+    "fn_800300F4"
    ],
    "how": {
-    "sdkimport": 3
+    "sdkimport": 3,
+    "sdk-order": 1
    },
    "lib": "card"
   },
@@ -1329,13 +1655,15 @@
    "file": "CARDRename.c",
    "text": [
     "8003013C",
-    "80030338"
+    "80030380"
    ],
    "functions": [
-    "CARDRenameAsync"
+    "CARDRenameAsync",
+    "fn_80030338"
    ],
    "how": {
-    "sdkimport": 1
+    "sdkimport": 1,
+    "sdk-order": 1
    },
    "lib": "card"
   },
@@ -1343,13 +1671,15 @@
    "file": "CARDNet.c",
    "text": [
     "80030690",
-    "80030754"
+    "800307CC"
    ],
    "functions": [
-    "CARDGetSerialNo"
+    "CARDGetSerialNo",
+    "fn_80030754"
    ],
    "how": {
-    "sdkimport": 1
+    "sdkimport": 1,
+    "sdk-order": 1
    },
    "lib": "card"
   },
@@ -1766,6 +2096,92 @@
     "sdk-order": 5
    },
    "lib": "gx"
+  },
+  {
+   "file": "THPDec.c",
+   "text": [
+    "80039C40",
+    "8003D4E0"
+   ],
+   "functions": [
+    "fn_80039C40",
+    "fn_80039E48",
+    "fn_8003A1CC",
+    "fn_8003A3D4",
+    "fn_8003A4E8",
+    "fn_8003A680",
+    "fn_8003A760",
+    "fn_8003A91C",
+    "fn_8003AB08",
+    "fn_8003B010",
+    "fn_8003B63C",
+    "fn_8003B798",
+    "fn_8003B8A8",
+    "fn_8003B930",
+    "fn_8003B9AC",
+    "fn_8003BB30",
+    "fn_8003BCE4",
+    "fn_8003BD78",
+    "fn_8003BE1C",
+    "fn_8003C1A4",
+    "fn_8003C6D0",
+    "fn_8003CBB0",
+    "fn_8003CE74",
+    "fn_8003D42C",
+    "fn_8003D4C0"
+   ],
+   "how": {
+    "sdk-order": 25
+   },
+   "lib": "thp"
+  },
+  {
+   "file": "perf.c",
+   "text": [
+    "8003D4E0",
+    "8003EAE4"
+   ],
+   "functions": [
+    "fn_8003D4E0",
+    "fn_8003D588",
+    "fn_8003D690",
+    "fn_8003D698",
+    "fn_8003D918",
+    "fn_8003DB54",
+    "fn_8003DBA0",
+    "fn_8003DC50",
+    "fn_8003DD48",
+    "fn_8003DFF8",
+    "fn_8003E13C",
+    "fn_8003E284",
+    "fn_8003E344",
+    "fn_8003E8CC",
+    "fn_8003E958",
+    "fn_8003E9EC"
+   ],
+   "how": {
+    "sdk-order": 16
+   },
+   "lib": "perf"
+  },
+  {
+   "file": "perfdraw.c",
+   "text": [
+    "8003EAE4",
+    "80041164"
+   ],
+   "functions": [
+    "fn_8003EAE4",
+    "fn_8003EC44",
+    "fn_8003F834",
+    "fn_8003FF88",
+    "fn_800410A4",
+    "fn_8004115C"
+   ],
+   "how": {
+    "sdk-order": 6
+   },
+   "lib": "perf"
   },
   {
    "file": "adx_inis.c",
@@ -2414,14 +2830,17 @@
    "file": "buffer_io.c",
    "text": [
     "8007EA58",
-    "8007EC80"
+    "8007ED84"
    ],
    "functions": [
     "setvbuf",
-    "__flush_buffer"
+    "__flush_buffer",
+    "fn_8007EC80",
+    "__prep_buffer"
    ],
    "how": {
-    "sdkimport": 2
+    "sdkimport": 2,
+    "sdk-order": 2
    },
    "lib": "runtime"
   },
@@ -2429,14 +2848,16 @@
    "file": "critical_regions.gamecube.c",
    "text": [
     "8007ED84",
-    "8007ED8C"
+    "8007ED90"
    ],
    "functions": [
     "__end_critical_region",
-    "__begin_critical_region"
+    "__begin_critical_region",
+    "__kill_critical_regions"
    ],
    "how": {
-    "donor-name": 2
+    "donor-name": 2,
+    "sdk-order": 1
    },
    "lib": "PPC_EABI"
   },
@@ -2552,18 +2973,28 @@
    "file": "printf.c",
    "text": [
     "8008069C",
-    "80080974"
+    "8008279C"
    ],
    "functions": [
     "sprintf",
     "fn_8008077C",
     "vprintf",
-    "printf"
+    "printf",
+    "fn_80080974",
+    "__FileWrite",
+    "__pformatter",
+    "float2str",
+    "fn_800818C8",
+    "double2hex",
+    "longlong2str",
+    "long2str",
+    "parse_format"
    ],
    "how": {
     "sdkimport": 2,
     "between": 1,
-    "donor-name": 1
+    "donor-name": 1,
+    "sdk-order": 9
    },
    "lib": "runtime"
   },
@@ -2794,17 +3225,20 @@
   {
    "file": "nubevent.c",
    "text": [
-    "8008877C",
+    "80088740",
     "80088968"
    ],
    "functions": [
+    "TRKDestructEvent",
+    "fn_80088764",
     "TRKPostEvent",
     "TRKGetNextEvent",
     "TRKInitializeEventQueue"
    ],
    "how": {
     "sdkimport": 2,
-    "donor-name": 1
+    "donor-name": 1,
+    "sdk-order": 2
    },
    "lib": "Portable"
   },
@@ -2940,14 +3374,44 @@
   {
    "file": "targimpl.c",
    "text": [
-    "8008C5F0",
-    "8008C6E4"
+    "8008B0E0",
+    "8008CB40"
    ],
    "functions": [
-    "TRKTargetAccessDefault"
+    "fn_8008B0E0",
+    "fn_8008B0E8",
+    "fn_8008B0F0",
+    "TRKInterruptHandler",
+    "TRKExceptionHandler",
+    "TRKSwapAndGo",
+    "TRKInterruptHandlerEnableInterrupts",
+    "TRKTargetSetInputPendingPtr",
+    "fn_8008B484",
+    "TRKTargetSetStopped",
+    "TRKTargetStopped",
+    "TRKTargetSupportRequest",
+    "fn_8008B6BC",
+    "fn_8008B6CC",
+    "fn_8008B784",
+    "fn_8008B830",
+    "fn_8008B8B4",
+    "TRKTargetInterrupt",
+    "TRKPostInterruptEvent",
+    "fn_8008BB7C",
+    "fn_8008BFB4",
+    "fn_8008C124",
+    "TRKTargetAccessDefault",
+    "fn_8008C6E4",
+    "fn_8008C730",
+    "fn_8008C87C",
+    "fn_8008CB20",
+    "fn_8008CB28",
+    "fn_8008CB30",
+    "fn_8008CB38"
    ],
    "how": {
-    "sdkimport": 1
+    "sdkimport": 1,
+    "sdk-order": 29
    },
    "lib": "TRK_MINNOW_DOLPHIN"
   },
@@ -2970,22 +3434,41 @@
    "file": "dolphin_trk.c",
    "text": [
     "8008CEB0",
-    "8008CFDC"
+    "8008D1CC"
    ],
    "functions": [
     "InitMetroTRK",
-    "InitMetroTRK_BBA"
+    "InitMetroTRK_BBA",
+    "TRKInitializeTarget",
+    "fn_8008D028",
+    "fn_8008D154",
+    "EnableMetroTRKInterrupts"
    ],
    "how": {
-    "donor-name": 2
+    "donor-name": 2,
+    "sdk-order": 4
    },
    "lib": "trk"
+  },
+  {
+   "file": "main_TRK.c",
+   "text": [
+    "8008D1CC",
+    "8008D224"
+   ],
+   "functions": [
+    "TRK_main"
+   ],
+   "how": {
+    "sdk-order": 1
+   },
+   "lib": "Portable"
   },
   {
    "file": "dolphin_trk_glue.c",
    "text": [
     "8008D224",
-    "8008D744"
+    "8008D77C"
    ],
    "functions": [
     "TRKLoadContext",
@@ -2999,12 +3482,14 @@
     "fn_8008D410",
     "fn_8008D440",
     "TRKInitializeIntDrivenUART",
-    "InitMetroTRKCommTable"
+    "InitMetroTRKCommTable",
+    "TRKEXICallBack"
    ],
    "how": {
     "donor-name": 2,
     "between": 9,
-    "pool-vote": 1
+    "pool-vote": 1,
+    "sdk-order": 1
    },
    "lib": "trk_minnow_dolphin"
   },
@@ -3021,6 +3506,37 @@
     "donor-name": 1
    },
    "lib": "dolphin"
+  },
+  {
+   "file": "UDP_Stubs.c",
+   "text": [
+    "8008D7B0",
+    "8008DDD0"
+   ],
+   "functions": [
+    "fn_8008D7B0",
+    "fn_8008D7C0",
+    "fn_8008D7CC",
+    "fn_8008D8A8",
+    "fn_8008D92C",
+    "fn_8008DAA8",
+    "fn_8008DB5C",
+    "fn_8008DC10",
+    "fn_8008DCCC",
+    "udp_cc_post_stop",
+    "udp_cc_pre_continue",
+    "udp_cc_peek",
+    "udp_cc_write",
+    "udp_cc_read",
+    "udp_cc_close",
+    "udp_cc_open",
+    "udp_cc_shutdown",
+    "udp_cc_initialize"
+   ],
+   "how": {
+    "sdk-order": 18
+   },
+   "lib": "trk_minnow_dolphin"
   },
   {
    "file": "main.c",
@@ -3090,6 +3606,34 @@
     "sdkimport": 4
    },
    "lib": "odemuexi2"
+  },
+  {
+   "file": "AmcExi2Stubs.c",
+   "text": [
+    "8008FED4",
+    "8008FEDC"
+   ],
+   "functions": [
+    "AMC_IsStub"
+   ],
+   "how": {
+    "sdk-order": 1
+   },
+   "lib": "amcstubs"
+  },
+  {
+   "file": "odenotstub.c",
+   "text": [
+    "8008FEDC",
+    "8008FEE4"
+   ],
+   "functions": [
+    "Hu_IsStub"
+   ],
+   "how": {
+    "sdk-order": 1
+   },
+   "lib": "odenotstub"
   }
  ],
  "conflicts": [
@@ -3766,1176 +4310,6 @@
    ]
   },
   {
-   "name": "__OSFPRInit",
-   "addr": "8000A0FC",
-   "size": 296,
-   "candidates": [
-    "PPCArch.c",
-    "OS.c"
-   ]
-  },
-  {
-   "name": "DCEnable",
-   "addr": "8000B614",
-   "size": 20,
-   "candidates": [
-    "OSAudioSystem.c",
-    "OSCache.c"
-   ]
-  },
-  {
-   "name": "DCInvalidateRange",
-   "addr": "8000B628",
-   "size": 44,
-   "candidates": [
-    "OSAudioSystem.c",
-    "OSCache.c"
-   ]
-  },
-  {
-   "name": "DCFlushRange",
-   "addr": "8000B654",
-   "size": 48,
-   "candidates": [
-    "OSAudioSystem.c",
-    "OSCache.c"
-   ]
-  },
-  {
-   "name": "DCStoreRange",
-   "addr": "8000B684",
-   "size": 48,
-   "candidates": [
-    "OSAudioSystem.c",
-    "OSCache.c"
-   ]
-  },
-  {
-   "name": "DCFlushRangeNoSync",
-   "addr": "8000B6B4",
-   "size": 44,
-   "candidates": [
-    "OSAudioSystem.c",
-    "OSCache.c"
-   ]
-  },
-  {
-   "name": "ICInvalidateRange",
-   "addr": "8000B6E0",
-   "size": 52,
-   "candidates": [
-    "OSAudioSystem.c",
-    "OSCache.c"
-   ]
-  },
-  {
-   "name": "ICFlashInvalidate",
-   "addr": "8000B714",
-   "size": 16,
-   "candidates": [
-    "OSAudioSystem.c",
-    "OSCache.c"
-   ]
-  },
-  {
-   "name": "ICEnable",
-   "addr": "8000B724",
-   "size": 20,
-   "candidates": [
-    "OSAudioSystem.c",
-    "OSCache.c"
-   ]
-  },
-  {
-   "name": "__LCEnable",
-   "addr": "8000B738",
-   "size": 204,
-   "candidates": [
-    "OSAudioSystem.c",
-    "OSCache.c"
-   ]
-  },
-  {
-   "name": "LCEnable",
-   "addr": "8000B804",
-   "size": 56,
-   "candidates": [
-    "OSAudioSystem.c",
-    "OSCache.c"
-   ]
-  },
-  {
-   "name": "LCDisable",
-   "addr": "8000B83C",
-   "size": 40,
-   "candidates": [
-    "OSAudioSystem.c",
-    "OSCache.c"
-   ]
-  },
-  {
-   "name": "LCLoadBlocks",
-   "addr": "8000B864",
-   "size": 36,
-   "candidates": [
-    "OSAudioSystem.c",
-    "OSCache.c"
-   ]
-  },
-  {
-   "name": "LCStoreBlocks",
-   "addr": "8000B888",
-   "size": 36,
-   "candidates": [
-    "OSAudioSystem.c",
-    "OSCache.c"
-   ]
-  },
-  {
-   "name": "fn_8000B8AC",
-   "addr": "8000B8AC",
-   "size": 20,
-   "candidates": [
-    "OSAudioSystem.c",
-    "OSCache.c"
-   ]
-  },
-  {
-   "name": "__OSLoadFPUContext",
-   "addr": "8000BBAC",
-   "size": 292,
-   "candidates": [
-    "OSCache.c",
-    "OSContext.c"
-   ]
-  },
-  {
-   "name": "__OSSaveFPUContext",
-   "addr": "8000BCD0",
-   "size": 296,
-   "candidates": [
-    "OSCache.c",
-    "OSContext.c"
-   ]
-  },
-  {
-   "name": "OSSaveFPUContext",
-   "addr": "8000BDF8",
-   "size": 8,
-   "candidates": [
-    "OSCache.c",
-    "OSContext.c"
-   ]
-  },
-  {
-   "name": "OSSetCurrentContext",
-   "addr": "8000BE00",
-   "size": 92,
-   "candidates": [
-    "OSCache.c",
-    "OSContext.c"
-   ]
-  },
-  {
-   "name": "fn_8000BE5C",
-   "addr": "8000BE5C",
-   "size": 12,
-   "candidates": [
-    "OSCache.c",
-    "OSContext.c"
-   ]
-  },
-  {
-   "name": "OSSaveContext",
-   "addr": "8000BE68",
-   "size": 128,
-   "candidates": [
-    "OSCache.c",
-    "OSContext.c"
-   ]
-  },
-  {
-   "name": "OSLoadContext",
-   "addr": "8000BEE8",
-   "size": 216,
-   "candidates": [
-    "OSCache.c",
-    "OSContext.c"
-   ]
-  },
-  {
-   "name": "fn_8000BFC0",
-   "addr": "8000BFC0",
-   "size": 8,
-   "candidates": [
-    "OSCache.c",
-    "OSContext.c"
-   ]
-  },
-  {
-   "name": "fn_8000CE30",
-   "addr": "8000CE30",
-   "size": 140,
-   "candidates": [
-    "OSFont.c",
-    "OSInterrupt.c"
-   ]
-  },
-  {
-   "name": "fn_8000CEBC",
-   "addr": "8000CEBC",
-   "size": 820,
-   "candidates": [
-    "OSFont.c",
-    "OSInterrupt.c"
-   ]
-  },
-  {
-   "name": "fn_8000D1F0",
-   "addr": "8000D1F0",
-   "size": 772,
-   "candidates": [
-    "OSFont.c",
-    "OSInterrupt.c"
-   ]
-  },
-  {
-   "name": "fn_8000DD60",
-   "addr": "8000DD60",
-   "size": 4,
-   "candidates": [
-    "OSInterrupt.c",
-    "OSLink.c"
-   ]
-  },
-  {
-   "name": "fn_8000DD64",
-   "addr": "8000DD64",
-   "size": 4,
-   "candidates": [
-    "OSInterrupt.c",
-    "OSLink.c"
-   ]
-  },
-  {
-   "name": "fn_8000DD68",
-   "addr": "8000DD68",
-   "size": 12,
-   "candidates": [
-    "OSInterrupt.c",
-    "OSLink.c"
-   ]
-  },
-  {
-   "name": "fn_8000E794",
-   "addr": "8000E794",
-   "size": 12,
-   "candidates": [
-    "OSLink.c",
-    "OSMemory.c"
-   ]
-  },
-  {
-   "name": "fn_8000E7A0",
-   "addr": "8000E7A0",
-   "size": 12,
-   "candidates": [
-    "OSLink.c",
-    "OSMemory.c"
-   ]
-  },
-  {
-   "name": "Run",
-   "addr": "8000EAF4",
-   "size": 16,
-   "candidates": [
-    "OSMutex.c",
-    "OSReboot.c"
-   ]
-  },
-  {
-   "name": "fn_8000EB04",
-   "addr": "8000EB04",
-   "size": 12,
-   "candidates": [
-    "OSMutex.c",
-    "OSReboot.c"
-   ]
-  },
-  {
-   "name": "fn_8000EE50",
-   "addr": "8000EE50",
-   "size": 12,
-   "candidates": [
-    "OSReboot.c",
-    "OSReset.c"
-   ]
-  },
-  {
-   "name": "fn_8000EE5C",
-   "addr": "8000EE5C",
-   "size": 20,
-   "candidates": [
-    "OSReboot.c",
-    "OSReset.c"
-   ]
-  },
-  {
-   "name": "fn_8000F5F0",
-   "addr": "8000F5F0",
-   "size": 32,
-   "candidates": [
-    "OSResetSW.c",
-    "OSRtc.c"
-   ]
-  },
-  {
-   "name": "WriteSramCallback",
-   "addr": "8000F610",
-   "size": 96,
-   "candidates": [
-    "OSResetSW.c",
-    "OSRtc.c"
-   ]
-  },
-  {
-   "name": "fn_80010140",
-   "addr": "80010140",
-   "size": 4,
-   "candidates": [
-    "OSSync.c",
-    "OSThread.c"
-   ]
-  },
-  {
-   "name": "__OSThreadInit",
-   "addr": "80010144",
-   "size": 344,
-   "candidates": [
-    "OSSync.c",
-    "OSThread.c"
-   ]
-  },
-  {
-   "name": "OSInitThreadQueue",
-   "addr": "8001029C",
-   "size": 16,
-   "candidates": [
-    "OSSync.c",
-    "OSThread.c"
-   ]
-  },
-  {
-   "name": "fn_800102AC",
-   "addr": "800102AC",
-   "size": 12,
-   "candidates": [
-    "OSSync.c",
-    "OSThread.c"
-   ]
-  },
-  {
-   "name": "fn_8001317C",
-   "addr": "8001317C",
-   "size": 344,
-   "candidates": [
-    "SIBios.c",
-    "SISamplingRate.c"
-   ]
-  },
-  {
-   "name": "fn_800133DC",
-   "addr": "800133DC",
-   "size": 4,
-   "candidates": [
-    "SISamplingRate.c",
-    "EXIBios.c"
-   ]
-  },
-  {
-   "name": "fn_800133E0",
-   "addr": "800133E0",
-   "size": 72,
-   "candidates": [
-    "SISamplingRate.c",
-    "EXIBios.c"
-   ]
-  },
-  {
-   "name": "fn_80013428",
-   "addr": "80013428",
-   "size": 180,
-   "candidates": [
-    "SISamplingRate.c",
-    "EXIBios.c"
-   ]
-  },
-  {
-   "name": "fn_800134DC",
-   "addr": "800134DC",
-   "size": 240,
-   "candidates": [
-    "SISamplingRate.c",
-    "EXIBios.c"
-   ]
-  },
-  {
-   "name": "fn_800135CC",
-   "addr": "800135CC",
-   "size": 284,
-   "candidates": [
-    "SISamplingRate.c",
-    "EXIBios.c"
-   ]
-  },
-  {
-   "name": "fn_800136E8",
-   "addr": "800136E8",
-   "size": 116,
-   "candidates": [
-    "SISamplingRate.c",
-    "EXIBios.c"
-   ]
-  },
-  {
-   "name": "fn_8001375C",
-   "addr": "8001375C",
-   "size": 104,
-   "candidates": [
-    "SISamplingRate.c",
-    "EXIBios.c"
-   ]
-  },
-  {
-   "name": "fn_800137C4",
-   "addr": "800137C4",
-   "size": 368,
-   "candidates": [
-    "SISamplingRate.c",
-    "EXIBios.c"
-   ]
-  },
-  {
-   "name": "SamplingHandler",
-   "addr": "80013934",
-   "size": 96,
-   "candidates": [
-    "SISamplingRate.c",
-    "EXIBios.c"
-   ]
-  },
-  {
-   "name": "PADSetSamplingCallback",
-   "addr": "80013994",
-   "size": 84,
-   "candidates": [
-    "SISamplingRate.c",
-    "EXIBios.c"
-   ]
-  },
-  {
-   "name": "fn_800139E8",
-   "addr": "800139E8",
-   "size": 160,
-   "candidates": [
-    "SISamplingRate.c",
-    "EXIBios.c"
-   ]
-  },
-  {
-   "name": "fn_800176D8",
-   "addr": "800176D8",
-   "size": 36,
-   "candidates": [
-    "dvdfs.c",
-    "dvd.c"
-   ]
-  },
-  {
-   "name": "DVDGetTransferredSize",
-   "addr": "800176FC",
-   "size": 108,
-   "candidates": [
-    "dvdfs.c",
-    "dvd.c"
-   ]
-  },
-  {
-   "name": "fn_80017768",
-   "addr": "80017768",
-   "size": 4,
-   "candidates": [
-    "dvdfs.c",
-    "dvd.c"
-   ]
-  },
-  {
-   "name": "__VIRetraceHandler",
-   "addr": "8001A55C",
-   "size": 560,
-   "candidates": [
-    "fstload.c",
-    "vi.c"
-   ]
-  },
-  {
-   "name": "fn_8001A78C",
-   "addr": "8001A78C",
-   "size": 68,
-   "candidates": [
-    "fstload.c",
-    "vi.c"
-   ]
-  },
-  {
-   "name": "fn_8001A7D0",
-   "addr": "8001A7D0",
-   "size": 68,
-   "candidates": [
-    "fstload.c",
-    "vi.c"
-   ]
-  },
-  {
-   "name": "fn_8001DF00",
-   "addr": "8001DF00",
-   "size": 68,
-   "candidates": [
-    "Pad.c",
-    "ai.c"
-   ]
-  },
-  {
-   "name": "fn_8001E7E4",
-   "addr": "8001E7E4",
-   "size": 68,
-   "candidates": [
-    "ai.c",
-    "ar.c"
-   ]
-  },
-  {
-   "name": "fn_800206FC",
-   "addr": "800206FC",
-   "size": 32,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_8002071C",
-   "addr": "8002071C",
-   "size": 8,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_80020724",
-   "addr": "80020724",
-   "size": 84,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_80020778",
-   "addr": "80020778",
-   "size": 60,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_800207B4",
-   "addr": "800207B4",
-   "size": 52,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_800207E8",
-   "addr": "800207E8",
-   "size": 24,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_80020800",
-   "addr": "80020800",
-   "size": 116,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_80020874",
-   "addr": "80020874",
-   "size": 180,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_80020928",
-   "addr": "80020928",
-   "size": 180,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_800209DC",
-   "addr": "800209DC",
-   "size": 32,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_800209FC",
-   "addr": "800209FC",
-   "size": 16,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_80020A0C",
-   "addr": "80020A0C",
-   "size": 28,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_80020A28",
-   "addr": "80020A28",
-   "size": 148,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_80020ABC",
-   "addr": "80020ABC",
-   "size": 128,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_80020B3C",
-   "addr": "80020B3C",
-   "size": 372,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_80020CB0",
-   "addr": "80020CB0",
-   "size": 168,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_80020D58",
-   "addr": "80020D58",
-   "size": 228,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_80020E3C",
-   "addr": "80020E3C",
-   "size": 16,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_80020E4C",
-   "addr": "80020E4C",
-   "size": 52,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_80020E80",
-   "addr": "80020E80",
-   "size": 32,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_80020EA0",
-   "addr": "80020EA0",
-   "size": 28,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_80020EBC",
-   "addr": "80020EBC",
-   "size": 32,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_80020EDC",
-   "addr": "80020EDC",
-   "size": 32,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_80020EFC",
-   "addr": "80020EFC",
-   "size": 32,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_80020F1C",
-   "addr": "80020F1C",
-   "size": 52,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_80020F50",
-   "addr": "80020F50",
-   "size": 28,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_80020F6C",
-   "addr": "80020F6C",
-   "size": 28,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_80020F88",
-   "addr": "80020F88",
-   "size": 28,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_80020FA4",
-   "addr": "80020FA4",
-   "size": 572,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_800211E0",
-   "addr": "800211E0",
-   "size": 12,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_800211EC",
-   "addr": "800211EC",
-   "size": 12,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_800211F8",
-   "addr": "800211F8",
-   "size": 8,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_80021200",
-   "addr": "80021200",
-   "size": 60,
-   "candidates": [
-    "arq.c",
-    "AXCL.c"
-   ]
-  },
-  {
-   "name": "fn_800218EC",
-   "addr": "800218EC",
-   "size": 36,
-   "candidates": [
-    "AXCL.c",
-    "AXOut.c"
-   ]
-  },
-  {
-   "name": "fn_80021910",
-   "addr": "80021910",
-   "size": 4,
-   "candidates": [
-    "AXCL.c",
-    "AXOut.c"
-   ]
-  },
-  {
-   "name": "fn_80021914",
-   "addr": "80021914",
-   "size": 20,
-   "candidates": [
-    "AXCL.c",
-    "AXOut.c"
-   ]
-  },
-  {
-   "name": "fn_80021928",
-   "addr": "80021928",
-   "size": 8,
-   "candidates": [
-    "AXCL.c",
-    "AXOut.c"
-   ]
-  },
-  {
-   "name": "fn_80021930",
-   "addr": "80021930",
-   "size": 392,
-   "candidates": [
-    "AXCL.c",
-    "AXOut.c"
-   ]
-  },
-  {
-   "name": "fn_80021AB8",
-   "addr": "80021AB8",
-   "size": 104,
-   "candidates": [
-    "AXCL.c",
-    "AXOut.c"
-   ]
-  },
-  {
-   "name": "fn_80021B20",
-   "addr": "80021B20",
-   "size": 12,
-   "candidates": [
-    "AXCL.c",
-    "AXOut.c"
-   ]
-  },
-  {
-   "name": "cbForCancelAllSync",
-   "addr": "80021B84",
-   "size": 44,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80021BB0",
-   "addr": "80021BB0",
-   "size": 204,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80021C7C",
-   "addr": "80021C7C",
-   "size": 832,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80021FBC",
-   "addr": "80021FBC",
-   "size": 88,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80022014",
-   "addr": "80022014",
-   "size": 8,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_8002201C",
-   "addr": "8002201C",
-   "size": 12,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80022028",
-   "addr": "80022028",
-   "size": 1016,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80022420",
-   "addr": "80022420",
-   "size": 44,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_8002244C",
-   "addr": "8002244C",
-   "size": 4,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80022450",
-   "addr": "80022450",
-   "size": 148,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_800224E4",
-   "addr": "800224E4",
-   "size": 8,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_800224EC",
-   "addr": "800224EC",
-   "size": 1800,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80022BF4",
-   "addr": "80022BF4",
-   "size": 616,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80022E5C",
-   "addr": "80022E5C",
-   "size": 12,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80022E68",
-   "addr": "80022E68",
-   "size": 60,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80022EA4",
-   "addr": "80022EA4",
-   "size": 508,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_800230A0",
-   "addr": "800230A0",
-   "size": 4,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_800230A4",
-   "addr": "800230A4",
-   "size": 196,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80023168",
-   "addr": "80023168",
-   "size": 92,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_800231C4",
-   "addr": "800231C4",
-   "size": 100,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80023228",
-   "addr": "80023228",
-   "size": 92,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80023284",
-   "addr": "80023284",
-   "size": 272,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80023394",
-   "addr": "80023394",
-   "size": 164,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80023438",
-   "addr": "80023438",
-   "size": 152,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_800234D0",
-   "addr": "800234D0",
-   "size": 152,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80023568",
-   "addr": "80023568",
-   "size": 108,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_800235D4",
-   "addr": "800235D4",
-   "size": 72,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_8002361C",
-   "addr": "8002361C",
-   "size": 28,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80023638",
-   "addr": "80023638",
-   "size": 76,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
    "name": "fn_80023684",
    "addr": "80023684",
    "size": 1260,
@@ -5197,150 +4571,6 @@
    ]
   },
   {
-   "name": "fn_80025EE4",
-   "addr": "80025EE4",
-   "size": 8,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80025EEC",
-   "addr": "80025EEC",
-   "size": 8,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80025EF4",
-   "addr": "80025EF4",
-   "size": 3708,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80026D70",
-   "addr": "80026D70",
-   "size": 32,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80026D90",
-   "addr": "80026D90",
-   "size": 40,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80026DB8",
-   "addr": "80026DB8",
-   "size": 28,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80026DD4",
-   "addr": "80026DD4",
-   "size": 48,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80026E04",
-   "addr": "80026E04",
-   "size": 40,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80026E2C",
-   "addr": "80026E2C",
-   "size": 40,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80026E54",
-   "addr": "80026E54",
-   "size": 48,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80026E84",
-   "addr": "80026E84",
-   "size": 40,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80026EAC",
-   "addr": "80026EAC",
-   "size": 52,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80026EE0",
-   "addr": "80026EE0",
-   "size": 108,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80026F4C",
-   "addr": "80026F4C",
-   "size": 108,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80026FB8",
-   "addr": "80026FB8",
-   "size": 40,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80026FE0",
-   "addr": "80026FE0",
-   "size": 4220,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
    "name": "fn_8002805C",
    "addr": "8002805C",
    "size": 52,
@@ -5503,213 +4733,6 @@
    ]
   },
   {
-   "name": "fn_800289C0",
-   "addr": "800289C0",
-   "size": 92,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80028A1C",
-   "addr": "80028A1C",
-   "size": 92,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80028A78",
-   "addr": "80028A78",
-   "size": 180,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80028B2C",
-   "addr": "80028B2C",
-   "size": 8,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80028B34",
-   "addr": "80028B34",
-   "size": 8,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80028B3C",
-   "addr": "80028B3C",
-   "size": 388,
-   "candidates": [
-    "AXOut.c",
-    "dsp.c"
-   ]
-  },
-  {
-   "name": "fn_80028DD0",
-   "addr": "80028DD0",
-   "size": 8,
-   "candidates": [
-    "dsp.c",
-    "dsp_task.c"
-   ]
-  },
-  {
-   "name": "DSPAddTask",
-   "addr": "80028DD8",
-   "size": 112,
-   "candidates": [
-    "dsp.c",
-    "dsp_task.c"
-   ]
-  },
-  {
-   "name": "fn_80028E48",
-   "addr": "80028E48",
-   "size": 64,
-   "candidates": [
-    "dsp.c",
-    "dsp_task.c"
-   ]
-  },
-  {
-   "name": "fn_80028E88",
-   "addr": "80028E88",
-   "size": 200,
-   "candidates": [
-    "dsp.c",
-    "dsp_task.c"
-   ]
-  },
-  {
-   "name": "fn_80028F50",
-   "addr": "80028F50",
-   "size": 80,
-   "candidates": [
-    "dsp.c",
-    "dsp_task.c"
-   ]
-  },
-  {
-   "name": "fn_80029824",
-   "addr": "80029824",
-   "size": 4,
-   "candidates": [
-    "dsp_task.c",
-    "CARDBios.c"
-   ]
-  },
-  {
-   "name": "OnReset_CARDBios",
-   "addr": "8002AB70",
-   "size": 80,
-   "candidates": [
-    "CARDBios.c",
-    "CARDUnlock.c"
-   ]
-  },
-  {
-   "name": "fn_8002C0A0",
-   "addr": "8002C0A0",
-   "size": 24,
-   "candidates": [
-    "CARDRdwr.c",
-    "CARDBlock.c"
-   ]
-  },
-  {
-   "name": "fn_8002C0B8",
-   "addr": "8002C0B8",
-   "size": 8,
-   "candidates": [
-    "CARDRdwr.c",
-    "CARDBlock.c"
-   ]
-  },
-  {
-   "name": "WriteCallback",
-   "addr": "8002C0C0",
-   "size": 212,
-   "candidates": [
-    "CARDRdwr.c",
-    "CARDBlock.c"
-   ]
-  },
-  {
-   "name": "fn_8002C4BC",
-   "addr": "8002C4BC",
-   "size": 8,
-   "candidates": [
-    "CARDBlock.c",
-    "CARDDir.c"
-   ]
-  },
-  {
-   "name": "fn_8002EDA0",
-   "addr": "8002EDA0",
-   "size": 8,
-   "candidates": [
-    "CARDOpen.c",
-    "CARDCreate.c"
-   ]
-  },
-  {
-   "name": "fn_8002F570",
-   "addr": "8002F570",
-   "size": 72,
-   "candidates": [
-    "CARDRead.c",
-    "CARDWrite.c"
-   ]
-  },
-  {
-   "name": "fn_8002F8EC",
-   "addr": "8002F8EC",
-   "size": 72,
-   "candidates": [
-    "CARDWrite.c",
-    "CARDDelete.c"
-   ]
-  },
-  {
-   "name": "fn_8002FC14",
-   "addr": "8002FC14",
-   "size": 72,
-   "candidates": [
-    "CARDDelete.c",
-    "CARDStat.c"
-   ]
-  },
-  {
-   "name": "fn_800300F4",
-   "addr": "800300F4",
-   "size": 72,
-   "candidates": [
-    "CARDStat.c",
-    "CARDRename.c"
-   ]
-  },
-  {
-   "name": "fn_80030338",
-   "addr": "80030338",
-   "size": 72,
-   "candidates": [
-    "CARDRename.c",
-    "CARDNet.c"
-   ]
-  },
-  {
    "name": "fn_80030380",
    "addr": "80030380",
    "size": 188,
@@ -5725,438 +4748,6 @@
    "candidates": [
     "CARDRename.c",
     "CARDNet.c"
-   ]
-  },
-  {
-   "name": "fn_80030754",
-   "addr": "80030754",
-   "size": 120,
-   "candidates": [
-    "CARDNet.c",
-    "GXInit.c"
-   ]
-  },
-  {
-   "name": "fn_80039C40",
-   "addr": "80039C40",
-   "size": 520,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_80039E48",
-   "addr": "80039E48",
-   "size": 900,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003A1CC",
-   "addr": "8003A1CC",
-   "size": 520,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003A3D4",
-   "addr": "8003A3D4",
-   "size": 276,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003A4E8",
-   "addr": "8003A4E8",
-   "size": 408,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003A680",
-   "addr": "8003A680",
-   "size": 224,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003A760",
-   "addr": "8003A760",
-   "size": 444,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003A91C",
-   "addr": "8003A91C",
-   "size": 492,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003AB08",
-   "addr": "8003AB08",
-   "size": 1288,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003B010",
-   "addr": "8003B010",
-   "size": 1580,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003B63C",
-   "addr": "8003B63C",
-   "size": 348,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003B798",
-   "addr": "8003B798",
-   "size": 272,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003B8A8",
-   "addr": "8003B8A8",
-   "size": 136,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003B930",
-   "addr": "8003B930",
-   "size": 124,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003B9AC",
-   "addr": "8003B9AC",
-   "size": 388,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003BB30",
-   "addr": "8003BB30",
-   "size": 436,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003BCE4",
-   "addr": "8003BCE4",
-   "size": 148,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003BD78",
-   "addr": "8003BD78",
-   "size": 164,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003BE1C",
-   "addr": "8003BE1C",
-   "size": 904,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003C1A4",
-   "addr": "8003C1A4",
-   "size": 1324,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003C6D0",
-   "addr": "8003C6D0",
-   "size": 1248,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003CBB0",
-   "addr": "8003CBB0",
-   "size": 708,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003CE74",
-   "addr": "8003CE74",
-   "size": 1464,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003D42C",
-   "addr": "8003D42C",
-   "size": 148,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003D4C0",
-   "addr": "8003D4C0",
-   "size": 32,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003D4E0",
-   "addr": "8003D4E0",
-   "size": 168,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003D588",
-   "addr": "8003D588",
-   "size": 264,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003D690",
-   "addr": "8003D690",
-   "size": 8,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003D698",
-   "addr": "8003D698",
-   "size": 640,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003D918",
-   "addr": "8003D918",
-   "size": 572,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003DB54",
-   "addr": "8003DB54",
-   "size": 76,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003DBA0",
-   "addr": "8003DBA0",
-   "size": 176,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003DC50",
-   "addr": "8003DC50",
-   "size": 248,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003DD48",
-   "addr": "8003DD48",
-   "size": 688,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003DFF8",
-   "addr": "8003DFF8",
-   "size": 324,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003E13C",
-   "addr": "8003E13C",
-   "size": 328,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003E284",
-   "addr": "8003E284",
-   "size": 192,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003E344",
-   "addr": "8003E344",
-   "size": 1416,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003E8CC",
-   "addr": "8003E8CC",
-   "size": 140,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003E958",
-   "addr": "8003E958",
-   "size": 148,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003E9EC",
-   "addr": "8003E9EC",
-   "size": 248,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003EAE4",
-   "addr": "8003EAE4",
-   "size": 352,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003EC44",
-   "addr": "8003EC44",
-   "size": 3056,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003F834",
-   "addr": "8003F834",
-   "size": 1876,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8003FF88",
-   "addr": "8003FF88",
-   "size": 4380,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_800410A4",
-   "addr": "800410A4",
-   "size": 184,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
-   ]
-  },
-  {
-   "name": "fn_8004115C",
-   "addr": "8004115C",
-   "size": 8,
-   "candidates": [
-    "GXPerf.c",
-    "adx_inis.c"
    ]
   },
   {
@@ -13072,33 +11663,6 @@
    ]
   },
   {
-   "name": "fn_8007EC80",
-   "addr": "8007EC80",
-   "size": 208,
-   "candidates": [
-    "buffer_io.c",
-    "critical_regions.gamecube.c"
-   ]
-  },
-  {
-   "name": "__prep_buffer",
-   "addr": "8007ED50",
-   "size": 52,
-   "candidates": [
-    "buffer_io.c",
-    "critical_regions.gamecube.c"
-   ]
-  },
-  {
-   "name": "__kill_critical_regions",
-   "addr": "8007ED8C",
-   "size": 4,
-   "candidates": [
-    "critical_regions.gamecube.c",
-    "direct_io.c"
-   ]
-  },
-  {
    "name": "fn_8007ED90",
    "addr": "8007ED90",
    "size": 36,
@@ -13186,87 +11750,6 @@
    "candidates": [
     "misc_io.c",
     "printf.c"
-   ]
-  },
-  {
-   "name": "fn_80080974",
-   "addr": "80080974",
-   "size": 108,
-   "candidates": [
-    "printf.c",
-    "qsort.c"
-   ]
-  },
-  {
-   "name": "__FileWrite",
-   "addr": "800809E0",
-   "size": 88,
-   "candidates": [
-    "printf.c",
-    "qsort.c"
-   ]
-  },
-  {
-   "name": "__pformatter",
-   "addr": "80080A38",
-   "size": 1908,
-   "candidates": [
-    "printf.c",
-    "qsort.c"
-   ]
-  },
-  {
-   "name": "float2str",
-   "addr": "800811AC",
-   "size": 1820,
-   "candidates": [
-    "printf.c",
-    "qsort.c"
-   ]
-  },
-  {
-   "name": "fn_800818C8",
-   "addr": "800818C8",
-   "size": 300,
-   "candidates": [
-    "printf.c",
-    "qsort.c"
-   ]
-  },
-  {
-   "name": "double2hex",
-   "addr": "800819F4",
-   "size": 824,
-   "candidates": [
-    "printf.c",
-    "qsort.c"
-   ]
-  },
-  {
-   "name": "longlong2str",
-   "addr": "80081D2C",
-   "size": 788,
-   "candidates": [
-    "printf.c",
-    "qsort.c"
-   ]
-  },
-  {
-   "name": "long2str",
-   "addr": "80082040",
-   "size": 600,
-   "candidates": [
-    "printf.c",
-    "qsort.c"
-   ]
-  },
-  {
-   "name": "parse_format",
-   "addr": "80082298",
-   "size": 1284,
-   "candidates": [
-    "printf.c",
-    "qsort.c"
    ]
   },
   {
@@ -13495,24 +11978,6 @@
    ]
   },
   {
-   "name": "TRKDestructEvent",
-   "addr": "80088740",
-   "size": 36,
-   "candidates": [
-    "mainloop.c",
-    "nubevent.c"
-   ]
-  },
-  {
-   "name": "fn_80088764",
-   "addr": "80088764",
-   "size": 24,
-   "candidates": [
-    "mainloop.c",
-    "nubevent.c"
-   ]
-  },
-  {
    "name": "fn_80088B00",
    "addr": "80088B00",
    "size": 68,
@@ -13708,483 +12173,6 @@
    "candidates": [
     "msghndlr.c",
     "mem_TRK.c"
-   ]
-  },
-  {
-   "name": "fn_8008B0E0",
-   "addr": "8008B0E0",
-   "size": 8,
-   "candidates": [
-    "mem_TRK.c",
-    "targimpl.c"
-   ]
-  },
-  {
-   "name": "fn_8008B0E8",
-   "addr": "8008B0E8",
-   "size": 8,
-   "candidates": [
-    "mem_TRK.c",
-    "targimpl.c"
-   ]
-  },
-  {
-   "name": "fn_8008B0F0",
-   "addr": "8008B0F0",
-   "size": 60,
-   "candidates": [
-    "mem_TRK.c",
-    "targimpl.c"
-   ]
-  },
-  {
-   "name": "TRKInterruptHandler",
-   "addr": "8008B12C",
-   "size": 404,
-   "candidates": [
-    "mem_TRK.c",
-    "targimpl.c"
-   ]
-  },
-  {
-   "name": "TRKExceptionHandler",
-   "addr": "8008B2C0",
-   "size": 156,
-   "candidates": [
-    "mem_TRK.c",
-    "targimpl.c"
-   ]
-  },
-  {
-   "name": "TRKSwapAndGo",
-   "addr": "8008B35C",
-   "size": 196,
-   "candidates": [
-    "mem_TRK.c",
-    "targimpl.c"
-   ]
-  },
-  {
-   "name": "TRKInterruptHandlerEnableInterrupts",
-   "addr": "8008B420",
-   "size": 84,
-   "candidates": [
-    "mem_TRK.c",
-    "targimpl.c"
-   ]
-  },
-  {
-   "name": "TRKTargetSetInputPendingPtr",
-   "addr": "8008B474",
-   "size": 16,
-   "candidates": [
-    "mem_TRK.c",
-    "targimpl.c"
-   ]
-  },
-  {
-   "name": "fn_8008B484",
-   "addr": "8008B484",
-   "size": 24,
-   "candidates": [
-    "mem_TRK.c",
-    "targimpl.c"
-   ]
-  },
-  {
-   "name": "TRKTargetSetStopped",
-   "addr": "8008B49C",
-   "size": 16,
-   "candidates": [
-    "mem_TRK.c",
-    "targimpl.c"
-   ]
-  },
-  {
-   "name": "TRKTargetStopped",
-   "addr": "8008B4AC",
-   "size": 16,
-   "candidates": [
-    "mem_TRK.c",
-    "targimpl.c"
-   ]
-  },
-  {
-   "name": "TRKTargetSupportRequest",
-   "addr": "8008B4BC",
-   "size": 512,
-   "candidates": [
-    "mem_TRK.c",
-    "targimpl.c"
-   ]
-  },
-  {
-   "name": "fn_8008B6BC",
-   "addr": "8008B6BC",
-   "size": 16,
-   "candidates": [
-    "mem_TRK.c",
-    "targimpl.c"
-   ]
-  },
-  {
-   "name": "fn_8008B6CC",
-   "addr": "8008B6CC",
-   "size": 184,
-   "candidates": [
-    "mem_TRK.c",
-    "targimpl.c"
-   ]
-  },
-  {
-   "name": "fn_8008B784",
-   "addr": "8008B784",
-   "size": 172,
-   "candidates": [
-    "mem_TRK.c",
-    "targimpl.c"
-   ]
-  },
-  {
-   "name": "fn_8008B830",
-   "addr": "8008B830",
-   "size": 132,
-   "candidates": [
-    "mem_TRK.c",
-    "targimpl.c"
-   ]
-  },
-  {
-   "name": "fn_8008B8B4",
-   "addr": "8008B8B4",
-   "size": 140,
-   "candidates": [
-    "mem_TRK.c",
-    "targimpl.c"
-   ]
-  },
-  {
-   "name": "TRKTargetInterrupt",
-   "addr": "8008B940",
-   "size": 400,
-   "candidates": [
-    "mem_TRK.c",
-    "targimpl.c"
-   ]
-  },
-  {
-   "name": "TRKPostInterruptEvent",
-   "addr": "8008BAD0",
-   "size": 172,
-   "candidates": [
-    "mem_TRK.c",
-    "targimpl.c"
-   ]
-  },
-  {
-   "name": "fn_8008BB7C",
-   "addr": "8008BB7C",
-   "size": 1080,
-   "candidates": [
-    "mem_TRK.c",
-    "targimpl.c"
-   ]
-  },
-  {
-   "name": "fn_8008BFB4",
-   "addr": "8008BFB4",
-   "size": 368,
-   "candidates": [
-    "mem_TRK.c",
-    "targimpl.c"
-   ]
-  },
-  {
-   "name": "fn_8008C124",
-   "addr": "8008C124",
-   "size": 1228,
-   "candidates": [
-    "mem_TRK.c",
-    "targimpl.c"
-   ]
-  },
-  {
-   "name": "fn_8008C6E4",
-   "addr": "8008C6E4",
-   "size": 76,
-   "candidates": [
-    "targimpl.c",
-    "mpc_7xx_603e.c"
-   ]
-  },
-  {
-   "name": "fn_8008C730",
-   "addr": "8008C730",
-   "size": 332,
-   "candidates": [
-    "targimpl.c",
-    "mpc_7xx_603e.c"
-   ]
-  },
-  {
-   "name": "fn_8008C87C",
-   "addr": "8008C87C",
-   "size": 676,
-   "candidates": [
-    "targimpl.c",
-    "mpc_7xx_603e.c"
-   ]
-  },
-  {
-   "name": "fn_8008CB20",
-   "addr": "8008CB20",
-   "size": 8,
-   "candidates": [
-    "targimpl.c",
-    "mpc_7xx_603e.c"
-   ]
-  },
-  {
-   "name": "fn_8008CB28",
-   "addr": "8008CB28",
-   "size": 8,
-   "candidates": [
-    "targimpl.c",
-    "mpc_7xx_603e.c"
-   ]
-  },
-  {
-   "name": "fn_8008CB30",
-   "addr": "8008CB30",
-   "size": 8,
-   "candidates": [
-    "targimpl.c",
-    "mpc_7xx_603e.c"
-   ]
-  },
-  {
-   "name": "fn_8008CB38",
-   "addr": "8008CB38",
-   "size": 8,
-   "candidates": [
-    "targimpl.c",
-    "mpc_7xx_603e.c"
-   ]
-  },
-  {
-   "name": "TRKInitializeTarget",
-   "addr": "8008CFDC",
-   "size": 76,
-   "candidates": [
-    "dolphin_trk.c",
-    "dolphin_trk_glue.c"
-   ]
-  },
-  {
-   "name": "fn_8008D028",
-   "addr": "8008D028",
-   "size": 300,
-   "candidates": [
-    "dolphin_trk.c",
-    "dolphin_trk_glue.c"
-   ]
-  },
-  {
-   "name": "fn_8008D154",
-   "addr": "8008D154",
-   "size": 88,
-   "candidates": [
-    "dolphin_trk.c",
-    "dolphin_trk_glue.c"
-   ]
-  },
-  {
-   "name": "EnableMetroTRKInterrupts",
-   "addr": "8008D1AC",
-   "size": 32,
-   "candidates": [
-    "dolphin_trk.c",
-    "dolphin_trk_glue.c"
-   ]
-  },
-  {
-   "name": "TRK_main",
-   "addr": "8008D1CC",
-   "size": 88,
-   "candidates": [
-    "dolphin_trk.c",
-    "dolphin_trk_glue.c"
-   ]
-  },
-  {
-   "name": "TRKEXICallBack",
-   "addr": "8008D744",
-   "size": 56,
-   "candidates": [
-    "dolphin_trk_glue.c",
-    "targcont.c"
-   ]
-  },
-  {
-   "name": "fn_8008D7B0",
-   "addr": "8008D7B0",
-   "size": 16,
-   "candidates": [
-    "targcont.c",
-    "main.c"
-   ]
-  },
-  {
-   "name": "fn_8008D7C0",
-   "addr": "8008D7C0",
-   "size": 12,
-   "candidates": [
-    "targcont.c",
-    "main.c"
-   ]
-  },
-  {
-   "name": "fn_8008D7CC",
-   "addr": "8008D7CC",
-   "size": 220,
-   "candidates": [
-    "targcont.c",
-    "main.c"
-   ]
-  },
-  {
-   "name": "fn_8008D8A8",
-   "addr": "8008D8A8",
-   "size": 132,
-   "candidates": [
-    "targcont.c",
-    "main.c"
-   ]
-  },
-  {
-   "name": "fn_8008D92C",
-   "addr": "8008D92C",
-   "size": 380,
-   "candidates": [
-    "targcont.c",
-    "main.c"
-   ]
-  },
-  {
-   "name": "fn_8008DAA8",
-   "addr": "8008DAA8",
-   "size": 180,
-   "candidates": [
-    "targcont.c",
-    "main.c"
-   ]
-  },
-  {
-   "name": "fn_8008DB5C",
-   "addr": "8008DB5C",
-   "size": 180,
-   "candidates": [
-    "targcont.c",
-    "main.c"
-   ]
-  },
-  {
-   "name": "fn_8008DC10",
-   "addr": "8008DC10",
-   "size": 188,
-   "candidates": [
-    "targcont.c",
-    "main.c"
-   ]
-  },
-  {
-   "name": "fn_8008DCCC",
-   "addr": "8008DCCC",
-   "size": 188,
-   "candidates": [
-    "targcont.c",
-    "main.c"
-   ]
-  },
-  {
-   "name": "udp_cc_post_stop",
-   "addr": "8008DD88",
-   "size": 8,
-   "candidates": [
-    "targcont.c",
-    "main.c"
-   ]
-  },
-  {
-   "name": "udp_cc_pre_continue",
-   "addr": "8008DD90",
-   "size": 8,
-   "candidates": [
-    "targcont.c",
-    "main.c"
-   ]
-  },
-  {
-   "name": "udp_cc_peek",
-   "addr": "8008DD98",
-   "size": 8,
-   "candidates": [
-    "targcont.c",
-    "main.c"
-   ]
-  },
-  {
-   "name": "udp_cc_write",
-   "addr": "8008DDA0",
-   "size": 8,
-   "candidates": [
-    "targcont.c",
-    "main.c"
-   ]
-  },
-  {
-   "name": "udp_cc_read",
-   "addr": "8008DDA8",
-   "size": 8,
-   "candidates": [
-    "targcont.c",
-    "main.c"
-   ]
-  },
-  {
-   "name": "udp_cc_close",
-   "addr": "8008DDB0",
-   "size": 8,
-   "candidates": [
-    "targcont.c",
-    "main.c"
-   ]
-  },
-  {
-   "name": "udp_cc_open",
-   "addr": "8008DDB8",
-   "size": 8,
-   "candidates": [
-    "targcont.c",
-    "main.c"
-   ]
-  },
-  {
-   "name": "udp_cc_shutdown",
-   "addr": "8008DDC0",
-   "size": 8,
-   "candidates": [
-    "targcont.c",
-    "main.c"
-   ]
-  },
-  {
-   "name": "udp_cc_initialize",
-   "addr": "8008DDC8",
-   "size": 8,
-   "candidates": [
-    "targcont.c",
-    "main.c"
    ]
   },
   {
@@ -14452,18 +12440,6 @@
    "name": "fn_8008FC3C",
    "addr": "8008FC3C",
    "size": 664,
-   "candidates": null
-  },
-  {
-   "name": "AMC_IsStub",
-   "addr": "8008FED4",
-   "size": 8,
-   "candidates": null
-  },
-  {
-   "name": "Hu_IsStub",
-   "addr": "8008FEDC",
-   "size": 8,
    "candidates": null
   }
  ]

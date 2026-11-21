@@ -62,3 +62,9 @@ void fn_800410A4(void) {
     GXSetProjection(&p->unk_30, 0);
     lbl_801A6C74();
 }
+
+extern u32 lbl_801A6C6C;
+
+void fn_8004115C(u32 arg0) {
+    lbl_801A6C6C = arg0;
+}

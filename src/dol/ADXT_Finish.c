@@ -4,9 +4,7 @@
 /* --- dol/fn_8004115C.c --- */
 extern u32 lbl_801A6C6C;
 
-void fn_8004115C(u32 arg0) {
-    lbl_801A6C6C = arg0;
-}
+void fn_8004115C(u32 arg0);
 
 /* --- dol/ADXT_Finish.c --- */
 void fn_80058630(void);

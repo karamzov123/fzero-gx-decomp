@@ -4,6 +4,7 @@
 #include <dolphin/os/OSContext.h>
 #include <dolphin/os/OSInterrupt.h>
 #include <dolphin/si.h>
+#include "types.h"
 
 typedef unsigned int uint;
 
@@ -65,8 +66,6 @@ extern PADStatus lbl_8015D0C0[4];
 static void DoReset();
 
 static void PADDisable(s32 chan);
-
-void PADReceiveCheckCallback(s32 chan, u32 error);
 
 extern SPECCallback lbl_801A64C4;
 
@@ -189,4 +188,53 @@ u32 PADRead(PADStatus *status) {
     }
     OSRestoreInterrupts(enabled);
     return motor;
+}
+
+extern u32 lbl_801A64BC;
+extern void SISetCommand(u32 channel, u32 command);
+
+void fn_8001D32C(u32 *commands) {
+    u32 state;
+    s32 channel;
+    s32 transferred;
+
+    state = OSDisableInterrupts();
+    transferred = 0;
+    for (channel = 0; channel < 4; channel++, commands++) {
+        if (lbl_801A697C & (0x80000000u >> channel)) {
+            if ((SIGetType(channel) & 0x20000000u) == 0) {
+                u32 command = *commands;
+                if (lbl_801A64C0 < 2 && command == 2) {
+                    command = 0;
+                }
+                SISetCommand(channel, lbl_801A64BC | 0x400000 | (command & 3));
+                transferred = 1;
+            }
+        }
+    }
+    if (transferred) {
+        SITransferCommands();
+    }
+    OSRestoreInterrupts(state);
+}
+
+void PADControlMotor(u32 channel, u32 command) {
+    u32 state;
+    u32 saved_command = command;
+    u32 saved_channel = channel;
+    u64 pad;
+
+    state = OSDisableInterrupts();
+
+    if (lbl_801A697C & ((0x8000u << 16) >> saved_channel)) {
+        if ((SIGetType(saved_channel) & (0x2000u << 16)) == 0) {
+            if (lbl_801A64C0 < 2 && saved_command == 2) {
+                saved_command = 0;
+            }
+            SISetCommand(saved_channel, lbl_801A64BC | 0x400000 | (saved_command & 3));
+            SITransferCommands();
+        }
+    }
+
+    OSRestoreInterrupts(state);
 }

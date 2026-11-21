@@ -80,13 +80,3 @@ u32 fn_8001E7E4(u32 value) {
     OSRestoreInterrupts(state);
     return previous;
 }
-
-/* --- dol/ARGetDMAStatus.c --- */
-u32 ARGetDMAStatus(void) {
-    u32 v0;
-    u32 t0;
-    t0 = OSDisableInterrupts();
-    v0 = (*(u16 *)0xCC00500A & 0x200);  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-    OSRestoreInterrupts(t0);
-    return v0;
-}

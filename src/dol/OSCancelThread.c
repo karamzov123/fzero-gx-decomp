@@ -2,6 +2,7 @@
 #include <dolphin/os/OSInterrupt.h>
 #include <dolphin/os/OSThread.h>
 #include "sdk_addresses.h"
+#include "types.h"
 
 enum OS_THREAD_STATE {
     OS_THREAD_STATE_NULL = 0,
@@ -46,8 +47,6 @@ static inline void __OSReschedule() {
     }
     SelectThread(0);
 }
-
-void OSWakeupThread(OSThreadQueue *queue);
 
 void OSCancelThread(OSThread *thread) {
     BOOL enabled;
@@ -108,4 +107,141 @@ void OSCancelThread(OSThread *thread) {
     __OSReschedule();
     OSRestoreInterrupts(enabled);
     return;
+}
+
+struct OSThread;
+
+struct OSMutex;
+
+struct OSMutexQueue;
+
+struct OSContext;
+
+long OSResumeThread(OSThread *thread);
+
+void (*DVDLowClearCallback())(u32);
+
+BOOL OSDisableInterrupts(void);
+
+BOOL OSRestoreInterrupts(BOOL level);
+
+void __OSReschedule(void);
+
+extern OSThreadQueue RunQueue[32];
+
+// Hardware or OS state can change asynchronously.
+extern volatile unsigned long RunQueueBits;
+
+// Hardware or OS state can change asynchronously.
+extern volatile int RunQueueHint;
+
+static void SetRun(OSThread *thread);
+
+static void UpdatePriority(OSThread *thread);
+
+static inline void SetRun(OSThread *thread) {
+    (void)0;
+    (void)0;
+    (void)0;
+    thread->queue = &RunQueue[thread->priority];
+    do {
+        OSThread *__prev = (thread->queue)->tail;
+        if (__prev == ((void *)0)) {
+            (thread->queue)->head = (thread);
+        } else {
+            __prev->link.next = (thread);
+        }
+        (thread)->link.prev = __prev;
+        (thread)->link.next = 0;
+        (thread->queue)->tail = (thread);
+    } while (0);
+    ;
+    RunQueueBits |= 1 << (0x1F - thread->priority);
+    RunQueueHint = 1;
+}
+
+static inline long __OSGetEffectivePriority_inline(OSThread *thread) {
+    long priority = thread->base;
+    struct OSMutex *mutex;
+    for (mutex = thread->queueMutex.head; mutex; mutex = mutex->link.next) {
+        OSThread *blocked = mutex->queue.head;
+        if (blocked && blocked->priority < priority) {
+            priority = blocked->priority;
+        }
+    }
+    return priority;
+}
+
+long OSResumeThread(OSThread *thread) {
+    int enabled = OSDisableInterrupts();
+    long suspendCount;
+    (void)0;
+    (void)0;
+    suspendCount = thread->suspend--;
+    if (thread->suspend < 0) {
+        thread->suspend = 0;
+    } else if (thread->suspend == 0) {
+        switch (thread->state) {
+        case 1:
+            thread->priority = __OSGetEffectivePriority_inline(thread);
+            SetRun(thread);
+            break;
+        case 4:
+            (void)0;
+            do {
+                OSThread *__next = (thread)->link.next;
+                OSThread *__prev = (thread)->link.prev;
+                if (__next == ((void *)0)) {
+                    (thread->queue)->tail = __prev;
+                } else {
+                    __next->link.prev = __prev;
+                }
+                if (__prev == ((void *)0)) {
+                    (thread->queue)->head = __next;
+                } else {
+                    __prev->link.next = __next;
+                }
+            } while (0);
+            ;
+            thread->priority = __OSGetEffectivePriority_inline(thread);
+            do {
+                OSThread *__prev;
+                OSThread *__next;
+                for (__next = (thread->queue)->head;
+                     __next && (__next->priority <= (thread)->priority); __next = __next->link.next)
+                    ;
+                if (__next == ((void *)0)) {
+                    do {
+                        OSThread *__prev = (thread->queue)->tail;
+                        if (__prev == ((void *)0)) {
+                            (thread->queue)->head = (thread);
+                        } else {
+                            __prev->link.next = (thread);
+                        }
+                        (thread)->link.prev = __prev;
+                        (thread)->link.next = 0;
+                        (thread->queue)->tail = (thread);
+                    } while (0);
+                    ;
+                } else {
+                    (thread)->link.next = __next;
+                    __prev = __next->link.prev;
+                    __next->link.prev = (thread);
+                    (thread)->link.prev = __prev;
+                    if (__prev == ((void *)0)) {
+                        (thread->queue)->head = (thread);
+                    } else {
+                        __prev->link.next = (thread);
+                    }
+                }
+            } while (0);
+            ;
+            if (thread->mutex) {
+                UpdatePriority(thread->mutex->thread);
+            }
+        }
+        __OSReschedule();
+    }
+    OSRestoreInterrupts(enabled);
+    return suspendCount;
 }

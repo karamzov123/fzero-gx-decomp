@@ -1,7 +1,6 @@
 #include <dolphin/card/CARDPriv.h>
+#include "types.h"
 
-
-/* --- dol/CARDFastDeleteAsync.c --- */
 void fn_80029824(s32 chan, s32 result);
 CARDDir *fn_8002C4BC(CARDControl *card);
 
@@ -38,12 +37,6 @@ s32 CARDFastDeleteAsync(s32 chan, s32 fileNo, CARDCallback callback) {
     return result;
 }
 
-/* --- dol/CARDDeleteAsync.c --- */
-void fn_80029824(s32 chan, s32 result);
-CARDDir *fn_8002C4BC(CARDControl *card);
-
-void DeleteCallback(s32 chan, s32 result);
-
 s32 CARDDeleteAsync(s32 chan, const char *fileName, CARDCallback callback) {
     CARDControl *card;
     s32 fileNo;
@@ -69,6 +62,18 @@ s32 CARDDeleteAsync(s32 chan, const char *fileName, CARDCallback callback) {
     result = __CARDUpdateDir(chan, DeleteCallback);
     if (result < 0) {
         __CARDPutControlBlock(card, result);
+    }
+    return result;
+}
+
+s32 fn_8002FC14(u32 arg0, void *arg1) {
+    s32 result;
+
+    result = CARDDeleteAsync(arg0, arg1, __CARDSyncCallback);
+    if (result < 0) {
+        return result;
+    } else {
+        result = __CARDSync(arg0);
     }
     return result;
 }

@@ -1,7 +1,6 @@
 #include <dolphin/card/CARDPriv.h>
+#include "types.h"
 
-
-/* --- dol/CARDFreeBlocks.c --- */
 BOOL OSDisableInterrupts(void);
 BOOL OSRestoreInterrupts(BOOL level);
 
@@ -51,10 +50,6 @@ s32 CARDFreeBlocks(s32 chan, s32 *byteNotUsed, s32 *filesNotUsed) {
     return __CARDPutControlBlock(card, 0);
 }
 
-/* --- dol/__CARDSync.c --- */
-BOOL OSDisableInterrupts(void);
-BOOL OSRestoreInterrupts(BOOL level);
-
 void OSSleepThread(OSThreadQueue *queue);
 
 extern CARDControl lbl_80177960[2];
@@ -79,4 +74,14 @@ s32 __CARDSync(s32 channel) {
     }
     OSRestoreInterrupts(enabled);
     return result;
+}
+
+s32 OnReset_CARDBios(u32 arg0) {
+    u32 v0;
+    if ((s32)arg0 == 0 && ((s32)CARDUnmount(0) == -1 || (s32)CARDUnmount(1) == -1)) {
+    v0 = 0;
+    } else {
+    v0 = 1;
+    }
+    return v0;
 }

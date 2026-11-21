@@ -1,18 +1,61 @@
 #include <types.h>
-#include <dolphin/os.h>
-#include <dolphin/os/OSContext.h>
 #include <dolphin/os/OSInterrupt.h>
 #include <dolphin/types.h>
 #include "sdk_addresses.h"
-#include <dolphin/os/OSCache.h>
 #include "types.h"
-
-
-/* --- dol/ARInit.c --- */
-/* --- dol/ARInit.c --- */
-typedef void (*ARCallback)(void);
+#include <dolphin/os.h>
+#include <dolphin/os/OSContext.h>
+#include <dolphin/os/OSCache.h>
 
 vu16 __DSPRegs[32] : FZGX_ADDR___DSPRegs;
+
+void ARStartDMA(u32 type, u32 mainmem_addr, u32 aram_addr, u32 length) {
+    BOOL enabled;
+    enabled = OSDisableInterrupts();
+    __DSPRegs[16] = (u16)(__DSPRegs[16] & ~0x3ff) | (u16)(mainmem_addr >> 16);
+    __DSPRegs[17] = (u16)(__DSPRegs[17] & ~0xffe0) | (u16)(mainmem_addr & 0xffff);
+    __DSPRegs[18] = (u16)(__DSPRegs[18] & ~0x3ff) | (u16)(aram_addr >> 16);
+    __DSPRegs[19] = (u16)(__DSPRegs[19] & ~0xffe0) | (u16)(aram_addr & 0xffff);
+    __DSPRegs[20] = (u16)((__DSPRegs[20] & ~0x8000) | (type << 15));
+    __DSPRegs[20] = (u16)(__DSPRegs[20] & ~0x3ff) | (u16)(length >> 16);
+    __DSPRegs[21] = (u16)(__DSPRegs[21] & ~0xffe0) | (u16)(length & 0xffff);
+    OSRestoreInterrupts(enabled);
+}
+
+extern u32 lbl_801A69F0;
+extern u32 *lbl_801A69F8;
+extern u32 lbl_801A69F4;
+
+u32 ARAlloc(u32 value) {
+    register u32 previous;
+    u32 state;
+
+    state = OSDisableInterrupts();
+    previous = lbl_801A69F0;
+    lbl_801A69F0 += value;
+    *lbl_801A69F8 = value;
+    lbl_801A69F8 = (u32 *)((u8 *)lbl_801A69F8 + 4);
+    lbl_801A69F4 = lbl_801A69F4 - 1;
+    OSRestoreInterrupts(state);
+    return previous;
+}
+
+u32 ARFree(u32 *arg0) {
+    u32 state = OSDisableInterrupts();
+    lbl_801A69F8 = (u32 *)((u8 *)lbl_801A69F8 - 4);
+    if (arg0 != 0) {
+        *arg0 = *lbl_801A69F8;
+    }
+    {
+        u32 value = *lbl_801A69F8;
+        lbl_801A69F0 = lbl_801A69F0 - value;
+        lbl_801A69F4 = lbl_801A69F4 + 1;
+    }
+    OSRestoreInterrupts(state);
+    return lbl_801A69F0;
+}
+
+typedef void (*ARCallback)(void);
 
 void OSRegisterVersion(const char *id);
 
@@ -22,18 +65,8 @@ extern const char *lbl_801A64D8;
 
 extern ARCallback lbl_801A69E0;
 
-extern u32 lbl_801A69F0;
-
-extern u32 lbl_801A69F4;
-
-extern u32 *lbl_801A69F8;
-
 // Hardware or OS state can change asynchronously.
 extern volatile BOOL lbl_801A69FC; // fzgx-allow: S2 SDK asynchronous state
-
-void __ARHandler(__OSInterrupt interrupt, OSContext *context);
-
-void __ARChecksize(void);
 
 void __ARHandler(__OSInterrupt interrupt, OSContext *context);
 
@@ -61,7 +94,6 @@ u32 ARInit(u32 *stack_index_addr, u32 num_entries) {
     return lbl_801A69F0;
 }
 
-/* --- dol/__ARHandler.c --- */
 void __ARHandler(__OSInterrupt interrupt, OSContext *context) {
     OSContext exceptionContext;
     u16 tmp;
@@ -77,11 +109,9 @@ void __ARHandler(__OSInterrupt interrupt, OSContext *context) {
     OSSetCurrentContext(context);
 }
 
-/* --- dol/__ARChecksize.c --- */
 void *memset(void *dest, int value, size_t n);
 
 void __ARClearInterrupt(void);
-
 
 extern u32 lbl_801A69E4;
 

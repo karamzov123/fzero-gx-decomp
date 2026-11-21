@@ -1,9 +1,9 @@
 #include <dolphin/card/CARDPriv.h>
+#include "sdk_addresses.h"
+#include "types.h"
 
 OSTime OSGetTime(void);
 CARDDir *fn_8002C4BC(CARDControl *card);
-
-#include "sdk_addresses.h"
 
 u32 __OSBusClock : FZGX_ADDR___OSBusClock;
 
@@ -61,4 +61,15 @@ s32 CARDRenameAsync(s32 chan, const char *old, const char *new, CARDCallback cal
         __CARDPutControlBlock(card, result);
     }
     return result;
+}
+
+s32 fn_80030338(u32 arg0, u32 arg1, u32 arg2) {
+    s32 status;
+
+    status = CARDRenameAsync(arg0, (void *)arg1, (void *)arg2, __CARDSyncCallback);
+    if (status < 0) {
+        return status;
+    }
+    status = __CARDSync(arg0);
+    return status;
 }
