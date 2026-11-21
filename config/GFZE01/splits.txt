@@ -219,12 +219,6 @@ dol/fn_8001813C.c:
 dol/fn_8001989C.c:
 	.text       start:0x8001989C end:0x800198FC align:4
 
-dol/fn_8001DF00.c:
-	.text       start:0x8001DF00 end:0x8001DF44 align:4
-
-dol/PADSetSamplingCallback_Pad.c:
-	.text       start:0x8001DE30 end:0x8001DF00 align:4
-
 dol/fn_8006A998.c:
 	.text       start:0x8006A998 end:0x8006AA20 align:4
 
@@ -591,9 +585,6 @@ dol/cbForStateCoverClosed.c:
 
 dol/cbForStateReadingFST.c:
 	.text       start:0x800178CC end:0x80017958 align:4
-
-dol/SamplingHandler_Pad.c:
-	.text       start:0x8001DDD0 end:0x8001DE30 align:4
 
 dol/dvd/dvdqueue.c:
 	.text       start:0x80019E64 end:0x8001A05C align:4
@@ -1106,9 +1097,6 @@ dol/fn_80073620.c:
 dol/fn_80059BAC.c:
 	.text       start:0x80059BAC end:0x80059C0C align:4
 
-dol/PADSetSpec.c:
-	.text       start:0x8001D488 end:0x8001D4E8 align:4
-
 dol/fn_80059D04.c:
 	.text       start:0x80059D04 end:0x80059D68 align:4
 
@@ -1318,17 +1306,8 @@ dol/card/CARDBios.c:
 dol/ClampStick.c:
 	.text       start:0x8001C0C0 end:0x8001C304 align:4
 
-dol/UpdateOrigin.c:
-	.text       start:0x8001C304 end:0x8001C4A8 align:4
-
-dol/SPEC0_MakeStatus.c:
-	.text       start:0x8001D4E8 end:0x8001DC3C align:4
-
-dol/PADOriginUpdateCallback.c:
-	.text       start:0x8001C56C end:0x8001C62C align:4
-
-dol/PADReceiveCheckCallback.c:
-	.text       start:0x8001CA30 end:0x8001CD68 align:4
+dol/pad/Pad.c:
+	.text       start:0x8001C304 end:0x8001DF44
 
 dol/AIInitDMA.c:
 	.text       start:0x8001DF44 end:0x8001DFCC align:4
@@ -1970,12 +1949,6 @@ dol/fn_8002805C.c:
 dol/fn_80072614.c:
 	.text       start:0x80072614 end:0x8007264C align:4
 
-dol/PADOriginCallback.c:
-	.text       start:0x8001C4A8 end:0x8001C56C align:4
-
-dol/PADProbeCallback.c:
-	.text       start:0x8001C62C end:0x8001C704 align:4
-
 dol/C_MTXFrustum.c:
 	.text       start:0x80015D7C end:0x80015F80 align:4
 
@@ -2047,20 +2020,8 @@ dol/fn_80008FB0.c:
 dol/si/SISamplingRate.c:
 	.text       start:0x800132D4 end:0x800133DC align:4
 
-dol/PADRead.c:
-	.text       start:0x8001CF80 end:0x8001D488 align:4
-
-dol/OnReset_Pad.c:
-	.text       start:0x8001DC3C end:0x8001DDD0 align:4
-
 dol/cbForStateBusy.c:
 	.text       start:0x80018D1C end:0x80019354 align:4
-
-dol/PADInit.c:
-	.text       start:0x8001CD68 end:0x8001CF80 align:4
-
-dol/PADTypeAndStatusCallback.c:
-	.text       start:0x8001C704 end:0x8001CA30 align:4
 
 dol/data/__OSDriveBlock.c:
 	.bss        start:0x8015BF20 end:0x8015BF50 align:8

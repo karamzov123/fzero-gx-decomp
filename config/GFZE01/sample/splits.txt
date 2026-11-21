@@ -4,17 +4,8 @@ Sections:
 	.dtors      type:rodata align:4
 	.rodata     type:rodata align:8
 
-rel/sample/keygen.c:
-	.text       start:0x000003FC end:0x0000040C
-
-rel/sample/sample_lz_decode.c:
-	.text       start:0x0000040C end:0x00000444
-
-rel/sample/fn_18_444.c:
-	.text       start:0x00000444 end:0x00000730 align:4
-
 rel/sample/_prolog.c:
-	.text       start:0x00000000 end:0x000003FC align:4
+	.text       start:0x00000000 end:0x00000730 align:4
 
 rel/sample/data/lbl_18_section4_0.c:
 	.rodata     start:0x00000000 end:0x00000005 align:8

@@ -8039,13 +8039,43 @@
   },
   {
     "module": "main",
-    "source": "dol/UpdateOrigin.c",
+    "source": "dol/pad/Pad.c",
     "symbols": [
-      "UpdateOrigin"
+      "UpdateOrigin",
+      "PADOriginCallback",
+      "PADOriginUpdateCallback",
+      "PADProbeCallback",
+      "PADTypeAndStatusCallback",
+      "PADReceiveCheckCallback",
+      "PADReset",
+      "PADRecalibrate",
+      "PADInit",
+      "PADRead",
+      "fn_8001D32C",
+      "PADControlMotor",
+      "PADSetSpec",
+      "SPEC0_MakeStatus",
+      "SPEC1_MakeStatus",
+      "SPEC2_MakeStatus",
+      "PADSetAnalogMode",
+      "OnReset_Pad",
+      "SamplingHandler_Pad",
+      "PADSetSamplingCallback_Pad",
+      "__PADDisableRecalibration",
+      "fn_8001DF00"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
-    "collapsed": true
+    "pool": {
+      "lbl_801A697C__fzgx_offset_4": "lbl_801A697C+0x4",
+      "...bss.0": "lbl_8015D0B0",
+      "lbl_8015D0B0": "lbl_8015D0B0",
+      "lbl_8015D0C0__fzgx_offset_0": "lbl_8015D0C0",
+      "lbl_8015D0C0__fzgx_offset_30": "lbl_8015D0C0+0x30"
+    },
+    "matching_for": [
+      "GFZE01"
+    ]
   },
   {
     "module": "main",
@@ -9157,213 +9187,6 @@
   },
   {
     "module": "main",
-    "source": "dol/OnReset_Pad.c",
-    "symbols": [
-      "OnReset_Pad"
-    ],
-    "status": "matching",
-    "matching_for": [
-      "GFZE01"
-    ],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ],
-    "pool": {
-      "lbl_801A697C__fzgx_offset_4": "lbl_801A697C+0x4"
-    }
-  },
-  {
-    "module": "main",
-    "source": "dol/PADInit.c",
-    "symbols": [
-      "PADInit"
-    ],
-    "status": "matching",
-    "matching_for": [
-      "GFZE01"
-    ],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ],
-    "pool": {
-      "lbl_801A697C__fzgx_offset_4": "lbl_801A697C+0x4",
-      "...bss.0": "lbl_8015D0B0",
-      "lbl_8015D0B0": "lbl_8015D0B0",
-      "lbl_8015D0C0__fzgx_offset_0": "lbl_8015D0C0",
-      "lbl_8015D0C0__fzgx_offset_30": "lbl_8015D0C0+0x30"
-    }
-  },
-  {
-    "module": "main",
-    "source": "dol/PADOriginCallback.c",
-    "symbols": [
-      "PADOriginCallback"
-    ],
-    "status": "matching",
-    "matching_for": [
-      "GFZE01"
-    ],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [],
-    "pool": {
-      "lbl_801A697C__fzgx_offset_4": "lbl_801A697C+0x4"
-    }
-  },
-  {
-    "module": "main",
-    "source": "dol/PADOriginUpdateCallback.c",
-    "symbols": [
-      "PADOriginUpdateCallback"
-    ],
-    "status": "matching",
-    "matching_for": [
-      "GFZE01",
-      "GFZJ01"
-    ],
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/PADProbeCallback.c",
-    "symbols": [
-      "PADProbeCallback"
-    ],
-    "status": "matching",
-    "matching_for": [
-      "GFZE01"
-    ],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [],
-    "pool": {
-      "lbl_801A697C__fzgx_offset_4": "lbl_801A697C+0x4"
-    }
-  },
-  {
-    "module": "main",
-    "source": "dol/PADRead.c",
-    "symbols": [
-      "PADRead",
-      "fn_8001D32C",
-      "PADControlMotor"
-    ],
-    "status": "matching",
-    "matching_for": [
-      "GFZE01"
-    ],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ],
-    "pool": {
-      "lbl_801A697C__fzgx_offset_4": "lbl_801A697C+0x4"
-    },
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/PADReceiveCheckCallback.c",
-    "symbols": [
-      "PADReceiveCheckCallback",
-      "PADReset",
-      "PADRecalibrate"
-    ],
-    "status": "matching",
-    "matching_for": [
-      "GFZE01"
-    ],
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true,
-    "pool": {
-      "lbl_801A697C__fzgx_offset_4": "lbl_801A697C+0x4"
-    }
-  },
-  {
-    "module": "main",
-    "source": "dol/PADSetSamplingCallback_Pad.c",
-    "symbols": [
-      "PADSetSamplingCallback_Pad",
-      "__PADDisableRecalibration"
-    ],
-    "status": "matching",
-    "matching_for": [
-      "GFZE01",
-      "GFZJ01"
-    ],
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/PADSetSpec.c",
-    "symbols": [
-      "PADSetSpec"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/PADTypeAndStatusCallback.c",
-    "symbols": [
-      "PADTypeAndStatusCallback"
-    ],
-    "status": "matching",
-    "matching_for": [
-      "GFZE01"
-    ],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ],
-    "pool": {
-      "lbl_801A697C__fzgx_offset_4": "lbl_801A697C+0x4",
-      "...bss.0": "lbl_8015D0B0",
-      "lbl_8015D0B0": "lbl_8015D0B0",
-      "lbl_8015D0C0__fzgx_offset_0": "lbl_8015D0C0",
-      "lbl_8015D0C0__fzgx_offset_30": "lbl_8015D0C0+0x30"
-    }
-  },
-  {
-    "module": "main",
     "source": "dol/PPCDisableSpeculation.c",
     "symbols": [
       "PPCDisableSpeculation"
@@ -9860,23 +9683,6 @@
   },
   {
     "module": "main",
-    "source": "dol/SPEC0_MakeStatus.c",
-    "symbols": [
-      "SPEC0_MakeStatus",
-      "SPEC1_MakeStatus",
-      "SPEC2_MakeStatus",
-      "PADSetAnalogMode"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true,
-    "matching_for": [
-      "GFZE01",
-      "GFZJ01"
-    ]
-  },
-  {
-    "module": "main",
     "source": "dol/adx/svm.c",
     "symbols": [
       "fn_80058A40",
@@ -9945,20 +9751,6 @@
     "matching_for": [
       "GFZE01"
     ]
-  },
-  {
-    "module": "main",
-    "source": "dol/SamplingHandler_Pad.c",
-    "symbols": [
-      "SamplingHandler_Pad"
-    ],
-    "status": "matching",
-    "matching_for": [
-      "GFZE01",
-      "GFZJ01"
-    ],
-    "mw_version": null,
-    "extra_cflags": []
   },
   {
     "module": "main",
@@ -24462,16 +24254,6 @@
     "status": "matching",
     "mw_version": "GC/1.2.5n",
     "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8001DF00.c",
-    "symbols": [
-      "fn_8001DF00"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
   },
   {
     "module": "main",
@@ -129237,14 +129019,17 @@
     "module": "sample",
     "source": "rel/sample/_prolog.c",
     "symbols": [
-      "_prolog"
+      "_prolog",
+      "fn_18_3FC",
+      "sample_lz_decode",
+      "fn_18_444"
     ],
     "status": "matching",
     "matching_for": [
       "GFZE01",
       "GFZP01"
     ],
-    "mw_version": null,
+    "mw_version": "GC/1.3.2",
     "extra_cflags": [],
     "pool": {
       "@33": "lbl_18_section4_0"
@@ -129262,36 +129047,6 @@
       "GFZP01"
     ],
     "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "sample",
-    "source": "rel/sample/fn_18_444.c",
-    "symbols": [
-      "fn_18_444"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "sample",
-    "source": "rel/sample/keygen.c",
-    "symbols": [
-      "fn_18_3FC"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "sample",
-    "source": "rel/sample/sample_lz_decode.c",
-    "symbols": [
-      "sample_lz_decode"
-    ],
-    "status": "matching",
     "mw_version": null,
     "extra_cflags": []
   },
