@@ -16,9 +16,17 @@ kernels live in `include/` headers; anything that only steers MWCC is a marked d
 (`WARNING: compiler-diff device, not original code`), asm-only steering is the worst kind. Report
 three metrics: matched, natural C, devices remaining.
 
-**The active goal is full USA (GFZE01) completion under the definition above (owner, 2026-11-14).**
-All 16 targets already link byte-exactly; that milestone is not completion. Prioritize accepted
-natural-C/device removal, evidenced assembly classification and typed data ownership. The owner
+**The active goal is a recompilable USA (GFZE01) reconstruction (owner, 2026-11-20):** source from
+which anyone could create a recompilation/port of the game for any platform (as a third party
+did for the Melee decomp), while the same tree keeps rebuilding all 16 retail executables byte for
+byte. We do not write the port. The definition above is part of it; the scope adds TU fidelity,
+typed data ownership, no build-system-only constructs, a clean platform boundary and portable game
+C. See `docs/RECOMPILATION_SCOPE.md` (requirements R1-R7, measured baseline, work order). **Work
+order: TU map (DOL first) -> TU collapse -> data ownership**, then platform boundary/portability,
+with devices, natural C and naming continuing alongside. F-Zero AX (`GFZJ8P`, owner-supplied) is a
+reference input for TU boundaries and names only (its debug `fzD.*.rel` modules pair 123 function
+names with source files); never commit or copy its bytes. All 16 targets already link
+byte-exactly; that milestone is not completion. The owner
 gives standing authorization to commit and publish every verified progress batch without asking
 again, through the approved `tools/fleet_integrator.py` publisher and its unchanged gates. First
 consolidate already-merged approved GitHub main changes with accepted local work. Preserve dirty

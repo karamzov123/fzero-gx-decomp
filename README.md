@@ -17,7 +17,15 @@
 
 A matching decompilation of **F-Zero GX** (2003) for the Nintendo GameCube.
 
-The goal is readable, maintainable, source-faithful reconstruction: natural C/C++ where the original used it, original assembly where evidenced, and the original mixed translation units where appropriate. The original Metrowerks CodeWarrior toolchain must reproduce every byte of all 16 retail executables. File extensions and matching badges alone do not establish completion.
+**Goal:** source from which anyone could create a *recompilation* of F-Zero GX for any platform,
+the way a third-party PC port followed the Super Smash Bros. Melee decompilation, while the same
+tree keeps rebuilding all 16 retail executables byte for byte with the original Metrowerks
+CodeWarrior toolchain. This project does not write a port; it makes one possible. The byte match
+is the proof of correctness. The source must also be faithful: one file per original translation
+unit, typed data, natural C where the original used C, original assembly only where evidenced, a
+clean boundary between game code and the GameCube SDK/hardware, and no compiler-steering tricks.
+The full scope, requirements and measured baseline are in
+[docs/RECOMPILATION_SCOPE.md](docs/RECOMPILATION_SCOPE.md).
 
 > [!IMPORTANT]
 > This repository does **not** contain any copyrighted game assets, binary dumps, or ROM files. A legally obtained copy of the retail game is required to extract the original targets and build the project.
@@ -26,113 +34,64 @@ The goal is readable, maintainable, source-faithful reconstruction: natural C/C+
 
 ## Current Status
 
-Verified locally on **2026-11-16**, including PR #379's data ownership, repaired saved-import replay and the reviewed PR #378 mixed-OS integration, for **GFZE01**:
+Measured on **2026-11-20** (HEAD `2d61b75e9`), USA **GFZE01**:
 
-- **Diagnostic Object Match:** **100.0%** of code bytes (7,351 / 7,351 functions in the objdiff report). This includes assembly and retail fallback objects; it is not a natural-C completion percentage.
-- **Authored C Credit:** **7,159 / 7,351** functions, **98.7909%** of code bytes (`fzgx sync`, then `fzgx honest`). Registered mixed/whole assembly and standalone assembly are excluded even when compiled from `.c`; C with devices or unclassified header kernels can still receive credit, so this is not a device-free natural-C total.
-- **Assembly/Mixed Inventory:** **192** current configured functions remain outside C credit: **186 standalone assembly**, **5 original assembly functions compiled from C**, and **1 registered mixed C/assembly function**. This is an audit inventory, not 192 required C conversions; original assembly is a legitimate completed source form when evidenced.
-- **Compiler-Diff Debt:** **Not fully audited.** There are **35 primary markers across 12 files** (37 including cross-references). [Issue #377](https://github.com/karamzov123/fzero-gx-decomp/issues/377) identifies a much broader candidate inventory; neither marker counts nor C-authored credit measure device-free completion.
-- **Target Executables:** **16 / 16** link and match the retail SHA-1 hashes byte for byte (`16 files OK`, followed by an independent checksum check).
-- **Diagnostic Data Match:** **100%** (5,068,399 / 5,068,399 bytes in the freshly regenerated report). The denominator reflects the current splits/report; this is not an asset-reconstruction or source-owned-data percentage.
-- **Saved Data-Import Replay:** **15,579 objects**, **3,569,245 bytes**, **zero skips** with `fzgx data-import --regenerate`. This is compiler-validated saved-import coverage, not all retail data.
-- **Source Coverage:** **13 / 16** executables have authored-C credit for every configured function. The remaining inventories are listed below.
-- **Lint:** **0 findings** (`fzgx lint`).
+| Measure | Value |
+|---|---|
+| Target executables | **16 / 16** link and match the retail SHA-1 byte for byte (`16 files OK`) |
+| Function match (objdiff) | **7,351 / 7,351** functions, 100% of code and data bytes |
+| Authored C credit (`fzgx honest`) | **7,159 / 7,351** functions, **98.79%** of code bytes; the other 192 are evidenced or reviewed assembly |
+| Lint | 0 findings (`fzgx lint`) |
+| Other regions | PAL `GFZP01` and NTSC-J `GFZJ01` build byte-for-byte; 1,244 code units are still USA-only |
 
-These are separate gates. A green object report or retail checksum does not prove natural-C
-completion, and `fzgx honest` is not a device-free-source audit. Under
-[the assembly and device policy](docs/ASM_POLICY.md), completion requires every function to match,
-natural C wherever the original was C, assembly only with original-assembly evidence, and zero
-compiler-diff devices. A separate audited device-free natural-C total is not yet established.
+The binary is finished; the source is not yet recompilation-ready:
 
-See the [living USA completion audit](docs/US_COMPLETION_AUDIT.md) for the editable backlog and evidence for each workstream.
+| Requirement | Now |
+|---|---|
+| TU map | RELs mapped to 69 TU files (except `profile`, `movie_module`, `sample`, `movie`); **the DOL has no TU map** (1,175 units) |
+| One unit per TU | 13 of 69 REL TU files compile as one unit; 1,095 `noprologue` blocks remain |
+| Data ownership | 1,214 units rely on post-compile literal-pool remapping; 459 pool-primer functions; 8,684 layout-scaffolding names |
+| Platform boundary | 471 hardware-address literals and direct GX FIFO writes in 18 REL game files; 595 MWCC intrinsic uses in REL source |
+| Portable game C | 632 address-to-integer casts; 451 pointer views of unnamed fields |
+| Compiler-diff devices | 95 marked spots; 821 unmarked optimizer-pragma setters |
+| Naming | 6,440 of 7,351 functions still `fn_` named |
 
-### Expanded Device Census: Issue #377
+These are separate gates: a green hash or object report does not prove the source is natural,
+device-free or portable. See the [assembly and device policy](docs/ASM_POLICY.md) and the
+[USA completion audit](docs/US_COMPLETION_AUDIT.md).
 
-jedgentry's census lists **616 flagged entries / 637,696 bytes**, including 604
-unmarked pragma candidates. MWCC probes confirm substantial optimizer sensitivity,
-but the reported **78.11% is not certified natural-C progress**: the audit found
-denominator, module-identity and compiler-input attribution problems, and sensitivity
-alone does not establish original source intent. Use the census as a cleanup queue;
-see the [review and compiler evidence](docs/findings/issue377-device-census-review.md).
+### Next Steps
 
-### Remaining Work and Next Steps
+1. **TU map**: assign every function and data object to its original translation unit, DOL first.
+   Evidence: retail `__FILE__`/assert strings, section alignment, literal-pool deduplication, SDK
+   library layouts, and the F-Zero AX reference build (below).
+2. **TU collapse**: make each TU file compile as one unit with its measured flags; retire
+   `noprologue`, per-function units, pool remapping and primers
+   (`fzgx tutruth`, `fzgx tu-check`, [tools/consolidate/](tools/consolidate/README.md)).
+3. **Data ownership**: define each TU's data in its own file with real types.
+4. **Platform boundary and portable C**: route hardware and intrinsics through SDK interfaces;
+   replace pointer/integer punning with typed pointers.
+5. Device removal, natural C and naming continue alongside.
 
-| Executable | Authored C / known functions | Outside C credit | Authored code bytes |
-|---|---:|---:|---:|
-| `main.dol` | 2,063 / 2,245 | 182 | 94.6314% |
-| `main_rel` | 3,227 / 3,230 | 3 | 99.9469% |
-| `movie_module` | 784 / 791 | 7 | 98.5292% |
-| Other 13 executables | All configured functions | 0 | 100% |
+Pull requests are welcome; every change must keep the 16-target hash check, lint and the region
+builds green.
 
-1. Pull requests with better near-matches are welcome.
-2. **Audit the 192 assembly/mixed functions against original-assembly evidence.** Preserve genuine SDK/runtime/MetroTRK and middleware assembly in the appropriate source form; convert only code that was plausibly C. The three `main_rel` entries are `fn_1_4B6D4`, `fn_1_4B788`, and `fn_1_9DFB8`. The seven `movie_module` entries are `fn_12_52E8`, `fn_12_D0B8`, `fn_12_12564`, `fn_12_33664`, `fn_12_33698`, `fn_12_3CB74`, and `fn_12_3D144`.
-3. **Remove confirmed steering devices.** Use the [#377 audit queue](docs/findings/issue377-device-census-review.md), verify module-qualified compiler inputs, and distinguish candidate debt from proven devices. Keep C-authored, assembly, binary-match and device-free metrics separate; run `fzgx sync` after source/configuration changes.
-4. **Preserve the acceptance gate.** Rebuild with `python3 configure.py && ninja`, independently run `build/tools/dtk shasum -c config/GFZE01/build.sha1`, run `fzgx lint`, and snapshot provenance before committing accepted changes. Do not replace a working match with an unverified naturalization attempt.
-5. **Extend regional source coverage after the primary cleanup.** PAL and Japanese configurations have landed assembly baselines, not primary-target C coverage. Verify each region separately with legally obtained inputs; the USA checksum result above does not certify either regional build.
+### Reference Build: F-Zero AX
 
-The first ADX probe reproduced the installed `fn_8004F26C` exactly, but removing its dead
-inner clamp arm left three differing instruction words. Genuine prediction helpers and
-arithmetic-local reuse did not close that residual. No candidate replaced the working match;
-the next investigation needs allocator/liveness evidence rather than more equivalent expression
-rewrites. See [the portable probe evidence](state/repairs/adx-inner-clamp-20261114.json).
+F-Zero AX (arcade, Japan Rev C, disc ID `GFZJ8P`) is a separate build of the same engine. It is
+used only as evidence for TU boundaries and names: its main.dol names 88 source files (including
+`avdisp.c`, `avfile.c`, `avload.c`, `avsystem.c` and `arc.c`), and its debug modules `fzD.*.rel`
+pair 123 function names with their source files. None of its bytes or code are committed or
+copied; derived names and boundaries carry provenance.
 
-The mono decoder `fn_8004F55C` likewise retains an early incoming-stack-load mismatch after
-natural parameter handling across seven compiler versions and real RNG-update helper probes.
-The installed match is unchanged; see [the recorded frontier](state/repairs/adx-mono-stack-20261114.json).
+### Recent Work (2026-11-20)
 
-### Latest Accepted Data Ownership
-
-`src/dol/data/DVDLoadFstMessage.c` now owns two DVD/FST diagnostic strings: **62 payload bytes**
-in a **64-byte split** including measured padding. The importer proved MWCC layout and retail
-bytes, retained the existing `char[52]` consumer declarations, and passed all 16 hashes. Running
-`fzgx data-import DVDLoadFstMessage --regenerate --apply` reproduces both objects together.
-The rename tooling now updates symbolic literal-pool targets while retaining compiler-private
-keys, so `DVDInit` continues to bind its literal to the renamed retail string. This adds data
-ownership, not a newly matched function or a removed compiler-diff device.
-
-Next for initialized data: recover mixed layouts for non-finite pools such as
-`lbl_3_rodata_990` and `lbl_1_rodata_2B2C`; do not weaken their existing scalar-array declarations
-to opaque byte storage just to get them through the importer.
-
-### Latest Accepted Source Cleanup
-
-The compound-scaling batch removed **four volatile declarations/casts, six operand/read helper
-definitions, and two pragma pairs** across three current functions:
-
-- `fn_800764A0`: ordinary state/color accesses and direct matrix `*=` assignments; no inline helpers, volatile qualifiers or pragmas remain in its source.
-- `C_MTXFrustum`: a normal local vertical scale replaces the operand helper; no helper or pragma is needed.
-- `fn_16_61D4`: normal packet scale assignments replace one helper, and helper-only dead-assignment and redundant common-subexpression pragmas are gone. One denominator helper remains; this function is not fully naturalized.
-
-All three still match their real retail objects and passed the supported 16-target verifier.
-These devices were unmarked, so their removal did not reduce the warning-marker tally. See
-[the measured source and rollback evidence](state/repairs/compound-scaling-20261114.json).
-
-A subsequent main_rel TU cleanup removes one additional operand helper from `fn_1_15EC40`:
-a scoped float intensity is computed with ordinary arithmetic before the renderer call. Its
-retail object and 16-target link still match. Two other TU rewrites did not match and were not
-installed; see [the follow-up evidence](state/repairs/tu-native-intensity-20261114.json).
-
-The existing repair engine now proposes guarded removal of pure two-argument float operand
-wrappers. A measured cohort of **12 real baseline functions / 24 candidates** compiled without
-errors and produced four exact object candidates. Two were admitted: `fn_10_1B2F4` and
-`fn_3_23724` each lose one helper in favor of normal arithmetic. The other two are blocked by
-inherited shared-header declaration conflicts and are **not** accepted progress. Conditional
-hoisting and overlapping nested-wrapper edits are excluded. See
-[the generator and admission evidence](state/repairs/native-operand-family-20261114.json).
-
-Revision submissions now refresh literal-pool bindings when source changes renumber private
-constants. Failed revisions preserve the previously accepted source, compiler settings, split
-ownership and pool/verified state; a real stale-binding regression verified that fallback.
-
-`fn_8003D42C` now reads its input byte without an unnecessary volatile qualifier. The real MWCC
-object still matches retail exactly and the normal submission/verifier path accepted the change.
-Its `opt_propagation off` and `peephole off` directives remain: removing them does not match.
-This removes one unmarked qualifier device, not a whole function's remaining compiler steering;
-authored-function totals and the marked-warning count are unchanged. See
-[the compiler evidence](state/repairs/ordinary-stream-read-20261114.json).
-
-The verifier also now resolves Git's actual index-lock location, so accepted source can be
-committed from linked worktrees whose `.git` is a file. Existing lock-age and process checks remain.
+- TU-wide `-fp_contract off` replaced the `fp_contract` pragmas of 13 TUs; 7 marked devices retired (102 -> 95).
+- About 19,000 redundant steering and lifter-noise constructs removed with an object-identity check
+  in every region: casts, pointer views, parentheses, unused locals, `volatile`, `register`,
+  one-member carriers and 157 optimizer-pragma setters (978 -> 821).
+- 78 units merged and 67 `noprologue` blocks retired; consolidation tools moved into
+  [tools/consolidate/](tools/consolidate/README.md).
 
 ### Supported Versions
 

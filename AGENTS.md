@@ -29,6 +29,18 @@ progress. Preserve dirty user checkouts through isolated integration/publication
 Completion is governed by docs/ASM_POLICY.md: natural C where the original was C,
 evidenced original assembly where appropriate, and no compiler-diff devices.
 
+## Active scope: recompilable reconstruction (owner, 2026-11-20)
+
+The goal is USA source from which others could create a recompilation of the game
+for any platform (as happened downstream of the Melee decomp), while the same tree
+keeps the 16-target byte match. This project does not write the port. Requirements
+R1-R7 (TU fidelity, typed data ownership, no build-system-only constructs, platform
+boundary, portable game C, natural C without devices, readable interfaces), the
+measured baseline and the work order are in `docs/RECOMPILATION_SCOPE.md`. Next:
+TU map (DOL first), TU collapse, data ownership. F-Zero AX (`GFZJ8P`) is an
+owner-supplied reference for TU boundaries and names only; never commit its bytes
+or copy its code, and record provenance for anything derived from it.
+
 ## Permanent source-import restriction (owner, 2026-10-26)
 
 Do not directly harvest, cherry-pick, or manually copy further code, tooling, data,

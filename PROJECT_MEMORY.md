@@ -2,7 +2,8 @@
 
 ## Permanent owner decisions
 
-- The active project goal is completion of the USA version (GFZE01), under the natural-C/original-assembly/device-free policy in docs/ASM_POLICY.md.
+- The active project goal (2026-11-20) is a recompilable USA (GFZE01) reconstruction: source from which others could build a recompilation/port for any platform, while the tree keeps the 16-target byte match. We do not write the port. Scope, requirements and work order (TU map -> TU collapse -> data ownership) are in docs/RECOMPILATION_SCOPE.md; the natural-C/original-assembly/device-free policy in docs/ASM_POLICY.md is part of it.
+- F-Zero AX (Japan Rev C, `GFZJ8P`, owner-supplied) is a reference input for TU boundaries and names only. Never commit or copy its bytes or code; record provenance for derived names and boundaries.
 - The owner gives standing authorization to publish each completed, verified progress batch without repeated permission requests. Consolidate already-merged approved GitHub main changes with accepted local work before continuing. Use only tools/fleet_integrator.py for clean pinned-main, hash/lint-verified, fast-forward publication and independently read back the remote SHA. This does not authorize bypassing guards, changing tool approval configuration, force pushes or merging open PRs.
 
 - Direct imports from nkhoit (the owner's spelling: "nkoit") are prohibited. This covers harvesting, cherry-picking and copying code, tools, data, partial bodies or repair recipes, including cached candidates and indirect copies through another fork. Do not fetch that contributor's refs for direct import work.
