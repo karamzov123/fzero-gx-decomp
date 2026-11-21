@@ -4,26 +4,94 @@
  "note": "draft evidence map; not consumed by tooling",
  "summary": {
   "functions": 2230,
-  "assigned": 1239,
+  "assigned": 1641,
   "bytes": 567556,
-  "assigned_bytes": 326456,
-  "tus": 172,
+  "assigned_bytes": 412524,
+  "tus": 179,
   "conflicts": 2,
   "string_anchored": 13
  },
  "tus": [
   {
+   "file": "game_main.c",
+   "text": [
+    "800055E0",
+    "80006B4C"
+   ],
+   "functions": [
+    "main",
+    "fn_80005660",
+    "fn_80005738",
+    "fn_800057CC",
+    "fn_800057F8",
+    "fn_80005858",
+    "fn_800058D8",
+    "fn_8000591C",
+    "fn_80005A08",
+    "fn_80005AD0",
+    "fn_80005B10",
+    "fn_80005E0C",
+    "fn_80005EDC",
+    "fn_800060D8",
+    "fn_80006334",
+    "fn_80006340",
+    "fn_80006354",
+    "fn_800063AC",
+    "fn_8000659C",
+    "fn_800068F4",
+    "fn_80006904",
+    "fn_80006914",
+    "fn_8000691C",
+    "fn_80006AEC",
+    "fn_80006AF4",
+    "fn_80006AFC",
+    "fn_80006B30"
+   ],
+   "how": {
+    "string-range": 27
+   },
+   "lib": "av"
+  },
+  {
+   "file": "avfile.c",
+   "text": [
+    "80006B4C",
+    "800071B8"
+   ],
+   "functions": [
+    "fn_80006B4C",
+    "fn_80006B70",
+    "fn_80006BDC",
+    "fn_80006C2C",
+    "fn_80006C4C",
+    "fn_80006CE4",
+    "fn_80006D1C",
+    "fn_80006DAC",
+    "fn_80006DE8",
+    "fn_80006DFC",
+    "fn_80006E10",
+    "fn_80006FE0",
+    "fn_8000700C"
+   ],
+   "how": {
+    "string-range": 13
+   },
+   "lib": "av"
+  },
+  {
    "file": "mmu.c",
    "text": [
-    "8000740C",
+    "800071B8",
     "800075AC"
    ],
    "functions": [
+    "fn_800071B8",
     "fn_8000740C",
     "fn_800074C4"
    ],
    "how": {
-    "string": 2
+    "string": 2,
+    "string-range": 1
    },
    "lib": ""
   },
@@ -2369,23 +2437,46 @@
    "file": "adx_stmc.c",
    "text": [
     "8004A578",
-    "8004A5F4"
+    "8004BA38"
    ],
    "functions": [
-    "ADXSTM_ExecServer"
+    "ADXSTM_ExecServer",
+    "fn_8004A5F4",
+    "fn_8004A80C",
+    "fn_8004AC04",
+    "fn_8004AC4C",
+    "fn_8004AC58",
+    "fn_8004AD84",
+    "fn_8004ADF4",
+    "fn_8004AE78",
+    "fn_8004AE94",
+    "fn_8004AEE4",
+    "fn_8004AEF0",
+    "fn_8004B0EC",
+    "fn_8004B180",
+    "fn_8004B1DC",
+    "fn_8004B4E0",
+    "fn_8004B79C",
+    "fn_8004B7A0",
+    "fn_8004B7D4",
+    "fn_8004B7F4",
+    "fn_8004B974",
+    "fn_8004B9A4"
    ],
    "how": {
-    "sdkimport": 1
+    "sdkimport": 1,
+    "string-range": 21
    },
    "lib": "adxt"
   },
   {
    "file": "adx_tlk.c",
    "text": [
-    "8004BA40",
-    "8004D18C"
+    "8004BA38",
+    "8004D220"
    ],
    "functions": [
+    "fn_8004BA38",
     "fn_8004BA40",
     "fn_8004BBA4",
     "fn_8004BBC4",
@@ -2410,27 +2501,35 @@
     "fn_8004C794",
     "fn_8004C980",
     "fn_8004CAC8",
-    "fn_8004CD70"
+    "fn_8004CD70",
+    "fn_8004D18C"
    ],
    "how": {
     "pool-vote": 15,
     "between": 7,
-    "sdkimport": 3
+    "sdkimport": 3,
+    "string-range": 2
    },
    "lib": "adxt"
   },
   {
    "file": "adx_tsvr.c",
    "text": [
-    "8004DBBC",
-    "8004DE70"
+    "8004D220",
+    "8004E098"
    ],
    "functions": [
+    "fn_8004D220",
+    "fn_8004D528",
+    "fn_8004D8DC",
     "adxt_set_outpan",
-    "adxt_eos_entry"
+    "adxt_eos_entry",
+    "fn_8004DE70",
+    "fn_8004DFF0"
    ],
    "how": {
-    "sdkimport": 2
+    "sdkimport": 2,
+    "string-range": 5
    },
    "lib": "adxt"
   },
@@ -2466,14 +2565,18 @@
   {
    "file": "adx_fs.c",
    "text": [
-    "8004FAA8",
+    "8004F74C",
     "8004FC38"
    ],
    "functions": [
+    "fn_8004F74C",
+    "fn_8004F7F8",
+    "fn_8004F818",
     "ADXF_ExecServer"
    ],
    "how": {
-    "sdkimport": 1
+    "sdkimport": 1,
+    "string-range": 3
    },
    "lib": "adxf"
   },
@@ -2512,24 +2615,42 @@
   {
    "file": "gcci.c",
    "text": [
-    "8005640C",
+    "80055580",
     "80056584"
    ],
    "functions": [
+    "fn_80055580",
+    "fn_800555C0",
+    "fn_800555C4",
+    "fn_80055624",
+    "fn_80055708",
+    "fn_80055768",
+    "fn_800557CC",
+    "fn_8005596C",
+    "fn_80055D94",
+    "fn_80055DF4",
+    "fn_80055EC0",
+    "fn_80056084",
+    "fn_80056294",
+    "fn_800563F8",
     "fn_8005640C"
    ],
    "how": {
-    "sdkimport": 1
+    "sdkimport": 1,
+    "string-range": 14
    },
    "lib": "gcci"
   },
   {
    "file": "lsc.c",
    "text": [
-    "80056730",
+    "800566BC",
     "800571EC"
    ],
    "functions": [
+    "fn_800566BC",
+    "fn_800566F0",
+    "fn_80056710",
     "fn_80056730",
     "fn_8005676C",
     "fn_800567AC",
@@ -2551,7 +2672,8 @@
    "how": {
     "pool-vote": 12,
     "between": 4,
-    "sdkimport": 1
+    "sdkimport": 1,
+    "string-range": 3
    },
    "lib": "lsc"
   },
@@ -2658,23 +2780,190 @@
    "file": "arc.c",
    "text": [
     "8006A3DC",
-    "8006A480"
+    "8006AA20"
    ],
    "functions": [
-    "fn_8006A3DC"
+    "fn_8006A3DC",
+    "fn_8006A480",
+    "fn_8006A554",
+    "fn_8006A768",
+    "fn_8006A8CC",
+    "fn_8006A998",
+    "fn_8006A9AC",
+    "fn_8006A9B4"
    ],
    "how": {
-    "string": 1
+    "string": 1,
+    "string-range": 7
    },
    "lib": ""
   },
   {
-   "file": "avsystem.c",
+   "file": "lg.c",
    "text": [
-    "800702E4",
-    "80070CF8"
+    "8006AA20",
+    "8006CCC8"
    ],
    "functions": [
+    "fn_8006AA20",
+    "fn_8006AA44",
+    "fn_8006AC44",
+    "fn_8006AE90",
+    "fn_8006AF94",
+    "fn_8006B048",
+    "fn_8006B188",
+    "fn_8006B224",
+    "fn_8006B294",
+    "fn_8006B3F0",
+    "fn_8006B470",
+    "fn_8006B55C",
+    "fn_8006B628",
+    "fn_8006B6F8",
+    "fn_8006B7B4",
+    "fn_8006B870",
+    "fn_8006B92C",
+    "fn_8006B99C",
+    "fn_8006BA74",
+    "fn_8006BB30",
+    "fn_8006BB74",
+    "fn_8006BB9C",
+    "fn_8006BBDC",
+    "fn_8006BC1C",
+    "fn_8006BC50",
+    "fn_8006BC84",
+    "fn_8006BCF8",
+    "fn_8006BE0C",
+    "fn_8006C134",
+    "fn_8006C17C",
+    "fn_8006C190",
+    "fn_8006C570",
+    "fn_8006C634",
+    "fn_8006C6E8",
+    "fn_8006C788",
+    "fn_8006C7E8",
+    "fn_8006C92C"
+   ],
+   "how": {
+    "sdk-order": 37
+   },
+   "lib": "lg"
+  },
+  {
+   "file": "mathutil.c",
+   "text": [
+    "8006CFF8",
+    "8006FCB4"
+   ],
+   "functions": [
+    "mathutil_init",
+    "float_return_values",
+    "approx_rsqrt",
+    "lbl_8006D0B4",
+    "lbl_8006D0E8",
+    "lbl_8006D118",
+    "lbl_8006D188",
+    "lbl_8006D1B8",
+    "lbl_8006D21C",
+    "lbl_8006D24C",
+    "lbl_8006D3D0",
+    "lbl_8006D46C",
+    "lbl_8006D534",
+    "lbl_8006D5A4",
+    "lbl_8006D5F0",
+    "lbl_8006D668",
+    "lbl_8006D6FC",
+    "lbl_8006D758",
+    "lbl_8006D784",
+    "lbl_8006D7B0",
+    "lbl_8006D7DC",
+    "fn_8006D830",
+    "lbl_8006D890",
+    "lbl_8006D8D8",
+    "lbl_8006D91C",
+    "lbl_8006D95C",
+    "lbl_8006D998",
+    "lbl_8006D9D8",
+    "lbl_8006DA50",
+    "lbl_8006DAEC",
+    "lbl_8006DB30",
+    "lbl_8006DB74",
+    "lbl_8006DBAC",
+    "lbl_8006DBE4",
+    "lbl_8006DC20",
+    "lbl_8006DC34",
+    "lbl_8006DC6C",
+    "lbl_8006DCA4",
+    "lbl_8006DCDC",
+    "lbl_8006DD14",
+    "lbl_8006DD48",
+    "lbl_8006DD7C",
+    "lbl_8006DF44",
+    "lbl_8006DFC4",
+    "lbl_8006E0A4",
+    "lbl_8006E13C",
+    "lbl_8006E1B0",
+    "fn_8006E250",
+    "mathutil_mtxA_rotate_x",
+    "mathutil_mtxA_rotate_y",
+    "mathutil_mtxA_rotate_z",
+    "mathutil_mtxA_from_quat",
+    "mathutil_quat_mult",
+    "func_80008378",
+    "fn_8006E5FC",
+    "fn_8006E7E4",
+    "fn_8006E8DC",
+    "fn_8006E978",
+    "fn_8006EB4C",
+    "fn_8006ED0C",
+    "fn_8006EDBC",
+    "fn_8006EE70",
+    "fn_8006EF10",
+    "fn_8006EFB4",
+    "fn_8006F038",
+    "fn_8006F120",
+    "fn_8006F1F0",
+    "fn_8006F394",
+    "fn_8006F3E4",
+    "fn_8006F4E0",
+    "fn_8006F5C4",
+    "fn_8006F6A8",
+    "fn_8006F774",
+    "fn_8006F78C",
+    "fn_8006F828",
+    "fn_8006F900",
+    "fn_8006F9A4",
+    "fn_8006FA24",
+    "fn_8006FB20",
+    "fn_8006FC1C",
+    "fn_8006FC5C"
+   ],
+   "how": {
+    "donor-name": 81
+   },
+   "lib": "av"
+  },
+  {
+   "file": "avsystem.c",
+   "text": [
+    "8006FCB4",
+    "80070F44"
+   ],
+   "functions": [
+    "fn_8006FCB4",
+    "fn_8006FD1C",
+    "fn_8006FDEC",
+    "fn_8006FEFC",
+    "fn_8006FF8C",
+    "fn_8006FFBC",
+    "fn_8006FFC4",
+    "fn_8006FFCC",
+    "fn_8006FFDC",
+    "fn_8007001C",
+    "fn_80070068",
+    "fn_800700B4",
+    "fn_800700F4",
+    "fn_80070100",
+    "fn_80070158",
     "fn_800702E4",
     "fn_8007048C",
     "fn_80070538",
@@ -2683,27 +2972,207 @@
     "fn_8007075C",
     "fn_80070774",
     "fn_80070A58",
-    "fn_80070AC0"
+    "fn_80070AC0",
+    "fn_80070CF8",
+    "fn_80070D60",
+    "fn_80070D94",
+    "fn_80070DE0",
+    "fn_80070DF0",
+    "fn_80070E00",
+    "fn_80070E1C"
    ],
    "how": {
     "string": 3,
-    "between": 6
+    "between": 6,
+    "string-range": 22
    },
    "lib": ""
   },
   {
    "file": "avload.c",
    "text": [
-    "8007174C",
-    "80071794"
+    "80070F44",
+    "80071C04"
    ],
    "functions": [
-    "fn_8007174C"
+    "fn_80070F44",
+    "fn_80071044",
+    "fn_80071100",
+    "fn_800711A8",
+    "fn_80071268",
+    "fn_800712E4",
+    "fn_800713E0",
+    "fn_80071470",
+    "fn_80071484",
+    "fn_800715A0",
+    "fn_80071678",
+    "fn_80071718",
+    "fn_8007174C",
+    "fn_80071794",
+    "fn_800717BC",
+    "fn_800718BC"
    ],
    "how": {
-    "string": 1
+    "string": 1,
+    "string-range": 15
    },
    "lib": ""
+  },
+  {
+   "file": "avdisp.c",
+   "text": [
+    "80071C04",
+    "80079654"
+   ],
+   "functions": [
+    "fn_80071C04",
+    "fn_80071C64",
+    "fn_80071C8C",
+    "fn_80071CB4",
+    "fn_80071CC0",
+    "fn_80071CE0",
+    "fn_80071CE8",
+    "fn_80071D0C",
+    "fn_80071D2C",
+    "fn_80071D30",
+    "fn_80071ED4",
+    "fn_80072014",
+    "fn_800720B0",
+    "fn_80072168",
+    "fn_800721FC",
+    "fn_80072270",
+    "fn_80072344",
+    "fn_80072378",
+    "fn_800723B8",
+    "fn_800723D8",
+    "fn_800723F8",
+    "fn_80072404",
+    "fn_8007245C",
+    "fn_800724C8",
+    "u_gxutil_upload_some_mtx",
+    "fn_80072558",
+    "fn_800725DC",
+    "fn_80072614",
+    "fn_8007264C",
+    "fn_800726C0",
+    "fn_80072778",
+    "fn_80072808",
+    "fn_80072864",
+    "fn_800728A8",
+    "fn_800729B0",
+    "fn_80072A50",
+    "fn_80072AB0",
+    "fn_80072B28",
+    "fn_80072B7C",
+    "fn_80072BD0",
+    "fn_80072C24",
+    "fn_80072CC4",
+    "fn_80072D64",
+    "fn_80072E20",
+    "fn_80072EDC",
+    "fn_800734A8",
+    "fn_800735C8",
+    "fn_80073620",
+    "fn_80073678",
+    "fn_800736C0",
+    "fn_80073778",
+    "fn_800737E4",
+    "fn_80073898",
+    "fn_800738E0",
+    "fn_800739E0",
+    "fn_80073A58",
+    "fn_80073B50",
+    "fn_80073C6C",
+    "fn_80073D60",
+    "fn_80073E8C",
+    "fn_80074188",
+    "fn_8007423C",
+    "fn_80074300",
+    "fn_800743C4",
+    "fn_80074438",
+    "fn_800744F8",
+    "fn_800745A4",
+    "fn_80074660",
+    "fn_800746A8",
+    "fn_80074718",
+    "fn_80074788",
+    "fn_800747D0",
+    "fn_80074918",
+    "fn_800749B0",
+    "fn_80074A60",
+    "fn_80074A6C",
+    "fn_80074A7C",
+    "fn_80074A8C",
+    "fn_80074B40",
+    "fn_80074BC4",
+    "fn_80074C74",
+    "fn_80074CF4",
+    "fn_80074D08",
+    "fn_80074D18",
+    "fn_80074D28",
+    "fn_80074D68",
+    "fn_80074D78",
+    "fn_80074D88",
+    "fn_80075080",
+    "fn_80075240",
+    "fn_800756B0",
+    "fn_80075908",
+    "fn_80075C78",
+    "fn_80075D48",
+    "fn_80076134",
+    "fn_80076238",
+    "fn_800764A0",
+    "fn_80076790",
+    "fn_8007698C",
+    "fn_80076CD4",
+    "fn_80077240",
+    "fn_80077384",
+    "fn_80077488",
+    "fn_800775EC",
+    "fn_80077654",
+    "fn_80077714",
+    "fn_800777D4",
+    "fn_80077848",
+    "fn_8007785C",
+    "fn_80077A18",
+    "fn_80077A20",
+    "fn_80077AD0",
+    "fn_80077B04",
+    "fn_80077B14",
+    "fn_80077B64",
+    "fn_80077BAC",
+    "fn_80077BBC",
+    "fn_80077BD4",
+    "fn_80077D40",
+    "fn_80077E0C",
+    "fn_80077E7C",
+    "fn_80077F8C",
+    "fn_800780A4",
+    "fn_800781B8",
+    "fn_80078344",
+    "fn_80078360",
+    "fn_80078538",
+    "fn_800786B0",
+    "fn_80078768",
+    "fn_80078884",
+    "fn_80078944",
+    "fn_800789D8",
+    "fn_80078BC4",
+    "fn_80078C28",
+    "fn_80078CDC",
+    "func_8008D6BC",
+    "fn_80078D60",
+    "fn_80078DA8",
+    "fn_80078F0C",
+    "fn_800791A4",
+    "fn_800791E8",
+    "fn_800793D4",
+    "fn_800794F0"
+   ],
+   "how": {
+    "string-range": 143
+   },
+   "lib": "av"
   },
   {
    "file": "__va_arg.c",
@@ -3013,6 +3482,26 @@
    "lib": "runtime"
   },
   {
+   "file": "scanf.c",
+   "text": [
+    "80082908",
+    "80083B14"
+   ],
+   "functions": [
+    "fn_80082908",
+    "fn_80082928",
+    "fn_800829EC",
+    "fn_80082A7C",
+    "fn_80083428",
+    "fn_80083970",
+    "fn_800839D8"
+   ],
+   "how": {
+    "sdk-order": 7
+   },
+   "lib": "runtime"
+  },
+  {
    "file": "string.c",
    "text": [
     "80083B14",
@@ -3107,6 +3596,20 @@
    ],
    "how": {
     "sdkimport": 1
+   },
+   "lib": "runtime"
+  },
+  {
+   "file": "e_pow.c",
+   "text": [
+    "80086008",
+    "800868BC"
+   ],
+   "functions": [
+    "fn_80086008"
+   ],
+   "how": {
+    "sdk-order": 1
    },
    "lib": "runtime"
   },
@@ -3649,252 +4152,6 @@
   }
  ],
  "unassigned": [
-  {
-   "name": "main",
-   "addr": "800055E0",
-   "size": 128,
-   "candidates": null
-  },
-  {
-   "name": "fn_80005660",
-   "addr": "80005660",
-   "size": 216,
-   "candidates": null
-  },
-  {
-   "name": "fn_80005738",
-   "addr": "80005738",
-   "size": 148,
-   "candidates": null
-  },
-  {
-   "name": "fn_800057CC",
-   "addr": "800057CC",
-   "size": 44,
-   "candidates": null
-  },
-  {
-   "name": "fn_800057F8",
-   "addr": "800057F8",
-   "size": 96,
-   "candidates": null
-  },
-  {
-   "name": "fn_80005858",
-   "addr": "80005858",
-   "size": 128,
-   "candidates": null
-  },
-  {
-   "name": "fn_800058D8",
-   "addr": "800058D8",
-   "size": 68,
-   "candidates": null
-  },
-  {
-   "name": "fn_8000591C",
-   "addr": "8000591C",
-   "size": 236,
-   "candidates": null
-  },
-  {
-   "name": "fn_80005A08",
-   "addr": "80005A08",
-   "size": 200,
-   "candidates": null
-  },
-  {
-   "name": "fn_80005AD0",
-   "addr": "80005AD0",
-   "size": 64,
-   "candidates": null
-  },
-  {
-   "name": "fn_80005B10",
-   "addr": "80005B10",
-   "size": 764,
-   "candidates": null
-  },
-  {
-   "name": "fn_80005E0C",
-   "addr": "80005E0C",
-   "size": 208,
-   "candidates": null
-  },
-  {
-   "name": "fn_80005EDC",
-   "addr": "80005EDC",
-   "size": 508,
-   "candidates": null
-  },
-  {
-   "name": "fn_800060D8",
-   "addr": "800060D8",
-   "size": 604,
-   "candidates": null
-  },
-  {
-   "name": "fn_80006334",
-   "addr": "80006334",
-   "size": 12,
-   "candidates": null
-  },
-  {
-   "name": "fn_80006340",
-   "addr": "80006340",
-   "size": 20,
-   "candidates": null
-  },
-  {
-   "name": "fn_80006354",
-   "addr": "80006354",
-   "size": 88,
-   "candidates": null
-  },
-  {
-   "name": "fn_800063AC",
-   "addr": "800063AC",
-   "size": 496,
-   "candidates": null
-  },
-  {
-   "name": "fn_8000659C",
-   "addr": "8000659C",
-   "size": 856,
-   "candidates": null
-  },
-  {
-   "name": "fn_800068F4",
-   "addr": "800068F4",
-   "size": 16,
-   "candidates": null
-  },
-  {
-   "name": "fn_80006904",
-   "addr": "80006904",
-   "size": 16,
-   "candidates": null
-  },
-  {
-   "name": "fn_80006914",
-   "addr": "80006914",
-   "size": 8,
-   "candidates": null
-  },
-  {
-   "name": "fn_8000691C",
-   "addr": "8000691C",
-   "size": 464,
-   "candidates": null
-  },
-  {
-   "name": "fn_80006AEC",
-   "addr": "80006AEC",
-   "size": 8,
-   "candidates": null
-  },
-  {
-   "name": "fn_80006AF4",
-   "addr": "80006AF4",
-   "size": 8,
-   "candidates": null
-  },
-  {
-   "name": "fn_80006AFC",
-   "addr": "80006AFC",
-   "size": 52,
-   "candidates": null
-  },
-  {
-   "name": "fn_80006B30",
-   "addr": "80006B30",
-   "size": 28,
-   "candidates": null
-  },
-  {
-   "name": "fn_80006B4C",
-   "addr": "80006B4C",
-   "size": 36,
-   "candidates": null
-  },
-  {
-   "name": "fn_80006B70",
-   "addr": "80006B70",
-   "size": 108,
-   "candidates": null
-  },
-  {
-   "name": "fn_80006BDC",
-   "addr": "80006BDC",
-   "size": 80,
-   "candidates": null
-  },
-  {
-   "name": "fn_80006C2C",
-   "addr": "80006C2C",
-   "size": 32,
-   "candidates": null
-  },
-  {
-   "name": "fn_80006C4C",
-   "addr": "80006C4C",
-   "size": 152,
-   "candidates": null
-  },
-  {
-   "name": "fn_80006CE4",
-   "addr": "80006CE4",
-   "size": 56,
-   "candidates": null
-  },
-  {
-   "name": "fn_80006D1C",
-   "addr": "80006D1C",
-   "size": 144,
-   "candidates": null
-  },
-  {
-   "name": "fn_80006DAC",
-   "addr": "80006DAC",
-   "size": 60,
-   "candidates": null
-  },
-  {
-   "name": "fn_80006DE8",
-   "addr": "80006DE8",
-   "size": 20,
-   "candidates": null
-  },
-  {
-   "name": "fn_80006DFC",
-   "addr": "80006DFC",
-   "size": 20,
-   "candidates": null
-  },
-  {
-   "name": "fn_80006E10",
-   "addr": "80006E10",
-   "size": 464,
-   "candidates": null
-  },
-  {
-   "name": "fn_80006FE0",
-   "addr": "80006FE0",
-   "size": 44,
-   "candidates": null
-  },
-  {
-   "name": "fn_8000700C",
-   "addr": "8000700C",
-   "size": 428,
-   "candidates": null
-  },
-  {
-   "name": "fn_800071B8",
-   "addr": "800071B8",
-   "size": 596,
-   "candidates": null
-  },
   {
    "name": "fn_800075AC",
    "addr": "800075AC",
@@ -5822,258 +6079,6 @@
    ]
   },
   {
-   "name": "fn_8004A5F4",
-   "addr": "8004A5F4",
-   "size": 536,
-   "candidates": [
-    "adx_stmc.c",
-    "adx_tlk.c"
-   ]
-  },
-  {
-   "name": "fn_8004A80C",
-   "addr": "8004A80C",
-   "size": 1016,
-   "candidates": [
-    "adx_stmc.c",
-    "adx_tlk.c"
-   ]
-  },
-  {
-   "name": "fn_8004AC04",
-   "addr": "8004AC04",
-   "size": 72,
-   "candidates": [
-    "adx_stmc.c",
-    "adx_tlk.c"
-   ]
-  },
-  {
-   "name": "fn_8004AC4C",
-   "addr": "8004AC4C",
-   "size": 12,
-   "candidates": [
-    "adx_stmc.c",
-    "adx_tlk.c"
-   ]
-  },
-  {
-   "name": "fn_8004AC58",
-   "addr": "8004AC58",
-   "size": 300,
-   "candidates": [
-    "adx_stmc.c",
-    "adx_tlk.c"
-   ]
-  },
-  {
-   "name": "fn_8004AD84",
-   "addr": "8004AD84",
-   "size": 112,
-   "candidates": [
-    "adx_stmc.c",
-    "adx_tlk.c"
-   ]
-  },
-  {
-   "name": "fn_8004ADF4",
-   "addr": "8004ADF4",
-   "size": 132,
-   "candidates": [
-    "adx_stmc.c",
-    "adx_tlk.c"
-   ]
-  },
-  {
-   "name": "fn_8004AE78",
-   "addr": "8004AE78",
-   "size": 28,
-   "candidates": [
-    "adx_stmc.c",
-    "adx_tlk.c"
-   ]
-  },
-  {
-   "name": "fn_8004AE94",
-   "addr": "8004AE94",
-   "size": 80,
-   "candidates": [
-    "adx_stmc.c",
-    "adx_tlk.c"
-   ]
-  },
-  {
-   "name": "fn_8004AEE4",
-   "addr": "8004AEE4",
-   "size": 12,
-   "candidates": [
-    "adx_stmc.c",
-    "adx_tlk.c"
-   ]
-  },
-  {
-   "name": "fn_8004AEF0",
-   "addr": "8004AEF0",
-   "size": 508,
-   "candidates": [
-    "adx_stmc.c",
-    "adx_tlk.c"
-   ]
-  },
-  {
-   "name": "fn_8004B0EC",
-   "addr": "8004B0EC",
-   "size": 148,
-   "candidates": [
-    "adx_stmc.c",
-    "adx_tlk.c"
-   ]
-  },
-  {
-   "name": "fn_8004B180",
-   "addr": "8004B180",
-   "size": 92,
-   "candidates": [
-    "adx_stmc.c",
-    "adx_tlk.c"
-   ]
-  },
-  {
-   "name": "fn_8004B1DC",
-   "addr": "8004B1DC",
-   "size": 772,
-   "candidates": [
-    "adx_stmc.c",
-    "adx_tlk.c"
-   ]
-  },
-  {
-   "name": "fn_8004B4E0",
-   "addr": "8004B4E0",
-   "size": 700,
-   "candidates": [
-    "adx_stmc.c",
-    "adx_tlk.c"
-   ]
-  },
-  {
-   "name": "fn_8004B79C",
-   "addr": "8004B79C",
-   "size": 4,
-   "candidates": [
-    "adx_stmc.c",
-    "adx_tlk.c"
-   ]
-  },
-  {
-   "name": "fn_8004B7A0",
-   "addr": "8004B7A0",
-   "size": 52,
-   "candidates": [
-    "adx_stmc.c",
-    "adx_tlk.c"
-   ]
-  },
-  {
-   "name": "fn_8004B7D4",
-   "addr": "8004B7D4",
-   "size": 32,
-   "candidates": [
-    "adx_stmc.c",
-    "adx_tlk.c"
-   ]
-  },
-  {
-   "name": "fn_8004B7F4",
-   "addr": "8004B7F4",
-   "size": 384,
-   "candidates": [
-    "adx_stmc.c",
-    "adx_tlk.c"
-   ]
-  },
-  {
-   "name": "fn_8004B974",
-   "addr": "8004B974",
-   "size": 48,
-   "candidates": [
-    "adx_stmc.c",
-    "adx_tlk.c"
-   ]
-  },
-  {
-   "name": "fn_8004B9A4",
-   "addr": "8004B9A4",
-   "size": 148,
-   "candidates": [
-    "adx_stmc.c",
-    "adx_tlk.c"
-   ]
-  },
-  {
-   "name": "fn_8004BA38",
-   "addr": "8004BA38",
-   "size": 8,
-   "candidates": [
-    "adx_stmc.c",
-    "adx_tlk.c"
-   ]
-  },
-  {
-   "name": "fn_8004D18C",
-   "addr": "8004D18C",
-   "size": 148,
-   "candidates": [
-    "adx_tlk.c",
-    "adx_tsvr.c"
-   ]
-  },
-  {
-   "name": "fn_8004D220",
-   "addr": "8004D220",
-   "size": 776,
-   "candidates": [
-    "adx_tlk.c",
-    "adx_tsvr.c"
-   ]
-  },
-  {
-   "name": "fn_8004D528",
-   "addr": "8004D528",
-   "size": 948,
-   "candidates": [
-    "adx_tlk.c",
-    "adx_tsvr.c"
-   ]
-  },
-  {
-   "name": "fn_8004D8DC",
-   "addr": "8004D8DC",
-   "size": 736,
-   "candidates": [
-    "adx_tlk.c",
-    "adx_tsvr.c"
-   ]
-  },
-  {
-   "name": "fn_8004DE70",
-   "addr": "8004DE70",
-   "size": 384,
-   "candidates": [
-    "adx_tsvr.c",
-    "adx_xpnd.c"
-   ]
-  },
-  {
-   "name": "fn_8004DFF0",
-   "addr": "8004DFF0",
-   "size": 168,
-   "candidates": [
-    "adx_tsvr.c",
-    "adx_xpnd.c"
-   ]
-  },
-  {
    "name": "fn_8004E4AC",
    "addr": "8004E4AC",
    "size": 48,
@@ -6455,33 +6460,6 @@
    "name": "fn_8004F6B0",
    "addr": "8004F6B0",
    "size": 156,
-   "candidates": [
-    "adx_xpnd.c",
-    "adx_fs.c"
-   ]
-  },
-  {
-   "name": "fn_8004F74C",
-   "addr": "8004F74C",
-   "size": 172,
-   "candidates": [
-    "adx_xpnd.c",
-    "adx_fs.c"
-   ]
-  },
-  {
-   "name": "fn_8004F7F8",
-   "addr": "8004F7F8",
-   "size": 32,
-   "candidates": [
-    "adx_xpnd.c",
-    "adx_fs.c"
-   ]
-  },
-  {
-   "name": "fn_8004F818",
-   "addr": "8004F818",
-   "size": 656,
    "candidates": [
     "adx_xpnd.c",
     "adx_fs.c"
@@ -7127,132 +7105,6 @@
    ]
   },
   {
-   "name": "fn_80055580",
-   "addr": "80055580",
-   "size": 64,
-   "candidates": [
-    "cri_cvfs.c",
-    "gcci.c"
-   ]
-  },
-  {
-   "name": "fn_800555C0",
-   "addr": "800555C0",
-   "size": 4,
-   "candidates": [
-    "cri_cvfs.c",
-    "gcci.c"
-   ]
-  },
-  {
-   "name": "fn_800555C4",
-   "addr": "800555C4",
-   "size": 96,
-   "candidates": [
-    "cri_cvfs.c",
-    "gcci.c"
-   ]
-  },
-  {
-   "name": "fn_80055624",
-   "addr": "80055624",
-   "size": 228,
-   "candidates": [
-    "cri_cvfs.c",
-    "gcci.c"
-   ]
-  },
-  {
-   "name": "fn_80055708",
-   "addr": "80055708",
-   "size": 96,
-   "candidates": [
-    "cri_cvfs.c",
-    "gcci.c"
-   ]
-  },
-  {
-   "name": "fn_80055768",
-   "addr": "80055768",
-   "size": 100,
-   "candidates": [
-    "cri_cvfs.c",
-    "gcci.c"
-   ]
-  },
-  {
-   "name": "fn_800557CC",
-   "addr": "800557CC",
-   "size": 416,
-   "candidates": [
-    "cri_cvfs.c",
-    "gcci.c"
-   ]
-  },
-  {
-   "name": "fn_8005596C",
-   "addr": "8005596C",
-   "size": 1064,
-   "candidates": [
-    "cri_cvfs.c",
-    "gcci.c"
-   ]
-  },
-  {
-   "name": "fn_80055D94",
-   "addr": "80055D94",
-   "size": 96,
-   "candidates": [
-    "cri_cvfs.c",
-    "gcci.c"
-   ]
-  },
-  {
-   "name": "fn_80055DF4",
-   "addr": "80055DF4",
-   "size": 204,
-   "candidates": [
-    "cri_cvfs.c",
-    "gcci.c"
-   ]
-  },
-  {
-   "name": "fn_80055EC0",
-   "addr": "80055EC0",
-   "size": 452,
-   "candidates": [
-    "cri_cvfs.c",
-    "gcci.c"
-   ]
-  },
-  {
-   "name": "fn_80056084",
-   "addr": "80056084",
-   "size": 528,
-   "candidates": [
-    "cri_cvfs.c",
-    "gcci.c"
-   ]
-  },
-  {
-   "name": "fn_80056294",
-   "addr": "80056294",
-   "size": 356,
-   "candidates": [
-    "cri_cvfs.c",
-    "gcci.c"
-   ]
-  },
-  {
-   "name": "fn_800563F8",
-   "addr": "800563F8",
-   "size": 20,
-   "candidates": [
-    "cri_cvfs.c",
-    "gcci.c"
-   ]
-  },
-  {
    "name": "fn_80056584",
    "addr": "80056584",
    "size": 108,
@@ -7274,33 +7126,6 @@
    "name": "fn_800565FC",
    "addr": "800565FC",
    "size": 192,
-   "candidates": [
-    "gcci.c",
-    "lsc.c"
-   ]
-  },
-  {
-   "name": "fn_800566BC",
-   "addr": "800566BC",
-   "size": 52,
-   "candidates": [
-    "gcci.c",
-    "lsc.c"
-   ]
-  },
-  {
-   "name": "fn_800566F0",
-   "addr": "800566F0",
-   "size": 32,
-   "candidates": [
-    "gcci.c",
-    "lsc.c"
-   ]
-  },
-  {
-   "name": "fn_80056710",
-   "addr": "80056710",
-   "size": 32,
    "candidates": [
     "gcci.c",
     "lsc.c"
@@ -8666,402 +8491,6 @@
    ]
   },
   {
-   "name": "fn_8006A480",
-   "addr": "8006A480",
-   "size": 212,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006A554",
-   "addr": "8006A554",
-   "size": 532,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006A768",
-   "addr": "8006A768",
-   "size": 356,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006A8CC",
-   "addr": "8006A8CC",
-   "size": 204,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006A998",
-   "addr": "8006A998",
-   "size": 20,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006A9AC",
-   "addr": "8006A9AC",
-   "size": 8,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006A9B4",
-   "addr": "8006A9B4",
-   "size": 108,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006AA20",
-   "addr": "8006AA20",
-   "size": 36,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006AA44",
-   "addr": "8006AA44",
-   "size": 512,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006AC44",
-   "addr": "8006AC44",
-   "size": 588,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006AE90",
-   "addr": "8006AE90",
-   "size": 260,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006AF94",
-   "addr": "8006AF94",
-   "size": 180,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006B048",
-   "addr": "8006B048",
-   "size": 320,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006B188",
-   "addr": "8006B188",
-   "size": 156,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006B224",
-   "addr": "8006B224",
-   "size": 112,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006B294",
-   "addr": "8006B294",
-   "size": 348,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006B3F0",
-   "addr": "8006B3F0",
-   "size": 128,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006B470",
-   "addr": "8006B470",
-   "size": 236,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006B55C",
-   "addr": "8006B55C",
-   "size": 204,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006B628",
-   "addr": "8006B628",
-   "size": 208,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006B6F8",
-   "addr": "8006B6F8",
-   "size": 188,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006B7B4",
-   "addr": "8006B7B4",
-   "size": 188,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006B870",
-   "addr": "8006B870",
-   "size": 188,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006B92C",
-   "addr": "8006B92C",
-   "size": 112,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006B99C",
-   "addr": "8006B99C",
-   "size": 216,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006BA74",
-   "addr": "8006BA74",
-   "size": 188,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006BB30",
-   "addr": "8006BB30",
-   "size": 68,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006BB74",
-   "addr": "8006BB74",
-   "size": 40,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006BB9C",
-   "addr": "8006BB9C",
-   "size": 64,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006BBDC",
-   "addr": "8006BBDC",
-   "size": 64,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006BC1C",
-   "addr": "8006BC1C",
-   "size": 52,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006BC50",
-   "addr": "8006BC50",
-   "size": 52,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006BC84",
-   "addr": "8006BC84",
-   "size": 116,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006BCF8",
-   "addr": "8006BCF8",
-   "size": 276,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006BE0C",
-   "addr": "8006BE0C",
-   "size": 808,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006C134",
-   "addr": "8006C134",
-   "size": 72,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006C17C",
-   "addr": "8006C17C",
-   "size": 20,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006C190",
-   "addr": "8006C190",
-   "size": 992,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006C570",
-   "addr": "8006C570",
-   "size": 196,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006C634",
-   "addr": "8006C634",
-   "size": 180,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006C6E8",
-   "addr": "8006C6E8",
-   "size": 160,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006C788",
-   "addr": "8006C788",
-   "size": 96,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006C7E8",
-   "addr": "8006C7E8",
-   "size": 324,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006C92C",
-   "addr": "8006C92C",
-   "size": 924,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
    "name": "fn_8006CCC8",
    "addr": "8006CCC8",
    "size": 88,
@@ -9140,2355 +8569,6 @@
    "candidates": [
     "arc.c",
     "avsystem.c"
-   ]
-  },
-  {
-   "name": "mathutil_init",
-   "addr": "8006CFF8",
-   "size": 76,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "float_return_values",
-   "addr": "8006D044",
-   "size": 68,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "approx_rsqrt",
-   "addr": "8006D088",
-   "size": 44,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006D0B4",
-   "addr": "8006D0B4",
-   "size": 52,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006D0E8",
-   "addr": "8006D0E8",
-   "size": 48,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006D118",
-   "addr": "8006D118",
-   "size": 112,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006D188",
-   "addr": "8006D188",
-   "size": 48,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006D1B8",
-   "addr": "8006D1B8",
-   "size": 100,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006D21C",
-   "addr": "8006D21C",
-   "size": 48,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006D24C",
-   "addr": "8006D24C",
-   "size": 388,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006D3D0",
-   "addr": "8006D3D0",
-   "size": 156,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006D46C",
-   "addr": "8006D46C",
-   "size": 200,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006D534",
-   "addr": "8006D534",
-   "size": 112,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006D5A4",
-   "addr": "8006D5A4",
-   "size": 76,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006D5F0",
-   "addr": "8006D5F0",
-   "size": 120,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006D668",
-   "addr": "8006D668",
-   "size": 148,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006D6FC",
-   "addr": "8006D6FC",
-   "size": 92,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006D758",
-   "addr": "8006D758",
-   "size": 44,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006D784",
-   "addr": "8006D784",
-   "size": 44,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006D7B0",
-   "addr": "8006D7B0",
-   "size": 44,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006D7DC",
-   "addr": "8006D7DC",
-   "size": 84,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006D830",
-   "addr": "8006D830",
-   "size": 96,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006D890",
-   "addr": "8006D890",
-   "size": 72,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006D8D8",
-   "addr": "8006D8D8",
-   "size": 68,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006D91C",
-   "addr": "8006D91C",
-   "size": 64,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006D95C",
-   "addr": "8006D95C",
-   "size": 60,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006D998",
-   "addr": "8006D998",
-   "size": 64,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006D9D8",
-   "addr": "8006D9D8",
-   "size": 120,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006DA50",
-   "addr": "8006DA50",
-   "size": 156,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006DAEC",
-   "addr": "8006DAEC",
-   "size": 68,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006DB30",
-   "addr": "8006DB30",
-   "size": 68,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006DB74",
-   "addr": "8006DB74",
-   "size": 56,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006DBAC",
-   "addr": "8006DBAC",
-   "size": 56,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006DBE4",
-   "addr": "8006DBE4",
-   "size": 60,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006DC20",
-   "addr": "8006DC20",
-   "size": 20,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006DC34",
-   "addr": "8006DC34",
-   "size": 56,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006DC6C",
-   "addr": "8006DC6C",
-   "size": 56,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006DCA4",
-   "addr": "8006DCA4",
-   "size": 56,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006DCDC",
-   "addr": "8006DCDC",
-   "size": 56,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006DD14",
-   "addr": "8006DD14",
-   "size": 52,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006DD48",
-   "addr": "8006DD48",
-   "size": 52,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006DD7C",
-   "addr": "8006DD7C",
-   "size": 456,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006DF44",
-   "addr": "8006DF44",
-   "size": 128,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006DFC4",
-   "addr": "8006DFC4",
-   "size": 224,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006E0A4",
-   "addr": "8006E0A4",
-   "size": 152,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006E13C",
-   "addr": "8006E13C",
-   "size": 116,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "lbl_8006E1B0",
-   "addr": "8006E1B0",
-   "size": 160,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006E250",
-   "addr": "8006E250",
-   "size": 212,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "mathutil_mtxA_rotate_x",
-   "addr": "8006E324",
-   "size": 116,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "mathutil_mtxA_rotate_y",
-   "addr": "8006E398",
-   "size": 140,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "mathutil_mtxA_rotate_z",
-   "addr": "8006E424",
-   "size": 116,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "mathutil_mtxA_from_quat",
-   "addr": "8006E498",
-   "size": 168,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "mathutil_quat_mult",
-   "addr": "8006E540",
-   "size": 116,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "func_80008378",
-   "addr": "8006E5B4",
-   "size": 72,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006E5FC",
-   "addr": "8006E5FC",
-   "size": 488,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006E7E4",
-   "addr": "8006E7E4",
-   "size": 248,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006E8DC",
-   "addr": "8006E8DC",
-   "size": 156,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006E978",
-   "addr": "8006E978",
-   "size": 468,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006EB4C",
-   "addr": "8006EB4C",
-   "size": 448,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006ED0C",
-   "addr": "8006ED0C",
-   "size": 176,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006EDBC",
-   "addr": "8006EDBC",
-   "size": 180,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006EE70",
-   "addr": "8006EE70",
-   "size": 160,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006EF10",
-   "addr": "8006EF10",
-   "size": 164,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006EFB4",
-   "addr": "8006EFB4",
-   "size": 132,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006F038",
-   "addr": "8006F038",
-   "size": 232,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006F120",
-   "addr": "8006F120",
-   "size": 208,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006F1F0",
-   "addr": "8006F1F0",
-   "size": 420,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006F394",
-   "addr": "8006F394",
-   "size": 80,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006F3E4",
-   "addr": "8006F3E4",
-   "size": 252,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006F4E0",
-   "addr": "8006F4E0",
-   "size": 228,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006F5C4",
-   "addr": "8006F5C4",
-   "size": 228,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006F6A8",
-   "addr": "8006F6A8",
-   "size": 204,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006F774",
-   "addr": "8006F774",
-   "size": 24,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006F78C",
-   "addr": "8006F78C",
-   "size": 156,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006F828",
-   "addr": "8006F828",
-   "size": 216,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006F900",
-   "addr": "8006F900",
-   "size": 164,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006F9A4",
-   "addr": "8006F9A4",
-   "size": 128,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006FA24",
-   "addr": "8006FA24",
-   "size": 252,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006FB20",
-   "addr": "8006FB20",
-   "size": 252,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006FC1C",
-   "addr": "8006FC1C",
-   "size": 64,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006FC5C",
-   "addr": "8006FC5C",
-   "size": 88,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006FCB4",
-   "addr": "8006FCB4",
-   "size": 104,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006FD1C",
-   "addr": "8006FD1C",
-   "size": 208,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006FDEC",
-   "addr": "8006FDEC",
-   "size": 272,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006FEFC",
-   "addr": "8006FEFC",
-   "size": 144,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006FF8C",
-   "addr": "8006FF8C",
-   "size": 48,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006FFBC",
-   "addr": "8006FFBC",
-   "size": 8,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006FFC4",
-   "addr": "8006FFC4",
-   "size": 8,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006FFCC",
-   "addr": "8006FFCC",
-   "size": 16,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8006FFDC",
-   "addr": "8006FFDC",
-   "size": 64,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_8007001C",
-   "addr": "8007001C",
-   "size": 76,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_80070068",
-   "addr": "80070068",
-   "size": 76,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_800700B4",
-   "addr": "800700B4",
-   "size": 64,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_800700F4",
-   "addr": "800700F4",
-   "size": 12,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_80070100",
-   "addr": "80070100",
-   "size": 88,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_80070158",
-   "addr": "80070158",
-   "size": 396,
-   "candidates": [
-    "arc.c",
-    "avsystem.c"
-   ]
-  },
-  {
-   "name": "fn_80070CF8",
-   "addr": "80070CF8",
-   "size": 104,
-   "candidates": [
-    "avsystem.c",
-    "avload.c"
-   ]
-  },
-  {
-   "name": "fn_80070D60",
-   "addr": "80070D60",
-   "size": 52,
-   "candidates": [
-    "avsystem.c",
-    "avload.c"
-   ]
-  },
-  {
-   "name": "fn_80070D94",
-   "addr": "80070D94",
-   "size": 76,
-   "candidates": [
-    "avsystem.c",
-    "avload.c"
-   ]
-  },
-  {
-   "name": "fn_80070DE0",
-   "addr": "80070DE0",
-   "size": 16,
-   "candidates": [
-    "avsystem.c",
-    "avload.c"
-   ]
-  },
-  {
-   "name": "fn_80070DF0",
-   "addr": "80070DF0",
-   "size": 16,
-   "candidates": [
-    "avsystem.c",
-    "avload.c"
-   ]
-  },
-  {
-   "name": "fn_80070E00",
-   "addr": "80070E00",
-   "size": 28,
-   "candidates": [
-    "avsystem.c",
-    "avload.c"
-   ]
-  },
-  {
-   "name": "fn_80070E1C",
-   "addr": "80070E1C",
-   "size": 296,
-   "candidates": [
-    "avsystem.c",
-    "avload.c"
-   ]
-  },
-  {
-   "name": "fn_80070F44",
-   "addr": "80070F44",
-   "size": 256,
-   "candidates": [
-    "avsystem.c",
-    "avload.c"
-   ]
-  },
-  {
-   "name": "fn_80071044",
-   "addr": "80071044",
-   "size": 188,
-   "candidates": [
-    "avsystem.c",
-    "avload.c"
-   ]
-  },
-  {
-   "name": "fn_80071100",
-   "addr": "80071100",
-   "size": 168,
-   "candidates": [
-    "avsystem.c",
-    "avload.c"
-   ]
-  },
-  {
-   "name": "fn_800711A8",
-   "addr": "800711A8",
-   "size": 192,
-   "candidates": [
-    "avsystem.c",
-    "avload.c"
-   ]
-  },
-  {
-   "name": "fn_80071268",
-   "addr": "80071268",
-   "size": 124,
-   "candidates": [
-    "avsystem.c",
-    "avload.c"
-   ]
-  },
-  {
-   "name": "fn_800712E4",
-   "addr": "800712E4",
-   "size": 252,
-   "candidates": [
-    "avsystem.c",
-    "avload.c"
-   ]
-  },
-  {
-   "name": "fn_800713E0",
-   "addr": "800713E0",
-   "size": 144,
-   "candidates": [
-    "avsystem.c",
-    "avload.c"
-   ]
-  },
-  {
-   "name": "fn_80071470",
-   "addr": "80071470",
-   "size": 20,
-   "candidates": [
-    "avsystem.c",
-    "avload.c"
-   ]
-  },
-  {
-   "name": "fn_80071484",
-   "addr": "80071484",
-   "size": 284,
-   "candidates": [
-    "avsystem.c",
-    "avload.c"
-   ]
-  },
-  {
-   "name": "fn_800715A0",
-   "addr": "800715A0",
-   "size": 216,
-   "candidates": [
-    "avsystem.c",
-    "avload.c"
-   ]
-  },
-  {
-   "name": "fn_80071678",
-   "addr": "80071678",
-   "size": 160,
-   "candidates": [
-    "avsystem.c",
-    "avload.c"
-   ]
-  },
-  {
-   "name": "fn_80071718",
-   "addr": "80071718",
-   "size": 52,
-   "candidates": [
-    "avsystem.c",
-    "avload.c"
-   ]
-  },
-  {
-   "name": "fn_80071794",
-   "addr": "80071794",
-   "size": 40,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800717BC",
-   "addr": "800717BC",
-   "size": 256,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800718BC",
-   "addr": "800718BC",
-   "size": 840,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80071C04",
-   "addr": "80071C04",
-   "size": 96,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80071C64",
-   "addr": "80071C64",
-   "size": 40,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80071C8C",
-   "addr": "80071C8C",
-   "size": 40,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80071CB4",
-   "addr": "80071CB4",
-   "size": 12,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80071CC0",
-   "addr": "80071CC0",
-   "size": 32,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80071CE0",
-   "addr": "80071CE0",
-   "size": 8,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80071CE8",
-   "addr": "80071CE8",
-   "size": 36,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80071D0C",
-   "addr": "80071D0C",
-   "size": 32,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80071D2C",
-   "addr": "80071D2C",
-   "size": 4,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80071D30",
-   "addr": "80071D30",
-   "size": 420,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80071ED4",
-   "addr": "80071ED4",
-   "size": 320,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80072014",
-   "addr": "80072014",
-   "size": 156,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800720B0",
-   "addr": "800720B0",
-   "size": 184,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80072168",
-   "addr": "80072168",
-   "size": 148,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800721FC",
-   "addr": "800721FC",
-   "size": 116,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80072270",
-   "addr": "80072270",
-   "size": 212,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80072344",
-   "addr": "80072344",
-   "size": 52,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80072378",
-   "addr": "80072378",
-   "size": 64,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800723B8",
-   "addr": "800723B8",
-   "size": 32,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800723D8",
-   "addr": "800723D8",
-   "size": 32,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800723F8",
-   "addr": "800723F8",
-   "size": 12,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80072404",
-   "addr": "80072404",
-   "size": 88,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_8007245C",
-   "addr": "8007245C",
-   "size": 108,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800724C8",
-   "addr": "800724C8",
-   "size": 4,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "u_gxutil_upload_some_mtx",
-   "addr": "800724CC",
-   "size": 140,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80072558",
-   "addr": "80072558",
-   "size": 132,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800725DC",
-   "addr": "800725DC",
-   "size": 56,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80072614",
-   "addr": "80072614",
-   "size": 56,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_8007264C",
-   "addr": "8007264C",
-   "size": 116,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800726C0",
-   "addr": "800726C0",
-   "size": 184,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80072778",
-   "addr": "80072778",
-   "size": 144,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80072808",
-   "addr": "80072808",
-   "size": 92,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80072864",
-   "addr": "80072864",
-   "size": 68,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800728A8",
-   "addr": "800728A8",
-   "size": 264,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800729B0",
-   "addr": "800729B0",
-   "size": 160,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80072A50",
-   "addr": "80072A50",
-   "size": 96,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80072AB0",
-   "addr": "80072AB0",
-   "size": 120,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80072B28",
-   "addr": "80072B28",
-   "size": 84,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80072B7C",
-   "addr": "80072B7C",
-   "size": 84,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80072BD0",
-   "addr": "80072BD0",
-   "size": 84,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80072C24",
-   "addr": "80072C24",
-   "size": 160,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80072CC4",
-   "addr": "80072CC4",
-   "size": 160,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80072D64",
-   "addr": "80072D64",
-   "size": 188,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80072E20",
-   "addr": "80072E20",
-   "size": 188,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80072EDC",
-   "addr": "80072EDC",
-   "size": 1484,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800734A8",
-   "addr": "800734A8",
-   "size": 288,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800735C8",
-   "addr": "800735C8",
-   "size": 88,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80073620",
-   "addr": "80073620",
-   "size": 88,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80073678",
-   "addr": "80073678",
-   "size": 72,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800736C0",
-   "addr": "800736C0",
-   "size": 184,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80073778",
-   "addr": "80073778",
-   "size": 108,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800737E4",
-   "addr": "800737E4",
-   "size": 180,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80073898",
-   "addr": "80073898",
-   "size": 72,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800738E0",
-   "addr": "800738E0",
-   "size": 256,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800739E0",
-   "addr": "800739E0",
-   "size": 120,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80073A58",
-   "addr": "80073A58",
-   "size": 248,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80073B50",
-   "addr": "80073B50",
-   "size": 284,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80073C6C",
-   "addr": "80073C6C",
-   "size": 244,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80073D60",
-   "addr": "80073D60",
-   "size": 300,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80073E8C",
-   "addr": "80073E8C",
-   "size": 764,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80074188",
-   "addr": "80074188",
-   "size": 180,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_8007423C",
-   "addr": "8007423C",
-   "size": 196,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80074300",
-   "addr": "80074300",
-   "size": 196,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800743C4",
-   "addr": "800743C4",
-   "size": 116,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80074438",
-   "addr": "80074438",
-   "size": 192,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800744F8",
-   "addr": "800744F8",
-   "size": 172,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800745A4",
-   "addr": "800745A4",
-   "size": 188,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80074660",
-   "addr": "80074660",
-   "size": 72,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800746A8",
-   "addr": "800746A8",
-   "size": 112,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80074718",
-   "addr": "80074718",
-   "size": 112,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80074788",
-   "addr": "80074788",
-   "size": 72,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800747D0",
-   "addr": "800747D0",
-   "size": 328,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80074918",
-   "addr": "80074918",
-   "size": 152,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800749B0",
-   "addr": "800749B0",
-   "size": 176,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80074A60",
-   "addr": "80074A60",
-   "size": 12,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80074A6C",
-   "addr": "80074A6C",
-   "size": 16,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80074A7C",
-   "addr": "80074A7C",
-   "size": 16,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80074A8C",
-   "addr": "80074A8C",
-   "size": 180,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80074B40",
-   "addr": "80074B40",
-   "size": 132,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80074BC4",
-   "addr": "80074BC4",
-   "size": 176,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80074C74",
-   "addr": "80074C74",
-   "size": 128,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80074CF4",
-   "addr": "80074CF4",
-   "size": 20,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80074D08",
-   "addr": "80074D08",
-   "size": 16,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80074D18",
-   "addr": "80074D18",
-   "size": 16,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80074D28",
-   "addr": "80074D28",
-   "size": 64,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80074D68",
-   "addr": "80074D68",
-   "size": 16,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80074D78",
-   "addr": "80074D78",
-   "size": 16,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80074D88",
-   "addr": "80074D88",
-   "size": 760,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80075080",
-   "addr": "80075080",
-   "size": 448,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80075240",
-   "addr": "80075240",
-   "size": 1136,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800756B0",
-   "addr": "800756B0",
-   "size": 600,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80075908",
-   "addr": "80075908",
-   "size": 880,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80075C78",
-   "addr": "80075C78",
-   "size": 208,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80075D48",
-   "addr": "80075D48",
-   "size": 1004,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80076134",
-   "addr": "80076134",
-   "size": 260,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80076238",
-   "addr": "80076238",
-   "size": 616,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800764A0",
-   "addr": "800764A0",
-   "size": 752,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80076790",
-   "addr": "80076790",
-   "size": 508,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_8007698C",
-   "addr": "8007698C",
-   "size": 840,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80076CD4",
-   "addr": "80076CD4",
-   "size": 1388,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80077240",
-   "addr": "80077240",
-   "size": 324,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80077384",
-   "addr": "80077384",
-   "size": 260,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80077488",
-   "addr": "80077488",
-   "size": 356,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800775EC",
-   "addr": "800775EC",
-   "size": 104,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80077654",
-   "addr": "80077654",
-   "size": 192,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80077714",
-   "addr": "80077714",
-   "size": 192,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800777D4",
-   "addr": "800777D4",
-   "size": 116,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80077848",
-   "addr": "80077848",
-   "size": 20,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_8007785C",
-   "addr": "8007785C",
-   "size": 444,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80077A18",
-   "addr": "80077A18",
-   "size": 8,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80077A20",
-   "addr": "80077A20",
-   "size": 176,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80077AD0",
-   "addr": "80077AD0",
-   "size": 52,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80077B04",
-   "addr": "80077B04",
-   "size": 16,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80077B14",
-   "addr": "80077B14",
-   "size": 80,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80077B64",
-   "addr": "80077B64",
-   "size": 72,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80077BAC",
-   "addr": "80077BAC",
-   "size": 16,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80077BBC",
-   "addr": "80077BBC",
-   "size": 24,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80077BD4",
-   "addr": "80077BD4",
-   "size": 364,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80077D40",
-   "addr": "80077D40",
-   "size": 204,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80077E0C",
-   "addr": "80077E0C",
-   "size": 112,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80077E7C",
-   "addr": "80077E7C",
-   "size": 272,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80077F8C",
-   "addr": "80077F8C",
-   "size": 280,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800780A4",
-   "addr": "800780A4",
-   "size": 276,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800781B8",
-   "addr": "800781B8",
-   "size": 396,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80078344",
-   "addr": "80078344",
-   "size": 28,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80078360",
-   "addr": "80078360",
-   "size": 472,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80078538",
-   "addr": "80078538",
-   "size": 376,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800786B0",
-   "addr": "800786B0",
-   "size": 184,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80078768",
-   "addr": "80078768",
-   "size": 284,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80078884",
-   "addr": "80078884",
-   "size": 192,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80078944",
-   "addr": "80078944",
-   "size": 148,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800789D8",
-   "addr": "800789D8",
-   "size": 492,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80078BC4",
-   "addr": "80078BC4",
-   "size": 100,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80078C28",
-   "addr": "80078C28",
-   "size": 180,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80078CDC",
-   "addr": "80078CDC",
-   "size": 108,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "func_8008D6BC",
-   "addr": "80078D48",
-   "size": 24,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80078D60",
-   "addr": "80078D60",
-   "size": 72,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80078DA8",
-   "addr": "80078DA8",
-   "size": 356,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_80078F0C",
-   "addr": "80078F0C",
-   "size": 664,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800791A4",
-   "addr": "800791A4",
-   "size": 68,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800791E8",
-   "addr": "800791E8",
-   "size": 492,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800793D4",
-   "addr": "800793D4",
-   "size": 284,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
-   ]
-  },
-  {
-   "name": "fn_800794F0",
-   "addr": "800794F0",
-   "size": 356,
-   "candidates": [
-    "avload.c",
-    "__va_arg.c"
    ]
   },
   {
@@ -11753,69 +8833,6 @@
    ]
   },
   {
-   "name": "fn_80082908",
-   "addr": "80082908",
-   "size": 32,
-   "candidates": [
-    "qsort.c",
-    "string.c"
-   ]
-  },
-  {
-   "name": "fn_80082928",
-   "addr": "80082928",
-   "size": 196,
-   "candidates": [
-    "qsort.c",
-    "string.c"
-   ]
-  },
-  {
-   "name": "fn_800829EC",
-   "addr": "800829EC",
-   "size": 144,
-   "candidates": [
-    "qsort.c",
-    "string.c"
-   ]
-  },
-  {
-   "name": "fn_80082A7C",
-   "addr": "80082A7C",
-   "size": 2476,
-   "candidates": [
-    "qsort.c",
-    "string.c"
-   ]
-  },
-  {
-   "name": "fn_80083428",
-   "addr": "80083428",
-   "size": 1352,
-   "candidates": [
-    "qsort.c",
-    "string.c"
-   ]
-  },
-  {
-   "name": "fn_80083970",
-   "addr": "80083970",
-   "size": 104,
-   "candidates": [
-    "qsort.c",
-    "string.c"
-   ]
-  },
-  {
-   "name": "fn_800839D8",
-   "addr": "800839D8",
-   "size": 316,
-   "candidates": [
-    "qsort.c",
-    "string.c"
-   ]
-  },
-  {
    "name": "fn_8008580C",
    "addr": "8008580C",
    "size": 8,
@@ -11840,15 +8857,6 @@
    "candidates": [
     "wchar_io.c",
     "e_log.c"
-   ]
-  },
-  {
-   "name": "fn_80086008",
-   "addr": "80086008",
-   "size": 2228,
-   "candidates": [
-    "e_log10.c",
-    "e_rem_pio2.c"
    ]
   },
   {

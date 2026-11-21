@@ -590,7 +590,10 @@ dol/fn_80009064.c:
 	.text       start:0x80009064 end:0x800090A4 align:4
 
 dol/fn_8004D18C.c:
-	.text       start:0x8004D18C end:0x8004D528 align:4
+	.text       start:0x8004D18C end:0x8004D220 align:4
+
+dol/fn_8004D220.c:
+	.text       start:0x8004D220 end:0x8004D528 align:4
 
 dol/fn_8006AA20.c:
 	.text       start:0x8006AA20 end:0x8006AE90 align:4
@@ -1586,11 +1589,17 @@ dol/fseek.c:
 	.text       start:0x8007FBC8 end:0x8007FC34 align:4
 
 dol/printf.c:
-	.text       start:0x8008069C end:0x800829EC align:4
+	.text       start:0x8008069C end:0x8008279C align:4
 	.rodata     start:0x80094FC0 end:0x80094FE8 align:8
 	.data       start:0x8015B438 end:0x8015B664 align:8
 	.sdata      start:0x801A6630 end:0x801A6638 align:8
 	.sdata2     start:0x801A74E8 end:0x801A74F0 align:8
+
+dol/qsort.c:
+	.text       start:0x8008279C end:0x80082908 align:4
+
+dol/fn_80082908.c:
+	.text       start:0x80082908 end:0x800829EC align:4
 
 dol/atoi.c:
 	.text       start:0x80084F1C end:0x80084FDC align:4
@@ -2763,7 +2772,10 @@ dol/fn_80064E84.c:
 	.text       start:0x80064E84 end:0x80064FDC align:4
 
 dol/fn_800794F0.c:
-	.text       start:0x800794F0 end:0x8007971C align:4
+	.text       start:0x800794F0 end:0x80079654 align:4
+
+dol/__va_arg.c:
+	.text       start:0x80079654 end:0x8007971C align:4
 
 dol/fn_8005C120.c:
 	.text       start:0x8005C120 end:0x8005C298 align:4

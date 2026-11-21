@@ -25092,7 +25092,21 @@
     "module": "main",
     "source": "dol/fn_8004D18C.c",
     "symbols": [
-      "fn_8004D18C",
+      "fn_8004D18C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on"
+    ],
+    "collapsed": true,
+    "matching_for": ["GFZE01", "GFZJ01"]
+  },
+  {
+    "module": "main",
+    "source": "dol/fn_8004D220.c",
+    "symbols": [
       "fn_8004D220"
     ],
     "status": "matching",
@@ -29924,7 +29938,16 @@
     "module": "main",
     "source": "dol/fn_800794F0.c",
     "symbols": [
-      "fn_800794F0",
+      "fn_800794F0"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "collapsed": true
+  },
+  {
+    "module": "main",
+    "source": "dol/__va_arg.c",
+    "symbols": [
       "__va_arg"
     ],
     "status": "matching",
@@ -32034,8 +32057,40 @@
       "double2hex",
       "longlong2str",
       "long2str",
-      "parse_format",
-      "qsort",
+      "parse_format"
+    ],
+    "status": "matching",
+    "matching_for": ["GFZE01"],
+    "mw_version": "GC/2.6",
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on",
+      "-str",
+      "reuse,pool,readonly"
+    ],
+    "collapsed": true
+  },
+  {
+    "module": "main",
+    "source": "dol/qsort.c",
+    "symbols": [
+      "qsort"
+    ],
+    "status": "matching",
+    "matching_for": ["GFZE01"],
+    "mw_version": "GC/2.6",
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on",
+      "-str",
+      "reuse,pool,readonly"
+    ],
+    "collapsed": true
+  },
+  {
+    "module": "main",
+    "source": "dol/fn_80082908.c",
+    "symbols": [
       "fn_80082908",
       "fn_80082928"
     ],
