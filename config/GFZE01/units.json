@@ -7956,16 +7956,6 @@
   },
   {
     "module": "main",
-    "source": "dol/GXClearGPMetric.c",
-    "symbols": [
-      "GXClearGPMetric"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
     "source": "dol/GXDisplayList.c",
     "symbols": [
       "GXCallDisplayList"
@@ -8020,24 +8010,20 @@
   },
   {
     "module": "main",
-    "source": "dol/GXReadXfRasMetric.c",
-    "symbols": [
-      "GXReadXfRasMetric"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/GXSetGPMetric.c",
+    "source": "dol/gx/GXPerf.c",
     "symbols": [
       "GXSetGPMetric",
-      "fn_80039954"
+      "fn_80039954",
+      "GXClearGPMetric",
+      "fn_80039B0C",
+      "fn_80039B38",
+      "GXReadXfRasMetric"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.2.5n",
-    "extra_cflags": []
+    "extra_cflags": [],
+    "collapsed": true
   },
   {
     "module": "main",
@@ -23689,36 +23675,14 @@
   },
   {
     "module": "main",
-    "source": "dol/__GXXfVtxSpecs.c",
+    "source": "dol/gx/GXAttr.c",
     "symbols": [
       "__GXXfVtxSpecs",
       "GXSetVtxDesc",
       "GXSetVtxDescv",
       "__GXSetVCD",
       "__GXCalculateVLim",
-      "GXGetVtxDesc"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true,
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ]
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80032EB8.c",
-    "symbols": [
+      "GXGetVtxDesc",
       "fn_80032EB8",
       "GXClearVtxDesc",
       "GXSetVtxAttrFmt",
@@ -23732,9 +23696,9 @@
       "GXSetNumTexGens"
     ],
     "status": "matching",
+    "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.2.5n",
     "collapsed": true,
-    "matching_for": ["GFZE01", "GFZJ01"],
     "extra_cflags": [
       "-use_lmw_stmw",
       "on",
@@ -23931,18 +23895,6 @@
       "...bss.0": "lbl_801783A0",
       "lbl_801783A0": "lbl_801783A0"
     }
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80039B0C.c",
-    "symbols": [
-      "fn_80039B0C",
-      "fn_80039B38"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true,
-    "matching_for": ["GFZE01", "GFZJ01"]
   },
   {
     "module": "main",

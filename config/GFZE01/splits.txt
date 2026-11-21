@@ -149,9 +149,9 @@ dol/fn_8002A7C4.c:
 dol/CARDFormatAsync.c:
 	.text       start:0x8002E90C end:0x8002E954
 
-dol/__GXXfVtxSpecs.c:
-	.text       start:0x80032370 end:0x80032EB8 align:4
-	.data       start:0x8012AD40 end:0x8012AE78 align:32
+dol/gx/GXAttr.c:
+	.text       start:0x80032370 end:0x80033D8C align:4
+	.data       start:0x8012AD40 end:0x8012AFB8 align:32
 
 dol/fn_800421C0.c:
 	.text       start:0x800421C0 end:0x800421CC
@@ -466,9 +466,6 @@ dol/fn_80054608.c:
 dol/fn_8007A150.c:
 	.text       start:0x8007A150 end:0x8007A23C align:4
 
-dol/fn_80039B0C.c:
-	.text       start:0x80039B0C end:0x80039B7C align:4
-
 dol/fn_80024E3C.c:
 	.text       start:0x80024E3C end:0x80024E6C align:4
 
@@ -585,9 +582,6 @@ dol/main.c:
 
 dol/fn_800743C4.c:
 	.text       start:0x800743C4 end:0x80074438 align:4
-
-dol/GXClearGPMetric.c:
-	.text       start:0x80039AFC end:0x80039B0C align:4
 
 dol/fn_80072864.c:
 	.text       start:0x80072864 end:0x800728A8 align:4
@@ -1435,9 +1429,6 @@ dol/DVDCancelAsync.c:
 	.text       start:0x800198FC end:0x80019E64 align:4
 	.data       start:0x801240A8 end:0x80124110 align:8
 
-dol/GXReadXfRasMetric.c:
-	.text       start:0x80039B7C end:0x80039C40 align:4
-
 dol/__DSPHandler.c:
 	.text       start:0x80028FA0 end:0x800293C4 align:4
 
@@ -2014,10 +2005,6 @@ dol/gx/GXMisc.c:
 dol/fn_8007AA7C.c:
 	.text       start:0x8007AA7C end:0x8007AB58 align:4
 
-dol/fn_80032EB8.c:
-	.text       start:0x80032EB8 end:0x80033D8C align:4
-	.data       start:0x8012AE78 end:0x8012AFB8 align:8
-
 dol/fn_8007E96C.c:
 	.text       start:0x8007E96C end:0x8007EA58 align:4
 
@@ -2159,8 +2146,8 @@ dol/VI.c:
 	.sbss       start:0x801A6920 end:0x801A6978 align:8
 	.bss        start:0x8015CF68 end:0x8015D0B0 align:8
 
-dol/GXSetGPMetric.c:
-	.text       start:0x8003910C end:0x80039AFC align:4
+dol/gx/GXPerf.c:
+	.text       start:0x8003910C end:0x80039C40 align:4
 	.data       start:0x8012B400 end:0x8012B548 align:32
 
 dol/fn_8003E9EC.c:
