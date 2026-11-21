@@ -8020,20 +8020,6 @@
   },
   {
     "module": "main",
-    "source": "dol/GXLoadTexObj.c",
-    "symbols": [
-      "GXLoadTexObj",
-      "GXInitTexCacheRegion",
-      "GXInitTlutRegion",
-      "GXInvalidateTexAll"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
     "source": "dol/GXReadXfRasMetric.c",
     "symbols": [
       "GXReadXfRasMetric"
@@ -8162,21 +8148,6 @@
       "GXSetZTexture",
       "GXSetTevOrder",
       "GXSetNumTevStages"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/GXSetTexRegionCallback.c",
-    "symbols": [
-      "GXSetTexRegionCallback",
-      "GXSetTlutRegionCallback",
-      "fn_800365B4",
-      "__GXSetSUTexRegs",
-      "__GXSetTmemConfig"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
@@ -23814,7 +23785,7 @@
   },
   {
     "module": "main",
-    "source": "dol/GXGetTexBufferSize.c",
+    "source": "dol/gx/GXTexture.c",
     "symbols": [
       "GXGetTexBufferSize",
       "__GetImageTileCount",
@@ -23827,10 +23798,19 @@
       "GXGetTexObjHeight",
       "fn_80036104",
       "fn_8003610C",
-      "fn_800361F0"
+      "fn_800361F0",
+      "GXLoadTexObj",
+      "GXInitTexCacheRegion",
+      "GXInitTlutRegion",
+      "GXInvalidateTexAll",
+      "GXSetTexRegionCallback",
+      "GXSetTlutRegionCallback",
+      "fn_800365B4",
+      "__GXSetSUTexRegs",
+      "__GXSetTmemConfig"
     ],
     "status": "matching",
-    "matching_for": ["GFZE01"],
+    "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.2.5n",
     "collapsed": true,
     "pool": {
@@ -23843,7 +23823,11 @@
       "@222": "lbl_801A70D8",
       "@223": "lbl_801A70DC",
       "@235": "lbl_801A70E8"
-    }
+    },
+    "extra_cflags": [
+      "-inline",
+      "on,noauto"
+    ]
   },
   {
     "module": "main",

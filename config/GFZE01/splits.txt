@@ -709,9 +709,6 @@ dol/WriteCallback.c:
 dol/fn_8002F570.c:
 	.text       start:0x8002F570 end:0x8002F5B8 align:4
 
-dol/GXLoadTexObj.c:
-	.text       start:0x80036388 end:0x8003658C align:4
-
 dol/fn_800433A4.c:
 	.text       start:0x800433A4 end:0x80043460 align:4
 
@@ -1155,9 +1152,6 @@ dol/fn_80028130.c:
 
 dol/cbForUnrecoveredErrorRetry.c:
 	.text       start:0x80017E10 end:0x80017ED0 align:4
-
-dol/GXSetTexRegionCallback.c:
-	.text       start:0x8003658C end:0x80036A28 align:4
 
 dol/AIStartDMA.c:
 	.text       start:0x8001DFCC end:0x8001DFE4 align:4
@@ -2030,8 +2024,8 @@ dol/fn_8007E96C.c:
 dol/fn_8000591C.c:
 	.text       start:0x8000591C end:0x80005A08 align:4
 
-dol/GXGetTexBufferSize.c:
-	.text       start:0x80035A2C end:0x80036388 align:4
+dol/gx/GXTexture.c:
+	.text       start:0x80035A2C end:0x80036A28 align:4
 	.data       start:0x8012B140 end:0x8012B368 align:32
 
 dol/ddh_cc_read.c:

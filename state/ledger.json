@@ -1,5 +1,5 @@
 {
- "generated": 1795290219,
+ "generated": 1795290578,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -21764,7 +21764,7 @@
   {
    "symbol": "GXGetTexBufferSize",
    "module": "main",
-   "unit": "dol/GXGetTexBufferSize.c",
+   "unit": "dol/gx/GXTexture.c",
    "addr": 2147703340,
    "size": 348,
    "status": "matched",
@@ -21781,7 +21781,7 @@
   {
    "symbol": "__GetImageTileCount",
    "module": "main",
-   "unit": "dol/GXGetTexBufferSize.c",
+   "unit": "dol/gx/GXTexture.c",
    "addr": 2147703688,
    "size": 200,
    "status": "matched",
@@ -21798,7 +21798,7 @@
   {
    "symbol": "GXInitTexObj",
    "module": "main",
-   "unit": "dol/GXGetTexBufferSize.c",
+   "unit": "dol/gx/GXTexture.c",
    "addr": 2147703888,
    "size": 628,
    "status": "matched",
@@ -21815,7 +21815,7 @@
   {
    "symbol": "GXInitTexObjLOD",
    "module": "main",
-   "unit": "dol/GXGetTexBufferSize.c",
+   "unit": "dol/gx/GXTexture.c",
    "addr": 2147704516,
    "size": 404,
    "status": "matched",
@@ -21832,7 +21832,7 @@
   {
    "symbol": "fn_80036058",
    "module": "main",
-   "unit": "dol/GXGetTexBufferSize.c",
+   "unit": "dol/gx/GXTexture.c",
    "addr": 2147704920,
    "size": 24,
    "status": "matched",
@@ -21849,7 +21849,7 @@
   {
    "symbol": "fn_80036070",
    "module": "main",
-   "unit": "dol/GXGetTexBufferSize.c",
+   "unit": "dol/gx/GXTexture.c",
    "addr": 2147704944,
    "size": 104,
    "status": "matched",
@@ -21866,7 +21866,7 @@
   {
    "symbol": "fn_800360D8",
    "module": "main",
-   "unit": "dol/GXGetTexBufferSize.c",
+   "unit": "dol/gx/GXTexture.c",
    "addr": 2147705048,
    "size": 12,
    "status": "matched",
@@ -21883,7 +21883,7 @@
   {
    "symbol": "GXGetTexObjWidth",
    "module": "main",
-   "unit": "dol/GXGetTexBufferSize.c",
+   "unit": "dol/gx/GXTexture.c",
    "addr": 2147705060,
    "size": 16,
    "status": "matched",
@@ -21900,7 +21900,7 @@
   {
    "symbol": "GXGetTexObjHeight",
    "module": "main",
-   "unit": "dol/GXGetTexBufferSize.c",
+   "unit": "dol/gx/GXTexture.c",
    "addr": 2147705076,
    "size": 16,
    "status": "matched",
@@ -21917,7 +21917,7 @@
   {
    "symbol": "fn_80036104",
    "module": "main",
-   "unit": "dol/GXGetTexBufferSize.c",
+   "unit": "dol/gx/GXTexture.c",
    "addr": 2147705092,
    "size": 8,
    "status": "matched",
@@ -21934,7 +21934,7 @@
   {
    "symbol": "fn_8003610C",
    "module": "main",
-   "unit": "dol/GXGetTexBufferSize.c",
+   "unit": "dol/gx/GXTexture.c",
    "addr": 2147705100,
    "size": 228,
    "status": "matched",
@@ -21951,7 +21951,7 @@
   {
    "symbol": "fn_800361F0",
    "module": "main",
-   "unit": "dol/GXGetTexBufferSize.c",
+   "unit": "dol/gx/GXTexture.c",
    "addr": 2147705328,
    "size": 408,
    "status": "matched",
@@ -21968,7 +21968,7 @@
   {
    "symbol": "GXLoadTexObj",
    "module": "main",
-   "unit": "dol/GXLoadTexObj.c",
+   "unit": "dol/gx/GXTexture.c",
    "addr": 2147705736,
    "size": 84,
    "status": "matched",
@@ -21985,7 +21985,7 @@
   {
    "symbol": "GXInitTexCacheRegion",
    "module": "main",
-   "unit": "dol/GXLoadTexObj.c",
+   "unit": "dol/gx/GXTexture.c",
    "addr": 2147705820,
    "size": 288,
    "status": "matched",
@@ -22002,7 +22002,7 @@
   {
    "symbol": "GXInitTlutRegion",
    "module": "main",
-   "unit": "dol/GXLoadTexObj.c",
+   "unit": "dol/gx/GXTexture.c",
    "addr": 2147706108,
    "size": 72,
    "status": "matched",
@@ -22019,7 +22019,7 @@
   {
    "symbol": "GXInvalidateTexAll",
    "module": "main",
-   "unit": "dol/GXLoadTexObj.c",
+   "unit": "dol/gx/GXTexture.c",
    "addr": 2147706180,
    "size": 72,
    "status": "matched",
@@ -22036,7 +22036,7 @@
   {
    "symbol": "GXSetTexRegionCallback",
    "module": "main",
-   "unit": "dol/GXSetTexRegionCallback.c",
+   "unit": "dol/gx/GXTexture.c",
    "addr": 2147706252,
    "size": 20,
    "status": "matched",
@@ -22053,7 +22053,7 @@
   {
    "symbol": "GXSetTlutRegionCallback",
    "module": "main",
-   "unit": "dol/GXSetTexRegionCallback.c",
+   "unit": "dol/gx/GXTexture.c",
    "addr": 2147706272,
    "size": 20,
    "status": "matched",
@@ -22070,7 +22070,7 @@
   {
    "symbol": "fn_800365B4",
    "module": "main",
-   "unit": "dol/GXSetTexRegionCallback.c",
+   "unit": "dol/gx/GXTexture.c",
    "addr": 2147706292,
    "size": 184,
    "status": "matched",
@@ -22087,7 +22087,7 @@
   {
    "symbol": "__GXSetSUTexRegs",
    "module": "main",
-   "unit": "dol/GXSetTexRegionCallback.c",
+   "unit": "dol/gx/GXTexture.c",
    "addr": 2147706476,
    "size": 380,
    "status": "matched",
@@ -22104,7 +22104,7 @@
   {
    "symbol": "__GXSetTmemConfig",
    "module": "main",
-   "unit": "dol/GXSetTexRegionCallback.c",
+   "unit": "dol/gx/GXTexture.c",
    "addr": 2147706856,
    "size": 576,
    "status": "matched",

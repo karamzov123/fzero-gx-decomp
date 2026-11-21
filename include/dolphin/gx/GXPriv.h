@@ -227,11 +227,11 @@ typedef struct _GXTlutObj {
 } GXTlutObj;
 
 typedef struct _GXTexRegion {
-    u32 unk0;
-    u32 unk4;
+    u32 tmem_even;
+    u32 tmem_odd;
     u32 unk8;
-    u8 unkC;
-    u8 unkD;
+    u8 enable;
+    u8 is_32bit;
 } GXTexRegion;
 
 typedef struct _GXTlutRegion {

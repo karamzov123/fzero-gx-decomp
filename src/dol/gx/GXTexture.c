@@ -3,6 +3,7 @@
 #include "types.h"
 #include <types.h>
 #include "sdk_addresses.h"
+#include "dolphin/hw_regs.h"
 
 // The write-gather pipe is a memory-mapped hardware register.
 #define GX_FIFO_U8 (*(volatile u8 *)0xCC008000u) // fzgx-allow: A2 hardware register
@@ -365,11 +366,11 @@ void fn_800361F0(GXTexObj *obj, GXTexRegion *region, GXTexMapID map) {
         (internalObj->texture_size &
          ~(((1 << ((7 - 0 + 1))) - 1) << (31 - (0) - ((7 - 0 + 1)) + 1))) |
         ((int)(lbl_801A6548[map]) << (31 - (0) - ((7 - 0 + 1)) + 1));
-    (internalRegion->unk0) =
-        (internalRegion->unk0 & ~(((1 << ((7 - 0 + 1))) - 1) << (31 - (0) - ((7 - 0 + 1)) + 1))) |
+    (internalRegion->tmem_even) =
+        (internalRegion->tmem_even & ~(((1 << ((7 - 0 + 1))) - 1) << (31 - (0) - ((7 - 0 + 1)) + 1))) |
         ((int)(lbl_801A6550[map]) << (31 - (0) - ((7 - 0 + 1)) + 1));
-    (internalRegion->unk4) =
-        (internalRegion->unk4 & ~(((1 << ((7 - 0 + 1))) - 1) << (31 - (0) - ((7 - 0 + 1)) + 1))) |
+    (internalRegion->tmem_odd) =
+        (internalRegion->tmem_odd & ~(((1 << ((7 - 0 + 1))) - 1) << (31 - (0) - ((7 - 0 + 1)) + 1))) |
         ((int)(lbl_801A6558[map]) << (31 - (0) - ((7 - 0 + 1)) + 1));
     (internalObj->texture_address) =
         (internalObj->texture_address &
@@ -385,10 +386,10 @@ void fn_800361F0(GXTexObj *obj, GXTexRegion *region, GXTexMapID map) {
     GXWGFifo.s32 = (internalObj->texture_size);
     ;
     GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
-    GXWGFifo.s32 = (internalRegion->unk0);
+    GXWGFifo.s32 = (internalRegion->tmem_even);
     ;
     GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
-    GXWGFifo.s32 = (internalRegion->unk4);
+    GXWGFifo.s32 = (internalRegion->tmem_odd);
     ;
     GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
     GXWGFifo.s32 = (internalObj->texture_address);
@@ -406,4 +407,280 @@ void fn_800361F0(GXTexObj *obj, GXTexRegion *region, GXTexMapID map) {
     gx->tMode0[map] = internalObj->texture_filter;
     gx->dirtyState |= GX_DIRTY_SU_TEX;
     gx->bpSentNot = ((GXBool)0);
+}
+
+void GXLoadTexObj(GXTexObj *obj, GXTexMapID id) {
+    GXTexRegion *region = gx->texRegionCallback(obj, id);
+
+    fn_800361F0(obj, region, id);
+}
+
+void GXInitTexCacheRegion(GXTexRegion *region, u8 enable, u32 tmem_even, s32 size_even,
+                          u32 tmem_odd, s32 size_odd) {
+    s32 even;
+    s32 odd;
+
+    switch (size_even) {
+    case 0:
+        even = 3;
+        break;
+    case 1:
+        even = 4;
+        break;
+    case 2:
+        even = 5;
+        break;
+    default:
+        break;
+        even = 5;
+    }
+
+    region->tmem_even = 0;
+    region->tmem_even = (region->tmem_even & ~0x7FFFu) | (tmem_even >> 5);
+    region->tmem_even = (region->tmem_even & ~0x38000u) | (even << 15);
+    region->tmem_even = (region->tmem_even & ~0x1C0000u) | (even << 18);
+    region->tmem_even &= ~0x200000u;
+
+    switch (size_odd) {
+    case 0:
+        even = 3;
+        break;
+    case 1:
+        even = 4;
+        break;
+    case 2:
+        even = 5;
+        break;
+    case 3:
+        even = 0;
+        break;
+    default:
+        break;
+        even = 0;
+    }
+
+    region->tmem_odd = 0;
+    region->tmem_odd = (region->tmem_odd & ~0x7FFFu) | (tmem_odd >> 5);
+    region->tmem_odd = (region->tmem_odd & ~0x38000u) | (even << 15);
+    region->tmem_odd = (region->tmem_odd & ~0x1C0000u) | (even << 18);
+
+    region->enable = enable;
+    region->is_32bit = 1;
+}
+
+void GXInitTlutRegion(GXTlutRegion *arg0, u32 arg1, u32 arg2) {
+    arg0->unk0 = 0;
+    arg0->unk0 = ((arg0->unk0 & ~0x3FF) | ((u32)(arg1 - 0x80000) >> 9));
+    arg0->unk0 = ((arg0->unk0 & 0xFFE003FF) | (arg2 << 10));
+    arg0->unk0 = ((arg0->unk0 & 0xFFFFFF) | 0x65000000);
+}
+
+void __GXFlushTextureState(void);
+
+void GXInvalidateTexAll(void) {
+    u32 v0;
+    __GXFlushTextureState();
+    *(u8 *)((u8 *)0xCC010000 + -32768) = 97;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+    v0 = (0x66000000 + 4096);
+    *(u32 *)((u8 *)0xCC010000 + -32768) = v0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+    *(u8 *)((u8 *)0xCC010000 + -32768) = 97;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+    *(u32 *)((u8 *)0xCC010000 + -32768) = (0x66000000 + 4352);  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+    __GXFlushTextureState();
+}
+
+GXTexRegionCallback GXSetTexRegionCallback(GXTexRegionCallback callback) {
+    GXTexRegionCallback old = gx->texRegionCallback;
+
+    gx->texRegionCallback = callback;
+    return old;
+}
+
+GXTlutRegionCallback GXSetTlutRegionCallback(GXTlutRegionCallback callback) {
+    GXTlutRegionCallback old = gx->tlutRegionCallback;
+
+    gx->tlutRegionCallback = callback;
+    return old;
+}
+
+#define SET_REG_FIELD(reg, size, shift, val) \
+    ((reg) = ((reg) & ~(((1 << (size)) - 1) << (shift))) | ((val) << (shift)))
+#define GET_REG_FIELD(reg, size, shift) (((reg) >> (shift)) & ((1 << (size)) - 1))
+
+void fn_800365B4(u32 tex_map, u32 tex_coord) {
+    u32 width;
+    u32 height;
+    u8 s_bias;
+    u8 t_bias;
+    width = GET_REG_FIELD(gx->tImage0[tex_map], 10, 0);
+    height = (gx->tImage0[tex_map] & 0xffc00) >> 10;
+    SET_REG_FIELD(gx->suTs0[tex_coord], 16, 0, width);
+    SET_REG_FIELD(gx->suTs1[tex_coord], 16, 0, height);
+    s_bias = GET_REG_FIELD(gx->tMode0[tex_map], 2, 0) == 1;
+    t_bias = GET_REG_FIELD(gx->tMode0[tex_map], 2, 2) == 1;
+    SET_REG_FIELD(gx->suTs0[tex_coord], 1, 16, s_bias);
+    SET_REG_FIELD(gx->suTs1[tex_coord], 1, 16, t_bias);
+    GX_WRITE_RAS_REG(gx->suTs0[tex_coord]);
+    GX_WRITE_RAS_REG(gx->suTs1[tex_coord]);
+    gx->bpSentNot = 0;
+}
+
+void __GXSetSUTexRegs(void) {
+    u32 i;
+    u32 b;
+    u32 a;
+    u32 c;
+    u32 d;
+    u32 stackFiller;
+    if (gx->tcsManEnab != 0xff) {
+        a = ((gx->genMode) >> (31 - (18) - ((21 - 18 + 1)) + 1) & ((1 << ((21 - 18 + 1))) - 1)) + 1;
+        b = ((gx->genMode) >> (31 - (13) - ((15 - 13 + 1)) + 1) & ((1 << ((15 - 13 + 1))) - 1));
+        for (i = 0; i < b; i++) {
+            switch (i) {
+            case 0:
+                c = ((gx->iref) >> (31 - (29) - ((31 - 29 + 1)) + 1) &
+                     ((1 << ((31 - 29 + 1))) - 1));
+                d = ((gx->iref) >> (31 - (26) - ((28 - 26 + 1)) + 1) &
+                     ((1 << ((28 - 26 + 1))) - 1));
+                break;
+            case 1:
+                c = ((gx->iref) >> (31 - (23) - ((25 - 23 + 1)) + 1) &
+                     ((1 << ((25 - 23 + 1))) - 1));
+                d = ((gx->iref) >> (31 - (20) - ((22 - 20 + 1)) + 1) &
+                     ((1 << ((22 - 20 + 1))) - 1));
+                break;
+            case 2:
+                c = ((gx->iref) >> (31 - (17) - ((19 - 17 + 1)) + 1) &
+                     ((1 << ((19 - 17 + 1))) - 1));
+                d = ((gx->iref) >> (31 - (14) - ((16 - 14 + 1)) + 1) &
+                     ((1 << ((16 - 14 + 1))) - 1));
+                break;
+            case 3:
+                c = ((gx->iref) >> (31 - (11) - ((13 - 11 + 1)) + 1) &
+                     ((1 << ((13 - 11 + 1))) - 1));
+                d = ((gx->iref) >> (31 - (8) - ((10 - 8 + 1)) + 1) & ((1 << ((10 - 8 + 1))) - 1));
+                break;
+            }
+            if (!(gx->tcsManEnab & (1 << d))) {
+                fn_800365B4(c, d);
+            }
+        }
+        for (i = 0; i < a; i++) {
+            u32 *g = &gx->tref[i / 2];
+            c = gx->texmapId[i] & ~0x100;
+            if (i & 1) {
+                d = ((*g) >> (31 - (14) - ((16 - 14 + 1)) + 1) & ((1 << ((16 - 14 + 1))) - 1));
+            } else {
+                d = ((*g) >> (31 - (26) - ((28 - 26 + 1)) + 1) & ((1 << ((28 - 26 + 1))) - 1));
+            }
+            if (c != 0xff && !(gx->tcsManEnab & (1 << d)) && gx->tevTcEnab & (1 << i)) {
+                fn_800365B4(c, d);
+            }
+        }
+    }
+}
+
+void __GXSetTmemConfig(u32 config) {
+    switch (config) {
+    case 1:
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0x8c0d8000);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0x900dc000);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0x8d0d8800);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0x910dc800);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0x8e0d9000);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0x920dd000);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0x8f0d9800);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0x930dd800);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0xac0da000);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0xb00de000);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0xad0da800);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0xb10de800);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0xae0db000);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0xb20df000);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0xaf0db800);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0xb30df800);
+        ;
+        break;
+    case 0:
+    default:
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0x8c0d8000);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0x900dc000);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0x8d0d8400);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0x910dc400);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0x8e0d8800);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0x920dc800);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0x8f0d8c00);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0x930dcc00);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0xac0d9000);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0xb00dd000);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0xad0d9400);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0xb10dd400);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0xae0d9800);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0xb20dd800);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0xaf0d9c00);
+        ;
+        GXWGFifo.s8 = GX_FIFO_CMD_LOAD_BP_REG;
+        GXWGFifo.s32 = (0xb30ddc00);
+        ;
+        break;
+    }
 }
