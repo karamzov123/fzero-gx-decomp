@@ -1,7 +1,8 @@
-#include <types.h>
-#include "sdk_addresses.h"
 #include <dolphin/gx.h>
 #include <dolphin/gx/GXPriv.h>
+#include <types.h>
+#include "sdk_addresses.h"
+#include "types.h"
 
 void GXSetTevIndirect(GXTevStageID tevStage, GXIndTexStageID texStage, GXIndTexFormat texFmt,
                  GXIndTexBiasSel biasSel, GXIndTexMtxID mtxID, GXIndTexWrap wrapS,
@@ -182,4 +183,17 @@ void GXSetIndTexOrder(GXIndTexStageID stage, GXTexCoordID coord, GXTexMapID map)
     GXWGFifo.u8 = 0x61;
     GXWGFifo.s32 = gx->iref;
     GXSetWasteFlags();
+}
+
+struct GXState {
+    u8 pad_000[0x204];
+    u32 state_204;
+    u8 pad_208[0x2EC];
+    u32 state_4F4;
+};
+
+void GXSetNumIndStages(u32 arg0) {
+    struct GXState *state = (struct GXState *)gx;
+    state->state_204 = (state->state_204 & 0xFFF8FFFF) | ((arg0 & 0xFF) << 16);
+    state->state_4F4 |= 6;
 }

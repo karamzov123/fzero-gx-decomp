@@ -1,5 +1,5 @@
 {
- "generated": 1795286582,
+ "generated": 1795288261,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -20217,7 +20217,7 @@
   {
    "symbol": "GXCPInterruptHandler",
    "module": "main",
-   "unit": "dol/GXCPInterruptHandler.c",
+   "unit": "dol/gx/GXFifo.c",
    "addr": 2147687248,
    "size": 308,
    "status": "matched",
@@ -20234,7 +20234,7 @@
   {
    "symbol": "GXInitFifoBase",
    "module": "main",
-   "unit": "dol/GXCPInterruptHandler.c",
+   "unit": "dol/gx/GXFifo.c",
    "addr": 2147687556,
    "size": 108,
    "status": "matched",
@@ -20251,7 +20251,7 @@
   {
    "symbol": "GXInitFifoPtrs",
    "module": "main",
-   "unit": "dol/GXInitFifoPtrs.c",
+   "unit": "dol/gx/GXFifo.c",
    "addr": 2147687664,
    "size": 112,
    "status": "matched",
@@ -20268,7 +20268,7 @@
   {
    "symbol": "fn_80031D60",
    "module": "main",
-   "unit": "dol/GXInitFifoPtrs.c",
+   "unit": "dol/gx/GXFifo.c",
    "addr": 2147687776,
    "size": 12,
    "status": "matched",
@@ -20285,7 +20285,7 @@
   {
    "symbol": "GXSetCPUFifo",
    "module": "main",
-   "unit": "dol/GXInitFifoPtrs.c",
+   "unit": "dol/gx/GXFifo.c",
    "addr": 2147687788,
    "size": 272,
    "status": "matched",
@@ -20302,7 +20302,7 @@
   {
    "symbol": "GXSetGPFifo",
    "module": "main",
-   "unit": "dol/GXSetGPFifo.c",
+   "unit": "dol/gx/GXFifo.c",
    "addr": 2147688060,
    "size": 376,
    "status": "matched",
@@ -20319,7 +20319,7 @@
   {
    "symbol": "fn_80031FF4",
    "module": "main",
-   "unit": "dol/GXSetGPFifo.c",
+   "unit": "dol/gx/GXFifo.c",
    "addr": 2147688436,
    "size": 32,
    "status": "matched",
@@ -20336,7 +20336,7 @@
   {
    "symbol": "__GXSaveCPUFifoAux",
    "module": "main",
-   "unit": "dol/__GXSaveCPUFifoAux.c",
+   "unit": "dol/gx/GXFifo.c",
    "addr": 2147688468,
    "size": 220,
    "status": "matched",
@@ -20353,7 +20353,7 @@
   {
    "symbol": "GXGetGPStatus",
    "module": "main",
-   "unit": "dol/__GXSaveCPUFifoAux.c",
+   "unit": "dol/gx/GXFifo.c",
    "addr": 2147688688,
    "size": 80,
    "status": "matched",
@@ -20370,7 +20370,7 @@
   {
    "symbol": "GXGetFifoPtrs",
    "module": "main",
-   "unit": "dol/__GXSaveCPUFifoAux.c",
+   "unit": "dol/gx/GXFifo.c",
    "addr": 2147688768,
    "size": 152,
    "status": "matched",
@@ -20812,7 +20812,7 @@
   {
    "symbol": "GXSetNumTexGens",
    "module": "main",
-   "unit": "dol/GXSetNumTexGens.c",
+   "unit": "dol/GXGetVtxAttrFmt.c",
    "addr": 2147695948,
    "size": 64,
    "status": "matched",
@@ -21356,7 +21356,7 @@
   {
    "symbol": "GXAdjustForOverscan",
    "module": "main",
-   "unit": "dol/GXAdjustForOverscan.c",
+   "unit": "dol/gx/GXFrameBuf.c",
    "addr": 2147699004,
    "size": 288,
    "status": "matched",
@@ -21373,7 +21373,7 @@
   {
    "symbol": "GXSetDispCopySrc",
    "module": "main",
-   "unit": "dol/GXAdjustForOverscan.c",
+   "unit": "dol/gx/GXFrameBuf.c",
    "addr": 2147699292,
    "size": 144,
    "status": "matched",
@@ -21390,7 +21390,7 @@
   {
    "symbol": "GXSetTexCopySrc",
    "module": "main",
-   "unit": "dol/GXAdjustForOverscan.c",
+   "unit": "dol/gx/GXFrameBuf.c",
    "addr": 2147699436,
    "size": 144,
    "status": "matched",
@@ -21407,7 +21407,7 @@
   {
    "symbol": "fn_80034B7C",
    "module": "main",
-   "unit": "dol/GXAdjustForOverscan.c",
+   "unit": "dol/gx/GXFrameBuf.c",
    "addr": 2147699580,
    "size": 60,
    "status": "matched",
@@ -21424,7 +21424,7 @@
   {
    "symbol": "fn_80034BB8",
    "module": "main",
-   "unit": "dol/GXAdjustForOverscan.c",
+   "unit": "dol/gx/GXFrameBuf.c",
    "addr": 2147699640,
    "size": 340,
    "status": "matched",
@@ -21441,7 +21441,7 @@
   {
    "symbol": "GXSetDispCopyFrame2Field",
    "module": "main",
-   "unit": "dol/GXAdjustForOverscan.c",
+   "unit": "dol/gx/GXFrameBuf.c",
    "addr": 2147699980,
    "size": 40,
    "status": "matched",
@@ -21458,7 +21458,7 @@
   {
    "symbol": "fn_80034D34",
    "module": "main",
-   "unit": "dol/fn_80034D34.c",
+   "unit": "dol/gx/GXFrameBuf.c",
    "addr": 2147700020,
    "size": 104,
    "status": "matched",
@@ -21475,7 +21475,7 @@
   {
    "symbol": "GXSetDispCopyYScale",
    "module": "main",
-   "unit": "dol/fn_80034D34.c",
+   "unit": "dol/gx/GXFrameBuf.c",
    "addr": 2147700124,
    "size": 200,
    "status": "matched",
@@ -21492,7 +21492,7 @@
   {
    "symbol": "GXSetCopyClear",
    "module": "main",
-   "unit": "dol/fn_80034D34.c",
+   "unit": "dol/gx/GXFrameBuf.c",
    "addr": 2147700324,
    "size": 104,
    "status": "matched",
@@ -21509,7 +21509,7 @@
   {
    "symbol": "fn_80034ECC",
    "module": "main",
-   "unit": "dol/fn_80034D34.c",
+   "unit": "dol/gx/GXFrameBuf.c",
    "addr": 2147700428,
    "size": 552,
    "status": "matched",
@@ -21526,7 +21526,7 @@
   {
    "symbol": "GXSetDispCopyGamma",
    "module": "main",
-   "unit": "dol/GXSetDispCopyGamma.c",
+   "unit": "dol/gx/GXFrameBuf.c",
    "addr": 2147700980,
    "size": 28,
    "status": "matched",
@@ -21543,7 +21543,7 @@
   {
    "symbol": "fn_80035110",
    "module": "main",
-   "unit": "dol/fn_80035110.c",
+   "unit": "dol/gx/GXFrameBuf.c",
    "addr": 2147701008,
    "size": 348,
    "status": "matched",
@@ -21560,7 +21560,7 @@
   {
    "symbol": "fn_8003526C",
    "module": "main",
-   "unit": "dol/fn_80035110.c",
+   "unit": "dol/gx/GXFrameBuf.c",
    "addr": 2147701356,
    "size": 380,
    "status": "matched",
@@ -21577,7 +21577,7 @@
   {
    "symbol": "GXClearBoundingBox",
    "module": "main",
-   "unit": "dol/fn_80035110.c",
+   "unit": "dol/gx/GXFrameBuf.c",
    "addr": 2147701736,
    "size": 56,
    "status": "matched",
@@ -22189,7 +22189,7 @@
   {
    "symbol": "GXSetNumIndStages",
    "module": "main",
-   "unit": "dol/GXSetNumIndStages.c",
+   "unit": "dol/GXSetTevIndirect.c",
    "addr": 2147708596,
    "size": 40,
    "status": "matched",
@@ -22257,7 +22257,7 @@
   {
    "symbol": "GXSetTevOp",
    "module": "main",
-   "unit": "dol/GXSetTevOp.c",
+   "unit": "dol/gx/GXTev.c",
    "addr": 2147708948,
    "size": 140,
    "status": "matched",
@@ -22274,7 +22274,7 @@
   {
    "symbol": "fn_800370A0",
    "module": "main",
-   "unit": "dol/fn_800370A0.c",
+   "unit": "dol/gx/GXTev.c",
    "addr": 2147709088,
    "size": 68,
    "status": "matched",
@@ -22291,7 +22291,7 @@
   {
    "symbol": "fn_800370E4",
    "module": "main",
-   "unit": "dol/fn_800370A0.c",
+   "unit": "dol/gx/GXTev.c",
    "addr": 2147709156,
    "size": 68,
    "status": "matched",
@@ -22308,7 +22308,7 @@
   {
    "symbol": "fn_80037128",
    "module": "main",
-   "unit": "dol/fn_80037128.c",
+   "unit": "dol/gx/GXTev.c",
    "addr": 2147709224,
    "size": 104,
    "status": "matched",
@@ -22325,7 +22325,7 @@
   {
    "symbol": "fn_80037190",
    "module": "main",
-   "unit": "dol/fn_80037128.c",
+   "unit": "dol/gx/GXTev.c",
    "addr": 2147709328,
    "size": 104,
    "status": "matched",
@@ -22342,7 +22342,7 @@
   {
    "symbol": "fn_800371F8",
    "module": "main",
-   "unit": "dol/fn_80037128.c",
+   "unit": "dol/gx/GXTev.c",
    "addr": 2147709432,
    "size": 116,
    "status": "matched",
@@ -22359,7 +22359,7 @@
   {
    "symbol": "fn_8003726C",
    "module": "main",
-   "unit": "dol/fn_80037128.c",
+   "unit": "dol/gx/GXTev.c",
    "addr": 2147709548,
    "size": 116,
    "status": "matched",
@@ -22376,7 +22376,7 @@
   {
    "symbol": "fn_800372E0",
    "module": "main",
-   "unit": "dol/fn_80037128.c",
+   "unit": "dol/gx/GXTev.c",
    "addr": 2147709664,
    "size": 116,
    "status": "matched",
@@ -22393,7 +22393,7 @@
   {
    "symbol": "GXSetTevKColorSel",
    "module": "main",
-   "unit": "dol/fn_80037128.c",
+   "unit": "dol/gx/GXTev.c",
    "addr": 2147709780,
    "size": 108,
    "status": "matched",
@@ -22410,7 +22410,7 @@
   {
    "symbol": "GXSetTevKAlphaSel",
    "module": "main",
-   "unit": "dol/fn_80037128.c",
+   "unit": "dol/gx/GXTev.c",
    "addr": 2147709888,
    "size": 108,
    "status": "matched",
@@ -22427,7 +22427,7 @@
   {
    "symbol": "GXSetTevSwapMode",
    "module": "main",
-   "unit": "dol/fn_80037128.c",
+   "unit": "dol/gx/GXTev.c",
    "addr": 2147709996,
    "size": 84,
    "status": "matched",
@@ -22444,7 +22444,7 @@
   {
    "symbol": "GXSetTevSwapModeTable",
    "module": "main",
-   "unit": "dol/fn_80037128.c",
+   "unit": "dol/gx/GXTev.c",
    "addr": 2147710080,
    "size": 152,
    "status": "matched",
@@ -22461,7 +22461,7 @@
   {
    "symbol": "GXSetAlphaCompare",
    "module": "main",
-   "unit": "dol/fn_80037128.c",
+   "unit": "dol/gx/GXTev.c",
    "addr": 2147710232,
    "size": 84,
    "status": "matched",
@@ -22478,7 +22478,7 @@
   {
    "symbol": "GXSetZTexture",
    "module": "main",
-   "unit": "dol/fn_80037128.c",
+   "unit": "dol/gx/GXTev.c",
    "addr": 2147710316,
    "size": 132,
    "status": "matched",
@@ -22495,7 +22495,7 @@
   {
    "symbol": "GXSetTevOrder",
    "module": "main",
-   "unit": "dol/fn_80037128.c",
+   "unit": "dol/gx/GXTev.c",
    "addr": 2147710448,
    "size": 472,
    "status": "matched",
@@ -22512,7 +22512,7 @@
   {
    "symbol": "GXSetNumTevStages",
    "module": "main",
-   "unit": "dol/fn_80037128.c",
+   "unit": "dol/gx/GXTev.c",
    "addr": 2147710920,
    "size": 48,
    "status": "matched",
@@ -22546,7 +22546,7 @@
   {
    "symbol": "GXSetFogRangeAdj",
    "module": "main",
-   "unit": "dol/GXSetFogRangeAdj.c",
+   "unit": "dol/gx/GXPixel.c",
    "addr": 2147711508,
    "size": 256,
    "status": "matched",
@@ -22563,7 +22563,7 @@
   {
    "symbol": "fn_80037B14",
    "module": "main",
-   "unit": "dol/GXSetFogRangeAdj.c",
+   "unit": "dol/gx/GXPixel.c",
    "addr": 2147711764,
    "size": 84,
    "status": "matched",
@@ -22580,7 +22580,7 @@
   {
    "symbol": "fn_80037B68",
    "module": "main",
-   "unit": "dol/GXSetFogRangeAdj.c",
+   "unit": "dol/gx/GXPixel.c",
    "addr": 2147711848,
    "size": 44,
    "status": "matched",
@@ -22597,7 +22597,7 @@
   {
    "symbol": "fn_80037B94",
    "module": "main",
-   "unit": "dol/fn_80037B94.c",
+   "unit": "dol/gx/GXPixel.c",
    "addr": 2147711892,
    "size": 44,
    "status": "matched",
@@ -22614,7 +22614,7 @@
   {
    "symbol": "fn_80037BC0",
    "module": "main",
-   "unit": "dol/fn_80037B94.c",
+   "unit": "dol/gx/GXPixel.c",
    "addr": 2147711936,
    "size": 52,
    "status": "matched",
@@ -22631,7 +22631,7 @@
   {
    "symbol": "GXSetZCompLoc",
    "module": "main",
-   "unit": "dol/GXSetZCompLoc.c",
+   "unit": "dol/gx/GXPixel.c",
    "addr": 2147711988,
    "size": 56,
    "status": "matched",
@@ -22648,7 +22648,7 @@
   {
    "symbol": "fn_80037C2C",
    "module": "main",
-   "unit": "dol/fn_80037C2C.c",
+   "unit": "dol/gx/GXPixel.c",
    "addr": 2147712044,
    "size": 232,
    "status": "matched",
@@ -22665,7 +22665,7 @@
   {
    "symbol": "fn_80037D14",
    "module": "main",
-   "unit": "dol/fn_80037D14.c",
+   "unit": "dol/gx/GXPixel.c",
    "addr": 2147712276,
    "size": 44,
    "status": "matched",
@@ -22682,7 +22682,7 @@
   {
    "symbol": "fn_80037D40",
    "module": "main",
-   "unit": "dol/fn_80037D14.c",
+   "unit": "dol/gx/GXPixel.c",
    "addr": 2147712320,
    "size": 60,
    "status": "matched",
@@ -22699,7 +22699,7 @@
   {
    "symbol": "GXSetFieldMask",
    "module": "main",
-   "unit": "dol/GXSetFieldMask.c",
+   "unit": "dol/gx/GXPixel.c",
    "addr": 2147712380,
    "size": 56,
    "status": "matched",
@@ -22716,7 +22716,7 @@
   {
    "symbol": "GXSetFieldMode",
    "module": "main",
-   "unit": "dol/GXSetFieldMode.c",
+   "unit": "dol/gx/GXPixel.c",
    "addr": 2147712436,
    "size": 124,
    "status": "matched",

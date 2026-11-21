@@ -1,12 +1,71 @@
-#include "types.h"
-#include "dolphin/hw_regs.h"
-#include <types.h>
-#include "sdk_addresses.h"
 #include <dolphin/gx.h>
 #include <dolphin/gx/GXPriv.h>
+#include <types.h>
+#include "sdk_addresses.h"
+#include "types.h"
+#include "dolphin/hw_regs.h"
+
+extern struct GXTevData lbl_8012B368;
+
+void GXSetTevOp(GXTevStageID stage, GXTevMode mode) {
+    struct GXTevData *data = &lbl_8012B368;
+
+    u32 *color;
+    u32 *alpha;
+    u32 tevReg;
+    if (stage == GX_TEVSTAGE0) {
+        color = ((u32 *)((u8 *)data + (u32) & ((struct GXTevData *)0)->TEVCOpTableST0) + mode);
+        alpha = ((u32 *)((u8 *)data + (u32) & ((struct GXTevData *)0)->TEVAOpTableST0) + mode);
+    } else {
+        color = ((u32 *)((u8 *)data + (u32) & ((struct GXTevData *)0)->TEVCOpTableST1) + mode);
+        alpha = ((u32 *)((u8 *)data + (u32) & ((struct GXTevData *)0)->TEVAOpTableST1) + mode);
+    }
+    tevReg = gx->tevc[stage];
+    tevReg = (*color & ~0xFF000000) | (tevReg & 0xFF000000);
+    do {
+        GXWGFifo.u8 = (u8)(0x61);
+        GXWGFifo.u32 = (u32)(tevReg);
+        ;
+    } while (0);
+    gx->tevc[stage] = tevReg;
+    tevReg = gx->teva[stage];
+    tevReg = (*alpha & ~0xFF00000F) | (tevReg & 0xFF00000F);
+    do {
+        GXWGFifo.u8 = (u8)(0x61);
+        GXWGFifo.u32 = (u32)(tevReg);
+        ;
+    } while (0);
+    gx->teva[stage] = tevReg;
+    gx->bpSentNot = ((GXBool)0);
+}
 
 #define SET_REG_FIELD_RLWIMI(reg, size, shift, val) \
     ((reg) = __rlwimi((reg), (val), (shift), 32 - (shift) - (size), 31 - (shift)))
+
+void fn_800370A0(s32 stage, s32 a, s32 b, s32 c, s32 d) {
+    u32 reg = gx->tevc[stage];
+
+    SET_REG_FIELD_RLWIMI(reg, 4, 12, a);
+    *(volatile u8 *)GX_FIFO_BASE = 0x61;  /* fzgx-allow: A2,S2 GX write-gather FIFO (hw_regs.h) */
+    SET_REG_FIELD_RLWIMI(reg, 4, 8, b);
+    SET_REG_FIELD_RLWIMI(reg, 4, 4, c);
+    SET_REG_FIELD_RLWIMI(reg, 4, 0, d);
+    *(volatile u32 *)GX_FIFO_BASE = reg;  /* fzgx-allow: A2,S2 GX write-gather FIFO (hw_regs.h) */
+    gx->tevc[stage] = reg;
+    gx->bpSentNot = 0;
+}
+
+void fn_800370E4(s32 stage, s32 a, s32 b, s32 c, s32 d) {
+    u32 reg = gx->teva[stage];
+
+    SET_REG_FIELD_RLWIMI(reg, 3, 13, a);
+    SET_REG_FIELD_RLWIMI(reg, 3, 10, b);
+    SET_REG_FIELD_RLWIMI(reg, 3, 7, c);
+    SET_REG_FIELD_RLWIMI(reg, 3, 4, d);
+    GX_WRITE_RAS_REG(reg);
+    gx->teva[stage] = reg;
+    gx->bpSentNot = 0;
+}
 
 void fn_80037128(s32 stage, s32 op, s32 bias, s32 scale, u8 clamp, s32 out_reg) {
     u32 reg = gx->tevc[stage];

@@ -63,7 +63,8 @@ def derive_pool(cand_sg, cand_fn_addr, ref):
             continue
         f = next((f for f, (v, sz) in cand_fn_addr.items() if v <= off < v + sz), None)
         site = None if f is None or f not in ref else next(
-            (r for r in ref[f][1] if r[0] == off - cand_fn_addr[f][0] and r[1] == typ), None)
+            (r for r in ref[f][1]
+             if r[1] == typ and r[0] == ((off - cand_fn_addr[f][0]) & ~3 if typ == 109 else off - cand_fn_addr[f][0])), None)
         if site is None or LOCAL.match(site[2]):
             bad.append(nm); continue
         delta = site[3] - add

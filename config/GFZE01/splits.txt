@@ -733,17 +733,11 @@ dol/WriteCallback.c:
 dol/fn_8002F570.c:
 	.text       start:0x8002F570 end:0x8002F5B8 align:4
 
-dol/GXInitFifoPtrs.c:
-	.text       start:0x80031CF0 end:0x80031E7C align:4
-
 dol/__GXFifoReadEnable.c:
 	.text       start:0x80032268 end:0x800322AC align:4
 
 dol/__GXWriteFifoIntEnable.c:
 	.text       start:0x800322E8 end:0x80032324 align:4
-
-dol/GXSetNumTexGens.c:
-	.text       start:0x80033D4C end:0x80033D8C align:4
 
 dol/__GXFifoLink.c:
 	.text       start:0x800322AC end:0x800322E8 align:4
@@ -751,23 +745,14 @@ dol/__GXFifoLink.c:
 dol/GXTokenInterruptHandler.c:
 	.text       start:0x800343BC end:0x80034488 align:4
 
-dol/GXSetDispCopyGamma.c:
-	.text       start:0x800350F4 end:0x80035110 align:4
-
 dol/GXLoadTexObj.c:
 	.text       start:0x80036388 end:0x8003658C align:4
-
-dol/GXSetNumIndStages.c:
-	.text       start:0x80036EB4 end:0x80036EDC align:4
 
 dol/fn_80036EDC.c:
 	.text       start:0x80036EDC end:0x80037014 align:4
 
 dol/fn_800433A4.c:
 	.text       start:0x800433A4 end:0x80043460 align:4
-
-dol/GXSetFieldMode.c:
-	.text       start:0x80037DB4 end:0x80037E30 align:4
 
 dol/fn_800410A4.c:
 	.text       start:0x800410A4 end:0x8004115C align:4
@@ -1222,9 +1207,6 @@ dol/AIStartDMA.c:
 dol/fn_8006CE1C.c:
 	.text       start:0x8006CE1C end:0x8006CFF8 align:4
 
-dol/GXSetZCompLoc.c:
-	.text       start:0x80037BF4 end:0x80037C2C align:4
-
 dol/__GXWriteFifoIntReset.c:
 	.text       start:0x80032324 end:0x80032360 align:4
 
@@ -1504,9 +1486,6 @@ dol/DVDCancelAsync.c:
 	.text       start:0x800198FC end:0x80019E64 align:4
 	.data       start:0x801240A8 end:0x80124110 align:8
 
-dol/__GXSaveCPUFifoAux.c:
-	.text       start:0x80032014 end:0x800321D8 align:4
-
 dol/GXInitTexObjLOD.c:
 	.text       start:0x80035EC4 end:0x80036388 align:4
 
@@ -1564,30 +1543,24 @@ dol/OSWakeupThread.c:
 dol/OSGetResetButtonState.c:
 	.text       start:0x8000F358 end:0x8000F670 align:4
 
-dol/GXCPInterruptHandler.c:
-	.text       start:0x80031B50 end:0x80031CF0 align:4
-
-dol/GXSetGPFifo.c:
-	.text       start:0x80031E7C end:0x80032014 align:4
+dol/gx/GXFifo.c:
+	.text       start:0x80031B50 end:0x800321D8 align:4
 
 dol/GXGetVtxAttrFmt.c:
-	.text       start:0x800336EC end:0x80033D4C align:4
+	.text       start:0x800336EC end:0x80033D8C align:4
 	.data       start:0x8012AF00 end:0x8012AFB8 align:8
 
 dol/gx/GXGeometry.c:
 	.text       start:0x8003471C end:0x8003493C align:4
 
-dol/GXAdjustForOverscan.c:
-	.text       start:0x8003493C end:0x80034D34 align:4
+dol/gx/GXFrameBuf.c:
+	.text       start:0x8003493C end:0x80035420 align:4
 
 dol/GXSetTevIndirect.c:
-	.text       start:0x80036A28 end:0x80036EB4 align:4
+	.text       start:0x80036A28 end:0x80036EDC align:4
 
-dol/GXSetFogRangeAdj.c:
-	.text       start:0x80037A14 end:0x80037B94 align:4
-
-dol/GXSetFieldMask.c:
-	.text       start:0x80037D7C end:0x80037DB4 align:4
+dol/gx/GXPixel.c:
+	.text       start:0x80037A14 end:0x80037E30 align:4
 
 dol/GXSetProjection.c:
 	.text       start:0x80038A88 end:0x80038EEC align:4
@@ -1598,8 +1571,8 @@ dol/__AI_SRC_INIT.c:
 dol/stateCoverClosed.c:
 	.text       start:0x80018554 end:0x80018650 align:4
 
-dol/GXSetTevOp.c:
-	.text       start:0x80037014 end:0x800370A0 align:4
+dol/gx/GXTev.c:
+	.text       start:0x80037014 end:0x800377F8 align:4
 
 dol/DVDLowSeek.c:
 	.text       start:0x800167BC end:0x80016D50 align:4
@@ -1897,9 +1870,6 @@ dol/fn_80025440.c:
 
 dol/fn_8006A3DC.c:
 	.text       start:0x8006A3DC end:0x8006A554 align:4
-
-dol/fn_80035110.c:
-	.text       start:0x80035110 end:0x80035420 align:4
 
 dol/fn_8005795C.c:
 	.text       start:0x8005795C end:0x800579F0 align:4
@@ -2476,24 +2446,6 @@ dol/mathutil_mtxA_rotate_z.c:
 
 dol/func_80008378.c:
 	.text       start:0x8006E5B4 end:0x8006E5FC align:4
-
-dol/fn_80034D34.c:
-	.text       start:0x80034D34 end:0x800350F4 align:4
-
-dol/fn_80037B94.c:
-	.text       start:0x80037B94 end:0x80037BF4 align:4
-
-dol/fn_80037D14.c:
-	.text       start:0x80037D14 end:0x80037D7C align:4
-
-dol/fn_800370A0.c:
-	.text       start:0x800370A0 end:0x80037128 align:4
-
-dol/fn_80037128.c:
-	.text       start:0x80037128 end:0x800377F8 align:4
-
-dol/fn_80037C2C.c:
-	.text       start:0x80037C2C end:0x80037D14 align:4
 
 dol/fn_80033650.c:
 	.text       start:0x80033650 end:0x800336EC align:4

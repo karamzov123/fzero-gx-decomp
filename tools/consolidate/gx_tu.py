@@ -144,7 +144,9 @@ def main():
             continue
         texts = {r[2]: unified(r[2]) for r in rows}
         good = [r for r in rows if texts[r[2]]]
-        whole = len(good) == len(rows) and len(list(runs(rows))) == 1
+        fns = {f for t in tumap['tus'] if t['file'] == tu for f in t['functions']}
+        crossing = any(set(u['symbols']) & fns and set(u['symbols']) - fns for u in units if not u.get('data'))
+        whole = not crossing and len(good) == len(rows) and len(list(runs(rows))) == 1
         for run in runs(good):
             lo = 0
             while lo < len(run) - 1:

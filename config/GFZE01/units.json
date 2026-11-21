@@ -7923,15 +7923,27 @@
   },
   {
     "module": "main",
-    "source": "dol/GXCPInterruptHandler.c",
+    "source": "dol/gx/GXFifo.c",
     "symbols": [
       "GXCPInterruptHandler",
-      "GXInitFifoBase"
+      "GXInitFifoBase",
+      "GXInitFifoPtrs",
+      "fn_80031D60",
+      "GXSetCPUFifo",
+      "GXSetGPFifo",
+      "fn_80031FF4",
+      "__GXSaveCPUFifoAux",
+      "GXGetGPStatus",
+      "GXGetFifoPtrs"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.2.5n",
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-inline",
+      "on,noauto"
+    ]
   },
   {
     "module": "main",
@@ -8004,7 +8016,8 @@
       "GXGetVtxAttrFmtv",
       "GXSetArray",
       "GXInvalidateVtxCache",
-      "GXSetTexCoordGen2"
+      "GXSetTexCoordGen2",
+      "GXSetNumTexGens"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
@@ -8020,7 +8033,8 @@
       "signed",
       "-common",
       "off"
-    ]
+    ],
+    "collapsed": true
   },
   {
     "module": "main",
@@ -8045,19 +8059,6 @@
       "lbl_801A6BE8",
       "resetFuncRegistered$63"
     ]
-  },
-  {
-    "module": "main",
-    "source": "dol/GXInitFifoPtrs.c",
-    "symbols": [
-      "GXInitFifoPtrs",
-      "fn_80031D60",
-      "GXSetCPUFifo"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true,
-    "matching_for": ["GFZE01", "GFZJ01"]
   },
   {
     "module": "main",
@@ -8163,55 +8164,22 @@
   },
   {
     "module": "main",
-    "source": "dol/GXSetDispCopyGamma.c",
+    "source": "dol/gx/GXPixel.c",
     "symbols": [
-      "GXSetDispCopyGamma"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/GXSetFieldMask.c",
-    "symbols": [
-      "GXSetFieldMask"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/GXSetFieldMode.c",
-    "symbols": [
+      "GXSetFogRangeAdj",
+      "fn_80037B14",
+      "fn_80037B68",
+      "fn_80037B94",
+      "fn_80037BC0",
+      "GXSetZCompLoc",
+      "fn_80037C2C",
+      "fn_80037D14",
+      "fn_80037D40",
+      "GXSetFieldMask",
       "GXSetFieldMode"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/GXSetFogRangeAdj.c",
-    "symbols": [
-      "GXSetFogRangeAdj",
-      "fn_80037B14",
-      "fn_80037B68"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/GXSetGPFifo.c",
-    "symbols": [
-      "GXSetGPFifo",
-      "fn_80031FF4"
-    ],
-    "status": "matching",
     "mw_version": "GC/1.2.5n",
     "collapsed": true
   },
@@ -8237,39 +8205,6 @@
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.2.5n",
     "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/GXSetNumIndStages.c",
-    "symbols": [
-      "GXSetNumIndStages"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/GXSetNumTexGens.c",
-    "symbols": [
-      "GXSetNumTexGens"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ]
   },
   {
     "module": "main",
@@ -8302,7 +8237,8 @@
       "GXSetTevIndirect",
       "fn_80036AC4",
       "GXSetIndTexCoordScale",
-      "GXSetIndTexOrder"
+      "GXSetIndTexOrder",
+      "GXSetNumIndStages"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
@@ -8314,13 +8250,29 @@
   },
   {
     "module": "main",
-    "source": "dol/GXSetTevOp.c",
+    "source": "dol/gx/GXTev.c",
     "symbols": [
-      "GXSetTevOp"
+      "GXSetTevOp",
+      "fn_800370A0",
+      "fn_800370E4",
+      "fn_80037128",
+      "fn_80037190",
+      "fn_800371F8",
+      "fn_8003726C",
+      "fn_800372E0",
+      "GXSetTevKColorSel",
+      "GXSetTevKAlphaSel",
+      "GXSetTevSwapMode",
+      "GXSetTevSwapModeTable",
+      "GXSetAlphaCompare",
+      "GXSetZTexture",
+      "GXSetTevOrder",
+      "GXSetNumTevStages"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n"
+    "mw_version": "GC/1.2.5n",
+    "collapsed": true
   },
   {
     "module": "main",
@@ -8359,16 +8311,6 @@
       "-common",
       "off"
     ]
-  },
-  {
-    "module": "main",
-    "source": "dol/GXSetZCompLoc.c",
-    "symbols": [
-      "GXSetZCompLoc"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -10711,19 +10653,6 @@
   },
   {
     "module": "main",
-    "source": "dol/__GXSaveCPUFifoAux.c",
-    "symbols": [
-      "__GXSaveCPUFifoAux",
-      "GXGetGPStatus",
-      "GXGetFifoPtrs"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true,
-    "matching_for": ["GFZE01", "GFZJ01"]
-  },
-  {
-    "module": "main",
     "source": "dol/gx/GXGeometry.c",
     "symbols": [
       "__GXSendFlushPrim",
@@ -10741,19 +10670,30 @@
   },
   {
     "module": "main",
-    "source": "dol/GXAdjustForOverscan.c",
+    "source": "dol/gx/GXFrameBuf.c",
     "symbols": [
       "GXAdjustForOverscan",
       "GXSetDispCopySrc",
       "GXSetTexCopySrc",
       "fn_80034B7C",
       "fn_80034BB8",
-      "GXSetDispCopyFrame2Field"
+      "GXSetDispCopyFrame2Field",
+      "fn_80034D34",
+      "GXSetDispCopyYScale",
+      "GXSetCopyClear",
+      "fn_80034ECC",
+      "GXSetDispCopyGamma",
+      "fn_80035110",
+      "fn_8003526C",
+      "GXClearBoundingBox"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.2.5n",
-    "collapsed": true
+    "collapsed": true,
+    "pool": {
+      "@81": "lbl_801A7080"
+    }
   },
   {
     "module": "main",
@@ -24114,36 +24054,6 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_80034D34.c",
-    "symbols": [
-      "fn_80034D34",
-      "GXSetDispCopyYScale",
-      "GXSetCopyClear",
-      "fn_80034ECC"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true,
-    "pool": {
-      "@33": "lbl_801A7080"
-    }
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80035110.c",
-    "symbols": [
-      "fn_80035110",
-      "fn_8003526C",
-      "GXClearBoundingBox"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
     "source": "dol/fn_80035420.c",
     "symbols": [
       "fn_80035420"
@@ -24227,43 +24137,6 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_800370A0.c",
-    "symbols": [
-      "fn_800370A0",
-      "fn_800370E4"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [],
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80037128.c",
-    "symbols": [
-      "fn_80037128",
-      "fn_80037190",
-      "fn_800371F8",
-      "fn_8003726C",
-      "fn_800372E0",
-      "GXSetTevKColorSel",
-      "GXSetTevKAlphaSel",
-      "GXSetTevSwapMode",
-      "GXSetTevSwapModeTable",
-      "GXSetAlphaCompare",
-      "GXSetZTexture",
-      "GXSetTevOrder",
-      "GXSetNumTevStages"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [],
-    "collapsed": true
-  },
-  {
-    "module": "main",
     "source": "dol/fn_800377F8.c",
     "symbols": [
       "fn_800377F8"
@@ -24282,40 +24155,6 @@
       "@43": "lbl_801A7120",
       "@45": "lbl_801A7128"
     }
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80037B94.c",
-    "symbols": [
-      "fn_80037B94",
-      "fn_80037BC0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80037C2C.c",
-    "symbols": [
-      "fn_80037C2C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80037D14.c",
-    "symbols": [
-      "fn_80037D14",
-      "fn_80037D40"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
   },
   {
     "module": "main",

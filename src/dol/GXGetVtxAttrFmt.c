@@ -1,5 +1,9 @@
-#include <types.h>
+#include <dolphin/gx.h>
 #include <dolphin/gx/GXPriv.h>
+#include <types.h>
+#include "sdk_addresses.h"
+#include "types.h"
+
 static inline u8 GetFracForNrm(GXCompType type) {
     u8 frac;
     switch (type) {
@@ -108,12 +112,6 @@ void GXGetVtxAttrFmtv(GXVtxFmt vat, GXVtxAttrFmt *fmt) {
     fmt->attr = 0xff;
 }
 
-#include "sdk_addresses.h"
-
-// Hardware or OS state can change asynchronously.
-volatile PPCWGPipe
-    GXFIFO : FZGX_ADDR_GXFIFO; // fzgx-allow: S2 SDK asynchronous state
-
 void GXSetArray(GXAttr attr, void *base_ptr, u8 stride) {
     GXAttr cpAttr;
     u32 phyAddr;
@@ -124,9 +122,9 @@ void GXSetArray(GXAttr attr, void *base_ptr, u8 stride) {
     phyAddr = (u32)base_ptr & 0x3FFFFFFF;
     do {
         long regAddr;
-        GXFIFO.u8 = (u8)(8);
-        GXFIFO.u8 = (u8)(cpAttr | GX_BP_REG_SETMODE0_TEX4);
-        GXFIFO.u32 = (u32)(phyAddr);
+        GXWGFifo.u8 = (u8)(8);
+        GXWGFifo.u8 = (u8)(cpAttr | GX_BP_REG_SETMODE0_TEX4);
+        GXWGFifo.u32 = (u32)(phyAddr);
         regAddr = cpAttr - 12;
         if (regAddr >= 0 && regAddr < 4) {
             gx->indexBase[regAddr] = phyAddr;
@@ -134,9 +132,9 @@ void GXSetArray(GXAttr attr, void *base_ptr, u8 stride) {
     } while (0);
     do {
         long regAddr;
-        GXFIFO.u8 = (u8)(8);
-        GXFIFO.u8 = (u8)(cpAttr | GX_BP_REG_SETIMAGE2_TEX4);
-        GXFIFO.u32 = (u32)(stride);
+        GXWGFifo.u8 = (u8)(8);
+        GXWGFifo.u8 = (u8)(cpAttr | GX_BP_REG_SETIMAGE2_TEX4);
+        GXWGFifo.u32 = (u32)(stride);
         regAddr = cpAttr - 12;
         if (regAddr >= 0 && regAddr < 4) {
             gx->indexStride[regAddr] = stride;
@@ -144,19 +142,13 @@ void GXSetArray(GXAttr attr, void *base_ptr, u8 stride) {
     } while (0);
 }
 
-#define GXWGFifoAddress ((u32)(0xCC00 << 16) + 0x8000)
 // Hardware FIFO register is intentionally volatile.
-#define GXWGFifo (*(volatile GXWGFifoReg *)GXWGFifoAddress)
 
 void GXInvalidateVtxCache(void) {
     GXWGFifo.u8 = 0x48;
 }
 
 void __GXSetMatrixIndex(GXAttr index);
-
-// Hardware or OS state can change asynchronously.
-volatile PPCWGPipe
-    GXFIFO : FZGX_ADDR_GXFIFO; // fzgx-allow: S2 SDK asynchronous state
 
 void GXSetTexCoordGen2(GXTexCoordID dst_coord, GXTexGenType func, GXTexGenSrc src_param, u32 mtx,
                  GXBool normalize, u32 pt_texmtx) {
@@ -299,9 +291,9 @@ void GXSetTexCoordGen2(GXTexCoordID dst_coord, GXTexGenType func, GXTexGenSrc sr
         break;
     }
     do {
-        GXFIFO.u8 = (u8)(0x10);
-        GXFIFO.u32 = (u32)(0x1000 + (dst_coord + 0x40));
-        GXFIFO.u32 = (u32)(reg);
+        GXWGFifo.u8 = (u8)(0x10);
+        GXWGFifo.u32 = (u32)(0x1000 + (dst_coord + 0x40));
+        GXWGFifo.u32 = (u32)(reg);
         ;
     } while (0);
     reg = 0;
@@ -310,9 +302,9 @@ void GXSetTexCoordGen2(GXTexCoordID dst_coord, GXTexGenType func, GXTexGenSrc sr
     (reg) = ((u32)(reg) & ~(((1 << (1)) - 1) << (8))) | ((u32)(normalize) << (8));
     ;
     do {
-        GXFIFO.u8 = (u8)(0x10);
-        GXFIFO.u32 = (u32)(0x1000 + (dst_coord + 0x50));
-        GXFIFO.u32 = (u32)(reg);
+        GXWGFifo.u8 = (u8)(0x10);
+        GXWGFifo.u32 = (u32)(0x1000 + (dst_coord + 0x50));
+        GXWGFifo.u32 = (u32)(reg);
         ;
     } while (0);
     switch (dst_coord) {
@@ -353,3 +345,17 @@ void GXSetTexCoordGen2(GXTexCoordID dst_coord, GXTexGenType func, GXTexGenSrc sr
     __GXSetMatrixIndex(mtxIdAttr);
 }
 
+// Hardware FIFO register is intentionally volatile.
+
+void GXSetNumTexGens(u32 value) {
+    GXData *g;
+    u32 masked_value;
+
+    g = gx;
+    masked_value = value & 0xFF;
+    g->genMode = (g->genMode & ~0xFu) | masked_value;
+    GXWGFifo.u8 = 0x10;
+    GXWGFifo.u32 = 0x103F;
+    GXWGFifo.u32 = masked_value;
+    g->dirtyState |= 4;
+}

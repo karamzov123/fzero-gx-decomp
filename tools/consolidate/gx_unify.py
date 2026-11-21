@@ -40,6 +40,12 @@ def layout(body):
         if not d:
             continue
         d = d.replace('unsigned char', 'u8')
+        fp = re.fullmatch(r'.*\(\s*\*\s*(\w+)\s*\)\s*\(.*\)', d, re.S)
+        if fp:
+            off = (off + 3) & ~3
+            out[fp.group(1)] = (off, 4, None)
+            off += 4
+            continue
         m = re.match(r'^(?:volatile\s+)?(\w+)\s*(\*?)\s*(\w+)\s*(?:\[([^\]]+)\])?$', d)
         if not m:
             raise Unsupported(f'field {d!r}')
@@ -90,7 +96,8 @@ def macro(name):
 def normalize_macros(text, rlwimi=False):
     """One spelling of the register-field macro across a TU; the BP write comes from dolphin/gx.h.
     rlwimi=True keeps a unit's __rlwimi field insert (the classic and/or form changes its code)."""
-    if re.search(r'#define\s+SET_REG_FIELD\(\s*reg,\s*mask', text):
+    first = re.search(r'#define\s+SET_REG_FIELD\(\s*reg,\s*mask', text)
+    if first:
         def to_size(mm):
             mask = int(mm.group(2), 0)
             if mask & (mask + 1):
@@ -98,16 +105,40 @@ def normalize_macros(text, rlwimi=False):
             return f'SET_REG_FIELD({mm.group(1)}, {(mask + 1).bit_length() - 1},'
         body = macro('SET_REG_FIELD').sub('', text, count=1)
         body = re.sub(r'\bSET_REG_FIELD\(([^,]+),\s*(0x[0-9a-fA-F]+|\d+),', to_size, body)
-        at = text.index(re.search(r'#define\s+SET_REG_FIELD\(', text).group(0))
-        text = body[:at] + SET_REG_FIELD + body[at:]
+        text = body[:first.start()] + SET_REG_FIELD + body[first.start():]
     d = re.search(r'#define\s+SET_REG_FIELD\(\s*reg,\s*size(?:[^\n]*\\\n)*[^\n]*', text)
     if d and d.group(0) != SET_REG_FIELD.rstrip('\n'):
         if rlwimi and '__rlwimi' in d.group(0):
-            text = macro('SET_REG_FIELD').sub(lambda _: SET_REG_FIELD_RLWIMI, text, count=1)
+            text = macro('SET_REG_FIELD').sub(lambda _: SET_REG_FIELD_RLWIMI, text)
             text = re.sub(r'\bSET_REG_FIELD\(', 'SET_REG_FIELD_RLWIMI(', text)
         else:
-            text = macro('SET_REG_FIELD').sub(lambda _: SET_REG_FIELD, text, count=1)
+            text = macro('SET_REG_FIELD').sub(lambda _: SET_REG_FIELD, text)
     return macro('GX_WRITE_RAS_REG').sub('', text)
+
+
+def normalize_fifo(text):
+    """Lifted `GXWGFifo8`/u32 macros over the FIFO address become members of the named object."""
+    word = re.search(r'#define\s+GXWGFifo\s+\(\*\(volatile u32', text)
+    text = re.sub(r'^(?://[^\n]*fzgx-allow[^\n]*\n)*#define\s+(?:GXWGFifo\w*|GX_FIFO_ADDRESS)\b[^\n]*\n?',
+                  '', text, flags=re.M)
+    text = re.sub(r'\bGXWGFifo8\b', 'GXWGFifo.u8', text)
+    if word:
+        text = re.sub(r'\bGXWGFifo\b(?!\s*\.)', 'GXWGFifo.u32', text)
+    return text
+
+
+def integer_views(text, canon):
+    """`(T *)(gx + 0x1EC)` from an `extern u32 gx` view addresses the field at that offset."""
+    def sub(mm):
+        size = SIZES.get(mm.group(1))
+        if size is None:
+            raise Unsupported(f'gx + offset through {mm.group(1)}')
+        name, idx, _ = resolve(canon, int(mm.group(2), 0), size)
+        return f'({mm.group(1)} *)&gx->{name}' + (f'[{idx}]' if idx is not None else '')
+    text = re.sub(r'\(\s*(\w+)\s*\*\s*\)\s*\(\s*gx\s*\+\s*(0x[0-9a-fA-F]+|\d+)\s*\)', sub, text)
+    if re.search(r'\bgx\s*\+', text):
+        raise Unsupported('integer arithmetic on gx')
+    return text
 
 
 def normalize_externs(text):
@@ -150,7 +181,8 @@ def unify(text, rlwimi=False):
         names += [x for x in (v.group(1), v.group(3)) if x]
         text = text[:v.start()] + text[v.end():]
     text = re.sub(r'typedef\s+union\s*\w*\s*\{[^{}]*\}\s*PPCWGPipe\s*;\n?', '', text)
-    text = re.sub(r'^#define\s+GXWGFifo(?:Address)?\b[^\n]*\n?', '', text, flags=re.M)
+    text = normalize_fifo(text)
+    text = integer_views(text, canon)
     text = re.sub(r'typedef\s+union\s*\w*\s*\{[^{}]*\}\s*GXWGFifoReg\s*;\n?', '', text)
     text = strip_header_types(text)
     text = normalize_macros(text, rlwimi)
@@ -185,8 +217,8 @@ def unify(text, rlwimi=False):
 
     text = re.sub(r'\b(' + '|'.join(sorted(ptrs)) + r')->(\w+)(\[[^\]]+\])?', sub, text)
     text = re.sub(r'^#include\s+[<"]dolphin/gx(?:/GXPriv)?\.h[>"]\n', '', text, flags=re.M)
-    inc = list(re.finditer(r'^#include[^\n]*\n', text, re.M))
-    at = inc[-1].end() if inc else 0
+    inc = re.search(r'^#include[^\n]*\n', text, re.M)
+    at = inc.start() if inc else 0     # before any declaration: merged files have later includes
     os_inc = '#include <dolphin/os/OSInterrupt.h>\n'
     extra = os_inc if re.search(r'\bOS(?:Disable|Restore)Interrupts\(', text) and os_inc not in text else ''
     return text[:at] + '#include <dolphin/gx.h>\n#include <dolphin/gx/GXPriv.h>\n' + extra + text[at:]
