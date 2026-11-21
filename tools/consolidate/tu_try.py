@@ -45,7 +45,8 @@ def funcs(obj, td, tag, pool=None):
                 nm, add = named[(s, v + add)], 0
         for f, (v, sz) in fn.items():
             if v <= off < v + sz:
-                rel[f].append((off - v, typ, nm, add))
+                # MWCC places an SDA21 relocation at +0 or +2 of the instruction: the same field
+                rel[f].append(((off - v) & ~3 if typ == 109 else off - v, typ, nm, add))
     secs = {k: (len(v) if isinstance(v, bytes) else v) for k, v in sg['sections'].items() if k != '.comment'}
     local_secs = collections.defaultdict(set)
     for n, s, v, sz, _ in sg['defs']:

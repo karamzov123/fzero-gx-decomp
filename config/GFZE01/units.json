@@ -7959,12 +7959,18 @@
     "source": "dol/GXDrawDone.c",
     "symbols": [
       "GXDrawDone",
-      "GXPokeAlphaMode"
+      "GXPokeAlphaMode",
+      "GXPokeAlphaRead",
+      "GXPokeAlphaUpdate",
+      "GXPokeBlendMode",
+      "GXPokeColorUpdate",
+      "GXPokeDstAlpha"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
     "extra_cflags": [],
-    "collapsed": true
+    "collapsed": true,
+    "matching_for": ["GFZE01", "GFZJ01"]
   },
   {
     "module": "main",
@@ -8133,49 +8139,6 @@
   },
   {
     "module": "main",
-    "source": "dol/GXPokeAlphaRead.c",
-    "symbols": [
-      "GXPokeAlphaRead"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/GXPokeAlphaUpdate.c",
-    "symbols": [
-      "GXPokeAlphaUpdate"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/GXPokeBlendMode.c",
-    "symbols": [
-      "GXPokeBlendMode"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/GXPokeColorUpdate.c",
-    "symbols": [
-      "GXPokeColorUpdate"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
     "source": "dol/GXPokeDither.c",
     "symbols": [
       "GXPokeDither",
@@ -8191,16 +8154,6 @@
   },
   {
     "module": "main",
-    "source": "dol/GXPokeDstAlpha.c",
-    "symbols": [
-      "GXPokeDstAlpha"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
     "source": "dol/GXReadXfRasMetric.c",
     "symbols": [
       "GXReadXfRasMetric"
@@ -8210,32 +8163,9 @@
   },
   {
     "module": "main",
-    "source": "dol/GXSetCoPlanar.c",
-    "symbols": [
-      "GXSetCoPlanar",
-      "__GXSetGenMode"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [],
-    "collapsed": true
-  },
-  {
-    "module": "main",
     "source": "dol/GXSetDispCopyGamma.c",
     "symbols": [
       "GXSetDispCopyGamma"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/GXSetDrawDone.c",
-    "symbols": [
-      "GXSetDrawDone"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
@@ -8313,17 +8243,6 @@
     "source": "dol/GXSetNumIndStages.c",
     "symbols": [
       "GXSetNumIndStages"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/GXSetNumTevStages.c",
-    "symbols": [
-      "GXSetNumTevStages"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
@@ -10805,12 +10724,15 @@
   },
   {
     "module": "main",
-    "source": "dol/__GXSendFlushPrim.c",
+    "source": "dol/gx/GXGeometry.c",
     "symbols": [
       "__GXSendFlushPrim",
       "GXSetLineWidth",
       "GXSetPointSize",
-      "fn_80034834"
+      "fn_80034834",
+      "fn_80034890",
+      "GXSetCoPlanar",
+      "__GXSetGenMode"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
@@ -24170,12 +24092,14 @@
     "module": "main",
     "source": "dol/fn_8003401C.c",
     "symbols": [
-      "fn_8003401C"
+      "fn_8003401C",
+      "GXSetDrawDone"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n",
+    "extra_cflags": [],
+    "collapsed": true
   },
   {
     "module": "main",
@@ -24186,17 +24110,6 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80034890.c",
-    "symbols": [
-      "fn_80034890"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.3.2",
     "extra_cflags": []
   },
   {
@@ -24340,7 +24253,8 @@
       "GXSetTevSwapModeTable",
       "GXSetAlphaCompare",
       "GXSetZTexture",
-      "GXSetTevOrder"
+      "GXSetTevOrder",
+      "GXSetNumTevStages"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],

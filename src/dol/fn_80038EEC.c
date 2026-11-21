@@ -5,10 +5,10 @@
 #include "sdk_addresses.h"
 #include "dolphin/hw_regs.h"
 
-extern u32 fn_80038DE8(u32);
+extern void fn_80038DE8(f32 left, f32 top, f32 width, f32 height, f32 near_z, f32 far_z, u32 field);
 
-u32 fn_80038EEC(void) {
-    return fn_80038DE8(1);
+void fn_80038EEC(f32 left, f32 top, f32 width, f32 height, f32 near_z, f32 far_z) {
+    fn_80038DE8(left, top, width, height, near_z, far_z, 1);
 }
 
 void fn_80038F10(f32* out) {

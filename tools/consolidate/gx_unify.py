@@ -90,14 +90,38 @@ def macro(name):
 def normalize_macros(text, rlwimi=False):
     """One spelling of the register-field macro across a TU; the BP write comes from dolphin/gx.h.
     rlwimi=True keeps a unit's __rlwimi field insert (the classic and/or form changes its code)."""
+    if re.search(r'#define\s+SET_REG_FIELD\(\s*reg,\s*mask', text):
+        def to_size(mm):
+            mask = int(mm.group(2), 0)
+            if mask & (mask + 1):
+                raise Unsupported(f'SET_REG_FIELD mask {mask:#x} is not a contiguous field')
+            return f'SET_REG_FIELD({mm.group(1)}, {(mask + 1).bit_length() - 1},'
+        body = macro('SET_REG_FIELD').sub('', text, count=1)
+        body = re.sub(r'\bSET_REG_FIELD\(([^,]+),\s*(0x[0-9a-fA-F]+|\d+),', to_size, body)
+        at = text.index(re.search(r'#define\s+SET_REG_FIELD\(', text).group(0))
+        text = body[:at] + SET_REG_FIELD + body[at:]
     d = re.search(r'#define\s+SET_REG_FIELD\(\s*reg,\s*size(?:[^\n]*\\\n)*[^\n]*', text)
-    if d:
+    if d and d.group(0) != SET_REG_FIELD.rstrip('\n'):
         if rlwimi and '__rlwimi' in d.group(0):
             text = macro('SET_REG_FIELD').sub(lambda _: SET_REG_FIELD_RLWIMI, text, count=1)
             text = re.sub(r'\bSET_REG_FIELD\(', 'SET_REG_FIELD_RLWIMI(', text)
         else:
             text = macro('SET_REG_FIELD').sub(lambda _: SET_REG_FIELD, text, count=1)
     return macro('GX_WRITE_RAS_REG').sub('', text)
+
+
+def normalize_externs(text):
+    """The OS interrupt calls come from their SDK header; __peReg is one volatile u16 block."""
+    text = re.sub(r'^extern\s+\w+\s+OS(?:Disable|Restore)Interrupts\([^)]*\);\n', '', text, flags=re.M)
+    text = re.sub(r'\bOSDisableInterrupts\(\s*\w+\s*\)', 'OSDisableInterrupts()', text)
+    v = re.search(r'struct\s+(\w+___peReg_T)\s*\{([^{}]*)\}\s*;\n?', text)
+    if v:
+        fields = layout(v.group(2))
+        text = text[:v.start()] + text[v.end():]
+        text = re.sub(rf'^extern\s+struct\s+{v.group(1)}\s*\*\s*__peReg\s*;',
+                      'extern volatile u16 *__peReg;', text, flags=re.M)
+        text = re.sub(r'__peReg->(\w+)', lambda m: f'__peReg[{fields[m.group(1)][0] // 2}]', text)
+    return re.sub(r'^extern\s+u16\s*\*\s*__peReg\s*;', 'extern volatile u16 *__peReg;', text, flags=re.M)
 
 
 def view_field(canon, views, name):
@@ -130,6 +154,7 @@ def unify(text, rlwimi=False):
     text = re.sub(r'typedef\s+union\s*\w*\s*\{[^{}]*\}\s*GXWGFifoReg\s*;\n?', '', text)
     text = strip_header_types(text)
     text = normalize_macros(text, rlwimi)
+    text = normalize_externs(text)
     text = re.sub(r'^extern\s+[^;\n]*\bgx\s*;\n?', '', text, flags=re.M)
     text = re.sub(r'^(?://[^\n]*\n)?volatile\s+PPCWGPipe\s+(?:GXWGFifo|GXFIFO)\s*:[^\n]*\n?', '', text, flags=re.M)
     text = re.sub(r'^(?://[^\n]*\n)?volatile\s+PPCWGPipe\s*\n\s*(?:GXWGFifo|GXFIFO)\s*:[^\n]*\n?', '', text, flags=re.M)
@@ -162,7 +187,9 @@ def unify(text, rlwimi=False):
     text = re.sub(r'^#include\s+[<"]dolphin/gx(?:/GXPriv)?\.h[>"]\n', '', text, flags=re.M)
     inc = list(re.finditer(r'^#include[^\n]*\n', text, re.M))
     at = inc[-1].end() if inc else 0
-    return text[:at] + '#include <dolphin/gx.h>\n#include <dolphin/gx/GXPriv.h>\n' + text[at:]
+    os_inc = '#include <dolphin/os/OSInterrupt.h>\n'
+    extra = os_inc if re.search(r'\bOS(?:Disable|Restore)Interrupts\(', text) and os_inc not in text else ''
+    return text[:at] + '#include <dolphin/gx.h>\n#include <dolphin/gx/GXPriv.h>\n' + extra + text[at:]
 
 
 if __name__ == '__main__':

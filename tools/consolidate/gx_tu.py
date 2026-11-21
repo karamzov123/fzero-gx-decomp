@@ -110,16 +110,23 @@ def attempt(srcs, texts, dest, nu, apply):
         return False, 'compile: ' + err
     with tempfile.NamedTemporaryFile('w', suffix='.c', delete=False) as f:
         f.write(code)
+    first = None
     try:
-        cmd = [sys.executable, str(HERE / 'tu_try.py'), f.name, '--units', ','.join(srcs)]
-        if apply:
-            cmd += ['--apply', '--as', dest]
-        r = subprocess.run(cmd, capture_output=True, text=True)
+        # per-function units never exposed auto-inlining: a TU may need it off, as retail's calls show
+        for extra in ([], ['--extra', '-inline on,noauto']):
+            cmd = [sys.executable, str(HERE / 'tu_try.py'), f.name, '--units', ','.join(srcs)] + extra
+            r = subprocess.run(cmd, capture_output=True, text=True)
+            lines = (r.stdout + r.stderr).strip().splitlines()
+            first = first or (lines[0][:110] if lines else '?')
+            if any(x.startswith('IDENTICAL') for x in lines):
+                if apply:
+                    r = subprocess.run(cmd + ['--apply', '--as', dest], capture_output=True, text=True)
+                    if 'applied as' not in r.stdout:
+                        return False, 'apply failed: ' + (r.stdout + r.stderr).strip()[-110:]
+                return True, 'noauto' if extra else 'default'
     finally:
         os.unlink(f.name)
-    lines = (r.stdout + r.stderr).strip().splitlines()
-    ok = any(x.startswith('IDENTICAL') for x in lines)
-    return ok, (lines[0][:110] if lines else '?')
+    return False, first
 
 
 def main():

@@ -613,9 +613,6 @@ dol/fn_800743C4.c:
 dol/GXClearGPMetric.c:
 	.text       start:0x80039AFC end:0x80039B0C align:4
 
-dol/GXPokeAlphaRead.c:
-	.text       start:0x80034200 end:0x80034214 align:4
-
 dol/fn_80072864.c:
 	.text       start:0x80072864 end:0x800728A8 align:4
 
@@ -748,9 +745,6 @@ dol/__GXWriteFifoIntEnable.c:
 dol/GXSetNumTexGens.c:
 	.text       start:0x80033D4C end:0x80033D8C align:4
 
-dol/GXPokeColorUpdate.c:
-	.text       start:0x800342B8 end:0x800342D4 align:4
-
 dol/__GXFifoLink.c:
 	.text       start:0x800322AC end:0x800322E8 align:4
 
@@ -763,17 +757,11 @@ dol/GXSetDispCopyGamma.c:
 dol/GXLoadTexObj.c:
 	.text       start:0x80036388 end:0x8003658C align:4
 
-dol/fn_80034890.c:
-	.text       start:0x80034890 end:0x800348DC align:4
-
 dol/GXSetNumIndStages.c:
 	.text       start:0x80036EB4 end:0x80036EDC align:4
 
 dol/fn_80036EDC.c:
 	.text       start:0x80036EDC end:0x80037014 align:4
-
-dol/GXSetNumTevStages.c:
-	.text       start:0x800377C8 end:0x800377F8 align:4
 
 dol/fn_800433A4.c:
 	.text       start:0x800433A4 end:0x80043460 align:4
@@ -1223,7 +1211,7 @@ dol/cbForUnrecoveredErrorRetry.c:
 	.text       start:0x80017E10 end:0x80017ED0 align:4
 
 dol/GXDrawDone.c:
-	.text       start:0x8003416C end:0x80034200 align:4
+	.text       start:0x8003416C end:0x800342E8 align:4
 
 dol/GXSetTexRegionCallback.c:
 	.text       start:0x8003658C end:0x80036A28 align:4
@@ -1240,9 +1228,6 @@ dol/GXSetZCompLoc.c:
 dol/__GXWriteFifoIntReset.c:
 	.text       start:0x80032324 end:0x80032360 align:4
 
-dol/GXSetCoPlanar.c:
-	.text       start:0x800348DC end:0x8003493C align:4
-
 dol/__OSDoHotReset.c:
 	.text       start:0x8000EF64 end:0x8000F234 align:4
 
@@ -1257,9 +1242,6 @@ dol/__DBExceptionDestinationAux.c:
 
 dol/fn_80063EF4.c:
 	.text       start:0x80063EF4 end:0x80063F38 align:4
-
-dol/GXPokeAlphaUpdate.c:
-	.text       start:0x80034214 end:0x80034230 align:4
 
 dol/fn_80073620.c:
 	.text       start:0x80073620 end:0x80073678 align:4
@@ -1525,12 +1507,6 @@ dol/DVDCancelAsync.c:
 dol/__GXSaveCPUFifoAux.c:
 	.text       start:0x80032014 end:0x800321D8 align:4
 
-dol/GXPokeBlendMode.c:
-	.text       start:0x80034230 end:0x800342B8 align:4
-
-dol/GXPokeDstAlpha.c:
-	.text       start:0x800342D4 end:0x800342E8 align:4
-
 dol/GXInitTexObjLOD.c:
 	.text       start:0x80035EC4 end:0x80036388 align:4
 
@@ -1598,11 +1574,8 @@ dol/GXGetVtxAttrFmt.c:
 	.text       start:0x800336EC end:0x80033D4C align:4
 	.data       start:0x8012AF00 end:0x8012AFB8 align:8
 
-dol/GXSetDrawDone.c:
-	.text       start:0x800340D4 end:0x8003416C align:4
-
-dol/__GXSendFlushPrim.c:
-	.text       start:0x8003471C end:0x80034890 align:4
+dol/gx/GXGeometry.c:
+	.text       start:0x8003471C end:0x8003493C align:4
 
 dol/GXAdjustForOverscan.c:
 	.text       start:0x8003493C end:0x80034D34 align:4
@@ -2517,7 +2490,7 @@ dol/fn_800370A0.c:
 	.text       start:0x800370A0 end:0x80037128 align:4
 
 dol/fn_80037128.c:
-	.text       start:0x80037128 end:0x800377C8 align:4
+	.text       start:0x80037128 end:0x800377F8 align:4
 
 dol/fn_80037C2C.c:
 	.text       start:0x80037C2C end:0x80037D14 align:4
@@ -2532,7 +2505,7 @@ dol/fn_80035828.c:
 	.text       start:0x80035828 end:0x8003591C align:4
 
 dol/fn_8003401C.c:
-	.text       start:0x8003401C end:0x800340D4 align:4
+	.text       start:0x8003401C end:0x8003416C align:4
 
 dol/fn_80005B10.c:
 	.text       start:0x80005B10 end:0x80005E0C align:4

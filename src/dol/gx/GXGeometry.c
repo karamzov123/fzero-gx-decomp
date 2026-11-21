@@ -1,8 +1,8 @@
 #include <types.h>
 #include "sdk_addresses.h"
+#include "types.h"
 #include <dolphin/gx.h>
 #include <dolphin/gx/GXPriv.h>
-#include "types.h"
 
 void __GXSendFlushPrim(void) {
     u32 i;
@@ -63,4 +63,47 @@ void fn_80034834(u32 arg0, u32 arg1, u32 arg2) {
     // The FIFO data write is volatile because it accesses memory-mapped hardware.
     *(volatile u32 *)fifo = *(u32 *)((u8 *)reg->suTs0 + arg0 * 4);
     reg->bpSentNot = 0;
+}
+
+typedef struct {
+    u8 pad0[0x204];
+    u32 field204;
+    u8 pad208[0x2ec];
+    u32 field4f4;
+} GxState;
+
+void fn_80034890(s32 mode) {
+    GxState *state;
+
+    switch (mode) {
+    case 1:
+        mode = 2;
+        break;
+    case 2:
+        mode = 1;
+        break;
+    }
+
+    state = (GxState *)gx;
+    state->field204 = (state->field204 & 0xffff3fff) | (mode << 14);
+    state->field4f4 |= 4;
+}
+
+void GXSetCoPlanar(u32 arg0) {
+    GXData *data;
+    u32 value;
+
+    data = gx;
+    value = (arg0 & 0xFF) << 19;
+    data->genMode = (data->genMode & 0xFFF7FFFF) | value;
+    *(volatile u8 *)((u8 *)0xCC010000 + -32768) = 0x61; /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+    *(volatile u32 *)((u8 *)0xCC010000 + -32768) = 0xFE080000; /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+    *(volatile u8 *)((u8 *)0xCC010000 + -32768) = 0x61; /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+    *(volatile u32 *)((u8 *)0xCC010000 + -32768) = data->genMode; /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+}
+
+void __GXSetGenMode(void) {
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.u32 = gx->genMode;
+    gx->bpSentNot = 0;
 }

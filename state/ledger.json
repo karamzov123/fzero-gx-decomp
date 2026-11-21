@@ -1,5 +1,5 @@
 {
- "generated": 1795282485,
+ "generated": 1795286582,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -20914,7 +20914,7 @@
   {
    "symbol": "GXSetDrawDone",
    "module": "main",
-   "unit": "dol/GXSetDrawDone.c",
+   "unit": "dol/fn_8003401C.c",
    "addr": 2147696852,
    "size": 152,
    "status": "matched",
@@ -20965,7 +20965,7 @@
   {
    "symbol": "GXPokeAlphaRead",
    "module": "main",
-   "unit": "dol/GXPokeAlphaRead.c",
+   "unit": "dol/GXDrawDone.c",
    "addr": 2147697152,
    "size": 20,
    "status": "matched",
@@ -20982,7 +20982,7 @@
   {
    "symbol": "GXPokeAlphaUpdate",
    "module": "main",
-   "unit": "dol/GXPokeAlphaUpdate.c",
+   "unit": "dol/GXDrawDone.c",
    "addr": 2147697172,
    "size": 28,
    "status": "matched",
@@ -20999,7 +20999,7 @@
   {
    "symbol": "GXPokeBlendMode",
    "module": "main",
-   "unit": "dol/GXPokeBlendMode.c",
+   "unit": "dol/GXDrawDone.c",
    "addr": 2147697200,
    "size": 136,
    "status": "matched",
@@ -21016,7 +21016,7 @@
   {
    "symbol": "GXPokeColorUpdate",
    "module": "main",
-   "unit": "dol/GXPokeColorUpdate.c",
+   "unit": "dol/GXDrawDone.c",
    "addr": 2147697336,
    "size": 28,
    "status": "matched",
@@ -21033,7 +21033,7 @@
   {
    "symbol": "GXPokeDstAlpha",
    "module": "main",
-   "unit": "dol/GXPokeDstAlpha.c",
+   "unit": "dol/GXDrawDone.c",
    "addr": 2147697364,
    "size": 20,
    "status": "matched",
@@ -21237,7 +21237,7 @@
   {
    "symbol": "__GXSendFlushPrim",
    "module": "main",
-   "unit": "dol/__GXSendFlushPrim.c",
+   "unit": "dol/gx/GXGeometry.c",
    "addr": 2147698460,
    "size": 136,
    "status": "matched",
@@ -21254,7 +21254,7 @@
   {
    "symbol": "GXSetLineWidth",
    "module": "main",
-   "unit": "dol/__GXSendFlushPrim.c",
+   "unit": "dol/gx/GXGeometry.c",
    "addr": 2147698596,
    "size": 72,
    "status": "matched",
@@ -21271,7 +21271,7 @@
   {
    "symbol": "GXSetPointSize",
    "module": "main",
-   "unit": "dol/__GXSendFlushPrim.c",
+   "unit": "dol/gx/GXGeometry.c",
    "addr": 2147698668,
    "size": 72,
    "status": "matched",
@@ -21288,7 +21288,7 @@
   {
    "symbol": "fn_80034834",
    "module": "main",
-   "unit": "dol/__GXSendFlushPrim.c",
+   "unit": "dol/gx/GXGeometry.c",
    "addr": 2147698740,
    "size": 92,
    "status": "matched",
@@ -21305,7 +21305,7 @@
   {
    "symbol": "fn_80034890",
    "module": "main",
-   "unit": "dol/fn_80034890.c",
+   "unit": "dol/gx/GXGeometry.c",
    "addr": 2147698832,
    "size": 76,
    "status": "matched",
@@ -21322,7 +21322,7 @@
   {
    "symbol": "GXSetCoPlanar",
    "module": "main",
-   "unit": "dol/GXSetCoPlanar.c",
+   "unit": "dol/gx/GXGeometry.c",
    "addr": 2147698908,
    "size": 60,
    "status": "matched",
@@ -21339,7 +21339,7 @@
   {
    "symbol": "__GXSetGenMode",
    "module": "main",
-   "unit": "dol/GXSetCoPlanar.c",
+   "unit": "dol/gx/GXGeometry.c",
    "addr": 2147698968,
    "size": 36,
    "status": "matched",
@@ -22512,7 +22512,7 @@
   {
    "symbol": "GXSetNumTevStages",
    "module": "main",
-   "unit": "dol/GXSetNumTevStages.c",
+   "unit": "dol/fn_80037128.c",
    "addr": 2147710920,
    "size": 48,
    "status": "matched",

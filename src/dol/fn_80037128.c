@@ -1,9 +1,9 @@
 #include "types.h"
 #include "dolphin/hw_regs.h"
-#include <dolphin/gx.h>
-#include <dolphin/gx/GXPriv.h>
 #include <types.h>
 #include "sdk_addresses.h"
+#include <dolphin/gx.h>
+#include <dolphin/gx/GXPriv.h>
 
 #define SET_REG_FIELD_RLWIMI(reg, size, shift, val) \
     ((reg) = __rlwimi((reg), (val), (shift), 32 - (shift) - (size), 31 - (shift)))
@@ -271,4 +271,12 @@ void GXSetTevOrder(GXTevStageID stage, GXTexCoordID coord, GXTexMapID map, GXCha
     ;
     gx->bpSentNot = ((GXBool)0);
     gx->dirtyState |= 1;
+}
+
+void GXSetNumTevStages(u32 arg0) {
+    GXData *state = gx;
+    u32 value;
+    value = (state->genMode & 0xFFFFC3FF) | (((arg0 & 0xFF) - 1) << 10);
+    state->genMode = value;
+    state->dirtyState |= 4;
 }
