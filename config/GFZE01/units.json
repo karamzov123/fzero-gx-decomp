@@ -3795,21 +3795,7 @@
       "fn_3_19CCC",
       "fn_3_19CE0",
       "fn_3_19D14",
-      "fn_3_19D50"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "tu": "rel/customize/toolkit.c",
-    "collapsed": true,
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ]
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/toolkit/fn_3_19D88.c",
-    "symbols": [
+      "fn_3_19D50",
       "fn_3_19D88",
       "fn_3_19DC8",
       "fn_3_19E40",
@@ -3826,16 +3812,13 @@
       "fn_3_1A1D8"
     ],
     "status": "matching",
-    "mw_version": "GC/1.3.2",
+    "matching_for": ["GFZE01", "GFZJ01"],
     "tu": "rel/customize/toolkit.c",
     "collapsed": true,
     "pool": {
       "...bss.0": "lbl_3_bss_A2438"
     },
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ]
+    "mw_version": "GC/1.3.2"
   },
   {
     "module": "customize",
@@ -7178,7 +7161,15 @@
       "ADXPD_Create"
     ],
     "status": "matching",
-    "mw_version": "GC/1.3.2"
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0",
+      "-use_lmw_stmw",
+      "off"
+    ]
   },
   {
     "module": "main",
@@ -7210,15 +7201,6 @@
       "off"
     ],
     "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/ADXSJE_ExecServer.c",
-    "symbols": [
-      "ADXSJE_ExecServer"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2"
   },
   {
     "module": "main",
@@ -7341,8 +7323,7 @@
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -7400,8 +7381,7 @@
       "ARQInit"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -7437,8 +7417,7 @@
       "AlarmHandler"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -7484,7 +7463,9 @@
     "symbols": [
       "IsCard",
       "CARDProbeEx",
-      "DoMount"
+      "DoMount",
+      "__CARDMountCallback",
+      "CARDMountAsync"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
@@ -7534,8 +7515,7 @@
       "CARDFormatAsync"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -7766,18 +7746,6 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ],
     "collapsed": true
   },
   {
@@ -7821,8 +7789,7 @@
       "DVDGetCommandBlockStatus"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -7831,8 +7798,7 @@
       "DVDGetDriveStatus"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -7844,18 +7810,6 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ],
     "pool": {
       "@10": "DVDLoadFstMessage"
     },
@@ -7980,8 +7934,7 @@
       "EraseCallback_CARDWrite"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -8095,8 +8048,7 @@
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -8205,17 +8157,6 @@
   },
   {
     "module": "main",
-    "source": "dol/GXInitTexCacheRegion.c",
-    "symbols": [
-      "GXInitTexCacheRegion"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
     "source": "dol/GXInitTexObj.c",
     "symbols": [
       "GXInitTexObj"
@@ -8223,14 +8164,6 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-sdata",
-      "8",
-      "-sdata2",
-      "8",
-      "-use_lmw_stmw",
-      "on"
-    ],
     "pool": {
       "@63": "lbl_801A70C0",
       "@61": "lbl_801A70B8"
@@ -8268,27 +8201,6 @@
   },
   {
     "module": "main",
-    "source": "dol/GXInitTlutRegion.c",
-    "symbols": [
-      "GXInitTlutRegion"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/GXInvalidateTexAll.c",
-    "symbols": [
-      "GXInvalidateTexAll"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
     "source": "dol/GXLoadNrmMtxImm.c",
     "symbols": [
       "GXLoadNrmMtxImm",
@@ -8304,12 +8216,15 @@
     "module": "main",
     "source": "dol/GXLoadTexObj.c",
     "symbols": [
-      "GXLoadTexObj"
+      "GXLoadTexObj",
+      "GXInitTexCacheRegion",
+      "GXInitTlutRegion",
+      "GXInvalidateTexAll"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n",
+    "collapsed": true
   },
   {
     "module": "main",
@@ -8457,8 +8372,7 @@
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -8511,8 +8425,7 @@
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -8618,8 +8531,19 @@
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n",
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on",
+      "-fp",
+      "fmadd",
+      "-fp_contract",
+      "off",
+      "-char",
+      "signed",
+      "-common",
+      "off"
+    ]
   },
   {
     "module": "main",
@@ -8650,8 +8574,7 @@
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -8758,23 +8681,13 @@
     "module": "main",
     "source": "dol/GXSetTexRegionCallback.c",
     "symbols": [
-      "GXSetTexRegionCallback"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/GXSetTlutRegionCallback.c",
-    "symbols": [
+      "GXSetTexRegionCallback",
       "GXSetTlutRegionCallback"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n",
+    "collapsed": true
   },
   {
     "module": "main",
@@ -8787,46 +8700,16 @@
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.2.5n",
     "extra_cflags": [
-      "-nodefaults",
-      "-proc",
-      "gekko",
-      "-align",
-      "powerpc",
-      "-enum",
-      "int",
-      "-fp",
-      "hardware",
-      "-Cpp_exceptions",
-      "off",
-      "-pragma",
-      "'cats",
-      "off'",
-      "-pragma",
-      "'warn_notinlined",
-      "off'",
       "-use_lmw_stmw",
       "on",
-      "-maxerrors",
-      "1",
-      "-nosyspath",
-      "-RTTI",
-      "off",
-      "-multibyte",
-      "-DMATCHING=1",
-      "-inline",
-      "auto",
-      "-lang=c",
       "-fp",
       "fmadd",
       "-fp_contract",
       "off",
       "-char",
       "signed",
-      "-str",
-      "reuse",
       "-common",
-      "off",
-      "-O4,p"
+      "off"
     ]
   },
   {
@@ -8881,8 +8764,7 @@
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -8998,8 +8880,7 @@
       "InitializeUART"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -9226,8 +9107,7 @@
       "OSDisableScheduler"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -9328,18 +9208,6 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ],
     "collapsed": true,
     "pool": {
       "fontEncode$1": "lbl_801A6438"
@@ -9354,8 +9222,7 @@
       "OSSetArenaHi"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
+    "mw_version": "GC/1.2.5n",
     "collapsed": true
   },
   {
@@ -9365,8 +9232,7 @@
       "OSGetProgressiveMode"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -9397,8 +9263,7 @@
       "OSGetSoundMode"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -9433,8 +9298,7 @@
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -9546,8 +9410,7 @@
       "OSSetAlarm"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -9591,8 +9454,7 @@
       "OSSetPeriodicAlarm"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -9614,8 +9476,7 @@
       "OSSetThreadPriority"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -9932,8 +9793,7 @@
       "PPCDisableSpeculation"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -10422,8 +10282,7 @@
       "SeekTwiceBeforeRead"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -11014,8 +10873,7 @@
       "_ExitProcess"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -11090,17 +10948,6 @@
   },
   {
     "module": "main",
-    "source": "dol/__CARDMountCallback.c",
-    "symbols": [
-      "__CARDMountCallback",
-      "CARDMountAsync"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
     "source": "dol/__CARDPutControlBlock.c",
     "symbols": [
       "__CARDPutControlBlock",
@@ -11166,8 +11013,7 @@
       "__DBExceptionDestinationAux"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -11177,8 +11023,7 @@
       "DBPrintf"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
+    "mw_version": "GC/1.2.5n",
     "collapsed": true
   },
   {
@@ -11240,8 +11085,7 @@
       "__DVDClearWaitingQueue"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -11325,7 +11169,19 @@
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n"
+    "mw_version": "GC/1.2.5n",
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on",
+      "-fp",
+      "fmadd",
+      "-fp_contract",
+      "off",
+      "-char",
+      "signed",
+      "-common",
+      "off"
+    ]
   },
   {
     "module": "main",
@@ -11476,7 +11332,19 @@
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n"
+    "mw_version": "GC/1.2.5n",
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on",
+      "-fp",
+      "fmadd",
+      "-fp_contract",
+      "off",
+      "-char",
+      "signed",
+      "-common",
+      "off"
+    ]
   },
   {
     "module": "main",
@@ -11639,8 +11507,7 @@
       "__OSLockSram"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -11649,18 +11516,7 @@
       "__OSLockSramEx"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/__OSReadROM.c",
-    "symbols": [
-      "__OSReadROM"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -11734,11 +11590,12 @@
     "module": "main",
     "source": "dol/__OSSyncSram.c",
     "symbols": [
-      "__OSSyncSram"
+      "__OSSyncSram",
+      "__OSReadROM"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n",
+    "collapsed": true
   },
   {
     "module": "main",
@@ -12265,7 +12122,15 @@
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
-    "mw_version": "GC/1.3.2"
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "8",
+      "-sdata2",
+      "8",
+      "-use_lmw_stmw",
+      "on"
+    ]
   },
   {
     "module": "main",
@@ -12337,8 +12202,7 @@
       "cbForStateCheckID2a"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -12367,8 +12231,7 @@
       "cbForStateError"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -12404,8 +12267,7 @@
       "cbForStateReadingFST"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -12414,8 +12276,7 @@
       "cbForUnrecoveredError"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -23599,8 +23460,7 @@
       "fn_80018108"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -23609,8 +23469,7 @@
       "fn_8001813C"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -23620,8 +23479,7 @@
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -24806,7 +24664,19 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.2.5n",
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on",
+      "-fp",
+      "fmadd",
+      "-fp_contract",
+      "off",
+      "-char",
+      "signed",
+      "-common",
+      "off"
+    ]
   },
   {
     "module": "main",
@@ -24818,7 +24688,19 @@
     "status": "matching",
     "mw_version": "GC/1.2.5n",
     "collapsed": true,
-    "matching_for": ["GFZE01", "GFZJ01"]
+    "matching_for": ["GFZE01", "GFZJ01"],
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on",
+      "-fp",
+      "fmadd",
+      "-fp_contract",
+      "off",
+      "-char",
+      "signed",
+      "-common",
+      "off"
+    ]
   },
   {
     "module": "main",
@@ -24828,8 +24710,19 @@
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n",
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on",
+      "-fp",
+      "fmadd",
+      "-fp_contract",
+      "off",
+      "-char",
+      "signed",
+      "-common",
+      "off"
+    ]
   },
   {
     "module": "main",
@@ -24895,8 +24788,7 @@
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -24906,8 +24798,7 @@
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -24917,8 +24808,7 @@
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -25028,8 +24918,7 @@
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -25154,8 +25043,7 @@
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -25165,30 +25053,19 @@
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
     "source": "dol/fn_80037B94.c",
     "symbols": [
-      "fn_80037B94"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80037BC0.c",
-    "symbols": [
+      "fn_80037B94",
       "fn_80037BC0"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n",
+    "collapsed": true
   },
   {
     "module": "main",
@@ -25198,8 +25075,7 @@
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -25291,8 +25167,7 @@
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": [],
+    "mw_version": "GC/1.2.5n",
     "pool": {
       "@9": "lbl_801A7160",
       "@11": "lbl_801A7174",
@@ -26279,11 +26154,20 @@
     "module": "main",
     "source": "dol/fn_8004784C.c",
     "symbols": [
-      "fn_8004784C"
+      "fn_8004784C",
+      "ADXSJE_ExecServer"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0",
+      "-use_lmw_stmw",
+      "on"
+    ],
+    "collapsed": true
   },
   {
     "module": "main",
@@ -26295,9 +26179,9 @@
     "mw_version": "GC/1.3.2",
     "extra_cflags": [
       "-sdata",
-      "8",
+      "0",
       "-sdata2",
-      "8",
+      "0",
       "-use_lmw_stmw",
       "on"
     ]
@@ -26313,7 +26197,15 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0",
+      "-use_lmw_stmw",
+      "on"
+    ]
   },
   {
     "module": "main",
@@ -26323,7 +26215,14 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": []
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0",
+      "-use_lmw_stmw",
+      "on"
+    ]
   },
   {
     "module": "main",
@@ -26336,7 +26235,15 @@
     "mw_version": "GC/1.3.2",
     "pool": {
       "...bss.0": "lbl_8017B5A8"
-    }
+    },
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0",
+      "-use_lmw_stmw",
+      "on"
+    ]
   },
   {
     "module": "main",
@@ -26346,7 +26253,14 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": []
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0",
+      "-use_lmw_stmw",
+      "on"
+    ]
   },
   {
     "module": "main",
@@ -26357,7 +26271,14 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0",
+      "-use_lmw_stmw",
+      "on"
+    ],
     "collapsed": true
   },
   {
@@ -26367,7 +26288,15 @@
       "fn_80049728"
     ],
     "status": "matching",
-    "mw_version": "GC/1.3.2"
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0",
+      "-use_lmw_stmw",
+      "on"
+    ]
   },
   {
     "module": "main",
@@ -26379,9 +26308,9 @@
     "mw_version": "GC/1.3.2",
     "extra_cflags": [
       "-sdata",
-      "8",
+      "0",
       "-sdata2",
-      "8",
+      "0",
       "-use_lmw_stmw",
       "on"
     ]
@@ -26420,7 +26349,9 @@
       "-sdata",
       "0",
       "-sdata2",
-      "0"
+      "0",
+      "-use_lmw_stmw",
+      "on"
     ],
     "pool": {
       "@197": "lbl_80090988",
@@ -27363,7 +27294,15 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0",
+      "-use_lmw_stmw",
+      "off"
+    ]
   },
   {
     "module": "main",
@@ -27373,7 +27312,14 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": []
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0",
+      "-use_lmw_stmw",
+      "off"
+    ]
   },
   {
     "module": "main",
@@ -27771,7 +27717,14 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0",
+      "-use_lmw_stmw",
+      "on"
+    ],
     "collapsed": true
   },
   {
@@ -27788,7 +27741,14 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0",
+      "-use_lmw_stmw",
+      "on"
+    ],
     "collapsed": true
   },
   {
@@ -27801,7 +27761,14 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0",
+      "-use_lmw_stmw",
+      "on"
+    ],
     "collapsed": true
   },
   {
@@ -30531,8 +30498,7 @@
       "fn_80070774"
     ],
     "status": "matching",
-    "mw_version": "GC/1.3",
-    "extra_cflags": [],
+    "mw_version": "GC/1.3.2",
     "pool": {
       "@22": "lbl_801A7410",
       "@25": "lbl_801A7418",
@@ -31839,7 +31805,14 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-sdata",
+      "8",
+      "-sdata2",
+      "8",
+      "-use_lmw_stmw",
+      "on"
+    ],
     "collapsed": true
   },
   {
@@ -32061,7 +32034,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": []
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on"
+    ]
   },
   {
     "module": "main",
@@ -32087,7 +32063,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": []
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on"
+    ]
   },
   {
     "module": "main",
@@ -32809,6 +32788,10 @@
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [
+      "-sdata",
+      "8",
+      "-sdata2",
+      "8",
       "-use_lmw_stmw",
       "on"
     ],
@@ -33641,19 +33624,7 @@
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on",
-      "-fp",
-      "fmadd",
-      "-fp_contract",
-      "off",
-      "-char",
-      "signed",
-      "-common",
-      "off"
-    ]
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -33727,7 +33698,15 @@
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
-    "mw_version": "GC/1.3.2"
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "8",
+      "-sdata2",
+      "8",
+      "-use_lmw_stmw",
+      "on"
+    ]
   },
   {
     "module": "main",

@@ -65,10 +65,7 @@ rel/customize/editor/fn_3_1552C.c:
 	.bss        start:0x000A23E8 end:0x000A2410 align:8
 
 rel/customize/toolkit/fn_3_19C50.c:
-	.text       start:0x00019C50 end:0x00019D88 align:4
-
-rel/customize/toolkit/fn_3_19D88.c:
-	.text       start:0x00019D88 end:0x0001A264 align:4
+	.text       start:0x00019C50 end:0x0001A264 align:4
 
 rel/customize/toolkit/fn_3_1ACE4.c:
 	.text       start:0x0001ACE4 end:0x0001AEE4 align:4

@@ -53,9 +53,6 @@ dol/fn_8000EB04.c:
 dol/fn_8000EE50.c:
 	.text       start:0x8000EE50 end:0x8000EEF4 align:4
 
-dol/__OSReadROM.c:
-	.text       start:0x8000FCD4 end:0x8000FDF8
-
 dol/OSInitThreadQueue.c:
 	.text       start:0x8001029C end:0x800102EC align:4
 
@@ -264,7 +261,7 @@ dol/fn_800658A8.c:
 	.text       start:0x800658A8 end:0x800658B4 align:4
 
 dol/__OSSyncSram.c:
-	.text       start:0x8000FCC4 end:0x8000FCD4 align:4
+	.text       start:0x8000FCC4 end:0x8000FDF8 align:4
 
 dol/fn_8008A754.c:
 	.text       start:0x8008A754 end:0x8008A764 align:4
@@ -321,13 +318,10 @@ dol/fn_8006A998.c:
 	.text       start:0x8006A998 end:0x8006AA20 align:4
 
 dol/fn_8004784C.c:
-	.text       start:0x8004784C end:0x80047864 align:4
+	.text       start:0x8004784C end:0x800478C0 align:4
 
 dol/__OSGetEffectivePriority.c:
 	.text       start:0x800103D4 end:0x800105D0 align:4
-
-dol/GXInitTexCacheRegion.c:
-	.text       start:0x800363DC end:0x800364FC align:4
 
 dol/SIBios.c:
 	.text       start:0x8001191C end:0x800132D4 align:4
@@ -444,9 +438,6 @@ dol/fn_80045D3C.c:
 dol/fn_80047C08.c:
 	.text       start:0x80047C08 end:0x80047C94 align:4
 
-dol/GXInitTlutRegion.c:
-	.text       start:0x800364FC end:0x80036544 align:4
-
 dol/fn_80022E5C.c:
 	.text       start:0x80022E5C end:0x80022E68 align:4
 
@@ -515,9 +506,6 @@ dol/fn_80039B0C.c:
 
 dol/fn_80024E3C.c:
 	.text       start:0x80024E3C end:0x80024E6C align:4
-
-dol/GXInvalidateTexAll.c:
-	.text       start:0x80036544 end:0x8003658C align:4
 
 dol/DVDGetCommandBlockStatus.c:
 	.text       start:0x800197A4 end:0x800197F0 align:4
@@ -808,7 +796,7 @@ dol/GXSetDispCopyGamma.c:
 	.text       start:0x800350F4 end:0x80035110 align:4
 
 dol/GXLoadTexObj.c:
-	.text       start:0x80036388 end:0x800363DC align:4
+	.text       start:0x80036388 end:0x8003658C align:4
 
 dol/fn_80034890.c:
 	.text       start:0x80034890 end:0x800348DC align:4
@@ -818,9 +806,6 @@ dol/GXSetNumIndStages.c:
 
 dol/fn_80036EDC.c:
 	.text       start:0x80036EDC end:0x80036FF0 align:4
-
-dol/GXSetTlutRegionCallback.c:
-	.text       start:0x800365A0 end:0x800365B4 align:4
 
 dol/GXSetNumTevStages.c:
 	.text       start:0x800377C8 end:0x800377F8 align:4
@@ -1285,7 +1270,7 @@ dol/GXDrawDone.c:
 	.text       start:0x8003416C end:0x800341EC align:4
 
 dol/GXSetTexRegionCallback.c:
-	.text       start:0x8003658C end:0x800365A0 align:4
+	.text       start:0x8003658C end:0x800365B4 align:4
 
 dol/AIStartDMA.c:
 	.text       start:0x8001DFCC end:0x8001DFE4 align:4
@@ -1430,9 +1415,6 @@ dol/bitrev.c:
 dol/EraseCallback.c:
 	.text       start:0x8002C194 end:0x8002C720 align:4
 
-dol/__CARDMountCallback.c:
-	.text       start:0x8002DD08 end:0x8002DFE0 align:4
-
 dol/CARDUnmount.c:
 	.text       start:0x8002E0C4 end:0x8002E170 align:4
 
@@ -1458,7 +1440,7 @@ dol/CARDCheck.c:
 	.text       start:0x8002C720 end:0x8002D6B0 align:4
 
 dol/IsCard.c:
-	.text       start:0x8002D6B0 end:0x8002DD08 align:4
+	.text       start:0x8002D6B0 end:0x8002DFE0 align:4
 
 dol/CARDCreate.c:
 	.text       start:0x8002EDA8 end:0x8002F140 align:4
@@ -1852,9 +1834,6 @@ dol/ADXB_Create.c:
 
 dol/ADX_DecodeInfoExLoop.c:
 	.text       start:0x800469A4 end:0x80047464 align:4
-
-dol/ADXSJE_ExecServer.c:
-	.text       start:0x80047864 end:0x800478C0 align:4
 
 dol/ADXT_Pause.c:
 	.text       start:0x8004BC0C end:0x8004BD5C align:4
@@ -2723,13 +2702,10 @@ dol/fn_80037B68.c:
 	.text       start:0x80037B68 end:0x80037B94 align:4
 
 dol/fn_80037B94.c:
-	.text       start:0x80037B94 end:0x80037BC0 align:4
+	.text       start:0x80037B94 end:0x80037BF4 align:4
 
 dol/fn_80037D14.c:
 	.text       start:0x80037D14 end:0x80037D7C align:4
-
-dol/fn_80037BC0.c:
-	.text       start:0x80037BC0 end:0x80037BF4 align:4
 
 dol/fn_800370A0.c:
 	.text       start:0x800370A0 end:0x80037128 align:4

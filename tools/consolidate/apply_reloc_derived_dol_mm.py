@@ -1,5 +1,7 @@
 import concurrent.futures, json, pathlib, re, subprocess, struct, sys, tempfile
 import importlib.util
+sys.path.insert(0, str(pathlib.Path(__file__).parent))
+import tuguard
 
 spec_pa = importlib.util.spec_from_file_location('pa', str(pathlib.Path(__file__).with_name('apply_pooled_all.py')))
 pa = importlib.util.module_from_spec(spec_pa); spec_pa.loader.exec_module(pa)
@@ -114,9 +116,10 @@ def process_mod_rd(task):
             i += 1; continue
         run = [(sa, ea, u, (info.get('mw_version') or def_mv, tuple(info.get('extra_cflags') or [])))]
         prev_ea = ea
-        for j in range(i + 1, min(i + 10, n)):
+        for j in range(i + 1, min(i + 40, n)):
             sa2, ea2, u2, extra2 = lst[j]
             if sa2 != prev_ea or extra2 or not pathlib.Path('src/' + u2).exists(): break
+            if not tuguard.same_tu([x[2] for x in run] + [u2], units): break
             inf2 = units.get(u2)
             if not inf2: break
             run.append((sa2, ea2, u2, (inf2.get('mw_version') or def_mv, tuple(inf2.get('extra_cflags') or []))))

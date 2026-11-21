@@ -1,5 +1,5 @@
 {
- "generated": 1795223799,
+ "generated": 1795224331,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -4169,7 +4169,7 @@
   {
    "symbol": "fn_3_19D88",
    "module": "customize",
-   "unit": "rel/customize/toolkit/fn_3_19D88.c",
+   "unit": "rel/customize/toolkit/fn_3_19C50.c",
    "addr": 105864,
    "size": 64,
    "status": "matched",
@@ -4186,7 +4186,7 @@
   {
    "symbol": "fn_3_19DC8",
    "module": "customize",
-   "unit": "rel/customize/toolkit/fn_3_19D88.c",
+   "unit": "rel/customize/toolkit/fn_3_19C50.c",
    "addr": 105928,
    "size": 120,
    "status": "matched",
@@ -4203,7 +4203,7 @@
   {
    "symbol": "fn_3_19E40",
    "module": "customize",
-   "unit": "rel/customize/toolkit/fn_3_19D88.c",
+   "unit": "rel/customize/toolkit/fn_3_19C50.c",
    "addr": 106048,
    "size": 120,
    "status": "matched",
@@ -4220,7 +4220,7 @@
   {
    "symbol": "fn_3_19EB8",
    "module": "customize",
-   "unit": "rel/customize/toolkit/fn_3_19D88.c",
+   "unit": "rel/customize/toolkit/fn_3_19C50.c",
    "addr": 106168,
    "size": 68,
    "status": "matched",
@@ -4237,7 +4237,7 @@
   {
    "symbol": "fn_3_19EFC",
    "module": "customize",
-   "unit": "rel/customize/toolkit/fn_3_19D88.c",
+   "unit": "rel/customize/toolkit/fn_3_19C50.c",
    "addr": 106236,
    "size": 68,
    "status": "matched",
@@ -4254,7 +4254,7 @@
   {
    "symbol": "fn_3_19F40",
    "module": "customize",
-   "unit": "rel/customize/toolkit/fn_3_19D88.c",
+   "unit": "rel/customize/toolkit/fn_3_19C50.c",
    "addr": 106304,
    "size": 60,
    "status": "matched",
@@ -4271,7 +4271,7 @@
   {
    "symbol": "fn_3_19F7C",
    "module": "customize",
-   "unit": "rel/customize/toolkit/fn_3_19D88.c",
+   "unit": "rel/customize/toolkit/fn_3_19C50.c",
    "addr": 106364,
    "size": 32,
    "status": "matched",
@@ -4288,7 +4288,7 @@
   {
    "symbol": "fn_3_19F9C",
    "module": "customize",
-   "unit": "rel/customize/toolkit/fn_3_19D88.c",
+   "unit": "rel/customize/toolkit/fn_3_19C50.c",
    "addr": 106396,
    "size": 68,
    "status": "matched",
@@ -4305,7 +4305,7 @@
   {
    "symbol": "fn_3_19FE0",
    "module": "customize",
-   "unit": "rel/customize/toolkit/fn_3_19D88.c",
+   "unit": "rel/customize/toolkit/fn_3_19C50.c",
    "addr": 106464,
    "size": 68,
    "status": "matched",
@@ -4322,7 +4322,7 @@
   {
    "symbol": "fn_3_1A024",
    "module": "customize",
-   "unit": "rel/customize/toolkit/fn_3_19D88.c",
+   "unit": "rel/customize/toolkit/fn_3_19C50.c",
    "addr": 106532,
    "size": 68,
    "status": "matched",
@@ -4339,7 +4339,7 @@
   {
    "symbol": "fn_3_1A068",
    "module": "customize",
-   "unit": "rel/customize/toolkit/fn_3_19D88.c",
+   "unit": "rel/customize/toolkit/fn_3_19C50.c",
    "addr": 106600,
    "size": 140,
    "status": "matched",
@@ -4356,7 +4356,7 @@
   {
    "symbol": "fn_3_1A0F4",
    "module": "customize",
-   "unit": "rel/customize/toolkit/fn_3_19D88.c",
+   "unit": "rel/customize/toolkit/fn_3_19C50.c",
    "addr": 106740,
    "size": 196,
    "status": "matched",
@@ -4373,7 +4373,7 @@
   {
    "symbol": "fn_3_1A1B8",
    "module": "customize",
-   "unit": "rel/customize/toolkit/fn_3_19D88.c",
+   "unit": "rel/customize/toolkit/fn_3_19C50.c",
    "addr": 106936,
    "size": 32,
    "status": "matched",
@@ -4390,7 +4390,7 @@
   {
    "symbol": "fn_3_1A1D8",
    "module": "customize",
-   "unit": "rel/customize/toolkit/fn_3_19D88.c",
+   "unit": "rel/customize/toolkit/fn_3_19C50.c",
    "addr": 106968,
    "size": 140,
    "status": "matched",
@@ -11020,7 +11020,7 @@
   {
    "symbol": "__OSReadROM",
    "module": "main",
-   "unit": "dol/__OSReadROM.c",
+   "unit": "dol/__OSSyncSram.c",
    "addr": 2147548372,
    "size": 292,
    "status": "matched",
@@ -19452,7 +19452,7 @@
   {
    "symbol": "__CARDMountCallback",
    "module": "main",
-   "unit": "dol/__CARDMountCallback.c",
+   "unit": "dol/IsCard.c",
    "addr": 2147671304,
    "size": 312,
    "status": "matched",
@@ -19469,7 +19469,7 @@
   {
    "symbol": "CARDMountAsync",
    "module": "main",
-   "unit": "dol/__CARDMountCallback.c",
+   "unit": "dol/IsCard.c",
    "addr": 2147671616,
    "size": 416,
    "status": "matched",
@@ -21985,7 +21985,7 @@
   {
    "symbol": "GXInitTexCacheRegion",
    "module": "main",
-   "unit": "dol/GXInitTexCacheRegion.c",
+   "unit": "dol/GXLoadTexObj.c",
    "addr": 2147705820,
    "size": 288,
    "status": "matched",
@@ -22002,7 +22002,7 @@
   {
    "symbol": "GXInitTlutRegion",
    "module": "main",
-   "unit": "dol/GXInitTlutRegion.c",
+   "unit": "dol/GXLoadTexObj.c",
    "addr": 2147706108,
    "size": 72,
    "status": "matched",
@@ -22019,7 +22019,7 @@
   {
    "symbol": "GXInvalidateTexAll",
    "module": "main",
-   "unit": "dol/GXInvalidateTexAll.c",
+   "unit": "dol/GXLoadTexObj.c",
    "addr": 2147706180,
    "size": 72,
    "status": "matched",
@@ -22053,7 +22053,7 @@
   {
    "symbol": "GXSetTlutRegionCallback",
    "module": "main",
-   "unit": "dol/GXSetTlutRegionCallback.c",
+   "unit": "dol/GXSetTexRegionCallback.c",
    "addr": 2147706272,
    "size": 20,
    "status": "matched",
@@ -22614,7 +22614,7 @@
   {
    "symbol": "fn_80037BC0",
    "module": "main",
-   "unit": "dol/fn_80037BC0.c",
+   "unit": "dol/fn_80037B94.c",
    "addr": 2147711936,
    "size": 52,
    "status": "matched",
@@ -26269,7 +26269,7 @@
   {
    "symbol": "ADXSJE_ExecServer",
    "module": "main",
-   "unit": "dol/ADXSJE_ExecServer.c",
+   "unit": "dol/fn_8004784C.c",
    "addr": 2147776612,
    "size": 92,
    "status": "matched",
