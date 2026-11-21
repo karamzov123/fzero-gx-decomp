@@ -47,15 +47,6 @@ dol/__OSReboot.c:
 dol/fn_8000EE5C.c:
 	.text       start:0x8000EE5C end:0x8000EEF4 align:4
 
-dol/OSInitThreadQueue.c:
-	.text       start:0x8001029C end:0x8001032C align:4
-
-dol/OSEnableScheduler.c:
-	.text       start:0x8001032C end:0x800103D4 align:4
-
-dol/fn_80011358.c:
-	.text       start:0x80011358 end:0x8001140C align:4
-
 dol/_ExitProcess.c:
 	.text       start:0x800118FC end:0x8001191C
 
@@ -246,9 +237,6 @@ dol/fn_80018108.c:
 dol/fn_8001813C.c:
 	.text       start:0x8001813C end:0x80018170 align:4
 
-dol/__OSReschedule.c:
-	.text       start:0x800107F8 end:0x80010A10 align:4
-
 dol/fn_8001989C.c:
 	.text       start:0x8001989C end:0x800198FC align:4
 
@@ -263,9 +251,6 @@ dol/fn_8006A998.c:
 
 dol/fn_8004784C.c:
 	.text       start:0x8004784C end:0x800478C0 align:4
-
-dol/__OSGetEffectivePriority.c:
-	.text       start:0x800103D4 end:0x800105D0 align:4
 
 dol/SIBios.c:
 	.text       start:0x8001191C end:0x800132D4 align:4
@@ -597,9 +582,6 @@ dol/fn_80007C60.c:
 
 dol/os/OSAlarm.c:
 	.text       start:0x8000ABE8 end:0x8000B2C4 align:4
-
-dol/fn_8000CE30.c:
-	.text       start:0x8000CE30 end:0x8000D1F0 align:4
 
 dol/fn_80017590.c:
 	.text       start:0x80017590 end:0x800176D8 align:4
@@ -1371,21 +1353,6 @@ dol/AISetDSPSampleRate.c:
 dol/os/OSResetSW.c:
 	.text       start:0x8000F264 end:0x8000F610 align:4
 
-dol/OSExitThread.c:
-	.text       start:0x80010A10 end:0x80010AF4 align:4
-
-dol/OSCancelThread.c:
-	.text       start:0x80010AF4 end:0x80010F38 align:4
-
-dol/OSSuspendThread.c:
-	.text       start:0x80010F38 end:0x800110A8 align:4
-
-dol/OSSleepThread.c:
-	.text       start:0x800110A8 end:0x80011194 align:4
-
-dol/OSWakeupThread.c:
-	.text       start:0x80011194 end:0x80011298 align:4
-
 dol/os/OSRtc.c:
 	.text       start:0x8000F610 end:0x800100BC align:4
 	.bss        start:0x8015BFC0 end:0x8015C014 align:32
@@ -1440,9 +1407,6 @@ dol/fn_80077F8C.c:
 
 dol/fn_800780A4.c:
 	.text       start:0x800780A4 end:0x800781B8 align:4
-
-dol/OSSetThreadPriority.c:
-	.text       start:0x80011298 end:0x80011358 align:4
 
 dol/fn_80078D60.c:
 	.text       start:0x80078D60 end:0x80078F0C align:4
@@ -1584,8 +1548,8 @@ dol/TRKGetNextEvent.c:
 dol/TRKInitializeMessageBuffers.c:
 	.text       start:0x8008930C end:0x8008944C align:4
 
-dol/GetFontCode.c:
-	.text       start:0x8000CAC8 end:0x8000CDD8 align:4
+dol/os/OSFont.c:
+	.text       start:0x8000CAC8 end:0x8000D4F4
 
 dol/gx/GXInit.c:
 	.text       start:0x800307CC end:0x80031B50 align:4
@@ -1829,14 +1793,11 @@ dol/fn_80007730.c:
 dol/fn_80024308.c:
 	.text       start:0x80024308 end:0x80024378 align:4
 
-dol/__OSThreadInit.c:
-	.text       start:0x80010144 end:0x8001029C align:4
+dol/os/OSThread.c:
+	.text       start:0x80010144 end:0x8001140C align:4
 
 dol/fn_80057EC4.c:
 	.text       start:0x80057EC4 end:0x800583DC align:4
-
-dol/SelectThread.c:
-	.text       start:0x800105D0 end:0x800107F8 align:4
 
 dol/fn_8008D92C.c:
 	.text       start:0x8008D92C end:0x8008DAA8 align:4
@@ -2064,9 +2025,6 @@ dol/fstload.c:
 	.sdata      start:0x801A6490 end:0x801A64A0 align:8
 	.bss        start:0x8015CF38 end:0x8015CF68 align:8
 
-dol/OSFont.c:
-	.text       start:0x8000CDD8 end:0x8000CE30 align:4
-
 dol/fn_80049BF4.c:
 	.text       start:0x80049BF4 end:0x8004A068 align:4
 
@@ -2093,9 +2051,6 @@ dol/fn_80076CD4.c:
 
 dol/card/CARDNet.c:
 	.text       start:0x8003043C end:0x800307CC align:4
-
-dol/fn_8000D1F0.c:
-	.text       start:0x8000D1F0 end:0x8000D4F4 align:4
 
 dol/fn_8008EDF0.c:
 	.text       start:0x8008EDF0 end:0x8008EFE0 align:4
