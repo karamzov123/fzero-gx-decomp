@@ -26,9 +26,6 @@ dol/fn_80006BDC.c:
 dol/PPCDisableSpeculation.c:
 	.text       start:0x8000A0CC end:0x8000A0F4
 
-dol/OSCreateAlarm.c:
-	.text       start:0x8000AC34 end:0x8000AE94 align:4
-
 dol/OSGetArenaHi.c:
 	.text       start:0x8000B314 end:0x8000B32C align:4
 
@@ -669,9 +666,6 @@ dol/fn_800136E8.c:
 dol/fn_80089244.c:
 	.text       start:0x80089244 end:0x8008930C align:4
 
-dol/OSSetAlarm.c:
-	.text       start:0x8000AE94 end:0x8000AEFC align:4
-
 dol/fn_80051E64.c:
 	.text       start:0x80051E64 end:0x80051F38 align:4
 
@@ -687,8 +681,8 @@ dol/fn_80006C4C.c:
 dol/fn_80007C60.c:
 	.text       start:0x80007C60 end:0x80007D58 align:4
 
-dol/OSInitAlarm.c:
-	.text       start:0x8000ABE8 end:0x8000AC34 align:4
+dol/os/OSAlarm.c:
+	.text       start:0x8000ABE8 end:0x8000B2C4 align:4
 
 dol/fn_8000CE30.c:
 	.text       start:0x8000CE30 end:0x8000D1F0 align:4
@@ -1355,9 +1349,6 @@ dol/OSError.c:
 dol/fn_80047464.c:
 	.text       start:0x80047464 end:0x800474E4 align:4
 
-dol/OSSetPeriodicAlarm.c:
-	.text       start:0x8000AEFC end:0x8000AF78 align:4
-
 dol/fn_80005518.c:
 	.init       start:0x80005518 end:0x80005544 align:4
 
@@ -1553,12 +1544,6 @@ dol/__CARDUnlock.c:
 
 dol/BlockReadCallback.c:
 	.text       start:0x8002BE20 end:0x8002C0A0 align:4
-
-dol/OSCancelAlarm.c:
-	.text       start:0x8000AF78 end:0x8000B094 align:4
-
-dol/DecrementerExceptionCallback.c:
-	.text       start:0x8000B094 end:0x8000B2C4 align:4
 
 dol/__OSInterruptInit.c:
 	.text       start:0x8000D570 end:0x8000DD10 align:4

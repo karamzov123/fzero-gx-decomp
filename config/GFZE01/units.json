@@ -7891,15 +7891,6 @@
   },
   {
     "module": "main",
-    "source": "dol/DecrementerExceptionCallback.c",
-    "symbols": [
-      "DecrementerExceptionCallback"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
     "source": "dol/DecrementerExceptionHandler.c",
     "symbols": [
       "DecrementerExceptionHandler"
@@ -9052,15 +9043,6 @@
   },
   {
     "module": "main",
-    "source": "dol/OSCancelAlarm.c",
-    "symbols": [
-      "OSCancelAlarm"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
     "source": "dol/OSCancelThread.c",
     "symbols": [
       "OSCancelThread"
@@ -9076,17 +9058,6 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/OSCreateAlarm.c",
-    "symbols": [
-      "OSCreateAlarm",
-      "InsertAlarm"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
   },
   {
     "module": "main",
@@ -9292,13 +9263,20 @@
   },
   {
     "module": "main",
-    "source": "dol/OSInitAlarm.c",
+    "source": "dol/os/OSAlarm.c",
     "symbols": [
-      "OSInitAlarm"
+      "OSInitAlarm",
+      "OSCreateAlarm",
+      "InsertAlarm",
+      "OSSetAlarm",
+      "OSSetPeriodicAlarm",
+      "OSCancelAlarm",
+      "DecrementerExceptionCallback"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.2.5n"
+    "mw_version": "GC/1.2.5n",
+    "collapsed": true
   },
   {
     "module": "main",
@@ -9405,15 +9383,6 @@
   },
   {
     "module": "main",
-    "source": "dol/OSSetAlarm.c",
-    "symbols": [
-      "OSSetAlarm"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
     "source": "dol/OSSetArenaLo.c",
     "symbols": [
       "OSSetArenaLo",
@@ -9446,15 +9415,6 @@
     "mw_version": null,
     "extra_cflags": [],
     "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/OSSetPeriodicAlarm.c",
-    "symbols": [
-      "OSSetPeriodicAlarm"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",

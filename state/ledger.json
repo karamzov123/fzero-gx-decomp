@@ -1,5 +1,5 @@
 {
- "generated": 1795224751,
+ "generated": 1795225910,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -9184,7 +9184,7 @@
   {
    "symbol": "OSInitAlarm",
    "module": "main",
-   "unit": "dol/OSInitAlarm.c",
+   "unit": "dol/os/OSAlarm.c",
    "addr": 2147527656,
    "size": 76,
    "status": "matched",
@@ -9201,7 +9201,7 @@
   {
    "symbol": "OSCreateAlarm",
    "module": "main",
-   "unit": "dol/OSCreateAlarm.c",
+   "unit": "dol/os/OSAlarm.c",
    "addr": 2147527732,
    "size": 16,
    "status": "matched",
@@ -9218,7 +9218,7 @@
   {
    "symbol": "InsertAlarm",
    "module": "main",
-   "unit": "dol/OSCreateAlarm.c",
+   "unit": "dol/os/OSAlarm.c",
    "addr": 2147527748,
    "size": 592,
    "status": "matched",
@@ -9235,7 +9235,7 @@
   {
    "symbol": "OSSetAlarm",
    "module": "main",
-   "unit": "dol/OSSetAlarm.c",
+   "unit": "dol/os/OSAlarm.c",
    "addr": 2147528340,
    "size": 104,
    "status": "matched",
@@ -9252,7 +9252,7 @@
   {
    "symbol": "OSSetPeriodicAlarm",
    "module": "main",
-   "unit": "dol/OSSetPeriodicAlarm.c",
+   "unit": "dol/os/OSAlarm.c",
    "addr": 2147528444,
    "size": 124,
    "status": "matched",
@@ -9269,7 +9269,7 @@
   {
    "symbol": "OSCancelAlarm",
    "module": "main",
-   "unit": "dol/OSCancelAlarm.c",
+   "unit": "dol/os/OSAlarm.c",
    "addr": 2147528568,
    "size": 284,
    "status": "matched",
@@ -9286,7 +9286,7 @@
   {
    "symbol": "DecrementerExceptionCallback",
    "module": "main",
-   "unit": "dol/DecrementerExceptionCallback.c",
+   "unit": "dol/os/OSAlarm.c",
    "addr": 2147528852,
    "size": 560,
    "status": "matched",

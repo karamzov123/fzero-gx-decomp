@@ -4,8 +4,23 @@ import importlib.util
 spec = importlib.util.spec_from_file_location('m', str(pathlib.Path(__file__).with_name('apply_dol_and_mm.py')))
 m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
 
+def _header_names(includes):
+    import sys as _s
+    _s.path.insert(0, str(pathlib.Path(__file__).parent))
+    import steer_prune
+    return steer_prune.header_names('\n'.join(includes))
+
+
 def merge_c_files_smart(paths):
     includes, pragmas = [], []
+    # names the union of the files' headers declares: a file's own redeclaration of one of them
+    # (lifted per-file prototypes, typedefs and struct views) gives way to the header
+    all_inc = []
+    for p in paths:
+        for ln in pathlib.Path('src/' + p).read_text().splitlines():
+            if ln.strip().startswith('#include') and ln.strip() not in all_inc:
+                all_inc.append(ln.strip())
+    hdr = _header_names(all_inc) if len(paths) > 1 else set()
     seen_inc, seen_prag, seen_at, seen_ext, seen_inlines = set(), set(), set(), set(), set()
     # Map struct/typedef name -> canonical body text; if a later file defines the same name with a DIFFERENT body, rename it to <name>_u<idx>!
     seen_type_bodies = {}
@@ -85,6 +100,8 @@ def merge_c_files_smart(paths):
                 else:
                     if fn_m: seen_fn_decls.add(fn_m.group(1))
                     out.append(l)
+            elif s.startswith('extern ') and s.endswith(';') and (re.search(r'\b(\w+)\s*\([^;]*\)\s*;$', s) or re.search(r'\b(\w+)\s*(?:\[[^\]]*\])*\s*;$', s)).group(1) in hdr:
+                pass   # declared by an included header
             elif s.startswith('extern ') and s.endswith(';'):
                 key = re.sub(r'\s+', ' ', s)
                 if key not in seen_ext:
@@ -109,11 +126,17 @@ def merge_c_files_smart(paths):
                 while depth > 0 and i + 1 < len(lines):
                     i += 1; blk.append(lines[i]); depth += lines[i].count('{') - lines[i].count('}')
                 key = re.sub(r'\s+', ' ', '\n'.join(blk).strip())
-                if key not in seen_local_structs and key not in seen_ext:
+                tag_m = re.match(r'(?:typedef\s+)?struct\s+(\w+)', key); al_m = re.search(r'\}\s*(\w+)\s*;$', key)
+                if (tag_m and tag_m.group(1) in hdr) or (al_m and al_m.group(1) in hdr):
+                    pass   # the header defines this type
+                elif key not in seen_local_structs and key not in seen_ext:
                     seen_ext.add(key); seen_local_structs.add(key); out.append('\n'.join(blk))
             elif s.startswith('typedef ') and s.endswith(';'):
                 key = re.sub(r'\s+', ' ', s)
-                if key not in seen_ext: seen_ext.add(key); out.append(l)
+                fm = re.search(r'\(\s*\*\s*(\w+)\s*\)\s*\(', key); nm = fm.group(1) if fm else (re.search(r'(\w+)\s*(?:\[[^\]]*\])*\s*;$', key) or [None, None])[1]
+                if nm in hdr:
+                    pass   # the header defines this typedef
+                elif key not in seen_ext: seen_ext.add(key); out.append(l)
             else:
                 # Track defined function names
                 if not s.startswith(('//', '/*', '#')) and '(' in s and '{' in s and not s.startswith(('if', 'for', 'while', 'switch', 'else', 'return')):

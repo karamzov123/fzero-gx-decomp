@@ -47,6 +47,33 @@ def unused_locals(seg):
                 stack.pop()
     return out
 
+
+_HDR_CACHE = {}
+def header_names(text):
+    """Identifiers declared (functions, variables, typedefs, tags) by the headers a file includes."""
+    names = set(); seen = set()
+    queue = re.findall(r'^\s*#include\s+[<"]([^>"]+)[>"]', text, re.M)
+    while queue:
+        h = queue.pop()
+        if h in seen: continue
+        seen.add(h)
+        for base in ('include', 'build/GFZE01/include'):
+            hp = pathlib.Path(base) / h
+            if hp.exists():
+                if str(hp) not in _HDR_CACHE:
+                    ht = hp.read_text(errors='ignore')
+                    ns = set(re.findall(r'\b([A-Za-z_]\w*)\s*\(', ht))
+                    ns |= set(re.findall(r'^\s*extern\s+[^;(]*?\b([A-Za-z_]\w*)\s*(?:\[[^\]]*\])*\s*;', ht, re.M))
+                    ns |= set(re.findall(r'\}\s*([A-Za-z_]\w*)\s*;', ht))
+                    ns |= set(re.findall(r'^\s*typedef\s[^;{]*?\b([A-Za-z_]\w*)\s*;', ht, re.M))
+                    _HDR_CACHE[str(hp)] = (ns, re.findall(r'^\s*#include\s+[<"]([^>"]+)[>"]', ht, re.M))
+                ns, sub = _HDR_CACHE[str(hp)]
+                names |= ns; queue += sub
+                break
+    return names
+
+HDRDECL = re.compile(r'^(?:extern\s+)?[A-Za-z_][\w\s\*]*?\b([A-Za-z_]\w*)\s*\([^;{}]*\)\s*;[ \t]*(?://[^\n]*)?$|^extern\s+[^;(=]*?\b([A-Za-z_]\w*)\s*(?:\[[^\]]*\])*\s*;[ \t]*(?://[^\n]*)?$')
+
 def candidates(text, lo, hi, kind):
     """(start, end, replacement, extra_edits) edits inside text[lo:hi]."""
     out = []
@@ -63,6 +90,17 @@ def candidates(text, lo, hi, kind):
                         if line[cm.start():cm.start() + 2] == '//' or line.rstrip().endswith('*/'):
                             g.append((lo + pos + len(line[:cm.start()].rstrip()), lo + pos + end, ''))
                     out.append(g)
+            pos += len(line)
+    elif kind == 'hdrdup':
+        hn = header_names(text)
+        pos = 0
+        for line in seg.splitlines(keepends=True):
+            s = line.strip()
+            m = HDRDECL.match(line.rstrip('\n')) if line[:1].strip() else None   # top-level lines only
+            if m and not s.startswith(('typedef', 'return', 'static')):
+                name = m.group(1) or m.group(2)
+                if name in hn:
+                    out.append([(lo + pos, lo + pos + len(line), '')])
             pos += len(line)
     elif kind == 'unusedlocal':
         for s, e in unused_locals(seg):
@@ -88,7 +126,7 @@ def candidates(text, lo, hi, kind):
                     for m in PARENS.finditer(line[:code_end]):
                         out.append([(lo + pos + m.start(), lo + pos + m.end(), '(' + m.group(1) + ')')])
                 elif kind in ('register', 'pcast', 'icast', 'ptrcast', 'plus0'):
-                    for m in {'register': REG, 'pcast': PCAST, 'icast': ICAST, 'ptrcast': PTRCAST, 'plus0': PLUS0, 'parens': PARENS, 'derefaddr': DEREF, 'soloparen': SOLO, 'unusedlocal': LOCALDECL}[kind].finditer(line[:code_end]):
+                    for m in {'register': REG, 'pcast': PCAST, 'icast': ICAST, 'ptrcast': PTRCAST, 'plus0': PLUS0, 'parens': PARENS, 'derefaddr': DEREF, 'soloparen': SOLO, 'unusedlocal': LOCALDECL, 'hdrdup': HDRDECL}[kind].finditer(line[:code_end]):
                         out.append([(lo + pos + m.start(), lo + pos + m.end(), '')])
                 else:
                     for m in CAST.finditer(line[:code_end]):
@@ -151,9 +189,9 @@ def run(task):
 
 def main():
     kind = sys.argv[sys.argv.index('--kind') + 1] if '--kind' in sys.argv else 'volatile'
-    args = [a for a in sys.argv[1:] if not a.startswith('--') and a not in ('volatile', 'carrier', 'castview', 'register', 'pcast', 'icast', 'ptrcast', 'plus0', 'parens', 'derefaddr', 'soloparen', 'unusedlocal')]
+    args = [a for a in sys.argv[1:] if not a.startswith('--') and a not in ('volatile', 'carrier', 'castview', 'register', 'pcast', 'icast', 'ptrcast', 'plus0', 'parens', 'derefaddr', 'soloparen', 'unusedlocal', 'hdrdup')]
     units = json.load(open('config/GFZE01/units.json')); nu = d.ninja_units()
-    pat = {'volatile': VOL, 'carrier': CARRIER, 'castview': CAST, 'register': REG, 'pcast': PCAST, 'icast': ICAST, 'ptrcast': PTRCAST, 'plus0': PLUS0, 'parens': PARENS, 'derefaddr': DEREF, 'soloparen': SOLO, 'unusedlocal': LOCALDECL}[kind]
+    pat = {'volatile': VOL, 'carrier': CARRIER, 'castview': CAST, 'register': REG, 'pcast': PCAST, 'icast': ICAST, 'ptrcast': PTRCAST, 'plus0': PLUS0, 'parens': PARENS, 'derefaddr': DEREF, 'soloparen': SOLO, 'unusedlocal': LOCALDECL, 'hdrdup': HDRDECL}[kind]
     files = args or sorted(str(p) for p in pathlib.Path('src/rel').glob('**/*.c') if 'movie_module' not in str(p) and pat.search(p.read_text()))
     tasks = []
     for f in files:
