@@ -7977,9 +7977,17 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_8003458C.c",
+    "source": "dol/gx/GXGeometry.c",
     "symbols": [
-      "fn_8003458C"
+      "fn_8003458C",
+      "fn_8003462C",
+      "__GXSendFlushPrim",
+      "GXSetLineWidth",
+      "GXSetPointSize",
+      "fn_80034834",
+      "fn_80034890",
+      "GXSetCoPlanar",
+      "__GXSetGenMode"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
@@ -8032,27 +8040,6 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/gx/GXPixel.c",
-    "symbols": [
-      "GXSetFogRangeAdj",
-      "fn_80037B14",
-      "fn_80037B68",
-      "fn_80037B94",
-      "fn_80037BC0",
-      "GXSetZCompLoc",
-      "fn_80037C2C",
-      "fn_80037D14",
-      "fn_80037D40",
-      "GXSetFieldMask",
-      "GXSetFieldMode"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
   },
   {
     "module": "main",
@@ -10488,23 +10475,6 @@
       "@70": "lbl_801A7078",
       "@68": "lbl_801A7070"
     }
-  },
-  {
-    "module": "main",
-    "source": "dol/gx/GXGeometry.c",
-    "symbols": [
-      "__GXSendFlushPrim",
-      "GXSetLineWidth",
-      "GXSetPointSize",
-      "fn_80034834",
-      "fn_80034890",
-      "GXSetCoPlanar",
-      "__GXSetGenMode"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
   },
   {
     "module": "main",
@@ -23809,17 +23779,6 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_8003462C.c",
-    "symbols": [
-      "fn_8003462C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
     "source": "dol/gx/GXLight.c",
     "symbols": [
       "fn_80035420",
@@ -23888,24 +23847,36 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_800377F8.c",
+    "source": "dol/gx/GXPixel.c",
     "symbols": [
-      "fn_800377F8"
+      "fn_800377F8",
+      "GXSetFogRangeAdj",
+      "fn_80037B14",
+      "fn_80037B68",
+      "fn_80037B94",
+      "fn_80037BC0",
+      "GXSetZCompLoc",
+      "fn_80037C2C",
+      "fn_80037D14",
+      "fn_80037D40",
+      "GXSetFieldMask",
+      "GXSetFieldMode"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.2.5n",
     "extra_cflags": [],
     "pool": {
-      "@37": "lbl_801A70F8",
-      "@38": "lbl_801A70FC",
-      "@39": "lbl_801A7100",
-      "@40": "lbl_801A7108",
-      "@42": "lbl_801A7118",
-      "@41": "lbl_801A7110",
-      "@43": "lbl_801A7120",
-      "@45": "lbl_801A7128"
-    }
+      "@39": "lbl_801A70F8",
+      "@40": "lbl_801A70FC",
+      "@41": "lbl_801A7100",
+      "@42": "lbl_801A7108",
+      "@43": "lbl_801A7110",
+      "@44": "lbl_801A7118",
+      "@45": "lbl_801A7120",
+      "@47": "lbl_801A7128"
+    },
+    "collapsed": true
   },
   {
     "module": "main",

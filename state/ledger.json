@@ -1,5 +1,5 @@
 {
- "generated": 1795289689,
+ "generated": 1795290219,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -21203,7 +21203,7 @@
   {
    "symbol": "fn_8003458C",
    "module": "main",
-   "unit": "dol/fn_8003458C.c",
+   "unit": "dol/gx/GXGeometry.c",
    "addr": 2147698060,
    "size": 160,
    "status": "matched",
@@ -21220,7 +21220,7 @@
   {
    "symbol": "fn_8003462C",
    "module": "main",
-   "unit": "dol/fn_8003462C.c",
+   "unit": "dol/gx/GXGeometry.c",
    "addr": 2147698220,
    "size": 240,
    "status": "matched",
@@ -22529,7 +22529,7 @@
   {
    "symbol": "fn_800377F8",
    "module": "main",
-   "unit": "dol/fn_800377F8.c",
+   "unit": "dol/gx/GXPixel.c",
    "addr": 2147710968,
    "size": 540,
    "status": "matched",

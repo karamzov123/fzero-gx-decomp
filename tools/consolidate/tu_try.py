@@ -168,7 +168,8 @@ def main():
         merged_lines.append(f'\t{name:<11} start:0x{rs[0][0]:08X} end:0x{rs[-1][1]:08X}' + (f' align:{al}' if al else '') + '\n')
     text_lo = {s: min(lo for n, lo, hi, al in parse_block(blocks[s]) if n == '.text') for s in srcs}
     first = min(srcs, key=lambda s: text_lo[s])
-    for s in srcs:
+    # the first unit last: `dest` may reuse another unit's name, whose old block must go first
+    for s in sorted(srcs, key=lambda x: x == first):
         pat = re.compile(rf'^{re.escape(s)}:\n(?:\t.*\n)*\n?', re.M)
         text = pat.sub((f'{dest}:\n' + ''.join(merged_lines) + '\n') if s == first else '', text, count=1)
     sp.write_text(text)

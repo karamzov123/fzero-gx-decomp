@@ -153,9 +153,6 @@ dol/__GXXfVtxSpecs.c:
 	.text       start:0x80032370 end:0x80032EB8 align:4
 	.data       start:0x8012AD40 end:0x8012AE78 align:32
 
-dol/fn_8003458C.c:
-	.text       start:0x8003458C end:0x8003462C align:4
-
 dol/fn_800421C0.c:
 	.text       start:0x800421C0 end:0x800421CC
 
@@ -1502,16 +1499,13 @@ dol/gx/GXFifo.c:
 	.text       start:0x80031B50 end:0x80032370 align:4
 
 dol/gx/GXGeometry.c:
-	.text       start:0x8003471C end:0x8003493C align:4
+	.text       start:0x8003458C end:0x8003493C align:4
 
 dol/gx/GXFrameBuf.c:
 	.text       start:0x8003493C end:0x80035420 align:4
 
 dol/gx/GXBump.c:
 	.text       start:0x80036A28 end:0x80037014 align:4
-
-dol/gx/GXPixel.c:
-	.text       start:0x80037A14 end:0x80037E30 align:4
 
 dol/gx/GXTransform.c:
 	.text       start:0x80038A88 end:0x8003910C align:4
@@ -1766,9 +1760,6 @@ dol/fn_80030380.c:
 
 dol/fn_80055DF4.c:
 	.text       start:0x80055DF4 end:0x80055EC0 align:4
-
-dol/fn_8003462C.c:
-	.text       start:0x8003462C end:0x8003471C align:4
 
 dol/fn_8006B3F0.c:
 	.text       start:0x8006B3F0 end:0x8006B55C align:4
@@ -2588,8 +2579,8 @@ dol/fn_8007A710.c:
 dol/fn_800674FC.c:
 	.text       start:0x800674FC end:0x80067898 align:4
 
-dol/fn_800377F8.c:
-	.text       start:0x800377F8 end:0x80037A14 align:4
+dol/gx/GXPixel.c:
+	.text       start:0x800377F8 end:0x80037E30 align:4
 
 dol/fn_80087C44.c:
 	.text       start:0x80087C44 end:0x80087F54 align:4

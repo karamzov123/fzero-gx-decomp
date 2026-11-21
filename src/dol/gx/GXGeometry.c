@@ -4,6 +4,47 @@
 #include <dolphin/gx.h>
 #include <dolphin/gx/GXPriv.h>
 
+void __GXSetSUTexRegs(void);
+void fn_80036F24(void);
+void __GXSetGenMode(void);
+void __GXSetVCD(void);
+void fn_80033650(void);
+void __GXCalculateVLim(void);
+void __GXSendFlushPrim(void);
+
+void fn_8003458C(void) {
+    if (gx->dirtyState & 1) {
+        __GXSetSUTexRegs();
+    }
+    if (gx->dirtyState & 2) {
+        fn_80036F24();
+    }
+    if (gx->dirtyState & 4) {
+        __GXSetGenMode();
+    }
+    if (gx->dirtyState & 8) {
+        __GXSetVCD();
+    }
+    if (gx->dirtyState & 0x10) {
+        fn_80033650();
+    }
+    if (gx->dirtyState & 0x18) {
+        __GXCalculateVLim();
+    }
+    gx->dirtyState = 0;
+}
+
+void fn_8003462C(u32 type, u32 vtxfmt, u16 nverts) {
+    if (gx->dirtyState != 0) {
+        fn_8003458C();
+    }
+    if (*(u32 *)&gx->vNumNot == 0) {
+        __GXSendFlushPrim();
+    }
+    GXWGFifo.u8 = vtxfmt | type;
+    GXWGFifo.u16 = nverts;
+}
+
 void __GXSendFlushPrim(void) {
     u32 i;
     u32 sz = gx->vNum * gx->vLim;
