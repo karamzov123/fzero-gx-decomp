@@ -1,4 +1,3 @@
-
 #include "types.h"
 
 enum __ReadProcActions {
@@ -6,6 +5,11 @@ enum __ReadProcActions {
     __UngetAChar,
     __TestForError,
 };
+
+typedef struct __InStrCtrl {
+    char *NextChar;
+    int NullCharDetected;
+} __InStrCtrl;
 
 enum ScanState {
     SCAN_START = 0x01,
@@ -18,28 +22,64 @@ enum ScanState {
 };
 
 extern unsigned char lbl_8015B100[];
-
 extern unsigned char lbl_8015B300[];
+extern int lbl_801A6DE0;
 
 static inline int isalpha(int c) { return (int)(lbl_8015B100[(unsigned char)c] & (0x40 | 0x80)); }
-
 static inline int isdigit(int c) { return (int)(lbl_8015B100[(unsigned char)c] & 0x10); }
-
 static inline int isspace(int c) { return (int)(lbl_8015B100[(unsigned char)c] & (0x02 | 0x04)); }
-
 static inline int toupper(int c) { return c == -1 ? -1 : (int)lbl_8015B300[(unsigned char)c]; }
 
-extern unsigned long __strtoul(int base, int max_width, int (*read_proc)(void *, int, int),
-                               void *read_context, int *chars_scanned, int *negative,
-                               int *overflow);
+int fn_800829EC(void *context, int character, int action);
 
-extern unsigned long long __strtoull(int base, int max_width, int (*read_proc)(void *, int, int),
-                                      void *read_context, int *chars_scanned, int *negative,
-                                      int *overflow);
+unsigned long __strtoul(int base, int max_width, int (*read_proc)(void *, int, int),
+                        void *read_context, int *chars_scanned, int *negative, int *overflow);
+unsigned long long __strtoull(int base, int max_width, int (*read_proc)(void *, int, int),
+                              void *read_context, int *chars_scanned, int *negative, int *overflow);
+
+int atoi(const char *str) {
+    unsigned long value;
+    int overflow;
+    int negative;
+    int count;
+    __InStrCtrl input;
+    input.NextChar = (char *)str;
+    input.NullCharDetected = 0;
+    value = __strtoul(10, 0x7FFFFFFF, fn_800829EC, &input, &count, &negative, &overflow);
+    if (overflow || (!negative && value > 0x7FFFFFFFUL) || (negative && value > 0x80000000UL)) {
+        value = negative ? 0x80000000UL : 0x7FFFFFFFUL;
+        lbl_801A6DE0 = 34;
+    } else if (negative) {
+        value = (unsigned long)-(long)value;
+    }
+    return (int)value;
+}
+
+unsigned long strtoul(const char *str, char **end, int base) {
+    unsigned long value;
+    int count;
+    int negative;
+    int overflow;
+    __InStrCtrl input;
+    input.NextChar = (char *)str;
+    input.NullCharDetected = 0;
+    value =
+        __strtoul(base, 0x7FFFFFFF, &fn_800829EC, (void *)&input, &count, &negative, &overflow);
+    if (end != 0) {
+        *end = (char *)str + count;
+    }
+    if (overflow) {
+        value = 0xFFFFFFFFUL;
+        lbl_801A6DE0 = 34;
+    } else if (negative) {
+        value = (unsigned long)-(long)value;
+    }
+    return value;
+}
 
 unsigned long long __strtoull(int base, int max_width, int (*read_proc)(void *, int, int),
-                               void *read_context, int *chars_scanned, int *negative,
-                               int *overflow) {
+                              void *read_context, int *chars_scanned, int *negative,
+                              int *overflow) {
     int scan_state = SCAN_START;
     int count = 0;
     int spaces = 0;
@@ -146,7 +186,7 @@ unsigned long long __strtoull(int base, int max_width, int (*read_proc)(void *, 
 }
 
 unsigned long __strtoul(int base, int max_width, int (*read_proc)(void *, int, int),
-                          void *read_context, int *chars_scanned, int *negative, int *overflow) {
+                        void *read_context, int *chars_scanned, int *negative, int *overflow) {
     int scan_state = SCAN_START;
     int count = 0;
     int spaces = 0;

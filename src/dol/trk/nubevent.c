@@ -1,33 +1,5 @@
 #include "types.h"
 
-
-/* --- dol/TRKDestructEvent.c --- */
-/* --- dol/TRKDestructEvent.c --- */
-extern u32 fn_800891B4(u32);
-
-struct TRKDestructEvent_Arg0 {
-    u8 pad_0[0x8];
-    u32 unk_8;
-};
-
-void TRKDestructEvent(struct TRKDestructEvent_Arg0 *arg0) {
-    fn_800891B4(arg0->unk_8);
-}
-
-/* --- dol/fn_80088764.c --- */
-struct fn_80088764_Arg0 {
-    u32 unk_0;
-    u32 unk_4;
-    u32 unk_8;
-};
-
-void fn_80088764(struct fn_80088764_Arg0 *arg0, u32 arg1) {
-    arg0->unk_0 = arg1;
-    arg0->unk_4 = 0;
-    arg0->unk_8 = -1;
-}
-
-/* --- dol/TRKPostEvent.c --- */
 enum {
     DS_NoError = 0x0,
     DS_StepError = 0x1,
@@ -59,7 +31,6 @@ typedef enum {
 } NubEventType;
 
 typedef int MessageBufferID;
-
 typedef u32 NubEventID;
 
 typedef struct TRKEvent {
@@ -78,14 +49,24 @@ typedef struct TRKEventQueue {
 
 extern TRKEventQueue lbl_801A36B8;
 
+extern u32 fn_800891B4(u32);
+DSError fn_8008AF50(void *);
 DSError fn_8008AF48(void *);
-
 DSError fn_8008AF40(void *);
-
 void *fn_800035C0(void *dst, const void *src, size_t n);
 
 static inline void TRKCopyEvent(TRKEvent *dstEvent, const TRKEvent *srcEvent) {
     fn_800035C0(dstEvent, srcEvent, sizeof(TRKEvent));
+}
+
+void TRKDestructEvent(TRKEvent *event) {
+    fn_800891B4((u32)event->msgBufID);
+}
+
+void fn_80088764(TRKEvent *event, NubEventType type) {
+    event->eventType = type;
+    event->eventID = 0;
+    event->msgBufID = -1;
 }
 
 DSError TRKPostEvent(TRKEvent *event) {
@@ -105,4 +86,29 @@ DSError TRKPostEvent(TRKEvent *event) {
     }
     fn_8008AF40(&lbl_801A36B8);
     return ret;
+}
+
+BOOL TRKGetNextEvent(TRKEvent *event) {
+    BOOL status = 0;
+    fn_8008AF48(&lbl_801A36B8);
+    if (0 < lbl_801A36B8.count) {
+        TRKCopyEvent(event, &lbl_801A36B8.events[lbl_801A36B8.next]);
+        lbl_801A36B8.count--;
+        lbl_801A36B8.next++;
+        if (lbl_801A36B8.next == 2)
+            lbl_801A36B8.next = 0;
+        status = 1;
+    }
+    fn_8008AF40(&lbl_801A36B8);
+    return status;
+}
+
+DSError TRKInitializeEventQueue(void) {
+    fn_8008AF50(&lbl_801A36B8);
+    fn_8008AF48(&lbl_801A36B8);
+    lbl_801A36B8.count = 0;
+    lbl_801A36B8.next = 0;
+    lbl_801A36B8.eventID = 0x100;
+    fn_8008AF40(&lbl_801A36B8);
+    return DS_NoError;
 }

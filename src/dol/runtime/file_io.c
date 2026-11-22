@@ -1,9 +1,6 @@
 #include "types.h"
 
-
-/* --- dol/fclose.c --- */
 typedef u32 file_handle;
-
 typedef u32 file_position;
 
 typedef struct FileMode {
@@ -29,11 +26,8 @@ typedef struct FileState {
 } FileState;
 
 typedef void (*IdleProc)(void);
-
 typedef int (*PositionProc)(file_handle handle, file_position *position, int mode, IdleProc idle);
-
 typedef int (*IOProc)(file_handle handle, u8 *buffer, size_t *count, IdleProc idle);
-
 typedef int (*CloseProc)(file_handle handle);
 
 typedef struct FILE {
@@ -80,21 +74,19 @@ enum {
     IO_STATE_REREADING,
 };
 
+void __stdio_atexit(void);
 int __flush_buffer(FILE *file, size_t *bytes_flushed);
-
 int fn_8007B0B4(void);
-
+void fn_8007B1CC(FILE *file, const FileMode *mode, char *buffer, size_t buffer_size);
+FILE *fn_8007B2A8(void);
+int fn_8008D92C(const char *name, FileMode *mode, FILE *file);
+int fn_8007F508(const char *mode_string, FileMode *mode);
+int fseek(FILE *file, u32 offset, int origin);
 long fn_8007FE70(FILE *file);
-
+void fn_8008068C(FILE *file);
+void __begin_critical_region(int region);
+void __end_critical_region(int region);
 void fn_8007A150(void *allocation);
-
-extern unsigned long __strtoul(int base, int max_width, int (*read_proc)(void *, int, int),
-                                 void *read_context, int *chars_scanned, int *negative,
-                                 int *overflow);
-
-extern unsigned long long __strtoull(int base, int max_width, int (*read_proc)(void *, int, int),
-                                      void *read_context, int *chars_scanned, int *negative,
-                                      int *overflow);
 
 static inline int flush_file(FILE *file) {
     int position;
@@ -152,4 +144,77 @@ static inline int close_file(FILE *file) {
     return flush_result || close_result ? -1 : 0;
 }
 
-int fclose(FILE *file) { return close_file(file); }
+FILE *fopen(const char *name, const char *mode_string) {
+    FILE *file;
+    FileMode open_mode;
+    FileMode init_mode;
+    FileMode mode;
+    __begin_critical_region(2);
+    file = fn_8007B2A8();
+    __stdio_atexit();
+    if (file == 0) {
+        file = 0;
+    } else {
+        close_file(file);
+        fn_8008068C(file);
+        if (!fn_8007F508(mode_string, &mode)) {
+            file = 0;
+        } else {
+            init_mode = mode;
+            fn_8007B1CC(file, &init_mode, 0, 0x400);
+            open_mode = mode;
+            if (fn_8008D92C(name, &open_mode, file) != 0) {
+                file->mode.bits.file_kind = FILE_KIND_CLOSED;
+                if (file->state.free_buffer) {
+                    fn_8007A150(file->buffer);
+                }
+                file = 0;
+            } else if (mode.io_mode & IO_MODE_APPEND) {
+                fseek(file, 0, 2);
+            }
+        }
+    }
+    __end_critical_region(2);
+    return file;
+}
+
+int fflush(FILE *file) {
+    int position;
+    if (file == 0) {
+        return fn_8007B0B4();
+    }
+    if (file->state.error || file->mode.bits.file_kind == FILE_KIND_CLOSED) {
+        return -1;
+    }
+    if (file->mode.bits.io_mode == IO_MODE_READ) {
+        return 0;
+    }
+    if (file->state.io_state >= IO_STATE_REREADING) {
+        file->state.io_state = IO_STATE_READING;
+    }
+    if (file->state.io_state == IO_STATE_READING) {
+        file->buffer_length = 0;
+    }
+    if (file->state.io_state != IO_STATE_WRITING) {
+        file->state.io_state = IO_STATE_NEUTRAL;
+        return 0;
+    }
+    if (file->mode.bits.file_kind != FILE_KIND_DISK) {
+        position = 0;
+    } else {
+        position = fn_8007FE70(file);
+    }
+    if (__flush_buffer(file, 0) != 0) {
+        file->state.error = 1;
+        file->buffer_length = 0;
+        return -1;
+    }
+    file->state.io_state = IO_STATE_NEUTRAL;
+    file->position = position;
+    file->buffer_length = 0;
+    return 0;
+}
+
+int fclose(FILE *file) {
+    return close_file(file);
+}
