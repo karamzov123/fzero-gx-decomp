@@ -5,7 +5,6 @@
 #include "sdk_addresses.h"
 #pragma peephole off
 
-/* --- dol/__OSDoHotReset.c --- */
 extern void OSDisableInterrupts(void);
 // The VI reset register is a hardware MMIO halfword.
 extern volatile u32 __VIRegs[];
@@ -20,7 +19,6 @@ void __OSDoHotReset(s32 reset_code) {
     Reset_8000EEF4(reset_code << 3);
 }
 
-/* --- dol/OSResetSystem.c --- */
 #define RESET_CACHED(offset) ((void *)(FZGX_ADDR_OS_THREAD_QUEUE - 0xdc + (offset)))
 
 typedef u32 (*OSResetSystem_Fn0)(u32);
@@ -37,14 +35,12 @@ extern void OSCancelThread(OSThread *);
 extern void __OSReboot(u32, u32);
 extern void __OSStopAudioSystem(void);
 extern void __OSUnlockSram(u32);
-extern vu32 DAT_800030e2[];
 extern vu32 OS_CURRENT_CONTEXT[];
 extern vu32 OS_THREAD_QUEUE[];
 extern vu32 __OSBI2Pointer[];
 extern vu32 __OSModuleInfoList[];
-extern vu32 __VIRegs[];
 
-static BOOL CallResetFunctions(BOOL final) {
+static inline BOOL CallResetFunctions(BOOL final) {
     u32 v1;
     s32 v2;
     v1 = ResetFunctionQueue;
@@ -59,7 +55,8 @@ static BOOL CallResetFunctions(BOOL final) {
     }
     return TRUE;
 }
-static void KillThreads(void) {
+
+static inline void KillThreads(void) {
     OSThread *v8;
     OSThread *v9;
     v8 = *(OSThread **)RESET_CACHED(0xdc);
@@ -74,6 +71,7 @@ static void KillThreads(void) {
         v8 = v9;
     }
 }
+
 void OSResetSystem(int arg0, u32 arg1, int arg2) {
     /* Preserve the reset routine's reserved stack workspace without accesses. */
     volatile u8 resetWork[16];
@@ -112,4 +110,24 @@ void OSResetSystem(int arg0, u32 arg1, int arg2) {
     memset(RESET_CACHED(0x30c8), 0, 12);
     memset(RESET_CACHED(0x30e2), 0, 1);
     __PADDisableRecalibration(v0);
+}
+
+typedef struct Unk {
+    u8 pad[0x24];
+    u32 resetCode;
+} Unk;
+
+// Hardware or OS state can change asynchronously.
+volatile u8
+    DAT_800030e2 : FZGX_ADDR_DAT_800030e2; // fzgx-allow: S2 SDK asynchronous state
+
+// Hardware or OS state can change asynchronously.
+volatile Unk
+    DAT_cc003000 : FZGX_ADDR_DAT_cc003000; // fzgx-allow: S2 SDK asynchronous state
+
+u32 OSGetResetCode(void) {
+    if (DAT_800030e2 != 0) {
+        return 0x80000000;
+    }
+    return ((DAT_cc003000.resetCode & ~7) >> 3);
 }
