@@ -211,9 +211,6 @@ dol/SIBios.c:
 dol/AXRNA_SetOutPan.c:
 	.text       start:0x8005A698 end:0x8005A74C align:4
 
-dol/fn_8005A588.c:
-	.text       start:0x8005A588 end:0x8005A5BC align:4
-
 dol/fn_8005A5BC.c:
 	.text       start:0x8005A5BC end:0x8005A628 align:4
 
@@ -565,12 +562,6 @@ dol/fn_800566F0.c:
 
 dol/adx/lsc.c:
 	.text       start:0x80056730 end:0x80057378 align:4
-
-dol/fn_80059CA4.c:
-	.text       start:0x80059CA4 end:0x80059D04 align:4
-
-dol/fn_8005A060.c:
-	.text       start:0x8005A060 end:0x8005A0C0 align:4
 
 dol/fn_80065A7C.c:
 	.text       start:0x80065A7C end:0x80065B08 align:4
@@ -941,9 +932,6 @@ dol/TRKLoadContext.c:
 dol/fn_8005B464.c:
 	.text       start:0x8005B464 end:0x8005B534 align:4
 
-dol/fn_80059D68.c:
-	.text       start:0x80059D68 end:0x80059DD8 align:4
-
 dol/adx/gcci.c:
 	.text       start:0x800555C0 end:0x800565F0 align:4
 
@@ -974,11 +962,8 @@ dol/fn_80063EF4.c:
 dol/fn_80073620.c:
 	.text       start:0x80073620 end:0x80073678 align:4
 
-dol/fn_80059BAC.c:
-	.text       start:0x80059BAC end:0x80059C0C align:4
-
-dol/fn_80059D04.c:
-	.text       start:0x80059D04 end:0x80059D68 align:4
+dol/adx/mfci.c:
+	.text       start:0x80059BAC end:0x8005A5BC align:4
 
 dol/fn_8005870C.c:
 	.text       start:0x8005870C end:0x80058754 align:4
@@ -1244,12 +1229,6 @@ dol/ADXF_ExecServer.c:
 
 dol/ADXT_DestroyAll.c:
 	.text       start:0x8004FC38 end:0x8004FC94 align:4
-
-dol/mfCiClose.c:
-	.text       start:0x8005A1B4 end:0x8005A24C align:4
-
-dol/mfCiGetFileSize.c:
-	.text       start:0x8005A47C end:0x8005A588 align:4
 
 dol/axrna_update_play.c:
 	.text       start:0x8005AE98 end:0x8005B0C4 align:4
@@ -1635,12 +1614,6 @@ dol/fn_800791E8.c:
 
 dol/fn_80079FA8.c:
 	.text       start:0x80079FA8 end:0x8007A150 align:4
-
-dol/fn_80059C0C.c:
-	.text       start:0x80059C0C end:0x80059CA4 align:4
-
-dol/fn_8005A0C0.c:
-	.text       start:0x8005A0C0 end:0x8005A1B4 align:4
 
 dol/fn_80073D60.c:
 	.text       start:0x80073D60 end:0x80073E8C align:4
@@ -2121,9 +2094,6 @@ dol/fn_80022BF4.c:
 dol/fn_80074D88.c:
 	.text       start:0x80074D88 end:0x80075240 align:4
 
-dol/fn_80059DD8.c:
-	.text       start:0x80059DD8 end:0x8005A060 align:4
-
 dol/fn_800789D8.c:
 	.text       start:0x800789D8 end:0x80078D48 align:4
 
@@ -2180,9 +2150,6 @@ dol/fn_8005B264.c:
 
 dol/fn_8005B534.c:
 	.text       start:0x8005B534 end:0x8005BC20 align:4
-
-dol/fn_8005A24C.c:
-	.text       start:0x8005A24C end:0x8005A47C align:4
 
 dol/fn_80078F0C.c:
 	.text       start:0x80078F0C end:0x800791E8 align:4
