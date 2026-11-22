@@ -59,23 +59,8 @@ dol/dvd/dvdfs.c:
 dol/dvd/dvderror.c:
 	.text       start:0x8001A05C end:0x8001A1F4 align:4
 
-dol/fn_800211E0.c:
-	.text       start:0x800211E0 end:0x8002123C align:4
-
-dol/fn_80021B20.c:
-	.text       start:0x80021B20 end:0x80021BB0 align:4
-
-dol/fn_80022420.c:
-	.text       start:0x80022420 end:0x800224E4 align:4
-
-dol/fn_800224E4.c:
-	.text       start:0x800224E4 end:0x80022BF4 align:4
-
-dol/fn_800230A0.c:
-	.text       start:0x800230A0 end:0x80023394 align:4
-
-dol/fn_800234D0.c:
-	.text       start:0x800234D0 end:0x80023568
+dol/ax/AXVPB.c:
+	.text       start:0x800224E4 end:0x800235D4 align:4
 
 dol/fn_80025C28.c:
 	.text       start:0x80025C28 end:0x80025C70
@@ -295,9 +280,6 @@ dol/fn_800466D4.c:
 dol/fn_80045D3C.c:
 	.text       start:0x80045D3C end:0x80045D90 align:4
 
-dol/fn_80022E5C.c:
-	.text       start:0x80022E5C end:0x80022EA4 align:4
-
 dol/fn_80006FE0.c:
 	.text       start:0x80006FE0 end:0x8000700C align:4
 
@@ -312,9 +294,6 @@ dol/fn_8004E4AC.c:
 
 dol/fn_8004E4DC.c:
 	.text       start:0x8004E4DC end:0x8004E580 align:4
-
-dol/fn_80020E4C.c:
-	.text       start:0x80020E4C end:0x80020FA4 align:4
 
 dol/fn_8004BE98.c:
 	.text       start:0x8004BE98 end:0x8004BFAC align:4
@@ -370,8 +349,8 @@ dol/fn_80023638.c:
 dol/fn_80057728.c:
 	.text       start:0x80057728 end:0x80057774 align:4
 
-dol/fn_80021FBC.c:
-	.text       start:0x80021FBC end:0x80022028 align:4
+dol/ax/AXSPB.c:
+	.text       start:0x80021FBC end:0x800224E4 align:4
 
 dol/fn_800414D0.c:
 	.text       start:0x800414D0 end:0x80041700 align:4
@@ -388,14 +367,8 @@ dol/fn_80051594.c:
 dol/fn_800775EC.c:
 	.text       start:0x800775EC end:0x80077848 align:4
 
-dol/fn_80023438.c:
-	.text       start:0x80023438 end:0x800234D0 align:4
-
 dol/fn_800565F0.c:
 	.text       start:0x800565F0 end:0x800565FC align:4
-
-dol/fn_80023568.c:
-	.text       start:0x80023568 end:0x800235D4 align:4
 
 dol/fn_800235D4.c:
 	.text       start:0x800235D4 end:0x80023638 align:4
@@ -508,11 +481,8 @@ dol/dvd/dvdqueue.c:
 dol/ax/AXAlloc.c:
 	.text       start:0x80020874 end:0x80020D58 align:4
 
-dol/fn_80023394.c:
-	.text       start:0x80023394 end:0x80023438 align:4
-
-dol/fn_80020D58.c:
-	.text       start:0x80020D58 end:0x80020E4C align:4
+dol/ax/AXAux.c:
+	.text       start:0x80020D58 end:0x8002123C align:4
 
 dol/fn_80028424.c:
 	.text       start:0x80028424 end:0x800288C4 align:4
@@ -1170,8 +1140,17 @@ dol/ar/ar.c:
 dol/gx/GXTev.c:
 	.text       start:0x80037014 end:0x800377F8 align:4
 
+dol/fn_80021B20.c:
+	.text       start:0x80021B20 end:0x80021BB0 align:4
+
 dol/fn_800218EC.c:
 	.text       start:0x800218EC end:0x80021AB8 align:4
+
+dol/fn_80021BB0.c:
+	.text       start:0x80021BB0 end:0x80021FBC align:4
+
+dol/fn_80021AB8.c:
+	.text       start:0x80021AB8 end:0x80021B20 align:4
 
 dol/fn_80005A08.c:
 	.text       start:0x80005A08 end:0x80005B10 align:4
@@ -1349,12 +1328,6 @@ dol/fn_8008BFB4.c:
 
 dol/fn_800411F4.c:
 	.text       start:0x800411F4 end:0x80041330 align:4
-
-dol/fn_80021BB0.c:
-	.text       start:0x80021BB0 end:0x80021FBC align:4
-
-dol/fn_80021AB8.c:
-	.text       start:0x80021AB8 end:0x80021B20 align:4
 
 dol/fn_80077488.c:
 	.text       start:0x80077488 end:0x800775EC align:4
@@ -1754,9 +1727,6 @@ dol/card/CARDNet.c:
 dol/fn_8008EDF0.c:
 	.text       start:0x8008EDF0 end:0x8008EFE0 align:4
 
-dol/fn_80022028.c:
-	.text       start:0x80022028 end:0x80022420 align:4
-
 dol/fn_80008FB0.c:
 	.text       start:0x80008FB0 end:0x80009064 align:4
 
@@ -2085,12 +2055,6 @@ dol/fn_80041700.c:
 dol/fn_8004CD70.c:
 	.text       start:0x8004CD70 end:0x8004D18C align:4
 
-dol/fn_80020FA4.c:
-	.text       start:0x80020FA4 end:0x800211E0 align:4
-
-dol/fn_80022BF4.c:
-	.text       start:0x80022BF4 end:0x80022E5C align:4
-
 dol/fn_80074D88.c:
 	.text       start:0x80074D88 end:0x80075240 align:4
 
@@ -2356,9 +2320,6 @@ dol/fn_80044EF8.c:
 
 dol/fn_800456A0.c:
 	.text       start:0x800456A0 end:0x80045D3C align:4
-
-dol/fn_80022EA4.c:
-	.text       start:0x80022EA4 end:0x800230A0 align:4
 
 dol/fn_80060724.c:
 	.text       start:0x80060724 end:0x80060950 align:4
