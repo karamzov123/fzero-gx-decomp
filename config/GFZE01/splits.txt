@@ -557,15 +557,6 @@ dol/fn_8004F6B0.c:
 dol/fn_8005190C.c:
 	.text       start:0x8005190C end:0x80051958 align:4
 
-dol/fn_80055708.c:
-	.text       start:0x80055708 end:0x80055768 align:4
-
-dol/fn_80055D94.c:
-	.text       start:0x80055D94 end:0x80055DF4 align:4
-
-dol/fn_80055768.c:
-	.text       start:0x80055768 end:0x800557CC align:4
-
 dol/fn_800566BC.c:
 	.text       start:0x800566BC end:0x800566F0 align:4
 
@@ -953,8 +944,8 @@ dol/fn_8005B464.c:
 dol/fn_80059D68.c:
 	.text       start:0x80059D68 end:0x80059DD8 align:4
 
-dol/fn_800555C0.c:
-	.text       start:0x800555C0 end:0x80055624 align:4
+dol/adx/gcci.c:
+	.text       start:0x800555C0 end:0x800565F0 align:4
 
 dol/fn_8008944C.c:
 	.text       start:0x8008944C end:0x8008949C align:4
@@ -1398,9 +1389,6 @@ dol/fn_80005738.c:
 dol/fn_80030380.c:
 	.text       start:0x80030380 end:0x8003043C align:4
 
-dol/fn_80055DF4.c:
-	.text       start:0x80055DF4 end:0x80055EC0 align:4
-
 dol/fn_8006B3F0.c:
 	.text       start:0x8006B3F0 end:0x8006B55C align:4
 
@@ -1471,9 +1459,6 @@ dol/fn_80078768.c:
 
 dol/TRKTargetInterrupt.c:
 	.text       start:0x8008B940 end:0x8008BAD0 align:4
-
-dol/fn_80056294.c:
-	.text       start:0x80056294 end:0x8005640C align:4
 
 dol/fn_80024C88.c:
 	.text       start:0x80024C88 end:0x80024D84 align:4
@@ -1647,9 +1632,6 @@ dol/fn_8008C730.c:
 
 dol/fn_800791E8.c:
 	.text       start:0x800791E8 end:0x800794F0 align:4
-
-dol/fn_80055624.c:
-	.text       start:0x80055624 end:0x80055708 align:4
 
 dol/fn_80079FA8.c:
 	.text       start:0x80079FA8 end:0x8007A150 align:4
@@ -2184,9 +2166,6 @@ dol/fn_80043D34.c:
 dol/fn_80043FA4.c:
 	.text       start:0x80043FA4 end:0x80043FE8 align:4
 
-dol/fn_8005640C.c:
-	.text       start:0x8005640C end:0x80056584 align:4
-
 dol/fn_8005B0C4.c:
 	.text       start:0x8005B0C4 end:0x8005B264 align:4
 
@@ -2201,21 +2180,6 @@ dol/fn_8005B264.c:
 
 dol/fn_8005B534.c:
 	.text       start:0x8005B534 end:0x8005BC20 align:4
-
-dol/fn_80056584.c:
-	.text       start:0x80056584 end:0x800565F0 align:4
-
-dol/fn_80056084.c:
-	.text       start:0x80056084 end:0x80056294 align:4
-
-dol/fn_80055EC0.c:
-	.text       start:0x80055EC0 end:0x80056084 align:4
-
-dol/fn_800557CC.c:
-	.text       start:0x800557CC end:0x8005596C align:4
-
-dol/fn_8005596C.c:
-	.text       start:0x8005596C end:0x80055D94 align:4
 
 dol/fn_8005A24C.c:
 	.text       start:0x8005A24C end:0x8005A47C align:4
