@@ -111,9 +111,6 @@ dol/fn_80045FEC.c:
 dol/fn_80046508.c:
 	.text       start:0x80046508 end:0x800466D4 align:4
 
-dol/fn_8004AEE4.c:
-	.text       start:0x8004AEE4 end:0x8004AEF0
-
 dol/fn_8004E8A0.c:
 	.text       start:0x8004E8A0 end:0x8004E8F8
 
@@ -156,8 +153,8 @@ dol/gdev_cc_close.c:
 dol/fn_8008F44C.c:
 	.text       start:0x8008F44C end:0x8008F748 align:4
 
-dol/ADXSTM_ExecServer.c:
-	.text       start:0x8004A578 end:0x8004A5F4 align:4
+dol/adx/adx_stmc.c:
+	.text       start:0x8004A578 end:0x8004B7F4 align:4
 
 dol/fn_8004A530.c:
 	.text       start:0x8004A530 end:0x8004A578 align:4
@@ -271,9 +268,6 @@ dol/gdev_cc_initinterrupts.c:
 dol/fn_80047548.c:
 	.text       start:0x80047548 end:0x80047578 align:4
 
-dol/fn_800570DC.c:
-	.text       start:0x800570DC end:0x800571EC align:4
-
 dol/fn_800541EC.c:
 	.text       start:0x800541EC end:0x80054608 align:4
 
@@ -330,9 +324,6 @@ dol/fn_8004E4DC.c:
 
 dol/fn_80020E4C.c:
 	.text       start:0x80020E4C end:0x80020FA4 align:4
-
-dol/fn_8004B7A0.c:
-	.text       start:0x8004B7A0 end:0x8004B7F4 align:4
 
 dol/fn_8004BE98.c:
 	.text       start:0x8004BE98 end:0x8004BFAC align:4
@@ -596,8 +587,8 @@ dol/fn_800566BC.c:
 dol/fn_800566F0.c:
 	.text       start:0x800566F0 end:0x80056730 align:4
 
-dol/fn_80056730.c:
-	.text       start:0x80056730 end:0x80056950 align:4
+dol/adx/lsc.c:
+	.text       start:0x80056730 end:0x80057378 align:4
 
 dol/fn_800547C8.c:
 	.text       start:0x800547C8 end:0x80054870 align:4
@@ -1296,9 +1287,6 @@ dol/fn_80054870.c:
 dol/fn_80054930.c:
 	.text       start:0x80054930 end:0x800549F0 align:4
 
-dol/LSC_Start.c:
-	.text       start:0x80056D8C end:0x800570DC align:4
-
 dol/mfCiClose.c:
 	.text       start:0x8005A1B4 end:0x8005A24C align:4
 
@@ -1562,9 +1550,6 @@ dol/fn_8007FC34.c:
 
 dol/fn_800551D0.c:
 	.text       start:0x800551D0 end:0x80055304 align:4
-
-dol/fn_80056950.c:
-	.text       start:0x80056950 end:0x80056D8C align:4
 
 dol/fn_80067898.c:
 	.text       start:0x80067898 end:0x80067DE4 align:4
@@ -2003,9 +1988,6 @@ dol/fn_8006FB20.c:
 dol/fn_80065D70.c:
 	.text       start:0x80065D70 end:0x80065F34 align:4
 
-dol/fn_8004AEF0.c:
-	.text       start:0x8004AEF0 end:0x8004B4E0 align:4
-
 dol/fn_8003DB54.c:
 	.text       start:0x8003DB54 end:0x8003DC50 align:4
 
@@ -2053,9 +2035,6 @@ dol/fn_8006F1F0.c:
 
 dol/fn_80053F38.c:
 	.text       start:0x80053F38 end:0x800541EC align:4
-
-dol/fn_8004A5F4.c:
-	.text       start:0x8004A5F4 end:0x8004A80C align:4
 
 dol/fn_8003D698.c:
 	.text       start:0x8003D698 end:0x8003D918 align:4
@@ -2144,12 +2123,6 @@ dol/fn_8003A1CC.c:
 
 dol/fn_800090A4.c:
 	.text       start:0x800090A4 end:0x80009468 align:4
-
-dol/fn_8004A80C.c:
-	.text       start:0x8004A80C end:0x8004AEE4 align:4
-
-dol/fn_800571EC.c:
-	.text       start:0x800571EC end:0x80057378 align:4
 
 dol/fn_800251F0.c:
 	.text       start:0x800251F0 end:0x80025440 align:4
@@ -2378,9 +2351,6 @@ dol/fn_8008E770.c:
 
 dol/fn_8007E69C.c:
 	.text       start:0x8007E69C end:0x8007E96C align:4
-
-dol/fn_8004B4E0.c:
-	.text       start:0x8004B4E0 end:0x8004B7A0 align:4
 
 dol/fn_80065528.c:
 	.text       start:0x80065528 end:0x800657F4 align:4
