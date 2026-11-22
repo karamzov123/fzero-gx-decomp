@@ -93,8 +93,8 @@ dol/fn_80045F58.c:
 dol/fn_80045FEC.c:
 	.text       start:0x80045FEC end:0x800463E4 align:4
 
-dol/fn_80046508.c:
-	.text       start:0x80046508 end:0x800466D4 align:4
+dol/adx/adx_amp.c:
+	.text       start:0x80046508 end:0x80046718 align:4
 
 dol/fn_8004E8A0.c:
 	.text       start:0x8004E8A0 end:0x8004E8F8
@@ -144,8 +144,8 @@ dol/adx/adx_stmc.c:
 dol/fn_8003D690.c:
 	.text       start:0x8003D690 end:0x8003D698 align:4
 
-dol/ADXT_Finish.c:
-	.text       start:0x80041164 end:0x800411F4 align:4
+dol/adx/adx_inis.c:
+	.text       start:0x80041164 end:0x80041410 align:4
 
 dol/fn_80065890.c:
 	.text       start:0x80065890 end:0x8006589C align:4
@@ -183,9 +183,6 @@ dol/fn_8004E580.c:
 dol/fn_8006A998.c:
 	.text       start:0x8006A998 end:0x8006AA20 align:4
 
-dol/fn_8004784C.c:
-	.text       start:0x8004784C end:0x80047864 align:4
-
 dol/adx/adx_sje.c:
 	.text       start:0x80047864 end:0x8004A578 align:4
 
@@ -217,17 +214,14 @@ dol/fn_80046768.c:
 dol/fn_8004E7B4.c:
 	.text       start:0x8004E7B4 end:0x8004E8A0 align:4
 
-dol/fn_8004ED3C.c:
-	.text       start:0x8004ED3C end:0x8004EEE4 align:4
+dol/adx/adx_rnaa.c:
+	.text       start:0x8004ED3C end:0x8004EFA8 align:4
 
 dol/fn_8005BE48.c:
 	.text       start:0x8005BE48 end:0x8005C120 align:4
 
 dol/fn_80006B4C.c:
 	.text       start:0x80006B4C end:0x80006BDC align:4
-
-dol/fn_80041330.c:
-	.text       start:0x80041330 end:0x80041410 align:4
 
 dol/fn_80041410.c:
 	.text       start:0x80041410 end:0x800414D0 align:4
@@ -244,17 +238,11 @@ dol/TRKDestructEvent.c:
 dol/gdev_cc_initinterrupts.c:
 	.text       start:0x8008E37C end:0x8008E60C align:4
 
-dol/fn_80047548.c:
-	.text       start:0x80047548 end:0x80047578 align:4
-
 dol/fn_800541EC.c:
 	.text       start:0x800541EC end:0x80054608 align:4
 
 dol/fn_800079C4.c:
 	.text       start:0x800079C4 end:0x80007C60 align:4
-
-dol/fn_8004EEE4.c:
-	.text       start:0x8004EEE4 end:0x8004EFA8 align:4
 
 dol/fn_8004530C.c:
 	.text       start:0x8004530C end:0x80045588 align:4
@@ -274,9 +262,6 @@ dol/__OSSetInterruptHandler.c:
 dol/fn_8000BE5C.c:
 	.text       start:0x8000BE5C end:0x8000BE68 align:4
 
-dol/fn_800466D4.c:
-	.text       start:0x800466D4 end:0x80046718 align:4
-
 dol/fn_80045D3C.c:
 	.text       start:0x80045D3C end:0x80045D90 align:4
 
@@ -286,11 +271,8 @@ dol/fn_80006FE0.c:
 dol/fn_800424B8.c:
 	.text       start:0x800424B8 end:0x8004251C align:4
 
-dol/fn_8004251C.c:
-	.text       start:0x8004251C end:0x800425D0 align:4
-
-dol/fn_8004E4AC.c:
-	.text       start:0x8004E4AC end:0x8004E4DC align:4
+dol/adx/adx_bwav.c:
+	.text       start:0x8004251C end:0x800433A4 align:4
 
 dol/fn_8004E4DC.c:
 	.text       start:0x8004E4DC end:0x8004E580 align:4
@@ -303,9 +285,6 @@ dol/fn_80088B00.c:
 
 dol/adx/sj_rbf.c:
 	.text       start:0x80057D88 end:0x8005870C align:4
-
-dol/fn_80058754.c:
-	.text       start:0x80058754 end:0x800587A8 align:4
 
 dol/SJ_SearchTag.c:
 	.text       start:0x800587A8 end:0x80058A20 align:4
@@ -388,20 +367,14 @@ dol/fn_80074660.c:
 dol/fn_80074788.c:
 	.text       start:0x80074788 end:0x800747D0 align:4
 
-dol/fn_80047578.c:
-	.text       start:0x80047578 end:0x800475C0 align:4
-
-dol/fn_800475C0.c:
-	.text       start:0x800475C0 end:0x80047608 align:4
-
 dol/fn_80047608.c:
 	.text       start:0x80047608 end:0x8004768C align:4
 
 dol/ADXT_InsertHdrSfa.c:
 	.text       start:0x8004768C end:0x80047834 align:4
 
-dol/fn_80047834.c:
-	.text       start:0x80047834 end:0x8004784C align:4
+dol/adx/adx_sfa.c:
+	.text       start:0x80047834 end:0x80047864 align:4
 
 dol/fn_800746A8.c:
 	.text       start:0x800746A8 end:0x80074718 align:4
@@ -445,8 +418,8 @@ dol/fn_80009064.c:
 dol/fn_8004D18C.c:
 	.text       start:0x8004D18C end:0x8004D220 align:4
 
-dol/fn_8004D220.c:
-	.text       start:0x8004D220 end:0x8004D528 align:4
+dol/adx/adx_tsvr.c:
+	.text       start:0x8004D220 end:0x8004E098 align:4
 
 dol/fn_8006AA20.c:
 	.text       start:0x8006AA20 end:0x8006AE90 align:4
@@ -497,17 +470,14 @@ dol/card/CARDBlock.c:
 dol/fn_800433A4.c:
 	.text       start:0x800433A4 end:0x8004342C align:4
 
-dol/fn_8004342C.c:
-	.text       start:0x8004342C end:0x80043460 align:4
+dol/adx/adx_baif.c:
+	.text       start:0x8004342C end:0x80043FA4 align:4
 
 dol/fn_800410A4.c:
 	.text       start:0x800410A4 end:0x80041164 align:4
 
 dol/fn_8004BD5C.c:
 	.text       start:0x8004BD5C end:0x8004BE98 align:4
-
-dol/fn_800474E4.c:
-	.text       start:0x800474E4 end:0x80047548 align:4
 
 dol/fn_8004E9A8.c:
 	.text       start:0x8004E9A8 end:0x8004E9D8 align:4
@@ -518,8 +488,8 @@ dol/fn_8004E9D8.c:
 dol/fn_80053BB4.c:
 	.text       start:0x80053BB4 end:0x80053F38 align:4
 
-dol/fn_8004F6B0.c:
-	.text       start:0x8004F6B0 end:0x8004F74C align:4
+dol/adx/adx_fini.c:
+	.text       start:0x8004F6B0 end:0x8004F7F8 align:4
 
 dol/fn_8005190C.c:
 	.text       start:0x8005190C end:0x80051958 align:4
@@ -935,8 +905,8 @@ dol/fn_80073620.c:
 dol/adx/mfci.c:
 	.text       start:0x80059BAC end:0x8005A5BC align:4
 
-dol/fn_8005870C.c:
-	.text       start:0x8005870C end:0x80058754 align:4
+dol/adx/sj_uni.c:
+	.text       start:0x8005870C end:0x800587A8 align:4
 
 dol/fn_80070A58.c:
 	.text       start:0x80070A58 end:0x80070AC0 align:4
@@ -958,8 +928,8 @@ dol/OSError.c:
 	.sdata      start:0x801A6430 end:0x801A6438 align:8
 	.data       start:0x80122C30 end:0x80122F50 align:8
 
-dol/fn_80047464.c:
-	.text       start:0x80047464 end:0x800474E4 align:4
+dol/adx/adx_errs.c:
+	.text       start:0x80047464 end:0x80047608 align:4
 
 dol/fn_80005518.c:
 	.init       start:0x80005518 end:0x80005544 align:4
@@ -1140,17 +1110,8 @@ dol/ar/ar.c:
 dol/gx/GXTev.c:
 	.text       start:0x80037014 end:0x800377F8 align:4
 
-dol/fn_80021B20.c:
-	.text       start:0x80021B20 end:0x80021BB0 align:4
-
-dol/fn_800218EC.c:
-	.text       start:0x800218EC end:0x80021AB8 align:4
-
-dol/fn_80021BB0.c:
-	.text       start:0x80021BB0 end:0x80021FBC align:4
-
-dol/fn_80021AB8.c:
-	.text       start:0x80021AB8 end:0x80021B20 align:4
+dol/ax/AXOut.c:
+	.text       start:0x800218EC end:0x80021FBC align:4
 
 dol/fn_80005A08.c:
 	.text       start:0x80005A08 end:0x80005B10 align:4
@@ -1173,15 +1134,6 @@ dol/fn_800780A4.c:
 dol/fn_80078D60.c:
 	.text       start:0x80078D60 end:0x80078F0C align:4
 
-dol/ADXB_ExecOneWav4.c:
-	.text       start:0x800425D0 end:0x80042D24 align:4
-
-dol/fn_80043460.c:
-	.text       start:0x80043460 end:0x80043798 align:4
-
-dol/ADXB_ExecOneAuUlaw.c:
-	.text       start:0x80043FE8 end:0x800446E4 align:4
-
 dol/ADXB_Create.c:
 	.text       start:0x80045D90 end:0x80045F58 align:4
 
@@ -1197,14 +1149,8 @@ dol/ADXT_SetOutPan.c:
 dol/ADXT_Stop.c:
 	.text       start:0x8004C698 end:0x8004C794 align:4
 
-dol/ADXPD_ExecHndl.c:
-	.text       start:0x8004E098 end:0x8004E354 align:4
-
-dol/ADXPD_Create.c:
-	.text       start:0x8004E354 end:0x8004E4AC align:4
-
-dol/ADXF_ExecServer.c:
-	.text       start:0x8004FAA8 end:0x8004FC38 align:4
+dol/adx/adx_xpnd.c:
+	.text       start:0x8004E098 end:0x8004E4DC align:4
 
 dol/ADXT_DestroyAll.c:
 	.text       start:0x8004FC38 end:0x8004FC94 align:4
@@ -1320,14 +1266,8 @@ dol/fn_8004FC94.c:
 dol/fn_8004C794.c:
 	.text       start:0x8004C794 end:0x8004C980 align:4
 
-dol/fn_8004DE70.c:
-	.text       start:0x8004DE70 end:0x8004DFF0 align:4
-
 dol/fn_8008BFB4.c:
 	.text       start:0x8008BFB4 end:0x8008C124 align:4
-
-dol/fn_800411F4.c:
-	.text       start:0x800411F4 end:0x80041330 align:4
 
 dol/fn_80077488.c:
 	.text       start:0x80077488 end:0x800775EC align:4
@@ -1440,9 +1380,6 @@ dol/fn_8002420C.c:
 dol/fn_800087F4.c:
 	.text       start:0x800087F4 end:0x80008C20 align:4
 
-dol/fn_80044C74.c:
-	.text       start:0x80044C74 end:0x80044E7C align:4
-
 dol/fn_8003EAE4.c:
 	.text       start:0x8003EAE4 end:0x8003F834 align:4
 
@@ -1458,11 +1395,8 @@ dol/fn_80067898.c:
 dol/fn_800726C0.c:
 	.text       start:0x800726C0 end:0x80072864 align:4
 
-dol/fn_8004F74C.c:
-	.text       start:0x8004F74C end:0x8004F7F8 align:4
-
-dol/fn_8004F7F8.c:
-	.text       start:0x8004F7F8 end:0x8004FAA8 align:4
+dol/adx/adx_fs.c:
+	.text       start:0x8004F7F8 end:0x8004FC38 align:4
 
 dol/fn_8007FE70.c:
 	.text       start:0x8007FE70 end:0x80080518 align:4
@@ -1496,9 +1430,6 @@ dol/fn_8003B8A8.c:
 
 dol/fn_8004B7F4.c:
 	.text       start:0x8004B7F4 end:0x8004BC0C align:4
-
-dol/fn_8004DFF0.c:
-	.text       start:0x8004DFF0 end:0x8004E098 align:4
 
 dol/OSGetTick.c:
 	.text       start:0x80011424 end:0x80011684 align:4
@@ -1880,9 +1811,6 @@ dol/fn_8003DB54.c:
 dol/fn_80039C40.c:
 	.text       start:0x80039C40 end:0x80039E48 align:4
 
-dol/fn_8004D8DC.c:
-	.text       start:0x8004D8DC end:0x8004DE70 align:4
-
 dol/fn_80009468.c:
 	.text       start:0x80009468 end:0x80009CD4 align:4
 
@@ -2001,9 +1929,6 @@ dol/fn_8003A4E8.c:
 dol/data/lbl_8015BE40.c:
 	.bss        start:0x8015BE40 end:0x8015BF00 align:8
 
-dol/fn_8004D528.c:
-	.text       start:0x8004D528 end:0x8004D8DC align:4
-
 dol/fn_8003A1CC.c:
 	.text       start:0x8003A1CC end:0x8003A4E8 align:4
 
@@ -2042,12 +1967,6 @@ dol/fn_800288C4.c:
 
 dol/fn_8008F838.c:
 	.text       start:0x8008F838 end:0x8008F8F0 align:4
-
-dol/fn_80043798.c:
-	.text       start:0x80043798 end:0x80043D34 align:4
-
-dol/fn_800446E4.c:
-	.text       start:0x800446E4 end:0x80044C74 align:4
 
 dol/fn_80041700.c:
 	.text       start:0x80041700 end:0x80041990 align:4
@@ -2091,14 +2010,8 @@ dol/InitMetroTRKCommTable.c:
 dol/TRKTargetContinue.c:
 	.text       start:0x8008D77C end:0x8008D7B0 align:4
 
-dol/fn_80042D24.c:
-	.text       start:0x80042D24 end:0x8004313C align:4
-
-dol/fn_80043D34.c:
-	.text       start:0x80043D34 end:0x80043FA4 align:4
-
-dol/fn_80043FA4.c:
-	.text       start:0x80043FA4 end:0x80043FE8 align:4
+dol/adx/adx_bau.c:
+	.text       start:0x80043FA4 end:0x80044E7C align:4
 
 dol/fn_8005B0C4.c:
 	.text       start:0x8005B0C4 end:0x8005B264 align:4
@@ -2637,9 +2550,6 @@ dol/fn_8004EFA8.c:
 
 dol/fn_8004F55C.c:
 	.text       start:0x8004F55C end:0x8004F6B0 align:4
-
-dol/fn_8004313C.c:
-	.text       start:0x8004313C end:0x800433A4 align:4
 
 dol/fn_800463E4.c:
 	.text       start:0x800463E4 end:0x80046508 align:4

@@ -1,8 +1,5 @@
 #include "types.h"
 
-
-/* --- dol/fn_80046508.c --- */
-/* --- dol/fn_80046508.c --- */
 struct fn_80046508_Arg0 {
     u8 pad_0[0x20];
     u32 unk_20;
@@ -12,7 +9,6 @@ void fn_80046508(struct fn_80046508_Arg0 *arg0, u32 arg1) {
     arg0->unk_20 = arg1;
 }
 
-/* --- dol/fn_80046510.c --- */
 struct fn_80046510_Arg0 {
     u8 pad_0[0x1];
     u8 unk_1;
@@ -22,16 +18,13 @@ void fn_80046510(struct fn_80046510_Arg0 *arg0) {
     arg0->unk_1 = 0;
 }
 
-/* --- dol/ADXAMP_Start.c --- */
 typedef struct SJCK {
     unsigned char *data;
     int len;
 } SJCK;
 
 typedef struct SJ SJ;
-
 typedef struct SJInterface SJInterface;
-
 typedef void (*SJErrorCallback)(void *object, int error);
 
 struct SJInterface {
@@ -68,7 +61,9 @@ typedef struct ADX_AMP {
 
 typedef ADX_AMP *ADXAMP;
 
-void *memset(void *destination, int value, unsigned long size);
+extern void *memset(void *destination, int value, unsigned long size);
+extern u32 fn_80046718(u32);
+extern u32 fn_80046738(void);
 
 void ADXAMP_Start(ADXAMP amp) {
     SJCK chunk;
@@ -93,4 +88,20 @@ void ADXAMP_Start(ADXAMP amp) {
         stream->interface->unget_chunk(stream, 0, &chunk);
     }
     amp->stat = 2;
+}
+
+u32 fn_800466D4(u32 arg0) {
+    u32 v0;
+    u32 t0, t1, t2;
+    v0 = arg0;
+    if (arg0 != 0) {
+        t0 = fn_80046738();
+        v0 = t0;
+        v0 = arg0;
+        t1 = (u32)memset((void *)v0, 0, 48);
+        v0 = t1;
+        t2 = fn_80046718(v0);
+        v0 = t2;
+    }
+    return v0;
 }

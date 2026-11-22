@@ -1,4 +1,3 @@
-
 #include "types.h"
 
 typedef struct SJCK {
@@ -7,9 +6,7 @@ typedef struct SJCK {
 } SJCK;
 
 typedef struct SJ SJ;
-
 typedef struct SJInterface SJInterface;
-
 typedef void (*SJErrorCallback)(void *object, int error);
 
 struct SJInterface {
@@ -30,13 +27,9 @@ struct SJ {
 };
 
 typedef struct AdxSjdHandle AdxSjdHandle;
-
 typedef struct ADXStream ADXStream;
-
 typedef struct AXRNAHandle AXRNAHandle;
-
 typedef struct LSCObject LSCObject;
-
 typedef struct ADX_AMP ADX_AMP;
 
 typedef struct ADXTHandle {
@@ -102,7 +95,6 @@ typedef struct ADXTHandle {
 } ADXTHandle;
 
 typedef int (*SVMServerFunction)(void *object);
-
 typedef void (*AdxErrorCallback)(void *object, const char *message);
 
 struct adx_inisBss {
@@ -135,65 +127,74 @@ struct adx_inisBss {
 };
 extern struct adx_inisBss lbl_80178CA8;
 
-void fn_800411F4(void);
-
-void fn_80058680(void);
-
-void fn_80058BFC(void);
-
-int fn_80059428(int server_type, SVMServerFunction function, void *object);
-
-void fn_8005912C(int server_type, int id, SVMServerFunction function, void *object);
-
-void *memset(void *destination, int value, unsigned long size);
-
+extern void fn_80058630(void);
+extern void fn_80058B54(void);
+extern void fn_800592E0(int server_type, int id);
+extern void ADXT_DestroyAll(void);
+extern void fn_8004EF68(void);
+extern void fn_8004F6B0(void);
+extern void fn_8004B79C(void);
+extern void fn_80057378(void);
 extern void fn_80046738(void);
-
 extern void fn_80046718(void);
-
-extern void fn_80046758(void);
-
-extern void fn_80058754(void);
+extern void fn_800424B8(void);
+extern void fn_80047578(void);
+extern void fn_80057CC4(void);
+extern void fn_8005870C(void);
 
 extern void fn_80058680(void);
-
+extern void fn_80058BFC(void);
+extern int fn_80059428(int server_type, SVMServerFunction function, void *object);
+extern void fn_8005912C(int server_type, int id, SVMServerFunction function, void *object);
+extern void *memset(void *destination, int value, unsigned long size);
+extern void fn_80046758(void);
+extern void fn_80058754(void);
 extern void fn_80057D0C(void);
-
 extern void fn_800475C0(void);
-
 extern void fn_8004B7A0(void);
-
 extern void fn_800424E8(void);
-
 extern void fn_8004F74C(void);
-
 extern void fn_8004EF88(void);
-
 extern void fn_8005741C(void);
-
 extern void fn_8004EF48(AdxErrorCallback callback, void *object);
-
 extern void fn_800566BC(AdxErrorCallback callback, void *object);
-
 extern int fn_8004E580(void);
-
-extern void ADXT_SetDefSvrFreq(int frequency);
-
 extern int lbl_8012B6E8;
-
 extern const f64 lbl_80090010;
+extern u32 fn_80047608(void);
+extern u32 fn_8004BDD8(void);
+extern u32 fn_80056C64(void);
+extern u32 fn_800474E4(const char *, const char *);
 
 int fn_80041330(void *object);
-
 int fn_80041354(void *object);
-
 int fn_80041378(void *object);
-
 int fn_800413A4(void *object);
-
 void fn_800413C8(void *object, const char *message);
-
 void fn_800413EC(void *object, const char *message);
+
+void ADXT_Finish(void) {
+    struct adx_inisBss *bss = &lbl_80178CA8;
+
+    (bss->fields.view_sdk_adxt_init_cnt.adxt_init_cnt)--;
+    if (bss->fields.view_sdk_adxt_init_cnt.adxt_init_cnt == 0) {
+        fn_8004EF68();
+        fn_8004F6B0();
+        fn_8004B79C();
+        fn_80057378();
+        fn_80046738();
+        fn_800592E0(2, 1);
+        fn_800592E0(4, bss->fields.view_sdk_adxt_svr_fs_id.adxt_svr_fs_id);
+        fn_800592E0(5, bss->fields.view_sdk_adxt_svr_main_id.adxt_svr_main_id);
+        fn_80058B54();
+        fn_800424B8();
+        fn_80047578();
+        fn_80057CC4();
+        fn_80058630();
+        fn_8005870C();
+        fn_80046718();
+    }
+}
 
 void fn_800411F4(void) {
     struct adx_inisBss *bss = &lbl_80178CA8;
@@ -230,4 +231,34 @@ void fn_800411F4(void) {
         fn_80046718();
     }
     (bss->fields.view_sdk_adxt_init_cnt.adxt_init_cnt)++;
+}
+
+int fn_80041330(void *object) {
+    fn_80047608();
+    return 0;
+}
+
+int fn_80041354(void *object) {
+    fn_8004BDD8();
+    return 0;
+}
+
+int fn_80041378(void *object) {
+    fn_8004BDD8();
+    fn_80047608();
+    fn_80056C64();
+    return 0;
+}
+
+int fn_800413A4(void *object) {
+    fn_80056C64();
+    return 0;
+}
+
+void fn_800413C8(void *object, const char *message) {
+    fn_800474E4(message, message);
+}
+
+void fn_800413EC(void *object, const char *message) {
+    fn_800474E4(message, message);
 }
