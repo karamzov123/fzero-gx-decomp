@@ -16,8 +16,8 @@ extern f32 lbl_1_rodata_D8C8[18];
 extern void fn_80008BEC(void *dst, int value, int size);
 extern void fn_1_1568C4(void *);
 extern void fn_80008BA8(void *, void *, int);
-extern void fn_1_1574E0(Obj_1_bss_8F428 *entry, u32 value);
-extern void fn_8006B7B4(void *);
+extern void fn_1_1574E0();
+extern void fn_8006B7B4();
 extern void fn_8006B870(void);
 extern void fn_1_157950(void);
 extern void fn_1_157FC8(void);
@@ -107,7 +107,7 @@ s32 fn_1_1555B0(s32 value) {
 /* fzgx:begin fn_1_1556B4 */
 extern void fn_1_12EF80(s16 value, s16 *out_0, s16 *out_1);
 extern void fn_1_3EF14(void *);
-extern s16 *strncpy(char *, const char *, size_t);
+extern char *strncpy(char *, const char *, size_t);
 extern size_t strlen(const char *);
 
 typedef struct {
@@ -160,7 +160,9 @@ RankEntry fzgx_obj_lbl_1_bss_8EF68[10];
 u8 lbl_1_bss_8EF68__fzgx_offset_230[0x248];
 u32 fzgx_obj_lbl_1_bss_8F3E0;
 s32 lbl_1_bss_8F3E4__fzgx_offset_0;
-u8 lbl_1_bss_8F3E4__fzgx_offset_4[0x14];
+char lbl_1_bss_8F3E4__fzgx_offset_4[0x11];
+u8 lbl_1_bss_8F3E4__fzgx_offset_15;
+u16 lbl_1_bss_8F3E4__fzgx_offset_16;
 u32 lbl_1_bss_8F3FC[9];
 u8 lbl_1_bss_8F420[8];
 
@@ -176,6 +178,8 @@ static void fzgx_bss_layout(void) {
     s = *(u8 *)&fzgx_obj_lbl_1_bss_8F3E0;
     s = *(u8 *)&lbl_1_bss_8F3E4__fzgx_offset_0;
     s = *(u8 *)&lbl_1_bss_8F3E4__fzgx_offset_4;
+    s = lbl_1_bss_8F3E4__fzgx_offset_15;
+    s = *(u8 *)&lbl_1_bss_8F3E4__fzgx_offset_16;
     s = *(u8 *)&lbl_1_bss_8F3FC;
     s = *(u8 *)&lbl_1_bss_8F420;
 }
@@ -496,39 +500,6 @@ u8 pad_1B[5];
 u8 pad_20[0x18];
 } Entry_155FB4;
 /* the record fields compared after the loop-invariant id are re-read every pass */
-/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
-Entry_155FB4 *fzgx_obj_lbl_1_bss_8EF20;
-u32 lbl_1_bss_8EF20__fzgx_offset_4[17];
-u8 fzgx_obj_lbl_1_bss_8EF68;
-u8 lbl_1_bss_8EF68__fzgx_offset_1;
-u16 lbl_1_bss_8EF68__fzgx_offset_2;
-u32 lbl_1_bss_8EF68__fzgx_offset_4[285];
-u32 fzgx_obj_lbl_1_bss_8F3E0;
-u32 lbl_1_bss_8F3E4__fzgx_offset_0;
-char lbl_1_bss_8F3E4__fzgx_offset_4[0x11];
-u8 lbl_1_bss_8F3E4__fzgx_offset_15;
-u16 lbl_1_bss_8F3E4__fzgx_offset_16;
-u32 lbl_1_bss_8F3FC[9];
-u8 lbl_1_bss_8F420[8];
-
-#pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
-    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_8EF20;
-    s = *(u8 *)&lbl_1_bss_8EF20__fzgx_offset_4;
-    s = fzgx_obj_lbl_1_bss_8EF68;
-    s = lbl_1_bss_8EF68__fzgx_offset_1;
-    s = *(u8 *)&lbl_1_bss_8EF68__fzgx_offset_2;
-    s = *(u8 *)&lbl_1_bss_8EF68__fzgx_offset_4;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_8F3E0;
-    s = *(u8 *)&lbl_1_bss_8F3E4__fzgx_offset_0;
-    s = *(u8 *)&lbl_1_bss_8F3E4__fzgx_offset_4;
-    s = lbl_1_bss_8F3E4__fzgx_offset_15;
-    s = *(u8 *)&lbl_1_bss_8F3E4__fzgx_offset_16;
-    s = *(u8 *)&lbl_1_bss_8F3FC;
-    s = *(u8 *)&lbl_1_bss_8F420;
-}
-#pragma section code_type ".text"
 
 #pragma opt_loop_invariants off
 void fn_1_155FB4(char *arg) {
@@ -543,7 +514,7 @@ strncpy(lbl_1_bss_8F3E4__fzgx_offset_4, arg, lab_t2);
 lbl_1_bss_8F3E4__fzgx_offset_4[0x10] = 0;
 fn_1_3EF14(&rec);
 if (rec.unk_0 & 0x1000) {
-a = fzgx_obj_lbl_1_bss_8EF20;
+a = (Entry_155FB4 *)fzgx_obj_lbl_1_bss_8EF20;
 for (i = 9; i >= 0; i--) {
 /* record fields other than the loop-invariant id are re-read on every pass: retail reloads them inside the loop */
 #define VRF(f) (((Rec_155FB4 *)&rec)->f)
@@ -940,12 +911,12 @@ typedef struct {
 
 extern void fn_1_156C08(void *);
 extern void fn_1_156D9C(void *);
-extern void fn_1_157070(fn_1_1567A8_Entry *);
-extern void fn_1_156F54(fn_1_1567A8_Entry *);
-extern void fn_1_157200(fn_1_1567A8_Entry *);
-extern void fn_1_157358(fn_1_1567A8_Entry *);
-extern void fn_1_1576B4(fn_1_1567A8_Entry *);
-extern void fn_1_157598(fn_1_1567A8_Entry *);
+extern void fn_1_157070();
+extern void fn_1_156F54();
+extern void fn_1_157200();
+extern void fn_1_157358();
+extern void fn_1_1576B4();
+extern void fn_1_157598();
 
 void fn_1_1567A8(s32 index) {
     fn_1_1567A8_Entry *entry;
@@ -1017,9 +988,9 @@ typedef struct {
     u8 _pad1C[0x14];
 } fn_1_1568C4_RankingConfig;
 
-extern s32 fn_8006B55C(u32, u32 *, void *);
-extern s32 fn_8006B628(u32, void *);
-extern s32 fn_8006B6F8(u32);
+extern s32 fn_8006B55C();
+extern s32 fn_8006B628();
+extern s32 fn_8006B6F8();
 
 #pragma opt_propagation off
 void fn_1_1568C4(void *arg) {
@@ -1232,6 +1203,7 @@ void fn_1_156C08(void *arg0_p) {
         if (fn_8006B6F8(arg0->handle) >= 0) arg0->flags |= 2;
     }
 }
+#pragma opt_propagation reset
 /* fzgx:end fn_1_156C08 */
 
 /* fzgx:begin fn_1_156D9C */
@@ -1263,7 +1235,7 @@ typedef struct {
     s32 unk_1c;
     s8 unk_20;
     s8 unk_21;
-} RankEntry;
+} RankEntry_D9C;
 
 
 #pragma opt_dead_assignments off
@@ -1272,7 +1244,7 @@ void fn_1_156D9C(void *slot_p)
     RankSlot *slot = (RankSlot *)slot_p;
     u32 digit;
     s32 idx;
-    RankEntry entry;
+    RankEntry_D9C entry;
     s32 ok = 0;
     u32 id;
     u32 data;
@@ -1364,9 +1336,9 @@ typedef struct {
     u8 _pad21;
 } Request;
 
-extern int fn_8006B55C(u32, u32 *, Request *);
-extern int fn_8006B628(u32, Request *);
-extern int fn_8006B6F8(u32);
+extern s32 fn_8006B55C();
+extern s32 fn_8006B628();
+extern s32 fn_8006B6F8();
 
 static inline int OpenRequest(RankingState *state, Request *request) {
     int success = 0;
@@ -1417,9 +1389,9 @@ void fn_1_156F54(RankingState *state) {
 
 /* fzgx:begin fn_1_157070 */
 extern f32 lbl_1_rodata_D8C8[18];
-extern s32 fn_8006B55C(u32, void *, void *);
-extern s32 fn_8006B628(u32, void *);
-extern s32 fn_8006B6F8(u32);
+extern s32 fn_8006B55C();
+extern s32 fn_8006B628();
+extern s32 fn_8006B6F8();
 
 typedef struct {
     u32 flags;
@@ -1449,7 +1421,7 @@ typedef struct {
     u32 unk1c;
     u8 unk20;
     u8 unk21;
-} Request;
+} Request_7070;
 
 #pragma opt_common_subs off
 void fn_1_157070(State *state) {
@@ -1458,7 +1430,7 @@ void fn_1_157070(State *state) {
     u16 *fzgx_value;
     f32 *table = lbl_1_rodata_D8C8;
     struct { u32 value; } success;
-    Request request;
+    Request_7070 request;
     f32 amount;
 
     if (state->flags4c & 4) {
@@ -1518,9 +1490,9 @@ void fn_1_157070(State *state) {
 extern const f32 lbl_1_rodata_D910;
 extern f32 lbl_1_rodata_D914[3];
 
-extern s32 fn_8006B55C(void *, u32 *, void *);
-extern s32 fn_8006B628(u32, void *);
-extern s32 fn_8006B6F8(u32);
+extern s32 fn_8006B55C();
+extern s32 fn_8006B628();
+extern s32 fn_8006B6F8();
 
 typedef struct {
     u32 flags;
@@ -1531,7 +1503,7 @@ typedef struct {
     f32 value;
     u8 _pad3c[0x10];
     u8 status;
-} RankingState;
+} RankingState_7200;
 
 typedef struct {
     u8 kind;
@@ -1550,7 +1522,7 @@ typedef struct {
 } RankingRequest;
 
 #pragma opt_dead_assignments off
-void fn_1_157200(RankingState *state) {
+void fn_1_157200(RankingState_7200 *state) {
     if (state->status & 0x10) {
         s32 success = 0;
         RankingRequest request;
@@ -1604,10 +1576,10 @@ void fn_1_157200(RankingState *state) {
 
 /* fzgx:begin fn_1_157358 */
 extern f32 lbl_1_rodata_D8C8[18];
-extern void fn_8006B7B4(void *);
-extern s32 fn_8006B55C(void *, void *, void *);
-extern s32 fn_8006B628(void *, void *);
-extern s32 fn_8006B6F8(void *);
+extern void fn_8006B7B4();
+extern s32 fn_8006B55C();
+extern s32 fn_8006B628();
+extern s32 fn_8006B6F8();
 
 typedef struct {
     u32 flags;
@@ -1708,13 +1680,13 @@ void fn_1_157358(fn_1_157358_RankingState *state) {
 #pragma opt_propagation reset
 /* fzgx:end fn_1_157358 */
 
-/* fzgx:begin fn_1_1574E0 noprologue */
+/* fzgx:begin fn_1_1574E0 */
 #include "types.h"
 
-extern void fn_8006B55C(void *, void *, void *);
-extern void fn_8006B628(u32, void *);
-extern void fn_8006B7B4(u32);
-extern void fn_8006B6F8(u32);
+extern s32 fn_8006B55C();
+extern s32 fn_8006B628();
+extern void fn_8006B7B4();
+extern s32 fn_8006B6F8();
 
 typedef struct {
     u8 _pad00[4];
@@ -1775,9 +1747,9 @@ void fn_1_1574E0(fn_1_1574E0_RankingState *state) {
 /* fzgx:end fn_1_1574E0 */
 
 /* fzgx:begin fn_1_157598 */
-extern s32 fn_8006B55C(void *, void *, void *);
-extern s32 fn_8006B628(u32, void *);
-extern s32 fn_8006B6F8(u32);
+extern s32 fn_8006B55C();
+extern s32 fn_8006B628();
+extern s32 fn_8006B6F8();
 
 typedef struct {
     u32 flags;
@@ -1860,9 +1832,9 @@ void fn_1_157598(fn_1_157598_RankingState *state) {
 /* fzgx:end fn_1_157598 */
 
 /* fzgx:begin fn_1_1576B4 */
-extern s32 fn_8006B55C(u32, void *, void *);
-extern s32 fn_8006B628(void *, void *);
-extern s32 fn_8006B6F8(void *);
+extern s32 fn_8006B55C();
+extern s32 fn_8006B628();
+extern s32 fn_8006B6F8();
 
 typedef struct {
     u8 field00;
@@ -1879,7 +1851,7 @@ typedef struct {
     u32 field1c;
     u8 field20;
     u8 field21;
-} RankingConfig;
+} RankingConfig_76B4;
 
 typedef struct {
     u32 flags;
@@ -1888,11 +1860,11 @@ typedef struct {
     void *data;
     u8 _pad30[0x1c];
     u8 enabled;
-} RankingState;
+} RankingState_76B4;
 
 #pragma opt_propagation off
-void fn_1_1576B4(RankingState *state) {
-    RankingConfig config;
+void fn_1_1576B4(RankingState_76B4 *state) {
+    RankingConfig_76B4 config;
     u32 field04;
     void *data;
     s32 success;
@@ -2059,8 +2031,8 @@ extern f32 lbl_1_rodata_D8C8[18];
 extern void fn_80008BEC(void *dst, int value, int size);
 extern void fn_1_1568C4(void *);
 extern void fn_80008BA8(void *, void *, int);
-extern void fn_1_1574E0(Obj_1_bss_8F428 *entry, u32 value);
-extern void fn_8006B7B4(void *);
+extern void fn_1_1574E0();
+extern void fn_8006B7B4();
 extern void fn_8006B870(void);
 extern void fn_1_157950(void);
 extern void fn_1_157FC8(void);
@@ -2248,8 +2220,8 @@ extern f32 lbl_1_rodata_D8C8[18];
 extern void fn_80008BEC(void *dst, int value, int size);
 extern void fn_1_1568C4(void *);
 extern void fn_80008BA8(void *, void *, int);
-extern void fn_1_1574E0(Obj_1_bss_8F428 *entry, u32 value);
-extern void fn_8006B7B4(void *);
+extern void fn_1_1574E0();
+extern void fn_8006B7B4();
 extern void fn_8006B870(void);
 extern void fn_1_157950(void);
 extern void fn_1_157FC8(void);
@@ -2742,7 +2714,7 @@ struct RankingEffectObject {
     u8 pad_18[0x24];
     u32 unk_3C;
 };
-struct RankingVector { f32 a[3]; };
+struct RankingVector_906C { f32 a[3]; };
 struct RankingEffectRecord {
     s32 flag;
     s32 time;
@@ -2750,65 +2722,31 @@ struct RankingEffectRecord {
     f32 y;
     f32 z;
     u8 pad_14[12];
-    struct RankingVector copy;
+    struct RankingVector_906C copy;
     s32 ix;
     s32 iy;
     s32 iz;
     struct RankingEffectObject *obj;
 };
-#pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 10.0f;
-    s = 100.0f;
-    s = 20.0f;
-    s = 1000.0f;
-    s = 2000.0f;
-    s = 0.0f;
-    d = 4503601774854144.0;
-}
-static const u32 fzgx_pool_table2[7] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x64646400};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 65536.0f;
-    s = 300.0f;
-    s = 600.0f;
-    s = 900.0f;
-    s = 256.0f;
-    s = 768.0f;
-    s = 1280.0f;
-    d = 0.01;
-    s = 800.0f;
-    s = 500.0f;
-    s = 40000.0f;
-}
-static const u32 fzgx_pool_table4[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep4(void) { const u32 *volatile cp; cp = fzgx_pool_table4; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime5(void) {
-    volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
-    d = 4503599627370496.0;
-}
-#pragma section code_type ".text"
 /* Native initializer templates precede the random-magnitude literals in retail. */
 static inline void clear_record_copy(struct RankingEffectRecord *record) {
-    struct RankingVector initial = {{0,0,0}};
+    struct RankingVector_906C initial = {{0,0,0}};
     record->copy = initial;
 }
 static inline void set_direction_x(struct RankingEffectRecord *record, f32 magnitude) {
-    struct RankingVector vec = {{0,0,0}};
+    struct RankingVector_906C vec = {{0,0,0}};
     vec.a[0] = magnitude;
-    *(struct RankingVector *)&record->x = vec;
+    *(struct RankingVector_906C *)&record->x = vec;
 }
 static inline void set_direction_y(struct RankingEffectRecord *record, f32 magnitude) {
-    struct RankingVector vec = {{0,0,0}};
+    struct RankingVector_906C vec = {{0,0,0}};
     vec.a[1] = magnitude;
-    *(struct RankingVector *)&record->x = vec;
+    *(struct RankingVector_906C *)&record->x = vec;
 }
 static inline void set_direction_z(struct RankingEffectRecord *record, f32 magnitude) {
-    struct RankingVector vec = {{0,0,0}};
+    struct RankingVector_906C vec = {{0,0,0}};
     vec.a[2] = magnitude;
-    *(struct RankingVector *)&record->x = vec;
+    *(struct RankingVector_906C *)&record->x = vec;
 }
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_pool_prime18(void) {
@@ -2825,7 +2763,6 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime18(void) {
 
 struct RankingRandomState { u32 unk_0; };
 extern struct RankingRandomState lbl_801A63C0;
-extern u32 lbl_1_rodata_D958[8];
 
 static inline s32 random15(void) {
     u32 next_seed;
