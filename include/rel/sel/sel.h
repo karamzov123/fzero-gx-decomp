@@ -219,15 +219,9 @@ extern s16 lbl_10_data_55C[0x4];
 // lbl_10_data_45A: .data size 0x2, 2 refs from sel.c
 extern s16 lbl_10_data_45A;
 
-// lbl_10_bss_55B04: .bss size 0x2C, 2 refs from sel.c
-typedef struct {
-    s16 unk_0;  // 1 loads, 0 stores
-    s16 unk_2;  // 1 loads, 0 stores
-    s16 unk_4;  // 1 loads, 0 stores
-    s16 unk_6;  // 1 loads, 0 stores
-    u8 pad_8[0x24];
-} Obj_10_bss_55B04;
-extern Obj_10_bss_55B04 lbl_10_bss_55B04;
+// lbl_10_bss_55B04: .bss size 0x20, 2 refs from sel.c
+typedef struct { s16 x, y, w, h; } SelRect;
+extern SelRect lbl_10_bss_55B04[4];
 
 // lbl_10_bss_55CDC: .bss size 0x1, 2 refs from sel.c
 extern u8 lbl_10_bss_55CDC;
@@ -249,14 +243,7 @@ extern Obj_10_data_1E80 lbl_10_data_1E80;
 extern s16 lbl_10_data_456;
 
 // lbl_10_bss_55AE4: .bss size 0x20, 2 refs from sel.c
-typedef struct {
-    s16 unk_0;  // 1 loads, 0 stores
-    s16 unk_2;  // 1 loads, 0 stores
-    s16 unk_4;  // 1 loads, 0 stores
-    s16 unk_6;  // 1 loads, 0 stores
-    u8 pad_8[0x18];
-} Obj_10_bss_55AE4;
-extern Obj_10_bss_55AE4 lbl_10_bss_55AE4;
+extern SelRect lbl_10_bss_55AE4[4];
 
 // lbl_10_bss_55668: .bss size 0x4, 2 refs from sel.c
 extern u32 lbl_10_bss_55668;

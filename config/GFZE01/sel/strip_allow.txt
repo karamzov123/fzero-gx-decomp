@@ -3,3 +3,7 @@
 name_entry_glyph_size        # name_entry.c, inlined four times in fn_10_23990
 name_entry_set_default_name  # name_entry.c, inlined in fn_10_25888 and fn_10_25CB0
 name_entry_add_letter        # name_entry.c, inlined in fn_10_25888 (two times) and fn_10_25CB0
+sel_draw_radar_rings         # sel.c, inlined in fn_10_19924
+sel_update_noise             # sel.c, inlined in fn_10_12E34
+sel_draw_wide_bar            # sel.c, inlined in fn_10_19F70
+sel_draw_narrow_bar          # sel.c, inlined in fn_10_19F70
