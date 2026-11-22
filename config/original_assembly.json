@@ -31,7 +31,7 @@
       "evidence": "Original SDK mixed C/assembly: retail 0x8000AB74..0x8000AB98 resets GQR0-GQR7; C prologue, calls, sync and epilogue remain compiled. Melee and SMS use this form; see pinned survey."
     }
   ],
-  "src/dol/OSGetTick.c": [
+  "src/dol/os/OSTime.c": [
     {
       "symbol": "OSGetTick",
       "form": "asm-function",
@@ -69,7 +69,7 @@
       "evidence": "Original VM PTE update routine: C bitfield updates wrapping TLB/cache invalidation inline asm (sync/tlbie/tlbsync/dcbf); retail 0x80007664..0x80007700."
     }
   ],
-  "src/dol/fn_800071B8.c": [
+  "src/dol/av/mmu.c": [
     {
       "symbol": "fn_800071B8",
       "form": "inline-block",

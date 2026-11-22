@@ -1,4 +1,3 @@
-
 #include "types.h"
 
 typedef struct decimal {
@@ -79,38 +78,49 @@ enum hex_scan_states {
     hex_exp_digit_loop = 0x0100
 };
 
+extern f64 lbl_801A6650[];
+extern f64 lbl_801A6658[];
+extern f64 lbl_801A74F8;
+extern u32 lbl_801A6DE0[2];
+extern int fn_800829EC(void *, int, int);
+
+extern double exp(double);
+extern int lbl_801A664C[];
+extern f64 fn_8007B338(const decimal *);
+extern struct lconv lbl_8015B400;
+extern unsigned char lbl_8015B100[];
+extern unsigned char lbl_8015B300[];
+extern unsigned long lbl_801A6648[];
+extern unsigned long lbl_801A6660[];
+extern unsigned long lbl_801A6668[];
+extern unsigned long lbl_801A6670[];
+
+static inline int isalpha(int c) { return (int)(lbl_8015B100[(unsigned char)c] & (0x40 | 0x80)); }
+static inline int isdigit(int c) { return (int)(lbl_8015B100[(unsigned char)c] & 0x10); }
+static inline int isspace(int c) { return (int)(lbl_8015B100[(unsigned char)c] & (0x02 | 0x04)); }
+static inline int isxdigit(int c) { return (int)(lbl_8015B100[(unsigned char)c] & 0x20); }
+static inline int toupper(int c) { return c == -1 ? -1 : (int)lbl_8015B300[(unsigned char)c]; }
+
 long double fn_80083F10(int max_width, int (*ReadProc)(void *, int, int), void *ReadProcArg,
                         int *chars_scanned, int *overflow);
 
-extern double exp(double);
+void fn_80083E84(u32 arg0) {
+    struct {
+        u32 a[2];
+    } loc_10;
+    int loc_C;
+    int loc_8;
+    f64 value;
+    f64 abs_value;
 
-extern int lbl_801A664C[];
-
-f64 fn_8007B338(const decimal *);
-
-extern struct lconv lbl_8015B400;
-
-extern unsigned char lbl_8015B100[];
-
-extern unsigned char lbl_8015B300[];
-
-static inline int isalpha(int c) { return (int)(lbl_8015B100[(unsigned char)c] & (0x40 | 0x80)); }
-
-static inline int isdigit(int c) { return (int)(lbl_8015B100[(unsigned char)c] & 0x10); }
-
-static inline int isspace(int c) { return (int)(lbl_8015B100[(unsigned char)c] & (0x02 | 0x04)); }
-
-static inline int isxdigit(int c) { return (int)(lbl_8015B100[(unsigned char)c] & 0x20); }
-
-static inline int toupper(int c) { return c == -1 ? -1 : (int)lbl_8015B300[(unsigned char)c]; }
-
-extern unsigned long lbl_801A6648[];
-
-extern unsigned long lbl_801A6660[];
-
-extern unsigned long lbl_801A6668[];
-
-extern unsigned long lbl_801A6670[];
+    loc_10.a[0] = arg0;
+    loc_10.a[1] = 0;
+    value = fn_80083F10((0x80000000 - 1), fn_800829EC, &loc_10, &loc_8, &loc_C);
+    abs_value = __fabs(value);
+    if (loc_C != 0 || (lbl_801A74F8 != value && (abs_value < lbl_801A6650[0] || abs_value > lbl_801A6658[0]))) {
+        lbl_801A6DE0[0] = 34;
+    }
+}
 
 long double fn_80083F10(int max_width, int (*ReadProc)(void *, int, int), void *ReadProcArg,
                         int *chars_scanned, int *overflow) {

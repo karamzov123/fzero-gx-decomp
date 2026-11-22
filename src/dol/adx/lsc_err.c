@@ -9,6 +9,7 @@ typedef struct {
 } va_list_t;
 
 extern u32 lbl_80188970[];
+extern u32 lbl_80188974[65];
 extern void fn_8008077C(char *, const char *, void *);
 
 #pragma opt_propagation off
@@ -26,3 +27,12 @@ void fn_800565FC(const char *fmt, ...) {
 }
 #pragma opt_propagation reset
 
+void fn_800566BC(u32 arg0, u32 arg1) {
+    if (arg0 == 0) {
+        lbl_80188970[0] = 0;
+        lbl_80188974[0] = 0;
+    } else {
+        lbl_80188970[0] = arg0;
+        lbl_80188974[0] = arg1;
+    }
+}

@@ -2,9 +2,9 @@
 #include "sdk_addresses.h"
 #include <dolphin/os.h>
 #include <dolphin/os/OSTime.h>
+
 #pragma peephole off
 
-/* --- dol/OSGetTick.c --- */
 /* Original SDK assembly, not a C reconstruction: retail 80011424..8001142C
  * is the time-base leaf. The corresponding Sunshine OSTime.c also uses an
  * asm/nofralloc OSGetTick; see docs/RECONSTRUCTION_STANDARDS.md. */
@@ -14,11 +14,7 @@ asm u32 OSGetTick(void) {
     blr
 }
 
-/* --- dol/__OSGetSystemTime.c --- */
-/* --- dol/__OSGetSystemTime.c --- */
 OSTime OSGetTime(void);
-
-asm OSTime OSGetTime(void);
 
 OSTime __OSGetSystemTime(void) {
     BOOL enabled;
@@ -30,7 +26,6 @@ OSTime __OSGetSystemTime(void) {
     return result;
 }
 
-/* --- dol/__OSTimeToSystemTime.c --- */
 OSTime __OSTimeToSystemTime(OSTime time) {
     BOOL enabled;
     OSTime *timeAdjustAddr = (OSTime *)FZGX_ADDR___OSTimeAdjust;
@@ -41,9 +36,7 @@ OSTime __OSTimeToSystemTime(OSTime time) {
     return result;
 }
 
-/* --- dol/GetDates.c --- */
 extern s32 lbl_80123AF0[12];
-
 extern s32 lbl_80123B20[12];
 
 static inline BOOL IsLeapYear(s32 year) {
@@ -77,3 +70,31 @@ void GetDates(s32 days, OSCalendarTime *cal) {
     cal->mon = month;
     cal->mday = days - p_days[month] + 1;
 }
+
+#pragma dont_inline on
+u32 __OSBusClock : FZGX_ADDR___OSBusClock;
+
+void OSTicksToCalendarTime(OSTime ticks, OSCalendarTime *td) {
+    int days;
+    int secs;
+    OSTime d;
+    d = ticks % ((1) * ((u32)__OSBusClock / 4));
+    if (d < 0) {
+        d += ((1) * ((u32)__OSBusClock / 4));
+    }
+    td->usec = (int)((((d) * 8) / (((u32)__OSBusClock / 4) / 125000)) % 1000);
+    td->msec = (int)(((d) / (((u32)__OSBusClock / 4) / 1000)) % 1000);
+    ticks -= d;
+    days = (int)(((ticks) / ((u32)__OSBusClock / 4)) / 86400 +
+                 (2000 * 365 + (2000 + 3) / 4 - (2000 - 1) / 100 + (2000 - 1) / 400));
+    secs = (int)(((ticks) / ((u32)__OSBusClock / 4)) % 86400);
+    if (secs < 0) {
+        days -= 1;
+        secs += 24 * 60 * 60;
+    }
+    GetDates(days, td);
+    td->hour = secs / 60 / 60;
+    td->min = (secs / 60) % 60;
+    td->sec = secs % 60;
+}
+#pragma dont_inline reset
