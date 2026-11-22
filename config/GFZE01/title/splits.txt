@@ -9,9 +9,6 @@ Sections:
 rel/title/fn_8_704.c:
 	.text       start:0x00000704 end:0x00000754 align:4
 
-rel/title/fn_8_4E8C.c:
-	.text       start:0x00004E8C end:0x00004F64 align:4
-
 rel/title/_prolog/fn_8_754.c:
 	.text       start:0x00000754 end:0x0000082C align:4
 
@@ -21,32 +18,11 @@ rel/title/operation/fn_8_9B04.c:
 rel/title/operation/fn_8_D5F4.c:
 	.text       start:0x0000D5F4 end:0x0000DD64 align:4
 
-rel/title/title/fn_8_AA8.c:
-	.text       start:0x00000AA8 end:0x00000BE4 align:4
-
-rel/title/title/fn_8_67B0.c:
-	.text       start:0x000067B0 end:0x000067F8 align:4
-
-rel/title/title/fn_8_5810.c:
-	.text       start:0x00005810 end:0x00005840 align:4
-
-rel/title/title/fn_8_55CC.c:
-	.text       start:0x000055CC end:0x00005608 align:4
-
-rel/title/title/fn_8_516C.c:
-	.text       start:0x0000516C end:0x00005218 align:4
-
-rel/title/title/fn_8_5514.c:
-	.text       start:0x00005514 end:0x000055CC align:4
-
 rel/title/operation/fn_8_8C48.c:
 	.text       start:0x00008C48 end:0x00008C80 align:4
 
 rel/title/operation/fn_8_67F8.c:
 	.text       start:0x000067F8 end:0x00006C90 align:4
-
-rel/title/title/fn_8_5218.c:
-	.text       start:0x00005218 end:0x0000530C align:4
 
 rel/title/operation/fn_8_8C80.c:
 	.text       start:0x00008C80 end:0x00008E00 align:4
@@ -61,20 +37,11 @@ rel/title/operation/fn_8_BAEC.c:
 	.text       start:0x0000BAEC end:0x0000BC04 align:4
 
 rel/title/title/_prolog.c:
-	.text       start:0x0000082C end:0x00000954 align:4
-
-rel/title/title/fn_8_530C.c:
-	.text       start:0x0000530C end:0x00005514 align:4
-
-rel/title/title/fn_8_BE4.c:
-	.text       start:0x00000BE4 end:0x00004E8C align:4
+	.text       start:0x0000082C end:0x000067F8 align:4
 	.data       start:0x00000000 end:0x00007E50 align:8
 
 rel/title/operation/fn_8_988C.c:
 	.text       start:0x0000988C end:0x00009B04 align:4
-
-rel/title/title/fn_8_4F64.c:
-	.text       start:0x00004F64 end:0x0000516C align:4
 
 rel/title/operation/fn_8_6F1C.c:
 	.text       start:0x00006F1C end:0x000071A8 align:4
@@ -82,20 +49,11 @@ rel/title/operation/fn_8_6F1C.c:
 rel/title/operation/fn_8_79C0.c:
 	.text       start:0x000079C0 end:0x00007C4C align:4
 
-rel/title/title/fn_8_663C.c:
-	.text       start:0x0000663C end:0x000067B0 align:4
-
 rel/title/operation/fn_8_6C90.c:
 	.text       start:0x00006C90 end:0x00006F1C align:4
 
-rel/title/title/fn_8_954.c:
-	.text       start:0x00000954 end:0x00000AA8 align:4
-
 rel/title/operation/fn_8_FC5C.c:
 	.text       start:0x0000FC5C end:0x0000FF9C align:4
-
-rel/title/title/fn_8_5608.c:
-	.text       start:0x00005608 end:0x00005810 align:4
 
 rel/title/operation/fn_8_B138.c:
 	.text       start:0x0000B138 end:0x0000B380 align:4
@@ -157,9 +115,6 @@ rel/title/operation/fn_8_71A8.c:
 rel/title/operation/fn_8_9FB4.c:
 	.text       start:0x00009FB4 end:0x0000A3A4 align:4
 
-rel/title/title/fn_8_5840.c:
-	.text       start:0x00005840 end:0x00005FD4 align:4
-
 rel/title/operation/fn_8_DD64.c:
 	.text       start:0x0000DD64 end:0x0000EFA4 align:4
 
@@ -168,9 +123,6 @@ rel/title/operation/fn_8_D034.c:
 
 rel/title/operation/fn_8_C038.c:
 	.text       start:0x0000C038 end:0x0000C7B0 align:4
-
-rel/title/title/fn_8_5FD4.c:
-	.text       start:0x00005FD4 end:0x0000663C align:4
 
 rel/title/operation/fn_8_B380.c:
 	.text       start:0x0000B380 end:0x0000B840 align:4

@@ -1,6 +1,10 @@
 #include "types.h"
-#include "rel/title/globals.h"
+#define REL_TITLE_GLOBALS_H
+#define lbl_8_bss_0 _title_h_lbl_8_bss_0
 #include "rel/title/title.h"
+#undef lbl_8_bss_0
+extern u8 lbl_8_bss_0[];
+extern u8 lbl_8_bss_2A8[];
 extern u8 lbl_1_bss_58[0x2c];
 extern u8 lbl_1_bss_7C850[0xc];
 extern u8 lbl_1_bss_7EFD8[];
@@ -59,9 +63,79 @@ extern void fn_1_F4794(u16);
 extern u32 fn_1_D0790(void);
 extern u32 fn_8_8C80(u32);
 
+#include "font.h"
+#include "rel/title/data/lbl_8_data_318.h"
+struct TitleState {
+    u8 unk0;
+    u8 unk1;
+    u8 unk2;
+    u8 pad3[0x21d];
+    f32 unk220;
+    u8 pad224[0x19];
+    u8 unk23d;
+    u8 pad23e[4];
+    u8 unk242;
+};
+struct TitleRodata {
+    f32 unk0;
+    f32 unk4;
+    f32 unk8;
+    u8 padC[0x20];
+    f32 unk2c;
+    f32 unk30;
+    f32 unk34;
+};
+struct FzgxCopy88 { u32 words[22]; };
+extern u8 lbl_1_bss_9C8[];
+extern u8 lbl_801A66B8;
+extern u8 lbl_801A66BA;
+extern s32 fn_1_4CAC(void);
+extern void fn_1_4A00(s32, u8, void *);
+extern int fn_1_3F038(void);
+extern f32 fn_1_52070(u32);
+extern u32 fn_1_52088(void);
+extern u16 fn_1_486C4(u32);
+extern u16 fn_1_48690(u32);
+extern void fn_8_68F4(void);
+extern void fn_8_6A70(void);
+extern void fn_8_D034(void);
+extern int fn_8_6558(void);
+extern int fn_8_6560(void);
+extern int fn_8_6568(void);
+extern s32 fn_8_6570(void);
+extern void fn_1_14D728(void *, u32);
+extern u32 fn_1_3F8C0(void);
+extern u32 fn_1_4630(u32, u32, void *, u32);
+extern u32 fn_80006E10(u32);
+extern u32 fn_80008E84(u32);
+
+extern s32 fn_1_4C10(void);
+extern u32 fn_1_5370(s8, u32);
+extern s32 fn_1_3FC38(void);
+extern void fn_1_A5EFC(void);
+extern u32 fn_1_46B4();
+
+extern void fn_1_3EB78();
+extern void fn_1_3ED8C(s32, s32, s32, u32, s32, u32, s32);
+extern void fn_1_3EFF0(u32, u8);
+extern u32 fn_1_3F8C();
+extern u32 fn_1_435C();
+extern u32 fn_1_45D0();
+extern u32 fn_1_47F74();
+extern void fn_1_4954C(f32);
+extern void fn_1_4955C(f32, f32);
+extern void fn_1_49590(f32);
+extern void fn_1_495B0();
+extern void fn_1_4966C(f32, f32);
+extern void fn_1_496FC(f32, f32);
+extern u32 fn_1_7BA08();
+extern u32 fn_1_7BA48();
+extern u32 fn_1_F453C();
+extern void * fn_80083DB0();
+extern void fn_8_784();
+
 /* fzgx:begin _prolog */
-extern u32 fn_1_45D0(u32, u32, void *, u32);
-extern u32 fn_8_954(void);
+extern void fn_8_954(void);
 
 struct _prolog_lbl_8_bss_0 {
     u8 pad_0[0x234];
@@ -112,22 +186,7 @@ void _prolog(void) {
 }
 /* fzgx:end _prolog */
 
-/* fzgx:begin fn_8_954 noprologue */
-#include "types.h"
-
-extern struct fn_8_954_lbl_8_bss_0 lbl_8_bss_0;
-extern struct fn_8_954_lbl_1_bss_9C8 lbl_1_bss_9C8;
-extern struct fn_8_954_lbl_1_bss_9F8 lbl_1_bss_9F8;
-extern struct fn_8_954_lbl_1_bss_8B3A0 lbl_1_bss_8B3A0;
-extern s16 lbl_1_bss_968;
-extern s16 lbl_1_bss_96A;
-extern u8 lbl_801A66B8;
-extern u8 lbl_801A66BA;
-extern s32 fn_1_4C10(void);
-extern s32 fn_1_4CAC(void);
-extern void fn_1_4A00(s32, u8, void *);
-extern void fn_1_A5EFC(void);
-
+/* fzgx:begin fn_8_954 */
 struct fn_8_954_lbl_8_bss_0 {
     u8 pad_0[1];
     u8 unk_1;
@@ -159,12 +218,12 @@ static inline s32 check_input(struct fn_8_954_lbl_1_bss_9F8 *unused,
     struct fn_8_954_lbl_1_bss_9F8 *w;
     s32 zero;
     s32 result;
-    q = &lbl_1_bss_9C8;
-    w = &lbl_1_bss_9F8;
+    q = (struct fn_8_954_lbl_1_bss_9C8 *)lbl_1_bss_9C8;
+    w = (struct fn_8_954_lbl_1_bss_9F8 *)lbl_1_bss_9F8;
     zero = 0;
     if (q->unk_A == 0 && (w->unk_8 & 0x1000) != 0) {
         result = 1;
-        lbl_1_bss_8B3A0.unk_9E = zero;
+        (*(struct fn_8_954_lbl_1_bss_8B3A0 *)lbl_1_bss_8B3A0).unk_9E = zero;
     } else {
         result = 0;
     }
@@ -173,7 +232,7 @@ static inline s32 check_input(struct fn_8_954_lbl_1_bss_9F8 *unused,
 
 void fn_8_954(void) {
     struct fn_8_954_lbl_8_bss_0 *p;
-    p = &lbl_8_bss_0;
+    p = (struct fn_8_954_lbl_8_bss_0 *)lbl_8_bss_0;
     if (lbl_1_bss_968 != -1 || lbl_1_bss_96A != -1) {
         return;
     }
@@ -183,7 +242,7 @@ void fn_8_954(void) {
                 if (p->unk_2 == 0) {
                     return;
                 }
-                if (check_input(&lbl_1_bss_9F8, &lbl_1_bss_9C8, 0) == 0) {
+                if (check_input((struct fn_8_954_lbl_1_bss_9F8 *)lbl_1_bss_9F8, (struct fn_8_954_lbl_1_bss_9C8 *)lbl_1_bss_9C8, 0) == 0) {
                     return;
                 }
                 if (fn_1_4C10() == 0 || fn_1_4CAC() != 0) {
@@ -200,17 +259,17 @@ void fn_8_954(void) {
             fn_1_A5EFC();
             lbl_801A66B8 = 1;
         }
-        lbl_1_bss_8B3A0.unk_94 = 0;
+        (*(struct fn_8_954_lbl_1_bss_8B3A0 *)lbl_1_bss_8B3A0).unk_94 = 0;
         lbl_1_bss_968 = 1;
         p->unk_23D = 0;
         p->unk_1 = 0;
         lbl_801A66BA = 0;
     }
 }
+#pragma opt_propagation reset
 /* fzgx:end fn_8_954 */
 
 /* fzgx:begin fn_8_AA8 */
-extern u32 fn_1_435C(u32);
 
 struct fn_8_AA8_lbl_8_bss_234 {
     u32 unk_0;
@@ -235,7 +294,6 @@ extern u8 lbl_801A66B9;
 extern void fn_1_4FEC(void);
 extern void fn_1_C3378(void);
 extern void fn_1_F7A20(void);
-extern s32 fn_1_3FC38(void);
 
 void _epilog(void) {
     if (!lbl_801A66B9) {
@@ -267,7 +325,6 @@ struct fn_8_B7C_lbl_8_data_318 {
     struct fn_8_B7C_lbl_8_data_318_0_E16 unk_0[1];
 };
 
-extern struct fn_8_B7C_lbl_8_data_318 lbl_8_data_318;
 
 void fn_8_B7C(void) {
     struct fn_8_B7C_lbl_8_data_318_0_E16 *p;
@@ -304,14 +361,10 @@ typedef struct TitleColor {
     u8 r, g, b, a;
 } TitleColor;
 /* one declaration per callee for the whole unit */
-extern void fn_1_3EB78(u32, u32, u32, u32);
-extern void fn_1_3ED8C(u32, u32, u32, u32, u32, u32, u32);
 extern void fn_1_3EF08(u8);
 extern void fn_1_3EF8C(u8);
-extern void fn_1_3EFF0(u32, u8);
 extern void fn_1_41104(u32);
 extern s32 fn_1_465D0(char *, s32);
-extern void fn_1_47F74(s32);
 extern void fn_1_49514(TitleColor);
 extern void fn_1_49528(TitleColor);
 extern void fn_1_495C8(u8);
@@ -7747,11 +7800,8 @@ static const fn_8_EC4_TitleEntry fzgx_pool_fn_8_EC4_lines[4][2] = {
 };
 
 extern u8 lbl_801A66BA;
-
-extern void fn_8_784(u32);
 extern void fn_80007AB4(TitleColor *);
 extern s32 fn_1_4E724(FontDrawPacket *);
-extern int fn_1_4C10(void);
 
 
 void fn_8_EC4(void) {
@@ -7954,20 +8004,13 @@ struct fn_8_1394_lbl_8_bss_0 {
     u8 unk_242;
 };
 extern int fn_1_3F038(void);
-extern int fn_1_4C10(void);
 extern int fn_1_4F734(FontDrawPacket *);
 extern u16 fn_1_48690(u32);
 extern u16 fn_1_486C4(u32);
 
 
 extern u32 fn_1_47E54(u32);
-extern u32 fn_1_5370(s8, u32);
 extern u32 fn_8_0();
-
-
-
-
-extern int fn_1_3FC38(void);
 extern void fn_1_3EF14(void *);
 extern void fn_1_3FC68(s32);
 extern void fn_1_51678(FontDrawPacket *, u32, s16, s16, s16, s16);
@@ -8371,8 +8414,6 @@ struct fn_8_1C90_lbl_8_bss_0 {
 struct fn_8_1C90_lbl_1_bss_970 {
     s32 unk_0;
 };
-
-extern int fn_1_4C10(void);
 extern int fn_1_4F734(FontDrawPacket *);
 extern u16 fn_1_48690(u32);
 extern u16 fn_1_486C4(u32);
@@ -8478,7 +8519,6 @@ void fn_8_1F64(void) {
 /* fzgx:end fn_8_1F64 */
 
 /* fzgx:begin fn_8_1F74 */
-extern u32 fn_1_A5EFC(void);
 extern u8 lbl_801A66B8;
 
 void fn_8_1F74(void) {
@@ -8490,7 +8530,6 @@ void fn_8_1F74(void) {
 /* fzgx:end fn_8_1F74 */
 
 /* fzgx:begin fn_8_1FB0 */
-extern void fn_8_784(u32);
 
 extern u8 lbl_801A66B8;
 extern u8 lbl_801A66B9;
@@ -8557,12 +8596,6 @@ void fn_8_2120(void) {
 
 /* fzgx:begin fn_8_2124 */
 extern void fn_1_49410(void);
-extern void fn_1_4955C(f32, f32);
-extern void fn_1_4954C(f32);
-extern void fn_1_49590(f32);
-extern void fn_1_495B0(u32);
-extern void fn_1_4966C(f32, f32);
-extern void fn_1_496FC(f32, f32);
 extern void fn_1_4D494(void);
 extern void fn_1_4AE0C(const char *, ...);
 
@@ -8610,12 +8643,6 @@ void fn_8_2124(u32 arg0, u8 *arg1, f32 arg2) {
 
 /* fzgx:begin fn_8_23AC */
 extern void fn_1_49410(void);
-extern void fn_1_4954C(f32);
-extern void fn_1_4955C(f32, f32);
-extern void fn_1_49590(f32);
-extern void fn_1_495B0(u32);
-extern void fn_1_4966C(f32, f32);
-extern void fn_1_496FC(f32, f32);
 extern void fn_1_4AE0C(const char *, ...);
 extern void fn_1_4D494(void);
 
@@ -8890,13 +8917,7 @@ extern void fn_1_A2D84(fn_8_2660_u32);
 extern void fn_1_49410(void);
 extern void fn_1_4AEC0(fn_8_2660_u32);
 extern void fn_1_4AEB4(fn_8_2660_f32);
-extern void fn_1_4966C(fn_8_2660_f32, fn_8_2660_f32);
-extern void fn_1_49590(fn_8_2660_f32);
-extern void fn_1_495B0(fn_8_2660_u32);
 extern void fn_1_53C9C(void *, void *, fn_8_2660_f32, fn_8_2660_f32, fn_8_2660_f32, fn_8_2660_f32, fn_8_2660_f32);
-extern void fn_1_4955C(fn_8_2660_f32, fn_8_2660_f32);
-extern void fn_1_4954C(fn_8_2660_f32);
-extern void fn_1_496FC(fn_8_2660_f32, fn_8_2660_f32);
 extern void fn_1_4A0D8(const char *);
 extern void fn_1_C34F0(void);
 extern int sprintf(char *, const char *, ...);
@@ -8904,7 +8925,6 @@ extern void fn_1_4FD64(void);
 extern void fn_1_4D0A0(void);
 extern void fn_1_4D2AC(void *, fn_8_2660_f32, fn_8_2660_f32);
 extern void OSReport(const char *, ...);
-extern void fn_80083DB0(fn_8_2660_u32, fn_8_2660_u32);
 extern fn_8_2660_s32 fn_1_F7954(void);
 extern char *strcat(char *, const char *);
 extern void fn_1_B7E14(void *);
@@ -8917,8 +8937,7 @@ extern void fn_8_FF9C(void);
 extern fn_8_2660_s32 fn_8_FC5C(void);
 extern void fn_8_10084(fn_8_2660_u32);
 extern void fn_8_100B4(void);
-extern void *fn_8_5840(void *);
-extern void fn_8_784(fn_8_2660_u32);
+extern u8 *fn_8_5840(u8 *);
 void fn_8_2660(fn_8_2660_f32 arg0, fn_8_2660_f32 arg1, fn_8_2660_f32 arg2) {
 
 struct TitleInput *p_lbl_1_bss_9F8;
@@ -9554,12 +9573,6 @@ void fn_8_4E8C(void) {
 /* fzgx:end fn_8_4E8C */
 
 /* fzgx:begin fn_8_4E90 */
-extern u32 fn_1_3F8C(void *, void *, u32, u32);
-extern u32 fn_1_435C(u32);
-extern u32 fn_1_45D0(u32, u32, void *, u32);
-extern u32 fn_1_46B4(u32, u32, void *, u32);
-extern u32 fn_1_7BA08(u32, u32, u32);
-extern u32 fn_1_7BA48(u32);
 extern u32 fn_8_68D8(void);
 
 
@@ -9605,79 +9618,7 @@ void fn_8_4E90(void) {
 }
 /* fzgx:end fn_8_4E90 */
 
-/* fzgx:begin fn_8_4F64 noprologue */
-#include "types.h"
-
-typedef signed short s16;
-
-typedef unsigned char u8;
-typedef unsigned short u16;
-typedef unsigned long u32;
-
-typedef float f32;
-
-typedef struct FontDrawPacket FontDrawPacket;
-typedef struct FontVertex {
-f32 x, y, z;
-} FontVertex;
-struct FontDrawPacket {
-u32 image;
-f32 x, y, z;
-f32 scale_x, scale_y;
-f32 u0, v0, u1, v1;
-s16 rotation_z, rotation_y;
-f32 alpha;
-u32 flags;
-f32 depth;
-u8 color[4], color_add[4];
-u32 format;
-u16 width, height;
-void* pixels;
-FontDrawPacket* secondary;
-void (*vertex_callback)(FontDrawPacket* packet, FontVertex* vertices);
-u32 unk_54;
-};
-void fn_1_4A0D8(const char* text);
-void fn_1_4AE0C(const char* format, ...);
-int fn_1_4F734(FontDrawPacket* packet);
-void fn_1_4EDAC(FontDrawPacket* packet, f32 width, f32 height);
-void fn_1_51678(FontDrawPacket* packet, u32 image, s16 x, s16 y, s16 width, s16 height);
-void fn_1_517EC(FontDrawPacket* packet, s16 x, s16 y, s16 width, s16 height,
-s16 texture_width, s16 texture_height);
-struct TitleState {
-u8 unk0;
-u8 unk1;
-u8 unk2;
-u8 pad3[0x21d];
-f32 unk220;
-u8 pad224[0x19];
-u8 unk23d;
-u8 pad23e[4];
-u8 unk242;
-};
-struct TitleRodata {
-f32 unk0;
-f32 unk4;
-f32 unk8;
-u8 padC[0x20];
-f32 unk2c;
-f32 unk30;
-f32 unk34;
-};
-struct FzgxCopy88 { u32 words[22]; };
-extern struct TitleState lbl_8_bss_0;
-extern struct TitleRodata lbl_8_rodata_0;
-extern struct FzgxCopy88 lbl_1_rodata_26F8;
-extern u16 lbl_1_bss_96A;
-extern u32 lbl_801A66A0;
-extern int fn_1_3F038(void);
-extern void fn_1_52070(u32);
-extern void fn_1_51678(FontDrawPacket *, u32, s16, s16, s16, s16);
-extern int fn_1_4F734(FontDrawPacket *);
-extern u32 fn_1_52088(void);
-extern u16 fn_1_486C4(u32);
-extern u16 fn_1_48690(u32);
-extern void fn_8_68F4(void);
+/* fzgx:begin fn_8_4F64 */
 void fn_8_4F64(void) {
 struct TitleState *state = (struct TitleState *) &lbl_8_bss_0;
 struct TitleRodata *rodata = (struct TitleRodata *) &lbl_8_rodata_0;
@@ -9701,7 +9642,7 @@ lbl_1_bss_96A = 0xA3;
 return;
 }
 fn_1_52070(0x60);
-loc_60 = lbl_1_rodata_26F8;
+loc_60 = *(struct FzgxCopy88 *)&lbl_1_rodata_26F8;
 loc_60.words[0] = 0x100;
 *(f32 *) ((u8 *) &loc_60 + 4) = rodata->unk2c;
 *(f32 *) ((u8 *) &loc_60 + 8) = rodata->unk30;
@@ -9715,7 +9656,7 @@ state->unk220 = rodata->unk8;
 fn_1_52088();
 fn_1_52070(0x140);
 if (state->unk2 != 0 && (lbl_801A66A0 & 0x18)) {
-loc_8 = lbl_1_rodata_26F8;
+loc_8 = *(struct FzgxCopy88 *)&lbl_1_rodata_26F8;
 loc_8.words[0] = 0x102;
 fn_1_51678((FontDrawPacket *) &loc_8, loc_8.words[0], 0,
 (((fn_1_486C4(loc_8.words[0]) >> 2) & 0x3FFF) * 3),
@@ -9732,8 +9673,6 @@ fn_8_68F4();
 /* fzgx:end fn_8_4F64 */
 
 /* fzgx:begin fn_8_516C */
-extern u32 fn_1_435C(u32);
-extern u32 fn_1_46B4(u32, u32, u32, u32);
 
 struct fn_8_516C_lbl_8_bss_0 {
     u8 pad_0[0x8];
@@ -9794,12 +9733,6 @@ void fn_8_5214(void) {
 /* fzgx:begin fn_8_5218 */
 extern void fn_8_6A50(void);
 extern void fn_8_C038(void);
-extern void *fn_1_7BA08(u32, u32, u32);
-extern void fn_1_7BA48(void);
-extern void fn_1_435C(void *);
-extern void *fn_1_46B4(void *, void *, void *, u32);
-extern void *fn_1_45D0(void *, void *, void *, u32);
-extern void *fn_1_3F8C(void *, void *, void *, u32);
 extern void fn_1_7BAF8(void);
 
 typedef struct fn_8_5218_TitleState {
@@ -9833,60 +9766,18 @@ void fn_8_5218(void) {
             fn_1_46B4(lbl_801A6410, state->resource, &data->unk0[0x434], 0xdb2);
             state->resource = 0;
         }
-        state->resource = fn_1_45D0(lbl_801A6410, fn_1_7BA08(0x20, 0x20, 0x40),
+        state->resource = (void *)fn_1_45D0(lbl_801A6410, fn_1_7BA08(0x20, 0x20, 0x40),
                                     &data->unk0[0x434], 0xdb5);
         fn_1_7BA48();
         fn_1_435C(state->unk238);
-        state->unk288 = fn_1_3F8C(&data->unk0[0x7cdc], fn_1_7BAF8,
+        state->unk288 = (void *)fn_1_3F8C(&data->unk0[0x7cdc], fn_1_7BAF8,
                                   state->resource, 2);
-        state->unk28c = fn_1_3F8C(&data->unk0[0x7ce8], fn_8_C038, 0, 0x1c);
+        state->unk28c = (void *)fn_1_3F8C(&data->unk0[0x7ce8], fn_8_C038, 0, 0x1c);
     }
 }
 /* fzgx:end fn_8_5218 */
 
-/* fzgx:begin fn_8_530C noprologue */
-#include "types.h"
-
-#include "font.h"
-
-struct TitleState {
-    u8 unk0;
-    u8 unk1;
-    u8 unk2;
-    u8 pad3[0x21d];
-    f32 unk220;
-    u8 pad224[0x19];
-    u8 unk23d;
-    u8 pad23e[4];
-    u8 unk242;
-};
-
-struct TitleRodata {
-    f32 unk0;
-    f32 unk4;
-    f32 unk8;
-    u8 padC[0x20];
-    f32 unk2c;
-    f32 unk30;
-    f32 unk34;
-};
-
-struct FzgxCopy88 { u32 words[22]; };
-
-extern struct TitleState lbl_8_bss_0;
-extern struct TitleRodata lbl_8_rodata_0;
-extern struct FzgxCopy88 lbl_1_rodata_26F8;
-extern u16 lbl_1_bss_96A;
-extern u32 lbl_801A66A0;
-extern int fn_1_3F038(void);
-extern void fn_1_52070(u32);
-extern void fn_1_51678(FontDrawPacket *, u32, s16, s16, s16, s16);
-extern int fn_1_4F734(FontDrawPacket *);
-extern u32 fn_1_52088(void);
-extern u16 fn_1_486C4(u32);
-extern u16 fn_1_48690(u32);
-extern void fn_8_6A70(void);
-
+/* fzgx:begin fn_8_530C */
 void fn_8_530C(void) {
     struct TitleState *state = (struct TitleState *) &lbl_8_bss_0;
     struct TitleRodata *rodata = (struct TitleRodata *) &lbl_8_rodata_0;
@@ -9909,7 +9800,7 @@ void fn_8_530C(void) {
         return;
     }
     fn_1_52070(0x60);
-    loc_60 = lbl_1_rodata_26F8;
+    loc_60 = *(struct FzgxCopy88 *)&lbl_1_rodata_26F8;
     loc_60.words[0] = 0x100;
     *(f32 *) ((u8 *) &loc_60 + 4) = rodata->unk2c;
     *(f32 *) ((u8 *) &loc_60 + 8) = rodata->unk30;
@@ -9923,7 +9814,7 @@ void fn_8_530C(void) {
     fn_1_52088();
     fn_1_52070(0x140);
     if (state->unk2 != 0 && (lbl_801A66A0 & 0x18)) {
-        loc_8 = lbl_1_rodata_26F8;
+        loc_8 = *(struct FzgxCopy88 *)&lbl_1_rodata_26F8;
         loc_8.words[0] = 0x102;
         fn_1_51678((FontDrawPacket *) &loc_8, loc_8.words[0], 0,
                    (((fn_1_486C4(loc_8.words[0]) >> 2) & 0x3FFF) * 3),
@@ -9940,8 +9831,6 @@ void fn_8_530C(void) {
 /* fzgx:end fn_8_530C */
 
 /* fzgx:begin fn_8_5514 */
-extern u32 fn_1_435C(u32);
-extern u32 fn_1_46B4(u32, u32, u32, u32);
 
 struct fn_8_5514_lbl_8_bss_0 {
     u8 pad_0[0x8];
@@ -9998,49 +9887,7 @@ void fn_8_55CC(void) {
 }
 /* fzgx:end fn_8_55CC */
 
-/* fzgx:begin fn_8_5608 noprologue */
-#include "types.h"
-
-#include "font.h"
-
-struct TitleState {
-    u8 unk0;
-    u8 unk1;
-    u8 unk2;
-    u8 pad3[0x21d];
-    f32 unk220;
-    u8 pad224[0x19];
-    u8 unk23d;
-    u8 pad23e[4];
-    u8 unk242;
-};
-
-struct TitleRodata {
-    f32 unk0;
-    f32 unk4;
-    f32 unk8;
-    u8 padC[0x20];
-    f32 unk2c;
-    f32 unk30;
-    f32 unk34;
-};
-
-struct FzgxCopy88 { u32 words[22]; };
-
-extern struct TitleState lbl_8_bss_0;
-extern struct TitleRodata lbl_8_rodata_0;
-extern struct FzgxCopy88 lbl_1_rodata_26F8;
-extern u16 lbl_1_bss_96A;
-extern u32 lbl_801A66A0;
-extern int fn_1_3F038(void);
-extern void fn_1_52070(u32);
-extern void fn_1_51678(FontDrawPacket *, u32, s16, s16, s16, s16);
-extern int fn_1_4F734(FontDrawPacket *);
-extern u32 fn_1_52088(void);
-extern u16 fn_1_486C4(u32);
-extern u16 fn_1_48690(u32);
-extern void fn_8_D034(void);
-
+/* fzgx:begin fn_8_5608 */
 void fn_8_5608(void) {
     struct TitleState *state = (struct TitleState *)&lbl_8_bss_0;
     struct TitleRodata *rodata = (struct TitleRodata *)&lbl_8_rodata_0;
@@ -10063,7 +9910,7 @@ void fn_8_5608(void) {
         return;
     }
     fn_1_52070(0x60);
-    loc_60 = lbl_1_rodata_26F8;
+    loc_60 = *(struct FzgxCopy88 *)&lbl_1_rodata_26F8;
     loc_60.words[0] = 0x100;
     *(f32 *)((u8 *)&loc_60 + 4) = rodata->unk2c;
     *(f32 *)((u8 *)&loc_60 + 8) = rodata->unk30;
@@ -10077,7 +9924,7 @@ void fn_8_5608(void) {
     fn_1_52088();
     fn_1_52070(0x140);
     if (state->unk2 != 0 && (lbl_801A66A0 & 0x18)) {
-        loc_8 = lbl_1_rodata_26F8;
+        loc_8 = *(struct FzgxCopy88 *)&lbl_1_rodata_26F8;
         loc_8.words[0] = 0x102;
         fn_1_51678((FontDrawPacket *)&loc_8, loc_8.words[0], 0,
                    (((fn_1_486C4(loc_8.words[0]) >> 2) & 0x3FFF) * 3),
@@ -10110,22 +9957,12 @@ void fn_8_5810(void) {
  * tables off the TU's section base (lbl_8_data_0), so they are defined here in
  * retail layout. The leading block stands in for the TU's earlier data.
  */
-static char fzgx_obj_lbl_8_data_0[4] = "NON";
-static char fzgx_pool_fzgx_title_data_rest[0x7cfc - 4] = "TU data";
-static u8 fzgx_pool_fzgx_codes0[27][2] = { 0 };
-static u8 fzgx_pool_fzgx_codes1[27][2] = { 0 };
-static u8 fzgx_pool_fzgx_codes2[32][2] = { 0 };
-static u8 fzgx_pool_fzgx_codes3[11][2] = { 0 };
-static u8 fzgx_pool_fzgx_res0[27] = { 0 };
-static u8 fzgx_pool_fzgx_res1[27] = { 0 };
-static u8 fzgx_pool_fzgx_res2[36] = { 0 };
-static u8 fzgx_pool_fzgx_res3[11] = { 0 };
 
 /* Find the two-byte code KEY in CODES; return its entry in RES. */
-#define FIND_CODE(key, codes, res)                                         \
-    for (i = 0; i < sizeof(codes); i += 2) {                               \
+#define FIND_CODE(key, codes, n, res)                                         \
+    for (i = 0; i < (n); i += 2) {                               \
         if ((key)[0] == ((u8 *)(codes))[i] && (key)[1] == ((u8 *)(codes))[i + 1]) { \
-            return &(res)[i / 2];                                          \
+            return (u8 *)&(res)[i / 2];                                          \
         }                                                                  \
     }
 
@@ -10133,10 +9970,10 @@ static u8 fzgx_pool_fzgx_res3[11] = { 0 };
 u8 *fn_8_5840(u8 *key) {
     s32 i;
 
-    FIND_CODE(key, fzgx_pool_fzgx_codes0, fzgx_pool_fzgx_res0)
-    FIND_CODE(key, fzgx_pool_fzgx_codes1, fzgx_pool_fzgx_res1)
-    FIND_CODE(key, fzgx_pool_fzgx_codes2, fzgx_pool_fzgx_res2)
-    FIND_CODE(key, fzgx_pool_fzgx_codes3, fzgx_pool_fzgx_res3)
+    FIND_CODE(key, lbl_8_data_7CFC, 54, lbl_8_data_7DC4)
+    FIND_CODE(key, lbl_8_data_7D34, 54, lbl_8_data_7DE0)
+    FIND_CODE(key, lbl_8_data_7D6C, 64, lbl_8_data_7DFC)
+    FIND_CODE(key, lbl_8_data_7DAC, 22, lbl_8_data_7E20)
     return 0;
 }
 /* fzgx:end fn_8_5840 */
@@ -10165,7 +10002,6 @@ typedef struct {
 } TitleDisplayState;
 
 extern const f32 lbl_8_rodata_8;  // = 1.0f (retail literal pool)
-extern char *fn_80083DB0(char *, const char *);
 
 void fn_8_5B44(void) {
     const char * data;  // TU .data base held across the copies
@@ -10255,13 +10091,8 @@ typedef struct {
 } Fn5C54Big;
 
 extern Fn5C54Entry lbl_1_bss_26B80[];
-
-extern u32 fn_1_F453C(struct fn_8_5C54_Sig_fn_1_F453C_fn_1_F453C_Arg0 *, struct fn_8_5C54_Sig_fn_1_F453C_fn_1_F453C_Arg1 *, u32);
 extern void fn_1_3EF8C(u8);
-extern void fn_1_3ED8C(s32, s32, s32, u8, s32, u8, s32);
-extern void fn_1_3EB78(s32, u8 *, u8 *, s32);
 extern void fn_1_3EC88(s32, Fn5C54Info *);
-extern void fn_1_3EFF0(void *, s32);
 
 #define RD(n) fn_1_F453C((struct fn_8_5C54_Sig_fn_1_F453C_fn_1_F453C_Arg0 *)lbl_8_bss_2B0, (struct fn_8_5C54_Sig_fn_1_F453C_fn_1_F453C_Arg1 *)&lbl_8_bss_2AC, (n))
 
@@ -10338,10 +10169,10 @@ void fn_8_5C54(s32 arg0) {
     }
     if (arg0 != 0) {
         fn_1_3EF8C(6);
-        fn_1_3ED8C(0, 3, 1, a, 10, count, 0);
+        fn_1_3ED8C(0, 3, 1, (u8)a, 10, (u8)count, 0);
         fn_1_3EB78(n, locC, loc8, 0);
         fn_1_3EC88(n, info);
-        fn_1_3EFF0(fn_8_6594, 1);
+        fn_1_3EFF0((u32)fn_8_6594, 1);
         fn_1_3F02C(fn_8_67B0);
     }
 }
@@ -10352,7 +10183,6 @@ void fn_8_5C54(s32 arg0) {
 
 struct fn_8_5FD4_Sig_fn_1_F453C_fn_1_F453C_Arg0 { u8 unk_0[1]; };
 struct fn_8_5FD4_Sig_fn_1_F453C_fn_1_F453C_Arg1 { u32 unk_0; };
-extern u32 fn_1_F453C(struct fn_8_5FD4_Sig_fn_1_F453C_fn_1_F453C_Arg0 *, struct fn_8_5FD4_Sig_fn_1_F453C_fn_1_F453C_Arg1 *, u32);
 extern void fn_1_3EF14(void *);
 
 typedef struct {
@@ -10484,8 +10314,6 @@ s32 fn_8_6570(void) {
 
 /* fzgx:begin fn_8_6594 */
 extern u32 fn_1_3F8C0(void);
-extern u32 fn_1_47F74(u32);
-extern u32 fn_1_5370(u32, u32);
 extern u32 fn_80008E84(u32);
 extern u32 lbl_8_bss_2B4;
 
@@ -10508,8 +10336,7 @@ void fn_8_6594(u32 arg0) {
 }
 /* fzgx:end fn_8_6594 */
 
-/* fzgx:begin fn_8_663C noprologue */
-#include "types.h"
+/* fzgx:begin fn_8_663C */
 
 struct fn_8_663C_Arg0 {
     u32 unk_0;
@@ -10531,19 +10358,6 @@ struct fn_8_663C_lbl_801A6410 {
     u32 unk_0;
 };
 
-extern void fn_8_6558(void);
-extern void fn_8_6560(void);
-extern void fn_8_6568(void);
-extern s32 fn_8_6570(void);
-extern struct fn_8_663C_lbl_801A6410 lbl_801A6410[];
-extern u16 lbl_8_bss_2A8[];
-extern u32 lbl_8_data_7E50[];
-extern void fn_1_14D728(void *, u32);
-extern u32 fn_1_3F8C0(void);
-extern u32 fn_1_4630(u32, u32, void *, u32);
-extern u32 fn_1_5370(u32, u32);
-extern u32 fn_80006E10(u32);
-extern u32 fn_80008E84(u32);
 
 void fn_8_663C(struct fn_8_663C_Arg0 *arg0) {
     u32 fzgx_value_;
@@ -10573,8 +10387,8 @@ void fn_8_663C(struct fn_8_663C_Arg0 *arg0) {
     fn_1_5370(1, 0);
     t1 = fn_1_3F8C0();
     t2 = fn_80008E84(t1);
-    p_lbl_8_bss_2A8->unk_10 = fn_1_4630(lbl_801A6410[0].unk_0, 2592, p_lbl_8_data_7E50 + 3204, 985);
-    p_lbl_8_bss_2A8->unk_14 = fn_1_4630(lbl_801A6410[0].unk_0, 2592, p_lbl_8_data_7E50 + 3204, 986);
+    p_lbl_8_bss_2A8->unk_10 = fn_1_4630((u32)lbl_801A6410, 2592, p_lbl_8_data_7E50 + 3204, 985);
+    p_lbl_8_bss_2A8->unk_14 = fn_1_4630((u32)lbl_801A6410, 2592, p_lbl_8_data_7E50 + 3204, 986);
     loc_18.a[2] = 2;
     *(u16 *)((u8 *)&loc_18 + 0) = 7;
     *(u16 *)((u8 *)&loc_18 + 2) = 31;
