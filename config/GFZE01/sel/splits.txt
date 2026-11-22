@@ -6,29 +6,14 @@ Sections:
 	.data       type:data align:8
 	.bss        type:bss align:32
 
-rel/sel/name_entry/fn_10_26000.c:
-	.text       start:0x00026000 end:0x000260D4
-
-rel/sel/name_entry/fn_10_26424.c:
-	.text       start:0x00026424 end:0x00026434
-
-rel/sel/name_entry/fn_10_26434.c:
-	.text       start:0x00026434 end:0x00026554 align:4
-
-rel/sel/name_entry/fn_10_260D4.c:
-	.text       start:0x000260D4 end:0x000261E4 align:4
-
 rel/sel/name_entry/fn_10_25E1C.c:
-	.text       start:0x00025E1C end:0x00026000 align:4
+	.text       start:0x00025E1C end:0x00026554 align:4
 
 rel/sel/sel/fn_10_D044.c:
 	.text       start:0x0000D044 end:0x0002325C align:4
 	.rodata     start:0x00000158 end:0x00001548 align:8
 	.data       start:0x00000D00 end:0x000068E0 align:8
 	.bss        start:0x00055680 end:0x00055CD8 align:32
-
-rel/sel/name_entry/fn_10_261E4.c:
-	.text       start:0x000261E4 end:0x00026424 align:4
 
 rel/sel/name_entry/fn_10_2325C.c:
 	.text       start:0x0002325C end:0x00025E1C align:4

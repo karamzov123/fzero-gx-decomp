@@ -78,8 +78,8 @@ dol/fn_8008580C.c:
 dol/TRKInitializeDispatcher.c:
 	.text       start:0x80089834 end:0x800898E4 align:4
 
-dol/fn_8008A5AC.c:
-	.text       start:0x8008A5AC end:0x8008A754 align:4
+dol/trk/support.c:
+	.text       start:0x8008A5AC end:0x8008AF40 align:4
 
 dol/trk/targimpl.c:
 	.text       start:0x8008B474 end:0x8008CB20 align:4
@@ -101,9 +101,6 @@ dol/fn_80065890.c:
 
 dol/fn_800658A8.c:
 	.text       start:0x800658A8 end:0x800658B4 align:4
-
-dol/fn_8008A754.c:
-	.text       start:0x8008A754 end:0x8008A764 align:4
 
 dol/trk/UDP_Stubs.c:
 	.text       start:0x8008D7B0 end:0x8008DF6C align:4
@@ -165,6 +162,12 @@ dol/trk/dolphin_trk.c:
 
 dol/av/avsystem.c:
 	.text       start:0x8006FCB4 end:0x80070AC0 align:4
+
+dol/fn_80070AC0.c:
+	.text       start:0x80070AC0 end:0x80070E1C align:4
+
+dol/fn_80070E1C.c:
+	.text       start:0x80070E1C end:0x80070F44 align:4
 
 dol/fn_80051DC4.c:
 	.text       start:0x80051DC4 end:0x80051E64 align:4
@@ -1126,9 +1129,6 @@ dol/fstload.c:
 	.sdata      start:0x801A6490 end:0x801A64A0 align:8
 	.bss        start:0x8015CF38 end:0x8015CF68 align:8
 
-dol/fn_80070E1C.c:
-	.text       start:0x80070E1C end:0x80070F44 align:4
-
 dol/fn_8002123C.c:
 	.text       start:0x8002123C end:0x800218EC align:4
 
@@ -1293,9 +1293,6 @@ dol/fn_800502A0.c:
 
 dol/fn_80064D4C.c:
 	.text       start:0x80064D4C end:0x80064E84 align:4
-
-dol/trk/support.c:
-	.text       start:0x8008A764 end:0x8008AF40 align:4
 
 dol/fn_800657F4.c:
 	.text       start:0x800657F4 end:0x80065890 align:4
@@ -1532,9 +1529,6 @@ dol/fn_80069FCC.c:
 
 dol/fn_80063F38.c:
 	.text       start:0x80063F38 end:0x8006413C align:4
-
-dol/fn_80070AC0.c:
-	.text       start:0x80070AC0 end:0x80070E1C align:4
 
 dol/fn_80060950.c:
 	.text       start:0x80060950 end:0x80060BDC align:4

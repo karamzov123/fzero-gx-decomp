@@ -25554,7 +25554,7 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_8008A5AC.c",
+    "source": "dol/trk/support.c",
     "symbols": [
       "fn_8008A5AC",
       "fn_8008A5B4",
@@ -25562,27 +25562,8 @@
       "fn_8008A614",
       "fn_8008A66C",
       "fn_8008A6E4",
-      "fn_8008A748"
-    ],
-    "status": "matching",
-    "extra_cflags": [],
-    "collapsed": true,
-    "mw_version": "GC/2.0p1"
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8008A754.c",
-    "symbols": [
-      "fn_8008A754"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/trk/support.c",
-    "symbols": [
+      "fn_8008A748",
+      "fn_8008A754",
       "fn_8008A764",
       "fn_8008A80C",
       "fn_8008A91C",
@@ -25591,7 +25572,6 @@
       "fn_8008AD00"
     ],
     "status": "matching",
-    "mw_version": "GC/1.3.2",
     "extra_cflags": [
       "-use_lmw_stmw",
       "on",
@@ -25599,6 +25579,7 @@
       "on,noauto"
     ],
     "collapsed": true,
+    "mw_version": "GC/1.3.2",
     "matching_for": ["GFZE01", "GFZJ01"],
     "pool": {
       "fzgx_pool_strings_lbl_80095A78_0": "lbl_80095A78",
@@ -112541,12 +112522,23 @@
     "module": "profile",
     "source": "rel/profile/_epilog.c",
     "symbols": [
-      "_epilog"
+      "_epilog",
+      "fn_16_910",
+      "fn_16_96C",
+      "fn_16_9EC",
+      "fn_16_A34",
+      "fn_16_A38",
+      "fn_16_AA8",
+      "fn_16_B10",
+      "fn_16_B24",
+      "fn_16_CAC",
+      "fn_16_DC8",
+      "fn_16_E20"
     ],
     "status": "matching",
-    "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": []
+    "collapsed": true,
+    "matching_for": ["GFZE01"]
   },
   {
     "module": "profile",
@@ -113059,115 +113051,22 @@
     "module": "profile",
     "source": "rel/profile/fn_16_18CC.c",
     "symbols": [
-      "fn_16_18CC"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "profile",
-    "source": "rel/profile/fn_16_1A24.c",
-    "symbols": [
-      "fn_16_1A24"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "profile",
-    "source": "rel/profile/fn_16_1D18.c",
-    "symbols": [
-      "fn_16_1D18"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "profile",
-    "source": "rel/profile/fn_16_1F1C.c",
-    "symbols": [
-      "fn_16_1F1C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "profile",
-    "source": "rel/profile/fn_16_2054.c",
-    "symbols": [
-      "fn_16_2054"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "profile",
-    "source": "rel/profile/fn_16_20F4.c",
-    "symbols": [
-      "fn_16_20F4"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "profile",
-    "source": "rel/profile/fn_16_2328.c",
-    "symbols": [
-      "fn_16_2328"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "profile",
-    "source": "rel/profile/fn_16_23A8.c",
-    "symbols": [
-      "fn_16_23A8"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "profile",
-    "source": "rel/profile/fn_16_24A4.c",
-    "symbols": [
-      "fn_16_24A4"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "profile",
-    "source": "rel/profile/fn_16_24FC.c",
-    "symbols": [
-      "fn_16_24FC"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "profile",
-    "source": "rel/profile/fn_16_2528.c",
-    "symbols": [
+      "fn_16_18CC",
+      "fn_16_1A24",
+      "fn_16_1D18",
+      "fn_16_1F1C",
+      "fn_16_2054",
+      "fn_16_20F4",
+      "fn_16_2328",
+      "fn_16_23A8",
+      "fn_16_24A4",
+      "fn_16_24FC",
       "fn_16_2528"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
+    "mw_version": "GC/1.3.2",
+    "collapsed": true,
+    "matching_for": ["GFZE01"]
   },
   {
     "module": "profile",
@@ -113440,120 +113339,6 @@
     "extra_cflags": []
   },
   {
-    "module": "profile",
-    "source": "rel/profile/fn_16_910.c",
-    "symbols": [
-      "fn_16_910"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "profile",
-    "source": "rel/profile/fn_16_96C.c",
-    "symbols": [
-      "fn_16_96C"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "profile",
-    "source": "rel/profile/fn_16_9EC.c",
-    "symbols": [
-      "fn_16_9EC"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "profile",
-    "source": "rel/profile/fn_16_A34.c",
-    "symbols": [
-      "fn_16_A34"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "profile",
-    "source": "rel/profile/fn_16_A38.c",
-    "symbols": [
-      "fn_16_A38"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "profile",
-    "source": "rel/profile/fn_16_AA8.c",
-    "symbols": [
-      "fn_16_AA8"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "profile",
-    "source": "rel/profile/fn_16_B10.c",
-    "symbols": [
-      "fn_16_B10"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "profile",
-    "source": "rel/profile/fn_16_B24.c",
-    "symbols": [
-      "fn_16_B24"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "profile",
-    "source": "rel/profile/fn_16_CAC.c",
-    "symbols": [
-      "fn_16_CAC"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "profile",
-    "source": "rel/profile/fn_16_DC8.c",
-    "symbols": [
-      "fn_16_DC8"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "profile",
-    "source": "rel/profile/fn_16_E20.c",
-    "symbols": [
-      "fn_16_E20"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
     "module": "replay",
     "source": "rel/replay/replay_mode/fn_13_0.c",
     "symbols": [
@@ -113806,72 +113591,26 @@
     "module": "sel",
     "source": "rel/sel/name_entry/fn_10_25E1C.c",
     "symbols": [
-      "fn_10_25E1C"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/sel/name_entry.c"
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/name_entry/fn_10_26000.c",
-    "symbols": [
-      "fn_10_26000"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/sel/name_entry.c"
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/name_entry/fn_10_260D4.c",
-    "symbols": [
-      "fn_10_260D4"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/sel/name_entry.c"
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/name_entry/fn_10_261E4.c",
-    "symbols": [
-      "fn_10_261E4"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/sel/name_entry.c",
-    "pool": {
-      "...rodata.0": "lbl_10_rodata_1D70",
-      "...data.0": "lbl_10_data_6A48"
-    }
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/name_entry/fn_10_26424.c",
-    "symbols": [
-      "fn_10_26424"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/sel/name_entry.c"
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/name_entry/fn_10_26434.c",
-    "symbols": [
+      "fn_10_25E1C",
+      "fn_10_26000",
+      "fn_10_260D4",
+      "fn_10_261E4",
+      "fn_10_26424",
       "fn_10_26434"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/sel/name_entry.c"
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-inline",
+      "on,noauto"
+    ],
+    "tu": "rel/sel/name_entry.c",
+    "collapsed": true,
+    "pool": {
+      "...rodata.0": "lbl_10_rodata_1D70",
+      "...data.0": "lbl_10_data_6A48"
+    },
+    "matching_for": ["GFZE01"]
   },
   {
     "module": "sel",
