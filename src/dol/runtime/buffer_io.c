@@ -1,9 +1,6 @@
 #include "types.h"
 
-
-/* --- dol/__flush_buffer.c --- */
 typedef u32 file_handle;
-
 typedef u32 file_position;
 
 typedef struct FileMode {
@@ -29,11 +26,8 @@ typedef struct FileState {
 } FileState;
 
 typedef void (*IdleProc)(void);
-
 typedef int (*PositionProc)(file_handle handle, file_position *position, int mode, IdleProc idle);
-
 typedef int (*IOProc)(file_handle handle, u8 *buffer, size_t *count, IdleProc idle);
-
 typedef int (*CloseProc)(file_handle handle);
 
 typedef struct FILE {
@@ -61,13 +55,53 @@ typedef struct FILE {
     struct FILE *next_file;
 } FILE;
 
-extern unsigned long __strtoul(int base, int max_width, int (*read_proc)(void *, int, int),
-                                 void *read_context, int *chars_scanned, int *negative,
-                                 int *overflow);
+extern int fflush(FILE *file);
+extern void *fn_8007A1C0(unsigned long size);
+extern void fn_8007A150(void *allocation);
+extern u8 lbl_8015B200[256];
 
-extern unsigned long long __strtoull(int base, int max_width, int (*read_proc)(void *, int, int),
-                                      void *read_context, int *chars_scanned, int *negative,
-                                      int *overflow);
+void __begin_critical_region(int region);
+void __end_critical_region(int region);
+
+int setvbuf(FILE *file, char *buffer, int mode, size_t size) {
+    int io_mode;
+    io_mode = (file->mode.half[0] >> 6) & 7;
+    if (mode == 0)
+        fflush(file);
+    if (file->state.io_state != 0 || io_mode == 0)
+        return -1;
+    if (mode != 0 && mode != 1 && mode != 2)
+        return -1;
+    if (file->buffer != 0 && file->state.free_buffer)
+        fn_8007A150(file->buffer);
+    __begin_critical_region(2);
+    file->mode.bits.buffer_mode = mode;
+    file->state.free_buffer = 0;
+    file->buffer = (u8 *)&file->char_buffer;
+    file->buffer_ptr = (u8 *)&file->char_buffer;
+    file->buffer_size = 1;
+    file->buffer_length = 0;
+    file->buffer_alignment = 0;
+    if (mode == 0 || size < 1) {
+        *file->buffer_ptr = 0;
+        __end_critical_region(2);
+        return 0;
+    }
+    if (buffer == 0) {
+        buffer = fn_8007A1C0(size);
+        if (buffer == 0) {
+            __end_critical_region(2);
+            return -1;
+        }
+        file->state.free_buffer = 1;
+    }
+    file->buffer = (u8 *)buffer;
+    file->buffer_ptr = file->buffer;
+    file->buffer_size = size;
+    file->buffer_alignment = 0;
+    __end_critical_region(2);
+    return 0;
+}
 
 int __flush_buffer(FILE *file, size_t *bytes_flushed) {
     size_t buffer_len;
@@ -90,89 +124,47 @@ int __flush_buffer(FILE *file, size_t *bytes_flushed) {
     return 0;
 }
 
-/* --- dol/fn_8007EC80.c --- */
-/* --- dol/fn_8007EC80.c --- */
-typedef s32 (*fn_8007EC80_Fn0)(u32, u32, u32 *, u32);
-
-struct fn_8007EC80_Arg0 {
-    u32 unk_0;
-    u8 pad_4[0x14];
-    u32 unk_18;
-    u32 unk_1C;
-    u32 unk_20;
-    u32 unk_24;
-    u32 unk_28;
-    u32 unk_2C;
-    u32 unk_30;
-    u32 unk_34;
-    u8 pad_38[0x04];
-    fn_8007EC80_Fn0 unk_3C;
-    u8 pad_40[0x08];
-    u32 unk_48;
-};
-
-s32 fn_8007EC80(struct fn_8007EC80_Arg0 *arg0, u32 *arg1, s32 arg2) {
+s32 fn_8007EC80(FILE *arg0, u32 *arg1, s32 arg2) {
     s32 result;
 
-    arg0->unk_24 = arg0->unk_1C;
-    arg0->unk_28 = arg0->unk_20;
-    arg0->unk_28 -= arg0->unk_18 & arg0->unk_2C;
-    arg0->unk_34 = arg0->unk_18;
+    arg0->buffer_ptr = arg0->buffer;
+    arg0->buffer_length = arg0->buffer_size;
+    arg0->buffer_length -= arg0->position & arg0->buffer_alignment;
+    arg0->buffer_position = arg0->position;
     if (arg2 == 1) {
-        arg0->unk_28 = arg0->unk_20;
+        arg0->buffer_length = arg0->buffer_size;
     }
-    result = arg0->unk_3C(arg0->unk_0, arg0->unk_1C, &arg0->unk_28, arg0->unk_48);
+    result = arg0->read_proc(arg0->handle, arg0->buffer, &arg0->buffer_length, arg0->idle_proc);
     if (result == 2) {
-        arg0->unk_28 = 0;
+        arg0->buffer_length = 0;
     }
     if (arg1 != 0) {
-        *arg1 = arg0->unk_28;
+        *arg1 = arg0->buffer_length;
     }
     if (result != 0) {
         return result;
     }
-    arg0->unk_18 += arg0->unk_28;
+    arg0->position += arg0->buffer_length;
     return 0;
 }
 
-/* --- dol/__prep_buffer.c --- */
-/* --- dol/__prep_buffer.c --- */
-typedef struct PrepBuffer {
-    u8 pad[0x18];
-    u32 field_18;
-    u32 field_1c;
-    u32 field_20;
-    u32 field_24;
-    u32 field_28;
-    u32 field_2c;
-    u32 field_30;
-    u32 field_34;
-} PrepBuffer;
-
-void __prep_buffer(PrepBuffer* buffer) {
-    buffer->field_24 = buffer->field_1c;
-    buffer->field_28 = buffer->field_20;
-    buffer->field_28 -= buffer->field_18 & buffer->field_2c;
-    buffer->field_34 = buffer->field_18;
+void __prep_buffer(FILE *buffer) {
+    buffer->buffer_ptr = buffer->buffer;
+    buffer->buffer_length = buffer->buffer_size;
+    buffer->buffer_length -= buffer->position & buffer->buffer_alignment;
+    buffer->buffer_position = buffer->position;
 }
 
-/* --- dol/__end_critical_region.c --- */
-// __end_critical_region: empty in retail (single blr).
-void __end_critical_region(void) {
+void __end_critical_region(int region) {
+    (void)region;
 }
 
-/* --- dol/__begin_critical_region.c --- */
-// __begin_critical_region: empty in retail (single blr).
-void __begin_critical_region(void) {
+void __begin_critical_region(int region) {
+    (void)region;
 }
 
-/* --- dol/__kill_critical_regions.c --- */
-// __kill_critical_regions: empty in retail (single blr).
 void __kill_critical_regions(void) {
 }
-
-/* --- dol/fn_8007ED90.c --- */
-extern u8 lbl_8015B200[256];
 
 s32 fn_8007ED90(s32 value) {
     if (value == -1) {
