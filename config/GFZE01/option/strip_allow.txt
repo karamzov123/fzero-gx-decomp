@@ -2,3 +2,25 @@
 # Each entry is a static helper that MWCC inlined at every call. Retail holds the inlined copy.
 name_entry_glyph_size        # name_entry.c, inlined in fn_4_B528 and fn_4_D1A8
 name_entry_set_default_name  # name_entry.c, inlined in fn_4_D420 (sel: fn_10_25888 and fn_10_25CB0)
+option_draw_cursor           # _prolog.c, inlined at every call
+option_draw_cursor_dim       # _prolog.c, inlined at every call
+option_draw_mark             # _prolog.c, inlined at every call
+option_draw_menu             # _prolog.c, inlined at every call
+option_draw_title            # _prolog.c, inlined at every call
+option_draw_caption          # _prolog.c, inlined at every call
+option_cal_kind              # _prolog.c, inlined at every call
+option_cal_set_center        # _prolog.c, inlined at every call
+fn_4_EF8_sound               # _prolog.c, inlined at every call
+option_cal_set_gate          # _prolog.c, inlined at every call
+option_begin_2d              # _prolog.c, inlined at every call
+option_end_2d                # _prolog.c, inlined at every call
+option_panel_origin          # _prolog.c, inlined at every call
+option_stick_scale           # _prolog.c, WARNING pool filler, nothing calls it
+option_print_stick           # _prolog.c, inlined at every call
+option_pool_bar_panel        # _prolog.c, WARNING pool filler, nothing calls it
+option_marker_pos            # _prolog.c, inlined at every call
+option_card_select           # _prolog.c, inlined at every call
+option_draw_card_heading     # _prolog.c, inlined at every call
+option_draw_yes_no           # _prolog.c, inlined at every call
+option_card_yes_no_input     # _prolog.c, inlined at every call
+option_blink_color           # _prolog.c, inlined at every call
