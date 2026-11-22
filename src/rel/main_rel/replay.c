@@ -4,8 +4,7 @@
 
 extern u32 OSGetTick(void);
 
-/* fzgx:begin fn_1_F2780 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_F2780 */
 
 typedef struct State {
     u8 pad0[0x19];
@@ -37,7 +36,6 @@ typedef struct Object {
 } Object;
 
 extern u32 lbl_801A6410;
-extern char lbl_1_data_3E8C8[9];
 extern Object *fn_1_4630(u32 arg0, u32 arg1, char *arg2, u32 arg3);
 
 typedef struct lbl_1_bss_7F01C_t {
@@ -52,7 +50,7 @@ u8 fzgx_obj_lbl_1_bss_7EFD4;
 u8 fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5;
 u16 fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5_fill_7EFD6;
 State fzgx_obj_lbl_1_bss_7EFD8;
-lbl_1_bss_7F01C_t fzgx_obj_lbl_1_bss_7F01C;
+u16 fzgx_obj_lbl_1_bss_7F01C;
 
 #pragma section code_type ".fzgxpool"
 static void fzgx_bss_layout(void) {
@@ -73,9 +71,9 @@ void fn_1_F2780(void) {
 
     
     state = &fzgx_obj_lbl_1_bss_7EFD8;
-    object = fn_1_4630(lbl_801A6410, (1 << 16) + 0x14c, lbl_1_data_3E8C8, 0x75);
+    object = fn_1_4630(lbl_801A6410, (1 << 16) + 0x14c, (char *)lbl_1_data_3E8C8, 0x75);
     state->object = object;
-    *(u16 *)((u8 *)&fzgx_obj_lbl_1_bss_7F01C.fzgx_byte_4C) = 0;
+    fzgx_obj_lbl_1_bss_7F01C = 0;
     object->halfa0 = 0;
     fzgx_obj_lbl_1_bss_7EFD4 = 0x29;
     state->byte19 = 0;
@@ -140,36 +138,20 @@ typedef struct ReplayControl {
 } ReplayControl;
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
-u16 fzgx_obj_lbl_1_bss_7EFD0;
 u16 fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD2;
-u8 fzgx_obj_lbl_1_bss_7EFD4;
 u8 fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5;
 u16 fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5_fill_7EFD6;
-ReplayControl fzgx_obj_lbl_1_bss_7EFD8;
-u16 fzgx_obj_lbl_1_bss_7F01C;
 
-#pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
-    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_7EFD0;
-    s = *(u8 *)&fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD2;
-    s = fzgx_obj_lbl_1_bss_7EFD4;
-    s = *(u8 *)&fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5;
-    s = *(u8 *)&fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5_fill_7EFD6;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_7EFD8;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_7F01C;
-}
-#pragma section code_type ".text"
 
 extern u32 fn_1_864E8(int);
 extern u8 fn_1_86624(void);
 extern u8 fn_1_86678(int);
-extern u8 fn_1_F2D30(ReplayEntry *, ReplayEntry **, u8);
-extern void fn_1_F2CD8(ReplayEntry *, ReplayEntry **, u8);
+extern u8 fn_1_F2D30(void *, void *, u8);
+extern void fn_1_F2CD8(void *, void *, u8);
 
 #define g_flags fzgx_obj_lbl_1_bss_7EFD4
-#define g_ctrl fzgx_obj_lbl_1_bss_7EFD8
-#define g_end fzgx_obj_lbl_1_bss_7F01C
+#define g_ctrl (*(ReplayControl *)&fzgx_obj_lbl_1_bss_7EFD8)
+#define g_end (*(u16 *)&fzgx_obj_lbl_1_bss_7F01C)
 
 void fn_1_F2820(ReplayInput *inputs, u8 *out, u8 *mask) {
     ReplayEntry *entry;
@@ -279,13 +261,14 @@ void fn_1_F2820(ReplayInput *inputs, u8 *out, u8 *mask) {
 /* fzgx:end fn_1_F2820 */
 
 /* fzgx:begin fn_1_F2CD8 */
-void fn_1_F2CD8(u8 *value, u8 **cursor, u32 index) {
+void fn_1_F2CD8(void *value_v, void *cursor_v, u8 index) {
+    u8 *value = (u8 *)value_v; u8 **cursor = (u8 **)cursor_v;
     s32 target;
     Obj_1_bss_7EFD8_At40 *entries_end;
     u8 *entry;
 
     // Move backward through replay entries until the requested flag or boundary is found.
-    target = (index | 4) & 0xff;
+    target = (s32)((u8)(index | 4));
     entries_end = lbl_1_bss_7EFD8.unk_40 + 1;
     *cursor = value;
 
@@ -304,14 +287,15 @@ void fn_1_F2CD8(u8 *value, u8 **cursor, u32 index) {
 /* fzgx:end fn_1_F2CD8 */
 
 /* fzgx:begin fn_1_F2D30 */
-u8 fn_1_F2D30(u8 *value, u8 **cursor, u32 index) {
+u8 fn_1_F2D30(void *value_v, void *cursor_v, u8 index_u8) {
+    u8 *value = (u8 *)value_v; u8 **cursor = (u8 **)cursor_v; u32 index = index_u8;
     u8 target;
     u32 step;
     Obj_1_bss_7EFD8_At40 *entries_end;
     u8 raw;
     u8 flags;
 
-    target = (index | 4) & 0xff;
+    target = (s32)((u8)(index | 4));
     entries_end = lbl_1_bss_7EFD8.unk_40 + 1;
 
     if (lbl_1_bss_7EFD8.unk_1A != 0) {
@@ -347,34 +331,18 @@ typedef struct lbl_1_bss_7EFD8_t {
 } lbl_1_bss_7EFD8_t;
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
-u16 fzgx_obj_lbl_1_bss_7EFD0;
 u16 fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD2;
-u8 fzgx_obj_lbl_1_bss_7EFD4;
 u8 fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5;
 u16 fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5_fill_7EFD6;
-lbl_1_bss_7EFD8_t fzgx_obj_lbl_1_bss_7EFD8;
-u16 fzgx_obj_lbl_1_bss_7F01C;
 
-#pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
-    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_7EFD0;
-    s = *(u8 *)&fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD2;
-    s = fzgx_obj_lbl_1_bss_7EFD4;
-    s = *(u8 *)&fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5;
-    s = *(u8 *)&fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5_fill_7EFD6;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_7EFD8;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_7F01C;
-}
-#pragma section code_type ".text"
 
 void fn_1_F2DDC(void) {
     
 
     if ((fzgx_obj_lbl_1_bss_7EFD4 & 1) != 0) {
-        fn_1_46B4(lbl_801A6410, fzgx_obj_lbl_1_bss_7EFD8.fzgx_u32_48,
+        fn_1_46B4(lbl_801A6410, (*(lbl_1_bss_7EFD8_t *)&fzgx_obj_lbl_1_bss_7EFD8).fzgx_u32_48,
                    lbl_1_data_3E8C8, 0x19d);
-        fzgx_obj_lbl_1_bss_7EFD8.fzgx_u32_48 = 0;
+        (*(lbl_1_bss_7EFD8_t *)&fzgx_obj_lbl_1_bss_7EFD8).fzgx_u32_48 = 0;
         fzgx_obj_lbl_1_bss_7F01C = 0;
         fzgx_obj_lbl_1_bss_7EFD4 = 0;
     }
@@ -396,32 +364,12 @@ struct fn_1_F2E50_lbl_1_bss_7EFD0 {
     u16 unk_4C;
 };
 
-typedef struct lbl_1_bss_7EFD8_t {
-    u8 fzgx_byte_8;
-    u8 pad_1[0x43];
-} lbl_1_bss_7EFD8_t;
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
-u16 fzgx_obj_lbl_1_bss_7EFD0;
 u16 fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD2;
-u8 fzgx_obj_lbl_1_bss_7EFD4;
 u8 fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5;
 u16 fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5_fill_7EFD6;
-lbl_1_bss_7EFD8_t fzgx_obj_lbl_1_bss_7EFD8;
-u16 fzgx_obj_lbl_1_bss_7F01C;
 
-#pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
-    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_7EFD0;
-    s = *(u8 *)&fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD2;
-    s = fzgx_obj_lbl_1_bss_7EFD4;
-    s = *(u8 *)&fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5;
-    s = *(u8 *)&fzgx_pool_lbl_1_bss_7EFD0_gap_7EFD5_fill_7EFD6;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_7EFD8;
-    s = *(u8 *)&fzgx_obj_lbl_1_bss_7F01C;
-}
-#pragma section code_type ".text"
 
 void fn_1_F2E50(u32 arg0) {
     if ((fzgx_obj_lbl_1_bss_7EFD4 & 1) == 0) {
@@ -528,8 +476,7 @@ extern u32 lbl_801A63C0;
 extern u8 fn_1_3F23C(u8);
 extern u8 fn_1_3F250(u8);
 extern u8 fn_1_3F264(u8);
-extern s8 fn_1_86624(void);
-extern u32 fn_1_86810(s32);
+extern u8 fn_1_86810(s32);
 extern void fn_1_3EF14(u32 *);
 extern void fn_80008BEC(u8 *, int, u32);
 
@@ -549,7 +496,7 @@ void fn_1_F2F84(void) {
     fn_1_3EF14((u32 *)&loc_8);
     *(u16 *)((u8 *)p_lbl_1_bss_7EFD8->unk_40 + 0xfef0) = 0;
     v3 = 0;
-    while (v3 < fn_1_86624()) {
+    while (v3 < (s8)fn_1_86624()) {
         u32 result;
         *((u8 *)p_lbl_1_bss_7EFD8->unk_40 + v3 * 5 + 4) = loc_8.a[v3 + 14];
         result = fn_1_86810(v3);
@@ -631,6 +578,7 @@ u32 x;
 u32 y;
 u32 z;
 } ReplayTriple_F3574;
+
 typedef struct {
 u32 start0 : 15;
 u32 kind : 3;
@@ -691,11 +639,11 @@ u8 b1 : 1;
 u8 active : 1;
 } ReplayFlags_F326C;
 extern u8 fn_1_86624(void);
-extern u8 fn_1_86810(int);
+extern u8 fn_1_86810(s32);
 extern u32 fn_1_864E8(int);
 extern u8 fn_1_86678(int);
 extern s16 fn_1_3F0C8(void);
-extern void fn_1_862D4(int, ReplayPos_F326C *);
+extern void fn_1_862D4(int, void *);
 extern f32 fn_1_8CAF4(u32, s32);
 static inline int replay_is_recording(void) {
 if (!(*(ReplayFlags_F326C *)&lbl_1_bss_7EFD4) .active) {
@@ -805,6 +753,7 @@ replay_update_last(state, track, count, i, value);
 }
 }
 }
+#pragma opt_strength_reduction reset
 /* fzgx:end fn_1_F326C */
 
 /* fzgx:begin fn_1_F3574 */
@@ -822,48 +771,10 @@ typedef unsigned long u32;
 typedef float f32;
 
 
-typedef struct {
-u32 x;
-u32 y;
-u32 z;
-} ReplayTriple_F3574;
-typedef struct {
-u32 start0 : 15;
-u32 kind : 3;
-u32 index : 5;
-u32 value : 5;
-u32 pad0 : 4;
-u32 start : 15;
-u32 count : 5;
-u32 result : 5;
-u32 stage : 5;
-u32 pad1 : 2;
-ReplayTriple_F3574 begin[4];
-ReplayTriple_F3574 end[4];
-ReplayTriple_F3574 begin1;
-ReplayTriple_F3574 end1;
-} ReplayEvent_F3574;
-typedef struct {
-u8 pad0[0xFEF0];
-u16 eventCount;
-u8 pad1[0x1E];
-u16 slots[30];
-ReplayEvent_F3574 events[1];
-} ReplayBuffer_F3574;
-typedef struct {
-u32 unk_0;
-u32 frame;
-u8 pad0[0x10];
-u8 playerCount;
-u8 pad1[0x27];
-ReplayBuffer_F3574 *buffer;
-} ReplayState_F3574;
-
-
 extern void fn_1_F3574(ReplayState_F3574 *state, u8 index, u8 value, u8 kind, u8 result);
 
 
-extern void fn_1_862D4(s32 value, f32 *out);
+extern void fn_1_862D4(int, void *);
 extern u8 fn_1_8682C(int index);
 
 
@@ -939,10 +850,10 @@ event->end[i] = event->begin[i];
 
 
 
-extern s8 fn_1_86678(s32 index);
-extern u32 fn_1_864E8(s32 index);
-extern u32 fn_1_86810(s32 index);
-extern void fn_1_F3574(void *state, u8 index, u8 value, s32 kind, u32 result);
+extern u8 fn_1_86678(int);
+extern u32 fn_1_864E8(int);
+extern u8 fn_1_86810(s32 index);
+extern void fn_1_F3574(ReplayState_F3574 *state, u8 index, u8 value, u8 kind, u8 result);
 
 void fn_1_F37F4(void) {
     s32 index;
@@ -953,10 +864,10 @@ void fn_1_F37F4(void) {
 
     for (index = 0; index < 4; index++) {
         if (index < (*(u8 (*)[5308])&lbl_1_bss_3C30)[9] &&
-            fn_1_86678(index) != -1 &&
+            (s8)fn_1_86678(index) != -1 &&
             ((u8 *)(*(u32 (*)[17])&lbl_1_bss_7EFD8))[index + 0x24] == 0 &&
             (fn_1_864E8(index) & 0x10000) != 0) {
-            fn_1_F3574((*(u32 (*)[17])&lbl_1_bss_7EFD8), index, index, 6, fn_1_86810(index));
+            fn_1_F3574((ReplayState_F3574 *)(*(u32 (*)[17])&lbl_1_bss_7EFD8), index, index, 6, fn_1_86810(index));
         }
     }
 }
@@ -965,7 +876,6 @@ void fn_1_F37F4(void) {
 /* fzgx:begin fn_1_F38C0 */
 extern u32 OSGetTick(void);
 
-extern s8 fn_1_86624(void);
 extern void *fn_1_86254(int);
 extern void fn_80008BEC(u8 *, int, u32);
 
@@ -1006,8 +916,8 @@ void fn_1_F38C0(void) {
     p->unk_10 = 9300;
     p->unk_14 = 0x10000 - 9736;
     fn_80008BEC((u8 *)p + 0x28, 0, 16);
-    n = fn_1_86624();
-    if (fn_1_86624() > 4) {
+    n = (s8)fn_1_86624();
+    if ((s8)fn_1_86624() > 4) {
         n = 4;
     }
     end = start + n * 7;
@@ -1016,11 +926,14 @@ void fn_1_F38C0(void) {
     }
     fn_1_F38C0_finish(p, 0, 0);
 }
+#undef p
+#undef start
+#undef n
 /* fzgx:end fn_1_F38C0 */
 
 /* fzgx:begin fn_1_F3AB0 */
-extern s32 fn_1_F45CC(u16 value, void *out);
-extern void fn_1_862D4(s32 value, f32 *out);
+extern s32 fn_1_F45CC(u32 key, void *out);
+extern void fn_1_862D4(int, void *);
 
 typedef struct {
     u16 unk_0;
@@ -1055,7 +968,7 @@ void fn_1_F3AB0(Obj_1_bss_7EFD8 *obj) {
     }
 
     obj->unk_4++;
-    count = fn_1_F45CC(obj->unk_4, data);
+    count = fn_1_F45CC((u16)obj->unk_4, data);
     if (count <= 0) {
         return;
     }
@@ -1089,7 +1002,7 @@ extern u32 OSGetTick(void);
 extern union ReplayGhost_F3BC0 *fn_1_36AD0(void);
 extern void OSReport(const char *, ...);
 extern void fn_1_154CD0(u32, u32);
-extern void fn_1_3EF14(u8 *);
+extern void fn_1_3EF14(u32 *);
 extern void fn_1_78950(void);
 extern void fn_1_7899C(void);
 extern void fn_1_F43F0(u8 *, u32 *, u32, u32, u32);
@@ -1159,7 +1072,7 @@ void fn_1_F3BC0(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     v0 = (u8 *)lbl_801A63D0;
     fn_80008BEC(v0, 0, (0x90000 - 16384));
     loc_8[0] = 0;
-    fn_1_3EF14((u8 *)&loc_10);
+    fn_1_3EF14((u32 *)&loc_10);
     fn_1_F43F0(v0, loc_8, (OSGetTick() & 0xFF), 8, (0x90000 - 16384));
     fn_1_F43F0(v0, loc_8, 5, 7, (0x90000 - 16384));
     fn_1_F43F0(v0, loc_8, fn_1_7B054(), 6, (0x90000 - 16384));
@@ -1360,16 +1273,16 @@ u32 fn_1_F45B4(void) {
 /* fzgx:end fn_1_F45B4 */
 
 /* fzgx:begin fn_1_F45CC */
-typedef struct { u8 raw[0x80]; } ReplayEntry;
+typedef struct { u8 raw[0x80]; } ReplayEntry_F45CC;
 typedef struct { u8 raw[0x84]; } ReplayOutput;
 typedef struct { u32 w[3]; } CopyChunk;
 
-s32 fn_1_F45CC(u32 key, ReplayOutput *out) {
+s32 fn_1_F45CC(u32 key, void *out) {
     s32 out_count;
     Obj_1_bss_7EFD8 *global;
     ReplayOutput *dst;
     s32 i;
-    ReplayEntry *entry;
+    ReplayEntry_F45CC *entry;
 
     key &= 0xffff;
     if (key > 0x7fff) {
@@ -1378,7 +1291,7 @@ s32 fn_1_F45CC(u32 key, ReplayOutput *out) {
     out_count = 0;
     global = &lbl_1_bss_7EFD8;
     i = 0;
-    entry = (ReplayEntry *)((u8 *)global->unk_40 + 0xff4c);
+    entry = (ReplayEntry_F45CC *)((u8 *)global->unk_40 + 0xff4c);
     while (i < (s32)*(u16 *)((u8 *)global->unk_40 + 0xfef0)) {
         u16 first;
         u16 last;
@@ -1533,6 +1446,7 @@ void fn_1_F4810(struct fn_1_F4810_Arg0 *arg0, struct fn_1_F4810_Arg1 *arg1, u8 *
     arg3->unk_0 = total;
 }
 #pragma opt_loop_invariants reset
+#pragma opt_propagation reset
 /* fzgx:end fn_1_F4810 */
 
 /* fzgx:begin fn_1_F4E3C */

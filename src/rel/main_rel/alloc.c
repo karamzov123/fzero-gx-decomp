@@ -1,6 +1,11 @@
 #include "types.h"
 #include "rel/main_rel/globals.h"
 #include "rel/main_rel/alloc.h"
+#define LiveCamera _cam_LiveCamera
+#define live_camera _cam_live_camera
+#include "rel/main_rel/camera.h"
+#undef LiveCamera
+#undef live_camera
 
 extern char lbl_1_data_2C9C[20];
 extern void OSPanic(const char *message, int line, const char *file, ...);
@@ -13,7 +18,6 @@ extern s32 fn_8008023C(Obj_1_bss_7AC20 *, u32 *, u32);
 extern u32 lbl_801A6410;
 extern Obj_1_bss_F68_Target *fn_1_45D0(u32, u32, u8 *, u32);
 extern void fn_800793D4(Obj_1_bss_F68_Target *, u32, u32);
-extern u16 fn_1_3F8C(u8 *, void (*)(void), u32, u32);
 extern void fn_1_6394(void);
 extern void fn_1_63D4(void);
 extern void fn_1_DF74(void);
@@ -34,6 +38,8 @@ extern void fn_1_4010(s32, void (*)(Obj_1_data_2CDC *, u32));
 extern void fn_8006CDFC(u32 *);
 extern void fn_1_4060(void);
 
+
+extern u16 fn_1_3F8C();
 /* fzgx:begin fn_1_4928 */
 typedef struct {
     u32 unk_00;
@@ -432,11 +438,7 @@ u8 fn_1_5348(void) {
 }
 /* fzgx:end fn_1_5348 */
 
-/* fzgx:begin fn_1_5370 noprologue */
-#include "types.h"
-#include "rel/main_rel/camera.h"
-
-extern u16 fn_1_3F8C(u8 *, void (*)(void), void *, u32);
+/* fzgx:begin fn_1_5370 */
 extern void fn_1_426C(s16);
 extern u32 fn_1_435C(u32);
 extern u32 fn_1_434C(void);
@@ -608,9 +610,7 @@ s8 fn_1_5370(s8 arg0, s32 arg1) {
 }
 /* fzgx:end fn_1_5370 */
 
-/* fzgx:begin fn_1_56B8 noprologue */
-#include "types.h"
-#include "rel/main_rel/camera.h"
+/* fzgx:begin fn_1_56B8 */
 
 typedef struct {
     u8 unk_0;
@@ -765,9 +765,7 @@ u8 fn_1_5910(void) {
 }
 /* fzgx:end fn_1_5910 */
 
-/* fzgx:begin fn_1_5948 noprologue */
-#include "types.h"
-#include "rel/main_rel/camera.h"
+/* fzgx:begin fn_1_5948 */
 
 struct Sig_fn_1_549F4_Sig_fn_8006F1F0_fn_8006F1F0_Arg0 { f32 unk_0; f32 unk_4; f32 unk_8; };
 struct Sig_fn_1_549F4_fn_1_549F4_Arg1 { u32 unk_0; u16 unk_4; };
@@ -1098,7 +1096,6 @@ extern s32 fn_8008023C(Obj_1_bss_7AC20 *, u32 *, u32);
 extern u32 lbl_801A6410;
 extern Obj_1_bss_F68_Target *fn_1_45D0(u32, u32, u8 *, u32);
 extern void fn_800793D4(Obj_1_bss_F68_Target *, u32, u32);
-extern u16 fn_1_3F8C(u8 *, void (*)(void), u32, u32);
 extern void fn_1_6394(void);
 extern void fn_1_63D4(void);
 extern void fn_1_DF74(void);

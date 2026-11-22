@@ -1,8 +1,14 @@
 #include "types.h"
 #include "rel/main_rel/globals.h"
+#define lbl_1_bss_7ACD8 _face_h_lbl_1_bss_7ACD8
 #include "rel/main_rel/face.h"
+#undef lbl_1_bss_7ACD8
+typedef struct { Obj_1_bss_7ACD8_Target *entries; void **list4; void **list8; u8 countC; u8 countD; u8 padE[2]; s32 unk10; } FaceMgrGlobal;
+extern FaceMgrGlobal lbl_1_bss_7ACD8;
 
 extern u32 lbl_801A6410;
+extern u8 lbl_1_data_3D670[];
+extern u8 lbl_1_data_20D1C[];
 extern u32 lbl_1_bss_7ACEC;
 extern u32 fn_1_45D0(u32, u32, void*, u32);
 extern u32 fn_80008F88(void*, u32);
@@ -12,10 +18,10 @@ extern void fn_1_D2F50(void);
 extern void fn_80071718(u32);
 extern void fn_800711A8(u32);
 extern void fn_1_D2F84(void);
-extern s16 fn_1_3F0C8(void *obj);
-extern u32 fn_1_864E8(u32 value);
+extern s16 fn_1_3F0C8();
+extern u32 fn_1_864E8(s32 value);
 extern void OSPanic(char*, ...);
-extern u32 fn_1_86810(u32);
+extern u8 fn_1_86810(u32);
 extern void qsort(void*, u32, u32, void*);
 extern s32 fn_1_D2E18(u8*, u8*);
 extern u32 lbl_1_bss_7AD00;
@@ -31,6 +37,7 @@ extern u32 fn_80008E84(u32);
 extern u8 lbl_1_bss_7ACF8[8];
 extern void fn_80083DB0(void *, const void *);
 extern void strcat(void *, const void *);
+
 
 /* fzgx:begin fn_1_D1780 */
 void fn_1_D1780(void) {
@@ -89,7 +96,7 @@ extern void OSReport(const char *, ...);
 #pragma section code_type ".fzgxpool"
 static void fzgx_string_layout(void) {
     /* fzgx-allow: S2 layout primer: MWCC emits string literals in first-use order; the section is dropped at integration */
-    OSReport("face.c");
+    
 }
 #pragma section code_type ".text"
 
@@ -106,12 +113,12 @@ void fn_1_D1848(void) {
 
     
     fn_1_D2F50();
-    fzgx_obj_lbl_1_bss_7ACD8 = fn_1_4630(lbl_801A6410, 0x258, (u8 *)"face.c", 0x15F);
+    fzgx_obj_lbl_1_bss_7ACD8 = fn_1_4630(lbl_801A6410, 0x258, lbl_1_data_3DA2C, 0x15F);
     fzgx_obj_lbl_1_bss_7ACE8 = 0;
     idx = fn_1_86624();
     *(u8 *)((u8 *)&lbl_1_bss_7ACE0__fzgx_offset_4) = idx;
-    lbl_1_bss_7ACDC = fn_1_4630(lbl_801A6410, idx << 2, (u8 *)"face.c", 0x173);
-    lbl_1_bss_7ACE0 = fn_1_4630(lbl_801A6410, lbl_1_bss_7ACE0__fzgx_offset_4 << 2, (u8 *)"face.c", 0x174);
+    lbl_1_bss_7ACDC = fn_1_4630(lbl_801A6410, idx << 2, lbl_1_data_3DA2C, 0x173);
+    lbl_1_bss_7ACE0 = fn_1_4630(lbl_801A6410, lbl_1_bss_7ACE0__fzgx_offset_4 << 2, lbl_1_data_3DA2C, 0x174);
     texsize = GXGetTexBufferSize(0x40, 0x40, 5, 0, 0);
     obj = (Obj_1_bss_7ACD8_Target *)fzgx_obj_lbl_1_bss_7ACD8;
     for (i = 0; i < 6; i++) {
@@ -126,7 +133,7 @@ void fn_1_D1848(void) {
         obj->unk_4 = 0xFF;
         obj->unk_0 &= 0x7FFFFFFFu;
         obj->unk_0 = __rlwinm(obj->unk_0, 0, 2, 0);
-        obj->unk_60 = fn_1_45D0(lbl_801A6410, texsize, (u8 *)"face.c", 0x18A);
+        obj->unk_60 = fn_1_45D0(lbl_801A6410, texsize, lbl_1_data_3DA2C, 0x18A);
         memset((void *)obj->unk_60, 0, 4);
         obj = (Obj_1_bss_7ACD8_Target *)((u8 *)obj + 0x64);
     }
@@ -136,7 +143,6 @@ void fn_1_D1848(void) {
 /* fzgx:end fn_1_D1848 */
 
 /* fzgx:begin fn_1_D19B8 */
-#include "rel/main_rel/enemy_ctrl.h"
 
 extern u32 lbl_1_bss_7AC48[5];
 extern void fn_1_C489C(void);
@@ -256,8 +262,7 @@ void fn_1_D19B8(u8 *arg0) {
 }
 /* fzgx:end fn_1_D19B8 */
 
-/* fzgx:begin fn_1_D1C94 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_D1C94 */
 
 extern u32 lbl_1_data_3D924;
 
@@ -286,13 +291,11 @@ typedef struct {
     u8 pad_40[0x24];
 } Ent;
 
-extern State_7ACD8 lbl_1_bss_7ACD8;
-extern u32 fn_1_864E8(s32);
-extern s32 fn_1_D2E44(u32);
+extern u8 fn_1_D2E44(u32);
 extern s8 fn_1_86690(s8);
 extern s16 fn_1_12C7B8(s16);
-extern s32 fn_1_D123C(u32);
-extern s32 fn_1_3F440(u32);
+extern s32 fn_1_D123C(u8);
+extern u32 fn_1_3F440(u8);
 extern void fn_1_D2F50(void);
 extern void fn_1_D2F84(void);
 extern void fn_80071718(u32);
@@ -358,13 +361,13 @@ void fn_1_D1C94(void) {
             i = 0;
             obj = (Ent *)p->unk_0;
             while ((u32)i < p->unk_D) {
-                u32 res = fn_1_D2E44(i);
+                u8 res = fn_1_D2E44(i);
                 if (obj == 0) {
                     fn_1_D2F84();
                     return;
                 }
                 if ((u32)count <= (p->unk_D - 1)) {
-                    u32 v = res & 0xFF;
+                    u32 v = res;
                     obj->unk_10 = v;
                     obj->unk_14 = v;
                     obj->unk_18 = i;
@@ -373,7 +376,7 @@ void fn_1_D1C94(void) {
                     obj->unk_3C = 0;
                     obj->unk_38 = 0;
                     obj->unk_1C = 20;
-                    if (fn_1_D123C(obj->unk_4 & 0xFF) != 0) {
+                    if (fn_1_D123C(obj->unk_4) != 0) {
                         obj->unk_0 &= 0x7FFFFFFF;
                     } else {
                         obj->unk_0 |= 0x80000000;
@@ -389,7 +392,7 @@ void fn_1_D1C94(void) {
             obj = (Ent *)p->unk_0;
             fzgx_loop_i_3321 = 0;
             while ((u32)fzgx_loop_i_3321 < p->unk_C) {
-                u32 res = fn_1_D2E44(fzgx_loop_i_3321);
+                u8 res = fn_1_D2E44(fzgx_loop_i_3321);
                 s32 lim;
                 if (obj == 0) {
                     fn_1_D2F84();
@@ -397,7 +400,7 @@ void fn_1_D1C94(void) {
                 }
                 lim = p->unk_D - 1;
                 if ((s32)(res & 0xFF) <= lim && (u32)count <= lim) {
-                    u32 v = res & 0xFF;
+                    u32 v = res;
                     obj->unk_10 = v;
                     obj->unk_14 = v;
                     obj->unk_18 = fn_1_3F440(res);
@@ -406,7 +409,7 @@ void fn_1_D1C94(void) {
                     obj->unk_3C = 0;
                     obj->unk_38 = 0;
                     obj->unk_1C = 20;
-                    if (fn_1_D123C(obj->unk_4 & 0xFF) != 0) {
+                    if (fn_1_D123C(obj->unk_4) != 0) {
                         obj->unk_0 &= 0x7FFFFFFF;
                     } else {
                         obj->unk_0 |= 0x80000000;
@@ -481,10 +484,10 @@ extern void fn_1_D2F50(void);
 extern void fn_80071718(u32);
 extern void fn_800711A8(u32);
 extern void fn_1_D2F84(void);
-extern s16 fn_1_3F0C8(void *obj);
-extern u32 fn_1_864E8(u32 value);
+extern s16 fn_1_3F0C8();
+extern u32 fn_1_864E8(s32 value);
 extern void OSPanic(char*, ...);
-extern u32 fn_1_86810(u32);
+extern u8 fn_1_86810(u32);
 extern void qsort(void*, u32, u32, void*);
 extern s32 fn_1_D2E18(u8*, u8*);
 extern u32 lbl_1_bss_7AD00;
@@ -519,7 +522,7 @@ extern u32 fn_1_584AC(void);
 
 #pragma section code_type ".fzgxpool"
 /* layout primer: fn_1_D1848's initializer precedes this function's in the TU pool */
-static void fzgx_pool_layout(FaceVec *out) {
+static void fzgx_pool_layout_1(FaceVec *out) {
     FaceVec v = { 0.0f, 0.0f, 1.8f };
     *out = v;
 }
@@ -574,10 +577,10 @@ void fn_1_D2110(FaceObj *o) {
     o->prev = o->pos;
 }
 #pragma opt_common_subs reset
+#pragma fp_contract reset
 /* fzgx:end fn_1_D2110 */
 
-/* fzgx:begin fn_1_D2404 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_D2404 */
 
 typedef struct FaceEntry {
     u32 flags;
@@ -604,25 +607,15 @@ typedef struct FaceManager {
     s32 unk10;
 } FaceManager;
 
-extern FaceManager lbl_1_bss_7ACD8;
-extern s32 lbl_1_data_3D924;
 
 extern u32 fn_1_58C4(void);
 extern void fn_1_D2F50(void);
 extern void fn_1_D2F84(void);
-extern u8 fn_1_D2E44(u8);
-extern void fn_1_D2110(FaceEntry *);
-extern u32 fn_1_864E8(u32);
-extern s16 fn_1_3F0C8(void);
-extern u32 fn_1_3F440(u8);
 extern s8 fn_1_86690(s8);
 extern s16 fn_1_12C7B8(s16);
-extern s32 fn_1_D123C(u8);
-extern void fn_80071718(void *);
-extern void fn_800711A8(void *);
 
 void fn_1_D2404(void) {
-    FaceManager *mgr = &lbl_1_bss_7ACD8;
+    FaceManager *mgr = (FaceManager *)&lbl_1_bss_7ACD8;
     s8 player;
     s32 id;
     u8 j;
@@ -640,15 +633,15 @@ void fn_1_D2404(void) {
     u8 q;
     u8 k;
 
-    if (fn_1_58C4() <= 1 && lbl_1_data_3D924 != -1) {
+    if (fn_1_58C4() <= 1 && (s32)lbl_1_data_3D924 != -1) {
         fn_1_D2F50();
         e = mgr->entries;
         for (i = 0; i < mgr->countD; i++, e++) {
-            e->unk14 = fn_1_D2E44(e->id);
+            e->unk14 = fn_1_D2E44((u8)e->id);
         }
         e_2 = mgr->entries;
         for (j = 0; j < mgr->countD; j++, e_2++) {
-            fn_1_D2110(e_2);
+            fn_1_D2110((void *)e_2);
             if (e_2->unk3C != 0) {
                 e_2->unk3C--;
             }
@@ -671,11 +664,11 @@ void fn_1_D2404(void) {
                 if (mgr->unk10 == 0 && f->unk10 < 6 && f->unk14 >= 6) {
                     idx = (u8)f->id;
                     if (mgr->list8[idx] != NULL) {
-                        fn_80071718(mgr->list8[idx]);
+                        fn_80071718((u32)mgr->list8[idx]);
                         mgr->list8[idx] = NULL;
                     }
                     if (mgr->list4[idx] != NULL) {
-                        fn_800711A8(mgr->list4[idx]);
+                        fn_800711A8((u32)mgr->list4[idx]);
                         mgr->list4[idx] = NULL;
                     }
                 }
@@ -697,7 +690,7 @@ void fn_1_D2404(void) {
             player = j;
             for (m = 0; m < mgr->countC; m++) {
                 id = m;
-                slot = fn_1_D2E44(id);
+                slot = fn_1_D2E44((u8)id);
                 if (slot >= 6) {
                     continue;
                 }
@@ -744,15 +737,14 @@ void fn_1_D2404(void) {
 }
 /* fzgx:end fn_1_D2404 */
 
-/* fzgx:begin fn_1_D27B8 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_D27B8 */
 #include "dolphin/hw_regs.h"
 
-typedef struct FaceVec {
+typedef struct FaceVec_2 {
     f32 x;
     f32 y;
     f32 z;
-} FaceVec;
+} FaceVec_2;
 
 typedef struct FaceColor {
     u8 r;
@@ -761,7 +753,7 @@ typedef struct FaceColor {
     u8 a;
 } FaceColor;
 
-typedef struct FaceEntry {
+typedef struct FaceEntry_2 {
     u32 flags;
     u32 id;
     s32 unk8;
@@ -770,21 +762,21 @@ typedef struct FaceEntry {
     u32 unk14;
     u32 unk18;
     u32 unk1C;
-    FaceVec prev;
-    FaceVec pos;
+    FaceVec_2 prev;
+    FaceVec_2 pos;
     u32 unk38;
     u32 unk3C;
     u8 pad40[0x20];
     void *unk60;
-} FaceEntry;
+} FaceEntry_2;
 
-typedef struct FaceManager {
-    FaceEntry *entries;
+typedef struct FaceManager_2 {
+    FaceEntry_2 *entries;
     void **list4;
     void **list8;
     u8 countC;
     u8 countD;
-} FaceManager;
+} FaceManager_2;
 
 typedef struct FaceRacer {
     u8 pad0[0x94];
@@ -801,8 +793,6 @@ typedef struct FaceRacer {
     f32 unk478;
 } FaceRacer;
 
-extern FaceManager lbl_1_bss_7ACD8;
-extern s32 lbl_1_data_3D924;
 extern u8 lbl_1_data_3DB00[0x2C];
 extern void *lbl_801A6D00;
 extern u32 lbl_801A66A0;
@@ -812,7 +802,6 @@ extern void fn_1_D2F50(void);
 extern void fn_1_D2F84(void);
 extern void fn_1_550A8(void);
 extern void fn_1_550E0(void);
-extern s16 fn_1_3F0C8(void);
 extern void fn_1_56298(f32, f32, f32, f32);
 extern f32 fn_1_867F8(u32);
 extern FaceRacer *fn_1_86254(u32);
@@ -826,7 +815,7 @@ extern void C_MTXPerspective(f32 (*)[4], f32, f32, f32, f32);
 extern void fn_800737E4(f32 (*)[4], s32);
 extern void fn_80038EEC(f32, f32, f32, f32, f32, f32);
 extern void fn_80074188(u32, u32, u32, u32);
-extern void fn_8006F120(FaceVec *, FaceVec *);
+extern void fn_8006F120(FaceVec_2 *, FaceVec_2 *);
 extern void lbl_8006DB74(void *);
 extern void fn_80074CF4(f32, f32, f32);
 extern void lbl_8006D758(void);
@@ -846,25 +835,9 @@ extern void GXInvalidateTexAll(void);
 extern void fn_80072270(f32 *);
 
 #pragma section code_type ".fzgxpool"
-/* layout primer: TU pool 0x0-0x57, the literals of the functions before this one */
-static void fzgx_pool_layout(FaceVec *out, f32 *f, f64 *d, u32 u) {
-    FaceVec v0 = { 0.0f, 0.0f, 1.8f };
-    FaceVec v1 = { 0.0f, 0.0f, 0.0f };
-    out[0] = v0;
-    out[1] = v1;
-    f[0] = 0.08f;
-    d[0] = 0.1;
-    f[1] = 1.8f;
-    f[2] = 10.0f;
-    d[1] = 0.5;
-    f[3] = 32767.0f;
-    d[2] = 1.8f;
-    d[3] = 0.2;
-    f[4] = u;
-}
 
 /* layout primer: this function's literals at 0x58-0x6B */
-static void fzgx_pool_layout_2(f32 *f) {
+static void fzgx_pool_layout_3(f32 *f) {
     f[5] = 5.0f;
     f[6] = 0.1f;
     f[7] = 90000.0f;
@@ -876,7 +849,7 @@ static void fzgx_pool_layout_2(f32 *f) {
 const f32 fzgx_pool_face_depth[1] = { -0.02f };
 
 /* layout primer: this function's literals at 0x70-0x78, before its initializers at 0x7C */
-static void fzgx_pool_layout_3(f32 *f) {
+static void fzgx_pool_layout_4(f32 *f) {
     f[11] = 4e-5f;
     f[12] = 65536.0f;
     f[13] = 10430.378f;
@@ -893,7 +866,7 @@ static inline void face_set_color(void) {
 /* retail translates mtxA in place (each fmadds result in its multiplicand register) */
 #pragma opt_lifetimes off
 void fn_1_D27B8(void) {
-    FaceManager *mgr = &lbl_1_bss_7ACD8;
+    FaceManager_2 *mgr = (FaceManager_2 *)(FaceManager_2 *)&lbl_1_bss_7ACD8;
     f32 tz;
     f32 ty;
     f32 tx;
@@ -908,7 +881,7 @@ void fn_1_D27B8(void) {
     u32 sh;
     void *model;
     s32 i;
-    FaceEntry *e;
+    FaceEntry_2 *e;
     u32 id;
     FaceRacer *racer;
     f32 energy;
@@ -923,7 +896,7 @@ void fn_1_D27B8(void) {
     u32 seed;
     f32 dz;
 
-    if (fn_1_58C4() <= 1 && lbl_1_data_3D924 != -1) {
+    if (fn_1_58C4() <= 1 && (s32)lbl_1_data_3D924 != -1) {
         fn_1_D2F50();
         lbl_8006DD14((u8 *)lbl_801A6D00 + 0x30, saved);
         fn_80038F10(viewport);
@@ -942,7 +915,7 @@ void fn_1_D27B8(void) {
                     e->unk38 = e->unk3C = 0;
                 }
                 {
-                    FaceVec zero = { 0.0f, 0.0f, 0.0f };
+                    FaceVec_2 zero = { 0.0f, 0.0f, 0.0f };
                     fn_8006F120(&e->prev, &zero);
                 }
                 lbl_8006DB74((u8 *)lbl_801A6D00 + 0x30);
@@ -1035,7 +1008,7 @@ void fn_1_D27B8(void) {
 
 /* fzgx:begin fn_1_D2D24 */
 Obj_1_bss_7ACD8_Target *fn_1_D2D24(s32 index) {
-    return &lbl_1_bss_7ACD8[index];
+    return &lbl_1_bss_7ACD8.entries[index];
 }
 /* fzgx:end fn_1_D2D24 */
 
@@ -1056,12 +1029,12 @@ Obj_1_bss_7ACD8_Target *fn_1_D2D58(void *obj) {
     s32 i;
 
     for (i = 0; i < lbl_1_bss_7ACE5; i++) {
-        if ((u32)obj == lbl_1_bss_7ACD8[i].unk_10) {
+        if ((u32)obj == lbl_1_bss_7ACD8.entries[i].unk_10) {
             if (fn_1_3F0C8(obj) == 0x29 &&
-                (fn_1_864E8(lbl_1_bss_7ACD8[i].unk_4) & 0x20000880) != 0) {
+                (fn_1_864E8(lbl_1_bss_7ACD8.entries[i].unk_4) & 0x20000880) != 0) {
                 return 0;
             }
-            return &lbl_1_bss_7ACD8[i];
+            return &lbl_1_bss_7ACD8.entries[i];
         }
     }
     return 0;
@@ -1085,9 +1058,9 @@ s32 fn_1_D2E18(u8* a, u8* b) {
 /* fzgx:end fn_1_D2E18 */
 
 /* fzgx:begin fn_1_D2E44 */
-s32 fn_1_D2E44(u32 index) {
+u8 fn_1_D2E44(u32 index) {
     u8 values[4];
-    u32 j;
+    u8 j;
     u32 i;
 
     if ((s32)lbl_1_bss_7ACE8 != 0) {
@@ -1098,8 +1071,8 @@ s32 fn_1_D2E44(u32 index) {
             values[(u8)i] = fn_1_86810((u8)i);
         }
         qsort(values, lbl_1_bss_7ACE5, 1, fn_1_D2E18);
-        for (j = 0; (u8)j < lbl_1_bss_7ACE5; j++) {
-            if (values[(u8)j] == (u8)fn_1_86810(index)) {
+        for (j = 0; j < lbl_1_bss_7ACE5; j++) {
+            if (values[j] == fn_1_86810(index)) {
                 return j;
             }
         }
