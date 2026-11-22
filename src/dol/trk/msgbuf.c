@@ -32,13 +32,24 @@ typedef struct TRKBuffer {
 extern BOOL gTRKBigEndian;
 extern u8 lbl_801A36E8[];
 extern char lbl_800956A0[];
-void *fn_800035C0(void *dst, const void *src, size_t n);
+extern u32 lbl_80095678[];
+extern u32 MWTRACE(u32, ...);
+extern u32 fn_8008D398(u32, u32);
+extern void *fn_800035C0(void *dst, const void *src, size_t n);
+extern u32 fn_80003590(u32, u32, u32);
 extern u32 fn_8008AF40(u32);
 extern u32 fn_8008AF48(u32);
+extern void fn_8008963C(const char *);
 
 DSError TRKReadBuffer(TRKBuffer *msg, void *data, size_t length);
 DSError TRKAppendBuffer(TRKBuffer *msg, const void *data, size_t length);
 
+s32 fn_80088B00(TRKBuffer *arg0) {
+    u32 t0;
+    t0 = fn_8008D398((u32)arg0->data, arg0->length);
+    MWTRACE(1, (u32)&lbl_80095678, t0);
+    return 0;
+}
 
 static inline DSError TRKReadBuffer_inline(TRKBuffer *msg, void *data, size_t length) {
     DSError error = DS_NoError;
@@ -54,6 +65,36 @@ static inline DSError TRKReadBuffer_inline(TRKBuffer *msg, void *data, size_t le
     fn_800035C0(data, msg->data + msg->position, length);
     msg->position += length;
     return error;
+}
+
+static inline DSError TRKReadBuffer1_ui32(TRKBuffer *buffer, u32 *data) {
+    DSError err;
+    u8 *bigEndianData;
+    u8 *byteData;
+    u8 swapBuffer[sizeof(data)];
+    if (gTRKBigEndian) {
+        bigEndianData = (u8 *)data;
+    } else {
+        bigEndianData = swapBuffer;
+    }
+    err = TRKReadBuffer_inline(buffer, (void *)bigEndianData, sizeof(*data));
+    if (!gTRKBigEndian && err == DS_NoError) {
+        byteData = (u8 *)data;
+        byteData[0] = bigEndianData[3];
+        byteData[1] = bigEndianData[2];
+        byteData[2] = bigEndianData[1];
+        byteData[3] = bigEndianData[0];
+    }
+    return err;
+}
+
+DSError TRKReadBuffer_ui32(TRKBuffer *buffer, u32 *data, int count) {
+    DSError err;
+    s32 i;
+    for (i = 0, err = DS_NoError; err == DS_NoError && i < count; i++) {
+        err = TRKReadBuffer1_ui32(buffer, &(data[i]));
+    }
+    return err;
 }
 
 static inline DSError TRKReadBuffer1_ui8(TRKBuffer *buffer, u8 *data) {
@@ -217,44 +258,30 @@ DSError TRKAppendBuffer(TRKBuffer *msg, const void *data, size_t length) {
     return error;
 }
 
-struct fn_80089144_Arg0 {
-    u8 pad_0[0x8];
-    u32 unk_8;
-    u32 unk_C;
-};
-
-s32 fn_80089144(struct fn_80089144_Arg0 *arg0, u32 arg1) {
+s32 fn_80089144(TRKBuffer *arg0, u32 arg1) {
     s32 v0;
     v0 = 0;
     if (arg1 > 2176) {
-    v0 = 769;
+        v0 = 769;
     } else {
-    arg0->unk_C = arg1;
-    if (arg1 > arg0->unk_8) {
-    arg0->unk_8 = arg1;
-    }
+        arg0->position = arg1;
+        if (arg1 > arg0->length) {
+            arg0->length = arg1;
+        }
     }
     return v0;
 }
 
-extern u32 fn_80003590(u32, u32, u32);
-
-struct fn_80089174_Arg0 {
-    u8 pad_0[0x8];
-    u32 unk_8;
-    u32 unk_C;
-};
-
-u32 fn_80089174(struct fn_80089174_Arg0 *arg0, u32 arg1) {
+u32 fn_80089174(TRKBuffer *arg0, u32 arg1) {
     u32 v0;
     u32 t0;
-    arg0->unk_8 = 0;
-    arg0->unk_C = 0;
+    arg0->length = 0;
+    arg0->position = 0;
     v0 = (u32)arg0;
     if ((s32)arg1 == 0) {
-    v0 += 16;
-    t0 = fn_80003590(v0, 0, 2176);
-    v0 = t0;
+        v0 += 16;
+        t0 = fn_80003590(v0, 0, 2176);
+        v0 = t0;
     }
     return v0;
 }
@@ -265,18 +292,18 @@ u32 fn_800891B4(u32 arg0) {
     u32 t0, t1;
     v0 = arg0;
     if ((s32)arg0 != -1) {
-    if ((s32)v0 >= 0) {
-    if ((s32)v0 < 3) {
-    v1 = (v0 * 2192);
-    v0 = (u32)((u8 *)&lbl_801A36E8 + v1);
-    t0 = fn_8008AF48((u32)v0);
-    v0 = t0;
-    v0 = (u32)((u8 *)&lbl_801A36E8 + v1);
-    *(u32 *)((u8 *)((u8 *)&lbl_801A36E8 + v1) + 4) = 0;
-    t1 = fn_8008AF40((u32)v0);
-    v0 = t1;
-    }
-    }
+        if ((s32)v0 >= 0) {
+            if ((s32)v0 < 3) {
+                v1 = (v0 * 2192);
+                v0 = (u32)((u8 *)&lbl_801A36E8 + v1);
+                t0 = fn_8008AF48((u32)v0);
+                v0 = t0;
+                v0 = (u32)((u8 *)&lbl_801A36E8 + v1);
+                *(u32 *)((u8 *)((u8 *)&lbl_801A36E8 + v1) + 4) = 0;
+                t1 = fn_8008AF40((u32)v0);
+                v0 = t1;
+            }
+        }
     }
     return v0;
 }
@@ -291,15 +318,8 @@ u32 TRKGetBuffer(s32 arg0) {
     return v0;
 }
 
-struct fn_80089244_Entry {
-    u8 pad_0[4];
-    s32 unk_4;
-    s32 unk_8;
-    s32 unk_C;
-};
-
 u32 fn_80089244(u32 *arg0, u32 *arg1) {
-    struct fn_80089244_Entry *v2;
+    TRKBuffer *v2;
     s32 v0;
     s32 v1;
 
@@ -309,14 +329,14 @@ u32 fn_80089244(u32 *arg0, u32 *arg1) {
     while (v1 < 3) {
         v2 = 0;
         if (v1 >= 0 && v1 < 3) {
-            v2 = (struct fn_80089244_Entry *)((u8 *)&lbl_801A36E8 + v1 * 0x890);
+            v2 = (TRKBuffer *)((u8 *)&lbl_801A36E8 + v1 * 0x890);
         }
         fn_8008AF48((u32)v2);
-        if (v2->unk_4 == 0) {
-            v2->unk_8 = 0;
+        if (v2->isInUse == 0) {
+            v2->length = 0;
             v0 = 0;
-            v2->unk_C = 0;
-            v2->unk_4 = 1;
+            v2->position = 0;
+            v2->isInUse = 1;
             *arg1 = (u32)v2;
             *arg0 = v1;
             v1 = 3;
