@@ -24,7 +24,7 @@ extern void GXGetVtxAttrFmtv(GXVtxFmt param_0, GXVtxAttrFmtList *param_1);
 extern void fn_8003462C(GXPrimitive type, GXVtxFmt fmt, u16 vert_num);
 
 static GXVtxDescList lbl_80178118[27];
-static GXVtxAttrFmtList lbl_80178118__fzgx_offset_D8[27];
+static GXVtxAttrFmtList lbl_801781F0[27];
 
 static inline void GXPosition3f32(f32 x, f32 y, f32 z) {
     GXWGFifo.f32 = x;
@@ -42,7 +42,7 @@ static inline void GXEnd(void) {}
 
 static inline void GetVertState(void) {
     fn_80032EB8(lbl_80178118);
-    GXGetVtxAttrFmtv(GX_VTXFMT3, lbl_80178118__fzgx_offset_D8);
+    GXGetVtxAttrFmtv(GX_VTXFMT3, lbl_801781F0);
     GXClearVtxDesc();
     GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
     GXSetVtxDesc(GX_VA_NRM, GX_DIRECT);
@@ -52,7 +52,7 @@ static inline void GetVertState(void) {
 
 static inline void RestoreVertState(void) {
     GXSetVtxDescv(lbl_80178118);
-    GXSetVtxAttrFmtv(GX_VTXFMT3, lbl_80178118__fzgx_offset_D8);
+    GXSetVtxAttrFmtv(GX_VTXFMT3, lbl_801781F0);
 }
 
 void fn_80037E30(u8 numEdges) {
@@ -118,7 +118,7 @@ void fn_800384FC(u8 numMajor, u8 numMinor) {
 
     GXGetVtxDesc(GX_VA_TEX0, &ttype);
     fn_80032EB8(lbl_80178118);
-    GXGetVtxAttrFmtv(GX_VTXFMT3, lbl_80178118__fzgx_offset_D8);
+    GXGetVtxAttrFmtv(GX_VTXFMT3, lbl_801781F0);
 
     GXClearVtxDesc();
     GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
@@ -170,5 +170,5 @@ void fn_800384FC(u8 numMajor, u8 numMinor) {
     }
 
     GXSetVtxDescv(lbl_80178118);
-    GXSetVtxAttrFmtv(GX_VTXFMT3, lbl_80178118__fzgx_offset_D8);
+    GXSetVtxAttrFmtv(GX_VTXFMT3, lbl_801781F0);
 }
