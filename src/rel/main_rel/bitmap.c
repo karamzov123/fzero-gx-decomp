@@ -14,9 +14,9 @@ extern u8 lbl_1_data_19FC4[0x2F0];
 extern f32 lbl_1_rodata_10C0[5];
 extern f32 lbl_1_bss_3E05C;
 
-extern void OSPanic(const unsigned char *, ...);
+extern void OSPanic(const void *, ...);
 extern void fn_1_465D0(char *, s32);
-extern int fn_1_45D0(int, int, const unsigned char *, int);
+extern int fn_1_45D0();
 extern int fn_80008F88(int, int);
 extern void fn_8006FDEC(void);
 extern void fn_80009064(u32 value);
@@ -506,7 +506,7 @@ void fn_1_48780(void) {
 /* fzgx:end fn_1_48780 */
 
 /* fzgx:begin fn_1_487EC */
-extern s32 fn_1_48A0C(u32, u32, void *, u32);
+extern int fn_1_48A0C(int ch, int idx, Obj_1_data_1AEA8 *font, int noLoad);
 
 typedef struct {
     s32 unk_0;
@@ -585,7 +585,7 @@ void fn_1_487EC(void) {
         n = 0;
         q = target->unk_2C;
         while (*q != 0) {
-            if (*q == key && fn_1_48A0C(n, 0x2A, target, 1) != 0) {
+            if (*q == key && fn_1_48A0C(n, 0x2A, (Obj_1_data_1AEA8 *)target, 1) != 0) {
                 lbl_1_bss_3F60C__fzgx_offset_15AC++;
                 break;
             }
@@ -596,20 +596,16 @@ void fn_1_487EC(void) {
 }
 /* fzgx:end fn_1_487EC */
 
-/* fzgx:begin fn_1_48A0C noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bitmap.h"
+/* fzgx:begin fn_1_48A0C */
 
 extern s32 lbl_801A6410;
 extern u32 lbl_1_bss_3E060[1387];
 extern u32 lbl_1_bss_3F60C[1388];
 extern u8 lbl_1_bss_40C6C[44384];
-extern void OSPanic(const char *, int, const char *, ...);
-extern int fn_1_45D0(int, int, const char *, int);
+
+
 extern u32 OSAllocFromArenaLo(u32, u32);
 extern u32 fn_1_4BA24(u8, int, void *);
-extern void GXInitTexObj(void *, void *, u16, u16, int, int, int, u8);
 
 // Allocate (or share) the glyph texture for character `ch` of font slot `idx`.
 // Returns 1 when a new texture was created, 0 otherwise.
@@ -949,8 +945,7 @@ int fn_1_48A0C(int ch, int idx, Obj_1_data_1AEA8 *font, int noLoad) {
     if ((code >= 0x839F && code <= 0x83BE) || code == 0x8452) {
         fmt = 0xE;
     }
-    GXInitTexObj(&lbl_1_bss_40C6C[tex * 0x20], (void *)lbl_1_bss_3E060[tex], font->unk_4, font->unk_5,
-                 fmt, 0, 0, 0);
+    GXInitTexObj((GXTexObj *)(&lbl_1_bss_40C6C[tex * 0x20]), (void *)lbl_1_bss_3E060[tex], font->unk_4, font->unk_5, (GXTexFmt)(fmt), (GXTexWrapMode)(0), (GXTexWrapMode)(0), 0);
     ((s16 *)font->unk_30)[ch] = tex;
     if (noLoad) {
         lbl_1_bss_3F60C[tex] = -1;

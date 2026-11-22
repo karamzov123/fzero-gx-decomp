@@ -1,11 +1,13 @@
 #include "types.h"
+extern int sprintf(char *, const char *, ...);
 #include "rel/main_rel/globals.h"
 #include "rel/main_rel/som.h"
 
 extern u32 lbl_1_bss_3BBC;
-extern void sprintf(char *, const char *, ...);
 extern void fn_1_465D0(char *, int);
 
+extern int fn_1_458A0(void *, void *, u32, u32);
+extern void OSPanic(const void *, int, const void *, ...);
 /* fzgx:begin fn_1_1304C */
 typedef void (*SomCallback)(u32);
 
@@ -133,13 +135,13 @@ u32 *fn_1_1304C(SomSource *source, void *image) {
 /* fzgx:end fn_1_1304C */
 
 /* fzgx:begin fn_1_1350C */
+#define lbl_1_data_5184 _lc_lbl_1_data_5184
 #include "rel/main_rel/live_camera.h"
+#undef lbl_1_data_5184
 
-extern void OSPanic(u8 *file, int line, u8 *message, ...);
 extern u32 fn_80008E30(u32);
 extern u8 lbl_1_bss_17B4[12];
 extern void fn_80083DB0(Obj_1_bss_3B30 *, void *);
-extern u32 *fn_1_1304C(Obj_1_bss_3B30 *, u32);
 extern u8 lbl_1_bss_1810[8984];
 extern void fn_8000659C(void);
 extern u32 OSIsThreadTerminated(u8 *);
@@ -164,7 +166,6 @@ extern void lbl_8006E1B0(void *, void *);
 extern s32 lbl_8006D24C(f32, f32);
 
 extern s32 fn_1_45B2C(void *arg0);
-extern void fn_1_458A0(void *arg0, void *arg1, u32 arg2, u32 arg3);
 
 u8 fn_1_1350C(void *arg0, u8 *arg1) {
     s32 size;
@@ -194,7 +195,6 @@ u8 fn_1_1350C(void *arg0, u8 *arg1) {
 /* fzgx:end fn_1_1350C */
 
 /* fzgx:begin fn_1_1361C */
-extern u32 fn_1_45B2C(void *p);
 extern void fn_1_45964(void *a, void *buf, int n, u32 off, void *cb);
 extern void fn_1_1383C(void);
 extern void DCInvalidateRange(void *addr, u32 len);
@@ -215,10 +215,10 @@ typedef struct {
     volatile s32 w23bc;   // 0x23bc  DMA-ready flag
 } SomRing;
 
-extern SomRing lbl_1_bss_1800;
 
-u8 fn_1_1361C(void *a, u32 *b) {
-    SomRing *s = &lbl_1_bss_1800;
+u8 fn_1_1361C(void *a, void *b_ptr) {
+    u32 *b = (u32 *)b_ptr;
+    SomRing *s = (SomRing *)lbl_1_bss_1800;
     int n;
 
     if (s->w232c == 0) {
@@ -456,8 +456,7 @@ void fn_1_13A28(Fn1_13A28 *arg0, s32 arg1) {
 }
 /* fzgx:end fn_1_13A28 */
 
-/* fzgx:begin fn_1_13B98 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_13B98 */
 
 typedef struct ColiAnimTrack {
     s32 count;
@@ -695,21 +694,15 @@ typedef struct ColiRuntime {
 } ColiRuntime;
 
 extern u8 lbl_1_bss_3BC0[32];
-extern void *lbl_801A6410;
-extern ColiHeader *lbl_1_bss_3BE0;
 extern ColiRuntime *lbl_1_bss_3BE4;
 extern f32 lbl_1_bss_7AC88;
 extern f32 lbl_1_bss_7AC9C;
 
-extern int sprintf(char *, const char *, ...);
 extern int fn_1_45730(void *, void *);
-extern int fn_1_458A0(void *, void *, u32, u32);
 extern int fn_1_45850(void *);
 extern void *fn_1_45D0(void *, u32, void *, u32);
 extern void fn_1_46B4(void *, void *, void *, u32);
 extern void fn_1_12860(void *, void *);
-extern void OSPanic(const char *, int, const char *, ...);
-extern void fn_1_13A28(void *, void *);
 extern void fn_800793D4(void *, int, u32);
 extern void fn_80008BEC(void *, int, u32);
 extern void lbl_8006D758(void);
@@ -718,7 +711,7 @@ extern void lbl_8006E0C8(void *);
 extern void fn_1_9D420(void *, s32);
 extern void fn_1_14DE8(s32);
 
-s8 lbl_1_data_5190 = -1;
+static s8 fzgx_pool_lbl_1_data_5190 = -1;
 
 #define OFFSET_TO_PTR(base, offset) (void *)((u32)(offset) + (u32)(base))
 
@@ -766,7 +759,7 @@ static inline void adjust_sub54_c(ColiSub54C **pC, ColiHeader *base) {
     if ((*pC)->unk_C != NULL) (*pC)->unk_C = OFFSET_TO_PTR(base, (*pC)->unk_C);
 }
 
-#define RELOC(field) if ((field) != NULL) (field) = OFFSET_TO_PTR(lbl_1_bss_3BE0, (field))
+#define RELOC(field) if ((field) != NULL) (field) = OFFSET_TO_PTR((*(ColiHeader **)&lbl_1_bss_3BE0), (field))
 
 static inline void init_runtimes(void) {
     u32 saved;
@@ -774,7 +767,7 @@ static inline void init_runtimes(void) {
     ColiObject *obj;
     s32 i;
 
-        for (i = 0, obj = lbl_1_bss_3BE0->objects; i < lbl_1_bss_3BE0->objectCount; i++, obj++, rt++) {
+        for (i = 0, obj = (*(ColiHeader **)&lbl_1_bss_3BE0)->objects; i < (*(ColiHeader **)&lbl_1_bss_3BE0)->objectCount; i++, obj++, rt++) {
             saved = rt->unk_9C;
             fn_80008BEC(rt, 0, sizeof(ColiRuntime));
             rt->unk_9C = saved;
@@ -810,9 +803,9 @@ void fn_1_13B98(s32 course, s32 initModels) {
     void *uncompData;
     s32 i;
 
-    if (lbl_1_data_5190 != -1) {
-        course = lbl_1_data_5190;
-        lbl_1_data_5190 = -1;
+    if (fzgx_pool_lbl_1_data_5190 != -1) {
+        course = fzgx_pool_lbl_1_data_5190;
+        fzgx_pool_lbl_1_data_5190 = -1;
     }
     sprintf(path, "stage/COLI_COURSE%02d.lz", course);
     if (fn_1_45730(path, file) == 0) {
@@ -821,8 +814,8 @@ void fn_1_13B98(s32 course, s32 initModels) {
     fn_1_458A0(file, lbl_1_bss_3BC0, 0x20, 0);
     compSize = (__lwbrx(lbl_1_bss_3BC0, 0) + 0x27) & ~0x1F;
     uncompSize = (__lwbrx(lbl_1_bss_3BC0, 4) + 0x1F) & ~0x1F;
-    uncompData = fn_1_45D0(lbl_801A6410, uncompSize, "stcoli.c", 0x181);
-    compData = fn_1_45D0(lbl_801A6410, compSize, "stcoli.c", 0x182);
+    uncompData = fn_1_45D0(lbl_801A6410[0], uncompSize, "stcoli.c", 0x181);
+    compData = fn_1_45D0(lbl_801A6410[0], compSize, "stcoli.c", 0x182);
     if (fn_1_458A0(file, compData, compSize, 0) < 0) {
         OSPanic("stcoli.c", 0x184, "cannot Read");
     }
@@ -830,37 +823,37 @@ void fn_1_13B98(s32 course, s32 initModels) {
         OSPanic("stcoli.c", 0x185, "cannot Close");
     }
     fn_1_12860(compData, uncompData);
-    fn_1_46B4(lbl_801A6410, compData, "stcoli.c", 0x189);
+    fn_1_46B4(lbl_801A6410[0], compData, "stcoli.c", 0x189);
 
-    lbl_1_bss_3BE0 = uncompData;
-    if (lbl_1_bss_3BE0->models != NULL) {
+    (*(ColiHeader **)&lbl_1_bss_3BE0) = uncompData;
+    if ((*(ColiHeader **)&lbl_1_bss_3BE0)->models != NULL) {
         ColiModelRef *model;
         void *prev = NULL;
 
-        RELOC(lbl_1_bss_3BE0->models);
-        for (i = 0, model = lbl_1_bss_3BE0->models; i < lbl_1_bss_3BE0->modelCount; i++, model++) {
+        RELOC((*(ColiHeader **)&lbl_1_bss_3BE0)->models);
+        for (i = 0, model = (*(ColiHeader **)&lbl_1_bss_3BE0)->models; i < (*(ColiHeader **)&lbl_1_bss_3BE0)->modelCount; i++, model++) {
             RELOC(model->unk_4);
             RELOC(model->unk_8);
             if (prev != model->unk_8) {
-                fn_1_13A28(model->unk_8, lbl_1_bss_3BE0);
+                fn_1_13A28((struct Fn1_13A28 *)model->unk_8, (s32)(*(ColiHeader **)&lbl_1_bss_3BE0));
             }
             prev = model->unk_8;
         }
     }
-    RELOC(lbl_1_bss_3BE0->unk_14);
-    lbl_1_bss_3BE0->objects = OFFSET_TO_PTR(lbl_1_bss_3BE0, lbl_1_bss_3BE0->objects);
+    RELOC((*(ColiHeader **)&lbl_1_bss_3BE0)->unk_14);
+    (*(ColiHeader **)&lbl_1_bss_3BE0)->objects = OFFSET_TO_PTR((*(ColiHeader **)&lbl_1_bss_3BE0), (*(ColiHeader **)&lbl_1_bss_3BE0)->objects);
     {
         ColiObject *obj;
 
-        for (i = 0, obj = lbl_1_bss_3BE0->objects; i < lbl_1_bss_3BE0->objectCount; i++, obj++) {
+        for (i = 0, obj = (*(ColiHeader **)&lbl_1_bss_3BE0)->objects; i < (*(ColiHeader **)&lbl_1_bss_3BE0)->objectCount; i++, obj++) {
             s32 j;
 
             if (0.0f == obj->unk_108 && 0.0f == obj->unk_10C) {
-                obj->unk_108 = lbl_1_bss_3BE0->unk_0;
-                obj->unk_10C = lbl_1_bss_3BE0->unk_4;
+                obj->unk_108 = (*(ColiHeader **)&lbl_1_bss_3BE0)->unk_0;
+                obj->unk_10C = (*(ColiHeader **)&lbl_1_bss_3BE0)->unk_4;
             }
             if (obj->anim != NULL) {
-                adjust_anim_ptrs(&obj->anim, lbl_1_bss_3BE0);
+                adjust_anim_ptrs(&obj->anim, (*(ColiHeader **)&lbl_1_bss_3BE0));
             }
             RELOC(obj->unk_24);
             for (j = 0; j < 14; j++) {
@@ -868,7 +861,7 @@ void fn_1_13B98(s32 course, s32 initModels) {
                     s32 k;
                     void **q;
 
-                    obj->banks0[j] = OFFSET_TO_PTR(lbl_1_bss_3BE0, obj->banks0[j]);
+                    obj->banks0[j] = OFFSET_TO_PTR((*(ColiHeader **)&lbl_1_bss_3BE0), obj->banks0[j]);
                     for (k = 0, q = obj->banks0[j]; k < obj->columns * obj->rows; k++, q++) {
                         RELOC(*q);
                     }
@@ -880,7 +873,7 @@ void fn_1_13B98(s32 course, s32 initModels) {
                     s32 k;
                     void **q;
 
-                    obj->banks1[j] = OFFSET_TO_PTR(lbl_1_bss_3BE0, obj->banks1[j]);
+                    obj->banks1[j] = OFFSET_TO_PTR((*(ColiHeader **)&lbl_1_bss_3BE0), obj->banks1[j]);
                     for (k = 0, q = obj->banks1[j]; k < obj->columns * obj->rows; k++, q++) {
                         RELOC(*q);
                     }
@@ -900,45 +893,45 @@ void fn_1_13B98(s32 course, s32 initModels) {
             }
         }
     }
-    RELOC(lbl_1_bss_3BE0->unk_20);
-    RELOC(lbl_1_bss_3BE0->unk_24);
-    RELOC(lbl_1_bss_3BE0->unk_2C);
-    RELOC(lbl_1_bss_3BE0->unk_3C);
-    RELOC(lbl_1_bss_3BE0->unk_44);
-    RELOC(lbl_1_bss_3BE0->rec24);
-    for (i = 0; i < lbl_1_bss_3BE0->rec24Count; i++) {
-        lbl_1_bss_3BE0->rec24[i].unk_0 = (void *)((u32)lbl_1_bss_3BE0 + (u32)lbl_1_bss_3BE0->rec24[i].unk_0);
+    RELOC((*(ColiHeader **)&lbl_1_bss_3BE0)->unk_20);
+    RELOC((*(ColiHeader **)&lbl_1_bss_3BE0)->unk_24);
+    RELOC((*(ColiHeader **)&lbl_1_bss_3BE0)->unk_2C);
+    RELOC((*(ColiHeader **)&lbl_1_bss_3BE0)->unk_3C);
+    RELOC((*(ColiHeader **)&lbl_1_bss_3BE0)->unk_44);
+    RELOC((*(ColiHeader **)&lbl_1_bss_3BE0)->rec24);
+    for (i = 0; i < (*(ColiHeader **)&lbl_1_bss_3BE0)->rec24Count; i++) {
+        (*(ColiHeader **)&lbl_1_bss_3BE0)->rec24[i].unk_0 = (void *)((u32)(*(ColiHeader **)&lbl_1_bss_3BE0) + (u32)(*(ColiHeader **)&lbl_1_bss_3BE0)->rec24[i].unk_0);
     }
-    RELOC(lbl_1_bss_3BE0->words);
-    for (i = 0; i < lbl_1_bss_3BE0->wordCount; i++) {
-        lbl_1_bss_3BE0->words[i] = (void *)((u32)lbl_1_bss_3BE0 + (u32)lbl_1_bss_3BE0->words[i]);
+    RELOC((*(ColiHeader **)&lbl_1_bss_3BE0)->words);
+    for (i = 0; i < (*(ColiHeader **)&lbl_1_bss_3BE0)->wordCount; i++) {
+        (*(ColiHeader **)&lbl_1_bss_3BE0)->words[i] = (void *)((u32)(*(ColiHeader **)&lbl_1_bss_3BE0) + (u32)(*(ColiHeader **)&lbl_1_bss_3BE0)->words[i]);
     }
-    if (lbl_1_bss_3BE0->unk_80 != NULL) {
+    if ((*(ColiHeader **)&lbl_1_bss_3BE0)->unk_80 != NULL) {
         ColiAnim *anim;
 
-        lbl_1_bss_3BE0->unk_80 = OFFSET_TO_PTR(lbl_1_bss_3BE0, lbl_1_bss_3BE0->unk_80);
-        anim = lbl_1_bss_3BE0->unk_80;
-        anim->tracks[0].keys = OFFSET_TO_PTR(lbl_1_bss_3BE0, anim->tracks[0].keys);
-        anim->tracks[1].keys = OFFSET_TO_PTR(lbl_1_bss_3BE0, anim->tracks[1].keys);
-        anim->tracks[2].keys = OFFSET_TO_PTR(lbl_1_bss_3BE0, anim->tracks[2].keys);
-        anim->tracks[3].keys = OFFSET_TO_PTR(lbl_1_bss_3BE0, anim->tracks[3].keys);
-        anim->tracks[4].keys = OFFSET_TO_PTR(lbl_1_bss_3BE0, anim->tracks[4].keys);
-        anim->tracks[5].keys = OFFSET_TO_PTR(lbl_1_bss_3BE0, anim->tracks[5].keys);
+        (*(ColiHeader **)&lbl_1_bss_3BE0)->unk_80 = OFFSET_TO_PTR((*(ColiHeader **)&lbl_1_bss_3BE0), (*(ColiHeader **)&lbl_1_bss_3BE0)->unk_80);
+        anim = (*(ColiHeader **)&lbl_1_bss_3BE0)->unk_80;
+        anim->tracks[0].keys = OFFSET_TO_PTR((*(ColiHeader **)&lbl_1_bss_3BE0), anim->tracks[0].keys);
+        anim->tracks[1].keys = OFFSET_TO_PTR((*(ColiHeader **)&lbl_1_bss_3BE0), anim->tracks[1].keys);
+        anim->tracks[2].keys = OFFSET_TO_PTR((*(ColiHeader **)&lbl_1_bss_3BE0), anim->tracks[2].keys);
+        anim->tracks[3].keys = OFFSET_TO_PTR((*(ColiHeader **)&lbl_1_bss_3BE0), anim->tracks[3].keys);
+        anim->tracks[4].keys = OFFSET_TO_PTR((*(ColiHeader **)&lbl_1_bss_3BE0), anim->tracks[4].keys);
+        anim->tracks[5].keys = OFFSET_TO_PTR((*(ColiHeader **)&lbl_1_bss_3BE0), anim->tracks[5].keys);
     }
-    RELOC(lbl_1_bss_3BE0->unk_84);
-    RELOC(lbl_1_bss_3BE0->recA0);
-    for (i = 0; i < lbl_1_bss_3BE0->recA0Count; i++) {
-        ColiRecA0 *rec = &lbl_1_bss_3BE0->recA0[i];
+    RELOC((*(ColiHeader **)&lbl_1_bss_3BE0)->unk_84);
+    RELOC((*(ColiHeader **)&lbl_1_bss_3BE0)->recA0);
+    for (i = 0; i < (*(ColiHeader **)&lbl_1_bss_3BE0)->recA0Count; i++) {
+        ColiRecA0 *rec = &(*(ColiHeader **)&lbl_1_bss_3BE0)->recA0[i];
 
         RELOC(rec->unk_C);
         RELOC(rec->unk_14);
         RELOC(rec->unk_1C);
     }
-    RELOC(lbl_1_bss_3BE0->rec70);
-    for (i = 0; i < lbl_1_bss_3BE0->rec70Count; i++) {
-        ColiRec70 *rec = &lbl_1_bss_3BE0->rec70[i];
+    RELOC((*(ColiHeader **)&lbl_1_bss_3BE0)->rec70);
+    for (i = 0; i < (*(ColiHeader **)&lbl_1_bss_3BE0)->rec70Count; i++) {
+        ColiRec70 *rec = &(*(ColiHeader **)&lbl_1_bss_3BE0)->rec70[i];
 
-        rec->unk_0 = OFFSET_TO_PTR(lbl_1_bss_3BE0, rec->unk_0);
+        rec->unk_0 = OFFSET_TO_PTR((*(ColiHeader **)&lbl_1_bss_3BE0), rec->unk_0);
         RELOC(rec->unk_24);
         RELOC(rec->unk_2C);
         RELOC(rec->unk_34);
@@ -947,66 +940,66 @@ void fn_1_13B98(s32 course, s32 initModels) {
         RELOC(rec->unk_4C);
         RELOC(rec->unk_54);
         if (rec->unk_4C != NULL) {
-            rec->unk_5C = OFFSET_TO_PTR(lbl_1_bss_3BE0, rec->unk_5C);
+            rec->unk_5C = OFFSET_TO_PTR((*(ColiHeader **)&lbl_1_bss_3BE0), rec->unk_5C);
         }
     }
-    RELOC(lbl_1_bss_3BE0->unk_90);
-    RELOC(lbl_1_bss_3BE0->unk_98);
-    RELOC(lbl_1_bss_3BE0->unk_A0);
-    RELOC(lbl_1_bss_3BE0->unk_A8);
-    RELOC(lbl_1_bss_3BE0->unk_B0);
-    if (lbl_1_bss_3BE0->rec38 != NULL) {
+    RELOC((*(ColiHeader **)&lbl_1_bss_3BE0)->unk_90);
+    RELOC((*(ColiHeader **)&lbl_1_bss_3BE0)->unk_98);
+    RELOC((*(ColiHeader **)&lbl_1_bss_3BE0)->unk_A0);
+    RELOC((*(ColiHeader **)&lbl_1_bss_3BE0)->unk_A8);
+    RELOC((*(ColiHeader **)&lbl_1_bss_3BE0)->unk_B0);
+    if ((*(ColiHeader **)&lbl_1_bss_3BE0)->rec38 != NULL) {
         ColiRec38 *rec;
 
-        lbl_1_bss_3BE0->rec38 = OFFSET_TO_PTR(lbl_1_bss_3BE0, lbl_1_bss_3BE0->rec38);
-        for (i = 0, rec = lbl_1_bss_3BE0->rec38; i < lbl_1_bss_3BE0->rec38Count; i++, rec++) {
+        (*(ColiHeader **)&lbl_1_bss_3BE0)->rec38 = OFFSET_TO_PTR((*(ColiHeader **)&lbl_1_bss_3BE0), (*(ColiHeader **)&lbl_1_bss_3BE0)->rec38);
+        for (i = 0, rec = (*(ColiHeader **)&lbl_1_bss_3BE0)->rec38; i < (*(ColiHeader **)&lbl_1_bss_3BE0)->rec38Count; i++, rec++) {
             if (rec->anim != NULL) {
-                adjust_anim_ptrs(&rec->anim, lbl_1_bss_3BE0);
+                adjust_anim_ptrs(&rec->anim, (*(ColiHeader **)&lbl_1_bss_3BE0));
             }
         }
     }
-    if (lbl_1_bss_3BE0->grid != NULL) {
+    if ((*(ColiHeader **)&lbl_1_bss_3BE0)->grid != NULL) {
         void **cell;
 
-        lbl_1_bss_3BE0->grid = OFFSET_TO_PTR(lbl_1_bss_3BE0, lbl_1_bss_3BE0->grid);
-        for (i = 0, cell = lbl_1_bss_3BE0->grid; i < lbl_1_bss_3BE0->gridColumns * lbl_1_bss_3BE0->gridRows; i++, cell++) {
+        (*(ColiHeader **)&lbl_1_bss_3BE0)->grid = OFFSET_TO_PTR((*(ColiHeader **)&lbl_1_bss_3BE0), (*(ColiHeader **)&lbl_1_bss_3BE0)->grid);
+        for (i = 0, cell = (*(ColiHeader **)&lbl_1_bss_3BE0)->grid; i < (*(ColiHeader **)&lbl_1_bss_3BE0)->gridColumns * (*(ColiHeader **)&lbl_1_bss_3BE0)->gridRows; i++, cell++) {
             RELOC(*cell);
         }
     }
-    if (lbl_1_bss_3BE0->sub54 != NULL) {
+    if ((*(ColiHeader **)&lbl_1_bss_3BE0)->sub54 != NULL) {
         ColiSub54 *sub;
 
-        lbl_1_bss_3BE0->sub54 = OFFSET_TO_PTR(lbl_1_bss_3BE0, lbl_1_bss_3BE0->sub54);
-        for (i = 0, sub = lbl_1_bss_3BE0->sub54; i < lbl_1_bss_3BE0->sub54Count; i++, sub++) {
+        (*(ColiHeader **)&lbl_1_bss_3BE0)->sub54 = OFFSET_TO_PTR((*(ColiHeader **)&lbl_1_bss_3BE0), (*(ColiHeader **)&lbl_1_bss_3BE0)->sub54);
+        for (i = 0, sub = (*(ColiHeader **)&lbl_1_bss_3BE0)->sub54; i < (*(ColiHeader **)&lbl_1_bss_3BE0)->sub54Count; i++, sub++) {
             if (sub->unk_30 != NULL) {
-                adjust_sub54_anim(&sub->unk_30, lbl_1_bss_3BE0);
+                adjust_sub54_anim(&sub->unk_30, (*(ColiHeader **)&lbl_1_bss_3BE0));
             }
             if (sub->unk_34 != NULL) {
-                adjust_sub54_ptrs(&sub->unk_34, lbl_1_bss_3BE0);
+                adjust_sub54_ptrs(&sub->unk_34, (*(ColiHeader **)&lbl_1_bss_3BE0));
             }
             if (sub->unk_38 != NULL) {
-                adjust_sub54_c(&sub->unk_38, lbl_1_bss_3BE0);
+                adjust_sub54_c(&sub->unk_38, (*(ColiHeader **)&lbl_1_bss_3BE0));
             }
             RELOC(sub->unk_3C);
-            sub->unk_8 = OFFSET_TO_PTR(lbl_1_bss_3BE0, sub->unk_8);
+            sub->unk_8 = OFFSET_TO_PTR((*(ColiHeader **)&lbl_1_bss_3BE0), sub->unk_8);
         }
     }
-    if (lbl_1_bss_3BE0->groupCount > 0) {
+    if ((*(ColiHeader **)&lbl_1_bss_3BE0)->groupCount > 0) {
         ColiGroup *group;
 
-        lbl_1_bss_3BE0->groups = OFFSET_TO_PTR(lbl_1_bss_3BE0, lbl_1_bss_3BE0->groups);
-        for (i = 0, group = lbl_1_bss_3BE0->groups; i < lbl_1_bss_3BE0->groupCount; i++, group++) {
+        (*(ColiHeader **)&lbl_1_bss_3BE0)->groups = OFFSET_TO_PTR((*(ColiHeader **)&lbl_1_bss_3BE0), (*(ColiHeader **)&lbl_1_bss_3BE0)->groups);
+        for (i = 0, group = (*(ColiHeader **)&lbl_1_bss_3BE0)->groups; i < (*(ColiHeader **)&lbl_1_bss_3BE0)->groupCount; i++, group++) {
             ColiElem *elem;
             s32 j;
 
-            group->elems = OFFSET_TO_PTR(lbl_1_bss_3BE0, group->elems);
+            group->elems = OFFSET_TO_PTR((*(ColiHeader **)&lbl_1_bss_3BE0), group->elems);
             for (j = 0, elem = group->elems; j < group->count; j++, elem++) {
-                elem->unk_4 = OFFSET_TO_PTR(lbl_1_bss_3BE0, elem->unk_4);
+                elem->unk_4 = OFFSET_TO_PTR((*(ColiHeader **)&lbl_1_bss_3BE0), elem->unk_4);
             }
             if (group->unk_C != NULL) {
                 ColiGroupC *c;
 
-                group->unk_C = OFFSET_TO_PTR(lbl_1_bss_3BE0, group->unk_C);
+                group->unk_C = OFFSET_TO_PTR((*(ColiHeader **)&lbl_1_bss_3BE0), group->unk_C);
                 c = group->unk_C;
                 RELOC(c->unk_1C);
                 RELOC(c->unk_20);
@@ -1014,15 +1007,15 @@ void fn_1_13B98(s32 course, s32 initModels) {
         }
     }
 
-    lbl_1_bss_3BE4 = fn_1_45D0(lbl_801A6410, lbl_1_bss_3BE0->objectCount * sizeof(ColiRuntime), "stcoli.c", 0x2A7);
-    fn_800793D4(lbl_1_bss_3BE4, 0, lbl_1_bss_3BE0->objectCount * sizeof(ColiRuntime));
+    lbl_1_bss_3BE4 = fn_1_45D0(lbl_801A6410[0], (*(ColiHeader **)&lbl_1_bss_3BE0)->objectCount * sizeof(ColiRuntime), "stcoli.c", 0x2A7);
+    fn_800793D4(lbl_1_bss_3BE4, 0, (*(ColiHeader **)&lbl_1_bss_3BE0)->objectCount * sizeof(ColiRuntime));
     init_runtimes();
-    if (initModels != 0 && lbl_1_bss_3BE0->sub54 != NULL) {
-        fn_1_9D420(lbl_1_bss_3BE0->sub54, lbl_1_bss_3BE0->sub54Count);
+    if (initModels != 0 && (*(ColiHeader **)&lbl_1_bss_3BE0)->sub54 != NULL) {
+        fn_1_9D420((*(ColiHeader **)&lbl_1_bss_3BE0)->sub54, (*(ColiHeader **)&lbl_1_bss_3BE0)->sub54Count);
     }
-    lbl_1_bss_7AC88 = *lbl_1_bss_3BE0->unk_90 / 512.0f;
-    lbl_1_bss_7AC9C = 512.0f / *lbl_1_bss_3BE0->unk_90;
-    if (lbl_1_bss_3BE0->models != NULL) {
+    lbl_1_bss_7AC88 = *(*(ColiHeader **)&lbl_1_bss_3BE0)->unk_90 / 512.0f;
+    lbl_1_bss_7AC9C = 512.0f / *(*(ColiHeader **)&lbl_1_bss_3BE0)->unk_90;
+    if ((*(ColiHeader **)&lbl_1_bss_3BE0)->models != NULL) {
         fn_1_14DE8(course);
     }
 }

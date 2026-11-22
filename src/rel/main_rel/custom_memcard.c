@@ -1,6 +1,9 @@
 #include "types.h"
 #include "rel/main_rel/globals.h"
+#define lbl_1_bss_8CA40 _cm_lbl_1_bss_8CA40
 #include "rel/main_rel/custom_memcard.h"
+#undef lbl_1_bss_8CA40
+extern u8 lbl_1_bss_8CA40[];
 
 extern u32 lbl_801A6410;
 extern u8 fn_1_B7C00(void);
@@ -14,12 +17,7 @@ extern void fn_1_1324C4(void *arg0);
 extern void fn_1_132774(void *arg0);
 
 extern u32 lbl_801A6410;
-extern u8 fn_1_B7C00(void);
-extern s32 fn_1_B7CD4(void);
-extern s32 fn_1_B7C5C(void);
 extern void OSReport(const char* format, ...);
-extern void fn_80008BA8(void*, void*, s32);
-extern void fn_1_46B4(u32 arg0, void* arg1, u8* arg2, s32 arg3);
 
 /* fzgx:begin fn_1_1312F0 */
 // Reset the memcard state after reporting an unavailable card.
@@ -45,8 +43,9 @@ void fn_1_1312F0(void) {
 }
 /* fzgx:end fn_1_1312F0 */
 
-/* fzgx:begin fn_1_131390 noprologue */
-#include "types.h"
+extern void fn_1_F7870();
+extern void fn_8006F038(void *, void *, s16);
+/* fzgx:begin fn_1_131390 */
 #include "dolphin/os/OSTime.h"
 
 typedef struct {
@@ -56,7 +55,7 @@ typedef struct {
     u32 unk_8;
     u32 unk_C;
     u8 pad_10[0x14];
-} MemcardRequest;
+} Fn131390MemcardRequest;
 
 typedef struct {
     s32 unk_00;
@@ -66,9 +65,8 @@ typedef struct {
     u32 unk_10;
     u8 pad_14[4];
     u32 unk_18;
-} MemcardState;
+} Fn131390MemcardState;
 
-extern MemcardState lbl_1_bss_8CA40;
 extern u32 lbl_801A6410;
 extern u8 lbl_1_data_40EA4[0x54];
 extern u8 lbl_1_data_40F0C[0x22];
@@ -79,9 +77,9 @@ extern void fn_80008BEC(void* dst, s32 value, u32 size);
 extern void fn_1_AA6D8(s32 arg0, u8 arg1, void* arg2);
 
 void fn_1_131390(void) {
-    MemcardState* state = &lbl_1_bss_8CA40;
+    Fn131390MemcardState* state = (Fn131390MemcardState*)&lbl_1_bss_8CA40;
     OSCalendarTime cal;
-    MemcardRequest request;
+    Fn131390MemcardRequest request;
     u8* buf;
 
     if (state->unk_10 == 0) {
@@ -135,8 +133,7 @@ void fn_1_1314A4(void) {
 }
 /* fzgx:end fn_1_1314A4 */
 
-/* fzgx:begin fn_1_131558 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_131558 */
 
 typedef struct {
     s32 unk_00;
@@ -148,20 +145,16 @@ typedef struct {
     u8 unk_140[0x1800];
 } CustomMemcardState;
 
-extern CustomMemcardState lbl_1_bss_8CA40;
 extern u8 lbl_1_data_40EA4[84];
-extern char lbl_1_data_40F30[34];
 
 extern void OSPanic(const char* arg0, s32 arg1, const char* arg2, ...);
-extern void fn_80008BEC(void* dst, s32 value, u32 size);
-extern void fn_1_AA6D8(s32 arg0, u8 arg1, void* arg2);
 
 void fn_1_131558(void) {
-    CustomMemcardState* state = &lbl_1_bss_8CA40;
+    CustomMemcardState* state = (CustomMemcardState*)&lbl_1_bss_8CA40;
     u8 request[0x24];
 
     if (state->unk_14 == 0) {
-        OSPanic((const char*)lbl_1_data_40EA4, 0x197, lbl_1_data_40F30);
+        OSPanic((const char*)lbl_1_data_40EA4, 0x197, (const char*)lbl_1_data_40F30);
         state->unk_00 = -1;
         state->unk_08 = -1;
     } else if (state->unk_08 == -1) {
@@ -179,30 +172,14 @@ void fn_1_131558(void) {
 
 /* fzgx:begin fn_1_131620 */
 extern u32 lbl_801A6410;
-extern u8 fn_1_B7C00(void);
-extern s32 fn_1_B7CD4(void);
-extern s32 fn_1_B7C5C(void);
 extern void OSReport(const char* format, ...);
-extern void fn_1_46B4(u32 arg0, void* arg1, u8* arg2, s32 arg3);
-extern void fn_80008BA8(void*, void*, s32);
 extern u32 lbl_1_bss_8CA6C[1605];
-extern void fn_1_1324C4(void *arg0);
-extern void fn_1_132774(void *arg0);
 
 extern u32 lbl_801A6410;
-extern u8 fn_1_B7C00(void);
-extern s32 fn_1_B7CD4(void);
-extern s32 fn_1_B7C5C(void);
 extern void OSReport(const char* format, ...);
-extern void fn_80008BA8(void*, void*, s32);
-extern void fn_1_46B4(u32 arg0, void* arg1, u8* arg2, s32 arg3);
 
 extern u32 lbl_801A6410;
-extern u8 fn_1_B7C00(void);
-extern s32 fn_1_B7CD4(void);
-extern s32 fn_1_B7C5C(void);
 extern void OSReport(const char*, ...);
-extern void fn_1_46B4(u32, void*, u8*, s32);
 
 typedef struct {
     u8 pad_00[0x24];
@@ -294,10 +271,7 @@ u32 fn_1_1317B4(void) {
 extern u32 lbl_801A6410;
 
 
-extern u32 fn_1_4630(u32 arg0, u32 arg1, u8 *arg2, u32 arg3);
-extern void fn_80008BEC(void *arg0, u32 arg1, u32 arg2);
 extern s32 fn_1_B7E98(s32 arg0);
-extern void fn_1_AA6D8(s32 arg0, s32 arg1, void *arg2);
 
 typedef struct {
     u8 unk_0;
@@ -387,9 +361,7 @@ typedef struct {
 } EntryObj;
 
 extern void OSReport(const char *, ...);
-extern void fn_8006F038(Vec3 *, Vec3 *, s16);
 extern void lbl_8006DCDC(void);
-extern void fn_1_F7870(u32);
 extern u32 lbl_1_rodata_8610[3];
 extern const f32 lbl_1_rodata_861C;
 extern void lbl_8006D7DC(void *);
@@ -512,7 +484,6 @@ struct Obj {
     u32 field_50[1];
 };
 
-extern void fn_1_13198C(s16, u32*, u32*, u32, u32, u32);
 
 #pragma opt_propagation off
 s32 fn_1_131B90(Obj* obj) {
@@ -535,7 +506,7 @@ s32 fn_1_131B90(Obj* obj) {
     local_a[1] = b0;
     local_a[2] = obj->field_40;
     index = obj->index;
-    fn_1_13198C(index, local_a, local_b, obj->field_4, obj->field_8,
+    fn_1_13198C(index, local_a, local_b, (void *)obj->field_4, (void *)obj->field_8,
                 obj->field_50[index]);
     return 0;
 }
@@ -755,19 +726,11 @@ extern const f32 lbl_1_rodata_8634;
 extern const f32 lbl_1_rodata_8638;
 extern const f32 lbl_1_rodata_863C;
 extern void fn_1_D66F8(u8, u8 *, s8 *);
-extern void fn_1_F7870(void *);
-extern void fn_8006F038(Sig_fn_8006F038_Vec3 *, Sig_fn_8006F038_Vec3 *, s16);
-extern void lbl_8006DCDC(void);
 extern void lbl_8006D758(void);
 extern u32 mathutil_mtxA_rotate_x(u32);
 extern u32 mathutil_mtxA_rotate_y(u32);
 extern void lbl_8006E14C(f32);
-extern void lbl_8006DB74(void *);
-extern void lbl_8006DFE8(void *);
 extern void fn_80072558(void);
-extern void fn_1_13C134(void);
-extern void fn_1_13C16C(void);
-extern void fn_1_870BC(fn_1_568F8_Data *, s8, fn_1_568F8_Data *, s32, u8, f32);
 extern void *fn_1_12F118(void);
 extern u8 *fn_1_36AD0(void);
 extern u8 fn_1_D66B8(u8);
@@ -986,7 +949,7 @@ extern const struct fn_1_1324C4_f32 lbl_1_rodata_8648;
 extern s32 lbl_801A66B4;
 extern int fn_1_8623C(void);
 extern void fn_1_134AD4(void);
-extern void fn_1_136174(s32, s32, s32, s32, s32, s32, s32, f32, f32);
+extern void fn_1_136174(s32, s32, s32, s16, s16, s16, s32, f32, f32);
 extern void fn_1_1363F0(s32, s32, s32);
 extern void fn_1_13DDB8(void);
 extern void fn_1_13EA9C(void *);
@@ -995,15 +958,15 @@ extern void fn_1_132FB4(void);
 extern void fn_1_133DBC(s32);
 extern void fn_1_134A4C(void);
 extern void fn_1_134EE4(s32, s32, s32, f32);
-extern void fn_1_135894(s16, s16, s32, s32, s32, s32, s32, f32, f32);
-extern void fn_1_1368A0(s32, s32, s32, f32, f32, f32, f32, f32);
-extern void fn_1_13750C(s32, s32, s32, s32);
+extern void fn_1_135894(s16, s16, s32, s16, s32, s16, s32, f32, f32);
+extern void fn_1_1368A0(s16, s32, s32, f32, f32, f32, f32, f32);
+extern void fn_1_13750C(s32, s32, s16, s16);
 extern void fn_1_1380F0(void *);
 extern void fn_1_139AEC(void *);
 extern void fn_1_139D60(void *);
 extern void fn_1_139F18(void *);
-extern void fn_1_13A848(s32, s32, s32, s32, s32, f32, f32);
-extern void fn_1_13A994(s32, s32, s32, s32, s32, s32, f32, f32);
+extern void fn_1_13A848(s32, s32, s32, s16, s32, f32, f32);
+extern void fn_1_13A994(s32, s32, s32, s16, s16, s32, f32, f32);
 extern void fn_1_13B328(u32, s32);
 extern void fn_1_13D02C(void);
 extern void fn_1_13DA0C(void);
@@ -1074,26 +1037,13 @@ void fn_1_1324C4(void *arg0) {
 #include "font.h"
 
 extern u32 lbl_801A6410;
-extern u8 fn_1_B7C00(void);
-extern s32 fn_1_B7CD4(void);
-extern s32 fn_1_B7C5C(void);
 extern void OSReport(const char* format, ...);
-extern void fn_1_46B4(u32 arg0, void* arg1, u8* arg2, s32 arg3);
-extern void fn_80008BA8(void*, void*, s32);
 extern u32 lbl_1_bss_8CA6C[1605];
-extern void fn_1_1324C4(void *arg0);
-extern void fn_1_132774(void *arg0);
 
 extern u32 lbl_801A6410;
-extern u8 fn_1_B7C00(void);
-extern s32 fn_1_B7CD4(void);
-extern s32 fn_1_B7C5C(void);
 extern void OSReport(const char* format, ...);
-extern void fn_80008BA8(void*, void*, s32);
-extern void fn_1_46B4(u32 arg0, void* arg1, u8* arg2, s32 arg3);
 
 
-extern u32 lbl_801A66B4;
 extern const FontDrawPacket lbl_1_rodata_26F8;
 extern const f32 lbl_1_rodata_85F0;
 extern const f32 lbl_1_rodata_861C;
@@ -1122,29 +1072,12 @@ extern const f32 lbl_1_rodata_8688;
 extern const f32 lbl_1_rodata_868C;
 extern const f32 lbl_1_rodata_8690;
 
-extern void fn_1_13D02C(void);
-extern void fn_1_49410(void);
-extern void fn_1_139F18(s16 *);
-extern void fn_1_139D60(s16 *);
 extern void fn_1_13A460(s16 *);
 extern void fn_1_13A038(s16 *);
 extern void fn_1_13A654(s16 *);
 extern void fn_1_13A21C(s16 *);
 extern void fn_1_496FC(f32, f32);
-extern void fn_1_133DBC(s32);
-extern void fn_1_134AD4(void);
-extern void fn_1_134A4C(void);
-extern void *fn_1_13F7F8(s32, s32);
-extern void fn_1_1380F0(void *);
 extern void fn_1_13ABA8(u32);
-extern void fn_1_134EE4(s32, s32, s32, f32);
-extern void fn_1_135894(s32, s16, s32, s16, s32, s16, s32, f32, f32);
-extern void fn_1_136174(s32, s32, s32, s16, s16, s16, s32, f32, f32);
-extern void fn_1_1363F0(u8, s32, s32);
-extern void fn_1_1368A0(s16, u8, s32, f32, f32, f32, f32, f32);
-extern void fn_1_13750C(s32, s32, s16, s16);
-extern void fn_1_13A848(s32, s32, s32, s16, s32, f32, f32);
-extern void fn_1_13A994(s32, s32, s32, s16, s16, s32, f32, f32);
 extern u16 fn_1_48690(u32);
 extern u16 fn_1_486C4(u32);
 extern void fn_1_1332FC(s32, s32, s32);
@@ -1250,8 +1183,8 @@ void fn_1_132774(void *arg0) {
             f32 h = lbl_1_rodata_85F0;
             fn_1_136174(0xE7, 0x163, 1, card, lbl_801A66B4, *(s16 *)arg0, 0, h, h);
         }
-        fn_1_1363F0(sel, 0, 0);
-        fn_1_1368A0(card, sel, 0, lbl_1_rodata_865C.unk_0, lbl_1_rodata_8644, lbl_1_rodata_8660.unk_0, lbl_1_rodata_863C,
+        fn_1_1363F0((u8)(sel), 0, 0);
+        fn_1_1368A0(card, (u8)(sel), 0, lbl_1_rodata_865C.unk_0, lbl_1_rodata_8644, lbl_1_rodata_8660.unk_0, lbl_1_rodata_863C,
                     lbl_1_rodata_863C);
         fn_1_13750C(0x12, 0x3A, card, index);
         fn_1_13A848(0x1C0, 0x114, 1, card, 0, lbl_1_rodata_864C, lbl_1_rodata_8650);
@@ -1386,18 +1319,13 @@ extern const f32 lbl_1_rodata_86C8;
 extern const f32 lbl_1_rodata_86CC;
 extern const f32 lbl_1_rodata_86D0;
 extern const f32 lbl_1_rodata_86D4;
-extern f32 lbl_1_rodata_26F8[22];
 
-extern u8 fn_1_D66B0(void);
 extern u8 fn_1_D6740(u8);
-extern void fn_80008BEC(void *, int, u32);
 extern void fn_1_51564(u16, u16, u16, u16, u16, u16);
 extern u32 fn_1_5158C(FontDrawPacket *, u32, u32, u32);
 extern int fn_1_4F734(FontDrawPacket *);
 extern char *strncpy(char *, const char *, size_t);
 extern void fn_1_50164(f32, f32, f32, f32, void *);
-extern void fn_1_49410(void);
-extern void fn_1_496FC(f32, f32);
 extern void fn_1_495C8(s32);
 extern void fn_1_4955C(f32, f32);
 extern void fn_1_49590(f32);
@@ -1439,12 +1367,12 @@ void fn_1_132FB4(void) {
     pbuf = buf;
 
     do {
-        if (var_r29 == fn_1_D66B0()) {
+        if (var_r29 == (u8)fn_1_D66B0()) {
             var_r28 += 1;
             var_r26 += 4;
         } else if (fn_1_D6740(var_r29) != 0) {
             fn_80008BEC(pbuf, 0, 0x11);
-            packet = *(FontDrawPacket *)lbl_1_rodata_26F8;
+            packet = lbl_1_rodata_26F8;
             packet.image = 0x10000 - 0x61EC;
             fn_1_51564(0, 0, 0x18, 0x14, 2, 2);
             fn_1_5158C(&packet, packet.image, (s16)(var_r28 % 2), (s16)(var_r28 / 2));
@@ -1452,7 +1380,7 @@ void fn_1_132FB4(void) {
             packet.y = lbl_1_rodata_86B4;
             fn_1_4F734(&packet);
             strncpy(pbuf, (const char *)(*(u32 *)((u8 *)tblA + var_r26)), 0x10);
-            packet = *(FontDrawPacket *)lbl_1_rodata_26F8;
+            packet = lbl_1_rodata_26F8;
             packet.image = 12;
             *(u32 *)((u8 *)&packet + 0x30) = 5;
             packet.x = var_r31;
