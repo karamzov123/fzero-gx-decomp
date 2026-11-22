@@ -7751,65 +7751,34 @@
   },
   {
     "module": "main",
-    "source": "dol/AIGetStreamVolRight.c",
+    "source": "dol/AIInitDMA.c",
+    "status": "matching",
     "symbols": [
       "AIGetStreamVolRight",
       "AIInit",
       "__AISHandler",
-      "__AIDHandler"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/AIInitDMA.c",
-    "symbols": [
-      "AIInitDMA"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/AISetDSPSampleRate.c",
-    "symbols": [
+      "__AIDHandler",
+      "AIInitDMA",
       "AISetDSPSampleRate",
       "AIGetDSPSampleRate",
       "__AI_set_stream_sample_rate",
       "AIGetStreamSampleRate",
       "AISetStreamVolLeft",
       "AIGetStreamVolLeft",
-      "AISetStreamVolRight"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/AIStartDMA.c",
-    "symbols": [
-      "AIStartDMA"
-    ],
-    "status": "matching",
-    "matching_for": [
-      "GFZE01"
-    ],
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/AIStopDMA.c",
-    "symbols": [
+      "AISetStreamVolRight",
+      "AIStartDMA",
       "AIStopDMA",
       "AISetStreamPlayState",
       "AIGetStreamPlayState"
     ],
-    "status": "matching",
     "mw_version": "GC/1.2.5n",
-    "collapsed": true
+    "extra_cflags": [
+      "-inline",
+      "on,noauto"
+    ],
+    "matching_for": [
+      "GFZE01"
+    ]
   },
   {
     "module": "main",
@@ -24082,75 +24051,24 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_80020874.c",
+    "source": "dol/ax/AXAlloc.c",
     "symbols": [
-      "fn_80020874"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80020928.c",
-    "symbols": [
-      "fn_80020928"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_800209DC.c",
-    "symbols": [
-      "fn_800209DC"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_800209FC.c",
-    "symbols": [
+      "fn_80020874",
+      "fn_80020928",
+      "fn_800209DC",
       "fn_800209FC",
       "fn_80020A0C",
-      "fn_80020A28"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80020ABC.c",
-    "symbols": [
-      "fn_80020ABC"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80020B3C.c",
-    "symbols": [
-      "fn_80020B3C"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80020CB0.c",
-    "symbols": [
+      "fn_80020A28",
+      "fn_80020ABC",
+      "fn_80020B3C",
       "fn_80020CB0"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-inline",
+      "on,noauto"
+    ],
     "collapsed": true
   },
   {

@@ -217,12 +217,6 @@ dol/SIBios.c:
 	.text       start:0x8001191C end:0x800132D4 align:4
 	.sbss       start:0x801A6810 end:0x801A6818 align:8
 
-dol/fn_800209DC.c:
-	.text       start:0x800209DC end:0x800209FC align:4
-
-dol/fn_800209FC.c:
-	.text       start:0x800209FC end:0x80020ABC align:4
-
 dol/AXRNA_SetOutPan.c:
 	.text       start:0x8005A698 end:0x8005A74C align:4
 
@@ -313,9 +307,6 @@ dol/__OSSetInterruptHandler.c:
 dol/fn_8000BE5C.c:
 	.text       start:0x8000BE5C end:0x8000BE68 align:4
 
-dol/AIGetStreamVolRight.c:
-	.text       start:0x8001E304 end:0x8001E5A8 align:4
-
 dol/fn_800466D4.c:
 	.text       start:0x800466D4 end:0x80046718 align:4
 
@@ -399,9 +390,6 @@ dol/DVDCompareDiskID.c:
 
 dol/__DVDPrintFatalMessage.c:
 	.text       start:0x8001A2EC end:0x8001A31C align:4
-
-dol/fn_80020ABC.c:
-	.text       start:0x80020ABC end:0x80020B3C align:4
 
 dol/fn_8007A23C.c:
 	.text       start:0x8007A23C end:0x8007A2E8 align:4
@@ -556,17 +544,11 @@ dol/os/OSAlarm.c:
 dol/dvd/dvdqueue.c:
 	.text       start:0x80019E64 end:0x8001A05C align:4
 
-dol/fn_80020874.c:
-	.text       start:0x80020874 end:0x80020928 align:4
-
-dol/fn_80020928.c:
-	.text       start:0x80020928 end:0x800209DC align:4
+dol/ax/AXAlloc.c:
+	.text       start:0x80020874 end:0x80020D58 align:4
 
 dol/fn_80023394.c:
 	.text       start:0x80023394 end:0x80023438 align:4
-
-dol/fn_80020CB0.c:
-	.text       start:0x80020CB0 end:0x80020D58 align:4
 
 dol/fn_80020D58.c:
 	.text       start:0x80020D58 end:0x80020E4C align:4
@@ -1040,9 +1022,6 @@ dol/fn_80072A50.c:
 dol/fn_8006CCC8.c:
 	.text       start:0x8006CCC8 end:0x8006CDFC align:4
 
-dol/AIStartDMA.c:
-	.text       start:0x8001DFCC end:0x8001DFE4 align:4
-
 dol/fn_8006CE1C.c:
 	.text       start:0x8006CE1C end:0x8006CFF8 align:4
 
@@ -1245,13 +1224,7 @@ dol/pad/Pad.c:
 	.text       start:0x8001C304 end:0x8001DF44
 
 dol/AIInitDMA.c:
-	.text       start:0x8001DF44 end:0x8001DFCC align:4
-
-dol/AIStopDMA.c:
-	.text       start:0x8001DFE4 end:0x8001E0E4 align:4
-
-dol/AISetDSPSampleRate.c:
-	.text       start:0x8001E0E4 end:0x8001E304 align:4
+	.text       start:0x8001DF44 end:0x8001E5A8 align:4
 
 dol/os/OSResetSW.c:
 	.text       start:0x8000F264 end:0x8000F610 align:4
@@ -1951,9 +1924,6 @@ dol/fn_8006BA74.c:
 
 dol/fn_80070774.c:
 	.text       start:0x80070774 end:0x80070A58 align:4
-
-dol/fn_80020B3C.c:
-	.text       start:0x80020B3C end:0x80020CB0 align:4
 
 dol/fn_800243C4.c:
 	.text       start:0x800243C4 end:0x800244C8 align:4
