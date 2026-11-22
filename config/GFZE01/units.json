@@ -37292,81 +37292,6 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/data/lbl_1_bss_7AC48.c",
-    "symbols": [
-      "lbl_1_bss_7AC48"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/data/lbl_1_bss_7AC50.c",
-    "symbols": [
-      "lbl_1_bss_7AC50",
-      "lbl_1_bss_7AC54",
-      "lbl_1_bss_7AC64"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/data/lbl_1_bss_7AC88.c",
-    "symbols": [
-      "lbl_1_bss_7AC88"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/data/lbl_1_bss_7AC90.c",
-    "symbols": [
-      "lbl_1_bss_7AC90",
-      "lbl_1_bss_7AC9C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/data/lbl_1_bss_7ACA0.c",
-    "symbols": [
-      "lbl_1_bss_7ACA0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/data/lbl_1_bss_7ACD0.c",
-    "symbols": [
-      "lbl_1_bss_7ACD0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main_rel",
     "source": "rel/main_rel/data/lbl_1_bss_7ACD8.c",
     "symbols": [
       "lbl_1_bss_7ACD8",
@@ -60311,128 +60236,6 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/data/lbl_1_data_3D290.c",
-    "symbols": [
-      "lbl_1_data_3D290",
-      "lbl_1_data_3D294",
-      "lbl_1_data_3D2A0",
-      "lbl_1_data_3D2AC",
-      "lbl_1_data_3D2B8",
-      "lbl_1_data_3D2C4",
-      "lbl_1_data_3D2CC",
-      "lbl_1_data_3D2D4",
-      "lbl_1_data_3D2DC",
-      "lbl_1_data_3D2E4",
-      "lbl_1_data_3D2F0",
-      "lbl_1_data_3D300",
-      "lbl_1_data_3D310",
-      "lbl_1_data_3D318",
-      "lbl_1_data_3D320",
-      "lbl_1_data_3D32C",
-      "lbl_1_data_3D338",
-      "lbl_1_data_3D348",
-      "lbl_1_data_3D350",
-      "lbl_1_data_3D35C",
-      "lbl_1_data_3D368",
-      "lbl_1_data_3D378",
-      "lbl_1_data_3D380",
-      "lbl_1_data_3D38C",
-      "lbl_1_data_3D398",
-      "lbl_1_data_3D3A8",
-      "lbl_1_data_3D3B0",
-      "lbl_1_data_3D3BC",
-      "lbl_1_data_3D3C4",
-      "lbl_1_data_3D3D0",
-      "lbl_1_data_3D3E0",
-      "lbl_1_data_3D3EC",
-      "lbl_1_data_3D3F8",
-      "lbl_1_data_3D400",
-      "lbl_1_data_3D414",
-      "lbl_1_data_3D424",
-      "lbl_1_data_3D434",
-      "lbl_1_data_3D440",
-      "lbl_1_data_3D44C",
-      "lbl_1_data_3D45C",
-      "lbl_1_data_3D464",
-      "lbl_1_data_3D470",
-      "lbl_1_data_3D478",
-      "lbl_1_data_3D480",
-      "lbl_1_data_3D488"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/data/lbl_1_data_3D490.c",
-    "symbols": [
-      "lbl_1_data_3D490",
-      "lbl_1_data_3D544",
-      "lbl_1_data_3D554"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/data/lbl_1_data_3D558.c",
-    "symbols": [
-      "lbl_1_data_3D558"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/data/lbl_1_data_3D570.c",
-    "symbols": [
-      "lbl_1_data_3D570",
-      "lbl_1_data_3D574",
-      "lbl_1_data_3D57C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/data/lbl_1_data_3D5B0.c",
-    "symbols": [
-      "lbl_1_data_3D5B0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/data/lbl_1_data_3D630.c",
-    "symbols": [
-      "lbl_1_data_3D630",
-      "lbl_1_data_3D634",
-      "lbl_1_data_3D648"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main_rel",
     "source": "rel/main_rel/data/lbl_1_data_3D670.c",
     "symbols": [
       "lbl_1_data_3D670",
@@ -77039,232 +76842,18 @@
       "lbl_1_rodata_5158",
       "lbl_1_rodata_515C",
       "lbl_1_rodata_5160",
-      "lbl_1_rodata_5164",
-      "lbl_1_rodata_5168",
-      "lbl_1_rodata_5394",
-      "lbl_1_rodata_53CC",
-      "lbl_1_rodata_540C",
-      "lbl_1_rodata_5424",
-      "lbl_1_rodata_543C",
-      "lbl_1_rodata_5474",
-      "lbl_1_rodata_5494",
-      "lbl_1_rodata_54CC",
-      "lbl_1_rodata_54F4",
-      "lbl_1_rodata_550C",
-      "lbl_1_rodata_551C",
-      "lbl_1_rodata_552C",
-      "lbl_1_rodata_556C",
-      "lbl_1_rodata_55A4",
-      "lbl_1_rodata_5624",
-      "lbl_1_rodata_5634",
-      "lbl_1_rodata_5684",
-      "lbl_1_rodata_56DC",
-      "lbl_1_rodata_570C",
-      "lbl_1_rodata_5724",
-      "lbl_1_rodata_5754",
-      "lbl_1_rodata_579C",
-      "lbl_1_rodata_59C0",
-      "lbl_1_rodata_5A08",
-      "lbl_1_rodata_5A50",
-      "lbl_1_rodata_5A54",
-      "lbl_1_rodata_5A58",
-      "lbl_1_rodata_5A5C",
-      "lbl_1_rodata_5A60",
-      "lbl_1_rodata_5A64",
-      "lbl_1_rodata_5A68",
-      "lbl_1_rodata_5A80",
-      "lbl_1_rodata_5B10",
-      "lbl_1_rodata_5BE8",
-      "lbl_1_rodata_5C00",
-      "lbl_1_rodata_5C08",
-      "lbl_1_rodata_5C38",
-      "lbl_1_rodata_5C3C",
-      "lbl_1_rodata_5C40",
-      "lbl_1_rodata_5C44",
-      "lbl_1_rodata_5C48",
-      "lbl_1_rodata_5C4C",
-      "lbl_1_rodata_5C7C",
-      "lbl_1_rodata_5C80",
-      "lbl_1_rodata_5C84",
-      "lbl_1_rodata_5C88",
-      "lbl_1_rodata_5C8C",
-      "lbl_1_rodata_5C90",
-      "lbl_1_rodata_5C94",
-      "lbl_1_rodata_5C98",
-      "lbl_1_rodata_5CA0",
-      "lbl_1_rodata_5CA8",
-      "lbl_1_rodata_5CB0",
-      "lbl_1_rodata_5CB8",
-      "lbl_1_rodata_5CC0",
-      "lbl_1_rodata_5CC8",
-      "lbl_1_rodata_5CCC",
-      "lbl_1_rodata_5CD0",
-      "lbl_1_rodata_5CD4",
-      "lbl_1_rodata_5CD8",
-      "lbl_1_rodata_5CDC",
-      "lbl_1_rodata_5CE0",
-      "lbl_1_rodata_5CE4",
-      "lbl_1_rodata_5CE8",
-      "lbl_1_rodata_5CF0",
-      "lbl_1_rodata_5CF4",
-      "lbl_1_rodata_5CF8",
-      "lbl_1_rodata_5CFC",
-      "lbl_1_rodata_5D00",
-      "lbl_1_rodata_5D04",
-      "lbl_1_rodata_5D08",
-      "lbl_1_rodata_5D0C",
-      "lbl_1_rodata_5D10",
-      "lbl_1_rodata_5D14",
-      "lbl_1_rodata_5D18",
-      "lbl_1_rodata_5D1C",
-      "lbl_1_rodata_5D20",
-      "lbl_1_rodata_5D24",
-      "lbl_1_rodata_5D28",
-      "lbl_1_rodata_5D2C",
-      "lbl_1_rodata_5D30",
-      "lbl_1_rodata_5D34",
-      "lbl_1_rodata_5D38",
-      "lbl_1_rodata_5D3C",
-      "lbl_1_rodata_5D40",
-      "lbl_1_rodata_5D5C",
-      "lbl_1_rodata_5D60",
-      "lbl_1_rodata_5D64",
-      "lbl_1_rodata_5D68",
-      "lbl_1_rodata_5D6C",
-      "lbl_1_rodata_5D70",
-      "lbl_1_rodata_5D80",
-      "lbl_1_rodata_5D84",
-      "lbl_1_rodata_5D88",
-      "lbl_1_rodata_5D8C",
-      "lbl_1_rodata_5D90",
-      "lbl_1_rodata_5D94",
-      "lbl_1_rodata_5DBC",
-      "lbl_1_rodata_5DC0",
-      "lbl_1_rodata_5DC8",
-      "lbl_1_rodata_5DCC",
-      "lbl_1_rodata_5DD0",
-      "lbl_1_rodata_5DD4",
-      "lbl_1_rodata_5DD8",
-      "lbl_1_rodata_5DDC",
-      "lbl_1_rodata_5DE0",
-      "lbl_1_rodata_5DE4",
-      "lbl_1_rodata_5DE8",
-      "lbl_1_rodata_5DEC",
-      "lbl_1_rodata_5DF0",
-      "lbl_1_rodata_5DF4",
-      "lbl_1_rodata_5DF8",
-      "lbl_1_rodata_5DFC",
-      "lbl_1_rodata_5E00",
-      "lbl_1_rodata_5E04",
-      "lbl_1_rodata_5E08",
-      "lbl_1_rodata_5E0C",
-      "lbl_1_rodata_5E10",
-      "lbl_1_rodata_5E14",
-      "lbl_1_rodata_5E18",
-      "lbl_1_rodata_5E1C",
-      "lbl_1_rodata_5E20",
-      "lbl_1_rodata_5E24",
-      "lbl_1_rodata_5E28",
-      "lbl_1_rodata_5E50",
-      "lbl_1_rodata_5E80",
-      "lbl_1_rodata_5E84",
-      "lbl_1_rodata_5E88",
-      "lbl_1_rodata_5E8C",
-      "lbl_1_rodata_5E90",
-      "lbl_1_rodata_5E94",
-      "lbl_1_rodata_5E98",
-      "lbl_1_rodata_5EC0",
-      "lbl_1_rodata_5EE8",
-      "lbl_1_rodata_5F10",
-      "lbl_1_rodata_5F14",
-      "lbl_1_rodata_5F18",
-      "lbl_1_rodata_5F1C",
-      "lbl_1_rodata_5F20",
-      "lbl_1_rodata_5F24",
-      "lbl_1_rodata_5F28",
-      "lbl_1_rodata_5F2C",
-      "lbl_1_rodata_5F30",
-      "lbl_1_rodata_5F34",
-      "lbl_1_rodata_5F38",
-      "lbl_1_rodata_5F3C",
-      "lbl_1_rodata_5F40",
-      "lbl_1_rodata_5F44",
-      "lbl_1_rodata_5F48",
-      "lbl_1_rodata_5F4C",
-      "lbl_1_rodata_5F50",
-      "lbl_1_rodata_5F54",
-      "lbl_1_rodata_5F58",
-      "lbl_1_rodata_5F5C",
-      "lbl_1_rodata_5F60",
-      "lbl_1_rodata_5F64",
-      "lbl_1_rodata_5F68",
-      "lbl_1_rodata_5F6C",
-      "lbl_1_rodata_5F70",
-      "lbl_1_rodata_5F74",
-      "lbl_1_rodata_5F78",
-      "lbl_1_rodata_5F7C",
-      "lbl_1_rodata_5F80",
-      "lbl_1_rodata_5F84",
-      "lbl_1_rodata_5F88",
-      "lbl_1_rodata_5F8C",
-      "lbl_1_rodata_5F90",
-      "lbl_1_rodata_5F94",
-      "lbl_1_rodata_5F98",
-      "lbl_1_rodata_5F9C",
-      "lbl_1_rodata_5FA0",
-      "lbl_1_rodata_5FA4",
-      "lbl_1_rodata_5FA8",
-      "lbl_1_rodata_5FAC",
-      "lbl_1_rodata_5FB0",
-      "lbl_1_rodata_5FB4",
-      "lbl_1_rodata_5FB8",
-      "lbl_1_rodata_5FC0",
-      "lbl_1_rodata_5FC8",
-      "lbl_1_rodata_5FCC",
-      "lbl_1_rodata_5FD0",
-      "lbl_1_rodata_5FD4",
-      "lbl_1_rodata_5FD8",
-      "lbl_1_rodata_5FDC",
-      "lbl_1_rodata_5FE0",
-      "lbl_1_rodata_5FE8",
-      "lbl_1_rodata_5FEC",
-      "lbl_1_rodata_5FF0",
-      "lbl_1_rodata_5FF4",
-      "lbl_1_rodata_5FF8",
-      "lbl_1_rodata_5FFC",
-      "lbl_1_rodata_6000",
-      "lbl_1_rodata_6004",
-      "lbl_1_rodata_6008",
-      "lbl_1_rodata_600C",
-      "lbl_1_rodata_6010",
-      "lbl_1_rodata_6018",
-      "lbl_1_rodata_6020",
-      "lbl_1_rodata_6024",
-      "lbl_1_rodata_6028",
-      "lbl_1_rodata_602C",
-      "lbl_1_rodata_6030",
-      "lbl_1_rodata_6034",
-      "lbl_1_rodata_6038",
-      "lbl_1_rodata_603C",
-      "lbl_1_rodata_6040",
-      "lbl_1_rodata_6044",
-      "lbl_1_rodata_6048",
-      "lbl_1_rodata_604C",
-      "lbl_1_rodata_6050",
-      "lbl_1_rodata_6054",
-      "lbl_1_rodata_6058",
-      "lbl_1_rodata_605C",
-      "lbl_1_rodata_6060",
-      "lbl_1_rodata_6064",
-      "lbl_1_rodata_6068",
-      "lbl_1_rodata_606C",
-      "lbl_1_rodata_6070",
-      "lbl_1_rodata_6078",
-      "lbl_1_rodata_6080",
-      "lbl_1_rodata_6088",
-      "lbl_1_rodata_608C",
-      "lbl_1_rodata_6090",
-      "lbl_1_rodata_6098",
+      "lbl_1_rodata_5164"
+    ],
+    "status": "matching",
+    "matching_for": ["GFZE01"],
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/data/lbl_1_rodata_60A0.c",
+    "symbols": [
       "lbl_1_rodata_60A0",
       "lbl_1_rodata_6158",
       "lbl_1_rodata_6160"
@@ -85764,73 +85353,9 @@
     "source": "rel/main_rel/enemy_ctrl/fn_1_C47B4.c",
     "symbols": [
       "fn_1_C47B4",
-      "fn_1_C487C"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_C489C.c",
-    "symbols": [
-      "fn_1_C489C"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "...rodata.0": "lbl_1_rodata_5168"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_C4ABC.c",
-    "symbols": [
-      "fn_1_C4ABC"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "...rodata.0": "lbl_1_rodata_5168",
-      "...bss.0": "lbl_1_bss_7AC48",
-      "fzgx_obj_lbl_1_bss_7AC48": "lbl_1_bss_7AC48",
-      "lbl_1_bss_7AC48__fzgx_offset_4": "lbl_1_bss_7AC48+0x4",
-      "fzgx_obj_lbl_1_bss_7AC50": "lbl_1_bss_7AC50",
-      "fzgx_obj_lbl_1_bss_7AC54": "lbl_1_bss_7AC54",
-      "lbl_1_bss_7AC54__fzgx_offset_4": "lbl_1_bss_7AC54+0x4",
-      "lbl_1_bss_7AC54__fzgx_offset_8": "lbl_1_bss_7AC54+0x8",
-      "lbl_1_bss_7AC54__fzgx_offset_C": "lbl_1_bss_7AC54+0xC",
-      "fzgx_obj_lbl_1_bss_7AC64": "lbl_1_bss_7AC64",
-      "fzgx_obj_lbl_1_bss_7AC88": "lbl_1_bss_7AC88",
-      "lbl_1_bss_7AC88__fzgx_offset_4": "lbl_1_bss_7AC88+0x4",
-      "fzgx_obj_lbl_1_bss_7AC90": "lbl_1_bss_7AC90",
-      "lbl_1_bss_7AC90__fzgx_offset_1": "lbl_1_bss_7AC90+0x1",
-      "lbl_1_bss_7AC90__fzgx_offset_2": "lbl_1_bss_7AC90+0x2",
-      "lbl_1_bss_7AC90__fzgx_offset_3": "lbl_1_bss_7AC90+0x3",
-      "lbl_1_bss_7AC90__fzgx_offset_4": "lbl_1_bss_7AC90+0x4",
-      "lbl_1_bss_7AC90__fzgx_offset_8": "lbl_1_bss_7AC90+0x8",
-      "fzgx_obj_lbl_1_bss_7AC9C": "lbl_1_bss_7AC9C"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_C6ED4.c",
-    "symbols": [
+      "fn_1_C487C",
+      "fn_1_C489C",
+      "fn_1_C4ABC",
       "fn_1_C6ED4",
       "fn_1_C6F70",
       "fn_1_C6F80"
@@ -85841,730 +85366,80 @@
       "-fp_contract",
       "off"
     ],
-    "tu": "rel/main_rel/enemy_ctrl.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_C6F8C.c",
-    "symbols": [
-      "fn_1_C6F8C"
-    ],
-    "status": "matching",
+    "tu": "rel/main_rel/enemy_ctrl.c",
     "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
-      "...data.0": "lbl_1_data_3D290",
-      "fzgx_obj_lbl_1_bss_3C30": "lbl_1_bss_3C30",
-      "fzgx_obj_lbl_1_bss_8B3A0": "lbl_1_bss_8B3A0"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_C7224.c",
-    "symbols": [
-      "fn_1_C7224"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_C72D4.c",
-    "symbols": [
-      "fn_1_C72D4"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_C742C.c",
-    "symbols": [
-      "fn_1_C742C"
-    ],
-    "status": "matching",
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@30": "lbl_1_rodata_5C00"
+      "fn_1_C47B4": "fn_1_C47B4"
     },
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
+    "own": [
+      "fn_1_C47B4"
     ]
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_C771C.c",
+    "source": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
     "symbols": [
-      "fn_1_C771C"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_C7874.c",
-    "symbols": [
-      "fn_1_C7874"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZP01"],
-    "mw_version": null,
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@22": "lbl_1_rodata_5C00"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_C7AA0.c",
-    "symbols": [
-      "fn_1_C7AA0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZP01"],
-    "mw_version": null,
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@20": "lbl_1_rodata_5C00"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_C7CBC.c",
-    "symbols": [
-      "fn_1_C7CBC"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZP01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@10": "lbl_1_rodata_5C00"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_C8294.c",
-    "symbols": [
-      "fn_1_C8294"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZP01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@89": "lbl_1_rodata_5CE8",
-      "@94": "lbl_1_rodata_5C00",
-      "@85": "lbl_1_rodata_5CB0",
-      "@86": "lbl_1_rodata_5CD0"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_C8DC0.c",
-    "symbols": [
-      "fn_1_C8DC0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZP01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@73": "lbl_1_rodata_5CE8",
-      "@76": "lbl_1_rodata_5C00"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_C96A4.c",
-    "symbols": [
-      "fn_1_C96A4"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZP01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@68": "lbl_1_rodata_5CE8",
-      "@71": "lbl_1_rodata_5C00"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_CA218.c",
-    "symbols": [
+      "fn_1_C6F8C",
+      "fn_1_C7224",
+      "fn_1_C72D4",
+      "fn_1_C742C",
+      "fn_1_C771C",
+      "fn_1_C7874",
+      "fn_1_C7AA0",
+      "fn_1_C7CBC",
+      "fn_1_C8294",
+      "fn_1_C8DC0",
+      "fn_1_C96A4",
       "fn_1_CA218",
-      "fn_1_CA2A4"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "matching_for": ["GFZE01", "GFZP01"]
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_CA440.c",
-    "symbols": [
-      "fn_1_CA440"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@21": "lbl_1_rodata_5C00"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_CA690.c",
-    "symbols": [
-      "fn_1_CA690"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZP01"],
-    "mw_version": null,
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@10": "lbl_1_rodata_5C00"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_CA8FC.c",
-    "symbols": [
-      "fn_1_CA8FC"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZP01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@19": "lbl_1_rodata_5C00"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_CAB38.c",
-    "symbols": [
-      "fn_1_CAB38"
-    ],
-    "status": "matching",
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@43": "lbl_1_rodata_5C00"
-    },
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ]
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_CADC4.c",
-    "symbols": [
-      "fn_1_CADC4"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_CAEBC.c",
-    "symbols": [
-      "fn_1_CAEBC"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@8": "lbl_1_rodata_5C00"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_CB028.c",
-    "symbols": [
-      "fn_1_CB028"
-    ],
-    "status": "matching",
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@60": "lbl_1_rodata_5CE8",
-      "@57": "lbl_1_rodata_5D04",
-      "@61": "lbl_1_rodata_5C00",
-      "@58": "lbl_1_rodata_5CFC"
-    },
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ]
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_CB404.c",
-    "symbols": [
-      "fn_1_CB404"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_CB424.c",
-    "symbols": [
-      "fn_1_CB424"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@14": "lbl_1_rodata_5C00",
-      "@18": "lbl_1_rodata_5CE8"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_CB6D8.c",
-    "symbols": [
-      "fn_1_CB6D8"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3",
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@85": "lbl_1_rodata_5CE8"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_CBC24.c",
-    "symbols": [
-      "fn_1_CBC24"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZP01"],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@11": "lbl_1_rodata_5C00"
-    },
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ]
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_CC27C.c",
-    "symbols": [
-      "fn_1_CC27C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_CC280.c",
-    "symbols": [
-      "fn_1_CC280"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZP01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@21": "lbl_1_rodata_5C00"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_CC8E4.c",
-    "symbols": [
-      "fn_1_CC8E4"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZP01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@21": "lbl_1_rodata_5C00",
-      "@24": "lbl_1_rodata_5CE8"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_CD36C.c",
-    "symbols": [
-      "fn_1_CD36C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZP01"],
-    "mw_version": null,
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@9": "lbl_1_rodata_5C00"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_CD51C.c",
-    "symbols": [
-      "fn_1_CD51C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZP01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@26": "lbl_1_rodata_5C00"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_CD6C0.c",
-    "symbols": [
-      "fn_1_CD6C0"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_CD7BC.c",
-    "symbols": [
-      "fn_1_CD7BC"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@61": "lbl_1_rodata_5C00"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_CDC8C.c",
-    "symbols": [
-      "fn_1_CDC8C"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@112": "lbl_1_rodata_5C00",
-      "@114": "lbl_1_rodata_5CE8"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_CEB38.c",
-    "symbols": [
-      "fn_1_CEB38"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@6": "lbl_1_rodata_5FB8",
-      "@7": "lbl_1_rodata_5FC0",
-      "@77": "lbl_1_rodata_5C00",
-      "@72": "lbl_1_data_3D5B0",
-      "@79": "lbl_1_rodata_5CE8",
-      "...data.0": "lbl_1_data_3D290"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_CF5B0.c",
-    "symbols": [
-      "fn_1_CF5B0"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_CFA0C.c",
-    "symbols": [
-      "fn_1_CFA0C"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_CFA4C.c",
-    "symbols": [
-      "fn_1_CFA4C"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@6": "lbl_1_rodata_5C00"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_CFB28.c",
-    "symbols": [
-      "fn_1_CFB28"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_CFCA4.c",
-    "symbols": [
-      "fn_1_CFCA4"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZP01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_CFF94.c",
-    "symbols": [
-      "fn_1_CFF94"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZP01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@30": "lbl_1_rodata_5C00",
-      "@27": "lbl_1_rodata_6050",
-      "@28": "lbl_1_rodata_5DCC"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_D01B0.c",
-    "symbols": [
-      "fn_1_D01B0"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_D0428.c",
-    "symbols": [
+      "fn_1_CA2A4",
+      "fn_1_CA440",
+      "fn_1_CA690",
+      "fn_1_CA8FC",
+      "fn_1_CAB38",
+      "fn_1_CADC4",
+      "fn_1_CAEBC",
+      "fn_1_CB028",
+      "fn_1_CB404",
+      "fn_1_CB424",
+      "fn_1_CB6D8",
+      "fn_1_CBC24",
+      "fn_1_CC27C",
+      "fn_1_CC280",
+      "fn_1_CC8E4",
+      "fn_1_CD36C",
+      "fn_1_CD51C",
+      "fn_1_CD6C0",
+      "fn_1_CD7BC",
+      "fn_1_CDC8C",
+      "fn_1_CEB38",
+      "fn_1_CF5B0",
+      "fn_1_CFA0C",
+      "fn_1_CFA4C",
+      "fn_1_CFB28",
+      "fn_1_CFCA4",
+      "fn_1_CFF94",
+      "fn_1_D01B0",
       "fn_1_D0428",
       "fn_1_D0728",
       "fn_1_D0790",
-      "fn_1_D07AC"
+      "fn_1_D07AC",
+      "fn_1_D07C4",
+      "fn_1_D07E0",
+      "fn_1_D0D68"
     ],
     "status": "matching",
-    "matching_for": ["GFZE01", "GFZP01"],
-    "mw_version": null,
+    "matching_for": ["GFZE01"],
+    "mw_version": "GC/1.3.2r",
     "extra_cflags": [
       "-fp_contract",
       "off"
     ],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@45": "lbl_1_rodata_5C00"
-    },
-    "collapsed": true
+    "tu": "rel/main_rel/enemy_ctrl_b.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_D07C4.c",
+    "source": "rel/main_rel/enemy_ctrl_c/fn_1_D0D88.c",
     "symbols": [
-      "fn_1_D07C4"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_D07E0.c",
-    "symbols": [
-      "fn_1_D07E0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZP01"],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "@62": "lbl_1_rodata_5C00",
-      "@60": "lbl_1_rodata_5CD8",
-      "@67": "lbl_1_rodata_5CE8"
-    },
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ]
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_D0D68.c",
-    "symbols": [
-      "fn_1_D0D68",
       "fn_1_D0D88",
       "fn_1_D0D98",
       "fn_1_D0DA8",
@@ -86580,39 +85455,25 @@
       "fn_1_D0E44",
       "fn_1_D0E54",
       "fn_1_D0E64",
-      "fn_1_D0E74"
+      "fn_1_D0E74",
+      "fn_1_D0F60"
     ],
     "status": "matching",
+    "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "collapsed": true,
-    "pool": {
-      "@73": "lbl_1_rodata_6080"
-    }
+    "extra_cflags": [],
+    "tu": "rel/main_rel/enemy_ctrl_c.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl/fn_1_D0F60.c",
+    "source": "rel/main_rel/enemy_ctrl_c/fn_1_D123C.c",
     "symbols": [
-      "fn_1_D0F60",
       "fn_1_D123C"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "tu": "rel/main_rel/enemy_ctrl.c",
-    "pool": {
-      "...rodata.0": "lbl_1_rodata_6078",
-      "@5": "lbl_1_rodata_6078",
-      "@6": "lbl_1_rodata_6078+0x8",
-      "@63": "lbl_1_rodata_6078+0x18",
-      "@65": "lbl_1_rodata_6078+0x20"
-    },
-    "collapsed": true,
+    "tu": "rel/main_rel/enemy_ctrl_c.c",
     "extra_cflags": [
       "-fp_contract",
       "off"

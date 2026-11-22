@@ -2,3 +2,4 @@
 # Each entry is a static helper that MWCC inlined at every call. Retail holds the inlined copy.
 disp_model_info  # car_test.c, inlined two times in fn_1_7C7CC
 disp_tex_info  # car_test.c, inlined two times in fn_1_7C7CC
+fn_1_D0428_course_name  # enemy_ctrl_b.c, inlined one time in fn_1_D0428

@@ -77048,7 +77048,7 @@
   {
    "symbol": "fn_1_C489C",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_C489C.c",
+   "unit": "rel/main_rel/enemy_ctrl/fn_1_C47B4.c",
    "addr": 805020,
    "size": 544,
    "status": "matched",
@@ -77065,7 +77065,7 @@
   {
    "symbol": "fn_1_C4ABC",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_C4ABC.c",
+   "unit": "rel/main_rel/enemy_ctrl/fn_1_C47B4.c",
    "addr": 805564,
    "size": 9240,
    "status": "matched",
@@ -77082,7 +77082,7 @@
   {
    "symbol": "fn_1_C6ED4",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_C6ED4.c",
+   "unit": "rel/main_rel/enemy_ctrl/fn_1_C47B4.c",
    "addr": 814804,
    "size": 156,
    "status": "matched",
@@ -77099,7 +77099,7 @@
   {
    "symbol": "fn_1_C6F70",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_C6ED4.c",
+   "unit": "rel/main_rel/enemy_ctrl/fn_1_C47B4.c",
    "addr": 814960,
    "size": 16,
    "status": "matched",
@@ -77116,7 +77116,7 @@
   {
    "symbol": "fn_1_C6F80",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_C6ED4.c",
+   "unit": "rel/main_rel/enemy_ctrl/fn_1_C47B4.c",
    "addr": 814976,
    "size": 12,
    "status": "matched",
@@ -77133,7 +77133,7 @@
   {
    "symbol": "fn_1_C6F8C",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_C6F8C.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 814988,
    "size": 664,
    "status": "matched",
@@ -77150,7 +77150,7 @@
   {
    "symbol": "fn_1_C7224",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_C7224.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 815652,
    "size": 176,
    "status": "matched",
@@ -77167,7 +77167,7 @@
   {
    "symbol": "fn_1_C72D4",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_C72D4.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 815828,
    "size": 344,
    "status": "matched",
@@ -77184,7 +77184,7 @@
   {
    "symbol": "fn_1_C742C",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_C742C.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 816172,
    "size": 752,
    "status": "matched",
@@ -77201,7 +77201,7 @@
   {
    "symbol": "fn_1_C771C",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_C771C.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 816924,
    "size": 344,
    "status": "matched",
@@ -77218,7 +77218,7 @@
   {
    "symbol": "fn_1_C7874",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_C7874.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 817268,
    "size": 556,
    "status": "matched",
@@ -77235,7 +77235,7 @@
   {
    "symbol": "fn_1_C7AA0",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_C7AA0.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 817824,
    "size": 540,
    "status": "matched",
@@ -77252,7 +77252,7 @@
   {
    "symbol": "fn_1_C7CBC",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_C7CBC.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 818364,
    "size": 1496,
    "status": "matched",
@@ -77269,7 +77269,7 @@
   {
    "symbol": "fn_1_C8294",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_C8294.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 819860,
    "size": 2860,
    "status": "matched",
@@ -77286,7 +77286,7 @@
   {
    "symbol": "fn_1_C8DC0",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_C8DC0.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 822720,
    "size": 2276,
    "status": "matched",
@@ -77303,7 +77303,7 @@
   {
    "symbol": "fn_1_C96A4",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_C96A4.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 824996,
    "size": 2932,
    "status": "matched",
@@ -77320,7 +77320,7 @@
   {
    "symbol": "fn_1_CA218",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_CA218.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 827928,
    "size": 140,
    "status": "matched",
@@ -77337,7 +77337,7 @@
   {
    "symbol": "fn_1_CA2A4",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_CA218.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 828068,
    "size": 412,
    "status": "matched",
@@ -77354,7 +77354,7 @@
   {
    "symbol": "fn_1_CA440",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_CA440.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 828480,
    "size": 592,
    "status": "matched",
@@ -77371,7 +77371,7 @@
   {
    "symbol": "fn_1_CA690",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_CA690.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 829072,
    "size": 620,
    "status": "matched",
@@ -77388,7 +77388,7 @@
   {
    "symbol": "fn_1_CA8FC",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_CA8FC.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 829692,
    "size": 572,
    "status": "matched",
@@ -77405,7 +77405,7 @@
   {
    "symbol": "fn_1_CAB38",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_CAB38.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 830264,
    "size": 652,
    "status": "matched",
@@ -77422,7 +77422,7 @@
   {
    "symbol": "fn_1_CADC4",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_CADC4.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 830916,
    "size": 248,
    "status": "matched",
@@ -77439,7 +77439,7 @@
   {
    "symbol": "fn_1_CAEBC",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_CAEBC.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 831164,
    "size": 364,
    "status": "matched",
@@ -77456,7 +77456,7 @@
   {
    "symbol": "fn_1_CB028",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_CB028.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 831528,
    "size": 988,
    "status": "matched",
@@ -77473,7 +77473,7 @@
   {
    "symbol": "fn_1_CB404",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_CB404.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 832516,
    "size": 32,
    "status": "matched",
@@ -77490,7 +77490,7 @@
   {
    "symbol": "fn_1_CB424",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_CB424.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 832548,
    "size": 692,
    "status": "matched",
@@ -77507,7 +77507,7 @@
   {
    "symbol": "fn_1_CB6D8",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_CB6D8.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 833240,
    "size": 1356,
    "status": "matched",
@@ -77524,7 +77524,7 @@
   {
    "symbol": "fn_1_CBC24",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_CBC24.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 834596,
    "size": 1624,
    "status": "matched",
@@ -77541,7 +77541,7 @@
   {
    "symbol": "fn_1_CC27C",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_CC27C.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 836220,
    "size": 4,
    "status": "matched",
@@ -77558,7 +77558,7 @@
   {
    "symbol": "fn_1_CC280",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_CC280.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 836224,
    "size": 1636,
    "status": "matched",
@@ -77575,7 +77575,7 @@
   {
    "symbol": "fn_1_CC8E4",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_CC8E4.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 837860,
    "size": 2696,
    "status": "matched",
@@ -77592,7 +77592,7 @@
   {
    "symbol": "fn_1_CD36C",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_CD36C.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 840556,
    "size": 432,
    "status": "matched",
@@ -77609,7 +77609,7 @@
   {
    "symbol": "fn_1_CD51C",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_CD51C.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 840988,
    "size": 420,
    "status": "matched",
@@ -77626,7 +77626,7 @@
   {
    "symbol": "fn_1_CD6C0",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_CD6C0.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 841408,
    "size": 252,
    "status": "matched",
@@ -77643,7 +77643,7 @@
   {
    "symbol": "fn_1_CD7BC",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_CD7BC.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 841660,
    "size": 1232,
    "status": "matched",
@@ -77660,7 +77660,7 @@
   {
    "symbol": "fn_1_CDC8C",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_CDC8C.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 842892,
    "size": 3756,
    "status": "matched",
@@ -77677,7 +77677,7 @@
   {
    "symbol": "fn_1_CEB38",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_CEB38.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 846648,
    "size": 2680,
    "status": "matched",
@@ -77694,7 +77694,7 @@
   {
    "symbol": "fn_1_CF5B0",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_CF5B0.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 849328,
    "size": 1116,
    "status": "matched",
@@ -77711,7 +77711,7 @@
   {
    "symbol": "fn_1_CFA0C",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_CFA0C.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 850444,
    "size": 64,
    "status": "matched",
@@ -77728,7 +77728,7 @@
   {
    "symbol": "fn_1_CFA4C",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_CFA4C.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 850508,
    "size": 220,
    "status": "matched",
@@ -77745,7 +77745,7 @@
   {
    "symbol": "fn_1_CFB28",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_CFB28.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 850728,
    "size": 380,
    "status": "matched",
@@ -77762,7 +77762,7 @@
   {
    "symbol": "fn_1_CFCA4",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_CFCA4.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 851108,
    "size": 752,
    "status": "matched",
@@ -77779,7 +77779,7 @@
   {
    "symbol": "fn_1_CFF94",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_CFF94.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 851860,
    "size": 540,
    "status": "matched",
@@ -77796,7 +77796,7 @@
   {
    "symbol": "fn_1_D01B0",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_D01B0.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 852400,
    "size": 632,
    "status": "matched",
@@ -77813,7 +77813,7 @@
   {
    "symbol": "fn_1_D0428",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_D0428.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 853032,
    "size": 768,
    "status": "matched",
@@ -77830,7 +77830,7 @@
   {
    "symbol": "fn_1_D0728",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_D0428.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 853800,
    "size": 104,
    "status": "matched",
@@ -77847,7 +77847,7 @@
   {
    "symbol": "fn_1_D0790",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_D0428.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 853904,
    "size": 28,
    "status": "matched",
@@ -77864,7 +77864,7 @@
   {
    "symbol": "fn_1_D07AC",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_D0428.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 853932,
    "size": 24,
    "status": "matched",
@@ -77881,7 +77881,7 @@
   {
    "symbol": "fn_1_D07C4",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_D07C4.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 853956,
    "size": 28,
    "status": "matched",
@@ -77898,7 +77898,7 @@
   {
    "symbol": "fn_1_D07E0",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_D07E0.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 853984,
    "size": 1416,
    "status": "matched",
@@ -77915,7 +77915,7 @@
   {
    "symbol": "fn_1_D0D68",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_D0D68.c",
+   "unit": "rel/main_rel/enemy_ctrl_b/fn_1_C6F8C.c",
    "addr": 855400,
    "size": 32,
    "status": "matched",
@@ -77932,7 +77932,7 @@
   {
    "symbol": "fn_1_D0D88",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_D0D68.c",
+   "unit": "rel/main_rel/enemy_ctrl_c/fn_1_D0D88.c",
    "addr": 855432,
    "size": 16,
    "status": "matched",
@@ -77949,7 +77949,7 @@
   {
    "symbol": "fn_1_D0D98",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_D0D68.c",
+   "unit": "rel/main_rel/enemy_ctrl_c/fn_1_D0D88.c",
    "addr": 855448,
    "size": 16,
    "status": "matched",
@@ -77966,7 +77966,7 @@
   {
    "symbol": "fn_1_D0DA8",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_D0D68.c",
+   "unit": "rel/main_rel/enemy_ctrl_c/fn_1_D0D88.c",
    "addr": 855464,
    "size": 16,
    "status": "matched",
@@ -77983,7 +77983,7 @@
   {
    "symbol": "fn_1_D0DB8",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_D0D68.c",
+   "unit": "rel/main_rel/enemy_ctrl_c/fn_1_D0D88.c",
    "addr": 855480,
    "size": 16,
    "status": "matched",
@@ -78000,7 +78000,7 @@
   {
    "symbol": "fn_1_D0DC8",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_D0D68.c",
+   "unit": "rel/main_rel/enemy_ctrl_c/fn_1_D0D88.c",
    "addr": 855496,
    "size": 16,
    "status": "matched",
@@ -78017,7 +78017,7 @@
   {
    "symbol": "fn_1_D0DD8",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_D0D68.c",
+   "unit": "rel/main_rel/enemy_ctrl_c/fn_1_D0D88.c",
    "addr": 855512,
    "size": 16,
    "status": "matched",
@@ -78034,7 +78034,7 @@
   {
    "symbol": "fn_1_D0DE8",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_D0D68.c",
+   "unit": "rel/main_rel/enemy_ctrl_c/fn_1_D0D88.c",
    "addr": 855528,
    "size": 16,
    "status": "matched",
@@ -78051,7 +78051,7 @@
   {
    "symbol": "fn_1_D0DF8",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_D0D68.c",
+   "unit": "rel/main_rel/enemy_ctrl_c/fn_1_D0D88.c",
    "addr": 855544,
    "size": 16,
    "status": "matched",
@@ -78068,7 +78068,7 @@
   {
    "symbol": "fn_1_D0E08",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_D0D68.c",
+   "unit": "rel/main_rel/enemy_ctrl_c/fn_1_D0D88.c",
    "addr": 855560,
    "size": 16,
    "status": "matched",
@@ -78085,7 +78085,7 @@
   {
    "symbol": "fn_1_D0E18",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_D0D68.c",
+   "unit": "rel/main_rel/enemy_ctrl_c/fn_1_D0D88.c",
    "addr": 855576,
    "size": 16,
    "status": "matched",
@@ -78102,7 +78102,7 @@
   {
    "symbol": "fn_1_D0E28",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_D0D68.c",
+   "unit": "rel/main_rel/enemy_ctrl_c/fn_1_D0D88.c",
    "addr": 855592,
    "size": 12,
    "status": "matched",
@@ -78119,7 +78119,7 @@
   {
    "symbol": "fn_1_D0E34",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_D0D68.c",
+   "unit": "rel/main_rel/enemy_ctrl_c/fn_1_D0D88.c",
    "addr": 855604,
    "size": 16,
    "status": "matched",
@@ -78136,7 +78136,7 @@
   {
    "symbol": "fn_1_D0E44",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_D0D68.c",
+   "unit": "rel/main_rel/enemy_ctrl_c/fn_1_D0D88.c",
    "addr": 855620,
    "size": 16,
    "status": "matched",
@@ -78153,7 +78153,7 @@
   {
    "symbol": "fn_1_D0E54",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_D0D68.c",
+   "unit": "rel/main_rel/enemy_ctrl_c/fn_1_D0D88.c",
    "addr": 855636,
    "size": 16,
    "status": "matched",
@@ -78170,7 +78170,7 @@
   {
    "symbol": "fn_1_D0E64",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_D0D68.c",
+   "unit": "rel/main_rel/enemy_ctrl_c/fn_1_D0D88.c",
    "addr": 855652,
    "size": 16,
    "status": "matched",
@@ -78187,7 +78187,7 @@
   {
    "symbol": "fn_1_D0E74",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_D0D68.c",
+   "unit": "rel/main_rel/enemy_ctrl_c/fn_1_D0D88.c",
    "addr": 855668,
    "size": 236,
    "status": "matched",
@@ -78204,7 +78204,7 @@
   {
    "symbol": "fn_1_D0F60",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_D0F60.c",
+   "unit": "rel/main_rel/enemy_ctrl_c/fn_1_D0D88.c",
    "addr": 855904,
    "size": 732,
    "status": "matched",
@@ -78221,7 +78221,7 @@
   {
    "symbol": "fn_1_D123C",
    "module": "main_rel",
-   "unit": "rel/main_rel/enemy_ctrl/fn_1_D0F60.c",
+   "unit": "rel/main_rel/enemy_ctrl_c/fn_1_D123C.c",
    "addr": 856636,
    "size": 1348,
    "status": "matched",
