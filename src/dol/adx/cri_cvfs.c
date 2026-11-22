@@ -232,7 +232,7 @@ static CvFsObject lbl_80187574__fzgx_offset_200[40];
 #define cvfs_tbl lbl_80187574
 #define cvfs_obj lbl_80187574__fzgx_offset_200
 
-void fn_80055580(void* object, const char* message, void* handle);
+void fn_80055580(void);
 
 static inline void cvFsError(const char* message)
 {
@@ -253,7 +253,11 @@ static inline void toUpperStr(char* string)
     }
 }
 
-void fn_80054608(char* file, const char* device);
+static inline void cvfs_add_dev_inline(char* file, const char* device)
+{
+    fn_80083DB0(add_dev_tmp, file);
+    sprintf(file, fzgx_pool_path_format, device, add_dev_tmp);
+}
 #pragma push
 #pragma force_active on
 __declspec(section ".fzgxpool") static void fzgx_pool_primer(void)
@@ -416,7 +420,7 @@ static inline CvFsInterface* resolveDevice(char* device, char* file,
     length = strlen(lookup_name);
     table = cvfs_tbl;
     if (wantsDevicePrefix(table, lookup_name, length)) {
-        fn_80054608(file, lookup_name);
+        cvfs_add_dev_inline(file, lookup_name);
     }
     interface = searchDevice(table, device);
     if (interface == NULL) {
@@ -445,6 +449,11 @@ static inline void* allocateHandle(void)
     return &cvfs_obj[i];
 }
 
+static inline void releaseHandle(CvFsObject* handle)
+{
+    handle->object = NULL;
+    handle->interface = NULL;
+}
 
 static inline CvFsInterface* addDevice(char* name,
                                        CvFsInterfaceFactory factory)
@@ -473,6 +482,321 @@ static inline CvFsInterface* addDevice(char* name,
 }
 
 
+
+extern void *memset(void *, int, unsigned long);
+extern u32 fn_80051958(u32);
+extern u32 lbl_80091388[];
+extern u32 lbl_801873D8[];
+extern u32 lbl_801873EC[];
+extern char lbl_80091C80[];
+extern char lbl_80091C9C[];
+extern u32 lbl_80091D54[];
+extern u32 lbl_80091D70[];
+extern u32 lbl_80091D88[];
+extern u32 lbl_80091DA4[];
+extern char lbl_80091E70[37];
+extern char lbl_80091E98[184];
+
+
+extern char lbl_80091CEC[], lbl_80091D08[], lbl_80091D20[], lbl_80091D3C[];
+u32 fn_80054608(u32 arg0, u32 arg1) {
+    u32 v0;
+    u32 v1;
+    u32 t0, t1;
+    v0 = lbl_80091388[0];
+    v1 = arg1;
+    if ((s32)lbl_801873D8[0] == 0) {
+    t0 = fn_80051958(v0);
+    v0 = t0;
+    v1 = 0;
+    v0 = (u32)&lbl_801873EC;
+    t1 = (u32)memset((void *)v0, v1, 64);
+    v0 = t1;
+    }
+    v1 = (u32)&lbl_801873D8;
+    v0 = *(u32 *)((u8 *)v1 + 0);
+    *(u32 *)((u8 *)v1 + 0) = (v0 + 1);
+    return v0;
+}
+
+
+void fn_8005466C(u32 arg0, u32 arg1) {
+    if (arg0 == 0) {
+        cvfs_errfn = 0;
+        cvfs_errobj = 0;
+    } else {
+        cvfs_errfn = (CvFsErrorCallback)arg0;
+        cvfs_errobj = (void *)arg1;
+    }
+}
+
+typedef u32 (*fn_800546A0_Fn0)(u32, u32, u32);
+typedef u32 (*fn_800546A0_Fn1)(u32);
+
+struct fn_800546A0_Object {
+    u32 vtable;
+    u32 value;
+};
+
+extern char lbl_80091C48[28];
+extern char lbl_80091C64[26];
+
+s32 fn_800546A0(struct fn_800546A0_Object *arg0) {
+    s32 result = 3;
+
+    if (arg0 == 0) {
+        if (cvfs_errfn != 0) {
+            ((fn_800546A0_Fn0)cvfs_errfn)(((u32)cvfs_errobj), (u32)&lbl_80091C48, 0);
+        }
+        return 3;
+    } else if (*(u32 *)((u8 *)arg0->vtable + 44) != 0) {
+        result = ((fn_800546A0_Fn1)*(u32 *)((u8 *)arg0->vtable + 44))(arg0->value);
+    } else if (cvfs_errfn != 0) {
+        ((fn_800546A0_Fn0)cvfs_errfn)(((u32)cvfs_errobj), (u32)&lbl_80091C64, 0);
+    }
+
+    return result;
+}
+
+extern CvFsDevice lbl_80187574[32];
+
+void cvFsExecServer(void) {
+    int i;
+    CvFsInterface *interface;
+    for (i = 0; i < 32; i++) {
+        interface = lbl_80187574[i].interface;
+        if (interface != ((void *)0) && interface->ExecServer != ((void *)0)) {
+            interface->ExecServer();
+        }
+    }
+}
+
+typedef u32 (*fn_800547C8_Fn0)(u32, u32, u32);
+typedef u32 (*fn_800547C8_Fn1)(u32);
+
+void fn_800547C8(u32 arg0) {
+    if (arg0 == 0) {
+        if (((u32)cvfs_errfn) != 0) {
+            ((fn_800547C8_Fn0)((u32)cvfs_errfn))(((u32)cvfs_errobj), (u32)&lbl_80091C80, 0);
+        }
+    } else {
+        if (*(u32 *)((u8 *)*(u32 *)(arg0) + 40) != 0) {
+            ((fn_800547C8_Fn1)*(u32 *)((u8 *)*(u32 *)(arg0) + 40))(*(u32 *)(arg0 + 4));
+        } else {
+            if (((u32)cvfs_errfn) != 0) {
+                ((fn_800547C8_Fn0)((u32)cvfs_errfn))(((u32)cvfs_errobj), (u32)&lbl_80091C9C, 0);
+            }
+        }
+    }
+}
+
+int fn_80054870(CvFsObject *handle, int offset, int origin) {
+    int result;
+    if (handle == ((void *)0)) {
+        cvFsError(lbl_80091CEC);
+        return 0;
+    }
+    if (handle->interface->ReqRd != ((void *)0)) {
+        result = handle->interface->ReqRd(
+            handle->object, offset, (void *)origin);
+    } else {
+        result = 0;
+        cvFsError(lbl_80091D08);
+    }
+    return result;
+}
+
+int fn_80054930(CvFsObject *handle, int offset, int origin) {
+    int result;
+    if (handle == ((void *)0)) {
+        cvFsError(lbl_80091D20);
+        return 0;
+    }
+    if (handle->interface->Seek != ((void *)0)) {
+        result = handle->interface->Seek(handle->object, offset, origin);
+    } else {
+        result = 0;
+        cvFsError(lbl_80091D3C);
+    }
+    return result;
+}
+
+typedef u32 (*fn_800549F0_Fn0)(u32, u32, u32);
+typedef u32 (*fn_800549F0_Fn1)(u32);
+typedef u32 (*fn_800549F0_Fn2)(u32, u32, u32);
+s32 fn_800549F0(u32 arg0, u32 arg1, u32 arg2) {
+    u32 v0;
+    u32 v1;
+    u32 v2;
+    u32 v3;
+    u32 t0, t1, t2;
+    v0 = arg0;
+    if (arg0 == 0) {
+    v1 = arg1;
+    v2 = arg2;
+    if (((u32)cvfs_errfn) != 0) {
+    v2 = (u32)&lbl_80187434;
+    v1 = (u32)&lbl_80091D54;
+    v0 = *(u32 *)(v2);
+    v2 = 0;
+    t0 = ((fn_800549F0_Fn0)((u32)cvfs_errfn))(v0, v1, v2);
+    v0 = t0;
+    }
+    v0 = 0;
+    } else {
+    v1 = *(u32 *)(v0);
+    v2 = *(u32 *)(v1 + 28);
+    if (v2 != 0) {
+    v0 = *(u32 *)(v0 + 4);
+    t1 = ((fn_800549F0_Fn1)v2)(v0);
+    v0 = t1;
+    v3 = v0;
+    } else {
+    v3 = 0;
+    if (((u32)cvfs_errfn) != 0) {
+    v0 = ((u32)cvfs_errobj);
+    t2 = ((fn_800549F0_Fn2)((u32)cvfs_errfn))(v0, (u32)&lbl_80091D70, 0);
+    v0 = t2;
+    }
+    }
+    v0 = v3;
+    }
+    return v0;
+}
+
+typedef u32 (*fn_80054AB0_Fn0)(u32, u32, u32);
+typedef u32 (*fn_80054AB0_Fn1)(u32);
+typedef u32 (*fn_80054AB0_Fn2)(u32, u32, u32);
+void fn_80054AB0(void *arg0) {
+    s32 (*temp_r12)(s32);
+
+    if (arg0 == NULL) {
+        if (((u32)cvfs_errfn) != 0) {
+            ((s32 (*)(u32, u32 *, s32))(((u32)cvfs_errfn)))(((u32)cvfs_errobj), lbl_80091D88, 0);
+        }
+    } else {
+        temp_r12 = (s32 (*)(s32))(*(s32 (**)(s32))((u8 *)((*(void **)((u8 *)(arg0)))) + 20));
+        if (temp_r12 != NULL) {
+            temp_r12(*(s32 *)((u8 *)(arg0) + 4));
+            (*(s32 *)((u8 *)(arg0) + 4)) = 0;
+            (*(void **)((u8 *)(arg0))) = NULL;
+            return;
+        }
+        if (((u32)cvfs_errfn) != 0) {
+            ((s32 (*)(u32, u32 *, s32))(((u32)cvfs_errfn)))(((u32)cvfs_errobj), lbl_80091DA4, 0);
+        }
+    }
+}
+
+CvFsObject* fn_80054B6C(const char* filename, void* parameter, int mode)
+{
+    CvFsObject* handle;
+    char device[297];
+    char file[297];
+    char* device_name;
+
+    if (filename == NULL) {
+        cvFsError(fzgx_pool_open_bad_name);
+        return NULL;
+    }
+
+    splitPath(device, file, filename);
+    if (file[0] == '\0') {
+        cvFsError(fzgx_pool_open_bad_name);
+        return NULL;
+    }
+
+    handle = allocateHandle();
+    if (handle == NULL) {
+        cvFsError(fzgx_pool_open_no_handle);
+        return NULL;
+    }
+
+    device_name = device;
+    handle->interface = resolveDevice(device_name, file, filename);
+    if (device == NULL) {
+        releaseHandle(handle);
+        cvFsError(fzgx_pool_open_bad_device);
+        return NULL;
+    }
+    if (handle->interface == NULL) {
+        releaseHandle(handle);
+        cvFsError(fzgx_pool_open_no_device);
+        return NULL;
+    }
+    if (handle->interface->Open != NULL) {
+        handle->object = handle->interface->Open(file, parameter, mode);
+    } else {
+        releaseHandle(handle);
+        cvFsError(fzgx_pool_open_bad_interface);
+        return NULL;
+    }
+    if (handle->object == NULL) {
+        releaseHandle(handle);
+        cvFsError(fzgx_pool_open_failed);
+        return NULL;
+    }
+    return handle;
+}
+
+struct fn_800551D0_entry {
+    u32 unk_0;
+    char text[12];
+};
+
+struct fn_800551D0_state {
+    void (*callback)(u32, u32, u32);
+    u32 callback_arg;
+    u8 unk_8[0x130];
+    char buffer[0xc];
+    struct fn_800551D0_entry entries[0x20];
+};
+
+static inline s32 fn_800551D0_find(char *arg0, struct fn_800551D0_entry *entry, u32 len) {
+    s32 i;
+
+    for (i = 0; i < 0x20; i++) {
+        if (strncmp(arg0, entry->text, len) == 0) {
+            return 1;
+        }
+        entry++;
+    }
+    return 0;
+}
+
+void fn_800551D0(char *arg0) {
+    struct fn_800551D0_state *state;
+    u32 len;
+    u32 count;
+    s32 i;
+
+    state = ((struct fn_800551D0_state *)&lbl_80187430);
+    if (arg0 == 0) {
+        if (state->callback != 0) {
+            state->callback(state->callback_arg, (u32)&lbl_80091E70, 0);
+        }
+        return;
+    }
+    len = strlen(arg0);
+    if (len == 0) {
+        state->buffer[0] = 0;
+        return;
+    }
+    count = strlen(arg0) + 1;
+    for (i = 0; i < count; i++) {
+        if (arg0[i] >= 'a' && arg0[i] <= 'z') {
+            arg0[i] -= 0x20;
+        }
+    }
+    if (fn_800551D0_find(arg0, state->entries, len) == 1) {
+        memcpy(state->buffer, arg0, len + 1);
+        return;
+    }
+    if (state->callback != 0) {
+        state->callback(state->callback_arg, (u32)&lbl_80091E98, 0);
+    }
+}
+
 void fn_80055304(char* name, CvFsInterfaceFactory factory, void* init_parameter)
 {
     CvFsInterface* interface;
@@ -492,7 +816,13 @@ void fn_80055304(char* name, CvFsInterfaceFactory factory, void* init_parameter)
     if (interface == NULL) {
         cvFsError(fzgx_pool_add_device_failed);
     } else if (interface->EntryErrFunc != NULL) {
-        interface->EntryErrFunc(fn_80055580, NULL);
+        interface->EntryErrFunc((CvFsErrorCallback)fn_80055580, NULL);
     }
 }
 
+typedef void (*fn_80055580_Fn0)(void *);
+void fn_80055580(void) {
+    if (cvfs_errfn != NULL) {
+        ((fn_80055580_Fn0)cvfs_errfn)(cvfs_errobj);
+    }
+}

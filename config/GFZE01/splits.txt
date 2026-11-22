@@ -346,8 +346,8 @@ dol/fn_80051958.c:
 dol/fn_8008D154.c:
 	.text       start:0x8008D154 end:0x8008D1CC align:4
 
-dol/fn_80054608.c:
-	.text       start:0x80054608 end:0x800547C8 align:4
+dol/adx/cri_cvfs.c:
+	.text       start:0x80054608 end:0x800555C0 align:4
 
 dol/fn_8007A150.c:
 	.text       start:0x8007A150 end:0x8007A23C align:4
@@ -563,9 +563,6 @@ dol/fn_80055708.c:
 dol/fn_80055D94.c:
 	.text       start:0x80055D94 end:0x80055DF4 align:4
 
-dol/fn_800549F0.c:
-	.text       start:0x800549F0 end:0x80054AB0 align:4
-
 dol/fn_80055768.c:
 	.text       start:0x80055768 end:0x800557CC align:4
 
@@ -577,9 +574,6 @@ dol/fn_800566F0.c:
 
 dol/adx/lsc.c:
 	.text       start:0x80056730 end:0x80057378 align:4
-
-dol/fn_800547C8.c:
-	.text       start:0x800547C8 end:0x80054870 align:4
 
 dol/fn_80059CA4.c:
 	.text       start:0x80059CA4 end:0x80059D04 align:4
@@ -959,9 +953,6 @@ dol/fn_8005B464.c:
 dol/fn_80059D68.c:
 	.text       start:0x80059D68 end:0x80059DD8 align:4
 
-dol/fn_80055580.c:
-	.text       start:0x80055580 end:0x800555C0 align:4
-
 dol/fn_800555C0.c:
 	.text       start:0x800555C0 end:0x80055624 align:4
 
@@ -1138,9 +1129,6 @@ dol/OSGetTime.c:
 dol/fn_8006FFDC.c:
 	.text       start:0x8006FFDC end:0x80070158 align:4
 
-dol/fn_80054AB0.c:
-	.text       start:0x80054AB0 end:0x80054B6C align:4
-
 dol/fn_80077384.c:
 	.text       start:0x80077384 end:0x80077488 align:4
 
@@ -1265,12 +1253,6 @@ dol/ADXF_ExecServer.c:
 
 dol/ADXT_DestroyAll.c:
 	.text       start:0x8004FC38 end:0x8004FC94 align:4
-
-dol/fn_80054870.c:
-	.text       start:0x80054870 end:0x80054930 align:4
-
-dol/fn_80054930.c:
-	.text       start:0x80054930 end:0x800549F0 align:4
 
 dol/mfCiClose.c:
 	.text       start:0x8005A1B4 end:0x8005A24C align:4
@@ -1532,9 +1514,6 @@ dol/fn_8003E13C.c:
 
 dol/fn_8007FC34.c:
 	.text       start:0x8007FC34 end:0x8007FE70 align:4
-
-dol/fn_800551D0.c:
-	.text       start:0x800551D0 end:0x80055304 align:4
 
 dol/fn_80067898.c:
 	.text       start:0x80067898 end:0x80067DE4 align:4
@@ -2240,12 +2219,6 @@ dol/fn_8005596C.c:
 
 dol/fn_8005A24C.c:
 	.text       start:0x8005A24C end:0x8005A47C align:4
-
-dol/fn_80054B6C.c:
-	.text       start:0x80054B6C end:0x800551D0 align:4
-
-dol/fn_80055304.c:
-	.text       start:0x80055304 end:0x80055580 align:4
 
 dol/fn_80078F0C.c:
 	.text       start:0x80078F0C end:0x800791E8 align:4
