@@ -1,6 +1,7 @@
 #include "types.h"
 #pragma opt_propagation off
 
+/* --- dol/fn_8005A668.c --- */
 /* --- dol/fn_8005A588.c --- */
 extern u32 lbl_80190178[];
 extern u32 lbl_8019017C[];
@@ -79,4 +80,198 @@ struct fn_8005A688_Arg0 {
 void fn_8005A688(struct fn_8005A688_Arg0 *arg0, u32 arg1) {
     if (arg0 == 0) { return; }
     arg0->unk_80 = arg1;
+}
+
+/* --- dol/AXRNA_SetOutPan.c --- */
+typedef struct SJCK {
+    unsigned char *data;
+    int len;
+} SJCK;
+
+typedef struct SJ_u1 SJ_u1;
+
+typedef struct SJInterface_u1 SJInterface_u1;
+
+typedef void (*SJErrorCallback)(void *object, int error);
+
+struct SJInterface_u1 {
+    void *reserved[3];
+    void (*destroy)(SJ_u1 *sj);
+    const void *(*get_uuid)(SJ_u1 *sj);
+    void (*reset)(SJ_u1 *sj);
+    void (*get_chunk)(SJ_u1 *sj, int channel, int max_size, SJCK *chunk);
+    void (*unget_chunk)(SJ_u1 *sj, int channel, SJCK *chunk);
+    void (*put_chunk)(SJ_u1 *sj, int channel, SJCK *chunk);
+    int (*get_num_data)(SJ_u1 *sj, int channel);
+    int (*is_get_chunk)(SJ_u1 *sj, int channel, int size, int *available);
+    void (*entry_error_func)(SJ_u1 *sj, SJErrorCallback callback, void *object);
+};
+
+struct SJ_u1 {
+    const SJInterface_u1 *interface;
+};
+
+typedef void (*ARQCallback)(unsigned long request_address);
+
+typedef struct ARQRequest {
+    struct ARQRequest *next;
+    unsigned long owner;
+    unsigned long type;
+    unsigned long priority;
+    unsigned long source;
+    unsigned long destination;
+    unsigned long length;
+    ARQCallback callback;
+} ARQRequest;
+
+typedef struct AXPBMIX {
+    unsigned short vL, vDeltaL, vR, vDeltaR;
+    unsigned short vAuxAL, vDeltaAuxAL, vAuxAR, vDeltaAuxAR;
+    unsigned short vAuxBL, vDeltaAuxBL, vAuxBR, vDeltaAuxBR;
+    unsigned short vAuxBS, vDeltaAuxBS, vS, vDeltaS;
+    unsigned short vAuxAS, vDeltaAuxAS;
+} AXPBMIX;
+
+typedef struct AXPBITD {
+    unsigned short flag, bufferHi, bufferLo, shiftL, shiftR;
+    unsigned short targetShiftL, targetShiftR;
+} AXPBITD;
+
+typedef struct AXPBUPDATE {
+    unsigned short updNum[5];
+    unsigned short dataHi, dataLo;
+} AXPBUPDATE;
+
+typedef struct AXPBDPOP {
+    short aL, aAuxAL, aAuxBL, aR, aAuxAR, aAuxBR, aS, aAuxAS, aAuxBS;
+} AXPBDPOP;
+
+typedef struct AXPBVE {
+    unsigned short currentVolume;
+    short currentDelta;
+} AXPBVE;
+
+typedef struct AXPBFIR {
+    unsigned short numCoefs, coefsHi, coefsLo;
+} AXPBFIR;
+
+typedef struct AXPBADDR {
+    unsigned short loopFlag, format;
+    unsigned short loopAddressHi, loopAddressLo;
+    unsigned short endAddressHi, endAddressLo;
+    unsigned short currentAddressHi, currentAddressLo;
+} AXPBADDR;
+
+typedef struct AXPBADPCM {
+    unsigned short a[8][2];
+    unsigned short gain, pred_scale, yn1, yn2;
+} AXPBADPCM;
+
+typedef struct AXPBSRC {
+    unsigned short ratioHi, ratioLo, currentAddressFrac;
+    unsigned short last_samples[4];
+} AXPBSRC;
+
+typedef struct AXPBADPCMLOOP {
+    unsigned short loop_pred_scale, loop_yn1, loop_yn2;
+} AXPBADPCMLOOP;
+
+typedef struct AXPBLPF {
+    unsigned short on, yn1, a0, b0;
+} AXPBLPF;
+
+typedef struct AXPB {
+    unsigned short nextHi, nextLo, currHi, currLo;
+    unsigned short srcSelect, coefSelect, mixerCtrl, state, type;
+    AXPBMIX mix;
+    AXPBITD itd;
+    AXPBUPDATE update;
+    AXPBDPOP dpop;
+    AXPBVE ve;
+    AXPBFIR fir;
+    AXPBADDR addr;
+    AXPBADPCM adpcm;
+    AXPBSRC src;
+    AXPBADPCMLOOP adpcmLoop;
+    AXPBLPF lpf;
+    unsigned short pad[25];
+} AXPB;
+
+typedef struct _AXVPB {
+    struct _AXVPB *next;
+    struct _AXVPB *prev;
+    struct _AXVPB *next1;
+    unsigned long priority;
+    void (*callback)(void *);
+    unsigned long user_context;
+    unsigned long index, sync, depop;
+    unsigned long updateMS, updateCounter, updateTotal;
+    unsigned short *updateWrite;
+    unsigned short updateData[128];
+    void *itdBuffer;
+    AXPB pb;
+} AXVPB;
+
+typedef struct RNAResource RNAResource;
+
+typedef struct AXRNAHandle {
+    signed char used;
+    unsigned char switches;
+    signed char allocated_channels;
+    signed char num_channels;
+    int play_position;
+    AXVPB *voices[2];
+    RNAResource *resources[2];
+    u32 aram_addresses[2];
+    int buffer_size;
+    int sample_rate;
+    u32 request_owners[2];
+    SJ_u1 *inputs[2];
+    SJ_u1 *buffers[2];
+    SJCK input_chunks[2];
+    SJCK buffer_chunks[2];
+// Hardware or OS state can change asynchronously.
+    volatile int transfer_pending[2];
+    int transfer_samples;
+    int transfer_position;
+// Hardware or OS state can change asynchronously.
+    volatile int flash_pending[2];
+    int flash_samples;
+    int flash_position;
+    int bits_per_sample;
+    int output_volume;
+    int output_pan[2];
+    int surround_pan;
+    int aux_a;
+    int aux_b;
+    int fader;
+    short adjust_sample_rate;
+    short sample_rate_state;
+    int source_type;
+    ARQRequest requests[2];
+} AXRNAHandle;
+
+void fn_80026EE0(AXVPB *voice, int pan);
+
+
+
+extern int lbl_8013255C[31];
+
+void AXRNA_SetOutPan(AXRNAHandle *handle, int channel, int pan) {
+    AXVPB *voice;
+    if (handle != 0) {
+        if (channel < handle->allocated_channels) {
+            pan = pan < 15 ? pan : 15;
+            pan = pan > -15 ? pan : -15;
+            if (pan != handle->output_pan[channel]) {
+                handle->output_pan[channel] = pan;
+                fn_8005A648();
+                voice = handle->voices[channel];
+                if (voice != 0) {
+                    fn_80026EE0(voice, lbl_8013255C[pan + 15]);
+                }
+                fn_8005A628();
+            }
+        }
+    }
 }

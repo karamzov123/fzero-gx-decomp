@@ -393,7 +393,7 @@ rel/movie_module/DCT_FsriInitSparseTbl.c:
 	.text       start:0x000052F8 end:0x00005FA0 align:4
 
 rel/movie_module/MPV_GoNextDelimSj.c:
-	.text       start:0x0000B100 end:0x0000B254 align:4
+	.text       start:0x0000B100 end:0x0000B3E0 align:4
 
 rel/movie_module/mwSfdPause.c:
 	.text       start:0x00038F04 end:0x0003901C align:4
@@ -412,9 +412,6 @@ rel/movie_module/mwSfdDestroy.c:
 
 rel/movie_module/MWSFCRE_ResetSfdHn.c:
 	.text       start:0x0003753C end:0x0003763C align:4
-
-rel/movie_module/fn_12_B254.c:
-	.text       start:0x0000B254 end:0x0000B3E0 align:4
 
 rel/movie_module/fn_12_336CC.c:
 	.text       start:0x000336CC end:0x0003379C align:4

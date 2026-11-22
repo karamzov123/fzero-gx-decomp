@@ -87,9 +87,6 @@ dol/trk/targimpl.c:
 dol/trk/dolphin_trk_glue.c:
 	.text       start:0x8008D2AC end:0x8008D77C align:4
 
-dol/trk/UDP_Stubs.c:
-	.text       start:0x8008D7C0 end:0x8008DCCC align:4
-
 dol/fn_8008F44C.c:
 	.text       start:0x8008F44C end:0x8008F748 align:4
 
@@ -108,8 +105,8 @@ dol/fn_800658A8.c:
 dol/fn_8008A754.c:
 	.text       start:0x8008A754 end:0x8008A764 align:4
 
-dol/fn_8008D7B0.c:
-	.text       start:0x8008D7B0 end:0x8008D7C0 align:4
+dol/trk/UDP_Stubs.c:
+	.text       start:0x8008D7B0 end:0x8008DF6C align:4
 
 dol/fn_800510C4.c:
 	.text       start:0x800510C4 end:0x80051448 align:4
@@ -124,9 +121,6 @@ dol/SIBios.c:
 	.text       start:0x8001191C end:0x800132D4 align:4
 	.sbss       start:0x801A6810 end:0x801A6818 align:8
 
-dol/AXRNA_SetOutPan.c:
-	.text       start:0x8005A698 end:0x8005A74C align:4
-
 dol/fn_8005A5BC.c:
 	.text       start:0x8005A5BC end:0x8005A628 align:4
 
@@ -134,7 +128,7 @@ dol/fn_8005A628.c:
 	.text       start:0x8005A628 end:0x8005A668 align:4
 
 dol/fn_8005A668.c:
-	.text       start:0x8005A668 end:0x8005A698 align:4
+	.text       start:0x8005A668 end:0x8005A74C align:4
 
 dol/fn_80046718.c:
 	.text       start:0x80046718 end:0x80046768 align:4
@@ -978,8 +972,8 @@ dol/av/game_main_disc.c:
 	.text       start:0x80005EDC end:0x80006B4C align:4
 	.data       start:0x80122030 end:0x801220C0 align:8
 
-dol/fn_800747D0.c:
-	.text       start:0x800747D0 end:0x80074D88 align:4
+dol/av/avdisp_mtx.c:
+	.text       start:0x800747D0 end:0x80075908 align:4
 
 dol/gx/GXLight.c:
 	.text       start:0x80035420 end:0x80035A2C align:4
@@ -1020,9 +1014,6 @@ dol/os/OSTime.c:
 
 dol/__check_pad3.c:
 	.init       start:0x80003100 end:0x80003140 align:4
-
-dol/fn_8008DCCC.c:
-	.text       start:0x8008DCCC end:0x8008DF6C align:4
 
 dol/trk/msghndlr.c:
 	.text       start:0x800898E4 end:0x8008A5AC align:4
@@ -1360,9 +1351,6 @@ dol/fn_800288C4.c:
 dol/fn_8008F838.c:
 	.text       start:0x8008F838 end:0x8008F8F0 align:4
 
-dol/fn_80074D88.c:
-	.text       start:0x80074D88 end:0x80075240 align:4
-
 dol/av/avdisp_tail.c:
 	.text       start:0x800789D8 end:0x80079654 align:4
 
@@ -1461,9 +1449,6 @@ dol/fn_8005CBF4.c:
 
 dol/fn_8006331C.c:
 	.text       start:0x8006331C end:0x80063EF4 align:4
-
-dol/fn_800756B0.c:
-	.text       start:0x800756B0 end:0x80075908 align:4
 
 dol/fn_80068BFC.c:
 	.text       start:0x80068BFC end:0x80068EB4 align:4
@@ -1827,9 +1812,6 @@ dol/fn_80078944.c:
 
 dol/fn_800643F4.c:
 	.text       start:0x800643F4 end:0x800647B8 align:4
-
-dol/fn_80075240.c:
-	.text       start:0x80075240 end:0x800756B0 align:4
 
 dol/gTRKInterruptVectorTable.c:
 	.init       start:0x800035E4 end:0x80005518 align:4
