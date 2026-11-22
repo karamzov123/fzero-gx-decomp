@@ -28,15 +28,6 @@ rel/customize/_prolog/fn_3_6540.c:
 	.text       start:0x00006540 end:0x0000679C align:4
 	.data       start:0x00001698 end:0x00001930 align:8
 
-rel/customize/customize/fn_3_B5FC.c:
-	.text       start:0x0000B5FC end:0x0000B984 align:4
-
-rel/customize/customize/fn_3_B984.c:
-	.text       start:0x0000B984 end:0x0000BA74
-
-rel/customize/customize/fn_3_BC60.c:
-	.text       start:0x0000BC60 end:0x0000BD00
-
 rel/customize/customize/fn_3_BD98.c:
 	.text       start:0x0000BD98 end:0x0000C400 align:4
 	.rodata     start:0x00000270 end:0x00000288 align:8
@@ -112,15 +103,12 @@ rel/customize/_prolog/fn_3_3438.c:
 rel/customize/emb_memcard/fn_3_F878.c:
 	.text       start:0x0000F878 end:0x0000F948 align:4
 
-rel/customize/customize/fn_3_BD00.c:
-	.text       start:0x0000BD00 end:0x0000BD98 align:4
-
 rel/customize/emblem/fn_3_146C0.c:
 	.text       start:0x000146C0 end:0x0001552C align:4
 	.bss        start:0x000A23D8 end:0x000A23E8 align:8
 
 rel/customize/customize/fn_3_ACF4.c:
-	.text       start:0x0000ACF4 end:0x0000AE74 align:4
+	.text       start:0x0000ACF4 end:0x0000BD98 align:4
 
 rel/customize/toolkit/fn_3_1F81C.c:
 	.text       start:0x0001F81C end:0x0001F958 align:4
@@ -246,17 +234,11 @@ rel/customize/toolkit/fn_3_2AAF4.c:
 rel/customize/_prolog/fn_3_48E0.c:
 	.text       start:0x000048E0 end:0x00004A84 align:4
 
-rel/customize/customize/fn_3_BA74.c:
-	.text       start:0x0000BA74 end:0x0000BC60 align:4
-
 rel/customize/emb_paste_editor/fn_3_12B14.c:
 	.text       start:0x00012B14 end:0x00012E4C align:4
 
 rel/customize/_prolog/fn_3_3AE8.c:
 	.text       start:0x00003AE8 end:0x00003E58 align:4
-
-rel/customize/customize/fn_3_B270.c:
-	.text       start:0x0000B270 end:0x0000B5FC align:4
 
 rel/customize/_prolog/fn_3_990C.c:
 	.text       start:0x0000990C end:0x00009CA8 align:4
@@ -308,9 +290,6 @@ rel/customize/toolkit/fn_3_1C278.c:
 
 rel/customize/toolkit/fn_3_1B130.c:
 	.text       start:0x0001B130 end:0x0001B4BC align:4
-
-rel/customize/customize/fn_3_AE74.c:
-	.text       start:0x0000AE74 end:0x0000B270 align:4
 
 rel/customize/toolkit/fn_3_26A34.c:
 	.text       start:0x00026A34 end:0x000273F4 align:4

@@ -310,15 +310,6 @@ rel/main_rel/car_test/fn_1_7BF9C.c:
 	.data       start:0x0001EEB0 end:0x0001F1D8 align:8
 	.bss        start:0x0006D7E8 end:0x0006D7F0 align:8
 
-rel/main_rel/car_test/fn_1_7EAE8.c:
-	.text       start:0x0007EAE8 end:0x0007EB0C
-
-rel/main_rel/car_test/fn_1_7F1E8.c:
-	.text       start:0x0007F1E8 end:0x0007F254 align:4
-
-rel/main_rel/car_test/fn_1_7F254.c:
-	.text       start:0x0007F254 end:0x0007F3AC
-
 rel/main_rel/car/fn_1_7F518.c:
 	.text       start:0x0007F518 end:0x0007F58C
 
@@ -473,7 +464,7 @@ rel/main_rel/background/fn_1_9D77C.c:
 	.text       start:0x0009D77C end:0x0009DDA8 align:4
 
 rel/main_rel/background/fn_1_9E14C.c:
-	.text       start:0x0009E14C end:0x0009EA94 align:4
+	.text       start:0x0009E14C end:0x0009F7DC align:4
 
 rel/main_rel/sound/fn_1_9FE74.c:
 	.text       start:0x0009FE74 end:0x0009FFD8 align:4
@@ -1089,9 +1080,6 @@ rel/main_rel/memcard/fn_1_BF520.c:
 rel/main_rel/game/fn_1_3FF90.c:
 	.text       start:0x0003FF90 end:0x0004068C align:4
 
-rel/main_rel/car_test/fn_1_7EB0C.c:
-	.text       start:0x0007EB0C end:0x0007EB8C align:4
-
 rel/main_rel/memcard/fn_1_B7C6C.c:
 	.text       start:0x000B7C6C end:0x000B7CD4 align:4
 
@@ -1472,9 +1460,6 @@ rel/main_rel/archive/fn_1_12CCB0.c:
 rel/main_rel/car/fn_1_83CB0.c:
 	.text       start:0x00083CB0 end:0x00084038 align:4
 
-rel/main_rel/background/fn_1_9EDE8.c:
-	.text       start:0x0009EDE8 end:0x0009F164 align:4
-
 rel/main_rel/archive/fn_1_12ECA8.c:
 	.text       start:0x0012ECA8 end:0x0012F028 align:4
 
@@ -1732,9 +1717,6 @@ rel/main_rel/bg_cas/fn_1_FDB40.c:
 rel/main_rel/load/fn_1_45BF0.c:
 	.text       start:0x00045BF0 end:0x00045CD8 align:4
 
-rel/main_rel/car_test/fn_1_7E9C4.c:
-	.text       start:0x0007E9C4 end:0x0007EAE8 align:4
-
 rel/main_rel/font/fn_1_55EA0.c:
 	.text       start:0x00055EA0 end:0x00055FC4 align:4
 
@@ -1772,9 +1754,6 @@ rel/main_rel/bg_win/fn_1_15BB34.c:
 
 rel/main_rel/sel_static_disp/fn_1_14EBF8.c:
 	.text       start:0x0014EBF8 end:0x0014ED00 align:4
-
-rel/main_rel/background/fn_1_9F4B4.c:
-	.text       start:0x0009F4B4 end:0x0009F7DC align:4
 
 rel/main_rel/archive/fn_1_12C5E4.c:
 	.text       start:0x0012C5E4 end:0x0012C930 align:4
@@ -1986,11 +1965,8 @@ rel/main_rel/enemy_ctrl/fn_1_CFCA4.c:
 rel/main_rel/font/fn_1_549F4.c:
 	.text       start:0x000549F4 end:0x00054DCC align:4
 
-rel/main_rel/background/fn_1_9EA94.c:
-	.text       start:0x0009EA94 end:0x0009EDE8 align:4
-
 rel/main_rel/car_test/fn_1_7E8F4.c:
-	.text       start:0x0007E8F4 end:0x0007E9C4 align:4
+	.text       start:0x0007E8F4 end:0x0007F3AC align:4
 
 rel/main_rel/enemy_ctrl/fn_1_C6F8C.c:
 	.text       start:0x000C6F8C end:0x000C7224 align:4
@@ -2055,14 +2031,8 @@ rel/main_rel/sel_static_disp/fn_1_1418EC.c:
 rel/main_rel/bg_common/fn_1_103D28.c:
 	.text       start:0x00103D28 end:0x00103FCC align:4
 
-rel/main_rel/background/fn_1_9F164.c:
-	.text       start:0x0009F164 end:0x0009F4B4 align:4
-
 rel/main_rel/bg_common/fn_1_105BD8.c:
 	.text       start:0x00105BD8 end:0x00105CC8 align:4
-
-rel/main_rel/car_test/fn_1_7EB8C.c:
-	.text       start:0x0007EB8C end:0x0007ECB8 align:4
 
 rel/main_rel/sound/fn_1_A33F0.c:
 	.text       start:0x000A33F0 end:0x000A358C align:4
@@ -3377,17 +3347,11 @@ rel/main_rel/accessory/fn_1_11BFCC.c:
 rel/main_rel/sel_static_disp/fn_1_146C88.c:
 	.text       start:0x00146C88 end:0x00147188 align:4
 
-rel/main_rel/car_test/fn_1_7ECB8.c:
-	.text       start:0x0007ECB8 end:0x0007F1E8 align:4
-
 rel/main_rel/rob/fn_1_97288.c:
 	.text       start:0x00097288 end:0x000977BC align:4
 
 rel/main_rel/accessory/fn_1_1244F0.c:
 	.text       start:0x001244F0 end:0x00124AD4 align:4
-
-rel/main_rel/bg_lig/fn_1_D6C10.c:
-	.text       start:0x000D6C10 end:0x000D720C align:4
 
 rel/main_rel/sel_static_disp/fn_1_13ABA8.c:
 	.text       start:0x0013ABA8 end:0x0013B24C align:4
@@ -3516,7 +3480,7 @@ rel/main_rel/enemy_ctrl/fn_1_D0428.c:
 	.text       start:0x000D0428 end:0x000D07C4 align:4
 
 rel/main_rel/bg_lig/fn_1_D6748.c:
-	.text       start:0x000D6748 end:0x000D6C10 align:4
+	.text       start:0x000D6748 end:0x000D720C align:4
 
 rel/main_rel/live_camera/fn_1_E688.c:
 	.text       start:0x0000E688 end:0x0000EBE4 align:4

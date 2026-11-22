@@ -1,6 +1,14 @@
 #include "types.h"
 #include "rel/customize/globals.h"
+#define lbl_3_bss_2C584 _h_lbl_3_bss_2C584
 #include "rel/customize/customize.h"
+#undef lbl_3_bss_2C584
+typedef struct Sig_fn_1_152CB4_Fn152CB4Cell {
+    s16 id;
+    u8 pad[2];
+    u32 flags;
+} Sig_fn_1_152CB4_Fn152CB4Cell;
+extern Sig_fn_1_152CB4_Fn152CB4Cell lbl_3_bss_2C584[][7];
 
 
 extern s32 lbl_3_bss_120;
@@ -14,7 +22,7 @@ extern void fn_80008BEC(void *, s32, s32);
 extern void fn_1_FDFF4(void);
 extern void fn_1_FC4E0(void *, s32);
 extern u32 lbl_801A6410;
-extern void fn_1_7F3AC(u32);
+extern void fn_1_7F3AC(void *);
 extern void fn_1_46B4(u32, u32, u8 *, s32);
 extern void fn_1_BC29C(u32 *arg0);
 extern void fn_1_B9C0C(void);
@@ -222,7 +230,7 @@ extern void fn_1_BC310(void *);
 extern s8 fn_1_BA144(u32 *);
 extern void fn_1_C0510(u32 *arg0);
 
-/* fzgx:begin fn_3_ACF4 noprologue */
+/* fzgx:begin fn_3_ACF4 */
 #include "types.h"
 
 typedef struct {
@@ -231,10 +239,8 @@ typedef struct {
     u8 tail[0x118];
 } CustomizeEntry;
 
-extern u32 lbl_3_bss_F0[12];
 extern CustomizeEntry lbl_3_bss_20860[4];
 extern u8 lbl_3_bss_21960[10368];
-extern s32 lbl_3_data_B8;
 extern u32 lbl_3_bss_20850;
 extern u32 lbl_1_bss_6D82C;
 typedef struct {
@@ -242,7 +248,6 @@ typedef struct {
     u32 field_3a4;
 } CustomizeObject;
 
-extern CustomizeObject *lbl_3_bss_7EBA4;
 extern u8 lbl_3_data_11DC[84];
 extern u32 lbl_3_bss_7EBA8;
 extern u32 lbl_801A6410;
@@ -254,13 +259,13 @@ extern void fn_1_151BDC(s32);
 extern void fn_1_435C(u32);
 extern void fn_1_426C(u32);
 extern void fn_1_46B4(u32, u32, u8 *, s32);
-extern void fn_1_7F3AC(CustomizeObject *);
+extern void fn_1_7F3AC(void *);
 
 void fn_3_ACF4(void) {
     s16 index;
 
-    if ((lbl_3_bss_F0[0] & 0x20000000) == 0) {
-        index = *(s16 *)((u8 *)lbl_3_bss_F0 + 8);
+    if (((*(u32 *)&lbl_3_bss_F0) & 0x20000000) == 0) {
+        index = *(s16 *)((u8 *)&lbl_3_bss_F0 + 8);
         if (lbl_3_bss_20860[index].value != -1) {
             fn_1_80F1C((s16)lbl_3_bss_20860[index].value, &lbl_3_bss_20860[index]);
             lbl_3_bss_20860[index].value = -1;
@@ -271,13 +276,13 @@ void fn_3_ACF4(void) {
             lbl_1_bss_6D82C = 0;
         }
         fn_1_151BDC(0);
-        if (lbl_3_data_B8 != -1) {
+        if ((s32)lbl_3_data_B8 != -1) {
             fn_1_435C(lbl_3_bss_20850);
             fn_1_426C(lbl_3_data_B8);
             lbl_3_data_B8 = -1;
         }
     }
-    if (lbl_3_bss_7EBA4->field_3a4 != 0) {
+    if (lbl_3_bss_7EBA4->unk_3A4 != 0) {
         fn_1_7F3AC(lbl_3_bss_7EBA4);
     }
     if (lbl_3_bss_7EBA4 != 0) {
@@ -315,7 +320,8 @@ typedef struct {
 typedef struct {
     u8 pad_0[0x6];
     s16 unk_6;
-    u8 pad_8[0x28];
+    s16 unk_8;
+    u8 pad_A[0x26];
 } fzgx_obj_lbl_3_bss_F0_t;
 
 typedef struct {
@@ -633,7 +639,7 @@ extern void fn_1_80058(s8, CustomizeSlot *);
 extern void fn_1_12A2B8(u32);
 extern void fn_1_80C18(fn_3_AE74_CustomizeEntry *, CustomizeSlot *, s8);
 extern void fn_1_4A00(s32, s32, u32);
-extern s32 fn_1_152970(s16 *, s16 *, s16, s32, void *, s32, s32);
+extern s32 fn_1_152970(s16 *, s16 *, s16, s32, void *, s16, s16);
 
 void fn_3_AE74(void) {
     s16 saved;
@@ -728,14 +734,9 @@ void fn_3_AE74(void) {
 }
 /* fzgx:end fn_3_AE74 */
 
-/* fzgx:begin fn_3_B270 noprologue */
+/* fzgx:begin fn_3_B270 */
 #include "types.h"
 
-typedef struct Sig_fn_1_152CB4_Fn152CB4Cell {
-    s16 id;
-    u8 pad[2];
-    u32 flags;
-} Sig_fn_1_152CB4_Fn152CB4Cell;
 
 typedef struct {
     u8 pad_0[0x8];
@@ -761,27 +762,6 @@ typedef struct {
     s16 port;    /* 0x06 */
 } fn_3_B270_Input;
 
-/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
-fn_3_B270_Obj0 fzgx_obj_lbl_3_bss_0;
-s32 fzgx_obj_lbl_3_bss_8;
-s32 fzgx_obj_lbl_3_bss_C;
-u32 lbl_3_bss_C__fzgx_offset_4[2];
-u32 lbl_3_bss_18__fzgx_offset_0[2];
-fn_3_B270_List fzgx_obj_lbl_3_bss_20;
-fn_3_B270_Input fzgx_obj_lbl_3_bss_F0;
-
-#pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
-    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
-    s = *(u8 *)&fzgx_obj_lbl_3_bss_0;
-    s = *(u8 *)&fzgx_obj_lbl_3_bss_8;
-    s = *(u8 *)&fzgx_obj_lbl_3_bss_C;
-    s = *(u8 *)&lbl_3_bss_C__fzgx_offset_4;
-    /* Native section-order primer. */ (void)*(volatile u8 *)&lbl_3_bss_18__fzgx_offset_0;
-    s = *(u8 *)&fzgx_obj_lbl_3_bss_20;
-    s = *(u8 *)&fzgx_obj_lbl_3_bss_F0;
-}
-#pragma section code_type ".text"
 
 typedef struct {
     u8 pad_0[0x48F8];
@@ -791,19 +771,18 @@ typedef struct {
 extern s16 lbl_3_data_C4;
 extern fn_3_B270_Pad lbl_1_bss_9F8[];
 extern fn_3_B270_lbl_1_bss_7F0C0 lbl_1_bss_7F0C0;
-extern Sig_fn_1_152CB4_Fn152CB4Cell lbl_3_bss_2C584[][7];
 
 extern u32 fn_1_8D5F0(s16);
 extern s32 fn_1_F7EDC(s16);
 extern s16 fn_1_152CB4(s16, s16, s16, Sig_fn_1_152CB4_Fn152CB4Cell *, s16, s16);
 extern void fn_1_A2D84(u32);
-extern s32 fn_1_152970(s16 *, s16 *, s16, u32, Sig_fn_1_152CB4_Fn152CB4Cell *, s16, s16);
+extern s32 fn_1_152970(s16 *, s16 *, s16, s32, void *, s16, s16);
 extern s16 fn_1_8D640(s16);
 extern s32 fn_1_F7BE4(s16);
 extern void fn_1_F7CAC(s16);
 extern void fn_3_BD00(s16, s16, s16, u32);
 
-s32 fn_3_B270(void) {
+s16 fn_3_B270(void) {
     s16 port;
     s16 dx;
     s16 dy;
@@ -821,7 +800,7 @@ s32 fn_3_B270(void) {
     s16 col2;
     u16 *trig;
 
-    port = fzgx_obj_lbl_3_bss_F0.port;
+    port = fzgx_obj_lbl_3_bss_F0.unk_6;
     prev = lbl_3_data_C4;
     dx = 0;
     dy = 0;
@@ -863,11 +842,11 @@ s32 fn_3_B270(void) {
         fn_1_A2D84(0xA9010000);
     }
     fn_1_152970(&row, &col, lbl_3_data_C4, 0, &lbl_3_bss_2C584[0][0], 7, 7);
-    lo = -fzgx_obj_lbl_3_bss_20.scroll;
+    lo = -fzgx_obj_lbl_3_bss_20.unk_C4;
     hi = lo + 2;
     if (row < lo || row > hi) {
         fn_3_BD00(dx, 0, dx * 10, 0x800000);
-        fzgx_obj_lbl_3_bss_20.scroll -= dx;
+        fzgx_obj_lbl_3_bss_20.unk_C4 -= dx;
     }
 
     if ((lbl_1_bss_9F8[port].hold >> 8) & 1) {
@@ -881,7 +860,7 @@ s32 fn_3_B270(void) {
             fn_1_152970(&row2, &col2, id, 0, &lbl_3_bss_2C584[0][0], 7, 7);
             lbl_3_bss_2C584[row2][col2].flags |= 0x8000000;
             fn_1_A2D84(0xA9010100);
-            fzgx_obj_lbl_3_bss_C = 1;
+            fzgx_obj_lbl_3_bss_C[0] = 1;
         } else {
             fn_1_A2D84(0xA9011400);
         }
@@ -972,14 +951,14 @@ extern struct fn_3_B6E4_lbl_3_data_11D4 lbl_3_data_11D4;
 extern u32 fn_1_12A734(u32);
 extern u32 lbl_3_bss_8;
 extern u32 lbl_3_bss_C;
-extern void * fn_1_435C(void *);
+extern void fn_1_435C(u32);
 extern void fn_1_12A2B8(u32);
 extern void fn_1_12A2D0(s32);
 extern void fn_1_426C(u32);
 extern void fn_1_48140(int);
 extern void fn_1_7F934(Sig_fn_1_A7728_FnA7728Object *);
 extern void fn_1_F8030(void);
-extern void fn_80071718(struct Sig_fn_80071718_fn_80071718_Arg0 *);
+extern void fn_80071718(u32);
 
 
 void fn_3_B6E4(void) {
@@ -1000,7 +979,7 @@ void fn_3_B6E4(void) {
     }
     v2 = (*(struct fn_3_B6E4_lbl_1_bss_6D82C *)&lbl_1_bss_6D82C).unk_0;
     if (v2 != 0) {
-    fn_80071718((struct Sig_fn_80071718_fn_80071718_Arg0 *)v2);
+    fn_80071718(v2);
     (*(struct fn_3_B6E4_lbl_1_bss_6D82C *)&lbl_1_bss_6D82C).unk_0 = 0;
     }
     v3 = lbl_3_data_11D4.unk_0;
@@ -1010,7 +989,7 @@ void fn_3_B6E4(void) {
     lbl_3_data_11D4.unk_0 = -1;
     fn_1_12A2B8(0);
     if ((s32)(*(struct fn_3_B6E4_lbl_3_data_B8 *)&lbl_3_data_B8).unk_0 != -1) {
-    fn_1_435C((void *)(*(struct fn_3_B6E4_lbl_3_bss_20850 *)&lbl_3_bss_20850).unk_0);
+    fn_1_435C((*(struct fn_3_B6E4_lbl_3_bss_20850 *)&lbl_3_bss_20850).unk_0);
     fn_1_426C((*(struct fn_3_B6E4_lbl_3_data_B8 *)&lbl_3_data_B8).unk_0);
     (*(struct fn_3_B6E4_lbl_3_data_B8 *)&lbl_3_data_B8).unk_0 = -1;
     }
@@ -1059,12 +1038,9 @@ void fn_3_B6E4(void) {
 }
 /* fzgx:end fn_3_B6E4 */
 
-/* fzgx:begin fn_3_B984 noprologue */
+/* fzgx:begin fn_3_B984 */
 #include "types.h"
 
-extern u32 lbl_3_bss_F0[12];
-extern u16 lbl_3_bss_20[104];
-extern u32 lbl_3_bss_2C7C0[66624];
 extern void fn_80008BEC(void *, s32, s32);
 extern void fn_1_FDFF4(void);
 extern void fn_1_FC4E0(void *, s32);
@@ -1087,20 +1063,18 @@ void fn_3_B984(void *entries, u8 *table) {
                 }
             }
             fn_1_FDFF4();
-            fn_1_FC4E0((u8 *)lbl_3_bss_2C7C0 +
-                ((s16 *)lbl_3_bss_F0)[4] * 0x10440, 1);
+            fn_1_FC4E0((u8 *)&lbl_3_bss_2C7C0 +
+                ((s16 *)&lbl_3_bss_F0)[4] * 0x10440, 1);
         }
     }
 }
 /* fzgx:end fn_3_B984 */
 
-/* fzgx:begin fn_3_BA74 noprologue */
-#include "rel/customize/customize.h"
+/* fzgx:begin fn_3_BA74 */
 
 extern u8 lbl_3_bss_6DE20[64832];
-extern void *lbl_801A6410;
-extern void *fn_1_45D0(void *, u32, void *, u32);
-extern void fn_80008BEC(void *, int, u32);
+extern void *fn_1_45D0(u32, u32, void *, u32);
+extern void fn_80008BEC(void *, s32, s32);
 extern void fn_80008BA8(void *, void *, u32);
 extern void *fn_1_7F254(void *, s32);
 extern void fn_1_FDC00(void);
@@ -1142,25 +1116,6 @@ typedef struct lbl_3_bss_F0_t {
     u8 pad_A[0x26];
 } lbl_3_bss_F0_t;
 
-/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
-lbl_3_bss_F0_t fzgx_obj_lbl_3_bss_F0;
-u32 lbl_3_bss_120[8];
-u32 fzgx_obj_lbl_3_bss_140[33217];
-u16 lbl_3_bss_20844;
-u16 fzgx_pool_lbl_3_bss_F0_gap_20846;
-u32 fzgx_obj_lbl_3_bss_20848;
-
-#pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
-    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
-    s = *(u8 *)&fzgx_obj_lbl_3_bss_F0;
-    s = *(u8 *)&lbl_3_bss_120;
-    s = *(u8 *)&fzgx_obj_lbl_3_bss_140;
-    s = *(u8 *)&lbl_3_bss_20844;
-    s = *(u8 *)&fzgx_pool_lbl_3_bss_F0_gap_20846;
-    s = *(u8 *)&fzgx_obj_lbl_3_bss_20848;
-}
-#pragma section code_type ".text"
 
 void fn_3_BA74(void)
 {
@@ -1203,28 +1158,27 @@ void fn_3_BA74(void)
 #pragma opt_common_subs reset
 /* fzgx:end fn_3_BA74 */
 
-/* fzgx:begin fn_3_BC60 noprologue */
+/* fzgx:begin fn_3_BC60 */
 #include "types.h"
 
-extern u32 lbl_3_bss_7EBA4;
 extern u32 lbl_3_bss_7EBA8;
 extern u8 lbl_3_data_11DC[84];
 extern u32 lbl_801A6410;
-extern void fn_1_7F3AC(u32);
+extern void fn_1_7F3AC(void *);
 extern void fn_1_46B4(u32, u32, u8 *, s32);
 
 void fn_3_BC60(void) {
     u32 *value;
 
-    value = &lbl_3_bss_7EBA4;
+    value = (u32 *)&lbl_3_bss_7EBA4;
     if (*value != 0) {
-        fn_1_7F3AC(*value);
+        fn_1_7F3AC((void *)*value);
     }
     if (lbl_3_bss_7EBA8 != 0) {
         fn_1_46B4(lbl_801A6410, lbl_3_bss_7EBA8, lbl_3_data_11DC, 0x12ad);
     }
     if (lbl_3_bss_7EBA4 != 0) {
-        fn_1_46B4(lbl_801A6410, lbl_3_bss_7EBA4, lbl_3_data_11DC, 0x12af);
+        fn_1_46B4(lbl_801A6410, (u32)lbl_3_bss_7EBA4, lbl_3_data_11DC, 0x12af);
     }
     lbl_3_bss_7EBA4 = 0;
     lbl_3_bss_7EBA8 = 0;
@@ -1236,7 +1190,7 @@ void fn_3_BC60(void) {
 
 
 
-void fn_3_BD00(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
+void fn_3_BD00(s16 arg0, s16 arg1, s16 arg2, u32 arg3) {
     *(u32 *)&(*(u16 (*)[24])&lbl_3_bss_F0)[18] = 0;
     *(u32 *)&(*(u16 (*)[24])&lbl_3_bss_F0)[18] |= 0x80000000;
     *(u32 *)&(*(u16 (*)[24])&lbl_3_bss_F0)[18] |= arg3;

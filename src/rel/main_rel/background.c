@@ -698,9 +698,9 @@ extern void lbl_8006D758(void);
 extern u32 GXLoadPosMtxImm(u32, u32);
 extern void lbl_8006DB30(void);
 /* The color is passed by value: MWCC copies it to the stack and passes the copy's address. */
-extern void fn_800736C0(u32, BgColor);
+extern void fn_800736C0();
 extern void fn_8003462C(u32 arg0, u32 arg1, u32 arg2);
-extern void lbl_8006E1D8(f32 *, f32, f32, f32);
+extern void lbl_8006E1D8(void *, f32, f32, f32);
 extern void mathutil_mtxA_rotate_z(s32);
 extern void lbl_8006E0A4(void *);
 extern u32 lbl_8006D7B0(void);
@@ -841,7 +841,7 @@ typedef struct {
 
 extern f32 lbl_1_rodata_42D0;
 extern f32 lbl_1_rodata_42D4;
-extern s32 fn_1_54E34(Obj_1_9EA94_Target *, f32);
+extern s32 fn_1_54E34(void *, f32);
 extern void fn_800724C8(void);
 extern void fn_8007245C(u32);
 extern void lbl_8006DAEC(void);
@@ -849,10 +849,10 @@ extern void lbl_8006D758(void);
 extern u32 GXLoadPosMtxImm(u32, u32);
 extern u32 lbl_801A6D00;
 extern void lbl_8006DB30(void);
-extern void fn_800736C0(u32, void *);
+extern void fn_800736C0();
 extern void fn_8003462C(u32, u32, u32);
-extern void lbl_8006E0A4(Obj_1_9EA94_Target *);
-extern u32 mathutil_mtxA_rotate_z(u32);
+extern void lbl_8006E0A4(void *);
+extern void mathutil_mtxA_rotate_z(s32);
 extern void lbl_8006E1D8(void *, f32, f32, f32);
 
 #pragma opt_propagation off
@@ -964,12 +964,13 @@ void fn_1_9EA94(Obj_1_9EA94_Target *arg0) {
 /* fzgx:end fn_1_9EA94 */
 
 /* fzgx:begin fn_1_9EDE8 */
+typedef volatile const f32 OrderedFifoConst; /* Reload before each ordered FIFO write. */
 #include "dolphin/hw_regs.h"
 #include "types.h"
 #include "dolphin/types.h"
 
-extern volatile const f32 lbl_1_rodata_42D0; /* Reload before each ordered FIFO write. */
-extern volatile const f32 lbl_1_rodata_42D4; /* Reload before each ordered FIFO write. */
+extern f32 lbl_1_rodata_42D0;
+extern f32 lbl_1_rodata_42D4;
 extern u32 lbl_801A6D00;
 extern s32 fn_1_54E34(void *, f32);
 extern void fn_800724C8(void);
@@ -978,10 +979,10 @@ extern void lbl_8006DAEC(void);
 extern void lbl_8006D758(void);
 extern u32 GXLoadPosMtxImm(u32, u32);
 extern void lbl_8006DB30(void);
-extern void fn_800736C0(u32, void *);
-extern u32 fn_8003462C(u32, u32, u32);
-extern void lbl_8006DFC4(u32);
-extern void lbl_8006E1D8(u32, f32, f32, f32);
+extern void fn_800736C0();
+extern void fn_8003462C(u32, u32, u32);
+extern void lbl_8006DFC4(void *);
+extern void lbl_8006E1D8(void *, f32, f32, f32);
 
 extern vu32 __DIRegs[];
 
@@ -1025,76 +1026,76 @@ void fn_1_9EDE8(BackgroundQuad *arg0) {
     z = arg0->color.word;
     fn_800736C0(0, &z);
     fn_8003462C(0x90, 0, 8);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
     fn_8003462C(0x80, 0, 4);
     radius = *(f32 *)arg0;
     neg.value = -radius;
     lbl_8006DAEC();
-    lbl_8006DFC4((u32)((u8 *)arg0 + 8));
-    lbl_8006E1D8((u32)&vtx[0], neg.value, neg.value, lbl_1_rodata_42D0);
-    lbl_8006E1D8((u32)&vtx[1], radius, neg.value, lbl_1_rodata_42D0);
-    lbl_8006E1D8((u32)&vtx[2], radius, radius, lbl_1_rodata_42D0);
-    lbl_8006E1D8((u32)&vtx[3], neg.value, radius, lbl_1_rodata_42D0);
+    lbl_8006DFC4((void *)((u8 *)arg0 + 8));
+    lbl_8006E1D8((void *)&vtx[0], neg.value, neg.value, *(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    lbl_8006E1D8((void *)&vtx[1], radius, neg.value, *(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    lbl_8006E1D8((void *)&vtx[2], radius, radius, *(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    lbl_8006E1D8((void *)&vtx[3], neg.value, radius, *(OrderedFifoConst *)&lbl_1_rodata_42D0);
     lbl_8006DB30();
     FIFO(vtx[0].x);
     FIFO(vtx[0].y);
     FIFO(vtx[0].z);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
     FIFO(vtx[1].x);
     FIFO(vtx[1].y);
     FIFO(vtx[1].z);
-    FIFO(lbl_1_rodata_42D4);
-    FIFO(lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D4);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
     FIFO(vtx[2].x);
     FIFO(vtx[2].y);
     FIFO(vtx[2].z);
-    FIFO(lbl_1_rodata_42D4);
-    FIFO(lbl_1_rodata_42D4);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D4);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D4);
     FIFO(vtx[3].x);
     FIFO(vtx[3].y);
     FIFO(vtx[3].z);
-    FIFO(lbl_1_rodata_42D0);
-    FIFO(lbl_1_rodata_42D4);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D0);
+    FIFO(*(OrderedFifoConst *)&lbl_1_rodata_42D4);
 }
 /* fzgx:end fn_1_9EDE8 */
 
@@ -1114,7 +1115,7 @@ struct fn_1_9F164_Arg0 {
 extern f32 lbl_1_rodata_42D0;
 extern f32 lbl_1_rodata_42D4;
 extern s32 fn_1_54E34(void *, f32);
-extern void fn_800736C0(u32, void *);
+extern void fn_800736C0();
 extern void fn_8003462C(u32, u32, u32);
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DFC4(void *);
@@ -1210,16 +1211,16 @@ struct fn_1_9F4B4_lbl_1_rodata_42D0 {
     f32 unk_0;
 };
 
-extern struct fn_1_9F4B4_lbl_1_rodata_42D0 lbl_1_rodata_42D0;
-extern struct fn_1_9F4B4_lbl_1_rodata_42D0 lbl_1_rodata_42D4;
+extern f32 lbl_1_rodata_42D0;
+extern f32 lbl_1_rodata_42D4;
 extern s32 fn_1_54E34(void *, f32);
-extern u32 mathutil_mtxA_rotate_z(u32);
+extern void mathutil_mtxA_rotate_z(s32);
 extern void fn_8003462C(u32, u32, u32);
-extern void fn_800736C0(u32, void *);
+extern void fn_800736C0();
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DB30(void);
 extern void lbl_8006E0A4(void *);
-extern void lbl_8006E1D8(u32, f32, f32, f32);
+extern void lbl_8006E1D8(void *, f32, f32, f32);
 
 #pragma opt_propagation off
 void fn_1_9F4B4(struct fn_1_9F4B4_Arg0 *arg0) {
@@ -1230,9 +1231,9 @@ void fn_1_9F4B4(struct fn_1_9F4B4_Arg0 *arg0) {
     u32 loc_8;
     struct { f32 value; } f31;
     struct { f32 value; } f30;
-    u32 lab_t0;
-    u32 lab_t0_;
-    u32 lab_t0__;
+    void *lab_t0;
+    void *lab_t0_;
+    void *lab_t0__;
 
     if (fn_1_54E34(arg0, arg0->unk_C) == 0) {
         arg0->unk_12 |= 1;
@@ -1241,46 +1242,46 @@ void fn_1_9F4B4(struct fn_1_9F4B4_Arg0 *arg0) {
         loc_8 = arg0->unk_14;
         fn_800736C0(0, &loc_8);
         fn_8003462C(0x90, 0, 8);
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = (lbl_1_rodata_42D0.unk_0);  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = ((*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0);  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC010000 + -32768) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
         fn_8003462C(0x80, 0, 4);
         {
             f31.value = (-arg0->unk_C);
@@ -1290,35 +1291,35 @@ void fn_1_9F4B4(struct fn_1_9F4B4_Arg0 *arg0) {
             if (arg0->unk_10 != 0) {
                 mathutil_mtxA_rotate_z(arg0->unk_10);
             }
-            lbl_8006E1D8((u32)loc_C, f31.value, f31.value, lbl_1_rodata_42D0.unk_0);
-            lab_t0_ = (u32)loc_18;
-            lbl_8006E1D8(lab_t0_, f30.value, f31.value, lbl_1_rodata_42D0.unk_0);
-            lab_t0 = (u32)loc_24;
-            lbl_8006E1D8(lab_t0, f30.value, f30.value, lbl_1_rodata_42D0.unk_0);
-            lab_t0__ = (u32)&loc_30;
-            lbl_8006E1D8(lab_t0__, f31.value, f30.value, lbl_1_rodata_42D0.unk_0);
+            lbl_8006E1D8((void *)loc_C, f31.value, f31.value, (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0);
+            lab_t0_ = (void *)loc_18;
+            lbl_8006E1D8(lab_t0_, f30.value, f31.value, (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0);
+            lab_t0 = (void *)loc_24;
+            lbl_8006E1D8(lab_t0, f30.value, f30.value, (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0);
+            lab_t0__ = (void *)&loc_30;
+            lbl_8006E1D8(lab_t0__, f31.value, f30.value, (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0);
         }
         lbl_8006DB30();
         *(f32 *)((u8 *)0xCC000000 + 0x8000) = loc_C[0];  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
         *(f32 *)((u8 *)0xCC000000 + 0x8000) = loc_C[1];  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
         *(f32 *)((u8 *)0xCC000000 + 0x8000) = loc_C[2];  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC000000 + 0x8000) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC000000 + 0x8000) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC000000 + 0x8000) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC000000 + 0x8000) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
         *(f32 *)((u8 *)0xCC000000 + 0x8000) = loc_18[0];  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
         *(f32 *)((u8 *)0xCC000000 + 0x8000) = loc_18[1];  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
         *(f32 *)((u8 *)0xCC000000 + 0x8000) = loc_18[2];  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC000000 + 0x8000) = (lbl_1_rodata_42D4.unk_0);  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC000000 + 0x8000) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC000000 + 0x8000) = ((*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D4).unk_0);  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC000000 + 0x8000) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
         *(f32 *)((u8 *)0xCC000000 + 0x8000) = loc_24[0];  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
         *(f32 *)((u8 *)0xCC000000 + 0x8000) = loc_24[1];  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
         *(f32 *)((u8 *)0xCC000000 + 0x8000) = loc_24[2];  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC000000 + 0x8000) = (lbl_1_rodata_42D4.unk_0);  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC000000 + 0x8000) = (lbl_1_rodata_42D4.unk_0);  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC000000 + 0x8000) = ((*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D4).unk_0);  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC000000 + 0x8000) = ((*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D4).unk_0);  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
         *(f32 *)((u8 *)0xCC000000 + 0x8000) = loc_30[0];  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
         *(f32 *)((u8 *)0xCC000000 + 0x8000) = loc_30[1];  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
         *(f32 *)((u8 *)0xCC000000 + 0x8000) = loc_30[2];  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC000000 + 0x8000) = lbl_1_rodata_42D0.unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC000000 + 0x8000) = (lbl_1_rodata_42D4.unk_0);  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC000000 + 0x8000) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        *(f32 *)((u8 *)0xCC000000 + 0x8000) = ((*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D4).unk_0);  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
     }
 }
 

@@ -1366,25 +1366,23 @@
     "module": "customize",
     "source": "rel/customize/customize/fn_3_ACF4.c",
     "symbols": [
-      "fn_3_ACF4"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/customize.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/customize/fn_3_AE74.c",
-    "symbols": [
-      "fn_3_AE74"
+      "fn_3_ACF4",
+      "fn_3_AE74",
+      "fn_3_B270",
+      "fn_3_B5FC",
+      "fn_3_B6E4",
+      "fn_3_B984",
+      "fn_3_BA74",
+      "fn_3_BC60",
+      "fn_3_BD00",
+      "fn_3_BD30"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
     "tu": "rel/customize/customize.c",
+    "collapsed": true,
     "pool": {
       "...data.0": "lbl_3_data_0",
       "fzgx_pool_init_fzgx_obj_lbl_3_data_0": "lbl_3_data_0",
@@ -1409,93 +1407,6 @@
       "fzgx_obj_lbl_3_bss_2437C": "lbl_3_bss_2437C",
       "fzgx_obj_lbl_3_bss_243A8": "lbl_3_bss_243A8"
     }
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/customize/fn_3_B270.c",
-    "symbols": [
-      "fn_3_B270"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/customize/customize.c",
-    "pool": {
-      "...bss.0": "lbl_3_bss_0",
-      "fzgx_obj_lbl_3_bss_0": "lbl_3_bss_0",
-      "fzgx_obj_lbl_3_bss_8": "lbl_3_bss_8",
-      "fzgx_obj_lbl_3_bss_C": "lbl_3_bss_C",
-      "lbl_3_bss_C__fzgx_offset_4": "lbl_3_bss_C+0x4",
-      "lbl_3_bss_18__fzgx_offset_0": "lbl_3_bss_18",
-      "fzgx_obj_lbl_3_bss_20": "lbl_3_bss_20",
-      "fzgx_obj_lbl_3_bss_F0": "lbl_3_bss_F0"
-    }
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/customize/fn_3_B5FC.c",
-    "symbols": [
-      "fn_3_B5FC",
-      "fn_3_B6E4"
-    ],
-    "status": "matching",
-    "tu": "rel/customize/customize.c",
-    "collapsed": true
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/customize/fn_3_B984.c",
-    "symbols": [
-      "fn_3_B984"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/customize.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/customize/fn_3_BA74.c",
-    "symbols": [
-      "fn_3_BA74"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/customize/customize.c",
-    "pool": {
-      "fzgx_obj_lbl_3_bss_F0": "lbl_3_bss_F0",
-      "lbl_3_bss_120": "lbl_3_bss_120",
-      "fzgx_obj_lbl_3_bss_140": "lbl_3_bss_140",
-      "lbl_3_bss_20844": "lbl_3_bss_20844",
-      "fzgx_obj_lbl_3_bss_20848": "lbl_3_bss_20848"
-    }
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/customize/fn_3_BC60.c",
-    "symbols": [
-      "fn_3_BC60"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/customize.c"
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/customize/fn_3_BD00.c",
-    "symbols": [
-      "fn_3_BD00",
-      "fn_3_BD30"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/customize/customize.c"
   },
   {
     "module": "customize",
@@ -30110,7 +30021,11 @@
       "fn_1_9E514",
       "fn_1_9E598",
       "fn_1_9E5B8",
-      "fn_1_9E608"
+      "fn_1_9E608",
+      "fn_1_9EA94",
+      "fn_1_9EDE8",
+      "fn_1_9F164",
+      "fn_1_9F4B4"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
@@ -30118,75 +30033,15 @@
     "collapsed": true,
     "pool": {
       "...rodata.0": "lbl_1_rodata_42C0",
-      "@79": "lbl_1_rodata_42D0",
+      "@77": "lbl_1_rodata_42C0",
       "@78": "lbl_1_rodata_42D4",
-      "@77": "lbl_1_rodata_42C0"
+      "@79": "lbl_1_rodata_42D0"
     },
     "matching_for": ["GFZE01"],
     "extra_cflags": [
       "-fp_contract",
       "off"
     ]
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/background/fn_1_9EA94.c",
-    "symbols": [
-      "fn_1_9EA94"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/background.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/background/fn_1_9EDE8.c",
-    "symbols": [
-      "fn_1_9EDE8"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/background.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/background/fn_1_9F164.c",
-    "symbols": [
-      "fn_1_9F164"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/background.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/background/fn_1_9F4B4.c",
-    "symbols": [
-      "fn_1_9F4B4"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/background.c"
   },
   {
     "module": "main_rel",
@@ -31536,69 +31391,18 @@
     "module": "main_rel",
     "source": "rel/main_rel/bg_lig/fn_1_D6748.c",
     "symbols": [
-      "fn_1_D6748"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bg_lig.c",
-    "pool": {
-      "...rodata.0": "lbl_1_rodata_6360"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bg_lig/fn_1_D6C10.c",
-    "symbols": [
+      "fn_1_D6748",
       "fn_1_D6C10"
     ],
     "status": "matching",
-    "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
     "tu": "rel/main_rel/bg_lig.c",
     "pool": {
-      "...rodata.0": "lbl_1_rodata_6360",
-      "@9": "lbl_1_rodata_6360+0xC",
-      "@10": "lbl_1_rodata_6360+0x10",
-      "@11": "lbl_1_rodata_6360+0x18",
-      "@12": "lbl_1_rodata_6360+0x20",
-      "@13": "lbl_1_rodata_6360+0x28",
-      "@22": "lbl_1_rodata_6360+0x30",
-      "@23": "lbl_1_rodata_6360+0x38",
-      "@24": "lbl_1_rodata_6360+0x3C",
-      "@25": "lbl_1_rodata_6360+0x40",
-      "@26": "lbl_1_rodata_6360+0x44",
-      "@27": "lbl_1_rodata_6360+0x48",
-      "@28": "lbl_1_rodata_6360+0x4C",
-      "@29": "lbl_1_rodata_6360+0x50",
-      "@38": "lbl_1_rodata_6360+0x58",
-      "@39": "lbl_1_rodata_6360+0x60",
-      "@48": "lbl_1_rodata_6360+0x80",
-      "@57": "lbl_1_rodata_6360+0x88",
-      "@66": "lbl_1_rodata_6360+0x90",
-      "@75": "lbl_1_rodata_6360+0x98",
-      "@84": "lbl_1_rodata_6360+0xA0",
-      "@85": "lbl_1_rodata_6360+0xA4",
-      "@86": "lbl_1_rodata_6360+0xA8",
-      "@87": "lbl_1_rodata_6360+0xAC",
-      "@88": "lbl_1_rodata_6360+0xB0",
-      "@89": "lbl_1_rodata_6360+0xB4",
-      "@90": "lbl_1_rodata_6360+0xB8",
-      "@99": "lbl_1_rodata_6360+0xC0",
-      "@100": "lbl_1_rodata_6360+0xC8",
-      "@108": "lbl_1_rodata_6360+0xDC",
-      "@120": "lbl_1_rodata_6360+0xE8",
-      "@129": "lbl_1_rodata_6360+0xF0",
-      "@130": "lbl_1_rodata_6360+0xF8",
-      "@131": "lbl_1_rodata_6360+0x100",
-      "@132": "lbl_1_rodata_6360+0x104",
-      "@133": "lbl_1_rodata_6360+0x108",
-      "@142": "lbl_1_rodata_6360+0x110",
-      "@143": "lbl_1_rodata_6360+0x118",
-      "@152": "lbl_1_rodata_6360+0x120",
-      "@251": "lbl_1_rodata_6360+0x128"
-    }
+      "...rodata.0": "lbl_1_rodata_6360"
+    },
+    "collapsed": true,
+    "matching_for": ["GFZE01"]
   },
   {
     "module": "main_rel",
@@ -35381,101 +35185,28 @@
     "module": "main_rel",
     "source": "rel/main_rel/car_test/fn_1_7E8F4.c",
     "symbols": [
-      "fn_1_7E8F4"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/car_test.c",
-    "pool": {
-      "fzgx_obj_lbl_1_bss_6D620": "lbl_1_bss_6D620",
-      "fzgx_obj_lbl_1_bss_6D7F4": "lbl_1_bss_6D7F4"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/car_test/fn_1_7E9C4.c",
-    "symbols": [
-      "fn_1_7E9C4"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/car_test.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/car_test/fn_1_7EAE8.c",
-    "symbols": [
-      "fn_1_7EAE8"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/car_test.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/car_test/fn_1_7EB0C.c",
-    "symbols": [
-      "fn_1_7EB0C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/car_test.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/car_test/fn_1_7EB8C.c",
-    "symbols": [
-      "fn_1_7EB8C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/car_test.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/car_test/fn_1_7ECB8.c",
-    "symbols": [
-      "fn_1_7ECB8"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/car_test.c",
-    "pool": {
-      "...rodata.0": "lbl_1_rodata_3508"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/car_test/fn_1_7F1E8.c",
-    "symbols": [
+      "fn_1_7E8F4",
+      "fn_1_7E9C4",
+      "fn_1_7EAE8",
+      "fn_1_7EB0C",
+      "fn_1_7EB8C",
+      "fn_1_7ECB8",
       "fn_1_7F1E8",
       "fn_1_7F20C",
-      "fn_1_7F230"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/car_test.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/car_test/fn_1_7F254.c",
-    "symbols": [
+      "fn_1_7F230",
       "fn_1_7F254"
     ],
     "status": "matching",
-    "mw_version": null,
+    "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/car_test.c"
+    "tu": "rel/main_rel/car_test.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_3508",
+      "fzgx_obj_lbl_1_bss_6D620": "lbl_1_bss_6D620",
+      "fzgx_obj_lbl_1_bss_6D7F4": "lbl_1_bss_6D7F4"
+    },
+    "collapsed": true,
+    "matching_for": ["GFZE01"]
   },
   {
     "module": "main_rel",

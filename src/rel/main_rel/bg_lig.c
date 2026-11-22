@@ -475,36 +475,6 @@ void fn_1_D6748(Vec3_D6748 *a, Vec3_D6748 *b, s16 kind) {
 
 /* fzgx:begin fn_1_D6C10 */
 #pragma section code_type ".fzgxpool"
-static const unsigned long fzgx_pool_table1[3] = {0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const unsigned long *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
-    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
-    s = 4.0f;
-    s = 2000.0f;
-    d = 1.0;
-    d = 0.2;
-    s = 32767.0f;
-}
-static const unsigned long fzgx_pool_table3[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep3(void) { const unsigned long *volatile cp; cp = fzgx_pool_table3; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime4(void) {
-    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
-    d = 0.5;
-    s = 0.800000011920929f;
-    s = 0.20000000298023224f;
-    s = 255.0f;
-    s = 0.5f;
-    s = 1.0f;
-    s = 224.0f;
-    s = 176.0f;
-}
-static const unsigned long fzgx_pool_table5[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep5(void) { const unsigned long *volatile cp; cp = fzgx_pool_table5; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime6(void) {
-    volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
-    d = 4503601774854144.0;
-    d = 4503599627370496.0;
-}
 static const unsigned long fzgx_pool_table7[6] = {0x00000000, 0x3F800000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
 __declspec(section ".fzgxpool") static void fzgx_pool_keep7(void) { const unsigned long *volatile cp; cp = fzgx_pool_table7; }  /* fzgx-allow: S2 pool primer sink */
 __declspec(section ".fzgxpool") static void fzgx_pool_prime8(void) {

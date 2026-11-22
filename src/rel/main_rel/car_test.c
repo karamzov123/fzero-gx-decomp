@@ -147,12 +147,12 @@ extern void fn_80074D68(f32, f32, f32);
 extern void fn_80074D78(u32);
 extern void lbl_8006D7DC(void *);
 extern void lbl_8006DAEC(void);
-extern void lbl_8006DB74(void *);
+extern u32 lbl_8006DB74();
 extern void lbl_8006DB30(void);
 extern void lbl_8006DBE4(void);
 extern void lbl_8006DCA4(void);
-extern void lbl_8006DFC4(void *);
-extern void lbl_8006E0A4(void *);
+extern u32 lbl_8006DFC4();
+extern void lbl_8006E0A4();
 extern void mathutil_mtxA_rotate_y(s32 angle);
 extern char *fn_80083970(char *, const char *);
 
@@ -194,7 +194,7 @@ extern void fn_1_80F80(void *, u8, void *);
 extern void fn_1_1502BC(void *, void *, void *);
 extern void fn_80083DB0(void *, u32);
 extern void fn_1_801F8(s16, void *);
-void fn_1_7ECB8(u32 arg0, u32 arg1, u32 arg2);
+void fn_1_7ECB8(void *arg0, u32 arg1, u32 arg2, f32 arg3);
 
 /* degrees to the 0x10000-per-turn angle unit; folds to an int constant (315 gives 0xE000) */
 #define DEG_TO_S16(deg) ((s16)(182.04445f * (deg)))
@@ -1302,28 +1302,33 @@ void fn_1_7E7A4(CarTest *test) {
 }
 /* fzgx:end fn_1_7E7A4 */
 
-/* fzgx:begin fn_1_7E8F4 noprologue */
+/* fzgx:begin fn_1_7E8F4 */
 #include "types.h"
+#define lbl_1_bss_9F8 _h_9F8
+#define lbl_1_bss_38454 _h_38454
+#define lbl_1_data_1F318 _h_1F318
 #include "rel/main_rel/globals.h"
+#undef lbl_1_bss_9F8
+#undef lbl_1_bss_38454
+#undef lbl_1_data_1F318
+#define lbl_1_bss_6D7E8 _h_6D7E8
 #include "rel/main_rel/car_test.h"
+#undef lbl_1_bss_6D7E8
 
 extern void fn_1_5634C(u32 arg0);
-extern void fn_1_7ECB8(u32 arg0, u32 arg1, u32 arg2);
 extern void *lbl_801A6410;
 extern const f64 lbl_1_rodata_3588;
 extern void fn_1_12AB38(const char *);
 extern void *fn_1_45D0(void *, s32, const char *, s32);
-extern void fn_80008BEC(void *, s32, s32);
+extern void fn_80008BEC(void *, int, u32);
 extern void fn_1_80F80(void *, u8, void *);
 extern void fn_1_1502BC(void *, void *, void *);
 
 extern void fn_80083DB0(void* arg0, u32 arg1);
 extern void fn_1_801F8(s16 arg0, void* arg1);
 extern const f32 lbl_1_rodata_33AC;
-extern void *fn_1_4630(void *arg0, u32 arg1, void *arg2, u32 arg3);
 extern const f32 lbl_1_rodata_33B0[84];
 extern void *memset(void *dst, int value, u32 size);
-extern void fn_1_46B4(void *arg0, void *arg1, u8 *arg2, s32 arg3);
 extern void fn_1_7F954(void *arg0, s32 arg1);
 extern void fn_1_49614(void);
 extern const f32 lbl_1_rodata_33A8;
@@ -1332,22 +1337,19 @@ extern void fn_80072014(void *arg0);
 extern void fn_800720B0(s32 arg0);
 
 extern void fn_1_5634C(u32 arg0);
-extern void fn_1_7ECB8(u32 arg0, u32 arg1, u32 arg2);
 extern void *lbl_801A6410;
 extern const f64 lbl_1_rodata_3588;
 extern void fn_1_12AB38(const char *);
 extern void *fn_1_45D0(void *, s32, const char *, s32);
-extern void fn_80008BEC(void *, s32, s32);
+extern void fn_80008BEC(void *, int, u32);
 extern void fn_1_80F80(void *, u8, void *);
 extern void fn_1_1502BC(void *, void *, void *);
 
 extern void fn_80083DB0(void* arg0, u32 arg1);
 extern void fn_1_801F8(s16 arg0, void* arg1);
 extern const f32 lbl_1_rodata_33AC;
-extern void *fn_1_4630(void *arg0, u32 arg1, void *arg2, u32 arg3);
 extern const f32 lbl_1_rodata_33B0[84];
 extern void *memset(void *dst, int value, u32 size);
-extern void fn_1_46B4(void *arg0, void *arg1, u8 *arg2, s32 arg3);
 extern void fn_1_7F954(void *arg0, s32 arg1);
 extern void fn_1_49614(void);
 extern const f32 lbl_1_rodata_33A8;
@@ -1418,13 +1420,21 @@ void fn_1_7E8F4(void) {
 #pragma opt_propagation reset
 /* fzgx:end fn_1_7E8F4 */
 
-/* fzgx:begin fn_1_7E9C4 noprologue */
+/* fzgx:begin fn_1_7E9C4 */
 #include "types.h"
+#define lbl_1_bss_9F8 _h_9F8
+#define lbl_1_bss_38454 _h_38454
+#define lbl_1_data_1F318 _h_1F318
 #include "rel/main_rel/globals.h"
+#undef lbl_1_bss_9F8
+#undef lbl_1_bss_38454
+#undef lbl_1_data_1F318
+#define lbl_1_bss_6D7E8 _h_6D7E8
 #include "rel/main_rel/car_test.h"
+#undef lbl_1_bss_6D7E8
 
 extern u32 fn_1_5910(void);
-extern void fn_1_5634C(s32 arg0);
+extern void fn_1_5634C(u32 arg0);
 extern void fn_1_5635C(s32 arg0, f32 arg1, f32 arg2);
 extern void fn_1_56374(u8 arg0, u8 arg1, u8 arg2);
 extern void fn_1_7EB0C(void);
@@ -1502,28 +1512,33 @@ void fn_1_7EAE8(void) {
 }
 /* fzgx:end fn_1_7EAE8 */
 
-/* fzgx:begin fn_1_7EB0C noprologue */
+/* fzgx:begin fn_1_7EB0C */
 #include "types.h"
+#define lbl_1_bss_9F8 _h_9F8
+#define lbl_1_bss_38454 _h_38454
+#define lbl_1_data_1F318 _h_1F318
 #include "rel/main_rel/globals.h"
+#undef lbl_1_bss_9F8
+#undef lbl_1_bss_38454
+#undef lbl_1_data_1F318
+#define lbl_1_bss_6D7E8 _h_6D7E8
 #include "rel/main_rel/car_test.h"
+#undef lbl_1_bss_6D7E8
 
 extern void fn_1_5634C(u32 arg0);
-extern void fn_1_7ECB8(u32 arg0, u32 arg1, u32 arg2);
 extern void *lbl_801A6410;
 extern const f64 lbl_1_rodata_3588;
 extern void fn_1_12AB38(const char *);
 extern void *fn_1_45D0(void *, s32, const char *, s32);
-extern void fn_80008BEC(void *, s32, s32);
+extern void fn_80008BEC(void *, int, u32);
 extern void fn_1_80F80(void *, u8, void *);
 extern void fn_1_1502BC(void *, void *, void *);
 
 extern void fn_80083DB0(void* arg0, u32 arg1);
 extern void fn_1_801F8(s16 arg0, void* arg1);
 extern const f32 lbl_1_rodata_33AC;
-extern void *fn_1_4630(void *arg0, u32 arg1, void *arg2, u32 arg3);
 extern const f32 lbl_1_rodata_33B0[84];
 extern void *memset(void *dst, int value, u32 size);
-extern void fn_1_46B4(void *arg0, void *arg1, u8 *arg2, s32 arg3);
 extern void fn_1_7F954(void *arg0, s32 arg1);
 extern void fn_1_49614(void);
 extern const f32 lbl_1_rodata_33A8;
@@ -1562,25 +1577,20 @@ void fn_1_7EB0C(void) {
 }
 /* fzgx:end fn_1_7EB0C */
 
-/* fzgx:begin fn_1_7EB8C noprologue */
+/* fzgx:begin fn_1_7EB8C */
 #include "types.h"
 #include "psvec.h"
 
 extern const f32 lbl_1_rodata_3508[4];
 extern void *lbl_801A6D00;
 extern void fn_1_556B8(void *arg0);
-extern u32 lbl_8006DB74(u32 arg0);
+extern u32 lbl_8006DB74();
 extern void lbl_8006D848(f32 arg0);
-extern u32 lbl_8006DFC4(u32 arg0);
+extern u32 lbl_8006DFC4();
 extern void fn_80072558(void);
 
 #define HW_F32(off) (*(f32 *)(0xE0000000 + (off)))
 
-typedef struct {
-    f32 x;
-    f32 y;
-    f32 z;
-} Vec3;
 
 typedef struct {
     void *f_0;
@@ -1661,7 +1671,7 @@ void fn_1_7EB8C(Object *arg0) {
 }
 /* fzgx:end fn_1_7EB8C */
 
-/* fzgx:begin fn_1_7ECB8 noprologue */
+/* fzgx:begin fn_1_7ECB8 */
 #include "types.h"
 #include "psvec.h"
 
@@ -1714,16 +1724,15 @@ static const f32 fzgx_pool_table_58[2] = {60.0f,0.0f};
 static const f64 fzgx_pool_table_60[1] = {0.12999999932944775};
 static const f32 fzgx_pool_table_68[2] = {0.029999999329447746f,0.0f};
 extern u32 fn_1_14DDF4(u32);
-extern u32 lbl_8006DB74(u32);
-extern u32 lbl_8006DFC4(u32);
-extern u32 lbl_801A6D00;
-extern u32 mathutil_mtxA_rotate_y(u32);
+extern u32 lbl_8006DB74();
+extern u32 lbl_8006DFC4();
+extern void mathutil_mtxA_rotate_y(s32);
 extern void * fn_1_14DD68(u32);
 extern void fn_1_556B8(void *);
-extern void fn_80008BA8(u32, u32, u32);
+extern void fn_80008BA8();
 extern void fn_80072558(void);
 extern void lbl_8006D848(f32);
-extern void lbl_8006E0A4(u32);
+extern void lbl_8006E0A4();
 
 #pragma opt_common_subs off
 
@@ -1860,8 +1869,7 @@ void fn_1_7ECB8(void * arg0, u32 arg1, u32 arg2, f32 arg3) {
     v6 = clamp_rotation((f32)(-fzgx_pool_table_3C[0] * *(f32 *)((u8 *)v1 + 164)) / 256.0f,
                         -fzgx_pool_table_3C[0], fzgx_pool_table_3C[0]);
     v1 = (s32)(f32)(*(volatile const f32 *)fzgx_pool_table_44 * v6);  /* fzgx-allow: S2 volatile keeps the verified access order */
-    t11 = mathutil_mtxA_rotate_y(v1);
-    v1 = t11;
+    mathutil_mtxA_rotate_y(v1);
     }
     } else {
     if ((arg2 & 0x40000000) != 0) {
@@ -1919,13 +1927,11 @@ void fn_1_7ECB8(void * arg0, u32 arg1, u32 arg2, f32 arg3) {
     v15 = fzgx_pool_table_54[0];
     v16 = fzgx_pool_table_44[0];
     v1 = (s32)(f32)(v16 * (f32)(s32)angle_short((f32)(v15 - (f32)(t22 * fzgx_pool_table_58[0]))));
-    t23 = mathutil_mtxA_rotate_y(v1);
-    v1 = t23;
+    mathutil_mtxA_rotate_y(v1);
     } else {
     v17 = fzgx_pool_table_44[0];
     v1 = (s32)(f32)(v17 * (f32)(s32)angle_short((f32)(t22 * fzgx_pool_table_58[0])));
-    t24 = mathutil_mtxA_rotate_y(v1);
-    v1 = t24;
+    mathutil_mtxA_rotate_y(v1);
     }
     }
     }
@@ -1980,8 +1986,8 @@ extern const f32 lbl_1_rodata_33B0[84];
 extern void *memset(void *dst, int value, u32 size);
 extern const f32 lbl_1_rodata_33A8;
 
-void fn_1_7F1E8(u32 arg0, u32 arg1) {
-    fn_1_7ECB8(arg0, arg1, 0x80000000); // fzgx-allow: A1 retail sentinel
+void fn_1_7F1E8(void *arg0, u32 arg1, f32 arg2) {
+    fn_1_7ECB8(arg0, arg1, 0x80000000, arg2); // fzgx-allow: A1 retail sentinel
 }
 /* fzgx:end fn_1_7F1E8 */
 
@@ -1994,8 +2000,8 @@ extern const f32 lbl_1_rodata_33B0[84];
 extern void *memset(void *dst, int value, u32 size);
 extern const f32 lbl_1_rodata_33A8;
 
-void fn_1_7F20C(u32 arg0, u32 arg1) {
-    fn_1_7ECB8(arg0, arg1, 0x40000000); // fzgx-allow: A1 retail sentinel
+void fn_1_7F20C(void *arg0, u32 arg1, f32 arg2) {
+    fn_1_7ECB8(arg0, arg1, 0x40000000, arg2); // fzgx-allow: A1 retail sentinel
 }
 /* fzgx:end fn_1_7F20C */
 
@@ -2008,33 +2014,38 @@ extern const f32 lbl_1_rodata_33B0[84];
 extern void *memset(void *dst, int value, u32 size);
 extern const f32 lbl_1_rodata_33A8;
 
-void fn_1_7F230(u32 arg0, u32 arg1) {
-    fn_1_7ECB8(arg0, arg1, 0);
+void fn_1_7F230(void *arg0, u32 arg1, f32 arg2) {
+    fn_1_7ECB8(arg0, arg1, 0, arg2);
 }
 /* fzgx:end fn_1_7F230 */
 
-/* fzgx:begin fn_1_7F254 noprologue */
+/* fzgx:begin fn_1_7F254 */
 #include "types.h"
+#define lbl_1_bss_9F8 _h_9F8
+#define lbl_1_bss_38454 _h_38454
+#define lbl_1_data_1F318 _h_1F318
 #include "rel/main_rel/globals.h"
+#undef lbl_1_bss_9F8
+#undef lbl_1_bss_38454
+#undef lbl_1_data_1F318
+#define lbl_1_bss_6D7E8 _h_6D7E8
 #include "rel/main_rel/car_test.h"
+#undef lbl_1_bss_6D7E8
 
 extern void fn_1_5634C(u32 arg0);
-extern void fn_1_7ECB8(u32 arg0, u32 arg1, u32 arg2);
 extern void *lbl_801A6410;
 extern const f64 lbl_1_rodata_3588;
 extern void fn_1_12AB38(const char *);
 extern void *fn_1_45D0(void *, s32, const char *, s32);
-extern void fn_80008BEC(void *, s32, s32);
+extern void fn_80008BEC(void *, int, u32);
 extern void fn_1_80F80(void *, u8, void *);
 extern void fn_1_1502BC(void *, void *, void *);
 
 extern void fn_80083DB0(void* arg0, u32 arg1);
 extern void fn_1_801F8(s16 arg0, void* arg1);
 extern const f32 lbl_1_rodata_33AC;
-extern void *fn_1_4630(void *arg0, u32 arg1, void *arg2, u32 arg3);
 extern const f32 lbl_1_rodata_33B0[84];
 extern void *memset(void *dst, int value, u32 size);
-extern void fn_1_46B4(void *arg0, void *arg1, u8 *arg2, s32 arg3);
 extern void fn_1_7F954(void *arg0, s32 arg1);
 extern void fn_1_49614(void);
 extern const f32 lbl_1_rodata_33A8;
