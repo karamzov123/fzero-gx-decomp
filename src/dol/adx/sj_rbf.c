@@ -1,14 +1,109 @@
 #include "types.h"
 
+extern u32 fn_800576DC(void);
+extern u32 fn_80057728(void);
+extern void *memset(void *dst, int val, u32 n);
+extern u32 lbl_8018B2A0[];
+extern u32 lbl_8018B2A4[];
+extern u8 lbl_80132300[];
+extern u8 lbl_80092330[];
+extern const f32 lbl_8009232C[];
 
-/* --- dol/fn_80057EC4.c --- */
+
+u32 fn_80057D88(u32 arg0, u32 arg1, u32 arg2) {
+    u8 *ptr = (u8 *)arg0 + (arg1 << 3);
+    ptr += arg2 << 2;
+    return *(u32 *)(ptr + 0x28);
+}
+
+struct fn_80057DA0_Arg0 {
+    u8 pad_0[0x24];
+    u32 unk_24;
+};
+
+u32 fn_80057DA0(struct fn_80057DA0_Arg0 *arg0) {
+    return arg0->unk_24;
+}
+
+struct fn_80057DA8_Arg0 {
+    u8 pad_0[0x20];
+    u32 unk_20;
+};
+
+u32 fn_80057DA8(struct fn_80057DA8_Arg0 *arg0) {
+    return arg0->unk_20;
+}
+
+struct fn_80057DB0_Arg0 {
+    u8 pad_0[0x1C];
+    u32 unk_1C;
+};
+
+u32 fn_80057DB0(struct fn_80057DB0_Arg0 *arg0) {
+    return arg0->unk_1C;
+}
+
+typedef struct Fn80057DB8Object Fn80057DB8Object;
+typedef void (*Fn80057DB8Callback)(void *, int);
+
+struct Fn80057DB8Object {
+    u8 pad_0x00[0x0c];
+    int value_0c;
+    int value_10;
+    int value_14;
+    int value_18;
+    u8 pad_0x1c[0x04];
+    int value_20;
+    int value_24;
+    u8 pad_0x28[0x10];
+    Fn80057DB8Callback callback_38;
+    void *callback_arg_3c;
+};
+
+
+int fn_80057DB8(Fn80057DB8Object *object, int mode, int limit, int *result) {
+    int value;
+    int clamped;
+
+    fn_80057728();
+    if (mode == 0) {
+        value = object->value_24;
+        value += object->value_20 - object->value_14;
+        if (object->value_10 < value) {
+            value = object->value_10;
+        }
+        clamped = limit;
+        if (value < limit) {
+            clamped = value;
+        }
+        mode = clamped;
+    } else if (mode == 1) {
+        value = object->value_24;
+        value += object->value_20 - object->value_18;
+        if (object->value_0c < value) {
+            value = object->value_0c;
+        }
+        clamped = limit;
+        if (value < limit) {
+            clamped = value;
+        }
+        mode = clamped;
+    } else {
+        mode = 0;
+        if (object->callback_38 != 0) {
+            object->callback_38(object->callback_arg_3c, -3);
+        }
+    }
+    *result = mode;
+    fn_800576DC();
+    return !(limit - mode);
+}
+
 struct fn_80057EC4_Arg2 {
     u8 pad_0[0x4];
     u32 unk_4;
 };
 
-extern u32 fn_800576DC(void);
-extern u32 fn_80057728(void);
 
 u32 fn_80057EC4(u8 *arg0, s32 arg1, struct fn_80057EC4_Arg2 *arg2) {
     s32 (*temp_r12)(s32, s32);
@@ -62,8 +157,6 @@ u32 fn_80057EC4(u8 *arg0, s32 arg1, struct fn_80057EC4_Arg2 *arg2) {
     return (u32)arg0;
 }
 
-/* --- dol/fn_80058070.c --- */
-/* --- dol/fn_80058070.c --- */
 typedef struct SjRing {
     u8 pad_0[0xC];
     int unkC;
@@ -140,8 +233,6 @@ void fn_80058070(SjRing* p, int mode, SjSpan* span)
     fn_800576DC();
 }
 
-/* --- dol/fn_800581CC.c --- */
-/* --- dol/fn_800581CC.c --- */
 typedef struct Fn800581CC_Ring {
     u8 pad_0[0xC];
     s32 write_avail;
@@ -195,7 +286,6 @@ void fn_800581CC(Fn800581CC_Ring *ring, s32 mode, s32 max, Fn800581CC_Chunk *chu
     fn_800576DC();
 }
 
-/* --- dol/fn_80058380.c --- */
 typedef struct Fn80058380Object Fn80058380Object;
 typedef void (*Fn80058380Callback)(void *, int);
 
@@ -219,4 +309,164 @@ int fn_80058380(Fn80058380Object *object, int mode) {
         object->callback(object->callback_context, -3);
     }
     return 0;
+}
+
+void fn_800583DC(u32 arg0) {
+    fn_80057728();
+    *(u32 *)((u8 *)arg0 + 12) = 0;
+    *(u32 *)((u8 *)arg0 + 16) = *(u32 *)((u8 *)arg0 + 32);
+    *(u32 *)((u8 *)arg0 + 20) = 0;
+    *(u32 *)((u8 *)arg0 + 24) = 0;
+    *(u32 *)((u8 *)arg0 + 40) = 0;
+    *(u32 *)((u8 *)arg0 + 44) = 0;
+    *(u32 *)((u8 *)arg0 + 48) = 0;
+    *(u32 *)((u8 *)arg0 + 52) = 0;
+    fn_800576DC();
+}
+
+struct fn_80058434_Arg0 {
+    u8 pad_0[0x38];
+    u32 unk_38;
+    u32 unk_3C;
+};
+
+void fn_80058434(struct fn_80058434_Arg0 *arg0, u32 arg1, u32 arg2) {
+    arg0->unk_38 = arg1;
+    arg0->unk_3C = arg2;
+}
+
+struct fn_80058440_Arg0 {
+    u8 pad_0[0x8];
+    u32 unk_8;
+};
+
+u32 fn_80058440(struct fn_80058440_Arg0 *arg0) {
+    return arg0->unk_8;
+}
+
+u32 fn_80058448(u32 arg0, u32 arg1, u32 arg2) {
+    u32 v0;
+    u32 v1;
+    u32 v2;
+    u32 t0, t1, t2;
+    t0 = fn_80057728();
+    v0 = t0;
+    v1 = arg1;
+    v2 = arg2;
+    if (arg0 != 0) {
+    v0 = arg0;
+    v1 = 0;
+    v2 = 64;
+    t1 = (u32)memset((void *)v0, v1, v2);
+    v0 = t1;
+    *(u32 *)((u8 *)arg0 + 4) = 0;
+    }
+    t2 = fn_800576DC();
+    v0 = t2;
+    return v0;
+}
+
+struct SjRingObj {
+    u32 unk0;
+    s32 used;
+    u32 unk8;
+    u32 unkC;
+    u32 unk10;
+    u32 unk14;
+    u32 unk18;
+    u32 unk1C;
+    u32 unk20;
+    u32 unk24;
+    u32 unk28;
+    u32 unk2C;
+    u32 unk30;
+    u32 unk34;
+    u32 unk38;
+    u32 unk3C;
+};
+
+void fn_800586E4(void);
+struct SjRingObj *fn_80058498(void *a0, u32 a1, u32 a2) {
+    s32 i;
+    struct SjRingObj *entry;
+
+    fn_80057728();
+
+    for (i = 0; i < 0x100; i++) {
+        if (((struct SjRingObj *)lbl_8018B2A4)[i].used == 0) {
+            break;
+        }
+    }
+
+    if (i == 0x100) {
+        entry = 0;
+    } else {
+        entry = &((struct SjRingObj *)lbl_8018B2A4)[i];
+        entry->used = 1;
+        entry->unk0 = (u32)lbl_80132300;
+        entry->unk1C = (u32)a0;
+        entry->unk20 = a1;
+        entry->unk24 = a2;
+        entry->unk8 = (u32)lbl_80092330;
+        entry->unk38 = (u32)fn_800586E4;
+        entry->unk3C = (u32)entry;
+
+        fn_80057728();
+        entry->unkC = 0;
+        entry->unk10 = entry->unk20;
+        entry->unk14 = 0;
+        entry->unk18 = 0;
+        entry->unk28 = 0;
+        entry->unk2C = 0;
+        entry->unk30 = 0;
+        entry->unk34 = 0;
+        fn_800576DC();
+    }
+
+    fn_800576DC();
+    return entry;
+}
+
+struct Counter {
+    u32 value;
+};
+
+void fn_80058630(void) {
+    struct Counter *counter;
+    fn_80057728();
+    counter = (struct Counter *)&lbl_8018B2A0;
+    if (--counter->value == 0) {
+        memset((void *)&lbl_8018B2A4, 0, 0x4000);
+    }
+    fn_800576DC();
+}
+
+void fn_80058680(void) {
+    u32 v0;
+    u32 v1;
+    u32 v2;
+    u32 v3;
+    u32 t1;
+    /* Preserve the retail literal-pool read before initialization. */
+    (void)*(volatile u32 *)&lbl_8009232C;
+    fn_80057728();
+    v1 = 0;
+    v2 = 0;
+    if ((s32)lbl_8018B2A0[0] == 0) {
+        v1 = 0;
+        v0 = (u32)&lbl_8018B2A4;
+        v2 = 16384;
+        t1 = (u32)memset((void *)v0, v1, v2);
+        v0 = t1;
+    }
+    v3 = lbl_8018B2A0[0];
+    lbl_8018B2A0[0] = (v3 + 1);
+    fn_800576DC();
+}
+
+extern u32 fn_80058A20(u32);
+extern u32 lbl_80092340[];
+
+void fn_800586E4(void) {
+    fn_80058A20((u32)&lbl_80092340);
 }
