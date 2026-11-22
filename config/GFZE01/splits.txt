@@ -156,9 +156,6 @@ dol/fn_8008F44C.c:
 dol/adx/adx_stmc.c:
 	.text       start:0x8004A578 end:0x8004B7F4 align:4
 
-dol/fn_8004A530.c:
-	.text       start:0x8004A530 end:0x8004A578 align:4
-
 dol/fn_8003D690.c:
 	.text       start:0x8003D690 end:0x8003D698 align:4
 
@@ -204,8 +201,8 @@ dol/fn_8006A998.c:
 dol/fn_8004784C.c:
 	.text       start:0x8004784C end:0x80047864 align:4
 
-dol/ADXSJE_ExecServer.c:
-	.text       start:0x80047864 end:0x800478C0 align:4
+dol/adx/adx_sje.c:
+	.text       start:0x80047864 end:0x8004A578 align:4
 
 dol/SIBios.c:
 	.text       start:0x8001191C end:0x800132D4 align:4
@@ -301,9 +298,6 @@ dol/fn_800466D4.c:
 dol/fn_80045D3C.c:
 	.text       start:0x80045D3C end:0x80045D90 align:4
 
-dol/fn_80047C08.c:
-	.text       start:0x80047C08 end:0x80047C94 align:4
-
 dol/fn_80022E5C.c:
 	.text       start:0x80022E5C end:0x80022EA4 align:4
 
@@ -327,12 +321,6 @@ dol/fn_80020E4C.c:
 
 dol/fn_8004BE98.c:
 	.text       start:0x8004BE98 end:0x8004BFAC align:4
-
-dol/fn_800482B8.c:
-	.text       start:0x800482B8 end:0x800482FC align:4
-
-dol/fn_800482FC.c:
-	.text       start:0x800482FC end:0x80049958 align:4
 
 dol/fn_80088B00.c:
 	.text       start:0x80088B00 end:0x80088C34 align:4
@@ -1150,9 +1138,6 @@ dol/OSGetTime.c:
 dol/fn_8006FFDC.c:
 	.text       start:0x8006FFDC end:0x80070158 align:4
 
-dol/fn_80047A50.c:
-	.text       start:0x80047A50 end:0x80047C08 align:4
-
 dol/fn_80054AB0.c:
 	.text       start:0x80054AB0 end:0x80054B6C align:4
 
@@ -1808,9 +1793,6 @@ dol/fstload.c:
 	.sdata      start:0x801A6490 end:0x801A64A0 align:8
 	.bss        start:0x8015CF38 end:0x8015CF68 align:8
 
-dol/fn_80049BF4.c:
-	.text       start:0x80049BF4 end:0x8004A068 align:4
-
 dol/fn_80070E1C.c:
 	.text       start:0x80070E1C end:0x80070F44 align:4
 
@@ -2166,9 +2148,6 @@ dol/fn_800446E4.c:
 dol/fn_80041700.c:
 	.text       start:0x80041700 end:0x80041990 align:4
 
-dol/fn_800478C0.c:
-	.text       start:0x800478C0 end:0x80047A50 align:4
-
 dol/fn_8004CD70.c:
 	.text       start:0x8004CD70 end:0x8004D18C align:4
 
@@ -2226,9 +2205,6 @@ dol/fn_80043D34.c:
 dol/fn_80043FA4.c:
 	.text       start:0x80043FA4 end:0x80043FE8 align:4
 
-dol/fn_80049958.c:
-	.text       start:0x80049958 end:0x80049BF4 align:4
-
 dol/fn_8005640C.c:
 	.text       start:0x8005640C end:0x80056584 align:4
 
@@ -2276,12 +2252,6 @@ dol/fn_80078F0C.c:
 
 dol/fn_80053A84.c:
 	.text       start:0x80053A84 end:0x80053BB4 align:4
-
-dol/fn_80047C94.c:
-	.text       start:0x80047C94 end:0x800482B8 align:4
-
-dol/fn_8004A068.c:
-	.text       start:0x8004A068 end:0x8004A530 align:4
 
 dol/fn_8004E59C.c:
 	.text       start:0x8004E59C end:0x8004E7B4 align:4
