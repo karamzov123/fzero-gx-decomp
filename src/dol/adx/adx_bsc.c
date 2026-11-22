@@ -1,6 +1,22 @@
 #include "types.h"
-
 #pragma use_lmw_stmw on
+
+typedef void (*AdxGetWriteInfo)(void *, s32 *, s32 *, s32 *);
+typedef void (*AdxAddWriteInfo)(void *, s32, s32);
+
+typedef struct AdxDecodeParams {
+    const u16 *input;
+    s32 input_blocks;
+    s32 channel_count;
+    s32 block_size;
+    s32 samples_per_block;
+    s16 *pcm_buffer;
+    s32 pcm_size;
+    s32 pcm_distance;
+    s32 write_position;
+    s32 room;
+    s32 loop_samples;
+} AdxDecodeParams;
 
 typedef struct AdxBasicDecoder {
     s16 used;
@@ -15,6 +31,7 @@ typedef struct AdxBasicDecoder {
     s32 sample_rate;
     s32 total_samples;
     s16 coefficient;
+    s16 pad_1E;
     s32 loop_insert_samples;
     s16 loop_count;
     s16 loop_type;
@@ -26,21 +43,11 @@ typedef struct AdxBasicDecoder {
     s16 *pcm_buffer;
     s32 pcm_size;
     s32 pcm_distance;
-    const u16 *input;
-    s32 input_blocks;
-    s32 decode_channel_count;
-    s32 decode_block_size;
-    s32 decode_samples_per_block;
-    s16 *decode_pcm_buffer;
-    s32 decode_pcm_size;
-    s32 decode_pcm_distance;
-    s32 write_position;
-    s32 room;
-    s32 loop_samples;
+    AdxDecodeParams decode;
     s32 field_74;
-    void *get_write_info;
+    AdxGetWriteInfo get_write_info;
     void *get_write_object;
-    void *add_write_info;
+    AdxAddWriteInfo add_write_info;
     void *add_write_object;
     s32 total_decoded_samples;
     s32 current_write_position;
@@ -207,17 +214,46 @@ const char lbl_800900A0__fzgx_offset_830[] = "%08X";
 const char lbl_800900A0__fzgx_offset_838[] = "E1060101 ADXB_DecodeHeaderAdx: ";
 const char lbl_800900A0__fzgx_offset_858[] = "can't play AHX data by this handle";
 
+extern AdxBasicDecoderExt lbl_8017A29C[16];
+
+extern u32 fn_8004251C(u32);
+extern u32 fn_800433A4(u32);
+extern u32 fn_8004342C(u32);
+extern u32 fn_80043FA4(u32);
+extern u32 fn_80046020(u32);
+extern s32 fn_8004E270(void *xpd);
+extern void fn_8004E204(void *xpd, const u16 *input, s32 blocks, s16 *left, s16 *right);
+extern void fn_8004E1E4(void *xpd);
+extern void fn_8004E238(void *xpd, const u16 *input, s32 blocks, s16 *output);
+extern void ADXPD_ExecHndl(void *xpd);
+extern s32 fn_8004E190(void *xpd);
+extern void fn_8004E198(void *xpd);
+extern void fn_8004E1B0(void *xpd);
+extern void fn_8004E2CC(void *expander, s16 k0, s16 km, s16 ka);
+extern void fn_8004E300(void *expander, s16 *delay_left, s16 *delay_right);
+extern void fn_8004E2B0(void *expander, s16 *k0, s16 *km, s16 *ka);
+extern void fn_8004E2DC(void *expander, s16 *delay_left, s16 *delay_right);
+extern void fn_8004E324(void *expander, s32 sample_rate, s32 coefficient);
+extern void fn_8004E278(void *expander);
+extern void *ADXPD_Create(void);
+extern void fn_8004E4AC(void);
+extern void *memset(void *destination, int value, unsigned long size);
+extern int sprintf(char *buffer, const char *format, ...);
+extern s32 fn_80045FEC(void *arg0);
+extern s32 fn_800462F8(void *arg0, void *arg1, void *arg2);
+extern s32 fn_80042568(void *arg0);
+extern s32 fn_80043050(void *arg0, void *arg1, void *arg2);
+extern s32 fn_80043CCC(void *arg0);
+extern s32 fn_80043B48(void *arg0, void *arg1, void *arg2);
+extern s32 fn_80044C0C(void *arg0);
+extern s32 fn_80044A94(void *arg0, void *arg1, void *arg2);
 extern s32 fn_80046C28(s8 *input, s32 length, s16 *data_length, s8 *encoding, s8 *bits_per_sample,
                        s8 *block_length, s8 *channel_count, s32 *sample_rate, s32 *total_samples,
                        s32 *samples_per_block);
 extern void fn_80047464(const char *message1, const char *message2);
 extern s32 fn_80046B90(s8 *input, s32 length, u8 *version, u8 *revision);
-extern int sprintf(char *buffer, const char *format, ...);
-extern void fn_8004E2CC(void *expander, s16 k0, s16 km, s16 ka);
 extern s32 fn_80046BE0(s8 *input, s32 length, s16 *coefficient);
 extern s32 fn_80046AC0(s8 *input, s32 length, s16 *delay_left, s16 *delay_right);
-extern void fn_8004E324(void *expander, s32 sample_rate, s32 coefficient);
-extern void fn_8004E300(void *expander, s16 *delay_left, s16 *delay_right);
 extern int ADX_DecodeInfoExLoop(s8 *input, s32 length, s32 *insert_samples, s16 *loop_count,
                                 s16 *loop_type, s32 *start_sample, s32 *start_offset,
                                 s32 *end_sample, s32 *end_offset);
@@ -240,15 +276,340 @@ static void fzgx_bss_layout(void) {
 }
 #pragma section code_type ".text"
 
+void fn_80044EF8(AdxBasicDecoder *base);
+s32 fn_800456A0(AdxBasicDecoderExt *decoder, s8 *input, s32 length);
+void fn_80045F58(AdxBasicDecoder *arg0, s32 arg1, s32 arg2);
+s16 *fn_80045F74(AdxBasicDecoder *arg0, s32 *arg1, s32 *arg2, s32 *arg3);
+
+void fn_80044E7C(AdxBasicDecoder *arg0) {
+    s16 v0;
+    v0 = arg0->format_type;
+    if (v0 == 0) {
+        fn_80044EF8(arg0);
+    } else if (v0 == 10) {
+        fn_800433A4((u32)arg0);
+    } else if (v0 == 2) {
+        fn_80046020((u32)arg0);
+    } else if (v0 == 3) {
+        fn_8004342C((u32)arg0);
+    } else if (v0 == 4) {
+        fn_80043FA4((u32)arg0);
+    } else if (v0 == 1) {
+        fn_8004251C((u32)arg0);
+    }
+}
+
+static inline void adxb_CopySamples(s16 *output, const s16 *extra, s32 count) {
+    for (; count > 0; count--) {
+        *output++ = *extra++;
+    }
+}
+
+static inline void adxb_EntrySte(AdxBasicDecoder *base, s32 blocks) {
+    AdxDecodeParams *params = &base->decode;
+    s16 *output;
+    void *expander;
+
+    output = params->pcm_buffer;
+    output += params->write_position;
+    expander = base->expander;
+    fn_8004E204(expander, params->input, blocks * 2, output, &output[params->pcm_distance]);
+    fn_8004E1E4(expander);
+}
+
+static inline void adxb_EntryMono(AdxBasicDecoder *base, s32 blocks) {
+    AdxDecodeParams *params = &base->decode;
+    s16 *output;
+    void *expander;
+
+    output = params->pcm_buffer;
+    output += params->write_position;
+    expander = base->expander;
+    fn_8004E238(expander, params->input, blocks, output);
+    fn_8004E1E4(expander);
+}
+
+static inline void adxb_EvokeDecode(AdxBasicDecoder *base) {
+    AdxDecodeParams *params;
+    s32 loop_position;
+    s32 delete_samples;
+    s32 room;
+    s32 end_blocks;
+    s32 end_samples;
+    s32 write_position;
+    s32 input_blocks;
+    s32 block_samples;
+    s32 end_capacity;
+
+    params = &base->decode;
+    block_samples = params->samples_per_block;
+    write_position = params->write_position;
+    room = params->room;
+    input_blocks = params->input_blocks / params->channel_count;
+    loop_position = params->loop_samples;
+
+    delete_samples = (loop_position + block_samples - 1) / block_samples;
+    end_samples = loop_position + block_samples - 1;
+    end_samples %= block_samples;
+    end_samples = block_samples - 1 - end_samples;
+    end_blocks = (params->pcm_size - write_position + block_samples - 1) / block_samples;
+    end_capacity = end_blocks * block_samples;
+    if (delete_samples < end_blocks && write_position + end_capacity - end_samples < params->pcm_size) {
+        end_blocks++;
+    }
+    if (loop_position < room) {
+        room += end_samples;
+    }
+    if (input_blocks > room / block_samples) {
+        input_blocks = room / block_samples;
+    }
+    if (input_blocks > delete_samples) input_blocks = delete_samples;
+    if (input_blocks > end_blocks) input_blocks = end_blocks;
+
+    if (base->decode.channel_count == 2) {
+        adxb_EntrySte(base, input_blocks);
+    } else {
+        adxb_EntryMono(base, input_blocks);
+    }
+}
+
+static inline void adxb_FinishDecode(AdxBasicDecoder *base) {
+    AdxDecodeParams *params = &base->decode;
+    s32 block_samples;
+    s32 block_size;
+    s32 loop_samples;
+    s16 *pcm_buffer;
+    s32 write_position;
+    s32 pcm_size;
+    s32 pcm_distance;
+    s32 decoded_blocks;
+    s32 decoded_samples;
+    s32 trailing_samples;
+    s32 copy_count;
+    s16 *copy_source;
+
+    block_samples = params->samples_per_block;
+    block_size = params->block_size;
+    loop_samples = params->loop_samples;
+    write_position = params->write_position;
+    pcm_buffer = params->pcm_buffer;
+    pcm_size = base->pcm_size;
+    pcm_distance = base->pcm_distance;
+
+    trailing_samples = block_samples - 1 - (loop_samples + block_samples - 1) % block_samples;
+    loop_samples = (loop_samples + block_samples - 1) / block_samples;
+    decoded_blocks = fn_8004E190(base->expander);
+    decoded_samples = decoded_blocks * block_samples / params->channel_count;
+    if (loop_samples * params->channel_count <= decoded_blocks) {
+        decoded_samples -= trailing_samples;
+    }
+    base->decoded_samples = decoded_samples;
+    base->decoded_data_length = decoded_blocks * block_size;
+    write_position += decoded_samples;
+    if (write_position >= pcm_size) {
+        write_position -= pcm_size;
+        if (params->channel_count == 2) {
+            adxb_CopySamples(pcm_buffer, &pcm_buffer[pcm_size], write_position);
+            adxb_CopySamples(&pcm_buffer[pcm_distance], &pcm_buffer[pcm_distance + pcm_size], write_position);
+        } else {
+            copy_count = write_position;
+            copy_source = &pcm_buffer[pcm_size];
+            while (copy_count-- > 0) {
+                *pcm_buffer++ = *copy_source++;
+            }
+        }
+    }
+    fn_8004E198(base->expander);
+    base->add_write_info(base->add_write_object, base->decoded_data_length, base->decoded_samples);
+    base->status = 3;
+}
+
+void fn_80044EF8(AdxBasicDecoder *base) {
+    AdxDecodeParams *params = &base->decode;
+
+    if (base->status == 1 && fn_8004E270(base->expander) == 0) {
+        base->get_write_info(base->get_write_object, &params->write_position, &params->room,
+                             &params->loop_samples);
+        adxb_EvokeDecode(base);
+        base->status = 2;
+    }
+    if (base->status == 2) {
+        ADXPD_ExecHndl(base->expander);
+        if (fn_8004E270(base->expander) == 3) {
+            adxb_FinishDecode(base);
+        }
+    }
+}
+
+s32 fn_800452FC(AdxBasicDecoder *object) {
+    return object->decoded_samples;
+}
+
+s32 fn_80045304(AdxBasicDecoder *arg0) {
+    return arg0->decoded_data_length;
+}
+
+void fn_8004530C(AdxBasicDecoder *arg0) {
+    if (arg0->status == 3) {
+        fn_8004E198(arg0->expander);
+        arg0->current_write_position = 0;
+        arg0->status = 0;
+    }
+}
+
+void fn_80045354(AdxBasicDecoder *arg0) {
+    fn_8004E1B0(arg0->expander);
+    arg0->status = 0;
+}
+
+void fn_8004538C(AdxBasicDecoder *arg0) {
+    if (arg0->status != 0) {
+        return;
+    }
+    arg0->status = 1;
+}
+
+void fn_800453A4(AdxBasicDecoder *arg0, const u16 *arg1, s32 arg2) {
+    s32 unk_1;
+    if (arg0->format_type == 0) {
+        arg0->decode.input = arg1;
+        arg0->decode.input_blocks = arg2 / (s32)arg0->block_length;
+        arg0->field_74 = 0;
+        arg0->decoded_samples = 0;
+        arg0->decoded_data_length = 0;
+        return;
+    }
+    arg0->decode.input = arg1;
+    unk_1 = arg0->bits_per_sample / 8;
+    arg0->decode.input_blocks = arg2 / (unk_1 * arg0->channel_count);
+    arg0->field_74 = 0;
+    arg0->decoded_samples = 0;
+    arg0->decoded_data_length = 0;
+}
+
+s32 fn_80045414(AdxBasicDecoder *arg0) {
+    return arg0->status;
+}
+
+void fn_8004541C(AdxBasicDecoderExt *arg0) {
+    fn_8004E300(arg0->base.expander, arg0->delay_left, arg0->delay_right);
+    fn_8004E2CC(arg0->base.expander, arg0->snapshot_key[0], arg0->snapshot_key[1], arg0->snapshot_key[2]);
+}
+
+void fn_80045468(AdxBasicDecoderExt *arg0) {
+    fn_8004E2DC(arg0->base.expander, arg0->delay_left, arg0->delay_right);
+    fn_8004E2B0(arg0->base.expander, &arg0->snapshot_key[0], &arg0->snapshot_key[1], &arg0->snapshot_key[2]);
+}
+
+s16 fn_800454B4(AdxBasicDecoderExt *arg0, u32 arg1) {
+    return arg0->default_pan[arg1];
+}
+
+s32 fn_800454C4(AdxBasicDecoderExt *arg0) {
+    return arg0->default_out_volume;
+}
+
+s32 fn_800454CC(AdxBasicDecoderExt *arg0) {
+    return arg0->ainf_length;
+}
+
+s32 fn_800454D4(AdxBasicDecoder *arg0) {
+    return arg0->loop_end_offset;
+}
+
+s32 fn_800454DC(AdxBasicDecoder *context) {
+    return context->loop_end_sample;
+}
+
+s32 fn_800454E4(AdxBasicDecoder *arg0) {
+    if (arg0 == 0) {
+        return 0;
+    }
+    return arg0->loop_start_offset;
+}
+
+s32 fn_800454FC(AdxBasicDecoder *arg0) {
+    return arg0->loop_start_sample;
+}
+
+s32 fn_80045504(AdxBasicDecoder *arg0) {
+    return arg0->loop_count;
+}
+
+s32 fn_8004550C(AdxBasicDecoder *arg0) {
+    return arg0->total_samples;
+}
+
+s32 fn_80045514(AdxBasicDecoder *arg0) {
+    return arg0->samples_per_block;
+}
+
+u32 fn_8004551C(AdxBasicDecoder *arg0) {
+    if (arg0->format_type == 0) {
+        return 0x10;
+    }
+    if (arg0->format_type == 2) {
+        if (arg0->raw_format_type == 2) {
+            return 4;
+        }
+        if (arg0->raw_format_type == 1) {
+            return 8;
+        }
+        return 0x10;
+    }
+    if (arg0->format_type == 1) {
+        return arg0->raw_format_type == 2 ? 4 : 0x10;
+    }
+    return 0x10;
+}
+
+s32 fn_80045588(AdxBasicDecoder *arg0) {
+    return arg0->channel_count;
+}
+
+s32 fn_80045594(AdxBasicDecoder *arg0) {
+    return arg0->sample_rate;
+}
+
+s16 fn_8004559C(AdxBasicDecoder *self) {
+    return self->format_type;
+}
+
+s16 *fn_800455A4(AdxBasicDecoder *arg0) {
+    return arg0->pcm_buffer;
+}
+
+void fn_800455AC(AdxBasicDecoder *arg0, AdxGetWriteInfo arg1, void *arg2) {
+    arg0->get_write_info = arg1;
+    arg0->get_write_object = arg2;
+}
+
+s32 fn_800455B8(AdxBasicDecoderExt *arg0, u16 *arg1, s32 arg2) {
+    if (*arg1 == 0x8000) {
+        return fn_800456A0(arg0, (s8 *)arg1, arg2);
+    }
+    if (fn_80045FEC(arg1)) {
+        return fn_800462F8(arg0, arg1, (void *)arg2);
+    }
+    if (fn_80042568(arg1)) {
+        return fn_80043050(arg0, arg1, (void *)arg2);
+    }
+    if (fn_80043CCC(arg1)) {
+        return fn_80043B48(arg0, arg1, (void *)arg2);
+    }
+    if (fn_80044C0C(arg1)) {
+        return fn_80044A94(arg0, arg1, (void *)arg2);
+    }
+    return -1;
+}
+
 #define ADXB_SKG_MIX(k, c) (lbl_800900A0__fzgx_offset_30[((k) * lbl_800900A0__fzgx_offset_30[0x80 + (c)]) % 1024])
 
-static inline void adxb_InitKeyGenerator(void)
-{
+static inline void adxb_InitKeyGenerator(void) {
     lbl_8017A288++;
 }
 
-static inline s32 adxb_MakeEncryptionKey(s32 sample_count, s16 *state, s16 *multiplier, s16 *increment)
-{
+static inline s32 adxb_MakeEncryptionKey(s32 sample_count, s16 *state, s16 *multiplier, s16 *increment) {
     char key_text[16];
     s16 key;
     s16 state_key;
@@ -283,8 +644,7 @@ static inline s32 adxb_MakeEncryptionKey(s32 sample_count, s16 *state, s16 *mult
 }
 
 static inline s32 adxb_get_key(AdxBasicDecoderExt *decoder, u8 version, u8 revision, s32 sample_count,
-                               s16 *state, s16 *multiplier, s16 *increment)
-{
+                               s16 *state, s16 *multiplier, s16 *increment) {
     if (version < 4) {
         *state = 0;
         *multiplier = 0;
@@ -309,8 +669,7 @@ static inline s32 adxb_get_key(AdxBasicDecoderExt *decoder, u8 version, u8 revis
     return 0;
 }
 
-s32 fn_800456A0(AdxBasicDecoderExt *decoder, s8 *input, s32 length)
-{
+s32 fn_800456A0(AdxBasicDecoderExt *decoder, s8 *input, s32 length) {
     AdxBasicDecoder *base = &decoder->base;
     s16 adx_k0;
     s16 adx_km;
@@ -371,12 +730,85 @@ s32 fn_800456A0(AdxBasicDecoderExt *decoder, s8 *input, s32 length)
                     &decoder->default_out_volume, decoder->default_pan);
         base->format_type = 0;
     }
-    base->decode_channel_count = base->channel_count;
-    base->decode_block_size = base->block_length;
-    base->decode_samples_per_block = base->samples_per_block;
-    base->decode_pcm_buffer = base->pcm_buffer;
-    base->decode_pcm_size = base->pcm_size;
-    base->decode_pcm_distance = base->pcm_distance;
+    base->decode.channel_count = base->channel_count;
+    base->decode.block_size = base->block_length;
+    base->decode.samples_per_block = base->samples_per_block;
+    base->decode.pcm_buffer = base->pcm_buffer;
+    base->decode.pcm_size = base->pcm_size;
+    base->decode.pcm_distance = base->pcm_distance;
     base->current_write_position = 0;
     return data_length;
+}
+
+void fn_80045D3C(AdxBasicDecoderExt *decoder) {
+    void *expander;
+    if (decoder != 0) {
+        expander = decoder->base.expander;
+        decoder->base.expander = 0;
+        fn_8004E278(expander);
+        memset(decoder, 0, sizeof(*decoder));
+        decoder->base.used = 0;
+    }
+}
+
+static inline void ADXB_Destroy(AdxBasicDecoderExt *decoder) {
+    void *expander;
+    if (decoder != 0) {
+        expander = decoder->base.expander;
+        decoder->base.expander = 0;
+        fn_8004E278(expander);
+        memset(decoder, 0, sizeof(*decoder));
+        decoder->base.used = 0;
+    }
+}
+
+AdxBasicDecoderExt *ADXB_Create(s32 max_channels, s16 *pcm_buffer, s32 pcm_size, s32 pcm_distance) {
+    AdxBasicDecoderExt *decoder;
+    int i;
+    for (i = 0; i < 16; i++) {
+        if (lbl_8017A29C[i].base.used == 0)
+            break;
+    }
+    if (i == 16)
+        return 0;
+    decoder = &lbl_8017A29C[i];
+    memset(decoder, 0, sizeof(*decoder));
+    decoder->base.used = 1;
+    decoder->base.expander = ADXPD_Create();
+    if (decoder->base.expander == 0) {
+        ADXB_Destroy(decoder);
+        return 0;
+    }
+    decoder->base.max_channels = max_channels;
+    decoder->base.pcm_buffer = pcm_buffer;
+    decoder->base.pcm_size = pcm_size;
+    decoder->base.pcm_distance = pcm_distance;
+    decoder->base.get_write_info = (AdxGetWriteInfo)fn_80045F74;
+    decoder->base.get_write_object = decoder;
+    decoder->base.add_write_info = (AdxAddWriteInfo)fn_80045F58;
+    decoder->base.add_write_object = decoder;
+    decoder->ainf_length = 0;
+    decoder->default_out_volume = 0;
+    decoder->default_pan[0] = -128;
+    decoder->default_pan[1] = -128;
+    memset(decoder->ainf, 0, sizeof(decoder->ainf));
+    return decoder;
+}
+
+void fn_80045F58(AdxBasicDecoder *arg0, s32 arg1, s32 arg2) {
+    arg0->current_write_position += arg2;
+    arg0->total_decoded_samples += arg2;
+}
+
+s16 *fn_80045F74(AdxBasicDecoder *arg0, s32 *arg1, s32 *arg2, s32 *arg3) {
+    *arg1 = arg0->current_write_position;
+    *arg2 = arg0->pcm_size - arg0->current_write_position;
+    *arg3 = arg0->total_samples - arg0->total_decoded_samples;
+    return arg0->pcm_buffer;
+}
+
+void fn_80045FA4(void) {
+    fn_8004E4AC();
+    lbl_8017A288++;
+    memset(lbl_8017A29C, 0, sizeof(lbl_8017A29C));
 }
