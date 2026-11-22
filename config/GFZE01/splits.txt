@@ -56,12 +56,6 @@ dol/si/SISteering.c:
 dol/dvd/dvdfs.c:
 	.text       start:0x80016DC0 end:0x8001776C align:4
 
-dol/stateTimeout.c:
-	.text       start:0x80017A04 end:0x80017B14 align:4
-
-dol/cbForUnrecoveredError.c:
-	.text       start:0x80017DA8 end:0x80017E10
-
 dol/dvd/dvderror.c:
 	.text       start:0x8001A05C end:0x8001A1F4 align:4
 
@@ -209,15 +203,6 @@ dol/__DBIsExceptionMarked.c:
 
 dol/fn_8004E580.c:
 	.text       start:0x8004E580 end:0x8004E59C align:4
-
-dol/fn_80018108.c:
-	.text       start:0x80018108 end:0x8001813C align:4
-
-dol/fn_8001813C.c:
-	.text       start:0x8001813C end:0x80018170 align:4
-
-dol/fn_8001989C.c:
-	.text       start:0x8001989C end:0x800198FC align:4
 
 dol/fn_8006A998.c:
 	.text       start:0x8006A998 end:0x8006AA20 align:4
@@ -409,9 +394,6 @@ dol/fn_8007A150.c:
 dol/fn_80024E3C.c:
 	.text       start:0x80024E3C end:0x80024E6C align:4
 
-dol/DVDGetCommandBlockStatus.c:
-	.text       start:0x800197A4 end:0x800197F0 align:4
-
 dol/DVDCompareDiskID.c:
 	.text       start:0x8001A1F4 end:0x8001A2EC align:4
 
@@ -433,9 +415,6 @@ dol/fn_800280F0.c:
 dol/fn_80023638.c:
 	.text       start:0x80023638 end:0x80023B70 align:4
 
-dol/stateCheckID2.c:
-	.text       start:0x800181E4 end:0x80018330 align:4
-
 dol/fn_80057728.c:
 	.text       start:0x80057728 end:0x80057774 align:4
 
@@ -456,9 +435,6 @@ dol/fn_80051594.c:
 
 dol/fn_800775EC.c:
 	.text       start:0x800775EC end:0x80077848 align:4
-
-dol/DVDGetDriveStatus.c:
-	.text       start:0x800197F0 end:0x8001989C align:4
 
 dol/fn_80023438.c:
 	.text       start:0x80023438 end:0x800234D0 align:4
@@ -577,20 +553,8 @@ dol/fn_80007C60.c:
 dol/os/OSAlarm.c:
 	.text       start:0x8000ABE8 end:0x8000B2C4 align:4
 
-dol/cbForStateCheckID2a.c:
-	.text       start:0x80018170 end:0x800181E4 align:4
-
-dol/cbForStateCoverClosed.c:
-	.text       start:0x80018650 end:0x800186E8 align:4
-
-dol/cbForStateReadingFST.c:
-	.text       start:0x800178CC end:0x80017958 align:4
-
 dol/dvd/dvdqueue.c:
 	.text       start:0x80019E64 end:0x8001A05C align:4
-
-dol/DVDReadAbsAsyncPrio.c:
-	.text       start:0x80019354 end:0x800197A4 align:4
 
 dol/fn_80020874.c:
 	.text       start:0x80020874 end:0x80020928 align:4
@@ -1076,9 +1040,6 @@ dol/fn_80072A50.c:
 dol/fn_8006CCC8.c:
 	.text       start:0x8006CCC8 end:0x8006CDFC align:4
 
-dol/cbForUnrecoveredErrorRetry.c:
-	.text       start:0x80017E10 end:0x80017ED0 align:4
-
 dol/AIStartDMA.c:
 	.text       start:0x8001DFCC end:0x8001DFE4 align:4
 
@@ -1144,17 +1105,8 @@ dol/__get_debug_bba.c:
 dol/__set_debug_bba.c:
 	.init       start:0x80003140 end:0x8000314C align:4
 
-dol/AlarmHandler.c:
-	.text       start:0x80018510 end:0x80018554 align:4
-
 dol/card/CARDDelete.c:
 	.text       start:0x8002F934 end:0x8002FC5C align:4
-
-dol/fn_80018330.c:
-	.text       start:0x80018330 end:0x80018414 align:4
-
-dol/cbForStateError.c:
-	.text       start:0x80017958 end:0x80017A04 align:4
 
 dol/fn_800829EC.c:
 	.text       start:0x800829EC end:0x80083428 align:4
@@ -1276,26 +1228,9 @@ dol/card/CARDRdwr.c:
 dol/DBInit.c:
 	.text       start:0x80015A38 end:0x80015AA8 align:4
 
-dol/DVDInit.c:
-	.text       start:0x8001776C end:0x800178CC align:4
-	.data       start:0x80123FD8 end:0x80124018 align:8
-
-dol/cbForStateGettingError.c:
-	.text       start:0x80017B14 end:0x80017DA8 align:4
-
-dol/cbForStateGoToRetry.c:
-	.text       start:0x80017ED0 end:0x80018028 align:4
-
-dol/cbForStateCheckID3.c:
-	.text       start:0x80018414 end:0x80018510 align:4
-
-dol/stateBusy.c:
-	.text       start:0x800189FC end:0x80018D1C align:4
-	.data       start:0x80124018 end:0x80124058 align:8
-
-dol/DVDCancelAsync.c:
-	.text       start:0x800198FC end:0x80019E64 align:4
-	.data       start:0x801240A8 end:0x80124110 align:8
+dol/dvd/dvd.c:
+	.text       start:0x8001776C end:0x80019E64 align:4
+	.data       start:0x80123FD8 end:0x80124110 align:8
 
 dol/dsp/dsp_task.c:
 	.text       start:0x80028FA0 end:0x80029828 align:4
@@ -1345,9 +1280,6 @@ dol/__AI_SRC_INIT.c:
 
 dol/ar/ar.c:
 	.text       start:0x8001E828 end:0x80020360 align:4
-
-dol/stateCoverClosed.c:
-	.text       start:0x80018554 end:0x80018650 align:4
 
 dol/gx/GXTev.c:
 	.text       start:0x80037014 end:0x800377F8 align:4
@@ -1553,9 +1485,6 @@ dol/fn_8008C87C.c:
 dol/fn_8004FC94.c:
 	.text       start:0x8004FC94 end:0x800501F4 align:4
 
-dol/stateReady.c:
-	.text       start:0x800187CC end:0x800189FC align:4
-
 dol/fn_8004C794.c:
 	.text       start:0x8004C794 end:0x8004C980 align:4
 
@@ -1715,12 +1644,6 @@ dol/fn_800551D0.c:
 
 dol/fn_80056950.c:
 	.text       start:0x80056950 end:0x80056D8C align:4
-
-dol/stateCheckID.c:
-	.text       start:0x80018028 end:0x80018108 align:4
-
-dol/cbForStateMotorStopped.c:
-	.text       start:0x800186E8 end:0x800187CC align:4
 
 dol/fn_80067898.c:
 	.text       start:0x80067898 end:0x80067DE4 align:4
@@ -2019,9 +1942,6 @@ dol/fn_80008FB0.c:
 
 dol/si/SISamplingRate.c:
 	.text       start:0x800132D4 end:0x800133DC align:4
-
-dol/cbForStateBusy.c:
-	.text       start:0x80018D1C end:0x80019354 align:4
 
 dol/data/__OSDriveBlock.c:
 	.bss        start:0x8015BF20 end:0x8015BF50 align:8
@@ -3551,9 +3471,6 @@ dol/data/lbl_80123C98.c:
 
 dol/data/lbl_80123D00.c:
 	.data       start:0x80123D00 end:0x80123FD8 align:32
-
-dol/data/lbl_80124058.c:
-	.data       start:0x80124058 end:0x801240A8 align:8
 
 dol/data/lbl_80124110.c:
 	.data       start:0x80124110 end:0x801241C8 align:16

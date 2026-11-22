@@ -33720,32 +33720,6 @@
     "unit_size": 728,
     "unit_start": 2148678912
   },
-  "main:lbl_80124058": {
-    "address": 2148679768,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "u32 lbl_80124058[3]",
-        "path": "src/dol/cbForStateBusy.c"
-      }
-    ],
-    "definition": "u32 lbl_80124058[20]",
-    "method": "typed-data",
-    "module": "main",
-    "references": [
-      "cbForStateBusy"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 80,
-    "sha256": "7f97d6b3d3ec91e9682bd5556f0fd9a8c15d5479675540228d25ac17a28df1c5",
-    "size": 80,
-    "source": "dol/data/lbl_80124058.c",
-    "symbol": "lbl_80124058",
-    "unit_align": 8,
-    "unit_size": 80,
-    "unit_start": 2148679768
-  },
   "main:lbl_80124110": {
     "address": 2148679952,
     "align": 16,

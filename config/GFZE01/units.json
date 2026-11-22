@@ -7850,15 +7850,6 @@
   },
   {
     "module": "main",
-    "source": "dol/AlarmHandler.c",
-    "symbols": [
-      "AlarmHandler"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
     "source": "dol/dvd/dvdlow.c",
     "symbols": [
       "__DVDInitWA",
@@ -8177,55 +8168,69 @@
   },
   {
     "module": "main",
-    "source": "dol/DVDCancelAsync.c",
+    "source": "dol/dvd/dvd.c",
     "symbols": [
+      "AlarmHandler",
       "DVDCancelAsync",
       "DVDCancel",
       "fn_80019C24",
       "fn_80019C48",
       "DVDCheckDisk",
-      "__DVDPrepareResetAsync"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/DVDGetCommandBlockStatus.c",
-    "symbols": [
-      "DVDGetCommandBlockStatus"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/DVDGetDriveStatus.c",
-    "symbols": [
-      "DVDGetDriveStatus"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/DVDInit.c",
-    "symbols": [
+      "__DVDPrepareResetAsync",
+      "DVDGetCommandBlockStatus",
+      "DVDGetDriveStatus",
       "DVDInit",
-      "fn_80017838"
+      "fn_80017838",
+      "DVDReadAbsAsyncPrio",
+      "DVDReadAbsAsyncForBS",
+      "DVDReadDiskID",
+      "DVDCancelStreamAsync",
+      "DVDInquiryAsync",
+      "DVDReset",
+      "cbForStateBusy",
+      "cbForStateCheckID2a",
+      "cbForStateCheckID3",
+      "cbForStateCoverClosed",
+      "fn_800186C0",
+      "cbForStateError",
+      "cbForStateGettingError",
+      "cbForStateGoToRetry",
+      "cbForStateMotorStopped",
+      "cbForStateReadingFST",
+      "cbForUnrecoveredError",
+      "cbForUnrecoveredErrorRetry",
+      "fn_80017EA8",
+      "fn_80018108",
+      "fn_8001813C",
+      "fn_80018330",
+      "fn_8001989C",
+      "DVDResume",
+      "stateBusy",
+      "stateCheckID",
+      "stateCheckID2",
+      "cbForStateCheckID1",
+      "stateCoverClosed",
+      "stateCoverClosed_CMD",
+      "stateReady",
+      "stateTimeout",
+      "_epilog_rel_sample",
+      "CategorizeError"
     ],
-    "status": "matching",
+    "mw_version": "GC/1.2.5n",
+    "extra_cflags": [
+      "-inline",
+      "on,noauto"
+    ],
     "matching_for": [
       "GFZE01"
     ],
-    "mw_version": "GC/1.2.5n",
     "pool": {
-      "@10": "DVDLoadFstMessage"
+      "...bss.0": "BB2",
+      "BB2_8015CE40": "BB2",
+      "lbl_8015CE60__fzgx_offset_0": "lbl_8015CE60",
+      "DummyCommandBlock": "DummyCommandBlock"
     },
-    "own": [
-      "DVDLoadFstMessage"
-    ]
+    "status": "matching"
   },
   {
     "module": "main",
@@ -8258,21 +8263,6 @@
       "@135": "lbl_80123EF0",
       "@234": "lbl_80123F5C"
     }
-  },
-  {
-    "module": "main",
-    "source": "dol/DVDReadAbsAsyncPrio.c",
-    "symbols": [
-      "DVDReadAbsAsyncPrio",
-      "DVDReadAbsAsyncForBS",
-      "DVDReadDiskID",
-      "DVDCancelStreamAsync",
-      "DVDInquiryAsync",
-      "DVDReset"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
   },
   {
     "module": "main",
@@ -11428,115 +11418,6 @@
   },
   {
     "module": "main",
-    "source": "dol/cbForStateBusy.c",
-    "symbols": [
-      "cbForStateBusy"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "pool": {
-      "...bss.0": "BB2"
-    }
-  },
-  {
-    "module": "main",
-    "source": "dol/cbForStateCheckID2a.c",
-    "symbols": [
-      "cbForStateCheckID2a"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/cbForStateCheckID3.c",
-    "symbols": [
-      "cbForStateCheckID3"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/cbForStateCoverClosed.c",
-    "symbols": [
-      "cbForStateCoverClosed",
-      "fn_800186C0"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/cbForStateError.c",
-    "symbols": [
-      "cbForStateError"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/cbForStateGettingError.c",
-    "symbols": [
-      "cbForStateGettingError"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/cbForStateGoToRetry.c",
-    "symbols": [
-      "cbForStateGoToRetry"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/cbForStateMotorStopped.c",
-    "symbols": [
-      "cbForStateMotorStopped"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/cbForStateReadingFST.c",
-    "symbols": [
-      "cbForStateReadingFST"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/cbForUnrecoveredError.c",
-    "symbols": [
-      "cbForUnrecoveredError"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/cbForUnrecoveredErrorRetry.c",
-    "symbols": [
-      "cbForUnrecoveredErrorRetry",
-      "fn_80017EA8"
-    ],
-    "status": "matching",
-    "matching_for": [
-      "GFZE01"
-    ],
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
     "source": "dol/data/AlarmQueue.c",
     "symbols": [
       "AlarmQueue"
@@ -14047,20 +13928,6 @@
       "lbl_80123F28",
       "lbl_80123F5C",
       "lbl_80123F90"
-    ],
-    "status": "matching",
-    "matching_for": [
-      "GFZE01"
-    ],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_80124058.c",
-    "symbols": [
-      "lbl_80124058"
     ],
     "status": "matching",
     "matching_for": [
@@ -24215,48 +24082,6 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_80018108.c",
-    "symbols": [
-      "fn_80018108"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8001813C.c",
-    "symbols": [
-      "fn_8001813C"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80018330.c",
-    "symbols": [
-      "fn_80018330"
-    ],
-    "status": "matching",
-    "matching_for": [
-      "GFZE01",
-      "GFZJ01"
-    ],
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8001989C.c",
-    "symbols": [
-      "fn_8001989C",
-      "DVDResume"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
     "source": "dol/fn_80020874.c",
     "symbols": [
       "fn_80020874"
@@ -33879,71 +33704,6 @@
       "-use_lmw_stmw",
       "on"
     ]
-  },
-  {
-    "module": "main",
-    "source": "dol/stateBusy.c",
-    "symbols": [
-      "stateBusy"
-    ],
-    "status": "matching",
-    "matching_for": [
-      "GFZE01"
-    ],
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/stateCheckID.c",
-    "symbols": [
-      "stateCheckID"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/stateCheckID2.c",
-    "symbols": [
-      "stateCheckID2",
-      "cbForStateCheckID1"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/stateCoverClosed.c",
-    "symbols": [
-      "stateCoverClosed",
-      "stateCoverClosed_CMD"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/stateReady.c",
-    "symbols": [
-      "stateReady"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/stateTimeout.c",
-    "symbols": [
-      "stateTimeout",
-      "_epilog_rel_sample",
-      "CategorizeError"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
   },
   {
     "module": "main",
