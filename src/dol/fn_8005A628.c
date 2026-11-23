@@ -37,7 +37,7 @@ extern u32 lbl_80190B74[];
 void fn_8005A614(u32 arg0, u32 arg1);
 
 /* --- dol/fn_8005A628.c --- */
-extern u32 fn_800576DC(void);
+extern void fn_800576DC(void);
 
 void fn_8005A628(void) {
     fn_800576DC();

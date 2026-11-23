@@ -23064,21 +23064,12 @@
       "fn_8005A678",
       "fn_8005A680",
       "fn_8005A688",
-      "AXRNA_SetOutPan"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8005A74C.c",
-    "symbols": [
+      "AXRNA_SetOutPan",
       "fn_8005A74C"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": []
+    "collapsed": true
   },
   {
     "module": "main",

@@ -122,7 +122,7 @@ dol/fn_8005A628.c:
 	.text       start:0x8005A628 end:0x8005A668 align:4
 
 dol/fn_8005A668.c:
-	.text       start:0x8005A668 end:0x8005A74C align:4
+	.text       start:0x8005A668 end:0x8005A7F8 align:4
 
 dol/fn_80046718.c:
 	.text       start:0x80046718 end:0x80046768 align:4
@@ -228,9 +228,6 @@ dol/fn_800565F0.c:
 
 dol/fn_800235D4.c:
 	.text       start:0x800235D4 end:0x80023638 align:4
-
-dol/fn_8005A74C.c:
-	.text       start:0x8005A74C end:0x8005A7F8 align:4
 
 dol/fn_80047608.c:
 	.text       start:0x80047608 end:0x8004768C align:4

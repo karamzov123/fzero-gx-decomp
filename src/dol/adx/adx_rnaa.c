@@ -5,7 +5,8 @@ extern u32 fn_8005A680(void);
 extern u32 fn_8005A678(void);
 extern u32 fn_8005A688(void);
 extern u32 AXRNA_SetOutPan(void);
-extern u32 fn_8005A74C(void);
+struct AXRNAHandle;
+extern void fn_8005A74C(struct AXRNAHandle *, s32);
 extern u32 fn_8005A7F8(void);
 extern u32 fn_8005A94C(void);
 extern u32 AXRNA_ExecServer(void);
@@ -44,8 +45,8 @@ void fn_8004EDC4(void) {
     AXRNA_SetOutPan();
 }
 
-void fn_8004EDE4(void) {
-    fn_8005A74C();
+void fn_8004EDE4(struct AXRNAHandle *handle, s32 value) {
+    fn_8005A74C(handle, value);
 }
 
 void fn_8004EE04(void) {

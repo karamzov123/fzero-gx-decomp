@@ -1,25 +1,20 @@
 #include "types.h"
+
 #pragma opt_propagation off
 
-/* --- dol/fn_8005A668.c --- */
-/* --- dol/fn_8005A588.c --- */
 extern u32 lbl_80190178[];
 extern u32 lbl_8019017C[];
 
 void fn_8005A588(u32 arg0, u32 arg1);
 
-/* --- dol/fn_8005A59C.c --- */
 void fn_8005A59C(void);
 
-/* --- dol/fn_8005A5A8.c --- */
-/* --- dol/fn_8005A5A8.c --- */
 // The retail code performs this read even though its value is discarded.
 extern volatile u32 lbl_80092528[36];
 extern u8 lbl_801324F0[104];
 
 u8 *fn_8005A5A8(void);
 
-/* --- dol/fn_8005A5BC.c --- */
 typedef void (*fn_8005A5BC_Fn0)(u32, u32);
 struct fn_8005A5BC_lbl_80190B70 {
     u32 unk_0;
@@ -32,23 +27,18 @@ extern void strncpy(void *, void *, int);
 
 void fn_8005A5BC(u32 arg0);
 
-/* --- dol/fn_8005A614.c --- */
 extern u32 lbl_80190B74[];
 
 void fn_8005A614(u32 arg0, u32 arg1);
 
-/* --- dol/fn_8005A628.c --- */
 extern u32 fn_800576DC(void);
 
 void fn_8005A628(void);
 
-/* --- dol/fn_8005A648.c --- */
 extern u32 fn_80057728(void);
 
 void fn_8005A648(void);
 
-/* --- dol/fn_8005A668.c --- */
-/* --- dol/fn_8005A668.c --- */
 struct fn_8005A668_Arg0 {
     u8 pad_0[0xA0];
     u16 unk_A0;
@@ -59,19 +49,16 @@ void fn_8005A668(struct fn_8005A668_Arg0 *arg0, u32 arg1) {
     arg0->unk_A0 = arg1;
 }
 
-/* --- dol/fn_8005A678.c --- */
 // fn_8005A678: returns a constant.
 int fn_8005A678(void) {
     return 0;
 }
 
-/* --- dol/fn_8005A680.c --- */
 // fn_8005A680: returns a constant.
 int fn_8005A680(void) {
     return 0;
 }
 
-/* --- dol/fn_8005A688.c --- */
 struct fn_8005A688_Arg0 {
     u8 pad_0[0x80];
     u32 unk_80;
@@ -82,33 +69,32 @@ void fn_8005A688(struct fn_8005A688_Arg0 *arg0, u32 arg1) {
     arg0->unk_80 = arg1;
 }
 
-/* --- dol/AXRNA_SetOutPan.c --- */
 typedef struct SJCK {
     unsigned char *data;
     int len;
 } SJCK;
 
-typedef struct SJ_u1 SJ_u1;
+typedef struct SJ_u1_u0 SJ_u1_u0;
 
-typedef struct SJInterface_u1 SJInterface_u1;
+typedef struct SJInterface_u1_u0 SJInterface_u1_u0;
 
 typedef void (*SJErrorCallback)(void *object, int error);
 
-struct SJInterface_u1 {
+struct SJInterface_u1_u0 {
     void *reserved[3];
-    void (*destroy)(SJ_u1 *sj);
-    const void *(*get_uuid)(SJ_u1 *sj);
-    void (*reset)(SJ_u1 *sj);
-    void (*get_chunk)(SJ_u1 *sj, int channel, int max_size, SJCK *chunk);
-    void (*unget_chunk)(SJ_u1 *sj, int channel, SJCK *chunk);
-    void (*put_chunk)(SJ_u1 *sj, int channel, SJCK *chunk);
-    int (*get_num_data)(SJ_u1 *sj, int channel);
-    int (*is_get_chunk)(SJ_u1 *sj, int channel, int size, int *available);
-    void (*entry_error_func)(SJ_u1 *sj, SJErrorCallback callback, void *object);
+    void (*destroy)(SJ_u1_u0 *sj);
+    const void *(*get_uuid)(SJ_u1_u0 *sj);
+    void (*reset)(SJ_u1_u0 *sj);
+    void (*get_chunk)(SJ_u1_u0 *sj, int channel, int max_size, SJCK *chunk);
+    void (*unget_chunk)(SJ_u1_u0 *sj, int channel, SJCK *chunk);
+    void (*put_chunk)(SJ_u1_u0 *sj, int channel, SJCK *chunk);
+    int (*get_num_data)(SJ_u1_u0 *sj, int channel);
+    int (*is_get_chunk)(SJ_u1_u0 *sj, int channel, int size, int *available);
+    void (*entry_error_func)(SJ_u1_u0 *sj, SJErrorCallback callback, void *object);
 };
 
-struct SJ_u1 {
-    const SJInterface_u1 *interface;
+struct SJ_u1_u0 {
+    const SJInterface_u1_u0 *interface;
 };
 
 typedef void (*ARQCallback)(unsigned long request_address);
@@ -226,8 +212,8 @@ typedef struct AXRNAHandle {
     int buffer_size;
     int sample_rate;
     u32 request_owners[2];
-    SJ_u1 *inputs[2];
-    SJ_u1 *buffers[2];
+    SJ_u1_u0 *inputs[2];
+    SJ_u1_u0 *buffers[2];
     SJCK input_chunks[2];
     SJCK buffer_chunks[2];
 // Hardware or OS state can change asynchronously.
@@ -253,8 +239,6 @@ typedef struct AXRNAHandle {
 
 void fn_80026EE0(AXVPB *voice, int pan);
 
-
-
 extern int lbl_8013255C[31];
 
 void AXRNA_SetOutPan(AXRNAHandle *handle, int channel, int pan) {
@@ -271,6 +255,45 @@ void AXRNA_SetOutPan(AXRNAHandle *handle, int channel, int pan) {
                     fn_80026EE0(voice, lbl_8013255C[pan + 15]);
                 }
                 fn_8005A628();
+            }
+        }
+    }
+}
+
+struct fn_80026D90_Arg0;
+extern u32 fn_80026D90(struct fn_80026D90_Arg0 *, u32);
+
+struct AXRNAHandle;
+
+void fn_8005A74C(struct AXRNAHandle *handle, s32 value) {
+    u8 *slot;
+    u32 volume;
+    s32 i;
+    u32 nonpositive;
+    u32 channel_volume;
+    struct fn_80026D90_Arg0 *voice;
+
+    channel_volume = value;
+    if (handle != 0) {
+        nonpositive = channel_volume & ((s32)channel_volume >> 31);
+        volume = -999;
+        if ((s32)nonpositive > -999) {
+            volume = nonpositive;
+        }
+        if ((s32)volume != (s32)*(u32 *)((u8 *)handle + 132)) {
+            *(u32 *)((u8 *)handle + 132) = volume;
+            i = 0;
+            slot = (u8 *)handle;
+            while (i < (s8)*(u8 *)((u8 *)handle + 2)) {
+                fn_8005A648();
+                voice = *(struct fn_80026D90_Arg0 **)(slot + 8);
+                if (voice != 0) {
+                    channel_volume = volume;
+                    fn_80026D90(voice, channel_volume);
+                }
+                fn_8005A628();
+                slot += 4;
+                i++;
             }
         }
     }

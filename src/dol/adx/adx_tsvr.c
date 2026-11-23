@@ -168,7 +168,7 @@ extern void fn_8004EDA4(void *, s32);
 extern void fn_8004EE04(void *, s32);
 extern void fn_8004EE24(void *, s32);
 extern void fn_8004ED80(void *, s32);
-extern void fn_8004EDE4(void *, s32);
+extern void fn_8004EDE4(AXRNAHandle *, s32);
 extern void fn_8004ED5C(void *, s32);
 extern void fn_8004EDC4(void *, s32, s32);
 extern s32 fn_8004C05C(void *);
