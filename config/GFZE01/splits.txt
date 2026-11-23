@@ -907,8 +907,9 @@ dol/floor.c:
 dol/ldexp.c:
 	.text       start:0x80088128 end:0x800884C0 align:4
 
-dol/__num2dec.c:
-	.text       start:0x8007C3B8 end:0x8007CF18 align:4
+dol/ansi_fp_decimal.c:
+	.text       start:0x8007C3B8 end:0x8007E69C align:4
+	.data       start:0x8015AFD8 end:0x8015B100 align:8
 
 dol/deallocate_from_fixed_pools.c:
 	.text       start:0x8007A2E8 end:0x8007A710 align:4
@@ -1116,10 +1117,6 @@ dol/gx/GXPerf.c:
 
 dol/perf/perfdraw.c:
 	.text       start:0x8003E9EC end:0x80041164 align:4
-
-dol/fn_8007CF18.c:
-	.text       start:0x8007CF18 end:0x8007E69C align:4
-	.data       start:0x8015AFD8 end:0x8015B100 align:8
 
 dol/misc_io.c:
 	.text       start:0x8008067C end:0x8008069C align:4

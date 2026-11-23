@@ -9673,12 +9673,13 @@
   },
   {
     "module": "main",
-    "source": "dol/__num2dec.c",
+    "source": "dol/ansi_fp_decimal.c",
     "symbols": [
       "__num2dec",
       "__num2dec_internal",
       "fn_8007C910",
-      "__equals_dec"
+      "__equals_dec",
+      "fn_8007CF18"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
@@ -9689,11 +9690,14 @@
       "-sdata2",
       "8",
       "-use_lmw_stmw",
-      "on"
+      "on",
+      "-str",
+      "reuse,pool,readonly"
     ],
     "collapsed": true,
     "pool": {
-      "@224": "lbl_801A74B0"
+      "@224": "lbl_801A74B0",
+      "@stringBase0": "lbl_80094ED8"
     }
   },
   {
@@ -24783,23 +24787,6 @@
       "@509": "lbl_801A74D8",
       "@504": "lbl_801A74C8",
       "@505": "lbl_80094ED8"
-    }
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8007CF18.c",
-    "symbols": [
-      "fn_8007CF18"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-str",
-      "reuse,pool,readonly"
-    ],
-    "pool": {
-      "@stringBase0": "lbl_80094ED8"
     }
   },
   {

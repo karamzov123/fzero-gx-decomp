@@ -12,7 +12,7 @@ def _header_names(includes):
 
 
 def merge_c_files_smart(paths):
-    includes, pragmas = [], []
+    includes = []
     # names the union of the files' headers declares: a file's own redeclaration of one of them
     # (lifted per-file prototypes, typedefs and struct views) gives way to the header
     all_inc = []
@@ -21,7 +21,7 @@ def merge_c_files_smart(paths):
             if ln.strip().startswith('#include') and ln.strip() not in all_inc:
                 all_inc.append(ln.strip())
     hdr = _header_names(all_inc) if len(paths) > 1 else set()
-    seen_inc, seen_prag, seen_at, seen_ext, seen_inlines = set(), set(), set(), set(), set()
+    seen_inc, seen_at, seen_ext, seen_inlines = set(), set(), set(), set()
     # Map struct/typedef name -> canonical body text; if a later file defines the same name with a DIFFERENT body, rename it to <name>_u<idx>!
     seen_type_bodies = {}
     seen_fn_decls = set()
@@ -83,7 +83,9 @@ def merge_c_files_smart(paths):
             if s.startswith('#include'):
                 if s not in seen_inc: seen_inc.add(s); includes.append(l)
             elif s.startswith('#pragma'):
-                if s not in seen_prag: seen_prag.add(s); pragmas.append(l)
+                # A reset or repeated setting may delimit a different function.
+                # Hoisting or deduplicating these changes the compiler state.
+                out.append(l)
             elif ': FZGX_ADDR_' in s:
                 if out and out[-1].strip() and not out[-1].strip().endswith((';', '}', '{', '*/')) and not out[-1].strip().startswith(('//', '#')):
                     full = out.pop() + '\n' + l
@@ -145,7 +147,7 @@ def merge_c_files_smart(paths):
                 out.append(l)
             i += 1
         chunks.append(f'/* --- {p} --- */\n' + '\n'.join(out).strip())
-    return '\n'.join(includes) + '\n' + '\n'.join(pragmas) + '\n\n' + '\n\n'.join(chunks) + '\n'
+    return '\n'.join(includes) + '\n\n' + '\n\n'.join(chunks) + '\n'
 
 def verify_smart(mod, mw_ver, cflags, sdata, u_list, sym_lists):
     code = merge_c_files_smart(u_list)
