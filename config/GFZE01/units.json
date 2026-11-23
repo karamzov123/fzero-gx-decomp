@@ -23393,136 +23393,50 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_8006060C.c",
+    "source": "dol/sasnd/sasnd_track.c",
     "symbols": [
-      "fn_8006060C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.3",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80060724.c",
-    "symbols": [
-      "fn_80060724"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "pool": {
-      "@47": "lbl_801A7290",
-      "@45": "lbl_801A72A8",
-      "@44": "lbl_801A72A0",
-      "@43": "lbl_801A7298"
-    }
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80060950.c",
-    "symbols": [
-      "fn_80060950"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "pool": {
-      "@46": "lbl_801A7288",
-      "@41": "lbl_801A72AC",
-      "@40": "lbl_801A72A0",
-      "@42": "lbl_801A72B0",
-      "@43": "lbl_801A72A8",
-      "@44": "lbl_801A72B4"
-    }
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80060BDC.c",
-    "symbols": [
-      "fn_80060BDC"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80060C54.c",
-    "symbols": [
-      "fn_80060C54"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "pool": {
-      "@415": "lbl_801A7290",
-      "@398": "lbl_801A7280",
-      "@413": "lbl_801A7288",
-      "@399": "lbl_801A72F0",
-      "@400": "lbl_801A72D8",
-      "@401": "lbl_801A72F8",
-      "@402": "lbl_801A7300",
-      "@403": "lbl_801A7308",
-      "@404": "lbl_801A72A0",
-      "@407": "lbl_801A72C8",
-      "@405": "lbl_801A72B8",
-      "@406": "lbl_801A72C0",
-      "@408": "lbl_801A72D0",
-      "@409": "lbl_801A72E0",
-      "@410": "lbl_801A72E8",
-      "@411": "lbl_801A7310"
-    }
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_800622B0.c",
-    "symbols": [
-      "fn_800622B0"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on"
-    ]
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80062360.c",
-    "symbols": [
-      "fn_80062360"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.3",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80062654.c",
-    "symbols": [
-      "fn_80062654"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80063094.c",
-    "symbols": [
+      "fn_8006060C",
+      "fn_80060724",
+      "fn_80060950",
+      "fn_80060BDC",
+      "fn_80060C54",
+      "fn_800622B0",
+      "fn_80062360",
+      "fn_80062654",
       "fn_80063094",
       "fn_800631EC"
     ],
     "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "collapsed": true
+    "matching_for": ["GFZE01", "GFZJ01"],
+    "mw_version": "GC/1.3",
+    "extra_cflags": [
+      "-inline",
+      "on,noauto"
+    ],
+    "collapsed": true,
+    "pool": {
+      "@137": "lbl_801A72AC",
+      "@138": "lbl_801A72B0",
+      "@139": "lbl_801A72B4",
+      "@141": "lbl_801A7288",
+      "@546": "lbl_801A7280",
+      "@547": "lbl_801A72F0",
+      "@548": "lbl_801A72D8",
+      "@549": "lbl_801A72F8",
+      "@550": "lbl_801A7300",
+      "@551": "lbl_801A7308",
+      "@552": "lbl_801A72B8",
+      "@553": "lbl_801A72C0",
+      "@554": "lbl_801A72C8",
+      "@555": "lbl_801A72D0",
+      "@556": "lbl_801A72E0",
+      "@557": "lbl_801A72E8",
+      "@558": "lbl_801A7310",
+      "@92": "lbl_801A7298",
+      "@93": "lbl_801A72A0",
+      "@94": "lbl_801A72A8",
+      "@96": "lbl_801A7290"
+    }
   },
   {
     "module": "main",

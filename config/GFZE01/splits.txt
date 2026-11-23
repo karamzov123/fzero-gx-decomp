@@ -256,9 +256,6 @@ dol/adx/adx_tsvr.c:
 dol/lg/lg.c:
 	.text       start:0x8006AA20 end:0x8006CCC8 align:4
 
-dol/fn_800622B0.c:
-	.text       start:0x800622B0 end:0x80062360 align:4
-
 dol/fn_80051E64.c:
 	.text       start:0x80051E64 end:0x80051F38 align:4
 
@@ -946,9 +943,6 @@ dol/fn_8006CDFC.c:
 dol/arc.c:
 	.text       start:0x8006A3DC end:0x8006AA20 align:4
 
-dol/fn_80060BDC.c:
-	.text       start:0x80060BDC end:0x80060C54 align:4
-
 dol/axfx/delay.c:
 	.text       start:0x80025854 end:0x80025D00 align:4
 
@@ -1054,9 +1048,6 @@ dol/fn_800658B4.c:
 
 dol/mtx/mtx_light.c:
 	.text       start:0x80015C1C end:0x80015D7C align:4
-
-dol/fn_80063094.c:
-	.text       start:0x80063094 end:0x8006331C align:4
 
 dol/fn_80083BCC.c:
 	.text       start:0x80083BCC end:0x80083E84 align:4
@@ -1334,9 +1325,6 @@ dol/av/avdisp_tail.c:
 dol/fn_8005DCEC.c:
 	.text       start:0x8005DCEC end:0x8005FBDC align:4
 
-dol/fn_80060C54.c:
-	.text       start:0x80060C54 end:0x800622B0 align:4
-
 dol/fn_80050BD4.c:
 	.text       start:0x80050BD4 end:0x800510C4 align:4
 
@@ -1382,8 +1370,8 @@ dol/fn_800081C8.c:
 dol/fn_8005FBDC.c:
 	.text       start:0x8005FBDC end:0x8005FCD8 align:4
 
-dol/fn_8006060C.c:
-	.text       start:0x8006060C end:0x80060724 align:4
+dol/sasnd/sasnd_track.c:
+	.text       start:0x8006060C end:0x8006331C align:4
 
 dol/fn_80064E84.c:
 	.text       start:0x80064E84 end:0x80064FDC align:4
@@ -1460,14 +1448,8 @@ dol/__mod2u.c:
 dol/fn_80050698.c:
 	.text       start:0x80050698 end:0x80050BD4 align:4
 
-dol/fn_80062360.c:
-	.text       start:0x80062360 end:0x80062654 align:4
-
 dol/fn_80067F68.c:
 	.text       start:0x80067F68 end:0x80068BFC align:4
-
-dol/fn_80062654.c:
-	.text       start:0x80062654 end:0x80063094 align:4
 
 dol/fn_80023D00.c:
 	.text       start:0x80023D00 end:0x8002420C align:4
@@ -1498,14 +1480,8 @@ dol/fn_8005C9D8.c:
 dol/fn_8008ECE0.c:
 	.text       start:0x8008ECE0 end:0x8008EDF0 align:4
 
-dol/fn_80060724.c:
-	.text       start:0x80060724 end:0x80060950 align:4
-
 dol/fn_80063F38.c:
 	.text       start:0x80063F38 end:0x8006413C align:4
-
-dol/fn_80060950.c:
-	.text       start:0x80060950 end:0x80060BDC align:4
 
 dol/fn_8005D258.c:
 	.text       start:0x8005D258 end:0x8005D5A4 align:4

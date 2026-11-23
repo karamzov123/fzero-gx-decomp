@@ -19,10 +19,10 @@ typedef struct SndNote {
 s32 fn_80069FCC(SndNote *note, u8 channel);
 
 static inline void stop_voice(u8 i) {
-    fn_80023168((void *)lbl_801A6C80->voice[i].axvpb, 0);
-    fn_80026D70((void *)lbl_801A6C80->voice[i].axvpb);
-    fn_80020ABC((void *)lbl_801A6C80->voice[i].axvpb);
-    lbl_801A6C80->voice[i].axvpb = 0;
+    fn_80023168(lbl_801A6C80->voice[i].obj, 0);
+    fn_80026D70(lbl_801A6C80->voice[i].obj);
+    fn_80020ABC(lbl_801A6C80->voice[i].obj);
+    lbl_801A6C80->voice[i].obj = 0;
     fn_80028424(lbl_801A6C80->voice[i].env);
     if (lbl_801A6C80->voice[i].state != 0xFF) {
         lbl_801A6C80->voice[i].state = 0xFF;
@@ -58,8 +58,8 @@ static inline void retune(s32 all, s32 ch) {
         if (lbl_801A6C80->voice[i].state == 4) {
             if (all == 0x10 || ch == lbl_801A6C80->voice[i].channel) {
                 r = fn_80069FCC((SndNote *)lbl_801A6C80->voice[i].note, lbl_801A6C80->voice[i].channel);
-                lbl_801A6C80->voice[i].pitchDelta = (r - (lbl_801A6C80->voice[i].pitchEnv >> 16)) << 16;
-                lbl_801A6C80->voice[i].pitch = r;
+                lbl_801A6C80->voice[i].volDelta = (r - (lbl_801A6C80->voice[i].volEnv >> 16)) << 16;
+                lbl_801A6C80->voice[i].vol = r;
             }
         }
     }
@@ -94,10 +94,10 @@ s32 fn_80069CE4(u32 target, s32 kind, s16 value) {
         t = target;
         if (all == 0x10) {
             for (i = 0; i < 16; i++) {
-                lbl_801A6C80->chanPitch[i] = value;
+                lbl_801A6C80->chanLevel[i] = value;
             }
         } else {
-            lbl_801A6C80->chanPitch[t & 0xF] = value;
+            lbl_801A6C80->chanLevel[t & 0xF] = value;
         }
         retune(all, t & 0xF);
         break;
@@ -120,7 +120,7 @@ s32 fn_80069FCC(SndNote *note, u8 channel) {
 
     bank = lbl_801A6C80->chan[lbl_801A6C80->curChan].bank;
     count = note->unk_9;
-    p = (u8 *)(bank->unk_20 + (u32)bank + note->unk_2C * 0x80 + 4);
+    p = (u8 *)(bank->levelOffset + (u32)bank + note->unk_2C * 0x80 + 4);
     for (i = 0; i < count; i++) {
         p++;
     }
@@ -140,7 +140,7 @@ s32 fn_80069FCC(SndNote *note, u8 channel) {
     } else {
         level = -960.0f;
     }
-    result = lbl_801A6C80->chanPitch[channel];
+    result = lbl_801A6C80->chanLevel[channel];
     if (lbl_801A6C80->masterVolume != 0) {
         level += (f32)(20.0 * fn_80088578(lbl_801A6C80->masterVolume / 127.0f));
     } else {
