@@ -395,7 +395,7 @@ extern void fn_1_C3A0C(void *);
 extern void fn_1_C42F4(void);
 extern void fn_1_C47B4(void);
 extern void fn_1_C6F80(u32);
-extern void fn_1_CFCA4(const char *, f32, f32, f32);
+extern void fn_1_CFCA4(f32, f32, const char *, f32);
 extern void fn_1_DCF54(Vec3 *, Vec3 *, Vec3 *);
 extern s32 fn_1_FA004(void);
 extern void fn_1_FA01C(void);
@@ -2806,7 +2806,7 @@ void fn_15_4578(void) {
                 course_packet.y = x;
                 course_packet.flags = 6;
                 fn_1_4F734(&course_packet);
-                fn_1_CFCA4(anim->label, anim->x, 141.0f + anim->y, 1.0f);
+                fn_1_CFCA4(anim->x, 141.0f + anim->y, anim->label, 1.0f);
             }
         } else {
             x = anim->x;

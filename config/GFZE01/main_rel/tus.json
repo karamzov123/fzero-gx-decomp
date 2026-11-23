@@ -2584,12 +2584,12 @@
    "file": "enemy_ctrl.c",
    "text": [
     804788,
-    857984
+    814988
    ],
    "data_sec": 5,
    "data": [
-    250420,
-    252460
+    250416,
+    250512
    ],
    "anchor_refs": [
     804788
@@ -2601,7 +2601,27 @@
     "fn_1_C4ABC",
     "fn_1_C6ED4",
     "fn_1_C6F70",
-    "fn_1_C6F80",
+    "fn_1_C6F80"
+   ],
+   "confidence": {
+    "text+data": 7,
+    "text-range": 0,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "enemy_ctrl_b.c",
+   "text": [
+    814988,
+    855432
+   ],
+   "data_sec": 5,
+   "data": [
+    250512,
+    251464
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_1_C6F8C",
     "fn_1_C7224",
     "fn_1_C72D4",
@@ -2648,7 +2668,27 @@
     "fn_1_D07AC",
     "fn_1_D07C4",
     "fn_1_D07E0",
-    "fn_1_D0D68",
+    "fn_1_D0D68"
+   ],
+   "confidence": {
+    "text+data": 47,
+    "text-range": 0,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "enemy_ctrl_c.c",
+   "text": [
+    855432,
+    857984
+   ],
+   "data_sec": 5,
+   "data": [
+    251464,
+    251504
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_1_D0D88",
     "fn_1_D0D98",
     "fn_1_D0DA8",
@@ -2669,9 +2709,9 @@
     "fn_1_D123C"
    ],
    "confidence": {
-    "text+data": 16,
-    "text-range": 55,
-    "data-vote": 3
+    "text+data": 17,
+    "text-range": 1,
+    "data-vote": 0
    }
   },
   {
