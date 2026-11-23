@@ -23059,7 +23059,8 @@
       "fn_8005A7F8",
       "fn_8005A94C",
       "AXRNA_ExecServer",
-      "fn_8005A9B8"
+      "fn_8005A9B8",
+      "fn_8005ACF0"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
@@ -23070,16 +23071,6 @@
       "on"
     ],
     "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8005ACF0.c",
-    "symbols": [
-      "fn_8005ACF0"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
   },
   {
     "module": "main",

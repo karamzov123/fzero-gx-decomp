@@ -501,3 +501,25 @@ void fn_8005A9B8(AXRNAHandle *handle) {
         axrna_flash(handle);
     }
 }
+
+void fn_8005ACF0(unsigned long request_address) {
+    u32 v;
+    s32 a;
+    AXRNAHandle *rec;
+    s32 idx;
+    s32 k;
+
+    v = ((const ARQRequest *)request_address)->owner;
+    a = v & 0x7FFFFFFF;
+    k = a / 2;
+    rec = &lbl_80191D4C[k];
+    idx = a % 2;
+    if (rec->flash_pending[idx] == 1) {
+        SJ *obj = rec->buffers[idx];
+        obj->interface->put_chunk(obj, 1, &rec->buffer_chunks[idx]);
+        rec->flash_pending[idx] = 0;
+        if (idx == rec->num_channels - 1) {
+            rec->flash_position += rec->flash_samples;
+        }
+    }
+}
