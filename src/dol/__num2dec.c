@@ -1,18 +1,7 @@
-#include "types.h"
+#include "msl/decimal_internal.h"
 
 
 /* --- dol/__num2dec.c --- */
-typedef struct decimal {
-    char sign;
-    char reserved;
-    s16 exp;
-    struct {
-        u8 length;
-        u8 text[36];
-        u8 reserved;
-    } sig;
-} decimal;
-
 typedef struct decform {
     char style;
     char reserved;
@@ -43,23 +32,6 @@ static inline int __must_round(const decimal *d, int digits) {
         return 1;
     }
     return -1;
-}
-
-static inline void __dorounddecup(decimal *d, int digits) {
-    u8 *b = d->sig.text;
-    u8 *i = b + digits - 1;
-    while (1) {
-        if (*i < 9) {
-            *i += 1;
-            break;
-        }
-        if (i == b) {
-            *i = 1;
-            d->exp++;
-            break;
-        }
-        *i-- = 0;
-    }
 }
 
 static inline void __rounddec(decimal *d, int digits) {

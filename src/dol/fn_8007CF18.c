@@ -1,35 +1,7 @@
-#include "types.h"
-
-typedef struct decimal {
-    char sign;
-    char reserved;
-    s16 exp;
-    struct {
-        u8 length;
-        u8 text[36];
-        u8 round;
-    } sig;
-} decimal;
+#include "msl/decimal_internal.h"
 
 extern char lbl_80094ED8[];
 extern void fn_8007E69C(decimal *, const decimal *, const decimal *);
-
-static inline void __dorounddecup(decimal *d, int digits) {
-    u8 *b = d->sig.text;
-    u8 *i = b + digits - 1;
-    while (1) {
-        if (*i < 9) {
-            *i += 1;
-            break;
-        }
-        if (i == b) {
-            *i = 1;
-            d->exp++;
-            break;
-        }
-        *i-- = 0;
-    }
-}
 
 static inline void __dec_parse(decimal *d, char *s) {
     char c;

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "msl/decimal_internal.h"
 
 
 /* --- dol/fn_8007B0B4.c --- */
@@ -192,17 +193,6 @@ u32 fn_8007B2A8(void) {
 }
 
 /* --- dol/fn_8007B338.c --- */
-typedef struct decimal {
-    char sign;
-    char reserved;
-    s16 exp;
-    struct {
-        u8 length;
-        u8 text[36];
-        u8 reserved;
-    } sig;
-} decimal;
-
 f64 fn_8007B338(const decimal *d);
 
 extern double exp(double);
@@ -262,23 +252,6 @@ void __num2dec_internal(decimal *d, f64 x);
 void fn_8007C910(decimal *z, const decimal *x, const decimal *y);
 
 BOOL __equals_dec(const decimal *x, const decimal *y);
-
-static inline void __dorounddecup(decimal *d, int digits) {
-    u8 *b = d->sig.text;
-    u8 *i = b + digits - 1;
-    while (1) {
-        if (*i < 9) {
-            *i += 1;
-            break;
-        }
-        if (i == b) {
-            *i = 1;
-            d->exp++;
-            break;
-        }
-        *i-- = 0;
-    }
-}
 
 static inline void __str2dec(decimal *d, const char *s, s16 exp) {
     int i;
