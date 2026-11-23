@@ -101,12 +101,29 @@ SndState lbl_80193B48;
 SndState *lbl_801A6C80;
 volatile s32 lbl_801A6C7C; /* Updated asynchronously by the ARQ callback while polling. */
 BOOL lbl_801A6C78;
-extern char lbl_80092C08[];
-extern char lbl_80092C18[29];
-extern const u16 lbl_80092C38[];
+static const char lbl_80092BD8[] = "\nsasnd Ver 1.13h Build:Jul  1 2003 21:06:15\n";
+static const char lbl_80092C08[] = "Cannot open %s";
+static const char lbl_80092C18[] = "Not Sound Allocation Size %d";
+static const u16 lbl_80092C38[132] = {
+    0xA3D7, 0x6D3A, 0x51EB, 0x4189, 0x369D, 0x2ECF, 0x28F5, 0x2468, 0x20C4, 0x1DCA, 0x1B4E, 0x1934,
+    0x1767, 0x15D8, 0x147A, 0x1346, 0x1234, 0x113F, 0x1062, 0x0F9A, 0x0EE5, 0x0E3F, 0x0DA7, 0x0D1B,
+    0x0C9A, 0x0C22, 0x0BB3, 0x0B4C, 0x0AEC, 0x0A92, 0x0A3D, 0x09EE, 0x09A3, 0x095C, 0x091A, 0x08D8,
+    0x089F, 0x0866, 0x0831, 0x07EE, 0x07CD, 0x079E, 0x0772, 0x0748, 0x071F, 0x06F8, 0x06D3, 0x06AF,
+    0x068D, 0x066C, 0x064D, 0x062E, 0x0611, 0x05F5, 0x05D9, 0x05BF, 0x05A6, 0x058D, 0x0576, 0x055F,
+    0x0549, 0x0533, 0x051E, 0x050A, 0x04F7, 0x04E4, 0x04D1, 0x04BF, 0x04AE, 0x049D, 0x048D, 0x047D,
+    0x046D, 0x045E, 0x044F, 0x0441, 0x0433, 0x0425, 0x0418, 0x040B, 0x03FF, 0x03F2, 0x03E6, 0x03DA,
+    0x03CF, 0x03C4, 0x03B9, 0x03AE, 0x03A4, 0x0399, 0x038F, 0x0386, 0x037C, 0x0373, 0x0369, 0x0360,
+    0x0357, 0x034F, 0x0346, 0x033E, 0x0336, 0x032E, 0x0326, 0x031E, 0x0317, 0x030F, 0x0308, 0x0301,
+    0x02FA, 0x02F3, 0x02EC, 0x02E6, 0x02DF, 0x02D9, 0x02D3, 0x02CC, 0x02C6, 0x02C0, 0x02BB, 0x02B5,
+    0x02AF, 0x02AA, 0x02A4, 0x029F, 0x0299, 0x0294, 0x028F, 0x028A, 0x0000, 0x0000, 0x0000, 0x0000
+};
+/* 4,200 signed 16-bit samples of concatenated oscillator waveforms: a 64-sample sine cycle at the
+ * start, a sawtooth ramp at +0x440, noise, and a constant tail. It is copied to ARAM at init. */
+static const s16 lbl_80092D40[4200] = {
+#include "sasnd/wave_table.inc"
+};
+const char *const lbl_801A7328 = lbl_80092BD8;
 extern u8 lbl_801A6608[8];
-extern const u32 lbl_801A7328;
-extern u32 lbl_801A7348;
 
 void fn_80065AC4(u32 request);
 void fn_80065AD0(u32 request);
@@ -1154,11 +1171,13 @@ void fn_80067F68(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5) {
     fn_8006A1F8();
 }
 
+const s16 *const lbl_801A7348 = lbl_80092D40;
+
 s32 fn_80068BFC(u32 arg0,u32 arg1,u32 arg2,u32 arg3,u32 arg4,u32 arg5) {
     BOOL enabled;
     u32 *buffer;
     u32 i;
-    arg5 = lbl_801A7328;
+    arg5 = (u32)lbl_801A7328;
     lbl_801A6C78 = 0;
     lbl_801A6C7C = 0;
     lbl_801A6C80 = &lbl_80193B48;
@@ -1190,7 +1209,7 @@ s32 fn_80068BFC(u32 arg0,u32 arg1,u32 arg2,u32 arg3,u32 arg4,u32 arg5) {
     ARQPostRequest(&lbl_80193B28,0,0,1,(u32)buffer,lbl_801A6C80->unk_1A4,0x100,fn_80065AD0);
     while (lbl_801A6C7C != 0) {}
     lbl_801A6C7C = 1;
-    ARQPostRequest(&lbl_80193B28,0,0,1,lbl_801A7348,lbl_801A6C80->unk_1A4 + 0x100,0x20e0,fn_80065AC4);
+    ARQPostRequest(&lbl_80193B28,0,0,1,(u32)lbl_801A7348,lbl_801A6C80->unk_1A4 + 0x100,0x20e0,fn_80065AC4);
     while (lbl_801A6C7C != 0) {}
     lbl_801A6C80->unk_1AC[0] = lbl_801A6C80->unk_1A4 + 0x21e0;
     lbl_801A6C80->unk_1A8 = lbl_801A6C80->unk_1A4 + 0x100;

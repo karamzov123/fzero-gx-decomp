@@ -3,7 +3,8 @@
 
   tu_own_data.py UNIT SECTION LO HI [--apply]
 
-The unit's compiled SECTION must equal the retail bytes at LO..HI (trailing alignment excepted).
+The unit's compiled SECTION must equal the retail bytes at LO..HI outside relocated words (trailing
+alignment excepted).
 Data-import units inside the range are deleted, a unit ending inside it or starting at LO is trimmed, the range
 joins the unit's split and pool bindings into it are dropped. Run gate.sh afterwards: the link
 hash in every region is the proof.
@@ -43,13 +44,15 @@ def main():
     plain = {k: v for k, v in target.items() if k != 'pool'}
     with tempfile.TemporaryDirectory() as td:
         obj = d.compile_all(pathlib.Path('src', unit).read_text(), mv, cf, td, plain)[0]
-        p = pathlib.Path(td, 'u.o'); p.write_bytes(obj); got = objsig.sig(p)['sections'].get(sec, b'')
+        p = pathlib.Path(td, 'u.o'); p.write_bytes(obj); sg = objsig.sig(p); got = sg['sections'].get(sec, b'')
+        relocated = {o & ~3 for o, _, _, _ in sg['relocs'].get(sec, [])}
     if sec in ('.bss', '.sbss'):
         if not got or got > hi - lo:
             raise SystemExit(f'{sec}: compiled size {got} does not fit 0x{lo:X}..0x{hi:X}')
     else:
         want = retail(lo, hi - lo)
-        if not isinstance(got, bytes) or not got or len(got) > hi - lo or want[:len(got)] != got or any(want[len(got):]):
+        differs = isinstance(got, bytes) and any(i not in relocated and got[i:i + 4] != want[i:i + 4] for i in range(0, len(got), 4))
+        if not isinstance(got, bytes) or not got or len(got) > hi - lo or differs or any(want[len(got):]):
             raise SystemExit(f'{sec}: compiled {len(got) if isinstance(got, bytes) else got} bytes differ from retail 0x{lo:X}..0x{hi:X}')
     syms = {m[1]: int(m[2], 16) for m in re.finditer(rf'^(\S+) = {re.escape(sec)}:0x([0-9A-F]+);', open('config/GFZE01/symbols.txt').read(), re.M)}
     inside = {n for n, a in syms.items() if lo <= a < hi}
