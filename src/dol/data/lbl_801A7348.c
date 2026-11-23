@@ -4,9 +4,6 @@
 #include "dol/data/lbl_801A7348.h"
 
 #include "dol/data/lbl_801A7348.h"
-extern const f64 lbl_801A7350;
-
-
 
 #pragma explicit_zero_data on
 __declspec(section ".sdata2") const Data_lbl_801A7348 lbl_801A7348 __attribute__((aligned(4))) = {
@@ -14,8 +11,3 @@ __declspec(section ".sdata2") const Data_lbl_801A7348 lbl_801A7348 __attribute__
 };
 #pragma explicit_zero_data reset
 
-
-
-#pragma explicit_zero_data on
-__declspec(section ".sdata2") const f64 lbl_801A7350 __attribute__((aligned(8))) = 20.0;
-#pragma explicit_zero_data reset

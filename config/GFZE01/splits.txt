@@ -262,9 +262,6 @@ dol/fn_800622B0.c:
 dol/fn_80051E64.c:
 	.text       start:0x80051E64 end:0x80051F38 align:4
 
-dol/fn_8006A1F8.c:
-	.text       start:0x8006A1F8 end:0x8006A3DC align:4
-
 dol/fn_80007C60.c:
 	.text       start:0x80007C60 end:0x80007D58 align:4
 
@@ -929,7 +926,11 @@ dol/fn_8008EB4C.c:
 	.text       start:0x8008EB4C end:0x8008EB8C align:4
 
 dol/fn_80069AE0.c:
-	.text       start:0x80069AE0 end:0x80069CE4 align:4
+	.text       start:0x80069AE0 end:0x80069B10 align:4
+
+dol/sasnd/sasnd_mix.c:
+	.text       start:0x80069B10 end:0x8006A3DC align:4
+	.sdata2     start:0x801A7350 end:0x801A7370 align:8
 
 dol/TRK_main.c:
 	.text       start:0x8008D1CC end:0x8008D224 align:4
@@ -1468,9 +1469,6 @@ dol/fn_80067F68.c:
 dol/fn_80062654.c:
 	.text       start:0x80062654 end:0x80063094 align:4
 
-dol/fn_80069CE4.c:
-	.text       start:0x80069CE4 end:0x80069FCC align:4
-
 dol/fn_80023D00.c:
 	.text       start:0x80023D00 end:0x8002420C align:4
 
@@ -1502,9 +1500,6 @@ dol/fn_8008ECE0.c:
 
 dol/fn_80060724.c:
 	.text       start:0x80060724 end:0x80060950 align:4
-
-dol/fn_80069FCC.c:
-	.text       start:0x80069FCC end:0x8006A1F8 align:4
 
 dol/fn_80063F38.c:
 	.text       start:0x80063F38 end:0x8006413C align:4
@@ -2633,16 +2628,7 @@ dol/data/lbl_801A7340.c:
 	.sdata2     start:0x801A7340 end:0x801A7348 align:8
 
 dol/data/lbl_801A7348.c:
-	.sdata2     start:0x801A7348 end:0x801A7358 align:8
-
-dol/data/lbl_801A7358.c:
-	.sdata2     start:0x801A7358 end:0x801A7360 align:8
-
-dol/data/lbl_801A7360.c:
-	.sdata2     start:0x801A7360 end:0x801A7368 align:8
-
-dol/data/lbl_801A7368.c:
-	.sdata2     start:0x801A7368 end:0x801A7370 align:8
+	.sdata2     start:0x801A7348 end:0x801A7350 align:8
 
 dol/data/lbl_801A7370.c:
 	.sdata2     start:0x801A7370 end:0x801A7378 align:8
