@@ -4,10 +4,10 @@
   "note": "Draft DOL ownership evidence used by the consolidation tools. Unassigned entries and conflicts are not confirmed boundaries.",
   "summary": {
     "functions": 2230,
-    "assigned": 1995,
+    "assigned": 2043,
     "bytes": 567556,
-    "assigned_bytes": 469180,
-    "tus": 222,
+    "assigned_bytes": 520256,
+    "tus": 227,
     "conflicts": 0,
     "string_anchored": 13
   },
@@ -3475,6 +3475,124 @@
       "notes": "All six GX functions have the same ordered sizes as GQNE5D libadxgca.a rna_res.o (0x802D9110..0x802D9540; mk-deception map 33b1e0082c7630ee4f20b828559966872ae670e1). The last two are the paired ARAM resource teardown/setup: both use the state at 0x80192BD0 and the adjacent 32-entry table at 0x80192BE4. The preceding wrapper 0x8005BE48 calls fn_8005A614 and belongs to ax_rna.c. This evidence bounds .text; data splits remain separate."
     },
     {
+      "file": "sasnd_voice.c",
+      "text": [
+        "8005C298",
+        "8006060C"
+      ],
+      "functions": [
+        "fn_8005C298",
+        "fn_8005C478",
+        "fn_8005C5C8",
+        "fn_8005C7C0",
+        "fn_8005C9D8",
+        "fn_8005CBF4",
+        "fn_8005D258",
+        "fn_8005D5A4",
+        "fn_8005DB68",
+        "fn_8005DCEC",
+        "fn_8005FBDC",
+        "fn_8005FCD8",
+        "fn_8005FDE0"
+      ],
+      "how": {
+        "literal-dedupe+section-order": 13
+      },
+      "lib": "sasnd",
+      "notes": ".sdata2 0x801A7218..0x801A7280 and .rodata 0x800929D8..0x80092B38. The pitch table at 0x800929D8 is repeated at 0x80092B38 by the next TU. 0x8005FBDC..0x8006060C hold no literals: they are placed here because the next TU's track array is first used at 0x8006060C."
+    },
+    {
+      "file": "sasnd_track.c",
+      "text": [
+        "8006060C",
+        "8006331C"
+      ],
+      "functions": [
+        "fn_8006060C",
+        "fn_80060724",
+        "fn_80060950",
+        "fn_80060BDC",
+        "fn_80060C54",
+        "fn_800622B0",
+        "fn_80062360",
+        "fn_80062654",
+        "fn_80063094",
+        "fn_800631EC"
+      ],
+      "how": {
+        "literal-dedupe+section-order": 10
+      },
+      "lib": "sasnd",
+      "notes": "Every user of the 0x540-byte track array 0x80192D68 lies in this range. .sdata2 0x801A7280..0x801A7318 repeats the previous TU's literals."
+    },
+    {
+      "file": "sasnd_fx.c",
+      "text": [
+        "8006331C",
+        "80063EF4"
+      ],
+      "functions": [
+        "fn_8006331C"
+      ],
+      "how": {
+        "literal-dedupe+section-order": 1
+      },
+      "lib": "sasnd",
+      "notes": ".sdata2 0x801A7318..0x801A7328 repeats the 2^52 conversion constant; only user of .bss 0x80193308..0x80193B08 and one of two users of 0x801932A8. The end of the TU is not bounded by data."
+    },
+    {
+      "file": "sasnd_core.c",
+      "text": [
+        "800658B4",
+        "80069B10"
+      ],
+      "functions": [
+        "fn_800658B4",
+        "fn_80065A7C",
+        "fn_80065AC4",
+        "fn_80065AD0",
+        "fn_80065B08",
+        "fn_80065D70",
+        "fn_80065F34",
+        "fn_80066C14",
+        "fn_800672E4",
+        "fn_80067344",
+        "fn_800674FC",
+        "fn_80067898",
+        "fn_80067974",
+        "fn_80067DE4",
+        "fn_80067F68",
+        "fn_80068BFC",
+        "fn_80068EB4",
+        "fn_800692A4",
+        "fn_8006953C",
+        "fn_80069AE0"
+      ],
+      "how": {
+        "literal-dedupe+section-order": 20
+      },
+      "lib": "sasnd",
+      "notes": "Uses .sbss 0x801A6C78/0x801A6C7C from 0x800658B4 on, which sets the start, and initializes the state at 0x801A6C80 from .bss 0x80193B48. .rodata runs version string, loader strings, 0x80092C38 table (0x8006953C), wave table, so 0x80065F34..0x80069AE0 is one contribution. .sdata2 0x801A7328..0x801A7350."
+    },
+    {
+      "file": "sasnd_mix.c",
+      "text": [
+        "80069B10",
+        "8006A3DC"
+      ],
+      "functions": [
+        "fn_80069B10",
+        "fn_80069CE4",
+        "fn_80069FCC",
+        "fn_8006A1F8"
+      ],
+      "how": {
+        "literal-dedupe+section-order": 4
+      },
+      "lib": "sasnd",
+      "notes": ".sdata2 0x801A7350..0x801A7370 repeats 20.0, 255.0, -960.0, 127.0, 10.0 and 2^52 from the earlier TUs. 0x80069B10 and 0x80069FCC are called only by 0x80069CE4. Ends at arc.c."
+    },
+    {
       "file": "arc.c",
       "text": [
         "8006A3DC",
@@ -5960,222 +6078,6 @@
       ]
     },
     {
-      "name": "fn_8005C298",
-      "addr": "8005C298",
-      "size": 480,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_8005C478",
-      "addr": "8005C478",
-      "size": 336,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_8005C5C8",
-      "addr": "8005C5C8",
-      "size": 504,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_8005C7C0",
-      "addr": "8005C7C0",
-      "size": 536,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_8005C9D8",
-      "addr": "8005C9D8",
-      "size": 540,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_8005CBF4",
-      "addr": "8005CBF4",
-      "size": 1636,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_8005D258",
-      "addr": "8005D258",
-      "size": 844,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_8005D5A4",
-      "addr": "8005D5A4",
-      "size": 1476,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_8005DB68",
-      "addr": "8005DB68",
-      "size": 388,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_8005DCEC",
-      "addr": "8005DCEC",
-      "size": 7920,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_8005FBDC",
-      "addr": "8005FBDC",
-      "size": 252,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_8005FCD8",
-      "addr": "8005FCD8",
-      "size": 264,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_8005FDE0",
-      "addr": "8005FDE0",
-      "size": 2092,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_8006060C",
-      "addr": "8006060C",
-      "size": 280,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80060724",
-      "addr": "80060724",
-      "size": 556,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80060950",
-      "addr": "80060950",
-      "size": 652,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80060BDC",
-      "addr": "80060BDC",
-      "size": 120,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80060C54",
-      "addr": "80060C54",
-      "size": 5724,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_800622B0",
-      "addr": "800622B0",
-      "size": 176,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80062360",
-      "addr": "80062360",
-      "size": 756,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80062654",
-      "addr": "80062654",
-      "size": 2624,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80063094",
-      "addr": "80063094",
-      "size": 344,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_800631EC",
-      "addr": "800631EC",
-      "size": 304,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_8006331C",
-      "addr": "8006331C",
-      "size": 3032,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
       "name": "fn_80063EF4",
       "addr": "80063EF4",
       "size": 68,
@@ -6341,222 +6243,6 @@
       "name": "fn_800658A8",
       "addr": "800658A8",
       "size": 12,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_800658B4",
-      "addr": "800658B4",
-      "size": 456,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80065A7C",
-      "addr": "80065A7C",
-      "size": 72,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80065AC4",
-      "addr": "80065AC4",
-      "size": 12,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80065AD0",
-      "addr": "80065AD0",
-      "size": 56,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80065B08",
-      "addr": "80065B08",
-      "size": 616,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80065D70",
-      "addr": "80065D70",
-      "size": 452,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80065F34",
-      "addr": "80065F34",
-      "size": 3296,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80066C14",
-      "addr": "80066C14",
-      "size": 1744,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_800672E4",
-      "addr": "800672E4",
-      "size": 96,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80067344",
-      "addr": "80067344",
-      "size": 440,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_800674FC",
-      "addr": "800674FC",
-      "size": 924,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80067898",
-      "addr": "80067898",
-      "size": 220,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80067974",
-      "addr": "80067974",
-      "size": 1136,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80067DE4",
-      "addr": "80067DE4",
-      "size": 388,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80067F68",
-      "addr": "80067F68",
-      "size": 3220,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80068BFC",
-      "addr": "80068BFC",
-      "size": 696,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80068EB4",
-      "addr": "80068EB4",
-      "size": 1008,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_800692A4",
-      "addr": "800692A4",
-      "size": 664,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_8006953C",
-      "addr": "8006953C",
-      "size": 1444,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80069AE0",
-      "addr": "80069AE0",
-      "size": 48,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80069B10",
-      "addr": "80069B10",
-      "size": 468,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80069CE4",
-      "addr": "80069CE4",
-      "size": 744,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80069FCC",
-      "addr": "80069FCC",
-      "size": 556,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_8006A1F8",
-      "addr": "8006A1F8",
-      "size": 484,
       "candidates": [
         "rna_res.c",
         "arc.c"

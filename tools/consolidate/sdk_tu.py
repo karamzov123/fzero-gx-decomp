@@ -27,7 +27,7 @@ LIB_SUBDIR = {
     'os': 'os', 'si': 'si', 'exi': 'exi', 'db': 'db', 'mtx': 'mtx',
     'dvd': 'dvd', 'vi': 'vi', 'pad': 'pad', 'ai': 'ai', 'ar': 'ar',
     'ax': 'ax', 'mix': 'mix', 'dsp': 'dsp', 'card': 'card', 'gx': 'gx',
-    'thp': 'thp', 'perf': 'perf',
+    'thp': 'thp', 'perf': 'perf', 'sasnd': 'sasnd',
 }
 
 
