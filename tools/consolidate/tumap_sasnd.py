@@ -21,11 +21,11 @@ RANGES = [
      'Every user of the 0x540-byte track array 0x80192D68 lies in this range. .sdata2 0x801A7280..0x801A7318 '
      'repeats the previous TU\'s literals.'),
     ('sasnd_fx.c', 0x8006331C, 0x80063EF4,
-     '.sdata2 0x801A7318..0x801A7328 repeats the 2^52 conversion constant; only user of .bss 0x80193308..0x80193B08 '
-     'and one of two users of 0x801932A8. The end of the TU is not bounded by data.'),
+     '.sdata2 0x801A7318..0x801A7328 repeats the 2^52 conversion constant. It addresses the effect work areas at '
+     '.bss 0x801932A8..0x80193B08 one symbol at a time, as externs of sasnd_core.c. The end of the TU is not bounded by data.'),
     ('sasnd_core.c', 0x800658B4, 0x80069B10,
-     'Uses .sbss 0x801A6C78/0x801A6C7C from 0x800658B4 on, which sets the start, and initializes the state at 0x801A6C80 '
-     'from .bss 0x80193B48. .rodata runs version string, loader '
+     'Owns .bss 0x801932A8..0x80199670 and .sbss 0x801A6C78..0x801A6C88: 0x80067DE4 addresses the effect work areas off one '
+     'section base, and 0x80068BFC initializes the state at 0x801A6C80 from .bss 0x80193B48. .rodata runs version string, loader '
      'strings, 0x80092C38 table (0x8006953C), wave table, so 0x80065F34..0x80069AE0 is one contribution. '
      '.sdata2 0x801A7328..0x801A7350.'),
     ('sasnd_mix.c', 0x80069B10, 0x8006A3DC,

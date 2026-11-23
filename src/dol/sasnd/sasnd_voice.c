@@ -1654,7 +1654,7 @@ void fn_8005FDE0(u32 arg0) {
                     }
                     break;
                 case 0x30:
-                    lbl_801A6C80->unk_45E = value;
+                    lbl_801A6C80->budget = value;
                     break;
                 case 0x31:
                     lbl_801A6C80->unk_5A10 = lbl_801A6C80->unk_5A12;
