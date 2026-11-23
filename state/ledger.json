@@ -32134,7 +32134,7 @@
   {
    "symbol": "fn_8005A7F8",
    "module": "main",
-   "unit": "dol/fn_8005A7F8.c",
+   "unit": "dol/adx/ax_rna_controls.c",
    "addr": 2147854328,
    "size": 340,
    "status": "matched",
@@ -32151,7 +32151,7 @@
   {
    "symbol": "fn_8005A94C",
    "module": "main",
-   "unit": "dol/fn_8005A7F8.c",
+   "unit": "dol/adx/ax_rna_controls.c",
    "addr": 2147854668,
    "size": 16,
    "status": "matched",
@@ -32168,7 +32168,7 @@
   {
    "symbol": "AXRNA_ExecServer",
    "module": "main",
-   "unit": "dol/fn_8005A7F8.c",
+   "unit": "dol/adx/ax_rna_controls.c",
    "addr": 2147854684,
    "size": 92,
    "status": "matched",

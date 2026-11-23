@@ -119,7 +119,7 @@ dol/fn_8005A5BC.c:
 	.text       start:0x8005A5BC end:0x8005A628 align:4
 
 dol/adx/ax_rna_controls.c:
-	.text       start:0x8005A628 end:0x8005A7F8 align:4
+	.text       start:0x8005A628 end:0x8005A9B8 align:4
 
 dol/fn_80046718.c:
 	.text       start:0x80046718 end:0x80046768 align:4
@@ -1251,9 +1251,6 @@ dol/fn_8008F29C.c:
 
 dol/fn_80008C20.c:
 	.text       start:0x80008C20 end:0x80008DB4 align:4
-
-dol/fn_8005A7F8.c:
-	.text       start:0x8005A7F8 end:0x8005A9B8 align:4
 
 dol/fn_800805C0.c:
 	.text       start:0x800805C0 end:0x8008067C align:4
