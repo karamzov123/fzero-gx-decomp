@@ -203,3 +203,17 @@ u32 fn_800545B0(void) {
     *(u32 *)((u8 *)v1 + 0) = (v0 - 1);
     return v0;
 }
+
+/* --- dol/fn_80054608.c --- */
+extern u32 fn_80051958(u32);
+extern u32 lbl_80091388[];
+
+u32 fn_80054608(void) {
+    u32 version = lbl_80091388[0];
+
+    if ((s32)lbl_801873D8[0].unk_0 == 0) {
+        fn_80051958(version);
+        memset((u32)lbl_801873EC, 0, 64);
+    }
+    return lbl_801873D8[0].unk_0++;
+}

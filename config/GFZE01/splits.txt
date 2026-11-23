@@ -146,7 +146,7 @@ dol/trk/nubevent.c:
 	.text       start:0x80088740 end:0x80088968 align:4
 
 dol/fn_800541EC.c:
-	.text       start:0x800541EC end:0x80054608 align:4
+	.text       start:0x800541EC end:0x8005466C align:4
 
 dol/fn_800079C4.c:
 	.text       start:0x800079C4 end:0x80007C60 align:4
@@ -194,7 +194,7 @@ dol/fn_80051958.c:
 	.text       start:0x80051958 end:0x80051DC4 align:4
 
 dol/adx/cri_cvfs.c:
-	.text       start:0x80054608 end:0x800555C0 align:4
+	.text       start:0x8005466C end:0x800555C0 align:4
 
 dol/fn_8007A150.c:
 	.text       start:0x8007A150 end:0x8007A23C align:4

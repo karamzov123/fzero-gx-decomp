@@ -22685,7 +22685,8 @@
       "fn_800542BC",
       "fn_800542C8",
       "fn_80054354",
-      "fn_800545B0"
+      "fn_800545B0",
+      "fn_80054608"
     ],
     "status": "matching",
     "mw_version": "GC/1.3",
@@ -22700,7 +22701,6 @@
     "source": "dol/adx/cri_cvfs.c",
     "status": "matching",
     "symbols": [
-      "fn_80054608",
       "fn_8005466C",
       "fn_800546A0",
       "cvFsExecServer",

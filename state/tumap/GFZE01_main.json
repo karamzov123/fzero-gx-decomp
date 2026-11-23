@@ -4,10 +4,10 @@
   "note": "Draft DOL ownership evidence used by the consolidation tools. Unassigned entries and conflicts are not confirmed boundaries.",
   "summary": {
     "functions": 2230,
-    "assigned": 2043,
+    "assigned": 2105,
     "bytes": 567556,
-    "assigned_bytes": 520256,
-    "tus": 227,
+    "assigned_bytes": 538336,
+    "tus": 231,
     "conflicts": 0,
     "string_anchored": 13
   },
@@ -3049,13 +3049,131 @@
       "notes": "GX starts this range with partition/file-ID validation: fn_8004F818 references .rodata 0x80091258 and 0x8009127C. GFZE01 ADXF_ExecServer and the current symbol ADXT_DestroyAll both iterate the file table at .bss 0x80186B68 with stride 0x44; the latter calls fn_8004FC94, which references the ADXF_Stop diagnostic at .rodata 0x800912A0. GQNE5D libadxgca.a adx_fs.o (mk-deception map 33b1e00) holds ADXF_ExecServer (0x190), ADXF_CloseAll (0x5C), and ADXF_Close (0x2DC vs GX 0x2D4) in that order. The next GX function, fn_8004FF68, scans compressed-stream sync words via a bit reader and its own mask table. Text ownership is inferred; the shared table and literals are evidence, not section ownership transfers."
     },
     {
+      "file": "ahx_decode.c",
+      "text": [
+        "8004FF68",
+        "80051CC0"
+      ],
+      "functions": [
+        "fn_8004FF68",
+        "fn_80050180",
+        "fn_800501EC",
+        "fn_800501F4",
+        "fn_800502A0",
+        "fn_800504BC",
+        "fn_800504EC",
+        "fn_80050670",
+        "fn_80050698",
+        "fn_80050BD4",
+        "fn_80050F64",
+        "fn_80050F6C",
+        "fn_80050F74",
+        "fn_80050F90",
+        "fn_800510C4",
+        "fn_800510D8",
+        "fn_80051448",
+        "fn_80051594",
+        "fn_80051678",
+        "fn_8005174C",
+        "fn_800517C0",
+        "fn_8005190C",
+        "fn_80051958",
+        "fn_800519B0"
+      ],
+      "how": {
+        "literal-dedupe+section-order": 24
+      },
+      "lib": "ahx",
+      "notes": "Bitstream and subband decoding. Uses .bss 0x80186FA8..0x80187370 and .rodata 0x800912F0..0x80091300. Its end is inferred from the change to the ADXT attach wrappers at 0x80051CC0."
+    },
+    {
+      "file": "ahx_adxt.c",
+      "text": [
+        "80051CC0",
+        "80051F38"
+      ],
+      "functions": [
+        "fn_80051CC0",
+        "fn_80051DC4",
+        "fn_80051E30",
+        "fn_80051E64"
+      ],
+      "how": {
+        "literal-dedupe+section-order": 4
+      },
+      "lib": "ahx",
+      "notes": "ADXT attach and detach wrappers; 0x80051E64 owns the \"E1052501 ADXT_AttachAHX\" strings at .rodata 0x80091300."
+    },
+    {
+      "file": "ahx_synth.c",
+      "text": [
+        "80051F38",
+        "80053A38"
+      ],
+      "functions": [
+        "fn_80051F38",
+        "fn_80052430",
+        "fn_80052590",
+        "fn_800526F0",
+        "fn_80052850",
+        "fn_800529B0",
+        "fn_80052B10",
+        "fn_80052C70",
+        "fn_80052DD0",
+        "fn_80052F30",
+        "fn_80053090",
+        "fn_800531F0",
+        "fn_80053350",
+        "fn_800534B0",
+        "fn_80053610",
+        "fn_80053770",
+        "fn_800538D0",
+        "fn_80053A30"
+      ],
+      "how": {
+        "literal-dedupe+section-order": 18
+      },
+      "lib": "ahx",
+      "notes": "Transform and 16 generated synthesis routines over .rodata 0x80091330..0x80091350, which repeats the 2^52 conversion constant of ahx_decode.c. The 8-byte 0x80053A30 has no data and stays with this run."
+    },
+    {
+      "file": "ahx_core.c",
+      "text": [
+        "80053A38",
+        "8005466C"
+      ],
+      "functions": [
+        "fn_80053A38",
+        "fn_80053A84",
+        "fn_80053BB4",
+        "fn_80053BFC",
+        "fn_80053DB4",
+        "fn_80053EA0",
+        "fn_80053EA8",
+        "fn_80053EB0",
+        "fn_80053F38",
+        "fn_800541EC",
+        "fn_80054224",
+        "fn_800542B4",
+        "fn_800542BC",
+        "fn_800542C8",
+        "fn_80054354",
+        "fn_800545B0",
+        "fn_80054608"
+      ],
+      "how": {
+        "literal-dedupe+section-order": 17
+      },
+      "lib": "ahx",
+      "notes": "Uses .bss 0x80187370..0x80187430 and .rodata 0x80091350..0x80091390, which repeats 2^31 from ahx_synth.c and holds the \"AHX/GC Ver.1.24\" string and its pointer. 0x80054608 reads that pointer and the 0x801873D8 init count."
+    },
+    {
       "file": "cri_cvfs.c",
       "text": [
-        "80054608",
+        "8005466C",
         "800555C0"
       ],
       "functions": [
-        "fn_80054608",
         "fn_8005466C",
         "fn_800546A0",
         "cvFsExecServer",
@@ -3070,9 +3188,10 @@
         "fn_80055580"
       ],
       "how": {
-        "donor-size": 13
+        "donor-size": 12
       },
-      "lib": "cvfs"
+      "lib": "cvfs",
+      "notes": "GX sizes from 0x8005466C equal GQNE5D cri_cvfs.o in order, without cvFsGetFileSize (0x4A4), which GX does not link. .bss 0x80187430 is first used at 0x8005466C."
     },
     {
       "file": "gcci.c",
@@ -5517,564 +5636,6 @@
       "candidates": [
         "CARDRename.c",
         "CARDNet.c"
-      ]
-    },
-    {
-      "name": "fn_8004FF68",
-      "addr": "8004FF68",
-      "size": 536,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80050180",
-      "addr": "80050180",
-      "size": 108,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_800501EC",
-      "addr": "800501EC",
-      "size": 8,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_800501F4",
-      "addr": "800501F4",
-      "size": 172,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_800502A0",
-      "addr": "800502A0",
-      "size": 540,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_800504BC",
-      "addr": "800504BC",
-      "size": 48,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_800504EC",
-      "addr": "800504EC",
-      "size": 388,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80050670",
-      "addr": "80050670",
-      "size": 40,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80050698",
-      "addr": "80050698",
-      "size": 1340,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80050BD4",
-      "addr": "80050BD4",
-      "size": 912,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80050F64",
-      "addr": "80050F64",
-      "size": 8,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80050F6C",
-      "addr": "80050F6C",
-      "size": 8,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80050F74",
-      "addr": "80050F74",
-      "size": 28,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80050F90",
-      "addr": "80050F90",
-      "size": 308,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_800510C4",
-      "addr": "800510C4",
-      "size": 20,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_800510D8",
-      "addr": "800510D8",
-      "size": 880,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80051448",
-      "addr": "80051448",
-      "size": 332,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80051594",
-      "addr": "80051594",
-      "size": 228,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80051678",
-      "addr": "80051678",
-      "size": 212,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_8005174C",
-      "addr": "8005174C",
-      "size": 116,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_800517C0",
-      "addr": "800517C0",
-      "size": 332,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_8005190C",
-      "addr": "8005190C",
-      "size": 76,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80051958",
-      "addr": "80051958",
-      "size": 88,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_800519B0",
-      "addr": "800519B0",
-      "size": 784,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80051CC0",
-      "addr": "80051CC0",
-      "size": 260,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80051DC4",
-      "addr": "80051DC4",
-      "size": 108,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80051E30",
-      "addr": "80051E30",
-      "size": 52,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80051E64",
-      "addr": "80051E64",
-      "size": 212,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80051F38",
-      "addr": "80051F38",
-      "size": 1272,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80052430",
-      "addr": "80052430",
-      "size": 352,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80052590",
-      "addr": "80052590",
-      "size": 352,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_800526F0",
-      "addr": "800526F0",
-      "size": 352,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80052850",
-      "addr": "80052850",
-      "size": 352,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_800529B0",
-      "addr": "800529B0",
-      "size": 352,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80052B10",
-      "addr": "80052B10",
-      "size": 352,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80052C70",
-      "addr": "80052C70",
-      "size": 352,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80052DD0",
-      "addr": "80052DD0",
-      "size": 352,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80052F30",
-      "addr": "80052F30",
-      "size": 352,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80053090",
-      "addr": "80053090",
-      "size": 352,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_800531F0",
-      "addr": "800531F0",
-      "size": 352,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80053350",
-      "addr": "80053350",
-      "size": 352,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_800534B0",
-      "addr": "800534B0",
-      "size": 352,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80053610",
-      "addr": "80053610",
-      "size": 352,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80053770",
-      "addr": "80053770",
-      "size": 352,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_800538D0",
-      "addr": "800538D0",
-      "size": 352,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80053A30",
-      "addr": "80053A30",
-      "size": 8,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80053A38",
-      "addr": "80053A38",
-      "size": 76,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80053A84",
-      "addr": "80053A84",
-      "size": 304,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80053BB4",
-      "addr": "80053BB4",
-      "size": 72,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80053BFC",
-      "addr": "80053BFC",
-      "size": 440,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80053DB4",
-      "addr": "80053DB4",
-      "size": 236,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80053EA0",
-      "addr": "80053EA0",
-      "size": 8,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80053EA8",
-      "addr": "80053EA8",
-      "size": 8,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80053EB0",
-      "addr": "80053EB0",
-      "size": 136,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80053F38",
-      "addr": "80053F38",
-      "size": 692,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_800541EC",
-      "addr": "800541EC",
-      "size": 56,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80054224",
-      "addr": "80054224",
-      "size": 144,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_800542B4",
-      "addr": "800542B4",
-      "size": 8,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_800542BC",
-      "addr": "800542BC",
-      "size": 12,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_800542C8",
-      "addr": "800542C8",
-      "size": 140,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_80054354",
-      "addr": "80054354",
-      "size": 604,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_800545B0",
-      "addr": "800545B0",
-      "size": 88,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
       ]
     },
     {
