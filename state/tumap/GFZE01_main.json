@@ -4,10 +4,10 @@
   "note": "Draft DOL ownership evidence used by the consolidation tools. Unassigned entries and conflicts are not confirmed boundaries.",
   "summary": {
     "functions": 2230,
-    "assigned": 2105,
+    "assigned": 2155,
     "bytes": 567556,
-    "assigned_bytes": 538336,
-    "tus": 231,
+    "assigned_bytes": 549272,
+    "tus": 240,
     "conflicts": 0,
     "string_anchored": 13
   },
@@ -105,6 +105,39 @@
       },
       "lib": "",
       "notes": "GFZE01 .sdata 0x801A6400 gives the mmu.c filename. The page-table setup and update paths call the lookup at 0x800077E0, slot allocation at 0x80007730, segment-register read at 0x80007654 and PTE/TLB helpers at 0x80007664 and 0x80007700. Both lookup and allocation use the SDR1 helper at 0x800079A0 and the primary/secondary hash helpers at 0x800079C4 and 0x80007A00. The next routine, 0x80007A44, instead initializes a color value at 0x801A6408 and calls rendering routines 0x800744F8 and 0x80008204. The end of mmu.c is inferred from this subsystem break; the next TU is not named here."
+    },
+    {
+      "file": "heap.c",
+      "text": [
+        "80008E34",
+        "80009FBC"
+      ],
+      "functions": [
+        "fn_80008E34",
+        "fn_80008E5C",
+        "fn_80008E84",
+        "fn_80008EC8",
+        "fn_80008F60",
+        "fn_80008F88",
+        "fn_80008FB0",
+        "fn_80009064",
+        "fn_800090A4",
+        "fn_80009468",
+        "fn_8000951C",
+        "fn_800095A4",
+        "fn_8000961C",
+        "fn_80009830",
+        "fn_80009AA8",
+        "fn_80009CAC",
+        "fn_80009CD4",
+        "fn_80009FA4",
+        "fn_80009FB4"
+      ],
+      "how": {
+        "donor-size": 19
+      },
+      "lib": "game",
+      "notes": "0x80008E34..0x80009FBC: no donor: a modified SDK OSAlloc with its OSCheckHeap failure strings, sharing the heap state at .sbss 0x801A6730..0x801A6748 and .sdata 0x801A6410/0x801A6414. It ends at PPCArch.c. The sizes are this build's."
     },
     {
       "file": "PPCArch.c",
@@ -4166,6 +4199,22 @@
       "lib": "Runtime"
     },
     {
+      "file": "GCN_Mem_Alloc.c",
+      "text": [
+        "80079EF0",
+        "8007A060"
+      ],
+      "functions": [
+        "fn_80079EF0",
+        "fn_80079FA8"
+      ],
+      "how": {
+        "donor-size": 2
+      },
+      "lib": "runtime",
+      "notes": "0x80079EF0..0x8007A060: ordered sizes equal GQNE5D, G9SE8P."
+    },
+    {
       "file": "abort_exit.c",
       "text": [
         "8007A060",
@@ -4220,15 +4269,19 @@
       "file": "ansi_files.c",
       "text": [
         "8007B124",
-        "8007B1CC"
+        "8007B338"
       ],
       "functions": [
-        "__close_all"
+        "__close_all",
+        "fn_8007B1CC",
+        "fn_8007B2A8"
       ],
       "how": {
-        "donor-name": 1
+        "donor-name": 1,
+        "donor-size": 2
       },
-      "lib": "runtime"
+      "lib": "runtime",
+      "notes": "0x8007B1CC..0x8007B338: ordered sizes equal GQNE5D, G9SE8P."
     },
     {
       "file": "ansi_fp.c",
@@ -4290,36 +4343,58 @@
       "lib": "PPC_EABI"
     },
     {
+      "file": "ctype.c",
+      "text": [
+        "8007ED90",
+        "8007EDB4"
+      ],
+      "functions": [
+        "fn_8007ED90"
+      ],
+      "how": {
+        "donor-size": 1
+      },
+      "lib": "runtime",
+      "notes": "0x8007ED90..0x8007EDB4: ordered sizes equal GQNE5D; body indexes the 0x8015B200 table."
+    },
+    {
       "file": "direct_io.c",
       "text": [
         "8007EDB4",
-        "8007F13C"
+        "8007F508"
       ],
       "functions": [
         "__fwrite",
-        "fwrite"
+        "fwrite",
+        "fn_8007F13C",
+        "fn_8007F48C"
       ],
       "how": {
         "sdkimport": 1,
-        "donor-name": 1
+        "donor-name": 1,
+        "donor-size": 2
       },
-      "lib": "runtime"
+      "lib": "runtime",
+      "notes": "0x8007F13C..0x8007F508: ordered sizes equal GQNE5D."
     },
     {
       "file": "file_io.c",
       "text": [
-        "8007F684",
+        "8007F508",
         "8007FBC8"
       ],
       "functions": [
+        "fn_8007F508",
         "fopen",
         "fflush",
         "fclose"
       ],
       "how": {
-        "sdkimport": 3
+        "sdkimport": 3,
+        "donor-size": 1
       },
-      "lib": "runtime"
+      "lib": "runtime",
+      "notes": "0x8007F508..0x8007F684: ordered sizes equal GQNE5D."
     },
     {
       "file": "FILE_POS.c",
@@ -4354,48 +4429,58 @@
     {
       "file": "mem.c",
       "text": [
-        "80080288",
+        "8008023C",
         "800803AC"
       ],
       "functions": [
+        "fn_8008023C",
         "__memrchr",
         "memchr",
         "memmove"
       ],
       "how": {
         "donor-name": 2,
-        "sdkimport": 1
+        "sdkimport": 1,
+        "donor-size": 1
       },
-      "lib": "runtime"
+      "lib": "runtime",
+      "notes": "0x8008023C..0x80080288: ordered sizes equal six donors."
     },
     {
       "file": "mem_funcs.c",
       "text": [
         "800803AC",
-        "80080518"
+        "8008067C"
       ],
       "functions": [
         "__copy_longs_rev_unaligned",
-        "__copy_longs_unaligned"
+        "__copy_longs_unaligned",
+        "fn_80080518",
+        "fn_800805C0"
       ],
       "how": {
-        "sdkimport": 2
+        "sdkimport": 2,
+        "donor-size": 2
       },
-      "lib": "runtime"
+      "lib": "runtime",
+      "notes": "0x80080518..0x8008067C: ordered sizes equal GQNE5D."
     },
     {
       "file": "misc_io.c",
       "text": [
         "8008067C",
-        "8008068C"
+        "8008069C"
       ],
       "functions": [
-        "__stdio_atexit"
+        "__stdio_atexit",
+        "fn_8008068C"
       ],
       "how": {
-        "donor-name": 1
+        "donor-name": 1,
+        "donor-size": 1
       },
-      "lib": "MSL_Common"
+      "lib": "MSL_Common",
+      "notes": "0x8008068C..0x8008069C: ordered sizes equal seven donors."
     },
     {
       "file": "printf.c",
@@ -4531,6 +4616,21 @@
       "lib": "Src"
     },
     {
+      "file": "e_acos.c",
+      "text": [
+        "8008596C",
+        "80085C7C"
+      ],
+      "functions": [
+        "fn_8008596C"
+      ],
+      "how": {
+        "donor-size": 1
+      },
+      "lib": "runtime",
+      "notes": "0x8008596C..0x80085C7C: ordered sizes equal GQNE5D."
+    },
+    {
       "file": "e_log.c",
       "text": [
         "80085C7C",
@@ -4613,6 +4713,66 @@
         "sdkimport": 1
       },
       "lib": "runtime"
+    },
+    {
+      "file": "k_sin.c",
+      "text": [
+        "80087BA4",
+        "80087C44"
+      ],
+      "functions": [
+        "fn_80087BA4"
+      ],
+      "how": {
+        "donor-size": 1
+      },
+      "lib": "runtime",
+      "notes": "0x80087BA4..0x80087C44: ordered sizes equal six donors."
+    },
+    {
+      "file": "k_tan.c",
+      "text": [
+        "80087C44",
+        "80087E58"
+      ],
+      "functions": [
+        "fn_80087C44"
+      ],
+      "how": {
+        "donor-size": 1
+      },
+      "lib": "runtime",
+      "notes": "0x80087C44..0x80087E58: ordered sizes equal six donors."
+    },
+    {
+      "file": "s_copysign.c",
+      "text": [
+        "80087E58",
+        "80087E80"
+      ],
+      "functions": [
+        "fn_80087E58"
+      ],
+      "how": {
+        "donor-size": 1
+      },
+      "lib": "runtime",
+      "notes": "0x80087E58..0x80087E80: ordered sizes equal six donors."
+    },
+    {
+      "file": "s_cos.c",
+      "text": [
+        "80087E80",
+        "80087F54"
+      ],
+      "functions": [
+        "fn_80087E80"
+      ],
+      "how": {
+        "donor-size": 1
+      },
+      "lib": "runtime",
+      "notes": "0x80087E80..0x80087F54: ordered sizes equal six donors."
     },
     {
       "file": "s_floor.c",
@@ -4758,17 +4918,20 @@
       "file": "math_ppc.c",
       "text": [
         "800885B8",
-        "80088624"
+        "80088648"
       ],
       "functions": [
         "fn_800885B8",
         "fn_800885DC",
-        "fn_80088600"
+        "fn_80088600",
+        "fn_80088624"
       ],
       "how": {
-        "sdk-order": 3
+        "sdk-order": 3,
+        "donor-size": 1
       },
-      "lib": "runtime"
+      "lib": "runtime",
+      "notes": "0x80088624..0x80088648: ordered sizes equal five donors."
     },
     {
       "file": "mainloop.c",
@@ -4821,6 +4984,21 @@
       "lib": "Portable"
     },
     {
+      "file": "msg.c",
+      "text": [
+        "80088B00",
+        "80088B44"
+      ],
+      "functions": [
+        "fn_80088B00"
+      ],
+      "how": {
+        "donor-size": 1
+      },
+      "lib": "trk",
+      "notes": "0x80088B00..0x80088B44: ordered sizes equal GQNE5D, MarioClub_us."
+    },
+    {
       "file": "msgbuf.c",
       "text": [
         "80088B44",
@@ -4851,10 +5029,11 @@
     {
       "file": "serpoll.c",
       "text": [
-        "80089388",
+        "80089380",
         "80089638"
       ],
       "functions": [
+        "fn_80089380",
         "TRKInitializeSerialHandler",
         "fn_8008944C",
         "TRKGetInput",
@@ -4863,23 +5042,28 @@
       "how": {
         "donor-name": 2,
         "between": 1,
-        "pool-vote": 1
+        "pool-vote": 1,
+        "donor-size": 1
       },
-      "lib": "trk"
+      "lib": "trk",
+      "notes": "0x80089380..0x80089388: ordered sizes equal seven donors; body is li r3, 0; blr."
     },
     {
       "file": "usr_put.c",
       "text": [
         "80089638",
-        "8008963C"
+        "800896C4"
       ],
       "functions": [
-        "usr_put_initialize"
+        "usr_put_initialize",
+        "fn_8008963C"
       ],
       "how": {
-        "donor-name": 1
+        "donor-name": 1,
+        "donor-size": 1
       },
-      "lib": "trk_minnow_dolphin"
+      "lib": "trk_minnow_dolphin",
+      "notes": "0x8008963C..0x800896C4: ordered sizes equal seven donors."
     },
     {
       "file": "dispatch.c",
@@ -5242,19 +5426,31 @@
     {
       "file": "DebuggerDriver.c",
       "text": [
-        "8008F92C",
-        "8008FC3C"
+        "8008F454",
+        "8008FED4"
       ],
       "functions": [
+        "fn_8008F454",
+        "fn_8008F458",
+        "fn_8008F45C",
+        "fn_8008F6BC",
+        "fn_8008F748",
+        "fn_8008F7E4",
+        "fn_8008F838",
+        "fn_8008F8B0",
+        "fn_8008F8F0",
         "fn_8008F92C",
         "fn_8008F9D8",
         "fn_8008FAB4",
-        "fn_8008FB90"
+        "fn_8008FB90",
+        "fn_8008FC3C"
       ],
       "how": {
-        "sdkimport": 4
+        "sdkimport": 4,
+        "donor-size": 10
       },
-      "lib": "odemuexi2"
+      "lib": "odemuexi2",
+      "notes": "0x8008F454..0x8008F92C: ordered sizes equal GQNE5D, MarioClub_us, GZLE01, GMSE01. 0x8008FC3C..0x8008FED4: ordered sizes equal GQNE5D, MarioClub_us, GZLE01, GMSE01."
     },
     {
       "file": "AmcExi2Stubs.c",
@@ -5444,177 +5640,6 @@
       "name": "fn_80008E30",
       "addr": "80008E30",
       "size": 4,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80008E34",
-      "addr": "80008E34",
-      "size": 40,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80008E5C",
-      "addr": "80008E5C",
-      "size": 40,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80008E84",
-      "addr": "80008E84",
-      "size": 68,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80008EC8",
-      "addr": "80008EC8",
-      "size": 152,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80008F60",
-      "addr": "80008F60",
-      "size": 40,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80008F88",
-      "addr": "80008F88",
-      "size": 40,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80008FB0",
-      "addr": "80008FB0",
-      "size": 180,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80009064",
-      "addr": "80009064",
-      "size": 64,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_800090A4",
-      "addr": "800090A4",
-      "size": 964,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80009468",
-      "addr": "80009468",
-      "size": 180,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_8000951C",
-      "addr": "8000951C",
-      "size": 136,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_800095A4",
-      "addr": "800095A4",
-      "size": 120,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_8000961C",
-      "addr": "8000961C",
-      "size": 532,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80009830",
-      "addr": "80009830",
-      "size": 632,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80009AA8",
-      "addr": "80009AA8",
-      "size": 516,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80009CAC",
-      "addr": "80009CAC",
-      "size": 40,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80009CD4",
-      "addr": "80009CD4",
-      "size": 720,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80009FA4",
-      "addr": "80009FA4",
-      "size": 16,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80009FB4",
-      "addr": "80009FB4",
-      "size": 8,
       "candidates": [
         "mmu.c",
         "PPCArch.c"
@@ -5891,24 +5916,6 @@
       ]
     },
     {
-      "name": "fn_80079EF0",
-      "addr": "80079EF0",
-      "size": 184,
-      "candidates": [
-        "runtime.c",
-        "abort_exit.c"
-      ]
-    },
-    {
-      "name": "fn_80079FA8",
-      "addr": "80079FA8",
-      "size": 184,
-      "candidates": [
-        "runtime.c",
-        "abort_exit.c"
-      ]
-    },
-    {
       "name": "fn_8007A150",
       "addr": "8007A150",
       "size": 112,
@@ -5945,24 +5952,6 @@
       ]
     },
     {
-      "name": "fn_8007B1CC",
-      "addr": "8007B1CC",
-      "size": 220,
-      "candidates": [
-        "ansi_files.c",
-        "ansi_fp.c"
-      ]
-    },
-    {
-      "name": "fn_8007B2A8",
-      "addr": "8007B2A8",
-      "size": 144,
-      "candidates": [
-        "ansi_files.c",
-        "ansi_fp.c"
-      ]
-    },
-    {
       "name": "fn_8007E914",
       "addr": "8007E914",
       "size": 88,
@@ -5978,42 +5967,6 @@
       "candidates": [
         "ansi_fp.c",
         "buffer_io.c"
-      ]
-    },
-    {
-      "name": "fn_8007ED90",
-      "addr": "8007ED90",
-      "size": 36,
-      "candidates": [
-        "critical_regions.gamecube.c",
-        "direct_io.c"
-      ]
-    },
-    {
-      "name": "fn_8007F13C",
-      "addr": "8007F13C",
-      "size": 848,
-      "candidates": [
-        "direct_io.c",
-        "file_io.c"
-      ]
-    },
-    {
-      "name": "fn_8007F48C",
-      "addr": "8007F48C",
-      "size": 124,
-      "candidates": [
-        "direct_io.c",
-        "file_io.c"
-      ]
-    },
-    {
-      "name": "fn_8007F508",
-      "addr": "8007F508",
-      "size": 380,
-      "candidates": [
-        "direct_io.c",
-        "file_io.c"
       ]
     },
     {
@@ -6035,42 +5988,6 @@
       ]
     },
     {
-      "name": "fn_8008023C",
-      "addr": "8008023C",
-      "size": 76,
-      "candidates": [
-        "mbstring.c",
-        "mem.c"
-      ]
-    },
-    {
-      "name": "fn_80080518",
-      "addr": "80080518",
-      "size": 168,
-      "candidates": [
-        "mem_funcs.c",
-        "misc_io.c"
-      ]
-    },
-    {
-      "name": "fn_800805C0",
-      "addr": "800805C0",
-      "size": 188,
-      "candidates": [
-        "mem_funcs.c",
-        "misc_io.c"
-      ]
-    },
-    {
-      "name": "fn_8008068C",
-      "addr": "8008068C",
-      "size": 16,
-      "candidates": [
-        "misc_io.c",
-        "printf.c"
-      ]
-    },
-    {
       "name": "fn_8008580C",
       "addr": "8008580C",
       "size": 8,
@@ -6086,87 +6003,6 @@
       "candidates": [
         "strtoul.c",
         "wchar_io.c"
-      ]
-    },
-    {
-      "name": "fn_8008596C",
-      "addr": "8008596C",
-      "size": 784,
-      "candidates": [
-        "wchar_io.c",
-        "e_log.c"
-      ]
-    },
-    {
-      "name": "fn_80087BA4",
-      "addr": "80087BA4",
-      "size": 160,
-      "candidates": [
-        "k_rem_pio2.c",
-        "s_floor.c"
-      ]
-    },
-    {
-      "name": "fn_80087C44",
-      "addr": "80087C44",
-      "size": 532,
-      "candidates": [
-        "k_rem_pio2.c",
-        "s_floor.c"
-      ]
-    },
-    {
-      "name": "fn_80087E58",
-      "addr": "80087E58",
-      "size": 40,
-      "candidates": [
-        "k_rem_pio2.c",
-        "s_floor.c"
-      ]
-    },
-    {
-      "name": "fn_80087E80",
-      "addr": "80087E80",
-      "size": 212,
-      "candidates": [
-        "k_rem_pio2.c",
-        "s_floor.c"
-      ]
-    },
-    {
-      "name": "fn_80088624",
-      "addr": "80088624",
-      "size": 36,
-      "candidates": [
-        "s_modf.c",
-        "mainloop.c"
-      ]
-    },
-    {
-      "name": "fn_80088B00",
-      "addr": "80088B00",
-      "size": 68,
-      "candidates": [
-        "nubinit.c",
-        "msgbuf.c"
-      ]
-    },
-    {
-      "name": "fn_80089380",
-      "addr": "80089380",
-      "size": 8,
-      "candidates": [
-        "msgbuf.c",
-        "serpoll.c"
-      ]
-    },
-    {
-      "name": "fn_8008963C",
-      "addr": "8008963C",
-      "size": 136,
-      "candidates": [
-        "usr_put.c",
-        "dispatch.c"
       ]
     },
     {
@@ -6321,93 +6157,6 @@
         "MWTrace.c",
         "DebuggerDriver.c"
       ]
-    },
-    {
-      "name": "fn_8008F454",
-      "addr": "8008F454",
-      "size": 4,
-      "candidates": [
-        "MWTrace.c",
-        "DebuggerDriver.c"
-      ]
-    },
-    {
-      "name": "fn_8008F458",
-      "addr": "8008F458",
-      "size": 4,
-      "candidates": [
-        "MWTrace.c",
-        "DebuggerDriver.c"
-      ]
-    },
-    {
-      "name": "fn_8008F45C",
-      "addr": "8008F45C",
-      "size": 608,
-      "candidates": [
-        "MWTrace.c",
-        "DebuggerDriver.c"
-      ]
-    },
-    {
-      "name": "fn_8008F6BC",
-      "addr": "8008F6BC",
-      "size": 140,
-      "candidates": [
-        "MWTrace.c",
-        "DebuggerDriver.c"
-      ]
-    },
-    {
-      "name": "fn_8008F748",
-      "addr": "8008F748",
-      "size": 156,
-      "candidates": [
-        "MWTrace.c",
-        "DebuggerDriver.c"
-      ]
-    },
-    {
-      "name": "fn_8008F7E4",
-      "addr": "8008F7E4",
-      "size": 84,
-      "candidates": [
-        "MWTrace.c",
-        "DebuggerDriver.c"
-      ]
-    },
-    {
-      "name": "fn_8008F838",
-      "addr": "8008F838",
-      "size": 120,
-      "candidates": [
-        "MWTrace.c",
-        "DebuggerDriver.c"
-      ]
-    },
-    {
-      "name": "fn_8008F8B0",
-      "addr": "8008F8B0",
-      "size": 64,
-      "candidates": [
-        "MWTrace.c",
-        "DebuggerDriver.c"
-      ]
-    },
-    {
-      "name": "fn_8008F8F0",
-      "addr": "8008F8F0",
-      "size": 60,
-      "candidates": [
-        "MWTrace.c",
-        "DebuggerDriver.c"
-      ]
-    },
-    {
-      "name": "fn_8008FC3C",
-      "addr": "8008FC3C",
-      "size": 664,
-      "candidates": null
     }
   ]
 }
