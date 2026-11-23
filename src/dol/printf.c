@@ -1,4 +1,4 @@
-#include "types.h"
+#include "msl/decimal.h"
 
 
 /* --- dol/printf.c --- */
@@ -108,23 +108,6 @@ typedef struct {
     int precision;
 } print_format;
 
-typedef struct decimal {
-    char sign;
-    char reserved;
-    s16 exp;
-    struct {
-        u8 length;
-        u8 text[36];
-        u8 reserved;
-    } sig;
-} decimal;
-
-typedef struct decform {
-    char style;
-    char reserved;
-    s16 digits;
-} decform;
-
 extern FILE __files[4];
 
 /* __ctype_map */
@@ -146,7 +129,6 @@ size_t strlen(const char *string);
 char *fn_80083DB0(char *destination, const char *source);
 int wcstombs(char *dst, const wchar_t *src, size_t n);
 void *__va_arg(__va_list args, int type);
-void __num2dec(const decform *f, double x, decimal *d);
 
 int __pformatter(void *(*WriteProc)(void *, const char *, size_t), void *WriteProcArg,
                  const char *format_str, va_list arg);

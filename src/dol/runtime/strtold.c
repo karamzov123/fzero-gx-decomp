@@ -1,15 +1,4 @@
-#include "types.h"
-
-typedef struct decimal {
-    char sign;
-    char reserved;
-    s16 exp;
-    struct {
-        u8 length;
-        u8 text[36];
-        u8 reserved;
-    } sig;
-} decimal;
+#include "msl/decimal.h"
 
 struct lconv {
     char *decimal_point;

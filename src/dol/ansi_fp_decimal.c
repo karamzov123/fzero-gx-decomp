@@ -1,11 +1,5 @@
 #include "msl/decimal_internal.h"
 
-typedef struct decform {
-    char style;
-    char reserved;
-    s16 digits;
-} decform;
-
 extern double exp(double);
 
 void __num2dec_internal(decimal *d, f64 x);
