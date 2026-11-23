@@ -1399,7 +1399,7 @@
     "data-vote": 0,
     "boundary-inference": 1
    },
-   "notes": "The first effect.c filename reference is in fn_1_584D4. The preceding fn_1_584AC is the out-of-line form of the RNG used in effect.c: GFZE01 retail relocations to lbl_1_data_1D628 occur in it and 40 effect functions, but not in the other avline functions. Both sides match at this split; original ownership is inferred, not confirmed by debug symbols."
+   "notes": "The first effect.c filename reference is in fn_1_584D4. The preceding fn_1_584AC is the out-of-line form of the RNG used in effect.c: GFZE01 retail relocations to lbl_1_data_1D628 occur in it and 40 effect functions, but not in the other avline functions. Both sides match at this split. GFZJ8P (F-Zero AX Japan Rev C), sys/main.dol: the corresponding RNG at 0x8003DD34 is near the allocator calls naming effect.c (string at 0x80234794, references at 0x8003DB60 and 0x8003DB80, lines 0xC1 and 0xC2, as in GX). AX avline.c filename references are elsewhere (0x8000761C and 0x80007654). AX corroborates the inferred boundary; neither build supplies direct debug-symbol ownership for the GX function."
   },
   {
    "file": "effect_car.c",
