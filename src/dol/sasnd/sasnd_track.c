@@ -148,6 +148,23 @@ void fn_8006060C(u32 arg0) {
         dst = -904;                                                      \
     }
 
+static s16 GetZoneLevel(SndRegion *region, s32 k, u8 key) {
+    SndZoneList *list = region->zone;
+    SndZone *z = (SndZone *)((u8 *)list + list[k].offset);
+    u8 i;
+    u8 low = region->lo;
+    f64 t;
+
+    for (i = 0; i < list[k].count; z++, i++) {
+        if (key <= z->key) {
+            break;
+        }
+        low = z->key + 1;
+    }
+    t = z->slope * (key - low) / 256.0;
+    return z->val + t;
+}
+
 void fn_80060724(SndRegion *info, u8 index, u8 value, s32 *out0, s32 *out1, s32 *out2) {
     SndZoneList *table = info->zone;
     SndZone *range;
@@ -279,23 +296,6 @@ static inline SndWave *GetBankWave(u8 track, u16 sample) {
     return w;
 }
 
-static inline s16 GetZoneLevel(SndRegion *region, s32 k, u8 key) {
-    SndZoneList *list = region->zone;
-    SndZone *z = (SndZone *)((u8 *)list + list[k].offset);
-    u8 i;
-    u8 low = region->lo;
-    f64 t;
-
-    for (i = 0; i < list[k].count; z++, i++) {
-        if (key <= z->key) {
-            break;
-        }
-        low = z->key + 1;
-    }
-    t = z->slope * (key - low) / 256.0;
-    return z->val + t;
-}
-
 static inline s16 GetPan(s16 v, u8 offset) {
     v += offset - 64;
 
@@ -308,7 +308,7 @@ static inline s16 GetPan(s16 v, u8 offset) {
     return v;
 }
 
-static inline f64 GetZonePitch(SndRegion *region, u8 key) {
+static f64 GetZonePitch(SndRegion *region, u8 key) {
     SndZoneList *list = region->zone;
     SndPitchZone *z = (SndPitchZone *)((u8 *)list + list[3].offset);
     u8 i;
@@ -325,7 +325,7 @@ static inline f64 GetZonePitch(SndRegion *region, u8 key) {
     return 3.125 * ((z->val - 0xC00) + t);
 }
 
-static inline f64 GetPitchRatio(SndRegion *region, u8 key, u8 track) {
+static f64 GetPitchRatio(SndRegion *region, u8 key, u8 track) {
     f64 cents = GetZonePitch(region, key);
 
     cents += 100.0 * (lbl_80192D68[track].coarse - 64) + 1.5625 * (lbl_80192D68[track].fine - 64);
@@ -333,6 +333,10 @@ static inline f64 GetPitchRatio(SndRegion *region, u8 key, u8 track) {
         cents /= 1200.0;
     }
     return fn_80088598(2.0, cents);
+}
+
+static f64 GetRatioFrac(f64 ratio, u16 whole) {
+    return (ratio - whole) * fn_80088598(2.0, 16.0);
 }
 
 void fn_80060C54(u8 key, SndRegion *region, u8 track, u8 index) {
@@ -529,7 +533,7 @@ void fn_80060C54(u8 key, SndRegion *region, u8 track, u8 index) {
 
         ratio = GetPitchRatio(region, key, track);
         hi = __fabs(ratio);
-        lo = (ratio - hi) * fn_80088598(2.0, 16.0);
+        lo = GetRatioFrac(ratio, hi);
         if (hi >= 4 && lo != 0) {
             hi = 4;
             lo = 0;
