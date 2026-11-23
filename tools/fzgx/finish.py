@@ -1,7 +1,7 @@
 """The TU-finish pass: everything that turns matched blocks into whole translation units,
 as one idempotent job over a module.
 
-For every TU that has block units:
+For every TU built only from single-function block units:
   1. its headers (globals.h and the TU header, when they exist) join the prologue;
   2. tidy: block-private declarations the headers cover are dropped;
   3. hoist: canonical extern declarations move to the prologue;
@@ -41,7 +41,19 @@ def _failed_units(out: str) -> List[str]:
 
 
 def _tus(p: Project, module: str) -> List[str]:
-    return sorted({u["tu"] for u in p.load_units() if u.get("tu") and u["module"] == module})
+    block_tus, grouped_tus = set(), set()
+    for unit in p.load_units():
+        tu = unit.get("tu")
+        if not tu or unit["module"] != module:
+            continue
+        # Reconciliation verifies keyed blocks, not all functions sharing a
+        # compiled object. A prologue edit affects grouped units too, so even a
+        # TU with some independent blocks must stay out of this pass.
+        if unit.get("collapsed") or len(unit["symbols"]) != 1:
+            grouped_tus.add(tu)
+        else:
+            block_tus.add(tu)
+    return sorted(block_tus - grouped_tus)
 
 
 class Verifier:
@@ -151,13 +163,15 @@ class Verifier:
     def matches_many(self, p: Project, names: List[str], module: str) -> bool:
         return all(self.verdicts(p, names, module).values())
 
-    def prefetch(self, p: Project, module: str) -> int:
-        """One batched compile+diff for every block of the module whose verdict is not cached:
+    def prefetch(self, p: Project, module: str, tus: set[str]) -> int:
+        """One batched compile+diff for eligible blocks whose verdict is not cached:
         the per-block `matches` calls then hit the cache. Returns the number verified."""
         todo = []
+        files = {tu: tufile.load(p, tu) for tu in tus}
         for u in p.load_units():
-            if u["module"] != module or not u.get("symbols") or not u.get("tu"):
+            if u["module"] != module or u.get("tu") not in tus:
                 continue
+            tufile.write_gen(p, u, files[u["tu"]])
             k = self._key(u, "match")
             with self.lock:
                 if k in self.cache:
@@ -286,12 +300,15 @@ def finish(p: Project, module: str, workers: int = 12) -> Dict[str, object]:
     tus = _tus(p, module)
     v = Verifier(p)
     t0 = time.time()
-    v.prefetch(p, module)
+    v.prefetch(p, module, set(tus))
     # TUs are independent files with their own locks; only collapse takes the build lock
     with ThreadPoolExecutor(max_workers=workers) as ex:
         results = list(ex.map(lambda tu: finish_tu(p, tu, True, v), tus))
     v.save()
-    fresh = _fresh_reverify(p, module, tus)
+    # A successful collapse has already relinked its new object. Do not feed
+    # it back through per-block re-verification or per-block rollback.
+    block_tus = set(tus).intersection(_tus(p, module))
+    fresh = _fresh_reverify(p, module, sorted(block_tus))
     queue = [s for r in results for s in r["queue"]]
     diag: Dict[str, object] = {}
     restored: List[str] = []
@@ -306,7 +323,7 @@ def finish(p: Project, module: str, workers: int = 12) -> Dict[str, object]:
             diag = {"failed_units": failed[:20], "errors": [l for l in out.splitlines() if l.startswith("#   ") and "Error" not in l][:12]}
             tmap = p.tu_map(module)
             units_by_src = {u["source"]: u for u in p.load_units()}
-            bad_units = [units_by_src[f + ".c"] for f in failed if f + ".c" in units_by_src and units_by_src[f + ".c"].get("tu")]
+            bad_units = [units_by_src[f + ".c"] for f in failed if f + ".c" in units_by_src and units_by_src[f + ".c"].get("tu") in block_tus]
             # first the fine-grained fix: only the failing blocks go back to their committed text
             for u in bad_units:
                 tu_src = u["tu"]
@@ -336,7 +353,7 @@ def finish(p: Project, module: str, workers: int = 12) -> Dict[str, object]:
                 restored = [u["symbols"][0] for u in bad_units]
                 diag["block_restored"] = restored
             failed = [] if linked else _failed_units(cp2.stdout + cp2.stderr)
-            bad_tus = sorted({units_by_src[f + ".c"]["tu"] for f in failed if f + ".c" in units_by_src and units_by_src[f + ".c"].get("tu")})
+            bad_tus = sorted({units_by_src[f + ".c"]["tu"] for f in failed if f + ".c" in units_by_src and units_by_src[f + ".c"].get("tu") in block_tus})
         if not linked and not failed:
             # the link ran but a hash differs: put back only the blocks that differ, each
             # self-contained under its committed prologue, before giving up whole TU files
@@ -345,7 +362,7 @@ def finish(p: Project, module: str, workers: int = 12) -> Dict[str, object]:
             diag = oracle.byte_diff(p, module)
             culprits = [f for f, _ in diag.get("text_diffs", [])]
             if culprits and not diag.get("sections"):
-                by_sym = {u["symbols"][0]: u for u in p.load_units() if u.get("module") == module and u.get("tu")}
+                by_sym = {u["symbols"][0]: u for u in p.load_units() if u.get("module") == module and u.get("tu") in block_tus}
                 put_back = []
                 for f in culprits:
                     u = by_sym.get(f)
@@ -369,8 +386,9 @@ def finish(p: Project, module: str, workers: int = 12) -> Dict[str, object]:
             if not failed:  # the link ran: a hash mismatch, name it by function
                 diag = oracle.byte_diff(p, module)
                 bad_tus = sorted({f"{p.module_src_prefix(module)}/{tmap[f]}.c" for f, _ in diag.get("text_diffs", []) if f in tmap})
+                bad_tus = sorted(block_tus.intersection(bad_tus))
                 if not bad_tus or diag.get("sections"):
-                    bad_tus = list(tus)  # a layout shift: no single function to blame
+                    bad_tus = sorted(block_tus)  # a layout shift: no single function to blame
             for tu in bad_tus:
                 cp = subprocess.run(["git", "show", f"HEAD:src/{tu}"], cwd=ROOT, text=True, capture_output=True)
                 if cp.returncode == 0:
@@ -380,11 +398,11 @@ def finish(p: Project, module: str, workers: int = 12) -> Dict[str, object]:
             oracle.configure(p)
             linked = oracle.relink(p).returncode == 0
             if not linked:  # still red: everything back
-                for tu in tus:
+                for tu in sorted(block_tus):
                     cp = subprocess.run(["git", "show", f"HEAD:src/{tu}"], cwd=ROOT, text=True, capture_output=True)
                     if cp.returncode == 0:
                         (ROOT / "src" / tu).write_text(cp.stdout)
-                restored = list(tus)
+                restored = sorted(block_tus)
                 tufile.regenerate(p)
                 oracle.configure(p)
                 linked = oracle.relink(p).returncode == 0

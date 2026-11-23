@@ -181,8 +181,6 @@ extern void C_MTXLightPerspective(f32 *, f32, f32, f32, f32, f32, f32);
 extern void GXGetScissor(u32 *, u32 *, u32 *, u32 *);
 
 
-/* WARNING: compiler-diff device, not original code */
-#pragma opt_common_subs off
 void fn_1_FA89C(SplineMain *arg0) {
     SplineEntry *v4;
     u8 *v3;
@@ -244,7 +242,6 @@ void fn_1_FA89C(SplineMain *arg0) {
         v2++;
     }
 }
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_FA89C */
 
 /* fzgx:begin fn_1_FAB40 */
