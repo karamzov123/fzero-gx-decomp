@@ -1147,7 +1147,7 @@
    "file": "avline.c",
    "text": [
     358164,
-    361684
+    361644
    ],
    "data_sec": 5,
    "data": [
@@ -1173,19 +1173,18 @@
     "fn_1_58158",
     "fn_1_5819C",
     "fn_1_581AC",
-    "fn_1_58248",
-    "fn_1_584AC"
+    "fn_1_58248"
    ],
    "confidence": {
     "text+data": 2,
-    "text-range": 4,
+    "text-range": 3,
     "data-vote": 6
    }
   },
   {
    "file": "effect.c",
    "text": [
-    361684,
+    361644,
     426232
    ],
    "data_sec": 5,
@@ -1203,6 +1202,7 @@
     400992
    ],
    "functions": [
+    "fn_1_584AC",
     "fn_1_584D4",
     "fn_1_58694",
     "fn_1_58854",
@@ -1396,8 +1396,10 @@
    "confidence": {
     "text+data": 3,
     "text-range": 180,
-    "data-vote": 0
-   }
+    "data-vote": 0,
+    "boundary-inference": 1
+   },
+   "notes": "The first effect.c filename reference is in fn_1_584D4. The preceding fn_1_584AC is the out-of-line form of the RNG used in effect.c: GFZE01 retail relocations to lbl_1_data_1D628 occur in it and 40 effect functions, but not in the other avline functions. Both sides match at this split; original ownership is inferred, not confirmed by debug symbols."
   },
   {
    "file": "effect_car.c",
