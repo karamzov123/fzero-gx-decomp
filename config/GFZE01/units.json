@@ -17363,19 +17363,6 @@
   },
   {
     "module": "main",
-    "source": "dol/data/lbl_801A7318.c",
-    "symbols": [
-      "lbl_801A7318",
-      "lbl_801A7320"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
     "source": "dol/data/lbl_801A7328.c",
     "symbols": [
       "lbl_801A7328",
@@ -22747,7 +22734,7 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_8006331C.c",
+    "source": "dol/sasnd/sasnd_fx.c",
     "symbols": [
       "fn_8006331C"
     ],
@@ -22755,9 +22742,7 @@
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "pool": {
-      "@137": "lbl_801A7320"
-    }
+    "collapsed": true
   },
   {
     "module": "main",

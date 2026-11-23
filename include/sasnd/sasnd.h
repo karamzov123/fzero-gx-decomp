@@ -365,19 +365,53 @@ typedef struct SndState {
     u8 pad_5B24[4];
 } SndState;
 
-/* Two instances of each of the four AX effect work areas (A/B sends). */
-typedef struct SndFxState {
-    u8 fx3B[0x60];
-    u8 fx3A[0x60];
-    u8 fx2B[0x9C];
-    u8 fx2A[0x9C];
-    u8 fx1B[0x1E0];
-    u8 fx1A[0x1E0];
-    u8 fx0B[0x154];
-    u8 fx0A[0x154];
-} SndFxState;
+/* The four AX effect work areas; only the parameters sasnd writes are named. */
+typedef struct SndFx0 {
+    u8 pad_0[0x13C];
+    u8 unk_13C;
+    f32 unk_140;
+    f32 unk_144;
+    f32 unk_148;
+    f32 unk_14C;
+    f32 unk_150;
+} SndFx0;
 
-CHECK_SIZE(SndFxState, 0x860);
+typedef struct SndFx1 {
+    u8 pad_0[0x1C4];
+    u8 unk_1C4;
+    f32 unk_1C8;
+    f32 unk_1CC;
+    f32 unk_1D0;
+    f32 unk_1D4;
+    f32 unk_1D8;
+    f32 unk_1DC;
+} SndFx1;
+
+typedef struct SndFx2 {
+    u8 pad_0[0x90];
+    u32 unk_90;
+    u32 unk_94;
+    u32 unk_98;
+} SndFx2;
+
+typedef struct SndFx3 {
+    u8 pad_0[0x3C];
+    u32 unk_3C;
+    u32 unk_40;
+    u32 unk_44;
+    u32 unk_48;
+    u32 unk_4C;
+    u32 unk_50;
+    u32 unk_54;
+    u32 unk_58;
+    u32 unk_5C;
+} SndFx3;
+
+CHECK_SIZE(SndFx0, 0x154);
+CHECK_SIZE(SndFx1, 0x1E0);
+CHECK_SIZE(SndFx2, 0x9C);
+CHECK_SIZE(SndFx3, 0x60);
+
 CHECK_SIZE(SndChan, 0x10);
 CHECK_SIZE(SndMix, 0x10);
 CHECK_SIZE(SndTrack, 0x54);
@@ -426,6 +460,16 @@ typedef struct ARQRequest {
     u32 length;
     ARQCallback callback;
 } ARQRequest;
+
+/* Effect work areas of the two aux sends, defined in sasnd_core.c. */
+extern SndFx3 lbl_801932A8;
+extern SndFx3 lbl_80193308;
+extern SndFx2 lbl_80193368;
+extern SndFx2 lbl_80193404;
+extern SndFx1 lbl_801934A0;
+extern SndFx1 lbl_80193680;
+extern SndFx0 lbl_80193860;
+extern SndFx0 lbl_801939B4;
 
 extern SndState *lbl_801A6C80;
 extern SndTrack lbl_80192D68[16];

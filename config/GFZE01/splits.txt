@@ -1370,8 +1370,9 @@ dol/fn_80009CD4.c:
 dol/thp/THPDec_draw.c:
 	.text       start:0x8003BE1C end:0x8003D42C align:4
 
-dol/fn_8006331C.c:
+dol/sasnd/sasnd_fx.c:
 	.text       start:0x8006331C end:0x80063EF4 align:4
+	.sdata2     start:0x801A7318 end:0x801A7328 align:8
 
 dol/fn_80079D74.c:
 	.text       start:0x80079D74 end:0x80079E24 align:4
@@ -2397,9 +2398,6 @@ dol/data/lbl_801A7208.c:
 
 dol/data/lbl_801A7210.c:
 	.sdata2     start:0x801A7210 end:0x801A7218 align:8
-
-dol/data/lbl_801A7318.c:
-	.sdata2     start:0x801A7318 end:0x801A7328 align:8
 
 dol/data/lbl_801A7328.c:
 	.sdata2     start:0x801A7328 end:0x801A7338 align:8

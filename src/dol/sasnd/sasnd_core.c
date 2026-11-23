@@ -87,14 +87,14 @@ extern s32 fn_80069CE4(u32, s32, s16);
 extern void fn_8006A1F8(void);
 
 extern u32 lbl_801A6410;
-u8 lbl_801932A8[0x60];
-u8 lbl_80193308[0x60];
-u8 lbl_80193368[0x9C];
-u8 lbl_80193404[0x9C];
-u8 lbl_801934A0[0x1E0];
-u8 lbl_80193680[0x1E0];
-u8 lbl_80193860[0x154];
-u8 lbl_801939B4[0x154];
+SndFx3 lbl_801932A8;
+SndFx3 lbl_80193308;
+SndFx2 lbl_80193368;
+SndFx2 lbl_80193404;
+SndFx1 lbl_801934A0;
+SndFx1 lbl_80193680;
+SndFx0 lbl_80193860;
+SndFx0 lbl_801939B4;
 ARQRequest lbl_80193B08;
 ARQRequest lbl_80193B28;
 SndState lbl_80193B48;
@@ -1018,16 +1018,16 @@ u32 fn_80067DE4(void) {
 	base_2 = lbl_801A6C80;
 	switch (base_2->unk_470) {
 	case 0:
-		fn_80024DF0(lbl_801939B4);
+		fn_80024DF0(&lbl_801939B4);
 		break;
 	case 1:
-		fn_80024378(lbl_80193680);
+		fn_80024378(&lbl_80193680);
 		break;
 	case 2:
-		fn_800253F0(lbl_80193404);
+		fn_800253F0(&lbl_80193404);
 		break;
 	case 3:
-		fn_80025C70(lbl_80193308);
+		fn_80025C70(&lbl_80193308);
 		break;
 	}
 	fn_800211E0(0, 0);
@@ -1035,16 +1035,16 @@ u32 fn_80067DE4(void) {
 	base_2 = lbl_801A6C80;
 	switch (base_2->unk_471) {
 	case 0:
-		fn_80024DF0(lbl_80193860);
+		fn_80024DF0(&lbl_80193860);
 		break;
 	case 1:
-		fn_80024378(lbl_801934A0);
+		fn_80024378(&lbl_801934A0);
 		break;
 	case 2:
-		fn_800253F0(lbl_80193368);
+		fn_800253F0(&lbl_80193368);
 		break;
 	case 3:
-		fn_80025C70(lbl_801932A8);
+		fn_80025C70(&lbl_801932A8);
 		break;
 	}
 	fn_800211EC(0, 0);
