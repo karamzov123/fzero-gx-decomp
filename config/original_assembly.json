@@ -45,9 +45,7 @@
       "form": "inline-block",
       "sha256": "203ac630eedca6c467e372152c9ab24b74fddd8ea6cae6fc3f0be83089f53587",
       "evidence": "Original Dolphin SDK base/PPCArch.c mixed C + inline asm (mffs f31; stfd f31, m.f); retail 0x8000A060..0x8000A080."
-    }
-  ],
-  "src/dol/PPCMtfpscr.c": [
+    },
     {
       "symbol": "PPCMtfpscr",
       "form": "inline-block",

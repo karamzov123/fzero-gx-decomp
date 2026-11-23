@@ -22,7 +22,9 @@ def merge_c_files_smart(paths):
                 all_inc.append(ln.strip())
     hdr = _header_names(all_inc) if len(paths) > 1 else set()
     seen_inc, seen_at, seen_ext, seen_inlines = set(), set(), set(), set()
-    # Map struct/typedef name -> canonical body text; if a later file defines the same name with a DIFFERENT body, rename it to <name>_u<idx>!
+    # Map aggregate names to their bodies; distinguish incompatible declarations.
+    aggregate = re.compile(r'^(?:typedef\s+)?(?:struct|union)\b')
+    aggregate_tag = re.compile(r'(?:typedef\s+)?(?:struct|union)\s+(\w+)')
     seen_type_bodies = {}
     seen_fn_decls = set()
     chunks = []
@@ -34,7 +36,7 @@ def merge_c_files_smart(paths):
         i = 0
         while i < len(lines):
             s = lines[i].strip()
-            if (s.startswith('typedef struct') or s.startswith('struct ')) and '{' in s:
+            if aggregate.match(s) and '{' in s:
                 blk = [lines[i]]
                 depth = lines[i].count('{') - lines[i].count('}')
                 while depth > 0 and i + 1 < len(lines):
@@ -42,7 +44,7 @@ def merge_c_files_smart(paths):
                 full = '\n'.join(blk)
                 norm = re.sub(r'\s+', ' ', full.strip())
                 # Extract tag and typedef alias
-                tag_m = re.match(r'(?:typedef\s+)?struct\s+(\w+)\s*\{', norm)
+                tag_m = aggregate_tag.match(norm)
                 alias_m = re.search(r'\}\s*(\w+)\s*;$', norm)
                 names = []
                 if tag_m: names.append(tag_m.group(1))
@@ -122,13 +124,13 @@ def merge_c_files_smart(paths):
                 fn_m = re.search(r'\b(\w+)\s*\(', blk[0])
                 fn_nm = fn_m.group(1) if fn_m else '\n'.join(blk)
                 if fn_nm not in seen_inlines: seen_inlines.add(fn_nm); out.append('\n'.join(blk))
-            elif (s.startswith('typedef struct') or s.startswith('struct ')) and '{' in s:
+            elif aggregate.match(s) and '{' in s:
                 blk = [l]
                 depth = l.count('{') - l.count('}')
                 while depth > 0 and i + 1 < len(lines):
                     i += 1; blk.append(lines[i]); depth += lines[i].count('{') - lines[i].count('}')
                 key = re.sub(r'\s+', ' ', '\n'.join(blk).strip())
-                tag_m = re.match(r'(?:typedef\s+)?struct\s+(\w+)', key); al_m = re.search(r'\}\s*(\w+)\s*;$', key)
+                tag_m = aggregate_tag.match(key); al_m = re.search(r'\}\s*(\w+)\s*;$', key)
                 if (tag_m and tag_m.group(1) in hdr) or (al_m and al_m.group(1) in hdr):
                     pass   # the header defines this type
                 elif key not in seen_local_structs and key not in seen_ext:

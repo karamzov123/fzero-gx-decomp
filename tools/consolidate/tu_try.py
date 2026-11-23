@@ -102,7 +102,8 @@ def main():
     units = json.load(open('config/GFZE01/units.json')); byu = {u['source']: u for u in units}
     us = [byu[s] for s in srcs]
     nu = d.ninja_units()
-    mf = [v for v in VERSIONS if all(v in (u.get('matching_for') or VERSIONS) for u in us)]
+    coverage = [set(u.get('matching_for', VERSIONS)) for u in us]
+    mf = [v for v in VERSIONS if all(v in regions for regions in coverage)]
     if not mf:
         print('units share no matching region'); return 1
     lead = dict(us[0], matching_for=mf)
@@ -160,6 +161,9 @@ def main():
     print('IDENTICAL' if ok else 'DIFFERENT', f'({len(own)} functions, regions {mf}' + (f', pool {len(new_pool)})' if pooled else ')'))
     if not ok or not a.apply:
         return 0 if ok else 1
+    lost_regions = set.union(*coverage) - set(mf)
+    if lost_regions:
+        print(f'would drop source coverage in {sorted(lost_regions)}; verify those regions before applying'); return 1
     dest = a.dest or srcs[0]
     sp = pathlib.Path('config/GFZE01/splits.txt'); text = sp.read_text(); blocks = split_blocks(text)
     secs = collections.OrderedDict()

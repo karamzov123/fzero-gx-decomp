@@ -90,10 +90,10 @@ def attempt(srcs, dest, nu, apply):
             r = subprocess.run(cmd, capture_output=True, text=True)
             lines = (r.stdout + r.stderr).strip().splitlines()
             first = first or (lines[0][:110] if lines else '?')
-            if any(x.startswith('IDENTICAL') for x in lines):
+            if r.returncode == 0 and any(x.startswith('IDENTICAL') for x in lines):
                 if apply:
                     r = subprocess.run(cmd + ['--apply', '--as', dest], capture_output=True, text=True)
-                    if 'applied as' not in r.stdout:
+                    if r.returncode != 0 or 'applied as' not in r.stdout:
                         return False, 'apply failed: ' + (r.stdout + r.stderr).strip()[-110:]
                 return True, 'noauto' if extra else 'default'
     finally:

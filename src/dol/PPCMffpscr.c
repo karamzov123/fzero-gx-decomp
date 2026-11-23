@@ -18,3 +18,16 @@ u32 PPCMffpscr(void) {
     }
     return m.u.fpscr;
 }
+
+/* Original Dolphin SDK base/PPCArch.c mixed C + inline asm (mtfsf). */
+void PPCMtfpscr(register u32 newFPSCR) {
+    union FpscrUnion m;
+
+    asm {
+        li r4, 0
+        stw r4, m.u.fpscr_pad
+        stw newFPSCR, m.u.fpscr
+        lfd f31, m.f
+        mtfsf 255, f31
+    }
+}

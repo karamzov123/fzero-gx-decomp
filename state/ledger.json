@@ -8810,7 +8810,7 @@
   {
    "symbol": "PPCMtfpscr",
    "module": "main",
-   "unit": "dol/PPCMtfpscr.c",
+   "unit": "dol/PPCMffpscr.c",
    "addr": 2147524736,
    "size": 40,
    "status": "asm",
@@ -32151,7 +32151,7 @@
   {
    "symbol": "fn_8005A94C",
    "module": "main",
-   "unit": "dol/fn_8005A94C.c",
+   "unit": "dol/fn_8005A7F8.c",
    "addr": 2147854668,
    "size": 16,
    "status": "matched",
@@ -32168,7 +32168,7 @@
   {
    "symbol": "AXRNA_ExecServer",
    "module": "main",
-   "unit": "dol/fn_8005A94C.c",
+   "unit": "dol/fn_8005A7F8.c",
    "addr": 2147854684,
    "size": 92,
    "status": "matched",

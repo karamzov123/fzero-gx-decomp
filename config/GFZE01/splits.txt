@@ -66,9 +66,6 @@ dol/fn_80045FEC.c:
 dol/adx/adx_amp.c:
 	.text       start:0x80046508 end:0x80046718 align:4
 
-dol/fn_8005A94C.c:
-	.text       start:0x8005A94C end:0x8005A9B8 align:4
-
 dol/fn_8006589C.c:
 	.text       start:0x8006589C end:0x800658A8
 
@@ -463,10 +460,7 @@ dol/PPCMtpmc4.c:
 	.text       start:0x8000A058 end:0x8000A060 align:4
 
 dol/PPCMffpscr.c:
-	.text       start:0x8000A060 end:0x8000A080 align:4
-
-dol/PPCMtfpscr.c:
-	.text       start:0x8000A080 end:0x8000A0A8 align:4
+	.text       start:0x8000A060 end:0x8000A0A8 align:4
 
 dol/PPCMfhid2.c:
 	.text       start:0x8000A0A8 end:0x8000A0B0 align:4
@@ -1265,7 +1259,7 @@ dol/fn_80008C20.c:
 	.text       start:0x80008C20 end:0x80008DB4 align:4
 
 dol/fn_8005A7F8.c:
-	.text       start:0x8005A7F8 end:0x8005A94C align:4
+	.text       start:0x8005A7F8 end:0x8005A9B8 align:4
 
 dol/fn_800805C0.c:
 	.text       start:0x800805C0 end:0x8008067C align:4
