@@ -38,7 +38,9 @@ RANGES = [
     ('adx_rnaa.c', 'adxt', 0x8004ED3C, 0x8004EFA8, 'donor-size'),
     ('adx_dcd5.c', 'adxt', 0x8004EFA8, 0x8004F6B0, 'donor-size'),
     ('adx_fini.c', 'adxf', 0x8004F6B0, 0x8004F7F8, 'donor-size'),
-    # 0x8004F7F8..0x80054608: adx_fs / adxf (keep existing adx_fs.c until further split)
+    ('adx_fcch.c', 'adxf', 0x8004F7F8, 0x8004F818, 'donor-size'),
+    ('adx_fs.c',   'adxf', 0x8004F818, 0x8004FF68, 'donor-order'),
+    # 0x8004FF68..0x80054608 remains unmapped. Do not extend adx_fs into it.
     ('cri_cvfs.c', 'cvfs', 0x80054608, 0x800555C0, 'donor-size'),
     ('gcci.c',     'gcci', 0x800555C0, 0x800565F0, 'donor-size'),
     ('gcci_sub.c', 'gcci', 0x800565F0, 0x800565FC, 'donor-size'),
@@ -71,6 +73,7 @@ def main():
             syms[x[1]] = (int(x[2], 16), int(x[3], 16))
 
     range_files = {f for f, _, _, _, _ in RANGES}
+    reviewed = {(t['file'], tuple(t['text'])): t for t in m['tus'] if t.get('notes')}
     # Remove any old TU entries whose file is in range_files (cleanly replacing partial/conflicted ADX stubs)
     # Keep non-range TUs intact (and trim any overlap with our new exact ranges if needed).
     old_placed = {f for t in m['tus'] for f in t['functions']}
@@ -90,10 +93,17 @@ def main():
     for file, lib, lo, hi, tag in RANGES:
         inside = sorted((a, n) for n, (a, _) in syms.items() if lo <= a < hi)
         assert inside, f'{file}: no functions in 0x{lo:08X}..0x{hi:08X}'
+        text = [f'{lo:08X}', f'{hi:08X}']
+        names = [n for _, n in inside]
+        entry = reviewed.get((file, tuple(text)))
+        if entry is not None:
+            assert entry['functions'] == names, f'{file}: reviewed function list is stale'
+            new_tus.append(entry)
+            continue
         new_tus.append({
             'file': file,
-            'text': [f'{lo:08X}', f'{hi:08X}'],
-            'functions': [n for _, n in inside],
+            'text': text,
+            'functions': names,
             'how': {tag: len(inside)},
             'lib': lib,
         })
@@ -106,8 +116,8 @@ def main():
             assert f not in seen, f'overlap on {f}: {seen[f]} vs {t["file"]}'
             seen[f] = t['file']
 
-    # Update conflicts list (adx_bau.c is now resolved)
-    m['conflicts'] = [c for c in m.get('conflicts', []) if c.get('file') != 'adx_bau.c']
+    resolved = {('adx_bau.c', '80043FE8'), ('adx_tlk.c', '8004FC38')}
+    m['conflicts'] = [c for c in m.get('conflicts', []) if (c['tu'], c['at']) not in resolved]
     m['tus'] = new_tus
     m['unassigned'] = [u for u in m['unassigned'] if u['name'] not in seen]
     assigned_bytes = sum(syms[f][1] for f in seen if f in syms)

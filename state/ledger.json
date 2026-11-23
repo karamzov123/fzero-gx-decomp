@@ -28581,7 +28581,7 @@
   {
    "symbol": "fn_8004F7F8",
    "module": "main",
-   "unit": "dol/fn_8004F74C.c",
+   "unit": "dol/adx/adx_fcch.c",
    "addr": 2147809272,
    "size": 32,
    "status": "matched",
@@ -28598,7 +28598,7 @@
   {
    "symbol": "fn_8004F818",
    "module": "main",
-   "unit": "dol/fn_8004F74C.c",
+   "unit": "dol/adx/adx_fs.c",
    "addr": 2147809304,
    "size": 656,
    "status": "matched",
@@ -28615,7 +28615,7 @@
   {
    "symbol": "ADXF_ExecServer",
    "module": "main",
-   "unit": "dol/ADXF_ExecServer.c",
+   "unit": "dol/adx/adx_fs.c",
    "addr": 2147809960,
    "size": 400,
    "status": "matched",

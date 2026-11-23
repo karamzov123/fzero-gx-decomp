@@ -22365,9 +22365,28 @@
   },
   {
     "module": "main",
+    "source": "dol/adx/adx_fcch.c",
+    "symbols": [
+      "fn_8004F7F8"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0",
+      "-use_lmw_stmw",
+      "on",
+      "-inline",
+      "on,noauto"
+    ],
+    "collapsed": true
+  },
+  {
+    "module": "main",
     "source": "dol/adx/adx_fs.c",
     "symbols": [
-      "fn_8004F7F8",
       "fn_8004F818",
       "ADXF_ExecServer"
     ],

@@ -4,11 +4,11 @@
   "note": "Draft DOL ownership evidence used by the consolidation tools. Unassigned entries and conflicts are not confirmed boundaries.",
   "summary": {
     "functions": 2230,
-    "assigned": 1982,
+    "assigned": 1983,
     "bytes": 567556,
-    "assigned_bytes": 465908,
+    "assigned_bytes": 466632,
     "tus": 222,
-    "conflicts": 1,
+    "conflicts": 0,
     "string_anchored": 13
   },
   "tus": [
@@ -3003,35 +3003,39 @@
       "lib": "adxf"
     },
     {
-      "file": "adx_fs.c",
+      "file": "adx_fcch.c",
       "text": [
         "8004F7F8",
-        "8004FC38"
+        "8004F818"
       ],
       "functions": [
-        "fn_8004F7F8",
-        "fn_8004F818",
-        "ADXF_ExecServer"
+        "fn_8004F7F8"
       ],
       "how": {
-        "sdkimport": 1,
-        "string-range": 3
+        "donor-size": 1
       },
-      "lib": "adxf"
+      "lib": "adxf",
+      "notes": "GFZE01 fn_8004F7F8 is a 0x20-byte DCInvalidateRange wrapper. GQNE5D libadxgca.a adx_fcch.o (mk-deception map 33b1e00) has the same-sized ADXF_Ocbi at 0x802D0D64 as its only function, immediately before adx_fs.o. This is comparative ownership evidence, not a GX linker map."
     },
     {
-      "file": "adx_tlk.c",
+      "file": "adx_fs.c",
       "text": [
-        "8004FC38",
-        "8004FC94"
+        "8004F818",
+        "8004FF68"
       ],
       "functions": [
-        "ADXT_DestroyAll"
+        "fn_8004F818",
+        "ADXF_ExecServer",
+        "ADXT_DestroyAll",
+        "fn_8004FC94"
       ],
       "how": {
-        "sdkimport": 1
+        "retail-data": 1,
+        "donor-size": 2,
+        "donor-order": 1
       },
-      "lib": "adxt"
+      "lib": "adxf",
+      "notes": "GX starts this range with partition/file-ID validation: fn_8004F818 references .rodata 0x80091258 and 0x8009127C. GFZE01 ADXF_ExecServer and the current symbol ADXT_DestroyAll both iterate the file table at .bss 0x80186B68 with stride 0x44; the latter calls fn_8004FC94, which references the ADXF_Stop diagnostic at .rodata 0x800912A0. GQNE5D libadxgca.a adx_fs.o (mk-deception map 33b1e00) holds ADXF_ExecServer (0x190), ADXF_CloseAll (0x5C), and ADXF_Close (0x2DC vs GX 0x2D4) in that order. The next GX function, fn_8004FF68, scans compressed-stream sync words via a bit reader and its own mask table. Text ownership is inferred; the shared table and literals are evidence, not section ownership transfers."
     },
     {
       "file": "cri_cvfs.c",
@@ -5027,13 +5031,7 @@
       "lib": "odenotstub"
     }
   ],
-  "conflicts": [
-    {
-      "tu": "adx_tlk.c",
-      "at": "8004FC38",
-      "first": "8004BA40"
-    }
-  ],
+  "conflicts": [],
   "unassigned": [
     {
       "name": "fn_800075AC",
@@ -5465,15 +5463,6 @@
       "candidates": [
         "CARDRename.c",
         "CARDNet.c"
-      ]
-    },
-    {
-      "name": "fn_8004FC94",
-      "addr": "8004FC94",
-      "size": 724,
-      "candidates": [
-        "adx_tlk.c",
-        "cri_cvfs.c"
       ]
     },
     {

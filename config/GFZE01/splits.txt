@@ -983,8 +983,11 @@ dol/fn_8007FC34.c:
 dol/fn_80067898.c:
 	.text       start:0x80067898 end:0x80067DE4 align:4
 
+dol/adx/adx_fcch.c:
+	.text       start:0x8004F7F8 end:0x8004F818 align:4
+
 dol/adx/adx_fs.c:
-	.text       start:0x8004F7F8 end:0x8004FC38 align:4
+	.text       start:0x8004F818 end:0x8004FC38 align:4
 
 dol/fn_8007FE70.c:
 	.text       start:0x8007FE70 end:0x80080518 align:4

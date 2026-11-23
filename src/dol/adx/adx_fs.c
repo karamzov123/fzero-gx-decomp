@@ -64,15 +64,11 @@ extern void fn_80046738(void);
 extern void fn_80046718(void);
 extern s32 fn_8004AEE4(ADXStream *stream);
 extern s32 fn_8004AE78(ADXStream *stream);
-extern void DCInvalidateRange(void *address, s32 size);
+
 extern void fn_800474E4(char *);
 extern char *strncpy(char *, const char *, size_t);
 
 void fn_8004F7F8(void *address, s32 size);
-
-void fn_8004F7F8(void *address, s32 size) {
-    DCInvalidateRange(address, size);
-}
 
 s32 fn_8004F818(s32 arg0, s32 arg1, char *arg2, u32 *arg3, u32 *arg4, u32 *arg5) {
     s32 result;
