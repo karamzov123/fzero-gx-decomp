@@ -4,9 +4,9 @@
   "note": "Draft DOL ownership evidence used by the consolidation tools. Unassigned entries and conflicts are not confirmed boundaries.",
   "summary": {
     "functions": 2230,
-    "assigned": 1983,
+    "assigned": 1993,
     "bytes": 567556,
-    "assigned_bytes": 466632,
+    "assigned_bytes": 468440,
     "tus": 222,
     "conflicts": 0,
     "string_anchored": 13
@@ -82,18 +82,29 @@
       "file": "mmu.c",
       "text": [
         "800071B8",
-        "800075AC"
+        "80007A44"
       ],
       "functions": [
         "fn_800071B8",
         "fn_8000740C",
-        "fn_800074C4"
+        "fn_800074C4",
+        "fn_800075AC",
+        "fn_80007654",
+        "fn_80007664",
+        "fn_80007700",
+        "fn_80007730",
+        "fn_800077E0",
+        "fn_800079A0",
+        "fn_800079C4",
+        "fn_80007A00"
       ],
       "how": {
         "string": 2,
-        "string-range": 1
+        "string-range": 1,
+        "retail-call-graph": 9
       },
-      "lib": ""
+      "lib": "",
+      "notes": "GFZE01 .sdata 0x801A6400 gives the mmu.c filename. The page-table setup and update paths call the lookup at 0x800077E0, slot allocation at 0x80007730, segment-register read at 0x80007654 and PTE/TLB helpers at 0x80007664 and 0x80007700. Both lookup and allocation use the SDR1 helper at 0x800079A0 and the primary/secondary hash helpers at 0x800079C4 and 0x80007A00. The next routine, 0x80007A44, instead initializes a color value at 0x801A6408 and calls rendering routines 0x800744F8 and 0x80008204. The end of mmu.c is inferred from this subsystem break; the next TU is not named here."
     },
     {
       "file": "PPCArch.c",
@@ -3983,7 +3994,7 @@
       "file": "ansi_fp.c",
       "text": [
         "8007B338",
-        "8007E69C"
+        "8007E914"
       ],
       "functions": [
         "fn_8007B338",
@@ -3991,14 +4002,17 @@
         "__num2dec_internal",
         "fn_8007C910",
         "__equals_dec",
-        "fn_8007CF18"
+        "fn_8007CF18",
+        "fn_8007E69C"
       ],
       "how": {
         "pool-vote": 2,
         "sdkimport": 3,
-        "between": 1
+        "between": 1,
+        "donor-size": 1
       },
-      "lib": "runtime"
+      "lib": "runtime",
+      "notes": "GQNE5D MSL ansi_fp.o (mk-deception map 33b1e0082c7630ee4f20b828559966872ae670e1) has seven functions with exactly the same ordered sizes, ending in __timesdec (0x278 bytes). GX fn_8007E69C has that size and performs decimal significand multiplication with half-even rounding; the decimal exponent routine fn_8007CF18 calls it. The following GX routine, fn_8007E914, performs integer quotient/remainder rather than decimal arithmetic and is left unassigned. This is comparative .text evidence, not a transfer of pool or data ownership."
     },
     {
       "file": "buffer_io.c",
@@ -5033,87 +5047,6 @@
   ],
   "conflicts": [],
   "unassigned": [
-    {
-      "name": "fn_800075AC",
-      "addr": "800075AC",
-      "size": 168,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80007654",
-      "addr": "80007654",
-      "size": 16,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80007664",
-      "addr": "80007664",
-      "size": 156,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80007700",
-      "addr": "80007700",
-      "size": 48,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80007730",
-      "addr": "80007730",
-      "size": 176,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_800077E0",
-      "addr": "800077E0",
-      "size": 448,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_800079A0",
-      "addr": "800079A0",
-      "size": 36,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_800079C4",
-      "addr": "800079C4",
-      "size": 60,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80007A00",
-      "addr": "80007A00",
-      "size": 68,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
     {
       "name": "fn_80007A44",
       "addr": "80007A44",
@@ -6795,15 +6728,6 @@
       "candidates": [
         "ansi_files.c",
         "ansi_fp.c"
-      ]
-    },
-    {
-      "name": "fn_8007E69C",
-      "addr": "8007E69C",
-      "size": 632,
-      "candidates": [
-        "ansi_fp.c",
-        "buffer_io.c"
       ]
     },
     {
