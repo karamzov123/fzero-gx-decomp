@@ -7,7 +7,7 @@
 Compiles CANDIDATE.c with the first unit's compiler and flags (every region in the units'
 common matching_for) and each unit's current source with its own settings, then requires every
 function to have identical instruction bytes and relocations (branches between the TU's own
-functions excepted). Relocations to compiler-private literals (@N) are compared through the
+functions excepted). Relocations to compiler-private literals (@N and @stringBaseN) are compared through the
 units' pool maps; the candidate's own map is derived from the matching relocation sites and
 every @N it references must resolve. Other sections must keep their sizes (a section that only
 holds remapped literals is exempt: poolfix empties it).
@@ -20,6 +20,7 @@ import devprobe as d, objsig
 
 VERSIONS = ('GFZE01', 'GFZJ01', 'GFZP01')
 LOCAL = re.compile(r'^@\d+$')
+POOLED_LOCAL = re.compile(r'^@(\d+|stringBase\d+)$')
 
 
 def target(t):
@@ -28,7 +29,7 @@ def target(t):
 
 
 def funcs(obj, td, tag, pool=None):
-    """function -> (bytes, relocs); relocs to @N go through `pool` when given."""
+    """function -> (bytes, relocs); known literal aliases go through `pool` when given."""
     p = pathlib.Path(td) / f'{tag}.o'; p.write_bytes(obj); sg = objsig.sig(p)
     t = sg['sections'].get('.text', b'')
     fn = {n: (v, sz) for n, s, v, sz, _ in sg['defs'] if s == '.text' and sz}
@@ -37,9 +38,9 @@ def funcs(obj, td, tag, pool=None):
     sec_of = {n: (s, v) for n, s, v, sz, b in sg['defs']}
     named = {(s, v): n for n, s, v, sz, b in sg['defs'] if n and not n.startswith('.') and not LOCAL.match(n) and b != 0 or (n and not n.startswith('.') and not LOCAL.match(n))}
     # a private label (literal, jump table) renumbers and moves in a merge: compare its contents
-    private = {n: (s, v, sz) for n, s, v, sz, _ in sg['defs'] if LOCAL.match(n)}
+    private = {n: (s, v, sz) for n, s, v, sz, _ in sg['defs'] if POOLED_LOCAL.match(n)}
     for off, typ, nm, add in sg['relocs'].get('.text', []):
-        if pool is not None and LOCAL.match(nm) and nm in pool:
+        if pool is not None and nm in pool:
             nm, extra = target(pool[nm]); add += extra
         elif nm in private:
             s, v, sz = private[nm]; data = sg['sections'].get(s)
@@ -55,16 +56,16 @@ def funcs(obj, td, tag, pool=None):
     secs = {k: (len(v) if isinstance(v, bytes) else v) for k, v in sg['sections'].items() if k != '.comment'}
     local_secs = collections.defaultdict(set)
     for n, s, v, sz, _ in sg['defs']:
-        if LOCAL.match(n):
+        if POOLED_LOCAL.match(n):
             local_secs[s].add(n)
     return {f: (t[v:v + sz], sorted(rel[f])) for f, (v, sz) in fn.items()}, secs, sg, local_secs
 
 
 def derive_pool(cand_sg, cand_fn_addr, ref):
-    """Map each @N the candidate references to the retail target the ref has at the same site."""
+    """Map private literal aliases to the target referenced at the same site."""
     out, bad = {}, []
     for off, typ, nm, add in cand_sg['relocs'].get('.text', []):
-        if not LOCAL.match(nm):
+        if not POOLED_LOCAL.match(nm):
             continue
         f = next((f for f, (v, sz) in cand_fn_addr.items() if v <= off < v + sz), None)
         site = None if f is None or f not in ref else next(
@@ -72,7 +73,7 @@ def derive_pool(cand_sg, cand_fn_addr, ref):
              if r[1] == typ and r[0] == ((off - cand_fn_addr[f][0]) & ~3 if typ == 109 else off - cand_fn_addr[f][0])), None)
         if site is not None and site[2].startswith('<'):
             continue   # private in the old unit too: funcs compares it by contents
-        if site is None or LOCAL.match(site[2]):
+        if site is None or POOLED_LOCAL.match(site[2]):
             bad.append(nm); continue
         delta = site[3] - add
         tgt = site[2] if delta == 0 else (f'{site[2]}+0x{delta:X}' if delta > 0 else None)
@@ -102,14 +103,20 @@ def main():
     us = [byu[s] for s in srcs]
     nu = d.ninja_units()
     mf = [v for v in VERSIONS if all(v in (u.get('matching_for') or VERSIONS) for u in us)]
+    if not mf:
+        print('units share no matching region'); return 1
     lead = dict(us[0], matching_for=mf)
     mv, cf = nu['src/' + srcs[0]]
     if a.extra:
         cf = cf + ' ' + a.extra
     own = set(s for u in us for s in u['symbols'])
+    unsupported = sorted({key for u in us for key in u.get('pool', {})
+                          if not POOLED_LOCAL.fullmatch(key)})
+    if unsupported:
+        print(f'pool selectors require manual rebinding: {unsupported}'); return 1
     pooled = any(u.get('pool') for u in us)
     cand = pathlib.Path(a.candidate).read_text()
-    ok, new_pool = True, None
+    ok, new_pool = True, {}
     with tempfile.TemporaryDirectory() as td:
         new = d.compile_all(cand, mv, cf, td, lead)
         if None in new:
@@ -128,6 +135,8 @@ def main():
                 print(f'[{mf[vi]}] unresolved private literals {sorted(set(bad))[:6]}'); ok = False
             if vi == 0:
                 new_pool = pool
+            elif pool != new_pool:
+                print(f'[{mf[vi]}] literal bindings differ by region'); ok = False
             nf, nsecs, _, nlocal = funcs(obj, td, f'n{vi}', pool=pool)
             for s in sorted(own):
                 if s not in nf:
@@ -181,10 +190,7 @@ def main():
     if mf != list(VERSIONS): merged['matching_for'] = mf
     else: merged.pop('matching_for', None)
     if pooled:
-        nonlocal_pool = {k: v for u in us for k, v in (u.get('pool') or {}).items() if not LOCAL.match(k) and k in cand}
-        merged_pool = dict(sorted(new_pool.items(), key=lambda kv: int(kv[0][1:])))
-        merged_pool.update(nonlocal_pool)
-        merged['pool'] = merged_pool
+        merged['pool'] = dict(sorted(new_pool.items()))
     else: merged.pop('pool', None)
     out = []
     for u in units:

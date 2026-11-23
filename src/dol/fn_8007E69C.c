@@ -1,19 +1,8 @@
-#include "types.h"
+#include "msl/decimal_internal.h"
 
 
 /* --- dol/fn_8007E69C.c --- */
 #define SIGDIGLEN 36
-
-typedef struct decimal {
-    char sign;
-    char unk1;
-    s16 exp;
-    struct {
-        u8 length;
-        u8 text[SIGDIGLEN];
-        u8 unk41;
-    } sig;
-} decimal;
 
 /* MSL ansi_fp.c __timesdec: decimal significand multiplication with round-half-even */
 void fn_8007E69C(decimal *result, const decimal *x, const decimal *y) {
