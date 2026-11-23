@@ -11,21 +11,15 @@ extern void OSSetProgressiveMode(s32);
 extern void fn_1_A6870(u32 *);
 extern void fn_1_A5F44(void);
 extern s32 fn_1_A6480(void);
-
-/* fzgx:begin fn_1_A5C98 */
-#include "types.h"
-
 extern u32 lbl_1_bss_6F5C0;
 extern u8 lbl_1_bss_6F5C4[44];
-
-
-
-
 extern u8 *lbl_801A6410;
-
 extern void OSUnlink(void *);
 extern void OSPanic(void *, ...);
 extern void fn_1_46B4(void *, void *, void *, int);
+
+/* fzgx:begin fn_1_A5C98 */
+#include "types.h"
 
 typedef struct Fn1A5C98Object {
     void *unk0;
