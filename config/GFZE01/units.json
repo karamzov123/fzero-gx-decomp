@@ -23207,29 +23207,28 @@
     "module": "main",
     "source": "dol/fn_8005BE48.c",
     "symbols": [
-      "fn_8005BE48",
+      "fn_8005BE48"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2"
+  },
+  {
+    "module": "main",
+    "source": "dol/adx/rna_res.c",
+    "symbols": [
       "fn_8005BE68",
       "fn_8005BE80",
       "fn_8005BE98",
       "RNARES_Create",
-      "fn_8005BFB4"
+      "fn_8005BFB4",
+      "fn_8005C120"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "collapsed": true,
     "pool": {
-      "@37": "lbl_80092988"
+      "@33": "lbl_80092988"
     }
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8005C120.c",
-    "symbols": [
-      "fn_8005C120"
-    ],
-    "status": "matching",
-    "mw_version": "GC/2.5",
-    "extra_cflags": []
   },
   {
     "module": "main",

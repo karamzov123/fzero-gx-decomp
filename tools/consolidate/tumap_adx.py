@@ -60,7 +60,7 @@ RANGES = [
     ('rna_err.c',  'axrna',0x8005A5BC, 0x8005A628, 'donor-size'),
     ('rna_crs.c',  'axrna',0x8005A628, 0x8005A668, 'donor-size'),
     ('ax_rna.c',   'axrna',0x8005A668, 0x8005BE68, 'donor-size'),
-    ('rna_res.c',  'axrna',0x8005BE68, 0x8005BFB4, 'donor-size'),
+    ('rna_res.c',  'axrna',0x8005BE68, 0x8005C298, 'donor-size'),
 ]
 
 

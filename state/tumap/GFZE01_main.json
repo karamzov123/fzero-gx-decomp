@@ -4,9 +4,9 @@
   "note": "Draft DOL ownership evidence used by the consolidation tools. Unassigned entries and conflicts are not confirmed boundaries.",
   "summary": {
     "functions": 2230,
-    "assigned": 1993,
+    "assigned": 1995,
     "bytes": 567556,
-    "assigned_bytes": 468440,
+    "assigned_bytes": 469180,
     "tus": 222,
     "conflicts": 0,
     "string_anchored": 13
@@ -3458,18 +3458,21 @@
       "file": "rna_res.c",
       "text": [
         "8005BE68",
-        "8005BFB4"
+        "8005C298"
       ],
       "functions": [
         "fn_8005BE68",
         "fn_8005BE80",
         "fn_8005BE98",
-        "RNARES_Create"
+        "RNARES_Create",
+        "fn_8005BFB4",
+        "fn_8005C120"
       ],
       "how": {
-        "donor-size": 4
+        "donor-size": 6
       },
-      "lib": "axrna"
+      "lib": "axrna",
+      "notes": "All six GX functions have the same ordered sizes as GQNE5D libadxgca.a rna_res.o (0x802D9110..0x802D9540; mk-deception map 33b1e0082c7630ee4f20b828559966872ae670e1). The last two are the paired ARAM resource teardown/setup: both use the state at 0x80192BD0 and the adjacent 32-entry table at 0x80192BE4. The preceding wrapper 0x8005BE48 calls fn_8005A614 and belongs to ax_rna.c. This evidence bounds .text; data splits remain separate."
     },
     {
       "file": "arc.c",
@@ -5954,24 +5957,6 @@
       "candidates": [
         "adx_tlk.c",
         "cri_cvfs.c"
-      ]
-    },
-    {
-      "name": "fn_8005BFB4",
-      "addr": "8005BFB4",
-      "size": 364,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_8005C120",
-      "addr": "8005C120",
-      "size": 376,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
       ]
     },
     {
