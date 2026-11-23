@@ -31998,7 +31998,7 @@
   {
    "symbol": "fn_8005A628",
    "module": "main",
-   "unit": "dol/fn_8005A588.c",
+   "unit": "dol/adx/ax_rna_controls.c",
    "addr": 2147853864,
    "size": 32,
    "status": "matched",
@@ -32015,7 +32015,7 @@
   {
    "symbol": "fn_8005A648",
    "module": "main",
-   "unit": "dol/fn_8005A588.c",
+   "unit": "dol/adx/ax_rna_controls.c",
    "addr": 2147853896,
    "size": 32,
    "status": "matched",
@@ -32032,7 +32032,7 @@
   {
    "symbol": "fn_8005A668",
    "module": "main",
-   "unit": "dol/fn_8005A588.c",
+   "unit": "dol/adx/ax_rna_controls.c",
    "addr": 2147853928,
    "size": 16,
    "status": "matched",
@@ -32049,7 +32049,7 @@
   {
    "symbol": "fn_8005A678",
    "module": "main",
-   "unit": "dol/fn_8005A588.c",
+   "unit": "dol/adx/ax_rna_controls.c",
    "addr": 2147853944,
    "size": 8,
    "status": "matched",
@@ -32066,7 +32066,7 @@
   {
    "symbol": "fn_8005A680",
    "module": "main",
-   "unit": "dol/fn_8005A588.c",
+   "unit": "dol/adx/ax_rna_controls.c",
    "addr": 2147853952,
    "size": 8,
    "status": "matched",
@@ -32083,7 +32083,7 @@
   {
    "symbol": "fn_8005A688",
    "module": "main",
-   "unit": "dol/fn_8005A588.c",
+   "unit": "dol/adx/ax_rna_controls.c",
    "addr": 2147853960,
    "size": 16,
    "status": "matched",
@@ -32100,7 +32100,7 @@
   {
    "symbol": "AXRNA_SetOutPan",
    "module": "main",
-   "unit": "dol/AXRNA_SetOutPan.c",
+   "unit": "dol/adx/ax_rna_controls.c",
    "addr": 2147853976,
    "size": 180,
    "status": "matched",
@@ -32117,7 +32117,7 @@
   {
    "symbol": "fn_8005A74C",
    "module": "main",
-   "unit": "dol/fn_8005A668.c",
+   "unit": "dol/adx/ax_rna_controls.c",
    "addr": 2147854156,
    "size": 172,
    "status": "matched",

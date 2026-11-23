@@ -23046,20 +23046,10 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_8005A628.c",
+    "source": "dol/adx/ax_rna_controls.c",
     "symbols": [
       "fn_8005A628",
-      "fn_8005A648"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8005A668.c",
-    "symbols": [
+      "fn_8005A648",
       "fn_8005A668",
       "fn_8005A678",
       "fn_8005A680",
@@ -23069,6 +23059,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-inline",
+      "on,noauto"
+    ],
     "collapsed": true
   },
   {

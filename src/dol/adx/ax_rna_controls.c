@@ -31,13 +31,21 @@ extern u32 lbl_80190B74[];
 
 void fn_8005A614(u32 arg0, u32 arg1);
 
-extern u32 fn_800576DC(void);
+extern void fn_800576DC(void);
 
-void fn_8005A628(void);
+void fn_8005A628(void) {
+    fn_800576DC();
+}
 
 extern u32 fn_80057728(void);
 
-void fn_8005A648(void);
+void fn_8005A648(void) {
+    fn_80057728();
+}
+
+#pragma opt_propagation off
+
+// The retail code performs this read even though its value is discarded.
 
 struct fn_8005A668_Arg0 {
     u8 pad_0[0xA0];
@@ -74,27 +82,27 @@ typedef struct SJCK {
     int len;
 } SJCK;
 
-typedef struct SJ_u1_u0 SJ_u1_u0;
+typedef struct SJ_u1_u0_u1 SJ_u1_u0_u1;
 
-typedef struct SJInterface_u1_u0 SJInterface_u1_u0;
+typedef struct SJInterface_u1_u0_u1 SJInterface_u1_u0_u1;
 
 typedef void (*SJErrorCallback)(void *object, int error);
 
-struct SJInterface_u1_u0 {
+struct SJInterface_u1_u0_u1 {
     void *reserved[3];
-    void (*destroy)(SJ_u1_u0 *sj);
-    const void *(*get_uuid)(SJ_u1_u0 *sj);
-    void (*reset)(SJ_u1_u0 *sj);
-    void (*get_chunk)(SJ_u1_u0 *sj, int channel, int max_size, SJCK *chunk);
-    void (*unget_chunk)(SJ_u1_u0 *sj, int channel, SJCK *chunk);
-    void (*put_chunk)(SJ_u1_u0 *sj, int channel, SJCK *chunk);
-    int (*get_num_data)(SJ_u1_u0 *sj, int channel);
-    int (*is_get_chunk)(SJ_u1_u0 *sj, int channel, int size, int *available);
-    void (*entry_error_func)(SJ_u1_u0 *sj, SJErrorCallback callback, void *object);
+    void (*destroy)(SJ_u1_u0_u1 *sj);
+    const void *(*get_uuid)(SJ_u1_u0_u1 *sj);
+    void (*reset)(SJ_u1_u0_u1 *sj);
+    void (*get_chunk)(SJ_u1_u0_u1 *sj, int channel, int max_size, SJCK *chunk);
+    void (*unget_chunk)(SJ_u1_u0_u1 *sj, int channel, SJCK *chunk);
+    void (*put_chunk)(SJ_u1_u0_u1 *sj, int channel, SJCK *chunk);
+    int (*get_num_data)(SJ_u1_u0_u1 *sj, int channel);
+    int (*is_get_chunk)(SJ_u1_u0_u1 *sj, int channel, int size, int *available);
+    void (*entry_error_func)(SJ_u1_u0_u1 *sj, SJErrorCallback callback, void *object);
 };
 
-struct SJ_u1_u0 {
-    const SJInterface_u1_u0 *interface;
+struct SJ_u1_u0_u1 {
+    const SJInterface_u1_u0_u1 *interface;
 };
 
 typedef void (*ARQCallback)(unsigned long request_address);
@@ -212,8 +220,8 @@ typedef struct AXRNAHandle {
     int buffer_size;
     int sample_rate;
     u32 request_owners[2];
-    SJ_u1_u0 *inputs[2];
-    SJ_u1_u0 *buffers[2];
+    SJ_u1_u0_u1 *inputs[2];
+    SJ_u1_u0_u1 *buffers[2];
     SJCK input_chunks[2];
     SJCK buffer_chunks[2];
 // Hardware or OS state can change asynchronously.
