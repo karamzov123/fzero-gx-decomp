@@ -31269,107 +31269,6 @@
     "unit_size": 80,
     "unit_start": 2148084104
   },
-  "main:lbl_800929D8": {
-    "address": 2148084184,
-    "align": 8,
-    "declarations": [],
-    "definition": "const u8 lbl_800929D8[32]",
-    "method": "typed-data",
-    "module": "main",
-    "references": [
-      "fn_8005C7C0",
-      "fn_8005C9D8",
-      "fn_8005DCEC"
-    ],
-    "relocations": [],
-    "section": ".rodata",
-    "section_size": 872,
-    "sha256": "6bd7067e0addbf4882073973a705ac682e5dce6c851af00c84371f23bc5fdb4c",
-    "size": 32,
-    "source": "dol/data/lbl_800929D8.c",
-    "symbol": "lbl_800929D8",
-    "unit_align": 8,
-    "unit_size": 872,
-    "unit_start": 2148084184
-  },
-  "main:lbl_800929F8": {
-    "address": 2148084216,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "u8 lbl_800929F8[32]",
-        "path": "src/dol/fn_8005DB68.c"
-      }
-    ],
-    "definition": "const u8 lbl_800929F8[32]",
-    "method": "typed-data",
-    "module": "main",
-    "references": [
-      "fn_8005DB68"
-    ],
-    "relocations": [],
-    "section": ".rodata",
-    "section_size": 872,
-    "sha256": "a49fef319d70592e8ab0b1675dc7295793752d650e24e849388a0a50f2a852a1",
-    "size": 32,
-    "source": "dol/data/lbl_800929D8.c",
-    "symbol": "lbl_800929F8",
-    "unit_align": 8,
-    "unit_size": 872,
-    "unit_start": 2148084184
-  },
-  "main:lbl_80092A18": {
-    "address": 2148084248,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "u8 lbl_80092A18[160]",
-        "path": "src/dol/fn_8005DB68.c"
-      }
-    ],
-    "definition": "const u8 lbl_80092A18[160]",
-    "method": "typed-data",
-    "module": "main",
-    "references": [
-      "fn_8005DB68"
-    ],
-    "relocations": [],
-    "section": ".rodata",
-    "section_size": 872,
-    "sha256": "c767ea8e3abb8a79613b949971a831b04d4b06a03bc5f5cd71c7a3a1190113c2",
-    "size": 160,
-    "source": "dol/data/lbl_800929D8.c",
-    "symbol": "lbl_80092A18",
-    "unit_align": 8,
-    "unit_size": 872,
-    "unit_start": 2148084184
-  },
-  "main:lbl_80092AB8": {
-    "address": 2148084408,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "u8 lbl_80092AB8[128]",
-        "path": "src/dol/fn_8005FDE0.c"
-      }
-    ],
-    "definition": "const u8 lbl_80092AB8[128]",
-    "method": "typed-data",
-    "module": "main",
-    "references": [
-      "fn_8005FDE0"
-    ],
-    "relocations": [],
-    "section": ".rodata",
-    "section_size": 872,
-    "sha256": "aa84715f5c235c83ae6520a01550e3043eade3b456438021a0e6fd0b3a0cde47",
-    "size": 128,
-    "source": "dol/data/lbl_800929D8.c",
-    "symbol": "lbl_80092AB8",
-    "unit_align": 8,
-    "unit_size": 872,
-    "unit_start": 2148084184
-  },
   "main:lbl_80092B38": {
     "address": 2148084536,
     "align": 8,
@@ -31387,14 +31286,14 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 872,
+    "section_size": 520,
     "sha256": "6bd7067e0addbf4882073973a705ac682e5dce6c851af00c84371f23bc5fdb4c",
     "size": 32,
-    "source": "dol/data/lbl_800929D8.c",
+    "source": "dol/data/lbl_80092B38.c",
     "symbol": "lbl_80092B38",
     "unit_align": 8,
-    "unit_size": 872,
-    "unit_start": 2148084184
+    "unit_size": 520,
+    "unit_start": 2148084536
   },
   "main:lbl_80092B58": {
     "address": 2148084568,
@@ -31413,14 +31312,14 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 872,
+    "section_size": 520,
     "sha256": "41842efc99d51f9cd25e861c4980d04b1b7f58e4370f95b2d2aa144cc8b25d80",
     "size": 128,
-    "source": "dol/data/lbl_800929D8.c",
+    "source": "dol/data/lbl_80092B38.c",
     "symbol": "lbl_80092B58",
     "unit_align": 8,
-    "unit_size": 872,
-    "unit_start": 2148084184
+    "unit_size": 520,
+    "unit_start": 2148084536
   },
   "main:lbl_80092BD8": {
     "address": 2148084696,
@@ -31432,14 +31331,14 @@
     "references": [],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 872,
+    "section_size": 520,
     "sha256": "0525cb34a32008c9eedc2a4a582bf13541d251fb33de37f558a3fad9b793ee0e",
     "size": 45,
-    "source": "dol/data/lbl_800929D8.c",
+    "source": "dol/data/lbl_80092B38.c",
     "symbol": "lbl_80092BD8",
     "unit_align": 8,
-    "unit_size": 872,
-    "unit_start": 2148084184
+    "unit_size": 520,
+    "unit_start": 2148084536
   },
   "main:lbl_80092C08": {
     "address": 2148084744,
@@ -31458,14 +31357,14 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 872,
+    "section_size": 520,
     "sha256": "7c4e1e240c2c38cbc19b94a24cc7f6b6c0910ebc61817fe91a6b6fd6520e0f4d",
     "size": 15,
-    "source": "dol/data/lbl_800929D8.c",
+    "source": "dol/data/lbl_80092B38.c",
     "symbol": "lbl_80092C08",
     "unit_align": 8,
-    "unit_size": 872,
-    "unit_start": 2148084184
+    "unit_size": 520,
+    "unit_start": 2148084536
   },
   "main:lbl_80092C18": {
     "address": 2148084760,
@@ -31484,14 +31383,14 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 872,
+    "section_size": 520,
     "sha256": "b0e33e689d53fb991d768e426899aae423b1dc670ff67cec9ae563bef36ced55",
     "size": 29,
-    "source": "dol/data/lbl_800929D8.c",
+    "source": "dol/data/lbl_80092B38.c",
     "symbol": "lbl_80092C18",
     "unit_align": 8,
-    "unit_size": 872,
-    "unit_start": 2148084184
+    "unit_size": 520,
+    "unit_start": 2148084536
   },
   "main:lbl_80092C38": {
     "address": 2148084792,
@@ -31510,14 +31409,14 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 872,
+    "section_size": 520,
     "sha256": "421128a5580ea032a4801bb9abb46b678416860567bc762a8d091308cea72a6d",
     "size": 264,
-    "source": "dol/data/lbl_800929D8.c",
+    "source": "dol/data/lbl_80092B38.c",
     "symbol": "lbl_80092C38",
     "unit_align": 8,
-    "unit_size": 872,
-    "unit_start": 2148084184
+    "unit_size": 520,
+    "unit_start": 2148084536
   },
   "main:lbl_80092D40": {
     "address": 2148085056,
@@ -68119,382 +68018,14 @@
     ],
     "relocations": [],
     "section": ".sdata2",
-    "section_size": 16,
+    "section_size": 8,
     "sha256": "b4be016994a699fb6f1a6b61fa14065baacfc6d51af90abee79ebee422889a93",
     "size": 4,
     "source": "dol/data/lbl_801A7210.c",
     "symbol": "lbl_801A7210",
     "unit_align": 8,
-    "unit_size": 16,
+    "unit_size": 8,
     "unit_start": 2149216784
-  },
-  "main:lbl_801A7218": {
-    "address": 2149216792,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "const f64 lbl_801A7218",
-        "path": "src/dol/fn_8005DB68.c"
-      }
-    ],
-    "definition": "const f64 lbl_801A7218",
-    "method": "float-pool",
-    "module": "main",
-    "references": [
-      "fn_8005C298",
-      "fn_8005C478",
-      "fn_8005C7C0",
-      "fn_8005C9D8",
-      "fn_8005DB68",
-      "fn_8005DCEC"
-    ],
-    "relocations": [],
-    "section": ".sdata2",
-    "section_size": 16,
-    "sha256": "07af8387624cf8f36152797d2f561246f21237d1d22b5c13006eacfa6f475e43",
-    "size": 8,
-    "source": "dol/data/lbl_801A7210.c",
-    "symbol": "lbl_801A7218",
-    "unit_align": 8,
-    "unit_size": 16,
-    "unit_start": 2149216784
-  },
-  "main:lbl_801A7220": {
-    "address": 2149216800,
-    "align": 8,
-    "declarations": [],
-    "definition": "const f64 lbl_801A7220",
-    "method": "float-pool",
-    "module": "main",
-    "references": [
-      "fn_8005C478",
-      "fn_8005DCEC"
-    ],
-    "relocations": [],
-    "section": ".sdata2",
-    "section_size": 8,
-    "sha256": "8e789393ad813ceca8a5beb0d039a1094e25674b77607505e82aefef9ca00d3b",
-    "size": 8,
-    "source": "dol/data/lbl_801A7220.c",
-    "symbol": "lbl_801A7220",
-    "unit_align": 8,
-    "unit_size": 8,
-    "unit_start": 2149216800
-  },
-  "main:lbl_801A7228": {
-    "address": 2149216808,
-    "align": 8,
-    "declarations": [],
-    "definition": "const f64 lbl_801A7228",
-    "method": "float-pool",
-    "module": "main",
-    "references": [
-      "fn_8005C478",
-      "fn_8005DCEC"
-    ],
-    "relocations": [],
-    "section": ".sdata2",
-    "section_size": 8,
-    "sha256": "5fc6e728084b99f0eb7aa6838afba449ac9b339ac0ad6b3b71fb74f2a8daa8e3",
-    "size": 8,
-    "source": "dol/data/lbl_801A7228.c",
-    "symbol": "lbl_801A7228",
-    "unit_align": 8,
-    "unit_size": 8,
-    "unit_start": 2149216808
-  },
-  "main:lbl_801A7230": {
-    "address": 2149216816,
-    "align": 8,
-    "declarations": [],
-    "definition": "const f64 lbl_801A7230",
-    "method": "float-pool",
-    "module": "main",
-    "references": [
-      "fn_8005C5C8",
-      "fn_8005DCEC"
-    ],
-    "relocations": [],
-    "section": ".sdata2",
-    "section_size": 8,
-    "sha256": "04b7b6cd1802dd1f87c7044ce147f52cb1825e1f7114d3bc83c291392d5e3080",
-    "size": 8,
-    "source": "dol/data/lbl_801A7230.c",
-    "symbol": "lbl_801A7230",
-    "unit_align": 8,
-    "unit_size": 8,
-    "unit_start": 2149216816
-  },
-  "main:lbl_801A7238": {
-    "address": 2149216824,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "const f64 lbl_801A7238",
-        "path": "src/dol/fn_8005DB68.c"
-      }
-    ],
-    "definition": "const f64 lbl_801A7238",
-    "method": "float-pool",
-    "module": "main",
-    "references": [
-      "fn_8005C5C8",
-      "fn_8005C7C0",
-      "fn_8005C9D8",
-      "fn_8005D258",
-      "fn_8005DB68",
-      "fn_8005DCEC"
-    ],
-    "relocations": [],
-    "section": ".sdata2",
-    "section_size": 8,
-    "sha256": "c807250f76a0c47b927c768ec4899422847918c0b5eecf9605a28b6e321c92cf",
-    "size": 8,
-    "source": "dol/data/lbl_801A7238.c",
-    "symbol": "lbl_801A7238",
-    "unit_align": 8,
-    "unit_size": 8,
-    "unit_start": 2149216824
-  },
-  "main:lbl_801A7240": {
-    "address": 2149216832,
-    "align": 4,
-    "declarations": [],
-    "definition": "const f32 lbl_801A7240",
-    "method": "float-pool",
-    "module": "main",
-    "references": [
-      "fn_8005C5C8",
-      "fn_8005D258",
-      "fn_8005DCEC"
-    ],
-    "relocations": [],
-    "section": ".sdata2",
-    "section_size": 16,
-    "sha256": "eb1dc1b77d15392b46070f31889e9c1e4f420af45e9771e3e74b43d1796879ca",
-    "size": 4,
-    "source": "dol/data/lbl_801A7240.c",
-    "symbol": "lbl_801A7240",
-    "unit_align": 8,
-    "unit_size": 16,
-    "unit_start": 2149216832
-  },
-  "main:lbl_801A7248": {
-    "address": 2149216840,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "const f64 lbl_801A7248",
-        "path": "src/dol/fn_8005DB68.c"
-      }
-    ],
-    "definition": "const f64 lbl_801A7248",
-    "method": "float-pool",
-    "module": "main",
-    "references": [
-      "fn_8005C5C8",
-      "fn_8005C7C0",
-      "fn_8005C9D8",
-      "fn_8005D258",
-      "fn_8005DB68",
-      "fn_8005DCEC"
-    ],
-    "relocations": [],
-    "section": ".sdata2",
-    "section_size": 16,
-    "sha256": "2b2979f362d94c89fe17a6e01637f14332de063fe7a544bdc5facfc046f4169f",
-    "size": 8,
-    "source": "dol/data/lbl_801A7240.c",
-    "symbol": "lbl_801A7248",
-    "unit_align": 8,
-    "unit_size": 16,
-    "unit_start": 2149216832
-  },
-  "main:lbl_801A7250": {
-    "address": 2149216848,
-    "align": 4,
-    "declarations": [
-      {
-        "declaration": "const f32 lbl_801A7250",
-        "path": "src/dol/fn_8005DB68.c"
-      }
-    ],
-    "definition": "const f32 lbl_801A7250",
-    "method": "float-pool",
-    "module": "main",
-    "references": [
-      "fn_8005C7C0",
-      "fn_8005C9D8",
-      "fn_8005D258",
-      "fn_8005DB68",
-      "fn_8005DCEC"
-    ],
-    "relocations": [],
-    "section": ".sdata2",
-    "section_size": 8,
-    "sha256": "a6b6b6d7f59da4f12c403b4610551a59aeb3650f4987b1fa8c84e562c787218c",
-    "size": 4,
-    "source": "dol/data/lbl_801A7250.c",
-    "symbol": "lbl_801A7250",
-    "unit_align": 8,
-    "unit_size": 8,
-    "unit_start": 2149216848
-  },
-  "main:lbl_801A7254": {
-    "address": 2149216852,
-    "align": 4,
-    "declarations": [
-      {
-        "declaration": "const f32 lbl_801A7254",
-        "path": "src/dol/fn_8005DB68.c"
-      }
-    ],
-    "definition": "const f32 lbl_801A7254",
-    "method": "float-pool",
-    "module": "main",
-    "references": [
-      "fn_8005C7C0",
-      "fn_8005C9D8",
-      "fn_8005D258",
-      "fn_8005DB68",
-      "fn_8005DCEC"
-    ],
-    "relocations": [],
-    "section": ".sdata2",
-    "section_size": 8,
-    "sha256": "b9e69238a01189ddad0c70c62fc04d362b55ee6eefaa558dd13fc45ac1d665be",
-    "size": 4,
-    "source": "dol/data/lbl_801A7250.c",
-    "symbol": "lbl_801A7254",
-    "unit_align": 8,
-    "unit_size": 8,
-    "unit_start": 2149216848
-  },
-  "main:lbl_801A7258": {
-    "address": 2149216856,
-    "align": 4,
-    "declarations": [],
-    "definition": "const f32 lbl_801A7258",
-    "method": "float-pool",
-    "module": "main",
-    "references": [
-      "fn_8005D258"
-    ],
-    "relocations": [],
-    "section": ".sdata2",
-    "section_size": 8,
-    "sha256": "885dcea0b8214e4805870ba6d690f27ce4520f70862599ea86f139f4ef2de967",
-    "size": 4,
-    "source": "dol/data/lbl_801A7258.c",
-    "symbol": "lbl_801A7258",
-    "unit_align": 8,
-    "unit_size": 8,
-    "unit_start": 2149216856
-  },
-  "main:lbl_801A725C": {
-    "address": 2149216860,
-    "align": 4,
-    "declarations": [],
-    "definition": "const f32 lbl_801A725C",
-    "method": "float-pool",
-    "module": "main",
-    "references": [
-      "fn_8005DCEC"
-    ],
-    "relocations": [],
-    "section": ".sdata2",
-    "section_size": 8,
-    "sha256": "6c49047666986cfff6a1787c9b624f0478e689b1036914cafabd43fd2f529760",
-    "size": 4,
-    "source": "dol/data/lbl_801A7258.c",
-    "symbol": "lbl_801A725C",
-    "unit_align": 8,
-    "unit_size": 8,
-    "unit_start": 2149216856
-  },
-  "main:lbl_801A7260": {
-    "address": 2149216864,
-    "align": 8,
-    "declarations": [],
-    "definition": "const f64 lbl_801A7260",
-    "method": "float-pool",
-    "module": "main",
-    "references": [
-      "fn_8005DCEC"
-    ],
-    "relocations": [],
-    "section": ".sdata2",
-    "section_size": 8,
-    "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
-    "size": 8,
-    "source": "dol/data/lbl_801A7260.c",
-    "symbol": "lbl_801A7260",
-    "unit_align": 8,
-    "unit_size": 8,
-    "unit_start": 2149216864
-  },
-  "main:lbl_801A7268": {
-    "address": 2149216872,
-    "align": 8,
-    "declarations": [],
-    "definition": "const f64 lbl_801A7268",
-    "method": "float-pool",
-    "module": "main",
-    "references": [
-      "fn_8005DCEC"
-    ],
-    "relocations": [],
-    "section": ".sdata2",
-    "section_size": 8,
-    "sha256": "ace5732151a42e3c2ce91e039d0bd2d3a86dce1bccb6b874852b1aaa7f01d3bd",
-    "size": 8,
-    "source": "dol/data/lbl_801A7268.c",
-    "symbol": "lbl_801A7268",
-    "unit_align": 8,
-    "unit_size": 8,
-    "unit_start": 2149216872
-  },
-  "main:lbl_801A7270": {
-    "address": 2149216880,
-    "align": 8,
-    "declarations": [],
-    "definition": "const f64 lbl_801A7270",
-    "method": "float-pool",
-    "module": "main",
-    "references": [
-      "fn_8005DCEC"
-    ],
-    "relocations": [],
-    "section": ".sdata2",
-    "section_size": 8,
-    "sha256": "de6e66408b37be649404fe9033a088f217bfc6a37dfe9dd7a735a376d88d8cdd",
-    "size": 8,
-    "source": "dol/data/lbl_801A7270.c",
-    "symbol": "lbl_801A7270",
-    "unit_align": 8,
-    "unit_size": 8,
-    "unit_start": 2149216880
-  },
-  "main:lbl_801A7278": {
-    "address": 2149216888,
-    "align": 8,
-    "declarations": [],
-    "definition": "const f64 lbl_801A7278",
-    "method": "float-pool",
-    "module": "main",
-    "references": [
-      "fn_8005DCEC"
-    ],
-    "relocations": [],
-    "section": ".sdata2",
-    "section_size": 8,
-    "sha256": "9cc7cf9371e52ed2627863709c5e1c1566e0e98ed5fc2bf2d53e8e68513770b8",
-    "size": 8,
-    "source": "dol/data/lbl_801A7278.c",
-    "symbol": "lbl_801A7278",
-    "unit_align": 8,
-    "unit_size": 8,
-    "unit_start": 2149216888
   },
   "main:lbl_801A7318": {
     "address": 2149217048,

@@ -9,13 +9,6 @@ extern void fn_80023168(void *, u16);
 extern void fn_80028424(void *);
 extern f32 fn_80088578(f32 x);
 
-typedef struct SndNote {
-    u8 pad_0[9];
-    u8 unk_9;
-    u8 pad_A[0x2C - 0xA];
-    u8 unk_2C;
-} SndNote;
-
 s32 fn_80069FCC(SndNote *note, u8 channel);
 
 static inline void stop_voice(u8 i) {
@@ -57,7 +50,7 @@ static inline void retune(s32 all, s32 ch) {
     for (i = 0; i < 64; i++) {
         if (lbl_801A6C80->voice[i].state == 4) {
             if (all == 0x10 || ch == lbl_801A6C80->voice[i].channel) {
-                r = fn_80069FCC((SndNote *)lbl_801A6C80->voice[i].note, lbl_801A6C80->voice[i].channel);
+                r = fn_80069FCC(lbl_801A6C80->voice[i].note, lbl_801A6C80->voice[i].channel);
                 lbl_801A6C80->voice[i].volDelta = (r - (lbl_801A6C80->voice[i].volEnv >> 16)) << 16;
                 lbl_801A6C80->voice[i].vol = r;
             }

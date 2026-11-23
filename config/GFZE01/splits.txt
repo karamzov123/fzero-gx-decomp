@@ -1220,9 +1220,6 @@ dol/fn_800692A4.c:
 dol/fn_80064230.c:
 	.text       start:0x80064230 end:0x800643F4 align:4
 
-dol/fn_8005FCD8.c:
-	.text       start:0x8005FCD8 end:0x8005FDE0 align:4
-
 dol/fn_80080518.c:
 	.text       start:0x80080518 end:0x800805C0 align:4
 
@@ -1322,17 +1319,11 @@ dol/fn_8008F838.c:
 dol/av/avdisp_tail.c:
 	.text       start:0x800789D8 end:0x80079654 align:4
 
-dol/fn_8005DCEC.c:
-	.text       start:0x8005DCEC end:0x8005FBDC align:4
-
 dol/fn_80050BD4.c:
 	.text       start:0x80050BD4 end:0x800510C4 align:4
 
 dol/fn_80067DE4.c:
 	.text       start:0x80067DE4 end:0x80067F68 align:4
-
-dol/fn_8005C7C0.c:
-	.text       start:0x8005C7C0 end:0x8005C9D8 align:4
 
 dol/fn_8008EBF8.c:
 	.text       start:0x8008EBF8 end:0x8008EC78 align:4
@@ -1367,9 +1358,6 @@ dol/fn_8008AF40.c:
 dol/fn_800081C8.c:
 	.text       start:0x800081C8 end:0x800087F4 align:4
 
-dol/fn_8005FBDC.c:
-	.text       start:0x8005FBDC end:0x8005FCD8 align:4
-
 dol/sasnd/sasnd_track.c:
 	.text       start:0x8006060C end:0x8006331C align:4
 	.sdata2     start:0x801A7280 end:0x801A7318 align:8
@@ -1386,11 +1374,11 @@ dol/adx/rna_res.c:
 dol/fn_80065390.c:
 	.text       start:0x80065390 end:0x80065528 align:4
 
-dol/fn_8005C298.c:
-	.text       start:0x8005C298 end:0x8005C478 align:4
-
-dol/fn_8005C5C8.c:
-	.text       start:0x8005C5C8 end:0x8005C7C0 align:4
+dol/sasnd/sasnd_voice.c:
+	.text       start:0x8005C298 end:0x8006060C align:4
+	.rodata     start:0x800929D8 end:0x80092B38 align:4
+	.data       start:0x801325D8 end:0x80132788 align:8
+	.sdata2     start:0x801A7218 end:0x801A7280 align:8
 
 dol/fn_8008E770.c:
 	.text       start:0x8008E770 end:0x8008E9B4 align:4
@@ -1410,17 +1398,11 @@ dol/thp/THPDec_draw.c:
 dol/fn_80068EB4.c:
 	.text       start:0x80068EB4 end:0x800692A4 align:4
 
-dol/fn_8005CBF4.c:
-	.text       start:0x8005CBF4 end:0x8005D258 align:4
-
 dol/fn_8006331C.c:
 	.text       start:0x8006331C end:0x80063EF4 align:4
 
 dol/fn_80068BFC.c:
 	.text       start:0x80068BFC end:0x80068EB4 align:4
-
-dol/fn_8005D5A4.c:
-	.text       start:0x8005D5A4 end:0x8005DCEC align:4
 
 dol/fn_80079D74.c:
 	.text       start:0x80079D74 end:0x80079E24 align:4
@@ -1475,17 +1457,11 @@ dol/gx/GXDisplayList.c:
 dol/fn_8006953C.c:
 	.text       start:0x8006953C end:0x80069AE0 align:4
 
-dol/fn_8005C9D8.c:
-	.text       start:0x8005C9D8 end:0x8005CBF4 align:4
-
 dol/fn_8008ECE0.c:
 	.text       start:0x8008ECE0 end:0x8008EDF0 align:4
 
 dol/fn_80063F38.c:
 	.text       start:0x80063F38 end:0x8006413C align:4
-
-dol/fn_8005D258.c:
-	.text       start:0x8005D258 end:0x8005D5A4 align:4
 
 dol/fn_80051F38.c:
 	.text       start:0x80051F38 end:0x80053A84 align:4
@@ -1748,10 +1724,6 @@ dol/data/lbl_8015AD28.c:
 dol/data/lbl_8015AD38.c:
 	.data       start:0x8015AD38 end:0x8015AD48 align:8
 
-dol/fn_8005FDE0.c:
-	.text       start:0x8005FDE0 end:0x8006060C align:4
-	.data       start:0x801325D8 end:0x80132788 align:8
-
 dol/fn_80078944.c:
 	.text       start:0x80078944 end:0x800789D8 align:4
 
@@ -1763,9 +1735,6 @@ dol/gTRKInterruptVectorTable.c:
 
 dol/fn_80065F34.c:
 	.text       start:0x80065F34 end:0x80066C14 align:4
-
-dol/fn_8005C478.c:
-	.text       start:0x8005C478 end:0x8005C5C8 align:4
 
 dol/adx/adx_dcd5.c:
 	.text       start:0x8004EFA8 end:0x8004F6B0 align:4
@@ -2503,40 +2472,7 @@ dol/data/lbl_801A7208.c:
 	.sdata2     start:0x801A7208 end:0x801A7210 align:8
 
 dol/data/lbl_801A7210.c:
-	.sdata2     start:0x801A7210 end:0x801A7220 align:8
-
-dol/data/lbl_801A7220.c:
-	.sdata2     start:0x801A7220 end:0x801A7228 align:8
-
-dol/data/lbl_801A7228.c:
-	.sdata2     start:0x801A7228 end:0x801A7230 align:8
-
-dol/data/lbl_801A7230.c:
-	.sdata2     start:0x801A7230 end:0x801A7238 align:8
-
-dol/data/lbl_801A7238.c:
-	.sdata2     start:0x801A7238 end:0x801A7240 align:8
-
-dol/data/lbl_801A7240.c:
-	.sdata2     start:0x801A7240 end:0x801A7250 align:8
-
-dol/data/lbl_801A7250.c:
-	.sdata2     start:0x801A7250 end:0x801A7258 align:8
-
-dol/data/lbl_801A7258.c:
-	.sdata2     start:0x801A7258 end:0x801A7260 align:8
-
-dol/data/lbl_801A7260.c:
-	.sdata2     start:0x801A7260 end:0x801A7268 align:8
-
-dol/data/lbl_801A7268.c:
-	.sdata2     start:0x801A7268 end:0x801A7270 align:8
-
-dol/data/lbl_801A7270.c:
-	.sdata2     start:0x801A7270 end:0x801A7278 align:8
-
-dol/data/lbl_801A7278.c:
-	.sdata2     start:0x801A7278 end:0x801A7280 align:8
+	.sdata2     start:0x801A7210 end:0x801A7218 align:8
 
 dol/data/lbl_801A7318.c:
 	.sdata2     start:0x801A7318 end:0x801A7328 align:8
@@ -3081,8 +3017,8 @@ dol/data/lbl_8012B930.c:
 dol/data/lbl_8012B938.c:
 	.data       start:0x8012B938 end:0x8012D9B8 align:8
 
-dol/data/lbl_800929D8.c:
-	.rodata     start:0x800929D8 end:0x80092D40 align:8
+dol/data/lbl_80092B38.c:
+	.rodata     start:0x80092B38 end:0x80092D40 align:8
 
 dol/data/lbl_80092D40.c:
 	.rodata     start:0x80092D40 end:0x80094E10 align:32

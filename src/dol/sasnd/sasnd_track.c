@@ -39,44 +39,6 @@ typedef struct SndPitchZone {
     s16 slope;
 } SndPitchZone;
 
-typedef struct SndWave {
-    u32 offset;
-    u32 loop_start;
-    u32 loop_end;
-    u16 coef[16];
-    u16 gain;
-    u16 ps;
-    u16 yn1;
-    u16 yn2;
-    u16 loop_ps;
-    u16 loop_yn1;
-    u16 loop_yn2;
-    u8 format;
-    u8 stereo;
-    u16 rate;
-    u8 pad_3E[2];
-    u32 offset2;
-} SndWave;
-
-typedef struct SndVoiceParams {
-    u16 loop;
-    u16 format;
-    u16 loop_hi;
-    u16 loop_lo;
-    u16 end_hi;
-    u16 end_lo;
-    u16 cur_hi;
-    u16 cur_lo;
-} SndVoiceParams;
-
-typedef struct SndAdpcm {
-    u16 coef[16];
-    u16 gain;
-    u16 ps;
-    u16 yn1;
-    u16 yn2;
-} SndAdpcm;
-
 typedef struct SndSrc {
     u16 ratio_hi;
     u16 ratio_lo;
@@ -446,7 +408,7 @@ void fn_80060C54(u8 key, SndRegion *region, u8 track, u8 index) {
         lbl_801A6C80->voice[voice].prio = 30;
         lbl_801A6C80->voice[voice].unk_5 = 0;
         lbl_801A6C80->voice[voice].unk_E = region->unk_7;
-        lbl_801A6C80->voice[voice].unk_10 = 0;
+        lbl_801A6C80->voice[voice].step = 0;
         lbl_801A6C80->voice[voice].track = track;
         lbl_801A6C80->voice[voice].index = index;
         fn_80025EF4(lbl_801A6C80->voice[voice].obj, mode, vol, aux_a, aux_b, pan, span, fader);
@@ -562,7 +524,7 @@ void fn_80060C54(u8 key, SndRegion *region, u8 track, u8 index) {
                 lbl_801A6C80->voice[voice2].prio = 30;
                 lbl_801A6C80->voice[voice2].unk_5 = 0;
                 lbl_801A6C80->voice[voice2].unk_E = region->unk_7;
-                lbl_801A6C80->voice[voice2].unk_10 = 0;
+                lbl_801A6C80->voice[voice2].step = 0;
                 lbl_801A6C80->voice[voice2].track = track;
                 lbl_801A6C80->voice[voice2].index = index;
                 if (lbl_801A6C80->unk_462 != 0) {

@@ -4,7 +4,7 @@
   tu_own_data.py UNIT SECTION LO HI [--apply]
 
 The unit's compiled SECTION must equal the retail bytes at LO..HI (trailing alignment excepted).
-Data-import units inside the range are deleted, a unit straddling LO or HI is trimmed, the range
+Data-import units inside the range are deleted, a unit ending inside it or starting at LO is trimmed, the range
 joins the unit's split and pool bindings into it are dropped. Run gate.sh afterwards: the link
 hash in every region is the proof.
 """
@@ -62,8 +62,20 @@ def main():
     if '--apply' not in sys.argv:
         return
     for u, a, b in trim:
+        if a == lo and hi < b:          # the unit keeps its tail, under the name of its new first symbol
+            src = pathlib.Path('src', u['source']); body = src.read_text()
+            for n in [n for n in u['symbols'] if n in inside]:
+                body = drop_definition(body, n); u['symbols'].remove(n); imports.pop(f'main:{n}', None)
+            dest = f'dol/data/{u["symbols"][0]}.c'
+            pathlib.Path('src', dest).write_text(body); src.unlink()
+            text = re.sub(rf'^{re.escape(u["source"])}:\n((?:\t.*\n)*?\t{re.escape(sec)}\s+start:0x)\w+', rf'{dest}:\n\g<1>{hi:08X}', text, flags=re.M)
+            u['source'] = dest
+            for n in u['symbols']:
+                if f'main:{n}' in imports:
+                    imports[f'main:{n}'].update(source=dest, unit_start=hi, unit_size=b - hi, section_size=b - hi)
+            continue
         if not (a < lo < b <= hi):
-            raise SystemExit(f'{u["source"]}: only a unit ending inside the range can be trimmed')
+            raise SystemExit(f'{u["source"]}: only a unit ending inside the range or starting at it can be trimmed')
         src = pathlib.Path('src', u['source']); body = src.read_text()
         for n in [n for n in u['symbols'] if n in inside]:
             body = drop_definition(body, n); u['symbols'].remove(n); imports.pop(f'main:{n}', None)
