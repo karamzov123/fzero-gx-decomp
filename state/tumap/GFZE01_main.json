@@ -1,14 +1,14 @@
 {
   "version": "GFZE01",
   "module": "main",
-  "note": "draft evidence map; not consumed by tooling",
+  "note": "Draft DOL ownership evidence used by the consolidation tools. Unassigned entries and conflicts are not confirmed boundaries.",
   "summary": {
     "functions": 2230,
     "assigned": 1982,
     "bytes": 567556,
     "assigned_bytes": 465908,
     "tus": 222,
-    "conflicts": 2,
+    "conflicts": 1,
     "string_anchored": 13
   },
   "tus": [
@@ -5028,11 +5028,6 @@
     }
   ],
   "conflicts": [
-    {
-      "tu": "adx_bau.c",
-      "at": "80043FE8",
-      "first": "80043460"
-    },
     {
       "tu": "adx_tlk.c",
       "at": "8004FC38",

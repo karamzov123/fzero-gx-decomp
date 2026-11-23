@@ -1,7 +1,7 @@
 #include "types.h"
 
 /* CRI ADX: decodes the header of an "SPSD" stream (MK Deception's ADX_DecodeInfoSpsd, adx_bsps.c). */
-typedef struct {
+typedef struct SpsdHeader {
     u8 pad_0[0x7];
     u8 unk_7;
     u8 format;

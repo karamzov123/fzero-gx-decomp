@@ -240,7 +240,9 @@ extern void fn_8004E4AC(void);
 extern void *memset(void *destination, int value, unsigned long size);
 extern int sprintf(char *buffer, const char *format, ...);
 extern s32 fn_80045FEC(void *arg0);
-extern s32 fn_800462F8(void *arg0, void *arg1, void *arg2);
+struct fn_800462F8_Arg0;
+struct SpsdHeader;
+extern s32 fn_800462F8(struct fn_800462F8_Arg0 *decoder, struct SpsdHeader *header, u32 size);
 extern s32 fn_80042568(void *arg0);
 extern s32 fn_80043050(void *arg0, void *arg1, void *arg2);
 extern s32 fn_80043CCC(void *arg0);
@@ -589,7 +591,7 @@ s32 fn_800455B8(AdxBasicDecoderExt *arg0, u16 *arg1, s32 arg2) {
         return fn_800456A0(arg0, (s8 *)arg1, arg2);
     }
     if (fn_80045FEC(arg1)) {
-        return fn_800462F8(arg0, arg1, (void *)arg2);
+        return fn_800462F8((struct fn_800462F8_Arg0 *)arg0, (struct SpsdHeader *)arg1, arg2);
     }
     if (fn_80042568(arg1)) {
         return fn_80043050(arg0, arg1, (void *)arg2);
