@@ -1,5 +1,5 @@
 {
- "generated": 1795484754,
+ "generated": 1795487104,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -29142,7 +29142,7 @@
   {
    "symbol": "fn_80051F38",
    "module": "main",
-   "unit": "dol/fn_80051F38.c",
+   "unit": "dol/ahx/ahx_transform.c",
    "addr": 2147819320,
    "size": 1272,
    "status": "matched",
@@ -29159,7 +29159,7 @@
   {
    "symbol": "fn_80052430",
    "module": "main",
-   "unit": "dol/fn_80051F38.c",
+   "unit": "dol/ahx/ahx_synth.c",
    "addr": 2147820592,
    "size": 352,
    "status": "matched",
@@ -29176,7 +29176,7 @@
   {
    "symbol": "fn_80052590",
    "module": "main",
-   "unit": "dol/fn_80051F38.c",
+   "unit": "dol/ahx/ahx_synth.c",
    "addr": 2147820944,
    "size": 352,
    "status": "matched",
@@ -29193,7 +29193,7 @@
   {
    "symbol": "fn_800526F0",
    "module": "main",
-   "unit": "dol/fn_80051F38.c",
+   "unit": "dol/ahx/ahx_synth.c",
    "addr": 2147821296,
    "size": 352,
    "status": "matched",
@@ -29210,7 +29210,7 @@
   {
    "symbol": "fn_80052850",
    "module": "main",
-   "unit": "dol/fn_80051F38.c",
+   "unit": "dol/ahx/ahx_synth.c",
    "addr": 2147821648,
    "size": 352,
    "status": "matched",
@@ -29227,7 +29227,7 @@
   {
    "symbol": "fn_800529B0",
    "module": "main",
-   "unit": "dol/fn_80051F38.c",
+   "unit": "dol/ahx/ahx_synth.c",
    "addr": 2147822000,
    "size": 352,
    "status": "matched",
@@ -29244,7 +29244,7 @@
   {
    "symbol": "fn_80052B10",
    "module": "main",
-   "unit": "dol/fn_80051F38.c",
+   "unit": "dol/ahx/ahx_synth.c",
    "addr": 2147822352,
    "size": 352,
    "status": "matched",
@@ -29261,7 +29261,7 @@
   {
    "symbol": "fn_80052C70",
    "module": "main",
-   "unit": "dol/fn_80051F38.c",
+   "unit": "dol/ahx/ahx_synth.c",
    "addr": 2147822704,
    "size": 352,
    "status": "matched",
@@ -29278,7 +29278,7 @@
   {
    "symbol": "fn_80052DD0",
    "module": "main",
-   "unit": "dol/fn_80051F38.c",
+   "unit": "dol/ahx/ahx_synth.c",
    "addr": 2147823056,
    "size": 352,
    "status": "matched",
@@ -29295,7 +29295,7 @@
   {
    "symbol": "fn_80052F30",
    "module": "main",
-   "unit": "dol/fn_80051F38.c",
+   "unit": "dol/ahx/ahx_synth.c",
    "addr": 2147823408,
    "size": 352,
    "status": "matched",
@@ -29312,7 +29312,7 @@
   {
    "symbol": "fn_80053090",
    "module": "main",
-   "unit": "dol/fn_80051F38.c",
+   "unit": "dol/ahx/ahx_synth.c",
    "addr": 2147823760,
    "size": 352,
    "status": "matched",
@@ -29329,7 +29329,7 @@
   {
    "symbol": "fn_800531F0",
    "module": "main",
-   "unit": "dol/fn_80051F38.c",
+   "unit": "dol/ahx/ahx_synth.c",
    "addr": 2147824112,
    "size": 352,
    "status": "matched",
@@ -29346,7 +29346,7 @@
   {
    "symbol": "fn_80053350",
    "module": "main",
-   "unit": "dol/fn_80051F38.c",
+   "unit": "dol/ahx/ahx_synth.c",
    "addr": 2147824464,
    "size": 352,
    "status": "matched",
@@ -29363,7 +29363,7 @@
   {
    "symbol": "fn_800534B0",
    "module": "main",
-   "unit": "dol/fn_80051F38.c",
+   "unit": "dol/ahx/ahx_synth.c",
    "addr": 2147824816,
    "size": 352,
    "status": "matched",
@@ -29380,7 +29380,7 @@
   {
    "symbol": "fn_80053610",
    "module": "main",
-   "unit": "dol/fn_80051F38.c",
+   "unit": "dol/ahx/ahx_synth.c",
    "addr": 2147825168,
    "size": 352,
    "status": "matched",
@@ -29397,7 +29397,7 @@
   {
    "symbol": "fn_80053770",
    "module": "main",
-   "unit": "dol/fn_80051F38.c",
+   "unit": "dol/ahx/ahx_synth.c",
    "addr": 2147825520,
    "size": 352,
    "status": "matched",
@@ -29414,7 +29414,7 @@
   {
    "symbol": "fn_800538D0",
    "module": "main",
-   "unit": "dol/fn_80051F38.c",
+   "unit": "dol/ahx/ahx_synth.c",
    "addr": 2147825872,
    "size": 352,
    "status": "matched",
@@ -29431,7 +29431,7 @@
   {
    "symbol": "fn_80053A30",
    "module": "main",
-   "unit": "dol/fn_80051F38.c",
+   "unit": "dol/ahx/ahx_synth.c",
    "addr": 2147826224,
    "size": 8,
    "status": "matched",
@@ -29448,7 +29448,7 @@
   {
    "symbol": "fn_80053A38",
    "module": "main",
-   "unit": "dol/fn_80051F38.c",
+   "unit": "dol/ahx/ahx_synthobj.c",
    "addr": 2147826232,
    "size": 76,
    "status": "matched",
@@ -29465,7 +29465,7 @@
   {
    "symbol": "fn_80053A84",
    "module": "main",
-   "unit": "dol/fn_80053A84.c",
+   "unit": "dol/ahx/ahx_synthobj.c",
    "addr": 2147826308,
    "size": 304,
    "status": "matched",
@@ -29482,7 +29482,7 @@
   {
    "symbol": "fn_80053BB4",
    "module": "main",
-   "unit": "dol/fn_80053BB4.c",
+   "unit": "dol/ahx/ahx_synthobj.c",
    "addr": 2147826612,
    "size": 72,
    "status": "matched",
@@ -29499,7 +29499,7 @@
   {
    "symbol": "fn_80053BFC",
    "module": "main",
-   "unit": "dol/fn_80053BB4.c",
+   "unit": "dol/ahx/ahx_synthobj.c",
    "addr": 2147826684,
    "size": 440,
    "status": "matched",
@@ -29516,7 +29516,7 @@
   {
    "symbol": "fn_80053DB4",
    "module": "main",
-   "unit": "dol/fn_80053BB4.c",
+   "unit": "dol/ahx/ahx_synthobj.c",
    "addr": 2147827124,
    "size": 236,
    "status": "matched",
@@ -29533,7 +29533,7 @@
   {
    "symbol": "fn_80053EA0",
    "module": "main",
-   "unit": "dol/fn_80053BB4.c",
+   "unit": "dol/ahx/ahx_player.c",
    "addr": 2147827360,
    "size": 8,
    "status": "matched",
@@ -29550,7 +29550,7 @@
   {
    "symbol": "fn_80053EA8",
    "module": "main",
-   "unit": "dol/fn_80053BB4.c",
+   "unit": "dol/ahx/ahx_player.c",
    "addr": 2147827368,
    "size": 8,
    "status": "matched",
@@ -29567,7 +29567,7 @@
   {
    "symbol": "fn_80053EB0",
    "module": "main",
-   "unit": "dol/fn_80053BB4.c",
+   "unit": "dol/ahx/ahx_player.c",
    "addr": 2147827376,
    "size": 136,
    "status": "matched",
@@ -29584,7 +29584,7 @@
   {
    "symbol": "fn_80053F38",
    "module": "main",
-   "unit": "dol/fn_80053F38.c",
+   "unit": "dol/ahx/ahx_player.c",
    "addr": 2147827512,
    "size": 692,
    "status": "matched",
@@ -29601,7 +29601,7 @@
   {
    "symbol": "fn_800541EC",
    "module": "main",
-   "unit": "dol/fn_800541EC.c",
+   "unit": "dol/ahx/ahx_player.c",
    "addr": 2147828204,
    "size": 56,
    "status": "matched",
@@ -29618,7 +29618,7 @@
   {
    "symbol": "fn_80054224",
    "module": "main",
-   "unit": "dol/fn_800541EC.c",
+   "unit": "dol/ahx/ahx_player.c",
    "addr": 2147828260,
    "size": 144,
    "status": "matched",
@@ -29635,7 +29635,7 @@
   {
    "symbol": "fn_800542B4",
    "module": "main",
-   "unit": "dol/fn_800541EC.c",
+   "unit": "dol/ahx/ahx_player.c",
    "addr": 2147828404,
    "size": 8,
    "status": "matched",
@@ -29652,7 +29652,7 @@
   {
    "symbol": "fn_800542BC",
    "module": "main",
-   "unit": "dol/fn_800541EC.c",
+   "unit": "dol/ahx/ahx_player.c",
    "addr": 2147828412,
    "size": 12,
    "status": "matched",
@@ -29669,7 +29669,7 @@
   {
    "symbol": "fn_800542C8",
    "module": "main",
-   "unit": "dol/fn_800541EC.c",
+   "unit": "dol/ahx/ahx_player.c",
    "addr": 2147828424,
    "size": 140,
    "status": "matched",
@@ -29686,7 +29686,7 @@
   {
    "symbol": "fn_80054354",
    "module": "main",
-   "unit": "dol/fn_800541EC.c",
+   "unit": "dol/ahx/ahx_player.c",
    "addr": 2147828564,
    "size": 604,
    "status": "matched",
@@ -29703,7 +29703,7 @@
   {
    "symbol": "fn_800545B0",
    "module": "main",
-   "unit": "dol/fn_800541EC.c",
+   "unit": "dol/ahx/ahx_player.c",
    "addr": 2147829168,
    "size": 88,
    "status": "matched",
@@ -29720,7 +29720,7 @@
   {
    "symbol": "fn_80054608",
    "module": "main",
-   "unit": "dol/fn_800541EC.c",
+   "unit": "dol/ahx/ahx_player.c",
    "addr": 2147829256,
    "size": 100,
    "status": "matched",

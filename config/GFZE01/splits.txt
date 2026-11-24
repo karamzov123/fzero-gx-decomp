@@ -145,8 +145,21 @@ dol/fn_8004ED18.c:
 dol/trk/nubevent.c:
 	.text       start:0x80088740 end:0x80088968 align:4
 
-dol/fn_800541EC.c:
-	.text       start:0x800541EC end:0x8005466C align:4
+dol/ahx/ahx_transform.c:
+	.text       start:0x80051F38 end:0x80052430 align:4
+	.rodata     start:0x80091330 end:0x80091334 align:4
+
+dol/ahx/ahx_synth.c:
+	.text       start:0x80052430 end:0x80053A38 align:4
+	.rodata     start:0x80091338 end:0x80091350 align:4
+
+dol/ahx/ahx_synthobj.c:
+	.text       start:0x80053A38 end:0x80053EA0 align:4
+	.rodata     start:0x80091350 end:0x80091354 align:4
+
+dol/ahx/ahx_player.c:
+	.text       start:0x80053EA0 end:0x8005466C align:4
+	.rodata     start:0x80091358 end:0x8009138C align:4
 
 dol/fn_800079C4.c:
 	.text       start:0x800079C4 end:0x80007A44 align:4
@@ -298,9 +311,6 @@ dol/fn_800433A4.c:
 
 dol/adx/adx_baif.c:
 	.text       start:0x8004342C end:0x80043FA4 align:4
-
-dol/fn_80053BB4.c:
-	.text       start:0x80053BB4 end:0x80053F38 align:4
 
 dol/adx/adx_fini.c:
 	.text       start:0x8004F6B0 end:0x8004F7F8 align:4
@@ -1236,9 +1246,6 @@ dol/av/avdisp_state.c:
 dol/fn_80064A30.c:
 	.text       start:0x80064A30 end:0x80064D4C align:4
 
-dol/fn_80053F38.c:
-	.text       start:0x80053F38 end:0x800541EC align:4
-
 dol/fn_8008EFE0.c:
 	.text       start:0x8008EFE0 end:0x8008F29C align:4
 
@@ -1325,9 +1332,6 @@ dol/fn_8005B264.c:
 
 dol/fn_8005B534.c:
 	.text       start:0x8005B534 end:0x8005BC20 align:4
-
-dol/fn_80053A84.c:
-	.text       start:0x80053A84 end:0x80053BB4 align:4
 
 dol/fn_8008AF40.c:
 	.text       start:0x8008AF40 end:0x8008AF58 align:4
@@ -1427,9 +1431,6 @@ dol/fn_8008ECE0.c:
 dol/fn_80063F38.c:
 	.text       start:0x80063F38 end:0x8006413C align:4
 
-dol/fn_80051F38.c:
-	.text       start:0x80051F38 end:0x80053A84 align:4
-
 dol/data/lbl_8015B920.c:
 	.bss        start:0x8015B920 end:0x8015BE40 align:8
 
@@ -1507,21 +1508,6 @@ dol/data/lbl_80090F60.c:
 
 dol/data/lbl_80091068.c:
 	.rodata     start:0x80091068 end:0x80091130 align:8
-
-dol/data/lbl_80091330.c:
-	.rodata     start:0x80091330 end:0x80091338 align:8
-
-dol/data/lbl_80091338.c:
-	.rodata     start:0x80091338 end:0x80091350 align:8
-
-dol/data/lbl_80091350.c:
-	.rodata     start:0x80091350 end:0x80091358 align:8
-
-dol/data/lbl_80091358.c:
-	.rodata     start:0x80091358 end:0x80091388 align:8
-
-dol/data/lbl_80091388.c:
-	.rodata     start:0x80091388 end:0x80091390 align:8
 
 dol/data/lbl_80091390.c:
 	.rodata     start:0x80091390 end:0x80091C48 align:16

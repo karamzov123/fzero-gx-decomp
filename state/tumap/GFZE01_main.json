@@ -7,7 +7,7 @@
     "assigned": 2173,
     "bytes": 567556,
     "assigned_bytes": 554376,
-    "tus": 242,
+    "tus": 244,
     "conflicts": 0,
     "string_anchored": 13
   },
@@ -3184,13 +3184,27 @@
       "notes": "ADXT attach and detach wrappers; 0x80051E64 owns the \"E1052501 ADXT_AttachAHX\" strings at .rodata 0x80091300."
     },
     {
-      "file": "ahx_synth.c",
+      "file": "ahx_transform.c",
       "text": [
         "80051F38",
+        "80052430"
+      ],
+      "functions": [
+        "fn_80051F38"
+      ],
+      "how": {
+        "literal-dedupe+section-order": 1
+      },
+      "lib": "ahx",
+      "notes": "The 32-point transform. It reads its own 0.0f at .rodata 0x80091330; the next TU repeats that value at 0x80091338, so the two cannot be one compile."
+    },
+    {
+      "file": "ahx_synth.c",
+      "text": [
+        "80052430",
         "80053A38"
       ],
       "functions": [
-        "fn_80051F38",
         "fn_80052430",
         "fn_80052590",
         "fn_800526F0",
@@ -3210,23 +3224,37 @@
         "fn_80053A30"
       ],
       "how": {
-        "literal-dedupe+section-order": 18
+        "literal-dedupe+section-order": 17
       },
       "lib": "ahx",
-      "notes": "Transform and 16 generated synthesis routines over .rodata 0x80091330..0x80091350, which repeats the 2^52 conversion constant of ahx_decode.c. The 8-byte 0x80053A30 has no data and stays with this run."
+      "notes": "16 generated synthesis routines over .rodata 0x80091338..0x80091350, which repeats the 2^52 conversion constant of ahx_decode.c. The 8-byte 0x80053A30 has no data and stays with this run."
     },
     {
-      "file": "ahx_core.c",
+      "file": "ahx_synthobj.c",
       "text": [
         "80053A38",
-        "8005466C"
+        "80053EA0"
       ],
       "functions": [
         "fn_80053A38",
         "fn_80053A84",
         "fn_80053BB4",
         "fn_80053BFC",
-        "fn_80053DB4",
+        "fn_80053DB4"
+      ],
+      "how": {
+        "literal-dedupe+section-order": 5
+      },
+      "lib": "ahx",
+      "notes": "Creates and frees the synthesis objects. Uses .bss 0x80187370..0x801873D8 and the 2^31 literal at .rodata 0x80091350, which repeats a value of ahx_synth.c. Its .rodata ends at 0x80091354."
+    },
+    {
+      "file": "ahx_player.c",
+      "text": [
+        "80053EA0",
+        "8005466C"
+      ],
+      "functions": [
         "fn_80053EA0",
         "fn_80053EA8",
         "fn_80053EB0",
@@ -3241,10 +3269,10 @@
         "fn_80054608"
       ],
       "how": {
-        "literal-dedupe+section-order": 17
+        "literal-dedupe+section-order": 12
       },
       "lib": "ahx",
-      "notes": "Uses .bss 0x80187370..0x80187430 and .rodata 0x80091350..0x80091390, which repeats 2^31 from ahx_synth.c and holds the \"AHX/GC Ver.1.24\" string and its pointer. 0x80054608 reads that pointer and the 0x801873D8 init count."
+      "notes": "The AHX player. Its \"AHX/GC Ver.1.24\" string starts on the 8-byte TU boundary 0x80091358, and one compile with the literal above packs it at 0x80091354. Uses .bss 0x801873D8..0x80187430. The two getters at 0x80053EA0 and 0x80053EA8 read player fields."
     },
     {
       "file": "cri_cvfs.c",

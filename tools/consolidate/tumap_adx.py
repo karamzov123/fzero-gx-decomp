@@ -40,11 +40,13 @@ RANGES = [
     ('adx_fini.c', 'adxf', 0x8004F6B0, 0x8004F7F8, 'donor-size'),
     ('adx_fcch.c', 'adxf', 0x8004F7F8, 0x8004F818, 'donor-size'),
     ('adx_fs.c',   'adxf', 0x8004F818, 0x8004FF68, 'donor-order'),
-    # AHX is absent from the donor: these four names are descriptive placeholders.
+    # AHX is absent from the donor: these six names are descriptive placeholders.
     ('ahx_decode.c', 'ahx', 0x8004FF68, 0x80051CC0, 'literal-dedupe+section-order'),
     ('ahx_adxt.c',   'ahx', 0x80051CC0, 0x80051F38, 'literal-dedupe+section-order'),
-    ('ahx_synth.c',  'ahx', 0x80051F38, 0x80053A38, 'literal-dedupe+section-order'),
-    ('ahx_core.c',   'ahx', 0x80053A38, 0x8005466C, 'literal-dedupe+section-order'),
+    ('ahx_transform.c', 'ahx', 0x80051F38, 0x80052430, 'literal-dedupe+section-order'),
+    ('ahx_synth.c',  'ahx', 0x80052430, 0x80053A38, 'literal-dedupe+section-order'),
+    ('ahx_synthobj.c', 'ahx', 0x80053A38, 0x80053EA0, 'literal-dedupe+section-order'),
+    ('ahx_player.c', 'ahx', 0x80053EA0, 0x8005466C, 'literal-dedupe+section-order'),
     ('cri_cvfs.c', 'cvfs', 0x8005466C, 0x800555C0, 'donor-size'),
     ('gcci.c',     'gcci', 0x800555C0, 0x800565F0, 'donor-size'),
     ('gcci_sub.c', 'gcci', 0x800565F0, 0x800565FC, 'donor-size'),
@@ -72,10 +74,15 @@ NOTES = {
     'ahx_decode.c': 'Bitstream and subband decoding. Uses .bss 0x80186FA8..0x80187370 and .rodata 0x800912F0..0x80091300. '
                     'Its end is inferred from the change to the ADXT attach wrappers at 0x80051CC0.',
     'ahx_adxt.c': 'ADXT attach and detach wrappers; 0x80051E64 owns the "E1052501 ADXT_AttachAHX" strings at .rodata 0x80091300.',
-    'ahx_synth.c': 'Transform and 16 generated synthesis routines over .rodata 0x80091330..0x80091350, which repeats the '
-                   '2^52 conversion constant of ahx_decode.c. The 8-byte 0x80053A30 has no data and stays with this run.',
-    'ahx_core.c': 'Uses .bss 0x80187370..0x80187430 and .rodata 0x80091350..0x80091390, which repeats 2^31 from ahx_synth.c and '
-                  'holds the "AHX/GC Ver.1.24" string and its pointer. 0x80054608 reads that pointer and the 0x801873D8 init count.',
+    'ahx_transform.c': 'The 32-point transform. It reads its own 0.0f at .rodata 0x80091330; the next TU repeats that value '
+                       'at 0x80091338, so the two cannot be one compile.',
+    'ahx_synth.c': '16 generated synthesis routines over .rodata 0x80091338..0x80091350, which repeats the 2^52 conversion '
+                   'constant of ahx_decode.c. The 8-byte 0x80053A30 has no data and stays with this run.',
+    'ahx_synthobj.c': 'Creates and frees the synthesis objects. Uses .bss 0x80187370..0x801873D8 and the 2^31 literal at '
+                      '.rodata 0x80091350, which repeats a value of ahx_synth.c. Its .rodata ends at 0x80091354.',
+    'ahx_player.c': 'The AHX player. Its "AHX/GC Ver.1.24" string starts on the 8-byte TU boundary 0x80091358, and one compile '
+                    'with the literal above packs it at 0x80091354. Uses .bss 0x801873D8..0x80187430. The two getters at '
+                    '0x80053EA0 and 0x80053EA8 read player fields.',
     'cri_cvfs.c': 'GX sizes from 0x8005466C equal GQNE5D cri_cvfs.o in order, without cvFsGetFileSize (0x4A4), which GX does '
                   'not link. .bss 0x80187430 is first used at 0x8005466C.',
 }
