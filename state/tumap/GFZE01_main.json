@@ -7,7 +7,7 @@
     "assigned": 2173,
     "bytes": 567556,
     "assigned_bytes": 554376,
-    "tus": 241,
+    "tus": 242,
     "conflicts": 0,
     "string_anchored": 13
   },
@@ -107,17 +107,31 @@
       "notes": "GFZE01 .sdata 0x801A6400 gives the mmu.c filename. The page-table setup and update paths call the lookup at 0x800077E0, slot allocation at 0x80007730, segment-register read at 0x80007654 and PTE/TLB helpers at 0x80007664 and 0x80007700. Both lookup and allocation use the SDR1 helper at 0x800079A0 and the primary/secondary hash helpers at 0x800079C4 and 0x80007A00. The next routine, 0x80007A44, instead initializes a color value at 0x801A6408 and calls rendering routines 0x800744F8 and 0x80008204. The end of mmu.c is inferred from this subsystem break; the next TU is not named here."
     },
     {
-      "file": "render_util.c",
+      "file": "render_clear.c",
       "text": [
         "80007A44",
-        "80008E34"
+        "80007CDC"
       ],
       "functions": [
         "fn_80007A44",
         "fn_80007AB4",
         "fn_80007B68",
         "fn_80007C2C",
-        "fn_80007C60",
+        "fn_80007C60"
+      ],
+      "how": {
+        "data-evidence": 5
+      },
+      "lib": "game",
+      "notes": "0x80007A44..0x80007CDC: no donor: these five functions share the clear color at .sdata 0x801A6408 and the flag at .sbss 0x801A6728. Their three .sdata2 color initializers end at 0x801A6F0C and the next TU starts on the 8-byte boundary 0x801A6F10; one compile packs the next literal at 0x801A6F0C. The file name is a placeholder."
+    },
+    {
+      "file": "render_util.c",
+      "text": [
+        "80007CDC",
+        "80008E34"
+      ],
+      "functions": [
         "fn_80007CDC",
         "fn_80007D58",
         "fn_80007F70",
@@ -133,10 +147,10 @@
         "fn_80008E30"
       ],
       "how": {
-        "data-evidence": 18
+        "data-evidence": 13
       },
       "lib": "game",
-      "notes": "0x80007A44..0x80008E34: no donor: unnamed .sdata2 literals are per TU, and 0x801A6F14 is shared by 0x80007F70, 0x80008204 and 0x800084E8, 0x801A6F38 by 0x80008204 and 0x800084E8, 0x801A6F30 by 0x800084E8 and 0x80008C20. Only 0x80007A44, 0x80007AB4 and 0x80007B68 call 0x80008204, only 0x800081C8 calls 0x80007F70, only 0x800084E8 calls 0x800087F4 and 0x80008A4C, and 0x80007A44..0x80007CDC share the color at .sdata 0x801A6408. The band has one .sdata2 run 0x801A6F00..0x801A6F40. 0x80008DB4 and 0x80008E30 have no data evidence and are placed by position before heap.c. The file name is a placeholder."
+      "notes": "0x80007CDC..0x80008E34: no donor: unnamed .sdata2 literals are per TU, and 0x801A6F14 is shared by 0x80007F70, 0x80008204 and 0x800084E8, 0x801A6F38 by 0x80008204 and 0x800084E8, 0x801A6F30 by 0x800084E8 and 0x80008C20. Only 0x800081C8 calls 0x80007F70 and only 0x800084E8 calls 0x800087F4 and 0x80008A4C. 0x80008E30 is empty in USA, absent in Japan and a real function in PAL that reads this TU's literal 0x801A6F20. 0x80007CDC, 0x80007D58, 0x80008BA8, 0x80008BEC and 0x80008DB4 have no data evidence and are placed by position. The file name is a placeholder."
     },
     {
       "file": "heap.c",

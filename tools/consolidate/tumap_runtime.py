@@ -35,14 +35,18 @@ ROWS = [  # file, lib, lo, hi, ordered sizes, donors
      [40, 40, 68, 152, 40, 40, 180, 64, 964, 180, 136, 120, 532, 632, 516, 40, 720, 16, 8],
      'no donor: a modified SDK OSAlloc with its OSCheckHeap failure strings, sharing the heap state at .sbss '
      '0x801A6730..0x801A6748 and .sdata 0x801A6410/0x801A6414. It ends at PPCArch.c. The sizes are this build\'s'),
-    ('render_util.c', 'game', 0x80007A44, 0x80008E34,
-     [112, 180, 196, 52, 124, 124, 536, 600, 60, 740, 780, 600, 348, 68, 52, 404, 124, 4],
+    ('render_clear.c', 'game', 0x80007A44, 0x80007CDC, [112, 180, 196, 52, 124],
+     'no donor: these five functions share the clear color at .sdata 0x801A6408 and the flag at .sbss 0x801A6728. '
+     'Their three .sdata2 color initializers end at 0x801A6F0C and the next TU starts on the 8-byte boundary '
+     '0x801A6F10; one compile packs the next literal at 0x801A6F0C. The file name is a placeholder'),
+    ('render_util.c', 'game', 0x80007CDC, 0x80008E34,
+     [124, 536, 600, 60, 740, 780, 600, 348, 68, 52, 404, 124, 4],
      'no donor: unnamed .sdata2 literals are per TU, and 0x801A6F14 is shared by 0x80007F70, 0x80008204 and '
      '0x800084E8, 0x801A6F38 by 0x80008204 and 0x800084E8, 0x801A6F30 by 0x800084E8 and 0x80008C20. Only '
-     '0x80007A44, 0x80007AB4 and 0x80007B68 call 0x80008204, only 0x800081C8 calls 0x80007F70, only 0x800084E8 '
-     'calls 0x800087F4 and 0x80008A4C, and 0x80007A44..0x80007CDC share the color at .sdata 0x801A6408. The band '
-     'has one .sdata2 run 0x801A6F00..0x801A6F40. 0x80008DB4 and 0x80008E30 have no data evidence and are placed '
-     'by position before heap.c. The file name is a placeholder'),
+     '0x800081C8 calls 0x80007F70 and only 0x800084E8 calls 0x800087F4 and 0x80008A4C. 0x80008E30 is empty in USA, '
+     'absent in Japan and a real function in PAL that reads this TU\'s literal 0x801A6F20. 0x80007CDC, 0x80007D58, '
+     '0x80008BA8, 0x80008BEC and 0x80008DB4 have no data evidence and are placed by position. The file name is a '
+     'placeholder'),
 ]
 
 

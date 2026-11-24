@@ -155,3 +155,12 @@ Recover the constant layout once per pool. For each consumer, prove the base reg
 - All five mapped sasnd TUs are now one unit each and need no literal remap. `sasnd_core.c` owns its strings, the fade and wave tables, `.sdata2 0x801A7328..0x801A7350`, `.bss 0x801932A8..0x80199670` and `.sbss 0x801A6C78..0x801A6C88`. `tools/consolidate/tu_install.py` installs a candidate when `tu_try.py` cannot express a unit's pool selectors.
 - One layout primer remains, in `sasnd_core.c`. Uninitialized objects are emitted in first-access order, which does not produce retail's `.bss` order. `= {0}` gives the retail order but moves the objects to `.data`, with or without `explicit_zero_data off`. Find the retail access that sets this order before removing the primer.
 - PAL's sound data differs: the bank level offset is at 0x60 and `SndRegion` is four bytes longer, both recorded in the header. `fn_80060724`, `fn_80060950` and `fn_80060BDC` match PAL under that layout. `fn_80060C54` has further code differences, so the track and voice objects are USA and Japan only for now.
+
+### Render TUs before `heap.c` (2026-11-23)
+
+`0x80007A44..0x80008E34` is two TUs: `src/dol/render/render_clear.c` (5 functions) and `render_util.c` (12 functions plus the USA stub `fn_80008E30`, which stays its own USA-only unit). The file names are placeholders. Both build under GC/2.5 and own their `.sdata2`; `render_clear.c` also owns `.sbss 0x801A6728`. Its color at `.sdata 0x801A6408` is still in the shared data unit `lbl_801A63C0.c`.
+
+- A TU's `.sdata2` starts on an 8-byte boundary and the object before it does not include the padding. The empty word at `0x801A6F0C` separates the two TUs: one compile packs the next literal there.
+- Split ends must stop at the last object. A region symbol without a size takes the distance to the next symbol, so shortening a USA object also needs `size:` on the Japan and PAL symbol.
+- `fn_80008E30` is empty in USA, absent in Japan and a real function in PAL that reads this TU's literal `0x801A6F20`. `render_util.c` therefore builds for USA and Japan, and PAL links it from retail assembly.
+- `fn_80008C20` keeps one marked `opt_propagation off` device. `fn_80007B68` spells out the steps of `fn_80007AB4`, because calling it swaps two stack copies.

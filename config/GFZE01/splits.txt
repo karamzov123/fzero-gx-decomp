@@ -151,8 +151,10 @@ dol/fn_800541EC.c:
 dol/fn_800079C4.c:
 	.text       start:0x800079C4 end:0x80007A44 align:4
 
-dol/fn_80007A44.c:
-	.text       start:0x80007A44 end:0x80007C60 align:4
+dol/render/render_clear.c:
+	.text       start:0x80007A44 end:0x80007CDC align:4
+	.sbss       start:0x801A6728 end:0x801A672C align:4
+	.sdata2     start:0x801A6F00 end:0x801A6F0C align:8
 
 dol/trk/dolphin_trk.c:
 	.text       start:0x8008CFDC end:0x8008D1CC align:4
@@ -241,8 +243,8 @@ dol/adx/adx_sfa.c:
 dol/fn_800517C0.c:
 	.text       start:0x800517C0 end:0x8005190C align:4
 
-dol/fn_80008DB4.c:
-	.text       start:0x80008DB4 end:0x80008E34 align:4
+dol/fn_80008E30.c:
+	.text       start:0x80008E30 end:0x80008E34 align:4
 
 dol/fn_80008E34.c:
 	.text       start:0x80008E34 end:0x80008FB0 align:4
@@ -265,8 +267,9 @@ dol/lg/lg.c:
 dol/fn_80051E64.c:
 	.text       start:0x80051E64 end:0x80051F38 align:4
 
-dol/fn_80007C60.c:
-	.text       start:0x80007C60 end:0x80007D58 align:4
+dol/render/render_util.c:
+	.text       start:0x80007CDC end:0x80008E30 align:4
+	.sdata2     start:0x801A6F10 end:0x801A6F3C align:8
 
 dol/os/OSAlarm.c:
 	.text       start:0x8000ABE8 end:0x8000B2C4 align:4
@@ -966,9 +969,6 @@ dol/gx/GXLight.c:
 dol/axfx/reverb_hi.c:
 	.text       start:0x8002420C end:0x800244C8 align:4
 
-dol/fn_800087F4.c:
-	.text       start:0x800087F4 end:0x80008C20 align:4
-
 dol/fn_8007FC34.c:
 	.text       start:0x8007FC34 end:0x8007FE70 align:4
 
@@ -1227,14 +1227,8 @@ dol/fn_80009468.c:
 dol/fn_8008F29C.c:
 	.text       start:0x8008F29C end:0x8008F44C align:4
 
-dol/fn_80008C20.c:
-	.text       start:0x80008C20 end:0x80008DB4 align:4
-
 dol/fn_800805C0.c:
 	.text       start:0x800805C0 end:0x8008067C align:4
-
-dol/fn_80007D58.c:
-	.text       start:0x80007D58 end:0x800081C8 align:4
 
 dol/av/avdisp_state.c:
 	.text       start:0x800725DC end:0x800747D0 align:4
@@ -1337,9 +1331,6 @@ dol/fn_80053A84.c:
 
 dol/fn_8008AF40.c:
 	.text       start:0x8008AF40 end:0x8008AF58 align:4
-
-dol/fn_800081C8.c:
-	.text       start:0x800081C8 end:0x800087F4 align:4
 
 dol/sasnd/sasnd_track.c:
 	.text       start:0x8006060C end:0x8006331C align:4
@@ -3041,30 +3032,6 @@ dol/data/lbl_801A6EE8.c:
 dol/data/lbl_801A6EF8.c:
 	.sdata2     start:0x801A6EF8 end:0x801A6F00 align:8
 
-dol/data/lbl_801A6F00.c:
-	.sdata2     start:0x801A6F00 end:0x801A6F08 align:8
-
-dol/data/lbl_801A6F08.c:
-	.sdata2     start:0x801A6F08 end:0x801A6F10 align:8
-
-dol/data/lbl_801A6F10.c:
-	.sdata2     start:0x801A6F10 end:0x801A6F18 align:8
-
-dol/data/lbl_801A6F18.c:
-	.sdata2     start:0x801A6F18 end:0x801A6F20 align:8
-
-dol/data/lbl_801A6F20.c:
-	.sdata2     start:0x801A6F20 end:0x801A6F28 align:8
-
-dol/data/lbl_801A6F28.c:
-	.sdata2     start:0x801A6F28 end:0x801A6F30 align:8
-
-dol/data/lbl_801A6F30.c:
-	.sdata2     start:0x801A6F30 end:0x801A6F38 align:8
-
-dol/data/lbl_801A6F38.c:
-	.sdata2     start:0x801A6F38 end:0x801A6F40 align:8
-
 dol/data/lbl_801A6F40.c:
 	.sdata2     start:0x801A6F40 end:0x801A6F48 align:8
 
@@ -3737,9 +3704,6 @@ dol/data/lbl_801A6718.c:
 
 dol/data/lbl_801A6720.c:
 	.sbss       start:0x801A6720 end:0x801A6728 align:32
-
-dol/data/lbl_801A6728.c:
-	.sbss       start:0x801A6728 end:0x801A6730 align:8
 
 dol/data/lbl_801A6730.c:
 	.sbss       start:0x801A6730 end:0x801A6738 align:16

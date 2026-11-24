@@ -13961,18 +13961,6 @@
   },
   {
     "module": "main",
-    "source": "dol/data/lbl_801A6728.c",
-    "symbols": [
-      "lbl_801A6728"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
     "source": "dol/data/lbl_801A6730.c",
     "symbols": [
       "lbl_801A6730",
@@ -16216,105 +16204,6 @@
     "source": "dol/data/lbl_801A6EF8.c",
     "symbols": [
       "lbl_801A6EF8"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_801A6F00.c",
-    "symbols": [
-      "lbl_801A6F00",
-      "lbl_801A6F04"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_801A6F08.c",
-    "symbols": [
-      "lbl_801A6F08"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_801A6F10.c",
-    "symbols": [
-      "lbl_801A6F10",
-      "lbl_801A6F14"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_801A6F18.c",
-    "symbols": [
-      "lbl_801A6F18"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_801A6F20.c",
-    "symbols": [
-      "lbl_801A6F20"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_801A6F28.c",
-    "symbols": [
-      "lbl_801A6F28"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_801A6F30.c",
-    "symbols": [
-      "lbl_801A6F30",
-      "lbl_801A6F34"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_801A6F38.c",
-    "symbols": [
-      "lbl_801A6F38"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -19762,97 +19651,46 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_80007A44.c",
+    "source": "dol/render/render_clear.c",
     "symbols": [
       "fn_80007A44",
       "fn_80007AB4",
       "fn_80007B68",
-      "fn_80007C2C"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80007C60.c",
-    "symbols": [
-      "fn_80007C60",
-      "fn_80007CDC"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80007D58.c",
-    "symbols": [
-      "fn_80007D58",
-      "fn_80007F70"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "collapsed": true,
-    "pool": {
-      "@89": "lbl_801A6F20",
-      "@91": "lbl_801A6F28"
-    }
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_800081C8.c",
-    "symbols": [
-      "fn_800081C8",
-      "fn_80008204",
-      "fn_800084E8"
+      "fn_80007C2C",
+      "fn_80007C60"
     ],
     "status": "matching",
     "mw_version": "GC/2.5",
-    "collapsed": true,
-    "pool": {
-      "@31": "lbl_801A6F14",
-      "@33": "lbl_801A6F38",
-      "@32": "lbl_801A6F34",
-      "@104": "lbl_801A6F30"
-    },
-    "matching_for": ["GFZE01", "GFZJ01"]
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_800087F4.c",
-    "symbols": [
-      "fn_800087F4",
-      "fn_80008A4C",
-      "fn_80008BA8",
-      "fn_80008BEC"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.3.2",
     "extra_cflags": [],
     "collapsed": true
   },
   {
     "module": "main",
-    "source": "dol/fn_80008C20.c",
+    "source": "dol/render/render_util.c",
     "symbols": [
-      "fn_80008C20"
+      "fn_80007CDC",
+      "fn_80007D58",
+      "fn_80007F70",
+      "fn_800081C8",
+      "fn_80008204",
+      "fn_800084E8",
+      "fn_800087F4",
+      "fn_80008A4C",
+      "fn_80008BA8",
+      "fn_80008BEC",
+      "fn_80008C20",
+      "fn_80008DB4"
     ],
     "status": "matching",
-    "mw_version": "GC/1.3.2",
+    "matching_for": ["GFZE01", "GFZJ01"],
+    "mw_version": "GC/2.5",
     "extra_cflags": [],
-    "pool": {
-      "@40": "lbl_801A6F30"
-    }
+    "collapsed": true
   },
   {
     "module": "main",
-    "source": "dol/fn_80008DB4.c",
+    "source": "dol/fn_80008E30.c",
     "symbols": [
-      "fn_80008DB4",
       "fn_80008E30"
     ],
     "status": "matching",
