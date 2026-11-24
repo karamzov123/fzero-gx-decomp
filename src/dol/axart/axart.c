@@ -1,300 +1,225 @@
-#include "types.h"
+#include "dolphin/axart.h"
 
-typedef struct AXARTNode AXARTNode;
-struct AXARTNode {
-    AXARTNode *next;
-    AXARTNode *prev;
-    void *data;
-};
+extern BOOL OSDisableInterrupts(void);
+extern BOOL OSRestoreInterrupts(BOOL level);
 
-extern AXARTNode *lbl_801A6B90;
+/* AX voice and MIX channel controls (ax.c, mix.c). */
+extern void fn_800230A4(AXVPB *voice, u32 type);
+extern void fn_800231C4(AXVPB *voice);
+extern void fn_80023228(AXVPB *voice, u16 itdL, u16 itdR);
+extern void fn_800234D0(AXVPB *voice, f32 ratio);
+extern void fn_80025EF4(AXVPB *voice, u32 mode, s32 input, s32 auxA, s32 auxB, u32 pan, u32 span, u32 fader);
+extern void fn_80026D70(AXVPB *voice);
 
-/* --- dol/fn_80026FE0.c --- */
-typedef struct SoundChan {
-    u8 pad_00[0x1C];
-    u32 unk_1C;
-    u8 pad_20[0x124];
-    u16 unk_144;
-    u8 pad_146[4];
-    u16 unk_14A[18];
-    u8 pad_16E[0x2E];
-    u16 unk_19C;
-    s16 unk_19E;
-} SoundChan;
+static AXART_SOUND *__AXARTSoundList;
 
-typedef struct SoundEntry {
-    SoundChan *chan;
-    u32 unk_04;
-    s32 unk_08;
-    s32 unk_0C;
-    s32 unk_10;
-    u8 pad_14[8];
-    s32 unk_1C;
-    s32 unk_20;
-    s32 unk_24;
-    s32 unk_28;
-    s32 unk_2C;
-    s32 unk_30;
-    s32 unk_34;
-    u16 unk_38;
-    u16 unk_3A;
-    u16 unk_3C;
-    u16 unk_3E;
-    u16 unk_40;
-    u16 unk_42;
-    u16 unk_44;
-    u16 unk_46;
-    u16 unk_48;
-    u16 unk_4A;
-    u16 unk_4C;
-    u16 unk_4E;
-    u16 unk_50;
-    u16 unk_52;
-    u16 unk_54;
-    u16 unk_56;
-    u16 unk_58;
-    u16 unk_5A;
-    u16 unk_5C;
-    u16 unk_5E;
-} SoundEntry;
+void AXARTInit(void) {
+    __AXARTSoundList = 0;
+    AXARTSet3DDistanceScale(40.0f);
+    AXARTSet3DDopplerScale(20.0f);
+}
 
-extern SoundEntry lbl_80176160[64];
-extern u8 lbl_80128990[3008];
-extern s32 lbl_801A6B80;
-extern s32 lbl_801A6B84;
-extern s32 lbl_801A6B88;
+void AXARTQuit(void) {
+    BOOL old;
+    AXART_SOUND *sound;
 
-void AISetStreamVolLeft(u8 vol);
-void AISetStreamVolRight(u8 vol);
-
-static inline s32 get_curve(u8 *base, s32 idx) {
-    s32 r;
-    if (idx <= -904) {
-        r = 0;
-    } else if (idx >= 60) {
-        r = 0xFF64;
-    } else {
-        r = *(u16 *)(base + (idx << 1) + 0x710);
+    old = OSDisableInterrupts();
+    for (sound = __AXARTSoundList; sound != 0; sound = sound->next) {
+        fn_80026D70(sound->axvpb);
     }
-    return r;
+    __AXARTSoundList = 0;
+    OSRestoreInterrupts(old);
 }
 
-void fn_80026FE0(void);
+void AXARTServiceSounds(void) {
+    AXART_SOUND *sound;
 
-/* --- dol/fn_8002805C.c --- */
-extern f32 lbl_801A7000;
-extern f32 lbl_801A7004;
-extern u32 fn_80028B2C(f32);
-extern u32 fn_80028B34(f32);
-void fn_8002805C(void) {
-    lbl_801A6B90 = 0;
-    fn_80028B34(lbl_801A7000);
-    fn_80028B2C(lbl_801A7004);
-}
-
-
-
-extern u32 OSDisableInterrupts(void);
-extern void fn_80026D70(void *data);
-extern void OSRestoreInterrupts(u32 level);
-
-void fn_80028090(void) {
-    u32 level;
-    AXARTNode *node;
-
-    level = OSDisableInterrupts();
-    node = lbl_801A6B90;
-    while (node != 0) {
-        fn_80026D70(node->data);
-        node = node->next;
-    }
-    lbl_801A6B90 = 0;
-    OSRestoreInterrupts(level);
-}
-
-extern u32 fn_800285DC(u32);
-void fn_800280F0(void) {
-    u32 v0;
-    v0 = (u32)lbl_801A6B90;
-    while (v0 != 0) {
-    fn_800285DC(v0);
-    v0 = *(u32 *)(v0);
+    for (sound = __AXARTSoundList; sound != 0; sound = sound->next) {
+        AXARTServiceSound(sound);
     }
 }
 
-typedef struct Fn80028130Data_u1 Fn80028130Data_u1;
-
-struct Fn80028130Data_u1 {
-    u8 pad0[8];
-    u32 value0;
-    f32 value1;
-    u32 value2;
-};
-
-extern f64 lbl_801A7008;
-
-void fn_80028130(Fn80028130Data_u1 *data, u32 value0, u32 value1) {
-    data->value2 = 0;
-    data->value0 = value0;
-    data->value1 = value1;
+void AXARTInitSound(AXART_SOUND *sound, AXVPB *voice, u32 sampleRate) {
+    sound->articulators = 0;
+    sound->axvpb = voice;
+    sound->sampleRate = sampleRate;
 }
 
-typedef struct Fn80028164Arg0 Fn80028164Arg0;
-typedef struct Fn80028164Node Fn80028164Node;
+void AXARTAddSound(AXART_SOUND *sound) {
+    AXART_ART *articulator;
+    AXVPB *axvpb;
+    s32 cents;
+    s32 atten;
+    s32 auxA;
+    s32 auxB;
+    f32 pitch;
+    u8 pan;
+    u8 span;
+    u8 src;
+    u16 itdL;
+    u16 itdR;
+    BOOL old;
 
-struct Fn80028164Arg0 {
-    u8 pad0[8];
-    void *data;
-    f32 value;
-    Fn80028164Node *nodes;
-};
+    fn_800231C4(sound->axvpb);
+    cents = atten = auxA = auxB = 0;
+    pitch = sound->sampleRate / 32000.0f;
+    pan = 0x40;
+    span = 0x7F;
+    src = 1;
+    itdL = itdR = 0;
+    articulator = sound->articulators;
 
-struct Fn80028164Node {
-    Fn80028164Node *next;
-    u32 type;
-    union {
-        u32 word;
-        u16 half[2];
-        u8 byte[4];
-    } value8;
-    u8 padc[4];
-    u32 value10;
-    u8 pad14[8];
-    u8 value1c;
-    u8 value1d;
-    u8 value1e;
-    u8 pad1f[1];
-    u16 value20;
-    u16 value22;
-    f32 value24;
-    u32 value28;
-};
-
-extern f32 lbl_801A7010;
-extern f64 lbl_801A7018;
-extern u8 jumptable_80129550;
-extern u32 fn_800231C4(void *);
-extern void fn_80028B3C(Fn80028164Node *);
-extern f32 fn_800288C4(s32);
-extern void fn_800230A4(void *, u32);
-extern void fn_800234D0(void *, f32);
-extern void fn_80023228(void *, u16, u16);
-extern void fn_80025EF4(void *, u32, s32, s32, s32, u32, u32, u32);
-#pragma opt_propagation off
-void fn_80028164(Fn80028164Arg0 *arg0) {
-    f32 value;
-    f32 total;
-    Fn80028164Node *node;
-    s32 green;
-    s32 blue;
-    s32 alpha;
-    s32 color;
-    u8 red;
-    u8 default_alpha;
-    u8 default_blue;
-    u16 height;
-    u16 width;
-    u32 level;
-    s32 random_value;
-    void *data;
-
-    fn_800231C4(arg0->data);
-    value = arg0->value;
-    total = value / lbl_801A7010;
-    node = arg0->nodes;
-    color = 0;
-    alpha = 0;
-    blue = 0;
-    green = 0;
-    red = 64;
-    default_alpha = 127;
-    default_blue = 1;
-    width = 0;
-    height = 0;
-    while (node != 0) {
-        switch (node->type) {
-        case 0:
+    while (articulator != 0) {
+        switch (articulator->type) {
+        case AXART_TYPE_3D:
+            AXART3DSound((AXART_3D *)articulator);
+            pitch += ((AXART_3D *)articulator)->pitch;
+            pan = ((AXART_3D *)articulator)->pan;
+            span = ((AXART_3D *)articulator)->span;
+            atten += ((AXART_3D *)articulator)->attenuation;
+            itdL = ((AXART_3D *)articulator)->itdL;
+            itdR = ((AXART_3D *)articulator)->itdR;
+            src = ((AXART_3D *)articulator)->src;
             break;
-        case 1:
-            fn_80028B3C(node);
-            total += node->value24;
-            red = node->value1c;
-            default_alpha = node->value1d;
-            blue += node->value28;
-            height = node->value20;
-            width = node->value22;
-            default_blue = node->value1e;
+        case AXART_TYPE_PANNING:
+            pan = ((AXART_PANNING *)articulator)->pan;
+            span = ((AXART_PANNING *)articulator)->span;
             break;
-        case 2:
-            red = node->value8.byte[0];
-            default_alpha = node->value8.byte[1];
+        case AXART_TYPE_ITD:
+            itdL = ((AXART_ITD *)articulator)->itdL;
+            itdR = ((AXART_ITD *)articulator)->itdR;
             break;
-        case 3:
-            height = node->value8.half[0];
-            width = *(u16 *)((u8 *)node + 0xa);
+        case AXART_TYPE_SRC:
+            src = ((AXART_SRC *)articulator)->src;
             break;
-        case 4:
-            default_blue = node->value8.byte[0];
+        case AXART_TYPE_PITCH:
+            cents += ((AXART_PITCH *)articulator)->cents;
             break;
-        case 5:
-            green += node->value8.word;
+        case AXART_TYPE_PITCH_ENV:
+            cents += ((AXART_PITCH_ENV *)articulator)->cents;
             break;
-        case 6:
-            green += node->value10;
+        case AXART_TYPE_PITCH_MOD:
+            cents += (s32)(((AXART_PITCH_MOD *)articulator)->cents * ((AXART_PITCH_MOD *)articulator)->lfo.output);
             break;
-        case 7:
-            random_value = ((s32)node->value28 * node->value24);
-            green += random_value;
+        case AXART_TYPE_VOLUME:
+            atten += ((AXART_VOLUME *)articulator)->attenuation;
             break;
-        case 8:
-            blue += node->value8.word;
+        case AXART_TYPE_AUX_A_VOLUME:
+            auxA += ((AXART_AUXA_VOLUME *)articulator)->attenuation;
             break;
-        case 9:
-            alpha += node->value8.word;
+        case AXART_TYPE_AUX_B_VOLUME:
+            auxB += ((AXART_AUXB_VOLUME *)articulator)->attenuation;
             break;
-        case 10:
-            color += node->value8.word;
+        case AXART_TYPE_VOLUME_ENV:
+            atten += ((AXART_VOLUME_ENV *)articulator)->attenuation;
             break;
-        case 11:
-            blue += node->value10;
+        case AXART_TYPE_AUX_A_VOLUME_ENV:
+            auxA += ((AXART_AUXA_VOLUME_ENV *)articulator)->attenuation;
             break;
-        case 12:
-            alpha += node->value10;
+        case AXART_TYPE_AUX_B_VOLUME_ENV:
+            auxB += ((AXART_AUXB_VOLUME_ENV *)articulator)->attenuation;
             break;
-        case 13:
-            color += node->value10;
+        case AXART_TYPE_VOLUME_MOD:
+            atten += (s32)(((AXART_VOLUME_MOD *)articulator)->attenuation * ((AXART_VOLUME_MOD *)articulator)->lfo.output);
             break;
-        case 14:
-            random_value = ((s32)node->value28 * node->value24);
-            blue += random_value;
+        case AXART_TYPE_AUX_A_VOLUME_MOD:
+            auxA += (s32)(((AXART_AUXA_VOLUME_MOD *)articulator)->attenuation * ((AXART_AUXA_VOLUME_MOD *)articulator)->lfo.output);
             break;
-        case 15:
-            random_value = ((s32)node->value28 * node->value24);
-            alpha += random_value;
-            break;
-        case 16:
-            random_value = ((s32)node->value28 * node->value24);
-            color += random_value;
+        case AXART_TYPE_AUX_B_VOLUME_MOD:
+            auxB += (s32)(((AXART_AUXB_VOLUME_MOD *)articulator)->attenuation * ((AXART_AUXB_VOLUME_MOD *)articulator)->lfo.output);
             break;
         }
-        node = node->next;
+        articulator = articulator->next;
     }
-    total *= fn_800288C4(green >> 16);
-    data = arg0->data;
-    fn_800230A4(data, default_blue);
-    fn_800234D0(data, total);
-    fn_80023228(data, height, width);
-    fn_80025EF4(arg0->data, 0, blue >> 16, alpha, color, red, default_alpha, 0);
-    level = OSDisableInterrupts();
-    if (lbl_801A6B90 != 0) {
-        lbl_801A6B90->prev = (AXARTNode *)arg0;
-        *((u32 *)arg0 + 0) = (u32)lbl_801A6B90;
-    } else {
-        *((u32 *)arg0 + 0) = 0;
-    }
-    *((u32 *)arg0 + 1) = 0;
-    lbl_801A6B90 = (AXARTNode *)arg0;
-    OSRestoreInterrupts(level);
-}
-#pragma opt_propagation reset
 
+    pitch *= AXARTCents(cents >> 16);
+    axvpb = sound->axvpb;
+    fn_800230A4(axvpb, src);
+    fn_800234D0(axvpb, pitch);
+    fn_80023228(axvpb, itdL, itdR);
+    fn_80025EF4(sound->axvpb, 0, atten >> 16, auxA, auxB, pan, span, 0);
+
+    old = OSDisableInterrupts();
+    if (__AXARTSoundList != 0) {
+        __AXARTSoundList->prev = sound;
+        sound->next = __AXARTSoundList;
+    } else {
+        sound->next = 0;
+    }
+    sound->prev = 0;
+    __AXARTSoundList = sound;
+    OSRestoreInterrupts(old);
+}
+
+void AXARTRemoveSound(AXART_SOUND *sound) {
+    BOOL old;
+
+    old = OSDisableInterrupts();
+    if (sound == __AXARTSoundList) {
+        __AXARTSoundList = sound->next;
+        if (__AXARTSoundList != 0) {
+            __AXARTSoundList->prev = 0;
+        }
+    } else {
+        AXART_SOUND *next = sound->next;
+        AXART_SOUND *prev = sound->prev;
+
+        prev->next = next;
+        if (next != 0) {
+            next->prev = prev;
+        }
+    }
+    OSRestoreInterrupts(old);
+    fn_80026D70(sound->axvpb);
+}
+
+void AXARTInitLfo(AXART_LFO *lfo, f32 *samples, u32 length, f32 delta) {
+    lfo->lfo = samples;
+    lfo->length = length;
+    lfo->delta = delta;
+    lfo->sampleIndex = 0;
+    lfo->counter = lfo->sample1 = lfo->sample = lfo->output = 0.0f;
+}
+
+void AXARTInitArtPanning(AXART_PANNING *articulator) {
+    articulator->art.type = AXART_TYPE_PANNING;
+    articulator->pan = 64;
+    articulator->span = 127;
+}
+
+void AXARTInitArtPitch(AXART_PITCH *articulator) {
+    articulator->art.type = AXART_TYPE_PITCH;
+    articulator->cents = 0;
+}
+
+void AXARTInitArtPitchMod(AXART_PITCH_MOD *articulator) {
+    articulator->art.type = AXART_TYPE_PITCH_MOD;
+    articulator->cents = 0;
+    AXARTInitLfo(&articulator->lfo, AXARTSine, AXART_SINE_CNT, 0.0f);
+}
+
+void AXARTInitArtVolume(AXART_VOLUME *articulator) {
+    articulator->art.type = AXART_TYPE_VOLUME;
+    articulator->attenuation = 0;
+}
+
+void AXARTInitArtAuxAVolume(AXART_AUXA_VOLUME *articulator) {
+    articulator->art.type = AXART_TYPE_AUX_A_VOLUME;
+    articulator->attenuation = 0;
+}
+
+void AXARTInitArtAuxBVolume(AXART_AUXB_VOLUME *articulator) {
+    articulator->art.type = AXART_TYPE_AUX_B_VOLUME;
+    articulator->attenuation = 0;
+}
+
+void AXARTInitArtVolumeEnv(AXART_VOLUME_ENV *articulator) {
+    articulator->art.type = AXART_TYPE_VOLUME_ENV;
+    articulator->delta = articulator->target = articulator->attenuation = 0;
+}
+
+void AXARTInitArtVolumeMod(AXART_VOLUME_MOD *articulator) {
+    articulator->art.type = AXART_TYPE_VOLUME_MOD;
+    articulator->attenuation = 0;
+    AXARTInitLfo(&articulator->lfo, AXARTSine, AXART_SINE_CNT, 0.0f);
+}

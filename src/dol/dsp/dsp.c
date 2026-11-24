@@ -15,7 +15,7 @@ struct fn_800289C0_Arg0 {
     s32 unk_10;
 };
 
-void fn_800289C0(struct fn_800289C0_Arg0 *arg0) {
+void AXARTPitchEnv(struct fn_800289C0_Arg0 *arg0) {
     if (arg0->unk_10 == arg0->unk_C) {
         return;
     }
@@ -38,7 +38,7 @@ struct fn_80028A1C_Arg0 {
     s32 unk_10;
 };
 
-void fn_80028A1C(struct fn_80028A1C_Arg0 *arg0) {
+void AXARTVolumeEnv(struct fn_80028A1C_Arg0 *arg0) {
     if (arg0->unk_10 == arg0->unk_c) {
         return;
     }
@@ -68,7 +68,7 @@ struct fn_80028A78_Arg0 {
 extern f32 lbl_801A7040;
 extern u32 __cvt_fp2unsigned(f32);
 
-void fn_80028A78(struct fn_80028A78_Arg0 *arg0) {
+void AXARTLfo(struct fn_80028A78_Arg0 *arg0) {
     f32 difference;
     f32 value;
     u32 index;
@@ -89,13 +89,13 @@ void fn_80028A78(struct fn_80028A78_Arg0 *arg0) {
 
 extern f32 lbl_801A6B98;
 
-void fn_80028B2C(f32 arg0) {
+void AXARTSet3DDopplerScale(f32 arg0) {
     lbl_801A6B98 = arg0;
 }
 
 extern f32 lbl_801A6B9C;
 
-void fn_80028B34(f32 arg0) {
+void AXARTSet3DDistanceScale(f32 arg0) {
     lbl_801A6B9C = arg0;
 }
 
@@ -123,7 +123,7 @@ extern const f32 lbl_801A704C;
 extern const f32 lbl_801A7054;
 extern u32 fn_80025EEC(void);
 
-void fn_80028B3C(struct fn_80028B3C_Arg0 *arg0) {
+void AXART3DSound(struct fn_80028B3C_Arg0 *arg0) {
     u8 *base;
     u32 idx8;
     u32 idxC;

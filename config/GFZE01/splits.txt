@@ -302,9 +302,10 @@ dol/ax/AXAlloc.c:
 dol/ax/AXAux.c:
 	.text       start:0x80020D58 end:0x8002123C align:4
 
-dol/fn_80028424.c:
-	.text       start:0x80028424 end:0x800288C4 align:4
+dol/axart/axartsound.c:
+	.text       start:0x800285DC end:0x800288C4 align:4
 	.data       start:0x80129598 end:0x801295E0 align:8
+	.sdata2     start:0x801A7028 end:0x801A7038 align:8
 
 dol/dsp/dsp.c:
 	.text       start:0x800289C0 end:0x80028F50 align:4
@@ -1068,8 +1069,10 @@ dol/fn_80083428.c:
 	.data       start:0x8015B668 end:0x8015B738 align:8
 
 dol/axart/axart.c:
-	.text       start:0x8002805C end:0x80028424 align:4
+	.text       start:0x8002805C end:0x800285DC align:4
 	.data       start:0x80129550 end:0x80129598 align:16
+	.sbss       start:0x801A6B90 end:0x801A6B98 align:4
+	.sdata2     start:0x801A7000 end:0x801A7028 align:8
 
 dol/C_MTXFrustum.c:
 	.text       start:0x80015D7C end:0x80015F80 align:4
@@ -1264,7 +1267,7 @@ dol/fn_8003D42C.c:
 dol/adx/adx_sugc.c:
 	.text       start:0x8004EC34 end:0x8004ED18 align:4
 
-dol/fn_800288C4.c:
+dol/AXARTCents.c:
 	.text       start:0x800288C4 end:0x800289C0 align:4
 
 dol/av/avdisp_tail.c:
@@ -3019,21 +3022,6 @@ dol/data/lbl_801A6FF0.c:
 dol/data/lbl_801A6FF8.c:
 	.sdata2     start:0x801A6FF8 end:0x801A7000 align:8
 
-dol/data/lbl_801A7000.c:
-	.sdata2     start:0x801A7000 end:0x801A7008 align:8
-
-dol/data/lbl_801A7008.c:
-	.sdata2     start:0x801A7008 end:0x801A7010 align:8
-
-dol/data/lbl_801A7010.c:
-	.sdata2     start:0x801A7010 end:0x801A7020 align:8
-
-dol/data/lbl_801A7020.c:
-	.sdata2     start:0x801A7020 end:0x801A7028 align:8
-
-dol/data/lbl_801A7028.c:
-	.sdata2     start:0x801A7028 end:0x801A7038 align:8
-
 dol/data/lbl_801A7038.c:
 	.sdata2     start:0x801A7038 end:0x801A7040 align:8
 
@@ -3541,9 +3529,6 @@ dol/data/lbl_801A6B80.c:
 
 dol/data/lbl_801A6B88.c:
 	.sbss       start:0x801A6B88 end:0x801A6B90 align:8
-
-dol/data/lbl_801A6B90.c:
-	.sbss       start:0x801A6B90 end:0x801A6B98 align:16
 
 dol/data/lbl_801A6B98.c:
 	.sbss       start:0x801A6B98 end:0x801A6BA0 align:8

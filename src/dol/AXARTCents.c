@@ -5,7 +5,7 @@ extern f32 lbl_801A7038[2];
 
 #pragma opt_lifetimes off
 #pragma opt_propagation off
-f32 fn_800288C4(s32 n) {
+f32 AXARTCents(s32 n) {
     f32 *t = lbl_801295E0;
     s32 rem;
     if (n > 0) {

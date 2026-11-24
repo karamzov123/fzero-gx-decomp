@@ -6,7 +6,7 @@ extern void OSRestoreInterrupts(s32);
 extern void fn_80020ABC(void *);
 extern u32 fn_80026D70(void *);
 extern void fn_80023168(void *, u16);
-extern void fn_80028424(void *);
+extern void AXARTRemoveSound(void *);
 extern f32 fn_80088578(f32 x);
 
 s32 fn_80069FCC(SndNote *note, u8 channel);
@@ -16,7 +16,7 @@ static inline void stop_voice(u8 i) {
     fn_80026D70(lbl_801A6C80->voice[i].obj);
     fn_80020ABC(lbl_801A6C80->voice[i].obj);
     lbl_801A6C80->voice[i].obj = 0;
-    fn_80028424(lbl_801A6C80->voice[i].env);
+    AXARTRemoveSound(lbl_801A6C80->voice[i].env);
     if (lbl_801A6C80->voice[i].state != 0xFF) {
         lbl_801A6C80->voice[i].state = 0xFF;
         lbl_801A6C80->voice[i].time = 0;

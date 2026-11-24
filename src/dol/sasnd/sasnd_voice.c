@@ -66,7 +66,7 @@ extern void fn_8006413C(void *);
 void fn_8005DB68(s16 arg0, f32 arg1, s16 arg2, s16 *arg3, s16 *arg4);
 void fn_8005FBDC(u32 index);
 void fn_8005FCD8(u32 arg0);
-extern u32 lbl_801299D0[];
+extern u32 AXARTSine[];
 extern u32 lbl_80129AD0[];
 extern u32 lbl_80129BD0[];
 extern u32 lbl_80129CD0[];
@@ -76,23 +76,23 @@ extern u32 lbl_80129ED0[];
 extern u32 fn_80082908(void);
 extern s32 fn_80063EF4(u8, u8, u8);
 extern s32 fn_8006496C(u8);
-extern void fn_80028130(void *, void *, u32);
+extern void AXARTInitSound(void *, void *, u32);
 extern f64 fn_80088578(f64);
 extern void fn_80023568(void *, u16 *);
 extern void fn_80023284(void *, SndVoiceParams *);
 extern void fn_80023394(void *, SndAdpcm *);
 extern void fn_800230A4(void *, s32);
-extern void fn_800284CC(void *);
-extern void fn_800284E8(void *);
-extern void fn_80028540(void *);
-extern void fn_80028554(void *);
-extern void fn_80028568(void *);
-extern void fn_8002857C(void *);
-extern void fn_800284FC(void *);
-extern void fn_80028598(void *);
-extern void fn_800284A0(void *, u32 *, u32, f32);
-extern void fn_800288B4(void *, void *);
-extern void fn_80028164(void *);
+extern void AXARTInitArtPanning(void *);
+extern void AXARTInitArtPitch(void *);
+extern void AXARTInitArtVolume(void *);
+extern void AXARTInitArtAuxAVolume(void *);
+extern void AXARTInitArtAuxBVolume(void *);
+extern void AXARTInitArtVolumeEnv(void *);
+extern void AXARTInitArtPitchMod(void *);
+extern void AXARTInitArtVolumeMod(void *);
+extern void AXARTInitLfo(void *, u32 *, u32, f32);
+extern void AXARTAddArticulator(void *, void *);
+extern void AXARTAddSound(void *);
 extern void fn_80026E04(void *);
 extern void fn_80026DD4(void *);
 extern void fn_80026E84(void *);
@@ -102,7 +102,7 @@ extern void fn_80023168(void *, u16);
 extern void fn_80020CB0(void *, u32);
 extern void fn_80026D70(void *);
 extern void fn_80020ABC(void *);
-extern void fn_80028424(void *);
+extern void AXARTRemoveSound(void *);
 
 extern void fn_80064A30(u16, u32);
 extern void fn_800643F4(u16);
@@ -426,7 +426,7 @@ void fn_8005CBF4(u32 arg0) {
                 if (lbl_801A6C80->voice[v3].state == 3) {
                     fn_80060BDC(v3);
                 } else {
-                    fn_80028424(lbl_801A6C80->voice[v3].env);
+                    AXARTRemoveSound(lbl_801A6C80->voice[v3].env);
                 }
                 v4 = 255;
                 lbl_801A6C80->voice[v3].state = v4;
@@ -454,7 +454,7 @@ void fn_8005CBF4(u32 arg0) {
                 if (lbl_801A6C80->voice[v3].state == 3) {
                     fn_80060BDC(v3);
                 } else {
-                    fn_80028424(lbl_801A6C80->voice[v3].env);
+                    AXARTRemoveSound(lbl_801A6C80->voice[v3].env);
                 }
                 v4 = 255;
                 lbl_801A6C80->voice[v3].state = v4;
@@ -483,7 +483,7 @@ void fn_8005CBF4(u32 arg0) {
                 if (lbl_801A6C80->voice[v3].state == 3) {
                     fn_80060BDC(v3);
                 } else {
-                    fn_80028424(lbl_801A6C80->voice[v3].env);
+                    AXARTRemoveSound(lbl_801A6C80->voice[v3].env);
                 }
                 v4 = 255;
                 lbl_801A6C80->voice[v3].state = v4;
@@ -511,7 +511,7 @@ void fn_8005CBF4(u32 arg0) {
                 if (lbl_801A6C80->voice[v3].state == 3) {
                     fn_80060BDC(v3);
                 } else {
-                    fn_80028424(lbl_801A6C80->voice[v3].env);
+                    AXARTRemoveSound(lbl_801A6C80->voice[v3].env);
                 }
                 v4 = 255;
                 lbl_801A6C80->voice[v3].state = v4;
@@ -540,7 +540,7 @@ void fn_8005CBF4(u32 arg0) {
                 if (lbl_801A6C80->voice[v3].state == 3) {
                     fn_80060BDC(v3);
                 } else {
-                    fn_80028424(lbl_801A6C80->voice[v3].env);
+                    AXARTRemoveSound(lbl_801A6C80->voice[v3].env);
                 }
                 v4 = 255;
                 lbl_801A6C80->voice[v3].state = v4;
@@ -569,7 +569,7 @@ void fn_8005CBF4(u32 arg0) {
                 if (lbl_801A6C80->voice[v3].state == 3) {
                     fn_80060BDC(v3);
                 } else {
-                    fn_80028424(lbl_801A6C80->voice[v3].env);
+                    AXARTRemoveSound(lbl_801A6C80->voice[v3].env);
                 }
                 v4 = 255;
                 lbl_801A6C80->voice[v3].state = v4;
@@ -793,7 +793,7 @@ static inline void KillVoice(u32 arg0) {
         if (lbl_801A6C80->voice[arg0].state == 3) {
             fn_80060BDC(arg0);
         } else {
-            fn_80028424(lbl_801A6C80->voice[arg0].env);
+            AXARTRemoveSound(lbl_801A6C80->voice[arg0].env);
         }
         lbl_801A6C80->voice[arg0].state = 0xFF;
         lbl_801A6C80->voice[arg0].time = 0;
@@ -1043,7 +1043,7 @@ void fn_8005DCEC(u16 *arg0, u8 arg1) {
         wave = &local_wave;
     }
 
-    fn_80028130(lbl_801A6C80->voice[voice].env, lbl_801A6C80->voice[voice].obj, 32000);
+    AXARTInitSound(lbl_801A6C80->voice[voice].env, lbl_801A6C80->voice[voice].obj, 32000);
     vol = fn_8005D258(hdr, note, arg1, vel, &db, &level);
     if (wave->stereo == 1) {
         p = note->pan;
@@ -1192,39 +1192,39 @@ void fn_8005DCEC(u16 *arg0, u8 arg1) {
     fn_80023284(lbl_801A6C80->voice[voice].obj, &params);
     fn_80023394(lbl_801A6C80->voice[voice].obj, &adpcm);
     fn_800230A4(lbl_801A6C80->voice[voice].obj, 1);
-    fn_800284CC(lbl_801A6C80->voice[voice].unk_88);
-    fn_800284E8(lbl_801A6C80->voice[voice].unk_70);
-    fn_80028540(lbl_801A6C80->voice[voice].unk_7C);
-    fn_80028554(lbl_801A6C80->voice[voice].unk_94);
-    fn_80028568(lbl_801A6C80->voice[voice].unk_A0);
-    fn_8002857C(lbl_801A6C80->voice[voice].unk_AC);
-    fn_800284FC(lbl_801A6C80->voice[voice].unk_C0);
-    fn_80028598(lbl_801A6C80->voice[voice].unk_EC);
+    AXARTInitArtPanning(lbl_801A6C80->voice[voice].unk_88);
+    AXARTInitArtPitch(lbl_801A6C80->voice[voice].unk_70);
+    AXARTInitArtVolume(lbl_801A6C80->voice[voice].unk_7C);
+    AXARTInitArtAuxAVolume(lbl_801A6C80->voice[voice].unk_94);
+    AXARTInitArtAuxBVolume(lbl_801A6C80->voice[voice].unk_A0);
+    AXARTInitArtVolumeEnv(lbl_801A6C80->voice[voice].unk_AC);
+    AXARTInitArtPitchMod(lbl_801A6C80->voice[voice].unk_C0);
+    AXARTInitArtVolumeMod(lbl_801A6C80->voice[voice].unk_EC);
     if (note->unk_1E == 0) {
-        fn_800284A0(lbl_801A6C80->voice[voice].unk_C8, lbl_801299D0, 0x40, note->unk_20);
+        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_C8, AXARTSine, 0x40, note->unk_20);
     } else if (note->unk_1E == 1) {
-        fn_800284A0(lbl_801A6C80->voice[voice].unk_C8, lbl_80129AD0, 0x40, note->unk_20);
+        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_C8, lbl_80129AD0, 0x40, note->unk_20);
     } else if (note->unk_1E == 2) {
-        fn_800284A0(lbl_801A6C80->voice[voice].unk_C8, lbl_80129BD0, 0x40, note->unk_20);
+        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_C8, lbl_80129BD0, 0x40, note->unk_20);
     } else if (note->unk_1E == 3) {
-        fn_800284A0(lbl_801A6C80->voice[voice].unk_C8, lbl_80129CD0, 0x40, note->unk_20);
+        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_C8, lbl_80129CD0, 0x40, note->unk_20);
     } else if (note->unk_1E == 4) {
-        fn_800284A0(lbl_801A6C80->voice[voice].unk_C8, lbl_80129DD0, 0x40, note->unk_20);
+        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_C8, lbl_80129DD0, 0x40, note->unk_20);
     } else if (note->unk_1E == 5) {
-        fn_800284A0(lbl_801A6C80->voice[voice].unk_C8, lbl_80129ED0, 0x40, note->unk_20);
+        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_C8, lbl_80129ED0, 0x40, note->unk_20);
     }
     if (note->unk_1F == 0) {
-        fn_800284A0(lbl_801A6C80->voice[voice].unk_F4, lbl_801299D0, 0x40, note->unk_24);
+        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_F4, AXARTSine, 0x40, note->unk_24);
     } else if (note->unk_1F == 1) {
-        fn_800284A0(lbl_801A6C80->voice[voice].unk_F4, lbl_80129AD0, 0x40, note->unk_24);
+        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_F4, lbl_80129AD0, 0x40, note->unk_24);
     } else if (note->unk_1F == 2) {
-        fn_800284A0(lbl_801A6C80->voice[voice].unk_F4, lbl_80129BD0, 0x40, note->unk_24);
+        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_F4, lbl_80129BD0, 0x40, note->unk_24);
     } else if (note->unk_1F == 3) {
-        fn_800284A0(lbl_801A6C80->voice[voice].unk_F4, lbl_80129CD0, 0x40, note->unk_24);
+        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_F4, lbl_80129CD0, 0x40, note->unk_24);
     } else if (note->unk_1F == 4) {
-        fn_800284A0(lbl_801A6C80->voice[voice].unk_F4, lbl_80129DD0, 0x40, note->unk_24);
+        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_F4, lbl_80129DD0, 0x40, note->unk_24);
     } else if (note->unk_1F == 5) {
-        fn_800284A0(lbl_801A6C80->voice[voice].unk_F4, lbl_80129ED0, 0x40, note->unk_24);
+        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_F4, lbl_80129ED0, 0x40, note->unk_24);
     }
     t = hdr->unk_D;
     if (t > 0) {
@@ -1278,15 +1278,15 @@ void fn_8005DCEC(u16 *arg0, u8 arg1) {
         lbl_801A6C80->voice[voice].unk_B8 = 0;
         lbl_801A6C80->voice[voice].unk_BC = 0;
     }
-    fn_800288B4(lbl_801A6C80->voice[voice].env, lbl_801A6C80->voice[voice].unk_70);
-    fn_800288B4(lbl_801A6C80->voice[voice].env, lbl_801A6C80->voice[voice].unk_7C);
-    fn_800288B4(lbl_801A6C80->voice[voice].env, lbl_801A6C80->voice[voice].unk_94);
-    fn_800288B4(lbl_801A6C80->voice[voice].env, lbl_801A6C80->voice[voice].unk_A0);
-    fn_800288B4(lbl_801A6C80->voice[voice].env, lbl_801A6C80->voice[voice].unk_AC);
-    fn_800288B4(lbl_801A6C80->voice[voice].env, lbl_801A6C80->voice[voice].unk_88);
-    fn_800288B4(lbl_801A6C80->voice[voice].env, lbl_801A6C80->voice[voice].unk_C0);
-    fn_800288B4(lbl_801A6C80->voice[voice].env, lbl_801A6C80->voice[voice].unk_EC);
-    fn_80028164(lbl_801A6C80->voice[voice].env);
+    AXARTAddArticulator(lbl_801A6C80->voice[voice].env, lbl_801A6C80->voice[voice].unk_70);
+    AXARTAddArticulator(lbl_801A6C80->voice[voice].env, lbl_801A6C80->voice[voice].unk_7C);
+    AXARTAddArticulator(lbl_801A6C80->voice[voice].env, lbl_801A6C80->voice[voice].unk_94);
+    AXARTAddArticulator(lbl_801A6C80->voice[voice].env, lbl_801A6C80->voice[voice].unk_A0);
+    AXARTAddArticulator(lbl_801A6C80->voice[voice].env, lbl_801A6C80->voice[voice].unk_AC);
+    AXARTAddArticulator(lbl_801A6C80->voice[voice].env, lbl_801A6C80->voice[voice].unk_88);
+    AXARTAddArticulator(lbl_801A6C80->voice[voice].env, lbl_801A6C80->voice[voice].unk_C0);
+    AXARTAddArticulator(lbl_801A6C80->voice[voice].env, lbl_801A6C80->voice[voice].unk_EC);
+    AXARTAddSound(lbl_801A6C80->voice[voice].env);
     if (fx & 1) {
         fn_80026E04(lbl_801A6C80->voice[voice].obj);
     } else {
@@ -1317,7 +1317,7 @@ void fn_8005DCEC(u16 *arg0, u8 arg1) {
                 vol = right;
                 pan = 0x7C;
             }
-            fn_80028130(lbl_801A6C80->voice[voice2].env, lbl_801A6C80->voice[voice2].obj, 32000);
+            AXARTInitSound(lbl_801A6C80->voice[voice2].env, lbl_801A6C80->voice[voice2].obj, 32000);
             if ((wave->format & 3) == 0) {
                 params2.format = 10;
             } else if ((wave->format & 3) == 1) {
@@ -1357,39 +1357,39 @@ void fn_8005DCEC(u16 *arg0, u8 arg1) {
             params2.end_lo = loop_end;
             params2.cur_hi = start >> 16;
             params2.cur_lo = start;
-            fn_800284CC(lbl_801A6C80->voice[voice2].unk_88);
-            fn_800284E8(lbl_801A6C80->voice[voice2].unk_70);
-            fn_80028540(lbl_801A6C80->voice[voice2].unk_7C);
-            fn_80028554(lbl_801A6C80->voice[voice2].unk_94);
-            fn_80028568(lbl_801A6C80->voice[voice2].unk_A0);
-            fn_8002857C(lbl_801A6C80->voice[voice2].unk_AC);
-            fn_800284FC(lbl_801A6C80->voice[voice2].unk_C0);
-            fn_80028598(lbl_801A6C80->voice[voice2].unk_EC);
+            AXARTInitArtPanning(lbl_801A6C80->voice[voice2].unk_88);
+            AXARTInitArtPitch(lbl_801A6C80->voice[voice2].unk_70);
+            AXARTInitArtVolume(lbl_801A6C80->voice[voice2].unk_7C);
+            AXARTInitArtAuxAVolume(lbl_801A6C80->voice[voice2].unk_94);
+            AXARTInitArtAuxBVolume(lbl_801A6C80->voice[voice2].unk_A0);
+            AXARTInitArtVolumeEnv(lbl_801A6C80->voice[voice2].unk_AC);
+            AXARTInitArtPitchMod(lbl_801A6C80->voice[voice2].unk_C0);
+            AXARTInitArtVolumeMod(lbl_801A6C80->voice[voice2].unk_EC);
             if (note->unk_1E == 0) {
-                fn_800284A0(lbl_801A6C80->voice[voice2].unk_C8, lbl_801299D0, 0x40, note->unk_20);
+                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_C8, AXARTSine, 0x40, note->unk_20);
             } else if (note->unk_1E == 1) {
-                fn_800284A0(lbl_801A6C80->voice[voice2].unk_C8, lbl_80129AD0, 0x40, note->unk_20);
+                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_C8, lbl_80129AD0, 0x40, note->unk_20);
             } else if (note->unk_1E == 2) {
-                fn_800284A0(lbl_801A6C80->voice[voice2].unk_C8, lbl_80129BD0, 0x40, note->unk_20);
+                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_C8, lbl_80129BD0, 0x40, note->unk_20);
             } else if (note->unk_1E == 3) {
-                fn_800284A0(lbl_801A6C80->voice[voice2].unk_C8, lbl_80129CD0, 0x40, note->unk_20);
+                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_C8, lbl_80129CD0, 0x40, note->unk_20);
             } else if (note->unk_1E == 4) {
-                fn_800284A0(lbl_801A6C80->voice[voice2].unk_C8, lbl_80129DD0, 0x40, note->unk_20);
+                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_C8, lbl_80129DD0, 0x40, note->unk_20);
             } else if (note->unk_1E == 5) {
-                fn_800284A0(lbl_801A6C80->voice[voice2].unk_C8, lbl_80129ED0, 0x40, note->unk_20);
+                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_C8, lbl_80129ED0, 0x40, note->unk_20);
             }
             if (note->unk_1F == 0) {
-                fn_800284A0(lbl_801A6C80->voice[voice2].unk_F4, lbl_801299D0, 0x40, note->unk_24);
+                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_F4, AXARTSine, 0x40, note->unk_24);
             } else if (note->unk_1F == 1) {
-                fn_800284A0(lbl_801A6C80->voice[voice2].unk_F4, lbl_80129AD0, 0x40, note->unk_24);
+                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_F4, lbl_80129AD0, 0x40, note->unk_24);
             } else if (note->unk_1F == 2) {
-                fn_800284A0(lbl_801A6C80->voice[voice2].unk_F4, lbl_80129BD0, 0x40, note->unk_24);
+                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_F4, lbl_80129BD0, 0x40, note->unk_24);
             } else if (note->unk_1F == 3) {
-                fn_800284A0(lbl_801A6C80->voice[voice2].unk_F4, lbl_80129CD0, 0x40, note->unk_24);
+                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_F4, lbl_80129CD0, 0x40, note->unk_24);
             } else if (note->unk_1F == 4) {
-                fn_800284A0(lbl_801A6C80->voice[voice2].unk_F4, lbl_80129DD0, 0x40, note->unk_24);
+                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_F4, lbl_80129DD0, 0x40, note->unk_24);
             } else if (note->unk_1F == 5) {
-                fn_800284A0(lbl_801A6C80->voice[voice2].unk_F4, lbl_80129ED0, 0x40, note->unk_24);
+                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_F4, lbl_80129ED0, 0x40, note->unk_24);
             }
             lbl_801A6C80->voice[voice2].unk_E8 = env;
             lbl_801A6C80->voice[voice2].volEnv = env2 << 16;
@@ -1410,15 +1410,15 @@ void fn_8005DCEC(u16 *arg0, u8 arg1) {
                 lbl_801A6C80->voice[voice2].unk_B8 = 0;
                 lbl_801A6C80->voice[voice2].unk_BC = 0;
             }
-            fn_800288B4(lbl_801A6C80->voice[voice2].env, lbl_801A6C80->voice[voice2].unk_70);
-            fn_800288B4(lbl_801A6C80->voice[voice2].env, lbl_801A6C80->voice[voice2].unk_7C);
-            fn_800288B4(lbl_801A6C80->voice[voice2].env, lbl_801A6C80->voice[voice2].unk_94);
-            fn_800288B4(lbl_801A6C80->voice[voice2].env, lbl_801A6C80->voice[voice2].unk_A0);
-            fn_800288B4(lbl_801A6C80->voice[voice2].env, lbl_801A6C80->voice[voice2].unk_AC);
-            fn_800288B4(lbl_801A6C80->voice[voice2].env, lbl_801A6C80->voice[voice2].unk_88);
-            fn_800288B4(lbl_801A6C80->voice[voice2].env, lbl_801A6C80->voice[voice2].unk_C0);
-            fn_800288B4(lbl_801A6C80->voice[voice2].env, lbl_801A6C80->voice[voice2].unk_EC);
-            fn_80028164(lbl_801A6C80->voice[voice2].env);
+            AXARTAddArticulator(lbl_801A6C80->voice[voice2].env, lbl_801A6C80->voice[voice2].unk_70);
+            AXARTAddArticulator(lbl_801A6C80->voice[voice2].env, lbl_801A6C80->voice[voice2].unk_7C);
+            AXARTAddArticulator(lbl_801A6C80->voice[voice2].env, lbl_801A6C80->voice[voice2].unk_94);
+            AXARTAddArticulator(lbl_801A6C80->voice[voice2].env, lbl_801A6C80->voice[voice2].unk_A0);
+            AXARTAddArticulator(lbl_801A6C80->voice[voice2].env, lbl_801A6C80->voice[voice2].unk_AC);
+            AXARTAddArticulator(lbl_801A6C80->voice[voice2].env, lbl_801A6C80->voice[voice2].unk_88);
+            AXARTAddArticulator(lbl_801A6C80->voice[voice2].env, lbl_801A6C80->voice[voice2].unk_C0);
+            AXARTAddArticulator(lbl_801A6C80->voice[voice2].env, lbl_801A6C80->voice[voice2].unk_EC);
+            AXARTAddSound(lbl_801A6C80->voice[voice2].env);
             if (fx & 1) {
                 fn_80026E04(lbl_801A6C80->voice[voice2].obj);
             } else {
@@ -1500,7 +1500,7 @@ void fn_8005FCD8(u32 arg0) {
         if (lbl_801A6C80->voice[arg0].state == 3) {
             fn_80060BDC(arg0);
         } else {
-            fn_80028424(lbl_801A6C80->voice[arg0].env);
+            AXARTRemoveSound(lbl_801A6C80->voice[arg0].env);
         }
         lbl_801A6C80->voice[arg0].state = 0xFF;
         lbl_801A6C80->voice[arg0].time = 0;

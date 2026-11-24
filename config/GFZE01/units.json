@@ -11945,7 +11945,7 @@
     "source": "dol/data/lbl_801295E0.c",
     "symbols": [
       "lbl_801295E0",
-      "lbl_801299D0",
+      "AXARTSine",
       "lbl_80129AD0",
       "lbl_80129BD0",
       "lbl_80129CD0",
@@ -14897,18 +14897,6 @@
   },
   {
     "module": "main",
-    "source": "dol/data/lbl_801A6B90.c",
-    "symbols": [
-      "lbl_801A6B90"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
     "source": "dol/data/lbl_801A6B98.c",
     "symbols": [
       "lbl_801A6B98",
@@ -16356,69 +16344,6 @@
     "source": "dol/data/lbl_801A6FF8.c",
     "symbols": [
       "lbl_801A6FF8"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_801A7000.c",
-    "symbols": [
-      "lbl_801A7000",
-      "lbl_801A7004"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_801A7008.c",
-    "symbols": [
-      "lbl_801A7008"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_801A7010.c",
-    "symbols": [
-      "lbl_801A7010",
-      "lbl_801A7018"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_801A7020.c",
-    "symbols": [
-      "lbl_801A7020"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_801A7028.c",
-    "symbols": [
-      "lbl_801A7028",
-      "lbl_801A7030"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -20287,56 +20212,46 @@
     "module": "main",
     "source": "dol/axart/axart.c",
     "symbols": [
-      "fn_8002805C",
-      "fn_80028090",
-      "fn_800280F0",
-      "fn_80028130",
-      "fn_80028164"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-inline",
-      "on,noauto"
-    ],
-    "collapsed": true,
-    "matching_for": ["GFZE01"],
-    "pool": {
-      "@20": "lbl_801A7008",
-      "@53": "lbl_801A7018"
-    }
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80028424.c",
-    "symbols": [
-      "fn_80028424",
-      "fn_800284A0",
-      "fn_800284CC",
-      "fn_800284E8",
-      "fn_800284FC",
-      "fn_80028540",
-      "fn_80028554",
-      "fn_80028568",
-      "fn_8002857C",
-      "fn_80028598",
-      "fn_800285DC",
-      "fn_800288B4"
+      "AXARTInit",
+      "AXARTQuit",
+      "AXARTServiceSounds",
+      "AXARTInitSound",
+      "AXARTAddSound",
+      "AXARTRemoveSound",
+      "AXARTInitLfo",
+      "AXARTInitArtPanning",
+      "AXARTInitArtPitch",
+      "AXARTInitArtPitchMod",
+      "AXARTInitArtVolume",
+      "AXARTInitArtAuxAVolume",
+      "AXARTInitArtAuxBVolume",
+      "AXARTInitArtVolumeEnv",
+      "AXARTInitArtVolumeMod"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
     "extra_cflags": [],
     "collapsed": true,
-    "matching_for": ["GFZE01"],
-    "pool": {
-      "@47": "lbl_801A7030"
-    }
+    "matching_for": ["GFZE01", "GFZJ01"]
   },
   {
     "module": "main",
-    "source": "dol/fn_800288C4.c",
+    "source": "dol/axart/axartsound.c",
     "symbols": [
-      "fn_800288C4"
+      "AXARTServiceSound",
+      "AXARTAddArticulator"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.2.5n",
+    "extra_cflags": [],
+    "collapsed": true,
+    "matching_for": ["GFZE01", "GFZJ01"]
+  },
+  {
+    "module": "main",
+    "source": "dol/AXARTCents.c",
+    "symbols": [
+      "AXARTCents"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
@@ -20346,12 +20261,12 @@
     "module": "main",
     "source": "dol/dsp/dsp.c",
     "symbols": [
-      "fn_800289C0",
-      "fn_80028A1C",
-      "fn_80028A78",
-      "fn_80028B2C",
-      "fn_80028B34",
-      "fn_80028B3C",
+      "AXARTPitchEnv",
+      "AXARTVolumeEnv",
+      "AXARTLfo",
+      "AXARTSet3DDopplerScale",
+      "AXARTSet3DDistanceScale",
+      "AXART3DSound",
       "DSPCheckMailToDSP",
       "DSPCheckMailFromDSP",
       "DSPReadMailFromDSP",

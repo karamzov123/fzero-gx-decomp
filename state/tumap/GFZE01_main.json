@@ -7,7 +7,7 @@
     "assigned": 2230,
     "bytes": 567556,
     "assigned_bytes": 567556,
-    "tus": 253,
+    "tus": 254,
     "conflicts": 0,
     "string_anchored": 13
   },
@@ -1548,31 +1548,47 @@
       "file": "axart.c",
       "text": [
         "8002805C",
+        "800285DC"
+      ],
+      "functions": [
+        "AXARTInit",
+        "AXARTQuit",
+        "AXARTServiceSounds",
+        "AXARTInitSound",
+        "AXARTAddSound",
+        "AXARTRemoveSound",
+        "AXARTInitLfo",
+        "AXARTInitArtPanning",
+        "AXARTInitArtPitch",
+        "AXARTInitArtPitchMod",
+        "AXARTInitArtVolume",
+        "AXARTInitArtAuxAVolume",
+        "AXARTInitArtAuxBVolume",
+        "AXARTInitArtVolumeEnv",
+        "AXARTInitArtVolumeMod"
+      ],
+      "how": {
+        "sdk-order": 15,
+        "literal-dedupe": 1
+      },
+      "lib": "axart",
+      "notes": "Dolphin SDK axart.a. axartsound.c starts at AXARTServiceSound: it repeats axart.c's 32000.0f and int-to-float constants in .sdata2 (0x801A7028 vs 0x801A7010; per-TU literal dedupe) and owns its own jump table at .data 0x80129598. Function order and the articulator type switch follow the SDK's axart.c/axartsound.c (dolsdk2004, evidence only)."
+    },
+    {
+      "file": "axartsound.c",
+      "text": [
+        "800285DC",
         "800288C4"
       ],
       "functions": [
-        "fn_8002805C",
-        "fn_80028090",
-        "fn_800280F0",
-        "fn_80028130",
-        "fn_80028164",
-        "fn_80028424",
-        "fn_800284A0",
-        "fn_800284CC",
-        "fn_800284E8",
-        "fn_800284FC",
-        "fn_80028540",
-        "fn_80028554",
-        "fn_80028568",
-        "fn_8002857C",
-        "fn_80028598",
-        "fn_800285DC",
-        "fn_800288B4"
+        "AXARTServiceSound",
+        "AXARTAddArticulator"
       ],
       "how": {
-        "sdk-order": 17
+        "literal-dedupe": 2
       },
-      "lib": "axart"
+      "lib": "axart",
+      "notes": "Dolphin SDK axart.a. axartsound.c starts at AXARTServiceSound: it repeats axart.c's 32000.0f and int-to-float constants in .sdata2 (0x801A7028 vs 0x801A7010; per-TU literal dedupe) and owns its own jump table at .data 0x80129598. Function order and the articulator type switch follow the SDK's axart.c/axartsound.c (dolsdk2004, evidence only)."
     },
     {
       "file": "axartcents.c",
@@ -1581,7 +1597,7 @@
         "800289C0"
       ],
       "functions": [
-        "fn_800288C4"
+        "AXARTCents"
       ],
       "how": {
         "sdk-order": 1
@@ -1595,12 +1611,12 @@
         "80028F50"
       ],
       "functions": [
-        "fn_800289C0",
-        "fn_80028A1C",
-        "fn_80028A78",
-        "fn_80028B2C",
-        "fn_80028B34",
-        "fn_80028B3C",
+        "AXARTPitchEnv",
+        "AXARTVolumeEnv",
+        "AXARTLfo",
+        "AXARTSet3DDopplerScale",
+        "AXARTSet3DDistanceScale",
+        "AXART3DSound",
         "DSPCheckMailToDSP",
         "DSPCheckMailFromDSP",
         "DSPReadMailFromDSP",

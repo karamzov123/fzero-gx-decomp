@@ -2,7 +2,7 @@
 
 extern void *fn_80020B3C(u32, s32 (*)(void *), u32);
 extern void fn_80020ABC(void *);
-extern void fn_80028424(void *);
+extern void AXARTRemoveSound(void *);
 extern void fn_8005C298(u32, u32);
 extern void fn_8005C478(u32);
 extern void fn_8005C5C8(u32);
@@ -337,7 +337,7 @@ s32 fn_800647F0(u32 *object) {
             if (lbl_801A6C80->voice[i].state == 3) {
                 fn_80060BDC(i);
             } else {
-                fn_80028424(lbl_801A6C80->voice[i].env);
+                AXARTRemoveSound(lbl_801A6C80->voice[i].env);
             }
             lbl_801A6C80->voice[i].obj = 0;
             lbl_801A6C80->voice[i].state = 0xFF;

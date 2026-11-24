@@ -1851,67 +1851,67 @@
    "ax": "801A225C",
    "files": []
   },
-  "fn_8002805C": {
+  "AXARTInit": {
    "gx": "8002805C",
    "ax": "8019ADDC",
    "files": []
   },
-  "fn_80028090": {
+  "AXARTQuit": {
    "gx": "80028090",
    "ax": "8019AE10",
    "files": []
   },
-  "fn_800280F0": {
+  "AXARTServiceSounds": {
    "gx": "800280F0",
    "ax": "8019AE70",
    "files": []
   },
-  "fn_80028130": {
+  "AXARTInitSound": {
    "gx": "80028130",
    "ax": "8019AEB0",
    "files": []
   },
-  "fn_80028164": {
+  "AXARTAddSound": {
    "gx": "80028164",
    "ax": "8019AEE4",
    "files": []
   },
-  "fn_80028424": {
+  "AXARTRemoveSound": {
    "gx": "80028424",
    "ax": "8019B1A4",
    "files": []
   },
-  "fn_800284A0": {
+  "AXARTInitLfo": {
    "gx": "800284A0",
    "ax": "8019B220",
    "files": []
   },
-  "fn_800284CC": {
+  "AXARTInitArtPanning": {
    "gx": "800284CC",
    "ax": "8019B24C",
    "files": []
   },
-  "fn_8002857C": {
+  "AXARTInitArtVolumeEnv": {
    "gx": "8002857C",
    "ax": "8019B2FC",
    "files": []
   },
-  "fn_800285DC": {
+  "AXARTServiceSound": {
    "gx": "800285DC",
    "ax": "8019B35C",
    "files": []
   },
-  "fn_800288C4": {
+  "AXARTCents": {
    "gx": "800288C4",
    "ax": "8019B644",
    "files": []
   },
-  "fn_80028A78": {
+  "AXARTLfo": {
    "gx": "80028A78",
    "ax": "8019B7F8",
    "files": []
   },
-  "fn_80028B3C": {
+  "AXART3DSound": {
    "gx": "80028B3C",
    "ax": "8019B8BC",
    "files": []
