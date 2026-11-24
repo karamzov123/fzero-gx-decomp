@@ -130,9 +130,9 @@ extern struct adx_inisBss lbl_80178CA8;
 extern void fn_80058630(void);
 extern void fn_80058B54(void);
 extern void fn_800592E0(int server_type, int id);
-extern void ADXT_DestroyAll(void);
+extern void ADXF_CloseAll(void);
 extern void fn_8004EF68(void);
-extern void fn_8004F6B0(void);
+extern void ADXF_Finish(void);
 extern void fn_8004B79C(void);
 extern void fn_80057378(void);
 extern void fn_80046738(void);
@@ -153,7 +153,7 @@ extern void fn_80057D0C(void);
 extern void fn_800475C0(void);
 extern void fn_8004B7A0(void);
 extern void fn_800424E8(void);
-extern void fn_8004F74C(void);
+extern void ADXF_Init(void);
 extern void fn_8004EF88(void);
 extern void fn_8005741C(void);
 extern void fn_8004EF48(AdxErrorCallback callback, void *object);
@@ -179,7 +179,7 @@ void ADXT_Finish(void) {
     (bss->fields.view_sdk_adxt_init_cnt.adxt_init_cnt)--;
     if (bss->fields.view_sdk_adxt_init_cnt.adxt_init_cnt == 0) {
         fn_8004EF68();
-        fn_8004F6B0();
+        ADXF_Finish();
         fn_8004B79C();
         fn_80057378();
         fn_80046738();
@@ -209,7 +209,7 @@ void fn_800411F4(void) {
         fn_800475C0();
         fn_8004B7A0();
         fn_800424E8();
-        fn_8004F74C();
+        ADXF_Init();
         fn_8004EF88();
         fn_8005741C();
         fn_80058BFC();

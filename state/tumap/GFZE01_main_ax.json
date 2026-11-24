@@ -3411,12 +3411,12 @@
    "ax": "801DECB0",
    "files": []
   },
-  "fn_8004F6B0": {
+  "ADXF_Finish": {
    "gx": "8004F6B0",
    "ax": "801DEE04",
    "files": []
   },
-  "fn_8004F74C": {
+  "ADXF_Init": {
    "gx": "8004F74C",
    "ax": "801DEEA0",
    "files": []
@@ -3426,12 +3426,12 @@
    "ax": "801DEF6C",
    "files": []
   },
-  "ADXT_DestroyAll": {
+  "ADXF_CloseAll": {
    "gx": "8004FC38",
    "ax": "801DF0FC",
    "files": []
   },
-  "fn_8004FC94": {
+  "ADXF_Close": {
    "gx": "8004FC94",
    "ax": "801DF158",
    "files": []

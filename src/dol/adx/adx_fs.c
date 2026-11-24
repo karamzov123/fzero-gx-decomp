@@ -75,7 +75,7 @@ extern s32 fn_8004AE78(ADXStream *stream);
 extern void fn_800474E4(const char *message);
 extern char *strncpy(char *, const char *, size_t);
 
-void fn_8004F7F8(void *address, s32 size);
+void ADXF_Ocbi(void *address, s32 size);
 
 void *memset(void *destination, int value, unsigned long size);
 extern s32 lbl_80186640;
@@ -84,7 +84,7 @@ extern ADXFCommandRecord lbl_80186664[16];
 extern void fn_8004AC58(ADXStream *stream);
 extern void fn_8004AEF0(ADXStream *stream);
 extern void fn_8004B1DC(ADXStream *stream);
-void fn_8004FC94(ADXFFile *file);
+void ADXF_Close(ADXFFile *file);
 
 s32 fn_8004F818(s32 arg0, s32 arg1, char *arg2, u32 *arg3, u32 *arg4, u32 *arg5) {
     s32 result;
@@ -156,7 +156,7 @@ static inline void adxf_CloseSjStm(ADXFFile *file) {
     SJ *stream;
     if (file->sj != 0 && file->sjflag == 0) {
         if (lbl_80186764 == 1) {
-            fn_8004F7F8(file->buf, file->bsize);
+            ADXF_Ocbi(file->buf, file->bsize);
         }
         stream = file->sj;
         file->sj = 0;
@@ -219,17 +219,17 @@ static inline s32 adxf_Stop(ADXFFile *file) {
     return file->skpos;
 }
 
-void ADXT_DestroyAll(void) {
+void ADXF_CloseAll(void) {
     s32 index;
 
     for (index = 0; index < 16; index++) {
         if (lbl_80186B68[index].used == 1) {
-            fn_8004FC94(&lbl_80186B68[index]);
+            ADXF_Close(&lbl_80186B68[index]);
         }
     }
 }
 
-void fn_8004FC94(ADXFFile *file) {
+void ADXF_Close(ADXFFile *file) {
     ADXStream *stream;
     adxf_SetCmdHstry(3, 0, file, -1, -1);
     if (file != 0) {

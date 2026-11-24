@@ -17,14 +17,14 @@ extern AdxfState lbl_80186630;
 
 // CRI build stamp: volatile keeps the pointer and its string in the image (ADXF_Init reads it).
 const char *const volatile lbl_80091250 = "\nADXF/GC Ver.7.07 Build:May  9 2003 17:10:05\n";
-extern void ADXT_DestroyAll(void);
+extern void ADXF_CloseAll(void);
 extern void *memset(void *, int, u32);
 
-void fn_8004F6B0(void) {
+void ADXF_Finish(void) {
     AdxfState *state = &lbl_80186630;
 
     if (--state->counter == 0) {
-        ADXT_DestroyAll();
+        ADXF_CloseAll();
         state->field_04 = -1;
         state->field_08 = 0;
         state->field_0c = 0;
@@ -37,7 +37,7 @@ void fn_8004F6B0(void) {
     }
 }
 
-void fn_8004F74C(void) {
+void ADXF_Init(void) {
     AdxfState *state = &lbl_80186630;
 
     lbl_80091250;

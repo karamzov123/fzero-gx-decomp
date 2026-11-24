@@ -3101,8 +3101,8 @@
         "8004F7F8"
       ],
       "functions": [
-        "fn_8004F6B0",
-        "fn_8004F74C"
+        "ADXF_Finish",
+        "ADXF_Init"
       ],
       "how": {
         "donor-size": 2
@@ -3116,7 +3116,7 @@
         "8004F818"
       ],
       "functions": [
-        "fn_8004F7F8"
+        "ADXF_Ocbi"
       ],
       "how": {
         "donor-size": 1
@@ -3133,8 +3133,8 @@
       "functions": [
         "fn_8004F818",
         "ADXF_ExecServer",
-        "ADXT_DestroyAll",
-        "fn_8004FC94"
+        "ADXF_CloseAll",
+        "ADXF_Close"
       ],
       "how": {
         "retail-data": 1,
