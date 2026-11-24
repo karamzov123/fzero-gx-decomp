@@ -320,6 +320,7 @@ dol/adx/adx_baif.c:
 
 dol/adx/adx_fini.c:
 	.text       start:0x8004F6B0 end:0x8004F7F8 align:4
+	.rodata     start:0x80091220 end:0x80091258 align:4
 
 dol/fn_800566F0.c:
 	.text       start:0x800566F0 end:0x80056730 align:4
@@ -835,9 +836,6 @@ dol/adx/adx_errs.c:
 dol/adx/adx_xpnd.c:
 	.text       start:0x8004E098 end:0x8004E4DC align:4
 
-dol/ADXT_DestroyAll.c:
-	.text       start:0x8004FC38 end:0x8004FC94 align:4
-
 dol/axrna_update_play.c:
 	.text       start:0x8005AE98 end:0x8005B0C4 align:4
 
@@ -923,9 +921,6 @@ dol/gx/GXInit.c:
 dol/TRK_fill_mem.c:
 	.text       start:0x8008B028 end:0x8008B0E0 align:4
 
-dol/fn_8004FC94.c:
-	.text       start:0x8004FC94 end:0x8004FF68 align:4
-
 dol/ahx/ahx_bits.c:
 	.text       start:0x8004FF68 end:0x80050698 align:4
 	.bss        start:0x80186FA8 end:0x8018710C align:4
@@ -984,7 +979,8 @@ dol/adx/adx_fcch.c:
 	.text       start:0x8004F7F8 end:0x8004F818 align:4
 
 dol/adx/adx_fs.c:
-	.text       start:0x8004F818 end:0x8004FC38 align:4
+	.text       start:0x8004F818 end:0x8004FF68 align:4
+	.rodata     start:0x80091258 end:0x800912F0 align:4
 
 dol/fn_8007FE70.c:
 	.text       start:0x8007FE70 end:0x80080518 align:4
@@ -1666,9 +1662,6 @@ dol/data/lbl_80091160.c:
 
 dol/data/lbl_800911E0.c:
 	.rodata     start:0x800911E0 end:0x80091220 align:32
-
-dol/data/lbl_80091220.c:
-	.rodata     start:0x80091220 end:0x800912F0 align:32
 
 dol/data/lbl_801A6BF0.c:
 	.sbss       start:0x801A6BF0 end:0x801A6BF8 align:16

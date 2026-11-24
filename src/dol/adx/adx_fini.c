@@ -14,7 +14,9 @@ typedef struct {
 } AdxfState;
 
 extern AdxfState lbl_80186630;
-extern volatile const u32 lbl_80091250[]; /* Preserve the retail read of the version data. */
+
+// CRI build stamp: volatile keeps the pointer and its string in the image (ADXF_Init reads it).
+const char *const volatile lbl_80091250 = "\nADXF/GC Ver.7.07 Build:May  9 2003 17:10:05\n";
 extern void ADXT_DestroyAll(void);
 extern void *memset(void *, int, u32);
 
@@ -38,7 +40,7 @@ void fn_8004F6B0(void) {
 void fn_8004F74C(void) {
     AdxfState *state = &lbl_80186630;
 
-    (void)lbl_80091250[0];
+    lbl_80091250;
     if (state->counter == 0) {
         memset(state->field_538, 0, 0x440);
         memset(state->field_138, 0, 0x400);

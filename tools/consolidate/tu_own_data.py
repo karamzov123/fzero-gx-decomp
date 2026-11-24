@@ -51,7 +51,7 @@ def main():
             raise SystemExit(f'{sec}: compiled size {got} does not fit 0x{lo:X}..0x{hi:X}')
     else:
         want = retail(lo, hi - lo)
-        differs = isinstance(got, bytes) and any(i not in relocated and got[i:i + 4] != want[i:i + 4] for i in range(0, len(got), 4))
+        differs = isinstance(got, bytes) and any(i not in relocated and got[i:i + 4] != want[i:min(i + 4, len(got))] for i in range(0, len(got), 4))
         if not isinstance(got, bytes) or not got or len(got) > hi - lo or differs or any(want[len(got):]):
             raise SystemExit(f'{sec}: compiled {len(got) if isinstance(got, bytes) else got} bytes differ from retail 0x{lo:X}..0x{hi:X}')
     syms = {m[1]: int(m[2], 16) for m in re.finditer(rf'^(\S+) = {re.escape(sec)}:0x([0-9A-F]+);', open('config/GFZE01/symbols.txt').read(), re.M)}

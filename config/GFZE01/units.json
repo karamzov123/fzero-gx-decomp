@@ -6821,15 +6821,6 @@
   },
   {
     "module": "main",
-    "source": "dol/ADXT_DestroyAll.c",
-    "symbols": [
-      "ADXT_DestroyAll"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2"
-  },
-  {
-    "module": "main",
     "source": "dol/adx/adx_errs.c",
     "symbols": [
       "fn_80046F88",
@@ -11051,23 +11042,6 @@
     "source": "dol/data/lbl_800911E0.c",
     "symbols": [
       "lbl_800911E0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_80091220.c",
-    "symbols": [
-      "lbl_80091220",
-      "lbl_80091250",
-      "lbl_80091258",
-      "lbl_8009127C",
-      "lbl_800912A0",
-      "lbl_800912C4"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -21546,7 +21520,14 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0",
+      "-str",
+      "reuse,readonly"
+    ],
     "collapsed": true
   },
   {
@@ -21574,7 +21555,9 @@
     "source": "dol/adx/adx_fs.c",
     "symbols": [
       "fn_8004F818",
-      "ADXF_ExecServer"
+      "ADXF_ExecServer",
+      "ADXT_DestroyAll",
+      "fn_8004FC94"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
@@ -21586,30 +21569,10 @@
       "-use_lmw_stmw",
       "on",
       "-inline",
-      "on,noauto"
+      "on,noauto",
+      "-str",
+      "reuse,readonly"
     ],
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8004FC94.c",
-    "symbols": [
-      "fn_8004FC94"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-sdata",
-      "0",
-      "-sdata2",
-      "0",
-      "-use_lmw_stmw",
-      "on"
-    ],
-    "pool": {
-      "@61": "lbl_800912A0",
-      "@62": "lbl_800912C4"
-    },
     "collapsed": true
   },
   {

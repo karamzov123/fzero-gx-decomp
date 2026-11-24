@@ -28,6 +28,15 @@ struct SJ {
 
 typedef struct ADXStream ADXStream;
 
+typedef struct ADXFCommandRecord {
+    u8 command;
+    u8 phase;
+    u16 sequence;
+    void *file;
+    s32 position;
+    s32 length;
+} ADXFCommandRecord;
+
 typedef struct ADXFFile {
     s8 used;
     s8 state;
@@ -56,8 +65,6 @@ typedef struct {
 
 extern s32 lbl_80186764;
 extern ADXFFile lbl_80186B68[16];
-extern char lbl_80091258[];
-extern char lbl_8009127C[];
 extern u32 lbl_80186768[];
 
 extern void fn_80046738(void);
@@ -65,10 +72,19 @@ extern void fn_80046718(void);
 extern s32 fn_8004AEE4(ADXStream *stream);
 extern s32 fn_8004AE78(ADXStream *stream);
 
-extern void fn_800474E4(char *);
+extern void fn_800474E4(const char *message);
 extern char *strncpy(char *, const char *, size_t);
 
 void fn_8004F7F8(void *address, s32 size);
+
+void *memset(void *destination, int value, unsigned long size);
+extern s32 lbl_80186640;
+extern u16 lbl_80186644[16];
+extern ADXFCommandRecord lbl_80186664[16];
+extern void fn_8004AC58(ADXStream *stream);
+extern void fn_8004AEF0(ADXStream *stream);
+extern void fn_8004B1DC(ADXStream *stream);
+void fn_8004FC94(ADXFFile *file);
 
 s32 fn_8004F818(s32 arg0, s32 arg1, char *arg2, u32 *arg3, u32 *arg4, u32 *arg5) {
     s32 result;
@@ -78,13 +94,13 @@ s32 fn_8004F818(s32 arg0, s32 arg1, char *arg2, u32 *arg3, u32 *arg4, u32 *arg5)
     u32 sum;
 
     if (arg0 < 0 || arg0 >= 0x100) {
-        fn_800474E4(lbl_80091258);
+        fn_800474E4("E9040828:'ptid' is range outside.");
         result = -3;
     } else if ((AdxfPartitionEntry *)lbl_80186768[arg0] == 0) {
-        fn_800474E4(lbl_80091258);
+        fn_800474E4("E9040828:'ptid' is range outside.");
         result = -3;
     } else if (arg1 < 0 || arg1 >= (s32)((AdxfPartitionEntry *)lbl_80186768[arg0])->count) {
-        fn_800474E4(lbl_8009127C);
+        fn_800474E4("E9040828:'flid' is range outside.");
         result = -3;
     } else {
         result = 0;
@@ -117,6 +133,23 @@ s32 fn_8004F818(s32 arg0, s32 arg1, char *arg2, u32 *arg3, u32 *arg4, u32 *arg5)
     *arg3 = *(u32 *)((u8 *)entry + 0x110);
     *arg4 = *(u32 *)((u8 *)entry + 0x114) + sum;
     return result;
+}
+
+static inline void adxf_SetCmdHstry(s32 command, s32 phase, ADXFFile *file, s32 position,
+                                    s32 length) {
+    ADXFCommandRecord *history;
+    lbl_80186640 %= 16;
+    history = &lbl_80186664[lbl_80186640];
+    if (phase == 0) {
+        lbl_80186644[command]++;
+    }
+    history->command = command;
+    history->phase = phase;
+    history->sequence = lbl_80186644[command];
+    history->file = file;
+    history->position = position;
+    history->length = length;
+    lbl_80186640++;
 }
 
 static inline void adxf_CloseSjStm(ADXFFile *file) {
@@ -157,4 +190,59 @@ void ADXF_ExecServer(void) {
         }
     }
     fn_80046718();
+}
+
+static inline s32 adxf_Stop(ADXFFile *file) {
+    adxf_SetCmdHstry(5, 0, file, -1, -1);
+    if (file == 0) {
+        fn_800474E4("E9040822:'adxf' is NULL.(ADXF_Stop)");
+        return -1;
+    }
+    if (file->state == 1) {
+        return file->skpos;
+    }
+    if (file->state == 3) {
+        file->state = 1;
+        return file->skpos;
+    }
+    if (file->stm == 0) {
+        fn_800474E4("E9040823:'adxf->stm' is NULL.(ADXF_Stop)");
+        return -1;
+    }
+    fn_8004AC58(file->stm);
+    fn_80046738();
+    file->rdsct = fn_8004AE78(file->stm) - file->skpos;
+    adxf_CloseSjStm(file);
+    file->state = 1;
+    fn_80046718();
+    adxf_SetCmdHstry(5, 1, file, -1, -1);
+    return file->skpos;
+}
+
+void ADXT_DestroyAll(void) {
+    s32 index;
+
+    for (index = 0; index < 16; index++) {
+        if (lbl_80186B68[index].used == 1) {
+            fn_8004FC94(&lbl_80186B68[index]);
+        }
+    }
+}
+
+void fn_8004FC94(ADXFFile *file) {
+    ADXStream *stream;
+    adxf_SetCmdHstry(3, 0, file, -1, -1);
+    if (file != 0) {
+        if (file->state == 2) {
+            adxf_Stop(file);
+        }
+        if (file->stm != 0) {
+            stream = file->stm;
+            file->stm = 0;
+            fn_8004AEF0(stream);
+            fn_8004B1DC(stream);
+        }
+        memset(file, 0, sizeof(*file));
+        adxf_SetCmdHstry(3, 1, file, -1, -1);
+    }
 }

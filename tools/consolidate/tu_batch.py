@@ -85,7 +85,7 @@ def unify_prototypes(text):
     lines, seen = text.splitlines(), set()
     out = []
     for line in lines:
-        m = re.match(r'^\s*(?:extern\s+)?[A-Za-z_][\w\s*]*?\b(\w+)\s*\([^;{}]*\)\s*;\s*$', line)
+        m = re.match(r'^\s*(?!return\b)(?:extern\s+)?[A-Za-z_][\w\s*]*?\b(\w+)\s*\([^;{}]*\)\s*;\s*$', line)
         if m and m.group(1) in heads and not heads[m.group(1)].startswith(('static', 'inline')):
             if m.group(1) in seen:
                 continue
