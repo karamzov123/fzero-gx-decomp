@@ -82,7 +82,10 @@ dol/trk/dolphin_trk_glue.c:
 	.text       start:0x8008D2AC end:0x8008D77C align:4
 
 dol/fn_8008F44C.c:
-	.text       start:0x8008F44C end:0x8008F748 align:4
+	.text       start:0x8008F44C end:0x8008F454 align:4
+
+dol/fn_8008F454.c:
+	.text       start:0x8008F454 end:0x8008F748 align:4
 
 dol/adx/adx_stmc.c:
 	.text       start:0x8004A578 end:0x8004B7F4 align:4
@@ -107,7 +110,10 @@ dol/fn_8005A5BC.c:
 	.text       start:0x8005A5BC end:0x8005A628 align:4
 
 dol/adx/ax_rna_controls.c:
-	.text       start:0x8005A628 end:0x8005ADBC align:4
+	.text       start:0x8005A628 end:0x8005A668 align:4
+
+dol/fn_8005A668.c:
+	.text       start:0x8005A668 end:0x8005ADBC align:4
 
 dol/fn_80046718.c:
 	.text       start:0x80046718 end:0x80046768 align:4
@@ -182,7 +188,10 @@ dol/adx/adx_mgc.c:
 	.text       start:0x8004E4DC end:0x8004EC34 align:4
 
 dol/trk/msgbuf.c:
-	.text       start:0x80088B00 end:0x8008930C align:4
+	.text       start:0x80088B00 end:0x80088B44 align:4
+
+dol/TRKReadBuffer_ui32.c:
+	.text       start:0x80088B44 end:0x8008930C align:4
 
 dol/adx/sj_rbf.c:
 	.text       start:0x80057D88 end:0x8005870C align:4
@@ -315,7 +324,10 @@ dol/strncmp.c:
 	.text       start:0x80083B8C end:0x80083BCC align:4
 
 dol/fn_800885B8.c:
-	.text       start:0x800885B8 end:0x80088740 align:4
+	.text       start:0x800885B8 end:0x80088648 align:4
+
+dol/TRKNubMainLoop.c:
+	.text       start:0x80088648 end:0x80088740 align:4
 
 dol/fn_800884C0.c:
 	.text       start:0x800884C0 end:0x80088538 align:4
@@ -339,7 +351,13 @@ dol/fn_8008E718.c:
 	.text       start:0x8008E718 end:0x8008E770 align:4
 
 dol/fn_8008F8F0.c:
-	.text       start:0x8008F8F0 end:0x8008FEE4 align:4
+	.text       start:0x8008F8F0 end:0x8008FED4 align:4
+
+dol/AMC_IsStub.c:
+	.text       start:0x8008FED4 end:0x8008FEDC align:4
+
+dol/Hu_IsStub.c:
+	.text       start:0x8008FEDC end:0x8008FEE4 align:4
 
 dol/fn_8008F748.c:
 	.text       start:0x8008F748 end:0x8008F838 align:4
@@ -595,7 +613,10 @@ dol/adx/gcci.c:
 	.text       start:0x800555C0 end:0x800565F0 align:4
 
 dol/fn_8007F48C.c:
-	.text       start:0x8007F48C end:0x8007F684 align:4
+	.text       start:0x8007F48C end:0x8007F508 align:4
+
+dol/fn_8007F508.c:
+	.text       start:0x8007F508 end:0x8007F684 align:4
 
 dol/fn_8006CCC8.c:
 	.text       start:0x8006CCC8 end:0x8006CDFC align:4
@@ -821,7 +842,13 @@ dol/runtime/direct_io.c:
 	.text       start:0x8007EDB4 end:0x8007F48C align:4
 
 dol/runtime/buffer_io.c:
-	.text       start:0x8007EA58 end:0x8007EDB4 align:4
+	.text       start:0x8007EA58 end:0x8007ED84 align:4
+
+dol/__end_critical_region.c:
+	.text       start:0x8007ED84 end:0x8007ED90 align:4
+
+dol/fn_8007ED90.c:
+	.text       start:0x8007ED90 end:0x8007EDB4 align:4
 
 dol/runtime/file_io.c:
 	.text       start:0x8007F684 end:0x8007FBC8 align:4
@@ -1005,7 +1032,10 @@ dol/trk/main.c:
 	.text       start:0x8008DF6C end:0x8008E6C8 align:4
 
 dol/fn_80079FA8.c:
-	.text       start:0x80079FA8 end:0x8007A150 align:4
+	.text       start:0x80079FA8 end:0x8007A060 align:4
+
+dol/exit.c:
+	.text       start:0x8007A060 end:0x8007A150 align:4
 
 dol/sasnd/sasnd_core.c:
 	.text       start:0x800658B4 end:0x80069B10 align:4
@@ -1075,7 +1105,10 @@ dol/fn_8002123C.c:
 	.text       start:0x8002123C end:0x800218EC align:4
 
 dol/card/CARDNet.c:
-	.text       start:0x8003043C end:0x800307CC align:4
+	.text       start:0x8003043C end:0x80030690 align:4
+
+dol/CARDGetSerialNo.c:
+	.text       start:0x80030690 end:0x800307CC align:4
 
 dol/fn_8008EDF0.c:
 	.text       start:0x8008EDF0 end:0x8008EFE0 align:4
@@ -1290,7 +1323,10 @@ dol/fn_8008E770.c:
 	.text       start:0x8008E770 end:0x8008E9B4 align:4
 
 dol/fn_8007E69C.c:
-	.text       start:0x8007E69C end:0x8007E96C align:4
+	.text       start:0x8007E69C end:0x8007E914 align:4
+
+dol/fn_8007E914.c:
+	.text       start:0x8007E914 end:0x8007E96C align:4
 
 dol/fn_80009CD4.c:
 	.text       start:0x80009CD4 end:0x80009FBC align:4

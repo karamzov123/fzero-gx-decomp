@@ -35,6 +35,27 @@ ROWS = [  # file, lib, lo, hi, ordered sizes, donors
      [40, 40, 68, 152, 40, 40, 180, 64, 964, 180, 136, 120, 532, 632, 516, 40, 720, 16, 8],
      'no donor: a modified SDK OSAlloc with its OSCheckHeap failure strings, sharing the heap state at .sbss '
      '0x801A6730..0x801A6748 and .sdata 0x801A6410/0x801A6414. It ends at PPCArch.c. The sizes are this build\'s'),
+    ('CARDStatEx.c', 'card', 0x80030380, 0x80030690, [188, 596],
+     'no donor with these sizes: GQNE5D links CARDStatEx.o between CARDRename.o and CARDNet.o with the same two functions, '
+     '__CARDGetStatusEx and __CARDSetStatusExAsync, and both here use the card control block calls'),
+    ('lg_view.c', 'game', 0x8006CCC8, 0x8006CFF8, [88, 12, 20, 16, 88, 84, 32, 40, 436],
+     'no donor: these nine functions share .sbss 0x801A6CA0..0x801A6CB0. Their .sdata2 run starts on the 8-byte TU boundary '
+     '0x801A7398 and ends where mathutil.c starts at 0x801A73D0, which repeats 0.0. The file name is a placeholder'),
+    ('alloc.c', 'runtime', 0x8007A150, 0x8007A2E8, [112, 124, 88, 84],
+     'GQNE5D alloc.o has __pool_free (88) and __pool_alloc (84) immediately before deallocate_from_fixed_pools; the two '
+     'functions before them are free and malloc, which call them and use the pool at .bss 0x801A3380'),
+    ('arith.c', 'runtime', 0x8007E914, 0x8007E96C, [88], 'G9SE8P arith.c: div'),
+    ('bsearch.c', 'runtime', 0x8007E96C, 0x8007EA58, [236],
+     'no donor with this size: MarioClub_us links bsearch.c between arith.c and buffer_io.c, and this body is bsearch'),
+    ('FILE_POS.c', 'runtime', 0x8007FC34, 0x8007FF18, [572, 168],
+     'G9SE8P FILE_POS.c has _fseek (572) after fseek; the next function is ftell'),
+    ('uart_console_io.c', 'runtime', 0x8008580C, 0x800858E4, [8, 208],
+     'GMSE01 links uart_console_io.c between strtoul.c and wchar_io.c, with __close_console (8) first. The second '
+     'function calls InitializeUART and WriteUARTN'),
+    ('exi2.c', 'odemuexi2', 0x8008E770, 0x8008F454, [580, 408, 64, 108, 128, 104, 80, 64, 64, 64, 188, 44, 264, 700, 432, 4, 4],
+     'no donor: the EXI2 debugger link used by the ddh callers, with the string "Can\'t select EXI2 port!" at .data '
+     '0x8015B900. It lies between MWCriticalSection_gc.cpp and DebuggerDriver.c. The two 4-byte stubs at the end are placed '
+     'by position. The file name is a placeholder'),
     ('render_clear.c', 'game', 0x80007A44, 0x80007CDC, [112, 180, 196, 52, 124],
      'no donor: these five functions share the clear color at .sdata 0x801A6408 and the flag at .sbss 0x801A6728. '
      'Their three .sdata2 color initializers end at 0x801A6F0C and the next TU starts on the 8-byte boundary '

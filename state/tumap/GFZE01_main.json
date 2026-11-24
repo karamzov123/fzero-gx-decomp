@@ -4,10 +4,10 @@
   "note": "Draft DOL ownership evidence used by the consolidation tools. Unassigned entries and conflicts are not confirmed boundaries.",
   "summary": {
     "functions": 2230,
-    "assigned": 2192,
+    "assigned": 2230,
     "bytes": 567556,
-    "assigned_bytes": 560968,
-    "tus": 246,
+    "assigned_bytes": 567556,
+    "tus": 252,
     "conflicts": 0,
     "string_anchored": 13
   },
@@ -1962,6 +1962,22 @@
         "sdk-order": 1
       },
       "lib": "card"
+    },
+    {
+      "file": "CARDStatEx.c",
+      "text": [
+        "80030380",
+        "80030690"
+      ],
+      "functions": [
+        "fn_80030380",
+        "fn_8003043C"
+      ],
+      "how": {
+        "data-evidence": 2
+      },
+      "lib": "card",
+      "notes": "0x80030380..0x80030690: no donor with these sizes: GQNE5D links CARDStatEx.o between CARDRename.o and CARDNet.o with the same two functions, __CARDGetStatusEx and __CARDSetStatusExAsync, and both here use the card control block calls."
     },
     {
       "file": "CARDNet.c",
@@ -3938,6 +3954,29 @@
       "lib": "lg"
     },
     {
+      "file": "lg_view.c",
+      "text": [
+        "8006CCC8",
+        "8006CFF8"
+      ],
+      "functions": [
+        "fn_8006CCC8",
+        "fn_8006CD20",
+        "fn_8006CD2C",
+        "fn_8006CD40",
+        "fn_8006CD50",
+        "fn_8006CDA8",
+        "fn_8006CDFC",
+        "fn_8006CE1C",
+        "fn_8006CE44"
+      ],
+      "how": {
+        "data-evidence": 9
+      },
+      "lib": "game",
+      "notes": "0x8006CCC8..0x8006CFF8: no donor: these nine functions share .sbss 0x801A6CA0..0x801A6CB0. Their .sdata2 run starts on the 8-byte TU boundary 0x801A7398 and ends where mathutil.c starts at 0x801A73D0, which repeats 0.0. The file name is a placeholder."
+    },
+    {
       "file": "mathutil.c",
       "text": [
         "8006CFF8",
@@ -4352,18 +4391,24 @@
     {
       "file": "alloc.c",
       "text": [
-        "8007A2E8",
+        "8007A150",
         "8007A710"
       ],
       "functions": [
+        "fn_8007A150",
+        "fn_8007A1C0",
+        "fn_8007A23C",
+        "fn_8007A294",
         "deallocate_from_fixed_pools",
         "fn_8007A440"
       ],
       "how": {
         "sdkimport": 1,
-        "pool-vote": 1
+        "pool-vote": 1,
+        "donor-size": 4
       },
-      "lib": "runtime"
+      "lib": "runtime",
+      "notes": "0x8007A150..0x8007A2E8: ordered sizes equal GQNE5D alloc.o has __pool_free (88) and __pool_alloc (84) immediately before deallocate_from_fixed_pools; the two functions before them are free and malloc, which call them and use the pool at .bss 0x801A3380."
     },
     {
       "file": "pool_alloc.c",
@@ -4427,6 +4472,36 @@
       },
       "lib": "runtime",
       "notes": "GQNE5D MSL ansi_fp.o (mk-deception map 33b1e0082c7630ee4f20b828559966872ae670e1) has seven functions with exactly the same ordered sizes, ending in __timesdec (0x278 bytes). GX fn_8007E69C has that size and performs decimal significand multiplication with half-even rounding; the decimal exponent routine fn_8007CF18 calls it. The following GX routine, fn_8007E914, performs integer quotient/remainder rather than decimal arithmetic and is left unassigned. This is comparative .text evidence, not a transfer of pool or data ownership."
+    },
+    {
+      "file": "arith.c",
+      "text": [
+        "8007E914",
+        "8007E96C"
+      ],
+      "functions": [
+        "fn_8007E914"
+      ],
+      "how": {
+        "donor-size": 1
+      },
+      "lib": "runtime",
+      "notes": "0x8007E914..0x8007E96C: ordered sizes equal G9SE8P arith.c: div."
+    },
+    {
+      "file": "bsearch.c",
+      "text": [
+        "8007E96C",
+        "8007EA58"
+      ],
+      "functions": [
+        "fn_8007E96C"
+      ],
+      "how": {
+        "data-evidence": 1
+      },
+      "lib": "runtime",
+      "notes": "0x8007E96C..0x8007EA58: no donor with this size: MarioClub_us links bsearch.c between arith.c and buffer_io.c, and this body is bsearch."
     },
     {
       "file": "buffer_io.c",
@@ -4521,15 +4596,19 @@
       "file": "FILE_POS.c",
       "text": [
         "8007FBC8",
-        "8007FC34"
+        "8007FF18"
       ],
       "functions": [
-        "fseek"
+        "fseek",
+        "fn_8007FC34",
+        "fn_8007FE70"
       ],
       "how": {
-        "donor-name": 1
+        "donor-name": 1,
+        "donor-size": 2
       },
-      "lib": "MSL_C"
+      "lib": "MSL_C",
+      "notes": "0x8007FC34..0x8007FF18: ordered sizes equal G9SE8P FILE_POS.c has _fseek (572) after fseek; the next function is ftell."
     },
     {
       "file": "mbstring.c",
@@ -4721,6 +4800,22 @@
         "sdkimport": 4
       },
       "lib": "runtime"
+    },
+    {
+      "file": "uart_console_io.c",
+      "text": [
+        "8008580C",
+        "800858E4"
+      ],
+      "functions": [
+        "fn_8008580C",
+        "fn_80085814"
+      ],
+      "how": {
+        "donor-size": 2
+      },
+      "lib": "runtime",
+      "notes": "0x8008580C..0x800858E4: ordered sizes equal GMSE01 links uart_console_io.c between strtoul.c and wchar_io.c, with __close_console (8) first. The second function calls InitializeUART and WriteUARTN."
     },
     {
       "file": "wchar_io.c",
@@ -5545,6 +5640,37 @@
       "lib": "trk"
     },
     {
+      "file": "exi2.c",
+      "text": [
+        "8008E770",
+        "8008F454"
+      ],
+      "functions": [
+        "fn_8008E770",
+        "fn_8008E9B4",
+        "fn_8008EB4C",
+        "fn_8008EB8C",
+        "fn_8008EBF8",
+        "fn_8008EC78",
+        "fn_8008ECE0",
+        "fn_8008ED30",
+        "fn_8008ED70",
+        "fn_8008EDB0",
+        "fn_8008EDF0",
+        "fn_8008EEAC",
+        "fn_8008EED8",
+        "fn_8008EFE0",
+        "fn_8008F29C",
+        "fn_8008F44C",
+        "fn_8008F450"
+      ],
+      "how": {
+        "data-evidence": 17
+      },
+      "lib": "odemuexi2",
+      "notes": "0x8008E770..0x8008F454: no donor: the EXI2 debugger link used by the ddh callers, with the string \"Can't select EXI2 port!\" at .data 0x8015B900. It lies between MWCriticalSection_gc.cpp and DebuggerDriver.c. The two 4-byte stubs at the end are placed by position. The file name is a placeholder."
+    },
+    {
       "file": "DebuggerDriver.c",
       "text": [
         "8008F454",
@@ -5603,348 +5729,5 @@
     }
   ],
   "conflicts": [],
-  "unassigned": [
-    {
-      "name": "fn_80030380",
-      "addr": "80030380",
-      "size": 188,
-      "candidates": [
-        "CARDRename.c",
-        "CARDNet.c"
-      ]
-    },
-    {
-      "name": "fn_8003043C",
-      "addr": "8003043C",
-      "size": 596,
-      "candidates": [
-        "CARDRename.c",
-        "CARDNet.c"
-      ]
-    },
-    {
-      "name": "fn_8006CCC8",
-      "addr": "8006CCC8",
-      "size": 88,
-      "candidates": [
-        "arc.c",
-        "avsystem.c"
-      ]
-    },
-    {
-      "name": "fn_8006CD20",
-      "addr": "8006CD20",
-      "size": 12,
-      "candidates": [
-        "arc.c",
-        "avsystem.c"
-      ]
-    },
-    {
-      "name": "fn_8006CD2C",
-      "addr": "8006CD2C",
-      "size": 20,
-      "candidates": [
-        "arc.c",
-        "avsystem.c"
-      ]
-    },
-    {
-      "name": "fn_8006CD40",
-      "addr": "8006CD40",
-      "size": 16,
-      "candidates": [
-        "arc.c",
-        "avsystem.c"
-      ]
-    },
-    {
-      "name": "fn_8006CD50",
-      "addr": "8006CD50",
-      "size": 88,
-      "candidates": [
-        "arc.c",
-        "avsystem.c"
-      ]
-    },
-    {
-      "name": "fn_8006CDA8",
-      "addr": "8006CDA8",
-      "size": 84,
-      "candidates": [
-        "arc.c",
-        "avsystem.c"
-      ]
-    },
-    {
-      "name": "fn_8006CDFC",
-      "addr": "8006CDFC",
-      "size": 32,
-      "candidates": [
-        "arc.c",
-        "avsystem.c"
-      ]
-    },
-    {
-      "name": "fn_8006CE1C",
-      "addr": "8006CE1C",
-      "size": 40,
-      "candidates": [
-        "arc.c",
-        "avsystem.c"
-      ]
-    },
-    {
-      "name": "fn_8006CE44",
-      "addr": "8006CE44",
-      "size": 436,
-      "candidates": [
-        "arc.c",
-        "avsystem.c"
-      ]
-    },
-    {
-      "name": "fn_8007A150",
-      "addr": "8007A150",
-      "size": 112,
-      "candidates": [
-        "abort_exit.c",
-        "alloc.c"
-      ]
-    },
-    {
-      "name": "fn_8007A1C0",
-      "addr": "8007A1C0",
-      "size": 124,
-      "candidates": [
-        "abort_exit.c",
-        "alloc.c"
-      ]
-    },
-    {
-      "name": "fn_8007A23C",
-      "addr": "8007A23C",
-      "size": 88,
-      "candidates": [
-        "abort_exit.c",
-        "alloc.c"
-      ]
-    },
-    {
-      "name": "fn_8007A294",
-      "addr": "8007A294",
-      "size": 84,
-      "candidates": [
-        "abort_exit.c",
-        "alloc.c"
-      ]
-    },
-    {
-      "name": "fn_8007E914",
-      "addr": "8007E914",
-      "size": 88,
-      "candidates": [
-        "ansi_fp.c",
-        "buffer_io.c"
-      ]
-    },
-    {
-      "name": "fn_8007E96C",
-      "addr": "8007E96C",
-      "size": 236,
-      "candidates": [
-        "ansi_fp.c",
-        "buffer_io.c"
-      ]
-    },
-    {
-      "name": "fn_8007FC34",
-      "addr": "8007FC34",
-      "size": 572,
-      "candidates": [
-        "FILE_POS.c",
-        "mbstring.c"
-      ]
-    },
-    {
-      "name": "fn_8007FE70",
-      "addr": "8007FE70",
-      "size": 168,
-      "candidates": [
-        "FILE_POS.c",
-        "mbstring.c"
-      ]
-    },
-    {
-      "name": "fn_8008580C",
-      "addr": "8008580C",
-      "size": 8,
-      "candidates": [
-        "strtoul.c",
-        "wchar_io.c"
-      ]
-    },
-    {
-      "name": "fn_80085814",
-      "addr": "80085814",
-      "size": 208,
-      "candidates": [
-        "strtoul.c",
-        "wchar_io.c"
-      ]
-    },
-    {
-      "name": "fn_8008E770",
-      "addr": "8008E770",
-      "size": 580,
-      "candidates": [
-        "MWTrace.c",
-        "DebuggerDriver.c"
-      ]
-    },
-    {
-      "name": "fn_8008E9B4",
-      "addr": "8008E9B4",
-      "size": 408,
-      "candidates": [
-        "MWTrace.c",
-        "DebuggerDriver.c"
-      ]
-    },
-    {
-      "name": "fn_8008EB4C",
-      "addr": "8008EB4C",
-      "size": 64,
-      "candidates": [
-        "MWTrace.c",
-        "DebuggerDriver.c"
-      ]
-    },
-    {
-      "name": "fn_8008EB8C",
-      "addr": "8008EB8C",
-      "size": 108,
-      "candidates": [
-        "MWTrace.c",
-        "DebuggerDriver.c"
-      ]
-    },
-    {
-      "name": "fn_8008EBF8",
-      "addr": "8008EBF8",
-      "size": 128,
-      "candidates": [
-        "MWTrace.c",
-        "DebuggerDriver.c"
-      ]
-    },
-    {
-      "name": "fn_8008EC78",
-      "addr": "8008EC78",
-      "size": 104,
-      "candidates": [
-        "MWTrace.c",
-        "DebuggerDriver.c"
-      ]
-    },
-    {
-      "name": "fn_8008ECE0",
-      "addr": "8008ECE0",
-      "size": 80,
-      "candidates": [
-        "MWTrace.c",
-        "DebuggerDriver.c"
-      ]
-    },
-    {
-      "name": "fn_8008ED30",
-      "addr": "8008ED30",
-      "size": 64,
-      "candidates": [
-        "MWTrace.c",
-        "DebuggerDriver.c"
-      ]
-    },
-    {
-      "name": "fn_8008ED70",
-      "addr": "8008ED70",
-      "size": 64,
-      "candidates": [
-        "MWTrace.c",
-        "DebuggerDriver.c"
-      ]
-    },
-    {
-      "name": "fn_8008EDB0",
-      "addr": "8008EDB0",
-      "size": 64,
-      "candidates": [
-        "MWTrace.c",
-        "DebuggerDriver.c"
-      ]
-    },
-    {
-      "name": "fn_8008EDF0",
-      "addr": "8008EDF0",
-      "size": 188,
-      "candidates": [
-        "MWTrace.c",
-        "DebuggerDriver.c"
-      ]
-    },
-    {
-      "name": "fn_8008EEAC",
-      "addr": "8008EEAC",
-      "size": 44,
-      "candidates": [
-        "MWTrace.c",
-        "DebuggerDriver.c"
-      ]
-    },
-    {
-      "name": "fn_8008EED8",
-      "addr": "8008EED8",
-      "size": 264,
-      "candidates": [
-        "MWTrace.c",
-        "DebuggerDriver.c"
-      ]
-    },
-    {
-      "name": "fn_8008EFE0",
-      "addr": "8008EFE0",
-      "size": 700,
-      "candidates": [
-        "MWTrace.c",
-        "DebuggerDriver.c"
-      ]
-    },
-    {
-      "name": "fn_8008F29C",
-      "addr": "8008F29C",
-      "size": 432,
-      "candidates": [
-        "MWTrace.c",
-        "DebuggerDriver.c"
-      ]
-    },
-    {
-      "name": "fn_8008F44C",
-      "addr": "8008F44C",
-      "size": 4,
-      "candidates": [
-        "MWTrace.c",
-        "DebuggerDriver.c"
-      ]
-    },
-    {
-      "name": "fn_8008F450",
-      "addr": "8008F450",
-      "size": 4,
-      "candidates": [
-        "MWTrace.c",
-        "DebuggerDriver.c"
-      ]
-    }
-  ]
+  "unassigned": []
 }

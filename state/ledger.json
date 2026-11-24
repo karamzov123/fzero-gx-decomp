@@ -1,5 +1,5 @@
 {
- "generated": 1795489067,
+ "generated": 1795489360,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -20098,7 +20098,7 @@
   {
    "symbol": "CARDGetSerialNo",
    "module": "main",
-   "unit": "dol/card/CARDNet.c",
+   "unit": "dol/CARDGetSerialNo.c",
    "addr": 2147681936,
    "size": 196,
    "status": "matched",
@@ -20115,7 +20115,7 @@
   {
    "symbol": "fn_80030754",
    "module": "main",
-   "unit": "dol/card/CARDNet.c",
+   "unit": "dol/CARDGetSerialNo.c",
    "addr": 2147682132,
    "size": 120,
    "status": "matched",
@@ -32032,7 +32032,7 @@
   {
    "symbol": "fn_8005A668",
    "module": "main",
-   "unit": "dol/adx/ax_rna_controls.c",
+   "unit": "dol/fn_8005A668.c",
    "addr": 2147853928,
    "size": 16,
    "status": "matched",
@@ -32049,7 +32049,7 @@
   {
    "symbol": "fn_8005A678",
    "module": "main",
-   "unit": "dol/adx/ax_rna_controls.c",
+   "unit": "dol/fn_8005A668.c",
    "addr": 2147853944,
    "size": 8,
    "status": "matched",
@@ -32066,7 +32066,7 @@
   {
    "symbol": "fn_8005A680",
    "module": "main",
-   "unit": "dol/adx/ax_rna_controls.c",
+   "unit": "dol/fn_8005A668.c",
    "addr": 2147853952,
    "size": 8,
    "status": "matched",
@@ -32083,7 +32083,7 @@
   {
    "symbol": "fn_8005A688",
    "module": "main",
-   "unit": "dol/adx/ax_rna_controls.c",
+   "unit": "dol/fn_8005A668.c",
    "addr": 2147853960,
    "size": 16,
    "status": "matched",
@@ -32100,7 +32100,7 @@
   {
    "symbol": "AXRNA_SetOutPan",
    "module": "main",
-   "unit": "dol/adx/ax_rna_controls.c",
+   "unit": "dol/fn_8005A668.c",
    "addr": 2147853976,
    "size": 180,
    "status": "matched",
@@ -32117,7 +32117,7 @@
   {
    "symbol": "fn_8005A74C",
    "module": "main",
-   "unit": "dol/adx/ax_rna_controls.c",
+   "unit": "dol/fn_8005A668.c",
    "addr": 2147854156,
    "size": 172,
    "status": "matched",
@@ -32134,7 +32134,7 @@
   {
    "symbol": "fn_8005A7F8",
    "module": "main",
-   "unit": "dol/adx/ax_rna_controls.c",
+   "unit": "dol/fn_8005A668.c",
    "addr": 2147854328,
    "size": 340,
    "status": "matched",
@@ -32151,7 +32151,7 @@
   {
    "symbol": "fn_8005A94C",
    "module": "main",
-   "unit": "dol/adx/ax_rna_controls.c",
+   "unit": "dol/fn_8005A668.c",
    "addr": 2147854668,
    "size": 16,
    "status": "matched",
@@ -32168,7 +32168,7 @@
   {
    "symbol": "AXRNA_ExecServer",
    "module": "main",
-   "unit": "dol/adx/ax_rna_controls.c",
+   "unit": "dol/fn_8005A668.c",
    "addr": 2147854684,
    "size": 92,
    "status": "matched",
@@ -32185,7 +32185,7 @@
   {
    "symbol": "fn_8005A9B8",
    "module": "main",
-   "unit": "dol/adx/ax_rna_controls.c",
+   "unit": "dol/fn_8005A668.c",
    "addr": 2147854776,
    "size": 824,
    "status": "matched",
@@ -32202,7 +32202,7 @@
   {
    "symbol": "fn_8005ACF0",
    "module": "main",
-   "unit": "dol/adx/ax_rna_controls.c",
+   "unit": "dol/fn_8005A668.c",
    "addr": 2147855600,
    "size": 204,
    "status": "matched",
@@ -39563,7 +39563,7 @@
   {
    "symbol": "exit",
    "module": "main",
-   "unit": "dol/fn_80079FA8.c",
+   "unit": "dol/exit.c",
    "addr": 2147983456,
    "size": 240,
    "status": "matched",
@@ -39988,7 +39988,7 @@
   {
    "symbol": "fn_8007E914",
    "module": "main",
-   "unit": "dol/fn_8007E69C.c",
+   "unit": "dol/fn_8007E914.c",
    "addr": 2148002068,
    "size": 88,
    "status": "matched",
@@ -40090,7 +40090,7 @@
   {
    "symbol": "__end_critical_region",
    "module": "main",
-   "unit": "dol/runtime/buffer_io.c",
+   "unit": "dol/__end_critical_region.c",
    "addr": 2148003204,
    "size": 4,
    "status": "matched",
@@ -40107,7 +40107,7 @@
   {
    "symbol": "__begin_critical_region",
    "module": "main",
-   "unit": "dol/runtime/buffer_io.c",
+   "unit": "dol/__end_critical_region.c",
    "addr": 2148003208,
    "size": 4,
    "status": "matched",
@@ -40124,7 +40124,7 @@
   {
    "symbol": "__kill_critical_regions",
    "module": "main",
-   "unit": "dol/runtime/buffer_io.c",
+   "unit": "dol/__end_critical_region.c",
    "addr": 2148003212,
    "size": 4,
    "status": "matched",
@@ -40141,7 +40141,7 @@
   {
    "symbol": "fn_8007ED90",
    "module": "main",
-   "unit": "dol/runtime/buffer_io.c",
+   "unit": "dol/fn_8007ED90.c",
    "addr": 2148003216,
    "size": 36,
    "status": "matched",
@@ -40226,7 +40226,7 @@
   {
    "symbol": "fn_8007F508",
    "module": "main",
-   "unit": "dol/fn_8007F48C.c",
+   "unit": "dol/fn_8007F508.c",
    "addr": 2148005128,
    "size": 380,
    "status": "matched",
@@ -41654,7 +41654,7 @@
   {
    "symbol": "TRKNubMainLoop",
    "module": "main",
-   "unit": "dol/fn_800885B8.c",
+   "unit": "dol/TRKNubMainLoop.c",
    "addr": 2148042312,
    "size": 248,
    "status": "matched",
@@ -41824,7 +41824,7 @@
   {
    "symbol": "TRKReadBuffer_ui32",
    "module": "main",
-   "unit": "dol/trk/msgbuf.c",
+   "unit": "dol/TRKReadBuffer_ui32.c",
    "addr": 2148043588,
    "size": 240,
    "status": "matched",
@@ -41841,7 +41841,7 @@
   {
    "symbol": "TRKReadBuffer_ui8",
    "module": "main",
-   "unit": "dol/trk/msgbuf.c",
+   "unit": "dol/TRKReadBuffer_ui32.c",
    "addr": 2148043828,
    "size": 152,
    "status": "matched",
@@ -41858,7 +41858,7 @@
   {
    "symbol": "TRKReadBuffer1_ui64",
    "module": "main",
-   "unit": "dol/trk/msgbuf.c",
+   "unit": "dol/TRKReadBuffer_ui32.c",
    "addr": 2148043980,
    "size": 232,
    "status": "matched",
@@ -41875,7 +41875,7 @@
   {
    "symbol": "TRKAppendBuffer_ui32",
    "module": "main",
-   "unit": "dol/trk/msgbuf.c",
+   "unit": "dol/TRKReadBuffer_ui32.c",
    "addr": 2148044212,
    "size": 252,
    "status": "matched",
@@ -41892,7 +41892,7 @@
   {
    "symbol": "TRKAppendBuffer_ui8",
    "module": "main",
-   "unit": "dol/trk/msgbuf.c",
+   "unit": "dol/TRKReadBuffer_ui32.c",
    "addr": 2148044464,
    "size": 104,
    "status": "matched",
@@ -41909,7 +41909,7 @@
   {
    "symbol": "TRKAppendBuffer1_ui64",
    "module": "main",
-   "unit": "dol/trk/msgbuf.c",
+   "unit": "dol/TRKReadBuffer_ui32.c",
    "addr": 2148044568,
    "size": 252,
    "status": "matched",
@@ -41926,7 +41926,7 @@
   {
    "symbol": "TRKReadBuffer",
    "module": "main",
-   "unit": "dol/trk/msgbuf.c",
+   "unit": "dol/TRKReadBuffer_ui32.c",
    "addr": 2148044820,
    "size": 140,
    "status": "matched",
@@ -41943,7 +41943,7 @@
   {
    "symbol": "TRKAppendBuffer",
    "module": "main",
-   "unit": "dol/trk/msgbuf.c",
+   "unit": "dol/TRKReadBuffer_ui32.c",
    "addr": 2148044960,
    "size": 164,
    "status": "matched",
@@ -41960,7 +41960,7 @@
   {
    "symbol": "fn_80089144",
    "module": "main",
-   "unit": "dol/trk/msgbuf.c",
+   "unit": "dol/TRKReadBuffer_ui32.c",
    "addr": 2148045124,
    "size": 48,
    "status": "matched",
@@ -41977,7 +41977,7 @@
   {
    "symbol": "fn_80089174",
    "module": "main",
-   "unit": "dol/trk/msgbuf.c",
+   "unit": "dol/TRKReadBuffer_ui32.c",
    "addr": 2148045172,
    "size": 64,
    "status": "matched",
@@ -41994,7 +41994,7 @@
   {
    "symbol": "fn_800891B4",
    "module": "main",
-   "unit": "dol/trk/msgbuf.c",
+   "unit": "dol/TRKReadBuffer_ui32.c",
    "addr": 2148045236,
    "size": 100,
    "status": "matched",
@@ -42011,7 +42011,7 @@
   {
    "symbol": "TRKGetBuffer",
    "module": "main",
-   "unit": "dol/trk/msgbuf.c",
+   "unit": "dol/TRKReadBuffer_ui32.c",
    "addr": 2148045336,
    "size": 44,
    "status": "matched",
@@ -42028,7 +42028,7 @@
   {
    "symbol": "fn_80089244",
    "module": "main",
-   "unit": "dol/trk/msgbuf.c",
+   "unit": "dol/TRKReadBuffer_ui32.c",
    "addr": 2148045380,
    "size": 200,
    "status": "matched",
@@ -44663,7 +44663,7 @@
   {
    "symbol": "fn_8008F454",
    "module": "main",
-   "unit": "dol/fn_8008F44C.c",
+   "unit": "dol/fn_8008F454.c",
    "addr": 2148070484,
    "size": 4,
    "status": "matched",
@@ -44680,7 +44680,7 @@
   {
    "symbol": "fn_8008F458",
    "module": "main",
-   "unit": "dol/fn_8008F44C.c",
+   "unit": "dol/fn_8008F454.c",
    "addr": 2148070488,
    "size": 4,
    "status": "matched",
@@ -44697,7 +44697,7 @@
   {
    "symbol": "fn_8008F45C",
    "module": "main",
-   "unit": "dol/fn_8008F44C.c",
+   "unit": "dol/fn_8008F454.c",
    "addr": 2148070492,
    "size": 608,
    "status": "matched",
@@ -44714,7 +44714,7 @@
   {
    "symbol": "fn_8008F6BC",
    "module": "main",
-   "unit": "dol/fn_8008F44C.c",
+   "unit": "dol/fn_8008F454.c",
    "addr": 2148071100,
    "size": 140,
    "status": "matched",
@@ -44901,7 +44901,7 @@
   {
    "symbol": "AMC_IsStub",
    "module": "main",
-   "unit": "dol/fn_8008F8F0.c",
+   "unit": "dol/AMC_IsStub.c",
    "addr": 2148073172,
    "size": 8,
    "status": "matched",
@@ -44918,7 +44918,7 @@
   {
    "symbol": "Hu_IsStub",
    "module": "main",
-   "unit": "dol/fn_8008F8F0.c",
+   "unit": "dol/Hu_IsStub.c",
    "addr": 2148073180,
    "size": 8,
    "status": "matched",

@@ -154,21 +154,3 @@ void __prep_buffer(FILE *buffer) {
     buffer->buffer_length -= buffer->position & buffer->buffer_alignment;
     buffer->buffer_position = buffer->position;
 }
-
-void __end_critical_region(int region) {
-    (void)region;
-}
-
-void __begin_critical_region(int region) {
-    (void)region;
-}
-
-void __kill_critical_regions(void) {
-}
-
-s32 fn_8007ED90(s32 value) {
-    if (value == -1) {
-        return -1;
-    }
-    return lbl_8015B200[(u8)value];
-}
