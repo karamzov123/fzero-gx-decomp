@@ -68,8 +68,8 @@ RANGES = [
 
     # --- THP & PERF (0x80039C40..0x80041164) ---
     ('THPDec.c', 'thp', 0x80039C40, 0x8003D4E0, 'sdk-order'),
-    ('perf.c', 'perf', 0x8003D4E0, 0x8003EAE4, 'sdk-order'),
-    ('perfdraw.c', 'perf', 0x8003EAE4, 0x80041164, 'sdk-order'),
+    ('perf.c', 'perf', 0x8003D4E0, 0x8003E9EC, 'sdk-order'),
+    ('perfdraw.c', 'perf', 0x8003E9EC, 0x80041164, 'sdk-order'),  # 0x8003E9EC repeats perf.c's 2^52 at .sdata2 0x801A71D0
 
     # --- MSL_C (verified named gaps) ---
     ('buffer_io.c', 'runtime', 0x8007EA58, 0x8007ED84, 'sdk-order'),

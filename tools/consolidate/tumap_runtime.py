@@ -91,9 +91,22 @@ def absorb_pool_alloc(m):
     m['tus'].remove(drop)
 
 
+def move_perf_tail(m):
+    """fn_8003E9EC uses its own copy of perf.c's 2^52 constant (.sdata2 0x801A71D0), so it opens perfdraw.c."""
+    by_file = {t['file']: t for t in m['tus']}
+    perf, draw = by_file['perf.c'], by_file['perfdraw.c']
+    if 'fn_8003E9EC' not in perf['functions']:
+        return
+    perf['functions'].remove('fn_8003E9EC'); perf['text'][1] = '8003E9EC'
+    draw['functions'].insert(0, 'fn_8003E9EC'); draw['text'][0] = '8003E9EC'
+    draw['notes'] = ('0x8003E9EC reads .sdata2 0x801A71C8..0x801A71D8, which repeats the 2^52 conversion constant of '
+                     'perf.c at 0x801A71C0, so it is the first function of this TU.')
+
+
 def main():
     m = json.loads(MAP.read_text())
     absorb_pool_alloc(m)
+    move_perf_tail(m)
     syms = {}
     for line in open('config/GFZE01/symbols.txt'):
         x = re.match(r'(\S+) = \.text:0x(\w+); // type:function size:0x(\w+)', line)

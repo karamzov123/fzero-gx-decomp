@@ -2451,7 +2451,7 @@
       "file": "perf.c",
       "text": [
         "8003D4E0",
-        "8003EAE4"
+        "8003E9EC"
       ],
       "functions": [
         "fn_8003D4E0",
@@ -2468,8 +2468,7 @@
         "fn_8003E284",
         "fn_8003E344",
         "fn_8003E8CC",
-        "fn_8003E958",
-        "fn_8003E9EC"
+        "fn_8003E958"
       ],
       "how": {
         "sdk-order": 16
@@ -2479,10 +2478,11 @@
     {
       "file": "perfdraw.c",
       "text": [
-        "8003EAE4",
+        "8003E9EC",
         "80041164"
       ],
       "functions": [
+        "fn_8003E9EC",
         "fn_8003EAE4",
         "fn_8003EC44",
         "fn_8003F834",
@@ -2493,7 +2493,8 @@
       "how": {
         "sdk-order": 6
       },
-      "lib": "perf"
+      "lib": "perf",
+      "notes": "0x8003E9EC reads .sdata2 0x801A71C8..0x801A71D8, which repeats the 2^52 conversion constant of perf.c at 0x801A71C0, so it is the first function of this TU."
     },
     {
       "file": "adx_inis.c",

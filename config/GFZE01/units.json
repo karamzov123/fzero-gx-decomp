@@ -9718,35 +9718,6 @@
   },
   {
     "module": "main",
-    "source": "dol/ansi_fp_decimal.c",
-    "symbols": [
-      "__num2dec",
-      "__num2dec_internal",
-      "fn_8007C910",
-      "__equals_dec",
-      "fn_8007CF18"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZP01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-sdata",
-      "8",
-      "-sdata2",
-      "8",
-      "-use_lmw_stmw",
-      "on",
-      "-str",
-      "reuse,pool,readonly"
-    ],
-    "collapsed": true,
-    "pool": {
-      "@224": "lbl_801A74B0",
-      "@stringBase0": "lbl_80094ED8"
-    }
-  },
-  {
-    "module": "main",
     "source": "dol/__restore_fpr.c",
     "symbols": [
       "__restore_fpr"
@@ -20879,21 +20850,7 @@
     "module": "main",
     "source": "dol/perf/perfdraw.c",
     "symbols": [
-      "fn_8003E9EC"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [],
-    "collapsed": true,
-    "pool": {
-      "@4": "lbl_801A71D0",
-      "@2": "lbl_801A71C8"
-    }
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8003EAE4.c",
-    "symbols": [
+      "fn_8003E9EC",
       "fn_8003EAE4",
       "fn_8003EC44",
       "fn_8003F834",
@@ -20906,17 +20863,17 @@
     "extra_cflags": [],
     "collapsed": true,
     "pool": {
-      "@73": "lbl_801A71D0",
-      "@71": "lbl_801A7200",
-      "@450": "lbl_801A71C8",
-      "@451": "lbl_801A71D8",
-      "@452": "lbl_801A71F8",
-      "@453": "lbl_801A71F0",
-      "@454": "lbl_801A71F4",
-      "@455": "lbl_801A71FC",
-      "@456": "lbl_801A7210",
-      "@457": "lbl_801A7204",
-      "@458": "lbl_801A7208"
+      "@2": "lbl_801A71C8",
+      "@4": "lbl_801A71D0",
+      "@454": "lbl_801A71D8",
+      "@455": "lbl_801A71F8",
+      "@456": "lbl_801A71F0",
+      "@457": "lbl_801A71F4",
+      "@458": "lbl_801A71FC",
+      "@459": "lbl_801A7210",
+      "@460": "lbl_801A7204",
+      "@461": "lbl_801A7208",
+      "@76": "lbl_801A7200"
     }
   },
   {
@@ -23242,9 +23199,15 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_8007B338.c",
+    "source": "dol/runtime/ansi_fp.c",
     "symbols": [
-      "fn_8007B338"
+      "fn_8007B338",
+      "__num2dec",
+      "__num2dec_internal",
+      "fn_8007C910",
+      "__equals_dec",
+      "fn_8007CF18",
+      "fn_8007E69C"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
@@ -23254,26 +23217,21 @@
       "@450": "lbl_801A74B0",
       "@451": "lbl_801A74B8",
       "@452": "lbl_801A74C0",
-      "@457": "lbl_801A74D0",
-      "@458": "lbl_801A74D8",
       "@453": "lbl_801A74C8",
-      "@454": "lbl_80094ED8"
-    }
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8007E69C.c",
-    "symbols": [
-      "fn_8007E69C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZP01"],
-    "mw_version": "GC/2.5",
+      "@456": "lbl_801A74D0",
+      "@457": "lbl_801A74D8",
+      "@stringBase0": "lbl_80094ED8"
+    },
     "extra_cflags": [
+      "-sdata",
+      "8",
+      "-sdata2",
+      "8",
       "-use_lmw_stmw",
-      "on"
-    ],
-    "collapsed": true
+      "on",
+      "-str",
+      "reuse,pool,readonly"
+    ]
   },
   {
     "module": "main",

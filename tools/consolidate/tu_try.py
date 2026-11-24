@@ -97,6 +97,7 @@ def main():
     ap.add_argument('candidate'); ap.add_argument('--units', required=True)
     ap.add_argument('--apply', action='store_true'); ap.add_argument('--as', dest='dest')
     ap.add_argument('--extra', default='', help='extra compiler flags for the TU, e.g. "-inline on,noauto"')
+    ap.add_argument('--mw', help='compiler version for the TU instead of the first unit\'s')
     ap.add_argument('--widen', action='store_true', help='keep every region any unit covered; check them with tu_regions.py first')
     a = ap.parse_args()
     srcs = a.units.split(',')
@@ -109,6 +110,7 @@ def main():
         print('units share no matching region'); return 1
     lead = dict(us[0], matching_for=mf)
     mv, cf = nu['src/' + srcs[0]]
+    mv = a.mw or mv
     if a.extra:
         cf = cf + ' ' + a.extra
     own = set(s for u in us for s in u['symbols'])
@@ -128,8 +130,11 @@ def main():
             for u in us:
                 o = d.compile_all(pathlib.Path('src', u['source']).read_text(), *nu['src/' + u['source']], td,
                                   dict(u, matching_for=mf))[vi]
-                f, s, _, _ = funcs(o, td, 'r', pool=u.get('pool') or {})
-                ref.update({k: v for k, v in f.items() if k in u['symbols']}); rsecs.update(s)
+                f, s, _, rlocal = funcs(o, td, 'r', pool=u.get('pool') or {})
+                ref.update({k: v for k, v in f.items() if k in u['symbols']})
+                # a section that only holds literals the unit remaps is emptied by poolfix
+                rsecs.update({k: v for k, v in s.items()
+                              if not (rlocal.get(k) and all(n in (u.get('pool') or {}) for n in rlocal[k]))})
             _, _, csg, _ = funcs(obj, td, f'c{vi}')
             addr = {n: (v, sz) for n, s, v, sz, _ in csg['defs'] if s == '.text' and sz}
             pool, bad = derive_pool(csg, addr, ref) if pooled else ({}, [])
@@ -190,6 +195,7 @@ def main():
     syms = [x for s in sorted(srcs, key=lambda s: text_lo[s]) for x in byu[s]['symbols']]
     merged = dict(byu[first], source=dest, symbols=syms, collapsed=True)
     merged['mw_version'] = mv
+    merged['extra_cflags'] = list(byu[srcs[0]].get('extra_cflags') or [])   # the flags the candidate was checked with
     if a.extra:
         merged['extra_cflags'] = list(merged.get('extra_cflags') or []) + a.extra.split()
     final = [v for v in VERSIONS if v in set.union(*coverage)] if a.widen else mf

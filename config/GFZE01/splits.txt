@@ -329,8 +329,9 @@ dol/__destroy_global_chain.c:
 dol/av/avdisp_draw.c:
 	.text       start:0x800786B0 end:0x80078884 align:4
 
-dol/fn_8007B338.c:
-	.text       start:0x8007B338 end:0x8007C3B8 align:4
+dol/runtime/ansi_fp.c:
+	.text       start:0x8007B338 end:0x8007E914 align:4
+	.data       start:0x8015AFD8 end:0x8015B100 align:8
 
 dol/fn_800885B8.c:
 	.text       start:0x800885B8 end:0x80088648 align:4
@@ -912,10 +913,6 @@ dol/modf.c:
 dol/fn_800883E8.c:
 	.text       start:0x800883E8 end:0x800884C0 align:4
 
-dol/ansi_fp_decimal.c:
-	.text       start:0x8007C3B8 end:0x8007E69C align:4
-	.data       start:0x8015AFD8 end:0x8015B100 align:8
-
 dol/trk/serpoll.c:
 	.text       start:0x8008930C end:0x80089834 align:4
 	.data       start:0x8015B7C0 end:0x8015B82C align:32
@@ -1103,10 +1100,7 @@ dol/gx/GXPerf.c:
 	.data       start:0x8012B400 end:0x8012B548 align:32
 
 dol/perf/perfdraw.c:
-	.text       start:0x8003E9EC end:0x8003EAE4 align:4
-
-dol/fn_8003EAE4.c:
-	.text       start:0x8003EAE4 end:0x80041164 align:4
+	.text       start:0x8003E9EC end:0x80041164 align:4
 
 dol/misc_io.c:
 	.text       start:0x8008067C end:0x8008069C align:4
@@ -1336,9 +1330,6 @@ dol/sasnd/sasnd_voice.c:
 
 dol/fn_8008E770.c:
 	.text       start:0x8008E770 end:0x8008E9B4 align:4
-
-dol/fn_8007E69C.c:
-	.text       start:0x8007E69C end:0x8007E914 align:4
 
 dol/fn_8007E914.c:
 	.text       start:0x8007E914 end:0x8007E96C align:4
