@@ -66,9 +66,6 @@ dol/fn_80045FEC.c:
 dol/adx/adx_amp.c:
 	.text       start:0x80046508 end:0x80046718 align:4
 
-dol/fn_8006589C.c:
-	.text       start:0x8006589C end:0x800658A8
-
 dol/fn_8008580C.c:
 	.text       start:0x8008580C end:0x80085C7C align:4
 
@@ -92,12 +89,6 @@ dol/adx/adx_stmc.c:
 
 dol/adx/adx_inis.c:
 	.text       start:0x80041164 end:0x80041410 align:4
-
-dol/fn_80065890.c:
-	.text       start:0x80065890 end:0x8006589C align:4
-
-dol/fn_800658A8.c:
-	.text       start:0x800658A8 end:0x800658B4 align:4
 
 dol/trk/UDP_Stubs.c:
 	.text       start:0x8008D7B0 end:0x8008DF6C align:4
@@ -306,12 +297,6 @@ dol/fn_800566F0.c:
 
 dol/adx/lsc.c:
 	.text       start:0x80056730 end:0x80057378 align:4
-
-dol/fn_800647B8.c:
-	.text       start:0x800647B8 end:0x800647F0 align:4
-
-dol/fn_800641A8.c:
-	.text       start:0x800641A8 end:0x80064230 align:4
 
 dol/av/avdisp_head.c:
 	.text       start:0x80071C04 end:0x800724CC align:4
@@ -621,17 +606,14 @@ dol/fn_8006CE1C.c:
 dol/os/OSReset.c:
 	.text       start:0x8000EF64 end:0x8000F264 align:4
 
-dol/fn_80063EF4.c:
-	.text       start:0x80063EF4 end:0x80063F38 align:4
+dol/sasnd/sasnd_ctrl.c:
+	.text       start:0x80063EF4 end:0x800658B4 align:4
 
 dol/adx/mfci.c:
 	.text       start:0x80059BAC end:0x8005A5BC align:4
 
 dol/adx/sj_uni.c:
 	.text       start:0x8005870C end:0x800587A8 align:4
-
-dol/fn_8006413C.c:
-	.text       start:0x8006413C end:0x800641A8 align:4
 
 dol/__OSUnlockAllMutex.c:
 	.text       start:0x8000EA84 end:0x8000EAF4 align:4
@@ -1022,12 +1004,6 @@ dol/gx/GXTexture.c:
 dol/trk/main.c:
 	.text       start:0x8008DF6C end:0x8008E6C8 align:4
 
-dol/fn_8006496C.c:
-	.text       start:0x8006496C end:0x80064A30 align:4
-
-dol/fn_800647F0.c:
-	.text       start:0x800647F0 end:0x8006496C align:4
-
 dol/fn_80079FA8.c:
 	.text       start:0x80079FA8 end:0x8007A150 align:4
 
@@ -1203,9 +1179,6 @@ dol/func_80008378.c:
 dol/__fill_mem.c:
 	.init       start:0x80003488 end:0x80003540 align:4
 
-dol/fn_80064230.c:
-	.text       start:0x80064230 end:0x800643F4 align:4
-
 dol/fn_80080518.c:
 	.text       start:0x80080518 end:0x800805C0 align:4
 
@@ -1224,26 +1197,14 @@ dol/fn_800805C0.c:
 dol/av/avdisp_state.c:
 	.text       start:0x800725DC end:0x800747D0 align:4
 
-dol/fn_80064A30.c:
-	.text       start:0x80064A30 end:0x80064D4C align:4
-
 dol/fn_8008EFE0.c:
 	.text       start:0x8008EFE0 end:0x8008F29C align:4
-
-dol/fn_80064D4C.c:
-	.text       start:0x80064D4C end:0x80064E84 align:4
-
-dol/fn_800657F4.c:
-	.text       start:0x800657F4 end:0x80065890 align:4
 
 dol/av/avdisp_mat.c:
 	.text       start:0x80075908 end:0x80078538 align:4
 
 dol/fn_8008E9B4.c:
 	.text       start:0x8008E9B4 end:0x8008EB4C align:4
-
-dol/fn_80064FDC.c:
-	.text       start:0x80064FDC end:0x80065390 align:4
 
 dol/data/lbl_8015BE40.c:
 	.bss        start:0x8015BE40 end:0x8015BF00 align:8
@@ -1313,17 +1274,11 @@ dol/sasnd/sasnd_track.c:
 	.rodata     start:0x80092B38 end:0x80092BD8 align:4
 	.sdata2     start:0x801A7280 end:0x801A7314 align:8
 
-dol/fn_80064E84.c:
-	.text       start:0x80064E84 end:0x80064FDC align:4
-
 dol/__va_arg.c:
 	.text       start:0x80079654 end:0x8007971C align:4
 
 dol/adx/rna_res.c:
 	.text       start:0x8005BE68 end:0x8005C298 align:4
-
-dol/fn_80065390.c:
-	.text       start:0x80065390 end:0x80065528 align:4
 
 dol/sasnd/sasnd_voice.c:
 	.text       start:0x8005C298 end:0x8006060C align:4
@@ -1336,9 +1291,6 @@ dol/fn_8008E770.c:
 
 dol/fn_8007E69C.c:
 	.text       start:0x8007E69C end:0x8007E96C align:4
-
-dol/fn_80065528.c:
-	.text       start:0x80065528 end:0x800657F4 align:4
 
 dol/fn_80009CD4.c:
 	.text       start:0x80009CD4 end:0x80009FBC align:4
@@ -1400,9 +1352,6 @@ dol/gx/GXDisplayList.c:
 
 dol/fn_8008ECE0.c:
 	.text       start:0x8008ECE0 end:0x8008EDF0 align:4
-
-dol/fn_80063F38.c:
-	.text       start:0x80063F38 end:0x8006413C align:4
 
 dol/data/lbl_8015B920.c:
 	.bss        start:0x8015B920 end:0x8015BE40 align:8
@@ -1646,9 +1595,6 @@ dol/data/lbl_8015AD38.c:
 
 dol/fn_80078944.c:
 	.text       start:0x80078944 end:0x800789D8 align:4
-
-dol/fn_800643F4.c:
-	.text       start:0x800643F4 end:0x800647B8 align:4
 
 dol/gTRKInterruptVectorTable.c:
 	.init       start:0x800035E4 end:0x80005518 align:4

@@ -4,8 +4,8 @@
 No retail string names these files, so the names are descriptive placeholders. Boundaries come
 from data that a single TU could not have laid out: MWCC deduplicates literals per TU, so a value
 repeated in .sdata2 or a table repeated in .rodata separates two TUs, and each TU's contribution
-to a section is contiguous. Functions in the bands no evidence bounds stay unassigned:
-0x80063EF4..0x800658B4, between the effect routine and the loader.
+to a section is contiguous. The control band 0x80063EF4..0x800658B4 has no literals of its own,
+so it is kept whole between the effect routine and the loader.
 
 Usage: tumap_sasnd.py [--apply]
 """
@@ -23,6 +23,10 @@ RANGES = [
     ('sasnd_fx.c', 0x8006331C, 0x80063EF4,
      '.sdata2 0x801A7318..0x801A7328 repeats the 2^52 conversion constant. It addresses the effect work areas at '
      '.bss 0x801932A8..0x80193B08 one symbol at a time, as externs of sasnd_core.c. The end of the TU is not bounded by data.'),
+    ('sasnd_ctrl.c', 0x80063EF4, 0x800658B4,
+     'MIDI-style control dispatch, voice lookup and the program-change loaders over the state at 0x801A6C80. The band has no '
+     'literals or private data, so neither end is bounded by data: it follows the effect routine and stops at the loader of '
+     'sasnd_core.c. All 19 functions build as one compile under one set of flags.'),
     ('sasnd_core.c', 0x800658B4, 0x80069B10,
      'Owns .bss 0x801932A8..0x80199670 and .sbss 0x801A6C78..0x801A6C88: 0x80067DE4 addresses the effect work areas off one '
      'section base, and 0x80068BFC initializes the state at 0x801A6C80 from .bss 0x80193B48. .rodata runs version string, loader '

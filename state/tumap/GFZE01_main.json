@@ -4,10 +4,10 @@
   "note": "Draft DOL ownership evidence used by the consolidation tools. Unassigned entries and conflicts are not confirmed boundaries.",
   "summary": {
     "functions": 2230,
-    "assigned": 2173,
+    "assigned": 2192,
     "bytes": 567556,
-    "assigned_bytes": 554376,
-    "tus": 245,
+    "assigned_bytes": 560968,
+    "tus": 246,
     "conflicts": 0,
     "string_anchored": 13
   },
@@ -3781,6 +3781,39 @@
       "notes": ".sdata2 0x801A7318..0x801A7328 repeats the 2^52 conversion constant. It addresses the effect work areas at .bss 0x801932A8..0x80193B08 one symbol at a time, as externs of sasnd_core.c. The end of the TU is not bounded by data."
     },
     {
+      "file": "sasnd_ctrl.c",
+      "text": [
+        "80063EF4",
+        "800658B4"
+      ],
+      "functions": [
+        "fn_80063EF4",
+        "fn_80063F38",
+        "fn_8006413C",
+        "fn_800641A8",
+        "fn_80064230",
+        "fn_800643F4",
+        "fn_800647B8",
+        "fn_800647F0",
+        "fn_8006496C",
+        "fn_80064A30",
+        "fn_80064D4C",
+        "fn_80064E84",
+        "fn_80064FDC",
+        "fn_80065390",
+        "fn_80065528",
+        "fn_800657F4",
+        "fn_80065890",
+        "fn_8006589C",
+        "fn_800658A8"
+      ],
+      "how": {
+        "literal-dedupe+section-order": 19
+      },
+      "lib": "sasnd",
+      "notes": "MIDI-style control dispatch, voice lookup and the program-change loaders over the state at 0x801A6C80. The band has no literals or private data, so neither end is bounded by data: it follows the effect routine and stops at the loader of sasnd_core.c. All 19 functions build as one compile under one set of flags."
+    },
+    {
       "file": "sasnd_core.c",
       "text": [
         "800658B4",
@@ -5587,177 +5620,6 @@
       "candidates": [
         "CARDRename.c",
         "CARDNet.c"
-      ]
-    },
-    {
-      "name": "fn_80063EF4",
-      "addr": "80063EF4",
-      "size": 68,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80063F38",
-      "addr": "80063F38",
-      "size": 516,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_8006413C",
-      "addr": "8006413C",
-      "size": 108,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_800641A8",
-      "addr": "800641A8",
-      "size": 136,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80064230",
-      "addr": "80064230",
-      "size": 452,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_800643F4",
-      "addr": "800643F4",
-      "size": 964,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_800647B8",
-      "addr": "800647B8",
-      "size": 56,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_800647F0",
-      "addr": "800647F0",
-      "size": 380,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_8006496C",
-      "addr": "8006496C",
-      "size": 196,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80064A30",
-      "addr": "80064A30",
-      "size": 796,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80064D4C",
-      "addr": "80064D4C",
-      "size": 312,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80064E84",
-      "addr": "80064E84",
-      "size": 344,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80064FDC",
-      "addr": "80064FDC",
-      "size": 948,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80065390",
-      "addr": "80065390",
-      "size": 408,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80065528",
-      "addr": "80065528",
-      "size": 716,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_800657F4",
-      "addr": "800657F4",
-      "size": 156,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_80065890",
-      "addr": "80065890",
-      "size": 12,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_8006589C",
-      "addr": "8006589C",
-      "size": 12,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
-      ]
-    },
-    {
-      "name": "fn_800658A8",
-      "addr": "800658A8",
-      "size": 12,
-      "candidates": [
-        "rna_res.c",
-        "arc.c"
       ]
     },
     {

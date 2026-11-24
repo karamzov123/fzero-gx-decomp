@@ -159,6 +159,25 @@ typedef struct SndHeader {
     u16 offs[1];
 } SndHeader;
 
+/* A 16-byte entry of a program's split list, copied into a slot when the program starts. */
+typedef struct SndSplit {
+    u8 flags;
+    u8 unk_1;
+    u8 unk_2;
+    u8 unk_3;
+    u8 pad_4[2];
+    u8 unk_6;
+    u8 unk_7;
+    u8 unk_8;
+    u8 unk_9;
+    u8 unk_A;
+    u8 unk_B;
+    u8 unk_C;
+    u8 unk_D;
+    u8 unk_E;
+    u8 pad_F;
+} SndSplit;
+
 typedef struct SndSlot {
     u8 unk_0;
     u8 unk_1;
@@ -171,7 +190,7 @@ typedef struct SndSlot {
     u8 unk_A;
     u8 unk_B;
     u8 unk_C;
-    u8 pad_D;
+    u8 unk_D;
     s8 unk_E;
     s8 unk_F;
     u8 unk_10;
@@ -180,7 +199,8 @@ typedef struct SndSlot {
     u8 unk_13;
     u8 unk_14;
     u8 unk_15;
-    u8 pad_16[6];
+    u8 pad_16[2];
+    SndSplit *split;
     u8 *seq;
 } SndSlot;
 
@@ -415,6 +435,7 @@ CHECK_SIZE(SndFx3, 0x60);
 CHECK_SIZE(SndChan, 0x10);
 CHECK_SIZE(SndMix, 0x10);
 CHECK_SIZE(SndTrack, 0x54);
+CHECK_SIZE(SndSplit, 0x10);
 CHECK_SIZE(SndSlot, 0x20);
 CHECK_SIZE(SndWave, 0x44);
 CHECK_SIZE(SndVoice, 0x118);
@@ -422,6 +443,7 @@ CHECK_SIZE(SndSeq, 0x28);
 CHECK_SIZE(SndState, 0x5B28);
 CHECK_OFFSET(SndNote, unk_2C, 0x2C);
 CHECK_OFFSET(SndHeader, min, 0x20);
+CHECK_OFFSET(SndSlot, split, 0x18);
 CHECK_OFFSET(SndSlot, seq, 0x1C);
 CHECK_OFFSET(SndVoice, env, 0x30);
 CHECK_OFFSET(SndVoice, volDelta, 0x84);
