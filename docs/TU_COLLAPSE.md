@@ -167,7 +167,7 @@ Recover the constant layout once per pool. For each consumer, prove the base reg
 
 ### AHX: seven typed TUs (2026-11-23)
 
-The AHX range `0x8004FF68..0x8005466C` is seven TUs in `src/dol/ahx/`: `ahx_bits.c`, `ahx_decode.c`, `ahx_adxt.c`, `ahx_transform.c`, `ahx_synth.c`, `ahx_synthobj.c` and `ahx_player.c`. The file names are placeholders. All 65 functions build from one unit per TU under GC/1.3.2 with `-sdata 0 -sdata2 0`, in USA, Japan and PAL, and each TU owns its `.rodata`. `ahx_bits.c` also owns its `.bss`.
+The AHX range `0x8004FF68..0x8005466C` is seven TUs in `src/dol/ahx/`: `ahx_bits.c`, `ahx_decode.c`, `ahx_adxt.c`, `ahx_transform.c`, `ahx_synth.c`, `ahx_synthobj.c` and `ahx_player.c`. The file names are placeholders. All 63 functions build from one unit per TU under GC/1.3.2 with `-sdata 0 -sdata2 0`, in USA, Japan and PAL, and every TU with `.rodata` owns it. `ahx_bits.c` also owns its `.bss`.
 
 - Three of the boundaries come from data alone: `0.0f` repeats at `.rodata 0x80091338`, the version string starts on the 8-byte boundary `0x80091358`, and `.bss` jumps from `0x8018710C` to `0x80187110`.
 - `-sdata 0` replaces the old array and pad declarations that kept these globals out of small data.
