@@ -8,8 +8,6 @@ extern const char lbl_80091258[];
 extern const char lbl_8009127C[];
 extern const char lbl_800912A0[36];
 extern const char lbl_800912C4[41];
-extern const f32 lbl_800912F0;
-extern const f64 lbl_800912F8;
 
 #pragma explicit_zero_data on
 __declspec(section ".rodata") const char lbl_80091220[46] __attribute__((aligned(32))) = "\nADXF/GC Ver.7.07 Build:May  9 2003 17:10:05\n";
@@ -36,13 +34,5 @@ __declspec(section ".rodata") const char lbl_800912A0[36] __attribute__((aligned
 
 #pragma explicit_zero_data on
 __declspec(section ".rodata") const char lbl_800912C4[41] __attribute__((aligned(4))) = "E9040823:'adxf->stm' is NULL.(ADXF_Stop)";
-#pragma explicit_zero_data reset
-
-#pragma explicit_zero_data on
-__declspec(section ".rodata") const f32 lbl_800912F0 __attribute__((aligned(4))) = 0.0f;
-#pragma explicit_zero_data reset
-
-#pragma explicit_zero_data on
-__declspec(section ".rodata") const f64 lbl_800912F8 __attribute__((aligned(8))) = 4503601774854144.0;
 #pragma explicit_zero_data reset
 

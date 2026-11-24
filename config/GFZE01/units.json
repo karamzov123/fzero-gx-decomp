@@ -11064,9 +11064,7 @@
       "lbl_80091258",
       "lbl_8009127C",
       "lbl_800912A0",
-      "lbl_800912C4",
-      "lbl_800912F0",
-      "lbl_800912F8"
+      "lbl_800912C4"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -21613,104 +21611,35 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_80050698.c",
+    "source": "dol/ahx/ahx_decode.c",
     "symbols": [
-      "fn_80050698"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on"
-    ],
-    "pool": {
-      "@63": "lbl_800912F8",
-      "@61": "lbl_800912F0"
-    }
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80050BD4.c",
-    "symbols": [
+      "fn_80050698",
       "fn_80050BD4",
       "fn_80050F64",
       "fn_80050F6C",
       "fn_80050F74",
-      "fn_80050F90"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on"
-    ],
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_800510C4.c",
-    "symbols": [
+      "fn_80050F90",
       "fn_800510C4",
-      "fn_800510D8"
-    ],
-    "status": "matching",
-    "extra_cflags": [],
-    "collapsed": true,
-    "mw_version": "GC/2.0p1"
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80051448.c",
-    "symbols": [
-      "fn_80051448"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80051594.c",
-    "symbols": [
+      "fn_800510D8",
+      "fn_80051448",
       "fn_80051594",
       "fn_80051678",
-      "fn_8005174C"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_800517C0.c",
-    "symbols": [
-      "fn_800517C0"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8005190C.c",
-    "symbols": [
-      "fn_8005190C"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80051958.c",
-    "symbols": [
+      "fn_8005174C",
+      "fn_800517C0",
+      "fn_8005190C",
       "fn_80051958",
       "fn_800519B0"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0",
+      "-use_lmw_stmw",
+      "on"
+    ],
     "collapsed": true
   },
   {

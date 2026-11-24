@@ -102,9 +102,6 @@ dol/fn_800658A8.c:
 dol/trk/UDP_Stubs.c:
 	.text       start:0x8008D7B0 end:0x8008DF6C align:4
 
-dol/fn_800510C4.c:
-	.text       start:0x800510C4 end:0x80051448 align:4
-
 dol/__DBIsExceptionMarked.c:
 	.text       start:0x80015AB8 end:0x80015B24 align:4
 
@@ -205,9 +202,6 @@ dol/SJ_SearchTag.c:
 dol/fn_80058A20.c:
 	.text       start:0x80058A20 end:0x80058A40 align:4
 
-dol/fn_80051958.c:
-	.text       start:0x80051958 end:0x80051CC0 align:4
-
 dol/ahx/ahx_adxt.c:
 	.text       start:0x80051CC0 end:0x80051F38 align:4
 	.rodata     start:0x80091300 end:0x8009132C align:4
@@ -236,9 +230,6 @@ dol/fn_80023638.c:
 dol/ax/AXSPB.c:
 	.text       start:0x80021FBC end:0x800224E4 align:4
 
-dol/fn_80051594.c:
-	.text       start:0x80051594 end:0x800517C0 align:4
-
 dol/fn_800565F0.c:
 	.text       start:0x800565F0 end:0x800565FC align:4
 
@@ -253,9 +244,6 @@ dol/ADXT_InsertHdrSfa.c:
 
 dol/adx/adx_sfa.c:
 	.text       start:0x80047834 end:0x80047864 align:4
-
-dol/fn_800517C0.c:
-	.text       start:0x800517C0 end:0x8005190C align:4
 
 dol/fn_80008E30.c:
 	.text       start:0x80008E30 end:0x80008E34 align:4
@@ -312,9 +300,6 @@ dol/adx/adx_baif.c:
 
 dol/adx/adx_fini.c:
 	.text       start:0x8004F6B0 end:0x8004F7F8 align:4
-
-dol/fn_8005190C.c:
-	.text       start:0x8005190C end:0x80051958 align:4
 
 dol/fn_800566F0.c:
 	.text       start:0x800566F0 end:0x80056730 align:4
@@ -1251,9 +1236,6 @@ dol/fn_80064D4C.c:
 dol/fn_800657F4.c:
 	.text       start:0x800657F4 end:0x80065890 align:4
 
-dol/fn_80051448.c:
-	.text       start:0x80051448 end:0x80051594 align:4
-
 dol/av/avdisp_mat.c:
 	.text       start:0x80075908 end:0x80078538 align:4
 
@@ -1298,9 +1280,6 @@ dol/fn_8008F838.c:
 
 dol/av/avdisp_tail.c:
 	.text       start:0x800789D8 end:0x80079654 align:4
-
-dol/fn_80050BD4.c:
-	.text       start:0x80050BD4 end:0x800510C4 align:4
 
 dol/fn_8008EBF8.c:
 	.text       start:0x8008EBF8 end:0x8008EC78 align:4
@@ -1395,8 +1374,9 @@ dol/__div2i.c:
 dol/__mod2u.c:
 	.text       start:0x80079B14 end:0x80079BF8 align:4
 
-dol/fn_80050698.c:
-	.text       start:0x80050698 end:0x80050BD4 align:4
+dol/ahx/ahx_decode.c:
+	.text       start:0x80050698 end:0x80051CC0 align:4
+	.rodata     start:0x800912F0 end:0x80091300 align:4
 
 dol/fn_80023D00.c:
 	.text       start:0x80023D00 end:0x8002420C align:4
@@ -1719,7 +1699,7 @@ dol/data/lbl_800911E0.c:
 	.rodata     start:0x800911E0 end:0x80091220 align:32
 
 dol/data/lbl_80091220.c:
-	.rodata     start:0x80091220 end:0x80091300 align:32
+	.rodata     start:0x80091220 end:0x800912F0 align:32
 
 dol/data/lbl_801A6BF0.c:
 	.sbss       start:0x801A6BF0 end:0x801A6BF8 align:16

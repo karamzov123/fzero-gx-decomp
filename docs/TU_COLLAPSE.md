@@ -164,3 +164,12 @@ Recover the constant layout once per pool. For each consumer, prove the base reg
 - Split ends must stop at the last object. A region symbol without a size takes the distance to the next symbol, so shortening a USA object also needs `size:` on the Japan and PAL symbol.
 - `fn_80008E30` is empty in USA, absent in Japan and a real function in PAL that reads this TU's literal `0x801A6F20`. `render_util.c` therefore builds for USA and Japan, and PAL links it from retail assembly.
 - `fn_80008C20` keeps one marked `opt_propagation off` device. `fn_80007B68` spells out the steps of `fn_80007AB4`, because calling it swaps two stack copies.
+
+### AHX: seven typed TUs (2026-11-23)
+
+The AHX range `0x8004FF68..0x8005466C` is seven TUs in `src/dol/ahx/`: `ahx_bits.c`, `ahx_decode.c`, `ahx_adxt.c`, `ahx_transform.c`, `ahx_synth.c`, `ahx_synthobj.c` and `ahx_player.c`. The file names are placeholders. All 65 functions build from one unit per TU under GC/1.3.2 with `-sdata 0 -sdata2 0`, in USA, Japan and PAL, and each TU owns its `.rodata`. `ahx_bits.c` also owns its `.bss`.
+
+- Three of the boundaries come from data alone: `0.0f` repeats at `.rodata 0x80091338`, the version string starts on the 8-byte boundary `0x80091358`, and `.bss` jumps from `0x8018710C` to `0x80187110`.
+- `-sdata 0` replaces the old array and pad declarations that kept these globals out of small data.
+- The remaining `.bss` of `ahx_decode.c`, `ahx_synthobj.c` and `ahx_player.c` stays in data units: first-access order would not reproduce retail's object order without a primer.
+- Marked optimizer devices remain in `fn_800501F4`, `fn_80050698`, `fn_80051448` and `fn_80053A84`.
