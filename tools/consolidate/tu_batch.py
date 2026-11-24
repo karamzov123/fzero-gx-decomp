@@ -73,8 +73,30 @@ def first_error(text, mv, cf):
     return int(line.group(1)) if line else 0, name.group(1) if name else None
 
 
+DEFN = re.compile(r'^((?:static\s+)?(?:inline\s+)?[A-Za-z_][\w\s*]*?\b(\w+)\s*\([^;{}]*\))\s*\{', re.M)
+
+
+def unify_prototypes(text):
+    """Every declaration of a function the TU defines takes the definition's form: the first is rewritten, the rest go."""
+    heads = {}
+    for m in DEFN.finditer(text):
+        if m.group(2) not in ('if', 'for', 'while', 'switch', 'return', 'sizeof'):
+            heads.setdefault(m.group(2), ' '.join(m.group(1).split()))
+    lines, seen = text.splitlines(), set()
+    out = []
+    for line in lines:
+        m = re.match(r'^\s*(?:extern\s+)?[A-Za-z_][\w\s*]*?\b(\w+)\s*\([^;{}]*\)\s*;\s*$', line)
+        if m and m.group(1) in heads and not heads[m.group(1)].startswith(('static', 'inline')):
+            if m.group(1) in seen:
+                continue
+            seen.add(m.group(1)); out.append(heads[m.group(1)] + ';'); continue
+        out.append(line)
+    return '\n'.join(out) + '\n'
+
+
 def reconcile(text, mv, cf):
     """Drop repeated declarations until the merged text compiles, or return None."""
+    text = unify_prototypes(text)
     for _ in range(80):
         err = first_error(text, mv, cf)
         if err is None:
