@@ -67,7 +67,13 @@ dol/adx/adx_amp.c:
 	.text       start:0x80046508 end:0x80046718 align:4
 
 dol/fn_8008580C.c:
-	.text       start:0x8008580C end:0x80085C7C align:4
+	.text       start:0x8008580C end:0x800858E4 align:4
+
+dol/fwide.c:
+	.text       start:0x800858E4 end:0x8008596C align:4
+
+dol/fn_8008596C.c:
+	.text       start:0x8008596C end:0x80085C7C align:4
 
 dol/TRKInitializeDispatcher.c:
 	.text       start:0x80089834 end:0x800898E4 align:4
@@ -225,7 +231,10 @@ dol/adx/adx_bsc.c:
 	.text       start:0x80044E7C end:0x80045FEC align:4
 
 dol/fn_80023638.c:
-	.text       start:0x80023638 end:0x80023B70 align:4
+	.text       start:0x80023638 end:0x80023684 align:4
+
+dol/fn_80023684.c:
+	.text       start:0x80023684 end:0x80023B70 align:4
 
 dol/ax/AXSPB.c:
 	.text       start:0x80021FBC end:0x800224E4 align:4
@@ -318,7 +327,13 @@ dol/av/avdisp_draw.c:
 	.text       start:0x800786B0 end:0x80078884 align:4
 
 dol/fn_8007B0B4.c:
-	.text       start:0x8007B0B4 end:0x8007C3B8 align:4
+	.text       start:0x8007B0B4 end:0x8007B124 align:4
+
+dol/__close_all.c:
+	.text       start:0x8007B124 end:0x8007B338 align:4
+
+dol/fn_8007B338.c:
+	.text       start:0x8007B338 end:0x8007C3B8 align:4
 
 dol/strncmp.c:
 	.text       start:0x80083B8C end:0x80083BCC align:4
@@ -640,7 +655,10 @@ dol/__OSUnlockAllMutex.c:
 	.text       start:0x8000EA84 end:0x8000EAF4 align:4
 
 dol/fn_80083970.c:
-	.text       start:0x80083970 end:0x80083B8C align:4
+	.text       start:0x80083970 end:0x80083B14 align:4
+
+dol/strrchr.c:
+	.text       start:0x80083B14 end:0x80083B8C align:4
 
 dol/fn_8008EC78.c:
 	.text       start:0x8008EC78 end:0x8008ECE0 align:4
@@ -886,13 +904,25 @@ dol/__kernel_cos.c:
 	.text       start:0x80086C5C end:0x80086D50 align:4
 
 dol/__kernel_rem_pio2.c:
-	.text       start:0x80086D50 end:0x80087C44 align:4
+	.text       start:0x80086D50 end:0x80087BA4 align:4
+
+dol/fn_80087BA4.c:
+	.text       start:0x80087BA4 end:0x80087C44 align:4
 
 dol/floor.c:
-	.text       start:0x80087F54 end:0x80088128 align:4
+	.text       start:0x80087F54 end:0x8008809C align:4
+
+dol/frexp.c:
+	.text       start:0x8008809C end:0x80088128 align:4
 
 dol/ldexp.c:
-	.text       start:0x80088128 end:0x800884C0 align:4
+	.text       start:0x80088128 end:0x800882EC align:4
+
+dol/modf.c:
+	.text       start:0x800882EC end:0x800883E8 align:4
+
+dol/fn_800883E8.c:
+	.text       start:0x800883E8 end:0x800884C0 align:4
 
 dol/ansi_fp_decimal.c:
 	.text       start:0x8007C3B8 end:0x8007E69C align:4
@@ -1013,7 +1043,13 @@ dol/adx/lsc_err.c:
 	.text       start:0x800565FC end:0x800566F0 align:4
 
 dol/adx/lsc_crs.c:
-	.text       start:0x80057378 end:0x80057774 align:4
+	.text       start:0x80057378 end:0x80057494 align:4
+
+dol/fn_80057494.c:
+	.text       start:0x80057494 end:0x800576DC align:4
+
+dol/fn_800576DC.c:
+	.text       start:0x800576DC end:0x80057774 align:4
 
 dol/fn_8008EB8C.c:
 	.text       start:0x8008EB8C end:0x8008EBF8 align:4
@@ -1091,7 +1127,10 @@ dol/gx/GXPerf.c:
 	.data       start:0x8012B400 end:0x8012B548 align:32
 
 dol/perf/perfdraw.c:
-	.text       start:0x8003E9EC end:0x80041164 align:4
+	.text       start:0x8003E9EC end:0x8003EAE4 align:4
+
+dol/fn_8003EAE4.c:
+	.text       start:0x8003EAE4 end:0x80041164 align:4
 
 dol/misc_io.c:
 	.text       start:0x8008067C end:0x8008069C align:4
@@ -1255,7 +1294,13 @@ dol/gx/GXPixel.c:
 	.text       start:0x800377F8 end:0x80037E30 align:4
 
 dol/fn_80087C44.c:
-	.text       start:0x80087C44 end:0x80087F54 align:4
+	.text       start:0x80087C44 end:0x80087E58 align:4
+
+dol/fn_80087E58.c:
+	.text       start:0x80087E58 end:0x80087E80 align:4
+
+dol/fn_80087E80.c:
+	.text       start:0x80087E80 end:0x80087F54 align:4
 
 dol/fn_800244C8.c:
 	.text       start:0x800244C8 end:0x800248D4 align:4

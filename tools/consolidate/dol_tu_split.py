@@ -12,7 +12,9 @@ original TUs. For a unit whose every function has a TU in state/tumap/GFZE01_mai
 
 Each piece must reproduce its functions' instruction bytes and relocations, and the pieces'
 .text sizes must add up, before splits.txt and units.json are rewritten.
-Usage: dol_tu_split.py [--apply] [UNIT_SOURCE...]
+With --pooled, units whose pool map holds only @N literals are also split: every literal relocation
+of a piece must sit where the whole unit has one, and takes that unit's retail binding.
+Usage: dol_tu_split.py [--apply] [--pooled] [UNIT_SOURCE...]
 """
 import json, re, sys, tempfile, pathlib, subprocess
 sys.path.insert(0, str(pathlib.Path(__file__).parent)); sys.path.insert(0, 'tools')
@@ -20,6 +22,7 @@ import devprobe as d, objsig
 
 TUMAP = 'state/tumap/GFZE01_main.json'
 OWNERS = {}   # unit source -> {data section: index of the piece that defines it}
+POOLS = {}    # unit source -> [pool map of each piece]
 
 
 def func_spans(text, name):
@@ -120,8 +123,76 @@ def try_split(src, u, runs, mv, cf):
     return pieces, 'ok'
 
 
+def raw_functions(obj_bytes, td):
+    p = pathlib.Path(td) / 'r.o'; p.write_bytes(obj_bytes); sg = objsig.sig(p)
+    t = sg['sections'].get('.text', b'')
+    fn = {n: (v, sz) for n, sec, v, sz, _ in sg['defs'] if sec == '.text' and sz}
+    rel = {}
+    for off, typ, nm, add in sg['relocs'].get('.text', []):
+        for f, (v, sz) in fn.items():
+            if v <= off < v + sz:
+                rel.setdefault(f, []).append((off - v, typ, nm, add))
+    return {f: (t[v:v + sz], sorted(rel.get(f, []))) for f, (v, sz) in fn.items()}, sg
+
+
+def try_split_pooled(src, u, runs, mv, cf):
+    pool = u['pool']
+    if not all(re.fullmatch(r'@\d+', k) for k in pool): return None, 'pool selector'
+    text = pathlib.Path('src', src).read_text()
+    incs = ''.join(l for l in text.splitlines(keepends=True) if l.startswith('#include'))
+    cuts = []
+    for t, syms in runs[:-1]:
+        sp = func_spans(text, syms[-1])
+        if not sp: return None, 'no-span'
+        cuts.append(sp[1])
+    if cuts != sorted(cuts): return None, 'order'
+    bounds = [0] + cuts + [len(text)]
+    pieces, earlier = [], []
+    for k, (t, syms) in enumerate(runs):
+        own = text[bounds[k]:bounds[k + 1]]
+        if k == 0:
+            pieces.append(own)
+        else:
+            pre = protoize(text[:bounds[k]], earlier)
+            pre = ''.join(l for l in pre.splitlines(keepends=True) if not l.startswith('#include'))
+            pieces.append(incs + pre + own)
+        earlier += syms
+    private = lambda n: re.fullmatch(r'@\d+', n)
+    maps = []
+    with tempfile.TemporaryDirectory() as td:
+        base = d.compile_all(text, mv, cf, td, u)
+        if None in base: return None, 'base'
+        bf, bs = raw_functions(base[0], td)
+        total = 0
+        for (t, syms), code in zip(runs, pieces):
+            o = d.compile_all(code, mv, cf, td, u)
+            if None in o: return None, f'compile {t}'
+            pf, ps = raw_functions(o[0], td)
+            if set(pf) != set(syms): return None, f'functions {t}: {sorted(set(pf) ^ set(syms))[:4]}'
+            piece_pool = {}
+            for f in syms:
+                if pf[f][0] != bf[f][0] or len(pf[f][1]) != len(bf[f][1]): return None, f'differs {f}'
+                for (o1, t1, n1, a1), (o2, t2, n2, a2) in zip(pf[f][1], bf[f][1]):
+                    if (o1, t1) != (o2, t2): return None, f'reloc {f}'
+                    if t1 == 10: continue
+                    if private(n1) or private(n2):
+                        if not (private(n1) and n2 in pool) or a1 != a2: return None, f'unbound literal {f}'
+                        if piece_pool.setdefault(n1, pool[n2]) != pool[n2]: return None, f'literal {f}'
+                    elif (n1, a1) != (n2, a2):
+                        return None, f'reloc {f}'
+            for n, sec, v, sz, _ in ps['defs']:
+                if sec not in ('.text', '.comment') and sz and n not in piece_pool:
+                    return None, f'data {n} in {t}'
+            maps.append(piece_pool)
+            total += len(ps['sections'].get('.text', b''))
+        if total != len(bs['sections'].get('.text', b'')): return None, 'text size'
+    POOLS[src] = maps
+    OWNERS[src] = {}
+    return pieces, 'ok'
+
+
 def main():
-    apply = '--apply' in sys.argv
+    apply = '--apply' in sys.argv; pooled = '--pooled' in sys.argv
     only = [a for a in sys.argv[1:] if not a.startswith('--')]
     m = json.load(open(TUMAP)); tu_of = {f: t['file'] for t in m['tus'] for f in t['functions']}
     units = json.load(open('config/GFZE01/units.json')); nu = d.ninja_units()
@@ -133,7 +204,7 @@ def main():
         if mm: syms[mm.group(1)] = (int(mm.group(2), 16), int(mm.group(3), 16))
     done = []
     for u in units:
-        if u['module'] != 'main' or u.get('data') or u.get('tu') or u.get('pool') or u.get('asm'): continue
+        if u['module'] != 'main' or u.get('data') or u.get('tu') or u.get('asm') or (u.get('pool') and not pooled): continue
         if only and u['source'] not in only: continue
         secs = re.findall(r'(\.\w+)\s+start', blocks.get(u['source'], ''))
         if not secs or secs[0] != '.text': continue
@@ -141,7 +212,7 @@ def main():
         if not runs: continue
         key = f"src/{u['source']}"
         if key not in nu: continue
-        pieces, why = try_split(u['source'], u, runs, *nu[key])
+        pieces, why = (try_split_pooled if u.get('pool') else try_split)(u['source'], u, runs, *nu[key])
         print(f"{'OK ' if pieces else 'no '} {u['source']}: {[ (t, len(s)) for t, s in runs]} {why}")
         if pieces: done.append((u, runs, pieces))
     print('splittable', len(done))
@@ -156,6 +227,10 @@ def main():
             assert k == 0 or not pathlib.Path('src', src).exists(), src
             pathlib.Path('src', src).write_text(code)
             nu_ = dict(u, source=src, symbols=ss)
+            if u['source'] in POOLS:
+                nu_.pop('pool', None)
+                if POOLS[u['source']][k]:
+                    nu_['pool'] = POOLS[u['source']][k]
             new_units.append(nu_)
             lo = syms[ss[0]][0]; hi = syms[ss[-1]][0] + syms[ss[-1]][1]
             block = f"{src}:\n\t.text       start:0x{lo:08X} end:0x{hi:08X} align:4\n"
