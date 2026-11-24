@@ -24060,44 +24060,16 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_8008F454.c",
+    "source": "dol/odemuexi2/DebuggerDriver.c",
     "symbols": [
       "fn_8008F454",
       "fn_8008F458",
       "fn_8008F45C",
-      "fn_8008F6BC"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8008F748.c",
-    "symbols": [
+      "fn_8008F6BC",
       "fn_8008F748",
-      "fn_8008F7E4"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8008F838.c",
-    "symbols": [
+      "fn_8008F7E4",
       "fn_8008F838",
-      "fn_8008F8B0"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8008F8F0.c",
-    "symbols": [
+      "fn_8008F8B0",
       "fn_8008F8F0",
       "fn_8008F92C",
       "fn_8008F9D8",
@@ -24107,7 +24079,8 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": []
   },
   {
     "module": "main",

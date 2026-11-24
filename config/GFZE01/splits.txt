@@ -93,8 +93,8 @@ dol/trk/dolphin_trk_glue.c:
 dol/fn_8008F44C.c:
 	.text       start:0x8008F44C end:0x8008F454 align:4
 
-dol/fn_8008F454.c:
-	.text       start:0x8008F454 end:0x8008F748 align:4
+dol/odemuexi2/DebuggerDriver.c:
+	.text       start:0x8008F454 end:0x8008FED4 align:4
 
 dol/adx/adx_stmc.c:
 	.text       start:0x8004A578 end:0x8004B7F4 align:4
@@ -360,17 +360,11 @@ dol/MWTRACE.c:
 dol/fn_8008E718.c:
 	.text       start:0x8008E718 end:0x8008E770 align:4
 
-dol/fn_8008F8F0.c:
-	.text       start:0x8008F8F0 end:0x8008FED4 align:4
-
 dol/AMC_IsStub.c:
 	.text       start:0x8008FED4 end:0x8008FEDC align:4
 
 dol/Hu_IsStub.c:
 	.text       start:0x8008FEDC end:0x8008FEE4 align:4
-
-dol/fn_8008F748.c:
-	.text       start:0x8008F748 end:0x8008F838 align:4
 
 dol/fn_8008AF58.c:
 	.text       start:0x8008AF58 end:0x8008AFF0 align:4
@@ -1271,9 +1265,6 @@ dol/adx/adx_sugc.c:
 
 dol/fn_800288C4.c:
 	.text       start:0x800288C4 end:0x800289C0 align:4
-
-dol/fn_8008F838.c:
-	.text       start:0x8008F838 end:0x8008F8F0 align:4
 
 dol/av/avdisp_tail.c:
 	.text       start:0x800789D8 end:0x80079654 align:4
