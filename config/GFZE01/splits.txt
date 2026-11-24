@@ -221,17 +221,17 @@ dol/ahx/ahx_adxt.c:
 dol/adx/cri_cvfs.c:
 	.text       start:0x8005466C end:0x800555C0 align:4
 
-dol/fn_8007A150.c:
-	.text       start:0x8007A150 end:0x8007A23C align:4
+dol/runtime/alloc.c:
+	.text       start:0x8007A150 end:0x8007B028 align:4
+
+dol/runtime/ansi_files.c:
+	.text       start:0x8007B028 end:0x8007B338 align:4
 
 dol/DVDCompareDiskID.c:
 	.text       start:0x8001A1F4 end:0x8001A2EC align:4
 
 dol/__DVDPrintFatalMessage.c:
 	.text       start:0x8001A2EC end:0x8001A31C align:4
-
-dol/fn_8007A23C.c:
-	.text       start:0x8007A23C end:0x8007A2E8 align:4
 
 dol/adx/adx_bsc.c:
 	.text       start:0x80044E7C end:0x80045FEC align:4
@@ -328,12 +328,6 @@ dol/__destroy_global_chain.c:
 
 dol/av/avdisp_draw.c:
 	.text       start:0x800786B0 end:0x80078884 align:4
-
-dol/fn_8007B0B4.c:
-	.text       start:0x8007B0B4 end:0x8007B124 align:4
-
-dol/__close_all.c:
-	.text       start:0x8007B124 end:0x8007B338 align:4
 
 dol/fn_8007B338.c:
 	.text       start:0x8007B338 end:0x8007C3B8 align:4
@@ -931,9 +925,6 @@ dol/ansi_fp_decimal.c:
 	.text       start:0x8007C3B8 end:0x8007E69C align:4
 	.data       start:0x8015AFD8 end:0x8015B100 align:8
 
-dol/deallocate_from_fixed_pools.c:
-	.text       start:0x8007A2E8 end:0x8007A710 align:4
-
 dol/trk/serpoll.c:
 	.text       start:0x8008930C end:0x80089834 align:4
 	.data       start:0x8015B7C0 end:0x8015B82C align:32
@@ -1280,9 +1271,6 @@ dol/fn_800090A4.c:
 
 dol/axfx/chorus.c:
 	.text       start:0x800251F0 end:0x80025854 align:4
-
-dol/runtime/pool_alloc.c:
-	.text       start:0x8007A710 end:0x8007B0B4 align:4
 
 dol/gx/GXPixel.c:
 	.text       start:0x800377F8 end:0x80037E30 align:4

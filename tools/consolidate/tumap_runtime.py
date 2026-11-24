@@ -71,8 +71,29 @@ ROWS = [  # file, lib, lo, hi, ordered sizes, donors
 ]
 
 
+def absorb_pool_alloc(m):
+    """GQNE5D alloc.o runs through Block_construct and ansi_files.o starts with two flush functions."""
+    drop = next((t for t in m['tus'] if t['file'] == 'pool_alloc.c'), None)
+    if drop is None:
+        return
+    by_file = {t['file']: t for t in m['tus']}
+    alloc, files = by_file['alloc.c'], by_file['ansi_files.c']
+    alloc['functions'] += drop['functions'][:6]
+    alloc['text'][1] = '8007B028'
+    alloc['how']['donor-size'] = alloc['how'].get('donor-size', 0) + 6
+    alloc['notes'] += (' 0x8007A710..0x8007B028: the six sizes equal deallocate_from_var_pools through Block_construct '
+                       'of GQNE5D alloc.o.')
+    files['functions'] = drop['functions'][6:] + files['functions']
+    files['text'][0] = '8007B028'
+    files['how']['donor-size'] = files['how'].get('donor-size', 0) + 2
+    files['notes'] += (' 0x8007B028..0x8007B124: the two sizes equal __flush_line_buffered_output_files and __flush_all, '
+                       'the first functions of GQNE5D ansi_files.o.')
+    m['tus'].remove(drop)
+
+
 def main():
     m = json.loads(MAP.read_text())
+    absorb_pool_alloc(m)
     syms = {}
     for line in open('config/GFZE01/symbols.txt'):
         x = re.match(r'(\S+) = \.text:0x(\w+); // type:function size:0x(\w+)', line)

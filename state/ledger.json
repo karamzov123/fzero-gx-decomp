@@ -1,5 +1,5 @@
 {
- "generated": 1795490528,
+ "generated": 1795490780,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -39580,7 +39580,7 @@
   {
    "symbol": "fn_8007A150",
    "module": "main",
-   "unit": "dol/fn_8007A150.c",
+   "unit": "dol/runtime/alloc.c",
    "addr": 2147983696,
    "size": 112,
    "status": "matched",
@@ -39597,7 +39597,7 @@
   {
    "symbol": "fn_8007A1C0",
    "module": "main",
-   "unit": "dol/fn_8007A150.c",
+   "unit": "dol/runtime/alloc.c",
    "addr": 2147983808,
    "size": 124,
    "status": "matched",
@@ -39614,7 +39614,7 @@
   {
    "symbol": "fn_8007A23C",
    "module": "main",
-   "unit": "dol/fn_8007A23C.c",
+   "unit": "dol/runtime/alloc.c",
    "addr": 2147983932,
    "size": 88,
    "status": "matched",
@@ -39631,7 +39631,7 @@
   {
    "symbol": "fn_8007A294",
    "module": "main",
-   "unit": "dol/fn_8007A23C.c",
+   "unit": "dol/runtime/alloc.c",
    "addr": 2147984020,
    "size": 84,
    "status": "matched",
@@ -39648,7 +39648,7 @@
   {
    "symbol": "deallocate_from_fixed_pools",
    "module": "main",
-   "unit": "dol/deallocate_from_fixed_pools.c",
+   "unit": "dol/runtime/alloc.c",
    "addr": 2147984104,
    "size": 344,
    "status": "matched",
@@ -39665,7 +39665,7 @@
   {
    "symbol": "fn_8007A440",
    "module": "main",
-   "unit": "dol/deallocate_from_fixed_pools.c",
+   "unit": "dol/runtime/alloc.c",
    "addr": 2147984448,
    "size": 720,
    "status": "matched",
@@ -39682,7 +39682,7 @@
   {
    "symbol": "fn_8007A710",
    "module": "main",
-   "unit": "dol/runtime/pool_alloc.c",
+   "unit": "dol/runtime/alloc.c",
    "addr": 2147985168,
    "size": 660,
    "status": "matched",
@@ -39699,7 +39699,7 @@
   {
    "symbol": "fn_8007A9A4",
    "module": "main",
-   "unit": "dol/runtime/pool_alloc.c",
+   "unit": "dol/runtime/alloc.c",
    "addr": 2147985828,
    "size": 216,
    "status": "matched",
@@ -39716,7 +39716,7 @@
   {
    "symbol": "fn_8007AA7C",
    "module": "main",
-   "unit": "dol/runtime/pool_alloc.c",
+   "unit": "dol/runtime/alloc.c",
    "addr": 2147986044,
    "size": 220,
    "status": "matched",
@@ -39733,7 +39733,7 @@
   {
    "symbol": "fn_8007AB58",
    "module": "main",
-   "unit": "dol/runtime/pool_alloc.c",
+   "unit": "dol/runtime/alloc.c",
    "addr": 2147986264,
    "size": 180,
    "status": "matched",
@@ -39750,7 +39750,7 @@
   {
    "symbol": "fn_8007AC0C",
    "module": "main",
-   "unit": "dol/runtime/pool_alloc.c",
+   "unit": "dol/runtime/alloc.c",
    "addr": 2147986444,
    "size": 484,
    "status": "matched",
@@ -39767,7 +39767,7 @@
   {
    "symbol": "fn_8007ADF0",
    "module": "main",
-   "unit": "dol/runtime/pool_alloc.c",
+   "unit": "dol/runtime/alloc.c",
    "addr": 2147986928,
    "size": 568,
    "status": "matched",
@@ -39784,7 +39784,7 @@
   {
    "symbol": "fn_8007B028",
    "module": "main",
-   "unit": "dol/runtime/pool_alloc.c",
+   "unit": "dol/runtime/ansi_files.c",
    "addr": 2147987496,
    "size": 140,
    "status": "matched",
@@ -39801,7 +39801,7 @@
   {
    "symbol": "fn_8007B0B4",
    "module": "main",
-   "unit": "dol/fn_8007B0B4.c",
+   "unit": "dol/runtime/ansi_files.c",
    "addr": 2147987636,
    "size": 112,
    "status": "matched",
@@ -39818,7 +39818,7 @@
   {
    "symbol": "__close_all",
    "module": "main",
-   "unit": "dol/__close_all.c",
+   "unit": "dol/runtime/ansi_files.c",
    "addr": 2147987748,
    "size": 168,
    "status": "matched",
@@ -39835,7 +39835,7 @@
   {
    "symbol": "fn_8007B1CC",
    "module": "main",
-   "unit": "dol/__close_all.c",
+   "unit": "dol/runtime/ansi_files.c",
    "addr": 2147987916,
    "size": 220,
    "status": "matched",
@@ -39852,7 +39852,7 @@
   {
    "symbol": "fn_8007B2A8",
    "module": "main",
-   "unit": "dol/__close_all.c",
+   "unit": "dol/runtime/ansi_files.c",
    "addr": 2147988136,
    "size": 144,
    "status": "matched",

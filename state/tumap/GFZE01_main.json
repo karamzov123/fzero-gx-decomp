@@ -7,7 +7,7 @@
     "assigned": 2230,
     "bytes": 567556,
     "assigned_bytes": 567556,
-    "tus": 252,
+    "tus": 251,
     "conflicts": 0,
     "string_anchored": 13
   },
@@ -4392,7 +4392,7 @@
       "file": "alloc.c",
       "text": [
         "8007A150",
-        "8007A710"
+        "8007B028"
       ],
       "functions": [
         "fn_8007A150",
@@ -4400,54 +4400,41 @@
         "fn_8007A23C",
         "fn_8007A294",
         "deallocate_from_fixed_pools",
-        "fn_8007A440"
-      ],
-      "how": {
-        "sdkimport": 1,
-        "pool-vote": 1,
-        "donor-size": 4
-      },
-      "lib": "runtime",
-      "notes": "0x8007A150..0x8007A2E8: ordered sizes equal GQNE5D alloc.o has __pool_free (88) and __pool_alloc (84) immediately before deallocate_from_fixed_pools; the two functions before them are free and malloc, which call them and use the pool at .bss 0x801A3380."
-    },
-    {
-      "file": "pool_alloc.c",
-      "text": [
-        "8007A710",
-        "8007B124"
-      ],
-      "functions": [
+        "fn_8007A440",
         "fn_8007A710",
         "fn_8007A9A4",
         "fn_8007AA7C",
         "fn_8007AB58",
         "fn_8007AC0C",
-        "fn_8007ADF0",
-        "fn_8007B028",
-        "fn_8007B0B4"
+        "fn_8007ADF0"
       ],
       "how": {
-        "sdk-order": 8
+        "sdkimport": 1,
+        "pool-vote": 1,
+        "donor-size": 10
       },
-      "lib": "runtime"
+      "lib": "runtime",
+      "notes": "0x8007A150..0x8007A2E8: ordered sizes equal GQNE5D alloc.o has __pool_free (88) and __pool_alloc (84) immediately before deallocate_from_fixed_pools; the two functions before them are free and malloc, which call them and use the pool at .bss 0x801A3380. 0x8007A710..0x8007B028: the six sizes equal deallocate_from_var_pools through Block_construct of GQNE5D alloc.o."
     },
     {
       "file": "ansi_files.c",
       "text": [
-        "8007B124",
+        "8007B028",
         "8007B338"
       ],
       "functions": [
+        "fn_8007B028",
+        "fn_8007B0B4",
         "__close_all",
         "fn_8007B1CC",
         "fn_8007B2A8"
       ],
       "how": {
         "donor-name": 1,
-        "donor-size": 2
+        "donor-size": 4
       },
       "lib": "runtime",
-      "notes": "0x8007B1CC..0x8007B338: ordered sizes equal GQNE5D, G9SE8P."
+      "notes": "0x8007B1CC..0x8007B338: ordered sizes equal GQNE5D, G9SE8P. 0x8007B028..0x8007B124: the two sizes equal __flush_line_buffered_output_files and __flush_all, the first functions of GQNE5D ansi_files.o."
     },
     {
       "file": "ansi_fp.c",

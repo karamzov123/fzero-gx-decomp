@@ -19375,19 +19375,47 @@
   },
   {
     "module": "main",
-    "source": "dol/deallocate_from_fixed_pools.c",
+    "source": "dol/runtime/alloc.c",
     "symbols": [
+      "fn_8007A150",
+      "fn_8007A1C0",
+      "fn_8007A23C",
+      "fn_8007A294",
       "deallocate_from_fixed_pools",
-      "fn_8007A440"
+      "fn_8007A440",
+      "fn_8007A710",
+      "fn_8007A9A4",
+      "fn_8007AA7C",
+      "fn_8007AB58",
+      "fn_8007AC0C",
+      "fn_8007ADF0"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
-    "collapsed": true,
     "extra_cflags": [
+      "-inline",
+      "on,noauto",
       "-use_lmw_stmw",
       "on"
-    ]
+    ],
+    "collapsed": true
+  },
+  {
+    "module": "main",
+    "source": "dol/runtime/ansi_files.c",
+    "symbols": [
+      "fn_8007B028",
+      "fn_8007B0B4",
+      "__close_all",
+      "fn_8007B1CC",
+      "fn_8007B2A8"
+    ],
+    "status": "matching",
+    "matching_for": ["GFZE01", "GFZP01"],
+    "mw_version": "GC/2.5",
+    "extra_cflags": [],
+    "collapsed": true
   },
   {
     "module": "main",
@@ -23210,77 +23238,6 @@
     "mw_version": "GC/1.3.2",
     "collapsed": true,
     "matching_for": ["GFZE01", "GFZP01"]
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8007A150.c",
-    "symbols": [
-      "fn_8007A150",
-      "fn_8007A1C0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZP01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8007A23C.c",
-    "symbols": [
-      "fn_8007A23C",
-      "fn_8007A294"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZP01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/runtime/pool_alloc.c",
-    "symbols": [
-      "fn_8007A710",
-      "fn_8007A9A4",
-      "fn_8007AA7C",
-      "fn_8007AB58",
-      "fn_8007AC0C",
-      "fn_8007ADF0",
-      "fn_8007B028"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZP01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-inline",
-      "on,noauto"
-    ],
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8007B0B4.c",
-    "symbols": [
-      "fn_8007B0B4"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZP01"],
-    "mw_version": "GC/2.5",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/__close_all.c",
-    "symbols": [
-      "__close_all",
-      "fn_8007B1CC",
-      "fn_8007B2A8"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZP01"],
-    "mw_version": "GC/2.5",
-    "collapsed": true
   },
   {
     "module": "main",
