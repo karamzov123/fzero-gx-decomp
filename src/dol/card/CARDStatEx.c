@@ -1,9 +1,8 @@
+#include "types.h"
+#include "dolphin/card.h"
 #include "dolphin/card/CARDPriv.h"
-#include <dolphin/card/CARDPriv.h>
 
-
-/* --- dol/fn_8003043C.c --- */
-typedef struct fn_8003043C_Entry {
+typedef struct CARDStatExEntry {
     u8 name[4];
     u8 company[2];
     u8 unk_6;
@@ -17,21 +16,42 @@ typedef struct fn_8003043C_Entry {
     u8 unk_35;
     u8 pad_36[6];
     u32 unk_3c;
-} fn_8003043C_Entry;
+} CARDStatExEntry;
 
-extern s32 __CARDGetControlBlock(s32 chan, CARDControl **card);
-extern u32 fn_8002C4BC(CARDControl *card);
-extern s32 __CARDAccess(CARDControl *card, CARDDir *ent);
-extern u32 __CARDPutControlBlock(CARDControl *card, u32 result);
-extern s32 fn_8008023C(u32, u32, u32);
+extern CARDDir *fn_8002C4BC(CARDControl *card);
 extern void *memcpy(void *, const void *, u32);
-extern s32 __CARDUpdateDir(s32 chan, CARDCallback callback);
+extern s32 fn_8008023C(u32, u32, u32);
 
-s32 fn_8003043C(s32 chan, s32 fileNo, fn_8003043C_Entry *src, CARDCallback callback) {
+s32 fn_80030380(s32 chan, s32 fileNo, void *out) {
     CARDControl *card;
-    fn_8003043C_Entry *base;
+    s32 result;
+    s32 access;
+    CARDDir *entry;
+
+    if (fileNo < 0 || fileNo >= 0x7F) {
+        return -0x80;
+    }
+    result = __CARDGetControlBlock(chan, &card);
+    if (result < 0) {
+        return result;
+    }
+    entry = fn_8002C4BC(card);
+    entry += fileNo;
+    access = __CARDAccess(card, entry);
+    if (access == -0xA) {
+        access = __CARDIsPublic(entry);
+    }
+    if (access >= 0) {
+        memcpy(out, entry, 0x40);
+    }
+    return __CARDPutControlBlock(card, access);
+}
+
+s32 fn_8003043C(s32 chan, s32 fileNo, CARDStatExEntry *src, CARDCallback callback) {
+    CARDControl *card;
+    CARDStatExEntry *base;
     s32 ret;
-    fn_8003043C_Entry *ent;
+    CARDStatExEntry *ent;
     s32 i;
     s32 result;
 
@@ -42,7 +62,7 @@ s32 fn_8003043C(s32 chan, s32 fileNo, fn_8003043C_Entry *src, CARDCallback callb
     if (result < 0) {
         return result;
     }
-    base = (fn_8003043C_Entry *)fn_8002C4BC(card);
+    base = (CARDStatExEntry *)fn_8002C4BC(card);
     ent = base + fileNo;
     result = __CARDAccess(card, (CARDDir *)ent);
     if (result < 0) {

@@ -2,7 +2,7 @@
 """Try a hand-written translation unit against the units it replaces (DOL).
 
   tu_try.py CANDIDATE.c --units dol/A.c,dol/B.c,...  [--extra "-inline on,noauto"]
-            [--apply --as dol/os/OSAlarm.c]
+            [--apply --as dol/os/OSAlarm.c] [--widen]
 
 Compiles CANDIDATE.c with the first unit's compiler and flags (every region in the units'
 common matching_for) and each unit's current source with its own settings, then requires every
@@ -97,6 +97,7 @@ def main():
     ap.add_argument('candidate'); ap.add_argument('--units', required=True)
     ap.add_argument('--apply', action='store_true'); ap.add_argument('--as', dest='dest')
     ap.add_argument('--extra', default='', help='extra compiler flags for the TU, e.g. "-inline on,noauto"')
+    ap.add_argument('--widen', action='store_true', help='keep every region any unit covered; check them with tu_regions.py first')
     a = ap.parse_args()
     srcs = a.units.split(',')
     units = json.load(open('config/GFZE01/units.json')); byu = {u['source']: u for u in units}
@@ -162,7 +163,7 @@ def main():
     if not ok or not a.apply:
         return 0 if ok else 1
     lost_regions = set.union(*coverage) - set(mf)
-    if lost_regions:
+    if lost_regions and not a.widen:
         print(f'would drop source coverage in {sorted(lost_regions)}; verify those regions before applying'); return 1
     dest = a.dest or srcs[0]
     sp = pathlib.Path('config/GFZE01/splits.txt'); text = sp.read_text(); blocks = split_blocks(text)
@@ -191,7 +192,8 @@ def main():
     merged['mw_version'] = mv
     if a.extra:
         merged['extra_cflags'] = list(merged.get('extra_cflags') or []) + a.extra.split()
-    if mf != list(VERSIONS): merged['matching_for'] = mf
+    final = [v for v in VERSIONS if v in set.union(*coverage)] if a.widen else mf
+    if final != list(VERSIONS): merged['matching_for'] = final
     else: merged.pop('matching_for', None)
     if pooled:
         merged['pool'] = dict(sorted(new_pool.items()))

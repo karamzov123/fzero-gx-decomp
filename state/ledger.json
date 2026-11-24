@@ -1,5 +1,5 @@
 {
- "generated": 1795489748,
+ "generated": 1795490528,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -16953,7 +16953,7 @@
   {
    "symbol": "fn_800235D4",
    "module": "main",
-   "unit": "dol/fn_800235D4.c",
+   "unit": "dol/ax/AXProf.c",
    "addr": 2147628500,
    "size": 72,
    "status": "matched",
@@ -16970,7 +16970,7 @@
   {
    "symbol": "fn_8002361C",
    "module": "main",
-   "unit": "dol/fn_800235D4.c",
+   "unit": "dol/ax/AXProf.c",
    "addr": 2147628572,
    "size": 28,
    "status": "matched",
@@ -16987,7 +16987,7 @@
   {
    "symbol": "fn_80023638",
    "module": "main",
-   "unit": "dol/fn_80023638.c",
+   "unit": "dol/ax/AXProf.c",
    "addr": 2147628600,
    "size": 76,
    "status": "matched",
@@ -20064,7 +20064,7 @@
   {
    "symbol": "fn_80030380",
    "module": "main",
-   "unit": "dol/fn_80030380.c",
+   "unit": "dol/card/CARDStatEx.c",
    "addr": 2147681152,
    "size": 188,
    "status": "matched",
@@ -20081,7 +20081,7 @@
   {
    "symbol": "fn_8003043C",
    "module": "main",
-   "unit": "dol/card/CARDNet.c",
+   "unit": "dol/card/CARDStatEx.c",
    "addr": 2147681340,
    "size": 596,
    "status": "matched",
@@ -34429,7 +34429,7 @@
   {
    "symbol": "fn_8006CCC8",
    "module": "main",
-   "unit": "dol/fn_8006CCC8.c",
+   "unit": "dol/lg/lg_view.c",
    "addr": 2147929288,
    "size": 88,
    "status": "matched",
@@ -34446,7 +34446,7 @@
   {
    "symbol": "fn_8006CD20",
    "module": "main",
-   "unit": "dol/fn_8006CCC8.c",
+   "unit": "dol/lg/lg_view.c",
    "addr": 2147929376,
    "size": 12,
    "status": "matched",
@@ -34463,7 +34463,7 @@
   {
    "symbol": "fn_8006CD2C",
    "module": "main",
-   "unit": "dol/fn_8006CCC8.c",
+   "unit": "dol/lg/lg_view.c",
    "addr": 2147929388,
    "size": 20,
    "status": "matched",
@@ -34480,7 +34480,7 @@
   {
    "symbol": "fn_8006CD40",
    "module": "main",
-   "unit": "dol/fn_8006CCC8.c",
+   "unit": "dol/lg/lg_view.c",
    "addr": 2147929408,
    "size": 16,
    "status": "matched",
@@ -34497,7 +34497,7 @@
   {
    "symbol": "fn_8006CD50",
    "module": "main",
-   "unit": "dol/fn_8006CCC8.c",
+   "unit": "dol/lg/lg_view.c",
    "addr": 2147929424,
    "size": 88,
    "status": "matched",
@@ -34514,7 +34514,7 @@
   {
    "symbol": "fn_8006CDA8",
    "module": "main",
-   "unit": "dol/fn_8006CCC8.c",
+   "unit": "dol/lg/lg_view.c",
    "addr": 2147929512,
    "size": 84,
    "status": "matched",
@@ -34531,7 +34531,7 @@
   {
    "symbol": "fn_8006CDFC",
    "module": "main",
-   "unit": "dol/fn_8006CDFC.c",
+   "unit": "dol/lg/lg_view.c",
    "addr": 2147929596,
    "size": 32,
    "status": "matched",
@@ -34548,7 +34548,7 @@
   {
    "symbol": "fn_8006CE1C",
    "module": "main",
-   "unit": "dol/fn_8006CE1C.c",
+   "unit": "dol/lg/lg_view.c",
    "addr": 2147929628,
    "size": 40,
    "status": "matched",
@@ -34565,7 +34565,7 @@
   {
    "symbol": "fn_8006CE44",
    "module": "main",
-   "unit": "dol/fn_8006CE1C.c",
+   "unit": "dol/lg/lg_view.c",
    "addr": 2147929668,
    "size": 436,
    "status": "matched",
@@ -39529,7 +39529,7 @@
   {
    "symbol": "fn_80079EF0",
    "module": "main",
-   "unit": "dol/fn_80079EF0.c",
+   "unit": "dol/runtime/GCN_Mem_Alloc.c",
    "addr": 2147983088,
    "size": 184,
    "status": "matched",
@@ -39546,7 +39546,7 @@
   {
    "symbol": "fn_80079FA8",
    "module": "main",
-   "unit": "dol/fn_80079FA8.c",
+   "unit": "dol/runtime/GCN_Mem_Alloc.c",
    "addr": 2147983272,
    "size": 184,
    "status": "matched",

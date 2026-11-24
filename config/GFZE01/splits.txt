@@ -236,9 +236,6 @@ dol/fn_8007A23C.c:
 dol/adx/adx_bsc.c:
 	.text       start:0x80044E7C end:0x80045FEC align:4
 
-dol/fn_80023638.c:
-	.text       start:0x80023638 end:0x80023684 align:4
-
 dol/fn_80023684.c:
 	.text       start:0x80023684 end:0x80023B70 align:4
 
@@ -248,8 +245,8 @@ dol/ax/AXSPB.c:
 dol/fn_800565F0.c:
 	.text       start:0x800565F0 end:0x800565FC align:4
 
-dol/fn_800235D4.c:
-	.text       start:0x800235D4 end:0x80023638 align:4
+dol/ax/AXProf.c:
+	.text       start:0x800235D4 end:0x80023684 align:4
 
 dol/fn_80047608.c:
 	.text       start:0x80047608 end:0x8004768C align:4
@@ -639,11 +636,8 @@ dol/fn_8007F48C.c:
 dol/fn_8007F508.c:
 	.text       start:0x8007F508 end:0x8007F684 align:4
 
-dol/fn_8006CCC8.c:
-	.text       start:0x8006CCC8 end:0x8006CDFC align:4
-
-dol/fn_8006CE1C.c:
-	.text       start:0x8006CE1C end:0x8006CFF8 align:4
+dol/lg/lg_view.c:
+	.text       start:0x8006CCC8 end:0x8006CFF8 align:4
 
 dol/os/OSReset.c:
 	.text       start:0x8000EF64 end:0x8000F264 align:4
@@ -964,8 +958,8 @@ dol/ahx/ahx_bits.c:
 dol/fn_800137C4.c:
 	.text       start:0x800137C4 end:0x80013A88 align:4
 
-dol/fn_80030380.c:
-	.text       start:0x80030380 end:0x8003043C align:4
+dol/card/CARDStatEx.c:
+	.text       start:0x80030380 end:0x80030690 align:4
 
 dol/fn_8008EB4C.c:
 	.text       start:0x8008EB4C end:0x8008EB8C align:4
@@ -981,9 +975,6 @@ dol/TRK_main.c:
 dol/nubinit.c:
 	.text       start:0x80088968 end:0x80088B00 align:4
 	.rodata     start:0x80095648 end:0x80095678 align:8
-
-dol/fn_8006CDFC.c:
-	.text       start:0x8006CDFC end:0x8006CE1C align:4
 
 dol/arc.c:
 	.text       start:0x8006A3DC end:0x8006AA20 align:4
@@ -1076,9 +1067,6 @@ dol/gx/GXTexture.c:
 dol/trk/main.c:
 	.text       start:0x8008DF6C end:0x8008E6C8 align:4
 
-dol/fn_80079FA8.c:
-	.text       start:0x80079FA8 end:0x8007A060 align:4
-
 dol/exit.c:
 	.text       start:0x8007A060 end:0x8007A150 align:4
 
@@ -1098,8 +1086,8 @@ dol/fn_80083BCC.c:
 dol/runtime/strtold.c:
 	.text       start:0x80083E84 end:0x80084F1C align:4
 
-dol/fn_80079EF0.c:
-	.text       start:0x80079EF0 end:0x80079FA8 align:4
+dol/runtime/GCN_Mem_Alloc.c:
+	.text       start:0x80079EF0 end:0x8007A060 align:4
 
 dol/adx/sj_mem.c:
 	.text       start:0x80057774 end:0x80057D88 align:4
@@ -1151,9 +1139,6 @@ dol/fstload.c:
 
 dol/fn_8002123C.c:
 	.text       start:0x8002123C end:0x800218EC align:4
-
-dol/card/CARDNet.c:
-	.text       start:0x8003043C end:0x80030690 align:4
 
 dol/CARDGetSerialNo.c:
 	.text       start:0x80030690 end:0x800307CC align:4
