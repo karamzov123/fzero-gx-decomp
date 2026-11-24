@@ -23,6 +23,9 @@ Run from the repository root; dry-run first.
 | `pairdiag.py`, `merge_prep.py` | why adjacent clean units of a TU do not merge; reconcile their declarations |
 | `steer_prune.py --kind K [--apply]` | removes steering that no longer changes any object: `volatile`, one-member `carrier`s, `register`, `castview` (`*(T *)&x`), `pcast` (`(T)(e)`), `icast` (`(T)x`), `ptrcast` (`(T *)e`), `plus0`, `derefaddr` (`*&x`), `parens` (`((x))`), `soloparen` (`(x)`), `unusedlocal` (declarations inside function bodies whose name is never used); per block, bisected on failure, all regions |
 | `pragma_rank.py`, `pragma_diff.py`, `trysrc.py` | rank pragma setters by words changed; show the asm diff; try a hand rewrite (scoped to one function) against the unit object |
+| `tu_data.py CAND UNIT SECTION LO` | a candidate's data section against retail, relocated words masked, before `tu_own_data.py` |
+| `data_split.py dol/data/U.c SYM... [--apply]` | splits a data-import unit at object boundaries (a unit is aligned to its most aligned object, so a trimmed unit can need splitting first) |
+| `rename_regions.py MAP.json` | after `fzgx rename --map`: restores units.json order and versions and renames in the region symbol files and TU maps |
 | `gate.sh` | GFZP01/GFZJ01/GFZE01 builds + lint |
 
 Helpers: `apply_pooled_all.py` (ELF/relocation parsing), `apply_smart_dol_mm.py` (C file merge

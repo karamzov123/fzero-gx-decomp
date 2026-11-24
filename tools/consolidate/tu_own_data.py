@@ -76,6 +76,9 @@ def main():
             dest = f'dol/data/{u["symbols"][0]}.c'
             pathlib.Path('src', dest).write_text(body); src.unlink()
             text = re.sub(rf'^{re.escape(u["source"])}:\n((?:\t.*\n)*?\t{re.escape(sec)}\s+start:0x)\w+', rf'{dest}:\n\g<1>{hi:08X}', text, flags=re.M)
+            # the tail starts at hi now: its split alignment cannot exceed what hi satisfies
+            text = re.sub(rf'^({re.escape(dest)}:\n(?:\t.*\n)*?\t{re.escape(sec)}\s+start:0x\w+ end:0x\w+ align:)(\d+)',
+                          lambda m: m[1] + str(min(int(m[2]), hi & -hi)), text, flags=re.M)
             u['source'] = dest
             for n in u['symbols']:
                 if f'main:{n}' in imports:

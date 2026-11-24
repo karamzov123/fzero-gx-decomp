@@ -7,7 +7,7 @@
     "assigned": 2230,
     "bytes": 567556,
     "assigned_bytes": 567556,
-    "tus": 254,
+    "tus": 257,
     "conflicts": 0,
     "string_anchored": 13
   },
@@ -1605,18 +1605,60 @@
       "lib": "axart"
     },
     {
-      "file": "dsp.c",
+      "file": "axartenv.c",
       "text": [
         "800289C0",
-        "80028F50"
+        "80028A78"
       ],
       "functions": [
         "AXARTPitchEnv",
-        "AXARTVolumeEnv",
-        "AXARTLfo",
+        "AXARTVolumeEnv"
+      ],
+      "how": {
+        "sdk-order": 2
+      },
+      "lib": "dsp",
+      "notes": "Dolphin SDK axart.a in its makefile order (axart, axartsound, axartcents, axartenv, axartlfo, axart3d) before dsp.c. 1.0f repeats in .sdata2 at 0x801A7038 (axartcents) and 0x801A7040 (axartlfo); axartlfo owns the six 64-entry LFO waveforms at .data 0x801299D0 (AXARTSine first, all referenced by the sound driver) and axart3d the five 360-entry angle tables and the source table at 0x80129FD0, then its two scale floats in .sbss 0x801A6B98."
+    },
+    {
+      "file": "axartlfo.c",
+      "text": [
+        "80028A78",
+        "80028B2C"
+      ],
+      "functions": [
+        "AXARTLfo"
+      ],
+      "how": {
+        "literal-dedupe": 1
+      },
+      "lib": "dsp",
+      "notes": "Dolphin SDK axart.a in its makefile order (axart, axartsound, axartcents, axartenv, axartlfo, axart3d) before dsp.c. 1.0f repeats in .sdata2 at 0x801A7038 (axartcents) and 0x801A7040 (axartlfo); axartlfo owns the six 64-entry LFO waveforms at .data 0x801299D0 (AXARTSine first, all referenced by the sound driver) and axart3d the five 360-entry angle tables and the source table at 0x80129FD0, then its two scale floats in .sbss 0x801A6B98."
+    },
+    {
+      "file": "axart3d.c",
+      "text": [
+        "80028B2C",
+        "80028CC0"
+      ],
+      "functions": [
         "AXARTSet3DDopplerScale",
         "AXARTSet3DDistanceScale",
-        "AXART3DSound",
+        "AXART3DSound"
+      ],
+      "how": {
+        "sdk-order": 3
+      },
+      "lib": "dsp",
+      "notes": "Dolphin SDK axart.a in its makefile order (axart, axartsound, axartcents, axartenv, axartlfo, axart3d) before dsp.c. 1.0f repeats in .sdata2 at 0x801A7038 (axartcents) and 0x801A7040 (axartlfo); axartlfo owns the six 64-entry LFO waveforms at .data 0x801299D0 (AXARTSine first, all referenced by the sound driver) and axart3d the five 360-entry angle tables and the source table at 0x80129FD0, then its two scale floats in .sbss 0x801A6B98."
+    },
+    {
+      "file": "dsp.c",
+      "text": [
+        "80028CC0",
+        "80028F50"
+      ],
+      "functions": [
         "DSPCheckMailToDSP",
         "DSPCheckMailFromDSP",
         "DSPReadMailFromDSP",

@@ -307,8 +307,22 @@ dol/axart/axartsound.c:
 	.data       start:0x80129598 end:0x801295E0 align:8
 	.sdata2     start:0x801A7028 end:0x801A7038 align:8
 
+dol/axart/axartenv.c:
+	.text       start:0x800289C0 end:0x80028A78 align:4
+
+dol/axart/axartlfo.c:
+	.text       start:0x80028A78 end:0x80028B2C align:4
+	.data       start:0x801299D0 end:0x80129FD0 align:4
+	.sdata2     start:0x801A7040 end:0x801A7048 align:8
+
+dol/axart/axart3d.c:
+	.text       start:0x80028B2C end:0x80028CC0 align:4
+	.data       start:0x80129FD0 end:0x8012A848 align:4
+	.sbss       start:0x801A6B98 end:0x801A6BA0 align:4
+	.sdata2     start:0x801A7048 end:0x801A7058 align:8
+
 dol/dsp/dsp.c:
-	.text       start:0x800289C0 end:0x80028F50 align:4
+	.text       start:0x80028CC0 end:0x80028F50 align:4
 
 dol/card/CARDBlock.c:
 	.text       start:0x8002C0C0 end:0x8002C4C4 align:4
@@ -1267,8 +1281,10 @@ dol/fn_8003D42C.c:
 dol/adx/adx_sugc.c:
 	.text       start:0x8004EC34 end:0x8004ED18 align:4
 
-dol/AXARTCents.c:
+dol/axart/axartcents.c:
 	.text       start:0x800288C4 end:0x800289C0 align:4
+	.data       start:0x801295E0 end:0x801299D0 align:4
+	.sdata2     start:0x801A7038 end:0x801A7040 align:8
 
 dol/av/avdisp_tail.c:
 	.text       start:0x800789D8 end:0x80079654 align:4
@@ -2872,8 +2888,14 @@ dol/data/lbl_801220C0.c:
 dol/data/ResetFunctionInfo.c:
 	.data       start:0x80123AE0 end:0x80123AF0 align:32
 
-dol/data/lbl_801295E0.c:
-	.data       start:0x801295E0 end:0x8012AD40 align:32
+dol/data/lbl_8012A848.c:
+	.data       start:0x8012A848 end:0x8012AA50 align:8
+
+dol/data/lbl_8012AA50.c:
+	.data       start:0x8012AA50 end:0x8012AA60 align:16
+
+dol/data/lbl_8012AA60.c:
+	.data       start:0x8012AA60 end:0x8012AD40 align:32
 
 dol/data/EndofProgramInstruction.c:
 	.rodata     start:0x80095BC8 end:0x80095CD0 align:8
@@ -3021,18 +3043,6 @@ dol/data/lbl_801A6FF0.c:
 
 dol/data/lbl_801A6FF8.c:
 	.sdata2     start:0x801A6FF8 end:0x801A7000 align:8
-
-dol/data/lbl_801A7038.c:
-	.sdata2     start:0x801A7038 end:0x801A7040 align:8
-
-dol/data/lbl_801A7040.c:
-	.sdata2     start:0x801A7040 end:0x801A7048 align:8
-
-dol/data/lbl_801A7048.c:
-	.sdata2     start:0x801A7048 end:0x801A7050 align:8
-
-dol/data/lbl_801A7050.c:
-	.sdata2     start:0x801A7050 end:0x801A7058 align:8
 
 dol/data/gx.c:
 	.sdata2     start:0x801A7058 end:0x801A7060 align:8
@@ -3529,9 +3539,6 @@ dol/data/lbl_801A6B80.c:
 
 dol/data/lbl_801A6B88.c:
 	.sbss       start:0x801A6B88 end:0x801A6B90 align:8
-
-dol/data/lbl_801A6B98.c:
-	.sbss       start:0x801A6B98 end:0x801A6BA0 align:8
 
 dol/data/lbl_801A6BA0.c:
 	.sbss       start:0x801A6BA0 end:0x801A6BA8 align:32

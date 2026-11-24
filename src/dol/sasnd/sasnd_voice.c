@@ -67,11 +67,11 @@ void fn_8005DB68(s16 arg0, f32 arg1, s16 arg2, s16 *arg3, s16 *arg4);
 void fn_8005FBDC(u32 index);
 void fn_8005FCD8(u32 arg0);
 extern u32 AXARTSine[];
-extern u32 lbl_80129AD0[];
-extern u32 lbl_80129BD0[];
-extern u32 lbl_80129CD0[];
-extern u32 lbl_80129DD0[];
-extern u32 lbl_80129ED0[];
+extern u32 AXARTSquare[];
+extern u32 AXARTSaw[];
+extern u32 AXARTReverseSaw[];
+extern u32 AXARTTriangle[];
+extern u32 AXARTNoise[];
 
 extern u32 fn_80082908(void);
 extern s32 fn_80063EF4(u8, u8, u8);
@@ -1203,28 +1203,28 @@ void fn_8005DCEC(u16 *arg0, u8 arg1) {
     if (note->unk_1E == 0) {
         AXARTInitLfo(lbl_801A6C80->voice[voice].unk_C8, AXARTSine, 0x40, note->unk_20);
     } else if (note->unk_1E == 1) {
-        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_C8, lbl_80129AD0, 0x40, note->unk_20);
+        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_C8, AXARTSquare, 0x40, note->unk_20);
     } else if (note->unk_1E == 2) {
-        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_C8, lbl_80129BD0, 0x40, note->unk_20);
+        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_C8, AXARTSaw, 0x40, note->unk_20);
     } else if (note->unk_1E == 3) {
-        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_C8, lbl_80129CD0, 0x40, note->unk_20);
+        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_C8, AXARTReverseSaw, 0x40, note->unk_20);
     } else if (note->unk_1E == 4) {
-        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_C8, lbl_80129DD0, 0x40, note->unk_20);
+        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_C8, AXARTTriangle, 0x40, note->unk_20);
     } else if (note->unk_1E == 5) {
-        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_C8, lbl_80129ED0, 0x40, note->unk_20);
+        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_C8, AXARTNoise, 0x40, note->unk_20);
     }
     if (note->unk_1F == 0) {
         AXARTInitLfo(lbl_801A6C80->voice[voice].unk_F4, AXARTSine, 0x40, note->unk_24);
     } else if (note->unk_1F == 1) {
-        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_F4, lbl_80129AD0, 0x40, note->unk_24);
+        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_F4, AXARTSquare, 0x40, note->unk_24);
     } else if (note->unk_1F == 2) {
-        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_F4, lbl_80129BD0, 0x40, note->unk_24);
+        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_F4, AXARTSaw, 0x40, note->unk_24);
     } else if (note->unk_1F == 3) {
-        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_F4, lbl_80129CD0, 0x40, note->unk_24);
+        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_F4, AXARTReverseSaw, 0x40, note->unk_24);
     } else if (note->unk_1F == 4) {
-        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_F4, lbl_80129DD0, 0x40, note->unk_24);
+        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_F4, AXARTTriangle, 0x40, note->unk_24);
     } else if (note->unk_1F == 5) {
-        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_F4, lbl_80129ED0, 0x40, note->unk_24);
+        AXARTInitLfo(lbl_801A6C80->voice[voice].unk_F4, AXARTNoise, 0x40, note->unk_24);
     }
     t = hdr->unk_D;
     if (t > 0) {
@@ -1368,28 +1368,28 @@ void fn_8005DCEC(u16 *arg0, u8 arg1) {
             if (note->unk_1E == 0) {
                 AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_C8, AXARTSine, 0x40, note->unk_20);
             } else if (note->unk_1E == 1) {
-                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_C8, lbl_80129AD0, 0x40, note->unk_20);
+                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_C8, AXARTSquare, 0x40, note->unk_20);
             } else if (note->unk_1E == 2) {
-                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_C8, lbl_80129BD0, 0x40, note->unk_20);
+                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_C8, AXARTSaw, 0x40, note->unk_20);
             } else if (note->unk_1E == 3) {
-                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_C8, lbl_80129CD0, 0x40, note->unk_20);
+                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_C8, AXARTReverseSaw, 0x40, note->unk_20);
             } else if (note->unk_1E == 4) {
-                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_C8, lbl_80129DD0, 0x40, note->unk_20);
+                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_C8, AXARTTriangle, 0x40, note->unk_20);
             } else if (note->unk_1E == 5) {
-                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_C8, lbl_80129ED0, 0x40, note->unk_20);
+                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_C8, AXARTNoise, 0x40, note->unk_20);
             }
             if (note->unk_1F == 0) {
                 AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_F4, AXARTSine, 0x40, note->unk_24);
             } else if (note->unk_1F == 1) {
-                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_F4, lbl_80129AD0, 0x40, note->unk_24);
+                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_F4, AXARTSquare, 0x40, note->unk_24);
             } else if (note->unk_1F == 2) {
-                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_F4, lbl_80129BD0, 0x40, note->unk_24);
+                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_F4, AXARTSaw, 0x40, note->unk_24);
             } else if (note->unk_1F == 3) {
-                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_F4, lbl_80129CD0, 0x40, note->unk_24);
+                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_F4, AXARTReverseSaw, 0x40, note->unk_24);
             } else if (note->unk_1F == 4) {
-                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_F4, lbl_80129DD0, 0x40, note->unk_24);
+                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_F4, AXARTTriangle, 0x40, note->unk_24);
             } else if (note->unk_1F == 5) {
-                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_F4, lbl_80129ED0, 0x40, note->unk_24);
+                AXARTInitLfo(lbl_801A6C80->voice[voice2].unk_F4, AXARTNoise, 0x40, note->unk_24);
             }
             lbl_801A6C80->voice[voice2].unk_E8 = env;
             lbl_801A6C80->voice[voice2].volEnv = env2 << 16;
