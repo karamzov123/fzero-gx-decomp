@@ -105,8 +105,16 @@ dol/adx/adx_inis.c:
 dol/trk/UDP_Stubs.c:
 	.text       start:0x8008D7B0 end:0x8008DDD0 align:4
 
-dol/ddh_cc_initinterrupts.c:
-	.text       start:0x8008DDD0 end:0x8008DF6C align:4
+dol/trk/ddh/main.c:
+	.text       start:0x8008DDD0 end:0x8008E114 align:4
+	.rodata     start:0x80095CD0 end:0x80095DB0 align:4
+
+dol/trk/CircleBuffer.c:
+	.text       start:0x8008E114 end:0x8008E37C align:4
+
+dol/trk/gdev/main.c:
+	.text       start:0x8008E37C end:0x8008E6C8 align:4
+	.rodata     start:0x80095DB0 end:0x80095E90 align:4
 
 dol/__DBIsExceptionMarked.c:
 	.text       start:0x80015AB8 end:0x80015B24 align:4
@@ -1031,9 +1039,6 @@ dol/gx/GXTexture.c:
 	.text       start:0x80035A2C end:0x80036A28 align:4
 	.data       start:0x8012B140 end:0x8012B368 align:32
 
-dol/trk/main.c:
-	.text       start:0x8008DF6C end:0x8008E6C8 align:4
-
 dol/exit.c:
 	.text       start:0x8007A060 end:0x8007A150 align:4
 
@@ -1550,15 +1555,6 @@ dol/data/lbl_800958F0.c:
 
 dol/data/lbl_80095910.c:
 	.rodata     start:0x80095910 end:0x80095A78 align:16
-
-dol/data/lbl_80095D98.c:
-	.rodata     start:0x80095D98 end:0x80095DB0 align:8
-
-dol/data/lbl_80095DB0.c:
-	.rodata     start:0x80095DB0 end:0x80095E78 align:16
-
-dol/data/lbl_80095E78.c:
-	.rodata     start:0x80095E78 end:0x80095E90 align:8
 
 dol/data/__DVDLowPrev.c:
 	.bss        start:0x8015CE28 end:0x8015CE80 align:8
@@ -2186,9 +2182,6 @@ dol/data/lbl_80094E80.c:
 
 dol/data/lbl_80094ED8.c:
 	.rodata     start:0x80094ED8 end:0x80094FB8 align:8
-
-dol/data/lbl_80095CD0.c:
-	.rodata     start:0x80095CD0 end:0x80095D98 align:16
 
 dol/data/lbl_801A7060.c:
 	.sdata2     start:0x801A7060 end:0x801A7068 align:8

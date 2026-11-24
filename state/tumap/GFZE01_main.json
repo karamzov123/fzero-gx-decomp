@@ -7,7 +7,7 @@
     "assigned": 2230,
     "bytes": 567556,
     "assigned_bytes": 567556,
-    "tus": 251,
+    "tus": 253,
     "conflicts": 0,
     "string_anchored": 13
   },
@@ -5560,10 +5560,10 @@
       "lib": "trk_minnow_dolphin"
     },
     {
-      "file": "main.c",
+      "file": "ddh/main.c",
       "text": [
         "8008DDD0",
-        "8008E6C8"
+        "8008E114"
       ],
       "functions": [
         "ddh_cc_initinterrupts",
@@ -5575,11 +5575,39 @@
         "ddh_cc_close",
         "ddh_cc_open",
         "ddh_cc_shutdown",
-        "ddh_cc_initialize",
+        "ddh_cc_initialize"
+      ],
+      "how": {
+        "donor-name": 10
+      },
+      "lib": "trk_minnow_dolphin",
+      "notes": "MetroTRK ddh/main.c, utils/common/CircleBuffer.c and gdev/main.c (MetroTRK source layout); each of ddh and gdev owns its own copy of the cc_write/cc_read/EXI2_Init trace strings in .rodata (0x80095CD0 and 0x80095DB0), CircleBuffer has no data."
+    },
+    {
+      "file": "CircleBuffer.c",
+      "text": [
+        "8008E114",
+        "8008E37C"
+      ],
+      "functions": [
         "fn_8008E114",
         "fn_8008E21C",
         "fn_8008E324",
-        "fn_8008E374",
+        "fn_8008E374"
+      ],
+      "how": {
+        "between": 4
+      },
+      "lib": "trk_minnow_dolphin",
+      "notes": "MetroTRK ddh/main.c, utils/common/CircleBuffer.c and gdev/main.c (MetroTRK source layout); each of ddh and gdev owns its own copy of the cc_write/cc_read/EXI2_Init trace strings in .rodata (0x80095CD0 and 0x80095DB0), CircleBuffer has no data."
+    },
+    {
+      "file": "gdev/main.c",
+      "text": [
+        "8008E37C",
+        "8008E6C8"
+      ],
+      "functions": [
         "gdev_cc_initinterrupts",
         "gdev_cc_peek",
         "gdev_cc_post_stop",
@@ -5592,10 +5620,10 @@
         "gdev_cc_initialize"
       ],
       "how": {
-        "donor-name": 20,
-        "between": 4
+        "donor-name": 10
       },
-      "lib": "game"
+      "lib": "trk_minnow_dolphin",
+      "notes": "MetroTRK ddh/main.c, utils/common/CircleBuffer.c and gdev/main.c (MetroTRK source layout); each of ddh and gdev owns its own copy of the cc_write/cc_read/EXI2_Init trace strings in .rodata (0x80095CD0 and 0x80095DB0), CircleBuffer has no data."
     },
     {
       "file": "MWTrace.c",
