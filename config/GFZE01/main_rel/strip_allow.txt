@@ -22,3 +22,11 @@ game_start_gameover_event  # game.c, inlined in fn_1_3CE94, fn_1_33A20 and fn_1_
 apply_handicap  # game.c, inlined one time in fn_1_331EC
 game_save_heap_free  # game.c, inlined five times in fn_1_36330
 game_replay_menu_place  # game.c, inlined one time in fn_1_36B10
+cell_index  # coli.c, inlined in fn_1_15578 and fn_1_163BC
+stcoli_restart  # coli_b.c, inlined in fn_1_2BF8C
+stcoli_param_unknown  # coli_b.c, owner-accepted placeholder: recreates the unread literals 8A0..8BC, retail body not known
+stcoli_update_speed  # coli_b.c, inlined in fn_1_24A4C
+stcoli_damage_timer  # coli_b.c, inlined in fn_1_24A4C
+stcoli_slide  # coli_b.c, inlined in fn_1_266A8
+stcoli_fallback_axis  # coli_b.c, inlined in fn_1_290E8
+stcoli_align_to_ground  # coli_b.c, inlined in fn_1_290E8
