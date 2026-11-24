@@ -1,5 +1,5 @@
 {
- "generated": 1795487334,
+ "generated": 1795487568,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -28666,7 +28666,7 @@
   {
    "symbol": "fn_8004FF68",
    "module": "main",
-   "unit": "dol/fn_8004FC94.c",
+   "unit": "dol/ahx/ahx_bits.c",
    "addr": 2147811176,
    "size": 536,
    "status": "matched",
@@ -28683,7 +28683,7 @@
   {
    "symbol": "fn_80050180",
    "module": "main",
-   "unit": "dol/fn_8004FC94.c",
+   "unit": "dol/ahx/ahx_bits.c",
    "addr": 2147811712,
    "size": 108,
    "status": "matched",
@@ -28700,7 +28700,7 @@
   {
    "symbol": "fn_800501EC",
    "module": "main",
-   "unit": "dol/fn_8004FC94.c",
+   "unit": "dol/ahx/ahx_bits.c",
    "addr": 2147811820,
    "size": 8,
    "status": "matched",
@@ -28717,7 +28717,7 @@
   {
    "symbol": "fn_800501F4",
    "module": "main",
-   "unit": "dol/fn_800501F4.c",
+   "unit": "dol/ahx/ahx_bits.c",
    "addr": 2147811828,
    "size": 172,
    "status": "matched",
@@ -28734,7 +28734,7 @@
   {
    "symbol": "fn_800502A0",
    "module": "main",
-   "unit": "dol/fn_800502A0.c",
+   "unit": "dol/ahx/ahx_bits.c",
    "addr": 2147812000,
    "size": 540,
    "status": "matched",
@@ -28751,7 +28751,7 @@
   {
    "symbol": "fn_800504BC",
    "module": "main",
-   "unit": "dol/fn_800502A0.c",
+   "unit": "dol/ahx/ahx_bits.c",
    "addr": 2147812540,
    "size": 48,
    "status": "matched",
@@ -28768,7 +28768,7 @@
   {
    "symbol": "fn_800504EC",
    "module": "main",
-   "unit": "dol/fn_800504EC.c",
+   "unit": "dol/ahx/ahx_bits.c",
    "addr": 2147812588,
    "size": 388,
    "status": "matched",
@@ -28785,7 +28785,7 @@
   {
    "symbol": "fn_80050670",
    "module": "main",
-   "unit": "dol/fn_800504EC.c",
+   "unit": "dol/ahx/ahx_bits.c",
    "addr": 2147812976,
    "size": 40,
    "status": "matched",

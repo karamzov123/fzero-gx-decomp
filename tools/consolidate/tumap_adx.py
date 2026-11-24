@@ -40,8 +40,9 @@ RANGES = [
     ('adx_fini.c', 'adxf', 0x8004F6B0, 0x8004F7F8, 'donor-size'),
     ('adx_fcch.c', 'adxf', 0x8004F7F8, 0x8004F818, 'donor-size'),
     ('adx_fs.c',   'adxf', 0x8004F818, 0x8004FF68, 'donor-order'),
-    # AHX is absent from the donor: these six names are descriptive placeholders.
-    ('ahx_decode.c', 'ahx', 0x8004FF68, 0x80051CC0, 'literal-dedupe+section-order'),
+    # AHX is absent from the donor: these seven names are descriptive placeholders.
+    ('ahx_bits.c',   'ahx', 0x8004FF68, 0x80050698, 'literal-dedupe+section-order'),
+    ('ahx_decode.c', 'ahx', 0x80050698, 0x80051CC0, 'literal-dedupe+section-order'),
     ('ahx_adxt.c',   'ahx', 0x80051CC0, 0x80051F38, 'literal-dedupe+section-order'),
     ('ahx_transform.c', 'ahx', 0x80051F38, 0x80052430, 'literal-dedupe+section-order'),
     ('ahx_synth.c',  'ahx', 0x80052430, 0x80053A38, 'literal-dedupe+section-order'),
@@ -71,8 +72,11 @@ RANGES = [
 
 
 NOTES = {
-    'ahx_decode.c': 'Bitstream and subband decoding. Uses .bss 0x80186FA8..0x80187370 and .rodata 0x800912F0..0x80091300. '
-                    'Its end is inferred from the change to the ADXT attach wrappers at 0x80051CC0.',
+    'ahx_bits.c': 'The SJ bit reader. Its .bss 0x80186FA8..0x8018710C ends four bytes before the next TU on the 8-byte '
+                  'boundary 0x80187110; one compile would place the next object at 0x8018710C. 0x80050670 reads the table '
+                  'just before this TU\'s mask table in .data.',
+    'ahx_decode.c': 'Subband decoding. Uses .bss 0x80187110..0x80187370 and .rodata 0x800912F0..0x80091300. Its end is inferred '
+                    'from the change to the ADXT attach wrappers at 0x80051CC0.',
     'ahx_adxt.c': 'ADXT attach and detach wrappers; 0x80051E64 owns the "E1052501 ADXT_AttachAHX" strings at .rodata 0x80091300.',
     'ahx_transform.c': 'The 32-point transform. It reads its own 0.0f at .rodata 0x80091330; the next TU repeats that value '
                        'at 0x80091338, so the two cannot be one compile.',

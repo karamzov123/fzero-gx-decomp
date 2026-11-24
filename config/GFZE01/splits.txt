@@ -922,7 +922,11 @@ dol/TRK_fill_mem.c:
 	.text       start:0x8008B028 end:0x8008B0E0 align:4
 
 dol/fn_8004FC94.c:
-	.text       start:0x8004FC94 end:0x800501F4 align:4
+	.text       start:0x8004FC94 end:0x8004FF68 align:4
+
+dol/ahx/ahx_bits.c:
+	.text       start:0x8004FF68 end:0x80050698 align:4
+	.bss        start:0x80186FA8 end:0x8018710C align:4
 
 dol/fn_800137C4.c:
 	.text       start:0x800137C4 end:0x80013A88 align:4
@@ -953,9 +957,6 @@ dol/arc.c:
 
 dol/axfx/delay.c:
 	.text       start:0x80025854 end:0x80025D00 align:4
-
-dol/fn_800504EC.c:
-	.text       start:0x800504EC end:0x80050698 align:4
 
 dol/axfx/reverb_std.c:
 	.text       start:0x80024C88 end:0x80024E6C align:4
@@ -1112,9 +1113,6 @@ dol/fstload.c:
 dol/fn_8002123C.c:
 	.text       start:0x8002123C end:0x800218EC align:4
 
-dol/fn_800501F4.c:
-	.text       start:0x800501F4 end:0x800502A0 align:4
-
 dol/card/CARDNet.c:
 	.text       start:0x8003043C end:0x800307CC align:4
 
@@ -1246,9 +1244,6 @@ dol/fn_80064A30.c:
 
 dol/fn_8008EFE0.c:
 	.text       start:0x8008EFE0 end:0x8008F29C align:4
-
-dol/fn_800502A0.c:
-	.text       start:0x800502A0 end:0x800504EC align:4
 
 dol/fn_80064D4C.c:
 	.text       start:0x80064D4C end:0x80064E84 align:4
@@ -2049,9 +2044,6 @@ dol/data/lbl_80186768.c:
 
 dol/data/lbl_80186B68.c:
 	.bss        start:0x80186B68 end:0x80186FA8 align:8
-
-dol/data/lbl_80186FA8.c:
-	.bss        start:0x80186FA8 end:0x80187110 align:8
 
 dol/data/lbl_80187110.c:
 	.bss        start:0x80187110 end:0x80187118 align:8

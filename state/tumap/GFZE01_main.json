@@ -7,7 +7,7 @@
     "assigned": 2173,
     "bytes": 567556,
     "assigned_bytes": 554376,
-    "tus": 244,
+    "tus": 245,
     "conflicts": 0,
     "string_anchored": 13
   },
@@ -3128,10 +3128,10 @@
       "notes": "GX starts this range with partition/file-ID validation: fn_8004F818 references .rodata 0x80091258 and 0x8009127C. GFZE01 ADXF_ExecServer and the current symbol ADXT_DestroyAll both iterate the file table at .bss 0x80186B68 with stride 0x44; the latter calls fn_8004FC94, which references the ADXF_Stop diagnostic at .rodata 0x800912A0. GQNE5D libadxgca.a adx_fs.o (mk-deception map 33b1e00) holds ADXF_ExecServer (0x190), ADXF_CloseAll (0x5C), and ADXF_Close (0x2DC vs GX 0x2D4) in that order. The next GX function, fn_8004FF68, scans compressed-stream sync words via a bit reader and its own mask table. Text ownership is inferred; the shared table and literals are evidence, not section ownership transfers."
     },
     {
-      "file": "ahx_decode.c",
+      "file": "ahx_bits.c",
       "text": [
         "8004FF68",
-        "80051CC0"
+        "80050698"
       ],
       "functions": [
         "fn_8004FF68",
@@ -3141,7 +3141,21 @@
         "fn_800502A0",
         "fn_800504BC",
         "fn_800504EC",
-        "fn_80050670",
+        "fn_80050670"
+      ],
+      "how": {
+        "literal-dedupe+section-order": 8
+      },
+      "lib": "ahx",
+      "notes": "The SJ bit reader. Its .bss 0x80186FA8..0x8018710C ends four bytes before the next TU on the 8-byte boundary 0x80187110; one compile would place the next object at 0x8018710C. 0x80050670 reads the table just before this TU's mask table in .data."
+    },
+    {
+      "file": "ahx_decode.c",
+      "text": [
+        "80050698",
+        "80051CC0"
+      ],
+      "functions": [
         "fn_80050698",
         "fn_80050BD4",
         "fn_80050F64",
@@ -3160,10 +3174,10 @@
         "fn_800519B0"
       ],
       "how": {
-        "literal-dedupe+section-order": 24
+        "literal-dedupe+section-order": 16
       },
       "lib": "ahx",
-      "notes": "Bitstream and subband decoding. Uses .bss 0x80186FA8..0x80187370 and .rodata 0x800912F0..0x80091300. Its end is inferred from the change to the ADXT attach wrappers at 0x80051CC0."
+      "notes": "Subband decoding. Uses .bss 0x80187110..0x80187370 and .rodata 0x800912F0..0x80091300. Its end is inferred from the change to the ADXT attach wrappers at 0x80051CC0."
     },
     {
       "file": "ahx_adxt.c",
