@@ -309,12 +309,12 @@
    "file": "som.c",
    "text": [
     77900,
-    85172
+    79948
    ],
    "data_sec": 5,
    "data": [
     20872,
-    20936
+    20880
    ],
    "anchor_refs": [
     77900
@@ -323,10 +323,7 @@
     "fn_1_1304C",
     "fn_1_1350C",
     "fn_1_1361C",
-    "fn_1_1383C",
-    "fn_1_1384C",
-    "fn_1_13A28",
-    "fn_1_13B98"
+    "fn_1_1383C"
    ],
    "confidence": {
     "text+data": 2,
@@ -337,22 +334,45 @@
   {
    "file": "stcoli.c",
    "text": [
-    85172,
-    182120
+    79948,
+    85764
    ],
    "data_sec": 5,
    "data": [
-    20936,
-    22320
+    20880,
+    21832
    ],
    "anchor_refs": [
     85172
    ],
    "functions": [
+    "fn_1_1384C",
+    "fn_1_13A28",
+    "fn_1_13B98",
     "fn_1_14CB4",
     "fn_1_14D5C",
     "fn_1_14DC4",
-    "fn_1_14DE8",
+    "fn_1_14DE8"
+   ],
+   "confidence": {
+    "text+data": 4,
+    "text-range": 0,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "coli.c",
+   "text": [
+    85764,
+    141180
+   ],
+   "data_sec": 5,
+   "data": [
+    21832,
+    22232
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_1_14F04",
     "fn_1_14F18",
     "fn_1_15248",
@@ -407,7 +427,27 @@
     "fn_1_21CFC",
     "fn_1_21F18",
     "fn_1_2221C",
-    "fn_1_224F8",
+    "fn_1_224F8"
+   ],
+   "confidence": {
+    "text+data": 55,
+    "text-range": 0,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "coli_b.c",
+   "text": [
+    141180,
+    182120
+   ],
+   "data_sec": 5,
+   "data": [
+    22232,
+    22320
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_1_2277C",
     "fn_1_229EC",
     "fn_1_22B10",
@@ -467,9 +507,9 @@
     "fn_1_2C688"
    ],
    "confidence": {
-    "text+data": 6,
-    "text-range": 127,
-    "data-vote": 4
+    "text+data": 57,
+    "text-range": 0,
+    "data-vote": 0
    }
   },
   {
