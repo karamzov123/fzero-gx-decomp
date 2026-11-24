@@ -173,3 +173,10 @@ The AHX range `0x8004FF68..0x8005466C` is seven TUs in `src/dol/ahx/`: `ahx_bits
 - `-sdata 0` replaces the old array and pad declarations that kept these globals out of small data.
 - The remaining `.bss` of `ahx_decode.c`, `ahx_synthobj.c` and `ahx_player.c` stays in data units: first-access order would not reproduce retail's object order without a primer.
 - Marked optimizer devices remain in `fn_800501F4`, `fn_80050698`, `fn_80051448` and `fn_80053A84`.
+
+### DOL TU map complete (2026-11-23)
+
+`state/tumap/GFZE01_main.json` now assigns all 2,230 DOL functions to 252 TUs. The map is a draft in one respect: where no data bounds a TU, its extent is positional and its `notes` say so, and names without a retail or donor source are placeholders. That covers `sasnd_ctrl.c`, `render_*.c`, `lg_view.c`, `exi2.c` and the AHX and sasnd files.
+
+- `sasnd_ctrl.c` holds the last 19 sasnd functions as one typed unit for USA and Japan. `fn_80064FDC` is still a lifted body with byte offsets.
+- `dol_tu_split.py --pooled` splits units that carry literal bindings. Three DOL units still cross a TU boundary because private strings, a layout primer or a literal do not move with one piece: `dol/trk/serpoll.c`, `dol/adx/adx_tlk.c` and `dol/fn_8007FE70.c`.

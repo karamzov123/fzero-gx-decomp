@@ -1,5 +1,5 @@
 {
- "generated": 1795489565,
+ "generated": 1795489748,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -26099,7 +26099,7 @@
   {
    "symbol": "fn_80046F88",
    "module": "main",
-   "unit": "dol/ADX_DecodeInfoExLoop.c",
+   "unit": "dol/fn_80046F88.c",
    "addr": 2147774344,
    "size": 1244,
    "status": "matched",
@@ -42215,7 +42215,7 @@
   {
    "symbol": "fn_8008983C",
    "module": "main",
-   "unit": "dol/TRKInitializeDispatcher.c",
+   "unit": "dol/fn_8008983C.c",
    "addr": 2148046908,
    "size": 168,
    "status": "matched",
@@ -43898,7 +43898,7 @@
   {
    "symbol": "ddh_cc_initinterrupts",
    "module": "main",
-   "unit": "dol/trk/UDP_Stubs.c",
+   "unit": "dol/ddh_cc_initinterrupts.c",
    "addr": 2148064720,
    "size": 36,
    "status": "matched",
@@ -43915,7 +43915,7 @@
   {
    "symbol": "ddh_cc_peek",
    "module": "main",
-   "unit": "dol/trk/UDP_Stubs.c",
+   "unit": "dol/ddh_cc_initinterrupts.c",
    "addr": 2148064756,
    "size": 112,
    "status": "matched",
@@ -43932,7 +43932,7 @@
   {
    "symbol": "ddh_cc_post_stop",
    "module": "main",
-   "unit": "dol/trk/UDP_Stubs.c",
+   "unit": "dol/ddh_cc_initinterrupts.c",
    "addr": 2148064868,
    "size": 36,
    "status": "matched",
@@ -43949,7 +43949,7 @@
   {
    "symbol": "ddh_cc_pre_continue",
    "module": "main",
-   "unit": "dol/trk/UDP_Stubs.c",
+   "unit": "dol/ddh_cc_initinterrupts.c",
    "addr": 2148064904,
    "size": 36,
    "status": "matched",
@@ -43966,7 +43966,7 @@
   {
    "symbol": "ddh_cc_write",
    "module": "main",
-   "unit": "dol/trk/UDP_Stubs.c",
+   "unit": "dol/ddh_cc_initinterrupts.c",
    "addr": 2148064940,
    "size": 192,
    "status": "matched",

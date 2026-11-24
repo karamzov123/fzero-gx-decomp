@@ -12,8 +12,8 @@ original TUs. For a unit whose every function has a TU in state/tumap/GFZE01_mai
 
 Each piece must reproduce its functions' instruction bytes and relocations, and the pieces'
 .text sizes must add up, before splits.txt and units.json are rewritten.
-With --pooled, units whose pool map holds only @N literals are also split: every literal relocation
-of a piece must sit where the whole unit has one, and takes that unit's retail binding.
+With --pooled, units with a pool map are also split: every literal relocation of a piece must sit
+where the whole unit has one, and takes that unit's retail binding.
 Usage: dol_tu_split.py [--apply] [--pooled] [UNIT_SOURCE...]
 """
 import json, re, sys, tempfile, pathlib, subprocess
@@ -137,7 +137,6 @@ def raw_functions(obj_bytes, td):
 
 def try_split_pooled(src, u, runs, mv, cf):
     pool = u['pool']
-    if not all(re.fullmatch(r'@\d+', k) for k in pool): return None, 'pool selector'
     text = pathlib.Path('src', src).read_text()
     incs = ''.join(l for l in text.splitlines(keepends=True) if l.startswith('#include'))
     cuts = []
@@ -168,7 +167,9 @@ def try_split_pooled(src, u, runs, mv, cf):
             o = d.compile_all(code, mv, cf, td, u)
             if None in o: return None, f'compile {t}'
             pf, ps = raw_functions(o[0], td)
-            if set(pf) != set(syms): return None, f'functions {t}: {sorted(set(pf) ^ set(syms))[:4]}'
+            helpers = set(bf) - {f for _, ss in runs for f in ss}   # static helpers the whole unit also has
+            if not set(syms) <= set(pf) or set(pf) - set(syms) - helpers:
+                return None, f'functions {t}: {sorted(set(pf) ^ set(syms))[:4]}'
             piece_pool = {}
             for f in syms:
                 if pf[f][0] != bf[f][0] or len(pf[f][1]) != len(bf[f][1]): return None, f'differs {f}'
@@ -180,12 +181,20 @@ def try_split_pooled(src, u, runs, mv, cf):
                         if piece_pool.setdefault(n1, pool[n2]) != pool[n2]: return None, f'literal {f}'
                     elif (n1, a1) != (n2, a2):
                         return None, f'reloc {f}'
+                    elif n1 in pool:
+                        piece_pool[n1] = pool[n1]
+            base_at = {(sec, v): n for n, sec, v, sz, _ in bs['defs']}
             for n, sec, v, sz, _ in ps['defs']:
-                if sec not in ('.text', '.comment') and sz and n not in piece_pool:
-                    return None, f'data {n} in {t}'
+                if sec in ('.text', '.comment') or not sz or n in piece_pool:
+                    continue
+                # an object inside a bound section keeps the binding it has in the whole unit
+                if f'...{sec[1:]}.0' in piece_pool and private(n) and base_at.get((sec, v)) in pool:
+                    piece_pool[n] = pool[base_at[(sec, v)]]
+                    continue
+                return None, f'data {n} in {t}'
             maps.append(piece_pool)
-            total += len(ps['sections'].get('.text', b''))
-        if total != len(bs['sections'].get('.text', b'')): return None, 'text size'
+            total += sum(len(pf[f][0]) for f in syms)
+        if total != sum(len(bf[f][0]) for _, ss in runs for f in ss): return None, 'text size'
     POOLS[src] = maps
     OWNERS[src] = {}
     return pieces, 'ok'

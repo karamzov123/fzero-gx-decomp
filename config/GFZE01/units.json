@@ -6839,7 +6839,25 @@
       "fn_80046C28",
       "ADX_ScanInfoCode",
       "fn_80046D94",
-      "fn_80046F7C",
+      "fn_80046F7C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0"
+    ],
+    "collapsed": true,
+    "pool": {
+      "@156": "lbl_80090968"
+    }
+  },
+  {
+    "module": "main",
+    "source": "dol/fn_80046F88.c",
+    "symbols": [
       "fn_80046F88"
     ],
     "status": "matching",
@@ -6852,8 +6870,7 @@
     ],
     "collapsed": true,
     "pool": {
-      "@156": "lbl_80090968",
-      "@227": "lbl_80090970"
+      "@87": "lbl_80090970"
     }
   },
   {
@@ -8640,7 +8657,25 @@
     "module": "main",
     "source": "dol/TRKInitializeDispatcher.c",
     "symbols": [
-      "TRKInitializeDispatcher",
+      "TRKInitializeDispatcher"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0",
+      "-use_lmw_stmw",
+      "off"
+    ],
+    "collapsed": true,
+    "matching_for": ["GFZE01"]
+  },
+  {
+    "module": "main",
+    "source": "dol/fn_8008983C.c",
+    "symbols": [
       "fn_8008983C"
     ],
     "status": "matching",
@@ -8654,13 +8689,13 @@
       "off"
     ],
     "collapsed": true,
+    "matching_for": ["GFZE01"],
     "pool": {
       "...data.0": "lbl_80095890",
-      "@19": "lbl_80095890",
-      "@20": "lbl_80095890+0x20",
-      "@21": "lbl_80095890+0x28"
-    },
-    "matching_for": ["GFZE01"]
+      "@17": "lbl_80095890+0x28",
+      "@16": "lbl_80095890+0x20",
+      "@15": "lbl_80095890"
+    }
   },
   {
     "module": "main",
@@ -24031,7 +24066,18 @@
       "udp_cc_close",
       "udp_cc_open",
       "udp_cc_shutdown",
-      "udp_cc_initialize",
+      "udp_cc_initialize"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "collapsed": true,
+    "matching_for": ["GFZE01"]
+  },
+  {
+    "module": "main",
+    "source": "dol/ddh_cc_initinterrupts.c",
+    "symbols": [
       "ddh_cc_initinterrupts",
       "ddh_cc_peek",
       "ddh_cc_post_stop",
@@ -24042,13 +24088,13 @@
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
     "collapsed": true,
+    "matching_for": ["GFZE01"],
     "pool": {
       "...data.0": "lbl_80095CD0",
-      "@178": "lbl_80095CD0",
-      "@179": "lbl_80095CD0+0x14",
-      "@180": "lbl_80095CD0+0x40"
-    },
-    "matching_for": ["GFZE01"]
+      "@34": "lbl_80095CD0",
+      "@35": "lbl_80095CD0+0x14",
+      "@36": "lbl_80095CD0+0x40"
+    }
   },
   {
     "module": "main",

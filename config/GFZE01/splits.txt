@@ -76,7 +76,10 @@ dol/fn_8008596C.c:
 	.text       start:0x8008596C end:0x80085C7C align:4
 
 dol/TRKInitializeDispatcher.c:
-	.text       start:0x80089834 end:0x800898E4 align:4
+	.text       start:0x80089834 end:0x8008983C align:4
+
+dol/fn_8008983C.c:
+	.text       start:0x8008983C end:0x800898E4 align:4
 
 dol/trk/support.c:
 	.text       start:0x8008A5AC end:0x8008AF40 align:4
@@ -100,7 +103,10 @@ dol/adx/adx_inis.c:
 	.text       start:0x80041164 end:0x80041410 align:4
 
 dol/trk/UDP_Stubs.c:
-	.text       start:0x8008D7B0 end:0x8008DF6C align:4
+	.text       start:0x8008D7B0 end:0x8008DDD0 align:4
+
+dol/ddh_cc_initinterrupts.c:
+	.text       start:0x8008DDD0 end:0x8008DF6C align:4
 
 dol/__DBIsExceptionMarked.c:
 	.text       start:0x80015AB8 end:0x80015B24 align:4
@@ -842,7 +848,10 @@ dol/av/avload.c:
 	.text       start:0x80070F44 end:0x80071C04 align:4
 
 dol/ADX_DecodeInfoExLoop.c:
-	.text       start:0x800469A4 end:0x80047464 align:4
+	.text       start:0x800469A4 end:0x80046F88 align:4
+
+dol/fn_80046F88.c:
+	.text       start:0x80046F88 end:0x80047464 align:4
 
 dol/adx/adx_xpnd.c:
 	.text       start:0x8004E098 end:0x8004E4DC align:4
