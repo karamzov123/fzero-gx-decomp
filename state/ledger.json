@@ -1,5 +1,5 @@
 {
- "generated": 1795492354,
+ "generated": 1795528955,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -17767,7 +17767,7 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8002805C",
+   "symbol": "AXARTInit",
    "module": "main",
    "unit": "dol/axart/axart.c",
    "addr": 2147647580,
@@ -17784,7 +17784,7 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80028090",
+   "symbol": "AXARTQuit",
    "module": "main",
    "unit": "dol/axart/axart.c",
    "addr": 2147647632,
@@ -17801,7 +17801,7 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800280F0",
+   "symbol": "AXARTServiceSounds",
    "module": "main",
    "unit": "dol/axart/axart.c",
    "addr": 2147647728,
@@ -17818,7 +17818,7 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80028130",
+   "symbol": "AXARTInitSound",
    "module": "main",
    "unit": "dol/axart/axart.c",
    "addr": 2147647792,
@@ -17835,7 +17835,7 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80028164",
+   "symbol": "AXARTAddSound",
    "module": "main",
    "unit": "dol/axart/axart.c",
    "addr": 2147647844,
@@ -17852,9 +17852,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80028424",
+   "symbol": "AXARTRemoveSound",
    "module": "main",
-   "unit": "dol/fn_80028424.c",
+   "unit": "dol/axart/axart.c",
    "addr": 2147648548,
    "size": 124,
    "status": "matched",
@@ -17869,9 +17869,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800284A0",
+   "symbol": "AXARTInitLfo",
    "module": "main",
-   "unit": "dol/fn_80028424.c",
+   "unit": "dol/axart/axart.c",
    "addr": 2147648672,
    "size": 44,
    "status": "matched",
@@ -17886,9 +17886,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800284CC",
+   "symbol": "AXARTInitArtPanning",
    "module": "main",
-   "unit": "dol/fn_80028424.c",
+   "unit": "dol/axart/axart.c",
    "addr": 2147648716,
    "size": 28,
    "status": "matched",
@@ -17903,9 +17903,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800284E8",
+   "symbol": "AXARTInitArtPitch",
    "module": "main",
-   "unit": "dol/fn_80028424.c",
+   "unit": "dol/axart/axart.c",
    "addr": 2147648744,
    "size": 20,
    "status": "matched",
@@ -17920,9 +17920,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800284FC",
+   "symbol": "AXARTInitArtPitchMod",
    "module": "main",
-   "unit": "dol/fn_80028424.c",
+   "unit": "dol/axart/axart.c",
    "addr": 2147648764,
    "size": 68,
    "status": "matched",
@@ -17937,9 +17937,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80028540",
+   "symbol": "AXARTInitArtVolume",
    "module": "main",
-   "unit": "dol/fn_80028424.c",
+   "unit": "dol/axart/axart.c",
    "addr": 2147648832,
    "size": 20,
    "status": "matched",
@@ -17954,9 +17954,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80028554",
+   "symbol": "AXARTInitArtAuxAVolume",
    "module": "main",
-   "unit": "dol/fn_80028424.c",
+   "unit": "dol/axart/axart.c",
    "addr": 2147648852,
    "size": 20,
    "status": "matched",
@@ -17971,9 +17971,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80028568",
+   "symbol": "AXARTInitArtAuxBVolume",
    "module": "main",
-   "unit": "dol/fn_80028424.c",
+   "unit": "dol/axart/axart.c",
    "addr": 2147648872,
    "size": 20,
    "status": "matched",
@@ -17988,9 +17988,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8002857C",
+   "symbol": "AXARTInitArtVolumeEnv",
    "module": "main",
-   "unit": "dol/fn_80028424.c",
+   "unit": "dol/axart/axart.c",
    "addr": 2147648892,
    "size": 28,
    "status": "matched",
@@ -18005,9 +18005,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80028598",
+   "symbol": "AXARTInitArtVolumeMod",
    "module": "main",
-   "unit": "dol/fn_80028424.c",
+   "unit": "dol/axart/axart.c",
    "addr": 2147648920,
    "size": 68,
    "status": "matched",
@@ -18022,9 +18022,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800285DC",
+   "symbol": "AXARTServiceSound",
    "module": "main",
-   "unit": "dol/fn_80028424.c",
+   "unit": "dol/axart/axartsound.c",
    "addr": 2147648988,
    "size": 728,
    "status": "matched",
@@ -18039,9 +18039,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800288B4",
+   "symbol": "AXARTAddArticulator",
    "module": "main",
-   "unit": "dol/fn_80028424.c",
+   "unit": "dol/axart/axartsound.c",
    "addr": 2147649716,
    "size": 16,
    "status": "matched",
@@ -18056,9 +18056,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "module": "main",
-   "unit": "dol/fn_800288C4.c",
+   "unit": "dol/axart/axartcents.c",
    "addr": 2147649732,
    "size": 252,
    "status": "matched",
@@ -18073,9 +18073,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800289C0",
+   "symbol": "AXARTPitchEnv",
    "module": "main",
-   "unit": "dol/dsp/dsp.c",
+   "unit": "dol/axart/axartenv.c",
    "addr": 2147649984,
    "size": 92,
    "status": "matched",
@@ -18090,9 +18090,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80028A1C",
+   "symbol": "AXARTVolumeEnv",
    "module": "main",
-   "unit": "dol/dsp/dsp.c",
+   "unit": "dol/axart/axartenv.c",
    "addr": 2147650076,
    "size": 92,
    "status": "matched",
@@ -18107,9 +18107,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80028A78",
+   "symbol": "AXARTLfo",
    "module": "main",
-   "unit": "dol/dsp/dsp.c",
+   "unit": "dol/axart/axartlfo.c",
    "addr": 2147650168,
    "size": 180,
    "status": "matched",
@@ -18124,9 +18124,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80028B2C",
+   "symbol": "AXARTSet3DDopplerScale",
    "module": "main",
-   "unit": "dol/dsp/dsp.c",
+   "unit": "dol/axart/axart3d.c",
    "addr": 2147650348,
    "size": 8,
    "status": "matched",
@@ -18141,9 +18141,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80028B34",
+   "symbol": "AXARTSet3DDistanceScale",
    "module": "main",
-   "unit": "dol/dsp/dsp.c",
+   "unit": "dol/axart/axart3d.c",
    "addr": 2147650356,
    "size": 8,
    "status": "matched",
@@ -18158,9 +18158,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80028B3C",
+   "symbol": "AXART3DSound",
    "module": "main",
-   "unit": "dol/dsp/dsp.c",
+   "unit": "dol/axart/axart3d.c",
    "addr": 2147650364,
    "size": 388,
    "status": "matched",
@@ -28545,7 +28545,7 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8004F6B0",
+   "symbol": "ADXF_Finish",
    "module": "main",
    "unit": "dol/adx/adx_fini.c",
    "addr": 2147808944,
@@ -28562,7 +28562,7 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8004F74C",
+   "symbol": "ADXF_Init",
    "module": "main",
    "unit": "dol/adx/adx_fini.c",
    "addr": 2147809100,
@@ -28579,7 +28579,7 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8004F7F8",
+   "symbol": "ADXF_Ocbi",
    "module": "main",
    "unit": "dol/adx/adx_fcch.c",
    "addr": 2147809272,
@@ -28630,9 +28630,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "ADXT_DestroyAll",
+   "symbol": "ADXF_CloseAll",
    "module": "main",
-   "unit": "dol/ADXT_DestroyAll.c",
+   "unit": "dol/adx/adx_fs.c",
    "addr": 2147810360,
    "size": 92,
    "status": "matched",
@@ -28647,9 +28647,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8004FC94",
+   "symbol": "ADXF_Close",
    "module": "main",
-   "unit": "dol/fn_8004FC94.c",
+   "unit": "dol/adx/adx_fs.c",
    "addr": 2147810452,
    "size": 724,
    "status": "matched",
@@ -43898,7 +43898,7 @@
   {
    "symbol": "ddh_cc_initinterrupts",
    "module": "main",
-   "unit": "dol/ddh_cc_initinterrupts.c",
+   "unit": "dol/trk/ddh/main.c",
    "addr": 2148064720,
    "size": 36,
    "status": "matched",
@@ -43915,7 +43915,7 @@
   {
    "symbol": "ddh_cc_peek",
    "module": "main",
-   "unit": "dol/ddh_cc_initinterrupts.c",
+   "unit": "dol/trk/ddh/main.c",
    "addr": 2148064756,
    "size": 112,
    "status": "matched",
@@ -43932,7 +43932,7 @@
   {
    "symbol": "ddh_cc_post_stop",
    "module": "main",
-   "unit": "dol/ddh_cc_initinterrupts.c",
+   "unit": "dol/trk/ddh/main.c",
    "addr": 2148064868,
    "size": 36,
    "status": "matched",
@@ -43949,7 +43949,7 @@
   {
    "symbol": "ddh_cc_pre_continue",
    "module": "main",
-   "unit": "dol/ddh_cc_initinterrupts.c",
+   "unit": "dol/trk/ddh/main.c",
    "addr": 2148064904,
    "size": 36,
    "status": "matched",
@@ -43966,7 +43966,7 @@
   {
    "symbol": "ddh_cc_write",
    "module": "main",
-   "unit": "dol/ddh_cc_initinterrupts.c",
+   "unit": "dol/trk/ddh/main.c",
    "addr": 2148064940,
    "size": 192,
    "status": "matched",
@@ -43983,7 +43983,7 @@
   {
    "symbol": "ddh_cc_read",
    "module": "main",
-   "unit": "dol/trk/main.c",
+   "unit": "dol/trk/ddh/main.c",
    "addr": 2148065132,
    "size": 236,
    "status": "matched",
@@ -44000,7 +44000,7 @@
   {
    "symbol": "ddh_cc_close",
    "module": "main",
-   "unit": "dol/trk/main.c",
+   "unit": "dol/trk/ddh/main.c",
    "addr": 2148065368,
    "size": 8,
    "status": "matched",
@@ -44017,7 +44017,7 @@
   {
    "symbol": "ddh_cc_open",
    "module": "main",
-   "unit": "dol/trk/main.c",
+   "unit": "dol/trk/ddh/main.c",
    "addr": 2148065376,
    "size": 36,
    "status": "matched",
@@ -44034,7 +44034,7 @@
   {
    "symbol": "ddh_cc_shutdown",
    "module": "main",
-   "unit": "dol/trk/main.c",
+   "unit": "dol/trk/ddh/main.c",
    "addr": 2148065412,
    "size": 8,
    "status": "matched",
@@ -44051,7 +44051,7 @@
   {
    "symbol": "ddh_cc_initialize",
    "module": "main",
-   "unit": "dol/trk/main.c",
+   "unit": "dol/trk/ddh/main.c",
    "addr": 2148065420,
    "size": 136,
    "status": "matched",
@@ -44068,7 +44068,7 @@
   {
    "symbol": "fn_8008E114",
    "module": "main",
-   "unit": "dol/trk/main.c",
+   "unit": "dol/trk/CircleBuffer.c",
    "addr": 2148065556,
    "size": 264,
    "status": "matched",
@@ -44085,7 +44085,7 @@
   {
    "symbol": "fn_8008E21C",
    "module": "main",
-   "unit": "dol/trk/main.c",
+   "unit": "dol/trk/CircleBuffer.c",
    "addr": 2148065820,
    "size": 264,
    "status": "matched",
@@ -44102,7 +44102,7 @@
   {
    "symbol": "fn_8008E324",
    "module": "main",
-   "unit": "dol/trk/main.c",
+   "unit": "dol/trk/CircleBuffer.c",
    "addr": 2148066084,
    "size": 80,
    "status": "matched",
@@ -44119,7 +44119,7 @@
   {
    "symbol": "fn_8008E374",
    "module": "main",
-   "unit": "dol/trk/main.c",
+   "unit": "dol/trk/CircleBuffer.c",
    "addr": 2148066164,
    "size": 8,
    "status": "matched",
@@ -44136,7 +44136,7 @@
   {
    "symbol": "gdev_cc_initinterrupts",
    "module": "main",
-   "unit": "dol/trk/main.c",
+   "unit": "dol/trk/gdev/main.c",
    "addr": 2148066172,
    "size": 36,
    "status": "matched",
@@ -44153,7 +44153,7 @@
   {
    "symbol": "gdev_cc_peek",
    "module": "main",
-   "unit": "dol/trk/main.c",
+   "unit": "dol/trk/gdev/main.c",
    "addr": 2148066208,
    "size": 112,
    "status": "matched",
@@ -44170,7 +44170,7 @@
   {
    "symbol": "gdev_cc_post_stop",
    "module": "main",
-   "unit": "dol/trk/main.c",
+   "unit": "dol/trk/gdev/main.c",
    "addr": 2148066320,
    "size": 36,
    "status": "matched",
@@ -44187,7 +44187,7 @@
   {
    "symbol": "gdev_cc_pre_continue",
    "module": "main",
-   "unit": "dol/trk/main.c",
+   "unit": "dol/trk/gdev/main.c",
    "addr": 2148066356,
    "size": 36,
    "status": "matched",
@@ -44204,7 +44204,7 @@
   {
    "symbol": "gdev_cc_write",
    "module": "main",
-   "unit": "dol/trk/main.c",
+   "unit": "dol/trk/gdev/main.c",
    "addr": 2148066392,
    "size": 192,
    "status": "matched",
@@ -44221,7 +44221,7 @@
   {
    "symbol": "gdev_cc_read",
    "module": "main",
-   "unit": "dol/trk/main.c",
+   "unit": "dol/trk/gdev/main.c",
    "addr": 2148066584,
    "size": 244,
    "status": "matched",
@@ -44238,7 +44238,7 @@
   {
    "symbol": "gdev_cc_close",
    "module": "main",
-   "unit": "dol/trk/main.c",
+   "unit": "dol/trk/gdev/main.c",
    "addr": 2148066828,
    "size": 8,
    "status": "matched",
@@ -44255,7 +44255,7 @@
   {
    "symbol": "gdev_cc_open",
    "module": "main",
-   "unit": "dol/trk/main.c",
+   "unit": "dol/trk/gdev/main.c",
    "addr": 2148066836,
    "size": 36,
    "status": "matched",
@@ -44272,7 +44272,7 @@
   {
    "symbol": "gdev_cc_shutdown",
    "module": "main",
-   "unit": "dol/trk/main.c",
+   "unit": "dol/trk/gdev/main.c",
    "addr": 2148066872,
    "size": 8,
    "status": "matched",
@@ -44289,7 +44289,7 @@
   {
    "symbol": "gdev_cc_initialize",
    "module": "main",
-   "unit": "dol/trk/main.c",
+   "unit": "dol/trk/gdev/main.c",
    "addr": 2148066880,
    "size": 136,
    "status": "matched",
@@ -44663,7 +44663,7 @@
   {
    "symbol": "fn_8008F454",
    "module": "main",
-   "unit": "dol/fn_8008F454.c",
+   "unit": "dol/odemuexi2/DebuggerDriver.c",
    "addr": 2148070484,
    "size": 4,
    "status": "matched",
@@ -44680,7 +44680,7 @@
   {
    "symbol": "fn_8008F458",
    "module": "main",
-   "unit": "dol/fn_8008F454.c",
+   "unit": "dol/odemuexi2/DebuggerDriver.c",
    "addr": 2148070488,
    "size": 4,
    "status": "matched",
@@ -44697,7 +44697,7 @@
   {
    "symbol": "fn_8008F45C",
    "module": "main",
-   "unit": "dol/fn_8008F454.c",
+   "unit": "dol/odemuexi2/DebuggerDriver.c",
    "addr": 2148070492,
    "size": 608,
    "status": "matched",
@@ -44714,7 +44714,7 @@
   {
    "symbol": "fn_8008F6BC",
    "module": "main",
-   "unit": "dol/fn_8008F454.c",
+   "unit": "dol/odemuexi2/DebuggerDriver.c",
    "addr": 2148071100,
    "size": 140,
    "status": "matched",
@@ -44731,7 +44731,7 @@
   {
    "symbol": "fn_8008F748",
    "module": "main",
-   "unit": "dol/fn_8008F748.c",
+   "unit": "dol/odemuexi2/DebuggerDriver.c",
    "addr": 2148071240,
    "size": 156,
    "status": "matched",
@@ -44748,7 +44748,7 @@
   {
    "symbol": "fn_8008F7E4",
    "module": "main",
-   "unit": "dol/fn_8008F748.c",
+   "unit": "dol/odemuexi2/DebuggerDriver.c",
    "addr": 2148071396,
    "size": 84,
    "status": "matched",
@@ -44765,7 +44765,7 @@
   {
    "symbol": "fn_8008F838",
    "module": "main",
-   "unit": "dol/fn_8008F838.c",
+   "unit": "dol/odemuexi2/DebuggerDriver.c",
    "addr": 2148071480,
    "size": 120,
    "status": "matched",
@@ -44782,7 +44782,7 @@
   {
    "symbol": "fn_8008F8B0",
    "module": "main",
-   "unit": "dol/fn_8008F838.c",
+   "unit": "dol/odemuexi2/DebuggerDriver.c",
    "addr": 2148071600,
    "size": 64,
    "status": "matched",
@@ -44799,7 +44799,7 @@
   {
    "symbol": "fn_8008F8F0",
    "module": "main",
-   "unit": "dol/fn_8008F8F0.c",
+   "unit": "dol/odemuexi2/DebuggerDriver.c",
    "addr": 2148071664,
    "size": 60,
    "status": "matched",
@@ -44816,7 +44816,7 @@
   {
    "symbol": "fn_8008F92C",
    "module": "main",
-   "unit": "dol/fn_8008F8F0.c",
+   "unit": "dol/odemuexi2/DebuggerDriver.c",
    "addr": 2148071724,
    "size": 172,
    "status": "matched",
@@ -44833,7 +44833,7 @@
   {
    "symbol": "fn_8008F9D8",
    "module": "main",
-   "unit": "dol/fn_8008F8F0.c",
+   "unit": "dol/odemuexi2/DebuggerDriver.c",
    "addr": 2148071896,
    "size": 220,
    "status": "matched",
@@ -44850,7 +44850,7 @@
   {
    "symbol": "fn_8008FAB4",
    "module": "main",
-   "unit": "dol/fn_8008F8F0.c",
+   "unit": "dol/odemuexi2/DebuggerDriver.c",
    "addr": 2148072116,
    "size": 220,
    "status": "matched",
@@ -44867,7 +44867,7 @@
   {
    "symbol": "fn_8008FB90",
    "module": "main",
-   "unit": "dol/fn_8008F8F0.c",
+   "unit": "dol/odemuexi2/DebuggerDriver.c",
    "addr": 2148072336,
    "size": 172,
    "status": "matched",
@@ -44884,7 +44884,7 @@
   {
    "symbol": "fn_8008FC3C",
    "module": "main",
-   "unit": "dol/fn_8008F8F0.c",
+   "unit": "dol/odemuexi2/DebuggerDriver.c",
    "addr": 2148072508,
    "size": 664,
    "status": "matched",
@@ -223467,7 +223467,7 @@
   },
   {
    "id": 4688,
-   "symbol": "fn_800284E8",
+   "symbol": "AXARTInitArtPitch",
    "agent": "dol1-codex-38",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -225861,7 +225861,7 @@
   },
   {
    "id": 4802,
-   "symbol": "fn_80028090",
+   "symbol": "AXARTQuit",
    "agent": "dol1-codex-146",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -227184,7 +227184,7 @@
   },
   {
    "id": 4865,
-   "symbol": "fn_8004F74C",
+   "symbol": "ADXF_Init",
    "agent": "dol1-codex-209",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -239742,7 +239742,7 @@
   },
   {
    "id": 5463,
-   "symbol": "fn_80028B2C",
+   "symbol": "AXARTSet3DDopplerScale",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -239763,7 +239763,7 @@
   },
   {
    "id": 5464,
-   "symbol": "fn_80028B34",
+   "symbol": "AXARTSet3DDistanceScale",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -241233,7 +241233,7 @@
   },
   {
    "id": 5534,
-   "symbol": "fn_80028540",
+   "symbol": "AXARTInitArtVolume",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -241254,7 +241254,7 @@
   },
   {
    "id": 5535,
-   "symbol": "fn_80028554",
+   "symbol": "AXARTInitArtAuxAVolume",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -241275,7 +241275,7 @@
   },
   {
    "id": 5536,
-   "symbol": "fn_80028568",
+   "symbol": "AXARTInitArtAuxBVolume",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -241359,7 +241359,7 @@
   },
   {
    "id": 5540,
-   "symbol": "fn_800284CC",
+   "symbol": "AXARTInitArtPanning",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -241380,7 +241380,7 @@
   },
   {
    "id": 5541,
-   "symbol": "fn_8002857C",
+   "symbol": "AXARTInitArtVolumeEnv",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -255177,7 +255177,7 @@
   },
   {
    "id": 6198,
-   "symbol": "fn_800288B4",
+   "symbol": "AXARTAddArticulator",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -256500,7 +256500,7 @@
   },
   {
    "id": 6261,
-   "symbol": "fn_8004F7F8",
+   "symbol": "ADXF_Ocbi",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -261225,7 +261225,7 @@
   },
   {
    "id": 6486,
-   "symbol": "fn_8002805C",
+   "symbol": "AXARTInit",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -261267,7 +261267,7 @@
   },
   {
    "id": 6488,
-   "symbol": "fn_800280F0",
+   "symbol": "AXARTServiceSounds",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -270612,7 +270612,7 @@
   },
   {
    "id": 6933,
-   "symbol": "fn_80028164",
+   "symbol": "AXARTAddSound",
    "agent": "stmw1-codex-236",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -270738,7 +270738,7 @@
   },
   {
    "id": 6939,
-   "symbol": "fn_800285DC",
+   "symbol": "AXARTServiceSound",
    "agent": "stmw1-codex-242",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -278319,7 +278319,7 @@
   },
   {
    "id": 7300,
-   "symbol": "fn_80028130",
+   "symbol": "AXARTInitSound",
    "agent": "small1-codex-254",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -278340,7 +278340,7 @@
   },
   {
    "id": 7301,
-   "symbol": "fn_80028424",
+   "symbol": "AXARTRemoveSound",
    "agent": "small1-codex-255",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -278361,7 +278361,7 @@
   },
   {
    "id": 7302,
-   "symbol": "fn_800284A0",
+   "symbol": "AXARTInitLfo",
    "agent": "small1-codex-256",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -278382,7 +278382,7 @@
   },
   {
    "id": 7303,
-   "symbol": "fn_800284FC",
+   "symbol": "AXARTInitArtPitchMod",
    "agent": "small1-codex-257",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -278403,7 +278403,7 @@
   },
   {
    "id": 7304,
-   "symbol": "fn_80028598",
+   "symbol": "AXARTInitArtVolumeMod",
    "agent": "small1-codex-258",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -278424,7 +278424,7 @@
   },
   {
    "id": 7305,
-   "symbol": "fn_800289C0",
+   "symbol": "AXARTPitchEnv",
    "agent": "small1-codex-259",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -278445,7 +278445,7 @@
   },
   {
    "id": 7306,
-   "symbol": "fn_80028A1C",
+   "symbol": "AXARTVolumeEnv",
    "agent": "small1-codex-260",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -278466,7 +278466,7 @@
   },
   {
    "id": 7307,
-   "symbol": "fn_80028A78",
+   "symbol": "AXARTLfo",
    "agent": "small1-codex-261",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -282393,7 +282393,7 @@
   },
   {
    "id": 7494,
-   "symbol": "fn_8004F6B0",
+   "symbol": "ADXF_Finish",
    "agent": "small1-codex-449",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -282414,7 +282414,7 @@
   },
   {
    "id": 7495,
-   "symbol": "ADXT_DestroyAll",
+   "symbol": "ADXF_CloseAll",
    "agent": "small1-codex-450",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -290919,7 +290919,7 @@
   },
   {
    "id": 7900,
-   "symbol": "fn_80028130",
+   "symbol": "AXARTInitSound",
    "agent": "sweep",
    "harness": null,
    "model": null,
@@ -299928,7 +299928,7 @@
   },
   {
    "id": 8329,
-   "symbol": "ADXT_DestroyAll",
+   "symbol": "ADXF_CloseAll",
    "agent": "luna128c-codex-71",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -313788,7 +313788,7 @@
   },
   {
    "id": 8989,
-   "symbol": "ADXT_DestroyAll",
+   "symbol": "ADXF_CloseAll",
    "agent": "sourcealign",
    "harness": "fzgx",
    "model": "none",
@@ -315636,7 +315636,7 @@
   },
   {
    "id": 9077,
-   "symbol": "fn_8004FC94",
+   "symbol": "ADXF_Close",
    "agent": "sdk90-luna-20260909-235835-codex-19",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -317400,7 +317400,7 @@
   },
   {
    "id": 9161,
-   "symbol": "fn_80028A78",
+   "symbol": "AXARTLfo",
    "agent": "near95-under500-20260910-001452-codex-43",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -323343,7 +323343,7 @@
   },
   {
    "id": 9444,
-   "symbol": "fn_80028A78",
+   "symbol": "AXARTLfo",
    "agent": "shadow-deepseek-near95-16checks-20260910-081910-codex-43",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -330315,7 +330315,7 @@
   },
   {
    "id": 9776,
-   "symbol": "fn_80028A78",
+   "symbol": "AXARTLfo",
    "agent": "shadow-deepseek-near95-retry-20260910-084656-codex-21",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -335754,7 +335754,7 @@
   },
   {
    "id": 10035,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "deepseek-fresh-under512-128-20260910-095154-codex-4",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -338106,7 +338106,7 @@
   },
   {
    "id": 10147,
-   "symbol": "fn_80028B3C",
+   "symbol": "AXART3DSound",
    "agent": "deepseek-fresh-under512-128-20260910-095154-codex-104",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -339765,7 +339765,7 @@
   },
   {
    "id": 10226,
-   "symbol": "fn_80028164",
+   "symbol": "AXARTAddSound",
    "agent": "deepseek-recovered-above90-128-low-20260910-codex-33",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -345540,7 +345540,7 @@
   },
   {
    "id": 10501,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "deepseek-recovered-above90-128-low-20260910-codex-304",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -348459,7 +348459,7 @@
   },
   {
    "id": 10640,
-   "symbol": "fn_8004F74C",
+   "symbol": "ADXF_Init",
    "agent": "deepseek-recovered-above90-128-low-20260910-codex-423",
    "harness": null,
    "model": null,
@@ -349593,7 +349593,7 @@
   },
   {
    "id": 10694,
-   "symbol": "fn_8004F74C",
+   "symbol": "ADXF_Init",
    "agent": "deepseek-recovered-above90-128-low-20260910-codex-423",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -357993,7 +357993,7 @@
   },
   {
    "id": 11094,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "deepseek-released-appserver-457-low-20260910-codex-248",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -388653,7 +388653,7 @@
   },
   {
    "id": 12554,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "deepseek-under1k-data-low-512-resume-20260911-014653-codex-530",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -401379,7 +401379,7 @@
   },
   {
    "id": 13160,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "deepseek-under1k-fast-512-20260911-021006-codex-344",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -427839,7 +427839,7 @@
   },
   {
    "id": 14420,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "all-none-20260911-codex-508",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -439179,7 +439179,7 @@
   },
   {
    "id": 14960,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "all-none-fixed-20260911-codex-490",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -460368,7 +460368,7 @@
   },
   {
    "id": 15969,
-   "symbol": "fn_800285DC",
+   "symbol": "AXARTServiceSound",
    "agent": "all-none-fixed-20260911-codex-1499",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -465555,7 +465555,7 @@
   },
   {
    "id": 16216,
-   "symbol": "fn_800285DC",
+   "symbol": "AXARTServiceSound",
    "agent": "all-none-workers-20260911-codex-244",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -522990,7 +522990,7 @@
   },
   {
    "id": 18951,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "fleet-v2-claude-1790908806063164654-claude-1",
    "harness": "claude",
    "model": "claude-opus-5-5",
@@ -523767,7 +523767,7 @@
   },
   {
    "id": 18988,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "fleet-v2-cline-1790911168818062611-cline-2",
    "harness": "cline",
    "model": "stealth/space-bunny-alpha",
@@ -524208,7 +524208,7 @@
   },
   {
    "id": 19009,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "fleet-v2-cline-1790911828492351201-cline-4",
    "harness": "cline",
    "model": "stealth/space-bunny-alpha",
@@ -565977,7 +565977,7 @@
   },
   {
    "id": 20998,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "fleet-v2-gpt-1791047836314293421-codex-2",
    "harness": "codex",
    "model": "gpt-6.1-sol",
@@ -569694,7 +569694,7 @@
   },
   {
    "id": 21175,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "lint-batch",
    "harness": null,
    "model": null,
@@ -575784,7 +575784,7 @@
   },
   {
    "id": 21465,
-   "symbol": "fn_800285DC",
+   "symbol": "AXARTServiceSound",
    "agent": "fleet-v2-oc4-1791078405068167183-opencode-2",
    "harness": "opencode",
    "model": "opencode/space-bunny-free",
@@ -595104,7 +595104,7 @@
   },
   {
    "id": 22385,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "fleet-v2-oc1-1791202320136243098-opencode-2",
    "harness": "opencode",
    "model": "opencode/space-bunny-free",
@@ -595503,7 +595503,7 @@
   },
   {
    "id": 22404,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "fleet-v2-cline-1791205495002501362-cline-1",
    "harness": "cline",
    "model": "stealth/space-bunny-alpha",
@@ -596112,7 +596112,7 @@
   },
   {
    "id": 22433,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "fleet-v2-oc1-1791210712590134772-opencode-1",
    "harness": "opencode",
    "model": "opencode/space-bunny-free",
@@ -598191,7 +598191,7 @@
   },
   {
    "id": 22532,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "fleet-v2-oc1-1791217099467546316-opencode-3",
    "harness": "opencode",
    "model": null,
@@ -598737,7 +598737,7 @@
   },
   {
    "id": 22558,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "fleet-v2-oc1-1791217453351594347-opencode-2",
    "harness": "opencode",
    "model": "opencode/space-bunny-free",
@@ -600669,7 +600669,7 @@
   },
   {
    "id": 22650,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "fleet-v2-gpt-1791355437149259127-codex-1",
    "harness": "codex",
    "model": "gpt-6.1-sol",
@@ -601236,7 +601236,7 @@
   },
   {
    "id": 22677,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "fleet-v2-oc1-1791381122898597397-opencode-1",
    "harness": "opencode",
    "model": null,
@@ -602685,7 +602685,7 @@
   },
   {
    "id": 22746,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "fleet-v2-gpt-1791405782781045142-codex-2",
    "harness": "codex",
    "model": "gpt-6.1-sol",
@@ -603315,7 +603315,7 @@
   },
   {
    "id": 22776,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "fleet-v2-oc1-1791421529236328336-opencode-1",
    "harness": "opencode",
    "model": null,
@@ -605205,7 +605205,7 @@
   },
   {
    "id": 22866,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "fleet-v2-agy-1791453782922501698-agy-1",
    "harness": "agy",
    "model": null,
@@ -605877,7 +605877,7 @@
   },
   {
    "id": 22898,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "fleet-v2-oc3-1791479592918206223-opencode-1",
    "harness": "opencode",
    "model": null,
@@ -606402,7 +606402,7 @@
   },
   {
    "id": 22923,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "fleet-v2-oc3-1791483655194789756-opencode-1",
    "harness": "opencode",
    "model": null,
@@ -607179,7 +607179,7 @@
   },
   {
    "id": 22960,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "fleet-v2-gpt-1791487961384242059-codex-1",
    "harness": "codex",
    "model": "gpt-6-luna",
@@ -608040,7 +608040,7 @@
   },
   {
    "id": 23001,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "fleet-v2-claude-1791494866579459760-claude-1",
    "harness": "claude",
    "model": "claude-sonnet-5-5",
@@ -609111,7 +609111,7 @@
   },
   {
    "id": 23052,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "fleet-v2-oc4-1791498552470057412-hermes-1",
    "harness": "hermes",
    "model": "stepfun/step-5-preview:free",
@@ -610581,7 +610581,7 @@
   },
   {
    "id": 23122,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "fleet-v2-gpt-1791504149719569724-codex-1",
    "harness": null,
    "model": null,
@@ -612303,7 +612303,7 @@
   },
   {
    "id": 23204,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "fleet-v2-oc3-1791512808225008097-hermes-1",
    "harness": "hermes",
    "model": "stepfun/step-5-preview:free",
@@ -614151,7 +614151,7 @@
   },
   {
    "id": 23292,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "fleet-v2-claude-1791568044071424797-claude-1",
    "harness": "claude",
    "model": "claude-sonnet-5-5",
@@ -617784,7 +617784,7 @@
   },
   {
    "id": 23465,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "fleet-v2-oc1-1791698161963326528-opencode-1",
    "harness": "opencode",
    "model": null,
@@ -618582,7 +618582,7 @@
   },
   {
    "id": 23503,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "fleet-v2-gpt-1791730169257604128-codex-1",
    "harness": "codex",
    "model": "gpt-6-luna",
@@ -620829,7 +620829,7 @@
   },
   {
    "id": 23610,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "fleet-v2-gpt-1791747014668176567-codex-1",
    "harness": "codex",
    "model": "gpt-6-luna",
@@ -623937,7 +623937,7 @@
   },
   {
    "id": 23758,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "hermes-manual",
    "harness": null,
    "model": null,
@@ -624021,7 +624021,7 @@
   },
   {
    "id": 23762,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "hermes-manual",
    "harness": null,
    "model": null,
@@ -624063,7 +624063,7 @@
   },
   {
    "id": 23764,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "pin-scan",
    "harness": null,
    "model": null,
@@ -624084,7 +624084,7 @@
   },
   {
    "id": 23765,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "pin-scan",
    "harness": null,
    "model": null,
@@ -624105,7 +624105,7 @@
   },
   {
    "id": 23766,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "pin-scan",
    "harness": null,
    "model": null,
@@ -624357,7 +624357,7 @@
   },
   {
    "id": 23778,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "pin-scan",
    "harness": null,
    "model": null,
@@ -624378,7 +624378,7 @@
   },
   {
    "id": 23779,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "pin-scan",
    "harness": null,
    "model": null,
@@ -624399,7 +624399,7 @@
   },
   {
    "id": 23780,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "pin-scan",
    "harness": null,
    "model": null,
@@ -624672,7 +624672,7 @@
   },
   {
    "id": 23793,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "pin-scan",
    "harness": null,
    "model": null,
@@ -624693,7 +624693,7 @@
   },
   {
    "id": 23794,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "pin-scan",
    "harness": null,
    "model": null,
@@ -624714,7 +624714,7 @@
   },
   {
    "id": 23795,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "pin-scan",
    "harness": null,
    "model": null,
@@ -625197,7 +625197,7 @@
   },
   {
    "id": 23818,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "pin-scan",
    "harness": null,
    "model": null,
@@ -625218,7 +625218,7 @@
   },
   {
    "id": 23819,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "pin-scan",
    "harness": null,
    "model": null,
@@ -625239,7 +625239,7 @@
   },
   {
    "id": 23820,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "pin-scan",
    "harness": null,
    "model": null,
@@ -625953,7 +625953,7 @@
   },
   {
    "id": 23854,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "pin-scan",
    "harness": null,
    "model": null,
@@ -625974,7 +625974,7 @@
   },
   {
    "id": 23855,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "pin-scan",
    "harness": null,
    "model": null,
@@ -625995,7 +625995,7 @@
   },
   {
    "id": 23856,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "pin-scan",
    "harness": null,
    "model": null,
@@ -648255,7 +648255,7 @@
   },
   {
    "id": 24916,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "claude",
    "harness": null,
    "model": null,
@@ -653547,7 +653547,7 @@
   },
   {
    "id": 25168,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "hermes-sol",
    "harness": null,
    "model": null,
@@ -654345,7 +654345,7 @@
   },
   {
    "id": 25206,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "manual-opus",
    "harness": null,
    "model": null,
@@ -656571,7 +656571,7 @@
   },
   {
    "id": 25312,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "manual-ds",
    "harness": null,
    "model": null,
@@ -660309,7 +660309,7 @@
   },
   {
    "id": 25490,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "opus-a",
    "harness": null,
    "model": null,
@@ -663081,7 +663081,7 @@
   },
   {
    "id": 25622,
-   "symbol": "fn_800288C4",
+   "symbol": "AXARTCents",
    "agent": "fork-deltawave784",
    "harness": "fork-harvest",
    "model": "deltawave784/fzgx@13b0aeca (CC0)",
@@ -698201,7 +698201,7 @@
   {
    "id": 33,
    "kind": "function",
-   "target": "fn_8004F74C",
+   "target": "ADXF_Init",
    "proposed": "ADX_InitState",
    "rationale": "First-call init of gAdxInitState (zeroes buffers, sets handle -1) followed by a reference count increment; mirrors fn_8004F6B0 which releases the same block.",
    "proposed_by": "deepseek-recovered-above90-128-low-20260910-codex-423",
