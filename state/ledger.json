@@ -1,5 +1,5 @@
 {
- "generated": 1795490941,
+ "generated": 1795492130,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -23889,7 +23889,7 @@
   {
    "symbol": "fn_8003EAE4",
    "module": "main",
-   "unit": "dol/fn_8003EAE4.c",
+   "unit": "dol/perf/perfdraw.c",
    "addr": 2147740388,
    "size": 352,
    "status": "matched",
@@ -23906,7 +23906,7 @@
   {
    "symbol": "fn_8003EC44",
    "module": "main",
-   "unit": "dol/fn_8003EAE4.c",
+   "unit": "dol/perf/perfdraw.c",
    "addr": 2147740740,
    "size": 3056,
    "status": "matched",
@@ -23923,7 +23923,7 @@
   {
    "symbol": "fn_8003F834",
    "module": "main",
-   "unit": "dol/fn_8003EAE4.c",
+   "unit": "dol/perf/perfdraw.c",
    "addr": 2147743796,
    "size": 1876,
    "status": "matched",
@@ -23940,7 +23940,7 @@
   {
    "symbol": "fn_8003FF88",
    "module": "main",
-   "unit": "dol/fn_8003EAE4.c",
+   "unit": "dol/perf/perfdraw.c",
    "addr": 2147745672,
    "size": 4380,
    "status": "matched",
@@ -23957,7 +23957,7 @@
   {
    "symbol": "fn_800410A4",
    "module": "main",
-   "unit": "dol/fn_8003EAE4.c",
+   "unit": "dol/perf/perfdraw.c",
    "addr": 2147750052,
    "size": 184,
    "status": "matched",
@@ -23974,7 +23974,7 @@
   {
    "symbol": "fn_8004115C",
    "module": "main",
-   "unit": "dol/fn_8003EAE4.c",
+   "unit": "dol/perf/perfdraw.c",
    "addr": 2147750236,
    "size": 8,
    "status": "matched",
@@ -39869,7 +39869,7 @@
   {
    "symbol": "fn_8007B338",
    "module": "main",
-   "unit": "dol/fn_8007B338.c",
+   "unit": "dol/runtime/ansi_fp.c",
    "addr": 2147988280,
    "size": 4224,
    "status": "matched",
@@ -39886,7 +39886,7 @@
   {
    "symbol": "__num2dec",
    "module": "main",
-   "unit": "dol/ansi_fp_decimal.c",
+   "unit": "dol/runtime/ansi_fp.c",
    "addr": 2147992504,
    "size": 420,
    "status": "matched",
@@ -39903,7 +39903,7 @@
   {
    "symbol": "__num2dec_internal",
    "module": "main",
-   "unit": "dol/ansi_fp_decimal.c",
+   "unit": "dol/runtime/ansi_fp.c",
    "addr": 2147992924,
    "size": 948,
    "status": "matched",
@@ -39920,7 +39920,7 @@
   {
    "symbol": "fn_8007C910",
    "module": "main",
-   "unit": "dol/ansi_fp_decimal.c",
+   "unit": "dol/runtime/ansi_fp.c",
    "addr": 2147993872,
    "size": 1276,
    "status": "matched",
@@ -39937,7 +39937,7 @@
   {
    "symbol": "__equals_dec",
    "module": "main",
-   "unit": "dol/ansi_fp_decimal.c",
+   "unit": "dol/runtime/ansi_fp.c",
    "addr": 2147995148,
    "size": 268,
    "status": "matched",
@@ -39954,7 +39954,7 @@
   {
    "symbol": "fn_8007CF18",
    "module": "main",
-   "unit": "dol/ansi_fp_decimal.c",
+   "unit": "dol/runtime/ansi_fp.c",
    "addr": 2147995416,
    "size": 6020,
    "status": "matched",
@@ -39971,7 +39971,7 @@
   {
    "symbol": "fn_8007E69C",
    "module": "main",
-   "unit": "dol/fn_8007E69C.c",
+   "unit": "dol/runtime/ansi_fp.c",
    "addr": 2148001436,
    "size": 632,
    "status": "matched",
