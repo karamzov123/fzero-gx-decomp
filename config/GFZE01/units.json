@@ -11066,9 +11066,7 @@
       "lbl_800912A0",
       "lbl_800912C4",
       "lbl_800912F0",
-      "lbl_800912F8",
-      "lbl_80091300",
-      "lbl_80091318"
+      "lbl_800912F8"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -21733,8 +21731,7 @@
     "source": "dol/fn_80051958.c",
     "symbols": [
       "fn_80051958",
-      "fn_800519B0",
-      "fn_80051CC0"
+      "fn_800519B0"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
@@ -21743,28 +21740,26 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_80051DC4.c",
+    "source": "dol/ahx/ahx_adxt.c",
     "symbols": [
+      "fn_80051CC0",
       "fn_80051DC4",
-      "fn_80051E30"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80051E64.c",
-    "symbols": [
+      "fn_80051E30",
       "fn_80051E64"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0",
+      "-str",
+      "reuse,readonly",
       "-use_lmw_stmw",
       "on"
-    ]
+    ],
+    "collapsed": true
   },
   {
     "module": "main",

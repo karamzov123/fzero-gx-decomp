@@ -181,9 +181,6 @@ dol/fn_80070AC0.c:
 dol/fn_80070E1C.c:
 	.text       start:0x80070E1C end:0x80070F44 align:4
 
-dol/fn_80051DC4.c:
-	.text       start:0x80051DC4 end:0x80051E64 align:4
-
 dol/__OSSetInterruptHandler.c:
 	.text       start:0x8000D540 end:0x8000DD10 align:4
 
@@ -209,7 +206,11 @@ dol/fn_80058A20.c:
 	.text       start:0x80058A20 end:0x80058A40 align:4
 
 dol/fn_80051958.c:
-	.text       start:0x80051958 end:0x80051DC4 align:4
+	.text       start:0x80051958 end:0x80051CC0 align:4
+
+dol/ahx/ahx_adxt.c:
+	.text       start:0x80051CC0 end:0x80051F38 align:4
+	.rodata     start:0x80091300 end:0x8009132C align:4
 
 dol/adx/cri_cvfs.c:
 	.text       start:0x8005466C end:0x800555C0 align:4
@@ -276,9 +277,6 @@ dol/adx/adx_tsvr.c:
 
 dol/lg/lg.c:
 	.text       start:0x8006AA20 end:0x8006CCC8 align:4
-
-dol/fn_80051E64.c:
-	.text       start:0x80051E64 end:0x80051F38 align:4
 
 dol/render/render_util.c:
 	.text       start:0x80007CDC end:0x80008E30 align:4
@@ -1726,7 +1724,7 @@ dol/data/lbl_800911E0.c:
 	.rodata     start:0x800911E0 end:0x80091220 align:32
 
 dol/data/lbl_80091220.c:
-	.rodata     start:0x80091220 end:0x80091330 align:32
+	.rodata     start:0x80091220 end:0x80091300 align:32
 
 dol/data/lbl_801A6BF0.c:
 	.sbss       start:0x801A6BF0 end:0x801A6BF8 align:16

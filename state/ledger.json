@@ -1,5 +1,5 @@
 {
- "generated": 1795487104,
+ "generated": 1795487334,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -29074,7 +29074,7 @@
   {
    "symbol": "fn_80051CC0",
    "module": "main",
-   "unit": "dol/fn_80051958.c",
+   "unit": "dol/ahx/ahx_adxt.c",
    "addr": 2147818688,
    "size": 260,
    "status": "matched",
@@ -29091,7 +29091,7 @@
   {
    "symbol": "fn_80051DC4",
    "module": "main",
-   "unit": "dol/fn_80051DC4.c",
+   "unit": "dol/ahx/ahx_adxt.c",
    "addr": 2147818948,
    "size": 108,
    "status": "matched",
@@ -29108,7 +29108,7 @@
   {
    "symbol": "fn_80051E30",
    "module": "main",
-   "unit": "dol/fn_80051DC4.c",
+   "unit": "dol/ahx/ahx_adxt.c",
    "addr": 2147819056,
    "size": 52,
    "status": "matched",
@@ -29125,7 +29125,7 @@
   {
    "symbol": "fn_80051E64",
    "module": "main",
-   "unit": "dol/fn_80051E64.c",
+   "unit": "dol/ahx/ahx_adxt.c",
    "addr": 2147819108,
    "size": 212,
    "status": "matched",

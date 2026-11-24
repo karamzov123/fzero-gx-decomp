@@ -28978,13 +28978,13 @@
     "references": [],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 268,
+    "section_size": 224,
     "sha256": "716185f0bf8684b00d97d1224f13d0ac15a76bc7a366dbf45693b579e1d465ec",
     "size": 46,
     "source": "dol/data/lbl_80091220.c",
     "symbol": "lbl_80091220",
     "unit_align": 32,
-    "unit_size": 272,
+    "unit_size": 224,
     "unit_start": 2148078112
   },
   "main:lbl_80091250": {
@@ -29016,13 +29016,13 @@
       }
     ],
     "section": ".rodata",
-    "section_size": 268,
+    "section_size": 224,
     "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
     "size": 8,
     "source": "dol/data/lbl_80091220.c",
     "symbol": "lbl_80091250",
     "unit_align": 32,
-    "unit_size": 272,
+    "unit_size": 224,
     "unit_start": 2148078112
   },
   "main:lbl_80091258": {
@@ -29042,13 +29042,13 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 268,
+    "section_size": 224,
     "sha256": "584be5db3568fbd124adf2935adbab3395404b10c99a3bdeefac278061b72e88",
     "size": 34,
     "source": "dol/data/lbl_80091220.c",
     "symbol": "lbl_80091258",
     "unit_align": 32,
-    "unit_size": 272,
+    "unit_size": 224,
     "unit_start": 2148078112
   },
   "main:lbl_8009127C": {
@@ -29068,13 +29068,13 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 268,
+    "section_size": 224,
     "sha256": "c1fff1509ef238d914f1aee4db441d543011f6e94d07af00eb993e8d0cd68903",
     "size": 34,
     "source": "dol/data/lbl_80091220.c",
     "symbol": "lbl_8009127C",
     "unit_align": 32,
-    "unit_size": 272,
+    "unit_size": 224,
     "unit_start": 2148078112
   },
   "main:lbl_800912A0": {
@@ -29089,13 +29089,13 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 268,
+    "section_size": 224,
     "sha256": "48e2f4861b18fb84936f07605a72ea6fcef7edee2fd2bcd31d44f48151f4f65d",
     "size": 36,
     "source": "dol/data/lbl_80091220.c",
     "symbol": "lbl_800912A0",
     "unit_align": 32,
-    "unit_size": 272,
+    "unit_size": 224,
     "unit_start": 2148078112
   },
   "main:lbl_800912C4": {
@@ -29110,13 +29110,13 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 268,
+    "section_size": 224,
     "sha256": "350ed4359d071919a6dea267452f6e29fcc7d33e2ee376e8f0336de41da7262a",
     "size": 41,
     "source": "dol/data/lbl_80091220.c",
     "symbol": "lbl_800912C4",
     "unit_align": 32,
-    "unit_size": 272,
+    "unit_size": 224,
     "unit_start": 2148078112
   },
   "main:lbl_800912F0": {
@@ -29131,13 +29131,13 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 268,
+    "section_size": 224,
     "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
     "size": 4,
     "source": "dol/data/lbl_80091220.c",
     "symbol": "lbl_800912F0",
     "unit_align": 32,
-    "unit_size": 272,
+    "unit_size": 224,
     "unit_start": 2148078112
   },
   "main:lbl_800912F8": {
@@ -29152,65 +29152,13 @@
     ],
     "relocations": [],
     "section": ".rodata",
-    "section_size": 268,
+    "section_size": 224,
     "sha256": "07af8387624cf8f36152797d2f561246f21237d1d22b5c13006eacfa6f475e43",
     "size": 8,
     "source": "dol/data/lbl_80091220.c",
     "symbol": "lbl_800912F8",
     "unit_align": 32,
-    "unit_size": 272,
-    "unit_start": 2148078112
-  },
-  "main:lbl_80091300": {
-    "address": 2148078336,
-    "align": 32,
-    "declarations": [
-      {
-        "declaration": "char lbl_80091300[24]",
-        "path": "src/dol/fn_80051E64.c"
-      }
-    ],
-    "definition": "const char lbl_80091300[24]",
-    "method": "string",
-    "module": "main",
-    "references": [
-      "fn_80051E64"
-    ],
-    "relocations": [],
-    "section": ".rodata",
-    "section_size": 268,
-    "sha256": "4973ff60a0f44812aa1fae0ceed9191cffab52a55d879cb2d90c5c6e9b5c39c8",
-    "size": 24,
-    "source": "dol/data/lbl_80091220.c",
-    "symbol": "lbl_80091300",
-    "unit_align": 32,
-    "unit_size": 272,
-    "unit_start": 2148078112
-  },
-  "main:lbl_80091318": {
-    "address": 2148078360,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "char lbl_80091318[20]",
-        "path": "src/dol/fn_80051E64.c"
-      }
-    ],
-    "definition": "const char lbl_80091318[20]",
-    "method": "string",
-    "module": "main",
-    "references": [
-      "fn_80051E64"
-    ],
-    "relocations": [],
-    "section": ".rodata",
-    "section_size": 268,
-    "sha256": "ee905767c5de21060e299a176e0d03fc95765d81ef58346c38588febab117490",
-    "size": 20,
-    "source": "dol/data/lbl_80091220.c",
-    "symbol": "lbl_80091318",
-    "unit_align": 32,
-    "unit_size": 272,
+    "unit_size": 224,
     "unit_start": 2148078112
   },
   "main:lbl_80091390": {
