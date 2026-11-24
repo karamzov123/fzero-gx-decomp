@@ -126,12 +126,13 @@ def main():
         if None in new:
             print('candidate does not compile'); return 1
         for vi, obj in enumerate(new):
-            ref, rsecs = {}, collections.Counter()
+            ref, rsecs, old_extra = {}, collections.Counter(), set()
             for u in us:
                 o = d.compile_all(pathlib.Path('src', u['source']).read_text(), *nu['src/' + u['source']], td,
                                   dict(u, matching_for=mf))[vi]
                 f, s, _, rlocal = funcs(o, td, 'r', pool=u.get('pool') or {})
                 ref.update({k: v for k, v in f.items() if k in u['symbols']})
+                old_extra.update(k for k in f if k not in u['symbols'])   # static helpers the old units also emit
                 # a section that only holds literals the unit remaps is emptied by poolfix
                 rsecs.update({k: v for k, v in s.items()
                               if not (rlocal.get(k) and all(n in (u.get('pool') or {}) for n in rlocal[k]))})
@@ -155,7 +156,7 @@ def main():
                 ext = lambda r: [x for x in r if not (x[1] == 10 and x[2] in own)]
                 if words or ext(r1) != ext(r2):
                     print(f'[{mf[vi]}] {s}: {len(words)} words differ; relocs {"same" if ext(r1) == ext(r2) else "differ"}'); ok = False
-            extra = [f for f in nf if f not in own]
+            extra = [f for f in nf if f not in own and f not in old_extra]
             if extra:
                 print(f'[{mf[vi]}] extra functions {extra}'); ok = False
             for k, v in nsecs.items():

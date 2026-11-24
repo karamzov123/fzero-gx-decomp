@@ -130,8 +130,8 @@ dol/fn_8005A668.c:
 dol/fn_80046718.c:
 	.text       start:0x80046718 end:0x80046768 align:4
 
-dol/fn_80046768.c:
-	.text       start:0x80046768 end:0x800469A4 align:4
+dol/adx/adx_dcd.c:
+	.text       start:0x80046768 end:0x80046F88 align:4
 
 dol/adx/adx_rnaa.c:
 	.text       start:0x8004ED3C end:0x8004EFA8 align:4
@@ -657,9 +657,6 @@ dol/OSError.c:
 	.sdata      start:0x801A6430 end:0x801A6438 align:8
 	.data       start:0x80122C30 end:0x80122F50 align:8
 
-dol/adx/adx_errs.c:
-	.text       start:0x80047464 end:0x80047608 align:4
-
 dol/fn_80005518.c:
 	.init       start:0x80005518 end:0x80005544 align:4
 
@@ -830,11 +827,8 @@ dol/ax/AXOut.c:
 dol/av/avload.c:
 	.text       start:0x80070F44 end:0x80071C04 align:4
 
-dol/ADX_DecodeInfoExLoop.c:
-	.text       start:0x800469A4 end:0x80046F88 align:4
-
-dol/fn_80046F88.c:
-	.text       start:0x80046F88 end:0x80047464 align:4
+dol/adx/adx_errs.c:
+	.text       start:0x80046F88 end:0x80047608 align:4
 
 dol/adx/adx_xpnd.c:
 	.text       start:0x8004E098 end:0x8004E4DC align:4

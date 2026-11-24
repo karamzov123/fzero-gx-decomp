@@ -6830,16 +6830,14 @@
   },
   {
     "module": "main",
-    "source": "dol/ADX_DecodeInfoExLoop.c",
+    "source": "dol/adx/adx_errs.c",
     "symbols": [
-      "ADX_DecodeInfoExLoop",
-      "fn_80046AC0",
-      "fn_80046B90",
-      "fn_80046BE0",
-      "fn_80046C28",
-      "ADX_ScanInfoCode",
-      "fn_80046D94",
-      "fn_80046F7C"
+      "fn_80046F88",
+      "fn_80047464",
+      "fn_800474E4",
+      "fn_80047548",
+      "fn_80047578",
+      "fn_800475C0"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
@@ -6851,26 +6849,7 @@
     ],
     "collapsed": true,
     "pool": {
-      "@156": "lbl_80090968"
-    }
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80046F88.c",
-    "symbols": [
-      "fn_80046F88"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-sdata",
-      "0",
-      "-sdata2",
-      "0"
-    ],
-    "collapsed": true,
-    "pool": {
-      "@87": "lbl_80090970"
+      "@78": "lbl_80090970"
     }
   },
   {
@@ -21163,31 +21142,32 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_80046768.c",
+    "source": "dol/adx/adx_dcd.c",
     "symbols": [
       "fn_80046768",
       "fn_80046804",
-      "fn_8004683C"
+      "fn_8004683C",
+      "ADX_DecodeInfoExLoop",
+      "fn_80046AC0",
+      "fn_80046B90",
+      "fn_80046BE0",
+      "fn_80046C28",
+      "ADX_ScanInfoCode",
+      "fn_80046D94",
+      "fn_80046F7C"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/adx/adx_errs.c",
-    "symbols": [
-      "fn_80047464",
-      "fn_800474E4",
-      "fn_80047548",
-      "fn_80047578",
-      "fn_800475C0"
+    "extra_cflags": [
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0"
     ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "collapsed": true
+    "collapsed": true,
+    "pool": {
+      "@199": "lbl_80090968"
+    }
   },
   {
     "module": "main",
