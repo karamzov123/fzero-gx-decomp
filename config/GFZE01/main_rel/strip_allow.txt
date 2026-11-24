@@ -3,3 +3,22 @@
 disp_model_info  # car_test.c, inlined two times in fn_1_7C7CC
 disp_tex_info  # car_test.c, inlined two times in fn_1_7C7CC
 fn_1_D0428_course_name  # enemy_ctrl_b.c, inlined one time in fn_1_D0428
+game_debug_printf  # game.c, WARNING: compiler-diff device. Print stub of game_debug_scenario. Retail has no copy
+game_debug_scenario  # game.c, WARNING: compiler-diff device. Dead function that holds the four debug strings of .data 0x5F0C. Retail has no copy
+game_slot_table_fill  # game.c, inlined in fn_1_304A8 and in the 14 inlined copies of fn_1_304A8
+game_copy_names  # game.c, inlined in fn_1_3A044, fn_1_3AEC4, fn_1_3C880 and fn_1_3DB9C
+game_set_pause_port  # game.c, inlined in fn_1_320A4 and fn_1_3CDB0
+game_keep_goal_record  # game.c, inlined in fn_1_32A40 and two times in fn_1_3A330
+game_goal_slot  # game.c, inlined in fn_1_32A40
+game_goal_flag  # game.c, inlined in fn_1_32A40
+game_set_rival_machines  # game.c, inlined one time in fn_1_3522C
+game_message_box_reset  # game.c, inlined in fn_1_2DB50 and fn_1_3522C
+game_start_burner  # game.c, inlined in fn_1_3522C and fn_1_39420
+game_goto_setting  # game.c, inlined in fn_1_33A20, fn_1_3B7D4 and fn_1_3CE94
+game_goto_next_stage  # game.c, inlined in fn_1_33A20, fn_1_3B7D4 and fn_1_3CE94
+game_restart  # game.c, inlined in fn_1_33A20, fn_1_3B7D4 and fn_1_3CE94
+game_draw_sprite_strip  # game.c, inlined one time in fn_1_37AA8
+game_start_gameover_event  # game.c, inlined in fn_1_3CE94, fn_1_33A20 and fn_1_3B7D4
+apply_handicap  # game.c, inlined one time in fn_1_331EC
+game_save_heap_free  # game.c, inlined five times in fn_1_36330
+game_replay_menu_place  # game.c, inlined one time in fn_1_36B10

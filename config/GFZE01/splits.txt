@@ -1035,7 +1035,7 @@ dol/sasnd/sasnd_core.c:
 	.text       start:0x800658B4 end:0x80069B10 align:4
 	.rodata     start:0x80092BD8 end:0x80094E10 align:4
 	.bss        start:0x801932A8 end:0x80199670 align:4
-	.sbss       start:0x801A6C78 end:0x801A6C88 align:4
+	.sbss       start:0x801A6C78 end:0x801A6C84 align:4
 	.sdata2     start:0x801A7328 end:0x801A7350 align:8
 
 dol/mtx/mtx_light.c:
@@ -1338,7 +1338,7 @@ dol/fn_800081C8.c:
 dol/sasnd/sasnd_track.c:
 	.text       start:0x8006060C end:0x8006331C align:4
 	.rodata     start:0x80092B38 end:0x80092BD8 align:4
-	.sdata2     start:0x801A7280 end:0x801A7318 align:8
+	.sdata2     start:0x801A7280 end:0x801A7314 align:8
 
 dol/fn_80064E84.c:
 	.text       start:0x80064E84 end:0x80064FDC align:4

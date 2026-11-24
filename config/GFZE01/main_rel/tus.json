@@ -338,12 +338,12 @@
    "file": "stcoli.c",
    "text": [
     85172,
-    195232
+    182120
    ],
    "data_sec": 5,
    "data": [
     20936,
-    25324
+    22320
    ],
    "anchor_refs": [
     85172
@@ -464,7 +464,30 @@
     "fn_1_2BBD0",
     "fn_1_2BD30",
     "fn_1_2BF8C",
-    "fn_1_2C688",
+    "fn_1_2C688"
+   ],
+   "confidence": {
+    "text+data": 6,
+    "text-range": 127,
+    "data-vote": 4
+   }
+  },
+  {
+   "file": "game.c",
+   "text": [
+    182120,
+    266068
+   ],
+   "data_sec": 5,
+   "data": [
+    22320,
+    26176
+   ],
+   "anchor_refs": [
+    195232,
+    259136
+   ],
+   "functions": [
     "fn_1_2C768",
     "fn_1_2C7C4",
     "fn_1_2C908",
@@ -482,30 +505,7 @@
     "fn_1_2E928",
     "fn_1_2EBB8",
     "fn_1_2EE3C",
-    "fn_1_2F294"
-   ],
-   "confidence": {
-    "text+data": 6,
-    "text-range": 127,
-    "data-vote": 4
-   }
-  },
-  {
-   "file": "game.c",
-   "text": [
-    195232,
-    267544
-   ],
-   "data_sec": 5,
-   "data": [
-    25324,
-    26400
-   ],
-   "anchor_refs": [
-    195232,
-    259136
-   ],
-   "functions": [
+    "fn_1_2F294",
     "fn_1_2FAA0",
     "fn_1_2FDBC",
     "fn_1_30054",
@@ -645,7 +645,27 @@
     "fn_1_40ED4",
     "fn_1_40EE4",
     "fn_1_40F34",
-    "fn_1_40F44",
+    "fn_1_40F44"
+   ],
+   "confidence": {
+    "text+data": 158,
+    "text-range": 0,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "game_b.c",
+   "text": [
+    266068,
+    267544
+   ],
+   "data_sec": 5,
+   "data": [
+    26176,
+    26400
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_1_40F54",
     "fn_1_40F78",
     "fn_1_4100C",
@@ -661,9 +681,9 @@
     "fn_1_41488"
    ],
    "confidence": {
-    "text+data": 14,
-    "text-range": 133,
-    "data-vote": 1
+    "text+data": 13,
+    "text-range": 0,
+    "data-vote": 0
    }
   },
   {
