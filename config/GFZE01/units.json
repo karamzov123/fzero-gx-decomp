@@ -19753,7 +19753,17 @@
     "source": "dol/fn_800079C4.c",
     "symbols": [
       "fn_800079C4",
-      "fn_80007A00",
+      "fn_80007A00"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "collapsed": true
+  },
+  {
+    "module": "main",
+    "source": "dol/fn_80007A44.c",
+    "symbols": [
       "fn_80007A44",
       "fn_80007AB4",
       "fn_80007B68",
@@ -19843,7 +19853,18 @@
     "source": "dol/fn_80008DB4.c",
     "symbols": [
       "fn_80008DB4",
-      "fn_80008E30",
+      "fn_80008E30"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "collapsed": true,
+    "matching_for": ["GFZE01"]
+  },
+  {
+    "module": "main",
+    "source": "dol/fn_80008E34.c",
+    "symbols": [
       "fn_80008E34",
       "fn_80008E5C",
       "fn_80008E84",

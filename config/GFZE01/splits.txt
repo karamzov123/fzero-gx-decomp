@@ -149,7 +149,10 @@ dol/fn_800541EC.c:
 	.text       start:0x800541EC end:0x8005466C align:4
 
 dol/fn_800079C4.c:
-	.text       start:0x800079C4 end:0x80007C60 align:4
+	.text       start:0x800079C4 end:0x80007A44 align:4
+
+dol/fn_80007A44.c:
+	.text       start:0x80007A44 end:0x80007C60 align:4
 
 dol/trk/dolphin_trk.c:
 	.text       start:0x8008CFDC end:0x8008D1CC align:4
@@ -239,7 +242,10 @@ dol/fn_800517C0.c:
 	.text       start:0x800517C0 end:0x8005190C align:4
 
 dol/fn_80008DB4.c:
-	.text       start:0x80008DB4 end:0x80008FB0 align:4
+	.text       start:0x80008DB4 end:0x80008E34 align:4
+
+dol/fn_80008E34.c:
+	.text       start:0x80008E34 end:0x80008FB0 align:4
 
 dol/av/game_main.c:
 	.text       start:0x800055E0 end:0x80005E0C align:4

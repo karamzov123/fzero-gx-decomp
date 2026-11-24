@@ -35,6 +35,14 @@ ROWS = [  # file, lib, lo, hi, ordered sizes, donors
      [40, 40, 68, 152, 40, 40, 180, 64, 964, 180, 136, 120, 532, 632, 516, 40, 720, 16, 8],
      'no donor: a modified SDK OSAlloc with its OSCheckHeap failure strings, sharing the heap state at .sbss '
      '0x801A6730..0x801A6748 and .sdata 0x801A6410/0x801A6414. It ends at PPCArch.c. The sizes are this build\'s'),
+    ('render_util.c', 'game', 0x80007A44, 0x80008E34,
+     [112, 180, 196, 52, 124, 124, 536, 600, 60, 740, 780, 600, 348, 68, 52, 404, 124, 4],
+     'no donor: unnamed .sdata2 literals are per TU, and 0x801A6F14 is shared by 0x80007F70, 0x80008204 and '
+     '0x800084E8, 0x801A6F38 by 0x80008204 and 0x800084E8, 0x801A6F30 by 0x800084E8 and 0x80008C20. Only '
+     '0x80007A44, 0x80007AB4 and 0x80007B68 call 0x80008204, only 0x800081C8 calls 0x80007F70, only 0x800084E8 '
+     'calls 0x800087F4 and 0x80008A4C, and 0x80007A44..0x80007CDC share the color at .sdata 0x801A6408. The band '
+     'has one .sdata2 run 0x801A6F00..0x801A6F40. 0x80008DB4 and 0x80008E30 have no data evidence and are placed '
+     'by position before heap.c. The file name is a placeholder'),
 ]
 
 
@@ -60,7 +68,8 @@ def main():
             m['tus'].append(t)
         t['text'] = [f'{min(lo, int(t["text"][0], 16)):08X}', f'{max(hi, int(t["text"][1], 16)):08X}']
         t['functions'] = [n for _, n in sorted((syms[n][0], n) for n in t['functions'] + names)]
-        t['how']['donor-size'] = t['how'].get('donor-size', 0) + len(names)
+        how = 'data-evidence' if donors.startswith('no donor') else 'donor-size'
+        t['how'][how] = t['how'].get(how, 0) + len(names)
         note = f'0x{lo:08X}..0x{hi:08X}: {donors}.' if donors.startswith('no donor') else f'0x{lo:08X}..0x{hi:08X}: ordered sizes equal {donors}.'
         t['notes'] = f'{t["notes"]} {note}' if t.get('notes') else note
         a = int(t['text'][0], 16)

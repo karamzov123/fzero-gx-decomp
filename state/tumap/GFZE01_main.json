@@ -4,10 +4,10 @@
   "note": "Draft DOL ownership evidence used by the consolidation tools. Unassigned entries and conflicts are not confirmed boundaries.",
   "summary": {
     "functions": 2230,
-    "assigned": 2155,
+    "assigned": 2173,
     "bytes": 567556,
-    "assigned_bytes": 549272,
-    "tus": 240,
+    "assigned_bytes": 554376,
+    "tus": 241,
     "conflicts": 0,
     "string_anchored": 13
   },
@@ -105,6 +105,38 @@
       },
       "lib": "",
       "notes": "GFZE01 .sdata 0x801A6400 gives the mmu.c filename. The page-table setup and update paths call the lookup at 0x800077E0, slot allocation at 0x80007730, segment-register read at 0x80007654 and PTE/TLB helpers at 0x80007664 and 0x80007700. Both lookup and allocation use the SDR1 helper at 0x800079A0 and the primary/secondary hash helpers at 0x800079C4 and 0x80007A00. The next routine, 0x80007A44, instead initializes a color value at 0x801A6408 and calls rendering routines 0x800744F8 and 0x80008204. The end of mmu.c is inferred from this subsystem break; the next TU is not named here."
+    },
+    {
+      "file": "render_util.c",
+      "text": [
+        "80007A44",
+        "80008E34"
+      ],
+      "functions": [
+        "fn_80007A44",
+        "fn_80007AB4",
+        "fn_80007B68",
+        "fn_80007C2C",
+        "fn_80007C60",
+        "fn_80007CDC",
+        "fn_80007D58",
+        "fn_80007F70",
+        "fn_800081C8",
+        "fn_80008204",
+        "fn_800084E8",
+        "fn_800087F4",
+        "fn_80008A4C",
+        "fn_80008BA8",
+        "fn_80008BEC",
+        "fn_80008C20",
+        "fn_80008DB4",
+        "fn_80008E30"
+      ],
+      "how": {
+        "data-evidence": 18
+      },
+      "lib": "game",
+      "notes": "0x80007A44..0x80008E34: no donor: unnamed .sdata2 literals are per TU, and 0x801A6F14 is shared by 0x80007F70, 0x80008204 and 0x800084E8, 0x801A6F38 by 0x80008204 and 0x800084E8, 0x801A6F30 by 0x800084E8 and 0x80008C20. Only 0x80007A44, 0x80007AB4 and 0x80007B68 call 0x80008204, only 0x800081C8 calls 0x80007F70, only 0x800084E8 calls 0x800087F4 and 0x80008A4C, and 0x80007A44..0x80007CDC share the color at .sdata 0x801A6408. The band has one .sdata2 run 0x801A6F00..0x801A6F40. 0x80008DB4 and 0x80008E30 have no data evidence and are placed by position before heap.c. The file name is a placeholder."
     },
     {
       "file": "heap.c",
@@ -5483,168 +5515,6 @@
   ],
   "conflicts": [],
   "unassigned": [
-    {
-      "name": "fn_80007A44",
-      "addr": "80007A44",
-      "size": 112,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80007AB4",
-      "addr": "80007AB4",
-      "size": 180,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80007B68",
-      "addr": "80007B68",
-      "size": 196,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80007C2C",
-      "addr": "80007C2C",
-      "size": 52,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80007C60",
-      "addr": "80007C60",
-      "size": 124,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80007CDC",
-      "addr": "80007CDC",
-      "size": 124,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80007D58",
-      "addr": "80007D58",
-      "size": 536,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80007F70",
-      "addr": "80007F70",
-      "size": 600,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_800081C8",
-      "addr": "800081C8",
-      "size": 60,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80008204",
-      "addr": "80008204",
-      "size": 740,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_800084E8",
-      "addr": "800084E8",
-      "size": 780,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_800087F4",
-      "addr": "800087F4",
-      "size": 600,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80008A4C",
-      "addr": "80008A4C",
-      "size": 348,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80008BA8",
-      "addr": "80008BA8",
-      "size": 68,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80008BEC",
-      "addr": "80008BEC",
-      "size": 52,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80008C20",
-      "addr": "80008C20",
-      "size": 404,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80008DB4",
-      "addr": "80008DB4",
-      "size": 124,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
-    {
-      "name": "fn_80008E30",
-      "addr": "80008E30",
-      "size": 4,
-      "candidates": [
-        "mmu.c",
-        "PPCArch.c"
-      ]
-    },
     {
       "name": "fn_80030380",
       "addr": "80030380",
