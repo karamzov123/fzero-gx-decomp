@@ -1,5 +1,5 @@
 {
- "generated": 1795490780,
+ "generated": 1795490941,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -40209,7 +40209,7 @@
   {
    "symbol": "fn_8007F48C",
    "module": "main",
-   "unit": "dol/fn_8007F48C.c",
+   "unit": "dol/runtime/direct_io.c",
    "addr": 2148005004,
    "size": 124,
    "status": "matched",
@@ -40226,7 +40226,7 @@
   {
    "symbol": "fn_8007F508",
    "module": "main",
-   "unit": "dol/fn_8007F508.c",
+   "unit": "dol/runtime/file_io.c",
    "addr": 2148005128,
    "size": 380,
    "status": "matched",
@@ -40923,7 +40923,7 @@
   {
    "symbol": "strrchr",
    "module": "main",
-   "unit": "dol/strrchr.c",
+   "unit": "dol/runtime/string.c",
    "addr": 2148023060,
    "size": 72,
    "status": "matched",
@@ -40940,7 +40940,7 @@
   {
    "symbol": "strchr",
    "module": "main",
-   "unit": "dol/strrchr.c",
+   "unit": "dol/runtime/string.c",
    "addr": 2148023132,
    "size": 48,
    "status": "matched",
@@ -40957,7 +40957,7 @@
   {
    "symbol": "strncmp",
    "module": "main",
-   "unit": "dol/strncmp.c",
+   "unit": "dol/runtime/string.c",
    "addr": 2148023180,
    "size": 64,
    "status": "matched",
@@ -40974,7 +40974,7 @@
   {
    "symbol": "fn_80083BCC",
    "module": "main",
-   "unit": "dol/fn_80083BCC.c",
+   "unit": "dol/runtime/string.c",
    "addr": 2148023244,
    "size": 296,
    "status": "matched",
@@ -40991,7 +40991,7 @@
   {
    "symbol": "fn_80083CF4",
    "module": "main",
-   "unit": "dol/fn_80083BCC.c",
+   "unit": "dol/runtime/string.c",
    "addr": 2148023540,
    "size": 76,
    "status": "matched",
@@ -41008,7 +41008,7 @@
   {
    "symbol": "strcat",
    "module": "main",
-   "unit": "dol/fn_80083BCC.c",
+   "unit": "dol/runtime/string.c",
    "addr": 2148023616,
    "size": 44,
    "status": "matched",
@@ -41025,7 +41025,7 @@
   {
    "symbol": "strncpy",
    "module": "main",
-   "unit": "dol/fn_80083BCC.c",
+   "unit": "dol/runtime/string.c",
    "addr": 2148023660,
    "size": 68,
    "status": "matched",
@@ -41042,7 +41042,7 @@
   {
    "symbol": "fn_80083DB0",
    "module": "main",
-   "unit": "dol/fn_80083BCC.c",
+   "unit": "dol/runtime/string.c",
    "addr": 2148023728,
    "size": 184,
    "status": "matched",
@@ -41059,7 +41059,7 @@
   {
    "symbol": "strlen",
    "module": "main",
-   "unit": "dol/fn_80083BCC.c",
+   "unit": "dol/runtime/string.c",
    "addr": 2148023912,
    "size": 28,
    "status": "matched",

@@ -1,5 +1,6 @@
 #include "types.h"
 
+/* --- dol/runtime/direct_io.c --- */
 typedef u32 file_handle;
 typedef u32 file_position;
 
@@ -280,4 +281,13 @@ int fn_8007F13C(void *dst, unsigned long size, unsigned long count, FILE *file) 
     }
 
     return red / size;
+}
+
+int fn_8007F48C(void *dst, unsigned long size, unsigned long count, FILE *file) {
+    int result;
+
+    __begin_critical_region(2);
+    result = fn_8007F13C(dst, size, count, file);
+    __end_critical_region(2);
+    return result;
 }

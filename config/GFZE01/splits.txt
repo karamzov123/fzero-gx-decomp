@@ -332,9 +332,6 @@ dol/av/avdisp_draw.c:
 dol/fn_8007B338.c:
 	.text       start:0x8007B338 end:0x8007C3B8 align:4
 
-dol/strncmp.c:
-	.text       start:0x80083B8C end:0x80083BCC align:4
-
 dol/fn_800885B8.c:
 	.text       start:0x800885B8 end:0x80088648 align:4
 
@@ -624,11 +621,8 @@ dol/fn_8005B464.c:
 dol/adx/gcci.c:
 	.text       start:0x800555C0 end:0x800565F0 align:4
 
-dol/fn_8007F48C.c:
-	.text       start:0x8007F48C end:0x8007F508 align:4
-
-dol/fn_8007F508.c:
-	.text       start:0x8007F508 end:0x8007F684 align:4
+dol/runtime/file_io.c:
+	.text       start:0x8007F508 end:0x8007FBC8 align:4
 
 dol/lg/lg_view.c:
 	.text       start:0x8006CCC8 end:0x8006CFF8 align:4
@@ -651,8 +645,8 @@ dol/__OSUnlockAllMutex.c:
 dol/fn_80083970.c:
 	.text       start:0x80083970 end:0x80083B14 align:4
 
-dol/strrchr.c:
-	.text       start:0x80083B14 end:0x80083B8C align:4
+dol/runtime/string.c:
+	.text       start:0x80083B14 end:0x80083E84 align:4
 
 dol/fn_8008EC78.c:
 	.text       start:0x8008EC78 end:0x8008ECE0 align:4
@@ -854,7 +848,7 @@ dol/axrna_voice_drop.c:
 	.text       start:0x8005BC20 end:0x8005BDD4 align:4
 
 dol/runtime/direct_io.c:
-	.text       start:0x8007EDB4 end:0x8007F48C align:4
+	.text       start:0x8007EDB4 end:0x8007F508 align:4
 
 dol/runtime/buffer_io.c:
 	.text       start:0x8007EA58 end:0x8007ED84 align:4
@@ -864,9 +858,6 @@ dol/__end_critical_region.c:
 
 dol/fn_8007ED90.c:
 	.text       start:0x8007ED90 end:0x8007EDB4 align:4
-
-dol/runtime/file_io.c:
-	.text       start:0x8007F684 end:0x8007FBC8 align:4
 
 dol/fseek.c:
 	.text       start:0x8007FBC8 end:0x8007FC34 align:4
@@ -1070,9 +1061,6 @@ dol/sasnd/sasnd_core.c:
 
 dol/mtx/mtx_light.c:
 	.text       start:0x80015C1C end:0x80015D7C align:4
-
-dol/fn_80083BCC.c:
-	.text       start:0x80083BCC end:0x80083E84 align:4
 
 dol/runtime/strtold.c:
 	.text       start:0x80083E84 end:0x80084F1C align:4
