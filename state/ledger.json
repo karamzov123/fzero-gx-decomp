@@ -1,5 +1,5 @@
 {
- "generated": 1795492130,
+ "generated": 1795492354,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -25912,7 +25912,7 @@
   {
    "symbol": "fn_80046768",
    "module": "main",
-   "unit": "dol/fn_80046768.c",
+   "unit": "dol/adx/adx_dcd.c",
    "addr": 2147772264,
    "size": 156,
    "status": "matched",
@@ -25929,7 +25929,7 @@
   {
    "symbol": "fn_80046804",
    "module": "main",
-   "unit": "dol/fn_80046768.c",
+   "unit": "dol/adx/adx_dcd.c",
    "addr": 2147772420,
    "size": 56,
    "status": "matched",
@@ -25946,7 +25946,7 @@
   {
    "symbol": "fn_8004683C",
    "module": "main",
-   "unit": "dol/fn_80046768.c",
+   "unit": "dol/adx/adx_dcd.c",
    "addr": 2147772476,
    "size": 360,
    "status": "matched",
@@ -25963,7 +25963,7 @@
   {
    "symbol": "ADX_DecodeInfoExLoop",
    "module": "main",
-   "unit": "dol/ADX_DecodeInfoExLoop.c",
+   "unit": "dol/adx/adx_dcd.c",
    "addr": 2147772836,
    "size": 284,
    "status": "matched",
@@ -25980,7 +25980,7 @@
   {
    "symbol": "fn_80046AC0",
    "module": "main",
-   "unit": "dol/ADX_DecodeInfoExLoop.c",
+   "unit": "dol/adx/adx_dcd.c",
    "addr": 2147773120,
    "size": 208,
    "status": "matched",
@@ -25997,7 +25997,7 @@
   {
    "symbol": "fn_80046B90",
    "module": "main",
-   "unit": "dol/ADX_DecodeInfoExLoop.c",
+   "unit": "dol/adx/adx_dcd.c",
    "addr": 2147773328,
    "size": 80,
    "status": "matched",
@@ -26014,7 +26014,7 @@
   {
    "symbol": "fn_80046BE0",
    "module": "main",
-   "unit": "dol/ADX_DecodeInfoExLoop.c",
+   "unit": "dol/adx/adx_dcd.c",
    "addr": 2147773408,
    "size": 72,
    "status": "matched",
@@ -26031,7 +26031,7 @@
   {
    "symbol": "fn_80046C28",
    "module": "main",
-   "unit": "dol/ADX_DecodeInfoExLoop.c",
+   "unit": "dol/adx/adx_dcd.c",
    "addr": 2147773480,
    "size": 240,
    "status": "matched",
@@ -26048,7 +26048,7 @@
   {
    "symbol": "ADX_ScanInfoCode",
    "module": "main",
-   "unit": "dol/ADX_DecodeInfoExLoop.c",
+   "unit": "dol/adx/adx_dcd.c",
    "addr": 2147773720,
    "size": 124,
    "status": "matched",
@@ -26065,7 +26065,7 @@
   {
    "symbol": "fn_80046D94",
    "module": "main",
-   "unit": "dol/ADX_DecodeInfoExLoop.c",
+   "unit": "dol/adx/adx_dcd.c",
    "addr": 2147773844,
    "size": 488,
    "status": "matched",
@@ -26082,7 +26082,7 @@
   {
    "symbol": "fn_80046F7C",
    "module": "main",
-   "unit": "dol/ADX_DecodeInfoExLoop.c",
+   "unit": "dol/adx/adx_dcd.c",
    "addr": 2147774332,
    "size": 12,
    "status": "matched",
@@ -26099,7 +26099,7 @@
   {
    "symbol": "fn_80046F88",
    "module": "main",
-   "unit": "dol/fn_80046F88.c",
+   "unit": "dol/adx/adx_errs.c",
    "addr": 2147774344,
    "size": 1244,
    "status": "matched",
