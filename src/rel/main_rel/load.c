@@ -1330,7 +1330,7 @@ void fn_1_464BC(Fn464BCObject *object, u32 index, void *arg2, void *arg3) {
 
 /* fzgx:begin fn_1_465D0 */
 // Queues a completed load operation in the circular load queue.
-s32 fn_1_465D0(s32 arg0, s32 arg1) {
+s32 fn_1_465D0(char *path, s32 arg1) {
     s32 *base = (s32 *)&lbl_1_bss_384C0;
     s32 result;
     s32 index;
@@ -1347,7 +1347,8 @@ s32 fn_1_465D0(s32 arg0, s32 arg1) {
         }
     }
 
-    result = fn_8000700C(arg0);
+    /* Shortcut: the file-scope declaration of fn_8000700C in load.c takes s32 until load.c is one unit. */
+    result = fn_8000700C((s32)path);
     if (result < 0) {
         return -1;
     }

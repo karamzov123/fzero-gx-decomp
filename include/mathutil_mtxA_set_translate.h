@@ -15,9 +15,10 @@
 
 /* mtxA translation = v (SMB1 counterpart: mathutil_mtxA_set_translate). Validated
  * 2026-11-08 (GC/1.3.2 -O4,p) on main_rel fn_1_98F28 (trail sprites, once per trail).
- * The asm keeps the locked-cache base out of MWCC's loop-invariant code motion: the C
- * spelling (three LC_MTX stores) hoists 0xE000 into a callee-saved register for the
- * whole function, about 80 differing rows. */
+ * The C spelling (three LC_MTX stores) hoists 0xE000 into a callee-saved register for the
+ * whole function, about 80 differing rows. Inside a loop MWCC still hoists the asm's lis,
+ * but the asm register is coloured first, which gives retail's register (car.c
+ * fn_1_850C4 and fn_1_8B9B8, validated 2026-11-24). */
 static inline void mathutil_mtxA_set_translate(register Vec3 *v) {
     register f32 *mtxA;
     register f32 x, y, z;

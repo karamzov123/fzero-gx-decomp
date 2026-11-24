@@ -5540,7 +5540,7 @@ void fn_1_3F800(u32 value);
 void fn_1_3F810(u8 value, u32 input);
 void fn_1_3F834(u8 value);
 void fn_1_3F844(u16 value);
-u8 fn_1_3F854(void);
+u32 fn_1_3F854(void);
 u8 fn_1_3F864(void);
 void fn_1_3F894(void);
 u32 fn_1_3F8C0(void);
@@ -12988,7 +12988,7 @@ void fn_1_3F844(u16 value) {
 /* fzgx:begin fn_1_3F854 */
 // Return the current game-state byte.
 
-u8 fn_1_3F854(void) {
+u32 fn_1_3F854(void) {
     return lbl_1_bss_3C30.unk_8;
 }
 /* fzgx:end fn_1_3F854 */

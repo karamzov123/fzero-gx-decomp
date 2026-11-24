@@ -995,13 +995,13 @@ extern s16 fn_1_E5430(s16);
 extern Obj *fn_1_E54A8(s16, s16);
 extern u8 *fn_1_14F04(void);
 extern u32 fn_1_20A5C(void *, void *);
-extern void fn_1_17920(u32, u32, f32);
+extern void fn_1_17920(u32, f32, u32);
 extern s16 fn_1_7B054(void);
 extern f32 lbl_8006D668(void *);
 
 static inline f32 fn_1_E2AE8_read_pointer(PoolType * owner) { return owner->f0; }
 #pragma opt_dead_assignments off
-static inline void fn_1_E2AE8_call_fn_1_17920(u32 a0, u32 a1, f32 a2) { fn_1_17920(a0, a1, a2); }
+static inline void fn_1_E2AE8_call_fn_1_17920(u32 a0, u32 a1, f32 a2) { fn_1_17920(a0, a2, a1); }
 void fn_1_E2AE8(void) {
     PoolType *pool;
     s16 n;
