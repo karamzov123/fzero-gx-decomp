@@ -4778,13 +4778,13 @@
         "80083B14"
       ],
       "functions": [
-        "fn_80082908",
-        "fn_80082928",
-        "fn_800829EC",
+        "rand",
+        "sscanf",
+        "__StringRead",
         "fn_80082A7C",
         "fn_80083428",
-        "fn_80083970",
-        "fn_800839D8"
+        "strstr",
+        "strtok"
       ],
       "how": {
         "sdk-order": 7
@@ -4801,11 +4801,11 @@
         "strrchr",
         "strchr",
         "strncmp",
-        "fn_80083BCC",
-        "fn_80083CF4",
+        "strcmp",
+        "strncat",
         "strcat",
         "strncpy",
-        "fn_80083DB0",
+        "strcpy",
         "strlen"
       ],
       "how": {

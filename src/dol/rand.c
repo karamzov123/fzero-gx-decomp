@@ -126,7 +126,7 @@ void *memchr(const void *src, int val, size_t n);
 char *strchr(const char *string, int character);
 size_t strlen(const char *string);
 /* strcpy */
-char *fn_80083DB0(char *destination, const char *source);
+char *strcpy(char *destination, const char *source);
 int wcstombs(char *dst, const wchar_t *src, size_t n);
 void *__va_arg(__va_list args, int type);
 
@@ -192,18 +192,18 @@ extern void qsort(void *base, unsigned long count, unsigned long size,
 void qsort(void *base, size_t count, size_t size,
                  int (*compare)(const void *, const void *));
 
-/* --- dol/fn_80082908.c --- */
-/* --- dol/fn_80082908.c --- */
+/* --- dol/rand.c --- */
+/* --- dol/rand.c --- */
 extern u32 lbl_801A6638;
 
-u32 fn_80082908(void) {
+u32 rand(void) {
     u32 v0;
     v0 = ((lbl_801A6638 * (0x41C60000 + 20077)) + 12345);
     lbl_801A6638 = v0;
     return ((v0 >> 16) & 0x7FFF);
 }
 
-/* --- dol/fn_80082928.c --- */
+/* --- dol/sscanf.c --- */
 typedef struct {
     char *ptr;
     s32 count;
@@ -217,10 +217,10 @@ typedef struct {
     u32 pad[2];
 } LocalBlock;
 
-extern void fn_800829EC(void);
+extern void __StringRead(void);
 extern s32 fn_80082A7C(void (*callback)(void), FormatContext *ctx, const char *fmt, void *ap);
 
-s32 fn_80082928(char *dst, const char *fmt, ...) {
+s32 sscanf(char *dst, const char *fmt, ...) {
     LocalBlock block;
 
     block.ap[0] = 0x02000000;
@@ -231,5 +231,5 @@ s32 fn_80082928(char *dst, const char *fmt, ...) {
         return -1;
     }
     block.ctx.count = 0;
-    return fn_80082A7C(fn_800829EC, &block.ctx, fmt, block.ap);
+    return fn_80082A7C(__StringRead, &block.ctx, fmt, block.ap);
 }

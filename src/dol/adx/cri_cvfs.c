@@ -1,6 +1,6 @@
 #include "types.h"
 int sprintf(char* s, const char* format, ...);
-char* fn_80083DB0(char* dst, const char* src);
+char* strcpy(char* dst, const char* src);
 int strncmp(const char* s1, const char* s2, unsigned long n);
 unsigned long strlen(const char* s);
 void* memcpy(void* dst, const void* src, unsigned long n);
@@ -255,7 +255,7 @@ static inline void toUpperStr(char* string)
 
 static inline void cvfs_add_dev_inline(char* file, const char* device)
 {
-    fn_80083DB0(add_dev_tmp, file);
+    strcpy(add_dev_tmp, file);
     sprintf(file, fzgx_pool_path_format, device, add_dev_tmp);
 }
 #pragma push
@@ -429,7 +429,7 @@ static inline CvFsInterface* resolveDevice(char* device, char* file,
         if (interface == NULL) {
             return NULL;
         }
-        fn_80083DB0(file, original_path);
+        strcpy(file, original_path);
     }
     return interface;
 }

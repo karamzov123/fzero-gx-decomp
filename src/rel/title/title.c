@@ -131,7 +131,7 @@ extern void fn_1_496FC(f32, f32);
 extern u32 fn_1_7BA08();
 extern u32 fn_1_7BA48();
 extern u32 fn_1_F453C();
-extern void * fn_80083DB0();
+extern void * strcpy();
 extern void fn_8_784();
 
 /* fzgx:begin _prolog */
@@ -9328,7 +9328,7 @@ break;
 }
 OSReport("@#$@#$@$  %s\n", (*(fn_8_2660_u8 (*)[0x100])&lbl_8_bss_242__fzgx_offset_26));
 if ((*(fn_8_2660_s32 *)&lbl_801A66B4) != 5) {
-fn_80083DB0((fn_8_2660_u32)buf64, (fn_8_2660_u32)(*(fn_8_2660_u8 (*)[0x100])&lbl_8_bss_242__fzgx_offset_26));
+strcpy((fn_8_2660_u32)buf64, (fn_8_2660_u32)(*(fn_8_2660_u8 (*)[0x100])&lbl_8_bss_242__fzgx_offset_26));
 src = (fn_8_2660_u8 *)buf64;
 dst = (*(fn_8_2660_u8 (*)[0x100])&lbl_8_bss_242__fzgx_offset_26);
 while (*src != 0) {
@@ -9351,7 +9351,7 @@ OSReport("@#$@#$@$  %s\n", (*(fn_8_2660_u8 (*)[0x100])&lbl_8_bss_242__fzgx_offse
 if ((*(fn_8_2660_u8 (*)[0x100])&lbl_8_bss_242__fzgx_offset_26)[0] == 0) {
 sprintf((char *)(*(fn_8_2660_u8 (*)[0x100])&lbl_8_bss_242__fzgx_offset_26), "\x83G\x83t\x83[\x83\x8D");
 }
-fn_80083DB0((fn_8_2660_u32)((fn_8_2660_u8 *)&lbl_1_bss_718E0 + 0x5522), (fn_8_2660_u32)(*(fn_8_2660_u8 (*)[0x100])&lbl_8_bss_242__fzgx_offset_26));
+strcpy((fn_8_2660_u32)((fn_8_2660_u8 *)&lbl_1_bss_718E0 + 0x5522), (fn_8_2660_u32)(*(fn_8_2660_u8 (*)[0x100])&lbl_8_bss_242__fzgx_offset_26));
 fn_1_F7954();
 fn_1_B7CE4(1, buf84);
 ((fn_8_2660_u8 *)buf84)[8] = 0x20;
@@ -10026,11 +10026,11 @@ void fn_8_5B44(void) {
     (*(TitleDisplayState *)&lbl_1_bss_58).unk_1C = 0;
 
     if ((*(TitleDisplayState *)&lbl_1_bss_58).unk_15 == 2) {
-        fn_80083DB0(lbl_1_bss_198, data + 0x7e2c);
+        strcpy(lbl_1_bss_198, data + 0x7e2c);
     } else {
-        fn_80083DB0(lbl_1_bss_198, data + 0x7e3c);
+        strcpy(lbl_1_bss_198, data + 0x7e3c);
     }
-    fn_80083DB0(lbl_1_bss_198 + 0x40, data + 0x7e4c);
+    strcpy(lbl_1_bss_198 + 0x40, data + 0x7e4c);
 
     (*(TitleDisplayState *)&lbl_1_bss_58).unk_14 = 4;
     (*(TitleDisplayState *)&lbl_1_bss_58).unk_16 = 1;

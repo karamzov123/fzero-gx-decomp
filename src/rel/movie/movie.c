@@ -240,9 +240,9 @@ extern void OSPanic(const char *, int, const char *, ...);
 extern int sprintf(char *, const char *, ...);
 extern int strncmp(const char *, const char *, u32);
 extern char *strchr(const char *, int);
-extern char *fn_80083DB0(char *, const char *);
-extern int fn_80083BCC(const char *, const char *);
-extern s32 fn_80082928(const char *, const char *, ...);
+extern char *strcpy(char *, const char *);
+extern int strcmp(const char *, const char *);
+extern s32 sscanf(const char *, const char *, ...);
 extern void fn_80008BEC(void *, int, u32);
 extern u32 fn_800068F4(void (*)(void));
 extern u32 fn_80006904(void (*)(void));
@@ -379,7 +379,7 @@ void _prolog(void) {
     }
     lbl_1_bss_970.unk_0 = 0;
     lbl_1_bss_970.unk_4 = 0;
-    if (fn_80083BCC(lbl_1_bss_198[0], "TESTMODE") != 0) { lbl_1_bss_96A = 0x83; } else { lbl_1_bss_96A = 0x82; }
+    if (strcmp(lbl_1_bss_198[0], "TESTMODE") != 0) { lbl_1_bss_96A = 0x83; } else { lbl_1_bss_96A = 0x82; }
     lbl_1_bss_7167C = (u32)&fn_5_200;
     lbl_1_bss_71680 = (u32)&fn_5_220;
     lbl_1_bss_71684 = (u32)&fn_5_320;
@@ -750,28 +750,28 @@ void fn_5_7A0(void) {
             fn_5_3C44();
         }
         switch (CUR_ID) {
-        case 3: fn_80083DB0(lbl_1_bss_198[0], "movie/story00"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
-        case 4: fn_80083DB0(lbl_1_bss_198[0], "movie/story01A"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
-        case 5: fn_80083DB0(lbl_1_bss_198[0], "movie/story01B"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
-        case 6: fn_80083DB0(lbl_1_bss_198[0], "movie/story02A"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
-        case 7: fn_80083DB0(lbl_1_bss_198[0], "movie/story02B"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
-        case 8: fn_80083DB0(lbl_1_bss_198[0], "movie/story03A"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
-        case 9: fn_80083DB0(lbl_1_bss_198[0], "movie/story03B"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
-        case 10: fn_80083DB0(lbl_1_bss_198[0], "movie/story04A"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
-        case 11: fn_80083DB0(lbl_1_bss_198[0], "movie/story04B"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
-        case 12: fn_80083DB0(lbl_1_bss_198[0], "movie/story05A"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
-        case 13: fn_80083DB0(lbl_1_bss_198[0], "movie/story05B"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
-        case 14: fn_80083DB0(lbl_1_bss_198[0], "movie/story06A"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
-        case 15: fn_80083DB0(lbl_1_bss_198[0], "movie/story06B"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
-        case 16: fn_80083DB0(lbl_1_bss_198[0], "movie/story07A"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
-        case 17: fn_80083DB0(lbl_1_bss_198[0], "movie/story07B"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
-        case 18: fn_80083DB0(lbl_1_bss_198[0], "movie/story08A"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
-        case 19: fn_80083DB0(lbl_1_bss_198[0], "movie/story08B"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
-        case 20: fn_80083DB0(lbl_1_bss_198[0], "movie/story09A"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
+        case 3: strcpy(lbl_1_bss_198[0], "movie/story00"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
+        case 4: strcpy(lbl_1_bss_198[0], "movie/story01A"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
+        case 5: strcpy(lbl_1_bss_198[0], "movie/story01B"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
+        case 6: strcpy(lbl_1_bss_198[0], "movie/story02A"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
+        case 7: strcpy(lbl_1_bss_198[0], "movie/story02B"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
+        case 8: strcpy(lbl_1_bss_198[0], "movie/story03A"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
+        case 9: strcpy(lbl_1_bss_198[0], "movie/story03B"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
+        case 10: strcpy(lbl_1_bss_198[0], "movie/story04A"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
+        case 11: strcpy(lbl_1_bss_198[0], "movie/story04B"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
+        case 12: strcpy(lbl_1_bss_198[0], "movie/story05A"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
+        case 13: strcpy(lbl_1_bss_198[0], "movie/story05B"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
+        case 14: strcpy(lbl_1_bss_198[0], "movie/story06A"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
+        case 15: strcpy(lbl_1_bss_198[0], "movie/story06B"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
+        case 16: strcpy(lbl_1_bss_198[0], "movie/story07A"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
+        case 17: strcpy(lbl_1_bss_198[0], "movie/story07B"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
+        case 18: strcpy(lbl_1_bss_198[0], "movie/story08A"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
+        case 19: strcpy(lbl_1_bss_198[0], "movie/story08B"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
+        case 20: strcpy(lbl_1_bss_198[0], "movie/story09A"); goto single; /* fzgx-allow: S1 cases 3-21 share the single-movie tail */
         case 21:
-            fn_80083DB0(lbl_1_bss_198[0], "movie/story09B");
+            strcpy(lbl_1_bss_198[0], "movie/story09B");
         single:
-            fn_80083DB0(lbl_1_bss_198[1], "end");
+            strcpy(lbl_1_bss_198[1], "end");
             sKind = 0;
             sVolume = -1;
             sScaleX = 1.0f;
@@ -783,31 +783,31 @@ void fn_5_7A0(void) {
             sDeflicker = 1;
             break;
         case 30:
-            fn_80083DB0(lbl_1_bss_198[0], "MAXON");
-            fn_80083DB0(lbl_1_bss_198[1], "BGMED");
-            fn_80083DB0(lbl_1_bss_198[2], "movie/story09B");
-            fn_80083DB0(lbl_1_bss_198[3], "STRL");
-            fn_80083DB0(lbl_1_bss_198[4], "MAXOFF");
-            fn_80083DB0(lbl_1_bss_198[5], "WAIT_0100");
-            fn_80083DB0(lbl_1_bss_198[6], "CUT0010");
-            fn_80083DB0(lbl_1_bss_198[7], "movie/story01B");
-            fn_80083DB0(lbl_1_bss_198[8], "CUT0140");
-            fn_80083DB0(lbl_1_bss_198[9], "movie/story02B");
-            fn_80083DB0(lbl_1_bss_198[10], "CUT0010");
-            fn_80083DB0(lbl_1_bss_198[11], "movie/story03B");
-            fn_80083DB0(lbl_1_bss_198[12], "CUT0065");
-            fn_80083DB0(lbl_1_bss_198[13], "movie/story04B");
-            fn_80083DB0(lbl_1_bss_198[14], "CUT0070");
-            fn_80083DB0(lbl_1_bss_198[15], "movie/story05B");
-            fn_80083DB0(lbl_1_bss_198[16], "CUT0080");
-            fn_80083DB0(lbl_1_bss_198[17], "movie/story06B");
-            fn_80083DB0(lbl_1_bss_198[18], "CUT1190");
-            fn_80083DB0(lbl_1_bss_198[19], "movie/story07B");
-            fn_80083DB0(lbl_1_bss_198[20], "CUT0000");
-            fn_80083DB0(lbl_1_bss_198[21], "movie/story08B");
-            fn_80083DB0(lbl_1_bss_198[22], "BGMOU_0500_0500");
-            fn_80083DB0(lbl_1_bss_198[23], "WAIT_1200");
-            fn_80083DB0(lbl_1_bss_198[24], "end");
+            strcpy(lbl_1_bss_198[0], "MAXON");
+            strcpy(lbl_1_bss_198[1], "BGMED");
+            strcpy(lbl_1_bss_198[2], "movie/story09B");
+            strcpy(lbl_1_bss_198[3], "STRL");
+            strcpy(lbl_1_bss_198[4], "MAXOFF");
+            strcpy(lbl_1_bss_198[5], "WAIT_0100");
+            strcpy(lbl_1_bss_198[6], "CUT0010");
+            strcpy(lbl_1_bss_198[7], "movie/story01B");
+            strcpy(lbl_1_bss_198[8], "CUT0140");
+            strcpy(lbl_1_bss_198[9], "movie/story02B");
+            strcpy(lbl_1_bss_198[10], "CUT0010");
+            strcpy(lbl_1_bss_198[11], "movie/story03B");
+            strcpy(lbl_1_bss_198[12], "CUT0065");
+            strcpy(lbl_1_bss_198[13], "movie/story04B");
+            strcpy(lbl_1_bss_198[14], "CUT0070");
+            strcpy(lbl_1_bss_198[15], "movie/story05B");
+            strcpy(lbl_1_bss_198[16], "CUT0080");
+            strcpy(lbl_1_bss_198[17], "movie/story06B");
+            strcpy(lbl_1_bss_198[18], "CUT1190");
+            strcpy(lbl_1_bss_198[19], "movie/story07B");
+            strcpy(lbl_1_bss_198[20], "CUT0000");
+            strcpy(lbl_1_bss_198[21], "movie/story08B");
+            strcpy(lbl_1_bss_198[22], "BGMOU_0500_0500");
+            strcpy(lbl_1_bss_198[23], "WAIT_1200");
+            strcpy(lbl_1_bss_198[24], "end");
             sKind = 2;
             lbl_1_bss_970.unk_0 = 1;
             sWidth = 0x280;
@@ -828,14 +828,14 @@ void fn_5_7A0(void) {
             sVolume = 0;
             break;
         case 31:
-            fn_80083DB0(lbl_1_bss_198[0], "STRL");
-            fn_80083DB0(lbl_1_bss_198[1], "CAP01_0900");
-            fn_80083DB0(lbl_1_bss_198[2], "CAP02_0900");
-            fn_80083DB0(lbl_1_bss_198[3], "CAP03_0900");
-            fn_80083DB0(lbl_1_bss_198[4], "CAP04_0900");
-            fn_80083DB0(lbl_1_bss_198[5], "CAP05_0900");
-            fn_80083DB0(lbl_1_bss_198[6], "CAP06_0900");
-            fn_80083DB0(lbl_1_bss_198[7], "end");
+            strcpy(lbl_1_bss_198[0], "STRL");
+            strcpy(lbl_1_bss_198[1], "CAP01_0900");
+            strcpy(lbl_1_bss_198[2], "CAP02_0900");
+            strcpy(lbl_1_bss_198[3], "CAP03_0900");
+            strcpy(lbl_1_bss_198[4], "CAP04_0900");
+            strcpy(lbl_1_bss_198[5], "CAP05_0900");
+            strcpy(lbl_1_bss_198[6], "CAP06_0900");
+            strcpy(lbl_1_bss_198[7], "end");
             sWidth = 0x140;
             sHeight = 0xF0;
             if (sBackground != 0) {
@@ -856,27 +856,27 @@ void fn_5_7A0(void) {
         case 64: case 65: case 66: case 67: case 68: case 69: case 70: case 71:
         case 72: case 73: case 74: case 75: case 76: case 77: case 78: case 79:
         case 80:
-            fn_80083DB0(lbl_1_bss_198[0], "STRL");
-            fn_80083DB0(lbl_1_bss_198[1], "WAIT_0200");
+            strcpy(lbl_1_bss_198[0], "STRL");
+            strcpy(lbl_1_bss_198[1], "WAIT_0200");
             sprintf(lbl_1_bss_198[2], "BMP%02d_0300", CUR_ID - 40);
-            fn_80083DB0(lbl_1_bss_198[3], "BGMINM0120_0240");
+            strcpy(lbl_1_bss_198[3], "BGMINM0120_0240");
             sprintf(lbl_1_bss_198[4], "movie/ending/%s", lbl_1_data_370[CUR_ID - 40]);
-            fn_80083DB0(lbl_1_bss_198[5], "WAIT_0200");
-            fn_80083DB0(lbl_1_bss_198[6], "CAP01_0900");
-            fn_80083DB0(lbl_1_bss_198[7], "WAIT_0200");
-            fn_80083DB0(lbl_1_bss_198[8], "CAP02_0900");
-            fn_80083DB0(lbl_1_bss_198[9], "WAIT_0200");
-            fn_80083DB0(lbl_1_bss_198[10], "CAP03_0900");
-            fn_80083DB0(lbl_1_bss_198[11], "WAIT_0200");
-            fn_80083DB0(lbl_1_bss_198[12], "CAP04_0900");
-            fn_80083DB0(lbl_1_bss_198[13], "WAIT_0200");
-            fn_80083DB0(lbl_1_bss_198[14], "CAP05_0900");
-            fn_80083DB0(lbl_1_bss_198[15], "WAIT_0200");
-            fn_80083DB0(lbl_1_bss_198[16], "CAP06_0900");
-            fn_80083DB0(lbl_1_bss_198[17], "STRLWAIT");
-            fn_80083DB0(lbl_1_bss_198[18], "BGMOU_0200_0500");
-            fn_80083DB0(lbl_1_bss_198[19], "WAIT_0600");
-            fn_80083DB0(lbl_1_bss_198[20], "end");
+            strcpy(lbl_1_bss_198[5], "WAIT_0200");
+            strcpy(lbl_1_bss_198[6], "CAP01_0900");
+            strcpy(lbl_1_bss_198[7], "WAIT_0200");
+            strcpy(lbl_1_bss_198[8], "CAP02_0900");
+            strcpy(lbl_1_bss_198[9], "WAIT_0200");
+            strcpy(lbl_1_bss_198[10], "CAP03_0900");
+            strcpy(lbl_1_bss_198[11], "WAIT_0200");
+            strcpy(lbl_1_bss_198[12], "CAP04_0900");
+            strcpy(lbl_1_bss_198[13], "WAIT_0200");
+            strcpy(lbl_1_bss_198[14], "CAP05_0900");
+            strcpy(lbl_1_bss_198[15], "WAIT_0200");
+            strcpy(lbl_1_bss_198[16], "CAP06_0900");
+            strcpy(lbl_1_bss_198[17], "STRLWAIT");
+            strcpy(lbl_1_bss_198[18], "BGMOU_0200_0500");
+            strcpy(lbl_1_bss_198[19], "WAIT_0600");
+            strcpy(lbl_1_bss_198[20], "end");
             sWidth = 0x140;
             sHeight = 0xF0;
             if (sBackground != 0) {
@@ -1024,7 +1024,7 @@ void fn_5_169C(void) {
     fn_80008BEC(&sFrame, 0, 0x4C);
     sLineCount = 0;
     command = sCommands;
-    while (fn_80083BCC(lbl_1_bss_198[sLineCount], "end") != 0) {
+    while (strcmp(lbl_1_bss_198[sLineCount], "end") != 0) {
         char language[2] = "";
         command->type = 0;
         if (strncmp(lbl_1_bss_198[sLineCount], "CUT", 3) == 0) {
@@ -1722,7 +1722,7 @@ u32 fn_5_3E74(MovieSubtitle *subtitle) {
 
     count = 0;
     bracket = 0;
-    fn_80082928(sSubtitleText, "%d,%d,%d,%d,%255c", &subtitle->start, &subtitle->length,
+    sscanf(sSubtitleText, "%d,%d,%d,%d,%255c", &subtitle->start, &subtitle->length,
                 &subtitle->size, &subtitle->line, subtitle->text);
     if (subtitle->start == -1) {
         sSubtitleText = 0;

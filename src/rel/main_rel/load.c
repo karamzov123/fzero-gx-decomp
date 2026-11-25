@@ -20,7 +20,7 @@ extern void fn_1_4F724(void);
 
 extern u8 lbl_1_bss_3E024[52];
 extern char lbl_1_data_1A3AC[5];
-extern void fn_80083DB0(void *arg0, void *arg1);
+extern void strcpy(void *arg0, void *arg1);
 extern u32 fn_80006CE4(u32);
 extern void *fn_80006DE8(void *);
 extern u32 lbl_801A6410;
@@ -723,7 +723,7 @@ extern void fn_1_4F724(void);
 
 extern u8 lbl_1_bss_3E024[52];
 extern char lbl_1_data_1A3AC[5];
-extern void fn_80083DB0(void *arg0, void *arg1);
+extern void strcpy(void *arg0, void *arg1);
 extern u32 fn_80006CE4(u32);
 extern void *fn_80006DE8(void *);
 extern u32 lbl_801A6410;
@@ -1032,7 +1032,7 @@ void fn_1_45E98(u32 arg0, void *arg1) {
 extern int fn_1_45E98(void *arg0, void **result);
 extern s32 fn_8000700C();
 extern int fn_80006C2C(int status, void *arg0);
-extern char *fn_80083DB0(char *dst, const char *src);
+extern char *strcpy(char *dst, const char *src);
 extern u32 fn_1_46EC8(void);
 extern u32 fn_1_46ED8(void);
 extern u32 lbl_1_bss_3DCE4[17];
@@ -1295,7 +1295,7 @@ typedef struct Fn464BCObject {
 } Fn464BCObject;
 
 extern u16 lbl_1_data_67CC;
-extern void fn_80083DB0(void *arg0, void *arg1);
+extern void strcpy(void *arg0, void *arg1);
 
 void fn_1_464BC(Fn464BCObject *object, u32 index, void *arg2, void *arg3) {
     void *result;
@@ -1308,16 +1308,16 @@ void fn_1_464BC(Fn464BCObject *object, u32 index, void *arg2, void *arg3) {
     entry = &base[index];
     result = fn_1_4630(lbl_801A6410, (u32)arg3, (*(u8 (*)[76])&lbl_1_data_6730), 0x3f4);
     value = entry->unk_00;
-    fn_80083DB0(arg2, object->unk_10 + (value & 0x00ffffff));
+    strcpy(arg2, object->unk_10 + (value & 0x00ffffff));
 
     while (entry > base) {
         value = entry->unk_00;
         flag = (value & 0xff000000) != 0;
         if (flag != 0) {
-            fn_80083DB0(result, object->unk_10 + (value & 0x00ffffff));
+            strcpy(result, object->unk_10 + (value & 0x00ffffff));
             strcat(result, &lbl_1_data_67CC);
             strcat(result, arg2);
-            fn_80083DB0(arg2, result);
+            strcpy(arg2, result);
             entry = &base[entry->unk_04];
         } else {
             entry--;
@@ -1640,7 +1640,7 @@ extern void fn_1_4F724(void);
 
 extern u8 lbl_1_bss_3E024[52];
 extern char lbl_1_data_1A3AC[5];
-extern void fn_80083DB0(void *arg0, void *arg1);
+extern void strcpy(void *arg0, void *arg1);
 extern u32 fn_80006CE4(u32);
 extern void *fn_80006DE8(void *);
 extern u32 lbl_801A6410;
@@ -1732,7 +1732,7 @@ extern void fn_1_4F724(void);
 
 extern u8 lbl_1_bss_3E024[52];
 extern char lbl_1_data_1A3AC[5];
-extern void fn_80083DB0(void *arg0, void *arg1);
+extern void strcpy(void *arg0, void *arg1);
 extern u32 fn_80006CE4(u32);
 extern void *fn_80006DE8(void *);
 extern u32 lbl_801A6410;
@@ -1817,7 +1817,7 @@ extern void fn_1_4F724(void);
 
 extern u8 lbl_1_bss_3E024[52];
 extern char lbl_1_data_1A3AC[5];
-extern void fn_80083DB0(void *arg0, void *arg1);
+extern void strcpy(void *arg0, void *arg1);
 extern u32 fn_80006CE4(u32);
 extern void *fn_80006DE8(void *);
 extern u32 lbl_801A6410;

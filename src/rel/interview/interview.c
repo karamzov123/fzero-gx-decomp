@@ -32,7 +32,7 @@ extern s16 lbl_1_bss_962;
 extern u32 lbl_1_bss_71688;
 extern u32 lbl_1_bss_7168C;
 extern const f32 lbl_17_rodata_18;
-extern char *fn_80083DB0(char *, const char *);
+extern char *strcpy(char *, const char *);
 extern char lbl_1_bss_198[];
 extern const char *lbl_1_data_370[];
 extern void fn_17_48D0(void);
@@ -367,32 +367,32 @@ void fn_17_3F0(void) {
     const char * lab_t1;
     base = (const u8 *)&lbl_17_data_0 + 0x60000;
     info = (InterviewInfo *)lbl_17_bss_10;
-    fn_80083DB0(lbl_1_bss_198, (const char *)(base + 0x3e5c));
-    fn_80083DB0(lbl_1_bss_198 + 0x40, (const char *)(base + 0x3e64));
+    strcpy(lbl_1_bss_198, (const char *)(base + 0x3e5c));
+    strcpy(lbl_1_bss_198 + 0x40, (const char *)(base + 0x3e64));
     n = info->unk_5;
     if (n == 30) { t = 0; } else { t = n + 1; if (n > 30) t = n; }
     sprintf(lbl_1_bss_198 + 0x80, (const char *)(base + 0x3e70), t);
     lab_t1 = (const char *)(base + 0x3e80);
-    fn_80083DB0(lbl_1_bss_198 + 0xc0, lab_t1);
+    strcpy(lbl_1_bss_198 + 0xc0, lab_t1);
     n = info->unk_5;
     if (n == 30) { t = 0; } else { t = n + 1; if (n > 30) t = n; }
     sprintf(lbl_1_bss_198 + 0x100, (const char *)(base + 0x3e90), lbl_1_data_370[t]);
-    fn_80083DB0(lbl_1_bss_198 + 0x140, (const char *)(base + 0x3e64));
-    fn_80083DB0(lbl_1_bss_198 + 0x180, (const char *)(base + 0x3ea0));
-    fn_80083DB0(lbl_1_bss_198 + 0x1c0, (const char *)(base + 0x3e64));
-    fn_80083DB0(lbl_1_bss_198 + 0x200, (const char *)(base + 0x3eac));
-    fn_80083DB0(lbl_1_bss_198 + 0x240, (const char *)(base + 0x3e64));
-    fn_80083DB0(lbl_1_bss_198 + 0x280, (const char *)(base + 0x3eb8));
-    fn_80083DB0(lbl_1_bss_198 + 0x2c0, (const char *)(base + 0x3e64));
-    fn_80083DB0(lbl_1_bss_198 + 0x300, (const char *)(base + 0x3ec4));
-    fn_80083DB0(lbl_1_bss_198 + 0x340, (const char *)(base + 0x3e64));
-    fn_80083DB0(lbl_1_bss_198 + 0x380, (const char *)(base + 0x3ed0));
-    fn_80083DB0(lbl_1_bss_198 + 0x3c0, (const char *)(base + 0x3e64));
-    fn_80083DB0(lbl_1_bss_198 + 0x400, (const char *)(base + 0x3edc));
-    fn_80083DB0(lbl_1_bss_198 + 0x440, (const char *)(base + 0x3ee8));
-    fn_80083DB0(lbl_1_bss_198 + 0x480, (const char *)(base + 0x3ef4));
-    fn_80083DB0(lbl_1_bss_198 + 0x4c0, (const char *)(base + 0x3f04));
-    fn_80083DB0(lbl_1_bss_198 + 0x500, (const char *)(base + 0x3f10));
+    strcpy(lbl_1_bss_198 + 0x140, (const char *)(base + 0x3e64));
+    strcpy(lbl_1_bss_198 + 0x180, (const char *)(base + 0x3ea0));
+    strcpy(lbl_1_bss_198 + 0x1c0, (const char *)(base + 0x3e64));
+    strcpy(lbl_1_bss_198 + 0x200, (const char *)(base + 0x3eac));
+    strcpy(lbl_1_bss_198 + 0x240, (const char *)(base + 0x3e64));
+    strcpy(lbl_1_bss_198 + 0x280, (const char *)(base + 0x3eb8));
+    strcpy(lbl_1_bss_198 + 0x2c0, (const char *)(base + 0x3e64));
+    strcpy(lbl_1_bss_198 + 0x300, (const char *)(base + 0x3ec4));
+    strcpy(lbl_1_bss_198 + 0x340, (const char *)(base + 0x3e64));
+    strcpy(lbl_1_bss_198 + 0x380, (const char *)(base + 0x3ed0));
+    strcpy(lbl_1_bss_198 + 0x3c0, (const char *)(base + 0x3e64));
+    strcpy(lbl_1_bss_198 + 0x400, (const char *)(base + 0x3edc));
+    strcpy(lbl_1_bss_198 + 0x440, (const char *)(base + 0x3ee8));
+    strcpy(lbl_1_bss_198 + 0x480, (const char *)(base + 0x3ef4));
+    strcpy(lbl_1_bss_198 + 0x4c0, (const char *)(base + 0x3f04));
+    strcpy(lbl_1_bss_198 + 0x500, (const char *)(base + 0x3f10));
     mode = lbl_801A66B4;
     neg = -1;
     cfg = &lbl_1_bss_58;
@@ -129321,7 +129321,7 @@ extern u32 lbl_801A63C0;
 extern s8 fn_1_A5DC4(void);
 extern s32 fn_1_4E724(fn_17_613C_InterviewTextParams *);
 extern InterviewModel *fn_80071268(void *, char *);
-extern int fn_80083BCC(const char *, const char *);
+extern int strcmp(const char *, const char *);
 extern f32 lbl_8006D21C(s32);
 extern void lbl_8006D758(void);
 extern void *fn_80077A20(InterviewModel *, void **);
@@ -129381,7 +129381,7 @@ void fn_17_613C(void) {
     for (i = 0; i < work->entry_counts[work->index]; i++) {
         entry = &work->entries[work->index][i];
         model = fn_80071268(base, entry->name);
-        if (fn_80083BCC(entry->name, (*(char (*)[])&lbl_17_data_6437C)) == 0) {
+        if (strcmp(entry->name, (*(char (*)[])&lbl_17_data_6437C)) == 0) {
         f32 rate = lbl_8006D21C(0x71C);
         fn_17_613C_InterviewVec pos;
         fn_17_613C_InterviewVec ofs = {0.0f, 0.0f, -0.01f};
@@ -143825,7 +143825,7 @@ extern u32 lbl_1_bss_6EAB4;
 extern u32 lbl_1_bss_6EAD0;
 
 extern void fn_1_97204(void *arg0, void *arg1);
-extern s32 fn_80083BCC(void *arg0, void *arg1);
+extern s32 strcmp(void *arg0, void *arg1);
 extern void fn_8004BF0C(void *arg0, s32 arg1);
 
 void fn_17_6F30(InterviewObject *object) {
@@ -143851,7 +143851,7 @@ void fn_17_6F30(InterviewObject *object) {
     }
     substate = &lbl_17_bss_D8;
     fn_1_97204(substate->field4, value);
-    result = fn_80083BCC(value, lbl_17_data_6445C);
+    result = strcmp(value, lbl_17_data_6445C);
     flags = lbl_17_bss_58[0];
     if (result == 0) {
         flags = flags | 0x00800000;

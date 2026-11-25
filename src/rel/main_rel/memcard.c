@@ -12,7 +12,7 @@ extern void CARDFormatAsync(u8 byte, int value);
 extern const f32 lbl_1_rodata_4CA8;
 extern const f64 lbl_1_rodata_4CB0;
 extern const f32 lbl_1_rodata_4CAC;
-extern void fn_80083DB0(void *dst, void *src);
+extern void strcpy(void *dst, void *src);
 extern void strcat(void *dst, void *src);
 extern void CARDDeleteAsync(u8 byte, void *data, int arg);
 extern s32 CARDFreeBlocks(u8 byte_val, void *arg1, void *arg2);
@@ -355,7 +355,7 @@ typedef struct {
 void fn_1_AB8D8(fn_1_AB8D8_ArgStruct *arg) {
     u8 data[0x40];
 
-    fn_80083DB0(data, (u8 *)arg->ptr_0x24 + 0x98);
+    strcpy(data, (u8 *)arg->ptr_0x24 + 0x98);
     strcat(data, lbl_1_data_3C89C);
     ((u16 *)arg->ptr_0x24)[1] = 0x12c;
     CARDDeleteAsync(arg->byte_0, data, 0);
@@ -513,7 +513,7 @@ typedef struct {
 void fn_1_ABAAC(fn_1_ABAAC_ArgStruct *arg) {
     u8 local[0x40];
 
-    fn_80083DB0(local, (u8 *)arg->ptr_0x24 + 0x98);
+    strcpy(local, (u8 *)arg->ptr_0x24 + 0x98);
     strcat(local, lbl_1_data_3C7C4);
     arg->ptr_0x24->field_0x4 =
         CARDOpen(arg->byte_0, local, arg->data_0x10);
@@ -683,7 +683,7 @@ typedef struct {
 void fn_1_ABCE8(fn_1_ABCE8_ArgStruct *arg) {
     u8 local[0x40];
 
-    fn_80083DB0(local, (u8 *)arg->ptr_0x24 + 0x98);
+    strcpy(local, (u8 *)arg->ptr_0x24 + 0x98);
     strcat(local, lbl_1_data_3C89C);
     arg->ptr_0x24->field_0x2 = 0x12c;
     CARDCreateAsync(arg->byte_0, local, arg->ptr_0x24->ptr_0xc,
@@ -848,7 +848,7 @@ void fn_1_ABF44(Fn1ABF44Object *arg) {
     s32 aligned;
 
     arg->state->field_0x2 = 300;
-    fn_80083DB0(work, (u8 *)arg->state + 0x98);
+    strcpy(work, (u8 *)arg->state + 0x98);
     strcat(work, lbl_1_data_3C7C4);
     value = CARDOpen(arg->id, work, arg->data_0x10);
     arg->state->field_0x4 = value;
@@ -925,7 +925,7 @@ extern int CARDGetSerialNo(u8 value, void *data);
 extern void CARDCheckAsync(u8 byte_val, int value);
 extern void CARDFormatAsync(u8 byte, int value);
 
-extern void fn_80083DB0(void *dst, void *src);
+extern void strcpy(void *dst, void *src);
 extern void strcat(void *dst, void *src);
 extern s32 CARDOpen(u8 byte_val, void *arg1, void *arg2);
 extern void CARDFastDeleteAsync(u8 byte_val, void *arg, s32 zero);
@@ -1076,7 +1076,7 @@ typedef struct Fn1AC328Target {
 void fn_1_AC328(Fn1AC328Target *target) {
     u8 data[0x40];
 
-    fn_80083DB0(data, (u8 *)target->state + 0x98);
+    strcpy(data, (u8 *)target->state + 0x98);
     strcat(data, lbl_1_data_3C7C4);
     target->state->value = 300;
     CARDDeleteAsync(target->id, data, 0);
@@ -1121,8 +1121,8 @@ void fn_1_AC3DC(Fn1AC3DCTarget *target) {
     u8 data1[0x40];
     u8 data2[0x40];
 
-    fn_80083DB0(data1, (u8 *)target->state + 0x98);
-    fn_80083DB0(data2, (u8 *)target->state + 0x98);
+    strcpy(data1, (u8 *)target->state + 0x98);
+    strcpy(data2, (u8 *)target->state + 0x98);
     strcat(data1, lbl_1_data_3C89C);
     strcat(data2, lbl_1_data_3C7C4);
     target->state->value = 300;
@@ -1998,7 +1998,7 @@ extern int CARDGetSerialNo(u8 value, void *data);
 extern void CARDCheckAsync(u8 byte_val, int value);
 extern void CARDFormatAsync(u8 byte, int value);
 
-extern void fn_80083DB0(void *dst, void *src);
+extern void strcpy(void *dst, void *src);
 extern void strcat(void *dst, void *src);
 extern s32 CARDOpen(u8 byte_val, void *arg1, void *arg2);
 extern void CARDFastDeleteAsync(u8 byte_val, void *arg, s32 zero);
@@ -7191,8 +7191,8 @@ extern s32 CARDUnmount(s32);
 extern BOOL DVDOpen(const char *, Sig_DVDOpen_DVDFileInfo *);
 extern s32 DVDClose(u32);
 extern s32 fn_80006354(Sig_fn_800174D0_Fn800174D0Object *, void *, u32, u32);
-extern s32 fn_80083BCC(void *, void *);
-extern u32 fn_80083DB0(u32, u32);
+extern s32 strcmp(void *, void *);
+extern u32 strcpy(u32, u32);
 extern u32 fn_1_1563E8(u32, u32);
 extern char *strcat(char *, const char *);
 extern char *strncpy(char *, const char *, size_t);
@@ -7585,8 +7585,8 @@ void fn_1_AD264(CardTask *a)
                 a->unk_24->unk_94[2] = a->unk_24->unk_00;
                 a->unk_24->unk_94[3] = node->unk_3E;
                 strncpy((char *)a->unk_24->unk_94 + 4, ("F-ZERO GX"), 0x20);
-                fn_80083DB0((u32)path1, (u32)("./memcard/"));
-                if (lbl_801A66B4 != 5 && fn_80083BCC(node->unk_20, ("sys.bin")) == 0) {
+                strcpy((u32)path1, (u32)("./memcard/"));
+                if (lbl_801A66B4 != 5 && strcmp(node->unk_20, ("sys.bin")) == 0) {
                     strcat(path1, ("sys_e.bin"));
                 } else {
                     strcat(path1, node->unk_20);
@@ -7619,8 +7619,8 @@ void fn_1_AD264(CardTask *a)
                     a->unk_24->unk_94[2] = a->unk_24->unk_00;
                     a->unk_24->unk_94[3] = node->unk_3E;
                     strncpy((char *)a->unk_24->unk_94 + 4, ("F-ZERO GX"), 0x20);
-                    fn_80083DB0((u32)path2, (u32)("./memcard/"));
-                    if (lbl_801A66B4 != 5 && fn_80083BCC(node->unk_20, ("sys.bin")) == 0) {
+                    strcpy((u32)path2, (u32)("./memcard/"));
+                    if (lbl_801A66B4 != 5 && strcmp(node->unk_20, ("sys.bin")) == 0) {
                         strcat(path2, ("sys_e.bin"));
                     } else {
                         strcat(path2, node->unk_20);
@@ -7687,8 +7687,8 @@ void fn_1_AD264(CardTask *a)
                 a->unk_24->unk_94[2] = a->unk_24->unk_00;
                 a->unk_24->unk_94[3] = node->unk_3E;
                 strncpy((char *)a->unk_24->unk_94 + 4, ("F-ZERO GX"), 0x20);
-                fn_80083DB0((u32)path3, (u32)("./memcard/"));
-                if (lbl_801A66B4 != 5 && fn_80083BCC(node->unk_20, ("sys.bin")) == 0) {
+                strcpy((u32)path3, (u32)("./memcard/"));
+                if (lbl_801A66B4 != 5 && strcmp(node->unk_20, ("sys.bin")) == 0) {
                     strcat(path3, ("sys_e.bin"));
                 } else {
                     strcat(path3, node->unk_20);
@@ -7715,8 +7715,8 @@ void fn_1_AD264(CardTask *a)
                 a->unk_24->unk_94[2] = a->unk_24->unk_00;
                 a->unk_24->unk_94[3] = node->unk_3E;
                 strncpy((char *)a->unk_24->unk_94 + 4, ("F-ZERO GX"), 0x20);
-                fn_80083DB0((u32)path4, (u32)("./memcard/"));
-                if (lbl_801A66B4 != 5 && fn_80083BCC(node->unk_20, ("sys.bin")) == 0) {
+                strcpy((u32)path4, (u32)("./memcard/"));
+                if (lbl_801A66B4 != 5 && strcmp(node->unk_20, ("sys.bin")) == 0) {
                     strcat(path4, ("sys_e.bin"));
                 } else {
                     strcat(path4, node->unk_20);
@@ -7758,8 +7758,8 @@ void fn_1_AD264(CardTask *a)
                 a->unk_24->unk_94[2] = a->unk_24->unk_00;
                 a->unk_24->unk_94[3] = node->unk_3E;
                 strncpy((char *)a->unk_24->unk_94 + 4, ("F-ZERO GX"), 0x20);
-                fn_80083DB0((u32)path5, (u32)("./memcard/"));
-                if (lbl_801A66B4 != 5 && fn_80083BCC(node->unk_20, ("sys.bin")) == 0) {
+                strcpy((u32)path5, (u32)("./memcard/"));
+                if (lbl_801A66B4 != 5 && strcmp(node->unk_20, ("sys.bin")) == 0) {
                     strcat(path5, ("sys_e.bin"));
                 } else {
                     strcat(path5, node->unk_20);
@@ -8217,8 +8217,8 @@ extern s32 CARDUnmount(s32);
 extern s32 DVDOpen(const char *, MemcardDvdFileInfo *);
 extern s32 DVDClose(MemcardDvdFileInfo *);
 extern s32 fn_80006354(MemcardDvdFileInfo *, void *, u32, u32);
-extern u32 fn_80083DB0(char *, const char *);
-extern s32 fn_80083BCC(const char *, const char *);
+extern u32 strcpy(char *, const char *);
+extern s32 strcmp(const char *, const char *);
 extern char *strncpy(char *, const char *, u32);
 extern char *strcat(char *, const char *);
 extern void *fn_1_45D0(void *, int, const char *, int);
@@ -8827,8 +8827,8 @@ void fn_1_AECCC(MemcardObj *arg0, u32 unused) {
                         *(u8 *)(arg0->unk_24->unk_94 + 2) = arg0->unk_24->unk_0;
                         *(u8 *)(arg0->unk_24->unk_94 + 3) = hdr->name[0x1E];
                         strncpy((char *)(arg0->unk_24->unk_94 + 4), (const char *)(str + 0x6D04), 0x20);
-                        fn_80083DB0((char *)path.w, (const char *)(str + 0x6D10));
-                        if (lbl_801A66B4 != 5 && fn_80083BCC((const char *)hdr->name, (const char *)(str + 0x6D1C)) == 0) {
+                        strcpy((char *)path.w, (const char *)(str + 0x6D10));
+                        if (lbl_801A66B4 != 5 && strcmp((const char *)hdr->name, (const char *)(str + 0x6D1C)) == 0) {
                             strcat((char *)path.w, (const char *)(str + 0x6D24));
                         } else {
                             strcat((char *)path.w, (const char *)hdr->name);
@@ -9869,7 +9869,7 @@ extern s32 lbl_801A66B4;
 extern const f32 lbl_1_rodata_4CA8;
 extern const char *fn_80019C48(void);
 extern size_t strlen(const char *);
-extern char *fn_80083970(char *, const char *);
+extern char *strstr(char *, const char *);
 extern s32 strncmp(const char *, const char *, size_t);
 extern char *strncpy(char *, const char *, size_t);
 typedef struct FileEntry {
@@ -10029,7 +10029,7 @@ void fn_1_B171C(void *arg0) {
  game = fn_80019C48();
  prefix = lbl_1_rodata_4AE0[2].name;
  len = strlen(prefix);
- end = fn_80083970(p->unk_24->unk_20, (char *)p_lbl_1_data_35AC8 + 0x6CFC);
+ end = strstr(p->unk_24->unk_20, (char *)p_lbl_1_data_35AC8 + 0x6CFC);
  if (!strncmp(p->unk_24->unk_48, game, 4) &&
  !strncmp(p->unk_24->unk_4C, (char *)p_lbl_1_data_35AC8 + 0x7088, 2) &&
  !strncmp(p->unk_24->unk_20, prefix, len) && end != 0) {
@@ -10051,7 +10051,7 @@ void fn_1_B171C(void *arg0) {
  game = fn_80019C48();
  prefix = lbl_1_rodata_4AE0[4].name;
  len = strlen(prefix);
- end = fn_80083970(p->unk_24->unk_20, (char *)p_lbl_1_data_35AC8 + 0x6CFC);
+ end = strstr(p->unk_24->unk_20, (char *)p_lbl_1_data_35AC8 + 0x6CFC);
  if (!strncmp(p->unk_24->unk_48, game, 4) &&
  !strncmp(p->unk_24->unk_4C, (char *)p_lbl_1_data_35AC8 + 0x7088, 2) &&
  !strncmp(p->unk_24->unk_20, prefix, len) && end != 0) {
@@ -10074,7 +10074,7 @@ void fn_1_B171C(void *arg0) {
  game = fn_80019C48();
  prefix = lbl_1_rodata_4AE0[5].name;
  len = strlen(prefix);
- end = fn_80083970(p->unk_24->unk_20, (char *)p_lbl_1_data_35AC8 + 0x6CFC);
+ end = strstr(p->unk_24->unk_20, (char *)p_lbl_1_data_35AC8 + 0x6CFC);
  if (!strncmp(p->unk_24->unk_48, game, 4) &&
  !strncmp(p->unk_24->unk_4C, (char *)p_lbl_1_data_35AC8 + 0x7088, 2) &&
  !strncmp(p->unk_24->unk_20, prefix, len) && end != 0) {
@@ -10162,7 +10162,7 @@ extern void fn_1_46B4(u32, u32, const char *, int);
 extern u32 fn_1_4630(u32, u32, const char *, int);
 extern const char *fn_80019C48(void);
 extern size_t strlen(const char *);
-extern char *fn_80083970(char *, const char *);
+extern char *strstr(char *, const char *);
 extern s32 strncmp(const char *, const char *, size_t);
 extern char *strncpy(char *, const char *, size_t);
 extern int sprintf(char *, const char *, ...);
@@ -10201,8 +10201,8 @@ void fn_1_B22AC(MemcardCtx *ctx, s32 kind) {
     code = fn_80019C48();
     info = &lbl_1_rodata_4AE0[kind];
     len = strlen(info->name);
-    p1 = fn_80083970(ctx->unk_24->unk_20, base + 0x6cfc);
-    p2 = fn_80083970(ctx->unk_24->unk_20, base + 0x6dd4);
+    p1 = strstr(ctx->unk_24->unk_20, base + 0x6cfc);
+    p2 = strstr(ctx->unk_24->unk_20, base + 0x6dd4);
     if (strncmp(ctx->unk_24->unk_48, code, 4) != 0) {
         return;
     }
@@ -11446,7 +11446,7 @@ extern void fn_1_46B4(u32, u32, const char *, int);
 extern void OSReport(const char *, ...);
 extern void OSPanic(const char *, int, const char *, ...);
 extern const char *fn_80019C48(void);
-extern u8 *fn_80083970(u8 *, const u8 *);
+extern u8 *strstr(u8 *, const u8 *);
 extern s32 strncmp(const char *, const char *, u32);
 extern u32 strlen(const char *);
 
@@ -11643,7 +11643,7 @@ void fn_1_B40C0(void *arg0)
             case -4: case -10: s->unk_2C++; break;
             case 0:
                 game = fn_80019C48();
-                end = fn_80083970((u8 *)&s->unk_24->unk_20, p_lbl_1_data_35AC8 + 0x6cfc);
+                end = strstr((u8 *)&s->unk_24->unk_20, p_lbl_1_data_35AC8 + 0x6cfc);
                 if (strncmp((char *)s->unk_24->unk_20.gameName, game, 4) == 0 &&
                     strncmp((char *)s->unk_24->unk_20.company, (char *)&p_lbl_1_data_35AC8[0x7088], 2) == 0) {
                     for (i = 0; i < 127; i++) {
@@ -14839,8 +14839,8 @@ void fn_1_B4AC0(void) {
 /* fzgx:begin fn_1_B5258 noprologue */
 #include "types.h"
 
-extern void fn_80083DB0(char *destination, const char *source);
-extern char *fn_80083970(char *buffer, const char *source);
+extern void strcpy(char *destination, const char *source);
+extern char *strstr(char *buffer, const char *source);
 extern unsigned int strlen(const char *string);
 extern char *strncpy(char *destination, const char *source, unsigned int count);
 extern char *strcat(char *destination, const char *source);
@@ -14851,10 +14851,10 @@ void fn_1_B5258(char *destination, void *unused, const char *source, const char 
     unsigned int source_length;
     unsigned int prefix_length;
 
-    fn_80083DB0(buffer, unused);
-    prefix = fn_80083970(buffer, source);
+    strcpy(buffer, unused);
+    prefix = strstr(buffer, source);
     if (prefix == 0) {
-        fn_80083DB0(destination, buffer);
+        strcpy(destination, buffer);
     } else {
         source_length = strlen(source);
         if (prefix != buffer) {
@@ -14881,7 +14881,7 @@ extern void CARDFormatAsync(u8 byte, int value);
 extern const f32 lbl_1_rodata_4CA8;
 extern const f64 lbl_1_rodata_4CB0;
 extern const f32 lbl_1_rodata_4CAC;
-extern void fn_80083DB0(void *dst, void *src);
+extern void strcpy(void *dst, void *src);
 extern void strcat(void *dst, void *src);
 extern void CARDDeleteAsync(u8 byte, void *data, int arg);
 extern s32 CARDFreeBlocks(u8 byte_val, void *arg1, void *arg2);
@@ -15121,7 +15121,7 @@ extern void CARDFormatAsync(u8 byte, int value);
 extern const f32 lbl_1_rodata_4CA8;
 extern const f64 lbl_1_rodata_4CB0;
 extern const f32 lbl_1_rodata_4CAC;
-extern void fn_80083DB0(void *dst, void *src);
+extern void strcpy(void *dst, void *src);
 extern void strcat(void *dst, void *src);
 extern void CARDDeleteAsync(u8 byte, void *data, int arg);
 extern s32 CARDFreeBlocks(u8 byte_val, void *arg1, void *arg2);
@@ -19008,7 +19008,7 @@ extern f32 lbl_1_rodata_4AE0[114];
 extern u8 lbl_1_data_3C7C4[216];
 extern u8 lbl_1_data_3C89C[68];
 
-extern void fn_80083DB0(void *dst, const void *src);
+extern void strcpy(void *dst, const void *src);
 extern void strcat(void *dst, const void *src);
 extern s32 CARDOpen(s32 card, void *work, void *entry);
 extern s32 CARDClose(void *entry);
@@ -19042,13 +19042,13 @@ u32 fn_1_B8170(s32 card) {
     table = lbl_1_rodata_4AE0 + 19;
     flags = 0;
 
-    fn_80083DB0(work1, table);
+    strcpy(work1, table);
     strcat(work1, lbl_1_data_3C7C4);
     if (wait_card(card, work1, entry + 0x10) == 0) {
         wait_write(entry + 0x10);
         flags |= 2;
     } else {
-        fn_80083DB0(work2, table);
+        strcpy(work2, table);
         strcat(work2, lbl_1_data_3C89C);
         if (wait_card(card, work2, entry + 0x10) == 0) {
             wait_write(entry + 0x10);
@@ -19059,13 +19059,13 @@ u32 fn_1_B8170(s32 card) {
     }
 
     table = lbl_1_rodata_4AE0 + 57;
-    fn_80083DB0(work1, table);
+    strcpy(work1, table);
     strcat(work1, lbl_1_data_3C7C4);
     if (wait_card(card, work1, entry + 0x10) == 0) {
         wait_write(entry + 0x10);
         flags |= 8;
     } else {
-        fn_80083DB0(work2, table);
+        strcpy(work2, table);
         strcat(work2, lbl_1_data_3C89C);
         if (wait_card(card, work2, entry + 0x10) == 0) {
             wait_write(entry + 0x10);
@@ -19445,7 +19445,7 @@ extern void CARDFormatAsync(u8 byte, int value);
 extern const f32 lbl_1_rodata_4CA8;
 extern const f64 lbl_1_rodata_4CB0;
 extern const f32 lbl_1_rodata_4CAC;
-extern void fn_80083DB0(void *dst, void *src);
+extern void strcpy(void *dst, void *src);
 extern void strcat(void *dst, void *src);
 extern void CARDDeleteAsync(u8 byte, void *data, int arg);
 extern s32 CARDFreeBlocks(u8 byte_val, void *arg1, void *arg2);
@@ -26085,7 +26085,7 @@ extern void CARDFormatAsync(u8 byte, int value);
 extern const f32 lbl_1_rodata_4CA8;
 extern const f64 lbl_1_rodata_4CB0;
 extern const f32 lbl_1_rodata_4CAC;
-extern void fn_80083DB0(void *dst, void *src);
+extern void strcpy(void *dst, void *src);
 extern void strcat(void *dst, void *src);
 extern void CARDDeleteAsync(u8 byte, void *data, int arg);
 extern s32 CARDFreeBlocks(u8 byte_val, void *arg1, void *arg2);
@@ -26502,8 +26502,8 @@ extern char *strncpy(char *dst, const char *src, size_t n);
 extern s32 lbl_801A66B4;
 extern const f32 lbl_1_rodata_4CA8;
 extern s32 DVDClose();
-extern int fn_80083BCC(const char *s1, const char *s2);
-extern char *fn_80083DB0(char *dst, const char *src);
+extern int strcmp(const char *s1, const char *s2);
+extern char *strcpy(char *dst, const char *src);
 extern u16 fn_1_1563E8(u8 *data, s32 len);
 extern char *strcat(char *dest, const char *src);
 extern void OSPanic(const char *file, int line, const char *msg, ...);
@@ -26569,7 +26569,7 @@ extern u32 lbl_1_bss_7AB90[36];
 extern void fn_1_C132C();
 extern void OSTicksToCalendarTime();
 extern const f64 lbl_1_rodata_4CB8;
-extern u8 *fn_80083970(u8 *str, const u8 *needle);
+extern u8 *strstr(u8 *str, const u8 *needle);
 extern size_t strlen(const char *str);
 extern const f64 lbl_1_rodata_4CB0;
 
@@ -27443,7 +27443,7 @@ extern void CARDFormatAsync(u8 byte, int value);
 extern const f32 lbl_1_rodata_4CA8;
 extern const f64 lbl_1_rodata_4CB0;
 extern const f32 lbl_1_rodata_4CAC;
-extern void fn_80083DB0(void *dst, void *src);
+extern void strcpy(void *dst, void *src);
 extern void strcat(void *dst, void *src);
 extern void CARDDeleteAsync(u8 byte, void *data, int arg);
 extern s32 CARDFreeBlocks(u8 byte_val, void *arg1, void *arg2);
@@ -29389,7 +29389,7 @@ extern void *fn_1_C1CFC(void *, s32, s32, f32);
 extern void fn_1_C23CC(void *, s32, s32, void *, s32, s32, s32, s32);
 extern void fn_80008BA8(void *, void *, u32);
 extern void fn_80008BEC(void *, s32, u32);
-extern void fn_80083DB0(char *, void *);
+extern void strcpy(char *, void *);
 extern void fn_1_AA6D8(s32, u8, void *);
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
@@ -30493,7 +30493,7 @@ void fn_1_C062C(SaveReq *req, Slot *first, Slot *second) {
     case 2:
         sprintf(date, (const char *)fzgx_pool_lbl_1_data_35AC8_75E0, ct.year % 100, ct.mon + 1, ct.mday, ct.hour, ct.min);
         if (req->unk_30[req->unk_1A] - 1 != req->unk_1C) {
-            fn_80083DB0(name, lbl_1_bss_77380[req->unk_1A][req->unk_1C].text);
+            strcpy(name, lbl_1_bss_77380[req->unk_1A][req->unk_1C].text);
         } else {
             sprintf(name, (const char *)fzgx_pool_lbl_1_data_35AC8_75FC, (u32)(OSGetTime() >> 32), (u32)OSGetTime());
         }
@@ -30508,7 +30508,7 @@ void fn_1_C062C(SaveReq *req, Slot *first, Slot *second) {
         sprintf(date, (const char *)fzgx_pool_lbl_1_data_35AC8_75E0, ct.year % 100, ct.mon + 1, ct.mday, ct.hour, ct.min);
         size2 = req->unk_C;
         if (req->unk_30[req->unk_1A] - 1 != req->unk_1C) {
-            fn_80083DB0(name, lbl_1_bss_77380[req->unk_1A][req->unk_1C].text);
+            strcpy(name, lbl_1_bss_77380[req->unk_1A][req->unk_1C].text);
         } else {
             sprintf(name, (const char *)fzgx_pool_lbl_1_data_35AC8_7608, size2, size2, (u32)(((OSGetTime() >> 32) << 2) >> 2), OSGetTick());
         }
@@ -30688,7 +30688,7 @@ extern void *fn_1_C1CFC(void *, s32, s32, f32);
 extern void fn_1_C23CC(void *, s32, s32, void *, s32, s32, s32, s32);
 extern void fn_80008BA8(void *, void *, u32);
 extern void fn_80008BEC(void *, s32, u32);
-extern void fn_80083DB0(char *, void *);
+extern void strcpy(char *, void *);
 extern void fn_1_AA6D8(s32, u8, void *);
 extern void OSReport(const char *, ...);
 
@@ -33256,7 +33256,7 @@ void fn_1_C37A0(void) {
         return;
     }
 
-    fn_80083DB0(sp28, lbl_1_bss_772C8);
+    strcpy(sp28, lbl_1_bss_772C8);
     strcat(sp28, base + 0x6dd4);
 
     do {
@@ -33275,7 +33275,7 @@ void fn_1_C37A0(void) {
         return;
     }
 
-    fn_80083DB0(sp28, lbl_1_bss_772C8);
+    strcpy(sp28, lbl_1_bss_772C8);
     strcat(sp28, base + 0x6cfc);
 
     do {
@@ -33283,13 +33283,13 @@ void fn_1_C37A0(void) {
     } while (res == -1);
 
     if (res == 0) {
-        fn_80083DB0(sp28, lbl_1_bss_772C8);
+        strcpy(sp28, lbl_1_bss_772C8);
         strcat(sp28, base + 0x6dd4);
 
         while (fn_8002FC14(chan, sp28) == -1) {
         }
     } else if (res == -4) {
-        fn_80083DB0(sp8, lbl_1_bss_772C8);
+        strcpy(sp8, lbl_1_bss_772C8);
         strcat(sp8, base + 0x6dd4);
 
         while (fn_80030338(chan, sp8, sp28) == -1) {
@@ -33812,7 +33812,7 @@ extern void CARDFormatAsync(u8 byte, int value);
 extern const f32 lbl_1_rodata_4CA8;
 extern const f64 lbl_1_rodata_4CB0;
 extern const f32 lbl_1_rodata_4CAC;
-extern void fn_80083DB0(void *dst, void *src);
+extern void strcpy(void *dst, void *src);
 extern void strcat(void *dst, void *src);
 extern void CARDDeleteAsync(u8 byte, void *data, int arg);
 extern s32 CARDFreeBlocks(u8 byte_val, void *arg1, void *arg2);

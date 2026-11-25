@@ -71,7 +71,7 @@ extern f64 lbl_801A6650[];
 extern f64 lbl_801A6658[];
 extern f64 lbl_801A74F8;
 extern u32 lbl_801A6DE0[2];
-extern int fn_800829EC(void *, int, int);
+extern int __StringRead(void *, int, int);
 
 extern double exp(double);
 extern int lbl_801A664C[];
@@ -104,7 +104,7 @@ void fn_80083E84(u32 arg0) {
 
     loc_10.a[0] = arg0;
     loc_10.a[1] = 0;
-    value = fn_80083F10((0x80000000 - 1), fn_800829EC, &loc_10, &loc_8, &loc_C);
+    value = fn_80083F10((0x80000000 - 1), __StringRead, &loc_10, &loc_8, &loc_C);
     abs_value = __fabs(value);
     if (loc_C != 0 || (lbl_801A74F8 != value && (abs_value < lbl_801A6650[0] || abs_value > lbl_801A6658[0]))) {
         lbl_801A6DE0[0] = 34;

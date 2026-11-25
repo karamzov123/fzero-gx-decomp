@@ -73,7 +73,7 @@ extern u32 AXARTReverseSaw[];
 extern u32 AXARTTriangle[];
 extern u32 AXARTNoise[];
 
-extern u32 fn_80082908(void);
+extern u32 rand(void);
 extern s32 fn_80063EF4(u8, u8, u8);
 extern s32 fn_8006496C(u8);
 extern void AXARTInitSound(void *, void *, u32);
@@ -966,7 +966,7 @@ void fn_8005DCEC(u16 *arg0, u8 arg1) {
     fine = note->unk_B + lbl_801A6C80->slot[arg1].unk_F;
     range = note->unk_14;
     if (range != 0) {
-        rnd = (s32)fn_80082908() % (range * 2) - range;
+        rnd = (s32)rand() % (range * 2) - range;
         fine += rnd;
     } else {
         rnd = 0;

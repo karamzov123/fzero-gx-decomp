@@ -17,12 +17,12 @@ extern u32 DVDReadAsyncPrio(u32, u32, u32, u32, u32, u32);
 extern BOOL DVDChangeDir(char *);
 extern s32 DVDConvertPathToEntrynum(const char *);
 extern void OSPanic(const char *, int, const char *, ...);
-extern char *fn_80083DB0(void *, const void *);
+extern char *strcpy(void *, const void *);
 extern size_t strlen(const char *);
 extern s32 strncmp(const char *, const char *, size_t);
 extern char *strcat(char *, const char *);
 extern u32 strncpy(u32, u32, u32);
-extern int fn_80083BCC(const char *, const char *);
+extern int strcmp(const char *, const char *);
 
 extern char lbl_801220C0[];
 extern u32 lbl_801220CC[];
@@ -163,7 +163,7 @@ void fn_80006E10(u32 arg0) {
         if (*v0 == '/') {
             for (v2 = 1; v2 < strlen((const char *)v0) + 1; v2++) {
                 if (v0[v2] != '/') {
-                    fn_80083DB0(lbl_8015BD40, &v0[v2 - 1]);
+                    strcpy(lbl_8015BD40, &v0[v2 - 1]);
                     v0 += v2;
                     break;
                 }
@@ -177,7 +177,7 @@ void fn_80006E10(u32 arg0) {
                 }
             }
             if (lbl_8015BD40[0] == 0) {
-                fn_80083DB0(lbl_8015BD40, lbl_801A63F8);
+                strcpy(lbl_8015BD40, lbl_801A63F8);
             }
         } else {
             if (lbl_8015BD40[0] != '/' || p_lbl_8015BD40[1] != 0) {
@@ -215,12 +215,12 @@ s32 fn_8000700C(const char *path) {
         if (path[0] == '/') {
             for (i = 1; i < strlen(path) + 1; i++) {
                 if (path[i] != '/') {
-                    fn_80083DB0(buf, &path[i - 1]);
+                    strcpy(buf, &path[i - 1]);
                     break;
                 }
             }
         } else {
-            fn_80083DB0(buf, (const char *)lbl_8015BD40);
+            strcpy(buf, (const char *)lbl_8015BD40);
             if (lbl_8015BD40[0] != '/' || lbl_8015BD40[1] != 0) {
                 strcat(buf, lbl_801A63F8);
             }
@@ -232,7 +232,7 @@ s32 fn_8000700C(const char *path) {
         i = 0;
         result = -1;
         for (; i < (s32)lbl_801A66FC; i++) {
-            if (fn_80083BCC(lbl_801A6700[i], buf) == 0) {
+            if (strcmp(lbl_801A6700[i], buf) == 0) {
                 result = i | 0x7FFF0000;
                 break;
             }

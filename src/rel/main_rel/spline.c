@@ -44,7 +44,7 @@ extern void fn_1_F8C28(s32 value);
 extern void fn_1_F8CCC(s32 value);
 extern void fn_1_F8CA0(s32 value);
 extern struct Table lbl_1_rodata_6FF0;
-extern void fn_80083DB0(void *arg0, u32 arg1);
+extern void strcpy(void *arg0, u32 arg1);
 extern void fn_1_F9D04(u8 index);
 extern void fn_1_F9D90(void);
 extern void fn_1_F9E38(void);
@@ -1181,7 +1181,7 @@ extern void fn_1_F8C28(s32 value);
 extern void fn_1_F8CCC(s32 value);
 extern void fn_1_F8CA0(s32 value);
 extern struct Table lbl_1_rodata_6FF0;
-extern void fn_80083DB0(void *arg0, u32 arg1);
+extern void strcpy(void *arg0, u32 arg1);
 extern void fn_1_F9D04(u8 index);
 extern void fn_1_F9D90(void);
 extern void fn_1_F9E38(void);
@@ -2275,7 +2275,7 @@ void fn_1_F8DC4(s16 index0, s16 index1, void *arg0) {
     struct Table table;
 
     table = lbl_1_rodata_6FF0;
-    fn_80083DB0(arg0, table.values[index0][index1]);
+    strcpy(arg0, table.values[index0][index1]);
 }
 /* fzgx:end fn_1_F8DC4 */
 
@@ -2325,7 +2325,7 @@ char *fn_1_F8E30(s16 index, s16 category, char *buffer) {
                 lbl_1_data_2BD54[result[4]][category]);
         break;
     default:
-        fn_80083DB0(buffer, (u32)(table_a.entries[idx][category]));
+        strcpy(buffer, (u32)(table_a.entries[idx][category]));
         break;
     }
     return buffer;
@@ -3147,7 +3147,7 @@ extern void fn_1_F8C28(s32 value);
 extern void fn_1_F8CCC(s32 value);
 extern void fn_1_F8CA0(s32 value);
 extern struct Table lbl_1_rodata_6FF0;
-extern void fn_80083DB0(void *arg0, u32 arg1);
+extern void strcpy(void *arg0, u32 arg1);
 extern void fn_1_F9D04(u8 index);
 extern void fn_1_F9D90(void);
 extern void fn_1_F9E38(void);

@@ -126,7 +126,7 @@ void *memchr(const void *src, int val, size_t n);
 char *strchr(const char *string, int character);
 size_t strlen(const char *string);
 /* strcpy */
-char *fn_80083DB0(char *destination, const char *source);
+char *strcpy(char *destination, const char *source);
 int wcstombs(char *dst, const wchar_t *src, size_t n);
 void *__va_arg(__va_list args, int type);
 
@@ -449,16 +449,16 @@ char *float2str(long double num, char *buff, print_format format) {
         if (num < 0) {
             p = buff - 5;
             if (isupper(format.conversion_char)) {
-                fn_80083DB0(p, "-INF");
+                strcpy(p, "-INF");
             } else {
-                fn_80083DB0(p, "-inf");
+                strcpy(p, "-inf");
             }
         } else {
             p = buff - 4;
             if (isupper(format.conversion_char)) {
-                fn_80083DB0(p, "INF");
+                strcpy(p, "INF");
             } else {
-                fn_80083DB0(p, "inf");
+                strcpy(p, "inf");
             }
         }
         return p;
@@ -466,16 +466,16 @@ char *float2str(long double num, char *buff, print_format format) {
         if (dec.sign) {
             p = buff - 5;
             if (isupper(format.conversion_char)) {
-                fn_80083DB0(p, "-NAN");
+                strcpy(p, "-NAN");
             } else {
-                fn_80083DB0(p, "-nan");
+                strcpy(p, "-nan");
             }
         } else {
             p = buff - 4;
             if (isupper(format.conversion_char)) {
-                fn_80083DB0(p, "NAN");
+                strcpy(p, "NAN");
             } else {
-                fn_80083DB0(p, "nan");
+                strcpy(p, "nan");
             }
         }
         return p;
@@ -666,30 +666,30 @@ char *double2hex(long double num, char *buff, print_format format) {
         if (*(s16 *)&ld & 0x8000) {
             p = buff - 5;
             if (format.conversion_char == 'A')
-                fn_80083DB0(p, "-INF");
+                strcpy(p, "-INF");
             else
-                fn_80083DB0(p, "-inf");
+                strcpy(p, "-inf");
         } else {
             p = buff - 4;
             if (format.conversion_char == 'A')
-                fn_80083DB0(p, "INF");
+                strcpy(p, "INF");
             else
-                fn_80083DB0(p, "inf");
+                strcpy(p, "inf");
         }
         return p;
     } else if (*dec.sig.text == 'N') {
         if (*(u8 *)&num & 0x80) {
             p = buff - 5;
             if (format.conversion_char == 'A')
-                fn_80083DB0(p, "-NAN");
+                strcpy(p, "-NAN");
             else
-                fn_80083DB0(p, "-nan");
+                strcpy(p, "-nan");
         } else {
             p = buff - 4;
             if (format.conversion_char == 'A')
-                fn_80083DB0(p, "NAN");
+                strcpy(p, "NAN");
             else
-                fn_80083DB0(p, "nan");
+                strcpy(p, "nan");
         }
         return p;
     }

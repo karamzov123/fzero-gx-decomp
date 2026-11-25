@@ -125,7 +125,7 @@ extern void fn_8000D1F0(u8 *, void *, u32, u32, u32 *);
 extern void DCStoreRange(void *, u32);
 extern void OSSetArenaHi(u32);
 extern s32 DVDGetDriveStatus(void);
-extern int fn_80083BCC(const char *, const char *);
+extern int strcmp(const char *, const char *);
 extern void fn_80007B68(void);
 extern s32 fn_8006FDEC(void);
 extern void fn_8006FEFC(void);
@@ -137,7 +137,7 @@ extern u32 fn_8006FFCC(u32);
 extern void VIWaitForRetrace(void);
 extern void OSResetSystem(int, u32, int);
 extern void VISetBlack(u32);
-extern u32 fn_80083DB0(u32, u32);
+extern u32 strcpy(u32, u32);
 extern void fn_80006B4C(void);
 
 s32 fn_80006334(u8 *arg0);
@@ -407,10 +407,10 @@ static inline s32 get_text_width(u8 *str) {
     FontGlyph *glyph;
 
     while (*str != 0) {
-        if (fn_80083BCC((char *)str, lbl_801A63F0) == 0) {
+        if (strcmp((char *)str, lbl_801A63F0) == 0) {
             break;
         }
-        if (fn_80083BCC((char *)str, lbl_801A63F4) == 0) {
+        if (strcmp((char *)str, lbl_801A63F4) == 0) {
             break;
         }
         if (is_wide(str)) {
@@ -600,7 +600,7 @@ u8 fn_80006AF4(void) {
 }
 
 void fn_80006AFC(void) {
-    fn_80083DB0((u32)&lbl_8015BD40, (u32)&lbl_801A63F8);
+    strcpy((u32)&lbl_8015BD40, (u32)&lbl_801A63F8);
     fn_80006B30(0);
 }
 

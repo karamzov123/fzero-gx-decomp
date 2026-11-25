@@ -140,7 +140,7 @@ extern f32 fn_1_4B040(const char *);
 extern void fn_1_4B83C(char *, const char *, const char *, const char *);
 extern void *fn_1_7F49C(s16, s16, void *);
 extern unsigned long strlen(const char *);
-extern char *fn_80083DB0(char *, const char *);
+extern char *strcpy(char *, const char *);
 extern int sprintf(char *, const char *, ...);
 extern void fn_1_870BC(ColchgCar *, s8, ColchgCar *, s32, u8, f32);
 extern void lbl_8006D7F4(f32, f32, f32);
@@ -679,7 +679,7 @@ void colchg_selcar_disp(ColchgCar *cars) {
         s32 length = strlen(name);
         if (length > max_length) {
             max_length = length;
-            fn_80083DB0(longest, name);
+            strcpy(longest, name);
         }
     }
     fn_1_4B83C(format, "%%-%ds", longest, name);

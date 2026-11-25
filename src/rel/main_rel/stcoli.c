@@ -290,7 +290,7 @@ typedef struct ColiRuntime {
 
 extern int sprintf(char *s, const char *format, ...);
 extern void OSPanic(const char *file, int line, const char *msg, ...);
-extern int fn_80083BCC(const u8 *, const u8 *);
+extern int strcmp(const u8 *, const u8 *);
 extern void fn_80008BEC(void *dest, int value, u32 size);
 extern void fn_800793D4(void *, int, u32);
 extern void lbl_8006D758(void);
@@ -339,7 +339,7 @@ static inline Fn1_1384C_Found *fn_1_1384C_find(ColiElem *elem, Fn1_1384C_List **
             if (name[0] == 'M' && name[1] == 'V' && name[2] == '_') {
                 isMV = 1;
             }
-            if ((isMV && fn_80083BCC(name + 3, str) == 0) || (!isMV && fn_80083BCC(name, str) == 0)) {
+            if ((isMV && strcmp(name + 3, str) == 0) || (!isMV && strcmp(name, str) == 0)) {
                 return tab[0]->unk_0->unk_8[k].unk_0;
             }
         }

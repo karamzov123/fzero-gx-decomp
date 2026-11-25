@@ -5243,7 +5243,7 @@ extern void fn_80071718(u32 value);
 extern void fn_80072558(void);
 extern void fn_80074D18(u32);
 extern void fn_800794F0(Obj_1_data_27DE0 *arg0, Obj_1_data_27DE0 *arg1, s32 arg2);
-extern int fn_80083BCC(const char *s1, const char *s2);
+extern int strcmp(const char *s1, const char *s2);
 extern s32 ghost_test_record_flag0(s32 arg);
 extern u8 lbl_1_A9011000;
 extern u8 lbl_1_A9011100;

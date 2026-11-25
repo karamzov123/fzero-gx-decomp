@@ -15,7 +15,7 @@ struct fn_12_32EAC_Arg1 {
 extern s32 fn_8008023C(u32, u32, u32);
 extern char lbl_12_rodata_10DC[5];
 extern char lbl_12_rodata_10E4[25];
-extern u8 *fn_80083970(u8 *, const u8 *);
+extern u8 *strstr(u8 *, const u8 *);
 extern void *memcpy(void *, const void *, u32);
 extern void *memset(void *, int, u32);
 
@@ -40,7 +40,7 @@ static inline u32 number(s8 **p) {
     return v0;
 }
 static inline s32 parse(u8 *buf, u32 *major, u32 *minor) {
-    s8 *v4 = (s8 *)fn_80083970(buf, (const u8 *)lbl_12_rodata_10DC);
+    s8 *v4 = (s8 *)strstr(buf, (const u8 *)lbl_12_rodata_10DC);
     if (!v4) return 0;
     v4 += 4;
     *major = number(&v4);

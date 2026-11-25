@@ -104,9 +104,9 @@ extern void fn_1_495B0(u32);
 extern void fn_1_4A0D8(const char *);
 extern f32 lbl_8006D188(s16);
 extern u32 fn_800793D4(void *, s32, u32);
-extern u32 fn_80083DB0(void *, const void *);
-extern u8 *fn_80083970(u8 *, const u8 *);
-extern char *fn_80083CF4(char *, const char *, size_t);
+extern u32 strcpy(void *, const void *);
+extern u8 *strstr(u8 *, const u8 *);
+extern char *strncat(char *, const char *, size_t);
 extern void *memset(void *, int, u32);
 extern char *strncpy(char *, const char *, size_t);
 extern char *strcat(char *, const char *);
@@ -482,21 +482,21 @@ v1 = v0;
 { s32 __reg_value_v2 = (v2 + (v19 << 1)); v2 = __reg_value_v2; }
 lab_t0 = v1;
 lab_t1 = v2;
-v1 = fn_80083DB0((void *)lab_t0, (const void *)lab_t1);
+v1 = strcpy((void *)lab_t0, (const void *)lab_t1);
 { s32 __reg_value_v2 = (u32)v8->chars; v2 = __reg_value_v2; }
 v1 = v0;
 v1 = (u32)strcat((char *)v1, (const char *)v2);
 { s32 __reg_value_v2 = (u32)v8->chars; v2 = __reg_value_v2; }
 v1 = v0;
 v3 = ((v10 + 10) << 1);
-v1 = (u32)fn_80083CF4((char *)v1, (const char *)v2, v3);
+v1 = (u32)strncat((char *)v1, (const char *)v2, v3);
 } else {
 v2 = ((u32)v8->chars);
 v1 = v0;
 { s32 __reg_value_v2 = (v2 + (v10 << 1)); v2 = __reg_value_v2; }
 lab_t0 = v1;
 lab_t1 = v2;
-v1 = fn_80083DB0((void *)lab_t0, (const void *)lab_t1);
+v1 = strcpy((void *)lab_t0, (const void *)lab_t1);
 v1 = v8->cursor;
 v10 = (v1 + 11);
 if (v10 > v8->length) {
@@ -506,12 +506,12 @@ v1 = (u32)strcat((char *)v1, (const char *)v2);
 v1 = v0;
 { s32 __reg_value_v2 = (u32)v8->chars; v2 = __reg_value_v2; }
 v3 = ((v10 - v8->length) << 1);
-v1 = (u32)fn_80083CF4((char *)v1, (const char *)v2, v3);
+v1 = (u32)strncat((char *)v1, (const char *)v2, v3);
 } else {
 v2 = ((u32)v8->chars);
 v1 = v0;
 v3 = (v10 << 1);
-v1 = (u32)fn_80083CF4((char *)v1, (const char *)v2, v3);
+v1 = (u32)strncat((char *)v1, (const char *)v2, v3);
 }
 }
 } else {
@@ -520,14 +520,14 @@ v1 = v0;
 { s32 __reg_value_v2 = (v2 + (v3 << 1)); v2 = __reg_value_v2; }
 lab_t0 = v1;
 lab_t1 = v2;
-v1 = fn_80083DB0((void *)lab_t0, (const void *)lab_t1);
+v1 = strcpy((void *)lab_t0, (const void *)lab_t1);
 { s32 __reg_value_v2 = v8->cursor; v2 = __reg_value_v2; }
 v1 = v0;
 v3 = v8->length;
 v12 = (v2 + 11);
 { s32 __reg_value_v2 = (u32)v8->chars; v2 = __reg_value_v2; }
 v3 = ((v12 - v3) << 1);
-v1 = (u32)fn_80083CF4((char *)v1, (const char *)v2, v3);
+v1 = (u32)strncat((char *)v1, (const char *)v2, v3);
 }
 v2 = (*(u8 *)(arg0));
 v1 = (u32)lbl_4_bss_5680;
@@ -618,7 +618,7 @@ v1 = v3 > 0;
 v1 = v0;
 v2 = (s32)"\201\350";
 *(u8 *)((u8 *)arg0 + 2) = v8->cursor;
-v1 = (u32)fn_80083970((u8 *)v1, (const u8 *)v2);
+v1 = (u32)strstr((u8 *)v1, (const u8 *)v2);
 p_lbl_1_rodata_26F8 = lbl_1_rodata_26F8;
 v15 = 0x10000 - 28914;
 v20 = (u8 *)v1;
@@ -675,7 +675,7 @@ v1 = fn_800081C8(loc_10, loc_C, v5);
 }
 loc_18.a[14] = v1;
 fn_1_4F734((FontDrawPacket *)&loc_18);
-v20 = fn_80083970(v20 + 2, (const u8 *)"\201\350");
+v20 = strstr(v20 + 2, (const u8 *)"\201\350");
 }
 v2 = (s8)*(u8 *)(arg0 + 1);
 v2 += 320;
@@ -1303,9 +1303,9 @@ static void name_entry_set_default_name(void) {
     ptr = lbl_4_bss_5680->name;
     if (*ptr == 0) {
         if (lbl_801A66B4 == 5) {
-            fn_80083DB0(ptr, "\203G\203t\203[\203\215");
+            strcpy(ptr, "\203G\203t\203[\203\215");
         } else {
-            fn_80083DB0(ptr, "\202e\201|\202y\202d\202q\202n");
+            strcpy(ptr, "\202e\201|\202y\202d\202q\202n");
         }
         {
             MenuColor color = {0x00, 0xFF, 0xFF, 0x00};
@@ -1468,7 +1468,7 @@ void fn_4_D760(void) {
 /* fzgx:begin fn_4_D848 */
 // Copies the name-entry data into the active name-entry buffer.
 void fn_4_D848(u32 arg0) {
-    fn_80083DB0((void *)arg0, lbl_4_bss_5680->name);
+    strcpy((void *)arg0, lbl_4_bss_5680->name);
 }
 /* fzgx:end fn_4_D848 */
 

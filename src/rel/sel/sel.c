@@ -12579,7 +12579,7 @@ extern s32 strncmp(const char *s1, const char *s2, size_t n);
 extern char * strncpy(char *, const char *, size_t);
 extern s32 fn_1_45D0();
 extern s32 fn_1_14CEB8(u32);
-extern char *fn_80083DB0(char *dst, const char *src);
+extern char *strcpy(char *dst, const char *src);
 extern void fn_10_2325C(struct fn_8_D630_obj *arg0);
 extern void ADXT_Stop(ADXTHandle *handle);
 extern void fn_1_517EC(FontDrawPacket* packet, s16 x, s16 y, s16 width, s16 height, s16 texture_width, s16 texture_height);

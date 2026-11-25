@@ -374,7 +374,7 @@ typedef struct {
 extern void fn_1_801F8(s16 arg0, void *arg1);
 extern s32 fn_1_46C70();
 extern s32 fn_1_465D0(s32 arg0, s32 arg1);
-extern char *fn_80083DB0(char *dst, const char *src);
+extern char *strcpy(char *dst, const char *src);
 extern void fn_80006E10(u32 arg0);
 extern int sprintf(char *s, const char *format, ...);
 extern Unk_23800000 lbl_23800000[];
@@ -408,7 +408,7 @@ extern f32 lbl_1_rodata_3518[6];
 extern f32 lbl_1_rodata_3530[22];
 extern u32 lbl_8006DBE4(void);
 extern void lbl_8006DFC4(void *arg0);
-extern u8 *fn_80083970(u8 *str, const u8 *needle);
+extern u8 *strstr(u8 *str, const u8 *needle);
 extern void fn_1_55628(Sig_fn_1_55628_Fn1_55628Object *);
 extern void fn_1_556B8(void *value);
 extern void fn_1_55FF0(f32 value);
@@ -631,7 +631,7 @@ void *fn_1_7F49C(s16 arg0, s16 arg1, void *arg2) {
     fn_1_7F49C_CarData local;
 
     local = *(fn_1_7F49C_CarData *)lbl_1_rodata_3590;
-    fn_80083DB0( arg2, (const char *)(local.data[arg0][arg1]));
+    strcpy( arg2, (const char *)(local.data[arg0][arg1]));
     return arg2;
 }
 /* fzgx:end fn_1_7F49C */
@@ -651,7 +651,7 @@ extern void fn_80008BEC(void *, s32, s32);
 extern void fn_1_80F80(void *, u8, void *);
 extern void fn_1_1502BC(void *, void *, void *);
 
-extern void fn_80083DB0(void* arg0, u32 arg1);
+extern void strcpy(void* arg0, u32 arg1);
 extern void fn_1_801F8(s16 arg0, void* arg1);
 extern const f32 lbl_1_rodata_33AC;
 extern void *fn_1_4630(void *arg0, u32 arg1, void *arg2, u32 arg3);
@@ -667,7 +667,7 @@ extern void fn_800720B0(s32 arg0);
 
 // Initializes the car test entry and optionally performs its follow-up setup.
 void* fn_1_7F518(s16 car_type, void* car, s32 initialize) {
-    fn_80083DB0(car, ((u32 *)lbl_1_data_1F4FC)[car_type]);
+    strcpy(car, ((u32 *)lbl_1_data_1F4FC)[car_type]);
     if (initialize == 1) {
         fn_1_801F8(car_type, car);
     }
@@ -1206,7 +1206,7 @@ extern int sprintf(char *, const char *, ...);
 
 void *fn_1_7F58C(s16 car_type, void *car, u8 suffix, s32 initialize) {
     
-    fn_80083DB0((char *)car, ((const char **)(((u8 *)fzgx_pool_data_lbl_1_data_1F4FC)))[car_type]);
+    strcpy((char *)car, ((const char **)(((u8 *)fzgx_pool_data_lbl_1_data_1F4FC)))[car_type]);
     if (initialize == 1) {
         fn_1_801F8(car_type, car);
     }
@@ -1486,7 +1486,7 @@ typedef struct {
     u8 pad_10[0x10];
 } CarListEntry;
 
-extern char *fn_80083DB0(char *, const char *);
+extern char *strcpy(char *, const char *);
 extern int fn_1_45730(void *, Sig_fn_1_45730_LoadResult *);
 extern int sprintf(char *, const char *, ...);
 extern u8 lbl_1_data_1F1D8[];
@@ -1522,7 +1522,7 @@ static inline s32 fn_1_7FAA8_impl(CarListEntry *list, s32 count, s32 initial) {
         if (entry->flagsC & 0x100000) {
             flag = 1;
         }
-        fn_80083DB0(buf, names[id]);
+        strcpy(buf, names[id]);
         if (flag == 1) {
             fn_1_801F8(id, buf);
         }
@@ -1530,7 +1530,7 @@ static inline s32 fn_1_7FAA8_impl(CarListEntry *list, s32 count, s32 initial) {
         for (j = 0; j < 8; j++) {
             bit = j;
             if (entry->mask8 & (1 << bit)) {
-                fn_80083DB0(buf, names[id]);
+                strcpy(buf, names[id]);
                 if (flag == 1) {
                     fn_1_801F8(id, buf);
                 }
@@ -1552,7 +1552,7 @@ static inline s32 fn_1_7FAA8_impl(CarListEntry *list, s32 count, s32 initial) {
         for (k = 0; k < 5; k++) {
             slot = k;
             if (entry->mask4 & (1 << slot)) {
-                fn_80083DB0(buf, names[id]);
+                strcpy(buf, names[id]);
                 if (flag == 1) {
                     fn_1_801F8(id, buf);
                 }
@@ -1569,7 +1569,7 @@ static inline s32 fn_1_7FAA8_impl(CarListEntry *list, s32 count, s32 initial) {
                 }
             }
         }
-        fn_80083DB0(buf, names[id]);
+        strcpy(buf, names[id]);
         if (flag == 1) {
             fn_1_801F8(id, buf);
         }
@@ -1632,7 +1632,7 @@ void fn_1_7FD7C(Fn7FD7CArg *arg0)
     tbl = (TblRow *)(base + 0x324);
     lab_t1 = *(char **)((u8 *)tbl + off);
     lab_t1_ = lab_t1;
-    fn_80083DB0(buf, lab_t1_);
+    strcpy(buf, lab_t1_);
     if (((1) == flag)) {
         fn_1_801F8(idx, buf);
     }
@@ -1640,7 +1640,7 @@ void fn_1_7FD7C(Fn7FD7CArg *arg0)
     for (i = 0; i < 8; i++) {
         if (arg0->unk_08 & (1 << i)) {
             lab_t1__2 = *(char **)((u8 *)tbl + off);
-            fn_80083DB0(buf, lab_t1__2);
+            strcpy(buf, lab_t1__2);
             if (((1) == flag)) {
                 fn_1_801F8(idx, buf);
             }
@@ -1664,7 +1664,7 @@ void fn_1_7FD7C(Fn7FD7CArg *arg0)
 for (fzgx_loop_j_1994 = 0; fzgx_loop_j_1994 < 5; fzgx_loop_j_1994++) {
         if (arg0->unk_04 & (1 << fzgx_loop_j_1994)) {
             lab_t1__2 = *(char **)((u8 *)tbl + off);
-            fn_80083DB0(buf, lab_t1__2);
+            strcpy(buf, lab_t1__2);
             if (((1) == flag)) {
                 fn_1_801F8(idx, buf);
             }
@@ -1684,7 +1684,7 @@ for (fzgx_loop_j_1994 = 0; fzgx_loop_j_1994 < 5; fzgx_loop_j_1994++) {
     j = fzgx_loop_j_1994;
 }
     lab_t1__2 = *(char **)((u8 *)tbl + off);
-    fn_80083DB0(buf, lab_t1__2);
+    strcpy(buf, lab_t1__2);
     if (((1) == flag)) {
         fn_1_801F8(idx, buf);
     }
@@ -1768,13 +1768,13 @@ void fn_1_801F8(s16 arg0, void *arg1) {
 
     switch (arg0) {
     case 6:
-        fn_80083DB0( arg1, (const char *)(base + 0x13e4));
+        strcpy( arg1, (const char *)(base + 0x13e4));
         break;
     case 0:
-        fn_80083DB0( arg1, (const char *)(base + 0x13ec));
+        strcpy( arg1, (const char *)(base + 0x13ec));
         break;
     case 1:
-        fn_80083DB0( arg1, (const char *)(base + 0x13f4));
+        strcpy( arg1, (const char *)(base + 0x13f4));
         break;
     }
 }
@@ -1868,7 +1868,7 @@ extern void fn_1_12AB38(const char *path);
 extern void fn_1_14D728(s16 *ids, Fn80294Part *parts);
 extern u32 fn_80077D40(void *texture);
 extern u32 fn_80077BD4(void *model);
-extern char *fn_80083DB0(char *dst, const char *src);
+extern char *strcpy(char *dst, const char *src);
 extern int sprintf(char *s, const char *format, ...);
 extern void *fn_1_12AC00(const char *path);
 extern void *fn_1_12AC28(const char *path, u32 *arg1, u32 *arg2);
@@ -1995,17 +1995,17 @@ static inline f32 fn_1_80294_share(u32 *size) {
 }
 
 static inline void fn_1_80294_name(char *buf, s16 id, s32 common) {
-    fn_80083DB0(buf, fzgx_obj_lbl_1_data_1F4FC[id]);
+    strcpy(buf, fzgx_obj_lbl_1_data_1F4FC[id]);
     if (common == 1) {
         switch (id) {
         case 6:
-            fn_80083DB0(buf, lbl_1_data_205A8__fzgx_offset_14);
+            strcpy(buf, lbl_1_data_205A8__fzgx_offset_14);
             break;
         case 0:
-            fn_80083DB0(buf, lbl_1_data_205A8__fzgx_offset_1C);
+            strcpy(buf, lbl_1_data_205A8__fzgx_offset_1C);
             break;
         case 1:
-            fn_80083DB0(buf, lbl_1_data_205A8__fzgx_offset_24);
+            strcpy(buf, lbl_1_data_205A8__fzgx_offset_24);
             break;
         }
     }
@@ -2736,17 +2736,17 @@ s32 fn_1_80CC4(s32 id, s32 mode, s32 suffix, void *arg3)
         tmp.unk_8 = 0x10;
         fn_80008BA8(&info, &tmp, 0x20);
         info.unk_2 = id;
-        fn_80083DB0(name, ((char **)(((u8 *)fzgx_pool_data_lbl_1_data_1F4FC)))[(s16)id]);
+        strcpy(name, ((char **)(((u8 *)fzgx_pool_data_lbl_1_data_1F4FC)))[(s16)id]);
         if (suffix == 1) {
             switch ((s16)id) {
             case 6:
-                fn_80083DB0(name, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13E4)));
+                strcpy(name, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13E4)));
                 break;
             case 0:
-                fn_80083DB0(name, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13EC)));
+                strcpy(name, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13EC)));
                 break;
             case 1:
-                fn_80083DB0(name, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13F4)));
+                strcpy(name, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13F4)));
                 break;
             }
         }
@@ -2758,17 +2758,17 @@ s32 fn_1_80CC4(s32 id, s32 mode, s32 suffix, void *arg3)
         tmp.unk_8 = 1;
         fn_80008BA8(&info, &tmp, 0x20);
         info.unk_2 = id;
-        fn_80083DB0(name, ((char **)(((u8 *)fzgx_pool_data_lbl_1_data_1F4FC)))[(s16)id]);
+        strcpy(name, ((char **)(((u8 *)fzgx_pool_data_lbl_1_data_1F4FC)))[(s16)id]);
         if (suffix == 1) {
             switch ((s16)id) {
             case 6:
-                fn_80083DB0(name, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13E4)));
+                strcpy(name, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13E4)));
                 break;
             case 0:
-                fn_80083DB0(name, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13EC)));
+                strcpy(name, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13EC)));
                 break;
             case 1:
-                fn_80083DB0(name, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13F4)));
+                strcpy(name, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13F4)));
                 break;
             }
         }
@@ -2808,7 +2808,7 @@ void fn_1_80F1C(s32 arg0, void *arg1) {
 extern void fn_1_12AB38(void *);
 extern u32 fn_1_12AC00(void *);
 extern u32 fn_1_12ADA0(void *, void *);
-extern char *fn_80083DB0(char *, const char *);
+extern char *strcpy(char *, const char *);
 extern int sprintf(char *, const char *, ...);
 
 extern u8 fn_1_87750__fzgx_offset_0[];
@@ -3281,25 +3281,25 @@ void fn_1_80F80(u32 *p, s16 idx, s16 mask)
     u32 *q;
     s16 i;
 
-    fn_80083DB0(name, tbl[off]);
+    strcpy(name, tbl[off]);
     fn_1_12AB38(name);
     for (i = 0; i < 3; i++) {
         s16 j = i;
         q = p + i * 2;
         if ((mask & (1 << j)) && q[0] == 0) {
             if (i != 0) {
-                fn_80083DB0(name, tbl[off]);
+                strcpy(name, tbl[off]);
                 sprintf(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_1444)), name, j + 1);
             } else {
-                fn_80083DB0(name, tbl[off]);
+                strcpy(name, tbl[off]);
                 sprintf(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_1454)), name);
             }
             q[1] = fn_1_12AC00(buf);
             if (i != 0) {
-                fn_80083DB0(name, tbl[off]);
+                strcpy(name, tbl[off]);
                 sprintf(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_1460)), name, j + 1);
             } else {
-                fn_80083DB0(name, tbl[off]);
+                strcpy(name, tbl[off]);
                 sprintf(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_1470)), name);
             }
             q[0] = fn_1_12ADA0(buf, (void *)q[1]);
@@ -3836,7 +3836,7 @@ static void fzgx_data_layout_lbl_1_data_1F1D8(void) {
 
 
 extern void fn_80006E10(char *);
-extern char *fn_80083DB0(char *, const char *);
+extern char *strcpy(char *, const char *);
 extern int sprintf(char *, const char *, ...);
 extern Fn81164Model *fn_1_D3884(char *);
 extern u32 fn_80077D40(Fn81164Model *);
@@ -3877,33 +3877,33 @@ void fn_1_81164(Fn81164Car *car, s16 from, s16 to) {
         flag = 1;
     }
     kindFrom = car->unk_328;
-    fn_80083DB0(buf, ((char **)(((u8 *)fzgx_pool_data_lbl_1_data_1F4FC)))[kindFrom]);
+    strcpy(buf, ((char **)(((u8 *)fzgx_pool_data_lbl_1_data_1F4FC)))[kindFrom]);
     if (flag == 1) {
         switch (kindFrom) {
         case 6:
-            fn_80083DB0(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13E4)));
+            strcpy(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13E4)));
             break;
         case 0:
-            fn_80083DB0(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13EC)));
+            strcpy(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13EC)));
             break;
         case 1:
-            fn_80083DB0(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13F4)));
+            strcpy(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13F4)));
             break;
         }
     }
     fn_80006E10(buf);
     kindTo = car->unk_328;
-    fn_80083DB0(buf, ((char **)(((u8 *)fzgx_pool_data_lbl_1_data_1F4FC)))[kindTo]);
+    strcpy(buf, ((char **)(((u8 *)fzgx_pool_data_lbl_1_data_1F4FC)))[kindTo]);
     if (flag == 1) {
         switch (kindTo) {
         case 6:
-            fn_80083DB0(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13E4)));
+            strcpy(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13E4)));
             break;
         case 0:
-            fn_80083DB0(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13EC)));
+            strcpy(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13EC)));
             break;
         case 1:
-            fn_80083DB0(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13F4)));
+            strcpy(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13F4)));
             break;
         }
     }
@@ -4426,7 +4426,7 @@ static void fzgx_data_layout_lbl_1_data_1F1D8(void) {
 
 
 extern void fn_80006E10(char *);
-extern char *fn_80083DB0(char *, const char *);
+extern char *strcpy(char *, const char *);
 extern int sprintf(char *, const char *, ...);
 extern Fn81408Model *fn_1_D3884(char *);
 extern u32 fn_80077D40(Fn81408Model *);
@@ -4494,17 +4494,17 @@ void fn_1_81408(Fn81408Car *car, u8 fromMask, u8 toMask) {
         }
         {
         s32 kindFrom = car->unk_328;
-        fn_80083DB0(buf, ((char **)(((u8 *)fzgx_pool_data_lbl_1_data_1F4FC)))[kindFrom]);
+        strcpy(buf, ((char **)(((u8 *)fzgx_pool_data_lbl_1_data_1F4FC)))[kindFrom]);
         if (flag == 1) {
             switch (kindFrom) {
             case 6:
-                fn_80083DB0(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13E4)));
+                strcpy(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13E4)));
                 break;
             case 0:
-                fn_80083DB0(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13EC)));
+                strcpy(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13EC)));
                 break;
             case 1:
-                fn_80083DB0(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13F4)));
+                strcpy(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13F4)));
                 break;
             }
         }
@@ -4512,17 +4512,17 @@ void fn_1_81408(Fn81408Car *car, u8 fromMask, u8 toMask) {
         fn_80006E10(buf);
         {
         s32 kindTo = car->unk_328;
-        fn_80083DB0(buf, ((char **)(((u8 *)fzgx_pool_data_lbl_1_data_1F4FC)))[kindTo]);
+        strcpy(buf, ((char **)(((u8 *)fzgx_pool_data_lbl_1_data_1F4FC)))[kindTo]);
         if (flag == 1) {
             switch (kindTo) {
             case 6:
-                fn_80083DB0(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13E4)));
+                strcpy(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13E4)));
                 break;
             case 0:
-                fn_80083DB0(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13EC)));
+                strcpy(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13EC)));
                 break;
             case 1:
-                fn_80083DB0(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13F4)));
+                strcpy(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_1F1D8_13F4)));
                 break;
             }
         }
@@ -4707,7 +4707,7 @@ extern s32 fn_1_81860(const void *, const void *);
 extern void fn_1_12AB38(void *);
 extern u32 fn_1_12AC00(void *);
 extern void fn_1_80294(void *, void *, s32);
-extern char *fn_80083DB0(char *, const char *);
+extern char *strcpy(char *, const char *);
 extern int sprintf(char *, const char *, ...);
 extern s32 fn_1_12A32C(char *);
 extern void fn_1_12A2B8(u32);
@@ -4796,13 +4796,13 @@ static inline void fn_1_818BC_suffix(s16 kind, char *name) {
 
     switch (kind) {
     case 6:
-        fn_80083DB0(name, (const char *)(lbl_1_data_205A8__fzgx_offset_14));
+        strcpy(name, (const char *)(lbl_1_data_205A8__fzgx_offset_14));
         break;
     case 0:
-        fn_80083DB0(name, (const char *)(lbl_1_data_205A8__fzgx_offset_1C));
+        strcpy(name, (const char *)(lbl_1_data_205A8__fzgx_offset_1C));
         break;
     case 1:
-        fn_80083DB0(name, (const char *)(lbl_1_data_205A8__fzgx_offset_24));
+        strcpy(name, (const char *)(lbl_1_data_205A8__fzgx_offset_24));
         break;
     }
 }
@@ -4860,13 +4860,13 @@ static inline void fn_1_818BC_move(Car818BC *car, s16 from, s16 to) {
         flag = 1;
     }
     kindFrom = car->unk_328;
-    fn_80083DB0(buf, fzgx_obj_lbl_1_data_1F4FC[kindFrom]);
+    strcpy(buf, fzgx_obj_lbl_1_data_1F4FC[kindFrom]);
     if (flag == 1) {
         fn_1_818BC_suffix(kindFrom, buf);
     }
     fn_80006E10(buf);
     kindTo = car->unk_328;
-    fn_80083DB0(buf, fzgx_obj_lbl_1_data_1F4FC[kindTo]);
+    strcpy(buf, fzgx_obj_lbl_1_data_1F4FC[kindTo]);
     if (flag == 1) {
         fn_1_818BC_suffix(kindTo, buf);
     }
@@ -4892,7 +4892,7 @@ static inline void fn_1_818BC_move(Car818BC *car, s16 from, s16 to) {
 
 /* the part name of a seat entry, with its suffix */
 static inline void fn_1_818BC_name(s16 kind, char *name, s32 flag) {
-    fn_80083DB0(name, fzgx_obj_lbl_1_data_1F4FC[kind]);
+    strcpy(name, fzgx_obj_lbl_1_data_1F4FC[kind]);
     if (flag == 1) {
         fn_1_818BC_suffix(kind, name);
     }
@@ -11649,7 +11649,7 @@ extern void fn_80008BEC(void *, s32, s32);
 extern void fn_1_80F80(void *, u8, void *);
 extern void fn_1_1502BC(void *, void *, void *);
 
-extern void fn_80083DB0(void* arg0, u32 arg1);
+extern void strcpy(void* arg0, u32 arg1);
 extern void fn_1_801F8(s16 arg0, void* arg1);
 extern const f32 lbl_1_rodata_33AC;
 extern void *fn_1_4630(void *arg0, u32 arg1, void *arg2, u32 arg3);
@@ -11673,7 +11673,7 @@ extern void fn_80008BEC(void *, s32, s32);
 extern void fn_1_80F80(void *, u8, void *);
 extern void fn_1_1502BC(void *, void *, void *);
 
-extern void fn_80083DB0(void* arg0, u32 arg1);
+extern void strcpy(void* arg0, u32 arg1);
 extern void fn_1_801F8(s16 arg0, void* arg1);
 extern const f32 lbl_1_rodata_33AC;
 extern void *fn_1_4630(void *arg0, u32 arg1, void *arg2, u32 arg3);
@@ -11979,7 +11979,7 @@ extern f32 lbl_1_rodata_3518[6];
 extern f32 lbl_1_rodata_3530[22];
 extern u32 lbl_8006DBE4(void);
 extern u32 lbl_8006DFC4(u32);
-extern u8 *fn_80083970(u8 *, const u8 *);
+extern u8 *strstr(u8 *, const u8 *);
 extern void fn_1_55628(Sig_fn_1_55628_Fn1_55628Object *);
 extern void fn_1_556B8(void *);
 extern void fn_1_55FF0(f32);
@@ -12017,7 +12017,7 @@ void fn_1_87448(Fn1_87448_Obj *self, Fn1_87448_Arg1 *arg1, s8 arg2, int flag, f3
         if (n > lim - 1) {
             break;
         }
-        if (fn_80083970((*((k) + tab->unk_08)).unk_04, (u8 *)"pos_") != tab->unk_08[k].unk_04) {
+        if (strstr((*((k) + tab->unk_08)).unk_04, (u8 *)"pos_") != tab->unk_08[k].unk_04) {
             row = self->unk_334[arg2].unk_00;
             p = row[k];
             if (p == 0) {
@@ -20599,7 +20599,7 @@ extern void fn_1_96664(s32, u32, void *);
 extern void fn_1_956EC(s32, u32);
 extern void fn_1_96130(char *);
 extern int sprintf(char *, const char *, ...);
-extern int fn_80083BCC(const char *, const char *);
+extern int strcmp(const char *, const char *);
 
 /* flag masks: the top two (or three, for special ids) bits select a variant */
 #define FLAGS_HI2 (~0x3FFFFFFFu)
@@ -22415,7 +22415,7 @@ void fn_1_8E4A4(s32 id, u32 flags, void *arg) {
         if ((flags & FLAGS_HI3) && (((u32 *)(((u8 *)fzgx_pool_data_lbl_1_data_209C0_5CB4)))[id] & 0x04000000)) {
             for (i = 0; i < 20; i++) {
                 sprintf(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_209C0_6E7C)), findPart(((u8 *)fzgx_pool_data_lbl_1_data_209C0), id, i));
-                if (fn_80083BCC(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_209C0_6E84)))) {
+                if (strcmp(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_209C0_6E84)))) {
                     fn_1_96130(buf);
                 }
             }
@@ -22534,7 +22534,7 @@ extern void fn_1_933D8(Fn8E7D0Car *car, Fn8E7D0Part *part, u32 id);
 extern void fn_1_934CC(Fn8E7D0Car *car, Fn8E7D0Part *part, char *name);
 extern void fn_1_107930(Fn8E7D0Car *car);
 extern int sprintf(char *, const char *, ...);
-extern int fn_80083BCC(const char *, const char *);
+extern int strcmp(const char *, const char *);
 extern void fn_80008BEC(void *, int, u32);
 
 /* the retail TU's .data objects this function uses, at their retail offsets, so MWCC addresses them off one
@@ -22805,7 +22805,7 @@ void fn_1_8E7D0(Fn8E7D0Car *car, s32 idx, u32 mask, u32 mask2) {
         for (j = 0; j < 20; j++) {
             if (car->unk_208[j].unk_8 != NULL) {
                 sprintf(buf, lbl_1_data_274CC__fzgx_offset_370, fn_1_8E7D0_motion(car->unk_88, j));
-                if (fn_80083BCC(buf, lbl_1_data_274CC__fzgx_offset_378)) {
+                if (strcmp(buf, lbl_1_data_274CC__fzgx_offset_378)) {
                     fn_1_9617C(&car->unk_208[j], buf);
                 }
             }
@@ -24601,7 +24601,7 @@ static void fzgx_data_layout_lbl_1_data_209C0(void) {
 extern const u32 lbl_1_rodata_3E48[];
 extern const u32 lbl_1_rodata_3E70[];
 
-extern char *fn_80083DB0(char *, const char *);
+extern char *strcpy(char *, const char *);
 extern char *strcat(char *, const char *);
 extern int sprintf(char *, const char *, ...);
 extern s32 fn_1_12A32C(char *);
@@ -24649,7 +24649,7 @@ void fn_1_8F198(Fn1_8F198_Object *obj, s32 idx, u32 mask, u32 mask2) {
         if (idx == 0x2C || i == 4) {
             continue;
         }
-        fn_80083DB0(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_209C0_6EBC)));
+        strcpy(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_209C0_6EBC)));
         strcat(buf, name);
         strcat(buf, (char *)(((u8 *)fzgx_pool_data_lbl_1_data_209C0_6EC8)));
         switch (i) {
@@ -24865,8 +24865,8 @@ extern u32 lbl_801A63C0;
 
 extern void fn_1_95158(Fn8F62CCar *car);
 extern char *fn_1_41418(void *data, u32 index);
-extern char *fn_80083970(char *str, const char *needle);
-extern int fn_80083BCC(const char *s1, const char *s2);
+extern char *strstr(char *str, const char *needle);
+extern int strcmp(const char *s1, const char *s2);
 extern void fn_1_41CB8(Fn8F62CMotion *data);
 extern void fn_1_41E34(Fn8F62CMotion *data, u32 index, Fn8F62CResult *result);
 extern void fn_1_933D8(Fn8F62CCar *car, Fn8F62CPart *part, u32 id);
@@ -24942,7 +24942,7 @@ void fn_1_8F62C(Fn8F62CCar *car) {
     }
     for (i = 0; i < 20; i++) {
         if (car->unk_208[i].unk_8 != NULL && car->unk_208[i].unk_C != NULL
-            && fn_80083970(fn_1_41418(car->unk_208[i].unk_C, car->unk_208[i].unk_0),
+            && strstr(fn_1_41418(car->unk_208[i].unk_C, car->unk_208[i].unk_0),
                            fn_1_41418(car->unk_148.unk_C, car->unk_148.unk_0)) != NULL) {
             match[i] = 1;
         } else {
@@ -24977,7 +24977,7 @@ void fn_1_8F62C(Fn8F62CCar *car) {
         fn_1_8F62C_part(car, &car->unk_188, 0);
     }
     if (car->unk_1A8.unk_8 != NULL && car->unk_1A8.unk_C != NULL) {
-        if (fn_80083BCC(fn_1_41418(car->unk_1A8.unk_C, car->unk_1A8.unk_0), (char *)lbl_1_data_278B0) == 0) {
+        if (strcmp(fn_1_41418(car->unk_1A8.unk_C, car->unk_1A8.unk_0), (char *)lbl_1_data_278B0) == 0) {
             Fn8F62CModel *model = car->unk_1A8.unk_8;
 
             if (model->unk_4C >= model->unk_50 - 1.0f) {
@@ -25403,7 +25403,7 @@ typedef struct Fn9012CResult {
 
 extern Fn9012CCamera *camera_get_state_object(void);
 extern void fn_1_913FC(Fn9012CCar *car);
-extern char *fn_80083DB0(char *dst, const char *src);
+extern char *strcpy(char *dst, const char *src);
 extern int sprintf(char *, const char *, ...);
 extern void fn_1_97204(Fn9012CCar *car, char *name);
 extern void fn_1_933D8(Fn9012CCar *car, Fn9012CPart *part, u16 id);
@@ -34818,11 +34818,11 @@ void fn_1_9012C(Fn9012CCar *car) {
         lines = 0x22;
     }
     if (car->unk_1C8.unk_8 != NULL && car->unk_1C8.unk_C != NULL && ((lbl_1_bss_9F8.unk_8 >> 10) & 1)) {
-        fn_80083DB0(buf, lbl_1_data_26D50);
+        strcpy(buf, lbl_1_data_26D50);
         if (car->unk_88 != 0x2C) {
             sprintf(buf, "%s_%d", lbl_1_data_20D1C[lbl_1_bss_6E960__fzgx_offset_4 % 45], lbl_1_bss_6E960__fzgx_offset_14 % 16 + 1);
         } else {
-            fn_80083DB0(buf, lbl_1_data_26F94[lbl_1_bss_6E960__fzgx_offset_14]);
+            strcpy(buf, lbl_1_data_26F94[lbl_1_bss_6E960__fzgx_offset_14]);
         }
         fn_1_97204(car, buf);
     }
@@ -35377,7 +35377,7 @@ static void fzgx_bss_layout(void) {
 #pragma section code_type ".text"
 
 extern void *camera_get_state_object(void);
-extern char *fn_80083DB0(char *dst, const char *src);
+extern char *strcpy(char *dst, const char *src);
 extern int sprintf(char *s, const char *format, ...);
 extern void fn_1_97204(void *arg0, void *arg1);
 extern void fn_1_95210(void *arg0);
@@ -35503,12 +35503,12 @@ void fn_1_913FC(Fn1913FCCar *car) {
     }
 
     if (car->unk_148[4].unk_8 != NULL && car->unk_148[4].unk_C != NULL && ((lbl_1_bss_9F8.unk_8 >> 10) & 1)) {
-        fn_80083DB0(buf, fzgx_pool_data_lbl_1_data_26D50);
+        strcpy(buf, fzgx_pool_data_lbl_1_data_26D50);
         if (car->unk_88 != 0x2C) {
             sprintf(buf, fzgx_pool_data_lbl_1_data_27928, fzgx_pool_data_lbl_1_data_20D1C[lbl_1_bss_6E960__fzgx_offset_4 % 45],
                     lbl_1_bss_6E960__fzgx_offset_14 % 16 + 1);
         } else {
-            fn_80083DB0(buf, fzgx_pool_data_lbl_1_data_26F94[lbl_1_bss_6E960__fzgx_offset_14]);
+            strcpy(buf, fzgx_pool_data_lbl_1_data_26F94[lbl_1_bss_6E960__fzgx_offset_14]);
         }
         fn_1_97204(car, buf);
     }
@@ -36026,8 +36026,8 @@ extern int sprintf(char *, const char *, ...);
 extern int strncmp(const char *, const char *, u32);
 extern char *strncpy(char *, const char *, u32);
 extern u32 strlen(const char *);
-extern char *fn_80083970(const char *, const char *);
-extern int fn_80083BCC(const char *, const char *);
+extern char *strstr(const char *, const char *);
+extern int strcmp(const char *, const char *);
 extern char *fn_1_41418(void *, u16);
 extern Node92554 *fn_80071268(void *, const char *);
 extern u32 *fn_80077A18(void);
@@ -36132,30 +36132,30 @@ void fn_1_92554(Car92554 *car, s32 arg1) {
         part = &car->unk_BC[car->unk_8C][i];
         slot_part = 1;
         active = 0;
-        if (fn_80083BCC(part->unk_4, fzgx_obj_lbl_1_data_23190) == 0 ||
-            fn_80083BCC(part->unk_4, fzgx_obj_lbl_1_data_23420) == 0 ||
-            fn_80083BCC(part->unk_4, fzgx_obj_lbl_1_data_236B0) == 0 ||
-            fn_80083BCC(part->unk_4, fzgx_obj_lbl_1_data_24318) == 0 ||
-            fn_80083BCC(part->unk_4, fzgx_obj_lbl_1_data_24638) == 0 || fn_80083970(part->unk_4, "_CARD_JOKER") != NULL ||
-            fn_80083970(part->unk_4, "_CARD_ACE") != NULL || fn_80083970(part->unk_4, "_BALL") != NULL) {
+        if (strcmp(part->unk_4, fzgx_obj_lbl_1_data_23190) == 0 ||
+            strcmp(part->unk_4, fzgx_obj_lbl_1_data_23420) == 0 ||
+            strcmp(part->unk_4, fzgx_obj_lbl_1_data_236B0) == 0 ||
+            strcmp(part->unk_4, fzgx_obj_lbl_1_data_24318) == 0 ||
+            strcmp(part->unk_4, fzgx_obj_lbl_1_data_24638) == 0 || strstr(part->unk_4, "_CARD_JOKER") != NULL ||
+            strstr(part->unk_4, "_CARD_ACE") != NULL || strstr(part->unk_4, "_BALL") != NULL) {
             active = 1;
         }
-        if (active == 0 && fn_80083970(part->unk_4, fzgx_obj_lbl_1_data_22A44) == NULL) {
+        if (active == 0 && strstr(part->unk_4, fzgx_obj_lbl_1_data_22A44) == NULL) {
             slot_part = 0;
         }
         found = 0;
         for (j = 0; j < 20; j++) {
             if (car->unk_208[j].unk_8 != NULL && car->unk_208[j].unk_C != NULL && slot_part != 0) {
-                if (fn_80083BCC(part->unk_4, fzgx_obj_lbl_1_data_23190) == 0) {
+                if (strcmp(part->unk_4, fzgx_obj_lbl_1_data_23190) == 0) {
                     sprintf(buf, "%s_TUE", fn_1_41418(car->unk_148[0].unk_C, car->unk_148[0].unk_0));
                 } else {
                     sprintf(buf, "%s%s", fn_1_41418(car->unk_148[0].unk_C, car->unk_148[0].unk_0), part->unk_4);
                 }
-                if (fn_80083BCC(fn_1_41418(car->unk_208[j].unk_C, car->unk_208[j].unk_0), buf) == 0) {
+                if (strcmp(fn_1_41418(car->unk_208[j].unk_C, car->unk_208[j].unk_0), buf) == 0) {
                     found = 1;
                 }
                 if (strncmp(fn_1_41418(car->unk_148[0].unk_C, car->unk_148[0].unk_0), "INT_", 4) == 0 &&
-                    fn_80083970(part->unk_4, fzgx_obj_lbl_1_data_24318) != NULL) {
+                    strstr(part->unk_4, fzgx_obj_lbl_1_data_24318) != NULL) {
                     found = 1;
                 }
             }
@@ -36163,8 +36163,8 @@ void fn_1_92554(Car92554 *car, s32 arg1) {
         if (found == 0 && slot_part != 0) {
             continue;
         }
-        if (fn_80083970(part->unk_4, "_CARD_JOKER") != NULL || fn_80083970(part->unk_4, "_CARD_ACE") != NULL ||
-            fn_80083970(part->unk_4, "_BALL") != NULL) {
+        if (strstr(part->unk_4, "_CARD_JOKER") != NULL || strstr(part->unk_4, "_CARD_ACE") != NULL ||
+            strstr(part->unk_4, "_BALL") != NULL) {
             strncpy(buf2, part->unk_4, strlen(part->unk_4) - 2);
             active = 0;
             buf2[strlen(part->unk_4) - 2] = active;
@@ -36197,8 +36197,8 @@ void fn_1_92554(Car92554 *car, s32 arg1) {
         mathutil_mtxA_rotate_z(182.04445f * part->unk_14);
         mathutil_mtxA_rotate_y(182.04445f * part->unk_10);
         mathutil_mtxA_rotate_x(182.04445f * part->unk_C);
-        if (fn_80083970(part->unk_4, fzgx_obj_lbl_1_data_272E4) != NULL &&
-            fn_80083970(fn_1_41418(car->unk_148[0].unk_C, car->unk_148[0].unk_0), "INT_") != NULL) {
+        if (strstr(part->unk_4, fzgx_obj_lbl_1_data_272E4) != NULL &&
+            strstr(fn_1_41418(car->unk_148[0].unk_C, car->unk_148[0].unk_0), "INT_") != NULL) {
             fn_80077A20(node, 0);
             lbl_8006DFC4(car->unk_148[0].unk_8->unk_8 + 0x214);
             lbl_8006E0B4(0.2025f, 0.065f, 0.085f);
@@ -36206,22 +36206,22 @@ void fn_1_92554(Car92554 *car, s32 arg1) {
             mathutil_mtxA_rotate_y(0x560B);
             mathutil_mtxA_rotate_x(0x8000);
         } else if ((node->unk_4 & 0xC) && part->unk_8 != NULL) {
-            if (fn_80083970(part->unk_4, fzgx_obj_lbl_1_data_22A1C) != NULL ||
-                fn_80083970(part->unk_4, fzgx_obj_lbl_1_data_24EF0) != NULL) {
+            if (strstr(part->unk_4, fzgx_obj_lbl_1_data_22A1C) != NULL ||
+                strstr(part->unk_4, fzgx_obj_lbl_1_data_24EF0) != NULL) {
                 model = car->unk_148[0].unk_8;
-            } else if (fn_80083970(part->unk_4, fzgx_obj_lbl_1_data_22A2C) != NULL) {
+            } else if (strstr(part->unk_4, fzgx_obj_lbl_1_data_22A2C) != NULL) {
                 model = car->unk_148[2].unk_8;
-            } else if (fn_80083970(part->unk_4, fzgx_obj_lbl_1_data_22A34) != NULL) {
+            } else if (strstr(part->unk_4, fzgx_obj_lbl_1_data_22A34) != NULL) {
                 model = car->unk_148[1].unk_8;
             } else if (slot_part != 0) {
-                if (fn_80083BCC(part->unk_4, fzgx_obj_lbl_1_data_23190) == 0) {
+                if (strcmp(part->unk_4, fzgx_obj_lbl_1_data_23190) == 0) {
                     sprintf(buf3, "%s_TUE", fn_1_41418(car->unk_148[0].unk_C, car->unk_148[0].unk_0));
                 } else {
                     sprintf(buf3, "%s%s", fn_1_41418(car->unk_148[0].unk_C, car->unk_148[0].unk_0), part->unk_4);
                 }
                 for (j = 0; j < 20; j++) {
                     if (car->unk_208[j].unk_8 != NULL && car->unk_208[j].unk_C != NULL &&
-                        fn_80083BCC(fn_1_41418(car->unk_208[j].unk_C, car->unk_208[j].unk_0), buf3) == 0) {
+                        strcmp(fn_1_41418(car->unk_208[j].unk_C, car->unk_208[j].unk_0), buf3) == 0) {
                         model = car->unk_208[j].unk_8;
                         break;
                     }
@@ -36253,14 +36253,14 @@ void fn_1_92554(Car92554 *car, s32 arg1) {
         } else if (node->unk_4 & 0xC) {
             fn_80077A20(node, 0);
         }
-        if (fn_80083970(part->unk_4, fzgx_obj_lbl_1_data_22A3C) != NULL) {
+        if (strstr(part->unk_4, fzgx_obj_lbl_1_data_22A3C) != NULL) {
             continue;
         }
         if (arg1 != 0 && active == 0) {
             continue;
         }
         fn_80072558();
-        if (fn_80083BCC(part->unk_4, fzgx_obj_lbl_1_data_22A44) == 0 && !(car->unk_18 & 0x08000000)) {
+        if (strcmp(part->unk_4, fzgx_obj_lbl_1_data_22A44) == 0 && !(car->unk_18 & 0x08000000)) {
             lbl_1_data_274CC__fzgx_offset_324 = lbl_1_data_274CC__fzgx_offset_324 * 0x676A4B6B + 0x33CB;
             fn_1_56018(0);
             fn_1_92554_items(node, car);
@@ -36273,7 +36273,7 @@ void fn_1_92554(Car92554 *car, s32 arg1) {
         if (car->unk_18 & 0x08000000) {
             fn_80077A20(node, 0);
         }
-        if (car->unk_88 == 25 && fn_80083BCC(part->unk_4, fzgx_obj_lbl_1_data_23420) == 0) {
+        if (car->unk_88 == 25 && strcmp(part->unk_4, fzgx_obj_lbl_1_data_23420) == 0) {
             fn_1_977BC(car, model);
         }
     }
@@ -36601,8 +36601,8 @@ extern void fn_1_93734(CarObject *arg0, void *arg1);
 extern void fn_1_4270C(void *arg0, s32 arg1, u16 arg2);
 extern int fn_1_41488(void *, const char *);
 extern int sprintf(char *, const char *, ...);
-extern char *fn_80083DB0(char *, const char *);
-extern char *fn_80083970(const char *, const char *);
+extern char *strcpy(char *, const char *);
+extern char *strstr(const char *, const char *);
 
 static inline char *lookup(TblEntry *tbl, u32 n, u32 kind, u32 idx) {
     u32 j;
@@ -37486,7 +37486,7 @@ void fn_1_93734(CarObject *car, void *name) {
         if (id != -1) {
             APPLY(sa, id, 1);
         } else {
-            fn_80083DB0(buf, fzgx_pool_native_lbl_1_data_209C0_str_6EA4.view);
+            strcpy(buf, fzgx_pool_native_lbl_1_data_209C0_str_6EA4.view);
             id = fn_1_41488(sa->data->field_24, buf);
             if (id == -1) {
                 APPLY(sa, 0, 0);
@@ -37503,7 +37503,7 @@ void fn_1_93734(CarObject *car, void *name) {
         if (id != -1) {
             APPLY(sb, id, 1);
         } else {
-            fn_80083DB0(buf, fzgx_pool_native_lbl_1_data_209C0_str_6E9C);
+            strcpy(buf, fzgx_pool_native_lbl_1_data_209C0_str_6E9C);
             id = fn_1_41488(sb->data->field_24, buf);
             if (id == -1) {
                 id = 0;
@@ -37515,7 +37515,7 @@ void fn_1_93734(CarObject *car, void *name) {
     sc = &car->slots[3];
     if (sc->data != 0 && sc->strs != 0) {
         sprintf(buf, fzgx_pool_native_lbl_1_data_209C0_str_71B0, name);
-        if (fn_80083970(name, fzgx_pool_native_lbl_1_data_209C0_str_71B8) != 0 && car->field_88 != 0x2c) {
+        if (strstr(name, fzgx_pool_native_lbl_1_data_209C0_str_71B8) != 0 && car->field_88 != 0x2c) {
             if ((u32)fn_1_41488(sc->data->field_24, buf) == -1) {
                 sprintf(buf, fzgx_pool_native_lbl_1_data_209C0_str_71BC, fzgx_pool_native_lbl_1_data_209C0_str_6390.view);
             }
@@ -37553,7 +37553,7 @@ void fn_1_93734(CarObject *car, void *name) {
     for (i = 0; i < 20; i++) {
         slot = &(car->slots + 6)[i];
         if (slot->data != 0 && slot->strs != 0) {
-            fn_80083DB0((char *)buf2, lookup(fzgx_pool_native_lbl_1_data_209C0_table.view, fzgx_pool_native_lbl_1_data_209C0_count, car->field_88, i));
+            strcpy((char *)buf2, lookup(fzgx_pool_native_lbl_1_data_209C0_table.view, fzgx_pool_native_lbl_1_data_209C0_count, car->field_88, i));
             if (buf2[0] != 0) {
                 sprintf(buf, fzgx_pool_native_lbl_1_data_209C0_str_71DC, name, buf2);
                 id = fn_1_41488(slot->data->field_24, buf);
@@ -37620,8 +37620,8 @@ extern void fn_1_93734(CarObject *arg0, void *arg1);
 extern void fn_1_4270C(void *arg0, s32 arg1, u16 arg2);
 extern int fn_1_41488(void *, const char *);
 extern int sprintf(char *, const char *, ...);
-extern char *fn_80083DB0(char *, const char *);
-extern char *fn_80083970(const char *, const char *);
+extern char *strcpy(char *, const char *);
+extern char *strstr(const char *, const char *);
 
 static inline char *lookup(TblEntry *tbl, u32 n, u32 kind, u32 idx) {
     u32 j;
@@ -38535,7 +38535,7 @@ void fn_1_943F8(CarObject *car, void *name, f32 blend) {
             APPLYF(sa, id, 1);
         } else {
             u32 fallback;
-            fn_80083DB0(buf, fzgx_pool_native_lbl_1_data_209C0_str_6EA4.view);
+            strcpy(buf, fzgx_pool_native_lbl_1_data_209C0_str_6EA4.view);
             fallback = fn_1_41488(sa->data->field_24, buf);
             if (fallback == -1) fallback = 0;
             APPLYF(sa, fallback, 0);
@@ -38550,7 +38550,7 @@ void fn_1_943F8(CarObject *car, void *name, f32 blend) {
             APPLYF(sb, id, 1);
         } else {
             u32 fallback;
-            fn_80083DB0(buf, fzgx_pool_native_lbl_1_data_209C0_str_6E9C);
+            strcpy(buf, fzgx_pool_native_lbl_1_data_209C0_str_6E9C);
             fallback = fn_1_41488(sb->data->field_24, buf);
             if (fallback == -1) {
                 fallback = 0;
@@ -38562,7 +38562,7 @@ void fn_1_943F8(CarObject *car, void *name, f32 blend) {
     sc = &car->slots[3];
     if (sc->data != 0 && sc->strs != 0) {
         sprintf(buf, fzgx_pool_native_lbl_1_data_209C0_str_71B0, name);
-        if (fn_80083970(name, fzgx_pool_native_lbl_1_data_209C0_str_71B8) != 0 && car->field_88 != 0x2c) {
+        if (strstr(name, fzgx_pool_native_lbl_1_data_209C0_str_71B8) != 0 && car->field_88 != 0x2c) {
             if ((u32)fn_1_41488(sc->data->field_24, buf) == -1) {
                 sprintf(buf, fzgx_pool_native_lbl_1_data_209C0_str_71BC, fzgx_pool_native_lbl_1_data_209C0_str_6390.view);
             }
@@ -38600,7 +38600,7 @@ void fn_1_943F8(CarObject *car, void *name, f32 blend) {
     for (i = 0; i < 20; i++) {
         slot = &(car->slots + 6)[i];
         if (slot->data != 0 && slot->strs != 0) {
-            fn_80083DB0((char *)buf2, lookup(fzgx_pool_native_lbl_1_data_209C0_table.view, fzgx_pool_native_lbl_1_data_209C0_count, car->field_88, i));
+            strcpy((char *)buf2, lookup(fzgx_pool_native_lbl_1_data_209C0_table.view, fzgx_pool_native_lbl_1_data_209C0_count, car->field_88, i));
             if (buf2[0] != 0) {
                 sprintf(buf, fzgx_pool_native_lbl_1_data_209C0_str_71DC, name, buf2);
                 id = fn_1_41488(slot->data->field_24, buf);
@@ -39275,7 +39275,7 @@ extern void GXInvalidateTexAll(void);
 
 
 extern int sprintf(char *, const char *, ...);
-extern int fn_80083BCC(const char *, const char *);
+extern int strcmp(const char *, const char *);
 
 typedef struct {
     u16 id;
@@ -41101,7 +41101,7 @@ void fn_1_956EC(s32 id, u32 mask) {
     if ((mask & (7u << 29)) && (*(u32 *)((u8 *)fzgx_pool_init_sCarFlags.v + off) & 0x04000000)) {
         for (i = 0; i < 20; i++) {
             sprintf(buf, fzgx_pool_init_sStr71EC.v, fn_1_956EC_lookup(id, i));
-            if (fn_80083BCC(buf, fzgx_pool_init_sStr7238.v)) {
+            if (strcmp(buf, fzgx_pool_init_sStr7238.v)) {
                 fn_1_465D0((s32)buf, 1);
             }
         }
@@ -41125,7 +41125,7 @@ typedef struct Sig_fn_1_426AC_Fn1426ACObject {
     u8 padC[0x30];
     void *value;
 } Sig_fn_1_426AC_Fn1426ACObject;
-extern int fn_80083BCC(const char *, const char *);
+extern int strcmp(const char *, const char *);
 extern int sprintf(char *, const char *, ...);
 extern s32 fn_1_12A8A4(void *, void *);
 extern s32 fn_1_12A9BC(void *, void *);
@@ -41263,9 +41263,9 @@ mask_car:
             name = 0;
 found:
             sprintf((char *)&loc_8, (char *)p_lbl_1_data_209C0 + 0x71ec, name);
-            if (fn_80083BCC((char *)&loc_8, (char *)p_lbl_1_data_209C0 + 0x7248) == 0 || fn_80083BCC((char *)&loc_8, (char *)p_lbl_1_data_209C0 + 0x7258) == 0 || fn_80083BCC((char *)&loc_8, (char *)p_lbl_1_data_209C0 + 0x7268) == 0) {
+            if (strcmp((char *)&loc_8, (char *)p_lbl_1_data_209C0 + 0x7248) == 0 || strcmp((char *)&loc_8, (char *)p_lbl_1_data_209C0 + 0x7258) == 0 || strcmp((char *)&loc_8, (char *)p_lbl_1_data_209C0 + 0x7268) == 0) {
                 *(u32 *)((u8 *)v16 + 0x210) = 0;
-            } else if (fn_80083BCC((char *)&loc_8, (char *)p_lbl_1_data_209C0 + 0x7238) != 0 && fn_1_12A9BC(&loc_8, (void *)(v16 + 0x20c))) {
+            } else if (strcmp((char *)&loc_8, (char *)p_lbl_1_data_209C0 + 0x7238) != 0 && fn_1_12A9BC(&loc_8, (void *)(v16 + 0x20c))) {
                 *(u32 *)((u8 *)v16 + 0x210) = fn_1_4630(lbl_801A6410, *(u16 *)*(u32 *)((u8 *)v16 + 0x20c) * 0x18c + 0x70, p_lbl_1_data_209C0 + 0x7240, 0xb30);
                 v3 = *(u32 *)(v16 + 0x210);
                 fn_1_4247C((void *)v3, v3 + 0x70, (void *)*(u32 *)(v16 + 0x20c));

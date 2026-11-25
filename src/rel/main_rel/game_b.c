@@ -21,7 +21,7 @@ extern void fn_80071718(void *texture);
 extern int sprintf(char *buffer, const char *format, ...);
 extern s32 DVDConvertPathToEntrynum(char *path);
 extern u32 strlen(const char *s);
-extern int fn_80083BCC(const char *a, const char *b);
+extern int strcmp(const char *a, const char *b);
 extern u32 lbl_801A6CE0;
 
 char *lbl_1_data_66A0[8] = {
@@ -204,7 +204,7 @@ int fn_1_41488(StringTable *table, const char *value) {
     u32 index = 0;
 
     while (index < count) {
-        if (fn_80083BCC(value, str) == 0) {
+        if (strcmp(value, str) == 0) {
             return index;
         }
         str += strlen(str) + 1;

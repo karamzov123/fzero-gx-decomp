@@ -185,7 +185,7 @@ extern char lbl_12_rodata_1028[117];
 extern void *memset(void *, int, u32);
 extern f64 fn_80079D74(s64);
 extern int sprintf(char *, const char *, ...);
-extern char *fn_80083DB0(char *, const char *);
+extern char *strcpy(char *, const char *);
 
 static inline s32 fn_12_2FE60_average(Sig_fn_12_2FE60_State *state) {
     s32 i;
@@ -354,7 +354,7 @@ void fn_12_2FE60(Sig_fn_12_2FE60_State *state, Sig_fn_12_2FE60_Int64Pair *arg1, 
             state->maxInactive, state->minInactive, state->maxActive, state->minActive,
             state->mode, state->active, state->resets, state->jumps, state->resyncs,
             state->positive, state->negative, state->average, state->adjusted, lbl_12_bss_6988);
-        fn_80083DB0(*(char **)(p_lbl_12_bss_1B740 + 0xC), buffer);
+        strcpy(*(char **)(p_lbl_12_bss_1B740 + 0xC), buffer);
         *(char **)(p_lbl_12_bss_1B740 + 0xC) += length;
         if (*(u32 *)(p_lbl_12_bss_1B740 + 0xC) >=
             *(u32 *)(p_lbl_12_bss_1B740 + 4) + *(u32 *)p_lbl_12_bss_1B740 - 0x400) {

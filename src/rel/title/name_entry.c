@@ -13,7 +13,7 @@ extern u32 fn_1_46B4(u32, u32, u32, u32);
 extern u32 fn_1_48140(u32);
 extern u32 fn_1_A8F78(void);
 extern u8 lbl_8_bss_554;
-extern u32 fn_80083DB0(u32, u32);
+extern u32 strcpy(u32, u32);
 extern u8 lbl_8_bss_555;
 
 /* fzgx:begin fn_8_FF9C */
@@ -59,7 +59,7 @@ struct fn_8_10084_lbl_8_bss_550 {
 };
 
 void fn_8_10084(u32 arg0) {
-    fn_80083DB0(arg0, ((*(struct fn_8_10084_lbl_8_bss_550 *)&lbl_8_bss_550).unk_0 + 40));
+    strcpy(arg0, ((*(struct fn_8_10084_lbl_8_bss_550 *)&lbl_8_bss_550).unk_0 + 40));
 }
 /* fzgx:end fn_8_10084 */
 

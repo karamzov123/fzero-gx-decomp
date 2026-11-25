@@ -75,7 +75,7 @@ extern void fn_1_495C8(u8);
 extern void fn_1_49514(NameEntryRGBA);
 extern void fn_1_496FC(f32, f32);
 extern void fn_1_4955C(f32, f32);
-extern char *fn_80083DB0(char *, const char *);
+extern char *strcpy(char *, const char *);
 extern void *fn_800793D4(void *, s32, u32);
 void fn_10_2325C();
 /* Character pages of the name entry screen: the page title, then the letters of each case
@@ -357,7 +357,7 @@ fn_10_23990_f64 unk_748;
 fn_10_23990_f32 unk_750;
 fn_10_23990_f32 unk_754;
 };
-extern char * fn_80083CF4(char *, const char *, fn_10_23990_size_t);
+extern char * strncat(char *, const char *, fn_10_23990_size_t);
 extern struct fn_8_DD64_lbl_801A63D0 lbl_801A63D0;
 
 
@@ -365,7 +365,7 @@ typedef NameEntryRGBA Sig_fn_800081C8_Color;
 extern fn_10_23990_u32 fn_800081C8(Sig_fn_800081C8_Color, Sig_fn_800081C8_Color, fn_10_23990_f32);
 
 
-extern fn_10_23990_u8 * fn_80083970(fn_10_23990_u8 *, const fn_10_23990_u8 *);
+extern fn_10_23990_u8 * strstr(fn_10_23990_u8 *, const fn_10_23990_u8 *);
 
 
 
@@ -464,21 +464,21 @@ v1 = v0;
 { fn_10_23990_s32 __reg_value_v2 = (v2 + (v19 << 1)); v2 = __reg_value_v2; }
 lab_t0 = v1;
 lab_t1 = v2;
-v1 = (fn_10_23990_u32)fn_80083DB0((char *)lab_t0, (const char *)lab_t1);
+v1 = (fn_10_23990_u32)strcpy((char *)lab_t0, (const char *)lab_t1);
 { fn_10_23990_s32 __reg_value_v2 = (fn_10_23990_u32)v8->chars; v2 = __reg_value_v2; }
 v1 = v0;
 v1 = (fn_10_23990_u32)strcat((char *)v1, (const char *)v2);
 { fn_10_23990_s32 __reg_value_v2 = (fn_10_23990_u32)v8->chars; v2 = __reg_value_v2; }
 v1 = v0;
 v3 = ((v10 + 10) << 1);
-v1 = (fn_10_23990_u32)fn_80083CF4((char *)v1, (const char *)v2, v3);
+v1 = (fn_10_23990_u32)strncat((char *)v1, (const char *)v2, v3);
 } else {
 v2 = (fn_10_23990_s32)((fn_10_23990_u32)v8->chars);
 v1 = v0;
 { fn_10_23990_s32 __reg_value_v2 = (v2 + (v10 << 1)); v2 = __reg_value_v2; }
 lab_t0 = v1;
 lab_t1 = v2;
-v1 = (fn_10_23990_u32)fn_80083DB0((char *)lab_t0, (const char *)lab_t1);
+v1 = (fn_10_23990_u32)strcpy((char *)lab_t0, (const char *)lab_t1);
 v1 = v8->cursor;
 v10 = (v1 + 11);
 if ((fn_10_23990_s32)v10 > (fn_10_23990_s32)v8->length) {
@@ -488,12 +488,12 @@ v1 = (fn_10_23990_u32)strcat((char *)v1, (const char *)v2);
 v1 = v0;
 { fn_10_23990_s32 __reg_value_v2 = (fn_10_23990_u32)v8->chars; v2 = __reg_value_v2; }
 v3 = ((v10 - v8->length) << 1);
-v1 = (fn_10_23990_u32)fn_80083CF4((char *)v1, (const char *)v2, v3);
+v1 = (fn_10_23990_u32)strncat((char *)v1, (const char *)v2, v3);
 } else {
 v2 = (fn_10_23990_s32)((fn_10_23990_u32)v8->chars);
 v1 = v0;
 v3 = (v10 << 1);
-v1 = (fn_10_23990_u32)fn_80083CF4((char *)v1, (const char *)v2, v3);
+v1 = (fn_10_23990_u32)strncat((char *)v1, (const char *)v2, v3);
 }
 }
 } else {
@@ -502,14 +502,14 @@ v1 = v0;
 { fn_10_23990_s32 __reg_value_v2 = (v2 + (v3 << 1)); v2 = __reg_value_v2; }
 lab_t0 = v1;
 lab_t1 = v2;
-v1 = (fn_10_23990_u32)fn_80083DB0((char *)lab_t0, (const char *)lab_t1);
+v1 = (fn_10_23990_u32)strcpy((char *)lab_t0, (const char *)lab_t1);
 { fn_10_23990_s32 __reg_value_v2 = v8->cursor; v2 = __reg_value_v2; }
 v1 = v0;
 v3 = v8->length;
 v12 = (v2 + 11);
 { fn_10_23990_s32 __reg_value_v2 = (fn_10_23990_u32)v8->chars; v2 = __reg_value_v2; }
 v3 = ((v12 - v3) << 1);
-v1 = (fn_10_23990_u32)fn_80083CF4((char *)v1, (const char *)v2, v3);
+v1 = (fn_10_23990_u32)strncat((char *)v1, (const char *)v2, v3);
 }
 v2 = (fn_10_23990_s32)(*(fn_10_23990_u8 *)((fn_10_23990_u8 *)arg0));
 v1 = (fn_10_23990_u32)(*(fn_10_23990_Obj_4_bss_5680_Target * *)&lbl_10_bss_55CD8);
@@ -600,7 +600,7 @@ v1 = v3 > 0;
 v1 = v0;
 v2 = (fn_10_23990_u32)"\x81\xe8";
 *(fn_10_23990_u8 *)((fn_10_23990_u8 *)arg0 + 2) = v8->cursor;
-v1 = (fn_10_23990_u32)fn_80083970((fn_10_23990_u8 *)v1, (const fn_10_23990_u8 *)v2);
+v1 = (fn_10_23990_u32)strstr((fn_10_23990_u8 *)v1, (const fn_10_23990_u8 *)v2);
 p_lbl_1_rodata_26F8 = (*(fn_10_23990_u8 (*)[])&lbl_1_rodata_26F8);
 v15 = 0x10000 - 28914;
 v20 = (fn_10_23990_u8 *)v1;
@@ -657,7 +657,7 @@ v1 = fn_800081C8(loc_10, loc_C, v5);
 }
 loc_18.a[14] = v1;
 fn_1_4F734((FontDrawPacket *)&loc_18);
-v20 = fn_80083970(v20 + 2, (const fn_10_23990_u8 *)"\x81\xe8");
+v20 = strstr(v20 + 2, (const fn_10_23990_u8 *)"\x81\xe8");
 }
 v2 = (fn_10_23990_s8)*(fn_10_23990_u8 *)((fn_10_23990_u8 *)arg0 + 1);
 v2 += 320;
@@ -1310,9 +1310,9 @@ static void name_entry_set_default_name(void) {
     ptr = lbl_10_bss_55CD8->name;
     if (*ptr == 0) {
         if (lbl_801A66B4 == 5) {
-            fn_80083DB0((char *)ptr, "\x83G\x83t\x83[\x83\x8d");
+            strcpy((char *)ptr, "\x83G\x83t\x83[\x83\x8d");
         } else {
-            fn_80083DB0((char *)ptr, "\x82\x65\x81|\x82y\x82\x64\x82q\x82n");
+            strcpy((char *)ptr, "\x82\x65\x81|\x82y\x82\x64\x82q\x82n");
         }
         {
             NameEntryRGBA color = {0x00, 0xFF, 0xFF, 0x00};
@@ -1625,7 +1625,7 @@ extern void fn_1_14BD74(void);
 extern s32 lbl_801A66B4;
 extern u8 lbl_10_data_68E0[];
 extern u32 lbl_10_rodata_1D64;
-extern char * fn_80083DB0(char *, const char *);
+extern char * strcpy(char *, const char *);
 extern u32 fn_10_2325C(void);
 extern s32 fn_1_3F8C(void *, u32, void *, u32);
 extern void fn_1_49410(void);
@@ -1898,7 +1898,7 @@ extern void fn_1_14BD74(void);
 extern s32 lbl_801A66B4;
 extern u8 lbl_10_data_68E0[];
 extern u32 lbl_10_rodata_1D64;
-extern char * fn_80083DB0(char *, const char *);
+extern char * strcpy(char *, const char *);
 extern u32 fn_10_2325C(void);
 extern s32 fn_1_3F8C(void *, u32, void *, u32);
 extern void fn_1_49410(void);

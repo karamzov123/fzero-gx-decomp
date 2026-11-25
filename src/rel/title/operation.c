@@ -8041,7 +8041,7 @@ fn_8_DD64_f64 unk_748;
 fn_8_DD64_f32 unk_750;
 fn_8_DD64_f32 unk_754;
 };
-extern char * fn_80083CF4(char *, const char *, fn_8_DD64_size_t);
+extern char * strncat(char *, const char *, fn_8_DD64_size_t);
 extern char * strcat(char *, const char *);
 extern char * strncpy(char *, const char *, fn_8_DD64_size_t);
 extern int fn_1_4F734(fn_8_DD64_FontDrawPacket *);
@@ -8055,10 +8055,10 @@ extern fn_8_DD64_u32 fn_1_49410(void);
 typedef struct Sig_fn_800081C8_Color Sig_fn_800081C8_Color;
 extern fn_8_DD64_u32 fn_800081C8(Sig_fn_800081C8_Color, Sig_fn_800081C8_Color, fn_8_DD64_f32);
 extern fn_8_DD64_u32 fn_800793D4(fn_8_DD64_u8 *, fn_8_DD64_u32, void *);
-extern fn_8_DD64_u32 fn_80083DB0(fn_8_DD64_u32, fn_8_DD64_u32);
+extern fn_8_DD64_u32 strcpy(fn_8_DD64_u32, fn_8_DD64_u32);
 
 
-extern fn_8_DD64_u8 * fn_80083970(fn_8_DD64_u8 *, const fn_8_DD64_u8 *);
+extern fn_8_DD64_u8 * strstr(fn_8_DD64_u8 *, const fn_8_DD64_u8 *);
 
 
 
@@ -8175,21 +8175,21 @@ v1 = v0;
 { fn_8_DD64_s32 __reg_value_v2 = (v2 + (v19 << 1)); v2 = __reg_value_v2; }
 lab_t0 = v1;
 lab_t1 = v2;
-v1 = fn_80083DB0(lab_t0, lab_t1);
+v1 = strcpy(lab_t0, lab_t1);
 { fn_8_DD64_s32 __reg_value_v2 = (fn_8_DD64_u32)v8->chars; v2 = __reg_value_v2; }
 v1 = v0;
 v1 = (fn_8_DD64_u32)strcat((char *)v1, (const char *)v2);
 { fn_8_DD64_s32 __reg_value_v2 = (fn_8_DD64_u32)v8->chars; v2 = __reg_value_v2; }
 v1 = v0;
 v3 = ((v10 + 10) << 1);
-v1 = (fn_8_DD64_u32)fn_80083CF4((char *)v1, (const char *)v2, v3);
+v1 = (fn_8_DD64_u32)strncat((char *)v1, (const char *)v2, v3);
 } else {
 v2 = (fn_8_DD64_s32)((fn_8_DD64_u32)v8->chars);
 v1 = v0;
 { fn_8_DD64_s32 __reg_value_v2 = (v2 + (v10 << 1)); v2 = __reg_value_v2; }
 lab_t0 = v1;
 lab_t1 = v2;
-v1 = fn_80083DB0(lab_t0, lab_t1);
+v1 = strcpy(lab_t0, lab_t1);
 v1 = v8->cursor;
 v10 = (v1 + 11);
 if ((fn_8_DD64_s32)v10 > (fn_8_DD64_s32)v8->length) {
@@ -8199,12 +8199,12 @@ v1 = (fn_8_DD64_u32)strcat((char *)v1, (const char *)v2);
 v1 = v0;
 { fn_8_DD64_s32 __reg_value_v2 = (fn_8_DD64_u32)v8->chars; v2 = __reg_value_v2; }
 v3 = ((v10 - v8->length) << 1);
-v1 = (fn_8_DD64_u32)fn_80083CF4((char *)v1, (const char *)v2, v3);
+v1 = (fn_8_DD64_u32)strncat((char *)v1, (const char *)v2, v3);
 } else {
 v2 = (fn_8_DD64_s32)((fn_8_DD64_u32)v8->chars);
 v1 = v0;
 v3 = (v10 << 1);
-v1 = (fn_8_DD64_u32)fn_80083CF4((char *)v1, (const char *)v2, v3);
+v1 = (fn_8_DD64_u32)strncat((char *)v1, (const char *)v2, v3);
 }
 }
 } else {
@@ -8213,14 +8213,14 @@ v1 = v0;
 { fn_8_DD64_s32 __reg_value_v2 = (v2 + (v3 << 1)); v2 = __reg_value_v2; }
 lab_t0 = v1;
 lab_t1 = v2;
-v1 = fn_80083DB0(lab_t0, lab_t1);
+v1 = strcpy(lab_t0, lab_t1);
 { fn_8_DD64_s32 __reg_value_v2 = v8->cursor; v2 = __reg_value_v2; }
 v1 = v0;
 v3 = v8->length;
 v12 = (v2 + 11);
 { fn_8_DD64_s32 __reg_value_v2 = (fn_8_DD64_u32)v8->chars; v2 = __reg_value_v2; }
 v3 = ((v12 - v3) << 1);
-v1 = (fn_8_DD64_u32)fn_80083CF4((char *)v1, (const char *)v2, v3);
+v1 = (fn_8_DD64_u32)strncat((char *)v1, (const char *)v2, v3);
 }
 v2 = (fn_8_DD64_s32)(*(fn_8_DD64_u8 *)((fn_8_DD64_u8 *)arg0));
 v1 = (fn_8_DD64_u32)(*(fn_8_DD64_Obj_4_bss_5680_Target * *)&lbl_8_bss_550);
@@ -8311,7 +8311,7 @@ v1 = v3 > 0;
 v1 = v0;
 v2 = (fn_8_DD64_u32)(p_lbl_8_data_A1E8 + 196);
 *(fn_8_DD64_u8 *)((fn_8_DD64_u8 *)arg0 + 2) = v8->cursor;
-v1 = (fn_8_DD64_u32)fn_80083970((fn_8_DD64_u8 *)v1, (const fn_8_DD64_u8 *)v2);
+v1 = (fn_8_DD64_u32)strstr((fn_8_DD64_u8 *)v1, (const fn_8_DD64_u8 *)v2);
 p_lbl_1_rodata_26F8 = (*(fn_8_DD64_u8 (*)[])&lbl_1_rodata_26F8);
 v15 = 0x10000 - 28914;
 v20 = (fn_8_DD64_u8 *)v1;
@@ -8368,7 +8368,7 @@ v1 = fn_800081C8(loc_10, loc_C, v5);
 }
 loc_18.a[14] = v1;
 fn_1_4F734((fn_8_DD64_FontDrawPacket *)&loc_18);
-v20 = fn_80083970(v20 + 2, p_lbl_8_data_A1E8 + 196);
+v20 = strstr(v20 + 2, p_lbl_8_data_A1E8 + 196);
 }
 v2 = (fn_8_DD64_s8)*(fn_8_DD64_u8 *)((fn_8_DD64_u8 *)arg0 + 1);
 v2 += 320;
@@ -8768,7 +8768,7 @@ extern u32 fn_1_46B4(u32, u32, u32, u32);
 extern u32 fn_1_48140(u32);
 extern u32 fn_1_A8F78(void);
 extern u8 lbl_8_bss_554;
-extern u32 fn_80083DB0(u32, u32);
+extern u32 strcpy(u32, u32);
 extern u8 lbl_8_bss_555;
 
 typedef signed char fn_8_EFA4_s8;
@@ -9581,7 +9581,7 @@ extern u32 fn_1_435C(u32);
 extern s32 fn_1_45D0(u32, u32, u8 *, u32);
 extern s32 fn_1_3F8C(u8 *, u32, u32, u32);
 extern void fn_1_A2D84(u32);
-extern void fn_80083DB0(u8 *, u32);
+extern void strcpy(u8 *, u32);
 extern void fn_8_D630(void);
 struct fn_8_FC5C_lbl_801A6410 {
     u32 unk_0;
@@ -9661,9 +9661,9 @@ s32 fn_8_FC5C(void) {
         }
         if (((u8 *)lbl_8_bss_550)[0x28] == 0) {
             if (lbl_801A66B4 == 5) {
-                fn_80083DB0((u8 *)lbl_8_bss_550 + 0x28, (u32)(data + 0x114));
+                strcpy((u8 *)lbl_8_bss_550 + 0x28, (u32)(data + 0x114));
             } else {
-                fn_80083DB0((u8 *)lbl_8_bss_550 + 0x28, (u32)(data + 0x120));
+                strcpy((u8 *)lbl_8_bss_550 + 0x28, (u32)(data + 0x120));
             }
             c2 = *(Word *)&lbl_8_rodata_C24;
             fn_1_435C(lbl_8_bss_550->unk_8);

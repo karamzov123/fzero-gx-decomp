@@ -126,7 +126,7 @@ void *memchr(const void *src, int val, size_t n);
 char *strchr(const char *string, int character);
 size_t strlen(const char *string);
 /* strcpy */
-char *fn_80083DB0(char *destination, const char *source);
+char *strcpy(char *destination, const char *source);
 int wcstombs(char *dst, const wchar_t *src, size_t n);
 void *__va_arg(__va_list args, int type);
 

@@ -23,7 +23,7 @@ extern void fn_80009064(u32 value);
 extern void fn_1_46B4(u32 arg0, u32 arg1, char *arg2, s32 arg3);
 extern void fn_1_4DDC0(void);
 extern void fn_1_4F724(void);
-extern void fn_80083DB0(void *arg0, void *arg1);
+extern void strcpy(void *arg0, void *arg1);
 extern s32 fn_1_45730(void *, void *);
 extern size_t strlen(const char *);
 extern s32 strncmp(const char *, const char *, size_t);
@@ -421,14 +421,14 @@ void *fn_1_485E8(s32 index, s32 value) {
 
     while (((s16 **)lbl_1_data_19FC4)[index][entry] != -1) {
         if (((s16 **)lbl_1_data_19FC4)[index][entry] == value) {
-            fn_80083DB0(lbl_1_bss_3E024,
+            strcpy(lbl_1_bss_3E024,
                         ((void ***)lbl_1_data_19098)[index][entry]);
             return lbl_1_bss_3E024;
         }
         entry++;
     }
 
-    fn_80083DB0(lbl_1_bss_3E024, lbl_1_data_1A3AC);
+    strcpy(lbl_1_bss_3E024, lbl_1_data_1A3AC);
     return lbl_1_bss_3E024;
 }
 /* fzgx:end fn_1_485E8 */

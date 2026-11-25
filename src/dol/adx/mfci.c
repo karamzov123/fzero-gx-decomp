@@ -40,7 +40,7 @@ unsigned long strlen(const char *s);
 unsigned long strtoul(const char *str, char **endptr, int base);
 void *memcpy(void *dst, const void *src, unsigned long n);
 void *memset(void *dst, int c, unsigned long n);
-char *fn_80083DB0(char *dst, const char *src);
+char *strcpy(char *dst, const char *src);
 u32 fn_80059B44(void);
 void fn_80059AE0(void);
 
@@ -420,7 +420,7 @@ void *fn_8005A24C(const char *filename, void *parameter, int mode) {
         return 0;
     }
 
-    fn_80083DB0(handle->filename, filename);
+    strcpy(handle->filename, filename);
     handle->sector_length = MFCI_DEFAULT_SECTOR_LENGTH;
     mfci_get_adr_size(handle->filename, &file_size);
     handle->file_size = file_size;

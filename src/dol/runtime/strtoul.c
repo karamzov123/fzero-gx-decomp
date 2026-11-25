@@ -30,7 +30,7 @@ static inline int isdigit(int c) { return (int)(lbl_8015B100[(unsigned char)c] &
 static inline int isspace(int c) { return (int)(lbl_8015B100[(unsigned char)c] & (0x02 | 0x04)); }
 static inline int toupper(int c) { return c == -1 ? -1 : (int)lbl_8015B300[(unsigned char)c]; }
 
-int fn_800829EC(void *context, int character, int action);
+int __StringRead(void *context, int character, int action);
 
 unsigned long __strtoul(int base, int max_width, int (*read_proc)(void *, int, int),
                         void *read_context, int *chars_scanned, int *negative, int *overflow);
@@ -45,7 +45,7 @@ int atoi(const char *str) {
     __InStrCtrl input;
     input.NextChar = (char *)str;
     input.NullCharDetected = 0;
-    value = __strtoul(10, 0x7FFFFFFF, fn_800829EC, &input, &count, &negative, &overflow);
+    value = __strtoul(10, 0x7FFFFFFF, __StringRead, &input, &count, &negative, &overflow);
     if (overflow || (!negative && value > 0x7FFFFFFFUL) || (negative && value > 0x80000000UL)) {
         value = negative ? 0x80000000UL : 0x7FFFFFFFUL;
         lbl_801A6DE0 = 34;
@@ -64,7 +64,7 @@ unsigned long strtoul(const char *str, char **end, int base) {
     input.NextChar = (char *)str;
     input.NullCharDetected = 0;
     value =
-        __strtoul(base, 0x7FFFFFFF, &fn_800829EC, (void *)&input, &count, &negative, &overflow);
+        __strtoul(base, 0x7FFFFFFF, &__StringRead, (void *)&input, &count, &negative, &overflow);
     if (end != 0) {
         *end = (char *)str + count;
     }

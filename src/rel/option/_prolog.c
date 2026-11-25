@@ -832,7 +832,7 @@ extern void fn_80074788(u32);
 extern void fn_800747D0(u32, u32, s32, s32, u32, s32, s32);
 extern void fn_80074918(u8, s32, u8);
 extern s32 fn_8008023C(void *, void *, u32);
-extern char *fn_80083DB0(char *, const char *);
+extern char *strcpy(char *, const char *);
 extern struct fn_4_D7C_lbl_1_bss_6EAB4 lbl_1_bss_6EAB4;
 extern struct _prolog_lbl_1_bss_6EAD0 lbl_1_bss_6EAD0;
 extern u32 lbl_1_bss_7167C;
@@ -5034,7 +5034,7 @@ void fn_4_8E38(void) {
             comment[8] = ' ';
             comment[9] = 0;
             strcat(comment, (char *)lbl_4_bss_294);
-            fn_80083DB0(lbl_1_bss_718E0.unk_5522, (char *)lbl_4_bss_294);
+            strcpy(lbl_1_bss_718E0.unk_5522, (char *)lbl_4_bss_294);
             fn_1_B7E14(comment);
             *lbl_1_bss_718C0 = fn_1_C3688();
             request.unk_4 = 0x10000;
@@ -5285,7 +5285,7 @@ void fn_4_9C14(void) {
             comment[8] = ' ';
             comment[9] = 0;
             strcat(comment, (char *)lbl_4_bss_294);
-            fn_80083DB0(lbl_1_bss_718E0.unk_5522, (char *)lbl_4_bss_294);
+            strcpy(lbl_1_bss_718E0.unk_5522, (char *)lbl_4_bss_294);
             fn_1_B7E14(comment);
             *lbl_1_bss_718C0 = fn_1_C3688();
             request.unk_4 = 0x10000;
@@ -5328,7 +5328,7 @@ void fn_4_A78C(u8 *arg0) {
     u8 *out;
 
     if (lbl_801A66B4 != 5) {
-        fn_80083DB0((char *)loc_8, (char *)arg0);
+        strcpy((char *)loc_8, (char *)arg0);
         p = loc_8;
         out = arg0;
         while (*p != 0) {

@@ -3154,11 +3154,11 @@ typedef struct {
 } fn_1_107930_Object;
 struct fn_1_107930_lbl_1_rodata_7AB8 { u32 unk_0, unk_4, unk_8; };
 extern Sig_fn_1_108870_fn_1_108870_AccessoryEntry *fn_1_108870(void);
-extern int fn_80083BCC(const char *, const char *);
+extern int strcmp(const char *, const char *);
 extern int sprintf(char *, const char *, ...);
 extern f32 lbl_1_rodata_7AB8[9];
 extern u32 lbl_1_bss_88B40[3];
-extern u8 *fn_80083970(u8 *, const u8 *);
+extern u8 *strstr(u8 *, const u8 *);
 
 #pragma opt_propagation off
 #pragma opt_lifetimes off
@@ -3207,18 +3207,18 @@ void fn_1_107930(fn_1_107930_Object *arg) {
     v7 = v1->unk_8;
     for (v8 = 0; v8 < v1->unk_0; v8++, v7++) {
         if (!v7) continue;
-        if (!fn_80083970((u8 *)v7->unk_4, p_lbl_1_data_3F510 + 0xFFC)) continue;
-        if (fn_80083BCC(v7->unk_4, (char *)(p_lbl_1_data_3F510 + 0x650)) == 0 &&
+        if (!strstr((u8 *)v7->unk_4, p_lbl_1_data_3F510 + 0xFFC)) continue;
+        if (strcmp(v7->unk_4, (char *)(p_lbl_1_data_3F510 + 0x650)) == 0 &&
             *(s16 *)&lbl_1_bss_960 == 1 && p_lbl_1_bss_8B3A0->unk_4 == 4) continue;
-        if (fn_80083BCC(v7->unk_4, (char *)(p_lbl_1_data_3F510 + 0x660)) == 0 &&
+        if (strcmp(v7->unk_4, (char *)(p_lbl_1_data_3F510 + 0x660)) == 0 &&
             *(s16 *)&lbl_1_bss_960 == 1 && p_lbl_1_bss_8B3A0->unk_4 == 4) continue;
-        if (fn_80083BCC(v7->unk_4, (char *)(p_lbl_1_data_3F510 + 0x670)) == 0 &&
+        if (strcmp(v7->unk_4, (char *)(p_lbl_1_data_3F510 + 0x670)) == 0 &&
             *(s16 *)&lbl_1_bss_960 == 1 && p_lbl_1_bss_8B3A0->unk_4 == 4) continue;
         if (arg0->unk_8C == 2) {
             v25 = p_lbl_1_data_3F510 + 0xFAC;
             v9 = 0;
             for (v11 = 0; v11 < *(u32 *)(p_lbl_1_data_3F510 + 0xFF8); v25 = (u8 *)v25 + 4, v11++) {
-                if (fn_80083BCC(v7->unk_4, *(const char **)v25) == 0) v9 = 1;
+                if (strcmp(v7->unk_4, *(const char **)v25) == 0) v9 = 1;
             }
         } else v9 = 1;
         if (!v9) continue;
@@ -3228,7 +3228,7 @@ void fn_1_107930(fn_1_107930_Object *arg) {
         for (v17 = 0; v17 < *(u32 *)(p_lbl_1_data_3F510 + 0xFA8);
              v25 = (u8 *)v25 + 4, v19 = (u8 *)v19 + 4, v17++) {
             if (arg0->unk_88 == *(s32 *)v25 &&
-                fn_80083BCC(v7->unk_4, *(const char **)v19) == 0) {
+                strcmp(v7->unk_4, *(const char **)v19) == 0) {
                 v18 = 0;
                 break;
             }
@@ -3247,7 +3247,7 @@ void fn_1_107930(fn_1_107930_Object *arg) {
         v22 = (u32 *)(p_lbl_1_data_3F510 + 0x924);
         for (v24 = 0; v24 < v1->unk_0; v24++, v23++) {
             if (arg0->unk_88 == *(s32 *)((u8 *)v22 + v20) &&
-                fn_80083BCC(v23->unk_4, (char *)&loc_8) == 0) {
+                strcmp(v23->unk_4, (char *)&loc_8) == 0) {
                 v25 = v23->unk_0;
                 break;
             }
@@ -3850,7 +3850,7 @@ extern void mathutil_mtxA_rotate_y(s32);
 extern void mathutil_mtxA_rotate_x(s32);
 extern void lbl_8006E14C(f32);
 extern void lbl_8006DFC4(void *);
-extern u8 *fn_80083970(u8 *, const u8 *);
+extern u8 *strstr(u8 *, const u8 *);
 extern void fn_80072558(void);
 
 typedef struct {
@@ -3915,11 +3915,11 @@ void fn_1_107F74(BgObj *obj, int flag) {
         if ((void *)e->unk_10 == NULL) continue;
         if (lbl_1_bss_960 != 4) {
             names = data->names;
-            if (fn_80083970(names[e->unk_8], data->str1) != NULL) {
+            if (strstr(names[e->unk_8], data->str1) != NULL) {
                 apply_bg_material(data, 1);
             } else {
                 names2 = data->names;
-                if (fn_80083970(names2[e->unk_8], data->str2) != NULL) {
+                if (strstr(names2[e->unk_8], data->str2) != NULL) {
                     apply_bg_material(data, 0);
                 }
             }
@@ -3928,7 +3928,7 @@ void fn_1_107F74(BgObj *obj, int flag) {
         fn_1_556B8((void *)e->unk_10);
         if (lbl_1_bss_960 != 4) {
             names = data->names;
-            if (fn_80083970(names[e->unk_8], data->str2) != NULL) {
+            if (strstr(names[e->unk_8], data->str2) != NULL) {
                 fn_1_F7870(lbl_1_data_1E5C0);
             }
         }

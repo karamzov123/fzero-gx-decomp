@@ -16896,7 +16896,7 @@ extern s32 fn_1_12CB04(s16);
 extern int fn_1_4C10(void);
 extern void fn_1_4A00(s32, u8, u32);
 extern int sprintf(char *, const char *, ...);
-extern char *fn_80083DB0(char *, const char *);
+extern char *strcpy(char *, const char *);
 
 #define NEXT_INDEX(n) ((n) == 30 ? 0 : ((n) > 30 ? (n) : (n) + 1))
 
@@ -17008,7 +17008,7 @@ void fn_16_14D4(void) {
     } else if (res == 2) {
         sprintf(lbl_1_bss_198, (char *)(((u8 *)fzgx_pool_data_lbl_16_data_0_82D4C)), NEXT_INDEX(state->index));
         sprintf(lbl_1_bss_198 + 0x40, (char *)(((u8 *)fzgx_pool_data_lbl_16_data_0_82D5C)), lbl_1_data_370[NEXT_INDEX(state->index)]);
-        fn_80083DB0(lbl_1_bss_198 + 0x80, (char *)(((u8 *)fzgx_pool_data_lbl_16_data_0_82D6C)));
+        strcpy(lbl_1_bss_198 + 0x80, (char *)(((u8 *)fzgx_pool_data_lbl_16_data_0_82D6C)));
         lbl_1_bss_58.a = lbl_801A66B4;
         lbl_1_bss_58.b = 1;
         lbl_1_bss_58.c = 0;

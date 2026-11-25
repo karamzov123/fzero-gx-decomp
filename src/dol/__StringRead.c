@@ -1,13 +1,13 @@
 #include "types.h"
 
 
-/* --- dol/fn_800829EC.c --- */
+/* --- dol/__StringRead.c --- */
 typedef struct FnState {
     u8 *cursor;
     s32 state;
 } FnState;
 
-u32 fn_800829EC(FnState *ctx, u32 value, s32 mode) {
+u32 __StringRead(FnState *ctx, u32 value, s32 mode) {
     FnState *p = ctx;
 
     switch (mode) {

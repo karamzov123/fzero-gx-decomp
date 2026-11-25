@@ -5836,7 +5836,7 @@ extern void fn_1_7B4C0(void);
 extern void *fn_1_D38C4(char *path);
 extern fn_1_7B2E8_List *fn_1_D35D4(char *path, void *tpl);
 extern void sprintf(char *dst, const char *format, ...);
-extern char *fn_80083970(char *, char *);
+extern char *strstr(char *, char *);
 
 /* averages the bounding-sphere centres of every model whose name does not contain "GRID" and keeps the largest
  * radius; as its own inline function its locals take the register order retail has */
@@ -5852,7 +5852,7 @@ static inline void fn_1_7B2E8_bounds(void) {
     count = 0;
     for (i = 0, off = 0; i < fzgx_obj_lbl_1_bss_6D774->unk_0; off += 8, i++) {
         model = *(fn_1_7B2E8_Model **)((u8 *)fzgx_obj_lbl_1_bss_6D774->unk_8 + off);
-        if (fn_80083970(*(char **)((u8 *)fzgx_obj_lbl_1_bss_6D774->unk_8 + off + 4), "GRID") == NULL) {
+        if (strstr(*(char **)((u8 *)fzgx_obj_lbl_1_bss_6D774->unk_8 + off + 4), "GRID") == NULL) {
             radius = model->unk_14 > radius ? model->unk_14 : radius;
             count++;
             psvec_add(sum, model->unk_8, sum);
@@ -5983,7 +5983,7 @@ extern void mathutil_mtxA_rotate_y(s32);
 extern void lbl_8006E0B4(f32, f32, f32);
 extern void fn_1_55FF0(f32);
 extern void fn_80072558(void);
-extern char *fn_80083970(char *, u8 *);
+extern char *strstr(char *, u8 *);
 extern void fn_1_5621C(f32, f32, f32, f32);
 extern void fn_1_556B8(void *);
 extern f64 fn_1_550E0(void);
@@ -6146,7 +6146,7 @@ void fn_1_7B558(s32 arg0, s32 arg1, u32 x, u32 y, u32 w, u32 h, f32 scale) {
         for (i.value = 0, i.offset = 0; i.value < lbl_1_bss_6D774->count; i.offset += 8, i.value++) {
             arg1 = (s32)*(void **)((u8 *)lbl_1_bss_6D774->entries + i.offset);
             if (lbl_1_bss_960 == 5) {
-                if (fn_80083970(*(char **)((u8 *)lbl_1_bss_6D774->entries + i.offset + 4), lbl_1_data_1E4B8) == 0) {
+                if (strstr(*(char **)((u8 *)lbl_1_bss_6D774->entries + i.offset + 4), lbl_1_data_1E4B8) == 0) {
                     fn_1_5621C(0.9960784316062927f, 0.800000011920929f, 0.9411764740943909f, 0.8999999761581421f);
                     fn_1_556B8((void *)arg1);
                     fn_1_5621C(1.0f, 1.0f, 1.0f, 1.0f);

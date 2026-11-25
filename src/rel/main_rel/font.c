@@ -4620,7 +4620,7 @@ extern u8 lbl_8015B100[];
 extern f32 fn_1_4B1D4(s32 mode, u8 *text);
 extern s32 fn_8008077C(u8 *dst, const char *fmt, __va_list args);
 extern s32 strncmp(const u8 *, const u8 *, u32);
-extern u8 *fn_80083DB0(u8 *, const u8 *);
+extern u8 *strcpy(u8 *, const u8 *);
 extern u32 strlen(const u8 *);
 
 /* both characters are alphanumeric or one of - " ' ( ) */
@@ -4706,7 +4706,7 @@ u8 *fn_1_4D784(s32 wordWrap, s32 hyphenate, s32 kinsoku, s32 width, u8 *out, con
             }
             q[0] = '\n';
             q[1] = 0;
-            fn_80083DB0(out, line);
+            strcpy(out, line);
             out += strlen(line);
             line[0] = 0;
             q = line;
@@ -4737,7 +4737,7 @@ u8 *fn_1_4D784(s32 wordWrap, s32 hyphenate, s32 kinsoku, s32 width, u8 *out, con
         }
         i++;
     }
-    fn_80083DB0(out, line);
+    strcpy(out, line);
     out += strlen(line);
     out[1] = 0;
     return out;

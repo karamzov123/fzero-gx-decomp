@@ -11,7 +11,7 @@ extern void fn_80008BEC(void *dst, void *value, u32 size);
 extern void fn_80008BA8(void *dst, void *value, u32 size);
 extern f32 lbl_1_rodata_67A8;
 extern u32 lbl_1_rodata_6A8C[3];
-extern u32 fn_80083970(const u8* left, const char* right);
+extern u32 strstr(const u8* left, const char* right);
 extern u32 strlen(const char* string);
 extern void fn_1_8CED0(void* object, s32 value0, s32 value1);
 extern void fn_1_8D0A4(void* object);
@@ -485,7 +485,7 @@ extern u32 lbl_1_data_3DC98;
 extern s16 fn_1_7B054(void);
 extern u8 lbl_1_data_2B0D4[112];
 extern u32 lbl_1_bss_85288[2];
-extern char *fn_80083DB0(char *dst, const char *src);
+extern char *strcpy(char *dst, const char *src);
 extern size_t strlen(const char *str);
 extern s32 fn_8006FC5C(void *, void *, size_t);
 
@@ -574,27 +574,27 @@ obj->slots[2] = -1;
 obj->slots[3] = -1;
 switch (obj->kind) {
 case 5:
-fn_80083DB0(buf, strtab + 0x124);
+strcpy(buf, strtab + 0x124);
 for (i = 0; i < (s32)lbl_1_bss_3BE0->unk_48; i++) { if (fn_8006FC5C((*(fn_1_E1E9C_PhysEntry **)(lbl_1_bss_3BE0->unk_54 + i * 0x40 + 8))->info->name, buf, strlen(buf))) { result = i; break; } } ;
-fn_80083DB0(buf, strtab + 0x134);
+strcpy(buf, strtab + 0x134);
 for (i = 0; i < (s32)lbl_1_bss_3BE0->unk_48; i++) { if (fn_8006FC5C((*(fn_1_E1E9C_PhysEntry **)(lbl_1_bss_3BE0->unk_54 + i * 0x40 + 8))->info->name, buf, strlen(buf))) { obj->slots[0] = i; break; } } ;
-fn_80083DB0(buf, strtab + 0x14C);
+strcpy(buf, strtab + 0x14C);
 for (i = 0; i < (s32)lbl_1_bss_3BE0->unk_48; i++) { if (fn_8006FC5C((*(fn_1_E1E9C_PhysEntry **)(lbl_1_bss_3BE0->unk_54 + i * 0x40 + 8))->info->name, buf, strlen(buf))) { obj->slots[1] = i; break; } } ;
-fn_80083DB0(buf, strtab + 0x164);
+strcpy(buf, strtab + 0x164);
 for (i = 0; i < (s32)lbl_1_bss_3BE0->unk_48; i++) { if (fn_8006FC5C((*(fn_1_E1E9C_PhysEntry **)(lbl_1_bss_3BE0->unk_54 + i * 0x40 + 8))->info->name, buf, strlen(buf))) { obj->slots[2] = i; break; } } ;
 break;
 case 1:
-fn_80083DB0(buf, strtab + 0x17C);
+strcpy(buf, strtab + 0x17C);
 for (i = 0; i < (s32)lbl_1_bss_3BE0->unk_48; i++) { if (fn_8006FC5C((*(fn_1_E1E9C_PhysEntry **)(lbl_1_bss_3BE0->unk_54 + i * 0x40 + 8))->info->name, buf, strlen(buf))) { result = i; break; } } ;
-fn_80083DB0(buf, strtab + 0x180);
+strcpy(buf, strtab + 0x180);
 for (i = 0; i < (s32)lbl_1_bss_3BE0->unk_48; i++) { if (fn_8006FC5C((*(fn_1_E1E9C_PhysEntry **)(lbl_1_bss_3BE0->unk_54 + i * 0x40 + 8))->info->name, buf, strlen(buf))) { obj->slots[0] = i; break; } } ;
-fn_80083DB0(buf, strtab + 0x18C);
+strcpy(buf, strtab + 0x18C);
 for (i = 0; i < (s32)lbl_1_bss_3BE0->unk_48; i++) { if (fn_8006FC5C((*(fn_1_E1E9C_PhysEntry **)(lbl_1_bss_3BE0->unk_54 + i * 0x40 + 8))->info->name, buf, strlen(buf))) { obj->slots[1] = i; break; } } ;
-fn_80083DB0(buf, strtab + 0x198);
+strcpy(buf, strtab + 0x198);
 for (i = 0; i < (s32)lbl_1_bss_3BE0->unk_48; i++) { if (fn_8006FC5C((*(fn_1_E1E9C_PhysEntry **)(lbl_1_bss_3BE0->unk_54 + i * 0x40 + 8))->info->name, buf, strlen(buf))) { obj->slots[2] = i; break; } } ;
 break;
 case 4:
-fn_80083DB0(buf, strtab + 0x20);
+strcpy(buf, strtab + 0x20);
 for (i = 0; i < (s32)lbl_1_bss_3BE0->unk_48; i++) { if (fn_8006FC5C((*(fn_1_E1E9C_PhysEntry **)(lbl_1_bss_3BE0->unk_54 + i * 0x40 + 8))->info->name, buf, strlen(buf))) { result = i; break; } } ;
 break;
 }
@@ -2495,7 +2495,7 @@ extern void * fn_1_E57D4(void *);
 extern void * fn_1_E57DC(void *);
 extern f32 fn_1_E57E4(void *);
 extern f32 fn_1_E57EC(void *);
-extern char * fn_80083DB0(char *, const char *);
+extern char * strcpy(char *, const char *);
 extern void fn_1_4955C(f32, f32);
 extern void fn_1_496FC(f32, f32);
 extern void fn_1_4AE0C(const char *, ...);
@@ -2582,7 +2582,7 @@ void fn_1_E4A38(u32 arg0, u16 arg1, u16 arg2, Cb arg3) {
         loc_8[0] = 0;
         v1 = *(u32 *)(arg0 + 316);
         if ((*(u64 *)((u8 *)arg0 + 312) & 0x80000000) != 0) {
-            fn_80083DB0(loc_8, (const char *)p_lbl_1_data_3DC98->s29c);
+            strcpy(loc_8, (const char *)p_lbl_1_data_3DC98->s29c);
         }
         v2 = *(u32 *)(arg0 + 316);
         if ((*(u64 *)(arg0 + 312) & 0x40000000) != 0) {
@@ -2903,7 +2903,7 @@ extern void fn_80008BEC(void *dst, void *value, u32 size);
 extern void fn_80008BA8(void *dst, void *value, u32 size);
 extern f32 lbl_1_rodata_67A8;
 extern u32 lbl_1_rodata_6A8C[3];
-extern u32 fn_80083970(const u8* left, const char* right);
+extern u32 strstr(const u8* left, const char* right);
 extern u32 strlen(const char* string);
 extern void fn_1_8CED0(void* object, s32 value0, s32 value1);
 extern void fn_1_8D0A4(void* object);
@@ -3965,7 +3965,7 @@ extern void fn_80008BEC(void *dst, void *value, u32 size);
 extern void fn_80008BA8(void *dst, void *value, u32 size);
 extern f32 lbl_1_rodata_67A8;
 extern u32 lbl_1_rodata_6A8C[3];
-extern u32 fn_80083970(const u8* left, const char* right);
+extern u32 strstr(const u8* left, const char* right);
 extern u32 strlen(const char* string);
 extern void fn_1_8CED0(void* object, s32 value0, s32 value1);
 extern void fn_1_8D0A4(void* object);
@@ -5046,7 +5046,7 @@ u32 fn_1_E86FC(StringValueTable* table, const char* string) {
     while (count > 0) {
         u32 length;
 
-        if (fn_80083970(entry->string, string) != 0) {
+        if (strstr(entry->string, string) != 0) {
             length = strlen(string);
             if (entry->string[length] == 0) {
                 length++;
@@ -8708,7 +8708,7 @@ extern void fn_8006F828(void *base, f32 *out);
 extern s16 fn_1_7B054(void);
 extern u8 lbl_1_data_2B0D4[112];
 extern u32 lbl_1_bss_85288[2];
-extern char *fn_80083DB0(char *dst, const char *src);
+extern char *strcpy(char *dst, const char *src);
 extern size_t strlen(const char *str);
 extern s32 fn_8006FC5C(void *, void *, size_t);
 extern s32 fn_1_A5DC4(void);
@@ -8748,7 +8748,7 @@ extern void fn_1_12EF80(s16 arg, s16 *out_group, s16 *out_entry);
 extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
 extern f32 lbl_1_rodata_67A8;
 extern u32 lbl_1_rodata_6A8C[3];
-extern u32 fn_80083970(const u8* left, const char* right);
+extern u32 strstr(const u8* left, const char* right);
 extern void fn_1_8CED0(void* object, s32 value0, s32 value1);
 extern void fn_1_8D0A4(void* object);
 extern void fn_800734A8(u32 arg0, s32 arg1, s32 arg2, s32 arg3);
@@ -8884,7 +8884,7 @@ extern void fn_80008BEC(void *dst, void *value, u32 size);
 extern void fn_80008BA8(void *dst, void *value, u32 size);
 extern f32 lbl_1_rodata_67A8;
 extern u32 lbl_1_rodata_6A8C[3];
-extern u32 fn_80083970(const u8* left, const char* right);
+extern u32 strstr(const u8* left, const char* right);
 extern u32 strlen(const char* string);
 extern void fn_1_8CED0(void* object, s32 value0, s32 value1);
 extern void fn_1_8D0A4(void* object);

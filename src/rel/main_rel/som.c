@@ -142,7 +142,7 @@ u32 *fn_1_1304C(SomSource *source, void *image) {
 
 extern u32 fn_80008E30(u32);
 extern u8 lbl_1_bss_17B4[12];
-extern void fn_80083DB0(Obj_1_bss_3B30 *, void *);
+extern void strcpy(Obj_1_bss_3B30 *, void *);
 extern u8 lbl_1_bss_1810[8984];
 extern void fn_8000659C(void);
 extern u32 OSIsThreadTerminated(u8 *);

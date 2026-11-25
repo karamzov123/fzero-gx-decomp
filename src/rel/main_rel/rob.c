@@ -7,7 +7,7 @@ extern void fn_1_96230(void *arg0, void *arg1, void *arg2, void *arg3, int arg4)
 extern void fn_1_41850(void *arg0);
 extern u32 lbl_1_bss_6E98C;
 extern u16 fn_1_96B14(void *base, void *arg1, s32 index);
-extern s32 fn_80083BCC(void *arg0, void *arg1);
+extern s32 strcmp(void *arg0, void *arg1);
 extern void ADXT_Stop(u32 arg0);
 extern u32 lbl_801A6410;
 extern void fn_1_46B4(u32, u32, u8 *, u32);
@@ -507,7 +507,7 @@ typedef struct {
 extern void fn_1_801F8(s16 arg0, void *arg1);
 extern s32 fn_1_46C70();
 extern s32 fn_1_465D0(s32 arg0, s32 arg1);
-extern char *fn_80083DB0(char *dst, const char *src);
+extern char *strcpy(char *dst, const char *src);
 extern void fn_80006E10(u32 arg0);
 extern int sprintf(char *s, const char *format, ...);
 extern Unk_23800000 lbl_23800000[];
@@ -541,7 +541,7 @@ extern f32 lbl_1_rodata_3518[6];
 extern f32 lbl_1_rodata_3530[22];
 extern u32 lbl_8006DBE4(void);
 extern void lbl_8006DFC4(void *arg0);
-extern u8 *fn_80083970(u8 *str, const u8 *needle);
+extern u8 *strstr(u8 *str, const u8 *needle);
 extern void fn_1_55628(Sig_fn_1_55628_Fn1_55628Object *);
 extern void fn_1_556B8(void *value);
 extern void fn_1_55FF0(f32 value);
@@ -1093,7 +1093,7 @@ typedef struct {
 extern void fn_1_801F8(s16 arg0, void *arg1);
 extern s32 fn_1_46C70();
 extern s32 fn_1_465D0(s32 arg0, s32 arg1);
-extern char *fn_80083DB0(char *dst, const char *src);
+extern char *strcpy(char *dst, const char *src);
 extern void fn_80006E10(u32 arg0);
 extern int sprintf(char *s, const char *format, ...);
 extern Unk_23800000 lbl_23800000[];
@@ -1127,7 +1127,7 @@ extern f32 lbl_1_rodata_3518[6];
 extern f32 lbl_1_rodata_3530[22];
 extern u32 lbl_8006DBE4(void);
 extern void lbl_8006DFC4(void *arg0);
-extern u8 *fn_80083970(u8 *str, const u8 *needle);
+extern u8 *strstr(u8 *str, const u8 *needle);
 extern void fn_1_55628(Sig_fn_1_55628_Fn1_55628Object *);
 extern void fn_1_556B8(void *value);
 extern void fn_1_55FF0(f32 value);
@@ -2866,7 +2866,7 @@ typedef struct {
 extern void fn_1_801F8(s16 arg0, void *arg1);
 extern s32 fn_1_46C70();
 extern s32 fn_1_465D0(s32 arg0, s32 arg1);
-extern char *fn_80083DB0(char *dst, const char *src);
+extern char *strcpy(char *dst, const char *src);
 extern void fn_80006E10(u32 arg0);
 extern int sprintf(char *s, const char *format, ...);
 extern Unk_23800000 lbl_23800000[];
@@ -2900,7 +2900,7 @@ extern f32 lbl_1_rodata_3518[6];
 extern f32 lbl_1_rodata_3530[22];
 extern u32 lbl_8006DBE4(void);
 extern void lbl_8006DFC4(void *arg0);
-extern u8 *fn_80083970(u8 *str, const u8 *needle);
+extern u8 *strstr(u8 *str, const u8 *needle);
 extern void fn_1_55628(Sig_fn_1_55628_Fn1_55628Object *);
 extern void fn_1_556B8(void *value);
 extern void fn_1_55FF0(f32 value);
@@ -3457,7 +3457,7 @@ typedef struct {
 extern void fn_1_801F8(s16 arg0, void *arg1);
 extern s32 fn_1_46C70();
 extern s32 fn_1_465D0(s32 arg0, s32 arg1);
-extern char *fn_80083DB0(char *dst, const char *src);
+extern char *strcpy(char *dst, const char *src);
 extern void fn_80006E10(u32 arg0);
 extern int sprintf(char *s, const char *format, ...);
 extern Unk_23800000 lbl_23800000[];
@@ -3491,7 +3491,7 @@ extern f32 lbl_1_rodata_3518[6];
 extern f32 lbl_1_rodata_3530[22];
 extern u32 lbl_8006DBE4(void);
 extern void lbl_8006DFC4(void *arg0);
-extern u8 *fn_80083970(u8 *str, const u8 *needle);
+extern u8 *strstr(u8 *str, const u8 *needle);
 extern void fn_1_55628(Sig_fn_1_55628_Fn1_55628Object *);
 extern void fn_1_556B8(void *value);
 extern void fn_1_55FF0(f32 value);
@@ -4048,7 +4048,7 @@ typedef struct {
 extern void fn_1_801F8(s16 arg0, void *arg1);
 extern s32 fn_1_46C70();
 extern s32 fn_1_465D0(s32 arg0, s32 arg1);
-extern char *fn_80083DB0(char *dst, const char *src);
+extern char *strcpy(char *dst, const char *src);
 extern void fn_80006E10(u32 arg0);
 extern int sprintf(char *s, const char *format, ...);
 extern Unk_23800000 lbl_23800000[];
@@ -4082,7 +4082,7 @@ extern f32 lbl_1_rodata_3518[6];
 extern f32 lbl_1_rodata_3530[22];
 extern u32 lbl_8006DBE4(void);
 extern void lbl_8006DFC4(void *arg0);
-extern u8 *fn_80083970(u8 *str, const u8 *needle);
+extern u8 *strstr(u8 *str, const u8 *needle);
 extern void fn_1_55628(Sig_fn_1_55628_Fn1_55628Object *);
 extern void fn_1_556B8(void *value);
 extern void fn_1_55FF0(f32 value);
@@ -4644,7 +4644,7 @@ typedef struct {
 extern void fn_1_801F8(s16 arg0, void *arg1);
 extern s32 fn_1_46C70();
 extern s32 fn_1_465D0(s32 arg0, s32 arg1);
-extern char *fn_80083DB0(char *dst, const char *src);
+extern char *strcpy(char *dst, const char *src);
 extern void fn_80006E10(u32 arg0);
 extern int sprintf(char *s, const char *format, ...);
 extern Unk_23800000 lbl_23800000[];
@@ -4678,7 +4678,7 @@ extern f32 lbl_1_rodata_3518[6];
 extern f32 lbl_1_rodata_3530[22];
 extern u32 lbl_8006DBE4(void);
 extern void lbl_8006DFC4(void *arg0);
-extern u8 *fn_80083970(u8 *str, const u8 *needle);
+extern u8 *strstr(u8 *str, const u8 *needle);
 extern void fn_1_55628(Sig_fn_1_55628_Fn1_55628Object *);
 extern void fn_1_556B8(void *value);
 extern void fn_1_55FF0(f32 value);
@@ -5245,7 +5245,7 @@ typedef struct {
 extern void fn_1_801F8(s16 arg0, void *arg1);
 extern s32 fn_1_46C70();
 extern s32 fn_1_465D0(s32 arg0, s32 arg1);
-extern char *fn_80083DB0(char *dst, const char *src);
+extern char *strcpy(char *dst, const char *src);
 extern void fn_80006E10(u32 arg0);
 extern int sprintf(char *s, const char *format, ...);
 extern Unk_23800000 lbl_23800000[];
@@ -5279,7 +5279,7 @@ extern f32 lbl_1_rodata_3518[6];
 extern f32 lbl_1_rodata_3530[22];
 extern u32 lbl_8006DBE4(void);
 extern void lbl_8006DFC4(void *arg0);
-extern u8 *fn_80083970(u8 *str, const u8 *needle);
+extern u8 *strstr(u8 *str, const u8 *needle);
 extern void fn_1_55628(Sig_fn_1_55628_Fn1_55628Object *);
 extern void fn_1_556B8(void *value);
 extern void fn_1_55FF0(f32 value);
@@ -5468,7 +5468,7 @@ extern void fn_1_96230(void *arg0, void *arg1, void *arg2, void *arg3, int arg4)
 extern void fn_1_41850(void *arg0);
 extern u32 lbl_1_bss_6E98C;
 extern u16 fn_1_96B14(void *base, void *arg1, s32 index);
-extern s32 fn_80083BCC(void *arg0, void *arg1);
+extern s32 strcmp(void *arg0, void *arg1);
 extern void ADXT_Stop(u32 arg0);
 extern u32 lbl_801A6410;
 extern void fn_1_46B4(u32, u32, u8 *, u32);
@@ -5782,7 +5782,7 @@ s32 fn_1_97174(Fn197174Owner *owner, void *arg1, void *arg2) {
 
     while (index < root->count) {
         Fn197174Entry *entry = fn_1_41B18(owner, arg1, index);
-        if (fn_80083BCC(owner->base + entry->offset, arg2) == 0) {
+        if (strcmp(owner->base + entry->offset, arg2) == 0) {
             return index;
         }
         index++;
@@ -6157,7 +6157,7 @@ struct fn_1_97288_lbl_1_data_209C0 {
 
 extern int sprintf(char *, const char *, ...);
 extern const struct fn_1_97288_lbl_1_rodata_3E48 lbl_1_rodata_3E48;
-extern u8 * fn_80083970(u8 *, const u8 *);
+extern u8 * strstr(u8 *, const u8 *);
 extern void ADXT_Stop(ADXTHandle *);
 extern void fn_1_4270C(struct Fn142AD0Object *, void *, u32);
 extern void fn_1_42AD0(Fn142AD0Object *, void *, u32, u16, u16);
@@ -6223,22 +6223,22 @@ void fn_1_97288(struct fn_1_97288_Arg0 *arg0, f32 arg1) {
     fn_1_4270C((struct Fn142AD0Object *)v0, (void *)0, (v4 & 0xFFFF));
     ADXT_Stop((ADXTHandle *)lbl_1_bss_6EAD0.unk_0->unk_4);
     v0 = *(u32 *)((u8 *)arg0 + 1204);
-    t3 = (fn_80083970((u8 *)v0, ((u8 *)p_lbl_1_data_209C0 + 29384)));
+    t3 = (strstr((u8 *)v0, ((u8 *)p_lbl_1_data_209C0 + 29384)));
     v0 = (u32)(t3);
     if (v0 != 0) {
     v0 = (u32)&loc_50;
     t4 = sprintf((char *)v0, (const char *)((u8 *)p_lbl_1_data_209C0 + 29392), *(u32 *)((u8 *)arg0 + 1204));
     v0 = t4;
     } else {
-    if (fn_80083970(*(u8 **)((u8 *)arg0 + 1204), (u8 *)p_lbl_1_data_209C0 + 832) ||
-        fn_80083970(*(u8 **)((u8 *)arg0 + 1204), (u8 *)p_lbl_1_data_209C0 + 680)) {
+    if (strstr(*(u8 **)((u8 *)arg0 + 1204), (u8 *)p_lbl_1_data_209C0 + 832) ||
+        strstr(*(u8 **)((u8 *)arg0 + 1204), (u8 *)p_lbl_1_data_209C0 + 680)) {
     v0 = (u32)&loc_50;
     t7 = sprintf((char *)v0, (const char *)((u8 *)p_lbl_1_data_209C0 + 29408), (*(u32 *)((u8 *)arg0 + 1204) + 5));
     v0 = t7;
     } else {
-    if (fn_80083970(*(u8 **)((u8 *)arg0 + 1204), (u8 *)p_lbl_1_data_209C0 + 29436) ||
-        fn_80083970(*(u8 **)((u8 *)arg0 + 1204), (u8 *)p_lbl_1_data_209C0 + 840) ||
-        fn_80083970(*(u8 **)((u8 *)arg0 + 1204), (u8 *)p_lbl_1_data_209C0 + 844)) {
+    if (strstr(*(u8 **)((u8 *)arg0 + 1204), (u8 *)p_lbl_1_data_209C0 + 29436) ||
+        strstr(*(u8 **)((u8 *)arg0 + 1204), (u8 *)p_lbl_1_data_209C0 + 840) ||
+        strstr(*(u8 **)((u8 *)arg0 + 1204), (u8 *)p_lbl_1_data_209C0 + 844)) {
     v0 = (u32)&loc_50;
     t11 = sprintf((char *)v0, (const char *)((u8 *)p_lbl_1_data_209C0 + 29444), (*(u32 *)((u8 *)arg0 + 1204) + 4));
     v0 = t11;
@@ -8304,23 +8304,23 @@ void fn_1_977BC(Rob *rob, RobView *arg1) {
     scale = 1.0f;
     joint = &arg1->joints[2];
     model_set = rob->models[rob->active];
-    if (fn_80083BCC(rob_name(&rob->anim), fzgx_pool_name0) == 0) {
+    if (strcmp(rob_name(&rob->anim), fzgx_pool_name0) == 0) {
         f32 t = rob->anim.motion->frame;
         if (320.0f <= t && t <= 420.0f) return;
         if (315.0f <= t && t <= 320.0f) scale = (320.0f - t) / 5.0f;
         else if (420.0f <= t && t <= 435.0f) scale = (4.0f * (t - 420.0f)) / 15.0f;
         else if (435.0f <= t && t <= 450.0f) scale = 1.0f + (3.0f * (450.0f - t)) / 15.0f;
-    } else if (fn_80083BCC(rob_name(&rob->anim), fzgx_pool_name1) == 0) {
+    } else if (strcmp(rob_name(&rob->anim), fzgx_pool_name1) == 0) {
         f32 t = rob->anim.motion->frame;
         if (80.0f <= t && t <= 175.0f) return;
         if (175.0f <= t && t <= 195.0f) scale = (4.0f * (t - 175.0f)) / 20.0f;
         else if (195.0f <= t && t <= 215.0f) scale = 1.0f + (3.0f * (215.0f - t)) / 20.0f;
-    } else if (fn_80083BCC(rob_name(&rob->anim), fzgx_pool_name2) == 0) {
+    } else if (strcmp(rob_name(&rob->anim), fzgx_pool_name2) == 0) {
         f32 t = rob->anim.motion->frame;
         if (330.0f <= t && t <= 355.0f) return;
         if (355.0f <= t && t <= 375.0f) scale = (4.0f * (t - 355.0f)) / 20.0f;
         else if (375.0f <= t && t <= 390.0f) scale = 1.0f + (3.0f * (390.0f - t)) / 15.0f;
-    } else if (fn_80083BCC(rob_name(&rob->anim), fzgx_pool_name3) == 0) {
+    } else if (strcmp(rob_name(&rob->anim), fzgx_pool_name3) == 0) {
         f32 t = rob->anim.motion->frame;
         if (395.0f <= t && t <= 482.0f) return;
         if (482.0f <= t && t <= 500.0f) scale = (4.0f * (t - 482.0f)) / 18.0f;
@@ -8409,15 +8409,15 @@ extern u32 lbl_1_data_209C0;
 
 
 
-extern void *fn_80083970(const char *, const char *);
+extern void *strstr(const char *, const char *);
 extern void sprintf(char *, const char *, ...);
-extern int fn_80083BCC(const char *, const char *);
+extern int strcmp(const char *, const char *);
 extern void fn_1_12A2D0(void *);
 extern void fn_1_12A2B8(int);
 extern void fn_1_12AB38(const char *);
 extern int fn_1_12A8A4(const char *, void **);
 extern void *fn_1_4630(u32, u32, const char *, u32);
-extern void fn_80083DB0(void *, const char *);
+extern void strcpy(void *, const char *);
 extern u32 strlen(const char *);
 
 u32 fn_1_97F80(Fn197F80Object *rob, const char *name) {
@@ -8426,15 +8426,15 @@ u32 fn_1_97F80(Fn197F80Object *rob, const char *name) {
     u8 *data = (u8 *)&lbl_1_data_209C0;
     u32 length;
 
-    if (name == 0 || fn_80083970(name, (const char *)(data + 0x6390)) == 0) {
+    if (name == 0 || strstr(name, (const char *)(data + 0x6390)) == 0) {
         return 0;
     }
 
     sprintf(path, (const char *)(data + 0x73e0), name);
-    if (fn_80083BCC(path, (const char *)(data + 0x73e8)) == 0 ||
-        fn_80083BCC(path, (const char *)(data + 0x73f4)) == 0 ||
-        fn_80083BCC(path, (const char *)(data + 0x7400)) == 0 ||
-        fn_80083BCC(path, (const char *)(data + 0x740c)) == 0) {
+    if (strcmp(path, (const char *)(data + 0x73e8)) == 0 ||
+        strcmp(path, (const char *)(data + 0x73f4)) == 0 ||
+        strcmp(path, (const char *)(data + 0x7400)) == 0 ||
+        strcmp(path, (const char *)(data + 0x740c)) == 0) {
         return 1;
     }
 
@@ -8456,7 +8456,7 @@ u32 fn_1_97F80(Fn197F80Object *rob, const char *name) {
     rob->unk_4B4 = fn_1_4630(lbl_801A6410,
                             (length + 0x20) & ~0x1f,
                             (const char *)(data + 0x7240), 0xfa9);
-    fn_80083DB0(rob->unk_4B4, name);
+    strcpy(rob->unk_4B4, name);
     return 1;
 }
 /* fzgx:end fn_1_97F80 */

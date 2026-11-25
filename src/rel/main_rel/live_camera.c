@@ -5,7 +5,7 @@
 extern void OSPanic(u8 *file, int line, u8 *message, ...);
 extern u32 fn_80008E30(u32);
 extern u8 lbl_1_bss_17B4[12];
-extern void fn_80083DB0(Obj_1_bss_3B30 *, void *);
+extern void strcpy(Obj_1_bss_3B30 *, void *);
 extern u32 *fn_1_1304C(Obj_1_bss_3B30 *, u32);
 extern u8 lbl_1_bss_1810[8984];
 extern void fn_8000659C(void);
@@ -2822,7 +2822,7 @@ extern void fn_1_A2D84(u32 arg0);
 extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
 extern void OSPanic(const char *file, int line, const char *msg, ...);
 extern u8 lbl_1_bss_17B4[12];
-extern char *fn_80083DB0(char *dst, const char *src);
+extern char *strcpy(char *dst, const char *src);
 extern u32 *fn_1_1304C(Obj_1_bss_3B30 *, u32);
 extern u8 lbl_1_bss_1810[8984];
 extern void fn_8000659C(void);
@@ -4662,7 +4662,7 @@ void fn_1_1212C(Lc1212C *cam) {
 extern void OSPanic(u8 *file, int line, u8 *message, ...);
 extern u32 fn_80008E30(u32);
 extern u8 lbl_1_bss_17B4[12];
-extern void fn_80083DB0(Obj_1_bss_3B30 *, void *);
+extern void strcpy(Obj_1_bss_3B30 *, void *);
 extern u32 *fn_1_1304C(Obj_1_bss_3B30 *, u32);
 extern u8 lbl_1_bss_1810[8984];
 extern void fn_8000659C(void);
@@ -5134,7 +5134,7 @@ u32 fn_1_12B88(char *path, u8 *out, u8 *ctx) {
 
 /* fzgx:begin fn_1_12F78 */
 u32 fn_1_12F78(void *arg0, u32 arg1) {
-    fn_80083DB0(&lbl_1_bss_3B30, arg0);
+    strcpy(&lbl_1_bss_3B30, arg0);
     lbl_1_bss_3B30.unk_80 = arg1;
     lbl_1_bss_3B30.unk_84 = 0;
     return *fn_1_1304C(&lbl_1_bss_3B30, 0);

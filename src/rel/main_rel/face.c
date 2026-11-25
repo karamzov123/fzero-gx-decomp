@@ -35,7 +35,7 @@ extern void OSLink(void*, void*);
 extern void OSReport(const char*, ...);
 extern u32 fn_80008E84(u32);
 extern u8 lbl_1_bss_7ACF8[8];
-extern void fn_80083DB0(void *, const void *);
+extern void strcpy(void *, const void *);
 extern void strcat(void *, const void *);
 
 
@@ -501,7 +501,7 @@ extern void OSLink(void*, void*);
 extern void OSReport(const char*, ...);
 extern u32 fn_80008E84(u32);
 extern u8 lbl_1_bss_7ACF8[8];
-extern void fn_80083DB0(void *, const void *);
+extern void strcpy(void *, const void *);
 extern void strcat(void *, const void *);
 
 typedef struct {
@@ -1130,7 +1130,7 @@ void fn_1_D2FC0(void) {
         u32 a[16];
     } loc_8;
 
-    fn_80083DB0(&loc_8, "fze.");
+    strcpy(&loc_8, "fze.");
     strcat(&loc_8, "window");
     strcat(&loc_8, ".rel");
     fn_1_D3020(&loc_8, (Output *)&lbl_1_bss_7ACF8);

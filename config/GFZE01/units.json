@@ -23171,9 +23171,9 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_800829EC.c",
+    "source": "dol/__StringRead.c",
     "symbols": [
-      "fn_800829EC",
+      "__StringRead",
       "fn_80082A7C"
     ],
     "status": "matching",
@@ -23208,10 +23208,10 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_80083970.c",
+    "source": "dol/strstr.c",
     "symbols": [
-      "fn_80083970",
-      "fn_800839D8"
+      "strstr",
+      "strtok"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
@@ -23228,11 +23228,11 @@
       "strrchr",
       "strchr",
       "strncmp",
-      "fn_80083BCC",
-      "fn_80083CF4",
+      "strcmp",
+      "strncat",
       "strcat",
       "strncpy",
-      "fn_80083DB0",
+      "strcpy",
       "strlen"
     ],
     "status": "matching",
@@ -24768,10 +24768,10 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_80082908.c",
+    "source": "dol/rand.c",
     "symbols": [
-      "fn_80082908",
-      "fn_80082928"
+      "rand",
+      "sscanf"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],

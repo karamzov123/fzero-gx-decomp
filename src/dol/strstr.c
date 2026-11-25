@@ -1,8 +1,8 @@
 #include "types.h"
 
 
-/* --- dol/fn_80083970.c --- */
-u8 *fn_80083970(u8 *str, const u8 *needle) {
+/* --- dol/strstr.c --- */
+u8 *strstr(u8 *str, const u8 *needle) {
     u8 *p = str - 1;
     u8 ch;
     u32 c;
@@ -39,14 +39,14 @@ u8 *fn_80083970(u8 *str, const u8 *needle) {
     return 0;
 }
 
-/* --- dol/fn_800839D8.c --- */
-char *fn_800839D8(char *string, const char *delimiters);
+/* --- dol/strtok.c --- */
+char *strtok(char *string, const char *delimiters);
 
 extern char *lbl_801A6640;
 
 extern char *lbl_801A6644;
 
-char *fn_800839D8(char *string, const char *delimiters) {
+char *strtok(char *string, const char *delimiters) {
     unsigned char delimiter_map[32] = {0};
     unsigned char *scan;
     unsigned char *token;

@@ -325,7 +325,7 @@ extern void fn_1_13EE60();
 extern u32 fn_1_13EF64(u32, u32, u32, void *, u32, void *, u32, f32);
 extern u32 lbl_1_rodata_8E8C;
 extern u8 lbl_1_rodata_8EB4[];
-extern char *fn_80083DB0(char *dst, const char *src);
+extern char *strcpy(char *dst, const char *src);
 extern u32 lbl_801A6410;
 extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
 extern u32 lbl_1_rodata_91C0[11];
@@ -409,7 +409,7 @@ extern u8 lbl_1_rodata_CB98[324];
 extern void fn_1_465D0(char *, int);
 extern s32 fn_1_14FD6C(s32 *arg0, s32 *arg1);
 extern void qsort(void *arg0, u32 arg1, s32 arg2, void *callback);
-extern char *fn_800839D8(char *string, const char *delimiters);
+extern char *strtok(char *string, const char *delimiters);
 extern void fn_1_150C8C(fn_1_150C8C_Object *obj);
 extern void fn_1_150F30(fn_1_150F30_StaticDisp *self);
 extern f32 lbl_1_rodata_CF70[54];
@@ -6595,7 +6595,7 @@ u32 fn_1_13F72C(s16 arg0, u32 arg1, f32 farg0) {
     i = 0;
     while (1) {
         if (farg0 >= p->first) {
-            fn_80083DB0( (char *)(arg1), (const char *)(tbl.e[i].vals[arg0]));
+            strcpy( (char *)(arg1), (const char *)(tbl.e[i].vals[arg0]));
             return arg1;
         }
         p++;
@@ -12060,7 +12060,7 @@ typedef struct {
 } fn_1_147A04_Obj;
 typedef struct { u8 r, g, b, a; } fn_1_147A04_Color;
 
-extern char *fn_80083DB0(char *, const char *);
+extern char *strcpy(char *, const char *);
 extern char *strncpy(char *, const char *, size_t);
 extern size_t strlen(const char *);
 extern s32 strncmp(const char *, const char *, size_t);
@@ -12178,7 +12178,7 @@ void fn_1_147A04(s32 arg0, const fn_1_147A04_Obj *arg1) {
         for (arg0 = 0; arg0 < v10; arg0 += 2) {
             if (strncmp(v12, "\201\347", 2) == 0) {
                 strncpy(v12, "  ", 2);
-                fn_80083DB0(v12 + 1, v12 + 2);
+                strcpy(v12 + 1, v12 + 2);
                 v12 += 1;
             } else {
                 v12 += 2;
@@ -16306,7 +16306,7 @@ extern void fn_1_1556B4(u8, u8);
 extern s32 fn_1_155F7C(void);
 extern s32 fn_1_155F8C(void);
 extern void fn_1_155FB4(const char *);
-extern char *fn_80083DB0(char *dst, const char *src);
+extern char *strcpy(char *dst, const char *src);
 extern unsigned long strlen(const char *);
 extern char *strncpy(char *, const char *, unsigned long);
 
@@ -16487,7 +16487,7 @@ void fn_1_14C35C(void) {
     lbl_1_bss_8E560__fzgx_offset_4 = strlen(name) / 2;
     if (lbl_801A66B4 != 5) {
         lbl_1_bss_8E560__fzgx_offset_4 = strlen(name);
-        fn_80083DB0((char *)buf, lbl_1_bss_8E570__fzgx_offset_8);
+        strcpy((char *)buf, lbl_1_bss_8E570__fzgx_offset_8);
         src = buf;
         dst = lbl_1_bss_8E570__fzgx_offset_8;
         while (*src != 0) {
@@ -16902,7 +16902,7 @@ void fn_1_14CAC8(void) {
 #include "rel/main_rel/sel_static_disp.h"
 
 extern void fn_80008BEC(void *dest, int value, u32 size);
-extern u8 *fn_80083970(const u8 *str, const u8 *needle);
+extern u8 *strstr(const u8 *str, const u8 *needle);
 extern u8 lbl_1_bss_8E598[148];
 extern u8 lbl_1_bss_8E62C[132];
 extern const u8 lbl_1_rodata_9828[172];
@@ -17018,7 +17018,7 @@ s32 fn_1_14CEB8(u8 *name) {
             }
             buf[0] = lbl_1_data_43C28__fzgx_offset_8[k][j * 2];
             buf[1] = lbl_1_data_43C28__fzgx_offset_8[k][j * 2 + 1];
-            kana = fn_80083970(lbl_1_rodata_9828, buf);
+            kana = strstr(lbl_1_rodata_9828, buf);
             if (kana == NULL) {
                 if (!(p[0] == lbl_1_data_43C28__fzgx_offset_8[k][j * 2] && p[1] == lbl_1_data_43C28__fzgx_offset_8[k][j * 2 + 1])) {
                     lbl_1_bss_8E598[k] = 0;
@@ -18353,7 +18353,7 @@ int fn_1_14EE00(s16 arg0, void *arg1, s16 arg2) {
         break;
     }
 
-    fn_80083DB0( arg1, ((void *)*(u32 *)((u8 *)table + arg0 * 24 + arg2 * 4)));
+    strcpy( arg1, ((void *)*(u32 *)((u8 *)table + arg0 * 24 + arg2 * 4)));
     return (int)arg1;
 }
 /* fzgx:end fn_1_14EE00 */
@@ -18367,7 +18367,7 @@ void *fn_1_14EEC4(s16 index, void *obj, s16 subindex) {
     StaticDispTable table;
 
     table = *(StaticDispTable *)lbl_1_rodata_B884;
-    fn_80083DB0( obj, (const char *)(table.values[index][subindex]));
+    strcpy( obj, (const char *)(table.values[index][subindex]));
     return obj;
 }
 /* fzgx:end fn_1_14EEC4 */
@@ -18982,18 +18982,18 @@ void *fn_1_14FDAC(void *arg0, void *arg1, s16 arg2, void *arg3) {
     s16 index;
     void *entry;
 
-    fn_80083DB0( (char *)(local), arg0);
+    strcpy( (char *)(local), arg0);
     value = local;
     index = 0;
-    while ((entry = fn_800839D8( value, arg1)) != NULL) {
+    while ((entry = strtok( value, arg1)) != NULL) {
         if (index == arg2) {
-            fn_80083DB0( arg3, entry);
+            strcpy( arg3, entry);
             return arg3;
         }
         value = 0;
         index++;
     }
-    fn_80083DB0( arg3, arg0);
+    strcpy( arg3, arg0);
     return arg3;
 }
 /* fzgx:end fn_1_14FDAC */
@@ -19004,10 +19004,10 @@ s32 fn_1_14FE48(void *arg0, void *arg1) {
     void *value;
     s32 count;
 
-    fn_80083DB0( (char *)(data), arg0);
+    strcpy( (char *)(data), arg0);
     value = data;
     count = 0;
-    while (fn_800839D8( value, arg1) != 0) {
+    while (strtok( value, arg1) != 0) {
         value = 0;
         count += 1;
     }
@@ -19575,13 +19575,13 @@ char *fn_1_14FEAC(s16 arg0, s16 arg1, s16 arg2, char *out, s16 arg4) {
         idx = ((s32)found - (s32)lbl_1_bss_8E6B0) / 4;
     }
     if (idx != -1) {
-        fn_80083DB0(out, ((char *(*)[6])fzgx_pool_data_lbl_1_data_43E78_9A0)[idx][arg4]);
+        strcpy(out, ((char *(*)[6])fzgx_pool_data_lbl_1_data_43E78_9A0)[idx][arg4]);
         goto done; /* share the final output return with the cache update path */
     }
     cache = (NameCache *)lbl_1_bss_8E7E4;
     for (i = 0; i < 20; i++) {
         if (cache->entries[i].key == code && arg4 == cache->entries[i].id) {
-            fn_80083DB0(out, cache->entries[i].str);
+            strcpy(out, cache->entries[i].str);
             return out;
         }
     }
@@ -19608,38 +19608,38 @@ char *fn_1_14FEAC(s16 arg0, s16 arg1, s16 arg2, char *out, s16 arg4) {
     p2 = part2[0];
     for (k = 0; k < 2; k++) {
         /* take the k-th token of each name, or the whole name if it has fewer */
-        fn_80083DB0(tok0, name0);
+        strcpy(tok0, name0);
         str = tok0;
-        for (j = 0; (tok = fn_800839D8(str, (char *)((u8 *)fzgx_pool_data_lbl_1_data_462A0))) != NULL; j++) {
+        for (j = 0; (tok = strtok(str, (char *)((u8 *)fzgx_pool_data_lbl_1_data_462A0))) != NULL; j++) {
             if (j == k) {
-                fn_80083DB0(p0, tok);
+                strcpy(p0, tok);
                 goto found0; /* token found: skip the whole-name fallback */
             }
             str = NULL;
         }
-        fn_80083DB0(p0, name0);
+        strcpy(p0, name0);
 found0:
-        fn_80083DB0(tok1, name1);
+        strcpy(tok1, name1);
         str = tok1;
-        for (j = 0; (tok = fn_800839D8(str, (char *)((u8 *)fzgx_pool_data_lbl_1_data_462A0))) != NULL; j++) {
+        for (j = 0; (tok = strtok(str, (char *)((u8 *)fzgx_pool_data_lbl_1_data_462A0))) != NULL; j++) {
             if (j == k) {
-                fn_80083DB0(p1, tok);
+                strcpy(p1, tok);
                 goto found1; /* token found: skip the whole-name fallback */
             }
             str = NULL;
         }
-        fn_80083DB0(p1, name1);
+        strcpy(p1, name1);
 found1:
-        fn_80083DB0(tok2, name2);
+        strcpy(tok2, name2);
         str = tok2;
-        for (j = 0; (tok = fn_800839D8(str, (char *)((u8 *)fzgx_pool_data_lbl_1_data_462A0))) != NULL; j++) {
+        for (j = 0; (tok = strtok(str, (char *)((u8 *)fzgx_pool_data_lbl_1_data_462A0))) != NULL; j++) {
             if (j == k) {
-                fn_80083DB0(p2, tok);
+                strcpy(p2, tok);
                 goto found2; /* token found: skip the whole-name fallback */
             }
             str = NULL;
         }
-        fn_80083DB0(p2, name2);
+        strcpy(p2, name2);
 found2:
         p0 += 0x20;
         p1 += 0x20;
@@ -19655,7 +19655,7 @@ found2:
         n = fn_1_14ED00(arg2, name2, arg4);
     }
     sprintf(out, (char *)((u8 *)fzgx_pool_data_lbl_1_data_43E78_24E0), s1, s2, n);
-    fn_80083DB0(cache->entries[cache->next].str, out);
+    strcpy(cache->entries[cache->next].str, out);
     cache->entries[cache->next].key = code;
     cache->entries[cache->next].id = arg4;
     n = cache->next + 1;

@@ -16854,7 +16854,7 @@ extern void fn_1_4965C(u8);
 extern void fn_1_4955C(f32, f32);
 extern void fn_1_49590(f32);
 extern void fn_1_4D784(s32, s32, s32, s32, char *, ...);
-extern char *fn_80083DB0(char *, const char *);
+extern char *strcpy(char *, const char *);
 extern s32 fn_1_4B16C(s32);
 extern s32 fn_1_12CB04(s16);
 extern void fn_1_46838(s16);
@@ -16958,7 +16958,7 @@ void fn_16_1038(void) {
         fn_1_4D784(1, 0, 1, 0xE4, buf, lbl_16_bss_0__fzgx_offset_4[lbl_1_bss_8B614.index] + (state.p->mode << 11));
     }
     state2.p = &lbl_1_bss_8B614;
-    fn_80083DB0(lbl_16_bss_B0B8.biographies[state2.p->index][state.p->mode], buf);
+    strcpy(lbl_16_bss_B0B8.biographies[state2.p->index][state.p->mode], buf);
     lbl_1_bss_8B614.e = 0;
     lbl_16_bss_860B8[0] = fn_1_4B16C((s32)lbl_16_bss_B0B8.biographies[state2.p->index][state.p->mode]);
     index.value = state2.p->index;

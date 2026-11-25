@@ -154,7 +154,7 @@ extern void lbl_8006DCA4(void);
 extern u32 lbl_8006DFC4();
 extern void lbl_8006E0A4();
 extern void mathutil_mtxA_rotate_y(s32 angle);
-extern char *fn_80083970(char *, const char *);
+extern char *strstr(char *, const char *);
 
 /* one pad's button words */
 typedef struct PadInput {
@@ -192,7 +192,7 @@ extern void fn_1_12AB38(const char *);
 extern void *fn_1_45D0(void *, s32, const char *, s32);
 extern void fn_1_80F80(void *, u8, void *);
 extern void fn_1_1502BC(void *, void *, void *);
-extern void fn_80083DB0(void *, u32);
+extern void strcpy(void *, u32);
 extern void fn_1_801F8(s16, void *);
 void fn_1_7ECB8(void *arg0, u32 arg1, u32 arg2, f32 arg3);
 
@@ -408,7 +408,7 @@ void fn_1_7C2A0(Car *car) {
                     if ((s16)k > car->limit - 1) {
                         break;
                     }
-                    if (fn_80083970(car->lods[lbl_1_bss_6D7E8->lod].info->entries[i].name, "pos_")
+                    if (strstr(car->lods[lbl_1_bss_6D7E8->lod].info->entries[i].name, "pos_")
                         != car->lods[lbl_1_bss_6D7E8->lod].info->entries[i].name) {
                         if (car->lods[lbl_1_bss_6D7E8->lod].models[i] == NULL) {
                             k++;
@@ -609,7 +609,7 @@ void fn_1_7C7CC(CarTest *test) {
         fn_1_4AE0C("-----------------\n");
         for (i = 0; i < info->count; i++) {
             if (!((1 << i) & test->disp_masks[test->car]) ||
-                fn_80083970(info->entries[i].name, "pos_") == info->entries[i].name) {
+                strstr(info->entries[i].name, "pos_") == info->entries[i].name) {
                 GXColor c = {0x7F, 0x7F, 0x7F, 0x00};
                 fn_1_49514(&c);
             }
@@ -617,7 +617,7 @@ void fn_1_7C7CC(CarTest *test) {
                 GXColor c = {0xFF, 0x00, 0x00, 0x00};
                 fn_1_49514(&c);
             }
-            if (fn_80083970(info->entries[i].name, "pos_") == info->entries[i].name) {
+            if (strstr(info->entries[i].name, "pos_") == info->entries[i].name) {
                 fn_1_4AE0C("PosData\n");
                 {
                     GXColor c = {0xFF, 0xFF, 0xFF, 0x00};
@@ -1324,7 +1324,7 @@ extern void fn_80008BEC(void *, int, u32);
 extern void fn_1_80F80(void *, u8, void *);
 extern void fn_1_1502BC(void *, void *, void *);
 
-extern void fn_80083DB0(void* arg0, u32 arg1);
+extern void strcpy(void* arg0, u32 arg1);
 extern void fn_1_801F8(s16 arg0, void* arg1);
 extern const f32 lbl_1_rodata_33AC;
 extern const f32 lbl_1_rodata_33B0[84];
@@ -1345,7 +1345,7 @@ extern void fn_80008BEC(void *, int, u32);
 extern void fn_1_80F80(void *, u8, void *);
 extern void fn_1_1502BC(void *, void *, void *);
 
-extern void fn_80083DB0(void* arg0, u32 arg1);
+extern void strcpy(void* arg0, u32 arg1);
 extern void fn_1_801F8(s16 arg0, void* arg1);
 extern const f32 lbl_1_rodata_33AC;
 extern const f32 lbl_1_rodata_33B0[84];
@@ -1534,7 +1534,7 @@ extern void fn_80008BEC(void *, int, u32);
 extern void fn_1_80F80(void *, u8, void *);
 extern void fn_1_1502BC(void *, void *, void *);
 
-extern void fn_80083DB0(void* arg0, u32 arg1);
+extern void strcpy(void* arg0, u32 arg1);
 extern void fn_1_801F8(s16 arg0, void* arg1);
 extern const f32 lbl_1_rodata_33AC;
 extern const f32 lbl_1_rodata_33B0[84];
@@ -2041,7 +2041,7 @@ extern void fn_80008BEC(void *, int, u32);
 extern void fn_1_80F80(void *, u8, void *);
 extern void fn_1_1502BC(void *, void *, void *);
 
-extern void fn_80083DB0(void* arg0, u32 arg1);
+extern void strcpy(void* arg0, u32 arg1);
 extern void fn_1_801F8(s16 arg0, void* arg1);
 extern const f32 lbl_1_rodata_33AC;
 extern const f32 lbl_1_rodata_33B0[84];

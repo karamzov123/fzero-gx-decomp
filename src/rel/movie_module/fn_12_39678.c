@@ -54,7 +54,7 @@ extern void fn_12_35014(void *, s32, s32);
 extern void fn_12_35010(void *, s32, s32);
 extern u32 strlen(const char *);
 extern char *strncpy(char *, const char *, u32);
-extern char *fn_80083DB0(char *, const char *);
+extern char *strcpy(char *, const char *);
 
 void fn_12_39678(struct fn_12_39678_Arg0 *arg0, void *arg1, s32 arg2, s32 arg3) {
     char *p_lbl_12_rodata_2480 = lbl_12_rodata_2480;
@@ -132,7 +132,7 @@ finish:
         MWSFSVM_Error(p_lbl_12_rodata_2480 + 0x28);
         strncpy(arg0->filename, arg1, arg0->capacity);
     } else {
-        fn_80083DB0(arg0->filename, arg1);
+        strcpy(arg0->filename, arg1);
     }
     arg0->offset = 0;
     arg0->length = 0;

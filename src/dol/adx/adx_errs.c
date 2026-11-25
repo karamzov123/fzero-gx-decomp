@@ -157,7 +157,7 @@ void fn_80046F7C(u32 value);
 /* ADXERR_ItoA2, from the CC0 MK Deception decomp (adx_errs.c) */
 
 extern unsigned long strlen(const char *string);
-extern char *fn_80083CF4(char *destination, const char *source, unsigned long size);
+extern char *strncat(char *destination, const char *source, unsigned long size);
 extern signed char lbl_8017B038[32];
 
 static inline void adxerr_itoa(int value, signed char* string, int length)
@@ -189,7 +189,7 @@ static inline void adxerr_itoa(int value, signed char* string, int length)
 void fn_80046F88(int value1, int value2, signed char* string, int length)
 {
     adxerr_itoa(value1, string, length);
-    fn_80083CF4((char*)string, " ", length - strlen((const char*)string) - 1);
+    strncat((char*)string, " ", length - strlen((const char*)string) - 1);
     adxerr_itoa(value2, string + strlen((const char*)string),
                 4 - strlen((const char*)string));
 }
@@ -215,7 +215,7 @@ void fn_80047464(u32 arg0, u32 arg1) {
     struct AdxErrState *p_lbl_8017B030;
     p_lbl_8017B030 = (struct AdxErrState *)&lbl_8017B030;
     strncpy(&p_lbl_8017B030->unk_28, (void *)arg0, 255);
-    fn_80083CF4((char *)&p_lbl_8017B030->unk_28, (const char *)arg1, 255);
+    strncat((char *)&p_lbl_8017B030->unk_28, (const char *)arg1, 255);
     if (p_lbl_8017B030->unk_0 != 0) {
         ((AdxErrCallback)p_lbl_8017B030->unk_0)(
             p_lbl_8017B030->unk_4,

@@ -4084,7 +4084,7 @@ extern void fn_8006EB4C(Quat_29A0C *, Quat_29A0C *, Quat_29A0C *, f32);
 extern void fn_8006F038(Vec3 *arg0, Vec3 *arg1, s16 arg2);
 extern void fn_80072558(void);
 extern void fn_800793D4(void *, int, u32);
-extern int fn_80083BCC(const u8 *, const u8 *);
+extern int strcmp(const u8 *, const u8 *);
 extern Bss_104C lbl_1_bss_104C;
 extern u32 lbl_1_bss_25B9C;
 extern Outer *lbl_1_bss_38454;

@@ -180,7 +180,7 @@ extern void fn_80046510(ADX_AMP *amplifier);
 extern void ADXAMP_Start(ADX_AMP *amplifier);
 extern u32 fn_800466D4(ADX_AMP *);
 extern SJ *fn_80058498(void *, s32, s32);
-extern void fn_80083DB0(void *, void *);
+extern void strcpy(void *, void *);
 
 extern void fzgx_sink(const char *s);
 extern void fzgx_sinkf(f32 f);
@@ -905,7 +905,7 @@ void fn_8004D18C(ADXTHandle *arg0, char *arg1) {
         fn_800474E4(lbl_80091068);
     } else {
         ADXT_Stop(arg0);
-        fn_80083DB0(arg0->work_end, arg1);
+        strcpy(arg0->work_end, arg1);
         arg0->pending_filename = (const char *)arg0->work_end;
         arg0->pending_directory = 0;
         arg0->pending_file_offset = 0;

@@ -42,7 +42,7 @@ extern void lbl_8006E0B4(f32, f32, f32);
 extern void lbl_8006E14C(f32);
 extern void lbl_8006DB74(void *);
 extern void fn_80072558(void);
-extern void fn_80083DB0(void *, void *);
+extern void strcpy(void *, void *);
 extern void *fn_1_55210(void *);
 extern void *fn_1_548AC(u32);
 extern void *fn_1_5448C(void *);
@@ -530,7 +530,7 @@ typedef struct {
 } Fn1108BD0_Object;
 
 extern const char *lbl_1_data_3FCAC[];
-extern u32 fn_80083970(const char *, const char *);
+extern u32 strstr(const char *, const char *);
 extern f32 lbl_8006D0B4(f32);
 
 void fn_1_108BD0(Fn1108BD0_Object *object, s32 joint_index, f32 margin, f32 x, f32 y, f32 z) {
@@ -552,7 +552,7 @@ void fn_1_108BD0(Fn1108BD0_Object *object, s32 joint_index, f32 margin, f32 x, f
     }
     entry = table->entries;
     for (i = 0; i < table->count; i++, entry++) {
-        if (entry != 0 && fn_80083970(entry->name, lbl_1_data_3FCAC[obj->name_index]) != 0) {
+        if (entry != 0 && strstr(entry->name, lbl_1_data_3FCAC[obj->name_index]) != 0) {
             radius = 0.5f * entry->shape->radius;
             break;
         }
@@ -2211,7 +2211,7 @@ extern void lbl_8006E0B4(f32, f32, f32);
 extern void lbl_8006E14C(f32);
 extern void lbl_8006DB74(void *);
 extern void fn_80072558(void);
-extern void fn_80083DB0(void *, void *);
+extern void strcpy(void *, void *);
 extern void *fn_1_55210(void *);
 extern void *fn_1_548AC(u32);
 extern void *fn_1_5448C(void *);
@@ -3459,7 +3459,7 @@ extern u32 fn_1_F1D60(void);
 extern int fn_1_4C10(void);
 extern u8 *fn_1_F1C54(u32);
 extern u8 fn_1_EB0B0(void);
-extern u8 *fn_80083970(u8 *str, const u8 *needle);
+extern u8 *strstr(u8 *str, const u8 *needle);
 extern void fn_1_520A0(void);
 extern void fn_1_52070(u32 value);
 extern void fn_1_49410(void);
@@ -3477,7 +3477,7 @@ extern void fn_1_4966C(f32 value1, f32 value2);
 extern void fn_1_4A0D8(const char *);
 extern void fn_1_520CC(void);
 extern void lbl_8006DBAC(void *);
-extern int fn_80083BCC(const char *s1, const char *s2);
+extern int strcmp(const char *s1, const char *s2);
 extern void fn_1_108920(void *accessory);
 extern void *fn_80077B14(void *);
 extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
@@ -3825,7 +3825,7 @@ extern void lbl_8006E0B4(f32, f32, f32);
 extern void lbl_8006E14C(f32);
 extern void lbl_8006DB74(void *);
 extern void fn_80072558(void);
-extern void fn_80083DB0(void *, void *);
+extern void strcpy(void *, void *);
 extern void *fn_1_55210(void *);
 extern void *fn_1_548AC(u32);
 extern void *fn_1_5448C(void *);
@@ -4948,7 +4948,7 @@ typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
  u32 pad14, count, linkCount, pad20; Node *nodes; Link *links; } Work;
 extern u32 lbl_801A63C0;
 extern const char *fn_1_950E8(void *);
-extern int fn_80083BCC(const char *, const char *);
+extern int strcmp(const char *, const char *);
 extern void fn_1_108128(void *, s32);
 
 #pragma opt_propagation off
@@ -5193,8 +5193,8 @@ void fn_1_10E3B4(Work *arg0) {
     fn_1_10E3B4_spherex(arg0, 0x25a8, 0.298f, 0.0f, 0.0f, 0.0225f, 0.15f);
    }
   }
-  if (fn_80083BCC(fn_1_950E8(&arg0->owner->unk148), (const char *)(data + 0x102c)) == 0 ||
-      fn_80083BCC(fn_1_950E8(&arg0->owner->unk148), (const char *)(data + 0x1034)) == 0) {
+  if (strcmp(fn_1_950E8(&arg0->owner->unk148), (const char *)(data + 0x102c)) == 0 ||
+      strcmp(fn_1_950E8(&arg0->owner->unk148), (const char *)(data + 0x1034)) == 0) {
    for (wi = 0, wn = arg0->nodes; wi < arg0->count; wi++, wn++) {
     if (wi >= 3) {
      s32 m = (wi - 3) % n;
@@ -5866,7 +5866,7 @@ typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
 #define D(o) (*(const f64 *)(pool+(o)))
 extern u32 lbl_801A63C0;
 extern const char *fn_1_950E8(void *);
-extern int fn_80083BCC(const char *, const char *);
+extern int strcmp(const char *, const char *);
 extern void fn_1_108128(void *, s32);
 extern f32 lbl_8006D188(s32);
 #pragma opt_propagation off
@@ -6062,7 +6062,7 @@ void fn_1_110478(Work *arg0) {
  SPHERE(0x241c,c1d0,c68,c68,(0.016384002f),(0.128f))
  SPHERE(0x241c,c1dc,c68,c68,(0.0169f),(0.13f))
  }
- if(fn_80083BCC(fn_1_950E8(&arg0->owner->unk148),(const char *)(data+0x1040))!=0 && fn_80083BCC(fn_1_950E8(&arg0->owner->unk148),(const char *)(data+0x1048))!=0) {
+ if(strcmp(fn_1_950E8(&arg0->owner->unk148),(const char *)(data+0x1040))!=0 && strcmp(fn_1_950E8(&arg0->owner->unk148),(const char *)(data+0x1048))!=0) {
  for(wi=0,wn=arg0->nodes;wi<arg0->count;wi++,wn++) {
  f32 w1,w2;
  u32 m;
@@ -6729,7 +6729,7 @@ typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
 #define D(o) (*(const f64 *)(pool+(o)))
 extern u32 lbl_801A63C0;
 extern const char *fn_1_950E8(void *);
-extern int fn_80083BCC(const char *, const char *);
+extern int strcmp(const char *, const char *);
 extern void fn_1_108128(void *, s32);
 extern f32 lbl_8006D188(s32);
 #pragma opt_propagation off
@@ -6934,7 +6934,7 @@ void fn_1_111980(Work *arg0) {
  SPHERE(0x25a8,c1f4,c68,c68,(0.013225f),(0.115f))
  SPHERE(0x25a8,c1fc,c68,c68,(0.010000001f),(0.1f))
  }
- if(fn_80083BCC(fn_1_950E8(&arg0->owner->unk148),(const char *)(data+0x102c))==0 || fn_80083BCC(fn_1_950E8(&arg0->owner->unk148),(const char *)(data+0x1050))==0 || fn_80083BCC(fn_1_950E8(&arg0->owner->unk148),(const char *)(data+0x1034))==0) {
+ if(strcmp(fn_1_950E8(&arg0->owner->unk148),(const char *)(data+0x102c))==0 || strcmp(fn_1_950E8(&arg0->owner->unk148),(const char *)(data+0x1050))==0 || strcmp(fn_1_950E8(&arg0->owner->unk148),(const char *)(data+0x1034))==0) {
  for(wi=0,wn=arg0->nodes;wi<arg0->count;wi++,wn++) {
  f32 w1,w2;
  u32 m;
@@ -9566,7 +9566,7 @@ extern void lbl_8006D7B0(void);
 extern void lbl_8006E0B4(f32, f32, f32);
 extern void lbl_8006E14C(f32);
 extern void fn_80072558(void);
-extern char *fn_80083DB0(char *dst, const char *src);
+extern char *strcpy(char *dst, const char *src);
 extern void *fn_1_55210(void *);
 extern void * fn_1_548AC(u32 amount);
 extern void *fn_1_5448C(void *);
@@ -9579,7 +9579,7 @@ extern f32 lbl_8006D118(f32, f32 *);
 extern f32 fn_1_128AAC(s32 exponent, f32 value);
 extern u32 lbl_801A63C0;
 extern const char *fn_1_950E8(void *);
-extern int fn_80083BCC(const char *s1, const char *s2);
+extern int strcmp(const char *s1, const char *s2);
 extern void fn_1_108128(void *, s32);
 extern void fn_1_108A90(fn_1_108A90_Obj *o, s32 idx, f32 r, f32 x, f32 y, f32 z);
 extern void fn_1_109114(fn_1_109114_AccessoryObject *self);
@@ -9613,7 +9613,7 @@ extern u32 fn_1_F1D60(void);
 extern int fn_1_4C10(void);
 extern char *fn_1_F1C54(int idx);
 extern u32 fn_1_EB0B0(void);
-extern u8 *fn_80083970(u8 *str, const u8 *needle);
+extern u8 *strstr(u8 *str, const u8 *needle);
 extern void fn_1_12A080(void);
 extern void fn_800737E4(void *, s32);
 extern void fn_80074918(u8 arg0, s32 arg1, u8 arg2);
@@ -12741,7 +12741,7 @@ typedef struct {
 } Obj;
 
 extern u32 fn_1_10846C(void *);
-extern u8 *fn_80083970(u8 *, const u8 *);
+extern u8 *strstr(u8 *, const u8 *);
 extern void fn_1_128884(void *, void *, s32);
 
 void fn_1_1171B8(Obj *obj) {
@@ -12758,7 +12758,7 @@ void fn_1_1171B8(Obj *obj) {
     u32 per;
 
     if (obj != NULL) {
-        per = fn_80083970(((u8 **)lbl_1_data_3FCAC)[obj->unk_8], lbl_1_data_3F9CC) ? 4 : 3;
+        per = strstr(((u8 **)lbl_1_data_3FCAC)[obj->unk_8], lbl_1_data_3F9CC) ? 4 : 3;
         fn_1_10846C(obj);
         a = obj->unk_24;
         for (i = 0; i < obj->unk_18; i++, a++) {
@@ -13154,7 +13154,7 @@ typedef struct SkinMtx {
 } SkinMtx;
 
 extern void *fn_80077B14(void *);
-extern u8 *fn_80083970(u8 *, const u8 *);
+extern u8 *strstr(u8 *, const u8 *);
 extern void lbl_8006DBAC(void *);
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DBE4(void);
@@ -13251,7 +13251,7 @@ void fn_1_117424(Rope *rope) {
 
     if (rope != NULL && rope->skin != NULL) {
         fn_80077B14(rope->skin);
-        fn_80083970((u8 *)fzgx_obj_lbl_1_data_3FCAC[rope->kind], fzgx_obj_lbl_1_data_3F9CC);
+        strstr((u8 *)fzgx_obj_lbl_1_data_3FCAC[rope->kind], fzgx_obj_lbl_1_data_3F9CC);
         if (rope->flags & 2) {
             rope->flags &= ~2;
             rope_reset_nodes(rope);
@@ -13626,8 +13626,8 @@ typedef struct Rope {
 } Rope;
 
 extern void *lbl_801A6410[];
-extern int fn_80083970(const char *, const char *);
-extern int fn_80083BCC(const char *, const char *);
+extern int strstr(const char *, const char *);
+extern int strcmp(const char *, const char *);
 extern HairVtxCount *fn_80077B64(void *);
 extern void *fn_80077B14(void *);
 extern void fn_1_10846C(Rope *);
@@ -13659,7 +13659,7 @@ void fn_1_1177C4(Rope *rope) {
     RopeNode *p;
 
     if (rope != NULL) {
-        left = fn_80083970((char *)fzgx_obj_lbl_1_data_3FCAC[rope->kind], fzgx_obj_lbl_1_data_3FBCC) == 0;
+        left = strstr((char *)fzgx_obj_lbl_1_data_3FCAC[rope->kind], fzgx_obj_lbl_1_data_3FBCC) == 0;
         fn_1_10846C(rope);
         dst = rope->nodes;
         list = rope->owner->lists[rope->owner->sel];
@@ -13671,7 +13671,7 @@ void fn_1_1177C4(Rope *rope) {
                     sprintf(name, "PLISIA_HAIR_R_%d_vtx", i);
                 }
                 for (j = 0, e = list->entries; j < list->count; j++, e++) {
-                    if (fn_80083BCC(e->name, name) == 0) {
+                    if (strcmp(e->name, name) == 0) {
                         break;
                     }
                 }
@@ -14081,7 +14081,7 @@ typedef struct SkinMtx {
 } SkinMtx;
 
 extern void *fn_80077B14(void *);
-extern u8 *fn_80083970(u8 *, const u8 *);
+extern u8 *strstr(u8 *, const u8 *);
 extern void lbl_8006DBAC(void *);
 extern void lbl_8006E1B0(void *, void *);
 extern f32 lbl_8006D118(f32, f32 *);
@@ -14153,7 +14153,7 @@ void fn_1_117D5C(Rope *rope) {
 
     if (rope != NULL && rope->skin != NULL) {
         fn_80077B14(rope->skin);
-        fn_80083970((u8 *)fzgx_obj_lbl_1_data_3FCAC[rope->kind], fzgx_obj_lbl_1_data_3F9CC);
+        strstr((u8 *)fzgx_obj_lbl_1_data_3FCAC[rope->kind], fzgx_obj_lbl_1_data_3F9CC);
         if (rope->flags & 2) {
             rope->flags &= ~2;
             model1 = &ROPE_MODELS(rope)[ROPE_INDEX(rope)];
@@ -14377,7 +14377,7 @@ typedef struct {
 
 extern f32 fn_1_128AAC(s32, f32);
 extern u32 fn_1_10846C(void *);
-extern u8 *fn_80083970(u8 *, const u8 *);
+extern u8 *strstr(u8 *, const u8 *);
 extern void fn_1_128884(void *, void *, s32);
 
 typedef struct {
@@ -14406,7 +14406,7 @@ void fn_1_1185B4(Obj1185B4 *obj) {
     u32 idx;
 
     if (obj != NULL) {
-        flag = fn_80083970(((u8 **)lbl_1_data_3FCAC)[obj->unk_8], lbl_1_data_3F9E0) != 0;
+        flag = strstr(((u8 **)lbl_1_data_3FCAC)[obj->unk_8], lbl_1_data_3F9E0) != 0;
         fn_1_10846C(obj);
         a = obj->unk_24;
         for (i = 0; i < obj->unk_18; i++, a++) {
@@ -18985,7 +18985,7 @@ extern void lbl_8006E0B4(f32, f32, f32);
 extern void lbl_8006E14C(f32);
 extern void lbl_8006DB74(void *);
 extern void fn_80072558(void);
-extern void fn_80083DB0(void *, void *);
+extern void strcpy(void *, void *);
 extern void *fn_1_55210(void *);
 extern void *fn_1_548AC(u32);
 extern void *fn_1_5448C(void *);
@@ -19382,7 +19382,7 @@ typedef struct AccWork {
 
 extern void fn_1_A8EB0(int, int);
 extern const char *fn_1_950E8(void *);
-extern int fn_80083BCC(const char *, const char *);
+extern int strcmp(const char *, const char *);
 extern f32 lbl_8006D118(f32 *, f32);
 extern f32 lbl_8006D0B4(f32);
 extern f32 lbl_8006D0E8(f32);
@@ -19529,11 +19529,11 @@ void fn_1_120804(AccWork *arg0) {
         }
     }
     fn_1_120804_attach(arg0, arg0->owner->model->base + INDEX(arg0->index) * 396);
-    if (fn_80083BCC(fn_1_950E8(arg0->owner->unk148), "CAR_SEL") == 0 ||
-        fn_80083BCC(fn_1_950E8(arg0->owner->unk148), "SEL_WAIT") == 0 ||
-        fn_80083BCC(fn_1_950E8(arg0->owner->unk148), "SEL_WAIT_02") == 0) {
+    if (strcmp(fn_1_950E8(arg0->owner->unk148), "CAR_SEL") == 0 ||
+        strcmp(fn_1_950E8(arg0->owner->unk148), "SEL_WAIT") == 0 ||
+        strcmp(fn_1_950E8(arg0->owner->unk148), "SEL_WAIT_02") == 0) {
         mode = 1;
-    } else if (fn_80083BCC(fn_1_950E8(arg0->owner->unk148), "SEL_WAIT_01") == 0) {
+    } else if (strcmp(fn_1_950E8(arg0->owner->unk148), "SEL_WAIT_01") == 0) {
         f32 f = arg0->owner->model->unk4C;
         if (f > 350.0f) {
             mode = 1;
@@ -19545,7 +19545,7 @@ void fn_1_120804(AccWork *arg0) {
     } else {
         mode = 0;
     }
-    passes = (fn_80083BCC(fn_1_950E8(arg0->owner->unk148), "SEL_DEC") == 0) ? 6 : 2;
+    passes = (strcmp(fn_1_950E8(arg0->owner->unk148), "SEL_DEC") == 0) ? 6 : 2;
     for (k = 0; k < passes; k++) {
         for (li = arg0->linkCount - 1, l = arg0->links + arg0->linkCount - 1; li >= 0; li--, l--) {
             a = l->a;
@@ -19562,7 +19562,7 @@ void fn_1_120804(AccWork *arg0) {
             fn_1_120804_sphere0(arg0, 0x1948, 0.017160998657345772f, 0.131f);
             SPHERE(0x1c60, 0.141f, 0.0f, 0.0f, 0.0169f, 0.13f)
             SPHERE(0x241c, 0.141f, 0.0f, 0.0f, 0.0169f, 0.13f)
-            if (fn_80083BCC(fn_1_950E8(arg0->owner->unk148), "SEL_DEC") == 0) {
+            if (strcmp(fn_1_950E8(arg0->owner->unk148), "SEL_DEC") == 0) {
                 SPHERE(0x1c60, 0.027f, 0.0f, 0.0f, 0.016384001821279526f, 0.128f)
                 SPHERE(0x241c, 0.027f, 0.0f, 0.0f, 0.016384001821279526f, 0.128f)
             }
@@ -19855,7 +19855,7 @@ extern void lbl_8006E0B4(f32, f32, f32);
 extern void lbl_8006E14C(f32);
 extern void lbl_8006DB74(void *);
 extern void fn_80072558(void);
-extern void fn_80083DB0(void *, void *);
+extern void strcpy(void *, void *);
 extern void *fn_1_55210(void *);
 extern void *fn_1_548AC(u32);
 extern void *fn_1_5448C(void *);
@@ -22677,7 +22677,7 @@ extern void lbl_8006E0B4(f32, f32, f32);
 extern void lbl_8006E14C(f32);
 extern void lbl_8006DB74(void *);
 extern void fn_80072558(void);
-extern void fn_80083DB0(void *, void *);
+extern void strcpy(void *, void *);
 extern void *fn_1_55210(void *);
 extern void *fn_1_548AC(u32);
 extern void *fn_1_5448C(void *);
@@ -22712,7 +22712,7 @@ typedef struct {
 
 extern void *fn_80077B14(void *);
 extern const char *fn_1_950E8(void *);
-extern int fn_80083BCC(const char *, const char *);
+extern int strcmp(const char *, const char *);
 extern void fn_1_108EEC(void *, u32, u32, f32, f32, f32, f32);
 extern void mathutil_mtxA_rotate_z(s32);
 extern void lbl_8006DBAC(void *);
@@ -22767,7 +22767,7 @@ void fn_1_128038(fn_1_128038_AccessoryObject *self) {
         model = self->unk_C->unk_150->unk_8 + table[self->unk_8] * 0x18c;
         type = self->unk_C->unk_88;
         if (type == 0x18) {
-            if (fn_80083BCC(fn_1_950E8(self->unk_C->unk_148), (const char *)(data + 0x10a0)) == 0) {
+            if (strcmp(fn_1_950E8(self->unk_C->unk_148), (const char *)(data + 0x10a0)) == 0) {
                 lbl_8006D758();
                 mathutil_mtxA_rotate_z(0x4000);
                 lbl_8006DB74(mtx);
@@ -22776,12 +22776,12 @@ void fn_1_128038(fn_1_128038_AccessoryObject *self) {
                 lbl_8006DB74(mtx);
             }
         } else if (type == 6) {
-            if (fn_80083BCC(fn_1_950E8(self->unk_C->unk_148), (const char *)(data + 0x1048)) == 0 &&
+            if (strcmp(fn_1_950E8(self->unk_C->unk_148), (const char *)(data + 0x1048)) == 0 &&
                 *(s16 *)&lbl_1_bss_960 != 14) {
                 lbl_8006D758();
                 mathutil_mtxA_rotate_z(0x4000);
                 lbl_8006DB74(mtx);
-            } else if (fn_80083BCC(fn_1_950E8(self->unk_C->unk_148), (const char *)(data + 0x10a8)) == 0) {
+            } else if (strcmp(fn_1_950E8(self->unk_C->unk_148), (const char *)(data + 0x10a8)) == 0) {
                 lbl_8006D758();
                 mathutil_mtxA_rotate_z(0x2000);
                 lbl_8006DB74(mtx);
@@ -22812,8 +22812,8 @@ void fn_1_128038(fn_1_128038_AccessoryObject *self) {
         type = self->unk_C->unk_88;
         if (type == 0x18) {
             fn_1_108EEC(self, 1, 12, k[0x4d0 / 4], k[0x304 / 4], k[0x560 / 4], k[0x564 / 4]);
-            if (fn_80083BCC(fn_1_950E8(self->unk_C->unk_148), (const char *)(data + 0x10a0)) != 0 &&
-                fn_80083BCC(fn_1_950E8(self->unk_C->unk_148), (const char *)(data + 0x1040)) != 0) {
+            if (strcmp(fn_1_950E8(self->unk_C->unk_148), (const char *)(data + 0x10a0)) != 0 &&
+                strcmp(fn_1_950E8(self->unk_C->unk_148), (const char *)(data + 0x1040)) != 0) {
                 fn_1_108EEC(self, 12, 12, k[0x2a8 / 4], k[0xa8 / 4], k[0x224 / 4], k[0x488 / 4]);
                 fn_1_108EEC(self, 12, 12, k[0x2bc / 4], k[0x568 / 4], k[0x1a4 / 4], k[0x56c / 4]);
                 fn_1_108EEC(self, 12, 12, k[0x15c / 4], k[0x570 / 4], k[0x574 / 4], k[0x294 / 4]);
@@ -22823,7 +22823,7 @@ void fn_1_128038(fn_1_128038_AccessoryObject *self) {
             }
         } else if (type == 6) {
             fn_1_108EEC(self, 1, 12, k[0x4d0 / 4], k[0x304 / 4], k[0x560 / 4], k[0x564 / 4]);
-            if (fn_80083BCC(fn_1_950E8(self->unk_C->unk_148), (const char *)(data + 0x1048)) != 0) {
+            if (strcmp(fn_1_950E8(self->unk_C->unk_148), (const char *)(data + 0x1048)) != 0) {
                 fn_1_108EEC(self, 12, 12, k[0x2a8 / 4], k[0xa8 / 4], k[0x224 / 4], k[0x488 / 4]);
                 fn_1_108EEC(self, 12, 12, k[0x2bc / 4], k[0x568 / 4], k[0x1a4 / 4], k[0x56c / 4]);
                 fn_1_108EEC(self, 12, 12, k[0x15c / 4], k[0x570 / 4], k[0x574 / 4], k[0x294 / 4]);
@@ -22920,7 +22920,7 @@ extern void lbl_8006E0B4(f32, f32, f32);
 extern void lbl_8006E14C(f32);
 extern void lbl_8006DB74(void *);
 extern void fn_80072558(void);
-extern void fn_80083DB0(void *, void *);
+extern void strcpy(void *, void *);
 extern void *fn_1_55210(void *);
 extern void *fn_1_548AC(u32);
 extern void *fn_1_5448C(void *);
@@ -24120,7 +24120,7 @@ extern s32 fn_1_F1D60(void);
 extern s32 fn_1_4C10(void);
 extern u8 *fn_1_F1C54(u32);
 extern u32 fn_1_EB0B0(void);
-extern u8 *fn_80083970(u8 *, const u8 *);
+extern u8 *strstr(u8 *, const u8 *);
 void fn_1_12999C(void) {
  s32 i;
  u32 t3C[3];
@@ -24200,7 +24200,7 @@ void fn_1_12999C(void) {
  if(fn_1_4C10()==0) {
  for(j=0;j<fn_1_EB0B0();j++) {
  q=fn_1_F1C54(j);
- if(lbl_801A66B4!=5 && fn_80083970(q,(const u8 *)"\x8A\x4A\x94\xAD\x8E\xD2")!=0) q=(u8 *)&p->unk_94;
+ if(lbl_801A66B4!=5 && strstr(q,(const u8 *)"\x8A\x4A\x94\xAD\x8E\xD2")!=0) q=(u8 *)&p->unk_94;
  fn_1_129D9C(&lbl_1_bss_7CA58[j],&v8,q,0,1,0,0,val);
  }
  }
@@ -24309,7 +24309,7 @@ void fn_1_129D9C(void *arg0, struct Vec3 *arg1, u8 *arg2, void *arg4,
             lbl_8006DB74((u8 *)arg4 + 8);
             *(f32 *)((u8 *)arg4 + 56) = p->unk_10 / v2;
             *(void **)((u8 *)arg4 + 4) = (void *)fn_1_12A0E0;
-            fn_80083DB0((u8 *)arg4 + 60, arg2);
+            strcpy((u8 *)arg4 + 60, arg2);
             fn_1_5489C(fn_1_5448C(loc_8), arg4);
 }
         }
@@ -24384,7 +24384,7 @@ extern void fn_1_4955C(f32, f32);
 extern void fn_1_4966C(f32, f32);
 extern void fn_1_4A0D8(const char *);
 extern void fn_1_520CC(void);
-extern int fn_80083BCC(const char *, const char *);
+extern int strcmp(const char *, const char *);
 typedef struct { f32 value0, value1, value2; } Sig_fn_8006F78C_Fn8006F78CData;
 extern void fn_8006F78C(void *, Sig_fn_8006F78C_Fn8006F78CData *, f32);
 typedef struct {
@@ -24414,7 +24414,7 @@ void fn_1_12A0E0(DisplayData *arg0)
     lbl_8006DBAC(arg0->unk_08);
     fn_1_49410();
     fn_1_494DC(5);
-    if (fn_80083BCC(arg0->unk_3C, "STAFF") == 0) {
+    if (strcmp(arg0->unk_3C, "STAFF") == 0) {
         color = *(u32 *)(pool + 0xE4);
         fn_1_49514(&color);
     }

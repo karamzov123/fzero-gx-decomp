@@ -660,8 +660,8 @@ void fn_3_BA0(void) {
 /* fzgx:end fn_3_BA0 */
 
 /* fzgx:begin fn_3_BFC */
-extern void fn_80083DB0(char *destination, const char *source);
-extern char *fn_80083970(char *buffer, const char *source);
+extern void strcpy(char *destination, const char *source);
+extern char *strstr(char *buffer, const char *source);
 extern unsigned int strlen(const char *string);
 extern char *strncpy(char *destination, const char *source, unsigned int count);
 extern char *strcat(char *destination, const char *source);
@@ -672,10 +672,10 @@ void fn_3_BFC(char *destination, void *unused, const char *source, const char *s
     unsigned int source_length;
     unsigned int prefix_length;
 
-    fn_80083DB0(buffer, unused);
-    prefix = fn_80083970(buffer, source);
+    strcpy(buffer, unused);
+    prefix = strstr(buffer, source);
     if (prefix == 0) {
-        fn_80083DB0(destination, buffer);
+        strcpy(destination, buffer);
     } else {
         source_length = strlen(source);
         if (prefix != buffer) {
@@ -909,8 +909,8 @@ extern void camera_update(void);
 extern u8 lbl_3_data_1230[924];
 extern u32 lbl_1_bss_71688;
 extern u32 lbl_1_bss_7168C;
-extern char *fn_80083DB0(char *dst, const char *src);
-extern u8 *fn_80083970(u8 *str, const u8 *needle);
+extern char *strcpy(char *dst, const char *src);
+extern u8 *strstr(u8 *str, const u8 *needle);
 extern size_t strlen(const char *str);
 extern char *strncpy(char *dst, const char *src, size_t n);
 extern char *strcat(char *dest, const char *src);

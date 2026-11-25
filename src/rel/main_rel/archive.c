@@ -50,7 +50,7 @@ extern void fn_1_8D0A4(void *arg);
 extern s16 fn_1_12C930(s16 arg);
 extern u8 lbl_1_data_20D1C[180];
 extern u8 lbl_1_bss_8B4EC[128];
-extern void fn_80083DB0(void *arg0, char *arg1);
+extern void strcpy(void *arg0, char *arg1);
 extern void strcat(void *arg0, void *arg1);
 extern s32 fn_1_F89E4(u8 value);
 
@@ -780,7 +780,7 @@ extern void fn_1_8D0A4(void *arg);
 extern s16 fn_1_12C930(s16 arg);
 extern u8 lbl_1_data_20D1C[180];
 extern u8 lbl_1_bss_8B4EC[128];
-extern void fn_80083DB0(void *arg0, char *arg1);
+extern void strcpy(void *arg0, char *arg1);
 extern void strcat(void *arg0, void *arg1);
 extern s32 fn_1_F89E4(u8 value);
 
@@ -2346,7 +2346,7 @@ u8 *fn_1_12D254(s32 arg0, s32 arg1) {
 
     base = (*(char (*)[9])&lbl_1_data_40798);
     value = ((void **)lbl_1_data_20D1C)[arg0];
-    fn_80083DB0(lbl_1_bss_8B4EC, base + 0x324);
+    strcpy(lbl_1_bss_8B4EC, base + 0x324);
     strcat(lbl_1_bss_8B4EC, value);
     strcat(lbl_1_bss_8B4EC, base + 0x330);
 
@@ -3254,7 +3254,7 @@ extern void fn_1_8D0A4(void *arg);
 extern s16 fn_1_12C930(s16 arg);
 extern u8 lbl_1_data_20D1C[180];
 extern u8 lbl_1_bss_8B4EC[128];
-extern void fn_80083DB0(void *arg0, char *arg1);
+extern void strcpy(void *arg0, char *arg1);
 extern void strcat(void *arg0, void *arg1);
 extern s32 fn_1_F89E4(u8 value);
 

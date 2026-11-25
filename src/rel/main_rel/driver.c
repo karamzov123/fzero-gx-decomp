@@ -589,7 +589,7 @@ extern void lbl_8006DB30(void);
 extern void fn_1_801F8(s16 arg0, void *arg1);
 extern s32 fn_1_46C70(void);
 extern s32 fn_1_465D0(s32 arg0, s32 arg1);
-extern char *fn_80083DB0(char *dst, const char *src);
+extern char *strcpy(char *dst, const char *src);
 extern Unk_23800000 lbl_23800000[];
 extern u8* fn_1_36AD0(void);
 extern void fn_1_14F6F8(u8 arg0, u8 arg1, u8 arg2, void *arg3);
@@ -617,7 +617,7 @@ extern void fn_1_23500();
 extern f32 lbl_1_rodata_3518[6];
 extern f32 lbl_1_rodata_3530[22];
 extern u32 lbl_8006DBE4(void);
-extern u8 *fn_80083970(u8 *str, const u8 *needle);
+extern u8 *strstr(u8 *str, const u8 *needle);
 extern void fn_1_55628(Sig_fn_1_55628_Fn1_55628Object *);
 extern void fn_1_556B8(void *value);
 extern void fn_1_55FF0(f32 value);
@@ -854,7 +854,7 @@ extern void fn_1_A9FFC(s16 x, s16 y, s16 w, s16 h, GXColor color);
 extern const f32 lbl_1_rodata_4CA8;
 extern void fn_1_C3378(void);
 extern DriverDesc lbl_1_rodata_4AE0[];
-extern char *fn_80083CF4(char *dest, const char *src, size_t n);
+extern char *strncat(char *dest, const char *src, size_t n);
 extern char *strcat(char *dest, const char *src);
 extern u8 fn_1_AAEB0__fzgx_offset_0[];
 extern u8 fn_1_AAF18__fzgx_offset_0[];
@@ -3164,7 +3164,7 @@ typedef struct {
     char *strPtr;
 } fn_1_A8FA0_Header;
 
-extern char *fn_80083DB0(char *, const char *);
+extern char *strcpy(char *, const char *);
 extern size_t strlen(const char *);
 
 /* lbl_1_bss_6F648 heads a cluster of this TU's .bss objects addressed off one base */
@@ -3189,7 +3189,7 @@ void fn_1_A8FA0(void) {
             len = strlen(name);
             if (i != 0) {
                 lbl_1_bss_70658__fzgx_offset_0[n] = lbl_1_bss_70658__fzgx_offset_0[i];
-                fn_80083DB0(lbl_1_bss_6F648.strPtr, name);
+                strcpy(lbl_1_bss_6F648.strPtr, name);
             }
             lbl_1_bss_70658__fzgx_offset_0[n].name = lbl_1_bss_6F648.strPtr;
             n++;
@@ -3223,7 +3223,7 @@ void fn_1_A8FA0(void) {
             name = lbl_1_bss_70658__fzgx_offset_0[i].name;
             if (i != 0) {
                 lbl_1_bss_70658__fzgx_offset_0[n] = lbl_1_bss_70658__fzgx_offset_0[i];
-                fn_80083DB0(lbl_1_bss_6F648.strPtr, name);
+                strcpy(lbl_1_bss_6F648.strPtr, name);
             }
             lbl_1_bss_70658__fzgx_offset_0[n].name = lbl_1_bss_6F648.strPtr;
             n++;
@@ -3406,7 +3406,7 @@ int fn_1_A948C(const char *str) {
         return 0;
     }
     fzgx_obj_lbl_1_bss_70658[fzgx_obj_lbl_1_bss_71658] = fzgx_obj_lbl_1_bss_6F648;
-    fn_80083DB0(dst, str);
+    strcpy(dst, str);
     p = &fzgx_obj_lbl_1_bss_6F648;
     fzgx_obj_lbl_1_bss_71658++;
     fzgx_obj_lbl_1_bss_6F648.unk_C = end;
@@ -4152,9 +4152,9 @@ extern void *lbl_801A6410;
 
 extern void *fn_1_4630(void *heap, u32 size, const char *file, u32 line);
 extern void *fn_1_45D0(void *heap, u32 size, const char *file, u32 line);
-extern char *fn_80083DB0(char *, const char *);
+extern char *strcpy(char *, const char *);
 extern unsigned long strlen(const char *);
-extern char *fn_80083CF4(char *, const char *, unsigned long);
+extern char *strncat(char *, const char *, unsigned long);
 extern char *strcat(char *, const char *);
 extern void fn_80008BEC(void *, int, u32);
 
@@ -6045,8 +6045,8 @@ void fn_1_AA6D8(u8 kind, u8 slot, DriverParam *param) {
         fzgx_obj_lbl_1_bss_716C0 = 0;
     } else if (kind == 5) {
         entry->unk_24->unk_8 |= 0x20;
-        fn_80083DB0(entry->unk_24->unk_98, (char *)entry->unk_24->unk_8C);
-        fn_80083CF4(entry->unk_24->unk_98, param->unk_14, 0x1F - strlen(entry->unk_24->unk_98));
+        strcpy(entry->unk_24->unk_98, (char *)entry->unk_24->unk_8C);
+        strncat(entry->unk_24->unk_98, param->unk_14, 0x1F - strlen(entry->unk_24->unk_98));
         strcat(entry->unk_24->unk_98, (char *)((u8 *)fzgx_pool_data_lbl_1_data_3C7C4));
     } else {
         DriverObj *obj = entry->unk_24;
@@ -6056,14 +6056,14 @@ void fn_1_AA6D8(u8 kind, u8 slot, DriverParam *param) {
             entry->unk_24->unk_B8 = param->unk_10;
             entry->unk_24->unk_C = (param->unk_10 + 0x405F) & ~0x1FFF;
             entry->unk_24->unk_E4 = entry->unk_24->unk_C;
-            fn_80083DB0(entry->unk_24->unk_98, (char *)entry->unk_24->unk_8C);
-            fn_80083CF4(entry->unk_24->unk_98, param->unk_14, 0x1F - strlen(entry->unk_24->unk_98));
+            strcpy(entry->unk_24->unk_98, (char *)entry->unk_24->unk_8C);
+            strncat(entry->unk_24->unk_98, param->unk_14, 0x1F - strlen(entry->unk_24->unk_98));
             if (kind == 0) {
-                fn_80083DB0(lbl_1_bss_772C8, entry->unk_24->unk_98);
+                strcpy(lbl_1_bss_772C8, entry->unk_24->unk_98);
             }
             if (entry->unk_24->unk_8 & 0x1000) {
-                fn_80083DB0(entry->unk_24->unk_BC, (char *)entry->unk_24->unk_8C);
-                fn_80083CF4(entry->unk_24->unk_BC, param->unk_18, 0x1F - strlen(entry->unk_24->unk_BC));
+                strcpy(entry->unk_24->unk_BC, (char *)entry->unk_24->unk_8C);
+                strncat(entry->unk_24->unk_BC, param->unk_18, 0x1F - strlen(entry->unk_24->unk_BC));
             }
             entry->unk_24->unk_94 = param->unk_C;
         } else {
@@ -6074,9 +6074,9 @@ void fn_1_AA6D8(u8 kind, u8 slot, DriverParam *param) {
             } else {
                 entry->unk_24->unk_E4 = entry->unk_24->unk_C;
             }
-            fn_80083DB0(entry->unk_24->unk_98, (char *)entry->unk_24->unk_8C);
+            strcpy(entry->unk_24->unk_98, (char *)entry->unk_24->unk_8C);
             if (kind == 0) {
-                fn_80083DB0(lbl_1_bss_772C8, entry->unk_24->unk_98);
+                strcpy(lbl_1_bss_772C8, entry->unk_24->unk_98);
             }
             entry->unk_24->unk_94 = fn_1_45D0(lbl_801A6410, entry->unk_24->unk_C, (char *)((u8 *)fzgx_pool_data_lbl_1_data_3C7B8), 0x3A8);
             fn_80008BEC(entry->unk_24->unk_94, 0, entry->unk_24->unk_C);

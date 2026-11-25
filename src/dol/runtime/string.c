@@ -1,11 +1,11 @@
 #include "types.h"
 
 /* --- dol/strrchr.c --- */
-/* --- dol/fn_80083970.c --- */
-u8 *fn_80083970(u8 *str, const u8 *needle);
+/* --- dol/strstr.c --- */
+u8 *strstr(u8 *str, const u8 *needle);
 
-/* --- dol/fn_800839D8.c --- */
-char *fn_800839D8(char *string, const char *delimiters);
+/* --- dol/strtok.c --- */
+char *strtok(char *string, const char *delimiters);
 
 extern char *lbl_801A6640;
 
@@ -70,9 +70,9 @@ s32 strncmp(const char *s1, const char *s2, size_t n) {
     return 0;
 }
 
-/* --- dol/fn_80083BCC.c --- */
-/* --- dol/fn_80083BCC.c --- */
-int fn_80083BCC(const char *s1, const char *s2) {
+/* --- dol/strcmp.c --- */
+/* --- dol/strcmp.c --- */
+int strcmp(const char *s1, const char *s2) {
     const u8 *left = (const u8 *)s1;
     const u8 *right = (const u8 *)s2;
     u32 align;
@@ -139,9 +139,9 @@ byte_loop:
     return 0;
 }
 
-/* --- dol/fn_80083CF4.c --- */
-/* --- dol/fn_80083CF4.c --- */
-char *fn_80083CF4(char *dest, const char *src, size_t n) {
+/* --- dol/strncat.c --- */
+/* --- dol/strncat.c --- */
+char *strncat(char *dest, const char *src, size_t n) {
     const u8 *s = (const u8 *)src - 1;
     u8 *d = (u8 *)dest - 1;
     u8 c;
@@ -193,8 +193,8 @@ char *strncpy(char *dst, const char *src, size_t n) {
     return dst;
 }
 
-/* --- dol/fn_80083DB0.c --- */
-char *fn_80083DB0(char *dst, const char *src) {
+/* --- dol/strcpy.c --- */
+char *strcpy(char *dst, const char *src) {
     u8 *d = (u8 *)dst;
     const u8 *s = (const u8 *)src;
     u32 w;

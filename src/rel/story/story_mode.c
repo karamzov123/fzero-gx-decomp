@@ -243,14 +243,14 @@ extern void fn_1_4AF64(const char *, ...);
 extern void fn_1_4CF3C(const char *, f32, ...);
 extern void fn_1_50A90(FontDrawPacket *, u32, u32, u32, u32);
 extern void fn_1_51678(FontDrawPacket *, u32, s16, s16, s16, s16);
-extern char *fn_80083970(const char *, const char *);
+extern char *strstr(const char *, const char *);
 
 extern int sprintf(char *, const char *, ...);
 extern void VIWaitForRetrace(void);
 extern u32 fn_80008E84(u32);
 extern u32 fn_800090A4(u32);
 extern void fn_80006E10(const char *);
-extern void fn_80083DB0(char *, const char *);
+extern void strcpy(char *, const char *);
 extern void fn_8006CE1C(f32);
 extern f32 lbl_8006D188(s32);
 extern void fn_1_12F28C(u32, u8 *, s32, const char *);
@@ -4495,8 +4495,8 @@ static inline void movie_params_init(void) {
 
 void fn_7_E84(void) {
     if (lbl_7_bss_14->movie[0] != NULL) {
-        fn_80083DB0(lbl_1_bss_198[0], lbl_7_bss_14->movie[0]);
-        fn_80083DB0(lbl_1_bss_198[1], "end");
+        strcpy(lbl_1_bss_198[0], lbl_7_bss_14->movie[0]);
+        strcpy(lbl_1_bss_198[1], "end");
         movie_params_init();
         lbl_1_bss_58.unk_14 = 6;
         if (lbl_1_data_414 & (0x8000 >> lbl_7_bss_10->chapter)) {
@@ -4873,8 +4873,8 @@ void fn_7_1C30(void) {
     } else if (lbl_7_bss_14->movie[1] != NULL) {
         s8 cleared;
 
-        fn_80083DB0(lbl_1_bss_198[0], lbl_7_bss_14->movie[1]);
-        fn_80083DB0(lbl_1_bss_198[1], "end");
+        strcpy(lbl_1_bss_198[0], lbl_7_bss_14->movie[1]);
+        strcpy(lbl_1_bss_198[1], "end");
         if (lbl_7_bss_10->chapter == 0 && lbl_1_bss_9C.cleared == 1) {
             lbl_7_bss_10->mode = 134;
         } else {
@@ -4907,31 +4907,31 @@ void fn_7_1DB8(void) {
 
 /* fzgx:begin fn_7_1DBC */
 void fn_7_1DBC(void) {
-    fn_80083DB0(lbl_1_bss_198[0], "MAXON");
-    fn_80083DB0(lbl_1_bss_198[1], "BGMED");
-    fn_80083DB0(lbl_1_bss_198[2], "movie/story09B");
-    fn_80083DB0(lbl_1_bss_198[3], "STRL");
-    fn_80083DB0(lbl_1_bss_198[4], "MAXOFF");
-    fn_80083DB0(lbl_1_bss_198[5], "WAIT_0100");
-    fn_80083DB0(lbl_1_bss_198[6], "CUT0010");
-    fn_80083DB0(lbl_1_bss_198[7], "movie/story01B");
-    fn_80083DB0(lbl_1_bss_198[8], "CUT0140");
-    fn_80083DB0(lbl_1_bss_198[9], "movie/story02B");
-    fn_80083DB0(lbl_1_bss_198[10], "CUT0010");
-    fn_80083DB0(lbl_1_bss_198[11], "movie/story03B");
-    fn_80083DB0(lbl_1_bss_198[12], "CUT0065");
-    fn_80083DB0(lbl_1_bss_198[13], "movie/story04B");
-    fn_80083DB0(lbl_1_bss_198[14], "CUT0070");
-    fn_80083DB0(lbl_1_bss_198[15], "movie/story05B");
-    fn_80083DB0(lbl_1_bss_198[16], "CUT0080");
-    fn_80083DB0(lbl_1_bss_198[17], "movie/story06B");
-    fn_80083DB0(lbl_1_bss_198[18], "CUT1190");
-    fn_80083DB0(lbl_1_bss_198[19], "movie/story07B");
-    fn_80083DB0(lbl_1_bss_198[20], "CUT0000");
-    fn_80083DB0(lbl_1_bss_198[21], "movie/story08B");
-    fn_80083DB0(lbl_1_bss_198[22], "BGMOU_0500_0500");
-    fn_80083DB0(lbl_1_bss_198[23], "WAIT_1200");
-    fn_80083DB0(lbl_1_bss_198[24], "end");
+    strcpy(lbl_1_bss_198[0], "MAXON");
+    strcpy(lbl_1_bss_198[1], "BGMED");
+    strcpy(lbl_1_bss_198[2], "movie/story09B");
+    strcpy(lbl_1_bss_198[3], "STRL");
+    strcpy(lbl_1_bss_198[4], "MAXOFF");
+    strcpy(lbl_1_bss_198[5], "WAIT_0100");
+    strcpy(lbl_1_bss_198[6], "CUT0010");
+    strcpy(lbl_1_bss_198[7], "movie/story01B");
+    strcpy(lbl_1_bss_198[8], "CUT0140");
+    strcpy(lbl_1_bss_198[9], "movie/story02B");
+    strcpy(lbl_1_bss_198[10], "CUT0010");
+    strcpy(lbl_1_bss_198[11], "movie/story03B");
+    strcpy(lbl_1_bss_198[12], "CUT0065");
+    strcpy(lbl_1_bss_198[13], "movie/story04B");
+    strcpy(lbl_1_bss_198[14], "CUT0070");
+    strcpy(lbl_1_bss_198[15], "movie/story05B");
+    strcpy(lbl_1_bss_198[16], "CUT0080");
+    strcpy(lbl_1_bss_198[17], "movie/story06B");
+    strcpy(lbl_1_bss_198[18], "CUT1190");
+    strcpy(lbl_1_bss_198[19], "movie/story07B");
+    strcpy(lbl_1_bss_198[20], "CUT0000");
+    strcpy(lbl_1_bss_198[21], "movie/story08B");
+    strcpy(lbl_1_bss_198[22], "BGMOU_0500_0500");
+    strcpy(lbl_1_bss_198[23], "WAIT_1200");
+    strcpy(lbl_1_bss_198[24], "end");
     lbl_1_bss_58.unk_0 = lbl_801A66B4;
     lbl_1_bss_58.unk_1 = 1;
     lbl_1_bss_58.unk_2 = 0;
@@ -5518,7 +5518,7 @@ void fn_7_33F0(void) {
     fn_1_495B0(0x80000000);
     fn_1_4955C(0.8333333f, 0.8333333f);
     fn_1_4966C(0.0f, 12.0f);
-    if (fn_80083970(lbl_7_rodata_0[lbl_7_bss_10->chapter].mission[lbl_801A66B4][lbl_7_bss_10->difficulty], "\n") != NULL) {
+    if (strstr(lbl_7_rodata_0[lbl_7_bss_10->chapter].mission[lbl_801A66B4][lbl_7_bss_10->difficulty], "\n") != NULL) {
         line = 22.0f;
     } else {
         line = 9.0f;

@@ -71,7 +71,7 @@ void fn_12_3670(void *arg0, f32 farg0, f32 farg1) {
 /* --- rel/movie_module/fn_12_3710.c --- */
 extern void *memset(void *destination, int value, u32 size);
 extern unsigned char *SJ_SearchTag(const SJCK *source, const char *tag, const char *terminator, SJCK *result);
-extern s32 fn_80082928(char *dst, const char *fmt, ...);
+extern s32 sscanf(char *dst, const char *fmt, ...);
 extern s32 fn_12_308C(void);
 extern void fn_12_3DB8(SFXZObject *object, u32 near_z, u32 far_z, u32 *table);
 extern void sfxzmv_MakeOrgZ32TblByDirect(SFXZObject *object, u32 near_z, u32 far_z, u32 *table);
@@ -154,13 +154,13 @@ void fn_12_3710(SFXZObject *object, s32 index, u32 *table) {
         near_z = 0;
         far_z = 0x7FFFFFFF;
     } else {
-        fn_80082928((char *)text, "%x", &record_size);
+        sscanf((char *)text, "%x", &record_size);
         text = fn_12_3710_search(object, "ZMFDATA");
         if (text == NULL) {
             /* retail sets only near_z on this path */
             near_z = 0x7FFFFFFF;
         } else {
-            fn_80082928((char *)(text + record_size * index), "%x %x %x", &first, &z_min, &z_max);
+            sscanf((char *)(text + record_size * index), "%x %x %x", &first, &z_min, &z_max);
             near_z = z_min;
             far_z = z_max;
         }
@@ -234,13 +234,13 @@ void fn_12_3A64(SFXZObject *object, s32 index, u16 *table) {
         near_z = 0;
         far_z = 0x7FFFFFFF;
     } else {
-        fn_80082928((char *)text, "%x", &record_size);
+        sscanf((char *)text, "%x", &record_size);
         text = fn_12_3A64_search(object, "ZMFDATA");
         if (text == NULL) {
             /* retail sets only near_z on this path */
             near_z = 0x7FFFFFFF;
         } else {
-            fn_80082928((char *)(text + record_size * index), "%x %x %x", &first, &z_min, &z_max);
+            sscanf((char *)(text + record_size * index), "%x %x %x", &first, &z_min, &z_max);
             near_z = z_min;
             far_z = z_max;
         }

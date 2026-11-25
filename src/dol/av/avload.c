@@ -52,7 +52,7 @@ extern void fn_80078DA8(void *, void *, u32);
 extern void DCInvalidateRange(void *, u32);
 extern u32 ARGetDMAStatus(void);
 extern void ARStartDMA(u32, void *, u32, u32);
-extern void *fn_80083970(void *arg0, u32 arg1);
+extern void *strstr(void *arg0, u32 arg1);
 extern void fn_80071C04(void *, u32);
 extern u32 OSPanic(u32, ...);
 extern u32 sprintf(void *, ...);
@@ -189,7 +189,7 @@ void *fn_80071268(struct fn_80071268_Arg0 *arg0, u32 arg1) {
     offset = 0;
     while (i < arg0->count) {
         entry = (struct fn_80071268_Entry *)((u8 *)arg0->entries + offset);
-        if (fn_80083970(entry->unk_4, arg1) != 0) {
+        if (strstr(entry->unk_4, arg1) != 0) {
             return entry->unk_0;
         }
         offset += 8;

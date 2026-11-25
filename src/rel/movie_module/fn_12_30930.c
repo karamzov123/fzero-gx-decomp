@@ -152,7 +152,7 @@ typedef struct SFTST_Header {
 
 void *memset(void *destination, int value, unsigned long size);
 
-char *fn_80083DB0(char *destination, const char *source);
+char *strcpy(char *destination, const char *source);
 
 unsigned long strlen(const char *string);
 
@@ -212,7 +212,7 @@ void SFTST_Create(SFTST_Work *work) {
         if ((debug->buffer) != 0) {
             memset((debug->buffer), 0, (debug->size));
             (debug->cursor) = (debug->buffer);
-            fn_80083DB0((debug->buffer), header.text);
+            strcpy((debug->buffer), header.text);
             (debug->cursor) += strlen(header.text);
             (debug->wrap) = (debug->cursor);
         }
@@ -1145,7 +1145,7 @@ int fn_12_32834(MovieContext *self, u32 *result) {
 /* --- rel/movie_module/fn_12_328CC.c --- */
 extern void *memset(void *destination, int value, unsigned long size);
 extern void *memcpy(void *destination, const void *source, unsigned long size);
-extern const char *fn_80083970(const char *str1, const char *str2);
+extern const char *strstr(const char *str1, const char *str2);
 extern const char lbl_12_rodata_10DC[5];
 
 
@@ -1180,7 +1180,7 @@ static inline int sfh_atoi(const char **text) {
 }
 
 static inline int sfh_get_str_ver(const char *text, int *major, int *minor) {
-    const char *digit = fn_80083970(text, lbl_12_rodata_10DC);
+    const char *digit = strstr(text, lbl_12_rodata_10DC);
 
     if (digit == 0) return 0;
     digit += 4;

@@ -80,7 +80,7 @@ s32 DVDReadPrio(DVDFileInfo *fileInfo, void *addr, s32 length, s32 offset, s32 p
 s32 DVDClose(DVDFileInfo *fileInfo);
 s32 DVDOpen(const char *fileName, DVDFileInfo *fileInfo);
 void *memset(void *dst, int c, u32 n);
-char *fn_80083DB0(char *dst, const char *src);
+char *strcpy(char *dst, const char *src);
 char *strcat(char *dst, const char *src);
 u32 strlen(const char *str);
 
@@ -244,7 +244,7 @@ static inline void gcci_make_path(char *path, const char *filename) {
     unsigned long length;
     unsigned long index;
 
-    fn_80083DB0(path, lbl_80188870);
+    strcpy(path, lbl_80188870);
     strcat(path, filename);
     length = strlen(path);
     current = path;
@@ -595,7 +595,7 @@ u32 fn_80056294(char *arg0, u32 arg1, u32 arg2) {
         }
         return 0;
     }
-    fn_80083DB0((char *)&buf, (const char *)lbl_80188870);
+    strcpy((char *)&buf, (const char *)lbl_80188870);
     strcat((char *)&buf, arg0);
     n = strlen((char *)&buf);
     p = (char *)&buf;
