@@ -2493,6 +2493,7 @@ lbl_801327AC = .data:0x8013200C; // type:object
 lbl_801327F8 = .data:0x80132058; // type:object
 lbl_80132820 = .data:0x80132080; // type:object
 lbl_80142840 = .data:0x801420A0; // type:object
+lbl_80152860 = .data:0x801520C0; // type:object
 lbl_8015A860 = .data:0x8015A0C0; // type:object
 lbl_8015AA10 = .data:0x8015A270; // type:object
 lbl_8015AA78 = .data:0x8015A2D8; // type:object

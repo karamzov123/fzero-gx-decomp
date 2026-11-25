@@ -664,25 +664,25 @@
       "symbol": "__save_fpr",
       "form": "asm-function",
       "sha256": "49a1923d81c9d7c5f30271afe7da29f83f8416dcce5dfe2e32080d344b4391c2",
-      "evidence": "CodeWarrior PowerPC EABI runtime runtime.c writes every routine of this TU as a function-level asm (nofralloc), as in the published runtime sources (TP, Pikmin 2, MP4) and in retail order 0x80079764..0x80079EF0: the out-of-line save/restore entries store and load f14-f31/r14-r31 off r11 (a register MWCC never binds) with one entry label per first register, and the 64-bit divide/modulo/shift helpers and float conversions use cntlzw/subfe/addze carry chains and fctiwz/stfiwx sequences with no compiler frames."
+      "evidence": "Assembly by evidence (docs/ASM_POLICY.md section 1). __save_fpr: out-of-line FPR save of the PowerPC EABI runtime (CodeWarrior Runtime.PPCEABI.H, runtime.c). Nothing calls __save_fpr by name. A compiler-generated prologue/epilogue points r11 at its save area and calls _savefpr_N, which stores fN..f31 (register k at -8 * (32 - k)(r11)) and returns. - Known source: runtime.c writes this routine as a function-level `asm` (nofralloc) with one `entry` label per first register (the same in TP, Pikmin 2 and MP4, and in our retail function order). - No MWCC prologue/epilogue, and register usage no allocation produces: it touches the caller's f14-f31 through r11, which is not an argument register and which MWCC cannot bind a variable to. - The _savefpr_N labels are defined here (global, as in retail); mwld does not generate them. Finding 281 (corrected) measured this: the link warning it recorded came from carve's ldscript.tpl alias."
     },
     {
       "symbol": "__restore_fpr",
       "form": "asm-function",
       "sha256": "d2df3838dd8a3f976b7e2c329c44dc9c443bbbc38d451956997b437e111fce22",
-      "evidence": "CodeWarrior PowerPC EABI runtime runtime.c writes every routine of this TU as a function-level asm (nofralloc), as in the published runtime sources (TP, Pikmin 2, MP4) and in retail order 0x80079764..0x80079EF0: the out-of-line save/restore entries store and load f14-f31/r14-r31 off r11 (a register MWCC never binds) with one entry label per first register, and the 64-bit divide/modulo/shift helpers and float conversions use cntlzw/subfe/addze carry chains and fctiwz/stfiwx sequences with no compiler frames."
+      "evidence": "Assembly by evidence (docs/ASM_POLICY.md section 1). __restore_fpr: out-of-line FPR restore of the PowerPC EABI runtime (CodeWarrior Runtime.PPCEABI.H, runtime.c). Nothing calls __restore_fpr by name. A compiler-generated prologue/epilogue points r11 at its save area and calls _restfpr_N, which loads fN..f31 (register k from -8 * (32 - k)(r11)) and returns. - Known source: runtime.c writes this routine as a function-level `asm` (nofralloc) with one `entry` label per first register (the same in TP, Pikmin 2 and MP4, and in our retail function order). - No MWCC prologue/epilogue, and register usage no allocation produces: it touches the caller's f14-f31 through r11, which is not an argument register and which MWCC cannot bind a variable to. - The _restfpr_N labels are defined here (global, as in retail); mwld does not generate them. Finding 281 (corrected) measured this: the link warning it recorded came from carve's ldscript.tpl alias."
     },
     {
       "symbol": "__save_gpr",
       "form": "asm-function",
       "sha256": "94a88f71fa2eb0e78a5e70a3154cd9957e875575d2cc655b447ab7dc69f475de",
-      "evidence": "CodeWarrior PowerPC EABI runtime runtime.c writes every routine of this TU as a function-level asm (nofralloc), as in the published runtime sources (TP, Pikmin 2, MP4) and in retail order 0x80079764..0x80079EF0: the out-of-line save/restore entries store and load f14-f31/r14-r31 off r11 (a register MWCC never binds) with one entry label per first register, and the 64-bit divide/modulo/shift helpers and float conversions use cntlzw/subfe/addze carry chains and fctiwz/stfiwx sequences with no compiler frames."
+      "evidence": "Assembly by evidence (docs/ASM_POLICY.md section 1). __save_gpr: out-of-line GPR save of the PowerPC EABI runtime (CodeWarrior Runtime.PPCEABI.H, runtime.c). Nothing calls __save_gpr by name. A compiler-generated prologue/epilogue points r11 at its save area and calls _savegpr_N, which stores rN..r31 (register k at -4 * (32 - k)(r11)) and returns. - Known source: runtime.c writes this routine as a function-level `asm` (nofralloc) with one `entry` label per first register (the same in TP, Pikmin 2 and MP4, and in our retail function order). - No MWCC prologue/epilogue, and register usage no allocation produces: it touches the caller's r14-r31 through r11, which is not an argument register and which MWCC cannot bind a variable to. - The _savegpr_N labels are defined here (global, as in retail); mwld does not generate them. Finding 281 (corrected) measured this: the link warning it recorded came from carve's ldscript.tpl alias."
     },
     {
       "symbol": "__restore_gpr",
       "form": "asm-function",
       "sha256": "acd809abbcac14701a867e8ddf10c5e77f7409c8401abfa1b06a2e8e539e0045",
-      "evidence": "CodeWarrior PowerPC EABI runtime runtime.c writes every routine of this TU as a function-level asm (nofralloc), as in the published runtime sources (TP, Pikmin 2, MP4) and in retail order 0x80079764..0x80079EF0: the out-of-line save/restore entries store and load f14-f31/r14-r31 off r11 (a register MWCC never binds) with one entry label per first register, and the 64-bit divide/modulo/shift helpers and float conversions use cntlzw/subfe/addze carry chains and fctiwz/stfiwx sequences with no compiler frames."
+      "evidence": "Assembly by evidence (docs/ASM_POLICY.md section 1). __restore_gpr: out-of-line GPR restore of the PowerPC EABI runtime (CodeWarrior Runtime.PPCEABI.H, runtime.c). Nothing calls __restore_gpr by name. A compiler-generated prologue/epilogue points r11 at its save area and calls _restgpr_N, which loads rN..r31 (register k from -4 * (32 - k)(r11)) and returns. - Known source: runtime.c writes this routine as a function-level `asm` (nofralloc) with one `entry` label per first register (the same in TP, Pikmin 2 and MP4, and in our retail function order). - No MWCC prologue/epilogue, and register usage no allocation produces: it touches the caller's r14-r31 through r11, which is not an argument register and which MWCC cannot bind a variable to. - The _restgpr_N labels are defined here (global, as in retail); mwld does not generate them. Finding 281 (corrected) measured this: the link warning it recorded came from carve's ldscript.tpl alias."
     },
     {
       "symbol": "__div2u",
@@ -737,6 +737,326 @@
       "form": "asm-function",
       "sha256": "38ba8d1afcf8ba6e17716cfa6fb1eb05eb05c8dbe430aeddf08aef347d189f92",
       "evidence": "CodeWarrior PowerPC EABI runtime runtime.c writes every routine of this TU as a function-level asm (nofralloc), as in the published runtime sources (TP, Pikmin 2, MP4) and in retail order 0x80079764..0x80079EF0: the out-of-line save/restore entries store and load f14-f31/r14-r31 off r11 (a register MWCC never binds) with one entry label per first register, and the 64-bit divide/modulo/shift helpers and float conversions use cntlzw/subfe/addze carry chains and fctiwz/stfiwx sequences with no compiler frames."
+    }
+  ],
+  "src/dol/av/mathutil.c": [
+    {
+      "symbol": "mathutil_init",
+      "form": "asm-function",
+      "sha256": "7af4fa85da7910a3f71233385d7d091fd38e5c4f96c52d04277e82e3224ba106",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "float_return_values",
+      "form": "asm-function",
+      "sha256": "a7e49713b39d4a7e0cf1fb87721055b721d95421b4d657b34e4d2b6d03d2c11c",
+      "evidence": "Assembly by evidence (docs/ASM_POLICY.md section 1). CodeWarrior asm function with entry labels. Shared float returns of the square-root routines: each entry loads the bit pattern of NaN, 0.0f or +inf into f1 through the stack. Entries _return_zero, _return_inf, _sqrt_return_special and _rsqrt_return_special; the two *_return_special entries pick one from cr1 after the caller's mcrfs (bgt: +inf/0, blt: 0/+inf, else NaN). The word after _return_inf (-inf) is never reached. - Four further global entry points. Callers reach them directly. Each one follows an unconditional `b` or `blr`. The routine keeps the dead -inf word. Only assembly does this. Measured 2026-11-12 (x1 probes): MWCC deletes inline-asm code unreachable from the function's own entry (GC/1.2.5n, 1.3.2, 2.6; opt_dead_code, peephole, optimization_level 0), `entry`/`nofralloc` are rejected outside an asm function, and a C function cannot emit a global symbol at an interior offset (an ldscript alias makes `dtk rel make` panic, rel.rs:240). - Source: Super Monkey Ball (same engine) has only an asm version, float_return_values, under `#ifdef __MWERKS__`: https://github.com/camthesaxman/smb-decomp/blob/5cd6ffccf3f8508231c7cd9cce5b722be4465a2b/src/mathutil.c#L75-L96"
+    },
+    {
+      "symbol": "approx_rsqrt",
+      "form": "asm-function",
+      "sha256": "7322d11ed67b0baf9dee42df133541c9a7ad8e2f13a202fd8f53ebb58867f04c",
+      "evidence": "Assembly by evidence (docs/ASM_POLICY.md section 1). f1 = 1/sqrt(f1) by frsqrte and two Newton steps; f2 = 0.5f. - This frameless leaf changes only f1-f5. - Five frameless routines call it with `bl`: lbl_8006D0B4, lbl_8006D118, lbl_8006D5F0, lbl_8006D6FC and lbl_8006DA50. Across the call, they keep values in f0, f6-f13, r3-r6 and a copy of the link register. The EABI makes these registers volatile. Thus the contract is outside the EABI. - C cannot give this body. MWCC always adds `frsp` after `__frsqrte` when the result is a float. Plain C gives 13 words against the 11 retail words on six compilers (measured 2026-11-13). An inline frsqrte kernel gives 11 words, but it puts temporaries in f0. The callers keep f0 live. - The Super Monkey Ball retail approx_rsqrt ends in `blr; blr`. C never gives two consecutive `blr`. - Source: Super Monkey Ball (same engine) has approx_rsqrt as an asm function: https://github.com/camthesaxman/smb-decomp/blob/5cd6ffccf3f8508231c7cd9cce5b722be4465a2b/src/mathutil.c#L101-L144 Its C version is under `#ifndef __MWERKS__`, so the MWCC build uses the asm."
+    },
+    {
+      "symbol": "lbl_8006D0B4",
+      "form": "asm-function",
+      "sha256": "ffa688485984b0c7e97d39912d7310283e500c861bc66868339f8ac3061a82d1",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006D0E8",
+      "form": "asm-function",
+      "sha256": "67a6a33cdeff81031dcad074e47bd858ba4b83a586aa1567a1cd8c5bd2da64d0",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006D118",
+      "form": "asm-function",
+      "sha256": "f21d4dbdecef934c534397b766fc485daa163a84932ff32827fc555b6d8c018e",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006D188",
+      "form": "asm-function",
+      "sha256": "1976e1b83a597af927cb231ebe0b2ecbee03d197af48077b15b7dcbfa48430b2",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006D1B8",
+      "form": "asm-function",
+      "sha256": "d875958e5ad9d25ca9e0860cd14e6d9f9974df0394791aeafa5c34f0800f5fd7",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006D21C",
+      "form": "asm-function",
+      "sha256": "b281226e2f16f5f72c92b19a236a4ef01d4deff5a2aac9170c5c9391e0bea37d",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006D24C",
+      "form": "asm-function",
+      "sha256": "b74385bc425f7dcd566d19eafb1b8d9dbb10ffe8a0512eb22af20a1d7ea2d8d6",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006D534",
+      "form": "asm-function",
+      "sha256": "b02ce48cd0c5e0e7ae60b9bb297bd9ab5653b7d45e20cf603d5c8968e354c857",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006D5F0",
+      "form": "asm-function",
+      "sha256": "aa7929223d575934ff798b1b418538f679eda135e03797c977b64ad6e269918d",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006D668",
+      "form": "asm-function",
+      "sha256": "e57cfe56d09a807e74ba6d7e45181e96a5e60112de8ade78383ccbfe8110b979",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006D6FC",
+      "form": "asm-function",
+      "sha256": "cec5f3e04588028ca40fc000ca57f269da8dde4e6f4d8fe25496b42a7c32ed7c",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006D758",
+      "form": "asm-function",
+      "sha256": "1496981c3f40c552e727da79a07cce47a10cb3fbe482abd7a1ea39fc1ee4884e",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006D784",
+      "form": "asm-function",
+      "sha256": "ec568324dea7ec55bba972b18b1d28895a320bc010c55995c47a422b338074eb",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006D7B0",
+      "form": "asm-function",
+      "sha256": "212caa2616bce7f028b892482d83154d3c47df99ff4adcb18d3613f6220c09fb",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006D7DC",
+      "form": "asm-function",
+      "sha256": "33c8f7a9f82a589a6d0b0e5dc660069c91fa244d3e795d7d2385a148ad27a293",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "fn_8006D830",
+      "form": "asm-function",
+      "sha256": "76deea4e212d6137f5281142643cf6d212b3a32170185ca8cc6bea5422e5b0ff",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006D890",
+      "form": "asm-function",
+      "sha256": "f7f0c44c886c2206b345cb70b6cb44bd6e39d8dcd7dfe5cb361d44a7c90e3932",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006D8D8",
+      "form": "asm-function",
+      "sha256": "5ed0312c637e64624162fdced97001275b3143e3a9780b25b3cb08daa5cfbecd",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006D91C",
+      "form": "asm-function",
+      "sha256": "3b510f798b453994c2460fd4f961517c61af54af9167be93a5b40d413081b05a",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006D95C",
+      "form": "asm-function",
+      "sha256": "e911def3f200257fd63313dab8eaa80fca9e319644a84380376663ff9c0026f3",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006D998",
+      "form": "asm-function",
+      "sha256": "ee4f77d31ac26a18e3cd5c035615e9c1561bb84c4ffb09a89f884162c6a17c0f",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006D9D8",
+      "form": "asm-function",
+      "sha256": "f495330663b095d1883a5c240184b5eeb242dd10959b502305eb5cb1fb855671",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006DA50",
+      "form": "asm-function",
+      "sha256": "3745fb2a5904c21ffbfb05f888221504203603a837071009fb30589ed96d6619",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006DAEC",
+      "form": "asm-function",
+      "sha256": "941db8a67296896dbc76e59aa908e44ad60b3f8731516dca0e4bbdfb32989e39",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006DB30",
+      "form": "asm-function",
+      "sha256": "374dca9685a49cd235f7148121fb444635fc071ab72e5f006cb501d8d5420741",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006DB74",
+      "form": "asm-function",
+      "sha256": "de6f0b4e2c1f9e78a4e59fa1e4d6d235237c843a89576743e4dd74b052b987f8",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006DBAC",
+      "form": "asm-function",
+      "sha256": "a610392e7963f6cc6f950d38178e87017ecd82cc5f84a8fd5951719b0935e2c4",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006DBE4",
+      "form": "asm-function",
+      "sha256": "75b153e49aab88c51ee72ff37ed611b00b3a6b6fb71db29fe2e47c552ac0b5c6",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006DC20",
+      "form": "asm-function",
+      "sha256": "d50fc90d11793d66239489c2d29c6de69121ac445784b918091e76ed1029622c",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006DC34",
+      "form": "asm-function",
+      "sha256": "d257b86f015b7913f4baad5c43660baf2e5af31779d7c238b433403a98a41fdc",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006DC6C",
+      "form": "asm-function",
+      "sha256": "4c01e1d1b36a892f3d148365ade6bf902f7053d969246dcd5c9986621ec1e773",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006DCA4",
+      "form": "asm-function",
+      "sha256": "08f89530232ec8f06faaa94c40c879393a280ff6e801e297ac5ca7e4d45bc182",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006DCDC",
+      "form": "asm-function",
+      "sha256": "9a1bb5d5ec6faf621f154ac2b3d2bd8cfb20d76125dde3cd2a18ebb253ac915c",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006DD14",
+      "form": "asm-function",
+      "sha256": "01aec701df975bbf80354c281b2d81b542bfa77e405bad14d4af2a74a9f6bf21",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006DD48",
+      "form": "asm-function",
+      "sha256": "39295b673f0ca274339a963883044483f2d0e70bcc269ac1317bd6e1a9d3972c",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006DD7C",
+      "form": "asm-function",
+      "sha256": "857e0946abc1a0005224cda708a2b1fbdb0f5d629504f67ba8a782996927a5c1",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006DF44",
+      "form": "asm-function",
+      "sha256": "998a05d13e0c24a6e221ec6a16e33495db32dd50e3438bff9538425e8434b593",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006DFC4",
+      "form": "asm-function",
+      "sha256": "89439b355a85966f4b6e54e1a1e856e614cb560dbb5f089d1826afc253ab2cd1",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006E0A4",
+      "form": "asm-function",
+      "sha256": "35a5699b750c04157ea6a737853a4b6fb9c2237471de17c9457768b5ed2b616a",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006E13C",
+      "form": "asm-function",
+      "sha256": "a49ce1f9d86579eb049c18a991cc3e17339120050de7436bbc472b4c4b87fc1d",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "lbl_8006E1B0",
+      "form": "asm-function",
+      "sha256": "c4183c3563fcc6d0aba9819b6e2706519c0334de6aa55e3775ac584ab6e4904e",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "fn_8006E250",
+      "form": "asm-function",
+      "sha256": "f14208721f10d4eba689187b5dbc9a2ad2488a662b2eb8f86c46e22a83d73ebc",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "mathutil_mtxA_rotate_x",
+      "form": "asm-function",
+      "sha256": "9cde2295bccb641156d4320ac5c5fe72f7ddcfecad1e02d567cf8e0987d5e83f",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "mathutil_mtxA_rotate_y",
+      "form": "asm-function",
+      "sha256": "955a12025ca1ff8d4c0d1674adcdf4f609127d5022f6d3faf1fd95838d7f7994",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "mathutil_mtxA_rotate_z",
+      "form": "asm-function",
+      "sha256": "b076f5be14acde94509128088370e7c6ab057364676131a1d42f5edcc6feea66",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "mathutil_mtxA_from_quat",
+      "form": "asm-function",
+      "sha256": "1c0643b86c977c11c677887761e418fd3ea475fe39af7dced24aa89b660d03f9",
+      "evidence": "Assembly by evidence (docs/ASM_POLICY.md section 1). mtxA = rotation matrix of the unit quaternion q (x, y, z, w at 0, 4, 8, 12). The translation column is 0. mtxA is the engine's locked-cache matrix at 0xE0000000. The routine is a leaf with no frame. It has no asm-only instruction. The evidence is its structure, its registers and the SMB1 twin. - Duplicated products: the routine calculates each product two times, in a fused pair. y*2z, x*2z and x*2y each occur in one fmsubs and one fmadds with the same operands. x*x, y*y and z*z each occur in one fmuls and one fmadds. - Natural C at -O4 merges the duplicates (common subexpressions). It gives fmuls and then fsubs/fadds: 45 words against the 42 retail words, with 43 words different. This result is the same under GC/1.3.2 and GC/1.2.5n (measured 2026-11-13). - The 42-word shape comes from C only with optimizer pragmas off: opt_common_subs, and also opt_propagation and scheduling. These pragmas are compiler-diff devices. With one, two or three of these pragmas, 39-40 of the 42 words still differ. - Constants: the routine makes 0 and 2 from the locked-cache 1.0f at +0x19C (fsubs f4, f5, f5; fadds f6, f5, f5). It does not load them as literals. - Registers: x, y, z and w stay in f0-f3 in order. The six off-diagonal results go to f9-f13 and f2. The routine stores each result immediately. For this order, at the f10 result only x, 2y, 2z, w*2y and w*2z are live. MWCC takes the lowest free register, so it does not pick f10-f13. When C calculates all six results before the stores, MWCC gives f7, f0, f2, f4, f6, f1. - Source: Super Monkey Ball (same engine) has mathutil_mtxA_from_quat as a nofralloc asm function with the same instruction shape: https://github.com/camthesaxman/smb-decomp/blob/5cd6ffccf3f8508231c7cd9cce5b722be4465a2b/src/mathutil.c#L2328-L2407 Its C version is under `#ifdef C_ONLY`. Only the GCC build sets C_ONLY (Makefile L54), so the matching build uses the asm."
+    },
+    {
+      "symbol": "mathutil_quat_mult",
+      "form": "asm-function",
+      "sha256": "8ef0cb9efdd5693b6fced8ee76b80c33fd5c8560b1886d4be267facb3eeca4f3",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "func_80008378",
+      "form": "asm-function",
+      "sha256": "12ad6585a65bbf3f5896faeee7996503ce39231bb3e9f38362c4a8fb7ab1a754",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "fn_8006FC1C",
+      "form": "asm-function",
+      "sha256": "908f3598b226e50657a83a9bfa6a88595b922f411c0110150dbf7c5f96c0a6e7",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "fn_8006FC5C",
+      "form": "asm-function",
+      "sha256": "8a24d65851e35d626ca69e22eabcd3c6ec7f61e017e359b36e5effc0858e6e9d",
+      "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
     }
   ]
 }

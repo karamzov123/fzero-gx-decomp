@@ -409,8 +409,8 @@ dol/axfx/chorus.c:
 dol/fn_8003D4C0.c:
 	.text       start:0x8003D4C0 end:0x8003D4E0 align:4
 
-dol/mathutil_init.c:
-	.text       start:0x8006CFF8 end:0x8006D044 align:4
+dol/av/mathutil.c:
+	.text       start:0x8006CFF8 end:0x8006FCB4 align:4
 
 dol/fn_80078538.c:
 	.text       start:0x80078538 end:0x800786B0 align:4
@@ -725,9 +725,6 @@ dol/arc.c:
 dol/axfx/delay.c:
 	.text       start:0x80025854 end:0x80025D00 align:4
 
-dol/av/mathutil.c:
-	.text       start:0x8006E5FC end:0x8006FC1C align:4
-
 dol/av/game_main_disc.c:
 	.text       start:0x80005EDC end:0x80006B4C align:4
 	.data       start:0x80122030 end:0x801220C0 align:8
@@ -879,15 +876,6 @@ dol/mtx/mtx.c:
 dol/fn_8008AFF0.c:
 	.text       start:0x8008AFF0 end:0x8008B028 align:4
 
-dol/mathutil_quat_mult.c:
-	.text       start:0x8006E540 end:0x8006E5B4 align:4
-
-dol/fn_8006FC1C.c:
-	.text       start:0x8006FC1C end:0x8006FC5C align:4
-
-dol/fn_8006FC5C.c:
-	.text       start:0x8006FC5C end:0x8006FCB4 align:4
-
 dol/runtime/runtime.c:
 	.text       start:0x80079764 end:0x80079EF0 align:4
 
@@ -908,18 +896,6 @@ dol/u_gxutil_upload_some_mtx.c:
 
 dol/fn_80072558.c:
 	.text       start:0x80072558 end:0x800725DC align:4
-
-dol/mathutil_mtxA_rotate_x.c:
-	.text       start:0x8006E324 end:0x8006E398 align:4
-
-dol/mathutil_mtxA_rotate_y.c:
-	.text       start:0x8006E398 end:0x8006E424 align:4
-
-dol/mathutil_mtxA_rotate_z.c:
-	.text       start:0x8006E424 end:0x8006E498 align:4
-
-dol/func_80008378.c:
-	.text       start:0x8006E5B4 end:0x8006E5FC align:4
 
 dol/__fill_mem.c:
 	.init       start:0x80003488 end:0x80003540 align:4
@@ -2721,147 +2697,6 @@ dol/data/RunQueue.c:
 
 dol/data/__DVDLowAlarmForWA.c:
 	.bss        start:0x8015CDB0 end:0x8015CE28 align:8
-
-dol/lbl_8006D3D0.c:
-	.text       start:0x8006D3D0 end:0x8006D534 align:4
-
-dol/lbl_8006D5A4.c:
-	.text       start:0x8006D5A4 end:0x8006D5F0 align:4
-
-dol/approx_rsqrt.c:
-	.text       start:0x8006D088 end:0x8006D0B4 align:4
-
-dol/lbl_8006D0B4.c:
-	.text       start:0x8006D0B4 end:0x8006D0E8 align:4
-
-dol/lbl_8006D0E8.c:
-	.text       start:0x8006D0E8 end:0x8006D118 align:4
-
-dol/lbl_8006D118.c:
-	.text       start:0x8006D118 end:0x8006D188 align:4
-
-dol/lbl_8006D188.c:
-	.text       start:0x8006D188 end:0x8006D1B8 align:4
-
-dol/lbl_8006D21C.c:
-	.text       start:0x8006D21C end:0x8006D24C align:4
-
-dol/lbl_8006D534.c:
-	.text       start:0x8006D534 end:0x8006D5A4 align:4
-
-dol/lbl_8006D5F0.c:
-	.text       start:0x8006D5F0 end:0x8006D668 align:4
-
-dol/lbl_8006D668.c:
-	.text       start:0x8006D668 end:0x8006D6FC align:4
-
-dol/lbl_8006D6FC.c:
-	.text       start:0x8006D6FC end:0x8006D758 align:4
-
-dol/lbl_8006D758.c:
-	.text       start:0x8006D758 end:0x8006D784 align:4
-
-dol/lbl_8006D784.c:
-	.text       start:0x8006D784 end:0x8006D7B0 align:4
-
-dol/lbl_8006D7B0.c:
-	.text       start:0x8006D7B0 end:0x8006D7DC align:4
-
-dol/lbl_8006D91C.c:
-	.text       start:0x8006D91C end:0x8006D95C align:4
-
-dol/lbl_8006D95C.c:
-	.text       start:0x8006D95C end:0x8006D998 align:4
-
-dol/lbl_8006D998.c:
-	.text       start:0x8006D998 end:0x8006D9D8 align:4
-
-dol/lbl_8006DA50.c:
-	.text       start:0x8006DA50 end:0x8006DAEC align:4
-
-dol/lbl_8006DAEC.c:
-	.text       start:0x8006DAEC end:0x8006DB30 align:4
-
-dol/lbl_8006DB30.c:
-	.text       start:0x8006DB30 end:0x8006DB74 align:4
-
-dol/lbl_8006DB74.c:
-	.text       start:0x8006DB74 end:0x8006DBAC align:4
-
-dol/lbl_8006DBAC.c:
-	.text       start:0x8006DBAC end:0x8006DBE4 align:4
-
-dol/lbl_8006DBE4.c:
-	.text       start:0x8006DBE4 end:0x8006DC20 align:4
-
-dol/lbl_8006DC20.c:
-	.text       start:0x8006DC20 end:0x8006DC34 align:4
-
-dol/lbl_8006DC34.c:
-	.text       start:0x8006DC34 end:0x8006DC6C align:4
-
-dol/lbl_8006DC6C.c:
-	.text       start:0x8006DC6C end:0x8006DCA4 align:4
-
-dol/lbl_8006DCA4.c:
-	.text       start:0x8006DCA4 end:0x8006DCDC align:4
-
-dol/lbl_8006DCDC.c:
-	.text       start:0x8006DCDC end:0x8006DD14 align:4
-
-dol/lbl_8006DD14.c:
-	.text       start:0x8006DD14 end:0x8006DD48 align:4
-
-dol/lbl_8006DD48.c:
-	.text       start:0x8006DD48 end:0x8006DD7C align:4
-
-dol/lbl_8006DF44.c:
-	.text       start:0x8006DF44 end:0x8006DFC4 align:4
-
-dol/float_return_values.c:
-	.text       start:0x8006D044 end:0x8006D088 align:4
-
-dol/lbl_8006D1B8.c:
-	.text       start:0x8006D1B8 end:0x8006D21C align:4
-
-dol/lbl_8006D24C.c:
-	.text       start:0x8006D24C end:0x8006D3D0 align:4
-
-dol/lbl_8006D7DC.c:
-	.text       start:0x8006D7DC end:0x8006D830 align:4
-
-dol/fn_8006D830.c:
-	.text       start:0x8006D830 end:0x8006D890 align:4
-
-dol/lbl_8006D9D8.c:
-	.text       start:0x8006D9D8 end:0x8006DA50 align:4
-
-dol/lbl_8006D890.c:
-	.text       start:0x8006D890 end:0x8006D8D8 align:4
-
-dol/lbl_8006D8D8.c:
-	.text       start:0x8006D8D8 end:0x8006D91C align:4
-
-dol/lbl_8006DD7C.c:
-	.text       start:0x8006DD7C end:0x8006DF44 align:4
-
-dol/lbl_8006DFC4.c:
-	.text       start:0x8006DFC4 end:0x8006E0A4 align:4
-
-dol/lbl_8006E0A4.c:
-	.text       start:0x8006E0A4 end:0x8006E13C align:4
-
-dol/lbl_8006E13C.c:
-	.text       start:0x8006E13C end:0x8006E1B0 align:4
-
-dol/lbl_8006E1B0.c:
-	.text       start:0x8006E1B0 end:0x8006E250 align:4
-
-dol/fn_8006E250.c:
-	.text       start:0x8006E250 end:0x8006E324 align:4
-
-dol/mathutil_mtxA_from_quat.c:
-	.text       start:0x8006E498 end:0x8006E540 align:4
 
 dol/data/gxData.c:
 	.bss        start:0x80177BA0 end:0x80178098 align:8
