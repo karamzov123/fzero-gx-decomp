@@ -38,8 +38,255 @@ extern void *(*lbl_801A64F8)(u32);
 extern u32 (*lbl_801A64FC)(void *);
 extern BOOL OSDisableInterrupts(void);
 extern BOOL OSRestoreInterrupts(BOOL);
-extern void fn_80024E6C(void *);
-extern void fn_80025004(void *);
+extern const f64 lbl_801A6FF8;
+extern f32 lbl_80128190[];
+
+/* Dolphin SDK axfx/chorus.c: the two delay-line resampling kernels are CodeWarrior asm
+ * functions in the original (hand-scheduled FPR code with their own frames and the 2^52
+ * int-to-float bias); the rest is C. */
+asm void fn_80024E6C(register void *info) {
+    nofralloc
+    stwu r1, -0x40(r1)
+    stmw r26, 0x28(r1)
+    lwz r4, 0xc(r3)
+    lwz r5, 0x10(r3)
+    lwz r6, 0x14(r3)
+    lwz r8, 0x1c(r3)
+    lwz r7, 0x20(r3)
+    lwz r31, 0x4(r3)
+    lwz r30, 0x0(r3)
+    lwz r9, 0x8(r3)
+    lis r10, 0x4330
+    stw r10, 0x8(r1)
+    stw r10, 0x10(r1)
+    stw r10, 0x18(r1)
+    stw r10, 0x20(r1)
+    lis r10, lbl_801A6FF8@ha
+    lfd f9, lbl_801A6FF8@l(r10)
+    slwi r10, r5, 2
+    lwz r11, 0x0(r9)
+    lwz r29, 0x4(r9)
+    lwz r28, 0x8(r9)
+    lwzx r27, r31, r10
+    xoris r11, r11, 0x8000
+    xoris r29, r29, 0x8000
+    stw r11, 0xc(r1)
+    xoris r28, r28, 0x8000
+    stw r29, 0x14(r1)
+    xoris r27, r27, 0x8000
+    stw r28, 0x1c(r1)
+    lfd f1, 0x8(r1)
+    stw r27, 0x24(r1)
+    lfd f2, 0x10(r1)
+    fsubs f1, f1, f9
+    lfd f3, 0x18(r1)
+    fsubs f2, f2, f9
+    lfd f4, 0x20(r1)
+    fsubs f3, f3, f9
+    fsubs f4, f4, f9
+    li r26, -0x4
+    lis r12, lbl_80128190@ha
+    addi r12, r12, lbl_80128190@l
+    li r9, 0xa0
+    mtctr r9
+L_80024F18:
+    rlwinm r10, r4, 7, 21, 27
+    addc r4, r4, r6
+    add r10, r10, r12
+    mcrxr cr0
+    lfs f5, 0x0(r10)
+    beq L_80024F60
+    lfs f6, 0x4(r10)
+    fmuls f10, f1, f5
+    lfs f7, 0x8(r10)
+    fmadds f10, f2, f6, f10
+    lfs f8, 0xc(r10)
+    fmadds f10, f3, f7, f10
+    addi r30, r30, 0x4
+    fmadds f10, f4, f8, f10
+    fctiwz f10, f10
+    stfiwx f10, r26, r30
+    bdnz L_80024F18
+    b L_80024FCC
+L_80024F60:
+    addi r5, r5, 0x1
+    lfs f6, 0x4(r10)
+    fmuls f10, f1, f5
+    cmpw r5, r8
+    fmr f1, f2
+    lfs f7, 0x8(r10)
+    fmadds f10, f2, f6, f10
+    fmr f2, f3
+    lfs f8, 0xc(r10)
+    fmadds f10, f3, f7, f10
+    addi r30, r30, 0x4
+    fmr f3, f4
+    bne+ L_80024F98
+    mr r5, r7
+L_80024F98:
+    fmadds f10, f4, f8, f10
+    slwi r9, r5, 2
+    bdz L_80024FC4
+    lwzx r10, r9, r31
+    fctiwz f10, f10
+    xoris r10, r10, 0x8000
+    stw r10, 0xc(r1)
+    stfiwx f10, r26, r30
+    lfd f4, 0x8(r1)
+    fsubs f4, f4, f9
+    b L_80024F18
+L_80024FC4:
+    fctiwz f10, f10
+    stfiwx f10, r26, r30
+L_80024FCC:
+    lwz r9, 0x8(r3)
+    fctiwz f1, f1
+    fctiwz f2, f2
+    fctiwz f3, f3
+    stfiwx f1, r0, r9
+    addi r10, r9, 0x4
+    stfiwx f2, r0, r10
+    addi r10, r9, 0x8
+    stfiwx f3, r0, r10
+    stw r4, 0xc(r3)
+    stw r5, 0x10(r3)
+    lmw r26, 0x28(r1)
+    addi r1, r1, 0x40
+    blr
+}
+
+asm void fn_80025004(register void *info) {
+    nofralloc
+    stwu r1, -0x40(r1)
+    stmw r26, 0x28(r1)
+    lwz r4, 0xc(r3)
+    lwz r5, 0x10(r3)
+    lwz r6, 0x14(r3)
+    lwz r8, 0x1c(r3)
+    lwz r7, 0x20(r3)
+    lwz r31, 0x4(r3)
+    lwz r30, 0x0(r3)
+    lwz r9, 0x8(r3)
+    lis r10, 0x4330
+    stw r10, 0x8(r1)
+    stw r10, 0x10(r1)
+    stw r10, 0x18(r1)
+    stw r10, 0x20(r1)
+    lis r10, lbl_801A6FF8@ha
+    lfd f9, lbl_801A6FF8@l(r10)
+    slwi r10, r5, 2
+    lwz r11, 0x0(r9)
+    lwz r29, 0x4(r9)
+    lwz r28, 0x8(r9)
+    lwzx r27, r31, r10
+    xoris r11, r11, 0x8000
+    xoris r29, r29, 0x8000
+    stw r11, 0xc(r1)
+    xoris r28, r28, 0x8000
+    stw r29, 0x14(r1)
+    xoris r27, r27, 0x8000
+    stw r28, 0x1c(r1)
+    lfd f1, 0x8(r1)
+    stw r27, 0x24(r1)
+    lfd f2, 0x10(r1)
+    fsubs f1, f1, f9
+    lfd f3, 0x18(r1)
+    fsubs f2, f2, f9
+    lfd f4, 0x20(r1)
+    fsubs f3, f3, f9
+    fsubs f4, f4, f9
+    li r26, -0x4
+    lis r12, lbl_80128190@ha
+    addi r12, r12, lbl_80128190@l
+    li r9, 0xa0
+    mtctr r9
+L_800250B0:
+    rlwinm r10, r4, 7, 21, 27
+    addc r4, r4, r6
+    add r10, r10, r12
+    mcrxr cr0
+    addi r5, r5, 0x1
+    lfs f5, 0x0(r10)
+    beq L_8002512C
+    lfs f6, 0x4(r10)
+    fmuls f10, f1, f5
+    cmpw r5, r8
+    fmr f1, f2
+    lfs f7, 0x8(r10)
+    fmadds f10, f2, f6, f10
+    fmr f2, f3
+    lfs f8, 0xc(r10)
+    fmadds f10, f3, f7, f10
+    addi r30, r30, 0x4
+    fmr f3, f4
+    bne+ L_80025100
+    mr r5, r7
+L_80025100:
+    fmadds f10, f4, f8, f10
+    slwi r9, r5, 2
+    bdz L_800251B0
+    lwzx r10, r9, r31
+    fctiwz f10, f10
+    xoris r10, r10, 0x8000
+    stw r10, 0xc(r1)
+    stfiwx f10, r26, r30
+    lfd f4, 0x8(r1)
+    fsubs f4, f4, f9
+    b L_800250B0
+L_8002512C:
+    cmpw r5, r8
+    lfs f6, 0x4(r10)
+    bne+ L_8002513C
+    mr r5, r7
+L_8002513C:
+    slwi r11, r5, 2
+    addi r5, r5, 0x1
+    lwzx r29, r11, r31
+    fmuls f10, f1, f5
+    cmpw r5, r8
+    xoris r29, r29, 0x8000
+    fmr f1, f3
+    lfs f7, 0x8(r10)
+    stw r29, 0xc(r1)
+    fmadds f10, f2, f6, f10
+    lfs f8, 0xc(r10)
+    fmadds f10, f3, f7, f10
+    lfd f3, 0x8(r1)
+    fmr f2, f4
+    addi r30, r30, 0x4
+    fsubs f3, f3, f9
+    bne+ L_80025184
+    mr r5, r7
+L_80025184:
+    fmadds f10, f4, f8, f10
+    slwi r9, r5, 2
+    bdz L_800251B0
+    lwzx r10, r9, r31
+    fctiwz f10, f10
+    xoris r10, r10, 0x8000
+    stw r10, 0xc(r1)
+    stfiwx f10, r26, r30
+    lfd f4, 0x8(r1)
+    fsubs f4, f4, f9
+    b L_800250B0
+L_800251B0:
+    fctiwz f10, f10
+    stfiwx f10, r26, r30
+    lwz r9, 0x8(r3)
+    fctiwz f1, f1
+    fctiwz f2, f2
+    fctiwz f3, f3
+    stfiwx f1, r0, r9
+    addi r10, r9, 0x4
+    stfiwx f2, r0, r10
+    addi r10, r9, 0x8
+    stfiwx f3, r0, r10
+    stw r4, 0xc(r3)
+    stw r5, 0x10(r3)
+    lmw r26, 0x28(r1)
+    addi r1, r1, 0x40
+    blr
+}
 
 u32 fn_80025440(AXFXChorus *arg0);
 

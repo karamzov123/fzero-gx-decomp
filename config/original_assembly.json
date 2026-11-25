@@ -520,5 +520,33 @@
       "sha256": "f37a1a72db19bbd1a4edaa96bd001db312acbd765660d122390b61d460f0d7e2",
       "evidence": "Dolphin SDK axfx/reverb_std.c writes the reverb kernel (HandleReverb) as a CodeWarrior asm function: retail 0x800248D4..0x80024C88 builds its own frame with stwu/stmw r17 and stfd f14-f20, converts samples through the 0x43300000 bias word by hand and schedules the delay-line FPR arithmetic manually, with lis/@ha loads of its constants that MWCC never emits for small data; the create, free, settings, shutdown and callback functions are compiled C in the same TU."
     }
+  ],
+  "src/dol/axfx/chorus.c": [
+    {
+      "symbol": "fn_80024E6C",
+      "form": "asm-function",
+      "sha256": "4634ffc02d020ad25d04e531fd207a8ae3cdefc215a647ae6daf139fe1837702",
+      "evidence": "Dolphin SDK axfx/chorus.c writes the two chorus delay-line kernels (DoSrc1/DoSrc2) as CodeWarrior asm functions: retail 0x80024E6C..0x800251F0 builds their own frames, converts samples through the 0x43300000 bias by hand, walks the src coefficient table with lis/addi and schedules the FPR interpolation manually, which MWCC does not emit from C; the init, shutdown, settings and callback functions are compiled C in the same TU."
+    },
+    {
+      "symbol": "fn_80025004",
+      "form": "asm-function",
+      "sha256": "ed154fca38e8288c45ca895d4fff48590547789290959beeceb1d480e09991f1",
+      "evidence": "Dolphin SDK axfx/chorus.c writes the two chorus delay-line kernels (DoSrc1/DoSrc2) as CodeWarrior asm functions: retail 0x80024E6C..0x800251F0 builds their own frames, converts samples through the 0x43300000 bias by hand, walks the src coefficient table with lis/addi and schedules the FPR interpolation manually, which MWCC does not emit from C; the init, shutdown, settings and callback functions are compiled C in the same TU."
+    }
+  ],
+  "src/dol/axfx/reverb_hi.c": [
+    {
+      "symbol": "fn_80023B70",
+      "form": "asm-function",
+      "sha256": "174d02dd9490a95c0554063db4861fa871eee6448b49374df82a91a282076d8b",
+      "evidence": "Dolphin SDK axfx/reverb_hi.c writes the cross-talk and reverb kernels (DoCrossTalk/HandleReverb) as CodeWarrior asm functions: retail 0x80023B70..0x8002420C builds their own frames with stwu/stmw and stfd, converts samples through the 0x43300000 bias by hand and schedules the FPR arithmetic manually, with lis/@ha loads of their constants that MWCC never emits for small data; the create, free, settings, shutdown and callback functions are compiled C in the same TU."
+    },
+    {
+      "symbol": "fn_80023D00",
+      "form": "asm-function",
+      "sha256": "88a0d50d6df1fa57a7f23464a774397f1a9125c3b64414b1eb49ec1dbd3a163c",
+      "evidence": "Dolphin SDK axfx/reverb_hi.c writes the cross-talk and reverb kernels (DoCrossTalk/HandleReverb) as CodeWarrior asm functions: retail 0x80023B70..0x8002420C builds their own frames with stwu/stmw and stfd, converts samples through the 0x43300000 bias by hand and schedules the FPR arithmetic manually, with lis/@ha loads of their constants that MWCC never emits for small data; the create, free, settings, shutdown and callback functions are compiled C in the same TU."
+    }
   ]
 }

@@ -19162,54 +19162,11 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_80023684.c",
-    "symbols": [
-      "fn_80023684"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true,
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "pool": {
-      "@104": "lbl_801A6F80",
-      "@105": "lbl_801A6F84",
-      "@106": "lbl_801A6F88",
-      "@107": "lbl_801A6F8C",
-      "@108": "lbl_801A6F90",
-      "@109": "lbl_801A6F94",
-      "@113": "lbl_801A6FA0",
-      "@110": "lbl_801A6F98",
-      "@111": "lbl_801A6F9C"
-    }
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80023B70.c",
-    "symbols": [
-      "fn_80023B70"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80023D00.c",
-    "symbols": [
-      "fn_80023D00"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
     "source": "dol/axfx/reverb_hi.c",
     "symbols": [
+      "fn_80023684",
+      "fn_80023B70",
+      "fn_80023D00",
       "fn_8002420C",
       "fn_80024308",
       "fn_80024378",
@@ -19224,9 +19181,16 @@
     ],
     "collapsed": true,
     "pool": {
-      "@42": "lbl_801A6F80",
-      "@43": "lbl_801A6FBC",
-      "@44": "lbl_801A6F84"
+      "@104": "lbl_801A6F80",
+      "@105": "lbl_801A6F84",
+      "@106": "lbl_801A6F88",
+      "@107": "lbl_801A6F8C",
+      "@108": "lbl_801A6F90",
+      "@109": "lbl_801A6F94",
+      "@110": "lbl_801A6F98",
+      "@111": "lbl_801A6F9C",
+      "@113": "lbl_801A6FA0",
+      "@185": "lbl_801A6FBC"
     }
   },
   {
@@ -19264,32 +19228,10 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_80024E6C.c",
-    "symbols": [
-      "fn_80024E6C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80025004.c",
-    "symbols": [
-      "fn_80025004"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
     "source": "dol/axfx/chorus.c",
     "symbols": [
+      "fn_80024E6C",
+      "fn_80025004",
       "fn_800251F0",
       "fn_800253F0",
       "fn_80025440",

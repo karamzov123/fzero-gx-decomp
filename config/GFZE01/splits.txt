@@ -221,8 +221,8 @@ dol/__DVDPrintFatalMessage.c:
 dol/adx/adx_bsc.c:
 	.text       start:0x80044E7C end:0x80045FEC align:4
 
-dol/fn_80023684.c:
-	.text       start:0x80023684 end:0x80023B70 align:4
+dol/axfx/reverb_hi.c:
+	.text       start:0x80023684 end:0x800244C8 align:4
 
 dol/ax/AXSPB.c:
 	.text       start:0x80021FBC end:0x800224E4 align:4
@@ -412,11 +412,8 @@ dol/os/OSInterrupt.c:
 dol/os/OSSync.c:
 	.text       start:0x800100BC end:0x80010144 align:4
 
-dol/fn_80024E6C.c:
-	.text       start:0x80024E6C end:0x80025004 align:4
-
-dol/fn_80025004.c:
-	.text       start:0x80025004 end:0x800251F0 align:4
+dol/axfx/chorus.c:
+	.text       start:0x80024E6C end:0x80025854 align:4
 
 dol/fn_8003D4C0.c:
 	.text       start:0x8003D4C0 end:0x8003D4E0 align:4
@@ -775,9 +772,6 @@ dol/gx/GXLight.c:
 	.text       start:0x80035420 end:0x80035A2C align:4
 	.data       start:0x8012B120 end:0x8012B13C align:32
 
-dol/axfx/reverb_hi.c:
-	.text       start:0x8002420C end:0x800244C8 align:4
-
 dol/adx/adx_fcch.c:
 	.text       start:0x8004F7F8 end:0x8004F818 align:4
 
@@ -951,9 +945,6 @@ dol/fn_8006FC5C.c:
 dol/__cvt_fp2unsigned.c:
 	.text       start:0x80079764 end:0x800797C0 align:4
 
-dol/fn_80023B70.c:
-	.text       start:0x80023B70 end:0x80023D00 align:4
-
 dol/fn_8003AB08.c:
 	.text       start:0x8003AB08 end:0x8003B010 align:4
 
@@ -998,9 +989,6 @@ dol/av/avdisp_mat.c:
 
 dol/data/lbl_8015BE40.c:
 	.bss        start:0x8015BE40 end:0x8015BF00 align:8
-
-dol/axfx/chorus.c:
-	.text       start:0x800251F0 end:0x80025854 align:4
 
 dol/gx/GXPixel.c:
 	.text       start:0x800377F8 end:0x80037E30 align:4
@@ -1113,9 +1101,6 @@ dol/__mod2u.c:
 dol/ahx/ahx_decode.c:
 	.text       start:0x80050698 end:0x80051CC0 align:4
 	.rodata     start:0x800912F0 end:0x80091300 align:4
-
-dol/fn_80023D00.c:
-	.text       start:0x80023D00 end:0x8002420C align:4
 
 dol/thp/THPDec_mcu.c:
 	.text       start:0x8003B63C end:0x8003BCE4 align:4

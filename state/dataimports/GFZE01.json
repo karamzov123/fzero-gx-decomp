@@ -33113,7 +33113,7 @@
     "declarations": [
       {
         "declaration": "s32 lbl_80128160[8]",
-        "path": "src/dol/fn_80023684.c"
+        "path": "src/dol/axfx/reverb_hi.c"
       }
     ],
     "definition": "s32 lbl_80128160[8]",
