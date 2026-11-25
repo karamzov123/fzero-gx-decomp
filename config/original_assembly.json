@@ -1,6 +1,12 @@
 {
   "src/dol/OS.c": [
     {
+      "symbol": "__OSFPRInit",
+      "form": "asm-function",
+      "sha256": "ea7eeeaa8f161d89b0ce8034ae3292e70f0efdf9bed104c67ce5daaed3b871e9",
+      "evidence": "Dolphin SDK os/OS.c writes __OSFPRInit as a CodeWarrior asm function (nofralloc): retail 0x8000A0FC..0x8000A224 sets MSR[FP] with mfmsr/mtmsr, tests HID2 with mfspr, loads ZeroPS with psq_l and copies it with ps_mr into f1-f31, loads ZeroF into every FPR and writes the FPSCR with mtfsf, with no compiler frame; the exception vectors in the same TU are asm too and the rest of OS.c is C."
+    },
+    {
       "symbol": "__OSDBIntegrator",
       "form": "asm-function",
       "sha256": "a26666a4267d8385c667538bdc3d9f76893879055c003f1172d18add5115cc55",

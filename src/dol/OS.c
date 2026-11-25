@@ -6,6 +6,7 @@
 #include <dolphin/os/OSInterrupt.h>
 #include <dolphin/os/OSTime.h>
 #include <dolphin/types.h>
+#include <dolphin/base/PPCArch.h>
 #include "sdk_addresses.h"
 #pragma peephole off
 
@@ -151,6 +152,90 @@ static DVDDriveInfo DriveInfo;
 static DVDCommandBlock __OSDriveBlock;
 
 const char *__OSVersion = "<< Dolphin SDK - OS\trelease build: Mar 17 2003 04:20:41 (0x2301) >>";
+
+extern f64 ZeroF;
+extern f32 ZeroPS[2];
+
+/* Assembly in the original: the SDK's os.c writes __OSFPRInit as a CodeWarrior asm
+ * function (MSR/HID2 access, paired-single and FPSCR initialisation, no compiler frame). */
+asm void __OSFPRInit(void) {
+    nofralloc
+    mfmsr r3
+    ori r3, r3, 0x2000
+    mtmsr r3
+    mfspr r3, HID2
+    rlwinm. r3, r3, 3, 31, 31
+    beq no_paired_singles
+    lis r3, ZeroPS@ha
+    addi r3, r3, ZeroPS@l
+    psq_l f0, 0x0(r3), 0, 0
+    ps_mr f1, f0
+    ps_mr f2, f0
+    ps_mr f3, f0
+    ps_mr f4, f0
+    ps_mr f5, f0
+    ps_mr f6, f0
+    ps_mr f7, f0
+    ps_mr f8, f0
+    ps_mr f9, f0
+    ps_mr f10, f0
+    ps_mr f11, f0
+    ps_mr f12, f0
+    ps_mr f13, f0
+    ps_mr f14, f0
+    ps_mr f15, f0
+    ps_mr f16, f0
+    ps_mr f17, f0
+    ps_mr f18, f0
+    ps_mr f19, f0
+    ps_mr f20, f0
+    ps_mr f21, f0
+    ps_mr f22, f0
+    ps_mr f23, f0
+    ps_mr f24, f0
+    ps_mr f25, f0
+    ps_mr f26, f0
+    ps_mr f27, f0
+    ps_mr f28, f0
+    ps_mr f29, f0
+    ps_mr f30, f0
+    ps_mr f31, f0
+no_paired_singles:
+    lfd f0, ZeroF
+    fmr f1, f0
+    fmr f2, f0
+    fmr f3, f0
+    fmr f4, f0
+    fmr f5, f0
+    fmr f6, f0
+    fmr f7, f0
+    fmr f8, f0
+    fmr f9, f0
+    fmr f10, f0
+    fmr f11, f0
+    fmr f12, f0
+    fmr f13, f0
+    fmr f14, f0
+    fmr f15, f0
+    fmr f16, f0
+    fmr f17, f0
+    fmr f18, f0
+    fmr f19, f0
+    fmr f20, f0
+    fmr f21, f0
+    fmr f22, f0
+    fmr f23, f0
+    fmr f24, f0
+    fmr f25, f0
+    fmr f26, f0
+    fmr f27, f0
+    fmr f28, f0
+    fmr f29, f0
+    fmr f30, f0
+    fmr f31, f0
+    mtfsf 0xff, f0
+    blr
+}
 
 u32 OSGetConsoleType() {
     if (BootInfo_801A6748 == ((void *)0) || BootInfo_801A6748->consoleType == 0) {

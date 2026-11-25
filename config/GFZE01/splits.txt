@@ -397,11 +397,8 @@ dol/fn_80007700.c:
 dol/fn_800079A0.c:
 	.text       start:0x800079A0 end:0x800079C4 align:4
 
-dol/__OSFPRInit.c:
-	.text       start:0x8000A0FC end:0x8000A224 align:4
-
 dol/OS.c:
-	.text       start:0x8000A224 end:0x8000ABE8 align:4
+	.text       start:0x8000A0FC end:0x8000ABE8 align:4
 	.sdata      start:0x801A6418 end:0x801A6428 align:8
 
 dol/os/OSCache.c:
