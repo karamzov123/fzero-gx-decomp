@@ -761,9 +761,6 @@ dol/arc.c:
 dol/axfx/delay.c:
 	.text       start:0x80025854 end:0x80025D00 align:4
 
-dol/axfx/reverb_std.c:
-	.text       start:0x80024C88 end:0x80024E6C align:4
-
 dol/av/mathutil.c:
 	.text       start:0x8006E5FC end:0x8006FC1C align:4
 
@@ -1017,8 +1014,8 @@ dol/fn_80087E58.c:
 dol/fn_80087E80.c:
 	.text       start:0x80087E80 end:0x80087F54 align:4
 
-dol/fn_800244C8.c:
-	.text       start:0x800244C8 end:0x800248D4 align:4
+dol/axfx/reverb_std.c:
+	.text       start:0x800244C8 end:0x80024E6C align:4
 
 dol/fn_8003D42C.c:
 	.text       start:0x8003D42C end:0x8003D4C0 align:4
@@ -1119,9 +1116,6 @@ dol/ahx/ahx_decode.c:
 
 dol/fn_80023D00.c:
 	.text       start:0x80023D00 end:0x8002420C align:4
-
-dol/fn_800248D4.c:
-	.text       start:0x800248D4 end:0x80024C88 align:4
 
 dol/thp/THPDec_mcu.c:
 	.text       start:0x8003B63C end:0x8003BCE4 align:4

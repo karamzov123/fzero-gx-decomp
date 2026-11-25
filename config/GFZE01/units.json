@@ -19231,17 +19231,25 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_800244C8.c",
+    "source": "dol/axfx/reverb_std.c",
     "symbols": [
-      "fn_800244C8"
+      "fn_800244C8",
+      "fn_800248D4",
+      "fn_80024C88",
+      "fn_80024D84",
+      "fn_80024DF0",
+      "fn_80024E3C"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.2.5n",
     "extra_cflags": [
       "-fp_contract",
-      "off"
+      "off",
+      "-inline",
+      "on,noauto"
     ],
+    "collapsed": true,
     "pool": {
       "@94": "lbl_801A6FC0",
       "@95": "lbl_801A6FC4",
@@ -19253,36 +19261,6 @@
       "@100": "lbl_801A6FD8",
       "@101": "lbl_801A6FDC"
     }
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_800248D4.c",
-    "symbols": [
-      "fn_800248D4"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/axfx/reverb_std.c",
-    "symbols": [
-      "fn_80024C88",
-      "fn_80024D84",
-      "fn_80024DF0",
-      "fn_80024E3C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [
-      "-inline",
-      "on,noauto"
-    ],
-    "collapsed": true
   },
   {
     "module": "main",

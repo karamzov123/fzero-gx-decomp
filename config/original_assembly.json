@@ -512,5 +512,13 @@
       "sha256": "1ec98cbdd31ffb92668b0bc618fdc5029190af424c51ae00ae188fff2417709d",
       "evidence": "Dolphin SDK mtx/mtx.c writes PSMTXIdentity, PSMTXScale and PSMTXQuat as CodeWarrior asm functions (nofralloc): retail 0x80015B24..0x80015C1C stores and computes matrix rows with psq_l/psq_st, ps_merge, ps_madd/ps_nmsub/ps_sum and fres, paired-single code MWCC does not generate from C, with no compiler frames; the light projection matrices (C_MTXLightFrustum/C_MTXLightPerspective) are compiled C in the same TU."
     }
+  ],
+  "src/dol/axfx/reverb_std.c": [
+    {
+      "symbol": "fn_800248D4",
+      "form": "asm-function",
+      "sha256": "f37a1a72db19bbd1a4edaa96bd001db312acbd765660d122390b61d460f0d7e2",
+      "evidence": "Dolphin SDK axfx/reverb_std.c writes the reverb kernel (HandleReverb) as a CodeWarrior asm function: retail 0x800248D4..0x80024C88 builds its own frame with stwu/stmw r17 and stfd f14-f20, converts samples through the 0x43300000 bias word by hand and schedules the delay-line FPR arithmetic manually, with lis/@ha loads of its constants that MWCC never emits for small data; the create, free, settings, shutdown and callback functions are compiled C in the same TU."
+    }
   ]
 }

@@ -33139,7 +33139,7 @@
     "declarations": [
       {
         "declaration": "u32 lbl_80128180[4]",
-        "path": "src/dol/fn_800244C8.c"
+        "path": "src/dol/axfx/reverb_std.c"
       }
     ],
     "definition": "u32 lbl_80128180[4]",
