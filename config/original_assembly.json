@@ -476,5 +476,13 @@
       "sha256": "d21480c21ccd4ba1873df47fbca4346445517c7488fd61b1cfeaddbed05bdd66",
       "evidence": "Dolphin SDK os/OSMemory.c writes Config24MB, Config48MB and RealMode as static CodeWarrior asm functions (nofralloc): retail 0x8000E854..0x8000E96C programs IBAT0/IBAT2 and DBAT0/DBAT2 with mtspr between isync, and returns through SRR0/SRR1 with rfi to switch address translation, which MWCC never emits from C; the memory-size accessors, reset hook, protection interrupt handler and __OSInitMemoryProtection are compiled C in the same TU."
     }
+  ],
+  "src/dol/db/db.c": [
+    {
+      "symbol": "__DBExceptionDestination",
+      "form": "asm-function",
+      "sha256": "5d05c035cbd1763edd0b7d7562d94219ecfc601c5b17b6756cad53141bef3dc0",
+      "evidence": "Dolphin SDK db/db.c writes __DBExceptionDestination as a CodeWarrior asm function (nofralloc): retail 0x80015AA8..0x80015AB8 sets MSR[IR|DR] with mfmsr/ori/mtmsr and branches to __DBExceptionDestinationAux with no compiler frame, which C cannot express; DBInit and the rest of db.c are compiled C in the same TU."
+    }
   ]
 }

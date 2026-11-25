@@ -105,9 +105,6 @@ dol/trk/gdev/main.c:
 	.text       start:0x8008E37C end:0x8008E6C8 align:4
 	.rodata     start:0x80095DB0 end:0x80095E90 align:4
 
-dol/__DBIsExceptionMarked.c:
-	.text       start:0x80015AB8 end:0x80015B24 align:4
-
 dol/adx/adx_sje.c:
 	.text       start:0x80047864 end:0x8004A578 align:4
 
@@ -415,9 +412,6 @@ dol/os/OSInterrupt.c:
 dol/os/OSSync.c:
 	.text       start:0x800100BC end:0x80010144 align:4
 
-dol/__DBExceptionDestination.c:
-	.text       start:0x80015AA8 end:0x80015AB8 align:4
-
 dol/fn_80024E6C.c:
 	.text       start:0x80024E6C end:0x80025004 align:4
 
@@ -576,8 +570,8 @@ dol/fn_800206FC.c:
 dol/card/CARDRdwr.c:
 	.text       start:0x8002BE20 end:0x8002C0C0 align:4
 
-dol/DBInit.c:
-	.text       start:0x80015A38 end:0x80015AA8 align:4
+dol/db/db.c:
+	.text       start:0x80015A38 end:0x80015B24 align:4
 
 dol/dvd/dvd.c:
 	.text       start:0x8001776C end:0x80019E64 align:4

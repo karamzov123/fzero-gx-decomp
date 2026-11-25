@@ -22559,7 +22559,7 @@
     "declarations": [
       {
         "declaration": "u32 DBVerbose",
-        "path": "src/dol/DBInit.c"
+        "path": "src/dol/db/db.c"
       }
     ],
     "definition": "u32 DBVerbose",
@@ -24623,11 +24623,11 @@
     "declarations": [
       {
         "declaration": "u32 __DBInterface",
-        "path": "src/dol/DBInit.c"
+        "path": "src/dol/db/db.c"
       },
       {
         "declaration": "struct __DBIsExceptionMarked___DBInterface_T *__DBInterface",
-        "path": "src/dol/__DBIsExceptionMarked.c"
+        "path": "src/dol/db/db.c"
       }
     ],
     "definition": "u32 __DBInterface",

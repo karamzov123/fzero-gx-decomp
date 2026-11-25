@@ -8429,13 +8429,17 @@
   },
   {
     "module": "main",
-    "source": "dol/DBInit.c",
+    "source": "dol/db/db.c",
     "symbols": [
       "DBInit",
-      "__DBExceptionDestinationAux"
+      "__DBExceptionDestinationAux",
+      "__DBExceptionDestination",
+      "__DBIsExceptionMarked",
+      "DBPrintf"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
+    "extra_cflags": [],
     "collapsed": true
   },
   {
@@ -8488,29 +8492,6 @@
       "__CARDWrite",
       "fn_8002C0A0",
       "fn_8002C0B8"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/__DBExceptionDestination.c",
-    "symbols": [
-      "__DBExceptionDestination"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/__DBIsExceptionMarked.c",
-    "symbols": [
-      "__DBIsExceptionMarked",
-      "DBPrintf"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
