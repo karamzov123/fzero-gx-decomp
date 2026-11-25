@@ -1,5 +1,5 @@
 {
- "generated": 1795528955,
+ "generated": 1795574741,
  "functions": [
   {
    "symbol": "car_colchg:_prolog",
@@ -25723,9 +25723,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80045FEC",
+   "symbol": "ADXB_CheckSpsd",
    "module": "main",
-   "unit": "dol/fn_80045FEC.c",
+   "unit": "dol/adx/adx_bsps.c",
    "addr": 2147770348,
    "size": 52,
    "status": "matched",
@@ -25740,9 +25740,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80046020",
+   "symbol": "ADXB_ExecOneSpsd",
    "module": "main",
-   "unit": "dol/fn_80045FEC.c",
+   "unit": "dol/adx/adx_bsps.c",
    "addr": 2147770400,
    "size": 728,
    "status": "matched",
@@ -25757,9 +25757,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800462F8",
+   "symbol": "ADXB_DecodeHeaderSpsd",
    "module": "main",
-   "unit": "dol/fn_80045FEC.c",
+   "unit": "dol/adx/adx_bsps.c",
    "addr": 2147771128,
    "size": 236,
    "status": "matched",
@@ -25774,9 +25774,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800463E4",
+   "symbol": "ADX_DecodeInfoSpsd",
    "module": "main",
-   "unit": "dol/fn_800463E4.c",
+   "unit": "dol/adx/adx_bsps.c",
    "addr": 2147771364,
    "size": 292,
    "status": "matched",
@@ -27695,7 +27695,7 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8004E270",
+   "symbol": "ADXPD_GetStat",
    "module": "main",
    "unit": "dol/adx/adx_xpnd.c",
    "addr": 2147803760,
@@ -32030,9 +32030,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8005A668",
+   "symbol": "AXRNA_SetAdjsfreqFlg",
    "module": "main",
-   "unit": "dol/fn_8005A668.c",
+   "unit": "dol/AXRNA_SetAdjsfreqFlg.c",
    "addr": 2147853928,
    "size": 16,
    "status": "matched",
@@ -32047,9 +32047,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8005A678",
+   "symbol": "AXRNA_DiscardData",
    "module": "main",
-   "unit": "dol/fn_8005A668.c",
+   "unit": "dol/AXRNA_SetAdjsfreqFlg.c",
    "addr": 2147853944,
    "size": 8,
    "status": "matched",
@@ -32064,9 +32064,9 @@
    "link_state": null
   },
   {
-   "symbol": "fn_8005A680",
+   "symbol": "AXRNA_SetStmHdInfo",
    "module": "main",
-   "unit": "dol/fn_8005A668.c",
+   "unit": "dol/AXRNA_SetAdjsfreqFlg.c",
    "addr": 2147853952,
    "size": 8,
    "status": "matched",
@@ -32081,9 +32081,9 @@
    "link_state": null
   },
   {
-   "symbol": "fn_8005A688",
+   "symbol": "AXRNA_SetBitPerSmpl",
    "module": "main",
-   "unit": "dol/fn_8005A668.c",
+   "unit": "dol/AXRNA_SetAdjsfreqFlg.c",
    "addr": 2147853960,
    "size": 16,
    "status": "matched",
@@ -32100,7 +32100,7 @@
   {
    "symbol": "AXRNA_SetOutPan",
    "module": "main",
-   "unit": "dol/fn_8005A668.c",
+   "unit": "dol/AXRNA_SetAdjsfreqFlg.c",
    "addr": 2147853976,
    "size": 180,
    "status": "matched",
@@ -32115,9 +32115,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8005A74C",
+   "symbol": "AXRNA_SetOutVol",
    "module": "main",
-   "unit": "dol/fn_8005A668.c",
+   "unit": "dol/AXRNA_SetAdjsfreqFlg.c",
    "addr": 2147854156,
    "size": 172,
    "status": "matched",
@@ -32132,9 +32132,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8005A7F8",
+   "symbol": "AXRNA_SetSfreq",
    "module": "main",
-   "unit": "dol/fn_8005A668.c",
+   "unit": "dol/AXRNA_SetAdjsfreqFlg.c",
    "addr": 2147854328,
    "size": 340,
    "status": "matched",
@@ -32149,9 +32149,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8005A94C",
+   "symbol": "AXRNA_SetNumChan",
    "module": "main",
-   "unit": "dol/fn_8005A668.c",
+   "unit": "dol/AXRNA_SetAdjsfreqFlg.c",
    "addr": 2147854668,
    "size": 16,
    "status": "matched",
@@ -32168,7 +32168,7 @@
   {
    "symbol": "AXRNA_ExecServer",
    "module": "main",
-   "unit": "dol/fn_8005A668.c",
+   "unit": "dol/AXRNA_SetAdjsfreqFlg.c",
    "addr": 2147854684,
    "size": 92,
    "status": "matched",
@@ -32183,9 +32183,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8005A9B8",
+   "symbol": "AXRNA_ExecHndl",
    "module": "main",
-   "unit": "dol/fn_8005A668.c",
+   "unit": "dol/AXRNA_SetAdjsfreqFlg.c",
    "addr": 2147854776,
    "size": 824,
    "status": "matched",
@@ -32200,9 +32200,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8005ACF0",
+   "symbol": "axrna_end_flash",
    "module": "main",
-   "unit": "dol/fn_8005A668.c",
+   "unit": "dol/AXRNA_SetAdjsfreqFlg.c",
    "addr": 2147855600,
    "size": 204,
    "status": "matched",
@@ -32217,9 +32217,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8005ADBC",
+   "symbol": "axrna_end_trans",
    "module": "main",
-   "unit": "dol/fn_8005ADBC.c",
+   "unit": "dol/axrna_end_trans.c",
    "addr": 2147855804,
    "size": 220,
    "status": "matched",
@@ -32251,7 +32251,7 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8005B010",
+   "symbol": "AXRNA_GetNumRoom",
    "module": "main",
    "unit": "dol/axrna_update_play.c",
    "addr": 2147856400,
@@ -32268,7 +32268,7 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8005B068",
+   "symbol": "AXRNA_GetNumData",
    "module": "main",
    "unit": "dol/axrna_update_play.c",
    "addr": 2147856488,
@@ -32285,9 +32285,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8005B0C4",
+   "symbol": "AXRNA_SetPlaySw",
    "module": "main",
-   "unit": "dol/fn_8005B0C4.c",
+   "unit": "dol/AXRNA_SetPlaySw.c",
    "addr": 2147856580,
    "size": 416,
    "status": "matched",
@@ -32302,9 +32302,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8005B264",
+   "symbol": "AXRNA_SetTransSw",
    "module": "main",
-   "unit": "dol/fn_8005B264.c",
+   "unit": "dol/AXRNA_SetTransSw.c",
    "addr": 2147856996,
    "size": 512,
    "status": "matched",
@@ -32319,9 +32319,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8005B464",
+   "symbol": "AXRNA_Destroy",
    "module": "main",
-   "unit": "dol/fn_8005B464.c",
+   "unit": "dol/AXRNA_Destroy.c",
    "addr": 2147857508,
    "size": 208,
    "status": "matched",
@@ -32336,9 +32336,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8005B534",
+   "symbol": "AXRNA_Create",
    "module": "main",
-   "unit": "dol/fn_8005B534.c",
+   "unit": "dol/AXRNA_Create.c",
    "addr": 2147857716,
    "size": 1772,
    "status": "matched",
@@ -32387,9 +32387,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8005BDD4",
+   "symbol": "AXRNA_Init",
    "module": "main",
-   "unit": "dol/fn_8005BDD4.c",
+   "unit": "dol/AXRNA_Init.c",
    "addr": 2147859924,
    "size": 116,
    "status": "matched",
@@ -32404,9 +32404,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_8005BE48",
+   "symbol": "AXRNA_EntryErrFunc",
    "module": "main",
-   "unit": "dol/fn_8005BE48.c",
+   "unit": "dol/AXRNA_EntryErrFunc.c",
    "addr": 2147860040,
    "size": 32,
    "status": "matched",
@@ -40802,9 +40802,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80082908",
+   "symbol": "rand",
    "module": "main",
-   "unit": "dol/fn_80082908.c",
+   "unit": "dol/runtime/rand.c",
    "addr": 2148018440,
    "size": 32,
    "status": "matched",
@@ -40819,9 +40819,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80082928",
+   "symbol": "sscanf",
    "module": "main",
-   "unit": "dol/fn_80082908.c",
+   "unit": "dol/runtime/scanf.c",
    "addr": 2148018472,
    "size": 196,
    "status": "matched",
@@ -40836,9 +40836,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800829EC",
+   "symbol": "__StringRead",
    "module": "main",
-   "unit": "dol/fn_800829EC.c",
+   "unit": "dol/runtime/scanf.c",
    "addr": 2148018668,
    "size": 144,
    "status": "matched",
@@ -40855,7 +40855,7 @@
   {
    "symbol": "fn_80082A7C",
    "module": "main",
-   "unit": "dol/fn_800829EC.c",
+   "unit": "dol/runtime/scanf.c",
    "addr": 2148018812,
    "size": 2476,
    "status": "matched",
@@ -40872,7 +40872,7 @@
   {
    "symbol": "fn_80083428",
    "module": "main",
-   "unit": "dol/fn_80083428.c",
+   "unit": "dol/runtime/scanf.c",
    "addr": 2148021288,
    "size": 1352,
    "status": "matched",
@@ -40887,9 +40887,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80083970",
+   "symbol": "strstr",
    "module": "main",
-   "unit": "dol/fn_80083970.c",
+   "unit": "dol/runtime/string.c",
    "addr": 2148022640,
    "size": 104,
    "status": "matched",
@@ -40904,9 +40904,9 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_800839D8",
+   "symbol": "strtok",
    "module": "main",
-   "unit": "dol/fn_80083970.c",
+   "unit": "dol/runtime/string.c",
    "addr": 2148022744,
    "size": 316,
    "status": "matched",
@@ -40972,7 +40972,7 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80083BCC",
+   "symbol": "strcmp",
    "module": "main",
    "unit": "dol/runtime/string.c",
    "addr": 2148023244,
@@ -40989,7 +40989,7 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80083CF4",
+   "symbol": "strncat",
    "module": "main",
    "unit": "dol/runtime/string.c",
    "addr": 2148023540,
@@ -41040,7 +41040,7 @@
    "link_state": "verified"
   },
   {
-   "symbol": "fn_80083DB0",
+   "symbol": "strcpy",
    "module": "main",
    "unit": "dol/runtime/string.c",
    "addr": 2148023728,
@@ -44374,7 +44374,7 @@
   {
    "symbol": "fn_8008E770",
    "module": "main",
-   "unit": "dol/fn_8008E770.c",
+   "unit": "dol/trk/exi2.c",
    "addr": 2148067184,
    "size": 580,
    "status": "matched",
@@ -44391,7 +44391,7 @@
   {
    "symbol": "fn_8008E9B4",
    "module": "main",
-   "unit": "dol/fn_8008E9B4.c",
+   "unit": "dol/trk/exi2.c",
    "addr": 2148067764,
    "size": 408,
    "status": "matched",
@@ -44408,7 +44408,7 @@
   {
    "symbol": "fn_8008EB4C",
    "module": "main",
-   "unit": "dol/fn_8008EB4C.c",
+   "unit": "dol/trk/exi2.c",
    "addr": 2148068172,
    "size": 64,
    "status": "matched",
@@ -44425,7 +44425,7 @@
   {
    "symbol": "fn_8008EB8C",
    "module": "main",
-   "unit": "dol/fn_8008EB8C.c",
+   "unit": "dol/trk/exi2.c",
    "addr": 2148068236,
    "size": 108,
    "status": "matched",
@@ -44442,7 +44442,7 @@
   {
    "symbol": "fn_8008EBF8",
    "module": "main",
-   "unit": "dol/fn_8008EBF8.c",
+   "unit": "dol/trk/exi2.c",
    "addr": 2148068344,
    "size": 128,
    "status": "matched",
@@ -44459,7 +44459,7 @@
   {
    "symbol": "fn_8008EC78",
    "module": "main",
-   "unit": "dol/fn_8008EC78.c",
+   "unit": "dol/trk/exi2.c",
    "addr": 2148068472,
    "size": 104,
    "status": "matched",
@@ -44476,7 +44476,7 @@
   {
    "symbol": "fn_8008ECE0",
    "module": "main",
-   "unit": "dol/fn_8008ECE0.c",
+   "unit": "dol/trk/exi2.c",
    "addr": 2148068576,
    "size": 80,
    "status": "matched",
@@ -44493,7 +44493,7 @@
   {
    "symbol": "fn_8008ED30",
    "module": "main",
-   "unit": "dol/fn_8008ECE0.c",
+   "unit": "dol/trk/exi2.c",
    "addr": 2148068656,
    "size": 64,
    "status": "matched",
@@ -44510,7 +44510,7 @@
   {
    "symbol": "fn_8008ED70",
    "module": "main",
-   "unit": "dol/fn_8008ECE0.c",
+   "unit": "dol/trk/exi2.c",
    "addr": 2148068720,
    "size": 64,
    "status": "matched",
@@ -44527,7 +44527,7 @@
   {
    "symbol": "fn_8008EDB0",
    "module": "main",
-   "unit": "dol/fn_8008ECE0.c",
+   "unit": "dol/trk/exi2.c",
    "addr": 2148068784,
    "size": 64,
    "status": "matched",
@@ -44544,7 +44544,7 @@
   {
    "symbol": "fn_8008EDF0",
    "module": "main",
-   "unit": "dol/fn_8008EDF0.c",
+   "unit": "dol/trk/exi2.c",
    "addr": 2148068848,
    "size": 188,
    "status": "matched",
@@ -44561,7 +44561,7 @@
   {
    "symbol": "fn_8008EEAC",
    "module": "main",
-   "unit": "dol/fn_8008EDF0.c",
+   "unit": "dol/trk/exi2.c",
    "addr": 2148069036,
    "size": 44,
    "status": "matched",
@@ -44578,7 +44578,7 @@
   {
    "symbol": "fn_8008EED8",
    "module": "main",
-   "unit": "dol/fn_8008EDF0.c",
+   "unit": "dol/trk/exi2.c",
    "addr": 2148069080,
    "size": 264,
    "status": "matched",
@@ -44595,7 +44595,7 @@
   {
    "symbol": "fn_8008EFE0",
    "module": "main",
-   "unit": "dol/fn_8008EFE0.c",
+   "unit": "dol/trk/exi2.c",
    "addr": 2148069344,
    "size": 700,
    "status": "matched",
@@ -44612,7 +44612,7 @@
   {
    "symbol": "fn_8008F29C",
    "module": "main",
-   "unit": "dol/fn_8008F29C.c",
+   "unit": "dol/trk/exi2.c",
    "addr": 2148070044,
    "size": 432,
    "status": "matched",
@@ -44629,7 +44629,7 @@
   {
    "symbol": "fn_8008F44C",
    "module": "main",
-   "unit": "dol/fn_8008F44C.c",
+   "unit": "dol/trk/exi2.c",
    "addr": 2148070476,
    "size": 4,
    "status": "matched",
@@ -44646,7 +44646,7 @@
   {
    "symbol": "fn_8008F450",
    "module": "main",
-   "unit": "dol/fn_8008F44C.c",
+   "unit": "dol/trk/exi2.c",
    "addr": 2148070480,
    "size": 4,
    "status": "matched",
@@ -126048,7 +126048,7 @@
   },
   {
    "id": 49,
-   "symbol": "fn_8005A678",
+   "symbol": "AXRNA_DiscardData",
    "agent": "trivial",
    "harness": "fzgx",
    "model": "none",
@@ -126069,7 +126069,7 @@
   },
   {
    "id": 50,
-   "symbol": "fn_8005A680",
+   "symbol": "AXRNA_SetStmHdInfo",
    "agent": "trivial",
    "harness": "fzgx",
    "model": "none",
@@ -224013,7 +224013,7 @@
   },
   {
    "id": 4714,
-   "symbol": "fn_8005A94C",
+   "symbol": "AXRNA_SetNumChan",
    "agent": "dol1-codex-32",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -225462,7 +225462,7 @@
   },
   {
    "id": 4783,
-   "symbol": "fn_80083CF4",
+   "symbol": "strncat",
    "agent": "dol1-codex-127",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -225525,7 +225525,7 @@
   },
   {
    "id": 4786,
-   "symbol": "fn_8005B010",
+   "symbol": "AXRNA_GetNumRoom",
    "agent": "dol1-codex-139",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -228570,7 +228570,7 @@
   },
   {
    "id": 4931,
-   "symbol": "fn_800839D8",
+   "symbol": "strtok",
    "agent": "dol1-codex-276",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -240225,7 +240225,7 @@
   },
   {
    "id": 5486,
-   "symbol": "fn_8004E270",
+   "symbol": "ADXPD_GetStat",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -244908,7 +244908,7 @@
   },
   {
    "id": 5709,
-   "symbol": "fn_8005A668",
+   "symbol": "AXRNA_SetAdjsfreqFlg",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -244929,7 +244929,7 @@
   },
   {
    "id": 5710,
-   "symbol": "fn_8005A688",
+   "symbol": "AXRNA_SetBitPerSmpl",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -246588,7 +246588,7 @@
   },
   {
    "id": 5789,
-   "symbol": "fn_80082908",
+   "symbol": "rand",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -256626,7 +256626,7 @@
   },
   {
    "id": 6267,
-   "symbol": "fn_8005BE48",
+   "symbol": "AXRNA_EntryErrFunc",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -260280,7 +260280,7 @@
   },
   {
    "id": 6441,
-   "symbol": "fn_80045FEC",
+   "symbol": "ADXB_CheckSpsd",
    "agent": "lift",
    "harness": "fzgx",
    "model": "lift",
@@ -263073,7 +263073,7 @@
   },
   {
    "id": 6574,
-   "symbol": "fn_8005A74C",
+   "symbol": "AXRNA_SetOutVol",
    "agent": "spell",
    "harness": "fzgx",
    "model": "spell",
@@ -266601,7 +266601,7 @@
   },
   {
    "id": 6742,
-   "symbol": "fn_8005ADBC",
+   "symbol": "axrna_end_trans",
    "agent": "stmw1-codex-45",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -267756,7 +267756,7 @@
   },
   {
    "id": 6797,
-   "symbol": "fn_8005A7F8",
+   "symbol": "AXRNA_SetSfreq",
    "agent": "stmw1-codex-100",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -268911,7 +268911,7 @@
   },
   {
    "id": 6852,
-   "symbol": "fn_8005B264",
+   "symbol": "AXRNA_SetTransSw",
    "agent": "stmw1-codex-155",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -271242,7 +271242,7 @@
   },
   {
    "id": 6963,
-   "symbol": "fn_8005A9B8",
+   "symbol": "AXRNA_ExecHndl",
    "agent": "stmw1-codex-266",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -272628,7 +272628,7 @@
   },
   {
    "id": 7029,
-   "symbol": "fn_8005B534",
+   "symbol": "AXRNA_Create",
    "agent": "stmw1-codex-332",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -281742,7 +281742,7 @@
   },
   {
    "id": 7463,
-   "symbol": "fn_800462F8",
+   "symbol": "ADXB_DecodeHeaderSpsd",
    "agent": "small1-codex-418",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -283779,7 +283779,7 @@
   },
   {
    "id": 7560,
-   "symbol": "fn_8005ACF0",
+   "symbol": "axrna_end_flash",
    "agent": "small1-codex-515",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -283800,7 +283800,7 @@
   },
   {
    "id": 7561,
-   "symbol": "fn_8005B068",
+   "symbol": "AXRNA_GetNumData",
    "agent": "small1-codex-516",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -283821,7 +283821,7 @@
   },
   {
    "id": 7562,
-   "symbol": "fn_8005B464",
+   "symbol": "AXRNA_Destroy",
    "agent": "small1-codex-517",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -283842,7 +283842,7 @@
   },
   {
    "id": 7563,
-   "symbol": "fn_8005BDD4",
+   "symbol": "AXRNA_Init",
    "agent": "small1-codex-519",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -287076,7 +287076,7 @@
   },
   {
    "id": 7717,
-   "symbol": "fn_800829EC",
+   "symbol": "__StringRead",
    "agent": "small1-codex-678",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -287097,7 +287097,7 @@
   },
   {
    "id": 7718,
-   "symbol": "fn_80083970",
+   "symbol": "strstr",
    "agent": "small1-codex-679",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -287118,7 +287118,7 @@
   },
   {
    "id": 7719,
-   "symbol": "fn_80082928",
+   "symbol": "sscanf",
    "agent": "small1-codex-677",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -287202,7 +287202,7 @@
   },
   {
    "id": 7723,
-   "symbol": "fn_80083DB0",
+   "symbol": "strcpy",
    "agent": "small1-codex-683",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -290562,7 +290562,7 @@
   },
   {
    "id": 7883,
-   "symbol": "fn_8005B464",
+   "symbol": "AXRNA_Destroy",
    "agent": "spell",
    "harness": "fzgx",
    "model": "spell",
@@ -298185,7 +298185,7 @@
   },
   {
    "id": 8246,
-   "symbol": "fn_8005B010",
+   "symbol": "AXRNA_GetNumRoom",
    "agent": "luna128b-codex-217",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -301020,7 +301020,7 @@
   },
   {
    "id": 8381,
-   "symbol": "fn_80083970",
+   "symbol": "strstr",
    "agent": "luna128c-codex-131",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -302343,7 +302343,7 @@
   },
   {
    "id": 8444,
-   "symbol": "fn_8005BDD4",
+   "symbol": "AXRNA_Init",
    "agent": "luna128c-codex-197",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -305199,7 +305199,7 @@
   },
   {
    "id": 8580,
-   "symbol": "fn_800829EC",
+   "symbol": "__StringRead",
    "agent": "fixup",
    "harness": "fzgx",
    "model": "fixup",
@@ -316161,7 +316161,7 @@
   },
   {
    "id": 9102,
-   "symbol": "fn_8005A9B8",
+   "symbol": "AXRNA_ExecHndl",
    "agent": "sdk90-luna-20260909-235835-codex-15",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -316371,7 +316371,7 @@
   },
   {
    "id": 9112,
-   "symbol": "fn_80046020",
+   "symbol": "ADXB_ExecOneSpsd",
    "agent": "sdk90-luna-20260909-235835-codex-17",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -316476,7 +316476,7 @@
   },
   {
    "id": 9117,
-   "symbol": "fn_800839D8",
+   "symbol": "strtok",
    "agent": "sdk90-luna-20260909-235835-codex-51",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -316602,7 +316602,7 @@
   },
   {
    "id": 9123,
-   "symbol": "fn_800463E4",
+   "symbol": "ADX_DecodeInfoSpsd",
    "agent": "sdk90-luna-20260909-235835-codex-56",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -318303,7 +318303,7 @@
   },
   {
    "id": 9204,
-   "symbol": "fn_800839D8",
+   "symbol": "strtok",
    "agent": "near95-under500-20260910-001452-codex-79",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -319731,7 +319731,7 @@
   },
   {
    "id": 9272,
-   "symbol": "fn_800463E4",
+   "symbol": "ADX_DecodeInfoSpsd",
    "agent": "near95-under500-20260910-001452-codex-148",
    "harness": "codex",
    "model": "gpt-5.6-luna",
@@ -324855,7 +324855,7 @@
   },
   {
    "id": 9516,
-   "symbol": "fn_800839D8",
+   "symbol": "strtok",
    "agent": "shadow-deepseek-near95-16checks-20260910-081910-codex-79",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -326493,7 +326493,7 @@
   },
   {
    "id": 9594,
-   "symbol": "fn_800463E4",
+   "symbol": "ADX_DecodeInfoSpsd",
    "agent": "shadow-deepseek-near95-16checks-20260910-081910-codex-148",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -331638,7 +331638,7 @@
   },
   {
    "id": 9839,
-   "symbol": "fn_800463E4",
+   "symbol": "ADX_DecodeInfoSpsd",
    "agent": "shadow-deepseek-near95-retry-20260910-084656-codex-77",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -335523,7 +335523,7 @@
   },
   {
    "id": 10024,
-   "symbol": "fn_800839D8",
+   "symbol": "strtok",
    "agent": "deepseek-import-fn_800839D8",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -340080,7 +340080,7 @@
   },
   {
    "id": 10241,
-   "symbol": "fn_8005A9B8",
+   "symbol": "AXRNA_ExecHndl",
    "agent": "deepseek-recovered-above90-128-low-20260910-codex-18",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -344595,7 +344595,7 @@
   },
   {
    "id": 10456,
-   "symbol": "fn_800463E4",
+   "symbol": "ADX_DecodeInfoSpsd",
    "agent": "deepseek-recovered-above90-128-low-20260910-codex-262",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -353604,7 +353604,7 @@
   },
   {
    "id": 10885,
-   "symbol": "fn_8005A9B8",
+   "symbol": "AXRNA_ExecHndl",
    "agent": "deepseek-released-appserver-457-low-20260910-codex-39",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -357300,7 +357300,7 @@
   },
   {
    "id": 11061,
-   "symbol": "fn_800463E4",
+   "symbol": "ADX_DecodeInfoSpsd",
    "agent": "deepseek-released-appserver-457-low-20260910-codex-215",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -367380,7 +367380,7 @@
   },
   {
    "id": 11541,
-   "symbol": "fn_8005BDD4",
+   "symbol": "AXRNA_Init",
    "agent": "deepseek-under1k-data-low-512-20260910-codex-184",
    "harness": null,
    "model": null,
@@ -373365,7 +373365,7 @@
   },
   {
    "id": 11826,
-   "symbol": "fn_80083DB0",
+   "symbol": "strcpy",
    "agent": "deepseek-under1k-data-low-512-20260910-codex-469",
    "harness": null,
    "model": null,
@@ -375171,7 +375171,7 @@
   },
   {
    "id": 11912,
-   "symbol": "fn_8005ACF0",
+   "symbol": "axrna_end_flash",
    "agent": "deepseek-under1k-data-low-512-20260910-codex-555",
    "harness": null,
    "model": null,
@@ -376011,7 +376011,7 @@
   },
   {
    "id": 11952,
-   "symbol": "fn_8005ADBC",
+   "symbol": "axrna_end_trans",
    "agent": "deepseek-under1k-data-low-512-20260910-codex-595",
    "harness": null,
    "model": null,
@@ -380022,7 +380022,7 @@
   },
   {
    "id": 12143,
-   "symbol": "fn_8005BDD4",
+   "symbol": "AXRNA_Init",
    "agent": "deepseek-under1k-data-low-512-resume-20260911-014653-codex-119",
    "harness": null,
    "model": null,
@@ -384495,7 +384495,7 @@
   },
   {
    "id": 12356,
-   "symbol": "fn_80083DB0",
+   "symbol": "strcpy",
    "agent": "deepseek-under1k-data-low-512-resume-20260911-014653-codex-332",
    "harness": null,
    "model": null,
@@ -385818,7 +385818,7 @@
   },
   {
    "id": 12419,
-   "symbol": "fn_8005ACF0",
+   "symbol": "axrna_end_flash",
    "agent": "deepseek-under1k-data-low-512-resume-20260911-014653-codex-395",
    "harness": null,
    "model": null,
@@ -386553,7 +386553,7 @@
   },
   {
    "id": 12454,
-   "symbol": "fn_8005ADBC",
+   "symbol": "axrna_end_trans",
    "agent": "deepseek-under1k-data-low-512-resume-20260911-014653-codex-430",
    "harness": null,
    "model": null,
@@ -391005,7 +391005,7 @@
   },
   {
    "id": 12666,
-   "symbol": "fn_800463E4",
+   "symbol": "ADX_DecodeInfoSpsd",
    "agent": "deepseek-under1k-data-low-512-resume-20260911-014653-codex-642",
    "harness": null,
    "model": null,
@@ -391299,7 +391299,7 @@
   },
   {
    "id": 12680,
-   "symbol": "fn_80083BCC",
+   "symbol": "strcmp",
    "agent": "deepseek-under1k-data-low-512-resume-20260911-014653-codex-656",
    "harness": null,
    "model": null,
@@ -395646,7 +395646,7 @@
   },
   {
    "id": 12887,
-   "symbol": "fn_8005BDD4",
+   "symbol": "AXRNA_Init",
    "agent": "deepseek-under1k-fast-512-20260911-021006-codex-71",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -398439,7 +398439,7 @@
   },
   {
    "id": 13020,
-   "symbol": "fn_80083DB0",
+   "symbol": "strcpy",
    "agent": "deepseek-under1k-fast-512-20260911-021006-codex-204",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -399363,7 +399363,7 @@
   },
   {
    "id": 13064,
-   "symbol": "fn_8005ACF0",
+   "symbol": "axrna_end_flash",
    "agent": "deepseek-under1k-fast-512-20260911-021006-codex-248",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -399825,7 +399825,7 @@
   },
   {
    "id": 13086,
-   "symbol": "fn_8005ADBC",
+   "symbol": "axrna_end_trans",
    "agent": "deepseek-under1k-fast-512-20260911-021006-codex-270",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -403353,7 +403353,7 @@
   },
   {
    "id": 13254,
-   "symbol": "fn_800463E4",
+   "symbol": "ADX_DecodeInfoSpsd",
    "agent": "deepseek-under1k-fast-512-20260911-021006-codex-437",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -403584,7 +403584,7 @@
   },
   {
    "id": 13265,
-   "symbol": "fn_80083BCC",
+   "symbol": "strcmp",
    "agent": "deepseek-under1k-fast-512-20260911-021006-codex-449",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -406083,7 +406083,7 @@
   },
   {
    "id": 13384,
-   "symbol": "fn_8005A7F8",
+   "symbol": "AXRNA_SetSfreq",
    "agent": "deepseek-under1k-fast-512-20260911-021006-codex-568",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -410766,7 +410766,7 @@
   },
   {
    "id": 13607,
-   "symbol": "fn_8005B0C4",
+   "symbol": "AXRNA_SetPlaySw",
    "agent": "deepseek-under1k-fast-512-20260911-021006-codex-791",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -414735,7 +414735,7 @@
   },
   {
    "id": 13796,
-   "symbol": "fn_8005B264",
+   "symbol": "AXRNA_SetTransSw",
    "agent": "deepseek-under1k-fast-512-20260911-021006-codex-980",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -416982,7 +416982,7 @@
   },
   {
    "id": 13903,
-   "symbol": "fn_80083BCC",
+   "symbol": "strcmp",
    "agent": "deterministic-fixup",
    "harness": "fixup",
    "model": null,
@@ -420195,7 +420195,7 @@
   },
   {
    "id": 14056,
-   "symbol": "fn_8005BDD4",
+   "symbol": "AXRNA_Init",
    "agent": "all-none-20260911-codex-144",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -424605,7 +424605,7 @@
   },
   {
    "id": 14266,
-   "symbol": "fn_80083DB0",
+   "symbol": "strcpy",
    "agent": "all-none-20260911-codex-354",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -425697,7 +425697,7 @@
   },
   {
    "id": 14318,
-   "symbol": "fn_8005ACF0",
+   "symbol": "axrna_end_flash",
    "agent": "all-none-20260911-codex-406",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -426285,7 +426285,7 @@
   },
   {
    "id": 14346,
-   "symbol": "fn_8005ADBC",
+   "symbol": "axrna_end_trans",
    "agent": "all-none-20260911-codex-434",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -431808,7 +431808,7 @@
   },
   {
    "id": 14609,
-   "symbol": "fn_8005BDD4",
+   "symbol": "AXRNA_Init",
    "agent": "all-none-fixed-20260911-codex-139",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -436050,7 +436050,7 @@
   },
   {
    "id": 14811,
-   "symbol": "fn_80083DB0",
+   "symbol": "strcpy",
    "agent": "all-none-fixed-20260911-codex-341",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -437142,7 +437142,7 @@
   },
   {
    "id": 14863,
-   "symbol": "fn_8005ACF0",
+   "symbol": "axrna_end_flash",
    "agent": "all-none-fixed-20260911-codex-393",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -437667,7 +437667,7 @@
   },
   {
    "id": 14888,
-   "symbol": "fn_8005ADBC",
+   "symbol": "axrna_end_trans",
    "agent": "all-none-fixed-20260911-codex-418",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -441111,7 +441111,7 @@
   },
   {
    "id": 15052,
-   "symbol": "fn_800463E4",
+   "symbol": "ADX_DecodeInfoSpsd",
    "agent": "all-none-fixed-20260911-codex-582",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -443505,7 +443505,7 @@
   },
   {
    "id": 15166,
-   "symbol": "fn_8005A7F8",
+   "symbol": "AXRNA_SetSfreq",
    "agent": "all-none-fixed-20260911-codex-696",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -447768,7 +447768,7 @@
   },
   {
    "id": 15369,
-   "symbol": "fn_8005B0C4",
+   "symbol": "AXRNA_SetPlaySw",
    "agent": "all-none-fixed-20260911-codex-899",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -451527,7 +451527,7 @@
   },
   {
    "id": 15548,
-   "symbol": "fn_8005B264",
+   "symbol": "AXRNA_SetTransSw",
    "agent": "all-none-fixed-20260911-codex-1078",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -461145,7 +461145,7 @@
   },
   {
    "id": 16006,
-   "symbol": "fn_8005B264",
+   "symbol": "AXRNA_SetTransSw",
    "agent": "all-none-workers-20260911-codex-33",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -468684,7 +468684,7 @@
   },
   {
    "id": 16365,
-   "symbol": "fn_8005A9B8",
+   "symbol": "AXRNA_ExecHndl",
    "agent": "all-none-workers-20260911-codex-393",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -480528,7 +480528,7 @@
   },
   {
    "id": 16929,
-   "symbol": "fn_8005B534",
+   "symbol": "AXRNA_Create",
    "agent": "all-none-workers-20260911-codex-957",
    "harness": "codex",
    "model": "deepseek-flash",
@@ -515997,7 +515997,7 @@
   },
   {
    "id": 18618,
-   "symbol": "fn_800463E4",
+   "symbol": "ADX_DecodeInfoSpsd",
    "agent": "import-repair-archives",
    "harness": "import",
    "model": null,
@@ -519315,7 +519315,7 @@
   },
   {
    "id": 18776,
-   "symbol": "fn_800463E4",
+   "symbol": "ADX_DecodeInfoSpsd",
    "agent": "fleet-v2-claude-1790900565850379452-claude-1",
    "harness": "claude",
    "model": "claude-opus-5-5",
@@ -528723,7 +528723,7 @@
   },
   {
    "id": 19224,
-   "symbol": "fn_800463E4",
+   "symbol": "ADX_DecodeInfoSpsd",
    "agent": "fleet-v2-oc1-1790917844254821380-opencode-2",
    "harness": "opencode",
    "model": "opencode/space-bunny-free",
@@ -533217,7 +533217,7 @@
   },
   {
    "id": 19438,
-   "symbol": "fn_8005A7F8",
+   "symbol": "AXRNA_SetSfreq",
    "agent": "fleet-v2-cline-1790931516040655597-cline-15",
    "harness": "cline",
    "model": "stealth/space-bunny-alpha",
@@ -536346,7 +536346,7 @@
   },
   {
    "id": 19587,
-   "symbol": "fn_8005BDD4",
+   "symbol": "AXRNA_Init",
    "agent": "fleet-v2-oc4-1790942254768438781-opencode-2",
    "harness": "opencode",
    "model": "opencode/space-bunny-free",
@@ -543465,7 +543465,7 @@
   },
   {
    "id": 19926,
-   "symbol": "fn_800463E4",
+   "symbol": "ADX_DecodeInfoSpsd",
    "agent": "fleet-v2-cline-1790971699186262578-cline-4",
    "harness": "cline",
    "model": "stealth/space-bunny-alpha",
@@ -555834,7 +555834,7 @@
   },
   {
    "id": 20515,
-   "symbol": "fn_8005B0C4",
+   "symbol": "AXRNA_SetPlaySw",
    "agent": "fleet-v2-cline-1791005265827456121-cline-4",
    "harness": "cline",
    "model": "stealth/space-bunny-alpha",
@@ -556107,7 +556107,7 @@
   },
   {
    "id": 20528,
-   "symbol": "fn_8005B264",
+   "symbol": "AXRNA_SetTransSw",
    "agent": "fleet-v2-cline-1791006647534542182-cline-2",
    "harness": "cline",
    "model": "stealth/space-bunny-alpha",
@@ -558543,7 +558543,7 @@
   },
   {
    "id": 20644,
-   "symbol": "fn_8005BDD4",
+   "symbol": "AXRNA_Init",
    "agent": "fleet-v2-gpt-1791013855509536025-codex-2",
    "harness": "codex",
    "model": "gpt-6.1-sol",
@@ -564843,7 +564843,7 @@
   },
   {
    "id": 20944,
-   "symbol": "fn_8005B0C4",
+   "symbol": "AXRNA_SetPlaySw",
    "agent": "fleet-v2-cline-1791042922911861657-cline-9",
    "harness": "cline",
    "model": "stealth/space-bunny-alpha",
@@ -571395,7 +571395,7 @@
   },
   {
    "id": 21256,
-   "symbol": "fn_8005B0C4",
+   "symbol": "AXRNA_SetPlaySw",
    "agent": "fleet-v2-cline-1791056754015595120-cline-2",
    "harness": "cline",
    "model": "stealth/space-bunny-alpha",
@@ -577905,7 +577905,7 @@
   },
   {
    "id": 21566,
-   "symbol": "fn_800463E4",
+   "symbol": "ADX_DecodeInfoSpsd",
    "agent": "fleet-v2-cline-1791091386810676550-cline-3",
    "harness": "cline",
    "model": "stealth/space-bunny-alpha",
@@ -578892,7 +578892,7 @@
   },
   {
    "id": 21613,
-   "symbol": "fn_8005B264",
+   "symbol": "AXRNA_SetTransSw",
    "agent": "fleet-v2-cline-1791098644569866451-cline-5",
    "harness": "cline",
    "model": "stealth/space-bunny-alpha",
@@ -589245,7 +589245,7 @@
   },
   {
    "id": 22106,
-   "symbol": "fn_800463E4",
+   "symbol": "ADX_DecodeInfoSpsd",
    "agent": "fleet-v2-cline-1791165695595882664-cline-11",
    "harness": "cline",
    "model": "stealth/space-bunny-alpha",
@@ -594411,7 +594411,7 @@
   },
   {
    "id": 22352,
-   "symbol": "fn_8005B534",
+   "symbol": "AXRNA_Create",
    "agent": "fleet-v2-cline-1791198489463344298-cline-6",
    "harness": "cline",
    "model": null,
@@ -649683,7 +649683,7 @@
   },
   {
    "id": 24984,
-   "symbol": "fn_8005BDD4",
+   "symbol": "AXRNA_Init",
    "agent": "hermes-sol-manual",
    "harness": "hermes",
    "model": "gpt-6.1-sol",
@@ -651468,7 +651468,7 @@
   },
   {
    "id": 25069,
-   "symbol": "fn_8005B0C4",
+   "symbol": "AXRNA_SetPlaySw",
    "agent": "sourcealign",
    "harness": "fzgx",
    "model": "none",
@@ -652728,7 +652728,7 @@
   },
   {
    "id": 25129,
-   "symbol": "fn_8005BDD4",
+   "symbol": "AXRNA_Init",
    "agent": "agy-manual",
    "harness": null,
    "model": null,
@@ -652749,7 +652749,7 @@
   },
   {
    "id": 25130,
-   "symbol": "fn_8005B264",
+   "symbol": "AXRNA_SetTransSw",
    "agent": "agy-manual",
    "harness": null,
    "model": null,
@@ -652770,7 +652770,7 @@
   },
   {
    "id": 25131,
-   "symbol": "fn_8005B534",
+   "symbol": "AXRNA_Create",
    "agent": "agy-manual",
    "harness": null,
    "model": null,
@@ -659868,7 +659868,7 @@
   },
   {
    "id": 25469,
-   "symbol": "fn_800463E4",
+   "symbol": "ADX_DecodeInfoSpsd",
    "agent": "hermes-inline",
    "harness": null,
    "model": null,
@@ -697626,7 +697626,7 @@
   },
   {
    "id": 27267,
-   "symbol": "fn_800463E4",
+   "symbol": "ADX_DecodeInfoSpsd",
    "agent": "manual-0",
    "harness": null,
    "model": null,
@@ -698221,7 +698221,7 @@
   {
    "id": 35,
    "kind": "symbol",
-   "target": "fn_80083DB0",
+   "target": "strcpy",
    "proposed": "memcpy_fixed",
    "rationale": "Called as fn_80083DB0(dst, src) for a fixed-size aggregate copy of the 0x40-byte local buffer and entry.",
    "proposed_by": "deepseek-recovered-above90-128-low-20260910-codex-450",
@@ -698231,7 +698231,7 @@
   {
    "id": 36,
    "kind": "symbol",
-   "target": "fn_800839D8",
+   "target": "strtok",
    "proposed": "list_iter_next",
    "rationale": "Returns the next element of a container/iterator pair (fn_800839D8(buf, arg1)), NULL when exhausted.",
    "proposed_by": "deepseek-recovered-above90-128-low-20260910-codex-450",
