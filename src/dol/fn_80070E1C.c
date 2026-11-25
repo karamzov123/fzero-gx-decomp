@@ -19,15 +19,6 @@ extern u32 lbl_801A6D24;
 extern void OSReport(const char *, ...);
 extern void fn_8007174C(u32, u32);
 
-#pragma section code_type ".fzgxpool"
-static void fzgx_string_layout(void) {
-    /* fzgx-allow: S2 layout primer: MWCC emits string literals in first-use order; the section is dropped at integration */
-    OSReport("alloc: <%s> not enough memory.");
-    OSReport("invalid model format<%s>\n");
-    OSReport("Single Load Model");
-}
-#pragma section code_type ".text"
-
 u32 fn_80070E1C(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     u32 alloc;
     u32 size;
