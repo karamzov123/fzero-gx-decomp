@@ -408,5 +408,13 @@
       "sha256": "fea0f2f918ef723d4427f83017664d0fbcbe2a736e7c0e4d497090d27911b0f3",
       "evidence": "Dolphin SDK os/OSReboot.c writes Run as a CodeWarrior asm function (nofralloc): retail 0x8000EAF4..0x8000EB04 is sync, isync, mtlr of the entry point and blr, a jump with no compiler frame that C cannot express; __OSReboot and its helpers are compiled C in the same TU."
     }
+  ],
+  "src/dol/os/OSAlarm.c": [
+    {
+      "symbol": "DecrementerExceptionHandler",
+      "form": "asm-function",
+      "sha256": "11931e4d9fda325239c550ab8f912944a71745fe09da29dc282d843a936ee864",
+      "evidence": "Dolphin SDK os/OSAlarm.c writes DecrementerExceptionHandler as a static CodeWarrior asm function (nofralloc): retail 0x8000B2C4..0x8000B314 stores r0-r2, stmw r6-r31 and GQR1-GQR7 (mfspr) into the interrupted OSContext, opens an 8-byte frame by hand and branches to DecrementerExceptionCallback, with no compiler prologue; the alarm queue functions are compiled C in the same TU."
+    }
   ]
 }

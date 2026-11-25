@@ -7248,18 +7248,6 @@
   },
   {
     "module": "main",
-    "source": "dol/DecrementerExceptionHandler.c",
-    "symbols": [
-      "DecrementerExceptionHandler"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
     "source": "dol/WriteCallback_CARDDir.c",
     "symbols": [
       "WriteCallback_CARDDir",
@@ -7770,11 +7758,13 @@
       "OSSetAlarm",
       "OSSetPeriodicAlarm",
       "OSCancelAlarm",
-      "DecrementerExceptionCallback"
+      "DecrementerExceptionCallback",
+      "DecrementerExceptionHandler"
     ],
     "status": "matching",
-    "matching_for": ["GFZE01"],
+    "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.2.5n",
+    "extra_cflags": [],
     "collapsed": true
   },
   {

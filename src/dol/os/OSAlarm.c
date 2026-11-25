@@ -10,7 +10,7 @@ s32 OSDisableScheduler();
 s32 OSEnableScheduler();
 extern void *__OSGetExceptionHandler(u32 exception);
 extern void __OSSetExceptionHandler(u32 exception, void *handler);
-extern void DecrementerExceptionHandler_8000B2C4(void);
+static void DecrementerExceptionHandler(register __OSException exception, register OSContext *context);
 
 extern struct OSAlarmQueue {
     OSAlarm *head;
@@ -30,9 +30,9 @@ static inline void SetTimer(OSAlarm *alarm) {
 }
 
 void OSInitAlarm(void) {
-    if (__OSGetExceptionHandler(8) != (void *)DecrementerExceptionHandler_8000B2C4) {
+    if (__OSGetExceptionHandler(8) != (void *)DecrementerExceptionHandler) {
         AlarmQueue.head = AlarmQueue.tail = 0;
-        __OSSetExceptionHandler(8, (void *)DecrementerExceptionHandler_8000B2C4);
+        __OSSetExceptionHandler(8, (void *)DecrementerExceptionHandler);
     }
 }
 
@@ -163,4 +163,31 @@ void DecrementerExceptionCallback(register __OSException exception, register OSC
     OSEnableScheduler();
     __OSReschedule();
     OSLoadContext(context);
+}
+
+/* Dolphin SDK os/OSAlarm.c: the decrementer exception entry is a CodeWarrior asm function
+ * (it saves the interrupted context's GPRs and GQRs without a compiler frame, then branches
+ * to the C callback). */
+static asm void DecrementerExceptionHandler(register __OSException exception, register OSContext *context) {
+    nofralloc
+    stw r0, 0x0(context)
+    stw r1, 0x4(context)
+    stw r2, 0x8(context)
+    stmw r6, 0x18(context)
+    mfspr r0, GQR1
+    stw r0, 0x1a8(context)
+    mfspr r0, GQR2
+    stw r0, 0x1ac(context)
+    mfspr r0, GQR3
+    stw r0, 0x1b0(context)
+    mfspr r0, GQR4
+    stw r0, 0x1b4(context)
+    mfspr r0, GQR5
+    stw r0, 0x1b8(context)
+    mfspr r0, GQR6
+    stw r0, 0x1bc(context)
+    mfspr r0, GQR7
+    stw r0, 0x1c0(context)
+    stwu r1, -0x8(r1)
+    b DecrementerExceptionCallback
 }
