@@ -7,7 +7,7 @@ For a draft-map TU that retail evidence shows is two TUs (a literal the compiler
 repeated in each half, sections starting on their own alignment). The moved blocks must be whole
 units. If every moved block is `noprologue`, the first block's declarations (the text before its
 function definition) become the new file's prologue and the flags go: each unit compiles from the
-same text as before. If none is, the old prologue is copied. Mixed flags are refused.
+same text as before. Otherwise the old prologue is copied and every block keeps its flags.
 Updates units.json (tu, source path), splits.txt keys, tus.json and state/ledger.json unit paths.
 The link hash is the proof: configure, ninja, `dtk shasum -c`.
 
@@ -73,12 +73,10 @@ if not mu or len(mu) == len(tu_units):
 flags = {'noprologue' in b.flags for b in moved}
 if flags == {True}:
     prologue, moved[0].body = first_block_prologue(moved[0])
-elif flags == {False}:
+    for b in moved:
+        b.flags = [f for f in b.flags if f != 'noprologue']
+else:  # some block takes the prologue: copy it; noprologue blocks stay self-contained
     prologue = tf.prologue
-else:
-    raise SystemExit('moved blocks mix noprologue and prologue blocks')
-for b in moved:
-    b.flags = [f for f in b.flags if f != 'noprologue']
 new_tf = tufile.TuFile(prologue.strip('\n') + '\n', moved)
 tf.blocks = tf.blocks[:k]
 

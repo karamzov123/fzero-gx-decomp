@@ -68,10 +68,10 @@ rel/main_rel/game_b/fn_1_40F54.c:
 	.data       start:0x00006640 end:0x00006710 align:8
 	.bss        start:0x00038450 end:0x000384B8 align:8
 
-rel/main_rel/motasglist/fn_1_4300C.c:
+rel/main_rel/motasglist_b/fn_1_4300C.c:
 	.text       start:0x0004300C end:0x00043264 align:4
 
-rel/main_rel/motasglist/fn_1_433A4.c:
+rel/main_rel/motasglist_b/fn_1_433A4.c:
 	.text       start:0x000433A4 end:0x000433E0
 
 rel/main_rel/load/fn_1_45AD4.c:
@@ -89,31 +89,31 @@ rel/main_rel/font/fn_1_4AEE8.c:
 rel/main_rel/font/fn_1_4B83C.c:
 	.text       start:0x0004B83C end:0x0004BA24 align:4
 
-rel/main_rel/font/fn_1_4E500.c:
+rel/main_rel/font_b/fn_1_4E500.c:
 	.text       start:0x0004E500 end:0x0004EC74 align:4
 
-rel/main_rel/font/fn_1_4F724.c:
+rel/main_rel/font_b/fn_1_4F724.c:
 	.text       start:0x0004F724 end:0x0004F734
 
-rel/main_rel/font/fn_1_4FC50.c:
+rel/main_rel/font_b/fn_1_4FC50.c:
 	.text       start:0x0004FC50 end:0x0004FD64
 
-rel/main_rel/font/fn_1_50164.c:
+rel/main_rel/font_b/fn_1_50164.c:
 	.text       start:0x00050164 end:0x00050190
 
-rel/main_rel/font/fn_1_51990.c:
+rel/main_rel/font_b/fn_1_51990.c:
 	.text       start:0x00051990 end:0x000519AC
 
-rel/main_rel/font/fn_1_5415C.c:
+rel/main_rel/font_c/fn_1_5415C.c:
 	.text       start:0x0005415C end:0x000549F4 align:4
 
-rel/main_rel/font/fn_1_54DCC.c:
+rel/main_rel/font_c/fn_1_54DCC.c:
 	.text       start:0x00054DCC end:0x00055210 align:4
 
-rel/main_rel/font/fn_1_5557C.c:
+rel/main_rel/font_c/fn_1_5557C.c:
 	.text       start:0x0005557C end:0x00055C48 align:4
 
-rel/main_rel/font/fn_1_55FC4.c:
+rel/main_rel/font_c/fn_1_55FC4.c:
 	.text       start:0x00055FC4 end:0x00056664 align:4
 
 rel/main_rel/objput.c:
@@ -633,13 +633,13 @@ rel/main_rel/reset.c:
 rel/main_rel/load/fn_1_45850.c:
 	.text       start:0x00045850 end:0x00045964 align:4
 
-rel/main_rel/font/fn_1_4DC20.c:
+rel/main_rel/font_b/fn_1_4DC20.c:
 	.text       start:0x0004DC20 end:0x0004E220 align:4
 
 rel/main_rel/bg_cas/fn_1_101454.c:
 	.text       start:0x00101454 end:0x001014B4 align:4
 
-rel/main_rel/font/fn_1_51914.c:
+rel/main_rel/font_b/fn_1_51914.c:
 	.text       start:0x00051914 end:0x00051990 align:4
 
 rel/main_rel/memcard/fn_1_B5258.c:
@@ -651,7 +651,7 @@ rel/main_rel/bg_cas/fn_1_FD1D4.c:
 rel/main_rel/archive/fn_1_12BF7C.c:
 	.text       start:0x0012BF7C end:0x0012C0EC align:4
 
-rel/main_rel/font/fn_1_4F734.c:
+rel/main_rel/font_b/fn_1_4F734.c:
 	.text       start:0x0004F734 end:0x0004FC50 align:4
 
 rel/main_rel/sel_static_disp/fn_1_13923C.c:
@@ -764,7 +764,7 @@ rel/main_rel/font/fn_1_4AC20.c:
 rel/main_rel/sel_static_disp/fn_1_139AEC.c:
 	.text       start:0x00139AEC end:0x00139D60 align:4
 
-rel/main_rel/font/fn_1_519AC.c:
+rel/main_rel/font_b/fn_1_519AC.c:
 	.text       start:0x000519AC end:0x000519FC align:4
 	.data       start:0x0001C578 end:0x0001C64C align:8
 
@@ -812,7 +812,7 @@ rel/main_rel/load/fn_1_46DC4.c:
 rel/main_rel/sel_static_disp/fn_1_139A3C.c:
 	.text       start:0x00139A3C end:0x00139AEC align:4
 
-rel/main_rel/font/fn_1_519FC.c:
+rel/main_rel/font_b/fn_1_519FC.c:
 	.text       start:0x000519FC end:0x0005233C align:4
 
 rel/main_rel/sel_static_disp/fn_1_14F270.c:
@@ -894,7 +894,7 @@ rel/main_rel/driver/fn_1_A9868.c:
 	.rodata     start:0x00004AA0 end:0x00004AE0 align:8
 	.bss        start:0x00071690 end:0x000716C0 align:8
 
-rel/main_rel/font/fn_1_508C4.c:
+rel/main_rel/font_b/fn_1_508C4.c:
 	.text       start:0x000508C4 end:0x00051914 align:4
 
 rel/main_rel/bg_win/fn_1_15DFD4.c:
@@ -1052,7 +1052,7 @@ rel/main_rel/memcard/fn_1_C1ACC.c:
 rel/main_rel/archive/fn_1_12A7C4.c:
 	.text       start:0x0012A7C4 end:0x0012A8A4 align:4
 
-rel/main_rel/font/fn_1_55C48.c:
+rel/main_rel/font_c/fn_1_55C48.c:
 	.text       start:0x00055C48 end:0x00055D6C align:4
 
 rel/main_rel/camera/fn_1_BFA0.c:
@@ -1073,7 +1073,7 @@ rel/main_rel/bg_cas/fn_1_FDB40.c:
 rel/main_rel/load/fn_1_45BF0.c:
 	.text       start:0x00045BF0 end:0x00045CD8 align:4
 
-rel/main_rel/font/fn_1_55EA0.c:
+rel/main_rel/font_c/fn_1_55EA0.c:
 	.text       start:0x00055EA0 end:0x00055FC4 align:4
 
 rel/main_rel/ghost/fn_1_F1A24.c:
@@ -1090,7 +1090,7 @@ rel/main_rel/motasglist/fn_1_41518.c:
 rel/main_rel/live_camera/fn_1_EBE4.c:
 	.text       start:0x0000EBE4 end:0x0000EE04 align:4
 
-rel/main_rel/font/fn_1_553C4.c:
+rel/main_rel/font_c/fn_1_553C4.c:
 	.text       start:0x000553C4 end:0x0005557C align:4
 
 rel/main_rel/bg_win/fn_1_15BB34.c:
@@ -1114,7 +1114,7 @@ rel/main_rel/archive/fn_1_12C930.c:
 rel/main_rel/sel_static_disp/fn_1_134AD4.c:
 	.text       start:0x00134AD4 end:0x00134EE4 align:4
 
-rel/main_rel/font/fn_1_55D6C.c:
+rel/main_rel/font_c/fn_1_55D6C.c:
 	.text       start:0x00055D6C end:0x00055EA0 align:4
 
 rel/main_rel/sound/fn_1_A2FC8.c:
@@ -1126,7 +1126,7 @@ rel/main_rel/bg_cas/fn_1_FD324.c:
 rel/main_rel/bg_common/fn_1_106CAC.c:
 	.text       start:0x00106CAC end:0x00106D30 align:4
 
-rel/main_rel/font/fn_1_55210.c:
+rel/main_rel/font_c/fn_1_55210.c:
 	.text       start:0x00055210 end:0x000553C4 align:4
 
 rel/main_rel/camera/fn_1_6D2C.c:
@@ -1147,7 +1147,7 @@ rel/main_rel/bg_cas/fn_1_FDC00.c:
 rel/main_rel/archive/fn_1_12CEA8.c:
 	.text       start:0x0012CEA8 end:0x0012D404 align:4
 
-rel/main_rel/motasglist/fn_1_43264.c:
+rel/main_rel/motasglist_b/fn_1_43264.c:
 	.text       start:0x00043264 end:0x000433A4 align:4
 
 rel/main_rel/effect_car/fn_1_6FD58.c:
@@ -1157,7 +1157,7 @@ rel/main_rel/screen_effect/fn_1_727BC.c:
 	.text       start:0x000727BC end:0x00077B80 align:4
 	.data       start:0x0001D960 end:0x0001DCF0 align:8
 
-rel/main_rel/motasglist/fn_1_449A8.c:
+rel/main_rel/motasglist_b/fn_1_449A8.c:
 	.text       start:0x000449A8 end:0x00044A74 align:4
 
 rel/main_rel/memcard/fn_1_BFBF4.c:
@@ -1233,7 +1233,7 @@ rel/main_rel/driver/fn_1_A7294.c:
 rel/main_rel/bg_win/fn_1_15C5A4.c:
 	.text       start:0x0015C5A4 end:0x0015C6C0 align:4
 
-rel/main_rel/font/fn_1_549F4.c:
+rel/main_rel/font_c/fn_1_549F4.c:
 	.text       start:0x000549F4 end:0x00054DCC align:4
 
 rel/main_rel/car_test_b/fn_1_7E8F4.c:
@@ -1257,7 +1257,7 @@ rel/main_rel/ghost/fn_1_EB4BC.c:
 rel/main_rel/sel_static_disp/fn_1_150D3C.c:
 	.text       start:0x00150D3C end:0x00150ED0 align:4
 
-rel/main_rel/font/fn_1_4FD64.c:
+rel/main_rel/font_b/fn_1_4FD64.c:
 	.text       start:0x0004FD64 end:0x00050164 align:4
 
 rel/main_rel/bg_for/fn_1_DE9C4.c:
@@ -1299,7 +1299,7 @@ rel/main_rel/bg_win/fn_1_15C36C.c:
 rel/main_rel/screen_effect/fn_1_78EBC.c:
 	.text       start:0x00078EBC end:0x00079100 align:4
 
-rel/main_rel/font/fn_1_4E220.c:
+rel/main_rel/font_b/fn_1_4E220.c:
 	.text       start:0x0004E220 end:0x0004E500 align:4
 
 rel/main_rel/archive/fn_1_131194.c:
@@ -1333,13 +1333,13 @@ rel/main_rel/sel_static_disp/fn_1_138144.c:
 rel/main_rel/sound/fn_1_A2A70.c:
 	.text       start:0x000A2A70 end:0x000A2D84 align:4
 
-rel/main_rel/motasglist/fn_1_42AD0.c:
+rel/main_rel/motasglist_b/fn_1_42AD0.c:
 	.text       start:0x00042AD0 end:0x0004300C align:4
 
 rel/main_rel/sound/fn_1_A24CC.c:
 	.text       start:0x000A24CC end:0x000A266C align:4
 
-rel/main_rel/font/fn_1_53E40.c:
+rel/main_rel/font_b/fn_1_53E40.c:
 	.text       start:0x00053E40 end:0x00053FE4 align:4
 
 rel/main_rel/sel_static_disp/fn_1_1358BC.c:
@@ -1395,7 +1395,7 @@ rel/main_rel/live_camera/fn_1_1189C.c:
 rel/main_rel/live_camera/fn_1_103B0.c:
 	.text       start:0x000103B0 end:0x000107B8 align:4
 
-rel/main_rel/motasglist/fn_1_4270C.c:
+rel/main_rel/motasglist_b/fn_1_4270C.c:
 	.text       start:0x0004270C end:0x00042AD0 align:4
 
 rel/main_rel/archive/fn_1_12E0B8.c:
@@ -1415,13 +1415,13 @@ rel/main_rel/memcard/fn_1_BA144.c:
 	.text       start:0x000BA144 end:0x000BB974 align:4
 	.data       start:0x0003CE58 end:0x0003CF18 align:8
 
-rel/main_rel/font/fn_1_53B14.c:
+rel/main_rel/font_b/fn_1_53B14.c:
 	.text       start:0x00053B14 end:0x00053BD8 align:4
 
-rel/main_rel/font/fn_1_53BD8.c:
+rel/main_rel/font_b/fn_1_53BD8.c:
 	.text       start:0x00053BD8 end:0x00053C9C align:4
 
-rel/main_rel/motasglist/fn_1_4247C.c:
+rel/main_rel/motasglist_b/fn_1_4247C.c:
 	.text       start:0x0004247C end:0x0004270C align:4
 
 rel/main_rel/sound/fn_1_A3BD8.c:
@@ -1523,16 +1523,16 @@ rel/main_rel/font/fn_1_4D10C.c:
 rel/main_rel/bg_cas/fn_1_1014B4.c:
 	.text       start:0x001014B4 end:0x0010161C align:4
 
-rel/main_rel/font/fn_1_53FE4.c:
+rel/main_rel/font_b/fn_1_53FE4.c:
 	.text       start:0x00053FE4 end:0x0005415C align:4
 
 rel/main_rel/sel_static_disp/fn_1_14DEC8.c:
 	.text       start:0x0014DEC8 end:0x0014E054 align:4
 
-rel/main_rel/font/fn_1_53830.c:
+rel/main_rel/font_b/fn_1_53830.c:
 	.text       start:0x00053830 end:0x000539CC align:4
 
-rel/main_rel/font/fn_1_53C9C.c:
+rel/main_rel/font_b/fn_1_53C9C.c:
 	.text       start:0x00053C9C end:0x00053E40 align:4
 
 rel/main_rel/spline/fn_1_F73A8.c:
@@ -1583,7 +1583,7 @@ rel/main_rel/sel_static_disp/fn_1_1363F0.c:
 rel/main_rel/sel_static_disp/fn_1_13EA9C.c:
 	.text       start:0x0013EA9C end:0x0013EDDC align:4
 
-rel/main_rel/font/fn_1_5233C.c:
+rel/main_rel/font_b/fn_1_5233C.c:
 	.text       start:0x0005233C end:0x00052718 align:4
 
 rel/main_rel/memcard/fn_1_BE978.c:
@@ -1618,7 +1618,7 @@ rel/main_rel/font/fn_1_4D784.c:
 rel/main_rel/archive/fn_1_12B664.c:
 	.text       start:0x0012B664 end:0x0012BB18 align:4
 
-rel/main_rel/motasglist/fn_1_43E08.c:
+rel/main_rel/motasglist_b/fn_1_43E08.c:
 	.text       start:0x00043E08 end:0x000442D8 align:4
 
 rel/main_rel/live_camera/fn_1_1212C.c:
@@ -1651,7 +1651,7 @@ rel/main_rel/phys/fn_1_E1E9C.c:
 rel/main_rel/effect_car/fn_1_702A0.c:
 	.text       start:0x000702A0 end:0x0007099C align:4
 
-rel/main_rel/font/fn_1_50190.c:
+rel/main_rel/font_b/fn_1_50190.c:
 	.text       start:0x00050190 end:0x000508C4 align:4
 
 rel/main_rel/bg_common/fn_1_103FCC.c:
@@ -1745,7 +1745,7 @@ rel/main_rel/sound/fn_1_A266C.c:
 rel/main_rel/memcard/fn_1_BED04.c:
 	.text       start:0x000BED04 end:0x000BF198 align:4
 
-rel/main_rel/motasglist/fn_1_433E0.c:
+rel/main_rel/motasglist_b/fn_1_433E0.c:
 	.text       start:0x000433E0 end:0x00043E08 align:4
 
 rel/main_rel/bg_cas/fn_1_FCA10.c:
@@ -1802,7 +1802,7 @@ rel/main_rel/archive/fn_1_12D404.c:
 rel/main_rel/sound/fn_1_A3A1C.c:
 	.text       start:0x000A3A1C end:0x000A3BD8 align:4
 
-rel/main_rel/font/fn_1_52968.c:
+rel/main_rel/font_b/fn_1_52968.c:
 	.text       start:0x00052968 end:0x00053830 align:4
 
 rel/main_rel/phys/fn_1_E9BA8.c:
@@ -1847,7 +1847,7 @@ rel/main_rel/screen_effect/fn_1_7ACDC.c:
 rel/main_rel/bg_cas/fn_1_FDD7C.c:
 	.text       start:0x000FDD7C end:0x000FDEC8 align:4
 
-rel/main_rel/font/fn_1_539CC.c:
+rel/main_rel/font_b/fn_1_539CC.c:
 	.text       start:0x000539CC end:0x00053B14 align:4
 
 rel/main_rel/font/fn_1_4D2AC.c:
@@ -1863,7 +1863,7 @@ rel/main_rel/_prolog/fn_1_3CF0.c:
 rel/main_rel/effect_car/fn_1_6CF3C.c:
 	.text       start:0x0006CF3C end:0x0006D488 align:4
 
-rel/main_rel/motasglist/fn_1_442D8.c:
+rel/main_rel/motasglist_b/fn_1_442D8.c:
 	.text       start:0x000442D8 end:0x000449A8 align:4
 
 rel/main_rel/sel_static_disp/fn_1_1492E0.c:
@@ -2031,7 +2031,7 @@ rel/main_rel/bg_cas/fn_1_1018BC.c:
 rel/main_rel/ghost/fn_1_F0D10.c:
 	.text       start:0x000F0D10 end:0x000F0E00 align:4
 
-rel/main_rel/font/fn_1_52718.c:
+rel/main_rel/font_b/fn_1_52718.c:
 	.text       start:0x00052718 end:0x00052968 align:4
 
 rel/main_rel/bg_win/fn_1_15C4EC.c:
@@ -2043,7 +2043,7 @@ rel/main_rel/sel_static_disp/fn_1_1490FC.c:
 rel/main_rel/load/fn_1_46EE8.c:
 	.text       start:0x00046EE8 end:0x0004706C align:4
 
-rel/main_rel/font/fn_1_4EC74.c:
+rel/main_rel/font_b/fn_1_4EC74.c:
 	.text       start:0x0004EC74 end:0x0004EDAC align:4
 
 rel/main_rel/sel_static_disp/fn_1_148738.c:
@@ -2138,7 +2138,7 @@ rel/main_rel/effect_car/fn_1_6B8A4.c:
 rel/main_rel/burner/fn_1_9BBE4.c:
 	.text       start:0x0009BBE4 end:0x0009C724 align:4
 
-rel/main_rel/font/fn_1_4EDAC.c:
+rel/main_rel/font_b/fn_1_4EDAC.c:
 	.text       start:0x0004EDAC end:0x0004F724 align:4
 
 rel/main_rel/memcard/fn_1_B5654.c:
@@ -7852,7 +7852,7 @@ rel/main_rel/sel_static_disp/fn_1_14083C.c:
 rel/main_rel/memcard/fn_1_C3A0C.c:
 	.text       start:0x000C3A0C end:0x000C40A0 align:4
 
-rel/main_rel/motasglist/fn_1_44A74.c:
+rel/main_rel/motasglist_b/fn_1_44A74.c:
 	.text       start:0x00044A74 end:0x000451E4 align:4
 
 rel/main_rel/camera/fn_1_B724.c:

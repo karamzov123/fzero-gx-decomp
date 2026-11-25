@@ -67334,7 +67334,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_4DC20.c",
+    "source": "rel/main_rel/font_b/fn_1_4DC20.c",
     "symbols": [
       "fn_1_4DC20",
       "fn_1_4DC6C",
@@ -67367,11 +67367,11 @@
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c"
+    "tu": "rel/main_rel/font_b.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_4E220.c",
+    "source": "rel/main_rel/font_b/fn_1_4E220.c",
     "symbols": [
       "fn_1_4E220"
     ],
@@ -67379,14 +67379,14 @@
     "matching_for": ["GFZE01"],
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c",
+    "tu": "rel/main_rel/font_b.c",
     "pool": {
       "@28": "lbl_1_rodata_2758"
     }
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_4E500.c",
+    "source": "rel/main_rel/font_b/fn_1_4E500.c",
     "symbols": [
       "fn_1_4E500",
       "fn_1_4E638",
@@ -67398,7 +67398,7 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.3.2",
-    "tu": "rel/main_rel/font.c",
+    "tu": "rel/main_rel/font_b.c",
     "collapsed": true,
     "pool": {
       "@27": "lbl_1_rodata_2778",
@@ -67407,14 +67407,14 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_4EC74.c",
+    "source": "rel/main_rel/font_b/fn_1_4EC74.c",
     "symbols": [
       "fn_1_4EC74"
     ],
     "status": "matching",
     "mw_version": "GC/2.5",
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c",
+    "tu": "rel/main_rel/font_b.c",
     "pool": {
       "@10": "lbl_1_rodata_2758",
       "@7": "lbl_1_rodata_2750"
@@ -67422,7 +67422,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_4EDAC.c",
+    "source": "rel/main_rel/font_b/fn_1_4EDAC.c",
     "symbols": [
       "fn_1_4EDAC"
     ],
@@ -67430,7 +67430,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c",
+    "tu": "rel/main_rel/font_b.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_26F8",
       "@8": "lbl_1_rodata_2750",
@@ -67447,7 +67447,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_4F724.c",
+    "source": "rel/main_rel/font_b/fn_1_4F724.c",
     "symbols": [
       "fn_1_4F724"
     ],
@@ -67455,14 +67455,14 @@
     "matching_for": ["GFZE01"],
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c",
+    "tu": "rel/main_rel/font_b.c",
     "pool": {
       "lbl_1_bss_4E6D0__fzgx_offset_16002": "lbl_1_bss_4E6D0+0x16002"
     }
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_4F734.c",
+    "source": "rel/main_rel/font_b/fn_1_4F734.c",
     "symbols": [
       "fn_1_4F734"
     ],
@@ -67470,7 +67470,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c",
+    "tu": "rel/main_rel/font_b.c",
     "pool": {
       "@42": "lbl_1_rodata_2778",
       "@43": "lbl_1_rodata_2758",
@@ -67480,7 +67480,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_4FC50.c",
+    "source": "rel/main_rel/font_b/fn_1_4FC50.c",
     "symbols": [
       "fn_1_4FC50"
     ],
@@ -67488,7 +67488,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c",
+    "tu": "rel/main_rel/font_b.c",
     "pool": {
       "@13": "lbl_1_rodata_2778",
       "lbl_1_bss_4E6D0__fzgx_offset_16002": "lbl_1_bss_4E6D0+0x16002"
@@ -67496,7 +67496,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_4FD64.c",
+    "source": "rel/main_rel/font_b/fn_1_4FD64.c",
     "symbols": [
       "fn_1_4FD64"
     ],
@@ -67504,7 +67504,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c",
+    "tu": "rel/main_rel/font_b.c",
     "pool": {
       "@45": "lbl_1_rodata_2758",
       "@43": "lbl_1_rodata_2750",
@@ -67513,32 +67513,32 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_50164.c",
+    "source": "rel/main_rel/font_b/fn_1_50164.c",
     "symbols": [
       "fn_1_50164"
     ],
     "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c"
+    "tu": "rel/main_rel/font_b.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_50190.c",
+    "source": "rel/main_rel/font_b/fn_1_50190.c",
     "symbols": [
       "fn_1_50190"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c",
+    "tu": "rel/main_rel/font_b.c",
     "pool": {
       "@27": "lbl_1_rodata_2758"
     }
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_508C4.c",
+    "source": "rel/main_rel/font_b/fn_1_508C4.c",
     "symbols": [
       "fn_1_508C4",
       "fn_1_50A90",
@@ -67550,7 +67550,7 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.3.2",
-    "tu": "rel/main_rel/font.c",
+    "tu": "rel/main_rel/font_b.c",
     "pool": {
       "@35": "lbl_1_rodata_2758",
       "@39": "lbl_1_rodata_2778",
@@ -67560,7 +67560,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_51914.c",
+    "source": "rel/main_rel/font_b/fn_1_51914.c",
     "symbols": [
       "fn_1_51914"
     ],
@@ -67568,25 +67568,25 @@
     "matching_for": ["GFZE01"],
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c",
+    "tu": "rel/main_rel/font_b.c",
     "pool": {
       "lbl_1_bss_4E6D0__fzgx_offset_16002": "lbl_1_bss_4E6D0+0x16002"
     }
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_51990.c",
+    "source": "rel/main_rel/font_b/fn_1_51990.c",
     "symbols": [
       "fn_1_51990"
     ],
     "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c"
+    "tu": "rel/main_rel/font_b.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_519AC.c",
+    "source": "rel/main_rel/font_b/fn_1_519AC.c",
     "symbols": [
       "fn_1_519AC"
     ],
@@ -67594,7 +67594,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c",
+    "tu": "rel/main_rel/font_b.c",
     "pool": {
       "@21": "lbl_1_data_1C5DC",
       "font_ordinal_suffix": "lbl_1_data_1C5EC"
@@ -67610,7 +67610,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_519FC.c",
+    "source": "rel/main_rel/font_b/fn_1_519FC.c",
     "symbols": [
       "fn_1_519FC",
       "fn_1_51AC0",
@@ -67629,7 +67629,7 @@
     ],
     "status": "matching",
     "mw_version": "GC/2.5",
-    "tu": "rel/main_rel/font.c",
+    "tu": "rel/main_rel/font_b.c",
     "pool": {
       "@6": "lbl_1_rodata_2758",
       "@78": "lbl_1_rodata_2770",
@@ -67641,7 +67641,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_5233C.c",
+    "source": "rel/main_rel/font_b/fn_1_5233C.c",
     "symbols": [
       "fn_1_5233C",
       "fn_1_52690"
@@ -67649,7 +67649,7 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/2.5",
-    "tu": "rel/main_rel/font.c",
+    "tu": "rel/main_rel/font_b.c",
     "pool": {
       "@61": "lbl_1_rodata_2764",
       "@66": "lbl_1_rodata_2750"
@@ -67658,7 +67658,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_52718.c",
+    "source": "rel/main_rel/font_b/fn_1_52718.c",
     "symbols": [
       "fn_1_52718",
       "fn_1_527B4"
@@ -67666,7 +67666,7 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/2.5",
-    "tu": "rel/main_rel/font.c",
+    "tu": "rel/main_rel/font_b.c",
     "pool": {
       "@11": "lbl_1_rodata_27A0"
     },
@@ -67674,7 +67674,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_52968.c",
+    "source": "rel/main_rel/font_b/fn_1_52968.c",
     "symbols": [
       "fn_1_52968",
       "fn_1_52B68",
@@ -67688,7 +67688,7 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "tu": "rel/main_rel/font.c",
+    "tu": "rel/main_rel/font_b.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_26F8",
       "@119": "lbl_1_rodata_282C",
@@ -67717,7 +67717,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_53830.c",
+    "source": "rel/main_rel/font_b/fn_1_53830.c",
     "symbols": [
       "fn_1_53830"
     ],
@@ -67725,7 +67725,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c",
+    "tu": "rel/main_rel/font_b.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_26F8",
       "@17": "lbl_1_rodata_2758",
@@ -67736,21 +67736,21 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_539CC.c",
+    "source": "rel/main_rel/font_b/fn_1_539CC.c",
     "symbols": [
       "fn_1_539CC"
     ],
     "status": "matching",
     "mw_version": "GC/2.0",
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c",
+    "tu": "rel/main_rel/font_b.c",
     "pool": {
       "@9": "lbl_1_rodata_2758"
     }
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_53B14.c",
+    "source": "rel/main_rel/font_b/fn_1_53B14.c",
     "symbols": [
       "fn_1_53B14"
     ],
@@ -67758,7 +67758,7 @@
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c",
+    "tu": "rel/main_rel/font_b.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_26F8",
       "@9": "lbl_1_rodata_2758",
@@ -67767,7 +67767,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_53BD8.c",
+    "source": "rel/main_rel/font_b/fn_1_53BD8.c",
     "symbols": [
       "fn_1_53BD8"
     ],
@@ -67775,7 +67775,7 @@
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c",
+    "tu": "rel/main_rel/font_b.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_26F8",
       "@9": "lbl_1_rodata_2758",
@@ -67784,7 +67784,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_53C9C.c",
+    "source": "rel/main_rel/font_b/fn_1_53C9C.c",
     "symbols": [
       "fn_1_53C9C"
     ],
@@ -67792,7 +67792,7 @@
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c",
+    "tu": "rel/main_rel/font_b.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_26F8",
       "@9": "lbl_1_rodata_2758",
@@ -67801,7 +67801,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_53E40.c",
+    "source": "rel/main_rel/font_b/fn_1_53E40.c",
     "symbols": [
       "fn_1_53E40"
     ],
@@ -67809,7 +67809,7 @@
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c",
+    "tu": "rel/main_rel/font_b.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_26F8",
       "@9": "lbl_1_rodata_2758",
@@ -67818,19 +67818,19 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_53FE4.c",
+    "source": "rel/main_rel/font_b/fn_1_53FE4.c",
     "symbols": [
       "fn_1_53FE4"
     ],
     "status": "matching",
-    "tu": "rel/main_rel/font.c",
+    "tu": "rel/main_rel/font_b.c",
     "pool": {
       "@8": "lbl_1_rodata_2778"
     }
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_5415C.c",
+    "source": "rel/main_rel/font_c/fn_1_5415C.c",
     "symbols": [
       "fn_1_5415C",
       "fn_1_5417C",
@@ -67856,7 +67856,7 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "tu": "rel/main_rel/font.c",
+    "tu": "rel/main_rel/font_c.c",
     "collapsed": true,
     "pool": {
       "@77": "lbl_1_rodata_2878",
@@ -67865,7 +67865,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_549F4.c",
+    "source": "rel/main_rel/font_c/fn_1_549F4.c",
     "symbols": [
       "fn_1_549F4"
     ],
@@ -67873,7 +67873,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c",
+    "tu": "rel/main_rel/font_c.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_2880",
       "@19": "lbl_1_rodata_2880",
@@ -67886,7 +67886,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_54DCC.c",
+    "source": "rel/main_rel/font_c/fn_1_54DCC.c",
     "symbols": [
       "fn_1_54DCC",
       "fn_1_54E00",
@@ -67898,7 +67898,7 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "tu": "rel/main_rel/font.c",
+    "tu": "rel/main_rel/font_c.c",
     "collapsed": true,
     "pool": {
       "...bss.0": "lbl_1_bss_6C798"
@@ -67906,29 +67906,29 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_55210.c",
+    "source": "rel/main_rel/font_c/fn_1_55210.c",
     "symbols": [
       "fn_1_55210"
     ],
     "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c"
+    "tu": "rel/main_rel/font_c.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_553C4.c",
+    "source": "rel/main_rel/font_c/fn_1_553C4.c",
     "symbols": [
       "fn_1_553C4"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c"
+    "tu": "rel/main_rel/font_c.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_5557C.c",
+    "source": "rel/main_rel/font_c/fn_1_5557C.c",
     "symbols": [
       "fn_1_5557C",
       "fn_1_555D0",
@@ -67945,11 +67945,11 @@
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c"
+    "tu": "rel/main_rel/font_c.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_55C48.c",
+    "source": "rel/main_rel/font_c/fn_1_55C48.c",
     "symbols": [
       "fn_1_55C48"
     ],
@@ -67957,11 +67957,11 @@
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c"
+    "tu": "rel/main_rel/font_c.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_55D6C.c",
+    "source": "rel/main_rel/font_c/fn_1_55D6C.c",
     "symbols": [
       "fn_1_55D6C"
     ],
@@ -67969,11 +67969,11 @@
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c"
+    "tu": "rel/main_rel/font_c.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_55EA0.c",
+    "source": "rel/main_rel/font_c/fn_1_55EA0.c",
     "symbols": [
       "fn_1_55EA0"
     ],
@@ -67981,11 +67981,11 @@
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c"
+    "tu": "rel/main_rel/font_c.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font/fn_1_55FC4.c",
+    "source": "rel/main_rel/font_c/fn_1_55FC4.c",
     "symbols": [
       "fn_1_55FC4",
       "fn_1_55FD0",
@@ -68014,7 +68014,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/font.c"
+    "tu": "rel/main_rel/font_c.c"
   },
   {
     "module": "main_rel",
@@ -72054,7 +72054,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/motasglist/fn_1_4247C.c",
+    "source": "rel/main_rel/motasglist_b/fn_1_4247C.c",
     "symbols": [
       "fn_1_4247C",
       "fn_1_426AC",
@@ -72063,32 +72063,32 @@
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/motasglist.c"
+    "tu": "rel/main_rel/motasglist_b.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/motasglist/fn_1_4270C.c",
+    "source": "rel/main_rel/motasglist_b/fn_1_4270C.c",
     "symbols": [
       "fn_1_4270C"
     ],
     "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/motasglist.c",
+    "tu": "rel/main_rel/motasglist_b.c",
     "pool": {
       "@74": "lbl_1_rodata_F58"
     }
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/motasglist/fn_1_42AD0.c",
+    "source": "rel/main_rel/motasglist_b/fn_1_42AD0.c",
     "symbols": [
       "fn_1_42AD0",
       "fn_1_42E74"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "tu": "rel/main_rel/motasglist.c",
+    "tu": "rel/main_rel/motasglist_b.c",
     "pool": {
       "@43": "lbl_1_rodata_F58",
       "@45": "lbl_1_rodata_F60"
@@ -72097,7 +72097,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/motasglist/fn_1_4300C.c",
+    "source": "rel/main_rel/motasglist_b/fn_1_4300C.c",
     "symbols": [
       "fn_1_4300C",
       "fn_1_43058",
@@ -72108,43 +72108,43 @@
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/motasglist.c"
+    "tu": "rel/main_rel/motasglist_b.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/motasglist/fn_1_43264.c",
+    "source": "rel/main_rel/motasglist_b/fn_1_43264.c",
     "symbols": [
       "fn_1_43264"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/motasglist.c",
+    "tu": "rel/main_rel/motasglist_b.c",
     "pool": {
       "@19": "lbl_1_rodata_F58"
     }
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/motasglist/fn_1_433A4.c",
+    "source": "rel/main_rel/motasglist_b/fn_1_433A4.c",
     "symbols": [
       "fn_1_433A4"
     ],
     "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/motasglist.c"
+    "tu": "rel/main_rel/motasglist_b.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/motasglist/fn_1_433E0.c",
+    "source": "rel/main_rel/motasglist_b/fn_1_433E0.c",
     "symbols": [
       "fn_1_433E0",
       "fn_1_438AC"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
-    "tu": "rel/main_rel/motasglist.c",
+    "tu": "rel/main_rel/motasglist_b.c",
     "collapsed": true,
     "pool": {
       "@178": "lbl_1_rodata_F60"
@@ -72153,28 +72153,28 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/motasglist/fn_1_43E08.c",
+    "source": "rel/main_rel/motasglist_b/fn_1_43E08.c",
     "symbols": [
       "fn_1_43E08"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/motasglist.c",
+    "tu": "rel/main_rel/motasglist_b.c",
     "pool": {
       "@53": "lbl_1_rodata_F58"
     }
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/motasglist/fn_1_442D8.c",
+    "source": "rel/main_rel/motasglist_b/fn_1_442D8.c",
     "symbols": [
       "fn_1_442D8",
       "fn_1_44884"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "tu": "rel/main_rel/motasglist.c",
+    "tu": "rel/main_rel/motasglist_b.c",
     "pool": {
       "@59": "lbl_1_rodata_F58",
       "@60": "lbl_1_rodata_F60",
@@ -72184,18 +72184,18 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/motasglist/fn_1_449A8.c",
+    "source": "rel/main_rel/motasglist_b/fn_1_449A8.c",
     "symbols": [
       "fn_1_449A8"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/motasglist.c"
+    "tu": "rel/main_rel/motasglist_b.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/motasglist/fn_1_44A74.c",
+    "source": "rel/main_rel/motasglist_b/fn_1_44A74.c",
     "symbols": [
       "fn_1_44A74",
       "fn_1_4502C",
@@ -72204,7 +72204,7 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "tu": "rel/main_rel/motasglist.c",
+    "tu": "rel/main_rel/motasglist_b.c",
     "collapsed": true,
     "pool": {
       "...bss.0": "lbl_1_bss_384C0"

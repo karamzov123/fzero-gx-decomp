@@ -750,7 +750,7 @@
    "file": "motasglist.c",
    "text": [
     267544,
-    283108
+    271484
    ],
    "data_sec": 5,
    "data": [
@@ -772,7 +772,27 @@
     "fn_1_41F58",
     "fn_1_42044",
     "fn_1_42254",
-    "fn_1_42458",
+    "fn_1_42458"
+   ],
+   "confidence": {
+    "text+data": 2,
+    "text-range": 30,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "motasglist_b.c",
+   "text": [
+    271484,
+    283108
+   ],
+   "data_sec": 5,
+   "data": [
+    26416,
+    26416
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_1_4247C",
     "fn_1_426AC",
     "fn_1_426E4",
@@ -797,8 +817,8 @@
     "fn_1_451D4"
    ],
    "confidence": {
-    "text+data": 2,
-    "text-range": 30,
+    "text+data": 22,
+    "text-range": 0,
     "data-vote": 0
    }
   },
@@ -927,12 +947,12 @@
    "file": "font.c",
    "text": [
     298024,
-    353892
+    318496
    ],
    "data_sec": 5,
    "data": [
     113864,
-    116304
+    116088
    ],
    "anchor_refs": [
     298024
@@ -1008,7 +1028,27 @@
     "fn_1_4D2AC",
     "fn_1_4D494",
     "fn_1_4D4C8",
-    "fn_1_4D784",
+    "fn_1_4D784"
+   ],
+   "confidence": {
+    "text+data": 11,
+    "text-range": 207,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "font_b.c",
+   "text": [
+    318496,
+    344412
+   ],
+   "data_sec": 5,
+   "data": [
+    116088,
+    116304
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_1_4DC20",
     "fn_1_4DC6C",
     "fn_1_4DCB8",
@@ -1091,7 +1131,27 @@
     "fn_1_53BD8",
     "fn_1_53C9C",
     "fn_1_53E40",
-    "fn_1_53FE4",
+    "fn_1_53FE4"
+   ],
+   "confidence": {
+    "text+data": 83,
+    "text-range": 0,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "font_c.c",
+   "text": [
+    344412,
+    353892
+   ],
+   "data_sec": 5,
+   "data": [
+    116304,
+    116304
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_1_5415C",
     "fn_1_5417C",
     "fn_1_541A8",
@@ -1160,8 +1220,8 @@
     "fn_1_565F8"
    ],
    "confidence": {
-    "text+data": 11,
-    "text-range": 207,
+    "text+data": 66,
+    "text-range": 0,
     "data-vote": 0
    }
   },
