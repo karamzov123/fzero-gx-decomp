@@ -169,7 +169,7 @@ typedef struct AXRNAHandle {
     ARQRequest requests[2];
 } AXRNAHandle;
 
-void fn_8005B0C4(AXRNAHandle *handle, int enabled);
+void AXRNA_SetPlaySw(AXRNAHandle *handle, int enabled);
 
 void fn_80023168(AXVPB *voice, unsigned short state);
 
@@ -188,7 +188,7 @@ static inline int axrna_get_play_switch(const AXRNAHandle *handle) {
     return (handle->switches >> 1) & 1;
 }
 
-void fn_8005B0C4(AXRNAHandle *handle, int enabled) {
+void AXRNA_SetPlaySw(AXRNAHandle *handle, int enabled) {
     AXPBADDR address;
     s32 last;
     s32 loop;

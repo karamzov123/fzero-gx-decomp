@@ -26062,6 +26062,167 @@
     "unit_size": 88,
     "unit_start": 2149213240
   },
+  "main:axrna_init_cnt": {
+    "address": 2149125240,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "u32 axrna_init_cnt",
+        "path": "src/dol/AXRNA_Finish.c"
+      }
+    ],
+    "definition": "u32 axrna_init_cnt",
+    "method": "declared-bss",
+    "module": "main",
+    "references": [
+      "AXRNA_Finish",
+      "fn_8005BDD4"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "dol/data/lbl_80190C78.c",
+    "symbol": "axrna_init_cnt",
+    "unit_align": 8,
+    "unit_size": 8,
+    "unit_start": 2149125240
+  },
+  "main:axrna_obj": {
+    "address": 2149129548,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "AXRNAHandle axrna_obj[16]",
+        "path": "src/dol/AXRNA_ExecServer.c"
+      },
+      {
+        "declaration": "AXRNAHandle axrna_obj[16]",
+        "path": "src/dol/AXRNA_Finish.c"
+      },
+      {
+        "declaration": "AXRNAHandle axrna_obj[16]",
+        "path": "src/dol/axrna_voice_drop.c"
+      },
+      {
+        "declaration": "u8 axrna_obj[3716]",
+        "path": "src/dol/fn_8005ACF0.c"
+      },
+      {
+        "declaration": "struct fn_8005ADBC_Entry axrna_obj[]",
+        "path": "src/dol/fn_8005ADBC.c"
+      },
+      {
+        "declaration": "AXRNAHandle axrna_obj[16]",
+        "path": "src/dol/fn_8005B534.c"
+      }
+    ],
+    "definition": "u8 axrna_obj[3716]",
+    "method": "opaque-bss-header-mismatch",
+    "module": "main",
+    "references": [
+      "AXRNA_ExecServer",
+      "AXRNA_Finish",
+      "axrna_voice_drop",
+      "fn_8005ACF0",
+      "fn_8005ADBC",
+      "fn_8005B534"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8008,
+    "sha256": "169341b2fc7534ea6452ae425c68c905c6a50e7439f5be5f9b815d26536d47b9",
+    "size": 3716,
+    "source": "dol/data/lbl_80190C88.c",
+    "symbol": "axrna_obj",
+    "unit_align": 8,
+    "unit_size": 8008,
+    "unit_start": 2149125256
+  },
+  "main:axrna_pan_tbl": {
+    "address": 2148738396,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "int axrna_pan_tbl[31]",
+        "path": "src/dol/AXRNA_SetOutPan.c"
+      },
+      {
+        "declaration": "int axrna_pan_tbl[31]",
+        "path": "src/dol/fn_8005B534.c"
+      }
+    ],
+    "definition": "int axrna_pan_tbl[31]",
+    "method": "typed-data",
+    "module": "main",
+    "references": [
+      "AXRNA_SetOutPan",
+      "fn_8005B534"
+    ],
+    "relocations": [],
+    "section": ".data",
+    "section_size": 19488,
+    "sha256": "9036107b9e0ca10acd3f75cb28bddccde21d67f0115987281948170cfb64005f",
+    "size": 124,
+    "source": "dol/data/lbl_8012D9B8.c",
+    "symbol": "axrna_pan_tbl",
+    "unit_align": 8,
+    "unit_size": 19488,
+    "unit_start": 2148719032
+  },
+  "main:axrna_update_hist": {
+    "address": 2149125260,
+    "align": 4,
+    "declarations": [
+      {
+        "declaration": "int axrna_update_hist[32]",
+        "path": "src/dol/axrna_update_play.c"
+      }
+    ],
+    "definition": "u8 axrna_update_hist[4288]",
+    "method": "opaque-bss-header-mismatch",
+    "module": "main",
+    "references": [
+      "axrna_update_play"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8008,
+    "sha256": "1e86afc67a97177fc1bb99dd14b34066386b507704ce0bfc3a3f6174bf8251a8",
+    "size": 4288,
+    "source": "dol/data/lbl_80190C88.c",
+    "symbol": "axrna_update_hist",
+    "unit_align": 8,
+    "unit_size": 8008,
+    "unit_start": 2149125256
+  },
+  "main:axrna_update_pos": {
+    "address": 2149125256,
+    "align": 8,
+    "declarations": [
+      {
+        "declaration": "int axrna_update_pos",
+        "path": "src/dol/axrna_update_play.c"
+      }
+    ],
+    "definition": "u8 axrna_update_pos[4]",
+    "method": "opaque-bss-header-mismatch",
+    "module": "main",
+    "references": [
+      "axrna_update_play"
+    ],
+    "relocations": [],
+    "section": ".bss",
+    "section_size": 8008,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "size": 4,
+    "source": "dol/data/lbl_80190C88.c",
+    "symbol": "axrna_update_pos",
+    "unit_align": 8,
+    "unit_size": 8008,
+    "unit_start": 2149125256
+  },
   "main:bb2": {
     "address": 2149214484,
     "align": 4,
@@ -35115,37 +35276,6 @@
     "unit_size": 19488,
     "unit_start": 2148719032
   },
-  "main:lbl_8013255C": {
-    "address": 2148738396,
-    "align": 4,
-    "declarations": [
-      {
-        "declaration": "int lbl_8013255C[31]",
-        "path": "src/dol/AXRNA_SetOutPan.c"
-      },
-      {
-        "declaration": "int lbl_8013255C[31]",
-        "path": "src/dol/fn_8005B534.c"
-      }
-    ],
-    "definition": "int lbl_8013255C[31]",
-    "method": "typed-data",
-    "module": "main",
-    "references": [
-      "AXRNA_SetOutPan",
-      "fn_8005B534"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 19488,
-    "sha256": "9036107b9e0ca10acd3f75cb28bddccde21d67f0115987281948170cfb64005f",
-    "size": 124,
-    "source": "dol/data/lbl_8012D9B8.c",
-    "symbol": "lbl_8013255C",
-    "unit_align": 8,
-    "unit_size": 19488,
-    "unit_start": 2148719032
-  },
   "main:lbl_80132788": {
     "address": 2148738952,
     "align": 8,
@@ -40232,33 +40362,6 @@
     "unit_size": 264,
     "unit_start": 2149124976
   },
-  "main:lbl_80190C78": {
-    "address": 2149125240,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "u32 lbl_80190C78",
-        "path": "src/dol/AXRNA_Finish.c"
-      }
-    ],
-    "definition": "u32 lbl_80190C78",
-    "method": "declared-bss",
-    "module": "main",
-    "references": [
-      "AXRNA_Finish",
-      "fn_8005BDD4"
-    ],
-    "relocations": [],
-    "section": ".bss",
-    "section_size": 8,
-    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
-    "size": 4,
-    "source": "dol/data/lbl_80190C78.c",
-    "symbol": "lbl_80190C78",
-    "unit_align": 8,
-    "unit_size": 8,
-    "unit_start": 2149125240
-  },
   "main:lbl_80190C7C": {
     "address": 2149125244,
     "align": 4,
@@ -40310,109 +40413,6 @@
     "unit_align": 8,
     "unit_size": 8,
     "unit_start": 2149125248
-  },
-  "main:lbl_80190C88": {
-    "address": 2149125256,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "int lbl_80190C88",
-        "path": "src/dol/axrna_update_play.c"
-      }
-    ],
-    "definition": "u8 lbl_80190C88[4]",
-    "method": "opaque-bss-header-mismatch",
-    "module": "main",
-    "references": [
-      "axrna_update_play"
-    ],
-    "relocations": [],
-    "section": ".bss",
-    "section_size": 8008,
-    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
-    "size": 4,
-    "source": "dol/data/lbl_80190C88.c",
-    "symbol": "lbl_80190C88",
-    "unit_align": 8,
-    "unit_size": 8008,
-    "unit_start": 2149125256
-  },
-  "main:lbl_80190C8C": {
-    "address": 2149125260,
-    "align": 4,
-    "declarations": [
-      {
-        "declaration": "int lbl_80190C8C[32]",
-        "path": "src/dol/axrna_update_play.c"
-      }
-    ],
-    "definition": "u8 lbl_80190C8C[4288]",
-    "method": "opaque-bss-header-mismatch",
-    "module": "main",
-    "references": [
-      "axrna_update_play"
-    ],
-    "relocations": [],
-    "section": ".bss",
-    "section_size": 8008,
-    "sha256": "1e86afc67a97177fc1bb99dd14b34066386b507704ce0bfc3a3f6174bf8251a8",
-    "size": 4288,
-    "source": "dol/data/lbl_80190C88.c",
-    "symbol": "lbl_80190C8C",
-    "unit_align": 8,
-    "unit_size": 8008,
-    "unit_start": 2149125256
-  },
-  "main:lbl_80191D4C": {
-    "address": 2149129548,
-    "align": 4,
-    "declarations": [
-      {
-        "declaration": "AXRNAHandle lbl_80191D4C[16]",
-        "path": "src/dol/AXRNA_ExecServer.c"
-      },
-      {
-        "declaration": "AXRNAHandle lbl_80191D4C[16]",
-        "path": "src/dol/AXRNA_Finish.c"
-      },
-      {
-        "declaration": "AXRNAHandle lbl_80191D4C[16]",
-        "path": "src/dol/axrna_voice_drop.c"
-      },
-      {
-        "declaration": "u8 lbl_80191D4C[3716]",
-        "path": "src/dol/fn_8005ACF0.c"
-      },
-      {
-        "declaration": "struct fn_8005ADBC_Entry lbl_80191D4C[]",
-        "path": "src/dol/fn_8005ADBC.c"
-      },
-      {
-        "declaration": "AXRNAHandle lbl_80191D4C[16]",
-        "path": "src/dol/fn_8005B534.c"
-      }
-    ],
-    "definition": "u8 lbl_80191D4C[3716]",
-    "method": "opaque-bss-header-mismatch",
-    "module": "main",
-    "references": [
-      "AXRNA_ExecServer",
-      "AXRNA_Finish",
-      "axrna_voice_drop",
-      "fn_8005ACF0",
-      "fn_8005ADBC",
-      "fn_8005B534"
-    ],
-    "relocations": [],
-    "section": ".bss",
-    "section_size": 8008,
-    "sha256": "169341b2fc7534ea6452ae425c68c905c6a50e7439f5be5f9b815d26536d47b9",
-    "size": 3716,
-    "source": "dol/data/lbl_80190C88.c",
-    "symbol": "lbl_80191D4C",
-    "unit_align": 8,
-    "unit_size": 8008,
-    "unit_start": 2149125256
   },
   "main:lbl_80192BD0": {
     "address": 2149133264,

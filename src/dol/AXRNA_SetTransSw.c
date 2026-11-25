@@ -198,7 +198,7 @@ static inline int axrna_get_transfer_switch(AXRNAHandle *handle) {
     return handle->switches & 1;
 }
 
-void fn_8005B264(AXRNAHandle *handle, int enabled) {
+void AXRNA_SetTransSw(AXRNAHandle *handle, int enabled) {
     long channel;
     long retry;
     long spin;

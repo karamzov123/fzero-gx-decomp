@@ -46,18 +46,18 @@ struct fn_8005A668_Arg0 {
     u16 unk_A0;
 };
 
-void fn_8005A668(struct fn_8005A668_Arg0 *arg0, u32 arg1) {
+void AXRNA_SetAdjsfreqFlg(struct fn_8005A668_Arg0 *arg0, u32 arg1) {
     if (arg0 == 0) { return; }
     arg0->unk_A0 = arg1;
 }
 
-// fn_8005A678: returns a constant.
-int fn_8005A678(void) {
+// AXRNA_DiscardData: returns a constant.
+int AXRNA_DiscardData(void) {
     return 0;
 }
 
-// fn_8005A680: returns a constant.
-int fn_8005A680(void) {
+// AXRNA_SetStmHdInfo: returns a constant.
+int AXRNA_SetStmHdInfo(void) {
     return 0;
 }
 
@@ -66,7 +66,7 @@ struct fn_8005A688_Arg0 {
     u32 unk_80;
 };
 
-void fn_8005A688(struct fn_8005A688_Arg0 *arg0, u32 arg1) {
+void AXRNA_SetBitPerSmpl(struct fn_8005A688_Arg0 *arg0, u32 arg1) {
     if (arg0 == 0) { return; }
     arg0->unk_80 = arg1;
 }
@@ -241,7 +241,7 @@ typedef struct AXRNAHandle {
 
 void fn_80026EE0(AXVPB *voice, int pan);
 
-extern int lbl_8013255C[31];
+extern int axrna_pan_tbl[31];
 
 void AXRNA_SetOutPan(AXRNAHandle *handle, int channel, int pan) {
     AXVPB *voice;
@@ -254,7 +254,7 @@ void AXRNA_SetOutPan(AXRNAHandle *handle, int channel, int pan) {
                 fn_8005A648();
                 voice = handle->voices[channel];
                 if (voice != 0) {
-                    fn_80026EE0(voice, lbl_8013255C[pan + 15]);
+                    fn_80026EE0(voice, axrna_pan_tbl[pan + 15]);
                 }
                 fn_8005A628();
             }
@@ -267,7 +267,7 @@ extern u32 fn_80026D90(struct fn_80026D90_Arg0 *, u32);
 
 struct AXRNAHandle;
 
-void fn_8005A74C(struct AXRNAHandle *handle, s32 value) {
+void AXRNA_SetOutVol(struct AXRNAHandle *handle, s32 value) {
     u8 *slot;
     u32 volume;
     s32 i;
@@ -317,7 +317,7 @@ typedef struct AdxtSlot {
 } AdxtSlot;
 
 #pragma opt_loop_invariants off
-void fn_8005A7F8(AdxtSlot *p, s32 rate) {
+void AXRNA_SetSfreq(AdxtSlot *p, s32 rate) {
     s16 sync[7];
     s32 i;
     s32 adj;
@@ -361,21 +361,21 @@ for (fzgx_loop_i_651 = 0; fzgx_loop_i_651 < p->count; fzgx_loop_i_651++) {
 }
 #pragma opt_loop_invariants reset
 
-void fn_8005A94C(u8 *ptr, u8 value) {
+void AXRNA_SetNumChan(u8 *ptr, u8 value) {
     if (ptr != 0) {
         ptr[3] = value;
     }
 }
 
-void fn_8005A9B8(AXRNAHandle *handle);
+void AXRNA_ExecHndl(AXRNAHandle *handle);
 
-extern AXRNAHandle lbl_80191D4C[16];
+extern AXRNAHandle axrna_obj[16];
 
 void AXRNA_ExecServer(void) {
     unsigned int i;
     for (i = 0; i < 16; i++) {
-        if (lbl_80191D4C[i].used == 1) {
-            fn_8005A9B8(&lbl_80191D4C[i]);
+        if (axrna_obj[i].used == 1) {
+            AXRNA_ExecHndl(&axrna_obj[i]);
         }
     }
 }
@@ -388,9 +388,9 @@ void ARQPostRequest(void *request, unsigned long owner, unsigned long type, unsi
 
 void DCFlushRange(void *address, unsigned long length);
 
-void fn_8005ACF0(unsigned long request_address);
+void axrna_end_flash(unsigned long request_address);
 
-void fn_8005ADBC(unsigned long request_address);
+void axrna_end_trans(unsigned long request_address);
 
 void axrna_update_play(AXRNAHandle *handle);
 
@@ -449,7 +449,7 @@ static inline void axrna_transfer(AXRNAHandle *handle) {
         handle->transfer_pending[channel] = 1;
         ARQPostRequest(&handle->requests[channel], handle->request_owners[channel], 0, 1,
                        (unsigned long)input_chunk.data, (unsigned long)buffer_chunk.data,
-                       transfer_size, fn_8005ADBC);
+                       transfer_size, axrna_end_trans);
     }
 }
 
@@ -478,11 +478,11 @@ static inline void axrna_flash(AXRNAHandle *handle) {
         handle->flash_pending[channel] = 1;
         ARQPostRequest(&handle->requests[channel], handle->request_owners[channel], 0, 1,
                        (unsigned long)lbl_80190C7C[0], (unsigned long)flash_chunk.data,
-                       transfer_size, fn_8005ACF0);
+                       transfer_size, axrna_end_flash);
     }
 }
 
-void fn_8005A9B8(AXRNAHandle *handle) {
+void AXRNA_ExecHndl(AXRNAHandle *handle) {
     if (!handle) {
         return;
     }
@@ -498,7 +498,7 @@ void fn_8005A9B8(AXRNAHandle *handle) {
     }
 }
 
-void fn_8005ACF0(unsigned long request_address) {
+void axrna_end_flash(unsigned long request_address) {
     u32 v;
     s32 a;
     AXRNAHandle *rec;
@@ -508,7 +508,7 @@ void fn_8005ACF0(unsigned long request_address) {
     v = ((const ARQRequest *)request_address)->owner;
     a = v & 0x7FFFFFFF;
     k = a / 2;
-    rec = &lbl_80191D4C[k];
+    rec = &axrna_obj[k];
     idx = a % 2;
     if (rec->flash_pending[idx] == 1) {
         SJ *obj = rec->buffers[idx];

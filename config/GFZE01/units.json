@@ -9832,8 +9832,8 @@
     "source": "dol/axrna_update_play.c",
     "symbols": [
       "axrna_update_play",
-      "fn_8005B010",
-      "fn_8005B068"
+      "AXRNA_GetNumRoom",
+      "AXRNA_GetNumData"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
@@ -12195,7 +12195,7 @@
       "lbl_80132330",
       "lbl_801324F0",
       "lbl_80132558",
-      "lbl_8013255C"
+      "axrna_pan_tbl"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -13166,9 +13166,9 @@
   },
   {
     "module": "main",
-    "source": "dol/data/lbl_80190C78.c",
+    "source": "dol/data/axrna_init_cnt.c",
     "symbols": [
-      "lbl_80190C78",
+      "axrna_init_cnt",
       "lbl_80190C7C"
     ],
     "status": "matching",
@@ -13191,11 +13191,11 @@
   },
   {
     "module": "main",
-    "source": "dol/data/lbl_80190C88.c",
+    "source": "dol/data/axrna_update_pos.c",
     "symbols": [
-      "lbl_80190C88",
-      "lbl_80190C8C",
-      "lbl_80191D4C"
+      "axrna_update_pos",
+      "axrna_update_hist",
+      "axrna_obj"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -22071,19 +22071,19 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_8005A668.c",
+    "source": "dol/AXRNA_SetAdjsfreqFlg.c",
     "symbols": [
-      "fn_8005A668",
-      "fn_8005A678",
-      "fn_8005A680",
-      "fn_8005A688",
+      "AXRNA_SetAdjsfreqFlg",
+      "AXRNA_DiscardData",
+      "AXRNA_SetStmHdInfo",
+      "AXRNA_SetBitPerSmpl",
       "AXRNA_SetOutPan",
-      "fn_8005A74C",
-      "fn_8005A7F8",
-      "fn_8005A94C",
+      "AXRNA_SetOutVol",
+      "AXRNA_SetSfreq",
+      "AXRNA_SetNumChan",
       "AXRNA_ExecServer",
-      "fn_8005A9B8",
-      "fn_8005ACF0"
+      "AXRNA_ExecHndl",
+      "axrna_end_flash"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
@@ -22097,9 +22097,9 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_8005ADBC.c",
+    "source": "dol/axrna_end_trans.c",
     "symbols": [
-      "fn_8005ADBC"
+      "axrna_end_trans"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
@@ -22110,9 +22110,9 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_8005B0C4.c",
+    "source": "dol/AXRNA_SetPlaySw.c",
     "symbols": [
-      "fn_8005B0C4"
+      "AXRNA_SetPlaySw"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
@@ -22122,9 +22122,9 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_8005B264.c",
+    "source": "dol/AXRNA_SetTransSw.c",
     "symbols": [
-      "fn_8005B264"
+      "AXRNA_SetTransSw"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -22147,9 +22147,9 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_8005B464.c",
+    "source": "dol/AXRNA_Destroy.c",
     "symbols": [
-      "fn_8005B464"
+      "AXRNA_Destroy"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
@@ -22157,9 +22157,9 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_8005B534.c",
+    "source": "dol/AXRNA_Create.c",
     "symbols": [
-      "fn_8005B534"
+      "AXRNA_Create"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -22182,9 +22182,9 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_8005BDD4.c",
+    "source": "dol/AXRNA_Init.c",
     "symbols": [
-      "fn_8005BDD4"
+      "AXRNA_Init"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -22196,22 +22196,22 @@
       "0"
     ],
     "pool": {
-      "...bss.0": "lbl_80190C78",
-      "lbl_80190C78": "lbl_80190C78",
+      "...bss.0": "axrna_init_cnt",
+      "axrna_init_cnt": "axrna_init_cnt",
       "lbl_80190C7C": "lbl_80190C7C",
       "lbl_80190C80": "lbl_80190C80",
       "lbl_80190C80__fzgx_offset_4": "lbl_80190C80+0x4",
-      "lbl_80190C88": "lbl_80190C88",
-      "lbl_80190C8C": "lbl_80190C8C",
-      "lbl_80190C8C__fzgx_offset_80": "lbl_80190C8C+0x80",
-      "lbl_80191D4C": "lbl_80191D4C"
+      "axrna_update_pos": "axrna_update_pos",
+      "axrna_update_hist": "axrna_update_hist",
+      "lbl_80190C8C__fzgx_offset_80": "axrna_update_hist+0x80",
+      "axrna_obj": "axrna_obj"
     }
   },
   {
     "module": "main",
-    "source": "dol/fn_8005BE48.c",
+    "source": "dol/AXRNA_EntryErrFunc.c",
     "symbols": [
-      "fn_8005BE48"
+      "AXRNA_EntryErrFunc"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2"

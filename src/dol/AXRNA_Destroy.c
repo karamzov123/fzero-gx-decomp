@@ -25,8 +25,8 @@ typedef struct fn_8005B464_Obj {
     fn_8005B464_Node *field38;
 } fn_8005B464_Obj;
 
-extern u32 fn_8005B0C4(u32, u32);
-extern u32 fn_8005B264(u32, u32);
+extern u32 AXRNA_SetPlaySw(u32, u32);
+extern u32 AXRNA_SetTransSw(u32, u32);
 extern u32 fn_8005BE98(u32);
 extern u32 memset(u32, u32, u32);
 extern void fn_80020ABC(u32);
@@ -34,13 +34,13 @@ extern void fn_80026D70(void *);
 extern void fn_8005A628(void);
 extern void fn_8005A648(void);
 
-void fn_8005B464(u32 arg0) {
+void AXRNA_Destroy(u32 arg0) {
     fn_8005B464_Obj *p;
     s32 i;
 
     if (arg0 != 0) {
-        fn_8005B0C4(arg0, 0);
-        fn_8005B264(arg0, 0);
+        AXRNA_SetPlaySw(arg0, 0);
+        AXRNA_SetTransSw(arg0, 0);
         p = (fn_8005B464_Obj *)arg0;
         i = 0;
         while (i < ((fn_8005B464_Obj *)arg0)->count) {

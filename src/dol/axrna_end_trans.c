@@ -30,10 +30,10 @@ struct fn_8005ADBC_Arg0 {
     u32 unk_4;
 };
 
-extern struct fn_8005ADBC_Entry lbl_80191D4C[];
+extern struct fn_8005ADBC_Entry axrna_obj[];
 
 #pragma opt_propagation off
-void fn_8005ADBC(struct fn_8005ADBC_Arg0 *arg0) {
+void axrna_end_trans(struct fn_8005ADBC_Arg0 *arg0) {
     u32 value;
     u32 index_bits;
     u32 sign;
@@ -46,7 +46,7 @@ void fn_8005ADBC(struct fn_8005ADBC_Arg0 *arg0) {
     value = arg0->unk_4;
     index_bits = value & 0x7FFFFFFF;
     sign = index_bits >> 31;
-    entry = &lbl_80191D4C[(s32)(sign + index_bits) >> 1];
+    entry = &axrna_obj[(s32)(sign + index_bits) >> 1];
     slot = (((value & 1) ^ sign) - sign);
     slot4 = slot << 2;
     state = (s32 *)(slot4 + (u32)((u8 *)entry + 0x60));

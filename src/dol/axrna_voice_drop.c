@@ -172,7 +172,7 @@ typedef struct AXRNAHandle {
 
 void fn_80026D70(AXVPB *voice);
 
-extern AXRNAHandle lbl_80191D4C[16];
+extern AXRNAHandle axrna_obj[16];
 
 void axrna_voice_drop(void *voice_data) {
     AXVPB *voice = (AXVPB *)voice_data;
@@ -180,9 +180,9 @@ void axrna_voice_drop(void *voice_data) {
     int channel;
     for (handle_index = 0; handle_index < 16; handle_index++) {
         for (channel = 0; channel < 2; channel++) {
-            if (voice == lbl_80191D4C[handle_index].voices[channel]) {
-                fn_80026D70(lbl_80191D4C[handle_index].voices[channel]);
-                lbl_80191D4C[handle_index].voices[channel] = 0;
+            if (voice == axrna_obj[handle_index].voices[channel]) {
+                fn_80026D70(axrna_obj[handle_index].voices[channel]);
+                axrna_obj[handle_index].voices[channel] = 0;
                 return;
             }
         }
@@ -204,13 +204,13 @@ void fn_8005BE98(RNAResource *resource);
 
 void fn_8005BFB4(void);
 
-void fn_8005B0C4(AXRNAHandle *handle, int enabled);
+void AXRNA_SetPlaySw(AXRNAHandle *handle, int enabled);
 
-void fn_8005B264(AXRNAHandle *handle, int enabled);
+void AXRNA_SetTransSw(AXRNAHandle *handle, int enabled);
 
 void AXRNA_Destroy(AXRNAHandle *handle);
 
-extern u32 lbl_80190C78;
+extern u32 axrna_init_cnt;
 
 
 static inline void AXRNA_Destroy(AXRNAHandle *handle) {
@@ -218,8 +218,8 @@ static inline void AXRNA_Destroy(AXRNAHandle *handle) {
     if (handle == 0) {
         return;
     }
-    fn_8005B0C4(handle, 0);
-    fn_8005B264(handle, 0);
+    AXRNA_SetPlaySw(handle, 0);
+    AXRNA_SetTransSw(handle, 0);
     for (channel = 0; channel < handle->allocated_channels; channel++) {
         if (handle->buffers[channel] != 0) {
             handle->buffers[channel]->interface->destroy(handle->buffers[channel]);
@@ -239,14 +239,14 @@ static inline void AXRNA_Destroy(AXRNAHandle *handle) {
 
 void AXRNA_Finish(void) {
     int i;
-    lbl_80190C78--;
-    if (lbl_80190C78 == 0) {
+    axrna_init_cnt--;
+    if (axrna_init_cnt == 0) {
         for (i = 0; i < 16; i++) {
-            if (lbl_80191D4C[i].used == 1) {
-                AXRNA_Destroy(&lbl_80191D4C[i]);
+            if (axrna_obj[i].used == 1) {
+                AXRNA_Destroy(&axrna_obj[i]);
             }
         }
-        memset(lbl_80191D4C, 0, sizeof(lbl_80191D4C));
+        memset(axrna_obj, 0, sizeof(axrna_obj));
         fn_8005BFB4();
     }
 }

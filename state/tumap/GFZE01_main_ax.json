@@ -3976,7 +3976,7 @@
    "ax": "801E88C8",
    "files": []
   },
-  "fn_8005A688": {
+  "AXRNA_SetBitPerSmpl": {
    "gx": "8005A688",
    "ax": "801E897C",
    "files": []
@@ -3986,17 +3986,17 @@
    "ax": "801E898C",
    "files": []
   },
-  "fn_8005A74C": {
+  "AXRNA_SetOutVol": {
    "gx": "8005A74C",
    "ax": "801E8A40",
    "files": []
   },
-  "fn_8005A7F8": {
+  "AXRNA_SetSfreq": {
    "gx": "8005A7F8",
    "ax": "801E8AEC",
    "files": []
   },
-  "fn_8005A94C": {
+  "AXRNA_SetNumChan": {
    "gx": "8005A94C",
    "ax": "801E8C40",
    "files": []
@@ -4006,17 +4006,17 @@
    "ax": "801E8C50",
    "files": []
   },
-  "fn_8005A9B8": {
+  "AXRNA_ExecHndl": {
    "gx": "8005A9B8",
    "ax": "801E8CAC",
    "files": []
   },
-  "fn_8005ACF0": {
+  "axrna_end_flash": {
    "gx": "8005ACF0",
    "ax": "801E8FE4",
    "files": []
   },
-  "fn_8005ADBC": {
+  "axrna_end_trans": {
    "gx": "8005ADBC",
    "ax": "801E90B0",
    "files": []
@@ -4026,32 +4026,32 @@
    "ax": "801E918C",
    "files": []
   },
-  "fn_8005B010": {
+  "AXRNA_GetNumRoom": {
    "gx": "8005B010",
    "ax": "801E9304",
    "files": []
   },
-  "fn_8005B068": {
+  "AXRNA_GetNumData": {
    "gx": "8005B068",
    "ax": "801E935C",
    "files": []
   },
-  "fn_8005B0C4": {
+  "AXRNA_SetPlaySw": {
    "gx": "8005B0C4",
    "ax": "801E93B8",
    "files": []
   },
-  "fn_8005B264": {
+  "AXRNA_SetTransSw": {
    "gx": "8005B264",
    "ax": "801E9558",
    "files": []
   },
-  "fn_8005B464": {
+  "AXRNA_Destroy": {
    "gx": "8005B464",
    "ax": "801E9758",
    "files": []
   },
-  "fn_8005B534": {
+  "AXRNA_Create": {
    "gx": "8005B534",
    "ax": "801E9828",
    "files": []
@@ -4066,7 +4066,7 @@
    "ax": "801E9FA8",
    "files": []
   },
-  "fn_8005BDD4": {
+  "AXRNA_Init": {
    "gx": "8005BDD4",
    "ax": "801EA0C8",
    "files": []

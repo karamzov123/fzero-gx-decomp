@@ -1,31 +1,31 @@
 #include "types.h"
 
-extern u32 fn_8005A668(void);
-extern u32 fn_8005A680(void);
-extern u32 fn_8005A678(void);
-extern u32 fn_8005A688(void);
+extern u32 AXRNA_SetAdjsfreqFlg(void);
+extern u32 AXRNA_SetStmHdInfo(void);
+extern u32 AXRNA_DiscardData(void);
+extern u32 AXRNA_SetBitPerSmpl(void);
 extern u32 AXRNA_SetOutPan(void);
 struct AXRNAHandle;
-extern void fn_8005A74C(struct AXRNAHandle *, s32);
-extern u32 fn_8005A7F8(void);
-extern u32 fn_8005A94C(void);
+extern void AXRNA_SetOutVol(struct AXRNAHandle *, s32);
+extern u32 AXRNA_SetSfreq(void);
+extern u32 AXRNA_SetNumChan(void);
 extern u32 AXRNA_ExecServer(void);
-extern u32 fn_8005B010(void);
-extern u32 fn_8005B068(void);
-extern u32 fn_8005B0C4();
-extern u32 fn_8005B264();
-extern u32 fn_8005B464(u32);
-extern u32 fn_8005B534(void);
-extern u32 fn_8005BE48(void);
+extern u32 AXRNA_GetNumRoom(void);
+extern u32 AXRNA_GetNumData(void);
+extern u32 AXRNA_SetPlaySw();
+extern u32 AXRNA_SetTransSw();
+extern u32 AXRNA_Destroy(u32);
+extern u32 AXRNA_Create(void);
+extern u32 AXRNA_EntryErrFunc(void);
 extern u32 AXRNA_Finish(void);
-extern u32 fn_8005BDD4(void);
+extern u32 AXRNA_Init(void);
 
 void fn_8004ED3C(void) {
-    fn_8005A668();
+    AXRNA_SetAdjsfreqFlg();
 }
 
 s32 fn_8004ED5C(void) {
-    fn_8005A680();
+    AXRNA_SetStmHdInfo();
     return 0;
 }
 
@@ -34,11 +34,11 @@ void fn_8004ED80(void) {
 }
 
 void fn_8004ED84(void) {
-    fn_8005A678();
+    AXRNA_DiscardData();
 }
 
 void fn_8004EDA4(void) {
-    fn_8005A688();
+    AXRNA_SetBitPerSmpl();
 }
 
 void fn_8004EDC4(void) {
@@ -46,15 +46,15 @@ void fn_8004EDC4(void) {
 }
 
 void fn_8004EDE4(struct AXRNAHandle *handle, s32 value) {
-    fn_8005A74C(handle, value);
+    AXRNA_SetOutVol(handle, value);
 }
 
 void fn_8004EE04(void) {
-    fn_8005A7F8();
+    AXRNA_SetSfreq();
 }
 
 void fn_8004EE24(void) {
-    fn_8005A94C();
+    AXRNA_SetNumChan();
 }
 
 void fn_8004EE44(void) {
@@ -62,33 +62,33 @@ void fn_8004EE44(void) {
 }
 
 void fn_8004EE64(void) {
-    fn_8005B010();
+    AXRNA_GetNumRoom();
 }
 
 void fn_8004EE84(void) {
-    fn_8005B068();
+    AXRNA_GetNumData();
 }
 
 void fn_8004EEA4(void) {
-    fn_8005B0C4();
+    AXRNA_SetPlaySw();
 }
 
 void fn_8004EEC4(void) {
-    fn_8005B264();
+    AXRNA_SetTransSw();
 }
 
 void fn_8004EEE4(u32 arg0) {
-    fn_8005B0C4(arg0, 0);
-    fn_8005B264(arg0, 0);
-    fn_8005B464(arg0);
+    AXRNA_SetPlaySw(arg0, 0);
+    AXRNA_SetTransSw(arg0, 0);
+    AXRNA_Destroy(arg0);
 }
 
 void fn_8004EF28(void) {
-    fn_8005B534();
+    AXRNA_Create();
 }
 
 void fn_8004EF48(void) {
-    fn_8005BE48();
+    AXRNA_EntryErrFunc();
 }
 
 void fn_8004EF68(void) {
@@ -96,5 +96,5 @@ void fn_8004EF68(void) {
 }
 
 void fn_8004EF88(void) {
-    fn_8005BDD4();
+    AXRNA_Init();
 }

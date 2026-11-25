@@ -178,9 +178,9 @@ static const char *const lbl_800927C4__fzgx_offset_4[] = {
 };
 
 extern int lbl_80132558;
-extern int lbl_8013255C[31];
+extern int axrna_pan_tbl[31];
 extern int lbl_80190C80;
-extern AXRNAHandle lbl_80191D4C[16];
+extern AXRNAHandle axrna_obj[16];
 
 void fn_8005A648(void);
 void fn_8005A628(void);
@@ -197,8 +197,8 @@ void fn_80023438(AXVPB *voice, AXPBSRC *src);
 void fn_80025EF4(AXVPB *voice, int mode, int input, int auxA, int auxB, int pan, int span, int fader);
 void fn_80026D70(AXVPB *voice);
 void fn_80026EE0(AXVPB *voice, int pan);
-void fn_8005B0C4(AXRNAHandle *handle, int enabled);
-void fn_8005B264(AXRNAHandle *handle, int enabled);
+void AXRNA_SetPlaySw(AXRNAHandle *handle, int enabled);
+void AXRNA_SetTransSw(AXRNAHandle *handle, int enabled);
 void axrna_voice_drop(void *voice);
 void *memset(void *dst, int c, unsigned long n);
 
@@ -246,7 +246,7 @@ static inline void AXRNA_SetOutPan(AXRNAHandle *handle, long channel, long pan) 
                 fn_8005A648();
                 voice = handle->voices[channel];
                 if (voice != 0) {
-                    fn_80026EE0(voice, lbl_8013255C[clamped_pan + 15]);
+                    fn_80026EE0(voice, axrna_pan_tbl[clamped_pan + 15]);
                 }
                 fn_8005A628();
             }
@@ -297,8 +297,8 @@ static inline void AXRNA_Destroy(AXRNAHandle *handle) {
     if (handle == 0) {
         return;
     }
-    fn_8005B0C4(handle, 0);
-    fn_8005B264(handle, 0);
+    AXRNA_SetPlaySw(handle, 0);
+    AXRNA_SetTransSw(handle, 0);
     for (channel = 0; channel < handle->allocated_channels; channel++) {
         if (handle->buffers[channel] != 0) {
             handle->buffers[channel]->interface->destroy(handle->buffers[channel]);
@@ -316,7 +316,7 @@ static inline void AXRNA_Destroy(AXRNAHandle *handle) {
     memset(handle, 0, sizeof(AXRNAHandle));
 }
 
-AXRNAHandle *fn_8005B534(SJ **inputs, long max_channels) {
+AXRNAHandle *AXRNA_Create(SJ **inputs, long max_channels) {
     AXRNAHandle *handle;
     unsigned int handle_index;
     unsigned int channel;
@@ -336,7 +336,7 @@ AXRNAHandle *fn_8005B534(SJ **inputs, long max_channels) {
         }
     }
     for (handle_index = 0; handle_index < 16; handle_index++) {
-        if (lbl_80191D4C[handle_index].used == 0) {
+        if (axrna_obj[handle_index].used == 0) {
             break;
         }
     }
@@ -345,7 +345,7 @@ AXRNAHandle *fn_8005B534(SJ **inputs, long max_channels) {
         return 0;
     }
 
-    handle = &lbl_80191D4C[handle_index];
+    handle = &axrna_obj[handle_index];
     handle->num_channels = max_channels;
     handle->allocated_channels = max_channels;
     for (channel = 0; channel < handle->allocated_channels; channel++) {

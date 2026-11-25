@@ -26,7 +26,7 @@ extern u32 lbl_801322C8[];
 extern int lbl_80132330[0x70];
 #include "dol/data/lbl_801324F0.h"
 extern int lbl_80132558;
-extern int lbl_8013255C[31];
+extern int axrna_pan_tbl[31];
 
 
 
@@ -4484,7 +4484,7 @@ __declspec(section ".data") int lbl_80132558 __attribute__((aligned(8))) = 1;
 
 
 #pragma explicit_zero_data on
-__declspec(section ".data") int lbl_8013255C[31] __attribute__((aligned(4))) = {
+__declspec(section ".data") int axrna_pan_tbl[31] __attribute__((aligned(4))) = {
     0, 4, 8, 12, 16, 20, 24, 28, 33, 37, 41, 45, 49, 53, 57, 64, 68, 72, 76, 81, 85, 89, 93, 98, 102, 106, 110, 115, 119, 123, 127
 };
 #pragma explicit_zero_data reset

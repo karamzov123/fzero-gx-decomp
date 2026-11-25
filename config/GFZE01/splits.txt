@@ -130,7 +130,7 @@ dol/fn_8005A5BC.c:
 dol/adx/ax_rna_controls.c:
 	.text       start:0x8005A628 end:0x8005A668 align:4
 
-dol/fn_8005A668.c:
+dol/AXRNA_SetAdjsfreqFlg.c:
 	.text       start:0x8005A668 end:0x8005ADBC align:4
 
 dol/fn_80046718.c:
@@ -142,7 +142,7 @@ dol/adx/adx_dcd.c:
 dol/adx/adx_rnaa.c:
 	.text       start:0x8004ED3C end:0x8004EFA8 align:4
 
-dol/fn_8005BE48.c:
+dol/AXRNA_EntryErrFunc.c:
 	.text       start:0x8005BE48 end:0x8005BE68 align:4
 
 dol/av/avfile.c:
@@ -632,7 +632,7 @@ dol/InitMetroTRK_BBA.c:
 dol/TRKLoadContext.c:
 	.text       start:0x8008D224 end:0x8008D2AC align:4
 
-dol/fn_8005B464.c:
+dol/AXRNA_Destroy.c:
 	.text       start:0x8005B464 end:0x8005B534 align:4
 
 dol/adx/gcci.c:
@@ -1055,7 +1055,7 @@ dol/adx/sj_mem.c:
 dol/__init_data.c:
 	.init       start:0x80003340 end:0x80003400 align:4
 
-dol/fn_8005ADBC.c:
+dol/axrna_end_trans.c:
 	.text       start:0x8005ADBC end:0x8005AE98 align:4
 
 dol/runtime/rand.c:
@@ -1268,19 +1268,19 @@ dol/TRKTargetContinue.c:
 dol/adx/adx_bau.c:
 	.text       start:0x80043FA4 end:0x80044E7C align:4
 
-dol/fn_8005B0C4.c:
+dol/AXRNA_SetPlaySw.c:
 	.text       start:0x8005B0C4 end:0x8005B264 align:4
 
 dol/adx/svm.c:
 	.text       start:0x80058A40 end:0x80059BAC
 
-dol/fn_8005BDD4.c:
+dol/AXRNA_Init.c:
 	.text       start:0x8005BDD4 end:0x8005BE48 align:4
 
-dol/fn_8005B264.c:
+dol/AXRNA_SetTransSw.c:
 	.text       start:0x8005B264 end:0x8005B464 align:4
 
-dol/fn_8005B534.c:
+dol/AXRNA_Create.c:
 	.text       start:0x8005B534 end:0x8005BC20 align:4
 
 dol/fn_8008AF40.c:
@@ -2043,13 +2043,13 @@ dol/data/lbl_80190178.c:
 dol/data/lbl_80190B70.c:
 	.bss        start:0x80190B70 end:0x80190C78 align:8
 
-dol/data/lbl_80190C78.c:
+dol/data/axrna_init_cnt.c:
 	.bss        start:0x80190C78 end:0x80190C80 align:8
 
 dol/data/lbl_80190C80.c:
 	.bss        start:0x80190C80 end:0x80190C88 align:8
 
-dol/data/lbl_80190C88.c:
+dol/data/axrna_update_pos.c:
 	.bss        start:0x80190C88 end:0x80192BD0 align:8
 
 dol/data/lbl_80192BD0.c:

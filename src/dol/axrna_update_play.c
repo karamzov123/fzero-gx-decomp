@@ -170,9 +170,9 @@ typedef struct AXRNAHandle {
     ARQRequest requests[2];
 } AXRNAHandle;
 
-extern int lbl_80190C88;
+extern int axrna_update_pos;
 
-extern int lbl_80190C8C[32];
+extern int axrna_update_hist[32];
 
 static inline u32 axrna_get_voice_address(const AXVPB *voice) {
     return *(const u32 *)&voice->pb.addr.currentAddressHi;
@@ -193,9 +193,9 @@ void axrna_update_play(AXRNAHandle *handle) {
     }
     current_position =
         axrna_get_voice_address(voice) - handle->aram_addresses[handle->num_channels - 1];
-    lbl_80190C8C[lbl_80190C88++] = current_position;
-    if (lbl_80190C88 == 32) {
-        lbl_80190C88 = 0;
+    axrna_update_hist[axrna_update_pos++] = current_position;
+    if (axrna_update_pos == 32) {
+        axrna_update_pos = 0;
     }
     if (current_position < 0 || current_position > handle->buffer_size) {
         while (1) {
@@ -231,11 +231,11 @@ void axrna_update_play(AXRNAHandle *handle) {
     }
 }
 
-/* --- dol/fn_8005B010.c --- */
-/* --- dol/fn_8005B010.c --- */
+/* --- dol/AXRNA_GetNumRoom.c --- */
+/* --- dol/AXRNA_GetNumRoom.c --- */
 typedef u32 (*fn_8005B010_Fn0)(u32, u32);
 
-u32 fn_8005B010(u32 arg0) {
+u32 AXRNA_GetNumRoom(u32 arg0) {
     u32 v0;
     u32 t0;
     v0 = arg0;
@@ -251,10 +251,10 @@ u32 fn_8005B010(u32 arg0) {
     return v0;
 }
 
-/* --- dol/fn_8005B068.c --- */
+/* --- dol/AXRNA_GetNumData.c --- */
 typedef u32 (*fn_8005B068_Fn0)(u32, u32);
 
-s32 fn_8005B068(u32 arg0) {
+s32 AXRNA_GetNumData(u32 arg0) {
     u32 v0;
     u32 t0;
     v0 = arg0;
