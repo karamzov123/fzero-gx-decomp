@@ -767,7 +767,7 @@ rel/main_rel/sel_static_disp/fn_1_14DB48.c:
 	.text       start:0x0014DB48 end:0x0014DEC8 align:4
 
 rel/main_rel/accessory/fn_1_10C7B4.c:
-	.text       start:0x0010C7B4 end:0x0010CC38 align:4
+	.text       start:0x0010C7B4 end:0x0010D2F0 align:4
 
 rel/main_rel/driver/fn_1_A9250.c:
 	.text       start:0x000A9250 end:0x000A96BC align:4
@@ -2093,9 +2093,6 @@ rel/main_rel/effect_car/fn_1_71D0C.c:
 
 rel/main_rel/accessory/fn_1_11A158.c:
 	.text       start:0x0011A158 end:0x0011A774 align:4
-
-rel/main_rel/accessory/fn_1_10CC38.c:
-	.text       start:0x0010CC38 end:0x0010D2F0 align:4
 
 rel/main_rel/effect_car/fn_1_6E62C.c:
 	.text       start:0x0006E62C end:0x0006F90C align:4
