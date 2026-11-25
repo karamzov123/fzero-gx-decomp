@@ -9,11 +9,11 @@
 #include "sdk_addresses.h"
 #include "types.h"
 
-u32 fn_8000E794(void) {
+u32 OSGetPhysicalMemSize(void) {
     return *(u32 *)FZGX_ADDR___OSPhysicalMemSize;
 }
 
-u32 fn_8000E7A0(void) {
+u32 OSGetConsoleSimulatedMemSize(void) {
     return *(u32 *)FZGX_ADDR___OSSimulatedMemSize;
 }
 
@@ -140,7 +140,7 @@ void __OSInitMemoryProtection() {
     u32 padding[8];
     u32 simulatedSize;
     BOOL enabled;
-    simulatedSize = fn_8000E7A0();
+    simulatedSize = OSGetConsoleSimulatedMemSize();
     enabled = OSDisableInterrupts();
     __MEMRegs[16] = 0;
     __MEMRegs[8] = 0xFF;
@@ -152,8 +152,8 @@ void __OSInitMemoryProtection() {
     __OSSetInterruptHandler(3, MEMIntrruptHandler);
     __OSSetInterruptHandler(4, MEMIntrruptHandler);
     OSRegisterResetFunction(&ResetFunctionInfo);
-    if (fn_8000E7A0() < fn_8000E794() &&
-        fn_8000E7A0() == 0x1800000) {
+    if (OSGetConsoleSimulatedMemSize() < OSGetPhysicalMemSize() &&
+        OSGetConsoleSimulatedMemSize() == 0x1800000) {
         DCInvalidateRange((void *)FZGX_ADDR___OSUnmappedMemory, 0x1800000);
         __MEMRegs[20] = 2;
     }

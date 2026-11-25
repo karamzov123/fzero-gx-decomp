@@ -467,8 +467,8 @@
         "8000EA84"
       ],
       "functions": [
-        "fn_8000E794",
-        "fn_8000E7A0",
+        "OSGetPhysicalMemSize",
+        "OSGetConsoleSimulatedMemSize",
         "OnReset",
         "MEMIntrruptHandler",
         "Config24MB",

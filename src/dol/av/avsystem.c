@@ -170,8 +170,8 @@ extern u32 fn_80072BD0(u32);
 extern u32 fn_80074918(u32, u32, u32);
 extern void fn_800723F8(void);
 extern void fn_800726C0(u32, struct Sig_fn_800726C0_fn_800726C0_Entry *);
-extern u32 fn_8000E7A0(void);
-extern u32 fn_8000E794(void);
+extern u32 OSGetConsoleSimulatedMemSize(void);
+extern u32 OSGetPhysicalMemSize(void);
 extern void fn_80034ECC(u8, u8 *, u32, u8 *);
 extern u32 fn_80037D40(u32, u32);
 extern u32 fn_80038EEC(f32, f32, f32, f32, f32, f32);
@@ -479,11 +479,11 @@ void fn_80070538(void) {
     var_r29 = OSGetArenaHi();
     lbl_801A6CF8 = 0;
     lbl_801A6CFC = 0;
-    temp_r31 = fn_8000E7A0();
+    temp_r31 = OSGetConsoleSimulatedMemSize();
     if (((lbl_801A6CE9) != 0) || (temp_r31 <= 0x01800000U)) {
         var_r3 = 0x01800000;
     } else {
-        var_r3 = fn_8000E794();
+        var_r3 = OSGetPhysicalMemSize();
     }
     if (var_r3 > 0x01800000U) {
         temp_r4 = lbl_801A6CE0 | 8;

@@ -7502,8 +7502,8 @@
     "module": "main",
     "source": "dol/os/OSMemory.c",
     "symbols": [
-      "fn_8000E794",
-      "fn_8000E7A0",
+      "OSGetPhysicalMemSize",
+      "OSGetConsoleSimulatedMemSize",
       "OnReset",
       "MEMIntrruptHandler",
       "Config24MB",
