@@ -2754,10 +2754,10 @@
         "80046508"
       ],
       "functions": [
-        "fn_80045FEC",
-        "fn_80046020",
-        "fn_800462F8",
-        "fn_800463E4"
+        "ADXB_CheckSpsd",
+        "ADXB_ExecOneSpsd",
+        "ADXB_DecodeHeaderSpsd",
+        "ADX_DecodeInfoSpsd"
       ],
       "how": {
         "donor-size": 4
@@ -3031,7 +3031,7 @@
         "fn_8004E1E4",
         "fn_8004E204",
         "fn_8004E238",
-        "fn_8004E270",
+        "ADXPD_GetStat",
         "fn_8004E278",
         "fn_8004E2B0",
         "fn_8004E2CC",

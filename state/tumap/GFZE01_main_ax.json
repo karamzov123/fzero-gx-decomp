@@ -2981,17 +2981,17 @@
    "ax": "801D8ED8",
    "files": []
   },
-  "fn_80045FEC": {
+  "ADXB_CheckSpsd": {
    "gx": "80045FEC",
    "ax": "801D8F20",
    "files": []
   },
-  "fn_80046020": {
+  "ADXB_ExecOneSpsd": {
    "gx": "80046020",
    "ax": "801D8F54",
    "files": []
   },
-  "fn_800463E4": {
+  "ADX_DecodeInfoSpsd": {
    "gx": "800463E4",
    "ax": "801D9318",
    "files": []

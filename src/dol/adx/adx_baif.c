@@ -81,7 +81,7 @@ typedef struct AdxBasicDecoder {
     short codec_type;
 } AdxBasicDecoder;
 
-extern int fn_8004E270(AdxXpnd *decoder);
+extern int ADXPD_GetStat(AdxXpnd *decoder);
 extern u32 fn_8008023C(u32, u32, u32);
 extern u32 lbl_80090080[];
 extern u32 lbl_80090088[];
@@ -106,7 +106,7 @@ void fn_80043460(AdxBasicDecoder *d) {
     int i, count;
     dp = &d->decode;
     input = (unsigned char *)dp->input;
-    if (d->status == 1 && fn_8004E270(d->expander) == 0) {
+    if (d->status == 1 && ADXPD_GetStat(d->expander) == 0) {
         d->get_write_info(d->get_write_object, &dp->write_position, &dp->room, &dp->loop_samples);
         count = dp->pcm_size - dp->write_position;
         if (count > dp->room)
@@ -143,7 +143,7 @@ void fn_80043798(AdxBasicDecoder *d) {
     int i, count;
     dp = &d->decode;
     input = (unsigned short *)dp->input;
-    if (d->status == 1 && fn_8004E270(d->expander) == 0) {
+    if (d->status == 1 && ADXPD_GetStat(d->expander) == 0) {
         d->get_write_info(d->get_write_object, &dp->write_position, &dp->room, &dp->loop_samples);
         count = dp->pcm_size - dp->write_position;
         if (count > dp->room)

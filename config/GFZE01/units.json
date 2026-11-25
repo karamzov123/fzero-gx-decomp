@@ -6797,7 +6797,7 @@
       "fn_8004E1E4",
       "fn_8004E204",
       "fn_8004E238",
-      "fn_8004E270",
+      "ADXPD_GetStat",
       "fn_8004E278",
       "fn_8004E2B0",
       "fn_8004E2CC",
@@ -10710,18 +10710,6 @@
     "source": "dol/data/lbl_800900A0.c",
     "symbols": [
       "lbl_800900A0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_80090928.c",
-    "symbols": [
-      "lbl_80090928"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -20969,27 +20957,24 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_80045FEC.c",
+    "source": "dol/adx/adx_bsps.c",
     "symbols": [
-      "fn_80045FEC",
-      "fn_80046020",
-      "fn_800462F8"
-    ],
-    "status": "matching",
-    "collapsed": true,
-    "mw_version": "GC/2.0p1"
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_800463E4.c",
-    "symbols": [
-      "fn_800463E4"
+      "ADXB_CheckSpsd",
+      "ADXB_ExecOneSpsd",
+      "ADXB_DecodeHeaderSpsd",
+      "ADX_DecodeInfoSpsd"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [
-      "-proc 7450"
-    ]
+      "-sdata",
+      "0",
+      "-sdata2",
+      "0",
+      "-str",
+      "reuse,readonly"
+    ],
+    "collapsed": true
   },
   {
     "module": "main",

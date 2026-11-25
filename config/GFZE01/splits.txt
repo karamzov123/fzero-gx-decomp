@@ -60,8 +60,9 @@ dol/gx/GXAttr.c:
 	.text       start:0x80032370 end:0x80033D8C align:4
 	.data       start:0x8012AD40 end:0x8012AFB8 align:32
 
-dol/fn_80045FEC.c:
-	.text       start:0x80045FEC end:0x800463E4 align:4
+dol/adx/adx_bsps.c:
+	.text       start:0x80045FEC end:0x80046508 align:4
+	.rodata     start:0x80090928 end:0x80090930 align:4
 
 dol/adx/adx_amp.c:
 	.text       start:0x80046508 end:0x80046718 align:4
@@ -1640,9 +1641,6 @@ dol/gTRKInterruptVectorTable.c:
 dol/adx/adx_dcd5.c:
 	.text       start:0x8004EFA8 end:0x8004F6B0 align:4
 
-dol/fn_800463E4.c:
-	.text       start:0x800463E4 end:0x80046508 align:4
-
 dol/data/lbl_80132820.c:
 	.data       start:0x80132820 end:0x80142840 align:32
 
@@ -1669,9 +1667,6 @@ dol/data/lbl_8015ABD8.c:
 
 dol/data/lbl_800900A0.c:
 	.rodata     start:0x800900A0 end:0x80090928 align:32
-
-dol/data/lbl_80090928.c:
-	.rodata     start:0x80090928 end:0x80090930 align:8
 
 dol/data/lbl_80091130.c:
 	.rodata     start:0x80091130 end:0x80091160 align:16

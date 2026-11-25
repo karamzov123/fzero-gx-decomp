@@ -220,8 +220,8 @@ extern u32 fn_8004251C(u32);
 extern u32 fn_800433A4(u32);
 extern u32 fn_8004342C(u32);
 extern u32 fn_80043FA4(u32);
-extern u32 fn_80046020(u32);
-extern s32 fn_8004E270(void *xpd);
+extern u32 ADXB_ExecOneSpsd(u32);
+extern s32 ADXPD_GetStat(void *xpd);
 extern void fn_8004E204(void *xpd, const u16 *input, s32 blocks, s16 *left, s16 *right);
 extern void fn_8004E1E4(void *xpd);
 extern void fn_8004E238(void *xpd, const u16 *input, s32 blocks, s16 *output);
@@ -239,10 +239,10 @@ extern void *ADXPD_Create(void);
 extern void fn_8004E4AC(void);
 extern void *memset(void *destination, int value, unsigned long size);
 extern int sprintf(char *buffer, const char *format, ...);
-extern s32 fn_80045FEC(void *arg0);
+extern s32 ADXB_CheckSpsd(void *arg0);
 struct fn_800462F8_Arg0;
 struct SpsdHeader;
-extern s32 fn_800462F8(struct fn_800462F8_Arg0 *decoder, struct SpsdHeader *header, u32 size);
+extern s32 ADXB_DecodeHeaderSpsd(struct fn_800462F8_Arg0 *decoder, struct SpsdHeader *header, u32 size);
 extern s32 fn_80042568(void *arg0);
 extern s32 fn_80043050(void *arg0, void *arg1, void *arg2);
 extern s32 fn_80043CCC(void *arg0);
@@ -291,7 +291,7 @@ void fn_80044E7C(AdxBasicDecoder *arg0) {
     } else if (v0 == 10) {
         fn_800433A4((u32)arg0);
     } else if (v0 == 2) {
-        fn_80046020((u32)arg0);
+        ADXB_ExecOneSpsd((u32)arg0);
     } else if (v0 == 3) {
         fn_8004342C((u32)arg0);
     } else if (v0 == 4) {
@@ -429,7 +429,7 @@ static inline void adxb_FinishDecode(AdxBasicDecoder *base) {
 void fn_80044EF8(AdxBasicDecoder *base) {
     AdxDecodeParams *params = &base->decode;
 
-    if (base->status == 1 && fn_8004E270(base->expander) == 0) {
+    if (base->status == 1 && ADXPD_GetStat(base->expander) == 0) {
         base->get_write_info(base->get_write_object, &params->write_position, &params->room,
                              &params->loop_samples);
         adxb_EvokeDecode(base);
@@ -437,7 +437,7 @@ void fn_80044EF8(AdxBasicDecoder *base) {
     }
     if (base->status == 2) {
         ADXPD_ExecHndl(base->expander);
-        if (fn_8004E270(base->expander) == 3) {
+        if (ADXPD_GetStat(base->expander) == 3) {
             adxb_FinishDecode(base);
         }
     }
@@ -590,8 +590,8 @@ s32 fn_800455B8(AdxBasicDecoderExt *arg0, u16 *arg1, s32 arg2) {
     if (*arg1 == 0x8000) {
         return fn_800456A0(arg0, (s8 *)arg1, arg2);
     }
-    if (fn_80045FEC(arg1)) {
-        return fn_800462F8((struct fn_800462F8_Arg0 *)arg0, (struct SpsdHeader *)arg1, arg2);
+    if (ADXB_CheckSpsd(arg1)) {
+        return ADXB_DecodeHeaderSpsd((struct fn_800462F8_Arg0 *)arg0, (struct SpsdHeader *)arg1, arg2);
     }
     if (fn_80042568(arg1)) {
         return fn_80043050(arg0, arg1, (void *)arg2);

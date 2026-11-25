@@ -27777,32 +27777,6 @@
     "unit_size": 2184,
     "unit_start": 2148073632
   },
-  "main:lbl_80090928": {
-    "address": 2148075816,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "u32 lbl_80090928[]",
-        "path": "src/dol/fn_80045FEC.c"
-      }
-    ],
-    "definition": "const char lbl_80090928[5]",
-    "method": "string",
-    "module": "main",
-    "references": [
-      "fn_80045FEC"
-    ],
-    "relocations": [],
-    "section": ".rodata",
-    "section_size": 5,
-    "sha256": "2a59854703ef4b23a35a71d623c8c6a6ee5f1d92437adbcdb7bf01160c8e6e57",
-    "size": 5,
-    "source": "dol/data/lbl_80090928.c",
-    "symbol": "lbl_80090928",
-    "unit_align": 8,
-    "unit_size": 8,
-    "unit_start": 2148075816
-  },
   "main:lbl_80090930": {
     "address": 2148075824,
     "align": 16,

@@ -95,7 +95,7 @@ typedef struct {
 extern s32 fn_8008023C(const void *, const void *, u32);
 extern u32 lbl_80090070[];
 extern u32 lbl_80090078[];
-extern int fn_8004E270(AdxXpnd *decoder);
+extern int ADXPD_GetStat(AdxXpnd *decoder);
 
 void ADXB_ExecOneWav4(AdxBasicDecoder *decoder);
 void ADXB_ExecOneWav8(AdxBasicDecoder *decoder);
@@ -135,7 +135,7 @@ void ADXB_ExecOneWav4(AdxBasicDecoder *decoder) {
     int count;
     params = &decoder->decode;
     input = (const unsigned char *)params->input;
-    if (decoder->status == 1 && fn_8004E270(decoder->expander) == 0) {
+    if (decoder->status == 1 && ADXPD_GetStat(decoder->expander) == 0) {
         decoder->get_write_info(decoder->get_write_object, &params->write_position, &params->room,
                                 &params->loop_samples);
         count = params->pcm_size - params->write_position;
@@ -179,7 +179,7 @@ void ADXB_ExecOneWav8(AdxBasicDecoder *decoder) {
     int count;
     params = &decoder->decode;
     input = (const unsigned char *)params->input;
-    if (decoder->status == 1 && fn_8004E270(decoder->expander) == 0) {
+    if (decoder->status == 1 && ADXPD_GetStat(decoder->expander) == 0) {
         decoder->get_write_info(decoder->get_write_object, &params->write_position, &params->room,
                                 &params->loop_samples);
         count = params->pcm_size - params->write_position;
@@ -220,7 +220,7 @@ void fn_80042D24(AdxBasicDecoder *decoder) {
     int i;
     int count;
     input = decoder->decode.input;
-    if (decoder->status == 1 && fn_8004E270(decoder->expander) == 0) {
+    if (decoder->status == 1 && ADXPD_GetStat(decoder->expander) == 0) {
         decoder->get_write_info(decoder->get_write_object, &decoder->decode.write_position,
                                 &decoder->decode.room, &decoder->decode.loop_samples);
         count = decoder->decode.pcm_size - decoder->decode.write_position;
