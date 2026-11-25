@@ -8625,25 +8625,6 @@
   },
   {
     "module": "main",
-    "source": "dol/TRKInitializeDispatcher.c",
-    "symbols": [
-      "TRKInitializeDispatcher"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-sdata",
-      "0",
-      "-sdata2",
-      "0",
-      "-use_lmw_stmw",
-      "off"
-    ],
-    "collapsed": true,
-    "matching_for": ["GFZE01"]
-  },
-  {
-    "module": "main",
     "source": "dol/fn_8008983C.c",
     "symbols": [
       "fn_8008983C"
@@ -8669,25 +8650,70 @@
   },
   {
     "module": "main",
+    "source": "dol/trk/msgbuf.c",
+    "symbols": [
+      "TRKReadBuffer_ui32",
+      "TRKReadBuffer_ui8",
+      "TRKReadBuffer1_ui64",
+      "TRKAppendBuffer_ui32",
+      "TRKAppendBuffer_ui8",
+      "TRKAppendBuffer1_ui64",
+      "TRKReadBuffer",
+      "TRKAppendBuffer",
+      "fn_80089144",
+      "fn_80089174",
+      "fn_800891B4",
+      "TRKGetBuffer",
+      "fn_80089244",
+      "TRKInitializeMessageBuffers"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": ["-sdata", "0", "-sdata2", "0", "-use_lmw_stmw", "on"],
+    "collapsed": true
+  },
+  {
+    "module": "main",
     "source": "dol/trk/serpoll.c",
     "symbols": [
-      "TRKInitializeMessageBuffers",
       "fn_80089380",
       "TRKInitializeSerialHandler",
       "fn_8008944C",
       "TRKGetInput",
-      "fn_800894FC",
-      "usr_put_initialize",
-      "fn_8008963C",
-      "TRKDispatchMessage"
+      "fn_800894FC"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
     "collapsed": true,
     "pool": {
       "...rodata.0": "lbl_800956C0"
-    },
+    }
+  },
+  {
+    "module": "main",
+    "source": "dol/trk/usr_put.c",
+    "symbols": [
+      "usr_put_initialize",
+      "fn_8008963C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "collapsed": true,
     "matching_for": ["GFZE01"]
+  },
+  {
+    "module": "main",
+    "source": "dol/trk/dispatch.c",
+    "symbols": [
+      "TRKDispatchMessage",
+      "TRKInitializeDispatcher"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "collapsed": true
   },
   {
     "module": "main",
@@ -23482,39 +23508,9 @@
   },
   {
     "module": "main",
-    "source": "dol/trk/msgbuf.c",
+    "source": "dol/trk/msg.c",
     "symbols": [
       "fn_80088B00"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-sdata",
-      "0",
-      "-sdata2",
-      "0",
-      "-use_lmw_stmw",
-      "on"
-    ],
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/TRKReadBuffer_ui32.c",
-    "symbols": [
-      "TRKReadBuffer_ui32",
-      "TRKReadBuffer_ui8",
-      "TRKReadBuffer1_ui64",
-      "TRKAppendBuffer_ui32",
-      "TRKAppendBuffer_ui8",
-      "TRKAppendBuffer1_ui64",
-      "TRKReadBuffer",
-      "TRKAppendBuffer",
-      "fn_80089144",
-      "fn_80089174",
-      "fn_800891B4",
-      "TRKGetBuffer",
-      "fn_80089244"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",

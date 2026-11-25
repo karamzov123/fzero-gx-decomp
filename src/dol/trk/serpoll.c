@@ -97,19 +97,8 @@ static const char fzgx_pool_strings_lbl_800956C0_48[36] = "TRK_CMD_WriteMemory  
 static const char fzgx_pool_strings_lbl_800956C0_6C[32] = "TRK_CMD_Connect \t    %ld bytes\n";
 static const char fzgx_pool_strings_lbl_800956C0_8C[32] = "TRK_CMD_ReplyAck\t    %ld bytes\n";
 static const char fzgx_pool_strings_lbl_800956C0_AC[36] = "TRK_CMD_ReadRegisters\t%ld bytes\n";
-
-static inline void TRKSetBufferUsed(TRKBuffer *msg, BOOL state) { msg->isInUse = state; }
-
-DSError TRKInitializeMessageBuffers(void) {
-    int i;
-    for (i = 0; i < 3; i++) {
-        fn_8008AF50(&lbl_801A36E8[i]);
-        fn_8008AF48(&lbl_801A36E8[i]);
-        TRKSetBufferUsed(&lbl_801A36E8[i], 0);
-        fn_8008AF40(&lbl_801A36E8[i]);
-    }
-    return DS_NoError;
-}
+static inline void TRKSetBufferUsed(TRKBuffer *msg, BOOL state);
+DSError TRKInitializeMessageBuffers(void);
 
 int fn_80089380(void) {
     return 0;
@@ -188,79 +177,6 @@ s32 fn_800894FC(void) {
     MWTRACE(1, (u32)(rodata + 0x16c), result);
     return result;
 }
-
-void usr_put_initialize(void) {
-}
-
-s32 fn_8008963C(const char *arg0) {
-    s32 rc = 0;
-    s8 ch;
-    s32 r;
-    struct {
-        u8 a[2];
-    } loc_8;
-
-    while (rc == 0 && (ch = *arg0++) != 0) {
-        r = fn_8008A754();
-        loc_8.a[0] = ch;
-        loc_8.a[1] = '\0';
-        fn_8008A748(0);
-        OSReport((const char *)&loc_8);
-        fn_8008A748(r);
-        rc = 0;
-    }
-    return rc;
-}
-
-s32 TRKDispatchMessage(TRKBuffer *arg0) {
-    s32 result = 0x500;
-
-    fn_80089144(arg0, 0);
-    MWTRACE(1, lbl_80095850, arg0->data[4]);
-    switch (arg0->data[4]) {
-    case kDSConnect:
-        result = fn_8008A6E4(arg0);
-        break;
-    case kDSDisconnect:
-        result = fn_8008A66C(arg0);
-        break;
-    case kDSReset:
-        result = fn_8008A614(arg0);
-        break;
-    case kDSOverride:
-        result = fn_8008A5BC(arg0);
-        break;
-    case kDSVersions:
-        result = fn_8008A5B4(arg0);
-        break;
-    case kDSSupportMask:
-        result = fn_8008A5AC(arg0);
-        break;
-    case kDSReadMemory:
-        result = fn_8008A3C0(arg0);
-        break;
-    case kDSWriteMemory:
-        result = fn_8008A1CC(arg0);
-        break;
-    case kDSReadRegisters:
-        result = fn_80089EEC(arg0);
-        break;
-    case kDSWriteRegisters:
-        result = fn_80089C5C(arg0);
-        break;
-    case kDSContinue:
-        result = fn_80089BAC(arg0);
-        break;
-    case kDSStep:
-        result = fn_8008998C(arg0);
-        break;
-    case kDSStop:
-        result = fn_800898E4(arg0);
-        break;
-    case kDSSetOption:
-        result = fn_8008983C(arg0);
-        break;
-    }
-    MWTRACE(1, lbl_8009586C, result);
-    return result;
-}
+void usr_put_initialize(void);
+s32 fn_8008963C(const char *arg0);
+s32 TRKDispatchMessage(TRKBuffer *arg0);
