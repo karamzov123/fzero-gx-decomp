@@ -662,11 +662,8 @@ dol/adx/sj_uni.c:
 dol/__OSUnlockAllMutex.c:
 	.text       start:0x8000EA84 end:0x8000EAF4 align:4
 
-dol/strstr.c:
-	.text       start:0x80083970 end:0x80083B14 align:4
-
 dol/runtime/string.c:
-	.text       start:0x80083B14 end:0x80083E84 align:4
+	.text       start:0x80083970 end:0x80083E84 align:4
 
 dol/fn_8008EC78.c:
 	.text       start:0x8008EC78 end:0x8008ECE0 align:4
@@ -693,9 +690,6 @@ dol/__set_debug_bba.c:
 
 dol/card/CARDDelete.c:
 	.text       start:0x8002F934 end:0x8002FC5C align:4
-
-dol/__StringRead.c:
-	.text       start:0x800829EC end:0x80083428 align:4
 
 dol/card/CARDUnlock.c:
 	.text       start:0x8002ABC0 end:0x8002BE20 align:4
@@ -882,9 +876,6 @@ dol/printf.c:
 
 dol/qsort.c:
 	.text       start:0x8008279C end:0x80082908 align:4
-
-dol/rand.c:
-	.text       start:0x80082908 end:0x800829EC align:4
 
 dol/runtime/strtoul.c:
 	.text       start:0x80084F1C end:0x8008580C align:4
@@ -1079,8 +1070,13 @@ dol/__init_data.c:
 dol/fn_8005ADBC.c:
 	.text       start:0x8005ADBC end:0x8005AE98 align:4
 
-dol/fn_80083428.c:
-	.text       start:0x80083428 end:0x80083970 align:4
+dol/runtime/rand.c:
+	.text       start:0x80082908 end:0x80082928 align:4
+	.sdata      start:0x801A6638 end:0x801A6640 align:4
+
+dol/runtime/scanf.c:
+	.text       start:0x80082928 end:0x80083970 align:4
+	.rodata     start:0x80094FE8 end:0x80095010 align:4
 	.data       start:0x8015B668 end:0x8015B738 align:8
 
 dol/axart/axart.c:
@@ -1880,9 +1876,6 @@ dol/data/lbl_801A6E30.c:
 
 dol/data/lbl_801A6E38.c:
 	.sbss       start:0x801A6E38 end:0x801A6E3D align:8
-
-dol/data/lbl_801A6638.c:
-	.sdata      start:0x801A6638 end:0x801A6640 align:8
 
 dol/data/lbl_801A6640.c:
 	.sdata      start:0x801A6640 end:0x801A6648 align:32
@@ -3073,8 +3066,8 @@ dol/data/lbl_80090990.c:
 dol/data/lbl_800922F0.c:
 	.rodata     start:0x800922F0 end:0x80092330 align:16
 
-dol/data/lbl_80094FE8.c:
-	.rodata     start:0x80094FE8 end:0x80095648 align:8
+dol/data/lbl_80095010.c:
+	.rodata     start:0x80095010 end:0x80095648 align:8
 
 dol/data/lbl_80095A78.c:
 	.rodata     start:0x80095A78 end:0x80095BB8 align:8

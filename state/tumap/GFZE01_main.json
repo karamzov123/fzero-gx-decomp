@@ -7,7 +7,7 @@
     "assigned": 2230,
     "bytes": 567556,
     "assigned_bytes": 567556,
-    "tus": 257,
+    "tus": 258,
     "conflicts": 0,
     "string_anchored": 13
   },
@@ -4772,32 +4772,47 @@
       "lib": "runtime"
     },
     {
-      "file": "scanf.c",
+      "file": "rand.c",
       "text": [
         "80082908",
-        "80083B14"
+        "80082928"
       ],
       "functions": [
-        "rand",
+        "rand"
+      ],
+      "how": {
+        "sdk-order": 1
+      },
+      "lib": "runtime",
+      "notes": "MSL: rand.c (rand and its seed at .sdata 0x801A6638), scanf.c (default ScanFormat at .rodata 0x80094FE8, jump tables at .data 0x8015B668); string.c is emitted in reverse source order, so strstr and strtok come first."
+    },
+    {
+      "file": "scanf.c",
+      "text": [
+        "80082928",
+        "80083970"
+      ],
+      "functions": [
         "sscanf",
         "__StringRead",
         "fn_80082A7C",
-        "fn_80083428",
-        "strstr",
-        "strtok"
+        "fn_80083428"
       ],
       "how": {
         "sdk-order": 7
       },
-      "lib": "runtime"
+      "lib": "runtime",
+      "notes": "MSL: rand.c (rand and its seed at .sdata 0x801A6638), scanf.c (default ScanFormat at .rodata 0x80094FE8, jump tables at .data 0x8015B668); string.c is emitted in reverse source order, so strstr and strtok come first."
     },
     {
       "file": "string.c",
       "text": [
-        "80083B14",
+        "80083970",
         "80083E84"
       ],
       "functions": [
+        "strstr",
+        "strtok",
         "strrchr",
         "strchr",
         "strncmp",
