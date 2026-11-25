@@ -492,5 +492,25 @@
       "sha256": "b01586acbb05c24db4682282bd60698d7877cf6934ae386c93f6de31f28cb473",
       "evidence": "Dolphin SDK ai/ai.c writes __AICallbackStackSwitch as a CodeWarrior asm function (fralloc/frfree): retail 0x8001E5A8..0x8001E600 saves r1 to __OldStack, loads the DMA callback stack into r1, calls the callback with mtlr/blrl and restores r1, a stack switch that C cannot express; the rest of ai.c is compiled C in the same TU."
     }
+  ],
+  "src/dol/mtx/mtx.c": [
+    {
+      "symbol": "PSMTXIdentity",
+      "form": "asm-function",
+      "sha256": "4ea214f8a0b0be9bd92ad1de41ca41e5f459adb46c5a9b2ba3d843fe2a3673ad",
+      "evidence": "Dolphin SDK mtx/mtx.c writes PSMTXIdentity, PSMTXScale and PSMTXQuat as CodeWarrior asm functions (nofralloc): retail 0x80015B24..0x80015C1C stores and computes matrix rows with psq_l/psq_st, ps_merge, ps_madd/ps_nmsub/ps_sum and fres, paired-single code MWCC does not generate from C, with no compiler frames; the light projection matrices (C_MTXLightFrustum/C_MTXLightPerspective) are compiled C in the same TU."
+    },
+    {
+      "symbol": "PSMTXScale",
+      "form": "asm-function",
+      "sha256": "73e0c8d70ab98fa26afca17202661b859f0bf9574bcd5d166d3b46162307b4d0",
+      "evidence": "Dolphin SDK mtx/mtx.c writes PSMTXIdentity, PSMTXScale and PSMTXQuat as CodeWarrior asm functions (nofralloc): retail 0x80015B24..0x80015C1C stores and computes matrix rows with psq_l/psq_st, ps_merge, ps_madd/ps_nmsub/ps_sum and fres, paired-single code MWCC does not generate from C, with no compiler frames; the light projection matrices (C_MTXLightFrustum/C_MTXLightPerspective) are compiled C in the same TU."
+    },
+    {
+      "symbol": "PSMTXQuat",
+      "form": "asm-function",
+      "sha256": "1ec98cbdd31ffb92668b0bc618fdc5029190af424c51ae00ae188fff2417709d",
+      "evidence": "Dolphin SDK mtx/mtx.c writes PSMTXIdentity, PSMTXScale and PSMTXQuat as CodeWarrior asm functions (nofralloc): retail 0x80015B24..0x80015C1C stores and computes matrix rows with psq_l/psq_st, ps_merge, ps_madd/ps_nmsub/ps_sum and fres, paired-single code MWCC does not generate from C, with no compiler frames; the light projection matrices (C_MTXLightFrustum/C_MTXLightPerspective) are compiled C in the same TU."
+    }
   ]
 }

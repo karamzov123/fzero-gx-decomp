@@ -7739,39 +7739,18 @@
   },
   {
     "module": "main",
-    "source": "dol/PSMTXIdentity.c",
+    "source": "dol/mtx/mtx.c",
     "symbols": [
-      "PSMTXIdentity"
+      "PSMTXIdentity",
+      "PSMTXScale",
+      "PSMTXQuat",
+      "fn_80015C1C",
+      "C_MTXLightPerspective"
     ],
     "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
+    "mw_version": "GC/1.2.5n",
     "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/PSMTXQuat.c",
-    "symbols": [
-      "PSMTXQuat"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/PSMTXScale.c",
-    "symbols": [
-      "PSMTXScale"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
+    "collapsed": true
   },
   {
     "module": "main",
@@ -19014,18 +18993,6 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/mtx/mtx_light.c",
-    "symbols": [
-      "fn_80015C1C",
-      "C_MTXLightPerspective"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [],
     "collapsed": true
   },
   {

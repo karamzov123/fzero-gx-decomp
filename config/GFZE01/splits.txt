@@ -842,9 +842,6 @@ dol/sasnd/sasnd_core.c:
 	.sbss       start:0x801A6C78 end:0x801A6C84 align:4
 	.sdata2     start:0x801A7328 end:0x801A7350 align:8
 
-dol/mtx/mtx_light.c:
-	.text       start:0x80015C1C end:0x80015D7C align:4
-
 dol/runtime/strtold.c:
 	.text       start:0x80083E84 end:0x80084F1C align:4
 
@@ -918,14 +915,8 @@ dol/data/__OSDriveBlock.c:
 dol/__flush_cache.c:
 	.init       start:0x80003424 end:0x80003458 align:4
 
-dol/PSMTXIdentity.c:
-	.text       start:0x80015B24 end:0x80015B50 align:4
-
-dol/PSMTXScale.c:
-	.text       start:0x80015B50 end:0x80015B78 align:4
-
-dol/PSMTXQuat.c:
-	.text       start:0x80015B78 end:0x80015C1C align:4
+dol/mtx/mtx.c:
+	.text       start:0x80015B24 end:0x80015D7C align:4
 
 dol/__shl2i.c:
 	.text       start:0x80079D04 end:0x80079D28 align:4
