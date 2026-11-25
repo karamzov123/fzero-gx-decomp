@@ -33,6 +33,12 @@
   ],
   "src/dol/os/OSTime.c": [
     {
+      "symbol": "OSGetTime",
+      "form": "asm-function",
+      "sha256": "5e54a617bc42a6537dea2b0c71cfe7ff93bb9a133e871000bad772ef55a12434",
+      "evidence": "Dolphin SDK os/OSTime.c writes OSGetTime as a CodeWarrior asm function (nofralloc): retail 0x8001140C..0x80011424 reads the 64-bit time base with mftbu/mftb/mftbu and loops until the upper halves agree, with no compiler frame; MWCC has no C spelling of mftb. It shares the TU with the OSGetTick asm leaf and the C time conversion functions."
+    },
+    {
       "symbol": "OSGetTick",
       "form": "asm-function",
       "sha256": "054d43c0677f400e0bbf621cb2b10855c7ee8705e9f80ea6ec51ed516d023b51",
@@ -393,6 +399,14 @@
       "form": "asm-function",
       "sha256": "cb400f971e56e2a117dd0387f8649445e843e377066bbebd9f6c16e0b8309f36",
       "evidence": "Dolphin SDK os/OSSync.c writes SystemCallVector as a CodeWarrior asm function (nofralloc) with entry labels __OSSystemCallVectorStart/__OSSystemCallVectorEnd: retail 0x800100BC..0x800100DC reads and writes HID0 with mfspr/mtspr, flushes with isync/sync and returns with rfi, which MWCC never emits from C; __OSInitSystemCall copies the bytes between the two labels to the 0xC00 vector and is compiled C in the same TU."
+    }
+  ],
+  "src/dol/os/OSReboot.c": [
+    {
+      "symbol": "Run",
+      "form": "asm-function",
+      "sha256": "fea0f2f918ef723d4427f83017664d0fbcbe2a736e7c0e4d497090d27911b0f3",
+      "evidence": "Dolphin SDK os/OSReboot.c writes Run as a CodeWarrior asm function (nofralloc): retail 0x8000EAF4..0x8000EB04 is sync, isync, mtlr of the entry point and blr, a jump with no compiler frame that C cannot express; __OSReboot and its helpers are compiled C in the same TU."
     }
   ]
 }

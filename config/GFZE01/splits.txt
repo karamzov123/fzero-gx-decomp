@@ -23,9 +23,6 @@ dol/os/OSLink.c:
 dol/fn_8000E794.c:
 	.text       start:0x8000E794 end:0x8000E854 align:4
 
-dol/__OSReboot.c:
-	.text       start:0x8000EB04 end:0x8000EE5C align:4
-
 dol/fn_8000EE5C.c:
 	.text       start:0x8000EE5C end:0x8000EEF4 align:4
 
@@ -436,8 +433,8 @@ dol/Config48MB.c:
 dol/RealMode.c:
 	.text       start:0x8000E954 end:0x8000E96C align:4
 
-dol/Run.c:
-	.text       start:0x8000EAF4 end:0x8000EB04 align:4
+dol/os/OSReboot.c:
+	.text       start:0x8000EAF4 end:0x8000EE5C align:4
 
 dol/Reset.c:
 	.text       start:0x8000EEF4 end:0x8000EF64 align:4
@@ -603,8 +600,8 @@ dol/__OSInitMemoryProtection.c:
 dol/OSRestoreInterrupts.c:
 	.text       start:0x8000D51C end:0x8000D540 align:4
 
-dol/OSGetTime.c:
-	.text       start:0x8001140C end:0x80011424 align:4
+dol/os/OSTime.c:
+	.text       start:0x8001140C end:0x80011888 align:4
 
 dol/ar/arq.c:
 	.text       start:0x80020360 end:0x800206FC align:4
@@ -847,9 +844,6 @@ dol/os/OSThread.c:
 
 dol/adx/adx_tlk.c:
 	.text       start:0x8004B7F4 end:0x8004D220 align:4
-
-dol/os/OSTime.c:
-	.text       start:0x80011424 end:0x80011888 align:4
 
 dol/__check_pad3.c:
 	.init       start:0x80003100 end:0x80003140 align:4

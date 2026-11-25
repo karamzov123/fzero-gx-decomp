@@ -69,8 +69,6 @@ static inline void ReadApploader(OSTime time1) {
     }
 }
 
-void Run();
-
 
 static inline BOOL IsStreamEnabled(void) {
     if (fn_80019C48()->streaming) {
@@ -79,6 +77,16 @@ static inline BOOL IsStreamEnabled(void) {
     return 0;
 }
 
+
+/* Dolphin SDK os/OSReboot.c. Run is a CodeWarrior asm function in the original (sync/isync,
+ * then a jump through LR to the reboot buffer, no compiler frame); the rest is C. */
+asm void Run(register void *entryPoint) {
+    nofralloc
+    sync
+    isync
+    mtlr entryPoint
+    blr
+}
 
 #pragma peephole off
 void fn_8000EB04(s32 result, DVDCommandBlock *block) {

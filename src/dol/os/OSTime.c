@@ -5,16 +5,26 @@
 
 #pragma peephole off
 
-/* Original SDK assembly, not a C reconstruction: retail 80011424..8001142C
- * is the time-base leaf. The corresponding Sunshine OSTime.c also uses an
- * asm/nofralloc OSGetTick; see docs/RECONSTRUCTION_STANDARDS.md. */
+/* Original SDK assembly, not a C reconstruction: retail 8001140C..8001142C are the
+ * time-base leaves (OSGetTime rereads the upper half until it is stable). The
+ * corresponding Sunshine OSTime.c also writes OSGetTime and OSGetTick as asm/nofralloc;
+ * see docs/RECONSTRUCTION_STANDARDS.md. */
+asm OSTime OSGetTime(void) {
+    nofralloc
+@1:
+    mftbu r3
+    mftb r4
+    mftbu r5
+    cmpw r3, r5
+    bne @1
+    blr
+}
+
 asm u32 OSGetTick(void) {
     nofralloc
     mftb r3, 268
     blr
 }
-
-OSTime OSGetTime(void);
 
 OSTime __OSGetSystemTime(void) {
     BOOL enabled;

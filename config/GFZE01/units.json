@@ -7748,6 +7748,7 @@
     "module": "main",
     "source": "dol/os/OSTime.c",
     "symbols": [
+      "OSGetTime",
       "OSGetTick",
       "__OSGetSystemTime",
       "__OSTimeToSystemTime",
@@ -7756,19 +7757,8 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/OSGetTime.c",
-    "symbols": [
-      "OSGetTime"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
     "extra_cflags": [],
-    "asm": true
+    "collapsed": true
   },
   {
     "module": "main",
@@ -7934,15 +7924,21 @@
   },
   {
     "module": "main",
-    "source": "dol/Run.c",
+    "source": "dol/os/OSReboot.c",
     "symbols": [
-      "Run"
+      "Run",
+      "fn_8000EB04",
+      "__OSReboot",
+      "fn_8000EE50"
     ],
     "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
+    "mw_version": "GC/1.2.5n",
     "extra_cflags": [],
-    "asm": true
+    "collapsed": true,
+    "pool": {
+      "...bss.0": "lbl_8015BFA0",
+      "lbl_8015BFA0": "lbl_8015BFA0"
+    }
   },
   {
     "module": "main",
@@ -19156,23 +19152,6 @@
       "@140": "lbl_801221C0+0x2F0",
       "@141": "lbl_801221C0+0x32C",
       "@5": "lbl_801A6414"
-    }
-  },
-  {
-    "module": "main",
-    "source": "dol/__OSReboot.c",
-    "symbols": [
-      "fn_8000EB04",
-      "__OSReboot",
-      "fn_8000EE50"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": [],
-    "collapsed": true,
-    "pool": {
-      "...bss.0": "lbl_8015BFA0",
-      "lbl_8015BFA0": "lbl_8015BFA0"
     }
   },
   {

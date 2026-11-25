@@ -25072,7 +25072,7 @@
       },
       {
         "declaration": "BOOL __OSIsGcam",
-        "path": "src/dol/__OSReboot.c"
+        "path": "src/dol/os/OSReboot.c"
       }
     ],
     "definition": "u8 __OSIsGcam[4]",
@@ -51331,7 +51331,7 @@
     "declarations": [
       {
         "declaration": "void *lbl_801A67C0",
-        "path": "src/dol/__OSReboot.c"
+        "path": "src/dol/os/OSReboot.c"
       },
       {
         "declaration": "u32 lbl_801A67C0",
@@ -51362,7 +51362,7 @@
     "declarations": [
       {
         "declaration": "void *lbl_801A67C4",
-        "path": "src/dol/__OSReboot.c"
+        "path": "src/dol/os/OSReboot.c"
       },
       {
         "declaration": "u32 lbl_801A67C4",
@@ -51393,7 +51393,7 @@
     "declarations": [
       {
         "declaration": "BOOL lbl_801A67C8",
-        "path": "src/dol/__OSReboot.c"
+        "path": "src/dol/os/OSReboot.c"
       },
       {
         "declaration": "u32 lbl_801A67C8",
