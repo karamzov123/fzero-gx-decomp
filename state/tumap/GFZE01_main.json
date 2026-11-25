@@ -501,28 +501,28 @@
       "file": "OSReboot.c",
       "text": [
         "8000EAF4",
-        "8000EE5C"
+        "8000EE70"
       ],
       "functions": [
         "Run",
         "fn_8000EB04",
         "__OSReboot",
-        "fn_8000EE50"
+        "fn_8000EE50",
+        "fn_8000EE5C"
       ],
       "how": {
         "donor-name": 1,
-        "sdk-order": 3
+        "sdk-order": 4
       },
       "lib": "os"
     },
     {
       "file": "OSReset.c",
       "text": [
-        "8000EE5C",
+        "8000EE70",
         "8000F264"
       ],
       "functions": [
-        "fn_8000EE5C",
         "OSRegisterResetFunction",
         "Reset",
         "__OSDoHotReset",
@@ -531,8 +531,7 @@
       ],
       "how": {
         "sdkimport": 2,
-        "donor-name": 3,
-        "sdk-order": 1
+        "donor-name": 3
       },
       "lib": "os"
     },

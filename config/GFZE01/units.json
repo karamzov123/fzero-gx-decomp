@@ -7842,24 +7842,13 @@
   },
   {
     "module": "main",
-    "source": "dol/Reset.c",
-    "symbols": [
-      "Reset"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
     "source": "dol/os/OSReboot.c",
     "symbols": [
       "Run",
       "fn_8000EB04",
       "__OSReboot",
-      "fn_8000EE50"
+      "fn_8000EE50",
+      "fn_8000EE5C"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
@@ -7869,6 +7858,22 @@
       "...bss.0": "lbl_8015BFA0",
       "lbl_8015BFA0": "lbl_8015BFA0"
     }
+  },
+  {
+    "module": "main",
+    "source": "dol/os/OSReset.c",
+    "symbols": [
+      "OSRegisterResetFunction",
+      "Reset",
+      "__OSDoHotReset",
+      "OSResetSystem",
+      "OSGetResetCode"
+    ],
+    "status": "matching",
+    "matching_for": ["GFZE01", "GFZJ01"],
+    "mw_version": "GC/1.2.5n",
+    "extra_cflags": [],
+    "collapsed": true
   },
   {
     "module": "main",
@@ -8733,19 +8738,6 @@
     "pool": {
       "@81": "lbl_801A7080"
     }
-  },
-  {
-    "module": "main",
-    "source": "dol/os/OSReset.c",
-    "symbols": [
-      "__OSDoHotReset",
-      "OSResetSystem",
-      "OSGetResetCode"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
   },
   {
     "module": "main",
@@ -19133,17 +19125,6 @@
       "@141": "lbl_801221C0+0x32C",
       "@5": "lbl_801A6414"
     }
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8000EE5C.c",
-    "symbols": [
-      "fn_8000EE5C",
-      "OSRegisterResetFunction"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true
   },
   {
     "module": "main",

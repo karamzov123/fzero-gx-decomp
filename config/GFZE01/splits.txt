@@ -23,8 +23,11 @@ dol/os/OSLink.c:
 dol/fn_8000E794.c:
 	.text       start:0x8000E794 end:0x8000E854 align:4
 
-dol/fn_8000EE5C.c:
-	.text       start:0x8000EE5C end:0x8000EEF4 align:4
+dol/os/OSReboot.c:
+	.text       start:0x8000EAF4 end:0x8000EE70 align:4
+
+dol/os/OSReset.c:
+	.text       start:0x8000EE70 end:0x8000F264 align:4
 
 dol/si/SISteering.c:
 	.text       start:0x800133DC end:0x800137C4 align:4
@@ -427,12 +430,6 @@ dol/Config48MB.c:
 dol/RealMode.c:
 	.text       start:0x8000E954 end:0x8000E96C align:4
 
-dol/os/OSReboot.c:
-	.text       start:0x8000EAF4 end:0x8000EE5C align:4
-
-dol/Reset.c:
-	.text       start:0x8000EEF4 end:0x8000EF64 align:4
-
 dol/os/OSSync.c:
 	.text       start:0x800100BC end:0x80010144 align:4
 
@@ -504,9 +501,6 @@ dol/runtime/file_io.c:
 
 dol/lg/lg_view.c:
 	.text       start:0x8006CCC8 end:0x8006CFF8 align:4
-
-dol/os/OSReset.c:
-	.text       start:0x8000EF64 end:0x8000F264 align:4
 
 dol/sasnd/sasnd_ctrl.c:
 	.text       start:0x80063EF4 end:0x800658B4 align:4

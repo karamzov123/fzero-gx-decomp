@@ -25195,8 +25195,8 @@
         "path": "src/dol/ClearArena.c"
       },
       {
-        "declaration": "u32 __OSSavedRegionEnd",
-        "path": "src/dol/fn_8000EE5C.c"
+        "declaration": "void *__OSSavedRegionEnd",
+        "path": "src/dol/os/OSReboot.c"
       }
     ],
     "definition": "u32 __OSSavedRegionEnd",
@@ -25226,8 +25226,8 @@
         "path": "src/dol/ClearArena.c"
       },
       {
-        "declaration": "u32 __OSSavedRegionStart",
-        "path": "src/dol/fn_8000EE5C.c"
+        "declaration": "void *__OSSavedRegionStart",
+        "path": "src/dol/os/OSReboot.c"
       }
     ],
     "definition": "u32 __OSSavedRegionStart",

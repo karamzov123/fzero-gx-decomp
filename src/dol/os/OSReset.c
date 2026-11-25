@@ -1,34 +1,112 @@
 #include "types.h"
-#include "dolphin/types.h"
+#include <dolphin/os.h>
+#include "dolphin/os/OSReset.h"
 #include "dolphin/os/OSRtc.h"
 #include "dolphin/os/OSThread.h"
 #include "sdk_addresses.h"
+
+typedef struct OSResetQueue {
+    OSResetFunctionInfo *first;
+    OSResetFunctionInfo *last;
+} OSResetQueue;
+
+extern OSResetQueue ResetFunctionQueue;
+
+void OSRegisterResetFunction(OSResetFunctionInfo *func) {
+    OSResetFunctionInfo *tmp;
+    OSResetFunctionInfo *iter;
+    for (iter = ResetFunctionQueue.first; iter && iter->priority <= func->priority;
+         iter = iter->next)
+        ;
+    if (iter == ((void *)0)) {
+        tmp = ResetFunctionQueue.last;
+        if (tmp == ((void *)0)) {
+            ResetFunctionQueue.first = func;
+        } else {
+            tmp->next = func;
+        }
+        func->prev = tmp;
+        func->next = ((void *)0);
+        ResetFunctionQueue.last = func;
+        return;
+    }
+    func->next = iter;
+    tmp = iter->prev;
+    iter->prev = func;
+    func->prev = tmp;
+    if (tmp == ((void *)0)) {
+        ResetFunctionQueue.first = func;
+        return;
+    }
+    tmp->next = func;
+}
+
+/* Dolphin SDK os/OSReset.c: Reset is a CodeWarrior asm function in the original. It sets
+ * HID0[ICFI] and syncs, waits on the time base, then writes the reset code to the processor
+ * interface reset register and spins; the forward branches pull each stage into the
+ * instruction cache before it runs. No compiler frame. */
+static asm void Reset(register s32 resetCode) {
+    nofralloc
+    b prefetch_wait
+flush:
+    mfspr r8, HID0
+    ori r8, r8, 0x8
+    mtspr HID0, r8
+    isync
+    sync
+    nop
+    b wait
+prefetch_wait:
+    b prefetch_reset
+wait:
+    mftb r5, 268
+wait_loop:
+    mftb r6, 268
+    subf r7, r5, r6
+    cmplwi r7, 0x1124
+    blt wait_loop
+    nop
+    b reset
+prefetch_reset:
+    b prefetch_spin
+reset:
+    lis r8, 0xcc00
+    ori r8, r8, 0x3000
+    li r4, 0x3
+    stw r4, 0x24(r8)
+    stw resetCode, 0x24(r8)
+    nop
+    b spin
+prefetch_spin:
+    b start
+spin:
+    nop
+    b spin
+start:
+    b flush
+}
+
 #pragma peephole off
 
-extern void OSDisableInterrupts(void);
 // The VI reset register is a hardware MMIO halfword.
 extern volatile u32 __VIRegs[];
 extern void ICFlashInvalidate(void);
-extern void Reset_8000EEF4(s32 reset_code);
 
 void __OSDoHotReset(s32 reset_code) {
     OSDisableInterrupts();
     // Volatile prevents the compiler from removing the MMIO reset write.
     ((volatile u16 *)__VIRegs)[1] = 0;
     ICFlashInvalidate();
-    Reset_8000EEF4(reset_code << 3);
+    Reset(reset_code << 3);
 }
 
 #define RESET_CACHED(offset) ((void *)(FZGX_ADDR_OS_THREAD_QUEUE - 0xdc + (offset)))
 
-typedef u32 (*OSResetSystem_Fn0)(u32);
-typedef u32 (*OSResetSystem_Fn1)(u32);
 extern BOOL __PADDisableRecalibration(BOOL);
 extern OSSram *__OSLockSram(void);
 extern int OSEnableScheduler(void);
 extern u32 LCDisable(void);
 extern u32 OSDisableScheduler(void);
-extern u32 ResetFunctionQueue;
 extern BOOL __OSSyncSram(void);
 extern void *memset(void *, int, u32);
 extern void OSCancelThread(OSThread *);
@@ -41,13 +119,13 @@ extern vu32 __OSBI2Pointer[];
 extern vu32 __OSModuleInfoList[];
 
 static inline BOOL CallResetFunctions(BOOL final) {
-    u32 v1;
+    OSResetFunctionInfo *info;
     s32 v2;
-    v1 = ResetFunctionQueue;
+    info = ResetFunctionQueue.first;
     v2 = 0;
-    while (v1 != 0 && !v2) {
-        v2 |= !((OSResetSystem_Fn0)*(u32 *)v1)(final);
-        v1 = *(u32 *)((u8 *)v1 + 8);
+    while (info != 0 && !v2) {
+        v2 |= !info->func(final);
+        info = info->next;
     }
     v2 |= !__OSSyncSram();
     if (v2) {
@@ -96,7 +174,7 @@ void OSResetSystem(int arg0, u32 arg1, int arg2) {
         OSDisableInterrupts();
         ((vu16 *)__VIRegs)[1] = 0;
         ICFlashInvalidate();
-        Reset_8000EEF4(arg1 << 3);
+        Reset(arg1 << 3);
     } else if (arg0 == 0) {
         KillThreads();
         OSEnableScheduler();

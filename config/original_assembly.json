@@ -422,5 +422,13 @@
       "sha256": "11931e4d9fda325239c550ab8f912944a71745fe09da29dc282d843a936ee864",
       "evidence": "Dolphin SDK os/OSAlarm.c writes DecrementerExceptionHandler as a static CodeWarrior asm function (nofralloc): retail 0x8000B2C4..0x8000B314 stores r0-r2, stmw r6-r31 and GQR1-GQR7 (mfspr) into the interrupted OSContext, opens an 8-byte frame by hand and branches to DecrementerExceptionCallback, with no compiler prologue; the alarm queue functions are compiled C in the same TU."
     }
+  ],
+  "src/dol/os/OSReset.c": [
+    {
+      "symbol": "Reset",
+      "form": "asm-function",
+      "sha256": "a5244336cff251992f1578bf1ad3998f7116a2f4c6ec92a8819430cd8baa54d1",
+      "evidence": "Dolphin SDK os/OSReset.c writes Reset as a static CodeWarrior asm function (nofralloc): retail 0x8000EEF4..0x8000EF64 sets HID0 with mfspr/mtspr, waits on the time base with mftb, stores the reset code to the processor interface reset register and spins, laid out as forward-branch cache-line stages that MWCC never emits; the reset queue and OSResetSystem are compiled C in the same TU."
+    }
   ]
 }

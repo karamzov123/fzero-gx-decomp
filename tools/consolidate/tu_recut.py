@@ -5,9 +5,10 @@
 
 SPEC: {"old": ["dol/a.c", ...],
        "new": [{"source": "dol/x/tu.c", "candidate": "path.c", "lo": "8007A150", "hi": "8007B028",
-                "version": "GC/1.3.2", "flags": ["-inline", "on,noauto"], "regions": ["GFZE01"]}, ...]}
+                "version": "GC/1.3.2", "flags": ["-inline", "on,noauto"], "regions": ["GFZE01"],
+                "pool": {"@1": "lbl_x"}}, ...]}
 
-The old units must hold only .text, and the new ranges must cover exactly their functions. Compare each
+The old units must hold only .text (an old asm unit's .s is removed), and the new ranges must cover exactly their functions. Compare each
 candidate with tu_regions.py first. Afterwards run `ninja build/GFZE01/config.json`, configure again,
 and gate.sh: the link hash is the proof.
 """
@@ -36,6 +37,8 @@ def main():
         if n.get('regions') and n['regions'] != VERSIONS:
             entry['matching_for'] = n['regions']
         entry.update(mw_version=n['version'], extra_cflags=n.get('flags', []), collapsed=True)
+        if n.get('pool'):
+            entry['pool'] = n['pool']
         entries.append(entry)
     if sorted(s for e in entries for s in e['symbols']) != sorted(moved):
         raise SystemExit('the new ranges do not cover the old functions')
@@ -57,8 +60,12 @@ def main():
     text = text[:first] + blocks + text[first:]
     open('config/GFZE01/units.json', 'w').write(raw)
     open('config/GFZE01/splits.txt', 'w').write(text)
+    asm = {u['source'] for u in units if u['source'] in old and u.get('asm')}
     for source in old:
-        pathlib.Path('src', source).unlink()
+        path = pathlib.Path('src', source)
+        if source in asm and not path.exists():     # asm units build from the .s beside the .c name
+            path = path.with_suffix('.s')
+        path.unlink()
     for n in new:
         dest = pathlib.Path('src', n['source']); dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy(n['candidate'], dest)
