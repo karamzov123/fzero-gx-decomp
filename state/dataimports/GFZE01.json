@@ -23426,27 +23426,6 @@
     "unit_size": 8,
     "unit_start": 2149214360
   },
-  "main:OSContextMessage_1b4": {
-    "address": 2148674572,
-    "align": 4,
-    "declarations": [],
-    "definition": "char OSContextMessage_1b4[35]",
-    "method": "string",
-    "module": "main",
-    "references": [
-      "__OSContextInit"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 472,
-    "sha256": "b7d3b5e22809f18d7fe6e71a567715d16ec1488517424092656515d92a3b69a8",
-    "size": 35,
-    "source": "dol/data/lbl_80122A58.c",
-    "symbol": "OSContextMessage_1b4",
-    "unit_align": 8,
-    "unit_size": 472,
-    "unit_start": 2148674136
-  },
   "main:OSDataPool": {
     "address": 2148672944,
     "align": 16,
@@ -32471,27 +32450,6 @@
     "unit_align": 32,
     "unit_size": 1896,
     "unit_start": 2148671680
-  },
-  "main:lbl_80122A58": {
-    "address": 2148674136,
-    "align": 8,
-    "declarations": [],
-    "definition": "char lbl_80122A58[436]",
-    "method": "string-pool",
-    "module": "main",
-    "references": [
-      "OSDumpContext"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 472,
-    "sha256": "0e37ff76d9d89a8ae4b9f788cf4c43766d4c10de8847fe8b881c01b2c3faf32a",
-    "size": 436,
-    "source": "dol/data/lbl_80122A58.c",
-    "symbol": "lbl_80122A58",
-    "unit_align": 8,
-    "unit_size": 472,
-    "unit_start": 2148674136
   },
   "main:lbl_80122F50": {
     "address": 2148675408,

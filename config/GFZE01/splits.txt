@@ -187,9 +187,6 @@ dol/fn_80070E1C.c:
 dol/__OSSetInterruptHandler.c:
 	.text       start:0x8000D540 end:0x8000DD10 align:4
 
-dol/fn_8000BE5C.c:
-	.text       start:0x8000BE5C end:0x8000BE68 align:4
-
 dol/adx/adx_bwav.c:
 	.text       start:0x8004251C end:0x800433A4 align:4
 
@@ -417,26 +414,9 @@ dol/os/OSCache.c:
 	.text       start:0x8000B614 end:0x8000BBAC align:4
 	.data       start:0x80122828 end:0x80122A58 align:4
 
-dol/__OSLoadFPUContext.c:
-	.text       start:0x8000BBAC end:0x8000BCD0 align:4
-
-dol/__OSSaveFPUContext.c:
-	.text       start:0x8000BCD0 end:0x8000BDF8 align:4
-
-dol/OSSaveFPUContext.c:
-	.text       start:0x8000BDF8 end:0x8000BE00 align:4
-
-dol/OSSaveContext.c:
-	.text       start:0x8000BE68 end:0x8000BEE8 align:4
-
-dol/OSLoadContext.c:
-	.text       start:0x8000BEE8 end:0x8000BFC0 align:4
-
-dol/OSInitContext.c:
-	.text       start:0x8000BFEC end:0x8000C0A8 align:4
-
-dol/OSSwitchFPUContext.c:
-	.text       start:0x8000C350 end:0x8000C3D4 align:4
+dol/os/OSContext.c:
+	.text       start:0x8000BBAC end:0x8000C41C align:4
+	.data       start:0x80122A58 end:0x80122C30 align:4
 
 dol/OSDisableInterrupts.c:
 	.text       start:0x8000D4F4 end:0x8000D508 align:4
@@ -620,20 +600,8 @@ dol/SetExiInterruptMask.c:
 dol/exi/EXIUart.c:
 	.text       start:0x80015464 end:0x80015A38 align:4
 
-dol/OSClearContext.c:
-	.text       start:0x8000BFC8 end:0x8000BFEC align:4
-
-dol/OSDumpContext.c:
-	.text       start:0x8000C0A8 end:0x8000C350 align:4
-
-dol/__OSContextInit.c:
-	.text       start:0x8000C3D4 end:0x8000C41C align:4
-
 dol/__OSInitMemoryProtection.c:
 	.text       start:0x8000E96C end:0x8000EA84 align:4
-
-dol/OSSetCurrentContext.c:
-	.text       start:0x8000BE00 end:0x8000BE5C align:4
 
 dol/OSRestoreInterrupts.c:
 	.text       start:0x8000D51C end:0x8000D540 align:4
@@ -1000,9 +968,6 @@ dol/si/SISamplingRate.c:
 
 dol/data/__OSDriveBlock.c:
 	.bss        start:0x8015BF20 end:0x8015BF50 align:8
-
-dol/fn_8000BFC0.c:
-	.text       start:0x8000BFC0 end:0x8000BFC8 align:4
 
 dol/__flush_cache.c:
 	.init       start:0x80003424 end:0x80003458 align:4
@@ -2710,9 +2675,6 @@ dol/data/TRK_mainError.c:
 
 dol/data/lbl_801220C0.c:
 	.data       start:0x801220C0 end:0x80122828 align:32
-
-dol/data/lbl_80122A58.c:
-	.data       start:0x80122A58 end:0x80122C30 align:8
 
 dol/data/ResetFunctionInfo.c:
 	.data       start:0x80123AE0 end:0x80123AF0 align:32

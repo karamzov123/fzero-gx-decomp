@@ -29,6 +29,7 @@ Run from the repository root; dry-run first.
 | `tu_cut.py SRC OUT FN...` | cuts a source down to some function definitions (declarations and static inlines kept), to split a unit that crosses TUs |
 | `tu_reverse.py SRC OUT` | writes a file's definitions in reverse order (MSL's source order under `-inline deferred`), hoisting declarations and keeping each function's pragmas |
 | `tu_order.py CAND UNIT` | the function order a candidate emits, against retail's (tu_regions.py compares by name only) |
+| `s2cw.py dol/NAME.s ...` | drafts CodeWarrior `asm` functions (`nofralloc`, real names and scope from symbols.txt) from standalone `.s` units, for mixed C/asm SDK TUs; give real prototypes, compare with `tu_regions.py`, register the spans in `config/original_assembly.json` |
 | `gate.sh` | GFZP01/GFZJ01/GFZE01 builds + lint |
 
 Helpers: `apply_pooled_all.py` (ELF/relocation parsing), `apply_smart_dol_mm.py` (C file merge

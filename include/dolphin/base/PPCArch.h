@@ -14,6 +14,14 @@
 #define PMC2 954
 #define PMC3 957
 #define PMC4 958
+#define GQR0 912
+#define GQR1 913
+#define GQR2 914
+#define GQR3 915
+#define GQR4 916
+#define GQR5 917
+#define GQR6 918
+#define GQR7 919
 #define DMA_U 922
 #define DMA_L 923
 #define DBAT3U 542

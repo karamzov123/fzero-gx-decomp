@@ -7646,15 +7646,6 @@
   },
   {
     "module": "main",
-    "source": "dol/OSClearContext.c",
-    "symbols": [
-      "OSClearContext"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
     "source": "dol/OSDisableInterrupts.c",
     "symbols": [
       "OSDisableInterrupts"
@@ -7664,30 +7655,6 @@
     "mw_version": null,
     "extra_cflags": [],
     "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/OSDumpContext.c",
-    "symbols": [
-      "OSDumpContext"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "pool": {
-      "...data.0": "lbl_80122A58",
-      "@50": "lbl_80122A58",
-      "@51": "lbl_80122A58+0x44",
-      "@52": "lbl_80122A58+0x74",
-      "@53": "lbl_80122A58+0xA4",
-      "@54": "lbl_80122A58+0xD4",
-      "@55": "lbl_80122A58+0xE8",
-      "@56": "lbl_80122A58+0x10C",
-      "@57": "lbl_80122A58+0x120",
-      "@58": "lbl_80122A58+0x13C",
-      "@59": "lbl_80122A58+0x150",
-      "@60": "lbl_80122A58+0x170",
-      "@61": "lbl_80122A58+0x198"
-    }
   },
   {
     "module": "main",
@@ -7822,57 +7789,9 @@
   },
   {
     "module": "main",
-    "source": "dol/OSInitContext.c",
-    "symbols": [
-      "OSInitContext"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/OSLoadContext.c",
-    "symbols": [
-      "OSLoadContext"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
     "source": "dol/OSRestoreInterrupts.c",
     "symbols": [
       "OSRestoreInterrupts"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/OSSaveContext.c",
-    "symbols": [
-      "OSSaveContext"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/OSSaveFPUContext.c",
-    "symbols": [
-      "OSSaveFPUContext"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -7890,30 +7809,6 @@
     "status": "matching",
     "mw_version": "GC/1.2.5n",
     "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/OSSetCurrentContext.c",
-    "symbols": [
-      "OSSetCurrentContext"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/OSSwitchFPUContext.c",
-    "symbols": [
-      "OSSwitchFPUContext"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
   },
   {
     "module": "main",
@@ -8914,19 +8809,6 @@
   },
   {
     "module": "main",
-    "source": "dol/__OSContextInit.c",
-    "symbols": [
-      "__OSContextInit"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.2.5n",
-    "pool": {
-      "@2": "OSContextMessage_1b4"
-    }
-  },
-  {
-    "module": "main",
     "source": "dol/os/OSReset.c",
     "symbols": [
       "__OSDoHotReset",
@@ -8974,15 +8856,26 @@
   },
   {
     "module": "main",
-    "source": "dol/__OSLoadFPUContext.c",
+    "source": "dol/os/OSContext.c",
     "symbols": [
-      "__OSLoadFPUContext"
+      "__OSLoadFPUContext",
+      "__OSSaveFPUContext",
+      "OSSaveFPUContext",
+      "OSSetCurrentContext",
+      "fn_8000BE5C",
+      "OSSaveContext",
+      "OSLoadContext",
+      "fn_8000BFC0",
+      "OSClearContext",
+      "OSInitContext",
+      "OSDumpContext",
+      "OSSwitchFPUContext",
+      "__OSContextInit"
     ],
     "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
+    "mw_version": "GC/1.2.5n",
     "extra_cflags": [],
-    "asm": true
+    "collapsed": true
   },
   {
     "module": "main",
@@ -8996,18 +8889,6 @@
     "mw_version": "GC/1.2.5n",
     "collapsed": true,
     "matching_for": ["GFZE01"]
-  },
-  {
-    "module": "main",
-    "source": "dol/__OSSaveFPUContext.c",
-    "symbols": [
-      "__OSSaveFPUContext"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
   },
   {
     "module": "main",
@@ -11445,19 +11326,6 @@
       "OSDataPool",
       "lbl_801225F4",
       "DSPInitCode"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_80122A58.c",
-    "symbols": [
-      "lbl_80122A58",
-      "OSContextMessage_1b4"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -19300,28 +19168,6 @@
       "@141": "lbl_801221C0+0x32C",
       "@5": "lbl_801A6414"
     }
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8000BE5C.c",
-    "symbols": [
-      "fn_8000BE5C"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8000BFC0.c",
-    "symbols": [
-      "fn_8000BFC0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
   },
   {
     "module": "main",

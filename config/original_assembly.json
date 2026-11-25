@@ -330,5 +330,61 @@
       "sha256": "b63c64da1bfe77beedd562d52faeae8b8837fd70c9fd4e41dbabe033ea26ac6c",
       "evidence": "Dolphin SDK os/OSCache.c writes its cache primitives as CodeWarrior asm functions (nofralloc): retail 0x8000B614..0x8000B8C0 holds dcbi/dcbf/dcbst/icbi ctr loops ending in sc or sync;isync, HID0/HID2 mfspr/mtspr, the __LCEnable dcbz_l lock loop with DBAT3 setup and twelve-nop pads, DMA_U/DMA_L writes and the LCQueueWait HID2 poll, all without a compiler frame; LCEnable, L2GlobalInvalidate, DMAErrorHandler and __OSCacheInit are compiled C in the same TU, as in every published Dolphin SDK decomp."
     }
+  ],
+  "src/dol/os/OSContext.c": [
+    {
+      "symbol": "__OSLoadFPUContext",
+      "form": "asm-function",
+      "sha256": "fec0324223d1ee5ac1096da467f0917e8cfd3fecb9ae7fd9c6369e72afab969d",
+      "evidence": "Dolphin SDK os/OSContext.c writes context and FPU switching as CodeWarrior asm functions (nofralloc): retail 0x8000BBAC..0x8000C3D4 saves and restores the register file with stmw/lmw, psq_l/psq_st and GQR mfspr/mtspr, writes SRR0/SRR1 and returns with rfi from the FPU-unavailable handler, and has no compiler frames; OSGetCurrentContext, OSClearContext, OSDumpContext and __OSContextInit are compiled C in the same TU, as in every published Dolphin SDK decomp."
+    },
+    {
+      "symbol": "__OSSaveFPUContext",
+      "form": "asm-function",
+      "sha256": "731bf82b263062dfe8a7d2da84be2eca46d180f6e9d7063081b54ffcd8a9a32c",
+      "evidence": "Dolphin SDK os/OSContext.c writes context and FPU switching as CodeWarrior asm functions (nofralloc): retail 0x8000BBAC..0x8000C3D4 saves and restores the register file with stmw/lmw, psq_l/psq_st and GQR mfspr/mtspr, writes SRR0/SRR1 and returns with rfi from the FPU-unavailable handler, and has no compiler frames; OSGetCurrentContext, OSClearContext, OSDumpContext and __OSContextInit are compiled C in the same TU, as in every published Dolphin SDK decomp."
+    },
+    {
+      "symbol": "OSSaveFPUContext",
+      "form": "asm-function",
+      "sha256": "9278c45f97e5394763410e03968951f3aec45e4b23b4728b2a5cf6e19741e6a6",
+      "evidence": "Dolphin SDK os/OSContext.c writes context and FPU switching as CodeWarrior asm functions (nofralloc): retail 0x8000BBAC..0x8000C3D4 saves and restores the register file with stmw/lmw, psq_l/psq_st and GQR mfspr/mtspr, writes SRR0/SRR1 and returns with rfi from the FPU-unavailable handler, and has no compiler frames; OSGetCurrentContext, OSClearContext, OSDumpContext and __OSContextInit are compiled C in the same TU, as in every published Dolphin SDK decomp."
+    },
+    {
+      "symbol": "OSSetCurrentContext",
+      "form": "asm-function",
+      "sha256": "513b3e6f0b24fab95951600b5c183843335bf2077b7c446b9df2df165da93982",
+      "evidence": "Dolphin SDK os/OSContext.c writes context and FPU switching as CodeWarrior asm functions (nofralloc): retail 0x8000BBAC..0x8000C3D4 saves and restores the register file with stmw/lmw, psq_l/psq_st and GQR mfspr/mtspr, writes SRR0/SRR1 and returns with rfi from the FPU-unavailable handler, and has no compiler frames; OSGetCurrentContext, OSClearContext, OSDumpContext and __OSContextInit are compiled C in the same TU, as in every published Dolphin SDK decomp."
+    },
+    {
+      "symbol": "OSSaveContext",
+      "form": "asm-function",
+      "sha256": "6c19399e68814a7ad347fb62363f2f1bc9b5b9d10499667d532869dde4143d37",
+      "evidence": "Dolphin SDK os/OSContext.c writes context and FPU switching as CodeWarrior asm functions (nofralloc): retail 0x8000BBAC..0x8000C3D4 saves and restores the register file with stmw/lmw, psq_l/psq_st and GQR mfspr/mtspr, writes SRR0/SRR1 and returns with rfi from the FPU-unavailable handler, and has no compiler frames; OSGetCurrentContext, OSClearContext, OSDumpContext and __OSContextInit are compiled C in the same TU, as in every published Dolphin SDK decomp."
+    },
+    {
+      "symbol": "OSLoadContext",
+      "form": "asm-function",
+      "sha256": "69913fa6e53c9cce4cd62bab7678d3652ad20964b60265034120f0ba5f6f8e89",
+      "evidence": "Dolphin SDK os/OSContext.c writes context and FPU switching as CodeWarrior asm functions (nofralloc): retail 0x8000BBAC..0x8000C3D4 saves and restores the register file with stmw/lmw, psq_l/psq_st and GQR mfspr/mtspr, writes SRR0/SRR1 and returns with rfi from the FPU-unavailable handler, and has no compiler frames; OSGetCurrentContext, OSClearContext, OSDumpContext and __OSContextInit are compiled C in the same TU, as in every published Dolphin SDK decomp."
+    },
+    {
+      "symbol": "fn_8000BFC0",
+      "form": "asm-function",
+      "sha256": "230ed8b431ab743ddcec4d6515f3ba7561214b5a320874b8ac3bb66398b0ef41",
+      "evidence": "Dolphin SDK os/OSContext.c writes context and FPU switching as CodeWarrior asm functions (nofralloc): retail 0x8000BBAC..0x8000C3D4 saves and restores the register file with stmw/lmw, psq_l/psq_st and GQR mfspr/mtspr, writes SRR0/SRR1 and returns with rfi from the FPU-unavailable handler, and has no compiler frames; OSGetCurrentContext, OSClearContext, OSDumpContext and __OSContextInit are compiled C in the same TU, as in every published Dolphin SDK decomp."
+    },
+    {
+      "symbol": "OSInitContext",
+      "form": "asm-function",
+      "sha256": "81544516ec394dae8e45c1ce6585ff148c8ea1a24fe48cf18816aab8f381e0ff",
+      "evidence": "Dolphin SDK os/OSContext.c writes context and FPU switching as CodeWarrior asm functions (nofralloc): retail 0x8000BBAC..0x8000C3D4 saves and restores the register file with stmw/lmw, psq_l/psq_st and GQR mfspr/mtspr, writes SRR0/SRR1 and returns with rfi from the FPU-unavailable handler, and has no compiler frames; OSGetCurrentContext, OSClearContext, OSDumpContext and __OSContextInit are compiled C in the same TU, as in every published Dolphin SDK decomp."
+    },
+    {
+      "symbol": "OSSwitchFPUContext",
+      "form": "asm-function",
+      "sha256": "72eb7f65537ea23311340df789a96f41a022c9e44c9dfd991f989ef567abf924",
+      "evidence": "Dolphin SDK os/OSContext.c writes context and FPU switching as CodeWarrior asm functions (nofralloc): retail 0x8000BBAC..0x8000C3D4 saves and restores the register file with stmw/lmw, psq_l/psq_st and GQR mfspr/mtspr, writes SRR0/SRR1 and returns with rfi from the FPU-unavailable handler, and has no compiler frames; OSGetCurrentContext, OSClearContext, OSDumpContext and __OSContextInit are compiled C in the same TU, as in every published Dolphin SDK decomp."
+    }
   ]
 }
