@@ -386,5 +386,13 @@
       "sha256": "72eb7f65537ea23311340df789a96f41a022c9e44c9dfd991f989ef567abf924",
       "evidence": "Dolphin SDK os/OSContext.c writes context and FPU switching as CodeWarrior asm functions (nofralloc): retail 0x8000BBAC..0x8000C3D4 saves and restores the register file with stmw/lmw, psq_l/psq_st and GQR mfspr/mtspr, writes SRR0/SRR1 and returns with rfi from the FPU-unavailable handler, and has no compiler frames; OSGetCurrentContext, OSClearContext, OSDumpContext and __OSContextInit are compiled C in the same TU, as in every published Dolphin SDK decomp."
     }
+  ],
+  "src/dol/os/OSSync.c": [
+    {
+      "symbol": "SystemCallVector",
+      "form": "asm-function",
+      "sha256": "cb400f971e56e2a117dd0387f8649445e843e377066bbebd9f6c16e0b8309f36",
+      "evidence": "Dolphin SDK os/OSSync.c writes SystemCallVector as a CodeWarrior asm function (nofralloc) with entry labels __OSSystemCallVectorStart/__OSSystemCallVectorEnd: retail 0x800100BC..0x800100DC reads and writes HID0 with mfspr/mtspr, flushes with isync/sync and returns with rfi, which MWCC never emits from C; __OSInitSystemCall copies the bytes between the two labels to the 0xC00 vector and is compiled C in the same TU."
+    }
   ]
 }

@@ -8163,15 +8163,16 @@
   },
   {
     "module": "main",
-    "source": "dol/SystemCallVector.c",
+    "source": "dol/os/OSSync.c",
     "symbols": [
-      "SystemCallVector"
+      "SystemCallVector",
+      "__OSInitSystemCall",
+      "fn_80010140"
     ],
     "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
+    "mw_version": "GC/1.2.5n",
     "extra_cflags": [],
-    "asm": true
+    "collapsed": true
   },
   {
     "module": "main",
@@ -8841,18 +8842,6 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/__OSInitSystemCall.c",
-    "symbols": [
-      "__OSInitSystemCall",
-      "fn_80010140"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true,
-    "matching_for": ["GFZE01"]
   },
   {
     "module": "main",

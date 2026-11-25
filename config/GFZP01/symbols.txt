@@ -254,6 +254,7 @@ SystemCallVector = .text:0x80010964; // type:function size:0x20 force_active
 __OSSystemCallVectorStart = .text:0x80010964; // type:label
 __OSSystemCallVectorEnd = .text:0x80010980; // type:label
 __OSInitSystemCall = .text:0x80010984; // type:function size:0x64 scope:global
+fn_80010140 = .text:0x800109E8; // type:function size:0x4
 __OSThreadInit = .text:0x800109EC; // type:function size:0x158 scope:global
 OSInitThreadQueue = .text:0x80010B44; // type:function size:0x10 scope:global
 fn_800102AC = .text:0x80010B54; // type:function size:0xC

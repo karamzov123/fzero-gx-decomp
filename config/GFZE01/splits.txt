@@ -442,8 +442,8 @@ dol/Run.c:
 dol/Reset.c:
 	.text       start:0x8000EEF4 end:0x8000EF64 align:4
 
-dol/SystemCallVector.c:
-	.text       start:0x800100BC end:0x800100DC align:4
+dol/os/OSSync.c:
+	.text       start:0x800100BC end:0x80010144 align:4
 
 dol/__DBExceptionDestination.c:
 	.text       start:0x80015AA8 end:0x80015AB8 align:4
@@ -587,9 +587,6 @@ dol/card/CARDRead.c:
 
 dol/CARDOpen.c:
 	.text       start:0x8002E954 end:0x8002EDA8 align:4
-
-dol/__OSInitSystemCall.c:
-	.text       start:0x800100DC end:0x80010144 align:4
 
 dol/runtime/__init_user.c:
 	.text       start:0x80011888 end:0x8001191C align:4
