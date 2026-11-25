@@ -3023,15 +3023,15 @@ void fn_1_3CF0(struct fn_1_3CF0_Mgr *buf, u32 count) {
 typedef struct Fn1_3F8C_Entry Fn1_3F8C_Entry;
 
 struct Fn1_3F8C_Entry {
-    u32 arg0;
-    u32 arg1;
+    void *func;
+    void *arg;
     Fn1_3F8C_Entry *next;
     Fn1_3F8C_Entry *prev;
     s32 result;
     u32 stamp;
     u32 reserved18;
     u32 reserved1c;
-    u32 arg3;
+    char *name;
 };
 
 typedef struct Fn1_3F8C_Table {
@@ -3040,7 +3040,7 @@ typedef struct Fn1_3F8C_Table {
 } Fn1_3F8C_Table;
 
 // Retrieves an entry from the free list and links it into the indexed list.
-s32 fn_1_3F8C(u32 arg3, u32 arg0, u32 arg1, u32 index) {
+s32 fn_1_3F8C(char *name, void *func, void *arg, u32 priority) {
     Fn1_3F8C_Table *table = (Fn1_3F8C_Table *)lbl_1_bss_DAC;
     Fn1_3F8C_Entry *entry = table->head;
     u8 *slot;
@@ -3051,15 +3051,15 @@ s32 fn_1_3F8C(u32 arg3, u32 arg0, u32 arg1, u32 index) {
     }
 
     table->head = entry->next;
-    slot = (u8 *)table + index * 4;
+    slot = (u8 *)table + priority * 4;
     link = *(Fn1_3F8C_Entry **)(slot + 0x18);
     entry->next = link->next;
     entry->prev = *(Fn1_3F8C_Entry **)(slot + 0x18);
-    entry->arg1 = arg1;
-    entry->arg0 = arg0;
+    entry->arg = arg;
+    entry->func = func;
     entry->reserved18 = 0;
     entry->reserved1c = 0;
-    entry->arg3 = arg3;
+    entry->name = name;
     entry->stamp = lbl_1_bss_DB0[0];
 
     if (entry->next != 0) {

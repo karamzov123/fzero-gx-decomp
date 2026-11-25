@@ -1649,12 +1649,12 @@
    "file": "car_test.c",
    "text": [
     507804,
-    521132
+    519052
    ],
    "data_sec": 5,
    "data": [
     126812,
-    131056
+    127448
    ],
    "anchor_refs": [
     508220,
@@ -1674,13 +1674,7 @@
     "fn_1_7E8F4",
     "fn_1_7E9C4",
     "fn_1_7EAE8",
-    "fn_1_7EB0C",
-    "fn_1_7EB8C",
-    "fn_1_7ECB8",
-    "fn_1_7F1E8",
-    "fn_1_7F20C",
-    "fn_1_7F230",
-    "fn_1_7F254"
+    "fn_1_7EB0C"
    ],
    "confidence": {
     "text+data": 4,
@@ -1691,13 +1685,13 @@
   {
    "file": "car.c",
    "text": [
-    521132,
-    614128
+    519052,
+    582820
    ],
    "data_sec": 5,
    "data": [
-    131056,
-    162816
+    127448,
+    133568
    ],
    "anchor_refs": [
     521132,
@@ -1712,6 +1706,12 @@
     580276
    ],
    "functions": [
+    "fn_1_7EB8C",
+    "fn_1_7ECB8",
+    "fn_1_7F1E8",
+    "fn_1_7F20C",
+    "fn_1_7F230",
+    "fn_1_7F254",
     "fn_1_7F3AC",
     "fn_1_7F428",
     "fn_1_7F49C",
@@ -1951,7 +1951,30 @@
     "fn_1_8E3A4",
     "fn_1_8E448",
     "fn_1_8E450",
-    "fn_1_8E480",
+    "fn_1_8E480"
+   ],
+   "confidence": {
+    "text+data": 246,
+    "text-range": 0,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "rob.c",
+   "text": [
+    582820,
+    623044
+   ],
+   "data_sec": 5,
+   "data": [
+    133568,
+    163296
+   ],
+   "anchor_refs": [
+    614128,
+    622852
+   ],
+   "functions": [
     "fn_1_8E4A4",
     "fn_1_8E728",
     "fn_1_8E7D0",
@@ -1982,30 +2005,7 @@
     "fn_1_9550C",
     "fn_1_956B8",
     "fn_1_956EC",
-    "fn_1_95950"
-   ],
-   "confidence": {
-    "text+data": 16,
-    "text-range": 249,
-    "data-vote": 10
-   }
-  },
-  {
-   "file": "rob.c",
-   "text": [
-    614128,
-    623044
-   ],
-   "data_sec": 5,
-   "data": [
-    162816,
-    163336
-   ],
-   "anchor_refs": [
-    614128,
-    622852
-   ],
-   "functions": [
+    "fn_1_95950",
     "fn_1_95EF0",
     "fn_1_96130",
     "fn_1_9617C",
@@ -2035,8 +2035,8 @@
     "fn_1_9818C"
    ],
    "confidence": {
-    "text+data": 3,
-    "text-range": 15,
+    "text+data": 58,
+    "text-range": 0,
     "data-vote": 0
    }
   },
