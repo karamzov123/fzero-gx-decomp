@@ -54,6 +54,39 @@ extern void strcpy(void *arg0, char *arg1);
 extern void strcat(void *arg0, void *arg1);
 extern s32 fn_1_F89E4(u8 value);
 
+/* fzgx:begin fn_1_12A290 noprologue */
+#include "types.h"
+
+extern u32 lbl_1_bss_897AC[1741];
+
+u32 fn_1_12A290(s32 index) {
+    if (index == -1) {
+        return 0;
+    }
+    return lbl_1_bss_897AC[index * 27 + 26];
+}
+/* fzgx:end fn_1_12A290 */
+
+/* fzgx:begin fn_1_12A2B8 noprologue */
+#include "types.h"
+
+extern u32 lbl_1_bss_897A4;
+
+void fn_1_12A2B8(u32 value) {
+    lbl_1_bss_897A4 = value;
+}
+/* fzgx:end fn_1_12A2B8 */
+
+/* fzgx:begin fn_1_12A2C4 noprologue */
+#include "types.h"
+
+extern u32 lbl_1_bss_897A8;
+
+void fn_1_12A2C4(u32 value) {
+    lbl_1_bss_897A8 = value;
+}
+/* fzgx:end fn_1_12A2C4 */
+
 /* fzgx:begin fn_1_12A2D0 */
 extern void OSPanic(u8 *arg0, s32 arg1, u8 *arg2, ...);
 
