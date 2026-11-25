@@ -847,3 +847,53 @@ Observed across 93 functions in PR #164 (`interview.c`, `cloth.c`, `sel.c`):
   while every spelling tried (statement permutations, pointer views, integer-cast addresses,
   `const gx`, FIFO object forms, scheduling pragmas, compiler versions) hoists it to the start
   of the block.
+
+### Constant propagation of `local = literal` and what blocks it (accessory.c collapse, GC/1.3.2, 2026-11-24)
+
+Measured with about 80 probe functions and checked against the reconstructed optimizer's propagation
+pass (mweppc `IroPropagate.c`, `IroVars.c`). Under `-O4,p` a local assigned a float literal is replaced
+by the literal at every use, and the literal is loaded at the first use, not at the assignment. There
+is no threshold on use count, number of definitions, block count, loop depth, float versus double, or
+`register`. Only these stop it:
+- **More than one definition reaches the use**: if/else (even with the same literal in both arms), a
+  ternary, a loop-carried or one-path redefinition. The variable is then loaded at its definition, in
+  definition order. The extra definition is real code: it leaves reloads in the loop, or loads that are
+  not hoisted, so it cannot reproduce a single hoisted load.
+- **The variable is an inline-asm operand anywhere in the function**, even on a conditional path.
+- **The value comes from asm, or the address is taken and live across a call or pointer store**
+  (gives a stack home). A dead or folded `&x` stops counting after the first pass.
+- **The right-hand side is a copy from global data or from an address-taken local**, or a copy into a
+  deeper loop. Copy chains that start from a literal collapse in the same walk.
+- `#pragma opt_propagation off`.
+
+Shapes that still propagate: declaration initializers, `register`, f64/int literals, a dead earlier
+definition, unions, Vec3 or `f32[3]` members (split into scalars), `static const` objects (folded into
+the pool literals), literals returned by or passed to inline helpers (old-style or prototyped), `if(1)`,
+`do{}while(0)`, comma expressions, and turning off opt_common_subs, opt_lifetimes or opt_loop_invariants.
+
+**Diagnostic signature:** retail loads constants in an order that differs from their store order (for
+example a sphere centre loaded z, y, x but stored x, y, z), hoisted out of the loop into callee-saved
+FPRs. That is an unpropagated variable. `#pragma opt_propagation off` around the function confirms it
+(use it as a probe only). The accessory.c sphere family (fn_1_11A774, fn_1_11F250, fn_1_123050,
+fn_1_124AD4, fn_1_1256EC, fn_1_12744C) is the worked case: no natural C was found, and the functions
+landed with the marked device kernel `vec_set_xyz` (include/psvec_set_xyz.h), whose operands are not
+propagated. SMB1 writes register floats with inline-asm `stfs` in its mathutil helpers
+(`mathutil_mtxA_set_translate_xyz`), so an original asm store helper is plausible but unproven. The
+owners decide whether it is original. The whole-TU `-opt nopropagation` and the compilers 1.3, 1.3.2r
+and 1.2.5n were measured and are wrong for this TU (21/99 match, 57, 49 and 101 failures).
+
+Levers from the same collapse that removed devices without new ones:
+- **Write the product inline instead of a temp local** when a temp turns into an `fmr` copy or a late
+  temporary: `psvec_sub_scale_add(..., k * f(r), ...)` instead of `scale = k * f(r);` (fn_1_10AD18 and
+  the sphere family).
+- **Pass the constant to the existing engine kernel** instead of hand-written locked-cache code:
+  `mathutil_mtxA_translate_z(0.049f)` closed fn_1_10CC38 and removed its `opt_lifetimes off`.
+- **A block-scope initialized local reproduces an anonymous non-const .rodata initializer**:
+  `{ Word3 zero = {0, 0, 0}; g->c34 = zero; }` puts the initializer in .rodata at the retail offset and
+  copies it without a stack slot. Because the object is not const, its loads stay after earlier stores
+  (fn_1_10846C; no section device needed).
+- **Accumulate a squared length** as `d = x*x; d += y*y; d += z*z; len = d;` instead of one expression.
+  That fixed a 2-word store/fmadds order and removed `opt_common_subs off` from seven functions
+  (fn_1_10AD18, fn_1_10D7D4, fn_1_1132E4, fn_1_1192D0, fn_1_11B958, fn_1_11C440, fn_1_126774).
+- **New inline in a shared header renumbers `@N` literals** of every unit that includes it and can
+  break their literal-pool maps. Put a new kernel in its own header.
