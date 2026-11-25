@@ -97,7 +97,7 @@ extern u32 OSGetTick(void);
 extern void OSLink(void *, u32);
 extern s32 OSUnlink(void *);
 extern u32 fn_800793D4(void *, u32, u32);
-extern s32 fn_80005E0C(void);
+s32 fn_80005E0C(void);
 extern void fn_8006FD1C(void);
 extern s32 fn_8006FDEC(void);
 extern void fn_8006FEFC(void);
@@ -418,3 +418,71 @@ void fn_80005B10(void *arg0) {
     *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_801A6E5C;  /* fzgx-allow: A2 */
     *(f32 *)((u8 *)0xCC010000 + -32768) = lbl_801A6E94;  /* fzgx-allow: A2 */
 }
+
+extern u8 lbl_801A66D0[8];
+
+/* The cache/paired-single timing loop is a CodeWarrior asm function in the original
+ * (mfibatu and ps_sub in counted loops over a small-data buffer, no compiler frame). */
+asm s32 fn_80005E0C(void) {
+    nofralloc
+    la r3, lbl_801A66D0(r13)
+    li r0, 0x32
+    addis r3, r3, 0x4000
+    li r4, 0x0
+    mtctr r0
+L_80005E20:
+    mr r0, r3
+    li r5, 0xc8
+L_80005E28:
+    stw r5, 0x0(r3)
+    subic. r5, r5, 0x1
+    bne L_80005E28
+    li r5, 0x76c
+L_80005E38:
+    add r0, r0, r0
+    add r0, r0, r0
+    add r0, r0, r0
+    add r0, r0, r0
+    add r0, r0, r0
+    add r0, r0, r0
+    add r0, r0, r0
+    subic. r5, r5, 0x1
+    bne L_80005E38
+    li r5, 0x76c
+L_80005E60:
+    mfibatu r0, 0
+    ps_sub f0, f0, f0
+    mfibatu r0, 0
+    ps_sub f1, f1, f1
+    subic. r5, r5, 0x1
+    bne- L_80005E60
+    mr r0, r3
+    li r5, 0xc8
+L_80005E80:
+    stw r5, 0x0(r3)
+    subic. r5, r5, 0x1
+    bne L_80005E80
+    li r5, 0x76c
+L_80005E90:
+    add r0, r0, r0
+    add r0, r0, r0
+    add r0, r0, r0
+    add r0, r0, r0
+    add r0, r0, r0
+    add r0, r0, r0
+    add r0, r0, r0
+    subic. r5, r5, 0x1
+    bne L_80005E90
+    li r5, 0x76c
+L_80005EB8:
+    mfibatu r0, 0
+    ps_sub f0, f0, f0
+    mfibatu r0, 0
+    ps_sub f1, f1, f1
+    subic. r5, r5, 0x1
+    bne- L_80005EB8
+    addi r4, r4, 0x1
+    bdnz L_80005E20
+    blr
+}
+

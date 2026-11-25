@@ -7,7 +7,7 @@
     "assigned": 2230,
     "bytes": 567556,
     "assigned_bytes": 567556,
-    "tus": 258,
+    "tus": 259,
     "conflicts": 0,
     "string_anchored": 13
   },
@@ -16,7 +16,7 @@
       "file": "game_main.c",
       "text": [
         "800055E0",
-        "80006B4C"
+        "80005EDC"
       ],
       "functions": [
         "main",
@@ -30,7 +30,21 @@
         "fn_80005A08",
         "fn_80005AD0",
         "fn_80005B10",
-        "fn_80005E0C",
+        "fn_80005E0C"
+      ],
+      "how": {
+        "string-range": 12,
+        "literal-dedupe": 1
+      },
+      "lib": "av"
+    },
+    {
+      "file": "game_main_disc.c",
+      "text": [
+        "80005EDC",
+        "80006B4C"
+      ],
+      "functions": [
         "fn_80005EDC",
         "fn_800060D8",
         "fn_80006334",
@@ -48,7 +62,8 @@
         "fn_80006B30"
       ],
       "how": {
-        "string-range": 27
+        "string-range": 15,
+        "literal-dedupe": 1
       },
       "lib": "av"
     },

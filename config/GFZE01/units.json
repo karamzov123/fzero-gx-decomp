@@ -18442,18 +18442,6 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_80005E0C.c",
-    "symbols": [
-      "fn_80005E0C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
     "source": "dol/av/game_main_disc.c",
     "symbols": [
       "fn_80005EDC",
@@ -22537,7 +22525,8 @@
       "fn_8000591C",
       "fn_80005A08",
       "fn_80005AD0",
-      "fn_80005B10"
+      "fn_80005B10",
+      "fn_80005E0C"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],

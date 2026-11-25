@@ -50,6 +50,8 @@ def spr(insn, word, names):
 def operand(text):
     text = re.sub(r'^twui (\S+), ', r'twi 31, \1, ', text)     # extended mnemonic CodeWarrior lacks
     text = re.sub(r'^mcrfs (cr[0-7]), cr([0-7])$', r'mcrfs \1, \2', text)   # the source is an FPSCR field
+    text = re.sub(r'^li (r\d+), (\w+)@sda21$', r'la \1, \2(r13)', text)       # small-data address
+    text = re.sub(r'(\w+)@sda21\(r0\)', r'\1', text)                         # small-data load/store
     text = re.sub(r'\.L_([0-9A-F]+)', r'L_\1', text)
     text = re.sub(r'\bqr([0-7])\b', r'\1', text)
     text = re.sub(r'\bcr([0-7])(lt|gt|eq|so|un)\b', lambda m: str(4 * int(m[1]) + CRBIT[m[2]]), text)
@@ -80,7 +82,7 @@ def convert(path, syms, names):
         elif name and re.match(r'\.L_[0-9A-F]+:', line):
             out.append(operand(line.rstrip(':')) + ':')
         elif name and line.startswith('/*'):
-            insn = line.split('*/', 1)[1].strip()
+            insn = re.sub(r'\s+#.*$', '', line.split('*/', 1)[1].strip())   # drop GNU as comments
             word = int(''.join(line.split('*/', 1)[0].split()[3:7]), 16)
             out.append('    ' + operand(spr(insn, word, names)))
         elif name and line.strip() and not line.startswith('#'):

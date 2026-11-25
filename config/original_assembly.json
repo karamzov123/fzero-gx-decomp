@@ -1074,5 +1074,13 @@
       "sha256": "8a24d65851e35d626ca69e22eabcd3c6ec7f61e017e359b36e5effc0858e6e9d",
       "evidence": "Engine mathutil.c (shared with the Monkey Ball engine) writes these routines as CodeWarrior asm functions (nofralloc): they operate on the locked-cache matrix stack with psq_l/psq_st and paired-single arithmetic, share entry labels and FPSCR tests (mcrfs) across routines, and keep register contracts outside the EABI, with no compiler frames; the remaining routines are compiled C in the same TU."
     }
+  ],
+  "src/dol/av/game_main.c": [
+    {
+      "symbol": "fn_80005E0C",
+      "form": "asm-function",
+      "sha256": "dbab610b01c8f2c9acc301c4acd316900e487c2c30f2b08c967a83255c0a2837",
+      "evidence": "The engine boot code (game_main.c) writes fn_80005E0C as a CodeWarrior asm function (nofralloc): retail 0x80005E0C..0x80005EDC is a counted timing loop that reads IBAT0U with mfibatu and clears paired singles with ps_sub around stores to a small-data buffer addressed through its uncached mirror (addis 0x4000), instructions MWCC never emits from C, with no compiler frame."
+    }
   ]
 }

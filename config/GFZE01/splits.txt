@@ -237,7 +237,7 @@ dol/os/heap.c:
 	.text       start:0x80008E34 end:0x80009FBC align:4
 
 dol/av/game_main.c:
-	.text       start:0x800055E0 end:0x80005E0C align:4
+	.text       start:0x800055E0 end:0x80005EDC align:4
 
 dol/perf/perf.c:
 	.text       start:0x8003D4E0 end:0x8003E9EC align:4
@@ -363,9 +363,6 @@ dol/__start.c:
 
 dol/__init_hardware.c:
 	.init       start:0x80003400 end:0x80003424 align:4
-
-dol/fn_80005E0C.c:
-	.text       start:0x80005E0C end:0x80005EDC align:4
 
 dol/av/mmu.c:
 	.text       start:0x800071B8 end:0x80007A44 align:4
