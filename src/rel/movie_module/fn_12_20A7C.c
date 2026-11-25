@@ -2,7 +2,7 @@
 
 extern int fn_12_23F34(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
 extern void fn_12_20B90(void);
-extern int fn_8008023C(u32 arg0, u32 arg1, u32 arg2);
+extern int memcmp(u32 arg0, u32 arg1, u32 arg2);
 extern u8 lbl_12_rodata_A50[20];
 
 typedef struct Movie {
@@ -43,7 +43,7 @@ void fn_12_20A7C(MovieModule *arg0, u8 *arg1, s32 arg2, s32 *arg3) {
         buf = arg1;
         i = 0;
         while (i < arg2 - 0x12) {
-            if (fn_8008023C((u32)buf, (u32)lbl_12_rodata_A50, 0x12) != 0) {
+            if (memcmp((u32)buf, (u32)lbl_12_rodata_A50, 0x12) != 0) {
                 movie->field_003c = fn_12_20B90;
                 break;
             }

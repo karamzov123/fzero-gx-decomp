@@ -22,7 +22,7 @@ extern void fn_8001D32C(u32 *);
 extern void fn_80008BEC(void *dst, s32 value, u32 size);
 extern void fn_1_F75D8(void *, int, int, int);
 extern void fn_1_F8918(u8 *, u8 *);
-extern s32 fn_8008023C(u8 *, Obj_1_bss_7F0C0 *, u32);
+extern s32 memcmp(u8 *, Obj_1_bss_7F0C0 *, u32);
 extern void fn_1_F85A0(Obj_1_bss_7F0C0 *, u8 *);
 extern u16 lbl_1_data_414[36];
 extern int fn_1_8D5F0(s16 value);
@@ -1159,7 +1159,7 @@ extern void fn_8001D32C(u32 *);
 extern void fn_80008BEC(void *dst, s32 value, u32 size);
 extern void fn_1_F75D8(void *, int, int, int);
 extern void fn_1_F8918(u8 *, u8 *);
-extern s32 fn_8008023C(u8 *, Obj_1_bss_7F0C0 *, u32);
+extern s32 memcmp(u8 *, Obj_1_bss_7F0C0 *, u32);
 extern void fn_1_F85A0(Obj_1_bss_7F0C0 *, u8 *);
 extern u16 lbl_1_data_414[36];
 extern int fn_1_8D5F0(s16 value);
@@ -1493,7 +1493,7 @@ s32 fn_1_F7904(void) {
     u8 buffer[0x5360];
 
     fn_1_F8918(&lbl_1_bss_718E0.pad_1A2[0x1e], buffer);
-    return fn_8008023C(buffer, &lbl_1_bss_7F0C0, 0x5360) != 0;
+    return memcmp(buffer, &lbl_1_bss_7F0C0, 0x5360) != 0;
 }
 /* fzgx:end fn_1_F7904 */
 
@@ -1504,7 +1504,7 @@ s32 fn_1_F7954(void) {
 
     workspace = (u8 *)&lbl_1_bss_718E0 + 0x1c0;
     fn_1_F8918(workspace, buffer);
-    if (fn_8008023C(buffer, &lbl_1_bss_7F0C0, 0x5360) == 0) {
+    if (memcmp(buffer, &lbl_1_bss_7F0C0, 0x5360) == 0) {
         return 0;
     }
     fn_1_F85A0(&lbl_1_bss_7F0C0, workspace);
@@ -3125,7 +3125,7 @@ extern void fn_8001D32C(u32 *);
 extern void fn_80008BEC(void *dst, s32 value, u32 size);
 extern void fn_1_F75D8(void *, int, int, int);
 extern void fn_1_F8918(u8 *, u8 *);
-extern s32 fn_8008023C(u8 *, Obj_1_bss_7F0C0 *, u32);
+extern s32 memcmp(u8 *, Obj_1_bss_7F0C0 *, u32);
 extern void fn_1_F85A0(Obj_1_bss_7F0C0 *, u8 *);
 extern u16 lbl_1_data_414[36];
 extern int fn_1_8D5F0(s16 value);

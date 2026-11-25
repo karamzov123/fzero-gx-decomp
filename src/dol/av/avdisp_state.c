@@ -19,7 +19,7 @@ extern void *memset(void *, int, u32);
 extern void GXSetTevSwapModeTable();
 extern void GXSetTevIndirect(s32, s32, s32, s32, s32, s32, s32, u8, u8, s32);
 extern void fn_800794F0(void *, void *, int);
-extern int fn_8008023C(void *, void *, int);
+extern int memcmp(void *, void *, int);
 extern void fn_80072A50(u32, u32, u32, u32, u32);
 
 /* === dol/fn_800725DC.c === */
@@ -805,7 +805,7 @@ void fn_80073A58(int index, void *arg, s8 value) {
     }
 
     if (entry->unk_18 == value) {
-        if (fn_8008023C(entry, arg, 0x18) == 0) {
+        if (memcmp(entry, arg, 0x18) == 0) {
             return;
         }
     }
@@ -1026,7 +1026,7 @@ void fn_80073E8C(s32 arg0, s32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, s32
         } else if (arg7 <= 11) {
             entry = (Entry_u15 *)(((u8 *)lbl_801A6D38) + (arg7 - 9) * 0x1C + 0x894);
         }
-        if (entry->unk_18 != 10 || fn_8008023C(entry, &matrix, 0x18) != 0) {
+        if (entry->unk_18 != 10 || memcmp(entry, &matrix, 0x18) != 0) {
             fn_80036AC4(arg7, &matrix, 10);
             fn_800794F0(entry, &matrix, 0x18);
             entry->unk_18 = 10;

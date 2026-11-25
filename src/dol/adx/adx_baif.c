@@ -82,7 +82,7 @@ typedef struct AdxBasicDecoder {
 } AdxBasicDecoder;
 
 extern int ADXPD_GetStat(AdxXpnd *decoder);
-extern u32 fn_8008023C(u32, u32, u32);
+extern u32 memcmp(u32, u32, u32);
 extern u32 lbl_80090080[];
 extern u32 lbl_80090088[];
 
@@ -226,8 +226,8 @@ int fn_80043B48(AdxBasicDecoder *d, signed char *input, int length) {
 
 s32 fn_80043CCC(u32 arg0) {
     u32 v0;
-    if ((s32)fn_8008023C(arg0, (u32)&lbl_80090080, 4) == 0 &&
-        (s32)fn_8008023C((arg0 + 8), (u32)&lbl_80090088, 4) == 0) {
+    if ((s32)memcmp(arg0, (u32)&lbl_80090080, 4) == 0 &&
+        (s32)memcmp((arg0 + 8), (u32)&lbl_80090088, 4) == 0) {
         v0 = 1;
     } else {
         v0 = 0;

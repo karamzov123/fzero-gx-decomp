@@ -92,7 +92,7 @@ typedef struct {
     u16 bitsPerSample;
 } WavFormat;
 
-extern s32 fn_8008023C(const void *, const void *, u32);
+extern s32 memcmp(const void *, const void *, u32);
 extern u32 lbl_80090070[];
 extern u32 lbl_80090078[];
 extern int ADXPD_GetStat(AdxXpnd *decoder);
@@ -116,8 +116,8 @@ void fn_8004251C(AdxBasicDecoder *arg0) {
 
 s32 fn_80042568(const void *arg0) {
     u32 v0;
-    if (fn_8008023C(arg0, &lbl_80090070, 4) == 0 &&
-        fn_8008023C((const u8 *)arg0 + 8, &lbl_80090078, 4) == 0) {
+    if (memcmp(arg0, &lbl_80090070, 4) == 0 &&
+        memcmp((const u8 *)arg0 + 8, &lbl_80090078, 4) == 0) {
         v0 = 1;
     } else {
         v0 = 0;
@@ -326,7 +326,7 @@ s32 fn_8004313C(u8 *buf, s32 size, s16 *dataOffset, s8 *encoding, s8 *bits, s8 *
     escaped = &sampleCount == &samplesPerBlock;
     escaped = (void *)&samplesPerBlock == &codec;
     for (i = 0; i < size; i++) {
-        if (fn_8008023C(&buf[i], lbl_8012B6F0.at_0, 4) == 0) {
+        if (memcmp(&buf[i], lbl_8012B6F0.at_0, 4) == 0) {
             break;
         }
     }
@@ -341,7 +341,7 @@ s32 fn_8004313C(u8 *buf, s32 size, s16 *dataOffset, s8 *encoding, s8 *bits, s8 *
         return -1;
     }
     for (i = 0; i < size; i++) {
-        if (fn_8008023C(&buf[i], lbl_8012B6F4.at_0, 4) == 0) {
+        if (memcmp(&buf[i], lbl_8012B6F4.at_0, 4) == 0) {
             break;
         }
     }

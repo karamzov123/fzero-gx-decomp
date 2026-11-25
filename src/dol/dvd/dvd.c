@@ -481,7 +481,7 @@ void stateCheckID(void) {
         }
         break;
     default:
-        if (fn_8008023C(&((struct dvdBss *)BB2_8015CE40)->CurrDiskID, IDShouldBe, 0x20)) {
+        if (memcmp(&((struct dvdBss *)BB2_8015CE40)->CurrDiskID, IDShouldBe, 0x20)) {
             DVDLowStopMotor(cbForStateCheckID1);
         } else {
             lbl_801A6904 = (stateFunc)fn_80018108;

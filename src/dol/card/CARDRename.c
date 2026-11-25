@@ -32,8 +32,8 @@ s32 CARDRenameAsync(s32 chan, const char *old, const char *new, CARDCallback cal
         if (ent->gameName[0] == 0xff) {
             continue;
         }
-        if (fn_8008023C(ent->gameName, card->diskID->gameName, sizeof(ent->gameName)) != 0 ||
-            fn_8008023C(ent->company, card->diskID->company, sizeof(ent->company)) != 0) {
+        if (memcmp(ent->gameName, card->diskID->gameName, sizeof(ent->gameName)) != 0 ||
+            memcmp(ent->company, card->diskID->company, sizeof(ent->company)) != 0) {
             continue;
         }
         if (__CARDCompareFileName(ent, old)) {

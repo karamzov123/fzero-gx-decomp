@@ -92,7 +92,7 @@ typedef struct SpsdHeader {
     u16 sample_rate;
 } SpsdHeader;
 
-extern int fn_8008023C(const void *a, const void *b, u32 size);
+extern int memcmp(const void *a, const void *b, u32 size);
 extern int ADXPD_GetStat(AdxXpnd *expander);
 
 int ADX_DecodeInfoSpsd(SpsdHeader *header, int size, short *data_offset, signed char *encoding, signed char *bits,
@@ -100,7 +100,7 @@ int ADX_DecodeInfoSpsd(SpsdHeader *header, int size, short *data_offset, signed 
                 int *samples_per_block, short *codec);
 
 int ADXB_CheckSpsd(const signed char *input) {
-    return fn_8008023C(input, "SPSD", 4) == 0;
+    return memcmp(input, "SPSD", 4) == 0;
 }
 
 void ADXB_ExecOneSpsd(AdxBasicDecoder *decoder) {

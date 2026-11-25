@@ -44,7 +44,7 @@ def main():
     out, last = [], 0
     for name, start, end, header in defs:
         out.append(text[last:start])
-        is_static_inline = re.match(r'static\s+inline\b|inline\b', header)
+        is_static_inline = re.match(r'static\s+inline\b|inline\b', header.lstrip())
         out.append(text[start:end] if name in keep or is_static_inline else ' '.join(header.split()) + ';')
         last = end
     out.append(text[last:])

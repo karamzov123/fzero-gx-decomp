@@ -12,7 +12,7 @@ struct fn_12_32EAC_Arg1 {
     u32 unk_0;
 };
 
-extern s32 fn_8008023C(u32, u32, u32);
+extern s32 memcmp(u32, u32, u32);
 extern char lbl_12_rodata_10DC[5];
 extern char lbl_12_rodata_10E4[25];
 extern u8 *strstr(u8 *, const u8 *);
@@ -77,7 +77,7 @@ s32 fn_12_32EAC(struct fn_12_32EAC_Arg0 *arg0, struct fn_12_32EAC_Arg1 *arg1) {
         arg0->unk_0 = -1;
         return 0;
     }
-    if (fn_8008023C(v0, (u32)lbl_12_rodata_10E4, 24) != 0) {
+    if (memcmp(v0, (u32)lbl_12_rodata_10E4, 24) != 0) {
         arg0->unk_0 = -1;
         return 0;
     }

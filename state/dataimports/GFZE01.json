@@ -67313,27 +67313,6 @@
     "unit_size": 8,
     "unit_start": 2149217496
   },
-  "main:lbl_801A74E0": {
-    "address": 2149217504,
-    "align": 4,
-    "declarations": [],
-    "definition": "const u32 lbl_801A74E0",
-    "method": "typed-data",
-    "module": "main",
-    "references": [
-      "wcstombs"
-    ],
-    "relocations": [],
-    "section": ".sdata2",
-    "section_size": 16,
-    "sha256": "4f05a52ebb000de8903555e870af86638f9feae1008e15f29f89e9bf6345a233",
-    "size": 4,
-    "source": "dol/data/lbl_801A74E0.c",
-    "symbol": "lbl_801A74E0",
-    "unit_align": 8,
-    "unit_size": 16,
-    "unit_start": 2149217504
-  },
   "main:lbl_801A74F0": {
     "address": 2149217520,
     "align": 4,

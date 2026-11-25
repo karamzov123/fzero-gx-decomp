@@ -1228,7 +1228,7 @@ extern void fn_3_BEF0(void);
 extern void fn_3_1445C(void);
 extern void fn_3_BE88(void);
 extern void fn_80008BA8(u32, u32, u32);
-extern s32 fn_8008023C(u32, u32, u32);
+extern s32 memcmp(u32, u32, u32);
 
 void fn_3_1A0F4(u8 *arg0) {
     if (fzgx_obj_lbl_3_bss_A2458 != 0) {
@@ -1241,7 +1241,7 @@ void fn_3_1A0F4(u8 *arg0) {
         fzgx_obj_lbl_3_bss_A2438.unk_4 = 0x40000000;
         fzgx_obj_lbl_3_bss_A2438.unk_E = 0;
         lbl_3_bss_A179C = 0;
-        if (fn_8008023C(fzgx_obj_lbl_3_bss_A2454, *(u32 *)(arg0 + 0x20), 0x2000) != 0) {
+        if (memcmp(fzgx_obj_lbl_3_bss_A2454, *(u32 *)(arg0 + 0x20), 0x2000) != 0) {
             fn_3_1445C();
         }
     } else {
@@ -2361,7 +2361,7 @@ typedef struct fn_3_273F4_Pool {
 extern void fn_3_BE10(void);
 extern void fn_3_1445C(void);
 extern void fn_80008BA8(u32 *, void *, s32);
-extern s32 fn_8008023C(u32 arg0, u32 arg1, u32 arg2);
+extern s32 memcmp(u32 arg0, u32 arg1, u32 arg2);
 extern u32 fn_3_141A8(u32);
 extern u8 fn_3_1443C(void);
 extern u32 fn_3_14064(void);
@@ -5327,7 +5327,7 @@ extern void fn_3_BEF0(void);
 extern void fn_3_1445C(void);
 extern void fn_3_BE88(void);
 extern void fn_80008BA8(u32 *, void *, s32);
-extern s32 fn_8008023C(u32 arg0, u32 arg1, u32 arg2);
+extern s32 memcmp(u32 arg0, u32 arg1, u32 arg2);
 extern struct fn_3_1A1D8_lbl_1_bss_9F8 lbl_1_bss_9F8;
 extern u32 fn_3_141A8(u32);
 extern u8 fn_3_1443C(void);
@@ -5990,7 +5990,7 @@ extern void fn_3_BEF0(void);
 extern void fn_3_1445C(void);
 extern void fn_3_BE88(void);
 extern void fn_80008BA8(u32 *, void *, s32);
-extern s32 fn_8008023C(u32 arg0, u32 arg1, u32 arg2);
+extern s32 memcmp(u32 arg0, u32 arg1, u32 arg2);
 extern struct fn_3_1A1D8_lbl_1_bss_9F8 lbl_1_bss_9F8;
 extern u32 fn_3_141A8(u32);
 extern u8 fn_3_1443C(void);
@@ -8086,7 +8086,7 @@ typedef struct fn_3_273F4_Pool {
 extern void fn_3_BE10(void);
 extern void fn_3_1445C(void);
 extern void fn_80008BA8(u32 *, void *, s32);
-extern s32 fn_8008023C(u32 arg0, u32 arg1, u32 arg2);
+extern s32 memcmp(u32 arg0, u32 arg1, u32 arg2);
 extern u32 fn_3_141A8(u32);
 extern u8 fn_3_1443C(void);
 extern u32 fn_3_14064(void);

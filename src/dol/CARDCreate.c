@@ -83,8 +83,8 @@ s32 CARDCreateAsync(s32 chan, const char *fileName, u32 size, CARDFileInfo *file
             if (freeNo == (u16)-1) {
                 freeNo = fileNo;
             }
-        } else if (fn_8008023C(ent->gameName, card->diskID->gameName, sizeof(ent->gameName)) == 0 &&
-                   fn_8008023C(ent->company, card->diskID->company, sizeof(ent->company)) == 0 &&
+        } else if (memcmp(ent->gameName, card->diskID->gameName, sizeof(ent->gameName)) == 0 &&
+                   memcmp(ent->company, card->diskID->company, sizeof(ent->company)) == 0 &&
                    __CARDCompareFileName(ent, fileName)) {
             return __CARDPutControlBlock(card, -7);
         }

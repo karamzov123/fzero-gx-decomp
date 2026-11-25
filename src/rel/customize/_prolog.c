@@ -1058,7 +1058,7 @@ extern void fn_1_12AB38(void *arg0);
 extern void *fn_1_D3884(void *);
 extern void fn_1_12A2C4(u32 value);
 extern void fn_1_14D994(void *, u32, u32);
-extern s32 fn_8008023C(u32 arg0, u32 arg1, u32 arg2);
+extern s32 memcmp(u32 arg0, u32 arg1, u32 arg2);
 extern void fn_3_7B94(void);
 extern void fn_1_151BDC(u32 value);
 extern void fn_1_FE5C4(u8 arg0, u32 arg1, u32 arg2, u8 arg3);
@@ -7075,10 +7075,10 @@ void fn_3_7E5C(void) {
 /* fzgx:end fn_3_7E5C */
 
 /* fzgx:begin fn_3_837C */
-extern s32 fn_8008023C(u32, u32, u32);
+extern s32 memcmp(u32, u32, u32);
 
 s32 fn_3_837C(s16 arg0) {
-    return fn_8008023C((u32)(&lbl_3_bss_243C0), (u32)(((u8 *)(&lbl_3_bss_140) + (arg0 * 0x81C0))), 0x81C0U) != 0;
+    return memcmp((u32)(&lbl_3_bss_243C0), (u32)(((u8 *)(&lbl_3_bss_140) + (arg0 * 0x81C0))), 0x81C0U) != 0;
 }
 /* fzgx:end fn_3_837C */
 
@@ -7156,7 +7156,7 @@ extern s16 fn_1_14F118(s16, s16);
 extern u32 fn_1_151BE8(s16, s32);
 extern void fn_80008BA8(void *, const void *, u32);
 extern s32 fn_1_F7BE4(s16);
-extern s32 fn_8008023C(const void *, const void *, u32);
+extern s32 memcmp(const void *, const void *, u32);
 
 #pragma section code_type ".fzgxpool"
 /* Volatile reads in the discarded primer establish the native BSS object order. */
@@ -7324,14 +7324,14 @@ s32 fn_3_83CC(void)
         ((u8 (*)[1])((u8 *)&lbl_3_bss_140 + 0x10000))[recordOffset][-0x7E60] = lbl_3_bss_20.machine;
         if ((((lbl_1_bss_9F8[controller].pressed) >> 11) & 1)) {
             result = 12;
-            if (!!fn_8008023C(lbl_3_bss_243C0, (u8 *)&lbl_3_bss_140 + recordOffset, 0x81C0) == 1)
+            if (!!memcmp(lbl_3_bss_243C0, (u8 *)&lbl_3_bss_140 + recordOffset, 0x81C0) == 1)
                 fn_1_A2D84(0xA9010100);
             lbl_3_bss_18 = 10;
         }
         if (((((lbl_1_bss_9F8[controller].pressed) >> 12) & 1)) ||
             ((((lbl_1_bss_9F8[controller].pressed) >> 8) & 1))) {
             result = 11;
-            if (!!fn_8008023C(lbl_3_bss_243C0, (u8 *)&lbl_3_bss_140 + recordOffset, 0x81C0) == 1)
+            if (!!memcmp(lbl_3_bss_243C0, (u8 *)&lbl_3_bss_140 + recordOffset, 0x81C0) == 1)
                 fn_1_A2D84(0xA9010100);
             else
                 fn_1_A2D84(0xA9010200);
@@ -7825,7 +7825,7 @@ extern void fn_1_49590(f32);
 extern void fn_1_4A0D8(const char *);
 extern int fn_1_4C10(void);
 extern void fn_1_DCED0(Sig_fn_1_DCED0_BgForObject *);
-extern s32 fn_8008023C(void *, void *, u32);
+extern s32 memcmp(void *, void *, u32);
 extern void fn_1_4A00(s32, u8, u32);
 
 /* The TU's .rodata objects, in retail order. */
@@ -8039,7 +8039,7 @@ static inline void dialog_cursor(s16 ctrl, u8 *choice) {
     } while (0)
 
 static inline s32 customize_save_differs(fn_3_8A90_Save *save) {
-    return fn_8008023C(&lbl_3_bss_243C0, save, sizeof(fn_3_8A90_Save)) != 0;
+    return memcmp(&lbl_3_bss_243C0, save, sizeof(fn_3_8A90_Save)) != 0;
 }
 
 #pragma opt_lifetimes off
@@ -9076,7 +9076,7 @@ extern void fn_1_A2D84(u32);
 extern u32 fn_1_151E20(u32, s16);
 extern void fn_1_151E74(u32 *, s16, int);
 extern void fn_80008BA8(u32, u32, u32);
-extern s32 fn_8008023C(u32, u32, u32);
+extern s32 memcmp(u32, u32, u32);
 
 /* Layout primer: touches the .bss objects in retail order (dropped at integration). */
 #pragma section RX ".fzgxpool" ".fzgxpool"
@@ -9091,7 +9091,7 @@ __declspec(section ".fzgxpool") void fzgx_primer_fn_3_9CA8(void) {
 
 /* Nonzero when the edited save entry differs from the stored one. */
 static inline s32 save_changed(u8 *save) {
-    return fn_8008023C((u32)lbl_3_bss_243C0, (u32)save, 0x81C0) != 0;
+    return memcmp((u32)lbl_3_bss_243C0, (u32)save, 0x81C0) != 0;
 }
 
 #define WRAP(v, lo, hi) ((v) > (hi) ? (lo) : ((v) < (lo) ? (hi) : (v)))
@@ -9665,7 +9665,7 @@ extern void fn_1_49590(f32);
 extern void fn_1_4A0D8(const char *);
 extern int fn_1_4C10(void);
 extern void fn_1_DCED0(Sig_fn_1_DCED0_BgForObject *);
-extern s32 fn_8008023C(void *, void *, u32);
+extern s32 memcmp(void *, void *, u32);
 extern void fn_1_4A00(s32, u8, u32);
 
 /* The TU's .rodata objects, in retail order. */
@@ -9960,7 +9960,7 @@ void fn_3_A12C(void) {
                 fn_1_DCED0(&lbl_3_bss_6DD78);
                 result = fn_3_9CA8();
                 if ((s16)result == 13) {
-                    differ = fn_8008023C(&lbl_3_bss_243C0, &lbl_3_bss_140[idx], sizeof(fn_3_A12C_Save)) != 0;
+                    differ = memcmp(&lbl_3_bss_243C0, &lbl_3_bss_140[idx], sizeof(fn_3_A12C_Save)) != 0;
                     if (differ == 1) {
                         lbl_3_bss_6DD74 = 1;
                         lbl_3_bss_18__fzgx_offset_2 = 1;
@@ -9969,11 +9969,11 @@ void fn_3_A12C(void) {
                         fn_1_1280(1);
                     }
                 } else if ((s16)result == 12 &&
-                           (differ = fn_8008023C(&lbl_3_bss_243C0, &lbl_3_bss_140[idx], sizeof(fn_3_A12C_Save)) != 0) == 1) {
+                           (differ = memcmp(&lbl_3_bss_243C0, &lbl_3_bss_140[idx], sizeof(fn_3_A12C_Save)) != 0) == 1) {
                     lbl_3_bss_6DD74 = 1;
                     lbl_3_bss_18__fzgx_offset_4 = 1;
                 } else if ((s16)result == 11) {
-                    differ = fn_8008023C(&lbl_3_bss_243C0, &lbl_3_bss_140[idx], sizeof(fn_3_A12C_Save)) != 0;
+                    differ = memcmp(&lbl_3_bss_243C0, &lbl_3_bss_140[idx], sizeof(fn_3_A12C_Save)) != 0;
                     if (differ == 1) {
                         lbl_3_bss_6DD74 = 1;
                         lbl_3_bss_18__fzgx_offset_3 = 1;
@@ -9982,7 +9982,7 @@ void fn_3_A12C(void) {
                         fn_1_1280(1);
                     }
                 } else if ((s16)result == -1) {
-                    differ = fn_8008023C(&lbl_3_bss_243C0, &lbl_3_bss_140[idx], sizeof(fn_3_A12C_Save)) != 0;
+                    differ = memcmp(&lbl_3_bss_243C0, &lbl_3_bss_140[idx], sizeof(fn_3_A12C_Save)) != 0;
                     if (differ == 1) {
                         lbl_3_bss_0 = 1;
                     }
@@ -9994,7 +9994,7 @@ void fn_3_A12C(void) {
                 } else {
                     switch ((s16)result) {
                     case 7:
-                        differ = fn_8008023C(&lbl_3_bss_243C0, &lbl_3_bss_140[idx], sizeof(fn_3_A12C_Save)) != 0;
+                        differ = memcmp(&lbl_3_bss_243C0, &lbl_3_bss_140[idx], sizeof(fn_3_A12C_Save)) != 0;
                         if (differ == 1) {
                             lbl_3_bss_0 = 1;
                         }

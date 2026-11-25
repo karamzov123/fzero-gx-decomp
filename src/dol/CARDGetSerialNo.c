@@ -23,7 +23,7 @@ extern s32 __CARDGetControlBlock(s32 chan, CARDControl **card);
 extern u32 fn_8002C4BC(CARDControl *card);
 extern s32 __CARDAccess(CARDControl *card, CARDDir *ent);
 extern u32 __CARDPutControlBlock(CARDControl *card, u32 result);
-extern s32 fn_8008023C(u32, u32, u32);
+extern s32 memcmp(u32, u32, u32);
 extern void *memcpy(void *, const void *, u32);
 extern s32 __CARDUpdateDir(s32 chan, CARDCallback callback);
 

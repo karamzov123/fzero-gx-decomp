@@ -12614,7 +12614,7 @@ extern void GXLoadTexMtxImm(void *, u32, u32);
 extern void lbl_8006DFE8(Fn183D28Vec3 *);
 extern void fn_1_870BC(fn_1_568F8_Data *, s8, fn_1_568F8_Data *, s32, u8, f32);
 extern s16 lbl_10_data_458;
-extern s32 fn_8008023C(void *, void *, u32);
+extern s32 memcmp(void *, void *, u32);
 extern void fn_1_14E2DC(u32, s16, f32);
 extern u8 lbl_10_bss_4EEC0[10368];
 extern u32 lbl_1_data_1E5C0;
@@ -15293,7 +15293,7 @@ s32 fn_10_13128(fn_10_13128_SelVec *arg0, f32 arg1) {
                             s16 k;
                             for (k = 0; k < 9; k++) {
                                 other = fn_1_12F118();
-                                if (fn_8008023C( (void *)((u32)(fn_1_36AD0() + idx * 0x81C0)), (void *)((u32)(other + k * 0x81C0)), 0x81C0) == 0) {
+                                if (memcmp( (void *)((u32)(fn_1_36AD0() + idx * 0x81C0)), (void *)((u32)(other + k * 0x81C0)), 0x81C0) == 0) {
                                     fn_1_14E2DC((u32)(lbl_10_bss_493A0 + k * 0xA20),
                                                 lbl_10_data_456, scale);
                                     break;
@@ -15394,7 +15394,7 @@ void fn_10_13B24(s16 arg0, u8 arg1, s32 arg2) {
     if (id >= 0x36) {
         for (i = 0; i < 9; i++) {
             u8 *saved = (u8 *)fn_1_12F118();
-            if (fn_8008023C(fn_1_36AD0() + id * 0x81C0 - 0x1B5E80, saved + i * 0x81C0, 0x81C0) == 0) {
+            if (memcmp(fn_1_36AD0() + id * 0x81C0 - 0x1B5E80, saved + i * 0x81C0, 0x81C0) == 0) {
                 id = i + 0x29;
                 break;
             }

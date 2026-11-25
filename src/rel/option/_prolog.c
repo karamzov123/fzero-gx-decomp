@@ -831,7 +831,7 @@ extern void fn_800746A8(u8, s32);
 extern void fn_80074788(u32);
 extern void fn_800747D0(u32, u32, s32, s32, u32, s32, s32);
 extern void fn_80074918(u8, s32, u8);
-extern s32 fn_8008023C(void *, void *, u32);
+extern s32 memcmp(void *, void *, u32);
 extern char *strcpy(char *, const char *);
 extern struct fn_4_D7C_lbl_1_bss_6EAB4 lbl_1_bss_6EAB4;
 extern struct _prolog_lbl_1_bss_6EAD0 lbl_1_bss_6EAD0;
@@ -4260,7 +4260,7 @@ void fn_4_6720(void) {
         }
         if (PAD_BIT(lbl_1_bss_9F8[lbl_4_bss_118].trig, 9)) {
             fn_1_A2D84(0xA9010200);
-            if (fn_8008023C(lbl_4_bss_C4, lbl_1_bss_AA0[lbl_4_bss_118], sizeof(lbl_4_bss_C4)) == 0 &&
+            if (memcmp(lbl_4_bss_C4, lbl_1_bss_AA0[lbl_4_bss_118], sizeof(lbl_4_bss_C4)) == 0 &&
                 lbl_4_bss_11D == lbl_1_data_2B60[lbl_4_bss_118]) {
                 lbl_4_bss_274 = 0;
                 return;

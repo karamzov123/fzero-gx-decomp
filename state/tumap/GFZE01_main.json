@@ -4646,8 +4646,8 @@
       ],
       "functions": [
         "fseek",
-        "fn_8007FC34",
-        "fn_8007FE70"
+        "_fseek",
+        "ftell"
       ],
       "how": {
         "donor-name": 1,
@@ -4679,7 +4679,7 @@
         "800803AC"
       ],
       "functions": [
-        "fn_8008023C",
+        "memcmp",
         "__memrchr",
         "memchr",
         "memmove"
@@ -4701,8 +4701,8 @@
       "functions": [
         "__copy_longs_rev_unaligned",
         "__copy_longs_unaligned",
-        "fn_80080518",
-        "fn_800805C0"
+        "__copy_longs_rev_aligned",
+        "__copy_longs_aligned"
       ],
       "how": {
         "sdkimport": 2,

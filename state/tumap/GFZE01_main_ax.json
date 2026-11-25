@@ -5458,12 +5458,12 @@
    "ax": "801CB450",
    "files": []
   },
-  "fn_8007FC34": {
+  "_fseek": {
    "gx": "8007FC34",
    "ax": "801CB4BC",
    "files": []
   },
-  "fn_8007FE70": {
+  "ftell": {
    "gx": "8007FE70",
    "ax": "801CB6F8",
    "files": []
@@ -5483,7 +5483,7 @@
    "ax": "801CB9D8",
    "files": []
   },
-  "fn_8008023C": {
+  "memcmp": {
    "gx": "8008023C",
    "ax": "801CBAC4",
    "files": []
@@ -5513,12 +5513,12 @@
    "ax": "801CBCE0",
    "files": []
   },
-  "fn_80080518": {
+  "__copy_longs_rev_aligned": {
    "gx": "80080518",
    "ax": "801CBDA0",
    "files": []
   },
-  "fn_800805C0": {
+  "__copy_longs_aligned": {
    "gx": "800805C0",
    "ax": "801CBE48",
    "files": []

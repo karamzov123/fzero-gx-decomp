@@ -123,7 +123,7 @@ extern const unsigned char *fn_12_A0D8(const unsigned char *data, int length, in
 extern int fn_12_2CDD0(SfdHandle *handle, int parameter, const unsigned char *delimiter, Entry *entry);
 extern const int lbl_12_rodata_E10[];
 extern unsigned int UTY_MulDiv(int multiplicand, int multiplier, int divisor);
-extern int fn_8008023C(const void *a, const void *b, int size);
+extern int memcmp(const void *a, const void *b, int size);
 extern int fn_12_2D73C(SfdHandle *handle, int index);
 extern void fn_12_2D7DC(SfdHandle *handle, int index, int value);
 extern void fn_12_2E374(SfdTimeCode *timecode, int *value, int *scale);
@@ -189,7 +189,7 @@ static inline void calc_pts(SfdHandle *handle, MPVPictureInfo *picture, SfdMpvFr
     }
     span = entry->unk_0 - handle->unk_DD4;
     *pts = span > 0 ? span : 0;
-    if (fn_8008023C(&work->unk_F4, entry, 4) != 0) {
+    if (memcmp(&work->unk_F4, entry, 4) != 0) {
         work->unk_F4 = *entry;
         work->unk_EC = 0;
         work->unk_E8 = count;

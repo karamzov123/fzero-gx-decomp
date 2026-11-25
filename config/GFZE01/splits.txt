@@ -852,8 +852,18 @@ dol/__end_critical_region.c:
 dol/fn_8007ED90.c:
 	.text       start:0x8007ED90 end:0x8007EDB4 align:4
 
-dol/fseek.c:
-	.text       start:0x8007FBC8 end:0x8007FC34 align:4
+dol/runtime/FILE_POS.c:
+	.text       start:0x8007FBC8 end:0x8007FF18 align:4
+
+dol/runtime/mbstring.c:
+	.text       start:0x8007FF18 end:0x8008023C align:4
+	.sdata2     start:0x801A74E0 end:0x801A74E8 align:8
+
+dol/runtime/mem.c:
+	.text       start:0x8008023C end:0x800803AC align:4
+
+dol/runtime/mem_funcs.c:
+	.text       start:0x800803AC end:0x8008067C align:4
 
 dol/printf.c:
 	.text       start:0x8008069C end:0x8008279C align:4
@@ -973,18 +983,12 @@ dol/gx/GXLight.c:
 dol/axfx/reverb_hi.c:
 	.text       start:0x8002420C end:0x800244C8 align:4
 
-dol/fn_8007FC34.c:
-	.text       start:0x8007FC34 end:0x8007FE70 align:4
-
 dol/adx/adx_fcch.c:
 	.text       start:0x8004F7F8 end:0x8004F818 align:4
 
 dol/adx/adx_fs.c:
 	.text       start:0x8004F818 end:0x8004FF68 align:4
 	.rodata     start:0x80091258 end:0x800912F0 align:4
-
-dol/fn_8007FE70.c:
-	.text       start:0x8007FE70 end:0x80080518 align:4
 
 dol/memcpy.c:
 	.init       start:0x80003540 end:0x80003590 align:4
@@ -1209,17 +1213,11 @@ dol/func_80008378.c:
 dol/__fill_mem.c:
 	.init       start:0x80003488 end:0x80003540 align:4
 
-dol/fn_80080518.c:
-	.text       start:0x80080518 end:0x800805C0 align:4
-
 dol/thp/THPDec_hdr.c:
 	.text       start:0x80039C40 end:0x8003AB08 align:4
 
 dol/fn_80009468.c:
 	.text       start:0x80009468 end:0x80009CD4 align:4
-
-dol/fn_800805C0.c:
-	.text       start:0x800805C0 end:0x8008067C align:4
 
 dol/av/avdisp_state.c:
 	.text       start:0x800725DC end:0x800747D0 align:4
@@ -2411,9 +2409,6 @@ dol/data/lbl_801A74D0.c:
 
 dol/data/lbl_801A74D8.c:
 	.sdata2     start:0x801A74D8 end:0x801A74E0 align:8
-
-dol/data/lbl_801A74E0.c:
-	.sdata2     start:0x801A74E0 end:0x801A74E8 align:8
 
 dol/data/lbl_801A74F0.c:
 	.sdata2     start:0x801A74F0 end:0x801A74F8 align:8

@@ -20,7 +20,7 @@ typedef struct CARDStatExEntry {
 
 extern CARDDir *fn_8002C4BC(CARDControl *card);
 extern void *memcpy(void *, const void *, u32);
-extern s32 fn_8008023C(u32, u32, u32);
+extern s32 memcmp(u32, u32, u32);
 
 s32 fn_80030380(s32 chan, s32 fileNo, void *out) {
     CARDControl *card;
@@ -80,14 +80,14 @@ s32 fn_8003043C(s32 chan, s32 fileNo, CARDStatExEntry *src, CARDCallback callbac
             p++;
         }
     }
-    if (fn_8008023C((u32)ent->fileName, (u32)src->fileName, 0x20) != 0 ||
-        fn_8008023C((u32)ent->name, (u32)src->name, 4) != 0 ||
-        fn_8008023C((u32)ent->company, (u32)src->company, 2) != 0) {
+    if (memcmp((u32)ent->fileName, (u32)src->fileName, 0x20) != 0 ||
+        memcmp((u32)ent->name, (u32)src->name, 4) != 0 ||
+        memcmp((u32)ent->company, (u32)src->company, 2) != 0) {
         for (i = 0; i < 0x7f; i++) {
             if (i != fileNo && base->name[0] != 0xff &&
-                fn_8008023C((u32)base->name, (u32)src->name, 4) == 0 &&
-                fn_8008023C((u32)base->company, (u32)src->company, 2) == 0 &&
-                fn_8008023C((u32)base->fileName, (u32)src->fileName, 0x20) == 0) {
+                memcmp((u32)base->name, (u32)src->name, 4) == 0 &&
+                memcmp((u32)base->company, (u32)src->company, 2) == 0 &&
+                memcmp((u32)base->fileName, (u32)src->fileName, 0x20) == 0) {
                 return __CARDPutControlBlock(card, -7);
             }
             base++;

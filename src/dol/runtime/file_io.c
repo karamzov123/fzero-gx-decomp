@@ -155,7 +155,7 @@ void fn_8007B1CC(FILE *file, const FileMode *mode, char *buffer, size_t buffer_s
 FILE *fn_8007B2A8(void);
 int fn_8008D92C(const char *name, FileMode *mode, FILE *file);
 int fseek(FILE *file, u32 offset, int origin);
-long fn_8007FE70(FILE *file);
+long ftell(FILE *file);
 void fn_8008068C(FILE *file);
 void fn_8007A150(void *allocation);
 
@@ -183,7 +183,7 @@ static inline int flush_file(FILE *file) {
     if (file->mode.bits.file_kind != FILE_KIND_DISK) {
         position = 0;
     } else {
-        position = fn_8007FE70(file);
+        position = ftell(file);
     }
     if (__flush_buffer(file, 0) != 0) {
         file->state.error = 1;
@@ -273,7 +273,7 @@ int fflush(FILE *file) {
     if (file->mode.bits.file_kind != FILE_KIND_DISK) {
         position = 0;
     } else {
-        position = fn_8007FE70(file);
+        position = ftell(file);
     }
     if (__flush_buffer(file, 0) != 0) {
         file->state.error = 1;

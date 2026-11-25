@@ -27,8 +27,8 @@ s32 __CARDAccess(CARDControl *card, CARDDir *ent) {
     if (ent->gameName[0] == 0xFF)
         return -4;
     if (card->diskID == &lbl_80177B80 ||
-        (fn_8008023C(ent->gameName, card->diskID->gameName, sizeof(ent->gameName)) == 0 &&
-         fn_8008023C(ent->company, card->diskID->company, sizeof(ent->company)) == 0))
+        (memcmp(ent->gameName, card->diskID->gameName, sizeof(ent->gameName)) == 0 &&
+         memcmp(ent->company, card->diskID->company, sizeof(ent->company)) == 0))
         return 0;
     return -10;
 }

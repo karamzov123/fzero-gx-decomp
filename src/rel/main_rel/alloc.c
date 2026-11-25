@@ -14,7 +14,7 @@ extern u32 fn_1_435C(u32 value);
 extern void fn_1_426C(s16 value);
 extern u32 lbl_1_bss_F5C;
 extern u32 lbl_1_bss_F60[2];
-extern s32 fn_8008023C(Obj_1_bss_7AC20 *, u32 *, u32);
+extern s32 memcmp(Obj_1_bss_7AC20 *, u32 *, u32);
 extern u32 lbl_801A6410;
 extern Obj_1_bss_F68_Target *fn_1_45D0(u32, u32, u8 *, u32);
 extern void fn_800793D4(Obj_1_bss_F68_Target *, u32, u32);
@@ -328,7 +328,7 @@ void fn_1_4FFC(void) {
 // Initialize the allocation state and report whether initialization succeeded.
 s32 fn_1_509C(void) {
     lbl_1_bss_7AC40 = lbl_1_bss_F58;
-    if (fn_8008023C(&lbl_1_bss_7AC20, &lbl_1_bss_7AC40, 4) == 0) {
+    if (memcmp(&lbl_1_bss_7AC20, &lbl_1_bss_7AC40, 4) == 0) {
         return 0;
     }
 
@@ -1092,7 +1092,7 @@ extern u32 fn_1_435C(u32 value);
 extern void fn_1_426C(s16 value);
 extern u32 lbl_1_bss_F5C;
 extern u32 lbl_1_bss_F60[2];
-extern s32 fn_8008023C(Obj_1_bss_7AC20 *, u32 *, u32);
+extern s32 memcmp(Obj_1_bss_7AC20 *, u32 *, u32);
 extern u32 lbl_801A6410;
 extern Obj_1_bss_F68_Target *fn_1_45D0(u32, u32, u8 *, u32);
 extern void fn_800793D4(Obj_1_bss_F68_Target *, u32, u32);
