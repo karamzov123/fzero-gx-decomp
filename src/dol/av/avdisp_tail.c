@@ -85,7 +85,7 @@ extern void fn_80071C04(Sig_fn_80071C04_Object *, Sig_fn_80071C04_Entry *);
 extern u32 fn_800702E4(u32);
 extern u32 fn_8007048C(void);
 extern u32 LCStoreBlocks(void *, void *, u32);
-extern u32 fn_8000B8AC(u32);
+extern u32 LCQueueWait(u32);
 extern void DCFlushRange(void *, u32);
 extern void DCFlushRangeNoSync(void *, u32);
 extern void LCLoadBlocks(void *, void *, u32);
@@ -443,13 +443,13 @@ void fn_800791E8(u8 *dst, u8 *src, u32 nBytes) {
         p = (u8 *)lbl_801A6DB0;
         q = p;
         for (j = 0; j < lbl_801A6DB4; j++) {
-            fn_8000B8AC(14);
+            LCQueueWait(14);
             LCLoadBlocks(p, src, 0x20);
             p += 0x400;
             src += 0x400;
         }
         for (j = 0; j < lbl_801A6DB4; j++) {
-            fn_8000B8AC(14);
+            LCQueueWait(14);
             LCStoreBlocks(dst, q, 0x20);
             dst += 0x400;
             q += 0x400;
@@ -458,29 +458,29 @@ void fn_800791E8(u8 *dst, u8 *src, u32 nBytes) {
     p = (u8 *)lbl_801A6DB0;
     q = p;
     for (j = 0; j < numBlocks; j++) {
-        fn_8000B8AC(14);
+        LCQueueWait(14);
         LCLoadBlocks(p, src, 0x20);
         p += 0x400;
         src += 0x400;
     }
     for (j = 0; j < numBlocks; j++) {
-        fn_8000B8AC(14);
+        LCQueueWait(14);
         LCStoreBlocks(dst, q, 0x20);
         dst += 0x400;
         q += 0x400;
     }
     if (numBytes != 0) {
-        fn_8000B8AC(14);
+        LCQueueWait(14);
         LCLoadBlocks(p, src, numBytes);
         src += numBytes << 5;
-        fn_8000B8AC(14);
+        LCQueueWait(14);
         LCStoreBlocks(dst, q, numBytes);
         dst += numBytes << 5;
     }
     if (remBytes != 0) {
         fn_800794F0(dst, src, remBytes);
     }
-    fn_8000B8AC(0);
+    LCQueueWait(0);
 }
 
 u32 fn_800793D4(u8 *arg0, u32 arg1, u32 arg2) {
@@ -502,7 +502,7 @@ u32 fn_800793D4(u8 *arg0, u32 arg1, u32 arg2) {
         memset((void *)lbl_801A6DB0, arg1 & 0xFF, 0x400);
         did = 1;
         for (i = 0; i < blocks; i++) {
-            fn_8000B8AC(0xE);
+            LCQueueWait(0xE);
             LCStoreBlocks(arg0, (void *)lbl_801A6DB0, 0x20);
             arg0 += 0x400;
         }
@@ -511,14 +511,14 @@ u32 fn_800793D4(u8 *arg0, u32 arg1, u32 arg2) {
         if (did == 0) {
             memset((void *)lbl_801A6DB0, arg1 & 0xFF, chunks << 5);
         }
-        fn_8000B8AC(0xE);
+        LCQueueWait(0xE);
         LCStoreBlocks(arg0, (void *)lbl_801A6DB0, chunks);
         arg0 += chunks << 5;
     }
     if (tail != 0) {
         memset(arg0, arg1 & 0xFF, tail);
     }
-    return fn_8000B8AC(0);
+    return LCQueueWait(0);
 }
 
 void fn_800794F0(u8 *dst, u8 *src, s32 len) {

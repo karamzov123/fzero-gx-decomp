@@ -7142,7 +7142,7 @@
       "LCDisable",
       "LCLoadBlocks",
       "LCStoreBlocks",
-      "fn_8000B8AC",
+      "LCQueueWait",
       "L2GlobalInvalidate",
       "DMAErrorHandler",
       "__OSCacheInit"

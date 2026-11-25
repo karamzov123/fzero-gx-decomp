@@ -234,7 +234,7 @@ asm void LCStoreBlocks(register void *destAddr, register void *srcTag, register 
     blr
 }
 
-asm void fn_8000B8AC(register u32 len) {
+asm void LCQueueWait(register u32 len) {
     nofralloc
 @1
     mfspr r4, HID2

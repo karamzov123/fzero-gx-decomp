@@ -325,9 +325,9 @@
       "evidence": "Dolphin SDK os/OSCache.c writes its cache primitives as CodeWarrior asm functions (nofralloc): retail 0x8000B614..0x8000B8C0 holds dcbi/dcbf/dcbst/icbi ctr loops ending in sc or sync;isync, HID0/HID2 mfspr/mtspr, the __LCEnable dcbz_l lock loop with DBAT3 setup and twelve-nop pads, DMA_U/DMA_L writes and the LCQueueWait HID2 poll, all without a compiler frame; LCEnable, L2GlobalInvalidate, DMAErrorHandler and __OSCacheInit are compiled C in the same TU, as in every published Dolphin SDK decomp."
     },
     {
-      "symbol": "fn_8000B8AC",
+      "symbol": "LCQueueWait",
       "form": "asm-function",
-      "sha256": "72eba21a0127bb6dcddcd08e1eada678eb1dca4c51f6232bb45756979ed76531",
+      "sha256": "b63c64da1bfe77beedd562d52faeae8b8837fd70c9fd4e41dbabe033ea26ac6c",
       "evidence": "Dolphin SDK os/OSCache.c writes its cache primitives as CodeWarrior asm functions (nofralloc): retail 0x8000B614..0x8000B8C0 holds dcbi/dcbf/dcbst/icbi ctr loops ending in sc or sync;isync, HID0/HID2 mfspr/mtspr, the __LCEnable dcbz_l lock loop with DBAT3 setup and twelve-nop pads, DMA_U/DMA_L writes and the LCQueueWait HID2 poll, all without a compiler frame; LCEnable, L2GlobalInvalidate, DMAErrorHandler and __OSCacheInit are compiled C in the same TU, as in every published Dolphin SDK decomp."
     }
   ]
