@@ -199,7 +199,7 @@ void fn_800700B4(void);
 void fn_800700F4(void);
 void fn_80070100(void);
 void fn_80070A58(void);
-u32 fn_80070CF8(u32 arg0);
+void *fn_80070CF8(u32 size);
 
 /* avsystem.c's .data layout (lbl_8015A860..): vertex-descriptor tables + strings */
 struct Sig_fn_800726C0_fn_800726C0_Entry lbl_8015A860[12] = {
@@ -394,7 +394,7 @@ void fn_80070158(s32 useLC) {
         lbl_801A6CF0 = 0xE0000000;
         lbl_801A6CE0 |= 2;
     } else {
-        lbl_801A6CF0 = fn_80070CF8(0x4000);
+        lbl_801A6CF0 = (u32)fn_80070CF8(0x4000);
     }
     base = lbl_801A6CF0;
     first.value = base + 0x1C0;
@@ -565,15 +565,15 @@ void fn_80070774(u32 arg0, u32 arg1, u32 arg2) {
     u32 loc_8;
 
     v0 = (((((lbl_801A6CF4->unk_4 + 15) & 0xFFF0) * 528) << 1));
-    t0.value = fn_80070CF8(v0);
+    t0.value = (u32)fn_80070CF8(v0);
     v1.value = ((v0 + 31) & ~0x1F);
     DCFlushRange((void *)t0.value, v1.value);
     if ((lbl_801A6CE0 & 0x10) == 0) {
-        t2.value = fn_80070CF8(v0);
+        t2.value = (u32)fn_80070CF8(v0);
         v2.value = t2.value;
         DCFlushRange((void *)t2.value, v1.value);
     }
-    t4 = fn_80070CF8(arg1);
+    t4 = (u32)fn_80070CF8(arg1);
     lbl_801A6CE4 = arg1;
     t5 = GXInit(t4, arg1);
     lbl_801A6D30[5] = (u32)t5;
@@ -582,7 +582,7 @@ void fn_80070774(u32 arg0, u32 arg1, u32 arg2) {
         lbl_801A6D30[6] = (u32)lbl_8019E18C;
         {
             u32 t6;
-            t4 = fn_80070CF8(arg1);
+            t4 = (u32)fn_80070CF8(arg1);
             t6 = t4;
             GXInitFifoBase(lbl_8019E18C, t6, arg1);
             GXInitFifoPtrs(lbl_8019E18C, t6, t6);
