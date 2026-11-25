@@ -28,7 +28,7 @@ extern void DCFlushRange(void *, u32);
 extern void PPCHalt(void);
 extern void OSReport(const char *, ...);
 extern u32 OSEnableScheduler(u32, u32);
-extern u32 TRKLoadContext(u32, u32);
+void TRKInterruptHandler(void);
 
 extern int Hu_IsStub(void);
 extern int AMC_IsStub(void);
@@ -65,6 +65,50 @@ extern s32 ddh_cc_initinterrupts(void);
 void TRKEXICallBack(u32 arg0, u32 arg1);
 
 // TRKUARTInterruptHandler: empty in retail (single blr).
+/* MetroTRK Os/dolphin/dolphin_trk_glue.c: TRKLoadContext is a CodeWarrior asm function in
+ * the original. It reloads the saved register file with lmw, restores CR/LR/CTR/XER and the
+ * SPRGs, clears MSR[EE|RI] with mtmsr and branches to TRKInterruptHandler, with no compiler
+ * frame. */
+asm void TRKLoadContext(register u32 context, register u32 exception) {
+    nofralloc
+    lwz r0, 0x0(r3)
+    lwz r1, 0x4(r3)
+    lwz r2, 0x8(r3)
+    lhz r5, 0x1a2(r3)
+    rlwinm. r6, r5, 0, 30, 30
+    beq L_8008D24C
+    rlwinm r5, r5, 0, 31, 29
+    sth r5, 0x1a2(r3)
+    lmw r5, 0x14(r3)
+    b L_8008D250
+L_8008D24C:
+    lmw r13, 0x34(r3)
+L_8008D250:
+    mr r31, r3
+    mr r3, r4
+    lwz r4, 0x80(r31)
+    mtcrf 255, r4
+    lwz r4, 0x84(r31)
+    mtlr r4
+    lwz r4, 0x88(r31)
+    mtctr r4
+    lwz r4, 0x8c(r31)
+    mtxer r4
+    mfmsr r4
+    rlwinm r4, r4, 0, 17, 15
+    rlwinm r4, r4, 0, 31, 29
+    mtmsr r4
+    mtsprg 1, r2
+    lwz r4, 0xc(r31)
+    mtsprg 2, r4
+    lwz r4, 0x10(r31)
+    mtsprg 3, r4
+    lwz r2, 0x198(r31)
+    lwz r4, 0x19c(r31)
+    lwz r31, 0x7c(r31)
+    b TRKInterruptHandler
+}
+
 void TRKUARTInterruptHandler(void) {
 }
 

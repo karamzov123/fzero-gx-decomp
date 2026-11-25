@@ -79,9 +79,6 @@ dol/trk/support.c:
 dol/trk/targimpl.c:
 	.text       start:0x8008B474 end:0x8008CB20 align:4
 
-dol/trk/dolphin_trk_glue.c:
-	.text       start:0x8008D2AC end:0x8008D77C align:4
-
 dol/odemuexi2/DebuggerDriver.c:
 	.text       start:0x8008F454 end:0x8008FED4 align:4
 
@@ -168,9 +165,6 @@ dol/render/render_clear.c:
 	.text       start:0x80007A44 end:0x80007CDC align:4
 	.sbss       start:0x801A6728 end:0x801A672C align:4
 	.sdata2     start:0x801A6F00 end:0x801A6F0C align:8
-
-dol/trk/dolphin_trk.c:
-	.text       start:0x8008CFDC end:0x8008D1CC align:4
 
 dol/av/avsystem.c:
 	.text       start:0x8006FCB4 end:0x80070AC0 align:4
@@ -448,20 +442,14 @@ dol/TRKSwapAndGo.c:
 dol/TRKInterruptHandlerEnableInterrupts.c:
 	.text       start:0x8008B420 end:0x8008B474 align:4
 
-dol/TRKSaveExtended1Block.c:
-	.text       start:0x8008CB40 end:0x8008CCF8 align:4
+dol/trk/mpc_7xx_603e.c:
+	.text       start:0x8008CB40 end:0x8008CEB0 align:4
 
-dol/TRKRestoreExtended1Block.c:
-	.text       start:0x8008CCF8 end:0x8008CEB0 align:4
+dol/trk/dolphin_trk.c:
+	.text       start:0x8008CEB0 end:0x8008D1CC align:4
 
-dol/InitMetroTRK.c:
-	.text       start:0x8008CEB0 end:0x8008CF48 align:4
-
-dol/InitMetroTRK_BBA.c:
-	.text       start:0x8008CF48 end:0x8008CFDC align:4
-
-dol/TRKLoadContext.c:
-	.text       start:0x8008D224 end:0x8008D2AC align:4
+dol/trk/dolphin_trk_glue.c:
+	.text       start:0x8008D224 end:0x8008D77C align:4
 
 dol/AXRNA_Destroy.c:
 	.text       start:0x8005B464 end:0x8005B534 align:4

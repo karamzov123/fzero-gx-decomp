@@ -22,6 +22,101 @@ extern void *fn_800035C0(void *, const void *, u32);
 extern void fn_8008AFF0(u32, u32);
 extern u32 fn_8008D440(void);
 
+void TRKSaveExtended1Block(void);
+void InitMetroTRKCommTable(int hwId);
+void TRK_main(void);
+extern u8 _db_stack_addr[];
+
+/* MetroTRK Os/dolphin/dolphin_trk.c: InitMetroTRK and InitMetroTRK_BBA are CodeWarrior asm
+ * functions in the original. They save the caller's register file into gTRKCPUState with
+ * stmw, disable external interrupts in the MSR, switch r1 to the debugger stack and enter
+ * TRK_main, with no compiler frame. The register file is reloaded with `lmw r0`, an invalid
+ * form GNU as rejects but CodeWarrior assembles. */
+asm void InitMetroTRK(void) {
+    nofralloc
+    subi r1, r1, 0x4
+    stw r3, 0x0(r1)
+    lis r3, gTRKCPUState@h
+    ori r3, r3, gTRKCPUState@l
+    stmw r0, 0x0(r3)
+    lwz r4, 0x0(r1)
+    addi r1, r1, 0x4
+    stw r1, 0x4(r3)
+    stw r4, 0xc(r3)
+    mflr r4
+    stw r4, 0x84(r3)
+    stw r4, 0x80(r3)
+    mfcr r4
+    stw r4, 0x88(r3)
+    mfmsr r4
+    ori r3, r4, 0x8000
+    xori r3, r3, 0x8000
+    mtmsr r3
+    mtsrr1 r4
+    bl TRKSaveExtended1Block
+    lis r3, gTRKCPUState@h
+    ori r3, r3, gTRKCPUState@l
+    lmw r0, 0x0(r3)
+    li r0, 0x0
+    mtspr 1010, r0
+    mtspr 1013, r0
+    lis r1, _db_stack_addr@h
+    ori r1, r1, _db_stack_addr@l
+    mr r3, r5
+    bl InitMetroTRKCommTable
+    cmpwi r3, 0x1
+    bne L_8008CF40
+    lwz r4, 0x84(r3)
+    mtlr r4
+    lmw r0, 0x0(r3)
+    blr
+L_8008CF40:
+    b TRK_main
+    blr
+}
+
+__declspec(weak) asm void InitMetroTRK_BBA(void) {
+    nofralloc
+    subi r1, r1, 0x4
+    stw r3, 0x0(r1)
+    lis r3, gTRKCPUState@h
+    ori r3, r3, gTRKCPUState@l
+    stmw r0, 0x0(r3)
+    lwz r4, 0x0(r1)
+    addi r1, r1, 0x4
+    stw r1, 0x4(r3)
+    stw r4, 0xc(r3)
+    mflr r4
+    stw r4, 0x84(r3)
+    stw r4, 0x80(r3)
+    mfcr r4
+    stw r4, 0x88(r3)
+    mfmsr r4
+    ori r3, r4, 0x8000
+    mtmsr r3
+    mtsrr1 r4
+    bl TRKSaveExtended1Block
+    lis r3, gTRKCPUState@h
+    ori r3, r3, gTRKCPUState@l
+    lmw r0, 0x0(r3)
+    li r0, 0x0
+    mtspr 1010, r0
+    mtspr 1013, r0
+    lis r1, _db_stack_addr@h
+    ori r1, r1, _db_stack_addr@l
+    li r3, 0x2
+    bl InitMetroTRKCommTable
+    cmpwi r3, 0x1
+    bne L_8008CFD4
+    lwz r4, 0x84(r3)
+    mtlr r4
+    lmw r0, 0x0(r3)
+    blr
+L_8008CFD4:
+    b TRK_main
+    blr
+}
+
 s32 TRKInitializeTarget(void) {
     u32 t0;
     gTRKState.unk_98 = 1;

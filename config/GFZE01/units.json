@@ -7440,15 +7440,20 @@
   },
   {
     "module": "main",
-    "source": "dol/InitMetroTRK.c",
+    "source": "dol/trk/dolphin_trk.c",
     "symbols": [
-      "InitMetroTRK"
+      "InitMetroTRK",
+      "InitMetroTRK_BBA",
+      "TRKInitializeTarget",
+      "fn_8008D028",
+      "fn_8008D154",
+      "EnableMetroTRKInterrupts"
     ],
     "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
+    "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "asm": true
+    "collapsed": true,
+    "matching_for": ["GFZE01", "GFZJ01"]
   },
   {
     "module": "main",
@@ -7461,18 +7466,6 @@
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
     "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/InitMetroTRK_BBA.c",
-    "symbols": [
-      "InitMetroTRK_BBA"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
   },
   {
     "module": "main",
@@ -8157,20 +8150,6 @@
   },
   {
     "module": "main",
-    "source": "dol/trk/dolphin_trk.c",
-    "symbols": [
-      "TRKInitializeTarget",
-      "fn_8008D028",
-      "fn_8008D154",
-      "EnableMetroTRKInterrupts"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "collapsed": true
-  },
-  {
-    "module": "main",
     "source": "dol/TRKInterruptHandler.c",
     "symbols": [
       "TRKInterruptHandler"
@@ -8195,39 +8174,38 @@
   },
   {
     "module": "main",
-    "source": "dol/TRKLoadContext.c",
+    "source": "dol/trk/dolphin_trk_glue.c",
     "symbols": [
-      "TRKLoadContext"
+      "TRKLoadContext",
+      "TRKUARTInterruptHandler",
+      "InitializeProgramEndTrap",
+      "TRK_board_display",
+      "UnreserveEXI2Port",
+      "ReserveEXI2Port",
+      "fn_8008D398",
+      "fn_8008D3D4",
+      "fn_8008D410",
+      "fn_8008D440",
+      "TRKInitializeIntDrivenUART",
+      "InitMetroTRKCommTable",
+      "TRKEXICallBack"
     ],
     "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
+    "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "asm": true
+    "collapsed": true
   },
   {
     "module": "main",
-    "source": "dol/TRKRestoreExtended1Block.c",
+    "source": "dol/trk/mpc_7xx_603e.c",
     "symbols": [
+      "TRKSaveExtended1Block",
       "TRKRestoreExtended1Block"
     ],
     "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
+    "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/TRKSaveExtended1Block.c",
-    "symbols": [
-      "TRKSaveExtended1Block"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
+    "collapsed": true
   },
   {
     "module": "main",
@@ -8273,29 +8251,6 @@
     ],
     "collapsed": true,
     "matching_for": ["GFZE01"]
-  },
-  {
-    "module": "main",
-    "source": "dol/trk/dolphin_trk_glue.c",
-    "symbols": [
-      "TRKUARTInterruptHandler",
-      "InitializeProgramEndTrap",
-      "TRK_board_display",
-      "UnreserveEXI2Port",
-      "ReserveEXI2Port",
-      "fn_8008D398",
-      "fn_8008D3D4",
-      "fn_8008D410",
-      "fn_8008D440",
-      "TRKInitializeIntDrivenUART",
-      "InitMetroTRKCommTable",
-      "TRKEXICallBack"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "extra_cflags": [],
-    "collapsed": true,
-    "mw_version": "GC/1.3.2"
   },
   {
     "module": "main",
