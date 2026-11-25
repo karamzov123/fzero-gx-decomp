@@ -26,6 +26,9 @@ Run from the repository root; dry-run first.
 | `tu_data.py CAND UNIT SECTION LO` | a candidate's data section against retail, relocated words masked, before `tu_own_data.py` |
 | `data_split.py dol/data/U.c SYM... [--apply]` | splits a data-import unit at object boundaries (a unit is aligned to its most aligned object, so a trimmed unit can need splitting first) |
 | `rename_regions.py MAP.json` | after `fzgx rename --map`: restores units.json order and versions and renames in the region symbol files and TU maps |
+| `tu_cut.py SRC OUT FN...` | cuts a source down to some function definitions (declarations and static inlines kept), to split a unit that crosses TUs |
+| `tu_reverse.py SRC OUT` | writes a file's definitions in reverse order (MSL's source order under `-inline deferred`), hoisting declarations and keeping each function's pragmas |
+| `tu_order.py CAND UNIT` | the function order a candidate emits, against retail's (tu_regions.py compares by name only) |
 | `gate.sh` | GFZP01/GFZJ01/GFZE01 builds + lint |
 
 Helpers: `apply_pooled_all.py` (ELF/relocation parsing), `apply_smart_dol_mm.py` (C file merge

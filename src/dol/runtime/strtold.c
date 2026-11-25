@@ -84,32 +84,11 @@ extern unsigned long lbl_801A6660[];
 extern unsigned long lbl_801A6668[];
 extern unsigned long lbl_801A6670[];
 
-static inline int isalpha(int c) { return (int)(lbl_8015B100[(unsigned char)c] & (0x40 | 0x80)); }
-static inline int isdigit(int c) { return (int)(lbl_8015B100[(unsigned char)c] & 0x10); }
-static inline int isspace(int c) { return (int)(lbl_8015B100[(unsigned char)c] & (0x02 | 0x04)); }
-static inline int isxdigit(int c) { return (int)(lbl_8015B100[(unsigned char)c] & 0x20); }
-static inline int toupper(int c) { return c == -1 ? -1 : (int)lbl_8015B300[(unsigned char)c]; }
-
 long double fn_80083F10(int max_width, int (*ReadProc)(void *, int, int), void *ReadProcArg,
                         int *chars_scanned, int *overflow);
 
-void fn_80083E84(u32 arg0) {
-    struct {
-        u32 a[2];
-    } loc_10;
-    int loc_C;
-    int loc_8;
-    f64 value;
-    f64 abs_value;
-
-    loc_10.a[0] = arg0;
-    loc_10.a[1] = 0;
-    value = fn_80083F10((0x80000000 - 1), __StringRead, &loc_10, &loc_8, &loc_C);
-    abs_value = __fabs(value);
-    if (loc_C != 0 || (lbl_801A74F8 != value && (abs_value < lbl_801A6650[0] || abs_value > lbl_801A6658[0]))) {
-        lbl_801A6DE0[0] = 34;
-    }
-}
+void fn_80083E84(u32 arg0);
+long double fn_80083F10(int max_width, int (*ReadProc)(void *, int, int), void *ReadProcArg, int *chars_scanned, int *overflow);
 
 long double fn_80083F10(int max_width, int (*ReadProc)(void *, int, int), void *ReadProcArg,
                         int *chars_scanned, int *overflow) {
@@ -535,3 +514,31 @@ long double fn_80083F10(int max_width, int (*ReadProc)(void *, int, int), void *
         return result;
     }
 }
+
+void fn_80083E84(u32 arg0) {
+    struct {
+        u32 a[2];
+    } loc_10;
+    int loc_C;
+    int loc_8;
+    f64 value;
+    f64 abs_value;
+
+    loc_10.a[0] = arg0;
+    loc_10.a[1] = 0;
+    value = fn_80083F10((0x80000000 - 1), __StringRead, &loc_10, &loc_8, &loc_C);
+    abs_value = __fabs(value);
+    if (loc_C != 0 || (lbl_801A74F8 != value && (abs_value < lbl_801A6650[0] || abs_value > lbl_801A6658[0]))) {
+        lbl_801A6DE0[0] = 34;
+    }
+}
+
+static inline int toupper(int c) { return c == -1 ? -1 : (int)lbl_8015B300[(unsigned char)c]; }
+
+static inline int isxdigit(int c) { return (int)(lbl_8015B100[(unsigned char)c] & 0x20); }
+
+static inline int isspace(int c) { return (int)(lbl_8015B100[(unsigned char)c] & (0x02 | 0x04)); }
+
+static inline int isdigit(int c) { return (int)(lbl_8015B100[(unsigned char)c] & 0x10); }
+
+static inline int isalpha(int c) { return (int)(lbl_8015B100[(unsigned char)c] & (0x40 | 0x80)); }

@@ -1,6 +1,5 @@
 #include "types.h"
 
-/* --- dol/runtime/direct_io.c --- */
 typedef u32 file_handle;
 typedef u32 file_position;
 
@@ -68,97 +67,18 @@ extern void __end_critical_region(int);
 extern s32 fn_8007B028(void);
 extern s32 fn_8007EC80(FILE *, unsigned int *, s32);
 
-size_t __fwrite(const void *data, size_t member_size, size_t member_count, FILE *file) {
-    const u8 *current;
-    size_t remaining;
-    size_t transferred;
-    size_t count;
-    int buffered;
-    if (fwide(file, 0) == 0) {
-        fwide(file, -1);
-    }
-    remaining = member_size * member_count;
-    if (remaining == 0 || file->state.error || file->mode.bits.file_kind == 0) {
-        return 0;
-    }
-    if (file->mode.bits.file_kind == 2) {
-        __stdio_atexit();
-    }
-    buffered = !file->mode.bits.binary_io || file->mode.bits.buffer_mode == 2 ||
-               file->mode.bits.buffer_mode == 1;
-    if (file->state.io_state == 0 && (file->mode.bits.io_mode & 2)) {
-        if ((file->mode.bits.io_mode & 4) && fseek(file, 0, 2) != 0) {
-            return 0;
-        }
-        file->state.io_state = 1;
-        __prep_buffer(file);
-    }
-    if (file->state.io_state != 1) {
-        file->state.error = 1;
-        file->buffer_length = 0;
-        return 0;
-    }
-    current = data;
-    transferred = 0;
-    if (remaining != 0 && (file->buffer_ptr != file->buffer || buffered)) {
-        file->buffer_length = file->buffer_size - (file->buffer_ptr - file->buffer);
-        do {
-            const u8 *newline = 0;
-            count = file->buffer_length;
-            if (count > remaining) {
-                count = remaining;
-            }
-            if (file->mode.bits.buffer_mode == 1 && count != 0) {
-                newline = __memrchr(current, '\n', count);
-                if (newline != 0) {
-                    count = newline + 1 - current;
-                }
-            }
-            if (count != 0) {
-                memcpy(file->buffer_ptr, current, count);
-                current += count;
-                transferred += count;
-                remaining -= count;
-                file->buffer_ptr += count;
-                file->buffer_length -= count;
-            }
-            if ((file->buffer_length == 0 || newline != 0 || file->mode.bits.buffer_mode == 0) &&
-                __flush_buffer(file, 0) != 0) {
-                file->state.error = 1;
-                file->buffer_length = 0;
-                remaining = 0;
-                break;
-            }
-        } while (remaining != 0 && buffered);
-    }
-    if (remaining != 0 && !buffered) {
-        u8 *saved_buffer = file->buffer;
-        size_t saved_size = file->buffer_size;
-        file->buffer = (u8 *)current;
-        file->buffer_size = remaining;
-        file->buffer_ptr = (u8 *)current + remaining;
-        if (__flush_buffer(file, &count) != 0) {
-            file->state.error = 1;
-            file->buffer_length = 0;
-        }
-        transferred += count;
-        file->buffer = saved_buffer;
-        file->buffer_size = saved_size;
-        __prep_buffer(file);
-        file->buffer_length = 0;
-    }
-    if (file->mode.bits.buffer_mode != 2) {
-        file->buffer_length = 0;
-    }
-    return (transferred + member_size - 1) / member_size;
-}
+size_t __fwrite(const void *data, size_t member_size, size_t member_count, FILE *file);
+size_t fwrite(const void *ptr, size_t size, size_t count, FILE *file);
+int fn_8007F13C(void *dst, unsigned long size, unsigned long count, FILE *file);
+int fn_8007F48C(void *dst, unsigned long size, unsigned long count, FILE *file);
 
-size_t fwrite(const void *ptr, size_t size, size_t count, FILE *file) {
-    size_t retval;
+int fn_8007F48C(void *dst, unsigned long size, unsigned long count, FILE *file) {
+    int result;
+
     __begin_critical_region(2);
-    retval = __fwrite(ptr, size, count, file);
+    result = fn_8007F13C(dst, size, count, file);
     __end_critical_region(2);
-    return retval;
+    return result;
 }
 
 int fn_8007F13C(void *dst, unsigned long size, unsigned long count, FILE *file) {
@@ -283,11 +203,95 @@ int fn_8007F13C(void *dst, unsigned long size, unsigned long count, FILE *file) 
     return red / size;
 }
 
-int fn_8007F48C(void *dst, unsigned long size, unsigned long count, FILE *file) {
-    int result;
-
+size_t fwrite(const void *ptr, size_t size, size_t count, FILE *file) {
+    size_t retval;
     __begin_critical_region(2);
-    result = fn_8007F13C(dst, size, count, file);
+    retval = __fwrite(ptr, size, count, file);
     __end_critical_region(2);
-    return result;
+    return retval;
+}
+
+size_t __fwrite(const void *data, size_t member_size, size_t member_count, FILE *file) {
+    const u8 *current;
+    size_t remaining;
+    size_t transferred;
+    size_t count;
+    int buffered;
+    if (fwide(file, 0) == 0) {
+        fwide(file, -1);
+    }
+    remaining = member_size * member_count;
+    if (remaining == 0 || file->state.error || file->mode.bits.file_kind == 0) {
+        return 0;
+    }
+    if (file->mode.bits.file_kind == 2) {
+        __stdio_atexit();
+    }
+    buffered = !file->mode.bits.binary_io || file->mode.bits.buffer_mode == 2 ||
+               file->mode.bits.buffer_mode == 1;
+    if (file->state.io_state == 0 && (file->mode.bits.io_mode & 2)) {
+        if ((file->mode.bits.io_mode & 4) && fseek(file, 0, 2) != 0) {
+            return 0;
+        }
+        file->state.io_state = 1;
+        __prep_buffer(file);
+    }
+    if (file->state.io_state != 1) {
+        file->state.error = 1;
+        file->buffer_length = 0;
+        return 0;
+    }
+    current = data;
+    transferred = 0;
+    if (remaining != 0 && (file->buffer_ptr != file->buffer || buffered)) {
+        file->buffer_length = file->buffer_size - (file->buffer_ptr - file->buffer);
+        do {
+            const u8 *newline = 0;
+            count = file->buffer_length;
+            if (count > remaining) {
+                count = remaining;
+            }
+            if (file->mode.bits.buffer_mode == 1 && count != 0) {
+                newline = __memrchr(current, '\n', count);
+                if (newline != 0) {
+                    count = newline + 1 - current;
+                }
+            }
+            if (count != 0) {
+                memcpy(file->buffer_ptr, current, count);
+                current += count;
+                transferred += count;
+                remaining -= count;
+                file->buffer_ptr += count;
+                file->buffer_length -= count;
+            }
+            if ((file->buffer_length == 0 || newline != 0 || file->mode.bits.buffer_mode == 0) &&
+                __flush_buffer(file, 0) != 0) {
+                file->state.error = 1;
+                file->buffer_length = 0;
+                remaining = 0;
+                break;
+            }
+        } while (remaining != 0 && buffered);
+    }
+    if (remaining != 0 && !buffered) {
+        u8 *saved_buffer = file->buffer;
+        size_t saved_size = file->buffer_size;
+        file->buffer = (u8 *)current;
+        file->buffer_size = remaining;
+        file->buffer_ptr = (u8 *)current + remaining;
+        if (__flush_buffer(file, &count) != 0) {
+            file->state.error = 1;
+            file->buffer_length = 0;
+        }
+        transferred += count;
+        file->buffer = saved_buffer;
+        file->buffer_size = saved_size;
+        __prep_buffer(file);
+        file->buffer_length = 0;
+    }
+    if (file->mode.bits.buffer_mode != 2) {
+        file->buffer_length = 0;
+    }
+    return (transferred + member_size - 1) / member_size;
 }

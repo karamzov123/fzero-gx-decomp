@@ -44,7 +44,6 @@ typedef struct AnsiFile {
     struct AnsiFile *next_file;
 } AnsiFile;
 
-
 extern AnsiFile __files[4];
 
 extern void __begin_critical_region(s32);
@@ -60,38 +59,58 @@ extern s32 fn_8008DB5C(u32, u32, u32 *);
 extern s32 fn_8008DAA8(u32, u32, u32 *);
 extern s32 fn_8008D8A8(u32);
 
-s32 fn_8007B028(void) {
-    s32 result;
-    AnsiFile *file;
+s32 fn_8007B028(void);
+s32 fn_8007B0B4(void);
+void __close_all(void);
+void fn_8007B1CC(AnsiFile *file, FileMode mode, char *buf, u32 size);
+AnsiFile *fn_8007B2A8(void);
 
-    file = __files;
-    result = 0;
+AnsiFile *fn_8007B2A8(void) {
+    AnsiFile *file;
+    AnsiFile *created;
+    AnsiFile *last;
+
+    file = __files[2].next_file;
     while (file != 0) {
-        if (file->mode.file_kind != 0 && (file->mode.buffer_mode & 1) && file->state.io_state == 1) {
-            if (fflush(file) != 0) {
-                result = -1;
-            }
+        if (!(file->mode.file_kind != 0)) {
+            return file;
+        } else {
+            last = file;
+            file = file->next_file;
         }
-        file = file->next_file;
     }
-    return result;
+    created = fn_8007A1C0(0x50);
+    if (created != 0) {
+        memset(created, 0, 0x50);
+        created->is_dynamically_allocated = 1;
+        last->next_file = created;
+        return created;
+    }
+    return 0;
 }
 
-s32 fn_8007B0B4(void) {
-    s32 result;
-    AnsiFile *file;
-
-    result = 0;
-    file = __files;
-    while (file != 0) {
-        if (file->mode.file_kind != 0) {
-            if (fflush(file) != 0) {
-                result = -1;
-            }
-        }
-        file = file->next_file;
+void fn_8007B1CC(AnsiFile *file, FileMode mode, char *buf, u32 size) {
+    file->handle = 0;
+    file->mode = mode;
+    file->state.io_state = 0;
+    file->state.free_buffer = 0;
+    file->state.eof = 0;
+    file->state.error = 0;
+    file->position = 0;
+    if (size != 0) {
+        setvbuf(file, buf, 2, size);
+    } else {
+        setvbuf(file, 0, 0, 0);
     }
-    return result;
+    file->buffer_ptr = file->buffer;
+    file->buffer_length = 0;
+    if (file->mode.file_kind == 1) {
+        file->position_proc = fn_8008D7CC;
+        file->read_proc = fn_8008DB5C;
+        file->write_proc = fn_8008DAA8;
+        file->close_proc = fn_8008D8A8;
+    }
+    file->idle_proc = 0;
 }
 
 void __close_all(void) {
@@ -121,50 +140,36 @@ void __close_all(void) {
     __end_critical_region(2);
 }
 
-void fn_8007B1CC(AnsiFile *file, FileMode mode, char *buf, u32 size) {
-    file->handle = 0;
-    file->mode = mode;
-    file->state.io_state = 0;
-    file->state.free_buffer = 0;
-    file->state.eof = 0;
-    file->state.error = 0;
-    file->position = 0;
-    if (size != 0) {
-        setvbuf(file, buf, 2, size);
-    } else {
-        setvbuf(file, 0, 0, 0);
+s32 fn_8007B0B4(void) {
+    s32 result;
+    AnsiFile *file;
+
+    result = 0;
+    file = __files;
+    while (file != 0) {
+        if (file->mode.file_kind != 0) {
+            if (fflush(file) != 0) {
+                result = -1;
+            }
+        }
+        file = file->next_file;
     }
-    file->buffer_ptr = file->buffer;
-    file->buffer_length = 0;
-    if (file->mode.file_kind == 1) {
-        file->position_proc = fn_8008D7CC;
-        file->read_proc = fn_8008DB5C;
-        file->write_proc = fn_8008DAA8;
-        file->close_proc = fn_8008D8A8;
-    }
-    file->idle_proc = 0;
+    return result;
 }
 
-AnsiFile *fn_8007B2A8(void) {
+s32 fn_8007B028(void) {
+    s32 result;
     AnsiFile *file;
-    AnsiFile *created;
-    AnsiFile *last;
 
-    file = __files[2].next_file;
+    file = __files;
+    result = 0;
     while (file != 0) {
-        if (!(file->mode.file_kind != 0)) {
-            return file;
-        } else {
-            last = file;
-            file = file->next_file;
+        if (file->mode.file_kind != 0 && (file->mode.buffer_mode & 1) && file->state.io_state == 1) {
+            if (fflush(file) != 0) {
+                result = -1;
+            }
         }
+        file = file->next_file;
     }
-    created = fn_8007A1C0(0x50);
-    if (created != 0) {
-        memset(created, 0, 0x50);
-        created->is_dynamically_allocated = 1;
-        last->next_file = created;
-        return created;
-    }
-    return 0;
+    return result;
 }

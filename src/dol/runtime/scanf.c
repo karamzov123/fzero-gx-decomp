@@ -1,7 +1,5 @@
 #include "types.h"
 
-
-/* --- dol/__StringRead.c --- */
 typedef struct FnState {
     char *cursor;
     s32 state;
@@ -51,47 +49,6 @@ int fn_80082A7C(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char
                 va_list arg);
 int __StringRead(void *context, int character, int action);
 
-int sscanf(const char *input, const char *format_string, ...) {
-    va_list arguments;
-    FnState control;
-
-    __builtin_va_info(&arguments);
-    control.cursor = (char *)input;
-    if (input == 0 || *control.cursor == '\0') {
-        return -1;
-    }
-    control.state = 0;
-    return fn_80082A7C(__StringRead, &control, format_string, arguments);
-}
-
-int __StringRead(void *context, int character, int action) {
-    FnState *control = (FnState *)context;
-    char result;
-
-    switch (action) {
-    case __GetAChar:
-        result = *control->cursor;
-        if (result == '\0') {
-            control->state = 1;
-            return -1;
-        }
-        control->cursor++;
-        return (unsigned char)result;
-    case __UngetAChar:
-        if (control->state == 0) {
-            control->cursor--;
-        } else {
-            control->state = 0;
-        }
-        return character;
-    case __TestForError:
-        return control->state;
-    }
-    return 0;
-}
-
-
-
 void *__va_arg(va_list v_list, u8 type);
 
 extern const u8 lbl_8015B100[256];
@@ -108,11 +65,164 @@ extern u64 __strtoull(int base, int max_width, int (*ReadProc)(void *, int, int)
                       int *chars_scanned, int *negative, int *overflow);
 
 void exit(int);
-
-static inline int isdigit(int c) { return (lbl_8015B100[(u8)c] & 0x10); }
-static inline int isspace(int c) { return (lbl_8015B100[(u8)c] & (0x02 | 0x04)); }
-
 const char *fn_80083428(const char *format_string, scan_format *format);
+
+int sscanf(const char *input, const char *format_string, ...);
+int __StringRead(void *context, int character, int action);
+int fn_80082A7C(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *format_str, va_list arg);
+const char *fn_80083428(const char *format_string, scan_format *format);
+
+const char *fn_80083428(const char *format_string, scan_format *format) {
+    const char *cursor = format_string;
+    int character;
+    int flag_found;
+    int invert;
+    scan_format parsed = {0, 0, normal_argument, 0, 0x7FFFFFFF, {0}};
+    cursor++;
+    character = *cursor;
+    if (character == '%') {
+        parsed.conversion_char = character;
+        *format = parsed;
+        return cursor + 1;
+    }
+    if (character == '*') {
+        parsed.suppress_assignment = 1;
+        character = *++cursor;
+    }
+    if (isdigit(character)) {
+        parsed.field_width = 0;
+        do {
+            parsed.field_width = (parsed.field_width * 10) + (character - '0');
+            character = *++cursor;
+        } while (isdigit(character));
+        if (parsed.field_width == 0) {
+            parsed.conversion_char = 0xFF;
+            *format = parsed;
+            return cursor + 1;
+        }
+        parsed.field_width_specified = 1;
+    }
+    flag_found = 1;
+    switch (character) {
+    case 'h':
+        parsed.argument_options = short_argument;
+        if (cursor[1] == 'h') {
+            parsed.argument_options = char_argument;
+            character = *++cursor;
+        }
+        break;
+    case 'l':
+        parsed.argument_options = long_argument;
+        if (cursor[1] == 'l') {
+            parsed.argument_options = long_long_argument;
+            character = *++cursor;
+        }
+        break;
+    case 'L':
+        parsed.argument_options = long_double_argument;
+        break;
+    default:
+        flag_found = 0;
+        break;
+    }
+    if (flag_found)
+        character = *++cursor;
+    parsed.conversion_char = character;
+    switch (character) {
+    case 'd':
+    case 'i':
+    case 'u':
+    case 'o':
+    case 'x':
+    case 'X':
+        if (parsed.argument_options == long_double_argument)
+            parsed.conversion_char = 0xFF;
+        break;
+    case 'a':
+    case 'f':
+    case 'e':
+    case 'E':
+    case 'g':
+    case 'G':
+        if (parsed.argument_options == char_argument || parsed.argument_options == short_argument ||
+            parsed.argument_options == long_long_argument) {
+            parsed.conversion_char = 0xFF;
+        } else if (parsed.argument_options == long_argument) {
+            parsed.argument_options = double_argument;
+        }
+        break;
+    case 'p':
+        parsed.argument_options = long_argument;
+        parsed.conversion_char = 'x';
+        break;
+    case 'c':
+        if (parsed.argument_options == long_argument)
+            parsed.argument_options = wchar_argument;
+        else if (parsed.argument_options != normal_argument)
+            parsed.conversion_char = 0xFF;
+        break;
+    case 's': {
+        int index;
+        unsigned char *entry;
+        if (parsed.argument_options == long_argument)
+            parsed.argument_options = wchar_argument;
+        else if (parsed.argument_options != normal_argument)
+            parsed.conversion_char = 0xFF;
+        for (index = sizeof(parsed.char_set), entry = parsed.char_set; index != 0;
+             --index)
+            *entry++ = 0xFF;
+        parsed.char_set[1] = 0xC1;
+        parsed.char_set[4] = 0xFE;
+        break;
+    }
+    case 'n':
+        break;
+    case '[':
+        if (parsed.argument_options == long_argument)
+            parsed.argument_options = wchar_argument;
+        else if (parsed.argument_options != normal_argument)
+            parsed.conversion_char = 0xFF;
+        character = *++cursor;
+        invert = 0;
+        if (character == '^') {
+            invert = 1;
+            character = *++cursor;
+        }
+        if (character == ']') {
+            ((parsed.char_set)[(unsigned char)(']') >> 3] |=
+             (1 << ((unsigned char)(']') & 7)));
+            character = *++cursor;
+        }
+        while (character != 0 && character != ']') {
+            int range_end;
+            ((parsed.char_set)[(unsigned char)(character) >> 3] |=
+             (1 << ((unsigned char)(character) & 7)));
+            if (cursor[1] == '-' && (range_end = cursor[2]) != 0 && range_end != ']') {
+                while (++character <= range_end)
+                    ((parsed.char_set)[(unsigned char)(character) >> 3] |=
+                     (1 << ((unsigned char)(character) & 7)));
+                cursor += 3;
+                character = *cursor;
+            } else {
+                character = *++cursor;
+            }
+        }
+        if (character == 0) {
+            parsed.conversion_char = 0xFF;
+        } else if (invert) {
+            int index;
+            unsigned char *entry = parsed.char_set;
+            for (index = sizeof(parsed.char_set); index != 0; --index, ++entry)
+                *entry = ~*entry;
+        }
+        break;
+    default:
+        parsed.conversion_char = 0xFF;
+        break;
+    }
+    *format = parsed;
+    return cursor + 1;
+}
 
 int fn_80082A7C(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *format_str,
                 va_list arg) {
@@ -441,154 +551,45 @@ exit:
     return items_assigned;
 }
 
-const char *fn_80083428(const char *format_string, scan_format *format) {
-    const char *cursor = format_string;
-    int character;
-    int flag_found;
-    int invert;
-    scan_format parsed = {0, 0, normal_argument, 0, 0x7FFFFFFF, {0}};
-    cursor++;
-    character = *cursor;
-    if (character == '%') {
-        parsed.conversion_char = character;
-        *format = parsed;
-        return cursor + 1;
+static inline int isspace(int c) { return (lbl_8015B100[(u8)c] & (0x02 | 0x04)); }
+
+static inline int isdigit(int c) { return (lbl_8015B100[(u8)c] & 0x10); }
+
+int __StringRead(void *context, int character, int action) {
+    FnState *control = (FnState *)context;
+    char result;
+
+    switch (action) {
+    case __GetAChar:
+        result = *control->cursor;
+        if (result == '\0') {
+            control->state = 1;
+            return -1;
+        }
+        control->cursor++;
+        return (unsigned char)result;
+    case __UngetAChar:
+        if (control->state == 0) {
+            control->cursor--;
+        } else {
+            control->state = 0;
+        }
+        return character;
+    case __TestForError:
+        return control->state;
     }
-    if (character == '*') {
-        parsed.suppress_assignment = 1;
-        character = *++cursor;
+    return 0;
+}
+
+int sscanf(const char *input, const char *format_string, ...) {
+    va_list arguments;
+    FnState control;
+
+    __builtin_va_info(&arguments);
+    control.cursor = (char *)input;
+    if (input == 0 || *control.cursor == '\0') {
+        return -1;
     }
-    if (isdigit(character)) {
-        parsed.field_width = 0;
-        do {
-            parsed.field_width = (parsed.field_width * 10) + (character - '0');
-            character = *++cursor;
-        } while (isdigit(character));
-        if (parsed.field_width == 0) {
-            parsed.conversion_char = 0xFF;
-            *format = parsed;
-            return cursor + 1;
-        }
-        parsed.field_width_specified = 1;
-    }
-    flag_found = 1;
-    switch (character) {
-    case 'h':
-        parsed.argument_options = short_argument;
-        if (cursor[1] == 'h') {
-            parsed.argument_options = char_argument;
-            character = *++cursor;
-        }
-        break;
-    case 'l':
-        parsed.argument_options = long_argument;
-        if (cursor[1] == 'l') {
-            parsed.argument_options = long_long_argument;
-            character = *++cursor;
-        }
-        break;
-    case 'L':
-        parsed.argument_options = long_double_argument;
-        break;
-    default:
-        flag_found = 0;
-        break;
-    }
-    if (flag_found)
-        character = *++cursor;
-    parsed.conversion_char = character;
-    switch (character) {
-    case 'd':
-    case 'i':
-    case 'u':
-    case 'o':
-    case 'x':
-    case 'X':
-        if (parsed.argument_options == long_double_argument)
-            parsed.conversion_char = 0xFF;
-        break;
-    case 'a':
-    case 'f':
-    case 'e':
-    case 'E':
-    case 'g':
-    case 'G':
-        if (parsed.argument_options == char_argument || parsed.argument_options == short_argument ||
-            parsed.argument_options == long_long_argument) {
-            parsed.conversion_char = 0xFF;
-        } else if (parsed.argument_options == long_argument) {
-            parsed.argument_options = double_argument;
-        }
-        break;
-    case 'p':
-        parsed.argument_options = long_argument;
-        parsed.conversion_char = 'x';
-        break;
-    case 'c':
-        if (parsed.argument_options == long_argument)
-            parsed.argument_options = wchar_argument;
-        else if (parsed.argument_options != normal_argument)
-            parsed.conversion_char = 0xFF;
-        break;
-    case 's': {
-        int index;
-        unsigned char *entry;
-        if (parsed.argument_options == long_argument)
-            parsed.argument_options = wchar_argument;
-        else if (parsed.argument_options != normal_argument)
-            parsed.conversion_char = 0xFF;
-        for (index = sizeof(parsed.char_set), entry = parsed.char_set; index != 0;
-             --index)
-            *entry++ = 0xFF;
-        parsed.char_set[1] = 0xC1;
-        parsed.char_set[4] = 0xFE;
-        break;
-    }
-    case 'n':
-        break;
-    case '[':
-        if (parsed.argument_options == long_argument)
-            parsed.argument_options = wchar_argument;
-        else if (parsed.argument_options != normal_argument)
-            parsed.conversion_char = 0xFF;
-        character = *++cursor;
-        invert = 0;
-        if (character == '^') {
-            invert = 1;
-            character = *++cursor;
-        }
-        if (character == ']') {
-            ((parsed.char_set)[(unsigned char)(']') >> 3] |=
-             (1 << ((unsigned char)(']') & 7)));
-            character = *++cursor;
-        }
-        while (character != 0 && character != ']') {
-            int range_end;
-            ((parsed.char_set)[(unsigned char)(character) >> 3] |=
-             (1 << ((unsigned char)(character) & 7)));
-            if (cursor[1] == '-' && (range_end = cursor[2]) != 0 && range_end != ']') {
-                while (++character <= range_end)
-                    ((parsed.char_set)[(unsigned char)(character) >> 3] |=
-                     (1 << ((unsigned char)(character) & 7)));
-                cursor += 3;
-                character = *cursor;
-            } else {
-                character = *++cursor;
-            }
-        }
-        if (character == 0) {
-            parsed.conversion_char = 0xFF;
-        } else if (invert) {
-            int index;
-            unsigned char *entry = parsed.char_set;
-            for (index = sizeof(parsed.char_set); index != 0; --index, ++entry)
-                *entry = ~*entry;
-        }
-        break;
-    default:
-        parsed.conversion_char = 0xFF;
-        break;
-    }
-    *format = parsed;
-    return cursor + 1;
+    control.state = 0;
+    return fn_80082A7C(__StringRead, &control, format_string, arguments);
 }

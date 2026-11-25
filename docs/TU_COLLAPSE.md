@@ -180,3 +180,14 @@ The AHX range `0x8004FF68..0x8005466C` is seven TUs in `src/dol/ahx/`: `ahx_bits
 
 - `sasnd_ctrl.c` holds the last 19 sasnd functions as one typed unit for USA and Japan. `fn_80064FDC` is still a lifted body with byte offsets.
 - `dol_tu_split.py --pooled` splits units that carry literal bindings. Three DOL units still cross a TU boundary because private strings, a layout primer or a literal do not move with one piece: `dol/trk/serpoll.c`, `dol/adx/adx_tlk.c` and `dol/fn_8007FE70.c`.
+
+## MSL is built with `-inline deferred` (2026-11-24)
+
+MWCC's `-inline auto,deferred` emits a file's functions in reverse source order and can inline a
+function defined later in the file. MSL's retail TUs are laid out last-defined-first (string.c starts
+with strstr and strtok, FILE_POS.c with fseek, _fseek, ftell), and FILE_POS.c's `_fseek` inlines
+`_ftell`, which only deferred inlining allows. Written in MSL's source order and compiled with
+`-inline auto,deferred`, string, scanf, printf, file_io, ansi_files, direct_io, buffer_io, mem,
+strtoul, strtold, GCN_Mem_Alloc and FILE_POS reproduce retail; `tools/consolidate/tu_reverse.py`
+reverses an address-ordered file and `tu_order.py` checks the emitted order. Reordering renumbers
+`@N` literals, so pooled units need their maps re-derived (`tu_try.py ... --apply`).

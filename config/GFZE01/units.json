@@ -9513,7 +9513,9 @@
       "-sdata2",
       "8",
       "-use_lmw_stmw",
-      "on"
+      "on",
+      "-inline",
+      "auto,deferred"
     ],
     "collapsed": true
   },
@@ -9856,7 +9858,9 @@
       "-sdata2",
       "8",
       "-use_lmw_stmw",
-      "on"
+      "on",
+      "-inline",
+      "auto,deferred"
     ],
     "collapsed": true
   },
@@ -19194,7 +19198,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/2.5",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-inline",
+      "auto,deferred"
+    ],
     "collapsed": true
   },
   {
@@ -19253,7 +19260,9 @@
       "-sdata2",
       "8",
       "-use_lmw_stmw",
-      "on"
+      "on",
+      "-inline",
+      "auto,deferred"
     ],
     "collapsed": true
   },
@@ -23092,7 +23101,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-inline",
+      "auto,deferred"
+    ],
     "collapsed": true
   },
   {
@@ -23180,7 +23192,10 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/2.0",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-inline",
+      "auto,deferred"
+    ],
     "collapsed": true
   },
   {
@@ -23211,7 +23226,9 @@
     "mw_version": "GC/2.6",
     "extra_cflags": [
       "-use_lmw_stmw",
-      "on"
+      "on",
+      "-inline",
+      "auto,deferred"
     ],
     "collapsed": true,
     "matching_for": ["GFZE01", "GFZP01"]
@@ -23237,9 +23254,12 @@
     "mw_version": "GC/1.3.2",
     "collapsed": true,
     "pool": {
-      "@30": "lbl_80095010"
+      "@152": "lbl_80095010"
     },
-    "extra_cflags": []
+    "extra_cflags": [
+      "-inline",
+      "auto,deferred"
+    ]
   },
   {
     "module": "main",
@@ -23257,15 +23277,17 @@
       "-sdata2",
       "8",
       "-use_lmw_stmw",
-      "on"
+      "on",
+      "-inline",
+      "auto,deferred"
     ],
     "collapsed": true,
     "pool": {
-      "@28": "lbl_800953A0",
-      "@43": "lbl_800953CC",
-      "@57": "lbl_801A74F0",
-      "@335": "lbl_801A74F8",
-      "@336": "lbl_801A7500"
+      "@19": "lbl_800953CC",
+      "@33": "lbl_801A74F0",
+      "@4": "lbl_800953A0",
+      "@552": "lbl_801A74F8",
+      "@553": "lbl_801A7500"
     }
   },
   {
@@ -24618,7 +24640,9 @@
       "-use_lmw_stmw",
       "on",
       "-str",
-      "reuse,pool,readonly"
+      "reuse,pool,readonly",
+      "-inline",
+      "auto,deferred"
     ],
     "collapsed": true
   },
@@ -24657,7 +24681,9 @@
       "-sdata2",
       "8",
       "-use_lmw_stmw",
-      "on"
+      "on",
+      "-inline",
+      "auto,deferred"
     ],
     "collapsed": true
   },

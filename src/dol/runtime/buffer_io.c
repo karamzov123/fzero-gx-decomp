@@ -63,6 +63,63 @@ extern u8 lbl_8015B200[256];
 void __begin_critical_region(int region);
 void __end_critical_region(int region);
 
+int setvbuf(FILE *file, char *buffer, int mode, size_t size);
+int __flush_buffer(FILE *file, size_t *bytes_flushed);
+s32 fn_8007EC80(FILE *arg0, u32 *arg1, s32 arg2);
+void __prep_buffer(FILE *buffer);
+
+void __prep_buffer(FILE *buffer) {
+    buffer->buffer_ptr = buffer->buffer;
+    buffer->buffer_length = buffer->buffer_size;
+    buffer->buffer_length -= buffer->position & buffer->buffer_alignment;
+    buffer->buffer_position = buffer->position;
+}
+
+s32 fn_8007EC80(FILE *arg0, u32 *arg1, s32 arg2) {
+    s32 result;
+
+    arg0->buffer_ptr = arg0->buffer;
+    arg0->buffer_length = arg0->buffer_size;
+    arg0->buffer_length -= arg0->position & arg0->buffer_alignment;
+    arg0->buffer_position = arg0->position;
+    if (arg2 == 1) {
+        arg0->buffer_length = arg0->buffer_size;
+    }
+    result = arg0->read_proc(arg0->handle, arg0->buffer, &arg0->buffer_length, arg0->idle_proc);
+    if (result == 2) {
+        arg0->buffer_length = 0;
+    }
+    if (arg1 != 0) {
+        *arg1 = arg0->buffer_length;
+    }
+    if (result != 0) {
+        return result;
+    }
+    arg0->position += arg0->buffer_length;
+    return 0;
+}
+
+int __flush_buffer(FILE *file, size_t *bytes_flushed) {
+    size_t buffer_len;
+    int io_result;
+    buffer_len = file->buffer_ptr - file->buffer;
+    if (buffer_len != 0) {
+        file->buffer_length = buffer_len;
+        io_result =
+            file->write_proc(file->handle, file->buffer, &file->buffer_length, file->idle_proc);
+        if (bytes_flushed != 0)
+            *bytes_flushed = file->buffer_length;
+        if (io_result != 0)
+            return io_result;
+        file->position += file->buffer_length;
+    }
+    file->buffer_ptr = file->buffer;
+    file->buffer_length = file->buffer_size;
+    file->buffer_length -= file->position & file->buffer_alignment;
+    file->buffer_position = file->position;
+    return 0;
+}
+
 int setvbuf(FILE *file, char *buffer, int mode, size_t size) {
     int io_mode;
     io_mode = (file->mode.half[0] >> 6) & 7;
@@ -101,56 +158,4 @@ int setvbuf(FILE *file, char *buffer, int mode, size_t size) {
     file->buffer_alignment = 0;
     __end_critical_region(2);
     return 0;
-}
-
-int __flush_buffer(FILE *file, size_t *bytes_flushed) {
-    size_t buffer_len;
-    int io_result;
-    buffer_len = file->buffer_ptr - file->buffer;
-    if (buffer_len != 0) {
-        file->buffer_length = buffer_len;
-        io_result =
-            file->write_proc(file->handle, file->buffer, &file->buffer_length, file->idle_proc);
-        if (bytes_flushed != 0)
-            *bytes_flushed = file->buffer_length;
-        if (io_result != 0)
-            return io_result;
-        file->position += file->buffer_length;
-    }
-    file->buffer_ptr = file->buffer;
-    file->buffer_length = file->buffer_size;
-    file->buffer_length -= file->position & file->buffer_alignment;
-    file->buffer_position = file->position;
-    return 0;
-}
-
-s32 fn_8007EC80(FILE *arg0, u32 *arg1, s32 arg2) {
-    s32 result;
-
-    arg0->buffer_ptr = arg0->buffer;
-    arg0->buffer_length = arg0->buffer_size;
-    arg0->buffer_length -= arg0->position & arg0->buffer_alignment;
-    arg0->buffer_position = arg0->position;
-    if (arg2 == 1) {
-        arg0->buffer_length = arg0->buffer_size;
-    }
-    result = arg0->read_proc(arg0->handle, arg0->buffer, &arg0->buffer_length, arg0->idle_proc);
-    if (result == 2) {
-        arg0->buffer_length = 0;
-    }
-    if (arg1 != 0) {
-        *arg1 = arg0->buffer_length;
-    }
-    if (result != 0) {
-        return result;
-    }
-    arg0->position += arg0->buffer_length;
-    return 0;
-}
-
-void __prep_buffer(FILE *buffer) {
-    buffer->buffer_ptr = buffer->buffer;
-    buffer->buffer_length = buffer->buffer_size;
-    buffer->buffer_length -= buffer->position & buffer->buffer_alignment;
-    buffer->buffer_position = buffer->position;
 }

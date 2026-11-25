@@ -29,8 +29,16 @@ def definitions(text):
                 if depth == 0:
                     break
             i += 1
-        header = text[m.start():m.end() - 1].rstrip()
-        out.append((m[1], m.start(), i + 1, header))
+        start = m.start()
+        # the match can begin on blank, comment or preprocessor lines above the declaration
+        while True:
+            nl = text.find('\n', start, m.end())
+            line = text[start:nl if nl >= 0 else start].strip()
+            if nl < 0 or not (line == '' or line.startswith(('#', '//', '/*'))) or m[1] in line:
+                break
+            start = nl + 1
+        header = text[start:m.end() - 1].rstrip()
+        out.append((m[1], start, i + 1, header))
         pos = i + 1
 
 

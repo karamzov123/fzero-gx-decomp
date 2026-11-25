@@ -1,67 +1,5 @@
 #include "types.h"
 
-/* --- dol/memcmp.c --- */
-/* --- dol/memcmp.c --- */
-s32 memcmp(u32 arg0, u32 arg1, u32 arg2) {
-    u8 *v0;
-    u8 *v1;
-    u32 v2;
-
-    v0 = (u8 *)arg0 - 1;
-    v1 = (u8 *)arg1 - 1;
-    v2 = arg2 + 1;
-    /* Loop enters at the bottom test in the retail control flow. */
-    goto test;
-loop:
-    if (*++v0 != *++v1) {
-        if (*v0 < *v1) {
-            return -1;
-        }
-        return 1;
-    }
-test:
-    if (--v2 != 0) {
-        /* Loop back to the body after the retail bottom-test branch. */
-        goto loop;
-    }
-    return 0;
-}
-
-/* --- dol/__memrchr.c --- */
-s32 __memrchr(u32 arg0, u32 arg1, u32 arg2) {
-    u32 v1;
-
-    arg1 = (u8)arg1;
-    arg0 += arg2;
-    arg2++;
-    while (--arg2 != 0) {
-        arg0--;
-        if (*(u8 *)arg0 == arg1) {
-            return arg0;
-        }
-    }
-    return 0;
-}
-
-/* --- dol/memchr.c --- */
-s32 memchr(u32 arg0, u32 arg1, u32 arg2) {
-    u32 unk_1;
-    u32 unk_2;
-    u32 v2;
-    arg1 &= 0xff;
-    arg0 -= 1;
-    arg2 += 1;
-    while (((arg2) -= 1) != 0) {
-        arg0 = (u32)((u8 *)arg0 + 1);
-        if (*(u8 *)arg0 == arg1) {
-            return arg0;
-        }
-    }
-    return 0;
-}
-
-/* --- dol/memmove.c --- */
-/* --- dol/memmove.c --- */
 extern void __copy_longs_unaligned(void *destination, const void *source, size_t count);
 
 extern void __copy_longs_rev_unaligned(void *destination, const void *source, size_t count);
@@ -69,6 +7,11 @@ extern void __copy_longs_rev_unaligned(void *destination, const void *source, si
 extern void __copy_longs_aligned(void *destination, const void *source, size_t count);
 
 extern void __copy_longs_rev_aligned(void *destination, const void *source, size_t count);
+
+s32 memcmp(u32 arg0, u32 arg1, u32 arg2);
+s32 __memrchr(u32 arg0, u32 arg1, u32 arg2);
+s32 memchr(u32 arg0, u32 arg1, u32 arg2);
+void *memmove(void *destination, const void *source, size_t count);
 
 void *memmove(void *destination, const void *source, size_t count) {
     unsigned char *source_byte;
@@ -101,4 +44,60 @@ void *memmove(void *destination, const void *source, size_t count) {
             *--destination_byte = *--source_byte;
     }
     return destination;
+}
+
+s32 memchr(u32 arg0, u32 arg1, u32 arg2) {
+    u32 unk_1;
+    u32 unk_2;
+    u32 v2;
+    arg1 &= 0xff;
+    arg0 -= 1;
+    arg2 += 1;
+    while (((arg2) -= 1) != 0) {
+        arg0 = (u32)((u8 *)arg0 + 1);
+        if (*(u8 *)arg0 == arg1) {
+            return arg0;
+        }
+    }
+    return 0;
+}
+
+s32 __memrchr(u32 arg0, u32 arg1, u32 arg2) {
+    u32 v1;
+
+    arg1 = (u8)arg1;
+    arg0 += arg2;
+    arg2++;
+    while (--arg2 != 0) {
+        arg0--;
+        if (*(u8 *)arg0 == arg1) {
+            return arg0;
+        }
+    }
+    return 0;
+}
+
+s32 memcmp(u32 arg0, u32 arg1, u32 arg2) {
+    u8 *v0;
+    u8 *v1;
+    u32 v2;
+
+    v0 = (u8 *)arg0 - 1;
+    v1 = (u8 *)arg1 - 1;
+    v2 = arg2 + 1;
+    /* Loop enters at the bottom test in the retail control flow. */
+    goto test;
+loop:
+    if (*++v0 != *++v1) {
+        if (*v0 < *v1) {
+            return -1;
+        }
+        return 1;
+    }
+test:
+    if (--v2 != 0) {
+        /* Loop back to the body after the retail bottom-test branch. */
+        goto loop;
+    }
+    return 0;
 }
