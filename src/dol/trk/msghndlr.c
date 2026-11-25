@@ -38,11 +38,34 @@ extern DSError TRKAppendBuffer_ui8(TRKBuffer *, const u8 *, int);
 extern DSError TRKReadBuffer(TRKBuffer *, void *, size_t);
 extern s32 fn_8008C730(u32, u32, u32 *, u32, s32);
 extern void MWTRACE(u32, ...);
+extern s32 fn_8008963C(const char *message);
+extern void fn_8008D7C0(u32 serialIO);
 
 extern u8 lbl_80095890[];
 extern u8 lbl_800958C4[44];
 extern u32 lbl_800958F0[];
 extern u32 lbl_80095910[];
+
+DSError fn_8008983C(TRKBuffer *message) {
+    TRKReplyBuffer reply;
+    u8 enable = message->data[0x0C];
+
+    if (message->data[0x08] == 1) {
+        fn_8008963C("\nMetroTRK Option : SerialIO - ");
+        if (enable) {
+            fn_8008963C("Enable\n");
+        } else {
+            fn_8008963C("Disable\n");
+        }
+        fn_8008D7C0(enable);
+    }
+    memset(&reply, 0, sizeof(reply));
+    reply.flag = 0x80;
+    reply.length = sizeof(reply);
+    reply.status = 0;
+    fn_8008D398((u32)&reply, sizeof(reply));
+    return 0;
+}
 
 s32 fn_800898E4(void) {
     TRKReplyBuffer buffer;
