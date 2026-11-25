@@ -54,6 +54,9 @@ raw = re.sub(r'"matching_for": \[\n\s+([^\]]+?)\n\s+\]', lambda m: '"matching_fo
 candidate = pathlib.Path(a.candidate).read_text()
 open('config/GFZE01/splits.txt', 'w').write(text); open('config/GFZE01/units.json', 'w').write(raw)
 for s in srcs:
-    pathlib.Path('src', s).unlink()
+    p = pathlib.Path('src', s)
+    if by[s].get('asm') and not p.exists():     # asm units build from the .s beside the .c name
+        p = p.with_suffix('.s')
+    p.unlink()
 dest = pathlib.Path('src', a.dest); dest.parent.mkdir(parents=True, exist_ok=True); dest.write_text(candidate)
 print('installed', a.dest, len(merged['symbols']), 'functions')

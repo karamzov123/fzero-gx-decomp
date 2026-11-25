@@ -11,9 +11,6 @@ Sections:
 	.sdata2     type:rodata align:4
 	.sbss2      type:bss align:4
 
-dol/PPCDisableSpeculation.c:
-	.text       start:0x8000A0CC end:0x8000A0F4
-
 dol/os/OSArena.c:
 	.text       start:0x8000B314 end:0x8000B380 align:4
 
@@ -382,11 +379,8 @@ dol/Hu_IsStub.c:
 dol/fn_8008AF58.c:
 	.text       start:0x8008AF58 end:0x8008AFF0 align:4
 
-dol/PPCMfmsr.c:
-	.text       start:0x80009FBC end:0x80009FC4 align:4
-
-dol/PPCMtmsr.c:
-	.text       start:0x80009FC4 end:0x80009FCC align:4
+dol/base/PPCArch.c:
+	.text       start:0x80009FBC end:0x8000A0FC align:4
 
 dol/__start.c:
 	.init       start:0x80003154 end:0x800032B0 align:4
@@ -411,75 +405,6 @@ dol/fn_80007700.c:
 
 dol/fn_800079A0.c:
 	.text       start:0x800079A0 end:0x800079C4 align:4
-
-dol/PPCMfhid0.c:
-	.text       start:0x80009FCC end:0x80009FD4 align:4
-
-dol/fn_80009FD4.c:
-	.text       start:0x80009FD4 end:0x80009FDC align:4
-
-dol/PPCMfl2cr.c:
-	.text       start:0x80009FDC end:0x80009FE4 align:4
-
-dol/PPCMtl2cr.c:
-	.text       start:0x80009FE4 end:0x80009FEC align:4
-
-dol/PPCMtdec.c:
-	.text       start:0x80009FEC end:0x80009FF4 align:4
-
-dol/fn_80009FF4.c:
-	.text       start:0x80009FF4 end:0x80009FFC align:4
-
-dol/PPCHalt.c:
-	.text       start:0x80009FFC end:0x8000A010 align:4
-
-dol/PPCMtmmcr0.c:
-	.text       start:0x8000A010 end:0x8000A018 align:4
-
-dol/PPCMtmmcr1.c:
-	.text       start:0x8000A018 end:0x8000A020 align:4
-
-dol/fn_8000A020.c:
-	.text       start:0x8000A020 end:0x8000A028 align:4
-
-dol/PPCMtpmc1.c:
-	.text       start:0x8000A028 end:0x8000A030 align:4
-
-dol/fn_8000A030.c:
-	.text       start:0x8000A030 end:0x8000A038 align:4
-
-dol/PPCMtpmc2.c:
-	.text       start:0x8000A038 end:0x8000A040 align:4
-
-dol/fn_8000A040.c:
-	.text       start:0x8000A040 end:0x8000A048 align:4
-
-dol/PPCMtpmc3.c:
-	.text       start:0x8000A048 end:0x8000A050 align:4
-
-dol/fn_8000A050.c:
-	.text       start:0x8000A050 end:0x8000A058 align:4
-
-dol/PPCMtpmc4.c:
-	.text       start:0x8000A058 end:0x8000A060 align:4
-
-dol/PPCMffpscr.c:
-	.text       start:0x8000A060 end:0x8000A0A8 align:4
-
-dol/PPCMfhid2.c:
-	.text       start:0x8000A0A8 end:0x8000A0B0 align:4
-
-dol/PPCMthid2.c:
-	.text       start:0x8000A0B0 end:0x8000A0B8 align:4
-
-dol/fn_8000A0B8.c:
-	.text       start:0x8000A0B8 end:0x8000A0C4 align:4
-
-dol/PPCMtwpar.c:
-	.text       start:0x8000A0C4 end:0x8000A0CC align:4
-
-dol/PPCSetFpNonIEEEMode.c:
-	.text       start:0x8000A0F4 end:0x8000A0FC align:4
 
 dol/__OSFPRInit.c:
 	.text       start:0x8000A0FC end:0x8000A224 align:4

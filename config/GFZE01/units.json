@@ -8060,228 +8060,40 @@
   },
   {
     "module": "main",
-    "source": "dol/PPCDisableSpeculation.c",
+    "source": "dol/base/PPCArch.c",
     "symbols": [
-      "PPCDisableSpeculation"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n"
-  },
-  {
-    "module": "main",
-    "source": "dol/PPCHalt.c",
-    "symbols": [
-      "PPCHalt"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/PPCMffpscr.c",
-    "symbols": [
+      "PPCMfmsr",
+      "PPCMtmsr",
+      "PPCMfhid0",
+      "fn_80009FD4",
+      "PPCMfl2cr",
+      "PPCMtl2cr",
+      "PPCMtdec",
+      "fn_80009FF4",
+      "PPCHalt",
+      "PPCMtmmcr0",
+      "PPCMtmmcr1",
+      "fn_8000A020",
+      "PPCMtpmc1",
+      "fn_8000A030",
+      "PPCMtpmc2",
+      "fn_8000A040",
+      "PPCMtpmc3",
+      "fn_8000A050",
+      "PPCMtpmc4",
       "PPCMffpscr",
-      "PPCMtfpscr"
+      "PPCMtfpscr",
+      "PPCMfhid2",
+      "PPCMthid2",
+      "fn_8000A0B8",
+      "PPCMtwpar",
+      "PPCDisableSpeculation",
+      "PPCSetFpNonIEEEMode"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
     "extra_cflags": [],
     "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/PPCMfhid0.c",
-    "symbols": [
-      "PPCMfhid0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/PPCMfhid2.c",
-    "symbols": [
-      "PPCMfhid2"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/PPCMfl2cr.c",
-    "symbols": [
-      "PPCMfl2cr"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/PPCMfmsr.c",
-    "symbols": [
-      "PPCMfmsr"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/PPCMtdec.c",
-    "symbols": [
-      "PPCMtdec"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/PPCMthid2.c",
-    "symbols": [
-      "PPCMthid2"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/PPCMtl2cr.c",
-    "symbols": [
-      "PPCMtl2cr"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/PPCMtmmcr0.c",
-    "symbols": [
-      "PPCMtmmcr0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/PPCMtmmcr1.c",
-    "symbols": [
-      "PPCMtmmcr1"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/PPCMtmsr.c",
-    "symbols": [
-      "PPCMtmsr"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/PPCMtpmc1.c",
-    "symbols": [
-      "PPCMtpmc1"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/PPCMtpmc2.c",
-    "symbols": [
-      "PPCMtpmc2"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/PPCMtpmc3.c",
-    "symbols": [
-      "PPCMtpmc3"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/PPCMtpmc4.c",
-    "symbols": [
-      "PPCMtpmc4"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/PPCMtwpar.c",
-    "symbols": [
-      "PPCMtwpar"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/PPCSetFpNonIEEEMode.c",
-    "symbols": [
-      "PPCSetFpNonIEEEMode"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
   },
   {
     "module": "main",
@@ -19621,90 +19433,6 @@
       "@141": "lbl_801221C0+0x32C",
       "@5": "lbl_801A6414"
     }
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80009FD4.c",
-    "symbols": [
-      "fn_80009FD4"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80009FF4.c",
-    "symbols": [
-      "fn_80009FF4"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8000A020.c",
-    "symbols": [
-      "fn_8000A020"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8000A030.c",
-    "symbols": [
-      "fn_8000A030"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8000A040.c",
-    "symbols": [
-      "fn_8000A040"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8000A050.c",
-    "symbols": [
-      "fn_8000A050"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8000A0B8.c",
-    "symbols": [
-      "fn_8000A0B8"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
   },
   {
     "module": "main",
