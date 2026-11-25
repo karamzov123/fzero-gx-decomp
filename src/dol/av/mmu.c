@@ -1,10 +1,27 @@
 #include "types.h"
 
+typedef struct PTE {
+    u32 valid : 1;
+    u32 vsid : 24;
+    u32 h : 1;
+    u32 api : 6;
+    u32 rpn : 20;
+    u32 res1 : 3;
+    u32 r : 1;
+    u32 c : 1;
+    u32 w : 1;
+    u32 i : 1;
+    u32 m : 1;
+    u32 g : 1;
+    u32 res2 : 1;
+    u32 pp : 2;
+} PTE;
+
+void fn_80007664(PTE *pte, u32 ea, u32 pa);
+
 extern u32 OSGetArenaHi(void);
 extern void OSSetArenaHi(u32);
 extern void *memset(void *, int, u32);
-extern u32 fn_80007654(u32);
-extern void fn_80007664(void *, u32, u32);
 extern u32 fn_80007730(u32);
 extern u32 fn_800077E0(u32);
 extern void OSPanic(u8 *, s32, u8 *, ...);
@@ -34,7 +51,8 @@ typedef struct Entry {
     u8 i : 2;
 } Entry;
 
-extern void fn_80007700(Entry *, u32);
+void fn_80007700(Entry *pte, u32 ea);
+u32 fn_80007654(u32 ea);
 
 void fn_8000740C(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4);
 
@@ -151,7 +169,7 @@ void fn_8000740C(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
     t0->f = arg2;
     t0->g = arg3;
     t0->i = arg4;
-    fn_80007664(t0, arg0, arg1);
+    fn_80007664((PTE *)t0, arg0, arg1);
 }
 
 void fn_800074C4(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5) {
@@ -181,7 +199,7 @@ void fn_800074C4(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5) {
         t0->f = v3;
         t0->g = v4;
         t0->i = v5;
-        fn_80007664(t0, p0, p1);
+        fn_80007664((PTE *)t0, p0, p1);
         p0 += 0x1000;
         p1 += 0x1000;
         i++;
@@ -212,3 +230,139 @@ void fn_800075AC(u32 arg0, u32 arg1, u32 arg2) {
         addr += 0x1000;
     }
 }
+
+/* The segment-register read, TLB/cache invalidation and SDR1 hash-table lookup are
+ * CodeWarrior asm functions in the original (mfsrin, tlbie/tlbsync, mfsdr1; no compiler frame). */
+asm u32 fn_80007654(register u32 ea) {
+    nofralloc
+    clrrwi r3, r3, 28
+    mfsrin r3, r3
+    clrlwi r3, r3, 8
+    blr
+}
+
+/* Original VM PTE update routine: C bitfield updates wrapping TLB/cache invalidation asm. */
+void fn_80007664(register PTE *pte, register u32 ea, u32 pa) {
+    pte->res1 = 0;
+    pte->res2 = 0;
+    pte->rpn = (pa >> 12) & 0xFFFF;
+    pte->r = 0;
+    pte->c = 0;
+    pte->m = 0;
+    pte->g = 0;
+    asm {
+        sync
+        tlbie ea
+        sync
+        tlbsync
+        sync
+    }
+    pte->valid = 1;
+    asm {
+        dcbf 0, pte
+        sync
+        tlbie ea
+        sync
+        tlbsync
+        sync
+    }
+}
+
+asm void fn_80007700(register Entry *pte, register u32 ea) {
+    nofralloc
+    sync
+    tlbie r4
+    sync
+    tlbsync
+    sync
+    dcbf r0, r3
+    sync
+    tlbie r4
+    sync
+    tlbsync
+    sync
+    blr
+}
+
+extern u32 fn_800079C4(u32);
+extern u32 fn_80007A00(u32);
+extern u8 *fn_800079A0(u32);
+
+u32 fn_80007730(u32 arg0) {
+    u32 values[2];
+    u32 i;
+    u8 *p;
+    u32 j;
+    u8 *entry;
+
+    values[0] = fn_800079C4(arg0);
+    values[1] = fn_80007A00(arg0);
+    for (i = 0; i < 2; i++) {
+        entry = fn_800079A0(values[i]);
+        p = entry;
+        for (j = 0; j < 8; j++) {
+            if (((p[0] >> 7) & 1) == 0) {
+                entry[j * 8 + 3] = (entry[j * 8 + 3] & ~0x40) | ((i << 6) & 0x40);
+                return (u32)(entry + j * 8);
+            }
+            p += 8;
+        }
+    }
+    return 0;
+}
+
+
+u32 fn_800077E0(u32 key) {
+    u32 tab[2];
+    u32 h;
+    u32 hi;
+    u32 i;
+    u8 *base;
+    u8 *p;
+    u32 j;
+
+    h = fn_80007654(key);
+    hi = (key >> 22) & 0x3F;
+    tab[0] = fn_800079C4(key);
+    tab[1] = fn_80007A00(key);
+    for (i = 0; i < 2; i++) {
+        base = fn_800079A0(tab[i]);
+        p = base;
+        for (j = 0; j < 8; j++) {
+            if (((p[0] >> 7) & 1) && i == ((p[3] >> 6) & 1) && hi == (p[3] & 0x3F) && h == ((*(u32 *)p >> 7) & 0xFFFFFF)) {
+                return (u32)(base + j * 8);
+            }
+            p += 8;
+        }
+    }
+    return 0;
+}
+
+asm u8 *fn_800079A0(register u32 hash) {
+    nofralloc
+    mfsdr1 r4
+    slwi r0, r4, 16
+    clrrwi r4, r4, 16
+    ori r0, r0, 0xffff
+    and r0, r0, r3
+    oris r0, r0, 0x8000
+    or r4, r4, r0
+    mr r3, r4
+    blr
+}
+
+u32 fn_800079C4(u32 arg0) {
+    u32 t0;
+    t0 = fn_80007654(arg0);
+    return ((((arg0 >> 12) & 0xFFFF) ^ (t0 & 0x7FFFF)) << 6);
+}
+
+
+u32 fn_80007A00(u32 value) {
+    s32 result;
+
+    result = fn_80007654(value);
+    result = ((((value >> 12) & 0xffff) ^ (result & 0x7ffff)) << 6);
+    return (result ^ 0x01ff0000) ^ 0xffc0;
+}
+

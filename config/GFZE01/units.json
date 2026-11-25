@@ -18526,75 +18526,13 @@
       "fn_800071B8",
       "fn_8000740C",
       "fn_800074C4",
-      "fn_800075AC"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80007654.c",
-    "symbols": [
-      "fn_80007654"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80007664.c",
-    "symbols": [
-      "fn_80007664"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80007700.c",
-    "symbols": [
-      "fn_80007700"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80007730.c",
-    "symbols": [
+      "fn_800075AC",
+      "fn_80007654",
+      "fn_80007664",
+      "fn_80007700",
       "fn_80007730",
-      "fn_800077E0"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_800079A0.c",
-    "symbols": [
-      "fn_800079A0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_800079C4.c",
-    "symbols": [
+      "fn_800077E0",
+      "fn_800079A0",
       "fn_800079C4",
       "fn_80007A00"
     ],

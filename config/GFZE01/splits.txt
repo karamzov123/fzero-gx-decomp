@@ -155,9 +155,6 @@ dol/ahx/ahx_player.c:
 	.text       start:0x80053EA0 end:0x8005466C align:4
 	.rodata     start:0x80091358 end:0x8009138C align:4
 
-dol/fn_800079C4.c:
-	.text       start:0x800079C4 end:0x80007A44 align:4
-
 dol/render/render_clear.c:
 	.text       start:0x80007A44 end:0x80007CDC align:4
 	.sbss       start:0x801A6728 end:0x801A672C align:4
@@ -371,19 +368,7 @@ dol/fn_80005E0C.c:
 	.text       start:0x80005E0C end:0x80005EDC align:4
 
 dol/av/mmu.c:
-	.text       start:0x800071B8 end:0x80007654 align:4
-
-dol/fn_80007654.c:
-	.text       start:0x80007654 end:0x80007664 align:4
-
-dol/fn_80007664.c:
-	.text       start:0x80007664 end:0x80007700 align:4
-
-dol/fn_80007700.c:
-	.text       start:0x80007700 end:0x80007730 align:4
-
-dol/fn_800079A0.c:
-	.text       start:0x800079A0 end:0x800079C4 align:4
+	.text       start:0x800071B8 end:0x80007A44 align:4
 
 dol/OS.c:
 	.text       start:0x8000A0FC end:0x8000ABE8 align:4
@@ -745,9 +730,6 @@ dol/adx/adx_fs.c:
 
 dol/memcpy.c:
 	.init       start:0x80003540 end:0x80003590 align:4
-
-dol/fn_80007730.c:
-	.text       start:0x80007730 end:0x800079A0 align:4
 
 dol/os/OSThread.c:
 	.text       start:0x80010144 end:0x8001140C align:4
