@@ -260,17 +260,14 @@ dol/adx/adx_sfa.c:
 dol/fn_80008E30.c:
 	.text       start:0x80008E30 end:0x80008E34 align:4
 
-dol/fn_80008E34.c:
-	.text       start:0x80008E34 end:0x80008FB0 align:4
+dol/os/heap.c:
+	.text       start:0x80008E34 end:0x80009FBC align:4
 
 dol/av/game_main.c:
 	.text       start:0x800055E0 end:0x80005E0C align:4
 
 dol/perf/perf.c:
 	.text       start:0x8003D4E0 end:0x8003E9EC align:4
-
-dol/fn_80009064.c:
-	.text       start:0x80009064 end:0x800090A4 align:4
 
 dol/adx/adx_tsvr.c:
 	.text       start:0x8004D220 end:0x8004E098 align:4
@@ -1114,9 +1111,6 @@ dol/fn_8002123C.c:
 dol/CARDGetSerialNo.c:
 	.text       start:0x80030690 end:0x800307CC align:4
 
-dol/fn_80008FB0.c:
-	.text       start:0x80008FB0 end:0x80009064 align:4
-
 dol/si/SISamplingRate.c:
 	.text       start:0x800132D4 end:0x800133DC align:4
 
@@ -1216,9 +1210,6 @@ dol/__fill_mem.c:
 dol/thp/THPDec_hdr.c:
 	.text       start:0x80039C40 end:0x8003AB08 align:4
 
-dol/fn_80009468.c:
-	.text       start:0x80009468 end:0x80009CD4 align:4
-
 dol/av/avdisp_state.c:
 	.text       start:0x800725DC end:0x800747D0 align:4
 
@@ -1227,9 +1218,6 @@ dol/av/avdisp_mat.c:
 
 dol/data/lbl_8015BE40.c:
 	.bss        start:0x8015BE40 end:0x8015BF00 align:8
-
-dol/fn_800090A4.c:
-	.text       start:0x800090A4 end:0x80009468 align:4
 
 dol/axfx/chorus.c:
 	.text       start:0x800251F0 end:0x80025854 align:4
@@ -1310,9 +1298,6 @@ dol/trk/exi2.c:
 
 dol/fn_8007E914.c:
 	.text       start:0x8007E914 end:0x8007E96C align:4
-
-dol/fn_80009CD4.c:
-	.text       start:0x80009CD4 end:0x80009FBC align:4
 
 dol/thp/THPDec_draw.c:
 	.text       start:0x8003BE1C end:0x8003D42C align:4

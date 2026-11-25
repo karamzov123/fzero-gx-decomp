@@ -183,7 +183,7 @@
         "donor-size": 19
       },
       "lib": "game",
-      "notes": "0x80008E34..0x80009FBC: no donor: a modified SDK OSAlloc with its OSCheckHeap failure strings, sharing the heap state at .sbss 0x801A6730..0x801A6748 and .sdata 0x801A6410/0x801A6414. It ends at PPCArch.c. The sizes are this build's."
+      "notes": "0x80008E34..0x80009FBC: no donor: a modified SDK OSAlloc with its OSCheckHeap failure strings, sharing the heap state at .sbss 0x801A6730..0x801A6748 and .sdata 0x801A6410/0x801A6414. It ends at PPCArch.c. The sizes are this build's. One GC/1.3.2 unit (dol/os/heap.c): HeapDesc/Cell as in the SDK, a HeapContext array of eight saved heap states, the context switch as two functions that later functions inline (-inline auto), and allocation entry points taking (heap, size, file, line) called with \"\" and 0."
     },
     {
       "file": "PPCArch.c",
