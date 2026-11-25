@@ -70,9 +70,6 @@ dol/fwide.c:
 dol/fn_8008596C.c:
 	.text       start:0x8008596C end:0x80085C7C align:4
 
-dol/fn_8008983C.c:
-	.text       start:0x8008983C end:0x800898E4 align:4
-
 dol/trk/support.c:
 	.text       start:0x8008A5AC end:0x8008AF40 align:4
 
@@ -729,7 +726,7 @@ dol/__check_pad3.c:
 	.init       start:0x80003100 end:0x80003140 align:4
 
 dol/trk/msghndlr.c:
-	.text       start:0x800898E4 end:0x8008A5AC align:4
+	.text       start:0x8008983C end:0x8008A5AC align:4
 	.data       start:0x8015B830 end:0x8015B868 align:16
 
 dol/fn_800035C0.c:

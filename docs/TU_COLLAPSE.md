@@ -191,3 +191,23 @@ with strstr and strtok, FILE_POS.c with fseek, _fseek, ftell), and FILE_POS.c's 
 strtoul, strtold, GCN_Mem_Alloc and FILE_POS reproduce retail; `tools/consolidate/tu_reverse.py`
 reverses an address-ordered file and `tu_order.py` checks the emitted order. Reordering renumbers
 `@N` literals, so pooled units need their maps re-derived (`tu_try.py ... --apply`).
+
+### MetroTRK message handlers
+
+`msghndlr.c` now builds all eight mapped functions as one GC/1.3.2 object in USA and Japan.
+The SerialIO handler's three literals occupy the first `0x34` bytes of the message-handler
+string pool, immediately before `DoContinue` at `lbl_800958C4`. Disabling small data and
+compiling the strings read-only preserves the handler's existing HA/LO pair and leaves the
+seven other functions and their `.data` jump tables unchanged. The single remaining pool
+binding is to `lbl_80095890`; read-only data ownership did not move. PAL coverage is unchanged.
+
+### Profile REL ownership evidence
+
+The GFZE01 `profile.c` map covers the 41 functions in the REL's contiguous `0x0..0x6D48`
+text range. `tools/seeds/debug_strings.py --module profile` finds the `profile.c` string at
+section 5 offset `0x82BF8` through `_epilog`'s direct references. That seed omits `_prolog`:
+its retail instructions at `0x88` and `0x450`, `0x474`, and `0x4F0` instead reach the same
+string as `.data + 0x80000 + 0x2BF8` for three allocations. It also wires profile callbacks
+from the next code group and uses the same BSS base as `_epilog`. These observations place
+the entry point in the same map; the remaining helper extents are inferred from the single
+filename anchor and module limits. No compile units or data ownership changed.

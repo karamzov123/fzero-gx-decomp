@@ -135,6 +135,9 @@ def main(argv=None) -> int:
     bad = [(ordered[i]["file"], ordered[i + 1]["file"]) for i in range(len(ordered) - 1)
            if ordered[i]["refs"][0] > ordered[i + 1]["refs"][0]]
     print("order violations (data order vs text order):", bad)
+    if not ordered:
+        print("no anchored TUs; nothing written")
+        return 0
     # 4. TU text ranges: [first ref of k, first ref of k+1); data ranges likewise (same section only)
     tus = []
     for i, r in enumerate(ordered):
@@ -188,9 +191,6 @@ def main(argv=None) -> int:
     for tu in tus:
         c = tu["confidence"]
         print(f"{tu['file']:20s} {tu['text'][0]:06X}-{tu['text'][1]:06X} {len(tu['functions']):4d} {c['text+data']:4d} {c['text-range']:4d} {c['data-vote']:4d}")
-    if a.write and not tus:
-        print("no anchored TUs; nothing written")
-        return 0
     if a.write:
         out = p.module_config_dir(a.module) / "tus.json"
         out.write_text(json.dumps({"module": a.module, "unassigned_prefix": before_first, "tus": tus}, indent=1) + "\n")
