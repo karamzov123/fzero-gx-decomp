@@ -341,7 +341,7 @@
       "GXSetDrawDone": "GXSetDrawDone",
       "OSDisableInterrupts": "OSDisableInterrupts",
       "OSRestoreInterrupts": "OSRestoreInterrupts",
-      "PPCSync": "fn_80009FF4",
+      "PPCSync": "PPCSync",
       "__GXSetDirtyState": "fn_8003458C",
       "gx": "gx"
     },
@@ -403,7 +403,7 @@
       "GXSetGPFifo": "GXSetGPFifo",
       "OSDisableInterrupts": "OSDisableInterrupts",
       "OSRestoreInterrupts": "OSRestoreInterrupts",
-      "PPCSync": "fn_80009FF4",
+      "PPCSync": "PPCSync",
       "__GXFifoLink": "fn_800322AC",
       "__GXFifoReadDisable": "fn_8003228C",
       "__GXFifoReadEnable": "fn_80032268",

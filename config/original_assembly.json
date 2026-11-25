@@ -99,9 +99,9 @@
       "evidence": "Dolphin SDK base/PPCArch.c writes its register accessors as CodeWarrior asm functions (nofralloc): retail 0x80009FBC..0x8000A0FC is a run of two-instruction mfspr/mtspr/mtmsr/mtdec/sc leaves and the sync;nop;li;nop;b PPCHalt loop with no compiler frame, mixed in one TU with the C FPSCR accessors and PPCDisableSpeculation; same file organization in every published Dolphin SDK decomp."
     },
     {
-      "symbol": "fn_80009FD4",
+      "symbol": "PPCMthid0",
       "form": "asm-function",
-      "sha256": "a9f6106afaef9edce73960fe5ae28d139b5cf820d0db14aaa0fc60df6bc4356c",
+      "sha256": "e436cfddaca0a7584d675ffb258da9ced1480b221c004243c39632b16b4ef975",
       "evidence": "Dolphin SDK base/PPCArch.c writes its register accessors as CodeWarrior asm functions (nofralloc): retail 0x80009FBC..0x8000A0FC is a run of two-instruction mfspr/mtspr/mtmsr/mtdec/sc leaves and the sync;nop;li;nop;b PPCHalt loop with no compiler frame, mixed in one TU with the C FPSCR accessors and PPCDisableSpeculation; same file organization in every published Dolphin SDK decomp."
     },
     {
@@ -123,9 +123,9 @@
       "evidence": "Dolphin SDK base/PPCArch.c writes its register accessors as CodeWarrior asm functions (nofralloc): retail 0x80009FBC..0x8000A0FC is a run of two-instruction mfspr/mtspr/mtmsr/mtdec/sc leaves and the sync;nop;li;nop;b PPCHalt loop with no compiler frame, mixed in one TU with the C FPSCR accessors and PPCDisableSpeculation; same file organization in every published Dolphin SDK decomp."
     },
     {
-      "symbol": "fn_80009FF4",
+      "symbol": "PPCSync",
       "form": "asm-function",
-      "sha256": "966c167904ae0261334b4f1f544bb0de83dd23d4754b17838ea020b312ea965a",
+      "sha256": "e23ac1f1d26a636c2f2dad5246558428723acc8c886e34e1e64fcfc496d5f4c8",
       "evidence": "Dolphin SDK base/PPCArch.c writes its register accessors as CodeWarrior asm functions (nofralloc): retail 0x80009FBC..0x8000A0FC is a run of two-instruction mfspr/mtspr/mtmsr/mtdec/sc leaves and the sync;nop;li;nop;b PPCHalt loop with no compiler frame, mixed in one TU with the C FPSCR accessors and PPCDisableSpeculation; same file organization in every published Dolphin SDK decomp."
     },
     {
@@ -147,9 +147,9 @@
       "evidence": "Dolphin SDK base/PPCArch.c writes its register accessors as CodeWarrior asm functions (nofralloc): retail 0x80009FBC..0x8000A0FC is a run of two-instruction mfspr/mtspr/mtmsr/mtdec/sc leaves and the sync;nop;li;nop;b PPCHalt loop with no compiler frame, mixed in one TU with the C FPSCR accessors and PPCDisableSpeculation; same file organization in every published Dolphin SDK decomp."
     },
     {
-      "symbol": "fn_8000A020",
+      "symbol": "PPCMfpmc1",
       "form": "asm-function",
-      "sha256": "a13d7660e66d5e78fd5e6342e92500577ff274c803e0a176cba698a6e358ced7",
+      "sha256": "ac82313018e3e14fa20aab8d41d7625d112d4a41e2eef9764e8eb8ee56a5e2eb",
       "evidence": "Dolphin SDK base/PPCArch.c writes its register accessors as CodeWarrior asm functions (nofralloc): retail 0x80009FBC..0x8000A0FC is a run of two-instruction mfspr/mtspr/mtmsr/mtdec/sc leaves and the sync;nop;li;nop;b PPCHalt loop with no compiler frame, mixed in one TU with the C FPSCR accessors and PPCDisableSpeculation; same file organization in every published Dolphin SDK decomp."
     },
     {
@@ -159,9 +159,9 @@
       "evidence": "Dolphin SDK base/PPCArch.c writes its register accessors as CodeWarrior asm functions (nofralloc): retail 0x80009FBC..0x8000A0FC is a run of two-instruction mfspr/mtspr/mtmsr/mtdec/sc leaves and the sync;nop;li;nop;b PPCHalt loop with no compiler frame, mixed in one TU with the C FPSCR accessors and PPCDisableSpeculation; same file organization in every published Dolphin SDK decomp."
     },
     {
-      "symbol": "fn_8000A030",
+      "symbol": "PPCMfpmc2",
       "form": "asm-function",
-      "sha256": "f485f39aad5b1cddefe6ca6698f4e427c6f87953655a80191983594d08e7ad71",
+      "sha256": "545979ff93ee635ad0e42aae3dda3a9b20b10d679e62b80231a65f943eb7991d",
       "evidence": "Dolphin SDK base/PPCArch.c writes its register accessors as CodeWarrior asm functions (nofralloc): retail 0x80009FBC..0x8000A0FC is a run of two-instruction mfspr/mtspr/mtmsr/mtdec/sc leaves and the sync;nop;li;nop;b PPCHalt loop with no compiler frame, mixed in one TU with the C FPSCR accessors and PPCDisableSpeculation; same file organization in every published Dolphin SDK decomp."
     },
     {
@@ -171,9 +171,9 @@
       "evidence": "Dolphin SDK base/PPCArch.c writes its register accessors as CodeWarrior asm functions (nofralloc): retail 0x80009FBC..0x8000A0FC is a run of two-instruction mfspr/mtspr/mtmsr/mtdec/sc leaves and the sync;nop;li;nop;b PPCHalt loop with no compiler frame, mixed in one TU with the C FPSCR accessors and PPCDisableSpeculation; same file organization in every published Dolphin SDK decomp."
     },
     {
-      "symbol": "fn_8000A040",
+      "symbol": "PPCMfpmc3",
       "form": "asm-function",
-      "sha256": "db87475391e36f4619295e7c3a43b32230bb1b659bbbcb2a80fc87c312d3b0b0",
+      "sha256": "4d8fd39b029bfcb7e846c52272bb7b6b68a7de719a5fa20fb411fdd1e701ab12",
       "evidence": "Dolphin SDK base/PPCArch.c writes its register accessors as CodeWarrior asm functions (nofralloc): retail 0x80009FBC..0x8000A0FC is a run of two-instruction mfspr/mtspr/mtmsr/mtdec/sc leaves and the sync;nop;li;nop;b PPCHalt loop with no compiler frame, mixed in one TU with the C FPSCR accessors and PPCDisableSpeculation; same file organization in every published Dolphin SDK decomp."
     },
     {
@@ -183,9 +183,9 @@
       "evidence": "Dolphin SDK base/PPCArch.c writes its register accessors as CodeWarrior asm functions (nofralloc): retail 0x80009FBC..0x8000A0FC is a run of two-instruction mfspr/mtspr/mtmsr/mtdec/sc leaves and the sync;nop;li;nop;b PPCHalt loop with no compiler frame, mixed in one TU with the C FPSCR accessors and PPCDisableSpeculation; same file organization in every published Dolphin SDK decomp."
     },
     {
-      "symbol": "fn_8000A050",
+      "symbol": "PPCMfpmc4",
       "form": "asm-function",
-      "sha256": "c348539a73fbf52d95b69c821140e7e9c66800c8a09425740aaa5b3f5e9a6124",
+      "sha256": "7138041e07cb4e0b14d3133591faa95d6e8ed26d69c761f58e29c3c62ec605ac",
       "evidence": "Dolphin SDK base/PPCArch.c writes its register accessors as CodeWarrior asm functions (nofralloc): retail 0x80009FBC..0x8000A0FC is a run of two-instruction mfspr/mtspr/mtmsr/mtdec/sc leaves and the sync;nop;li;nop;b PPCHalt loop with no compiler frame, mixed in one TU with the C FPSCR accessors and PPCDisableSpeculation; same file organization in every published Dolphin SDK decomp."
     },
     {
@@ -219,9 +219,9 @@
       "evidence": "Dolphin SDK base/PPCArch.c writes its register accessors as CodeWarrior asm functions (nofralloc): retail 0x80009FBC..0x8000A0FC is a run of two-instruction mfspr/mtspr/mtmsr/mtdec/sc leaves and the sync;nop;li;nop;b PPCHalt loop with no compiler frame, mixed in one TU with the C FPSCR accessors and PPCDisableSpeculation; same file organization in every published Dolphin SDK decomp."
     },
     {
-      "symbol": "fn_8000A0B8",
+      "symbol": "PPCMfwpar",
       "form": "asm-function",
-      "sha256": "d29b1415eacd95ac8f2fe7218742550b05297c584fc4d50c61061af9d12c9640",
+      "sha256": "643e9c1f931734967d303335ccb368f912f4d784942b20b7da5facd81f95486a",
       "evidence": "Dolphin SDK base/PPCArch.c writes its register accessors as CodeWarrior asm functions (nofralloc): retail 0x80009FBC..0x8000A0FC is a run of two-instruction mfspr/mtspr/mtmsr/mtdec/sc leaves and the sync;nop;li;nop;b PPCHalt loop with no compiler frame, mixed in one TU with the C FPSCR accessors and PPCDisableSpeculation; same file organization in every published Dolphin SDK decomp."
     },
     {

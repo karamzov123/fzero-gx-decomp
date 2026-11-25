@@ -70,7 +70,7 @@ extern vu32 __CPRegs[];
 extern OSTime OSGetTime(void);
 
 
-extern u32 fn_80009FF4(void);
+extern u32 PPCSync(void);
 extern u32 fn_800321D8(u32);
 extern u32 fn_80033EB0(void);
 extern u32 fn_80034378(u32);
@@ -137,7 +137,7 @@ s32 fn_8003086C(s32 arg0) {
         GX_FIFO_U32 = 0;
         GX_FIFO_U32 = 0;
         GX_FIFO_U32 = 0;
-        fn_80009FF4();
+        PPCSync();
         *(volatile u16 *)((u32)__cpReg + 2) = 0; /* hardware register */  /* fzgx-allow: S2 memory-mapped register */
         *(volatile u16 *)((u32)__cpReg + 4) = 3; /* hardware register */  /* fzgx-allow: S2 memory-mapped register */
         gx->abtWaitPECopy = 1;

@@ -49,7 +49,7 @@ void GXSetMisc(u32 arg0, u32 arg1) {
     }
 }
 
-extern u32 fn_80009FF4(void);
+extern u32 PPCSync(void);
 extern u32 fn_8003458C(void);
 
 void GXFlush(void) {
@@ -64,17 +64,17 @@ void GXFlush(void) {
     *(u32 *)((u8 *)0xCC010000 + -32768) = 0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
     *(u32 *)((u8 *)0xCC010000 + -32768) = 0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
     *(u32 *)((u8 *)0xCC010000 + -32768) = 0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-    fn_80009FF4();
+    PPCSync();
 }
 
-extern u32 fn_8000A0B8(void);
+extern u32 PPCMfwpar(void);
 extern void PPCMtwpar(u32);
 
 void fn_80033E7C(void) {
     u32 status;
 
     do {
-        status = fn_8000A0B8();
+        status = PPCMfwpar();
     } while ((status & 1u) != 0);
 
     PPCMtwpar(0x0C008000); // fzgx-allow: A1 fixed PPC hardware address

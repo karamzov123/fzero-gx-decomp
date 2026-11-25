@@ -206,31 +206,31 @@ void __ARChecksize(void) {
     lbl_801A69EC = 0;
     DCInvalidateRange((void *)save1, 0x20);
     __ARReadDMA((u32)save1, ARAM_size + 0, 0x20);
-    fn_80009FF4();
+    PPCSync();
     __ARWriteDMA((u32)test_data, ARAM_size + 0x0000000, 0x20);
     memset((void *)buffer, 0, 0x20);
     DCFlushRange((void *)buffer, 0x20);
     __ARReadDMA((u32)buffer, ARAM_size + 0x0000000, 0x20);
-    fn_80009FF4();
+    PPCSync();
     if (buffer[0] == test_data[0]) {
         DCInvalidateRange((void *)save2, 0x20);
         __ARReadDMA((u32)save2, ARAM_size + 0x0200000, 0x20);
-        fn_80009FF4();
+        PPCSync();
         DCInvalidateRange((void *)save3, 0x20);
         __ARReadDMA((u32)save3, ARAM_size + 0x1000000, 0x20);
-        fn_80009FF4();
+        PPCSync();
         DCInvalidateRange((void *)save4, 0x20);
         __ARReadDMA((u32)save4, ARAM_size + 0x0000200, 0x20);
-        fn_80009FF4();
+        PPCSync();
         DCInvalidateRange((void *)save5, 0x20);
         __ARReadDMA((u32)save5, ARAM_size + 0x0400000, 0x20);
-        fn_80009FF4();
+        PPCSync();
         __ARWriteDMA((u32)dummy_data, ARAM_size + 0x0200000, 0x20);
         __ARWriteDMA((u32)test_data, ARAM_size + 0x0000000, 0x20);
         memset((void *)buffer, 0, 0x20);
         DCFlushRange((void *)buffer, 0x20);
         __ARReadDMA((u32)buffer, ARAM_size + 0x0200000, 0x20);
-        fn_80009FF4();
+        PPCSync();
         if (buffer[0] == test_data[0]) {
             __ARWriteDMA((u32)save1, ARAM_size + 0x0000000, 0x20);
             ARAM_mode |= 0 << 1;
@@ -242,7 +242,7 @@ void __ARChecksize(void) {
             memset((void *)buffer, 0, 0x20);
             DCFlushRange((void *)buffer, 0x20);
             __ARReadDMA((u32)buffer, ARAM_size + 0x1000000, 0x20);
-            fn_80009FF4();
+            PPCSync();
             if (buffer[0] == test_data[0]) {
                 __ARWriteDMA((u32)save1, ARAM_size + 0x0000000, 0x20);
                 __ARWriteDMA((u32)save2, ARAM_size + 0x0200000, 0x20);
@@ -255,7 +255,7 @@ void __ARChecksize(void) {
                 memset((void *)buffer, 0, 0x20);
                 DCFlushRange((void *)buffer, 0x20);
                 __ARReadDMA((u32)buffer, ARAM_size + 0x0000200, 0x20);
-                fn_80009FF4();
+                PPCSync();
                 if (buffer[0] == test_data[0]) {
                     __ARWriteDMA((u32)save1, ARAM_size + 0x0000000, 0x20);
                     __ARWriteDMA((u32)save2, ARAM_size + 0x0200000, 0x20);
@@ -269,7 +269,7 @@ void __ARChecksize(void) {
                     memset((void *)buffer, 0, 0x20);
                     DCFlushRange((void *)buffer, 0x20);
                     __ARReadDMA((u32)buffer, ARAM_size + 0x0400000, 0x20);
-                    fn_80009FF4();
+                    PPCSync();
                     if (buffer[0] == test_data[0]) {
                         __ARWriteDMA((u32)save1, ARAM_size + 0x0000000, 0x20);
                         __ARWriteDMA((u32)save2, ARAM_size + 0x0200000, 0x20);

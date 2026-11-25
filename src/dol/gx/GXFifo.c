@@ -19,7 +19,7 @@ extern u32 lbl_801A6C08;
 
 s32 OSResumeThread(OSThread *thread);
 s32 OSSuspendThread(OSThread *thread);
-void fn_80009FF4(void);
+void PPCSync(void);
 void GXFlush(void);
 void __GXFifoReadEnable(void);
 void __GXFifoReadDisable(void);
@@ -122,7 +122,7 @@ void GXSetCPUFifo(GXFifoObj *fifo) {
         __piReg[4] = (u32)fifo->end & 0x3FFFFFFF;
         __piReg[5] = (s32)fifo->write_ptr & 0x3FFFFFE0 & 0xFBFFFFFF;
     }
-    fn_80009FF4();
+    PPCSync();
     OSRestoreInterrupts(enabled);
 }
 
@@ -147,7 +147,7 @@ void GXSetGPFifo(GXFifoObj *fifo) {
     __cpReg[29] = ((u32)fifo->read_ptr & 0x3FFFFFFF) >> 16;
     __cpReg[21] = fifo->high_wtrmark >> 16;
     __cpReg[23] = fifo->low_wtrmark >> 16;
-    fn_80009FF4();
+    PPCSync();
     if (lbl_801A6BF0 == lbl_801A6BF4) {
         lbl_801A6BFC = 1;
         __GXWriteFifoIntEnable(1, 0);

@@ -84,7 +84,7 @@
     "bindings": {
       "DCFlushRange": "DCFlushRange",
       "DCInvalidateRange": "DCInvalidateRange",
-      "PPCSync": "fn_80009FF4",
+      "PPCSync": "PPCSync",
       "__ARChecksize": "__ARChecksize",
       "__AR_ExpansionSize": "lbl_801A69EC",
       "__AR_InternalSize": "lbl_801A69E8",

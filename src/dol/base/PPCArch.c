@@ -22,7 +22,7 @@ asm u32 PPCMfhid0(void) {
     blr
 }
 
-asm void fn_80009FD4(register u32 newHID0) {
+asm void PPCMthid0(register u32 newHID0) {
     nofralloc
     mtspr HID0, newHID0
     blr
@@ -46,7 +46,7 @@ asm void PPCMtdec(register u32 newDec) {
     blr
 }
 
-asm void fn_80009FF4(void) {
+asm void PPCSync(void) {
     nofralloc
     sc
     blr
@@ -74,7 +74,7 @@ asm void PPCMtmmcr1(register u32 newMmcr1) {
     blr
 }
 
-asm u32 fn_8000A020(void) {
+asm u32 PPCMfpmc1(void) {
     nofralloc
     mfspr r3, PMC1
     blr
@@ -86,7 +86,7 @@ asm void PPCMtpmc1(register u32 newPmc1) {
     blr
 }
 
-asm u32 fn_8000A030(void) {
+asm u32 PPCMfpmc2(void) {
     nofralloc
     mfspr r3, PMC2
     blr
@@ -98,7 +98,7 @@ asm void PPCMtpmc2(register u32 newPmc2) {
     blr
 }
 
-asm u32 fn_8000A040(void) {
+asm u32 PPCMfpmc3(void) {
     nofralloc
     mfspr r3, PMC3
     blr
@@ -110,7 +110,7 @@ asm void PPCMtpmc3(register u32 newPmc3) {
     blr
 }
 
-asm u32 fn_8000A050(void) {
+asm u32 PPCMfpmc4(void) {
     nofralloc
     mfspr r3, PMC4
     blr
@@ -164,7 +164,7 @@ asm void PPCMthid2(register u32 newHID2) {
     blr
 }
 
-asm u32 fn_8000A0B8(void) {
+asm u32 PPCMfwpar(void) {
     nofralloc
     sync
     mfspr r3, WPAR
@@ -178,7 +178,7 @@ asm void PPCMtwpar(register u32 newWPAR) {
 }
 
 void PPCDisableSpeculation(void) {
-    fn_80009FD4(PPCMfhid0() | HID0_SPD);
+    PPCMthid0(PPCMfhid0() | HID0_SPD);
 }
 
 asm void PPCSetFpNonIEEEMode(void) {
