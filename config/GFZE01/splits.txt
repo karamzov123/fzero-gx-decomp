@@ -227,9 +227,6 @@ dol/ADXT_InsertHdrSfa.c:
 dol/adx/adx_sfa.c:
 	.text       start:0x80047834 end:0x80047864 align:4
 
-dol/fn_80008E30.c:
-	.text       start:0x80008E30 end:0x80008E34 align:4
-
 dol/os/heap.c:
 	.text       start:0x80008E34 end:0x80009FBC align:4
 
@@ -246,7 +243,7 @@ dol/lg/lg.c:
 	.text       start:0x8006AA20 end:0x8006CCC8 align:4
 
 dol/render/render_util.c:
-	.text       start:0x80007CDC end:0x80008E30 align:4
+	.text       start:0x80007CDC end:0x80008E34 align:4
 	.sdata2     start:0x801A6F10 end:0x801A6F3C align:8
 
 dol/os/OSAlarm.c:

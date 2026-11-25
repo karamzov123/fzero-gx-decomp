@@ -8130,7 +8130,7 @@
   {
    "symbol": "fn_80008E30",
    "module": "main",
-   "unit": "dol/fn_80008E30.c",
+   "unit": "dol/render/render_util.c",
    "addr": 2147520048,
    "size": 4,
    "status": "matched",

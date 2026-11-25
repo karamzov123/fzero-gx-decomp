@@ -334,7 +334,8 @@ config.libs = [
 # config/GFZE01/units.json. Each entry: {"module": "main"|<rel name>,
 #   "source": "dol/....c"|"rel/<mod>/....c", "symbols": [...],
 #   "status": "matching"|"nonmatching", "matching_for": [<VERSION>, ...] (optional),
-#   "mw_version": null|"GC/1.3", "extra_cflags": [...]}
+#   "mw_version": null|"GC/1.3", "extra_cflags": [...],
+#   "split_end_for": {<VERSION>: {<section>: <first omitted USA symbol>}} (optional)}
 # As in dtk-template: "matching" alone is Matching (every version); with "matching_for"
 # it is MatchingFor(*matching_for). Other versions build only the units that match them,
 # from their own symbols.txt (GFZE01 names at their addresses); their splits are the
@@ -410,6 +411,15 @@ def render_version_config(units: List[Dict[str, Any]]) -> Path:
                 if not r:
                     sys.exit(f"{config.version}: cannot read split line {line!r}")
                 sec, lo, hi = r.group(2), int(r.group(3), 16), int(r.group(5), 16)
+                end_at = u.get("split_end_for", {}).get(config.version, {}).get(sec)
+                if end_at is not None:
+                    end_sec, end = us_syms.get(end_at, (None, 0))
+                    if (end_sec != sec or not lo < end < hi or any(
+                        s in rg_syms for s, (ssec, a) in us_syms.items()
+                        if ssec == sec and end <= a < hi
+                    )):
+                        sys.exit(f"{config.version}: {u['source']} {sec} cannot omit tail at {end_at}")
+                    hi = end
                 deltas = {rg_syms[s][1] - a for s, (ssec, a) in us_syms.items()
                           if ssec == sec and lo <= a < hi and s in rg_syms and rg_syms[s][0] == sec}
                 if len(deltas) != 1:

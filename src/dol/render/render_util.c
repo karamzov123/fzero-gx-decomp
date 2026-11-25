@@ -548,3 +548,8 @@ void fn_80008DB4(void *first, f32 amount, void *second, void *out) {
     fn_8006EB4C(&result, &a, &b, amount);
     PSMTXQuat(out, &result);
 }
+
+#if defined(VERSION_GFZE01)
+void fn_80008E30(void) {
+}
+#endif
