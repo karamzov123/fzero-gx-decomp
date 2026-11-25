@@ -118,8 +118,8 @@ typedef struct SfdAdxtWork {
     int field_4C;
 } SfdAdxtWork;
 extern int fn_12_23F34(SfdHandle *handle);
-extern int fn_8004B9A4(const unsigned char *data, int size, int *header_size);
-extern int fn_8004B974(const unsigned char *data, int size, int *end_size);
+extern int ADXT_IsHeader(const unsigned char *data, int size, int *header_size);
+extern int ADXT_IsEndcode(const unsigned char *data, int size, int *end_size);
 extern void fn_12_20CE8(SfdHandle *handle, const unsigned char *data, int size, int *consumed);
 
 static inline SfdAdxtWork *sfadxt_GetWork(SfdHandle *handle) {
@@ -147,7 +147,7 @@ static inline int sfadxt_SearchFrmTop(SfdHandle *handle, const unsigned char *da
             if ((signed char)*position < 0) {
                 int end_size;
                 found_end = 1;
-                if (fn_8004B974(position, 0x12, &end_size) != 0 &&
+                if (ADXT_IsEndcode(position, 0x12, &end_size) != 0 &&
                     latest_end_address < (unsigned long)position) {
                     latest_end_address = (unsigned long)position;
                     latest_offset = offset;
@@ -182,7 +182,7 @@ void fn_12_20B90(SfdHandle *handle, const unsigned char *data, int size, int *co
     if (size < 0x120) {
         return;
     }
-    if (fn_8004B9A4(data, size, &header_size) != 0) {
+    if (ADXT_IsHeader(data, size, &header_size) != 0) {
         excluded = header_size;
     } else if (fn_12_23F34(handle) >= 108) {
         excluded = 0;

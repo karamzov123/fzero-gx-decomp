@@ -256,7 +256,7 @@ __declspec(section ".fzgxpool") void fzgx_pool_primer2(void) {
     fzgx_sinkf(-60.0f);
 }
 
-s32 fn_8004B7F4(ADXTHandle *handle, s32 channels, s32 samples) {
+s32 ADXT_InsertSilence(ADXTHandle *handle, s32 channels, s32 samples) {
     s32 requested_bytes;
     SJ *sj;
     s32 block_bytes;
@@ -287,7 +287,7 @@ s32 fn_8004B7F4(ADXTHandle *handle, s32 channels, s32 samples) {
     return ((written_bytes + usable_bytes) / block_bytes) * 32;
 }
 
-s32 fn_8004B974(u32 arg0, u32 arg1, u32 *arg2) {
+s32 ADXT_IsEndcode(u32 arg0, u32 arg1, u32 *arg2) {
     u32 v0;
     v0 = arg0;
     if ((s32)arg1 < 2) {
@@ -303,7 +303,7 @@ s32 fn_8004B974(u32 arg0, u32 arg1, u32 *arg2) {
     return v0;
 }
 
-s32 fn_8004B9A4(u32 arg0, s32 arg1, s32 *arg2) {
+s32 ADXT_IsHeader(u32 arg0, s32 arg1, s32 *arg2) {
     u32 local_20;
     u32 local_1c;
     u32 local_18;
@@ -326,7 +326,7 @@ s32 fn_8004B9A4(u32 arg0, s32 arg1, s32 *arg2) {
     return 1;
 }
 
-void fn_8004BA38(ADXTHandle *arg0, s32 arg1) {
+void ADXT_SetTimeOfst(ADXTHandle *arg0, s32 arg1) {
     arg0->time_offset = arg1;
 }
 

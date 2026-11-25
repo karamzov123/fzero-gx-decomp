@@ -2921,7 +2921,7 @@
       "file": "adx_stmc.c",
       "text": [
         "8004A578",
-        "8004BA38"
+        "8004B7F4"
       ],
       "functions": [
         "ADXSTM_ExecServer",
@@ -2942,10 +2942,7 @@
         "fn_8004B4E0",
         "fn_8004B79C",
         "fn_8004B7A0",
-        "fn_8004B7D4",
-        "fn_8004B7F4",
-        "fn_8004B974",
-        "fn_8004B9A4"
+        "fn_8004B7D4"
       ],
       "how": {
         "sdkimport": 1,
@@ -2956,11 +2953,14 @@
     {
       "file": "adx_tlk.c",
       "text": [
-        "8004BA38",
+        "8004B7F4",
         "8004D220"
       ],
       "functions": [
-        "fn_8004BA38",
+        "ADXT_InsertSilence",
+        "ADXT_IsEndcode",
+        "ADXT_IsHeader",
+        "ADXT_SetTimeOfst",
         "fn_8004BA40",
         "fn_8004BBA4",
         "fn_8004BBC4",
@@ -2992,9 +2992,11 @@
         "pool-vote": 15,
         "between": 7,
         "sdkimport": 3,
-        "string-range": 2
+        "string-range": 2,
+        "donor-order": 3
       },
-      "lib": "adxt"
+      "lib": "adxt",
+      "notes": "Starts at 0x8004B7F4 with ADXT_InsertSilence, ADXT_IsEndcode and ADXT_IsHeader, the first functions of the MK Deception (CC0) adx_tlk.c."
     },
     {
       "file": "adx_tsvr.c",

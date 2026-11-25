@@ -276,8 +276,8 @@ typedef struct SfdAdxtWork {
     int copied_bytes;
     int field_4C;
 } SfdAdxtWork;
-extern int fn_8004B974(const unsigned char *data, int size, int *end_size);
-extern int fn_8004B7F4(ADXTHandle *decoder, int channels, int samples);
+extern int ADXT_IsEndcode(const unsigned char *data, int size, int *end_size);
+extern int ADXT_InsertSilence(ADXTHandle *decoder, int channels, int samples);
 extern void fn_12_20F4C(SfdHandle *handle, const unsigned char *data, int size, int *consumed);
 
 static inline SfdAdxtWork *sfadxt_GetWork(SfdHandle *handle) {
@@ -311,7 +311,7 @@ static inline int sfadxt_SearchEndcode(const unsigned char *data, int limit, int
     position = data;
     *found_end = 0;
     for (scanned = 0; scanned < limit; scanned += 0x12) {
-        if (fn_8004B974(position, 0x12, &end_size) != 0) {
+        if (ADXT_IsEndcode(position, 0x12, &end_size) != 0) {
             *found_end = 1;
             break;
         }
@@ -380,7 +380,7 @@ void fn_12_20CE8(SfdHandle *handle, const unsigned char *data, int size, int *co
         }
         if (bytes_remaining <= 0 && using_time_unit != 0) {
             work->copy = fn_12_20F4C;
-            found_end = fn_8004B974(data, size, &end_size);
+            found_end = ADXT_IsEndcode(data, size, &end_size);
         }
         if (found_end != 0) {
             fn_12_2D7DC(handle, 6, 0);
@@ -390,7 +390,7 @@ void fn_12_20CE8(SfdHandle *handle, const unsigned char *data, int size, int *co
             samples_remaining = (-difference) / 0x20 * 0x20;
             if (samples_remaining > 0) {
                 inserted =
-                    fn_8004B7F4(sfadxt_GetWork(handle)->decoder, channels, samples_remaining);
+                    ADXT_InsertSilence(sfadxt_GetWork(handle)->decoder, channels, samples_remaining);
                 samples_remaining -= inserted;
                 work->sample_offset -= inserted;
             }

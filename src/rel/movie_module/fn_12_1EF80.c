@@ -689,7 +689,7 @@ typedef struct MovieModule {
 } MovieModule;
 
 extern void ADXT_InsertHdrSfa(void *, void *, void *, void *);
-extern void fn_8004BA38(void *, int);
+extern void ADXT_SetTimeOfst(void *, int);
 extern void fn_12_20A7C(void);
 
 s32 fn_12_2018C(MovieModule *module) {
@@ -718,7 +718,7 @@ s32 fn_12_2018C(MovieModule *module) {
         return 0;
     }
     ADXT_InsertHdrSfa(object, data->arg1, data->arg2, data->arg3);
-    fn_8004BA38(object, 0);
+    ADXT_SetTimeOfst(object, 0);
     state->active = 1;
     state->callback = fn_12_20A7C;
     return 0;
