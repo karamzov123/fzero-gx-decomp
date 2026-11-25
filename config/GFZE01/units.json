@@ -7260,18 +7260,6 @@
   },
   {
     "module": "main",
-    "source": "dol/ExternalInterruptHandler.c",
-    "symbols": [
-      "ExternalInterruptHandler"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
     "source": "dol/gx/GXFifo.c",
     "symbols": [
       "GXCPInterruptHandler",
@@ -7574,27 +7562,24 @@
   },
   {
     "module": "main",
-    "source": "dol/OSDisableInterrupts.c",
+    "source": "dol/os/OSInterrupt.c",
     "symbols": [
-      "OSDisableInterrupts"
+      "OSDisableInterrupts",
+      "OSEnableInterrupts",
+      "OSRestoreInterrupts",
+      "__OSSetInterruptHandler",
+      "__OSGetInterruptHandler",
+      "__OSInterruptInit",
+      "SetInterruptMask",
+      "__OSMaskInterrupts",
+      "__OSUnmaskInterrupts",
+      "__OSDispatchInterrupt",
+      "ExternalInterruptHandler"
     ],
     "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
+    "mw_version": "GC/1.2.5n",
     "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/OSEnableInterrupts.c",
-    "symbols": [
-      "OSEnableInterrupts"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
+    "collapsed": true
   },
   {
     "module": "main",
@@ -7706,18 +7691,6 @@
     "mw_version": "GC/1.2.5n",
     "extra_cflags": [],
     "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/OSRestoreInterrupts.c",
-    "symbols": [
-      "OSRestoreInterrupts"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
   },
   {
     "module": "main",
@@ -8841,23 +8814,6 @@
       "__OSResetSWInterruptHandler",
       "OSGetResetButtonState",
       "fn_8000F5F0"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
-    "collapsed": true,
-    "matching_for": ["GFZE01"]
-  },
-  {
-    "module": "main",
-    "source": "dol/__OSSetInterruptHandler.c",
-    "symbols": [
-      "__OSSetInterruptHandler",
-      "__OSGetInterruptHandler",
-      "__OSInterruptInit",
-      "SetInterruptMask",
-      "__OSMaskInterrupts",
-      "__OSUnmaskInterrupts",
-      "__OSDispatchInterrupt"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",

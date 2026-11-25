@@ -7,18 +7,56 @@
 #include <dolphin/os/OSTime.h>
 #pragma peephole off
 
+/* Dolphin SDK os/OSInterrupt.c. The MSR[EE] accessors and the external interrupt entry are
+ * CodeWarrior asm functions in the original (mfmsr/mtmsr, no compiler frame). The
+ * __RAS_OSDisableInterrupts labels bound the restartable sequence that OSLoadContext checks
+ * when it returns into an interrupted OSDisableInterrupts. */
+void __RAS_OSDisableInterrupts_begin(void);
+void __RAS_OSDisableInterrupts_end(void);
+
+asm BOOL OSDisableInterrupts(void) {
+    nofralloc
+entry __RAS_OSDisableInterrupts_begin
+    mfmsr r3
+    rlwinm r4, r3, 0, 17, 15
+    mtmsr r4
+entry __RAS_OSDisableInterrupts_end
+    rlwinm r3, r3, 17, 31, 31
+    blr
+}
+
+asm BOOL OSEnableInterrupts(void) {
+    nofralloc
+    mfmsr r3
+    ori r4, r3, 0x8000
+    mtmsr r4
+    rlwinm r3, r3, 17, 31, 31
+    blr
+}
+
+asm BOOL OSRestoreInterrupts(register BOOL level) {
+    nofralloc
+    cmpwi level, 0
+    mfmsr r4
+    beq disable
+    ori r5, r4, 0x8000
+    b restore
+disable:
+    rlwinm r5, r4, 0, 17, 15
+restore:
+    mtmsr r5
+    rlwinm r3, r4, 17, 31, 31
+    blr
+}
+
 /* --- dol/__OSInterruptInit.c --- */
 void *memset(void *dest, int value, size_t n);
 
 vu32 __PIRegs[12] : FZGX_ADDR___PIRegs;
 
-asm void ExternalInterruptHandler_8000DD10(register __OSException exception,
-                                           register OSContext *context);
-
 extern __OSInterruptHandler *InterruptHandlerTable;
 
-void ExternalInterruptHandler_8000DD10(register __OSException exception,
-                                       register OSContext *context);
+static void ExternalInterruptHandler(register __OSException exception, register OSContext *context);
 
 __OSInterruptHandler __OSSetInterruptHandler(__OSInterrupt interrupt, __OSInterruptHandler handler) {
     __OSInterruptHandler oldHandler;
@@ -48,7 +86,7 @@ void __OSInterruptInit(void) {
                         (0x80000000u >> (22)) | (0x80000000u >> (23)) | (0x80000000u >> (24)) |
                         (0x80000000u >> (18)) | (0x80000000u >> (19)) | (0x80000000u >> (25)) |
                         (0x80000000u >> (26))));
-    __OSSetExceptionHandler(4, ExternalInterruptHandler_8000DD10);
+    __OSSetExceptionHandler(4, ExternalInterruptHandler);
 }
 
 /* --- dol/SetInterruptMask.c --- */
@@ -373,4 +411,28 @@ void __OSDispatchInterrupt(__OSException exception, OSContext *context) {
         }
     }
     OSLoadContext(context);
+}
+
+static asm void ExternalInterruptHandler(register __OSException exception, register OSContext *context) {
+    nofralloc
+    stw r0, 0x0(context)
+    stw r1, 0x4(context)
+    stw r2, 0x8(context)
+    stmw r6, 0x18(context)
+    mfspr r0, GQR1
+    stw r0, 0x1a8(context)
+    mfspr r0, GQR2
+    stw r0, 0x1ac(context)
+    mfspr r0, GQR3
+    stw r0, 0x1b0(context)
+    mfspr r0, GQR4
+    stw r0, 0x1b4(context)
+    mfspr r0, GQR5
+    stw r0, 0x1b8(context)
+    mfspr r0, GQR6
+    stw r0, 0x1bc(context)
+    mfspr r0, GQR7
+    stw r0, 0x1c0(context)
+    stwu r1, -0x8(r1)
+    b __OSDispatchInterrupt
 }

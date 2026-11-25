@@ -377,7 +377,7 @@
     {
       "symbol": "OSLoadContext",
       "form": "asm-function",
-      "sha256": "69913fa6e53c9cce4cd62bab7678d3652ad20964b60265034120f0ba5f6f8e89",
+      "sha256": "90e8cecd7cf95f67279350d34f5d50f9aa62773cc401e8f7267ca8ab0fccb1be",
       "evidence": "Dolphin SDK os/OSContext.c writes context and FPU switching as CodeWarrior asm functions (nofralloc): retail 0x8000BBAC..0x8000C3D4 saves and restores the register file with stmw/lmw, psq_l/psq_st and GQR mfspr/mtspr, writes SRR0/SRR1 and returns with rfi from the FPU-unavailable handler, and has no compiler frames; OSGetCurrentContext, OSClearContext, OSDumpContext and __OSContextInit are compiled C in the same TU, as in every published Dolphin SDK decomp."
     },
     {
@@ -429,6 +429,32 @@
       "form": "asm-function",
       "sha256": "a5244336cff251992f1578bf1ad3998f7116a2f4c6ec92a8819430cd8baa54d1",
       "evidence": "Dolphin SDK os/OSReset.c writes Reset as a static CodeWarrior asm function (nofralloc): retail 0x8000EEF4..0x8000EF64 sets HID0 with mfspr/mtspr, waits on the time base with mftb, stores the reset code to the processor interface reset register and spins, laid out as forward-branch cache-line stages that MWCC never emits; the reset queue and OSResetSystem are compiled C in the same TU."
+    }
+  ],
+  "src/dol/os/OSInterrupt.c": [
+    {
+      "symbol": "OSDisableInterrupts",
+      "form": "asm-function",
+      "sha256": "ed4a42a83768d1455084c341a7faa7371ed45e7cb9574e4d7d84cdd64db15811",
+      "evidence": "Dolphin SDK os/OSInterrupt.c writes OSDisableInterrupts (with the __RAS_OSDisableInterrupts_begin/_end entry labels that OSLoadContext tests), OSEnableInterrupts and OSRestoreInterrupts as CodeWarrior asm functions (nofralloc, mfmsr/mtmsr of MSR[EE]), and ExternalInterruptHandler as a static asm entry that saves r0-r2, stmw r6-r31 and GQR1-GQR7 into the OSContext, opens an 8-byte frame by hand and branches to __OSDispatchInterrupt; retail 0x8000D4F4..0x8000D540 and 0x8000DD10..0x8000DD60 have no compiler frames. The handler table and dispatch are compiled C in the same TU."
+    },
+    {
+      "symbol": "OSEnableInterrupts",
+      "form": "asm-function",
+      "sha256": "08e2cfeefe2fdf6e328cce742220cf315d8b23c69dca2cffbffe2f6b61838841",
+      "evidence": "Dolphin SDK os/OSInterrupt.c writes OSDisableInterrupts (with the __RAS_OSDisableInterrupts_begin/_end entry labels that OSLoadContext tests), OSEnableInterrupts and OSRestoreInterrupts as CodeWarrior asm functions (nofralloc, mfmsr/mtmsr of MSR[EE]), and ExternalInterruptHandler as a static asm entry that saves r0-r2, stmw r6-r31 and GQR1-GQR7 into the OSContext, opens an 8-byte frame by hand and branches to __OSDispatchInterrupt; retail 0x8000D4F4..0x8000D540 and 0x8000DD10..0x8000DD60 have no compiler frames. The handler table and dispatch are compiled C in the same TU."
+    },
+    {
+      "symbol": "OSRestoreInterrupts",
+      "form": "asm-function",
+      "sha256": "4b9cad787a448482195292f3992e567a778916d21185566457180222356280ab",
+      "evidence": "Dolphin SDK os/OSInterrupt.c writes OSDisableInterrupts (with the __RAS_OSDisableInterrupts_begin/_end entry labels that OSLoadContext tests), OSEnableInterrupts and OSRestoreInterrupts as CodeWarrior asm functions (nofralloc, mfmsr/mtmsr of MSR[EE]), and ExternalInterruptHandler as a static asm entry that saves r0-r2, stmw r6-r31 and GQR1-GQR7 into the OSContext, opens an 8-byte frame by hand and branches to __OSDispatchInterrupt; retail 0x8000D4F4..0x8000D540 and 0x8000DD10..0x8000DD60 have no compiler frames. The handler table and dispatch are compiled C in the same TU."
+    },
+    {
+      "symbol": "ExternalInterruptHandler",
+      "form": "asm-function",
+      "sha256": "31d555dce7acd8f2bcc4381fbb76112aa2b7b4d5f030b167c7420de8db5c2550",
+      "evidence": "Dolphin SDK os/OSInterrupt.c writes OSDisableInterrupts (with the __RAS_OSDisableInterrupts_begin/_end entry labels that OSLoadContext tests), OSEnableInterrupts and OSRestoreInterrupts as CodeWarrior asm functions (nofralloc, mfmsr/mtmsr of MSR[EE]), and ExternalInterruptHandler as a static asm entry that saves r0-r2, stmw r6-r31 and GQR1-GQR7 into the OSContext, opens an 8-byte frame by hand and branches to __OSDispatchInterrupt; retail 0x8000D4F4..0x8000D540 and 0x8000DD10..0x8000DD60 have no compiler frames. The handler table and dispatch are compiled C in the same TU."
     }
   ]
 }

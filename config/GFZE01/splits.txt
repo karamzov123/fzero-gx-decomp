@@ -184,9 +184,6 @@ dol/fn_80070AC0.c:
 dol/fn_80070E1C.c:
 	.text       start:0x80070E1C end:0x80070F44 align:4
 
-dol/__OSSetInterruptHandler.c:
-	.text       start:0x8000D540 end:0x8000DD10 align:4
-
 dol/adx/adx_bwav.c:
 	.text       start:0x8004251C end:0x800433A4 align:4
 
@@ -412,14 +409,8 @@ dol/os/OSContext.c:
 	.text       start:0x8000BBAC end:0x8000C41C align:4
 	.data       start:0x80122A58 end:0x80122C30 align:4
 
-dol/OSDisableInterrupts.c:
-	.text       start:0x8000D4F4 end:0x8000D508 align:4
-
-dol/OSEnableInterrupts.c:
-	.text       start:0x8000D508 end:0x8000D51C align:4
-
-dol/ExternalInterruptHandler.c:
-	.text       start:0x8000DD10 end:0x8000DD60 align:4
+dol/os/OSInterrupt.c:
+	.text       start:0x8000D4F4 end:0x8000DD60 align:4
 
 dol/Config24MB.c:
 	.text       start:0x8000E854 end:0x8000E8D4 align:4
@@ -584,9 +575,6 @@ dol/exi/EXIUart.c:
 
 dol/__OSInitMemoryProtection.c:
 	.text       start:0x8000E96C end:0x8000EA84 align:4
-
-dol/OSRestoreInterrupts.c:
-	.text       start:0x8000D51C end:0x8000D540 align:4
 
 dol/os/OSTime.c:
 	.text       start:0x8001140C end:0x80011888 align:4

@@ -23295,7 +23295,7 @@
       },
       {
         "declaration": "u32 InterruptHandlerTable",
-        "path": "src/dol/__OSSetInterruptHandler.c"
+        "path": "src/dol/os/OSInterrupt.c"
       }
     ],
     "definition": "u32 InterruptHandlerTable",

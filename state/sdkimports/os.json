@@ -983,7 +983,7 @@
       "__PIRegs": 3422564352
     },
     "bindings": {
-      "InterruptHandlerTable": "InterruptHandlerTable_801A67A8",
+      "InterruptHandlerTable": "InterruptHandlerTable",
       "InterruptPrioTable": "lbl_80123A60",
       "OSDisableScheduler": "OSDisableScheduler",
       "OSEnableScheduler": "OSEnableScheduler",
@@ -1166,8 +1166,8 @@
       "__PIRegs": 3422564352
     },
     "bindings": {
-      "ExternalInterruptHandler": "ExternalInterruptHandler_8000DD10",
-      "InterruptHandlerTable": "InterruptHandlerTable_801A67A8",
+      "ExternalInterruptHandler": "ExternalInterruptHandler",
+      "InterruptHandlerTable": "InterruptHandlerTable",
       "__OSInterruptInit": "__OSInterruptInit",
       "__OSMaskInterrupts": "__OSMaskInterrupts",
       "__OSSetExceptionHandler": "__OSSetExceptionHandler",

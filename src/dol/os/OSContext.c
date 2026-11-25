@@ -14,6 +14,8 @@ void OSReport(const char *msg, ...);
 void DBPrintf(char *format, ...);
 BOOL OSDisableInterrupts(void);
 BOOL OSRestoreInterrupts(BOOL level);
+void __RAS_OSDisableInterrupts_begin(void);
+void __RAS_OSDisableInterrupts_end(void);
 
 // Hardware or OS state can change asynchronously.
 volatile OSContext *__OSCurrentContext : FZGX_ADDR___OSCurrentContext; // fzgx-allow: S2 SDK asynchronous state
@@ -260,13 +262,13 @@ asm u32 OSSaveContext(register OSContext *context) {
 
 asm void OSLoadContext(register OSContext *context) {
     nofralloc
-    lis r4, OSDisableInterrupts@ha
+    lis r4, __RAS_OSDisableInterrupts_begin@ha
     lwz r6, 0x198(r3)
-    addi r5, r4, OSDisableInterrupts@l
+    addi r5, r4, __RAS_OSDisableInterrupts_begin@l
     cmplw r6, r5
     ble L_8000BF10
-    lis r4, OSDisableInterrupts+0xC@ha
-    addi r0, r4, OSDisableInterrupts+0xC@l
+    lis r4, __RAS_OSDisableInterrupts_end@ha
+    addi r0, r4, __RAS_OSDisableInterrupts_end@l
     cmplw r6, r0
     bge L_8000BF10
     stw r5, 0x198(r3)
