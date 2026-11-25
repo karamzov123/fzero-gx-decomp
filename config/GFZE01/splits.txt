@@ -876,15 +876,6 @@ dol/__flush_cache.c:
 dol/mtx/mtx.c:
 	.text       start:0x80015B24 end:0x80015D7C align:4
 
-dol/__shl2i.c:
-	.text       start:0x80079D04 end:0x80079D28 align:4
-
-dol/__shr2u.c:
-	.text       start:0x80079D28 end:0x80079D4C align:4
-
-dol/__shr2i.c:
-	.text       start:0x80079D4C end:0x80079D74 align:4
-
 dol/fn_8008AFF0.c:
 	.text       start:0x8008AFF0 end:0x8008B028 align:4
 
@@ -897,8 +888,8 @@ dol/fn_8006FC1C.c:
 dol/fn_8006FC5C.c:
 	.text       start:0x8006FC5C end:0x8006FCB4 align:4
 
-dol/__cvt_fp2unsigned.c:
-	.text       start:0x80079764 end:0x800797C0 align:4
+dol/runtime/runtime.c:
+	.text       start:0x80079764 end:0x80079EF0 align:4
 
 dol/fn_8003AB08.c:
 	.text       start:0x8003AB08 end:0x8003B010 align:4
@@ -1029,29 +1020,11 @@ dol/sasnd/sasnd_fx.c:
 	.text       start:0x8006331C end:0x80063EF4 align:4
 	.sdata2     start:0x801A7318 end:0x801A7328 align:8
 
-dol/fn_80079D74.c:
-	.text       start:0x80079D74 end:0x80079E24 align:4
-
-dol/__div2u.c:
-	.text       start:0x800798F0 end:0x800799DC align:4
-
-dol/__mod2i.c:
-	.text       start:0x80079BF8 end:0x80079D04 align:4
-
 dol/__init_registers.c:
 	.init       start:0x800032B0 end:0x80003340 align:4
 
-dol/__cvt_dbl_usll.c:
-	.text       start:0x80079E24 end:0x80079EF0 align:4
-
 dol/fn_80086008.c:
 	.text       start:0x80086008 end:0x800868BC align:4
-
-dol/__div2i.c:
-	.text       start:0x800799DC end:0x80079B14 align:4
-
-dol/__mod2u.c:
-	.text       start:0x80079B14 end:0x80079BF8 align:4
 
 dol/ahx/ahx_decode.c:
 	.text       start:0x80050698 end:0x80051CC0 align:4
@@ -2889,18 +2862,6 @@ dol/fn_8006E250.c:
 
 dol/mathutil_mtxA_from_quat.c:
 	.text       start:0x8006E498 end:0x8006E540 align:4
-
-dol/__save_fpr.c:
-	.text       start:0x800797C0 end:0x8007980C align:4
-
-dol/__restore_fpr.c:
-	.text       start:0x8007980C end:0x80079858 align:4
-
-dol/__save_gpr.c:
-	.text       start:0x80079858 end:0x800798A4 align:4
-
-dol/__restore_gpr.c:
-	.text       start:0x800798A4 end:0x800798F0 align:4
 
 dol/data/gxData.c:
 	.bss        start:0x80177BA0 end:0x80178098 align:8

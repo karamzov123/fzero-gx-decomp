@@ -652,5 +652,91 @@
       "sha256": "3b7cc0d87b689e2e1c0f05ef97216242d55c7e5acc9718ff7e3ed98da32a8473",
       "evidence": "MetroTRK targimpl.c writes the MSR accessors, the MSR-switching byte copy, TRKInterruptHandler, TRKExceptionHandler, TRKSwapAndGo, TRKInterruptHandlerEnableInterrupts and the tw-trap stubs as CodeWarrior asm functions (nofralloc): retail 0x8008B0E0..0x8008B484 and 0x8008CB20..0x8008CB40 use mfmsr/mtmsr, SRR0/SRR1 and SPRG access, mtcrf, rfi and twi, which MWCC never emits from C, with no compiler frames; the target support routines are compiled C in the same TU."
     }
+  ],
+  "src/dol/runtime/runtime.c": [
+    {
+      "symbol": "__cvt_fp2unsigned",
+      "form": "asm-function",
+      "sha256": "43cae92b6eefcefc0935578e408764bb84cacd340886ad2461ddfb37553a2481",
+      "evidence": "CodeWarrior PowerPC EABI runtime runtime.c writes every routine of this TU as a function-level asm (nofralloc), as in the published runtime sources (TP, Pikmin 2, MP4) and in retail order 0x80079764..0x80079EF0: the out-of-line save/restore entries store and load f14-f31/r14-r31 off r11 (a register MWCC never binds) with one entry label per first register, and the 64-bit divide/modulo/shift helpers and float conversions use cntlzw/subfe/addze carry chains and fctiwz/stfiwx sequences with no compiler frames."
+    },
+    {
+      "symbol": "__save_fpr",
+      "form": "asm-function",
+      "sha256": "49a1923d81c9d7c5f30271afe7da29f83f8416dcce5dfe2e32080d344b4391c2",
+      "evidence": "CodeWarrior PowerPC EABI runtime runtime.c writes every routine of this TU as a function-level asm (nofralloc), as in the published runtime sources (TP, Pikmin 2, MP4) and in retail order 0x80079764..0x80079EF0: the out-of-line save/restore entries store and load f14-f31/r14-r31 off r11 (a register MWCC never binds) with one entry label per first register, and the 64-bit divide/modulo/shift helpers and float conversions use cntlzw/subfe/addze carry chains and fctiwz/stfiwx sequences with no compiler frames."
+    },
+    {
+      "symbol": "__restore_fpr",
+      "form": "asm-function",
+      "sha256": "d2df3838dd8a3f976b7e2c329c44dc9c443bbbc38d451956997b437e111fce22",
+      "evidence": "CodeWarrior PowerPC EABI runtime runtime.c writes every routine of this TU as a function-level asm (nofralloc), as in the published runtime sources (TP, Pikmin 2, MP4) and in retail order 0x80079764..0x80079EF0: the out-of-line save/restore entries store and load f14-f31/r14-r31 off r11 (a register MWCC never binds) with one entry label per first register, and the 64-bit divide/modulo/shift helpers and float conversions use cntlzw/subfe/addze carry chains and fctiwz/stfiwx sequences with no compiler frames."
+    },
+    {
+      "symbol": "__save_gpr",
+      "form": "asm-function",
+      "sha256": "94a88f71fa2eb0e78a5e70a3154cd9957e875575d2cc655b447ab7dc69f475de",
+      "evidence": "CodeWarrior PowerPC EABI runtime runtime.c writes every routine of this TU as a function-level asm (nofralloc), as in the published runtime sources (TP, Pikmin 2, MP4) and in retail order 0x80079764..0x80079EF0: the out-of-line save/restore entries store and load f14-f31/r14-r31 off r11 (a register MWCC never binds) with one entry label per first register, and the 64-bit divide/modulo/shift helpers and float conversions use cntlzw/subfe/addze carry chains and fctiwz/stfiwx sequences with no compiler frames."
+    },
+    {
+      "symbol": "__restore_gpr",
+      "form": "asm-function",
+      "sha256": "acd809abbcac14701a867e8ddf10c5e77f7409c8401abfa1b06a2e8e539e0045",
+      "evidence": "CodeWarrior PowerPC EABI runtime runtime.c writes every routine of this TU as a function-level asm (nofralloc), as in the published runtime sources (TP, Pikmin 2, MP4) and in retail order 0x80079764..0x80079EF0: the out-of-line save/restore entries store and load f14-f31/r14-r31 off r11 (a register MWCC never binds) with one entry label per first register, and the 64-bit divide/modulo/shift helpers and float conversions use cntlzw/subfe/addze carry chains and fctiwz/stfiwx sequences with no compiler frames."
+    },
+    {
+      "symbol": "__div2u",
+      "form": "asm-function",
+      "sha256": "3155900b998979ca6e7cec0d56d9d0618a2b9d6b0bc29ca19d944b5e13b35e0f",
+      "evidence": "CodeWarrior PowerPC EABI runtime runtime.c writes every routine of this TU as a function-level asm (nofralloc), as in the published runtime sources (TP, Pikmin 2, MP4) and in retail order 0x80079764..0x80079EF0: the out-of-line save/restore entries store and load f14-f31/r14-r31 off r11 (a register MWCC never binds) with one entry label per first register, and the 64-bit divide/modulo/shift helpers and float conversions use cntlzw/subfe/addze carry chains and fctiwz/stfiwx sequences with no compiler frames."
+    },
+    {
+      "symbol": "__div2i",
+      "form": "asm-function",
+      "sha256": "7e016f1870f9266238453f12c15286af63cfc183470379adf1aca53992e2221b",
+      "evidence": "CodeWarrior PowerPC EABI runtime runtime.c writes every routine of this TU as a function-level asm (nofralloc), as in the published runtime sources (TP, Pikmin 2, MP4) and in retail order 0x80079764..0x80079EF0: the out-of-line save/restore entries store and load f14-f31/r14-r31 off r11 (a register MWCC never binds) with one entry label per first register, and the 64-bit divide/modulo/shift helpers and float conversions use cntlzw/subfe/addze carry chains and fctiwz/stfiwx sequences with no compiler frames."
+    },
+    {
+      "symbol": "__mod2u",
+      "form": "asm-function",
+      "sha256": "1638dd83b8a6e285adc999ee3a53dfa0c52dd4e278a1ffc751acd4e5a099c993",
+      "evidence": "CodeWarrior PowerPC EABI runtime runtime.c writes every routine of this TU as a function-level asm (nofralloc), as in the published runtime sources (TP, Pikmin 2, MP4) and in retail order 0x80079764..0x80079EF0: the out-of-line save/restore entries store and load f14-f31/r14-r31 off r11 (a register MWCC never binds) with one entry label per first register, and the 64-bit divide/modulo/shift helpers and float conversions use cntlzw/subfe/addze carry chains and fctiwz/stfiwx sequences with no compiler frames."
+    },
+    {
+      "symbol": "__mod2i",
+      "form": "asm-function",
+      "sha256": "a4a391f207ef484883ff0eafce061a6be1c3983963a1987875278210c4eab8ec",
+      "evidence": "CodeWarrior PowerPC EABI runtime runtime.c writes every routine of this TU as a function-level asm (nofralloc), as in the published runtime sources (TP, Pikmin 2, MP4) and in retail order 0x80079764..0x80079EF0: the out-of-line save/restore entries store and load f14-f31/r14-r31 off r11 (a register MWCC never binds) with one entry label per first register, and the 64-bit divide/modulo/shift helpers and float conversions use cntlzw/subfe/addze carry chains and fctiwz/stfiwx sequences with no compiler frames."
+    },
+    {
+      "symbol": "__shl2i",
+      "form": "asm-function",
+      "sha256": "531ca9200b08f013720e62b0151ad91c742266db18aaa55a8cfd63a950ffb9a1",
+      "evidence": "CodeWarrior PowerPC EABI runtime runtime.c writes every routine of this TU as a function-level asm (nofralloc), as in the published runtime sources (TP, Pikmin 2, MP4) and in retail order 0x80079764..0x80079EF0: the out-of-line save/restore entries store and load f14-f31/r14-r31 off r11 (a register MWCC never binds) with one entry label per first register, and the 64-bit divide/modulo/shift helpers and float conversions use cntlzw/subfe/addze carry chains and fctiwz/stfiwx sequences with no compiler frames."
+    },
+    {
+      "symbol": "__shr2u",
+      "form": "asm-function",
+      "sha256": "da8888cfe6c77eaf76c7f3fc42c9ca69bbf1188b4e8c734505d7f75b37df4ce2",
+      "evidence": "CodeWarrior PowerPC EABI runtime runtime.c writes every routine of this TU as a function-level asm (nofralloc), as in the published runtime sources (TP, Pikmin 2, MP4) and in retail order 0x80079764..0x80079EF0: the out-of-line save/restore entries store and load f14-f31/r14-r31 off r11 (a register MWCC never binds) with one entry label per first register, and the 64-bit divide/modulo/shift helpers and float conversions use cntlzw/subfe/addze carry chains and fctiwz/stfiwx sequences with no compiler frames."
+    },
+    {
+      "symbol": "__shr2i",
+      "form": "asm-function",
+      "sha256": "783fc83f26b3d8a8e44d3893d26312144d6137469bbbdff2f010230cd5d4180d",
+      "evidence": "CodeWarrior PowerPC EABI runtime runtime.c writes every routine of this TU as a function-level asm (nofralloc), as in the published runtime sources (TP, Pikmin 2, MP4) and in retail order 0x80079764..0x80079EF0: the out-of-line save/restore entries store and load f14-f31/r14-r31 off r11 (a register MWCC never binds) with one entry label per first register, and the 64-bit divide/modulo/shift helpers and float conversions use cntlzw/subfe/addze carry chains and fctiwz/stfiwx sequences with no compiler frames."
+    },
+    {
+      "symbol": "fn_80079D74",
+      "form": "asm-function",
+      "sha256": "361d87b6b040bf5fca9dfb3bdfb2560b6857bda38ef58876f73a03eaaac03ca7",
+      "evidence": "CodeWarrior PowerPC EABI runtime runtime.c writes every routine of this TU as a function-level asm (nofralloc), as in the published runtime sources (TP, Pikmin 2, MP4) and in retail order 0x80079764..0x80079EF0: the out-of-line save/restore entries store and load f14-f31/r14-r31 off r11 (a register MWCC never binds) with one entry label per first register, and the 64-bit divide/modulo/shift helpers and float conversions use cntlzw/subfe/addze carry chains and fctiwz/stfiwx sequences with no compiler frames."
+    },
+    {
+      "symbol": "__cvt_dbl_usll",
+      "form": "asm-function",
+      "sha256": "38ba8d1afcf8ba6e17716cfa6fb1eb05eb05c8dbe430aeddf08aef347d189f92",
+      "evidence": "CodeWarrior PowerPC EABI runtime runtime.c writes every routine of this TU as a function-level asm (nofralloc), as in the published runtime sources (TP, Pikmin 2, MP4) and in retail order 0x80079764..0x80079EF0: the out-of-line save/restore entries store and load f14-f31/r14-r31 off r11 (a register MWCC never binds) with one entry label per first register, and the 64-bit divide/modulo/shift helpers and float conversions use cntlzw/subfe/addze carry chains and fctiwz/stfiwx sequences with no compiler frames."
+    }
   ]
 }

@@ -5,7 +5,7 @@
 
 Each `.fn` of the dtk-style `.s` becomes `asm void NAME(void) { nofralloc ... }`, with the real
 symbol name and scope from config/GFZE01/symbols.txt (dtk suffixes local names with their
-address in the .s), `.L_ADDR` labels as `L_ADDR`, paired-single `qrN` operands as `N` and
+address in the .s), `.L_ADDR` labels as `L_ADDR`, `.sym` labels inside a function as `entry` labels, paired-single `qrN` operands as `N` and
 condition-register bit names as numbers. mfspr/mtspr operands are decoded from the instruction
 word: a register keeps its name only where include/dolphin/base/PPCArch.h defines that name to
 the same number (CodeWarrior's built-in names differ for some Gekko registers, e.g. HID2), and
@@ -74,6 +74,8 @@ def convert(path, syms, names):
             out.append('}')
             out.append('')
             name = None
+        elif name and line.startswith('.sym '):          # a global label inside the function
+            out.append('entry ' + line.split()[1].rstrip(','))
         elif name and re.match(r'\.L_[0-9A-F]+:', line):
             out.append(operand(line.rstrip(':')) + ':')
         elif name and line.startswith('/*'):
