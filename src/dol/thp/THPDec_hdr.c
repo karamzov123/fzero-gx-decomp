@@ -70,13 +70,6 @@ static const u32 fzgx_pool_rodata_lbl_8008FF50_50[16] = {  /* fzgx-allow: A1 ret
     0x3FF00000, 0x0, 0x3FF63150, 0xC0000000, 0x3FF4E7AE, 0xA0000000, 0x3FF2D062, 0xE0000000,  /* fzgx-allow: A1 retail data bytes */
     0x3FF00000, 0x0, 0x3FE92469, 0xC0000000, 0x3FE1517A, 0x80000000, 0x3FD1A855, 0xE0000000  /* fzgx-allow: A1 retail data bytes */
 };
-#pragma section code_type ".fzgxpool"
-static void fzgx_data_layout_lbl_8008FF50(void) {
-    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: keeps the retail .data objects in retail order */
-    s = *(u8 *)fzgx_pool_rodata_lbl_8008FF50;
-    s = *(u8 *)fzgx_pool_rodata_lbl_8008FF50_50;
-}
-#pragma section code_type ".text"
 
 u8 fn_8003A4E8(ThpDec *d, u8 idx, u8 *counts);
 u8 fn_8003A680(ThpDec *arg0, u8 arg1);

@@ -14,15 +14,6 @@ static const u32 fzgx_pool_rodata_lbl_80091198_40[1] = {  /* fzgx-allow: A1 reta
 static const u32 fzgx_pool_rodata_lbl_80091198_44[1] = {  /* fzgx-allow: A1 retail data bytes and bindings */
     0x47434400
 };
-#pragma section code_type ".fzgxpool"
-static void fzgx_data_layout_lbl_80091198(void) {
-    volatile u8 s;  /* fzgx-allow: S2 layout primer sink: keeps the retail .data objects in retail order */
-    s = *(u8 *)fzgx_pool_rodata_lbl_80091198;
-    s = *(u8 *)fzgx_pool_rodata_lbl_80091198_3C;
-    s = *(u8 *)fzgx_pool_rodata_lbl_80091198_40;
-    s = *(u8 *)fzgx_pool_rodata_lbl_80091198_44;
-}
-#pragma section code_type ".text"
 
 extern void fn_8005466C(void (*)(u32, u32), u32);
 extern u8 *fn_8005A5A8(void);
