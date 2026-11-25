@@ -3863,7 +3863,7 @@
   {
    "symbol": "fn_3_17098",
    "module": "customize",
-   "unit": "rel/customize/editor/fn_3_17098.c",
+   "unit": "rel/customize/editor_b/fn_3_17098.c",
    "addr": 94360,
    "size": 72,
    "status": "matched",
@@ -3880,7 +3880,7 @@
   {
    "symbol": "fn_3_170E0",
    "module": "customize",
-   "unit": "rel/customize/editor/fn_3_17098.c",
+   "unit": "rel/customize/editor_b/fn_3_17098.c",
    "addr": 94432,
    "size": 32,
    "status": "matched",
@@ -3897,7 +3897,7 @@
   {
    "symbol": "fn_3_17100",
    "module": "customize",
-   "unit": "rel/customize/editor/fn_3_17098.c",
+   "unit": "rel/customize/editor_b/fn_3_17098.c",
    "addr": 94464,
    "size": 1708,
    "status": "matched",
@@ -3914,7 +3914,7 @@
   {
    "symbol": "fn_3_177AC",
    "module": "customize",
-   "unit": "rel/customize/editor/fn_3_17098.c",
+   "unit": "rel/customize/editor_b/fn_3_17098.c",
    "addr": 96172,
    "size": 116,
    "status": "matched",
@@ -3931,7 +3931,7 @@
   {
    "symbol": "fn_3_17820",
    "module": "customize",
-   "unit": "rel/customize/editor/fn_3_17098.c",
+   "unit": "rel/customize/editor_b/fn_3_17098.c",
    "addr": 96288,
    "size": 16,
    "status": "matched",
@@ -3948,7 +3948,7 @@
   {
    "symbol": "fn_3_17830",
    "module": "customize",
-   "unit": "rel/customize/editor/fn_3_17098.c",
+   "unit": "rel/customize/editor_b/fn_3_17098.c",
    "addr": 96304,
    "size": 36,
    "status": "matched",
@@ -3965,7 +3965,7 @@
   {
    "symbol": "fn_3_17854",
    "module": "customize",
-   "unit": "rel/customize/editor/fn_3_17098.c",
+   "unit": "rel/customize/editor_b/fn_3_17098.c",
    "addr": 96340,
    "size": 3368,
    "status": "matched",

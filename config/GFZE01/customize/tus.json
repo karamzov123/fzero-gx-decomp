@@ -281,12 +281,12 @@
    "file": "editor.c",
    "text": [
     87340,
-    99708
+    94360
    ],
    "data_sec": 5,
    "data": [
     13744,
-    15636
+    13760
    ],
    "anchor_refs": [
     87340,
@@ -303,7 +303,27 @@
     "fn_3_1683C",
     "fn_3_169B8",
     "fn_3_16E14",
-    "fn_3_16FD0",
+    "fn_3_16FD0"
+   ],
+   "confidence": {
+    "text+data": 6,
+    "text-range": 12,
+    "data-vote": 2
+   }
+  },
+  {
+   "file": "editor_b.c",
+   "text": [
+    94360,
+    99708
+   ],
+   "data_sec": 5,
+   "data": [
+    13760,
+    13848
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_3_17098",
     "fn_3_170E0",
     "fn_3_17100",
@@ -313,9 +333,9 @@
     "fn_3_17854"
    ],
    "confidence": {
-    "text+data": 6,
-    "text-range": 12,
-    "data-vote": 2
+    "text+data": 7,
+    "text-range": 0,
+    "data-vote": 0
    }
   },
   {
@@ -326,7 +346,7 @@
    ],
    "data_sec": 5,
    "data": [
-    15636,
+    13848,
     19380
    ],
    "anchor_refs": [

@@ -52,15 +52,6 @@ typedef struct {
 } Obj_3_bss_A2410;
 extern Obj_3_bss_A2410 lbl_3_bss_A2410;
 
-// lbl_3_data_35C0: .data size 0x58, 3 refs from editor.c (own data block)
-typedef struct {
-    u8 pad_0[0x1];
-    u8 unk_1;  // 1 loads, 0 stores
-    u8 unk_2;  // 1 loads, 0 stores
-    u8 pad_3[0x55];
-} Obj_3_data_35C0;
-extern Obj_3_data_35C0 lbl_3_data_35C0;
-
 // lbl_3_bss_A2438: .bss size 0x1C, 2 refs from editor.c
 typedef struct {
     u8 unk_0;  // 23 loads, 1 stores

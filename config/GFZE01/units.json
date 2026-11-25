@@ -2890,7 +2890,7 @@
   },
   {
     "module": "customize",
-    "source": "rel/customize/editor/fn_3_17098.c",
+    "source": "rel/customize/editor_b/fn_3_17098.c",
     "symbols": [
       "fn_3_17098",
       "fn_3_170E0",
@@ -2907,7 +2907,7 @@
       "-fp_contract",
       "off"
     ],
-    "tu": "rel/customize/editor.c"
+    "tu": "rel/customize/editor_b.c"
   },
   {
     "module": "customize",
@@ -25214,10 +25214,10 @@
       "fn_1_10780C"
     ],
     "status": "matching",
+    "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "tu": "rel/main_rel/bg_common.c",
-    "collapsed": true,
-    "matching_for": ["GFZE01"]
+    "collapsed": true
   },
   {
     "module": "main_rel",

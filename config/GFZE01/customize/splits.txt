@@ -294,7 +294,7 @@ rel/customize/toolkit/fn_3_20748.c:
 rel/customize/_prolog/fn_3_AC4C.c:
 	.text       start:0x0000AC4C end:0x0000ACF4 align:4
 
-rel/customize/editor/fn_3_17098.c:
+rel/customize/editor_b/fn_3_17098.c:
 	.text       start:0x00017098 end:0x0001857C align:4
 	.rodata     start:0x000005F0 end:0x000006A0 align:8
 	.data       start:0x000035C0 end:0x00003618 align:8
