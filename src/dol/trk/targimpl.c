@@ -226,10 +226,284 @@ extern int TRKAppendBuffer1_ui64(TRKBuffer *, u64);
 extern int TRKReadBuffer1_ui64(TRKBuffer *, u64 *);
 extern DSError TRKAppendBuffer_ui32(TRKBuffer *buffer, const u32 *data, int count);
 extern DSError TRKReadBuffer_ui32(TRKBuffer *buffer, u32 *data, int count);
-extern u32 fn_8008B0E0(void);
-extern void fn_8008B0E8(u32);
 extern u32 fn_8008D154(u32);
-extern void fn_8008B0F0(u32, u32, u32, u32, u32);
+
+extern u8 gTRKSaveState[];
+extern u16 TRK_saved_exceptionID;
+void TRKUARTInterruptHandler(void);
+void TRKSaveExtended1Block(void);
+void TRKRestoreExtended1Block(void);
+void TRKPostInterruptEvent(void);
+void TRKInterruptHandlerEnableInterrupts(void);
+void TRKExceptionHandler(void);
+
+/* MetroTRK Processor/ppc/Generic/targimpl.c: the MSR accessors, the MSR-switching byte copy,
+ * the interrupt/exception entry points, TRKSwapAndGo and the trap stubs are CodeWarrior asm
+ * functions in the original (mfmsr/mtmsr, SPRG and SRR access, rfi, tw traps, no compiler
+ * frames); the target support routines are C. */
+asm u32 fn_8008B0E0(void) {
+    nofralloc
+    mfmsr r3
+    blr
+}
+
+asm void fn_8008B0E8(register u32 msr) {
+    nofralloc
+    mtmsr r3
+    blr
+}
+
+asm void fn_8008B0F0(register u32 dst, register u32 src, register u32 n, register u32 writeMsr, register u32 readMsr) {
+    nofralloc
+    mfmsr r8
+    li r10, 0x0
+L_8008B0F8:
+    cmpw r10, r5
+    beq L_8008B120
+    mtmsr r7
+    sync
+    lbzx r9, r10, r4
+    mtmsr r6
+    sync
+    stbx r9, r10, r3
+    addi r10, r10, 0x1
+    b L_8008B0F8
+L_8008B120:
+    mtmsr r8
+    sync
+    blr
+}
+
+asm void TRKInterruptHandler(void) {
+    nofralloc
+    mtsrr0 r2
+    mtsrr1 r4
+    mfsprg r4, 3
+    mfcr r2
+    mtsprg 3, r2
+    lis r2, gTRKState@h
+    ori r2, r2, gTRKState@l
+    lwz r2, 0x8c(r2)
+    ori r2, r2, 0x8002
+    xori r2, r2, 0x8002
+    sync
+    mtmsr r2
+    sync
+    lis r2, TRK_saved_exceptionID@h
+    ori r2, r2, TRK_saved_exceptionID@l
+    sth r3, 0x0(r2)
+    cmpwi r3, 0x500
+    bne L_8008B1F4
+    lis r2, gTRKCPUState@h
+    ori r2, r2, gTRKCPUState@l
+    mflr r3
+    stw r3, 0x42c(r2)
+    bl TRKUARTInterruptHandler
+    lis r2, gTRKCPUState@h
+    ori r2, r2, gTRKCPUState@l
+    lwz r3, 0x42c(r2)
+    mtlr r3
+    lis r2, gTRKState@h
+    ori r2, r2, gTRKState@l
+    lwz r2, 0xa0(r2)
+    lbz r2, 0x0(r2)
+    cmpwi r2, 0x0
+    beq L_8008B1D8
+    lis r2, gTRKExceptionStatus@h
+    ori r2, r2, gTRKExceptionStatus@l
+    lbz r2, 0xc(r2)
+    cmpwi r2, 0x1
+    beq L_8008B1D8
+    lis r2, gTRKState@h
+    ori r2, r2, gTRKState@l
+    li r3, 0x1
+    stb r3, 0x9c(r2)
+    b L_8008B1F4
+L_8008B1D8:
+    lis r2, gTRKSaveState@h
+    ori r2, r2, gTRKSaveState@l
+    lwz r3, 0x88(r2)
+    mtcrf 255, r3
+    lwz r3, 0xc(r2)
+    lwz r2, 0x8(r2)
+    rfi
+L_8008B1F4:
+    lis r2, TRK_saved_exceptionID@h
+    ori r2, r2, TRK_saved_exceptionID@l
+    lhz r3, 0x0(r2)
+    lis r2, gTRKExceptionStatus@h
+    ori r2, r2, gTRKExceptionStatus@l
+    lbz r2, 0xc(r2)
+    cmpwi r2, 0x0
+    bne TRKExceptionHandler
+    lis r2, gTRKCPUState@h
+    ori r2, r2, gTRKCPUState@l
+    stw r0, 0x0(r2)
+    stw r1, 0x4(r2)
+    mfsprg r0, 1
+    stw r0, 0x8(r2)
+    sth r3, 0x2f8(r2)
+    sth r3, 0x2fa(r2)
+    mfsprg r0, 2
+    stw r0, 0xc(r2)
+    stmw r4, 0x10(r2)
+    mfsrr0 r27
+    mflr r28
+    mfsprg r29, 3
+    mfctr r30
+    mfxer r31
+    stmw r27, 0x80(r2)
+    bl TRKSaveExtended1Block
+    lis r2, gTRKExceptionStatus@h
+    ori r2, r2, gTRKExceptionStatus@l
+    li r3, 0x1
+    stb r3, 0xc(r2)
+    lis r2, gTRKState@h
+    ori r2, r2, gTRKState@l
+    lwz r0, 0x8c(r2)
+    sync
+    mtmsr r0
+    sync
+    lwz r0, 0x80(r2)
+    mtlr r0
+    lwz r0, 0x84(r2)
+    mtctr r0
+    lwz r0, 0x88(r2)
+    mtxer r0
+    lwz r0, 0x94(r2)
+    mtdsisr r0
+    lwz r0, 0x90(r2)
+    mtdar r0
+    lmw r3, 0xc(r2)
+    lwz r0, 0x0(r2)
+    lwz r1, 0x4(r2)
+    lwz r2, 0x8(r2)
+    b TRKPostInterruptEvent
+}
+
+asm void TRKExceptionHandler(void) {
+    nofralloc
+    lis r2, gTRKExceptionStatus@h
+    ori r2, r2, gTRKExceptionStatus@l
+    sth r3, 0x8(r2)
+    mfsrr0 r3
+    stw r3, 0x0(r2)
+    lhz r3, 0x8(r2)
+    cmpwi r3, 0x200
+    beq L_8008B32C
+    cmpwi r3, 0x300
+    beq L_8008B32C
+    cmpwi r3, 0x400
+    beq L_8008B32C
+    cmpwi r3, 0x600
+    beq L_8008B32C
+    cmpwi r3, 0x700
+    beq L_8008B32C
+    cmpwi r3, 0x800
+    beq L_8008B32C
+    cmpwi r3, 0x1000
+    beq L_8008B32C
+    cmpwi r3, 0x1100
+    beq L_8008B32C
+    cmpwi r3, 0x1200
+    beq L_8008B32C
+    cmpwi r3, 0x1300
+    beq L_8008B32C
+    b L_8008B338
+L_8008B32C:
+    mfsrr0 r3
+    addi r3, r3, 0x4
+    mtsrr0 r3
+L_8008B338:
+    lis r2, gTRKExceptionStatus@h
+    ori r2, r2, gTRKExceptionStatus@l
+    li r3, 0x1
+    stb r3, 0xd(r2)
+    mfsprg r3, 3
+    mtcrf 255, r3
+    mfsprg r2, 1
+    mfsprg r3, 2
+    rfi
+}
+
+asm void TRKSwapAndGo(void) {
+    nofralloc
+    lis r3, gTRKState@h
+    ori r3, r3, gTRKState@l
+    stmw r0, 0x0(r3)
+    mfmsr r0
+    stw r0, 0x8c(r3)
+    mflr r0
+    stw r0, 0x80(r3)
+    mfctr r0
+    stw r0, 0x84(r3)
+    mfxer r0
+    stw r0, 0x88(r3)
+    mfdsisr r0
+    stw r0, 0x94(r3)
+    mfdar r0
+    stw r0, 0x90(r3)
+    li r1, -0x7ffe
+    nor r1, r1, r1
+    mfmsr r3
+    and r3, r3, r1
+    mtmsr r3
+    lis r2, gTRKState@h
+    ori r2, r2, gTRKState@l
+    lwz r2, 0xa0(r2)
+    lbz r2, 0x0(r2)
+    cmpwi r2, 0x0
+    beq L_8008B3D8
+    lis r2, gTRKState@h
+    ori r2, r2, gTRKState@l
+    li r3, 0x1
+    stb r3, 0x9c(r2)
+    b TRKInterruptHandlerEnableInterrupts
+L_8008B3D8:
+    lis r2, gTRKExceptionStatus@h
+    ori r2, r2, gTRKExceptionStatus@l
+    li r3, 0x0
+    stb r3, 0xc(r2)
+    bl TRKRestoreExtended1Block
+    lis r2, gTRKCPUState@h
+    ori r2, r2, gTRKCPUState@l
+    lmw r27, 0x80(r2)
+    mtsrr0 r27
+    mtlr r28
+    mtcrf 255, r29
+    mtctr r30
+    mtxer r31
+    lmw r3, 0xc(r2)
+    lwz r0, 0x0(r2)
+    lwz r1, 0x4(r2)
+    lwz r2, 0x8(r2)
+    rfi
+}
+
+asm void TRKInterruptHandlerEnableInterrupts(void) {
+    nofralloc
+    lis r2, gTRKState@h
+    ori r2, r2, gTRKState@l
+    lwz r0, 0x8c(r2)
+    sync
+    mtmsr r0
+    sync
+    lwz r0, 0x80(r2)
+    mtlr r0
+    lwz r0, 0x84(r2)
+    mtctr r0
+    lwz r0, 0x88(r2)
+    mtxer r0
+    lwz r0, 0x94(r2)
+    mtdsisr r0
+    lwz r0, 0x90(r2)
+    mtdar r0
+    lmw r3, 0xc(r2)
+    lwz r0, 0x0(r2)
+    lwz r1, 0x4(r2)
+    lwz r2, 0x8(r2)
+    b TRKPostInterruptEvent
+}
 
 DSError fn_8008C6E4(void *data, u32 start);
 s32 fn_8008C730(u32 arg0, u32 arg1, u32 *arg2, u32 arg3, s32 arg4);
@@ -786,3 +1060,28 @@ DSError fn_8008C87C(const void *addr, size_t length, ValidMemoryOptions readWrit
     return err;
 }
 #pragma auto_inline reset
+
+asm void fn_8008CB20(void) {
+    nofralloc
+    twi 31, r0, 0x0
+    blr
+}
+
+asm void fn_8008CB28(void) {
+    nofralloc
+    twi 31, r0, 0x0
+    blr
+}
+
+asm void fn_8008CB30(void) {
+    nofralloc
+    twi 31, r0, 0x0
+    blr
+}
+
+asm void fn_8008CB38(void) {
+    nofralloc
+    twi 31, r0, 0x0
+    blr
+}
+

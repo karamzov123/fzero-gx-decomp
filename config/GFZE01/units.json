@@ -8039,18 +8039,6 @@
   },
   {
     "module": "main",
-    "source": "dol/TRKExceptionHandler.c",
-    "symbols": [
-      "TRKExceptionHandler"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
     "source": "dol/fn_8008983C.c",
     "symbols": [
       "fn_8008983C"
@@ -8150,30 +8138,6 @@
   },
   {
     "module": "main",
-    "source": "dol/TRKInterruptHandler.c",
-    "symbols": [
-      "TRKInterruptHandler"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/TRKInterruptHandlerEnableInterrupts.c",
-    "symbols": [
-      "TRKInterruptHandlerEnableInterrupts"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
     "source": "dol/trk/dolphin_trk_glue.c",
     "symbols": [
       "TRKLoadContext",
@@ -8206,51 +8170,6 @@
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
     "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/TRKSwapAndGo.c",
-    "symbols": [
-      "TRKSwapAndGo"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/trk/targimpl.c",
-    "symbols": [
-      "TRKTargetSetInputPendingPtr",
-      "fn_8008B484",
-      "TRKTargetSetStopped",
-      "TRKTargetStopped",
-      "TRKTargetSupportRequest",
-      "fn_8008B6BC",
-      "fn_8008B6CC",
-      "fn_8008B784",
-      "fn_8008B830",
-      "fn_8008B8B4",
-      "TRKTargetInterrupt",
-      "TRKPostInterruptEvent",
-      "fn_8008BB7C",
-      "fn_8008BFB4",
-      "fn_8008C124",
-      "TRKTargetAccessDefault",
-      "fn_8008C6E4",
-      "fn_8008C730",
-      "fn_8008C87C"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on"
-    ],
-    "collapsed": true,
-    "matching_for": ["GFZE01"]
   },
   {
     "module": "main",
@@ -22672,87 +22591,47 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_8008B0E0.c",
+    "source": "dol/trk/targimpl.c",
     "symbols": [
-      "fn_8008B0E0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8008B0E8.c",
-    "symbols": [
-      "fn_8008B0E8"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8008B0F0.c",
-    "symbols": [
-      "fn_8008B0F0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8008CB20.c",
-    "symbols": [
-      "fn_8008CB20"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8008CB28.c",
-    "symbols": [
-      "fn_8008CB28"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8008CB30.c",
-    "symbols": [
-      "fn_8008CB30"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8008CB38.c",
-    "symbols": [
+      "fn_8008B0E0",
+      "fn_8008B0E8",
+      "fn_8008B0F0",
+      "TRKInterruptHandler",
+      "TRKExceptionHandler",
+      "TRKSwapAndGo",
+      "TRKInterruptHandlerEnableInterrupts",
+      "TRKTargetSetInputPendingPtr",
+      "fn_8008B484",
+      "TRKTargetSetStopped",
+      "TRKTargetStopped",
+      "TRKTargetSupportRequest",
+      "fn_8008B6BC",
+      "fn_8008B6CC",
+      "fn_8008B784",
+      "fn_8008B830",
+      "fn_8008B8B4",
+      "TRKTargetInterrupt",
+      "TRKPostInterruptEvent",
+      "fn_8008BB7C",
+      "fn_8008BFB4",
+      "fn_8008C124",
+      "TRKTargetAccessDefault",
+      "fn_8008C6E4",
+      "fn_8008C730",
+      "fn_8008C87C",
+      "fn_8008CB20",
+      "fn_8008CB28",
+      "fn_8008CB30",
       "fn_8008CB38"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on"
+    ],
+    "collapsed": true
   },
   {
     "module": "main",

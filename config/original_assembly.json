@@ -584,5 +584,73 @@
       "sha256": "8238ee4f89bc10b1c3a3189611bf5552455cba2f4a4a326ce9081a01849f828e",
       "evidence": "MetroTRK dolphin_trk_glue.c writes TRKLoadContext as a CodeWarrior asm function (nofralloc): retail 0x8008D224..0x8008D2AC reloads the saved GPRs with lmw, restores CR/LR/CTR/XER with mtcrf/mtlr/mtctr/mtxer, clears MSR[EE|RI] with mfmsr/mtmsr, writes SPRG1-3 and branches to TRKInterruptHandler, with no compiler frame; the UART/EXI glue functions are compiled C in the same TU."
     }
+  ],
+  "src/dol/trk/targimpl.c": [
+    {
+      "symbol": "fn_8008B0E0",
+      "form": "asm-function",
+      "sha256": "bf57142cf45e6ed339aa0522e350ac10f01dc315768a52972c5a676faa1bbd8b",
+      "evidence": "MetroTRK targimpl.c writes the MSR accessors, the MSR-switching byte copy, TRKInterruptHandler, TRKExceptionHandler, TRKSwapAndGo, TRKInterruptHandlerEnableInterrupts and the tw-trap stubs as CodeWarrior asm functions (nofralloc): retail 0x8008B0E0..0x8008B484 and 0x8008CB20..0x8008CB40 use mfmsr/mtmsr, SRR0/SRR1 and SPRG access, mtcrf, rfi and twi, which MWCC never emits from C, with no compiler frames; the target support routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "fn_8008B0E8",
+      "form": "asm-function",
+      "sha256": "984f44e04861bb06bb530ba2531b8ee04338e372831d0b4490bbc2e9f8b6e139",
+      "evidence": "MetroTRK targimpl.c writes the MSR accessors, the MSR-switching byte copy, TRKInterruptHandler, TRKExceptionHandler, TRKSwapAndGo, TRKInterruptHandlerEnableInterrupts and the tw-trap stubs as CodeWarrior asm functions (nofralloc): retail 0x8008B0E0..0x8008B484 and 0x8008CB20..0x8008CB40 use mfmsr/mtmsr, SRR0/SRR1 and SPRG access, mtcrf, rfi and twi, which MWCC never emits from C, with no compiler frames; the target support routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "fn_8008B0F0",
+      "form": "asm-function",
+      "sha256": "db1b320d576e4431e1f8aa729aa1971c625c737da0e2eb62f798324077abfab2",
+      "evidence": "MetroTRK targimpl.c writes the MSR accessors, the MSR-switching byte copy, TRKInterruptHandler, TRKExceptionHandler, TRKSwapAndGo, TRKInterruptHandlerEnableInterrupts and the tw-trap stubs as CodeWarrior asm functions (nofralloc): retail 0x8008B0E0..0x8008B484 and 0x8008CB20..0x8008CB40 use mfmsr/mtmsr, SRR0/SRR1 and SPRG access, mtcrf, rfi and twi, which MWCC never emits from C, with no compiler frames; the target support routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "TRKInterruptHandler",
+      "form": "asm-function",
+      "sha256": "999d0331f403968539aaa44d3c65b1890320013c9a452fa0e0095fff9cafa277",
+      "evidence": "MetroTRK targimpl.c writes the MSR accessors, the MSR-switching byte copy, TRKInterruptHandler, TRKExceptionHandler, TRKSwapAndGo, TRKInterruptHandlerEnableInterrupts and the tw-trap stubs as CodeWarrior asm functions (nofralloc): retail 0x8008B0E0..0x8008B484 and 0x8008CB20..0x8008CB40 use mfmsr/mtmsr, SRR0/SRR1 and SPRG access, mtcrf, rfi and twi, which MWCC never emits from C, with no compiler frames; the target support routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "TRKExceptionHandler",
+      "form": "asm-function",
+      "sha256": "842d18b2e8cda2e4ee7e4a3e6d4ee4f2a8361779f27ffcb57f5b6c57eee310ba",
+      "evidence": "MetroTRK targimpl.c writes the MSR accessors, the MSR-switching byte copy, TRKInterruptHandler, TRKExceptionHandler, TRKSwapAndGo, TRKInterruptHandlerEnableInterrupts and the tw-trap stubs as CodeWarrior asm functions (nofralloc): retail 0x8008B0E0..0x8008B484 and 0x8008CB20..0x8008CB40 use mfmsr/mtmsr, SRR0/SRR1 and SPRG access, mtcrf, rfi and twi, which MWCC never emits from C, with no compiler frames; the target support routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "TRKSwapAndGo",
+      "form": "asm-function",
+      "sha256": "b1231decb93c2eee9d8f7090455ed06d82854d7330fa964ca2f905447f4b3ec5",
+      "evidence": "MetroTRK targimpl.c writes the MSR accessors, the MSR-switching byte copy, TRKInterruptHandler, TRKExceptionHandler, TRKSwapAndGo, TRKInterruptHandlerEnableInterrupts and the tw-trap stubs as CodeWarrior asm functions (nofralloc): retail 0x8008B0E0..0x8008B484 and 0x8008CB20..0x8008CB40 use mfmsr/mtmsr, SRR0/SRR1 and SPRG access, mtcrf, rfi and twi, which MWCC never emits from C, with no compiler frames; the target support routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "TRKInterruptHandlerEnableInterrupts",
+      "form": "asm-function",
+      "sha256": "3afde7e24ba0a7e54e6657122172b97237a39d1cc5ecc2183fd7b47d5417861f",
+      "evidence": "MetroTRK targimpl.c writes the MSR accessors, the MSR-switching byte copy, TRKInterruptHandler, TRKExceptionHandler, TRKSwapAndGo, TRKInterruptHandlerEnableInterrupts and the tw-trap stubs as CodeWarrior asm functions (nofralloc): retail 0x8008B0E0..0x8008B484 and 0x8008CB20..0x8008CB40 use mfmsr/mtmsr, SRR0/SRR1 and SPRG access, mtcrf, rfi and twi, which MWCC never emits from C, with no compiler frames; the target support routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "fn_8008CB20",
+      "form": "asm-function",
+      "sha256": "8dfa8088ad0013fb5e5d703efd43298a7919e8eae69be042b62cbca0959dfbac",
+      "evidence": "MetroTRK targimpl.c writes the MSR accessors, the MSR-switching byte copy, TRKInterruptHandler, TRKExceptionHandler, TRKSwapAndGo, TRKInterruptHandlerEnableInterrupts and the tw-trap stubs as CodeWarrior asm functions (nofralloc): retail 0x8008B0E0..0x8008B484 and 0x8008CB20..0x8008CB40 use mfmsr/mtmsr, SRR0/SRR1 and SPRG access, mtcrf, rfi and twi, which MWCC never emits from C, with no compiler frames; the target support routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "fn_8008CB28",
+      "form": "asm-function",
+      "sha256": "5f80c97ca28c7561bc1284032ae1b964a4ec9e5f2296a7b305fa15d04b5d3012",
+      "evidence": "MetroTRK targimpl.c writes the MSR accessors, the MSR-switching byte copy, TRKInterruptHandler, TRKExceptionHandler, TRKSwapAndGo, TRKInterruptHandlerEnableInterrupts and the tw-trap stubs as CodeWarrior asm functions (nofralloc): retail 0x8008B0E0..0x8008B484 and 0x8008CB20..0x8008CB40 use mfmsr/mtmsr, SRR0/SRR1 and SPRG access, mtcrf, rfi and twi, which MWCC never emits from C, with no compiler frames; the target support routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "fn_8008CB30",
+      "form": "asm-function",
+      "sha256": "532203718532c0d32f077912a80f6bcbd53ec8107453e275c3f0374000e98e6c",
+      "evidence": "MetroTRK targimpl.c writes the MSR accessors, the MSR-switching byte copy, TRKInterruptHandler, TRKExceptionHandler, TRKSwapAndGo, TRKInterruptHandlerEnableInterrupts and the tw-trap stubs as CodeWarrior asm functions (nofralloc): retail 0x8008B0E0..0x8008B484 and 0x8008CB20..0x8008CB40 use mfmsr/mtmsr, SRR0/SRR1 and SPRG access, mtcrf, rfi and twi, which MWCC never emits from C, with no compiler frames; the target support routines are compiled C in the same TU."
+    },
+    {
+      "symbol": "fn_8008CB38",
+      "form": "asm-function",
+      "sha256": "3b7cc0d87b689e2e1c0f05ef97216242d55c7e5acc9718ff7e3ed98da32a8473",
+      "evidence": "MetroTRK targimpl.c writes the MSR accessors, the MSR-switching byte copy, TRKInterruptHandler, TRKExceptionHandler, TRKSwapAndGo, TRKInterruptHandlerEnableInterrupts and the tw-trap stubs as CodeWarrior asm functions (nofralloc): retail 0x8008B0E0..0x8008B484 and 0x8008CB20..0x8008CB40 use mfmsr/mtmsr, SRR0/SRR1 and SPRG access, mtcrf, rfi and twi, which MWCC never emits from C, with no compiler frames; the target support routines are compiled C in the same TU."
+    }
   ]
 }

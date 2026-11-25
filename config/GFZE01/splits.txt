@@ -76,9 +76,6 @@ dol/fn_8008983C.c:
 dol/trk/support.c:
 	.text       start:0x8008A5AC end:0x8008AF40 align:4
 
-dol/trk/targimpl.c:
-	.text       start:0x8008B474 end:0x8008CB20 align:4
-
 dol/odemuexi2/DebuggerDriver.c:
 	.text       start:0x8008F454 end:0x8008FED4 align:4
 
@@ -421,26 +418,8 @@ dol/fn_80078538.c:
 dol/fn_80078884.c:
 	.text       start:0x80078884 end:0x80078944 align:4
 
-dol/fn_8008B0E0.c:
-	.text       start:0x8008B0E0 end:0x8008B0E8 align:4
-
-dol/fn_8008B0E8.c:
-	.text       start:0x8008B0E8 end:0x8008B0F0 align:4
-
-dol/fn_8008B0F0.c:
-	.text       start:0x8008B0F0 end:0x8008B12C align:4
-
-dol/TRKInterruptHandler.c:
-	.text       start:0x8008B12C end:0x8008B2C0 align:4
-
-dol/TRKExceptionHandler.c:
-	.text       start:0x8008B2C0 end:0x8008B35C align:4
-
-dol/TRKSwapAndGo.c:
-	.text       start:0x8008B35C end:0x8008B420 align:4
-
-dol/TRKInterruptHandlerEnableInterrupts.c:
-	.text       start:0x8008B420 end:0x8008B474 align:4
+dol/trk/targimpl.c:
+	.text       start:0x8008B0E0 end:0x8008CB40 align:4
 
 dol/trk/mpc_7xx_603e.c:
 	.text       start:0x8008CB40 end:0x8008CEB0 align:4
@@ -908,18 +887,6 @@ dol/__shr2i.c:
 
 dol/fn_8008AFF0.c:
 	.text       start:0x8008AFF0 end:0x8008B028 align:4
-
-dol/fn_8008CB20.c:
-	.text       start:0x8008CB20 end:0x8008CB28 align:4
-
-dol/fn_8008CB28.c:
-	.text       start:0x8008CB28 end:0x8008CB30 align:4
-
-dol/fn_8008CB30.c:
-	.text       start:0x8008CB30 end:0x8008CB38 align:4
-
-dol/fn_8008CB38.c:
-	.text       start:0x8008CB38 end:0x8008CB40 align:4
 
 dol/mathutil_quat_mult.c:
 	.text       start:0x8006E540 end:0x8006E5B4 align:4
