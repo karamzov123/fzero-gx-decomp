@@ -9,7 +9,7 @@ Sections:
 rel/sel/name_entry/fn_10_25E1C.c:
 	.text       start:0x00025E1C end:0x00026554 align:4
 
-rel/sel/sel/fn_10_D044.c:
+rel/sel/sel_b/fn_10_D044.c:
 	.text       start:0x0000D044 end:0x0002325C align:4
 	.rodata     start:0x00000158 end:0x00001548 align:8
 	.data       start:0x00000D00 end:0x000068E0 align:8

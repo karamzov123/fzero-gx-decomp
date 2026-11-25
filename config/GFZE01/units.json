@@ -85077,7 +85077,7 @@
   },
   {
     "module": "sel",
-    "source": "rel/sel/sel/fn_10_D044.c",
+    "source": "rel/sel/sel_b/fn_10_D044.c",
     "symbols": [
       "fn_10_D044",
       "fn_10_D5D4",
@@ -85178,7 +85178,7 @@
       "-fp_contract",
       "off"
     ],
-    "tu": "rel/sel/sel.c",
+    "tu": "rel/sel/sel_b.c",
     "pool": {
       "lbl_10_bss_51750__fzgx_offset_2": "lbl_10_bss_51750+0x2",
       "lbl_10_rodata_158": "lbl_10_rodata_158"
@@ -85264,7 +85264,7 @@
   },
   {
     "module": "story",
-    "source": "rel/story/story_mode/fn_7_4108.c",
+    "source": "rel/story/story_mode_b/fn_7_4108.c",
     "symbols": [
       "fn_7_4108",
       "fn_7_41FC",
@@ -85278,7 +85278,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/story/story_mode.c"
+    "tu": "rel/story/story_mode_b.c"
   },
   {
     "module": "title",

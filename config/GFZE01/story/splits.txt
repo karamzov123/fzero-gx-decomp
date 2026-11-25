@@ -12,7 +12,7 @@ rel/story/story_mode/_prolog.c:
 	.data       start:0x00000000 end:0x00013FE0 align:8
 	.bss        start:0x00000000 end:0x00001960 align:8
 
-rel/story/story_mode/fn_7_4108.c:
+rel/story/story_mode_b/fn_7_4108.c:
 	.text       start:0x00004108 end:0x000065E4 align:4
 	.rodata     start:0x00000780 end:0x000007C8 align:8
 	.data       start:0x00013FE0 end:0x00014124 align:8

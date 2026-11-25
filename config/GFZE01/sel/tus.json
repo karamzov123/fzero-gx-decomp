@@ -6,12 +6,12 @@
    "file": "sel.c",
    "text": [
     0,
-    143964
+    53316
    ],
    "data_sec": 5,
    "data": [
     1404,
-    27008
+    3328
    ],
    "anchor_refs": [
     2816,
@@ -135,7 +135,27 @@
     "fn_10_CF30",
     "fn_10_CF50",
     "fn_10_CFAC",
-    "fn_10_CFDC",
+    "fn_10_CFDC"
+   ],
+   "confidence": {
+    "text+data": 40,
+    "text-range": 168,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "sel_b.c",
+   "text": [
+    53316,
+    143964
+   ],
+   "data_sec": 5,
+   "data": [
+    3328,
+    27008
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_10_D044",
     "fn_10_D5D4",
     "fn_10_DAF8",
@@ -229,8 +249,8 @@
     "fn_10_2324C"
    ],
    "confidence": {
-    "text+data": 40,
-    "text-range": 168,
+    "text+data": 91,
+    "text-range": 0,
     "data-vote": 0
    }
   },

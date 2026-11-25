@@ -6,12 +6,12 @@
    "file": "story_mode.c",
    "text": [
     0,
-    26084
+    16648
    ],
    "data_sec": 5,
    "data": [
     80444,
-    82212
+    81888
    ],
    "anchor_refs": [
     0,
@@ -79,7 +79,27 @@
     "fn_7_3AB0",
     "fn_7_3FCC",
     "fn_7_4050",
-    "fn_7_4094",
+    "fn_7_4094"
+   ],
+   "confidence": {
+    "text+data": 16,
+    "text-range": 52,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "story_mode_b.c",
+   "text": [
+    16648,
+    26084
+   ],
+   "data_sec": 5,
+   "data": [
+    81888,
+    82212
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_7_4108",
     "fn_7_41FC",
     "fn_7_44DC",
@@ -89,8 +109,8 @@
     "fn_7_4FD0"
    ],
    "confidence": {
-    "text+data": 16,
-    "text-range": 52,
+    "text+data": 7,
+    "text-range": 0,
     "data-vote": 0
    }
   }
