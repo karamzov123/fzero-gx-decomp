@@ -484,5 +484,13 @@
       "sha256": "5d05c035cbd1763edd0b7d7562d94219ecfc601c5b17b6756cad53141bef3dc0",
       "evidence": "Dolphin SDK db/db.c writes __DBExceptionDestination as a CodeWarrior asm function (nofralloc): retail 0x80015AA8..0x80015AB8 sets MSR[IR|DR] with mfmsr/ori/mtmsr and branches to __DBExceptionDestinationAux with no compiler frame, which C cannot express; DBInit and the rest of db.c are compiled C in the same TU."
     }
+  ],
+  "src/dol/ai/ai.c": [
+    {
+      "symbol": "__AICallbackStackSwitch",
+      "form": "asm-function",
+      "sha256": "b01586acbb05c24db4682282bd60698d7877cf6934ae386c93f6de31f28cb473",
+      "evidence": "Dolphin SDK ai/ai.c writes __AICallbackStackSwitch as a CodeWarrior asm function (fralloc/frfree): retail 0x8001E5A8..0x8001E600 saves r1 to __OldStack, loads the DMA callback stack into r1, calls the callback with mtlr/blrl and restores r1, a stack switch that C cannot express; the rest of ai.c is compiled C in the same TU."
+    }
   ]
 }

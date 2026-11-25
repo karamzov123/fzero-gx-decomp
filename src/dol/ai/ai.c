@@ -229,3 +229,88 @@ void __AIDHandler(s16 interrupt, OSContext *context) {
     OSClearContext(&tempContext);
     OSSetCurrentContext(context);
 }
+
+extern u32 lbl_801A69E0;
+extern u8 *lbl_801A69AC;
+
+/* Dolphin SDK ai/ai.c: __AICallbackStackSwitch is a CodeWarrior asm function in the
+ * original. It saves the stack pointer, switches r1 to the DMA callback stack, calls the
+ * callback through LR and restores the old stack (fralloc builds the frame). */
+asm void __AICallbackStackSwitch(register AIDCallback cb) {
+    fralloc
+    lis r5, lbl_801A69AC@ha
+    addi r5, r5, lbl_801A69AC@l
+    stw r1, 0(r5)
+    lis r5, lbl_801A69A8@ha
+    addi r5, r5, lbl_801A69A8@l
+    lwz r1, 0(r5)
+    subi r1, r1, 8
+    mtlr cb
+    blrl
+    lis r5, lbl_801A69AC@ha
+    addi r5, r5, lbl_801A69AC@l
+    lwz r1, 0(r5)
+    frfree
+    blr
+}
+
+#pragma peephole off
+void __AI_SRC_INIT(void) {
+    OSTime rising_32khz = 0;
+    OSTime rising_48khz = 0;
+    OSTime diff = 0;
+    OSTime t1 = 0;
+    OSTime temp = 0;
+    u32 temp0 = 0;
+    u32 temp1 = 0;
+    u32 done = 0;
+    u32 volume = 0;
+    u32 Init_Cnt = 0;
+    u32 walking = 0;
+    walking = 0;
+    Init_Cnt = 0;
+    temp = 0;
+    while (!done) {
+        __AIRegs[0] = (__AIRegs[0] & ~0x20) | 0x20;
+        __AIRegs[0] &= ~2;
+        __AIRegs[0] = (__AIRegs[0] & ~1) | 1;
+        temp0 = __AIRegs[2];
+        while (temp0 == __AIRegs[2])
+            ;
+        rising_32khz = OSGetTime();
+        __AIRegs[0] = (__AIRegs[0] & ~2) | 2;
+        __AIRegs[0] = (__AIRegs[0] & ~1) | 1;
+        temp1 = __AIRegs[2];
+        while (temp1 == __AIRegs[2])
+            ;
+        rising_48khz = OSGetTime();
+        diff = rising_48khz - rising_32khz;
+        __AIRegs[0] &= ~2;
+        __AIRegs[0] &= ~1;
+        if (diff < (lbl_801A69B8 - lbl_801A69D8)) {
+            temp = lbl_801A69C8;
+            done = 1;
+            ++Init_Cnt;
+        } else if (diff >= (lbl_801A69B8 + lbl_801A69D8) && diff < (lbl_801A69C0 - lbl_801A69D8)) {
+            temp = lbl_801A69D0;
+            done = 1;
+            ++Init_Cnt;
+        } else {
+            done = 0;
+            walking = 1;
+            ++Init_Cnt;
+        }
+    }
+    while ((rising_48khz + temp) > OSGetTime())
+        ;
+}
+
+extern u32 lbl_801A69E0;
+
+u32 fn_8001E7E4(u32 value) {
+    u32 previous = lbl_801A69E0;
+    BOOL state = OSDisableInterrupts();
+    lbl_801A69E0 = value;
+    OSRestoreInterrupts(state);
+    return previous;
+}

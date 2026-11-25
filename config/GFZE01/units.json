@@ -6845,8 +6845,7 @@
   },
   {
     "module": "main",
-    "source": "dol/AIInitDMA.c",
-    "status": "matching",
+    "source": "dol/ai/ai.c",
     "symbols": [
       "AIGetStreamVolRight",
       "AIInit",
@@ -6863,14 +6862,18 @@
       "AIStartDMA",
       "AIStopDMA",
       "AISetStreamPlayState",
-      "AIGetStreamPlayState"
+      "AIGetStreamPlayState",
+      "__AICallbackStackSwitch",
+      "__AI_SRC_INIT",
+      "fn_8001E7E4"
     ],
+    "status": "matching",
     "mw_version": "GC/1.2.5n",
     "extra_cflags": [
       "-inline",
       "on,noauto"
     ],
-    "matching_for": ["GFZE01"]
+    "collapsed": true
   },
   {
     "module": "main",
@@ -8440,29 +8443,6 @@
     "status": "matching",
     "mw_version": "GC/1.2.5n",
     "extra_cflags": [],
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/__AICallbackStackSwitch.c",
-    "symbols": [
-      "__AICallbackStackSwitch"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/__AI_SRC_INIT.c",
-    "symbols": [
-      "__AI_SRC_INIT",
-      "fn_8001E7E4"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.2.5n",
     "collapsed": true
   },
   {

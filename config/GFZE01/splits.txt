@@ -589,8 +589,8 @@ dol/ClampStick.c:
 dol/pad/Pad.c:
 	.text       start:0x8001C304 end:0x8001DF44
 
-dol/AIInitDMA.c:
-	.text       start:0x8001DF44 end:0x8001E5A8 align:4
+dol/ai/ai.c:
+	.text       start:0x8001DF44 end:0x8001E828 align:4
 
 dol/os/OSResetSW.c:
 	.text       start:0x8000F264 end:0x8000F610 align:4
@@ -613,9 +613,6 @@ dol/gx/GXBump.c:
 
 dol/gx/GXTransform.c:
 	.text       start:0x80038A88 end:0x8003910C align:4
-
-dol/__AI_SRC_INIT.c:
-	.text       start:0x8001E600 end:0x8001E828 align:4
 
 dol/ar/ar.c:
 	.text       start:0x8001E828 end:0x80020360 align:4
@@ -929,9 +926,6 @@ dol/PSMTXScale.c:
 
 dol/PSMTXQuat.c:
 	.text       start:0x80015B78 end:0x80015C1C align:4
-
-dol/__AICallbackStackSwitch.c:
-	.text       start:0x8001E5A8 end:0x8001E600 align:4
 
 dol/__shl2i.c:
 	.text       start:0x80079D04 end:0x80079D28 align:4
