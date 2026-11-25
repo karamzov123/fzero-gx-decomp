@@ -1079,14 +1079,14 @@
       "__OSUnmappedMemory": 2172649472
     },
     "bindings": {
-      "Config24MB": "Config24MB_8000E854",
-      "Config48MB": "Config48MB_8000E8D4",
+      "Config24MB": "Config24MB",
+      "Config48MB": "Config48MB",
       "DCInvalidateRange": "DCInvalidateRange",
       "MEMIntrruptHandler": "MEMIntrruptHandler",
       "OSDisableInterrupts": "OSDisableInterrupts",
       "OSRegisterResetFunction": "OSRegisterResetFunction",
       "OSRestoreInterrupts": "OSRestoreInterrupts",
-      "RealMode": "RealMode_8000E954",
+      "RealMode": "RealMode",
       "ResetFunctionInfo": "ResetFunctionInfo_80123AE0",
       "__OSInitMemoryProtection": "__OSInitMemoryProtection",
       "__OSMaskInterrupts": "__OSMaskInterrupts",

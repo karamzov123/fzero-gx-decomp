@@ -24,6 +24,14 @@
 #define GQR7 919
 #define DMA_U 922
 #define DMA_L 923
+#define IBAT0U 528
+#define IBAT0L 529
+#define IBAT2U 532
+#define IBAT2L 533
+#define DBAT0U 536
+#define DBAT0L 537
+#define DBAT2U 540
+#define DBAT2L 541
 #define DBAT3U 542
 #define DBAT3L 543
 

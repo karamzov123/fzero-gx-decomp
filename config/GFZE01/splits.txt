@@ -20,8 +20,8 @@ dol/__OSInitAudioSystem.c:
 dol/os/OSLink.c:
 	.text       start:0x8000DD60 end:0x8000E794 align:4
 
-dol/fn_8000E794.c:
-	.text       start:0x8000E794 end:0x8000E854 align:4
+dol/os/OSMemory.c:
+	.text       start:0x8000E794 end:0x8000EA84 align:4
 
 dol/os/OSReboot.c:
 	.text       start:0x8000EAF4 end:0x8000EE70 align:4
@@ -412,15 +412,6 @@ dol/os/OSContext.c:
 dol/os/OSInterrupt.c:
 	.text       start:0x8000D4F4 end:0x8000DD60 align:4
 
-dol/Config24MB.c:
-	.text       start:0x8000E854 end:0x8000E8D4 align:4
-
-dol/Config48MB.c:
-	.text       start:0x8000E8D4 end:0x8000E954 align:4
-
-dol/RealMode.c:
-	.text       start:0x8000E954 end:0x8000E96C align:4
-
 dol/os/OSSync.c:
 	.text       start:0x800100BC end:0x80010144 align:4
 
@@ -572,9 +563,6 @@ dol/SetExiInterruptMask.c:
 
 dol/exi/EXIUart.c:
 	.text       start:0x80015464 end:0x80015A38 align:4
-
-dol/__OSInitMemoryProtection.c:
-	.text       start:0x8000E96C end:0x8000EA84 align:4
 
 dol/os/OSTime.c:
 	.text       start:0x8001140C end:0x80011888 align:4

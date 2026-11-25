@@ -23701,7 +23701,7 @@
     "declarations": [
       {
         "declaration": "OSResetFunctionInfo ResetFunctionInfo",
-        "path": "src/dol/__OSInitMemoryProtection.c"
+        "path": "src/dol/os/OSMemory.c"
       }
     ],
     "definition": "Data_ResetFunctionInfo ResetFunctionInfo",

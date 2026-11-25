@@ -7103,30 +7103,6 @@
   },
   {
     "module": "main",
-    "source": "dol/Config24MB.c",
-    "symbols": [
-      "Config24MB"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/Config48MB.c",
-    "symbols": [
-      "Config48MB"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
     "source": "dol/os/OSCache.c",
     "symbols": [
       "DCEnable",
@@ -7524,15 +7500,21 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_8000E794.c",
+    "source": "dol/os/OSMemory.c",
     "symbols": [
       "fn_8000E794",
       "fn_8000E7A0",
       "OnReset",
-      "MEMIntrruptHandler"
+      "MEMIntrruptHandler",
+      "Config24MB",
+      "Config48MB",
+      "RealMode",
+      "__OSInitMemoryProtection"
     ],
     "status": "matching",
-    "mw_version": "GC/1.2.5n"
+    "mw_version": "GC/1.2.5n",
+    "extra_cflags": [],
+    "collapsed": true
   },
   {
     "module": "main",
@@ -7800,18 +7782,6 @@
     "status": "matching",
     "mw_version": "GC/1.2.5n",
     "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/RealMode.c",
-    "symbols": [
-      "RealMode"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
   },
   {
     "module": "main",
@@ -8773,16 +8743,6 @@
       "DriveInfo": "DriveInfo",
       "__OSDriveBlock": "__OSDriveBlock"
     }
-  },
-  {
-    "module": "main",
-    "source": "dol/__OSInitMemoryProtection.c",
-    "symbols": [
-      "__OSInitMemoryProtection"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",

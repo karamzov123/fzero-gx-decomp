@@ -456,5 +456,25 @@
       "sha256": "31d555dce7acd8f2bcc4381fbb76112aa2b7b4d5f030b167c7420de8db5c2550",
       "evidence": "Dolphin SDK os/OSInterrupt.c writes OSDisableInterrupts (with the __RAS_OSDisableInterrupts_begin/_end entry labels that OSLoadContext tests), OSEnableInterrupts and OSRestoreInterrupts as CodeWarrior asm functions (nofralloc, mfmsr/mtmsr of MSR[EE]), and ExternalInterruptHandler as a static asm entry that saves r0-r2, stmw r6-r31 and GQR1-GQR7 into the OSContext, opens an 8-byte frame by hand and branches to __OSDispatchInterrupt; retail 0x8000D4F4..0x8000D540 and 0x8000DD10..0x8000DD60 have no compiler frames. The handler table and dispatch are compiled C in the same TU."
     }
+  ],
+  "src/dol/os/OSMemory.c": [
+    {
+      "symbol": "Config24MB",
+      "form": "asm-function",
+      "sha256": "62bb614377bd608d00aaa020159a104351284044bd8e7da71ca9b391e9540cb0",
+      "evidence": "Dolphin SDK os/OSMemory.c writes Config24MB, Config48MB and RealMode as static CodeWarrior asm functions (nofralloc): retail 0x8000E854..0x8000E96C programs IBAT0/IBAT2 and DBAT0/DBAT2 with mtspr between isync, and returns through SRR0/SRR1 with rfi to switch address translation, which MWCC never emits from C; the memory-size accessors, reset hook, protection interrupt handler and __OSInitMemoryProtection are compiled C in the same TU."
+    },
+    {
+      "symbol": "Config48MB",
+      "form": "asm-function",
+      "sha256": "a65c2e4e2b0805c116470246c0d3e063235c6a808e64b749464c544f65fd20af",
+      "evidence": "Dolphin SDK os/OSMemory.c writes Config24MB, Config48MB and RealMode as static CodeWarrior asm functions (nofralloc): retail 0x8000E854..0x8000E96C programs IBAT0/IBAT2 and DBAT0/DBAT2 with mtspr between isync, and returns through SRR0/SRR1 with rfi to switch address translation, which MWCC never emits from C; the memory-size accessors, reset hook, protection interrupt handler and __OSInitMemoryProtection are compiled C in the same TU."
+    },
+    {
+      "symbol": "RealMode",
+      "form": "asm-function",
+      "sha256": "d21480c21ccd4ba1873df47fbca4346445517c7488fd61b1cfeaddbed05bdd66",
+      "evidence": "Dolphin SDK os/OSMemory.c writes Config24MB, Config48MB and RealMode as static CodeWarrior asm functions (nofralloc): retail 0x8000E854..0x8000E96C programs IBAT0/IBAT2 and DBAT0/DBAT2 with mtspr between isync, and returns through SRR0/SRR1 with rfi to switch address translation, which MWCC never emits from C; the memory-size accessors, reset hook, protection interrupt handler and __OSInitMemoryProtection are compiled C in the same TU."
+    }
   ]
 }
