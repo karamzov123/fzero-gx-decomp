@@ -243,7 +243,7 @@ rel/main_rel/enemy_ctrl/fn_1_C47B4.c:
 	.bss        start:0x0007AC48 end:0x0007ACA0 align:8
 
 rel/main_rel/enemy_ctrl_c/fn_1_D0D88.c:
-	.text       start:0x000D0D88 end:0x000D123C align:4
+	.text       start:0x000D0D88 end:0x000D1780 align:4
 	.rodata     start:0x00006078 end:0x000060A0 align:8
 	.data       start:0x0003D648 end:0x0003D670 align:8
 
@@ -8371,9 +8371,6 @@ rel/main_rel/bg_for/fn_1_DEDC4.c:
 
 rel/main_rel/burner/fn_1_9A1E8.c:
 	.text       start:0x0009A1E8 end:0x0009A508 align:4
-
-rel/main_rel/enemy_ctrl_c/fn_1_D123C.c:
-	.text       start:0x000D123C end:0x000D1780 align:4
 
 rel/main_rel/sel_static_disp/fn_1_13C5EC.c:
 	.text       start:0x0013C5EC end:0x0013D02C align:4

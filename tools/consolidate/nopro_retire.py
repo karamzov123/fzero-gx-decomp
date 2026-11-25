@@ -22,10 +22,23 @@ def gen(tf, syms):
 
 import declfix
 MVCF = {}
+TYPEDEF_RE = re.compile(r'typedef\s+(?:struct|union|enum)\b[^{;]*\{[^{}]*\}\s*\w+\s*;')
+
+def drop_identical_typedefs(body, pro):
+    """Drop a block's typedef that the prologue already defines with identical text: an anonymous
+    struct typedef defined twice is two distinct types, which renaming cannot reconcile."""
+    norm = lambda t: re.sub(r'\s+', ' ', re.sub(r'//[^\n]*|/\*.*?\*/', '', t, flags=re.S)).strip()
+    known = {norm(m.group(0)) for m in TYPEDEF_RE.finditer(pro)}
+    return TYPEDEF_RE.sub(lambda m: '' if norm(m.group(0)) in known else m.group(0), body)
+
 def candidates(fn, body, pro, info):
     incs, tags, tdefs, exts = info
     c = np.clean_block_for_prologue(fn, body, incs, tags, tdefs, exts)
     yield c
+    d0 = drop_identical_typedefs(body, pro)
+    if d0 != body:
+        c1 = np.clean_block_for_prologue(fn, d0, incs, tags, tdefs, exts)
+        if c1 != c: yield c1
     if '--fix' in sys.argv and MVCF:
         mv, cf = MVCF['v']
         c2 = np.clean_block_for_prologue(fn, body, incs, tags, tdefs, set())  # keep externs: fixer decides

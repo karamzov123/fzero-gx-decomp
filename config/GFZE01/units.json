@@ -71574,28 +71574,17 @@
       "fn_1_D0E54",
       "fn_1_D0E64",
       "fn_1_D0E74",
-      "fn_1_D0F60"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/enemy_ctrl_c.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/enemy_ctrl_c/fn_1_D123C.c",
-    "symbols": [
+      "fn_1_D0F60",
       "fn_1_D123C"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "tu": "rel/main_rel/enemy_ctrl_c.c",
     "extra_cflags": [
       "-fp_contract",
       "off"
-    ]
+    ],
+    "tu": "rel/main_rel/enemy_ctrl_c.c"
   },
   {
     "module": "main_rel",
