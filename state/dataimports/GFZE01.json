@@ -26376,13 +26376,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 177,
+    "section_size": 152,
     "sha256": "2c34ce1df23b838c5abf2a7f6437cca3d3067ed509ff25f11df6b11b582b51eb",
     "size": 40,
     "source": "dol/data/gTRKRestoreFlags.c",
     "symbol": "gDBCommTable",
     "unit_align": 8,
-    "unit_size": 177,
+    "unit_size": 152,
     "unit_start": 2148907112
   },
   "main:gTRKBigEndian": {
@@ -26563,13 +26563,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 177,
+    "section_size": 152,
     "sha256": "741939ccb979df0dbf391a6548f88fd9d1873aa3fb996f1df39abc6a66df7025",
     "size": 16,
     "source": "dol/data/gTRKRestoreFlags.c",
     "symbol": "gTRKExceptionStatus",
     "unit_align": 8,
-    "unit_size": 177,
+    "unit_size": 152,
     "unit_start": 2148907112
   },
   "main:gTRKInputPendingPtr": {
@@ -26621,13 +26621,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 177,
+    "section_size": 152,
     "sha256": "3e7077fd2f66d689e0cee6a7cf5b37bf2dca7c979af356d0a31cbc5c85605c7d",
     "size": 9,
     "source": "dol/data/gTRKRestoreFlags.c",
     "symbol": "gTRKRestoreFlags",
     "unit_align": 8,
-    "unit_size": 177,
+    "unit_size": 152,
     "unit_start": 2148907112
   },
   "main:gTRKSaveState": {
@@ -36040,13 +36040,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 177,
+    "section_size": 152,
     "sha256": "de47c9b27eb8d300dbb5f2c353e632c393262cf06340c4fa7f1b40c4cbd36f90",
     "size": 20,
     "source": "dol/data/gTRKRestoreFlags.c",
     "symbol": "lbl_8015B884",
     "unit_align": 8,
-    "unit_size": 177,
+    "unit_size": 152,
     "unit_start": 2148907112
   },
   "main:lbl_8015B898": {
@@ -36066,44 +36066,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 177,
+    "section_size": 152,
     "sha256": "ab0c90b2c8c432b6ba883ae29193f07b3ab8cf1229384253fdd724281ad7a948",
     "size": 64,
     "source": "dol/data/gTRKRestoreFlags.c",
     "symbol": "lbl_8015B898",
     "unit_align": 8,
-    "unit_size": 177,
-    "unit_start": 2148907112
-  },
-  "main:lbl_8015B900": {
-    "address": 2148907264,
-    "align": 32,
-    "declarations": [
-      {
-        "declaration": "char lbl_8015B900[25]",
-        "path": "src/dol/fn_8008EED8.c"
-      },
-      {
-        "declaration": "char lbl_8015B900[25]",
-        "path": "src/dol/fn_8008EFE0.c"
-      }
-    ],
-    "definition": "char lbl_8015B900[25]",
-    "method": "string",
-    "module": "main",
-    "references": [
-      "fn_8008EED8",
-      "fn_8008EFE0"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 177,
-    "sha256": "127249b300a6192fc631d14a2bb6da5cd2e19581b3de8cd9240d6b51954ca4e9",
-    "size": 25,
-    "source": "dol/data/gTRKRestoreFlags.c",
-    "symbol": "lbl_8015B900",
-    "unit_align": 8,
-    "unit_size": 177,
+    "unit_size": 152,
     "unit_start": 2148907112
   },
   "main:lbl_8015B920": {

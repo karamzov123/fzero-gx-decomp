@@ -91,9 +91,6 @@ dol/trk/targimpl.c:
 dol/trk/dolphin_trk_glue.c:
 	.text       start:0x8008D2AC end:0x8008D77C align:4
 
-dol/fn_8008F44C.c:
-	.text       start:0x8008F44C end:0x8008F454 align:4
-
 dol/odemuexi2/DebuggerDriver.c:
 	.text       start:0x8008F454 end:0x8008FED4 align:4
 
@@ -665,9 +662,6 @@ dol/__OSUnlockAllMutex.c:
 dol/runtime/string.c:
 	.text       start:0x80083970 end:0x80083E84 align:4
 
-dol/fn_8008EC78.c:
-	.text       start:0x8008EC78 end:0x8008ECE0 align:4
-
 dol/OSError.c:
 	.text       start:0x8000C41C end:0x8000CAC8 align:4
 	.sdata      start:0x801A6430 end:0x801A6438 align:8
@@ -938,9 +932,6 @@ dol/fn_800137C4.c:
 dol/card/CARDStatEx.c:
 	.text       start:0x80030380 end:0x80030690 align:4
 
-dol/fn_8008EB4C.c:
-	.text       start:0x8008EB4C end:0x8008EB8C align:4
-
 dol/sasnd/sasnd_mix.c:
 	.text       start:0x80069B10 end:0x8006A3DC align:4
 	.sdata2     start:0x801A7350 end:0x801A7370 align:8
@@ -1029,9 +1020,6 @@ dol/fn_80057494.c:
 dol/fn_800576DC.c:
 	.text       start:0x800576DC end:0x80057774 align:4
 
-dol/fn_8008EB8C.c:
-	.text       start:0x8008EB8C end:0x8008EBF8 align:4
-
 dol/gx/GXMisc.c:
 	.text       start:0x80033D8C end:0x8003458C align:4
 
@@ -1118,9 +1106,6 @@ dol/fn_8002123C.c:
 
 dol/CARDGetSerialNo.c:
 	.text       start:0x80030690 end:0x800307CC align:4
-
-dol/fn_8008EDF0.c:
-	.text       start:0x8008EDF0 end:0x8008EFE0 align:4
 
 dol/fn_80008FB0.c:
 	.text       start:0x80008FB0 end:0x80009064 align:4
@@ -1230,23 +1215,14 @@ dol/thp/THPDec_hdr.c:
 dol/fn_80009468.c:
 	.text       start:0x80009468 end:0x80009CD4 align:4
 
-dol/fn_8008F29C.c:
-	.text       start:0x8008F29C end:0x8008F44C align:4
-
 dol/fn_800805C0.c:
 	.text       start:0x800805C0 end:0x8008067C align:4
 
 dol/av/avdisp_state.c:
 	.text       start:0x800725DC end:0x800747D0 align:4
 
-dol/fn_8008EFE0.c:
-	.text       start:0x8008EFE0 end:0x8008F29C align:4
-
 dol/av/avdisp_mat.c:
 	.text       start:0x80075908 end:0x80078538 align:4
-
-dol/fn_8008E9B4.c:
-	.text       start:0x8008E9B4 end:0x8008EB4C align:4
 
 dol/data/lbl_8015BE40.c:
 	.bss        start:0x8015BE40 end:0x8015BF00 align:8
@@ -1285,9 +1261,6 @@ dol/axart/axartcents.c:
 
 dol/av/avdisp_tail.c:
 	.text       start:0x800789D8 end:0x80079654 align:4
-
-dol/fn_8008EBF8.c:
-	.text       start:0x8008EBF8 end:0x8008EC78 align:4
 
 dol/TRKTargetContinue.c:
 	.text       start:0x8008D77C end:0x8008D7B0 align:4
@@ -1330,8 +1303,9 @@ dol/sasnd/sasnd_voice.c:
 	.data       start:0x801325D8 end:0x80132788 align:8
 	.sdata2     start:0x801A7218 end:0x801A7280 align:8
 
-dol/fn_8008E770.c:
-	.text       start:0x8008E770 end:0x8008E9B4 align:4
+dol/trk/exi2.c:
+	.text       start:0x8008E770 end:0x8008F454 align:4
+	.data       start:0x8015B900 end:0x8015B919 align:4
 
 dol/fn_8007E914.c:
 	.text       start:0x8007E914 end:0x8007E96C align:4
@@ -1393,9 +1367,6 @@ dol/gx/GXStubs.c:
 dol/gx/GXDisplayList.c:
 	.text       start:0x8003887C end:0x80038A88 align:4
 	.bss        start:0x801783A0 end:0x801788C0 align:8
-
-dol/fn_8008ECE0.c:
-	.text       start:0x8008ECE0 end:0x8008EDF0 align:4
 
 dol/data/lbl_8015B920.c:
 	.bss        start:0x8015B920 end:0x8015BE40 align:8
@@ -3058,7 +3029,7 @@ dol/locale.c:
 	.data       start:0x8015B400 end:0x8015B438 align:8
 
 dol/data/gTRKRestoreFlags.c:
-	.data       start:0x8015B868 end:0x8015B919 align:8
+	.data       start:0x8015B868 end:0x8015B900 align:8
 
 dol/data/lbl_80090990.c:
 	.rodata     start:0x80090990 end:0x80090A20 align:16

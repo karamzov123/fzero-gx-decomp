@@ -5757,7 +5757,7 @@
         "data-evidence": 17
       },
       "lib": "odemuexi2",
-      "notes": "0x8008E770..0x8008F454: no donor: the EXI2 debugger link used by the ddh callers, with the string \"Can't select EXI2 port!\" at .data 0x8015B900. It lies between MWCriticalSection_gc.cpp and DebuggerDriver.c. The two 4-byte stubs at the end are placed by position. The file name is a placeholder."
+      "notes": "0x8008E770..0x8008F454: no donor: the EXI2 debugger link used by the ddh callers, with the string \"Can't select EXI2 port!\" at .data 0x8015B900. It lies between MWCriticalSection_gc.cpp and DebuggerDriver.c. The two 4-byte stubs at the end are placed by position. The file name is a placeholder. One GC/1.2.5 -inline on,noauto unit: the channel-2 EXIBios copy (EXIImm, EXISync, EXIClearInterrupts, EXISetExiCallback, EXISelect, EXIDeselect, the interrupt handler) followed by the EXI2_* entry points."
     },
     {
       "file": "DebuggerDriver.c",

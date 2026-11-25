@@ -38,6 +38,10 @@ def drop_definition(text, name):
 def main():
     args = [x for x in sys.argv[1:] if x != '--apply']
     unit, sec, lo, hi = args[0], args[1], int(args[2], 16), int(args[3], 16)
+    b = open('orig/GFZE01/sys/main.dol', 'rb').read()
+    for a, s in zip(struct.unpack('>18I', b[72:144]), struct.unpack('>18I', b[144:216])):
+        if s and a <= lo < a + s and hi > a + s:
+            hi = a + s          # a split never runs past its section (the regions check this)
     units = json.load(open(UNITS)); imports = json.load(open(IMPORTS)); text = open(SPLITS).read()
     target = next(u for u in units if u['source'] == unit)
     nu = d.ninja_units(); mv, cf = nu['src/' + unit]
