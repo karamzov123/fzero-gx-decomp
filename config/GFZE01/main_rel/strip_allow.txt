@@ -30,3 +30,11 @@ stcoli_damage_timer  # coli_b.c, inlined in fn_1_24A4C
 stcoli_slide  # coli_b.c, inlined in fn_1_266A8
 stcoli_fallback_axis  # coli_b.c, inlined in fn_1_290E8
 stcoli_align_to_ground  # coli_b.c, inlined in fn_1_290E8
+depth_fade_far  # car.c, removed helper inferred from the unread .rodata 3528 f64 0.1 (body inferred), before fn_1_7EB8C
+car_literal_order_3A50  # car.c, owner-accepted literal-order placeholder (retail body unknown), before fn_1_80294
+car_literal_order_3B70  # car.c, owner-accepted literal-order placeholder (retail body unknown), before fn_1_84860
+car_literal_order_3C34  # car.c, owner-accepted literal-order placeholder (retail body unknown), before fn_1_892FC
+car_literal_order_3CF0  # car.c, owner-accepted literal-order placeholder (retail body unknown), before fn_1_8B9B8
+rob_open_lip  # rob.c, inlined in fn_1_8F62C
+rob_set_blink_wait  # rob.c, inlined in fn_1_8F62C
+rob_load_coin_models  # rob.c, no retail caller: reconstruction from the unread .gma strings at .data 27C50 only

@@ -153,7 +153,7 @@ dol/trk/nubevent.c:
 
 dol/ahx/ahx_transform.c:
 	.text       start:0x80051F38 end:0x80052430 align:4
-	.rodata     start:0x80091330 end:0x80091334 align:4
+	.rodata     start:0x80091330 end:0x80091338 align:4
 
 dol/ahx/ahx_synth.c:
 	.text       start:0x80052430 end:0x80053A38 align:4
@@ -161,7 +161,7 @@ dol/ahx/ahx_synth.c:
 
 dol/ahx/ahx_synthobj.c:
 	.text       start:0x80053A38 end:0x80053EA0 align:4
-	.rodata     start:0x80091350 end:0x80091354 align:4
+	.rodata     start:0x80091350 end:0x80091358 align:4
 
 dol/ahx/ahx_player.c:
 	.text       start:0x80053EA0 end:0x8005466C align:4
@@ -213,7 +213,7 @@ dol/fn_80058A20.c:
 
 dol/ahx/ahx_adxt.c:
 	.text       start:0x80051CC0 end:0x80051F38 align:4
-	.rodata     start:0x80091300 end:0x8009132C align:4
+	.rodata     start:0x80091300 end:0x80091330 align:4
 
 dol/adx/cri_cvfs.c:
 	.text       start:0x8005466C end:0x800555C0 align:4

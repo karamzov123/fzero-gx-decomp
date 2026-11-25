@@ -236,5 +236,19 @@
       "sha256": "c87a5c788e1cc745498e850178f99d7eaf33af220393254ee86beb43f952531d",
       "evidence": "Dolphin SDK base/PPCArch.c writes its register accessors as CodeWarrior asm functions (nofralloc): retail 0x80009FBC..0x8000A0FC is a run of two-instruction mfspr/mtspr/mtmsr/mtdec/sc leaves and the sync;nop;li;nop;b PPCHalt loop with no compiler frame, mixed in one TU with the C FPSCR accessors and PPCDisableSpeculation; same file organization in every published Dolphin SDK decomp."
     }
+  ],
+  "src/rel/main_rel/car.c": [
+    {
+      "symbol": "fn_1_892CC",
+      "form": "asm-function",
+      "sha256": "57614fc8f26e76021ed54bb509264ae3e5faefa20ad7974ce6fa915c2750316a",
+      "evidence": "Retail 0x892CC..0x892E8: frameless leaf copying 12 bytes through r5/r6, which are dummy parameters: all 8 callers in fn_1_8A1B4 load li r5,0 / li r6,0 before the call. MWCC -O0..-O4 and GC/1.1-2.7 never pick r5/r6 for this copy (CLAUDE.md dead end; cardev/r3_892CC). Same-engine SMB1 mathutil copy routines are asm nofralloc."
+    },
+    {
+      "symbol": "fn_1_892E8",
+      "form": "asm-function",
+      "sha256": "b5b180600836542343c29b99ae1c38b0635c3c8348cab651b28167a823087caa",
+      "evidence": "Retail 0x892E8..0x892FC: frameless leaf zeroing three words with subf r4,r4,r4 on a dummy parameter (callers load li r4,0). subf rX,rX,rX occurs nowhere else in the 16 targets; compiled code zeroes with li (cardev/r3_892E8 scan). SMB1 mathutil asm zeroes by self-subtraction."
+    }
   ]
 }

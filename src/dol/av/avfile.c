@@ -151,13 +151,13 @@ void *fn_80006DFC(struct AvFileHandle *object) {
     return object;
 }
 
-void fn_80006E10(u32 arg0) {
+void fn_80006E10(const char *path) {
     u8 *p_lbl_8015BD40;
     u8 *v0;
     s32 v2;
 
-    v0 = (u8 *)arg0;
-    DVDChangeDir((char *)arg0);
+    v0 = (u8 *)path;
+    DVDChangeDir((char *)path);
     p_lbl_8015BD40 = lbl_8015BD40;
     while (*v0 != 0) {
         if (*v0 == '/') {

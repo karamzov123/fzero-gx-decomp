@@ -3885,7 +3885,7 @@ s32 fn_1_163BC(Vec3 *arg0, Vec3 *arg1, s32 mask, s32 arg3);
 s32 fn_1_16BA0(Vec3 *pos, f32 *ratio, s32 idx, s32 *sub, s32 strict);
 f32 fn_1_16E68(Vec3 *pos, s32 idx, s32 sub);
 u32 fn_1_17098(void *arg0, u32 arg1, u32 v1, u32 arg3, u32 arg4, ColiContext *ctx, void *arg6);
-void fn_1_17920(s32 index, void *arg1, f32 t);
+void fn_1_17920(s32 index, f32 t, void *arg1);
 s32 fn_1_17A9C(const f32 *arg0);
 int fn_1_17B5C(int a, int b, int count, f32 threshold);
 int fn_1_17C6C(int current, int next, int limit);
@@ -5451,7 +5451,7 @@ u32 fn_1_17098(void *arg0, u32 arg1, u32 v1, u32 arg3, u32 arg4, ColiContext *ct
 
 /* local view of the collision work area at [lbl_801A66CC]; the track query's area starts at +0x1B0 */
 
-void fn_1_17920(s32 index, void *arg1, f32 t) {
+void fn_1_17920(s32 index, f32 t, void *arg1) {
     fn_1_17920_Slot *table;
     fn_1_17920_Record *rec;
     void *node;
