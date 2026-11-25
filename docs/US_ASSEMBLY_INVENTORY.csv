@@ -102,7 +102,7 @@ main,fn_8000A030,8,standalone-assembly,evidenced-assembly,docs/findings/gfze01-a
 main,fn_8000A040,8,standalone-assembly,evidenced-assembly,docs/findings/gfze01-assembly-origin-audit.md#ppcarch-leaves
 main,fn_8000A050,8,standalone-assembly,evidenced-assembly,docs/findings/gfze01-assembly-origin-audit.md#ppcarch-leaves
 main,fn_8000A0B8,12,standalone-assembly,evidenced-assembly,docs/findings/gfze01-assembly-origin-audit.md#ppcarch-leaves
-main,fn_8000AA2C,4,original-assembly,evidenced-assembly,config/original_assembly.json
+main,__OSDBJump,4,original-assembly,evidenced-assembly,config/original_assembly.json
 main,fn_8000B8AC,20,standalone-assembly,evidenced-assembly,docs/findings/gfze01-assembly-origin-audit.md#oscache-leaves
 main,fn_8000BFC0,8,standalone-assembly,evidenced-assembly,docs/findings/gfze01-assembly-origin-audit.md#os-boot-exc-mmu
 main,fn_80023B70,400,standalone-assembly,evidenced-assembly,docs/findings/gfze01-assembly-origin-audit.md#audio-ps

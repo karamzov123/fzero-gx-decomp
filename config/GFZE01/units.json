@@ -7847,8 +7847,8 @@
       "Run",
       "fn_8000EB04",
       "__OSReboot",
-      "fn_8000EE50",
-      "fn_8000EE5C"
+      "OSSetSaveRegion",
+      "OSGetSavedRegion"
     ],
     "status": "matching",
     "mw_version": "GC/1.2.5n",
@@ -8750,7 +8750,7 @@
       "OSInit",
       "OSExceptionInit",
       "__OSDBIntegrator",
-      "fn_8000AA2C",
+      "__OSDBJump",
       "__OSSetExceptionHandler",
       "__OSGetExceptionHandler",
       "OSExceptionVector",

@@ -79,7 +79,7 @@ extern void fn_8006CDFC(void *);
 extern void fn_8006CE1C(f32);
 extern u32 fn_800702E4(u32);
 extern u32 fn_800791A4(void);
-extern void fn_8000EE5C(void *, void *);
+extern void OSGetSavedRegion(void *, void *);
 extern void *memset(void *, int, u32);
 extern void *memcpy(void *, const void *, u32);
 extern s32 DVDOpen(char *, DVDFileInfo *);
@@ -238,7 +238,7 @@ void fn_800057F8(void) {
     void *src;
     void *dst;
 
-    fn_8000EE5C(&src, &dst);
+    OSGetSavedRegion(&src, &dst);
     if (src == 0 || dst == 0) {
         memset(lbl_801A66B0, 0, 4);
     } else {

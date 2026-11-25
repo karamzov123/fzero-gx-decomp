@@ -476,7 +476,7 @@ entry __OSDBINTEND
 /* __OSDBJump. Assembly in the original: `bla 0x60` is an absolute branch that MWCC never
  * emits from C. It is a one-word trampoline that OSExceptionInit copies into the exception
  * vectors between __OSDBINTEND and __OSDBJUMPEND. */
-asm void fn_8000AA2C(void) {
+asm void __OSDBJump(void) {
     nofralloc
     bla     0x60
 entry __OSDBJUMPEND

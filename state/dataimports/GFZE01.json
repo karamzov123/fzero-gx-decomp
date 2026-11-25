@@ -25204,7 +25204,7 @@
     "module": "main",
     "references": [
       "ClearArena",
-      "fn_8000EE5C"
+      "OSGetSavedRegion"
     ],
     "relocations": [],
     "section": ".sbss",
@@ -25235,7 +25235,7 @@
     "module": "main",
     "references": [
       "ClearArena",
-      "fn_8000EE5C"
+      "OSGetSavedRegion"
     ],
     "relocations": [],
     "section": ".sbss",
@@ -51335,7 +51335,7 @@
       },
       {
         "declaration": "u32 lbl_801A67C0",
-        "path": "src/dol/fn_8000EE50.c"
+        "path": "src/dol/os/OSReboot.c"
       }
     ],
     "definition": "u32 lbl_801A67C0",
@@ -51343,7 +51343,7 @@
     "module": "main",
     "references": [
       "__OSReboot",
-      "fn_8000EE50"
+      "OSSetSaveRegion"
     ],
     "relocations": [],
     "section": ".sbss",
@@ -51366,7 +51366,7 @@
       },
       {
         "declaration": "u32 lbl_801A67C4",
-        "path": "src/dol/fn_8000EE50.c"
+        "path": "src/dol/os/OSReboot.c"
       }
     ],
     "definition": "u32 lbl_801A67C4",
@@ -51374,7 +51374,7 @@
     "module": "main",
     "references": [
       "__OSReboot",
-      "fn_8000EE50"
+      "OSSetSaveRegion"
     ],
     "relocations": [],
     "section": ".sbss",

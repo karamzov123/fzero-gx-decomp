@@ -13,9 +13,9 @@
       "evidence": "Retail 0x8000AA08..0x8000AA2C: copied fragment, fixed low-memory LR save, privileged mtmsr, no compiler prologue; docs/RECONSTRUCTION_STANDARDS.md."
     },
     {
-      "symbol": "fn_8000AA2C",
+      "symbol": "__OSDBJump",
       "form": "asm-function",
-      "sha256": "0b2c7f22b0b60c07576713667b448e85a3aecba49d7990fac9f3a23573b1c665",
+      "sha256": "572ce967c7105b4081f518065c7610c6224da15dc81e7250608f1c6a52bf3600",
       "evidence": "SDK __OSDBJump; retail 0x8000AA2C..0x8000AA30 is the copied absolute bla 0x60 trampoline, with __OSDBJUMPEND boundary."
     },
     {

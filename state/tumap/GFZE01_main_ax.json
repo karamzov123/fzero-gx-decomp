@@ -468,7 +468,7 @@
    "ax": "8018AD64",
    "files": []
   },
-  "fn_8000EE5C": {
+  "OSGetSavedRegion": {
    "gx": "8000EE5C",
    "ax": "8018B0B0",
    "files": []

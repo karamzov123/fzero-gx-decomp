@@ -9,7 +9,7 @@ extern void fn_8006B224(void);
 extern void fn_8006FFCC(int arg0);
 extern void fn_8006FDEC(void);
 extern void fn_8006FEFC(void);
-extern void fn_8000EE50(void *arg0, void *arg1);
+extern void OSSetSaveRegion(void *arg0, void *arg1);
 extern void fn_1_C37A0(void);
 extern void fn_1_F7578(void);
 extern void fn_1_A0AA4(void);
@@ -60,7 +60,7 @@ void fn_1_D3214(void) {
             fn_8006FFCC(0);
             fn_8006FDEC();
             fn_8006FEFC();
-            fn_8000EE50(RESET_AREA, RESET_AREA + 0x20);
+            OSSetSaveRegion(RESET_AREA, RESET_AREA + 0x20);
             memset(RESET_AREA, 0, 0x20);
             memcpy(RESET_AREA, lbl_801A66B0, 4);
             state->unk_0 = 0;
@@ -147,7 +147,7 @@ void fn_1_D3474(void) {
         fn_8006FFCC(0);
         fn_8006FDEC();
         fn_8006FEFC();
-        fn_8000EE50(RESET_AREA, RESET_AREA + 0x20);
+        OSSetSaveRegion(RESET_AREA, RESET_AREA + 0x20);
         memset(RESET_AREA, 0, 0x20);
         memcpy(RESET_AREA, lbl_801A66B0, 4);
         state->unk_0 = 0;

@@ -154,7 +154,7 @@ void __OSReboot(u16 resetCode, u32 bootDol) {
 #pragma peephole reset
 
 
-void fn_8000EE50(void *start, void *end) {
+void OSSetSaveRegion(void *start, void *end) {
     lbl_801A67C0 = start;
     lbl_801A67C4 = end;
 }
@@ -162,7 +162,7 @@ void fn_8000EE50(void *start, void *end) {
 extern void *__OSSavedRegionEnd;
 extern void *__OSSavedRegionStart;
 
-void fn_8000EE5C(void **start, void **end) {
+void OSGetSavedRegion(void **start, void **end) {
     *start = __OSSavedRegionStart;
     *end = __OSSavedRegionEnd;
 }

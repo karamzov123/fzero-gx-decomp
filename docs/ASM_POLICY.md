@@ -69,7 +69,7 @@ This is a review guard, not an exhaustive C preprocessor or a replacement for th
 compiler and retail oracle. Header kernels remain reviewed shared infrastructure.
 
 The accepted OS.c form is one mixed translation unit: `__OSDBIntegrator`,
-`fn_8000AA2C` (SDK `__OSDBJump`), `OSExceptionVector` and
+`__OSDBJump`, `__OSFPRInit`, `OSExceptionVector` and
 `OSDefaultExceptionHandler` remain original assembly functions. `__OSPSInit`
 retains its C calls/prologue/epilogue and original GQR-reset block. Their copied
 fragment boundaries and the original small-data/literal layout remain intact.
