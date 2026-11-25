@@ -118,14 +118,6 @@ void fn_8003D698(u32 arg0);
 void fn_8003E13C(void);
 void fn_8003E284(void);
 
-#pragma section code_type ".fzgxpool"
-static void fzgx_string_layout(void) {
-    /* fzgx-allow: S2 layout primer: MWCC emits string literals in first-use order; the section is dropped at integration */
-    OSReport("PERF : Unknown event type for ID %d - possibly out of memory\n");
-    OSReport("PERF : event is still open for CPU!\n");
-}
-#pragma section code_type ".text"
-
 void fn_8003D4E0(void) {
     __memReg->unk_32 = 0;
     __memReg->unk_34 = 0;

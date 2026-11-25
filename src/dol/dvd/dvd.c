@@ -93,15 +93,6 @@ extern void OSPanic(const char *file, int line, const char *msg, ...);
 #define BB2 ((u32 *)BB2_8015CE40)
 typedef DVDCommandBlock CommandBlock;
 
-#pragma section code_type ".fzgxpool"
-static void layout____bss_0(void) {
-    volatile unsigned char sink; /* fzgx-allow: S2 BSS layout primer */
-    sink = *(unsigned char *)&BB2_8015CE40;
-    sink = *(unsigned char *)&lbl_8015CE60__fzgx_offset_0;
-    sink = *(unsigned char *)&DummyCommandBlock;
-}
-#pragma section code_type ".text"
-
 void __DVDFSInit(void);
 void __DVDInitWA(void);
 void __DVDClearWaitingQueue(void);

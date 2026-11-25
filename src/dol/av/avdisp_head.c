@@ -63,15 +63,6 @@ AvDispState lbl_8019E250;
 AvDispEntry8 lbl_8019E250__fzgx_offset_38[16];
 u8 lbl_8019E308[0xD00];
 
-#pragma section code_type ".fzgxpool"
-void fzgx_bss_primer(void) {
-    volatile u8 s;  /* fzgx-allow: S2 volatile keeps the verified access order */
-    s = *(u8 *)&lbl_8019E250;
-    s = *(u8 *)lbl_8019E250__fzgx_offset_38;
-    s = lbl_8019E308[0];
-}
-#pragma section code_type ".text"
-
 extern AvDispGXData *gx;
 extern u32 lbl_801A6410;
 extern u32 lbl_8019E210[];

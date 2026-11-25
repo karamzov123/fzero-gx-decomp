@@ -68,15 +68,6 @@ static u32 lbl_8015D0B0[4];
 static PADStatus lbl_8015D0C0__fzgx_offset_0[4];
 static u32 lbl_8015D0C0__fzgx_offset_30[4];
 
-#pragma section code_type ".fzgxpool"
-static void layout____bss_0(void) {
-    volatile unsigned char sink; /* fzgx-allow: S2 BSS layout primer */
-    sink = *(unsigned char *)&lbl_8015D0B0;
-    sink = *(unsigned char *)&lbl_8015D0C0__fzgx_offset_0;
-    sink = *(unsigned char *)&lbl_8015D0C0__fzgx_offset_30;
-}
-#pragma section code_type ".text"
-
 void *memset(void *dst, int val, unsigned long size);
 void OSRegisterVersion(const char *id);
 void OSRegisterResetFunction(OSResetFunctionInfo *info);

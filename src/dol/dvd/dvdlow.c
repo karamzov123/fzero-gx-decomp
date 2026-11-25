@@ -63,18 +63,6 @@ static unsigned char fzgx_pool_gap____bss_0_90[40];
 static DVDBuffer Prev;
 static DVDBuffer Curr;
 
-#pragma section code_type ".fzgxpool"
-static void layout____bss_0(void) {
-    volatile unsigned char sink; /* fzgx-allow: S2 layout primer */
-    sink = *(unsigned char *)&CommandList_8015CD70;
-    sink = *(unsigned char *)&AlarmForWA;
-    sink = *(unsigned char *)&AlarmForTimeout;
-    sink = *(unsigned char *)&fzgx_pool_gap____bss_0_90;
-    sink = *(unsigned char *)&Prev;
-    sink = *(unsigned char *)&Curr;
-}
-#pragma section code_type ".text"
-
 void Read(void *addr, u32 length, u32 offset, DVDLowCallback callback);
 BOOL DVDLowSeek(u32 offset, DVDLowCallback callback);
 void AlarmHandler_dvdlow(OSAlarm *alarm, OSContext *context);
