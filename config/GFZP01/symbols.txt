@@ -2338,6 +2338,7 @@ lbl_80122104 = .data:0x801249B4; // type:object
 lbl_801221A0 = .data:0x80124A50; // type:object
 lbl_801221C0 = .data:0x80124A70; // type:object
 DSPInitCode = .data:0x80125068; // type:object
+OSCacheData = .data:0x801250E8; // type:object
 lbl_80122A58 = .data:0x80125318; // type:object
 lbl_80122F50 = .data:0x80125810; // type:object
 lbl_801230D0 = .data:0x80125990; // type:object

@@ -17,9 +17,6 @@ dol/os/OSArena.c:
 dol/__OSInitAudioSystem.c:
 	.text       start:0x8000B380 end:0x8000B614 align:4
 
-dol/LCEnable.c:
-	.text       start:0x8000B804 end:0x8000B83C
-
 dol/os/OSLink.c:
 	.text       start:0x8000DD60 end:0x8000E794 align:4
 
@@ -416,32 +413,9 @@ dol/OS.c:
 dol/DecrementerExceptionHandler.c:
 	.text       start:0x8000B2C4 end:0x8000B314 align:4
 
-dol/DCEnable.c:
-	.text       start:0x8000B614 end:0x8000B628 align:4
-
-dol/DCFlushRange.c:
-	.text       start:0x8000B654 end:0x8000B684 align:4
-
-dol/DCStoreRange.c:
-	.text       start:0x8000B684 end:0x8000B6B4 align:4
-
-dol/ICFlashInvalidate.c:
-	.text       start:0x8000B714 end:0x8000B724 align:4
-
-dol/ICEnable.c:
-	.text       start:0x8000B724 end:0x8000B738 align:4
-
-dol/__LCEnable.c:
-	.text       start:0x8000B738 end:0x8000B804 align:4
-
-dol/LCDisable.c:
-	.text       start:0x8000B83C end:0x8000B864 align:4
-
-dol/LCStoreBlocks.c:
-	.text       start:0x8000B888 end:0x8000B8AC align:4
-
-dol/fn_8000B8AC.c:
-	.text       start:0x8000B8AC end:0x8000B8C0 align:4
+dol/os/OSCache.c:
+	.text       start:0x8000B614 end:0x8000BBAC align:4
+	.data       start:0x80122828 end:0x80122A58 align:4
 
 dol/__OSLoadFPUContext.c:
 	.text       start:0x8000BBAC end:0x8000BCD0 align:4
@@ -634,9 +608,6 @@ dol/card/CARDRead.c:
 dol/CARDOpen.c:
 	.text       start:0x8002E954 end:0x8002EDA8 align:4
 
-dol/os/OSCache.c:
-	.text       start:0x8000B8C0 end:0x8000BBAC align:4
-
 dol/__OSInitSystemCall.c:
 	.text       start:0x800100DC end:0x80010144 align:4
 
@@ -660,18 +631,6 @@ dol/__OSContextInit.c:
 
 dol/__OSInitMemoryProtection.c:
 	.text       start:0x8000E96C end:0x8000EA84 align:4
-
-dol/DCInvalidateRange.c:
-	.text       start:0x8000B628 end:0x8000B654 align:4
-
-dol/DCFlushRangeNoSync.c:
-	.text       start:0x8000B6B4 end:0x8000B6E0 align:4
-
-dol/ICInvalidateRange.c:
-	.text       start:0x8000B6E0 end:0x8000B714 align:4
-
-dol/LCLoadBlocks.c:
-	.text       start:0x8000B864 end:0x8000B888 align:4
 
 dol/OSSetCurrentContext.c:
 	.text       start:0x8000BE00 end:0x8000BE5C align:4
@@ -2750,7 +2709,10 @@ dol/data/TRK_mainError.c:
 	.bss        start:0x801A5640 end:0x801A5648 align:8
 
 dol/data/lbl_801220C0.c:
-	.data       start:0x801220C0 end:0x80122C30 align:32
+	.data       start:0x801220C0 end:0x80122828 align:32
+
+dol/data/lbl_80122A58.c:
+	.data       start:0x80122A58 end:0x80122C30 align:8
 
 dol/data/ResetFunctionInfo.c:
 	.data       start:0x80123AE0 end:0x80123AF0 align:32

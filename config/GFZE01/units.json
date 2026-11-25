@@ -7127,63 +7127,30 @@
   },
   {
     "module": "main",
-    "source": "dol/DCEnable.c",
+    "source": "dol/os/OSCache.c",
     "symbols": [
-      "DCEnable"
+      "DCEnable",
+      "DCInvalidateRange",
+      "DCFlushRange",
+      "DCStoreRange",
+      "DCFlushRangeNoSync",
+      "ICInvalidateRange",
+      "ICFlashInvalidate",
+      "ICEnable",
+      "__LCEnable",
+      "LCEnable",
+      "LCDisable",
+      "LCLoadBlocks",
+      "LCStoreBlocks",
+      "fn_8000B8AC",
+      "L2GlobalInvalidate",
+      "DMAErrorHandler",
+      "__OSCacheInit"
     ],
     "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
+    "mw_version": "GC/1.2.5n",
     "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/DCFlushRange.c",
-    "symbols": [
-      "DCFlushRange"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/DCFlushRangeNoSync.c",
-    "symbols": [
-      "DCFlushRangeNoSync"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/DCInvalidateRange.c",
-    "symbols": [
-      "DCInvalidateRange"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/DCStoreRange.c",
-    "symbols": [
-      "DCStoreRange"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
+    "collapsed": true
   },
   {
     "module": "main",
@@ -7518,42 +7485,6 @@
   },
   {
     "module": "main",
-    "source": "dol/ICEnable.c",
-    "symbols": [
-      "ICEnable"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/ICFlashInvalidate.c",
-    "symbols": [
-      "ICFlashInvalidate"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/ICInvalidateRange.c",
-    "symbols": [
-      "ICInvalidateRange"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
     "source": "dol/InitMetroTRK.c",
     "symbols": [
       "InitMetroTRK"
@@ -7581,68 +7512,6 @@
     "source": "dol/InitMetroTRK_BBA.c",
     "symbols": [
       "InitMetroTRK_BBA"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/os/OSCache.c",
-    "symbols": [
-      "L2GlobalInvalidate",
-      "DMAErrorHandler",
-      "__OSCacheInit"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.2.5n",
-    "pool": {
-      "@12": "OSCacheData"
-    },
-    "collapsed": true
-  },
-  {
-    "module": "main",
-    "source": "dol/LCDisable.c",
-    "symbols": [
-      "LCDisable"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/LCEnable.c",
-    "symbols": [
-      "LCEnable"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/LCLoadBlocks.c",
-    "symbols": [
-      "LCLoadBlocks"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/LCStoreBlocks.c",
-    "symbols": [
-      "LCStoreBlocks"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -9042,18 +8911,6 @@
     "pool": {
       "@81": "lbl_801A7080"
     }
-  },
-  {
-    "module": "main",
-    "source": "dol/__LCEnable.c",
-    "symbols": [
-      "__LCEnable"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
   },
   {
     "module": "main",
@@ -11587,8 +11444,18 @@
       "lbl_801221C0",
       "OSDataPool",
       "lbl_801225F4",
-      "DSPInitCode",
-      "OSCacheData",
+      "DSPInitCode"
+    ],
+    "status": "matching",
+    "matching_for": ["GFZE01"],
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_80122A58.c",
+    "symbols": [
       "lbl_80122A58",
       "OSContextMessage_1b4"
     ],
@@ -19433,18 +19300,6 @@
       "@141": "lbl_801221C0+0x32C",
       "@5": "lbl_801A6414"
     }
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_8000B8AC.c",
-    "symbols": [
-      "fn_8000B8AC"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
   },
   {
     "module": "main",

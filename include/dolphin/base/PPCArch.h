@@ -14,6 +14,10 @@
 #define PMC2 954
 #define PMC3 957
 #define PMC4 958
+#define DMA_U 922
+#define DMA_L 923
+#define DBAT3U 542
+#define DBAT3L 543
 
 #define HID0_SPD 0x00000200 /* speculative cache access disable */
 

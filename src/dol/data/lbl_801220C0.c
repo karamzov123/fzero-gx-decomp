@@ -92,33 +92,3 @@ __declspec(section ".data") u8 DSPInitCode[128] __attribute__((aligned(8))) = {
     0x02U, 0x9FU, 0x00U, 0x10U, 0x02U, 0x9FU, 0x00U, 0x33U, 0x02U, 0x9FU, 0x00U, 0x34U, 0x02U, 0x9FU, 0x00U, 0x35U, 0x02U, 0x9FU, 0x00U, 0x36U, 0x02U, 0x9FU, 0x00U, 0x37U, 0x02U, 0x9FU, 0x00U, 0x38U, 0x02U, 0x9FU, 0x00U, 0x39U, 0x12U, 0x06U, 0x12U, 0x03U, 0x12U, 0x04U, 0x12U, 0x05U, 0x00U, 0x80U, 0x80U, 0x00U, 0x00U, 0x88U, 0xFFU, 0xFFU, 0x00U, 0x84U, 0x10U, 0x00U, 0x00U, 0x64U, 0x00U, 0x1DU, 0x02U, 0x18U, 0x00U, 0x00U, 0x81U, 0x00U, 0x1CU, 0x1EU, 0x00U, 0x44U, 0x1BU, 0x1EU, 0x00U, 0x84U, 0x08U, 0x00U, 0x00U, 0x64U, 0x00U, 0x27U, 0x19U, 0x1EU, 0x00U, 0x00U, 0x00U, 0xDEU, 0xFFU, 0xFCU, 0x02U, 0xA0U, 0x80U, 0x00U, 0x02U, 0x9CU, 0x00U, 0x28U, 0x16U, 0xFCU, 0x00U, 0x54U, 0x16U, 0xFDU, 0x43U, 0x48U, 0x00U, 0x21U, 0x02U, 0xFFU, 0x02U, 0xFFU, 0x02U, 0xFFU, 0x02U, 0xFFU, 0x02U, 0xFFU, 0x02U, 0xFFU, 0x02U, 0xFFU, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U
 };
 #pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char OSCacheData[560] __attribute__((aligned(8))) = ">>> L2 INVALIDATE : SHOULD NEVER HAPPEN\n\000\000\000\000Machine check received\n\000HID2 = 0x%x"
-    "   SRR1 = 0x%x\n\000\000Machine check was not DMA/locked cache related\n\000DMAErrorHandler(): A"
-    "n error occurred while processing DMA.\n\000The following errors have been detected and cleared "
-    ":\n\000\000\t- Requested a locked cache tag that was already in the cache\n\000\000\t- DMA attem"
-    "pted to access normal cache\n\000\000\000\000\t- DMA missed in data cache\n\000\000\000\000\t- D"
-    "MA queue overflowed\n\000\000\000\000L1 i-caches initialized\n\000\000\000\000L1 d-caches initia"
-    "lized\n\000\000\000\000L2 cache initialized\n\000\000\000Locked cache machine check handler inst"
-    "alled\n\000\000\000\000\000\000";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char lbl_80122A58[436] __attribute__((aligned(8))) = "------------------------- Context 0x%08x -------------------------\n\000r%-2d  = 0x%08x (%14d)  "
-    "r%-2d  = 0x%08x (%14d)\n\000LR   = 0x%08x                   CR   = 0x%08x\n\000\000SRR0 = 0x%08x"
-    "                   SRR1 = 0x%08x\n\000\000\nGQRs----------\n\000\000\000\000gqr%d = 0x%08x \t gq"
-    "r%d = 0x%08x\n\000\000\000\000\n\nFPRs----------\n\000\000\000fr%d \t= %d \t fr%d \t= %d\n\000"
-    "\000\000\000\n\nPSFs----------\n\000\000\000ps%d \t= 0x%x \t ps%d \t= 0x%x\n\000\000\000\000\nAd"
-    "dress:      Back Chain    LR Save\n\000\000\0000x%08x:   0x%08x    0x%08x\n";
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") char OSContextMessage_1b4[35] __attribute__((aligned(4))) = "FPU-unavailable handler installed\n";
-#pragma explicit_zero_data reset

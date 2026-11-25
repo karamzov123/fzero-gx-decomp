@@ -22596,13 +22596,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 3660,
+    "section_size": 1896,
     "sha256": "5b873ee91f33b0884574b814d7f46d81e283394de91b8b2ea9073ac218dee350",
     "size": 128,
     "source": "dol/data/lbl_801220C0.c",
     "symbol": "DSPInitCode",
     "unit_align": 32,
-    "unit_size": 3660,
+    "unit_size": 1896,
     "unit_start": 2148671680
   },
   "main:DVDInitialized": {
@@ -23426,38 +23426,6 @@
     "unit_size": 8,
     "unit_start": 2149214360
   },
-  "main:OSCacheData": {
-    "address": 2148673576,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "struct OSCacheMessages OSCacheData",
-        "path": "src/dol/DMAErrorHandler.c"
-      },
-      {
-        "declaration": "struct OSCacheMessages OSCacheData",
-        "path": "src/dol/__OSCacheInit.c"
-      }
-    ],
-    "definition": "char OSCacheData[560]",
-    "method": "string",
-    "module": "main",
-    "references": [
-      "DMAErrorHandler",
-      "L2GlobalInvalidate",
-      "__OSCacheInit"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 3660,
-    "sha256": "075a6bd1145a09d604091530aa4a635bd9398508d4b95111cc5ecb8bb084779b",
-    "size": 560,
-    "source": "dol/data/lbl_801220C0.c",
-    "symbol": "OSCacheData",
-    "unit_align": 32,
-    "unit_size": 3660,
-    "unit_start": 2148671680
-  },
   "main:OSContextMessage_1b4": {
     "address": 2148674572,
     "align": 4,
@@ -23470,14 +23438,14 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 3660,
+    "section_size": 472,
     "sha256": "b7d3b5e22809f18d7fe6e71a567715d16ec1488517424092656515d92a3b69a8",
     "size": 35,
-    "source": "dol/data/lbl_801220C0.c",
+    "source": "dol/data/lbl_80122A58.c",
     "symbol": "OSContextMessage_1b4",
-    "unit_align": 32,
-    "unit_size": 3660,
-    "unit_start": 2148671680
+    "unit_align": 8,
+    "unit_size": 472,
+    "unit_start": 2148674136
   },
   "main:OSDataPool": {
     "address": 2148672944,
@@ -23497,13 +23465,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 3660,
+    "section_size": 1896,
     "sha256": "63769ff6d37727307a0cf354419d5782d82efef25abdadb4dba748b983d45c36",
     "size": 68,
     "source": "dol/data/lbl_801220C0.c",
     "symbol": "OSDataPool",
     "unit_align": 32,
-    "unit_size": 3660,
+    "unit_size": 1896,
     "unit_start": 2148671680
   },
   "main:OSExceptionTable": {
@@ -32315,13 +32283,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 3660,
+    "section_size": 1896,
     "sha256": "c09665fe893ceb58fcf90e84eb3a31b5d2222e4673ea8acb9524bf127de8fa80",
     "size": 9,
     "source": "dol/data/lbl_801220C0.c",
     "symbol": "lbl_801220C0",
     "unit_align": 32,
-    "unit_size": 3660,
+    "unit_size": 1896,
     "unit_start": 2148671680
   },
   "main:lbl_801220CC": {
@@ -32346,13 +32314,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 3660,
+    "section_size": 1896,
     "sha256": "b59ae8443d427f53596742e40c98cd622cdb5f15019d29d937cc738bae615162",
     "size": 17,
     "source": "dol/data/lbl_801220C0.c",
     "symbol": "lbl_801220CC",
     "unit_align": 32,
-    "unit_size": 3660,
+    "unit_size": 1896,
     "unit_start": 2148671680
   },
   "main:lbl_801220E0": {
@@ -32372,13 +32340,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 3660,
+    "section_size": 1896,
     "sha256": "233d2c981beec99adef68ead3f98bc2eb4af9648a75419c5fd09060b8791eea3",
     "size": 16,
     "source": "dol/data/lbl_801220C0.c",
     "symbol": "lbl_801220E0",
     "unit_align": 32,
-    "unit_size": 3660,
+    "unit_size": 1896,
     "unit_start": 2148671680
   },
   "main:lbl_801220F0": {
@@ -32398,13 +32366,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 3660,
+    "section_size": 1896,
     "sha256": "ea7039a7b81b1e211df6dbb34ffa90fcdc496be75ed1c87d6e66ebc50ec3e9cc",
     "size": 20,
     "source": "dol/data/lbl_801220C0.c",
     "symbol": "lbl_801220F0",
     "unit_align": 32,
-    "unit_size": 3660,
+    "unit_size": 1896,
     "unit_start": 2148671680
   },
   "main:lbl_80122104": {
@@ -32424,13 +32392,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 3660,
+    "section_size": 1896,
     "sha256": "1f27289e16d1d355c1cd7c894e6025e1296e55917e839508ed9f05a6d558f977",
     "size": 156,
     "source": "dol/data/lbl_801220C0.c",
     "symbol": "lbl_80122104",
     "unit_align": 32,
-    "unit_size": 3660,
+    "unit_size": 1896,
     "unit_start": 2148671680
   },
   "main:lbl_801221A0": {
@@ -32455,13 +32423,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 3660,
+    "section_size": 1896,
     "sha256": "1634dfdf9886218c1cd327bf555ac867e0169908e613b23d02b8a061069da687",
     "size": 26,
     "source": "dol/data/lbl_801220C0.c",
     "symbol": "lbl_801221A0",
     "unit_align": 32,
-    "unit_size": 3660,
+    "unit_size": 1896,
     "unit_start": 2148671680
   },
   "main:lbl_801221C0": {
@@ -32476,13 +32444,13 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 3660,
+    "section_size": 1896,
     "sha256": "b0c3cf620e39393f0e1285b29f038f2190cd6e7e34cea42fd5fb6ee56790e34c",
     "size": 1008,
     "source": "dol/data/lbl_801220C0.c",
     "symbol": "lbl_801221C0",
     "unit_align": 32,
-    "unit_size": 3660,
+    "unit_size": 1896,
     "unit_start": 2148671680
   },
   "main:lbl_801225F4": {
@@ -32495,13 +32463,13 @@
     "references": [],
     "relocations": [],
     "section": ".data",
-    "section_size": 3660,
+    "section_size": 1896,
     "sha256": "bef5268a070a0632464c1cb2296839ea6453806e73e868f0cb0f52babc1d9c19",
     "size": 436,
     "source": "dol/data/lbl_801220C0.c",
     "symbol": "lbl_801225F4",
     "unit_align": 32,
-    "unit_size": 3660,
+    "unit_size": 1896,
     "unit_start": 2148671680
   },
   "main:lbl_80122A58": {
@@ -32516,14 +32484,14 @@
     ],
     "relocations": [],
     "section": ".data",
-    "section_size": 3660,
+    "section_size": 472,
     "sha256": "0e37ff76d9d89a8ae4b9f788cf4c43766d4c10de8847fe8b881c01b2c3faf32a",
     "size": 436,
-    "source": "dol/data/lbl_801220C0.c",
+    "source": "dol/data/lbl_80122A58.c",
     "symbol": "lbl_80122A58",
-    "unit_align": 32,
-    "unit_size": 3660,
-    "unit_start": 2148671680
+    "unit_align": 8,
+    "unit_size": 472,
+    "unit_start": 2148674136
   },
   "main:lbl_80122F50": {
     "address": 2148675408,
