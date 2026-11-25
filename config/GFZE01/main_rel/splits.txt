@@ -161,7 +161,7 @@ rel/main_rel/burner/fn_1_9D3E8.c:
 rel/main_rel/background/fn_1_9D77C.c:
 	.text       start:0x0009D77C end:0x0009DDA8 align:4
 
-rel/main_rel/background/fn_1_9E14C.c:
+rel/main_rel/background_c/fn_1_9E14C.c:
 	.text       start:0x0009E14C end:0x0009F7DC align:4
 
 rel/main_rel/sound/fn_1_9FE74.c:
@@ -521,10 +521,10 @@ rel/main_rel/rep_memcard/fn_1_154708.c:
 rel/main_rel/ranking/fn_1_1554D0.c:
 	.text       start:0x001554D0 end:0x001577D0 align:4
 
-rel/main_rel/ranking/fn_1_1586A8.c:
+rel/main_rel/ranking_c/fn_1_1586A8.c:
 	.text       start:0x001586A8 end:0x00159440 align:4
 
-rel/main_rel/ranking/fn_1_159440.c:
+rel/main_rel/ranking_d/fn_1_159440.c:
 	.text       start:0x00159440 end:0x0015B70C align:4
 	.rodata     start:0x0000DAE8 end:0x0000DAF8 align:8
 
@@ -546,7 +546,7 @@ rel/main_rel/_prolog/fn_1_4404.c:
 rel/main_rel/_prolog/fn_1_4438.c:
 	.text       start:0x00004438 end:0x0000446C align:4
 
-rel/main_rel/ranking/fn_1_1577D0.c:
+rel/main_rel/ranking_b/fn_1_1577D0.c:
 	.text       start:0x001577D0 end:0x001586A8 align:4
 	.data       start:0x0004C788 end:0x0004C7D0 align:8
 	.bss        start:0x0008F568 end:0x0008F588 align:8
@@ -1236,7 +1236,7 @@ rel/main_rel/bg_win/fn_1_15C5A4.c:
 rel/main_rel/font/fn_1_549F4.c:
 	.text       start:0x000549F4 end:0x00054DCC align:4
 
-rel/main_rel/car_test/fn_1_7E8F4.c:
+rel/main_rel/car_test_b/fn_1_7E8F4.c:
 	.text       start:0x0007E8F4 end:0x0007EB8C align:4
 
 rel/main_rel/car/fn_1_7EB8C.c:
@@ -1730,7 +1730,7 @@ rel/main_rel/ghost/fn_1_EC910.c:
 rel/main_rel/burner/fn_1_9A864.c:
 	.text       start:0x0009A864 end:0x0009A958 align:4
 
-rel/main_rel/background/fn_1_9DDA8.c:
+rel/main_rel/background_b/fn_1_9DDA8.c:
 	.text       start:0x0009DDA8 end:0x0009E14C align:4
 
 rel/main_rel/effect_car/fn_1_723E0.c:
@@ -7870,7 +7870,7 @@ rel/main_rel/burner/fn_1_9D420.c:
 rel/main_rel/bg_for/fn_1_DF6AC.c:
 	.text       start:0x000DF6AC end:0x000DFBBC align:4
 
-rel/main_rel/alloc/fn_1_5948.c:
+rel/main_rel/alloc_b/fn_1_5948.c:
 	.text       start:0x00005948 end:0x00006400 align:4
 	.data       start:0x00003558 end:0x000035B0 align:8
 

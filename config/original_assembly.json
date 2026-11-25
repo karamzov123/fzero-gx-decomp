@@ -1083,12 +1083,12 @@
       "evidence": "The engine boot code (game_main.c) writes fn_80005E0C as a CodeWarrior asm function (nofralloc): retail 0x80005E0C..0x80005EDC is a counted timing loop that reads IBAT0U with mfibatu and clears paired singles with ps_sub around stores to a small-data buffer addressed through its uncached mirror (addis 0x4000), instructions MWCC never emits from C, with no compiler frame."
     }
   ],
-  "src/rel/main_rel/background.c": [
+  "src/rel/main_rel/background_b.c": [
     {
       "symbol": "fn_1_9DFB8",
       "form": "asm-function",
       "sha256": "3ee87bcf7adfcb2d318bb0ba9eaba212755c501a9ab707b82a47cefc166e8991",
-      "evidence": "Evidenced original assembly (docs/findings/gfze01-main-rel-assembly-frontier.md#curve-evaluator-fn_1_9dfb8-origin-audit-evidenced-assembly): the cached keyframe curve evaluator uses six bCC+ static branch hints, two self-XOR register zeroes, direct locked-cache 0xE000019C constant loads through the clobbered parameter r6 and a dead duplicate branch, none of which MWCC emits; written as a CodeWarrior asm function in background.c beside its C wrappers."
+      "evidence": "Evidenced original assembly (docs/findings/gfze01-main-rel-assembly-frontier.md#curve-evaluator-fn_1_9dfb8-origin-audit-evidenced-assembly): the cached keyframe curve evaluator uses six bCC+ static branch hints, two self-XOR register zeroes, direct locked-cache 0xE000019C constant loads through the clobbered parameter r6 and a dead duplicate branch, none of which MWCC emits; written as a CodeWarrior asm function in background_b.c beside its C wrapper fn_1_9DDA8 (the TU split out of the draft map's background.c)."
     }
   ]
 }

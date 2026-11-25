@@ -79,12 +79,12 @@
    "file": "alloc.c",
    "text": [
     18728,
-    25600
+    22856
    ],
    "data_sec": 5,
    "data": [
     11472,
-    13080
+    13656
    ],
    "anchor_refs": [
     18728
@@ -114,7 +114,27 @@
     "fn_1_5370",
     "fn_1_56B8",
     "fn_1_58C4",
-    "fn_1_5910",
+    "fn_1_5910"
+   ],
+   "confidence": {
+    "text+data": 4,
+    "text-range": 22,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "alloc_b.c",
+   "text": [
+    22856,
+    25600
+   ],
+   "data_sec": 5,
+   "data": [
+    13656,
+    13080
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_1_5948",
     "fn_1_627C",
     "fn_1_6394",
@@ -122,7 +142,7 @@
    ],
    "confidence": {
     "text+data": 4,
-    "text-range": 22,
+    "text-range": 0,
     "data-vote": 0
    }
   },
@@ -1649,7 +1669,7 @@
    "file": "car_test.c",
    "text": [
     507804,
-    519052
+    518388
    ],
    "data_sec": 5,
    "data": [
@@ -1670,7 +1690,27 @@
     "fn_1_7D694",
     "fn_1_7D6B8",
     "fn_1_7E1DC",
-    "fn_1_7E7A4",
+    "fn_1_7E7A4"
+   ],
+   "confidence": {
+    "text+data": 4,
+    "text-range": 13,
+    "data-vote": 5
+   }
+  },
+  {
+   "file": "car_test_b.c",
+   "text": [
+    518388,
+    519052
+   ],
+   "data_sec": 5,
+   "data": [
+    127448,
+    127448
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_1_7E8F4",
     "fn_1_7E9C4",
     "fn_1_7EAE8",
@@ -1678,8 +1718,8 @@
    ],
    "confidence": {
     "text+data": 4,
-    "text-range": 13,
-    "data-vote": 5
+    "text-range": 0,
+    "data-vote": 0
    }
   },
   {
@@ -2119,7 +2159,7 @@
    "file": "background.c",
    "text": [
     644988,
-    653276
+    646568
    ],
    "data_sec": 5,
    "data": [
@@ -2134,9 +2174,49 @@
     "fn_1_9D93C",
     "fn_1_9D994",
     "fn_1_9D9E4",
-    "fn_1_9DB04",
+    "fn_1_9DB04"
+   ],
+   "confidence": {
+    "text+data": 2,
+    "text-range": 19,
+    "data-vote": 2
+   }
+  },
+  {
+   "file": "background_b.c",
+   "text": [
+    646568,
+    647500
+   ],
+   "data_sec": 5,
+   "data": [
+    183584,
+    183584
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_1_9DDA8",
-    "fn_1_9DFB8",
+    "fn_1_9DFB8"
+   ],
+   "confidence": {
+    "text+data": 2,
+    "text-range": 0,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "background_c.c",
+   "text": [
+    647500,
+    653276
+   ],
+   "data_sec": 5,
+   "data": [
+    183584,
+    183584
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_1_9E14C",
     "fn_1_9E170",
     "fn_1_9E194",
@@ -2153,9 +2233,9 @@
     "fn_1_9F4B4"
    ],
    "confidence": {
-    "text+data": 2,
-    "text-range": 19,
-    "data-vote": 2
+    "text+data": 14,
+    "text-range": 0,
+    "data-vote": 0
    }
   },
   {
@@ -4512,12 +4592,12 @@
    "file": "ranking.c",
    "text": [
     1397968,
-    1423116
+    1406928
    ],
    "data_sec": 5,
    "data": [
     301832,
-    313648
+    313224
    ],
    "anchor_refs": [
     1397968,
@@ -4574,7 +4654,27 @@
     "fn_1_157358",
     "fn_1_1574E0",
     "fn_1_157598",
-    "fn_1_1576B4",
+    "fn_1_1576B4"
+   ],
+   "confidence": {
+    "text+data": 8,
+    "text-range": 87,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "ranking_b.c",
+   "text": [
+    1406928,
+    1410728
+   ],
+   "data_sec": 5,
+   "data": [
+    313224,
+    313648
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_1_1577D0",
     "fn_1_157820",
     "fn_1_1578C4",
@@ -4582,7 +4682,27 @@
     "fn_1_157930",
     "fn_1_157940",
     "fn_1_157950",
-    "fn_1_157FC8",
+    "fn_1_157FC8"
+   ],
+   "confidence": {
+    "text+data": 8,
+    "text-range": 0,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "ranking_c.c",
+   "text": [
+    1410728,
+    1414208
+   ],
+   "data_sec": 5,
+   "data": [
+    313648,
+    313648
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_1_1586A8",
     "fn_1_1586AC",
     "fn_1_158980",
@@ -4591,7 +4711,27 @@
     "fn_1_159040",
     "fn_1_159060",
     "fn_1_159064",
-    "fn_1_15906C",
+    "fn_1_15906C"
+   ],
+   "confidence": {
+    "text+data": 9,
+    "text-range": 0,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "ranking_d.c",
+   "text": [
+    1414208,
+    1423116
+   ],
+   "data_sec": 5,
+   "data": [
+    313648,
+    313648
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_1_159440",
     "fn_1_159478",
     "fn_1_1594AC",
@@ -4621,8 +4761,8 @@
     "fn_1_15B698"
    ],
    "confidence": {
-    "text+data": 8,
-    "text-range": 87,
+    "text+data": 27,
+    "text-range": 0,
     "data-vote": 0
    }
   },
