@@ -1781,7 +1781,7 @@ rel/main_rel/burner/fn_1_9A864.c:
 	.text       start:0x0009A864 end:0x0009A958 align:4
 
 rel/main_rel/background/fn_1_9DDA8.c:
-	.text       start:0x0009DDA8 end:0x0009DFB8 align:4
+	.text       start:0x0009DDA8 end:0x0009E14C align:4
 
 rel/main_rel/effect_car/fn_1_723E0.c:
 	.text       start:0x000723E0 end:0x00072648 align:4
@@ -8224,9 +8224,6 @@ rel/main_rel/sel_static_disp/fn_1_14083C.c:
 
 rel/main_rel/memcard/fn_1_C3A0C.c:
 	.text       start:0x000C3A0C end:0x000C40A0 align:4
-
-rel/main_rel/background/fn_1_9DFB8.c:
-	.text       start:0x0009DFB8 end:0x0009E14C align:4
 
 rel/main_rel/motasglist/fn_1_44A74.c:
 	.text       start:0x00044A74 end:0x000451E4 align:4

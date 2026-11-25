@@ -1,5 +1,6 @@
 #include "types.h"
 
+/* --- dol/AXRNA_Init.c --- */
 // Hardware or OS state can change asynchronously.
 extern const char *const volatile lbl_800927BC;
 
@@ -37,4 +38,13 @@ void AXRNA_Init(void) {
         lbl_80190C7C = (u8 *)(((unsigned long)lbl_80190C8C__fzgx_offset_80 + 31) & ~31UL);
     }
     axrna_init_cnt++;
+}
+
+/* --- dol/AXRNA_EntryErrFunc.c --- */
+/* --- dol/AXRNA_EntryErrFunc.c --- */
+/* --- dol/AXRNA_EntryErrFunc.c --- */
+extern u32 fn_8005A614(void);
+
+void AXRNA_EntryErrFunc(void) {
+    fn_8005A614();
 }

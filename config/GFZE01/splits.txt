@@ -124,9 +124,6 @@ dol/adx/adx_dcd.c:
 dol/adx/adx_rnaa.c:
 	.text       start:0x8004ED3C end:0x8004EFA8 align:4
 
-dol/AXRNA_EntryErrFunc.c:
-	.text       start:0x8005BE48 end:0x8005BE68 align:4
-
 dol/av/avfile.c:
 	.text       start:0x80006B4C end:0x800071B8 align:4
 
@@ -578,9 +575,6 @@ dol/adx/adx_errs.c:
 dol/adx/adx_xpnd.c:
 	.text       start:0x8004E098 end:0x8004E4DC align:4
 
-dol/axrna_update_play.c:
-	.text       start:0x8005AE98 end:0x8005B0C4 align:4
-
 dol/axrna_voice_drop.c:
 	.text       start:0x8005BC20 end:0x8005BDD4 align:4
 
@@ -789,7 +783,7 @@ dol/__init_data.c:
 	.init       start:0x80003340 end:0x80003400 align:4
 
 dol/axrna_end_trans.c:
-	.text       start:0x8005ADBC end:0x8005AE98 align:4
+	.text       start:0x8005ADBC end:0x8005B0C4 align:4
 
 dol/runtime/rand.c:
 	.text       start:0x80082908 end:0x80082928 align:4
@@ -933,7 +927,7 @@ dol/adx/svm.c:
 	.text       start:0x80058A40 end:0x80059BAC
 
 dol/AXRNA_Init.c:
-	.text       start:0x8005BDD4 end:0x8005BE48 align:4
+	.text       start:0x8005BDD4 end:0x8005BE68 align:4
 
 dol/AXRNA_SetTransSw.c:
 	.text       start:0x8005B264 end:0x8005B464 align:4

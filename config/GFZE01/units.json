@@ -6851,18 +6851,10 @@
   },
   {
     "module": "main",
-    "source": "dol/AXRNA_EntryErrFunc.c",
-    "symbols": [
-      "AXRNA_EntryErrFunc"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2"
-  },
-  {
-    "module": "main",
     "source": "dol/AXRNA_Init.c",
     "symbols": [
-      "AXRNA_Init"
+      "AXRNA_Init",
+      "AXRNA_EntryErrFunc"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -6874,16 +6866,9 @@
       "0"
     ],
     "pool": {
-      "...bss.0": "axrna_init_cnt",
-      "axrna_init_cnt": "axrna_init_cnt",
-      "lbl_80190C7C": "lbl_80190C7C",
-      "lbl_80190C80": "lbl_80190C80",
-      "lbl_80190C80__fzgx_offset_4": "lbl_80190C80+0x4",
-      "axrna_update_pos": "axrna_update_pos",
-      "axrna_update_hist": "axrna_update_hist",
-      "lbl_80190C8C__fzgx_offset_80": "axrna_update_hist+0x80",
-      "axrna_obj": "axrna_obj"
-    }
+      "...bss.0": "axrna_init_cnt"
+    },
+    "collapsed": true
   },
   {
     "module": "main",
@@ -10001,19 +9986,7 @@
     "module": "main",
     "source": "dol/axrna_end_trans.c",
     "symbols": [
-      "axrna_end_trans"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on"
-    ]
-  },
-  {
-    "module": "main",
-    "source": "dol/axrna_update_play.c",
-    "symbols": [
+      "axrna_end_trans",
       "axrna_update_play",
       "AXRNA_GetNumRoom",
       "AXRNA_GetNumData"
@@ -26068,7 +26041,8 @@
     "module": "main_rel",
     "source": "rel/main_rel/background/fn_1_9DDA8.c",
     "symbols": [
-      "fn_1_9DDA8"
+      "fn_1_9DDA8",
+      "fn_1_9DFB8"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -26086,22 +26060,8 @@
       "@44": "lbl_1_rodata_42A0+0xC",
       "@45": "lbl_1_rodata_42A0+0x10",
       "@46": "lbl_1_rodata_42A0+0x18"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/background/fn_1_9DFB8.c",
-    "symbols": [
-      "fn_1_9DFB8"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/background.c"
+    },
+    "collapsed": true
   },
   {
     "module": "main_rel",
