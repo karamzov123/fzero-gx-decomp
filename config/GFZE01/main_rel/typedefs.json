@@ -65,5 +65,13 @@
  },
  "live_camera": {
   "target": "LiveCamera"
+ },
+ "lbl_1_data_3FFBC": {
+  "array": {
+   "size": 4,
+   "dims": [
+    98
+   ]
+  }
  }
 }

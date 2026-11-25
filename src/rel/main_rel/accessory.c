@@ -3949,21 +3949,13 @@ void fn_1_10C9B0(Fn10C9B0List *list) {
 }
 /* fzgx:end fn_1_10C9B0 */
 
-/* fzgx:begin fn_1_10CC38 noprologue */
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-
+/* fzgx:begin fn_1_10CC38 */
 #ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
 #define GAME_MAIN_REL_CAR_TEST_TYPES_H
 #ifndef REL_MAIN_REL_GLOBALS_H
 #define REL_MAIN_REL_GLOBALS_H
 
 // lbl_1_data_3FFBC: .data size 0x574, referenced by 31 functions, shape {}
-extern u8 lbl_1_data_3FFBC[0x574];
 
 #endif  // REL_MAIN_REL_GLOBALS_H
 #ifndef REL_MAIN_REL_CAR_TEST_H
@@ -3979,7 +3971,6 @@ typedef struct {
     f32 z;
 } Fn183D28Vec3;
 
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 
 #endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
 
@@ -4016,13 +4007,7 @@ struct fn_1_10CC38_lbl_1_rodata_7AB8 {
  u8 pad_A0[0xA8]; Vec3f unk_148; f32 unk_154, unk_158, unk_15C, unk_160;
 };
 extern const struct fn_1_10CC38_lbl_1_rodata_7AB8 lbl_1_rodata_7AB8;
-extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
-extern void lbl_8006DBAC(Vec3 *);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DBE4(void);
-extern void lbl_8006DC20(void);
 extern f32 lbl_8006D0B4(f32);
-extern void fn_8006E250(Vec3f *, Vec3f *);
 typedef struct Particle {
  u8 flags; u8 pad1; u8 count; u8 pad3; u16 links[6];
  Vec3f pos, prev, local, vel; f32 mass;
@@ -4366,14 +4351,8 @@ void fn_1_10D2F0(Ctx *arg0) {
 }
 /* fzgx:end fn_1_10D2F0 */
 
-/* fzgx:begin fn_1_10D7D4 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_10D7D4 */
 #include "psvec.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
 
 #ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
 #define GAME_MAIN_REL_CAR_TEST_TYPES_H
@@ -4381,7 +4360,6 @@ void fn_1_10D2F0(Ctx *arg0) {
 #define REL_MAIN_REL_GLOBALS_H
 
 // lbl_1_data_3FFBC: .data size 0x574, referenced by 31 functions, shape {}
-extern u8 lbl_1_data_3FFBC[0x574];
 
 #endif  // REL_MAIN_REL_GLOBALS_H
 #ifndef REL_MAIN_REL_CAR_TEST_H
@@ -4397,7 +4375,6 @@ typedef struct {
     f32 z;
 } Fn183D28Vec3;
 
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 
 #endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
 
@@ -4432,16 +4409,10 @@ struct Sig_fn_80077B14_fn_80077B14_Arg0 {
  u8 pad_0[4]; u32 unk_4; u8 pad_8[0x18]; u32 unk_20;
 };
 typedef struct { f32 x,y,z; } Sig_fn_1_1286F4_Vec3f;
-extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
 extern void fn_1_1286F4(Sig_fn_1_1286F4_Vec3f *);
-extern void lbl_8006DBAC(Vec3 *);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DBE4(void);
-extern void lbl_8006DC20(void);
 extern f32 lbl_8006D118(f32, f32 *);
 extern f32 lbl_8006D0B4(f32);
 extern f32 lbl_8006D0E8(f32);
-extern void fn_8006E250(Vec3f *, Vec3f *);
 extern const u8 lbl_1_rodata_7AB8[];
 typedef struct Node {
  u8 flags, pad1, count, pad3;
@@ -9723,14 +9694,8 @@ void fn_1_112F40(fn_1_10D2F0_Obj *obj) {
 }
 /* fzgx:end fn_1_112F40 */
 
-/* fzgx:begin fn_1_1132E4 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_1132E4 */
 #include "psvec.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
 
 #ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
 #define GAME_MAIN_REL_CAR_TEST_TYPES_H
@@ -9738,7 +9703,6 @@ void fn_1_112F40(fn_1_10D2F0_Obj *obj) {
 #define REL_MAIN_REL_GLOBALS_H
 
 // lbl_1_data_3FFBC: .data size 0x574, referenced by 31 functions, shape {}
-extern u8 lbl_1_data_3FFBC[0x574];
 
 #endif  // REL_MAIN_REL_GLOBALS_H
 #ifndef REL_MAIN_REL_CAR_TEST_H
@@ -9754,7 +9718,6 @@ typedef struct {
     f32 z;
 } Fn183D28Vec3;
 
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 
 #endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
 
@@ -9789,16 +9752,10 @@ struct Sig_fn_80077B14_fn_80077B14_Arg0 {
  u8 pad_0[4]; u32 unk_4; u8 pad_8[0x18]; u32 unk_20;
 };
 typedef struct { f32 x,y,z; } Sig_fn_1_1286F4_Vec3f;
-extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
 extern void fn_1_1286F4(Sig_fn_1_1286F4_Vec3f *);
-extern void lbl_8006DBAC(Vec3 *);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DBE4(void);
-extern void lbl_8006DC20(void);
 extern f32 lbl_8006D118(f32, f32 *);
 extern f32 lbl_8006D0B4(f32);
 extern f32 lbl_8006D0E8(f32);
-extern void fn_8006E250(Vec3f *, Vec3f *);
 extern const u8 lbl_1_rodata_7AB8[];
 typedef struct Node {
  u8 flags, pad1, count, pad3;
@@ -11372,7 +11329,7 @@ void fn_1_1154D0(Fn1154D0Object *obj) {
 }
 /* fzgx:end fn_1_1154D0 */
 
-/* fzgx:begin fn_1_115560 noprologue */
+/* fzgx:begin fn_1_115560 */
 typedef unsigned char u8;
 typedef unsigned short u16;
 typedef unsigned long u32;
@@ -11382,7 +11339,6 @@ typedef float f32;
 typedef double f64;
 
 
-extern u8 lbl_1_data_3FFBC[0x574];
 
 
 
@@ -11439,19 +11395,11 @@ u8 pad_0[0x50]; f64 unk_50; u8 pad_58[0x130]; f64 unk_188,unk_190,unk_198;
 u8 pad_1A0[0x1C4]; LocalVec unk_364; f64 unk_370,unk_378;
 };
 extern const struct fn_1_115560_lbl_1_rodata_7AB8 lbl_1_rodata_7AB8;
-extern void *fn_80077B14(void *);
-extern void lbl_8006DBAC(void *);
-extern void lbl_8006E1B0(void *,void *);
-extern f32 lbl_8006D668(void *);
 extern void fn_8006E978(void *,void *,void *);
 extern void mathutil_mtxA_from_quat(void *);
-extern void lbl_8006DB74(void *);
 extern void lbl_8006D758(void);
 extern void lbl_8006E0A4(void *);
-extern void lbl_8006DFC4(void *);
-extern void lbl_8006E0B4(f32,f32,f32);
 extern void fn_1_1286F4(void *);
-extern void fn_8006E250(void *,void *);
 static inline void integrate(Particle *p, const struct fn_1_115560_lbl_1_rodata_7AB8 *pool) {
 p->old=p->pos;
 p->pos.x+=p->vel.x;
@@ -14464,14 +14412,7 @@ void fn_1_1185B4(Obj1185B4 *obj) {
 }
 /* fzgx:end fn_1_1185B4 */
 
-/* fzgx:begin fn_1_1188CC noprologue */
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-
+/* fzgx:begin fn_1_1188CC */
 /* begin game/vec3.h (deltawave784/windows-and-types@cf9407c75) */
 #ifndef GAME_VEC3_H
 #define GAME_VEC3_H
@@ -14497,7 +14438,6 @@ typedef struct Vec3f {
 #define REL_MAIN_REL_GLOBALS_H
 
 // lbl_1_data_3FFBC: .data size 0x574, referenced by 31 functions, shape {}
-extern u8 lbl_1_data_3FFBC[0x574];
 
 #endif  // REL_MAIN_REL_GLOBALS_H
 #ifndef REL_MAIN_REL_CAR_TEST_H
@@ -14513,7 +14453,6 @@ typedef struct {
     f32 z;
 } Fn183D28Vec3;
 
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 
 #endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
 #ifndef REL_MAIN_REL_ACCESSORY_H
@@ -14576,13 +14515,6 @@ typedef struct SkinMtx {
     u8 pad_C[0x34];
 } SkinMtx;
 
-extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
-extern void lbl_8006DBAC(Vec3 *);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DBE4(void);
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
-extern void lbl_8006DC20(void);
-extern void fn_8006E250(Vec3f *, Vec3f *);
 
 
 
@@ -15250,14 +15182,8 @@ void fn_1_118D90(u32 arg0, f32 arg1) {
 }
 /* fzgx:end fn_1_118D90 */
 
-/* fzgx:begin fn_1_1192D0 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_1192D0 */
 #include "psvec.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
 
 #ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
 #define GAME_MAIN_REL_CAR_TEST_TYPES_H
@@ -15265,7 +15191,6 @@ void fn_1_118D90(u32 arg0, f32 arg1) {
 #define REL_MAIN_REL_GLOBALS_H
 
 // lbl_1_data_3FFBC: .data size 0x574, referenced by 31 functions, shape {}
-extern u8 lbl_1_data_3FFBC[0x574];
 
 #endif  // REL_MAIN_REL_GLOBALS_H
 #ifndef REL_MAIN_REL_CAR_TEST_H
@@ -15281,7 +15206,6 @@ typedef struct {
     f32 z;
 } Fn183D28Vec3;
 
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 
 #endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
 
@@ -15316,16 +15240,10 @@ struct Sig_fn_80077B14_fn_80077B14_Arg0 {
  u8 pad_0[4]; u32 unk_4; u8 pad_8[0x18]; u32 unk_20;
 };
 typedef struct { f32 x,y,z; } Sig_fn_1_1286F4_Vec3f;
-extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
 extern void fn_1_1286F4(Sig_fn_1_1286F4_Vec3f *);
-extern void lbl_8006DBAC(Vec3 *);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DBE4(void);
-extern void lbl_8006DC20(void);
 extern f32 lbl_8006D118(f32, f32 *);
 extern f32 lbl_8006D0B4(f32);
 extern f32 lbl_8006D0E8(f32);
-extern void fn_8006E250(Vec3f *, Vec3f *);
 extern const u8 lbl_1_rodata_7AB8[];
 typedef struct Node {
  u8 flags, pad1, count, pad3;
@@ -15738,14 +15656,8 @@ void fn_1_11A158(fn_1_10D2F0_Obj *obj) {
 }
 /* fzgx:end fn_1_11A158 */
 
-/* fzgx:begin fn_1_11A774 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_11A774 */
 #include "psvec.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
 
 #ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
 #define GAME_MAIN_REL_CAR_TEST_TYPES_H
@@ -15753,7 +15665,6 @@ void fn_1_11A158(fn_1_10D2F0_Obj *obj) {
 #define REL_MAIN_REL_GLOBALS_H
 
 // lbl_1_data_3FFBC: .data size 0x574, referenced by 31 functions, shape {}
-extern u8 lbl_1_data_3FFBC[0x574];
 
 #endif  // REL_MAIN_REL_GLOBALS_H
 #ifndef REL_MAIN_REL_CAR_TEST_H
@@ -15769,7 +15680,6 @@ typedef struct {
     f32 z;
 } Fn183D28Vec3;
 
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 
 #endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
 
@@ -15804,16 +15714,10 @@ struct Sig_fn_80077B14_fn_80077B14_Arg0 {
  u8 pad_0[4]; u32 unk_4; u8 pad_8[0x18]; u32 unk_20;
 };
 typedef struct { f32 x,y,z; } Sig_fn_1_1286F4_Vec3f;
-extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
 extern void fn_1_1286F4(Sig_fn_1_1286F4_Vec3f *);
-extern void lbl_8006DBAC(Vec3 *);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DBE4(void);
-extern void lbl_8006DC20(void);
 extern f32 lbl_8006D118(f32, f32 *);
 extern f32 lbl_8006D0B4(f32);
 extern f32 lbl_8006D0E8(f32);
-extern void fn_8006E250(Vec3f *, Vec3f *);
 extern const u8 lbl_1_rodata_7AB8[];
 typedef struct Node {
  u8 flags, pad1, count, pad3;
@@ -16172,14 +16076,8 @@ void fn_1_11B4E4(Obj11B4E4 *obj) {
 }
 /* fzgx:end fn_1_11B4E4 */
 
-/* fzgx:begin fn_1_11B958 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_11B958 */
 #include "psvec.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
 
 #ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
 #define GAME_MAIN_REL_CAR_TEST_TYPES_H
@@ -16187,7 +16085,6 @@ void fn_1_11B4E4(Obj11B4E4 *obj) {
 #define REL_MAIN_REL_GLOBALS_H
 
 // lbl_1_data_3FFBC: .data size 0x574, referenced by 31 functions, shape {}
-extern u8 lbl_1_data_3FFBC[0x574];
 
 #endif  // REL_MAIN_REL_GLOBALS_H
 #ifndef REL_MAIN_REL_CAR_TEST_H
@@ -16203,7 +16100,6 @@ typedef struct {
     f32 z;
 } Fn183D28Vec3;
 
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 
 #endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
 
@@ -16238,16 +16134,10 @@ struct Sig_fn_80077B14_fn_80077B14_Arg0 {
  u8 pad_0[4]; u32 unk_4; u8 pad_8[0x18]; u32 unk_20;
 };
 typedef struct { f32 x,y,z; } Sig_fn_1_1286F4_Vec3f;
-extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
 extern void fn_1_1286F4(Sig_fn_1_1286F4_Vec3f *);
-extern void lbl_8006DBAC(Vec3 *);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DBE4(void);
-extern void lbl_8006DC20(void);
 extern f32 lbl_8006D118(f32, f32 *);
 extern f32 lbl_8006D0B4(f32);
 extern f32 lbl_8006D0E8(f32);
-extern void fn_8006E250(Vec3f *, Vec3f *);
 extern const u8 lbl_1_rodata_7AB8[];
 typedef struct Node {
  u8 flags, pad1, count, pad3;
@@ -16264,7 +16154,6 @@ typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
 #define F(o) (*(const f32 *)(pool+(o)))
 #define D(o) (*(const f64 *)(pool+(o)))
 #define INDEX(i) (((u32 *)lbl_1_data_3FFBC)[i])
-extern u8 lbl_1_bss_88B50[0xC00];
 #pragma opt_common_subs off
 void fn_1_11B958(Work *arg0) {
  const u8 *pool=lbl_1_rodata_7AB8;
@@ -16621,14 +16510,8 @@ void fn_1_11BFCC(Obj11BFCC *obj) {
 }
 /* fzgx:end fn_1_11BFCC */
 
-/* fzgx:begin fn_1_11C440 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_11C440 */
 #include "psvec.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
 
 #ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
 #define GAME_MAIN_REL_CAR_TEST_TYPES_H
@@ -16636,7 +16519,6 @@ void fn_1_11BFCC(Obj11BFCC *obj) {
 #define REL_MAIN_REL_GLOBALS_H
 
 // lbl_1_data_3FFBC: .data size 0x574, referenced by 31 functions, shape {}
-extern u8 lbl_1_data_3FFBC[0x574];
 
 #endif  // REL_MAIN_REL_GLOBALS_H
 #ifndef REL_MAIN_REL_CAR_TEST_H
@@ -16652,7 +16534,6 @@ typedef struct {
     f32 z;
 } Fn183D28Vec3;
 
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 
 #endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
 
@@ -16687,16 +16568,10 @@ struct Sig_fn_80077B14_fn_80077B14_Arg0 {
  u8 pad_0[4]; u32 unk_4; u8 pad_8[0x18]; u32 unk_20;
 };
 typedef struct { f32 x,y,z; } Sig_fn_1_1286F4_Vec3f;
-extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
 extern void fn_1_1286F4(Sig_fn_1_1286F4_Vec3f *);
-extern void lbl_8006DBAC(Vec3 *);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DBE4(void);
-extern void lbl_8006DC20(void);
 extern f32 lbl_8006D118(f32, f32 *);
 extern f32 lbl_8006D0B4(f32);
 extern f32 lbl_8006D0E8(f32);
-extern void fn_8006E250(Vec3f *, Vec3f *);
 extern const u8 lbl_1_rodata_7AB8[];
 typedef struct Node {
  u8 flags, pad1, count, pad3;
@@ -16713,7 +16588,6 @@ typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
 #define F(o) (*(const f32 *)(pool+(o)))
 #define D(o) (*(const f64 *)(pool+(o)))
 #define INDEX(i) (((u32 *)lbl_1_data_3FFBC)[i])
-extern u8 lbl_1_bss_88B50[0xC00];
 #pragma opt_common_subs off
 void fn_1_11C440(Work *arg0) {
  const u8 *pool=lbl_1_rodata_7AB8;
@@ -17028,14 +16902,8 @@ void fn_1_11CAB4(NodeSet *set) {
 }
 /* fzgx:end fn_1_11CAB4 */
 
-/* fzgx:begin fn_1_11CD3C noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_11CD3C */
 #include "psvec.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
 
 #ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
 #define GAME_MAIN_REL_CAR_TEST_TYPES_H
@@ -17043,7 +16911,6 @@ void fn_1_11CAB4(NodeSet *set) {
 #define REL_MAIN_REL_GLOBALS_H
 
 // lbl_1_data_3FFBC: .data size 0x574, referenced by 31 functions, shape {}
-extern u8 lbl_1_data_3FFBC[0x574];
 
 #endif  // REL_MAIN_REL_GLOBALS_H
 #ifndef REL_MAIN_REL_CAR_TEST_H
@@ -17059,7 +16926,6 @@ typedef struct {
     f32 z;
 } Fn183D28Vec3;
 
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 
 #endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
 
@@ -17094,16 +16960,10 @@ struct Sig_fn_80077B14_fn_80077B14_Arg0 {
  u8 pad_0[4]; u32 unk_4; u8 pad_8[0x18]; u32 unk_20;
 };
 typedef struct { f32 x,y,z; } Sig_fn_1_1286F4_Vec3f;
-extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
 extern void fn_1_1286F4(Sig_fn_1_1286F4_Vec3f *);
-extern void lbl_8006DBAC(Vec3 *);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DBE4(void);
-extern void lbl_8006DC20(void);
 extern f32 lbl_8006D118(f32, f32 *);
 extern f32 lbl_8006D0B4(f32);
 extern f32 lbl_8006D0E8(f32);
-extern void fn_8006E250(Vec3f *, Vec3f *);
 extern const u8 lbl_1_rodata_7AB8[];
 typedef struct Node {
  u8 flags, pad1, count, pad3;
@@ -17120,7 +16980,6 @@ typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
 #define F(o) (*(const f32 *)(pool+(o)))
 #define D(o) (*(const f64 *)(pool+(o)))
 #define INDEX(i) (((u32 *)lbl_1_data_3FFBC)[i])
-extern u8 lbl_1_bss_88B50[0xC00];
 void fn_1_11CD3C(Work *arg0) {
  const u8 *pool=lbl_1_rodata_7AB8;
  u8 *fmodel;
@@ -17823,11 +17682,7 @@ void fn_1_11D1FC(Obj *obj) {
 }
 /* fzgx:end fn_1_11D1FC */
 
-/* fzgx:begin fn_1_11DE2C noprologue */
-#include "types.h"
-
-extern u8 lbl_1_data_3FFBC[0x574];
-
+/* fzgx:begin fn_1_11DE2C */
 typedef struct {
     f32 x, y, z;
 } Vec;
@@ -17835,12 +17690,8 @@ typedef struct {
 struct Sig_fn_80077B14_fn_80077B14_Arg0 {
     u8 pad_0[4]; u32 unk_4; u8 pad_8[0x18]; u32 unk_20;
 };
-extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
-extern void lbl_8006DBAC(void *);
-extern void lbl_8006E1B0(Vec *, Vec *);
 extern f32 lbl_8006D118(f32, f32 *);
 extern f32 lbl_8006D0B4(f32);
-extern void fn_8006E250(Vec *, Vec *);
 extern const u8 lbl_1_rodata_7AB8[];
 
 typedef struct Node {
@@ -18462,14 +18313,8 @@ void fn_1_11ED0C(fn_1_10D2F0_Obj *obj) {
 }
 /* fzgx:end fn_1_11ED0C */
 
-/* fzgx:begin fn_1_11F250 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_11F250 */
 #include "psvec.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
 
 #ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
 #define GAME_MAIN_REL_CAR_TEST_TYPES_H
@@ -18477,7 +18322,6 @@ void fn_1_11ED0C(fn_1_10D2F0_Obj *obj) {
 #define REL_MAIN_REL_GLOBALS_H
 
 // lbl_1_data_3FFBC: .data size 0x574, referenced by 31 functions, shape {}
-extern u8 lbl_1_data_3FFBC[0x574];
 
 #endif  // REL_MAIN_REL_GLOBALS_H
 #ifndef REL_MAIN_REL_CAR_TEST_H
@@ -18493,7 +18337,6 @@ typedef struct {
     f32 z;
 } Fn183D28Vec3;
 
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 
 #endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
 
@@ -18528,16 +18371,10 @@ struct Sig_fn_80077B14_fn_80077B14_Arg0 {
  u8 pad_0[4]; u32 unk_4; u8 pad_8[0x18]; u32 unk_20;
 };
 typedef struct { f32 x,y,z; } Sig_fn_1_1286F4_Vec3f;
-extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
 extern void fn_1_1286F4(Sig_fn_1_1286F4_Vec3f *);
-extern void lbl_8006DBAC(Vec3 *);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DBE4(void);
-extern void lbl_8006DC20(void);
 extern f32 lbl_8006D118(f32, f32 *);
 extern f32 lbl_8006D0B4(f32);
 extern f32 lbl_8006D0E8(f32);
-extern void fn_8006E250(Vec3f *, Vec3f *);
 extern const u8 lbl_1_rodata_7AB8[];
 typedef struct Node {
  u8 flags, pad1, count, pad3;
@@ -18578,8 +18415,6 @@ typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
 }
 
 
-extern u32 lbl_801A66A0;
-extern f32 lbl_8006D668(void *);
 static inline f32 fn_1_11F250_measure(Node *a, Node *b, Fn183D28Vec3 *dp) {
  f32 x;
  f32 y;
@@ -20165,10 +20000,8 @@ void fn_1_12295C(Rope *rope) {
 }
 /* fzgx:end fn_1_12295C */
 
-/* fzgx:begin fn_1_123050 noprologue */
+/* fzgx:begin fn_1_123050 */
 #include "dolphin/types.h"
-#include "types.h"
-#include "types.h"
 #include "psvec.h"
 
 #ifndef REL_MAIN_REL_ACCESSORY_H
@@ -20177,7 +20010,6 @@ void fn_1_12295C(Rope *rope) {
 #define REL_MAIN_REL_GLOBALS_H
 
 // lbl_1_data_3FFBC: .data size 0x574, referenced by 31 functions, shape {}
-extern u8 lbl_1_data_3FFBC[0x574];
 
 #endif  // REL_MAIN_REL_GLOBALS_H
 
@@ -20212,20 +20044,12 @@ typedef struct SimRope {
 } SimRope;
 
 extern u32 lbl_801A63C0;
-extern s32 fn_80077B14(void *);
-extern void lbl_8006DBAC(void *);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DBE4(void);
-extern void lbl_8006E1B0(void *, void *);
-extern void lbl_8006DC20(void);
 extern f32 lbl_8006D118(f32 *, f32);
 #define lbl_8006D118(p) (lbl_8006D118)((p), *(p))
 extern f32 lbl_8006D0B4(f32);
 extern f32 lbl_8006D0E8(f32);
-extern f32 lbl_8006D668(void *);
 extern void fn_1_1286F4(void *);
 extern u32 fn_1_108128(void *, u32);
-extern void fn_8006E250(void *, void *);
 
 #define PF(o) (*(const f32 *)(pool + (o)))
 #define PD(o) (*(const f64 *)(pool + (o)))
@@ -20703,14 +20527,8 @@ void fn_1_1244F0(Obj1244F0 *obj) {
 }
 /* fzgx:end fn_1_1244F0 */
 
-/* fzgx:begin fn_1_124AD4 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_124AD4 */
 #include "psvec.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
 
 #ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
 #define GAME_MAIN_REL_CAR_TEST_TYPES_H
@@ -20718,7 +20536,6 @@ void fn_1_1244F0(Obj1244F0 *obj) {
 #define REL_MAIN_REL_GLOBALS_H
 
 // lbl_1_data_3FFBC: .data size 0x574, referenced by 31 functions, shape {}
-extern u8 lbl_1_data_3FFBC[0x574];
 
 #endif  // REL_MAIN_REL_GLOBALS_H
 #ifndef REL_MAIN_REL_CAR_TEST_H
@@ -20734,7 +20551,6 @@ typedef struct {
     f32 z;
 } Fn183D28Vec3;
 
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 
 #endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
 
@@ -20769,16 +20585,10 @@ struct Sig_fn_80077B14_fn_80077B14_Arg0 {
  u8 pad_0[4]; u32 unk_4; u8 pad_8[0x18]; u32 unk_20;
 };
 typedef struct { f32 x,y,z; } Sig_fn_1_1286F4_Vec3f;
-extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
 extern void fn_1_1286F4(Sig_fn_1_1286F4_Vec3f *);
-extern void lbl_8006DBAC(Vec3 *);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DBE4(void);
-extern void lbl_8006DC20(void);
 extern f32 lbl_8006D118(f32, f32 *);
 extern f32 lbl_8006D0B4(f32);
 extern f32 lbl_8006D0E8(f32);
-extern void fn_8006E250(Vec3f *, Vec3f *);
 extern const u8 lbl_1_rodata_7AB8[];
 typedef struct Node {
  u8 flags, pad1, count, pad3;
@@ -21126,14 +20936,8 @@ void fn_1_1250D0(fn_1_10D2F0_Obj *obj) {
 }
 /* fzgx:end fn_1_1250D0 */
 
-/* fzgx:begin fn_1_1256EC noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_1256EC */
 #include "psvec.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
 
 #ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
 #define GAME_MAIN_REL_CAR_TEST_TYPES_H
@@ -21141,7 +20945,6 @@ void fn_1_1250D0(fn_1_10D2F0_Obj *obj) {
 #define REL_MAIN_REL_GLOBALS_H
 
 // lbl_1_data_3FFBC: .data size 0x574, referenced by 31 functions, shape {}
-extern u8 lbl_1_data_3FFBC[0x574];
 
 #endif  // REL_MAIN_REL_GLOBALS_H
 #ifndef REL_MAIN_REL_CAR_TEST_H
@@ -21157,7 +20960,6 @@ typedef struct {
     f32 z;
 } Fn183D28Vec3;
 
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 
 #endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
 
@@ -21192,16 +20994,10 @@ struct Sig_fn_80077B14_fn_80077B14_Arg0 {
  u8 pad_0[4]; u32 unk_4; u8 pad_8[0x18]; u32 unk_20;
 };
 typedef struct { f32 x,y,z; } Sig_fn_1_1286F4_Vec3f;
-extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
 extern void fn_1_1286F4(Sig_fn_1_1286F4_Vec3f *);
-extern void lbl_8006DBAC(Vec3 *);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DBE4(void);
-extern void lbl_8006DC20(void);
 extern f32 lbl_8006D118(f32, f32 *);
 extern f32 lbl_8006D0B4(f32);
 extern f32 lbl_8006D0E8(f32);
-extern void fn_8006E250(Vec3f *, Vec3f *);
 extern const u8 lbl_1_rodata_7AB8[];
 typedef struct Node {
  u8 flags, pad1, count, pad3;
@@ -21430,14 +21226,8 @@ void fn_1_125CE8(fn_1_125CE8_AccessoryData *data) {
 }
 /* fzgx:end fn_1_125CE8 */
 
-/* fzgx:begin fn_1_125DF0 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_125DF0 */
 #include "psvec.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
 
 #ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
 #define GAME_MAIN_REL_CAR_TEST_TYPES_H
@@ -21445,7 +21235,6 @@ void fn_1_125CE8(fn_1_125CE8_AccessoryData *data) {
 #define REL_MAIN_REL_GLOBALS_H
 
 // lbl_1_data_3FFBC: .data size 0x574, referenced by 31 functions, shape {}
-extern u8 lbl_1_data_3FFBC[0x574];
 
 #endif  // REL_MAIN_REL_GLOBALS_H
 #ifndef REL_MAIN_REL_CAR_TEST_H
@@ -21461,7 +21250,6 @@ typedef struct {
     f32 z;
 } Fn183D28Vec3;
 
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 
 #endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
 
@@ -21496,16 +21284,10 @@ struct Sig_fn_80077B14_fn_80077B14_Arg0 {
  u8 pad_0[4]; u32 unk_4; u8 pad_8[0x18]; u32 unk_20;
 };
 typedef struct { f32 x,y,z; } Sig_fn_1_1286F4_Vec3f;
-extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
 extern void fn_1_1286F4(Sig_fn_1_1286F4_Vec3f *);
-extern void lbl_8006DBAC(Vec3 *);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DBE4(void);
-extern void lbl_8006DC20(void);
 extern f32 lbl_8006D118(f32, f32 *);
 extern f32 lbl_8006D0B4(f32);
 extern f32 lbl_8006D0E8(f32);
-extern void fn_8006E250(Vec3f *, Vec3f *);
 extern const u8 lbl_1_rodata_7AB8[];
 typedef struct Node {
  u8 flags, pad1, count, pad3;
@@ -21522,7 +21304,6 @@ typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
 #define F(o) (*(const f32 *)(pool+(o)))
 #define D(o) (*(const f64 *)(pool+(o)))
 #define INDEX(i) (((u32 *)lbl_1_data_3FFBC)[i])
-extern u8 lbl_1_bss_88B50[0xC00];
 extern f64 fabs(f64);
 #pragma opt_common_subs off
 void fn_1_125DF0(Work *arg0) {
@@ -21930,14 +21711,8 @@ void fn_1_1262A4(ClothObj1262A4 *obj) {
 }
 /* fzgx:end fn_1_1262A4 */
 
-/* fzgx:begin fn_1_126774 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_126774 */
 #include "psvec.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
 
 #ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
 #define GAME_MAIN_REL_CAR_TEST_TYPES_H
@@ -21945,7 +21720,6 @@ void fn_1_1262A4(ClothObj1262A4 *obj) {
 #define REL_MAIN_REL_GLOBALS_H
 
 // lbl_1_data_3FFBC: .data size 0x574, referenced by 31 functions, shape {}
-extern u8 lbl_1_data_3FFBC[0x574];
 
 #endif  // REL_MAIN_REL_GLOBALS_H
 #ifndef REL_MAIN_REL_CAR_TEST_H
@@ -21961,7 +21735,6 @@ typedef struct {
     f32 z;
 } Fn183D28Vec3;
 
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 
 #endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
 
@@ -21996,16 +21769,10 @@ struct Sig_fn_80077B14_fn_80077B14_Arg0 {
  u8 pad_0[4]; u32 unk_4; u8 pad_8[0x18]; u32 unk_20;
 };
 typedef struct { f32 x,y,z; } Sig_fn_1_1286F4_Vec3f;
-extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
 extern void fn_1_1286F4(Sig_fn_1_1286F4_Vec3f *);
-extern void lbl_8006DBAC(Vec3 *);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DBE4(void);
-extern void lbl_8006DC20(void);
 extern f32 lbl_8006D118(f32, f32 *);
 extern f32 lbl_8006D0B4(f32);
 extern f32 lbl_8006D0E8(f32);
-extern void fn_8006E250(Vec3f *, Vec3f *);
 extern const u8 lbl_1_rodata_7AB8[];
 typedef struct Node {
  u8 flags, pad1, count, pad3;
@@ -22022,7 +21789,6 @@ typedef struct { u8 flags; u8 pad[7]; u32 index; Owner *owner;
 #define F(o) (*(const f32 *)(pool+(o)))
 #define D(o) (*(const f64 *)(pool+(o)))
 #define INDEX(i) (((u32 *)lbl_1_data_3FFBC)[i])
-extern u8 lbl_1_bss_88B50[0xC00];
 #pragma opt_common_subs off
 void fn_1_126774(Work *arg0) {
  const u8 *pool=lbl_1_rodata_7AB8;
@@ -22351,14 +22117,8 @@ void fn_1_126DE8(Sig_fn_1_10846C_Obj10846C *obj) {
 }
 /* fzgx:end fn_1_126DE8 */
 
-/* fzgx:begin fn_1_12744C noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_12744C */
 #include "psvec.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
-#include "types.h"
 
 #ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
 #define GAME_MAIN_REL_CAR_TEST_TYPES_H
@@ -22366,7 +22126,6 @@ void fn_1_126DE8(Sig_fn_1_10846C_Obj10846C *obj) {
 #define REL_MAIN_REL_GLOBALS_H
 
 // lbl_1_data_3FFBC: .data size 0x574, referenced by 31 functions, shape {}
-extern u8 lbl_1_data_3FFBC[0x574];
 
 #endif  // REL_MAIN_REL_GLOBALS_H
 #ifndef REL_MAIN_REL_CAR_TEST_H
@@ -22382,7 +22141,6 @@ typedef struct {
     f32 z;
 } Fn183D28Vec3;
 
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 
 #endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
 
@@ -22417,16 +22175,10 @@ struct Sig_fn_80077B14_fn_80077B14_Arg0 {
  u8 pad_0[4]; u32 unk_4; u8 pad_8[0x18]; u32 unk_20;
 };
 typedef struct { f32 x,y,z; } Sig_fn_1_1286F4_Vec3f;
-extern s32 fn_80077B14(struct Sig_fn_80077B14_fn_80077B14_Arg0 *);
 extern void fn_1_1286F4(Sig_fn_1_1286F4_Vec3f *);
-extern void lbl_8006DBAC(Vec3 *);
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DBE4(void);
-extern void lbl_8006DC20(void);
 extern f32 lbl_8006D118(f32, f32 *);
 extern f32 lbl_8006D0B4(f32);
 extern f32 lbl_8006D0E8(f32);
-extern void fn_8006E250(Vec3f *, Vec3f *);
 extern const u8 lbl_1_rodata_7AB8[];
 typedef struct Node {
  u8 flags, pad1, count, pad3;

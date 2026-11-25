@@ -419,7 +419,7 @@ extern void fn_1_127FB8(void);
 extern void fn_1_128038(void);
 /* Obj_1_data_3FFBC (header) does not place every retail pointer; fields follow the relocations. */
 #pragma explicit_zero_data on
-__declspec(section ".data") Data_lbl_1_data_3FFBC lbl_1_data_3FFBC __attribute__((aligned(4))) = {
+__declspec(section ".data") u32 lbl_1_data_3FFBC[0x62] __attribute__((aligned(4))) = {
     0x00000012U,
     0x00000017U,
     0x00000001U,
@@ -518,6 +518,8 @@ __declspec(section ".data") Data_lbl_1_data_3FFBC lbl_1_data_3FFBC __attribute__
     0x00000013U,
     0x00000018U,
     0x00000001U,
+};
+__declspec(section ".data") Data_lbl_1_data_40144 lbl_1_data_40144 __attribute__((aligned(4))) = {
     0x00010203U,
     0x00010203U,
     0x04050001U,

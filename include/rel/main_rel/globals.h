@@ -675,12 +675,8 @@ extern u32 lbl_1_bss_6EA98;
 // lbl_1_bss_716C0: .bss size 0x8, referenced by 32 functions, shape {'object': 780}
 extern u8 lbl_1_bss_716C0;
 
-// lbl_1_data_3FFBC: .data size 0x574, referenced by 31 functions, shape {}
-typedef struct {
-    u8 unk_0;  // no field accesses recovered
-    u8 pad_0[0x574];
-} Obj_1_data_3FFBC;
-extern Obj_1_data_3FFBC lbl_1_data_3FFBC;
+// lbl_1_data_3FFBC: .data size 0x188, referenced by 31 functions, shape {'object': 114}
+extern u32 lbl_1_data_3FFBC[0x62];
 
 // lbl_1_bss_7B180: .bss size 0x8, referenced by 29 functions, shape {'object': 873}
 typedef struct {
