@@ -34,7 +34,7 @@ def definitions(text):
         while True:
             nl = text.find('\n', start, m.end())
             line = text[start:nl if nl >= 0 else start].strip()
-            if nl < 0 or not (line == '' or line.startswith(('#', '//', '/*'))) or m[1] in line:
+            if nl < 0 or not (line == '' or line.startswith(('#', '//', '/*'))) or re.search(rf'\b{m[1]}\s*\(', line):
                 break
             start = nl + 1
         header = text[start:m.end() - 1].rstrip()

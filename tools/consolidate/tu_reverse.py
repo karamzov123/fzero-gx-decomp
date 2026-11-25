@@ -34,7 +34,10 @@ def main():
         if chunks:
             chunks[-1] += ''.join(lead[:k])
         preamble.append(''.join(lead[k:j]))
-        chunks.append(''.join(lead[j:]) + text[start:end])
+        if header.lstrip().startswith(('static inline', 'inline')):
+            preamble.append(''.join(lead[j:]) + text[start:end] + '\n')    # helpers stay ahead of their users
+        else:
+            chunks.append(''.join(lead[j:]) + text[start:end])
         last = end
     tail = text[last:]
     tail_lines = tail.splitlines(True)

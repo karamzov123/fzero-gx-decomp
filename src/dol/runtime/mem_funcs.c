@@ -1,157 +1,10 @@
 #include "types.h"
 
-/* --- dol/__tmp_memfuncs_c.c --- */
-/* --- dol/__copy_longs_rev_unaligned.c --- */
-void __copy_longs_rev_unaligned(void *dst, const void *src, size_t n) {
-    unsigned long i, v1, v2;
-    unsigned int src_offset, left_shift, right_shift;
-    ((unsigned char *)src) = ((unsigned char *)src) + n;
-    ((unsigned char *)dst) = ((unsigned char *)dst) + n;
-    i = ((unsigned long)((unsigned char *)dst)) & 3;
-    if (i) {
-        n -= i;
-        do
-            *--((unsigned char *)dst) = *--((unsigned char *)src);
-        while (--i);
-    }
-    src_offset = ((unsigned int)((unsigned char *)src)) & 3;
-    left_shift = src_offset << 3;
-    right_shift = 32 - left_shift;
-    ((unsigned char *)src) += 4 - src_offset;
-    i = n >> 3;
-    v1 = *--((unsigned long *)src);
-    do {
-        v2 = *--((unsigned long *)src);
-        *--((unsigned long *)dst) = (v2 << left_shift) | (v1 >> right_shift);
-        v1 = *--((unsigned long *)src);
-        *--((unsigned long *)dst) = (v1 << left_shift) | (v2 >> right_shift);
-    } while (--i);
-    if (n & 4) {
-        v2 = *--((unsigned long *)src);
-        *--((unsigned long *)dst) = (v2 << left_shift) | (v1 >> right_shift);
-    }
-    n &= 3;
-    if (n) {
-        ((unsigned char *)src) += src_offset;
-        do
-            *--((unsigned char *)dst) = *--((unsigned char *)src);
-        while (--n);
-    }
-    return;
-}
+void __copy_longs_rev_unaligned(void *dst, const void *src, size_t n);
+void __copy_longs_unaligned(void *dst, const void *src, size_t n);
+void __copy_longs_rev_aligned(void *dst, const void *src, size_t n);
+void __copy_longs_aligned(void *arg0, const void *arg1, size_t arg2);
 
-/* --- dol/__copy_longs_unaligned.c --- */
-void __copy_longs_unaligned(void *dst, const void *src, size_t n) {
-    unsigned long i, v1, v2;
-    unsigned int src_offset, left_shift, right_shift;
-    i = (-(unsigned long)dst) & 3;
-    ((unsigned char *)src) = ((unsigned char *)src) - 1;
-    ((unsigned char *)dst) = ((unsigned char *)dst) - 1;
-    if (i) {
-        n -= i;
-        do
-            *++(((unsigned char *)dst)) = *++(((unsigned char *)src));
-        while (--i);
-    }
-    src_offset = ((unsigned int)(((unsigned char *)src) + 1)) & 3;
-    left_shift = src_offset << 3;
-    right_shift = 32 - left_shift;
-    ((unsigned char *)src) -= src_offset;
-    ((unsigned long *)src) = ((unsigned long *)(((unsigned char *)src) + 1)) - 1;
-    ((unsigned long *)dst) = ((unsigned long *)(((unsigned char *)dst) + 1)) - 1;
-    i = n >> 3;
-    v1 = *++(((unsigned long *)src));
-    do {
-        v2 = *++(((unsigned long *)src));
-        *++(((unsigned long *)dst)) = (v1 << left_shift) | (v2 >> right_shift);
-        v1 = *++(((unsigned long *)src));
-        *++(((unsigned long *)dst)) = (v2 << left_shift) | (v1 >> right_shift);
-    } while (--i);
-    if (n & 4) {
-        v2 = *++(((unsigned long *)src));
-        *++(((unsigned long *)dst)) = (v1 << left_shift) | (v2 >> right_shift);
-    }
-    ((unsigned char *)src) = ((unsigned char *)(((unsigned long *)src) + 1)) - 1;
-    ((unsigned char *)dst) = ((unsigned char *)(((unsigned long *)dst) + 1)) - 1;
-    n &= 3;
-    if (n) {
-        ((unsigned char *)src) -= 4 - src_offset;
-        do
-            *++(((unsigned char *)dst)) = *++(((unsigned char *)src));
-        while (--n);
-    }
-    return;
-}
-
-/* --- dol/__copy_longs_rev_aligned.c --- */
-#pragma opt_common_subs off
-#pragma opt_lifetimes off
-void __copy_longs_rev_aligned(void *dst, const void *src, size_t n) {
-    u32 i;
-    u32 b;
-    u32 blocks;
-    const u8 *s;
-    u32 b_2;
-    s32 i_2;
-    u8 *d = (u8 *)dst + n;
-
-    s = (const u8 *)src + n;
-    i = (u32)d;
-
-    i &= 3;
-    if (i) {
-        n -= i;
-        do {
-            *--d = *--s;
-        } while (--i);
-    }
-
-    blocks = n;
-
-    blocks >>= 5;
-    if (blocks) {
-        do {
-            i = ((u32 *)s)[-1];
-            b = ((u32 *)s)[-2];
-            ((u32 *)d)[-1] = i;
-            i = ((u32 *)s)[-3];
-            ((u32 *)d)[-2] = b;
-            b = ((u32 *)s)[-4];
-            ((u32 *)d)[-3] = i;
-            i = ((u32 *)s)[-5];
-            ((u32 *)d)[-4] = b;
-            b = ((u32 *)s)[-6];
-            ((u32 *)d)[-5] = i;
-            i = ((u32 *)s)[-7];
-            ((u32 *)d)[-6] = b;
-            b = ((u32 *)s)[-8];
-            ((u32 *)d)[-7] = i;
-            ((u32 *)d)[-8] = b;
-            d -= 32;
-            s -= 32;
-        } while (--blocks);
-    }
-
-    b_2 = (n >> 2) & 7;
-    i_2 = b_2;
-    if (i_2) {
-        do {
-            *--((u32 *)d) = *--((u32 *)s);
-        } while (--i_2);
-    }
-
-    n &= 3;
-    if (n) {
-        do {
-            *--d = *--s;
-        } while (--n);
-    }
-}
-#pragma opt_lifetimes reset
-
-#pragma opt_common_subs reset
-
-/* --- dol/__copy_longs_aligned.c --- */
 #pragma opt_common_subs off
 #pragma opt_lifetimes off
 void __copy_longs_aligned(void *arg0, const void *arg1, size_t arg2) {
@@ -229,3 +82,150 @@ void __copy_longs_aligned(void *arg0, const void *arg1, size_t arg2) {
 }
 #pragma opt_lifetimes reset
 #pragma opt_common_subs reset
+
+#pragma opt_common_subs off
+#pragma opt_lifetimes off
+void __copy_longs_rev_aligned(void *dst, const void *src, size_t n) {
+    u32 i;
+    u32 b;
+    u32 blocks;
+    const u8 *s;
+    u32 b_2;
+    s32 i_2;
+    u8 *d = (u8 *)dst + n;
+
+    s = (const u8 *)src + n;
+    i = (u32)d;
+
+    i &= 3;
+    if (i) {
+        n -= i;
+        do {
+            *--d = *--s;
+        } while (--i);
+    }
+
+    blocks = n;
+
+    blocks >>= 5;
+    if (blocks) {
+        do {
+            i = ((u32 *)s)[-1];
+            b = ((u32 *)s)[-2];
+            ((u32 *)d)[-1] = i;
+            i = ((u32 *)s)[-3];
+            ((u32 *)d)[-2] = b;
+            b = ((u32 *)s)[-4];
+            ((u32 *)d)[-3] = i;
+            i = ((u32 *)s)[-5];
+            ((u32 *)d)[-4] = b;
+            b = ((u32 *)s)[-6];
+            ((u32 *)d)[-5] = i;
+            i = ((u32 *)s)[-7];
+            ((u32 *)d)[-6] = b;
+            b = ((u32 *)s)[-8];
+            ((u32 *)d)[-7] = i;
+            ((u32 *)d)[-8] = b;
+            d -= 32;
+            s -= 32;
+        } while (--blocks);
+    }
+
+    b_2 = (n >> 2) & 7;
+    i_2 = b_2;
+    if (i_2) {
+        do {
+            *--((u32 *)d) = *--((u32 *)s);
+        } while (--i_2);
+    }
+
+    n &= 3;
+    if (n) {
+        do {
+            *--d = *--s;
+        } while (--n);
+    }
+}
+#pragma opt_lifetimes reset
+
+#pragma opt_common_subs reset
+
+void __copy_longs_unaligned(void *dst, const void *src, size_t n) {
+    unsigned long i, v1, v2;
+    unsigned int src_offset, left_shift, right_shift;
+    i = (-(unsigned long)dst) & 3;
+    ((unsigned char *)src) = ((unsigned char *)src) - 1;
+    ((unsigned char *)dst) = ((unsigned char *)dst) - 1;
+    if (i) {
+        n -= i;
+        do
+            *++(((unsigned char *)dst)) = *++(((unsigned char *)src));
+        while (--i);
+    }
+    src_offset = ((unsigned int)(((unsigned char *)src) + 1)) & 3;
+    left_shift = src_offset << 3;
+    right_shift = 32 - left_shift;
+    ((unsigned char *)src) -= src_offset;
+    ((unsigned long *)src) = ((unsigned long *)(((unsigned char *)src) + 1)) - 1;
+    ((unsigned long *)dst) = ((unsigned long *)(((unsigned char *)dst) + 1)) - 1;
+    i = n >> 3;
+    v1 = *++(((unsigned long *)src));
+    do {
+        v2 = *++(((unsigned long *)src));
+        *++(((unsigned long *)dst)) = (v1 << left_shift) | (v2 >> right_shift);
+        v1 = *++(((unsigned long *)src));
+        *++(((unsigned long *)dst)) = (v2 << left_shift) | (v1 >> right_shift);
+    } while (--i);
+    if (n & 4) {
+        v2 = *++(((unsigned long *)src));
+        *++(((unsigned long *)dst)) = (v1 << left_shift) | (v2 >> right_shift);
+    }
+    ((unsigned char *)src) = ((unsigned char *)(((unsigned long *)src) + 1)) - 1;
+    ((unsigned char *)dst) = ((unsigned char *)(((unsigned long *)dst) + 1)) - 1;
+    n &= 3;
+    if (n) {
+        ((unsigned char *)src) -= 4 - src_offset;
+        do
+            *++(((unsigned char *)dst)) = *++(((unsigned char *)src));
+        while (--n);
+    }
+    return;
+}
+
+void __copy_longs_rev_unaligned(void *dst, const void *src, size_t n) {
+    unsigned long i, v1, v2;
+    unsigned int src_offset, left_shift, right_shift;
+    ((unsigned char *)src) = ((unsigned char *)src) + n;
+    ((unsigned char *)dst) = ((unsigned char *)dst) + n;
+    i = ((unsigned long)((unsigned char *)dst)) & 3;
+    if (i) {
+        n -= i;
+        do
+            *--((unsigned char *)dst) = *--((unsigned char *)src);
+        while (--i);
+    }
+    src_offset = ((unsigned int)((unsigned char *)src)) & 3;
+    left_shift = src_offset << 3;
+    right_shift = 32 - left_shift;
+    ((unsigned char *)src) += 4 - src_offset;
+    i = n >> 3;
+    v1 = *--((unsigned long *)src);
+    do {
+        v2 = *--((unsigned long *)src);
+        *--((unsigned long *)dst) = (v2 << left_shift) | (v1 >> right_shift);
+        v1 = *--((unsigned long *)src);
+        *--((unsigned long *)dst) = (v1 << left_shift) | (v2 >> right_shift);
+    } while (--i);
+    if (n & 4) {
+        v2 = *--((unsigned long *)src);
+        *--((unsigned long *)dst) = (v2 << left_shift) | (v1 >> right_shift);
+    }
+    n &= 3;
+    if (n) {
+        ((unsigned char *)src) += src_offset;
+        do
+            *--((unsigned char *)dst) = *--((unsigned char *)src);
+        while (--n);
+    }
+    return;
+}

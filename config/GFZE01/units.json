@@ -19285,7 +19285,7 @@
       "8",
       "-use_lmw_stmw",
       "on"
-    ],
+    , "-inline", "auto,deferred"],
     "collapsed": true
   },
   {
