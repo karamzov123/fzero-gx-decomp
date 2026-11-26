@@ -122,13 +122,13 @@ rel/main_rel/objput.c:
 rel/main_rel/screen_effect/fn_1_72648.c:
 	.text       start:0x00072648 end:0x000727BC align:4
 
-rel/main_rel/screen_effect/fn_1_79100.c:
+rel/main_rel/screen_effect_b/fn_1_79100.c:
 	.text       start:0x00079100 end:0x00079654 align:4
 
-rel/main_rel/screen_effect/fn_1_7A648.c:
+rel/main_rel/screen_effect_b/fn_1_7A648.c:
 	.text       start:0x0007A648 end:0x0007AA50 align:4
 
-rel/main_rel/screen_effect/fn_1_7B054.c:
+rel/main_rel/screen_effect_b/fn_1_7B054.c:
 	.text       start:0x0007B054 end:0x0007B558 align:4
 
 rel/main_rel/car_test/fn_1_7BF9C.c:
@@ -396,7 +396,10 @@ rel/main_rel/bg_common/fn_1_105724.c:
 	.text       start:0x00105724 end:0x00105AB8 align:4
 
 rel/main_rel/bg_common/fn_1_106EA4.c:
-	.text       start:0x00106EA4 end:0x001071E8 align:4
+	.text       start:0x00106EA4 end:0x00106EB0 align:4
+
+rel/main_rel/get_line/fn_1_106EB0.c:
+	.text       start:0x00106EB0 end:0x001071E8 align:4
 
 rel/main_rel/archive/fn_1_12A290.c:
 	.text       start:0x0012A290 end:0x0012A2D0 align:4
@@ -933,7 +936,7 @@ rel/main_rel/archive/fn_1_12CCB0.c:
 rel/main_rel/archive/fn_1_12ECA8.c:
 	.text       start:0x0012ECA8 end:0x0012F028 align:4
 
-rel/main_rel/screen_effect/fn_1_79C88.c:
+rel/main_rel/screen_effect_b/fn_1_79C88.c:
 	.text       start:0x00079C88 end:0x00079E54 align:4
 
 rel/main_rel/memcard/fn_1_AECCC.c:
@@ -1058,7 +1061,7 @@ rel/main_rel/font_c/fn_1_55C48.c:
 rel/main_rel/camera/fn_1_BFA0.c:
 	.text       start:0x0000BFA0 end:0x0000C10C align:4
 
-rel/main_rel/screen_effect/fn_1_79654.c:
+rel/main_rel/screen_effect_b/fn_1_79654.c:
 	.text       start:0x00079654 end:0x00079C88 align:4
 
 rel/main_rel/bg_common/fn_1_105AB8.c:
@@ -1214,7 +1217,7 @@ rel/main_rel/sel_static_disp/fn_1_14C6F8.c:
 rel/main_rel/sel_static_disp/fn_1_14BC40.c:
 	.text       start:0x0014BC40 end:0x0014BCBC align:4
 
-rel/main_rel/bg_common/fn_1_10780C.c:
+rel/main_rel/get_line/fn_1_10780C.c:
 	.text       start:0x0010780C end:0x00107900 align:4
 
 rel/main_rel/accessory/fn_1_107900.c:
@@ -1296,7 +1299,7 @@ rel/main_rel/sound/fn_1_A33F0.c:
 rel/main_rel/bg_win/fn_1_15C36C.c:
 	.text       start:0x0015C36C end:0x0015C4EC align:4
 
-rel/main_rel/screen_effect/fn_1_78EBC.c:
+rel/main_rel/screen_effect_b/fn_1_78EBC.c:
 	.text       start:0x00078EBC end:0x00079100 align:4
 
 rel/main_rel/font_b/fn_1_4E220.c:
@@ -1305,7 +1308,7 @@ rel/main_rel/font_b/fn_1_4E220.c:
 rel/main_rel/archive/fn_1_131194.c:
 	.text       start:0x00131194 end:0x001312F0 align:4
 
-rel/main_rel/screen_effect/fn_1_7AA50.c:
+rel/main_rel/screen_effect_b/fn_1_7AA50.c:
 	.text       start:0x0007AA50 end:0x0007ACDC align:4
 
 rel/main_rel/background/fn_1_9AF80.c:
@@ -1596,7 +1599,7 @@ rel/main_rel/sound/fn_1_A0D7C.c:
 rel/main_rel/sel_static_disp/fn_1_138E44.c:
 	.text       start:0x00138E44 end:0x0013923C align:4
 
-rel/main_rel/screen_effect/fn_1_7A240.c:
+rel/main_rel/screen_effect_b/fn_1_7A240.c:
 	.text       start:0x0007A240 end:0x0007A648 align:4
 
 rel/main_rel/sel_static_disp/fn_1_13D02C.c:
@@ -1712,7 +1715,7 @@ rel/main_rel/effect_car/fn_1_6DD68.c:
 rel/main_rel/memcard/fn_1_C1394.c:
 	.text       start:0x000C1394 end:0x000C17CC align:4
 
-rel/main_rel/screen_effect/fn_1_7B558.c:
+rel/main_rel/screen_effect_b/fn_1_7B558.c:
 	.text       start:0x0007B558 end:0x0007BA08 align:4
 
 rel/main_rel/driver/fn_1_AA6D8.c:
@@ -1766,7 +1769,7 @@ rel/main_rel/sound/fn_1_A2210.c:
 rel/main_rel/load/fn_1_46144.c:
 	.text       start:0x00046144 end:0x000464BC align:4
 
-rel/main_rel/screen_effect/fn_1_789E8.c:
+rel/main_rel/screen_effect_b/fn_1_789E8.c:
 	.text       start:0x000789E8 end:0x00078EBC align:4
 
 rel/main_rel/phys/fn_1_EB0D8.c:
@@ -1835,13 +1838,13 @@ rel/main_rel/sound/fn_1_A176C.c:
 rel/main_rel/sel_static_disp/fn_1_14B93C.c:
 	.text       start:0x0014B93C end:0x0014BC3C align:4
 
-rel/main_rel/screen_effect/fn_1_79E54.c:
+rel/main_rel/screen_effect_b/fn_1_79E54.c:
 	.text       start:0x00079E54 end:0x0007A240 align:4
 
 rel/main_rel/bg_cas/fn_1_FC760.c:
 	.text       start:0x000FC760 end:0x000FCA10 align:4
 
-rel/main_rel/screen_effect/fn_1_7ACDC.c:
+rel/main_rel/screen_effect_b/fn_1_7ACDC.c:
 	.text       start:0x0007ACDC end:0x0007B054 align:4
 
 rel/main_rel/bg_cas/fn_1_FDD7C.c:
@@ -1968,7 +1971,7 @@ rel/main_rel/live_camera/fn_1_1138C.c:
 rel/main_rel/sel_static_disp/fn_1_1507C4.c:
 	.text       start:0x001507C4 end:0x00150D3C align:4
 
-rel/main_rel/bg_common/fn_1_1071E8.c:
+rel/main_rel/get_line/fn_1_1071E8.c:
 	.text       start:0x001071E8 end:0x0010780C align:4
 
 rel/main_rel/spline/fn_1_F5D94.c:

@@ -64230,7 +64230,7 @@
   {
    "symbol": "fn_1_789E8",
    "module": "main_rel",
-   "unit": "rel/main_rel/screen_effect/fn_1_789E8.c",
+   "unit": "rel/main_rel/screen_effect_b/fn_1_789E8.c",
    "addr": 494056,
    "size": 1236,
    "status": "matched",
@@ -64247,7 +64247,7 @@
   {
    "symbol": "fn_1_78EBC",
    "module": "main_rel",
-   "unit": "rel/main_rel/screen_effect/fn_1_78EBC.c",
+   "unit": "rel/main_rel/screen_effect_b/fn_1_78EBC.c",
    "addr": 495292,
    "size": 580,
    "status": "matched",
@@ -64264,7 +64264,7 @@
   {
    "symbol": "fn_1_79100",
    "module": "main_rel",
-   "unit": "rel/main_rel/screen_effect/fn_1_79100.c",
+   "unit": "rel/main_rel/screen_effect_b/fn_1_79100.c",
    "addr": 495872,
    "size": 176,
    "status": "matched",
@@ -64281,7 +64281,7 @@
   {
    "symbol": "fn_1_791B0",
    "module": "main_rel",
-   "unit": "rel/main_rel/screen_effect/fn_1_79100.c",
+   "unit": "rel/main_rel/screen_effect_b/fn_1_79100.c",
    "addr": 496048,
    "size": 188,
    "status": "matched",
@@ -64298,7 +64298,7 @@
   {
    "symbol": "fn_1_7926C",
    "module": "main_rel",
-   "unit": "rel/main_rel/screen_effect/fn_1_79100.c",
+   "unit": "rel/main_rel/screen_effect_b/fn_1_79100.c",
    "addr": 496236,
    "size": 1000,
    "status": "matched",
@@ -64315,7 +64315,7 @@
   {
    "symbol": "fn_1_79654",
    "module": "main_rel",
-   "unit": "rel/main_rel/screen_effect/fn_1_79654.c",
+   "unit": "rel/main_rel/screen_effect_b/fn_1_79654.c",
    "addr": 497236,
    "size": 444,
    "status": "matched",
@@ -64332,7 +64332,7 @@
   {
    "symbol": "fn_1_79810",
    "module": "main_rel",
-   "unit": "rel/main_rel/screen_effect/fn_1_79654.c",
+   "unit": "rel/main_rel/screen_effect_b/fn_1_79654.c",
    "addr": 497680,
    "size": 312,
    "status": "matched",
@@ -64349,7 +64349,7 @@
   {
    "symbol": "fn_1_79948",
    "module": "main_rel",
-   "unit": "rel/main_rel/screen_effect/fn_1_79654.c",
+   "unit": "rel/main_rel/screen_effect_b/fn_1_79654.c",
    "addr": 497992,
    "size": 832,
    "status": "matched",
@@ -64366,7 +64366,7 @@
   {
    "symbol": "fn_1_79C88",
    "module": "main_rel",
-   "unit": "rel/main_rel/screen_effect/fn_1_79C88.c",
+   "unit": "rel/main_rel/screen_effect_b/fn_1_79C88.c",
    "addr": 498824,
    "size": 460,
    "status": "matched",
@@ -64383,7 +64383,7 @@
   {
    "symbol": "fn_1_79E54",
    "module": "main_rel",
-   "unit": "rel/main_rel/screen_effect/fn_1_79E54.c",
+   "unit": "rel/main_rel/screen_effect_b/fn_1_79E54.c",
    "addr": 499284,
    "size": 1004,
    "status": "matched",
@@ -64400,7 +64400,7 @@
   {
    "symbol": "fn_1_7A240",
    "module": "main_rel",
-   "unit": "rel/main_rel/screen_effect/fn_1_7A240.c",
+   "unit": "rel/main_rel/screen_effect_b/fn_1_7A240.c",
    "addr": 500288,
    "size": 1032,
    "status": "matched",
@@ -64417,7 +64417,7 @@
   {
    "symbol": "fn_1_7A648",
    "module": "main_rel",
-   "unit": "rel/main_rel/screen_effect/fn_1_7A648.c",
+   "unit": "rel/main_rel/screen_effect_b/fn_1_7A648.c",
    "addr": 501320,
    "size": 52,
    "status": "matched",
@@ -64434,7 +64434,7 @@
   {
    "symbol": "fn_1_7A67C",
    "module": "main_rel",
-   "unit": "rel/main_rel/screen_effect/fn_1_7A648.c",
+   "unit": "rel/main_rel/screen_effect_b/fn_1_7A648.c",
    "addr": 501372,
    "size": 56,
    "status": "matched",
@@ -64451,7 +64451,7 @@
   {
    "symbol": "fn_1_7A6B4",
    "module": "main_rel",
-   "unit": "rel/main_rel/screen_effect/fn_1_7A648.c",
+   "unit": "rel/main_rel/screen_effect_b/fn_1_7A648.c",
    "addr": 501428,
    "size": 772,
    "status": "matched",
@@ -64468,7 +64468,7 @@
   {
    "symbol": "fn_1_7A9B8",
    "module": "main_rel",
-   "unit": "rel/main_rel/screen_effect/fn_1_7A648.c",
+   "unit": "rel/main_rel/screen_effect_b/fn_1_7A648.c",
    "addr": 502200,
    "size": 152,
    "status": "matched",
@@ -64485,7 +64485,7 @@
   {
    "symbol": "fn_1_7AA50",
    "module": "main_rel",
-   "unit": "rel/main_rel/screen_effect/fn_1_7AA50.c",
+   "unit": "rel/main_rel/screen_effect_b/fn_1_7AA50.c",
    "addr": 502352,
    "size": 652,
    "status": "matched",
@@ -64502,7 +64502,7 @@
   {
    "symbol": "fn_1_7ACDC",
    "module": "main_rel",
-   "unit": "rel/main_rel/screen_effect/fn_1_7ACDC.c",
+   "unit": "rel/main_rel/screen_effect_b/fn_1_7ACDC.c",
    "addr": 503004,
    "size": 888,
    "status": "matched",
@@ -64519,7 +64519,7 @@
   {
    "symbol": "fn_1_7B054",
    "module": "main_rel",
-   "unit": "rel/main_rel/screen_effect/fn_1_7B054.c",
+   "unit": "rel/main_rel/screen_effect_b/fn_1_7B054.c",
    "addr": 503892,
    "size": 16,
    "status": "matched",
@@ -64536,7 +64536,7 @@
   {
    "symbol": "fn_1_7B064",
    "module": "main_rel",
-   "unit": "rel/main_rel/screen_effect/fn_1_7B054.c",
+   "unit": "rel/main_rel/screen_effect_b/fn_1_7B054.c",
    "addr": 503908,
    "size": 16,
    "status": "matched",
@@ -64553,7 +64553,7 @@
   {
    "symbol": "fn_1_7B074",
    "module": "main_rel",
-   "unit": "rel/main_rel/screen_effect/fn_1_7B054.c",
+   "unit": "rel/main_rel/screen_effect_b/fn_1_7B054.c",
    "addr": 503924,
    "size": 16,
    "status": "matched",
@@ -64570,7 +64570,7 @@
   {
    "symbol": "fn_1_7B084",
    "module": "main_rel",
-   "unit": "rel/main_rel/screen_effect/fn_1_7B054.c",
+   "unit": "rel/main_rel/screen_effect_b/fn_1_7B054.c",
    "addr": 503940,
    "size": 256,
    "status": "matched",
@@ -64587,7 +64587,7 @@
   {
    "symbol": "fn_1_7B184",
    "module": "main_rel",
-   "unit": "rel/main_rel/screen_effect/fn_1_7B054.c",
+   "unit": "rel/main_rel/screen_effect_b/fn_1_7B054.c",
    "addr": 504196,
    "size": 148,
    "status": "matched",
@@ -64604,7 +64604,7 @@
   {
    "symbol": "fn_1_7B218",
    "module": "main_rel",
-   "unit": "rel/main_rel/screen_effect/fn_1_7B054.c",
+   "unit": "rel/main_rel/screen_effect_b/fn_1_7B054.c",
    "addr": 504344,
    "size": 208,
    "status": "matched",
@@ -64621,7 +64621,7 @@
   {
    "symbol": "fn_1_7B2E8",
    "module": "main_rel",
-   "unit": "rel/main_rel/screen_effect/fn_1_7B054.c",
+   "unit": "rel/main_rel/screen_effect_b/fn_1_7B054.c",
    "addr": 504552,
    "size": 472,
    "status": "matched",
@@ -64638,7 +64638,7 @@
   {
    "symbol": "fn_1_7B4C0",
    "module": "main_rel",
-   "unit": "rel/main_rel/screen_effect/fn_1_7B054.c",
+   "unit": "rel/main_rel/screen_effect_b/fn_1_7B054.c",
    "addr": 505024,
    "size": 152,
    "status": "matched",
@@ -64655,7 +64655,7 @@
   {
    "symbol": "fn_1_7B558",
    "module": "main_rel",
-   "unit": "rel/main_rel/screen_effect/fn_1_7B558.c",
+   "unit": "rel/main_rel/screen_effect_b/fn_1_7B558.c",
    "addr": 505176,
    "size": 1200,
    "status": "matched",
@@ -88744,7 +88744,7 @@
   {
    "symbol": "fn_1_1071E8",
    "module": "main_rel",
-   "unit": "rel/main_rel/bg_common/fn_1_1071E8.c",
+   "unit": "rel/main_rel/get_line/fn_1_1071E8.c",
    "addr": 1077736,
    "size": 1572,
    "status": "matched",
@@ -88761,7 +88761,7 @@
   {
    "symbol": "fn_1_10780C",
    "module": "main_rel",
-   "unit": "rel/main_rel/bg_common/fn_1_10780C.c",
+   "unit": "rel/main_rel/get_line/fn_1_10780C.c",
    "addr": 1079308,
    "size": 244,
    "status": "matched",

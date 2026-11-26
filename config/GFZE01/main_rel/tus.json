@@ -1609,7 +1609,7 @@
    "file": "screen_effect.c",
    "text": [
     468552,
-    506376
+    494056
    ],
    "data_sec": 5,
    "data": [
@@ -1661,7 +1661,27 @@
     "fn_1_788B0",
     "fn_1_78950",
     "fn_1_7899C",
-    "fn_1_789AC",
+    "fn_1_789AC"
+   ],
+   "confidence": {
+    "text+data": 9,
+    "text-range": 58,
+    "data-vote": 1
+   }
+  },
+  {
+   "file": "screen_effect_b.c",
+   "text": [
+    494056,
+    506376
+   ],
+   "data_sec": 5,
+   "data": [
+    126532,
+    126532
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_1_789E8",
     "fn_1_78EBC",
     "fn_1_79100",
@@ -1690,9 +1710,9 @@
     "fn_1_7B558"
    ],
    "confidence": {
-    "text+data": 9,
-    "text-range": 58,
-    "data-vote": 1
+    "text+data": 26,
+    "text-range": 0,
+    "data-vote": 0
    }
   },
   {
@@ -3856,7 +3876,7 @@
    "file": "bg_common.c",
    "text": [
     1061476,
-    1079552
+    1076912
    ],
    "data_sec": 5,
    "data": [
@@ -3894,7 +3914,27 @@
     "fn_1_106CAC",
     "fn_1_106D30",
     "fn_1_106DB4",
-    "fn_1_106EA4",
+    "fn_1_106EA4"
+   ],
+   "confidence": {
+    "text+data": 4,
+    "text-range": 33,
+    "data-vote": 3
+   }
+  },
+  {
+   "file": "get_line.c",
+   "text": [
+    1076912,
+    1079552
+   ],
+   "data_sec": 5,
+   "data": [
+    259344,
+    259344
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_1_106EB0",
     "fn_1_1071C0",
     "fn_1_1071E8",
@@ -3902,8 +3942,8 @@
    ],
    "confidence": {
     "text+data": 4,
-    "text-range": 33,
-    "data-vote": 3
+    "text-range": 0,
+    "data-vote": 0
    }
   },
   {
