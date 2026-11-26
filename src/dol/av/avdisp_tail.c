@@ -18,11 +18,6 @@ typedef struct {
     u32 unk_18;
 } Fn80078CDCData;
 
-typedef union {
-    u8 u8;
-    u32 u32;
-} Func8008D6BCFifo;
-
 struct fn_80078D60_gx_T {
     u8 pad_0[0x204];
     u32 unk_204;
@@ -231,24 +226,15 @@ void fn_80078CDC(s32 arg0) {
 }
 #pragma opt_common_subs reset
 
-/* WARNING: compiler-diff device, not original code: optimization_level 0 and K&R register parameters reproduce retail's unscheduled lis/li/ori FIFO write (5 instructions differ without it); dont_inline keeps it a call in fn_80078D60 (15 without); the shape suggests an original asm helper, owner decision */
-#pragma optimization_level 0
-#pragma dont_inline on
-u32 func_8008D6BC(value, command, fifo)
-    register u32 value;
-    register u8 command;
-    register u32 fifo;
-{
-    fifo = FZGX_ADDR___CPRegs;
-    command = 0x61;
-    fifo |= 0x8000;
-    ((volatile Func8008D6BCFifo *)fifo)->u8 = command;  /* fzgx-allow: S2 volatile view keeps the verified load order */
-    ((volatile Func8008D6BCFifo *)fifo)->u32 = value;  /* fzgx-allow: S2 volatile view keeps the verified load order */
-    return value;
+asm u32 func_8008D6BC(register u32 value) {
+    nofralloc
+    lis r5, 0xcc00
+    li r4, 0x61
+    ori r5, r5, 0x8000
+    stb r4, 0x0(r5)
+    stw r3, 0x0(r5)
+    blr
 }
-#pragma dont_inline reset
-/* WARNING: compiler-diff device, not original code: restores the optimizer after func_8008D6BC; required by the level-0 block above */
-#pragma optimization_level 4
 
 void fn_80078D60(s32 arg0) {
     u32 temp_r3;

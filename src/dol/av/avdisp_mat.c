@@ -1669,33 +1669,16 @@ void fn_800781B8(Sig_fn_80078768_Sig_fn_80078C28_Sig_fn_800786B0_Fn800786B0Arg0 
 
 /* === dol/fn_80078344.c === */
 
-/* WARNING: compiler-diff device, not original code: optimization_level 0, scheduling off and K&R register parameters reproduce retail's unscheduled li/lis/ori FIFO write in r6/r7 (6 and 1 instructions differ without them); the shape suggests an original asm helper, owner decision */
-#pragma optimization_level 0
-#pragma scheduling off
-static inline void writeDisplayList(u32 a, u32 b, u32 unused, u32 command, u32 address) {
-    /* Volatile stores send commands to the GX write-gather FIFO. */
-    *(volatile u8 *)address = command;
-    *(volatile u32 *)address = a;  /* fzgx-allow: S2 volatile view keeps the verified load order */
-    *(volatile u32 *)address = b;  /* fzgx-allow: S2 volatile view keeps the verified load order */
+asm void fn_80078344(register u32 list, register u32 nbytes) {
+    nofralloc
+    li r6, 0x40
+    lis r7, 0xcc00
+    ori r7, r7, 0x8000
+    stb r6, 0x0(r7)
+    stw r3, 0x0(r7)
+    stw r4, 0x0(r7)
+    blr
 }
-void fn_80078344(a, b, unused, command, address)
-    register u32 a;
-    register u32 b;
-    register u32 unused;
-    register u32 command;
-    register u32 address;
-{
-    command = 0x40;
-    address = GX_FIFO_BASE & 0xFFFF0000;
-    address |= GX_FIFO_BASE & 0xFFFF;
-    writeDisplayList(a, b, unused, command, address);
-}
-/* WARNING: compiler-diff device, not original code: restores the optimizer after fn_80078344 (see above); dropping it compiles fn_80078360 at level 0 (85 instructions differ) */
-#pragma optimization_level 4
-#pragma scheduling reset
-
-/* WARNING: compiler-diff device, not original code: dont_inline on keeps fn_80078344 a call in fn_80078360 (31 instructions differ without it); unneeded if fn_80078344 is an asm unit */
-#pragma dont_inline on
 /* === dol/fn_80078360.c === */
 
 typedef struct {

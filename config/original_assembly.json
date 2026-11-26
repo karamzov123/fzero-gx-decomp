@@ -1118,5 +1118,21 @@
       "sha256": "3ee87bcf7adfcb2d318bb0ba9eaba212755c501a9ab707b82a47cefc166e8991",
       "evidence": "Evidenced original assembly (docs/findings/gfze01-main-rel-assembly-frontier.md#curve-evaluator-fn_1_9dfb8-origin-audit-evidenced-assembly): the cached keyframe curve evaluator uses six bCC+ static branch hints, two self-XOR register zeroes, direct locked-cache 0xE000019C constant loads through the clobbered parameter r6 and a dead duplicate branch, none of which MWCC emits; written as a CodeWarrior asm function in background_b.c beside its C wrapper fn_1_9DDA8 (the TU split out of the draft map's background.c)."
     }
+  ],
+  "src/dol/av/avdisp_mat.c": [
+    {
+      "symbol": "fn_80078344",
+      "form": "asm-function",
+      "sha256": "ae1245648dadc821e317807be65fa1f0100c1b305d747cf5e2fce4f12ab1592e",
+      "evidence": "Retail 0x80078344..0x8007835C is a frameless leaf that writes the GX CALL_DL command (0x40) and the list address/size to the write-gather FIFO: li r6,0x40; lis r7,0xCC00; ori r7,r7,0x8000; stb/stw/stw through r7. MWCC probes (GC/1.3.2 and GC/2.5, -O4,p and optimization_level 0; GXWGFifo union, volatile pointer, constant locals, register locals) always emit r0/r5 with a lis 0xCC01 high-adjusted displacement, or a stack frame with r30/r31 at level 0; the scratch r6/r7 register contract and lis/ori address composition only appear from asm or from C with three dummy K&R register parameters at level 0 (the former compiler-diff device). Callers treat it as a non-inlined call (no dont_inline needed)."
+    }
+  ],
+  "src/dol/av/avdisp_tail.c": [
+    {
+      "symbol": "func_8008D6BC",
+      "form": "asm-function",
+      "sha256": "f8a0a47c93c2cc8fb12074bc1a994167e11b5903980314527efbc8b75c7cb3cd",
+      "evidence": "Retail func_8008D6BC is a frameless leaf writing the GX LOAD_BP_REG command (0x61) and r3 to the write-gather FIFO: lis r5,0xCC00; li r4,0x61; ori r5,r5,0x8000; stb r4,0(r5); stw r3,0(r5); blr, returning its argument. Same MWCC probe result as avdisp_mat.c fn_80078344: natural C at -O4,p or level 0 gives lis 0xCC01 with a displacement and r0, never the lis/ori composition with argument-register scratch; the former C needed dummy K&R register parameters at optimization level 0."
+    }
   ]
 }
