@@ -372,13 +372,13 @@ struct fn_1_71768_lbl_1_rodata_2D70 {
     u8 pad_C8[0x8];
     f64 unk_D0;
     u8 pad_D8[0x14];
-    volatile f32 unk_EC; /* Volatile preserves the two retail clamp-bound reloads. */
+    f32 unk_EC;
     u8 pad_F0[0x90];
     f32 unk_180;
     u8 pad_184[0x9C];
     f32 unk_220;
     u8 pad_224[0x174];
-    volatile f32 unk_398; /* Volatile keeps the scale load inside each emission iteration. */
+    f32 unk_398;
 };
 
 typedef struct {
@@ -1589,7 +1589,7 @@ void fn_1_6A7A4(u32 arg0, void *arg1) {
     f32 v4;
     s32 v3;
     u32 v6;
-    struct { u32 a[12]; } loc_8;
+    u32 loc_8[12];
     EffectA7 effect;
     s32 t2;
     VecA7 *normal = (VecA7 *)arg1;
@@ -1899,8 +1899,8 @@ void fn_1_6AF70(u32 arg0, void * arg1) {
     f32 v73;
     f32 v74;
     f32 total;
-    struct { f32 a[58]; } loc_5C;
-    struct { u32 a[12]; } loc_2C;
+    f32 loc_5C[58];
+    u32 loc_2C[12];
     struct { u32 x, y, z; } delta;
     f32 fzgx_pool_f32_0 = 0.800000012f;
 #define loc_20 (*(f32 *)&delta.x)
@@ -1978,39 +1978,39 @@ outer_loop:
         v34 = lbl_1_bss_38458->unk_8;
         *(u32 *)((u8 *)&loc_5C + 52) = *(u32 *)((u8 *)v34 + 232);
     }
-    fn_1_6AF70_scale((fn_1_6AF70_Vec *)&loc_5C.a[18], (const fn_1_6AF70_Vec *)&delta, (0.930000007f));
-    v41 = fn_1_6AF70_dot((const fn_1_6AF70_Vec *)&loc_5C.a[18], (const fn_1_6AF70_Vec *)(v1 + 56));
-    fn_1_6AF70_project_sub((fn_1_6AF70_Vec *)&loc_5C.a[18], (const fn_1_6AF70_Vec *)(v1 + 56), v41);
+    fn_1_6AF70_scale((fn_1_6AF70_Vec *)&loc_5C[18], (const fn_1_6AF70_Vec *)&delta, (0.930000007f));
+    v41 = fn_1_6AF70_dot((const fn_1_6AF70_Vec *)&loc_5C[18], (const fn_1_6AF70_Vec *)(v1 + 56));
+    fn_1_6AF70_project_sub((fn_1_6AF70_Vec *)&loc_5C[18], (const fn_1_6AF70_Vec *)(v1 + 56), v41);
     t3 = fn_1_584AC();
     v43 = t3;
     v44 = v43;
     v45 = v44 / (32767.0f);
     v46 = v45 - (0.5);
     v46 = (f64)fzgx_pool_f32_0 * v46;
-    loc_5C.a[18] = (loc_5C.a[18] + v46);
+    loc_5C[18] = (loc_5C[18] + v46);
     t4 = fn_1_584AC();
     v47 = t4;
     v48 = v47;
     v49 = v48 / (32767.0f);
     v50 = v49 - (0.5);
     v50 = (f64)fzgx_pool_f32_0 * v50;
-    loc_5C.a[19] = (loc_5C.a[19] + v50);
+    loc_5C[19] = (loc_5C[19] + v50);
     t5 = fn_1_584AC();
     v51 = t5;
     v57 = v51 / (32767.0f);
     v50 = v57;
     v50 = (f64)fzgx_pool_f32_0 * (v50 - (0.5));
-    loc_5C.a[20] = (loc_5C.a[20] + v50);
+    loc_5C[20] = (loc_5C[20] + v50);
     v4 = v6 < (0.300000012f) ? (0.300000012f) : v6 > (1.0f) ? (1.0f) : v6;
     v53 = fzgx_pool_f32_0 * v4;
-    fn_1_6AF70_add_scaled((fn_1_6AF70_Vec *)&loc_5C.a[18], (const fn_1_6AF70_Vec *)(v1 + 56), v53);
+    fn_1_6AF70_add_scaled((fn_1_6AF70_Vec *)&loc_5C[18], (const fn_1_6AF70_Vec *)(v1 + 56), v53);
     if (v7 != 0) {
         v4 = v6 < (0.300000012f) ? (0.300000012f) : v6 > (1.0f) ? (1.0f) : v6;
         v54 = -v4;
-        fn_1_6AF70_add_scaled((fn_1_6AF70_Vec *)&loc_5C.a[18], (const fn_1_6AF70_Vec *)arg1, v54);
+        fn_1_6AF70_add_scaled((fn_1_6AF70_Vec *)&loc_5C[18], (const fn_1_6AF70_Vec *)arg1, v54);
     } else {
         v55 = v6 < (0.300000012f) ? (0.300000012f) : v6 > (1.0f) ? (1.0f) : v6;
-        fn_1_6AF70_add_scaled((fn_1_6AF70_Vec *)&loc_5C.a[18], (const fn_1_6AF70_Vec *)arg1, v55);
+        fn_1_6AF70_add_scaled((fn_1_6AF70_Vec *)&loc_5C[18], (const fn_1_6AF70_Vec *)arg1, v55);
     }
     if (v75 == 3 || v75 == 4) {
     *(u32 *)((u8 *)&loc_5C + 8) = (*(u32 *)((u8 *)&loc_5C + 8) | 16384);
@@ -2048,34 +2048,34 @@ inner_loop:
     v69 = v69 * (0.0799999982f);
     v69 = v69 + (0.0500000007f);
     *(u32 *)((u8 *)&loc_5C + 16) = (s32)(f32)(v69 * (60.0f));
-    loc_5C.a[15] = (f32)(*(f32 *)&loc_14 * v64) + (f32)(*(f32 *)&loc_8 * v65);
-    loc_5C.a[16] = (f32)(*(f32 *)&loc_18 * v64) + (f32)(*(f32 *)&loc_C * v65);
+    loc_5C[15] = (f32)(*(f32 *)&loc_14 * v64) + (f32)(*(f32 *)&loc_8 * v65);
+    loc_5C[16] = (f32)(*(f32 *)&loc_18 * v64) + (f32)(*(f32 *)&loc_C * v65);
     *(u32 *)((u8 *)&loc_5C + 60) = loc_14;
     *(u32 *)((u8 *)&loc_5C + 64) = loc_18;
-    loc_5C.a[17] = (f32)(*(f32 *)&loc_1C * v64) + (f32)(*(f32 *)&loc_10 * v65);
+    loc_5C[17] = (f32)(*(f32 *)&loc_1C * v64) + (f32)(*(f32 *)&loc_10 * v65);
     *(u32 *)((u8 *)&loc_5C + 68) = loc_1C;
     t10 = fn_1_584AC();
     v4 = t10;
     v4 = v4 / ((32767.0f));
     v4 = v4 - ((0.5f));
     v4 = ((0.800000012f)) * v4;
-    loc_5C.a[15] = loc_5C.a[15] + v4;
+    loc_5C[15] = loc_5C[15] + v4;
     t11 = fn_1_584AC();
     v4 = t11;
     v4 = v4 / ((32767.0f));
     v4 = v4 - ((0.5f));
     v4 = ((0.800000012f)) * v4;
-    loc_5C.a[16] = loc_5C.a[16] + v4;
+    loc_5C[16] = loc_5C[16] + v4;
     t12 = fn_1_584AC();
     v71 = t12;
     v73 = v71 / ((32767.0f));
-    loc_5C.a[17] = loc_5C.a[17] + (f32)(((0.800000012f)) * (v73 - ((0.5f))));
-    fn_1_6AF70_sub_scaled((fn_1_6AF70_Vec *)&loc_5C.a[15], (const fn_1_6AF70_Vec *)&loc_5C.a[18], (1.0f));
+    loc_5C[17] = loc_5C[17] + (f32)(((0.800000012f)) * (v73 - ((0.5f))));
+    fn_1_6AF70_sub_scaled((fn_1_6AF70_Vec *)&loc_5C[15], (const fn_1_6AF70_Vec *)&loc_5C[18], (1.0f));
     t13 = fn_1_584AC();
     {
         f32 product = ((((0.5f)) + (f32)(((0.300000012f)) * (t13 / ((32767.0f))))));
         product *= ((0.5f));
-        loc_5C.a[11] = product;
+        loc_5C[11] = product;
     }
     t14 = fn_1_584AC();
     v4 = v6 * (t14 / ((32767.0f)));
@@ -2083,14 +2083,14 @@ inner_loop:
     {
         f32 product = ((((0.400000006f)) + v4));
         product *= ((0.5f));
-        loc_5C.a[10] = product;
+        loc_5C[10] = product;
     }
     t15 = fn_1_584AC();
     v74 = ((0.5f)) + (f32)(((0.300000012f)) * (t15 / ((32767.0f))));
     v4 = ((0.5f)) * v74;
-    loc_5C.a[8] = v4;
-    loc_5C.a[7] = ((0.800000012f)) * v74;
-    loc_5C.a[9] = v4;
+    loc_5C[8] = v4;
+    loc_5C[7] = ((0.800000012f)) * v74;
+    loc_5C[9] = v4;
     fn_1_58F50(&loc_5C);
     v11++;
     v9 = v9 - ((2.0f));
@@ -2241,8 +2241,8 @@ f32 arg2;
     f64 v55;
     f32 v56;
     u32 v59;
-    struct { u16 a[116]; } loc_50;
-    struct { u32 a[12]; } loc_20;
+    u16 loc_50[116];
+    u32 loc_20[12];
     u32 loc_1C;
     u32 loc_18;
     u32 loc_14;
@@ -2264,7 +2264,7 @@ f32 arg2;
     s16 t16;
     lbl_8006DD14( (void *)((arg0 + 184)), &loc_20);
     v0 = *(u32 *)(arg0 + 56);
-    loc_50.a[13] = 0;
+    loc_50[13] = 0;
     v2 = (v0 + 580);
     if (*(s8 *)(v0 + 0x475) == -1 && (lbl_801A66A0 % 5) != 0) {
     return;
@@ -2285,14 +2285,14 @@ f32 arg2;
     if (v5 > v25) {
     v5 = v25;
     }
-    if (loc_50.a[13] == 0) {
+    if (loc_50[13] == 0) {
     v1 = (u32)&loc_50;
     t3 = (memset( (void *)(v1), 0, 232));
     v1 = (s32)(t3);
     v26 = *(s16 *)(arg0 + 24);
-    loc_50.a[12] = v26;
-    loc_50.a[6] = 24;
-    loc_50.a[13] = 1;
+    loc_50[12] = v26;
+    loc_50[6] = 24;
+    loc_50[13] = 1;
     v1 = lbl_1_bss_38458->unk_8;
     *(u32 *)((u8 *)&loc_50 + 52) = *(u32 *)((u8 *)v1 + 160);
     }
@@ -3020,7 +3020,7 @@ void fn_1_6CF3C(struct fn_1_6CF3C_Arg0 *arg0, struct fn_1_6CF3C_Vec *arg1, f32 a
     f64 v24;
     s16 v25;
     f32 v27;
-    struct { u16 a[116]; } loc_8;
+    u16 loc_8[116];
     f32 t0;
     f32 t2;
     f32 v16;
@@ -3028,13 +3028,13 @@ void fn_1_6CF3C(struct fn_1_6CF3C_Arg0 *arg0, struct fn_1_6CF3C_Vec *arg1, f32 a
     t0 = fn_1_8652C(arg0->unk_18);
     memset(&loc_8, 0, 232);
     v0 = arg0->unk_18;
-    loc_8.a[12] = v0;
+    loc_8[12] = v0;
     v1 = (0x10000 - 1);
-    loc_8.a[6] = 15;
+    loc_8[6] = 15;
     v7 = 0.3 + (1.2f * arg2);
     v5 = 0.6 * arg2;
     v6 = 5.0f;
-    loc_8.a[13] = v1;
+    loc_8[13] = v1;
     v15 = 2;
     while (v15) {
         v16 = arg0->unk_48.y;
@@ -3068,7 +3068,7 @@ void fn_1_6CF3C(struct fn_1_6CF3C_Arg0 *arg0, struct fn_1_6CF3C_Vec *arg1, f32 a
         *(f32 *)((u8 *)&loc_8 + 68) -= arg0->unk_48.z;
         *(f32 *)((u8 *)&loc_8 + 160) = (f32)(v5 < 0.2 ? 0.2 : (v5 > 0.4 ? 0.4 : v5));
         v25 = (s16)(44.0f * arg2) < 6 ? 6 : ((s16)(44.0f * arg2) > 18 ? 18 : (s16)(44.0f * arg2));
-        loc_8.a[86] = v25;
+        loc_8[86] = v25;
         v27 = 0.8f + (f32)(0.2f * (fn_1_584AC() / 32767.0f));
         *(f32 *)((u8 *)&loc_8 + 28) = (f32)(arg0->unk_1C * (f32)(0.5f * (f32)(1.0f + v27))) / 255.0f;
         *(f32 *)((u8 *)&loc_8 + 32) = (f32)(arg0->unk_20 * v27) / 255.0f;
@@ -3250,22 +3250,21 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime25(void) {
     d = 10.0;
 }
 #pragma section code_type ".text"
+#include "mathutil_mtxA_set_translate.h"
 #pragma opt_loop_invariants off
 #pragma opt_propagation off
 void fn_1_6D488(struct fn_1_6D488_Arg0 *arg0) {
     void * lab_t1;
     u16 count;
-    struct { u32 a[58]; } loc_20;
+    u32 loc_20[58];
     struct Sig_fn_1_867CC_fn_1_867CC_Arg1 loc_14;
 
-    f32 z;
-    f32 y;
     fn_1_867CC(arg0->unk_18, (struct Sig_fn_1_867CC_fn_1_867CC_Arg1 *)(&loc_14));
     memset( &loc_20, 0, 232);
     *(s16 *)((u8 *)&loc_20 + 24) = arg0->unk_18;
     *(u16 *)((u8 *)&loc_20 + 12) = 17;
     *(u16 *)((u8 *)&loc_20 + 26) = 65535;
-    loc_20.a[2] |= 0x40000;
+    loc_20[2] |= 0x40000;
     if (fn_1_58C4() >= 2 || arg0->unk_18 != camera_get_mode()) count = 1;
     else count = 3;
     while (count) {
@@ -3275,16 +3274,7 @@ void fn_1_6D488(struct fn_1_6D488_Arg0 *arg0) {
         *(s16 *)((u8 *)&loc_20 + 0x5c) = (s32)(768.0f + (f32)(768.0f * ((f32)(u16)fn_1_584AC() / 32767.0f)));
         if (!fn_1_66B8(&loc_14, 4.0f)) break;
         lbl_8006DC6C((u8 *)arg0 + 0xb8);
-        {
-            struct { f32 *base; } cache;
-            f32 x = *(f32 *)&loc_14.unk_0;
-            y = *(f32 *)&loc_14.unk_4;
-            z = *(f32 *)&loc_14.unk_8;
-            cache.base = (f32 *)LC_BASE;
-            cache.base[3] = x;
-            cache.base[7] = y;
-            cache.base[11] = z;
-        }
+        mathutil_mtxA_set_translate((Vec3 *)&loc_14);
         mathutil_mtxA_rotate_y(*(s16 *)((u8 *)&loc_20 + 0x56));
         mathutil_mtxA_rotate_x(*(s16 *)((u8 *)&loc_20 + 0x54));
         {
@@ -4433,8 +4423,8 @@ f32 arg2;
     f64 v55;
     f32 v56;
     u32 v59;
-    struct { u16 a[116]; } loc_50;
-    struct { u32 a[12]; } loc_20;
+    u16 loc_50[116];
+    u32 loc_20[12];
     u32 loc_1C;
     u32 loc_18;
     u32 loc_14;
@@ -4458,7 +4448,7 @@ f32 arg2;
     s16 t16;
     lbl_8006DD14( (void *)((arg0 + 184)), &loc_20);
     v0 = *(u32 *)(arg0 + 56);
-    loc_50.a[13] = 0;
+    loc_50[13] = 0;
     t1 = fn_1_58C4();
     v1 = t1;
     v4 = arg2;
@@ -4484,14 +4474,14 @@ f32 arg2;
     if (v5 > v25) {
     v5 = v25;
     }
-    if (loc_50.a[13] == 0) {
+    if (loc_50[13] == 0) {
     v1 = (u32)&loc_50;
     t3 = (memset( (void *)(v1), 0, 232));
     v1 = (s32)(t3);
     v26 = *(s16 *)((u8 *)arg0 + 24);
-    loc_50.a[12] = v26;
-    loc_50.a[6] = 24;
-    loc_50.a[13] = 1;
+    loc_50[12] = v26;
+    loc_50[6] = 24;
+    loc_50[13] = 1;
     v1 = lbl_1_bss_38458->unk_8;
     *(u32 *)((u8 *)&loc_50 + 52) = *(u32 *)((u8 *)v1 + 160);
     }
@@ -5442,7 +5432,6 @@ typedef struct Fn6FFA0Work {
     (lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB, (s32)((lbl_801A63C0 >> 16) & 0x7FFF))
 
 #include "mathutil_mtxA_set_translate.h"
-#pragma opt_propagation off
 void fn_1_6FFA0(Fn6FFA0Car *car, u32 arg1, u32 arg2) {
     Fn6FFA0Vec pos;
     Fn6FFA0Vec dir;
@@ -6045,7 +6034,7 @@ void fn_1_7099C(struct fn_1_7099C_Arg0 *arg0, Fn183D28Vec3 *arg1, u32 arg2, f32 
  u8 count;
  u32 v0;
  f32 speed, scale, spread;
- struct { u16 a[116]; } loc_14;
+ u16 loc_14[116];
  Fn183D28Vec3 loc_8;
  f32 z,y,x, r, c;
  f64 clamp;
@@ -6061,9 +6050,9 @@ void fn_1_7099C(struct fn_1_7099C_Arg0 *arg0, Fn183D28Vec3 *arg1, u32 arg2, f32 
  }
  memset( &loc_14,0,232);
  slot=fzgx_obj_lbl_1_bss_38458;
- *(s16 *)&loc_14.a[12]=*(s16 *)&arg0->unk_18;
- loc_14.a[6]=29;
- loc_14.a[13]=0xffff;
+ *(s16 *)&loc_14[12]=*(s16 *)&arg0->unk_18;
+ loc_14[6]=29;
+ loc_14[13]=0xffff;
  /* Read the resource manager pointer once for this effect. */
  *(u32 *)((u8 *)&loc_14+0x34)=*(u32 *)((*slot)->unk_8+0x148);
  *(u32 *)&loc_8=fzgx_pool_table_38C[0];
@@ -6125,7 +6114,7 @@ void fn_1_7099C(struct fn_1_7099C_Arg0 *arg0, Fn183D28Vec3 *arg1, u32 arg2, f32 
   }
   E(0x88)=D(0x1f0)*(fn_1_584AC()/F(0x24));
   E(0x8c)=D(0x1f8)+speed/F(0x184);
-  loc_14.a[0x56]=0x16c;
+  loc_14[0x56]=0x16c;
   if(*(s8 *)(v0+0x475) != -1) fn_1_59078((Obj_1_bss_6C84C_Target *)&loc_14);
   else fn_1_58F50(&loc_14);
   count--;
@@ -7039,7 +7028,6 @@ static inline void cross_71D0C(const Fn183D28Vec3 *a, const Fn183D28Vec3 *b, f32
 
 #include "mathutil_mtxA_set_translate.h"
 
-#pragma opt_propagation off
 void fn_1_71D0C(Fn1_71D0CCar *car) {
     Fn1_71D0CEffect work;
     Fn183D28Vec3 pos;
@@ -7120,7 +7108,6 @@ void fn_1_71D0C(Fn1_71D0CCar *car) {
         fn_1_59078( (Obj_1_bss_6C84C_Target *)(((Obj_1_bss_6C84C_Target *)&work)));
     }
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_71D0C */
 
 /* fzgx:begin fn_1_72318 */
@@ -7142,7 +7129,6 @@ struct EffectWorkData {
 };
 
 #include "mathutil_mtxA_set_translate.h"
-#pragma opt_propagation off
 s16 fn_1_72318(arg0)
 struct fn_1_72318_EffectCar *arg0;
 {
@@ -7169,7 +7155,6 @@ struct fn_1_72318_EffectCar *arg0;
     data.field_5c = 0x100;
     return fn_1_59078( (Obj_1_bss_6C84C_Target *)(&data));
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_72318 */
 
 /* fzgx:begin fn_1_723E0 */

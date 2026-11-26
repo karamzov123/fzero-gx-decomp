@@ -771,7 +771,7 @@ void fn_1_DD890(DDObj *arg0, f32 arg1) {
         lbl_8006D784(&tempMtx);
         lbl_8006DBAC((Vec3 *)((u8 *)arg0 + 196));
         /* Locked cache current matrix: the volatile first load preserves translation-column load order. */
-        x = *(volatile f32 *)(0xE0000000 + 0x0C); /* locked cache */
+        x = *(f32 *)(0xE0000000 + 0x0C); /* locked cache */
         y = *(f32 *)(0xE0000000 + 0x1C); /* locked cache */
         z = *(f32 *)(0xE0000000 + 0x2C); /* locked cache */
         tempMtx.m[0][3] = x;

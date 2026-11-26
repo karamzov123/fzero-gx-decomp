@@ -4304,7 +4304,6 @@ static inline f32 fn_1_11E98_dist2(Cam11E98Vec *a, Cam11E98Vec *b) {
 
 // Pick the camera point nearest to the current target point and aim the camera from it.
 #include "mathutil_mtxA_set_translate.h"
-#pragma opt_propagation off
 void fn_1_11E98(Cam11E98 *cam) {
     u8 mtx[0x30];
     Cam11E98Vec target;
@@ -4353,7 +4352,6 @@ void fn_1_11E98(Cam11E98 *cam) {
     lbl_8006E1B0(&up, &cam->pos);
     cam->unk_4C = target;
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_11E98 */
 
 /* fzgx:begin fn_1_1212C noprologue */
