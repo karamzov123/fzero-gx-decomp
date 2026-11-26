@@ -2,12 +2,4 @@
 #include "types.h"
 
 extern u32 Reschedule;
-extern u8 Debug_BBA;
-
-
-
-__declspec(section ".sdata") u8 Debug_BBA __attribute__((aligned(8)));
-
-
-
 __declspec(section ".sdata") u32 Reschedule __attribute__((aligned(32)));

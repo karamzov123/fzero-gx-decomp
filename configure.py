@@ -335,7 +335,9 @@ config.libs = [
 #   "source": "dol/....c"|"rel/<mod>/....c", "symbols": [...],
 #   "status": "matching"|"nonmatching", "matching_for": [<VERSION>, ...] (optional),
 #   "mw_version": null|"GC/1.3", "extra_cflags": [...],
-#   "split_end_for": {<VERSION>: {<section>: <first omitted USA symbol>}} (optional)}
+#   "pool_for": {<VERSION>: <replacement pool map>} (optional),
+#   "split_end_for": {<VERSION>: {<section>: <first omitted USA symbol>}} (optional),
+#   "split_resize_for": {<VERSION>: {<section>: [<resized function>, ...]}} (optional)}
 # As in dtk-template: "matching" alone is Matching (every version); with "matching_for"
 # it is MatchingFor(*matching_for). Other versions build only the units that match them,
 # from their own symbols.txt (GFZE01 names at their addresses); their splits are the
@@ -355,33 +357,39 @@ def version_units() -> List[Dict[str, Any]]:
         return []
     out = []
     for u in json.loads(CANONICAL_UNITS.read_text()):
+        v = dict(u)
+        pool = u.get("pool_for", {}).get(config.version)
+        if pool is not None:
+            v["pool"] = pool
         if config.version == CANONICAL_VERSION:
-            v = dict(u)
             if not unit_matches(u, config.version) and v.get("status") == "matching":
                 v["status"] = "nonmatching"
             out.append(v)
         elif unit_matches(u, config.version):
-            out.append(dict(u))
+            out.append(v)
     return out
 
 
-def _symbol_addrs(path: Path) -> Dict[str, Tuple[str, int]]:
+def _split_symbols(path: Path) -> Dict[str, Tuple[str, int, int]]:
     out = {}
     for line in path.read_text().splitlines():
         m = re.match(r"(\S+) = (\.\w+):0x([0-9A-Fa-f]+);", line)
         if m:
-            out[m.group(1)] = (m.group(2), int(m.group(3), 16))
+            size = re.search(r"\btype:function size:0x([0-9A-Fa-f]+)\b", line[m.end():])
+            out[m.group(1)] = (m.group(2), int(m.group(3), 16), int(size[1], 16) if size else 0)
     return out
 
 
 def render_version_config(units: List[Dict[str, Any]]) -> Path:
     """build/<VERSION>/config.yml whose splits are the GFZE01 unit splits moved to this version.
 
-    Every symbol named in both versions inside a split range must move by the same amount,
-    or the unit cannot be placed and configure stops. Section headers stay in
+    Every shared symbol must move by the same amount after accounting for explicitly
+    listed function resizes proved by both symbol tables. Section headers stay in
     config/<VERSION>/**/splits.txt."""
-    src_cfg = Path("config") / config.version / "config.yml"
-    out_dir = Path(config.build_dir) / config.version / "splits"
+    version = config.version
+    assert version is not None
+    src_cfg = Path("config") / version / "config.yml"
+    out_dir = Path(config.build_dir) / version / "splits"
     by_mod: Dict[str, List[Dict[str, Any]]] = {}
     for u in units:
         by_mod.setdefault(u["module"], []).append(u)
@@ -392,8 +400,8 @@ def render_version_config(units: List[Dict[str, Any]]) -> Path:
     def render(m: "re.Match[str]") -> str:
         rel = Path(m.group(1))
         mod = "main" if rel.parent == Path("config") / config.version else rel.parent.name
-        us_syms = _symbol_addrs(module_dir(CANONICAL_VERSION, mod) / "symbols.txt")
-        rg_syms = _symbol_addrs(module_dir(config.version, mod) / "symbols.txt")
+        us_syms = _split_symbols(module_dir(CANONICAL_VERSION, mod) / "symbols.txt")
+        rg_syms = _split_symbols(module_dir(version, mod) / "symbols.txt")
         blocks = {}
         for block in (module_dir(CANONICAL_VERSION, mod) / "splits.txt").read_text().split("\n\n")[1:]:
             lines = block.strip().splitlines()
@@ -413,20 +421,34 @@ def render_version_config(units: List[Dict[str, Any]]) -> Path:
                 sec, lo, hi = r.group(2), int(r.group(3), 16), int(r.group(5), 16)
                 end_at = u.get("split_end_for", {}).get(config.version, {}).get(sec)
                 if end_at is not None:
-                    end_sec, end = us_syms.get(end_at, (None, 0))
+                    end_sec, end, _ = us_syms.get(end_at, (None, 0, 0))
                     if (end_sec != sec or not lo < end < hi or any(
-                        s in rg_syms for s, (ssec, a) in us_syms.items()
+                        s in rg_syms for s, (ssec, a, _) in us_syms.items()
                         if ssec == sec and end <= a < hi
                     )):
                         sys.exit(f"{config.version}: {u['source']} {sec} cannot omit tail at {end_at}")
                     hi = end
-                deltas = {rg_syms[s][1] - a for s, (ssec, a) in us_syms.items()
+                resizes = []
+                for name in u.get("split_resize_for", {}).get(config.version, {}).get(sec, []):
+                    us_sec, us_addr, us_size = us_syms.get(name, (None, 0, 0))
+                    rg_sec, _, rg_size = rg_syms.get(name, (None, 0, 0))
+                    if (name not in u["symbols"] or us_sec != sec or rg_sec != sec or
+                            not lo <= us_addr < us_addr + us_size <= hi or
+                            not rg_size or rg_size == us_size):
+                        sys.exit(f"{config.version}: {u['source']} {sec} invalid resize for {name}")
+                    resizes.append((us_addr, us_addr + us_size, rg_size - us_size))
+                resizes.sort()
+                if any(a[1] > b[0] for a, b in zip(resizes, resizes[1:])):
+                    sys.exit(f"{config.version}: {u['source']} {sec} has overlapping resizes")
+                deltas = {rg_syms[s][1] - a - sum(growth for _, end, growth in resizes if end <= a)
+                          for s, (ssec, a, _) in us_syms.items()
                           if ssec == sec and lo <= a < hi and s in rg_syms and rg_syms[s][0] == sec}
                 if len(deltas) != 1:
                     sys.exit(f"{config.version}: {u['source']} {sec} cannot be placed "
                              f"(its symbols in config/{config.version} do not move together)")
                 d = deltas.pop()
-                moved.append(f"{r.group(1)}{lo + d:08X}{r.group(4)}{hi + d:08X}{r.group(6)}")
+                end = hi + d + sum(growth for _, _, growth in resizes)
+                moved.append(f"{r.group(1)}{lo + d:08X}{r.group(4)}{end:08X}{r.group(6)}")
             start = min(int(re.search(r"start:0x([0-9A-F]+)", x).group(1), 16) for x in moved)
             body.append((start, f"{u['source']}:\n" + "\n".join(moved)))
         out = out_dir / rel.relative_to(Path("config") / config.version)

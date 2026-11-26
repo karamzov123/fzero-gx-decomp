@@ -7312,8 +7312,10 @@
   },
   {
     "module": "main",
-    "source": "dol/TRK_fill_mem.c",
+    "source": "dol/trk/mem_TRK.c",
     "symbols": [
+      "fn_80003590",
+      "fn_800035C0",
       "TRK_fill_mem"
     ],
     "status": "matching",
@@ -7424,17 +7426,6 @@
   },
   {
     "module": "main",
-    "source": "dol/__check_pad3.c",
-    "symbols": [
-      "__check_pad3"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
     "source": "dol/__destroy_global_chain.c",
     "symbols": [
       "__destroy_global_chain"
@@ -7467,35 +7458,13 @@
   },
   {
     "module": "main",
-    "source": "dol/__fill_mem.c",
+    "source": "dol/__mem.c",
     "symbols": [
-      "__fill_mem"
+      "memset",
+      "__fill_mem",
+      "memcpy"
     ],
     "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/__flush_cache.c",
-    "symbols": [
-      "__flush_cache"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/__get_debug_bba.c",
-    "symbols": [
-      "__get_debug_bba"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": []
   },
@@ -7567,41 +7536,6 @@
   },
   {
     "module": "main",
-    "source": "dol/__init_data.c",
-    "symbols": [
-      "__init_data"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/__init_hardware.c",
-    "symbols": [
-      "__init_hardware"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
-    "source": "dol/__init_registers.c",
-    "symbols": [
-      "__init_registers"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
     "source": "dol/__kernel_cos.c",
     "symbols": [
       "__kernel_cos"
@@ -7650,26 +7584,18 @@
   },
   {
     "module": "main",
-    "source": "dol/__set_debug_bba.c",
-    "symbols": [
-      "__set_debug_bba"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
     "source": "dol/__start.c",
     "symbols": [
-      "__start"
+      "__check_pad3",
+      "__set_debug_bba",
+      "__get_debug_bba",
+      "__start",
+      "__init_registers",
+      "__init_data"
     ],
+    "own": ["Debug_BBA"],
     "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",
@@ -9402,19 +9328,26 @@
       "fn_80070A58"
     ],
     "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [
       "-inline",
       "on,noauto"
     ],
     "collapsed": true,
+    "split_resize_for": {"GFZP01": {".text": ["fn_80070620"]}},
     "pool": {
       "@233": "lbl_801A7410",
       "@234": "lbl_801A7414",
-      "@236": "lbl_801A7418",
-      "...data.0": "lbl_8015A860"
-    }
+      "@236": "lbl_801A7418"
+    },
+    "pool_for": {
+      "GFZP01": {
+        "@237": "lbl_801A7410",
+        "@238": "lbl_801A7414",
+        "@240": "lbl_801A7418"
+      }
+    },
+    "own": ["lbl_8015A860", "lbl_8015AA10"]
   },
   {
     "module": "main",
@@ -10505,8 +10438,7 @@
     "module": "main",
     "source": "dol/data/Reschedule.c",
     "symbols": [
-      "Reschedule",
-      "Debug_BBA"
+      "Reschedule"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -12639,45 +12571,6 @@
     "source": "dol/data/lbl_80152860.c",
     "symbols": [
       "lbl_80152860"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_8015A860.c",
-    "symbols": [
-      "lbl_8015A860"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_8015AA10.c",
-    "symbols": [
-      "lbl_8015AA10",
-      "lbl_8015AA78",
-      "lbl_8015AA84",
-      "lbl_8015AB24"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_8015AB70.c",
-    "symbols": [
-      "lbl_8015AB70"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -19662,39 +19555,6 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_80003590.c",
-    "symbols": [
-      "fn_80003590"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_800035C0.c",
-    "symbols": [
-      "fn_800035C0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_80005518.c",
-    "symbols": [
-      "fn_80005518"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
     "source": "dol/fn_800137C4.c",
     "symbols": [
       "fn_800137C4",
@@ -19998,11 +19858,8 @@
       "fn_80070E00"
     ],
     "status": "matching",
-    "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "pool": {
-      "...data.0": "lbl_8015AA78"
-    },
+    "own": ["lbl_8015AA78", "lbl_8015AA84", "lbl_8015AB24"],
     "collapsed": true
   },
   {
@@ -20012,12 +19869,13 @@
       "fn_80070E1C"
     ],
     "status": "matching",
-    "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
     "pool": {
-      "...data.0": "lbl_8015AB70"
-    }
+      "@11": "lbl_8015AB70"
+    },
+    "own": ["lbl_8015AB70"],
+    "export": ["lbl_8015AB70"]
   },
   {
     "module": "main",
@@ -21038,28 +20896,6 @@
   },
   {
     "module": "main",
-    "source": "dol/memcpy.c",
-    "symbols": [
-      "memcpy"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/memset.c",
-    "symbols": [
-      "memset"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
     "source": "dol/misc_io.c",
     "symbols": [
       "__stdio_atexit",
@@ -21754,8 +21590,10 @@
   },
   {
     "module": "main",
-    "source": "dol/runtime/__init_user.c",
+    "source": "dol/runtime/__ppc_eabi_init.c",
     "symbols": [
+      "__init_hardware",
+      "__flush_cache",
       "__init_user",
       "__init_cpp",
       "_ExitProcess"
@@ -22457,6 +22295,7 @@
     "module": "main",
     "source": "dol/trk/dolphin_trk.c",
     "symbols": [
+      "fn_80005518",
       "InitMetroTRK",
       "InitMetroTRK_BBA",
       "TRKInitializeTarget",

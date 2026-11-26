@@ -156,12 +156,15 @@ dol/render/render_clear.c:
 
 dol/av/avsystem.c:
 	.text       start:0x8006FCB4 end:0x80070AC0 align:4
+	.data       start:0x8015A860 end:0x8015AA78 align:32
 
 dol/fn_80070AC0.c:
 	.text       start:0x80070AC0 end:0x80070E1C align:4
+	.data       start:0x8015AA78 end:0x8015AB70 align:8
 
 dol/fn_80070E1C.c:
 	.text       start:0x80070E1C end:0x80070F44 align:4
+	.data       start:0x8015AB70 end:0x8015ABC0 align:16
 
 dol/adx/adx_bwav.c:
 	.text       start:0x8004251C end:0x800433A4 align:4
@@ -350,10 +353,8 @@ dol/base/PPCArch.c:
 	.text       start:0x80009FBC end:0x8000A0FC align:4
 
 dol/__start.c:
-	.init       start:0x80003154 end:0x800032B0 align:4
-
-dol/__init_hardware.c:
-	.init       start:0x80003400 end:0x80003424 align:4
+	.init       start:0x80003100 end:0x80003400 align:4
+	.sbss       start:0x801A6808 end:0x801A6810 align:8
 
 dol/av/mmu.c:
 	.text       start:0x800071B8 end:0x80007A44 align:4
@@ -398,6 +399,7 @@ dol/trk/mpc_7xx_603e.c:
 	.text       start:0x8008CB40 end:0x8008CEB0 align:4
 
 dol/trk/dolphin_trk.c:
+	.init       start:0x80005518 end:0x80005544 align:4
 	.text       start:0x8008CEB0 end:0x8008D1CC align:4
 
 dol/trk/dolphin_trk_glue.c:
@@ -435,20 +437,12 @@ dol/OSError.c:
 	.sdata      start:0x801A6430 end:0x801A6438 align:8
 	.data       start:0x80122C30 end:0x80122F50 align:8
 
-dol/fn_80005518.c:
-	.init       start:0x80005518 end:0x80005544 align:4
+dol/__mem.c:
+	.init       start:0x80003458 end:0x80003590 align:4
 
-dol/memset.c:
-	.init       start:0x80003458 end:0x80003488 align:4
-
-dol/fn_80003590.c:
-	.init       start:0x80003590 end:0x800035C0 align:4
-
-dol/__get_debug_bba.c:
-	.init       start:0x8000314C end:0x80003154 align:4
-
-dol/__set_debug_bba.c:
-	.init       start:0x80003140 end:0x8000314C align:4
+dol/trk/mem_TRK.c:
+	.init       start:0x80003590 end:0x800035E4 align:4
+	.text       start:0x8008B028 end:0x8008B0E0 align:4
 
 dol/card/CARDDelete.c:
 	.text       start:0x8002F934 end:0x8002FC5C align:4
@@ -486,7 +480,8 @@ dol/card/CARDRead.c:
 dol/CARDOpen.c:
 	.text       start:0x8002E954 end:0x8002EDA8 align:4
 
-dol/runtime/__init_user.c:
+dol/runtime/__ppc_eabi_init.c:
+	.init       start:0x80003400 end:0x80003458 align:4
 	.text       start:0x80011888 end:0x8001191C align:4
 
 dol/SetExiInterruptMask.c:
@@ -664,9 +659,6 @@ dol/gx/GXInit.c:
 	.text       start:0x800307CC end:0x80031B50 align:4
 	.sbss       start:0x801A6BD8 end:0x801A6BF0 align:8
 
-dol/TRK_fill_mem.c:
-	.text       start:0x8008B028 end:0x8008B0E0 align:4
-
 dol/ahx/ahx_bits.c:
 	.text       start:0x8004FF68 end:0x80050698 align:4
 	.bss        start:0x80186FA8 end:0x8018710C align:4
@@ -713,24 +705,15 @@ dol/adx/adx_fs.c:
 	.text       start:0x8004F818 end:0x8004FF68 align:4
 	.rodata     start:0x80091258 end:0x800912F0 align:4
 
-dol/memcpy.c:
-	.init       start:0x80003540 end:0x80003590 align:4
-
 dol/os/OSThread.c:
 	.text       start:0x80010144 end:0x8001140C align:4
 
 dol/adx/adx_tlk.c:
 	.text       start:0x8004B7F4 end:0x8004D220 align:4
 
-dol/__check_pad3.c:
-	.init       start:0x80003100 end:0x80003140 align:4
-
 dol/trk/msghndlr.c:
 	.text       start:0x8008983C end:0x8008A5AC align:4
 	.data       start:0x8015B830 end:0x8015B868 align:16
-
-dol/fn_800035C0.c:
-	.init       start:0x800035C0 end:0x800035E4 align:4
 
 dol/adx/lsc_err.c:
 	.text       start:0x800565FC end:0x800566F0 align:4
@@ -772,9 +755,6 @@ dol/runtime/GCN_Mem_Alloc.c:
 
 dol/adx/sj_mem.c:
 	.text       start:0x80057774 end:0x80057D88 align:4
-
-dol/__init_data.c:
-	.init       start:0x80003340 end:0x80003400 align:4
 
 dol/axrna_end_trans.c:
 	.text       start:0x8005ADBC end:0x8005B0C4 align:4
@@ -834,9 +814,6 @@ dol/si/SISamplingRate.c:
 dol/data/__OSDriveBlock.c:
 	.bss        start:0x8015BF20 end:0x8015BF50 align:8
 
-dol/__flush_cache.c:
-	.init       start:0x80003424 end:0x80003458 align:4
-
 dol/mtx/mtx.c:
 	.text       start:0x80015B24 end:0x80015D7C align:4
 
@@ -863,9 +840,6 @@ dol/u_gxutil_upload_some_mtx.c:
 
 dol/fn_80072558.c:
 	.text       start:0x80072558 end:0x800725DC align:4
-
-dol/__fill_mem.c:
-	.init       start:0x80003488 end:0x80003540 align:4
 
 dol/thp/THPDec_hdr.c:
 	.text       start:0x80039C40 end:0x8003AB08 align:4
@@ -962,9 +936,6 @@ dol/thp/THPDec_draw.c:
 dol/sasnd/sasnd_fx.c:
 	.text       start:0x8006331C end:0x80063EF4 align:4
 	.sdata2     start:0x801A7318 end:0x801A7328 align:8
-
-dol/__init_registers.c:
-	.init       start:0x800032B0 end:0x80003340 align:4
 
 dol/fn_80086008.c:
 	.text       start:0x80086008 end:0x800868BC align:4
@@ -1235,15 +1206,6 @@ dol/data/lbl_80142840.c:
 
 dol/data/lbl_80152860.c:
 	.data       start:0x80152860 end:0x8015A860 align:32
-
-dol/data/lbl_8015A860.c:
-	.data       start:0x8015A860 end:0x8015AA10 align:32
-
-dol/data/lbl_8015AA10.c:
-	.data       start:0x8015AA10 end:0x8015AB70 align:16
-
-dol/data/lbl_8015AB70.c:
-	.data       start:0x8015AB70 end:0x8015ABC0 align:16
 
 dol/data/lbl_8015ABC0.c:
 	.data       start:0x8015ABC0 end:0x8015ABD8 align:32
@@ -3104,7 +3066,7 @@ dol/data/RunQueueBits.c:
 	.sbss       start:0x801A67F8 end:0x801A6800 align:8
 
 dol/data/Reschedule.c:
-	.sbss       start:0x801A6800 end:0x801A6810 align:32
+	.sbss       start:0x801A6800 end:0x801A6808 align:32
 
 dol/data/__OSArenaLo.c:
 	.sdata      start:0x801A6428 end:0x801A6430 align:8

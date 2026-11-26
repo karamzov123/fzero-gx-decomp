@@ -191,3 +191,10 @@ u32 fn_8008D154(u32 arg0) {
 void EnableMetroTRKInterrupts(void) {
     fn_8008D440();
 }
+
+extern void OSResetSystem(int, u32, int);
+
+/* MetroTRK reset entry reached from the .init vector table. */
+__declspec(section ".init") void fn_80005518(void) {
+    OSResetSystem(0, 0, 0);
+}

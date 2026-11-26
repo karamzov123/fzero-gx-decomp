@@ -32,7 +32,7 @@ typedef void (*AvloadFreeFn)(void *);
 typedef u32 (*fn_80071100_Fn0)(u32, u32, u32);
 typedef u32 (*fn_800715A0_Fn0)(u32, u32);
 
-extern u8 lbl_8015AB70[80];
+extern char lbl_8015AB70[31];
 extern char lbl_8015ABC0[10];
 extern u32 lbl_8015ABCC[];
 extern u32 lbl_8015ABD8[];
