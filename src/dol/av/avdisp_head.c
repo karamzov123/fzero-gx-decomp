@@ -228,6 +228,7 @@ void fn_80071ED4(f32 arg0, f32 arg1, s32 arg2) {
     f32 t;
     u32 x;
     u32 w;
+    /* WARNING: compiler-diff device, not original code: loc_8 holds the fog colour word at 8(r1) and the float-to-bits pun at 12(r1); an AvDispColor local plus a union gives 13 instructions of diff (r4/r5 swap in the unk_24 updates) */
     struct { u32 a[2]; } loc_8;
 
     v0 = lbl_8019E250.unk_4;
@@ -269,6 +270,7 @@ void fn_80071ED4(f32 arg0, f32 arg1, s32 arg2) {
 
 #define SET_REG_FIELD(reg, size, shift, val) ((reg) = ((u32)(val) << (shift)) | ((reg) & ~(((1 << (size)) - 1) << (shift))))
 
+/* WARNING: compiler-diff device, not original code: without opt_lifetimes off / opt_propagation off fn_80072014 differs by 20 / 14 instructions */
 #pragma opt_lifetimes off
 #pragma opt_propagation off
 static inline void WriteBPReg(u32 value) {
@@ -297,6 +299,7 @@ void fn_80072014(AvDispColor color) {
 #pragma opt_propagation reset
 #pragma opt_lifetimes reset
 
+/* WARNING: compiler-diff device, not original code: without opt_common_subs off / opt_propagation off fn_800720B0 differs by 9 / 25 and fn_80072168 by 19 instructions */
 #pragma opt_common_subs off
 #pragma opt_propagation off
 

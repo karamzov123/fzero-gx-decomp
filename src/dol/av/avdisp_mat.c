@@ -98,6 +98,7 @@ extern void fn_80074660(u32);
 extern void fn_80074788(u32);
 extern void fn_80075080(void *);
 
+/* WARNING: compiler-diff device, not original code: without opt_common_subs off fn_80075908 differs by 16 instructions (lbl_801A3220 base and loc_8 load swap registers); lbl_801A3220 has no single real type in this unit yet */
 #pragma opt_common_subs off
 void fn_80075908(u32 arg0, u32 arg1) {
     s32 v0;
@@ -576,6 +577,7 @@ extern void lbl_8006D758(void);
 extern void lbl_8006DB74(void *);
 extern void lbl_8006DFC4(void *);
 
+/* WARNING: compiler-diff device, not original code: without opt_common_subs off fn_80076790 differs by 12 instructions (FPR numbering of the scaled vector loc_14) */
 #pragma opt_common_subs off
 void fn_80076790(void) {
     f32 loc_38[3][4];
@@ -1691,6 +1693,7 @@ void fn_800781B8(Sig_fn_80078768_Sig_fn_80078C28_Sig_fn_800786B0_Fn800786B0Arg0 
 
 /* === dol/fn_80078344.c === */
 
+/* WARNING: compiler-diff device, not original code: optimization_level 0, scheduling off and K&R register parameters reproduce retail's unscheduled li/lis/ori FIFO write in r6/r7 (6 and 1 instructions differ without them); the shape suggests an original asm helper, owner decision */
 #pragma optimization_level 0
 #pragma scheduling off
 static inline void writeDisplayList(u32 a, u32 b, u32 unused, u32 command, u32 address) {
@@ -1711,9 +1714,11 @@ void fn_80078344(a, b, unused, command, address)
     address |= GX_FIFO_BASE & 0xFFFF;
     writeDisplayList(a, b, unused, command, address);
 }
+/* WARNING: compiler-diff device, not original code: restores the optimizer after fn_80078344 (see above); dropping it compiles fn_80078360 at level 0 (85 instructions differ) */
 #pragma optimization_level 4
 #pragma scheduling reset
 
+/* WARNING: compiler-diff device, not original code: dont_inline on keeps fn_80078344 a call in fn_80078360 (31 instructions differ without it); unneeded if fn_80078344 is an asm unit */
 #pragma dont_inline on
 /* === dol/fn_80078360.c === */
 
@@ -1756,7 +1761,9 @@ extern u32 fn_800723D8(void);
 extern void fn_8007245C(u32);
 extern void fn_80078D60(s32);
 
+/* WARNING: compiler-diff device, not original code: without opt_loop_invariants off fn_80078360 differs by 47 instructions (callee-saved order of p/arg3/i) */
 #pragma opt_loop_invariants off
+/* WARNING: compiler-diff device, not original code: without opt_propagation off fn_80078360 differs by 3 instructions (r3/r4 swap of arg2->offset); hoisting the offset read into v2 or reordering the first statements gives 3 and 7 */
 #pragma opt_propagation off
 void *fn_80078360(fn_80078360_Arg0 *arg0, u8 *arg1, fn_80078360_Arg2 *arg2, u8 *arg3, fn_80078360_Arg4 *arg4) {
     s32 mask2;

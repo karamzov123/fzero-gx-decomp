@@ -359,6 +359,7 @@ void fn_80074D68(f32 arg0, f32 arg1, f32 arg2) {
 void fn_80074D78(u32 arg0) {
     lbl_801A6D58 = ((u32)__cntlzw(arg0) >> 5);
 }
+/* WARNING: compiler-diff device, not original code: without opt_propagation off fn_80074D88 differs by 23 instructions (pragma spans fn_80074D88..fn_80075080) */
 #pragma opt_propagation off
 
 /* --- dol/fn_80074D88.c --- */
@@ -550,6 +551,7 @@ void fn_80075240(void) {
     s32 tile;
     s32 x;
     s32 n;
+    /* WARNING: compiler-diff device, not original code: one-field carrier: plain u32 dst changes fn_80075240's code (MWCC renumbers its literals and the function no longer matches) */
     struct { u32 value; } dst;
 
     lbl_8019F130[2] = 1.0f;
@@ -678,6 +680,7 @@ void fn_800756B0(fn_800756B0_Arg0 *arg0, fn_800756B0_Arg1 *arg1) {
         }
     }
     fn_80075080(arg1);
+    /* WARNING: compiler-diff device, not original code: CopyWord view of lbl_801A3220.unk_10 / arg1->unk_C: the plain u32 member copy gives 11 instructions of diff in fn_800756B0 */
     { struct CopyWord { u32 value; };
     *(struct CopyWord *)&lbl_801A3220.unk_10 = *(struct CopyWord *)&arg1->unk_C;
     lbl_801A3220.unk_2 = 0;

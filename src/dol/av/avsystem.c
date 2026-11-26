@@ -380,6 +380,7 @@ void fn_80070100(void) {
 }
 
 void fn_80070158(s32 useLC) {
+    /* WARNING: compiler-diff device, not original code: one-field carriers offset/first: plain u32 offset and first give 43 instructions of diff in fn_80070158 (zero propagated into r0, register order); plain first alone gives 24 */
     struct { u32 value; } offset;
     struct { u32 value; } first;
     u32 base;
@@ -572,6 +573,7 @@ void fn_8007075C(u32 arg0) {
 void fn_80070774(u32 arg0, u32 arg1, u32 arg2) {
     void *t5;
     u32 t4;
+    /* WARNING: compiler-diff device, not original code: one-field carriers t2/t0/v2/v1: plain locals give 48 instructions of diff in fn_80070774; without t2 (allocation assigned to v2) 8 remain (t4 r26/r27); a declaration-order search of t4/v2 found no match */
     struct { u32 value; } t2;
     struct { u32 value; } t0;
     struct { u32 value; } v2;

@@ -276,6 +276,7 @@ void fn_800060D8(f32 x, f32 y, f32 z, u8 *str) {
     }
 }
 
+/* WARNING: compiler-diff device, not original code: without opt_propagation off fn_800063AC differs by 8 instructions; it also relies on the locals struct carrier below (plain locals give 27) */
 #pragma opt_propagation off
 s32 fn_80006334(u8 *arg0) {
     return ((*arg0 >> 7) & 0x1);
@@ -296,6 +297,7 @@ u32 fn_80006354(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
 }
 
 void fn_800063AC(u32 arg0, u32 arg1, u32 arg2) {
+    /* WARNING: compiler-diff device, not original code: locals struct with #define aliases is a carrier: plain locals give 27 instructions of diff in fn_800063AC and 2 in fn_8000659C */
     struct {
         u32 arena;
         s32 stringIndex;
@@ -396,6 +398,7 @@ void fn_800063AC(u32 arg0, u32 arg1, u32 arg2) {
 }
 #pragma opt_propagation reset
 
+/* WARNING: compiler-diff device, not original code: without fp_contract off fn_8000659C differs by 44 instructions (the double text-layout arithmetic fuses to fmadd/fnmsub) */
 #pragma fp_contract off
 static inline u32 is_wide(u8 *str) {
     return (*str >> 7) & 1;
