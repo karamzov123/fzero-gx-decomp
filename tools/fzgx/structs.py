@@ -344,6 +344,47 @@ def array_shapes(names: Dict[str, Dict], symbol: str, tname: str, info: Dict[str
     return pre, fields, None
 
 
+CTYPE_WIDTH = {"u8": 1, "s8": 1, "char": 1, "u16": 2, "s16": 2, "u32": 4, "s32": 4, "f32": 4, "u64": 8, "s64": 8, "f64": 8}
+
+
+def _decl_width(ctype: str) -> int:
+    """Size of a declarator spelling `T`, `T *` or `T *[8]` / `char[4]` (element size times dims)."""
+    from math import prod
+    base, _, rest = ctype.partition("[")
+    dims = [int(d, 0) for d in ("[" + rest).replace("]", "").split("[")[1:]] if rest else []
+    w = 4 if base.strip().endswith("*") else CTYPE_WIDTH[base.strip()]
+    return w * prod(dims)
+
+
+def field_types(names: Dict[str, Dict], symbol: str, fields: Dict[int, Dict]) -> Dict[int, Dict]:
+    """Field types recorded in typedefs.json, for what the access analysis cannot see: signedness of a
+    field that is only stored or compared after a plain load, a flags word that some loops also read
+    through narrower loads, a member slot table. `"fields": {"<hex offset>": "<C type>"}`, the type
+    may carry dims (`"T *[8]"`); fields the declared width covers are dropped."""
+    spec = (names.get(symbol) or {}).get("fields") or {}
+    if not spec:
+        return fields
+    out = dict(fields)
+    for key, ctype in spec.items():
+        off, w = int(key, 16), _decl_width(ctype)
+        for o in [o for o in out if off < o < off + w]:
+            del out[o]
+        f = out.get(off) or {"loads": 0, "stores": 0, "fops": 0, "float": False, "signed": False}
+        out[off] = dict(f, width=w, widths={w: 1}, ctype=ctype)
+    return dict(sorted(out.items()))
+
+
+def symbol_type(names: Dict[str, Dict], symbol: str) -> Optional[str]:
+    """`extern <T> symbol<dims>;` from typedefs.json `"type": "<C type>"` (dims allowed: `"char[4]"`),
+    for a scalar or byte array whose type the analysis cannot see (a store-only s16, a 4-byte string)."""
+    ctype = (names.get(symbol) or {}).get("type")
+    if not ctype:
+        return None
+    base, br, rest = ctype.partition("[")
+    base = base.strip()
+    return f"extern {base}{'' if base.endswith('*') else ' '}{symbol}{br + rest if br else ''};"
+
+
 def typedef(info: Dict[str, object], name: Optional[str] = None, fields: Optional[Dict[int, Dict]] = None,
             ptr_types: Optional[Dict[int, str]] = None, size: int = 0) -> str:
     """C typedef skeleton. ptr_types maps a field offset to the typedef name its pointer targets;
@@ -359,6 +400,12 @@ def typedef(info: Dict[str, object], name: Optional[str] = None, fields: Optiona
             continue  # overlaps the previous field: keep the earlier, wider view
         if off > cur:
             lines.append(f"    u8 pad_{cur:X}[0x{off - cur:X}];")
+        if f.get("ctype"):  # a declared field type (typedefs.json "fields")
+            base, br, rest = f["ctype"].partition("[")
+            base = base.strip()
+            lines.append(f"    {base}{'' if base.endswith('*') else ' '}unk_{off:X}{br + rest if br else ''};  // {f['loads']} loads, {f['stores']} stores")
+            cur = off + f["width"]
+            continue
         if f.get("elem"):  # a member array (typedefs.json "arrays")
             lines.append(f"    {f['elem']} unk_{off:X}{''.join(f'[{d}]' for d in f['dims'])};")
             cur = off + f["width"]
@@ -415,7 +462,7 @@ def header(p: Project, module: str, min_refs: int = 20, sections=(".data", ".bss
         pointee0 = info.get("pointees", {}).get(0) or {}
         scalar_size = sd.size in (1, 2, 4, 8)  # a 7-byte object with no accesses is a string, not a u32
         scalar_size &= sd.attrs.get("data") != "string"  # nor is a 4-byte one dtk typed string
-        array = indexed_array(p, module, sd, info)
+        array = symbol_type(names, name) or indexed_array(p, module, sd, info)
         if array:
             out.append(array)
         elif sd.size <= 8 and (info["kind"] == "pointer" or len(nfields) <= 1 and 0 in nfields or (not nfields and scalar_size)):
@@ -443,6 +490,7 @@ def header(p: Project, module: str, min_refs: int = 20, sections=(".data", ".bss
                     out.append(typedef(info, pt, fl))
                     ptr_types[poff] = pt
             pre, fields, dims = array_shapes(names, name, tname, info)
+            fields = field_types(names, name, fields)
             out.extend(pre)
             if dims:
                 out.append(f"extern {tname} {name}{''.join(f'[{d}]' for d in dims)};")
@@ -576,7 +624,7 @@ def tu_header(p: Project, module: str, tu: str, min_refs: int = 2) -> str:
         out.append(f"// {name}: {sd.section} size 0x{sd.size:X}, {n} refs from {tu}{' (own data block)' if own else ''}")
         nfields = info["fields"]
         pointee0 = info.get("pointees", {}).get(0) or {}
-        array = indexed_array(p, module, sd, info)
+        array = symbol_type(names, name) or indexed_array(p, module, sd, info)
         scalar_size = sd.size in (1, 2, 4, 8)  # a 3-byte object with no accesses is a string, not a u32
         scalar_size &= sd.attrs.get("data") != "string"  # nor is a 4-byte one dtk typed string
         if array:
@@ -609,6 +657,7 @@ def tu_header(p: Project, module: str, tu: str, min_refs: int = 2) -> str:
                     out.append(typedef(info, pt, fl))
                     ptr_types[poff] = pt
             pre, fields, dims = array_shapes(names, name, tname, info)
+            fields = field_types(names, name, fields)
             out.extend(pre)
             if dims:
                 out.append(f"extern {tname} {name}{''.join(f'[{d}]' for d in dims)};")
