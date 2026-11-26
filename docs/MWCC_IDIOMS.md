@@ -6,6 +6,11 @@ file from what actually unblocked functions; keep each item one or two lines.
 - **Compound assignments affect induction lifetimes.** `a[n - 2] -= rhs` closed
   `fn_1_F4F08`'s 39/340 register differences under GC/1.3.2. Contract only pure
   repeated lvalues at the RHS root: `x = x - a + b` is not `x -= a + b`.
+  The compound form is its own IR shape, not sugar: `x op= e` keeps x in one web where
+  `x = x op e` can split or reassociate it (`v %= 4`, `fn_1_13198C`; `x += k * e`,
+  `fn_1_D2110`). For a float multiply, `x *= K` (or `x / 2.0f` for K = 0.5) puts the
+  variable first in `fmuls`; `x * K` puts K first (`fn_1_229EC`). Under GC/2.5 the plain
+  form can be the one retail used: `w = (w + f())` forwards an earlier `w += K` (`fn_1_1461C8`).
 
 - **Paired-single vectors**: `psq_l f, off(rN), 0, qr0` / `psq_st` / `ps_sub` / `ps_add` /
   `ps_muls0` / `ps_madds0` / `ps_merge00` in retail are inline-assembly helpers. Write
@@ -219,7 +224,9 @@ Each line is a family that turned a 60–99% body into a match; the count is how
 - Signedness of a local (3), a parameter (1), a struct field (2): `s32` vs `u32` changes
   `cmpw`/`cmplw` and `extsh`/`rlwinm`, nothing else; flip one at a time.
 - `x == 0` -> `!x`, `x != 0` -> `x` (2), and commuted compare operands `2 == x` (2):
-  the branch is the same, the register that holds the constant moves.
+  the branch is the same, the register that holds the constant moves. They are not always
+  the same IR: when an inlined callee repeats the test, `g == 0` lets MWCC fold the callee's
+  test away and `!g` keeps both (`fn_1_3E6D8`).
 - Two adjacent statements that share nothing, swapped (2): free order, different
   scheduling.
 
@@ -279,6 +286,10 @@ Each line is a family that turned a 60–99% body into a match; the count is how
 - A shifted sign-bit test can be an incorrectly lifted rotated low-bit test.
   Recover the retail `__rlwnm(value, amount, 31, 31)` expression before changing
   register allocation. This closed `fn_1_7F3AC`, `fn_1_557C4` and `fn_1_55A84`.
+- **`li rN, C; rlwnm.` is a variable-amount bit helper inlined with a constant amount.**
+  Call the TU's helper rather than writing the shift (`coli_bit`, `fn_1_1C0D0`). Conversely, a
+  natural single-bit extract of one variable at two or more sites is CSE'd into `rlwinm.`
+  at every site: such sites need the helper too.
 - Error-string pools need separate native string objects. A pointer to one
   external character array changes both base initialization and offset-zero
   address formation. Recover each string, its terminating zero and measured
@@ -450,6 +461,8 @@ without row alignment (`retail - ours` net rows):
   survives only as parentheses. Compile every binary tree of the terms in one file and
   word-compare (30,240 trees for six terms compile in seconds): the drop-frame timecode
   converters are `(h * K1 + m * K2 + m / 10 * 2 + s * fps + (frames + extra)) * 1000`.
+  GC/2.5 reassociates `(a + b) + K` so the constant joins the later operand: retail's
+  `add; addi K` is source `a + K + b` (`fn_1_146B5C`, `fn_1_147A04`).
 - **Dual induction variables are lifter output.** `src = base + 0x28 + i; ... i += 2; n += 1`
   is retail's strength-reduced shadow of `base + 0x28 + n * 2`; writing the scaled index
   reproduced the `mr`-initialised offset and its register (`fn_4_D420`).
@@ -871,6 +884,11 @@ definition, unions, Vec3 or `f32[3]` members (split into scalars), `static const
 the pool literals), literals returned by or passed to inline helpers (old-style or prototyped), `if(1)`,
 `do{}while(0)`, comma expressions, and turning off opt_common_subs, opt_lifetimes or opt_loop_invariants.
 
+A literal folds in the front end; the same constant in a local is only propagated later, after those
+folds have run. So `x * 1.0f` vanishes while `x * one` keeps the multiply (`fn_1_662D8`), and under
+GC/1.3.2r a float literal passed to an `int` parameter becomes `li` while an `f32` local keeps
+`lfs; fctiwz` (`fn_1_49778`). Retail's surviving trivial operation is a local, not a literal.
+
 **Diagnostic signature:** retail loads constants in an order that differs from their store order (for
 example a sphere centre loaded z, y, x but stored x, y, z), hoisted out of the loop into callee-saved
 FPRs. That is an unpropagated variable. `#pragma opt_propagation off` around the function confirms it
@@ -888,6 +906,10 @@ Levers from the same collapse that removed devices without new ones:
   the sphere family).
 - **Pass the constant to the existing engine kernel** instead of hand-written locked-cache code:
   `mathutil_mtxA_translate_z(0.049f)` closed fn_1_10CC38 and removed its `opt_lifetimes off`.
+  Generally: open-coded locked-cache matrix work wrapped in a volatile, carrier or pragma is an existing
+  `mathutil` kernel call (three stores into a column = `mtxA_set_translate`, in-place column 0/2 =
+  `translate_x`/`translate_z`, cross products = `vec_cross_prod`). Six coli_b devices and shadowmap's
+  `fn_1_56D4C` went this way. There is no `translate_y`; column-1 cases stay devices.
 - **A block-scope initialized local reproduces an anonymous non-const .rodata initializer**:
   `{ Word3 zero = {0, 0, 0}; g->c34 = zero; }` puts the initializer in .rodata at the retail offset and
   copies it without a stack slot. Because the object is not const, its loads stay after earlier stores
@@ -895,5 +917,70 @@ Levers from the same collapse that removed devices without new ones:
 - **Accumulate a squared length** as `d = x*x; d += y*y; d += z*z; len = d;` instead of one expression.
   That fixed a 2-word store/fmadds order and removed `opt_common_subs off` from seven functions
   (fn_1_10AD18, fn_1_10D7D4, fn_1_1132E4, fn_1_1192D0, fn_1_11B958, fn_1_11C440, fn_1_126774).
+  The cause: with CSE on, `p->x * p->x` shares one load; loading the components into locals first and
+  then accumulating reproduces retail (`fn_1_2BBD0`).
 - **New inline in a shared header renumbers `@N` literals** of every unit that includes it and can
-  break their literal-pool maps. Put a new kernel in its own header.
+  break their literal-pool maps. Put a new kernel in its own header. Any change to the declarations
+  before a function (including an existing header, dropping an anonymous struct, moving a declaration)
+  renumbers them too: update the unit's pool map and compare `.rodata` bytes, not only code.
+
+## Device-removal levers (2026-11-25)
+
+Measured on whole collapsed units, GC/1.3.2 unless noted. One witness each; the lane notes
+(`laneDV*/DEVPASS.md`) have the measurements.
+
+- **Duplicated code inside a TU is an inlined call.** A same-TU function's body repeated in another
+  function (often with carriers around it) is `-inline auto` inlining: write the call. If the inlined
+  copy then differs, fix the callee's own natural form, not the copy (`fn_14_4008` calls `fn_14_316C`;
+  `fn_1_8E728` with `idx %= 4`).
+- **A callee's form can matter only where it is inlined.** Two bodies that compile to the same
+  standalone function can inline differently, and sites may disagree (`fn_1_584AC`: no single body fits
+  all twelve sites).
+- **Pragma state is file-scoped.** `#pragma optimization_level N` ... `reset` restores the command-line
+  optimizer for every later function, which silently drops `-opt nocse` (`fn_4_C768`); an inner
+  `off`/`reset` inside an outer `off` does nothing (`fn_8_704`). Read the nesting before measuring.
+- **A view that changes code means the definition's type is wrong.** Most views of a TU's own objects
+  are codegen-neutral and simply delete. Where one matters, fix the object's type or add the missing
+  member (`lbl_1_bss_6D848` is `s16`; `u8 done[4]` in `fn_1_F326C` also removed
+  `opt_strength_reduction off`). Many private struct types over one array are one record: compare stride
+  and offsets (car.c `Car`/`CarBody`).
+- **Typed indexing and byte stepping are different IR.** `&base[j]` and `(u8 *)base + j * K` can
+  allocate differently (`fn_1_85688`), and retail's `lbzx` with the field offset folded into the scaled
+  index needs the byte form (`fn_1_86A10`). Keep whichever matches; neither is a device.
+- **Index the real table.** Lifter arithmetic `(i & 0xFF) << 2` against a table is `table[i]`
+  (`fn_1_B4AC0`).
+- **Call-site prototypes order the argument registers.** A wrong parameter type or order renumbers
+  everything after it; a `&local` formed between two float arguments signals the wrong order
+  (`fn_1_4CE48` is float-first, `fn_1_141A80` 60 -> 4 words).
+- **A repeated-expression macro is a CSE object.** Retail computing a difference twice, or a ternary
+  coalesced into a constant's FPR, is a `MIN`/`CLAMP` macro, not an if or a temp (`fn_1_508C4`).
+- **Statement order sets the order of FPR temps in straight-line code**, and storing a value before
+  forming the pointer to its record removes the carrier that held it (`fn_14_CC70`, `fn_13_0`).
+- **Reuse the existing counter** where retail copies a zero out of a loop counter (`mr rX, rI`)
+  (`fn_4_D1A8`).
+- **Increments in the `for` header** (`i++, p++`) give retail's 8x unroll without
+  `opt_unroll_loops off` (`fn_1_4DDC0`).
+- **Keep narrow values narrow.** A `u16` mask copied into a `u32` moves its `clrlwi` (`fn_1_58994`).
+- **Convert a function's pad tests together.** Mixing `PAD_BIT` with shift forms changes CSE at the
+  other sites (`fn_1_9012C`).
+- **Inline home order.** Frame homes are created function locals, then argument copies, then inline
+  homes; same-depth inline homes in site order, deeper ones later, at descending addresses
+  (`fn_1_B6B28`).
+- **GC/1.3.2r pools aggregate initializers.** Three or more plain `T c = {...}` initializers in one
+  function go through one `...rodata.0` base; block `static const` objects copied into the local avoid
+  it outside loops, but inside a loop their loads are hoisted where retail reloads (`fn_1_139440`).
+- **Compiler-version signature.** Every 1.3.x hoists a block-move tail `lhz`; 2.0-2.6 keep
+  `lwz; stw; lhz; sth` (`fn_1_141A80`). No spelling changes it.
+
+**Measured dead ends** (do not retry without a new idea):
+- A variable-amount `rlwnm` has no natural spelling: every shift, mask or rotate form folds to
+  `rlwinm`, under 1.3.2 and 2.x (`fn_1_635BC`, 20 forms over objput's 14 sites).
+- A 0.0f/1.0f literal that retail loads at its definition, ahead of neighbouring loads, needs
+  `opt_dead_assignments off`; no store order, chain or helper moves it (`fn_1_14DE8`).
+- FPR numbering of copy-propagated scalars ignores declaration and copy order (`fn_1_892FC`, 800
+  permutations).
+- A constant retail keeps as one low-numbered web cannot be protected from propagation by `const`,
+  `static const`, type or placement (`fn_1_147508`).
+- A volatile snapshot read: every non-volatile spelling moves the load (`fn_1_48D80`, `fn_1_53830`).
+- Spelling one field two ways, or casting at one site, can match but is itself a device; not taken
+  (`fn_1_D47F0`).
