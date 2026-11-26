@@ -1323,7 +1323,6 @@ void fn_8006C7E8(LGFFData *arg0, void *arg1) {
         for (j = 0; j < 10; j++) {
             lbl_8019E114[j] = lbl_801327F8[j] * lbl_801A7394;
         }
-        i = j;
     }
 
     fn_8006C7E8_copy(arg0, lbl_8019E114);
