@@ -1,87 +1,12 @@
 #include "types.h"
 #include "game/pad.h"
+#include "game/main_rel/car_types.h"
 
 /* car_test.c: the machine test scene (main.rel, one translation unit) */
 
 typedef struct GXColor {
     u8 r, g, b, a;
 } GXColor;
-
-typedef struct Vec3 {
-    f32 x, y, z;
-} Vec3;
-
-/* one model of a machine */
-typedef struct CarModel {
-    u8 pad_0[8];
-    Vec3 center;
-    f32 radius;
-    u16 ntex;
-} CarModel;
-
-typedef struct CarModelEntry {
-    u32 unk_0;
-    char *name;
-} CarModelEntry;
-
-typedef struct CarModelInfo {
-    s32 count;
-    CarModel *model;
-    CarModelEntry *entries;
-} CarModelInfo;
-
-/* one level of detail of a machine */
-typedef struct CarLod {
-    CarModel **models;
-    CarModelInfo *info;
-    u32 unk_8;
-} CarLod;
-
-typedef struct CarTex {
-    u32 flags;
-    u32 unk_4;
-    u16 width;
-    u16 height;
-    u16 max_lod;
-    u16 pad_e;
-} CarTex;
-
-typedef struct CarTexList {
-    u32 count;
-    CarTex *items;
-} CarTexList;
-
-/* the body state of a machine (0x620 bytes) */
-typedef struct CarBody {
-    u8 pad_0[4];
-    s16 index;
-    u16 unk_6;
-    u8 pad_8[0x74];
-    Vec3 pos;
-    u8 pad_88[0xC4];
-    f32 mtx[3][4];
-    u8 pad_17C[8];
-    f32 unk_184;
-    u8 pad_188[0x498];
-} CarBody;
-
-/* one machine (0x440 bytes) */
-typedef struct Car {
-    u8 pad_0[2];
-    s8 limit;
-    u8 pad_3[0x325];
-    s8 kind;
-    u8 pad_329[3];
-    CarBody *body;
-    u8 *parts;
-    CarLod lods[6];
-    CarTexList *tex[4];
-    u8 lod_mask;
-    u8 pad_38D[0x2B];
-    s16 cv;
-    s16 lod;
-    u8 pad_3BC[0x84];
-} Car;
 
 /* one light of the test scene (0xC bytes) */
 typedef struct CarTestLight {
