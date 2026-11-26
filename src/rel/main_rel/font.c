@@ -1,3 +1,7 @@
+/* Compile settings (units.json): GC/2.5 with -fp_contract off. The flag is this TU's measured setting, not
+ * per-function steering: with contraction on, fn_1_492F0, fn_1_4A0D8, fn_1_4B6D4, fn_1_4B788 and
+ * fn_1_4C16C fuse multiply-adds that retail does not have (57, 646, 36, 36 and 709 words off), and no
+ * function of the TU needs it on. sprite.c shows the same (fn_1_530C8, fn_1_539CC). */
 #include "types.h"
 #include "dolphin/types.h"
 #define lbl_1_bss_4B9CC globals_h_lbl_1_bss_4B9CC
