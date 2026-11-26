@@ -65899,7 +65899,7 @@
       "@259": "lbl_1_rodata_2D70+0x290",
       "@260": "lbl_1_rodata_2D70+0x294",
       "@261": "lbl_1_rodata_2D70+0x298",
-      "@339": "lbl_1_rodata_2D70+0x29C"
+      "@341": "lbl_1_rodata_2D70+0x29C"
     },
     "collapsed": true
   },
@@ -66344,9 +66344,9 @@
       "@329": "lbl_1_rodata_2D70+0x334",
       "@330": "lbl_1_rodata_2D70+0x338",
       "@331": "lbl_1_rodata_2D70+0x340",
-      "@365": "lbl_1_rodata_2D70+0x348",
-      "@378": "lbl_1_rodata_2D70+0x354",
-      "@379": "lbl_1_rodata_2D70+0x358"
+      "@368": "lbl_1_rodata_2D70+0x348",
+      "@385": "lbl_1_rodata_2D70+0x354",
+      "@386": "lbl_1_rodata_2D70+0x358"
     },
     "collapsed": true
   },
@@ -69474,7 +69474,7 @@
     "extra_cflags": [],
     "tu": "rel/main_rel/live_camera.c",
     "pool": {
-      "@46": "lbl_1_rodata_648"
+      "@55": "lbl_1_rodata_648"
     }
   },
   {

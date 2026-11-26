@@ -1579,6 +1579,7 @@ typedef struct EffectA7 {
 #define D(o) (2.0)
 #define CARF(o) (*(f32 *)((u8 *)arg0 + (o)))
 
+#include "mathutil_mtxA_set_translate.h"
 void fn_1_6A7A4(u32 arg0, void *arg1) {
     u8 *p_lbl_1_rodata_2D70;
     u32 v0;
@@ -1659,16 +1660,7 @@ void fn_1_6A7A4(u32 arg0, void *arg1) {
     effect.lifetime = 0x12;
     if (!fn_1_66B8((void *)(arg0 + 0x3c), F(0x10))) return;
     lbl_8006DC6C(&loc_8);
-    tx = *(volatile f32 *)((u8 *)arg0 + 0x3c); /* volatile: keep the three translation loads before the locked-cache stores. */
-    ty = CARF(0x40);
-    tz = CARF(0x44);
-    {
-        /* CPU-local locked-cache matrix scratch area, not a linked data object. */
-        enum { LOCKED_CACHE_MATRIX_BASE = 0xe0000000 };
-        ((f32 *)LOCKED_CACHE_MATRIX_BASE)[3] = tx;
-        ((f32 *)LOCKED_CACHE_MATRIX_BASE)[7] = ty;
-        ((f32 *)LOCKED_CACHE_MATRIX_BASE)[11] = tz;
-    }
+    mathutil_mtxA_set_translate((Vec3 *)(arg0 + 0x3c));
     v3 = 4;
     do {
         if (!(*(u32 *)v2 & 2)) {
@@ -3265,7 +3257,7 @@ void fn_1_6D488(struct fn_1_6D488_Arg0 *arg0) {
     u16 count;
     struct { u32 a[58]; } loc_20;
     struct Sig_fn_1_867CC_fn_1_867CC_Arg1 loc_14;
-    struct { f32 x,y,z; } loc_8;
+
     f32 z;
     f32 y;
     fn_1_867CC(arg0->unk_18, (struct Sig_fn_1_867CC_fn_1_867CC_Arg1 *)(&loc_14));
@@ -3727,15 +3719,7 @@ static inline void vscale(Fn1_6DD68Vec *src, Fn1_6DD68Vec *dst, f32 s) {
     dst->z = src->z * s;
 }
 
-// Write the translation column of the current matrix in the locked cache.
-static inline void set_translation(Fn1_6DD68Vec *v) {
-    f32 x = *(volatile f32 *)&v->x; /* Locked-cache column: retain the initial load order. */
-    f32 y = v->y;
-    f32 z = v->z;
-    *(f32 *)(0xE0000000 + 0x0C) = x;
-    *(f32 *)(0xE0000000 + 0x1C) = y;
-    *(f32 *)(0xE0000000 + 0x2C) = z;
-}
+#include "mathutil_mtxA_set_translate.h"
 
 // Spawn exhaust/spark particles behind a car, more of them the farther the camera is.
 void fn_1_6DD68(Fn1_6DD68Car *car, u32 unused, u32 count) {
@@ -3776,7 +3760,7 @@ void fn_1_6DD68(Fn1_6DD68Car *car, u32 unused, u32 count) {
         pos = ofs;
     }
     lbl_8006DC6C(car->unk_b8);
-    set_translation(&car->unk_3c);
+    mathutil_mtxA_set_translate((Vec3 *)&car->unk_3c);
     lbl_8006E1B0(&pos, &pos);
 
     if (dist < 500.0f) {
@@ -5457,6 +5441,7 @@ typedef struct Fn6FFA0Work {
 #define FN6FFA0_RAND() \
     (lbl_801A63C0 = lbl_801A63C0 * 0x676A4B6B + 0x33CB, (s32)((lbl_801A63C0 >> 16) & 0x7FFF))
 
+#include "mathutil_mtxA_set_translate.h"
 #pragma opt_propagation off
 void fn_1_6FFA0(Fn6FFA0Car *car, u32 arg1, u32 arg2) {
     Fn6FFA0Vec pos;
@@ -5494,20 +5479,7 @@ loop:
             return;
         }
         lbl_8006DC6C(car->unk_b8);
-        {
-            {
-                f32 fzgx_lc0_z;
-                f32 fzgx_lc0_y;
-                f32 fzgx_lc0_x;
-                fzgx_lc0_x = *(volatile f32 *)&(pos.x); /* fzgx-allow: S2 preserve locked-cache column load order */
-                fzgx_lc0_y = pos.y;
-                fzgx_lc0_z = pos.z;
-                matrix = (f32 *)0xE0000000; /* fzgx-allow: A2 locked-cache current matrix address */
-                matrix[3] = fzgx_lc0_x;
-                matrix[7] = fzgx_lc0_y;
-                matrix[11] = fzgx_lc0_z;
-            }
-        }
+        mathutil_mtxA_set_translate((Vec3 *)&pos);
         mathutil_mtxA_rotate_y(work.unk_56);
         mathutil_mtxA_rotate_x(work.unk_54);
         {
@@ -6068,6 +6040,7 @@ void fzgx_bss_primer(volatile u32 *p) { *p = (u32)fzgx_obj_lbl_1_bss_38458[0]; *
 struct fn_1_7099C_ResourceSlot { Obj_1_bss_38458_Target *value; };
 #define E(o) (*(f32 *)((u8 *)&loc_14+(o)))
 #pragma pool_data on
+#include "mathutil_mtxA_set_translate.h"
 void fn_1_7099C(struct fn_1_7099C_Arg0 *arg0, Fn183D28Vec3 *arg1, u32 arg2, f32 arg3, f32 arg4) {
  u8 count;
  u32 v0;
@@ -6097,8 +6070,7 @@ void fn_1_7099C(struct fn_1_7099C_Arg0 *arg0, Fn183D28Vec3 *arg1, u32 arg2, f32 
  *((u32 *)&loc_8+1)=fzgx_pool_table_390[0];
  *((u32 *)&loc_8+2)=fzgx_pool_table_394[0];
  lbl_8006DC6C(arg0->matrix);
- x=*(volatile f32 *)&arg0->pos.x; y=arg0->pos.y; z=arg0->pos.z;  /* fzgx-allow: S2 volatile view keeps the verified load order */
- *(f32 *)(LC_BASE + 0xC)=x; *(f32 *)(LC_BASE + 0x1C)=y; *(f32 *)(LC_BASE + 0x2C)=z;
+ mathutil_mtxA_set_translate((Vec3 *)&arg0->pos);
  lbl_8006E1B0( (Fn183D28Vec3 *)(&loc_8), (Fn183D28Vec3 *)(&loc_8));
  if(speed < 500.0f) count=1;
  if(500.0f <= speed && speed < F(0x180)) count=2;
@@ -7065,19 +7037,10 @@ static inline void cross_71D0C(const Fn183D28Vec3 *a, const Fn183D28Vec3 *b, f32
     out[2] = z;
 }
 
-/* Set the translation column of matrix A (locked cache). */
-static inline void mtxA_set_translate(const Fn183D28Vec3 *v, u32 fzgx_lc_base) {
-    /* volatile: keeps x's load first (locked-cache column idiom). */
-    f32 *column = (f32 *)(fzgx_lc_base + 0x0C);
-    f32 x = *(volatile f32 *)&v->x, y = v->y, z = v->z;  /* fzgx-allow: S2 volatile view keeps the verified load order */
-    column[0] = x;
-    column[4] = y;
-    column[8] = z;
-}
+#include "mathutil_mtxA_set_translate.h"
 
 #pragma opt_propagation off
 void fn_1_71D0C(Fn1_71D0CCar *car) {
-    struct { u32 value; } fzgx_lc;
     Fn1_71D0CEffect work;
     Fn183D28Vec3 pos;
     /* side shares a home with dir, whose address escapes to lbl_8006E1B0 */
@@ -7098,14 +7061,11 @@ void fn_1_71D0C(Fn1_71D0CCar *car) {
     if (fn_1_58C4() >= 2 || car->id != camera_get_mode()) {
         count = 3;
     }
-    fzgx_lc.value = LC_BASE;
-#undef LC_BASE
-#define LC_BASE (fzgx_lc.value)
     for (; (u8)count != 0; count--) {
         work.variant = (u8)count - ((u8)count / 3) * 3;
         work.unk_b2 = 1;
         lbl_8006DC6C(car->mtx);
-        mtxA_set_translate(&pos, LC_BASE);
+        mathutil_mtxA_set_translate((Vec3 *)&pos);
         switch (work.variant) {
         case 0: {
             static const Fn183D28Vec3 v = {1.3f, 3.8f, 0.5f};
@@ -7161,8 +7121,6 @@ void fn_1_71D0C(Fn1_71D0CCar *car) {
     }
 }
 #pragma opt_propagation reset
-#undef LC_BASE
-#define LC_BASE 0xE0000000u
 /* fzgx:end fn_1_71D0C */
 
 /* fzgx:begin fn_1_72318 */
@@ -7183,18 +7141,16 @@ struct EffectWorkData {
     u8 pad_5e[0x8a];
 };
 
+#include "mathutil_mtxA_set_translate.h"
 #pragma opt_propagation off
 s16 fn_1_72318(arg0)
 struct fn_1_72318_EffectCar *arg0;
 {
     f32 vec[3];
     struct EffectWorkData data;
-    u32 lab_t0;
     f32 v0, v1, v2;
 
-    lab_t0 = arg0->field_18;
-
-    fn_1_867CC(lab_t0, vec);
+    fn_1_867CC(arg0->field_18, vec);
     memset(&data, 0, sizeof(data));
 
     data.field_18 = arg0->field_18;
@@ -7203,17 +7159,7 @@ struct fn_1_72318_EffectCar *arg0;
     data.field_1a = 0xffff;
     lbl_8006DC6C(&arg0->field_b8, data.field_38);
 
-    v2 = vec[0];
-    v1 = vec[1];
-    v0 = vec[2];
-
-    // These are effect-engine scratch registers used to pass the generated vector.
-    // fzgx-allow: A2 hardware scratch register addresses are encoded by the target.
-    *(volatile f32 *)(LC_BASE + 0xC) = v2;
-    // fzgx-allow: A2 hardware scratch register addresses are encoded by the target.
-    *(volatile f32 *)(LC_BASE + 0x1C) = v1;
-    // fzgx-allow: A2 hardware scratch register addresses are encoded by the target.
-    *(volatile f32 *)(LC_BASE + 0x2C) = v0;
+    mathutil_mtxA_set_translate((Vec3 *)vec);
 
     data.field_3c = lbl_1_rodata_314C[0];
     data.field_40 = lbl_1_rodata_314C[1];

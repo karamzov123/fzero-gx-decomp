@@ -242,11 +242,9 @@ static void fzgx_bss_layout(void) {
 #pragma section code_type ".text"
 
 void fn_1_9FFD8(void) {
-    u32 fzgx_value;
     f32 f0;
     u32 v0;
     u32 v1;
-    int lab_t1;
     u32 t11;
     u32 t12;
     u32 t17;
@@ -267,8 +265,7 @@ void fn_1_9FFD8(void) {
     fn_8004E59C(0);
     fn_800411F4();
     fn_8004BBA4((u32)fn_1_9FF50, 0);
-    fzgx_value = 0;
-    fzgx_obj_lbl_1_bss_6EAB4 = fzgx_value;
+    fzgx_obj_lbl_1_bss_6EAB4 = 0;
     lbl_1_bss_6EAB4__fzgx_offset_4 = 0;
     fzgx_obj_lbl_1_bss_6EAB4 = 0;
     lbl_1_bss_6EAB4__fzgx_offset_4 = 0;
@@ -283,8 +280,7 @@ void fn_1_9FFD8(void) {
     lbl_1_bss_6EAC6__fzgx_offset_2 = t11;
     t12 = ARAlloc(0x6be000);
     lbl_1_bss_6EAC6__fzgx_offset_6 = t12;
-    lab_t1 = 0;
-    fn_80008BEC((void *)lbl_1_bss_6EAC6__fzgx_offset_2, lab_t1, 0x28000);
+    fn_80008BEC((void *)lbl_1_bss_6EAC6__fzgx_offset_2, 0, 0x28000);
     fn_80068BFC(1, 0x28000, 0x6be000, lbl_1_bss_6EAC6__fzgx_offset_2, lbl_1_bss_6EAC6__fzgx_offset_6);
     fn_800658A8((u32)fn_1_A04AC);
     fn_8006589C((u32)fn_1_9FF54);
@@ -292,8 +288,7 @@ void fn_1_9FFD8(void) {
     fn_80065890(t17);
     t19 = fn_1_45D0(lbl_801A6410, 0x974a0, &lbl_1_data_33F1C, 0x10b);
     fzgx_obj_lbl_1_bss_6EAD0 = t19;
-    lab_t1 = 0;
-    fn_80008BEC((void *)t19, lab_t1, 0x974a0);
+    fn_80008BEC((void *)t19, 0, 0x974a0);
     t21 = fn_8004CD70(2, (fzgx_obj_lbl_1_bss_6EAD0 + 16), 0x4a248);
     v0 = fzgx_obj_lbl_1_bss_6EAD0;
     *(u32 *)((u8 *)v0 + 0) = t21;

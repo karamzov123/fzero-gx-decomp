@@ -2253,16 +2253,17 @@ void fn_1_F8D38(u32 value) {
 /* fzgx:end fn_1_F8D38 */
 
 /* fzgx:begin fn_1_F8D5C */
-struct fn_1_F8D5C_Copy440 { u32 a[110]; };
+typedef struct { s16 unk_0, unk_2, unk_4, unk_6, unk_8; } fn_1_F9028_Element;
+typedef struct { fn_1_F9028_Element elements[44]; } fn_1_F9028_Table;
 
-extern u32 lbl_1_rodata_6E38;
+extern const fn_1_F9028_Table lbl_1_rodata_6E38;
 extern void fn_80008BA8(void *, const void *, u32);
 
-void fn_1_F8D5C(u32 arg0, u32 arg1) {
-    struct fn_1_F8D5C_Copy440 loc_8;
-    /* frame */
-    loc_8 = *(struct fn_1_F8D5C_Copy440 *)&lbl_1_rodata_6E38;
-    fn_80008BA8((void *)arg1, ((u8 *)&loc_8 + ((s16)arg0 * 10)), 10);
+void fn_1_F8D5C(s16 index, fn_1_F9028_Element *dst) {
+    fn_1_F9028_Table loc_8;
+
+    loc_8 = lbl_1_rodata_6E38;
+    fn_80008BA8(dst, &loc_8.elements[index], 10);
 }
 /* fzgx:end fn_1_F8D5C */
 
@@ -2284,10 +2285,6 @@ typedef struct {
     const char *entries[44][6];
 } StringTable;
 
-typedef struct {
-    s16 values[220];
-} ValueTable;
-
 extern const StringTable lbl_1_rodata_7050;
 extern const char *lbl_1_data_2AB54[22];
 extern const char *lbl_1_data_2AA24[22];
@@ -2297,11 +2294,11 @@ extern char *sprintf(char *buffer, const char *format, ...);
 
 char *fn_1_F8E30(s16 index, s16 category, char *buffer) {
     StringTable table_a = lbl_1_rodata_7050;
-    ValueTable table_b = (*(const ValueTable *)&lbl_1_rodata_6E38);
+    fn_1_F9028_Table table_b = lbl_1_rodata_6E38;
     s16 result[5];
     int idx = index;
 
-    fn_80008BA8(result, table_b.values + idx * 5, 10);
+    fn_80008BA8(result, &table_b.elements[idx], 10);
 
     switch (result[1]) {
     case 3:
@@ -2333,17 +2330,8 @@ char *fn_1_F8E30(s16 index, s16 category, char *buffer) {
 /* fzgx:end fn_1_F8E30 */
 
 /* fzgx:begin fn_1_F9028 */
-typedef struct { s16 unk_0, unk_2, unk_4, unk_6, unk_8; } fn_1_F9028_Element;
-typedef struct { fn_1_F9028_Element elements[44]; } fn_1_F9028_Table;
-
 extern s32 fn_1_F9CA0(s32, u8);
 extern s32 fn_1_F21B8(s16);
-
-static inline void fn_1_F9028_get_element(fn_1_F9028_Element *dst, s16 index) {
-    fn_1_F9028_Table table;
-    table = (*(fn_1_F9028_Table *)&lbl_1_rodata_6E38);
-    fn_80008BA8(dst, &table.elements[index], 10);
-}
 
 static inline s16 fn_1_F9028_find_element_by_unk2(s16 unk_2, s16 nth) {
     fn_1_F9028_Element elem;
@@ -2353,7 +2341,7 @@ static inline s16 fn_1_F9028_find_element_by_unk2(s16 unk_2, s16 nth) {
     i = 0;
     count = 0;
     for (; i < 44; i++) {
-        fn_1_F9028_get_element(&elem, i);
+        fn_1_F8D5C(i, &elem);
         if (elem.unk_2 == unk_2) {
             if (count == nth) {
                 return i;
@@ -2368,7 +2356,7 @@ static inline s16 fn_1_F9028_get_element_index_in_unk2_group(s16 index) {
     fn_1_F9028_Element elem;
     s16 i;
 
-    fn_1_F9028_get_element(&elem, index);
+    fn_1_F8D5C(index, &elem);
     for (i = 0; ; i++) {
         if (fn_1_F9028_find_element_by_unk2(elem.unk_2, i) == index) {
             return i;
@@ -2385,7 +2373,7 @@ s32 fn_1_F9028(s16 arg0) {
     fn_1_F9028_Element elem;
     s16 group_idx;
 
-    fn_1_F9028_get_element(&elem, arg0);
+    fn_1_F8D5C(arg0, &elem);
     group_idx = fn_1_F9028_get_element_index_in_unk2_group(arg0);
 
     switch (elem.unk_2) {
@@ -2413,50 +2401,13 @@ extern s32 ghost_test_record_flag0(s16 value);
 
 
 
-static inline void fn_1_F9244_get_element(fn_1_F9028_Element *dst, s16 index) {
-    fn_1_F9028_Table table;
-    table = (*(fn_1_F9028_Table *)&lbl_1_rodata_6E38);
-    fn_80008BA8(dst, &table.elements[index], 10);
-}
-
-static inline s16 fn_1_F9244_find_element_by_unk2(s16 unk_2, s16 nth) {
-    fn_1_F9028_Element elem;
-    s16 i;
-    s16 count;
-
-    i = 0;
-    count = 0;
-    for (; i < 44; i++) {
-        fn_1_F9244_get_element(&elem, i);
-        if (elem.unk_2 == unk_2) {
-            if (count == nth) {
-                return i;
-            }
-            count++;
-        }
-    }
-    return -1;
-}
-
-static inline s16 fn_1_F9244_get_element_index_in_unk2_group(s16 index) {
-    fn_1_F9028_Element elem;
-    s16 i;
-
-    fn_1_F9244_get_element(&elem, index);
-    for (i = 0; ; i++) {
-        if (fn_1_F9244_find_element_by_unk2(elem.unk_2, i) == index) {
-            return i;
-        }
-    }
-}
-
 s32 fn_1_F9244(s16 arg0) {
     s32 ret = 0;
     fn_1_F9028_Element elem;
     s16 group_idx;
 
-    fn_1_F9244_get_element(&elem, arg0);
-    group_idx = fn_1_F9244_get_element_index_in_unk2_group(arg0);
+    fn_1_F8D5C(arg0, &elem);
+    group_idx = fn_1_F9028_get_element_index_in_unk2_group(arg0);
 
     switch (elem.unk_2) {
     case 0:
@@ -2484,49 +2435,12 @@ extern void ghost_set_record_flag2(s16 value);
 
 
 
-static inline void fn_1_F946C_get_element(fn_1_F9028_Element *dst, s16 index) {
-    fn_1_F9028_Table table;
-    table = (*(fn_1_F9028_Table *)&lbl_1_rodata_6E38);
-    fn_80008BA8(dst, &table.elements[index], 10);
-}
-
-static inline s16 fn_1_F946C_find_element_by_unk2(s16 unk_2, s16 nth) {
-    fn_1_F9028_Element elem;
-    s16 i;
-    s16 count;
-
-    i = 0;
-    count = 0;
-    for (; i < 44; i++) {
-        fn_1_F946C_get_element(&elem, i);
-        if (elem.unk_2 == unk_2) {
-            if (count == nth) {
-                return i;
-            }
-            count++;
-        }
-    }
-    return -1;
-}
-
-static inline s16 fn_1_F946C_get_element_index_in_unk2_group(s16 index) {
-    fn_1_F9028_Element elem;
-    s16 i;
-
-    fn_1_F946C_get_element(&elem, index);
-    for (i = 0; ; i++) {
-        if (fn_1_F946C_find_element_by_unk2(elem.unk_2, i) == index) {
-            return i;
-        }
-    }
-}
-
 void fn_1_F946C(s16 arg0) {
     fn_1_F9028_Element elem;
     s16 group_idx;
 
-    fn_1_F946C_get_element(&elem, arg0);
-    group_idx = fn_1_F946C_get_element_index_in_unk2_group(arg0);
+    fn_1_F8D5C(arg0, &elem);
+    group_idx = fn_1_F9028_get_element_index_in_unk2_group(arg0);
 
     switch (elem.unk_2) {
     case 0:
@@ -2551,50 +2465,13 @@ extern s32 fn_1_F210C(s16 value);
 
 
 
-static inline void fn_1_F965C_get_element(fn_1_F9028_Element *dst, s16 index) {
-    fn_1_F9028_Table table;
-    table = (*(fn_1_F9028_Table *)&lbl_1_rodata_6E38);
-    fn_80008BA8(dst, &table.elements[index], 10);
-}
-
-static inline s16 fn_1_F965C_find_element_by_unk2(s16 unk_2, s16 nth) {
-    fn_1_F9028_Element elem;
-    s16 i;
-    s16 count;
-
-    i = 0;
-    count = 0;
-    for (; i < 44; i++) {
-        fn_1_F965C_get_element(&elem, i);
-        if (elem.unk_2 == unk_2) {
-            if (count == nth) {
-                return i;
-            }
-            count++;
-        }
-    }
-    return -1;
-}
-
-static inline s16 fn_1_F965C_get_element_index_in_unk2_group(s16 index) {
-    fn_1_F9028_Element elem;
-    s16 i;
-
-    fn_1_F965C_get_element(&elem, index);
-    for (i = 0; ; i++) {
-        if (fn_1_F965C_find_element_by_unk2(elem.unk_2, i) == index) {
-            return i;
-        }
-    }
-}
-
 s32 fn_1_F965C(s16 arg0) {
     s32 ret = 0;
     fn_1_F9028_Element elem;
     s16 group_idx;
 
-    fn_1_F965C_get_element(&elem, arg0);
-    group_idx = fn_1_F965C_get_element_index_in_unk2_group(arg0);
+    fn_1_F8D5C(arg0, &elem);
+    group_idx = fn_1_F9028_get_element_index_in_unk2_group(arg0);
 
     switch (elem.unk_2) {
     case 0:
@@ -2622,49 +2499,12 @@ extern void ghost_set_record_flag1(s16 value);
 
 
 
-static inline void fn_1_F9888_get_element(fn_1_F9028_Element *dst, s16 index) {
-    fn_1_F9028_Table table;
-    table = (*(fn_1_F9028_Table *)&lbl_1_rodata_6E38);
-    fn_80008BA8(dst, &table.elements[index], 10);
-}
-
-static inline s16 fn_1_F9888_find_element_by_unk2(s16 unk_2, s16 nth) {
-    fn_1_F9028_Element elem;
-    s16 i;
-    s16 count;
-
-    i = 0;
-    count = 0;
-    for (; i < 44; i++) {
-        fn_1_F9888_get_element(&elem, i);
-        if (elem.unk_2 == unk_2) {
-            if (count == nth) {
-                return i;
-            }
-            count++;
-        }
-    }
-    return -1;
-}
-
-static inline s16 fn_1_F9888_get_element_index_in_unk2_group(s16 index) {
-    fn_1_F9028_Element elem;
-    s16 i;
-
-    fn_1_F9888_get_element(&elem, index);
-    for (i = 0; ; i++) {
-        if (fn_1_F9888_find_element_by_unk2(elem.unk_2, i) == index) {
-            return i;
-        }
-    }
-}
-
 void fn_1_F9888(s16 arg0) {
     fn_1_F9028_Element elem;
     s16 group_idx;
 
-    fn_1_F9888_get_element(&elem, arg0);
-    group_idx = fn_1_F9888_get_element_index_in_unk2_group(arg0);
+    fn_1_F8D5C(arg0, &elem);
+    group_idx = fn_1_F9028_get_element_index_in_unk2_group(arg0);
 
     switch (elem.unk_2) {
     case 0:
@@ -2694,43 +2534,6 @@ extern void fn_1_F9E38(void);
 
 
 
-static inline void fn_1_F9A80_get_element(fn_1_F9028_Element *dst, s16 index) {
-    fn_1_F9028_Table table;
-    table = (*(fn_1_F9028_Table *)&lbl_1_rodata_6E38);
-    fn_80008BA8(dst, &table.elements[index], 10);
-}
-
-static inline s16 fn_1_F9A80_find_element_by_unk2(s16 unk_2, s16 nth) {
-    fn_1_F9028_Element elem;
-    s16 i;
-    s16 count;
-
-    i = 0;
-    count = 0;
-    for (; i < 44; i++) {
-        fn_1_F9A80_get_element(&elem, i);
-        if (elem.unk_2 == unk_2) {
-            if (count == nth) {
-                return i;
-            }
-            count++;
-        }
-    }
-    return -1;
-}
-
-static inline s16 fn_1_F9A80_get_element_index_in_unk2_group(s16 index) {
-    fn_1_F9028_Element elem;
-    s16 i;
-
-    fn_1_F9A80_get_element(&elem, index);
-    for (i = 0; ; i++) {
-        if (fn_1_F9A80_find_element_by_unk2(elem.unk_2, i) == index) {
-            return i;
-        }
-    }
-}
-
 void fn_1_F9A80(void) {
     s16 i;
 
@@ -2748,8 +2551,8 @@ void fn_1_F9A80(void) {
         fn_1_F9028_Element elem;
         s16 group_idx;
 
-        fn_1_F9A80_get_element(&elem, i);
-        group_idx = fn_1_F9A80_get_element_index_in_unk2_group(i);
+        fn_1_F8D5C(i, &elem);
+        group_idx = fn_1_F9028_get_element_index_in_unk2_group(i);
         switch (elem.unk_2) {
         case 0:
             break;
@@ -3370,10 +3173,10 @@ void fn_1_FA450(u8 value) {
     if (lbl_1_bss_960 == 2) {
         fn_1_3EF14(local);
         if ((*(u32 *)local & 0x800) == 0) {
-            *(u8 *)(*(u32 *)&lbl_1_bss_84420 + 8) = value;
+            *(u8 *)(lbl_1_bss_84420 + 8) = value;
         }
     } else {
-        *(u8 *)(*(u32 *)&lbl_1_bss_84420 + 8) = value;
+        *(u8 *)(lbl_1_bss_84420 + 8) = value;
     }
 }
 /* fzgx:end fn_1_FA450 */

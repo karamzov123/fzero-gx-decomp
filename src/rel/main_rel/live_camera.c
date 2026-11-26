@@ -544,7 +544,6 @@ extern void fn_1_A2D84(u32);
 #pragma opt_propagation off
 void fn_1_E174(f32 arg0) {
     f32 fzgx_live;
-    s16 fzgx_value;
     struct fn_1_E174_lbl_1_bss_1148 *p_lbl_1_bss_1148;
     struct fn_1_E174_lbl_1_data_43B8 *p_lbl_1_data_43B8;
     struct fn_1_E174_lbl_1_rodata_4E0 *p_lbl_1_rodata_4E0;
@@ -691,8 +690,7 @@ void fn_1_E174(f32 arg0) {
     v9 = (-p_lbl_1_bss_1148->unk_24);
     (p_lbl_1_data_43B8->unk_14C = (60));
     v2 += 1536;
-    fzgx_value = v8;
-    p_lbl_1_bss_1148->unk_2E = fzgx_value;
+    p_lbl_1_bss_1148->unk_2E = v8;
     p_lbl_1_bss_1148->unk_8 = v3;
     p_lbl_1_bss_1148->unk_C = v9;
     fn_1_A2D84(v2);
@@ -2304,8 +2302,6 @@ extern void camera_set_result(s16);
 extern void camera_set_selected_value(u8);
 
 void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
-    s16 *fzgx_value__;
-    u32 fzgx_value_;
     s16 fzgx_value;
     u8 v0;
     f64 v1;
@@ -2330,13 +2326,11 @@ void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
         if (v0 == 0) {
             if ((*(u32 *)((u8 *)arg0 + 12) & 0x80000) == 0) {
                 v3 = (lbl_801A63C0) * 0x676A4B6B + 13259;
-                fzgx_value_ = v3;
-                lbl_801A63C0 = fzgx_value_;
+                lbl_801A63C0 = v3;
                 arg0->unk_12 = ((s32)((v3 >> 16) & 0x7FFF) % 4);
                 v9 = *(s16 *)((u8 *)arg0 + 2);
                 if ((s32)arg0->unk_12 == v9) {
-                    fzgx_value__ = &arg0->unk_12;
-                    *fzgx_value__ = (s16)((v9 + 1) % 4);
+                    arg0->unk_12 = (s16)((v9 + 1) % 4);
                 }
             } else {
                 v3 = ((0x676A4B6B) * lbl_801A63C0) + 13259;
@@ -3758,7 +3752,6 @@ void fn_1_11544(LiveCam *cam) {
     f32 fzgx_live_;
     f32 fzgx_live;
     Vec3f sp_3c;
-    s16 *fzgx_value;
     f32 sp_48[3][4];
     Vec3f sp_30;
     Vec3f sp_24;
@@ -3787,8 +3780,7 @@ void fn_1_11544(LiveCam *cam) {
             cam->unk_14 = 0;
         }
         if (cam->unk_14 < 0) {
-            fzgx_value = &cam->unk_14;
-            *fzgx_value = 5;
+            cam->unk_14 = 5;
         }
     }
 
@@ -4311,6 +4303,7 @@ static inline f32 fn_1_11E98_dist2(Cam11E98Vec *a, Cam11E98Vec *b) {
 // Write a translation into the current (locked-cache) matrix.
 
 // Pick the camera point nearest to the current target point and aim the camera from it.
+#include "mathutil_mtxA_set_translate.h"
 #pragma opt_propagation off
 void fn_1_11E98(Cam11E98 *cam) {
     u8 mtx[0x30];
@@ -4355,19 +4348,7 @@ void fn_1_11E98(Cam11E98 *cam) {
     lbl_8006DD14(mtx, cam->unk_7C);
     fn_1_862D4(lbl_1_bss_17F8, &point);
     lbl_8006DC6C(mtx);
-    {
-        {
-            f32 fzgx_lc0_z;
-            f32 fzgx_lc0_y;
-            f32 fzgx_lc0_x;
-            fzgx_lc0_x = point.x;
-            fzgx_lc0_y = point.y;
-            fzgx_lc0_z = point.z;
-            *(f32 *)(0xE0000000 + 0x0C) = fzgx_lc0_x;
-            *(f32 *)(0xE0000000 + 0x1C) = fzgx_lc0_y;
-            *(f32 *)(0xE0000000 + 0x2C) = fzgx_lc0_z;
-        }
-    }
+    mathutil_mtxA_set_translate((Vec3 *)&point);
     up = lbl_1_rodata_63C;
     lbl_8006E1B0(&up, &cam->pos);
     cam->unk_4C = target;
@@ -4491,15 +4472,7 @@ extern s32 lbl_8006D24C(f32, f32);
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DB30(void);
 
-/* Translation column of the current matrix in the locked cache. */
-static inline void Lc1212C_SetCurMtxTrans(const volatile Lc1212CVec *v) {
-    f32 x = v->x;
-    f32 y = v->y;
-    f32 z = v->z;
-    *(f32 *)(0xE0000000 + 0x0C) = x;
-    *(f32 *)(0xE0000000 + 0x1C) = y;
-    *(f32 *)(0xE0000000 + 0x2C) = z;
-}
+#include "mathutil_mtxA_set_translate.h"
 
 /* Squared distance between two points. */
 static inline f32 Lc1212C_Dist2(Lc1212CVec *a, Lc1212CVec *b) {
@@ -4600,7 +4573,7 @@ void fn_1_1212C(Lc1212C *cam) {
 
     switch (cam->unk_4) {
     case 0:
-        Lc1212C_SetCurMtxTrans(&pt);
+        mathutil_mtxA_set_translate((Vec3 *)&pt);
         lbl_8006DC6C(mtx);
         {
             Lc1212CVec v = {0.0f, 2.5f, 5.0f};
@@ -4612,7 +4585,7 @@ void fn_1_1212C(Lc1212C *cam) {
     case 1:
     case 3:
     case 4:
-        Lc1212C_SetCurMtxTrans(&pt);
+        mathutil_mtxA_set_translate((Vec3 *)&pt);
         lbl_8006DC6C(mtx);
         fn_8006ED0C(&pt, &eye, rot);
         mathutil_mtxA_rotate_y(rot[1]);
@@ -4672,7 +4645,6 @@ extern void fn_1_6DD0(void *);
 extern u32 *fn_1_1289C(u32 *);
 
 // Prints the live-camera status text for the current camera event.
-#pragma opt_common_subs off
 void fn_1_12620(s32 arg0) {
     u8 *base = lbl_1_data_43B8;
     char buf[0x74];
@@ -4727,7 +4699,7 @@ void fn_1_12620(s32 arg0) {
     }
     fn_80006E10((base + 0x350));
 }
-#pragma opt_common_subs reset
+
 /* fzgx:end fn_1_12620 */
 
 /* fzgx:begin fn_1_12850 */
