@@ -231,6 +231,33 @@ linked bytes are unchanged. The original owner now defines `Debug_BBA` as a
 normal `u8` in `.sbss`; the USA `Reschedule` data import retains its separate
 word and preceding extent. The linker still supplies the copy/BSS tables.
 
+### AV system data and regional source coverage
+
+The three existing AV system compile units now emit the USA `.data` span
+`0x8015A860..0x8015ABC0` (864 bytes including alignment). The display setup
+passes three arrays of 16-byte vertex format records to `fn_800726C0`; the
+cache and its callers now use the same record type. The allocator diagnostics
+share the `avsystem.c` filename base. The model loader's three literals are
+emitted together by MWCC, with the first string exported for `avload.c`.
+The three generated data-import units no longer supply these bytes.
+
+The 31 functions now link from source in all regions, replacing eight retail
+fallback functions in Japan and 31 in PAL. The PAL TV-mode switch has a
+32-byte longer body: retail calls `OSGetEuRgb60Mode` and selects one of two
+60-byte render-mode records. The function name is corroborated by
+`libs/dolphin/os/OSRtc.c` in SwareJonge/mkdd at
+`2a9eb75fefd75c649c0488742db931571cbd7812`; the call targets, flags and mode
+records come from the PAL DOL. `split_resize_for` checks the corresponding
+symbol-size change and all shared addresses when placing the split. The new
+PAL source branch also renumbers three private float literals; `pool_for`
+selects their verified PAL bindings without altering the USA/Japan map.
+
+All code bytes and relocations match after resolving the compiler's local
+`.data` base alias to the retail name at the same offset. The compile units
+remain separate: putting them in one compiler invocation shifted the latter
+two string bases and changed their base-relative instructions. This is a data
+ownership and regional source-coverage milestone, not a complete TU collapse.
+
 ## MSL is built with `-inline deferred` (2026-11-24)
 
 MWCC's `-inline auto,deferred` emits a file's functions in reverse source order and can inline a

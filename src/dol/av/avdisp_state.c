@@ -1,5 +1,6 @@
 #include "types.h"
 #include "dolphin/hw_regs.h"
+#include "dol/av_vertex_format.h"
 typedef struct { u8 r, g, b, a; } AvDispCacheColor;
 struct AvDispCache {
     u8 pad_0[0x670];
@@ -79,31 +80,19 @@ void fn_80072614(u32 *arg0) {
 
 /* === dol/fn_8007264C.c === */
 
-struct fn_8007264C_Entry {
-    s32 unk_0;
-    s32 unk_4;
-    s32 unk_8;
-    u8 unk_c;
-};
-
-struct fn_8007264C_Table {
-    u8 pad_0[0x1a0];
-};
-
 extern void GXSetVtxAttrFmt(u32, s32, s32, s32, u8);
 
 void fn_8007264C(u32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4) {
-    struct fn_8007264C_Entry *entry;
+    AvVertexAttrFormat *entry = ((AvVertexAttrFormat (*)[26])lbl_8019E308)[arg0];
 
-    entry = (struct fn_8007264C_Entry *)&((struct fn_8007264C_Table *)lbl_8019E308)[arg0];
-    if (entry->unk_0 != arg1 ||
-        entry->unk_4 != arg2 ||
-        entry->unk_8 != arg3 ||
-        entry->unk_c != arg4) {
-        entry->unk_0 = arg1;
-        entry->unk_4 = arg2;
-        entry->unk_8 = arg3;
-        entry->unk_c = arg4;
+    if (entry->attr != arg1 ||
+        entry->componentCount != arg2 ||
+        entry->componentType != arg3 ||
+        entry->fractionalBits != arg4) {
+        entry->attr = arg1;
+        entry->componentCount = arg2;
+        entry->componentType = arg3;
+        entry->fractionalBits = arg4;
         GXSetVtxAttrFmt(arg0, arg1, arg2, arg3, arg4);
     }
 }
@@ -112,39 +101,27 @@ void fn_8007264C(u32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4) {
 
 
 /* --- dol/fn_800726C0.c --- */
-struct fn_800726C0_Entry {
-    s32 unk_0;
-    s32 unk_4;
-    s32 unk_8;
-    u8 unk_c;
-};
-
-struct fn_800726C0_Table {
-    u8 pad_0[0x1a0];
-};
-
-
-void fn_800726C0(u32 arg0, struct fn_800726C0_Entry *arg1) {
-    struct fn_800726C0_Entry *entry;
+void fn_800726C0(u32 arg0, AvVertexAttrFormat *arg1) {
+    AvVertexAttrFormat *entry;
     s32 value0;
     s32 value1;
     s32 value2;
     u8 value3;
 
-    entry = (struct fn_800726C0_Entry *)&((struct fn_800726C0_Table *)lbl_8019E308)[arg0];
-    while (arg1->unk_0 < 0x1a) {
-        value0 = arg1->unk_0;
-        value3 = arg1->unk_c;
-        value2 = arg1->unk_8;
-        value1 = arg1->unk_4;
-        if (entry->unk_0 != value0 ||
-            entry->unk_4 != value1 ||
-            entry->unk_8 != value2 ||
-            entry->unk_c != value3) {
-            entry->unk_0 = value0;
-            entry->unk_4 = value1;
-            entry->unk_8 = value2;
-            entry->unk_c = value3;
+    entry = ((AvVertexAttrFormat (*)[26])lbl_8019E308)[arg0];
+    while (arg1->attr < 0x1a) {
+        value0 = arg1->attr;
+        value3 = arg1->fractionalBits;
+        value2 = arg1->componentType;
+        value1 = arg1->componentCount;
+        if (entry->attr != value0 ||
+            entry->componentCount != value1 ||
+            entry->componentType != value2 ||
+            entry->fractionalBits != value3) {
+            entry->attr = value0;
+            entry->componentCount = value1;
+            entry->componentType = value2;
+            entry->fractionalBits = value3;
             GXSetVtxAttrFmt(arg0, value0, value1, value2, value3);
         }
         arg1++;
