@@ -202,15 +202,19 @@ static inline u8 *SndSkipOffsets(u8 *base, u32 n) {
 }
 
 void fn_800643F4(u16 cmd) {
+    /* WARNING: compiler-diff device, not original code: one-field carrier for cmd; switch (cmd) directly 54 diff lines, plain s32 c 58 (register allocation of the whole loop) */
     struct { s32 value; } c;
+    /* WARNING: compiler-diff device, not original code: one-field carrier; plain u32 value2 34 diff lines (register allocation) */
     struct { u32 value; } value2;
     u8 ch;
     u32 chOffset;
     u32 group;
+    /* WARNING: compiler-diff device, not original code: one-field carrier; plain u32 value 72 diff lines (register allocation) */
     struct { u32 data; } value;
     u32 i;
     u32 slot;
     u32 flags;
+    /* WARNING: compiler-diff device, not original code: copy carriers lab_t1/lab_t1_ keep ch in one callee-saved web; passing ch directly 60 diff lines (ch splits into r4 + r23 copy) */
     u8 lab_t1;
     s16 lab_t1_;
 
@@ -579,6 +583,7 @@ void fn_80064FDC(u8 arg0, u8 *arg1) {
     u8 *v11;
     u32 v22;
     s8 adjustment;
+    /* WARNING: compiler-diff device, not original code: one-field carrier; plain u8 volume 28 diff lines (r18/r19/r12 permutation), s8 1050 */
     struct { u8 value; } volume;
     s32 v11_2;
     s16 v15;
