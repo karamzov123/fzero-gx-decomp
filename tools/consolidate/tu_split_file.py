@@ -133,7 +133,9 @@ lp.write_text(lt)
 
 tp = pathlib.Path(f'config/GFZE01/{module}/tus.json')
 d = json.loads(tp.read_text())
-i = next(i for i, t in enumerate(d['tus']) if t['file'] == pathlib.Path(tu).name)
+i = next((i for i, t in enumerate(d['tus']) if t['file'] == pathlib.Path(tu).name), None)
+if i is None:
+    print(f'{tu} has no tus.json entry (unmapped region): map left as it is'); sys.exit()
 e = d['tus'][i]
 syms = {}
 for ln in pathlib.Path(f'config/GFZE01/{module}/symbols.txt').read_text().splitlines():
@@ -141,6 +143,8 @@ for ln in pathlib.Path(f'config/GFZE01/{module}/symbols.txt').read_text().splitl
     if r:
         syms[r[1]] = int(r[2], 16)
 j = e['functions'].index(first)
+if data_lo is not None and not e['data'][0] <= data_lo <= e['data'][1]:
+    print(f"warning: moved .data starts at 0x{data_lo:X}, outside {tu}'s map range; check tus.json data")
 cut = syms[first]
 if PREPEND:
     nb = next(t for t in d['tus'] if t['file'] == newname)
