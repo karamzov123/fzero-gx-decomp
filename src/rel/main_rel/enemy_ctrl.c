@@ -1643,6 +1643,1219 @@ __declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
 }
 #pragma section code_type ".text"
 
+/* fzgx:begin fn_1_C39FC noprologue */
+#include "types.h"
+#include "game/pad.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/memcard.h"
+extern void* lbl_801A6410;
+extern int fn_1_45D0(void *arg0, int arg1, Obj_1_data_3C7B8 *arg2, int arg3);
+extern void fn_1_AB45C(void);
+extern void CARDMountAsync(u8, u32, void (*)(void), s32);
+extern int CARDGetSerialNo(u8 value, void *data);
+extern void CARDCheckAsync(u8 byte_val, int value);
+extern void CARDFormatAsync(u8 byte, int value);
+extern const f32 lbl_1_rodata_4CA8;
+extern const f64 lbl_1_rodata_4CB0;
+extern const f32 lbl_1_rodata_4CAC;
+extern void strcpy(void *dst, void *src);
+extern void strcat(void *dst, void *src);
+extern void CARDDeleteAsync(u8 byte, void *data, int arg);
+extern s32 CARDFreeBlocks(u8 byte_val, void *arg1, void *arg2);
+extern s32 CARDOpen(u8 byte_val, void *arg1, void *arg2);
+extern void CARDFastDeleteAsync(u8 byte_val, void *arg, s32 zero);
+extern void CARDCreateAsync(u8 byte_val, void *arg1, void *arg2, void *arg3, u32 arg4);
+extern void CARDSetStatusAsync(u8 id, void *arg, void *data, int zero);
+extern void CARDRenameAsync(u8 id, void *data1, void *data2, int zero);
+extern void CARDReadAsync(void *arg0, void *arg1, void *arg2, int arg3, int arg4);
+extern const f64 lbl_1_rodata_4CC8;
+extern void fn_80030754(u8 value, void *data, int size, int mode);
+extern u8 lbl_1_bss_71810[161];
+extern u8 lbl_1_bss_718B8;
+extern u8 lbl_1_bss_718B8__fzgx_offset_1[7];
+extern int fn_8002A744(void);
+extern void fn_8002A74C(u16 value);
+extern int fn_8002DFE0(int arg0, u32 arg1, int arg2);
+extern int CARDCheck(int arg0);
+extern void fn_1_B9C38(s32 index);
+extern void fn_1_1596DC(u32);
+extern void fn_1_484CC(u32);
+extern void fn_80008BEC(void *dst, s32 value, s32 size);
+extern void fn_1_AA6D8(s32 arg0, u32 arg1, void *arg2);
+extern void fn_1_F755C(u8 value);
+extern void fn_1_A6840(u8 value);
+extern void OSPanic(void *arg0, u32 arg1, ...);
+extern void fn_1_F79C8(void);
+extern void *lbl_801A6410;
+extern void strncpy(void *arg0, void *arg1, int arg2);
+extern u32 lbl_1_bss_77310[28];
+extern u32 lbl_1_bss_7730C;
+extern u8 lbl_1_bss_772C8[66];
+extern u32 fn_1_4630(void *heap, u32 size, void *file, s32 line);
+extern s32 fn_8002FC14(s32 chan, void *fileName);
+extern s32 fn_80030338(s32 chan, void *oldName, void *newName);
+extern const f64 lbl_1_rodata_4CB8;
+extern void fn_1_C36EC(void);
+
+u32 fn_1_C39FC(void) {
+    return lbl_1_data_3D230;
+}
+/* fzgx:end fn_1_C39FC */
+
+/* fzgx:begin fn_1_C3A0C noprologue */
+#include "types.h"
+#include "game/main_rel/live_camera_types.h"
+#include "rel/main_rel/memcard.h"
+
+typedef struct EnemyFile EnemyFile;
+
+struct Sig_fn_1_207DC_A {
+    u8 pad_0[0x30]; f32 unk_30; f32 unk_34; u8 pad_38[4]; f32 unk_3C;
+    u8 pad_40[0x28]; f32 unk_68; f32 unk_6C; u8 pad_70[0xC]; u32 unk_7C;
+};
+
+/* One output record per enemy line (0x14 bytes). */
+typedef struct {
+    s32 index;
+    f32 pos[3];
+    u32 unk_10;
+} EnemyLine;
+
+/* Source line descriptor returned by fn_1_14DC4, terminated by unk_4 <= -1. */
+typedef struct {
+    f32 unk_0;
+    f32 unk_4;
+    f32 start;
+    f32 end;
+    u8 unk_10;
+    u8 lane;
+    u8 pad_12[2];
+} LineEntry;
+
+typedef struct {
+    u8 level;
+    u8 course;
+    u8 unk_2;
+    u8 unk_3;
+    f32 rates[8];
+} EnemyParams;
+
+typedef struct {
+    EnemyLine *lines;      /* 0x00 */
+    u16 lineCount;         /* 0x04 */
+    u8 pad_6[2];
+    void *unk_8;           /* 0x08 */
+    s8 *offsets;           /* 0x0C: [4][512] */
+    f32 (*points)[3];      /* 0x10: [4][512] */
+    u32 unk_14;
+    u32 unk_18;
+    EnemyParams params;    /* 0x1C */
+    f32 unk_40;
+    LineEntry *entries;    /* 0x44 */
+} EnemyCtrl;
+
+typedef struct {
+    u8 pad_0[0x1C];
+    s32 laneCount;
+    u8 pad_20[0x3E0];
+    struct Sig_fn_1_207DC_A lanes[1];
+} EnemyTrack;
+
+#pragma pool_data on
+const u8 lbl_1_rodata_5168[0xD2][8] = {
+    0x62, 0x55, 0x2d, 0x46, 0x64, 0x64, 0x0a, 0x00, 0x64, 0x5a, 0x32, 0x50, 0x6e, 0x6e, 0x14, 0x05,
+    0x66, 0x5e, 0x3c, 0x5a, 0x7d, 0x7d, 0x23, 0x14, 0x67, 0x60, 0x46, 0x64, 0x87, 0x87, 0x37, 0x1e,
+    0x64, 0x64, 0x64, 0x64, 0x64, 0x64, 0x64, 0x64, 0x66, 0x5f, 0x32, 0x50, 0x82, 0x82, 0x1e, 0x0a,
+    0x69, 0x64, 0x41, 0x5a, 0x8c, 0x8c, 0x28, 0x14, 0x6c, 0x66, 0x4b, 0x64, 0x96, 0x96, 0x32, 0x28,
+    0x02, 0x4b, 0x46, 0x4b, 0x00, 0x19, 0x64, 0x00, 0x80, 0x00, 0x00, 0x00, 0x01, 0x50, 0x5a, 0x4b,
+    0x00, 0x1e, 0x64, 0x00, 0x80, 0x00, 0x00, 0x00, 0x02, 0x46, 0x64, 0x50, 0x00, 0x1e, 0x64, 0x00,
+    0x80, 0x00, 0x00, 0x00, 0x03, 0x50, 0x5f, 0x55, 0x14, 0x19, 0x64, 0x00, 0x80, 0x00, 0x00, 0x00,
+    0x00, 0x55, 0x5a, 0x5a, 0x50, 0x19, 0x64, 0x00, 0x20, 0x00, 0x00, 0x00, 0x01, 0x64, 0x55, 0x5f,
+    0x50, 0x0a, 0x64, 0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x64, 0x64, 0x64, 0x00, 0x19, 0x64, 0x00,
+    0x40, 0x00, 0x00, 0x00, 0x03, 0x46, 0x5a, 0x5f, 0x00, 0x1e, 0x64, 0x00, 0x80, 0x00, 0x00, 0x00,
+    0x02, 0x5a, 0x5a, 0x5f, 0x00, 0x14, 0x64, 0x00, 0x20, 0x00, 0x00, 0x00, 0x03, 0x4b, 0x55, 0x50,
+    0x00, 0x1e, 0x64, 0x00, 0x80, 0x00, 0x00, 0x00, 0x01, 0x50, 0x50, 0x46, 0x00, 0x1e, 0x64, 0x00,
+    0x80, 0x00, 0x00, 0x00, 0x03, 0x5a, 0x5f, 0x4b, 0x00, 0x1e, 0x64, 0x00, 0x80, 0x00, 0x00, 0x00,
+    0x01, 0x46, 0x64, 0x50, 0x00, 0x19, 0x64, 0x00, 0x80, 0x00, 0x00, 0x00, 0x02, 0x50, 0x5f, 0x55,
+    0x00, 0x1e, 0x64, 0x00, 0x80, 0x00, 0x00, 0x00, 0x01, 0x4b, 0x5a, 0x5a, 0x14, 0x23, 0x64, 0x00,
+    0x80, 0x00, 0x00, 0x00, 0x00, 0x64, 0x55, 0x5f, 0x00, 0x1e, 0x64, 0x00, 0x80, 0x00, 0x00, 0x00,
+    0x02, 0x5a, 0x64, 0x5a, 0x00, 0x1e, 0x64, 0x00, 0x80, 0x00, 0x00, 0x00, 0x03, 0x4b, 0x50, 0x5f,
+    0x00, 0x1e, 0x64, 0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x50, 0x50, 0x5a, 0x00, 0x19, 0x64, 0x00,
+    0x80, 0x00, 0x00, 0x00, 0x02, 0x4b, 0x55, 0x50, 0x00, 0x1e, 0x64, 0x00, 0x80, 0x00, 0x00, 0x00,
+    0x00, 0x5a, 0x5f, 0x4b, 0x00, 0x1e, 0x64, 0x00, 0x80, 0x00, 0x00, 0x00, 0x03, 0x64, 0x64, 0x46,
+    0x00, 0x14, 0x64, 0x00, 0x80, 0x00, 0x00, 0x00, 0x02, 0x46, 0x50, 0x50, 0x00, 0x1e, 0x64, 0x00,
+    0x80, 0x00, 0x00, 0x00, 0x00, 0x50, 0x5f, 0x55, 0x32, 0x1e, 0x64, 0x00, 0x80, 0x00, 0x00, 0x00,
+    0x01, 0x4b, 0x5a, 0x5a, 0x50, 0x1e, 0x64, 0x00, 0x80, 0x00, 0x00, 0x00, 0x01, 0x5a, 0x55, 0x5f,
+    0x00, 0x1e, 0x64, 0x00, 0x80, 0x00, 0x00, 0x00, 0x02, 0x50, 0x50, 0x5a, 0x00, 0x1e, 0x64, 0x00,
+    0x80, 0x00, 0x00, 0x00, 0x02, 0x46, 0x50, 0x5f, 0x00, 0x1e, 0x64, 0x00, 0x80, 0x00, 0x00, 0x00,
+    0x03, 0x50, 0x50, 0x5a, 0x00, 0x1e, 0x64, 0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x50, 0x46, 0x5f,
+    0x50, 0x0f, 0x64, 0x00, 0x40, 0x00, 0x00, 0x00, 0x00, 0x64, 0x64, 0x50, 0x50, 0x0f, 0x64, 0x00,
+    0x40, 0x00, 0x00, 0x00, 0x00, 0x64, 0x64, 0x5a, 0x50, 0x14, 0x64, 0x00, 0x80, 0x00, 0x00, 0x00,
+    0x01, 0x46, 0x64, 0x50, 0x00, 0x1e, 0x64, 0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x50, 0x55, 0x55,
+    0x00, 0x1e, 0x64, 0x00, 0x80, 0x00, 0x00, 0x00, 0x03, 0x4b, 0x5a, 0x5a, 0x00, 0x1e, 0x64, 0x00,
+    0x80, 0x00, 0x00, 0x00, 0x00, 0x64, 0x5f, 0x5f, 0x00, 0x1e, 0x64, 0x00, 0x80, 0x00, 0x00, 0x00,
+    0x01, 0x50, 0x50, 0x5a, 0x00, 0x1e, 0x64, 0x00, 0x80, 0x00, 0x00, 0x00, 0x01, 0x46, 0x5a, 0x5f,
+    0x00, 0x1e, 0x64, 0x00, 0x80, 0x00, 0x00, 0x00, 0x03, 0x50, 0x50, 0x5a, 0x00, 0x1e, 0x64, 0x00,
+    0x80, 0x00, 0x00, 0x00, 0x00, 0x4b, 0x55, 0x50, 0x00, 0x1e, 0x64, 0x00, 0x80, 0x00, 0x00, 0x00,
+    0x02, 0x5f, 0x64, 0x5f, 0x00, 0x1e, 0x64, 0x00, 0x80, 0x00, 0x00, 0x00, 0x44, 0xe1, 0x00, 0x00,
+    0x44, 0xed, 0x80, 0x00, 0x45, 0x2f, 0x00, 0x00, 0x45, 0x4b, 0xc0, 0x00, 0x45, 0x67, 0x40, 0x00,
+    0x45, 0x6d, 0x80, 0x00, 0x45, 0x83, 0x40, 0x00, 0x45, 0x85, 0xc0, 0x00, 0x45, 0x92, 0xe0, 0x00,
+    0x45, 0xa8, 0xc0, 0x00, 0x45, 0xbb, 0x80, 0x00, 0x45, 0xf9, 0x60, 0x00, 0xbf, 0x80, 0x00, 0x00,
+    0xbf, 0x80, 0x00, 0x00, 0x44, 0x11, 0x00, 0x00, 0x44, 0x48, 0x00, 0x00, 0x45, 0x09, 0x80, 0x00,
+    0x45, 0x35, 0x40, 0x00, 0x45, 0x7a, 0x00, 0x00, 0x45, 0x8c, 0xa0, 0x00, 0x45, 0xb5, 0x40, 0x00,
+    0x45, 0xd1, 0x60, 0x00, 0x45, 0xfa, 0x00, 0x00, 0x46, 0x07, 0xf0, 0x00, 0x46, 0x4e, 0x40, 0x00,
+    0x46, 0x68, 0xd0, 0x00, 0x46, 0x6d, 0x80, 0x00, 0x46, 0x71, 0x68, 0x00, 0xbf, 0x80, 0x00, 0x00,
+    0xbf, 0x80, 0x00, 0x00, 0x45, 0xb2, 0x20, 0x00, 0x45, 0xcb, 0x20, 0x00, 0x46, 0x36, 0xd0, 0x00,
+    0x46, 0x40, 0x30, 0x00, 0xbf, 0x80, 0x00, 0x00, 0xbf, 0x80, 0x00, 0x00, 0x45, 0x9d, 0xd0, 0x00,
+    0x45, 0xa0, 0xf0, 0x00, 0x45, 0xb5, 0x40, 0x00, 0x45, 0xb8, 0x60, 0x00, 0xbf, 0x80, 0x00, 0x00,
+    0xbf, 0x80, 0x00, 0x00, 0x3f, 0x80, 0x00, 0x00, 0x43, 0xc8, 0x00, 0x00, 0x45, 0x67, 0x40, 0x00,
+    0x45, 0x99, 0x20, 0x00, 0x45, 0xd1, 0x60, 0x00, 0x45, 0xf0, 0xa0, 0x00, 0x46, 0x00, 0x20, 0x00,
+    0x46, 0x07, 0xf0, 0x00, 0x46, 0x0c, 0xa0, 0x00, 0x46, 0x11, 0x50, 0x00, 0x46, 0x7d, 0x20, 0x00,
+    0x46, 0x8a, 0x48, 0x00, 0xbf, 0x80, 0x00, 0x00, 0xbf, 0x80, 0x00, 0x00, 0x44, 0xed, 0x80, 0x00,
+    0x45, 0x32, 0x20, 0x00, 0x46, 0x25, 0xa0, 0x00, 0x46, 0x35, 0x40, 0x00, 0x46, 0x44, 0xe0, 0x00,
+    0x46, 0x61, 0x00, 0x00, 0xbf, 0x80, 0x00, 0x00, 0xbf, 0x80, 0x00, 0x00, 0x3f, 0x80, 0x00, 0x00,
+    0x44, 0x27, 0x80, 0x00, 0x45, 0xc1, 0xc0, 0x00, 0x45, 0xcb, 0x20, 0x00, 0x45, 0xda, 0xc0, 0x00,
+    0x45, 0xe4, 0x20, 0x00, 0x45, 0xf3, 0xc0, 0x00, 0x45, 0xfd, 0x20, 0x00, 0x46, 0x43, 0x50, 0x00,
+    0x46, 0x5d, 0xe0, 0x00, 0x46, 0x61, 0x00, 0x00, 0x46, 0x6e, 0x48, 0x00, 0xbf, 0x80, 0x00, 0x00,
+    0xbf, 0x80, 0x00, 0x00, 0x44, 0xbb, 0x80, 0x00, 0x44, 0xed, 0x80, 0x00, 0x45, 0x2f, 0x00, 0x00,
+    0x45, 0x4e, 0x40, 0x00, 0x45, 0xa2, 0x80, 0x00, 0x45, 0xad, 0x70, 0x00, 0x45, 0xd1, 0x60, 0x00,
+    0x45, 0xd4, 0x80, 0x00, 0xbf, 0x80, 0x00, 0x00, 0xbf, 0x80, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00,
+    0x43, 0xfa, 0x00, 0x00, 0x46, 0x78, 0x70, 0x00, 0x46, 0x86, 0x60, 0x00, 0xbf, 0x80, 0x00, 0x00,
+    0xbf, 0x80, 0x00, 0x00, 0x45, 0x61, 0x00, 0x00, 0x45, 0x73, 0xc0, 0x00, 0xbf, 0x80, 0x00, 0x00,
+    0xbf, 0x80, 0x00, 0x00, 0x46, 0x4e, 0x90, 0x00, 0x46, 0x54, 0xf8, 0x00, 0xbf, 0x80, 0x00, 0x00,
+    0xbf, 0x80, 0x00, 0x00, 0x43, 0xdc, 0x00, 0x00, 0x44, 0x4a, 0x80, 0x00, 0x44, 0xd7, 0x00, 0x00,
+    0x45, 0x07, 0xa0, 0x00, 0x45, 0x41, 0x20, 0x00, 0x45, 0xd3, 0x90, 0x00, 0x46, 0x0b, 0x10, 0x00,
+    0x46, 0x28, 0xc0, 0x00, 0x46, 0x39, 0xc8, 0x00, 0x46, 0x42, 0xd8, 0x00, 0x46, 0x81, 0x60, 0x00,
+    0x46, 0x83, 0x40, 0x00, 0x46, 0x89, 0x80, 0x00, 0x46, 0x8f, 0xc0, 0x00, 0xbf, 0x80, 0x00, 0x00,
+    0xbf, 0x80, 0x00, 0x00, 0x43, 0x2f, 0x00, 0x00, 0x43, 0xd7, 0x00, 0x00, 0x45, 0xa2, 0x80, 0x00,
+    0x45, 0xa8, 0xc0, 0x00, 0x46, 0x1d, 0xd0, 0x00, 0x46, 0x20, 0xf0, 0x00, 0x46, 0x48, 0x78, 0x00,
+    0x46, 0x6a, 0x60, 0x00, 0x46, 0x80, 0x20, 0x00, 0x46, 0x81, 0xb0, 0x00, 0x46, 0x9e, 0x98, 0x00,
+    0x46, 0xa0, 0x28, 0x00, 0xbf, 0x80, 0x00, 0x00, 0xbf, 0x80, 0x00, 0x00, 0x44, 0x04, 0x80, 0x00,
+    0x44, 0x4d, 0x40, 0x00, 0x45, 0x0f, 0xc0, 0x00, 0x45, 0x1c, 0x40, 0x00, 0x45, 0x4d, 0xa0, 0x00,
+    0x45, 0x5a, 0xc0, 0x00, 0x45, 0xa2, 0xd0, 0x00, 0x45, 0xaa, 0x50, 0x00, 0x45, 0xa2, 0xd0, 0x00,
+    0x45, 0xad, 0x70, 0x00, 0x45, 0xb8, 0x60, 0x00, 0x45, 0xbf, 0x90, 0x00, 0x45, 0xcf, 0x30, 0x00,
+    0x45, 0xd6, 0x60, 0x00, 0x45, 0xf0, 0xf0, 0x00, 0x45, 0xf5, 0xf0, 0x00, 0x45, 0xfd, 0xc0, 0x00,
+    0x46, 0x03, 0x40, 0x00, 0x46, 0x07, 0x50, 0x00, 0x46, 0x0a, 0x48, 0x00, 0x46, 0x16, 0xa0, 0x00,
+    0x46, 0x19, 0x98, 0x00, 0x46, 0x20, 0x00, 0x00, 0x46, 0x22, 0xf8, 0x00, 0x46, 0x29, 0x60, 0x00,
+    0x46, 0x2c, 0x58, 0x00, 0x46, 0x44, 0xe0, 0x00, 0x46, 0x5a, 0xc0, 0x00, 0x46, 0x6d, 0x80, 0x00,
+    0x46, 0x77, 0x58, 0x00, 0xbf, 0x80, 0x00, 0x00, 0xbf, 0x80, 0x00, 0x00, 0x44, 0xbb, 0x80, 0x00,
+    0x44, 0xd4, 0x80, 0x00, 0xbf, 0x80, 0x00, 0x00, 0xbf, 0x80, 0x00, 0x00, 0x43, 0xa0, 0x00, 0x00,
+    0x44, 0xf7, 0x80, 0x00, 0x45, 0x09, 0x80, 0x00, 0x45, 0x46, 0x20, 0x00, 0x45, 0x77, 0x80, 0x00,
+    0x45, 0x81, 0x60, 0x00, 0x45, 0x8d, 0xe0, 0x00, 0x45, 0xae, 0x60, 0x00, 0x45, 0xd2, 0xa0, 0x00,
+    0x45, 0xd7, 0xa0, 0x00, 0x45, 0xe6, 0xf0, 0x00, 0x46, 0x05, 0xe8, 0x00, 0x46, 0x31, 0x58, 0x00,
+    0x46, 0x41, 0x20, 0x00, 0x46, 0x61, 0xc8, 0x00, 0x46, 0x6e, 0xc0, 0x00, 0x46, 0x8c, 0x3c, 0x00,
+    0x46, 0x8d, 0xa4, 0x00, 0xbf, 0x80, 0x00, 0x00, 0xbf, 0x80, 0x00, 0x00, 0x45, 0x80, 0x20, 0x00,
+    0x45, 0x85, 0x70, 0x00, 0x45, 0x9f, 0x60, 0x00, 0x45, 0xa2, 0x80, 0x00, 0x45, 0xb5, 0x40, 0x00,
+    0x45, 0xbb, 0x80, 0x00, 0x45, 0xd6, 0x10, 0x00, 0x45, 0xd9, 0x30, 0x00, 0x46, 0x01, 0xb0, 0x00,
+    0x46, 0x04, 0xa8, 0x00, 0x46, 0x0b, 0x10, 0x00, 0x46, 0x0c, 0xa0, 0x00, 0x46, 0x11, 0x50, 0x00,
+    0x46, 0x12, 0xe0, 0x00, 0x46, 0x23, 0x48, 0x00, 0x46, 0x25, 0x50, 0x00, 0x46, 0x2b, 0xb8, 0x00,
+    0x46, 0x2d, 0xc0, 0x00, 0x46, 0x38, 0x38, 0x00, 0x46, 0x39, 0xc8, 0x00, 0xbf, 0x80, 0x00, 0x00,
+    0xbf, 0x80, 0x00, 0x00, 0x44, 0x68, 0x80, 0x00, 0x44, 0x96, 0x00, 0x00, 0x45, 0x61, 0x00, 0x00,
+    0x45, 0xce, 0x40, 0x00, 0x46, 0x00, 0x20, 0x00, 0x46, 0x11, 0x50, 0x00, 0x46, 0x36, 0xd0, 0x00,
+    0x46, 0x3b, 0x80, 0x00, 0x46, 0x94, 0xd4, 0x00, 0x46, 0x9d, 0x08, 0x00, 0xbf, 0x80, 0x00, 0x00,
+    0xbf, 0x80, 0x00, 0x00, 0x43, 0x48, 0x00, 0x00, 0x43, 0xfa, 0x00, 0x00, 0x45, 0xda, 0xc0, 0x00,
+    0x45, 0xe1, 0x00, 0x00, 0xbf, 0x80, 0x00, 0x00, 0xbf, 0x80, 0x00, 0x00, 0x3c, 0x23, 0xd7, 0x0a,
+    0x42, 0x48, 0x00, 0x00, 0x45, 0xea, 0x60, 0x00, 0x45, 0xfa, 0x00, 0x00, 0x46, 0x0b, 0x10, 0x00,
+    0x46, 0x16, 0x00, 0x00, 0x46, 0x59, 0x30, 0x00, 0x46, 0x5c, 0x50, 0x00, 0x46, 0x64, 0x20, 0x00,
+    0x46, 0x6a, 0x60, 0x00, 0xbf, 0x80, 0x00, 0x00, 0xbf, 0x80, 0x00, 0x00, 0x44, 0x96, 0x00, 0x00,
+    0x44, 0xe7, 0x40, 0x00, 0x45, 0x5a, 0xc0, 0x00, 0x45, 0x7a, 0x00, 0x00, 0x45, 0xc8, 0x00, 0x00,
+    0x45, 0xde, 0x80, 0x00, 0x45, 0xf0, 0xa0, 0x00, 0x45, 0xfd, 0x20, 0x00, 0x46, 0x12, 0xe0, 0x00,
+    0x46, 0x25, 0x00, 0x00, 0x46, 0x3d, 0x10, 0x00, 0x46, 0x43, 0x50, 0x00, 0x46, 0x49, 0x90, 0x00,
+    0x46, 0x54, 0x80, 0x00, 0x46, 0x6a, 0x60, 0x00, 0x46, 0x6f, 0x10, 0x00, 0xbf, 0x80, 0x00, 0x00,
+    0xbf, 0x80, 0x00, 0x00, 0x45, 0x89, 0x80, 0x00, 0x45, 0x92, 0xe0, 0x00, 0x45, 0xe4, 0x20, 0x00,
+    0x45, 0xf0, 0xa0, 0x00, 0x46, 0x03, 0x40, 0x00, 0x46, 0x04, 0xd0, 0x00, 0x46, 0x03, 0x40, 0x00,
+    0x46, 0x04, 0xd0, 0x00, 0x46, 0x3d, 0x10, 0x00, 0x46, 0x44, 0xe0, 0x00, 0x46, 0x62, 0x90, 0x00,
+    0x46, 0x72, 0x30, 0x00, 0x46, 0x89, 0x80, 0x00, 0x46, 0x8d, 0x68, 0x00, 0x46, 0xa2, 0x80, 0x00,
+    0x46, 0xa4, 0xd8, 0x00, 0xbf, 0x80, 0x00, 0x00, 0xbf, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46, 0xff, 0xfe, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+u8 lbl_1_data_3D138[0xC] = "OVERTAKE";
+u8 lbl_1_data_3D144[8] = "JUMP";
+u8 lbl_1_data_3D14C[0xC] = "ENEMYHIT";
+u8 lbl_1_data_3D158[8] = "WALLHIT";
+u8 lbl_1_data_3D160[0xC] = "SIDEBYSIDE";
+u8 lbl_1_data_3D16C[8] = "START";
+u8 lbl_1_data_3D174[8] = "GOAL";
+extern u8 lbl_1_data_3D138__fzgx_offset_0[];
+extern u8 lbl_1_data_3D144__fzgx_offset_0[];
+extern u8 lbl_1_data_3D14C__fzgx_offset_0[];
+extern u8 lbl_1_data_3D158__fzgx_offset_0[];
+extern u8 lbl_1_data_3D160__fzgx_offset_0[];
+extern u8 lbl_1_data_3D16C__fzgx_offset_0[];
+extern u8 lbl_1_data_3D174__fzgx_offset_0[];
+extern u8 lbl_1_data_3D17C__fzgx_offset_0[];
+extern u8 lbl_1_rodata_5394__fzgx_offset_0[];
+extern u8 lbl_1_rodata_53CC__fzgx_offset_0[];
+extern u8 lbl_1_rodata_540C__fzgx_offset_0[];
+extern u8 lbl_1_rodata_5424__fzgx_offset_0[];
+extern u8 lbl_1_rodata_543C__fzgx_offset_0[];
+extern u8 lbl_1_rodata_5474__fzgx_offset_0[];
+extern u8 lbl_1_rodata_5494__fzgx_offset_0[];
+extern u8 lbl_1_rodata_54CC__fzgx_offset_0[];
+extern u8 lbl_1_rodata_54F4__fzgx_offset_0[];
+extern u8 lbl_1_rodata_550C__fzgx_offset_0[];
+extern u8 lbl_1_rodata_551C__fzgx_offset_0[];
+extern u8 lbl_1_rodata_552C__fzgx_offset_0[];
+extern u8 lbl_1_rodata_556C__fzgx_offset_0[];
+extern u8 lbl_1_rodata_55A4__fzgx_offset_0[];
+extern u8 lbl_1_rodata_5624__fzgx_offset_0[];
+extern u8 lbl_1_rodata_5634__fzgx_offset_0[];
+extern u8 lbl_1_rodata_5684__fzgx_offset_0[];
+extern u8 lbl_1_rodata_56DC__fzgx_offset_0[];
+extern u8 lbl_1_rodata_570C__fzgx_offset_0[];
+extern u8 lbl_1_rodata_5724__fzgx_offset_0[];
+extern u8 lbl_1_rodata_5754__fzgx_offset_0[];
+extern u8 lbl_1_rodata_579C__fzgx_offset_0[];
+static union { u32 w[2]; u8 v[8]; } fzgx_pool_init_lbl_1_data_3D17C = {{  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x4C415000, (u32)lbl_1_data_3D138__fzgx_offset_0
+}};
+static union { u32 w[7]; u8 v[0x1C]; } fzgx_pool_init_fn_1_C3A0C_data_gap = {{  /* fzgx-allow: A1 retail data bytes and bindings */
+    (u32)lbl_1_data_3D144__fzgx_offset_0, (u32)lbl_1_data_3D14C__fzgx_offset_0, (u32)lbl_1_data_3D158__fzgx_offset_0, (u32)lbl_1_data_3D160__fzgx_offset_0, (u32)lbl_1_data_3D16C__fzgx_offset_0, (u32)lbl_1_data_3D174__fzgx_offset_0, (u32)lbl_1_data_3D17C__fzgx_offset_0
+}};
+static union { u32 w[36]; u32 v[36]; } fzgx_pool_init_fn_1_C3A0C_data_table = {{  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x0, 0x0, 0x0, (u32)lbl_1_rodata_5394__fzgx_offset_0, 0x0, (u32)lbl_1_rodata_53CC__fzgx_offset_0, 0x0, (u32)lbl_1_rodata_540C__fzgx_offset_0,
+    (u32)lbl_1_rodata_5424__fzgx_offset_0, (u32)lbl_1_rodata_543C__fzgx_offset_0, (u32)lbl_1_rodata_5474__fzgx_offset_0, 0x0, 0x0, (u32)lbl_1_rodata_5494__fzgx_offset_0, (u32)lbl_1_rodata_54CC__fzgx_offset_0, (u32)lbl_1_rodata_54F4__fzgx_offset_0,
+    (u32)lbl_1_rodata_550C__fzgx_offset_0, (u32)lbl_1_rodata_551C__fzgx_offset_0, 0x0, 0x0, 0x0, (u32)lbl_1_rodata_552C__fzgx_offset_0, 0x0, 0x0,
+    (u32)lbl_1_rodata_556C__fzgx_offset_0, (u32)lbl_1_rodata_55A4__fzgx_offset_0, (u32)lbl_1_rodata_5624__fzgx_offset_0, (u32)lbl_1_rodata_5634__fzgx_offset_0, (u32)lbl_1_rodata_5684__fzgx_offset_0, (u32)lbl_1_rodata_56DC__fzgx_offset_0, 0x0, 0x0,
+    (u32)lbl_1_rodata_570C__fzgx_offset_0, (u32)lbl_1_rodata_5724__fzgx_offset_0, (u32)lbl_1_rodata_5754__fzgx_offset_0, (u32)lbl_1_rodata_579C__fzgx_offset_0
+}};
+u32 lbl_1_data_3D230 = 1;
+u8 lbl_1_data_3D234[0x10] = "enemy_ctrl.c";
+static union { u32 w[4]; u8 v[0x10]; } fzgx_pool_init_lbl_1_data_3D244 = {{  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x6C696E65, 0x25303264, 0x2E62696E, 0x0
+}};
+static union { u32 w[1]; u8 v[4]; } fzgx_pool_init_lbl_1_data_3D254 = {{  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x72620000
+}};
+static union { u32 w[3]; u8 v[0xC]; } fzgx_pool_init_lbl_1_data_3D258 = {{  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x656E656D, 0x795F6C69, 0x6E650000
+}};
+static union { u32 w[1]; u8 v[4]; } fzgx_pool_init_lbl_1_data_3D264 = {{  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x2E2E0000
+}};
+static union { u32 w[1]; u8 v[4]; } fzgx_pool_init_lbl_1_data_3D268 = {{  /* fzgx-allow: A1 retail data bytes and bindings */
+    0x77620000
+}};
+
+/* retail keeps the line table pointer and its count as two objects (dtk merges them into lbl_1_bss_7AC48) */
+EnemyLine *fzgx_obj_lbl_1_bss_7AC48;
+u16 fzgx_obj_lbl_1_bss_7AC4C;
+void *lbl_1_bss_7AC50;
+s8 *lbl_1_bss_7AC54;
+f32 (*lbl_1_bss_7AC58)[3];
+u32 lbl_1_bss_7AC5C;
+u32 lbl_1_bss_7AC60;
+EnemyParams lbl_1_bss_7AC64;
+f32 lbl_1_bss_7AC88;
+LineEntry *lbl_1_bss_7AC8C;
+extern u32 lbl_801A6410;
+extern EnemyFile *fopen(const char *, const char *);
+extern int fclose(EnemyFile *);
+extern int fflush(EnemyFile *);
+extern int fn_8007F48C(void *, int, int, int);
+extern int sprintf(char *, const char *, ...);
+extern s32 fn_1_45D0(u32, u32, const char *, u32);
+extern u32 fn_1_14DC4(void);
+extern u32 fn_1_17920(u32, void *, f32);
+extern u32 fn_1_214C4(void *, u32, f32);
+extern u8 *fn_1_14F04(void);
+extern u8 fn_1_3F1F8(void);
+extern void fn_1_207DC(struct Sig_fn_1_207DC_A *, void *, f32);
+extern void fn_80006E10(u32);
+extern void fn_1_C40A0(u32);
+
+#pragma section code_type ".fzgxpool"
+/* Primes the TU literal pool and the BSS object order in retail order. */
+void fzgx_pool_fn_1_C3A0C(f64 *d, u32 u, s32 s) {
+    d[0] = 0.01;
+    d[1] = 4503599627370496.0;
+    d[2] = 0.00390625;
+    d[3] = -1.0;
+    d[4] = 1.0;
+    d[5] = 0.5;
+    d[6] = s;
+    fzgx_obj_lbl_1_bss_7AC48 = 0;
+    fzgx_obj_lbl_1_bss_7AC4C = 0;
+    lbl_1_bss_7AC50 = 0;
+    lbl_1_bss_7AC54 = 0;
+    lbl_1_bss_7AC58 = 0;
+    lbl_1_bss_7AC5C = 0;
+    lbl_1_bss_7AC60 = 0;
+    lbl_1_bss_7AC64.level = 0;
+    lbl_1_bss_7AC88 = *(f32 *)d;
+    lbl_1_bss_7AC8C = 0;
+}
+#pragma section code_type ".text"
+
+static inline void SetRates(EnemyParams *p, u32 level) {
+    p->rates[0] = 0.01 * lbl_1_rodata_5168[level][0];
+    p->rates[1] = 0.01 * lbl_1_rodata_5168[level][1];
+    p->rates[2] = 0.01 * lbl_1_rodata_5168[level][2];
+    p->rates[3] = 0.01 * lbl_1_rodata_5168[level][3];
+    p->rates[4] = 0.01 * lbl_1_rodata_5168[level][4];
+    p->rates[5] = 0.01 * lbl_1_rodata_5168[level][5];
+    p->rates[6] = 0.01 * lbl_1_rodata_5168[level][6];
+    p->rates[7] = 0.01 * lbl_1_rodata_5168[level][7];
+}
+
+static inline void *CourseData(u8 course) {
+    if (course <= 35) {
+        return (void *)fzgx_pool_init_fn_1_C3A0C_data_table.v[course];
+    }
+    return 0;
+}
+
+static inline void SetFlags(EnemyParams *p, void *v) {
+    lbl_1_bss_7AC60 = (u32)v;
+    p->unk_2 = 0;
+    p->unk_3 = 0;
+    switch (p->course) {
+    case 33:
+        p->unk_2 = 1;
+    case 25:
+    case 27:
+    case 28:
+        p->unk_3 = 1;
+    }
+}
+
+static inline void SetCourse(EnemyParams *p, u32 course) {
+    void *v;
+    p->course = course;
+    v = CourseData(course);
+    SetFlags(&lbl_1_bss_7AC64, v);
+}
+
+static inline f32 LineMidpoint(f32 start, f32 end) {
+    f32 mid;
+    if (start > end) {
+        end = 1.0 + end;
+        mid = 0.5 * (start + end);
+        if (mid > 0.5) {
+            mid -= 1.0;
+        }
+    } else {
+        mid = 0.5 * (start + end);
+    }
+    return mid;
+}
+
+static inline void MakePoint(EnemyTrack *track, s32 lane, u32 index, s8 offset) {
+    fn_1_207DC(&track->lanes[lane], lbl_1_bss_7AC58[index], offset / 256.0);
+}
+
+#pragma opt_dead_assignments off
+static inline void GenerateLines(s32 index) {
+    LineEntry *e;
+    s32 k;
+    f32 mid;
+    f32 *dest;
+    u32 sublane;
+    EnemyTrack *t;
+    f32 tmp2;
+    k = index;
+    for (e = lbl_1_bss_7AC8C; e->unk_4 > -1.0; index++, e++) {
+        if (e->unk_10 == 1) {
+            continue;
+        }
+        {
+            f32 start = e->start;
+            f32 end = e->end;
+            mid = LineMidpoint(start, end);
+        }
+        dest = ((EnemyLine *)((u8 *)fzgx_obj_lbl_1_bss_7AC48 + k))->pos;
+        sublane = e->lane;
+        fn_1_17920(fn_1_214C4(&tmp2, 0, e->unk_0), 0, tmp2);
+        t = (EnemyTrack *)fn_1_14F04();
+        if (sublane == 0 && t->laneCount > 1) {
+            sublane = 1;
+        }
+        fn_1_207DC(&t->lanes[sublane], dest, mid);
+        ((EnemyLine *)((u8 *)fzgx_obj_lbl_1_bss_7AC48 + k))->index = index;
+        ((EnemyLine *)((u8 *)fzgx_obj_lbl_1_bss_7AC48 + k))->unk_10 = 0;
+        k += sizeof(EnemyLine);
+    }
+}
+
+void fn_1_C3A0C(u32 arg0, f32 arg1) {
+    EnemyTrack *track;
+    s32 loaded;
+    u32 sublane;
+    EnemyFile *fp;
+    s32 i;
+    s32 j;
+    u32 prev;
+    s32 lane;
+    u32 count;
+    f32 *dest;
+    s32 k;
+    LineEntry *e;
+    f32 mid;
+    s32 index;
+    EnemyTrack *t;
+    Sig_fn_1_45730_LoadResult res;
+    char name[32];
+    f32 tmp;
+    f32 tmp2;
+
+    loaded = 0;
+    lbl_1_bss_7AC50 = (void *)fn_1_45D0(lbl_801A6410, 540, (char *)lbl_1_data_3D234, 0x297);
+    lbl_1_bss_7AC54 = (s8 *)fn_1_45D0(lbl_801A6410, 0x800, (char *)lbl_1_data_3D234, 0x298);
+    lbl_1_bss_7AC58 = (f32 (*)[3])fn_1_45D0(lbl_801A6410, 0x6000, (char *)lbl_1_data_3D234, 0x299);
+    sprintf(name, (char *)fzgx_pool_init_lbl_1_data_3D244.v, fn_1_3F1F8());
+    fp = fopen(name, (char *)fzgx_pool_init_lbl_1_data_3D254.v);
+    if (fp != NULL) {
+        fn_8007F48C(lbl_1_bss_7AC54, 0x800, 1, (int)fp);
+        fflush(fp);
+        fclose(fp);
+        loaded = 1;
+    }
+    if (loaded == 0) {
+        fn_80006E10((u32)fzgx_pool_init_lbl_1_data_3D258.v);
+        if (fn_1_45730(name, &res)) {
+            fn_1_458A0(&res, lbl_1_bss_7AC54, 0x800, 0);
+            fn_1_45850(&res);
+        } else {
+            /* default lateral offsets: -75, -25, 25, 75 */
+            u32 m;
+            u32 n;
+            s8 *p = lbl_1_bss_7AC54;
+            for (m = 0; m < 4; m++) {
+                for (n = 0; n < 512; n++) {
+                    *p++ = m * 50 - 75;
+                }
+            }
+        }
+        fn_80006E10((u32)fzgx_pool_init_lbl_1_data_3D264.v);
+    }
+
+    track = (EnemyTrack *)fn_1_14F04();
+    prev = 0;
+    for (i = 0; i < 512; i++) {
+        prev = fn_1_214C4(&tmp, prev, i * lbl_1_bss_7AC88);
+        fn_1_17920(prev, 0, tmp);
+        for (j = 0; j < 4; j++) {
+            if (track->laneCount == 1) {
+                lane = 0;
+            } else {
+                lane = j % (track->laneCount - 1) + 1;
+            }
+            {
+                u32 point = j * 512 + i;
+                s8 offset = (lbl_1_bss_7AC54 + j * 512)[i];
+                MakePoint(track, lane, point, offset);
+            }
+        }
+    }
+
+    lbl_1_bss_7AC8C = (LineEntry *)fn_1_14DC4();
+    {
+    s16 mode = *(s16 *)&lbl_1_bss_960;
+    if (mode == 9) {
+        if (lbl_1_bss_8B3A0.unk_8 < 5 || lbl_1_bss_8B3A0.unk_8 > 7) {
+            lbl_1_bss_8B3A0.unk_8 = 5;
+        }
+        lbl_1_bss_7AC64.level = lbl_1_bss_8B3A0.unk_8;
+    } else {
+        if (lbl_1_bss_8B3A0.unk_8 < 0 || lbl_1_bss_8B3A0.unk_8 > 3) {
+            lbl_1_bss_8B3A0.unk_8 = 1;
+        }
+        lbl_1_bss_7AC64.level = lbl_1_bss_8B3A0.unk_8;
+        if (mode == 10) {
+            lbl_1_bss_7AC64.level = 2;
+        }
+    }
+    }
+    SetRates(&lbl_1_bss_7AC64, lbl_1_bss_7AC64.level);
+    SetCourse(&lbl_1_bss_7AC64, fn_1_3F1F8());
+
+    count = 0;
+    {
+        LineEntry *scan;
+        for (scan = lbl_1_bss_7AC8C; scan->unk_4 > -1.0; scan++) {
+            if (scan->unk_10 != 1) {
+                count++;
+            }
+        }
+    }
+    fzgx_obj_lbl_1_bss_7AC4C = count;
+    if (count != 0) {
+        EnemyLine *newLines = (EnemyLine *)fn_1_45D0(lbl_801A6410, count * sizeof(EnemyLine),
+                                                   (char *)lbl_1_data_3D234, 0x369);
+        fzgx_obj_lbl_1_bss_7AC48 = newLines;
+        GenerateLines(0);
+    }
+    fn_1_C40A0(arg0);
+}
+#pragma opt_dead_assignments reset
+/* fzgx:end fn_1_C3A0C */
+
+/* fzgx:begin fn_1_C40A0 noprologue */
+#include "types.h"
+#include "game/pad.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/memcard.h"
+extern void* lbl_801A6410;
+extern int fn_1_45D0(void *arg0, int arg1, Obj_1_data_3C7B8 *arg2, int arg3);
+extern void fn_1_AB45C(void);
+extern void CARDMountAsync(u8, u32, void (*)(void), s32);
+extern int CARDGetSerialNo(u8 value, void *data);
+extern void CARDCheckAsync(u8 byte_val, int value);
+extern void CARDFormatAsync(u8 byte, int value);
+extern const f32 lbl_1_rodata_4CA8;
+extern const f64 lbl_1_rodata_4CB0;
+extern const f32 lbl_1_rodata_4CAC;
+extern void strcpy(void *dst, void *src);
+extern void strcat(void *dst, void *src);
+extern void CARDDeleteAsync(u8 byte, void *data, int arg);
+extern s32 CARDFreeBlocks(u8 byte_val, void *arg1, void *arg2);
+extern s32 CARDOpen(u8 byte_val, void *arg1, void *arg2);
+extern void CARDFastDeleteAsync(u8 byte_val, void *arg, s32 zero);
+extern void CARDCreateAsync(u8 byte_val, void *arg1, void *arg2, void *arg3, u32 arg4);
+extern void CARDSetStatusAsync(u8 id, void *arg, void *data, int zero);
+extern void CARDRenameAsync(u8 id, void *data1, void *data2, int zero);
+extern void CARDReadAsync(void *arg0, void *arg1, void *arg2, int arg3, int arg4);
+extern const f64 lbl_1_rodata_4CC8;
+extern void fn_80030754(u8 value, void *data, int size, int mode);
+extern u8 lbl_1_bss_71810[161];
+extern u8 lbl_1_bss_718B8;
+extern u8 lbl_1_bss_718B8__fzgx_offset_1[7];
+extern int fn_8002A744(void);
+extern void fn_8002A74C(u16 value);
+extern int fn_8002DFE0(int arg0, u32 arg1, int arg2);
+extern int CARDCheck(int arg0);
+extern void fn_1_B9C38(s32 index);
+extern void fn_1_1596DC(u32);
+extern void fn_1_484CC(u32);
+extern void fn_80008BEC(void *dst, s32 value, s32 size);
+extern void fn_1_AA6D8(s32 arg0, u32 arg1, void *arg2);
+extern void fn_1_F755C(u8 value);
+extern void fn_1_A6840(u8 value);
+extern void OSPanic(void *arg0, u32 arg1, ...);
+extern void fn_1_F79C8(void);
+extern void *lbl_801A6410;
+extern void strncpy(void *arg0, void *arg1, int arg2);
+extern u32 lbl_1_bss_77310[28];
+extern u32 lbl_1_bss_7730C;
+extern u8 lbl_1_bss_772C8[66];
+extern u32 fn_1_4630(void *heap, u32 size, void *file, s32 line);
+extern s32 fn_8002FC14(s32 chan, void *fileName);
+extern s32 fn_80030338(s32 chan, void *oldName, void *newName);
+extern const f64 lbl_1_rodata_4CB8;
+extern void fn_1_C36EC(void);
+
+extern void* lbl_801A6410;
+extern int fn_1_45D0(void *arg0, int arg1, Obj_1_data_3C7B8 *arg2, int arg3);
+extern void fn_1_AB45C(void);
+extern void CARDMountAsync(u8, u32, void (*)(void), s32);
+extern int CARDGetSerialNo(u8 value, void *data);
+extern void CARDCheckAsync(u8 byte_val, int value);
+extern void CARDFormatAsync(u8 byte, int value);
+extern const f32 lbl_1_rodata_4CA8;
+extern const f64 lbl_1_rodata_4CB0;
+extern const f32 lbl_1_rodata_4CAC;
+extern void strcpy(void *dst, void *src);
+extern void strcat(void *dst, void *src);
+extern void CARDDeleteAsync(u8 byte, void *data, int arg);
+extern s32 CARDFreeBlocks(u8 byte_val, void *arg1, void *arg2);
+extern s32 CARDOpen(u8 byte_val, void *arg1, void *arg2);
+extern void CARDFastDeleteAsync(u8 byte_val, void *arg, s32 zero);
+extern void CARDCreateAsync(u8 byte_val, void *arg1, void *arg2, void *arg3, u32 arg4);
+extern void CARDSetStatusAsync(u8 id, void *arg, void *data, int zero);
+extern void CARDRenameAsync(u8 id, void *data1, void *data2, int zero);
+extern void CARDReadAsync(void *arg0, void *arg1, void *arg2, int arg3, int arg4);
+extern const f64 lbl_1_rodata_4CC8;
+extern void fn_80030754(u8 value, void *data, int size, int mode);
+extern u8 lbl_1_bss_71810[161];
+extern u8 lbl_1_bss_718B8;
+extern u8 lbl_1_bss_718B8__fzgx_offset_1[7];
+extern int fn_8002A744(void);
+extern void fn_8002A74C(u16 value);
+extern int fn_8002DFE0(int arg0, u32 arg1, int arg2);
+extern int CARDCheck(int arg0);
+extern void fn_1_B9C38(s32 index);
+extern void fn_1_1596DC(u32);
+extern void fn_1_484CC(u32);
+extern void fn_80008BEC(void *dst, s32 value, s32 size);
+extern void fn_1_AA6D8(s32 arg0, u32 arg1, void *arg2);
+extern void fn_1_F755C(u8 value);
+extern void fn_1_A6840(u8 value);
+extern void OSPanic(void *arg0, u32 arg1, ...);
+extern void fn_1_F79C8(void);
+extern void *lbl_801A6410;
+extern void strncpy(void *arg0, void *arg1, int arg2);
+extern u32 lbl_1_bss_77310[28];
+extern u32 lbl_1_bss_7730C;
+extern u8 lbl_1_bss_772C8[66];
+extern u32 fn_1_4630(void *heap, u32 size, void *file, s32 line);
+extern s32 fn_8002FC14(s32 chan, void *fileName);
+extern s32 fn_80030338(s32 chan, void *oldName, void *newName);
+extern const f64 lbl_1_rodata_4CB8;
+extern void fn_1_C36EC(void);
+
+/* memcard.c's .rodata (retail lbl_1_rodata_5168 onwards) is addressed from one
+ * section base, so its tables are defined here in retail order. */
+typedef struct {
+    u8 unk_0;
+    u8 unk_1;
+    u8 unk_2;
+    u8 unk_3;
+    u8 unk_4;
+    u8 unk_5;
+    u8 unk_6;
+    u8 unk_7;
+} MemcardRodataA;
+
+typedef struct {
+    u8 unk_0;
+    u8 unk_1;
+    u8 unk_2;
+    u8 unk_3;
+    u32 unk_4;
+    u32 unk_8;
+} MemcardRodataB;
+
+#define FLAGS(x) (x)
+
+static const MemcardRodataA fzgx_pool_lbl_1_rodata_5168_a[8] = {
+    { 0x62, 0x55, 0x2D, 0x46, 0x64, 0x64, 0x0A, 0x00 },
+    { 0x64, 0x5A, 0x32, 0x50, 0x6E, 0x6E, 0x14, 0x05 },
+    { 0x66, 0x5E, 0x3C, 0x5A, 0x7D, 0x7D, 0x23, 0x14 },
+    { 0x67, 0x60, 0x46, 0x64, 0x87, 0x87, 0x37, 0x1E },
+    { 0x64, 0x64, 0x64, 0x64, 0x64, 0x64, 0x64, 0x64 },
+    { 0x66, 0x5F, 0x32, 0x50, 0x82, 0x82, 0x1E, 0x0A },
+    { 0x69, 0x64, 0x41, 0x5A, 0x8C, 0x8C, 0x28, 0x14 },
+    { 0x6C, 0x66, 0x4B, 0x64, 0x96, 0x96, 0x32, 0x28 },
+};
+
+static const MemcardRodataB fzgx_pool_lbl_1_rodata_5168_b[41] = {
+    { 0x02, 0x4B, 0x46, 0x4B, 0x00196400, FLAGS(0x80000000) },
+    { 0x01, 0x50, 0x5A, 0x4B, 0x001E6400, FLAGS(0x80000000) },
+    { 0x02, 0x46, 0x64, 0x50, 0x001E6400, FLAGS(0x80000000) },
+    { 0x03, 0x50, 0x5F, 0x55, 0x14196400, FLAGS(0x80000000) },
+    { 0x00, 0x55, 0x5A, 0x5A, 0x50196400, FLAGS(0x20000000) },
+    { 0x01, 0x64, 0x55, 0x5F, 0x500A6400, FLAGS(0x80000000) },
+    { 0x00, 0x64, 0x64, 0x64, 0x00196400, FLAGS(0x40000000) },
+    { 0x03, 0x46, 0x5A, 0x5F, 0x001E6400, FLAGS(0x80000000) },
+    { 0x02, 0x5A, 0x5A, 0x5F, 0x00146400, FLAGS(0x20000000) },
+    { 0x03, 0x4B, 0x55, 0x50, 0x001E6400, FLAGS(0x80000000) },
+    { 0x01, 0x50, 0x50, 0x46, 0x001E6400, FLAGS(0x80000000) },
+    { 0x03, 0x5A, 0x5F, 0x4B, 0x001E6400, FLAGS(0x80000000) },
+    { 0x01, 0x46, 0x64, 0x50, 0x00196400, FLAGS(0x80000000) },
+    { 0x02, 0x50, 0x5F, 0x55, 0x001E6400, FLAGS(0x80000000) },
+    { 0x01, 0x4B, 0x5A, 0x5A, 0x14236400, FLAGS(0x80000000) },
+    { 0x00, 0x64, 0x55, 0x5F, 0x001E6400, FLAGS(0x80000000) },
+    { 0x02, 0x5A, 0x64, 0x5A, 0x001E6400, FLAGS(0x80000000) },
+    { 0x03, 0x4B, 0x50, 0x5F, 0x001E6400, FLAGS(0x10000000) },
+    { 0x00, 0x50, 0x50, 0x5A, 0x00196400, FLAGS(0x80000000) },
+    { 0x02, 0x4B, 0x55, 0x50, 0x001E6400, FLAGS(0x80000000) },
+    { 0x00, 0x5A, 0x5F, 0x4B, 0x001E6400, FLAGS(0x80000000) },
+    { 0x03, 0x64, 0x64, 0x46, 0x00146400, FLAGS(0x80000000) },
+    { 0x02, 0x46, 0x50, 0x50, 0x001E6400, FLAGS(0x80000000) },
+    { 0x00, 0x50, 0x5F, 0x55, 0x321E6400, FLAGS(0x80000000) },
+    { 0x01, 0x4B, 0x5A, 0x5A, 0x501E6400, FLAGS(0x80000000) },
+    { 0x01, 0x5A, 0x55, 0x5F, 0x001E6400, FLAGS(0x80000000) },
+    { 0x02, 0x50, 0x50, 0x5A, 0x001E6400, FLAGS(0x80000000) },
+    { 0x02, 0x46, 0x50, 0x5F, 0x001E6400, FLAGS(0x80000000) },
+    { 0x03, 0x50, 0x50, 0x5A, 0x001E6400, FLAGS(0x80000000) },
+    { 0x00, 0x50, 0x46, 0x5F, 0x500F6400, FLAGS(0x40000000) },
+    { 0x00, 0x64, 0x64, 0x50, 0x500F6400, FLAGS(0x40000000) },
+    { 0x00, 0x64, 0x64, 0x5A, 0x50146400, FLAGS(0x80000000) },
+    { 0x01, 0x46, 0x64, 0x50, 0x001E6400, FLAGS(0x80000000) },
+    { 0x00, 0x50, 0x55, 0x55, 0x001E6400, FLAGS(0x80000000) },
+    { 0x03, 0x4B, 0x5A, 0x5A, 0x001E6400, FLAGS(0x80000000) },
+    { 0x00, 0x64, 0x5F, 0x5F, 0x001E6400, FLAGS(0x80000000) },
+    { 0x01, 0x50, 0x50, 0x5A, 0x001E6400, FLAGS(0x80000000) },
+    { 0x01, 0x46, 0x5A, 0x5F, 0x001E6400, FLAGS(0x80000000) },
+    { 0x03, 0x50, 0x50, 0x5A, 0x001E6400, FLAGS(0x80000000) },
+    { 0x00, 0x4B, 0x55, 0x50, 0x001E6400, FLAGS(0x80000000) },
+    { 0x02, 0x5F, 0x64, 0x5F, 0x001E6400, FLAGS(0x80000000) },
+};
+
+/* retail .rodata 0x5394..0x57F8: float tables used by other memcard.c functions */
+static const u32 fzgx_pool_lbl_1_rodata_5394_tail[281] = {
+    0x44E10000, 0x44ED8000, 0x452F0000, 0x454BC000, 0x45674000, 0x456D8000, 0x45834000, 0x4585C000,
+    0x4592E000, 0x45A8C000, 0x45BB8000, 0x45F96000, 0xBF800000, 0xBF800000,
+    0x44110000, 0x44480000, 0x45098000, 0x45354000, 0x457A0000, 0x458CA000, 0x45B54000, 0x45D16000,
+    0x45FA0000, 0x4607F000, 0x464E4000, 0x4668D000, 0x466D8000, 0x46716800, 0xBF800000, 0xBF800000,
+    0x45B22000, 0x45CB2000, 0x4636D000, 0x46403000, 0xBF800000, 0xBF800000,
+    0x459DD000, 0x45A0F000, 0x45B54000, 0x45B86000, 0xBF800000, 0xBF800000,
+    0x3F800000, 0x43C80000, 0x45674000, 0x45992000, 0x45D16000, 0x45F0A000, 0x46002000, 0x4607F000,
+    0x460CA000, 0x46115000, 0x467D2000, 0x468A4800, 0xBF800000, 0xBF800000,
+    0x44ED8000, 0x45322000, 0x4625A000, 0x46354000, 0x4644E000, 0x46610000, 0xBF800000, 0xBF800000,
+    0x3F800000, 0x44278000, 0x45C1C000, 0x45CB2000, 0x45DAC000, 0x45E42000, 0x45F3C000, 0x45FD2000,
+    0x46435000, 0x465DE000, 0x46610000, 0x466E4800, 0xBF800000, 0xBF800000,
+    0x44BB8000, 0x44ED8000, 0x452F0000, 0x454E4000, 0x45A28000, 0x45AD7000, 0x45D16000, 0x45D48000,
+    0xBF800000, 0xBF800000,
+    0x42480000, 0x43FA0000, 0x46787000, 0x46866000, 0xBF800000, 0xBF800000,
+    0x45610000, 0x4573C000, 0xBF800000, 0xBF800000,
+    0x464E9000, 0x4654F800, 0xBF800000, 0xBF800000,
+    0x43DC0000, 0x444A8000, 0x44D70000, 0x4507A000, 0x45412000, 0x45D39000, 0x460B1000, 0x4628C000,
+    0x4639C800, 0x4642D800, 0x46816000, 0x46834000, 0x46898000, 0x468FC000, 0xBF800000, 0xBF800000,
+    0x432F0000, 0x43D70000, 0x45A28000, 0x45A8C000, 0x461DD000, 0x4620F000, 0x46487800, 0x466A6000,
+    0x46802000, 0x4681B000, 0x469E9800, 0x46A02800, 0xBF800000, 0xBF800000,
+    0x44048000, 0x444D4000, 0x450FC000, 0x451C4000, 0x454DA000, 0x455AC000, 0x45A2D000, 0x45AA5000,
+    0x45A2D000, 0x45AD7000, 0x45B86000, 0x45BF9000, 0x45CF3000, 0x45D66000, 0x45F0F000, 0x45F5F000,
+    0x45FDC000, 0x46034000, 0x46075000, 0x460A4800, 0x4616A000, 0x46199800, 0x46200000, 0x4622F800,
+    0x46296000, 0x462C5800, 0x4644E000, 0x465AC000, 0x466D8000, 0x46775800, 0xBF800000, 0xBF800000,
+    0x44BB8000, 0x44D48000, 0xBF800000, 0xBF800000,
+    0x43A00000, 0x44F78000, 0x45098000, 0x45462000, 0x45778000, 0x45816000, 0x458DE000, 0x45AE6000,
+    0x45D2A000, 0x45D7A000, 0x45E6F000, 0x4605E800, 0x46315800, 0x46412000, 0x4661C800, 0x466EC000,
+    0x468C3C00, 0x468DA400, 0xBF800000, 0xBF800000,
+    0x45802000, 0x45857000, 0x459F6000, 0x45A28000, 0x45B54000, 0x45BB8000, 0x45D61000, 0x45D93000,
+    0x4601B000, 0x4604A800, 0x460B1000, 0x460CA000, 0x46115000, 0x4612E000, 0x46234800, 0x46255000,
+    0x462BB800, 0x462DC000, 0x46383800, 0x4639C800, 0xBF800000, 0xBF800000,
+    0x44688000, 0x44960000, 0x45610000, 0x45CE4000, 0x46002000, 0x46115000, 0x4636D000, 0x463B8000,
+    0x4694D400, 0x469D0800, 0xBF800000, 0xBF800000,
+    0x43480000, 0x43FA0000, 0x45DAC000, 0x45E10000, 0xBF800000, 0xBF800000,
+    0x3C23D70A, 0x42480000, 0x45EA6000, 0x45FA0000, 0x460B1000, 0x46160000, 0x46593000, 0x465C5000,
+    0x46642000, 0x466A6000, 0xBF800000, 0xBF800000,
+    0x44960000, 0x44E74000, 0x455AC000, 0x457A0000, 0x45C80000, 0x45DE8000, 0x45F0A000, 0x45FD2000,
+    0x4612E000, 0x46250000, 0x463D1000, 0x46435000, 0x46499000, 0x46548000, 0x466A6000, 0x466F1000,
+    0xBF800000, 0xBF800000,
+    0x45898000, 0x4592E000, 0x45E42000, 0x45F0A000, 0x46034000, 0x4604D000, 0x46034000, 0x4604D000,
+    0x463D1000, 0x4644E000, 0x46629000, 0x46723000, 0x46898000, 0x468D6800, 0x46A28000, 0x46A4D800,
+    0xBF800000, 0xBF800000,
+    0x00000000, 0x00000000, 0x00000000, 0x46FFFE00, 0x00000000,
+};
+
+/* Pool primer: fixes the first-use order of the TU's shared double literals. */
+#pragma section RX ".fzgxpool"
+__declspec(section ".fzgxpool") f64 fzgx_pool_primer_0(f64 x) { return x * 0.01; }
+__declspec(section ".fzgxpool") f64 fzgx_pool_primer_1(u32 x) { return (f64)x; }
+__declspec(section ".fzgxpool") void fzgx_pool_primer_2(f64 *out)
+{
+    out[0] = 0.00390625;
+    out[1] = -1.0;
+    out[2] = 1.0;
+    out[3] = 0.5;
+}
+__declspec(section ".fzgxpool") f64 fzgx_pool_primer_3(s32 x) { return (f64)x; }
+__declspec(section ".fzgxpool") u32 fzgx_pool_primer_4(s32 i) { return fzgx_pool_lbl_1_rodata_5394_tail[i]; }
+
+typedef struct {
+    u8 unk_0;
+    u8 unk_1;
+    u8 pad_2[2];
+    f32 unk_4;
+    f32 unk_8;
+    f32 unk_C;
+    u8 pad_10[0xC];
+    f32 unk_1C;
+    u8 pad_20[4];
+} Obj_1_bss_7AC64;
+
+extern Obj_1_bss_7AC64 lbl_1_bss_7AC64;
+
+typedef struct {
+    u8 pad_0[0x31];
+    u8 unk_31;
+    u8 pad_32[6];
+    u8 unk_38;
+} RacerSub;
+
+typedef struct {
+    u32 unk_0;
+    u8 pad_4[0x480];
+    RacerSub *unk_484;
+    u8 pad_488[0x620 - 0x488];
+} Racer;
+
+extern u32 fn_1_F47AC(void);
+extern u8 *lbl_1_bss_7AC50;
+extern u8 fn_1_86624(void);
+extern u32 fn_800793D4(u8 *, u32, u32);
+
+void fn_1_C40A0(Racer *racer)
+{
+    RacerSub *sub;
+    s32 offset;
+    u32 i;
+    u8 kind;
+    s32 count;
+
+    lbl_1_data_3D230 = fn_1_F47AC();
+    fn_800793D4(lbl_1_bss_7AC50, 0, 0x21C);
+    if (*(s16 *)&lbl_1_bss_960 == 9) {
+        return;
+    }
+    count = (s8)fn_1_86624();
+    offset = lbl_1_bss_7AC64.unk_1 % 4;
+    for (i = 0; i < count; i++) {
+        if (racer->unk_0 & 0x04000000) {
+            sub = racer->unk_484;
+            if ((((u32 *)fzgx_pool_lbl_1_rodata_5168_b)[sub->unk_38 * 3 + 2] >> 30) & 1) {
+                sub->unk_31 = *((const u8 *)fzgx_pool_lbl_1_rodata_5168_b + sub->unk_38 * sizeof(MemcardRodataB));
+            } else {
+                sub->unk_31 = (offset + *((const u8 *)fzgx_pool_lbl_1_rodata_5168_b + sub->unk_38 * sizeof(MemcardRodataB))) & 3;
+            }
+        }
+        racer++;
+    }
+    switch (lbl_1_bss_7AC64.unk_1) {
+    case 1:
+        kind = lbl_1_bss_7AC64.unk_0;
+        if (kind == 2 || kind == 3) {
+            lbl_1_bss_7AC64.unk_1C = 1.2 * (0.01 * fzgx_pool_lbl_1_rodata_5168_a[kind].unk_6);
+            lbl_1_bss_7AC64.unk_4 = 1.1 * (0.01 * fzgx_pool_lbl_1_rodata_5168_a[lbl_1_bss_7AC64.unk_0].unk_0);
+            lbl_1_bss_7AC64.unk_8 = 1.05 * (0.01 * fzgx_pool_lbl_1_rodata_5168_a[lbl_1_bss_7AC64.unk_0].unk_1);
+            lbl_1_bss_7AC64.unk_C = 1.025 * (0.01 * fzgx_pool_lbl_1_rodata_5168_a[lbl_1_bss_7AC64.unk_0].unk_2);
+        }
+        break;
+    case 0x10:
+        kind = lbl_1_bss_7AC64.unk_0;
+        if (kind == 2 || kind == 3) {
+            lbl_1_bss_7AC64.unk_1C = 1.1 * (0.01 * fzgx_pool_lbl_1_rodata_5168_a[kind].unk_6);
+        }
+        break;
+    }
+}
+/* fzgx:end fn_1_C40A0 */
+
+/* fzgx:begin fn_1_C42F4 noprologue */
+#include "types.h"
+#include "game/pad.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/memcard.h"
+extern void* lbl_801A6410;
+extern int fn_1_45D0(void *arg0, int arg1, Obj_1_data_3C7B8 *arg2, int arg3);
+extern void fn_1_AB45C(void);
+extern void CARDMountAsync(u8, u32, void (*)(void), s32);
+extern int CARDGetSerialNo(u8 value, void *data);
+extern void CARDCheckAsync(u8 byte_val, int value);
+extern void CARDFormatAsync(u8 byte, int value);
+extern const f32 lbl_1_rodata_4CA8;
+extern const f64 lbl_1_rodata_4CB0;
+extern const f32 lbl_1_rodata_4CAC;
+extern void strcpy(void *dst, void *src);
+extern void strcat(void *dst, void *src);
+extern void CARDDeleteAsync(u8 byte, void *data, int arg);
+extern s32 CARDFreeBlocks(u8 byte_val, void *arg1, void *arg2);
+extern s32 CARDOpen(u8 byte_val, void *arg1, void *arg2);
+extern void CARDFastDeleteAsync(u8 byte_val, void *arg, s32 zero);
+extern void CARDCreateAsync(u8 byte_val, void *arg1, void *arg2, void *arg3, u32 arg4);
+extern void CARDSetStatusAsync(u8 id, void *arg, void *data, int zero);
+extern void CARDRenameAsync(u8 id, void *data1, void *data2, int zero);
+extern void CARDReadAsync(void *arg0, void *arg1, void *arg2, int arg3, int arg4);
+extern const f64 lbl_1_rodata_4CC8;
+extern void fn_80030754(u8 value, void *data, int size, int mode);
+extern u8 lbl_1_bss_71810[161];
+extern u8 lbl_1_bss_718B8;
+extern u8 lbl_1_bss_718B8__fzgx_offset_1[7];
+extern int fn_8002A744(void);
+extern void fn_8002A74C(u16 value);
+extern int fn_8002DFE0(int arg0, u32 arg1, int arg2);
+extern int CARDCheck(int arg0);
+extern void fn_1_B9C38(s32 index);
+extern void fn_1_1596DC(u32);
+extern void fn_1_484CC(u32);
+extern void fn_80008BEC(void *dst, s32 value, s32 size);
+extern void fn_1_AA6D8(s32 arg0, u32 arg1, void *arg2);
+extern void fn_1_F755C(u8 value);
+extern void fn_1_A6840(u8 value);
+extern void OSPanic(void *arg0, u32 arg1, ...);
+extern void fn_1_F79C8(void);
+extern void *lbl_801A6410;
+extern void strncpy(void *arg0, void *arg1, int arg2);
+extern u32 lbl_1_bss_77310[28];
+extern u32 lbl_1_bss_7730C;
+extern u8 lbl_1_bss_772C8[66];
+extern u32 fn_1_4630(void *heap, u32 size, void *file, s32 line);
+extern s32 fn_8002FC14(s32 chan, void *fileName);
+extern s32 fn_80030338(s32 chan, void *oldName, void *newName);
+extern const f64 lbl_1_rodata_4CB8;
+extern void fn_1_C36EC(void);
+
+/* the CPU block of a machine (+0x484) */
+typedef struct {
+    u32 unk_0;
+    u8 pad_4[0x2A];
+    u8 unk_2E;
+    u8 pad_2F[2];
+    u8 unk_31;
+    u8 pad_32;
+    u8 unk_33;
+    u8 unk_34;
+    u8 pad_35[5];
+    u8 unk_3A;
+} CpuBlock;
+
+typedef struct {
+    u32 unk_0;
+    u8 pad_4[0x480];
+    CpuBlock *unk_484;
+    u8 pad_488[0x620 - 0x488];
+} Machine;
+
+/* a machine's progress record (fn_1_8627C) */
+typedef struct {
+    u8 pad_0[0x88];
+    s32 unk_88;
+    s32 unk_8C;
+} Progress;
+
+/* the pre-pass's per-race table (.bss 0x7AC50 points to it) */
+typedef struct {
+    u32 unk_0[30];
+    u32 unk_78[30];
+    u32 unk_F0[30];
+    u32 unk_168[30];
+    u8 unk_1E0[30];
+    u8 unk_1FE[30];
+} CpuPairs;
+
+typedef struct {
+    u8 unk_0;
+    u8 unk_1;
+    u8 pad_2[0x22];
+} CpuLevel;
+
+/* the retail TU's .bss and .data objects this function uses, at their retail offsets, so MWCC
+   addresses them off one section base */
+u8 fzgx_obj_lbl_1_bss_7AC48[8];
+CpuPairs *fzgx_obj_lbl_1_bss_7AC50;
+void *fzgx_obj_lbl_1_bss_7AC54[4];
+CpuLevel fzgx_obj_lbl_1_bss_7AC64;
+u8 fzgx_pool_gap_7AC88[8];
+u8 fzgx_obj_lbl_1_bss_7AC90;                    /* CPU system on */
+u8 fzgx_pool_fzgx_obj_lbl_1_bss_7AC90__b1;      /* best human rank */
+u8 fzgx_pool_fzgx_obj_lbl_1_bss_7AC90__b2;      /* worst human rank */
+u8 fzgx_pool_fzgx_obj_lbl_1_bss_7AC90__b3;
+f32 lbl_1_bss_7AC90__fzgx_offset_4;             /* best human's progress */
+f32 lbl_1_bss_7AC90__fzgx_offset_8;             /* worst human's progress */
+
+char fzgx_obj_lbl_1_data_3D138[0xC] = "OVERTAKE";
+u8 fzgx_pool_gap_3D144[0xEC] = { 0 };    /* the other behaviour names and their table at 0x3D180 */
+u32 fzgx_obj_lbl_1_data_3D230 = 1;      /* the CPU random generator */
+char fzgx_obj_lbl_1_data_3D234[0x10] = "enemy_ctrl.c";
+char lbl_1_data_3D234__fzgx_offset_10[0x10] = "line%02d.bin";
+u8 fzgx_pool_gap_3D254[0x14] = { 0 };    /* "rb", "enemy_line", ".." */
+char lbl_1_data_3D234__fzgx_offset_34[4] = "wb";
+
+/* retail .rodata 0x5168..0x57E4 (the CPU tables), so the literals below land at retail's offsets */
+const u32 fzgx_pool_lbl_1_rodata_5168[415] = {
+    0x62552D46, 0x64640A00, 0x645A3250, 0x6E6E1405, 0x665E3C5A, 0x7D7D2314, 0x67604664, 0x8787371E,
+    0x64646464, 0x64646464, 0x665F3250, 0x82821E0A, 0x6964415A, 0x8C8C2814, 0x6C664B64, 0x96963228,
+    0x024B464B, 0x00196400, 0x80000000, 0x01505A4B, 0x001E6400, 0x80000000, 0x02466450, 0x001E6400,
+    0x80000000, 0x03505F55, 0x14196400, 0x80000000, 0x00555A5A, 0x50196400, 0x20000000, 0x0164555F,
+    0x500A6400, 0x80000000, 0x00646464, 0x00196400, 0x40000000, 0x03465A5F, 0x001E6400, 0x80000000,
+    0x025A5A5F, 0x00146400, 0x20000000, 0x034B5550, 0x001E6400, 0x80000000, 0x01505046, 0x001E6400,
+    0x80000000, 0x035A5F4B, 0x001E6400, 0x80000000, 0x01466450, 0x00196400, 0x80000000, 0x02505F55,
+    0x001E6400, 0x80000000, 0x014B5A5A, 0x14236400, 0x80000000, 0x0064555F, 0x001E6400, 0x80000000,
+    0x025A645A, 0x001E6400, 0x80000000, 0x034B505F, 0x001E6400, 0x10000000, 0x0050505A, 0x00196400,
+    0x80000000, 0x024B5550, 0x001E6400, 0x80000000, 0x005A5F4B, 0x001E6400, 0x80000000, 0x03646446,
+    0x00146400, 0x80000000, 0x02465050, 0x001E6400, 0x80000000, 0x00505F55, 0x321E6400, 0x80000000,
+    0x014B5A5A, 0x501E6400, 0x80000000, 0x015A555F, 0x001E6400, 0x80000000, 0x0250505A, 0x001E6400,
+    0x80000000, 0x0246505F, 0x001E6400, 0x80000000, 0x0350505A, 0x001E6400, 0x80000000, 0x0050465F,
+    0x500F6400, 0x40000000, 0x00646450, 0x500F6400, 0x40000000, 0x0064645A, 0x50146400, 0x80000000,
+    0x01466450, 0x001E6400, 0x80000000, 0x00505555, 0x001E6400, 0x80000000, 0x034B5A5A, 0x001E6400,
+    0x80000000, 0x00645F5F, 0x001E6400, 0x80000000, 0x0150505A, 0x001E6400, 0x80000000, 0x01465A5F,
+    0x001E6400, 0x80000000, 0x0350505A, 0x001E6400, 0x80000000, 0x004B5550, 0x001E6400, 0x80000000,
+    0x025F645F, 0x001E6400, 0x80000000, 0x44E10000, 0x44ED8000, 0x452F0000, 0x454BC000, 0x45674000,
+    0x456D8000, 0x45834000, 0x4585C000, 0x4592E000, 0x45A8C000, 0x45BB8000, 0x45F96000, 0xBF800000,
+    0xBF800000, 0x44110000, 0x44480000, 0x45098000, 0x45354000, 0x457A0000, 0x458CA000, 0x45B54000,
+    0x45D16000, 0x45FA0000, 0x4607F000, 0x464E4000, 0x4668D000, 0x466D8000, 0x46716800, 0xBF800000,
+    0xBF800000, 0x45B22000, 0x45CB2000, 0x4636D000, 0x46403000, 0xBF800000, 0xBF800000, 0x459DD000,
+    0x45A0F000, 0x45B54000, 0x45B86000, 0xBF800000, 0xBF800000, 0x3F800000, 0x43C80000, 0x45674000,
+    0x45992000, 0x45D16000, 0x45F0A000, 0x46002000, 0x4607F000, 0x460CA000, 0x46115000, 0x467D2000,
+    0x468A4800, 0xBF800000, 0xBF800000, 0x44ED8000, 0x45322000, 0x4625A000, 0x46354000, 0x4644E000,
+    0x46610000, 0xBF800000, 0xBF800000, 0x3F800000, 0x44278000, 0x45C1C000, 0x45CB2000, 0x45DAC000,
+    0x45E42000, 0x45F3C000, 0x45FD2000, 0x46435000, 0x465DE000, 0x46610000, 0x466E4800, 0xBF800000,
+    0xBF800000, 0x44BB8000, 0x44ED8000, 0x452F0000, 0x454E4000, 0x45A28000, 0x45AD7000, 0x45D16000,
+    0x45D48000, 0xBF800000, 0xBF800000, 0x42480000, 0x43FA0000, 0x46787000, 0x46866000, 0xBF800000,
+    0xBF800000, 0x45610000, 0x4573C000, 0xBF800000, 0xBF800000, 0x464E9000, 0x4654F800, 0xBF800000,
+    0xBF800000, 0x43DC0000, 0x444A8000, 0x44D70000, 0x4507A000, 0x45412000, 0x45D39000, 0x460B1000,
+    0x4628C000, 0x4639C800, 0x4642D800, 0x46816000, 0x46834000, 0x46898000, 0x468FC000, 0xBF800000,
+    0xBF800000, 0x432F0000, 0x43D70000, 0x45A28000, 0x45A8C000, 0x461DD000, 0x4620F000, 0x46487800,
+    0x466A6000, 0x46802000, 0x4681B000, 0x469E9800, 0x46A02800, 0xBF800000, 0xBF800000, 0x44048000,
+    0x444D4000, 0x450FC000, 0x451C4000, 0x454DA000, 0x455AC000, 0x45A2D000, 0x45AA5000, 0x45A2D000,
+    0x45AD7000, 0x45B86000, 0x45BF9000, 0x45CF3000, 0x45D66000, 0x45F0F000, 0x45F5F000, 0x45FDC000,
+    0x46034000, 0x46075000, 0x460A4800, 0x4616A000, 0x46199800, 0x46200000, 0x4622F800, 0x46296000,
+    0x462C5800, 0x4644E000, 0x465AC000, 0x466D8000, 0x46775800, 0xBF800000, 0xBF800000, 0x44BB8000,
+    0x44D48000, 0xBF800000, 0xBF800000, 0x43A00000, 0x44F78000, 0x45098000, 0x45462000, 0x45778000,
+    0x45816000, 0x458DE000, 0x45AE6000, 0x45D2A000, 0x45D7A000, 0x45E6F000, 0x4605E800, 0x46315800,
+    0x46412000, 0x4661C800, 0x466EC000, 0x468C3C00, 0x468DA400, 0xBF800000, 0xBF800000, 0x45802000,
+    0x45857000, 0x459F6000, 0x45A28000, 0x45B54000, 0x45BB8000, 0x45D61000, 0x45D93000, 0x4601B000,
+    0x4604A800, 0x460B1000, 0x460CA000, 0x46115000, 0x4612E000, 0x46234800, 0x46255000, 0x462BB800,
+    0x462DC000, 0x46383800, 0x4639C800, 0xBF800000, 0xBF800000, 0x44688000, 0x44960000, 0x45610000,
+    0x45CE4000, 0x46002000, 0x46115000, 0x4636D000, 0x463B8000, 0x4694D400, 0x469D0800, 0xBF800000,
+    0xBF800000, 0x43480000, 0x43FA0000, 0x45DAC000, 0x45E10000, 0xBF800000, 0xBF800000, 0x3C23D70A,
+    0x42480000, 0x45EA6000, 0x45FA0000, 0x460B1000, 0x46160000, 0x46593000, 0x465C5000, 0x46642000,
+    0x466A6000, 0xBF800000, 0xBF800000, 0x44960000, 0x44E74000, 0x455AC000, 0x457A0000, 0x45C80000,
+    0x45DE8000, 0x45F0A000, 0x45FD2000, 0x4612E000, 0x46250000, 0x463D1000, 0x46435000, 0x46499000,
+    0x46548000, 0x466A6000, 0x466F1000, 0xBF800000, 0xBF800000, 0x45898000, 0x4592E000, 0x45E42000,
+    0x45F0A000, 0x46034000, 0x4604D000, 0x46034000, 0x4604D000, 0x463D1000, 0x4644E000, 0x46629000,
+    0x46723000, 0x46898000, 0x468D6800, 0x46A28000, 0x46A4D800, 0xBF800000, 0xBF800000,
+};
+
+#pragma section code_type ".fzgxpool"
+static void fzgx_pool_primer(volatile f64 *d, volatile f32 *f) { /* retail literal-pool order */
+    *f = 0.0f;
+    *d = 0.0;
+    *f = 32767.0f;
+    *d = 0.01;
+    *d = 4503599627370496.0;
+    *d = 0.00390625;
+    *d = -1.0;
+    *d = 1.0;
+    *d = 0.5;
+    *d = 4503601774854144.0;
+    *d = 1.2;
+    *d = 1.1;
+    *d = 1.05;
+    *d = 1.025;
+    *d = 10.0;
+    *d = 5.0;
+}
+__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+    volatile u32 s;  /* fzgx-allow: S2 primer sink */
+    s = fzgx_obj_lbl_1_bss_7AC48[0];
+    s = (u32)fzgx_obj_lbl_1_bss_7AC50;
+    s = (u32)fzgx_obj_lbl_1_bss_7AC54[0];
+    s = fzgx_obj_lbl_1_bss_7AC64.unk_0;
+    s = fzgx_pool_gap_7AC88[0];
+    s = fzgx_obj_lbl_1_bss_7AC90;
+    s = fzgx_pool_fzgx_obj_lbl_1_bss_7AC90__b1;
+    s = fzgx_pool_fzgx_obj_lbl_1_bss_7AC90__b2;
+    s = fzgx_pool_fzgx_obj_lbl_1_bss_7AC90__b3;
+    s = lbl_1_bss_7AC90__fzgx_offset_4;
+    s = lbl_1_bss_7AC90__fzgx_offset_8;
+}
+#pragma section code_type ".text"
+
+extern s32 fn_1_3F164(void);
+extern u8 fn_1_86624(void);
+extern Progress *fn_1_8627C(s32 index);
+extern Machine *fn_1_86254(s32 index);
+extern f32 fn_1_8CAF4(s32 a, s32 b);
+extern f32 fn_1_8CA70(u32 a, s32 b);
+extern u8 fn_1_8C3EC(void);
+extern u8 fn_1_8C3FC(void);
+extern f32 fn_1_8C40C(void);
+extern f32 fn_1_8C44C(void);
+extern s32 fn_1_8DB94(void);
+extern void fn_80008BEC(void *dst, s32 value, s32 size);
+extern f64 __fabs(f64);
+extern int sprintf(char *, const char *, ...);
+extern void *fopen(const char *name, const char *mode);
+extern u32 fwrite(const void *data, u32 size, u32 count, void *file);
+extern int fflush(void *file);
+extern int fclose(void *file);
+
+void fn_1_C42F4(Machine *cars)
+{
+    Progress *progress;
+    u32 i;
+    u32 j;
+    CpuBlock *cpu;
+    Machine *car;
+    void *file;
+    s8 count;
+    f32 gap;
+    f32 side;
+    char path[32];
+
+    if (fzgx_obj_lbl_1_bss_7AC90 == 0) {
+        return;
+    }
+    if (fn_1_3F164() != 0) {
+        return;
+    }
+    count = fn_1_86624();
+    fn_80008BEC(fzgx_obj_lbl_1_bss_7AC50, 0, 0x1E0);
+    for (i = 0; i < count; i++) {
+        fzgx_obj_lbl_1_bss_7AC50->unk_1E0[i] = fn_1_8627C(i)->unk_8C;
+        for (j = i + 1; j < count; j++) {
+            gap = fn_1_8CAF4(i, j);
+            side = fn_1_8CA70(i, j);
+            if (__fabs(gap) < 10.0) {
+                if (gap < 0.0) {
+                    fzgx_obj_lbl_1_bss_7AC50->unk_78[i] |= 0x80000000 >> j;
+                    fzgx_obj_lbl_1_bss_7AC50->unk_0[j] |= 0x80000000 >> i;
+                } else {
+                    fzgx_obj_lbl_1_bss_7AC50->unk_78[j] |= 0x80000000 >> i;
+                    fzgx_obj_lbl_1_bss_7AC50->unk_0[i] |= 0x80000000 >> j;
+                }
+            }
+            if (__fabs(side) < 5.0) {
+                if (side < 0.0f) {
+                    fzgx_obj_lbl_1_bss_7AC50->unk_F0[i] |= 0x80000000 >> j;
+                    fzgx_obj_lbl_1_bss_7AC50->unk_168[j] |= 0x80000000 >> i;
+                } else {
+                    fzgx_obj_lbl_1_bss_7AC50->unk_F0[j] |= 0x80000000 >> i;
+                    fzgx_obj_lbl_1_bss_7AC50->unk_168[i] |= 0x80000000 >> j;
+                }
+            }
+        }
+    }
+
+    for (i = 0; i < count; i++) {
+        if (!(cars[i].unk_0 & 0x04000000)) {
+            continue;
+        }
+        cpu = cars[i].unk_484;
+        if ((cpu->unk_0 >> 27) & 1) {
+            cpu->unk_2E--;
+            if (cpu->unk_2E == 0 ||
+                (cpu->unk_2E < 120 &&
+                 (fzgx_obj_lbl_1_data_3D230 = fzgx_obj_lbl_1_data_3D230 * 0x41C64E6D + 0x3039,
+                  ((fzgx_obj_lbl_1_data_3D230 >> 16) & 0x7FFF) < 273))) {
+                cpu->unk_0 &= ~0x08000000;
+                cpu->unk_2E = 0;
+            }
+        }
+        if (cpu->unk_3A != 0) {
+            cpu->unk_3A--;
+        }
+        progress = fn_1_8627C(i);
+        if (cpu->unk_34 != 0xFF) {
+            fzgx_obj_lbl_1_bss_7AC50->unk_1FE[i] = 0;
+            cpu->unk_0 &= ~0x10000;
+            if (cpu->unk_33 == 0xFF) {
+                cpu->unk_33 = cpu->unk_31;
+            }
+            cpu->unk_31 = cpu->unk_34;
+            cpu->unk_34 = 0xFF;
+        } else if (progress->unk_88 > 1 && progress->unk_8C != cpu->unk_31 % (progress->unk_88 - 1) + 1) {
+            car = fn_1_86254(i);
+            fzgx_obj_lbl_1_bss_7AC50->unk_1FE[i]++;
+            cpu->unk_0 |= 0x10000;
+            if (fzgx_obj_lbl_1_bss_7AC50->unk_1FE[i] > 60 || (car->unk_0 & 0x2) || (car->unk_0 & 0x800000)) {
+                fzgx_obj_lbl_1_bss_7AC50->unk_1FE[i] = 0;
+                cpu->unk_0 &= ~0x10000;
+                if (cpu->unk_33 == 0xFF) {
+                    cpu->unk_33 = cpu->unk_31;
+                } else if (cpu->unk_33 == progress->unk_8C - 1) {
+                    cpu->unk_33 = 0xFF;
+                }
+                cpu->unk_31 = progress->unk_8C - 1;
+            }
+        } else if (!((cpu->unk_0 >> 26) & 1)) {
+            fzgx_obj_lbl_1_bss_7AC50->unk_1FE[i] = 0;
+            cpu->unk_0 &= ~0x10000;
+            if (cpu->unk_33 != 0xFF && progress->unk_88 == 1) {
+                cpu->unk_31 = cpu->unk_33;
+                cpu->unk_33 = 0xFF;
+            }
+        }
+    }
+
+    fzgx_pool_fzgx_obj_lbl_1_bss_7AC90__b1 = fn_1_8C3EC();
+    fzgx_pool_fzgx_obj_lbl_1_bss_7AC90__b2 = fn_1_8C3FC();
+    lbl_1_bss_7AC90__fzgx_offset_4 = fn_1_8C40C();
+    lbl_1_bss_7AC90__fzgx_offset_8 = fn_1_8C44C();
+    if (fn_1_8DB94() != 0 && ((*(u16 *)((u8 *)&lbl_1_bss_9F8 + 0x1C) >> 8) & 1)) {
+        sprintf(path, lbl_1_data_3D234__fzgx_offset_10, fzgx_obj_lbl_1_bss_7AC64.unk_1);
+        file = fopen(path, lbl_1_data_3D234__fzgx_offset_34);
+        if (file != NULL) {
+            fwrite(fzgx_obj_lbl_1_bss_7AC54[0], 0x800, 1, file);
+            fflush(file);
+            fclose(file);
+        }
+    }
+}
+/* fzgx:end fn_1_C42F4 */
+
 /* fzgx:begin fn_1_C47B4 */
 void fn_1_C47B4(void) {
     if (lbl_1_bss_7AC48 != NULL) {

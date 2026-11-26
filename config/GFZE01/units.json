@@ -65177,7 +65177,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/driver/fn_1_A9868.c",
+    "source": "rel/main_rel/driver_b/fn_1_A9868.c",
     "symbols": [
       "fn_1_A9868",
       "fn_1_A9A28",
@@ -65191,11 +65191,11 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/2.5",
     "extra_cflags": [],
-    "tu": "rel/main_rel/driver.c"
+    "tu": "rel/main_rel/driver_b.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/driver/fn_1_AA590.c",
+    "source": "rel/main_rel/driver_c/fn_1_AA590.c",
     "symbols": [
       "fn_1_AA590"
     ],
@@ -65203,14 +65203,14 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/driver.c",
+    "tu": "rel/main_rel/driver_c.c",
     "pool": {
       "...bss.0": "lbl_1_bss_716C0"
     }
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/driver/fn_1_AA6D8.c",
+    "source": "rel/main_rel/driver_c/fn_1_AA6D8.c",
     "symbols": [
       "fn_1_AA6D8"
     ],
@@ -65218,7 +65218,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/driver.c",
+    "tu": "rel/main_rel/driver_c.c",
     "pool": {
       "...data.0": "lbl_1_data_35AC8",
       "...bss.0": "lbl_1_bss_716C0",
@@ -65246,7 +65246,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/driver/fn_1_AAB98.c",
+    "source": "rel/main_rel/driver_c/fn_1_AAB98.c",
     "symbols": [
       "fn_1_AAB98",
       "fn_1_AAEB0",
@@ -65260,7 +65260,7 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "tu": "rel/main_rel/driver.c",
+    "tu": "rel/main_rel/driver_c.c",
     "pool": {
       "...bss.0": "lbl_1_bss_716C0"
     },
@@ -71961,8 +71961,7 @@
       "fn_1_C34F0",
       "fn_1_C3688",
       "fn_1_C36EC",
-      "fn_1_C37A0",
-      "fn_1_C39FC"
+      "fn_1_C37A0"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -71972,7 +71971,19 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/memcard/fn_1_C3A0C.c",
+    "source": "rel/main_rel/enemy_ctrl/fn_1_C39FC.c",
+    "symbols": [
+      "fn_1_C39FC"
+    ],
+    "status": "matching",
+    "matching_for": ["GFZE01"],
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/enemy_ctrl.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/enemy_ctrl/fn_1_C3A0C.c",
     "symbols": [
       "fn_1_C3A0C"
     ],
@@ -71980,7 +71991,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/memcard.c",
+    "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_5168",
       "...data.0": "lbl_1_data_3D138",
@@ -71998,14 +72009,14 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/memcard/fn_1_C40A0.c",
+    "source": "rel/main_rel/enemy_ctrl/fn_1_C40A0.c",
     "symbols": [
       "fn_1_C40A0"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/memcard.c",
+    "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_5168",
       "fzgx_pool_lbl_1_rodata_5168_a": "lbl_1_rodata_5168"
@@ -72013,7 +72024,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/memcard/fn_1_C42F4.c",
+    "source": "rel/main_rel/enemy_ctrl/fn_1_C42F4.c",
     "symbols": [
       "fn_1_C42F4"
     ],
@@ -72021,7 +72032,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/memcard.c",
+    "tu": "rel/main_rel/enemy_ctrl.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_5168",
       "...bss.0": "lbl_1_bss_7AC48",
@@ -72821,29 +72832,34 @@
     "module": "main_rel",
     "source": "rel/main_rel/phys/fn_1_E95B4.c",
     "symbols": [
-      "fn_1_E95B4",
+      "fn_1_E95B4"
+    ],
+    "status": "matching",
+    "matching_for": ["GFZE01"],
+    "mw_version": "GC/1.3.2",
+    "tu": "rel/main_rel/phys.c",
+    "collapsed": true
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/ghost/fn_1_E9680.c",
+    "symbols": [
       "fn_1_E9680",
       "fn_1_E9770"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "tu": "rel/main_rel/phys.c",
+    "tu": "rel/main_rel/ghost.c",
     "collapsed": true,
     "pool": {
       "...bss.0": "lbl_1_bss_7B180",
-      "...data.0": "lbl_1_data_3E358",
-      "@67": "lbl_1_bss_7B180+0x2D4",
-      "@68": "lbl_1_bss_7B180+0x2DC",
-      "@69": "lbl_1_bss_7B180+0x2E8",
-      "@70": "lbl_1_bss_7B180+0x2F4",
-      "@71": "lbl_1_bss_7B180+0x304",
-      "@72": "lbl_1_bss_7B180+0x31C"
+      "...data.0": "lbl_1_data_3E358"
     }
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/phys/fn_1_E9BA8.c",
+    "source": "rel/main_rel/ghost/fn_1_E9BA8.c",
     "symbols": [
       "fn_1_E9BA8",
       "fn_1_E9C68"
@@ -72852,7 +72868,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/phys.c",
+    "tu": "rel/main_rel/ghost.c",
     "pool": {
       "...data.0": "lbl_1_data_3E358"
     },
@@ -72860,7 +72876,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/phys/fn_1_E9CFC.c",
+    "source": "rel/main_rel/ghost/fn_1_E9CFC.c",
     "symbols": [
       "fn_1_E9CFC"
     ],
@@ -72868,7 +72884,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/phys.c",
+    "tu": "rel/main_rel/ghost.c",
     "pool": {
       "@9": "lbl_1_data_3E62C",
       "@134": "lbl_1_data_3E6AC",
@@ -72927,7 +72943,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/phys/fn_1_EA314.c",
+    "source": "rel/main_rel/ghost/fn_1_EA314.c",
     "symbols": [
       "fn_1_EA314",
       "fn_1_EB074",
@@ -72936,7 +72952,7 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "tu": "rel/main_rel/phys.c",
+    "tu": "rel/main_rel/ghost.c",
     "pool": {
       "...bss.0": "lbl_1_bss_7B180",
       "...data.0": "lbl_1_data_3E358",
@@ -72961,7 +72977,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/phys/fn_1_EB0B0.c",
+    "source": "rel/main_rel/ghost/fn_1_EB0B0.c",
     "symbols": [
       "fn_1_EB0B0"
     ],
@@ -72969,14 +72985,14 @@
     "matching_for": ["GFZE01"],
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/phys.c",
+    "tu": "rel/main_rel/ghost.c",
     "pool": {
       "lbl_1_bss_7C85C__fzgx_offset_72": "lbl_1_bss_7C85C+0x72"
     }
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/phys/fn_1_EB0D8.c",
+    "source": "rel/main_rel/ghost/fn_1_EB0D8.c",
     "symbols": [
       "fn_1_EB0D8"
     ],
@@ -72984,14 +73000,14 @@
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/phys.c",
+    "tu": "rel/main_rel/ghost.c",
     "pool": {
       "@24": "lbl_1_rodata_6B68"
     }
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/phys/fn_1_EB200.c",
+    "source": "rel/main_rel/ghost/fn_1_EB200.c",
     "symbols": [
       "fn_1_EB200",
       "fn_1_EB248",
@@ -73000,7 +73016,7 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "tu": "rel/main_rel/phys.c",
+    "tu": "rel/main_rel/ghost.c",
     "collapsed": true,
     "pool": {
       "...bss.0": "lbl_1_bss_7B180"

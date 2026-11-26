@@ -2575,7 +2575,7 @@
    "file": "driver.c",
    "text": [
     684692,
-    701560
+    694376
    ],
    "data_sec": 5,
    "data": [
@@ -2635,14 +2635,54 @@
     "fn_1_A97BC",
     "fn_1_A97E4",
     "fn_1_A9810",
-    "fn_1_A983C",
+    "fn_1_A983C"
+   ],
+   "confidence": {
+    "text+data": 11,
+    "text-range": 52,
+    "data-vote": 1
+   }
+  },
+  {
+   "file": "driver_b.c",
+   "text": [
+    694376,
+    697744
+   ],
+   "data_sec": 5,
+   "data": [
+    247736,
+    247736
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_1_A9868",
     "fn_1_A9A28",
     "fn_1_A9B70",
     "fn_1_A9FFC",
     "fn_1_AA188",
     "fn_1_AA350",
-    "fn_1_AA538",
+    "fn_1_AA538"
+   ],
+   "confidence": {
+    "text+data": 7,
+    "text-range": 0,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "driver_c.c",
+   "text": [
+    697744,
+    701560
+   ],
+   "data_sec": 5,
+   "data": [
+    247736,
+    247736
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_1_AA590",
     "fn_1_AA6D8",
     "fn_1_AAB98",
@@ -2655,16 +2695,16 @@
     "fn_1_AB45C"
    ],
    "confidence": {
-    "text+data": 11,
-    "text-range": 52,
-    "data-vote": 1
+    "text+data": 10,
+    "text-range": 0,
+    "data-vote": 0
    }
   },
   {
    "file": "memcard.c",
    "text": [
     701560,
-    804788
+    801276
    ],
    "data_sec": 5,
    "data": [
@@ -2854,11 +2894,7 @@
     "fn_1_C34F0",
     "fn_1_C3688",
     "fn_1_C36EC",
-    "fn_1_C37A0",
-    "fn_1_C39FC",
-    "fn_1_C3A0C",
-    "fn_1_C40A0",
-    "fn_1_C42F4"
+    "fn_1_C37A0"
    ],
    "confidence": {
     "text+data": 17,
@@ -2869,7 +2905,7 @@
   {
    "file": "enemy_ctrl.c",
    "text": [
-    804788,
+    801276,
     814988
    ],
    "data_sec": 5,
@@ -2881,6 +2917,10 @@
     804788
    ],
    "functions": [
+    "fn_1_C39FC",
+    "fn_1_C3A0C",
+    "fn_1_C40A0",
+    "fn_1_C42F4",
     "fn_1_C47B4",
     "fn_1_C487C",
     "fn_1_C489C",
@@ -3397,7 +3437,7 @@
    "file": "phys.c",
    "text": [
     924688,
-    963376
+    956032
    ],
    "data_sec": 5,
    "data": [
@@ -3476,20 +3516,7 @@
     "fn_1_E87A4",
     "fn_1_E87FC",
     "fn_1_E8938",
-    "fn_1_E95B4",
-    "fn_1_E9680",
-    "fn_1_E9770",
-    "fn_1_E9BA8",
-    "fn_1_E9C68",
-    "fn_1_E9CFC",
-    "fn_1_EA314",
-    "fn_1_EB074",
-    "fn_1_EB080",
-    "fn_1_EB0B0",
-    "fn_1_EB0D8",
-    "fn_1_EB200",
-    "fn_1_EB248",
-    "fn_1_EB29C"
+    "fn_1_E95B4"
    ],
    "confidence": {
     "text+data": 11,
@@ -3500,7 +3527,7 @@
   {
    "file": "ghost.c",
    "text": [
-    963376,
+    956032,
     993152
    ],
    "data_sec": 5,
@@ -3516,6 +3543,19 @@
     984328
    ],
    "functions": [
+    "fn_1_E9680",
+    "fn_1_E9770",
+    "fn_1_E9BA8",
+    "fn_1_E9C68",
+    "fn_1_E9CFC",
+    "fn_1_EA314",
+    "fn_1_EB074",
+    "fn_1_EB080",
+    "fn_1_EB0B0",
+    "fn_1_EB0D8",
+    "fn_1_EB200",
+    "fn_1_EB248",
+    "fn_1_EB29C",
     "fn_1_EB330",
     "fn_1_EB4BC",
     "fn_1_EB85C",

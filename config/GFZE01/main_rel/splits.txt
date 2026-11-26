@@ -261,9 +261,12 @@ rel/main_rel/phys/fn_1_E5430.c:
 	.text       start:0x000E5430 end:0x000E5CC4 align:4
 
 rel/main_rel/phys/fn_1_E95B4.c:
-	.text       start:0x000E95B4 end:0x000E9BA8 align:4
+	.text       start:0x000E95B4 end:0x000E9680 align:4
 
-rel/main_rel/phys/fn_1_EB200.c:
+rel/main_rel/ghost/fn_1_E9680.c:
+	.text       start:0x000E9680 end:0x000E9BA8 align:4
+
+rel/main_rel/ghost/fn_1_EB200.c:
 	.text       start:0x000EB200 end:0x000EB330 align:4
 
 rel/main_rel/ghost/fn_1_EC900.c:
@@ -892,7 +895,7 @@ rel/main_rel/archive/fn_1_12A8A4.c:
 rel/main_rel/memcard/fn_1_AC188.c:
 	.text       start:0x000AC188 end:0x000ACA00 align:4
 
-rel/main_rel/driver/fn_1_A9868.c:
+rel/main_rel/driver_b/fn_1_A9868.c:
 	.text       start:0x000A9868 end:0x000AA590 align:4
 	.rodata     start:0x00004AA0 end:0x00004AE0 align:8
 	.bss        start:0x00071690 end:0x000716C0 align:8
@@ -1460,7 +1463,7 @@ rel/main_rel/sound/fn_1_A0D20.c:
 rel/main_rel/archive/fn_1_12A4B0.c:
 	.text       start:0x0012A4B0 end:0x0012A734 align:4
 
-rel/main_rel/phys/fn_1_EB0B0.c:
+rel/main_rel/ghost/fn_1_EB0B0.c:
 	.text       start:0x000EB0B0 end:0x000EB0D8 align:4
 
 rel/main_rel/bg_win/fn_1_15BCDC.c:
@@ -1673,7 +1676,7 @@ rel/main_rel/camera_c/fn_1_C10C.c:
 rel/main_rel/load/fn_1_45A58.c:
 	.text       start:0x00045A58 end:0x00045AD4 align:4
 
-rel/main_rel/driver/fn_1_AA590.c:
+rel/main_rel/driver_c/fn_1_AA590.c:
 	.text       start:0x000AA590 end:0x000AA6D8 align:4
 
 rel/main_rel/ghost/fn_1_ECE04.c:
@@ -1691,7 +1694,7 @@ rel/main_rel/memcard/fn_1_B9904.c:
 rel/main_rel/_prolog/fn_1_17C8.c:
 	.text       start:0x000017C8 end:0x000021E4 align:4
 
-rel/main_rel/driver/fn_1_AAB98.c:
+rel/main_rel/driver_c/fn_1_AAB98.c:
 	.text       start:0x000AAB98 end:0x000AB478 align:4
 
 rel/main_rel/_prolog/fn_1_2F04.c:
@@ -1718,7 +1721,7 @@ rel/main_rel/memcard/fn_1_C1394.c:
 rel/main_rel/screen_effect_b/fn_1_7B558.c:
 	.text       start:0x0007B558 end:0x0007BA08 align:4
 
-rel/main_rel/driver/fn_1_AA6D8.c:
+rel/main_rel/driver_c/fn_1_AA6D8.c:
 	.text       start:0x000AA6D8 end:0x000AAB98 align:4
 
 rel/main_rel/_prolog/fn_1_1304.c:
@@ -1772,7 +1775,7 @@ rel/main_rel/load/fn_1_46144.c:
 rel/main_rel/screen_effect_b/fn_1_789E8.c:
 	.text       start:0x000789E8 end:0x00078EBC align:4
 
-rel/main_rel/phys/fn_1_EB0D8.c:
+rel/main_rel/ghost/fn_1_EB0D8.c:
 	.text       start:0x000EB0D8 end:0x000EB200 align:4
 
 rel/main_rel/sound/fn_1_A3D5C.c:
@@ -1808,7 +1811,7 @@ rel/main_rel/sound/fn_1_A3A1C.c:
 rel/main_rel/font_b/fn_1_52968.c:
 	.text       start:0x00052968 end:0x00053830 align:4
 
-rel/main_rel/phys/fn_1_E9BA8.c:
+rel/main_rel/ghost/fn_1_E9BA8.c:
 	.text       start:0x000E9BA8 end:0x000E9CFC align:4
 
 rel/main_rel/_prolog/fn_1_3C18.c:
@@ -1894,7 +1897,7 @@ rel/main_rel/bg_win/fn_1_15E44C.c:
 rel/main_rel/load/fn_1_45964.c:
 	.text       start:0x00045964 end:0x00045A58 align:4
 
-rel/main_rel/memcard/fn_1_C40A0.c:
+rel/main_rel/enemy_ctrl/fn_1_C40A0.c:
 	.text       start:0x000C40A0 end:0x000C42F4 align:4
 
 rel/main_rel/camera_b/fn_1_8D08.c:
@@ -2026,7 +2029,10 @@ rel/main_rel/background/fn_1_9A5CC.c:
 	.text       start:0x0009A5CC end:0x0009A770 align:4
 
 rel/main_rel/memcard/fn_1_C3378.c:
-	.text       start:0x000C3378 end:0x000C3A0C align:4
+	.text       start:0x000C3378 end:0x000C39FC align:4
+
+rel/main_rel/enemy_ctrl/fn_1_C39FC.c:
+	.text       start:0x000C39FC end:0x000C3A0C align:4
 
 rel/main_rel/bg_cas_d/fn_1_1018BC.c:
 	.text       start:0x001018BC end:0x00101AE8 align:4
@@ -2110,7 +2116,7 @@ rel/main_rel/memcard/fn_1_B8EDC.c:
 rel/main_rel/ghost/fn_1_F0508.c:
 	.text       start:0x000F0508 end:0x000F0B5C align:4
 
-rel/main_rel/phys/fn_1_E9CFC.c:
+rel/main_rel/ghost/fn_1_E9CFC.c:
 	.text       start:0x000E9CFC end:0x000EA314 align:4
 
 rel/main_rel/load/fn_1_47330.c:
@@ -2120,7 +2126,7 @@ rel/main_rel/ghost/fn_1_EFA8C.c:
 	.text       start:0x000EFA8C end:0x000F0164 align:4
 
 
-rel/main_rel/phys/fn_1_EA314.c:
+rel/main_rel/ghost/fn_1_EA314.c:
 	.text       start:0x000EA314 end:0x000EB0B0 align:4
 
 rel/main_rel/phys/fn_1_E7F88.c:
@@ -7852,7 +7858,7 @@ rel/main_rel/bg_aur/fn_1_151BDC.c:
 rel/main_rel/sel_static_disp/fn_1_14083C.c:
 	.text       start:0x0014083C end:0x00140EE8 align:4
 
-rel/main_rel/memcard/fn_1_C3A0C.c:
+rel/main_rel/enemy_ctrl/fn_1_C3A0C.c:
 	.text       start:0x000C3A0C end:0x000C40A0 align:4
 
 rel/main_rel/motasglist_b/fn_1_44A74.c:
@@ -7892,7 +7898,7 @@ rel/main_rel/_prolog/fn_1_3308.c:
 rel/main_rel/background/fn_1_9C724.c:
 	.text       start:0x0009C724 end:0x0009CC40 align:4
 
-rel/main_rel/memcard/fn_1_C42F4.c:
+rel/main_rel/enemy_ctrl/fn_1_C42F4.c:
 	.text       start:0x000C42F4 end:0x000C47B4 align:4
 
 rel/main_rel/sel_static_disp_b/fn_1_148950.c:

@@ -13,6 +13,12 @@ The link hash is the proof: configure, ninja, `dtk shasum -c`.
 
   tu_split_file.py rel/sel/sel.c --reprologue [--apply]
 
+  tu_split_file.py rel/main_rel/memcard.c fn_1_C39FC --prepend-to enemy_ctrl.c [--apply]
+
+moves them to the front of an existing TU file instead. That file keeps its prologue; a moved unit
+whose blocks took the old prologue gets it pasted into its first block and its blocks flagged
+noprologue (the same compiled text), for later reconciliation.
+
 In place, for a file that is one unit whose blocks are all `noprologue`: its prologue is never
 compiled, so the first block's declarations replace it and the flags go (same compiled text).
 """
@@ -21,7 +27,8 @@ sys.path.insert(0, 'tools')
 from fzgx import tufile
 from fzgx.project import dump_units
 
-args = [a for a in sys.argv[1:] if not a.startswith('--')]
+PREPEND = sys.argv[sys.argv.index('--prepend-to') + 1] if '--prepend-to' in sys.argv else None
+args = [a for a in sys.argv[1:] if not a.startswith('--') and a != PREPEND]
 apply = '--apply' in sys.argv
 
 
@@ -50,7 +57,8 @@ if '--reprologue' in sys.argv:
     if apply:
         src.write_text(tf.render())
     sys.exit()
-tu, first, newname = args
+tu, first = args[:2]
+newname = PREPEND or args[2]
 module = tu.split('/')[1]
 old_stem, new_stem = pathlib.Path(tu).stem, pathlib.Path(newname).stem
 new_tu = str(pathlib.Path(tu).with_name(newname))
@@ -71,7 +79,17 @@ if not mu or len(mu) == len(tu_units):
     raise SystemExit('nothing to split')
 
 flags = {'noprologue' in b.flags for b in moved}
-if flags == {True} and len(mu) == 1:  # one self-contained unit: its first block's declarations lead it
+if PREPEND:
+    for u in mu:
+        ub = [b for b in moved if b.name in u['symbols']]
+        if any('noprologue' not in b.flags for b in ub):
+            ub[0].body = tf.prologue.rstrip('\n') + '\n\n' + ub[0].body
+            for b in ub:
+                if 'noprologue' not in b.flags: b.flags = b.flags + ['noprologue']
+    dest_tf = tufile.parse(pathlib.Path('src', new_tu).read_text())
+    prologue = dest_tf.prologue
+    moved = moved + dest_tf.blocks
+elif flags == {True} and len(mu) == 1:  # one self-contained unit: its first block's declarations lead it
     prologue, moved[0].body = first_block_prologue(moved[0])
     for b in moved:
         b.flags = [f for f in b.flags if f != 'noprologue']
@@ -124,6 +142,13 @@ for ln in pathlib.Path(f'config/GFZE01/{module}/symbols.txt').read_text().splitl
         syms[r[1]] = int(r[2], 16)
 j = e['functions'].index(first)
 cut = syms[first]
+if PREPEND:
+    nb = next(t for t in d['tus'] if t['file'] == newname)
+    nb['functions'] = e['functions'][j:] + nb['functions']; nb['text'][0] = cut
+    if data_lo is not None: nb['data'][0] = data_lo
+    e['functions'], e['text'] = e['functions'][:j], [e['text'][0], cut]
+    if data_lo is not None: e['data'] = [e['data'][0], data_lo]
+    tp.write_text(json.dumps(d, indent=1) + '\n'); print('prepended to', new_tu); sys.exit()
 nb = {'file': newname, 'text': [cut, e['text'][1]], 'data_sec': e.get('data_sec', 5),
       'data': [data_lo if data_lo is not None else e['data'][1], e['data'][1]], 'anchor_refs': [],
       'functions': e['functions'][j:],

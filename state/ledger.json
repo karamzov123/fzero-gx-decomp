@@ -73937,7 +73937,7 @@
   {
    "symbol": "fn_1_A9868",
    "module": "main_rel",
-   "unit": "rel/main_rel/driver/fn_1_A9868.c",
+   "unit": "rel/main_rel/driver_b/fn_1_A9868.c",
    "addr": 694376,
    "size": 448,
    "status": "matched",
@@ -73954,7 +73954,7 @@
   {
    "symbol": "fn_1_A9A28",
    "module": "main_rel",
-   "unit": "rel/main_rel/driver/fn_1_A9868.c",
+   "unit": "rel/main_rel/driver_b/fn_1_A9868.c",
    "addr": 694824,
    "size": 328,
    "status": "matched",
@@ -73971,7 +73971,7 @@
   {
    "symbol": "fn_1_A9B70",
    "module": "main_rel",
-   "unit": "rel/main_rel/driver/fn_1_A9868.c",
+   "unit": "rel/main_rel/driver_b/fn_1_A9868.c",
    "addr": 695152,
    "size": 1164,
    "status": "matched",
@@ -73988,7 +73988,7 @@
   {
    "symbol": "fn_1_A9FFC",
    "module": "main_rel",
-   "unit": "rel/main_rel/driver/fn_1_A9868.c",
+   "unit": "rel/main_rel/driver_b/fn_1_A9868.c",
    "addr": 696316,
    "size": 396,
    "status": "matched",
@@ -74005,7 +74005,7 @@
   {
    "symbol": "fn_1_AA188",
    "module": "main_rel",
-   "unit": "rel/main_rel/driver/fn_1_A9868.c",
+   "unit": "rel/main_rel/driver_b/fn_1_A9868.c",
    "addr": 696712,
    "size": 456,
    "status": "matched",
@@ -74022,7 +74022,7 @@
   {
    "symbol": "fn_1_AA350",
    "module": "main_rel",
-   "unit": "rel/main_rel/driver/fn_1_A9868.c",
+   "unit": "rel/main_rel/driver_b/fn_1_A9868.c",
    "addr": 697168,
    "size": 488,
    "status": "matched",
@@ -74039,7 +74039,7 @@
   {
    "symbol": "fn_1_AA538",
    "module": "main_rel",
-   "unit": "rel/main_rel/driver/fn_1_A9868.c",
+   "unit": "rel/main_rel/driver_b/fn_1_A9868.c",
    "addr": 697656,
    "size": 88,
    "status": "matched",
@@ -74056,7 +74056,7 @@
   {
    "symbol": "fn_1_AA590",
    "module": "main_rel",
-   "unit": "rel/main_rel/driver/fn_1_AA590.c",
+   "unit": "rel/main_rel/driver_c/fn_1_AA590.c",
    "addr": 697744,
    "size": 328,
    "status": "matched",
@@ -74073,7 +74073,7 @@
   {
    "symbol": "fn_1_AA6D8",
    "module": "main_rel",
-   "unit": "rel/main_rel/driver/fn_1_AA6D8.c",
+   "unit": "rel/main_rel/driver_c/fn_1_AA6D8.c",
    "addr": 698072,
    "size": 1216,
    "status": "matched",
@@ -74090,7 +74090,7 @@
   {
    "symbol": "fn_1_AAB98",
    "module": "main_rel",
-   "unit": "rel/main_rel/driver/fn_1_AAB98.c",
+   "unit": "rel/main_rel/driver_c/fn_1_AAB98.c",
    "addr": 699288,
    "size": 792,
    "status": "matched",
@@ -74107,7 +74107,7 @@
   {
    "symbol": "fn_1_AAEB0",
    "module": "main_rel",
-   "unit": "rel/main_rel/driver/fn_1_AAB98.c",
+   "unit": "rel/main_rel/driver_c/fn_1_AAB98.c",
    "addr": 700080,
    "size": 104,
    "status": "matched",
@@ -74124,7 +74124,7 @@
   {
    "symbol": "fn_1_AAF18",
    "module": "main_rel",
-   "unit": "rel/main_rel/driver/fn_1_AAB98.c",
+   "unit": "rel/main_rel/driver_c/fn_1_AAB98.c",
    "addr": 700184,
    "size": 4,
    "status": "matched",
@@ -74141,7 +74141,7 @@
   {
    "symbol": "fn_1_AAF1C",
    "module": "main_rel",
-   "unit": "rel/main_rel/driver/fn_1_AAB98.c",
+   "unit": "rel/main_rel/driver_c/fn_1_AAB98.c",
    "addr": 700188,
    "size": 1304,
    "status": "matched",
@@ -74158,7 +74158,7 @@
   {
    "symbol": "fn_1_AB434",
    "module": "main_rel",
-   "unit": "rel/main_rel/driver/fn_1_AAB98.c",
+   "unit": "rel/main_rel/driver_c/fn_1_AAB98.c",
    "addr": 701492,
    "size": 4,
    "status": "matched",
@@ -74175,7 +74175,7 @@
   {
    "symbol": "fn_1_AB438",
    "module": "main_rel",
-   "unit": "rel/main_rel/driver/fn_1_AAB98.c",
+   "unit": "rel/main_rel/driver_c/fn_1_AAB98.c",
    "addr": 701496,
    "size": 32,
    "status": "matched",
@@ -74192,7 +74192,7 @@
   {
    "symbol": "fn_1_AB458",
    "module": "main_rel",
-   "unit": "rel/main_rel/driver/fn_1_AAB98.c",
+   "unit": "rel/main_rel/driver_c/fn_1_AAB98.c",
    "addr": 701528,
    "size": 4,
    "status": "matched",
@@ -74209,7 +74209,7 @@
   {
    "symbol": "fn_1_AB45C",
    "module": "main_rel",
-   "unit": "rel/main_rel/driver/fn_1_AAB98.c",
+   "unit": "rel/main_rel/driver_c/fn_1_AAB98.c",
    "addr": 701532,
    "size": 28,
    "status": "matched",
@@ -76963,7 +76963,7 @@
   {
    "symbol": "fn_1_C3A0C",
    "module": "main_rel",
-   "unit": "rel/main_rel/memcard/fn_1_C3A0C.c",
+   "unit": "rel/main_rel/enemy_ctrl/fn_1_C3A0C.c",
    "addr": 801292,
    "size": 1684,
    "status": "matched",
@@ -76980,7 +76980,7 @@
   {
    "symbol": "fn_1_C40A0",
    "module": "main_rel",
-   "unit": "rel/main_rel/memcard/fn_1_C40A0.c",
+   "unit": "rel/main_rel/enemy_ctrl/fn_1_C40A0.c",
    "addr": 802976,
    "size": 596,
    "status": "matched",
@@ -76997,7 +76997,7 @@
   {
    "symbol": "fn_1_C42F4",
    "module": "main_rel",
-   "unit": "rel/main_rel/memcard/fn_1_C42F4.c",
+   "unit": "rel/main_rel/enemy_ctrl/fn_1_C42F4.c",
    "addr": 803572,
    "size": 1216,
    "status": "matched",
@@ -82318,7 +82318,7 @@
   {
    "symbol": "fn_1_E9BA8",
    "module": "main_rel",
-   "unit": "rel/main_rel/phys/fn_1_E9BA8.c",
+   "unit": "rel/main_rel/ghost/fn_1_E9BA8.c",
    "addr": 957352,
    "size": 192,
    "status": "matched",
@@ -82335,7 +82335,7 @@
   {
    "symbol": "fn_1_E9C68",
    "module": "main_rel",
-   "unit": "rel/main_rel/phys/fn_1_E9BA8.c",
+   "unit": "rel/main_rel/ghost/fn_1_E9BA8.c",
    "addr": 957544,
    "size": 148,
    "status": "matched",
@@ -82352,7 +82352,7 @@
   {
    "symbol": "fn_1_E9CFC",
    "module": "main_rel",
-   "unit": "rel/main_rel/phys/fn_1_E9CFC.c",
+   "unit": "rel/main_rel/ghost/fn_1_E9CFC.c",
    "addr": 957692,
    "size": 1560,
    "status": "matched",
@@ -82369,7 +82369,7 @@
   {
    "symbol": "fn_1_EA314",
    "module": "main_rel",
-   "unit": "rel/main_rel/phys/fn_1_EA314.c",
+   "unit": "rel/main_rel/ghost/fn_1_EA314.c",
    "addr": 959252,
    "size": 3424,
    "status": "matched",
@@ -82386,7 +82386,7 @@
   {
    "symbol": "fn_1_EB074",
    "module": "main_rel",
-   "unit": "rel/main_rel/phys/fn_1_EA314.c",
+   "unit": "rel/main_rel/ghost/fn_1_EA314.c",
    "addr": 962676,
    "size": 12,
    "status": "matched",
@@ -82403,7 +82403,7 @@
   {
    "symbol": "fn_1_EB080",
    "module": "main_rel",
-   "unit": "rel/main_rel/phys/fn_1_EA314.c",
+   "unit": "rel/main_rel/ghost/fn_1_EA314.c",
    "addr": 962688,
    "size": 48,
    "status": "matched",
@@ -82420,7 +82420,7 @@
   {
    "symbol": "fn_1_EB0B0",
    "module": "main_rel",
-   "unit": "rel/main_rel/phys/fn_1_EB0B0.c",
+   "unit": "rel/main_rel/ghost/fn_1_EB0B0.c",
    "addr": 962736,
    "size": 40,
    "status": "matched",
@@ -82437,7 +82437,7 @@
   {
    "symbol": "fn_1_EB0D8",
    "module": "main_rel",
-   "unit": "rel/main_rel/phys/fn_1_EB0D8.c",
+   "unit": "rel/main_rel/ghost/fn_1_EB0D8.c",
    "addr": 962776,
    "size": 296,
    "status": "matched",
@@ -82454,7 +82454,7 @@
   {
    "symbol": "fn_1_EB200",
    "module": "main_rel",
-   "unit": "rel/main_rel/phys/fn_1_EB200.c",
+   "unit": "rel/main_rel/ghost/fn_1_EB200.c",
    "addr": 963072,
    "size": 72,
    "status": "matched",
@@ -82471,7 +82471,7 @@
   {
    "symbol": "fn_1_EB248",
    "module": "main_rel",
-   "unit": "rel/main_rel/phys/fn_1_EB200.c",
+   "unit": "rel/main_rel/ghost/fn_1_EB200.c",
    "addr": 963144,
    "size": 84,
    "status": "matched",
@@ -82488,7 +82488,7 @@
   {
    "symbol": "fn_1_EB29C",
    "module": "main_rel",
-   "unit": "rel/main_rel/phys/fn_1_EB200.c",
+   "unit": "rel/main_rel/ghost/fn_1_EB200.c",
    "addr": 963228,
    "size": 148,
    "status": "matched",
