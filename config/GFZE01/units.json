@@ -26146,7 +26146,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_9A1E8.c",
+    "source": "rel/main_rel/background/fn_1_9A1E8.c",
     "symbols": [
       "fn_1_9A1E8"
     ],
@@ -26154,7 +26154,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c",
+    "tu": "rel/main_rel/background.c",
     "pool": {
       "@82": "lbl_1_rodata_41FC",
       "@10": "lbl_1_rodata_41F0",
@@ -26167,7 +26167,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_9A508.c",
+    "source": "rel/main_rel/background/fn_1_9A508.c",
     "symbols": [
       "fn_1_9A508",
       "fn_1_9A578"
@@ -26176,7 +26176,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c",
+    "tu": "rel/main_rel/background.c",
     "pool": {
       "...data.0": "lbl_1_data_2A0C0"
     },
@@ -26184,7 +26184,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_9A5CC.c",
+    "source": "rel/main_rel/background/fn_1_9A5CC.c",
     "symbols": [
       "fn_1_9A5CC"
     ],
@@ -26192,7 +26192,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c",
+    "tu": "rel/main_rel/background.c",
     "pool": {
       "@6": "lbl_1_rodata_4208",
       "@5": "lbl_1_rodata_4200",
@@ -26205,7 +26205,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_9A770.c",
+    "source": "rel/main_rel/background/fn_1_9A770.c",
     "symbols": [
       "fn_1_9A770",
       "fn_1_9A7A8",
@@ -26215,7 +26215,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c",
+    "tu": "rel/main_rel/background.c",
     "collapsed": true,
     "pool": {
       "...data.0": "lbl_1_data_2A0C0"
@@ -26223,7 +26223,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_9A864.c",
+    "source": "rel/main_rel/background/fn_1_9A864.c",
     "symbols": [
       "fn_1_9A864"
     ],
@@ -26231,24 +26231,24 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c",
+    "tu": "rel/main_rel/background.c",
     "pool": {
       "...data.0": "lbl_1_data_2A0C0"
     }
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_9A958.c",
+    "source": "rel/main_rel/background/fn_1_9A958.c",
     "symbols": [
       "fn_1_9A958"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
-    "tu": "rel/main_rel/burner.c"
+    "tu": "rel/main_rel/background.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_9AA2C.c",
+    "source": "rel/main_rel/background/fn_1_9AA2C.c",
     "symbols": [
       "fn_1_9AA2C"
     ],
@@ -26256,11 +26256,11 @@
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c"
+    "tu": "rel/main_rel/background.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_9AABC.c",
+    "source": "rel/main_rel/background/fn_1_9AABC.c",
     "symbols": [
       "fn_1_9AABC"
     ],
@@ -26268,14 +26268,14 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c",
+    "tu": "rel/main_rel/background.c",
     "pool": {
       "...data.0": "lbl_1_data_2A0C0"
     }
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_9AD20.c",
+    "source": "rel/main_rel/background/fn_1_9AD20.c",
     "symbols": [
       "fn_1_9AD20",
       "fn_1_9AD54",
@@ -26285,25 +26285,25 @@
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c"
+    "tu": "rel/main_rel/background.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_9AF80.c",
+    "source": "rel/main_rel/background/fn_1_9AF80.c",
     "symbols": [
       "fn_1_9AF80"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c",
+    "tu": "rel/main_rel/background.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_41F0"
     }
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_9BBE4.c",
+    "source": "rel/main_rel/background/fn_1_9BBE4.c",
     "symbols": [
       "fn_1_9BBE4"
     ],
@@ -26311,7 +26311,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c",
+    "tu": "rel/main_rel/background.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_41F0",
       "...data.0": "lbl_1_data_2A0C0"
@@ -26319,7 +26319,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_9C724.c",
+    "source": "rel/main_rel/background/fn_1_9C724.c",
     "symbols": [
       "fn_1_9C724"
     ],
@@ -26327,11 +26327,11 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c"
+    "tu": "rel/main_rel/background.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_9CC40.c",
+    "source": "rel/main_rel/background/fn_1_9CC40.c",
     "symbols": [
       "fn_1_9CC40",
       "fn_1_9CC6C",
@@ -26346,34 +26346,34 @@
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
-    "tu": "rel/main_rel/burner.c",
+    "tu": "rel/main_rel/background.c",
     "collapsed": true
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_9D360.c",
+    "source": "rel/main_rel/background/fn_1_9D360.c",
     "symbols": [
       "fn_1_9D360"
     ],
     "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c"
+    "tu": "rel/main_rel/background.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_9D3E8.c",
+    "source": "rel/main_rel/background/fn_1_9D3E8.c",
     "symbols": [
       "fn_1_9D3E8"
     ],
     "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c"
+    "tu": "rel/main_rel/background.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/burner/fn_1_9D420.c",
+    "source": "rel/main_rel/background/fn_1_9D420.c",
     "symbols": [
       "fn_1_9D420"
     ],
@@ -26381,7 +26381,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/burner.c",
+    "tu": "rel/main_rel/background.c",
     "pool": {
       "...data.0": "lbl_1_data_2A0C0",
       "fzgx_obj_lbl_1_data_2A0C0": "lbl_1_data_2A0C0",

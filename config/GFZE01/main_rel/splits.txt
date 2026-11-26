@@ -143,19 +143,19 @@ rel/main_rel/rob/fn_1_8E4A4.c:
 	.data       start:0x000209C0 end:0x00027DE0 align:8
 	.bss        start:0x0006E960 end:0x0006EA00 align:8
 
-rel/main_rel/burner/fn_1_9A770.c:
+rel/main_rel/background/fn_1_9A770.c:
 	.text       start:0x0009A770 end:0x0009A864 align:4
 
-rel/main_rel/burner/fn_1_9AD20.c:
+rel/main_rel/background/fn_1_9AD20.c:
 	.text       start:0x0009AD20 end:0x0009AF80 align:4
 
-rel/main_rel/burner/fn_1_9CC40.c:
+rel/main_rel/background/fn_1_9CC40.c:
 	.text       start:0x0009CC40 end:0x0009D360 align:4
 
-rel/main_rel/burner/fn_1_9D360.c:
+rel/main_rel/background/fn_1_9D360.c:
 	.text       start:0x0009D360 end:0x0009D3E8
 
-rel/main_rel/burner/fn_1_9D3E8.c:
+rel/main_rel/background/fn_1_9D3E8.c:
 	.text       start:0x0009D3E8 end:0x0009D420
 
 rel/main_rel/background/fn_1_9D77C.c:
@@ -949,7 +949,7 @@ rel/main_rel/camera/fn_1_C268.c:
 rel/main_rel/font/fn_1_4AF10.c:
 	.text       start:0x0004AF10 end:0x0004B6D4 align:4
 
-rel/main_rel/burner/fn_1_9AA2C.c:
+rel/main_rel/background/fn_1_9AA2C.c:
 	.text       start:0x0009AA2C end:0x0009AABC align:4
 
 rel/main_rel/phys/fn_1_E1C10.c:
@@ -1308,7 +1308,7 @@ rel/main_rel/archive/fn_1_131194.c:
 rel/main_rel/screen_effect/fn_1_7AA50.c:
 	.text       start:0x0007AA50 end:0x0007ACDC align:4
 
-rel/main_rel/burner/fn_1_9AF80.c:
+rel/main_rel/background/fn_1_9AF80.c:
 	.text       start:0x0009AF80 end:0x0009BBE4 align:4
 
 rel/main_rel/data/lbl_1_bss_DB0.c:
@@ -1362,7 +1362,7 @@ rel/main_rel/sound/fn_1_A02F0.c:
 rel/main_rel/camera/fn_1_727C.c:
 	.text       start:0x0000727C end:0x0000739C align:4
 
-rel/main_rel/burner/fn_1_9A958.c:
+rel/main_rel/background/fn_1_9A958.c:
 	.text       start:0x0009A958 end:0x0009AA2C align:4
 
 rel/main_rel/font/fn_1_4B6D4.c:
@@ -1493,7 +1493,7 @@ rel/main_rel/data/lbl_1_data_4440.c:
 rel/main_rel/effect_car/fn_1_6D488.c:
 	.text       start:0x0006D488 end:0x0006DD68 align:4
 
-rel/main_rel/burner/fn_1_9A508.c:
+rel/main_rel/background/fn_1_9A508.c:
 	.text       start:0x0009A508 end:0x0009A5CC align:4
 
 rel/main_rel/archive/fn_1_12A734.c:
@@ -1727,7 +1727,7 @@ rel/main_rel/sel_static_disp/fn_1_14A9D0.c:
 rel/main_rel/ghost/fn_1_EC910.c:
 	.text       start:0x000EC910 end:0x000ECDFC align:4
 
-rel/main_rel/burner/fn_1_9A864.c:
+rel/main_rel/background/fn_1_9A864.c:
 	.text       start:0x0009A864 end:0x0009A958 align:4
 
 rel/main_rel/background_b/fn_1_9DDA8.c:
@@ -1778,7 +1778,7 @@ rel/main_rel/sound/fn_1_A3D5C.c:
 rel/main_rel/bg_common/fn_1_1050D0.c:
 	.text       start:0x001050D0 end:0x00105724 align:4
 
-rel/main_rel/burner/fn_1_9AABC.c:
+rel/main_rel/background/fn_1_9AABC.c:
 	.text       start:0x0009AABC end:0x0009AD20 align:4
 
 rel/main_rel/live_camera/fn_1_11E98.c:
@@ -2019,7 +2019,7 @@ rel/main_rel/phys/fn_1_E8938.c:
 rel/main_rel/bg_win/fn_1_15BBC4.c:
 	.text       start:0x0015BBC4 end:0x0015BCDC align:4
 
-rel/main_rel/burner/fn_1_9A5CC.c:
+rel/main_rel/background/fn_1_9A5CC.c:
 	.text       start:0x0009A5CC end:0x0009A770 align:4
 
 rel/main_rel/memcard/fn_1_C3378.c:
@@ -2135,7 +2135,7 @@ rel/main_rel/phys/fn_1_E3C38.c:
 rel/main_rel/effect_car/fn_1_6B8A4.c:
 	.text       start:0x0006B8A4 end:0x0006BFB8 align:4
 
-rel/main_rel/burner/fn_1_9BBE4.c:
+rel/main_rel/background/fn_1_9BBE4.c:
 	.text       start:0x0009BBE4 end:0x0009C724 align:4
 
 rel/main_rel/font_b/fn_1_4EDAC.c:
@@ -7864,7 +7864,7 @@ rel/main_rel/bg_common/fn_1_106084.c:
 rel/main_rel/sel_static_disp/fn_1_14C35C.c:
 	.text       start:0x0014C35C end:0x0014C6F8 align:4
 
-rel/main_rel/burner/fn_1_9D420.c:
+rel/main_rel/background/fn_1_9D420.c:
 	.text       start:0x0009D420 end:0x0009D77C align:4
 
 rel/main_rel/bg_for/fn_1_DF6AC.c:
@@ -7886,7 +7886,7 @@ rel/main_rel/memcard/fn_1_B4AC0.c:
 rel/main_rel/_prolog/fn_1_3308.c:
 	.text       start:0x00003308 end:0x00003920 align:4
 
-rel/main_rel/burner/fn_1_9C724.c:
+rel/main_rel/background/fn_1_9C724.c:
 	.text       start:0x0009C724 end:0x0009CC40 align:4
 
 rel/main_rel/memcard/fn_1_C42F4.c:
@@ -7967,7 +7967,7 @@ rel/main_rel/live_camera/fn_1_10AF0.c:
 rel/main_rel/bg_for/fn_1_DEDC4.c:
 	.text       start:0x000DEDC4 end:0x000DF2A4 align:4
 
-rel/main_rel/burner/fn_1_9A1E8.c:
+rel/main_rel/background/fn_1_9A1E8.c:
 	.text       start:0x0009A1E8 end:0x0009A508 align:4
 
 rel/main_rel/sel_static_disp/fn_1_13C5EC.c:

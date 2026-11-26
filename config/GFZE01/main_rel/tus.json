@@ -2144,7 +2144,7 @@
    "file": "burner.c",
    "text": [
     623044,
-    644988
+    631272
    ],
    "data_sec": 5,
    "data": [
@@ -2176,7 +2176,29 @@
     "fn_1_98E18",
     "fn_1_98F28",
     "fn_1_9A0A4",
-    "fn_1_9A0A8",
+    "fn_1_9A0A8"
+   ],
+   "confidence": {
+    "text+data": 3,
+    "text-range": 47,
+    "data-vote": 7
+   }
+  },
+  {
+   "file": "background.c",
+   "text": [
+    631272,
+    646568
+   ],
+   "data_sec": 5,
+   "data": [
+    183136,
+    183584
+   ],
+   "anchor_refs": [
+    644988
+   ],
+   "functions": [
     "fn_1_9A1E8",
     "fn_1_9A508",
     "fn_1_9A578",
@@ -2207,29 +2229,7 @@
     "fn_1_9D2EC",
     "fn_1_9D360",
     "fn_1_9D3E8",
-    "fn_1_9D420"
-   ],
-   "confidence": {
-    "text+data": 3,
-    "text-range": 47,
-    "data-vote": 7
-   }
-  },
-  {
-   "file": "background.c",
-   "text": [
-    644988,
-    646568
-   ],
-   "data_sec": 5,
-   "data": [
-    183136,
-    183584
-   ],
-   "anchor_refs": [
-    644988
-   ],
-   "functions": [
+    "fn_1_9D420",
     "fn_1_9D77C",
     "fn_1_9D93C",
     "fn_1_9D994",
