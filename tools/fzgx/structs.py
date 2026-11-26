@@ -327,7 +327,8 @@ def array_shapes(names: Dict[str, Dict], symbol: str, tname: str, info: Dict[str
     fields = info["fields"]
     if spec.get("array"):
         a = spec["array"]
-        return [typedef(info, tname, _fold(fields, 0, a["size"], prod(a["dims"])), None, a["size"])], {}, a["dims"]
+        elem = field_types(names, symbol, _fold(fields, 0, a["size"], prod(a["dims"])))  # "fields": element offsets
+        return [typedef(info, tname, elem, None, a["size"])], {}, a["dims"]
     pre: List[str] = []
     for key, a in sorted((spec.get("arrays") or {}).items(), key=lambda kv: int(kv[0], 16)):
         lo, n = int(key, 16), prod(a["dims"])
@@ -344,7 +345,16 @@ def array_shapes(names: Dict[str, Dict], symbol: str, tname: str, info: Dict[str
     return pre, fields, None
 
 
-CTYPE_WIDTH = {"u8": 1, "s8": 1, "char": 1, "u16": 2, "s16": 2, "u32": 4, "s32": 4, "f32": 4, "u64": 8, "s64": 8, "f64": 8}
+CTYPE_WIDTH = {"u8": 1, "s8": 1, "char": 1, "u16": 2, "s16": 2, "u32": 4, "s32": 4, "f32": 4, "u64": 8, "s64": 8, "f64": 8,
+               "Vec3": 12}  # Vec3: game/vec3.h, included by a header that declares one
+
+
+def _include_shared_types(out: List[str]) -> List[str]:
+    """A header whose declared field types name Vec3 includes game/vec3.h after its globals include."""
+    if any(re.search(r"^\s*Vec3 unk_", text, re.M) for text in out) and '#include "game/vec3.h"' not in out:
+        at = next(i for i, line in enumerate(out) if line.startswith('#include "types.h"'))
+        out.insert(at + 1, '#include "game/vec3.h"')
+    return out
 
 
 def _decl_width(ctype: str) -> int:
@@ -499,7 +509,7 @@ def header(p: Project, module: str, min_refs: int = 20, sections=(".data", ".bss
                 out.append(f"extern {tname} {name};")
         out.append("")
     out.append(f"#endif  // {guard}")
-    return "\n".join(out) + "\n"
+    return "\n".join(_include_shared_types(out)) + "\n"
 
 
 def oversize(p: Project, module: str, min_refs: int = 5) -> List[Dict[str, object]]:
@@ -666,7 +676,7 @@ def tu_header(p: Project, module: str, tu: str, min_refs: int = 2) -> str:
                 out.append(f"extern {tname} {name};")
         out.append("")
     out.append(f"#endif  // {guard}")
-    return "\n".join(out) + "\n"
+    return "\n".join(_include_shared_types(out)) + "\n"
 
 
 def write_header(p, module: str, tu: Optional[str] = None, min_refs: int = 20) -> str:
