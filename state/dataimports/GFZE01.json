@@ -22631,37 +22631,6 @@
     "unit_size": 8,
     "unit_start": 2149214464
   },
-  "main:Debug_BBA": {
-    "address": 2149214216,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "u8 Debug_BBA",
-        "path": "src/dol/__get_debug_bba.c"
-      },
-      {
-        "declaration": "u8 Debug_BBA",
-        "path": "src/dol/__set_debug_bba.c"
-      }
-    ],
-    "definition": "u8 Debug_BBA",
-    "method": "declared-bss",
-    "module": "main",
-    "references": [
-      "__get_debug_bba",
-      "__set_debug_bba"
-    ],
-    "relocations": [],
-    "section": ".sbss",
-    "section_size": 9,
-    "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
-    "size": 1,
-    "source": "dol/data/Reschedule.c",
-    "symbol": "Debug_BBA",
-    "unit_align": 32,
-    "unit_size": 16,
-    "unit_start": 2149214208
-  },
   "main:DefaultThread": {
     "address": 2148910128,
     "align": 8,
@@ -23686,13 +23655,13 @@
     ],
     "relocations": [],
     "section": ".sbss",
-    "section_size": 9,
+    "section_size": 4,
     "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
     "size": 4,
     "source": "dol/data/Reschedule.c",
     "symbol": "Reschedule",
     "unit_align": 32,
-    "unit_size": 16,
+    "unit_size": 8,
     "unit_start": 2149214208
   },
   "main:ResetFunctionInfo": {

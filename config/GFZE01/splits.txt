@@ -351,6 +351,7 @@ dol/base/PPCArch.c:
 
 dol/__start.c:
 	.init       start:0x80003100 end:0x80003400 align:4
+	.sbss       start:0x801A6808 end:0x801A6810 align:8
 
 dol/av/mmu.c:
 	.text       start:0x800071B8 end:0x80007A44 align:4
@@ -3071,7 +3072,7 @@ dol/data/RunQueueBits.c:
 	.sbss       start:0x801A67F8 end:0x801A6800 align:8
 
 dol/data/Reschedule.c:
-	.sbss       start:0x801A6800 end:0x801A6810 align:32
+	.sbss       start:0x801A6800 end:0x801A6808 align:32
 
 dol/data/__OSArenaLo.c:
 	.sdata      start:0x801A6428 end:0x801A6430 align:8

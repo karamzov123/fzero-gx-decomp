@@ -11,7 +11,7 @@ extern void __init_user(void);
 extern int main(int, char **);
 extern void exit(int);
 extern char _stack_addr[], _SDA2_BASE_[], _SDA_BASE_[];
-extern u8 Debug_BBA;
+u8 Debug_BBA;
 
 extern void OSResetSystem(int, u32, int);
 

@@ -7593,8 +7593,8 @@
       "__init_registers",
       "__init_data"
     ],
+    "own": ["Debug_BBA"],
     "status": "matching",
-    "matching_for": ["GFZE01"],
     "mw_version": "GC/1.2.5n"
   },
   {
@@ -10431,8 +10431,7 @@
     "module": "main",
     "source": "dol/data/Reschedule.c",
     "symbols": [
-      "Reschedule",
-      "Debug_BBA"
+      "Reschedule"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
