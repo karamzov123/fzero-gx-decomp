@@ -4123,8 +4123,6 @@ extern void lbl_8006DB30(void);
  * temporaries for the locked-cache stores, gives retail's register colouring (as in fn_1_11544) */
 /* WARNING: compiler-diff device, not original code: fp_contract off; removal changes 200 disassembly lines (live_camera/fn_1_11C08.c) */
 #pragma fp_contract off
-/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 12 disassembly lines (live_camera/fn_1_11C08.c) */
-#pragma opt_propagation off
 
 /* moves dst toward src by rate * f of the difference, per component */
 static inline void fn_1_11C08_follow(fn_1_11C08_Vec *dst, f32 *src, f32 rate, f32 f) {
@@ -4132,6 +4130,7 @@ static inline void fn_1_11C08_follow(fn_1_11C08_Vec *dst, f32 *src, f32 rate, f3
     dst->y = dst->y + f * (rate * (src[1] - dst->y));
     dst->z = dst->z + f * (rate * (src[2] - dst->z));
 }
+#include "mathutil_mtxA_set_translate.h"
 
 void fn_1_11C08(fn_1_11C08_Camera *cam) {
     f32 mtx[3][4];
@@ -4141,9 +4140,6 @@ void fn_1_11C08(fn_1_11C08_Camera *cam) {
     fn_1_11C08_Vec hit;
     u32 id;
     u32 buf;
-    f32 z;
-    f32 y;
-    f32 x;
 
     if (cam->unk_0 == 3 && fn_1_40BB4() == 0) {
         if ((lbl_1_bss_9F8.unk_A >> 1) & 1) {
@@ -4165,12 +4161,7 @@ void fn_1_11C08(fn_1_11C08_Camera *cam) {
                       lbl_1_data_4484.unk_0);
     fn_1_862D4(cam->unk_6, &pos);
     lbl_8006DC6C(mtx);
-    x = pos.x;
-    y = pos.y;
-    z = pos.z;
-    ((f32 *)LC_BASE)[3] = x;
-    ((f32 *)LC_BASE)[7] = y;
-    ((f32 *)LC_BASE)[11] = z;
+    mathutil_mtxA_set_translate((Vec3 *)&pos);
     lbl_8006E1B0(&cam->unk_34, &cam->unk_1C);
     cam->unk_4C = pos;
     fn_1_862A8(cam->unk_6, &up);
@@ -4181,7 +4172,6 @@ void fn_1_11C08(fn_1_11C08_Camera *cam) {
     fn_1_15578(&cam->unk_1C, &target, &buf, &hit, 0x40005, &id, 1, 0, 0, 0);
     lbl_8006DB30();
 }
-#pragma opt_propagation reset
 #pragma fp_contract reset
 /* fzgx:end fn_1_11C08 */
 
