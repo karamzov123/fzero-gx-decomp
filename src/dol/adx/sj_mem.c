@@ -81,6 +81,7 @@ typedef struct SJMemory {
 } SJMemory;
 
 
+/* WARNING: compiler-diff device, not original code: opt_dead_assignments off keeps the chunk->len load ahead of read_position (retail lwz 4(r30) first); without it 4 diff lines (two loads swapped); no spelling tried (-len + pos, pos -= len, local len, direct) reorders them */
 #pragma opt_dead_assignments off
 u32 fn_8005782C(SJ *sj, int channel, SJCK *chunk) {
     int chunk_len;
