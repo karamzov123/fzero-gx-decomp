@@ -258,7 +258,7 @@
    "file": "name_entry.c",
    "text": [
     143964,
-    157012
+    155164
    ],
    "data_sec": 5,
    "data": [
@@ -276,7 +276,27 @@
     "fn_10_25610",
     "fn_10_25888",
     "fn_10_25BC8",
-    "fn_10_25CB0",
+    "fn_10_25CB0"
+   ],
+   "confidence": {
+    "text+data": 2,
+    "text-range": 6,
+    "data-vote": 2
+   }
+  },
+  {
+   "file": "name_entry_b.c",
+   "text": [
+    155164,
+    157012
+   ],
+   "data_sec": 5,
+   "data": [
+    27600,
+    27600
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_10_25E1C",
     "fn_10_26000",
     "fn_10_260D4",
@@ -285,9 +305,9 @@
     "fn_10_26434"
    ],
    "confidence": {
-    "text+data": 2,
-    "text-range": 6,
-    "data-vote": 2
+    "text+data": 6,
+    "text-range": 0,
+    "data-vote": 0
    }
   },
   {

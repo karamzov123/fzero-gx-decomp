@@ -6,7 +6,7 @@ Sections:
 	.data       type:data align:8
 	.bss        type:bss align:32
 
-rel/sel/name_entry/fn_10_25E1C.c:
+rel/sel/name_entry_b/fn_10_25E1C.c:
 	.text       start:0x00025E1C end:0x00026554 align:4
 
 rel/sel/sel_b/fn_10_D044.c:

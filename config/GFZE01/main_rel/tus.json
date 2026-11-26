@@ -1183,7 +1183,7 @@
    "file": "font_c.c",
    "text": [
     344412,
-    353892
+    346612
    ],
    "data_sec": 5,
    "data": [
@@ -1212,7 +1212,27 @@
     "fn_1_54868",
     "fn_1_5489C",
     "fn_1_548AC",
-    "fn_1_548EC",
+    "fn_1_548EC"
+   ],
+   "confidence": {
+    "text+data": 66,
+    "text-range": 0,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "font_d.c",
+   "text": [
+    346612,
+    353892
+   ],
+   "data_sec": 5,
+   "data": [
+    116304,
+    116304
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_1_549F4",
     "fn_1_54DCC",
     "fn_1_54E00",
@@ -1260,7 +1280,7 @@
     "fn_1_565F8"
    ],
    "confidence": {
-    "text+data": 66,
+    "text+data": 45,
     "text-range": 0,
     "data-vote": 0
    }
@@ -3121,7 +3141,7 @@
    "file": "bg_lig.c",
    "text": [
     875632,
-    881164
+    878408
    ],
    "data_sec": 5,
    "data": [
@@ -3145,13 +3165,33 @@
     "fn_1_D66BC",
     "fn_1_D66F4",
     "fn_1_D66F8",
-    "fn_1_D6740",
+    "fn_1_D6740"
+   ],
+   "confidence": {
+    "text+data": 2,
+    "text-range": 14,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "bg_lig_b.c",
+   "text": [
+    878408,
+    881164
+   ],
+   "data_sec": 5,
+   "data": [
+    253008,
+    253008
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_1_D6748",
     "fn_1_D6C10"
    ],
    "confidence": {
     "text+data": 2,
-    "text-range": 14,
+    "text-range": 0,
     "data-vote": 0
    }
   },

@@ -110,13 +110,13 @@ rel/main_rel/font_b/fn_1_51990.c:
 rel/main_rel/font_c/fn_1_5415C.c:
 	.text       start:0x0005415C end:0x000549F4 align:4
 
-rel/main_rel/font_c/fn_1_54DCC.c:
+rel/main_rel/font_d/fn_1_54DCC.c:
 	.text       start:0x00054DCC end:0x00055210 align:4
 
-rel/main_rel/font_c/fn_1_5557C.c:
+rel/main_rel/font_d/fn_1_5557C.c:
 	.text       start:0x0005557C end:0x00055C48 align:4
 
-rel/main_rel/font_c/fn_1_55FC4.c:
+rel/main_rel/font_d/fn_1_55FC4.c:
 	.text       start:0x00055FC4 end:0x00056664 align:4
 
 rel/main_rel/objput.c:
@@ -1055,7 +1055,7 @@ rel/main_rel/memcard/fn_1_C1ACC.c:
 rel/main_rel/archive/fn_1_12A7C4.c:
 	.text       start:0x0012A7C4 end:0x0012A8A4 align:4
 
-rel/main_rel/font_c/fn_1_55C48.c:
+rel/main_rel/font_d/fn_1_55C48.c:
 	.text       start:0x00055C48 end:0x00055D6C align:4
 
 rel/main_rel/camera_c/fn_1_BFA0.c:
@@ -1076,7 +1076,7 @@ rel/main_rel/bg_cas_c/fn_1_FDB40.c:
 rel/main_rel/load/fn_1_45BF0.c:
 	.text       start:0x00045BF0 end:0x00045CD8 align:4
 
-rel/main_rel/font_c/fn_1_55EA0.c:
+rel/main_rel/font_d/fn_1_55EA0.c:
 	.text       start:0x00055EA0 end:0x00055FC4 align:4
 
 rel/main_rel/ghost/fn_1_F1A24.c:
@@ -1093,7 +1093,7 @@ rel/main_rel/motasglist/fn_1_41518.c:
 rel/main_rel/live_camera/fn_1_EBE4.c:
 	.text       start:0x0000EBE4 end:0x0000EE04 align:4
 
-rel/main_rel/font_c/fn_1_553C4.c:
+rel/main_rel/font_d/fn_1_553C4.c:
 	.text       start:0x000553C4 end:0x0005557C align:4
 
 rel/main_rel/bg_win/fn_1_15BB34.c:
@@ -1117,7 +1117,7 @@ rel/main_rel/archive/fn_1_12C930.c:
 rel/main_rel/sel_static_disp/fn_1_134AD4.c:
 	.text       start:0x00134AD4 end:0x00134EE4 align:4
 
-rel/main_rel/font_c/fn_1_55D6C.c:
+rel/main_rel/font_d/fn_1_55D6C.c:
 	.text       start:0x00055D6C end:0x00055EA0 align:4
 
 rel/main_rel/sound/fn_1_A2FC8.c:
@@ -1129,7 +1129,7 @@ rel/main_rel/bg_cas_c/fn_1_FD324.c:
 rel/main_rel/bg_common/fn_1_106CAC.c:
 	.text       start:0x00106CAC end:0x00106D30 align:4
 
-rel/main_rel/font_c/fn_1_55210.c:
+rel/main_rel/font_d/fn_1_55210.c:
 	.text       start:0x00055210 end:0x000553C4 align:4
 
 rel/main_rel/camera/fn_1_6D2C.c:
@@ -1236,7 +1236,7 @@ rel/main_rel/driver/fn_1_A7294.c:
 rel/main_rel/bg_win/fn_1_15C5A4.c:
 	.text       start:0x0015C5A4 end:0x0015C6C0 align:4
 
-rel/main_rel/font_c/fn_1_549F4.c:
+rel/main_rel/font_d/fn_1_549F4.c:
 	.text       start:0x000549F4 end:0x00054DCC align:4
 
 rel/main_rel/car_test_b/fn_1_7E8F4.c:
@@ -2092,7 +2092,7 @@ rel/main_rel/camera_b/fn_1_AFC8.c:
 rel/main_rel/memcard/fn_1_B5A3C.c:
 	.text       start:0x000B5A3C end:0x000B5F20 align:4
 
-rel/main_rel/bg_lig/fn_1_D6748.c:
+rel/main_rel/bg_lig_b/fn_1_D6748.c:
 	.text       start:0x000D6748 end:0x000D720C align:4
 
 rel/main_rel/live_camera/fn_1_E688.c:

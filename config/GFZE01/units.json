@@ -25549,7 +25549,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/bg_lig/fn_1_D6748.c",
+    "source": "rel/main_rel/bg_lig_b/fn_1_D6748.c",
     "symbols": [
       "fn_1_D6748",
       "fn_1_D6C10"
@@ -25558,7 +25558,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/bg_lig.c",
+    "tu": "rel/main_rel/bg_lig_b.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_6360"
     },
@@ -67874,7 +67874,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font_c/fn_1_549F4.c",
+    "source": "rel/main_rel/font_d/fn_1_549F4.c",
     "symbols": [
       "fn_1_549F4"
     ],
@@ -67882,7 +67882,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/font_c.c",
+    "tu": "rel/main_rel/font_d.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_2880",
       "@19": "lbl_1_rodata_2880",
@@ -67895,7 +67895,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font_c/fn_1_54DCC.c",
+    "source": "rel/main_rel/font_d/fn_1_54DCC.c",
     "symbols": [
       "fn_1_54DCC",
       "fn_1_54E00",
@@ -67907,7 +67907,7 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "tu": "rel/main_rel/font_c.c",
+    "tu": "rel/main_rel/font_d.c",
     "collapsed": true,
     "pool": {
       "...bss.0": "lbl_1_bss_6C798"
@@ -67915,29 +67915,29 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font_c/fn_1_55210.c",
+    "source": "rel/main_rel/font_d/fn_1_55210.c",
     "symbols": [
       "fn_1_55210"
     ],
     "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/font_c.c"
+    "tu": "rel/main_rel/font_d.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font_c/fn_1_553C4.c",
+    "source": "rel/main_rel/font_d/fn_1_553C4.c",
     "symbols": [
       "fn_1_553C4"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/font_c.c"
+    "tu": "rel/main_rel/font_d.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font_c/fn_1_5557C.c",
+    "source": "rel/main_rel/font_d/fn_1_5557C.c",
     "symbols": [
       "fn_1_5557C",
       "fn_1_555D0",
@@ -67954,11 +67954,11 @@
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/font_c.c"
+    "tu": "rel/main_rel/font_d.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font_c/fn_1_55C48.c",
+    "source": "rel/main_rel/font_d/fn_1_55C48.c",
     "symbols": [
       "fn_1_55C48"
     ],
@@ -67966,11 +67966,11 @@
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/font_c.c"
+    "tu": "rel/main_rel/font_d.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font_c/fn_1_55D6C.c",
+    "source": "rel/main_rel/font_d/fn_1_55D6C.c",
     "symbols": [
       "fn_1_55D6C"
     ],
@@ -67978,11 +67978,11 @@
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/font_c.c"
+    "tu": "rel/main_rel/font_d.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font_c/fn_1_55EA0.c",
+    "source": "rel/main_rel/font_d/fn_1_55EA0.c",
     "symbols": [
       "fn_1_55EA0"
     ],
@@ -67990,11 +67990,11 @@
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/font_c.c"
+    "tu": "rel/main_rel/font_d.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/font_c/fn_1_55FC4.c",
+    "source": "rel/main_rel/font_d/fn_1_55FC4.c",
     "symbols": [
       "fn_1_55FC4",
       "fn_1_55FD0",
@@ -68023,7 +68023,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/font_c.c"
+    "tu": "rel/main_rel/font_d.c"
   },
   {
     "module": "main_rel",
@@ -84910,7 +84910,7 @@
   },
   {
     "module": "sel",
-    "source": "rel/sel/name_entry/fn_10_25E1C.c",
+    "source": "rel/sel/name_entry_b/fn_10_25E1C.c",
     "symbols": [
       "fn_10_25E1C",
       "fn_10_26000",
@@ -84926,7 +84926,7 @@
       "-inline",
       "on,noauto"
     ],
-    "tu": "rel/sel/name_entry.c",
+    "tu": "rel/sel/name_entry_b.c",
     "collapsed": true,
     "pool": {
       "...rodata.0": "lbl_10_rodata_1D70",
