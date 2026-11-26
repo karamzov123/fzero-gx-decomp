@@ -211,6 +211,7 @@ struct fn_8_954_lbl_1_bss_8B3A0 {
     u8 unk_9E;
 };
 
+/* WARNING: compiler-diff device, not original code */
 #pragma opt_propagation off
 static inline s32 check_input(struct fn_8_954_lbl_1_bss_9F8 *unused,
                              struct fn_8_954_lbl_1_bss_9C8 *unused2, s32 unused3) {
@@ -220,7 +221,7 @@ static inline s32 check_input(struct fn_8_954_lbl_1_bss_9F8 *unused,
     s32 result;
     q = (struct fn_8_954_lbl_1_bss_9C8 *)lbl_1_bss_9C8;
     w = (struct fn_8_954_lbl_1_bss_9F8 *)lbl_1_bss_9F8;
-    zero = 0;
+    zero = 0;  /* WARNING: compiler-diff device, not original code (constant held in a local under opt_propagation off) */
     if (q->unk_A == 0 && (w->unk_8 & 0x1000) != 0) {
         result = 1;
         (*(struct fn_8_954_lbl_1_bss_8B3A0 *)lbl_1_bss_8B3A0).unk_9E = zero;
