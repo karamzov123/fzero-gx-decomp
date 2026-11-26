@@ -1,3 +1,5 @@
+__init_hardware = .init:0x80003400; // type:function size:0x24 scope:global
+__flush_cache = .init:0x80003424; // type:function size:0x34 scope:global
 memset = .init:0x80003458; // type:function
 __fill_mem = .init:0x80003488; // type:function size:0xB8
 memcpy = .init:0x80003540; // type:function

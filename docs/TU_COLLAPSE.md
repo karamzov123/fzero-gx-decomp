@@ -213,6 +213,13 @@ six `.text` siblings in USA and Japan. The `.init` entry and all six existing
 functions match in both builds; PAL's existing retail fallback for this TU
 is unchanged. The interrupt-vector assembly remains a separate owner.
 
+`dol/runtime/__ppc_eabi_init.c` reunites the two `.init` assembly routines
+and the three constructor/exit routines in `.text` under GC/1.2.5n. The
+hardware-enable and cache-flush assembly bodies are translated from the
+existing matched GX assembly; the SDK reference corroborates their form and
+ownership. All three regions now link the full compiled unit, including
+the two startup routines that were retail fallback in Japan and PAL.
+
 ## MSL is built with `-inline deferred` (2026-11-24)
 
 MWCC's `-inline auto,deferred` emits a file's functions in reverse source order and can inline a

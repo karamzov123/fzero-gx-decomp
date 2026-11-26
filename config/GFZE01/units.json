@@ -7481,18 +7481,6 @@
   },
   {
     "module": "main",
-    "source": "dol/__flush_cache.c",
-    "symbols": [
-      "__flush_cache"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
     "source": "dol/__get_debug_bba.c",
     "symbols": [
       "__get_debug_bba"
@@ -7578,18 +7566,6 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.2.5n",
     "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/__init_hardware.c",
-    "symbols": [
-      "__init_hardware"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
   },
   {
     "module": "main",
@@ -21702,8 +21678,10 @@
   },
   {
     "module": "main",
-    "source": "dol/runtime/__init_user.c",
+    "source": "dol/runtime/__ppc_eabi_init.c",
     "symbols": [
+      "__init_hardware",
+      "__flush_cache",
       "__init_user",
       "__init_cpp",
       "_ExitProcess"

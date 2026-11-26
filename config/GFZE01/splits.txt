@@ -352,9 +352,6 @@ dol/base/PPCArch.c:
 dol/__start.c:
 	.init       start:0x80003154 end:0x800032B0 align:4
 
-dol/__init_hardware.c:
-	.init       start:0x80003400 end:0x80003424 align:4
-
 dol/av/mmu.c:
 	.text       start:0x800071B8 end:0x80007A44 align:4
 
@@ -485,7 +482,8 @@ dol/card/CARDRead.c:
 dol/CARDOpen.c:
 	.text       start:0x8002E954 end:0x8002EDA8 align:4
 
-dol/runtime/__init_user.c:
+dol/runtime/__ppc_eabi_init.c:
+	.init       start:0x80003400 end:0x80003458 align:4
 	.text       start:0x80011888 end:0x8001191C align:4
 
 dol/SetExiInterruptMask.c:
@@ -823,9 +821,6 @@ dol/si/SISamplingRate.c:
 
 dol/data/__OSDriveBlock.c:
 	.bss        start:0x8015BF20 end:0x8015BF50 align:8
-
-dol/__flush_cache.c:
-	.init       start:0x80003424 end:0x80003458 align:4
 
 dol/mtx/mtx.c:
 	.text       start:0x80015B24 end:0x80015D7C align:4
