@@ -27607,8 +27607,8 @@
     "extra_cflags": [],
     "tu": "rel/main_rel/coli.c",
     "pool": {
-      "@49": "lbl_1_rodata_6C8",
-      "@124": "lbl_1_rodata_6D0"
+      "@55": "lbl_1_rodata_6C8",
+      "@130": "lbl_1_rodata_6D0"
     },
     "own": [
       "lbl_1_rodata_6C8",
@@ -27687,7 +27687,7 @@
     "extra_cflags": [],
     "tu": "rel/main_rel/coli_b.c",
     "pool": {
-      "@56": "lbl_1_rodata_84C"
+      "@60": "lbl_1_rodata_84C"
     },
     "own": [
       "lbl_1_rodata_84C"
