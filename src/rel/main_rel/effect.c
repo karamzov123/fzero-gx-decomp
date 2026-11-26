@@ -215,13 +215,6 @@ typedef struct AvlineTables {
     u32 unk_f90;
 } AvlineTables;
 
-/* fn_1_58994 */
-typedef struct AvlineState_58994 {
-    AvlineEntry_58994 *unk_00;
-    AvlineEntry_58994 *unk_04;
-    u32 unk_08;
-    u32 unk_0c;
-} AvlineState_58994;
 
 /* fn_1_58994 */
 typedef struct Effect_63518Vec {
@@ -267,13 +260,6 @@ struct fn_1_58C6C_lbl_1_bss_6C84C_T {
     u16 unk_1A;
 };
 
-/* fn_1_58D38 */
-typedef struct fn_1_58D38_EffectState {
-    fn_1_58D38_EffectEntry *unk_00;
-    fn_1_58D38_EffectEntry *unk_04;
-    u8 pad_08[8];
-    u32 unk_10;
-} fn_1_58D38_EffectState;
 
 /* fn_1_58E3C */
 typedef struct {
@@ -765,9 +751,6 @@ struct fn_1_5B3D0_Arg0 {
 };
 
 /* fn_1_5B3D0 */
-struct fn_1_5B3D0_State {
-    u32 unk_0;
-};
 
 /* fn_1_5B450 */
 typedef struct Fn1_5B450Object {
@@ -3281,11 +3264,6 @@ typedef struct EffectVec {
     f32 x, y, z;
 } EffectVec;
 
-/* fn_1_67680 */
-typedef struct EffectPoolState {
-    u8 *pool[2];
-    s16 serial;
-} EffectPoolState;
 
 /* fn_1_67D0C */
 typedef struct {
@@ -3375,7 +3353,6 @@ extern u32 GXGetTexBufferSize(u16, u16, u32, u32, u8);
 extern void GXInitTexObj(void *, void *, u16, u16, s32, s32, s32, u8);
 extern void GXLoadPosMtxImm(void *,u32);
 extern void GXLoadTexMtxImm(f32 *, u32, u32);
-extern f32 __fmadds(f32, f32, f32);
 extern u32 camera_forward_status(void);
 extern s16 camera_get_entry_field_0xa4(u32);
 extern s16 camera_get_mode(void);
@@ -3908,7 +3885,9 @@ u32 lbl_1_bss_6C868;
 s32 lbl_1_bss_6C86C;
 s32 lbl_1_bss_6C870;
 
+
 /* Inlined form of fn_1_584AC. */
+/* WARNING: compiler-diff device, not original code: private copy of fn_1_584AC; the TU body form that the other callers need gives 3 words here */
 static inline u32 effect_rnd(void) {
     u32 r = lbl_1_data_1D628 * 0x41C64E6D + 0x3039;
     lbl_1_data_1D628 = r;
@@ -3926,10 +3905,8 @@ static inline f32 effect_sum_sq(f32 x, f32 y, f32 z) {
 
 /* fzgx:begin fn_1_584AC */
 u32 fn_1_584AC(void) {
-    u32 state = lbl_1_data_1D628;
-    u32 next = state * 0x41c64e6du + 0x3039u;
-    lbl_1_data_1D628 = next;
-    return (next >> 16) & 0x7FFFu;
+    lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41C64E6D + 0x3039;
+    return (lbl_1_data_1D628 >> 16) & 0x7FFF;
 }
 /* fzgx:end fn_1_584AC */
 
@@ -4018,7 +3995,7 @@ void fn_1_58854(void) {
     fn_1_9F870();
     fn_1_58158();
 
-    obj = *(AvlineObj **)&lbl_1_bss_6C848;
+    obj = (AvlineObj *)lbl_1_bss_6C848;
     count = 0xbe;
     index = 0;
     while (count > 0) {
@@ -4044,23 +4021,20 @@ void fn_1_58854(void) {
         obj = (AvlineObj *)((u8 *)obj + 0xe8);
     }
 
-    fn_1_46B4((u32)lbl_801A6410, *(u32 *)&lbl_1_bss_6C848,
+    fn_1_46B4((u32)lbl_801A6410, (u32)lbl_1_bss_6C848,
               "effect.c", 0x156);
-    fn_1_46B4((u32)lbl_801A6410, *(u32 *)&lbl_1_bss_6C84C,
+    fn_1_46B4((u32)lbl_801A6410, (u32)lbl_1_bss_6C84C,
               "effect.c", 0x157);
 
-    *(u32 *)&lbl_1_bss_6C848 = 0;
+    lbl_1_bss_6C848 = 0;
     lbl_1_bss_6C84C = 0;
 }
 /* fzgx:end fn_1_58854 */
 
 /* fzgx:begin fn_1_58994 */
 void fn_1_58994(void) {
-    u16 active_2;
-    AvlineState_58994 *state = (AvlineState_58994 *)&lbl_1_bss_6C848;
+
     u32 value;
-    struct { u32 value; } active;
-    EffectHandler *tbl;
     AvlineEntry_58994 *entry;
     s32 count;
     u32 mode;
@@ -4080,46 +4054,38 @@ void fn_1_58994(void) {
         mask = 0xffff;
     }
 
-    entry = state->unk_00;
+    entry = (AvlineEntry_58994 *)lbl_1_bss_6C848;
     if ((camera_forward_status() & 0x80000000) == 0) {
-        active.value = mask;
-        tbl = lbl_1_data_1D400;
         count = 0xbe;
         while (count > 0) {
             if (entry->unk_00 != 0) {
-                if ((entry->unk_1a & active.value) != 0) {
+                if ((entry->unk_1a & mask) != 0) {
                     if ((entry->unk_08 & 0x80000000) == 0) {
-                        tbl[entry->unk_0c](entry);
+                        lbl_1_data_1D400[entry->unk_0c](entry);
                     }
                 }
             }
             entry++;
             count--;
         }
-{
-    AvlineEntry_58994 * fzgx_loop_entry_2643;
-        fzgx_loop_entry_2643 = state->unk_04;
-        tbl = lbl_1_data_1D400;
+        entry = (AvlineEntry_58994 *)lbl_1_bss_6C84C;
         count = 0xc8;
         while (count > 0) {
-            if (fzgx_loop_entry_2643->unk_00 != 0) {
-                if ((fzgx_loop_entry_2643->unk_1a & active.value) != 0) {
-                    if ((fzgx_loop_entry_2643->unk_08 & 0x80000000) == 0) {
-                        tbl[fzgx_loop_entry_2643->unk_0c](fzgx_loop_entry_2643);
+            if (entry->unk_00 != 0) {
+                if ((entry->unk_1a & mask) != 0) {
+                    if ((entry->unk_08 & 0x80000000) == 0) {
+                        lbl_1_data_1D400[entry->unk_0c](entry);
                     }
                 }
             }
-            fzgx_loop_entry_2643++;
+            entry++;
             count--;
         }
-    entry = fzgx_loop_entry_2643;
-}
     } else {
-        active_2 = mask;
         count = 0xbe;
         while (count > 0) {
             if (entry->unk_00 != 0) {
-                if ((entry->unk_1a & active_2) != 0) {
+                if ((entry->unk_1a & mask) != 0) {
                     if ((entry->unk_08 & 0x80000000) == 0) {
                         if ((entry->unk_08 & 0x08000000) != 0) {
                             lbl_1_data_1D514[entry->unk_0c](entry);
@@ -4139,11 +4105,11 @@ void fn_1_58994(void) {
             entry++;
             count--;
         }
-        entry = state->unk_04;
+        entry = (AvlineEntry_58994 *)lbl_1_bss_6C84C;
         count = 0xc8;
         while (count > 0) {
             if (entry->unk_00 != 0) {
-                if ((entry->unk_1a & active_2) != 0) {
+                if ((entry->unk_1a & mask) != 0) {
                     if ((entry->unk_08 & 0x80000000) == 0) {
                         if ((entry->unk_08 & 0x08000000) != 0) {
                             lbl_1_data_1D514[entry->unk_0c](entry);
@@ -4166,11 +4132,11 @@ void fn_1_58994(void) {
     }
 
     value = fn_1_3C18(9);
-    best = state->unk_0c;
+    best = lbl_1_bss_6C854;
     if (value > best) {
         best = value;
     }
-    state->unk_0c = best;
+    lbl_1_bss_6C854 = best;
 }
 /* fzgx:end fn_1_58994 */
 
@@ -4182,7 +4148,7 @@ void fn_1_58C6C(void) {
     struct fn_1_58C6C_lbl_1_bss_6C84C_T *var_r31_2;
 
     var_r30 = 0xBE;
-    var_r31 = (struct fn_1_58C6C_lbl_1_bss_6C848_T *)(*(struct fn_1_58C6C_lbl_1_bss_6C848_T **)((&(*(struct fn_1_58C6C_lbl_1_bss_6C848_T * *)&lbl_1_bss_6C848))));
+    var_r31 = (struct fn_1_58C6C_lbl_1_bss_6C848_T *)lbl_1_bss_6C848;
     do {
         if ((var_r31->unk_C == 0x19) && ((s8) var_r31->unk_0 != 0) && ((s32) var_r31->unk_1A != 0) && !(var_r31->unk_8 & 0x80000000)) {
             fn_1_620C8(var_r31);
@@ -4191,7 +4157,7 @@ void fn_1_58C6C(void) {
         var_r31 = (struct fn_1_58C6C_lbl_1_bss_6C848_T *)((u8 *)(var_r31) + 0xE8);
     } while (var_r30 > 0);
     var_r30_2 = 0xC8;
-    var_r31_2 = (struct fn_1_58C6C_lbl_1_bss_6C84C_T *)(*(struct fn_1_58C6C_lbl_1_bss_6C84C_T **)((&(*(struct fn_1_58C6C_lbl_1_bss_6C84C_T * *)&lbl_1_bss_6C84C))));
+    var_r31_2 = (struct fn_1_58C6C_lbl_1_bss_6C84C_T *)lbl_1_bss_6C84C;
     do {
         if ((var_r31_2->unk_C == 0x19) && ((s8) var_r31_2->unk_0 != 0) && ((s32) var_r31_2->unk_1A != 0) && !(var_r31_2->unk_8 & 0x80000000)) {
             fn_1_620C8(var_r31_2);
@@ -4204,16 +4170,15 @@ void fn_1_58C6C(void) {
 
 /* fzgx:begin fn_1_58D38 */
 void fn_1_58D38(void) {
-    fn_1_58D38_EffectState *state;
+
     s32 count;
     fn_1_58D38_EffectEntry *entry;
     u32 max_count;
 
-    state = (fn_1_58D38_EffectState *)&lbl_1_bss_6C848;
-    if (state->unk_00 != 0) {
+    if (lbl_1_bss_6C848 != 0) {
         fn_1_3BDC(9);
 
-        entry = state->unk_00;
+        entry = (fn_1_58D38_EffectEntry *)lbl_1_bss_6C848;
         count = 190;
         do {
             if (entry->unk_0C == 25 &&
@@ -4226,7 +4191,7 @@ void fn_1_58D38(void) {
             entry++;
         } while (count > 0);
 
-        entry = state->unk_04;
+        entry = (fn_1_58D38_EffectEntry *)lbl_1_bss_6C84C;
         count = 200;
         do {
             if (entry->unk_0C == 25 &&
@@ -4240,11 +4205,11 @@ void fn_1_58D38(void) {
         } while (count > 0);
 
         count = fn_1_3C18(9);
-        max_count = state->unk_10;
+        max_count = lbl_1_bss_6C858;
         if (count > max_count) {
             max_count = count;
         }
-        state->unk_10 = max_count;
+        lbl_1_bss_6C858 = max_count;
     }
 }
 /* fzgx:end fn_1_58D38 */
@@ -4259,7 +4224,7 @@ s16 fn_1_58E3C(void *source) {
 
     {
         EffectEntry *scan;
-        scan = *(EffectEntry **)&lbl_1_bss_6C848;
+        scan = (EffectEntry *)lbl_1_bss_6C848;
         i = 0;
         for (; i < 0xbe; i++, scan++) {
             if (!scan->unk_0) {
@@ -4276,7 +4241,7 @@ slot_found:
     }
     {
         EffectEntry *entry;
-        entry = *(EffectEntry **)&lbl_1_bss_6C848 + i;
+        entry = (EffectEntry *)lbl_1_bss_6C848 + i;
     memcpy(entry, source, 0xe8);
     entry->unk_0 = 1;
     entry->unk_2 = i;
@@ -4306,7 +4271,7 @@ s16 fn_1_58F50(const void *source) {
         return -1;
     }
 
-    cursor = *(u8 **)&lbl_1_bss_6C848;
+    cursor = (u8 *)lbl_1_bss_6C848;
     index = 0;
     for (; index < 0xbe;) {
         if (*(s8 *)cursor == 0) {
@@ -4322,7 +4287,7 @@ found:
         return -1;
     }
 
-    entry = (fn_1_58F50_EffectEntry *)(*(u8 **)&lbl_1_bss_6C848) + index;
+    entry = (fn_1_58F50_EffectEntry *)lbl_1_bss_6C848 + index;
     memcpy(entry, source, 0xe8);
     entry->unk_0 = 1;
     entry->unk_2 = index;
@@ -4385,7 +4350,7 @@ void fn_1_591A0(s32 id) {
         s32 count;
         s32 zero;
 
-        obj = *(Fn591A0Obj **)&lbl_1_bss_6C848;
+        obj = (Fn591A0Obj *)lbl_1_bss_6C848;
         table = lbl_1_data_1D514;
         zero = 0;
         for (count = 0xbe; count > 0; count--) {
@@ -4426,7 +4391,7 @@ void fn_1_59290(void) {
     Obj_1_bss_6C84C_Target *effect;
     Obj_1_bss_6C84C_Target *effects;
 
-    effects = *(Obj_1_bss_6C84C_Target **)&lbl_1_bss_6C848;
+    effects = lbl_1_bss_6C848;
     effect = effects;
     count = 0xbe;
     for (; count > 0; count--, effect++) {
@@ -4636,8 +4601,10 @@ void fn_1_5962C(Fn_1_5962C_State *self) {
 
 #define GAME_VEC3_H
 
+/* WARNING: compiler-diff device, not original code: without it 32 words (register reuse of the segment temps) */
 #pragma opt_lifetimes off
 
+/* WARNING: compiler-diff device, not original code: without it 26 words */
 #pragma opt_propagation off
 
 void fn_1_59770(fn_1_59770_Effect *effect)
@@ -4901,13 +4868,8 @@ static inline f32 fn_1_59EE4_vec_len(Fn59EE4Vec *v) {
     return lbl_8006D0B4(mathutil_sum_of_sq_3(v->x, v->y, v->z));
 }
 
-static inline f32 fn_1_59EE4_randf(void) {
-    lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41C64E6D + 0x3039;
-    return ((lbl_1_data_1D628 >> 16) & 0x7FFF) / 32767.0f;
-}
-
 static inline f32 fn_1_59EE4_jitter(f32 amount) {
-    return amount * (fn_1_59EE4_randf() - 0.5f);
+    return amount * ((fn_1_584AC() / 32767.0f) - 0.5f);
 }
 
 static inline void fn_1_59EE4_to_color(Fn59EE4Color *c, Fn59EE4Vec *v) {
@@ -5045,7 +5007,7 @@ void fn_1_59EE4(Fn59EE4Effect *effect) {
     fn_1_581AC(count, 12, verts);
 
     size = 0.25f * effect->scale;
-    spark = 255.0f * ((0.125f + (f32)(0.5f * size)) * (1.0f + fn_1_59EE4_randf()));
+    spark = 255.0f * ((0.125f + (f32)(0.5f * size)) * (1.0f + (fn_1_584AC() / 32767.0f)));
     glow.unk_12 = 0;
     psvec_scale(effect->color, spark, &((Fn59EE4Scratch *)lbl_801A66CC.unk_0)->work);
     fn_1_59EE4_to_color(&glow.color, &((Fn59EE4Scratch *)lbl_801A66CC.unk_0)->work);
@@ -5064,7 +5026,7 @@ void fn_1_59EE4(Fn59EE4Effect *effect) {
             if ((effect->flags >> 16) & 1) {
                 f32 s = fn_1_8652C(effect->id);
                 f32 k = FN_1_59EE4_CLAMP(s / 250.0f + (i == 0 ? 0.2f : 0.5f), 1.0f, 2.0f);
-                radius = k * radii[i] * (0.6 + (f64)(0.4 * fn_1_59EE4_randf()));
+                radius = k * radii[i] * (0.6 + (f64)(0.4 * (fn_1_584AC() / 32767.0f)));
             } else {
                 radius = radii[i];
             }
@@ -5093,7 +5055,7 @@ void fn_1_5A8D0(Fn1_5A8D0Data *data) {
 
 /* fzgx:begin fn_1_5A8DC */
 static inline s32 allocate_5A8DC(void) {
- Effect_5A8DC *p = *(Effect_5A8DC **)&lbl_1_bss_6C848;
+ Effect_5A8DC *p = (Effect_5A8DC *)lbl_1_bss_6C848;
  s32 i;
  for (i=0; i<190; i++,p++) {
   if(p->unk_0 == 0) { p->unk_0=1; return i; }
@@ -5138,7 +5100,7 @@ void fn_1_5A8DC(Arg_5A8DC *arg0) {
  if ((s32)fn_1_3FC58() == 0) {
   i = allocate_5A8DC();
   if(i>=0) {
-   arg0 = (Arg_5A8DC *)&(*(Effect_5A8DC **)&lbl_1_bss_6C848)[i];
+   arg0 = (Arg_5A8DC *)&((Effect_5A8DC *)lbl_1_bss_6C848)[i];
    memcpy(arg0,&loc_2C,sizeof(loc_2C));
    ((Effect_5A8DC *)arg0)->unk_0=1;
    ((Effect_5A8DC *)arg0)->unk_2=i;
@@ -5191,7 +5153,7 @@ static inline s16 fn_1_5AC48_spawn(void *source) {
 
     {
         fn_1_5AC48_Effect *scan;
-        scan = *(fn_1_5AC48_Effect **)&lbl_1_bss_6C848;
+        scan = (fn_1_5AC48_Effect *)lbl_1_bss_6C848;
         i = 0;
         for (; i < 0xbe; i++, scan++) {
             if (!scan->unk_0) {
@@ -5208,7 +5170,7 @@ slot_found:
     }
     {
         fn_1_5AC48_Effect *entry;
-        entry = *(fn_1_5AC48_Effect **)&lbl_1_bss_6C848 + i;
+        entry = (fn_1_5AC48_Effect *)lbl_1_bss_6C848 + i;
         memcpy(entry, source, 0xe8);
         entry->unk_0 = 1;
         entry->unk_2 = i;
@@ -5223,11 +5185,6 @@ slot_found:
 }
 
 /* Linear congruential random value in [0, 1]. */
-
-static inline f32 fn_1_5AC48_rand(void) {
-    lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41c64e6d + 0x3039;
-    return ((lbl_1_data_1D628 >> 16) & 0x7fff) / 32767.0f;
-}
 
 void fn_1_5AC48(fn_1_5AC48_Effect *effect) {
     fn_1_5AC48_Effect spawn;
@@ -5250,7 +5207,7 @@ void fn_1_5AC48(fn_1_5AC48_Effect *effect) {
     spawn.vel.y = 0.5f * effect->vel.y;
     spawn.vel.z = 0.5f * effect->vel.z;
     spawn.unk_28 = 0.25f * effect->unk_28;
-    spawn.unk_2C = effect->unk_2C * (0.016666668f * fn_1_5AC48_rand());
+    spawn.unk_2C = effect->unk_2C * (0.016666668f * (fn_1_584AC() / 32767.0f));
     spawn.unk_1C = effect->unk_1C;
     fn_1_5AC48_spawn(&spawn);
 
@@ -5386,15 +5343,14 @@ void fn_1_5B3CC(void) {
 /* fzgx:begin fn_1_5B3D0 */
 void fn_1_5B3D0(struct fn_1_5B3D0_Arg0 *arg0) {
     u32 next;
-    struct fn_1_5B3D0_State *state;
+
     u32 random;
     f32 r;
 
-    state = (struct fn_1_5B3D0_State *)&lbl_1_data_1D628;
-    next = ((1103515245) * state->unk_0) + 12345;
+    next = ((1103515245) * lbl_1_data_1D628) + 12345;
     random = ((next >> 16) & 0x7FFF);
     r = 0.1f * (random / 32767.0f);
-    state->unk_0 = next;
+    lbl_1_data_1D628 = next;
     arg0->unk_10 = (s32)(60.0f * (0.125f + r));
 }
 /* fzgx:end fn_1_5B3D0 */
@@ -5432,6 +5388,7 @@ void fn_1_5B578(Obj_1_5B578_T *p)
     f32 vy;
     f32 vz;
     /* volatile: the update calls leave this vector in its frame slot */
+    /* WARNING: compiler-diff device, not original code: retail reads three stack words no code writes; a plain local is an undefined register value */
     volatile Vec_1_5B578_T v;
     Obj_1_5B578_Entity_T *entity;
     u32 debug[12];
@@ -5518,10 +5475,6 @@ fn_1_5B7F8_Wave lbl_1_data_1D6C0[14] = {
 
 /* end game/main_rel/car_types.h */
 
-#define FN_1_5B7F8_RAND() \
-    (lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41C64E6D + 12345, \
-     ((lbl_1_data_1D628 >> 16) & 0x7FFF) / 32767.0f)
-
 /* lbl_1_data_1D6C0 is a table of (y, z) offsets, 8 bytes per point. */
 
 #define FN_1_5B7F8_WAVE lbl_1_data_1D6C0
@@ -5544,6 +5497,7 @@ static inline void fn_1_5B7F8_transform(void *mtx, Fn183D28Vec3 *out, Fn183D28Ve
 
 /* Locked-cache transform scratch: the stores must follow the three loads in order. */
 
+/* WARNING: compiler-diff device, not original code: volatile column loads; natural mtx_set_translate at the loop site is 40 words */
 #define FN_1_5B7F8_SET_TRANS(v, tag) \
     do { \
         f32 tag##_z; \
@@ -5562,6 +5516,7 @@ static inline void fn_1_5B7F8_init_lc(volatile f32 **cache) {  /* fzgx-allow: S2
 }
 
 void fn_1_5B7F8(struct fn_1_5B7F8_Arg0 *e) {
+    /* WARNING: compiler-diff device, not original code: volatile LC pointer set through fn_1_5B7F8_init_lc keeps the LC base in r26 */
     volatile f32 *lc; /* Locked-cache transform matrix. */
     fn_1_5B7F8_Wave *wave;
     fn_1_5B7F8_Point pts[14];
@@ -5597,9 +5552,9 @@ void fn_1_5B7F8(struct fn_1_5B7F8_Arg0 *e) {
 
     t = 0.05f * e->unk_10;
     if (t > 1.0f) {
-        r = (f32)(255.0f * e->unk_1C) + (f32)(5.0f * (FN_1_5B7F8_RAND() - 0.5f));
-        g = (f32)(255.0f * e->unk_20) + (f32)(5.0f * (FN_1_5B7F8_RAND() - 0.5f));
-        b = (f32)(255.0f * e->unk_24) + (f32)(5.0f * (FN_1_5B7F8_RAND() - 0.5f));
+        r = (f32)(255.0f * e->unk_1C) + (f32)(5.0f * ((fn_1_584AC() / 32767.0f) - 0.5f));
+        g = (f32)(255.0f * e->unk_20) + (f32)(5.0f * ((fn_1_584AC() / 32767.0f) - 0.5f));
+        b = (f32)(255.0f * e->unk_24) + (f32)(5.0f * ((fn_1_584AC() / 32767.0f) - 0.5f));
     } else {
         r = 255.0f * (e->unk_1C * t);
         g = 255.0f * (e->unk_20 * t);
@@ -5631,7 +5586,7 @@ void fn_1_5B7F8(struct fn_1_5B7F8_Arg0 *e) {
             y *= s;
             off.y = 1.2 * y;
             if (j == 13) {
-                off.z += (f64)(3.0 * FN_1_5B7F8_RAND());
+                off.z += (f64)(3.0 * (fn_1_584AC() / 32767.0f));
             }
             lbl_8006DC6C(mtx);
             FN_1_5B7F8_SET_TRANS(position.pos, loop);
@@ -5639,14 +5594,14 @@ void fn_1_5B7F8(struct fn_1_5B7F8_Arg0 *e) {
             p->color = color;
             ++wave;
             scale = 0.1 * j;
-            p->pos.x += (f32)(scale * (FN_1_5B7F8_RAND() - 0.5f));
-            p->pos.y += (f32)(scale * (FN_1_5B7F8_RAND() - 0.5f));
-            p->pos.z += (f32)(scale * (FN_1_5B7F8_RAND() - 0.5f));
+            p->pos.x += (f32)(scale * ((fn_1_584AC() / 32767.0f) - 0.5f));
+            p->pos.y += (f32)(scale * ((fn_1_584AC() / 32767.0f) - 0.5f));
+            p->pos.z += (f32)(scale * ((fn_1_584AC() / 32767.0f) - 0.5f));
             dir.x += e->unk_94;
         }
 
         if (e->unk_10 >= 25) {
-            n = 10.0f + (f32)(18.0f * (FN_1_5B7F8_RAND() - 0.5f));
+            n = 10.0f + (f32)(18.0f * ((fn_1_584AC() / 32767.0f) - 0.5f));
         } else {
             n = e->unk_10;
         }
@@ -5680,7 +5635,6 @@ void fn_1_5B7F8(struct fn_1_5B7F8_Arg0 *e) {
 }
 #undef GAME_MAIN_REL_CAR_TEST_TYPES_H
 #undef GAME_MAIN_REL_CAR_TYPES_H
-#undef FN_1_5B7F8_RAND
 #undef FN_1_5B7F8_WAVE
 #undef FN_1_5B7F8_SET_TRANS
 /* fzgx:end fn_1_5B7F8 */
@@ -5764,17 +5718,14 @@ static inline int fn5C058CacheInit(volatile f32 **cache) {  /* fzgx-allow: S2 vo
     return 1;
 }
 
-static inline u32 fn5C058Rand(void) {
-    lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41C64E6D + 12345;
-    return (lbl_1_data_1D628 >> 16) & 0x7FFF;
-}
+#define fn5C058Random() ((f32)fn_1_584AC() / 32767.0f)
 
-#define fn5C058Random() ((f32)fn5C058Rand() / 32767.0f)
-
+/* WARNING: compiler-diff device, not original code: without it 6 words (tail pointers r28/r29 for retail r25/r26) */
 #pragma opt_lifetimes off
 
 void fn_1_5C058(struct fn_1_5C058_Arg0 *arg0) {
     f32 v13, v14, v16;
+    /* WARNING: compiler-diff device, not original code: volatile LC pointer and its init/translation helpers (natural loop-site translate: 43 words) */
     volatile f32 *cache;  /* fzgx-allow: S2 volatile keeps the verified access order */
     u32 color;
     f32 *v25;
@@ -5959,15 +5910,15 @@ static inline void load_car_matrix(struct fn_1_5CA00_Arg0 *car) {
 static inline f32 draw_max(f32 a, f32 b) { if(a>b) return a; return b; }
 
 /* Keep the metadata commit after the alpha write, but allow its read to hoist. */
+/* WARNING: compiler-diff device, not original code: volatile stores order the metadata writes (2 words without) */
 static inline void init_draw_metadata(struct Draw5CA *d) { *(volatile u8 *)&d->a=255; *(volatile u32 *)&d->flags=d->flags|2; }
 
 #define CLAMP255(v) ((v) < 0.0 ? 0.0 : (v) > 255.0 ? 255.0 : (v))
 
 #define COLORS(R) { d.r=(u8)CLAMP255(1.5*(u32)(R)); d.g=(u8)CLAMP255(1.5*(u32)d.g); d.b=(u8)CLAMP255(1.5*(u32)d.b); }
 
+/* WARNING: compiler-diff device, not original code: without it 32 words */
 #pragma opt_propagation off
-
-#pragma opt_loop_invariants off
 
 void fn_1_5CA00(struct fn_1_5CA00_Arg0 *arg0) {
  u32 model;
@@ -6014,6 +5965,7 @@ void fn_1_5CA00(struct fn_1_5CA00_Arg0 *arg0) {
  f32 x0,x1,z1,y0,z0,y1,sx,sy,mx,sz,factor,dx,dz,dy,sq;
  /* Reload the endpoint snapshot after the degenerate-transform branch. */
  x1=*(f32 *)&loc_3C.x; x0=*(f32 *)&loc_30.x;
+ /* WARNING: compiler-diff device, not original code: volatile views order the endpoint loads (78 words without) */
  y1=*(volatile f32 *)&loc_3C.y; y0=*(volatile f32 *)&loc_30.y;  /* fzgx-allow: S2 volatile view keeps the verified load order */
  dx=x1-x0; sx=x1+x0;
  z1=loc_3C.z; z0=loc_30.z;
@@ -6040,8 +5992,6 @@ void fn_1_5CA00(struct fn_1_5CA00_Arg0 *arg0) {
 }
 
 #pragma opt_propagation reset
-
-#pragma opt_loop_invariants reset
 #undef GAME_MAIN_REL_CAR_TEST_TYPES_H
 #undef GAME_MAIN_REL_CAR_TYPES_H
 #undef GAME_VEC3_H
@@ -6095,7 +6045,6 @@ void fn_1_5D020(Fx *p) {
 /* fzgx:end fn_1_5D020 */
 
 /* fzgx:begin fn_1_5D1B8 */
-static inline f32 fn_1_5D1B8_scaled(f32 product, f32 scale) { return product; }
 
 void fn_1_5D1B8(Self *self)
 {
@@ -6115,7 +6064,7 @@ scale = s->f_28;
 lbl_8006DCA4();
 lbl_8006E1B0(&s->v_3c, &v);
 if (v.z > -0.00000011920929f) { return; }
-d = 240.0f * ((2.0f * obj->f_14) * fn_1_5D1B8_scaled(scale, 1.0f)) / (-v.z * fn_1_A71AC());
+d = 240.0f * ((2.0f * obj->f_14) * scale) / (-v.z * fn_1_A71AC());
 fade = 1.0f;
 if (d < 100.0f) { return; }
 if (d < 300.0f) { f32 range = 200.0f; fade = fade * ((d - 100.0f) / range); }
@@ -6314,6 +6263,7 @@ static inline f32 length(Fn5D91CVec *v) {
 /* opt_dead_assignments off keeps z as its own value in the dot product, so up.z takes f4 as in retail
  * (the same pragma and z copy as the sibling fn_1_60880 in avline.c) */
 
+/* WARNING: compiler-diff device, not original code: without it 21 words (reflect idiom) */
 #pragma opt_dead_assignments off
 
 void fn_1_5D91C(Fn5D91CObj *obj) {
@@ -6465,6 +6415,7 @@ static inline void extrapolate(Vec3 *out, Vec3 *prev, Vec3 *a) {
     out->z = pz - az;
 }
 
+/* WARNING: compiler-diff device, not original code: without it 18 words (the clamp recomputes the sum of squares) */
 #pragma opt_common_subs off
 
 static inline f32 scale_len_sq(Vec3 *v) {
@@ -6487,6 +6438,7 @@ void fn_1_5DFA4(Fn5DFA4Effect *effect) {
     f32 dx;
     f32 dz;
     f32 dy;
+    /* WARNING: compiler-diff device, not original code: one-field carrier (+0xc bytes without) */
     struct { f32 value; } len2;
     f32 alpha;
     f32 dist;
@@ -6650,7 +6602,7 @@ fn_1_862D4(S(0x18),&pos);
 lbl_8006DC6C(&matrix);
 if(H(0xb2)==1 && active) {
 key=S(0x58);
-find_effect(*(Obj_1_bss_6C84C_Target **)&lbl_1_bss_6C848,190,key);
+find_effect(lbl_1_bss_6C848,190,key);
 obj=find_effect(lbl_1_bss_6C84C,200,key);
 if(obj) {
 lbl_8006DC6C(&matrix);
@@ -6744,6 +6696,7 @@ static inline f32 Fn5EB98Length(const f32 *v) { f32 z=v[2], x=v[0], y=v[1]; f32 
 /* LCG step; the updated seed is read back from the global (forwarded by the
  * compiler): a named helper local here changes the loop's register numbering */
 
+/* WARNING: compiler-diff device, not original code: private copy of fn_1_584AC (a call to it: 146 words) */
 static inline f32 Fn5EB98Rand(void) {
     lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41C64E6D + 12345;
     return ((lbl_1_data_1D628 >> 16) & 0x7FFF) / 32767.0f;
@@ -6851,7 +6804,7 @@ v52+=12345;
 v60=((v52>>16)&0x7FFF)/32767.0f;
 v54=(u32)((void **)(lbl_1_bss_38458->unk_8))[40];
 v55=0.25f*(*(f32 *)((v0)+(180))) ;
-*(u32 *)&lbl_1_data_1D628 =v52; /* fzgx-allow: S2 preserve the generator update */
+lbl_1_data_1D628 =v52;
 v61=1.0f+v55;
 v62=0.125f+(f32)(0.5f*v55);
 v63=255.0f*(v62*(1.0f+v60));
@@ -7106,10 +7059,7 @@ void fn_1_5F9B8(fn_1_5F9B8_Effect *effect) {
     if (fn_1_54E34(&glow->pos, radius) != 0) {
         /* translation column of the locked-cache matrix */
         psvec_set(&axis, *(f32 *)(LC_BASE + 0x2C), *(f32 *)(LC_BASE + 0x1C), *(f32 *)(LC_BASE + 0x0C));
-        /* squared length; the asm block above blocks fp contraction, so fuse explicitly */
-        dist = axis.x * axis.x;
-        dist = __fmadds(axis.y, axis.y, dist);
-        dist = lbl_8006D0B4(__fmadds(axis.z, axis.z, dist));
+        dist = lbl_8006D0B4(effect_sum_sq(axis.x, axis.y, axis.z));
         if (dist > 0.1f + radius) {
             lbl_8006DB74(mtx);
             lbl_8006D848((dist - radius) / dist);
@@ -7203,11 +7153,13 @@ void fn_1_5FFAC(void) {
 /* fzgx:end fn_1_5FFAC */
 
 /* fzgx:begin fn_1_5FFB0 */
+/* WARNING: compiler-diff device, not original code: private copy of fn_1_584AC (a call to it: 28 words) */
 static inline u16 urand(void) {
     lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41C64E6D + 12345;
     return (lbl_1_data_1D628 >> 16) & 0x7FFF;
 }
 
+/* WARNING: compiler-diff device, not original code: without it the 8 converts as 8.0f (size 0x1a0 for 0x1c0) */
 #pragma opt_propagation off
 
 void fn_1_5FFB0(struct fn_1_5FFB0_p *p) {
@@ -7290,6 +7242,7 @@ static inline f32 beam_vec_length(BeamVec *v)
 
 static inline f32 beam_orient(BeamEffect *effect, BeamVec *startArg, BeamVec *endArg)
 {
+    /* WARNING: compiler-diff device, not original code: carrier (best natural beam_orient: 14 words) */
     f32 fzgx_value;
     BeamVec mid;
     BeamVec start;
@@ -7300,6 +7253,7 @@ static inline f32 beam_orient(BeamEffect *effect, BeamVec *startArg, BeamVec *en
     f32 len;
     f32 dy;
     f32 dz;
+    /* WARNING: compiler-diff device, not original code: carrier reused for dx and 0.5f (best natural: 14 words) */
     f32 fzgx_live;
     f32 sumZ;
     f32 sumX;
@@ -7351,8 +7305,10 @@ static inline void *beam_model(const char *name)
     return *res;
 }
 
+/* WARNING: compiler-diff device, not original code: without it +8 bytes */
 #pragma opt_dead_assignments off
 
+/* WARNING: compiler-diff device, not original code: without it 18 words */
 #pragma opt_lifetimes off
 
 void fn_1_6028C(BeamEffect *effect)
@@ -7489,6 +7445,7 @@ void fn_1_60734(Fn60734 *effect) {
 /* fzgx:begin fn_1_60880 */
 static inline f64 clampd(f64 x, f64 lo, f64 hi) { return (x < lo) ? lo : ((x > hi) ? hi : x); }
 
+/* WARNING: compiler-diff device, not original code: without it 11 words (reflect idiom) */
 #pragma opt_dead_assignments off
 
 void fn_1_60880(Avl60880Obj *obj) {
@@ -7499,6 +7456,7 @@ void fn_1_60880(Avl60880Obj *obj) {
     f32 vy;
     f32 vz;
     f32 dot;
+    /* WARNING: compiler-diff device, not original code: one-field carrier (8 words without) */
     struct { f32 value; } scale;
     f32 lenSq;
     f32 len;
@@ -7621,12 +7579,10 @@ void fn_1_60C84(void) {
 void fn_1_60C88(Obj_60C88 *this)
 {
     Vec3_f v;
-    void * lab_t1;
     f32 tz, ty, tx;
 
     fn_1_862D4(this->s18, &v);
-    lab_t1 = lbl_801A6D00;
-    fn_1_8636C(this->s18, lab_t1);
+    fn_1_8636C(this->s18, lbl_801A6D00);
 
     tx = v.x;
     ty = v.y;
@@ -7643,11 +7599,6 @@ void fn_1_60C88(Obj_60C88 *this)
 /* fzgx:end fn_1_60C88 */
 
 /* fzgx:begin fn_1_60D54 */
-static inline u16 fn_1_60D54_rand(void) {
-    lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41C64E6D + 12345;
-    return (lbl_1_data_1D628 >> 16) & 0x7FFF;
-}
-
 void fn_1_60D54(u8 *arg0) {
     void *obj;
     f32 r;
@@ -7662,8 +7613,8 @@ void fn_1_60D54(u8 *arg0) {
     obj = *(void **)(arg0 + 0x34);
     intensity = 0.25f * *(f32 *)(arg0 + 0xb4);
     scale = (0.125f + (f32)(0.25f * intensity)) *
-            (1.0f + fn_1_60D54_rand() / 32767.0f);
-    size = 0.2 * (*(f32 *)(arg0 + 0x28) * (0.800000011920929 + (f64)(0.2 * (fn_1_60D54_rand() / 32767.0f))));
+            (1.0f + fn_1_584AC() / 32767.0f);
+    size = 0.2 * (*(f32 *)(arg0 + 0x28) * (0.800000011920929 + (f64)(0.2 * (fn_1_584AC() / 32767.0f))));
     memset(&light, 0, 0x40);
     r = scale * *(f32 *)(arg0 + 0x1c);
     g = scale * *(f32 *)(arg0 + 0x20);
@@ -7771,16 +7722,10 @@ void fn_1_61070(Fn161070 *self) {
 /* fzgx:end fn_1_61070 */
 
 /* fzgx:begin fn_1_611EC */
-static inline u32 FxRand(void)
-{
-	lbl_1_data_1D628 = lbl_1_data_1D628 * 1103515245 + 12345;
-	return (lbl_1_data_1D628 >> 16) & 0x7FFF;
-}
-
 void fn_1_611EC(struct FxParam *p, u32 unused1, u32 unused2, u32 unused3)
 {
 	if (p->unk_10 == 0) {
-		f32 t = FxRand() / 32767.0f;
+		f32 t = fn_1_584AC() / 32767.0f;
 		f64 d = 12.0 * t;
 		p->unk_10 = (12.0 + d);
 	}
@@ -7788,19 +7733,20 @@ void fn_1_611EC(struct FxParam *p, u32 unused1, u32 unused2, u32 unused3)
 	p->unk_0E = 0;
 
 	if (0.0f == p->f_28) {
-		f32 t = FxRand() / 32767.0f;
+		f32 t = fn_1_584AC() / 32767.0f;
 		p->f_28 = (1.0 + t);
 	}
 
-	p->unk_54 = FxRand();
-	p->unk_56 = FxRand();
-	p->unk_58 = FxRand();
+	p->unk_54 = fn_1_584AC();
+	p->unk_56 = fn_1_584AC();
+	p->unk_58 = fn_1_584AC();
 
 	p->unk_38 = fn_1_45D0(lbl_801A6410, 0xF0, "effect.c", 0x1573);
 }
 /* fzgx:end fn_1_611EC */
 
 /* fzgx:begin fn_1_61370 */
+/* WARNING: compiler-diff device, not original code: without it 9 words (reflect idiom: f4/f5 swap) */
 #pragma opt_propagation off
 
 void fn_1_61370(fn_1_61370_Obj *p) {
@@ -7967,6 +7913,7 @@ void fn_1_618B8(struct obj_state *p)
 /* fzgx:end fn_1_618B8 */
 
 /* fzgx:begin fn_1_619E4 */
+/* WARNING: compiler-diff device, not original code: without it 33 words */
 #pragma opt_common_subs off
 
 void fn_1_619E4(fn_1_619E4_Obj *obj) {
@@ -8725,6 +8672,7 @@ void fn_1_635BC(Fn1635BCEffect *e) {
     f32 scale;
 
     flags = fn_1_864E8(e->id);
+    /* WARNING: compiler-diff device, not original code: retail li r0,19; rlwnm. comes only from the intrinsic; every shift/mask/rotate spelling folds to rlwinm (153 words) */
     if (((flags & 0x8) || (flags & 0x20000)) && __rlwnm(e->flags, 19, 31, 31)) {
         e->timer++;
     } else {
@@ -8805,6 +8753,7 @@ void fn_1_63858(struct fn_1_63858_Object *object) {
 
 /* fzgx-allow: S2 keeps the verified access order */
 
+/* WARNING: compiler-diff device, not original code: assigning the LC base through a pointer keeps it a named web in r25; a plain assignment gives r31 (32 words) */
 static inline void fn_1_638E8_locked_cache(f32 **ptr) {
     *ptr = (f32 *)LC_BASE;
 }
@@ -8847,7 +8796,6 @@ void fn_1_638E8(struct fn_1_638E8_Arg0 *arg0) {
     s32 t5;
     s32 t6;
     s32 t13;
-#define locked (locked_ptr = (f32 *)LC_BASE)
 
     v0 = (u8 *)arg0->unk_8;
     t0 = fn_1_5910();
@@ -8913,8 +8861,7 @@ void fn_1_638E8(struct fn_1_638E8_Arg0 *arg0) {
         default: *(u16 *)(v0 + 172) = v2; break;
         }
     }
-#undef locked
-#define locked locked_ptr
+
     v30 = 0.1f;
     v31 = 1.0f;
     v33 = 0x41C64E6D;
@@ -8977,16 +8924,14 @@ void fn_1_638E8(struct fn_1_638E8_Arg0 *arg0) {
         loc_38.color[2] = loc_8;
         loc_14 = *(Fn183D28Vec3 *)v52;
         lbl_8006D7B0();
-        locked[3] = loc_14.x;
-        locked[7] = loc_14.y;
-        locked[11] = loc_14.z;
+        locked_ptr[3] = loc_14.x;
+        locked_ptr[7] = loc_14.y;
+        locked_ptr[11] = loc_14.z;
         if (fn_1_54E34((void *)(v42 + 8), v54) != 0) {
-            f32 y;
-            y = loc_14.y;
-            v61 = loc_14.x * loc_14.x;
-            v61 = __fmadds(y, y, v61);
-            v61 = __fmadds(loc_14.z, loc_14.z, v61);
-            v61 = lbl_8006D0B4(v61);
+            f32 x = loc_14.x;
+            f32 y = loc_14.y;
+            f32 z = loc_14.z;
+            v61 = lbl_8006D0B4(effect_sum_sq(x, y, z));
             if (v61 > 0.1f + v54) {
                 lbl_8006DB74(&loc_50);
                 lbl_8006D848((v61 - v54) / v61);
@@ -9244,6 +9189,7 @@ void fn_1_648D8(void) {
 /* fzgx:begin fn_1_648DC */
 /* retail loads the plain local copies (vx, vy, vz, nx, x) where they are assigned and keeps each in its own register */
 
+/* WARNING: compiler-diff device, not original code: without it 8 words (reflect idiom) */
 #pragma opt_propagation off
 
 void fn_1_648DC(Effect648DC *effect) {
@@ -9568,12 +9514,13 @@ void fn_1_65424(fn_1_65424_EffectObject *object) {
 /* fzgx:begin fn_1_654B0 */
 /* Advances the shared linear congruential generator. */
 
+/* WARNING: compiler-diff device, not original code: without it 88 words (constants load before the rand store) */
 #pragma opt_common_subs off
 
-static inline f32 fn_1_654B0_operand_(f32 right, f32 left) { return left * right; }
 
 static inline void advance_particle654B0(Particle654B0 *p)
 {
+    /* WARNING: compiler-diff device, not original code: pointer carrier reloaded at each use (88 words with the pragma and no carrier) */
     f32 * fzgx_live;
     f32 keep;
 
@@ -9584,8 +9531,8 @@ static inline void advance_particle654B0(Particle654B0 *p)
     fzgx_live[1] *= keep;
     fzgx_live = p->vel;
     fzgx_live[2] *= keep;
-    p->rotVel[0] = fn_1_654B0_operand_((0.98f), (p->rotVel[0]));
-    p->rotVel[1] = fn_1_654B0_operand_((0.98f), (p->rotVel[1]));
+    p->rotVel[0] *= 0.98f;
+    p->rotVel[1] *= 0.98f;
     fzgx_live = p->vel;
     p->pos[0] += fzgx_live[0];
     fzgx_live = p->vel;
@@ -9595,11 +9542,12 @@ static inline void advance_particle654B0(Particle654B0 *p)
     p->rot[0] += p->rotVel[0];
     p->rot[1] += p->rotVel[1];
     p->scale += p->scaleVel;
-    p->halfAge = fn_1_654B0_operand_(p->age, (0.5f));
-    p->damp = p->damp + (fn_1_654B0_operand_(((p->dampTarget - p->damp)), (0.03f)));
+    p->halfAge = 0.5f * p->age;
+    p->damp = p->damp + (f32)(0.03f * (p->dampTarget - p->damp));
 
 }
 
+/* WARNING: compiler-diff device, not original code: private copy of fn_1_584AC (a call to it: 90 words) */
 static inline u32 random_bits654B0(void)
 {
     /* fzgx-allow: shared generator accesses retain their ordering. */
@@ -9617,13 +9565,13 @@ void fn_1_654B0(Particle654B0 *p)
     f32 fade;
 
     advance_particle654B0(p);
-    v = 0.8f + (fn_1_654B0_operand_((random_float654B0(random_bits654B0())), (0.2f)));
-    p->r = fn_1_654B0_operand_(((0.5f * (1.0f + v))), (255.0f)) / 255.0f;
-    p->g = fn_1_654B0_operand_(v, (136.0f)) / 255.0f;
+    v = 0.8f + (f32)(0.2f * random_float654B0(random_bits654B0()));
+    p->r = 255.0f * (0.5f * (1.0f + v)) / 255.0f;
+    p->g = 136.0f * v / 255.0f;
     p->b = 0.0f;
 
     if (p->age < 25) {
-        p->r *= fade = 1.0f - (1.0f + fn_1_654B0_operand_(p->age, (-0.04f)));
+        p->r *= fade = 1.0f - (1.0f + (f32)(-0.04f * p->age));
         p->g *= fade;
         p->b *= fade;
     }
@@ -9657,12 +9605,6 @@ void fn_1_656C8(fn_1_656C8_EffectObject *object) {
  * matrix base a named value, numbered ahead of the .rodata pool base, so MWCC gives effect r31 and the pool base
  * r30 as retail does. */
 
-static inline void fn_1_65748_lc_pos(fn_1_65748_Vec *out) {
-    f32 *m;
-    f32 *t;
-    m = t = (f32 *)LC_BASE;
-    psvec_set(out, t[11], m[7], m[3]);
-}
 
 void fn_1_65748(fn_1_65748_Event *event) {
     fn_1_65748_Vec axis;
@@ -9716,11 +9658,8 @@ void fn_1_65748(fn_1_65748_Event *event) {
     lbl_8006D7B0();
     radius = 2.0 * effect->unk_28;
     if (fn_1_54E34(&model->pos, radius) != 0) {
-        fn_1_65748_lc_pos(&axis);
-        /* squared length; the asm block above blocks fp contraction, so fuse explicitly */
-        dist = axis.x * axis.x;
-        dist = __fmadds(axis.y, axis.y, dist);
-        dist = lbl_8006D0B4(__fmadds(axis.z, axis.z, dist));
+        psvec_set(&axis, *(f32 *)(LC_BASE + 0x2C), *(f32 *)(LC_BASE + 0x1C), *(f32 *)(LC_BASE + 0x0C));
+        dist = lbl_8006D0B4(effect_sum_sq(axis.x, axis.y, axis.z));
         if (dist > 0.1f + radius) {
             lbl_8006DB74(mtx);
             lbl_8006D848((dist - radius) / dist);
@@ -9987,6 +9926,7 @@ void fn_1_662D4(void) {
 
 /* end game/main_rel/car_types.h */
 
+/* WARNING: compiler-diff device, not original code: private copy of fn_1_584AC (a call to it: 158 words) */
 static inline u16 effect_rand(void) {
     lbl_1_data_1D628 = lbl_1_data_1D628 * 1103515245 + 12345;
     return (lbl_1_data_1D628 >> 16) & 0x7FFF;
@@ -10018,6 +9958,7 @@ static inline void effect_cross_store(const Fn183D28Vec3 *a, const Fn183D28Vec3 
     /* Materialize the cross-product y component. */
     out->y = y;
     /* Materialize the cross-product z component. */
+    /* WARNING: compiler-diff device, not original code: volatile store keeps the cross product in its frame slot (362 words without) */
     *(volatile f32 *)&out->z = z;
 }
 
@@ -10030,6 +9971,7 @@ static inline u32 effect_aux_jitter(Fn183D28Vec3 *v) {
     y = effect_random();
     v->x += (f32)(0.25f * (x - 0.5f));
     /* Materialize the y component before the remaining RNG samples. */
+    /* WARNING: compiler-diff device, not original code: volatile store (141 words without) */
     *(volatile f32 *)&v->y = v->y + (f32)(0.25f * (f32)(y - 0.5f));
     z = effect_rand();
     return z;
@@ -10042,7 +9984,7 @@ static inline f32 effect_size_random(u32 sample) {
 
 static inline s32 effect_slot(void) {
     s32 i;
-    Fn662D8Effect *p = *(Fn662D8Effect **)&lbl_1_bss_6C848;
+    Fn662D8Effect *p = (Fn662D8Effect *)lbl_1_bss_6C848;
     for (i = 0; i < 190; i++, p++) {
         if (p->active == 0) {
             p->active = 1;
@@ -10058,7 +10000,7 @@ static inline void effect_emit(Fn662D8Effect *src) {
     if (fn_1_3FC58() == 0) {
         i = effect_slot();
         if (i >= 0) {
-            dst = *(Fn662D8Effect **)&lbl_1_bss_6C848 + i;
+            dst = (Fn662D8Effect *)lbl_1_bss_6C848 + i;
             memcpy(dst, src, 0xE8);
             dst->active = 1;
             dst->index = i;
@@ -10077,9 +10019,6 @@ static inline void effect_emit(Fn662D8Effect *src) {
 
 #define velocity anchor
 
-static inline f32 effect_multiply(f32 a, f32 b) {
-    return a * b;
-}
 
 static inline f32 effect_sqnorm(const Fn183D28Vec3 *v) {
     f32 x = v->x;
@@ -10248,14 +10187,17 @@ void fn_1_662D8(Fn662D8Source *arg0) {
     effect.aux.z = arg0->drift.z;
     {
         u32 sample = effect_aux_jitter(&effect.aux);
+        /* WARNING: compiler-diff device, not original code: constant locals keep the x*1.0f and x*0.0f multiplies retail performs; literals fold (8 bytes short) */
+        f32 one = 1.0f;
+        f32 zero = 0.0f;
         random_aux_z = effect_size_random(sample);
         effect.aux.z += (f32)(0.25f * (random_aux_z - 0.5f));
         v9 = effect_size_random(effect_rand());
-        size_factor = 0.8f + effect_multiply(0.2f, v9);
-        effect.color_x = effect_multiply((255.0f * (0.5f * (1.0f + size_factor))) / 255.0f, 1.0f);
+        size_factor = 0.8f + (f32)(0.2f * v9);
+        effect.color_x = (255.0f * (0.5f * (1.0f + size_factor))) / 255.0f * one;
         size_factor = (85.0f * size_factor) / 255.0f;
         effect.color_y = size_factor;
-        effect.color_z = effect_multiply(size_factor, 0.0f);
+        effect.color_z = size_factor * zero;
     }
 
     {
@@ -10417,12 +10359,7 @@ void fn_1_6767C(void) {
 
 /* LCG random, 15 bits */
 
-static inline u32 rand15(void) {
-    lbl_1_data_1D628 = lbl_1_data_1D628 * 0x41c64e6d + 12345;
-    return (lbl_1_data_1D628 >> 16) & 0x7fff;
-}
-
-#define frand() ((f32)rand15() / 32767.0f)
+#define frand() ((f32)fn_1_584AC() / 32767.0f)
 
 /* claims the first free slot of a 190-entry pool, -1 when full */
 
@@ -10437,25 +10374,25 @@ static inline s32 alloc_slot(u8 *p) {
     return -1;
 }
 
-static inline void spawn(EffectPoolState *st, void *src, int bank) {
+static inline void spawn(Obj_1_bss_6C84C_Target **pool, void *src) {
     s32 i;
     u8 *p;
     if ((s32)fn_1_3FC8C() != 0) return;
     if ((s32)fn_1_3FC58() != 0) return;
-    i = alloc_slot(st->pool[bank]);
+    i = alloc_slot((u8 *)*pool);
     if (i >= 0) {
-        p = st->pool[bank] + i * 232;
+        p = (u8 *)*pool + i * 232;
         memcpy(p, src, 232);
         B(p,0) = 1;
         S(p,2) = i;
         ((void (**)(void *))lbl_1_data_1D1D8)[S(p,12)](p);
-        S(p,4) = st->serial;
-        if ((s16)++st->serial < 0) st->serial = 0;
+        S(p,4) = lbl_1_bss_6C850;
+        if ((s16)++lbl_1_bss_6C850 < 0) lbl_1_bss_6C850 = 0;
     }
 }
 
 void fn_1_67680(void *arg0) {
-    EffectPoolState *st = (EffectPoolState *)&lbl_1_bss_6C848;
+
     u8 loc_8[232];
     void *t0;
     s16 v16;
@@ -10504,8 +10441,8 @@ void fn_1_67680(void *arg0) {
         F(loc_8,136)=0.003*frand();
         F(loc_8,140)=0.02f;
         S(loc_8,172)=364;
-        if(B(t0,1141)!=-1) spawn(st,loc_8,1);
-        else spawn(st,loc_8,0);
+        if(B(t0,1141)!=-1) spawn(&lbl_1_bss_6C84C,loc_8);
+        else spawn(&lbl_1_bss_6C848,loc_8);
     }
 }
 #undef F
