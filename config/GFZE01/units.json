@@ -65034,7 +65034,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/driver_c/fn_1_AA590.c",
+    "source": "rel/main_rel/memcard/fn_1_AA590.c",
     "symbols": [
       "fn_1_AA590"
     ],
@@ -65042,14 +65042,14 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/driver_c.c",
+    "tu": "rel/main_rel/memcard.c",
     "pool": {
       "...bss.0": "lbl_1_bss_716C0"
     }
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/driver_c/fn_1_AA6D8.c",
+    "source": "rel/main_rel/memcard/fn_1_AA6D8.c",
     "symbols": [
       "fn_1_AA6D8"
     ],
@@ -65057,7 +65057,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/driver_c.c",
+    "tu": "rel/main_rel/memcard.c",
     "pool": {
       "...data.0": "lbl_1_data_35AC8",
       "...bss.0": "lbl_1_bss_716C0",
@@ -65085,7 +65085,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/driver_c/fn_1_AAB98.c",
+    "source": "rel/main_rel/memcard/fn_1_AAB98.c",
     "symbols": [
       "fn_1_AAB98",
       "fn_1_AAEB0",
@@ -65099,7 +65099,7 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "tu": "rel/main_rel/driver_c.c",
+    "tu": "rel/main_rel/memcard.c",
     "pool": {
       "...bss.0": "lbl_1_bss_716C0"
     },

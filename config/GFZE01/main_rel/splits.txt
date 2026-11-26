@@ -1676,7 +1676,7 @@ rel/main_rel/camera_c/fn_1_C10C.c:
 rel/main_rel/load/fn_1_45A58.c:
 	.text       start:0x00045A58 end:0x00045AD4 align:4
 
-rel/main_rel/driver_c/fn_1_AA590.c:
+rel/main_rel/memcard/fn_1_AA590.c:
 	.text       start:0x000AA590 end:0x000AA6D8 align:4
 
 rel/main_rel/ghost/fn_1_ECE04.c:
@@ -1694,7 +1694,7 @@ rel/main_rel/memcard/fn_1_B9904.c:
 rel/main_rel/_prolog_b/fn_1_17C8.c:
 	.text       start:0x000017C8 end:0x000021E4 align:4
 
-rel/main_rel/driver_c/fn_1_AAB98.c:
+rel/main_rel/memcard/fn_1_AAB98.c:
 	.text       start:0x000AAB98 end:0x000AB478 align:4
 
 rel/main_rel/_prolog_b/fn_1_2F04.c:
@@ -1721,7 +1721,7 @@ rel/main_rel/memcard/fn_1_C1394.c:
 rel/main_rel/screen_effect_b/fn_1_7B558.c:
 	.text       start:0x0007B558 end:0x0007BA08 align:4
 
-rel/main_rel/driver_c/fn_1_AA6D8.c:
+rel/main_rel/memcard/fn_1_AA6D8.c:
 	.text       start:0x000AA6D8 end:0x000AAB98 align:4
 
 rel/main_rel/_prolog_b/fn_1_1304.c:

@@ -74056,7 +74056,7 @@
   {
    "symbol": "fn_1_AA590",
    "module": "main_rel",
-   "unit": "rel/main_rel/driver_c/fn_1_AA590.c",
+   "unit": "rel/main_rel/memcard/fn_1_AA590.c",
    "addr": 697744,
    "size": 328,
    "status": "matched",
@@ -74073,7 +74073,7 @@
   {
    "symbol": "fn_1_AA6D8",
    "module": "main_rel",
-   "unit": "rel/main_rel/driver_c/fn_1_AA6D8.c",
+   "unit": "rel/main_rel/memcard/fn_1_AA6D8.c",
    "addr": 698072,
    "size": 1216,
    "status": "matched",
@@ -74090,7 +74090,7 @@
   {
    "symbol": "fn_1_AAB98",
    "module": "main_rel",
-   "unit": "rel/main_rel/driver_c/fn_1_AAB98.c",
+   "unit": "rel/main_rel/memcard/fn_1_AAB98.c",
    "addr": 699288,
    "size": 792,
    "status": "matched",
@@ -74107,7 +74107,7 @@
   {
    "symbol": "fn_1_AAEB0",
    "module": "main_rel",
-   "unit": "rel/main_rel/driver_c/fn_1_AAB98.c",
+   "unit": "rel/main_rel/memcard/fn_1_AAB98.c",
    "addr": 700080,
    "size": 104,
    "status": "matched",
@@ -74124,7 +74124,7 @@
   {
    "symbol": "fn_1_AAF18",
    "module": "main_rel",
-   "unit": "rel/main_rel/driver_c/fn_1_AAB98.c",
+   "unit": "rel/main_rel/memcard/fn_1_AAB98.c",
    "addr": 700184,
    "size": 4,
    "status": "matched",
@@ -74141,7 +74141,7 @@
   {
    "symbol": "fn_1_AAF1C",
    "module": "main_rel",
-   "unit": "rel/main_rel/driver_c/fn_1_AAB98.c",
+   "unit": "rel/main_rel/memcard/fn_1_AAB98.c",
    "addr": 700188,
    "size": 1304,
    "status": "matched",
@@ -74158,7 +74158,7 @@
   {
    "symbol": "fn_1_AB434",
    "module": "main_rel",
-   "unit": "rel/main_rel/driver_c/fn_1_AAB98.c",
+   "unit": "rel/main_rel/memcard/fn_1_AAB98.c",
    "addr": 701492,
    "size": 4,
    "status": "matched",
@@ -74175,7 +74175,7 @@
   {
    "symbol": "fn_1_AB438",
    "module": "main_rel",
-   "unit": "rel/main_rel/driver_c/fn_1_AAB98.c",
+   "unit": "rel/main_rel/memcard/fn_1_AAB98.c",
    "addr": 701496,
    "size": 32,
    "status": "matched",
@@ -74192,7 +74192,7 @@
   {
    "symbol": "fn_1_AB458",
    "module": "main_rel",
-   "unit": "rel/main_rel/driver_c/fn_1_AAB98.c",
+   "unit": "rel/main_rel/memcard/fn_1_AAB98.c",
    "addr": 701528,
    "size": 4,
    "status": "matched",
@@ -74209,7 +74209,7 @@
   {
    "symbol": "fn_1_AB45C",
    "module": "main_rel",
-   "unit": "rel/main_rel/driver_c/fn_1_AAB98.c",
+   "unit": "rel/main_rel/memcard/fn_1_AAB98.c",
    "addr": 701532,
    "size": 28,
    "status": "matched",
