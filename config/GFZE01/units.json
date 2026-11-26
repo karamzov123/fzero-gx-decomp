@@ -7312,8 +7312,10 @@
   },
   {
     "module": "main",
-    "source": "dol/TRK_fill_mem.c",
+    "source": "dol/trk/mem_TRK.c",
     "symbols": [
+      "fn_80003590",
+      "fn_800035C0",
       "TRK_fill_mem"
     ],
     "status": "matching",
@@ -19659,18 +19661,6 @@
       "@44": "lbl_801A78B0",
       "@45": "lbl_801A78B8"
     }
-  },
-  {
-    "module": "main",
-    "source": "dol/trk/mem_init.c",
-    "symbols": [
-      "fn_80003590",
-      "fn_800035C0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
   },
   {
     "module": "main",

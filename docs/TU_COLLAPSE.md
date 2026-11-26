@@ -195,12 +195,12 @@ identifies three `.init` ranges with siblings in the `.text` map. The trailing
 ownership evidence only: source names, split extents, compilation and linkage
 are unchanged.
 
-The three `mem_TRK.c` routines share their prototypes in
-`include/dol/trk_memory.h`. The two USA `.init` wrappers now build together in
-`dol/trk/mem_init.c` with GC/1.3.2. The copy wrapper's earlier GC/1.2.5n pin
-was unnecessary: both compilers emit the same `.init` payload and relocations
-for it, though their raw ELF objects differ. `TRK_fill_mem` remains a separate
-`.text` build unit so its existing Japan and PAL source coverage is unchanged.
+`dol/trk/mem_TRK.c` owns the two `.init` wrappers and the `.text` fill routine
+in one GC/1.3.2 object. Keeping the fill definition after the wrappers retains
+the retail call instead of inlining it. USA, Japan and PAL have the same
+wrapper bytes apart from the branch displacement to their respective fill
+symbols, and identical fill bodies. All three builds now compile the wrappers
+from source rather than using retail fallback in Japan and PAL.
 
 ## MSL is built with `-inline deferred` (2026-11-24)
 

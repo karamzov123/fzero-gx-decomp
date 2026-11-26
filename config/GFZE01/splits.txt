@@ -441,8 +441,9 @@ dol/fn_80005518.c:
 dol/memset.c:
 	.init       start:0x80003458 end:0x80003488 align:4
 
-dol/trk/mem_init.c:
+dol/trk/mem_TRK.c:
 	.init       start:0x80003590 end:0x800035E4 align:4
+	.text       start:0x8008B028 end:0x8008B0E0 align:4
 
 dol/__get_debug_bba.c:
 	.init       start:0x8000314C end:0x80003154 align:4
@@ -663,9 +664,6 @@ dol/os/OSFont.c:
 dol/gx/GXInit.c:
 	.text       start:0x800307CC end:0x80031B50 align:4
 	.sbss       start:0x801A6BD8 end:0x801A6BF0 align:8
-
-dol/TRK_fill_mem.c:
-	.text       start:0x8008B028 end:0x8008B0E0 align:4
 
 dol/ahx/ahx_bits.c:
 	.text       start:0x8004FF68 end:0x80050698 align:4

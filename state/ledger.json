@@ -6889,7 +6889,7 @@
   {
    "symbol": "fn_80003590",
    "module": "main",
-   "unit": "dol/trk/mem_init.c",
+   "unit": "dol/trk/mem_TRK.c",
    "addr": 2147497360,
    "size": 48,
    "status": "matched",
@@ -6906,7 +6906,7 @@
   {
    "symbol": "fn_800035C0",
    "module": "main",
-   "unit": "dol/trk/mem_init.c",
+   "unit": "dol/trk/mem_TRK.c",
    "addr": 2147497408,
    "size": 36,
    "status": "matched",
@@ -42674,7 +42674,7 @@
   {
    "symbol": "TRK_fill_mem",
    "module": "main",
-   "unit": "dol/TRK_fill_mem.c",
+   "unit": "dol/trk/mem_TRK.c",
    "addr": 2148053032,
    "size": 184,
    "status": "matched",
