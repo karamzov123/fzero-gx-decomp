@@ -5,14 +5,16 @@
 extern u8 lbl_1_bss_86EC4;
 extern void lbl_8006DBAC(void *arg);
 
-/* fzgx:begin fn_1_106EB0 */
-#include "fpscr.h"
-
-typedef struct fn_1_106EB0_Line {
-    u8 pad_0[0x3C];
+/* one line entry; fn_1_20258 measures it */
+typedef struct LineEntry {
+    u8 pad_0[0x30];
+    f32 unk_30;
+    f32 unk_34;
+    u8 pad_38[0x4];
     f32 scl_x;
     f32 scl_y;
-    u8 pad_44[0x28];
+    u8 pad_44[0x24];
+    f32 unk_68;
     f32 hcylin;
     u8 pad_70[0xC];
     u32 flags;
@@ -20,18 +22,23 @@ typedef struct fn_1_106EB0_Line {
     f32 unk_100;
     u8 pad_104[0x4];
     f32 rel_xpos;
-} fn_1_106EB0_Line;
+} LineEntry;
+
+extern f32 fn_1_20258(LineEntry *, f32 *);
+
+/* fzgx:begin fn_1_106EB0 */
+#include "fpscr.h"
+
 
 typedef struct fn_1_106EB0_Obj {
     u32 flags;
     u8 pad_4[0x498];
-    fn_1_106EB0_Line *line;
+    LineEntry *line;
 } fn_1_106EB0_Obj;
 
 extern f32 lbl_1_bss_7AC9C;
 extern void OSPanic(const char *, int, const char *, ...);
 extern u8 *fn_1_C6F70(void);
-extern f32 fn_1_20258(fn_1_106EB0_Line *, f32 *);
 extern void fn_1_A8EB0(s32, s32);
 extern void fn_1_A8DD4(const char *, ...);
 extern void fn_1_A8E78(const char *);
@@ -62,7 +69,7 @@ static void fzgx_bss_layout(void) {
 #pragma section code_type ".text"
 
 static inline void fn_1_106EB0_init(fn_1_106EB0_Obj *obj) {
-    fn_1_106EB0_Line *first;
+    LineEntry *first;
 
     first = obj->line;
     if (fzgx_obj_lbl_1_bss_86EC0 != NULL) {
@@ -82,7 +89,7 @@ void fn_1_106EB0(fn_1_106EB0_Obj *obj) {
     f32 pos;
     f32 scale;
     s8 val;
-    fn_1_106EB0_Line *line;
+    LineEntry *line;
     f32 width;
 
 
@@ -153,19 +160,6 @@ typedef struct Vec3 {
 
 /* end game/vec3.h */
 
-typedef struct Sig_fn_1_20258_Fn_1_20258 {
-    unsigned char pad00[0x30];
-    f32 field30;
-    f32 field34;
-    unsigned char pad38[4];
-    f32 field3c;
-    unsigned char pad40[0x28];
-    f32 field68;
-    f32 field6c;
-    unsigned char pad70[0xc];
-    u32 flags;
-} Sig_fn_1_20258_Fn_1_20258;
-extern f32 fn_1_20258(Sig_fn_1_20258_Fn_1_20258 *, f32 *);
 extern f32 lbl_1_bss_7AC88[2];
 extern u8 lbl_1_bss_86EC4__fzgx_offset_3[5];
 extern u32 fn_1_17920(u32, void *, f32);
@@ -209,7 +203,7 @@ u32 fn_1_1071E8(u8 *arg0,u32 arg1,void *arg2,void *arg3,void *arg4) {
  f32 loc_C,loc_8;
  s32 v1,v2;
  u32 v6,v5;
- Sig_fn_1_20258_Fn_1_20258 *v4;
+ LineEntry *v4;
  f32 t2;
  f32 pos,sign,width,half;
  f32 (*m)[4]=(void*)LC_BASE;
@@ -237,11 +231,11 @@ u32 fn_1_1071E8(u8 *arg0,u32 arg1,void *arg2,void *arg3,void *arg4) {
   half=0.0f;
  } else if(v4->flags&0x01800000) {
   if(1.0!=loc_C) lbl_8006E15C(1.0f,loc_C,1.0f);
-  mathutil_mtxA_rotate_z((32768.0*(v4->field6c*(*(s8*)((u8*)lbl_1_bss_86EC0+arg1+(lbl_1_bss_86EC4__fzgx_offset_3[0]<<9))/128.0))));
-  TRANSLATE_COL(b, 1, (0.5*-v4->field68));
-  half=0.5*v4->field68;
+  mathutil_mtxA_rotate_z((32768.0*(v4->hcylin*(*(s8*)((u8*)lbl_1_bss_86EC0+arg1+(lbl_1_bss_86EC4__fzgx_offset_3[0]<<9))/128.0))));
+  TRANSLATE_COL(b, 1, (0.5*-v4->unk_68));
+  half=0.5*v4->unk_68;
  } else {
-  width=0.5*(v4->field3c/t2);
+  width=0.5*(v4->scl_x/t2);
   pos=*(s8*)((u8*)lbl_1_bss_86EC0+arg1+(lbl_1_bss_86EC4__fzgx_offset_3[0]<<9))/256.0;
   sign=pos>0.0f?1.0:-1.0;
   if(1.0!=loc_C) lbl_8006E15C(1.0f,loc_C,1.0f);
@@ -251,7 +245,7 @@ u32 fn_1_1071E8(u8 *arg0,u32 arg1,void *arg2,void *arg3,void *arg4) {
    lbl_8006E0B4((t2*((f64)(0.5*sign)-pos)),(0.5**(f32*)((u8*)v4+0x40)),0.0f);
   } else {
    f=(pos-(f32)(sign*width))/(0.5-(f64)(2.0*width));
-   TRANSLATE_COL(c, 0, (0.5*(sign*v4->field3c)));
+   TRANSLATE_COL(c, 0, (0.5*(sign*v4->scl_x)));
    mathutil_mtxA_rotate_z((32768.0f*f));
    TRANSLATE_COL(d, 1, (0.5*-*(f32*)((u8*)v4+0x40)));
   }

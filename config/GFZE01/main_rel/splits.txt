@@ -395,9 +395,6 @@ rel/main_rel/bg_common/fn_1_104710.c:
 rel/main_rel/bg_common/fn_1_105724.c:
 	.text       start:0x00105724 end:0x00105AB8 align:4
 
-rel/main_rel/bg_common/fn_1_106EA4.c:
-	.text       start:0x00106EA4 end:0x00106EB0 align:4
-
 rel/main_rel/get_line/fn_1_106EB0.c:
 	.text       start:0x00106EB0 end:0x001071E8 align:4
 
@@ -880,7 +877,7 @@ rel/main_rel/memcard/fn_1_C23CC.c:
 	.text       start:0x000C23CC end:0x000C24A4 align:4
 
 rel/main_rel/bg_common/fn_1_106DB4.c:
-	.text       start:0x00106DB4 end:0x00106EA4 align:4
+	.text       start:0x00106DB4 end:0x00106EB0 align:4
 	.data       start:0x0003F408 end:0x0003F428 align:8
 
 rel/main_rel/archive/fn_1_12A9BC.c:
