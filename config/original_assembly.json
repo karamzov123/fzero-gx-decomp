@@ -669,6 +669,34 @@
       "evidence": "MetroTRK targimpl.c writes the MSR accessors, the MSR-switching byte copy, TRKInterruptHandler, TRKExceptionHandler, TRKSwapAndGo, TRKInterruptHandlerEnableInterrupts and the tw-trap stubs as CodeWarrior asm functions (nofralloc): retail 0x8008B0E0..0x8008B484 and 0x8008CB20..0x8008CB40 use mfmsr/mtmsr, SRR0/SRR1 and SPRG access, mtcrf, rfi and twi, which MWCC never emits from C, with no compiler frames; the target support routines are compiled C in the same TU."
     }
   ],
+  "src/dol/__start.c": [
+    {
+      "symbol": "__start",
+      "form": "asm-function",
+      "sha256": "96c9c58d07f3ec0d4b56d2f0c06343d34e37a42f5009b405f7302d4acb25b5cd",
+      "evidence": "Weak GX entry at .init 0x80003154..0x800032B0 calls register setup before installing the stack frame, handles loader registers and branches to exit. The body is transcribed from the existing matched GX __start.s; the SDK __start.c in SwareJonge/mkdd 2a9eb75fefd75c649c0488742db931571cbd7812 corroborates original weak CodeWarrior asm form and TU ownership."
+    },
+    {
+      "symbol": "__init_registers",
+      "form": "asm-function",
+      "sha256": "1cdf8f14737438729eafaa065df8c27de0846e27ac44b3a20274eb3ecd0ea118",
+      "evidence": "GX .init 0x800032B0..0x80003340 initializes the registers, including the stack and SDA bases, without relying on an existing frame. The body is transcribed from the existing matched GX __init_registers.s; the SDK __start.c in SwareJonge/mkdd 2a9eb75fefd75c649c0488742db931571cbd7812 corroborates original CodeWarrior asm form and TU ownership."
+    }
+  ],
+  "src/dol/runtime/__ppc_eabi_init.c": [
+    {
+      "symbol": "__init_hardware",
+      "form": "asm-function",
+      "sha256": "a42b5f66cce4e91fe6bd107b3264482e65ddc5619f129ef29be7b4b725355bac",
+      "evidence": "The SDK init TU in SwareJonge/mkdd 2a9eb75fefd75c649c0488742db931571cbd7812 corroborates original asm form and ownership. The GX body is the former matched __init_hardware.s: it enables floating point via the MSR and saves LR in r31 without a compiler frame before its three calls. GX retail .init at 0x80003400..0x80003424 matches in all three regions after resolving the calls."
+    },
+    {
+      "symbol": "__flush_cache",
+      "form": "asm-function",
+      "sha256": "e1420cb52c25e8e85945358a8080131a5eec9b254a2b503d8bb27ddafc256585",
+      "evidence": "The SDK init TU in SwareJonge/mkdd 2a9eb75fefd75c649c0488742db931571cbd7812 corroborates original asm form and ownership. The GX body is the former matched __flush_cache.s: the boot cache loop uses dcbst/sync/icbi, addic/subic. and a terminal isync without a compiler frame. GX retail .init at 0x80003424..0x80003458 is identical in all three regions."
+    }
+  ],
   "src/dol/runtime/runtime.c": [
     {
       "symbol": "__cvt_fp2unsigned",

@@ -16,7 +16,9 @@
       "file": "dolphin/os/init/__start.c",
       "init": ["80003100", "80003400"],
       "symbols": ["__check_pad3", "__set_debug_bba", "__get_debug_bba", "__start", "__init_registers", "__init_data"],
-      "evidence": "Same six names, sizes and order. GX startup branches to the register/data initializers and uses its BBA helpers; the HAL entry lies in the next object."
+      "sbss": ["801A6808", "801A6810"],
+      "sbss_symbols": ["Debug_BBA"],
+      "evidence": "Same six names, sizes and order. GX startup branches to the register/data initializers and uses its BBA helpers; the HAL entry lies in the next object. Both retail BBA accessors relocate to the one-byte Debug_BBA at 0x801A6808. The reference assigns its Debug_BBA to this same startup owner and the preceding Reschedule word to the thread owner."
     },
     {
       "file": "dolphin/os/init/__ppc_eabi_init.cpp",

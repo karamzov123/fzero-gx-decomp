@@ -1,5 +1,6 @@
 #include "types.h"
 #include "dolphin/os/OSTime.h"
+#include "dol/av_vertex_format.h"
 #include "dol/globals.h"
 
 typedef struct AvSysFifo {
@@ -39,13 +40,6 @@ typedef struct AvSysState {
     u8 unk_1af;
 } AvSysState;
 
-struct Sig_fn_800726C0_fn_800726C0_Entry {
-    s32 unk_0;
-    s32 unk_4;
-    s32 unk_8;
-    u8 unk_c;
-};
-
 struct fn_80070D60_Arg0 {
     u32 unk_0;
     u32 unk_4;
@@ -82,8 +76,8 @@ extern u32 lbl_8012B06C[];
 extern u32 lbl_8012B0A8[];
 extern char lbl_8015AA10[];
 extern char lbl_8015AA78[11];
-extern u8 lbl_8015AA84[160];
-extern u32 lbl_8015AB24[];
+extern char lbl_8015AA84[160];
+extern char lbl_8015AB24[32];
 extern u8 lbl_8019E140[16];
 extern u32 lbl_8019E150[];
 extern u8 lbl_8019E18C[];
@@ -169,7 +163,6 @@ extern s32 fn_8003401C(u16);
 extern u32 fn_80072BD0(u32);
 extern u32 fn_80074918(u32, u32, u32);
 extern void fn_800723F8(void);
-extern void fn_800726C0(u32, struct Sig_fn_800726C0_fn_800726C0_Entry *);
 extern u32 OSGetConsoleSimulatedMemSize(void);
 extern u32 OSGetPhysicalMemSize(void);
 extern void fn_80034ECC(u8, u8 *, u32, u8 *);
@@ -202,19 +195,22 @@ void fn_80070A58(void);
 void *fn_80070CF8(u32 size);
 
 /* avsystem.c's .data layout (lbl_8015A860..): vertex-descriptor tables + strings */
-struct Sig_fn_800726C0_fn_800726C0_Entry lbl_8015A860[12] = {
+AvVertexAttrFormat lbl_8015A860[12] = {
     { 0x09, 1, 4, 0 }, { 0x0A, 0, 4, 0 }, { 0x0B, 1, 5, 0 }, { 0x0D, 1, 4, 0 },
     { 0x0E, 1, 4, 0 }, { 0x0F, 1, 4, 0 }, { 0x10, 1, 4, 0 }, { 0x11, 1, 4, 0 },
     { 0x12, 1, 4, 0 }, { 0x13, 1, 4, 0 }, { 0x14, 1, 4, 0 }, { 0xFF, 1, 4, 0 },
 };
-struct Sig_fn_800726C0_fn_800726C0_Entry fzgx_pool_fzgx_obj_lbl_8015A920[12] = {
+AvVertexAttrFormat avVertexAttrsPacked[12] = {
     { 0x09, 1, 3, 13 }, { 0x0A, 0, 3, 14 }, { 0x0B, 1, 5, 0 }, { 0x0D, 1, 3, 13 },
     { 0x0E, 1, 3, 13 }, { 0x0F, 1, 3, 13 }, { 0x10, 1, 4, 0 }, { 0x11, 1, 4, 0 },
     { 0x12, 1, 4, 0 }, { 0x13, 1, 4, 0 }, { 0x14, 1, 4, 0 }, { 0xFF, 1, 4, 0 },
 };
-struct Sig_fn_800726C0_fn_800726C0_Entry fzgx_pool_fzgx_obj_lbl_8015A9E0[3] = {
+AvVertexAttrFormat avVertexAttrsPositionNormal[3] = {
     { 0x09, 1, 4, 0 }, { 0x0D, 1, 4, 0 }, { 0xFF, 1, 4, 0 },
 };
+
+char lbl_8015AA10[] = "\t[warning]\tGP WAIT Timeout... (sending object %d/%d)\n"
+    "\tlong interval object No.%d = %d micro sec.\n";
 
 void fn_8006FCB4(void) {
     VISetBlack(0);
@@ -379,8 +375,8 @@ void fn_80070100(void) {
     GXClearVtxDesc();
     fn_800723F8();
     fn_800726C0(0, lbl_8015A860);
-    fn_800726C0(1, fzgx_pool_fzgx_obj_lbl_8015A920);
-    fn_800726C0(7, fzgx_pool_fzgx_obj_lbl_8015A9E0);
+    fn_800726C0(1, avVertexAttrsPacked);
+    fn_800726C0(7, avVertexAttrsPositionNormal);
 }
 
 void fn_80070158(s32 useLC) {
@@ -450,7 +446,7 @@ s32 fn_800702E4(u32 arg0) {
         }
     }
     if (result == 0) {
-        OSPanic(lbl_8015AA78, 158, (const char *)lbl_8015AA84);
+        OSPanic(lbl_8015AA78, 158, lbl_8015AA84);
     }
     return result;
 }
@@ -504,6 +500,12 @@ void fn_80070538(void) {
     fn_80070A58();
 }
 
+#ifdef VERSION_GFZP01
+extern u32 OSGetEuRgb60Mode(void);
+extern AvSysRenderMode avPal528Mode;
+extern AvSysRenderMode avEuRgb60Mode;
+#endif
+
 void fn_80070620(s32 arg0) {
     s32 temp_r3;
 
@@ -517,13 +519,26 @@ void fn_80070620(s32 arg0) {
         }
         break;
     case 1:
+#ifdef VERSION_GFZP01
+    case 5:
+        if (OSGetEuRgb60Mode() == 1) {
+            lbl_801A6CF4 = &avEuRgb60Mode;
+        } else {
+            lbl_801A6CF4 = &avPal528Mode;
+        }
+#else
         lbl_801A6CF4 = (AvSysRenderMode *)lbl_8012B0A8;
+#endif
         break;
     case 2:
         lbl_801A6CF4 = (AvSysRenderMode *)lbl_8012B06C;
         break;
     default:
-        OSPanic(lbl_8015AA78, 0x157, (const char *)lbl_8015AB24);
+#ifdef VERSION_GFZP01
+        OSPanic(lbl_8015AA78, 0x15D, lbl_8015AB24);
+#else
+        OSPanic(lbl_8015AA78, 0x157, lbl_8015AB24);
+#endif
         break;
     }
     GXAdjustForOverscan(lbl_801A6CF4, lbl_8019E150, 0, 0x10);

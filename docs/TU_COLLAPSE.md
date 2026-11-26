@@ -195,11 +195,68 @@ identifies three `.init` ranges with siblings in the `.text` map. The trailing
 ownership evidence only: source names, split extents, compilation and linkage
 are unchanged.
 
-The three `mem_TRK.c` routines now share their prototypes in
-`include/dol/trk_memory.h`, but still build separately. The two fill routines
-match with GC/1.3.2; the copy wrapper matches with GC/1.2.5n. Recompiling each
-routine with the other profile's compiler changed its object, so the map is
-not a reason to combine the units under either current profile.
+`dol/trk/mem_TRK.c` owns the two `.init` wrappers and the `.text` fill routine
+in one GC/1.3.2 object. Keeping the fill definition after the wrappers retains
+the retail call instead of inlining it. USA, Japan and PAL have the same
+wrapper bytes apart from the branch displacement to their respective fill
+symbols, and identical fill bodies. All three builds now compile the wrappers
+from source rather than using retail fallback in Japan and PAL.
+
+`dol/__mem.c` now owns the 0x138-byte runtime `.init` range in all three regions:
+`memset`, `__fill_mem`, and `memcpy`. The first wrapper retains its call when
+the fill routine is defined later in the file. The regional `__fill_mem`
+symbols are at `0x80003488`: the branch in each retail `memset` targets that
+address, and the entire range has identical bytes in the three DOLs.
+
+The reset entry at `0x80005518` now builds in `dol/trk/dolphin_trk.c` with its
+six `.text` siblings in USA and Japan. The `.init` entry and all six existing
+functions match in both builds; PAL's existing retail fallback for this TU
+is unchanged. The interrupt-vector assembly remains a separate owner.
+
+`dol/runtime/__ppc_eabi_init.c` reunites the two `.init` assembly routines
+and the three constructor/exit routines in `.text` under GC/1.2.5n. The
+hardware-enable and cache-flush assembly bodies are translated from the
+existing matched GX assembly; the SDK reference corroborates their form and
+ownership. All three regions now link the full compiled unit, including
+the two startup routines that were retail fallback in Japan and PAL.
+
+`dol/__start.c` restores the six-entry, 0x300-byte startup code unit in all
+three regions. The regional DOL headers use the same entry address, and
+the differences in the startup instructions resolve to named call targets,
+the stack and SDA bases, and `Debug_BBA`.
+It retains the weak assembler entry and frameless register setup next to the
+four C routines. GC/1.2.5n emits the two BBA small-data relocations at byte
+offset +2 within the same instruction rather than +0; their type, target and
+linked bytes are unchanged. The original owner now defines `Debug_BBA` as a
+normal `u8` in `.sbss`; the USA `Reschedule` data import retains its separate
+word and preceding extent. The linker still supplies the copy/BSS tables.
+
+### AV system data and regional source coverage
+
+The three existing AV system compile units now emit the USA `.data` span
+`0x8015A860..0x8015ABC0` (864 bytes including alignment). The display setup
+passes three arrays of 16-byte vertex format records to `fn_800726C0`; the
+cache and its callers now use the same record type. The allocator diagnostics
+share the `avsystem.c` filename base. The model loader's three literals are
+emitted together by MWCC, with the first string exported for `avload.c`.
+The three generated data-import units no longer supply these bytes.
+
+The 31 functions now link from source in all regions, replacing eight retail
+fallback functions in Japan and 31 in PAL. The PAL TV-mode switch has a
+32-byte longer body: retail calls `OSGetEuRgb60Mode` and selects one of two
+60-byte render-mode records. The function name is corroborated by
+`libs/dolphin/os/OSRtc.c` in SwareJonge/mkdd at
+`2a9eb75fefd75c649c0488742db931571cbd7812`; the call targets, flags and mode
+records come from the PAL DOL. `split_resize_for` checks the corresponding
+symbol-size change and all shared addresses when placing the split. The new
+PAL source branch also renumbers three private float literals; `pool_for`
+selects their verified PAL bindings without altering the USA/Japan map.
+
+All code bytes and relocations match after resolving the compiler's local
+`.data` base alias to the retail name at the same offset. The compile units
+remain separate: putting them in one compiler invocation shifted the latter
+two string bases and changed their base-relative instructions. This is a data
+ownership and regional source-coverage milestone, not a complete TU collapse.
 
 ## MSL is built with `-inline deferred` (2026-11-24)
 
