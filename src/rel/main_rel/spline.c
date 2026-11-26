@@ -1660,7 +1660,7 @@ s32 fn_1_F7BE4(s16 arg0) {
     u64 flags;
     s32 v1;
     t0 = 1ULL << arg0;
-    flags = ((u64)lbl_1_bss_7F0C0.unk_0 << 32) | lbl_1_bss_7F0C0.unk_4;
+    flags = lbl_1_bss_7F0C0.unk_0;
     if ((flags & t0) != 0) {
         v1 = 1;
     } else {
@@ -1675,7 +1675,7 @@ extern u64 __shl2i(u32, u32, s32);
 
 s16 fn_1_F7C48(s16 arg) {
     u64 mask = (u64)1 << arg;
-    u64 bits = ((u64)lbl_1_bss_7F0C0.unk_48 << 32) | lbl_1_bss_7F0C0.unk_4C;
+    u64 bits = lbl_1_bss_7F0C0.unk_48;
     s16 ret;
 
     if (bits & mask) {
@@ -1693,8 +1693,8 @@ extern u64 __shl2i(u32, u32, s32);
 void fn_1_F7CAC(s16 value) {
     u64 mask = (u64)1 << value;
 
-    *(u64 *)&lbl_1_bss_7F0C0.unk_0 |= mask;
-    *(u64 *)&lbl_1_bss_7F0C0.unk_48 &= ~mask;
+    lbl_1_bss_7F0C0.unk_0 |= mask;
+    lbl_1_bss_7F0C0.unk_48 &= ~mask;
 }
 /* fzgx:end fn_1_F7CAC */
 
@@ -1771,8 +1771,7 @@ s32 fn_1_F7EDC(s16 value) {
     u64 mask;
 
     result = (u64)1 << value;
-    /* WARNING: compiler-diff device, not original code: globals.h types the 64-bit flag masks as u32 pairs; needs u64 members (typedefs.json field override, not in this base) */
-    mask = *(u64 *)&lbl_1_bss_7F0C0 | *(u64 *)&lbl_1_bss_7F0C0.unk_18;
+    mask = lbl_1_bss_7F0C0.unk_0 | lbl_1_bss_7F0C0.unk_18;
     return (mask & result) != 0;
 }
 /* fzgx:end fn_1_F7EDC */
@@ -1789,24 +1788,23 @@ void fn_1_F7F48(s16 value) {
 
     bit = (u64)1 << value;
     p = (Obj_1_bss_7F0C0 *)&lbl_1_bss_7F0C0;
-    mask = *(u64 *)p | *(u64 *)&p->unk_18;
+    mask = p->unk_0 | p->unk_18;
     cond.value = 0;
     if (mask & bit) {
         cond.value = 1;
     }
     if (((0) == cond.value)) {
         if ((fn_1_8D5F0(value) & 0x20000000) == 0) {
-            *(u64 *)&lbl_1_bss_7F0C0.unk_48 |= bit;
+            lbl_1_bss_7F0C0.unk_48 |= bit;
         }
     }
-    *(u64 *)&p->unk_18 |= bit;
+    p->unk_18 |= bit;
 }
 /* fzgx:end fn_1_F7F48 */
 
 /* fzgx:begin fn_1_F8030 */
 // Clears the spline state counters.
 void fn_1_F8030(void) {
-    lbl_1_bss_7F0C0.unk_4C = 0;
     lbl_1_bss_7F0C0.unk_48 = 0;
 }
 /* fzgx:end fn_1_F8030 */
@@ -1833,13 +1831,13 @@ s32 fn_1_F809C(s32 value) {
     if (index > 63) {
         index = value - 64;
         mask = (u64)1 << index;
-        if (*(u64 *)&lbl_1_bss_7F0C0.unk_10 & mask) {
+        if (lbl_1_bss_7F0C0.unk_10 & mask) {
             return 1;
         }
         result = 0;
     } else {
         mask = (u64)1 << index;
-        if (*(u64 *)&lbl_1_bss_7F0C0.unk_8 & mask) {
+        if (lbl_1_bss_7F0C0.unk_8 & mask) {
             result = 1;
         } else {
             result = 0;
@@ -1854,10 +1852,10 @@ s32 fn_1_F8158(s32 value) {
     u64 mask;
     if ((s16)value > 63) {
         mask = __shl2i(0, 1, (s16)(value - 64));
-        return (*(u64 *)&lbl_1_bss_7F0C0.unk_58 & mask) ? 1 : 0;
+        return (lbl_1_bss_7F0C0.unk_58 & mask) ? 1 : 0;
     }
     mask = __shl2i(0, 1, (s16)value);
-    return (*(u64 *)&lbl_1_bss_7F0C0.unk_50 & mask) ? 1 : 0;
+    return (lbl_1_bss_7F0C0.unk_50 & mask) ? 1 : 0;
 }
 /* fzgx:end fn_1_F8158 */
 
@@ -1866,12 +1864,12 @@ void fn_1_F8214(s16 value) {
     u64 mask;
     if (value > 63) {
         mask = 1ULL << (s16)(value - 64);
-        *(u64 *)&lbl_1_bss_7F0C0.unk_10 |= mask;
-        *(u64 *)&lbl_1_bss_7F0C0.unk_58 &= ~mask;
+        lbl_1_bss_7F0C0.unk_10 |= mask;
+        lbl_1_bss_7F0C0.unk_58 &= ~mask;
     } else {
         mask = 1ULL << value;
-        *(u64 *)&lbl_1_bss_7F0C0.unk_8 |= mask;
-        *(u64 *)&lbl_1_bss_7F0C0.unk_50 &= ~mask;
+        lbl_1_bss_7F0C0.unk_8 |= mask;
+        lbl_1_bss_7F0C0.unk_50 &= ~mask;
     }
 }
 /* fzgx:end fn_1_F8214 */
@@ -1894,11 +1892,11 @@ int fn_1_F8334(s16 value) {
 
     if (value > 0x3f) {
         mask = 1ULL << (s16)(value - 0x40);
-        return (*(u64 *)&lbl_1_bss_7F0C0.unk_28 & mask) != 0 ? 1 : 0;
+        return (lbl_1_bss_7F0C0.unk_28 & mask) != 0 ? 1 : 0;
     }
 
     mask = 1ULL << value;
-    return (*(u64 *)&lbl_1_bss_7F0C0.unk_20 & mask) != 0 ? 1 : 0;
+    return (lbl_1_bss_7F0C0.unk_20 & mask) != 0 ? 1 : 0;
 }
 /* fzgx:end fn_1_F8334 */
 
@@ -1919,10 +1917,10 @@ void fn_1_F83F0(s16 arg0) {
 
     if (arg0 > 63) {
         mask = 1ULL << (s16)(arg0 - 64);
-        v0 = test_bits(*(u64 *)&lbl_1_bss_7F0C0.unk_28 & mask);
+        v0 = test_bits(lbl_1_bss_7F0C0.unk_28 & mask);
     } else {
         mask = 1ULL << arg0;
-        v0 = test_bits(*(u64 *)&lbl_1_bss_7F0C0.unk_20 & mask);
+        v0 = test_bits(lbl_1_bss_7F0C0.unk_20 & mask);
     }
     if (v0 == 0) {
         if ((fn_1_14D6D8(arg0) & 0x20000000) == 0) {
@@ -1931,15 +1929,15 @@ void fn_1_F83F0(s16 arg0) {
     }
     if (arg0 > 63) {
         mask = 1ULL << (s16)(arg0 - 64);
-        *(u64 *)&lbl_1_bss_7F0C0.unk_28 |= mask;
+        lbl_1_bss_7F0C0.unk_28 |= mask;
         if (v5 == 1) {
-            *(u64 *)&lbl_1_bss_7F0C0.unk_58 |= mask;
+            lbl_1_bss_7F0C0.unk_58 |= mask;
         }
     } else {
         mask = 1ULL << arg0;
-        *(u64 *)&lbl_1_bss_7F0C0.unk_20 |= mask;
+        lbl_1_bss_7F0C0.unk_20 |= mask;
         if (v5 == 1) {
-            *(u64 *)&lbl_1_bss_7F0C0.unk_50 |= mask;
+            lbl_1_bss_7F0C0.unk_50 |= mask;
         }
     }
 }
@@ -1947,9 +1945,7 @@ void fn_1_F83F0(s16 arg0) {
 
 /* fzgx:begin fn_1_F8580 */
 void fn_1_F8580(void) {
-    lbl_1_bss_7F0C0.unk_5C = 0;
     lbl_1_bss_7F0C0.unk_58 = 0;
-    lbl_1_bss_7F0C0.unk_54 = 0;
     lbl_1_bss_7F0C0.unk_50 = 0;
 }
 /* fzgx:end fn_1_F8580 */
