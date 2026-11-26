@@ -10,7 +10,8 @@ typedef struct ThpComp {
     u16 pred;       /* 0x06 */
     s32 w8;         /* 0x08 */
     s32 hC;         /* 0x0C */
-    u8 pad10[0x8];  /* 0x10 */
+    u8 *buf;        /* 0x10 */
+    u8 pad14[0x4];  /* 0x14 */
     s32 hs;         /* 0x18 */
     s32 vs;         /* 0x1C */
     s32 blocks;     /* 0x20 */
@@ -223,20 +224,17 @@ u8 fn_8003A1CC(ThpDec *info) {
     return 0;
 }
 
-s32 fn_8003A3D4(u8 *arg0) {
+s32 fn_8003A3D4(ThpDec *d) {
     u8 count;
     u8 i;
-    /* WARNING: compiler-diff device, not original code: one-field carrier; plain u8 *p 72 diff lines */
-    struct { u8 *value; } p;
 
-    *(u8 **)(arg0 + 0x400) += 2;
-    count = *(*(u8 **)(arg0 + 0x400))++;
-    if (count != *(arg0 + 0x41C)) {
+    d->ptr += 2;
+    count = *d->ptr++;
+    if (count != d->numComp) {
         return 6;
     }
 
-    p.value = arg0;
-    for (i = 0; i < count; i++, p.value += 0x30) {
+    for (i = 0; i < count; i++) {
         s32 hi;
         u16 val;
         s32 lo;
@@ -244,30 +242,29 @@ s32 fn_8003A3D4(u8 *arg0) {
         s16 shift;
         s32 diff;
 
-        (*(u8 **)(arg0 + 0x400)) = (*(u8 **)(arg0 + 0x400)) + 1;
-        val = (*(*(u8 **)(((0x400) + arg0)))++);
+        d->ptr++;
+        val = *d->ptr++;
         hi = val >> 4;
-        *(u8 *)(p.value + 0x6C4) = hi;
+        d->comps[i].dc = hi;
         lo = val & 0xF;
-        *(u8 *)(p.value + 0x6C5) = lo;
-        if (!(*(((0x418) + arg0)) & (1 << hi))) {
+        d->comps[i].ac = lo;
+        if (!(d->validHuffmanTabs & (1 << hi))) {
             return 9;
         }
-        if (!(*(((0x418) + arg0)) & (1 << (lo + 1)))) {
+        if (!(d->validHuffmanTabs & (1 << (lo + 1)))) {
             return 9;
         }
 
-        diff = *(arg0 + 0x41B) - *(((0x6C2) + p.value));
-        unk8 = (*(u32 *)(p.value + 0x6C8));
+        diff = d->maxV - d->comps[i].v;
+        unk8 = d->comps[i].w8;
         shift = 16 >> diff;
-        *(u32 *)(p.value + 0x6D0) = *(u32 *)(arg0 + 0x7B4);
-        *(u32 *)(arg0 + 0x7B4) += ((u16)unk8) * ((u16)shift);
+        d->comps[i].buf = d->heap;
+        d->heap += ((u16)unk8) * ((u16)shift);
     }
 
-    *(u8 **)(arg0 + 0x400) += 3;
-    return fn_8003A91C((ThpDec *)arg0);
+    d->ptr += 3;
+    return fn_8003A91C(d);
 }
-
 /* WARNING: compiler-diff device, not original code: opt_propagation off + opt_lifetimes off around this function (THP SDK source has no pragmas); without both 715 object diff lines, keeping only opt_lifetimes off 14 */
 #pragma opt_propagation off
 #pragma opt_lifetimes off
