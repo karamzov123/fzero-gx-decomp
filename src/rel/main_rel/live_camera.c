@@ -3966,9 +3966,7 @@ extern s32 lbl_8006D24C(f32, f32);
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DB30(void);
 
-static inline f32 fn_1_1189C_read_pointer(LcVec * owner) { return owner->z; }
-/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 12 disassembly lines (live_camera/fn_1_1189C.c) */
-#pragma opt_propagation off
+#include "mathutil_mtxA_set_translate.h"
 void fn_1_1189C(LcState *state) {
     LcPool *pool;
     LcMtx mtx;
@@ -3978,7 +3976,6 @@ void fn_1_1189C(LcState *state) {
     u32 id;
     u32 buf10;
     f32 v;
-    f32 y, z, x;
 
     pool = &lbl_1_rodata_4E0;
     if (state->mode == 3 && fn_1_40BB4() == 0) {
@@ -4004,12 +4001,7 @@ void fn_1_1189C(LcState *state) {
         fn_1_8636C(state->unk_6, &mtx);
         fn_8006FA24(&state->unk_7C, &mtx, &state->unk_7C, pool->unk_4C);
         lbl_8006DC6C(&state->unk_7C);
-        x = pos.x;
-        y = pos.y;
-        z = fn_1_1189C_read_pointer(&pos);
-        *(f32 *)(0xE0000000 + 0x0C) = x;
-        *(f32 *)(0xE0000000 + 0x1C) = y;
-        *(f32 *)(0xE0000000 + 0x2C) = z;
+        mathutil_mtxA_set_translate((Vec3 *)&pos);
     }
     lbl_8006E1B0(&lbl_1_data_47B4[state->unk_4].a, &state->unk_1C);
     lbl_8006E1B0(&lbl_1_data_47B4[state->unk_4].b, &state->unk_4C);
@@ -4022,7 +4014,6 @@ void fn_1_1189C(LcState *state) {
     fn_1_15578(&state->unk_1C, &target, &buf10, buf18, 0x40005, &id, 1, 0, 0, 0);
     lbl_8006DB30();
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_1189C */
 
 /* fzgx:begin fn_1_11ABC */
