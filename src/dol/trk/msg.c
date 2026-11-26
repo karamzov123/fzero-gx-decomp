@@ -36,7 +36,6 @@ extern u32 lbl_80095678[];
 extern u32 MWTRACE(u32, ...);
 extern u32 fn_8008D398(u32, u32);
 extern void *fn_800035C0(void *dst, const void *src, size_t n);
-extern u32 fn_80003590(u32, u32, u32);
 extern u32 fn_8008AF40(u32);
 extern u32 fn_8008AF48(u32);
 extern void fn_8008963C(const char *);

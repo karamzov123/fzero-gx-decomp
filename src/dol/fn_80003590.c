@@ -1,8 +1,8 @@
 #include "types.h"
 
-extern u32 TRK_fill_mem(u32);
+extern void TRK_fill_mem(void *dst, int value, size_t size);
 
-__declspec(section ".init") u32 fn_80003590(u32 arg0) {
-    TRK_fill_mem(arg0);
-    return arg0;
+__declspec(section ".init") void *fn_80003590(void *dst, int value, size_t size) {
+    TRK_fill_mem(dst, value, size);
+    return dst;
 }

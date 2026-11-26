@@ -36,7 +36,7 @@ extern u32 lbl_80095678[];
 extern u32 MWTRACE(u32, ...);
 extern u32 fn_8008D398(u32, u32);
 extern void *fn_800035C0(void *dst, const void *src, size_t n);
-extern u32 fn_80003590(u32, u32, u32);
+extern void *fn_80003590(void *dst, int value, size_t size);
 extern u32 fn_8008AF40(u32);
 extern u32 fn_8008AF48(u32);
 extern void fn_8008963C(const char *);
@@ -268,17 +268,12 @@ s32 fn_80089144(TRKBuffer *arg0, u32 arg1) {
 }
 
 u32 fn_80089174(TRKBuffer *arg0, u32 arg1) {
-    u32 v0;
-    u32 t0;
     arg0->length = 0;
     arg0->position = 0;
-    v0 = (u32)arg0;
     if ((s32)arg1 == 0) {
-        v0 += 16;
-        t0 = fn_80003590(v0, 0, 2176);
-        v0 = t0;
+        return (u32)fn_80003590(arg0->data, 0, sizeof(arg0->data));
     }
-    return v0;
+    return (u32)arg0;
 }
 
 u32 fn_800891B4(u32 arg0) {
