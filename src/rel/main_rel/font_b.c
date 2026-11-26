@@ -162,34 +162,6 @@ extern f32 fn_1_51B84(f32 value);
 extern f32 fn_1_51BFC(f32 value);
 extern const f64 lbl_1_rodata_2758;
 
-/* fzgx:begin fn_1_4DC20 */
-typedef struct {
-    u32 words[23];
-} FontStateCopy;
-
-void fn_1_4DC20(void) {
-    *(FontStateCopy *)&lbl_1_bss_4BB40 =
-        *(FontStateCopy *)&lbl_1_bss_4B9CC;
-    lbl_1_bss_4BB3C = 1;
-}
-/* fzgx:end fn_1_4DC20 */
-
-/* fzgx:begin fn_1_4DC6C */
-void fn_1_4DC6C(void) {
-    lbl_1_bss_4B9CC = *(Obj_1_bss_4B9CC *)&lbl_1_bss_4BB40;
-    lbl_1_bss_4BB3C = 0;
-}
-/* fzgx:end fn_1_4DC6C */
-
-/* fzgx:begin fn_1_4DCB8 */
-// Replaces the stored font state value and returns its previous value.
-u32 fn_1_4DCB8(u32 value) {
-    u32 old_value = lbl_1_bss_4B9CC.unk_58;
-    lbl_1_bss_4B9CC.unk_58 = value;
-    return old_value;
-}
-/* fzgx:end fn_1_4DCB8 */
-
 /* fzgx:begin fn_1_4DCD0 */
 // Returns the address of the font data embedded in the global object.
 u8 *fn_1_4DCD0(void) {
@@ -3796,3 +3768,193 @@ void fn_1_53FE4(Fn53Obj *arg, u8 idx) {
 }
 #pragma opt_propagation reset
 /* fzgx:end fn_1_53FE4 */
+
+/* fzgx:begin fn_1_5415C noprologue */
+#include "types.h"
+#include "dolphin/types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/font.h"
+#include "runtime/va_list.h"
+#include "font.h"
+
+typedef struct FontParams {
+    u8 unk_00[0x30];
+    u32 unk_30;
+    f32 unk_34;
+    u8 unk_38[0x58 - 0x38];
+} FontParams;
+
+typedef struct fn_1_4EB74_FontObject {
+    u32 unk_0;
+    u8 pad_4[0x2c];
+    u32 unk_30;
+} fn_1_4EB74_FontObject;
+
+typedef struct fn_1_54668_node {
+    struct fn_1_54668_node *next;
+    void *data;
+} fn_1_54668_node;
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+
+typedef struct fn_1_547F8_node {
+    struct fn_1_547F8_node *next;
+    void (*callback)(struct fn_1_547F8_node *);
+} fn_1_547F8_node;
+
+typedef struct fn_1_563E4_FontState {
+    u8 pad_00[8];
+    f32 scale;
+    u8 pad_0C[6];
+    u8 enabled;
+    u8 color;
+    u32 value;
+    f32 x;
+    f32 y;
+    u8 pad_20[4];
+    u32 state;
+} fn_1_563E4_FontState;
+
+typedef struct State {
+    FontDrawPacket *current;
+    s32 warned;
+    u8 unk_8[0x2028];
+    s32 override_enabled, override_value;
+    u32 texture[8];
+} State;
+
+typedef struct Config {
+    u32 capacity;
+    FontDrawPacket *packets;
+    u8 unk_8[0x44];
+    char warning[1];
+} Config;
+
+typedef struct ImageInfo {
+    u8 unk_0[8];
+    u16 width, height;
+    u32 unk_C;
+} ImageInfo;
+
+typedef struct Images {
+    u32 unk_0;
+    ImageInfo *info;
+    u32 unk_8;
+    u32 (*textures)[8];
+} Images;
+
+typedef struct Resource {
+    s32 loaded;
+    u8 unk_4[0x1c];
+    Images *images;
+    u32 unk_24;
+} Resource;
+
+struct fn_1_530C8_lbl_1_rodata_282C {
+    f32 unk_0;
+};
+
+struct FzgxCopy_88 { u32 words[22]; };
+extern u32 fn_1_54298(void);
+extern u32 fn_1_542A8(void);
+extern f32 fn_1_542B8(void);
+extern u8 *lbl_801A66CC;
+extern const f32 lbl_1_rodata_2870;
+extern void lbl_8006E1B0();
+extern f32 lbl_8006D0B4(f32 value);
+extern void **fn_1_54448(s32 arg0);
+extern void * fn_1_548AC(u32 amount);
+extern void fn_1_5489C(void **arg0, void **arg1);
+extern u32 fn_1_54320(void);
+extern void fn_1_54668(fn_1_54668_node *node, s32 count, u32 reverse);
+extern void fn_1_547F8(fn_1_547F8_node *node);
+extern u32 fn_1_5448C();
+extern void *fn_1_541A8(void *arg, s32 column);
+extern u32 lbl_801A66B4;
+extern void fn_1_9FA18(void);
+extern void fn_1_58248(void);
+extern void fn_1_54848(void);
+
+void fn_1_5415C(void *arg, s32 value) {
+    fn_1_541A8(arg, value);
+}
+/* fzgx:end fn_1_5415C */
+
+/* fzgx:begin fn_1_5417C noprologue */
+void fn_1_5417C(void *arg) {
+    fn_1_541A8(arg, lbl_801A66B4);
+}
+/* fzgx:end fn_1_5417C */
+
+/* fzgx:begin fn_1_541A8 noprologue */
+// Select the localized form for a number and column, including the special 10–20 range.
+void *fn_1_541A8(void *arg, s32 column) {
+    s32 is_special;
+    u32 remainder;
+    s32 row_index;
+    u32 *row;
+    u32 number = (u32)arg;
+
+    if (number == 0) {
+        return &lbl_1_data_1C5DC;
+    }
+
+    remainder = number - (number / 100) * 100;
+    is_special = 0;
+    if (remainder >= 10 && remainder <= 20) {
+        is_special = 1;
+    }
+
+    if (is_special != 0) {
+        row_index = 3;
+    } else {
+        number = remainder - (remainder / 10) * 10;
+        is_special = 0;
+        if (number >= 4 || number == 0) {
+            is_special = 1;
+        }
+        row_index = 3;
+        if (is_special == 0) {
+            row_index = number - 1;
+        }
+    }
+
+    row = (u32 *)(lbl_1_data_1C5EC + row_index * 24);
+    return (void *)row[column < 0 ? 0 : (column > 5 ? 5 : column)];
+}
+/* fzgx:end fn_1_541A8 */
+
+/* fzgx:begin fn_1_54278 noprologue */
+void fn_1_54278(u32 arg0, u32 arg1) {
+    lbl_1_bss_4C680 = arg0;
+    lbl_1_bss_4C684 = arg1;
+}
+/* fzgx:end fn_1_54278 */
+
+/* fzgx:begin fn_1_5428C noprologue */
+void fn_1_5428C(f32 value) {
+    lbl_1_data_1C508.unk_0 = value;
+}
+/* fzgx:end fn_1_5428C */
+
+/* fzgx:begin fn_1_54298 noprologue */
+u32 fn_1_54298(void) {
+    return lbl_1_bss_4C680;
+}
+/* fzgx:end fn_1_54298 */
+
+/* fzgx:begin fn_1_542A8 noprologue */
+u32 fn_1_542A8(void) {
+    return lbl_1_bss_4C684;
+}
+/* fzgx:end fn_1_542A8 */
+
+/* fzgx:begin fn_1_542B8 noprologue */
+f32 fn_1_542B8(void) {
+    return lbl_1_data_1C508.unk_0;
+}
+/* fzgx:end fn_1_542B8 */
