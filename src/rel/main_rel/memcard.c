@@ -6021,8 +6021,7 @@ void fn_1_AD264(CardTask *a)
         a->unk_24->unk_08 &= ~0x200;
         if (a->unk_24->unk_08 & 0x8000) {
             a->unk_03 = 2;
-        /* WARNING: compiler-diff device, not original code */
-        } else if ((((*(volatile u16 *)&lbl_1_bss_9F8.unk_8) /* Retail reloads this field. */ >> 8) & 1) && (a->unk_24->unk_08 & 0x800)) {
+        } else if (PAD_BIT(lbl_1_bss_9F8.unk_8, 8) && (a->unk_24->unk_08 & 0x800)) {
             a->unk_03 = 12;
             a->unk_24->unk_08 &= ~0x800;
             a->unk_24->unk_08 &= ~2;
@@ -6030,9 +6029,9 @@ void fn_1_AD264(CardTask *a)
             a->unk_2A &= ~4;
             a->unk_08 = -1;
             a->unk_0A = -1;
-        } else if ((lbl_1_bss_9F8.unk_8 >> 8) & 1) {
+        } else if (PAD_BIT(lbl_1_bss_9F8.unk_8, 8)) {
             a->unk_03 = 2;
-        } else if (((lbl_1_bss_9F8.unk_8 >> 11) & 1) && !((*(CardMgr **)&a->unk_24)->unk_08 & 2)) {
+        } else if (PAD_BIT(lbl_1_bss_9F8.unk_8, 11) && !((*(CardMgr **)&a->unk_24)->unk_08 & 2)) {
             if (a->unk_0C != 0) {
                 while (CARDUnmount(a->unk_00) == -1) {
                 }
@@ -6074,8 +6073,7 @@ void fn_1_AD264(CardTask *a)
                     lbl_1_bss_718B1 = 1;
                 }
             }
-        /* WARNING: compiler-diff device, not original code */
-        } else if (((*(u16 *)&lbl_1_bss_9F8.unk_8 /* Retail reloads this field. */ >> 10) & 1) && ((*(volatile CardMgr **)&a->unk_24 /* Retail reloads this field. */)->unk_08 & 0x400)) {
+        } else if (PAD_BIT(lbl_1_bss_9F8.unk_8, 10) && (a->unk_24->unk_08 & 0x400)) {
             a->unk_03 = 5;
             a->unk_24->unk_08 &= ~0x400;
             a->unk_24->unk_08 |= 0x200;
@@ -6091,7 +6089,7 @@ void fn_1_AD264(CardTask *a)
             a->unk_02 = 0xFE;
             break;
         }
-        if (((lbl_1_bss_9F8.unk_8 >> 8) & 1)) {
+        if (PAD_BIT(lbl_1_bss_9F8.unk_8, 8)) {
             a->unk_02 = 0xFE;
         }
         break;
@@ -6245,8 +6243,7 @@ void fn_1_AD264(CardTask *a)
                     *(u16 *)(buf + 0x7580) = m->unk_18 >> 16;
                     m = (*(CardMgr * *)&a->unk_24);
                     *(u16 *)(buf + 0x2060) = m->unk_18 >> 32;
-                    /* WARNING: compiler-diff device, not original code */
-                    m = (*(CardMgr * volatile *)&a->unk_24); /* Retail reloads the pointer between statements. */
+                    m = a->unk_24;
                     *(u16 *)(buf + 0x2066) = m->unk_18 >> 48;
                     lbl_1_bss_718E0.unk_1A0 = *(u16 *)(buf + 0x2200);
                     lbl_1_bss_718E0.unk_5520 = *(u16 *)(buf + 0x7580);
@@ -6801,7 +6798,7 @@ void fn_1_AD264(CardTask *a)
             a->unk_2A &= ~4;
             lbl_1_bss_772C8 = 0;
             lbl_1_bss_718B8 = 1;
-        } else if (((lbl_1_bss_9F8.unk_8 >> 8) & 1)) {
+        } else if (PAD_BIT(lbl_1_bss_9F8.unk_8, 8)) {
             lbl_1_bss_718B4 = a->unk_24->unk_04;
             fn_1_46B4(lbl_801A6410.unk_0, (u32)(*(CardMgr * *)&a->unk_24), ("memcard.c"), 1004);
             a->unk_24 = 0;
