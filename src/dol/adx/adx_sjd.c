@@ -331,6 +331,7 @@ u32 fn_800416F8(AdxSjdHandle *arg0) {
 }
 
 void fn_80041700(void) {
+    /* WARNING: compiler-diff device, not original code: one-field carriers voice/len/v/j/main/v2 (this loop body is the fn_80041990 body, copied: the call form needs -inline deferred, which reorders the whole object); plain voice 96 diff lines, len 260, v 80, j 26, main 10, v2 8 (v2 at every declaration position 8) */
     struct { AdxBasicDecoderExt *value; } voice;
     struct { s32 value; } len;
     struct { AdxBasicDecoderExt *value; } v;
@@ -339,6 +340,7 @@ void fn_80041700(void) {
     s32 i;
     struct { s32 value; } j;
     struct { SJ *value; } main;
+    /* WARNING: compiler-diff device, not original code: one-field carrier (see above): plain v2 8 diff lines at every declaration position */
     struct { AdxBasicDecoderExt *value; } v2;
     s32 avail;
     s32 len2;
@@ -408,6 +410,7 @@ void fn_80041700(void) {
 }
 
 void fn_80041990(AdxSjdHandle *ch) {
+    /* WARNING: compiler-diff device, not original code: one-field carriers voice/len/j/main/v2; plain voice 28 diff lines, len 1615, j 26, main 10, v2 8 (register allocation) */
     struct { AdxBasicDecoderExt *value; } voice;
     struct { s32 value; } len;
     AdxBasicDecoderExt *v;
