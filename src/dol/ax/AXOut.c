@@ -234,6 +234,7 @@ void fn_80021BB0(void) {
 u32 fzgx_obj_lbl_80160500[2][160];
 u32 lbl_80160500__fzgx_offset_500[160];
 
+/* WARNING: compiler-diff device, not original code: this unit builds with -opt nodeadstore (config/GFZE01/units.json) and this pragma turns dead-store elimination back on for fn_80021C7C only. Without the pragma fn_80021C7C frame 32 -> 16 (10 diff lines); without both the flag and the pragma fn_80021930 frame 24 -> 32 (14 diff lines; ++ on the frame counter instead of the v copy is the same) */
 #pragma opt_dead_assignments on
 void fn_80021C7C(void) {
     u32 i;
