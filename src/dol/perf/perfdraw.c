@@ -185,7 +185,6 @@ volatile PerfWGPipe __GXWGFifo : FZGX_ADDR_GXFIFO;
 void fn_8003E9EC(u32 arg0) {
     f32 *fzgx_value;
     f32 v;
-    f32 w;
     PerfLines *p;
     u32 counter;
 
@@ -204,7 +203,6 @@ void fn_8003E9EC(u32 arg0) {
     fzgx_value = &p->unk_2C;
     *fzgx_value = v;
     p->unk_C = v;
-    w = (616.0f);
     p->unk_38 = (616.0f);
     p->unk_28 = (616.0f);
     p->unk_20 = (616.0f);
@@ -637,7 +635,6 @@ void fn_8003EC44(PerfRecord *arg0) {
 #pragma opt_lifetimes reset
 
 static inline void setBarColor(PerfColor color) {
-    (void)color;
 }
 
 void fn_8003F834(void) {
