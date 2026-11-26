@@ -6840,14 +6840,17 @@ void fn_1_AD264(CardTask *a)
 
 /* fzgx:begin fn_1_AEC34 */
 /* VIEWS */
-/* Unknown retail function: the retail link removed it and no surviving code holds a copy of it.
-   Retail .bss has lbl_1_bss_7730C before lbl_1_bss_77310, and MWCC lays .bss objects out in first-access order, but
-   fn_1_AEC34 (the first surviving user) stores 77310 first: a function before it referenced 7730C.
-   The retail body is not known: this placeholder only recreates that first access.
-   WARNING: compiler-diff device, not original code (the body is a placeholder that only rebuilds the .bss order) */
-/* WARNING: compiler-diff device, not original code */
-static void memcard_bss_order_7730C(void) {
-    lbl_1_bss_7730C = 0;
+/* Copies the backup buffer back over the card image unless the card is flagged 0x20 (the restore
+   half of fn_1_AEC34's copy). MWCC auto-inlines it into fn_1_AECCC (the retail code there is this body)
+   and the link strips the out-of-line copy. Its out-of-line definition here is the first access to
+   lbl_1_bss_7730C, which is why retail lays 7730C out before 77310 although fn_1_AEC34 stores 77310
+   first. The helper's existence is inferred from that .bss order. */
+static void memcard_restore_backup(MemcardCard *card) {
+    if ((card->unk_8 & 0x20) == 0) {
+        if (lbl_1_bss_7730C != 0) {
+            fn_80008BA8((void *)(card->unk_94 + card->unk_E0), (void *)lbl_1_bss_7730C, card->unk_E4);
+        }
+    }
 }
 
 // Finalize the card operation and publish its completion state.
@@ -7273,11 +7276,7 @@ void fn_1_AECCC(MemcardObj *arg0, u32 unused) {
                         arg0->unk_3 = 8;
                         lbl_1_bss_77310 = 0;
                     } else {
-                        if ((card2->unk_8 & 0x20) == 0) {
-                            if (lbl_1_bss_7730C != 0) {
-                                fn_80008BA8((void *)(card2->unk_94 + card2->unk_E0), (void *)lbl_1_bss_7730C, card2->unk_E4);
-                            }
-                        }
+                        memcard_restore_backup(card2);
                         arg0->unk_3 = 8;
                     }
                     break;

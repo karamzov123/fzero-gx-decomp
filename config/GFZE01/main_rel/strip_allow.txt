@@ -41,5 +41,5 @@ rob_load_coin_models  # rob.c, no retail caller: reconstruction from the unread 
 pulse_color  # memcard.c, static helper inlined in fn_1_B5310/fn_1_B5654/fn_1_B5A3C (out-of-line copy stripped)
 draw_question  # memcard.c, static helper inlined in fn_1_BC310 via draw_confirm (out-of-line copy stripped)
 draw_confirm  # memcard.c, static helper inlined in fn_1_BC310 (out-of-line copy stripped)
-memcard_bss_order_7730C  # memcard.c, owner-accepted .bss-order placeholder (retail body unknown), before fn_1_AEC34
+memcard_restore_backup  # memcard.c, static helper inlined in fn_1_AECCC (out-of-line copy stripped)
 accessory_node_fall  # accessory.c, plain static helper (rope node gravity step) inlined by -inline auto in fn_1_10D7D4; the link drops the out-of-line copy
