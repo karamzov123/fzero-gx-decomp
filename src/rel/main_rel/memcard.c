@@ -7756,8 +7756,7 @@ void fn_1_B03CC(B03CC_State *arg0) {
         }
         if (arg0->unk_24->unk_8 & 0x8000) {
             arg0->unk_3 = 0x15;
-        /* WARNING: compiler-diff device, not original code */
-        } else if ((((*(u16 volatile *)&lbl_1_bss_9F8.unk_8) /* Retail reloads this field. */ & 0x100) >> 8) && (arg0->unk_24->unk_8 & 0x800)) {
+        } else if (PAD_BIT(lbl_1_bss_9F8.unk_8, 8) && (arg0->unk_24->unk_8 & 0x800)) {
             arg0->unk_3 = 0xc;
             arg0->unk_24->unk_8 &= ~0x800;
             arg0->unk_24->unk_8 &= ~2;
@@ -7773,7 +7772,7 @@ void fn_1_B03CC(B03CC_State *arg0) {
             } else if (((B03CC_Work *)*(void **)((u8 *)arg0 + 0x24))->unk_4 == -13) {
                 arg0->unk_a = 0x16;
                 arg0->unk_24->unk_8 &= ~2;
-                if ((lbl_1_bss_9F8.unk_8 >> 11) & 1) {
+                if (PAD_BIT(lbl_1_bss_9F8.unk_8, 11)) {
                     if (arg0->unk_5 == 3 && arg0->unk_C != 0) {
                         B03CC_Work *wA;
                         while (CARDUnmount(arg0->unk_0) == -1) {
@@ -7801,29 +7800,29 @@ void fn_1_B03CC(B03CC_State *arg0) {
                         lbl_1_bss_718B1 = 1;
                     }
                 }
-                if (((lbl_1_bss_9F8.unk_8 >> 10) & 1) && (arg0->unk_24->unk_8 & 0x400)) {
+                if ((PAD_BIT(lbl_1_bss_9F8.unk_8, 10)) && (arg0->unk_24->unk_8 & 0x400)) {
                     arg0->unk_3 = 5;
                     arg0->unk_24->unk_8 &= ~0x400;
                     arg0->unk_24->unk_8 |= 0x200;
                     arg0->unk_2A &= ~4;
                     arg0->unk_2A |= 0x10;
                 }
-                if ((lbl_1_bss_9F8.unk_8 >> 8) & 1) {
+                if (PAD_BIT(lbl_1_bss_9F8.unk_8, 8)) {
                     arg0->unk_3 = 0x15;
                 }
             } else {
                 arg0->unk_a = 0xe;
-                if ((lbl_1_bss_9F8.unk_8 >> 8) & 1) {
+                if (PAD_BIT(lbl_1_bss_9F8.unk_8, 8)) {
                     arg0->unk_3 = 0x15;
                 }
             }
-        } else if ((lbl_1_bss_9F8.unk_8 >> 8) & 1) {
-            if ((lbl_1_bss_9F8.unk_8 >> 8) & 1) {
+        } else if (PAD_BIT(lbl_1_bss_9F8.unk_8, 8)) {
+            if (PAD_BIT(lbl_1_bss_9F8.unk_8, 8)) {
                 arg0->unk_3 = 0x15;
             } else {
                 arg0->unk_3 = 0x20;
             }
-        } else if (((lbl_1_bss_9F8.unk_8 >> 11) & 1) && (((B03CC_Work *)*(void **)((u8 *)arg0 + 0x24))->unk_8 & 2) == 0) {
+        } else if ((PAD_BIT(lbl_1_bss_9F8.unk_8, 11)) && (((B03CC_Work *)*(void **)((u8 *)arg0 + 0x24))->unk_8 & 2) == 0) {
             if (arg0->unk_5 == 3 && arg0->unk_C != 0) {
                 B03CC_Work *wB;
                 while (CARDUnmount(arg0->unk_0) == -1) {
@@ -7850,7 +7849,7 @@ void fn_1_B03CC(B03CC_State *arg0) {
             } else if ((u8 *)arg0 == slot0 + 0xa0) {
                 lbl_1_bss_718B1 = 1;
             }
-        } else if ((((*(u16 *)&lbl_1_bss_9F8.unk_8) >> 10) & 1) && (((B03CC_Work *)*(void **)((u8 *)arg0 + 0x24))->unk_8 & 0x400)) {
+        } else if ((PAD_BIT(lbl_1_bss_9F8.unk_8, 10)) && (((B03CC_Work *)*(void **)((u8 *)arg0 + 0x24))->unk_8 & 0x400)) {
             arg0->unk_3 = 5;
             ((B03CC_Work *)*(void **)((u8 *)arg0 + 0x24))->unk_8 &= ~0x400;
             ((B03CC_Work *)*(void **)((u8 *)arg0 + 0x24))->unk_8 |= 0x200;
@@ -7874,7 +7873,7 @@ void fn_1_B03CC(B03CC_State *arg0) {
         }
         if (arg0->unk_24->unk_8 & 0x8000) {
             arg0->unk_2 = 0xfe;
-        } else if ((lbl_1_bss_9F8.unk_8 >> 8) & 1) {
+        } else if (PAD_BIT(lbl_1_bss_9F8.unk_8, 8)) {
             arg0->unk_2 = 0xfe;
         }
         break;
@@ -8038,7 +8037,7 @@ void fn_1_B03CC(B03CC_State *arg0) {
             if (flag != 0) {
                 arg0->unk_3 = 0x20;
             }
-        } else if ((lbl_1_bss_9F8.unk_8 >> 8) & 1) {
+        } else if (PAD_BIT(lbl_1_bss_9F8.unk_8, 8)) {
             arg0->unk_3 = 0x15;
         }
         arg0->unk_24->unk_4 = -121;
@@ -8366,8 +8365,7 @@ void fn_1_B03CC(B03CC_State *arg0) {
             }
             if (flag != 0) {
                 lbl_1_bss_718B4 = arg0->unk_24->unk_4;
-                /* WARNING: compiler-diff device, not original code */
-                fn_1_46B4((u32)lbl_801A6410, (u32)((*(B03CC_Work * volatile *)&arg0->unk_24) /* Retail reloads after the store. */), "memcard.c", 0x3ec);
+                fn_1_46B4((u32)lbl_801A6410, (u32)(arg0->unk_24), "memcard.c", 0x3ec);
                 arg0->unk_24 = 0;
                 arg0->unk_2 = 0xff;
                 arg0->unk_3 = 0xff;
@@ -8384,10 +8382,9 @@ void fn_1_B03CC(B03CC_State *arg0) {
                 lbl_1_bss_772C8[0] = 0;
                 lbl_1_bss_718B8 = 1;
             }
-        } else if ((lbl_1_bss_9F8.unk_8 >> 8) & 1) {
+        } else if (PAD_BIT(lbl_1_bss_9F8.unk_8, 8)) {
             lbl_1_bss_718B4 = arg0->unk_24->unk_4;
-            /* WARNING: compiler-diff device, not original code */
-            fn_1_46B4((u32)lbl_801A6410, (u32)((*(B03CC_Work * volatile *)&arg0->unk_24) /* Retail reloads after the store. */), "memcard.c", 0x3ec);
+            fn_1_46B4((u32)lbl_801A6410, (u32)(arg0->unk_24), "memcard.c", 0x3ec);
             arg0->unk_24 = 0;
             arg0->unk_2 = 0xff;
             arg0->unk_3 = 0xff;
