@@ -19662,24 +19662,14 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_80003590.c",
+    "source": "dol/trk/mem_init.c",
     "symbols": [
-      "fn_80003590"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/fn_800035C0.c",
-    "symbols": [
+      "fn_80003590",
       "fn_800035C0"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.2.5n",
+    "mw_version": "GC/1.3.2",
     "extra_cflags": []
   },
   {

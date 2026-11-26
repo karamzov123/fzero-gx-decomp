@@ -441,8 +441,8 @@ dol/fn_80005518.c:
 dol/memset.c:
 	.init       start:0x80003458 end:0x80003488 align:4
 
-dol/fn_80003590.c:
-	.init       start:0x80003590 end:0x800035C0 align:4
+dol/trk/mem_init.c:
+	.init       start:0x80003590 end:0x800035E4 align:4
 
 dol/__get_debug_bba.c:
 	.init       start:0x8000314C end:0x80003154 align:4
@@ -728,9 +728,6 @@ dol/__check_pad3.c:
 dol/trk/msghndlr.c:
 	.text       start:0x8008983C end:0x8008A5AC align:4
 	.data       start:0x8015B830 end:0x8015B868 align:16
-
-dol/fn_800035C0.c:
-	.init       start:0x800035C0 end:0x800035E4 align:4
 
 dol/adx/lsc_err.c:
 	.text       start:0x800565FC end:0x800566F0 align:4
