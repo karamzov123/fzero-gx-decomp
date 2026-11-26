@@ -6841,7 +6841,9 @@ void fn_1_AD264(CardTask *a)
    half of fn_1_AEC34's copy). MWCC auto-inlines it into fn_1_AECCC (the retail code there is this body)
    and the link strips the out-of-line copy. Its out-of-line definition here is the first access to
    lbl_1_bss_7730C, which is why retail lays 7730C out before 77310 although fn_1_AEC34 stores 77310
-   first. The helper's existence is inferred from that .bss order. */
+   first. The helper's existence is inferred from that .bss order.
+   WARNING: compiler-diff device, not original code (circumstantial: the helper boundary is inferred only from
+   the .bss order; its body is fn_1_AECCC's retail code) */
 static void memcard_restore_backup(MemcardCard *card) {
     if ((card->unk_8 & 0x20) == 0) {
         if (lbl_1_bss_7730C != 0) {
