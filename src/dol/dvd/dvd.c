@@ -483,12 +483,10 @@ void stateCheckID(void) {
 }
 
 void fn_80018108(DVDCommandBlock *block) {
-    (void)block;
     DVDLowAudioBufferConfig(IDShouldBe->streaming, 10, cbForStateCheckID3);
 }
 
 void fn_8001813C(DVDCommandBlock *block) {
-    (void)block;
     DVDLowAudioBufferConfig(IDShouldBe->streaming, 10, cbForStateCheckID2a);
 }
 
@@ -507,7 +505,6 @@ void cbForStateCheckID2a(u32 state) {
 }
 
 void stateCheckID2(DVDCommandBlock *block) {
-    (void)block;
     DVDLowRead(BB2_8015CE40, 32, 1056, fn_80018330);
 }
 
@@ -568,8 +565,6 @@ void cbForStateCheckID3(u32 intType) {
 }
 
 void AlarmHandler(OSAlarm *alarm, OSContext *context) {
-    (void)alarm;
-    (void)context;
     DVDReset();
     DCInvalidateRange(lbl_8015CE60__fzgx_offset_0, 32);
     lbl_801A6904 = (stateFunc)stateCoverClosed_CMD;
@@ -602,7 +597,6 @@ void stateCoverClosed() {
 }
 
 void stateCoverClosed_CMD(DVDCommandBlock *block) {
-    (void)block;
     DVDLowReadDiskID((DVDDiskID *)lbl_8015CE60__fzgx_offset_0, cbForStateCoverClosed);
 }
 
