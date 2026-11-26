@@ -3409,11 +3409,8 @@ static inline void cross_6D7BC(const Vec_6D7BC *a, const Vec_6D7BC *b, f32 *out)
 }
 
 /* Spawns one kind-16 effect at the machine's position, drawing from both random generators. */
-/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 94 disassembly lines (effect_car/fn_1_6D488.c) */
-#pragma opt_propagation off
+#include "mathutil_mtxA_set_translate.h"
 void fn_1_6D7BC(Source_6D7BC *src, void *arg1, f32 strength) {
-    /* WARNING: compiler-diff device, not original code: one-field locked-cache base carrier; a plain u32 changes 16 disassembly lines */
-    struct { u32 value; } lc;  /* the locked cache's base, held in a saved register */
     Effect_6D7BC work;
     Vec_6D7BC pos;
     Vec_6D7BC dir;
@@ -3441,18 +3438,7 @@ void fn_1_6D7BC(Source_6D7BC *src, void *arg1, f32 strength) {
         lbl_801A63C0 = (lbl_801A63C0) * 0x676A4B6B + 0x33CB;
         work.unk_2c = 6.0f * (0.8f + (f32)(0.2f * ((s32)((lbl_801A63C0 >> 16) & 0x7FFF) / 32767.0f)));
         lbl_8006DC6C(src->unk_B8);
-        lc.value = LC_BASE;
-        {
-            f32 z;
-            f32 y;
-            f32 x;
-            x = pos.x;
-            y = pos.y;
-            z = pos.z;
-            *(f32 *)(lc.value + 0x0C) = x;
-            *(f32 *)(lc.value + 0x1C) = y;
-            *(f32 *)(lc.value + 0x2C) = z;
-        }
+        mathutil_mtxA_set_translate((Vec3 *)&pos);
         mathutil_mtxA_rotate_y(work.unk_56);
         mathutil_mtxA_rotate_x(work.unk_54);
         {
@@ -3488,7 +3474,7 @@ void fn_1_6D7BC(Source_6D7BC *src, void *arg1, f32 strength) {
         }
     }
 }
-#pragma opt_propagation reset
+
 /* fzgx:end fn_1_6D7BC */
 
 /* fzgx:begin fn_1_6DD68 */
