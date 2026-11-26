@@ -91,8 +91,6 @@ void fn_80078D60(s32 arg0);
 u32 fn_80078F0C(Model *arg0, Sig_fn_80071C04_Entry *arg1, u32 arg2, u32 arg3);
 void fn_800794F0(u8 *dst, u8 *src, s32 len);
 
-/* WARNING: compiler-diff device, not original code: without opt_common_subs off fn_800789D8 differs by 29 instructions (CSE merges the entry + 96 start of both branches; reusing v7 in the else branch leaves 2) */
-#pragma opt_common_subs off
 u32 fn_800789D8(struct fn_800789D8_Arg0 *arg0, struct fn_800789D8_Arg1 *entry, u32 arg2) {
     u32 v0;
     u32 v1;
@@ -117,7 +115,8 @@ u32 fn_800789D8(struct fn_800789D8_Arg0 *arg0, struct fn_800789D8_Arg1 *entry, u
     v4 = v1;
     if (arg0->unk_4 & 4) fn_80078BC4((u8 *)arg1 + 32);
     fn_8007245C(*(u32 *)((u8 *)arg1 + 28));
-    v7 = (u32)arg1 + 96;
+    v7 = (u32)arg1;
+    v7 += 96;
     if (lbl_801A6D90 != 0) {
         loc_8[1] = (u32)arg1;
         loc_8[2] = v8;
@@ -224,7 +223,6 @@ void fn_80078CDC(s32 arg0) {
     data->unk_18 = value;
     fn_8007264C(0, 10, 0, 4, 0);
 }
-#pragma opt_common_subs reset
 
 asm u32 func_8008D6BC(register u32 value) {
     nofralloc
