@@ -195,6 +195,12 @@ identifies three `.init` ranges with siblings in the `.text` map. The trailing
 ownership evidence only: source names, split extents, compilation and linkage
 are unchanged.
 
+The three `mem_TRK.c` routines now share their prototypes in
+`include/dol/trk_memory.h`, but still build separately. The two fill routines
+match with GC/1.3.2; the copy wrapper matches with GC/1.2.5n. Recompiling each
+routine with the other profile's compiler changed its object, so the map is
+not a reason to combine the units under either current profile.
+
 ## MSL is built with `-inline deferred` (2026-11-24)
 
 MWCC's `-inline auto,deferred` emits a file's functions in reverse source order and can inline a

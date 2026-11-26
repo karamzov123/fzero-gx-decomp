@@ -1,4 +1,4 @@
-#include "types.h"
+#include "dol/trk_memory.h"
 
 typedef u32 (*DBCommInitFn)(u32, u32, u32, u32);
 typedef u32 (*DBCommVoidFn)(void);
@@ -23,7 +23,6 @@ extern u8 TRK_Use_BBA[];
 extern u32 lbl_80095BCC[];
 
 extern void ICInvalidateRange(void *, u32);
-extern void fn_800035C0(void *, void *, u32);
 extern void DCFlushRange(void *, u32);
 extern void PPCHalt(void);
 extern void OSReport(const char *, ...);

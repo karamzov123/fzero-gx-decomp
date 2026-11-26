@@ -1,4 +1,4 @@
-#include "types.h"
+#include "dol/trk_memory.h"
 
 enum {
     DS_NoError = 0x0,
@@ -53,7 +53,6 @@ extern u32 fn_800891B4(u32);
 DSError fn_8008AF50(void *);
 DSError fn_8008AF48(void *);
 DSError fn_8008AF40(void *);
-void *fn_800035C0(void *dst, const void *src, size_t n);
 
 static inline void TRKCopyEvent(TRKEvent *dstEvent, const TRKEvent *srcEvent) {
     fn_800035C0(dstEvent, srcEvent, sizeof(TRKEvent));

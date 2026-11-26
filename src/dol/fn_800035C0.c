@@ -1,6 +1,6 @@
-#include "types.h"
+#include "dol/trk_memory.h"
 
-__declspec(section ".init") void *fn_800035C0(void *dest, const void *src, u32 n) {
+__declspec(section ".init") void *fn_800035C0(void *dest, const void *src, size_t n) {
     const u8 *s = src;
     u8 *d = dest;
 
@@ -10,4 +10,5 @@ __declspec(section ".init") void *fn_800035C0(void *dest, const void *src, u32 n
     while (--n != 0) {
         *++d = *++s;
     }
+    return dest;
 }

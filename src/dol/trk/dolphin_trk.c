@@ -1,4 +1,4 @@
-#include "types.h"
+#include "dol/trk_memory.h"
 
 struct gTRKState_t {
     u8 pad_0[0x8C];
@@ -18,7 +18,6 @@ extern u32 lbl_8015B898[];
 extern u8 gTRKInterruptVectorTable[];
 
 extern u32 fn_8008B0E0(void);
-extern void *fn_800035C0(void *, const void *, u32);
 extern void fn_8008AFF0(u32, u32);
 extern u32 fn_8008D440(void);
 

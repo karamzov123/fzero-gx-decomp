@@ -1,5 +1,5 @@
 
-#include "types.h"
+#include "dol/trk_memory.h"
 
 void TRK_fill_mem(void *dst, int val, size_t n) {
     u32 v, i, j;
