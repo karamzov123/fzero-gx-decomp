@@ -126,44 +126,37 @@ s32 ReadArrayUnlock(s32 chan, u32 address, void *buffer, s32 length, s32 use_ful
 
 
 s32 DummyLen(void) {
-    u32 v0;
-    u32 v1;
-    u32 v4;
-    u32 v3;
-    s32 v2;
-    u32 v5;
-    u32 v6;
-    u32 t0, t1;
-    u64 pad;
+    u32 tick;
+    u32 wk;
+    s32 tmp;
+    u32 max;
 
-    v4 = 1;
-    v2 = 0;
-    t0 = OSGetTick();
-    (*(volatile unsigned long int *)&lbl_801A6510) /* fzgx-allow: S2 shared seed */ = t0;
-    v0 = 0x41C64E6D;
-    v1 = ((*(volatile unsigned long int *)&lbl_801A6510) /* fzgx-allow: S2 shared seed */ * v0) + 12345;
-    (*(volatile unsigned long int *)&lbl_801A6510) /* fzgx-allow: S2 shared seed */ = v1;
-    v3 = (((*(volatile unsigned long int *)&lbl_801A6510) /* fzgx-allow: S2 shared seed */ >> 16) & 0x1F) + 1;
-    while ((s32)v3 < 4 && (u32)v2 < 10) {
-        t1 = OSGetTick();
-        v3 = t1;
-        v5 = v3 << v4;
-        v4++;
-        if (v4 > 16) {
-            v4 = 1;
+    wk = 1;
+    max = 0;
+    tick = OSGetTick();
+    CARDSrand(tick);
+
+    tmp = CARDRand();
+    tmp &= 0x0000001f;
+    tmp += 1;
+    while ((tmp < 4) && (max < 10)) {
+        tick = OSGetTick();
+        tmp = (s32)(tick << wk);
+        wk++;
+        if (wk > 16) {
+            wk = 1;
         }
-        (*(volatile unsigned long int *)&lbl_801A6510) /* fzgx-allow: S2 shared seed */ = v5;
-        v2++;
-        v3 = (*(volatile unsigned long int *)&lbl_801A6510) /* fzgx-allow: S2 shared seed */ * v0;
-        v6 = v3 + 12345;
-        (*(volatile unsigned long int *)&lbl_801A6510) /* fzgx-allow: S2 shared seed */ = v6;
-        v3 = ((*(volatile unsigned long int *)&lbl_801A6510) /* fzgx-allow: S2 shared seed */ >> 16) & 0x1F;
-        v3++;
+        CARDSrand((u32)tmp);
+        tmp = CARDRand();
+        tmp &= 0x0000001f;
+        tmp += 1;
+        max++;
     }
-    if ((s32)v3 < 4) {
-        v3 = 4;
+    if (tmp < 4) {
+        tmp = 4;
     }
-    return v3;
+
+    return tmp;
 }
 
 s32 __CARDUnlock(s32 chan, u8 flashID[12]) {
