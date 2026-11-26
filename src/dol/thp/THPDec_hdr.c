@@ -85,8 +85,10 @@ s32 fn_80039C40(ThpDec *d) {
     u8 i;
     u32 b;
     ThpComp *c;
+    /* WARNING: compiler-diff device, not original code: lab_t0/lab_t1 carriers for divUp arguments; d->height and d->maxV * 8 written directly 16 diff lines, lab_t1 alone dropped 8 (divUp operand order a+b vs (a-1)+b) */
     u32 lab_t0;
     u32 lab_t1;
+    /* WARNING: compiler-diff device, not original code: lab_t1_ divisor carrier; d->maxH / d->maxV passed directly 34 diff lines */
     u32 lab_t1_;
     u8 bb;
 
@@ -224,6 +226,7 @@ u8 fn_8003A1CC(ThpDec *info) {
 s32 fn_8003A3D4(u8 *arg0) {
     u8 count;
     u8 i;
+    /* WARNING: compiler-diff device, not original code: one-field carrier; plain u8 *p 72 diff lines */
     struct { u8 *value; } p;
 
     *(u8 **)(arg0 + 0x400) += 2;
@@ -265,9 +268,11 @@ s32 fn_8003A3D4(u8 *arg0) {
     return fn_8003A91C((ThpDec *)arg0);
 }
 
+/* WARNING: compiler-diff device, not original code: opt_propagation off + opt_lifetimes off around this function (THP SDK source has no pragmas); without both 715 object diff lines, keeping only opt_lifetimes off 14 */
 #pragma opt_propagation off
 #pragma opt_lifetimes off
 u8 fn_8003A4E8(ThpDec *d, u8 idx, u8 *counts) {
+    /* WARNING: compiler-diff device, not original code: one-field carrier; plain s8 c 50 diff lines */
     struct { s8 value; } c;
     s32 j;
     u32 t;
