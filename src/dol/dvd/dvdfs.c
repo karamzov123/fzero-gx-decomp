@@ -17,16 +17,6 @@ struct FSTEntry {
     uint nextEntryOrLength;
 };
 
-typedef struct DVDFileInfo DVDFileInfo;
-typedef void (*DVDCallback)(s32 result, DVDFileInfo *fileInfo);
-
-struct DVDFileInfo {
-    DVDCommandBlock cb;
-    u32 startAddr;
-    u32 length;
-    DVDCallback callback;
-};
-
 vu32 __DIRegs[16] : FZGX_ADDR___DIRegs;
 
 extern OSBootInfo *BootInfo_801A68A0;
