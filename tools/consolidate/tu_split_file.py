@@ -6,8 +6,8 @@
 For a draft-map TU that retail evidence shows is two TUs (a literal the compiler pools once per TU
 repeated in each half, sections starting on their own alignment). The moved blocks must be whole
 units. If every moved block is `noprologue`, the first block's declarations (the text before its
-function definition) become the new file's prologue and the flags go: each unit compiles from the
-same text as before. Otherwise the old prologue is copied and every block keeps its flags.
+function definition) become the new file's prologue and the flags go, if they are one unit (each unit
+compiled only its own blocks). Otherwise the old prologue is copied and every block keeps its flags.
 Updates units.json (tu, source path), splits.txt keys, tus.json and state/ledger.json unit paths.
 The link hash is the proof: configure, ninja, `dtk shasum -c`.
 
@@ -71,7 +71,7 @@ if not mu or len(mu) == len(tu_units):
     raise SystemExit('nothing to split')
 
 flags = {'noprologue' in b.flags for b in moved}
-if flags == {True}:
+if flags == {True} and len(mu) == 1:  # one self-contained unit: its first block's declarations lead it
     prologue, moved[0].body = first_block_prologue(moved[0])
     for b in moved:
         b.flags = [f for f in b.flags if f != 'noprologue']
