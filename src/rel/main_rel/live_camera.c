@@ -4139,7 +4139,7 @@ void fn_1_11ABC(LiveCamera *camera) {
     fn_1_8636C(camera->unk_6, &camera->unk_7C);
     fn_1_862A8(camera->unk_6, &camera->unk_70);
 
-    /* WARNING: compiler-diff device, not original code: generated live_camera.h types the preset position as three u32 (LiveCameraPreset); needs a Vec3 member, not regenerated here */
+    /* WARNING: compiler-diff device, not original code: LiveCameraPreset (hand-added to generated live_camera.h) holds the position as three u32; a Vec3 member conflicts with the private Vec3 typedefs of six live_camera.c blocks, which need replacing with game/vec3.h first */
     camera->unk_34 = (*(CameraData (*)[])&lbl_1_data_4AA0)[camera->unk_4].v;
 
     {

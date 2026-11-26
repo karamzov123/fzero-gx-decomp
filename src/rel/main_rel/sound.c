@@ -5718,7 +5718,7 @@ void fn_1_A5344(u8 value, s16 index) {
     u8 *table;
     s32 i;
 
-    /* WARNING: compiler-diff device, not original code: globals.h declares the sound state lbl_1_bss_6EA98 as u32 (dtk under-sized); needs the record type */
+    /* WARNING: compiler-diff device, not original code: retail addresses lbl_1_bss_6F41C/6F1D8/6F1DC off the lbl_1_bss_6EA98 section base; naming the objects changes 205 lines (needs the TU-level section layout) */
     table = (*(u8 (*)[])&lbl_1_bss_6EA98) + 0x984;
     if (table[index] > value) {
         for (i = 0; i < (table[index] - value); i++) {
