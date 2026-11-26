@@ -1379,13 +1379,7 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
 
 /* end game/main_rel/adxt_stop_types.h */
 
-/* begin game/vec3.h (deltawave784/fzgx, CC0) */
-#ifndef GAME_VEC3_H
-#define GAME_VEC3_H
-
-// Three-float vector shared by the main_rel type headers (camera, car, font, ghost,
-// live_camera each carried an identical private copy); Vec3f likewise (car, screen_effect,
-// stcoli). Hand-owned (librarian).
+#include "game/vec3.h"
 
 /* Obj_1_data_43B8: from deltawave784/fzgx (CC0) */
 typedef struct {
@@ -1397,20 +1391,6 @@ typedef struct {
     s16 unk_14A;
     s16 unk_14C;
 } Obj_1_data_43B8;
-
-typedef struct Vec3 {
-    f32 x;
-    f32 y;
-    f32 z;
-} Vec3;
-
-typedef struct Vec3f {
-    f32 x, y, z;
-} Vec3f;
-
-#endif  // GAME_VEC3_H
-
-/* end game/vec3.h */
 
 typedef struct {
     u32 flags;
@@ -2701,28 +2681,7 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
 
 /* end game/main_rel/adxt_stop_types.h */
 
-/* begin game/vec3.h (deltawave784/fzgx, CC0) */
-#ifndef GAME_VEC3_H
-#define GAME_VEC3_H
-
-// Three-float vector shared by the main_rel type headers (camera, car, font, ghost,
-// live_camera each carried an identical private copy); Vec3f likewise (car, screen_effect,
-// stcoli). Hand-owned (librarian).
-
-
-typedef struct Vec3 {
-    f32 x;
-    f32 y;
-    f32 z;
-} Vec3;
-
-typedef struct Vec3f {
-    f32 x, y, z;
-} Vec3f;
-
-#endif  // GAME_VEC3_H
-
-/* end game/vec3.h */
+#include "game/vec3.h"
 
 typedef struct {
     u32 flags;
@@ -2996,11 +2955,7 @@ void fn_1_103B0(LiveCamState *cam) {
 /* fzgx:begin fn_1_107B8 noprologue */
 #include "types.h"
 
-typedef struct {
-    f32 x;
-    f32 y;
-    f32 z;
-} Vec3;
+#include "game/vec3.h"
 
 /* one livecam_N.bin record (0x28 bytes); fn_1_F6A8 loads them to lbl_1_bss_17C4+0x4 */
 typedef struct {
@@ -3257,11 +3212,7 @@ void fn_1_107B8(Sig_fn_1_101D0_Fn_1_101D0_State *cam) {
 /* fzgx:end fn_1_107B8 */
 
 /* fzgx:begin fn_1_10AF0 */
-typedef struct {
-    f32 x;
-    f32 y;
-    f32 z;
-} Vec3;
+#include "game/vec3.h"
 
 /* one livecam_N.bin record (0x28 bytes) */
 typedef struct {
@@ -3747,9 +3698,7 @@ extern void lbl_8006E1B0(void *, void *);
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DB30(void);
 
-typedef struct {
-    f32 x, y, z;
-} Vec3f;
+#include "game/vec3.h"
 
 typedef struct LiveCam {
     u8 unk_0;
@@ -4080,11 +4029,7 @@ void fn_1_1189C(LcState *state) {
 #include "dolphin/hw_regs.h"
 #include "types.h"
 
-typedef struct {
-    f32 x;
-    f32 y;
-    f32 z;
-} Vec3;
+#include "game/vec3.h"
 
 typedef struct {
     Vec3 v;              /* 0x00 */
@@ -4139,8 +4084,7 @@ void fn_1_11ABC(LiveCamera *camera) {
     fn_1_8636C(camera->unk_6, &camera->unk_7C);
     fn_1_862A8(camera->unk_6, &camera->unk_70);
 
-    /* WARNING: compiler-diff device, not original code: LiveCameraPreset (hand-added to generated live_camera.h) holds the position as three u32; a Vec3 member conflicts with the private Vec3 typedefs of six live_camera.c blocks, which need replacing with game/vec3.h first */
-    camera->unk_34 = (*(CameraData (*)[])&lbl_1_data_4AA0)[camera->unk_4].v;
+    camera->unk_34 = lbl_1_data_4AA0[camera->unk_4].unk_0;
 
     {
         f32 m2, m1, m0;
@@ -4961,28 +4905,7 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
 
 /* end game/main_rel/adxt_stop_types.h */
 
-/* begin game/vec3.h (deltawave784/fzgx, CC0) */
-#ifndef GAME_VEC3_H
-#define GAME_VEC3_H
-
-// Three-float vector shared by the main_rel type headers (camera, car, font, ghost,
-// live_camera each carried an identical private copy); Vec3f likewise (car, screen_effect,
-// stcoli). Hand-owned (librarian).
-
-
-typedef struct Vec3 {
-    f32 x;
-    f32 y;
-    f32 z;
-} Vec3;
-
-typedef struct Vec3f {
-    f32 x, y, z;
-} Vec3f;
-
-#endif  // GAME_VEC3_H
-
-/* end game/vec3.h */
+#include "game/vec3.h"
 
 typedef struct {
     u32 flags;

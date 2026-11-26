@@ -86,5 +86,17 @@
    "50": "u64",
    "58": "u64"
   }
+ },
+ "lbl_1_data_4AA0": {
+  "self": "LiveCameraPreset",
+  "array": {
+   "size": 32,
+   "dims": [
+    55
+   ]
+  },
+  "fields": {
+   "0": "Vec3"
+  }
  }
 }
