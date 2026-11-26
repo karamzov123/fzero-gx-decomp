@@ -676,6 +676,7 @@ void fn_1_68284(u32 arg0) {
     s32 active;
     u32 i;
     u32 count;
+    /* WARNING: compiler-diff device, not original code: one-field f32 carrier; a plain f32 changes 349 disassembly lines */
     struct { f32 value; } distance;
     f32 speed;
     f32 a, c, b;
@@ -857,7 +858,9 @@ static inline f32 dot68B6C(f32 ax, f32 ay, f32 az, f32 bx, f32 by, f32 bz) {
     return v;
 }
 
+/* WARNING: compiler-diff device, not original code: fp_contract off; removal changes 359 disassembly lines (effect_car/fn_1_680F8.c) */
 #pragma fp_contract off
+/* WARNING: compiler-diff device, not original code: opt_lifetimes off; removal changes 250 disassembly lines (effect_car/fn_1_680F8.c) */
 #pragma opt_lifetimes off
 void fn_1_68B6C(s8 a, s8 b) {
     f32 intensity;
@@ -1125,8 +1128,11 @@ static inline f32 clamp694A4(f32 x, f32 lo, f32 hi) {
     return x < lo ? lo : x > hi ? hi : x;
 }
 
+/* WARNING: compiler-diff device, not original code: fp_contract off; removal changes 370 disassembly lines (effect_car/fn_1_680F8.c) */
 #pragma fp_contract off
+/* WARNING: compiler-diff device, not original code: opt_lifetimes off; removal changes 46 disassembly lines (effect_car/fn_1_680F8.c) */
 #pragma opt_lifetimes off
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 18 disassembly lines (effect_car/fn_1_680F8.c) */
 #pragma opt_propagation off
 void fn_1_694A4(s32 id, Vec694A4 *pos, Vec694A4 *up, f32 scale) {
     static const Vec694A4 zero = { 0.0f, 0.0f, 0.0f };
@@ -1361,7 +1367,9 @@ static inline void rejectl69BCC(Vec69BCC *t, const Vec69BCC *n) {
     t->z = z + d * nz;
 }
 
+/* WARNING: compiler-diff device, not original code: fp_contract off; removal changes 369 disassembly lines (effect_car/fn_1_680F8.c) */
 #pragma fp_contract off
+/* WARNING: compiler-diff device, not original code: opt_lifetimes off; removal changes 291 disassembly lines (effect_car/fn_1_680F8.c) */
 #pragma opt_lifetimes off
 void fn_1_69BCC(Effect69BCC *effect) {
     Effect69BCC spark;
@@ -2190,6 +2198,7 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime7(void) {
 
 
 
+/* WARNING: compiler-diff device, not original code: opt_loop_invariants off; removal changes 366 disassembly lines (effect_car/fn_1_6B8A4.c) */
 #pragma opt_loop_invariants off
 void fn_1_6B8A4(arg0, arg1, arg2)
 u32 arg0;
@@ -2559,6 +2568,7 @@ void fn_1_6BFB8(u32 arg0) {
     u32 v9;
     u32 v2;
     u32 player_count;
+    /* WARNING: compiler-diff device, not original code: one-field loop counter; a plain u32 at 5 declaration positions takes r27 for retail r26 */
     struct { u32 value; } v21;
     f32 v4;
     f32 v5;
@@ -3251,9 +3261,12 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime25(void) {
 }
 #pragma section code_type ".text"
 #include "mathutil_mtxA_set_translate.h"
+/* WARNING: compiler-diff device, not original code: opt_loop_invariants off; removal changes 339 disassembly lines (effect_car/fn_1_6D488.c) */
 #pragma opt_loop_invariants off
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 340 disassembly lines (effect_car/fn_1_6D488.c) */
 #pragma opt_propagation off
 void fn_1_6D488(struct fn_1_6D488_Arg0 *arg0) {
+    /* WARNING: compiler-diff device, not original code: pointer carrier; passing the address directly changes 340 disassembly lines */
     void * lab_t1;
     u16 count;
     u32 loc_20[58];
@@ -3399,8 +3412,10 @@ static inline void cross_6D7BC(const Vec_6D7BC *a, const Vec_6D7BC *b, f32 *out)
 }
 
 /* Spawns one kind-16 effect at the machine's position, drawing from both random generators. */
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 94 disassembly lines (effect_car/fn_1_6D488.c) */
 #pragma opt_propagation off
 void fn_1_6D7BC(Source_6D7BC *src, void *arg1, f32 strength) {
+    /* WARNING: compiler-diff device, not original code: one-field locked-cache base carrier; a plain u32 changes 16 disassembly lines */
     struct { u32 value; } lc;  /* the locked cache's base, held in a saved register */
     Effect_6D7BC work;
     Vec_6D7BC pos;
@@ -3813,6 +3828,7 @@ typedef struct {
 } Tgt_T;
 
 
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 16 disassembly lines (effect_car/fn_1_6DD68.c) */
 #pragma opt_propagation off
 void fn_1_6E140(Vec3_T *arg0, Vec3_T *arg1, f32 arg2) {
     f32 u;
@@ -4372,6 +4388,7 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime43(void) {
 
 /* Literal-pool primer: lays out the TU's shared lbl_1_rodata_2D70 pool in retail order. */
 
+/* WARNING: compiler-diff device, not original code: opt_loop_invariants off; removal changes 366 disassembly lines (effect_car/fn_1_6E62C.c) */
 #pragma opt_loop_invariants off
 void fn_1_6E62C(arg0, arg1, arg2)
 u32 arg0;
@@ -4692,6 +4709,7 @@ static inline f32 rand_unit(void) {
  return fn_1_584AC()/32767.0f;
 }
 
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 360 disassembly lines (effect_car/fn_1_6E62C.c) */
 #pragma opt_propagation off
 void fn_1_6ED40(struct fn_1_6ED40_Arg0 *arg0, void *arg1) {
  f32 v20, v4, v6, v9, v12, v19;
@@ -5098,6 +5116,7 @@ void fn_1_6F90C(struct fn_1_6F90C_EffectCar *self, void *arg1) {
         for (i = 1; i < count; i++) {
             fn_1_681C( i, (fn_1_6F90C_Vec3f *)(&pos));
             if (min < effect_distance(&self->pos, &pos)) {
+                /* WARNING: compiler-diff device, not original code: min = min keeps retail's branch shape; !(min < d), an empty then-branch and ?: change 213-215 lines */
                 min = min;
             } else {
                 min = effect_distance(&self->pos, &pos);
@@ -6337,6 +6356,7 @@ void fn_1_71024(Fn1_71024Car *car, Fn1_71024Vec *vel, u32 count, f32 scale) {
         for (i = 1; i < n; i++) {
             fn_1_681C(i, &point);
             if (min < FN_1_71024_DIST(car, point)) {
+                /* WARNING: compiler-diff device, not original code: min = min keeps retail's branch shape; !(min < d) and ?: change 357 lines */
                 min = min;
             } else {
                 min = FN_1_71024_DIST(car, point);
@@ -6517,6 +6537,7 @@ static void fzgx_fn_1_71768_pool_primer_398(volatile f32 *p) { /* Volatile store
 
 
 
+/* WARNING: compiler-diff device, not original code: opt_lifetimes off; removal changes 14 disassembly lines (effect_car/fn_1_71768.c) */
 #pragma opt_lifetimes off
 static inline f32 fn_1_71768_distance(u32 arg0, const f32 *loc_8) {
     f32 y, z, x;
@@ -6531,9 +6552,11 @@ static inline f32 fn_1_71768_distance(u32 arg0, const f32 *loc_8) {
     return lbl_8006D0B4(x);
 }
 
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 32 disassembly lines (effect_car/fn_1_71768.c) */
 #pragma opt_propagation off
 void fn_1_71768(u32 arg0, u32 arg1) {
     struct fn_1_71768_lbl_1_rodata_2D70 *p_lbl_1_rodata_2D70;
+    /* WARNING: compiler-diff device, not original code: local {x,y,z} copy type for byte-offset views of an untyped 0xE8 effect record (type debt, not measured) */
     typedef struct { f32 x, y, z; } EffectVec;
     u32 v0;
     u8 v22;

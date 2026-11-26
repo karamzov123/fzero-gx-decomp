@@ -131,6 +131,7 @@ void fn_1_F5458(void *arg0, u32 count, f32 value, f32 *samples, void *table) {
     u8 work2[16];
     u8 work1[16];
     u8 work0[16];
+    /* WARNING: compiler-diff device, not original code: f64 argument carrier; the expression as the argument swaps an mr/li pair (4 lines) */
     f64 lab_t3;
 
     index = 0;
@@ -237,6 +238,7 @@ void fn_1_F57A8(f32 *out, f32 *in) {
 /* fzgx:end fn_1_F57A8 */
 
 /* fzgx:begin fn_1_F588C */
+/* WARNING: compiler-diff device, not original code: fp_contract off; removal changes 333 disassembly lines (spline/fn_1_F4F08.c) */
 #pragma fp_contract off
 
 extern const f32 lbl_1_rodata_6D7C;
@@ -1769,6 +1771,7 @@ s32 fn_1_F7EDC(s16 value) {
     u64 mask;
 
     result = (u64)1 << value;
+    /* WARNING: compiler-diff device, not original code: globals.h types the 64-bit flag masks as u32 pairs; needs u64 members (typedefs.json field override, not in this base) */
     mask = *(u64 *)&lbl_1_bss_7F0C0 | *(u64 *)&lbl_1_bss_7F0C0.unk_18;
     return (mask & result) != 0;
 }
@@ -1781,6 +1784,7 @@ void fn_1_F7F48(s16 value) {
     Obj_1_bss_7F0C0 *p;
     u64 mask;
     u64 bit;
+    /* WARNING: compiler-diff device, not original code: one-field flag; a plain s32 changes 337 disassembly lines */
     struct { s32 value; } cond;
 
     bit = (u64)1 << value;
@@ -2048,6 +2052,7 @@ void fn_1_F89C0(void) {
 /* fzgx:begin fn_1_F89E4 */
 // Returns the selected bit from the rolling flag mask.
 u32 fn_1_F89E4(u8 value) {
+    /* WARNING: compiler-diff device, not original code: variable-count rlwnm bit test; no C spelling emits rlwnm (MWCC_IDIOMS dead end); possibly an original intrinsic */
     return __rlwnm(((u32 *)&lbl_1_bss_7F0C0)[4672], (value + 1) & 0x1f, 31, 31);
 }
 /* fzgx:end fn_1_F89E4 */
@@ -2068,6 +2073,7 @@ void fn_1_F8A18(void) {
 /* fzgx:begin fn_1_F8A38 */
 // Tests the spline flag selected by the low byte of the input.
 u32 fn_1_F8A38(u32 value) {
+    /* WARNING: compiler-diff device, not original code: variable-count rlwnm bit test; no C spelling emits rlwnm (MWCC_IDIOMS dead end); possibly an original intrinsic */
     return __rlwnm(((u32 *)&lbl_1_bss_7F0C0)[4673], ((value & 0xff) + 1) & 0x1f, 31, 31);
 }
 /* fzgx:end fn_1_F8A38 */
@@ -2191,6 +2197,7 @@ u8 fn_1_F8C50(s32 arg0) {
     u32 shift = 32 - (arg0 * 2);
     u32 value = ((struct fn_1_F8C50_lbl_1_bss_7F0C0 *)&lbl_1_bss_7F0C0)->unk_4910;
     shift &= 31;
+    /* WARNING: compiler-diff device, not original code: variable-count rlwnm bit test; no C spelling emits rlwnm (MWCC_IDIOMS dead end); possibly an original intrinsic */
     return __rlwnm(value, shift, 31, 31);
 }
 /* fzgx:end fn_1_F8C50 */
@@ -2226,6 +2233,7 @@ struct Spline_Bss_4914 {
 
 u8 fn_1_F8CF0(s32 shift) {
     u32 val = ((struct Spline_Bss_4914 *)&lbl_1_bss_7F0C0)->val;
+    /* WARNING: compiler-diff device, not original code: variable-count rlwnm bit test; no C spelling emits rlwnm (MWCC_IDIOMS dead end); possibly an original intrinsic */
     return __rlwnm(val, (32 - shift) & 0x1F, 31, 31);
 }
 /* fzgx:end fn_1_F8CF0 */
@@ -2381,12 +2389,14 @@ s32 fn_1_F9028(s16 arg0) {
         ret = fn_1_F9CA0(0, group_idx);
         break;
     case 1:
+        /* WARNING: compiler-diff device, not original code: variable-count rlwnm bit test; no C spelling emits rlwnm (MWCC_IDIOMS dead end); possibly an original intrinsic */
         ret = __rlwnm(((u32 *)&lbl_1_bss_7F0C0)[4672], ((u8)group_idx + 1) & 0x1F, 31, 31) != 0;
         break;
     case 2:
         ret = check_case2(elem.unk_8);
         break;
     case 3:
+        /* WARNING: compiler-diff device, not original code: variable-count rlwnm bit test; no C spelling emits rlwnm (MWCC_IDIOMS dead end); possibly an original intrinsic */
         ret = (u8)__rlwnm(((u32 *)&lbl_1_bss_7F0C0)[4677], (32 - group_idx) & 0x1F, 31, 31) != 0;
         break;
     }
@@ -2414,12 +2424,14 @@ s32 fn_1_F9244(s16 arg0) {
         ret = fn_1_F9D44(group_idx) ? 1 : 0;
         break;
     case 1:
+        /* WARNING: compiler-diff device, not original code: variable-count rlwnm bit test; no C spelling emits rlwnm (MWCC_IDIOMS dead end); possibly an original intrinsic */
         ret = __rlwnm(((u32 *)&lbl_1_bss_7F0C0)[4673], ((u8)group_idx + 1) & 0x1F, 31, 31) != 0;
         break;
     case 2:
         ret = ghost_test_record_flag0(elem.unk_8) ? 1 : 0;
         break;
     case 3:
+        /* WARNING: compiler-diff device, not original code: variable-count rlwnm bit test; no C spelling emits rlwnm (MWCC_IDIOMS dead end); possibly an original intrinsic */
         ret = (u8)__rlwnm(((u32 *)&lbl_1_bss_7F0C0)[4676], (32 - group_idx * 2) & 0x1F, 31, 31) != 0;
         break;
     }
@@ -2478,12 +2490,14 @@ s32 fn_1_F965C(s16 arg0) {
         ret = fn_1_F9DC4(group_idx) ? 1 : 0;
         break;
     case 1:
+        /* WARNING: compiler-diff device, not original code: variable-count rlwnm bit test; no C spelling emits rlwnm (MWCC_IDIOMS dead end); possibly an original intrinsic */
         ret = (u8)__rlwnm(((u32 *)&lbl_1_bss_7F0C0)[4672], ((u8)group_idx + 0x11) & 0x1F, 31, 31) != 0;
         break;
     case 2:
         ret = !fn_1_F210C(elem.unk_8);
         break;
     case 3:
+        /* WARNING: compiler-diff device, not original code: variable-count rlwnm bit test; no C spelling emits rlwnm (MWCC_IDIOMS dead end); possibly an original intrinsic */
         ret = (u8)__rlwnm(((u32 *)&lbl_1_bss_7F0C0)[4676], (32 - (group_idx * 2 + 1)) & 0x1F, 31, 31) != 0;
         break;
     }
@@ -2853,6 +2867,7 @@ u32 fn_1_FA0BC(s32 mode) {
         s16 i;
 
         for (i = 1; i < 6; i++) {
+            /* WARNING: compiler-diff device, not original code: variable-count rlwnm bit test; no C spelling emits rlwnm (MWCC_IDIOMS dead end); possibly an original intrinsic */
             if (__rlwnm(flags, ((((u8)i) + 1) & 0x1f), 31, 31) == 0) {
                 return 0;
             }
@@ -2863,6 +2878,7 @@ u32 fn_1_FA0BC(s32 mode) {
         s16 i;
 
         for (i = 0; i < 6; i++) {
+            /* WARNING: compiler-diff device, not original code: variable-count rlwnm bit test; no C spelling emits rlwnm (MWCC_IDIOMS dead end); possibly an original intrinsic */
             if (__rlwnm(flags, ((((u8)i) + 1) & 0x1f), 31, 31) != 0) {
                 return 1;
             }
@@ -3085,6 +3101,7 @@ static union { u32 w[10]; char *v[10]; } fzgx_pool_init_lbl_1_data_3EEA4 = {{  /
 }};
 
 
+/* WARNING: compiler-diff device, not original code: opt_common_subs off; removal changes 312 disassembly lines (spline/fn_1_FA1D8.c) */
 #pragma opt_common_subs off
 void fn_1_FA1D8(u32 arg0, u32 arg1, SplineTimeTable *table) {
     s32 i;

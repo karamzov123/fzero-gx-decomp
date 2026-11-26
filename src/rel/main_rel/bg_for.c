@@ -193,8 +193,11 @@ typedef struct DCFA4Mtx { f32 m[3][4]; } DCFA4Mtx;
 static inline void matrix_translation(DCFA4Mtx *m) {
     f32 x, y, z;
     u32 locked_cache_base = 0xE0000000;
+    /* WARNING: compiler-diff device, not original code: volatile locked-cache translation read; plain loads change 24 disassembly lines (no get-translate kernel) */
     x = *(volatile f32 *)(locked_cache_base + 0xC); /* volatile: locked-cache current matrix */
+    /* WARNING: compiler-diff device, not original code: volatile locked-cache translation read; plain loads change 24 disassembly lines (no get-translate kernel) */
     y = *(volatile f32 *)(locked_cache_base + 0x1C); /* volatile: locked-cache current matrix */
+    /* WARNING: compiler-diff device, not original code: volatile locked-cache translation read; plain loads change 24 disassembly lines (no get-translate kernel) */
     z = *(volatile f32 *)(locked_cache_base + 0x2C); /* volatile: locked-cache current matrix */
     m->m[0][3] = x;
     m->m[1][3] = y;
@@ -355,6 +358,7 @@ typedef struct {
     void *p38;
 } DDModels;
 
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 24 disassembly lines (bg_for/fn_1_DCBF4.c) */
 #pragma opt_propagation off
 void fn_1_DD4DC(DDObj *obj) {
     const f32 *pool = lbl_1_rodata_6780;
@@ -843,7 +847,9 @@ extern f32 lbl_8006D668(Vec *);
 
 /* opt_common_subs off as in fn_1_DE180, which repeats this code; opt_propagation off keeps the pool pointer
  * in one register from the start, as retail does */
+/* WARNING: compiler-diff device, not original code: opt_common_subs off; removal changes 10 disassembly lines (bg_for/fn_1_DDF80.c) */
 #pragma opt_common_subs off
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 28 disassembly lines (bg_for/fn_1_DDF80.c) */
 #pragma opt_propagation off
 
 static inline void cross(Vec *a, Vec *b, Vec *out) {
@@ -954,6 +960,7 @@ extern void lbl_8006D5F0(Vec3 *, Vec3 *, f32);
 extern f32 lbl_8006D668(Vec3 *);
 extern void fn_80008BEC(void *, int, u32);
 
+/* WARNING: compiler-diff device, not original code: opt_common_subs off; removal changes 270 disassembly lines (bg_for/fn_1_DDF80.c) */
 #pragma opt_common_subs off
 
 static inline void fn_1_DE180_cross(Vec3 *a, Vec3 *b, Vec3 *out) {
@@ -1023,6 +1030,7 @@ static inline BOOL fn_1_DE180_clamp(const fn_1_DE180_Pool *pool, Vec3 *v, f32 r)
 void fn_1_DE180(fn_1_DE180_Obj *obj, Vec3 *dir, f32 radius) {
     f32 damping;
     f32 side_scale;
+    /* WARNING: compiler-diff device, not original code: f32 constant carrier; passing pool->neg_one directly changes 18 disassembly lines */
     f32 fzgx_live;
     f32 scale;
     const fn_1_DE180_Pool *pool;
@@ -1168,6 +1176,7 @@ __declspec(section ".fzgxpool") void fzgx_pool_primer3(void) {
 /* the vector helpers of fn_1_DDF80 / fn_1_DE180 in this TU, under the same
  * propagation setting; cross writes its result through an f32 pointer so a
  * local result stays in memory */
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 108 disassembly lines (bg_for/fn_1_DE4B0.c) */
 #pragma opt_propagation off
 
 static inline void DE4B0_cross(DE4B0Vec *a, DE4B0Vec *b, DE4B0Vec *out) {
@@ -1550,7 +1559,9 @@ extern void lbl_8006E1C0(Vec3 *, Vec3 *);
 
 /* as in fn_1_DFBBC and fn_1_DF2A4: retail reloads every field at each use and keeps the
  * side test's component loads as named values */
+/* WARNING: compiler-diff device, not original code: opt_common_subs off; removal changes 364 disassembly lines (bg_for/fn_1_DEDC4.c) */
 #pragma opt_common_subs off
+/* WARNING: compiler-diff device, not original code: opt_dead_assignments off; removal changes 44 disassembly lines (bg_for/fn_1_DEDC4.c) */
 #pragma opt_dead_assignments off
 
 /* signed distance of p from the plane through point */
@@ -1705,6 +1716,7 @@ extern void fn_1_E1408(void *, void *);
 
 #include "psvec.h"
 
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 174 disassembly lines (bg_for/fn_1_DF2A4.c) */
 #pragma opt_propagation off
 
 typedef struct DF2A4Vec { f32 x, y, z; } DF2A4Vec;
@@ -1929,8 +1941,10 @@ extern f32 lbl_8006D668(Vec *);
 extern const f32 lbl_1_rodata_6780[];
 
 /* as in fn_1_DDF80 and fn_1_DE180, whose code this repeats: retail reloads each field at every use */
+/* WARNING: compiler-diff device, not original code: opt_common_subs off; removal changes 100 disassembly lines (bg_for/fn_1_DF6AC.c) */
 #pragma opt_common_subs off
 /* keeps the sqrt results as named values, which retail holds in f20/f21 below the parameters */
+/* WARNING: compiler-diff device, not original code: opt_dead_assignments off; removal changes 114 disassembly lines (bg_for/fn_1_DF6AC.c) */
 #pragma opt_dead_assignments off
 
 static inline void cross(Vec *a, Vec *b, Vec *out) {
@@ -1999,6 +2013,7 @@ static inline void flip(const f32 *pool, Vec *v) {
 }
 
 /* fn_1_DDF80's body; retail inlines it twice, which needs a larger inline size limit */
+/* WARNING: compiler-diff device, not original code: inline_max_size(4096); removal changes 365 disassembly lines (bg_for/fn_1_DF6AC.c) */
 #pragma inline_max_size(4096)
 static inline void split(const f32 *pool, Vec *a, Vec *b, Vec *along, Vec *side, f32 along_scale, f32 side_scale) {
     Vec pos;
@@ -2225,7 +2240,9 @@ extern void fn_1_A3BD8(s32, u32);
 extern void fn_1_DF6AC(Vec *, Vec *, Vec *, Vec *, Vec *, f32, f32, f32, f32, f32, f32);
 extern void fn_1_24F10(DFBBCCar *, f32);
 
+/* WARNING: compiler-diff device, not original code: opt_common_subs off; removal changes 64 disassembly lines (bg_for/fn_1_DFBBC.c) */
 #pragma opt_common_subs off
+/* WARNING: compiler-diff device, not original code: opt_dead_assignments off; removal changes 70 disassembly lines (bg_for/fn_1_DFBBC.c) */
 #pragma opt_dead_assignments off
 
 static inline void cross(Vec *a, Vec *b, Vec *out) {
@@ -2291,6 +2308,7 @@ static inline void flip(Vec *v) {
     psvec_scale(v, -1.0f, v);
 }
 
+/* WARNING: compiler-diff device, not original code: inline_max_size(4096); removal changes 380 disassembly lines (bg_for/fn_1_DFBBC.c) */
 #pragma inline_max_size(4096)
 static inline void split(Vec *a, Vec *b, Vec *along, Vec *side, f32 along_scale, f32 side_scale) {
     Vec pos;
@@ -2636,7 +2654,9 @@ extern void lbl_8006D5F0(Vec *, Vec *, f32);
 extern f32 lbl_8006D668(Vec *);
 extern void fn_80008BEC(void *, int, u32);
 
+/* WARNING: compiler-diff device, not original code: opt_common_subs off; removal changes 30 disassembly lines (bg_for/fn_1_E07B8.c) */
 #pragma opt_common_subs off
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 122 disassembly lines (bg_for/fn_1_E07B8.c) */
 #pragma opt_propagation off
 
 static inline void cross(Vec *a, Vec *b, Vec *out) {
@@ -2730,6 +2750,7 @@ static inline void split(const f32 *pool, Vec *a, Vec *b, Vec *along, Vec *side,
 
 /* fn_1_DE180's body, which retail inlines here three times; split is fn_1_DDF80's body (as in fn_1_DF6AC)
  * taking the precomputed dot and sqrt */
+/* WARNING: compiler-diff device, not original code: inline_max_size(4096); removal changes 363 disassembly lines (bg_for/fn_1_E07B8.c) */
 #pragma inline_max_size(4096)
 static inline void slide(const f32 *pool, Obj *obj, Vec *dir, f32 radius) {
     Vec push;
@@ -2918,6 +2939,7 @@ extern void lbl_8006D5A4(void *, void *, void *, f32);
 extern void lbl_8006D5F0(void *, f32, void *);
 
 /* Earliest time t at which two moving spheres of combined radius r touch. */
+/* WARNING: compiler-diff device, not original code: opt_lifetimes off; removal changes 38 disassembly lines (bg_for/fn_1_E1408.c) */
 #pragma opt_lifetimes off
 static inline s32 E1408_sweep(const E1408Pool *pool, E1408Vec *dp, E1408Vec *dv, f32 r, f32 *t) {
     f32 B;
@@ -2941,6 +2963,7 @@ static inline s32 E1408_sweep(const E1408Pool *pool, E1408Vec *dp, E1408Vec *dv,
     {
         f32 v = dv->y;
         f32 w = dv->z;
+        /* WARNING: compiler-diff device, not original code: volatile first load; a plain dv->x changes 12 disassembly lines */
         u = *(volatile f32 *)&dv->x;  /* fzgx-allow: S2 volatile view keeps the verified load order */
         length = u * u;
         length += v * v;

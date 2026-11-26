@@ -2441,6 +2441,7 @@ static void fzgx_bss_layout(void) {
 #define S_TARGET0 lbl_1_bss_6F31A__fzgx_offset_6
 #define S_TARGET1 lbl_1_bss_6F31A__fzgx_offset_A
 
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 299 disassembly lines (sound/fn_1_A1964.c) */
 #pragma opt_propagation off
 
 static inline void setup(s32 h, u32 *handles, u8 id) {
@@ -2720,6 +2721,7 @@ static inline void play(u8 track) {
     }
     S_TRACK = track;
 }
+/* WARNING: compiler-diff device, not original code: opt_dead_assignments off; removal changes 112 disassembly lines (sound/fn_1_A1DCC.c) */
 #pragma opt_dead_assignments off
 void fn_1_A1DCC(u8 arg0) {
     s8 track;
@@ -3814,6 +3816,7 @@ void fn_1_A266C(void) {
     if (fzgx_obj_lbl_1_bss_6EAC6) {
         for (i = 0; (s32)i < 4; i++) {
             /* fzgx-allow: preserve the signed byte read before the narrowing subtraction. */
+            /* WARNING: compiler-diff device, not original code: volatile s8 read; a plain read changes 125 disassembly lines */
             level = *(volatile s8 *)&fzgx_obj_lbl_1_bss_6F1E4[i].unk_2;
             level -= 2;
             if (level < 0) {
@@ -3874,6 +3877,7 @@ extern const f32 lbl_1_rodata_4474;
 extern s32 fn_800672E4(u32, s32);
 extern u32 fn_8004BED0(void *);
 
+/* WARNING: compiler-diff device, not original code: opt_common_subs off; removal changes 62 disassembly lines (sound/fn_1_A2A70.c) */
 #pragma opt_common_subs off
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u32 fzgx_obj_lbl_1_bss_6EA98;
@@ -3985,11 +3989,13 @@ static void fzgx_bss_layout(void) {
 }
 #pragma section code_type ".text"
 
+/* WARNING: compiler-diff device, not original code: opt_dead_assignments off; removal changes 119 disassembly lines (sound/fn_1_A2A70.c) */
 #pragma opt_dead_assignments off
 void fn_1_A2A70(u32 arg0, s32 arg1) {
     s32 v0_2;
     f32 v1;
     s32 v0;
+    /* WARNING: compiler-diff device, not original code: volatile stack slot; a plain s32 changes 178 disassembly lines */
     volatile s32 loc_8;  /* fzgx-allow: S2 retail round-trips the float through a stack slot */
     u8 *v11;
     s32 i;
@@ -4262,6 +4268,7 @@ static void fzgx_bss_layout(void) {
 }
 #pragma section code_type ".text"
 
+/* WARNING: compiler-diff device, not original code: opt_common_subs off; removal changes 20 disassembly lines (sound/fn_1_A2FC8.c) */
 #pragma opt_common_subs off
 void fn_1_A2FC8(s32 arg0, f32 arg1, u32 unused2, u32 unused3, u32 unused4) {
     
@@ -4271,6 +4278,7 @@ void fn_1_A2FC8(s32 arg0, f32 arg1, u32 unused2, u32 unused3, u32 unused4) {
     s32 found = 0;
     s32 idx;
     f32 f0;
+    /* WARNING: compiler-diff device, not original code: one-field f32 carrier; a plain f32 changes 22 disassembly lines */
     struct { f32 value; } f1;
 
     for (i = 0; i < lbl_1_bss_6F2C4; i++) {
@@ -4482,6 +4490,7 @@ extern void fn_80067898(u32 arg0);
 extern const f32 lbl_1_rodata_4544;
 extern const f32 lbl_1_rodata_4548;
 
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 4 disassembly lines (sound/fn_1_A33F0.c) */
 #pragma opt_propagation off
 void fn_1_A33F0(s32 arg0, f32 arg1) {
     SoundState *st = (SoundState *)&lbl_1_bss_6EA98;
@@ -4545,6 +4554,7 @@ extern u32 lbl_1_bss_6EA98;
 extern s32 fn_1_3F864(void);
 extern u32 fn_1_864E8(s32 arg0);
 extern void fn_80067898(u32 arg0);
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 12 disassembly lines (sound/fn_1_A358C.c) */
 #pragma opt_propagation off
 void fn_1_A358C(s32 arg0) {
     u8* base = (u8*)&lbl_1_bss_6EA98;
@@ -4634,6 +4644,7 @@ static void fzgx_bss_layout(void) {
 
 #define ABS(v) __abs(v)
 
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 36 disassembly lines (sound/fn_1_A3654.c) */
 #pragma opt_propagation off
 void fn_1_A3654(void *player, u32 id) {
     f32 speed;
@@ -4719,6 +4730,7 @@ extern f32 fn_1_8652C(s32 arg0);
 extern const f32 lbl_1_rodata_454C;
 extern void fn_80067344(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
 extern void fn_80067898(u32 arg0);
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 38 disassembly lines (sound/fn_1_A3A1C.c) */
 #pragma opt_propagation off /* as the other sound.c blocks */
 void fn_1_A3A1C(void) {
     SoundState *st = (SoundState *)&lbl_1_bss_6EA98;
@@ -5700,11 +5712,13 @@ void fn_1_A5330(u8 value, s16 index) {
 
 extern void fn_80067898(u32 value);
 
+/* WARNING: compiler-diff device, not original code: opt_dead_assignments off; removal changes 62 disassembly lines (sound/fn_1_A4BC8.c) */
 #pragma opt_dead_assignments off
 void fn_1_A5344(u8 value, s16 index) {
     u8 *table;
     s32 i;
 
+    /* WARNING: compiler-diff device, not original code: globals.h declares the sound state lbl_1_bss_6EA98 as u32 (dtk under-sized); needs the record type */
     table = (*(u8 (*)[])&lbl_1_bss_6EA98) + 0x984;
     if (table[index] > value) {
         for (i = 0; i < (table[index] - value); i++) {
@@ -5908,6 +5922,7 @@ void fn_1_A5594(u32 arg0, Fn183D28Vec3 *pos)
     f32 dy;
     f32 dz;
     f32 scaled;
+    /* WARNING: compiler-diff device, not original code: one-field f32 carrier; a plain f32 changes 14 disassembly lines */
     struct { f32 value; } distance;
     f32 t;
     u8 vol;
@@ -5929,6 +5944,7 @@ void fn_1_A5594(u32 arg0, Fn183D28Vec3 *pos)
     lbl_8006E1B0(pos, &rel);
     fn_8006EF10(&rel, &dist, &angle);
     {
+        /* WARNING: compiler-diff device, not original code: one-field f32 carrier; a plain f32 changes 16 disassembly lines */
         struct { f32 value; } hi;
         hi.value = lbl_1_rodata_4470;
         t = hi.value - distance.value / lbl_1_rodata_48C4;

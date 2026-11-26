@@ -337,6 +337,7 @@ __declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
 
 /* opt_dead_assignments off keeps the read of k->unk_14 (0.0) into zero where it is written, ahead of the product's
  * loads, which gives retail's float registers */
+/* WARNING: compiler-diff device, not original code: opt_dead_assignments off; removal changes 12 disassembly lines (live_camera/fn_1_DA34.c) */
 #pragma opt_dead_assignments off
 void fn_1_DF74(void) {
     s16 i;
@@ -540,9 +541,12 @@ extern s32 fn_1_40BB4(void);
 extern u8 lbl_1_bss_6F243;
 extern void fn_1_A2D84(u32);
 
+/* WARNING: compiler-diff device, not original code: opt_lifetimes off; removal changes 158 disassembly lines (live_camera/fn_1_E174.c) */
 #pragma opt_lifetimes off
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 50 disassembly lines (live_camera/fn_1_E174.c) */
 #pragma opt_propagation off
 void fn_1_E174(f32 arg0) {
+    /* WARNING: compiler-diff device, not original code: f32 load carrier; reading the member directly changes 12 disassembly lines */
     f32 fzgx_live;
     struct fn_1_E174_lbl_1_bss_1148 *p_lbl_1_bss_1148;
     struct fn_1_E174_lbl_1_data_43B8 *p_lbl_1_data_43B8;
@@ -901,6 +905,7 @@ __declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
 #pragma section code_type ".text"
 
 /* retail keeps every product separate (fmuls; fadds), with no fused multiply-add */
+/* WARNING: compiler-diff device, not original code: fp_contract off; removal changes 347 disassembly lines (live_camera/fn_1_E688.c) */
 #pragma fp_contract off
 void fn_1_E688(f32 alpha) {
     char text[5][35];
@@ -1546,6 +1551,7 @@ static inline void update_mode(struct fn_1_EE44_Arg0 *arg0, u8 *pool) {
     }
 }
 
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 6 disassembly lines (live_camera/fn_1_EE04.c) */
 #pragma opt_propagation off
 void fn_1_EE44(struct fn_1_EE44_Arg0 *arg0, f32 arg1) {
     Obj_1_data_43B8 *p_lbl_1_data_43B8;
@@ -1555,6 +1561,7 @@ void fn_1_EE44(struct fn_1_EE44_Arg0 *arg0, f32 arg1) {
     u16 v3;
     f64 value;
     s16 rotation;
+    /* WARNING: compiler-diff device, not original code: hand-built int-to-double conversion against the rodata pool base; not rewritten (pool-mapped constants) */
     union { f64 d; struct { u32 hi, lo; } w; } conversion;
     p_lbl_1_data_43B8 = (Obj_1_data_43B8 *)&lbl_1_data_43B8;
     p_lbl_1_rodata_4E0 = (u8 *)&lbl_1_rodata_4E0;
@@ -2044,7 +2051,9 @@ extern u32 lbl_801A6410;
 
 /* Retail rematerialises the __FILE__ string address (dat + 0x68) at each
  * allocation; keep MWCC from hoisting it into a saved register. */
+/* WARNING: compiler-diff device, not original code: opt_common_subs off; removal changes 322 disassembly lines (live_camera/fn_1_F6A8.c) */
 #pragma opt_common_subs off
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 14 disassembly lines (live_camera/fn_1_F6A8.c) */
 #pragma opt_propagation off
 /* Load the three live-camera data files into freshly allocated buffers. */
 void fn_1_F6A8(void) {
@@ -2299,6 +2308,7 @@ extern void camera_set_result(s16);
 extern void camera_set_selected_value(u8);
 
 void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
+    /* WARNING: compiler-diff device, not original code: s16 increment carrier; arg0->unk_6 = v30 + 1 changes 346 disassembly lines */
     s16 fzgx_value;
     u8 v0;
     f64 v1;
@@ -3105,6 +3115,7 @@ extern u32 lbl_801A63C0;
 extern void fn_1_862D4(s16, Vec3 *);
 extern void fn_1_862A8(s16, Vec3 *);
 
+/* WARNING: compiler-diff device, not original code: opt_common_subs off; removal changes 381 disassembly lines (live_camera/fn_1_107B8.c) */
 #pragma opt_common_subs off
 void fn_1_107B8(Sig_fn_1_101D0_Fn_1_101D0_State *cam) {
     f32 dz;
@@ -3113,7 +3124,9 @@ void fn_1_107B8(Sig_fn_1_101D0_Fn_1_101D0_State *cam) {
     u32 nrec;
     u32 nball;
     Vec3 *ball;
+    /* WARNING: compiler-diff device, not original code: one-field loop counter; a plain u32 changes 16 disassembly lines */
     struct { u32 value; } i;
+    /* WARNING: compiler-diff device, not original code: one-field counter; a plain u32 changes 8 disassembly lines */
     struct { u32 value; } n;
     s32 best;
     s32 *p;
@@ -3121,6 +3134,7 @@ void fn_1_107B8(Sig_fn_1_101D0_Fn_1_101D0_State *cam) {
     f32 dy;
     s32 changed;
     f32 dx;
+    /* WARNING: compiler-diff device, not original code: one-field flag; a plain u8 changes 16 disassembly lines */
     struct { u8 value; } none;
     f32 d;
     f32 bestd;
@@ -3424,7 +3438,9 @@ void fn_1_10AF0(LiveCamState *cam) {
     u32 nrec;
     u32 nball;
     Vec3 *ball;
+    /* WARNING: compiler-diff device, not original code: one-field loop counter; a plain u32 changes 16 disassembly lines */
     struct { u32 value; } i;
+    /* WARNING: compiler-diff device, not original code: one-field counter; a plain u32 changes 8 disassembly lines */
     struct { u32 value; } n;
     s32 best;
     s32 *p;
@@ -3432,9 +3448,11 @@ void fn_1_10AF0(LiveCamState *cam) {
     f32 dy;
     s32 changed;
     f32 dx;
+    /* WARNING: compiler-diff device, not original code: one-field flag; a plain u8 changes 16 disassembly lines */
     struct { u8 value; } none;
     f32 d;
     f32 bestd;
+    /* WARNING: compiler-diff device, not original code: one-field f32 carrier; a plain f32 changes 20 disassembly lines */
     struct { f32 value; } frames;
     u16 point;
     s32 list[20];
@@ -3656,6 +3674,7 @@ typedef struct {
     u8 unk_7C[0x40];
 } Cam;
 
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 22 disassembly lines (live_camera/fn_1_1138C.c) */
 #pragma opt_propagation off
 static inline void fn_1_1138C_read_pointer(Cam *c, Obj_1_data_4754 *base, s32 index)
 {
@@ -3670,6 +3689,7 @@ void fn_1_1138C(Cam *c)
     V3 a;
     u32 r;
     u32 state;
+    /* WARNING: compiler-diff device, not original code: one-field f32 carrier; a plain f32 changes 20 disassembly lines */
     struct { f32 value; } t;
     extern const f32 lbl_1_rodata_604;
 
@@ -3710,6 +3730,7 @@ void fn_1_1138C(Cam *c)
 /* fzgx:end fn_1_1138C */
 
 /* fzgx:begin fn_1_11544 */
+/* WARNING: compiler-diff device, not original code: fp_contract off; removal changes 89 disassembly lines (live_camera/fn_1_11544.c) */
 #pragma fp_contract off
 
 
@@ -3744,9 +3765,12 @@ typedef struct LiveCam {
     Vec3f unk_70;
 } LiveCam;
 
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 50 disassembly lines (live_camera/fn_1_11544.c) */
 #pragma opt_propagation off
 void fn_1_11544(LiveCam *cam) {
+    /* WARNING: compiler-diff device, not original code: x copy carriers; reading cam->unk_70.x directly changes 30 disassembly lines */
     f32 fzgx_live_;
+    /* WARNING: compiler-diff device, not original code: x copy carriers; reading cam->unk_70.x directly changes 30 disassembly lines */
     f32 fzgx_live;
     Vec3f sp_3c;
     f32 sp_48[3][4];
@@ -3757,9 +3781,13 @@ void fn_1_11544(LiveCam *cam) {
     u32 sp_10;
     f32 rate;
     f32 factor;
+    /* WARNING: compiler-diff device, not original code: y/z copy carriers; reading cam->unk_70.y/z directly changes 30 disassembly lines */
     f32 fzgx_y_;
+    /* WARNING: compiler-diff device, not original code: y/z copy carriers; reading cam->unk_70.y/z directly changes 30 disassembly lines */
     f32 fzgx_y;
+    /* WARNING: compiler-diff device, not original code: y/z copy carriers; reading cam->unk_70.y/z directly changes 30 disassembly lines */
     f32 fzgx_z_;
+    /* WARNING: compiler-diff device, not original code: y/z copy carriers; reading cam->unk_70.y/z directly changes 30 disassembly lines */
     f32 fzgx_z;
     f32 z;
     f32 y;
@@ -3990,6 +4018,7 @@ extern void lbl_8006DAEC(void);
 extern void lbl_8006DB30(void);
 
 static inline f32 fn_1_1189C_read_pointer(LcVec * owner) { return owner->z; }
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 12 disassembly lines (live_camera/fn_1_1189C.c) */
 #pragma opt_propagation off
 void fn_1_1189C(LcState *state) {
     LcPool *pool;
@@ -4087,6 +4116,7 @@ typedef struct {
 extern void fn_1_862D4(s16, Vec3 *);
 extern void fn_8006E2B0(void *, Vec3 *);
 
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 28 disassembly lines (live_camera/fn_1_11ABC.c) */
 #pragma opt_propagation off
 void fn_1_11ABC(LiveCamera *camera) {
     Vec3 first;
@@ -4109,6 +4139,7 @@ void fn_1_11ABC(LiveCamera *camera) {
     fn_1_8636C(camera->unk_6, &camera->unk_7C);
     fn_1_862A8(camera->unk_6, &camera->unk_70);
 
+    /* WARNING: compiler-diff device, not original code: generated live_camera.h types the preset position as three u32 (LiveCameraPreset); needs a Vec3 member, not regenerated here */
     camera->unk_34 = (*(CameraData (*)[])&lbl_1_data_4AA0)[camera->unk_4].v;
 
     {
@@ -4166,7 +4197,9 @@ extern void lbl_8006DB30(void);
 
 /* fp_contract off: retail keeps each product separate (fmuls; fadds). opt_propagation off, with the x/y/z
  * temporaries for the locked-cache stores, gives retail's register colouring (as in fn_1_11544) */
+/* WARNING: compiler-diff device, not original code: fp_contract off; removal changes 200 disassembly lines (live_camera/fn_1_11C08.c) */
 #pragma fp_contract off
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 12 disassembly lines (live_camera/fn_1_11C08.c) */
 #pragma opt_propagation off
 
 /* moves dst toward src by rate * f of the difference, per component */
@@ -5123,6 +5156,7 @@ extern u32 *fn_1_1304C(Obj_1_bss_3B30 *, u32);
 u32 fn_1_12FD4(u32 arg0, u32 arg1, u32 arg2) {
     u32 *t0;
     /* Publish the cleared header before updating the request fields. */
+    /* WARNING: compiler-diff device, not original code: volatile request pointer; a plain pointer changes 45 disassembly lines */
     volatile LiveCameraRequest *obj = (LiveCameraRequest *)&lbl_1_bss_3B30;
     obj->unk_0 = 0;
     obj->unk_80 = arg1;
