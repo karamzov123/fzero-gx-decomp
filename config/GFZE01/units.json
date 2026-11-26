@@ -9329,10 +9329,7 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-inline",
-      "on,noauto"
-    ],
+    "extra_cflags": [],
     "collapsed": true,
     "split_resize_for": {"GFZP01": {".text": ["fn_80070620"]}},
     "pool": {
@@ -9419,10 +9416,7 @@
       "@233": "lbl_801A6EE8",
       "@236": "lbl_801A6EF0"
     },
-    "extra_cflags": [
-      "-inline",
-      "on,noauto"
-    ]
+    "extra_cflags": []
   },
   {
     "module": "main",
