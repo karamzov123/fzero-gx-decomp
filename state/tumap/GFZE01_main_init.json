@@ -1,0 +1,57 @@
+{
+  "version": "GFZE01",
+  "module": "main",
+  "section": ".init",
+  "code_range": ["80003100", "80005544"],
+  "linker_tables": ["_rom_copy_info", "_bss_init_info"],
+  "reference": {
+    "repository": "https://github.com/SwareJonge/mkdd",
+    "commit": "2a9eb75fefd75c649c0488742db931571cbd7812",
+    "configuration": "config/MarioClub_us",
+    "inputs": ["splits.txt", "symbols.txt"],
+    "use": "Names and TU boundaries only. Each .init boundary agrees with the contiguous GFZE01 symbol sequence; no reference code or data is imported."
+  },
+  "tus": [
+    {
+      "file": "dolphin/os/init/__start.c",
+      "init": ["80003100", "80003400"],
+      "symbols": ["__check_pad3", "__set_debug_bba", "__get_debug_bba", "__start", "__init_registers", "__init_data"],
+      "evidence": "Same six names, sizes and order. GX startup branches to the register/data initializers and uses its BBA helpers; the HAL entry lies in the next object."
+    },
+    {
+      "file": "dolphin/os/init/__ppc_eabi_init.cpp",
+      "init": ["80003400", "80003458"],
+      "symbols": ["__init_hardware", "__flush_cache"],
+      "text_map_file": "__ppc_eabi_init.c",
+      "evidence": "Both .init symbols have the same addresses and sizes. The reference object also owns the __init_user, __init_cpp and _ExitProcess text group already mapped in GFZE01."
+    },
+    {
+      "file": "Runtime/__mem.c",
+      "init": ["80003458", "80003590"],
+      "symbols": ["memset", "__fill_mem", "memcpy"],
+      "evidence": "All three symbols have the same names, addresses and sizes; GX memset calls the adjacent __fill_mem."
+    },
+    {
+      "file": "debugger/embedded/MetroTRK/Portable/mem_TRK.c",
+      "init": ["80003590", "800035E4"],
+      "symbols": ["fn_80003590", "fn_800035C0"],
+      "reference_names": {"fn_80003590": "TRK_memset", "fn_800035C0": "TRK_memcpy"},
+      "text_map_file": "mem_TRK.c",
+      "evidence": "Matching adjacent entry sizes (0x30 and 0x24). The first GX routine calls TRK_fill_mem, the matching 0xB8 .text sibling; the second is a byte-copy loop."
+    },
+    {
+      "file": "debugger/embedded/MetroTRK/Processor/ppc/Generic/__exception.s",
+      "init": ["800035E4", "80005518"],
+      "symbols": ["gTRKInterruptVectorTable"],
+      "evidence": "The vector table spans the entire reference object. The GX reset slot at relative 0x100 branches to the next TU, and exception slots reference TRKInterruptHandler. This is one assembly table, not one C function or a group of compiler-generated functions."
+    },
+    {
+      "file": "debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c",
+      "init": ["80005518", "80005544"],
+      "symbols": ["fn_80005518"],
+      "reference_names": {"fn_80005518": "__TRK_reset"},
+      "text_map_file": "dolphin_trk.c",
+      "evidence": "Same reset address and size (0x2C); the GX entry is the reset-vector target and calls OSResetSystem(0, 0, 0). The reference independently places the entry in the same object as the Dolphin TRK text group."
+    }
+  ]
+}

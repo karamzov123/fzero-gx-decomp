@@ -174,12 +174,26 @@ The AHX range `0x8004FF68..0x8005466C` is seven TUs in `src/dol/ahx/`: `ahx_bits
 - The remaining `.bss` of `ahx_decode.c`, `ahx_synthobj.c` and `ahx_player.c` stays in data units: first-access order would not reproduce retail's object order without a primer.
 - Marked optimizer devices remain in `fn_800501F4`, `fn_80050698`, `fn_80051448` and `fn_80053A84`.
 
-### DOL TU map complete (2026-11-23)
+### DOL `.text` TU map complete (2026-11-23)
 
 `state/tumap/GFZE01_main.json` now assigns all 2,230 DOL functions to 252 TUs. The map is a draft in one respect: where no data bounds a TU, its extent is positional and its `notes` say so, and names without a retail or donor source are placeholders. That covers `sasnd_ctrl.c`, `render_*.c`, `lg_view.c`, `exi2.c` and the AHX and sasnd files.
 
 - `sasnd_ctrl.c` holds the last 19 sasnd functions as one typed unit for USA and Japan. `fn_80064FDC` is still a lifted body with byte offsets.
 - `dol_tu_split.py --pooled` splits units that carry literal bindings. Three DOL units still cross a TU boundary because private strings, a layout primer or a literal do not move with one piece: `dol/trk/serpoll.c`, `dol/adx/adx_tlk.c` and `dol/fn_8007FE70.c`.
+
+### DOL startup and interrupt-vector ownership
+
+[`GFZE01_main_init.json`](../state/tumap/GFZE01_main_init.json) records the six
+TU ranges covering the DOL's `.init` code and vector table (`0x80003100..0x80005544`),
+which the `.text` map did not count. The pinned MarioClub_us split and symbol
+tables agree with the addresses and sizes of all 15 tracked entries, treating
+the vector table as an assembly table rather than C. GFZE01 retail-object
+relocations confirm the `TRK_fill_mem` call, the reset-vector branch at table
+offset `0x100`, and the reset routine's call to `OSResetSystem`. The map
+identifies three `.init` ranges with siblings in the `.text` map. The trailing
+`_rom_copy_info` and `_bss_init_info` linker tables are not TU code. This is
+ownership evidence only: source names, split extents, compilation and linkage
+are unchanged.
 
 ## MSL is built with `-inline deferred` (2026-11-24)
 

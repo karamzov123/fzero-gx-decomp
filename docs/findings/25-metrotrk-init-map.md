@@ -1,5 +1,10 @@
 # MetroTRK `.init` blob map — `init_trk_800035E4` (0x800035E4–0x80005518, 0x1F34 bytes)
 
+Historical notes below include a superseded address interpretation. The
+[GFZE01 `.init` TU map](../../state/tumap/GFZE01_main_init.json) records the
+actual table at `0x800035E4`, the reset vector at `0x800036E4`, and its target
+at `0x80005518`, verified against the GFZE01 extracted objects.
+
 Blob is the **entire MetroTRK NUB interrupt-vector table** (`gTRKInterruptVectorTable` …
 `gTRKInterruptVectorTableEnd`) plus two small trailing init functions. It corresponds 1:1 to
 doldecomp/melee `src/MetroTRK/__exception.s` (verified instruction-by-instruction: same
