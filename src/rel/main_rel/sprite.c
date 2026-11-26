@@ -1293,8 +1293,6 @@ void fn_1_50164(FontDrawPacket *packet, f32 width, f32 height, f32 a, f32 b) {
 /* fzgx:end fn_1_50164 */
 
 /* fzgx:begin fn_1_50190 */
-/* WARNING: compiler-diff device, not original code (carried from main: 56 words in fn_1_50190 without it) */
-#pragma opt_lifetimes off
 
 void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg4, f32 farg5) {
     struct Pkt88 loc_8;
@@ -1310,6 +1308,7 @@ void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg
     f32 half;
     f32 temp_f24;
     f32 temp_f23;
+    f32 inner_h;
     f32 var_f22;
     f32 temp_f30;
     u32 temp_r4;
@@ -1320,8 +1319,8 @@ void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg
     temp_f24 = (fn_1_486C4((*(u32 *)(arg0))) - farg4) - farg5;
     temp_f25 = (temp_f23 - farg2) - farg3;
     temp_f26 = (farg0 - farg2) - farg3;
-    temp_f23 = (farg1 - farg4) - farg5;
-    if (farg0 <= 0.0f || farg1 <= 0.0f || temp_f25 <= 0.0f || temp_f24 <= 0.0f || temp_f26 <= 0.0f || temp_f23 <= 0.0f || farg2 < 0.0f || farg3 < 0.0f || farg4 < 0.0f || farg5 < 0.0f) {
+    inner_h = (farg1 - farg4) - farg5;
+    if (farg0 <= 0.0f || farg1 <= 0.0f || temp_f25 <= 0.0f || temp_f24 <= 0.0f || temp_f26 <= 0.0f || inner_h <= 0.0f || farg2 < 0.0f || farg3 < 0.0f || farg4 < 0.0f || farg5 < 0.0f) {
         return;
     }
     {
@@ -1381,7 +1380,7 @@ void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg
         fn_1_4F734((void *)((FontDrawPacket *)((FontDrawPacket *) &loc_8)));
         loc_8 = *(struct Pkt88 *)(arg0);
         fn_1_51678((void *)((FontDrawPacket *)((FontDrawPacket *) &loc_8)), (*(u32 *)(arg0)), (0), farg4, farg2, temp_f24);
-        temp_f28 = temp_f23 / temp_f24;
+        temp_f28 = inner_h / temp_f24;
         (*(f32 *)((u8 *)(&loc_8) + 4)) = var_f22;
         temp_f30 = var_f30 + farg4;
         (loc_8.words)[0xC] &= 0xFFFFFFF0;
@@ -1406,7 +1405,7 @@ void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg
         loc_8 = *(struct Pkt88 *)(arg0);
         temp_f28_2 = farg4 + temp_f24;
         fn_1_51678((void *)((FontDrawPacket *)((FontDrawPacket *) &loc_8)), (*(u32 *)(arg0)), (0), temp_f28_2, farg2, farg5);
-        temp_f30_2 = temp_f23 + temp_f30;
+        temp_f30_2 = inner_h + temp_f30;
         (*(f32 *)((u8 *)(&loc_8) + 4)) = var_f22;
         (*(f32 *)((u8 *)(&loc_8) + 8)) = temp_f30_2;
         (loc_8.words)[0xC] &= 0xFFFFFFF0;
@@ -1427,7 +1426,6 @@ void fn_1_50190(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg
     }
 }
 
-#pragma opt_lifetimes reset
 /* fzgx:end fn_1_50190 */
 
 /* fzgx:begin fn_1_508C4 */
