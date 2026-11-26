@@ -121,16 +121,13 @@ s32 fn_80039C40(ThpDec *d) {
     b = divUp(lab_t0, lab_t1);
     d->unk_7a8 = divUp(lab_t0, b);
     {
-        u8 fzgx_loop_i_1473;
-        for (fzgx_loop_i_1473 = 0; fzgx_loop_i_1473 < d->numComp; fzgx_loop_i_1473++) {
-            lab_t0 = d->width * (d->comps)[fzgx_loop_i_1473].h;
+        u8 k;
+        for (k = 0; k < d->numComp; k++) {
             lab_t1_ = d->maxH;
-            (d->comps)[fzgx_loop_i_1473].w8 = divUp(lab_t0, lab_t1_);
-            lab_t0 = d->height * (d->comps)[fzgx_loop_i_1473].v;
+            (d->comps)[k].w8 = divUp(d->width * (d->comps)[k].h, lab_t1_);
             lab_t1_ = d->maxV;
-            (d->comps)[fzgx_loop_i_1473].hC = divUp(lab_t0, lab_t1_);
+            (d->comps)[k].hC = divUp(d->height * (d->comps)[k].v, lab_t1_);
         }
-        i = fzgx_loop_i_1473;
     }
     return 0;
 }
@@ -271,9 +268,6 @@ s32 fn_8003A3D4(u8 *arg0) {
 #pragma opt_propagation off
 #pragma opt_lifetimes off
 u8 fn_8003A4E8(ThpDec *d, u8 idx, u8 *counts) {
-    u32 *fzgx_live_;
-    u32 *fzgx_live;
-    u32 *fzgx_live_2;
     struct { s8 value; } c;
     s32 j;
     u32 t;
@@ -285,11 +279,8 @@ u8 fn_8003A4E8(ThpDec *d, u8 idx, u8 *counts) {
     for (j = 1; j <= 16; j++) {
         n += ((j - 1)[counts]);
     }
-    fzgx_live_ = (u32 *)d->heap;
-    fzgx_live = fzgx_live_;
-    ((idx & 0xFF)[d->huff]).huffsize = (s8 *)fzgx_live;
-    fzgx_live_2 = (u32 *)d->heap;
-    base = n + (u32)fzgx_live_2;
+    ((idx & 0xFF)[d->huff]).huffsize = (s8 *)d->heap;
+    base = n + (u32)d->heap;
     d->heap = (u8 *)(base + 1);
     t = 0;
     for (i = 1; i <= 16; i++) {
