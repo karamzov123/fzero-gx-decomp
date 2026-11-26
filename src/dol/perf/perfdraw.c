@@ -181,8 +181,10 @@ u32 __OSCoreClock : (0x80000000 + 0xFC);
 /* fzgx-allow: A1 SDK absolute-addressed GX write-gather pipe */
 volatile PerfWGPipe __GXWGFifo : FZGX_ADDR_GXFIFO;
 
+/* WARNING: compiler-diff device, not original code: opt_propagation off around fn_8003E9EC; without it the object differs over 5944 dump lines (frame 40 -> 56, scheduling of the clock divisions) */
 #pragma opt_propagation off
 void fn_8003E9EC(u32 arg0) {
+    /* WARNING: compiler-diff device, not original code: store carrier for p->unk_2C; a direct member store 28 diff lines */
     f32 *fzgx_value;
     f32 v;
     PerfLines *p;
@@ -212,6 +214,7 @@ void fn_8003E9EC(u32 arg0) {
 }
 #pragma opt_propagation reset
 
+/* WARNING: compiler-diff device, not original code: opt_propagation / opt_common_subs / opt_lifetimes off from fn_8003EAE4 through fn_8003EC44 (lifetimes) and the rest of the drawing functions (propagation, common_subs); removing the three opening pragmas 246 diff lines */
 #pragma opt_propagation off
 #pragma opt_common_subs off
 #pragma opt_lifetimes off
@@ -286,6 +289,7 @@ void fn_8003EC44(PerfRecord *arg0) {
     u32 v69;
     u32 v70;
     u32 v72;
+    /* WARNING: compiler-diff device, not original code: fzgx_frame_pad_a/b/c reserve retail frame homes (a 1.2.5n frame keeps space for dead locals, so the original had more locals here); removing the three pads 306 diff lines */
     u32 fzgx_frame_pad_a[6];  /* fzgx: retail frame home */
     PerfColor c0;
     PerfColor c1;
@@ -301,6 +305,7 @@ void fn_8003EC44(PerfRecord *arg0) {
     PerfColor c11;
     PerfColor c12;
     PerfColor c13;
+    /* WARNING: compiler-diff device, not original code: frame pads b/c (see above) */
     u32 fzgx_frame_pad_b[2];  /* fzgx: retail frame home */
     f32 loc_1C;
     u32 fzgx_frame_pad_c[4];  /* fzgx: retail frame home */
