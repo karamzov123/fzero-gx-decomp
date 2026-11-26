@@ -894,13 +894,11 @@ typedef struct {
 } Entry_u14;
 
 
-/* WARNING: compiler-diff device, not original code: without opt_propagation off fn_80073D60 differs by 36 instructions; direct v0/v1 assignments give 19 (27 with v0 declared first), ternaries 42 */
-#pragma opt_propagation off
 void fn_80073D60(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     Entry_u14 *entry;
     s32 v1;
     s32 v0;
-    s32 t;
+    u32 t;
 
     t = 0;
     if (arg3 & 0xFF) {
@@ -935,7 +933,6 @@ void fn_80073D60(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
         entry->unk_1C = 0;
     }
 }
-#pragma opt_propagation reset
 
 
 /* === dol/fn_80073E8C.c === */
