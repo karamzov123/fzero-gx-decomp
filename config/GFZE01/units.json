@@ -7426,17 +7426,6 @@
   },
   {
     "module": "main",
-    "source": "dol/__check_pad3.c",
-    "symbols": [
-      "__check_pad3"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
     "source": "dol/__destroy_global_chain.c",
     "symbols": [
       "__destroy_global_chain"
@@ -7476,17 +7465,6 @@
       "memcpy"
     ],
     "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/__get_debug_bba.c",
-    "symbols": [
-      "__get_debug_bba"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": []
   },
@@ -7558,29 +7536,6 @@
   },
   {
     "module": "main",
-    "source": "dol/__init_data.c",
-    "symbols": [
-      "__init_data"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/__init_registers.c",
-    "symbols": [
-      "__init_registers"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
-  },
-  {
-    "module": "main",
     "source": "dol/__kernel_cos.c",
     "symbols": [
       "__kernel_cos"
@@ -7629,26 +7584,18 @@
   },
   {
     "module": "main",
-    "source": "dol/__set_debug_bba.c",
-    "symbols": [
-      "__set_debug_bba"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
     "source": "dol/__start.c",
     "symbols": [
-      "__start"
+      "__check_pad3",
+      "__set_debug_bba",
+      "__get_debug_bba",
+      "__start",
+      "__init_registers",
+      "__init_data"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "asm": true
+    "mw_version": "GC/1.2.5n"
   },
   {
     "module": "main",

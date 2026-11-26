@@ -6702,7 +6702,7 @@
   {
    "symbol": "__check_pad3",
    "module": "main",
-   "unit": "dol/__check_pad3.c",
+   "unit": "dol/__start.c",
    "addr": 2147496192,
    "size": 64,
    "status": "matched",
@@ -6719,7 +6719,7 @@
   {
    "symbol": "__set_debug_bba",
    "module": "main",
-   "unit": "dol/__set_debug_bba.c",
+   "unit": "dol/__start.c",
    "addr": 2147496256,
    "size": 12,
    "status": "matched",
@@ -6736,7 +6736,7 @@
   {
    "symbol": "__get_debug_bba",
    "module": "main",
-   "unit": "dol/__get_debug_bba.c",
+   "unit": "dol/__start.c",
    "addr": 2147496268,
    "size": 8,
    "status": "matched",
@@ -6770,7 +6770,7 @@
   {
    "symbol": "__init_registers",
    "module": "main",
-   "unit": "dol/__init_registers.c",
+   "unit": "dol/__start.c",
    "addr": 2147496624,
    "size": 144,
    "status": "asm",
@@ -6787,7 +6787,7 @@
   {
    "symbol": "__init_data",
    "module": "main",
-   "unit": "dol/__init_data.c",
+   "unit": "dol/__start.c",
    "addr": 2147496768,
    "size": 192,
    "status": "matched",

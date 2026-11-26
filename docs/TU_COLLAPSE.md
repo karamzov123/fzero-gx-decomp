@@ -220,6 +220,14 @@ existing matched GX assembly; the SDK reference corroborates their form and
 ownership. All three regions now link the full compiled unit, including
 the two startup routines that were retail fallback in Japan and PAL.
 
+`dol/__start.c` restores the six-entry, 0x300-byte USA startup code unit.
+It retains the weak assembler entry and frameless register setup next to the
+four C routines. GC/1.2.5n emits the two BBA small-data relocations at byte
+offset +2 within the same instruction rather than +0; their type, target and
+linked bytes are unchanged. This restores code ownership only: `Debug_BBA`
+is still in an imported data unit and the linker still supplies the copy/BSS
+tables. Japan and PAL keep their existing entry-code fallback.
+
 ## MSL is built with `-inline deferred` (2026-11-24)
 
 MWCC's `-inline auto,deferred` emits a file's functions in reverse source order and can inline a

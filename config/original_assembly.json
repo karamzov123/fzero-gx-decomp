@@ -669,6 +669,20 @@
       "evidence": "MetroTRK targimpl.c writes the MSR accessors, the MSR-switching byte copy, TRKInterruptHandler, TRKExceptionHandler, TRKSwapAndGo, TRKInterruptHandlerEnableInterrupts and the tw-trap stubs as CodeWarrior asm functions (nofralloc): retail 0x8008B0E0..0x8008B484 and 0x8008CB20..0x8008CB40 use mfmsr/mtmsr, SRR0/SRR1 and SPRG access, mtcrf, rfi and twi, which MWCC never emits from C, with no compiler frames; the target support routines are compiled C in the same TU."
     }
   ],
+  "src/dol/__start.c": [
+    {
+      "symbol": "__start",
+      "form": "asm-function",
+      "sha256": "96c9c58d07f3ec0d4b56d2f0c06343d34e37a42f5009b405f7302d4acb25b5cd",
+      "evidence": "Weak GX entry at .init 0x80003154..0x800032B0 calls register setup before installing the stack frame, handles loader registers and branches to exit. The body is transcribed from the existing matched GX __start.s; the SDK __start.c in SwareJonge/mkdd 2a9eb75fefd75c649c0488742db931571cbd7812 corroborates original weak CodeWarrior asm form and TU ownership."
+    },
+    {
+      "symbol": "__init_registers",
+      "form": "asm-function",
+      "sha256": "1cdf8f14737438729eafaa065df8c27de0846e27ac44b3a20274eb3ecd0ea118",
+      "evidence": "GX .init 0x800032B0..0x80003340 initializes the registers, including the stack and SDA bases, without relying on an existing frame. The body is transcribed from the existing matched GX __init_registers.s; the SDK __start.c in SwareJonge/mkdd 2a9eb75fefd75c649c0488742db931571cbd7812 corroborates original CodeWarrior asm form and TU ownership."
+    }
+  ],
   "src/dol/runtime/__ppc_eabi_init.c": [
     {
       "symbol": "__init_hardware",
