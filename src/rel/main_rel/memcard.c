@@ -8772,16 +8772,15 @@ void fn_1_B277C(UnkCtx_1_B277C *ctx) {
         case 1: {
             UnkWork_1_B277C *w;
             ctx->unk_24->unk_08 &= 0xfffffdff;
-            /* WARNING: compiler-diff device, not original code */
-            w = (*(UnkWork_1_B277C * volatile *)&ctx->unk_24) /* Retail reloads this field. */;
+            w = ctx->unk_24;
             if ((w->unk_08 & 0x8000) != 0) {
                 ctx->unk_03 = 0x1b;
             } else {
                 Obj_1_bss_9F8 *s9 = &lbl_1_bss_9F8;
                 u32 t9 = (u16)(s9->unk_8);
-                if (((t9 >> 8) & 1) != 0) {
+                if ((PAD_BIT(t9, 8)) != 0) {
                 ctx->unk_03 = 0x1b;
-            } else if (((t9 >> 11) & 1) != 0 && (w->unk_08 & 2) == 0) {
+            } else if ((PAD_BIT(t9, 11)) != 0 && (w->unk_08 & 2) == 0) {
                 if (ctx->unk_05 == 3 && ctx->unk_0C != 0) {
                     s32 r;
                     do {
