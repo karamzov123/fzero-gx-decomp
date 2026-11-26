@@ -3203,15 +3203,13 @@ void fn_1_CD36C(s32 arg0, s32 arg1, s32 arg2) {
     FontDrawPacket loc_8;
     f32 v3;
     f32 v5;
-    u16 lab_t5;
 
 {
     s32 t0;
     t0 = fn_1_5910();
     loc_8 = *(FontDrawPacket *)&(*((u32 *)&lbl_1_rodata_26F8));
     loc_8.image = 0x9421;
-    lab_t5 = 2;
-    fn_1_51564( (u16)(0), (u16)(0), (u16)(24), (u16)(20), (u16)(2), (u16)(lab_t5));
+    fn_1_51564(0, 0, 24, 20, 2, 2);
     loc_8.x = arg1;
     loc_8.y = arg2;
     loc_8.z = 10.0f;
@@ -4369,7 +4367,7 @@ void fn_1_D07C4(u32 arg0, u32 arg1) {
 
 /* fzgx:begin fn_1_D07E0 */
 void fn_1_D07E0(f32 arg0, f32 arg1, f32 arg2) {
-f32 * p_lbl_1_rodata_26F8;
+
 fn_1_D07E0_Obj_1_bss_3C30 *p_lbl_1_bss_3C30;
 u8 v0;
 s32 v1;
@@ -4379,7 +4377,6 @@ u32 v4;
 s32 v7;
 u32 v6;
 u32 v5;
-Fn183D28Vec3 *v8;
 u32 v9;
 f32 v10;
 u32 v11;
@@ -4388,17 +4385,13 @@ f32 v13;
 s32 v14;
 s32 v15;
 f32 v16;
-u32 v17;
 u32 v18;
-u32 v19;
-int v20;
 fn_1_D07E0_FontDrawPacket loc_20;
 Sig_fn_8006F78C_Fn8006F78CData loc_14;
 Sig_fn_8006F78C_Fn8006F78CData loc_8;
 Fn183D28Vec3 *point;
 f32 phase;
 f32 t0;
-int t5;
 t0 = lbl_8006D21C((s32)(182.04445f * (0.5f * arg0)));
 loc_20 = (*((fn_1_D07E0_FontDrawPacket *)&lbl_1_rodata_26F8));
 loc_20.image = (0x10000 - 27611);
@@ -4417,7 +4410,6 @@ lbl_1_bss_7ACD0.unk_0++;
 }
 }
 v7 = 0;
-v8 = (Fn183D28Vec3 *)&(*((fn_1_D07E0_Obj_1_bss_3C30 *)&lbl_1_bss_3C30));
 do {
 if ((p_lbl_1_bss_3C30->unk_1405 & (1 << v7)) != 0) {
 loc_20 = (*((fn_1_D07E0_FontDrawPacket *)&lbl_1_rodata_26F8));
@@ -4438,17 +4430,13 @@ loc_20.y = (arg2 + loc_14.value1);
 if (v7 == 4) {
 fn_1_5158C( (FontDrawPacket *)(fn_1_D07E0_FontDrawPacket *)(&loc_20), loc_20.image, 1, 4);
 } else {
-v17 = (v7 >> 31);
 fn_1_5158C( (FontDrawPacket *)(fn_1_D07E0_FontDrawPacket *)(&loc_20), loc_20.image, (v7 % 2), (v7 / 2));
 }
-t5 = fn_1_4F734( (FontDrawPacket*)(fn_1_D07E0_FontDrawPacket *)(&loc_20));
+fn_1_4F734( (FontDrawPacket*)(fn_1_D07E0_FontDrawPacket *)(&loc_20));
 }
 v7++;
-v8 = (Fn183D28Vec3 *)v8 + 1;
 } while (v7 < 5);
 v18 = 0;
-v19 = 0;
-v20 = t5;
 while (v18 < fn_1_EB0B0()) {
 point = ((Fn183D28Vec3 *)fn_1_EB0D8(v18));
 if (point) {
@@ -4478,7 +4466,6 @@ loc_20.y = arg2 + loc_8.value1;
 loc_20.flags = 10;
 fn_1_4F734( (FontDrawPacket*)(fn_1_D07E0_FontDrawPacket *)(&loc_20));
 }
-v19 += 60;
 v18++;
 }
 }
