@@ -8680,7 +8680,6 @@ int fn_1_32600(Racer* obj) {
     f32 lim;
     f32 fv;
     s32 tmp_ra3;
-    u32 lab_t0;
 
     if (!(lbl_1_bss_3C30.unk_0 & 0x00008000)) {
         if (obj->unk_0 & 0x08000000) {
@@ -8692,15 +8691,13 @@ int fn_1_32600(Racer* obj) {
         tmp_ra3 = obj->unk_0;
         if (tmp_ra3 & 0x00000800) {
             if (obj->unk_475 != -1) {
-                lab_t0 = obj->unk_475;
-                fn_1_15E260(lab_t0);
+                fn_1_15E260(obj->unk_475);
             }
             return 1;
         }
         if (obj->unk_0 & 0x00000080) {
             if (obj->unk_475 != -1) {
-                lab_t0 = obj->unk_475;
-                fn_1_15E260(lab_t0);
+                fn_1_15E260(obj->unk_475);
             }
             if (lbl_1_bss_3C30.unk_5 != 5) {
                 if ((obj->unk_0 & 0x00000200) || obj->unk_17C < 1.0f) {
@@ -8893,6 +8890,8 @@ void fn_1_32A40(Racer *racer) {
             !(lbl_1_bss_26B1C & (1 << idx));
         b = 0;
         if (a) {
+            /* WARNING: compiler-diff device, not original code: __rlwnm keeps retail's variable rotate bit test
+               (shift, mask and rotate spellings are 441-452 words off). No natural spelling is known. */
             if ((__rlwnm(lbl_1_bss_718E0[2], (32 - racer->unk_474) & 31, 31, 31))) {
                 b = 1;
             }
@@ -12395,10 +12394,7 @@ void fn_1_3E670(void) {
 
 void fn_1_3E6D8(void)
 {
-    /* WARNING: compiler-diff device, not original code (carried from main): the no-op (s32) cast. Retail tests the
-       loaded value two times (here and in the inlined fn_1_304A8). Without the cast MWCC drops the second test
-       (5 words off). */
-    if ((s32)lbl_1_bss_25BA0 == 0 && ((lbl_1_bss_D58.unk_8 >> 8) & 1)) {
+    if (!lbl_1_bss_25BA0 && ((lbl_1_bss_D58.unk_8 >> 8) & 1)) {
         fn_1_304A8();
     }
 }
