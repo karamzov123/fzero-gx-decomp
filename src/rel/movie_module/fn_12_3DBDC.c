@@ -1,5 +1,4 @@
 #include "types.h"
-#pragma inline_max_size(4096)
 #pragma use_lmw_stmw on
 
 /* --- rel/movie_module/fn_12_3DBDC.c --- */
@@ -19,7 +18,7 @@ typedef struct MovieDst {
     u32 pad0;
     u32 *data;
     s32 pitch;
-    volatile s32 height;  /* fzgx-allow: S2 volatile keeps the verified access order */
+    s32 height;
     s32 width;
 } MovieDst;
 
@@ -32,10 +31,6 @@ static inline void fn_12_3DBE0_fzgx_rgn0(u32 * palette, u32 i2, u32 i3, s32 top)
                 *(u32 *)(top + 4) = (b & 0xFFFF0000) | (a >> 16);
 }
 
-static inline u32 fn_12_3DBE0_merge(u32 a, u32 b) {
-    return (a << 16) | (b & 0xFFFF);
-}
-
 
 void fn_12_3DBE0(MovieSrc *source, MovieDst *dest, u32 *palette) {
     s32 width;
@@ -45,7 +40,7 @@ void fn_12_3DBE0(MovieSrc *source, MovieDst *dest, u32 *palette) {
     u32 a;
     u32 b;
     s32 y;
-    register s32 height;
+    s32 height;
     s32 row;
     s32 src;
     s32 top;
@@ -100,7 +95,7 @@ void fn_12_3DBE0(MovieSrc *source, MovieDst *dest, u32 *palette) {
                 *(u32 *)(bottom + 0) = (a << 16) | (b & 0xFFFF);
                 a = *(u32 *)((u8 *)palette + i3);
                 b = *(volatile u32 *)((u8 *)palette + i2);  /* fzgx-allow: S2 volatile view keeps the verified load order */
-                *(u32 *)(bottom + 4) = fn_12_3DBE0_merge(a, b);
+                *(u32 *)(bottom + 4) = (a << 16) | (b & 0xFFFF);
                 bottom += 8;
             }
             src -= stride4.value;
