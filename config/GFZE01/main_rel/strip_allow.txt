@@ -39,3 +39,7 @@ rob_open_lip  # rob.c, inlined in fn_1_8F62C
 rob_set_blink_wait  # rob.c, inlined in fn_1_8F62C
 rob_load_coin_models  # rob.c, no retail caller: reconstruction from the unread .gma strings at .data 27C50 only
 accessory_node_fall  # accessory.c, plain static helper (rope node gravity step) inlined by -inline auto in fn_1_10D7D4; the link drops the out-of-line copy
+draw_no_entry_placeholder  # sel_static_disp_b.c, placeholder: retail body unknown, its .rodata/.data literals have no reader. Retail has no copy
+panel_placeholder_a  # sel_static_disp_b.c, placeholder: retail body unknown, its .rodata literals have no reader. Retail has no copy
+panel_placeholder_b  # sel_static_disp_b.c, placeholder: retail body unknown, its .rodata/.data literals have no reader. Retail has no copy
+draw_time_placeholder  # sel_static_disp_b.c, placeholder: retail body unknown, its .data format string has no reader. Retail has no copy
