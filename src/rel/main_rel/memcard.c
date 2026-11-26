@@ -12595,8 +12595,6 @@ static inline s32 BA_enabled_state(s32 chan, s32 flags) {
 return flags & (1 << chan);
 }
 
-/* WARNING: compiler-diff device, not original code */
-#pragma opt_dead_assignments off
 
 s32 fn_1_BA144(fn_1_EF4F8_Obj_1_bss_7ECB4 *arg0) {
 BAState *st = (BAState *)arg0;
@@ -12802,8 +12800,8 @@ if (((lbl_1_bss_9F8.unk_10 >> 1) & 1) || ((lbl_1_bss_9F8.unk_12 >> 1) & 1)) { st
 n = st->unk_30[st->unk_16];
 st->unk_18 = (st->unk_18 + n) % n;
 count = lbl_1_bss_9F8.unk_8;
-if ((count >> 9) & 1) { fn_1_A2DC4(0xA9011000); return 1; }
-if (BA_enabled_state(st->unk_16, st->unk_5) && ((count >> 8) & 1)) {
+if (PAD_BIT(count, 9)) { fn_1_A2DC4(0xA9011000); return 1; }
+if (BA_enabled_state(st->unk_16, st->unk_5) && PAD_BIT(count, 8)) {
 if (st->unk_30[st->unk_16] - 1 != st->unk_18 || (st->unk_4 & 1)) {
 fn_1_A2DC4(0xA9011100);
 st->unk_22 = 6;
@@ -12888,7 +12886,6 @@ break;
 return 2;
 }
 
-#pragma opt_dead_assignments reset
 #undef lbl_1_bss_960
 #undef lbl_1_bss_9F8
 #undef lbl_801A6410
