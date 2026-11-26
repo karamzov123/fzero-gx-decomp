@@ -342,7 +342,7 @@
    "file": "toolkit.c",
    "text": [
     99708,
-    182508
+    115320
    ],
    "data_sec": 5,
    "data": [
@@ -393,7 +393,27 @@
     "fn_3_1B130",
     "fn_3_1B4BC",
     "fn_3_1BA20",
-    "fn_3_1BF08",
+    "fn_3_1BF08"
+   ],
+   "confidence": {
+    "text+data": 13,
+    "text-range": 66,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "toolkit_b.c",
+   "text": [
+    115320,
+    182508
+   ],
+   "data_sec": 5,
+   "data": [
+    19380,
+    19380
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_3_1C278",
     "fn_3_1C8D0",
     "fn_3_1D338",
@@ -437,8 +457,8 @@
     "fn_3_2C73C"
    ],
    "confidence": {
-    "text+data": 13,
-    "text-range": 66,
+    "text+data": 41,
+    "text-range": 0,
     "data-vote": 0
    }
   }

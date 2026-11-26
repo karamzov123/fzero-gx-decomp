@@ -91,7 +91,7 @@
    "file": "operation.c",
    "text": [
     26616,
-    65436
+    53300
    ],
    "data_sec": 5,
    "data": [
@@ -154,8 +154,48 @@
     "fn_8_CF70",
     "fn_8_CF94",
     "fn_8_D020",
-    "fn_8_D024",
-    "fn_8_D034",
+    "fn_8_D024"
+   ],
+   "confidence": {
+    "text+data": 8,
+    "text-range": 44,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "operation_b.c",
+   "text": [
+    53300,
+    54772
+   ],
+   "data_sec": 5,
+   "data": [
+    41608,
+    41608
+   ],
+   "anchor_refs": [],
+   "functions": [
+    "fn_8_D034"
+   ],
+   "confidence": {
+    "text+data": 1,
+    "text-range": 0,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "operation_c.c",
+   "text": [
+    54772,
+    65436
+   ],
+   "data_sec": 5,
+   "data": [
+    41608,
+    41608
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_8_D5F4",
     "fn_8_D630",
     "fn_8_DD64",
@@ -165,8 +205,8 @@
     "fn_8_FC5C"
    ],
    "confidence": {
-    "text+data": 8,
-    "text-range": 44,
+    "text+data": 7,
+    "text-range": 0,
     "data-vote": 0
    }
   },

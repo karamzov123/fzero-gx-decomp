@@ -104,13 +104,13 @@ rel/customize/emblem/fn_3_146C0.c:
 rel/customize/customize/fn_3_ACF4.c:
 	.text       start:0x0000ACF4 end:0x0000BD98 align:4
 
-rel/customize/toolkit/fn_3_1F81C.c:
+rel/customize/toolkit_b/fn_3_1F81C.c:
 	.text       start:0x0001F81C end:0x0001F958 align:4
 
 rel/customize/_prolog/fn_3_5E88.c:
 	.text       start:0x00005E88 end:0x00005F28 align:4
 
-rel/customize/toolkit/fn_3_268D0.c:
+rel/customize/toolkit_b/fn_3_268D0.c:
 	.text       start:0x000268D0 end:0x00026A34 align:4
 
 rel/customize/emb_paste_editor/fn_3_12E4C.c:
@@ -119,10 +119,10 @@ rel/customize/emb_paste_editor/fn_3_12E4C.c:
 rel/customize/_prolog/fn_3_6F90.c:
 	.text       start:0x00006F90 end:0x00007038 align:4
 
-rel/customize/toolkit/fn_3_2BFB4.c:
+rel/customize/toolkit_b/fn_3_2BFB4.c:
 	.text       start:0x0002BFB4 end:0x0002C164 align:4
 
-rel/customize/toolkit/fn_3_2C164.c:
+rel/customize/toolkit_b/fn_3_2C164.c:
 	.text       start:0x0002C164 end:0x0002C290 align:4
 
 rel/customize/emb_paste_editor/fn_3_12910.c:
@@ -134,7 +134,7 @@ rel/customize/toolkit/fn_3_1A2EC.c:
 rel/customize/emb_paste_editor/fn_3_10B68.c:
 	.text       start:0x00010B68 end:0x00010CB8 align:4
 
-rel/customize/toolkit/fn_3_1D338.c:
+rel/customize/toolkit_b/fn_3_1D338.c:
 	.text       start:0x0001D338 end:0x0001EC2C align:4
 
 rel/customize/_prolog/fn_3_131C.c:
@@ -143,10 +143,10 @@ rel/customize/_prolog/fn_3_131C.c:
 rel/customize/emb_paste_editor/fn_3_12FD4.c:
 	.text       start:0x00012FD4 end:0x0001304C align:4
 
-rel/customize/toolkit/fn_3_23724.c:
+rel/customize/toolkit_b/fn_3_23724.c:
 	.text       start:0x00023724 end:0x00023A1C align:4
 
-rel/customize/toolkit/fn_3_28378.c:
+rel/customize/toolkit_b/fn_3_28378.c:
 	.text       start:0x00028378 end:0x000286BC align:4
 
 rel/customize/_prolog/fn_3_7CF8.c:
@@ -207,19 +207,19 @@ rel/customize/toolkit/fn_3_1BF08.c:
 rel/customize/_prolog/fn_3_4538.c:
 	.text       start:0x00004538 end:0x000048E0 align:4
 
-rel/customize/toolkit/fn_3_1EC2C.c:
+rel/customize/toolkit_b/fn_3_1EC2C.c:
 	.text       start:0x0001EC2C end:0x0001EFE4 align:4
 
 rel/customize/_prolog/fn_3_9CA8.c:
 	.text       start:0x00009CA8 end:0x0000A12C align:4
 
-rel/customize/toolkit/fn_3_2B268.c:
+rel/customize/toolkit_b/fn_3_2B268.c:
 	.text       start:0x0002B268 end:0x0002B778 align:4
 
-rel/customize/toolkit/fn_3_273F4.c:
+rel/customize/toolkit_b/fn_3_273F4.c:
 	.text       start:0x000273F4 end:0x000278F8 align:4
 
-rel/customize/toolkit/fn_3_2AAF4.c:
+rel/customize/toolkit_b/fn_3_2AAF4.c:
 	.text       start:0x0002AAF4 end:0x0002B268 align:4
 
 rel/customize/_prolog/fn_3_48E0.c:
@@ -237,31 +237,31 @@ rel/customize/_prolog/fn_3_990C.c:
 rel/customize/emb_paste_editor/fn_3_113AC.c:
 	.text       start:0x000113AC end:0x0001180C align:4
 
-rel/customize/toolkit/fn_3_1F958.c:
+rel/customize/toolkit_b/fn_3_1F958.c:
 	.text       start:0x0001F958 end:0x0001FF7C align:4
 
 rel/customize/_prolog/fn_3_83CC.c:
 	.text       start:0x000083CC end:0x00008A90 align:4
 
-rel/customize/toolkit/fn_3_24BC0.c:
+rel/customize/toolkit_b/fn_3_24BC0.c:
 	.text       start:0x00024BC0 end:0x000255DC align:4
 
-rel/customize/toolkit/fn_3_23524.c:
+rel/customize/toolkit_b/fn_3_23524.c:
 	.text       start:0x00023524 end:0x00023724 align:4
 
-rel/customize/toolkit/fn_3_20374.c:
+rel/customize/toolkit_b/fn_3_20374.c:
 	.text       start:0x00020374 end:0x00020748 align:4
 
-rel/customize/toolkit/fn_3_1FF7C.c:
+rel/customize/toolkit_b/fn_3_1FF7C.c:
 	.text       start:0x0001FF7C end:0x00020374 align:4
 
 rel/customize/toolkit/fn_3_1BA20.c:
 	.text       start:0x0001BA20 end:0x0001BF08 align:4
 
-rel/customize/toolkit/fn_3_1EFE4.c:
+rel/customize/toolkit_b/fn_3_1EFE4.c:
 	.text       start:0x0001EFE4 end:0x0001F81C align:4
 
-rel/customize/toolkit/fn_3_2C290.c:
+rel/customize/toolkit_b/fn_3_2C290.c:
 	.text       start:0x0002C290 end:0x0002C73C align:4
 
 rel/customize/emb_paste_editor/fn_3_106FC.c:
@@ -273,22 +273,22 @@ rel/customize/_prolog/fn_3_E64.c:
 rel/customize/toolkit/fn_3_1B4BC.c:
 	.text       start:0x0001B4BC end:0x0001BA20 align:4
 
-rel/customize/toolkit/fn_3_23A1C.c:
+rel/customize/toolkit_b/fn_3_23A1C.c:
 	.text       start:0x00023A1C end:0x00024138 align:4
 
-rel/customize/toolkit/fn_3_1C278.c:
+rel/customize/toolkit_b/fn_3_1C278.c:
 	.text       start:0x0001C278 end:0x0001C8D0 align:4
 
 rel/customize/toolkit/fn_3_1B130.c:
 	.text       start:0x0001B130 end:0x0001B4BC align:4
 
-rel/customize/toolkit/fn_3_26A34.c:
+rel/customize/toolkit_b/fn_3_26A34.c:
 	.text       start:0x00026A34 end:0x000273F4 align:4
 
 rel/customize/_prolog/fn_3_5D84.c:
 	.text       start:0x00005D84 end:0x00005E88 align:4
 
-rel/customize/toolkit/fn_3_20748.c:
+rel/customize/toolkit_b/fn_3_20748.c:
 	.text       start:0x00020748 end:0x00020B3C align:4
 
 rel/customize/_prolog/fn_3_AC4C.c:
@@ -300,13 +300,13 @@ rel/customize/editor_b/fn_3_17098.c:
 	.data       start:0x000035C0 end:0x00003618 align:8
 	.bss        start:0x000A2410 end:0x000A2438 align:8
 
-rel/customize/toolkit/fn_3_2B778.c:
+rel/customize/toolkit_b/fn_3_2B778.c:
 	.text       start:0x0002B778 end:0x0002BFB4 align:4
 
 rel/customize/toolkit/fn_3_18960.c:
 	.text       start:0x00018960 end:0x00019C50 align:4
 
-rel/customize/toolkit/fn_3_1C8D0.c:
+rel/customize/toolkit_b/fn_3_1C8D0.c:
 	.text       start:0x0001C8D0 end:0x0001D338 align:4
 
 rel/customize/_prolog/fn_3_6AC4.c:
@@ -318,7 +318,7 @@ rel/customize/emb_paste_editor/fn_3_11FF0.c:
 rel/customize/_prolog/fn_3_6270.c:
 	.text       start:0x00006270 end:0x00006540 align:4
 
-rel/customize/toolkit/fn_3_225F8.c:
+rel/customize/toolkit_b/fn_3_225F8.c:
 	.text       start:0x000225F8 end:0x00023524 align:4
 
 rel/customize/_prolog/fn_3_A12C.c:
@@ -327,7 +327,7 @@ rel/customize/_prolog/fn_3_A12C.c:
 rel/customize/_prolog/_epilog.c:
 	.text       start:0x00000944 end:0x00000AF8 align:4
 
-rel/customize/toolkit/fn_3_286BC.c:
+rel/customize/toolkit_b/fn_3_286BC.c:
 	.text       start:0x000286BC end:0x00029508 align:4
 
 rel/customize/_prolog/fn_3_5070.c:
@@ -351,10 +351,10 @@ rel/customize/_prolog/fn_3_5500.c:
 rel/customize/emb_paste_editor/fn_3_FD30.c:
 	.text       start:0x0000FD30 end:0x00010260 align:4
 
-rel/customize/toolkit/fn_3_29508.c:
+rel/customize/toolkit_b/fn_3_29508.c:
 	.text       start:0x00029508 end:0x00029C94 align:4
 
-rel/customize/toolkit/fn_3_20B3C.c:
+rel/customize/toolkit_b/fn_3_20B3C.c:
 	.text       start:0x00020B3C end:0x00021300 align:4
 
 rel/customize/data/lbl_3_bss_0.c:
@@ -450,7 +450,7 @@ rel/customize/data/lbl_3_bss_A2468.c:
 rel/customize/emb_paste_editor/fn_3_F984.c:
 	.text       start:0x0000F984 end:0x0000FD30 align:4
 
-rel/customize/toolkit/fn_3_29C94.c:
+rel/customize/toolkit_b/fn_3_29C94.c:
 	.text       start:0x00029C94 end:0x0002AAF4 align:4
 
 rel/customize/emb_memcard/fn_3_C400.c:
@@ -459,25 +459,25 @@ rel/customize/emb_memcard/fn_3_C400.c:
 rel/customize/emb_paste_editor/fn_3_10CB8.c:
 	.text       start:0x00010CB8 end:0x000113AC align:4
 
-rel/customize/toolkit/fn_3_21300.c:
+rel/customize/toolkit_b/fn_3_21300.c:
 	.text       start:0x00021300 end:0x000225F8 align:4
 
 rel/customize/_prolog/_prolog.c:
 	.text       start:0x0000042C end:0x00000844 align:4
 
-rel/customize/toolkit/fn_3_2C73C.c:
+rel/customize/toolkit_b/fn_3_2C73C.c:
 	.text       start:0x0002C73C end:0x0002C8EC align:4
 
-rel/customize/toolkit/fn_3_24138.c:
+rel/customize/toolkit_b/fn_3_24138.c:
 	.text       start:0x00024138 end:0x00024BC0 align:4
 
 rel/customize/_prolog/fn_3_8A90.c:
 	.text       start:0x00008A90 end:0x0000968C align:4
 
-rel/customize/toolkit/fn_3_255DC.c:
+rel/customize/toolkit_b/fn_3_255DC.c:
 	.text       start:0x000255DC end:0x000268D0 align:4
 
-rel/customize/toolkit/fn_3_278F8.c:
+rel/customize/toolkit_b/fn_3_278F8.c:
 	.text       start:0x000278F8 end:0x00028378 align:4
 
 rel/customize/_prolog/fn_3_7360.c:
