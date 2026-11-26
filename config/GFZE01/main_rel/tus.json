@@ -4321,12 +4321,12 @@
    "file": "sel_static_disp.c",
    "text": [
     1258236,
-    1382252
+    1319136
    ],
    "data_sec": 5,
    "data": [
     268768,
-    287688
+    287416
    ],
    "anchor_refs": [
     1258236,
@@ -4428,7 +4428,27 @@
     "fn_1_141C10",
     "fn_1_141F94",
     "fn_1_142004",
-    "fn_1_1420A4",
+    "fn_1_1420A4"
+   ],
+   "confidence": {
+    "text+data": 42,
+    "text-range": 210,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "sel_static_disp_b.c",
+   "text": [
+    1319136,
+    1351720
+   ],
+   "data_sec": 5,
+   "data": [
+    287416,
+    287416
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_1_1420E0",
     "fn_1_1421D8",
     "fn_1_1424E8",
@@ -4473,7 +4493,27 @@
     "fn_1_14A000",
     "fn_1_14A004",
     "fn_1_14A008",
-    "fn_1_14A00C",
+    "fn_1_14A00C"
+   ],
+   "confidence": {
+    "text+data": 45,
+    "text-range": 0,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "sel_static_disp_c.c",
+   "text": [
+    1351720,
+    1382252
+   ],
+   "data_sec": 5,
+   "data": [
+    287416,
+    287688
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_1_14A028",
     "fn_1_14A17C",
     "fn_1_14A1AC",
@@ -4596,8 +4636,8 @@
     "fn_1_151764"
    ],
    "confidence": {
-    "text+data": 42,
-    "text-range": 210,
+    "text+data": 120,
+    "text-range": 0,
     "data-vote": 0
    }
   },
