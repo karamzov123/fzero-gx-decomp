@@ -124,7 +124,6 @@ typedef struct MovieEntry {
 
 
 s32 fn_12_2CF20(void *movie, s32 index, MovieCmd *cmd) {
-    s32 fzgx_value;
     s32 result;
     MovieEntry *entry;
     s32 value;
@@ -152,7 +151,6 @@ s32 fn_12_2CF20(void *movie, s32 index, MovieCmd *cmd) {
         {
             MovieCmd *slot;
             slot = (MovieCmd *)((u8 *)buffer + tail * 0xc);
-            fzgx_value = value;
             *slot = *cmd;
         }
         next = tail;
