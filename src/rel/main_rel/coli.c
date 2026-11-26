@@ -4,6 +4,7 @@
 #include "dolphin/hw_regs.h"
 #include "game/vec3.h"
 #include "psvec.h"
+#include "mathutil_mtxA_translate_col.h"
 #include "fpscr_floorf.h"
 #include "rel/main_rel/camera.h"
 #include "rel/main_rel/car_test.h"
@@ -4750,6 +4751,8 @@ s32 fn_1_163BC(Vec3 *arg0, Vec3 *arg1, s32 mask, s32 arg3) {
     Xform2 *xf;
     s32 scaled;
     f32 m;
+    /* WARNING: compiler-diff device, not original code: lab_t0/lab_t0_ carry the fn_8006E250 arguments
+     * (109 words with `fn_8006E250(&pos, &a)`) */
     void * lab_t0;
     void * lab_t0_;
     f32 dy;
@@ -5240,6 +5243,8 @@ f32 fn_1_16E68(Vec3 *pos, s32 idx, s32 sub) {
 
 /* FILE-SCOPE */ typedef void (*ColiDispatch)(void *, u32, u32, struct Sig_fn_1_18B40_fn_1_18B40_Obj *, f32, struct Sig_fn_1_18B40_fn_1_18B40_Vec *, ColiContext *, void *, s32);
 
+/* WARNING: compiler-diff device, not original code (variable-amount __rlwnm bit test: retail
+ * addi/clrlwi/rlwnm.; no natural spelling is known project-wide, see objput.c). Every bit test of this TU uses it. */
 static inline u32 coli_bit(u32 flags, s32 bit) {
     return __rlwnm(flags, (bit + 1) & 31, 31, 31);
 }
@@ -5300,6 +5305,7 @@ u32 fn_1_17098(void *arg0, u32 arg1, u32 v1, u32 arg3, u32 arg4, ColiContext *ct
     if (arg6 != 0) *(u32 *)arg6 = 0;
     v0 = coli_selective(v1);
     if (v0 != 0) {
+        /* WARNING: compiler-diff device, not original code: li/rlwnm with a constant amount; coli_bit(v1, 0) swaps r0/r3 (7 words) */
         u32 bit = __rlwnm(v1, 1, 31, 31) != 0;
         v1 |= 0x80000000U >> bit;
     }
@@ -6269,7 +6275,7 @@ static inline int fn_1_192E8_allowed(struct fn_1_192E8_Context *ctx,
     count = ctx->table->count;
     flags = ctx->table->flags[index];
     if (count <= index) return 0;
-    if (!__rlwnm(flags, (side + 1) & 31, 31, 31)) return 0;
+    if (!coli_bit(flags, side)) return 0;
     mask = 0x03E00000;
     if (lbl_801A66CC->count == count) mask |= 0xC00;
     needed = wall->unk_0 & mask;
@@ -6485,11 +6491,11 @@ static inline int fn_1_19AE0_match(Ctx *ctx, Seg *seg, s32 id)
     index = ctx->unk_0->unk_0;
     count = ctx->unk_4->unk_0;
     flags = ctx->unk_4->unk_3C[index];
-    if (count <= index || !__rlwnm(flags, 3, 31, 31)) {
+    if (count <= index || !coli_bit(flags, 2)) {
         if (lbl_801A66CC->enabled == 0) return 0;
         for (index = 0; index < count; index++) {
             flags = ctx->unk_4->unk_3C[index];
-            if (__rlwnm(flags, 3, 31, 31)) break;
+            if (coli_bit(flags, 2)) break;
         }
         if (index >= count) return 0;
     }
@@ -6517,7 +6523,7 @@ static inline int fn_1_19AE0_allowed(Ctx *ctx, Seg *seg, s32 id)
     count = ctx->unk_4->unk_0;
     flags = ctx->unk_4->unk_3C[index];
     if (count <= index) return 0;
-    if (!__rlwnm(flags, 30, 31, 31)) return 0;
+    if (!coli_bit(flags, 29)) return 0;
     mask = 0x03E00000;
     if (lbl_801A66CC->count == count) mask |= 0xC00;
     needed = seg->unk_0 & mask;
@@ -6700,9 +6706,9 @@ void fn_1_19AE0(Vec3 *arg0, Vec3 *arg1, u32 arg2, Seg *seg, Vec3 *scale, Ctx *ct
         if (__fabsf(pt.x) <= w ||
             (!((hit >> 25) & 1) && (arg2 & 0x02000000) && in &&
              ((pt.x > 0.0f && (seg->unk_0 & 0x800) &&
-               __rlwnm(ctx->unk_4->unk_3C[ctx->unk_0->unk_0], 2, 31, 31)) ||
+               coli_bit(ctx->unk_4->unk_3C[ctx->unk_0->unk_0], 1)) ||
               (pt.x <= 0.0f && (seg->unk_0 & 0x400) &&
-               __rlwnm(ctx->unk_4->unk_3C[ctx->unk_0->unk_0], 1, 31, 31))))) {
+               coli_bit(ctx->unk_4->unk_3C[ctx->unk_0->unk_0], 0))))) {
             psvec_sub_scale_add(arg0, arg1, t, &delta, &c->point);
             if ((hit >> 25) & 1) {
                 c->normal.x = -lbl_801A6D00[1];
@@ -6899,11 +6905,7 @@ static inline void fn_1_1ACC0_axis_y(Vec3 *out, f32 scale)
     out->z = z;
 }
 
-/* retail translates mtxA in place (fmadds into the loaded column registers) and keeps the zero local of the
- * low-height block alive (f1) */
-
-/* WARNING: compiler-diff device, not original code */
-#pragma opt_lifetimes off
+/* retail keeps the zero local of the low-height block alive (f1) */
 
 /* WARNING: compiler-diff device, not original code */
 #pragma opt_dead_assignments off
@@ -6923,21 +6925,7 @@ void fn_1_1ACC0(Vec3 *arg0, Vec3 *arg1, fn_1_1ACC0_Seg *arg2, f32 *arg3, f32 arg
 
     lbl_8006DAEC();
     if (up) {
-        f32 m20, m23, m10, m13, m00, m03, x;
-
-        m00 = LC[0];
-        m03 = LC[3];
-        m10 = LC[4];
-        m13 = LC[7];
-        m20 = LC[8];
-        m23 = LC[11];
-        x = 0.5f * *arg3;
-        m00 = m00 * x + m03;
-        m10 = m10 * x + m13;
-        m20 = m20 * x + m23;
-        LC[3] = m00;
-        LC[7] = m10;
-        LC[11] = m20;
+        mathutil_mtxA_translate_x(0.5f * *arg3);
         mathutil_mtxA_rotate_z(-0x31C7);
     } else {
         lbl_8006E0B4(-0.5f * *arg3, arg2->unk_40, 0.0f);
@@ -7006,7 +6994,6 @@ void fn_1_1ACC0(Vec3 *arg0, Vec3 *arg1, fn_1_1ACC0_Seg *arg2, f32 *arg3, f32 arg
 
 #pragma opt_dead_assignments reset
 
-#pragma opt_lifetimes reset
 #undef GAME_VEC3_H
 #undef LC
 /* fzgx:end fn_1_1ACC0 */
@@ -7087,11 +7074,11 @@ static inline int fn_1_1B2A4_match(Ctx *ctx, Seg_1B2A4 *seg, s32 id)
     index = ctx->unk_0->unk_0;
     count = ctx->unk_4->unk_0;
     flags = ctx->unk_4->unk_3C[index];
-    if (count <= index || !__rlwnm(flags, 3, 31, 31)) {
+    if (count <= index || !coli_bit(flags, 2)) {
         if (lbl_801A66CC->enabled == 0) return 0;
         for (index = 0; index < count; index++) {
             flags = ctx->unk_4->unk_3C[index];
-            if (__rlwnm(flags, 3, 31, 31)) break;
+            if (coli_bit(flags, 2)) break;
         }
         if (index >= count) return 0;
     }
@@ -7119,7 +7106,7 @@ static inline int fn_1_1B2A4_allowed(Ctx *ctx, Seg_1B2A4 *seg, s32 id)
     count = ctx->unk_4->unk_0;
     flags = ctx->unk_4->unk_3C[index];
     if (count <= index) return 0;
-    if (!__rlwnm(flags, 30, 31, 31)) return 0;
+    if (!coli_bit(flags, 29)) return 0;
     mask = 0x03E00000;
     if (lbl_801A66CC->count == count) mask |= 0xC00;
     needed = seg->unk_0 & mask;
@@ -7328,9 +7315,9 @@ void fn_1_1B2A4(Vec3 *arg0, Vec3 *arg1, u32 arg2, Seg_1B2A4 *seg, Vec3 *scale, C
         if (__fabs(pt.x) <= 0.5 ||
             (!((hit >> 25) & 1) && (arg2 & 0x02000000) && in &&
              ((pt.x > 0.0f && (seg->unk_0 & 0x800) &&
-               __rlwnm(ctx->unk_4->unk_3C[ctx->unk_0->unk_0], 2, 31, 31)) ||
+               coli_bit(ctx->unk_4->unk_3C[ctx->unk_0->unk_0], 1)) ||
               (pt.x <= 0.0f && (seg->unk_0 & 0x400) &&
-               __rlwnm(ctx->unk_4->unk_3C[ctx->unk_0->unk_0], 1, 31, 31))))) {
+               coli_bit(ctx->unk_4->unk_3C[ctx->unk_0->unk_0], 0))))) {
             psvec_sub_scale_add(arg0, arg1, t, &delta, &c->point);
             if ((hit >> 25) & 1) {
                 zero = 0.0f;
@@ -7515,13 +7502,13 @@ static inline int fn_1_1C0D0_pick(fn_1_1C0D0_Ctx *ctx, fn_1_1C0D0_Wall *wall, in
     index = ctx->unk_0->unk_0;
     count = ctx->unk_4->unk_0;
     flags = ctx->unk_4->unk_3C[index];
-    if (count <= index || !__rlwnm(flags, 3, 31, 31)) {
+    if (count <= index || !coli_bit(flags, 2)) {
         if (lbl_801A66CC->enabled == 0) {
             return 0;
         }
         for (index = 0; index < count; index++) {
             flags = ctx->unk_4->unk_3C[index];
-            if (__rlwnm(flags, 3, 31, 31)) {
+            if (coli_bit(flags, 2)) {
                 break;
             }
         }
@@ -7560,7 +7547,7 @@ static inline int fn_1_1C0D0_allowed(fn_1_1C0D0_Ctx *ctx, fn_1_1C0D0_Wall *wall,
     if (count <= index) {
         return 0;
     }
-    if (!__rlwnm(flags, 30, 31, 31)) {
+    if (!coli_bit(flags, 29)) {
         return 0;
     }
     mask = 0x03E00000;
@@ -7625,6 +7612,9 @@ static inline f32 fn_1_1C0D0_last(fn_1_1C0D0_Wall *wall)
 /* WARNING: compiler-diff device, not original code */
 #pragma opt_lifetimes off
 
+/* WARNING: compiler-diff device, not original code: the eight __rlwinm(hit, ...) bit tests. Retail
+ * extracts the bit at every site; `(hit >> 29) & 1` or `hit & 0x20000000` matches at any one site alone, but two or
+ * more natural sites turn into rlwinm. mask tests (2 words and up, 580 for all eight). */
 void fn_1_1C0D0(Vec3 *a, Vec3 *b, u32 flags, fn_1_1C0D0_Wall *wall, f32 *scale,
     fn_1_1C0D0_Ctx *ctx, void *arg6, int id, f32 arg8)
 {
@@ -7780,11 +7770,11 @@ void fn_1_1C0D0(Vec3 *a, Vec3 *b, u32 flags, fn_1_1C0D0_Wall *wall, f32 *scale,
         if (inside ||
             (ok &&
              ((!use_own && !__rlwinm(hit, 7, 31, 31) && (flags & 0x02000000) &&
-               ((p.x > 0.0f && right && __rlwnm(ctx->unk_4->unk_3C[ctx->unk_0->unk_0], 2, 31, 31)) ||
-                (p.x <= 0.0f && left && __rlwnm(ctx->unk_4->unk_3C[ctx->unk_0->unk_0], 1, 31, 31)))) ||
+               ((p.x > 0.0f && right && coli_bit(ctx->unk_4->unk_3C[ctx->unk_0->unk_0], 1)) ||
+                (p.x <= 0.0f && left && coli_bit(ctx->unk_4->unk_3C[ctx->unk_0->unk_0], 0)))) ||
               (use_own &&
-               ((p.x > 0.0f && right && __rlwnm(lbl_801A66CC->ctx->unk_0->unk_3C[0], 2, 31, 31)) ||
-                (p.x <= 0.0f && left && __rlwnm(lbl_801A66CC->ctx->unk_0->unk_3C[0], 1, 31, 31))))))) {
+               ((p.x > 0.0f && right && coli_bit(lbl_801A66CC->ctx->unk_0->unk_3C[0], 1)) ||
+                (p.x <= 0.0f && left && coli_bit(lbl_801A66CC->ctx->unk_0->unk_3C[0], 0))))))) {
             psvec_sub_scale_add(a, b, t, &d, &contact->point);
             if (!inside) {
                 lbl_8006DAEC();
@@ -7968,7 +7958,7 @@ static inline int allowed(CollCtx *ctx, Segment *seg, s32 id, int side)
     count = ctx->unk_4->unk_0;
     flags = ctx->unk_4->unk_3C[index];
     if (count <= index) return 0;
-    if (!__rlwnm(flags, (side + 1) & 31, 31, 31)) return 0;
+    if (!coli_bit(flags, side)) return 0;
     mask = 0x03E00000;
     if (lbl_801A66CC->count == count) mask |= 0xC00;
     needed = seg->unk_0 & mask;
@@ -8088,7 +8078,8 @@ void fn_1_1D0CC(Vec3 *arg0, Vec3 *arg1, u32 arg2, Segment *arg3, Vec3 *arg4, Col
     sign = bit0 ? 1.0f : -1.0f;
     psvec_sub(&v0, &v1, &d);
     inside = !(sign * ((v0.x * v0.x) + (v0.y * v0.y) - 0.25f) >= 0.0f);
-    /* retail clears bit 29 with rlwinm from a freshly loaded 0x20000000, which `&= ~0x20000000` does not give */
+    /* WARNING: compiler-diff device, not original code: retail clears bit 29 with rlwinm from a freshly
+     * loaded 0x20000000, which `&= ~0x20000000` does not give (the constant is hoisted: 654 words) */
     if (inside) mask = __rlwinm(mask, 0, 3, 1);
     ok[0] = allowed(arg5, arg3, arg7, 2);
     a = dot2(&d, &d);
@@ -8253,7 +8244,7 @@ static inline int fn_1_1DCD8_allowed(CollCtx *ctx, Segment_1DCD8 *seg, s32 id, i
     count = ctx->unk_4->unk_0;
     flags = ctx->unk_4->unk_3C[index];
     if (count <= index) return 0;
-    if (!__rlwnm(flags, (side + 1) & 31, 31, 31)) return 0;
+    if (!coli_bit(flags, side)) return 0;
     mask = 0x03E00000;
     if (lbl_801A66CC->count == count) mask |= 0xC00;
     needed = seg->unk_0 & mask;
@@ -8639,7 +8630,7 @@ static inline int fn_1_1EBD4_allowed(Ctx *ctx, Segment *seg, int id, int side)
     count = ctx->unk_4->unk_0;
     flags = ctx->unk_4->unk_3C[index];
     if (count <= index) return 0;
-    if (!__rlwnm(flags, (side + 1) & 31, 31, 31)) return 0;
+    if (!coli_bit(flags, side)) return 0;
     mask = 0x03E00000;
     if (lbl_801A66CC->count == count) mask |= 0xC00;
     other = ctx->unk_4->unk_4C[index];
@@ -9705,6 +9696,8 @@ s32 fn_1_210A8(Vec3 *pos, f32 *out_t, s32 index, s32 mode, Vec3 *out_pos) {
     ref = segs[index].unk_8->unk_0;
     refid = segs[index].unk_0;
     for (k = 0; k < count; k++) {
+        /* WARNING: compiler-diff device, not original code: `k & 1` changes the function under
+         * opt_propagation off (225 words) */
         side = single ? 0 : __rlwinm(k, 0, 31, 31);
         cur = (index + step[side] + count) % count;
         if (mode != 0 && (ref != segs[cur].unk_8->unk_0 || refid != segs[cur].unk_0)) {
@@ -10017,6 +10010,7 @@ void fn_1_21950(u32 arg0, f32 arg1, f32 arg2) {
     loc_8[1] = 0.0f;
     loc_8[2] = 0.0f;
     loc_8[0] = (v4 * *(f32 *)(arg0));
+    /* WARNING: compiler-diff device, not original code: lab_t0 carrier (2 words without) */
     lab_t0 = loc_8;
     lbl_8006E1B0(lab_t0, loc_8);
     v6 = 0.0f;
@@ -10458,7 +10452,7 @@ s32 fn_1_224F8(Vec3 *start, Vec3 *end, u32 *mask) {
     first = __cntlzw(*mask);
     lbl_8006DAEC();
     for (i = first, gate = &((StcoliGate *)lbl_1_bss_3BE0->unk_B0)[first]; i < (s32)lbl_1_bss_3BE0->unk_AC; i++, gate++) {
-        if (!__rlwnm(*mask, (i + 1) & 0x1F, 31, 31)) {
+        if (!coli_bit(*mask, i)) {
             continue;
         }
         lbl_8006D7DC(gate);

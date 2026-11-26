@@ -4,6 +4,7 @@
 #include "dolphin/hw_regs.h"
 #include "game/vec3.h"
 #include "psvec.h"
+#include "mathutil_mtxA_set_translate.h"
 #include "fpscr_floorf.h"
 #include "rel/main_rel/camera.h"
 #include "rel/main_rel/car_test.h"
@@ -3917,9 +3918,7 @@ typedef struct {
 /* fn_1_2BA48 */
 typedef struct Fn_1_2BBD0 {
     unsigned char pad00[0x7c];
-    f32 field7c;
-    f32 field80;
-    f32 field84;
+    Vec3 pos;
     unsigned char pad88[0x42c];
     Vec3 position;
     u8 active;
@@ -3931,9 +3930,7 @@ typedef struct Fn_1_2BBD0Arg {
     unsigned char pad00[0x04];
     s16 value04;
     unsigned char pad06[0x76];
-    f32 field7c;
-    f32 field80;
-    f32 field84;
+    Vec3 pos;
 } Fn_1_2BBD0Arg;
 
 /* fn_1_2BD30 */
@@ -3953,9 +3950,7 @@ typedef struct StcoliObj2BD30 {
     u8 pad0[0x8];
     f32 scale;          /* 0x08 */
     u8 padC[0x7C - 0xC];
-    f32 posX;           /* 0x7C */
-    f32 posY;           /* 0x80 */
-    f32 posZ;           /* 0x84 */
+    Vec3 pos;           /* 0x7C */
     u8 pad88[0x94 - 0x88];
     f32 velX;           /* 0x94 */
     f32 velY;           /* 0x98 */
@@ -4346,13 +4341,15 @@ u32 fn_1_2C688(u32 arg0, u32 arg1, u32 arg2);
 
 static inline f32 stcoli_mag(Vec3 *v)
 {
-    f32 *c = &v->x;
+    f32 x, y, z;
     f32 sq;
 
-    /* distinct operand spellings: MWCC never fuses a literal square a*a */
-    sq = v->x * v->x;
-    sq += c[1] * v->y;
-    sq += c[2] * v->z;
+    x = v->x;
+    y = v->y;
+    z = v->z;
+    sq = x * x;
+    sq += y * y;
+    sq += z * z;
     return lbl_8006D0B4(sq);
 }
 
@@ -4447,7 +4444,6 @@ static void stcoli_restart(u32 obj)
     lbl_8006DB30();
 }
 
-static inline f32 fn_1_229EC_operand_(f32 right, f32 left) { return (((left) * right)); }
 
 void fn_1_229EC(fn_1_229EC_ctrl *ctrl, f32 *out_pos, f32 *out_mag)
 {
@@ -4456,7 +4452,6 @@ void fn_1_229EC(fn_1_229EC_ctrl *ctrl, f32 *out_pos, f32 *out_mag)
     f32 delta;
     f32 mag;
     f32 falloff;
-    f32 lab_t1;
     x = ctrl->x;
     y = ctrl->y;
     mag = *out_mag;
@@ -4471,7 +4466,7 @@ void fn_1_229EC(fn_1_229EC_ctrl *ctrl, f32 *out_pos, f32 *out_mag)
     }
     falloff = falloff * (x * (0.6f + x) * 4.0f);
     if (mag < 0.0f) {
-        falloff = fn_1_229EC_operand_((5.0f), falloff);
+        falloff *= 5.0f;
     }
 
     *out_pos = total - (f32)(((f32)((f32)((delta)) * (f32)((falloff)))));
@@ -4486,8 +4481,7 @@ void fn_1_229EC(fn_1_229EC_ctrl *ctrl, f32 *out_pos, f32 *out_mag)
     }
 
     if (mag < 0.0f) {
-        lab_t1 = (0.05f);
-        delta = (((delta) * lab_t1));
+        delta *= 0.05f;
     }
 
     *out_mag = *out_mag + (f32)(((f32)((f32)((1000.0f)) * (f32)((delta))))) / ctrl->divisor;
@@ -4917,12 +4911,7 @@ void fn_1_236CC(Body *b) {
     inv = 1.0f / b->mass;
     psvec_scale_add(&b->pos, &b->vel, inv, &b->pos);
     fn_1_28184((void *)b);
-    /* Volatile view preserves the position read order before locked-cache writes. */
-    /* WARNING: compiler-diff device, not original code */
-    x = *(volatile f32 *)&b->pos.x;
-    y = b->pos.y;
-    z = b->pos.z;
-    fn_1_236CC_set_translate(x, y, z);
+    mathutil_mtxA_set_translate(&b->pos);
     fn_1_28F08((void *)b, (void *)(BODY_VA0(b)), 0.0f);
     zero = 0.0f;
     fn_1_236CC_set_translate(zero, zero, zero);
@@ -5061,6 +5050,7 @@ s32 fn_1_239C4(struct fn_1_239C4_Arg0 *arg0, struct fn_1_239C4_Arg0 *arg1) {
     v34 = 0;
     if (v7 < v3 && v7 > ((f32)(1.1920929e-07f))) v34 = 1;
     if (v34) {
+        /* WARNING: compiler-diff device, not original code: variable-amount __rlwnm bit tests, no natural spelling known */
         if (__rlwnm(U(arg0,0x514), (H(arg1,4)+1)&31, 31, 31) || __rlwnm(U(arg1,0x514), (H(arg0,4)+1)&31, 31, 31)) v34 = 0;
     } else { CLEAR_PAIR(); }
     if (v34) {
@@ -5259,7 +5249,6 @@ static void stcoli_update_speed(fn_1_24A4C_Car *car)
 {
     f32 vx, vy, vz;
     f32 sq;
-    f32 speed;
     s32 below;
 
     if (car->flags & 0x8000) {
@@ -5273,13 +5262,12 @@ static void stcoli_update_speed(fn_1_24A4C_Car *car)
         sq += vz * vz;
         sq = lbl_8006D0B4(sq);
         car->speed = 216.0 * (sq / car->mass);
-        speed = car->speed;
-        if (speed > car->maxSpeed) {
-            below = speed < 80.0f + car->maxSpeed;
-            below |= speed < 1700.0f;
+        if (car->speed > car->maxSpeed) {
+            below = car->speed < 80.0f + car->maxSpeed;
+            below |= car->speed < 1700.0f;
             below &= !(car->flags & 0x3800000);
             if (below) {
-                car->maxSpeed = speed;
+                car->maxSpeed = car->speed;
             }
         }
     }
@@ -5298,27 +5286,11 @@ static void stcoli_damage_timer(fn_1_24A4C_Car *car, s32 contact)
     }
 }
 
-/* the matrix in the locked cache */
-
-#define LC_MTX ((f32 (*)[4])0xE0000000)
-
-/* parameters declared z, y, x: retail holds x in f2, y in f1, z in f0 */
-
-static inline void fn_1_24A4C_set_translate(f32 z, f32 y, f32 x) {
-    LC_MTX[0][3] = x;
-    LC_MTX[1][3] = y;
-    LC_MTX[2][3] = z;
-}
-
 static inline f32 fn_1_24A4C_speed(f64 scale, f32 magnitude, f32 mass) { return scale * (magnitude / mass); }
 
 static inline f64 fn_1_24A4C_read_pointer(struct fn_1_24A4C_lbl_1_rodata_840 * owner) { return owner->unk_20; }
 
-/* WARNING: compiler-diff device, not original code */
-#pragma opt_dead_assignments off
 
-/* WARNING: compiler-diff device, not original code */
-#pragma opt_common_subs off
 
 void fn_1_24A4C(fn_1_24A4C_Car *car) {
     s32 i;
@@ -5340,7 +5312,7 @@ void fn_1_24A4C(fn_1_24A4C_Car *car) {
         return;
     }
     lbl_8006DBAC(car->mtx);
-    fn_1_24A4C_set_translate(car->pos.z, car->pos.y, car->pos.x);
+    mathutil_mtxA_set_translate(&car->pos);
     if (car->timer4e0 != 0) {
         fn_1_2BA48((void *)car);
     }
@@ -5352,7 +5324,7 @@ void fn_1_24A4C(fn_1_24A4C_Car *car) {
         }
     }
     lbl_8006DBAC(car->mtx);
-    fn_1_24A4C_set_translate(car->pos.z, car->pos.y, car->pos.x);
+    mathutil_mtxA_set_translate(&car->pos);
     for (i = 0; i < 4; i++) {
         fn_1_24A4C_Wheel *w = &car->wheel[i];
         fn_1_24A4C_Spring *s = &car->spring[i];
@@ -5425,10 +5397,6 @@ void fn_1_24A4C(fn_1_24A4C_Car *car) {
     }
 }
 
-#pragma opt_common_subs reset
-
-#pragma opt_dead_assignments reset
-#undef LC_MTX
 /* fzgx:end fn_1_24A4C */
 
 /* fzgx:begin fn_1_24F10 */
@@ -5819,6 +5787,7 @@ void fn_1_25870(Fn_1_25870 *self) {
 /* fzgx:begin fn_1_25A14 */
 /* the track query result a corner's M+0x488[k] pair points at */
 
+/* WARNING: compiler-diff device, not original code: variable-amount __rlwnm bit test, no natural spelling known */
 #define BIT(word, k) __rlwnm((word), ((k) + 1) & 31, 31, 31)
 
 #define CUR (&lbl_801A66CC->delta)
@@ -7170,8 +7139,7 @@ void fn_1_287E8(Fn_1_287E8 *self) {
 
 #define GAME_VEC3_H
 
-/* Keep the translation loads in their own registers (retail stores x, y, z from f2, f1, f0),
- * as in fn_1_2BBD0. */
+/* Keeps the zero local of the v4B4 reset: retail loads 0.0f before 10000.0f (5 words without). */
 
 /* WARNING: compiler-diff device, not original code */
 #pragma opt_propagation off
@@ -7189,7 +7157,6 @@ void fn_1_289B4(Body *p, u32 *out, void *arg2) {
     f32 ang;
     f32 a;
     f32 b;
-    f32 z, y, x;
     f32 vx, vy, vz;
     f32 zero;
     u16 limit;
@@ -7215,13 +7182,7 @@ void fn_1_289B4(Body *p, u32 *out, void *arg2) {
     }
 
     lbl_8006DBAC(p->mtx11C);
-    /* translation column of the locked-cache matrix */
-    x = p->prevPos.x;
-    y = p->prevPos.y;
-    z = p->prevPos.z;
-    *(f32 *)(0xE0000000 + 0x0C) = x;
-    *(f32 *)(0xE0000000 + 0x1C) = y;
-    *(f32 *)(0xE0000000 + 0x2C) = z;
+    mathutil_mtxA_set_translate(&p->prevPos);
     lbl_8006DD14((u32)p->mtxEC, p->mtx11C);
     p->pos4C8 = p->pos;
     p->prevPos = p->pos4C8;
@@ -7240,16 +7201,7 @@ void fn_1_289B4(Body *p, u32 *out, void *arg2) {
     }
 
     lbl_8006DBAC(p->mtxEC);
-    {
-        f32 z, y, x;
-
-        x = p->pos.x;
-        y = p->pos.y;
-        z = p->pos.z;
-        *(f32 *)(0xE0000000 + 0x0C) = x;
-        *(f32 *)(0xE0000000 + 0x1C) = y;
-        *(f32 *)(0xE0000000 + 0x2C) = z;
-    }
+    mathutil_mtxA_set_translate(&p->pos);
 
     if (p->flags & 0x400) {
         *out = ((u32)fn_1_2AF0C((void *)p, (void *)arg2));
@@ -7376,6 +7328,8 @@ void fn_1_289B4(Body *p, u32 *out, void *arg2) {
 /* fzgx:end fn_1_289B4 */
 
 /* fzgx:begin fn_1_28F08 */
+/* WARNING: compiler-diff device, not original code: operand/read_pointer helpers keep the
+ * products and the v.z reads apart under opt_propagation off (27 words with plain v.z reads) */
 static inline f32 fn_1_28F08_operand(f32 left, f32 right) { return left + right; }
 
 /* WARNING: compiler-diff device, not original code */
@@ -7980,16 +7934,7 @@ void fn_1_29A0C(Machine *m)
         }
     }
     /* the locked-cache matrix (LC_BASE) gets the position as its translation */
-    {
-        f32 z, y, x;
-        /* WARNING: compiler-diff device, not original code */
-        x = *(volatile f32 *)&pos.x;  /* fzgx-allow: S2 volatile view keeps the verified load order */
-        y = pos.y;
-        z = pos.z;
-        LC[3] = x;
-        LC[7] = y;
-        LC[11] = z;
-    }
+    mathutil_mtxA_set_translate(&pos);
     amp = 5.999999848427251e-05f * m->unk_478;
     hash = (*(u32 *)(&m->unk_94.z)) ^ ((*(u32 *)(&m->unk_94.x)) ^ (*(u32 *)(&m->unk_94.y)));
     t = amp * ((u16)(hash ^ m->unk_A0) / 65536.0f);
@@ -8879,33 +8824,27 @@ void fn_1_2BA48(St *p) {
 /* fzgx:end fn_1_2BA48 */
 
 /* fzgx:begin fn_1_2BBD0 */
-/* WARNING: compiler-diff device, not original code */
-#pragma opt_common_subs off
 
-/* WARNING: compiler-diff device, not original code */
-#pragma opt_propagation off
 
 void fn_1_2BBD0(Fn_1_2BBD0 *self, Fn_1_2BBD0Arg *other, f32 threshold) {
     if (self->active == 0) {
         Vec3 vec;
         f32 sum;
-        f32 vc;
-        f32 vb;
-        f32 va;
+        f32 z;
+        f32 y;
+        f32 x;
 
-        sum = self->position.x * self->position.x;
-        sum += self->position.y * self->position.y;
-        sum += self->position.z * self->position.z;
+        x = self->position.x;
+        y = self->position.y;
+        z = self->position.z;
+        sum = x * x;
+        sum += y * y;
+        sum += z * z;
         if (threshold < lbl_8006D0B4(sum)) {
             lbl_8006DAEC();
             lbl_8006DBAC((void *)(((0xec) + ((char *)self))));
-            va = self->field7c;
-            vb = self->field80;
-            vc = self->field84;
-            *(f32 *)(LC_BASE + 0xC) = va; /* hardware DI regs */
-            *(f32 *)(LC_BASE + 0x1C) = vb; /* Hardware access must remain ordered. */
-            *(f32 *)(LC_BASE + 0x2C) = vc; /* Hardware access must remain ordered. */
-            fn_8006E250((void *)&other->field7c, (void *)&vec);
+            mathutil_mtxA_set_translate(&self->pos);
+            fn_8006E250((void *)&other->pos, (void *)&vec);
             lbl_8006D668((void *)&vec);
             if (vec.z < -0.1f) {
                 self->position = vec;
@@ -8915,19 +8854,10 @@ void fn_1_2BBD0(Fn_1_2BBD0 *self, Fn_1_2BBD0Arg *other, f32 threshold) {
             lbl_8006DB30();
         }
     } else if (self->value4c1 == other->value04) {
-        f32 wc;
-        f32 wb;
-        f32 wa;
-
         lbl_8006DAEC();
         lbl_8006DBAC((void *)((char *)self + 0xec));
-        wa = self->field7c;
-        wb = self->field80;
-        wc = self->field84;
-        *(f32 *)(LC_BASE + 0xC) = wa; /* hardware DI regs */
-        *(f32 *)(LC_BASE + 0x1C) = wb; /* Hardware access must remain ordered. */
-        *(f32 *)(LC_BASE + 0x2C) = wc; /* Hardware access must remain ordered. */
-        fn_8006E250((void *)&other->field7c, (void *)&self->position);
+        mathutil_mtxA_set_translate(&self->pos);
+        fn_8006E250((void *)&other->pos, (void *)&self->position);
         lbl_8006D668((void *)&self->position);
         if (self->position.z > -0.1f) {
             self->position.z = -0.1f;
@@ -8936,9 +8866,7 @@ void fn_1_2BBD0(Fn_1_2BBD0 *self, Fn_1_2BBD0Arg *other, f32 threshold) {
     }
 }
 
-#pragma opt_propagation reset
 
-#pragma opt_common_subs reset
 /* fzgx:end fn_1_2BBD0 */
 
 /* fzgx:begin fn_1_2BD30 */
@@ -8967,16 +8895,6 @@ const f32 stcoli_unknown_BAC[2] = {9990.0f, -10.0f};
 
 /* end game/main_rel/camera_types.h */
 
-/* Locked-cache current matrix (translation column). */
-
-#define CUR_MTX ((f32 *)0xE0000000) /* fzgx-allow: A2 locked-cache current matrix */
-
-static inline void fn_1_2BD30_translate(f32 x, f32 y, f32 z) {
-    CUR_MTX[3] = x;
-    CUR_MTX[7] = y;
-    CUR_MTX[11] = z;
-}
-
 static inline void fn_1_2BD30_set(Vec3 *v, f32 x, f32 y, f32 z) {
     v->x = x;
     v->y = y;
@@ -8987,19 +8905,15 @@ static inline int fn_1_2BD30_nonfinite(f32 x) {
     return (*(u32 *)&x & 0x7F800000) == 0x7F800000;
 }
 
-/* WARNING: compiler-diff device, not original code */
-#pragma opt_common_subs off
 
+/* WARNING: compiler-diff device, not original code: obj->velZ through an inline under
+ * opt_dead_assignments off (6 words with the plain read) */
 static inline f32 fn_1_2BD30_read_pointer(StcoliObj2BD30 * owner) { return owner->velZ; }
 
 /* WARNING: compiler-diff device, not original code */
 #pragma opt_dead_assignments off
 
 f32 fn_1_2BD30(StcoliObj2BD30 *obj, StcoliOut2BD30 *out, Vec3 *src) {
-    /* WARNING: compiler-diff device, not original code */
-    f32 pos_y;
-    /* WARNING: compiler-diff device, not original code */
-    f32 pos_x;
     Vec3 local;
     f32 m;
     f32 ax, ay, az;
@@ -9008,15 +8922,16 @@ f32 fn_1_2BD30(StcoliObj2BD30 *obj, StcoliOut2BD30 *out, Vec3 *src) {
 
     lbl_8006DAEC();
     lbl_8006DBAC((void *)&obj->rot);
-    pos_x = obj->posX;
-    pos_y = obj->posY;
-    fn_1_2BD30_translate(pos_x, pos_y, obj->posZ);
+    mathutil_mtxA_set_translate(&obj->pos);
     fn_8006E250((void *)src, (void *)&out->dir);
     fn_8006E2B0(obj->ref, &local);
     psvec_sub(&out->dir, &local, &out->dir);
-    lengthSquared = (out->dir.x * out->dir.x);
-    lengthSquared += out->dir.y * out->dir.y;
-    lengthSquared += out->dir.z * out->dir.z;
+    vx = out->dir.x;
+    vy = out->dir.y;
+    vz = out->dir.z;
+    lengthSquared = vx * vx;
+    lengthSquared += vy * vy;
+    lengthSquared += vz * vz;
     if (lbl_8006D0B4(lengthSquared) > 0.00000011920929f) {
         lbl_8006D668(&out->dir);
     } else {
@@ -9065,10 +8980,9 @@ f32 fn_1_2BD30(StcoliObj2BD30 *obj, StcoliOut2BD30 *out, Vec3 *src) {
 
 #pragma opt_dead_assignments reset
 
-#pragma opt_common_subs reset
 #undef GAME_MAIN_REL_CAMERA_TYPES_H
 #undef GAME_VEC3_H
-#undef CUR_MTX
+
 /* fzgx:end fn_1_2BD30 */
 
 /* fzgx:begin fn_1_2BF8C */
