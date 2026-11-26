@@ -1901,11 +1901,11 @@ void fn_1_6AF70(u32 arg0, void * arg1) {
     f32 total;
     f32 loc_5C[58];
     u32 loc_2C[12];
-    struct { u32 x, y, z; } delta;
+    Vec3 delta;
     f32 fzgx_pool_f32_0 = 0.800000012f;
-#define loc_20 (*(f32 *)&delta.x)
-#define loc_24 (*(f32 *)&delta.y)
-#define loc_28 (*(f32 *)&delta.z)
+#define loc_20 delta.x
+#define loc_24 delta.y
+#define loc_28 delta.z
     struct { u32 x, y, z; } end, start;
 #define loc_14 end.x
 #define loc_18 end.y
@@ -3278,7 +3278,7 @@ void fn_1_6D488(struct fn_1_6D488_Arg0 *arg0) {
         mathutil_mtxA_rotate_y(*(s16 *)((u8 *)&loc_20 + 0x56));
         mathutil_mtxA_rotate_x(*(s16 *)((u8 *)&loc_20 + 0x54));
         {
-            struct { f32 x,y,z; } velocity = {0.0f, 0.0f, -2.0f};
+            Vec3 velocity = {0.0f, 0.0f, -2.0f};
             lab_t1 = (u8 *)&loc_20 + 0x3c;
             lbl_8006E1B0(&velocity, lab_t1);
         }

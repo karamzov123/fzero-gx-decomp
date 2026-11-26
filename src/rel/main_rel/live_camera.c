@@ -1471,8 +1471,8 @@ struct fn_1_EE44_Arg0 {
     u8 pad_10[2];
     s16 unk_12, unk_14;
     u8 pad_16[6];
-    u32 unk_1C, unk_20, unk_24;
-    u32 unk_28, unk_2C, unk_30;
+    Vec3 unk_1C;
+    Vec3 unk_28;
     u8 pad_34[0x18];
     f32 unk_4C[3];
     f32 unk_58;
@@ -1559,10 +1559,7 @@ void fn_1_EE44(struct fn_1_EE44_Arg0 *arg0, f32 arg1) {
     p_lbl_1_data_43B8 = (Obj_1_data_43B8 *)&lbl_1_data_43B8;
     p_lbl_1_rodata_4E0 = (u8 *)&lbl_1_rodata_4E0;
     arg0->unk_C &= 0x7FFFFFFF;
-    {
-        typedef struct { u32 x, y, z; } Copy3;
-        *(Copy3 *)&arg0->unk_28 = *(Copy3 *)&arg0->unk_1C;
-    }
+    arg0->unk_28 = arg0->unk_1C;
     v1 = arg0->unk_64;
     if (v1 != 0)
         arg0->unk_64 = v1 - *(s16 *)((u8 *)p_lbl_1_data_43B8 + 0xCC);
