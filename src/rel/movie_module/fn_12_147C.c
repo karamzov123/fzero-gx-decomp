@@ -1,4 +1,5 @@
 #include "types.h"
+/* WARNING: compiler-diff device, not original code: file-level use_lmw_stmw on (retail prologues use stmw/lmw; 21 of 296 movie_module files carry it, so it may be the vendor build setting of these Sofdec objects, circumstantial); without it 1330 dump lines */
 #pragma use_lmw_stmw on
 #pragma pool_data on
 #pragma readonly_strings on
