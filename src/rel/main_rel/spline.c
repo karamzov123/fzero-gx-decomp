@@ -3367,7 +3367,7 @@ void fn_1_FA1D8(u32 arg0, u32 arg1, SplineTimeTable *table) {
 void fn_1_FA450(u8 value) {
     u8 local[0x14c0];
 
-    if (*(s16 *)&lbl_1_bss_960 == 2) {
+    if (lbl_1_bss_960 == 2) {
         fn_1_3EF14(local);
         if ((*(u32 *)local & 0x800) == 0) {
             *(u8 *)(*(u32 *)&lbl_1_bss_84420 + 8) = value;

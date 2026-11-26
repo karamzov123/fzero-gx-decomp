@@ -1195,7 +1195,7 @@ void fn_1_A0AA4(void) {
     if (fn_1_D357C() != 0) {
         return;
     }
-    if (*(s16 *)&lbl_1_bss_960 == 1 && lbl_1_bss_962 == 0x10) {
+    if (lbl_1_bss_960 == 1 && lbl_1_bss_962 == 0x10) {
         return;
     }
     if (fzgx_obj_lbl_1_bss_6EAD0[0] != NULL) {
@@ -1512,7 +1512,7 @@ void fn_1_A0D7C(void) {
     void *buffer_44;
     u32 length_8;
     void *buffer_8;
-    switch (*(s16 *)&lbl_1_bss_960) {
+    switch (lbl_1_bss_960) {
     case 7:
         DVDOpen((const char *)lbl_1_data_33F0C.unk_0, &loc_134);
         length_134 = loc_134.length;
@@ -1592,7 +1592,7 @@ void fn_1_A0D7C(void) {
 extern s16 lbl_1_bss_962;
 
 void fn_1_A116C(void) {
-    switch ((*(s16 *)&lbl_1_bss_960)) {
+    switch (lbl_1_bss_960) {
     case 2:
     case 8:
     case 9:
@@ -1854,7 +1854,7 @@ void fn_1_A1364(void) {
     if (fn_1_D357C() != 0) {
         return;
     }
-    if (*(s16 *)&lbl_1_bss_960 == 1 && lbl_1_bss_962 == 0x10) {
+    if (lbl_1_bss_960 == 1 && lbl_1_bss_962 == 0x10) {
         return;
     }
     if (fzgx_obj_lbl_1_bss_6EAD0[0] != NULL) {
@@ -2729,7 +2729,7 @@ static inline void play(u8 track) {
 void fn_1_A1DCC(u8 arg0) {
     s8 track;
     /* All guards share the retail epilogue. */
-    if (*(s16 *)&lbl_1_bss_960 == 10 || !S_HANDLES || (s32)fn_1_F2F34() != 0) goto end;
+    if (lbl_1_bss_960 == 10 || !S_HANDLES || (s32)fn_1_F2F34() != 0) goto end;
     S_TRACK = 255;
     if (arg0 > 45) track = -1;
     else if (lbl_1_bss_8CA24 || lbl_1_bss_8B5F0) track = 44;
@@ -3419,7 +3419,7 @@ void fn_1_A24CC(void) {
     s8 slot;
     u32 flags;
 
-    if (*(s16 *)&lbl_1_bss_960 != 2 && *(s16 *)&lbl_1_bss_960 != 9) {
+    if (lbl_1_bss_960 != 2 && lbl_1_bss_960 != 9) {
         return;
     }
     if (fn_1_3F0C8() != 0x29) {

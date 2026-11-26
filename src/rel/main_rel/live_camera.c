@@ -4678,13 +4678,13 @@ void fn_1_12620(s32 arg0) {
     char buf[0x74];
 
     fn_80006E10((base + 0x280));
-    if (*(s16 *)&lbl_1_bss_960 == 0xA) {
+    if (lbl_1_bss_960 == 0xA) {
         sprintf(buf, (const char *)(base + 0x284), arg0);
         if (fn_1_465D0(buf, 1) == -1) {
             sprintf(buf, (const char *)(base + 0x2A0));
             fn_1_465D0(buf, 1);
         }
-    } else if (*(s16 *)&lbl_1_bss_960 == 0xE) {
+    } else if (lbl_1_bss_960 == 0xE) {
         if (lbl_1_bss_525C.unk_191 & 2) {
             switch (lbl_1_bss_525C.unk_192) {
             case 4:

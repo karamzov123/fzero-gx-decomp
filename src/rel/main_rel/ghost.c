@@ -340,7 +340,7 @@ void fn_1_E9770(u32 a, u32 b, u8 race_type, u8 course) {
     int i;
     s16 mode;
 
-    mode = *(s16 *)&lbl_1_bss_960;
+    mode = lbl_1_bss_960;
     lbl_1_bss_7C850__fzgx_offset_4 = 0;
     lbl_1_bss_7C850__fzgx_offset_8 = 0;
     if ((mode != 9 || fzgx_obj_lbl_1_bss_7C848 == -1) && race_type != 2 && race_type != 10) {
@@ -416,7 +416,7 @@ void fn_1_E9770(u32 a, u32 b, u8 race_type, u8 course) {
     lbl_1_bss_7C914__fzgx_offset_2C = 1;
     lbl_1_bss_7C914__fzgx_offset_30 = 0;
     fzgx_obj_lbl_1_bss_7C948 = 1;
-    if (*(s16 *)&lbl_1_bss_960 == 9) {
+    if (lbl_1_bss_960 == 9) {
         fn_80008E84(fzgx_obj_lbl_1_bss_7C85C);
     }
     fzgx_obj_lbl_1_bss_7C94C = 1;
@@ -544,7 +544,7 @@ void fn_1_E9BA8(void) {
     s32 next;
     if ((s32)lbl_1_bss_7B188 == 0) return;
     if (fn_1_4C10() != 0) return;
-    if (*(s16 *)&lbl_1_bss_960 == 9) {
+    if (lbl_1_bss_960 == 9) {
         lbl_1_bss_7C85C.unk_0 = fn_80008E84(fn_1_3F8C0());
     }
     next = fzgx_pool_native_lbl_1_data_3E358_pending[0];
@@ -555,7 +555,7 @@ void fn_1_E9BA8(void) {
     if (fzgx_pool_native_lbl_1_data_3E358_current >= 0) {
         fzgx_pool_native_lbl_1_data_3E358_handlers[fzgx_pool_native_lbl_1_data_3E358_current]();
     }
-    if (*(s16 *)&lbl_1_bss_960 == 9) {
+    if (lbl_1_bss_960 == 9) {
         fn_80008E84(lbl_1_bss_7C85C.unk_0);
     }
 }
@@ -570,7 +570,7 @@ void fn_1_E9C68(void) {
         return;
     }
 
-    if (*(s16 *)&lbl_1_bss_960 == 9) {
+    if (lbl_1_bss_960 == 9) {
         value = fn_80008E84(fn_1_3F8C0());
         lbl_1_bss_7C85C.unk_0 = value;
     }
@@ -579,7 +579,7 @@ void fn_1_E9C68(void) {
         ((void (**)(void))lbl_1_data_3E434)[lbl_1_data_3E52C]();
     }
 
-    if (*(s16 *)&lbl_1_bss_960 == 9) {
+    if (lbl_1_bss_960 == 9) {
         fn_80008E84(lbl_1_bss_7C85C.unk_0);
     }
 }
@@ -825,7 +825,7 @@ void fn_1_E9CFC(void) {
     if (fzgx_obj_lbl_1_bss_7B188 == 0) {
         return;
     }
-    if (*(s16 *)&lbl_1_bss_960 == 9) {
+    if (lbl_1_bss_960 == 9) {
         fzgx_obj_lbl_1_bss_7C85C = fn_80008E84(fn_1_3F8C0());
     }
     fzgx_obj_lbl_1_bss_7B188 = 0;
@@ -885,7 +885,7 @@ void fn_1_E9CFC(void) {
     lbl_1_bss_7C914__fzgx_offset_30 = 0;
     fzgx_obj_lbl_1_bss_7B190 = 0;
     lbl_1_bss_7C848__fzgx_offset_4 = 0xFF;
-    if (*(s16 *)&lbl_1_bss_960 == 9) {
+    if (lbl_1_bss_960 == 9) {
         fn_80008E84(fzgx_obj_lbl_1_bss_7C85C);
     }
     fn_1_435C(lbl_1_bss_7C85C__fzgx_offset_68);
@@ -1210,14 +1210,14 @@ void fn_1_EA314(s32 arg) {
     u8 *p;
 
     if (fzgx_obj_lbl_1_bss_7B188 != 0) {
-        if (*(s16 *)&lbl_1_bss_960 == 9) {
+        if (lbl_1_bss_960 == 9) {
             fzgx_obj_lbl_1_bss_7C85C = fn_80008E84(fn_1_3F8C0());
         }
         lbl_1_bss_7C850__fzgx_offset_4 = 0;
         fzgx_obj_lbl_1_bss_7B190 = 0;
         fn_80008BEC(lbl_1_bss_7C94C__fzgx_offset_34, 0, 10);
         fn_80008BEC(lbl_1_bss_7C8CE__fzgx_offset_A, 0, 0x3C);
-        if (arg == 0 && lbl_1_bss_7B188__fzgx_offset_4 != 0 && fzgx_obj_lbl_1_bss_7C94C == 0 && *(s16 *)&lbl_1_bss_960 != 9) {
+        if (arg == 0 && lbl_1_bss_7B188__fzgx_offset_4 != 0 && fzgx_obj_lbl_1_bss_7C94C == 0 && lbl_1_bss_960 != 9) {
             rec = fn_1_3F0D8(0, &value, &flag);
             slot = fzgx_obj_lbl_1_bss_7C8CE;
             time = rec->unk_1E1 * 1000 + rec->unk_1E0 * 60000 + rec->unk_1E2;
@@ -1452,7 +1452,7 @@ void fn_1_EA314(s32 arg) {
         }
         fzgx_obj_lbl_1_data_3E530 = 0;
         fzgx_obj_lbl_1_data_3E52C = 0;
-        if (*(s16 *)&lbl_1_bss_960 == 9) {
+        if (lbl_1_bss_960 == 9) {
             fn_80008E84(fzgx_obj_lbl_1_bss_7C85C);
         }
     }
@@ -7397,7 +7397,7 @@ void fn_1_EF0A8(void) {
         fn_1_F190C(1);
         fzgx_obj_lbl_1_bss_7ECB4.unk_16 = 0;
         lbl_1_data_3E52C = 0xC;
-        if (*(s16 *)&lbl_1_bss_960 != 2) {
+        if (lbl_1_bss_960 != 2) {
             fn_1_48418(2);
             fn_1_159440(2, 0);
         }
@@ -9750,7 +9750,7 @@ u32 result;
 u8 *cur;
 u32 t0;
 u32 t1;
-if (*(s16 *)&lbl_1_bss_960 == 9) {
+if (lbl_1_bss_960 == 9) {
 if (*(s32 *)(base + 0x16c8) >= 0) {
 rec = fn_1_3F0D8(0, &a, &b);
 cur = *(u8 **)(base + 0x16b4);

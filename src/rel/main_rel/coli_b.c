@@ -5202,8 +5202,7 @@ int fn_1_248C0(Fn_1_248C0 *self, int arg) {
             result = 1;
         }
         if (!(self->unk_00 & 0x10000) && self->unk_4b3 == 0) {
-            /* WARNING: compiler-diff device, not original code (globals.h declares lbl_1_bss_960 u16; retail loads it with lha) */
-            if (*(s16 *)&lbl_1_bss_960 == 9 && lbl_1_bss_9C == 5) {
+            if (lbl_1_bss_960 == 9 && lbl_1_bss_9C == 5) {
             } else if (lbl_1_bss_9C == 6) {
             } else if (self->unk_475 != -1 && !(self->unk_00 & 0x04000200)) {
                 fn_1_A2D84(0xA9072100);
@@ -8782,8 +8781,7 @@ void fn_1_2BA48(St *p) {
 	u32 n;
 	U24 c;
 
-	/* WARNING: compiler-diff device, not original code (globals.h declares lbl_1_bss_960 u16; retail loads it with lha) */
-	if (*(s16 *)&lbl_1_bss_960 != 9) {
+	if (lbl_1_bss_960 != 9) {
 		v = 0xf0;
 	}
 	if (!(p->unk_0 & 0x2)) {

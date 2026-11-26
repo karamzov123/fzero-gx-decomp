@@ -371,7 +371,7 @@ typedef struct {
 
 
 void fn_1_14A1AC(u8 arg) {
-    if ((*((s16 *)&lbl_1_bss_960)) == 1) {
+    if (lbl_1_bss_960 == 1) {
         lbl_1_bss_8E548 = 4;
         return;
     }
@@ -1465,7 +1465,7 @@ void fn_1_14AED4(void) {
         if ((lbl_801A66A4) - fzgx_obj_lbl_1_bss_8E528 >= 195) {
             fzgx_obj_lbl_1_bss_8E51D = 2;
             lbl_1_bss_8E518__fzgx_offset_4 = 0;
-            if (*(s16 *)&lbl_1_bss_960 == 1) {
+            if (lbl_1_bss_960 == 1) {
                 fzgx_obj_lbl_1_bss_8E548 = 4;
             } else {
                 fzgx_obj_lbl_1_bss_8E548 = lbl_1_bss_3C30.unk_9 < 6 ? lbl_1_bss_3C30.unk_9 : 6;
@@ -2141,7 +2141,7 @@ void fn_1_14B62C(void) {
             if ((lbl_801A66A4) - fzgx_obj_lbl_1_bss_8E528 >= 195) {
                 fzgx_obj_lbl_1_bss_8E51D = 4;
                 lbl_1_bss_8E518__fzgx_offset_4 = 0;
-                if (*(s16 *)&lbl_1_bss_960 == 1) {
+                if (lbl_1_bss_960 == 1) {
                     fzgx_obj_lbl_1_bss_8E548 = 4;
                 } else {
                     fzgx_obj_lbl_1_bss_8E548 = lbl_1_bss_3C30.unk_8 < 6 ? lbl_1_bss_3C30.unk_8 : 6;
@@ -2274,7 +2274,7 @@ void fn_1_14B93C(void) {
         } else if ((lbl_1_bss_9F8.unk_8 >> 9) & 1) {
             fzgx_obj_lbl_1_bss_8E51D = 3;
             lbl_1_bss_8E518__fzgx_offset_4 = 0;
-            if (*(s16 *)&lbl_1_bss_960 == 1) fzgx_obj_lbl_1_bss_8E548[0] = 4;
+            if (lbl_1_bss_960 == 1) fzgx_obj_lbl_1_bss_8E548[0] = 4;
             else {
                 v0 = lbl_1_bss_3C30.unk_9 < 6 ? lbl_1_bss_3C30.unk_9 : 6;
                 fzgx_obj_lbl_1_bss_8E548[0] = v0;

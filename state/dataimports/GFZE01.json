@@ -84136,7 +84136,7 @@
         "path": "src/rel/winning/winning.c"
       }
     ],
-    "definition": "u16 lbl_1_bss_960",
+    "definition": "s16 lbl_1_bss_960",
     "method": "declared-bss",
     "module": "main_rel",
     "references": [

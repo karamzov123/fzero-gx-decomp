@@ -8,7 +8,7 @@
 // offsets and widths are facts, names are not. Regenerate rather than hand-edit padding.
 
 // lbl_1_bss_960: .bss size 0x2, referenced by 110 functions, shape {'object': 231}
-extern u16 lbl_1_bss_960;
+extern s16 lbl_1_bss_960;
 
 // lbl_1_data_2A7E0: .data size 0xF8, referenced by 99 functions, shape {'object': 160}
 // object reached through lbl_1_data_2A7E0.unk_3C

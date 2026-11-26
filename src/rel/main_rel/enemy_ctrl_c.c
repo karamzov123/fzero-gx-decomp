@@ -1523,7 +1523,7 @@ s32 fn_1_D123C(u32 arg0) {
     } else {
         sprintf(buf, (const char *)(base + 0x2D8), v4);
     }
-    if (*(s16 *)&lbl_1_bss_960 == 9) {
+    if (lbl_1_bss_960 == 9) {
         switch ((s8)lbl_1_bss_9C) {
         case 3:
             if (v1 == 6) sprintf(buf, (const char *)(base + 0x318));
@@ -1565,7 +1565,7 @@ s32 fn_1_D123C(u32 arg0) {
     entry[3] = 0;
     (*(u32 **)&lbl_1_bss_7ACE0)[(u8)arg0] = (u32)entry;
     sprintf(buf, (const char *)(base + 0x3C4), v4);
-    if (*(s16 *)&lbl_1_bss_960 == 9) {
+    if (lbl_1_bss_960 == 9) {
         switch ((s8)lbl_1_bss_9C) {
         case 3:
             if (v1 == 6) sprintf(buf, (const char *)(base + 0x3D0));

@@ -1438,7 +1438,7 @@ void fn_1_DE9C4(struct fn_1_DE9C4_Arg0 *arg0) {
     arg0->unk_80 = 9.58738019107841e-05f * loc_8.angle_z;
     lbl_8006DB30();
     if ((arg0->unk_138 & 8192) == 0) arg0->unk_15C++;
-    if (*(s16 *)&lbl_1_bss_960 == 9 && arg0->unk_A == 2) {
+    if (lbl_1_bss_960 == 9 && arg0->unk_A == 2) {
         next = arg0->unk_15C / 60.0f;
         v16 = fn_1_9E194(v2[8], (void *)v2[9], v4);
         v17 = fn_1_9E194(v2[8], (void *)v2[9], next);

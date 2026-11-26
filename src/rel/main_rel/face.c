@@ -209,8 +209,7 @@ void fn_1_D19B8(u8 *arg0) {
         arg0++;
     }
 
-    /* WARNING: compiler-diff device, not original code. s16 view: the generated header declares lbl_1_bss_960 u16 (lhz). */
-    if ((*(s16 *)&lbl_1_bss_960) == 9) {
+    if (lbl_1_bss_960 == 9) {
         v6 = lbl_1_bss_9C;
         switch (v6) {
         case 3:

@@ -982,7 +982,7 @@ void fn_1_103054(void) {
 /* fzgx:begin fn_1_103058 */
 // Runs the cloth update unless the global state is one of the inactive modes.
 void fn_1_103058(void) {
-    s16 state = *(s16 *)&lbl_1_bss_960;
+    s16 state = lbl_1_bss_960;
 
     if (state != 10 && state != 14) {
         fn_1_10576C();

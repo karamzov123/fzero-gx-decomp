@@ -6893,7 +6893,6 @@ void fn_1_818BC(Entry818BC *entries, u32 count, s32 mode) {
 /* fzgx:begin fn_1_82724 */
 /* VIEWS */
 #define lbl_1_bss_8B3A0 (*(Obj_1_bss_8B3A0_L *)&lbl_1_bss_8B3A0)
-#define lbl_1_bss_960 (*(s16 *)&lbl_1_bss_960)
 /* begin rel/main_rel/car.h (fork-deltawave784/windows-and-types@4b722344) */
 
 #define REL_MAIN_REL_CAR_H
@@ -7041,7 +7040,6 @@ setupEffects:
     }
 }
 #undef lbl_1_bss_8B3A0
-#undef lbl_1_bss_960
 #undef REL_MAIN_REL_CAR_H
 #undef REL_MAIN_REL_GLOBALS_H
 #undef FZGX_TYPES_LBL_1_BSS_525C
@@ -7077,12 +7075,12 @@ void fn_1_82C70(void *manager, u8 index, Car *car, Fn1_82C70_Work *work_base, u8
     } else {
         port = car->body->unk_474;
     }
-    if (*(s16 *)&lbl_1_bss_960 == 2) {
+    if (lbl_1_bss_960 == 2) {
         if (port == 0xFF) {
             return;
         }
         record = (Fn1_82C70_Record *)((u8 *)fn_1_36AD0() + port * 0x81C0);
-    } else if (*(s16 *)&lbl_1_bss_960 == 14) {
+    } else if (lbl_1_bss_960 == 14) {
         if (lbl_1_bss_525C.unk_F8 >= 3) {
             record = lbl_1_bss_525C.unk_0[lbl_1_bss_525C.unk_F8].unk_0;
         } else {
@@ -7092,7 +7090,7 @@ void fn_1_82C70(void *manager, u8 index, Car *car, Fn1_82C70_Work *work_base, u8
             return;
         }
         port = 0;
-    } else if (*(s16 *)&lbl_1_bss_960 == 12) {
+    } else if (lbl_1_bss_960 == 12) {
         port = 0;
         flag = 1;
         record = fn_1_36AD0();
@@ -7119,7 +7117,7 @@ void fn_1_82C70(void *manager, u8 index, Car *car, Fn1_82C70_Work *work_base, u8
     work->unk_0 = car;
     work->unk_8 = 1.0f;
     work->unk_C = 0x40000000;
-    if (*(s16 *)&lbl_1_bss_960 == 14) {
+    if (lbl_1_bss_960 == 14) {
         car->lod = 1;
         work->unk_C = 0x20000000;
         levels = 2;
@@ -8396,7 +8394,7 @@ loop1_test:
     if (lbl_1_bss_6D858 != 0) {
         fn_1_8E1E8();
     }
-    if (*(s16 *)&lbl_1_bss_960 == 14 || *(s16 *)&lbl_1_bss_960 == 2 || *(s16 *)&lbl_1_bss_960 == 12) {
+    if (lbl_1_bss_960 == 14 || lbl_1_bss_960 == 2 || lbl_1_bss_960 == 12) {
         fn_1_FDFF4();
         t_2 = (u32)lbl_1_bss_6D828;
         if (t_2) {
@@ -8453,7 +8451,7 @@ void fn_1_85934(f32 arg) {
     f32 value;
 
     value = 0.0f;
-    if (*(s16 *)&lbl_1_bss_960 == 12) {
+    if (lbl_1_bss_960 == 12) {
         for (i = 0; i < lbl_1_bss_6D84A; i++) {
             order[i] = lbl_1_bss_26B80[i * 5 + 4];
         }
@@ -8517,11 +8515,11 @@ void fn_1_85C58(s32 index, f32 arg1) {
     f32 start;
 
     /* course 37, 39 or 43 in story mode (mode 9), or course 45, picks its own table entry */
-    if (*(s16 *)&lbl_1_bss_960 == 9 && fn_1_7B054() == 37) {
+    if (lbl_1_bss_960 == 9 && fn_1_7B054() == 37) {
         kind = 1;
-    } else if (*(s16 *)&lbl_1_bss_960 == 9 && fn_1_7B054() == 39) {
+    } else if (lbl_1_bss_960 == 9 && fn_1_7B054() == 39) {
         kind = 2;
-    } else if (*(s16 *)&lbl_1_bss_960 == 9 && fn_1_7B054() == 43) {
+    } else if (lbl_1_bss_960 == 9 && fn_1_7B054() == 43) {
         kind = 3;
     } else if (fn_1_7B054() == 45) {
         kind = 4;
@@ -8600,7 +8598,7 @@ void fn_1_85F90(void *obj, f32 a, f32 b, f32 c, f32 d, int mode) {
             fn_1_17920(0, 0.0f, 0);
             lbl_8006DBAC( (void *)((Vec3 *)(p)));
             lbl_8006E0A4(p + 0x70);
-            lbl_8006E0B4(b, (*(s16 *)&lbl_1_bss_960 == 9 && !(*(u32 *)obj & (1 << 10))) ? 0.1f : 1.0f, d);
+            lbl_8006E0B4(b, (lbl_1_bss_960 == 9 && !(*(u32 *)obj & (1 << 10))) ? 0.1f : 1.0f, d);
             active = 0;
         } else {
             fn_1_892FC((void *)obj, (void *)((int)(&b)), (void *)((int)(&d)));
@@ -10884,7 +10882,7 @@ void fn_1_892FC(CarBody *car, f32 *out_c, f32 *out_2c) {
             x = x - (f64)(x * __fabs((f32)(2.0f * t) - 1.0f));
         }
     }
-    lbl_8006E0B4(x, (*(s16 *)&lbl_1_bss_960 == 9 && !(car->unk_0 & 0x400)) ? 0.1f : 1.0f, 0.0f);
+    lbl_8006E0B4(x, (lbl_1_bss_960 == 9 && !(car->unk_0 & 0x400)) ? 0.1f : 1.0f, 0.0f);
 }
 
 #pragma opt_dead_assignments reset

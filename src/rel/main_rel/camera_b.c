@@ -1616,7 +1616,7 @@ void fn_1_AA54(void *arg0) {
     temp_r31 = fn_1_86678((*(s16 *)((u8 *)(arg0) + 2)));
     temp_r3 = fn_1_86634((*(s16 *)((u8 *)(arg0) + 2)));
     temp_r28 = camera_get_entry_field_0xa8(temp_r3);
-    if (((*(s16 *)(&lbl_1_bss_960)) != 9) && (fn_1_864E8((*(s16 *)((u8 *)(arg0) + 2))) & 0x10000)) {
+    if ((lbl_1_bss_960 != 9) && (fn_1_864E8((*(s16 *)((u8 *)(arg0) + 2))) & 0x10000)) {
         camera_set_entry_field_0xa8(temp_r3, 2);
         return;
     }
@@ -1712,7 +1712,7 @@ void fn_1_ABAC(ABACObject *arg0) {
         fn_1_715C(camera, 5);
     } else {
         arg0->unk_A6 = value.value;
-        if ((s8)controller != -1 && *(s16 *)&lbl_1_bss_960 != 10 && !fn_1_40BB4()) {
+        if ((s8)controller != -1 && lbl_1_bss_960 != 10 && !fn_1_40BB4()) {
             if (fn_1_F2F34()) {
                 /* Volatile input flags are sampled separately for each direction. */
                 if (abac_increase(*(volatile u16 *)((u8 *)&lbl_1_bss_9F8.unk_10 + (s8)controller * 0x14)) ||
@@ -1893,7 +1893,7 @@ TransitionPreset *preset;
 TransitionConfig config;
 Vec position;
 s32 index = camera->unk_A4;
-if ((*(s16 *)&lbl_1_bss_960) == 14) {
+if (lbl_1_bss_960 == 14) {
 camera_transition_count = 14;
 preset = &((TransitionPreset *)lbl_1_data_3BD0)[index];
 } else {
@@ -2113,7 +2113,7 @@ void fn_1_AFC8(Camera *cam) {
     f32 step;
 
     index = cam->unk_A4;
-    if (*(s16 *)&lbl_1_bss_960 == 14) {
+    if (lbl_1_bss_960 == 14) {
         camera_transition_count = 14;
         preset = &((CamPreset *)lbl_1_data_3BD0)[index];
     } else {

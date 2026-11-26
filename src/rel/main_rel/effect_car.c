@@ -736,7 +736,7 @@ void fn_1_68284(u32 arg0) {
     if (active) {
         if (flags & 0x40000000) fn_1_6F90C((struct fn_1_6F90C_EffectCar *)arg0,&loc_38);
         if (U32_AT(data,0x58c) & 0x100) fn_1_6F90C((struct fn_1_6F90C_EffectCar *)arg0,&loc_38);
-        if (*(s16 *)&lbl_1_bss_960 == 9) fn_1_6F8D0((void *)arg0,&loc_38);
+        if (lbl_1_bss_960 == 9) fn_1_6F8D0((void *)arg0,&loc_38);
         if (S16_AT(arg0,0x5c)) S16_AT(arg0,0x5c)--;
         fn_1_6F404((void *)arg0,&loc_38);
         return;

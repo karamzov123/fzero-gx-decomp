@@ -504,7 +504,7 @@ extern void lbl_8006D668(void *dst);
 extern u32 fn_1_584AC(void);
 extern void lbl_8006DB74(void *arg0);
 extern void lbl_8006DD14(void *arg0, void *arg1);
-extern u16 lbl_1_bss_960;
+extern s16 lbl_1_bss_960;
 extern u32 lbl_801A6D00;
 
 
@@ -658,7 +658,7 @@ void fn_1_988DC(void *arg0) {
 {
     f32 var_f4;
     var_f4 = *(f32 *)(p + 548);
-    if (*(s16 *)&lbl_1_bss_960 != 0xe) {
+    if (lbl_1_bss_960 != 0xe) {
         v = *(f32 *)(p + 512);
         var_f0 = v < 0.0 ? 0.0 : (v > 1.0 ? 1.0 : v);
         var_f4 = (var_f4 * var_f0);
