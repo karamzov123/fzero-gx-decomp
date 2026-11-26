@@ -573,7 +573,7 @@ void fn_8007075C(u32 arg0) {
 void fn_80070774(u32 arg0, u32 arg1, u32 arg2) {
     void *t5;
     u32 t4;
-    /* WARNING: compiler-diff device, not original code: one-field carriers t2/t0/v2/v1: plain locals give 48 instructions of diff in fn_80070774; without t2 (allocation assigned to v2) 8 remain (t4 r26/r27); a declaration-order search of t4/v2 found no match */
+    /* WARNING: compiler-diff device, not original code: one-field carriers t2/t0/v2/v1: plain locals give 48 instructions of diff in fn_80070774; without t2 (allocation assigned to v2) 8 remain (t4 r26/r27); all 24 declaration orders of t4/t0/v2/v1 give 8 or 16 */
     struct { u32 value; } t2;
     struct { u32 value; } t0;
     struct { u32 value; } v2;

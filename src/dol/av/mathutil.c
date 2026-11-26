@@ -2117,7 +2117,7 @@ void fn_8006F1F0(Vec3 *arg0, Vec3 *arg1, Vec3 *arg2) {
 
 u16 fn_8006F394(void) {
     /* Preserve the three stack stores observed in retail, including unused y. */
-    /* WARNING: compiler-diff device, not original code: volatile keeps the three stack stores of v that retail performs (v is never read); plain Vec3 drops them (13 instructions differ) */
+    /* WARNING: compiler-diff device, not original code: volatile keeps the three stack stores of v that retail performs (v is never read); plain Vec3 drops them (13 instructions differ), also when the call reads v.x / v.z (13, 14) */
     volatile Vec3 v;
     f32 a, b, c;
     f32 scale = lbl_801A73F4;
@@ -2133,7 +2133,7 @@ u16 fn_8006F394(void) {
     return lbl_8006D24C(a, c);
 }
 
-/* WARNING: compiler-diff device, not original code: without opt_propagation off fn_8006F3E4 differs by 3 instructions (one stfs of vec scheduled later) */
+/* WARNING: compiler-diff device, not original code: without opt_propagation off fn_8006F3E4 differs by 3 instructions (one stfs of vec scheduled later); reordering the pos/dir stores, folding the loads or a scale local give 16 / 8 / 6 */
 #pragma opt_propagation off
 void fn_8006F3E4(s16 *arg0, s16 *arg1, s16 *arg2) {
     f32 sum;

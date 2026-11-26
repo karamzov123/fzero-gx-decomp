@@ -91,7 +91,7 @@ void fn_80078D60(s32 arg0);
 u32 fn_80078F0C(Model *arg0, Sig_fn_80071C04_Entry *arg1, u32 arg2, u32 arg3);
 void fn_800794F0(u8 *dst, u8 *src, s32 len);
 
-/* WARNING: compiler-diff device, not original code: without opt_common_subs off fn_800789D8 differs by 29 instructions (the pragma spans fn_800789D8..fn_80078CDC) */
+/* WARNING: compiler-diff device, not original code: without opt_common_subs off fn_800789D8 differs by 29 instructions (CSE merges the entry + 96 start of both branches; reusing v7 in the else branch leaves 2) */
 #pragma opt_common_subs off
 u32 fn_800789D8(struct fn_800789D8_Arg0 *arg0, struct fn_800789D8_Arg1 *entry, u32 arg2) {
     u32 v0;
