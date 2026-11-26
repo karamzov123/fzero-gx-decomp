@@ -2580,7 +2580,7 @@
    "data_sec": 5,
    "data": [
     213844,
-    247736
+    219848
    ],
    "anchor_refs": [
     684692,
@@ -2651,8 +2651,8 @@
    ],
    "data_sec": 5,
    "data": [
-    247736,
-    247736
+    219848,
+    219848
    ],
    "anchor_refs": [],
    "functions": [
@@ -2678,7 +2678,7 @@
    ],
    "data_sec": 5,
    "data": [
-    247736,
+    219848,
     250420
    ],
    "anchor_refs": [
@@ -2877,9 +2877,9 @@
     "fn_1_C37A0"
    ],
    "confidence": {
-    "text+data": 17,
-    "text-range": 146,
-    "data-vote": 1
+    "text+data": 170,
+    "text-range": 0,
+    "data-vote": 0
    }
   },
   {
