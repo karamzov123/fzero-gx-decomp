@@ -7469,12 +7469,13 @@
   },
   {
     "module": "main",
-    "source": "dol/__fill_mem.c",
+    "source": "dol/__mem.c",
     "symbols": [
-      "__fill_mem"
+      "memset",
+      "__fill_mem",
+      "memcpy"
     ],
     "status": "matching",
-    "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": []
   },
@@ -19664,17 +19665,6 @@
   },
   {
     "module": "main",
-    "source": "dol/fn_80005518.c",
-    "symbols": [
-      "fn_80005518"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
     "source": "dol/fn_800137C4.c",
     "symbols": [
       "fn_800137C4",
@@ -21015,28 +21005,6 @@
       "-str",
       "reuse,pool,readonly"
     ]
-  },
-  {
-    "module": "main",
-    "source": "dol/memcpy.c",
-    "symbols": [
-      "memcpy"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.2.5n",
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/memset.c",
-    "symbols": [
-      "memset"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": []
   },
   {
     "module": "main",
@@ -22437,6 +22405,7 @@
     "module": "main",
     "source": "dol/trk/dolphin_trk.c",
     "symbols": [
+      "fn_80005518",
       "InitMetroTRK",
       "InitMetroTRK_BBA",
       "TRKInitializeTarget",

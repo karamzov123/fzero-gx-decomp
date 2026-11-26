@@ -1,4 +1,5 @@
 memset = .init:0x80003458; // type:function
+__fill_mem = .init:0x80003488; // type:function size:0xB8
 memcpy = .init:0x80003540; // type:function
 fn_80003590 = .init:0x80003590; // type:function
 fn_800035C0 = .init:0x800035C0; // type:function

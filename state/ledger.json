@@ -6838,7 +6838,7 @@
   {
    "symbol": "memset",
    "module": "main",
-   "unit": "dol/memset.c",
+   "unit": "dol/__mem.c",
    "addr": 2147497048,
    "size": 48,
    "status": "matched",
@@ -6855,7 +6855,7 @@
   {
    "symbol": "__fill_mem",
    "module": "main",
-   "unit": "dol/__fill_mem.c",
+   "unit": "dol/__mem.c",
    "addr": 2147497096,
    "size": 184,
    "status": "matched",
@@ -6872,7 +6872,7 @@
   {
    "symbol": "memcpy",
    "module": "main",
-   "unit": "dol/memcpy.c",
+   "unit": "dol/__mem.c",
    "addr": 2147497280,
    "size": 80,
    "status": "matched",
@@ -6940,7 +6940,7 @@
   {
    "symbol": "fn_80005518",
    "module": "main",
-   "unit": "dol/fn_80005518.c",
+   "unit": "dol/trk/dolphin_trk.c",
    "addr": 2147505432,
    "size": 44,
    "status": "matched",

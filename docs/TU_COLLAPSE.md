@@ -202,6 +202,17 @@ wrapper bytes apart from the branch displacement to their respective fill
 symbols, and identical fill bodies. All three builds now compile the wrappers
 from source rather than using retail fallback in Japan and PAL.
 
+`dol/__mem.c` now owns the 0x138-byte runtime `.init` range in all three regions:
+`memset`, `__fill_mem`, and `memcpy`. The first wrapper retains its call when
+the fill routine is defined later in the file. The regional `__fill_mem`
+symbols are at `0x80003488`: the branch in each retail `memset` targets that
+address, and the entire range has identical bytes in the three DOLs.
+
+The reset entry at `0x80005518` now builds in `dol/trk/dolphin_trk.c` with its
+six `.text` siblings in USA and Japan. The `.init` entry and all six existing
+functions match in both builds; PAL's existing retail fallback for this TU
+is unchanged. The interrupt-vector assembly remains a separate owner.
+
 ## MSL is built with `-inline deferred` (2026-11-24)
 
 MWCC's `-inline auto,deferred` emits a file's functions in reverse source order and can inline a

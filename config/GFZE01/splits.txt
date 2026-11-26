@@ -398,6 +398,7 @@ dol/trk/mpc_7xx_603e.c:
 	.text       start:0x8008CB40 end:0x8008CEB0 align:4
 
 dol/trk/dolphin_trk.c:
+	.init       start:0x80005518 end:0x80005544 align:4
 	.text       start:0x8008CEB0 end:0x8008D1CC align:4
 
 dol/trk/dolphin_trk_glue.c:
@@ -435,11 +436,8 @@ dol/OSError.c:
 	.sdata      start:0x801A6430 end:0x801A6438 align:8
 	.data       start:0x80122C30 end:0x80122F50 align:8
 
-dol/fn_80005518.c:
-	.init       start:0x80005518 end:0x80005544 align:4
-
-dol/memset.c:
-	.init       start:0x80003458 end:0x80003488 align:4
+dol/__mem.c:
+	.init       start:0x80003458 end:0x80003590 align:4
 
 dol/trk/mem_TRK.c:
 	.init       start:0x80003590 end:0x800035E4 align:4
@@ -711,9 +709,6 @@ dol/adx/adx_fs.c:
 	.text       start:0x8004F818 end:0x8004FF68 align:4
 	.rodata     start:0x80091258 end:0x800912F0 align:4
 
-dol/memcpy.c:
-	.init       start:0x80003540 end:0x80003590 align:4
-
 dol/os/OSThread.c:
 	.text       start:0x80010144 end:0x8001140C align:4
 
@@ -858,9 +853,6 @@ dol/u_gxutil_upload_some_mtx.c:
 
 dol/fn_80072558.c:
 	.text       start:0x80072558 end:0x800725DC align:4
-
-dol/__fill_mem.c:
-	.init       start:0x80003488 end:0x80003540 align:4
 
 dol/thp/THPDec_hdr.c:
 	.text       start:0x80039C40 end:0x8003AB08 align:4
