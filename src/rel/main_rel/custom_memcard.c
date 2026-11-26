@@ -231,6 +231,8 @@ static void fzgx_bss_layout(void) {
 
 void fn_1_131620(void) {
     
+    /* WARNING: compiler-diff device, not original code. One-field carrier i and the lab_t1 carrier keep retail
+     * register numbering (7 / 18 words without; removing the anonymous struct also shifts the @N pool map). */
     struct { u32 value; } i;
     MemcardEntry* entry;
     u32 lab_t1;
@@ -286,7 +288,7 @@ void fn_1_1317C4(void) {
     MemcardRequest request;
 
     lbl_1_bss_8E384.unk_0 = fn_1_4630(
-        lbl_801A6410, 0x20700, (*(u8 (*)[84])&lbl_1_data_40EA4), 0x1f3);
+        lbl_801A6410, 0x20700, lbl_1_data_40EA4, 0x1f3);
 
     fn_80008BEC(&request, 0, 0x24);
     request.unk_4 = 4;
@@ -373,10 +375,9 @@ extern void fn_1_9250C(void *);
 extern void fn_1_13C16C(void);
 extern s32 fn_1_12CB04(s16);
 
-#pragma opt_lifetimes off
+/* WARNING: compiler-diff device, not original code. 117 words without (the s16 id copy is CSEd into its extsh). */
 #pragma opt_common_subs off
 void fn_1_13198C(s16 idx, void *a1, void *a2, EntryObj *a3, EntryObj *a4, s32 mode) {
-    f32 fzgx_value;
     u8 buf[60];
     u32 mask[3];
     s16 id;
@@ -386,7 +387,6 @@ void fn_1_13198C(s16 idx, void *a1, void *a2, EntryObj *a3, EntryObj *a4, s32 mo
     s16 v;
     EntryObj *p;
     s16 i;
-    Vec3 * lab_t0;
 
     id = idx;
     off = id * 0x20;
@@ -405,8 +405,7 @@ void fn_1_13198C(s16 idx, void *a1, void *a2, EntryObj *a3, EntryObj *a4, s32 mo
         return;
     }
 
-    lab_t0 = (Vec3 *)a1;
-    fn_8006F038(lab_t0, (Vec3 *)a2, 0);
+    fn_8006F038((Vec3 *)a1, (Vec3 *)a2, 0);
     lbl_8006DCDC();
     fn_1_F7870((u32)&lbl_1_data_1E5C0);
 
@@ -421,13 +420,12 @@ void fn_1_13198C(s16 idx, void *a1, void *a2, EntryObj *a3, EntryObj *a4, s32 mo
             break;
         }
     }
-    v = v % 4;
+    v %= 4;
 
     lbl_8006DFE8(buf);
 
     cur->unk_A8 = lbl_1_rodata_861C;
-    fzgx_value = lbl_1_rodata_861C;
-    cur->unk_AC = fzgx_value;
+    cur->unk_AC = lbl_1_rodata_861C;
     cur->unk_B0 = lbl_1_rodata_861C;
     fn_1_8E728(cur, v);
     if (1 == mode) {
@@ -463,7 +461,6 @@ void fn_1_13198C(s16 idx, void *a1, void *a2, EntryObj *a3, EntryObj *a4, s32 mo
 
 
 
-#pragma opt_lifetimes reset
 /* fzgx:end fn_1_13198C */
 
 /* fzgx:begin fn_1_131B90 */
@@ -475,42 +472,24 @@ struct Obj {
     u32 field_4;
     u32 field_8;
     u8 pad_c[0x2c];
-    u32 field_38;
-    u32 field_3c;
-    u32 field_40;
-    u32 field_44;
-    u32 field_48;
-    u32 field_4c;
+    Vec3 field_38;
+    Vec3 field_44;
     u32 field_50[1];
 };
 
 
-#pragma opt_propagation off
 s32 fn_1_131B90(Obj* obj) {
-    u32 local_a[3];
-    u32 local_b[3];
-    u32 a0;
-    u32 a1;
-    u32 b0;
-    u32 b1;
+    Vec3 local_a;
+    Vec3 local_b;
     s16 index;
 
-    a1 = obj->field_44;
-    a0 = obj->field_48;
-    local_b[0] = a1;
-    local_b[1] = a0;
-    local_b[2] = obj->field_4c;
-    b1 = obj->field_38;
-    b0 = obj->field_3c;
-    local_a[0] = b1;
-    local_a[1] = b0;
-    local_a[2] = obj->field_40;
+    local_b = obj->field_44;
+    local_a = obj->field_38;
     index = obj->index;
-    fn_1_13198C(index, local_a, local_b, (void *)obj->field_4, (void *)obj->field_8,
+    fn_1_13198C(index, &local_a, &local_b, (void *)obj->field_4, (void *)obj->field_8,
                 obj->field_50[index]);
     return 0;
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_131B90 */
 
 /* fzgx:begin fn_1_131C08 */
@@ -976,12 +955,12 @@ extern void fn_1_13EDDC(s32, s32, s32, s32, s32);
 extern void fn_1_49410(void);
 
 
+/* WARNING: compiler-diff device, not original code. 62 words without (extern rodata reads stand in for literals). */
 #pragma opt_common_subs off
 void fn_1_1324C4(void *arg0) {
     s32 v0;
     s16 v1;
     s16 v2;
-    s32 lab_t1;
 
     v0 = lbl_1_bss_8B3A0.unk_0 == 10;
     fn_1_13D02C();
@@ -1019,8 +998,7 @@ void fn_1_1324C4(void *arg0) {
         f32 h = lbl_1_rodata_85F0;
         fn_1_136174(213, 355, 1, v2, (s16)lbl_801A66B4, v1, 0, h, h);
     }
-    lab_t1 = 385;
-    fn_1_13EDDC(505, lab_t1, v2, v1, 0);
+    fn_1_13EDDC(505, 385, v2, v1, 0);
     fn_1_1363F0(v1, 0, 1);
     fn_1_1368A0(v2, v1, 0, lbl_1_rodata_8640.unk_0, lbl_1_rodata_8644, lbl_1_rodata_8648.unk_0, lbl_1_rodata_863C, lbl_1_rodata_863C);
     fn_1_13750C(23, 66, v2, v1);
@@ -1109,6 +1087,7 @@ typedef struct {
     u8 pad_16[0x7E];
 } Rec94;
 
+/* WARNING: compiler-diff device, not original code. 375 words without. */
 #pragma opt_common_subs off
 void fn_1_132774(void *arg0) {
     Obj_1_bss_8B3A0 *work;
@@ -1333,6 +1312,8 @@ extern void fn_1_4965C(s32);
 extern void fn_1_495B0(s32);
 extern void fn_1_4CE48(Obj_1_bss_4B9CC *, f32);
 
+/* WARNING: compiler-diff device, not original code. 12 / 21 words without either pragma; the lab_t1 carrier is
+ * needed under them (21). The tblA/tblB copies stand in for local initializers. */
 #pragma opt_common_subs off
 #pragma opt_propagation off
 void fn_1_132FB4(void) {
@@ -1345,7 +1326,6 @@ void fn_1_132FB4(void) {
     s32 var_r29;
     s32 var_r28;
     char *pbuf;
-    f32 lab_t0;
     u32 var_r26;
     f32 lab_t1;
 
@@ -1382,7 +1362,7 @@ void fn_1_132FB4(void) {
             strncpy(pbuf, (const char *)(*(u32 *)((u8 *)tblA + var_r26)), 0x10);
             packet = lbl_1_rodata_26F8;
             packet.image = 12;
-            *(u32 *)((u8 *)&packet + 0x30) = 5;
+            packet.flags = 5;
             packet.x = var_r31;
             packet.y = lbl_1_rodata_86B8;
             fn_1_50164(lbl_1_rodata_86BC, lbl_1_rodata_86C0, lbl_1_rodata_86C4, lbl_1_rodata_86C4, &packet);
@@ -1395,8 +1375,7 @@ void fn_1_132FB4(void) {
             fn_1_495B0((0x3u << 30));
             fn_1_4CE48((Obj_1_bss_4B9CC *)pbuf, lbl_1_rodata_86D0);
             fn_1_49410();
-            lab_t0 = var_r30;
-            fn_1_496FC(lab_t0, lbl_1_rodata_8658);
+            fn_1_496FC(var_r30, lbl_1_rodata_8658);
             fn_1_495C8(1);
             fn_1_4955C(lbl_1_rodata_86D4, lbl_1_rodata_86D4);
             fn_1_49590(lbl_1_rodata_85F0);

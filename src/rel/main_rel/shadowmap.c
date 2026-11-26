@@ -2,12 +2,11 @@
 #include "psvec.h"
 #include "dolphin/hw_regs.h"
 #include "dolphin/gx.h"
+#include "game/vec3.h"
+#include "mathutil_mtxA_set_translate.h"
+#include "mathutil_vec_cross_prod.h"
 
-typedef struct {
-    f32 x;
-    f32 y;
-    f32 z;
-} ShadowVec;
+typedef Vec3 ShadowVec;
 
 typedef struct {
     u8 r;
@@ -318,73 +317,6 @@ void fn_1_568F8(ShadowMap *map) {
 /* fzgx:end fn_1_568F8 */
 
 /* fzgx:begin fn_1_56D4C */
-static inline void fn_1_56D4C_cross_values(f32 bz, f32 by, f32 bx, f32 ay, f32 az, f32 ax, ShadowVec *out) {
-    f32 x;
-    f32 y;
-    f32 z;
-    z = ax * by;
-    y = az * bx;
-    x = ay * bz;
-    z -= ay * bx;
-    y -= ax * bz;
-    x -= az * by;
-    out->z = z;
-    out->y = y;
-    out->x = x;
-}
-#define fn_1_56D4C_cross(a, b, out) fn_1_56D4C_cross_values((b)->z, (b)->y, (b)->x, (a)->y, (a)->z, (a)->x, out)
-static inline void fn_1_56D4C_cross_simple(ShadowVec *a, ShadowVec *b, ShadowVec *out) {
-    f32 ax;
-    f32 ay;
-    f32 az;
-    f32 bx;
-    f32 by;
-    f32 bz;
-    f32 x;
-    f32 y;
-    f32 z;
-    ay = a->y;
-    az = a->z;
-    ax = a->x;
-    bx = b->x;
-    bz = b->z;
-    by = b->y;
-    x = ay * bz;
-    y = az * bx;
-    z = ax * by;
-    x -= az * by;
-    y -= ax * bz;
-    z -= ay * bx;
-    out->x = x;
-    out->y = y;
-    out->z = z;
-}
-static inline void fn_1_56D4C_cross_second(ShadowVec *a, ShadowVec *b, ShadowVec *out) {
-    f32 ax;
-    f32 ay;
-    f32 az;
-    f32 bx;
-    f32 by;
-    f32 bz;
-    f32 x;
-    f32 y;
-    f32 z;
-    ay = a->y;
-    bz = b->z;
-    az = a->z;
-    bx = b->x;
-    by = b->y;
-    ax = a->x;
-    x = ay * bz;
-    y = az * bx;
-    z = ax * by;
-    x -= az * by;
-    y -= ax * bz;
-    z -= ay * bx;
-    out->x = x;
-    out->y = y;
-    out->z = z;
-}
 static inline void fn_1_56D4C_negate(ShadowVec *src, ShadowVec *dst) {
     dst->x = -src->x;
     dst->y = -src->y;
@@ -392,11 +324,7 @@ static inline void fn_1_56D4C_negate(ShadowVec *src, ShadowVec *dst) {
 }
 /* locked-cache current matrix (translation column) */
 void fn_1_56D4C(ShadowMap *entry) {
-    f32 z;
-    f32 y;
-    f32 x;
     ShadowTarget *target;
-    void *lab_t0;
     f32 (*m)[4];
     f32 dist;
     f32 ax;
@@ -405,11 +333,11 @@ void fn_1_56D4C(ShadowMap *entry) {
     f32 alpha;
     ShadowVec *axis;
     ShadowVec c;
-    f32 a[3];
-    f32 b[3];
-    f32 e[3];
+    ShadowVec a;
+    ShadowVec b;
+    ShadowVec e;
     ShadowVec f;
-    f32 d[3];
+    ShadowVec d;
     ShadowVec axis_x;
     ShadowVec axis_y;
     ShadowVec axis_z;
@@ -440,51 +368,46 @@ void fn_1_56D4C(ShadowMap *entry) {
         axis = &axis_z;
     }
     if ((entry->flags >> 1) & 1) {
-        *(ShadowVec *)a = *axis;
-        *(ShadowVec *)b = target->dir;
-        fn_1_56D4C_cross((ShadowVec *)a, (ShadowVec *)b, &c);
-        fn_1_56D4C_cross((ShadowVec *)b, &c, (ShadowVec *)a);
-        fn_1_56D4C_cross(&c, (ShadowVec *)a, (ShadowVec *)b);
-        lab_t0 = &c;
-        lbl_8006D668(lab_t0);
-        lab_t0 = (ShadowVec *)a;
-        lbl_8006D668(lab_t0);
-        lab_t0 = (ShadowVec *)b;
-        lbl_8006D668(lab_t0);
+        a = *axis;
+        b = target->dir;
+        mathutil_vec_cross_prod(&a, &b, &c);
+        mathutil_vec_cross_prod(&b, &c, &a);
+        mathutil_vec_cross_prod(&c, &a, &b);
+        lbl_8006D668(&c);
+        lbl_8006D668(&a);
+        lbl_8006D668(&b);
         entry->mtx[0][0] = c.x;
-        entry->mtx[0][1] = a[0];
-        entry->mtx[0][2] = b[0];
+        entry->mtx[0][1] = a.x;
+        entry->mtx[0][2] = b.x;
         entry->mtx[0][3] = target->pos.x;
         entry->mtx[1][0] = c.y;
-        entry->mtx[1][1] = a[1];
-        entry->mtx[1][2] = b[1];
+        entry->mtx[1][1] = a.y;
+        entry->mtx[1][2] = b.y;
         entry->mtx[1][3] = target->pos.y;
         entry->mtx[2][0] = c.z;
-        entry->mtx[2][1] = a[2];
-        entry->mtx[2][2] = b[2];
+        entry->mtx[2][1] = a.z;
+        entry->mtx[2][2] = b.z;
         entry->mtx[2][3] = target->pos.z;
     } else {
-        fn_1_56D4C_negate(&target->dir, (ShadowVec *)d);
-        fn_1_56D4C_cross_simple(axis, (ShadowVec *)d, (ShadowVec *)e);
-        lab_t0 = (ShadowVec *)e;
-        lbl_8006D668(lab_t0);
-        fn_1_56D4C_cross_second((ShadowVec *)d, (ShadowVec *)e, &f);
-        lab_t0 = &f;
-        lbl_8006D668(lab_t0);
+        fn_1_56D4C_negate(&target->dir, &d);
+        mathutil_vec_cross_prod(axis, &d, &e);
+        lbl_8006D668(&e);
+        mathutil_vec_cross_prod(&d, &e, &f);
+        lbl_8006D668(&f);
         {
             ShadowVec trans = {0.0f, 0.0f, 0.0f};
             m = *lbl_801A6D00;
-            m[0][0] = e[0];
+            m[0][0] = e.x;
             m[0][1] = f.x;
-            m[0][2] = d[0];
+            m[0][2] = d.x;
             m[0][3] = trans.x;
-            m[1][0] = e[1];
+            m[1][0] = e.y;
             m[1][1] = f.y;
-            m[1][2] = d[1];
+            m[1][2] = d.y;
             m[1][3] = trans.y;
-            m[2][0] = e[2];
+            m[2][0] = e.z;
             m[2][1] = f.z;
-            m[2][2] = d[2];
+            m[2][2] = d.z;
             m[2][3] = trans.z;
         }
         lbl_8006DAEC();
@@ -494,13 +417,7 @@ void fn_1_56D4C(ShadowMap *entry) {
         lbl_8006E15C(1.0f, 1.0f, 0.0f);
         lbl_8006DFC4(lbl_801A6D00[2]);
         lbl_8006DFC4(target->mtx);
-        /* WARNING: compiler-diff device, not original code. The volatile view keeps the retail load order. */
-        x = *(volatile f32 *)&target->pos.x;  /* fzgx-allow: S2 volatile view keeps the verified load order */
-        y = target->pos.y;
-        z = target->pos.z;
-        ((f32 (*)[4])LC_BASE)[0][3] = x;
-        ((f32 (*)[4])LC_BASE)[1][3] = y;
-        ((f32 (*)[4])LC_BASE)[2][3] = z;
+        mathutil_mtxA_set_translate(&target->pos);
         lbl_8006DB74(entry->mtx);
     }
     alpha = 0.05f * dist;
