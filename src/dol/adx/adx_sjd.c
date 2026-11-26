@@ -344,7 +344,6 @@ void fn_80041700(void) {
     s32 len2;
     s32 n;
     s32 lim;
-    s16 state;
     SJCK b;
     SJCK a;
 
@@ -408,83 +407,72 @@ void fn_80041700(void) {
     }
 }
 
-typedef u32 (*fn_80041990_Fn0)(u32, u32, void *);
-typedef u32 (*fn_80041990_Fn1)(u32, u32, void *);
-typedef u32 (*fn_80041990_Fn2)(u32, u32, u32, u32);
-typedef u32 (*fn_80041990_Fn3)(u32, u32, void *);
-typedef u32 (*fn_80041990_Fn4)(u32, u32, void *);
+void fn_80041990(AdxSjdHandle *ch) {
+    struct { AdxBasicDecoderExt *value; } voice;
+    struct { s32 value; } len;
+    AdxBasicDecoderExt *v;
+    s32 count;
+    struct { s32 value; } j;
+    struct { SJ *value; } main;
+    struct { AdxBasicDecoderExt *value; } v2;
+    s32 avail;
+    s32 len2;
+    s32 n;
+    s32 lim;
+    SJCK b;
+    SJCK a;
 
-void fn_80041990(AdxSjdHandle *arg0) {
-    struct { u32 value; } v1;
-    u32 v2;
-    struct { u32 value; } v3;
-    register AdxSjdHandle *v10;
-    struct { u32 value; } v5;
-    u32 v6;
-    register AdxSjdHandle *v9;
-    u32 v4;
-    struct { s32 value; } v11;
-    u32 doubled;
-    u32 limit;
-    s16 v15;
-    struct { u32 value; } v16;
-    u32 v17;
-    u32 v18;
-    u32 v19;
-    struct { u32 unk_0; u32 unk_4; } loc_10;
-    struct { u32 unk_0; u32 unk_4; } loc_8;
-    if ((s8)*((u8 *)arg0 + 1) == 2) {
-        v1.value = *(u32 *)((u8 *)arg0 + 4);
-        if ((s32)fn_80045414((void *)v1.value) == 0)
-            fn_80041BF8(arg0);
-        fn_80044E7C((void *)v1.value);
-        if ((s32)fn_80045414((void *)v1.value) == 3) {
-            v2 = *(u32 *)((u8 *)arg0 + 4);
-            v3.value = *(u32 *)((u8 *)arg0 + 8);
-            v4 = fn_8004550C((void *)v2);
-            v5.value = fn_80045304((void *)v2);
-            limit = fn_800452FC((void *)v2);
-            v6 = v4 - *(u32 *)((u8 *)arg0 + 52);
-            if ((s32)limit < (s32)v6) v6 = limit;
-            fn_800589BC((u8 *)arg0 + 20, v5.value, (SJCK *)&loc_8, (SJCK *)&loc_10);
-            ((fn_80041990_Fn0)*(u32 *)(*(u32 *)v3.value + 32))(v3.value, 0, &loc_8);
-            ((fn_80041990_Fn1)*(u32 *)(*(u32 *)v3.value + 28))(v3.value, 1, &loc_10);
-            v10 = arg0;
-            v9 = arg0;
-            doubled = v6 << 1;
-            for (v11.value = 0; v11.value < fn_80045588((void *)*(u32 *)((u8 *)arg0 + 4)); v11.value++) {
-                u32 obj;
-                fn_800589BC((u8 *)v10 + 28, doubled, (SJCK *)&loc_8, (SJCK *)&loc_10);
-                if (*(u32 *)((u8 *)arg0 + 80) != 0)
-                    ((fn_80041990_Fn2)*(u32 *)((u8 *)arg0 + 80))(*(u32 *)((u8 *)arg0 + 84), v11.value, loc_8.unk_0, loc_8.unk_4);
-                obj = *(u32 *)((u8 *)v9 + 12);
-                ((fn_80041990_Fn3)*(u32 *)(*(u32 *)obj + 32))(obj, 1, &loc_8);
-                obj = *(u32 *)((u8 *)v9 + 12);
-                ((fn_80041990_Fn4)*(u32 *)(*(u32 *)obj + 28))(obj, 0, &loc_10);
-                v10 = (AdxSjdHandle *)((u8 *)v10 + 8);
-                v9 = (AdxSjdHandle *)((u8 *)v9 + 4);
+    if (ch->status == 2) {
+        voice.value = ch->decoder;
+        if (fn_80045414(voice.value) == 0) {
+            fn_80041BF8(ch);
+        }
+        fn_80044E7C(voice.value);
+        if (fn_80045414(voice.value) == 3) {
+            len.value = 0;
+            v = ch->decoder;
+            main.value = ch->input;
+            count = fn_8004550C(v);
+            len.value = fn_80045304(v);
+            lim = fn_800452FC(v);
+            count -= ch->decode_position;
+            if (lim < count) {
+                count = lim;
             }
-            *(u32 *)((u8 *)arg0 + 44) += v6;
-            *(u32 *)((u8 *)arg0 + 48) += v5.value;
-            *(u32 *)((u8 *)arg0 + 52) += v6;
-            *(u32 *)((u8 *)arg0 + 64) += v6;
-            *(u32 *)((u8 *)arg0 + 68) += v5.value;
-            fn_8004530C((void *)v2);
+            fn_800589BC(&ch->input_chunk, len.value, &a, &b);
+            main.value->interface->put_chunk(main.value, 0, &a);
+            main.value->interface->unget_chunk(main.value, 1, &b);
+            for (j.value = 0; j.value < fn_80045588(ch->decoder); j.value++) {
+                fn_800589BC(&ch->output_chunk[j.value], count * 2, &a, &b);
+                if (ch->output_callback != NULL) {
+                    ch->output_callback(ch->output_object, j.value, a.data, a.len);
+                }
+                ch->output[j.value]->interface->put_chunk(ch->output[j.value], 1, &a);
+                ch->output[j.value]->interface->unget_chunk(ch->output[j.value], 0, &b);
+            }
+            ch->decoded_samples += count;
+            ch->decoded_data_length += len.value;
+            ch->decode_position += count;
+            ch->trap_count += count;
+            ch->trap_data_length += len.value;
+            fn_8004530C(v);
         }
-        v15 = *(s16 *)(v1.value + 152);
-        if ((s32)v15 == 10 || v15 == 20 || v15 == 11 || v15 == 15) {
-            v16.value = *(u32 *)((u8 *)arg0 + 4);
-            v17 = fn_8004550C((void *)v16.value);
-            v18 = fn_80045304((void *)v16.value);
-            limit = fn_800452FC((void *)v16.value);
-            v19 = v17 - *(u32 *)((u8 *)arg0 + 52);
-            if ((s32)limit < (s32)v19) v19 = limit;
-            *(u32 *)((u8 *)arg0 + 44) += v19;
-            *(u32 *)((u8 *)arg0 + 48) += v18;
-            *(u32 *)((u8 *)arg0 + 52) += v19;
+        if (voice.value->base.format_type == 10 || voice.value->base.format_type == 20 ||
+            voice.value->base.format_type == 11 || voice.value->base.format_type == 15) {
+            v2.value = ch->decoder;
+            avail = fn_8004550C(v2.value);
+            len2 = fn_80045304(v2.value);
+            lim = fn_800452FC(v2.value);
+            n = avail - ch->decode_position;
+            if (lim < n) {
+                n = lim;
+            }
+            ch->decoded_samples += n;
+            ch->decoded_data_length += len2;
+            ch->decode_position += n;
         }
-    } else if ((s8)*((u8 *)arg0 + 1) == 1) {
-        fn_80041EF8(arg0);
+    } else if (ch->status == 1) {
+        fn_80041EF8(ch);
     }
 }
 
