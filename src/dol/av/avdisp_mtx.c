@@ -15,7 +15,7 @@ typedef struct {
     u8 pad_6[2];
     u32 unk_8;
     u32 unk_C;
-    u32 unk_10;
+    GXColor unk_10;
     u32 unk_14;
     u32 unk_18;
     u32 unk_1C;
@@ -651,7 +651,7 @@ typedef struct {
 typedef struct {
     u32 flags;
     u8 pad_4[8];
-    u32 unk_C;
+    GXColor unk_C;
     u8 pad_10[0x30];
     u32 unk_40;
 } fn_800756B0_Arg1;
@@ -680,9 +680,7 @@ void fn_800756B0(fn_800756B0_Arg0 *arg0, fn_800756B0_Arg1 *arg1) {
         }
     }
     fn_80075080(arg1);
-    /* WARNING: compiler-diff device, not original code: CopyWord view of lbl_801A3220.unk_10 / arg1->unk_C: the plain u32 member copy gives 11 instructions of diff in fn_800756B0 */
-    { struct CopyWord { u32 value; };
-    *(struct CopyWord *)&lbl_801A3220.unk_10 = *(struct CopyWord *)&arg1->unk_C;
+    lbl_801A3220.unk_10 = arg1->unk_C;
     lbl_801A3220.unk_2 = 0;
     lbl_801A3220.unk_14 = 15;
     lbl_801A3220.unk_18 = 7;
@@ -691,7 +689,6 @@ void fn_800756B0(fn_800756B0_Arg0 *arg0, fn_800756B0_Arg1 *arg1) {
     lbl_801A3220.unk_5 = 0xFF;
     lbl_801A3220.unk_8 = 16;
     lbl_801A3220.unk_C = 16;
-    }
     if (lbl_801A6D88[0] != 0) {
         color0 = *(u32 *)lbl_801A6D80;
         fn_800736C0(2, &color0);
