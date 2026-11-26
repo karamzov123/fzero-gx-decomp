@@ -183,8 +183,6 @@ void UpdateOrigin(s32 chan) {
 }
 
 void PADOriginCallback(s32 chan, u32 error, OSContext *context) {
-    (void)chan;
-    (void)context;
     if (!(error & (0x0001 | 0x0002 | 0x0008 | 0x0004))) {
         UpdateOrigin(lbl_801A64B4);
         PADEnable(lbl_801A64B4);
@@ -193,7 +191,6 @@ void PADOriginCallback(s32 chan, u32 error, OSContext *context) {
 }
 
 void PADOriginUpdateCallback(s32 chan, u32 error, OSContext *context) {
-    (void)0;
     if (!(lbl_801A697C & (0x80000000 >> chan)))
         return;
     if (!(error & (0x0001 | 0x0002 | 0x0008 | 0x0004)))
@@ -204,8 +201,6 @@ void PADOriginUpdateCallback(s32 chan, u32 error, OSContext *context) {
 }
 
 void PADProbeCallback(s32 chan, u32 error, OSContext *context) {
-    (void)chan;
-    (void)context;
     if (!(error & (0x0001 | 0x0002 | 0x0008 | 0x0004))) {
         PADEnable(lbl_801A64B4);
         lbl_801A6988 |= 0x80000000u >> lbl_801A64B4;
@@ -283,7 +278,6 @@ void PADReceiveCheckCallback(s32 chan, u32 type) {
 int PADReset(u32 mask) {
     BOOL enabled;
     u32 disableBits;
-    (void)0;
     enabled = OSDisableInterrupts();
     mask |= lbl_801A6990;
     lbl_801A6990 = 0;
@@ -305,7 +299,6 @@ int PADReset(u32 mask) {
 BOOL PADRecalibrate(u32 mask) {
     BOOL enabled;
     u32 disableBits;
-    (void)0;
     enabled = OSDisableInterrupts();
     mask |= lbl_801A6990;
     lbl_801A6990 = 0;
@@ -655,7 +648,6 @@ BOOL OnReset_Pad(BOOL final) {
 
 void SamplingHandler_Pad(__OSInterrupt interrupt, OSContext *context) {
     OSContext exceptionContext;
-    (void)interrupt;
     if (lbl_801A6994) {
         OSClearContext(&exceptionContext);
         OSSetCurrentContext(&exceptionContext);
