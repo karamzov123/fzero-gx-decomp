@@ -821,16 +821,6 @@ typedef struct {
     u32 unk_414[5];
 } Sig_fn_1_7F658_Car;
 
-/* fn_1_7F934 */
-struct fn_1_7F954_lbl_1_bss_6D82C {
-    u32 unk_0;
-};
-
-/* fn_1_7F934 */
-struct fn_1_7FA04_lbl_1_bss_6D82C {
-    u32 unk_0;
-};
-
 /* fn_1_7FAA8 */
 typedef struct {
     u32 flags;
@@ -2675,11 +2665,6 @@ typedef struct Fn1844CRoot {
     char pad_0x2b[0x232];
     u8 index;
 } Fn1844CRoot;
-
-/* fn_1_8C40C */
-struct fn_1_8C884_lbl_1_bss_6D838 {
-    u32 unk_0;
-};
 
 /* fn_1_8CA00 */
 struct rodata_3508 {
@@ -6123,13 +6108,11 @@ static f32 depth_fade_far(f32 z, f64 absZ) {
 
 #define lbl_1_bss_38454 _h_38454
 
-#define lbl_1_data_1F318 _h_1F318
 
 #undef lbl_1_bss_9F8
 
 #undef lbl_1_bss_38454
 
-#undef lbl_1_data_1F318
 
 #define lbl_1_bss_6D7E8 _h_6D7E8
 
@@ -6141,13 +6124,11 @@ static f32 depth_fade_far(f32 z, f64 absZ) {
 
 #define lbl_1_bss_38454 _h_38454
 
-#define lbl_1_data_1F318 _h_1F318
 
 #undef lbl_1_bss_9F8
 
 #undef lbl_1_bss_38454
 
-#undef lbl_1_data_1F318
 
 #define lbl_1_bss_6D7E8 _h_6D7E8
 
@@ -6161,13 +6142,11 @@ static f32 depth_fade_far(f32 z, f64 absZ) {
 
 #define lbl_1_bss_38454 _h_38454
 
-#define lbl_1_data_1F318 _h_1F318
 
 #undef lbl_1_bss_9F8
 
 #undef lbl_1_bss_38454
 
-#undef lbl_1_data_1F318
 
 #define lbl_1_bss_6D7E8 _h_6D7E8
 
@@ -6405,13 +6384,11 @@ void fn_1_7F230(void *arg0, u32 arg1, f32 arg2) {
 
 #define lbl_1_bss_38454 _h_38454
 
-#define lbl_1_data_1F318 _h_1F318
 
 #undef lbl_1_bss_9F8
 
 #undef lbl_1_bss_38454
 
-#undef lbl_1_data_1F318
 
 #define lbl_1_bss_6D7E8 _h_6D7E8
 
@@ -6464,6 +6441,8 @@ void fn_1_7F3AC(CarFn_1_7F3AC *car, u32 lab_unused0, u32 lab_unused1, u32 lab_un
     if (car != 0 && car->field_3A4 != 0) {
         shift = 6;
         flags = car->field_390;
+        /* WARNING: compiler-diff device, not original code: __rlwnm keeps retail's `li r0,6; rlwnm.` (rotate amount in a
+           register); `(flags >> 26) & 1` gives rlwinm. No natural spelling is known (same family as objput.c). */
         if ((__rlwnm(flags, shift, 31, 31) != 0)) {
             fn_1_150464(car->field_3A4);
         } else {
@@ -6581,7 +6560,6 @@ void *fn_1_7F58C(s16 car_type, void *car, u8 suffix, s32 initialize) {
 
 /* fzgx:begin fn_1_7F658 */
 /* VIEWS2 */
-#define lbl_1_data_1FFF0 (*(u8 (*)[0xC])&lbl_1_data_1FFF0)
 /* VIEWS */
 #define lbl_801A6410 (*(struct fn_1_7F658_lbl_801A6410 *)&lbl_801A6410)
 static inline s8 fn_1_7F658_busy(Sig_fn_1_7F658_Car *car) {
@@ -6685,6 +6663,7 @@ void fn_1_7F658(Sig_fn_1_7F658_Car *arg0) {
             }
             if (arg0 != 0 && arg0 != 0) {
                 if (arg0->unk_3A4 != 0) {
+                    /* WARNING: compiler-diff device, not original code: __rlwnm, see fn_1_7F3AC. */
                     if (__rlwnm(arg0->unk_390, 6, 31, 31)) {
                         fn_1_150464(arg0->unk_3A4);
                     } else {
@@ -6699,7 +6678,6 @@ void fn_1_7F658(Sig_fn_1_7F658_Car *arg0) {
     }
 }
 #undef lbl_801A6410
-#undef lbl_1_data_1FFF0
 /* fzgx:end fn_1_7F658 */
 
 /* fzgx:begin fn_1_7F934 */
@@ -6728,11 +6706,11 @@ void fn_1_7F954(u32 arg0, u32 arg1) {
 }
     }
     fn_1_46B4((*((struct fn_1_7F954_lbl_801A6410 *)&lbl_801A6410)).unk_0, arg0, (const char *)((u32)&lbl_1_data_1FFF0), 691);
-    v3 = (*((struct fn_1_7F954_lbl_1_bss_6D82C *)&lbl_1_bss_6D82C)).unk_0;
+    v3 = lbl_1_bss_6D82C;
     v4 = v3;
     if (v3 != 0) {
     fn_80071718( (v4));
-    (*((struct fn_1_7F954_lbl_1_bss_6D82C *)&lbl_1_bss_6D82C)).unk_0 = 0;
+    lbl_1_bss_6D82C = 0;
     }
 }
 /* fzgx:end fn_1_7F954 */
@@ -6752,19 +6730,18 @@ void fn_1_7FA04(u32 arg0) {
     v0++;
     }
     fn_1_46B4((*((struct fn_1_7FA04_lbl_801A6410 *)&lbl_801A6410)).unk_0, arg0, (const char *)((u32)&lbl_1_data_1FFF0), 709);
-    v2 = (*((struct fn_1_7FA04_lbl_1_bss_6D82C *)&lbl_1_bss_6D82C)).unk_0;
+    v2 = lbl_1_bss_6D82C;
     v3 = v2;
     if (v2 != 0) {
     t2 = fn_80071718(v3);
     v3 = t2;
-    (*((struct fn_1_7FA04_lbl_1_bss_6D82C *)&lbl_1_bss_6D82C)).unk_0 = 0;
+    lbl_1_bss_6D82C = 0;
     }
 }
 /* fzgx:end fn_1_7FA04 */
 
 /* fzgx:begin fn_1_7FAA8 */
 /* VIEWS2 */
-#define lbl_1_data_1F1D8 (*(u8 (*)[])&lbl_1_data_1F1D8)
 static inline s32 fn_1_7FAA8_impl(CarListEntry *list, s32 count, s32 initial) {
     u8 *base = (u8 *)lbl_1_data_1F1D8;
     s32 total;
@@ -6858,7 +6835,6 @@ static inline s32 fn_1_7FAA8_impl(CarListEntry *list, s32 count, s32 initial) {
 s32 fn_1_7FAA8(CarListEntry *list, s32 count) {
     return fn_1_7FAA8_impl(list, count, 0);
 }
-#undef lbl_1_data_1F1D8
 /* fzgx:end fn_1_7FAA8 */
 
 /* fzgx:begin fn_1_7FD7C */
@@ -7609,7 +7585,7 @@ static Obj_1_bss_6D838_Target *lbl_1_bss_6D838 = 0;
 static void *lbl_1_bss_6D83C = 0;
 static void *lbl_1_bss_6D840 = 0;
 static void *lbl_1_bss_6D844 = 0;
-static u16 lbl_1_bss_6D848 = 0;
+static s16 lbl_1_bss_6D848 = 0;
 static s8 lbl_1_bss_6D84A = 0;
 static u8 lbl_1_bss_6D84B = 0;
 static u8 lbl_1_bss_6D84C = 0;
@@ -7725,19 +7701,6 @@ s32 fn_1_818AC(fn_1_818AC_Obj *a, fn_1_818AC_Obj *b) {
 /* VIEWS2 */
 #define lbl_1_bss_6D83C (*(Car818BC * *)&lbl_1_bss_6D83C)
 #define lbl_1_bss_6D840 (*(u8 * *)&lbl_1_bss_6D840)
-#define lbl_1_data_1F4FC (*(char * (*)[0x29])&lbl_1_data_1F4FC)
-#define lbl_1_data_1FFE4 (*(u8 (*)[0xC])&lbl_1_data_1FFE4)
-#define lbl_1_data_1FFF8 (*(u8 (*)[0x4])&lbl_1_data_1FFF8)
-#define lbl_1_data_20530 (*(u8 (*)[0xC])&lbl_1_data_20530)
-#define lbl_1_data_2053C (*(u8 (*)[0xC])&lbl_1_data_2053C)
-#define lbl_1_data_20548 (*(u8 (*)[0x34])&lbl_1_data_20548)
-#define lbl_1_data_205BC (*(u8 (*)[0x8])&lbl_1_data_205BC)
-#define lbl_1_data_205C4 (*(u8 (*)[0x8])&lbl_1_data_205C4)
-#define lbl_1_data_205CC (*(u8 (*)[0x18])&lbl_1_data_205CC)
-#define lbl_1_data_205E4 (*(u8 (*)[0x10])&lbl_1_data_205E4)
-#define lbl_1_data_205F4 (*(u8 (*)[0x14])&lbl_1_data_205F4)
-#define lbl_1_data_20608 (*(u8 (*)[0x4C])&lbl_1_data_20608)
-#define lbl_1_data_20654 (*(u8 (*)[0x8])&lbl_1_data_20654)
 /* fn_1_801F8: the part-name suffix */
 
 static inline void fn_1_818BC_suffix(s16 kind, char *name) {
@@ -8016,19 +7979,6 @@ void fn_1_818BC(Entry818BC *entries, u32 count, s32 mode) {
 }
 #undef lbl_1_bss_6D83C
 #undef lbl_1_bss_6D840
-#undef lbl_1_data_1F4FC
-#undef lbl_1_data_1FFE4
-#undef lbl_1_data_1FFF8
-#undef lbl_1_data_20530
-#undef lbl_1_data_2053C
-#undef lbl_1_data_20548
-#undef lbl_1_data_205BC
-#undef lbl_1_data_205C4
-#undef lbl_1_data_205CC
-#undef lbl_1_data_205E4
-#undef lbl_1_data_205F4
-#undef lbl_1_data_20608
-#undef lbl_1_data_20654
 /* fzgx:end fn_1_818BC */
 
 /* fzgx:begin fn_1_82724 */
@@ -8036,12 +7986,9 @@ void fn_1_818BC(Entry818BC *entries, u32 count, s32 mode) {
 #define lbl_1_bss_6D828 (*(void * *)&lbl_1_bss_6D828)
 #define lbl_1_bss_6D838 (*(CarRuntime * *)&lbl_1_bss_6D838)
 #define lbl_1_bss_6D83C (*(CarInitObject * *)&lbl_1_bss_6D83C)
-#define lbl_1_bss_6D844 (*(CarShadow * *)&lbl_1_bss_6D844)
-#define lbl_1_bss_6D848 (*(s16 *)&lbl_1_bss_6D848)
 /* VIEWS */
 #define lbl_1_bss_8B3A0 (*(Obj_1_bss_8B3A0_L *)&lbl_1_bss_8B3A0)
 #define lbl_1_bss_960 (*(s16 *)&lbl_1_bss_960)
-#define lbl_1_data_1F1D8 (*(u32 *)&lbl_1_data_1F1D8)
 /* begin rel/main_rel/car.h (fork-deltawave784/windows-and-types@4b722344) */
 
 #define REL_MAIN_REL_CAR_H
@@ -8190,20 +8137,16 @@ setupEffects:
 }
 #undef lbl_1_bss_8B3A0
 #undef lbl_1_bss_960
-#undef lbl_1_data_1F1D8
 #undef REL_MAIN_REL_CAR_H
 #undef REL_MAIN_REL_GLOBALS_H
 #undef FZGX_TYPES_LBL_1_BSS_525C
 #undef lbl_1_bss_6D828
 #undef lbl_1_bss_6D838
 #undef lbl_1_bss_6D83C
-#undef lbl_1_bss_6D844
-#undef lbl_1_bss_6D848
 /* fzgx:end fn_1_82724 */
 
 /* fzgx:begin fn_1_82C70 */
 /* VIEWS2 */
-#define lbl_1_data_206D8 (*(char (*)[])&lbl_1_data_206D8)
 /* VIEWS */
 #define lbl_1_bss_525C (*(Fn1_82C70_Obj_525C *)&lbl_1_bss_525C)
 /* the racer block (0x620 bytes); +0x474 is the controller port, -1 when none */
@@ -8298,7 +8241,6 @@ void fn_1_82C70(void *manager, u8 index, Fn1_82C70_Car *car, Fn1_82C70_Work *wor
     lbl_1_bss_6D854 = ok;
 }
 #undef lbl_1_bss_525C
-#undef lbl_1_data_206D8
 /* fzgx:end fn_1_82C70 */
 
 /* fzgx:begin fn_1_82EDC */
@@ -8328,8 +8270,6 @@ void *fn_1_82EDC(s16 arg0, s16 arg1, void *arg2) {
 /* fzgx:begin fn_1_83070 */
 /* VIEWS2 */
 #define lbl_1_bss_6D838 (*(F83070Car * *)&lbl_1_bss_6D838)
-#define lbl_1_bss_6D84B (*(s8 *)&lbl_1_bss_6D84B)
-#define lbl_1_bss_6D868 (*(s8 (*)[4])&lbl_1_bss_6D868)
 /* fixed-address machine descriptor table (folded literal, no relocation in retail) */
 
 #define DESC_TABLE_BASE 0x23800000
@@ -8443,8 +8383,6 @@ F83070Car *fn_1_83070(void *arg0, u32 unused, F83070Setup *items, u32 count)
 }
 #undef DESC_TABLE_BASE
 #undef lbl_1_bss_6D838
-#undef lbl_1_bss_6D84B
-#undef lbl_1_bss_6D868
 /* fzgx:end fn_1_83070 */
 
 /* fzgx:begin fn_1_835E0 */
@@ -9166,7 +9104,6 @@ static f64 car_literal_order_3B70(f64 x)
     return x - 1.0;
 }
 /* VIEWS2 */
-#define lbl_1_bss_6D820 (*(u8 (*)[4])&lbl_1_bss_6D820)
 /* VIEWS */
 #define lbl_1_bss_3BE0 (*(void * *)&lbl_1_bss_3BE0)
 /* The TU's .bss objects starting at lbl_1_bss_6D820, addressed off one section base. */
@@ -9350,7 +9287,6 @@ void fn_1_84860(BurnerCar *car) {
     }
 }
 #undef lbl_1_bss_3BE0
-#undef lbl_1_bss_6D820
 /* fzgx:end fn_1_84860 */
 
 /* fzgx:begin fn_1_850C4 */
@@ -9531,7 +9467,6 @@ void fn_1_85688(void) {
     u32 t_2;
     s32 cnt;
     u32 t;
-    u32 lab_t1;
 
     fn_1_56858((void *)lbl_1_bss_6D844, lbl_1_bss_6D84A);
     fn_1_46B4(lbl_801A6410, lbl_1_bss_6D844, lbl_1_data_1FFF0, 0xdfa);
@@ -9561,8 +9496,7 @@ loop1_test:
     }
     t = lbl_1_bss_6D840;
     if (t) {
-        lab_t1 = t;
-        fn_1_46B4(lbl_801A6410, lab_t1, lbl_1_data_1FFF0, 0xdff);
+        fn_1_46B4(lbl_801A6410, t, lbl_1_data_1FFF0, 0xdff);
         lbl_1_bss_6D840 = 0;
     }
     lbl_1_bss_6D848 = 0;
@@ -9633,7 +9567,6 @@ s32 fn_1_858A8(s16 *a, s16 *b) {
 /* VIEWS2 */
 #define lbl_1_bss_6D83C (*(Fn85934Record * *)&lbl_1_bss_6D83C)
 #define lbl_1_bss_6D864 (*(u8 * *)&lbl_1_bss_6D864)
-#define lbl_1_bss_6DA5C (*(u8 (*)[0x1E])&lbl_1_bss_6DA5C)
 void fn_1_85934(f32 arg) {
     s16 order[48];
     Fn14F04Result *result;
@@ -9684,7 +9617,6 @@ void fn_1_85934(f32 arg) {
 }
 #undef lbl_1_bss_6D83C
 #undef lbl_1_bss_6D864
-#undef lbl_1_bss_6DA5C
 /* fzgx:end fn_1_85934 */
 
 /* fzgx:begin fn_1_85C58 */
@@ -13521,7 +13453,7 @@ u32 fn_1_8C884(u32 arg0) {
     u32 v0;
     s32 v1;
     u32 v2;
-    v0 = (*((struct fn_1_8C884_lbl_1_bss_6D838 *)&lbl_1_bss_6D838)).unk_0;
+    v0 = (u32)lbl_1_bss_6D838;
     v1 = arg0;
     v2 = v0;
     if (v0 != 0) {
