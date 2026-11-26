@@ -352,12 +352,12 @@ s32 fn_8008F29C(u8 *arg0, u32 arg1) {
     struct { u32 value; } v5;
     u32 v6;
     u32 v2;
-    struct { u32 a[1]; } loc_28;
+    u32 loc_28;
     u32 loc_24;
     u32 loc_18[3];
     u32 loc_10[2];
     v0 = arg0;
-    loc_28.a[0] = arg1;
+    loc_28 = arg1;
     v1 = 0;
     while (!v1) {
         v1 = fn_8008EBF8(5);
@@ -369,7 +369,7 @@ s32 fn_8008F29C(u8 *arg0, u32 arg1) {
     fn_8008E770(&loc_28, 4, EXI_WRITE, 0);
     fn_8008E9B4();
     {
-        u32 v9 = loc_28.a[0];
+        u32 v9 = loc_28;
         if ((v9 & 3) != 0) v2 = 1;
         else v2 = 0;
         v3 = (v9 >> 2) + v2;
@@ -378,7 +378,7 @@ s32 fn_8008F29C(u8 *arg0, u32 arg1) {
     while (v5.value < v3) {
         u8 *v7;
         if (v5.value < v3 - 1) v6 = 4;
-        else if ((loc_28.a[0] & 3) + (loc_28.a[0] & 1) == 2) v6 = 2;
+        else if ((loc_28 & 3) + (loc_28 & 1) == 2) v6 = 2;
         else v6 = 4;
         v7 = v0;
         v0 += 4;
