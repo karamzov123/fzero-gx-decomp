@@ -208,12 +208,12 @@ void fn_12_1578(Sig_fn_12_1578_MovieState * arg0, Sig_fn_12_1578_MovieData * arg
     u32 unk_6;
     int v45;
     u32 v46;
-    struct { u32 a[6]; } loc_C8;
-    struct { u32 a[6]; } loc_B0;
-    struct { u32 a[6]; } loc_98;
-    struct { u32 a[6]; } loc_80;
-    struct { u32 a[6]; } loc_68;
-    struct { u32 a[6]; } loc_50;
+    u32 loc_C8[6];
+    u32 loc_B0[6];
+    u32 loc_98[6];
+    u32 loc_80[6];
+    u32 loc_68[6];
+    u32 loc_50[6];
     u32 loc_44[3];
     u32 loc_38[3];
     u32 loc_2C[3];
@@ -236,8 +236,8 @@ void fn_12_1578(Sig_fn_12_1578_MovieState * arg0, Sig_fn_12_1578_MovieData * arg
     v1 = arg1->field44;
     loc_44[1] = v1;
     loc_44[2] = ((Sig_fn_12_1578_MovieData *)(arg1))->field48;
-    loc_C8.a[0] = arg2;
-    loc_C8.a[1] = v1;
+    loc_C8[0] = arg2;
+    loc_C8[1] = v1;
     v4 = ((Sig_fn_12_1578_MovieState *)(arg0))->value;
     switch ((s32)v4) {
     case 17:
@@ -258,17 +258,17 @@ case 257:
     }
     if (v4 == 1) {
     v1 = ((Sig_fn_12_1578_MovieData *)(arg1))->field48;
-    loc_C8.a[2] = ((s32)(((u32)v1 >> 31) + v1) >> 1);
+    loc_C8[2] = ((s32)(((u32)v1 >> 31) + v1) >> 1);
     } else {
-    loc_C8.a[2] = ((Sig_fn_12_1578_MovieData *)(arg1))->field48;
+    loc_C8[2] = ((Sig_fn_12_1578_MovieData *)(arg1))->field48;
     }
     if ((s32)*(u32 *)((u8 *)arg0 + 8) == 0) {
     v5 = (*(u32 *)((u8 *)arg1 + 8) << 2);
-    loc_C8.a[3] = v5;
+    loc_C8[3] = v5;
     } else {
-    loc_C8.a[3] = *(u32 *)((u8 *)arg0 + 8);
+    loc_C8[3] = *(u32 *)((u8 *)arg0 + 8);
     }
-    fn_12_3D730(loc_44, &loc_C8);
+    fn_12_3D730(loc_44, loc_C8);
     } else {
     v1 = *(u32 *)((u8 *)arg0 + 52);
     v0 = 1;
@@ -287,8 +287,8 @@ case 257:
     v1 = arg1->field44;
     loc_38[1] = v1;
     loc_38[2] = ((Sig_fn_12_1578_MovieData *)(arg1))->field48;
-    loc_B0.a[0] = arg2;
-    loc_B0.a[1] = v1;
+    loc_B0[0] = arg2;
+    loc_B0[1] = v1;
     v7 = ((Sig_fn_12_1578_MovieState *)(arg0))->value;
     switch ((s32)v7) {
     case 17:
@@ -309,17 +309,17 @@ case 257:
     }
     if (v7 == 1) {
     v1 = ((Sig_fn_12_1578_MovieData *)(arg1))->field48;
-    loc_B0.a[2] = ((s32)(((u32)v1 >> 31) + v1) >> 1);
+    loc_B0[2] = ((s32)(((u32)v1 >> 31) + v1) >> 1);
     } else {
-    loc_B0.a[2] = ((Sig_fn_12_1578_MovieData *)(arg1))->field48;
+    loc_B0[2] = ((Sig_fn_12_1578_MovieData *)(arg1))->field48;
     }
     if ((s32)*(u32 *)((u8 *)arg0 + 8) == 0) {
     v8 = (*(u32 *)((u8 *)arg1 + 8) << 2);
-    loc_B0.a[3] = v8;
+    loc_B0[3] = v8;
     } else {
-    loc_B0.a[3] = *(u32 *)((u8 *)arg0 + 8);
+    loc_B0[3] = *(u32 *)((u8 *)arg0 + 8);
     }
-    fn_12_3D73C(loc_38, &loc_B0, (void *)*(u32 *)((u8 *)arg0 + 56));
+    fn_12_3D73C(loc_38, loc_B0, (void *)*(u32 *)((u8 *)arg0 + 56));
     break;
     case 4097:
     v1 = *(u32 *)((u8 *)arg0 + 52);
@@ -339,8 +339,8 @@ case 257:
     v1 = arg1->field44;
     loc_2C[1] = v1;
     loc_2C[2] = ((Sig_fn_12_1578_MovieData *)(arg1))->field48;
-    loc_98.a[0] = arg2;
-    loc_98.a[1] = v1;
+    loc_98[0] = arg2;
+    loc_98[1] = v1;
     v10 = ((Sig_fn_12_1578_MovieState *)(arg0))->value;
     switch ((s32)v10) {
     case 17:
@@ -361,17 +361,17 @@ case 257:
     }
     if (v10 == 1) {
     v1 = ((Sig_fn_12_1578_MovieData *)(arg1))->field48;
-    loc_98.a[2] = ((s32)(((u32)v1 >> 31) + v1) >> 1);
+    loc_98[2] = ((s32)(((u32)v1 >> 31) + v1) >> 1);
     } else {
-    loc_98.a[2] = ((Sig_fn_12_1578_MovieData *)(arg1))->field48;
+    loc_98[2] = ((Sig_fn_12_1578_MovieData *)(arg1))->field48;
     }
     if ((s32)*(u32 *)((u8 *)arg0 + 8) == 0) {
     v11 = (*(u32 *)((u8 *)arg1 + 8) << 2);
-    loc_98.a[3] = v11;
+    loc_98[3] = v11;
     } else {
-    loc_98.a[3] = *(u32 *)((u8 *)arg0 + 8);
+    loc_98[3] = *(u32 *)((u8 *)arg0 + 8);
     }
-    fn_12_3D73C(loc_2C, &loc_98, (void *)*(u32 *)((u8 *)arg0 + 56));
+    fn_12_3D73C(loc_2C, loc_98, (void *)*(u32 *)((u8 *)arg0 + 56));
     break;
     case 49:
     v12 = *(u32 *)((u8 *)arg0 + 52);
@@ -395,8 +395,8 @@ case 257:
     v1 = arg1->field44;
     loc_20[1] = v1;
     loc_20[2] = ((Sig_fn_12_1578_MovieData *)(arg1))->field48;
-    loc_80.a[0] = arg2;
-    loc_80.a[1] = v1;
+    loc_80[0] = arg2;
+    loc_80[1] = v1;
     v15 = ((Sig_fn_12_1578_MovieState *)(arg0))->value;
     switch ((s32)v15) {
     case 17:
@@ -417,17 +417,17 @@ case 257:
     }
     if (v15 == 1) {
     v1 = ((Sig_fn_12_1578_MovieData *)(arg1))->field48;
-    loc_80.a[2] = ((s32)(((u32)v1 >> 31) + v1) >> 1);
+    loc_80[2] = ((s32)(((u32)v1 >> 31) + v1) >> 1);
     } else {
-    loc_80.a[2] = ((Sig_fn_12_1578_MovieData *)(arg1))->field48;
+    loc_80[2] = ((Sig_fn_12_1578_MovieData *)(arg1))->field48;
     }
     if ((s32)*(u32 *)((u8 *)arg0 + 8) == 0) {
     v16 = (*(u32 *)((u8 *)arg1 + 8) << 2);
-    loc_80.a[3] = v16;
+    loc_80[3] = v16;
     } else {
-    loc_80.a[3] = *(u32 *)((u8 *)arg0 + 8);
+    loc_80[3] = *(u32 *)((u8 *)arg0 + 8);
     }
-    fn_12_3D73C(loc_20, &loc_80, (void *)*(u32 *)((u8 *)arg0 + 56));
+    fn_12_3D73C(loc_20, loc_80, (void *)*(u32 *)((u8 *)arg0 + 56));
     break;
     case 65:
     v1 = *(u32 *)((u8 *)arg0 + 52);
@@ -446,8 +446,8 @@ case 257:
     v1 = arg1->field44;
     loc_14[1] = v1;
     loc_14[2] = ((Sig_fn_12_1578_MovieData *)(arg1))->field48;
-    loc_68.a[0] = arg2;
-    loc_68.a[1] = v1;
+    loc_68[0] = arg2;
+    loc_68[1] = v1;
     v18 = ((Sig_fn_12_1578_MovieState *)(arg0))->value;
     switch ((s32)v18) {
     case 17:
@@ -468,17 +468,17 @@ case 257:
     }
     if (v18 == 1) {
     v1 = ((Sig_fn_12_1578_MovieData *)(arg1))->field48;
-    loc_68.a[2] = ((s32)(((u32)v1 >> 31) + v1) >> 1);
+    loc_68[2] = ((s32)(((u32)v1 >> 31) + v1) >> 1);
     } else {
-    loc_68.a[2] = ((Sig_fn_12_1578_MovieData *)(arg1))->field48;
+    loc_68[2] = ((Sig_fn_12_1578_MovieData *)(arg1))->field48;
     }
     if ((s32)*(u32 *)((u8 *)arg0 + 8) == 0) {
     v19 = (*(u32 *)((u8 *)arg1 + 8) << 2);
-    loc_68.a[3] = v19;
+    loc_68[3] = v19;
     } else {
-    loc_68.a[3] = *(u32 *)((u8 *)arg0 + 8);
+    loc_68[3] = *(u32 *)((u8 *)arg0 + 8);
     }
-    fn_12_3D73C(loc_14, &loc_68, (void *)*(u32 *)((u8 *)arg0 + 56));
+    fn_12_3D73C(loc_14, loc_68, (void *)*(u32 *)((u8 *)arg0 + 56));
     break;
     case 33:
     v1 = *(u32 *)((u8 *)arg0 + 52);
@@ -495,31 +495,31 @@ case 257:
     loc_8[0] = ((Sig_fn_12_1578_MovieData *)(arg1))->value;
     loc_8[1] = arg1->field44;
     loc_8[2] = arg1->field48;
-    loc_50.a[0] = arg2;
-    loc_50.a[1] = arg1->field44;
-    loc_50.a[2] = arg1->field48 / 2;
+    loc_50[0] = arg2;
+    loc_50[1] = arg1->field44;
+    loc_50[2] = arg1->field48 / 2;
     if ((s32)*(u32 *)((u8 *)arg0 + 8) == 0) {
     v43 = (*(u32 *)((u8 *)arg1 + 8) << 2);
-    loc_50.a[3] = v43;
+    loc_50[3] = v43;
     } else {
-    loc_50.a[3] = *(u32 *)((u8 *)arg0 + 8);
+    loc_50[3] = *(u32 *)((u8 *)arg0 + 8);
     }
-    fn_12_3D730(loc_8, &loc_50);
+    fn_12_3D730(loc_8, loc_50);
     loc_8[0] = ((Sig_fn_12_1578_MovieData *)(arg1))->value;
     v1 = arg1->field44;
     loc_8[1] = v1;
     v45 = ((Sig_fn_12_1578_MovieData *)(arg1))->field48;
     loc_8[2] = v45;
-    loc_50.a[0] = arg2;
-    loc_50.a[1] = v1;
-    loc_50.a[2] = v45;
+    loc_50[0] = arg2;
+    loc_50[1] = v1;
+    loc_50[2] = v45;
     if ((s32)*(u32 *)((u8 *)arg0 + 8) == 0) {
     v46 = (*(u32 *)((u8 *)arg1 + 8) << 2);
-    loc_50.a[3] = v46;
+    loc_50[3] = v46;
     } else {
-    loc_50.a[3] = *(u32 *)((u8 *)arg0 + 8);
+    loc_50[3] = *(u32 *)((u8 *)arg0 + 8);
     }
-    fn_12_3D734(loc_8, &loc_50, (void *)*(u32 *)((u8 *)arg0 + 56));
+    fn_12_3D734(loc_8, loc_50, (void *)*(u32 *)((u8 *)arg0 + 56));
     break;
     default:
     case 241:
