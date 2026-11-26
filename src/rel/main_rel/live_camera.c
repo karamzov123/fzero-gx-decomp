@@ -4052,8 +4052,7 @@ typedef struct {
 extern void fn_1_862D4(s16, Vec3 *);
 extern void fn_8006E2B0(void *, Vec3 *);
 
-/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 28 disassembly lines (live_camera/fn_1_11ABC.c) */
-#pragma opt_propagation off
+#include "mathutil_mtxA_set_translate.h"
 void fn_1_11ABC(LiveCamera *camera) {
     Vec3 first;
     Vec3 second;
@@ -4077,16 +4076,7 @@ void fn_1_11ABC(LiveCamera *camera) {
 
     camera->unk_34 = lbl_1_data_4AA0[camera->unk_4].unk_0;
 
-    {
-        f32 m2, m1, m0;
-        f32 *mtx = (f32 *)(LC_BASE + 0x0);
-        m0 = first.x;
-        m1 = first.y;
-        m2 = first.z;
-        mtx[3] = m0;
-        mtx[7] = m1;
-        mtx[11] = m2;
-    }
+    mathutil_mtxA_set_translate(&first);
 
     lbl_8006DC6C(&camera->unk_7C);
     lbl_8006E1B0(&camera->unk_34, &camera->unk_1C);
@@ -4096,7 +4086,6 @@ void fn_1_11ABC(LiveCamera *camera) {
     camera->unk_5C = (s16)-lbl_8006D24C(second.x, second.y);
     camera->unk_58 = 55.0f;
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_11ABC */
 
 /* fzgx:begin fn_1_11C08 */
