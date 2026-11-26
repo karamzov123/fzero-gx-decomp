@@ -245,6 +245,7 @@ inline static s32 fire_row_byte_offset(u32 x, u32 tile_y, u32 row, u32 buf)
   return (t > 255) ? (0) : (((t + row) + column) + buf);
 }
 
+/* WARNING: compiler-diff device, not original code */
 #pragma opt_loop_invariants off
 void fn_8_0(void)
 {
@@ -254,19 +255,19 @@ void fn_8_0(void)
   struct
   {
     u32 value;
-  } tile_below;
+  } tile_below;  /* WARNING: compiler-diff device, not original code (one-field carrier) */
   struct
   {
     u32 value;
-  } tile_above;
+  } tile_above;  /* WARNING: compiler-diff device, not original code (one-field carrier) */
   struct
   {
     u32 value;
-  } tile_y;
+  } tile_y;  /* WARNING: compiler-diff device, not original code (one-field carrier) */
   struct
   {
     u32 value;
-  } i;
+  } i;  /* WARNING: compiler-diff device, not original code (one-field carrier) */
   u32 next;
   Sig_GXInitTexObj_GXTexObj obj;
   fn_80074660(2);
@@ -378,6 +379,7 @@ typedef struct {
 } TitleData;
 
 
+/* WARNING: compiler-diff device, not original code (stays off to the end of the file: fn_8_4D8 and fn_8_704 need it) */
 #pragma opt_propagation off
 static u32 fzgx_pool_data_lbl_8_data_0[246] = {  /* fzgx-allow: A1 retail data bytes and bindings */
     0x4E4F4E00, 0x4D415354, 0x45522052, 0x45435600, 0x4D415354, 0x45522053, 0x454E4400, 0x534C4156,
@@ -505,7 +507,7 @@ int fn_8_4D8(u32 *obj) {
     {
         u8 *a = lbl_1_bss_9C8;
         u8 *b = lbl_1_bss_9F8;
-        u8 zero = 0;
+        u8 zero = 0;  /* WARNING: compiler-diff device, not original code (constant held in a local under opt_propagation off) */
 
         if ((s8)a[0xa] == 0 && (*(u16 *)(b + 8) & 0x1000)) {
             lbl_1_bss_8B3A0[0x9e] = zero;
@@ -539,11 +541,10 @@ struct fn_8_704_lbl_1_bss_8B3A0 {
     s8 unk_9E;
 };
 
-#pragma opt_propagation off
 extern u8 lbl_8_bss_0;
 
 int fn_8_704(void) {
-    u8 zero = 0;
+    u8 zero = 0;  /* WARNING: compiler-diff device, not original code (constant held in a local under opt_propagation off) */
     struct fn_8_704_lbl_1_bss_9F8 * g;
     s8 v;
     lbl_8_bss_0 = 1;
@@ -554,7 +555,6 @@ int fn_8_704(void) {
     }
     return 6;
 }
-#pragma opt_propagation reset
 
 /* fzgx:end fn_8_704 */
 

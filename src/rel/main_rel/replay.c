@@ -480,13 +480,13 @@ extern u8 fn_1_86810(s32);
 extern void fn_1_3EF14(u32 *);
 extern void fn_80008BEC(u8 *, int, u32);
 
+/* WARNING: compiler-diff device, not original code */
 #pragma opt_dead_assignments off
 void fn_1_F2F84(void) {
     Obj_1_bss_7EFD8 *p_lbl_1_bss_7EFD8;
     u8 *v1;
     s32 v3;
-    s32 v16;
-    struct { s32 value; } v17;
+    struct { s32 value; } v17;  /* WARNING: compiler-diff device, not original code (one-field carrier) */
     u8 *v18;
     s32 bit;
     struct { u8 a[0x14ac]; } loc_8;
@@ -548,7 +548,6 @@ void fn_1_F2F84(void) {
             }
             v18[3] = fn_1_3F264(v17.value);
         } else v18[3] = 50;
-        v16 += 5;
         v17.value++;
     }
     lbl_1_bss_7EFD8.unk_1B = 0;
@@ -607,7 +606,9 @@ u32 unk_0;
 u32 frame;
 u8 pad0[0x10];
 u8 playerCount;
-u8 pad1[0x27];
+u8 pad1[0xB];
+u8 done[4];
+u8 pad2[0x18];
 ReplayBuffer_F3574 *buffer;
 } ReplayState_F3574;
 
@@ -624,10 +625,6 @@ typedef struct {
 u16 count;
 u8 last[4];
 } ReplayTrack_F326C;
-typedef struct {
-u8 pad0[0x24];
-u8 done[4];
-} ReplayStateView_F326C;
 typedef struct {
 u8 b7 : 1;
 u8 b6 : 1;
@@ -673,7 +670,6 @@ fn_1_F3574(state, i, j, 0, value);
 }
 }
 
-#pragma opt_strength_reduction off
 
 void fn_1_F326C(ReplayState_F3574 *state) {
 ReplayTrack_F326C *track;
@@ -703,7 +699,7 @@ return;
 count = fn_1_86624();
 for (i = 0; i < count; i++) {
 value = fn_1_86810(i);
-if (((ReplayStateView_F326C *)state)->done[i] != 0) {
+if (state->done[i] != 0) {
 continue;
 }
 buttons = fn_1_864E8(i);
@@ -719,7 +715,7 @@ if (!active) {
 continue;
 }
 if (buttons & 0x10000) {
-((ReplayStateView_F326C *)state)->done[i] = 1;
+state->done[i] = 1;
 fn_1_F3574(state, i, i, 6, value);
 } else if (buttons & 0x40000) {
 fn_1_F3574(state, i, i, 7, value);
@@ -753,7 +749,6 @@ replay_update_last(state, track, count, i, value);
 }
 }
 }
-#pragma opt_strength_reduction reset
 /* fzgx:end fn_1_F326C */
 
 /* fzgx:begin fn_1_F3574 */
@@ -1371,6 +1366,7 @@ struct fn_1_F4810_Arg4 { u8 unk_0; };
 struct fn_1_F4810_Arg5 { u8 unk_0; };
 struct fn_1_F4810_Arg6 { u8 unk_0; };
 
+/* WARNING: compiler-diff device, not original code */
 #pragma opt_propagation off
 static inline s32 read_bits(struct fn_1_F4810_Arg0 *src, u32 *pos, s32 count) {
     s32 value = 0;
@@ -1387,7 +1383,7 @@ static inline s32 read_version_bits(struct fn_1_F4810_Arg0 *src, u32 *pos, s32 c
     s32 i;
     s32 n = count;
     s32 value = 0;
-    count = count;
+    count = count;  /* WARNING: compiler-diff device, not original code (self-assignment) */
     for (i = 0; i < 7; i++) {
         if (src->unk_0[*pos >> 3] & (1 << (*pos & 7)))
             value |= 1 << (n - 1);
@@ -1397,8 +1393,9 @@ static inline s32 read_version_bits(struct fn_1_F4810_Arg0 *src, u32 *pos, s32 c
     return value;
 }
 
-/* retail recomputes the buffer address inside the loop instead of hoisting it */
+/* WARNING: compiler-diff device, not original code (retail recomputes the buffer address inside the loop instead of hoisting it) */
 #pragma opt_loop_invariants off
+
 void fn_1_F4810(struct fn_1_F4810_Arg0 *arg0, struct fn_1_F4810_Arg1 *arg1, u8 *arg2, struct fn_1_F4810_Arg3 *arg3, struct fn_1_F4810_Arg4 *arg4, struct fn_1_F4810_Arg5 *arg5, struct fn_1_F4810_Arg6 *arg6, u8 *arg7, u8 *arg8) {
     u32 pos = 8;
     u8 version;

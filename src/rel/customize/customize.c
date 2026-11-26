@@ -736,13 +736,14 @@ void fn_3_AE74(void) {
 
 /* fzgx:begin fn_3_B270 */
 #include "types.h"
+#include "game/pad.h"
 
 
 typedef struct {
     u8 pad_0[0x8];
     u16 hold;    /* 0x08 */
     u8 pad_A[0x6];
-    volatile u16 trig;    /* 0x10 */  /* fzgx-allow: S2 retail rereads the trigger word at every test */
+    u16 trig;    /* 0x10 */
     u16 rept;    /* 0x12 */
 } fn_3_B270_Pad;
 
@@ -798,7 +799,6 @@ s16 fn_3_B270(void) {
     s16 cost;
     s16 row2;
     s16 col2;
-    u16 *trig;
 
     port = fzgx_obj_lbl_3_bss_F0.unk_6;
     prev = lbl_3_data_C4;
@@ -812,16 +812,16 @@ s16 fn_3_B270(void) {
         }
     }
 
-    if (((lbl_1_bss_9F8[port].trig >> 3) & 1) || ((lbl_1_bss_9F8[port].rept >> 3) & 1)) {
+    if (PAD_BIT(lbl_1_bss_9F8[port].trig, 3) || PAD_BIT(lbl_1_bss_9F8[port].rept, 3)) {
         dx = -1;
     }
-    if (((lbl_1_bss_9F8[port].trig >> 2) & 1) || ((lbl_1_bss_9F8[port].rept >> 2) & 1)) {
+    if (PAD_BIT(lbl_1_bss_9F8[port].trig, 2) || PAD_BIT(lbl_1_bss_9F8[port].rept, 2)) {
         dx++;
     }
-    if ((lbl_1_bss_9F8[port].trig & 1) || (lbl_1_bss_9F8[port].rept & 1)) {
+    if (PAD_BIT(lbl_1_bss_9F8[port].trig, 0) || PAD_BIT(lbl_1_bss_9F8[port].rept, 0)) {
         dy = -1;
     }
-    if (((lbl_1_bss_9F8[port].trig >> 1) & 1) || ((lbl_1_bss_9F8[port].rept >> 1) & 1)) {
+    if (PAD_BIT(lbl_1_bss_9F8[port].trig, 1) || PAD_BIT(lbl_1_bss_9F8[port].rept, 1)) {
         dy++;
     }
 
@@ -1109,6 +1109,7 @@ typedef struct {
 } CtxSlotHi;
 #define HI ((CtxSlotHi *)((u8 *)&lbl_3_bss_2C7C0 + 0x10420))
 
+/* WARNING: compiler-diff device, not original code */
 #pragma opt_common_subs off
 typedef struct lbl_3_bss_F0_t {
     u8 pad_0[0x8];
