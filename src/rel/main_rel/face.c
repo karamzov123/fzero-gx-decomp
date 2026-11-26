@@ -8,7 +8,7 @@ extern FaceMgrGlobal lbl_1_bss_7ACD8;
 
 extern u32 lbl_801A6410;
 extern u8 lbl_1_data_3D670[];
-extern u8 lbl_1_data_20D1C[];
+extern u32 lbl_1_data_20D1C[];
 extern u32 lbl_1_bss_7ACEC;
 extern u32 fn_1_45D0(u32, u32, void*, u32);
 extern u32 fn_80008F88(void*, u32);
@@ -59,7 +59,6 @@ void fn_1_D17E8(void) {
 /* fzgx:end fn_1_D17E8 */
 
 /* fzgx:begin fn_1_D1848 */
-extern u32 lbl_1_rodata_60A0[46];
 extern u32 fn_1_4630(u32, u32, u8 *, u32);
 extern u8 fn_1_86624(void);
 extern void *memset(void *, int, u32);
@@ -100,15 +99,12 @@ static void fzgx_string_layout(void) {
 }
 #pragma section code_type ".text"
 
-static inline u32 fn_1_D1848_array_read(s32 index, u32 *array) { return array[index]; }
+typedef struct { f32 x, y, z; } FaceInit;
 
-#pragma opt_propagation off
 void fn_1_D1848(void) {
     u32 texsize;
     s32 i;
     Obj_1_bss_7ACD8_Target *obj;
-    u32 c0;
-    u32 c1;
     u8 idx;
 
     
@@ -116,30 +112,24 @@ void fn_1_D1848(void) {
     fzgx_obj_lbl_1_bss_7ACD8 = fn_1_4630(lbl_801A6410, 0x258, lbl_1_data_3DA2C, 0x15F);
     fzgx_obj_lbl_1_bss_7ACE8 = 0;
     idx = fn_1_86624();
-    *(u8 *)((u8 *)&lbl_1_bss_7ACE0__fzgx_offset_4) = idx;
+    lbl_1_bss_7ACE0__fzgx_offset_4 = idx;
     lbl_1_bss_7ACDC = fn_1_4630(lbl_801A6410, idx << 2, lbl_1_data_3DA2C, 0x173);
     lbl_1_bss_7ACE0 = fn_1_4630(lbl_801A6410, lbl_1_bss_7ACE0__fzgx_offset_4 << 2, lbl_1_data_3DA2C, 0x174);
     texsize = GXGetTexBufferSize(0x40, 0x40, 5, 0, 0);
     obj = (Obj_1_bss_7ACD8_Target *)fzgx_obj_lbl_1_bss_7ACD8;
     for (i = 0; i < 6; i++) {
-        u32 c1;
-        u32 c0;
-        c0 = fn_1_D1848_array_read(0, lbl_1_rodata_60A0);
-        c1 = fn_1_D1848_array_read(1, lbl_1_rodata_60A0);
-        obj->unk_2C = c0;
-        obj->unk_30 = c1;
-        obj->unk_34 = fn_1_D1848_array_read(2, lbl_1_rodata_60A0);
+        FaceInit init = { 0.0f, 0.0f, 1.8f };
+        *(FaceInit *)&obj->unk_2C = init;
         obj->unk_1C = 0;
         obj->unk_4 = 0xFF;
         obj->unk_0 &= 0x7FFFFFFFu;
-        obj->unk_0 = __rlwinm(obj->unk_0, 0, 2, 0);
+        obj->unk_0 &= ~0x40000000;
         obj->unk_60 = fn_1_45D0(lbl_801A6410, texsize, lbl_1_data_3DA2C, 0x18A);
         memset((void *)obj->unk_60, 0, 4);
-        obj = (Obj_1_bss_7ACD8_Target *)((u8 *)obj + 0x64);
+        obj++;
     }
     fn_1_D2F84();
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_D1848 */
 
 /* fzgx:begin fn_1_D19B8 */
@@ -198,14 +188,15 @@ void fn_1_D19B8(u8 *arg0) {
     char loc_88[0x80];
     char loc_8[0x80];
 
-    p_lbl_1_data_3D670 = (u8 *)&(*(u8 (*)[])&lbl_1_data_3D670);
+    /* WARNING: compiler-diff device, not original code. Base-pointer carrier for the retail data section base. */
+    p_lbl_1_data_3D670 = (u8 *)&lbl_1_data_3D670;
     fn_80006E10((u32)(p_lbl_1_data_3D670 + 0x2bc));
 
     fn_1_465D0((char *)(p_lbl_1_data_3D670 + 0x470), 3);
     fn_1_465D0((char *)(p_lbl_1_data_3D670 + 0x480), 3);
     i = 0;
     while (i < (s8)fn_1_86624()) {
-        v1 = ((*(u32 (*)[0x2d])&lbl_1_data_20D1C))[(s16)fn_1_12C930((s8)fn_1_12C7B8(fn_1_86690(i)))];
+        v1 = lbl_1_data_20D1C[(s16)fn_1_12C930((s8)fn_1_12C7B8(fn_1_86690(i)))];
         fn_1_868C0(i);
         v2 = 31 - __cntlzw((s8)*arg0);
         v3 = v2;
@@ -218,6 +209,7 @@ void fn_1_D19B8(u8 *arg0) {
         arg0++;
     }
 
+    /* WARNING: compiler-diff device, not original code. s16 view: the generated header declares lbl_1_bss_960 u16 (lhz). */
     if ((*(s16 *)&lbl_1_bss_960) == 9) {
         v6 = lbl_1_bss_9C;
         switch (v6) {
@@ -270,16 +262,6 @@ typedef struct {
     u32 unk_0;
     u32 unk_4;
     u32 unk_8;
-    u8 unk_C;
-    u8 unk_D;
-    u8 pad_E[0x2];
-    s32 unk_10;
-} State_7ACD8;
-
-typedef struct {
-    u32 unk_0;
-    u32 unk_4;
-    u32 unk_8;
     u8 pad_C[0x4];
     u32 unk_10;
     u32 unk_14;
@@ -302,54 +284,53 @@ extern void fn_80071718(u32);
 extern void fn_800711A8(u32);
 
 void fn_1_D1C94(void) {
-    State_7ACD8 *p;
+    FaceMgrGlobal *p;
     Ent *obj;
     s32 count;
     u32 mask;
     s32 i;
     s32 n;
 
-    p = (State_7ACD8 *)&lbl_1_bss_7ACD8;
+    p = &lbl_1_bss_7ACD8;
     if ((s32)lbl_1_data_3D924 != -1) {
         fn_1_D2F50();
-        if (p->unk_10 != 0) {
-            u8 c = p->unk_C;
-            p->unk_D = c;
+        if (p->unk10 != 0) {
+            u8 c = p->countC;
+            p->countD = c;
             if (c > 4) {
-                p->unk_D = 4;
+                p->countD = 4;
             }
         } else {
-            p->unk_D = 0;
+            p->countD = 0;
             mask = 0x20000880;
             n = 0;
-            while ((u32)n < p->unk_C) {
+            while ((u32)n < p->countC) {
                 if ((fn_1_864E8(n) & mask) == 0) {
-                    p->unk_D++;
+                    p->countD++;
                 }
                 n++;
             }
-            if (p->unk_D > 6) {
-                p->unk_D = 6;
+            if (p->countD > 6) {
+                p->countD = 6;
             }
         }
 
-        obj = (Ent *)p->unk_0;
+        obj = (Ent *)p->entries;
         i = 0;
-        while ((u32)i < p->unk_D) {
+        while ((u32)i < p->countD) {
             if (obj == 0) {
                 fn_1_D2F84();
                 return;
             }
             if (obj->unk_4 != 0xff) {
-                u32 off = (obj->unk_4 & 0xFF) << 2;
-                obj->unk_4 = obj->unk_4;
-                if (*(u32 *)(p->unk_8 + off) != 0) {
-                    fn_80071718(*(u32 *)(p->unk_8 + off));
-                    *(u32 *)(p->unk_8 + off) = 0;
+                u32 off = obj->unk_4 & 0xFF;
+                if (p->list8[off] != NULL) {
+                    fn_80071718((u32)p->list8[off]);
+                    p->list8[off] = NULL;
                 }
-                if (*(u32 *)(p->unk_4 + off) != 0) {
-                    fn_800711A8(*(u32 *)(p->unk_4 + off));
-                    *(u32 *)(p->unk_4 + off) = 0;
+                if (p->list4[off] != NULL) {
+                    fn_800711A8((u32)p->list4[off]);
+                    p->list4[off] = NULL;
                 }
             }
             i++;
@@ -357,16 +338,16 @@ void fn_1_D1C94(void) {
         }
 
         count = 0;
-        if (p->unk_10 != 0) {
+        if (p->unk10 != 0) {
             i = 0;
-            obj = (Ent *)p->unk_0;
-            while ((u32)i < p->unk_D) {
+            obj = (Ent *)p->entries;
+            while ((u32)i < p->countD) {
                 u8 res = fn_1_D2E44(i);
                 if (obj == 0) {
                     fn_1_D2F84();
                     return;
                 }
-                if ((u32)count <= (p->unk_D - 1)) {
+                if ((u32)count <= (p->countD - 1)) {
                     u32 v = res;
                     obj->unk_10 = v;
                     obj->unk_14 = v;
@@ -387,25 +368,23 @@ void fn_1_D1C94(void) {
                 i++;
             }
         } else {
-{
-    s32 fzgx_loop_i_3321;
-            obj = (Ent *)p->unk_0;
-            fzgx_loop_i_3321 = 0;
-            while ((u32)fzgx_loop_i_3321 < p->unk_C) {
-                u8 res = fn_1_D2E44(fzgx_loop_i_3321);
+            obj = (Ent *)p->entries;
+            n = 0;
+            while ((u32)n < p->countC) {
+                u8 res = fn_1_D2E44(n);
                 s32 lim;
                 if (obj == 0) {
                     fn_1_D2F84();
                     return;
                 }
-                lim = p->unk_D - 1;
+                lim = p->countD - 1;
                 if ((s32)(res & 0xFF) <= lim && (u32)count <= lim) {
                     u32 v = res;
                     obj->unk_10 = v;
                     obj->unk_14 = v;
                     obj->unk_18 = fn_1_3F440(res);
-                    obj->unk_4 = fzgx_loop_i_3321;
-                    obj->unk_8 = fn_1_12C7B8(fn_1_86690(fzgx_loop_i_3321));
+                    obj->unk_4 = n;
+                    obj->unk_8 = fn_1_12C7B8(fn_1_86690(n));
                     obj->unk_3C = 0;
                     obj->unk_38 = 0;
                     obj->unk_1C = 20;
@@ -417,10 +396,8 @@ void fn_1_D1C94(void) {
                     count++;
                     obj++;
                 }
-                fzgx_loop_i_3321++;
+                n++;
             }
-    i = fzgx_loop_i_3321;
-}
         }
         fn_1_D2F84();
     }
@@ -429,44 +406,44 @@ void fn_1_D1C94(void) {
 
 /* fzgx:begin fn_1_D1F88 */
 void fn_1_D1F88(void) {
-    Obj_1_bss_7ACD8_Target* state;
+    FaceMgrGlobal *state;
     s32 i;
     Obj_1_bss_7ACD8_Target* obj;
     u32 index;
 
-    state = (Obj_1_bss_7ACD8_Target*)&lbl_1_bss_7ACD8;
+    state = &lbl_1_bss_7ACD8;
     if ((s32)lbl_1_data_3D924 != -1) {
         fn_1_D2F50();
         i = 0;
-        obj = (Obj_1_bss_7ACD8_Target*)state->unk_0;
-        for (; i < 6; i++, obj = (Obj_1_bss_7ACD8_Target*)((u8*)obj + 0x64)) {
+        obj = state->entries;
+        for (; i < 6; i++, obj++) {
             if (obj->unk_60 != 0) {
                 fn_1_46B4(lbl_801A6410, obj->unk_60, lbl_1_data_3DA2C, 0x271);
                 obj->unk_60 = 0;
             }
-            if (i < *((u8*)state + 0xD)) {
-                index = (obj->unk_4 & 0xFF) << 2;
-                if (*(u32*)(state->unk_8 + index) != 0) {
-                    fn_80071718(*(u32*)(state->unk_8 + index));
-                    *(u32*)(state->unk_8 + index) = 0;
+            if (i < state->countD) {
+                index = obj->unk_4 & 0xFF;
+                if (state->list8[index] != NULL) {
+                    fn_80071718((u32)state->list8[index]);
+                    state->list8[index] = NULL;
                 }
-                if (*(u32*)(state->unk_4 + index) != 0) {
-                    fn_800711A8(*(u32*)(state->unk_4 + index));
-                    *(u32*)(state->unk_4 + index) = 0;
+                if (state->list4[index] != NULL) {
+                    fn_800711A8((u32)state->list4[index]);
+                    state->list4[index] = NULL;
                 }
             }
         }
-        if (state->unk_4 != 0) {
-            fn_1_46B4(lbl_801A6410, state->unk_4, lbl_1_data_3DA2C, 0x277);
-            state->unk_4 = 0;
+        if (state->list4 != 0) {
+            fn_1_46B4(lbl_801A6410, (u32)state->list4, lbl_1_data_3DA2C, 0x277);
+            state->list4 = 0;
         }
-        if (state->unk_8 != 0) {
-            fn_1_46B4(lbl_801A6410, state->unk_8, lbl_1_data_3DA2C, 0x278);
-            state->unk_8 = 0;
+        if (state->list8 != 0) {
+            fn_1_46B4(lbl_801A6410, (u32)state->list8, lbl_1_data_3DA2C, 0x278);
+            state->list8 = 0;
         }
-        if (state->unk_0 != 0) {
-            fn_1_46B4(lbl_801A6410, state->unk_0, lbl_1_data_3DA2C, 0x27B);
-            state->unk_0 = 0;
+        if (state->entries != 0) {
+            fn_1_46B4(lbl_801A6410, (u32)state->entries, lbl_1_data_3DA2C, 0x27B);
+            state->entries = 0;
         }
         fn_1_D2F84();
     }
@@ -520,18 +497,7 @@ typedef struct {
 
 extern u32 fn_1_584AC(void);
 
-#pragma section code_type ".fzgxpool"
-/* layout primer: fn_1_D1848's initializer precedes this function's in the TU pool */
-static void fzgx_pool_layout_1(FaceVec *out) {
-    FaceVec v = { 0.0f, 0.0f, 1.8f };
-    *out = v;
-}
-#pragma section code_type ".text"
-
-#pragma fp_contract off
-#pragma opt_common_subs off
 void fn_1_D2110(FaceObj *o) {
-    f32 fzgx_live;
     FaceVec d = { 0.0f, 0.0f, 0.0f };
     f32 tz;
     f32 tx;
@@ -555,29 +521,24 @@ void fn_1_D2110(FaceObj *o) {
     o->pos.y -= d.y;
     o->pos.z -= d.z;
     if (o->state != 0) {
-        o->pos.x = o->pos.x + 0.1 * -o->pos.x;
-        o->pos.y = o->pos.y + 0.1 * -o->pos.y;
-        fzgx_live = o->pos.z;
-        o->pos.z = fzgx_live + 0.1 * (1.8f - fzgx_live);
+        o->pos.x += 0.1 * -o->pos.x;
+        o->pos.y += 0.1 * -o->pos.y;
+        o->pos.z += 0.1 * (1.8f - o->pos.z);
     } else if (o->timer != 0) {
         s = o->timer / 10.0f;
         tx = 0.5 * (s * ((u16)fn_1_584AC() / 32767.0f - 0.5));
         ty = s * ((u16)fn_1_584AC() / 32767.0f - 0.5);
         tz = 1.8f + s * ((u16)fn_1_584AC() / 32767.0f - 0.5);
-        o->pos.x = o->pos.x + 0.2 * (tx - o->pos.x);
-        o->pos.y = o->pos.y + 0.2 * (ty - o->pos.y);
-        fzgx_live = o->pos.z;
-        o->pos.z = fzgx_live + 0.2 * (tz - fzgx_live);
+        o->pos.x += 0.2 * (tx - o->pos.x);
+        o->pos.y += 0.2 * (ty - o->pos.y);
+        o->pos.z += 0.2 * (tz - o->pos.z);
     } else {
-        o->pos.x = o->pos.x + 0.1 * -o->pos.x;
-        o->pos.y = o->pos.y + 0.1 * -o->pos.y;
-        fzgx_live = o->pos.z;
-        o->pos.z = fzgx_live + 0.1 * (1.8f - fzgx_live);
+        o->pos.x += 0.1 * -o->pos.x;
+        o->pos.y += 0.1 * -o->pos.y;
+        o->pos.z += 0.1 * (1.8f - o->pos.z);
     }
     o->prev = o->pos;
 }
-#pragma opt_common_subs reset
-#pragma fp_contract reset
 /* fzgx:end fn_1_D2110 */
 
 /* fzgx:begin fn_1_D2404 */
@@ -739,6 +700,7 @@ void fn_1_D2404(void) {
 
 /* fzgx:begin fn_1_D27B8 */
 #include "dolphin/hw_regs.h"
+#include "mathutil_mtxA_translate_col.h"
 
 typedef struct FaceVec_2 {
     f32 x;
@@ -836,17 +798,15 @@ extern void fn_80072270(f32 *);
 
 #pragma section code_type ".fzgxpool"
 
-/* layout primer: this function's literals at 0x58-0x6B */
+/* layout primer: this function's literals at 0x58-0x6F */
 static void fzgx_pool_layout_3(f32 *f) {
     f[5] = 5.0f;
     f[6] = 0.1f;
     f[7] = 90000.0f;
     f[8] = 0.0f;
     f[9] = 1.0f;
+    f[10] = -0.02f;
 }
-
-/* -0.02f at 0x6C, the mtxA z offset: read through this object it stays a variable (retail keeps it in f5) */
-const f32 fzgx_pool_face_depth[1] = { -0.02f };
 
 /* layout primer: this function's literals at 0x70-0x78, before its initializers at 0x7C */
 static void fzgx_pool_layout_4(f32 *f) {
@@ -861,15 +821,9 @@ static inline void face_set_color(void) {
     fn_800744F8(c, 0xFFFFFF);
 }
 
-#define MTXA ((f32 *)LC_BASE)
-
 /* retail translates mtxA in place (each fmadds result in its multiplicand register) */
-#pragma opt_lifetimes off
 void fn_1_D27B8(void) {
-    FaceManager_2 *mgr = (FaceManager_2 *)(FaceManager_2 *)&lbl_1_bss_7ACD8;
-    f32 tz;
-    f32 ty;
-    f32 tx;
+    FaceManager_2 *mgr = (FaceManager_2 *)&lbl_1_bss_7ACD8;
     f32 saved[3][4];
     f32 persp[4][4];
     f32 view[3][4];
@@ -894,7 +848,6 @@ void fn_1_D27B8(void) {
     f32 rx;
     f32 ry;
     u32 seed;
-    f32 dz;
 
     if (fn_1_58C4() <= 1 && (s32)lbl_1_data_3D924 != -1) {
         fn_1_D2F50();
@@ -957,16 +910,7 @@ void fn_1_D27B8(void) {
                         lbl_8006DFE8(view);
                         mathutil_mtxA_rotate_x(-0x4000);
                         mathutil_mtxA_rotate_z(-0x4000);
-                        dz = fzgx_pool_face_depth[0];
-                        tx = MTXA[2];
-                        tx = tx * dz + MTXA[3];
-                        ty = MTXA[6];
-                        ty = ty * dz + MTXA[7];
-                        tz = MTXA[10];
-                        tz = tz * dz + MTXA[11];
-                        MTXA[3] = tx;
-                        MTXA[7] = ty;
-                        MTXA[11] = tz;
+                        mathutil_mtxA_translate_z(-0.02f);
                         if (fn_1_3F0C8() == 41) {
                             racer = fn_1_86254(id);
                             if (racer->unk190 != 0) {
@@ -1003,7 +947,6 @@ void fn_1_D27B8(void) {
         fn_1_D2F84();
     }
 }
-#pragma opt_lifetimes reset
 /* fzgx:end fn_1_D27B8 */
 
 /* fzgx:begin fn_1_D2D24 */

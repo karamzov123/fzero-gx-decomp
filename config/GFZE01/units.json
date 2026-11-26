@@ -66888,9 +66888,13 @@
     "collapsed": true,
     "pool": {
       "...bss.0": "lbl_1_bss_7ACD8",
-      "...rodata.0": "lbl_1_rodata_60A0"
+      "...rodata.0": "lbl_1_rodata_60A0",
+      "@24": "lbl_1_rodata_60A0"
     },
-    "extra_cflags": []
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ]
   },
   {
     "module": "main_rel",
