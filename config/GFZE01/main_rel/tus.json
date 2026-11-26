@@ -150,12 +150,12 @@
    "file": "camera.c",
    "text": [
     25600,
-    55860
+    35600
    ],
    "data_sec": 5,
    "data": [
     13080,
-    17440
+    13944
    ],
    "anchor_refs": [
     25600,
@@ -215,7 +215,27 @@
     "fn_1_8A0C",
     "camera_init",
     "live_camera_get",
-    "game_camera_get",
+    "game_camera_get"
+   ],
+   "confidence": {
+    "text+data": 20,
+    "text-range": 71,
+    "data-vote": 3
+   }
+  },
+  {
+   "file": "camera_b.c",
+   "text": [
+    35600,
+    46884
+   ],
+   "data_sec": 5,
+   "data": [
+    13944,
+    17440
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_1_8B10",
     "fn_1_8D08",
     "fn_1_90E0",
@@ -228,7 +248,27 @@
     "fn_1_AEB8",
     "fn_1_AFC8",
     "camera_get_target_orientation",
-    "fn_1_B4D4",
+    "fn_1_B4D4"
+   ],
+   "confidence": {
+    "text+data": 13,
+    "text-range": 0,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "camera_c.c",
+   "text": [
+    46884,
+    55860
+   ],
+   "data_sec": 5,
+   "data": [
+    17440,
+    17440
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_1_B724",
     "fn_1_B81C",
     "camera_save_parameters",
@@ -261,9 +301,9 @@
     "camera_are_flags_enabled"
    ],
    "confidence": {
-    "text+data": 20,
-    "text-range": 71,
-    "data-vote": 3
+    "text+data": 30,
+    "text-range": 0,
+    "data-vote": 0
    }
   },
   {

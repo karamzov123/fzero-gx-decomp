@@ -47485,7 +47485,7 @@
   {
    "symbol": "fn_1_8D08",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_8D08.c",
+   "unit": "rel/main_rel/camera_b/fn_1_8D08.c",
    "addr": 36104,
    "size": 984,
    "status": "matched",
@@ -47502,7 +47502,7 @@
   {
    "symbol": "fn_1_90E0",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_90E0.c",
+   "unit": "rel/main_rel/camera_b/fn_1_90E0.c",
    "addr": 37088,
    "size": 6056,
    "status": "matched",
@@ -47519,7 +47519,7 @@
   {
    "symbol": "fn_1_A888",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_A888.c",
+   "unit": "rel/main_rel/camera_b/fn_1_A888.c",
    "addr": 43144,
    "size": 460,
    "status": "matched",
@@ -47536,7 +47536,7 @@
   {
    "symbol": "fn_1_AA54",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_A888.c",
+   "unit": "rel/main_rel/camera_b/fn_1_A888.c",
    "addr": 43604,
    "size": 344,
    "status": "matched",
@@ -47553,7 +47553,7 @@
   {
    "symbol": "fn_1_ABAC",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_ABAC.c",
+   "unit": "rel/main_rel/camera_b/fn_1_ABAC.c",
    "addr": 43948,
    "size": 488,
    "status": "matched",
@@ -47570,7 +47570,7 @@
   {
    "symbol": "camera_get_position_delta",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_ABAC.c",
+   "unit": "rel/main_rel/camera_b/fn_1_ABAC.c",
    "addr": 44436,
    "size": 124,
    "status": "matched",
@@ -47587,7 +47587,7 @@
   {
    "symbol": "camera_reset_transition",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_ABAC.c",
+   "unit": "rel/main_rel/camera_b/fn_1_ABAC.c",
    "addr": 44560,
    "size": 40,
    "status": "matched",
@@ -47604,7 +47604,7 @@
   {
    "symbol": "camera_update_transition",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/camera_update_transition.c",
+   "unit": "rel/main_rel/camera_b/camera_update_transition.c",
    "addr": 44600,
    "size": 128,
    "status": "matched",
@@ -47621,7 +47621,7 @@
   {
    "symbol": "fn_1_AEB8",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_AEB8.c",
+   "unit": "rel/main_rel/camera_b/fn_1_AEB8.c",
    "addr": 44728,
    "size": 272,
    "status": "matched",
@@ -47638,7 +47638,7 @@
   {
    "symbol": "fn_1_AFC8",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_AFC8.c",
+   "unit": "rel/main_rel/camera_b/fn_1_AFC8.c",
    "addr": 45000,
    "size": 1124,
    "status": "matched",
@@ -47655,7 +47655,7 @@
   {
    "symbol": "camera_get_target_orientation",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_AFC8.c",
+   "unit": "rel/main_rel/camera_b/fn_1_AFC8.c",
    "addr": 46124,
    "size": 168,
    "status": "matched",
@@ -47672,7 +47672,7 @@
   {
    "symbol": "fn_1_B4D4",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_AFC8.c",
+   "unit": "rel/main_rel/camera_b/fn_1_AFC8.c",
    "addr": 46292,
    "size": 592,
    "status": "matched",
@@ -47689,7 +47689,7 @@
   {
    "symbol": "fn_1_B724",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_B724.c",
+   "unit": "rel/main_rel/camera_c/fn_1_B724.c",
    "addr": 46884,
    "size": 248,
    "status": "matched",
@@ -47706,7 +47706,7 @@
   {
    "symbol": "fn_1_B81C",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_B81C.c",
+   "unit": "rel/main_rel/camera_c/fn_1_B81C.c",
    "addr": 47132,
    "size": 64,
    "status": "matched",
@@ -47723,7 +47723,7 @@
   {
    "symbol": "camera_save_parameters",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_B81C.c",
+   "unit": "rel/main_rel/camera_c/fn_1_B81C.c",
    "addr": 47196,
    "size": 20,
    "status": "matched",
@@ -47740,7 +47740,7 @@
   {
    "symbol": "fn_1_B870",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_B870.c",
+   "unit": "rel/main_rel/camera_c/fn_1_B870.c",
    "addr": 47216,
    "size": 1252,
    "status": "matched",
@@ -47757,7 +47757,7 @@
   {
    "symbol": "fn_1_BD54",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_BD54.c",
+   "unit": "rel/main_rel/camera_c/fn_1_BD54.c",
    "addr": 48468,
    "size": 588,
    "status": "matched",
@@ -47774,7 +47774,7 @@
   {
    "symbol": "fn_1_BFA0",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_BFA0.c",
+   "unit": "rel/main_rel/camera_c/fn_1_BFA0.c",
    "addr": 49056,
    "size": 152,
    "status": "matched",
@@ -47791,7 +47791,7 @@
   {
    "symbol": "fn_1_C038",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_BFA0.c",
+   "unit": "rel/main_rel/camera_c/fn_1_BFA0.c",
    "addr": 49208,
    "size": 108,
    "status": "matched",
@@ -47808,7 +47808,7 @@
   {
    "symbol": "camera_save_slot",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_BFA0.c",
+   "unit": "rel/main_rel/camera_c/fn_1_BFA0.c",
    "addr": 49316,
    "size": 104,
    "status": "matched",
@@ -47825,7 +47825,7 @@
   {
    "symbol": "fn_1_C10C",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_C10C.c",
+   "unit": "rel/main_rel/camera_c/fn_1_C10C.c",
    "addr": 49420,
    "size": 108,
    "status": "matched",
@@ -47842,7 +47842,7 @@
   {
    "symbol": "fn_1_C178",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_C178.c",
+   "unit": "rel/main_rel/camera_c/fn_1_C178.c",
    "addr": 49528,
    "size": 176,
    "status": "matched",
@@ -47859,7 +47859,7 @@
   {
    "symbol": "camera_report_position",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_C178.c",
+   "unit": "rel/main_rel/camera_c/fn_1_C178.c",
    "addr": 49704,
    "size": 64,
    "status": "matched",
@@ -47876,7 +47876,7 @@
   {
    "symbol": "fn_1_C268",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_C268.c",
+   "unit": "rel/main_rel/camera_c/fn_1_C268.c",
    "addr": 49768,
    "size": 156,
    "status": "matched",
@@ -47893,7 +47893,7 @@
   {
    "symbol": "fn_1_C304",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_C304.c",
+   "unit": "rel/main_rel/camera_c/fn_1_C304.c",
    "addr": 49924,
    "size": 88,
    "status": "matched",
@@ -47910,7 +47910,7 @@
   {
    "symbol": "camera_snapshot",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/camera_snapshot.c",
+   "unit": "rel/main_rel/camera_c/camera_snapshot.c",
    "addr": 50012,
    "size": 92,
    "status": "matched",
@@ -47927,7 +47927,7 @@
   {
    "symbol": "fn_1_C3B8",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_C3B8.c",
+   "unit": "rel/main_rel/camera_c/fn_1_C3B8.c",
    "addr": 50104,
    "size": 952,
    "status": "matched",
@@ -47944,7 +47944,7 @@
   {
    "symbol": "fn_1_C770",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_C770.c",
+   "unit": "rel/main_rel/camera_c/fn_1_C770.c",
    "addr": 51056,
    "size": 1260,
    "status": "matched",
@@ -47961,7 +47961,7 @@
   {
    "symbol": "fn_1_CC5C",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/fn_1_CC5C.c",
+   "unit": "rel/main_rel/camera_c/fn_1_CC5C.c",
    "addr": 52316,
    "size": 3332,
    "status": "matched",
@@ -47978,7 +47978,7 @@
   {
    "symbol": "camera_get_state_object",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/camera_get_state_object.c",
+   "unit": "rel/main_rel/camera_c/camera_get_state_object.c",
    "addr": 55648,
    "size": 12,
    "status": "matched",
@@ -47995,7 +47995,7 @@
   {
    "symbol": "camera_get_state_field_0x4",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/camera_get_state_object.c",
+   "unit": "rel/main_rel/camera_c/camera_get_state_object.c",
    "addr": 55660,
    "size": 16,
    "status": "matched",
@@ -48012,7 +48012,7 @@
   {
    "symbol": "camera_get_state_field_0x8",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/camera_get_state_object.c",
+   "unit": "rel/main_rel/camera_c/camera_get_state_object.c",
    "addr": 55676,
    "size": 16,
    "status": "matched",
@@ -48029,7 +48029,7 @@
   {
    "symbol": "camera_get_state_field_0xc",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/camera_get_state_object.c",
+   "unit": "rel/main_rel/camera_c/camera_get_state_object.c",
    "addr": 55692,
    "size": 16,
    "status": "matched",
@@ -48046,7 +48046,7 @@
   {
    "symbol": "camera_get_state_field_0x10",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/camera_get_state_object.c",
+   "unit": "rel/main_rel/camera_c/camera_get_state_object.c",
    "addr": 55708,
    "size": 16,
    "status": "matched",
@@ -48063,7 +48063,7 @@
   {
    "symbol": "camera_get_state_field_0x14",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/camera_get_state_object.c",
+   "unit": "rel/main_rel/camera_c/camera_get_state_object.c",
    "addr": 55724,
    "size": 16,
    "status": "matched",
@@ -48080,7 +48080,7 @@
   {
    "symbol": "camera_get_state_field_0x18",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/camera_get_state_object.c",
+   "unit": "rel/main_rel/camera_c/camera_get_state_object.c",
    "addr": 55740,
    "size": 16,
    "status": "matched",
@@ -48097,7 +48097,7 @@
   {
    "symbol": "camera_get_state_storage",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/camera_get_state_object.c",
+   "unit": "rel/main_rel/camera_c/camera_get_state_object.c",
    "addr": 55756,
    "size": 12,
    "status": "matched",
@@ -48114,7 +48114,7 @@
   {
    "symbol": "camera_get_extended_state_storage",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/camera_get_extended_state_storage.c",
+   "unit": "rel/main_rel/camera_c/camera_get_extended_state_storage.c",
    "addr": 55768,
    "size": 12,
    "status": "matched",
@@ -48131,7 +48131,7 @@
   {
    "symbol": "camera_get_state_flag",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/camera_get_state_flag.c",
+   "unit": "rel/main_rel/camera_c/camera_get_state_flag.c",
    "addr": 55780,
    "size": 16,
    "status": "matched",
@@ -48148,7 +48148,7 @@
   {
    "symbol": "camera_enable_flags",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/camera_get_state_flag.c",
+   "unit": "rel/main_rel/camera_c/camera_get_state_flag.c",
    "addr": 55796,
    "size": 24,
    "status": "matched",
@@ -48165,7 +48165,7 @@
   {
    "symbol": "camera_disable_flags",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/camera_get_state_flag.c",
+   "unit": "rel/main_rel/camera_c/camera_get_state_flag.c",
    "addr": 55820,
    "size": 24,
    "status": "matched",
@@ -48182,7 +48182,7 @@
   {
    "symbol": "camera_are_flags_enabled",
    "module": "main_rel",
-   "unit": "rel/main_rel/camera/camera_get_state_flag.c",
+   "unit": "rel/main_rel/camera_c/camera_get_state_flag.c",
    "addr": 55844,
    "size": 16,
    "status": "matched",

@@ -26404,14 +26404,14 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/camera/camera_get_extended_state_storage.c",
+    "source": "rel/main_rel/camera_c/camera_get_extended_state_storage.c",
     "symbols": [
       "camera_get_extended_state_storage"
     ],
     "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/camera.c"
+    "tu": "rel/main_rel/camera_c.c"
   },
   {
     "module": "main_rel",
@@ -26428,7 +26428,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/camera/camera_get_state_flag.c",
+    "source": "rel/main_rel/camera_c/camera_get_state_flag.c",
     "symbols": [
       "camera_get_state_flag",
       "camera_enable_flags",
@@ -26438,11 +26438,11 @@
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/camera.c"
+    "tu": "rel/main_rel/camera_c.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/camera/camera_get_state_object.c",
+    "source": "rel/main_rel/camera_c/camera_get_state_object.c",
     "symbols": [
       "camera_get_state_object",
       "camera_get_state_field_0x4",
@@ -26456,7 +26456,7 @@
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/camera.c"
+    "tu": "rel/main_rel/camera_c.c"
   },
   {
     "module": "main_rel",
@@ -26464,8 +26464,7 @@
     "symbols": [
       "camera_init",
       "live_camera_get",
-      "game_camera_get",
-      "fn_1_8B10"
+      "game_camera_get"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
@@ -26474,25 +26473,36 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/camera/camera_snapshot.c",
+    "source": "rel/main_rel/camera_b/fn_1_8B10.c",
+    "symbols": [
+      "fn_1_8B10"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/camera_b.c"
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/camera_c/camera_snapshot.c",
     "symbols": [
       "camera_snapshot"
     ],
     "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/camera.c"
+    "tu": "rel/main_rel/camera_c.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/camera/camera_update_transition.c",
+    "source": "rel/main_rel/camera_b/camera_update_transition.c",
     "symbols": [
       "camera_update_transition"
     ],
     "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/camera.c"
+    "tu": "rel/main_rel/camera_b.c"
   },
   {
     "module": "main_rel",
@@ -26724,7 +26734,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/camera/fn_1_8D08.c",
+    "source": "rel/main_rel/camera_b/fn_1_8D08.c",
     "symbols": [
       "fn_1_8D08"
     ],
@@ -26732,7 +26742,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/camera.c",
+    "tu": "rel/main_rel/camera_b.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_200",
       "@45": "lbl_1_rodata_200+0x40"
@@ -26740,7 +26750,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/camera/fn_1_90E0.c",
+    "source": "rel/main_rel/camera_b/fn_1_90E0.c",
     "symbols": [
       "fn_1_90E0"
     ],
@@ -26748,7 +26758,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/camera.c",
+    "tu": "rel/main_rel/camera_b.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_200",
       "@485": "lbl_1_rodata_388",
@@ -26758,7 +26768,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/camera/fn_1_A888.c",
+    "source": "rel/main_rel/camera_b/fn_1_A888.c",
     "symbols": [
       "fn_1_A888",
       "fn_1_AA54"
@@ -26766,7 +26776,7 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.3.2",
-    "tu": "rel/main_rel/camera.c",
+    "tu": "rel/main_rel/camera_b.c",
     "collapsed": true,
     "pool": {
       "@55": "lbl_1_rodata_388"
@@ -26774,7 +26784,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/camera/fn_1_ABAC.c",
+    "source": "rel/main_rel/camera_b/fn_1_ABAC.c",
     "symbols": [
       "fn_1_ABAC",
       "camera_get_position_delta",
@@ -26783,12 +26793,12 @@
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/camera.c",
+    "tu": "rel/main_rel/camera_b.c",
     "collapsed": true
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/camera/fn_1_AEB8.c",
+    "source": "rel/main_rel/camera_b/fn_1_AEB8.c",
     "symbols": [
       "fn_1_AEB8"
     ],
@@ -26796,14 +26806,14 @@
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/camera.c",
+    "tu": "rel/main_rel/camera_b.c",
     "pool": {
       "@10": "lbl_1_rodata_230"
     }
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/camera/fn_1_AFC8.c",
+    "source": "rel/main_rel/camera_b/fn_1_AFC8.c",
     "symbols": [
       "fn_1_AFC8",
       "camera_get_target_orientation",
@@ -26812,7 +26822,7 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZJ01"],
     "mw_version": "GC/1.3.2",
-    "tu": "rel/main_rel/camera.c",
+    "tu": "rel/main_rel/camera_b.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_200",
       "@5": "lbl_1_rodata_200",
@@ -26883,7 +26893,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/camera/fn_1_B724.c",
+    "source": "rel/main_rel/camera_c/fn_1_B724.c",
     "symbols": [
       "fn_1_B724"
     ],
@@ -26891,7 +26901,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/camera.c",
+    "tu": "rel/main_rel/camera_c.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_400",
       "@11": "lbl_1_rodata_400",
@@ -26911,7 +26921,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/camera/fn_1_B81C.c",
+    "source": "rel/main_rel/camera_c/fn_1_B81C.c",
     "symbols": [
       "fn_1_B81C",
       "camera_save_parameters"
@@ -26919,11 +26929,11 @@
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/camera.c"
+    "tu": "rel/main_rel/camera_c.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/camera/fn_1_B870.c",
+    "source": "rel/main_rel/camera_c/fn_1_B870.c",
     "symbols": [
       "fn_1_B870"
     ],
@@ -26931,7 +26941,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/camera.c",
+    "tu": "rel/main_rel/camera_c.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_400",
       "...bss.0": "lbl_1_bss_1010",
@@ -26957,7 +26967,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/camera/fn_1_BD54.c",
+    "source": "rel/main_rel/camera_c/fn_1_BD54.c",
     "symbols": [
       "fn_1_BD54"
     ],
@@ -26965,7 +26975,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/camera.c",
+    "tu": "rel/main_rel/camera_c.c",
     "pool": {
       "...rodata.0": "lbl_1_rodata_400",
       "@46": "lbl_1_rodata_480",
@@ -26980,7 +26990,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/camera/fn_1_BFA0.c",
+    "source": "rel/main_rel/camera_c/fn_1_BFA0.c",
     "symbols": [
       "fn_1_BFA0",
       "fn_1_C038",
@@ -26989,7 +26999,7 @@
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "tu": "rel/main_rel/camera.c",
+    "tu": "rel/main_rel/camera_c.c",
     "pool": {
       "...bss.0": "lbl_1_bss_1010",
       "@24": "lbl_1_rodata_478"
@@ -26998,7 +27008,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/camera/fn_1_C10C.c",
+    "source": "rel/main_rel/camera_c/fn_1_C10C.c",
     "symbols": [
       "fn_1_C10C"
     ],
@@ -27006,7 +27016,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/camera.c",
+    "tu": "rel/main_rel/camera_c.c",
     "pool": {
       "...bss.0": "lbl_1_bss_1010",
       "fzgx_obj_lbl_1_bss_1010": "lbl_1_bss_1010",
@@ -27026,43 +27036,43 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/camera/fn_1_C178.c",
+    "source": "rel/main_rel/camera_c/fn_1_C178.c",
     "symbols": [
       "fn_1_C178",
       "camera_report_position"
     ],
     "status": "matching",
-    "tu": "rel/main_rel/camera.c",
+    "tu": "rel/main_rel/camera_c.c",
     "collapsed": true
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/camera/fn_1_C268.c",
+    "source": "rel/main_rel/camera_c/fn_1_C268.c",
     "symbols": [
       "fn_1_C268"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/camera.c",
+    "tu": "rel/main_rel/camera_c.c",
     "pool": {
       "@9": "lbl_1_rodata_4A8"
     }
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/camera/fn_1_C304.c",
+    "source": "rel/main_rel/camera_c/fn_1_C304.c",
     "symbols": [
       "fn_1_C304"
     ],
     "status": "matching",
     "mw_version": null,
     "extra_cflags": [],
-    "tu": "rel/main_rel/camera.c"
+    "tu": "rel/main_rel/camera_c.c"
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/camera/fn_1_C3B8.c",
+    "source": "rel/main_rel/camera_c/fn_1_C3B8.c",
     "symbols": [
       "fn_1_C3B8"
     ],
@@ -27070,7 +27080,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/camera.c",
+    "tu": "rel/main_rel/camera_c.c",
     "pool": {
       "@36": "lbl_1_rodata_480",
       "@33": "lbl_1_rodata_400",
@@ -27093,7 +27103,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/camera/fn_1_C770.c",
+    "source": "rel/main_rel/camera_c/fn_1_C770.c",
     "symbols": [
       "fn_1_C770"
     ],
@@ -27101,7 +27111,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/camera.c",
+    "tu": "rel/main_rel/camera_c.c",
     "pool": {
       "...data.0": "lbl_1_data_4068",
       "...rodata.0": "lbl_1_rodata_400",
@@ -27126,7 +27136,7 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/camera/fn_1_CC5C.c",
+    "source": "rel/main_rel/camera_c/fn_1_CC5C.c",
     "symbols": [
       "fn_1_CC5C"
     ],
@@ -27134,7 +27144,7 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/camera.c",
+    "tu": "rel/main_rel/camera_c.c",
     "pool": {
       "...data.0": "lbl_1_data_4068",
       "...rodata.0": "lbl_1_rodata_400",
