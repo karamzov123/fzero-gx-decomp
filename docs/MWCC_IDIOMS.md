@@ -906,10 +906,11 @@ Levers from the same collapse that removed devices without new ones:
   the sphere family).
 - **Pass the constant to the existing engine kernel** instead of hand-written locked-cache code:
   `mathutil_mtxA_translate_z(0.049f)` closed fn_1_10CC38 and removed its `opt_lifetimes off`.
-  Generally: open-coded locked-cache matrix work wrapped in a volatile, carrier or pragma is an existing
-  `mathutil` kernel call (three stores into a column = `mtxA_set_translate`, in-place column 0/2 =
-  `translate_x`/`translate_z`, cross products = `vec_cross_prod`). Six coli_b devices and shadowmap's
-  `fn_1_56D4C` went this way. There is no `translate_y`; column-1 cases stay devices.
+  For open-coded locked-cache matrix work, check the existing `mathutil` kernels before adding
+  a volatile, carrier or pragma. Match the address and operand order: three stores into the
+  translation column can be `mtxA_set_translate`; in-place column 0/2 can be
+  `translate_x`/`translate_z`. Six coli_b devices and shadowmap's `fn_1_56D4C` went this way.
+  There is no `translate_y` kernel in the current tree; the tested column-1 cases stay devices.
 - **A block-scope initialized local reproduces an anonymous non-const .rodata initializer**:
   `{ Word3 zero = {0, 0, 0}; g->c34 = zero; }` puts the initializer in .rodata at the retail offset and
   copies it without a stack slot. Because the object is not const, its loads stay after earlier stores
@@ -926,24 +927,24 @@ Levers from the same collapse that removed devices without new ones:
 
 ## Device-removal levers (2026-11-25)
 
-Measured on whole collapsed units, GC/1.3.2 unless noted. One witness each; the lane notes
-(`laneDV*/DEVPASS.md`) have the measurements.
+Measured on collapsed units, GC/1.3.2 unless noted. The named functions are witnesses;
+the numbers describe the tested variants, not guarantees for other TUs or profiles.
 
-- **Duplicated code inside a TU is an inlined call.** A same-TU function's body repeated in another
-  function (often with carriers around it) is `-inline auto` inlining: write the call. If the inlined
-  copy then differs, fix the callee's own natural form, not the copy (`fn_14_4008` calls `fn_14_316C`;
-  `fn_1_8E728` with `idx %= 4`).
+- **Test an ordinary call before duplicating a same-TU body.** The original compiler can inline it
+  with `-inline auto`. If the inlined copy differs, test changes to the callee's natural form and
+  verify both the standalone body and its call sites (`fn_14_4008` calls `fn_14_316C`;
+  `fn_1_8E728` uses `idx %= 4`).
 - **A callee's form can matter only where it is inlined.** Two bodies that compile to the same
   standalone function can inline differently, and sites may disagree (`fn_1_584AC`: no single body fits
   all twelve sites).
 - **Pragma state is file-scoped.** `#pragma optimization_level N` ... `reset` restores the command-line
   optimizer for every later function, which silently drops `-opt nocse` (`fn_4_C768`); an inner
   `off`/`reset` inside an outer `off` does nothing (`fn_8_704`). Read the nesting before measuring.
-- **A view that changes code means the definition's type is wrong.** Most views of a TU's own objects
-  are codegen-neutral and simply delete. Where one matters, fix the object's type or add the missing
-  member (`lbl_1_bss_6D848` is `s16`; `u8 done[4]` in `fn_1_F326C` also removed
-  `opt_strength_reduction off`). Many private struct types over one array are one record: compare stride
-  and offsets (car.c `Car`/`CarBody`).
+- **When removing a view changes code, check the definition's layout.** Some views of TU-owned
+  objects are codegen-neutral. For the others, use retail access width, signedness and stride to
+  distinguish a missing member from a real alternate view (`lbl_1_bss_6D848` is `s16`;
+  `u8 done[4]` in `fn_1_F326C` also removed `opt_strength_reduction off`). Compare private
+  record strides and offsets before unifying them (car.c `Car`/`CarBody`).
 - **Typed indexing and byte stepping are different IR.** `&base[j]` and `(u8 *)base + j * K` can
   allocate differently (`fn_1_85688`), and retail's `lbzx` with the field offset folded into the scaled
   index needs the byte form (`fn_1_86A10`). Keep whichever matches; neither is a device.
@@ -973,8 +974,9 @@ Measured on whole collapsed units, GC/1.3.2 unless noted. One witness each; the 
   `lwz; stw; lhz; sth` (`fn_1_141A80`). No spelling changes it.
 
 **Measured dead ends** (do not retry without a new idea):
-- A variable-amount `rlwnm` has no natural spelling: every shift, mask or rotate form folds to
-  `rlwinm`, under 1.3.2 and 2.x (`fn_1_635BC`, 20 forms over objput's 14 sites).
+- The tested shift, mask and rotate forms did not recover retail's `rlwnm` in GC/1.3.2 or
+  2.x (`fn_1_635BC`; 20 forms over objput's 14 sites). Try the existing bit helper where
+  the TU has one, and verify whether it matches before assuming a device is necessary.
 - A 0.0f/1.0f literal that retail loads at its definition, ahead of neighbouring loads, needs
   `opt_dead_assignments off`; no store order, chain or helper moves it (`fn_1_14DE8`).
 - FPR numbering of copy-propagated scalars ignores declaration and copy order (`fn_1_892FC`, 800
