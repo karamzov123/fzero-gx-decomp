@@ -573,22 +573,19 @@ void fn_8007075C(u32 arg0) {
 void fn_80070774(u32 arg0, u32 arg1, u32 arg2) {
     void *t5;
     u32 t4;
-    /* WARNING: compiler-diff device, not original code: one-field carriers t2/t0/v2/v1: plain locals give 48 instructions of diff in fn_80070774; without t2 (allocation assigned to v2) 8 remain (t4 r26/r27); all 24 declaration orders of t4/t0/v2/v1 give 8 or 16 */
-    struct { u32 value; } t2;
-    struct { u32 value; } t0;
-    struct { u32 value; } v2;
-    struct { u32 value; } v1;
+    u32 t0;
+    u32 v2;
+    s32 v1;
     u32 v0;
     u32 loc_8;
 
     v0 = (((((lbl_801A6CF4->unk_4 + 15) & 0xFFF0) * 528) << 1));
-    t0.value = (u32)fn_80070CF8(v0);
-    v1.value = ((v0 + 31) & ~0x1F);
-    DCFlushRange((void *)t0.value, v1.value);
+    t0 = (u32)fn_80070CF8(v0);
+    v1 = ((v0 + 31) & ~0x1F);
+    DCFlushRange((void *)t0, v1);
     if ((lbl_801A6CE0 & 0x10) == 0) {
-        t2.value = (u32)fn_80070CF8(v0);
-        v2.value = t2.value;
-        DCFlushRange((void *)t2.value, v1.value);
+        v2 = (u32)fn_80070CF8(v0);
+        DCFlushRange((void *)v2, v1);
     }
     t4 = (u32)fn_80070CF8(arg1);
     lbl_801A6CE4 = arg1;
@@ -601,11 +598,11 @@ void fn_80070774(u32 arg0, u32 arg1, u32 arg2) {
         GXInitFifoBase(lbl_8019E18C, t4, arg1);
         GXInitFifoPtrs(lbl_8019E18C, t4, t4);
     }
-    lbl_801A6D30[1] = t0.value;
+    lbl_801A6D30[1] = t0;
     if ((lbl_801A6CE0 & 0x10) != 0) {
-        lbl_801A6D30[2] = t0.value;
+        lbl_801A6D30[2] = t0;
     } else {
-        lbl_801A6D30[2] = v2.value;
+        lbl_801A6D30[2] = v2;
     }
     lbl_801A6D30[0] = lbl_801A6D30[2];
     lbl_801A6D30[3] = 0;
@@ -632,7 +629,7 @@ void fn_80070774(u32 arg0, u32 arg1, u32 arg2) {
     fn_80035110((void *)lbl_801A6D30[1], 0);
     GXSetDispCopyGamma(0);
     VIConfigure(lbl_801A6CF4);
-    VISetNextFrameBuffer(t0.value);
+    VISetNextFrameBuffer(t0);
     VIFlush();
     VIWaitForRetrace();
     if ((lbl_801A6CF4->unk_0 & 0x1) != 0) {
