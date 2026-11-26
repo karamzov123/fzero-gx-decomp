@@ -201,6 +201,7 @@ typedef struct LGFFData {
     s32 unk_E8;
     s32 unk_EC;
     /* volatile: retail orders this pointer load before the generation load in fn_8006BC84. */
+    /* WARNING: compiler-diff device, not original code: volatile pointer member orders the values load before the generation load in fn_8006BC84; plain u32 * 10 diff lines */
     u32 *volatile values;
     LGEffect *items[64];
     u8 pad_1F4[0x1000];
@@ -211,8 +212,10 @@ extern Fn8006B048Entry lbl_80199670[4];
 extern s32 lbl_801A6C88;
 extern u32 lbl_801A6C8C;
 /* volatile: retail reloads the cursor after storing it. */
+/* WARNING: compiler-diff device, not original code: volatile cursor (retail reloads it after the store); non-volatile 2254 dump lines (fn_8006BC84 loop shortens by one instruction and everything after shifts). Could be real shared state; no evidence either way */
 extern volatile u32 lbl_801A6C90;
 /* volatile: retail reads generation after the cursor stores. */
+/* WARNING: compiler-diff device, not original code: volatile generation counter read after the cursor stores; non-volatile 26 diff lines */
 extern volatile u32 lbl_801A6C94;
 extern s32 lbl_801A6C98;
 extern const f32 lbl_801A7370;
@@ -223,6 +226,7 @@ extern const f64 lbl_801A7380;
 extern const f32 lbl_801A738C; /* 1024.0f: fn_8006BCF8's own entry in the TU literal pool */
 extern u32 lbl_801A7390;
 /* retail reloads the scale on every iteration */
+/* WARNING: compiler-diff device, not original code: volatile scale so the loop reloads it each iteration; plain const f32 10 diff lines (load hoisted) */
 extern volatile const f32 lbl_801A7394; // fzgx-allow: S2 retail reloads the scale on every iteration
 extern u8 lbl_8019DF90[132];
 extern s16 lbl_8019E014[64];
@@ -885,6 +889,7 @@ s32 fn_8006BC50(LGFFData *data) {
     return 0;
 }
 
+/* WARNING: compiler-diff device, not original code: opt_propagation off around fn_8006BC84; without it 10 diff lines */
 #pragma opt_propagation off
 u32 fn_8006BC84(LGFFData *data) {
     u32 count;
@@ -1071,6 +1076,7 @@ s32 fn_8006C190(LGEffect *arg0, u32 arg1) {
     s16 v9;
     s32 v8;
     s32 v17;
+    /* WARNING: compiler-diff device, not original code: lab_t1 holds &arg0->unk_C across the switch; passing the address directly at both calls 1101 dump lines */
     struct LGCondParam *lab_t1;
     if (arg0->unk_28 & 1) {
         if (arg0->unk_30 != 0) {
