@@ -111,7 +111,7 @@ u32 fn_800789D8(struct fn_800789D8_Arg0 *arg0, struct fn_800789D8_Arg1 *entry, u
     u32 v8;
     u32 v13;
     u32 v12;
-    struct { u32 a[16]; } loc_8;
+    u32 loc_8[16];
     v8 = arg2;
     arg2 = lbl_801A6D98 ^ 2;
     entry = (struct fn_800789D8_Arg1 *)entry->unk_0;
@@ -123,8 +123,8 @@ u32 fn_800789D8(struct fn_800789D8_Arg0 *arg0, struct fn_800789D8_Arg1 *entry, u
     fn_8007245C(*(u32 *)((u8 *)arg1 + 28));
     v7 = (u32)arg1 + 96;
     if (lbl_801A6D90 != 0) {
-        loc_8.a[1] = (u32)arg1;
-        loc_8.a[2] = v8;
+        loc_8[1] = (u32)arg1;
+        loc_8[2] = v8;
         v3 = ((fn_800789D8_Fn0)lbl_801A6D90)(&loc_8);
     } else {
         if ((s32)lbl_801A6D94 == 0) fn_80075908((u32)arg1, v8);
@@ -231,7 +231,6 @@ void fn_80078CDC(s32 arg0) {
 #pragma opt_common_subs reset
 
 #pragma optimization_level 0
-#pragma peephole on
 #pragma dont_inline on
 u32 func_8008D6BC(value, command, fifo)
     register u32 value;
@@ -247,7 +246,6 @@ u32 func_8008D6BC(value, command, fifo)
 }
 #pragma dont_inline reset
 #pragma optimization_level 4
-#pragma peephole reset
 
 void fn_80078D60(s32 arg0) {
     u32 temp_r3;

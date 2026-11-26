@@ -548,17 +548,18 @@ void fn_80070620(s32 arg0) {
 }
 
 void fn_80070704(s32 arg0) {
-    struct { u8 *value; } table;
+    u8 *table;
 
     if (arg0 == lbl_801A6CEA) {
         return;
     }
     lbl_801A6CEA = arg0;
-    table.value = lbl_8012AFF4;
     if ((arg0 & 0xff) != 0) {
-        table.value = lbl_8012AFB8;
+        table = lbl_8012AFB8;
+    } else {
+        table = lbl_8012AFF4;
     }
-    fn_80034ECC(table.value[0x19], table.value + 0x1a, 1, table.value + 0x32);
+    fn_80034ECC(table[0x19], table + 0x1a, 1, table + 0x32);
 }
 
 void fn_8007075C(u32 arg0) {
@@ -568,7 +569,6 @@ void fn_8007075C(u32 arg0) {
     lbl_801A6CE0 = (lbl_801A6CE0 | 48);
 }
 
-#pragma opt_common_subs off
 void fn_80070774(u32 arg0, u32 arg1, u32 arg2) {
     void *t5;
     u32 t4;
@@ -595,13 +595,9 @@ void fn_80070774(u32 arg0, u32 arg1, u32 arg2) {
     if ((s32)arg0 != 0) {
         lbl_801A6CE0 = (lbl_801A6CE0 | 4);
         lbl_801A6D30[6] = (u32)lbl_8019E18C;
-        {
-            u32 t6;
-            t4 = (u32)fn_80070CF8(arg1);
-            t6 = t4;
-            GXInitFifoBase(lbl_8019E18C, t6, arg1);
-            GXInitFifoPtrs(lbl_8019E18C, t6, t6);
-        }
+        t4 = (u32)fn_80070CF8(arg1);
+        GXInitFifoBase(lbl_8019E18C, t4, arg1);
+        GXInitFifoPtrs(lbl_8019E18C, t4, t4);
     }
     lbl_801A6D30[1] = t0.value;
     if ((lbl_801A6CE0 & 0x10) != 0) {
@@ -641,7 +637,6 @@ void fn_80070774(u32 arg0, u32 arg1, u32 arg2) {
         VIWaitForRetrace();
     }
 }
-#pragma opt_common_subs reset
 
 void fn_80070A58(void) {
     lbl_801A6D00->unk_198 = lbl_801A7410;

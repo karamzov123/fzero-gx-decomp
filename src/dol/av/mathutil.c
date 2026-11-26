@@ -2128,14 +2128,14 @@ u16 fn_8006F394(void) {
 }
 
 #pragma opt_propagation off
-static inline f32 fn_8006F3E4_read_pointer(VecPair *owner) { return owner->dir.z; }
 void fn_8006F3E4(s16 *arg0, s16 *arg1, s16 *arg2) {
     f32 sum;
     f32 mz;
     f32 my;
     f32 mx;
     VecPair vec;
-    f32 fzgx_live;
+    f32 z;
+    f32 x;
 
     lbl_8006DAEC(arg0, arg1, arg2);
 
@@ -2153,9 +2153,11 @@ void fn_8006F3E4(s16 *arg0, s16 *arg1, s16 *arg2) {
 
     lbl_8006E1C0(&vec, &vec);
 
-    sum = vec.dir.x * vec.dir.x;
-    fzgx_live = fn_8006F3E4_read_pointer(&vec);
-    *arg1 = lbl_8006D24C(vec.dir.y, lbl_8006D0B4(sum + fzgx_live * fzgx_live));
+    x = vec.dir.x;
+    z = vec.dir.z;
+    sum = x * x;
+    sum += z * z;
+    *arg1 = lbl_8006D24C(vec.dir.y, lbl_8006D0B4(sum));
     *arg0 = lbl_8006D24C(vec.dir.x, (vec.dir.z)) + -32768;
 
     lbl_8006D8D8(*arg0);
@@ -2355,15 +2357,15 @@ void fn_8006F900(void *arg0, Vec3 *arg1, f32 arg2) {
 }
 
 void fn_8006F9A4(f32 arg0, u32 arg1, u32 arg2, u32 arg3) {
-    struct { u32 a[4]; } loc_28;
-    struct { u32 a[4]; } loc_18;
-    struct { u32 a[4]; } loc_8;
+    Vec4 loc_28;
+    Vec4 loc_18;
+    Vec4 loc_8;
 
     lbl_8006DBAC((void *)arg1);
     fn_8006E5FC((f32 *)&loc_28);
     lbl_8006DBAC((void *)arg2);
     fn_8006E5FC((f32 *)&loc_18);
-    fn_8006EB4C((Vec4 *)&loc_8, (const Vec4 *)&loc_28, (const Vec4 *)&loc_18, arg0);
+    fn_8006EB4C(&loc_8, &loc_28, &loc_18, arg0);
     mathutil_mtxA_from_quat(&loc_8);
     lbl_8006DC34(arg3);
 }
@@ -2400,21 +2402,15 @@ void fn_8006FA24(f32 arg0, Vec4 *arg1, Vec4 *arg2, Vec4 *arg3) {
 }
 
 void fn_8006FB20(f32 arg0, u32 arg1) {
-    u32 tmp_lbl_8006D668;
-    f32 lab_t3;
     Vec4 *const p = (Vec4 *)lbl_801A6D00;
 
-    lab_t3 = arg0;
-    lbl_8006D5A4((Vec3 *)&p[0], (Vec3 *)arg1, (Vec3 *)&p[0], lab_t3);
+    lbl_8006D5A4((Vec3 *)&p[0], (Vec3 *)arg1, (Vec3 *)&p[0], arg0);
     lbl_8006D5A4((Vec3 *)&p[1], (Vec3 *)(arg1 + 16), (Vec3 *)&p[1], arg0);
     mathutil_cross4(&p[0], &p[1], &p[2]);
     mathutil_cross4(&p[2], &p[0], &p[1]);
-    tmp_lbl_8006D668 = (u32)lbl_8006D668(&p[0]);
-    tmp_lbl_8006D668;
-    tmp_lbl_8006D668 = (u32)lbl_8006D668(&p[1]);
-    tmp_lbl_8006D668;
-    tmp_lbl_8006D668 = (u32)lbl_8006D668(&p[2]);
-    tmp_lbl_8006D668;
+    lbl_8006D668(&p[0]);
+    lbl_8006D668(&p[1]);
+    lbl_8006D668(&p[2]);
 }
 
 asm void fn_8006FC1C(void) {

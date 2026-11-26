@@ -487,10 +487,8 @@ struct fn_800764A0_lbl_801A6D00_T {
 extern u32 lbl_8015AD28[];
 void fn_800764A0(struct fn_800764A0_Arg0 *arg0, void *arg1, u32 arg2) {
  struct fn_800764A0_lbl_801A3220 *p_lbl_801A3220;
- struct { u8 a[8]; } loc_8;
- s32 lab_t2;
- u32 color_arg0;
- u32 color_arg1;
+ u8 buf[4];
+ u32 v;
  fn_80073C6C(arg0->unk_0);
  fn_80072AB0(arg0->unk_0,0,0);
  p_lbl_801A3220 = &(*(struct fn_800764A0_lbl_801A3220 *)lbl_801A3220);
@@ -521,16 +519,13 @@ void fn_800764A0(struct fn_800764A0_Arg0 *arg0, void *arg1, u32 arg2) {
  lbl_8006DB30();
  p_lbl_801A3220->unk_40 = 1;
  }
- loc_8.a[4] = arg2;
- color_arg0 = *(u32 *)(arg0);
- loc_8.a[5] = arg2;
- color_arg1 = *(u32 *)((u8 *)arg0+4);
- loc_8.a[6] = arg2;
- lab_t2 = *(u32 *)((u8 *)arg0+12);
- loc_8.a[7] = arg2;
- fn_800734A8(color_arg0,color_arg1,lab_t2,4);
- *(u32 *)((u8 *)&loc_8+0) = *(u32 *)((u8 *)&loc_8+4);
- fn_800736C0(0,&loc_8);
+ buf[0] = arg2;
+ buf[1] = arg2;
+ buf[2] = arg2;
+ buf[3] = arg2;
+ fn_800734A8(arg0->unk_0,*(u32 *)((u8 *)arg0+4),*(u32 *)((u8 *)arg0+12),4);
+ v = *(u32 *)buf;
+ fn_800736C0(0,&v);
  fn_800735C8(*(u32 *)(arg0),12);
  fn_800745A4(*(u32 *)((u8 *)arg0+4),0,1,30,1,64);
  fn_80072C24(*(u32 *)(arg0),15,8,14,15);
@@ -541,8 +536,7 @@ void fn_800764A0(struct fn_800764A0_Arg0 *arg0, void *arg1, u32 arg2) {
  (*(u32 *)((u8 *)arg0+4))++;
  fn_80073C6C(*(u32 *)(arg0));
  fn_80072AB0(*(u32 *)(arg0),0,0);
- lab_t2 = 255;
- fn_800734A8(*(u32 *)(arg0),255,lab_t2,255);
+ fn_800734A8(*(u32 *)(arg0),255,255,255);
  fn_80072C24(*(u32 *)(arg0),15,4,10,*(u32 *)((u8 *)arg1+8));
  fn_80072D64(*(u32 *)(arg0),0,0,0,1,0);
  fn_80072CC4(*(u32 *)(arg0),7,7,7,2);
@@ -584,7 +578,7 @@ extern void lbl_8006DFC4(void *);
 
 #pragma opt_common_subs off
 void fn_80076790(void) {
-    struct { u32 a[14]; } loc_38;
+    f32 loc_38[3][4];
     u32 loc_2C[3];
     struct fn_80076790_Vec loc_20;
     struct fn_80076790_Vec loc_14;
@@ -1061,7 +1055,6 @@ void fn_800777D4(void) {
 }
 
 /* === dol/fn_80077848.c === */
-#pragma use_lmw_stmw off
 
 /* --- dol/fn_80077848.c --- */
 extern u32 lbl_801A6DA0;
@@ -1411,7 +1404,6 @@ void fn_80077E0C(struct fn_80077E0C_Arg0 *arg0) {
     v4 = v0;
     fn_80075908(v3, v4);
 }
-#pragma use_lmw_stmw reset
 
 /* === dol/fn_80077E7C.c === */
 typedef struct {
@@ -1700,8 +1692,6 @@ void fn_800781B8(Sig_fn_80078768_Sig_fn_80078C28_Sig_fn_800786B0_Fn800786B0Arg0 
 /* === dol/fn_80078344.c === */
 
 #pragma optimization_level 0
-#pragma always_inline on
-#pragma peephole on
 #pragma scheduling off
 static inline void writeDisplayList(u32 a, u32 b, u32 unused, u32 command, u32 address) {
     /* Volatile stores send commands to the GX write-gather FIFO. */
@@ -1722,8 +1712,6 @@ void fn_80078344(a, b, unused, command, address)
     writeDisplayList(a, b, unused, command, address);
 }
 #pragma optimization_level 4
-#pragma always_inline reset
-#pragma peephole reset
 #pragma scheduling reset
 
 #pragma dont_inline on
@@ -1779,7 +1767,7 @@ void *fn_80078360(fn_80078360_Arg0 *arg0, u8 *arg1, fn_80078360_Arg2 *arg2, u8 *
     u32 t;
     u8 *v2;
     u8 cond;
-    struct { u32 a[14]; } loc_8;
+    u32 loc_8[14];
     s32 tmp_ra3;
 
     v1 = arg2->offset;
@@ -1792,8 +1780,8 @@ void *fn_80078360(fn_80078360_Arg0 *arg0, u8 *arg1, fn_80078360_Arg2 *arg2, u8 *
     flag = t ^ 0;
     fn_8007245C(arg0->unk_1c);
     if (lbl_801A6D90 != 0) {
-        (*((loc_8.a) + (1))) = (u32)arg0;
-        (*((loc_8.a) + (2))) = (u32)arg1;
+        loc_8[1] = (u32)arg0;
+        loc_8[2] = (u32)arg1;
         cond = ((fn_80078360_Cb)lbl_801A6D90)(&loc_8);
     } else {
         if (lbl_801A6D94 == 0) {

@@ -340,15 +340,8 @@ void fn_80074D18(u32 arg0) {
 }
 
 /* --- dol/fn_80074D28.c --- */
-struct fn_80074D28_Data {
-    u32 unk_0;
-    u32 unk_4;
-    u32 unk_8;
-};
-
-
-void fn_80074D28(struct fn_80074D28_Data *src) {
-    *(struct fn_80074D28_Data *)&lbl_8019F14C = *src;
+void fn_80074D28(Vec *src) {
+    lbl_8019F14C = *src;
     lbl_8006D668(&lbl_8019F14C);
 }
 
@@ -399,8 +392,8 @@ void fn_80074D88(u32 arg0, u32 arg1) {
     f32 v1;
     f32 half;
     f32 scale;
-    struct { f32 a[6]; } loc_14;
-    u32 loc_10;
+    f32 loc_14[2][3];
+    GXColor loc_10;
     v0 = arg0;
     if (lbl_801A6D54 != 0) {
     lbl_8006DAEC(v0, arg1);
@@ -433,16 +426,16 @@ void fn_80074D88(u32 arg0, u32 arg1) {
     fn_800745A4(*(u32 *)(arg1 + 4), 0, 1, 45, 0, 73);
     scale = lbl_801A6D4C;
     v1 = lbl_801A7480;
-    loc_14.a[0] = v1;
-    loc_14.a[1] = v1;
+    loc_14[0][0] = v1;
+    loc_14[0][1] = v1;
     v2 = (*(f32 *)(arg0 + 60) * scale);
-    loc_14.a[3] = v1;
-    loc_14.a[5] = v1;
+    loc_14[1][0] = v1;
+    loc_14[1][2] = v1;
     half = lbl_801A748C;
     v1 = (-v2);
     v1 = (half * v1);
-    loc_14.a[4] = (half * v2);
-    loc_14.a[2] = v1;
+    loc_14[1][1] = (half * v2);
+    loc_14[0][2] = v1;
     fn_80073A58(1, &loc_14, 1);
     fn_80073B50(*(u32 *)(arg1), *(u32 *)((u8 *)arg1 + 16), 0, 7, 1, 0, 0, 0, 0, 0);
     (*(u32 *)(arg1 + 16))++;
@@ -450,7 +443,7 @@ void fn_80074D88(u32 arg0, u32 arg1) {
     (*(u32 *)(arg1 + 12))++;
     fn_80073778(lbl_8019F040, *(u32 *)(arg1 + 12));
     fn_800745A4(*(u32 *)(arg1 + 4), 0, 0, 30, 0, 76);
-    loc_10 = *(u32 *)&lbl_801A6D50;
+    loc_10 = lbl_801A6D50;
     fn_800736C0(1, &loc_10);
     fn_800735C8(*(u32 *)(arg1), 13);
     fn_80072AB0(*(u32 *)(arg1), 0, 0);
