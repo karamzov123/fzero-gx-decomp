@@ -83,10 +83,6 @@ typedef struct SJMemory {
 
 #pragma opt_dead_assignments off
 u32 fn_8005782C(SJ *sj, int channel, SJCK *chunk) {
-    int *fzgx_value_;
-    u8 * fzgx_live__;
-    u8 * fzgx_live_;
-    int *fzgx_value;
     int chunk_len;
     int position;
     int clamped_position;
@@ -108,19 +104,15 @@ u32 fn_8005782C(SJ *sj, int channel, SJCK *chunk) {
             position = memory->read_position;
             position = position - chunk_len;
             clamped_position = position > 0 ? position : 0;
-            fzgx_value = &memory->read_position;
-            *fzgx_value = clamped_position;
+            memory->read_position = clamped_position;
             position = memory->available + chunk->len;
-            fzgx_value_ = &memory->available;
-            *fzgx_value_ = memory->buffer_size < position ? memory->buffer_size : position;
-            fzgx_live__ = memory->buffer;
-            fzgx_live_ = fzgx_live__;
-            data_position = (chunk->data) - fzgx_live_;
+            memory->available = memory->buffer_size < position ? memory->buffer_size : position;
+            data_position = chunk->data - memory->buffer;
             if (clamped_position != data_position && memory->error_callback != 0) {
                 memory->error_callback(memory->error_object, -3);
             }
         } else {
-            (*( int * )(&chunk->len) = (0));
+            chunk->len = 0;
             chunk->data = 0;
             if (memory->error_callback != 0) {
                 memory->error_callback(memory->error_object, -3);
