@@ -515,6 +515,10 @@ the opaque `MovieEntry` return pointee used by its reconstructed definition. GC/
 instead of six. All thirteen functions match the freshly split retail objects in USA, PAL,
 and Japan, and all three linked hash gates pass. No pool map or regional fragments are needed.
 
+The smallest-first sweep also reconciled `sfx_cnv.c`: 16 to 2 isolated blocks with fourteen
+compile units both before and after. The candidate did not collapse to a single object;
+only the declaration sharing is retained, with all three hash and lint gates passing.
+
 `tools/consolidate/rel_own_data.py` transfers whole adjacent import units into a specified
 one-unit REL TU. It checks contiguity and matching regional coverage, carries over the existing
 typed definitions in retail order, and verifies the moved symbols against fresh compiled and
