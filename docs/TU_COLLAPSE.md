@@ -431,3 +431,16 @@ views of one global). That is declaration reconciliation (`fzgx tutruth` after `
 --module movie_module`, or donor C), not another merge pass. The remaining crossing units: five
 whose pool maps bind section selectors (`...rodata.0`, `...bss.0`, which `tu_try.py` cannot
 rebind), and `fn_12_1EF80`, `fn_12_30930`, `fn_12_670C` (data splits or assembly).
+
+Follow-up (same day): `decl_prune.py` removed 1,992 leftover declarations from the recut pieces
+(object-identical), `rel_tu_migrate.py` moved 35 multi-unit Sofdec TUs into block-format TU
+files, and `fzgx tutruth` + `relmerge.py` collapsed nine of them to one unit each (sud_lib,
+sfd_mem, sfd_pl2, sfd_set, sfd_uo, sfd_vom, uty_tmr, mwstm, mwsfdsvm); movie_module
+code units 312 -> 292. tutruth assumed one block per unit; two fixes make multi-block units
+work (restore a unit whole, carry private-type renames into the unit's later blocks). What still
+fails is the same assumption elsewhere: a later block of a multi-function unit inherits the
+earlier block's declarations, so tutruth sees no old declaration to adapt its calls from
+(`fn_12_24A88(arg0, 0xff000a01)` against a pointer prototype) and the unit's joined text no
+longer compiles. Next: split those units into one function per unit before tutruth (each block
+then carries its own declarations, the model tutruth verifies), or teach tutruth to read a
+block's inherited declarations from its unit.
