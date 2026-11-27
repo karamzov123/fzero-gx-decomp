@@ -307472,33 +307472,7 @@
     "unit_size": 2048,
     "unit_start": 29264
   },
-  "movie_module:lbl_12_bss_798": {
-    "address": 1944,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "f64 lbl_12_bss_798[129]",
-        "path": "src/rel/movie_module/fn_12_4CEC.c"
-      }
-    ],
-    "definition": "f64 lbl_12_bss_798[129]",
-    "method": "declared-bss",
-    "module": "movie_module",
-    "references": [
-      "fn_12_4CEC",
-      "fn_12_4D14"
-    ],
-    "relocations": [],
-    "section": ".bss",
-    "section_size": 1032,
-    "sha256": "934ee56ad6539fb9e5c276ecee2f3985f2d252d22acd690108bda80313c6bd58",
-    "size": 1032,
-    "source": "rel/movie_module/data/lbl_12_bss_798.c",
-    "symbol": "lbl_12_bss_798",
-    "unit_align": 8,
-    "unit_size": 1032,
-    "unit_start": 1944
-  },
+
   "movie_module:lbl_12_bss_7A50": {
     "address": 31312,
     "align": 16,

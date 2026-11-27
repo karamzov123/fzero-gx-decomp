@@ -529,8 +529,12 @@ but `.bss` still contained `0x404` bytes: the wrapper now refers directly to the
 definition of `lbl_12_bss_798`, whereas the initializer uses the section base. The actual
 blocker is the local storage that cannot be discarded, not PAL-only literal numbering.
 Replacing the transform's zero literal with an extern changes its relocation layout and
-does not solve this. A later whole-TU attempt needs to prove native ownership of the table
-storage against its existing `0x408` retail split and preserve access from other TUs.
+does not solve this. The successful follow-up moved the `0x798..0xBA0` BSS split into the
+single `dct_ac.c` unit, removed the now-obsolete BSS retargeting and retired the standalone
+import. The existing table definitions occupy `0x404` bytes, with the next split starting
+at the original aligned boundary. The initializer's `...bss.0` relocations resolve to the
+same address as `lbl_12_bss_798`; the raw objdiff score does not recognize that equivalence.
+All three regions build the merged unit from source and match the linked retail hashes.
 `bg_for.c` drops from thirteen to five isolated blocks
 at the original twelve units. Its split-first candidate had fourteen units, and combining
 the original groups still hits the duplicate `Fn183D28Vec3` typedef. The accepted rewrite
