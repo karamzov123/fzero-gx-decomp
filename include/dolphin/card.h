@@ -51,7 +51,7 @@ s32 CARDMountAsync(s32 chan, void *workArea, CARDCallback detachCallback,
 s32 CARDOpen(s32 chan, const char *fileName, CARDFileInfo *fileInfo);
 s32 CARDProbeEx(s32 chan, s32 *memSize, s32 *sectorSize);
 s32 CARDReadAsync(CARDFileInfo *fileInfo, void *buf, s32 length, s32 offset, CARDCallback callback);
-s32 CARDRenameAsync(s32 chan, const char *old, const char *new, CARDCallback callback);
+s32 CARDRenameAsync(s32 chan, const char *oldName, const char *newName, CARDCallback callback);
 s32 CARDSetStatusAsync(s32 chan, s32 fileNo, CARDStat *stat, CARDCallback callback);
 s32 CARDUnmount(s32 chan);
 s32 CARDWriteAsync(CARDFileInfo *fileInfo, const void *buf, s32 length, s32 offset,

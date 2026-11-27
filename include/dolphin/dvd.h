@@ -31,4 +31,14 @@ struct DVDCommandBlock {
     DVDCBCallback callback;
     void *userData;
 };
+
+typedef struct DVDFileInfo DVDFileInfo;
+typedef void (*DVDCallback)(s32 result, DVDFileInfo *fileInfo);
+
+struct DVDFileInfo {
+    DVDCommandBlock cb;
+    u32 startAddr;
+    u32 length;
+    DVDCallback callback;
+};
 #endif

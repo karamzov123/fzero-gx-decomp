@@ -5,15 +5,6 @@
 #include "dolphin/dvd.h"
 #pragma use_lmw_stmw on
 
-typedef struct DVDFileInfo DVDFileInfo;
-typedef void (*DVDCallback)(s32 result, DVDFileInfo *fileInfo);
-struct DVDFileInfo {
-    DVDCommandBlock cb;
-    u32 startAddr;
-    u32 length;
-    DVDCallback callback;
-};
-
 /* the AX voice block read by the sequencer tick */
 typedef struct SndAxVoice {
     u8 pad_0[0x146];
