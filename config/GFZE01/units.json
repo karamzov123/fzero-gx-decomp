@@ -22339,7 +22339,7 @@
       "lbl_801A50B0"
     ],
     "status": "matching",
-    "matching_for": ["GFZE01", "GFZJ01"],
+    "split_resize_for": {"GFZP01": {".text": ["fn_8008AD00"]}},
     "extra_cflags": [
       "-use_lmw_stmw",
       "on",

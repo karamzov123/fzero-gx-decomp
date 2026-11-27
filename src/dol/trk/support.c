@@ -456,7 +456,7 @@ DSError fn_8008AD00(u32 file_handle, u8 *data, u32 *count, DSIOResult *io_result
                     reply_buffer = TRKGetBuffer(reply_id);
                 }
                 reply = (struct TRKFileSupportReply *)reply_buffer->data;
-                reply_io_result = reply->io_result;
+                reply_io_result = (u8)reply->io_result;
                 reply_length = reply->data_length;
                 if (read && error == 0 && reply_length <= length) {
                     fn_80089144(reply_buffer, sizeof(request));
@@ -466,9 +466,11 @@ DSError fn_8008AD00(u32 file_handle, u8 *data, u32 *count, DSIOResult *io_result
                     }
                 }
                 if (reply_length != length) {
+#ifndef VERSION_GFZP01
                     if ((!read || reply_length >= length) && reply_io_result == 0) {
                         reply_io_result = 1;
                     }
+#endif
                     length = reply_length;
                     exit = 1;
                 }

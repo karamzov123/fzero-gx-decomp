@@ -350,11 +350,16 @@ retains 32-byte alignment in USA and 16-byte alignment in Japan and PAL.
 
 The event queue, three message buffers, and serial-poll state now build in
 `nubevent.c`, `msgbuf.c`, and `serpoll.c` in all three regions. The support
-state also builds with `support.c` in USA and Japan; PAL retains its existing
-retail fallback for that unit. Together these definitions replace two
+state also builds with `support.c` in all three regions. Together these definitions replace two
 standalone BSS imports. The support definition explicitly selects ordinary
 BSS through MWCC's `.data` section declaration: an unqualified definition
 landed in small BSS and shifted the linked layout.
+
+PAL's final support routine (`fn_8008AD00`) preserves the reply status on a
+length mismatch instead of synthesizing the USA/Japan status. Its retail
+function is `0x220` bytes, `0x20` shorter than the other variants. The PAL
+split translates its verified final-function extent without excluding any
+shared function or the support BSS object.
 
 ### MSL stream and decimal state
 
