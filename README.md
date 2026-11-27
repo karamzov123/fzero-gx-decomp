@@ -34,28 +34,30 @@ The full scope, requirements and measured baseline are in
 
 ## Current Status
 
-Measured on **2026-11-20** (HEAD `2d61b75e9`), USA **GFZE01**:
+Measured on **2026-11-27** (HEAD `d6188b7e8`), USA **GFZE01**:
 
 | Measure | Value |
 |---|---|
 | Target executables | **16 / 16** link and match the retail SHA-1 byte for byte (`16 files OK`) |
 | Function match (objdiff) | **7,351 / 7,351** functions, 100% of code and data bytes |
-| Authored C credit (`fzgx honest`) | **7,159 / 7,351** functions, **98.79%** of code bytes; the other 192 are evidenced or reviewed assembly |
+| Authored C credit (`fzgx honest`) | **7,160** functions, **98.82%** of code bytes; the rest is evidenced or reviewed assembly |
 | Lint | 0 findings (`fzgx lint`) |
-| Other regions | PAL `GFZP01` and NTSC-J `GFZJ01` build byte-for-byte; 1,244 code units are still USA-only |
+| Other regions | PAL `GFZP01` and NTSC-J `GFZJ01` build byte-for-byte from a fresh checkout; 585 code units are still USA-only |
 
-The binary is finished; the source is not yet recompilation-ready. Metrics below are the
-2026-11-20 baseline except the TU-map row, updated 2026-11-27:
+The binary is finished; the source is not yet recompilation-ready. Progress against the
+[recompilation scope](docs/RECOMPILATION_SCOPE.md), both columns measured by
+[`tools/scope_metrics.py`](tools/scope_metrics.py) (`--rev 2d61b75e9` for the baseline), so they
+use the same definitions:
 
-| Requirement | Now |
-|---|---|
-| TU map | All 15 RELs have `tus.json`; `sample` is provisional. The DOL `.text` draft assigns 2,230 functions to 259 TUs, and `.init` has a separate six-range map; some boundaries and filenames remain inferred |
-| One unit per TU | 13 of 69 REL TU files compile as one unit; 1,095 `noprologue` blocks remain |
-| Data ownership | 1,214 units rely on post-compile literal-pool remapping; 459 pool-primer functions; 8,684 layout-scaffolding names |
-| Platform boundary | 471 hardware-address literals and direct GX FIFO writes in 18 REL game files; 595 MWCC intrinsic uses in REL source |
-| Portable game C | 632 address-to-integer casts; 451 pointer views of unnamed fields |
-| Compiler-diff devices | 95 marked spots; 821 unmarked optimizer-pragma setters |
-| Naming | 6,440 of 7,351 functions still `fn_` named |
+| Requirement | 2026-11-20 | 2026-11-27 |
+|---|---|---|
+| TU map | RELs: 14 `tus.json` covering 4,074 functions; DOL: none | Every executable mapped: all RELs (4,905 functions; `movie_module` from the CRI Sofdec link order, `sample` provisional) and the DOL (2,230 functions in 259 TUs, plus a `.init` map); some boundaries and names are inferred and say so |
+| R1: one unit per TU | 3,214 code units; 13 of 69 REL TU files build as one unit; 1,095 `noprologue` blocks | 1,418 code units; 82 of 145 REL TU files and 255 of 259 DOL TUs build as one unit; 714 `noprologue` blocks |
+| R2/R3: data ownership, build independence | 4,565 data units; 1,214 pool-remapped units; `.fzgxpool` primers in 142 files; 8,684 scaffolding names | 3,452 data units; 595 pool-remapped units; primers in 98 files; 4,735 scaffolding names |
+| R4: platform boundary (REL source) | 338 hardware-address literals; 675 MWCC intrinsic calls | 250 literals; 634 intrinsic calls |
+| R5: portable game C (REL source) | 404 address-to-integer casts; 274 pointer views of `unk_` fields | 318 casts; 223 views |
+| R6: compiler-diff devices | 92 marked; 816 optimizer-pragma setters | 519 marked; 621 setters. The marked count rose because existing steering was labelled as devices, not added |
+| R7: naming | 6,395 `fn_` functions | 6,314 |
 
 These are separate gates: a green hash or object report does not prove the source is natural,
 device-free or portable. See the [assembly and device policy](docs/ASM_POLICY.md) and the
@@ -63,19 +65,22 @@ device-free or portable. See the [assembly and device policy](docs/ASM_POLICY.md
 
 ### Next Steps
 
-1. **TU map**: resolve inferred DOL and REL boundaries and assign each data object to its owner.
-   Evidence: retail `__FILE__`/assert strings, section alignment, literal-pool deduplication, SDK
-   library layouts, and the F-Zero AX reference build (below).
-2. **TU collapse**: make each TU file compile as one unit with its measured flags; retire
-   `noprologue`, per-function units, pool remapping and primers
-   (`fzgx tutruth`, `fzgx tu-check`, [tools/consolidate/](tools/consolidate/README.md)).
-3. **Data ownership**: define each TU's data in its own file with real types.
-4. **Platform boundary and portable C**: route hardware and intrinsics through SDK interfaces;
-   replace pointer/integer punning with typed pointers.
-5. Device removal, natural C and naming continue alongside.
+1. **TU collapse of the remaining REL files** (R1, R3): 63 REL TU files still build as several
+   units, most of them in `main_rel` (596 units), `movie_module` (281), `customize` and
+   `interview`. The pipeline is `tools/consolidate/rel_unit_split.py` -> `fzgx tutruth` ->
+   `tools/consolidate/relmerge.py` (see [TU_COLLAPSE.md](docs/TU_COLLAPSE.md)). It collapses the
+   Sofdec TUs; for the older game TUs, `tutruth` must still learn to verify Japan and PAL (its
+   rewrite can match USA and change PAL) and to leave TU-owned data definitions out of the shared
+   prologue (merged units define them twice).
+2. **Data ownership** (R2): 3,452 data units remain, 2,512 of them in `main_rel`, mostly small
+   string and table slices of already-mapped TUs; move them into their TUs with real types.
+3. **Platform boundary and portable C** (R4, R5): route hardware and intrinsics through SDK
+   interfaces; replace pointer/integer punning with typed pointers.
+4. Device removal, natural C and naming continue alongside (R6, R7).
 
 Pull requests are welcome; every change must keep the 16-target hash check, lint and the region
-builds green.
+builds green. Agents may pull and merge open PRs through those gates unless the owner says
+otherwise.
 
 ### Reference Build: F-Zero AX
 
@@ -85,14 +90,19 @@ used only as evidence for TU boundaries and names: its main.dol names 88 source 
 pair 123 function names with their source files. None of its bytes or code are committed or
 copied; derived names and boundaries carry provenance.
 
-### Recent Work (2026-11-20)
+### Recent Work (2026-11-21 to 2026-11-27)
 
-- TU-wide `-fp_contract off` replaced the `fp_contract` pragmas of 13 TUs; 7 marked devices retired (102 -> 95).
-- About 19,000 redundant steering and lifter-noise constructs removed with an object-identity check
-  in every region: casts, pointer views, parentheses, unused locals, `volatile`, `register`,
-  one-member carriers and 157 optimizer-pragma setters (978 -> 821).
-- 78 units merged and 67 `noprologue` blocks retired; consolidation tools moved into
-  [tools/consolidate/](tools/consolidate/README.md).
+- **DOL:** TU map complete (259 TUs); 255 TUs build as one unit, including mixed C/assembly TUs
+  written as CodeWarrior `asm` functions (assembly units 182 -> 19). MSL, MetroTRK, AV and startup
+  data moved into their owning TUs.
+- **REL TU boundaries:** duplicate-literal and auto-inline evidence split draft-map files into
+  their retail TUs (for example `bg_cas.c` is four TUs, `driver.c` three, `prog.c` two).
+- **movie_module:** mapped onto CRI Sofdec's link order (78 TUs); units recut to follow it; 35 of the
+  78 Sofdec TUs build as one unit (16 before), many with declarations reconciled by `fzgx tutruth`.
+- **main.rel:** `memcard.c`, `sel_static_disp_b.c`, font and sprite TUs build as one unit with
+  their data, Japan/PAL source retained as regional fragments.
+- **Build:** a fresh checkout builds Japan and PAL again (a regional source compiled under the
+  wrong object name had been masked by stale objects).
 
 ### Supported Versions
 
