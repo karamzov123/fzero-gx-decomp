@@ -176,10 +176,19 @@ The AHX range `0x8004FF68..0x8005466C` is seven TUs in `src/dol/ahx/`: `ahx_bits
 
 ### DOL `.text` TU map complete (2026-11-23)
 
-`state/tumap/GFZE01_main.json` now assigns all 2,230 DOL functions to 252 TUs. The map is a draft in one respect: where no data bounds a TU, its extent is positional and its `notes` say so, and names without a retail or donor source are placeholders. That covers `sasnd_ctrl.c`, `render_*.c`, `lg_view.c`, `exi2.c` and the AHX and sasnd files.
+`state/tumap/GFZE01_main.json` now assigns all 2,230 DOL functions to 259 TUs. The map is a draft in one respect: where no data bounds a TU, its extent is positional and its `notes` say so, and names without a retail or donor source are placeholders. That covers `sasnd_ctrl.c`, `render_*.c`, `lg_view.c`, `exi2.c` and the AHX and sasnd files.
 
 - `sasnd_ctrl.c` holds the last 19 sasnd functions as one typed unit for USA and Japan. `fn_80064FDC` is still a lifted body with byte offsets.
 - `dol_tu_split.py --pooled` splits units that carry literal bindings. Three DOL units still cross a TU boundary because private strings, a layout primer or a literal do not move with one piece: `dol/trk/serpoll.c`, `dol/adx/adx_tlk.c` and `dol/fn_8007FE70.c`.
+
+### Sample REL TU map (2026-11-27)
+
+`config/GFZE01/sample/tus.json` records a provisional single-TU grouping for the four
+functions covering the module's complete `.text` section (`0x0..0x730`) and its five-byte
+`.rodata` section. The retail REL has no `*.c` filename anchor; the only readable string is
+the `.rodata` object referenced by `_prolog`. The grouping follows the current matched source
+unit, but the original filename and internal TU boundary are not independently proven. This
+map is ownership evidence only and does not change build splits.
 
 ### DOL startup and interrupt-vector ownership
 

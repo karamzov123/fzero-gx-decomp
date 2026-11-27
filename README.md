@@ -44,11 +44,12 @@ Measured on **2026-11-20** (HEAD `2d61b75e9`), USA **GFZE01**:
 | Lint | 0 findings (`fzgx lint`) |
 | Other regions | PAL `GFZP01` and NTSC-J `GFZJ01` build byte-for-byte; 1,244 code units are still USA-only |
 
-The binary is finished; the source is not yet recompilation-ready:
+The binary is finished; the source is not yet recompilation-ready. Metrics below are the
+2026-11-20 baseline except the TU-map row, updated 2026-11-27:
 
 | Requirement | Now |
 |---|---|
-| TU map | RELs mapped to 69 TU files (except `profile`, `movie_module`, `sample`, `movie`); **the DOL has no TU map** (1,175 units) |
+| TU map | All 15 RELs have `tus.json`; `sample` is provisional. The DOL `.text` draft assigns 2,230 functions to 259 TUs, and `.init` has a separate six-range map; some boundaries and filenames remain inferred |
 | One unit per TU | 13 of 69 REL TU files compile as one unit; 1,095 `noprologue` blocks remain |
 | Data ownership | 1,214 units rely on post-compile literal-pool remapping; 459 pool-primer functions; 8,684 layout-scaffolding names |
 | Platform boundary | 471 hardware-address literals and direct GX FIFO writes in 18 REL game files; 595 MWCC intrinsic uses in REL source |
@@ -62,7 +63,7 @@ device-free or portable. See the [assembly and device policy](docs/ASM_POLICY.md
 
 ### Next Steps
 
-1. **TU map**: assign every function and data object to its original translation unit, DOL first.
+1. **TU map**: resolve inferred DOL and REL boundaries and assign each data object to its owner.
    Evidence: retail `__FILE__`/assert strings, section alignment, literal-pool deduplication, SDK
    library layouts, and the F-Zero AX reference build (below).
 2. **TU collapse**: make each TU file compile as one unit with its measured flags; retire
