@@ -527,6 +527,11 @@ at the original twelve units. Its split-first candidate had fourteen units, and 
 the original groups still hits the duplicate `Fn183D28Vec3` typedef. The accepted rewrite
 rebinds two renumbered MWCC literals without changing their retail targets.
 
+Reconciliation against the original twelve `mwsfdsfx.c` units retires 23 isolated blocks
+(32 to 9). The split-first variant leaves more units and was rejected. The whole-file compile
+still exposes incompatible `MWSFSVM_Error` declarations between groups; no split or compiler
+profile changes are part of the retained result. All three region builds and hashes pass.
+
 `tools/consolidate/rel_own_data.py` transfers whole adjacent import units into a specified
 one-unit REL TU. It checks contiguity and matching regional coverage, carries over the existing
 typed definitions in retail order, and verifies the moved symbols against fresh compiled and
