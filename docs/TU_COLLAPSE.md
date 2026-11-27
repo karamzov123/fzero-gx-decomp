@@ -486,3 +486,36 @@ limits, none of them a matter of more attempts:
 
 `relmerge.py` now retains Japan/PAL units as regional fragments when a merge is USA-only, so
 once `tutruth` passes in all regions these files can merge without losing regional source.
+
+### Regional reconciliation and native REL data ownership
+
+`tutruth` checks each complete generated unit against its production object in every region
+the unit already builds for. Run `tools/consolidate/gate.sh` first to populate the regional
+profiles and production objects. Reconciliation compares the emitted sections, symbol layout,
+alignment and relocations after applying the existing pool bindings. Numbered private names
+can change only when the same relocation sites and full object comparison prove the new map.
+Failed groups restore their old source, including exactly one copy of their original prologue.
+Simple named prologue storage stays with the unit whose split already owns it; other units
+see declarations only. These checks supplement, not replace, the three-region linked hashes.
+
+The first measured collapse after this change is Sofdec `mpv_err.c`: four functions in
+`.text` `0xA660..0xA7B0`, one GC/1.3.2 object, no pool map and no isolated blocks. The
+shared declarations retain the TU's private inline helper instead of making it an extern.
+All three regions retain source coverage for the four functions.
+
+`tools/consolidate/rel_own_data.py` transfers whole adjacent import units into a specified
+one-unit REL TU. It checks contiguity and matching regional coverage, carries over the existing
+typed definitions in retail order, and verifies the moved symbols against fresh compiled and
+retail split objects in addition to the three-region link gate. For a private string already
+emitted by the TU, `--native-literal` retires the duplicate import and pool binding without
+changing the source spelling that produces the retail code.
+
+- `sample/_prolog.c` takes `.rodata` `0x0..0x5` in USA and PAL. `_prolog` is the import's
+  only consumer, and the existing GC/1.3.2 literal (`@33`) emits the five bytes at offset zero
+  without the pool fixup. The attempted named-array spelling shortened PAL `_prolog` by one
+  instruction and was rejected. NTSC-J continues to use its prior fallback.
+- `main_rel/burner.c` extends USA `.data` from `0x27DE0..0x27E08` to `0x27DE0..0x27E20`.
+  Its filename anchor `lbl_1_data_27E08` (9 bytes) and `lbl_1_data_27E14` (12 bytes of existing
+  zero-initialized storage) follow the 40-byte object already in the TU. GC/1.3.2 emits the
+  moved objects at section offsets `0x28` and `0x34`. This preserves the imported C types and
+  layout, without claiming to recover the zero object's purpose; regional fallback is unchanged.

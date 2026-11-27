@@ -39914,19 +39914,6 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/data/lbl_1_data_27E08.c",
-    "symbols": [
-      "lbl_1_data_27E08",
-      "lbl_1_data_27E14"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main_rel",
     "source": "rel/main_rel/data/lbl_1_data_27E20.c",
     "symbols": [
       "lbl_1_data_27E20",
@@ -78701,21 +78688,6 @@
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "pool": {
-      "@33": "lbl_18_section4_0"
-    }
-  },
-  {
-    "module": "sample",
-    "source": "rel/sample/data/lbl_18_section4_0.c",
-    "symbols": [
-      "lbl_18_section4_0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01", "GFZP01"],
-    "data": true,
-    "mw_version": null,
     "extra_cflags": []
   },
   {

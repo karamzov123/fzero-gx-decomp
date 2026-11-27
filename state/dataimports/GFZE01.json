@@ -131957,52 +131957,6 @@
     "unit_size": 184,
     "unit_start": 536
   },
-  "main_rel:lbl_1_data_27E08": {
-    "address": 163336,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "u8 lbl_1_data_27E08[0x9]",
-        "path": "include/rel/main_rel/burner.h"
-      }
-    ],
-    "definition": "char lbl_1_data_27E08[9]",
-    "method": "string",
-    "module": "main_rel",
-    "references": [
-      "fn_1_981C4",
-      "fn_1_982C4"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 24,
-    "sha256": "eaf55d02c06fa04688c3abbaab704bc139eb408a6227089c3a1d96050211e84d",
-    "size": 9,
-    "source": "rel/main_rel/data/lbl_1_data_27E08.c",
-    "symbol": "lbl_1_data_27E08",
-    "unit_align": 8,
-    "unit_size": 24,
-    "unit_start": 163336
-  },
-  "main_rel:lbl_1_data_27E14": {
-    "address": 163348,
-    "align": 4,
-    "declarations": [],
-    "definition": "u8 lbl_1_data_27E14[12]",
-    "method": "zero-data",
-    "module": "main_rel",
-    "references": [],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 24,
-    "sha256": "15ec7bf0b50732b49f8228e07d24365338f9e3ab994b00af08e5a3bffe55fd8b",
-    "size": 12,
-    "source": "rel/main_rel/data/lbl_1_data_27E08.c",
-    "symbol": "lbl_1_data_27E14",
-    "unit_align": 8,
-    "unit_size": 24,
-    "unit_start": 163336
-  },
   "main_rel:lbl_1_data_27E20": {
     "address": 163360,
     "align": 8,
@@ -318949,27 +318903,6 @@
     "symbol": "lbl_16_rodata_FC",
     "unit_align": 8,
     "unit_size": 572,
-    "unit_start": 0
-  },
-  "sample:lbl_18_section4_0": {
-    "address": 0,
-    "align": 8,
-    "declarations": [],
-    "definition": "const char lbl_18_section4_0[5]",
-    "method": "string",
-    "module": "sample",
-    "references": [
-      "_prolog"
-    ],
-    "relocations": [],
-    "section": ".rodata",
-    "section_size": 5,
-    "sha256": "084b5ae65f60be4e9aeeba6654bb5be80c7efdacfb12c6614fd93120baaa3c2d",
-    "size": 5,
-    "source": "rel/sample/data/lbl_18_section4_0.c",
-    "symbol": "lbl_18_section4_0",
-    "unit_align": 8,
-    "unit_size": 5,
     "unit_start": 0
   },
   "sel:lbl_10_bss_55CE0": {

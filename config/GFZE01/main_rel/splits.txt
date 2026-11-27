@@ -589,7 +589,7 @@ rel/main_rel/sel_static_disp_c/fn_1_14BCBC.c:
 rel/main_rel/burner/fn_1_981C4.c:
 	.text       start:0x000981C4 end:0x0009A1E8 align:4
 	.rodata     start:0x00004100 end:0x000041F0 align:8
-	.data       start:0x00027DE0 end:0x00027E08 align:8
+	.data       start:0x00027DE0 end:0x00027E20 align:8
 	.bss        start:0x0006EA00 end:0x0006EA10 align:8
 
 rel/main_rel/sound/fn_1_A04C4.c:
@@ -9426,9 +9426,6 @@ rel/main_rel/data/lbl_1_data_67B8.c:
 
 rel/main_rel/data/lbl_1_data_1DCF0.c:
 	.data       start:0x0001DCF0 end:0x0001DEF0 align:8
-
-rel/main_rel/data/lbl_1_data_27E08.c:
-	.data       start:0x00027E08 end:0x00027E20 align:8
 
 rel/main_rel/data/lbl_1_data_27E20.c:
 	.data       start:0x00027E20 end:0x00028058 align:8
