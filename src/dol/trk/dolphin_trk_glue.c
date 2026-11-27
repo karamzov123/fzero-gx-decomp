@@ -153,8 +153,8 @@ void fn_8008D440(void) {
     }
 }
 
-s32 TRKInitializeIntDrivenUART(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
-    ((DBCommInitFn)gDBCommTable[0].initialize)(arg3, (u32)TRKEXICallBack, arg2, arg3);
+s32 TRKInitializeIntDrivenUART(u32 arg0, u32 arg1, u32 arg2, void **arg3) {
+    ((DBCommInitFn)gDBCommTable[0].initialize)((u32)arg3, (u32)TRKEXICallBack, arg2, (u32)arg3);
     ((DBCommVoidFn)gDBCommTable[0].open)();
     return 0;
 }

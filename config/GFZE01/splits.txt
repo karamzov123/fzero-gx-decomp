@@ -1398,7 +1398,7 @@ dol/data/lbl_801A6DE0.c:
 	.sbss       start:0x801A6DE0 end:0x801A6DE8 align:32
 
 dol/data/gTRKInputPendingPtr.c:
-	.sbss       start:0x801A6E00 end:0x801A6E08 align:32
+	.sbss       start:0x801A6E00 end:0x801A6E08 align:16
 
 dol/data/lbl_801A6E18.c:
 	.sbss       start:0x801A6E18 end:0x801A6E20 align:8

@@ -9,7 +9,7 @@ typedef union {
 
 extern void TRK_board_display(const char *);
 extern u32 fn_80089380(void);
-extern u32 gTRKBigEndian[];
+extern BOOL gTRKBigEndian;
 extern void MWTRACE(u32, ...);
 extern void usr_put_initialize(void);
 extern s32 TRKInitializeEventQueue(void);
@@ -18,12 +18,16 @@ extern int TRKInitializeDispatcher(void);
 extern void InitializeProgramEndTrap(void);
 extern s32 TRKInitializeSerialHandler(void);
 extern s32 TRKInitializeTarget(void);
-extern u32 gTRKInputPendingPtr[];
-extern s32 TRKInitializeIntDrivenUART(u32, u32, u32, void *);
+extern void *gTRKInputPendingPtr;
+extern s32 TRKInitializeIntDrivenUART(u32, u32, u32, void **);
 extern void TRKTargetSetInputPendingPtr(void *);
 
 void TRKNubWelcome(void) {
+#ifdef VERSION_GFZP01
+    TRK_board_display("MetroTRK for GAMECUBE v2.6");
+#else
     TRK_board_display("MetroTRK for GAMECUBE v2.0");
+#endif
 }
 
 s32 TRKTerminateNub(void) {
@@ -40,7 +44,7 @@ int TRKInitializeNub(void)
     u32 lab_t0;
 
     result.value = 0;
-    gTRKBigEndian[0] = 1;
+    gTRKBigEndian = 1;
 
     (endian.byte)[0] = 0x12;
     (endian.byte)[1] = 0x34;
@@ -48,9 +52,9 @@ int TRKInitializeNub(void)
     (endian.byte)[3] = 0x78;
 
     if (((0x12345678) == (endian.word))) {
-        gTRKBigEndian[0] = 1;
+        gTRKBigEndian = 1;
     } else if (endian.word == 0x78563412) {
-        gTRKBigEndian[0] = 0;
+        gTRKBigEndian = 0;
     } else {
         result.value = 1;
     }
@@ -86,7 +90,7 @@ int TRKInitializeNub(void)
 
     if (result.value == 0) {
         resultTemp = TRKInitializeIntDrivenUART(0xE100, 1, 0, &gTRKInputPendingPtr);
-        TRKTargetSetInputPendingPtr(*(void **)&gTRKInputPendingPtr);
+        TRKTargetSetInputPendingPtr(gTRKInputPendingPtr);
         if (resultTemp != 0) {
             result.value = resultTemp;
         }

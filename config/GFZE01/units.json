@@ -10919,7 +10919,6 @@
       "gTRKInputPendingPtr"
     ],
     "status": "matching",
-    "matching_for": ["GFZE01"],
     "data": true,
     "mw_version": null,
     "extra_cflags": []
@@ -20772,9 +20771,10 @@
       "TRKInitializeNub"
     ],
     "status": "matching",
-    "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [
+      "-sdata",
+      "0",
       "-str",
       "reuse,readonly"
     ],

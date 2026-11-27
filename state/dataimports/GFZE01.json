@@ -26310,37 +26310,6 @@
     "unit_size": 152,
     "unit_start": 2148907112
   },
-  "main:gTRKInputPendingPtr": {
-    "address": 2149215744,
-    "align": 32,
-    "declarations": [
-      {
-        "declaration": "u32 gTRKInputPendingPtr[]",
-        "path": "src/dol/nubinit.c"
-      },
-      {
-        "declaration": "void *gTRKInputPendingPtr",
-        "path": "src/dol/TRKNubMainLoop.c"
-      }
-    ],
-    "definition": "u8 gTRKInputPendingPtr[4]",
-    "method": "opaque-bss",
-    "module": "main",
-    "references": [
-      "TRKInitializeNub",
-      "TRKNubMainLoop"
-    ],
-    "relocations": [],
-    "section": ".sbss",
-    "section_size": 8,
-    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
-    "size": 4,
-    "source": "dol/data/gTRKInputPendingPtr.c",
-    "symbol": "gTRKInputPendingPtr",
-    "unit_align": 32,
-    "unit_size": 8,
-    "unit_start": 2149215744
-  },
   "main:gTRKRestoreFlags": {
     "address": 2148907112,
     "align": 8,
