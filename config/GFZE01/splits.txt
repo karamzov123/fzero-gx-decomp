@@ -194,6 +194,7 @@ dol/adx/cri_cvfs.c:
 dol/runtime/alloc.c:
 	.text       start:0x8007A150 end:0x8007B028 align:4
 	.bss        start:0x801A3380 end:0x801A33B8 align:8
+	.sbss       start:0x801A6DD8 end:0x801A6DE0 align:8
 
 dol/runtime/ansi_files.c:
 	.text       start:0x8007B028 end:0x8007B338 align:4
@@ -309,6 +310,7 @@ dol/av/avdisp_head.c:
 dol/__destroy_global_chain.c:
 	.text       start:0x8007971C end:0x80079764 align:4
 	.dtors      start:0x8008FF20 end:0x8008FF24 align:4
+	.sbss       start:0x801A6DC0 end:0x801A6DC8 align:32
 
 dol/av/avdisp_draw.c:
 	.text       start:0x800786B0 end:0x80078884 align:4
@@ -745,6 +747,7 @@ dol/gx/GXTexture.c:
 dol/exit.c:
 	.text       start:0x8007A060 end:0x8007A150 align:4
 	.bss        start:0x801A3280 end:0x801A3380 align:8
+	.sbss       start:0x801A6DC8 end:0x801A6DD8 align:8
 
 dol/sasnd/sasnd_core.c:
 	.text       start:0x800658B4 end:0x80069B10 align:4
@@ -1383,15 +1386,6 @@ dol/data/lbl_801A6DB0.c:
 
 dol/data/lbl_801A6DB8.c:
 	.sbss       start:0x801A6DB8 end:0x801A6DC0 align:8
-
-dol/data/__global_destructor_chain.c:
-	.sbss       start:0x801A6DC0 end:0x801A6DD0 align:32
-
-dol/data/__stdio_exit.c:
-	.sbss       start:0x801A6DD0 end:0x801A6DD8 align:16
-
-dol/data/lbl_801A6DD8.c:
-	.sbss       start:0x801A6DD8 end:0x801A6DE0 align:8
 
 dol/data/lbl_801A6DE0.c:
 	.sbss       start:0x801A6DE0 end:0x801A6DE8 align:32

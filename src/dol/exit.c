@@ -33,13 +33,11 @@ extern ExitFunction _dtors[];
 
 ExitFunction __atexit_funcs[64] __attribute__((aligned(8)));
 
-extern ExitFunction __console_exit;
-
-extern ExitFunction __stdio_exit;
-
-extern int __atexit_curr_func;
-
-extern int __aborting;
+/* MWCC lays out these tentative definitions in reverse declaration order. */
+ExitFunction __console_exit;
+ExitFunction __stdio_exit;
+int __atexit_curr_func;
+int __aborting __attribute__((aligned(8)));
 
 void exit(int status) {
     ExitFunction *destructor;

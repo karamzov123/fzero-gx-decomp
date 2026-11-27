@@ -199,7 +199,7 @@ extern void __begin_critical_region(s32);
 extern void __end_critical_region(s32);
 extern void *memset(void *, int, u32);
 MemPoolObj lbl_801A3380 __attribute__((aligned(8)));
-extern u8 lbl_801A6DD8;
+u8 lbl_801A6DD8 __attribute__((aligned(8)));
 extern const unsigned long lbl_80094EC0[];
 
 void deallocate_from_fixed_pools(MemPoolObj *pool, void *ptr, unsigned long size);

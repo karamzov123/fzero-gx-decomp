@@ -25322,84 +25322,6 @@
     "unit_size": 88,
     "unit_start": 2149213240
   },
-  "main:__aborting": {
-    "address": 2149215688,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "int __aborting",
-        "path": "src/dol/exit.c"
-      }
-    ],
-    "definition": "int __aborting",
-    "method": "declared-bss",
-    "module": "main",
-    "references": [
-      "exit"
-    ],
-    "relocations": [],
-    "section": ".sbss",
-    "section_size": 16,
-    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
-    "size": 4,
-    "source": "dol/data/__global_destructor_chain.c",
-    "symbol": "__aborting",
-    "unit_align": 32,
-    "unit_size": 16,
-    "unit_start": 2149215680
-  },
-  "main:__atexit_curr_func": {
-    "address": 2149215692,
-    "align": 4,
-    "declarations": [
-      {
-        "declaration": "int __atexit_curr_func",
-        "path": "src/dol/exit.c"
-      }
-    ],
-    "definition": "int __atexit_curr_func",
-    "method": "declared-bss",
-    "module": "main",
-    "references": [
-      "exit"
-    ],
-    "relocations": [],
-    "section": ".sbss",
-    "section_size": 16,
-    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
-    "size": 4,
-    "source": "dol/data/__global_destructor_chain.c",
-    "symbol": "__atexit_curr_func",
-    "unit_align": 32,
-    "unit_size": 16,
-    "unit_start": 2149215680
-  },
-  "main:__console_exit": {
-    "address": 2149215700,
-    "align": 4,
-    "declarations": [
-      {
-        "declaration": "ExitFunction __console_exit",
-        "path": "src/dol/exit.c"
-      }
-    ],
-    "definition": "u8 __console_exit[4]",
-    "method": "opaque-bss",
-    "module": "main",
-    "references": [
-      "exit"
-    ],
-    "relocations": [],
-    "section": ".sbss",
-    "section_size": 8,
-    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
-    "size": 4,
-    "source": "dol/data/__stdio_exit.c",
-    "symbol": "__console_exit",
-    "unit_align": 16,
-    "unit_size": 8,
-    "unit_start": 2149215696
-  },
   "main:__cpReg": {
     "address": 2149215180,
     "align": 4,
@@ -25496,32 +25418,6 @@
     "unit_align": 8,
     "unit_size": 8,
     "unit_start": 2149215176
-  },
-  "main:__global_destructor_chain": {
-    "address": 2149215680,
-    "align": 32,
-    "declarations": [
-      {
-        "declaration": "u32 __global_destructor_chain",
-        "path": "src/dol/__destroy_global_chain.c"
-      }
-    ],
-    "definition": "u32 __global_destructor_chain",
-    "method": "declared-bss",
-    "module": "main",
-    "references": [
-      "__destroy_global_chain"
-    ],
-    "relocations": [],
-    "section": ".sbss",
-    "section_size": 16,
-    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
-    "size": 4,
-    "source": "dol/data/__global_destructor_chain.c",
-    "symbol": "__global_destructor_chain",
-    "unit_align": 32,
-    "unit_size": 16,
-    "unit_start": 2149215680
   },
   "main:__memReg": {
     "address": 2149215188,
@@ -25691,33 +25587,6 @@
     "unit_align": 8,
     "unit_size": 8,
     "unit_start": 2149215176
-  },
-  "main:__stdio_exit": {
-    "address": 2149215696,
-    "align": 16,
-    "declarations": [
-      {
-        "declaration": "ExitFunction __stdio_exit",
-        "path": "src/dol/exit.c"
-      }
-    ],
-    "definition": "u8 __stdio_exit[4]",
-    "method": "opaque-bss",
-    "module": "main",
-    "references": [
-      "exit",
-      "__stdio_atexit"
-    ],
-    "relocations": [],
-    "section": ".sbss",
-    "section_size": 8,
-    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
-    "size": 4,
-    "source": "dol/data/__stdio_exit.c",
-    "symbol": "__stdio_exit",
-    "unit_align": 16,
-    "unit_size": 8,
-    "unit_start": 2149215696
   },
   "main:autoInvalidation": {
     "address": 2149213308,
@@ -59950,37 +59819,6 @@
     "unit_align": 8,
     "unit_size": 8,
     "unit_start": 2149215672
-  },
-  "main:lbl_801A6DD8": {
-    "address": 2149215704,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "u8 lbl_801A6DD8",
-        "path": "src/dol/fn_8007A150.c"
-      },
-      {
-        "declaration": "u8 lbl_801A6DD8",
-        "path": "src/dol/fn_8007A1C0.c"
-      }
-    ],
-    "definition": "u8 lbl_801A6DD8[8]",
-    "method": "opaque-bss-header-mismatch",
-    "module": "main",
-    "references": [
-      "fn_8007A150",
-      "fn_8007A1C0"
-    ],
-    "relocations": [],
-    "section": ".sbss",
-    "section_size": 8,
-    "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
-    "size": 8,
-    "source": "dol/data/lbl_801A6DD8.c",
-    "symbol": "lbl_801A6DD8",
-    "unit_align": 8,
-    "unit_size": 8,
-    "unit_start": 2149215704
   },
   "main:lbl_801A6DE0": {
     "address": 2149215712,
