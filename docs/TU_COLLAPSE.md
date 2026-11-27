@@ -544,6 +544,10 @@ Use this mode for a first sweep and revisit useful failures with a higher budget
 verified under their matching regional profiles, but all 79 blocks remained isolated. That
 result is not a merge or a reason to retain the intermediate splits.
 
+At its original fourteen units, `movie_module/sfd_tim.c` drops from 37 to 15 isolated
+blocks using three repair trials. All three regional hash and lint gates pass at the
+existing splits. Whole-file probes still reject the duplicate `MovieModule_u2` tag.
+
 `tools/consolidate/rel_own_data.py` transfers whole adjacent import units into a specified
 one-unit REL TU. It checks contiguity and matching regional coverage, carries over the existing
 typed definitions in retail order, and verifies the moved symbols against fresh compiled and
