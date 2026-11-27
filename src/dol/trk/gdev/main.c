@@ -25,7 +25,7 @@ extern s32 fn_8008F748(void);
 extern u32 fn_8008F7E4(void);
 extern u32 fn_8008F838(u32, u32);
 
-extern s32 lbl_801A6E10;
+s32 lbl_801A6E10 __attribute__((aligned(16)));
 extern u8 lbl_801A5E78[0x500];
 extern CircleBuffer lbl_801A6378;
 

@@ -328,6 +328,20 @@ units in all three builds. These transfers retain the measured small-BSS
 ordering and alignment gaps. The shared `errno` storage remains separate;
 its consumers establish its use, not its original translation unit.
 
+### MetroTRK and debugger-driver small BSS
+
+The DDH and GDEV initialization flags, EXI2 callback, and six debugger-driver
+state objects now compile with their users in USA, Japan, and PAL. The three
+flags and callback slots that formerly had oversized standalone definitions
+retain their split extents and following padding. The EXI2 callback must use
+16-byte alignment: PAL's slot is at `0x801AA2F0`, and overaligning it shifts
+the following small-data addresses by 16 bytes. The existing pair at
+`lbl_801A6E18` is built separately in all regions to retain both symbols in
+the gap. Ninja links all five objects from source; each `.sbss` split matches
+the freshly extracted retail object, and all regional retail hashes pass.
+
+### MSL stream and decimal state
+
 The standard-stream table (`__files`, 320 bytes) is owned by `ansi_files.c`
 in USA and PAL. The retail `.data` contains three initialized 80-byte stream
 records and a fourth zero record; each populated row has two buffer addresses,

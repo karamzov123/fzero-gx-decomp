@@ -38,7 +38,7 @@ extern EXI2Control lbl_801A6398;
 extern EXI2Control *lbl_801A6678;
 extern u8 *lbl_801A6680;
 extern s32 lbl_801A6E1C;
-extern void (*lbl_801A6E20)(s32);
+void (*lbl_801A6E20)(s32) __attribute__((aligned(16)));
 
 void fn_8008EB4C(s32 pi, s32 exi);
 

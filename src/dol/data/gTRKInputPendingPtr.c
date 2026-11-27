@@ -2,11 +2,8 @@
 #include "types.h"
 
 extern u8 gTRKInputPendingPtr[4];
-extern u8 lbl_801A6E08[8];
 
 
-/* Storage extent is known; the header type does not reproduce the retail layout. */
-__declspec(section ".sdata") u8 lbl_801A6E08[8] __attribute__((aligned(8)));
 
 
 /* Storage extent is known; element/field types are not recovered. */

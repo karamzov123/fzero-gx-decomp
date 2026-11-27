@@ -76,6 +76,7 @@ dol/trk/support.c:
 
 dol/odemuexi2/DebuggerDriver.c:
 	.text       start:0x8008F454 end:0x8008FED4 align:4
+	.sbss       start:0x801A6E28 end:0x801A6E3D align:8
 
 dol/adx/adx_stmc.c:
 	.text       start:0x8004A578 end:0x8004B7F4 align:4
@@ -89,6 +90,7 @@ dol/trk/UDP_Stubs.c:
 dol/trk/ddh/main.c:
 	.text       start:0x8008DDD0 end:0x8008E114 align:4
 	.rodata     start:0x80095CD0 end:0x80095DB0 align:4
+	.sbss       start:0x801A6E08 end:0x801A6E10 align:8
 
 dol/trk/CircleBuffer.c:
 	.text       start:0x8008E114 end:0x8008E37C align:4
@@ -96,6 +98,7 @@ dol/trk/CircleBuffer.c:
 dol/trk/gdev/main.c:
 	.text       start:0x8008E37C end:0x8008E6C8 align:4
 	.rodata     start:0x80095DB0 end:0x80095E90 align:4
+	.sbss       start:0x801A6E10 end:0x801A6E18 align:16
 
 dol/adx/adx_sje.c:
 	.text       start:0x80047864 end:0x8004A578 align:4
@@ -941,6 +944,7 @@ dol/sasnd/sasnd_voice.c:
 dol/trk/exi2.c:
 	.text       start:0x8008E770 end:0x8008F454 align:4
 	.data       start:0x8015B900 end:0x8015B919 align:4
+	.sbss       start:0x801A6E20 end:0x801A6E28 align:16
 
 dol/fn_8007E914.c:
 	.text       start:0x8007E914 end:0x8007E96C align:4
@@ -1394,25 +1398,10 @@ dol/data/lbl_801A6DE0.c:
 	.sbss       start:0x801A6DE0 end:0x801A6DE8 align:32
 
 dol/data/gTRKInputPendingPtr.c:
-	.sbss       start:0x801A6E00 end:0x801A6E10 align:32
-
-dol/data/lbl_801A6E10.c:
-	.sbss       start:0x801A6E10 end:0x801A6E18 align:16
+	.sbss       start:0x801A6E00 end:0x801A6E08 align:32
 
 dol/data/lbl_801A6E18.c:
 	.sbss       start:0x801A6E18 end:0x801A6E20 align:8
-
-dol/data/lbl_801A6E20.c:
-	.sbss       start:0x801A6E20 end:0x801A6E28 align:32
-
-dol/data/lbl_801A6E28.c:
-	.sbss       start:0x801A6E28 end:0x801A6E30 align:8
-
-dol/data/lbl_801A6E30.c:
-	.sbss       start:0x801A6E30 end:0x801A6E38 align:16
-
-dol/data/lbl_801A6E38.c:
-	.sbss       start:0x801A6E38 end:0x801A6E3D align:8
 
 dol/data/lbl_801A6640.c:
 	.sdata      start:0x801A6640 end:0x801A6648 align:32
