@@ -4,7 +4,6 @@
 
 extern u32 lbl_8015AD48[];
 #include "dol/data/__files.h"
-extern f64 lbl_8015AF98[8];
 
 
 
@@ -104,13 +103,5 @@ __declspec(section ".data") Data___files __files __attribute__((aligned(8))) = {
     0x00000000U,
     0x00000000U,
     0x00000000U
-};
-#pragma explicit_zero_data reset
-
-
-
-#pragma explicit_zero_data on
-__declspec(section ".data") f64 lbl_8015AF98[8] __attribute__((aligned(8))) = {
-    10.0, 100.0, 1000.0, 10000.0, 100000.0, 1000000.0, 10000000.0, 100000000.0
 };
 #pragma explicit_zero_data reset

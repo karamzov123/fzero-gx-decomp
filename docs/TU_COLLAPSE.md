@@ -306,6 +306,12 @@ relocations. Keep the existing layout until those callers match as well.
 
 ## MSL is built with `-inline deferred` (2026-11-24)
 
+The eight-entry decimal powers table at `0x8015AF98` is now private to
+`ansi_fp.c`, its only source consumer. It precedes that object's switch tables
+in `.data`, rather than sharing an imported object with the stream records.
+The compiled `.text` and `.data` match in USA and PAL; Japan retains its
+existing fallback for `ansi_fp.c`.
+
 MWCC's `-inline auto,deferred` emits a file's functions in reverse source order and can inline a
 function defined later in the file. MSL's retail TUs are laid out last-defined-first (string.c starts
 with strstr and strtok, FILE_POS.c with fseek, _fseek, ftell), and FILE_POS.c's `_fseek` inlines

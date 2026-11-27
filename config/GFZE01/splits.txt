@@ -312,7 +312,7 @@ dol/av/avdisp_draw.c:
 
 dol/runtime/ansi_fp.c:
 	.text       start:0x8007B338 end:0x8007E914 align:4
-	.data       start:0x8015AFD8 end:0x8015B100 align:8
+	.data       start:0x8015AF98 end:0x8015B100 align:8
 
 dol/fn_800885B8.c:
 	.text       start:0x800885B8 end:0x80088648 align:4
@@ -1691,7 +1691,7 @@ dol/data/lbl_8012B6F0.c:
 	.data       start:0x8012B6F0 end:0x8012B6F8 align:16
 
 dol/data/lbl_8015AD48.c:
-	.data       start:0x8015AD48 end:0x8015AFD8 align:8
+	.data       start:0x8015AD48 end:0x8015AF98 align:8
 
 dol/data/lbl_80090980.c:
 	.rodata     start:0x80090980 end:0x80090988 align:8

@@ -35358,32 +35358,6 @@
     "unit_size": 656,
     "unit_start": 2148904264
   },
-  "main:lbl_8015AF98": {
-    "address": 2148904856,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "f64 lbl_8015AF98[8]",
-        "path": "src/dol/fn_8007B338.c"
-      }
-    ],
-    "definition": "f64 lbl_8015AF98[8]",
-    "method": "float-pool",
-    "module": "main",
-    "references": [
-      "fn_8007B338"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 656,
-    "sha256": "a6e44b7005e31723d18e492f7116d13917f44b8b30fd8bb313bb7473404c156d",
-    "size": 64,
-    "source": "dol/data/lbl_8015AD48.c",
-    "symbol": "lbl_8015AF98",
-    "unit_align": 8,
-    "unit_size": 656,
-    "unit_start": 2148904264
-  },
   "main:lbl_8015B100": {
     "address": 2148905216,
     "align": 32,

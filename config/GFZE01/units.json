@@ -12600,8 +12600,7 @@
     "source": "dol/data/lbl_8015AD48.c",
     "symbols": [
       "lbl_8015AD48",
-      "__files",
-      "lbl_8015AF98"
+      "__files"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -21598,7 +21597,8 @@
       "fn_8007C910",
       "__equals_dec",
       "fn_8007CF18",
-      "fn_8007E69C"
+      "fn_8007E69C",
+      "lbl_8015AF98"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],

@@ -1,6 +1,10 @@
 #include "types.h"
 #include "msl/decimal_internal.h"
 
+static f64 lbl_8015AF98[8] __attribute__((aligned(8))) = {
+    10.0, 100.0, 1000.0, 10000.0, 100000.0, 1000000.0, 10000000.0, 100000000.0
+};
+
 /* --- dol/fn_8007B338.c --- */
 /* --- dol/fn_8007B0B4.c --- */
 /* --- dol/fn_8007B0B4.c --- */
@@ -281,7 +285,7 @@ f64 fn_8007B338(const decimal *d) {
     }
     }
     {
-        extern f64 lbl_8015AF98[8];
+
         decimal dec = *d;
         u8 *i = dec.sig.text;
         u8 *e = i + dec.sig.length;
