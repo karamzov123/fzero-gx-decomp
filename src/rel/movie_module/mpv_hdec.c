@@ -159,7 +159,7 @@ void fn_12_ABDC(Sig_fn_12_ABDC_MPVContext *arg0, Sig_fn_12_ABDC_SJ *arg1, u32 ar
 }
 /* fzgx:end fn_12_ABDC */
 
-/* fzgx:begin MPV_MoveChunk noprologue */
+/* fzgx:begin MPV_MoveChunk */
 
 /* --- rel/movie_module/MPV_MoveChunk.c --- */
 int MPV_MoveChunk(SJ *stream, int channel, int size) {

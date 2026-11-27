@@ -587,6 +587,11 @@ match fresh retail objects in USA, Japan and PAL. The BSS and constant pool
 still link through existing retail data splits; the merge is not a transfer
 of data ownership.
 
+In `movie_module/mpv_hdec.c`, `MPV_MoveChunk` now uses the shared Sofdec
+stream declarations in `sofdec/sj.h`. Removing its obsolete isolation marker
+leaves the existing group intact: both `MPV_MoveChunk` and `fn_12_ABDC` match
+retail in all three regional objects.
+
 `tools/consolidate/rel_own_data.py` transfers whole adjacent import units into a specified
 one-unit REL TU. It checks contiguity and matching regional coverage, carries over the existing
 typed definitions in retail order, and verifies the moved symbols against fresh compiled and
