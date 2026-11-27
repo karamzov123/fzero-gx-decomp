@@ -1,6 +1,5 @@
 #include "types.h"
 
-
 /* --- rel/movie_module/fn_12_215A4.c --- */
 typedef struct MovieModule {
     u8 pad_0[0x1b74];
@@ -57,20 +56,3 @@ u32 fn_12_215F4(u32 arg0, u32 arg1, struct fn_12_215F4_Arg2 *arg2) {
     }
     return v0;
 }
-
-/* --- rel/movie_module/fn_12_2166C.c --- */
-// fn_12_2166C: returns a constant.
-int fn_12_2166C(void);
-
-/* --- rel/movie_module/fn_12_21674.c --- */
-extern void fn_12_24A88(void *arg0, s32 arg1);
-
-void fn_12_21674(void *arg0);
-
-/* --- rel/movie_module/fn_12_2169C.c --- */
-/* --- rel/movie_module/fn_12_2169C.c --- */
-
-void fn_12_2169C(void *arg0);
-
-/* --- rel/movie_module/fn_12_216C4.c --- */
-void fn_12_216C4(void *arg0);

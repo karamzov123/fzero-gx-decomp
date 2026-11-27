@@ -1,69 +1,6 @@
 #include "types.h"
 #pragma opt_loop_invariants off
 
-/* --- rel/movie_module/DCT_FsriInitSparseTbl.c --- */
-void *memset(void *destination, int value, unsigned long size);
-
-void fn_12_4D14(void);
-
-void fn_12_4CEC(const double input[8][8], double output[8][8]);
-
-extern float lbl_12_bss_DB0[64][64];
-
-extern double lbl_12_bss_BB0[64];
-
-static inline int dctFsriScanIndex(int index) {
-    int row = index / 8;
-    int offset = index % 8;
-    int result;
-    if ((row % 2) == 0) {
-        offset *= 2;
-    } else {
-        row--;
-        offset = offset * 2 + 1;
-    }
-    result = offset + row * 8;
-    if ((result < 0) || (result >= 256)) {
-        while (1) {
-        }
-    }
-    return result;
-}
-
-static inline void dctFsriStoreSparseCoefficient(int coefficient, int index, const double *value) {
-    lbl_12_bss_DB0[dctFsriScanIndex(coefficient)][index] = (float)*value;
-}
-
-void DCT_FsriInitSparseTbl(void);
-
-/* --- rel/movie_module/fn_12_5548.c --- */
-/* --- rel/movie_module/fn_12_5548.c --- */
-extern void *memset(void *dst, int value, u32 size);
-
-void fn_12_5548(void *dst);
-
-/* --- rel/movie_module/DCT_FsriInitScaleTbl.c --- */
-
-
-void DCT_FsriInitScaleTbl(float scale_table[64]);
-
-/* --- rel/movie_module/DCT_FsriInit.c --- */
-const char *fn_12_4E14(void);
-
-extern const double lbl_12_rodata_610[8];
-
-
-extern const char *lbl_12_bss_BA8;
-
-void DCT_FsriInitSparseTbl(void);
-
-void DCT_FsriInit(void);
-
-/* --- rel/movie_module/fn_12_57F0.c --- */
-extern void *memcpy(void *dst, const void *src, u32 size);
-
-void *fn_12_57F0(void *dst, const void *src, u32 size);
-
 /* --- rel/movie_module/fn_12_5810.c --- */
 struct fn_12_5810_Arg0 {
     u32 unk_0;

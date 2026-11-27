@@ -1,25 +1,5 @@
 #include "types.h"
 
-
-/* --- rel/movie_module/fn_12_5EC.c --- */
-/* --- rel/movie_module/fn_12_5EC.c --- */
-/* --- rel/movie_module/fn_12_5EC.c --- */
-extern u32 lbl_12_rodata_34;
-extern u32 strncmp(u32, u32, u32);
-
-u32 fn_12_5EC(u32 arg0, u32 arg1);
-
-/* --- rel/movie_module/fn_12_63C.c --- */
-extern s32 lbl_12_bss_0;
-
-void fn_12_63C(void);
-
-/* --- rel/movie_module/fn_12_65C.c --- */
-extern char lbl_12_rodata_0[49];
-extern u32 lbl_12_bss_4;
-
-void fn_12_65C(void);
-
 /* --- rel/movie_module/fn_12_68C.c --- */
 struct fn_12_68C_Arg0 {
     u8 pad_0[0xC];
@@ -285,38 +265,3 @@ typedef struct MovieModule_u5 {
 void fn_12_8DC(MovieModule_u5* module, s32 value) {
     module->value = value;
 }
-
-/* --- rel/movie_module/fn_12_8E4.c --- */
-typedef struct Fn12_8E4_Self {
-    u32 unk_00;
-    u32 unk_04;
-    s32 field_08;
-    s32 field_0c;
-    u32 unk_10;
-    u32 unk_14;
-    u32 unk_18;
-    u32 unk_1c;
-    u32 field_20;
-    u32 unk_24;
-    u32 unk_28;
-    u32 unk_2c;
-    u32 unk_30;
-    s32 field_34;
-    u32 field_38;
-} Fn12_8E4_Self;
-
-typedef struct Fn12_8E4_Arg1 {
-    u32 unk_00;
-    u32 unk_04;
-    u32 unk_08;
-    s32 unk_0c;
-    u32 unk_10[15];
-    u32 unk_4c;
-} Fn12_8E4_Arg1;
-
-extern u8 lbl_12_rodata_194[248];
-extern void fn_12_309C(u32, u32, void *);
-extern void fn_12_3710(u32, u32, u32);
-extern void fn_12_3DBDC(void *, void *, u32);
-
-void fn_12_8E4(Fn12_8E4_Self *self, Fn12_8E4_Arg1 *arg1, s32 arg2, void *arg3);

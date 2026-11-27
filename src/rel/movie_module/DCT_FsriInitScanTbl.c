@@ -1,12 +1,5 @@
 #include "types.h"
 
-
-/* --- rel/movie_module/fn_12_4E14.c --- */
-extern u32 lbl_12_bss_BA0;
-extern u32 lbl_12_rodata_5B8;
-
-void * fn_12_4E14(void);
-
 /* --- rel/movie_module/DCT_FsriInitScanTbl.c --- */
 static inline int dctFsriScanIndex(int index) {
     int row = index / 8;

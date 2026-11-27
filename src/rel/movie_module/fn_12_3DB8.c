@@ -1,12 +1,10 @@
 #include "types.h"
 #include "sofdec/sfx.h"
 
-
 /* --- rel/movie_module/fn_12_3DB8.c --- */
 typedef struct SFXZObject_u0 SFXZObject_u0;
 
 extern const f32 lbl_12_rodata_570;
-extern f64 lbl_12_rodata_578[3];
 
 typedef void (*SFXZConvertCallback)(u32 *source, void *destination, f32 near_clip, f32 far_clip);
 
@@ -30,8 +28,6 @@ struct SFXZObject_u0 {
     SFXZConvertCallback convert_callback;
     void *field_48;
 };
-
-void fn_12_3DB8(SFXZObject_u0 *object, u32 near_z, u32 far_z, u32 *table);
 
 void fn_12_3DB8(SFXZObject_u0 *object, u32 near_z, u32 far_z, u32 *table) {
     s32 i;
@@ -237,53 +233,3 @@ void fn_12_4938(void) {
     lbl_12_bss_568[2] = 8;
     lbl_12_bss_568[1] = 0;
 }
-
-/* --- rel/movie_module/fn_12_4980.c --- */
-extern u32 fn_12_59C(u32, u32);
-
-struct fn_12_4980_Arg0 {
-    u8 pad_0[0x58];
-    u32 unk_58;
-};
-
-void fn_12_4980(struct fn_12_4980_Arg0 *arg0);
-
-/* --- rel/movie_module/fn_12_49AC.c --- */
-extern u32 fn_12_5EC(u32, u32);
-
-struct fn_12_49AC_Arg0 {
-    u8 pad_0[0x58];
-    u32 unk_58;
-};
-
-void fn_12_49AC(struct fn_12_49AC_Arg0 *arg0);
-
-/* --- rel/movie_module/fn_12_49D8.c --- */
-typedef struct MovieState {
-    u8 pad[0x58];
-    s32 value;
-} MovieState;
-
-int fn_12_49D8(MovieState *state);
-
-/* --- rel/movie_module/fn_12_49EC.c --- */
-typedef struct Fn1249EC {
-    u8 _pad58[0x58];
-    u32 field_58;
-    u32 field_5c;
-} Fn1249EC;
-
-void fn_12_49EC(Fn1249EC *self, u32 value_58, u32 value_5c);
-
-/* --- rel/movie_module/fn_12_49F8.c --- */
-extern void fn_12_63C(void);
-
-void fn_12_49F8(void);
-
-/* --- rel/movie_module/fn_12_4A18.c --- */
-extern void fn_12_65C(void);
-
-void fn_12_4A18(void);
-
-/* --- rel/movie_module/fn_12_4A38.c --- */
-void fn_12_4A38(f64 *arg0, f64 *arg1, f64 (*arg2)[8]);

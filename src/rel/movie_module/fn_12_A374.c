@@ -1,9 +1,5 @@
 #include "types.h"
 
-
-/* --- rel/movie_module/fn_12_A2C4.c --- */
-u32 fn_12_A2C4(const u8 *data);
-
 /* --- rel/movie_module/fn_12_A374.c --- */
 extern u8 lbl_12_data_68[72];
 #define SKIP(n) do { bits += (n); if (bits >= 32) { bits -= 32; current = next << bits; next = *p++; } else current <<= (n); } while(0)
@@ -92,17 +88,3 @@ s32 fn_12_A374(s32 arg0, s32 length, s32 count) {
     p = (u32 *)((u8 *)p + ((bits + 7) >> 3));
     return length >= (s32)((u32)p - 8 - arg0);
 }
-
-/* --- rel/movie_module/fn_12_A660.c --- */
-extern u32 lbl_12_bss_4E60[6];
-
-typedef void (*MovieCallback)(void *);
-
-typedef struct MovieState {
-    u8 pad_0[0x220];
-    MovieCallback callback;
-    void *callback_arg;
-    s32 field_228;
-} MovieState;
-
-s32 fn_12_A660(MovieState *movie, s32 state);

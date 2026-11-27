@@ -1,6 +1,5 @@
 #include "types.h"
 
-
 /* --- rel/movie_module/fn_12_2145C.c --- */
 extern struct fn_12_2145C_lbl_12_bss_6990 lbl_12_bss_6990;
 
@@ -43,8 +42,6 @@ typedef struct Movie {
     u8 pad_0000[0x1b74];
     MovieInner *inner;
 } Movie;
-
-extern const f64 lbl_12_rodata_A70;
 extern const f32 lbl_12_rodata_A68;
 extern const f32 lbl_12_rodata_A64;
 extern const f32 lbl_12_rodata_A6C;
@@ -68,7 +65,6 @@ void fn_12_214B0(Movie *movie, int value) {
 
 /* --- rel/movie_module/fn_12_21554.c --- */
 /* --- rel/movie_module/fn_12_21554.c --- */
-
 
 extern void fn_8004BED0(void *value);
 

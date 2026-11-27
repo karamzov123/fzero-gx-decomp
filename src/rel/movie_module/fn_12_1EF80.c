@@ -1,6 +1,5 @@
 #include "types.h"
 
-
 /* --- rel/movie_module/fn_12_1EF80.c --- */
 /* --- rel/movie_module/fn_12_1EF80.c --- */
 typedef struct MPVMCContext MPVMCContext;
@@ -18,8 +17,6 @@ struct MPVMCContext {
     u8 field_2c[8];
     MPVMCFunction functions16[4];
 };
-
-void fn_12_1EF80(MPVMCContext *context);
 
 void fn_12_1EF80(MPVMCContext *context) {
     s32 a0, b0, a1, b1, a2, b2;
@@ -101,9 +98,6 @@ void fn_12_1EF80(MPVMCContext *context) {
         }
     }
 }
-
-/* --- rel/movie_module/fn_12_1F1AC.c --- */
-void fn_12_1F1AC(MPVMCContext *context);
 
 void fn_12_1F1AC(MPVMCContext *context) {
     s32 i;
@@ -219,9 +213,6 @@ void fn_12_1F1AC(MPVMCContext *context) {
         break;
     }
 }
-
-/* --- rel/movie_module/fn_12_1F61C.c --- */
-void fn_12_1F61C(MPVMCContext *context);
 
 void fn_12_1F61C(MPVMCContext *context) {
     u32 *output;
@@ -385,9 +376,6 @@ void fn_12_1F61C(MPVMCContext *context) {
         break;
     }
 }
-
-/* --- rel/movie_module/fn_12_1FADC.c --- */
-void fn_12_1FADC(MPVMCContext *context);
 
 void fn_12_1FADC(MPVMCContext *context) {
     const u8 *s = context->reference0;

@@ -19,14 +19,6 @@ typedef struct MovieData {
     MovieVTable *vtable;
 } MovieData;
 
-typedef union MovieResult {
-    f64 real;
-    struct {
-        int value;
-        int duration;
-    } words;
-} MovieResult;
-
 typedef struct MovieState {
     char pad0000[4];
     MovieData *movie;

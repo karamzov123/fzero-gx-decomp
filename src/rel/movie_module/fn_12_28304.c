@@ -116,5 +116,3 @@ void fn_12_28304(SfdHandle *handle, MPVPictureInfo *picture, int pts, int group_
         sfmpv_SetPicTc(picture, source);
     }
 }
-
-typedef char HandleCheck[(int)&((SfdHandle *)0)->seek_work == 0x2908 ? 1 : -1];

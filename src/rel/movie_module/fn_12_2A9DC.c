@@ -1,6 +1,5 @@
 #include "types.h"
 
-
 /* --- rel/movie_module/fn_12_2A9DC.c --- */
 /* --- rel/movie_module/fn_12_2A9DC.c --- */
 typedef struct MovieEntry {
@@ -141,7 +140,6 @@ struct MovieContext {
     u32 words[2];
 };
 
-
 MovieEntry_u1 *fn_12_2AB68(MovieObject_u1 *movie) {
     struct MovieContext context;
     int i;
@@ -173,7 +171,6 @@ MovieEntry_u1 *fn_12_2AB68(MovieObject_u1 *movie) {
 typedef struct MovieObject_u2 MovieObject_u2;
 typedef struct MovieState MovieState;
 typedef struct MovieEntry_u2 MovieEntry_u2;
-
 
 struct MovieObject_u2 {
     u8 _pad_1b30[0x1b30];
@@ -270,9 +267,3 @@ void fn_12_2AC98(MovieModule_u5 *module) {
 
 /* --- rel/movie_module/fn_12_2ACA8.c --- */
 typedef struct MovieModule_u5 MovieModule_u5;
-
-extern int fn_12_24990(MovieModule_u5 *module, const char *name);
-extern int fn_12_24A88(int value, u32 address);
-extern void fn_12_2D7DC(MovieModule_u5 *module, int value, const char *name);
-
-int fn_12_2ACA8(MovieModule_u5 *module, const char *name);

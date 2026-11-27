@@ -1,31 +1,16 @@
 #include "types.h"
 
-
 /* --- rel/movie_module/fn_12_38D94.c --- */
 /* --- rel/movie_module/fn_12_38D94.c --- */
 extern void MWSFSVM_Error(void *, ...);
-
-void fn_12_38D94(void *arg0, void *arg1);
-
-/* --- rel/movie_module/fn_12_38DBC.c --- */
-extern u32 lbl_12_bss_1BAAC[1131];
-
-u32 *fn_12_38DBC(void);
 
 /* --- rel/movie_module/fn_12_38DC8.c --- */
 typedef struct Sig_fn_12_3A384_Fn12_3A384_Object {
     u8 _pad[0x44];
     u32 value;
 } Sig_fn_12_3A384_Fn12_3A384_Object;
-
-struct fn_12_38DC8_Arg0 {
-    u8 pad_0[0x134];
-    u32 unk_134;
-};
 extern f64 lbl_12_rodata_24C8;
-extern f64 lbl_12_rodata_24D0;
 extern void fn_12_3A384(Sig_fn_12_3A384_Fn12_3A384_Object *, u32, u32);
-
 
 void fn_12_38DC8(Sig_fn_12_3A384_Fn12_3A384_Object *arg0) {
     s32 temp_r5;

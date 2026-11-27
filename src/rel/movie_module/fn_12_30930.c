@@ -1,7 +1,6 @@
 #include "types.h"
 #include "sofdec/sftst.h"
 
-
 /* --- rel/movie_module/fn_12_30930.c --- */
 /* --- rel/movie_module/fn_12_30930.c --- */
 /* --- rel/movie_module/fn_12_30930.c --- */
@@ -18,8 +17,6 @@ typedef struct Fn12_30930_Arg {
     u32 field_8;
     u32 field_c;
 } Fn12_30930_Arg;
-
-extern u64 __div2i(u32, u32, u32, u32);
 
 void fn_12_30930(MovieModuleData *data, Fn12_30930_Arg *arg) {
     if (data->field_0c == 0) {
@@ -251,8 +248,6 @@ typedef struct SFHStreamRecord {
     unsigned char trailing[0x18];
 } SFHStreamRecord;
 
-int fn_12_30BF8(SFHHandle *handle, unsigned char stream_id, int *result);
-
 static inline int sfh_is_valid(const SFHHandle *handle) {
     int valid;
     switch (handle->state) {
@@ -339,15 +334,6 @@ int fn_12_30BF8(SFHHandle *handle, unsigned char stream_id, int *result) {
     return 1;
 }
 
-/* --- rel/movie_module/fn_12_30D8C.c --- */
-int fn_12_30D8C(SFHHandle *handle, unsigned char stream_id, int *result);
-
-
-
-
-
-
-
 int fn_12_30D8C(SFHHandle *handle, unsigned char stream_id, int *result) {
     const SFHStreamRecord *stream;
     stream = sfh_find_handle_stream(handle, stream_id);
@@ -358,15 +344,6 @@ int fn_12_30D8C(SFHHandle *handle, unsigned char stream_id, int *result) {
     return 1;
 }
 
-/* --- rel/movie_module/fn_12_30F20.c --- */
-int fn_12_30F20(SFHHandle *handle, unsigned char stream_id, int *result);
-
-
-
-
-
-
-
 int fn_12_30F20(SFHHandle *handle, unsigned char stream_id, int *result) {
     const SFHStreamRecord *stream;
     stream = sfh_find_handle_stream(handle, stream_id);
@@ -375,15 +352,6 @@ int fn_12_30F20(SFHHandle *handle, unsigned char stream_id, int *result) {
     *result = stream->expand;
     return 1;
 }
-
-/* --- rel/movie_module/fn_12_310A0.c --- */
-int fn_12_310A0(SFHHandle *handle, unsigned char stream_id, int *result);
-
-
-
-
-
-
 
 int fn_12_310A0(SFHHandle *handle, unsigned char stream_id, int *result) {
     const SFHStreamRecord *stream;
@@ -396,18 +364,6 @@ int fn_12_310A0(SFHHandle *handle, unsigned char stream_id, int *result) {
     return 1;
 }
 
-/* --- rel/movie_module/fn_12_31224.c --- */
-/* --- rel/movie_module/fn_12_31224.c --- */
-
-
-int fn_12_31224(SFHHandle *handle, unsigned char stream_id, int *result);
-
-
-
-
-
-
-
 int fn_12_31224(SFHHandle *handle, unsigned char stream_id, int *result) {
     const SFHStreamRecord *stream;
     stream = sfh_find_handle_stream(handle, stream_id);
@@ -416,15 +372,6 @@ int fn_12_31224(SFHHandle *handle, unsigned char stream_id, int *result) {
     *result = stream->flags & 1;
     return 1;
 }
-
-/* --- rel/movie_module/fn_12_313A8.c --- */
-int fn_12_313A8(SFHHandle *handle, unsigned char stream_id, int *result);
-
-
-
-
-
-
 
 int fn_12_313A8(SFHHandle *handle, unsigned char stream_id, int *result) {
     const SFHStreamRecord *stream;
@@ -435,15 +382,6 @@ int fn_12_313A8(SFHHandle *handle, unsigned char stream_id, int *result) {
     return 1;
 }
 
-/* --- rel/movie_module/fn_12_31528.c --- */
-int fn_12_31528(SFHHandle *handle, unsigned char stream_id, int *result);
-
-
-
-
-
-
-
 int fn_12_31528(SFHHandle *handle, unsigned char stream_id, int *result) {
     const SFHStreamRecord *stream;
     stream = sfh_find_handle_stream(handle, stream_id);
@@ -452,16 +390,6 @@ int fn_12_31528(SFHHandle *handle, unsigned char stream_id, int *result) {
     *result = stream->color_type;
     return 1;
 }
-
-/* --- rel/movie_module/fn_12_316A8.c --- */
-int fn_12_316A8(SFHHandle *handle, unsigned char stream_id, int *result);
-
-
-
-
-
-
-
 
 static inline int sfh_picture_rate(unsigned int code) {
     switch (code) {
@@ -485,20 +413,6 @@ int fn_12_316A8(SFHHandle *handle, unsigned char stream_id, int *result) {
     return 1;
 }
 
-/* --- rel/movie_module/fn_12_31860.c --- */
-/* --- rel/movie_module/fn_12_31860.c --- */
-/* --- rel/movie_module/fn_12_31860.c --- */
-
-
-int fn_12_31860(SFHHandle *handle, unsigned char stream_id, int *width, int *height);
-
-
-
-
-
-
-
-
 int fn_12_31860(SFHHandle *handle, unsigned char stream_id, int *width, int *height) {
     const SFHStreamRecord *stream;
     const unsigned char *dimensions;
@@ -514,16 +428,6 @@ int fn_12_31860(SFHHandle *handle, unsigned char stream_id, int *width, int *hei
     *height &= 0xFFF;
     return 1;
 }
-
-/* --- rel/movie_module/fn_12_319EC.c --- */
-int fn_12_319EC(SFHHandle *handle, unsigned char stream_id, int *result);
-
-
-
-
-
-
-
 
 int fn_12_319EC(SFHHandle *handle, unsigned char stream_id, int *result) {
     const SFHStreamRecord *stream;
@@ -542,15 +446,6 @@ int fn_12_319EC(SFHHandle *handle, unsigned char stream_id, int *result) {
     *result = value;
     return 1;
 }
-
-/* --- rel/movie_module/fn_12_31B5C.c --- */
-int fn_12_31B5C(SFHHandle *handle, unsigned char stream_id, int *result);
-
-
-
-
-
-
 
 int fn_12_31B5C(SFHHandle *handle, unsigned char stream_id, int *result) {
     const SFHStreamRecord *stream;
@@ -577,18 +472,6 @@ int fn_12_31CA4(SFHHandle *handle, unsigned char stream_id, unsigned int *result
     return 1;
 }
 
-/* --- rel/movie_module/fn_12_31DFC.c --- */
-/* --- rel/movie_module/fn_12_31DFC.c --- */
-
-
-int fn_12_31DFC(SFHHandle *handle, unsigned char stream_id, int *result);
-
-
-
-
-
-
-
 int fn_12_31DFC(SFHHandle *handle, unsigned char stream_id, int *result) {
     const SFHStreamRecord *stream;
     stream = sfh_find_handle_stream(handle, stream_id);
@@ -597,15 +480,6 @@ int fn_12_31DFC(SFHHandle *handle, unsigned char stream_id, int *result) {
     *result = stream->codec_bytes[1];
     return 1;
 }
-
-/* --- rel/movie_module/fn_12_31F44.c --- */
-int fn_12_31F44(SFHHandle *handle, unsigned char stream_id, int *result);
-
-
-
-
-
-
 
 int fn_12_31F44(SFHHandle *handle, unsigned char stream_id, int *result) {
     const SFHStreamRecord *stream;
@@ -616,15 +490,6 @@ int fn_12_31F44(SFHHandle *handle, unsigned char stream_id, int *result) {
     *result = stream->codec_bytes[0];
     return 1;
 }
-
-/* --- rel/movie_module/fn_12_320A0.c --- */
-int fn_12_320A0(SFHHandle *handle, unsigned char stream_id, int *result);
-
-
-
-
-
-
 
 int fn_12_320A0(SFHHandle *handle, unsigned char stream_id, int *result) {
     const SFHStreamRecord *stream;
@@ -1148,7 +1013,6 @@ extern void *memcpy(void *destination, const void *source, unsigned long size);
 extern const char *strstr(const char *str1, const char *str2);
 extern const char lbl_12_rodata_10DC[5];
 
-
 static inline int sfh_get_tool_str(SFHHandle *handle, const unsigned char *source, char *output) {
     if (!sfh_is_valid(handle)) return 0;
     memset(output, 0, 0x21);
@@ -1202,15 +1066,6 @@ int fn_12_328CC(SFHHandle *handle, int *major, int *minor) {
     return 1;
 }
 
-/* --- rel/movie_module/fn_12_32A70.c --- */
-/* --- rel/movie_module/fn_12_32A70.c --- */
-
-
-int fn_12_32A70(SFHHandle *handle, unsigned char stream_id, int *result);
-
-
-
-
 static inline const SFHStreamRecord *sfh_find_stream(const unsigned char *header,
                                                      unsigned int stream_id) {
     long i;
@@ -1226,7 +1081,6 @@ static inline const SFHStreamRecord *sfh_find_stream(const unsigned char *header
     }
     return stream;
 }
-
 
 static inline const SFHStreamRecord *sfh_feature_stream(const SFHHandle *handle,
                                                         unsigned int stream_id) {
@@ -1277,13 +1131,6 @@ int fn_12_32A70(SFHHandle *handle, unsigned char stream_id, int *result) {
     }
     return 1;
 }
-
-/* --- rel/movie_module/fn_12_32DBC.c --- */
-int fn_12_32DBC(SFHHandle *handle, unsigned char stream_id, int *result);
-
-
-
-
 
 int fn_12_32DBC(SFHHandle *handle, unsigned char stream_id, int *result) {
     const unsigned char *header;

@@ -68,7 +68,6 @@ void fn_12_5548(void *dst) {
 
 /* --- rel/movie_module/DCT_FsriInitScaleTbl.c --- */
 
-
 void DCT_FsriInitScaleTbl(float scale_table[64]) {
     int index;
     for (index = 0; index < 64; index++) {
@@ -80,7 +79,6 @@ void DCT_FsriInitScaleTbl(float scale_table[64]) {
 const char *fn_12_4E14(void);
 
 extern const double lbl_12_rodata_610[8];
-
 
 extern const char *lbl_12_bss_BA8;
 
@@ -97,21 +95,6 @@ void DCT_FsriInit(void) {
     }
     DCT_FsriInitSparseTbl();
 }
-
-/* --- rel/movie_module/fn_12_57F0.c --- */
-extern void *memcpy(void *dst, const void *src, u32 size);
-
-void *fn_12_57F0(void *dst, const void *src, u32 size);
-
-/* --- rel/movie_module/fn_12_5810.c --- */
-struct fn_12_5810_Arg0 {
-    u32 unk_0;
-    u32 unk_4;
-    u32 unk_8;
-    u32 unk_C;
-    u8 pad_10[0xC];
-    u32 unk_1C;
-};
 
 #define READ_BITS(n, dst) \
     if ((s32)v5 >= 32 - (n)) { \
@@ -147,4 +130,3 @@ struct fn_12_5810_Arg0 {
         (dst) |= v7 >> (64 - (n) - v5); \
     }
 
-void fn_12_5810(struct fn_12_5810_Arg0 *arg0, const void *arg1, int *arg2, int arg3, u32 arg4, u32 arg5, u32 arg6, u32 arg7);

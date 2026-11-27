@@ -40,26 +40,6 @@ static inline s32 fn_12_6C78(MovieItem *item) {
     return 0;
 }
 
-static inline s32 fn_12_6D5C(MovieObject *movie, s32 value) {
-    if (movie == NULL) {
-        movie = lbl_12_bss_4DB8;
-        movie->callback_arg1 = value;
-        if (value != 0) {
-            if (movie->callback0 != NULL) {
-                movie->callback0(movie->callback_arg0);
-            }
-        }
-    } else {
-        movie->count = value;
-        if (value != 0) {
-            if (movie->callback1 != NULL) {
-                movie->callback1(movie->callback_arg1);
-            }
-        }
-    }
-    return value;
-}
-
 static inline void report_error(s32 unused, s32 error) {
     MovieError *handler = (MovieError *)lbl_12_bss_4DB8;
     handler->error = error;

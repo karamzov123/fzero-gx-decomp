@@ -1,18 +1,5 @@
 #include "types.h"
 
-
-/* --- rel/movie_module/fn_12_11254.c --- */
-typedef struct MovieModule {
-    u8 unk_000[0x2a8];
-    void (*callback)(struct MovieModule *);
-    u8 unk_2ac[0x5c];
-    s32 current_frame;
-    u8 unk_30c[0x08];
-    s32 field_314;
-} MovieModule;
-
-void fn_12_11254(MovieModule *movie, s32 frame);
-
 /* --- rel/movie_module/fn_12_112D4.c --- */
 typedef struct Src {
     u8 *base0;

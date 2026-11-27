@@ -1,6 +1,5 @@
 #include "types.h"
 
-
 /* --- rel/movie_module/fn_12_89D4.c --- */
 /* --- rel/movie_module/fn_12_89D4.c --- */
 typedef struct MovieModule {
@@ -39,7 +38,6 @@ struct fn_12_8A10_Arg0 {
     u32 unk_308;
 };
 
-
 void fn_12_8A10(struct fn_12_8A10_Arg0 *arg0) {
     u32 v0;
     u32 v1;
@@ -63,15 +61,3 @@ void fn_12_8A10(struct fn_12_8A10_Arg0 *arg0) {
     *(u32 *)((u8 *)v0 + 44) = (*(u32 *)((u8 *)v0 + 36) + 8);
     fn_12_8878((void *)((u32)arg0 + 832), v2, (void *)v0, (void *)*(u32 *)((u8 *)(u32)arg0 + 64));
 }
-
-/* --- rel/movie_module/fn_12_8AEC.c --- */
-typedef struct MovieModule_u1 {
-    u8 _pad120[0x120];
-    s32 field_120;
-    u8 _pad124[0x30];
-    s32 field_154;
-    u8 _pad158[0x4c];
-    s32 field_1a4;
-} MovieModule_u1;
-
-void fn_12_8AEC(MovieModule_u1 *module);

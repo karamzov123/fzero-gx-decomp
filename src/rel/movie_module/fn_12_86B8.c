@@ -1,13 +1,7 @@
 #include "types.h"
 
-/* --- rel/movie_module/fn_12_86B8.c --- */
-struct fn_12_86B8_Arg0 {
-    u8 pad_0[0x118];
-    u32 unk_118;
-};
 extern u32 fn_12_847C(void *, u32, void *, void *, void *);
 extern u32 fn_12_80BC(u32, void *, u32);
-
 
 void fn_12_86B8(void *arg0) {
     u32 temp_r3;
@@ -78,7 +72,6 @@ typedef struct MovieModule_u2 {
     u8 _pad2c4[0x50];
     u32 field_314;
 } MovieModule_u2;
-
 
 #pragma opt_propagation off
 void fn_12_879C(MovieModule_u2 *module) {

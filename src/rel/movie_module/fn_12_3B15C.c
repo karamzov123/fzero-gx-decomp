@@ -1,24 +1,5 @@
 #include "types.h"
 
-
-/* --- rel/movie_module/fn_12_3ADC4.c --- */
-typedef struct MovieObject {
-    u8 pad[0x58];
-    s32 state;
-} MovieObject;
-
-extern s32 fn_8004E580(MovieObject *self);
-extern MovieObject *fn_12_34CC8(void);
-extern u32 lbl_12_bss_1CC58;
-extern u32 lbl_12_bss_1CC5C;
-extern s32 lbl_12_bss_1B9DC[52];
-extern MovieObject *fn_12_38DBC(void);
-extern s32 fn_12_34C44(s32 *state);
-extern void fn_12_2CD6C(void);
-extern void fn_12_34CA8(MovieObject *movie);
-
-s32 fn_12_3ADC4(MovieObject *self);
-
 /* --- rel/movie_module/fn_12_3AE84.c --- */
 typedef struct SJCK {
     unsigned char *data;
@@ -48,127 +29,10 @@ struct SJ {
     const SJInterface *interface;
 };
 
-typedef struct LSC LSC;
-
 typedef struct SfdHandle SfdHandle;
 
-typedef struct MwsPlayer MwsPlayer;
-
-typedef struct MwsStHandle MwsStHandle;
-
-typedef struct MwsSupply MwsSupply;
-
-typedef struct MwsSupplyInterface {
-    void *reserved[5];
-    void (*start)(MwsSupply *supply);
-} MwsSupplyInterface;
-
-struct MwsSupply {
-    const MwsSupplyInterface *interface;
-};
-
-struct MwsStHandle {
-    int active;
-    unsigned char reserved_004[0x08];
-    SJ *stream;
-    int element_id;
-    void *backend;
-};
-
-struct MwsPlayer {
-    int reserved_000;
-    int active;
-    int status;
-    unsigned char reserved_00C[0x34];
-    SfdHandle *sfd;
-    void *stream;
-    unsigned char reserved_048[0x04];
-    LSC *loader;
-    unsigned char reserved_050[12];
-    int sleeping_server;
-    int in_mwply_server;
-    int in_sfd_server;
-    int decoder_server_active;
-    unsigned char reserved_070[0x04];
-    signed char concat_play;
-    signed char terminating_supply;
-    signed char paused;
-    unsigned char reserved_077[157];
-    const char *filename;
-    int filename_capacity;
-    int start_requested;
-    int file_offset;
-    int file_length;
-    int file_end_position;
-    MwsSupply *supply;
-    unsigned char reserved_1D4[0xC0];
-    MwsStHandle sound;
-    unsigned char reserved_2AC[0x0C];
-};
-
-struct mwsfdsvr____rodata_0 {
-    unsigned char padding_0[92];
-    const char start_failed[41];
-    unsigned char padding_133[3];
-    const char link_failed[42];
-    unsigned char padding_178[2];
-    const char terminate_failed[46];
-};
-extern struct mwsfdsvr____rodata_0 lbl_12_rodata_2D28;
-
-int fn_12_3AE84(MwsPlayer *player);
-
-extern void *fn_12_34C84(void);
-extern void fn_12_34C64(void *value);
-
-extern int fn_80056BE0(LSC *loader);
-
-extern int fn_12_38A0C(int error);
-
-extern void fn_12_3858C(MwsPlayer *player);
-
-extern void fn_12_3500C(MwsPlayer *player);
-
-extern int fn_12_342B8(LSC *loader);
-
-extern void MWSFSFX_DecideCompoMode(MwsPlayer *player);
-
-extern void MWSFSVM_Error(const char *message, ...);
-
-extern int MWSST_GetStat(MwsStHandle *sound);
-
-extern void MWSST_Pause(MwsStHandle *sound, int paused);
-
-extern int fn_12_34E90(void *stream);
-
-extern int fn_12_34FD0(void *stream);
-
-extern int fn_12_34EE4(void *stream);
-
-extern void fn_12_34F04(void *stream, const char *filename, int offset, int length,
-                        int end_position);
-
-extern int fn_12_2DA6C(SfdHandle *handle);
-
-extern int fn_12_23280(SfdHandle *handle);
-
-extern int fn_12_2B2E4(SfdHandle *handle);
-
-extern void mwPlyChkSupply(MwsPlayer *player);
-
-extern void fn_12_39A18(MwsPlayer *player);
-
-extern void mwSfdPause(MwsPlayer *player, int paused);
-
-int fn_12_3AE84(MwsPlayer *player);
-
 /* --- rel/movie_module/fn_12_3B15C.c --- */
 /* --- rel/movie_module/fn_12_3B15C.c --- */
-
-
-
-
-
 
 typedef struct MwsStHandle_u2 MwsStHandle_u2;
 
@@ -198,10 +62,6 @@ typedef struct MwsStManager {
     MwsStManagerInterface *interface;
     int active_count;
 } MwsStManager;
-
-void fn_12_3B15C(MwsStHandle_u2 *handle);
-
-extern void MWSFSVM_GotoIdleBorder(void);
 
 extern MwsStManager lbl_12_data_E90;
 
@@ -264,9 +124,6 @@ void fn_12_3B15C(MwsStHandle_u2 *handle) {
 
 /* --- rel/movie_module/fn_12_3B2EC.c --- */
 
-
-
-
 typedef struct MwsStPlayerPrefix {
     unsigned char reserved_000[0x40];
     SfdHandle *player;
@@ -274,12 +131,7 @@ typedef struct MwsStPlayerPrefix {
     MwsStHandle_u2 sound;
 } MwsStPlayerPrefix;
 
-
-void fn_12_3B2EC(MwsStPlayerPrefix *wrapper);
-
 extern int fn_12_26734(SfdHandle *handle, int element_id, SJ *stream, int channel, int flags);
-
-
 
 void fn_12_3B2EC(MwsStPlayerPrefix *wrapper) {
     MwsStHandle_u2 *sound = &wrapper->sound;

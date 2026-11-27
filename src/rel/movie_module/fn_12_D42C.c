@@ -2,7 +2,6 @@
 #include "sofdec/mpvmc_ppc_h2.h"
 #include "sofdec/mpvmc_ppc.h"
 
-
 /* --- rel/movie_module/fn_12_D42C.c --- */
 /* --- rel/movie_module/fn_12_D42C.c --- */
 typedef struct MPVMCContext MPVMCContext;
@@ -20,8 +19,6 @@ struct MPVMCContext {
     u8 field_2c[8];
     MPVMCFunction functions16[4];
 };
-
-void fn_12_D42C(MPVMCContext *context);
 
 void fn_12_D42C(MPVMCContext *context) {
     s32 row;
@@ -122,9 +119,6 @@ void fn_12_D55C(MPVMCContext *context) {
         break;
     }
 }
-
-/* --- rel/movie_module/fn_12_D948.c --- */
-void fn_12_D948(MPVMCContext *context);
 
 static inline u32 mpvmc_avg_masked(u32 w, u32 a, u32 m1, u32 m2) {
     u32 x = w ^ a;

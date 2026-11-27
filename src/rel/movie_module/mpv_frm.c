@@ -377,12 +377,6 @@ typedef struct MPVPictureCopy {
     u32 a[20];
 } MPVPictureCopy;
 
-int fn_12_A858(SJ_u1 *context_arg, MPVFrameBuffers *stream_arg, MPVContext_u1 *buffers_arg);
-
-
-
-
-
 extern int fn_12_AE70(MPVContext_u1 *context, SJ_u1 *stream);
 
 extern int fn_12_20168(MPVContext_u1 *context, SJ_u1 *stream, MPVFrameBuffers *buffers);
@@ -396,8 +390,6 @@ extern void fn_12_12590(MPVContext_u1 *context);
 extern void fn_12_8B0C(MPVContext_u1 *context);
 
 extern void fn_12_8AEC(MPVContext_u1 *context);
-
-extern void MPVCDEC_InitFrm(void *context);
 
 extern void fn_12_1258C(MPVContext_u1 *context);
 
@@ -450,10 +442,3 @@ int fn_12_A858(SJ_u1 *context_arg, MPVFrameBuffers *stream_arg, MPVContext_u1 *b
 // fn_12_A9C0: empty in retail (single blr).
 void fn_12_A9C0(void) {
 }
-
-/* --- rel/movie_module/fn_12_A9C4.c --- */
-
-int fn_12_A9C4(void *movie, void *out_a, void *out_b);
-
-/* --- rel/movie_module/fn_12_AA38.c --- */
-int fn_12_AA38(void *movie, void *out_a, void *out_b, void *out_c);
