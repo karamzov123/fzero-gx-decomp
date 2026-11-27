@@ -345,6 +345,8 @@ config.libs = [
 CANONICAL_VERSION = VERSIONS[DEFAULT_VERSION]
 CANONICAL_UNITS = Path("config") / CANONICAL_VERSION / "units.json"
 REGIONAL_FRAGMENTS = CANONICAL_UNITS.with_name("regional_fragments.json")
+# Fragments use the standard unit schema plus `regional_split` (canonical
+# addresses) and, for a retained whole object, an optional `compile_source`.
 
 
 def unit_matches(u: Dict[str, Any], version: str) -> bool:
@@ -508,6 +510,8 @@ def load_generated_units() -> None:
         if u.get("tu"):
             opts["src_dir"] = str(Path("build") / config.version / "gen")
         src = u["source"]
+        if u.get("compile_source"):
+            opts["source"] = u["compile_source"]
         if u.get("asm"):
             # an assembly unit: the object keeps the split's unit name (dol/x.c) so the template
             # finds its configuration; the source is the split's asm copied into src/
@@ -563,7 +567,7 @@ def _needs_shift_jis(path: Path) -> bool:
 
 
 if config.shift_jis:
-    _srcs = {Path("src") / (u.get("tu") or u["source"]) for u in version_units()
+    _srcs = {Path("src") / (u.get("tu") or u.get("compile_source") or u["source"]) for u in version_units()
              if not u.get("asm") and u.get("status") == "matching"}
     config.shift_jis = any(p.exists() and _needs_shift_jis(p) for p in _srcs)
 

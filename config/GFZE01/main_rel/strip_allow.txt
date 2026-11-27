@@ -30,6 +30,13 @@ stcoli_damage_timer  # coli_b.c, inlined in fn_1_24A4C
 stcoli_slide  # coli_b.c, inlined in fn_1_266A8
 stcoli_fallback_axis  # coli_b.c, inlined in fn_1_290E8
 stcoli_align_to_ground  # coli_b.c, inlined in fn_1_290E8
+font_int_to_float  # font.c, placeholder for a stripped retail function (its trace: .rodata 10F8 int-to-float constant)
+get_tex_id  # font.c, placeholder for a stripped retail function (its trace: .data 1C39C error string)
+font_clip_reset  # font.c, inlined in fn_1_4C16C, fn_1_4D0A0 and fn_1_4D494
+font_set_saved  # font.c, inlined in fn_1_4DC20 and fn_1_4DC6C
+font_test  # font.c, placeholder for a stripped retail function (its traces: .rodata 26E8..26F4, .data "%s" "It's Font\nTest.")
+SprBufChg  # sprite.c, placeholder for a stripped retail function (its traces: .data "sprite.c" and the SprBufUnChg/SprBufChg assert string, .bss 4E6D0/646D0 order)
+sprite_scale_80_60  # sprite.c, placeholder for a stripped retail function (its trace: .rodata 283C/2840 80.0f 60.0f)
 depth_fade_far  # car.c, removed helper inferred from the unread .rodata 3528 f64 0.1 (body inferred), before fn_1_7EB8C
 car_literal_order_3A50  # car.c, owner-accepted literal-order placeholder (retail body unknown), before fn_1_80294
 car_literal_order_3B70  # car.c, owner-accepted literal-order placeholder (retail body unknown), before fn_1_84860

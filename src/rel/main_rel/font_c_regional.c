@@ -1,3 +1,4 @@
+/* Retained Japan/PAL compiler inputs pending a verified whole-TU regional build. */
 #include "types.h"
 #include "dolphin/types.h"
 #include "rel/main_rel/globals.h"

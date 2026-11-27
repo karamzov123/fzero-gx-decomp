@@ -935,12 +935,12 @@
    "file": "bitmap.c",
    "text": [
     293588,
-    298024
+    296940
    ],
    "data_sec": 5,
    "data": [
     107368,
-    113864
+    107448
    ],
    "anchor_refs": [
     293588,
@@ -973,9 +973,7 @@
     "fn_1_486F8",
     "fn_1_48730",
     "fn_1_4877C",
-    "fn_1_48780",
-    "fn_1_487EC",
-    "fn_1_48A0C"
+    "fn_1_48780"
    ],
    "confidence": {
     "text+data": 1,
@@ -986,18 +984,20 @@
   {
    "file": "font.c",
    "text": [
-    298024,
-    318496
+    296940,
+    318672
    ],
    "data_sec": 5,
    "data": [
-    113864,
-    116088
+    107448,
+    115968
    ],
    "anchor_refs": [
     298024
    ],
    "functions": [
+    "fn_1_487EC",
+    "fn_1_48A0C",
     "fn_1_48C28",
     "fn_1_48D80",
     "fn_1_492F0",
@@ -1068,30 +1068,30 @@
     "fn_1_4D2AC",
     "fn_1_4D494",
     "fn_1_4D4C8",
-    "fn_1_4D784"
+    "fn_1_4D784",
+    "fn_1_4DC20",
+    "fn_1_4DC6C",
+    "fn_1_4DCB8"
    ],
    "confidence": {
-    "text+data": 11,
-    "text-range": 207,
+    "text+data": 76,
+    "text-range": 0,
     "data-vote": 0
    }
   },
   {
-   "file": "font_b.c",
+   "file": "sprite.c",
    "text": [
-    318496,
-    344412
+    318672,
+    344772
    ],
    "data_sec": 5,
    "data": [
-    116088,
+    115968,
     116304
    ],
    "anchor_refs": [],
    "functions": [
-    "fn_1_4DC20",
-    "fn_1_4DC6C",
-    "fn_1_4DCB8",
     "fn_1_4DCD0",
     "fn_1_4DCE0",
     "fn_1_4DCF0",
@@ -1171,18 +1171,26 @@
     "fn_1_53BD8",
     "fn_1_53C9C",
     "fn_1_53E40",
-    "fn_1_53FE4"
+    "fn_1_53FE4",
+    "fn_1_5415C",
+    "fn_1_5417C",
+    "fn_1_541A8",
+    "fn_1_54278",
+    "fn_1_5428C",
+    "fn_1_54298",
+    "fn_1_542A8",
+    "fn_1_542B8"
    ],
    "confidence": {
-    "text+data": 83,
+    "text+data": 88,
     "text-range": 0,
     "data-vote": 0
    }
   },
   {
-   "file": "font_c.c",
+   "file": "ord_tbl.c",
    "text": [
-    344412,
+    344772,
     346612
    ],
    "data_sec": 5,
@@ -1192,14 +1200,6 @@
    ],
    "anchor_refs": [],
    "functions": [
-    "fn_1_5415C",
-    "fn_1_5417C",
-    "fn_1_541A8",
-    "fn_1_54278",
-    "fn_1_5428C",
-    "fn_1_54298",
-    "fn_1_542A8",
-    "fn_1_542B8",
     "fn_1_542C4",
     "fn_1_54320",
     "fn_1_54384",
@@ -1215,16 +1215,16 @@
     "fn_1_548EC"
    ],
    "confidence": {
-    "text+data": 66,
-    "text-range": 0,
+    "text+data": 0,
+    "text-range": 13,
     "data-vote": 0
    }
   },
   {
-   "file": "font_d.c",
+   "file": "frustum.c",
    "text": [
     346612,
-    353892
+    348440
    ],
    "data_sec": 5,
    "data": [
@@ -1239,7 +1239,30 @@
     "fn_1_54E34",
     "fn_1_54F5C",
     "fn_1_550A8",
-    "fn_1_550E0",
+    "fn_1_550E0"
+   ],
+   "confidence": {
+    "text+data": 0,
+    "text-range": 7,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "objput.c",
+   "text": [
+    348440,
+    354092
+   ],
+   "data_sec": 5,
+   "data": [
+    116304,
+    116320
+   ],
+   "anchor_refs": [
+    353892,
+    353952
+   ],
+   "functions": [
     "fn_1_55118",
     "fn_1_55210",
     "fn_1_553C4",
@@ -1277,30 +1300,7 @@
     "fn_1_56554",
     "fn_1_565E8",
     "fn_1_565F4",
-    "fn_1_565F8"
-   ],
-   "confidence": {
-    "text+data": 45,
-    "text-range": 0,
-    "data-vote": 0
-   }
-  },
-  {
-   "file": "objput.c",
-   "text": [
-    353892,
-    354092
-   ],
-   "data_sec": 5,
-   "data": [
-    116304,
-    116320
-   ],
-   "anchor_refs": [
-    353892,
-    353952
-   ],
-   "functions": [
+    "fn_1_565F8",
     "fn_1_56664",
     "fn_1_566A0",
     "fn_1_566DC",
@@ -1308,8 +1308,8 @@
     "fn_1_56724"
    ],
    "confidence": {
-    "text+data": 2,
-    "text-range": 3,
+    "text+data": 0,
+    "text-range": 43,
     "data-vote": 0
    }
   },
