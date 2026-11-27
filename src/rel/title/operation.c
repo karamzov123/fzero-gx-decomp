@@ -6904,6 +6904,13 @@ void fn_8_C038(void) {
 /* fzgx:end fn_8_C038 */
 
 /* fzgx:begin fn_8_C7B0 */
+#include "dolphin/gx.h"
+
+/* Game code writes the pipe through a pointer, which can alias other memory: retail reloads
+   the z constant for every vertex, which the named GXWGFifo object would let the compiler skip. */
+#define GX_PIPE (*(volatile PPCWGPipe *)GX_FIFO_BASE)  /* volatile: hardware port */
+#define GXPosition3f32(x, y, z) (GX_PIPE.f32 = (x), GX_PIPE.f32 = (y), GX_PIPE.f32 = (z))
+
 #pragma section code_type ".fzgxpool"
 __declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
@@ -7075,18 +7082,10 @@ void fn_8_C7B0(void *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     loc_8 = *(u32 *)(arg0);
     fn_800371F8(1, &loc_8);
     fn_8003462C(128, 7, 4);
-    *(f32 *)((u8 *)0xCC008000) = arg3;  /* fzgx-allow: A1,A2 GX FIFO write port */
-    *(f32 *)((u8 *)0xCC008000) = arg1;  /* fzgx-allow: A1,A2 GX FIFO write port */
-    *(f32 *)((u8 *)0xCC008000) = lbl_8_rodata_2FC[0];  /* fzgx-allow: A1,A2 GX FIFO write port */
-    *(f32 *)((u8 *)0xCC008000) = arg4;  /* fzgx-allow: A1,A2 GX FIFO write port */
-    *(f32 *)((u8 *)0xCC008000) = arg1;  /* fzgx-allow: A1,A2 GX FIFO write port */
-    *(f32 *)((u8 *)0xCC008000) = lbl_8_rodata_2FC[0];  /* fzgx-allow: A1,A2 GX FIFO write port */
-    *(f32 *)((u8 *)0xCC008000) = arg4;  /* fzgx-allow: A1,A2 GX FIFO write port */
-    *(f32 *)((u8 *)0xCC008000) = arg2;  /* fzgx-allow: A1,A2 GX FIFO write port */
-    *(f32 *)((u8 *)0xCC008000) = lbl_8_rodata_2FC[0];  /* fzgx-allow: A1,A2 GX FIFO write port */
-    *(f32 *)((u8 *)0xCC008000) = arg3;  /* fzgx-allow: A1,A2 GX FIFO write port */
-    *(f32 *)((u8 *)0xCC008000) = arg2;  /* fzgx-allow: A1,A2 GX FIFO write port */
-    *(f32 *)((u8 *)0xCC008000) = lbl_8_rodata_2FC[0];  /* fzgx-allow: A1,A2 GX FIFO write port */
+    GXPosition3f32(arg3, arg1, lbl_8_rodata_2FC[0]);
+    GXPosition3f32(arg4, arg1, lbl_8_rodata_2FC[0]);
+    GXPosition3f32(arg4, arg2, lbl_8_rodata_2FC[0]);
+    GXPosition3f32(arg3, arg2, lbl_8_rodata_2FC[0]);
     fn_80074918(1, 3, 1);
 }
 /* fzgx:end fn_8_C7B0 */
