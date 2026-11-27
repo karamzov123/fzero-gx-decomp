@@ -2527,7 +2527,7 @@
    "file": "prog.c",
    "text": [
     679304,
-    684692
+    684008
    ],
    "data_sec": 5,
    "data": [
@@ -2555,7 +2555,27 @@
     "fn_1_A6F1C",
     "fn_1_A6F2C",
     "fn_1_A6F6C",
-    "fn_1_A6FA0",
+    "fn_1_A6FA0"
+   ],
+   "confidence": {
+    "text+data": 1,
+    "text-range": 14,
+    "data-vote": 0
+   }
+  },
+  {
+   "file": "prog_b.c",
+   "text": [
+    684008,
+    684692
+   ],
+   "data_sec": 5,
+   "data": [
+    213844,
+    213844
+   ],
+   "anchor_refs": [],
+   "functions": [
     "fn_1_A6FE8",
     "fn_1_A7024",
     "fn_1_A714C",
@@ -2566,8 +2586,8 @@
     "fn_1_A728C"
    ],
    "confidence": {
-    "text+data": 1,
-    "text-range": 14,
+    "text+data": 8,
+    "text-range": 0,
     "data-vote": 0
    }
   },
