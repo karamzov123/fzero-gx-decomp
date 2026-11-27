@@ -34,7 +34,7 @@ The full scope, requirements and measured baseline are in
 
 ## Current Status
 
-Measured on **2026-11-27** (HEAD `d6188b7e8`), USA **GFZE01**:
+Measured on **2026-11-27**, USA **GFZE01**:
 
 | Measure | Value |
 |---|---|
@@ -52,8 +52,8 @@ use the same definitions:
 | Requirement | 2026-11-20 | 2026-11-27 |
 |---|---|---|
 | TU map | RELs: 14 `tus.json` covering 4,074 functions; DOL: none | Every executable mapped: all RELs (4,905 functions; `movie_module` from the CRI Sofdec link order, `sample` provisional) and the DOL (2,230 functions in 259 TUs, plus a `.init` map); some boundaries and names are inferred and say so |
-| R1: one unit per TU | 3,214 code units; 13 of 69 REL TU files build as one unit; 1,095 `noprologue` blocks | 1,418 code units; 82 of 145 REL TU files and 255 of 259 DOL TUs build as one unit; 714 `noprologue` blocks |
-| R2/R3: data ownership, build independence | 4,565 data units; 1,214 pool-remapped units; `.fzgxpool` primers in 142 files; 8,684 scaffolding names | 3,452 data units; 595 pool-remapped units; primers in 98 files; 4,735 scaffolding names |
+| R1: one unit per TU | 3,214 code units; 13 of 69 REL TU files build as one unit; 1,095 `noprologue` blocks | 1,416 code units; 83 of 145 REL TU files and 255 of 259 DOL TUs build as one unit; 710 `noprologue` blocks |
+| R2/R3: data ownership, build independence | 4,565 data units; 1,214 pool-remapped units; `.fzgxpool` primers in 142 files; 8,684 scaffolding names | 3,450 data units; 594 pool-remapped units; primers in 98 files; 4,735 scaffolding names |
 | R4: platform boundary (REL source) | 338 hardware-address literals; 675 MWCC intrinsic calls | 250 literals; 634 intrinsic calls |
 | R5: portable game C (REL source) | 404 address-to-integer casts; 274 pointer views of `unk_` fields | 318 casts; 223 views |
 | R6: compiler-diff devices | 92 marked; 816 optimizer-pragma setters | 519 marked; 621 setters. The marked count rose because existing steering was labelled as devices, not added |
@@ -65,15 +65,14 @@ device-free or portable. See the [assembly and device policy](docs/ASM_POLICY.md
 
 ### Next Steps
 
-1. **TU collapse of the remaining REL files** (R1, R3): 63 REL TU files still build as several
-   units, most of them in `main_rel` (596 units), `movie_module` (281), `customize` and
+1. **TU collapse of the remaining REL files** (R1, R3): 62 REL TU files still build as several
+   units, most of them in `main_rel` (596 units), `movie_module` (279), `customize` and
    `interview`. The pipeline is `tools/consolidate/rel_unit_split.py` -> `fzgx tutruth` ->
-   `tools/consolidate/relmerge.py` (see [TU_COLLAPSE.md](docs/TU_COLLAPSE.md)). It collapses the
-   Sofdec TUs; for the older game TUs, `tutruth` must still learn to verify Japan and PAL (its
-   rewrite can match USA and change PAL) and to leave TU-owned data definitions out of the shared
-   prologue (merged units define them twice).
-2. **Data ownership** (R2): 3,452 data units remain, 2,512 of them in `main_rel`, mostly small
-   string and table slices of already-mapped TUs; move them into their TUs with real types.
+   `tools/consolidate/relmerge.py` (see [TU_COLLAPSE.md](docs/TU_COLLAPSE.md)). Reconciliation
+   now checks each matching region and keeps named prologue data with the split that owns it.
+2. **Data ownership** (R2): 3,450 import units remain, mostly small string and table slices.
+   `tools/consolidate/rel_own_data.py` can move verified adjacent imports into one-unit REL TUs;
+   the first transfers are in `sample/_prolog.c` and `main_rel/burner.c`.
 3. **Platform boundary and portable C** (R4, R5): route hardware and intrinsics through SDK
    interfaces; replace pointer/integer punning with typed pointers.
 4. Device removal, natural C and naming continue alongside (R6, R7).
