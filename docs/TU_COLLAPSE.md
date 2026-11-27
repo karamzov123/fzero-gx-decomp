@@ -204,6 +204,10 @@ identifies three `.init` ranges with siblings in the `.text` map. The trailing
 ownership evidence only: source names, split extents, compilation and linkage
 are unchanged.
 
+The consolidation TU guard reads this map alongside the `.text` map. Its
+`text_map_file` entries identify the same owner across sections; other `.init`
+owners remain distinct when checking candidate merges.
+
 `dol/trk/mem_TRK.c` owns the two `.init` wrappers and the `.text` fill routine
 in one GC/1.3.2 object. Keeping the fill definition after the wrappers retains
 the retail call instead of inlining it. USA, Japan and PAL have the same
