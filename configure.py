@@ -511,6 +511,11 @@ def load_generated_units() -> None:
             opts["src_dir"] = str(Path("build") / config.version / "gen")
         src = u["source"]
         if u.get("compile_source"):
+            # mwcc writes `-o <dir>` objects named after the source file: a different stem
+            # leaves the declared object unbuilt (a stale copy is linked, a fresh tree fails)
+            if Path(u["compile_source"]).stem != Path(src).stem:
+                sys.exit(f"{u['source']}: compile_source {u['compile_source']} must have the "
+                         f"same file name; put the regional copy in a subdirectory")
             opts["source"] = u["compile_source"]
         if u.get("asm"):
             # an assembly unit: the object keeps the split's unit name (dol/x.c) so the template

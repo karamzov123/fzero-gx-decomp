@@ -1434,6 +1434,6 @@
     "regional_split": [
       "\t.text       start:0x00056664 end:0x0005672C"
     ],
-    "compile_source": "rel/main_rel/objput_regional.c"
+    "compile_source": "rel/main_rel/regional/objput.c"
   }
 ]
