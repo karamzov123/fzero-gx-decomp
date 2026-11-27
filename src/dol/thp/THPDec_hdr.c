@@ -10,7 +10,8 @@ typedef struct ThpComp {
     u16 pred;       /* 0x06 */
     s32 w8;         /* 0x08 */
     s32 hC;         /* 0x0C */
-    u8 pad10[0x8];  /* 0x10 */
+    u8 *buf;        /* 0x10 */
+    u8 pad14[0x4];  /* 0x14 */
     s32 hs;         /* 0x18 */
     s32 vs;         /* 0x1C */
     s32 blocks;     /* 0x20 */
@@ -85,8 +86,10 @@ s32 fn_80039C40(ThpDec *d) {
     u8 i;
     u32 b;
     ThpComp *c;
+    /* WARNING: compiler-diff device, not original code: lab_t0/lab_t1 carriers for divUp arguments; d->height and d->maxV * 8 written directly 16 diff lines, lab_t1 alone dropped 8 (divUp operand order a+b vs (a-1)+b) */
     u32 lab_t0;
     u32 lab_t1;
+    /* WARNING: compiler-diff device, not original code: lab_t1_ divisor carrier; d->maxH / d->maxV passed directly 34 diff lines */
     u32 lab_t1_;
     u8 bb;
 
@@ -121,16 +124,13 @@ s32 fn_80039C40(ThpDec *d) {
     b = divUp(lab_t0, lab_t1);
     d->unk_7a8 = divUp(lab_t0, b);
     {
-        u8 fzgx_loop_i_1473;
-        for (fzgx_loop_i_1473 = 0; fzgx_loop_i_1473 < d->numComp; fzgx_loop_i_1473++) {
-            lab_t0 = d->width * (d->comps)[fzgx_loop_i_1473].h;
+        u8 k;
+        for (k = 0; k < d->numComp; k++) {
             lab_t1_ = d->maxH;
-            (d->comps)[fzgx_loop_i_1473].w8 = divUp(lab_t0, lab_t1_);
-            lab_t0 = d->height * (d->comps)[fzgx_loop_i_1473].v;
+            (d->comps)[k].w8 = divUp(d->width * (d->comps)[k].h, lab_t1_);
             lab_t1_ = d->maxV;
-            (d->comps)[fzgx_loop_i_1473].hC = divUp(lab_t0, lab_t1_);
+            (d->comps)[k].hC = divUp(d->height * (d->comps)[k].v, lab_t1_);
         }
-        i = fzgx_loop_i_1473;
     }
     return 0;
 }
@@ -224,19 +224,17 @@ u8 fn_8003A1CC(ThpDec *info) {
     return 0;
 }
 
-s32 fn_8003A3D4(u8 *arg0) {
+s32 fn_8003A3D4(ThpDec *d) {
     u8 count;
     u8 i;
-    struct { u8 *value; } p;
 
-    *(u8 **)(arg0 + 0x400) += 2;
-    count = *(*(u8 **)(arg0 + 0x400))++;
-    if (count != *(arg0 + 0x41C)) {
+    d->ptr += 2;
+    count = *d->ptr++;
+    if (count != d->numComp) {
         return 6;
     }
 
-    p.value = arg0;
-    for (i = 0; i < count; i++, p.value += 0x30) {
+    for (i = 0; i < count; i++) {
         s32 hi;
         u16 val;
         s32 lo;
@@ -244,36 +242,34 @@ s32 fn_8003A3D4(u8 *arg0) {
         s16 shift;
         s32 diff;
 
-        (*(u8 **)(arg0 + 0x400)) = (*(u8 **)(arg0 + 0x400)) + 1;
-        val = (*(*(u8 **)(((0x400) + arg0)))++);
+        d->ptr++;
+        val = *d->ptr++;
         hi = val >> 4;
-        *(u8 *)(p.value + 0x6C4) = hi;
+        d->comps[i].dc = hi;
         lo = val & 0xF;
-        *(u8 *)(p.value + 0x6C5) = lo;
-        if (!(*(((0x418) + arg0)) & (1 << hi))) {
+        d->comps[i].ac = lo;
+        if (!(d->validHuffmanTabs & (1 << hi))) {
             return 9;
         }
-        if (!(*(((0x418) + arg0)) & (1 << (lo + 1)))) {
+        if (!(d->validHuffmanTabs & (1 << (lo + 1)))) {
             return 9;
         }
 
-        diff = *(arg0 + 0x41B) - *(((0x6C2) + p.value));
-        unk8 = (*(u32 *)(p.value + 0x6C8));
+        diff = d->maxV - d->comps[i].v;
+        unk8 = d->comps[i].w8;
         shift = 16 >> diff;
-        *(u32 *)(p.value + 0x6D0) = *(u32 *)(arg0 + 0x7B4);
-        *(u32 *)(arg0 + 0x7B4) += ((u16)unk8) * ((u16)shift);
+        d->comps[i].buf = d->heap;
+        d->heap += ((u16)unk8) * ((u16)shift);
     }
 
-    *(u8 **)(arg0 + 0x400) += 3;
-    return fn_8003A91C((ThpDec *)arg0);
+    d->ptr += 3;
+    return fn_8003A91C(d);
 }
-
+/* WARNING: compiler-diff device, not original code: opt_propagation off + opt_lifetimes off around this function (THP SDK source has no pragmas); without both 715 object diff lines, keeping only opt_lifetimes off 14 */
 #pragma opt_propagation off
 #pragma opt_lifetimes off
 u8 fn_8003A4E8(ThpDec *d, u8 idx, u8 *counts) {
-    u32 *fzgx_live_;
-    u32 *fzgx_live;
-    u32 *fzgx_live_2;
+    /* WARNING: compiler-diff device, not original code: one-field carrier; plain s8 c 50 diff lines */
     struct { s8 value; } c;
     s32 j;
     u32 t;
@@ -285,11 +281,8 @@ u8 fn_8003A4E8(ThpDec *d, u8 idx, u8 *counts) {
     for (j = 1; j <= 16; j++) {
         n += ((j - 1)[counts]);
     }
-    fzgx_live_ = (u32 *)d->heap;
-    fzgx_live = fzgx_live_;
-    ((idx & 0xFF)[d->huff]).huffsize = (s8 *)fzgx_live;
-    fzgx_live_2 = (u32 *)d->heap;
-    base = n + (u32)fzgx_live_2;
+    ((idx & 0xFF)[d->huff]).huffsize = (s8 *)d->heap;
+    base = n + (u32)d->heap;
     d->heap = (u8 *)(base + 1);
     t = 0;
     for (i = 1; i <= 16; i++) {

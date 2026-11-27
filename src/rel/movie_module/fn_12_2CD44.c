@@ -38,6 +38,7 @@ struct fn_12_2CDD0_Arg3 { u32 unk_0; };
 struct fn_12_2CDD0_Copy12 { u32 a[3]; };
 
 static inline s32 find_entry(u32 v1, u32 v2, u32 v3, u32 arg2, s32 v8, s32 v9, s32 v7, u32 v5) {
+    /* WARNING: compiler-diff device, not original code: one-field carriers result/entry (with the v12 alias macro); plain s32 result 34 diff lines, plain u32 entry 40 */
     struct { s32 value; } result;
 #define v12 result.value
     struct { u32 value; } entry;
@@ -65,6 +66,7 @@ static inline s32 find_entry(u32 v1, u32 v2, u32 v3, u32 arg2, s32 v8, s32 v9, s
 s32 fn_12_2CDD0(void *arg0, s32 arg1, u32 arg2, struct fn_12_2CDD0_Arg3 *arg3) {
     u32 v4;
     s32 v11;
+    /* WARNING: compiler-diff device, not original code: one-field carrier base (v0 alias macro); plain u32 40 diff lines */
     struct { u32 value; } base;
 #define v0 base.value
     s32 v12;
@@ -124,7 +126,6 @@ typedef struct MovieEntry {
 
 
 s32 fn_12_2CF20(void *movie, s32 index, MovieCmd *cmd) {
-    s32 fzgx_value;
     s32 result;
     MovieEntry *entry;
     s32 value;
@@ -133,6 +134,7 @@ s32 fn_12_2CF20(void *movie, s32 index, MovieCmd *cmd) {
     u8 *buffer;
     s32 next;
     s32 cap;
+    /* WARNING: compiler-diff device, not original code: one-field carrier; plain s32 newtail 12 diff lines */
     struct { s32 value; } newtail;
 
     value = cmd->f_0;
@@ -152,7 +154,6 @@ s32 fn_12_2CF20(void *movie, s32 index, MovieCmd *cmd) {
         {
             MovieCmd *slot;
             slot = (MovieCmd *)((u8 *)buffer + tail * 0xc);
-            fzgx_value = value;
             *slot = *cmd;
         }
         next = tail;
@@ -700,6 +701,7 @@ static inline void sfsee_UpdateByteRate(SfdHandle *handle) {
     if (file_size > 0 && time_value > 0) {
         timing->byte_rate = UTY_MulDiv(file_size, time_scale, time_value);
     } else {
+        /* WARNING: compiler-diff device, not original code: volatile view of analyzed_byte_rate; plain read 39 diff lines */
         timing->byte_rate = *(volatile int *)&source->prefix.analyzed_byte_rate; /* source metadata can change during analysis */
     }
 }
@@ -748,6 +750,7 @@ void fn_12_2D008(SfdHandle *handle) {
     system_ready = fn_12_2F1B4(handle, 1) != 0;
     if (system_ready != 0) {
         source->system.active = 1;
+        /* WARNING: compiler-diff device, not original code: volatile view of field_18 forces the reload in the else branch (retail lwz 24(r31)); plain read reuses r0, 2 diff lines */
         if (source->prefix.field_0C != 0 && *(volatile int *)&source->prefix.field_18 > 0) { /* field metadata may be updated externally */
             timing = &source->timing;
             duration = source->prefix.field_40;

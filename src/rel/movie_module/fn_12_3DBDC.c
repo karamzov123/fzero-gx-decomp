@@ -1,5 +1,5 @@
 #include "types.h"
-#pragma inline_max_size(4096)
+/* WARNING: compiler-diff device, not original code: file-level use_lmw_stmw on (stmw/lmw prologues; 21 of 296 movie_module files carry it, possibly the vendor build setting, circumstantial) */
 #pragma use_lmw_stmw on
 
 /* --- rel/movie_module/fn_12_3DBDC.c --- */
@@ -19,10 +19,11 @@ typedef struct MovieDst {
     u32 pad0;
     u32 *data;
     s32 pitch;
-    volatile s32 height;  /* fzgx-allow: S2 volatile keeps the verified access order */
+    s32 height;
     s32 width;
 } MovieDst;
 
+/* WARNING: compiler-diff device, not original code: region helper whose locals get their own allocation; written inline at its one call site 56 diff lines */
 static inline void fn_12_3DBE0_fzgx_rgn0(u32 * palette, u32 i2, u32 i3, s32 top) {
     u32 a;
     u32 b;
@@ -30,10 +31,6 @@ static inline void fn_12_3DBE0_fzgx_rgn0(u32 * palette, u32 i2, u32 i3, s32 top)
     a = *(u32 *)((u8 *)palette + i2);
                 b = *(u32 *)((u8 *)palette + i3);
                 *(u32 *)(top + 4) = (b & 0xFFFF0000) | (a >> 16);
-}
-
-static inline u32 fn_12_3DBE0_merge(u32 a, u32 b) {
-    return (a << 16) | (b & 0xFFFF);
 }
 
 
@@ -45,11 +42,12 @@ void fn_12_3DBE0(MovieSrc *source, MovieDst *dest, u32 *palette) {
     u32 a;
     u32 b;
     s32 y;
-    register s32 height;
+    s32 height;
     s32 row;
     s32 src;
     s32 top;
     s32 bottom;
+    /* WARNING: compiler-diff device, not original code: one-field carriers skip/stride/stride4; plain s32 skip 56 diff lines, stride 68, stride4 78 (dropping the dead zero initialisers as well 56/72/74; dropping only the initialisers 18) */
     struct { s32 value; } skip;
     struct { s32 value; } stride;
     struct { s32 value; } stride4;
@@ -99,8 +97,9 @@ void fn_12_3DBE0(MovieSrc *source, MovieDst *dest, u32 *palette) {
                 b = *(u32 *)((u8 *)palette + i0);
                 *(u32 *)(bottom + 0) = (a << 16) | (b & 0xFFFF);
                 a = *(u32 *)((u8 *)palette + i3);
+                /* WARNING: compiler-diff device, not original code: volatile view keeps the palette load order; plain load 8 diff lines */
                 b = *(volatile u32 *)((u8 *)palette + i2);  /* fzgx-allow: S2 volatile view keeps the verified load order */
-                *(u32 *)(bottom + 4) = fn_12_3DBE0_merge(a, b);
+                *(u32 *)(bottom + 4) = (a << 16) | (b & 0xFFFF);
                 bottom += 8;
             }
             src -= stride4.value;

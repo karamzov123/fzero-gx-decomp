@@ -334,7 +334,11 @@ int fn_8004F55C(const signed char *input, int num_blocks, short *output, short d
      * the address compare below makes the parameter itself address-taken; the copy keeps its load in the
      * entry block. gain is declared here, before the copy, rather than in the block loop, so that MWCC
      * numbers gain above the copy and colours them r31/r30 as retail does. The honest form uses
-     * random_increment directly and declares gain in the block loop. */
+     * random_increment directly and declares gain in the block loop. Measured 2026-11-26: the honest form
+     * (no copy, gain in the loop, no pragma, no compare) is 8 diff lines, all from the random_increment
+     * load scheduled ahead of the table address (lha 42(r1) before addi/li); the same under GC/1.3.2r,
+     * 2.0, 2.5 and 2.6, 32 under 1.3, 210 under 1.2.5n. A plain local copy, the operands swapped or the
+     * delay loads swapped give 8-12. */
     increment = random_increment;
     previous = delay[0];
     older = delay[1];

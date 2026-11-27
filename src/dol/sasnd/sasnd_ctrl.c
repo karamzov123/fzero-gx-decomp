@@ -87,16 +87,14 @@ void fn_80063F38(u16 event, u8 channel) {
     u8 i;
     u8 j;
     s8 delta;
-    struct { u8 value; } k;
 
     delta = ((s8)((lbl_801A6C80->command >> 8) & 0x7F) - 0x40);
     for (i = 0; i < 0x10; i++) {
         for (j = 0; j < 4; j++) {
-            k.value = lbl_801A6C80->voiceMap[channel][i][j];
-            if (k.value == 0xFF) {
+            if (lbl_801A6C80->voiceMap[channel][i][j] == 0xFF) {
                 continue;
             }
-            SndSlotEvent(event, k.value, channel, delta);
+            SndSlotEvent(event, lbl_801A6C80->voiceMap[channel][i][j], channel, delta);
         }
     }
 }
@@ -204,15 +202,19 @@ static inline u8 *SndSkipOffsets(u8 *base, u32 n) {
 }
 
 void fn_800643F4(u16 cmd) {
+    /* WARNING: compiler-diff device, not original code: one-field carrier for cmd; switch (cmd) directly 54 diff lines, plain s32 c 58 (register allocation of the whole loop) */
     struct { s32 value; } c;
+    /* WARNING: compiler-diff device, not original code: one-field carrier; plain u32 value2 34 diff lines (register allocation) */
     struct { u32 value; } value2;
     u8 ch;
     u32 chOffset;
     u32 group;
+    /* WARNING: compiler-diff device, not original code: one-field carrier; plain u32 value 72 diff lines (register allocation) */
     struct { u32 data; } value;
     u32 i;
     u32 slot;
     u32 flags;
+    /* WARNING: compiler-diff device, not original code: copy carriers lab_t1/lab_t1_ keep ch in one callee-saved web; passing ch directly 60 diff lines (ch splits into r4 + r23 copy) */
     u8 lab_t1;
     s16 lab_t1_;
 
@@ -247,17 +249,17 @@ void fn_800643F4(u16 cmd) {
         }
         case 0xB000: {
             SndState *chan;
-            struct { u8 *data; } hdr;
+            u8 *hdr;
 
             chOffset = ((u8)ch) << 5;
             *(u8 *)((u8 *)lbl_801A6C80 + chOffset + 0x58C) = value.data;
             chan = (SndState *)((u8 *)lbl_801A6C80 + chOffset);
-            hdr.data = (u8 *)lbl_801A6C80->chan[slot].bank;
+            hdr = (u8 *)lbl_801A6C80->chan[slot].bank;
             if (chan->slot[0].unk_1 & 2) {
-                u32 off = *(u32 *)(hdr.data + 0x28);
+                u32 off = *(u32 *)(hdr + 0x28);
 
                 if (off != 0) {
-                    chan->slot[0].seq = hdr.data + off;
+                    chan->slot[0].seq = hdr + off;
                 } else {
                     chan->slot[0].seq = NULL;
                 }
@@ -269,17 +271,17 @@ void fn_800643F4(u16 cmd) {
                 u16 v;
 
                 n = chan->slot[0].unk_3[1];
-                base = hdr.data + *(u32 *)(hdr.data + 0x1C);
-                hdr.data = SndSkipOffsets(base, n);
+                base = hdr + *(u32 *)(hdr + 0x1C);
+                hdr = SndSkipOffsets(base, n);
                 n = chan->slot[0].unk_3[2];
 
-                p = (u16 *)hdr.data;
+                p = (u16 *)hdr;
                 for (j2 = 0; j2 <= n; j2++) {
                     p++;
                 }
                 v = *p;
                 if (v != 0) {
-                    chan->slot[0].seq = (u8 *)(v + (u32)hdr.data);
+                    chan->slot[0].seq = (u8 *)(v + (u32)hdr);
                 } else {
                     chan->slot[0].seq = NULL;
                 }
@@ -575,28 +577,24 @@ void fn_80064FDC(u8 arg0, u8 *arg1) {
     s32 tmp_call9;
     u8 *v1;
     u32 v2;
-    u8 *v3;
-    u8 v4;
     u32 v7;
     u8 v6;
-    struct { u32 value; } v25;
     u32 v8;
     u8 *v11;
     u32 v22;
     s8 adjustment;
+    /* WARNING: compiler-diff device, not original code: one-field carrier; plain u8 volume 28 diff lines (r18/r19/r12 permutation), s8 1050 */
     struct { u8 value; } volume;
     s32 v11_2;
     s16 v15;
-    struct { u16 *value; } v24;
     u8 *v18;
     u32 v19;
-    u8 v41;
     u8 *v23;
-    u8 fzgx_loop_v4_658;
+    u8 n;
     u8 *v17;
     u8 v29;
     u16 *v31;
-    struct { u8 *value; } v30;
+    u8 *v30;
     u32 v32;
     u16 v36;
     u8 v12;
@@ -605,15 +603,15 @@ void fn_80064FDC(u8 arg0, u8 *arg1) {
     u8 count;
     u8 v5;
 {
-    u8 * fzgx_loop_v3_658;
-    fzgx_loop_v3_658 = (u8 *)arg1 + 8;
-    fzgx_loop_v4_658 = 0;
+    u8 * rec;
+    rec = (u8 *)arg1 + 8;
+    n = 0;
     count = arg1[0];
     v1 = (u8 *)(arg0 << 4);
     v2 = arg0 << 6;
-    while (fzgx_loop_v4_658 <= count) {
+    while (n <= count) {
         v5 = 255;
-        if (((fzgx_loop_v3_658)[0]) & 0x80) {
+        if (((rec)[0]) & 0x80) {
             for (v6 = 0; v6 < 64; v6++) {
                 if (*(u8 *)(((u32)lbl_801A6C80) + (v6 << 5) + 0x588) == 0) {
                     v5 = v6;
@@ -623,22 +621,22 @@ void fn_80064FDC(u8 arg0, u8 *arg1) {
             v7 = v6 << 5;
             v8 = v5 << 5;
             *(u8 *)(((u32)lbl_801A6C80) + v7 + 0x588) = 1;
-            *(u8 *)(((u32)lbl_801A6C80) + v7 + 0x589) = ((fzgx_loop_v3_658)[0]);
-            *(u8 *)(((u32)lbl_801A6C80) + v7 + 0x58c) = ((fzgx_loop_v3_658)[2]);
-            *(u8 *)(((u32)lbl_801A6C80) + v7 + 0x58d) = ((fzgx_loop_v3_658)[3]);
-            *(u8 *)(((u32)lbl_801A6C80) + v7 + 0x58e) = ((fzgx_loop_v3_658)[10]);
-            *(u8 *)(((u32)lbl_801A6C80) + v7 + 0x58f) = ((fzgx_loop_v3_658)[9]);
-            *(u8 *)(((u32)lbl_801A6C80) + v7 + 0x590) = ((fzgx_loop_v3_658)[11]);
-            *(u8 *)(((u32)lbl_801A6C80) + v7 + 0x591) = ((fzgx_loop_v3_658)[12]);
-            tmp_call9 = ((fzgx_loop_v3_658)[6]);
+            *(u8 *)(((u32)lbl_801A6C80) + v7 + 0x589) = ((rec)[0]);
+            *(u8 *)(((u32)lbl_801A6C80) + v7 + 0x58c) = ((rec)[2]);
+            *(u8 *)(((u32)lbl_801A6C80) + v7 + 0x58d) = ((rec)[3]);
+            *(u8 *)(((u32)lbl_801A6C80) + v7 + 0x58e) = ((rec)[10]);
+            *(u8 *)(((u32)lbl_801A6C80) + v7 + 0x58f) = ((rec)[9]);
+            *(u8 *)(((u32)lbl_801A6C80) + v7 + 0x590) = ((rec)[11]);
+            *(u8 *)(((u32)lbl_801A6C80) + v7 + 0x591) = ((rec)[12]);
+            tmp_call9 = ((rec)[6]);
             *(u8 *)(((u32)lbl_801A6C80) + v7 + 0x592) = tmp_call9;
-            *(u8 *)(((u32)lbl_801A6C80) + v7 + 0x593) = ((fzgx_loop_v3_658)[7]);
-            *(u8 *)(((u32)lbl_801A6C80) + v7 + 0x594) = ((fzgx_loop_v3_658)[8]);
-            *(u8 *)(((u32)lbl_801A6C80) + v7 + 0x595) = ((fzgx_loop_v3_658)[13]);
-            *(u8 *)(((u32)lbl_801A6C80) + v7 + 0x596) = ((fzgx_loop_v3_658)[13]);
-            *(u8 *)(((u32)lbl_801A6C80) + v7 + 0x597) = ((fzgx_loop_v3_658)[14]);
-            *(u8 *)(((u32)lbl_801A6C80) + v7 + 0x58b) = ((fzgx_loop_v3_658)[1]);
-            *(u32 *)(((u32)lbl_801A6C80) + v7 + 0x5a0) = (u32)fzgx_loop_v3_658;
+            *(u8 *)(((u32)lbl_801A6C80) + v7 + 0x593) = ((rec)[7]);
+            *(u8 *)(((u32)lbl_801A6C80) + v7 + 0x594) = ((rec)[8]);
+            *(u8 *)(((u32)lbl_801A6C80) + v7 + 0x595) = ((rec)[13]);
+            *(u8 *)(((u32)lbl_801A6C80) + v7 + 0x596) = ((rec)[13]);
+            *(u8 *)(((u32)lbl_801A6C80) + v7 + 0x597) = ((rec)[14]);
+            *(u8 *)(((u32)lbl_801A6C80) + v7 + 0x58b) = ((rec)[1]);
+            *(u32 *)(((u32)lbl_801A6C80) + v7 + 0x5a0) = (u32)rec;
             adjustment = 0;
             if (*(u8 *)(((u32)lbl_801A6C80) + v8 + 0x589) & 2) {
                 v11 = v1 + ((u32)lbl_801A6C80);
@@ -664,37 +662,32 @@ void fn_80064FDC(u8 arg0, u8 *arg1) {
             } else {
                 v22 = (*(v17 + 0x58c));
                 v23 = v18 + *(u32 *)(v18 + 28);
-                v24.value = (u16 *)v23;
-                for (v25.value = 0; v25.value <= v22; v25.value++) v24.value++;
+                v30 = SndSkipOffsets(v23, v22);
                 v29 = ((v17)[0x58d]);
-                v30.value = v23 + *v24.value;
-                v31 = (u16 *)v30.value;
+                v31 = (u16 *)v30;
                 for (v32 = 0; v32 <= v29; v32++) v31++;
                 v36 = *v31;
-                if (v36 != 0) *(u8 **)(v17 + 0x5a4) = (u8 *)(v36 + (u32)v30.value);
+                if (v36 != 0) *(u8 **)(v17 + 0x5a4) = (u8 *)(v36 + (u32)v30);
                 else *(u8 **)(v17 + 0x5a4) = 0;
             }
         }
         if (v5 != 255) {
             v11_2 = ((u32)lbl_801A6C80);
             {
-    u8 fzgx_loop_v41_3506;
-for (fzgx_loop_v41_3506 = 0; fzgx_loop_v41_3506 < 4; fzgx_loop_v41_3506++) {
-                v43 = fzgx_loop_v41_3506;
-                v44 = ((fzgx_loop_v3_658)[1]) << 2;
+    u8 k;
+for (k = 0; k < 4; k++) {
+                v43 = k;
+                v44 = ((rec)[1]) << 2;
                 if (((u8 *)(v11_2 + v2))[v44 + v43 + 0xd88] & 1) {
                     *(u8 *)(v2 + v11_2 + v44 + v43 + 0xd88) = v5;
                     break;
                 }
             }
-    v41 = fzgx_loop_v41_3506;
 }
         }
-        fzgx_loop_v3_658 += 16;
-        fzgx_loop_v4_658++;
+        rec += 16;
+        n++;
     }
-    v3 = fzgx_loop_v3_658;
-    v4 = fzgx_loop_v4_658;
 }
 }
 
@@ -795,19 +788,19 @@ void fn_80065528(u32 force) {
     u8 i;
     u8 j;
     u32 slot;
-    struct { SndState *p; } state;
+    SndState *state;
     u8 *bank;
     u32 selected;
     u32 packed;
     u8 *command;
     u8 index;
 
-    state.p = lbl_801A6C80;
-    packed = state.p->command;
+    state = lbl_801A6C80;
+    packed = state->command;
     slot = packed & 15;
     selected = (packed >> 8) & 255;
-    bank = (u8 *)state.p->chan[slot].bank;
-    if (bank && (selected != state.p->mix[slot].unk_8 || force)) {
+    bank = (u8 *)state->chan[slot].bank;
+    if (bank && (selected != state->mix[slot].unk_8 || force)) {
         u8 *data;
         u8 n;
         u16 *table;
@@ -825,7 +818,7 @@ void fn_80065528(u32 force) {
         if (!*table) {
             return;
         }
-        command = (u8 *)(state.p->mix[slot].unk_0 = (u32)(data + *table));
+        command = (u8 *)(state->mix[slot].unk_0 = (u32)(data + *table));
         lbl_801A6C80->mix[slot].unk_8 = selected;
         if (command[1] != 0x80) {
             lbl_801A6C80->mix[slot].unk_A = command[1];

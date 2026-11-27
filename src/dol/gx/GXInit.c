@@ -3,6 +3,7 @@
 #include <dolphin/os/OSReset.h>
 #include <dolphin/os/OSTime.h>
 
+/* WARNING: compiler-diff device, not original code: peephole off for the whole file (the other GX files build with the -O4,p default); removing every peephole pragma differs over 2821 dump lines */
 #pragma peephole off
 
 
@@ -76,6 +77,7 @@ extern u32 fn_80033EB0(void);
 extern u32 fn_80034378(u32);
 extern u32 fn_80034444(u32);
 
+/* WARNING: compiler-diff device, not original code: peephole off as above; opt_propagation off around fn_8003086C: without it 16 diff lines */
 #pragma peephole off
 #pragma opt_propagation off
 s32 fn_8003086C(s32 arg0) {
@@ -151,6 +153,7 @@ s32 fn_8003086C(s32 arg0) {
 
 
 #pragma peephole reset
+/* WARNING: compiler-diff device, not original code: peephole off as above (re-armed after the reset) */
 #pragma peephole off
 void * GXInit(u32 arg0, u32 arg1, u32 arg2) {
     static u32 resetFuncRegistered;
@@ -293,6 +296,7 @@ void * GXInit(u32 arg0, u32 arg1, u32 arg2) {
     return ((u8 *)(u32)p_gxData_80177BA0 + 1272);
 }
 #pragma peephole reset
+/* WARNING: compiler-diff device, not original code: peephole off as above (re-armed after the reset) */
 #pragma peephole off
 
 

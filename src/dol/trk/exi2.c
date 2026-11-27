@@ -267,6 +267,7 @@ u32 fn_8008EED8(void) {
 }
 
 
+/* WARNING: compiler-diff device, not original code: opt_dead_assignments off keeps the dead tail stores (status/rem/off after the loop) that shape allocation; without the pragma 56 diff lines, without only the tail stores 36 */
 #pragma opt_dead_assignments off
 s32 fn_8008EFE0(u8 *arg0, u32 arg1) {
     u32 loc_20;
@@ -274,6 +275,7 @@ s32 fn_8008EFE0(u8 *arg0, u32 arg1) {
     u32 loc_14[2];
     s32 i;
     s32 v1;
+    /* WARNING: compiler-diff device, not original code: one-field carrier; plain u32 flag 48 diff lines */
     struct { u32 value; } flag;
     s32 rem;
     u32 last;
@@ -309,6 +311,7 @@ s32 fn_8008EFE0(u8 *arg0, u32 arg1) {
     if (arg1 & 3) flag.value = 1;
     else flag.value = 0;
 {
+    /* WARNING: compiler-diff device, not original code: lifter loop copies whose final values are stored into dead locals after the loop (kept by the pragma above); deleting the tail stores 36 diff lines */
     s32 fzgx_loop_rem_1266;
     u32 fzgx_loop_off_1266;
     count = (arg1 >> 2) + flag.value;
@@ -343,21 +346,23 @@ s32 fn_8008EFE0(u8 *arg0, u32 arg1) {
 }
 #pragma opt_dead_assignments reset
 
+/* WARNING: compiler-diff device, not original code: opt_common_subs off around fn_8008F29C; without it 12 diff lines */
 #pragma opt_common_subs off
 s32 fn_8008F29C(u8 *arg0, u32 arg1) {
     u8 *v0;
     s32 v1;
     s32 v8;
     u32 v3;
+    /* WARNING: compiler-diff device, not original code: one-field carrier; plain u32 v5 22 diff lines (32 with the pragma also removed) */
     struct { u32 value; } v5;
     u32 v6;
     u32 v2;
-    struct { u32 a[1]; } loc_28;
+    u32 loc_28;
     u32 loc_24;
     u32 loc_18[3];
     u32 loc_10[2];
     v0 = arg0;
-    loc_28.a[0] = arg1;
+    loc_28 = arg1;
     v1 = 0;
     while (!v1) {
         v1 = fn_8008EBF8(5);
@@ -369,7 +374,7 @@ s32 fn_8008F29C(u8 *arg0, u32 arg1) {
     fn_8008E770(&loc_28, 4, EXI_WRITE, 0);
     fn_8008E9B4();
     {
-        u32 v9 = loc_28.a[0];
+        u32 v9 = loc_28;
         if ((v9 & 3) != 0) v2 = 1;
         else v2 = 0;
         v3 = (v9 >> 2) + v2;
@@ -378,7 +383,7 @@ s32 fn_8008F29C(u8 *arg0, u32 arg1) {
     while (v5.value < v3) {
         u8 *v7;
         if (v5.value < v3 - 1) v6 = 4;
-        else if ((loc_28.a[0] & 3) + (loc_28.a[0] & 1) == 2) v6 = 2;
+        else if ((loc_28 & 3) + (loc_28 & 1) == 2) v6 = 2;
         else v6 = 4;
         v7 = v0;
         v0 += 4;
