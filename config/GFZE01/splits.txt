@@ -193,6 +193,7 @@ dol/adx/cri_cvfs.c:
 
 dol/runtime/alloc.c:
 	.text       start:0x8007A150 end:0x8007B028 align:4
+	.bss        start:0x801A3380 end:0x801A33B8 align:8
 
 dol/runtime/ansi_files.c:
 	.text       start:0x8007B028 end:0x8007B338 align:4
@@ -743,6 +744,7 @@ dol/gx/GXTexture.c:
 
 dol/exit.c:
 	.text       start:0x8007A060 end:0x8007A150 align:4
+	.bss        start:0x801A3280 end:0x801A3380 align:8
 
 dol/sasnd/sasnd_core.c:
 	.text       start:0x800658B4 end:0x80069B10 align:4
@@ -854,6 +856,7 @@ dol/av/avdisp_state.c:
 dol/av/avdisp_mat.c:
 	.text       start:0x80075908 end:0x80078538 align:4
 	.data       start:0x8015AD10 end:0x8015AD38 align:16
+	.bss        start:0x801A3220 end:0x801A3280 align:8
 
 dol/data/lbl_8015BE40.c:
 	.bss        start:0x8015BE40 end:0x8015BF00 align:8
@@ -1142,7 +1145,7 @@ dol/data/lbl_8015CF68.c:
 	.bss        start:0x8015D0B0 end:0x80177BA0 align:8
 
 dol/data/lbl_8019E150.c:
-	.bss        start:0x8019E150 end:0x801A33B8 align:8
+	.bss        start:0x8019E150 end:0x801A3220 align:8
 
 dol/data/lbl_801A36B8.c:
 	.bss        start:0x801A36B8 end:0x801A50B8 align:8

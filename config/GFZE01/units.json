@@ -9100,7 +9100,8 @@
       "fn_80078360",
       "lbl_8015AD10",
       "lbl_8015AD1C",
-      "lbl_8015AD28"
+      "lbl_8015AD28",
+      "lbl_801A3220"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -13456,10 +13457,7 @@
       "lbl_8019F130",
       "lbl_8019F14C",
       "lbl_8019F158",
-      "lbl_8019F200",
-      "lbl_801A3220",
-      "__atexit_funcs",
-      "lbl_801A3380"
+      "lbl_8019F200"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -19455,7 +19453,8 @@
     "module": "main",
     "source": "dol/exit.c",
     "symbols": [
-      "exit"
+      "exit",
+      "__atexit_funcs"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
@@ -21540,7 +21539,8 @@
       "fn_8007AA7C",
       "fn_8007AB58",
       "fn_8007AC0C",
-      "fn_8007ADF0"
+      "fn_8007ADF0",
+      "lbl_801A3380"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],

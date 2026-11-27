@@ -303,11 +303,21 @@ with `avdisp_tail.c` in USA. The first string and the typed diagnostics object
 retain their separate retail symbols. Combining them into one aggregate had
 added an `addi` in `fn_80077B14` and `fn_80077B64`; the separate symbol allows
 both material warning paths to use an ordinary `OSReport(const char *, ...)`
-call and match retail text. The display tail still uses the original shared
-base-relative accesses across the two adjacent objects; this change does not
-make that code portable or consolidate the whole AV display translation unit.
+call and match retail text. The display tail now performs the original
+base-relative arithmetic on a 32-bit DOL address rather than forming pointers
+outside the first string. It still depends on the two objects being adjacent.
+
+`avdisp_mat.c` now defines its typed 96-byte state in BSS in USA. The matrix
+fragment retains its existing layout primer for matching code generation; a
+plain external declaration changed the code in `fn_800756B0`, so that probe was
+not adopted. The state transfer does not claim to remove that primer.
 
 ## MSL is built with `-inline deferred` (2026-11-24)
+
+In USA and PAL, `exit.c` owns its 64-entry `__atexit_funcs` callback table and
+`alloc.c` owns its default pool. The pool initializer in retail clears 52 bytes;
+the old 56-byte import also covered the four bytes before the next 8-byte-aligned
+object. The split still preserves that alignment gap.
 
 The standard-stream table (`__files`, 320 bytes) is owned by `ansi_files.c`
 in USA and PAL. The retail `.data` contains three initialized 80-byte stream

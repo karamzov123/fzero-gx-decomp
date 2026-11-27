@@ -31,7 +31,7 @@ extern void _ExitProcess(void);
 
 extern ExitFunction _dtors[];
 
-extern ExitFunction __atexit_funcs[64];
+ExitFunction __atexit_funcs[64] __attribute__((aligned(8)));
 
 extern ExitFunction __console_exit;
 

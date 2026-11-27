@@ -309,7 +309,7 @@ void fn_80078DA8(struct fn_80078DA8_out *out, struct fn_80078DA8_in *in, void *a
     fn_80078DA8_load(out, p2, total);
 }
 
-static inline void fn_80078F0C_bind(Model *m, Sig_fn_80071C04_Object *obj, Sig_fn_80071C04_Entry *entries, u32 id, u8 *str) {
+static inline void fn_80078F0C_bind(Model *m, Sig_fn_80071C04_Object *obj, Sig_fn_80071C04_Entry *entries, u32 id, u32 diagnosticsBase) {
     s32 i;
     Sig_fn_80071C04_Object *child;
     u32 off;
@@ -318,13 +318,13 @@ static inline void fn_80078F0C_bind(Model *m, Sig_fn_80071C04_Object *obj, Sig_f
         child->value = m->buf + off;
         fn_80071C04(child, entries);
         if ((child->flags & 0x200000) == 0 && child->value == 0)
-            OSReport((const char *)(str + 216), id, child->index);
+            OSReport((const char *)(diagnosticsBase + 216), id, child->index);
     }
 }
 
 u32 fn_80078F0C(Model *arg0, Sig_fn_80071C04_Entry *arg1, u32 arg2, u32 arg3) {
     Sig_fn_80071C04_Object *child;
-    u8 *p_lbl_8015AD38;
+    u32 diagnosticsBase;
     s32 reset;
     Sig_fn_80071C04_Object *v4;
     s32 v3;
@@ -337,7 +337,9 @@ u32 fn_80078F0C(Model *arg0, Sig_fn_80071C04_Entry *arg1, u32 arg2, u32 arg3) {
     u32 v18;
     s32 j;
     child = (Sig_fn_80071C04_Object *)((u8 *)arg0 + 0x40);
-    p_lbl_8015AD38 = (u8 *)&lbl_8015AD38;
+    /* The original code addresses both adjacent diagnostic objects from one
+     * DOL address. Keep address arithmetic out of the short string's bounds. */
+    diagnosticsBase = (u32)lbl_8015AD38;
     reset = 0;
     if (arg1 == 0) {
         v5 = arg0->count;
@@ -360,13 +362,13 @@ u32 fn_80078F0C(Model *arg0, Sig_fn_80071C04_Entry *arg1, u32 arg2, u32 arg3) {
             arg0->buf = fn_80071794(arg0->count * 0x20U);
         }
         if (arg0->buf == 0) {
-            OSReport((const char *)(p_lbl_8015AD38 + 164), arg3);
-            OSPanic((const char *)(p_lbl_8015AD38 + 176), 2411, (const char *)(p_lbl_8015AD38 + 188));
+            OSReport((const char *)(diagnosticsBase + 164), arg3);
+            OSPanic((const char *)(diagnosticsBase + 176), 2411, (const char *)(diagnosticsBase + 188));
         }
     } else {
         arg0->buf = 0;
     }
-    fn_80078F0C_bind(arg0, child, arg1, arg3, p_lbl_8015AD38);
+    fn_80078F0C_bind(arg0, child, arg1, arg3, diagnosticsBase);
     v11 = arg0->flags;
     v15 = (u32)arg0 + arg0->meshOfs;
     if (v11 & 0x18) {

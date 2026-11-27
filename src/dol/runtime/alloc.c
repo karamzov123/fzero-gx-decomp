@@ -198,7 +198,7 @@ void fn_8007ADF0(u32 arg0, u32 arg1);
 extern void __begin_critical_region(s32);
 extern void __end_critical_region(s32);
 extern void *memset(void *, int, u32);
-extern MemPoolObj lbl_801A3380;
+MemPoolObj lbl_801A3380 __attribute__((aligned(8)));
 extern u8 lbl_801A6DD8;
 extern const unsigned long lbl_80094EC0[];
 
