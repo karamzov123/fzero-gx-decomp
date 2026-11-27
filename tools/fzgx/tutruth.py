@@ -17,7 +17,7 @@ from typing import Dict, List, Optional, Tuple
 
 from . import oracle, reconcile, tufile, tutidy
 from .original_assembly import masked
-from .project import ROOT, STATE_DIR, Project, dump_units
+from .project import ROOT, STATE_DIR, Project, dump_units, load_json_retry
 from .tutruth_build import RegionalVerifier
 
 SCALAR = {'void', 'int', 'char', 'short', 'long', 'unsigned', 'signed', 'float', 'double',
@@ -536,8 +536,19 @@ def resolve(p: Project, tu_source: str, apply: bool = True,
     """`extra_blocks` ({name: body}) join the TU as unverified members (unmatched functions'
     best bodies): their declarations are reconciled and adapted like everyone else's, they
     are never restored, and the result is only reported, never written."""
+    # The CLI's --version selects the view used by most commands, but a shared
+    # source edit must not filter out any unit before collecting its coverage.
+    if not p.is_canonical:
+        p = Project()
     module = tu_source.split('/')[1] if tu_source.startswith('rel/') else 'main'
     units = {u['symbols'][0]: u for u in p.load_units() if u.get('tu') == tu_source}
+    fragments_path = p.units_path.with_name('regional_fragments.json')
+    if fragments_path.exists() and any(u.get('tu') == tu_source for u in load_json_retry(fragments_path) or []):
+        return {'tu': tu_source, 'final_failing': [tu_source],
+                'final_errors': {tu_source: 'the regional fragment container must be kept independent'}}
+    if not units and not extra_blocks:
+        return {'tu': tu_source, 'final_failing': [tu_source],
+                'final_errors': {tu_source: 'no canonical block units use this TU'}}
     source = tufile.tu_path(p, tu_source)
     old_text = source.read_text()
     tf = tufile.parse(old_text)
