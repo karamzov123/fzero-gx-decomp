@@ -532,6 +532,10 @@ Reconciliation against the original twelve `mwsfdsfx.c` units retires 23 isolate
 still exposes incompatible `MWSFSVM_Error` declarations between groups; no split or compiler
 profile changes are part of the retained result. All three region builds and hashes pass.
 
+`main_rel/driver.c` shares four more isolated blocks (12 to 8) across its existing eight
+units. A whole-file build still rejects the conflicting private declarations of
+`lbl_1_bss_6F648`; the original splits and compiler settings remain in place.
+
 `tools/consolidate/rel_own_data.py` transfers whole adjacent import units into a specified
 one-unit REL TU. It checks contiguity and matching regional coverage, carries over the existing
 typed definitions in retail order, and verifies the moved symbols against fresh compiled and
