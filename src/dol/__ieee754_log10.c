@@ -13,7 +13,7 @@ static const double log10_2hi = 3.01029995663611771306e-01;
 
 static const double log10_2lo = 3.69423907715893078616e-13;
 
-extern double lbl_801A6DF8;
+double lbl_801A6DF8 __attribute__((aligned(8)));
 
 double __ieee754_log10(double x) {
     double y;

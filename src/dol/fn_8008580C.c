@@ -12,7 +12,7 @@ int fn_8008580C(u32 handle) {
 
 /* --- dol/fn_80085814.c --- */
 extern u32 OSGetConsoleType(void *arg);
-extern s32 lbl_801A6DE8;
+s32 lbl_801A6DE8 __attribute__((aligned(8)));
 extern s32 InitializeUART(u32 arg);
 extern s32 WriteUARTN(void *arg0, u32 arg1);
 extern void fn_8008DC10(void *arg0, void *arg1, u32 *arg2, void *arg3);

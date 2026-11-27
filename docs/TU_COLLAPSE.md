@@ -319,6 +319,15 @@ In USA and PAL, `exit.c` owns its 64-entry `__atexit_funcs` callback table and
 the old 56-byte import also covered the four bytes before the next 8-byte-aligned
 object. The split still preserves that alignment gap.
 
+The four MSL exit-state words and the byte-sized allocation initialization
+flag now build from `exit.c` and `alloc.c` in USA and PAL. The destructor
+chain head builds with its typed linked-list walker in USA. The console
+initialization flag is defined with its writer in USA. The zero-valued
+operands used by `log` and `log10` are defined as doubles in their respective
+units in all three builds. These transfers retain the measured small-BSS
+ordering and alignment gaps. The shared `errno` storage remains separate;
+its consumers establish its use, not its original translation unit.
+
 The standard-stream table (`__files`, 320 bytes) is owned by `ansi_files.c`
 in USA and PAL. The retail `.data` contains three initialized 80-byte stream
 records and a fourth zero record; each populated row has two buffer addresses,

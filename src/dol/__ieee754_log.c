@@ -23,7 +23,7 @@ static const double Lg6 = 1.531383769920937332e-01;
 
 static const double Lg7 = 1.479819860511658591e-01;
 
-extern double lbl_801A6DF0;
+double lbl_801A6DF0 __attribute__((aligned(8)));
 
 double __ieee754_log(double x) {
     double hfsq;

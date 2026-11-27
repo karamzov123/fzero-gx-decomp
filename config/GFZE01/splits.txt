@@ -63,6 +63,7 @@ dol/adx/adx_amp.c:
 
 dol/fn_8008580C.c:
 	.text       start:0x8008580C end:0x800858E4 align:4
+	.sbss       start:0x801A6DE8 end:0x801A6DF0 align:8
 
 dol/fwide.c:
 	.text       start:0x800858E4 end:0x8008596C align:4
@@ -615,9 +616,11 @@ dol/runtime/strtoul.c:
 
 dol/__ieee754_log.c:
 	.text       start:0x80085C7C end:0x80085EF8 align:4
+	.sbss       start:0x801A6DF0 end:0x801A6DF8 align:8
 
 dol/__ieee754_log10.c:
 	.text       start:0x80085EF8 end:0x80086008 align:4
+	.sbss       start:0x801A6DF8 end:0x801A6E00 align:8
 
 dol/__ieee754_rem_pio2.c:
 	.text       start:0x800868BC end:0x80086C5C align:4
@@ -1389,12 +1392,6 @@ dol/data/lbl_801A6DB8.c:
 
 dol/data/lbl_801A6DE0.c:
 	.sbss       start:0x801A6DE0 end:0x801A6DE8 align:32
-
-dol/data/lbl_801A6DE8.c:
-	.sbss       start:0x801A6DE8 end:0x801A6DF8 align:8
-
-dol/data/lbl_801A6DF8.c:
-	.sbss       start:0x801A6DF8 end:0x801A6E00 align:8
 
 dol/data/gTRKInputPendingPtr.c:
 	.sbss       start:0x801A6E00 end:0x801A6E10 align:32
