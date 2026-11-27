@@ -30997,33 +30997,6 @@
     "unit_size": 32,
     "unit_start": 2148095648
   },
-  "main:lbl_800956C0": {
-    "address": 2148095680,
-    "align": 32,
-    "declarations": [
-      {
-        "declaration": "u8 lbl_800956C0[400]",
-        "path": "src/dol/fn_800894FC.c"
-      }
-    ],
-    "definition": "const u8 lbl_800956C0[400]",
-    "method": "typed-data",
-    "module": "main",
-    "references": [
-      "TRKInitializeSerialHandler",
-      "fn_800894FC"
-    ],
-    "relocations": [],
-    "section": ".rodata",
-    "section_size": 400,
-    "sha256": "def56d9dc604f6415599c5cdbb25be3fd9bdd67ca11f5345665d53341d84db56",
-    "size": 400,
-    "source": "dol/data/lbl_800956C0.c",
-    "symbol": "lbl_800956C0",
-    "unit_align": 32,
-    "unit_size": 400,
-    "unit_start": 2148095680
-  },
   "main:lbl_80095850": {
     "address": 2148096080,
     "align": 16,

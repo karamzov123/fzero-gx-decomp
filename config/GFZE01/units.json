@@ -11841,18 +11841,6 @@
   },
   {
     "module": "main",
-    "source": "dol/data/lbl_800956C0.c",
-    "symbols": [
-      "lbl_800956C0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
     "source": "dol/data/lbl_80095850.c",
     "symbols": [
       "lbl_80095850",
@@ -22309,11 +22297,10 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "collapsed": true,
-    "pool": {
-      "...rodata.0": "lbl_800956C0"
-    }
+    "extra_cflags": [
+      "-str readonly"
+    ],
+    "collapsed": true
   },
   {
     "module": "main",

@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "base_commit": "b40c4dc9534408f1e60999548cab7e9ba026f3f8",
+  "version": "GFZE01",
+  "module": "main",
+  "source": "src/dol/trk/serpoll.c",
+  "source_file_sha256": "5809b72443837456b8c2b600eb44b3d591c562bd75cffbd7705b80e0e79fc870",
+  "functions": [
+    "fn_80089380",
+    "TRKInitializeSerialHandler",
+    "fn_8008944C",
+    "TRKGetInput",
+    "fn_800894FC"
+  ],
+  "compiler": "GC/1.3.2",
+  "extra_cflags": ["-str readonly"],
+  "data_ownership": {
+    "section": ".rodata",
+    "start": "0x800956C0",
+    "end": "0x80095850",
+    "literal_count": 11,
+    "initialized_size": 393,
+    "verified_zero_tail": 7,
+    "retail_sha256": "def56d9dc604f6415599c5cdbb25be3fd9bdd67ca11f5345665d53341d84db56",
+    "removed_import": "dol/data/lbl_800956C0.c",
+    "removed_pool_binding": {"...rodata.0": "lbl_800956C0"}
+  },
+  "provenance": "Existing accepted GX source and GFZE01 retail strings only. No donor code, candidate, or reference data was imported.",
+  "change": "Use ordinary trace string literals in first-use order. The measured read-only string policy places them in their retail section without post-compile remapping. Remove six private arrays, five byte-offset string accesses, and eleven pointer-to-u32 casts.",
+  "reproduction": [
+    "python3 configure.py",
+    "python3 tools/consolidate/tu_data.py src/dol/trk/serpoll.c dol/trk/serpoll.c .rodata 800956C0",
+    "ninja -j20 build/GFZE01/ok",
+    "build/tools/dtk shasum -q -c config/GFZE01/build.sha1",
+    "python3 tools/fzgx.py lint"
+  ],
+  "ownership_transfer": "tools/consolidate/tu_own_data.py proved the native section bytes and zero tail before applying the split/import/pool metadata changes.",
+  "validation": {
+    "usa_target_hashes": "16 files OK",
+    "lint_findings": 0,
+    "japan_pal": "Retail inputs unavailable; no regional hash claim."
+  }
+}
