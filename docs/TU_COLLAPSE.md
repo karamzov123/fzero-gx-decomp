@@ -508,9 +508,12 @@ call declares a different variadic ABI. Reconcile the original grouped units ins
 their combined objects verify: four units stay four while isolated blocks fall from ten to
 two. The unit containing that call keeps its original source and compiler profile.
 
-The same grouped retry retires all thirteen isolated blocks in `sfd_con.c` without adding
-units (six remain). A whole-file compile still encounters incompatible opaque return-type
-declarations for `fn_12_6B28`; sharing a prologue is not yet proof of whole-TU compatibility.
+The same grouped retry retired all thirteen isolated blocks in `sfd_con.c`. The next pass
+resolved the whole-file declaration conflict: both callers now declare `fn_12_6B28` with
+the opaque `MovieEntry` return pointee used by its reconstructed definition. GC/1.3.2 with
+`-use_lmw_stmw on` compiles the thirteen functions at `.text` `0x22FBC..0x23F00` as one unit
+instead of six. All thirteen functions match the freshly split retail objects in USA, PAL,
+and Japan, and all three linked hash gates pass. No pool map or regional fragments are needed.
 
 `tools/consolidate/rel_own_data.py` transfers whole adjacent import units into a specified
 one-unit REL TU. It checks contiguity and matching regional coverage, carries over the existing

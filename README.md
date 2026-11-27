@@ -52,7 +52,7 @@ use the same definitions:
 | Requirement | 2026-11-20 | 2026-11-27 |
 |---|---|---|
 | TU map | RELs: 14 `tus.json` covering 4,074 functions; DOL: none | Every executable mapped: all RELs (4,905 functions; `movie_module` from the CRI Sofdec link order, `sample` provisional) and the DOL (2,230 functions in 259 TUs, plus a `.init` map); some boundaries and names are inferred and say so |
-| R1: one unit per TU | 3,214 code units; 13 of 69 REL TU files build as one unit; 1,095 `noprologue` blocks | 1,416 code units; 83 of 145 REL TU files and 255 of 259 DOL TUs build as one unit; 689 `noprologue` blocks |
+| R1: one unit per TU | 3,214 code units; 13 of 69 REL TU files build as one unit; 1,095 `noprologue` blocks | 1,411 code units; 84 of 145 REL TU files and 255 of 259 DOL TUs build as one unit; 689 `noprologue` blocks |
 | R2/R3: data ownership, build independence | 4,565 data units; 1,214 pool-remapped units; `.fzgxpool` primers in 142 files; 8,684 scaffolding names | 3,450 data units; 594 pool-remapped units; primers in 98 files; 4,735 scaffolding names |
 | R4: platform boundary (REL source) | 338 hardware-address literals; 675 MWCC intrinsic calls | 250 literals; 634 intrinsic calls |
 | R5: portable game C (REL source) | 404 address-to-integer casts; 274 pointer views of `unk_` fields | 318 casts; 223 views |
@@ -65,8 +65,8 @@ device-free or portable. See the [assembly and device policy](docs/ASM_POLICY.md
 
 ### Next Steps
 
-1. **TU collapse of the remaining REL files** (R1, R3): 62 REL TU files still build as several
-   units, most of them in `main_rel` (596 units), `movie_module` (279), `customize` and
+1. **TU collapse of the remaining REL files** (R1, R3): 61 REL TU files still build as several
+   units, most of them in `main_rel` (596 units), `movie_module` (274), `customize` and
    `interview`. The pipeline is `tools/consolidate/rel_unit_split.py` -> `fzgx tutruth` ->
    `tools/consolidate/relmerge.py` (see [TU_COLLAPSE.md](docs/TU_COLLAPSE.md)). Reconciliation
    now checks each matching region and keeps named prologue data with the split that owns it.

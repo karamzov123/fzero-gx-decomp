@@ -391,12 +391,12 @@ int fn_12_23410(u8 *data, s32 size, fn_12_23410_MovieState *st) {
 /* fzgx:end fn_12_23410 */
 
 /* fzgx:begin fn_12_23700 */
-typedef struct MpsHandle MpsHandle;
+typedef struct MovieEntry MovieEntry;
 typedef struct AudioHeader {
     u8 layer, protection, bitrate, frequency, padding, private_bit;
     u8 mode, mode_extension, copyright_bit, original, emphasis;
 } AudioHeader;
-extern MpsHandle *fn_12_6B28(void);
+extern MovieEntry *fn_12_6B28(void);
 
 static inline u8 *find_packet(u8 *p, s32 n) {
     while (n >= 4) {
@@ -426,7 +426,7 @@ static inline u8 *find_audio(u8 *p, s32 n, AudioHeader *h) {
     return 0;
 }
 static inline u8 *prepare_packet(u8 *packet, u8 *end) {
-    MpsHandle *decoder;
+    MovieEntry *decoder;
     u8 *audio;
     int used, unused;
     decoder = fn_12_6B28();
@@ -434,8 +434,8 @@ static inline u8 *prepare_packet(u8 *packet, u8 *end) {
         s32 remain = end - packet;
         audio = packet + (remain > 6 ? 6 : remain);
     } else {
-        fn_12_654C( (MovieModule *)(MpsHandle *)(decoder), packet, end - packet, &used, &unused);
-        fn_12_6A90( (MovieModule_u1 *)(MpsHandle *)(decoder));
+        fn_12_654C((MovieModule *)decoder, packet, end - packet, &used, &unused);
+        fn_12_6A90((MovieModule_u1 *)decoder);
         audio = packet + used;
     }
     return audio;
@@ -480,8 +480,8 @@ void fn_12_23700(u8 *data, s32 size, fn_12_23700_MovieState *state) {
 /* fzgx:end fn_12_23700 */
 
 /* fzgx:begin fn_12_2396C */
-typedef struct Sig_fn_12_6B28_MpsHandle Sig_fn_12_6B28_MpsHandle;
-extern Sig_fn_12_6B28_MpsHandle *fn_12_6B28(void);
+struct MovieEntry;
+extern struct MovieEntry *fn_12_6B28(void);
 
 static inline u8 *find_start(u8 *p, int size) {
     while (size >= 4) {
@@ -527,7 +527,7 @@ static inline int detect_stride(u8 *data, int length, int *duration) {
     u8 *second;
     u8 *third;
     int stride;
-    Sig_fn_12_6B28_MpsHandle *handle;
+    struct MovieEntry *handle;
     Sig_fn_12_6A18_MovieValues loc_10;
     int loc_8;
     int loc_C;
@@ -542,7 +542,7 @@ static inline int detect_stride(u8 *data, int length, int *duration) {
     if (stride != third - second) return -1;
     if (offset.value % stride != 0) return -1;
     third = (u8 *)fn_12_6B28();
-    handle = (Sig_fn_12_6B28_MpsHandle *)third;
+    handle = (struct MovieEntry *)third;
     if (handle != 0) {
         fn_12_654C( (MovieModule *)((Sig_fn_12_654C_MovieModule *)handle), first, remaining.value, &loc_8, &loc_C);
         if (loc_C & 0x10000) {
