@@ -1,17 +1,14 @@
 #include "types.h"
 #include "sofdec/sfx.h"
-extern f64 lbl_12_bss_798[129];
-extern void fn_12_4A38(void *arg0, void *arg1, f64 *table);
+extern f64 lbl_12_bss_798[8][8];
+extern void fn_12_4A38(f64 *arg0, f64 *arg1, f64 (*table)[8]);
 extern f64 fn_80087E80(f64 value);
 extern const char *fn_12_4E14(void);
 extern const double lbl_12_rodata_598;
 extern const double lbl_12_rodata_5A8;
 extern const double lbl_12_rodata_5B0;
 
-/* fzgx:begin fn_12_4A38 noprologue */
-#include "types.h"
-#include "sofdec/sfx.h"
-
+/* fzgx:begin fn_12_4A38 */
 /* --- rel/movie_module/fn_12_4A38.c --- */
 void fn_12_4A38(f64 *arg0, f64 *arg1, f64 (*arg2)[8]) {
     f64 tmp[64];
@@ -53,16 +50,8 @@ void fn_12_4CEC(void *arg0, void *arg1) {
 }
 /* fzgx:end fn_12_4CEC */
 
-/* fzgx:begin fn_12_4D14 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_12_4D14 */
 /* DCT_AcInit, from the CC0 MK Deception decomp (dct_ac.c) */
-
-extern double fn_80087E80(double);
-extern const char *fn_12_4E14(void);
-extern const double lbl_12_rodata_598;
-extern const double lbl_12_rodata_5A8;
-extern const double lbl_12_rodata_5B0;
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 double lbl_12_bss_798[8][8];
