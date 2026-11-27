@@ -17,7 +17,7 @@ from typing import Dict, List, Optional, Tuple
 
 from . import oracle, reconcile, tufile, tutidy
 from .original_assembly import masked
-from .project import ROOT, STATE_DIR, Project
+from .project import ROOT, STATE_DIR, Project, dump_units
 from .tutruth_build import RegionalVerifier
 
 SCALAR = {'void', 'int', 'char', 'short', 'long', 'unsigned', 'signed', 'float', 'double',
@@ -50,15 +50,14 @@ def _same(a: str, b: str) -> bool:
     return n(a) == n(b)
 
 
-def project_definition(p: Project, name: str) -> Optional[str]:
+def project_definition(sources: List[str], name: str) -> Optional[str]:
     """`extern <signature>;` of the project's matched definition of `name`, if any."""
     pat = re.compile(r'^((?:[A-Za-z_][\w\s\*]*?)\b' + re.escape(name) + r'\s*\(([^;{}()]*)\))\s*\{', re.M)
-    for f in sorted((ROOT / 'src').rglob('*.c')):
-        text = f.read_text()
+    for text in sources:
         if name not in text:
             continue
         m = pat.search(text)
-        if m:
+        if m and not re.match(r'static\b', m[1]):
             return 'extern ' + re.sub(r'\s+', ' ', m.group(1)).strip() + ';'
     return None
 
@@ -539,7 +538,10 @@ def resolve(p: Project, tu_source: str, apply: bool = True,
     are never restored, and the result is only reported, never written."""
     module = tu_source.split('/')[1] if tu_source.startswith('rel/') else 'main'
     units = {u['symbols'][0]: u for u in p.load_units() if u.get('tu') == tu_source}
-    tf = tufile.load(p, tu_source)
+    source = tufile.tu_path(p, tu_source)
+    old_text = source.read_text()
+    tf = tufile.parse(old_text)
+    pristine = tufile.parse(old_text)
     storage = prologue_storage(p, module, tf, units) if len(units) > 1 else {}
     extra_names = set()
     if extra_blocks:
@@ -662,7 +664,9 @@ def resolve(p: Project, tu_source: str, apply: bool = True,
     definitions: Dict[str, str] = {}
     for b in tf.blocks:
         for m in reconcile.DEF_RE.finditer(b.body):
-            definitions[m.group(2)] = 'extern ' + re.sub(r'\s+', ' ', m.group(1)).strip() + ';'
+            signature = re.sub(r'\s+', ' ', m.group(1)).strip()
+            if not signature.startswith('static '):
+                definitions[m.group(2)] = 'extern ' + signature + ';'
     variants: Dict[str, Counter] = OrderedDict()
     where: Dict[str, Dict[str, str]] = {}
     for b in tf.blocks:
@@ -684,11 +688,12 @@ def resolve(p: Project, tu_source: str, apply: bool = True,
         return all(w in known_types or w == '...' for w in words)
 
     candidates: Dict[str, List[Tuple[str, str]]] = {}
+    sources = [f.read_text() for f in sorted((ROOT / 'src').rglob('*.c'))]
     for n in symbols:
         c: List[Tuple[str, str]] = []
         if n in hdecl:
             c.append(('header', hdecl[n]))
-        d = definitions.get(n) or project_definition(p, n)
+        d = definitions.get(n) or project_definition(sources, n)
         if d:
             c.append(('definition', d))
         if n in pdecl:
@@ -754,8 +759,17 @@ def resolve(p: Project, tu_source: str, apply: bool = True,
     symbols = [n for n in symbols if candidates.get(n)]
     choice: Dict[str, int] = {n: 0 for n in symbols}
 
+    inherited = {}
+    for unit in units.values():
+        visible = {}
+        for name in unit['symbols']:
+            block = tf.get(name)
+            if block:
+                visible.update(reconcile._decls(block.body))
+                inherited[name] = visible.copy()
+
     def old_decl_for(bname: str, n: str) -> Optional[str]:
-        own = where.get(n, {}).get(bname)
+        own = inherited.get(bname, {}).get(n) or where.get(n, {}).get(bname)
         if own:
             return own
         decl = pdecl.get(n)
@@ -840,7 +854,8 @@ def resolve(p: Project, tu_source: str, apply: bool = True,
 
     scratch = STATE_DIR / 'work' / 'tutruth' / module / Path(tu_source).stem
     scratch.mkdir(parents=True, exist_ok=True)
-    regional = RegionalVerifier(units, scratch)
+    regional = RegionalVerifier(units, scratch, {n: tufile.units_gen_text(pristine, u['symbols'])
+                                                for n, u in units.items()})
     errors: Dict[str, str] = {}
     roots = {s: n for n, u in units.items() for s in u['symbols']}
 
@@ -907,8 +922,6 @@ def resolve(p: Project, tu_source: str, apply: bool = True,
     report['rewritten'] = [n for n in names if verdict.get(n)]
     report['reverted'] = failing
     # a block that cannot be adapted keeps its committed, self-contained form (still contested)
-    pristine = tufile.load(p, tu_source)
-
     def restore(bname: str) -> None:
         """Restore a whole unit with exactly one copy of its old prologue."""
         blocks = [pristine.get(s) for s in units[bname]['symbols']]
@@ -945,9 +958,23 @@ def resolve(p: Project, tu_source: str, apply: bool = True,
         report['extra_compiles'] = compiles
         report['tu_text'] = tf.render()
     if apply and not report['final_failing']:
-        tufile._write_atomic(tufile.tu_path(p, tu_source), tf.render())
-        for u in units.values():
-            for region, n in regional.profiles:
-                if n == u['symbols'][0]:
-                    tufile.write_gen(Project(region), u, tf)
+        updates = {}
+        for n, u in units.items():
+            text = tufile.units_gen_text(tf, u['symbols'])
+            maps = {region: regional.maps[(region, n), text] for region, root in regional.profiles if root == n}
+            if any(m != (u.get('pool_for', {}).get(region, u.get('pool')) or {}) for region, m in maps.items()):
+                maps = {**(u.get('pool_for') or {}), **maps}
+                default = maps.pop('GFZE01', u.get('pool') or {})
+                u = {k: v for k, v in u.items() if k not in ('pool', 'pool_for')}
+                if default:
+                    u['pool'] = default
+                regional_maps = {region: m for region, m in maps.items() if m != default}
+                if regional_maps:
+                    u['pool_for'] = regional_maps
+                updates[u['source']] = u
+        if updates:
+            with oracle.build_lock('units.lock'):
+                tufile._write_atomic(p.units_path, dump_units([updates.get(u['source'], u) for u in Project().load_units()]))
+            report['pool_remapped'] = sorted(updates)
+        tufile._write_atomic(source, tf.render())
     return report
