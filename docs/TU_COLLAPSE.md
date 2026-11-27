@@ -348,6 +348,14 @@ with `-sdata 0` preserves its retail HA/LO loads of the two typed globals, but
 would place a pointer defined in that same unit in ordinary BSS. The slot
 retains 32-byte alignment in USA and 16-byte alignment in Japan and PAL.
 
+The event queue, three message buffers, and serial-poll state now build in
+`nubevent.c`, `msgbuf.c`, and `serpoll.c` in all three regions. The support
+state also builds with `support.c` in USA and Japan; PAL retains its existing
+retail fallback for that unit. Together these definitions replace two
+standalone BSS imports. The support definition explicitly selects ordinary
+BSS through MWCC's `.data` section declaration: an unqualified definition
+landed in small BSS and shifted the linked layout.
+
 ### MSL stream and decimal state
 
 The standard-stream table (`__files`, 320 bytes) is owned by `ansi_files.c`

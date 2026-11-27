@@ -73,6 +73,7 @@ dol/fn_8008596C.c:
 
 dol/trk/support.c:
 	.text       start:0x8008A5AC end:0x8008AF40 align:4
+	.bss        start:0x801A50B0 end:0x801A50B8 align:8
 
 dol/odemuexi2/DebuggerDriver.c:
 	.text       start:0x8008F454 end:0x8008FED4 align:4
@@ -136,6 +137,7 @@ dol/fn_8004ED18.c:
 
 dol/trk/nubevent.c:
 	.text       start:0x80088740 end:0x80088968 align:4
+	.bss        start:0x801A36B8 end:0x801A36E0 align:8
 
 dol/ahx/ahx_transform.c:
 	.text       start:0x80051F38 end:0x80052430 align:4
@@ -654,9 +656,11 @@ dol/fn_800883E8.c:
 
 dol/trk/msgbuf.c:
 	.text       start:0x80088B44 end:0x80089380 align:4
+	.bss        start:0x801A36E8 end:0x801A5098 align:8
 
 dol/trk/serpoll.c:
 	.text       start:0x80089380 end:0x80089638 align:4
+	.bss        start:0x801A5098 end:0x801A50B0 align:8
 
 dol/trk/usr_put.c:
 	.text       start:0x80089638 end:0x800896C4 align:4
@@ -1157,12 +1161,6 @@ dol/data/lbl_8015CF68.c:
 
 dol/data/lbl_8019E150.c:
 	.bss        start:0x8019E150 end:0x801A3220 align:8
-
-dol/data/lbl_801A36B8.c:
-	.bss        start:0x801A36B8 end:0x801A36E0 align:8
-
-dol/data/lbl_801A36E8.c:
-	.bss        start:0x801A36E8 end:0x801A50B8 align:8
 
 dol/data/gTRKCPUState.c:
 	.bss        start:0x801A5160 end:0x801A5590 align:8

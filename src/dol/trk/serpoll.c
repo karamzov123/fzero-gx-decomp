@@ -53,7 +53,7 @@ enum {
 };
 
 extern TRKBuffer lbl_801A36E8[3];
-extern u32 lbl_801A5098[6];
+u32 lbl_801A5098[6] __attribute__((aligned(8)));
 extern u8 lbl_800956C0[400];
 extern char lbl_80095850[];
 extern char lbl_8009586C[];

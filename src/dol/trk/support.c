@@ -166,7 +166,7 @@ int fn_8008A614(void) {
 }
 
 /* --- dol/fn_8008A66C.c --- */
-extern u32 lbl_801A50B0[];
+__declspec(section ".data") u32 lbl_801A50B0[2] __attribute__((aligned(8)));
 extern void fn_80088764(void *value, s32 arg);
 extern void TRKPostEvent(void *value);
 

@@ -47,7 +47,7 @@ typedef struct TRKEventQueue {
     NubEventID eventID;
 } TRKEventQueue;
 
-extern TRKEventQueue lbl_801A36B8;
+TRKEventQueue lbl_801A36B8 __attribute__((aligned(8)));
 
 extern u32 fn_800891B4(u32);
 DSError fn_8008AF50(void *);

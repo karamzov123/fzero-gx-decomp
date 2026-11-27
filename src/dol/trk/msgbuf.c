@@ -30,7 +30,7 @@ typedef struct TRKBuffer {
 } TRKBuffer;
 
 extern BOOL gTRKBigEndian;
-extern TRKBuffer lbl_801A36E8[3];
+TRKBuffer lbl_801A36E8[3] __attribute__((aligned(8)));
 extern char lbl_800956A0[];
 extern u32 lbl_80095678[];
 extern u32 MWTRACE(u32, ...);
