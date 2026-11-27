@@ -541,6 +541,20 @@ def resolve(p: Project, tu_source: str, v, apply: bool = True,
     # block -> private type names it renamed to `<block>_<name>`: a prologue declaration the block
     # relied on must follow the rename (fn_9_454's view cast named the unrenamed, incomplete tag)
     block_renames: Dict[str, set] = {}
+    # blocks of one multi-block unit compile joined: a later block uses the types an earlier
+    # block of its unit defines, so a rename of such a type follows into those blocks
+    unit_rest: Dict[str, List[str]] = {}
+    for u in units.values():
+        syms = [s for s in u['symbols'] if tf.get(s)]
+        for k, s in enumerate(syms):
+            unit_rest[s] = syms[k + 1:]
+
+    def rename_in_unit(bname: str, t: str) -> None:
+        for s in unit_rest.get(bname, []):
+            ob = tf.get(s)
+            if type_definition_span(ob.body, t):
+                break   # this block defines its own
+            ob.body = re.sub(r'\b' + re.escape(t) + r'\b', f'{bname}_{t}', ob.body)
     prologue_typedefs = set(re.findall(r'\}\s*([A-Za-z_]\w*)\s*;', tf.prologue, re.M)) | set(re.findall(r'^(?:typedef\s+)?struct\s+([A-Za-z_]\w*)\s*\{', tf.prologue, re.M))
     for b in tf.blocks:
         for t in sorted((set(re.findall(r'\}\s*([A-Za-z_]\w*)\s*;', b.body, re.M)) | set(re.findall(r'^(?:typedef\s+)?struct\s+([A-Za-z_]\w*)\s*\{', b.body, re.M))) & (set(header_typedefs) | prologue_typedefs)):
@@ -551,6 +565,7 @@ def resolve(p: Project, tu_source: str, v, apply: bool = True,
                 report.setdefault('dropped_typedefs', []).append((b.name, t))
             else:
                 b.body = re.sub(r'\b' + re.escape(t) + r'\b', f'{b.name}_{t}', b.body)
+                rename_in_unit(b.name, t)
                 report.setdefault('renamed_typedefs', []).append((b.name, t))
                 block_renames.setdefault(b.name, set()).add(t)
     # the same private type defined by several blocks: identical text is hoisted once and
@@ -591,6 +606,7 @@ def resolve(p: Project, tu_source: str, v, apply: bool = True,
             for bname, _ in owners:
                 b = tf.get(bname)
                 b.body = re.sub(r'\b' + re.escape(t) + r'\b', f'{bname}_{t}', b.body)
+                rename_in_unit(bname, t)
                 block_renames.setdefault(bname, set()).add(t)
             report.setdefault('renamed_typedefs', []).append(('*', t))
     pdecl: Dict[str, str] = {}

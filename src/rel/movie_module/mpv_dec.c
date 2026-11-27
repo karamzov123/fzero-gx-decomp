@@ -66,22 +66,19 @@ typedef struct MovieCode {
     s32 field_8;
     s32 field_c;
 } MovieCode;
-extern s16 *lbl_12_bss_6944;
-extern s16 *lbl_12_bss_6940;
-extern int MPV_GoNextDelimSj(SJ *stream);
-extern u32 fn_800589BC(u32, u32, struct Sig_fn_800589BC_fn_800589BC_Arg2 *, struct Sig_fn_800589BC_fn_800589BC_Arg3 *);
+extern void fn_800589BC(const SJCK *, s32, SJCK *, SJCK *);
 extern s16 *lbl_12_bss_6934;
 extern s16 *lbl_12_bss_6930;
 extern s16 *lbl_12_bss_6928;
 extern s16 *lbl_12_bss_691C;
+extern int MPV_GoNextDelimSj(fn_12_8F80_SJ *stream);
 extern s32 fn_12_9594(MovieBits *state, MovieCode *code, s32 *out, s32 *base);
+extern s16 *lbl_12_bss_6944;
+extern s16 *lbl_12_bss_6940;
 extern u32 lbl_12_bss_6924;
 extern u32 lbl_12_bss_6920;
 
-/* fzgx:begin fn_12_8BD8 noprologue */
-#include "types.h"
-#include "sofdec/sj.h"
-
+/* fzgx:begin fn_12_8BD8 */
 typedef void (*fn1_t)(void *);
 typedef void (*fn0_t)(u32);
 
@@ -112,10 +109,6 @@ struct fn_12_8BD8_ctx {
     s32 unk_12f4;
 };
 
-extern s16 *lbl_12_bss_6944;
-extern s16 *lbl_12_bss_6940;
-extern int MPV_GoNextDelimSj(SJ *);
-extern void fn_800589BC(const SJCK *, s32, SJCK *, SJCK *);
 
 #pragma opt_propagation off
 void fn_12_8BD8(struct fn_12_8BD8_ctx *arg0, SJ *arg1) {
@@ -272,7 +265,7 @@ void fn_12_8BD8(struct fn_12_8BD8_ctx *arg0, SJ *arg1) {
     fn_800589BC(&arg0->chunk, ((u32)ptr - lab_t1), &arg0->chunk, &localB);
     arg1->interface->put_chunk(arg1, 0, &arg0->chunk);
     arg1->interface->unget_chunk(arg1, 1, &localB);
-    MPV_GoNextDelimSj(arg1);
+    MPV_GoNextDelimSj( (fn_12_8F80_SJ *)(SJ *)(arg1));
 }
 #pragma opt_propagation reset
 /* fzgx:end fn_12_8BD8 */
@@ -1108,10 +1101,7 @@ void fn_12_975C(u32 arg0, struct fn_12_975C_Arg1 *arg1) {
 #pragma opt_propagation reset
 /* fzgx:end fn_12_975C */
 
-/* fzgx:begin fn_12_9D08 noprologue */
-#include "types.h"
-#include "sofdec/sj.h"
-
+/* fzgx:begin fn_12_9D08 */
 typedef void (*fn1_t)(void *);
 typedef void (*fn0_t)(u32);
 
@@ -1142,10 +1132,6 @@ struct fn_12_9D08_ctx {
     s32 unk_12f4;
 };
 
-extern s16 *lbl_12_bss_6944;
-extern s16 *lbl_12_bss_6940;
-extern int MPV_GoNextDelimSj(SJ *);
-extern void fn_800589BC(const SJCK *, s32, SJCK *, SJCK *);
 
 #pragma opt_propagation off
 void fn_12_9D08(struct fn_12_9D08_ctx *arg0, SJ *arg1) {
@@ -1309,7 +1295,7 @@ void fn_12_9D08(struct fn_12_9D08_ctx *arg0, SJ *arg1) {
     fn_800589BC(&arg0->chunk, ((u32)ptr - lab_t1), &arg0->chunk, &localB);
     arg1->interface->put_chunk(arg1, 0, &arg0->chunk);
     arg1->interface->unget_chunk(arg1, 1, &localB);
-    MPV_GoNextDelimSj(arg1);
+    MPV_GoNextDelimSj( (fn_12_8F80_SJ *)(SJ *)(arg1));
 }
 #pragma opt_propagation reset
 /* fzgx:end fn_12_9D08 */
