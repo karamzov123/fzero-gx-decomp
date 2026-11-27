@@ -1558,7 +1558,7 @@ s32 fn_1_49B70(u8 *arg0, FontState *arg1) {
 /* fzgx:end fn_1_49B70 */
 
 /* fzgx:begin fn_1_49F08 */
-/* Placeholder: retail function stripped by the link; body reconstructed from its literals */
+/* WARNING: compiler-diff device, not original code. Stripped placeholder for literal order; a bulk explicit-data replacement failed the retail hash. */
 /* Its only trace is the signed int-to-float constant .rodata 10F8, emitted before fn_1_49F08's tables. */
 static f32 font_int_to_float(s32 value) {
     return value;
@@ -1784,7 +1784,7 @@ u32 fn_1_49F08(u32 c, FontState *state, const FontInfo *font) {
 /* fzgx:end fn_1_49F08 */
 
 /* fzgx:begin fn_1_4A0D8 */
-/* Placeholder: retail function stripped by the link; body reconstructed from its literals */
+/* WARNING: compiler-diff device, not original code. Stripped placeholder for literal order; a bulk explicit-data replacement failed the retail hash. */
 /* Named by its error string (.data 1C39C); the search is the glyph lookup fn_1_4A0D8 open-codes. */
 static s32 get_tex_id(FontInfo *font, u16 ch) {
     s32 i;
@@ -3331,7 +3331,7 @@ u32 fn_1_4DCB8(u32 value) {
     return old_value;
 }
 
-/* Placeholder: retail function stripped by the link; body reconstructed from its literals */
+/* WARNING: compiler-diff device, not original code. Stripped placeholder for literal order; a bulk explicit-data replacement failed the retail hash. */
 /* Its traces: .rodata 26E8 (a magenta FontColor) 240.0f 0.09f 0.095f and .data "%s" "It's Font\nTest." */
 static void font_test(void) {
     static const FontColor color = {0xFF, 0x00, 0xFF, 0xFF};

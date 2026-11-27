@@ -258,6 +258,24 @@ remain separate: putting them in one compiler invocation shifted the latter
 two string bases and changed their base-relative instructions. This is a data
 ownership and regional source-coverage milestone, not a complete TU collapse.
 
+### USA main.rel consolidation and Japan/PAL source retention
+
+The USA memory-card, second selection-display, font and sprite consolidations
+use new whole-object splits. `config/GFZE01/regional_fragments.json` retains the
+previously verified Japan/PAL compiler inputs instead of letting DTK silently
+replace them with retail fallback. Those entries carry the old split extents in
+USA coordinates; configure translates them using each region's symbol map.
+Unlike `units.json`, the fragment manifest never selects units for USA. Remove
+its entries and source containers when the replacement whole object is proven
+to match the corresponding regions.
+
+The strip allowlist records helpers for which no retail text survives. The
+font/sprite and selection-panel placeholders preserve data layout only; their
+bodies are not credited reconstructions. A bulk probe that replaced the five
+font/sprite placeholders with explicit objects failed the retail hash gate.
+These helpers remain compiler-diff debt, not portable replacements for the
+unavailable original bodies.
+
 ### AV loader diagnostics and location strings
 
 `avload.c` now defines six writable strings in its native `.data` range

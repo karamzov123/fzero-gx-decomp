@@ -1179,7 +1179,8 @@ f32 lbl_1_data_1C508 = 1.0f;
 u16 lbl_1_bss_646D0;
 u16 lbl_1_bss_646D2;
 
-/* Placeholder: retail function stripped by the link; only its assert strings (.data 1C50C "sprite.c", 1C518) and
+/* WARNING: compiler-diff device, not original code. A bulk explicit-data replacement failed the retail hash.
+   This stripped placeholder preserves the assert strings (.data 1C50C "sprite.c", 1C518) and
    its .bss footprint survive (the buffer 4E6D0 and the halfword 646D0 are first used here, before 4F724's count).
    Named by its message; the body is a guess. */
 static void SprBufChg(void) {
@@ -2390,7 +2391,8 @@ void fn_1_53830(u32 period, f32 x, u8 val, volatile u8 *a, volatile u8 *b) { /* 
 /* fzgx:end fn_1_53830 */
 
 /* fzgx:begin fn_1_539CC */
-/* Placeholder: retail function stripped by the link; only its literals survive (.rodata 283C 80.0f and 2840
+/* WARNING: compiler-diff device, not original code. A bulk explicit-data replacement failed the retail hash.
+   This stripped placeholder preserves literals (.rodata 283C 80.0f and 2840
    60.0f, first used after fn_1_53830 and referenced by no retail code). Body unknown. */
 static f32 sprite_scale_80_60(f32 x) {
     return x * 80.0f / 60.0f;
