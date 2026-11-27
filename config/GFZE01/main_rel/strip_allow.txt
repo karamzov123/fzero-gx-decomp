@@ -38,4 +38,8 @@ car_literal_order_3CF0  # car.c, owner-accepted literal-order placeholder (retai
 rob_open_lip  # rob.c, inlined in fn_1_8F62C
 rob_set_blink_wait  # rob.c, inlined in fn_1_8F62C
 rob_load_coin_models  # rob.c, no retail caller: reconstruction from the unread .gma strings at .data 27C50 only
+pulse_color  # memcard.c, static helper inlined in fn_1_B5310/fn_1_B5654/fn_1_B5A3C (out-of-line copy stripped)
+draw_question  # memcard.c, static helper inlined in fn_1_BC310 via draw_confirm (out-of-line copy stripped)
+draw_confirm  # memcard.c, static helper inlined in fn_1_BC310 (out-of-line copy stripped)
+memcard_restore_backup  # memcard.c, static helper inlined in fn_1_AECCC (out-of-line copy stripped)
 accessory_node_fall  # accessory.c, plain static helper (rope node gravity step) inlined by -inline auto in fn_1_10D7D4; the link drops the out-of-line copy

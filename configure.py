@@ -344,6 +344,7 @@ config.libs = [
 # GFZE01 unit splits moved to those addresses (render_version_config).
 CANONICAL_VERSION = VERSIONS[DEFAULT_VERSION]
 CANONICAL_UNITS = Path("config") / CANONICAL_VERSION / "units.json"
+REGIONAL_FRAGMENTS = CANONICAL_UNITS.with_name("regional_fragments.json")
 
 
 def unit_matches(u: Dict[str, Any], version: str) -> bool:
@@ -356,7 +357,18 @@ def version_units() -> List[Dict[str, Any]]:
     if not CANONICAL_UNITS.exists():
         return []
     out = []
-    for u in json.loads(CANONICAL_UNITS.read_text()):
+    units = json.loads(CANONICAL_UNITS.read_text())
+    if config.version != CANONICAL_VERSION and REGIONAL_FRAGMENTS.exists():
+        fragments = json.loads(REGIONAL_FRAGMENTS.read_text())
+        for u in fragments:
+            versions = u.get("matching_for", [])
+            if (u.get("status") != "matching" or not versions or
+                    not set(versions) <= set(VERSIONS) - {CANONICAL_VERSION} or
+                    not u.get("regional_split")):
+                sys.exit(f"Invalid regional fragment: {u['source']}")
+        units.extend(fragments)
+    seen = set()
+    for u in units:
         v = dict(u)
         pool = u.get("pool_for", {}).get(config.version)
         if pool is not None:
@@ -366,6 +378,10 @@ def version_units() -> List[Dict[str, Any]]:
                 v["status"] = "nonmatching"
             out.append(v)
         elif unit_matches(u, config.version):
+            key = (u["module"], u["source"])
+            if key in seen:
+                sys.exit(f"{config.version}: duplicate selected unit {key}")
+            seen.add(key)
             out.append(v)
     return out
 
@@ -410,7 +426,10 @@ def render_version_config(units: List[Dict[str, Any]]) -> Path:
         header = rel.read_text().split("\n\n")[0].strip() if rel.exists() else ""
         body = []
         for u in sorted(by_mod.get(mod, []), key=lambda u: u["source"]):
-            lines = blocks.get(u["source"])
+            # Keep verified regional fragments when USA replaces their splits
+            # with a whole TU. Their addresses still go through the same
+            # symbol-based translation as the shared splits.
+            lines = u.get("regional_split", blocks.get(u["source"]))
             if lines is None:
                 sys.exit(f"{config.version}: {u['source']} has no {CANONICAL_VERSION} split")
             moved = []
@@ -521,6 +540,8 @@ if tu_sources:
     config.reconfig_deps.append(Path("tools/fzgx/tufile.py"))
     config.reconfig_deps.extend(sorted(p for p in tu_sources if p.is_file()))
 if config.version != CANONICAL_VERSION:
+    if REGIONAL_FRAGMENTS.exists():
+        config.reconfig_deps.append(REGIONAL_FRAGMENTS)
     config.config_path = render_version_config(version_units())
     # tools/project.py reads <config dir>/<module>/strip_allow.txt; the shared source strips the same
     # locals in every version, so the region build uses the GFZE01 lists

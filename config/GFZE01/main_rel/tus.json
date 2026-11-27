@@ -2580,7 +2580,7 @@
    "data_sec": 5,
    "data": [
     213844,
-    247736
+    219848
    ],
    "anchor_refs": [
     684692,
@@ -2651,8 +2651,8 @@
    ],
    "data_sec": 5,
    "data": [
-    247736,
-    247736
+    219848,
+    219848
    ],
    "anchor_refs": [],
    "functions": [
@@ -2671,44 +2671,14 @@
    }
   },
   {
-   "file": "driver_c.c",
-   "text": [
-    697744,
-    701560
-   ],
-   "data_sec": 5,
-   "data": [
-    247736,
-    247736
-   ],
-   "anchor_refs": [],
-   "functions": [
-    "fn_1_AA590",
-    "fn_1_AA6D8",
-    "fn_1_AAB98",
-    "fn_1_AAEB0",
-    "fn_1_AAF18",
-    "fn_1_AAF1C",
-    "fn_1_AB434",
-    "fn_1_AB438",
-    "fn_1_AB458",
-    "fn_1_AB45C"
-   ],
-   "confidence": {
-    "text+data": 10,
-    "text-range": 0,
-    "data-vote": 0
-   }
-  },
-  {
    "file": "memcard.c",
    "text": [
-    701560,
+    697744,
     801276
    ],
    "data_sec": 5,
    "data": [
-    247736,
+    219848,
     250420
    ],
    "anchor_refs": [
@@ -2735,6 +2705,16 @@
     800492
    ],
    "functions": [
+    "fn_1_AA590",
+    "fn_1_AA6D8",
+    "fn_1_AAB98",
+    "fn_1_AAEB0",
+    "fn_1_AAF18",
+    "fn_1_AAF1C",
+    "fn_1_AB434",
+    "fn_1_AB438",
+    "fn_1_AB458",
+    "fn_1_AB45C",
     "fn_1_AB478",
     "fn_1_AB4F4",
     "fn_1_AB598",
@@ -2897,9 +2877,9 @@
     "fn_1_C37A0"
    ],
    "confidence": {
-    "text+data": 17,
-    "text-range": 146,
-    "data-vote": 1
+    "text+data": 170,
+    "text-range": 0,
+    "data-vote": 0
    }
   },
   {

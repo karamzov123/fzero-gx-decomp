@@ -643,11 +643,16 @@ class Project:
         """GFZE01 sees the list as stored; another version sees only the units that match it."""
         if self.is_canonical:
             return units
+        fragments = self.units_path.with_name("regional_fragments.json")
+        if fragments.exists():
+            units.extend(json.loads(fragments.read_text()))
         return [u for u in units if unit_matches(u, self.version)]
 
     def unit_record(self, unit_source: str) -> Optional[dict]:
         """units.json entry for a split unit name (the `source` field), if configured."""
-        stamp = self.units_path.stat().st_mtime_ns if self.units_path.exists() else None
+        manifest = self.units_path.with_name("regional_fragments.json")
+        stamp = (self.units_path.stat().st_mtime_ns if self.units_path.exists() else None,
+                 manifest.stat().st_mtime_ns if not self.is_canonical and manifest.exists() else None)
         idx = self.__dict__.get("_units_index")
         if not idx or idx[0] != stamp:
             idx = (stamp, {u["source"]: u for u in self.load_units()})
@@ -692,11 +697,16 @@ class Project:
         """GFZE01 sees the list as stored; another version sees only the units that match it."""
         if self.is_canonical:
             return units
+        fragments = self.units_path.with_name("regional_fragments.json")
+        if fragments.exists():
+            units.extend(json.loads(fragments.read_text()))
         return [u for u in units if unit_matches(u, self.version)]
 
     def unit_record(self, unit_source: str) -> Optional[dict]:
         """units.json entry for a split unit name (the `source` field), if configured."""
-        stamp = self.units_path.stat().st_mtime_ns if self.units_path.exists() else None
+        manifest = self.units_path.with_name("regional_fragments.json")
+        stamp = (self.units_path.stat().st_mtime_ns if self.units_path.exists() else None,
+                 manifest.stat().st_mtime_ns if not self.is_canonical and manifest.exists() else None)
         idx = self.__dict__.get("_units_index")
         if not idx or idx[0] != stamp:
             idx = (stamp, {u["source"]: u for u in self.load_units()})

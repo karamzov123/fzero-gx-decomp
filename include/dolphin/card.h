@@ -33,6 +33,10 @@ typedef struct CARDStat {
     u32 offsetData;
 } CARDStat;
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 s32 CARDCheck(s32 channel);
 s32 CARDCheckAsync(s32 chan, CARDCallback callback);
 s32 CARDCheckExAsync(s32 chan, s32 *xferBytes, CARDCallback callback);
@@ -56,5 +60,9 @@ s32 CARDSetStatusAsync(s32 chan, s32 fileNo, CARDStat *stat, CARDCallback callba
 s32 CARDUnmount(s32 chan);
 s32 CARDWriteAsync(CARDFileInfo *fileInfo, const void *buf, s32 length, s32 offset,
                    CARDCallback callback);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

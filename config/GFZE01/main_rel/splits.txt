@@ -194,50 +194,25 @@ rel/main_rel/driver/fn_1_A96FC.c:
 	.data       start:0x000359D8 end:0x00035AC8 align:8
 	.bss        start:0x00071670 end:0x00071690 align:8
 
-rel/main_rel/memcard/fn_1_AB478.c:
-	.text       start:0x000AB478 end:0x000ABB4C align:4
+rel/main_rel/memcard/fn_1_AA590.c:
+	.text       start:0x000AA590 end:0x000C39FC align:4
+	.rodata     start:0x00004AE0 end:0x00005168 align:8
+	.data       start:0x00035AC8 end:0x0003D138 align:8
+	.bss        start:0x000716C0 end:0x0007AC20 align:8
 
-rel/main_rel/memcard/fn_1_AC12C.c:
-	.text       start:0x000AC12C end:0x000AC188
 
-rel/main_rel/memcard/fn_1_ACA00.c:
-	.text       start:0x000ACA00 end:0x000ACD04 align:4
 
-rel/main_rel/memcard/fn_1_ACD04.c:
-	.text       start:0x000ACD04 end:0x000AD0A0 align:4
 
-rel/main_rel/memcard/fn_1_AD140.c:
-	.text       start:0x000AD140 end:0x000AD264 align:4
 
-rel/main_rel/memcard/fn_1_AEC34.c:
-	.text       start:0x000AEC34 end:0x000AECCC
 
-rel/main_rel/memcard/fn_1_B1710.c:
-	.text       start:0x000B1710 end:0x000B171C
 
-rel/main_rel/memcard/fn_1_B38F4.c:
-	.text       start:0x000B38F4 end:0x000B3900
 
-rel/main_rel/memcard/fn_1_B7CD4.c:
-	.text       start:0x000B7CD4 end:0x000B7EF8 align:4
 
-rel/main_rel/memcard/fn_1_B7EF8.c:
-	.text       start:0x000B7EF8 end:0x000B7F08
 
-rel/main_rel/memcard/fn_1_B7F08.c:
-	.text       start:0x000B7F08 end:0x000B8170 align:4
 
-rel/main_rel/memcard/fn_1_B9BE0.c:
-	.text       start:0x000B9BE0 end:0x000B9DE8 align:4
 
-rel/main_rel/memcard/fn_1_BC29C.c:
-	.text       start:0x000BC29C end:0x000BE978 align:4
 
-rel/main_rel/memcard/fn_1_C132C.c:
-	.text       start:0x000C132C end:0x000C1394
 
-rel/main_rel/memcard/fn_1_C17CC.c:
-	.text       start:0x000C17CC end:0x000C1ACC align:4
 
 rel/main_rel/enemy_ctrl/fn_1_C47B4.c:
 	.text       start:0x000C47B4 end:0x000C6F8C align:4
@@ -648,8 +623,6 @@ rel/main_rel/bg_cas_d/fn_1_101454.c:
 rel/main_rel/font_b/fn_1_51914.c:
 	.text       start:0x00051914 end:0x00051990 align:4
 
-rel/main_rel/memcard/fn_1_B5258.c:
-	.text       start:0x000B5258 end:0x000B5310 align:4
 
 rel/main_rel/bg_cas_c/fn_1_FD1D4.c:
 	.text       start:0x000FD1D4 end:0x000FD27C align:4
@@ -663,14 +636,8 @@ rel/main_rel/font_b/fn_1_4F734.c:
 rel/main_rel/sel_static_disp/fn_1_13923C.c:
 	.text       start:0x0013923C end:0x00139440 align:4
 
-rel/main_rel/memcard/fn_1_AD0A0.c:
-	.text       start:0x000AD0A0 end:0x000AD140 align:4
 
-rel/main_rel/memcard/fn_1_BF520.c:
-	.text       start:0x000BF520 end:0x000BF600 align:4
 
-rel/main_rel/memcard/fn_1_B7C6C.c:
-	.text       start:0x000B7C6C end:0x000B7CD4 align:4
 
 rel/main_rel/sel_static_disp_c/fn_1_14E1E0.c:
 	.text       start:0x0014E1E0 end:0x0014E2DC align:4
@@ -778,8 +745,6 @@ rel/main_rel/sound/fn_1_A116C.c:
 	.text       start:0x000A116C end:0x000A1588 align:4
 	.data       start:0x00033F68 end:0x00033FF0 align:8
 
-rel/main_rel/memcard/fn_1_ABE88.c:
-	.text       start:0x000ABE88 end:0x000AC12C align:4
 
 rel/main_rel/bg_cas_d/fn_1_1013A0.c:
 	.text       start:0x001013A0 end:0x001013C0 align:4
@@ -853,8 +818,6 @@ rel/main_rel/sel_static_disp_b/fn_1_1424E8.c:
 rel/main_rel/sel_static_disp/fn_1_136714.c:
 	.text       start:0x00136714 end:0x001368A0 align:4
 
-rel/main_rel/memcard/fn_1_B8170.c:
-	.text       start:0x000B8170 end:0x000B8338 align:4
 
 rel/main_rel/bg_cas_c/fn_1_FC60C.c:
 	.text       start:0x000FC60C end:0x000FC760 align:4
@@ -879,8 +842,6 @@ rel/main_rel/game/fn_1_2C768.c:
 	.data       start:0x00005730 end:0x00006640 align:8
 	.bss        start:0x00003C00 end:0x00038450 align:8
 
-rel/main_rel/memcard/fn_1_C23CC.c:
-	.text       start:0x000C23CC end:0x000C24A4 align:4
 
 rel/main_rel/bg_common/fn_1_106DB4.c:
 	.text       start:0x00106DB4 end:0x00106EB0 align:4
@@ -892,8 +853,6 @@ rel/main_rel/archive/fn_1_12A9BC.c:
 rel/main_rel/archive/fn_1_12A8A4.c:
 	.text       start:0x0012A8A4 end:0x0012A9BC align:4
 
-rel/main_rel/memcard/fn_1_AC188.c:
-	.text       start:0x000AC188 end:0x000ACA00 align:4
 
 rel/main_rel/driver_b/fn_1_A9868.c:
 	.text       start:0x000A9868 end:0x000AA590 align:4
@@ -942,9 +901,6 @@ rel/main_rel/archive/fn_1_12ECA8.c:
 rel/main_rel/screen_effect_b/fn_1_79C88.c:
 	.text       start:0x00079C88 end:0x00079E54 align:4
 
-rel/main_rel/memcard/fn_1_AECCC.c:
-	.text       start:0x000AECCC end:0x000B1710 align:4
-	.data       start:0x0003C980 end:0x0003CB50 align:8
 
 rel/main_rel/sel_static_disp/fn_1_1368A0.c:
 	.text       start:0x001368A0 end:0x00136CC4 align:4
@@ -964,8 +920,6 @@ rel/main_rel/phys/fn_1_E1C10.c:
 rel/main_rel/font/fn_1_4D494.c:
 	.text       start:0x0004D494 end:0x0004D784 align:4
 
-rel/main_rel/memcard/fn_1_ABB4C.c:
-	.text       start:0x000ABB4C end:0x000ABE88 align:4
 
 rel/main_rel/sel_static_disp/fn_1_134EE4.c:
 	.text       start:0x00134EE4 end:0x001358BC align:4
@@ -973,14 +927,10 @@ rel/main_rel/sel_static_disp/fn_1_134EE4.c:
 rel/main_rel/phys/fn_1_E4A38.c:
 	.text       start:0x000E4A38 end:0x000E50F0 align:4
 
-rel/main_rel/memcard/fn_1_BF600.c:
-	.text       start:0x000BF600 end:0x000BF700 align:4
 
 rel/main_rel/sel_static_disp_b/fn_1_143E7C.c:
 	.text       start:0x00143E7C end:0x00143F5C align:4
 
-rel/main_rel/memcard/fn_1_BFCF8.c:
-	.text       start:0x000BFCF8 end:0x000BFE20 align:4
 
 rel/main_rel/phys/fn_1_E35F0.c:
 	.text       start:0x000E35F0 end:0x000E3778 align:4
@@ -1003,12 +953,7 @@ rel/main_rel/ghost/fn_1_EB330.c:
 rel/main_rel/_prolog_b/fn_1_3920.c:
 	.text       start:0x00003920 end:0x00003B34 align:4
 
-rel/main_rel/memcard/fn_1_AD264.c:
-	.text       start:0x000AD264 end:0x000AEC34 align:4
-	.data       start:0x00035AC8 end:0x0003C980 align:8
 
-rel/main_rel/memcard/fn_1_BF9C4.c:
-	.text       start:0x000BF9C4 end:0x000BFBF4 align:4
 
 rel/main_rel/font/fn_1_49410.c:
 	.text       start:0x00049410 end:0x00049794 align:4
@@ -1019,9 +964,6 @@ rel/main_rel/sel_static_disp/fn_1_13D460.c:
 rel/main_rel/live_camera/fn_1_E174.c:
 	.text       start:0x0000E174 end:0x0000E688 align:4
 
-rel/main_rel/memcard/fn_1_B3900.c:
-	.text       start:0x000B3900 end:0x000B4AC0 align:4
-	.data       start:0x0003CCA8 end:0x0003CDE0 align:8
 
 rel/main_rel/sound/fn_1_9FFD8.c:
 	.text       start:0x0009FFD8 end:0x000A0214 align:4
@@ -1041,18 +983,12 @@ rel/main_rel/_prolog/fn_1_ECC.c:
 rel/main_rel/sound/fn_1_A358C.c:
 	.text       start:0x000A358C end:0x000A3654 align:4
 
-rel/main_rel/memcard/fn_1_C023C.c:
-	.text       start:0x000C023C end:0x000C0374 align:4
 
-rel/main_rel/memcard/fn_1_C0374.c:
-	.text       start:0x000C0374 end:0x000C062C align:4
 
 
 rel/main_rel/screen_effect/fn_1_77B80.c:
 	.text       start:0x00077B80 end:0x00077C5C align:4
 
-rel/main_rel/memcard/fn_1_C1ACC.c:
-	.text       start:0x000C1ACC end:0x000C1CFC align:4
 
 
 rel/main_rel/archive/fn_1_12A7C4.c:
@@ -1166,8 +1102,6 @@ rel/main_rel/screen_effect/fn_1_727BC.c:
 rel/main_rel/motasglist_b/fn_1_449A8.c:
 	.text       start:0x000449A8 end:0x00044A74 align:4
 
-rel/main_rel/memcard/fn_1_BFBF4.c:
-	.text       start:0x000BFBF4 end:0x000BFCF8 align:4
 
 rel/main_rel/live_camera/fn_1_11544.c:
 	.text       start:0x00011544 end:0x00011748 align:4
@@ -1284,8 +1218,6 @@ rel/main_rel/bg_cas_c/fn_1_FD3A8.c:
 rel/main_rel/sel_static_disp/fn_1_13A460.c:
 	.text       start:0x0013A460 end:0x0013A654 align:4
 
-rel/main_rel/memcard/fn_1_BFE20.c:
-	.text       start:0x000BFE20 end:0x000C023C align:4
 
 rel/main_rel/sel_static_disp/fn_1_1418EC.c:
 	.text       start:0x001418EC end:0x00141A80 align:4
@@ -1410,16 +1342,11 @@ rel/main_rel/archive/fn_1_12E0B8.c:
 rel/main_rel/phys/fn_1_E3778.c:
 	.text       start:0x000E3778 end:0x000E38D4 align:4
 
-rel/main_rel/memcard/fn_1_BF198.c:
-	.text       start:0x000BF198 end:0x000BF520 align:4
 
 
 rel/main_rel/bg_win/fn_1_15C6C0.c:
 	.text       start:0x0015C6C0 end:0x0015DD7C align:4
 
-rel/main_rel/memcard/fn_1_BA144.c:
-	.text       start:0x000BA144 end:0x000BB974 align:4
-	.data       start:0x0003CE58 end:0x0003CF18 align:8
 
 rel/main_rel/font_b/fn_1_53B14.c:
 	.text       start:0x00053B14 end:0x00053BD8 align:4
@@ -1454,8 +1381,6 @@ rel/main_rel/sound/fn_1_A0214.c:
 rel/main_rel/sound/fn_1_A0978.c:
 	.text       start:0x000A0978 end:0x000A0AA4 align:4
 
-rel/main_rel/memcard/fn_1_B8E84.c:
-	.text       start:0x000B8E84 end:0x000B8EDC align:4
 
 rel/main_rel/sound/fn_1_A0D20.c:
 	.text       start:0x000A0D20 end:0x000A0D7C align:4
@@ -1478,8 +1403,6 @@ rel/main_rel/sel_static_disp_c/fn_1_14F6F8.c:
 rel/main_rel/_prolog_b/fn_1_426C.c:
 	.text       start:0x0000426C end:0x00004310 align:4
 
-rel/main_rel/data/lbl_1_bss_718E0.c:
-	.bss        start:0x000718E0 end:0x000772C8 align:32
 
 rel/main_rel/data/lbl_1_data_67F0.c:
 	.data       start:0x000067F0 end:0x00006CA0 align:8
@@ -1565,11 +1488,7 @@ rel/main_rel/coli_b/fn_1_2277C.c:
 rel/main_rel/spline/fn_1_FA1D8.c:
 	.text       start:0x000FA1D8 end:0x000FA6C0 align:4
 
-rel/main_rel/memcard/fn_1_BF700.c:
-	.text       start:0x000BF700 end:0x000BF9C4 align:4
 
-rel/main_rel/memcard/fn_1_C0B0C.c:
-	.text       start:0x000C0B0C end:0x000C0E00 align:4
 
 rel/main_rel/sel_static_disp_b/fn_1_148444.c:
 	.text       start:0x00148444 end:0x00148738 align:4
@@ -1592,8 +1511,6 @@ rel/main_rel/sel_static_disp/fn_1_13EA9C.c:
 rel/main_rel/font_b/fn_1_5233C.c:
 	.text       start:0x0005233C end:0x00052718 align:4
 
-rel/main_rel/memcard/fn_1_BE978.c:
-	.text       start:0x000BE978 end:0x000BED04 align:4
 
 rel/main_rel/sound/fn_1_A0D7C.c:
 	.text       start:0x000A0D7C end:0x000A116C align:4
@@ -1663,9 +1580,6 @@ rel/main_rel/font_b/fn_1_50190.c:
 rel/main_rel/bg_common/fn_1_103FCC.c:
 	.text       start:0x00103FCC end:0x00104710 align:4
 
-rel/main_rel/memcard/fn_1_B171C.c:
-	.text       start:0x000B171C end:0x000B38F4 align:4
-	.data       start:0x0003CB68 end:0x0003CCA8 align:8
 
 rel/main_rel/sel_static_disp/fn_1_13B548.c:
 	.text       start:0x0013B548 end:0x0013C134 align:4
@@ -1676,8 +1590,6 @@ rel/main_rel/camera_c/fn_1_C10C.c:
 rel/main_rel/load/fn_1_45A58.c:
 	.text       start:0x00045A58 end:0x00045AD4 align:4
 
-rel/main_rel/driver_c/fn_1_AA590.c:
-	.text       start:0x000AA590 end:0x000AA6D8 align:4
 
 rel/main_rel/ghost/fn_1_ECE04.c:
 	.text       start:0x000ECE04 end:0x000ECF68 align:4
@@ -1688,14 +1600,10 @@ rel/main_rel/ghost/fn_1_F0B5C.c:
 rel/main_rel/driver/fn_1_A8FA0.c:
 	.text       start:0x000A8FA0 end:0x000A9250 align:4
 
-rel/main_rel/memcard/fn_1_B9904.c:
-	.text       start:0x000B9904 end:0x000B9BE0 align:4
 
 rel/main_rel/_prolog_b/fn_1_17C8.c:
 	.text       start:0x000017C8 end:0x000021E4 align:4
 
-rel/main_rel/driver_c/fn_1_AAB98.c:
-	.text       start:0x000AAB98 end:0x000AB478 align:4
 
 rel/main_rel/_prolog_b/fn_1_2F04.c:
 	.text       start:0x00002F04 end:0x00003238 align:4
@@ -1715,14 +1623,10 @@ rel/main_rel/sound/fn_1_A3654.c:
 rel/main_rel/effect_car/fn_1_6DD68.c:
 	.text       start:0x0006DD68 end:0x0006E320 align:4
 
-rel/main_rel/memcard/fn_1_C1394.c:
-	.text       start:0x000C1394 end:0x000C17CC align:4
 
 rel/main_rel/screen_effect_b/fn_1_7B558.c:
 	.text       start:0x0007B558 end:0x0007BA08 align:4
 
-rel/main_rel/driver_c/fn_1_AA6D8.c:
-	.text       start:0x000AA6D8 end:0x000AAB98 align:4
 
 rel/main_rel/_prolog_b/fn_1_1304.c:
 	.text       start:0x00001304 end:0x000017C8 align:4
@@ -1748,8 +1652,6 @@ rel/main_rel/bg_cas_c/fn_1_FD844.c:
 rel/main_rel/sound/fn_1_A266C.c:
 	.text       start:0x000A266C end:0x000A2A70 align:4
 
-rel/main_rel/memcard/fn_1_BED04.c:
-	.text       start:0x000BED04 end:0x000BF198 align:4
 
 rel/main_rel/motasglist_b/fn_1_433E0.c:
 	.text       start:0x000433E0 end:0x00043E08 align:4
@@ -1913,8 +1815,6 @@ rel/main_rel/load/fn_1_451E4.c:
 rel/main_rel/sound/fn_1_A4268.c:
 	.text       start:0x000A4268 end:0x000A47F4 align:4
 
-rel/main_rel/memcard/fn_1_B88C4.c:
-	.text       start:0x000B88C4 end:0x000B8E84 align:4
 
 rel/main_rel/sel_static_disp_c/fn_1_14A328.c:
 	.text       start:0x0014A328 end:0x0014A9CC align:4
@@ -1925,17 +1825,9 @@ rel/main_rel/camera_c/fn_1_CC5C.c:
 rel/main_rel/bg_common/fn_1_106D30.c:
 	.text       start:0x00106D30 end:0x00106DB4 align:4
 
-rel/main_rel/memcard/fn_1_C062C.c:
-	.text       start:0x000C062C end:0x000C0B0C align:4
 
-rel/main_rel/memcard/fn_1_C0E00.c:
-	.text       start:0x000C0E00 end:0x000C132C align:4
 
-rel/main_rel/memcard/fn_1_B8338.c:
-	.text       start:0x000B8338 end:0x000B88C4 align:4
 
-rel/main_rel/memcard/fn_1_B9DE8.c:
-	.text       start:0x000B9DE8 end:0x000BA144 align:4
 
 rel/main_rel/font/fn_1_4BD4C.c:
 	.text       start:0x0004BD4C end:0x0004C16C align:4
@@ -1986,8 +1878,6 @@ rel/main_rel/camera_c/fn_1_C770.c:
 rel/main_rel/ghost/fn_1_F0168.c:
 	.text       start:0x000F0168 end:0x000F0508 align:4
 
-rel/main_rel/memcard/fn_1_B6B28.c:
-	.text       start:0x000B6B28 end:0x000B7C6C align:4
 
 rel/main_rel/effect_car/fn_1_7099C.c:
 	.text       start:0x0007099C end:0x00071024 align:4
@@ -1998,8 +1888,6 @@ rel/main_rel/sel_static_disp_b/fn_1_147A04.c:
 rel/main_rel/live_camera/fn_1_F3D0.c:
 	.text       start:0x0000F3D0 end:0x0000F6A8 align:4
 
-rel/main_rel/memcard/fn_1_C24A4.c:
-	.text       start:0x000C24A4 end:0x000C3378 align:4
 
 rel/main_rel/sel_static_disp/fn_1_141A80.c:
 	.text       start:0x00141A80 end:0x001420E0 align:4
@@ -2028,8 +1916,6 @@ rel/main_rel/bg_win/fn_1_15BBC4.c:
 rel/main_rel/background/fn_1_9A5CC.c:
 	.text       start:0x0009A5CC end:0x0009A770 align:4
 
-rel/main_rel/memcard/fn_1_C3378.c:
-	.text       start:0x000C3378 end:0x000C39FC align:4
 
 rel/main_rel/enemy_ctrl/fn_1_C39FC.c:
 	.text       start:0x000C39FC end:0x000C3A0C align:4
@@ -2095,8 +1981,6 @@ rel/main_rel/sound/fn_1_A0680.c:
 rel/main_rel/camera_b/fn_1_AFC8.c:
 	.text       start:0x0000AFC8 end:0x0000B724 align:4
 
-rel/main_rel/memcard/fn_1_B5A3C.c:
-	.text       start:0x000B5A3C end:0x000B5F20 align:4
 
 rel/main_rel/bg_lig_b/fn_1_D6748.c:
 	.text       start:0x000D6748 end:0x000D720C align:4
@@ -2110,8 +1994,6 @@ rel/main_rel/ghost/fn_1_EB8F4.c:
 rel/main_rel/ghost/fn_1_F0E00.c:
 	.text       start:0x000F0E00 end:0x000F1300 align:4
 
-rel/main_rel/memcard/fn_1_B8EDC.c:
-	.text       start:0x000B8EDC end:0x000B9904 align:4
 
 rel/main_rel/ghost/fn_1_F0508.c:
 	.text       start:0x000F0508 end:0x000F0B5C align:4
@@ -2150,11 +2032,7 @@ rel/main_rel/background/fn_1_9BBE4.c:
 rel/main_rel/font_b/fn_1_4EDAC.c:
 	.text       start:0x0004EDAC end:0x0004F724 align:4
 
-rel/main_rel/memcard/fn_1_B5654.c:
-	.text       start:0x000B5654 end:0x000B5A3C align:4
 
-rel/main_rel/memcard/fn_1_B5310.c:
-	.text       start:0x000B5310 end:0x000B5654 align:4
 
 rel/main_rel/data/lbl_1_data_0.c:
 	.data       start:0x00000000 end:0x00000218 align:8
@@ -7706,23 +7584,11 @@ rel/main_rel/data/lbl_1_bss_D70.c:
 rel/main_rel/data/lbl_1_bss_DA8.c:
 	.bss        start:0x00000DA8 end:0x00000DB0 align:8
 
-rel/main_rel/data/lbl_1_bss_772C8.c:
-	.bss        start:0x000772C8 end:0x00077310 align:8
 
-rel/main_rel/data/lbl_1_bss_77310.c:
-	.bss        start:0x00077310 end:0x00077380 align:16
 
-rel/main_rel/data/lbl_1_bss_77380.c:
-	.bss        start:0x00077380 end:0x0007A380 align:32
 
-rel/main_rel/data/lbl_1_bss_7A380.c:
-	.bss        start:0x0007A380 end:0x0007A388 align:32
 
-rel/main_rel/data/lbl_1_bss_7A388.c:
-	.bss        start:0x0007A388 end:0x0007AB90 align:8
 
-rel/main_rel/data/lbl_1_bss_7AB90.c:
-	.bss        start:0x0007AB90 end:0x0007AC20 align:16
 
 rel/main_rel/data/lbl_1_bss_7AC20.c:
 	.bss        start:0x0007AC20 end:0x0007AC40 align:32
@@ -7889,8 +7755,6 @@ rel/main_rel/sel_static_disp/fn_1_133E04.c:
 rel/main_rel/bg_for/fn_1_DE4B0.c:
 	.text       start:0x000DE4B0 end:0x000DE9C4 align:4
 
-rel/main_rel/memcard/fn_1_B4AC0.c:
-	.text       start:0x000B4AC0 end:0x000B5258 align:4
 
 rel/main_rel/_prolog_b/fn_1_3308.c:
 	.text       start:0x00003308 end:0x00003920 align:4
@@ -7928,8 +7792,6 @@ rel/main_rel/_prolog/_prolog.c:
 rel/main_rel/_prolog_b/fn_1_21E4.c:
 	.text       start:0x000021E4 end:0x00002F04 align:4
 
-rel/main_rel/memcard/fn_1_B5F20.c:
-	.text       start:0x000B5F20 end:0x000B6B28 align:4
 
 rel/main_rel/font/fn_1_4C16C.c:
 	.text       start:0x0004C16C end:0x0004CDE4 align:4
@@ -7958,8 +7820,6 @@ rel/main_rel/ghost/fn_1_ED540.c:
 rel/main_rel/sel_static_disp/fn_1_13E080.c:
 	.text       start:0x0013E080 end:0x0013EA9C align:4
 
-rel/main_rel/memcard/fn_1_BB974.c:
-	.text       start:0x000BB974 end:0x000BC29C align:4
 
 rel/main_rel/sel_static_disp_b/fn_1_146550.c:
 	.text       start:0x00146550 end:0x00146C88 align:4
@@ -7982,8 +7842,6 @@ rel/main_rel/background/fn_1_9A1E8.c:
 rel/main_rel/sel_static_disp/fn_1_13C5EC.c:
 	.text       start:0x0013C5EC end:0x0013D02C align:4
 
-rel/main_rel/memcard/fn_1_C1CFC.c:
-	.text       start:0x000C1CFC end:0x000C23CC align:4
 
 rel/main_rel/camera/fn_1_739C.c:
 	.text       start:0x0000739C end:0x00008250 align:4
@@ -8160,20 +8018,10 @@ rel/main_rel/data/lbl_1_bss_70658.c:
 rel/main_rel/data/lbl_1_bss_71658.c:
 	.bss        start:0x00071658 end:0x00071670 align:8
 
-rel/main_rel/data/lbl_1_bss_716C0.c:
-	.bss        start:0x000716C0 end:0x000716C8 align:32
 
-rel/main_rel/data/lbl_1_bss_716C8.c:
-	.bss        start:0x000716C8 end:0x00071808 align:8
 
-rel/main_rel/data/lbl_1_bss_71808.c:
-	.bss        start:0x00071808 end:0x00071810 align:8
 
-rel/main_rel/data/lbl_1_bss_718B8.c:
-	.bss        start:0x000718B8 end:0x000718C0 align:8
 
-rel/main_rel/data/lbl_1_bss_718C0.c:
-	.bss        start:0x000718C0 end:0x000718E0 align:32
 
 rel/main_rel/data/lbl_1_bss_7ACE8.c:
 	.bss        start:0x0007ACE8 end:0x0007ACF0 align:8
@@ -8309,8 +8157,6 @@ rel/main_rel/data/lbl_1_bss_86EC0.c:
 rel/main_rel/data/lbl_1_bss_6F1E0.c:
 	.bss        start:0x0006F1E0 end:0x0006F2C8 align:32
 
-rel/main_rel/data/lbl_1_bss_71810.c:
-	.bss        start:0x00071810 end:0x000718B8 align:16
 
 rel/main_rel/data/lbl_1_data_218.c:
 	.data       start:0x00000218 end:0x000002D0 align:8
@@ -9784,20 +9630,10 @@ rel/main_rel/data/lbl_1_data_1C1B8.c:
 rel/main_rel/data/lbl_1_data_1C1C0.c:
 	.data       start:0x0001C1C0 end:0x0001C300 align:8
 
-rel/main_rel/data/lbl_1_data_3CF50.c:
-	.data       start:0x0003CF50 end:0x0003CF68 align:8
 
-rel/main_rel/data/lbl_1_data_3CF68.c:
-	.data       start:0x0003CF68 end:0x0003CF80 align:8
 
-rel/main_rel/data/lbl_1_data_3CF80.c:
-	.data       start:0x0003CF80 end:0x0003CFF8 align:8
 
-rel/main_rel/data/lbl_1_data_3CFF8.c:
-	.data       start:0x0003CFF8 end:0x0003D000 align:8
 
-rel/main_rel/data/lbl_1_data_3D000.c:
-	.data       start:0x0003D000 end:0x0003D008 align:8
 
 rel/main_rel/data/lbl_1_data_3D138.c:
 	.data       start:0x0003D138 end:0x0003D158 align:8
@@ -10005,17 +9841,9 @@ rel/main_rel/data/lbl_1_data_2DB48.c:
 rel/main_rel/data/lbl_1_data_35990.c:
 	.data       start:0x00035990 end:0x000359D8 align:8
 
-rel/main_rel/data/lbl_1_data_3CB50.c:
-	.data       start:0x0003CB50 end:0x0003CB68 align:8
 
-rel/main_rel/data/lbl_1_data_3CDE0.c:
-	.data       start:0x0003CDE0 end:0x0003CE58 align:8
 
-rel/main_rel/data/lbl_1_data_3CF18.c:
-	.data       start:0x0003CF18 end:0x0003CF40 align:8
 
-rel/main_rel/data/lbl_1_data_3CF40.c:
-	.data       start:0x0003CF40 end:0x0003CF50 align:8
 
 rel/main_rel/data/lbl_1_data_3D158.c:
 	.data       start:0x0003D158 end:0x0003D230 align:8
@@ -10193,8 +10021,6 @@ rel/main_rel/avline/fn_1_57714.c:
 	.data       start:0x0001C670 end:0x0001C698 align:8
 	.bss        start:0x0006C840 end:0x0006C848 align:8
 
-rel/main_rel/data/lbl_1_data_3D008.c:
-	.data       start:0x0003D008 end:0x0003D138 align:8
 
 rel/main_rel/data/lbl_1_rodata_83C0.c:
 	.rodata     start:0x000083C0 end:0x0000D048 align:8
@@ -10285,8 +10111,6 @@ rel/main_rel/prog/fn_1_A6FE8.c:
 rel/main_rel/data/lbl_1_rodata_4A28.c:
 	.rodata     start:0x00004A28 end:0x00004AA0 align:8
 
-rel/main_rel/data/lbl_1_rodata_4AE0.c:
-	.rodata     start:0x00004AE0 end:0x00005168 align:8
 
 rel/main_rel/data/lbl_1_rodata_60A0.c:
 	.rodata     start:0x000060A0 end:0x00006168 align:8

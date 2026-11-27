@@ -1,0 +1,233 @@
+[
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/memcard/fn_1_ABB4C.c",
+    "symbols": [
+      "fn_1_ABB4C",
+      "fn_1_ABC5C",
+      "fn_1_ABC98",
+      "fn_1_ABCE8",
+      "fn_1_ABD58",
+      "fn_1_ABDA8",
+      "fn_1_ABDB8",
+      "fn_1_ABE14"
+    ],
+    "status": "matching",
+    "tu": "rel/main_rel/memcard_regional.c",
+    "collapsed": true,
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x000ABB4C end:0x000ABE88 align:4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/memcard/fn_1_ABE88.c",
+    "symbols": [
+      "fn_1_ABE88",
+      "fn_1_ABF44",
+      "fn_1_AC000"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "tu": "rel/main_rel/memcard_regional.c",
+    "pool": {
+      "@10": "lbl_1_rodata_4CB0",
+      "@12": "lbl_1_rodata_4CB8"
+    },
+    "collapsed": true,
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x000ABE88 end:0x000AC12C align:4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/memcard/fn_1_AC12C.c",
+    "symbols": [
+      "fn_1_AC12C"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/memcard_regional.c",
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x000AC12C end:0x000AC188"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/memcard/fn_1_AD0A0.c",
+    "symbols": [
+      "fn_1_AD0A0"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/memcard_regional.c",
+    "pool": {
+      "@13": "lbl_1_rodata_4CB8"
+    },
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x000AD0A0 end:0x000AD140 align:4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/memcard/fn_1_AEC34.c",
+    "symbols": [
+      "fn_1_AEC34"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/memcard_regional.c",
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x000AEC34 end:0x000AECCC"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/memcard/fn_1_B5258.c",
+    "symbols": [
+      "fn_1_B5258"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/memcard_regional.c",
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x000B5258 end:0x000B5310 align:4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/memcard/fn_1_B7C6C.c",
+    "symbols": [
+      "fn_1_B7C6C"
+    ],
+    "status": "matching",
+    "matching_for": [
+      "GFZP01"
+    ],
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/memcard_regional.c",
+    "regional_split": [
+      "\t.text       start:0x000B7C6C end:0x000B7CD4 align:4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/memcard/fn_1_B8170.c",
+    "symbols": [
+      "fn_1_B8170"
+    ],
+    "status": "matching",
+    "matching_for": [
+      "GFZP01"
+    ],
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/memcard_regional.c",
+    "regional_split": [
+      "\t.text       start:0x000B8170 end:0x000B8338 align:4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/memcard/fn_1_BB974.c",
+    "symbols": [
+      "fn_1_BB974"
+    ],
+    "status": "matching",
+    "matching_for": [
+      "GFZP01"
+    ],
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/memcard_regional.c",
+    "pool": {},
+    "regional_split": [
+      "\t.text       start:0x000BB974 end:0x000BC29C align:4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/memcard/fn_1_BF520.c",
+    "symbols": [
+      "fn_1_BF520"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/memcard_regional.c",
+    "pool": {
+      "@7": "lbl_1_rodata_4CB0"
+    },
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x000BF520 end:0x000BF600 align:4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/memcard/fn_1_C132C.c",
+    "symbols": [
+      "fn_1_C132C"
+    ],
+    "status": "matching",
+    "matching_for": [
+      "GFZP01"
+    ],
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/memcard_regional.c",
+    "regional_split": [
+      "\t.text       start:0x000C132C end:0x000C1394"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/memcard/fn_1_C23CC.c",
+    "symbols": [
+      "fn_1_C23CC",
+      "fn_1_C2454"
+    ],
+    "status": "matching",
+    "matching_for": [
+      "GFZP01"
+    ],
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/memcard_regional.c",
+    "regional_split": [
+      "\t.text       start:0x000C23CC end:0x000C24A4 align:4"
+    ]
+  }
+]
