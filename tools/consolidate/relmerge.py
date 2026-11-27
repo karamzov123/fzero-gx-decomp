@@ -2,6 +2,10 @@
 
   relmerge.py rel/MODULE/TU.c [--keep SYM,...] [--apply]
 
+Regions: when the committed units disagree on matching_for, the merged unit is USA-only and every
+committed unit that also matched Japan or PAL is kept for those regions in regional_fragments.json
+(its committed blocks in <tu>_regional.c). Commit before merging: git HEAD is the regional source.
+
 --keep leaves the units holding those functions as they are and merges the others (they must be
 contiguous): a function that only matches under another compiler stays its own unit. When the
 best flag set fails only in edge units, the output names the --keep that would merge the rest.
@@ -143,13 +147,66 @@ def main():
                    for s, rr in secs.items())
     m = re.search(rf'^{re.escape(first["source"])}:\n((?:\t.*\n)*)', st, re.M)
     st = st[:m.start(1)] + body + st[m.end(1):]
+    regions, fragments, regional_text = regional(tu, own, keep)
     first['symbols'] = names; first['pool'] = pool
     first['mw_version'] = model.get('mw_version'); first['extra_cflags'] = list(model.get('extra_cflags') or [])
-    first.pop('own', None)
+    first.pop('own', None); first.pop('pool_for', None)
+    if regions == list(VERSIONS): first.pop('matching_for', None)
+    else: first['matching_for'] = regions
     if not pool: first.pop('pool')
     for u in us[1:]: U.remove(u)
     pathlib.Path('config/GFZE01/units.json').write_text(dump_units(U))
-    sp.write_text(st); print('merged', len(us), 'units')
+    sp.write_text(st)
+    if fragments:
+        fp = pathlib.Path('config/GFZE01/regional_fragments.json')
+        fp.write_text(json.dumps(json.loads(fp.read_text()) + fragments, indent=2) + '\n')
+        rp = pathlib.Path('src', fragments[0]['tu'])
+        rp.write_text(regional_text)
+    print('merged', len(us), 'units' + (f'; {len(fragments)} retained for {sorted({v for f in fragments for v in f["matching_for"]})} in {fragments[0]["tu"]}' if fragments else ''))
+
+
+VERSIONS = ('GFZE01', 'GFZJ01', 'GFZP01')
+
+
+def git_show(path):
+    return subprocess.run(['git', 'show', f'HEAD:{path}'], capture_output=True, text=True, check=True).stdout
+
+
+def regional(tu, own, keep):
+    """(merged unit's regions, regional fragments, regional TU text) from the committed units.
+
+    The merge is verified for USA only. When the committed units of the merged functions all build
+    for the same regions, the merged unit keeps them (the gate checks every region). Otherwise it is
+    USA-only and every committed unit that also matched Japan or PAL is retained for those regions
+    as a regional fragment: its committed blocks in <tu>_regional.c, its committed split."""
+    mod = tu.split('/')[1]
+    head = [u for u in json.loads(git_show('config/GFZE01/units.json')) if u.get('tu') == tu and not u.get('data')
+            and set(u['symbols']) & own]
+    if any(keep & set(u['symbols']) for u in head):
+        sys.exit('a kept function shares a committed unit with merged ones: commit the split first')
+    sets = {tuple(v for v in VERSIONS if v in (u.get('matching_for') or VERSIONS)) for u in head}
+    if len(sets) == 1:
+        return list(sets.pop()), [], ''
+    rtu = tu[:-2] + '_regional.c'
+    if pathlib.Path('src', rtu).exists():
+        sys.exit(f'{rtu} exists: retain these fragments by hand')
+    htf = tufile.parse(git_show(f'src/{tu}'))
+    hsplits = git_show(f'config/GFZE01/{mod}/splits.txt')
+    frags, names = [], []
+    for u in head:
+        extra = [v for v in VERSIONS[1:] if v in (u.get('matching_for') or VERSIONS)]
+        if not extra:
+            continue
+        m = re.search(rf'^{re.escape(u["source"])}:\n((?:\t.*\n)*)', hsplits, re.M)
+        f = {k: v for k, v in u.items() if k not in ('matching_for', 'tu')}
+        f.update(tu=rtu, matching_for=extra, regional_split=[l for l in m[1].splitlines() if l.strip()])
+        if isinstance(u.get('pool_for'), dict):
+            f['pool_for'] = {k: v for k, v in u['pool_for'].items() if k in extra}
+        frags.append(f); names += u['symbols']
+    rtf = tufile.TuFile(f'/* Previously matched Japan/PAL units of {pathlib.Path(tu).name}, retained until that TU '
+                        f'matches those releases as one unit. */\n' + htf.prologue,
+                        [b for b in htf.blocks if b.name in names])
+    return ['GFZE01'], frags, rtf.render()
 
 if __name__ == '__main__':
     main()
