@@ -158,7 +158,7 @@ Recover the constant layout once per pool. For each consumer, prove the base reg
 
 ### Render TUs before `heap.c` (2026-11-23)
 
-`0x80007A44..0x80008E34` is two TUs: `src/dol/render/render_clear.c` (5 functions) and `render_util.c` (12 functions plus the USA stub `fn_80008E30`, which stays its own USA-only unit). The file names are placeholders. Both build under GC/2.5 and own their `.sdata2`; `render_clear.c` also owns `.sbss 0x801A6728`. Its color at `.sdata 0x801A6408` is still in the shared data unit `lbl_801A63C0.c`.
+`0x80007A44..0x80008E34` is two TUs: `src/dol/render/render_clear.c` (5 functions) and `render_util.c` (12 functions plus the USA stub `fn_80008E30`, which stays its own USA-only unit). The names are descriptive placeholders: the retail DOL has no `render*.c` filename anchor, and the AX cross-reference has no source filename for `fn_80007CDC`. Both build under GC/2.5 and own their `.sdata2`; `render_clear.c` also owns `.sbss 0x801A6728`. Its color at `.sdata 0x801A6408` is still in the shared data unit `lbl_801A63C0.c`.
 
 - A TU's `.sdata2` starts on an 8-byte boundary and the object before it does not include the padding. The empty word at `0x801A6F0C` separates the two TUs: one compile packs the next literal there.
 - Split ends must stop at the last object. A region symbol without a size takes the distance to the next symbol, so shortening a USA object also needs `size:` on the Japan and PAL symbol.

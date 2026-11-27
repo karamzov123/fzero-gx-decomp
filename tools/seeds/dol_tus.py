@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Draft translation-unit map for main.dol (evidence only; nothing consumes it yet).
+"""Draft translation-unit map for main.dol (evidence only; used by DOL consolidation tooling).
 
 Every retail TU is one contiguous block of .text. Anchors give a function's TU directly:
   - `sdkimport`: the donor source file recorded in state/sdkimports/*.json for a symbol that was
@@ -296,7 +296,8 @@ def main(argv=None) -> int:
             cur["functions"].append(r["name"]); cur["text"][1] = r["addr"] + r["size"]; cur["how"][r["how"].split(":")[0]] += 1
     total = sum(r["size"] for r in rows)
     assigned = sum(r["size"] for r in rows if r["tu"])
-    out = {"version": a.version, "module": "main", "note": "draft evidence map; not consumed by tooling",
+    out = {"version": a.version, "module": "main",
+           "note": "Draft DOL ownership evidence used by the consolidation tools. Unassigned entries and conflicts are not confirmed boundaries.",
            "summary": {"functions": len(rows), "assigned": sum(1 for r in rows if r["tu"]),
                        "bytes": total, "assigned_bytes": assigned, "tus": len(tus),
                        "conflicts": len(conflicts), "string_anchored": len(strs)},
