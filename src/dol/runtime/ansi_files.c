@@ -1,4 +1,5 @@
 #include "types.h"
+#include "msl/file_callbacks.h"
 
 typedef u32 AnsiHandle;
 typedef struct FileMode {
@@ -16,9 +17,9 @@ typedef struct FileState {
     u8 error;
 } FileState;
 typedef void (*IdleProc)(void);
-typedef s32 (*PositionProc)(u32, u32, s32);
-typedef s32 (*IOProc)(u32, u32, u32 *);
-typedef s32 (*CloseProc)(u32);
+typedef int (*PositionProc)(u32, u32 *, int, IdleProc);
+typedef int (*IOProc)(u32, u8 *, size_t *, IdleProc);
+typedef int (*CloseProc)(u32);
 typedef struct AnsiFile {
     AnsiHandle handle;
     FileMode mode;
@@ -44,7 +45,23 @@ typedef struct AnsiFile {
     struct AnsiFile *next_file;
 } AnsiFile;
 
-extern AnsiFile __files[4];
+extern u8 lbl_801A33B8[256];
+extern u8 lbl_801A34B8[256];
+extern u8 lbl_801A35B8[256];
+
+/* The retail table contains the three console streams and a zeroed spare. */
+AnsiFile __files[4] __attribute__((aligned(8))) = {
+    {0, {0, 1, 1, 2, 0, 0}, {0}, 0, 0, 0, {0}, {0}, 0,
+     lbl_801A35B8, sizeof(lbl_801A35B8), lbl_801A35B8, 0, 0, 0, 0,
+     0, fn_8008DCCC, fn_80085814, fn_8008580C, 0, &__files[1]},
+    {1, {0, 2, 1, 2, 0, 0}, {0}, 0, 0, 0, {0}, {0}, 0,
+     lbl_801A34B8, sizeof(lbl_801A34B8), lbl_801A34B8, 0, 0, 0, 0,
+     0, fn_8008DCCC, fn_80085814, fn_8008580C, 0, &__files[2]},
+    {2, {0, 2, 0, 2, 0, 0}, {0}, 0, 0, 0, {0}, {0}, 0,
+     lbl_801A33B8, sizeof(lbl_801A33B8), lbl_801A33B8, 0, 0, 0, 0,
+     0, fn_8008DCCC, fn_80085814, fn_8008580C, 0, &__files[3]},
+    {0}
+};
 
 extern void __begin_critical_region(s32);
 extern void __end_critical_region(s32);
@@ -54,10 +71,6 @@ extern void *fn_8007A1C0(u32);
 extern void fn_8007A150(void *);
 extern void *memset(void *, int, u32);
 extern int setvbuf(AnsiFile *, char *, int, size_t);
-extern s32 fn_8008D7CC(u32, u32, s32);
-extern s32 fn_8008DB5C(u32, u32, u32 *);
-extern s32 fn_8008DAA8(u32, u32, u32 *);
-extern s32 fn_8008D8A8(u32);
 
 s32 fn_8007B028(void);
 s32 fn_8007B0B4(void);

@@ -1,12 +1,12 @@
 #include "types.h"
-#include <types.h>
+#include "msl/file_callbacks.h"
 
 
 /* --- dol/fn_8008580C.c --- */
 /* --- dol/fn_8008580C.c --- */
 /* --- dol/fn_8008580C.c --- */
 // fn_8008580C: returns a constant.
-int fn_8008580C(void) {
+int fn_8008580C(u32 handle) {
     return 0;
 }
 
@@ -17,8 +17,8 @@ extern s32 InitializeUART(u32 arg);
 extern s32 WriteUARTN(void *arg0, u32 arg1);
 extern void fn_8008DC10(void *arg0, void *arg1, u32 *arg2, void *arg3);
 
-s32 fn_80085814(void *arg0, void *arg1, u32 *arg2, void *arg3) {
-    u32 flags = OSGetConsoleType(arg0);
+int fn_80085814(u32 arg0, u8 *arg1, size_t *arg2, void (*arg3)(void)) {
+    u32 flags = OSGetConsoleType((void *)arg0);
     if ((flags & 0x20000000) == 0) {
         s32 result = 0;
         if (lbl_801A6DE8 == 0) {
@@ -36,6 +36,6 @@ s32 fn_80085814(void *arg0, void *arg1, u32 *arg2, void *arg3) {
         }
     }
 
-    fn_8008DC10(arg0, arg1, arg2, arg3);
+    fn_8008DC10((void *)arg0, arg1, arg2, (void *)arg3);
     return 0;
 }

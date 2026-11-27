@@ -6,7 +6,6 @@
 /* --- dol/fn_8008580C.c --- */
 /* --- dol/fn_8008580C.c --- */
 // fn_8008580C: returns a constant.
-int fn_8008580C(void);
 
 /* --- dol/fn_80085814.c --- */
 extern u32 OSGetConsoleType(void *arg);
@@ -15,7 +14,6 @@ extern s32 InitializeUART(u32 arg);
 extern s32 WriteUARTN(void *arg0, u32 arg1);
 extern void fn_8008DC10(void *arg0, void *arg1, u32 *arg2, void *arg3);
 
-s32 fn_80085814(void *arg0, void *arg1, u32 *arg2, void *arg3);
 
 /* --- dol/wchar_io.c --- */
 typedef unsigned long __file_handle;

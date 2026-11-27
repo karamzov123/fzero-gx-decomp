@@ -12599,8 +12599,7 @@
     "module": "main",
     "source": "dol/data/lbl_8015AD48.c",
     "symbols": [
-      "lbl_8015AD48",
-      "__files"
+      "lbl_8015AD48"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -21576,7 +21575,8 @@
       "fn_8007B0B4",
       "__close_all",
       "fn_8007B1CC",
-      "fn_8007B2A8"
+      "fn_8007B2A8",
+      "__files"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],

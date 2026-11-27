@@ -86,10 +86,6 @@ typedef struct Sig_setvbuf_FILE {
 } Sig_setvbuf_FILE;
 
 extern int setvbuf(Sig_setvbuf_FILE *, char *, int, size_t);
-extern s32 fn_8008D7CC(u32, u32, s32);
-extern s32 fn_8008DB5C(u32, u32, u32 *);
-extern s32 fn_8008DAA8(u32, u32, u32 *);
-extern s32 fn_8008D8A8(u32);
 
 void fn_8007B1CC(Sig_setvbuf_FILE *file, Sig_setvbuf_FileMode mode, char *buf, u32 size);
 

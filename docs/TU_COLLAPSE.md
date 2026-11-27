@@ -306,6 +306,13 @@ relocations. Keep the existing layout until those callers match as well.
 
 ## MSL is built with `-inline deferred` (2026-11-24)
 
+The standard-stream table (`__files`, 320 bytes) is owned by `ansi_files.c`
+in USA and PAL. The retail `.data` contains three initialized 80-byte stream
+records and a fourth zero record; each populated row has two buffer addresses,
+three console callbacks and a link to the next row. The structure and callback
+types follow the stream consumers rather than a flattened import. PAL's
+`0x8015D858` table and its targets were checked against the original DOL.
+
 The eight-entry decimal powers table at `0x8015AF98` is now private to
 `ansi_fp.c`, its only source consumer. It precedes that object's switch tables
 in `.data`, rather than sharing an imported object with the stream records.

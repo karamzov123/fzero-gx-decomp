@@ -1,3 +1,4 @@
+#include "msl/file_callbacks.h"
 #include "types.h"
 
 typedef u32 file_handle;
@@ -71,7 +72,7 @@ void fn_8008D7C0(u32 arg0) {
     lbl_801A5650[0] = arg0;
 }
 
-s32 fn_8008D7CC(u32 arg0, u32 arg1, s32 arg2) {
+int fn_8008D7CC(u32 arg0, u32 *arg1, int arg2, void (*idle)(void)) {
     s32 mode;
     u8 value;
 
@@ -88,7 +89,7 @@ s32 fn_8008D7CC(u32 arg0, u32 arg1, s32 arg2) {
         mode = 2;
     }
 
-    value = fn_8008CB38(0xD4, arg0, arg1, mode);
+    value = fn_8008CB38(0xD4, arg0, (u32)arg1, mode);
     switch (value) {
     case 0:
         return 0;
@@ -100,7 +101,7 @@ s32 fn_8008D7CC(u32 arg0, u32 arg1, s32 arg2) {
     }
 }
 
-s32 fn_8008D8A8(u32 arg0) {
+int fn_8008D8A8(u32 arg0) {
     u32 v0;
     u32 v1;
     u32 t0, t1;
@@ -198,7 +199,7 @@ s32 fn_8008D92C(const char *arg0, FileMode *arg1, FILE *arg2) {
     return v0;
 }
 
-s32 fn_8008DAA8(u32 arg0, u32 arg1, u32 *arg2) {
+int fn_8008DAA8(u32 arg0, u8 *arg1, size_t *arg2, void (*idle)(void)) {
     u32 v0;
     u32 v1;
 
@@ -206,7 +207,7 @@ s32 fn_8008DAA8(u32 arg0, u32 arg1, u32 *arg2) {
         return 1;
     }
     v0 = *arg2;
-    v1 = fn_8008CB20(0xd0, arg0, &v0, arg1);
+    v1 = fn_8008CB20(0xd0, arg0, &v0, (u32)arg1);
     *arg2 = v0;
     switch ((v1 & 0xff)) {
     case 0:
@@ -218,7 +219,7 @@ s32 fn_8008DAA8(u32 arg0, u32 arg1, u32 *arg2) {
     }
 }
 
-s32 fn_8008DB5C(u32 arg0, u32 arg1, u32 *arg2) {
+int fn_8008DB5C(u32 arg0, u8 *arg1, size_t *arg2, void (*idle)(void)) {
     u32 v0;
     u32 v1;
 
@@ -226,7 +227,7 @@ s32 fn_8008DB5C(u32 arg0, u32 arg1, u32 *arg2) {
         return 1;
     }
     v0 = *arg2;
-    v1 = fn_8008CB20(0xd1, arg0, &v0, arg1);
+    v1 = fn_8008CB20(0xd1, arg0, &v0, (u32)arg1);
     *arg2 = v0;
     switch ((v1 & 0xff)) {
     case 0:
@@ -266,7 +267,7 @@ s32 fn_8008DC10(void *arg0, void *arg1, u32 *arg2) {
 /* --- dol/fn_8008DCCC.c --- */
 /* --- dol/fn_8008DCCC.c --- */
 
-s32 fn_8008DCCC(u32 arg0, u32 arg1, u32 *arg2) {
+int fn_8008DCCC(u32 arg0, u8 *arg1, size_t *arg2, void (*idle)(void)) {
     u32 v0;
     u32 v1;
 
@@ -277,7 +278,7 @@ s32 fn_8008DCCC(u32 arg0, u32 arg1, u32 *arg2) {
         return 1;
     }
     v0 = *arg2;
-    v1 = fn_8008CB20(0xd1, 0, &v0, arg1);
+    v1 = fn_8008CB20(0xd1, 0, &v0, (u32)arg1);
     *arg2 = v0;
     switch ((v1 & 0xff)) {
     case 0:
