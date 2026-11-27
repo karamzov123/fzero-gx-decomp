@@ -258,6 +258,18 @@ remain separate: putting them in one compiler invocation shifted the latter
 two string bases and changed their base-relative instructions. This is a data
 ownership and regional source-coverage milestone, not a complete TU collapse.
 
+### AV loader diagnostics and location strings
+
+`avload.c` now defines six writable strings in its native `.data` range
+`0x8015ABC0..0x8015AC68` (168 bytes including alignment). Their bindings and
+extents come from the USA retail DOL, and uses are in the loader's allocation,
+error-reporting and texture paths. The two 21-entry display lookup tables that
+follow remain a separate matching import starting at `0x8015AC68`; their
+contents and references are unchanged. Japan and PAL previously used retail
+fallback for the six strings. The loader has the same `.text` and `.data`
+match against fresh regional extraction in all three releases, and is linked
+from the compiler output rather than the extracted object in each release.
+
 ## MSL is built with `-inline deferred` (2026-11-24)
 
 MWCC's `-inline auto,deferred` emits a file's functions in reverse source order and can inline a

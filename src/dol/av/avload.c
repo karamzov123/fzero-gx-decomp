@@ -33,12 +33,12 @@ typedef u32 (*fn_80071100_Fn0)(u32, u32, u32);
 typedef u32 (*fn_800715A0_Fn0)(u32, u32);
 
 extern char lbl_8015AB70[31];
-extern char lbl_8015ABC0[10];
-extern u32 lbl_8015ABCC[];
-extern u32 lbl_8015ABD8[];
-extern u32 lbl_8015ABFC[];
-extern char lbl_8015AC08[];
-extern char lbl_8015AC1C[];
+char lbl_8015ABC0[] __attribute__((aligned(32))) = "from ARAM";
+char lbl_8015ABCC[] __attribute__((aligned(4))) = "from MEMORY";
+char lbl_8015ABD8[] __attribute__((aligned(8))) = "alloc: tex:<%s> not enough memory.";
+char lbl_8015ABFC[] __attribute__((aligned(4))) = "avload.c";
+char lbl_8015AC08[] __attribute__((aligned(8))) = "invalid texture!\n";
+char lbl_8015AC1C[] __attribute__((aligned(4))) = "Warning: texture init : %dx%d texture not support repeat or mirror.\n";
 extern AvloadFreeFn lbl_801A6D08;
 extern u32 lbl_801A6D0C;
 extern u32 lbl_801A6D10;

@@ -9286,7 +9286,13 @@
       "fn_8007174C",
       "fn_80071794",
       "fn_800717BC",
-      "fn_800718BC"
+      "fn_800718BC",
+      "lbl_8015ABC0",
+      "lbl_8015ABCC",
+      "lbl_8015ABD8",
+      "lbl_8015ABFC",
+      "lbl_8015AC08",
+      "lbl_8015AC1C"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
@@ -12574,36 +12580,8 @@
   },
   {
     "module": "main",
-    "source": "dol/data/lbl_8015ABC0.c",
+    "source": "dol/data/lbl_8015AC68.c",
     "symbols": [
-      "lbl_8015ABC0",
-      "lbl_8015ABCC"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_8015ABD8.c",
-    "symbols": [
-      "lbl_8015ABD8",
-      "lbl_8015ABFC"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_8015AC08.c",
-    "symbols": [
-      "lbl_8015AC08",
-      "lbl_8015AC1C",
       "lbl_8015AC68",
       "lbl_8015ACBC"
     ],

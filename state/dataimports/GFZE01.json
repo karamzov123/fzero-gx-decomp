@@ -35301,182 +35301,6 @@
     "unit_size": 32768,
     "unit_start": 2148870240
   },
-  "main:lbl_8015ABC0": {
-    "address": 2148903872,
-    "align": 32,
-    "declarations": [
-      {
-        "declaration": "char lbl_8015ABC0[10]",
-        "path": "src/dol/fn_80071044.c"
-      },
-      {
-        "declaration": "u32 lbl_8015ABC0[]",
-        "path": "src/dol/fn_800715A0.c"
-      }
-    ],
-    "definition": "char lbl_8015ABC0[10]",
-    "method": "string",
-    "module": "main",
-    "references": [
-      "fn_80071044",
-      "fn_800715A0"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 24,
-    "sha256": "b580f61345eda79d181b0e88f35db7ae389b5b71afc92e811031be8978d86ed4",
-    "size": 10,
-    "source": "dol/data/lbl_8015ABC0.c",
-    "symbol": "lbl_8015ABC0",
-    "unit_align": 32,
-    "unit_size": 24,
-    "unit_start": 2148903872
-  },
-  "main:lbl_8015ABCC": {
-    "address": 2148903884,
-    "align": 4,
-    "declarations": [
-      {
-        "declaration": "u32 lbl_8015ABCC[]",
-        "path": "src/dol/fn_80071100.c"
-      },
-      {
-        "declaration": "u32 lbl_8015ABCC[]",
-        "path": "src/dol/fn_80071678.c"
-      }
-    ],
-    "definition": "char lbl_8015ABCC[12]",
-    "method": "string",
-    "module": "main",
-    "references": [
-      "fn_80071100",
-      "fn_80071678"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 24,
-    "sha256": "17b0c879ef191e94505a28c36adfb11c175a421d3016ddb2e95426eba710853f",
-    "size": 12,
-    "source": "dol/data/lbl_8015ABC0.c",
-    "symbol": "lbl_8015ABCC",
-    "unit_align": 32,
-    "unit_size": 24,
-    "unit_start": 2148903872
-  },
-  "main:lbl_8015ABD8": {
-    "address": 2148903896,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "u32 lbl_8015ABD8[]",
-        "path": "src/dol/fn_80071484.c"
-      },
-      {
-        "declaration": "u32 lbl_8015ABD8[]",
-        "path": "src/dol/fn_800715A0.c"
-      },
-      {
-        "declaration": "u32 lbl_8015ABD8[]",
-        "path": "src/dol/fn_80071678.c"
-      }
-    ],
-    "definition": "char lbl_8015ABD8[35]",
-    "method": "string",
-    "module": "main",
-    "references": [
-      "fn_80071484",
-      "fn_800715A0",
-      "fn_80071678"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 45,
-    "sha256": "f6dae91dcdebc859313630fc8ff0aa1855a1efbf6d1ca67c4a994a2d7b495316",
-    "size": 35,
-    "source": "dol/data/lbl_8015ABD8.c",
-    "symbol": "lbl_8015ABD8",
-    "unit_align": 8,
-    "unit_size": 48,
-    "unit_start": 2148903896
-  },
-  "main:lbl_8015ABFC": {
-    "address": 2148903932,
-    "align": 4,
-    "declarations": [
-      {
-        "declaration": "u32 lbl_8015ABFC[]",
-        "path": "src/dol/fn_8007174C.c"
-      }
-    ],
-    "definition": "char lbl_8015ABFC[9]",
-    "method": "string",
-    "module": "main",
-    "references": [
-      "fn_8007174C"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 45,
-    "sha256": "8ca152b0ace983bf126840ac86bdf106f39495b048b5cbebb7e04a9140e35ce2",
-    "size": 9,
-    "source": "dol/data/lbl_8015ABD8.c",
-    "symbol": "lbl_8015ABFC",
-    "unit_align": 8,
-    "unit_size": 48,
-    "unit_start": 2148903896
-  },
-  "main:lbl_8015AC08": {
-    "address": 2148903944,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "char lbl_8015AC08[]",
-        "path": "src/dol/fn_800718BC.c"
-      }
-    ],
-    "definition": "char lbl_8015AC08[]",
-    "method": "string",
-    "module": "main",
-    "references": [
-      "fn_800718BC"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 264,
-    "sha256": "8e94c4244eb57a8cd8f03b2cb08158878d843bc0fcc2e2287882f2bd00051d17",
-    "size": 18,
-    "source": "dol/data/lbl_8015AC08.c",
-    "symbol": "lbl_8015AC08",
-    "unit_align": 8,
-    "unit_size": 264,
-    "unit_start": 2148903944
-  },
-  "main:lbl_8015AC1C": {
-    "address": 2148903964,
-    "align": 4,
-    "declarations": [
-      {
-        "declaration": "char lbl_8015AC1C[]",
-        "path": "src/dol/fn_800718BC.c"
-      }
-    ],
-    "definition": "char lbl_8015AC1C[]",
-    "method": "string",
-    "module": "main",
-    "references": [
-      "fn_800718BC"
-    ],
-    "relocations": [],
-    "section": ".data",
-    "section_size": 264,
-    "sha256": "ee18381e4131b95d22be36e6da928f018c2c2eb02ec5ec90ac26ea2a660ce0e5",
-    "size": 69,
-    "source": "dol/data/lbl_8015AC08.c",
-    "symbol": "lbl_8015AC1C",
-    "unit_align": 8,
-    "unit_size": 264,
-    "unit_start": 2148903944
-  },
   "main:lbl_8015AC68": {
     "address": 2148904040,
     "align": 8,
@@ -35497,7 +35321,7 @@
     "section_size": 264,
     "sha256": "7202cdf2a2bfdaa6931484702497eff7af7d04130bb0a5af51ae0205236bee70",
     "size": 84,
-    "source": "dol/data/lbl_8015AC08.c",
+    "source": "dol/data/lbl_8015AC68.c",
     "symbol": "lbl_8015AC68",
     "unit_align": 8,
     "unit_size": 264,
@@ -35523,7 +35347,7 @@
     "section_size": 264,
     "sha256": "78de519a3ba64906ae42010f22ae1da0508923333c2738c917401cf2d5ffb3c7",
     "size": 84,
-    "source": "dol/data/lbl_8015AC08.c",
+    "source": "dol/data/lbl_8015AC68.c",
     "symbol": "lbl_8015ACBC",
     "unit_align": 8,
     "unit_size": 264,

@@ -557,6 +557,7 @@ dol/ax/AXOut.c:
 
 dol/av/avload.c:
 	.text       start:0x80070F44 end:0x80071C04 align:4
+	.data       start:0x8015ABC0 end:0x8015AC68 align:32
 
 dol/adx/adx_errs.c:
 	.text       start:0x80046F88 end:0x80047608 align:4
@@ -1177,8 +1178,8 @@ dol/data/lbl_8012B5F8.c:
 dol/data/lbl_80132788.c:
 	.data       start:0x80132788 end:0x80132820 align:8
 
-dol/data/lbl_8015AC08.c:
-	.data       start:0x8015AC08 end:0x8015AD10 align:8
+dol/data/lbl_8015AC68.c:
+	.data       start:0x8015AC68 end:0x8015AD10 align:8
 
 dol/data/lbl_8015AD10.c:
 	.data       start:0x8015AD10 end:0x8015AD28 align:16
@@ -1206,12 +1207,6 @@ dol/data/lbl_80142840.c:
 
 dol/data/lbl_80152860.c:
 	.data       start:0x80152860 end:0x8015A860 align:32
-
-dol/data/lbl_8015ABC0.c:
-	.data       start:0x8015ABC0 end:0x8015ABD8 align:32
-
-dol/data/lbl_8015ABD8.c:
-	.data       start:0x8015ABD8 end:0x8015AC08 align:8
 
 dol/data/lbl_800900A0.c:
 	.rodata     start:0x800900A0 end:0x80090928 align:32
