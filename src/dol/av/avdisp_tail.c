@@ -1,6 +1,20 @@
 #include "sdk_addresses.h"
 #include "types.h"
 #include "dol/globals.h"
+#include "dol/avdisp_diagnostics.h"
+
+/* The two retail labels remain distinct: the material warnings address
+ * lbl_8015AD48 directly, while the display tail uses the start of the pool. */
+char lbl_8015AD38[14] __attribute__((aligned(8))) = "Invalid Model";
+AvDispDiagnostics lbl_8015AD48 __attribute__((aligned(8))) = {
+    "Warning: not effective model.\n",
+    "Warning: not skinning model.\n",
+    {1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2},
+    "Error <%s>\n",
+    "avdisp.c",
+    "not enough texobj memory.",
+    "Warning: texture init : model <%s> use texno <%d> in tpl invalid.\n"
+};
 
 typedef u32 (*fn_800789D8_Fn0)(void *);
 struct fn_800789D8_Arg0 { u8 pad_0[4]; u32 unk_4; };
@@ -60,7 +74,6 @@ extern f32 lbl_8019F130[7];
 extern f32 lbl_801A74A8;
 extern struct fn_80078D60_gx_T *gx;
 extern u32 lbl_801A6628[2];
-extern u8 lbl_8015AD38[];
 extern u32 lbl_801A6DB0;
 extern s32 lbl_801A6DB8;
 extern u8 lbl_801A6DB4;

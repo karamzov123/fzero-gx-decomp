@@ -886,6 +886,7 @@ dol/axart/axartcents.c:
 
 dol/av/avdisp_tail.c:
 	.text       start:0x800789D8 end:0x80079654 align:4
+	.data       start:0x8015AD38 end:0x8015AE58 align:8
 
 dol/TRKTargetContinue.c:
 	.text       start:0x8008D77C end:0x8008D7B0 align:4
@@ -1184,9 +1185,6 @@ dol/data/lbl_8012B5F8.c:
 
 dol/data/lbl_80132788.c:
 	.data       start:0x80132788 end:0x80132820 align:8
-
-dol/data/lbl_8015AD38.c:
-	.data       start:0x8015AD38 end:0x8015AD48 align:8
 
 dol/fn_80078944.c:
 	.text       start:0x80078944 end:0x800789D8 align:4
@@ -1694,9 +1692,6 @@ dol/data/lbl_8012B6E8.c:
 
 dol/data/lbl_8012B6F0.c:
 	.data       start:0x8012B6F0 end:0x8012B6F8 align:16
-
-dol/data/lbl_8015AD48.c:
-	.data       start:0x8015AD48 end:0x8015AE58 align:8
 
 dol/data/lbl_80090980.c:
 	.rodata     start:0x80090980 end:0x80090988 align:8

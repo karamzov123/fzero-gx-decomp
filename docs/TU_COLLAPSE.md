@@ -298,11 +298,14 @@ split objects and consumers establish the extents and ordering. These are
 ownership transfers into matching source fragments, not a claim that all of
 `avdisp.c` builds as one TU. Japan and PAL keep their existing build selection.
 
-The adjacent diagnostic span (`0x8015AD38..0x8015AE58`) is still separate. A
-typed aggregate probe matched all 288 data bytes and the display tail, but
-MWCC emitted an extra `addi` in both material warning paths, at `fn_80077B14`
-and `fn_80077B64`. Retail folds the field's `+0x10` into the paired HA/LO
-relocations. Keep the existing layout until those callers match as well.
+The adjacent 288-byte diagnostic span (`0x8015AD38..0x8015AE58`) now compiles
+with `avdisp_tail.c` in USA. The first string and the typed diagnostics object
+retain their separate retail symbols. Combining them into one aggregate had
+added an `addi` in `fn_80077B14` and `fn_80077B64`; the separate symbol allows
+both material warning paths to use an ordinary `OSReport(const char *, ...)`
+call and match retail text. The display tail still uses the original shared
+base-relative accesses across the two adjacent objects; this change does not
+make that code portable or consolidate the whole AV display translation unit.
 
 ## MSL is built with `-inline deferred` (2026-11-24)
 
