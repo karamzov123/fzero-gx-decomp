@@ -78,8 +78,12 @@ extern const f32 lbl_801A7460;
 extern f32 lbl_8019F008[];
 extern u32 lbl_8019F024[];
 extern u32 lbl_801A6D28;
-extern u32 lbl_8015ACBC[21];
-extern u32 lbl_8015AC68[21];
+u32 lbl_8015AC68[21] __attribute__((aligned(8))) = {
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 12, 12, 4, 4, 8, 8, 8, 8, 8, 8, 8, 8
+};
+u32 lbl_8015ACBC[21] __attribute__((aligned(4))) = {
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 6, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4
+};
 
 extern void fn_800718BC(AvDispTexObject *, void *, AvDispTexEntry *);
 extern u32 fn_80008E34(u32, u32);

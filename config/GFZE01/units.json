@@ -9043,7 +9043,9 @@
       "fn_800723F8",
       "fn_80072404",
       "fn_8007245C",
-      "fn_800724C8"
+      "fn_800724C8",
+      "lbl_8015AC68",
+      "lbl_8015ACBC"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -9095,7 +9097,10 @@
       "fn_800780A4",
       "fn_800781B8",
       "fn_80078344",
-      "fn_80078360"
+      "fn_80078360",
+      "lbl_8015AD10",
+      "lbl_8015AD1C",
+      "lbl_8015AD28"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -12571,44 +12576,6 @@
     "source": "dol/data/lbl_80152860.c",
     "symbols": [
       "lbl_80152860"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_8015AC68.c",
-    "symbols": [
-      "lbl_8015AC68",
-      "lbl_8015ACBC"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_8015AD10.c",
-    "symbols": [
-      "lbl_8015AD10",
-      "lbl_8015AD1C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main",
-    "source": "dol/data/lbl_8015AD28.c",
-    "symbols": [
-      "lbl_8015AD28"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],

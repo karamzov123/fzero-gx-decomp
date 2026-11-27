@@ -1,12 +1,18 @@
 #include "types.h"
 #include "dolphin/hw_regs.h"
+#include "game/vec3.h"
 #include "psvec.h"
 extern u8 lbl_8019F130[];
-struct fn_80076790_Vec {
-    f32 x;
-    f32 y;
-    f32 z;
-};
+typedef struct AvDispVectorStorage {
+    Vec3 position;
+    u32 trailing_word;
+} AvDispVectorStorage;
+
+#pragma explicit_zero_data on
+Vec3 lbl_8015AD10 __attribute__((aligned(16))) = {0.0f, 0.0f, 0.0f};
+Vec3 lbl_8015AD1C __attribute__((aligned(4))) = {0.0f, 0.0f, 0.0f};
+AvDispVectorStorage lbl_8015AD28 __attribute__((aligned(8))) = {{0.0f, 0.0f, 0.0f}, 0};
+#pragma explicit_zero_data reset
 struct Color_u6 { u8 r,g,b,a; };
 typedef struct AvDispMatState {
     u8 unk_0;
@@ -31,7 +37,7 @@ typedef struct AvDispMatState {
     u32 unk_44;
     u32 unk_48;
     u32 unk_4C;
-    struct fn_80076790_Vec unk_50;
+    Vec3 unk_50;
     u8 pad_5C[4];
 } AvDispMatState;
 extern AvDispMatState lbl_801A3220;
@@ -367,13 +373,13 @@ struct fn_80076134_Mtx {
     f32 unk_2C;
 };
 
-extern u8 lbl_8015AD10[];
+
 
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DB30(void);
 extern void lbl_8006E14C(f32);
 extern void GXLoadTexMtxImm(void *, u32, u32);
-extern void fn_8006F120(void *, void *);
+extern void fn_8006F120(Vec3 *, Vec3 *);
 
 void fn_80076134(void) {
     lbl_8006DAEC();
@@ -384,7 +390,7 @@ void fn_80076134(void) {
     lbl_8006DB30();
     lbl_801A3220.unk_3C = 1;
     lbl_8006DAEC();
-    fn_8006F120(lbl_8015AD10, &lbl_801A3220.unk_50);
+    fn_8006F120(&lbl_8015AD10, &lbl_801A3220.unk_50);
     ((struct fn_80076134_Mtx *)lbl_801A6D00)->unk_C = lbl_801A748C;
     ((struct fn_80076134_Mtx *)lbl_801A6D00)->unk_10 = ((struct fn_80076134_Mtx *)lbl_801A6D00)->unk_10 * lbl_801A749C;
     ((struct fn_80076134_Mtx *)lbl_801A6D00)->unk_14 = ((struct fn_80076134_Mtx *)lbl_801A6D00)->unk_14 * lbl_801A749C;
@@ -429,7 +435,7 @@ struct fn_80076238_Mtx {
     f32 unk_2C;
 };
 
-extern u8 lbl_8015AD1C[];
+
 
 
 
@@ -452,7 +458,7 @@ void fn_80076238(struct fn_80076238_arg1 *p0, struct fn_80076238_arg2 *p1, u32 a
 
     if (lbl_801A3220.unk_40 == 0) {
         lbl_8006DAEC();
-        fn_8006F120(lbl_8015AD1C, &lbl_801A3220.unk_50);
+        fn_8006F120(&lbl_8015AD1C, &lbl_801A3220.unk_50);
         ((struct fn_80076238_Mtx *)lbl_801A6D00)->unk_C = lbl_801A748C;
         ((struct fn_80076238_Mtx *)lbl_801A6D00)->unk_10 = ((struct fn_80076238_Mtx *)lbl_801A6D00)->unk_10 * lbl_801A749C;
         ((struct fn_80076238_Mtx *)lbl_801A6D00)->unk_14 = ((struct fn_80076238_Mtx *)lbl_801A6D00)->unk_14 * lbl_801A749C;
@@ -501,7 +507,7 @@ struct fn_800764A0_lbl_801A6D00_T {
  u8 pad_0[0xC]; f32 unk_C; f32 unk_10; f32 unk_14; f32 unk_18;
  f32 unk_1C; f32 unk_20; f32 unk_24; f32 unk_28; f32 unk_2C;
 };
-extern u32 lbl_8015AD28[];
+
 void fn_800764A0(struct fn_800764A0_Arg0 *arg0, void *arg1, u32 arg2) {
  AvDispMatState *p_lbl_801A3220;
  u8 buf[4];
@@ -521,7 +527,7 @@ void fn_800764A0(struct fn_800764A0_Arg0 *arg0, void *arg1, u32 arg2) {
  p_lbl_801A3220 = &lbl_801A3220;
  if (p_lbl_801A3220->unk_40 == 0) {
  lbl_8006DAEC();
- fn_8006F120(lbl_8015AD28,&lbl_801A3220.unk_50);
+ fn_8006F120(&lbl_8015AD28.position, &lbl_801A3220.unk_50);
  ((struct fn_800764A0_lbl_801A6D00_T *)lbl_801A6D00)->unk_C = 0.5f;
  ((struct fn_800764A0_lbl_801A6D00_T *)lbl_801A6D00)->unk_10 *= -1.0f;
  ((struct fn_800764A0_lbl_801A6D00_T *)lbl_801A6D00)->unk_14 *= -1.0f;
@@ -592,9 +598,9 @@ extern void lbl_8006DFC4(void *);
 void fn_80076790(void) {
     f32 loc_38[3][4];
     u32 loc_2C[3];
-    struct fn_80076790_Vec loc_20;
-    struct fn_80076790_Vec loc_14;
-    struct fn_80076790_Vec loc_8;
+    Vec3 loc_20;
+    Vec3 loc_14;
+    Vec3 loc_8;
     f32 scale;
 
     loc_2C[0] = lbl_80094E20[0];
@@ -602,7 +608,7 @@ void fn_80076790(void) {
     loc_2C[2] = lbl_80094E20[2];
     lbl_8006DAEC();
     scale = lbl_801A74A0;
-    loc_20 = *(struct fn_80076790_Vec *)lbl_8019F14C;
+    loc_20 = *(Vec3 *)lbl_8019F14C;
     loc_14 = lbl_801A3220.unk_50;
     loc_14.x = loc_14.x * scale;
     loc_14.y = loc_14.y * scale;
