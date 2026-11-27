@@ -1,8 +1,13 @@
 """Merge every unit of a block-format REL TU file into one unit.
 
-  relmerge.py rel/MODULE/TU.c [--apply]
+  relmerge.py rel/MODULE/TU.c [--keep SYM,...] [--apply]
 
-The whole file is compiled under each compiler and flag set its units use. A set is accepted
+--keep leaves the units holding those functions as they are and merges the others (they must be
+contiguous): a function that only matches under another compiler stays its own unit. When the
+best flag set fails only in edge units, the output names the --keep that would merge the rest.
+
+The whole file is compiled under each compiler and flag set its units use (each also with
+`-inline on,noauto` added). A set is accepted
 when every function's instruction words equal those of its old unit's linked (pool-fixed)
 object outside relocated words and branches, and its relocations pair up with the old ones by
 offset and type. The merged unit's pool map comes from that pairing: a private literal (@N,
@@ -75,44 +80,74 @@ def attempt(us, names, tf, mv, cf):
 def main():
     tu = sys.argv[1]; mod = tu.split('/')[1]
     U = json.load(open('config/GFZE01/units.json'))
-    us = [u for u in U if u.get('tu') == tu and not u.get('data')]
+    keep = set(sys.argv[sys.argv.index('--keep') + 1].split(',')) if '--keep' in sys.argv else set()
+    allus = [u for u in U if u.get('tu') == tu and not u.get('data')]
+    us = [u for u in allus if not keep & set(u['symbols'])]
     nu = d.ninja_units()
     tf = tufile.parse(pathlib.Path('src', tu).read_text())
-    names = [b.name for b in tf.blocks]
+    own = {s for u in us for s in u['symbols']}
+    names = [b.name for b in tf.blocks if b.name in own]
     if len(us) < 2:
         sys.exit(f'{tu}: fewer than two units')
     choices, pool, bad, model = [], {}, ['no compiler'], us[0]
     for u in us:
         k = nu[f'build/GFZE01/gen/{u["source"]}']
         if k not in [c[0] for c in choices]: choices.append((k, u))
+    # a TU-wide -inline on,noauto: merged, MWCC would inline same-file callees that retail calls
+    # (CRI's middleware builds some TUs this way; see the DOL ADX units)
+    for (mv, cf), u in list(choices):
+        if '-inline' not in (u.get('extra_cflags') or []):
+            choices.append(((mv, cf + ' -inline on,noauto'),
+                            dict(u, extra_cflags=list(u.get('extra_cflags') or []) + ['-inline', 'on,noauto'])))
+    best = None
     for (mv, cf), model in choices:
         pool, bad = attempt(us, names, tf, mv, cf)
+        if best is None or len(bad) < len(best):
+            best = bad
         print(f'{model.get("mw_version") or "default"} {" ".join(model.get("extra_cflags") or [])}: '
               f'{len(pool or {})} pool entries; {len(bad)} problems'); [print('  ', b) for b in bad[:8]]
         if not bad:
             break
     if bad:
+        # the best set's failing functions: if their units are at the edges, --keep them
+        fails = {b[0] for b in best}
+        order = [b.name for b in tf.blocks if b.name in own]
+        unit_of = {s: u['source'] for u in us for s in u['symbols']}
+        bad_units = {unit_of[f] for f in fails if f in unit_of}
+        seq = [unit_of[n] for n in order]
+        seq = [s for k, s in enumerate(seq) if not k or seq[k - 1] != s]
+        rest = [s for s in seq if s not in bad_units]
+        if len(rest) >= 2 and rest in (seq[len(seq) - len(rest):], seq[:len(rest)]):
+            print('try --keep', ','.join(sorted(f for f in fails)))
         sys.exit(1)
     if '--apply' not in sys.argv:
         return
-    first = us[0]; first['symbols'] = names; first['pool'] = pool
+    # splits first: nothing is written unless every section's ranges are contiguous
+    sp = pathlib.Path(f'config/GFZE01/{mod}/splits.txt'); st = sp.read_text(); secs = collections.defaultdict(list)
+    first = us[0]
+    for u in us:
+        m = re.search(rf'^{re.escape(u["source"])}:\n((?:\t.*\n)*)\n?', st, re.M)
+        if not m:
+            sys.exit(f'no split for {u["source"]}')
+        for s, a, b, al in re.findall(r'\t(\.\w+)\s+start:0x(\w+) end:0x(\w+)(?: align:(\d+))?', m[1]):
+            secs[s].append((int(a, 16), int(b, 16), al))
+        if u is not first: st = st.replace(m[0], '')
+    for s, rr in secs.items():
+        rr.sort()
+        if not all(x[1] == y[0] for x, y in zip(rr, rr[1:])):
+            sys.exit(f'{s} ranges are not contiguous: ' + ', '.join(f'{a:X}..{b:X}' for a, b, _ in rr))
+    body = ''.join(f'\t{s:<11} start:0x{rr[0][0]:08X} end:0x{rr[-1][1]:08X}'
+                   + (f' align:{max(int(r[2]) for r in rr if r[2])}' if any(r[2] for r in rr) else '') + '\n'
+                   for s, rr in secs.items())
+    m = re.search(rf'^{re.escape(first["source"])}:\n((?:\t.*\n)*)', st, re.M)
+    st = st[:m.start(1)] + body + st[m.end(1):]
+    first['symbols'] = names; first['pool'] = pool
     first['mw_version'] = model.get('mw_version'); first['extra_cflags'] = list(model.get('extra_cflags') or [])
     first.pop('own', None)
     if not pool: first.pop('pool')
     for u in us[1:]: U.remove(u)
     pathlib.Path('config/GFZE01/units.json').write_text(dump_units(U))
-    sp = pathlib.Path(f'config/GFZE01/{mod}/splits.txt'); st = sp.read_text(); secs = collections.defaultdict(list)
-    for u in us:
-        m = re.search(rf'^{re.escape(u["source"])}:\n((?:\t.*\n)*)\n?', st, re.M)
-        for s, a, b, al in re.findall(r'\t(\.\w+)\s+start:0x(\w+) end:0x(\w+) align:(\d+)', m[1]): secs[s].append((int(a, 16), int(b, 16), al))
-        if u is not first: st = st.replace(m[0], '')
-    for s, rr in secs.items():
-        rr.sort(); assert all(x[1] == y[0] for x, y in zip(rr, rr[1:])), (s, rr)
-    body = ''.join(f'\t{s:<11} start:0x{rr[0][0]:08X} end:0x{rr[-1][1]:08X} align:{rr[0][2]}\n' for s, rr in secs.items())
-    m = re.search(rf'^{re.escape(first["source"])}:\n((?:\t.*\n)*)', st, re.M)
-    st = st[:m.start(1)] + body + st[m.end(1):]
     sp.write_text(st); print('merged', len(us), 'units')
-
 
 if __name__ == '__main__':
     main()
