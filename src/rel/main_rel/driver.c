@@ -563,21 +563,44 @@ typedef struct DriverDesc {
     s32 unk_44;
     u32 unk_48;
 } DriverDesc;
+
+typedef Sig_parse_format_MkVaListState Sig_parse_format_va_list;
+
+typedef void (*VIRetraceCallback)(u32 retraceCount);
+
+typedef struct RelModule {
+    void *module;
+    void *bss;
+} RelModule;
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3;
+extern VIRetraceCallback fn_8001A78C(VIRetraceCallback callback);
+extern VIRetraceCallback fn_8001A7D0(VIRetraceCallback callback);
+extern void fn_1_3920(void);
+extern char *strcpy(char *dst, const char *src);
+extern size_t strlen(const char *str);
+extern u32 fn_1_451C(void);
+extern int sprintf(char *buffer, const char *format, ...);
+extern void fn_1_A5AA0(const char *path, RelModule *rel);
+extern void fn_1_A5C98(RelModule *rel);
 extern s16 fn_1_12C930(s16 arg0);
 extern s16 fn_1_12CCB0(s16 arg0, s16 arg1);
 extern void *fn_1_14DD68(void *arg0);
 extern u32 fn_1_4630();
 extern void fn_1_A7E60(s8 arg0, s8 arg1, FnA7E60Object *object, s32 arg3, void *arg4);
 extern void *lbl_801A6410;
-extern void *fn_1_D3884();
-extern void fn_80006E10(u32 arg0);
-extern void sprintf(void *buffer, char *format, ...);
+extern void *fn_1_D3884(void *name);
+extern void fn_80006E10(const char *path);
 extern u32 fn_80077D40();
 extern u32 fn_80071470(u32, u32);
-extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
+extern void fn_80008BA8(void *dst, void *src, u32 size);
 extern void fn_80071718(void *value);
 extern void fn_1_A8270(struct fn_1_A8270_Arg0 *self, s32 arg1);
-extern void fn_1_A8528(void *, void *);
+extern void fn_1_A8528(void *arg0, void *arg1);
 extern void fn_1_A7F84(void *arg0, u32 arg1);
 extern void lbl_8006DD14(void *, void *);
 extern void lbl_8006DB74(void *);
@@ -586,7 +609,6 @@ extern void lbl_8006DD7C(void);
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DFC4(void *pos);
 extern void lbl_8006DB30(void);
-extern char *strcpy(char *dst, const char *src);
 extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
 extern void fn_800711A8(void *value);
 extern void OSReport(const char *msg, ...);
@@ -617,7 +639,7 @@ extern u32 lbl_8006D998(u32);
 extern u32 fn_80077A18(void);
 extern void lbl_8006D9D8(void *);
 extern void fn_80077A20(struct fn_1_A8270_Rec *, void *);
-extern void fn_1_55FC4(f32 value);
+extern void fn_1_55FC4(f32 scale);
 extern f32 lbl_1_rodata_4A34[25];
 extern Fn1A9250Entry lbl_1_bss_70658[];
 extern void fn_1_A861C(FnA861CCamera *cam, FnA861CVehicle *veh);
@@ -633,7 +655,7 @@ extern u32 lbl_1_bss_71658[6];
 extern void fn_1_49714(f32 value1, f32 value2, f32 value3);
 extern void fn_1_49680(f32 value1, f32 value2);
 extern void fn_1_A93C4(u32 arg0);
-extern void fn_1_4A0D8(const u8 *s);
+extern void fn_1_4A0D8(const char *s);
 extern void fn_1_520CC(void);
 extern void fn_1_49514(u32 *value);
 extern void fn_8006F6A8(void *arg0);
@@ -644,8 +666,7 @@ extern void fn_1_A942C(u8 value);
 extern void fn_1_A96BC(void);
 extern f32 lbl_8006D0B4(f32);
 extern void lbl_8006D668(void *);
-extern u32 fn_1_44884(void *);
-extern size_t strlen(const char *str);
+extern void fn_1_44884(Vec3 *dir);
 extern fn_1_A948C_Font lbl_1_data_1AEA8[];
 extern char *strchr(const char *str, int c);
 extern char *strrchr(const char *str, int c);
@@ -765,7 +786,7 @@ void fn_1_A744C(Entry *entries, u32 count) {
     u32 i;
     Entry *entry;
     char * lab_t0_;
-    fn_80006E10((u32)"chara/");
+    fn_80006E10( (const char *)((u32)"chara/"));
     for (i = 0, entry = entries; i < count; i++, entry = (Entry *)((char *)entry + 0x440)) {
         variant = entry->unk_3B8 % 4;
         if (variant != 0) {
@@ -792,14 +813,14 @@ void fn_1_A744C(Entry *entries, u32 count) {
                             sprintf(lab_t0_, driver_texture_variant_format, ((char **)lbl_1_data_20D1C)[index], variantArg);
                         }
                         resource = fn_1_D3884(buffer);
-                        fn_80008BA8(fn_80071470((u32)slot->unk_108->unk_8, 0), (fn_80071470((u32)resource->unk_8, 0)), (fn_80077D40()));
+                        fn_80008BA8( (void *)(u32)(fn_80071470((u32)slot->unk_108->unk_8, 0)), (void *)(u32)((fn_80071470((u32)resource->unk_8, 0))), (fn_80077D40()));
                         fn_80071718(resource);
                     }
                 }
             }
         }
     }
-    fn_80006E10((u32)"..");
+    fn_80006E10( (const char *)((u32)".."));
 }
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_A744C */
@@ -839,7 +860,7 @@ void fn_1_A75DC(Fn1A75dcObject *obj, void *arg) {
     void *first_value;
     char buffer[0x80];
 
-    fn_80006E10((u32)"chara/");
+    fn_80006E10( (const char *)((u32)"chara/"));
     index = obj->unk_328;
     entry = obj;
     i = 0;
@@ -864,15 +885,14 @@ void fn_1_A75DC(Fn1A75dcObject *obj, void *arg) {
                 result = fn_1_D3884(buffer);
                 other.value = (void *)fn_80077D40(result);
                 first_value = (void *)fn_80071470((u32)result->unk_8, 0);
-                fn_80008BA8(fn_80071470((u32)(item->unk_108)->unk_8, 0),
-                    (u32)first_value, (u32)other.value);
+                fn_80008BA8( (void *)(u32)(fn_80071470((u32)(item->unk_108)->unk_8, 0)), (void *)((u32)first_value), (u32)other.value);
                 fn_80071718(result);
             }
         }
         i++;
         entry = (Fn1A75dcObject *)((u8 *)entry + 4);
     }
-    fn_80006E10((u32)"..");
+    fn_80006E10( (const char *)((u32)".."));
 }
 
 #pragma opt_propagation reset
@@ -1251,11 +1271,6 @@ typedef struct {
     u32 z;
 } RawVec3;
 
-typedef struct {
-    f32 x;
-    f32 y;
-    f32 z;
-} Vec3;
 
 typedef struct {
     u8 _pad_000[0x7c];
@@ -1654,10 +1669,6 @@ void fn_1_A8528(void *arg0, void *arg1) {
 
 
 
-typedef Sig_parse_format_MkVaListState Sig_parse_format_va_list;
-
-
-
 /* begin game/main_rel/shared_types.h (deltawave784/fzgx, CC0) */
 #ifndef GAME_MAIN_REL_SHARED_TYPES_H
 #define GAME_MAIN_REL_SHARED_TYPES_H
@@ -1777,10 +1788,6 @@ void fn_1_A861C(FnA861CCamera *cam, FnA861CVehicle *veh)
 
 
 
-
-
-
-typedef Sig_parse_format_MkVaListState Sig_parse_format_va_list;
 
 
 
@@ -1980,7 +1987,7 @@ void fn_1_A89B0(fn_1_A89B0_Obj *obj, fn_1_A89B0_Arg1 *arg1, s32 side) {
     dir.z = delta = tipz - (*((fzgx_Mtx *)lbl_801A6D00))[2][3];
     dist = lbl_8006D0B4(delta * delta + distsq);
     lbl_8006D668(&dir);
-    fn_1_44884(&dir);
+    fn_1_44884( (Vec3 *)(void *)(&dir));
 
     r1 = obj->len1;
     r1sq = r1 * r1;
@@ -1998,28 +2005,21 @@ void fn_1_A89B0(fn_1_A89B0_Obj *obj, fn_1_A89B0_Arg1 *arg1, s32 side) {
     mid.y = vec[7] + bend.y;
     mid.z = vec[11] + bend.z;
     lbl_8006D668(&bend);
-    fn_1_44884(&bend);
+    fn_1_44884( (Vec3 *)(void *)(&bend));
     lbl_8006DB74(vec);
 
     bend.x = tip.x - mid.x;
     bend.y = tip.y - mid.y;
     bend.z = tip.z - mid.z;
     lbl_8006D668(&bend);
-    fn_1_44884(&bend);
+    fn_1_44884( (Vec3 *)(void *)(&bend));
     mtxA_set_translate(&mid);
     lbl_8006DB74(m2);
     lbl_8006DB30();
 }
 /* fzgx:end fn_1_A89B0 */
 
-/* fzgx:begin fn_1_A8D4C noprologue */
-#include "types.h"
-
-typedef void (*VIRetraceCallback)(u32 retraceCount);
-
-extern VIRetraceCallback fn_8001A78C(VIRetraceCallback callback);
-extern VIRetraceCallback fn_8001A7D0(VIRetraceCallback callback);
-extern void fn_1_3920(void);
+/* fzgx:begin fn_1_A8D4C */
 
 u32 lbl_1_bss_6F640;
 
@@ -2028,13 +2028,13 @@ void fn_1_A8D4C(u32 retraceCount) {
 }
 /* fzgx:end fn_1_A8D4C */
 
-/* fzgx:begin fn_1_A8D64 noprologue */
+/* fzgx:begin fn_1_A8D64 */
 void fn_1_A8D64(u32 retraceCount) {
     fn_1_3920();
 }
 /* fzgx:end fn_1_A8D64 */
 
-/* fzgx:begin fn_1_A8D84 noprologue */
+/* fzgx:begin fn_1_A8D84 */
 void fn_1_A8D84(void) {
     lbl_1_bss_6F640 = 0;
     fn_8001A78C(fn_1_A8D4C);
@@ -2042,7 +2042,7 @@ void fn_1_A8D84(void) {
 }
 /* fzgx:end fn_1_A8D84 */
 
-/* fzgx:begin fn_1_A8DC4 noprologue */
+/* fzgx:begin fn_1_A8DC4 */
 // Returns the current driver state handle.
 u32 fn_1_A8DC4(void) {
     return lbl_1_bss_6F640;
@@ -2050,9 +2050,6 @@ u32 fn_1_A8DC4(void) {
 /* fzgx:end fn_1_A8DC4 */
 
 /* fzgx:begin fn_1_A8DD4 */
-typedef Sig_parse_format_MkVaListState Sig_parse_format_va_list;
-
-
 void fn_1_A8DD4(const char *format, ...) {
     char buffer[0x200];
     Sig_parse_format_va_list args;
@@ -2215,7 +2212,7 @@ void fn_1_A9250(int arg) {
                     lbl_1_bss_70658[i].y);
             }
             fn_1_A93C4(lbl_1_bss_70658[i].callback);
-            fn_1_4A0D8( (lbl_1_bss_70658[i].data));
+            fn_1_4A0D8( (const char *)(const u8 *)((lbl_1_bss_70658[i].data)));
         }
     }
 
