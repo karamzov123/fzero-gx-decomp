@@ -592,6 +592,12 @@ stream declarations in `sofdec/sj.h`. Removing its obsolete isolation marker
 leaves the existing group intact: both `MPV_MoveChunk` and `fn_12_ABDC` match
 retail in all three regional objects.
 
+The two `customize/emblem.c` groups share `EmbColor` without duplicating the
+editor's help table or BSS. The storage stays in the first group's block;
+eight canvas blocks use the shared prologue. Both USA objects are byte-identical
+to their pre-change builds, and Japan/PAL coverage is unchanged. A single
+object still changes four instruction words in `fn_3_14778` and was not kept.
+
 `tools/consolidate/rel_own_data.py` transfers whole adjacent import units into a specified
 one-unit REL TU. It checks contiguity and matching regional coverage, carries over the existing
 typed definitions in retail order, and verifies the moved symbols against fresh compiled and

@@ -133,6 +133,7 @@ void fn_3_14080(void);
 void fn_3_142C4(void);
 u8 fn_3_14600(void);
 
+/* fzgx:begin fn_3_1307C */
 /* help text: [row][language] */
 /* string table: [row][language] */
 static const char *lbl_3_data_345C[10][6] = {
@@ -166,7 +167,6 @@ u8 lbl_3_bss_A17D0[2];
 s16 lbl_3_bss_A17D2;
 EmblemEntry lbl_3_bss_A17D4[128];
 
-/* fzgx:begin fn_3_1307C */
 u8 fn_3_1307C(void) {
     return lbl_3_bss_A1778;
 }
@@ -765,16 +765,7 @@ void fn_3_146BC(void) {
 }
 /* fzgx:end fn_3_146BC */
 
-/* fzgx:begin fn_3_146C0 noprologue */
-#include "types.h"
-
-typedef struct EmbColor {
-    u8 r;
-    u8 g;
-    u8 b;
-    u8 a;
-} EmbColor;
-
+/* fzgx:begin fn_3_146C0 */
 extern void *memset(void *, int, u32);
 extern void *memcpy(void *, const void *, u32);
 
@@ -816,7 +807,7 @@ void fn_3_146C0(u8 *canvas, s16 x, s16 y, s16 n, EmbColor *color) {
 }
 /* fzgx:end fn_3_146C0 */
 
-/* fzgx:begin fn_3_14778 noprologue */
+/* fzgx:begin fn_3_14778 */
 void fn_3_14778(u16 width, u16 height, u8 arg2, u32 format) {
     lbl_3_bss_A23D8 = width;
     lbl_3_bss_A23DA = height;
@@ -825,7 +816,7 @@ void fn_3_14778(u16 width, u16 height, u8 arg2, u32 format) {
 }
 /* fzgx:end fn_3_14778 */
 
-/* fzgx:begin fn_3_14794 noprologue */
+/* fzgx:begin fn_3_14794 */
 /* colour (r, g, b, a) as a texel: RGB565, or RGB5A3 (opaque with 5 bits per colour from alpha 0xE0 up, otherwise
  * 3 bits of alpha and 4 bits per colour) */
 #define RGB565(r, g, b) ((u16)((((r) & 0xF8) << 8) | (((g) & 0xFC) << 3) | (((b) & 0xF8) >> 3)))
@@ -878,7 +869,7 @@ void fn_3_14794(u8 *__restrict canvas, s16 x, s16 y, const u8 *color) {
 }
 /* fzgx:end fn_3_14794 */
 
-/* fzgx:begin fn_3_149AC noprologue */
+/* fzgx:begin fn_3_149AC */
 /* reads one texel of the canvas (4 x 4 tiles) as an RGBA8 colour */
 /* Reads one texel of the emblem texture (4x4 tiles) as an RGBA8 color. */
 u32 fn_3_149AC(u8 *data, s16 x, s16 y) {
@@ -941,7 +932,7 @@ done:
 }
 /* fzgx:end fn_3_149AC */
 
-/* fzgx:begin fn_3_14BBC noprologue */
+/* fzgx:begin fn_3_14BBC */
 /* writes colour c into the canvas pixel at (x, y); lbl_3_bss_A23D8 holds the canvas width and lbl_3_bss_A23E0 its
  * texture format (4 RGB565, 5 RGB5A3), pixels in 4 x 4 tiles of 16-bit texels */
 static inline void put_pixel(u8 *canvas, s16 x, s16 y, EmbColor c) {
@@ -991,7 +982,7 @@ void fn_3_14BBC(u8 *canvas, s16 x, s16 y, s16 n, EmbColor *color) {
 }
 /* fzgx:end fn_3_14BBC */
 
-/* fzgx:begin fn_3_14E18 noprologue */
+/* fzgx:begin fn_3_14E18 */
 /* put_pixel with the RGB565 texel held in a variable */
 static inline void put_texel(u8 *canvas, s16 x, s16 y, EmbColor c) {
     s16 offset;
@@ -1044,7 +1035,7 @@ void fn_3_14E18(u8 *canvas, s16 x0, s16 y0, s16 x1, s16 y1) {
 }
 /* fzgx:end fn_3_14E18 */
 
-/* fzgx:begin fn_3_15240 noprologue */
+/* fzgx:begin fn_3_15240 */
 void fn_3_15240(u8 *canvas, s16 x0, s16 y0, u16 n, s16 x1, s16 y1) {
     s32 i;
     s32 j;
@@ -1064,7 +1055,7 @@ void fn_3_15240(u8 *canvas, s16 x0, s16 y0, u16 n, s16 x1, s16 y1) {
 }
 /* fzgx:end fn_3_15240 */
 
-/* fzgx:begin fn_3_152BC noprologue */
+/* fzgx:begin fn_3_152BC */
 /* fills the canvas pixels x0 <= x < x1, y0 <= y < y1 with *color, column by column */
 void fn_3_152BC(u8 *canvas, s16 y0, s16 x0, s16 y1, s16 x1, EmbColor *color) {
     s16 x;
