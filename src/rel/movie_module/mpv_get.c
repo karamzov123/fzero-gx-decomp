@@ -9,6 +9,7 @@ extern s32 fn_12_CAB4();
 extern u32 fn_12_A660(u32, u32);
 
 /* fzgx:begin fn_12_A9C4 */
+
 /* --- rel/movie_module/fn_12_A9C4.c --- */
 
 int fn_12_A9C4(void *movie, void *out_a, void *out_b) {
@@ -23,6 +24,7 @@ int fn_12_A9C4(void *movie, void *out_a, void *out_b) {
 /* fzgx:end fn_12_A9C4 */
 
 /* fzgx:begin fn_12_AA38 */
+
 /* --- rel/movie_module/fn_12_AA38.c --- */
 int fn_12_AA38(void *movie, void *out_a, void *out_b, void *out_c) {
     s32 scale;
@@ -47,8 +49,6 @@ int fn_12_AA38(void *movie, void *out_a, void *out_b, void *out_c) {
 /* fzgx:end fn_12_AA38 */
 
 /* fzgx:begin fn_12_AB00 */
-
-
 s32 fn_12_AB00(MovieObject *movie, u32 *out) {
     if (fn_12_CAB4(movie, out)) {
         return ((s32)fn_12_A660(0, 0xff03020d));
