@@ -1,6 +1,83 @@
 #include "types.h"
 #include "sofdec/sj.h"
 
+typedef void (*fn1_t)(void *);
+
+typedef void (*fn0_t)(u32);
+
+typedef struct fn_12_8F80_SJCK {
+    union {
+        unsigned char padding_extent[8];
+        struct {
+            unsigned char *data;
+        } view_data;
+        struct {
+            unsigned char padding_len[4];
+            int len;
+        } view_len;
+    } fields;
+} fn_12_8F80_SJCK;
+
+typedef struct fn_12_8F80_SJInterface fn_12_8F80_SJInterface;
+
+typedef struct fn_12_8F80_SJ fn_12_8F80_SJ;
+
+struct fn_12_8F80_SJInterface {
+    union {
+        unsigned char padding_extent[48];
+        struct {
+            unsigned char padding_get_chunk[24];
+            void (*get_chunk)(fn_12_8F80_SJ *sj, int channel, int max_size, fn_12_8F80_SJCK *chunk);
+        } view_get_chunk;
+        struct {
+            unsigned char padding_unget_chunk[28];
+            void (*unget_chunk)(fn_12_8F80_SJ *sj, int channel, fn_12_8F80_SJCK *chunk);
+        } view_unget_chunk;
+        struct {
+            unsigned char padding_put_chunk[32];
+            void (*put_chunk)(fn_12_8F80_SJ *sj, int channel, fn_12_8F80_SJCK *chunk);
+        } view_put_chunk;
+    } fields;
+};
+
+struct fn_12_8F80_SJ {
+    union {
+        unsigned char padding_extent[4];
+        struct {
+            const fn_12_8F80_SJInterface *interface;
+        } view_interface;
+    } fields;
+};
+
+struct Sig_fn_800589BC_fn_800589BC_Arg2 { u8 lab_pad[8]; u32 unk_0, unk_4; };
+
+struct Sig_fn_800589BC_fn_800589BC_Arg3 { u32 unk_0, unk_4; };
+
+typedef struct MovieBits {
+    s32 field_0;
+    u32 field_4;
+    s32 field_8;
+    u32 *field_c;
+} MovieBits;
+
+typedef struct MovieCode {
+    s32 field_0;
+    s32 field_4;
+    s32 field_8;
+    s32 field_c;
+} MovieCode;
+extern s16 *lbl_12_bss_6944;
+extern s16 *lbl_12_bss_6940;
+extern int MPV_GoNextDelimSj(SJ *stream);
+extern u32 fn_800589BC(u32, u32, struct Sig_fn_800589BC_fn_800589BC_Arg2 *, struct Sig_fn_800589BC_fn_800589BC_Arg3 *);
+extern s16 *lbl_12_bss_6934;
+extern s16 *lbl_12_bss_6930;
+extern s16 *lbl_12_bss_6928;
+extern s16 *lbl_12_bss_691C;
+extern s32 fn_12_9594(MovieBits *state, MovieCode *code, s32 *out, s32 *base);
+extern u32 lbl_12_bss_6924;
+extern u32 lbl_12_bss_6920;
+
 /* fzgx:begin fn_12_8BD8 noprologue */
 #include "types.h"
 #include "sofdec/sj.h"
@@ -198,11 +275,9 @@ void fn_12_8BD8(struct fn_12_8BD8_ctx *arg0, SJ *arg1) {
     MPV_GoNextDelimSj(arg1);
 }
 #pragma opt_propagation reset
-
 /* fzgx:end fn_12_8BD8 */
 
 /* fzgx:begin fn_12_8F80 noprologue */
-
 #include "types.h"
 
 typedef struct SJCK {
@@ -745,29 +820,12 @@ void fn_12_8F80(MPVContext *context, SJ *stream) {
     MPV_GoNextDelimSj(stream);
 }
 #pragma opt_common_subs reset
-
 /* fzgx:end fn_12_8F80 */
 
-/* fzgx:begin fn_12_9594 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_12_9594 */
 /* --- rel/movie_module/fn_12_9594.c --- */
-typedef struct MovieBits {
-    s32 field_0;
-    u32 field_4;
-    s32 field_8;
-    u32 *field_c;
-} MovieBits;
 
-typedef struct MovieCode {
-    s32 field_0;
-    s32 field_4;
-    s32 field_8;
-    s32 field_c;
-} MovieCode;
 
-extern u32 lbl_12_bss_6924;
-extern u32 lbl_12_bss_6920;
 
 #pragma opt_lifetimes off
 s32 fn_12_9594(MovieBits *state, MovieCode *code, s32 *out, s32 *base) {
@@ -859,8 +917,7 @@ s32 fn_12_9594(MovieBits *state, MovieCode *code, s32 *out, s32 *base) {
 }
 /* fzgx:end fn_12_9594 */
 
-/* fzgx:begin fn_12_9730 noprologue */
-
+/* fzgx:begin fn_12_9730 */
 #pragma opt_lifetimes reset
 
 /* --- rel/movie_module/fn_12_9730.c --- */
@@ -879,8 +936,7 @@ void fn_12_9730(MovieModule *module) {
 }
 /* fzgx:end fn_12_9730 */
 
-/* fzgx:begin fn_12_9744 noprologue */
-
+/* fzgx:begin fn_12_9744 */
 /* --- rel/movie_module/fn_12_9744.c --- */
 typedef struct MovieState {
     u8 _pad10[0x10];
@@ -1256,5 +1312,4 @@ void fn_12_9D08(struct fn_12_9D08_ctx *arg0, SJ *arg1) {
     MPV_GoNextDelimSj(arg1);
 }
 #pragma opt_propagation reset
-
 /* fzgx:end fn_12_9D08 */

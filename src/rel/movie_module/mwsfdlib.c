@@ -1,13 +1,5 @@
 #include "types.h"
 
-/* fzgx:begin fn_12_388C4 noprologue */
-#include "types.h"
-
-/* --- rel/movie_module/fn_12_388C4.c --- */
-typedef int SfdCallbackObject;
-
-typedef struct SfdHandle SfdHandle;
-
 struct mwsfdlib____rodata_0 {
     union {
         unsigned char padding_extent[429];
@@ -29,7 +21,8 @@ struct mwsfdlib____rodata_0 {
         } view_sdk_frame_pool_invalid;
     } fields;
 };
-extern struct mwsfdlib____rodata_0 lbl_12_rodata_2270;
+
+typedef struct SfdHandle SfdHandle;
 
 struct mwsfdlibBss {
     union {
@@ -56,18 +49,40 @@ struct mwsfdlibBss {
         } view_sdk_mwg_sfd_errcode;
     } fields;
 };
-extern struct mwsfdlibBss lbl_12_bss_1B9D8;
+extern struct mwsfdlib____rodata_0 lbl_12_rodata_2270;
+extern u32 lbl_12_bss_1B9D8;
+extern int sprintf(char *s, const char *format, ...);
+extern void MWSFSVM_Error(void *, ...);
+extern u32 lbl_12_bss_1BAAC[1131];
+extern void mwSfdDestroy(void *);
+extern void fn_12_34DB4(void);
+extern void fn_12_34CEC(void);
+extern void fn_12_34D50(void);
+extern void fn_12_35DBC(void);
+extern void fn_80057378(void);
+extern int fn_12_24B80(void);
+extern void ADXT_Finish(void);
+extern int fn_12_34FFC(void);
+extern void fn_8005870C(void);
+extern void fn_80057CC4(void);
+extern void fn_80058630(void);
+extern void fn_12_34E2C(void);
+extern void *memset(void *, int, unsigned long);
 
-int sprintf(char *output, const char *format, ...);
+/* fzgx:begin fn_12_388C4 */
+/* --- rel/movie_module/fn_12_388C4.c --- */
+typedef int SfdCallbackObject;
+
+
+
 
 extern SfdHandle *fn_12_3A7D8(void *player);
 
-extern void MWSFSVM_Error(const char *message, ...);
 
 void fn_12_388C4(SfdCallbackObject object, int error) {
     struct mwsfdlib____rodata_0 *data = &lbl_12_rodata_2270;
 
-    struct mwsfdlibBss *bss = &lbl_12_bss_1B9D8;
+    struct mwsfdlibBss *bss = &(*((struct mwsfdlibBss *)&lbl_12_bss_1B9D8));
 
     void *player = (void *)object;
     if (player != 0) {
@@ -111,10 +126,8 @@ void fn_12_388C4(SfdCallbackObject object, int error) {
 }
 /* fzgx:end fn_12_388C4 */
 
-/* fzgx:begin fn_12_38A0C noprologue */
-
+/* fzgx:begin fn_12_38A0C */
 /* --- rel/movie_module/fn_12_38A0C.c --- */
-extern u32 lbl_12_bss_1BAAC[1131];
 
 s32 fn_12_38A0C(s32 arg) {
     lbl_12_bss_1BAAC[25] = arg;
@@ -122,10 +135,7 @@ s32 fn_12_38A0C(s32 arg) {
 }
 /* fzgx:end fn_12_38A0C */
 
-/* fzgx:begin fn_12_38A2C noprologue */
-#include "types.h"
-
-
+/* fzgx:begin fn_12_38A2C */
 /* --- rel/movie_module/fn_12_38A2C.c --- */
 typedef struct MoviePlayer {
     void *interface;
@@ -138,22 +148,7 @@ typedef struct Movie {
     u8 tail[0x228 - 0x70];
 } Movie;
 
-extern u32 lbl_12_bss_1B9D8;
-extern u32 lbl_12_bss_1BAAC[1131];
 
-extern void mwSfdDestroy(void *);
-extern void fn_12_34DB4(void);
-extern void fn_12_34CEC(void);
-extern void fn_12_34D50(void);
-extern void fn_12_35DBC(void);
-extern void fn_80057378(void);
-extern void fn_12_24B80(void);
-extern void ADXT_Finish(void);
-extern void fn_12_34FFC(void);
-extern void fn_8005870C(void);
-extern void fn_80057CC4(void);
-extern void fn_80058630(void);
-extern void fn_12_34E2C(void);
 
 void fn_12_38A2C(void) {
     Movie *movie = (Movie *)lbl_12_bss_1BAAC;
@@ -182,16 +177,14 @@ void fn_12_38A2C(void) {
 }
 /* fzgx:end fn_12_38A2C */
 
-/* fzgx:begin fn_12_38AD0 noprologue */
-
+/* fzgx:begin fn_12_38AD0 */
 /* --- rel/movie_module/fn_12_38AD0.c --- */
 u32 fn_12_38AD0(void) {
     return lbl_12_bss_1BAAC[15];
 }
 /* fzgx:end fn_12_38AD0 */
 
-/* fzgx:begin fn_12_38AE0 noprologue */
-
+/* fzgx:begin fn_12_38AE0 */
 /* --- rel/movie_module/fn_12_38AE0.c --- */
 u32 fn_12_38AE0(void) {
     return lbl_12_bss_1BAAC[14];
@@ -426,22 +419,17 @@ void fn_12_38AF0(MwsInitParam *parameter) {
 }
 /* fzgx:end fn_12_38AF0 */
 
-/* fzgx:begin fn_12_38D94 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_12_38D94 */
 /* --- rel/movie_module/fn_12_38D94.c --- */
 /* --- rel/movie_module/fn_12_38D94.c --- */
-extern void MWSFSVM_Error(void *, ...);
 
 void fn_12_38D94(void *arg0, void *arg1) {
     MWSFSVM_Error(arg1);
 }
 /* fzgx:end fn_12_38D94 */
 
-/* fzgx:begin fn_12_38DBC noprologue */
-
+/* fzgx:begin fn_12_38DBC */
 /* --- rel/movie_module/fn_12_38DBC.c --- */
-extern u32 lbl_12_bss_1BAAC[1131];
 
 u32 *fn_12_38DBC(void) {
     return lbl_12_bss_1BAAC;

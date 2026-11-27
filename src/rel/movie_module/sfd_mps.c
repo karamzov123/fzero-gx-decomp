@@ -1,38 +1,8 @@
 #include "types.h"
 
-/* fzgx:begin fn_12_24E94 noprologue */
-#include "types.h"
+typedef struct fn_12_24EA0_MovieState fn_12_24EA0_MovieState;
 
-/* --- rel/movie_module/fn_12_24E94.c --- */
-typedef struct MovieModule MovieModule;
-typedef struct MovieState MovieState;
-
-struct MovieModule {
-    u8 pad_0000[0x1aec];
-    MovieState *state;
-};
-
-struct MovieState {
-    u8 pad_0000[0x14];
-    u32 value;
-};
-
-u32 fn_12_24E94(MovieModule *module) {
-    return module->state->value;
-}
-/* fzgx:end fn_12_24E94 */
-
-/* fzgx:begin fn_12_24EA0 noprologue */
-#include "types.h"
-
-
-/* --- rel/movie_module/fn_12_24EA0.c --- */
-typedef struct MovieModule MovieModule;
-typedef struct MovieState MovieState;
-typedef struct MovieEntry MovieEntry;
-typedef struct MovieData MovieData;
-
-struct MovieState {
+struct fn_12_24EA0_MovieState {
     u32 base;
     u8 pad_0004[0x08];
     u32 field_000c;
@@ -43,11 +13,15 @@ struct MovieState {
     u32 field_0024;
 };
 
+typedef struct MovieData MovieData;
+
 struct MovieData {
     u8 pad_0000[0x160];
     void *arg_0160;
     void *arg_0164;
 };
+
+typedef struct MovieEntry MovieEntry;
 
 struct MovieEntry {
     s32 valid;
@@ -59,24 +33,425 @@ struct MovieEntry {
     MovieData data;
 };
 
-struct MovieModule {
+typedef struct fn_12_24EA0_MovieModule fn_12_24EA0_MovieModule;
+
+struct fn_12_24EA0_MovieModule {
     u8 pad_0000[0xdd4];
     u32 field_0dd4;
     u8 pad_0dd8[0xd14];
-    MovieState *state;
+    fn_12_24EA0_MovieState *state;
     u8 pad_0x1af0[0xe18];
     MovieEntry *entry;
 };
 
-extern void fn_12_245C4(MovieModule *module);
-extern s32 fn_12_654C(void *arg0, MovieData *arg1, void *arg2, u32 *arg3, u32 *arg4);
-extern s32 fn_12_24A88(MovieModule *module, u32 code);
+typedef struct Sig_fn_12_654C_MovieValues {
+    s32 value_00; s32 value_04; s32 value_08; s32 value_0c;
+    s32 value_10; s32 value_14; s32 value_18; s32 value_1c;
+} Sig_fn_12_654C_MovieValues;
 
-s32 fn_12_24EA0(MovieModule *module) {
+typedef struct Sig_fn_12_654C_MovieModule {
+    u8 pad00[0x10]; int field10; u8 field14[0x0c];
+    Sig_fn_12_654C_MovieValues values;
+    Sig_fn_12_654C_MovieValues slots[3];
+    u8 fielda0[0x20];
+} Sig_fn_12_654C_MovieModule;
+
+typedef void (*Sig_fn_12_24A88_MovieCallback)(void *, s32);
+
+typedef struct Sig_fn_12_24A88_MovieObject {
+    u8 pad_0000[0x48]; s32 state; u8 pad_004c[0x940];
+    Sig_fn_12_24A88_MovieCallback callback;
+    void *callback_context; s32 callback_data;
+} Sig_fn_12_24A88_MovieObject;
+
+typedef struct MpsHandle MpsHandle;
+
+typedef struct fn_12_250F0_SfmpsWork {
+    MpsHandle *decoder;
+    s32 max_video_bound;
+    s32 max_audio_bound;
+    s32 video_pts_baseline;
+    s32 audio_pts_baseline;
+    s32 concat_count;
+    s32 previous_video_stream;
+    s32 previous_audio_stream;
+    s32 first_video_stream;
+    s32 first_audio_stream;
+    s32 selected_video_id;
+    s32 selected_audio_id;
+    s32 delimiter_state;
+    void *element_outputs[0x44];
+    void *element_callback;
+    void *element_callback_argument;
+} fn_12_250F0_SfmpsWork;
+
+typedef struct fn_12_250F0_SfdHandle {
+    u8 pad_0000[0x1AEC];
+    fn_12_250F0_SfmpsWork *work;
+    u8 pad_1AF0[0x214];
+    fn_12_250F0_SfmpsWork mps_work_storage;
+} fn_12_250F0_SfdHandle;
+
+typedef struct Sig_fn_12_696C_MovieValues {
+    u32 value_00, value_04, value_08, value_0c;
+    u32 value_10, value_14, value_18, value_1c;
+} Sig_fn_12_696C_MovieValues;
+
+typedef struct Sig_fn_12_696C_MovieModule {
+    u8 _pad00[0x40];
+    Sig_fn_12_696C_MovieValues values[1];
+} Sig_fn_12_696C_MovieModule;
+
+typedef struct Sig_fn_12_6A18_MovieValues {
+    u32 value_14, value_18, value_1c;
+} Sig_fn_12_6A18_MovieValues;
+
+typedef struct fn_12_25AAC_SfmpsWork {
+    MpsHandle *decoder;
+    s32 max_video_bound;
+    s32 max_audio_bound;
+    s32 video_pts_baseline;
+    s32 audio_pts_baseline;
+    s32 concat_count;
+    s32 previous_video_stream;
+    s32 previous_audio_stream;
+    s32 first_video_stream;
+    s32 first_audio_stream;
+    s32 selected_video_id;
+    s32 selected_audio_id;
+} fn_12_25AAC_SfmpsWork;
+
+typedef struct fn_12_25AAC_SfdHandle {
+    u8 pad_0000[0x1AEC];
+    fn_12_25AAC_SfmpsWork *work;
+    u8 pad_1AF0[0x8];
+    void *stream;
+} fn_12_25AAC_SfdHandle;
+
+typedef struct fn_12_25DA8_MovieState {
+    u8 pad_0000[0x0c];
+    int start;
+    int high;
+    u8 pad_0014[0x08];
+    int low;
+    u8 pad_0020[0x04];
+    int selected;
+    u8 pad_0028[0x04];
+    int current;
+} fn_12_25DA8_MovieState;
+
+typedef struct fn_12_25DA8_MovieModule {
+    u8 pad_0000[0x1aec];
+    fn_12_25DA8_MovieState *state;
+    u8 pad_1af0[0x0c];
+    void *stream;
+} fn_12_25DA8_MovieModule;
+
+struct Sig_fn_12_21F28_MovieEntry {
+    int value;
+    char padding[0x70];
+};
+
+struct Sig_fn_12_21F28_MovieModule {
+    char padding[0x1174];
+    struct Sig_fn_12_21F28_MovieEntry entries[1];
+};
+
+struct Movie {
+    u8 pad0[0x48];
+    int state;
+    u8 pad4C[0x1AF4-0x4C];
+    int stream;
+    int field1AF8;
+    int field1AFC;
+    int field1B00;
+};
+
+struct Sig_fn_12_21D30_fn_12_21D30_E116_u32 { u32 unk_0; u8 pad_4[0x70]; };
+
+struct Sig_fn_12_21D30_fn_12_21D30_Arg0 {
+    u8 pad_0[0x114C];
+    struct Sig_fn_12_21D30_fn_12_21D30_E116_u32 unk_114C[1];
+};
+
+typedef struct SfdHandle_u3 SfdHandle_u3;
+
+typedef int (*SfdTransportLifecycleFn)(SfdHandle_u3 *handle);
+
+typedef int (*SfdTransportPauseFn)(SfdHandle_u3 *handle, int state);
+
+typedef int (*SfdTransportBufferFn)(SfdHandle_u3 *handle, void *buffer);
+
+typedef int SfdTransportValue;
+
+typedef int (*SfdTransportTransferFn)(SfdHandle_u3 *handle, SfdTransportValue parameter, int value);
+
+typedef struct SfdTransportInterface SfdTransportInterface;
+
+struct SfdTransportInterface {
+    SfdTransportLifecycleFn init;
+    SfdTransportLifecycleFn finish;
+    SfdTransportLifecycleFn exec_server;
+    SfdTransportLifecycleFn create;
+    SfdTransportLifecycleFn destroy;
+    SfdTransportLifecycleFn standby;
+    SfdTransportLifecycleFn start;
+    SfdTransportLifecycleFn stop;
+    SfdTransportPauseFn pause;
+    SfdTransportBufferFn get_write;
+    SfdTransportTransferFn add_write;
+    SfdTransportBufferFn get_read;
+    SfdTransportTransferFn add_read;
+    SfdTransportTransferFn seek;
+};
+
+typedef struct SfdTransportState {
+    union {
+        unsigned char padding_extent[68];
+        struct {
+            unsigned char padding_interface[12];
+            const SfdTransportInterface *interface;
+        } view_interface;
+        struct {
+            unsigned char padding_buffer_output3[28];
+            int buffer_output3;
+        } view_buffer_output3;
+    } fields;
+} SfdTransportState;
+
+struct SfdHandle_u3 {
+    union {
+        unsigned char padding_extent[13720];
+        struct {
+            unsigned char padding_transports[6816];
+            SfdTransportState transports[9];
+        } view_transports;
+    } fields;
+};
+
+typedef struct SJCK {
+    union {
+        unsigned char padding_extent[8];
+        struct {
+            unsigned char *data;
+        } view_data;
+        struct {
+            unsigned char padding_len[4];
+            long len;
+        } view_len;
+    } fields;
+} SJCK;
+
+typedef struct SJInterface SJInterface;
+
+typedef struct SJ SJ;
+
+struct SJInterface {
+    union {
+        unsigned char padding_extent[48];
+        struct {
+            unsigned char padding_get_chunk[24];
+            void (*get_chunk)(SJ *sj, long channel, long max_size, SJCK *chunk);
+        } view_get_chunk;
+        struct {
+            unsigned char padding_put_chunk[32];
+            void (*put_chunk)(SJ *sj, int channel, SJCK *chunk);
+        } view_put_chunk;
+        struct {
+            unsigned char padding_get_num_data[36];
+            int (*get_num_data)(SJ *sj, int channel);
+        } view_get_num_data;
+    } fields;
+};
+
+struct SJ {
+    union {
+        unsigned char padding_extent[4];
+        struct {
+            const SJInterface *interface;
+        } view_interface;
+    } fields;
+};
+
+typedef void (*SfdBufferHandleCallback)(SfdHandle_u3 *handle, int stream_index);
+
+typedef void *SfdCallbackObject;
+
+typedef void (*SfdBufferObjectCallback)(SfdCallbackObject object, int stream_index);
+
+typedef struct SfdBufferChannel {
+    union {
+        unsigned char padding_extent[16];
+        struct {
+            SJ *stream_joint;
+        } view_stream_joint;
+        struct {
+            unsigned char padding_handle_callback[4];
+            SfdBufferHandleCallback handle_callback;
+        } view_handle_callback;
+        struct {
+            unsigned char padding_object_callback[8];
+            SfdBufferObjectCallback object_callback;
+        } view_object_callback;
+        struct {
+            unsigned char padding_object[12];
+            SfdCallbackObject object;
+        } view_object;
+    } fields;
+} SfdBufferChannel;
+
+typedef struct RingInfo {
+    u8 *ptr0;
+    s32 len0;
+    u8 *ptr1;
+    s32 len1;
+    s32 unk10;
+    s32 unk14;
+} RingInfo;
+
+typedef struct MovieResult {
+    void *buffer;
+    int start;
+    void *second;
+    int end;
+    u32 unk10;
+    int index;
+    u8 pad_0018[0x08];
+} MovieResult;
+
+typedef struct PtsInfo {
+    s32 pts;
+    u8 *ptr;
+    s32 len;
+} PtsInfo;
+
+typedef struct MovieValues {
+    u32 value_00;
+    u32 value_04;
+    u32 value_08;
+    u32 value_0c;
+    u32 value_10;
+    u32 value_14;
+    u32 value_18;
+    u32 value_1c;
+} MovieValues;
+
+typedef struct Sig_fn_12_68D4_MovieValues {
+    u32 value_00; u32 value_04; u32 value_08; u32 value_0c;
+    u32 value_10; u32 value_14; u32 value_18; u32 value_1c;
+} Sig_fn_12_68D4_MovieValues;
+
+typedef struct Sig_fn_12_68D4_MovieModule {
+    u8 _pad00[0x20]; Sig_fn_12_68D4_MovieValues values;
+} Sig_fn_12_68D4_MovieModule;
+
+struct fn_12_2559C_Arg0 {
+    u8 pad_0[0x28];
+    u32 unk_28;
+    u8 pad_2C[0x1AC0];
+    u32 unk_1AEC;
+    u8 pad_1AF0[0x4];
+    u32 unk_1AF4;
+};
+
+typedef struct MovieRoot {
+    void *field_000;
+    u8 pad_004[0x140];
+    void (*cb144)(void *, u32);
+    void *cb148;
+} MovieRoot;
+
+typedef struct fn_12_25FA8_MovieModule {
+    u8 pad_000[0x1aec];
+    MovieRoot *root;
+} fn_12_25FA8_MovieModule;
+
+struct Block { u32 address; int size; u32 unused; int extra; u32 reserved[4]; };
+
+struct fn_12_26218_Arg0 { u8 pad_0[0x1AEC]; u32 unk_1AEC; };
+
+struct fn_12_26218_Arg3 { u32 unk_0; };
+
+struct fn_12_252A0_arg0_1138_E116 {
+    u8 pad_0[0x24];
+    u32 unk_24;
+    u8 pad_28[0x4C];
+};
+
+struct fn_12_252A0_Arg0 {
+    u8 pad_0[0x1138];
+    struct fn_12_252A0_arg0_1138_E116 unk_1138[1];
+};
+extern void fn_12_245C4(fn_12_24EA0_MovieModule *module);
+extern int fn_12_654C(Sig_fn_12_654C_MovieModule *, const u8 *, int, int *, int *);
+extern int fn_12_24A88();
+extern u32 fn_12_6A90(u32);
+extern MovieEntry *fn_12_6B28(void);
+extern void fn_12_250D0(void);
+extern int fn_12_21D50(void *, int);
+extern int fn_12_21E94(void *, int);
+extern int fn_12_696C(Sig_fn_12_696C_MovieModule *, Sig_fn_12_696C_MovieValues *, int);
+extern int fn_12_6A18(void *, Sig_fn_12_6A18_MovieValues *);
+extern u32 fn_12_2D73C(u8 *base, int index);
+extern s32 fn_12_2F1F0(void *, u32);
+extern void fn_12_21D60(void *, int, int);
+extern void fn_12_2D7DC(u8 *base, int index, int value);
+extern int fn_12_21F28(struct Sig_fn_12_21F28_MovieModule *, int);
+extern s32 fn_12_231F8(u32 arg0);
+extern int fn_12_21D30(struct Movie *, int);
+extern s32 fn_12_23250(u32);
+extern u32 fn_12_67A4(const u8 *data);
+extern void fn_12_21D40(void *base, int index, int value);
+extern int fn_12_247BC(void *self, s32 type, u8 *data, s32 size, s32 *out);
+void fn_12_22668(SfdHandle_u3 *handle, int buffer_index, int channel, SfdBufferChannel *output);
+extern void *fn_12_57F0(void *dst, const void *src, u32 size);
+extern u32 lbl_12_bss_7E88;
+extern s32 fn_12_224FC(u8 *arg0, int arg1, u32 *arg2);
+extern s32 fn_12_22254(fn_12_25AAC_SfdHandle *, void *, s32, s32);
+extern int fn_12_2CF20(fn_12_25DA8_MovieModule *, void *, int *);
+extern int fn_12_683C(void *arg0, MovieValues *arg1);
+extern void *lbl_12_rodata_BC8[4];
+extern int fn_12_68D4(Sig_fn_12_68D4_MovieModule *, Sig_fn_12_68D4_MovieValues *);
+extern s32 fn_12_2559C(struct fn_12_2559C_Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3);
+extern s32 fn_12_25FA8(fn_12_25FA8_MovieModule *arg0, s32 arg1, s32 arg2, s32 *arg3, s32 *arg4);
+extern int fn_12_22390(u8 *module, int index, u32 *out);
+extern u32 fn_12_26218(struct fn_12_26218_Arg0 *arg0, const u8 *arg1, u32 arg2, struct fn_12_26218_Arg3 *arg3, u32 arg4);
+extern int fn_12_22008(struct Movie *, int, int);
+extern void fn_12_252A0(struct fn_12_252A0_Arg0 *arg0);
+extern int fn_12_26534();
+extern void fn_12_6DE8(void);
+extern s32 fn_12_6ECC(s32 count, void *memory);
+extern u8 lbl_12_bss_7E8C[6164];
+extern s32 fn_12_24990(u32 arg0);
+
+/* fzgx:begin fn_12_24E94 */
+/* --- rel/movie_module/fn_12_24E94.c --- */
+typedef struct fn_12_24E94_MovieModule fn_12_24E94_MovieModule;
+typedef struct fn_12_24E94_MovieState fn_12_24E94_MovieState;
+
+struct fn_12_24E94_MovieModule {
+    u8 pad_0000[0x1aec];
+    fn_12_24E94_MovieState *state;
+};
+
+struct fn_12_24E94_MovieState {
+    u8 pad_0000[0x14];
+    u32 value;
+};
+
+u32 fn_12_24E94(fn_12_24E94_MovieModule *module) {
+    return module->state->value;
+}
+/* fzgx:end fn_12_24E94 */
+
+/* fzgx:begin fn_12_24EA0 */
+/* --- rel/movie_module/fn_12_24EA0.c --- */
+
+s32 fn_12_24EA0(fn_12_24EA0_MovieModule *module) {
     MovieEntry *movie;
     MovieData *data;
     void *base;
-    MovieState *state;
+    fn_12_24EA0_MovieState *state;
     s32 first;
     s32 second;
     s32 result;
@@ -105,11 +480,10 @@ s32 fn_12_24EA0(MovieModule *module) {
     fn_12_245C4(module);
     base = (void *)state->base;
     data = (MovieData *)((u8 *)movie + 0x24);
-    first = fn_12_654C(base, data, data->arg_0160, &local_c, &local_8);
-    second = fn_12_654C(base, (MovieData *)((u8 *)data + 0xb0),
-                        data->arg_0164, &local_c, &local_8);
+    first = fn_12_654C( (Sig_fn_12_654C_MovieModule *)(void *)(base), (const u8 *)(MovieData *)(data), (int)(void *)(data->arg_0160), (int *)(u32 *)(&local_c), (int *)(u32 *)(&local_8));
+    second = fn_12_654C( (Sig_fn_12_654C_MovieModule *)(void *)(base), (const u8 *)((MovieData *)((u8 *)data + 0xb0)), (int)(void *)(data->arg_0164), (int *)(u32 *)(&local_c), (int *)(u32 *)(&local_8));
     if (first != 0 || second != 0) {
-        result = fn_12_24A88(module, 0xff000d0d);
+        result = fn_12_24A88( (void *)(fn_12_24EA0_MovieModule *)(module), 0xff000d0d);
     } else {
         result = 0;
     }
@@ -124,8 +498,7 @@ s32 fn_12_24EA0(MovieModule *module) {
 }
 /* fzgx:end fn_12_24EA0 */
 
-/* fzgx:begin fn_12_24FBC noprologue */
-
+/* fzgx:begin fn_12_24FBC */
 /* --- rel/movie_module/fn_12_24FBC.c --- */
 /* --- rel/movie_module/fn_12_24FBC.c --- */
 /* --- rel/movie_module/fn_12_24FBC.c --- */
@@ -135,24 +508,21 @@ void fn_12_24FBC(void *arg0) {
 }
 /* fzgx:end fn_12_24FBC */
 
-/* fzgx:begin fn_12_24FE4 noprologue */
-
+/* fzgx:begin fn_12_24FE4 */
 /* --- rel/movie_module/fn_12_24FE4.c --- */
 void fn_12_24FE4(void *arg0) {
     fn_12_24A88(arg0, (int)0xff000d0b);
 }
 /* fzgx:end fn_12_24FE4 */
 
-/* fzgx:begin fn_12_2500C noprologue */
-
+/* fzgx:begin fn_12_2500C */
 /* --- rel/movie_module/fn_12_2500C.c --- */
 void fn_12_2500C(void *arg0) {
     fn_12_24A88(arg0, (int)0xff000d0b);
 }
 /* fzgx:end fn_12_2500C */
 
-/* fzgx:begin fn_12_25034 noprologue */
-
+/* fzgx:begin fn_12_25034 */
 /* --- rel/movie_module/fn_12_25034.c --- */
 /* --- rel/movie_module/fn_12_25034.c --- */
 
@@ -161,8 +531,7 @@ void fn_12_25034(void *arg0) {
 }
 /* fzgx:end fn_12_25034 */
 
-/* fzgx:begin fn_12_2505C noprologue */
-
+/* fzgx:begin fn_12_2505C */
 /* --- rel/movie_module/fn_12_2505C.c --- */
 // fn_12_2505C: returns a constant.
 int fn_12_2505C(void) {
@@ -170,8 +539,7 @@ int fn_12_2505C(void) {
 }
 /* fzgx:end fn_12_2505C */
 
-/* fzgx:begin fn_12_25064 noprologue */
-
+/* fzgx:begin fn_12_25064 */
 /* --- rel/movie_module/fn_12_25064.c --- */
 // fn_12_25064: returns a constant.
 int fn_12_25064(void) {
@@ -179,8 +547,7 @@ int fn_12_25064(void) {
 }
 /* fzgx:end fn_12_25064 */
 
-/* fzgx:begin fn_12_2506C noprologue */
-
+/* fzgx:begin fn_12_2506C */
 /* --- rel/movie_module/fn_12_2506C.c --- */
 // fn_12_2506C: returns a constant.
 int fn_12_2506C(void) {
@@ -188,8 +555,7 @@ int fn_12_2506C(void) {
 }
 /* fzgx:end fn_12_2506C */
 
-/* fzgx:begin fn_12_25074 noprologue */
-
+/* fzgx:begin fn_12_25074 */
 /* --- rel/movie_module/fn_12_25074.c --- */
 // fn_12_25074: returns a constant.
 int fn_12_25074(void) {
@@ -197,11 +563,7 @@ int fn_12_25074(void) {
 }
 /* fzgx:end fn_12_25074 */
 
-/* fzgx:begin fn_12_2507C noprologue */
-#include "types.h"
-
-extern u32 fn_12_24A88(u32, u32);
-extern u32 fn_12_6A90(u32);
+/* fzgx:begin fn_12_2507C */
 
 struct fn_12_2507C_Arg0 {
     u8 pad_0[0x1AEC];
@@ -215,7 +577,7 @@ s32 fn_12_2507C(struct fn_12_2507C_Arg0 *arg0) {
     v0 = t0;
     if ((s32)t0 != 0) {
     v0 = (u32)arg0;
-    t1 = fn_12_24A88(v0, (0xFF000000 + 3338));
+    t1 = ((u32)fn_12_24A88( (void *)(u32)(v0), (0xFF000000 + 3338)));
     v0 = t1;
     } else {
     v0 = 0;
@@ -224,10 +586,7 @@ s32 fn_12_2507C(struct fn_12_2507C_Arg0 *arg0) {
 }
 /* fzgx:end fn_12_2507C */
 
-/* fzgx:begin fn_12_250D0 noprologue */
-#include "types.h"
-
-extern void fn_12_24A88(void);
+/* fzgx:begin fn_12_250D0 */
 
 void fn_12_250D0(void) {
     fn_12_24A88();
@@ -315,7 +674,6 @@ s32 fn_12_250F0(SfdHandle *handle) {
 /* fzgx:end fn_12_250F0 */
 
 /* fzgx:begin fn_12_252A0 noprologue */
-
 /* --- rel/movie_module/fn_12_252A0.c --- */
 /* --- rel/movie_module/fn_12_252A0.c --- */
 struct Sig_fn_12_252A0_Movie {
@@ -450,7 +808,6 @@ void fn_12_252A0(struct fn_12_252A0_Arg0 *arg0) {
 /* fzgx:end fn_12_252A0 */
 
 /* fzgx:begin fn_12_2559C noprologue */
-
 /* --- rel/movie_module/fn_12_2559C.c --- */
 struct Sig_fn_12_21F28_MovieEntry {
     int value;
@@ -543,7 +900,6 @@ done:
 /* fzgx:end fn_12_2559C */
 
 /* fzgx:begin fn_12_25740 noprologue */
-
 /* --- rel/movie_module/fn_12_25740.c --- */
 // fn_12_25740: returns a constant.
 int fn_12_25740(void) {
@@ -552,7 +908,6 @@ int fn_12_25740(void) {
 /* fzgx:end fn_12_25740 */
 
 /* fzgx:begin fn_12_25748 noprologue */
-
 /* --- rel/movie_module/fn_12_25748.c --- */
 typedef void *SfdCallbackObject;
 
@@ -770,9 +1125,8 @@ int fn_12_25748(SfdHandle_u3 *handle, int stream_index, const unsigned char *dat
 }
 /* fzgx:end fn_12_25748 */
 
-/* fzgx:begin fn_12_25AAC noprologue */
+/* fzgx:begin fn_12_25AAC */
 #pragma use_lmw_stmw on
-#include "types.h"
 
 typedef struct MpsHandle MpsHandle;
 
@@ -787,52 +1141,13 @@ typedef struct MpsValues {
     s32 value_1c;
 } MpsValues;
 
-typedef struct SfmpsWork {
-    MpsHandle *decoder;
-    s32 max_video_bound;
-    s32 max_audio_bound;
-    s32 video_pts_baseline;
-    s32 audio_pts_baseline;
-    s32 concat_count;
-    s32 previous_video_stream;
-    s32 previous_audio_stream;
-    s32 first_video_stream;
-    s32 first_audio_stream;
-    s32 selected_video_id;
-    s32 selected_audio_id;
-} SfmpsWork;
 
-typedef struct SfdHandle {
-    u8 pad_0000[0x1AEC];
-    SfmpsWork *work;
-    u8 pad_1AF0[0x8];
-    void *stream;
-} SfdHandle;
 
-typedef struct RingInfo {
-    u8 *ptr0;
-    s32 len0;
-    u8 *ptr1;
-    s32 len1;
-    s32 unk10;
-    s32 unk14;
-} RingInfo;
 
-typedef struct PtsInfo {
-    s32 pts;
-    u8 *ptr;
-    s32 len;
-} PtsInfo;
 
-extern s32 fn_12_2D73C(SfdHandle *, int);
-extern int fn_12_696C(MpsHandle *, MpsValues *, int);
-extern s32 fn_12_224FC(SfdHandle *, void *, RingInfo *);
-extern void *fn_12_57F0(void *, const void *, u32);
-extern s32 fn_12_22254(SfdHandle *, void *, s32, s32);
-extern s32 fn_12_2CF20(SfdHandle *, void *, PtsInfo *);
 
-static inline SfmpsWork *compute_bounds(SfdHandle *handle) {
-    SfmpsWork *work = handle->work;
+static inline fn_12_25AAC_SfmpsWork *compute_bounds(fn_12_25AAC_SfdHandle *handle) {
+    fn_12_25AAC_SfmpsWork *work = handle->work;
     MpsHandle *dec;
     s32 maxA = 0;
     s32 maxV = 0;
@@ -841,7 +1156,7 @@ static inline SfmpsWork *compute_bounds(SfdHandle *handle) {
 
     dec = work->decoder;
     for (i = 0; i < 3; i++) {
-        fn_12_696C(dec, &vals, i);
+        fn_12_696C( (Sig_fn_12_696C_MovieModule *)(MpsHandle *)(dec), (Sig_fn_12_696C_MovieValues *)(MpsValues *)(&vals), i);
         maxA = (maxA > vals.value_08) ? maxA : vals.value_08;
         maxV = (maxV > vals.value_0c) ? maxV : vals.value_0c;
     }
@@ -850,9 +1165,9 @@ static inline SfmpsWork *compute_bounds(SfdHandle *handle) {
     return work;
 }
 
-static inline s32 choose_stream(SfdHandle *handle, s32 id) {
-    SfmpsWork *work;
-    switch (fn_12_2D73C(handle, 0x3B)) {
+static inline s32 choose_stream(fn_12_25AAC_SfdHandle *handle, s32 id) {
+    fn_12_25AAC_SfmpsWork *work;
+    switch (((s32)fn_12_2D73C( (u8 *)(fn_12_25AAC_SfdHandle *)(handle), 0x3B))) {
     case 1:
         return id;
     case 2:
@@ -890,14 +1205,14 @@ static inline s32 is_seq_start(u8 *buf, s32 len) {
     return (u8)c == 0xB8;
 }
 
-static inline s32 is_changed(SfdHandle *handle, SfmpsWork *work, s32 id) {
-    if (fn_12_2D73C(handle, 0x37) != 0) {
+static inline s32 is_changed(fn_12_25AAC_SfdHandle *handle, fn_12_25AAC_SfmpsWork *work, s32 id) {
+    if (((s32)fn_12_2D73C( (u8 *)(fn_12_25AAC_SfdHandle *)(handle), 0x37)) != 0) {
         return id < work->previous_video_stream;
     }
     return id == work->first_video_stream;
 }
 
-static inline s32 write_data(SfdHandle *handle, u8 *buf, s32 len, s32 pts) {
+static inline s32 write_data(fn_12_25AAC_SfdHandle *handle, u8 *buf, s32 len, s32 pts) {
     PtsInfo pi;
     void *stream;
     s32 err;
@@ -908,7 +1223,7 @@ static inline s32 write_data(SfdHandle *handle, u8 *buf, s32 len, s32 pts) {
     s32 extra;
 
     stream = handle->stream;
-    err = fn_12_224FC(handle, stream, &info);
+    err = fn_12_224FC( (u8 *)(fn_12_25AAC_SfdHandle *)(handle), (int)(void *)(stream), (u32 *)(RingInfo *)(&info));
     if (err != 0) {
         return err;
     }
@@ -933,7 +1248,7 @@ static inline s32 write_data(SfdHandle *handle, u8 *buf, s32 len, s32 pts) {
         pi.pts = pts;
         pi.ptr = ptr0;
         pi.len = len;
-        err = fn_12_2CF20(handle, stream, &pi);
+        err = fn_12_2CF20( (fn_12_25DA8_MovieModule *)(fn_12_25AAC_SfdHandle *)(handle), stream, (int *)(PtsInfo *)(&pi));
         if (err != 0) {
             return err;
         }
@@ -941,11 +1256,11 @@ static inline s32 write_data(SfdHandle *handle, u8 *buf, s32 len, s32 pts) {
     return 1;
 }
 
-s32 fn_12_25AAC(SfdHandle *handle, s32 id, u8 *buf, s32 len, s32 pts) {
-    SfmpsWork *work;
+s32 fn_12_25AAC(fn_12_25AAC_SfdHandle *handle, s32 id, u8 *buf, s32 len, s32 pts) {
+    fn_12_25AAC_SfmpsWork *work;
     s32 next;
 
-    if (fn_12_2D73C(handle, 5) == 0) {
+    if (((s32)fn_12_2D73C( (u8 *)(fn_12_25AAC_SfdHandle *)(handle), 5)) == 0) {
         return 1;
     }
     work = handle->work;
@@ -955,7 +1270,7 @@ s32 fn_12_25AAC(SfdHandle *handle, s32 id, u8 *buf, s32 len, s32 pts) {
     if (work->first_video_stream == -1) {
         work->first_video_stream = id;
     }
-    next = fn_12_2D73C(handle, 0x1D);
+    next = ((s32)fn_12_2D73C( (u8 *)(fn_12_25AAC_SfdHandle *)(handle), 0x1D));
     if (next != -1) {
         if (is_changed(handle, work, id) && work->selected_video_id != next) {
             if (is_seq_start(buf, len)) {
@@ -971,49 +1286,16 @@ s32 fn_12_25AAC(SfdHandle *handle, s32 id, u8 *buf, s32 len, s32 pts) {
 }
 /* fzgx:end fn_12_25AAC */
 
-/* fzgx:begin fn_12_25DA8 noprologue */
-#include "types.h"
+/* fzgx:begin fn_12_25DA8 */
 
-typedef struct MovieState {
-    u8 pad_0000[0x0c];
-    int start;
-    int high;
-    u8 pad_0014[0x08];
-    int low;
-    u8 pad_0020[0x04];
-    int selected;
-    u8 pad_0028[0x04];
-    int current;
-} MovieState;
 
-typedef struct MovieModule {
-    u8 pad_0000[0x1aec];
-    MovieState *state;
-    u8 pad_1af0[0x0c];
-    void *stream;
-} MovieModule;
 
-typedef struct MovieResult {
-    void *buffer;
-    int start;
-    void *second;
-    int end;
-    u32 unk10;
-    int index;
-    u8 pad_0018[0x08];
-} MovieResult;
-
-extern int fn_12_2D73C(MovieModule *, int);
-extern int fn_12_224FC(MovieModule *, void *, MovieResult *);
-extern void fn_12_57F0(void *, int, int);
-extern int fn_12_22254(MovieModule *, void *, int, int);
-extern int fn_12_2CF20(MovieModule *, void *, int *);
 
 #pragma opt_dead_assignments off
 static inline u32 fn_12_25DA8_operand(u32 right, u32 left) { return left & right; }
-int fn_12_25DA8(MovieModule *module, int track, int offset, int length, int limit) {
+int fn_12_25DA8(fn_12_25DA8_MovieModule *module, int track, int offset, int length, int limit) {
     void * fzgx_live;
-    MovieState *state;
+    fn_12_25DA8_MovieState *state;
     int delta;
     int index;
     MovieResult result;
@@ -1024,7 +1306,7 @@ int fn_12_25DA8(MovieModule *module, int track, int offset, int length, int limi
     void *stream;
     int args[3];
 
-    if (fn_12_2D73C(module, 6) == 0) {
+    if (((int)fn_12_2D73C( (u8 *)(fn_12_25DA8_MovieModule *)(module), 6)) == 0) {
         return 1;
     }
 
@@ -1036,9 +1318,9 @@ int fn_12_25DA8(MovieModule *module, int track, int offset, int length, int limi
         state->selected = track;
     }
 
-    index = fn_12_2D73C(module, 0x1e);
+    index = ((int)fn_12_2D73C( (u8 *)(fn_12_25DA8_MovieModule *)(module), 0x1e));
     if (index != -1) {
-        if (fn_12_2D73C(module, 0x37) != 0) {
+        if (((int)fn_12_2D73C( (u8 *)(fn_12_25DA8_MovieModule *)(module), 0x37)) != 0) {
             { int __reg_value_delta = (state->low ^ track) >> 1; delta = __reg_value_delta; }
             delta -= fn_12_25DA8_operand((state->low), ((state->low ^ track)));
             delta = (int)((u32)delta >> 31);
@@ -1070,7 +1352,7 @@ int fn_12_25DA8(MovieModule *module, int track, int offset, int length, int limi
     }
 
     stream = module->stream;
-    status = fn_12_224FC(module, stream, &result);
+    status = fn_12_224FC( (u8 *)(fn_12_25DA8_MovieModule *)(module), (int)(void *)(stream), (u32 *)(MovieResult *)(&result));
     if (status != 0) {
         return status;
     }
@@ -1084,14 +1366,14 @@ int fn_12_25DA8(MovieModule *module, int track, int offset, int length, int limi
     }
 
     if (length <= result_start) {
-        fn_12_57F0(result_buffer, offset, length);
+        fn_12_57F0(result_buffer, (const void *)(int)(offset), length);
     } else {
-        fn_12_57F0(result_buffer, offset, result_start);
-        fn_12_57F0(result_second, offset + result_start,
+        fn_12_57F0(result_buffer, (const void *)(int)(offset), result_start);
+        fn_12_57F0(result_second, (const void *)(int)(offset + result_start),
                    length - result_start);
     }
 
-    status = fn_12_22254(module, stream, length, index);
+    status = fn_12_22254( (fn_12_25AAC_SfdHandle *)(fn_12_25DA8_MovieModule *)(module), stream, length, index);
     if (status != 0) {
         return status;
     }
@@ -1108,12 +1390,9 @@ int fn_12_25DA8(MovieModule *module, int track, int offset, int length, int limi
     return 1;
 }
 #pragma opt_dead_assignments reset
-
 /* fzgx:end fn_12_25DA8 */
 
-/* fzgx:begin fn_12_25FA8 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_12_25FA8 */
 typedef struct MovieOut {
     void *dest;
     s32 size;
@@ -1140,38 +1419,13 @@ typedef struct MovieSlots {
     MovieHandler *slot[175];
 } MovieSlots;
 
-typedef struct MovieRoot {
-    void *field_000;
-    u8 pad_004[0x140];
-    void (*cb144)(void *, u32);
-    void *cb148;
-} MovieRoot;
 
-typedef struct MovieValues {
-    u32 value_00;
-    u32 value_04;
-    u32 value_08;
-    u32 value_0c;
-    u32 value_10;
-    u32 value_14;
-    u32 value_18;
-    u32 value_1c;
-} MovieValues;
 
-typedef struct MovieModule {
-    u8 pad_000[0x1aec];
-    MovieRoot *root;
-} MovieModule;
 
-typedef s32 (*MovieTableFn)(MovieModule *, u32, s32, s32, u32);
+typedef s32 (*MovieTableFn)(fn_12_25FA8_MovieModule *, u32, s32, s32, u32);
 
-extern int fn_12_24A88(void *arg0, int code);
-extern int fn_12_683C(void *arg0, MovieValues *arg1);
-extern void *fn_12_57F0(void *arg0, void *arg1, u32 arg2);
-extern u32 lbl_12_bss_7E88;
-extern void *lbl_12_rodata_BC8[4];
 
-s32 fn_12_25FA8(MovieModule *arg0, s32 arg1, s32 arg2, s32 *arg3, s32 *arg4) {
+s32 fn_12_25FA8(fn_12_25FA8_MovieModule *arg0, s32 arg1, s32 arg2, s32 *arg3, s32 *arg4) {
     void * fzgx_live;
     s32 rem;
     s32 tmp_call2;
@@ -1260,45 +1514,9 @@ s32 fn_12_25FA8(MovieModule *arg0, s32 arg1, s32 arg2, s32 *arg3, s32 *arg4) {
     }
     return ret;
 }
-
 /* fzgx:end fn_12_25FA8 */
 
-/* fzgx:begin fn_12_26218 noprologue */
-#include "types.h"
-typedef struct Sig_fn_12_654C_MovieValues {
-    s32 value_00; s32 value_04; s32 value_08; s32 value_0c;
-    s32 value_10; s32 value_14; s32 value_18; s32 value_1c;
-} Sig_fn_12_654C_MovieValues;
-typedef struct Sig_fn_12_654C_MovieModule {
-    u8 pad00[0x10]; int field10; u8 field14[0x0c];
-    Sig_fn_12_654C_MovieValues values;
-    Sig_fn_12_654C_MovieValues slots[3];
-    u8 fielda0[0x20];
-} Sig_fn_12_654C_MovieModule;
-typedef void (*Sig_fn_12_24A88_MovieCallback)(void *, s32);
-typedef struct Sig_fn_12_24A88_MovieObject {
-    u8 pad_0000[0x48]; s32 state; u8 pad_004c[0x940];
-    Sig_fn_12_24A88_MovieCallback callback;
-    void *callback_context; s32 callback_data;
-} Sig_fn_12_24A88_MovieObject;
-typedef struct Sig_fn_12_68D4_MovieValues {
-    u32 value_00; u32 value_04; u32 value_08; u32 value_0c;
-    u32 value_10; u32 value_14; u32 value_18; u32 value_1c;
-} Sig_fn_12_68D4_MovieValues;
-typedef struct Sig_fn_12_68D4_MovieModule {
-    u8 _pad00[0x20]; Sig_fn_12_68D4_MovieValues values;
-} Sig_fn_12_68D4_MovieModule;
-struct fn_12_26218_Arg0 { u8 pad_0[0x1AEC]; u32 unk_1AEC; };
-struct fn_12_26218_Arg3 { u32 unk_0; };
-extern int fn_12_654C(Sig_fn_12_654C_MovieModule *, const u8 *, int, int *, int *);
-extern int fn_12_68D4(Sig_fn_12_68D4_MovieModule *, Sig_fn_12_68D4_MovieValues *);
-extern s32 fn_12_231F8(u32);
-extern s32 fn_12_24A88(Sig_fn_12_24A88_MovieObject *, s32);
-extern s32 fn_12_23250(u32);
-extern s32 fn_12_2559C(struct fn_12_26218_Arg0 *, const u8 *, s32, u32);
-extern u32 fn_12_25FA8(struct fn_12_26218_Arg0 *, const u8 *, s32, void *, void *);
-extern u32 fn_12_67A4(const u8 *);
-extern void *fn_12_57F0(void *, const void *, u32);
+/* fzgx:begin fn_12_26218 */
 u32 fn_12_26218(struct fn_12_26218_Arg0 *arg0, const u8 *arg1, u32 arg2, struct fn_12_26218_Arg3 *arg3, u32 arg4) {
     s32 arg2_local = arg2;
     u32 base;
@@ -1319,9 +1537,9 @@ u32 fn_12_26218(struct fn_12_26218_Arg0 *arg0, const u8 *arg1, u32 arg2, struct 
     u32 loc_8;
     arg3->unk_0 = 0;
     base = *(u32 *)arg0->unk_1AEC;
-    if (fn_12_2559C(arg0, arg1, arg2_local, arg4) == 0) return 0;
+    if (fn_12_2559C( (struct fn_12_2559C_Arg0 *)(struct fn_12_26218_Arg0 *)(arg0), (u32)(const u8 *)(arg1), arg2_local, arg4) == 0) return 0;
     if (fn_12_654C((Sig_fn_12_654C_MovieModule *)base, arg1, arg2_local, (int *)&loc_10, (int *)&loc_14) != 0)
-        result = fn_12_24A88((Sig_fn_12_24A88_MovieObject *)arg0, 0xff000d03);
+        result = fn_12_24A88( (void *)((Sig_fn_12_24A88_MovieObject *)arg0), 0xff000d03);
     if (loc_14 & 0x20000) {
         entry = *(u32 *)((u8 *)arg0 + 0x2908);
         if (entry == 0) entry = 0;
@@ -1377,38 +1595,21 @@ zero_done:
 scan_done:
         arg3->unk_0 = tail;
     } else if (!(loc_14 & 0x40000)) {
-        result = fn_12_24A88((Sig_fn_12_24A88_MovieObject *)arg0, 0xff000d05);
+        result = fn_12_24A88( (void *)((Sig_fn_12_24A88_MovieObject *)arg0), 0xff000d05);
     } else {
         arg1 += loc_10; arg2_local -= loc_10;
-        result = fn_12_25FA8(arg0, arg1, arg2_local, &loc_C, &loc_8);
+        result = ((u32)fn_12_25FA8( (fn_12_25FA8_MovieModule *)(struct fn_12_26218_Arg0 *)(arg0), (s32)(const u8 *)(arg1), arg2_local, (s32 *)(void *)(&loc_C), (s32 *)(void *)(&loc_8)));
         if ((s32)loc_8 == 1) arg3->unk_0 = loc_10 + loc_C;
     }
     return result;
 }
 /* fzgx:end fn_12_26218 */
 
-/* fzgx:begin fn_12_26534 noprologue */
-#include "types.h"
-
-struct Movie {
-    u8 pad0[0x48];
-    int state;
-    u8 pad4C[0x1AF4-0x4C];
-    int stream;
-    int field1AF8;
-    int field1AFC;
-    int field1B00;
-};
-struct Block { u32 address; int size; u32 unused; int extra; u32 reserved[4]; };
-extern int fn_12_21D30(struct Movie *, int);
-extern int fn_12_22390(struct Movie *, int, struct Block *);
-extern int fn_12_26218(struct Movie *, u32, int, int *, int);
-extern int fn_12_22008(struct Movie *, int, int);
-extern void fn_12_252A0(struct Movie *);
+/* fzgx:begin fn_12_26534 */
 
 static inline int get_block(struct Movie *movie, u32 *address, int *size, int *end) {
     struct Block block;
-    int result = fn_12_22390(movie, movie->stream, &block);
+    int result = fn_12_22390( (u8 *)(struct Movie *)(movie), movie->stream, (u32 *)(struct Block *)(&block));
     if (result != 0) return result;
     *size = block.size;
     *address = block.address;
@@ -1431,7 +1632,7 @@ static inline int process_blocks(struct Movie *arg0, int limit) {
         int result = get_block(movie, &address, &size, &end);
         status = result;
         if (status != 0) break;
-        status = fn_12_26218(movie, address, size, &consumed, end);
+        status = ((int)fn_12_26218( (struct fn_12_26218_Arg0 *)(struct Movie *)(movie), (const u8 *)(u32)(address), size, (struct fn_12_26218_Arg3 *)(int *)(&consumed), end));
         if (status != 0) break;
         if (consumed == 0) break;
         result = fn_12_22008(movie, movie->stream, consumed);
@@ -1440,11 +1641,13 @@ static inline int process_blocks(struct Movie *arg0, int limit) {
         if (status != 0) break;
         total += consumed;
     }
-    if (movie->state == 2) fn_12_252A0(movie);
+    if (movie->state == 2) fn_12_252A0( (struct fn_12_252A0_Arg0 *)(struct Movie *)(movie));
     return status;
 }
 
-int fn_12_26534(struct Movie *movie) {
+int fn_12_26534(movie)
+struct Movie *movie;
+{
     int a = fn_12_21D30(movie, movie->field1AFC);
     int b = fn_12_21D30(movie, movie->field1AF8);
     int c = fn_12_21D30(movie, movie->field1B00);
@@ -1453,22 +1656,18 @@ int fn_12_26534(struct Movie *movie) {
 }
 /* fzgx:end fn_12_26534 */
 
-/* fzgx:begin fn_12_26664 noprologue */
-#include "types.h"
+/* fzgx:begin fn_12_26664 */
 #pragma opt_propagation off
 
 /* --- rel/movie_module/fn_12_26664.c --- */
-extern void fn_12_26534(void);
 
 void fn_12_26664(void) {
     fn_12_26534();
 }
 /* fzgx:end fn_12_26664 */
 
-/* fzgx:begin fn_12_26684 noprologue */
-
+/* fzgx:begin fn_12_26684 */
 /* --- rel/movie_module/fn_12_26684.c --- */
-extern void fn_12_6DE8(void);
 
 int fn_12_26684(void) {
     fn_12_6DE8();
@@ -1476,13 +1675,8 @@ int fn_12_26684(void) {
 }
 /* fzgx:end fn_12_26684 */
 
-/* fzgx:begin fn_12_266A8 noprologue */
-
+/* fzgx:begin fn_12_266A8 */
 /* --- rel/movie_module/fn_12_266A8.c --- */
-extern int fn_12_24A88(void *arg0, int code);
-extern int fn_12_6ECC(int arg0, void *arg1);
-extern u8 lbl_12_bss_7E8C[6164];
-extern u32 lbl_12_bss_7E88;
 
 int fn_12_266A8(void) {
     int size = 0x168;
@@ -1505,30 +1699,26 @@ int fn_12_266A8(void) {
 }
 /* fzgx:end fn_12_266A8 */
 
-/* fzgx:begin fn_12_26734 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_12_26734 */
 typedef struct MovieTable {
     u8 pad_0000[0x144];
     int arg3;
     int arg4;
 } MovieTable;
 
-typedef struct MovieModule {
+typedef struct fn_12_26734_MovieModule {
     u8 pad_0000[0x1aec];
     MovieTable *movie_table;
-} MovieModule;
+} fn_12_26734_MovieModule;
 
-extern int fn_12_24990(void *module);
-extern int fn_12_24A88(int arg0, u32 arg1);
 
 #pragma opt_dead_assignments off
-int fn_12_26734(MovieModule *module, int index, int value, int arg3, int arg4) {
+int fn_12_26734(fn_12_26734_MovieModule *module, int index, int value, int arg3, int arg4) {
     MovieTable *table;
     int *entry;
 
-    if (fn_12_24990(module) != 0) {
-        return fn_12_24A88(0, 0xff000171);
+    if (fn_12_24990( (u32)(void *)(module)) != 0) {
+        return fn_12_24A88( (void *)(int)(0), 0xff000171);
     }
 
     if (index < 0xbc || index > 0xff) {
@@ -1543,5 +1733,4 @@ int fn_12_26734(MovieModule *module, int index, int value, int arg3, int arg4) {
     return 0;
 }
 #pragma opt_dead_assignments reset
-
 /* fzgx:end fn_12_26734 */

@@ -1,28 +1,49 @@
 #include "types.h"
 
-/* fzgx:begin fn_12_307C noprologue */
-#include "types.h"
+typedef struct Sig_fn_12_48C4_MovieEntry {
+ s32 active; u8 unk04[0x38]; f32 unk3c; f32 unk40;
+} Sig_fn_12_48C4_MovieEntry;
 
-/* --- rel/movie_module/fn_12_307C.c --- */
+typedef struct MovieInner {
+    u32 unk0;
+    u32 unk4;
+    u32 pad8[3];
+    u32 unk14;
+} MovieInner;
 extern u32 lbl_12_bss_C;
+extern u32 lbl_12_bss_10[300];
+extern void fn_12_48A0(u32 *value);
+extern void fn_12_354C(void *arg);
+extern u8 lbl_12_rodata_448[160];
+extern Sig_fn_12_48C4_MovieEntry *fn_12_48C4(void);
+extern void *fn_12_3570(void *);
+extern void *memset(void *, int, u32);
+extern s32 lbl_12_bss_8;
+extern void fn_12_4934(void);
+extern void fn_12_35EC(void);
+extern void fn_12_49F8(void);
+extern void fn_12_3D624(MovieInner *);
+extern void fn_12_4A18(void);
+extern void fn_12_4938(void);
+extern void fn_12_35F0(void);
+
+/* fzgx:begin fn_12_307C */
+/* --- rel/movie_module/fn_12_307C.c --- */
 
 u32 fn_12_307C(void) {
     return lbl_12_bss_C;
 }
 /* fzgx:end fn_12_307C */
 
-/* fzgx:begin fn_12_308C noprologue */
-
+/* fzgx:begin fn_12_308C */
 /* --- rel/movie_module/fn_12_308C.c --- */
-extern u32 lbl_12_bss_10[300];
 
 u32 fn_12_308C(void) {
     return lbl_12_bss_10[5];
 }
 /* fzgx:end fn_12_308C */
 
-/* fzgx:begin fn_12_309C noprologue */
-
+/* fzgx:begin fn_12_309C */
 /* --- rel/movie_module/fn_12_309C.c --- */
 typedef void (*Fn12Callback)(u32, u32);
 
@@ -41,11 +62,8 @@ void fn_12_309C(u32 a, u32 b, u32 c) {
 }
 /* fzgx:end fn_12_309C */
 
-/* fzgx:begin fn_12_30E8 noprologue */
-
+/* fzgx:begin fn_12_30E8 */
 /* --- rel/movie_module/fn_12_30E8.c --- */
-extern void fn_12_48A0(void *arg);
-extern void fn_12_354C(void *arg);
 
 typedef struct MovieModule {
     u32 field_00;
@@ -61,20 +79,16 @@ void fn_12_30E8(MovieModule *movie) {
         void *arg1 = movie->field_2c;
 
         movie->field_00 = 0;
-        fn_12_48A0(arg0);
+        fn_12_48A0( (u32 *)(void *)(arg0));
         fn_12_354C(arg1);
         lbl_12_bss_10[0]--;
     }
 }
 /* fzgx:end fn_12_30E8 */
 
-/* fzgx:begin fn_12_3148 noprologue */
-
+/* fzgx:begin fn_12_3148 */
 /* --- rel/movie_module/fn_12_3148.c --- */
 /* --- rel/movie_module/fn_12_3148.c --- */
-typedef struct Sig_fn_12_48C4_MovieEntry {
- s32 active; u8 unk04[0x38]; f32 unk3c; f32 unk40;
-} Sig_fn_12_48C4_MovieEntry;
 typedef struct MovieModule_u1 {
  u32 field_00;
  u32 field_04, field_08, field_0c;
@@ -92,10 +106,6 @@ typedef struct MovieModule_u1 {
  s32 field_60;
  u8 pad_64[0x2c];
 } MovieModule_u1;
-extern u8 lbl_12_rodata_448[160];
-extern Sig_fn_12_48C4_MovieEntry *fn_12_48C4(void);
-extern void *fn_12_3570(void *);
-extern void *memset(void *, int, u32);
 static inline void report(u8 *text) {
  Fn12Callback callback;
  u32 count;
@@ -171,8 +181,7 @@ MovieModule_u1 *fn_12_3148(u32 arg0, s32 arg1) {
 }
 /* fzgx:end fn_12_3148 */
 
-/* fzgx:begin fn_12_33BC noprologue */
-
+/* fzgx:begin fn_12_33BC */
 /* --- rel/movie_module/fn_12_33BC.c --- */
 void fn_12_33BC(u32 a, u32 b) {
     lbl_12_bss_10[2] = a;
@@ -180,13 +189,8 @@ void fn_12_33BC(u32 a, u32 b) {
 }
 /* fzgx:end fn_12_33BC */
 
-/* fzgx:begin fn_12_33D0 noprologue */
-
+/* fzgx:begin fn_12_33D0 */
 /* --- rel/movie_module/fn_12_33D0.c --- */
-extern s32 lbl_12_bss_8;
-extern void fn_12_4934(void);
-extern void fn_12_35EC(void);
-extern void fn_12_49F8(void);
 
 void fn_12_33D0(void) {
     if (lbl_12_bss_8 > 0) {

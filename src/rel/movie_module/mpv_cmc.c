@@ -1,8 +1,24 @@
 #include "types.h"
 
-/* fzgx:begin fn_12_8AEC noprologue */
-#include "types.h"
+typedef struct MPVMCContext MPVMCContext;
 
+typedef void (*MPVMCFunction)(MPVMCContext *context);
+
+struct MPVMCContext {
+    union {
+        unsigned char padding_extent[68];
+        struct {
+            MPVMCFunction functions08[4];
+        } view_functions08;
+        struct {
+            unsigned char padding_destination[24];
+            u8 *destination;
+        } view_destination;
+    } fields;
+};
+void fn_12_2013C(MPVMCContext *context);
+
+/* fzgx:begin fn_12_8AEC */
 /* --- rel/movie_module/fn_12_8AEC.c --- */
 typedef struct MovieModule_u1 {
     u8 _pad120[0x120];
@@ -24,8 +40,7 @@ void fn_12_8AEC(MovieModule_u1 *module) {
 }
 /* fzgx:end fn_12_8AEC */
 
-/* fzgx:begin fn_12_8B0C noprologue */
-
+/* fzgx:begin fn_12_8B0C */
 /* --- rel/movie_module/fn_12_8B0C.c --- */
 struct fn_12_8B0C_Arg0 {
     u8 pad_0[0x120];
@@ -58,28 +73,8 @@ void fn_12_8B0C(struct fn_12_8B0C_Arg0 *arg0) {
 }
 /* fzgx:end fn_12_8B0C */
 
-/* fzgx:begin fn_12_8B4C noprologue */
-
-#include "types.h"
-
+/* fzgx:begin fn_12_8B4C */
 typedef struct MPVContext MPVContext;
-
-typedef struct MPVMCContext MPVMCContext;
-
-typedef void (*MPVMCFunction)(MPVMCContext *context);
-
-struct MPVMCContext {
-    union {
-        unsigned char padding_extent[68];
-        struct {
-            MPVMCFunction functions08[4];
-        } view_functions08;
-        struct {
-            unsigned char padding_destination[24];
-            u8 *destination;
-        } view_destination;
-    } fields;
-};
 
 typedef struct MPVOutputBlock {
     union {
@@ -140,7 +135,6 @@ struct MPVContext {
 
 void fn_12_E0C8(MPVMCFunction functions[4]);
 
-void fn_12_2013C(MPVMCContext *context);
 
 void fn_12_8B4C(MPVContext *object) {
     u8 *destination;

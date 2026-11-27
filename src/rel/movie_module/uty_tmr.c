@@ -1,24 +1,18 @@
 #include "types.h"
 #include "ppc_ops.h"
+extern s64 lbl_12_bss_1B778;
+extern s32 lbl_12_bss_1B770[4];
 
-/* fzgx:begin fn_12_335A4 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_12_335A4 */
 /* --- rel/movie_module/fn_12_335A4.c --- */
-extern u32 lbl_12_bss_1B778[2];
 
 u64 fn_12_335A4(void) {
-    return *(u64 *)lbl_12_bss_1B778;
+    return *(u64 *)(((u32 *)&lbl_12_bss_1B778));
 }
 /* fzgx:end fn_12_335A4 */
 
-/* fzgx:begin fn_12_335B8 noprologue */
-#include "types.h"
-#include "ppc_ops.h"
-
-
+/* fzgx:begin fn_12_335B8 */
 /* --- rel/movie_module/fn_12_335B8.c --- */
-extern s64 lbl_12_bss_1B778;
 
 s64 fn_12_335B8(void) {
     if (lbl_12_bss_1B778 == 1) {
@@ -28,10 +22,8 @@ s64 fn_12_335B8(void) {
 }
 /* fzgx:end fn_12_335B8 */
 
-/* fzgx:begin fn_12_33604 noprologue */
-
+/* fzgx:begin fn_12_33604 */
 /* --- rel/movie_module/fn_12_33604.c --- */
-extern s32 lbl_12_bss_1B770[4];
 
 void fn_12_33604(s32 movie_id) {
     s32 *state = lbl_12_bss_1B770;

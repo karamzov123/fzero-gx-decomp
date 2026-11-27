@@ -1,32 +1,338 @@
 #include "types.h"
 
-/* fzgx:begin fn_12_2D008 noprologue */
-#include "types.h"
-
-#undef v12
-
 typedef int SfdConditionValue;
 
-typedef struct SfdHandle SfdHandle;
+typedef struct fn_12_2D008_SfdHandle fn_12_2D008_SfdHandle;
 
-typedef struct SfdSeekState {
-    SfdHandle *source_handle;
+typedef struct fn_12_2D008_SfdSeekState {
+    fn_12_2D008_SfdHandle *source_handle;
     int field_04;
     int field_08;
     int field_0C;
-} SfdSeekState;
+} fn_12_2D008_SfdSeekState;
 
-struct SfdHandle {
+struct fn_12_2D008_SfdHandle {
     union {
         unsigned char padding_extent[13720];
         struct {
             unsigned char padding_seek_state[10504];
-            SfdSeekState seek_state;
+            fn_12_2D008_SfdSeekState seek_state;
         } view_seek_state;
     } fields;
 };
 
-typedef struct SfdSeeSourcePrefix {
+typedef struct SfdTimerStreamTimeUnit {
+    union {
+        unsigned char padding_extent[44];
+        struct {
+            unsigned char padding_file_size[8];
+            int file_size;
+        } view_file_size;
+        struct {
+            unsigned char padding_total_time_value[12];
+            int total_time_value;
+        } view_total_time_value;
+        struct {
+            unsigned char padding_total_time_scale[16];
+            int total_time_scale;
+        } view_total_time_scale;
+        struct {
+            unsigned char padding_byte_rate[20];
+            int byte_rate;
+        } view_byte_rate;
+        struct {
+            unsigned char padding_seek_position[24];
+            int seek_position;
+        } view_seek_position;
+        struct {
+            unsigned char padding_value[36];
+            int value;
+        } view_value;
+        struct {
+            unsigned char padding_scale[40];
+            int scale;
+        } view_scale;
+    } fields;
+} SfdTimerStreamTimeUnit;
+
+typedef struct SfdTimerState {
+    union {
+        unsigned char padding_extent[1504];
+        struct {
+            unsigned char padding_stream_time[148];
+            SfdTimerStreamTimeUnit stream_time;
+        } view_stream_time;
+    } fields;
+} SfdTimerState;
+
+typedef struct SJCK {
+    unsigned char *data;
+    long len;
+} SJCK;
+
+typedef void (*SJErrorCallback)(void *object, int error);
+
+typedef struct SJInterface SJInterface;
+
+typedef struct SJ SJ;
+
+struct SJInterface {
+    void *reserved[3];
+    void (*destroy)(SJ *sj);
+    const void *(*get_uuid)(SJ *sj);
+    void (*reset)(SJ *sj);
+    void (*get_chunk)(SJ *sj, long channel, long max_size, SJCK *chunk);
+    void (*unget_chunk)(SJ *sj, int channel, SJCK *chunk);
+    void (*put_chunk)(SJ *sj, int channel, SJCK *chunk);
+    int (*get_num_data)(SJ *sj, int channel);
+    int (*is_get_chunk)(SJ *sj, int channel, int size, int *available);
+    void (*entry_error_func)(SJ *sj, SJErrorCallback callback, void *object);
+};
+
+struct SJ {
+    const SJInterface *interface;
+};
+
+typedef struct SfdBufferSupply {
+    int kind;
+    SJ *stream_joint;
+    unsigned char *buffer;
+    int buffer_size;
+    int extra_size;
+    int field_14;
+} SfdBufferSupply;
+
+typedef struct SfdPtsEntry {
+    long long pts;
+    unsigned char *data;
+    int size;
+} SfdPtsEntry;
+
+typedef struct SfdPtsQueue {
+    SfdPtsEntry *entries;
+    int capacity;
+    int count;
+    int write_index;
+    int read_index;
+} SfdPtsQueue;
+
+typedef struct SfdBufferRingWork {
+    SfdBufferSupply supply;
+    unsigned char *delimiter_position;
+    unsigned char *delimiter_end;
+    int write_total;
+    int read_total;
+    SfdPtsQueue pts_queue;
+} SfdBufferRingWork;
+
+typedef struct SfdVideoFrameState SfdVideoFrameState;
+
+struct SfdVideoFrameState {
+    union {
+        unsigned char padding_extent[136];
+        struct {
+            int state;
+        } view_state;
+    } fields;
+};
+
+typedef struct SfdBufferVideoWork {
+    unsigned char *buffer;
+    int buffer_size;
+    int reserved_08;
+    int reserved_0C;
+    SfdVideoFrameState *video_frames;
+} SfdBufferVideoWork;
+
+typedef struct SfdBufferAudioWork {
+    unsigned char *buffer;
+    int buffer_size;
+    int reserved[7];
+    int reserved_tail[3];
+} SfdBufferAudioWork;
+
+typedef struct fn_12_2D288_SfdHandle fn_12_2D288_SfdHandle;
+
+typedef void (*SfdBufferHandleCallback)(fn_12_2D288_SfdHandle *handle, int stream_index);
+
+typedef void *SfdCallbackObject;
+
+typedef void (*SfdBufferObjectCallback)(SfdCallbackObject object, int stream_index);
+
+typedef struct SfdBufferChannel {
+    SJ *stream_joint;
+    SfdBufferHandleCallback handle_callback;
+    SfdBufferObjectCallback object_callback;
+    SfdCallbackObject object;
+} SfdBufferChannel;
+
+typedef union SfdBufferWork {
+    SfdBufferRingWork ring;
+    SfdBufferVideoWork video;
+    SfdBufferAudioWork audio;
+    SfdBufferChannel user_channels[3];
+} SfdBufferWork;
+
+typedef struct SfdBufferState {
+    union {
+        unsigned char padding_extent[116];
+        struct {
+            unsigned char padding_work[16];
+            SfdBufferWork work;
+        } view_work;
+        struct {
+            unsigned char padding_output_transport[80];
+            int output_transport;
+        } view_output_transport;
+    } fields;
+} SfdBufferState;
+
+typedef struct SfdTransportState {
+    union {
+        unsigned char padding_extent[68];
+        struct {
+            unsigned char padding_parameter_14[20];
+            int parameter_14;
+        } view_parameter_14;
+        struct {
+            unsigned char padding_state[32];
+            int state;
+        } view_state;
+    } fields;
+} SfdTransportState;
+
+typedef struct fn_12_2D288_SfdSeeSourcePrefix {
+    union {
+        unsigned char padding_extent[68];
+        struct {
+            unsigned char padding_analyzed_byte_rate[4];
+            int analyzed_byte_rate;
+        } view_analyzed_byte_rate;
+    } fields;
+} fn_12_2D288_SfdSeeSourcePrefix;
+
+typedef struct fn_12_2D288_SfdSeeTiming {
+    union {
+        unsigned char padding_extent[192];
+        struct {
+            unsigned char padding_byte_rate[128];
+            int byte_rate;
+        } view_byte_rate;
+        struct {
+            unsigned char padding_discovered_file_size[132];
+            int discovered_file_size;
+        } view_discovered_file_size;
+        struct {
+            unsigned char padding_discovered_total_time_value[136];
+            int discovered_total_time_value;
+        } view_discovered_total_time_value;
+        struct {
+            unsigned char padding_discovered_total_time_scale[140];
+            int discovered_total_time_scale;
+        } view_discovered_total_time_scale;
+        struct {
+            unsigned char padding_file_size[156];
+            int file_size;
+        } view_file_size;
+        struct {
+            unsigned char padding_total_time_value[160];
+            int total_time_value;
+        } view_total_time_value;
+        struct {
+            unsigned char padding_total_time_scale[164];
+            int total_time_scale;
+        } view_total_time_scale;
+        struct {
+            unsigned char padding_requested_byte_rate[168];
+            int requested_byte_rate;
+        } view_requested_byte_rate;
+        struct {
+            unsigned char padding_seek_position[172];
+            int seek_position;
+        } view_seek_position;
+    } fields;
+} fn_12_2D288_SfdSeeTiming;
+
+typedef struct SfdSeeWork SfdSeeWork;
+
+struct SfdSeeWork {
+    union {
+        unsigned char padding_extent[4872];
+        struct {
+            fn_12_2D288_SfdSeeSourcePrefix prefix;
+        } view_prefix;
+        struct {
+            unsigned char padding_timing[3348];
+            fn_12_2D288_SfdSeeTiming timing;
+        } view_timing;
+    } fields;
+};
+
+typedef struct SfdSeekRequest {
+    union {
+        unsigned char padding_extent[12];
+        struct {
+            unsigned char padding_position[4];
+            int position;
+        } view_position;
+    } fields;
+} SfdSeekRequest;
+
+typedef struct fn_12_2D288_SfdSeekState {
+    union {
+        unsigned char padding_extent[16];
+        struct {
+            SfdSeeWork *work;
+        } view_work;
+        struct {
+            unsigned char padding_request[4];
+            SfdSeekRequest request;
+        } view_request;
+    } fields;
+} fn_12_2D288_SfdSeekState;
+
+struct fn_12_2D288_SfdHandle {
+    union {
+        unsigned char padding_extent[13720];
+        struct {
+            unsigned char padding_timer_state[3220];
+            SfdTimerState timer_state;
+        } view_timer_state;
+        struct {
+            unsigned char padding_buffers[4416];
+            SfdBufferState buffers[8];
+        } view_buffers;
+        struct {
+            unsigned char padding_transports[6816];
+            SfdTransportState transports[9];
+        } view_transports;
+        struct {
+            unsigned char padding_seek_state[10504];
+            fn_12_2D288_SfdSeekState seek_state;
+        } view_seek_state;
+    } fields;
+};
+
+typedef struct MovieModuleState_u2 {
+    u8 pad_0[0x78];
+    s32 field_78;
+    u8 pad_7c[0x8c];
+    s32 field_108;
+    u8 field_10c[1];
+} MovieModuleState_u2;
+SfdConditionValue fn_12_2D73C(fn_12_2D008_SfdHandle *handle, int condition);
+int fn_12_2F1B4(fn_12_2D008_SfdHandle *handle, int transport_index);
+extern unsigned int UTY_MulDiv(int multiplicand, int multiplier, int divisor);
+extern int fn_12_23F34(fn_12_2D008_SfdHandle *handle);
+extern u32 fn_12_23250(u32 arg0);
+extern void fn_12_2D008(fn_12_2D008_SfdHandle *handle);
+extern s32 fn_12_24990(u32 arg0);
+extern s32 fn_12_24A88(s32 arg0, u32 arg1);
+
+/* fzgx:begin fn_12_2D008 */
+#undef v12
+
+typedef struct fn_12_2D008_SfdSeeSourcePrefix {
     int analyzed;
     int analyzed_byte_rate;
     int field_08;
@@ -35,7 +341,7 @@ typedef struct SfdSeeSourcePrefix {
     int field_18;
     unsigned char unknown_001C[0x24];
     int field_40;
-} SfdSeeSourcePrefix;
+} fn_12_2D008_SfdSeeSourcePrefix;
 
 typedef struct SfdSeeHeadSnapshot {
     int active;
@@ -43,7 +349,7 @@ typedef struct SfdSeeHeadSnapshot {
     int field_08;
 } SfdSeeHeadSnapshot;
 
-typedef struct SfdSeeTiming {
+typedef struct fn_12_2D008_SfdSeeTiming {
     unsigned char unknown_0000[124];
     int byte_rate;
     int discovered_file_size;
@@ -61,10 +367,10 @@ typedef struct SfdSeeTiming {
     int field_B4;
     int current_total_time_value;
     int current_total_time_scale;
-} SfdSeeTiming;
+} fn_12_2D008_SfdSeeTiming;
 
 typedef struct SfdSeeSeekSource {
-    SfdSeeSourcePrefix prefix;
+    fn_12_2D008_SfdSeeSourcePrefix prefix;
     unsigned char unknown_0044[0x85C];
     SfdSeeHeadSnapshot system;
     unsigned char unknown_08AC[536];
@@ -72,25 +378,21 @@ typedef struct SfdSeeSeekSource {
     unsigned char unknown_0ADC[556];
     SfdSeeHeadSnapshot audio;
     unsigned char unknown_0D18[0x10];
-    SfdSeeTiming timing;
+    fn_12_2D008_SfdSeeTiming timing;
     unsigned char unknown_0DE8[0x520];
 } SfdSeeSeekSource;
 
-SfdConditionValue fn_12_2D73C(SfdHandle *handle, int condition);
 
-int fn_12_2F1B4(SfdHandle *handle, int transport_index);
 
-unsigned int UTY_MulDiv(int multiplicand, int multiplier, int divisor);
 
-extern int fn_12_23F34(SfdHandle *handle);
 
-static inline SfdSeeSeekSource *sfsee_GetSource(SfdHandle *handle) {
+static inline SfdSeeSeekSource *sfsee_GetSource(fn_12_2D008_SfdHandle *handle) {
     return (SfdSeeSeekSource *)handle->fields.view_seek_state.seek_state.source_handle;
 }
 
-static inline void sfsee_UpdateByteRate(SfdHandle *handle) {
+static inline void sfsee_UpdateByteRate(fn_12_2D008_SfdHandle *handle) {
     SfdSeeSeekSource *source = sfsee_GetSource(handle);
-    SfdSeeTiming *timing = &source->timing;
+    fn_12_2D008_SfdSeeTiming *timing = &source->timing;
     int file_size;
     int time_value;
     int time_scale;
@@ -124,9 +426,9 @@ static inline void sfsee_UpdateByteRate(SfdHandle *handle) {
     }
 }
 
-void fn_12_2D008(SfdHandle *handle) {
+void fn_12_2D008(fn_12_2D008_SfdHandle *handle) {
     SfdSeeSeekSource *source = sfsee_GetSource(handle);
-    SfdSeeTiming *timing;
+    fn_12_2D008_SfdSeeTiming *timing;
     int audio_ready;
     int video_ready;
     int system_ready;
@@ -199,313 +501,17 @@ void fn_12_2D008(SfdHandle *handle) {
 }
 /* fzgx:end fn_12_2D008 */
 
-/* fzgx:begin fn_12_2D288 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_12_2D288 */
 /* --- rel/movie_module/fn_12_2D288.c --- */
-typedef void *SfdCallbackObject;
 
-typedef struct SfdHandle SfdHandle;
 
-typedef struct SfdTimerStreamTimeUnit {
-    union {
-        unsigned char padding_extent[44];
-        struct {
-            unsigned char padding_file_size[8];
-            int file_size;
-        } view_file_size;
-        struct {
-            unsigned char padding_total_time_value[12];
-            int total_time_value;
-        } view_total_time_value;
-        struct {
-            unsigned char padding_total_time_scale[16];
-            int total_time_scale;
-        } view_total_time_scale;
-        struct {
-            unsigned char padding_byte_rate[20];
-            int byte_rate;
-        } view_byte_rate;
-        struct {
-            unsigned char padding_seek_position[24];
-            int seek_position;
-        } view_seek_position;
-        struct {
-            unsigned char padding_value[36];
-            int value;
-        } view_value;
-        struct {
-            unsigned char padding_scale[40];
-            int scale;
-        } view_scale;
-    } fields;
-} SfdTimerStreamTimeUnit;
-
-typedef struct SfdTimerState {
-    union {
-        unsigned char padding_extent[1504];
-        struct {
-            unsigned char padding_stream_time[148];
-            SfdTimerStreamTimeUnit stream_time;
-        } view_stream_time;
-    } fields;
-} SfdTimerState;
-
-typedef struct SfdSeeWork SfdSeeWork;
-
-typedef struct SfdSeekRequest {
-    union {
-        unsigned char padding_extent[12];
-        struct {
-            unsigned char padding_position[4];
-            int position;
-        } view_position;
-    } fields;
-} SfdSeekRequest;
-
-typedef struct SfdSeekState {
-    union {
-        unsigned char padding_extent[16];
-        struct {
-            SfdSeeWork *work;
-        } view_work;
-        struct {
-            unsigned char padding_request[4];
-            SfdSeekRequest request;
-        } view_request;
-    } fields;
-} SfdSeekState;
-
-typedef struct SJCK {
-    unsigned char *data;
-    long len;
-} SJCK;
-
-typedef struct SJ SJ;
-
-typedef struct SJInterface SJInterface;
-
-typedef void (*SJErrorCallback)(void *object, int error);
-
-struct SJInterface {
-    void *reserved[3];
-    void (*destroy)(SJ *sj);
-    const void *(*get_uuid)(SJ *sj);
-    void (*reset)(SJ *sj);
-    void (*get_chunk)(SJ *sj, long channel, long max_size, SJCK *chunk);
-    void (*unget_chunk)(SJ *sj, int channel, SJCK *chunk);
-    void (*put_chunk)(SJ *sj, int channel, SJCK *chunk);
-    int (*get_num_data)(SJ *sj, int channel);
-    int (*is_get_chunk)(SJ *sj, int channel, int size, int *available);
-    void (*entry_error_func)(SJ *sj, SJErrorCallback callback, void *object);
-};
-
-struct SJ {
-    const SJInterface *interface;
-};
-
-typedef struct SfdVideoFrameState SfdVideoFrameState;
-
-typedef void (*SfdBufferHandleCallback)(SfdHandle *handle, int stream_index);
-
-typedef void (*SfdBufferObjectCallback)(SfdCallbackObject object, int stream_index);
-
-typedef struct SfdBufferChannel {
-    SJ *stream_joint;
-    SfdBufferHandleCallback handle_callback;
-    SfdBufferObjectCallback object_callback;
-    SfdCallbackObject object;
-} SfdBufferChannel;
-
-typedef struct SfdPtsEntry {
-    long long pts;
-    unsigned char *data;
-    int size;
-} SfdPtsEntry;
-
-typedef struct SfdPtsQueue {
-    SfdPtsEntry *entries;
-    int capacity;
-    int count;
-    int write_index;
-    int read_index;
-} SfdPtsQueue;
-
-typedef struct SfdBufferSupply {
-    int kind;
-    SJ *stream_joint;
-    unsigned char *buffer;
-    int buffer_size;
-    int extra_size;
-    int field_14;
-} SfdBufferSupply;
-
-typedef struct SfdBufferRingWork {
-    SfdBufferSupply supply;
-    unsigned char *delimiter_position;
-    unsigned char *delimiter_end;
-    int write_total;
-    int read_total;
-    SfdPtsQueue pts_queue;
-} SfdBufferRingWork;
-
-typedef struct SfdBufferVideoWork {
-    unsigned char *buffer;
-    int buffer_size;
-    int reserved_08;
-    int reserved_0C;
-    SfdVideoFrameState *video_frames;
-} SfdBufferVideoWork;
-
-typedef struct SfdBufferAudioWork {
-    unsigned char *buffer;
-    int buffer_size;
-    int reserved[7];
-    int reserved_tail[3];
-} SfdBufferAudioWork;
-
-typedef union SfdBufferWork {
-    SfdBufferRingWork ring;
-    SfdBufferVideoWork video;
-    SfdBufferAudioWork audio;
-    SfdBufferChannel user_channels[3];
-} SfdBufferWork;
-
-typedef struct SfdBufferState {
-    union {
-        unsigned char padding_extent[116];
-        struct {
-            unsigned char padding_work[16];
-            SfdBufferWork work;
-        } view_work;
-        struct {
-            unsigned char padding_output_transport[80];
-            int output_transport;
-        } view_output_transport;
-    } fields;
-} SfdBufferState;
-
-struct SfdVideoFrameState {
-    union {
-        unsigned char padding_extent[136];
-        struct {
-            int state;
-        } view_state;
-    } fields;
-};
-
-typedef struct SfdTransportState {
-    union {
-        unsigned char padding_extent[68];
-        struct {
-            unsigned char padding_parameter_14[20];
-            int parameter_14;
-        } view_parameter_14;
-        struct {
-            unsigned char padding_state[32];
-            int state;
-        } view_state;
-    } fields;
-} SfdTransportState;
-
-struct SfdHandle {
-    union {
-        unsigned char padding_extent[13720];
-        struct {
-            unsigned char padding_timer_state[3220];
-            SfdTimerState timer_state;
-        } view_timer_state;
-        struct {
-            unsigned char padding_buffers[4416];
-            SfdBufferState buffers[8];
-        } view_buffers;
-        struct {
-            unsigned char padding_transports[6816];
-            SfdTransportState transports[9];
-        } view_transports;
-        struct {
-            unsigned char padding_seek_state[10504];
-            SfdSeekState seek_state;
-        } view_seek_state;
-    } fields;
-};
-
-typedef struct SfdSeeSourcePrefix {
-    union {
-        unsigned char padding_extent[68];
-        struct {
-            unsigned char padding_analyzed_byte_rate[4];
-            int analyzed_byte_rate;
-        } view_analyzed_byte_rate;
-    } fields;
-} SfdSeeSourcePrefix;
-
-typedef struct SfdSeeTiming {
-    union {
-        unsigned char padding_extent[192];
-        struct {
-            unsigned char padding_byte_rate[128];
-            int byte_rate;
-        } view_byte_rate;
-        struct {
-            unsigned char padding_discovered_file_size[132];
-            int discovered_file_size;
-        } view_discovered_file_size;
-        struct {
-            unsigned char padding_discovered_total_time_value[136];
-            int discovered_total_time_value;
-        } view_discovered_total_time_value;
-        struct {
-            unsigned char padding_discovered_total_time_scale[140];
-            int discovered_total_time_scale;
-        } view_discovered_total_time_scale;
-        struct {
-            unsigned char padding_file_size[156];
-            int file_size;
-        } view_file_size;
-        struct {
-            unsigned char padding_total_time_value[160];
-            int total_time_value;
-        } view_total_time_value;
-        struct {
-            unsigned char padding_total_time_scale[164];
-            int total_time_scale;
-        } view_total_time_scale;
-        struct {
-            unsigned char padding_requested_byte_rate[168];
-            int requested_byte_rate;
-        } view_requested_byte_rate;
-        struct {
-            unsigned char padding_seek_position[172];
-            int seek_position;
-        } view_seek_position;
-    } fields;
-} SfdSeeTiming;
-
-struct SfdSeeWork {
-    union {
-        unsigned char padding_extent[4872];
-        struct {
-            SfdSeeSourcePrefix prefix;
-        } view_prefix;
-        struct {
-            unsigned char padding_timing[3348];
-            SfdSeeTiming timing;
-        } view_timing;
-    } fields;
-};
-
-int fn_12_23250(SfdHandle *handle);
-
-unsigned int UTY_MulDiv(int multiplicand, int multiplier, int divisor);
-
-static inline SfdSeeWork *sfsee_GetSource(SfdHandle *handle) {
+static inline SfdSeeWork *sfsee_GetSource(fn_12_2D288_SfdHandle *handle) {
     return handle->fields.view_seek_state.seek_state.fields.view_work.work;
 }
 
-static inline void sfsee_UpdateByteRate(SfdHandle *handle) {
+static inline void sfsee_UpdateByteRate(fn_12_2D288_SfdHandle *handle) {
     SfdSeeWork *source = sfsee_GetSource(handle);
-    SfdSeeTiming *timing = &source->fields.view_timing.timing;
+    fn_12_2D288_SfdSeeTiming *timing = &source->fields.view_timing.timing;
     int file_size;
     int time_value;
     int time_scale;
@@ -542,9 +548,8 @@ static inline void sfsee_UpdateByteRate(SfdHandle *handle) {
     }
 }
 
-void fn_12_2D008(SfdHandle *handle);
 
-static inline int sfsee_GetInputEndPosition(SfdHandle *handle) {
+static inline int sfsee_GetInputEndPosition(fn_12_2D288_SfdHandle *handle) {
     SfdTransportState *transports;
     SfdTransportState *output;
     int position;
@@ -559,7 +564,7 @@ static inline int sfsee_GetInputEndPosition(SfdHandle *handle) {
     return -1;
 }
 
-static inline void sfsee_ExecEstimate(SfdHandle *handle, SfdSeekState *seek) {
+static inline void sfsee_ExecEstimate(fn_12_2D288_SfdHandle *handle, fn_12_2D288_SfdSeekState *seek) {
     int changed;
     int position;
     int transport_position;
@@ -568,7 +573,7 @@ static inline void sfsee_ExecEstimate(SfdHandle *handle, SfdSeekState *seek) {
     SfdTimerStreamTimeUnit *timer;
     source = seek->fields.view_work.work;
     request = &seek->fields.view_request.request;
-    if (fn_12_23250(handle) != 0) {
+    if (((int)fn_12_23250( (u32)(fn_12_2D288_SfdHandle *)(handle))) != 0) {
         return;
     }
     changed = 0;
@@ -604,18 +609,17 @@ static inline void sfsee_ExecEstimate(SfdHandle *handle, SfdSeekState *seek) {
     }
 }
 
-void fn_12_2D288(SfdHandle *handle) {
-    SfdSeekState *seek = &handle->fields.view_seek_state.seek_state;
+void fn_12_2D288(fn_12_2D288_SfdHandle *handle) {
+    fn_12_2D288_SfdSeekState *seek = &handle->fields.view_seek_state.seek_state;
     if (seek->fields.view_work.work == 0) {
         return;
     }
-    fn_12_2D008(handle);
+    fn_12_2D008( (fn_12_2D008_SfdHandle *)(fn_12_2D288_SfdHandle *)(handle));
     sfsee_ExecEstimate(handle, seek);
 }
 /* fzgx:end fn_12_2D288 */
 
-/* fzgx:begin fn_12_2D420 noprologue */
-
+/* fzgx:begin fn_12_2D420 */
 /* --- rel/movie_module/fn_12_2D420.c --- */
 /* --- rel/movie_module/fn_12_2D420.c --- */
 typedef struct MovieModuleSubState {
@@ -646,8 +650,7 @@ void fn_12_2D420(MovieModuleState *arg0, u32 arg1, u32 arg2) {
 }
 /* fzgx:end fn_12_2D420 */
 
-/* fzgx:begin fn_12_2D450 noprologue */
-
+/* fzgx:begin fn_12_2D450 */
 /* --- rel/movie_module/fn_12_2D450.c --- */
 typedef struct MovieModuleState_u1 {
     s32 field_0;
@@ -664,22 +667,12 @@ void fn_12_2D450(MovieModuleState_u1 *state) {
 }
 /* fzgx:end fn_12_2D450 */
 
-/* fzgx:begin fn_12_2D470 noprologue */
-
+/* fzgx:begin fn_12_2D470 */
 /* --- rel/movie_module/fn_12_2D470.c --- */
-typedef struct MovieModuleState_u2 {
-    u8 pad_0[0x78];
-    s32 field_78;
-    u8 pad_7c[0x8c];
-    s32 field_108;
-    u8 field_10c[1];
-} MovieModuleState_u2;
 
-extern s32 fn_12_24990(MovieModuleState_u2 *state);
-extern s32 fn_12_24A88(s32 arg0, u32 arg1);
 
 s32 fn_12_2D470(MovieModuleState_u2 *state, void **out0, u32 *out1) {
-    if (fn_12_24990(state)) {
+    if (fn_12_24990( (u32)(MovieModuleState_u2 *)(state))) {
         return fn_12_24A88(0, 0xff00011c);
     }
     if (state->field_78) {

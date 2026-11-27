@@ -1,8 +1,63 @@
 #include "types.h"
 
-/* fzgx:begin fn_12_3D730 noprologue */
-#include "types.h"
+typedef unsigned char CFTConvTable[256];
 
+typedef float CFTMtx3D[3][3];
+
+typedef struct Matrix3 {
+    f32 m[9];
+} Matrix3;
+
+typedef struct MwsYccPlane {
+    void *y;
+    void *cb;
+    void *cr;
+    int y_pitch;
+    int cb_pitch;
+    int cr_pitch;
+} MwsYccPlane;
+
+typedef struct CFTYcc420Planar {
+    const u8 *y;
+    const u8 *cb;
+    const u8 *cr;
+    s32 y_stride;
+    s32 cb_stride;
+    s32 cr_stride;
+} CFTYcc420Planar;
+
+typedef struct CFTArgb8888Output {
+    u8 *data;
+    s32 width;
+    s32 height;
+    s32 stride;
+} CFTArgb8888Output;
+extern void fn_12_3E688(CFTConvTable luma, CFTConvTable chroma_u, CFTConvTable chroma_v);
+extern void fn_12_3E500(CFTMtx3D matrix, CFTMtx3D inverse);
+extern CFTMtx3D lbl_12_data_EA0;
+extern CFTMtx3D lbl_12_data_EC4;
+extern void fn_12_3E394(CFTMtx3D left, CFTMtx3D right, CFTMtx3D product);
+void CFT_MakeArgb8888ColAdjTbl(void *table);
+void CFT_MakeYcc422ColAdjTbl(void *table);
+void mwPlyCalcYccPlane(void *buffer, int width, int height, MwsYccPlane *output);
+extern void CFT_MakeInvConvTableCustom(CFTConvTable luma, CFTConvTable chroma_u, CFTConvTable chroma_v);
+extern void CFT_MakeInverseMtx3D(CFTMtx3D matrix, CFTMtx3D inverse);
+extern void CFT_MakeMtx3D(CFTMtx3D left, CFTMtx3D right, CFTMtx3D product);
+extern CFTMtx3D cft_rgb_yuv_coeff;
+extern CFTMtx3D cft_rgb_yuv_ccir601;
+extern CFTConvTable cft_conv_y_itbl;
+extern CFTConvTable cft_conv_u_itbl;
+extern CFTConvTable cft_conv_v_itbl;
+extern float *cft_ptr_y__rgb;
+extern float *cft_ptr_cb_rgb;
+extern float *cft_ptr_cr_rgb;
+extern CFTMtx3D cft_yuv_rgb_coeff;
+extern CFTMtx3D cft_basic_ccir601;
+extern void cnvStaticYcc420plnToA256V(const CFTYcc420Planar *source, const CFTArgb8888Output *destination);
+extern void fn_12_3E09C(const void *, void *, s32, s32);
+void fn_12_339B4(void *buffer, int width, int height, MwsYccPlane *output);
+
+/* fzgx:begin fn_12_3D730 */
 /* --- rel/movie_module/fn_12_3D730.c --- */
 /* --- rel/movie_module/fn_12_3D730.c --- */
 // fn_12_3D730: empty in retail (single blr).
@@ -10,41 +65,31 @@ void fn_12_3D730(void) {
 }
 /* fzgx:end fn_12_3D730 */
 
-/* fzgx:begin fn_12_3D734 noprologue */
-
+/* fzgx:begin fn_12_3D734 */
 /* --- rel/movie_module/fn_12_3D734.c --- */
 // fn_12_3D734: empty in retail (single blr).
 void fn_12_3D734(void) {
 }
 /* fzgx:end fn_12_3D734 */
 
-/* fzgx:begin fn_12_3D738 noprologue */
-
+/* fzgx:begin fn_12_3D738 */
 /* --- rel/movie_module/fn_12_3D738.c --- */
 // fn_12_3D738: empty in retail (single blr).
 void fn_12_3D738(void) {
 }
 /* fzgx:end fn_12_3D738 */
 
-/* fzgx:begin fn_12_3D73C noprologue */
-
+/* fzgx:begin fn_12_3D73C */
 /* --- rel/movie_module/fn_12_3D73C.c --- */
 // fn_12_3D73C: empty in retail (single blr).
 void fn_12_3D73C(void) {
 }
 /* fzgx:end fn_12_3D73C */
 
-/* fzgx:begin fn_12_3D740 noprologue */
-
+/* fzgx:begin fn_12_3D740 */
 /* --- rel/movie_module/fn_12_3D740.c --- */
 /* CFT_MakeArgb8888ColAdjTbl, from the CC0 MK Deception decomp (cftfx.c) */
 
-typedef float CFTMtx3D[3][3];
-typedef unsigned char CFTConvTable[256];
-
-extern void fn_12_3E688(CFTConvTable luma, CFTConvTable chroma_u, CFTConvTable chroma_v);
-extern void fn_12_3E500(CFTMtx3D matrix, CFTMtx3D inverse);
-extern CFTMtx3D lbl_12_data_EA0;
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 CFTMtx3D lbl_12_bss_1E088;
@@ -105,20 +150,10 @@ void fn_12_3D740(void* buffer)
 }
 /* fzgx:end fn_12_3D740 */
 
-/* fzgx:begin fn_12_3D968 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_12_3D968 */
 /* --- rel/movie_module/fn_12_3D968.c --- */
 /* CFT_MakeYcc422ColAdjTbl, from the CC0 MK Deception decomp (cftfx.c) */
 
-typedef float CFTMtx3D[3][3];
-typedef unsigned char CFTConvTable[256];
-
-extern void fn_12_3E688(CFTConvTable luma, CFTConvTable chroma_u, CFTConvTable chroma_v);
-extern void fn_12_3E500(CFTMtx3D matrix, CFTMtx3D inverse);
-extern CFTMtx3D lbl_12_data_EA0;
-extern CFTMtx3D lbl_12_data_EC4;
-extern void fn_12_3E394(CFTMtx3D left, CFTMtx3D right, CFTMtx3D product);
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 CFTMtx3D lbl_12_bss_1E088;
@@ -214,8 +249,7 @@ void fn_12_3D968(void* table)
 }
 /* fzgx:end fn_12_3D968 */
 
-/* fzgx:begin fn_12_3DBDC noprologue */
-
+/* fzgx:begin fn_12_3DBDC */
 /* --- rel/movie_module/fn_12_3DBDC.c --- */
 /* WARNING: compiler-diff device, not original code: file-level use_lmw_stmw on (stmw/lmw prologues; 21 of 296 movie_module files carry it, possibly the vendor build setting, circumstantial) */
 #pragma use_lmw_stmw on
@@ -227,8 +261,7 @@ void fn_12_3DBDC(void) {
 }
 /* fzgx:end fn_12_3DBDC */
 
-/* fzgx:begin fn_12_3DBE0 noprologue */
-
+/* fzgx:begin fn_12_3DBE0 */
 /* --- rel/movie_module/fn_12_3DBE0.c --- */
 typedef struct MovieSrc {
     u32 *data;
@@ -338,66 +371,21 @@ void fn_12_3DBE0(MovieSrc *source, MovieDst *dest, u32 *palette) {
 }
 /* fzgx:end fn_12_3DBE0 */
 
-/* fzgx:begin fn_12_3DCEC noprologue */
-
+/* fzgx:begin fn_12_3DCEC */
 /* --- rel/movie_module/fn_12_3DCEC.c --- */
 // fn_12_3DCEC: empty in retail (single blr).
 void fn_12_3DCEC(void) {
 }
 /* fzgx:end fn_12_3DCEC */
 
-/* fzgx:begin fn_12_3DCF0 noprologue */
-
+/* fzgx:begin fn_12_3DCF0 */
 /* --- rel/movie_module/fn_12_3DCF0.c --- */
 /* --- rel/movie_module/fn_12_3DCF0.c --- */
 /* fn_12_3DCF0, from the CC0 MK Deception decomp (cftfx.c) */
 
-typedef struct CFTYcc420Planar {
-    const u8 *y;
-    const u8 *cb;
-    const u8 *cr;
-    s32 y_stride;
-    s32 cb_stride;
-    s32 cr_stride;
-} CFTYcc420Planar;
-typedef struct CFTArgb8888Output {
-    u8 *data;
-    s32 width;
-    s32 height;
-    s32 stride;
-} CFTArgb8888Output;
 typedef float CFTArgbTable[3][256][4];
-void CFT_MakeArgb8888ColAdjTbl(void *table);
-void CFT_MakeYcc422ColAdjTbl(void *table);
-typedef struct MwsYccPlane {
-    void *y;
-    void *cb;
-    void *cr;
-    int y_pitch;
-    int cb_pitch;
-    int cr_pitch;
-} MwsYccPlane;
-void mwPlyCalcYccPlane(void *buffer, int width, int height, MwsYccPlane *output);
-extern void CFT_MakeInvConvTableCustom(CFTConvTable luma, CFTConvTable chroma_u,
-                                       CFTConvTable chroma_v);
-extern void CFT_MakeInverseMtx3D(CFTMtx3D matrix, CFTMtx3D inverse);
-extern void CFT_MakeMtx3D(CFTMtx3D left, CFTMtx3D right, CFTMtx3D product);
-extern CFTMtx3D cft_rgb_yuv_coeff;
-extern CFTMtx3D cft_rgb_yuv_ccir601;
-extern CFTConvTable cft_conv_y_itbl;
-extern CFTConvTable cft_conv_u_itbl;
-extern CFTConvTable cft_conv_v_itbl;
-extern float *cft_ptr_y__rgb;
-extern float *cft_ptr_cb_rgb;
-extern float *cft_ptr_cr_rgb;
-extern CFTMtx3D cft_yuv_rgb_coeff;
-extern CFTMtx3D cft_basic_ccir601;
-extern void cnvStaticYcc420plnToA256V(const CFTYcc420Planar *source,
-                                      const CFTArgb8888Output *destination);
 
-u32 fn_12_3DCF0(const CFTYcc420Planar *source, const CFTArgb8888Output *destination,
-                 const u8 *table) {
-    s32 rewind;
+u32 fn_12_3DCF0(const CFTYcc420Planar *source, const CFTArgb8888Output *destination, const u8 *table) { s32 rewind;
     s32 output_skip;
     const u8 *y = source->y;
     const u8 *row4;
@@ -459,8 +447,7 @@ u32 fn_12_3DCF0(const CFTYcc420Planar *source, const CFTArgb8888Output *destinat
 }
 /* fzgx:end fn_12_3DCF0 */
 
-/* fzgx:begin fn_12_3DF08 noprologue */
-
+/* fzgx:begin fn_12_3DF08 */
 /* --- rel/movie_module/fn_12_3DF08.c --- */
 /* fn_12_3DF08, from the CC0 MK Deception decomp (cftfx.c) */
 
@@ -513,12 +500,9 @@ void fn_12_3DF08(const CFTYcc420Planar *source, const CFTArgb8888Output *destina
 }
 /* fzgx:end fn_12_3DF08 */
 
-/* fzgx:begin fn_12_3E09C noprologue */
-
+/* fzgx:begin fn_12_3E09C */
 /* --- rel/movie_module/fn_12_3E09C.c --- */
-void fn_12_3E09C(const void *source, void *destination, s32 width, s32 height);
 
-void fn_12_339B4(void *buffer, int width, int height, MwsYccPlane *output);
 
 static inline u32 cftPackEvenPixels(u32 luma, u16 chroma) {
     return (luma & 0xFF000000) | ((luma >> 8) & 0x0000FF00) | (((u32)chroma << 8) & 0x00FF0000) |
@@ -530,9 +514,7 @@ static inline u32 cftPackOddPixels(u32 luma, u16 chroma) {
            (((u32)chroma << 16) & 0x00FF0000) | ((u32)chroma & 0xFF);
 }
 
-static inline void cftStorePixelQuad(u32 *first_output, u32 *second_output, u32 first_luma,
-                                     u32 second_luma, u16 first_chroma, u16 second_chroma) {
-    first_output[1] = cftPackOddPixels(first_luma, first_chroma);
+static inline void cftStorePixelQuad(u32 *first_output, u32 *second_output, u32 first_luma, u32 second_luma, u16 first_chroma, u16 second_chroma) { first_output[1] = cftPackOddPixels(first_luma, first_chroma);
     second_output[1] = cftPackOddPixels(second_luma, second_chroma);
     first_output[0] = cftPackEvenPixels(first_luma, first_chroma);
     second_output[0] = cftPackEvenPixels(second_luma, second_chroma);
@@ -624,9 +606,6 @@ void fn_12_3E09C(const void *source, void *destination, s32 width, s32 height) {
 }
 
 /* --- rel/movie_module/fn_12_3E394.c --- */
-typedef struct Matrix3 {
-    f32 m[9];
-} Matrix3;
 
 
 /* --- rel/movie_module/fn_12_3E500.c --- */

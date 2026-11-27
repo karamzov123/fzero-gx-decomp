@@ -1,9 +1,32 @@
 #include "types.h"
 
-/* fzgx:begin fn_12_E0F4 noprologue */
-#include "types.h"
-
+typedef struct DivResult {
+    s32 quot;
+    s32 rem;
+} DivResult;
 extern unsigned int lbl_12_bss_52F0[128];
+extern unsigned char lbl_12_bss_54F0[1024];
+extern unsigned char lbl_12_bss_58F0[1024];
+extern unsigned char lbl_12_bss_5CF0[128];
+extern unsigned char lbl_12_bss_5D70[128];
+extern s16 lbl_12_bss_6230[0x80];
+extern s16 lbl_12_bss_61F0[0x20];
+extern signed short lbl_12_bss_6330[64];
+extern u16 lbl_12_bss_63B0[32];
+extern s16 lbl_12_bss_6430[0x80];
+extern s16 lbl_12_bss_63F0[0x20];
+extern s16 lbl_12_bss_6570[0x80];
+extern s16 lbl_12_bss_6530[0x20];
+extern s16 lbl_12_bss_66F0[0x100];
+extern s16 lbl_12_bss_6670[0x40];
+extern void mpvvlc_InitMbTypeBpic(void);
+extern signed short *mpvvlc_InitCbpSub2(signed short *output);
+extern void mpvvlc2_InitDcSizY(void);
+extern void mpvvlc2_InitDcSizC(void);
+extern void fn_12_33364(unsigned int *destination, unsigned int *source, unsigned int count);
+extern DivResult fn_8007E914(s32 numer, s32 denom);
+
+/* fzgx:begin fn_12_E0F4 */
 
 static inline void mpvvlc_fill_u32(unsigned int **output, long count, unsigned int value) {
     int i;
@@ -44,13 +67,12 @@ void fn_12_E0F4(void) {
 }
 /* fzgx:end fn_12_E0F4 */
 
-/* fzgx:begin mpvvlc2_InitDcSizC noprologue */
+/* fzgx:begin mpvvlc2_InitDcSizC */
 #pragma opt_propagation reset
 
 /* --- rel/movie_module/mpvvlc2_InitDcSizC.c --- */
 /* --- rel/movie_module/mpvvlc2_InitDcSizC.c --- */
 /* --- rel/movie_module/mpvvlc2_InitDcSizC.c --- */
-extern unsigned char lbl_12_bss_54F0[1024];
 
 static inline void mpvvlc_EmitDc(signed char **output, long count, signed char value) {
     int i;
@@ -87,10 +109,8 @@ void mpvvlc2_InitDcSizC(void) {
 }
 /* fzgx:end mpvvlc2_InitDcSizC */
 
-/* fzgx:begin mpvvlc2_InitDcSizY noprologue */
-
+/* fzgx:begin mpvvlc2_InitDcSizY */
 /* --- rel/movie_module/mpvvlc2_InitDcSizY.c --- */
-extern unsigned char lbl_12_bss_58F0[1024];
 
 void mpvvlc2_InitDcSizY(void) {
     signed char *output = (signed char *)lbl_12_bss_58F0;
@@ -121,9 +141,7 @@ void mpvvlc2_InitDcSizY(void) {
 }
 /* fzgx:end mpvvlc2_InitDcSizY */
 
-/* fzgx:begin fn_12_ED30 noprologue */
-
-extern unsigned char lbl_12_bss_5CF0[128];
+/* fzgx:begin fn_12_ED30 */
 
 static inline void mpvvlc_fill_u8(signed char **output, long count, signed char value) {
     int i;
@@ -146,9 +164,7 @@ void fn_12_ED30(void) {
 }
 /* fzgx:end fn_12_ED30 */
 
-/* fzgx:begin fn_12_EFA4 noprologue */
-
-extern unsigned char lbl_12_bss_5D70[128];
+/* fzgx:begin fn_12_EFA4 */
 
 void fn_12_EFA4(void) {
     signed char *output = (signed char *)lbl_12_bss_5D70;
@@ -165,8 +181,7 @@ void fn_12_EFA4(void) {
 }
 /* fzgx:end fn_12_EFA4 */
 
-/* fzgx:begin mpvvlc_InitCbpSub2 noprologue */
-
+/* fzgx:begin mpvvlc_InitCbpSub2 */
 /* --- rel/movie_module/mpvvlc_InitCbpSub2.c --- */
 static inline void mpvvlc_EmitCbp(signed short **output, long count, signed short value) {
     int i;
@@ -222,8 +237,7 @@ signed short *mpvvlc_InitCbpSub2(signed short *output) {
 }
 /* fzgx:end mpvvlc_InitCbpSub2 */
 
-/* fzgx:begin fn_12_FA5C noprologue */
-
+/* fzgx:begin fn_12_FA5C */
 /* --- rel/movie_module/fn_12_FA5C.c --- */
 signed short *fn_12_FA5C(signed short *output) {
     *output++ = 0;
@@ -294,11 +308,8 @@ signed short *fn_12_FA5C(signed short *output) {
 }
 /* fzgx:end fn_12_FA5C */
 
-/* fzgx:begin fn_12_FC04 noprologue */
+/* fzgx:begin fn_12_FC04 */
 
-extern s16 lbl_12_bss_6230[0x80];
-
-extern s16 lbl_12_bss_61F0[0x20];
 
 void fn_12_FC04(void) {
     s16 *p;
@@ -413,11 +424,9 @@ void fn_12_FC04(void) {
 }
 /* fzgx:end fn_12_FC04 */
 
-/* fzgx:begin mpvvlc_InitMbTypeBpic noprologue */
-
+/* fzgx:begin mpvvlc_InitMbTypeBpic */
 /* --- rel/movie_module/mpvvlc_InitMbTypeBpic.c --- */
 /* --- rel/movie_module/mpvvlc_InitMbTypeBpic.c --- */
-extern signed short lbl_12_bss_6330[64];
 
 void mpvvlc_InitMbTypeBpic(void) {
     signed short *output = lbl_12_bss_6330;
@@ -446,10 +455,8 @@ void mpvvlc_InitMbTypeBpic(void) {
 }
 /* fzgx:end mpvvlc_InitMbTypeBpic */
 
-/* fzgx:begin fn_12_1014C noprologue */
-
+/* fzgx:begin fn_12_1014C */
 /* --- rel/movie_module/fn_12_1014C.c --- */
-extern u16 lbl_12_bss_63B0[32];
 
 void fn_12_1014C(void) {
     u16 *table = lbl_12_bss_63B0;
@@ -492,11 +499,8 @@ void fn_12_1014C(void) {
 }
 /* fzgx:end fn_12_1014C */
 
-/* fzgx:begin fn_12_10200 noprologue */
+/* fzgx:begin fn_12_10200 */
 
-extern s16 lbl_12_bss_6430[0x80];
-
-extern s16 lbl_12_bss_63F0[0x20];
 
 void fn_12_10200(void) {
     s16 *p;
@@ -604,11 +608,8 @@ void fn_12_10200(void) {
 }
 /* fzgx:end fn_12_10200 */
 
-/* fzgx:begin fn_12_105BC noprologue */
+/* fzgx:begin fn_12_105BC */
 
-extern s16 lbl_12_bss_6570[0x80];
-
-extern s16 lbl_12_bss_6530[0x20];
 
 void fn_12_105BC(void) {
     s16 *p;
@@ -704,11 +705,8 @@ void fn_12_105BC(void) {
 }
 /* fzgx:end fn_12_105BC */
 
-/* fzgx:begin fn_12_10980 noprologue */
+/* fzgx:begin fn_12_10980 */
 
-extern s16 lbl_12_bss_66F0[0x100];
-
-extern s16 lbl_12_bss_6670[0x40];
 
 void fn_12_10980(void) {
     s16 *p;
@@ -1063,7 +1061,6 @@ void fn_12_10F3C(u8 *vlc, void *ixa) {
 /* fzgx:end fn_12_10F3C */
 
 /* fzgx:begin fn_12_11168 noprologue */
-
 /* --- rel/movie_module/fn_12_11168.c --- */
 #pragma opt_propagation off
 s32 fn_12_11168(void) {
@@ -1075,9 +1072,7 @@ s32 fn_12_11168(void) {
 }
 /* fzgx:end fn_12_11168 */
 
-/* fzgx:begin fn_12_11188 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_12_11188 */
 /* --- rel/movie_module/fn_12_11188.c --- */
 typedef struct MovieContext {
     u8 unk_000[0x1d8];
@@ -1090,12 +1085,7 @@ typedef struct MovieDimensions {
     s16 height;
 } MovieDimensions;
 
-typedef struct DivResult {
-    s32 quot;
-    s32 rem;
-} DivResult;
 
-extern DivResult fn_8007E914(s32 value, s32 context);
 
 void fn_12_11188(MovieContext *movie, u32 value, u32 *out, const MovieDimensions *dimensions) {
     DivResult d = fn_8007E914(value, movie->unk_1d8);
@@ -1107,8 +1097,7 @@ void fn_12_11188(MovieContext *movie, u32 value, u32 *out, const MovieDimensions
 }
 /* fzgx:end fn_12_11188 */
 
-/* fzgx:begin fn_12_11204 noprologue */
-
+/* fzgx:begin fn_12_11204 */
 /* --- rel/movie_module/fn_12_11204.c --- */
 struct fn_12_7870_Arg2 {
     u32 unk_0;
@@ -1141,7 +1130,7 @@ void fn_12_11204(u32 arg0, u32 arg1, struct fn_12_7870_Arg2 *arg2, struct fn_12_
 }
 /* fzgx:end fn_12_11204 */
 
-/* fzgx:begin fn_12_11254 noprologue */
+/* fzgx:begin fn_12_11254 */
 #pragma opt_lifetimes reset
 #pragma opt_propagation reset
 
@@ -1209,5 +1198,4 @@ void fn_12_11254(MovieModule *movie, s32 frame) {
     *(f64 *)d = f0; \
     *(f64 *)(d + 8) = f1; \
     d += (_n) * 8
-
 /* fzgx:end fn_12_11254 */
