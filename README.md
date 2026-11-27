@@ -52,8 +52,8 @@ use the same definitions:
 | Requirement | 2026-11-20 | 2026-11-27 |
 |---|---|---|
 | TU map | RELs: 14 `tus.json` covering 4,074 functions; DOL: none | Every executable mapped: all RELs (4,905 functions; `movie_module` from the CRI Sofdec link order, `sample` provisional) and the DOL (2,230 functions in 259 TUs, plus a `.init` map); some boundaries and names are inferred and say so |
-| R1: one unit per TU | 3,214 code units; 13 of 69 REL TU files build as one unit; 1,095 `noprologue` blocks | 1,408 code units; 86 of 145 REL TU files and 255 of 259 DOL TUs build as one unit; 616 `noprologue` blocks |
-| R2/R3: data ownership, build independence | 4,565 data units; 1,214 pool-remapped units; `.fzgxpool` primers in 142 files; 8,684 scaffolding names | 3,449 data units; 593 pool-remapped units; primers in 98 files; 4,735 scaffolding names |
+| R1: one unit per TU | 3,214 code units; 13 of 69 REL TU files build as one unit; 1,095 `noprologue` blocks | 1,407 code units; 87 of 145 REL TU files and 255 of 259 DOL TUs build as one unit; 616 `noprologue` blocks |
+| R2/R3: data ownership, build independence | 4,565 data units; 1,214 pool-remapped units; `.fzgxpool` primers in 142 files; 8,684 scaffolding names | 3,449 data units; 592 pool-remapped units; primers in 98 files; 4,735 scaffolding names |
 | R4: platform boundary (REL source) | 338 hardware-address literals; 675 MWCC intrinsic calls | 250 literals; 634 intrinsic calls |
 | R5: portable game C (REL source) | 404 address-to-integer casts; 274 pointer views of `unk_` fields | 318 casts; 223 views |
 | R6: compiler-diff devices | 92 marked; 816 optimizer-pragma setters | 519 marked; 621 setters. The marked count rose because existing steering was labelled as devices, not added |

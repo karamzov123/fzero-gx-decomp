@@ -579,6 +579,14 @@ without changing their bodies or compiler settings. The merged USA text range is
 `0x2D008..0x2D500`; all five functions match their freshly extracted retail objects
 in USA, Japan and PAL. No new pool bindings were needed.
 
+`movie_module/cftfx.c` now builds as one unit instead of two. The conversion
+routines shared eight identical BSS definitions, each duplicated with its own
+ordering primer in the old split. The merged file keeps one copy and uses the
+second group's existing GC/1.3.2 `-use_lmw_stmw on` profile. All 12 functions
+match fresh retail objects in USA, Japan and PAL. The BSS and constant pool
+still link through existing retail data splits; the merge is not a transfer
+of data ownership.
+
 `tools/consolidate/rel_own_data.py` transfers whole adjacent import units into a specified
 one-unit REL TU. It checks contiguity and matching regional coverage, carries over the existing
 typed definitions in retail order, and verifies the moved symbols against fresh compiled and

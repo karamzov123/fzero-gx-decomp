@@ -154,40 +154,9 @@ void fn_12_3D740(void* buffer)
 /* --- rel/movie_module/fn_12_3D968.c --- */
 /* CFT_MakeYcc422ColAdjTbl, from the CC0 MK Deception decomp (cftfx.c) */
 
-
-/* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
-CFTMtx3D lbl_12_bss_1E088;
-CFTMtx3D lbl_12_bss_1E088__fzgx_offset_24;
-float *lbl_12_bss_1E088__fzgx_offset_48;
-float *lbl_12_bss_1E088__fzgx_offset_4C;
-float *lbl_12_bss_1E088__fzgx_offset_50;
-CFTConvTable lbl_12_bss_1E088__fzgx_offset_54;
-CFTConvTable lbl_12_bss_1E088__fzgx_offset_154;
-CFTConvTable lbl_12_bss_1E088__fzgx_offset_254;
-
-#define cft_rgb_yuv_coeff lbl_12_data_EA0
 #define cft_rgb_yuv_ccir601 lbl_12_data_EC4
-#define cft_basic_ccir601 lbl_12_bss_1E088
-#define cft_yuv_rgb_coeff lbl_12_bss_1E088__fzgx_offset_24
-#define cft_ptr_cr_rgb lbl_12_bss_1E088__fzgx_offset_48
-#define cft_ptr_cb_rgb lbl_12_bss_1E088__fzgx_offset_4C
-#define cft_ptr_y__rgb lbl_12_bss_1E088__fzgx_offset_50
-#define cft_conv_v_itbl lbl_12_bss_1E088__fzgx_offset_54
-#define cft_conv_u_itbl lbl_12_bss_1E088__fzgx_offset_154
-#define cft_conv_y_itbl lbl_12_bss_1E088__fzgx_offset_254
 
 #pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
-    volatile u8 s; /* fzgx-allow: S2 BSS primer ordering */
-    s = *(u8 *)&lbl_12_bss_1E088;
-    s = *(u8 *)&lbl_12_bss_1E088__fzgx_offset_24;
-    s = *(u8 *)&lbl_12_bss_1E088__fzgx_offset_48;
-    s = *(u8 *)&lbl_12_bss_1E088__fzgx_offset_4C;
-    s = *(u8 *)&lbl_12_bss_1E088__fzgx_offset_50;
-    s = *(u8 *)&lbl_12_bss_1E088__fzgx_offset_54;
-    s = *(u8 *)&lbl_12_bss_1E088__fzgx_offset_154;
-    s = *(u8 *)&lbl_12_bss_1E088__fzgx_offset_254;
-}
 static void fzgx_pool_layout(void) {
     volatile float s; /* fzgx-allow: S2 pool primer sink: MWCC lays out the TU literal pool in first-use order */
     volatile unsigned char c; /* fzgx-allow: S2 pool primer source */
