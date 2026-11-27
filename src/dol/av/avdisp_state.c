@@ -31,6 +31,7 @@ struct fn_800725DC_lbl_8019E250 {
 };
 
 
+/* WARNING: compiler-diff device, not original code: without opt_dead_assignments off fn_800725DC differs by 5 instructions (lis of the FIFO is hoisted above the early return in retail); GXWGFifo stores, fifo assigned first or at its declaration all give 5 */
 #pragma opt_dead_assignments off
 void fn_800725DC(u32 *arg0) {
     u32 value;
@@ -58,6 +59,7 @@ struct fn_80072614_lbl_8019E250 {
 };
 
 
+/* WARNING: compiler-diff device, not original code: without opt_dead_assignments off fn_80072614 differs by 5 instructions (same as fn_800725DC) */
 #pragma opt_dead_assignments off
 void fn_80072614(u32 *arg0) {
     u32 value;
@@ -892,12 +894,11 @@ typedef struct {
 } Entry_u14;
 
 
-#pragma opt_propagation off
 void fn_80073D60(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     Entry_u14 *entry;
     s32 v1;
     s32 v0;
-    s32 t;
+    u32 t;
 
     t = 0;
     if (arg3 & 0xFF) {
@@ -932,7 +933,6 @@ void fn_80073D60(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
         entry->unk_1C = 0;
     }
 }
-#pragma opt_propagation reset
 
 
 /* === dol/fn_80073E8C.c === */
@@ -963,6 +963,7 @@ typedef struct Matrix {
 extern const f32 lbl_801A7474;
 extern const f32 lbl_801A7470;
 
+/* WARNING: compiler-diff device, not original code: without opt_common_subs off fn_80073E8C no longer matches (MWCC renumbers its literals; the function differs) */
 #pragma opt_common_subs off
 void fn_80073E8C(s32 arg0, s32 arg1, u32 arg2, u32 arg3, u32 arg4, u32 arg5, s32 arg6, s32 arg7, s32 arg8, s32 arg9) {
     Entry_u15 *entry;

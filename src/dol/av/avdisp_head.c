@@ -228,6 +228,7 @@ void fn_80071ED4(f32 arg0, f32 arg1, s32 arg2) {
     f32 t;
     u32 x;
     u32 w;
+    /* WARNING: compiler-diff device, not original code: loc_8 holds the fog colour word at 8(r1) and the float-to-bits pun at 12(r1); an AvDispColor local plus a union gives 13 instructions of diff (r4/r5 swap in the unk_24 updates) */
     struct { u32 a[2]; } loc_8;
 
     v0 = lbl_8019E250.unk_4;
@@ -269,6 +270,7 @@ void fn_80071ED4(f32 arg0, f32 arg1, s32 arg2) {
 
 #define SET_REG_FIELD(reg, size, shift, val) ((reg) = ((u32)(val) << (shift)) | ((reg) & ~(((1 << (size)) - 1) << (shift))))
 
+/* WARNING: compiler-diff device, not original code: without opt_lifetimes off / opt_propagation off fn_80072014 differs by 20 / 14 instructions */
 #pragma opt_lifetimes off
 #pragma opt_propagation off
 static inline void WriteBPReg(u32 value) {
@@ -297,15 +299,9 @@ void fn_80072014(AvDispColor color) {
 #pragma opt_propagation reset
 #pragma opt_lifetimes reset
 
+/* WARNING: compiler-diff device, not original code: without opt_common_subs off / opt_propagation off fn_800720B0 differs by 9 / 25 and fn_80072168 by 19 instructions */
 #pragma opt_common_subs off
 #pragma opt_propagation off
-static inline void avdisp_write_bp_impl(u32 value) {
-    u32 data = value;
-    u32 command = 0x61;
-    gx->bpSentNot = 0;
-    GXWGFifo.u8 = command;  /* fzgx-allow: S2 volatile view keeps the verified load order */
-    GXWGFifo.u32 = data;  /* fzgx-allow: S2 volatile view keeps the verified load order */
-}
 
 void fn_800720B0(s32 arg0) {
     u32 flags;
@@ -324,7 +320,7 @@ void fn_800720B0(s32 arg0) {
         if (((v >> 21) & 7) == mode) {
             return;
         }
-        avdisp_write_bp_impl(p->unk_24 = (v & 0xFF1FFFFF) | (mode << 21));
+        WriteBPReg(p->unk_24 = (v & 0xFF1FFFFF) | (mode << 21));
     } else {
         p = &lbl_8019E250;
         if (!(p->unk_2C & 1)) {
@@ -335,7 +331,7 @@ void fn_800720B0(s32 arg0) {
         if (((v >> 21) & 7) == 0) {
             return;
         }
-        avdisp_write_bp_impl(p->unk_24 = v & 0xFF1FFFFF);
+        WriteBPReg(p->unk_24 = v & 0xFF1FFFFF);
     }
 }
 #pragma opt_common_subs reset
@@ -354,32 +350,32 @@ void fn_80072168(s32 arg0) {
         if (((v >> 21) & 7) == mode) {
             return;
         }
-        avdisp_write_bp_impl(p->unk_24 = (v & 0xFF1FFFFF) | (mode << 21));
+        WriteBPReg(p->unk_24 = (v & 0xFF1FFFFF) | (mode << 21));
     } else {
         v = p->unk_24;
         if (((v >> 21) & 7) == 0) {
             return;
         }
-        avdisp_write_bp_impl(p->unk_24 = v & 0xFF1FFFFF);
+        WriteBPReg(p->unk_24 = v & 0xFF1FFFFF);
     }
 }
 #pragma opt_propagation reset
 
 void fn_800721FC(f32 arg0, f32 arg1, f32 arg2, f32 arg3) {
     f32 v0;
-    struct { f32 a[18]; } loc_8;
+    f32 m[4][4];
 
     lbl_8019E250.unk_4 = arg2;
     lbl_8019E250.unk_8 = arg3;
-    C_MTXPerspective(&loc_8, arg0, arg1, arg2, arg3);
-    v0 = loc_8.a[0];
+    C_MTXPerspective(m, arg0, arg1, arg2, arg3);
+    v0 = m[0][0];
     lbl_8019F008[0] = lbl_801A745C;
     lbl_8019F008[1] = v0;
-    lbl_8019F008[2] = loc_8.a[2];
-    lbl_8019F008[3] = loc_8.a[5];
-    lbl_8019F008[4] = loc_8.a[6];
-    lbl_8019F008[5] = loc_8.a[10];
-    lbl_8019F008[6] = loc_8.a[11];
+    lbl_8019F008[2] = m[0][2];
+    lbl_8019F008[3] = m[1][1];
+    lbl_8019F008[4] = m[1][2];
+    lbl_8019F008[5] = m[2][2];
+    lbl_8019F008[6] = m[2][3];
     GXSetProjectionv();
 }
 

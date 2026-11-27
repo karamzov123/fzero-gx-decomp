@@ -18,11 +18,6 @@ typedef struct {
     u32 unk_18;
 } Fn80078CDCData;
 
-typedef union {
-    u8 u8;
-    u32 u32;
-} Func8008D6BCFifo;
-
 struct fn_80078D60_gx_T {
     u8 pad_0[0x204];
     u32 unk_204;
@@ -96,7 +91,6 @@ void fn_80078D60(s32 arg0);
 u32 fn_80078F0C(Model *arg0, Sig_fn_80071C04_Entry *arg1, u32 arg2, u32 arg3);
 void fn_800794F0(u8 *dst, u8 *src, s32 len);
 
-#pragma opt_common_subs off
 u32 fn_800789D8(struct fn_800789D8_Arg0 *arg0, struct fn_800789D8_Arg1 *entry, u32 arg2) {
     u32 v0;
     u32 v1;
@@ -111,7 +105,7 @@ u32 fn_800789D8(struct fn_800789D8_Arg0 *arg0, struct fn_800789D8_Arg1 *entry, u
     u32 v8;
     u32 v13;
     u32 v12;
-    struct { u32 a[16]; } loc_8;
+    u32 loc_8[16];
     v8 = arg2;
     arg2 = lbl_801A6D98 ^ 2;
     entry = (struct fn_800789D8_Arg1 *)entry->unk_0;
@@ -121,10 +115,11 @@ u32 fn_800789D8(struct fn_800789D8_Arg0 *arg0, struct fn_800789D8_Arg1 *entry, u
     v4 = v1;
     if (arg0->unk_4 & 4) fn_80078BC4((u8 *)arg1 + 32);
     fn_8007245C(*(u32 *)((u8 *)arg1 + 28));
-    v7 = (u32)arg1 + 96;
+    v7 = (u32)arg1;
+    v7 += 96;
     if (lbl_801A6D90 != 0) {
-        loc_8.a[1] = (u32)arg1;
-        loc_8.a[2] = v8;
+        loc_8[1] = (u32)arg1;
+        loc_8[2] = v8;
         v3 = ((fn_800789D8_Fn0)lbl_801A6D90)(&loc_8);
     } else {
         if ((s32)lbl_801A6D94 == 0) fn_80075908((u32)arg1, v8);
@@ -228,26 +223,16 @@ void fn_80078CDC(s32 arg0) {
     data->unk_18 = value;
     fn_8007264C(0, 10, 0, 4, 0);
 }
-#pragma opt_common_subs reset
 
-#pragma optimization_level 0
-#pragma peephole on
-#pragma dont_inline on
-u32 func_8008D6BC(value, command, fifo)
-    register u32 value;
-    register u8 command;
-    register u32 fifo;
-{
-    fifo = FZGX_ADDR___CPRegs;
-    command = 0x61;
-    fifo |= 0x8000;
-    ((volatile Func8008D6BCFifo *)fifo)->u8 = command;  /* fzgx-allow: S2 volatile view keeps the verified load order */
-    ((volatile Func8008D6BCFifo *)fifo)->u32 = value;  /* fzgx-allow: S2 volatile view keeps the verified load order */
-    return value;
+asm u32 func_8008D6BC(register u32 value) {
+    nofralloc
+    lis r5, 0xcc00
+    li r4, 0x61
+    ori r5, r5, 0x8000
+    stb r4, 0x0(r5)
+    stw r3, 0x0(r5)
+    blr
 }
-#pragma dont_inline reset
-#pragma optimization_level 4
-#pragma peephole reset
 
 void fn_80078D60(s32 arg0) {
     u32 temp_r3;

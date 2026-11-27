@@ -9329,22 +9329,19 @@
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-inline",
-      "on,noauto"
-    ],
+    "extra_cflags": [],
     "collapsed": true,
     "split_resize_for": {"GFZP01": {".text": ["fn_80070620"]}},
     "pool": {
-      "@233": "lbl_801A7410",
-      "@234": "lbl_801A7414",
-      "@236": "lbl_801A7418"
+      "@237": "lbl_801A7410",
+      "@238": "lbl_801A7414",
+      "@240": "lbl_801A7418"
     },
     "pool_for": {
       "GFZP01": {
-        "@237": "lbl_801A7410",
-        "@238": "lbl_801A7414",
-        "@240": "lbl_801A7418"
+        "@241": "lbl_801A7410",
+        "@242": "lbl_801A7414",
+        "@244": "lbl_801A7418"
       }
     },
     "own": ["lbl_8015A860", "lbl_8015AA10"]
@@ -9419,10 +9416,7 @@
       "@233": "lbl_801A6EE8",
       "@236": "lbl_801A6EF0"
     },
-    "extra_cflags": [
-      "-inline",
-      "on,noauto"
-    ]
+    "extra_cflags": []
   },
   {
     "module": "main",

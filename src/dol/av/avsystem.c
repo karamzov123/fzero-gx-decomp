@@ -380,6 +380,7 @@ void fn_80070100(void) {
 }
 
 void fn_80070158(s32 useLC) {
+    /* WARNING: compiler-diff device, not original code: one-field carriers offset/first: plain u32 offset and first give 43 instructions of diff in fn_80070158 (zero propagated into r0, register order); plain first alone gives 24 */
     struct { u32 value; } offset;
     struct { u32 value; } first;
     u32 base;
@@ -548,17 +549,18 @@ void fn_80070620(s32 arg0) {
 }
 
 void fn_80070704(s32 arg0) {
-    struct { u8 *value; } table;
+    u8 *table;
 
     if (arg0 == lbl_801A6CEA) {
         return;
     }
     lbl_801A6CEA = arg0;
-    table.value = lbl_8012AFF4;
     if ((arg0 & 0xff) != 0) {
-        table.value = lbl_8012AFB8;
+        table = lbl_8012AFB8;
+    } else {
+        table = lbl_8012AFF4;
     }
-    fn_80034ECC(table.value[0x19], table.value + 0x1a, 1, table.value + 0x32);
+    fn_80034ECC(table[0x19], table + 0x1a, 1, table + 0x32);
 }
 
 void fn_8007075C(u32 arg0) {
@@ -568,25 +570,22 @@ void fn_8007075C(u32 arg0) {
     lbl_801A6CE0 = (lbl_801A6CE0 | 48);
 }
 
-#pragma opt_common_subs off
 void fn_80070774(u32 arg0, u32 arg1, u32 arg2) {
     void *t5;
     u32 t4;
-    struct { u32 value; } t2;
-    struct { u32 value; } t0;
-    struct { u32 value; } v2;
-    struct { u32 value; } v1;
+    u32 t0;
+    u32 v2;
+    s32 v1;
     u32 v0;
     u32 loc_8;
 
     v0 = (((((lbl_801A6CF4->unk_4 + 15) & 0xFFF0) * 528) << 1));
-    t0.value = (u32)fn_80070CF8(v0);
-    v1.value = ((v0 + 31) & ~0x1F);
-    DCFlushRange((void *)t0.value, v1.value);
+    t0 = (u32)fn_80070CF8(v0);
+    v1 = ((v0 + 31) & ~0x1F);
+    DCFlushRange((void *)t0, v1);
     if ((lbl_801A6CE0 & 0x10) == 0) {
-        t2.value = (u32)fn_80070CF8(v0);
-        v2.value = t2.value;
-        DCFlushRange((void *)t2.value, v1.value);
+        v2 = (u32)fn_80070CF8(v0);
+        DCFlushRange((void *)v2, v1);
     }
     t4 = (u32)fn_80070CF8(arg1);
     lbl_801A6CE4 = arg1;
@@ -595,19 +594,15 @@ void fn_80070774(u32 arg0, u32 arg1, u32 arg2) {
     if ((s32)arg0 != 0) {
         lbl_801A6CE0 = (lbl_801A6CE0 | 4);
         lbl_801A6D30[6] = (u32)lbl_8019E18C;
-        {
-            u32 t6;
-            t4 = (u32)fn_80070CF8(arg1);
-            t6 = t4;
-            GXInitFifoBase(lbl_8019E18C, t6, arg1);
-            GXInitFifoPtrs(lbl_8019E18C, t6, t6);
-        }
+        t4 = (u32)fn_80070CF8(arg1);
+        GXInitFifoBase(lbl_8019E18C, t4, arg1);
+        GXInitFifoPtrs(lbl_8019E18C, t4, t4);
     }
-    lbl_801A6D30[1] = t0.value;
+    lbl_801A6D30[1] = t0;
     if ((lbl_801A6CE0 & 0x10) != 0) {
-        lbl_801A6D30[2] = t0.value;
+        lbl_801A6D30[2] = t0;
     } else {
-        lbl_801A6D30[2] = v2.value;
+        lbl_801A6D30[2] = v2;
     }
     lbl_801A6D30[0] = lbl_801A6D30[2];
     lbl_801A6D30[3] = 0;
@@ -634,14 +629,13 @@ void fn_80070774(u32 arg0, u32 arg1, u32 arg2) {
     fn_80035110((void *)lbl_801A6D30[1], 0);
     GXSetDispCopyGamma(0);
     VIConfigure(lbl_801A6CF4);
-    VISetNextFrameBuffer(t0.value);
+    VISetNextFrameBuffer(t0);
     VIFlush();
     VIWaitForRetrace();
     if ((lbl_801A6CF4->unk_0 & 0x1) != 0) {
         VIWaitForRetrace();
     }
 }
-#pragma opt_common_subs reset
 
 void fn_80070A58(void) {
     lbl_801A6D00->unk_198 = lbl_801A7410;

@@ -420,6 +420,7 @@ L_8006D3C8:
     blr
 }
 
+/* WARNING: compiler-diff device, not original code: without fp_contract off lbl_8006D3D0 / lbl_8006D46C differ by 11 / 13 instructions (1.0f - x * x fuses to fnmsubs) */
 #pragma fp_contract off
 s16 lbl_8006D3D0(f32 x) {
     f32 c;
@@ -502,6 +503,7 @@ asm void lbl_8006D534(void) {
     blr
 }
 
+/* WARNING: compiler-diff device, not original code: without fp_contract off lbl_8006D5A4 differs by 6 instructions (a + t * (b - a) fuses to fmadds) */
 #pragma fp_contract off
 void lbl_8006D5A4(Vec3 *a, Vec3 *b, Vec3 *out, f32 t) {
     out->x = a->x + t * (b->x - a->x);
@@ -1783,6 +1785,7 @@ void fn_8006E5FC(f32 *arg0) {
     }
 }
 
+/* WARNING: compiler-diff device, not original code: without opt_common_subs off fn_8006E7E4 differs by 14 instructions; x/y/z locals for the squared length give 8 */
 #pragma opt_common_subs off
 void fn_8006E7E4(Vec4 *arg0, Vec3 *arg1, s32 arg2) {
     f32 length_squared = arg1->x * arg1->x;
@@ -1809,6 +1812,7 @@ void fn_8006E7E4(Vec4 *arg0, Vec3 *arg1, s32 arg2) {
 }
 #pragma opt_common_subs reset
 
+/* WARNING: compiler-diff device, not original code: without fp_contract off fn_8006E978 / fn_8006EB4C differ by 48 / 39 instructions (products fuse to fmadds) */
 #pragma fp_contract off
 void fn_8006E8DC(Vec4 *arg0) {
     f32 scale = lbl_801A73D4;
@@ -2069,6 +2073,7 @@ static inline void mathutil_cross3(Vec3 *a, Vec3 *b, Vec3 *out) {
     out->z = z;
 }
 
+/* WARNING: compiler-diff device, not original code: without opt_propagation off fn_8006F1F0 differs by 20 instructions */
 #pragma opt_propagation off
 void fn_8006F1F0(Vec3 *arg0, Vec3 *arg1, Vec3 *arg2) {
     Vec3 w;
@@ -2112,6 +2117,7 @@ void fn_8006F1F0(Vec3 *arg0, Vec3 *arg1, Vec3 *arg2) {
 
 u16 fn_8006F394(void) {
     /* Preserve the three stack stores observed in retail, including unused y. */
+    /* WARNING: compiler-diff device, not original code: volatile keeps the three stack stores of v that retail performs (v is never read); plain Vec3 drops them (13 instructions differ), also when the call reads v.x / v.z (13, 14) */
     volatile Vec3 v;
     f32 a, b, c;
     f32 scale = lbl_801A73F4;
@@ -2127,15 +2133,16 @@ u16 fn_8006F394(void) {
     return lbl_8006D24C(a, c);
 }
 
+/* WARNING: compiler-diff device, not original code: without opt_propagation off fn_8006F3E4 differs by 3 instructions (one stfs of vec scheduled later); reordering the pos/dir stores, folding the loads or a scale local give 16 / 8 / 6 */
 #pragma opt_propagation off
-static inline f32 fn_8006F3E4_read_pointer(VecPair *owner) { return owner->dir.z; }
 void fn_8006F3E4(s16 *arg0, s16 *arg1, s16 *arg2) {
     f32 sum;
     f32 mz;
     f32 my;
     f32 mx;
     VecPair vec;
-    f32 fzgx_live;
+    f32 z;
+    f32 x;
 
     lbl_8006DAEC(arg0, arg1, arg2);
 
@@ -2153,9 +2160,11 @@ void fn_8006F3E4(s16 *arg0, s16 *arg1, s16 *arg2) {
 
     lbl_8006E1C0(&vec, &vec);
 
-    sum = vec.dir.x * vec.dir.x;
-    fzgx_live = fn_8006F3E4_read_pointer(&vec);
-    *arg1 = lbl_8006D24C(vec.dir.y, lbl_8006D0B4(sum + fzgx_live * fzgx_live));
+    x = vec.dir.x;
+    z = vec.dir.z;
+    sum = x * x;
+    sum += z * z;
+    *arg1 = lbl_8006D24C(vec.dir.y, lbl_8006D0B4(sum));
     *arg0 = lbl_8006D24C(vec.dir.x, (vec.dir.z)) + -32768;
 
     lbl_8006D8D8(*arg0);
@@ -2168,7 +2177,9 @@ void fn_8006F3E4(s16 *arg0, s16 *arg1, s16 *arg2) {
 }
 #pragma opt_propagation reset
 
+/* WARNING: compiler-diff device, not original code: without opt_common_subs off fn_8006F4E0 differs by 27 instructions */
 #pragma opt_common_subs off
+/* WARNING: compiler-diff device, not original code: without opt_dead_assignments off fn_8006F4E0 differs by 10 instructions (the 0.0f/1.0f literal family, see MWCC_IDIOMS dead ends) */
 #pragma opt_dead_assignments off
 void fn_8006F4E0(s16 *arg0) {
     DirUp v;
@@ -2207,6 +2218,7 @@ void fn_8006F4E0(s16 *arg0) {
 #pragma opt_dead_assignments reset
 #pragma opt_common_subs reset
 
+/* WARNING: compiler-diff device, not original code: without opt_dead_assignments off fn_8006F5C4 differs by 9 instructions (0.0f/1.0f literal family) */
 #pragma opt_dead_assignments off
 void fn_8006F5C4(s16 *arg0, s16 *arg1, s16 *arg2) {
     Vec3 vec0;
@@ -2247,6 +2259,7 @@ void fn_8006F5C4(s16 *arg0, s16 *arg1, s16 *arg2) {
 }
 #pragma opt_dead_assignments reset
 
+/* WARNING: compiler-diff device, not original code: without opt_common_subs off fn_8006F6A8 differs by 12 instructions; the x/y magnitude block of fn_8006F5C4 is codegen-neutral but does not remove it (9) */
 #pragma opt_common_subs off
 void fn_8006F6A8(EulerAngles *self) {
     Vec3 vec_b;
@@ -2355,15 +2368,15 @@ void fn_8006F900(void *arg0, Vec3 *arg1, f32 arg2) {
 }
 
 void fn_8006F9A4(f32 arg0, u32 arg1, u32 arg2, u32 arg3) {
-    struct { u32 a[4]; } loc_28;
-    struct { u32 a[4]; } loc_18;
-    struct { u32 a[4]; } loc_8;
+    Vec4 loc_28;
+    Vec4 loc_18;
+    Vec4 loc_8;
 
     lbl_8006DBAC((void *)arg1);
     fn_8006E5FC((f32 *)&loc_28);
     lbl_8006DBAC((void *)arg2);
     fn_8006E5FC((f32 *)&loc_18);
-    fn_8006EB4C((Vec4 *)&loc_8, (const Vec4 *)&loc_28, (const Vec4 *)&loc_18, arg0);
+    fn_8006EB4C(&loc_8, &loc_28, &loc_18, arg0);
     mathutil_mtxA_from_quat(&loc_8);
     lbl_8006DC34(arg3);
 }
@@ -2400,21 +2413,15 @@ void fn_8006FA24(f32 arg0, Vec4 *arg1, Vec4 *arg2, Vec4 *arg3) {
 }
 
 void fn_8006FB20(f32 arg0, u32 arg1) {
-    u32 tmp_lbl_8006D668;
-    f32 lab_t3;
     Vec4 *const p = (Vec4 *)lbl_801A6D00;
 
-    lab_t3 = arg0;
-    lbl_8006D5A4((Vec3 *)&p[0], (Vec3 *)arg1, (Vec3 *)&p[0], lab_t3);
+    lbl_8006D5A4((Vec3 *)&p[0], (Vec3 *)arg1, (Vec3 *)&p[0], arg0);
     lbl_8006D5A4((Vec3 *)&p[1], (Vec3 *)(arg1 + 16), (Vec3 *)&p[1], arg0);
     mathutil_cross4(&p[0], &p[1], &p[2]);
     mathutil_cross4(&p[2], &p[0], &p[1]);
-    tmp_lbl_8006D668 = (u32)lbl_8006D668(&p[0]);
-    tmp_lbl_8006D668;
-    tmp_lbl_8006D668 = (u32)lbl_8006D668(&p[1]);
-    tmp_lbl_8006D668;
-    tmp_lbl_8006D668 = (u32)lbl_8006D668(&p[2]);
-    tmp_lbl_8006D668;
+    lbl_8006D668(&p[0]);
+    lbl_8006D668(&p[1]);
+    lbl_8006D668(&p[2]);
 }
 
 asm void fn_8006FC1C(void) {

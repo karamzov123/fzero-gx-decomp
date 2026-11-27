@@ -416,9 +416,9 @@ void fn_80071718(struct fn_80071718_Arg0 *arg0) {
 }
 
 void fn_8007174C(u32 arg0, u32 arg1) {
-    struct { u32 a[258]; } loc_8;
-    sprintf(&loc_8, arg0, arg1);
-    OSPanic((u32)&lbl_8015ABFC, 498, &loc_8);
+    char buf[1024];
+    sprintf(buf, arg0, arg1);
+    OSPanic((u32)&lbl_8015ABFC, 498, buf);
 }
 
 void fn_80071794(u32 lab_unused0) {

@@ -15,7 +15,7 @@ typedef struct {
     u8 pad_6[2];
     u32 unk_8;
     u32 unk_C;
-    u32 unk_10;
+    GXColor unk_10;
     u32 unk_14;
     u32 unk_18;
     u32 unk_1C;
@@ -340,15 +340,8 @@ void fn_80074D18(u32 arg0) {
 }
 
 /* --- dol/fn_80074D28.c --- */
-struct fn_80074D28_Data {
-    u32 unk_0;
-    u32 unk_4;
-    u32 unk_8;
-};
-
-
-void fn_80074D28(struct fn_80074D28_Data *src) {
-    *(struct fn_80074D28_Data *)&lbl_8019F14C = *src;
+void fn_80074D28(Vec *src) {
+    lbl_8019F14C = *src;
     lbl_8006D668(&lbl_8019F14C);
 }
 
@@ -366,6 +359,7 @@ void fn_80074D68(f32 arg0, f32 arg1, f32 arg2) {
 void fn_80074D78(u32 arg0) {
     lbl_801A6D58 = ((u32)__cntlzw(arg0) >> 5);
 }
+/* WARNING: compiler-diff device, not original code: without opt_propagation off fn_80074D88 differs by 23 instructions (pragma spans fn_80074D88..fn_80075080) */
 #pragma opt_propagation off
 
 /* --- dol/fn_80074D88.c --- */
@@ -399,8 +393,8 @@ void fn_80074D88(u32 arg0, u32 arg1) {
     f32 v1;
     f32 half;
     f32 scale;
-    struct { f32 a[6]; } loc_14;
-    u32 loc_10;
+    f32 loc_14[2][3];
+    GXColor loc_10;
     v0 = arg0;
     if (lbl_801A6D54 != 0) {
     lbl_8006DAEC(v0, arg1);
@@ -433,16 +427,16 @@ void fn_80074D88(u32 arg0, u32 arg1) {
     fn_800745A4(*(u32 *)(arg1 + 4), 0, 1, 45, 0, 73);
     scale = lbl_801A6D4C;
     v1 = lbl_801A7480;
-    loc_14.a[0] = v1;
-    loc_14.a[1] = v1;
+    loc_14[0][0] = v1;
+    loc_14[0][1] = v1;
     v2 = (*(f32 *)(arg0 + 60) * scale);
-    loc_14.a[3] = v1;
-    loc_14.a[5] = v1;
+    loc_14[1][0] = v1;
+    loc_14[1][2] = v1;
     half = lbl_801A748C;
     v1 = (-v2);
     v1 = (half * v1);
-    loc_14.a[4] = (half * v2);
-    loc_14.a[2] = v1;
+    loc_14[1][1] = (half * v2);
+    loc_14[0][2] = v1;
     fn_80073A58(1, &loc_14, 1);
     fn_80073B50(*(u32 *)(arg1), *(u32 *)((u8 *)arg1 + 16), 0, 7, 1, 0, 0, 0, 0, 0);
     (*(u32 *)(arg1 + 16))++;
@@ -450,7 +444,7 @@ void fn_80074D88(u32 arg0, u32 arg1) {
     (*(u32 *)(arg1 + 12))++;
     fn_80073778(lbl_8019F040, *(u32 *)(arg1 + 12));
     fn_800745A4(*(u32 *)(arg1 + 4), 0, 0, 30, 0, 76);
-    loc_10 = *(u32 *)&lbl_801A6D50;
+    loc_10 = lbl_801A6D50;
     fn_800736C0(1, &loc_10);
     fn_800735C8(*(u32 *)(arg1), 13);
     fn_80072AB0(*(u32 *)(arg1), 0, 0);
@@ -557,6 +551,7 @@ void fn_80075240(void) {
     s32 tile;
     s32 x;
     s32 n;
+    /* WARNING: compiler-diff device, not original code: one-field carrier: plain u32 dst changes fn_80075240's code (MWCC renumbers its literals and the function no longer matches) */
     struct { u32 value; } dst;
 
     lbl_8019F130[2] = 1.0f;
@@ -656,7 +651,7 @@ typedef struct {
 typedef struct {
     u32 flags;
     u8 pad_4[8];
-    u32 unk_C;
+    GXColor unk_C;
     u8 pad_10[0x30];
     u32 unk_40;
 } fn_800756B0_Arg1;
@@ -685,8 +680,7 @@ void fn_800756B0(fn_800756B0_Arg0 *arg0, fn_800756B0_Arg1 *arg1) {
         }
     }
     fn_80075080(arg1);
-    { struct CopyWord { u32 value; };
-    *(struct CopyWord *)&lbl_801A3220.unk_10 = *(struct CopyWord *)&arg1->unk_C;
+    lbl_801A3220.unk_10 = arg1->unk_C;
     lbl_801A3220.unk_2 = 0;
     lbl_801A3220.unk_14 = 15;
     lbl_801A3220.unk_18 = 7;
@@ -695,7 +689,6 @@ void fn_800756B0(fn_800756B0_Arg0 *arg0, fn_800756B0_Arg1 *arg1) {
     lbl_801A3220.unk_5 = 0xFF;
     lbl_801A3220.unk_8 = 16;
     lbl_801A3220.unk_C = 16;
-    }
     if (lbl_801A6D88[0] != 0) {
         color0 = *(u32 *)lbl_801A6D80;
         fn_800736C0(2, &color0);
