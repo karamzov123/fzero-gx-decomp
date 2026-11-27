@@ -548,6 +548,17 @@ At its original fourteen units, `movie_module/sfd_tim.c` drops from 37 to 15 iso
 blocks using three repair trials. All three regional hash and lint gates pass at the
 existing splits. Whole-file probes still reject the duplicate `MovieModule_u2` tag.
 
+The smallest-first sweep now has a terminal result for all 63 multi-unit REL files from
+the `df39b67f1` inventory. The unbounded driver recorded results through index 55; a
+separate, zero-repair-budget replay covered indices 56–62. The split-first path retained
+three candidates: `mpv_err.c` collapsed to one unit, while `sfx_cnv.c` and `driver.c`
+reduced isolation at their original unit counts. The other sixty split-first candidates
+were discarded. This does not count the separate grouped and manual passes, including the
+verified `sfd_con.c` collapse. Interview and the last six files did not qualify for
+retention. A completed sweep is not equivalent to completing R1: 61 of 145 mapped REL
+source files still build as multiple units. Use the rejected object or compiler diagnostics
+to select the next repair rather than repeating the same split-first pass unchanged.
+
 `tools/consolidate/rel_own_data.py` transfers whole adjacent import units into a specified
 one-unit REL TU. It checks contiguity and matching regional coverage, carries over the existing
 typed definitions in retail order, and verifies the moved symbols against fresh compiled and
