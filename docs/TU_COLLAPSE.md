@@ -409,3 +409,25 @@ string as `.data + 0x80000 + 0x2BF8` for three allocations. It also wires profil
 from the next code group and uses the same BSS base as `_epilog`. These observations place
 the entry point in the same map; the remaining helper extents are inferred from the single
 filename anchor and module limits. No compile units or data ownership changed.
+
+### movie_module: Sofdec TU map and recut (2026-11-27)
+
+`tools/consolidate/tumap_movie.py` maps movie_module onto MK Deception's GQNE5D `libmwsfdg.a`
+link order (CC0 dtk config): 78 TUs, 789 of 791 functions (`_prolog`/`_epilog` are the entry
+prefix). A global alignment by function size, with 104 forced anchors (equal names and the
+Sofdec import bindings), gives 484 equal-size pairs and 77 contiguous objects in donor order;
+the 23 runs it leaves between two objects are decided in the script's `GAPS` table from
+.rodata/.bss relocations, CRI error strings (they name their function) and the static call
+graph. GX's Sofdec is SFD/GC 1.852 (May 2003), older than the donor: objects carry extra
+functions and lack others, and `mpvabdec.o` links between `mpv_umc` and `mpv_mcy`.
+
+`tools/consolidate/rel_tu_batch.py movie_module --recut --apply` cut the 37 units that crossed
+those boundaries into per-TU pieces (each checked against its old unit), and the TU guard now
+reads every REL `tus.json`, so the consolidators merge only within TUs. Result: crossing units
+45 -> 8, one-unit TUs 16 -> 25, code units 303 -> 312. Most TUs still fail as one file: the
+lifted blocks declare shared callees and globals with conflicting types (`strncmp(u32, u32,
+u32)` against `strncmp(void *, char *, s32)`, pointer arguments passed as `u32`, two struct
+views of one global). That is declaration reconciliation (`fzgx tutruth` after `fzgx tu-migrate
+--module movie_module`, or donor C), not another merge pass. The remaining crossing units: five
+whose pool maps bind section selectors (`...rodata.0`, `...bss.0`, which `tu_try.py` cannot
+rebind), and `fn_12_1EF80`, `fn_12_30930`, `fn_12_670C` (data splits or assembly).
