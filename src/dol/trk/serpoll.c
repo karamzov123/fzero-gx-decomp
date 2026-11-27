@@ -54,7 +54,6 @@ enum {
 
 extern TRKBuffer lbl_801A36E8[3];
 u32 lbl_801A5098[6] __attribute__((aligned(8)));
-extern u8 lbl_800956C0[400];
 extern char lbl_80095850[];
 extern char lbl_8009586C[];
 
@@ -91,12 +90,6 @@ extern s32 fn_8008983C(TRKBuffer *);
 
 s32 fn_800894FC(void);
 
-static const char fzgx_pool_strings_lbl_800956C0_0[36] = "TRK_Packet_Header \t    %ld bytes\n";
-static const char fzgx_pool_strings_lbl_800956C0_24[36] = "TRK_CMD_ReadMemory     %ld bytes\n";
-static const char fzgx_pool_strings_lbl_800956C0_48[36] = "TRK_CMD_WriteMemory    %ld bytes\n";
-static const char fzgx_pool_strings_lbl_800956C0_6C[32] = "TRK_CMD_Connect \t    %ld bytes\n";
-static const char fzgx_pool_strings_lbl_800956C0_8C[32] = "TRK_CMD_ReplyAck\t    %ld bytes\n";
-static const char fzgx_pool_strings_lbl_800956C0_AC[36] = "TRK_CMD_ReadRegisters\t%ld bytes\n";
 static inline void TRKSetBufferUsed(TRKBuffer *msg, BOOL state);
 DSError TRKInitializeMessageBuffers(void);
 
@@ -109,12 +102,12 @@ s32 TRKInitializeSerialHandler(void) {
     lbl_801A5098[2] = 0;
     lbl_801A5098[3] = 0;
 
-    MWTRACE(1, (u32)(((u8 *)fzgx_pool_strings_lbl_800956C0_0)), 64);
-    MWTRACE(1, (u32)(((u8 *)fzgx_pool_strings_lbl_800956C0_24)), 64);
-    MWTRACE(1, (u32)(((u8 *)fzgx_pool_strings_lbl_800956C0_48)), 64);
-    MWTRACE(1, (u32)(((u8 *)fzgx_pool_strings_lbl_800956C0_6C)), 64);
-    MWTRACE(1, (u32)(((u8 *)fzgx_pool_strings_lbl_800956C0_8C)), 64);
-    MWTRACE(1, (u32)(((u8 *)fzgx_pool_strings_lbl_800956C0_AC)), 64);
+    MWTRACE(1, "TRK_Packet_Header \t    %ld bytes\n", 64);
+    MWTRACE(1, "TRK_CMD_ReadMemory     %ld bytes\n", 64);
+    MWTRACE(1, "TRK_CMD_WriteMemory    %ld bytes\n", 64);
+    MWTRACE(1, "TRK_CMD_Connect \t    %ld bytes\n", 64);
+    MWTRACE(1, "TRK_CMD_ReplyAck\t    %ld bytes\n", 64);
+    MWTRACE(1, "TRK_CMD_ReadRegisters\t%ld bytes\n", 64);
     return 0;
 }
 
@@ -141,7 +134,6 @@ void TRKGetInput(void) {
 }
 
 s32 fn_800894FC(void) {
-    u8 *rodata;
     u8 local_50[0x888];
     s32 local_10[0x10];
     u32 local_C;
@@ -149,32 +141,31 @@ s32 fn_800894FC(void) {
     u32 local_8;
     s32 result;
 
-    rodata = lbl_800956C0;
     if (fn_8008D410() <= 0) {
         return -1;
     }
     result = fn_80089244(&local_C, &local_8);
-    MWTRACE(4, (u32)(rodata + 0xd0), result);
+    MWTRACE(4, "TestForPacket : FreeBuffer is  %ld\n", result);
     fn_80089144((void *)local_8, 0);
     if (fn_8008D3D4(local_10, 0x40) == 0) {
         TRKAppendBuffer_ui8((void *)local_8, local_10, 0x40);
         result = local_C;
         if ((diff = local_10[0] - 0x40) > 0) {
-            MWTRACE(1, (u32)(rodata + 0xf4), diff);
+            MWTRACE(1, "Reading payload %ld bytes\n", diff);
             if (fn_8008D3D4(local_50, local_10[0] - 0x40) == 0) {
                 TRKAppendBuffer_ui8((void *)local_8, local_50, local_10[0]);
             } else {
-                MWTRACE(8, (u32)(rodata + 0x110));
+                MWTRACE(8, "TestForPacket : Invalid size of packet hdr.size\n");
                 fn_800891B4((void *)result);
                 result = -1;
             }
         }
     } else {
-        MWTRACE(8, (u32)(rodata + 0x144));
+        MWTRACE(8, "TestForPacket : Invalid size of packet\n");
         fn_800891B4((void *)result);
         result = -1;
     }
-    MWTRACE(1, (u32)(rodata + 0x16c), result);
+    MWTRACE(1, "TestForPacket returning %ld\n", result);
     return result;
 }
 void usr_put_initialize(void);

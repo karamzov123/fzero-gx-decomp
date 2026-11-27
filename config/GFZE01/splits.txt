@@ -660,6 +660,7 @@ dol/trk/msgbuf.c:
 
 dol/trk/serpoll.c:
 	.text       start:0x80089380 end:0x80089638 align:4
+	.rodata     start:0x800956C0 end:0x80095850 align:4
 	.bss        start:0x801A5098 end:0x801A50B0 align:8
 
 dol/trk/usr_put.c:
@@ -1134,9 +1135,6 @@ dol/data/lbl_80095678.c:
 
 dol/data/lbl_800956A0.c:
 	.rodata     start:0x800956A0 end:0x800956C0 align:32
-
-dol/data/lbl_800956C0.c:
-	.rodata     start:0x800956C0 end:0x80095850 align:32
 
 dol/data/lbl_80095850.c:
 	.rodata     start:0x80095850 end:0x800958F0 align:16

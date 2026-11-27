@@ -179,7 +179,7 @@ The AHX range `0x8004FF68..0x8005466C` is seven TUs in `src/dol/ahx/`: `ahx_bits
 `state/tumap/GFZE01_main.json` now assigns all 2,230 DOL functions to 252 TUs. The map is a draft in one respect: where no data bounds a TU, its extent is positional and its `notes` say so, and names without a retail or donor source are placeholders. That covers `sasnd_ctrl.c`, `render_*.c`, `lg_view.c`, `exi2.c` and the AHX and sasnd files.
 
 - `sasnd_ctrl.c` holds the last 19 sasnd functions as one typed unit for USA and Japan. `fn_80064FDC` is still a lifted body with byte offsets.
-- `dol_tu_split.py --pooled` splits units that carry literal bindings. Three DOL units still cross a TU boundary because private strings, a layout primer or a literal do not move with one piece: `dol/trk/serpoll.c`, `dol/adx/adx_tlk.c` and `dol/fn_8007FE70.c`.
+- `dol_tu_split.py --pooled` splits units that carry literal bindings. The historical blockers were `dol/trk/serpoll.c`, `dol/adx/adx_tlk.c` and `dol/fn_8007FE70.c`. A 2026-11-27 audit of `units.json` against this map finds no DOL code unit spanning multiple known `.text` TU owners; unknown owners are not evidence of a boundary.
 
 ### DOL startup and interrupt-vector ownership
 
@@ -354,6 +354,16 @@ state also builds with `support.c` in all three regions. Together these definiti
 standalone BSS imports. The support definition explicitly selects ordinary
 BSS through MWCC's `.data` section declaration: an unqualified definition
 landed in small BSS and shifted the linked layout.
+
+In USA, `serpoll.c` also owns its eleven trace strings at `.rodata`
+`0x800956C0..0x80095850`. Ordinary literals under GC/1.3.2 with `-str readonly`
+produce the retail first-use order: 393 initialized bytes followed by seven
+verified zero alignment bytes. This replaces six private string arrays and
+five byte-offset format-string accesses, removes eleven pointer-to-integer
+casts, and retires the standalone byte-array import and pool binding. All
+sixteen USA target hashes pass; Japan/PAL retail inputs were unavailable for
+this ownership change. Reproduction evidence is in
+[`serpoll-native-rodata-20261127.json`](../state/repairs/serpoll-native-rodata-20261127.json).
 
 PAL's final support routine (`fn_8008AD00`) preserves the reply status on a
 length mismatch instead of synthesizing the USA/Japan status. Its retail
