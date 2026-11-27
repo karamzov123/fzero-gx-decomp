@@ -8,7 +8,8 @@ SPEC: {"old": ["dol/a.c", ...],
                 "version": "GC/1.3.2", "flags": ["-inline", "on,noauto"], "regions": ["GFZE01"],
                 "pool": {"@1": "lbl_x"}}, ...]}
 
-The old units must hold only .text (an old asm unit's .s is removed), and the new ranges must cover exactly their functions. Compare each
+The old units must hold only .text (an old asm unit's .s is removed), and the new ranges must cover exactly their functions.
+Units of a REL module (rel/<module>/...) use that module's symbols.txt and splits.txt. Compare each
 candidate with tu_regions.py first. Afterwards run `ninja build/GFZE01/config.json`, configure again,
 and gate.sh: the link hash is the proof.
 """
@@ -20,12 +21,17 @@ VERSIONS = ['GFZE01', 'GFZJ01', 'GFZP01']
 def main():
     spec = json.load(open(sys.argv[1]))
     old, new = spec['old'], spec['new']
+    units = json.load(open('config/GFZE01/units.json'))
+    modules = {u['module'] for u in units if u['source'] in old}
+    if len(modules) != 1:
+        raise SystemExit(f'old units span modules {sorted(modules)}')
+    module = modules.pop()
+    cfg = pathlib.Path('config/GFZE01' if module == 'main' else f'config/GFZE01/{module}')
     addr = {}
-    for line in open('config/GFZE01/symbols.txt'):
+    for line in open(cfg / 'symbols.txt'):
         m = re.match(r'(\S+) = \.text:0x(\w+); // type:function', line)
         if m:
             addr[m[1]] = int(m[2], 16)
-    units = json.load(open('config/GFZE01/units.json'))
     moved = [n for u in units if u['source'] in old for n in u['symbols']]
     if len({u['source'] for u in units} & set(old)) != len(old):
         raise SystemExit('an old unit is missing')
@@ -33,10 +39,12 @@ def main():
     for n in new:
         lo, hi = int(n['lo'], 16), int(n['hi'], 16)
         names = sorted((s for s in moved if lo <= addr[s] < hi), key=lambda name: addr[name])
-        entry = {'module': 'main', 'source': n['source'], 'symbols': names, 'status': 'matching'}
+        entry = {'module': module, 'source': n['source'], 'symbols': names, 'status': 'matching'}
         if n.get('regions') and n['regions'] != VERSIONS:
             entry['matching_for'] = n['regions']
-        entry.update(mw_version=n['version'], extra_cflags=n.get('flags', []), collapsed=True)
+        entry.update(mw_version=n['version'], extra_cflags=n.get('flags', []))
+        if n.get('collapsed', True):
+            entry['collapsed'] = True
         if n.get('pool'):
             entry['pool'] = n['pool']
         entries.append(entry)
@@ -47,7 +55,7 @@ def main():
     raw = json.dumps(kept, indent=2) + '\n'
     raw = re.sub(r'"matching_for": \[\n\s+([^\]]+?)\n\s+\]',
                  lambda x: '"matching_for": [' + ', '.join(y.strip() for y in x[1].split(',')) + ']', raw)
-    text = open('config/GFZE01/splits.txt').read()
+    text = open(cfg / 'splits.txt').read()
     first = None
     for source in old:
         m = re.search(rf'^{re.escape(source)}:\n((?:\t.*\n)*)\n?', text, re.M)
@@ -59,7 +67,7 @@ def main():
                      for n in new)
     text = text[:first] + blocks + text[first:]
     open('config/GFZE01/units.json', 'w').write(raw)
-    open('config/GFZE01/splits.txt', 'w').write(text)
+    open(cfg / 'splits.txt', 'w').write(text)
     asm = {u['source'] for u in units if u['source'] in old and u.get('asm')}
     for source in old:
         path = pathlib.Path('src', source)

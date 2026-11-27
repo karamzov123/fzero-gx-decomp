@@ -1,14 +1,21 @@
-"""TU-boundary guard for the consolidators: never merge DOL units that the draft TU map
-(state/tumap/GFZE01_main.json) places in different translation units."""
+"""TU-boundary guard for the consolidators: never merge units that a TU map places in different
+translation units: the DOL draft map (state/tumap/GFZE01_main.json) and every REL module's
+config/GFZE01/<module>/tus.json (movie_module's Sofdec map, for example)."""
 import json, pathlib
 _MAP = None
 
 
 def _tu_of():
+    """(module, function) -> TU file."""
     global _MAP
     if _MAP is None:
+        _MAP = {}
         p = pathlib.Path('state/tumap/GFZE01_main.json')
-        _MAP = {f: t['file'] for t in json.loads(p.read_text())['tus'] for f in t['functions']} if p.exists() else {}
+        if p.exists():
+            _MAP.update({('main', f): t['file'] for t in json.loads(p.read_text())['tus'] for f in t['functions']})
+        for p in sorted(pathlib.Path('config/GFZE01').glob('*/tus.json')):
+            d = json.loads(p.read_text())
+            _MAP.update({(d['module'], f): t['file'] for t in d['tus'] for f in t['functions']})
     return _MAP
 
 
@@ -18,7 +25,7 @@ def same_tu(sources, units):
     for s in sources:
         u = units.get(s)
         if not u: continue
-        seen |= {m[x] for x in u['symbols'] if x in m}
+        seen |= {m[(u['module'], x)] for x in u['symbols'] if (u['module'], x) in m}
         if len(seen) > 1:
             return False
     return True

@@ -13,6 +13,10 @@ every @N it references must resolve. Other sections must keep their sizes (a sec
 holds remapped literals is exempt: poolfix empties it).
 --apply writes the candidate to --as, deletes the replaced sources, merges their split ranges
 section by section (each must be contiguous) and replaces their units.json entries with one.
+Units of a REL module (rel/movie_module/...) use that module's splits.txt.
+
+--functions F,G,... compares only those functions and skips the section checks: the check for a
+piece of a unit that crosses a TU boundary (tu_recut.py applies the pieces).
 """
 import json, re, sys, tempfile, pathlib, argparse, collections
 sys.path.insert(0, str(pathlib.Path(__file__).parent)); sys.path.insert(0, 'tools')
@@ -99,6 +103,7 @@ def main():
     ap.add_argument('--extra', default='', help='extra compiler flags for the TU, e.g. "-inline on,noauto"')
     ap.add_argument('--mw', help='compiler version for the TU instead of the first unit\'s')
     ap.add_argument('--widen', action='store_true', help='keep every region any unit covered; check them with tu_regions.py first')
+    ap.add_argument('--functions', help='compare only these functions (a piece of a crossing unit); no section checks')
     a = ap.parse_args()
     srcs = a.units.split(',')
     units = json.load(open('config/GFZE01/units.json')); byu = {u['source']: u for u in units}
@@ -114,6 +119,13 @@ def main():
     if a.extra:
         cf = cf + ' ' + a.extra
     own = set(s for u in us for s in u['symbols'])
+    piece = set(a.functions.split(',')) if a.functions else None
+    if piece:
+        if not piece <= own:
+            print('--functions outside the units:', sorted(piece - own)); return 1
+        if a.apply:
+            print('--functions is a check only; apply pieces with tu_recut.py'); return 1
+        own = piece
     unsupported = sorted({key for u in us for key in u.get('pool', {})
                           if not POOLED_LOCAL.fullmatch(key)})
     if unsupported:
@@ -157,6 +169,9 @@ def main():
                 if words or ext(r1) != ext(r2):
                     print(f'[{mf[vi]}] {s}: {len(words)} words differ; relocs {"same" if ext(r1) == ext(r2) else "differ"}'); ok = False
             extra = [f for f in nf if f not in own and f not in old_extra]
+            if piece:
+                extra = [f for f in extra if f not in set(s for u in us for s in u['symbols'])]
+                nsecs = {}
             if extra:
                 print(f'[{mf[vi]}] extra functions {extra}'); ok = False
             for k, v in nsecs.items():
@@ -165,6 +180,8 @@ def main():
                 if pooled and nlocal.get(k) and all(n in pool for n in nlocal[k]):
                     continue   # only remapped literals: poolfix empties the private copy
                 print(f'[{mf[vi]}] section {k}: {rsecs.get(k, 0)} -> {v}'); ok = False
+    if piece and ok and pooled:
+        print('POOL', json.dumps(dict(sorted(new_pool.items()))))
     print('IDENTICAL' if ok else 'DIFFERENT', f'({len(own)} functions, regions {mf}' + (f', pool {len(new_pool)})' if pooled else ')'))
     if not ok or not a.apply:
         return 0 if ok else 1
@@ -172,7 +189,11 @@ def main():
     if lost_regions and not a.widen:
         print(f'would drop source coverage in {sorted(lost_regions)}; verify those regions before applying'); return 1
     dest = a.dest or srcs[0]
-    sp = pathlib.Path('config/GFZE01/splits.txt'); text = sp.read_text(); blocks = split_blocks(text)
+    module = us[0]['module']
+    if any(u['module'] != module for u in us):
+        print('units of different modules'); return 1
+    sp = pathlib.Path('config/GFZE01' if module == 'main' else f'config/GFZE01/{module}', 'splits.txt')
+    text = sp.read_text(); blocks = split_blocks(text)
     secs = collections.OrderedDict()
     for s in srcs:
         if s not in blocks:

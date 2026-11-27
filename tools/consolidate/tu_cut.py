@@ -9,7 +9,8 @@ body is replaced). Unused leftovers are harmless; compare OUT.c with tu_regions.
 """
 import re, sys
 
-HEAD = re.compile(r'^(?![ \t#/])(?!typedef\b)(?!struct\b)(?!union\b)(?!enum\b)[^;{}]*?\b(\w+)\s*\(([^;{}]*)\)\s*\{', re.M | re.S)
+# a header starts a non-blank line and does not run through a comment (`// ... (single blr).`)
+HEAD = re.compile(r'^(?![ \t#/\n])(?!typedef\b)(?!struct\b)(?!union\b)(?!enum\b)(?:(?!//|/\*)[^;{}])*?\b(\w+)\s*\(([^;{}]*)\)\s*\{', re.M | re.S)
 
 
 def definitions(text):
