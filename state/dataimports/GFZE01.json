@@ -26123,52 +26123,6 @@
     "unit_size": 152,
     "unit_start": 2148907112
   },
-  "main:gTRKBigEndian": {
-    "address": 2149201632,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "BOOL gTRKBigEndian",
-        "path": "src/dol/TRKAppendBuffer1_ui64.c"
-      },
-      {
-        "declaration": "BOOL gTRKBigEndian",
-        "path": "src/dol/TRKAppendBuffer_ui32.c"
-      },
-      {
-        "declaration": "u32 gTRKBigEndian[]",
-        "path": "src/dol/nubinit.c"
-      },
-      {
-        "declaration": "BOOL gTRKBigEndian",
-        "path": "src/dol/TRKReadBuffer1_ui64.c"
-      },
-      {
-        "declaration": "BOOL gTRKBigEndian",
-        "path": "src/dol/TRKReadBuffer_ui32.c"
-      }
-    ],
-    "definition": "u8 gTRKBigEndian[4]",
-    "method": "opaque-bss",
-    "module": "main",
-    "references": [
-      "TRKAppendBuffer1_ui64",
-      "TRKAppendBuffer_ui32",
-      "TRKInitializeNub",
-      "TRKReadBuffer1_ui64",
-      "TRKReadBuffer_ui32"
-    ],
-    "relocations": [],
-    "section": ".bss",
-    "section_size": 6656,
-    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
-    "size": 4,
-    "source": "dol/data/lbl_801A36B8.c",
-    "symbol": "gTRKBigEndian",
-    "unit_align": 8,
-    "unit_size": 6656,
-    "unit_start": 2149201592
-  },
   "main:gTRKCPUState": {
     "address": 2149208416,
     "align": 8,
@@ -40180,13 +40134,13 @@
     ],
     "relocations": [],
     "section": ".bss",
-    "section_size": 6656,
+    "section_size": 40,
     "sha256": "2c34ce1df23b838c5abf2a7f6437cca3d3067ed509ff25f11df6b11b582b51eb",
     "size": 40,
     "source": "dol/data/lbl_801A36B8.c",
     "symbol": "lbl_801A36B8",
     "unit_align": 8,
-    "unit_size": 6656,
+    "unit_size": 40,
     "unit_start": 2149201592
   },
   "main:lbl_801A36E8": {
@@ -40221,14 +40175,14 @@
     ],
     "relocations": [],
     "section": ".bss",
-    "section_size": 6656,
+    "section_size": 6608,
     "sha256": "5c1d7e0c94822cd5b275fba12a06fe1b1f96e0d838569f5c9f2833a500b2bb6c",
     "size": 6576,
-    "source": "dol/data/lbl_801A36B8.c",
+    "source": "dol/data/lbl_801A36E8.c",
     "symbol": "lbl_801A36E8",
     "unit_align": 8,
-    "unit_size": 6656,
-    "unit_start": 2149201592
+    "unit_size": 6608,
+    "unit_start": 2149201640
   },
   "main:lbl_801A5098": {
     "address": 2149208216,
@@ -40257,14 +40211,14 @@
     ],
     "relocations": [],
     "section": ".bss",
-    "section_size": 6656,
+    "section_size": 6608,
     "sha256": "9d908ecfb6b256def8b49a7c504e6c889c4b0e41fe6ce3e01863dd7b61a20aa0",
     "size": 24,
-    "source": "dol/data/lbl_801A36B8.c",
+    "source": "dol/data/lbl_801A36E8.c",
     "symbol": "lbl_801A5098",
     "unit_align": 8,
-    "unit_size": 6656,
-    "unit_start": 2149201592
+    "unit_size": 6608,
+    "unit_start": 2149201640
   },
   "main:lbl_801A50B0": {
     "address": 2149208240,
@@ -40298,14 +40252,14 @@
     ],
     "relocations": [],
     "section": ".bss",
-    "section_size": 6656,
+    "section_size": 6608,
     "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
     "size": 8,
-    "source": "dol/data/lbl_801A36B8.c",
+    "source": "dol/data/lbl_801A36E8.c",
     "symbol": "lbl_801A50B0",
     "unit_align": 8,
-    "unit_size": 6656,
-    "unit_start": 2149201592
+    "unit_size": 6608,
+    "unit_start": 2149201640
   },
   "main:lbl_801A5624": {
     "address": 2149209636,

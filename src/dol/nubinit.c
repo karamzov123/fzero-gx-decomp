@@ -9,7 +9,7 @@ typedef union {
 
 extern void TRK_board_display(const char *);
 extern u32 fn_80089380(void);
-extern BOOL gTRKBigEndian;
+BOOL gTRKBigEndian __attribute__((aligned(8)));
 extern void MWTRACE(u32, ...);
 extern void usr_put_initialize(void);
 extern s32 TRKInitializeEventQueue(void);

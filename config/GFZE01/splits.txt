@@ -693,6 +693,7 @@ dol/TRK_main.c:
 dol/nubinit.c:
 	.text       start:0x80088968 end:0x80088B00 align:4
 	.rodata     start:0x80095648 end:0x80095678 align:8
+	.bss        start:0x801A36E0 end:0x801A36E8 align:8
 
 dol/arc.c:
 	.text       start:0x8006A3DC end:0x8006AA20 align:4
@@ -1158,7 +1159,10 @@ dol/data/lbl_8019E150.c:
 	.bss        start:0x8019E150 end:0x801A3220 align:8
 
 dol/data/lbl_801A36B8.c:
-	.bss        start:0x801A36B8 end:0x801A50B8 align:8
+	.bss        start:0x801A36B8 end:0x801A36E0 align:8
+
+dol/data/lbl_801A36E8.c:
+	.bss        start:0x801A36E8 end:0x801A50B8 align:8
 
 dol/data/gTRKCPUState.c:
 	.bss        start:0x801A5160 end:0x801A5590 align:8

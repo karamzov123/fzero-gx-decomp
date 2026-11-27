@@ -340,6 +340,14 @@ the following small-data addresses by 16 bytes. The existing pair at
 the gap. Ninja links all five objects from source; each `.sbss` split matches
 the freshly extracted retail object, and all regional retail hashes pass.
 
+`nubinit.c` now links from source in all three releases and owns the endian
+flag in ordinary BSS. The retail PAL banner is v2.6; USA and Japan use v2.0.
+The input-pending slot now has its pointer type and builds from source in
+all three regions. Keep it in a separate small-BSS unit: compiling `nubinit.c`
+with `-sdata 0` preserves its retail HA/LO loads of the two typed globals, but
+would place a pointer defined in that same unit in ordinary BSS. The slot
+retains 32-byte alignment in USA and 16-byte alignment in Japan and PAL.
+
 ### MSL stream and decimal state
 
 The standard-stream table (`__files`, 320 bytes) is owned by `ansi_files.c`
