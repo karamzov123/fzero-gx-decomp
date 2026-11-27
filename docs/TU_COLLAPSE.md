@@ -158,7 +158,7 @@ Recover the constant layout once per pool. For each consumer, prove the base reg
 
 ### Render TUs before `heap.c` (2026-11-23)
 
-`0x80007A44..0x80008E34` is two TUs: `src/dol/render/render_clear.c` (5 functions) and `render_util.c` (12 functions plus the USA stub `fn_80008E30`, which stays its own USA-only unit). The file names are placeholders. Both build under GC/2.5 and own their `.sdata2`; `render_clear.c` also owns `.sbss 0x801A6728`. Its color at `.sdata 0x801A6408` is still in the shared data unit `lbl_801A63C0.c`.
+`0x80007A44..0x80008E34` is two TUs: `src/dol/render/render_clear.c` (5 functions) and `render_util.c` (12 functions plus the USA stub `fn_80008E30`, which stays its own USA-only unit). The names are descriptive placeholders: the retail DOL has no `render*.c` filename anchor, and the AX cross-reference has no source filename for `fn_80007CDC`. Both build under GC/2.5 and own their `.sdata2`; `render_clear.c` also owns `.sbss 0x801A6728`. Its color at `.sdata 0x801A6408` is still in the shared data unit `lbl_801A63C0.c`.
 
 - A TU's `.sdata2` starts on an 8-byte boundary and the object before it does not include the padding. The empty word at `0x801A6F0C` separates the two TUs: one compile packs the next literal there.
 - Split ends must stop at the last object. A region symbol without a size takes the distance to the next symbol, so shortening a USA object also needs `size:` on the Japan and PAL symbol.
@@ -176,10 +176,19 @@ The AHX range `0x8004FF68..0x8005466C` is seven TUs in `src/dol/ahx/`: `ahx_bits
 
 ### DOL `.text` TU map complete (2026-11-23)
 
-`state/tumap/GFZE01_main.json` now assigns all 2,230 DOL functions to 252 TUs. The map is a draft in one respect: where no data bounds a TU, its extent is positional and its `notes` say so, and names without a retail or donor source are placeholders. That covers `sasnd_ctrl.c`, `render_*.c`, `lg_view.c`, `exi2.c` and the AHX and sasnd files.
+`state/tumap/GFZE01_main.json` now assigns all 2,230 DOL functions to 259 TUs. The map is a draft in one respect: where no data bounds a TU, its extent is positional and its `notes` say so, and names without a retail or donor source are placeholders. That covers `sasnd_ctrl.c`, `render_*.c`, `lg_view.c`, `exi2.c` and the AHX and sasnd files.
 
 - `sasnd_ctrl.c` holds the last 19 sasnd functions as one typed unit for USA and Japan. `fn_80064FDC` is still a lifted body with byte offsets.
 - `dol_tu_split.py --pooled` splits units that carry literal bindings. The historical blockers were `dol/trk/serpoll.c`, `dol/adx/adx_tlk.c` and `dol/fn_8007FE70.c`. A 2026-11-27 audit of `units.json` against this map finds no DOL code unit spanning multiple known `.text` TU owners; unknown owners are not evidence of a boundary.
+
+### Sample REL TU map (2026-11-27)
+
+`config/GFZE01/sample/tus.json` records a provisional single-TU grouping for the four
+functions covering the module's complete `.text` section (`0x0..0x730`) and its five-byte
+`.rodata` section. The retail REL has no `*.c` filename anchor; the only readable string is
+the `.rodata` object referenced by `_prolog`. The grouping follows the current matched source
+unit, but the original filename and internal TU boundary are not independently proven. This
+map is ownership evidence only and does not change build splits.
 
 ### DOL startup and interrupt-vector ownership
 
@@ -194,6 +203,10 @@ identifies three `.init` ranges with siblings in the `.text` map. The trailing
 `_rom_copy_info` and `_bss_init_info` linker tables are not TU code. This is
 ownership evidence only: source names, split extents, compilation and linkage
 are unchanged.
+
+The consolidation TU guard reads this map alongside the `.text` map. Its
+`text_map_file` entries identify the same owner across sections; other `.init`
+owners remain distinct when checking candidate merges.
 
 `dol/trk/mem_TRK.c` owns the two `.init` wrappers and the `.text` fill routine
 in one GC/1.3.2 object. Keeping the fill definition after the wrappers retains

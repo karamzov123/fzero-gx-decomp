@@ -1,0 +1,29 @@
+{
+ "module": "sample",
+ "unassigned_prefix": [],
+ "tus": [
+  {
+   "file": "sample.c",
+   "text": [
+    0,
+    1840
+   ],
+   "data_sec": 4,
+   "data": [
+    0,
+    5
+   ],
+   "anchor_refs": [],
+   "functions": [
+    "_prolog",
+    "fn_18_3FC",
+    "sample_lz_decode",
+    "fn_18_444"
+   ],
+   "notes": [
+    "Provisional single-TU grouping: these four functions cover the complete .text section and are together in the current matched source unit.",
+    "The retail module has no *.c filename anchor; its only readable string is the five-byte .rodata object at section 4 offset 0. The source filename and internal TU boundary are not independently confirmed."
+   ]
+  }
+ ]
+}

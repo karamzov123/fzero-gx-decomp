@@ -138,7 +138,7 @@
         "data-evidence": 5
       },
       "lib": "game",
-      "notes": "0x80007A44..0x80007CDC: no donor: these five functions share the clear color at .sdata 0x801A6408 and the flag at .sbss 0x801A6728. Their three .sdata2 color initializers end at 0x801A6F0C and the next TU starts on the 8-byte boundary 0x801A6F10; one compile packs the next literal at 0x801A6F0C. The file name is a placeholder."
+      "notes": "0x80007A44..0x80007CDC: no donor: these five functions share the clear color at .sdata 0x801A6408 and the flag at .sbss 0x801A6728. Their three .sdata2 color initializers end at 0x801A6F0C and the next TU starts on the 8-byte boundary 0x801A6F10; one compile packs the next literal at 0x801A6F0C. The retail DOL has no render*.c filename anchor; the file name is a descriptive placeholder."
     },
     {
       "file": "render_util.c",
@@ -165,7 +165,7 @@
         "data-evidence": 13
       },
       "lib": "game",
-      "notes": "0x80007CDC..0x80008E34: no donor: unnamed .sdata2 literals are per TU, and 0x801A6F14 is shared by 0x80007F70, 0x80008204 and 0x800084E8, 0x801A6F38 by 0x80008204 and 0x800084E8, 0x801A6F30 by 0x800084E8 and 0x80008C20. Only 0x800081C8 calls 0x80007F70 and only 0x800084E8 calls 0x800087F4 and 0x80008A4C. 0x80008E30 is empty in USA, absent in Japan and a real function in PAL that reads this TU's literal 0x801A6F20. 0x80007CDC, 0x80007D58, 0x80008BA8, 0x80008BEC and 0x80008DB4 have no data evidence and are placed by position. The file name is a placeholder."
+      "notes": "0x80007CDC..0x80008E34: no donor: unnamed .sdata2 literals are per TU, and 0x801A6F14 is shared by 0x80007F70, 0x80008204 and 0x800084E8, 0x801A6F38 by 0x80008204 and 0x800084E8, 0x801A6F30 by 0x800084E8 and 0x80008C20. Only 0x800081C8 calls 0x80007F70 and only 0x800084E8 calls 0x800087F4 and 0x80008A4C. 0x80008E30 is empty in USA, absent in Japan and a real function in PAL that reads this TU's literal 0x801A6F20. 0x80007CDC, 0x80007D58, 0x80008BA8, 0x80008BEC and 0x80008DB4 have no data evidence and are placed by position. The retail DOL has no render*.c filename anchor; the file name is a descriptive placeholder."
     },
     {
       "file": "heap.c",
