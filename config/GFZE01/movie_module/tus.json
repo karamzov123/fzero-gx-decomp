@@ -1,18 +1,1998 @@
 {
-  "module": "movie_module",
-  "tus": [
-    {
-      "file": "mpvabdec.c",
-      "text": [
-        75440,
-        126848
-      ],
-      "functions": [
-        "MPVABDEC_NintraBlock",
-        "MPVABDEC_IntraBlock",
-        "MPVABDEC_IntraBlockDc11"
-      ],
-      "source": "CRI Sofdec mpvabdec.c"
-    }
-  ]
+ "module": "movie_module",
+ "donor": "MK Deception GQNE5D (CC0) libmwsfdg.a link order",
+ "unassigned_prefix": [
+  "_prolog",
+  "_epilog"
+ ],
+ "tus": [
+  {
+   "file": "sud_lib.c",
+   "text": [
+    1236,
+    1676
+   ],
+   "functions": [
+    "fn_12_4D4",
+    "fn_12_59C",
+    "fn_12_5EC",
+    "fn_12_63C",
+    "fn_12_65C"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sud/sud_lib.c",
+   "how": {
+    "donor-size": 5
+   }
+  },
+  {
+   "file": "sfx_set.c",
+   "text": [
+    1676,
+    2276
+   ],
+   "functions": [
+    "fn_12_68C",
+    "fn_12_6B8",
+    "fn_12_738",
+    "fn_12_740",
+    "fn_12_748",
+    "fn_12_750",
+    "fn_12_758",
+    "fn_12_77C",
+    "fn_12_7A0",
+    "fn_12_7C4",
+    "fn_12_7E8",
+    "fn_12_818",
+    "fn_12_8B4",
+    "fn_12_8C8",
+    "fn_12_8D4",
+    "fn_12_8DC"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfx/sfx_set.c",
+   "how": {
+    "inferred": 4,
+    "donor-size": 7,
+    "interior": 5
+   },
+   "notes": [
+    "fn_12_68C, fn_12_6B8, fn_12_738, fn_12_740: inferred: no data; called only from sfx_cnv; GX sud_lib already equals the donor object"
+   ]
+  },
+  {
+   "file": "sfx_cnv.c",
+   "text": [
+    2276,
+    12404
+   ],
+   "functions": [
+    "fn_12_8E4",
+    "fn_12_A5C",
+    "fn_12_C60",
+    "fn_12_D38",
+    "fn_12_D60",
+    "fn_12_D88",
+    "fn_12_F70",
+    "fn_12_11A8",
+    "fn_12_132C",
+    "fn_12_13D0",
+    "fn_12_147C",
+    "fn_12_1578",
+    "fn_12_1F84",
+    "fn_12_21C8",
+    "fn_12_2F04",
+    "fn_12_3054"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfx/sfx_cnv.c",
+   "how": {
+    "rodata": 13,
+    "donor-order": 2,
+    "interior": 1
+   },
+   "notes": [
+    "fn_12_8E4, fn_12_A5C: rodata: pool 0x194 inside sfx_cnv .rodata 0x60..0x448; called by sfx_cnv fn_12_C60",
+    "fn_12_D88, fn_12_F70, fn_12_11A8, fn_12_132C, fn_12_13D0, fn_12_147C, fn_12_1578, fn_12_1F84, fn_12_21C8, fn_12_2F04, fn_12_3054: rodata: sfx_cnv pool 0x60 (0xC0/0x28C/0x2BC inside its range); one static call chain"
+   ]
+  },
+  {
+   "file": "sfx_inf.c",
+   "text": [
+    12404,
+    12412
+   ],
+   "functions": [
+    "fn_12_3074"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfx/sfx_inf.c",
+   "how": {
+    "donor-size": 1
+   }
+  },
+  {
+   "file": "sfx_lib.c",
+   "text": [
+    12412,
+    13480
+   ],
+   "functions": [
+    "fn_12_307C",
+    "fn_12_308C",
+    "fn_12_309C",
+    "fn_12_30E8",
+    "fn_12_3148",
+    "fn_12_33BC",
+    "fn_12_33D0",
+    "fn_12_341C"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfx/sfx_lib.c",
+   "how": {
+    "bss": 1,
+    "donor-size": 6,
+    "donor-order": 1
+   },
+   "notes": [
+    "fn_12_307C: bss: 0xC inside sfx_lib .bss 0x8..0x10"
+   ]
+  },
+  {
+   "file": "sfx_alp.c",
+   "text": [
+    13480,
+    13872
+   ],
+   "functions": [
+    "fn_12_34A8",
+    "fn_12_34C4",
+    "fn_12_34DC",
+    "fn_12_34E4",
+    "fn_12_3508",
+    "fn_12_354C",
+    "fn_12_3570",
+    "fn_12_35EC",
+    "fn_12_35F0"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfx/sfx_alp.c",
+   "how": {
+    "inferred": 2,
+    "donor-size": 5,
+    "interior": 1,
+    "donor-order": 1
+   },
+   "notes": [
+    "fn_12_34A8, fn_12_34C4: inferred: SFXA setters called by the sfx_set wrappers 758/77C; the SFXZ setters 3630..3670 open sfx_zmv"
+   ]
+  },
+  {
+   "file": "sfx_zmv.c",
+   "text": [
+    13872,
+    18816
+   ],
+   "functions": [
+    "fn_12_3630",
+    "fn_12_365C",
+    "fn_12_3670",
+    "fn_12_3710",
+    "fn_12_3A64",
+    "fn_12_3DB8",
+    "sfxzmv_MakeOrgZ32TblByDirect",
+    "fn_12_47C8",
+    "fn_12_48A0",
+    "fn_12_48C4",
+    "fn_12_4934",
+    "fn_12_4938"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfx/sfx_zmv.c",
+   "how": {
+    "rodata": 3,
+    "donor-order": 2,
+    "interior": 1,
+    "donor-size": 5,
+    "name": 1
+   },
+   "notes": [
+    "fn_12_3630, fn_12_365C, fn_12_3670: rodata: 0x4E8..0x4F0 is the start of sfx_zmv .rodata; called by the sfx_set wrappers 7A0/7C4"
+   ]
+  },
+  {
+   "file": "sfx_sud.c",
+   "text": [
+    18816,
+    19000
+   ],
+   "functions": [
+    "fn_12_4980",
+    "fn_12_49AC",
+    "fn_12_49D8",
+    "fn_12_49EC",
+    "fn_12_49F8",
+    "fn_12_4A18"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfx/sfx_sud.c",
+   "how": {
+    "donor-size": 5,
+    "interior": 1
+   }
+  },
+  {
+   "file": "dct_ac.c",
+   "text": [
+    19000,
+    19988
+   ],
+   "functions": [
+    "fn_12_4A38",
+    "fn_12_4CEC",
+    "fn_12_4D14"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/dct/dct_ac.c",
+   "how": {
+    "donor-size": 1,
+    "name": 2
+   }
+  },
+  {
+   "file": "dct_ver.c",
+   "text": [
+    19988,
+    20008
+   ],
+   "functions": [
+    "fn_12_4E14"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/dct/dct_ver.c",
+   "how": {
+    "name": 1
+   }
+  },
+  {
+   "file": "dct_fsri.c",
+   "text": [
+    20008,
+    22512
+   ],
+   "functions": [
+    "DCT_FsriInitScanTbl",
+    "fn_12_4F18",
+    "fn_12_4F3C",
+    "fn_12_52C4",
+    "fn_12_52E8",
+    "DCT_FsriInitSparseTbl",
+    "fn_12_5548",
+    "DCT_FsriInitScaleTbl",
+    "DCT_FsriInit"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/dct/dct_fsri.c",
+   "how": {
+    "name": 5,
+    "donor-size": 3,
+    "interior": 1
+   }
+  },
+  {
+   "file": "mcp_not.c",
+   "text": [
+    22512,
+    22544
+   ],
+   "functions": [
+    "fn_12_57F0"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/memcpy/mcp_not.c",
+   "how": {
+    "name": 1
+   }
+  },
+  {
+   "file": "mps_dec.c",
+   "text": [
+    22544,
+    26532
+   ],
+   "functions": [
+    "fn_12_5810",
+    "fn_12_5FA0",
+    "fn_12_62F8",
+    "fn_12_654C",
+    "fn_12_6704",
+    "fn_12_6708",
+    "fn_12_670C"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/mps/mps_dec.c",
+   "how": {
+    "donor-order": 3,
+    "interior": 1,
+    "donor-size": 2,
+    "calls": 1
+   },
+   "notes": [
+    "fn_12_670C: calls: its only callers are mps_dec fn_12_5FA0 and fn_12_654C"
+   ]
+  },
+  {
+   "file": "mps_del.c",
+   "text": [
+    26532,
+    26684
+   ],
+   "functions": [
+    "fn_12_67A4"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/mps/mps_del.c",
+   "how": {
+    "donor-order": 1
+   }
+  },
+  {
+   "file": "mps_get.c",
+   "text": [
+    26684,
+    27280
+   ],
+   "functions": [
+    "fn_12_683C",
+    "fn_12_68D4",
+    "fn_12_696C",
+    "fn_12_6A18",
+    "fn_12_6A88",
+    "fn_12_6A8C"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/mps/mps_get.c",
+   "how": {
+    "donor-order": 2,
+    "donor-size": 4
+   }
+  },
+  {
+   "file": "mps_lib.c",
+   "text": [
+    27280,
+    28652
+   ],
+   "functions": [
+    "fn_12_6A90",
+    "fn_12_6B28",
+    "fn_12_6C78",
+    "fn_12_6CA8",
+    "fn_12_6D5C",
+    "fn_12_6DE8",
+    "fn_12_6ECC"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/mps/mps_lib.c",
+   "how": {
+    "donor-size": 5,
+    "donor-order": 2
+   }
+  },
+  {
+   "file": "mpv_bdec.c",
+   "text": [
+    28652,
+    29428
+   ],
+   "functions": [
+    "fn_12_6FEC"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/mpv/mpv_bdec.c",
+   "how": {
+    "donor-order": 1
+   }
+  },
+  {
+   "file": "mpv_cdec.c",
+   "text": [
+    29428,
+    35564
+   ],
+   "functions": [
+    "fn_12_72F4",
+    "MPVCDEC_IntraBlocks",
+    "fn_12_77F4",
+    "fn_12_7870",
+    "fn_12_78C0",
+    "fn_12_7940",
+    "fn_12_7E58",
+    "fn_12_80BC",
+    "fn_12_8344",
+    "fn_12_847C",
+    "fn_12_86B8",
+    "fn_12_873C",
+    "fn_12_879C",
+    "fn_12_87FC",
+    "fn_12_8878",
+    "fn_12_89D4",
+    "fn_12_8A10"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/mpv/mpv_cdec.c",
+   "how": {
+    "donor-size": 1,
+    "name": 1,
+    "unresolved": 15
+   },
+   "notes": [
+    "fn_12_77F4, fn_12_7870, fn_12_78C0, fn_12_7940, fn_12_7E58, fn_12_80BC, fn_12_8344, fn_12_847C, fn_12_86B8, fn_12_873C, fn_12_879C, fn_12_87FC, fn_12_8878, fn_12_89D4, fn_12_8A10: unresolved: no data, no named callers; mpv_cmc starts with the donor first function"
+   ]
+  },
+  {
+   "file": "mpv_cmc.c",
+   "text": [
+    35564,
+    35800
+   ],
+   "functions": [
+    "fn_12_8AEC",
+    "fn_12_8B0C",
+    "fn_12_8B4C"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/mpv/mpv_cmc.c",
+   "how": {
+    "donor-size": 2,
+    "name": 1
+   }
+  },
+  {
+   "file": "mpv_dec.c",
+   "text": [
+    35800,
+    41176
+   ],
+   "functions": [
+    "fn_12_8BD8",
+    "fn_12_8F80",
+    "fn_12_9594",
+    "fn_12_9730",
+    "fn_12_9744",
+    "fn_12_975C",
+    "fn_12_9D08"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/mpv/mpv_dec.c",
+   "how": {
+    "donor-order": 4,
+    "donor-size": 3
+   }
+  },
+  {
+   "file": "mpv_deli.c",
+   "text": [
+    41176,
+    41844
+   ],
+   "functions": [
+    "fn_12_A0D8",
+    "fn_12_A1C4",
+    "fn_12_A2C4"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/mpv/mpv_deli.c",
+   "how": {
+    "name": 2,
+    "donor-size": 1
+   }
+  },
+  {
+   "file": "mpv_emp.c",
+   "text": [
+    41844,
+    42592
+   ],
+   "functions": [
+    "fn_12_A374"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/mpv/mpv_emp.c",
+   "how": {
+    "donor-size": 1
+   }
+  },
+  {
+   "file": "mpv_err.c",
+   "text": [
+    42592,
+    42928
+   ],
+   "functions": [
+    "fn_12_A660",
+    "fn_12_A6E8",
+    "fn_12_A774",
+    "fn_12_A790"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/mpv/mpv_err.c",
+   "how": {
+    "donor-size": 3,
+    "name": 1
+   }
+  },
+  {
+   "file": "mpv_frm.c",
+   "text": [
+    42928,
+    43460
+   ],
+   "functions": [
+    "fn_12_A7B0",
+    "fn_12_A858",
+    "fn_12_A9C0"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/mpv/mpv_frm.c",
+   "how": {
+    "donor-size": 2,
+    "donor-order": 1
+   }
+  },
+  {
+   "file": "mpv_get.c",
+   "text": [
+    43460,
+    43996
+   ],
+   "functions": [
+    "fn_12_A9C4",
+    "fn_12_AA38",
+    "fn_12_AB00",
+    "fn_12_AB60"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/mpv/mpv_get.c",
+   "how": {
+    "donor-size": 4
+   }
+  },
+  {
+   "file": "mpv_hdec.c",
+   "text": [
+    43996,
+    51892
+   ],
+   "functions": [
+    "fn_12_ABDC",
+    "MPV_MoveChunk",
+    "fn_12_AE70",
+    "MPV_GoNextDelimSj",
+    "fn_12_B254",
+    "fn_12_B3E0",
+    "fn_12_B598",
+    "fn_12_B9E8",
+    "fn_12_BBC0",
+    "fn_12_C218",
+    "fn_12_C2C8",
+    "fn_12_CA60",
+    "fn_12_CA84",
+    "fn_12_CA98"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/mpv/mpv_hdec.c",
+   "how": {
+    "donor-order": 5,
+    "name": 2,
+    "donor-size": 7
+   }
+  },
+  {
+   "file": "mpv_lib.c",
+   "text": [
+    51892,
+    54316
+   ],
+   "functions": [
+    "fn_12_CAB4",
+    "fn_12_CAE4",
+    "fn_12_CBC4",
+    "fn_12_CBC8",
+    "fn_12_CCB0",
+    "fn_12_CCC4",
+    "fn_12_CF2C",
+    "fn_12_D038",
+    "fn_12_D0B8"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/mpv/mpv_lib.c",
+   "how": {
+    "name": 1,
+    "donor-order": 5,
+    "donor-size": 2,
+    "interior": 1
+   }
+  },
+  {
+   "file": "mpv_mc.c",
+   "text": [
+    54316,
+    57588
+   ],
+   "functions": [
+    "fn_12_D42C",
+    "fn_12_D55C",
+    "fn_12_D948",
+    "fn_12_DC78",
+    "fn_12_E0C8"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/mpv/mpv_mc.c",
+   "how": {
+    "name": 3,
+    "donor-size": 2
+   }
+  },
+  {
+   "file": "mpv_vlc.c",
+   "text": [
+    57588,
+    70356
+   ],
+   "functions": [
+    "fn_12_E0F4",
+    "mpvvlc2_InitDcSizC",
+    "mpvvlc2_InitDcSizY",
+    "fn_12_ED30",
+    "fn_12_EFA4",
+    "mpvvlc_InitCbpSub2",
+    "fn_12_FA5C",
+    "fn_12_FC04",
+    "mpvvlc_InitMbTypeBpic",
+    "fn_12_1014C",
+    "fn_12_10200",
+    "fn_12_105BC",
+    "fn_12_10980",
+    "fn_12_10F3C",
+    "fn_12_11168",
+    "fn_12_11188",
+    "fn_12_11204",
+    "fn_12_11254"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/mpv/mpv_vlc.c",
+   "how": {
+    "donor-size": 6,
+    "name": 8,
+    "unresolved": 4
+   },
+   "notes": [
+    "fn_12_11168, fn_12_11188, fn_12_11204, fn_12_11254: unresolved: no data, no callers; mpv_umc starts at its donor second function"
+   ]
+  },
+  {
+   "file": "mpv_umc.c",
+   "text": [
+    70356,
+    75440
+   ],
+   "functions": [
+    "fn_12_112D4",
+    "fn_12_11860",
+    "fn_12_118E8",
+    "fn_12_11CE0",
+    "fn_12_11F5C",
+    "fn_12_120E4",
+    "fn_12_121BC",
+    "fn_12_12270",
+    "fn_12_12324",
+    "fn_12_124A0",
+    "fn_12_12564",
+    "fn_12_1258C",
+    "fn_12_12590",
+    "fn_12_12624"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/mpv/mpv_umc.c",
+   "how": {
+    "donor-size": 11,
+    "interior": 1,
+    "donor-order": 2
+   }
+  },
+  {
+   "file": "mpvabdec.c",
+   "text": [
+    75440,
+    126848
+   ],
+   "functions": [
+    "MPVABDEC_NintraBlock",
+    "MPVABDEC_IntraBlock",
+    "MPVABDEC_IntraBlockDc11"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/mpv/mpvabdec.c",
+   "how": {
+    "existing map": 3
+   }
+  },
+  {
+   "file": "mpv_mcy.c",
+   "text": [
+    126848,
+    131432
+   ],
+   "functions": [
+    "fn_12_1EF80",
+    "fn_12_1F1AC",
+    "fn_12_1F61C",
+    "fn_12_1FADC",
+    "fn_12_2013C"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/mpv/mpv_mcy.c",
+   "how": {
+    "name": 5
+   }
+  },
+  {
+   "file": "mpv_m2v.c",
+   "text": [
+    131432,
+    131468
+   ],
+   "functions": [
+    "fn_12_20168",
+    "fn_12_20170",
+    "fn_12_20178",
+    "fn_12_2017C",
+    "fn_12_20184",
+    "fn_12_20188"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/mpv/mpv_m2v.c",
+   "how": {
+    "donor-size": 6
+   }
+  },
+  {
+   "file": "sfd_adxt.c",
+   "text": [
+    131468,
+    136812
+   ],
+   "functions": [
+    "fn_12_2018C",
+    "fn_12_2025C",
+    "fn_12_20284",
+    "fn_12_202AC",
+    "fn_12_202D4",
+    "fn_12_202FC",
+    "fn_12_20448",
+    "fn_12_20474",
+    "fn_12_204D4",
+    "fn_12_204DC",
+    "fn_12_205BC",
+    "fn_12_206B8",
+    "fn_12_208C4",
+    "fn_12_20A7C",
+    "fn_12_20B90",
+    "fn_12_20CE8",
+    "fn_12_20F4C",
+    "fn_12_2105C",
+    "fn_12_213D8",
+    "fn_12_213F8",
+    "fn_12_21420",
+    "fn_12_2145C",
+    "fn_12_214B0",
+    "fn_12_21554",
+    "fn_12_2157C",
+    "fn_12_215A4",
+    "fn_12_215CC",
+    "fn_12_215F4"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/sfd/sfd_adxt.c",
+   "how": {
+    "donor-size": 20,
+    "donor-order": 7,
+    "rodata": 1
+   },
+   "notes": [
+    "fn_12_215F4: rodata: 0xA78 (\"(c)CRI\") follows sfd_adxt .rodata 0xA50..0xA70"
+   ]
+  },
+  {
+   "file": "sfd_aoap.c",
+   "text": [
+    136812,
+    138240
+   ],
+   "functions": [
+    "fn_12_2166C",
+    "fn_12_21674",
+    "fn_12_2169C",
+    "fn_12_216C4",
+    "fn_12_216EC",
+    "fn_12_21714",
+    "fn_12_2178C",
+    "fn_12_217F8",
+    "fn_12_21864",
+    "fn_12_218D0",
+    "fn_12_218D8",
+    "fn_12_21924",
+    "fn_12_219D8",
+    "fn_12_219E0",
+    "fn_12_219E8",
+    "fn_12_21A64",
+    "fn_12_21AE4",
+    "fn_12_21B70"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/sfd/sfd_aoap.c",
+   "how": {
+    "donor-size": 18
+   }
+  },
+  {
+   "file": "sfd_buf.c",
+   "text": [
+    138240,
+    143292
+   ],
+   "functions": [
+    "fn_12_21C00",
+    "fn_12_21D30",
+    "fn_12_21D40",
+    "fn_12_21D50",
+    "fn_12_21D60",
+    "fn_12_21D70",
+    "fn_12_21DD4",
+    "fn_12_21E20",
+    "fn_12_21E40",
+    "fn_12_21E94",
+    "fn_12_21F28",
+    "fn_12_21F38",
+    "fn_12_21F48",
+    "fn_12_21FA4",
+    "fn_12_22008",
+    "fn_12_22254",
+    "fn_12_22390",
+    "fn_12_224FC",
+    "fn_12_22668",
+    "fn_12_2269C",
+    "fn_12_226D0",
+    "fn_12_22888",
+    "fn_12_22954",
+    "fn_12_22FB4",
+    "fn_12_22FB8"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/sfd/sfd_buf.c",
+   "how": {
+    "donor-order": 6,
+    "name": 3,
+    "donor-size": 16
+   }
+  },
+  {
+   "file": "sfd_con.c",
+   "text": [
+    143292,
+    147200
+   ],
+   "functions": [
+    "fn_12_22FBC",
+    "fn_12_23078",
+    "fn_12_23120",
+    "fn_12_231A0",
+    "fn_12_231F8",
+    "fn_12_23250",
+    "fn_12_23280",
+    "fn_12_232DC",
+    "fn_12_23410",
+    "fn_12_23700",
+    "fn_12_2396C",
+    "fn_12_23BFC",
+    "fn_12_23E0C"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/sfd/sfd_con.c",
+   "how": {
+    "donor-size": 6,
+    "name": 1,
+    "inferred": 6
+   },
+   "notes": [
+    "fn_12_232DC, fn_12_23410, fn_12_23700, fn_12_2396C, fn_12_23BFC, fn_12_23E0C: inferred: one static call tree under fn_12_23E0C, tables 0xAB8..0xAEC before sfd_lib .rodata 0xB00; sfd_hds starts with the donor first function"
+   ]
+  },
+  {
+   "file": "sfd_hds.c",
+   "text": [
+    147200,
+    149840
+   ],
+   "functions": [
+    "fn_12_23F00",
+    "fn_12_23F34",
+    "fn_12_23F5C",
+    "fn_12_24570",
+    "fn_12_245C4",
+    "fn_12_24670",
+    "fn_12_24760",
+    "fn_12_247BC",
+    "fn_12_248D4",
+    "fn_12_248E8",
+    "fn_12_24904",
+    "fn_12_24924"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/sfd/sfd_hds.c",
+   "how": {
+    "donor-size": 9,
+    "donor-order": 1,
+    "interior": 1,
+    "name": 1
+   }
+  },
+  {
+   "file": "sfd_lib.c",
+   "text": [
+    149840,
+    150904
+   ],
+   "functions": [
+    "fn_12_24950",
+    "fn_12_24970",
+    "fn_12_24990",
+    "fn_12_249BC",
+    "fn_12_24A88",
+    "fn_12_24B64",
+    "fn_12_24B80",
+    "fn_12_24C48",
+    "fn_12_24D68"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/sfd/sfd_lib.c",
+   "how": {
+    "name": 4,
+    "donor-size": 5
+   }
+  },
+  {
+   "file": "sfd_mem.c",
+   "text": [
+    150904,
+    151188
+   ],
+   "functions": [
+    "fn_12_24D78",
+    "fn_12_24D80",
+    "fn_12_24DA8",
+    "fn_12_24DD0",
+    "fn_12_24E00",
+    "fn_12_24E28",
+    "fn_12_24E30",
+    "fn_12_24E38",
+    "fn_12_24E40",
+    "fn_12_24E48",
+    "fn_12_24E50",
+    "fn_12_24E58",
+    "fn_12_24E84",
+    "fn_12_24E8C"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/sfd/sfd_mem.c",
+   "how": {
+    "donor-size": 14
+   }
+  },
+  {
+   "file": "sfd_mps.c",
+   "text": [
+    151188,
+    157632
+   ],
+   "functions": [
+    "fn_12_24E94",
+    "fn_12_24EA0",
+    "fn_12_24FBC",
+    "fn_12_24FE4",
+    "fn_12_2500C",
+    "fn_12_25034",
+    "fn_12_2505C",
+    "fn_12_25064",
+    "fn_12_2506C",
+    "fn_12_25074",
+    "fn_12_2507C",
+    "fn_12_250D0",
+    "fn_12_250F0",
+    "fn_12_252A0",
+    "fn_12_2559C",
+    "fn_12_25740",
+    "fn_12_25748",
+    "fn_12_25AAC",
+    "fn_12_25DA8",
+    "fn_12_25FA8",
+    "fn_12_26218",
+    "fn_12_26534",
+    "fn_12_26664",
+    "fn_12_26684",
+    "fn_12_266A8",
+    "fn_12_26734"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/sfd/sfd_mps.c",
+   "how": {
+    "donor-size": 16,
+    "donor-order": 6,
+    "name": 1,
+    "interior": 3
+   }
+  },
+  {
+   "file": "sfd_mpv.c",
+   "text": [
+    157632,
+    174172
+   ],
+   "functions": [
+    "fn_12_267C0",
+    "fn_12_2692C",
+    "fn_12_269E4",
+    "fn_12_26B18",
+    "fn_12_26BB4",
+    "fn_12_26BDC",
+    "fn_12_26C04",
+    "fn_12_26C0C",
+    "fn_12_26C1C",
+    "fn_12_26C24",
+    "fn_12_26C2C",
+    "fn_12_26D24",
+    "fn_12_26D68",
+    "fn_12_270AC",
+    "fn_12_27224",
+    "fn_12_27478",
+    "fn_12_27884",
+    "fn_12_27C58",
+    "fn_12_2814C",
+    "fn_12_28304",
+    "fn_12_284F8",
+    "fn_12_28CC4",
+    "fn_12_29524",
+    "fn_12_298AC",
+    "fn_12_29FF8",
+    "fn_12_2A308",
+    "fn_12_2A328",
+    "fn_12_2A34C",
+    "fn_12_2A434",
+    "fn_12_2A508",
+    "fn_12_2A55C",
+    "fn_12_2A5C8",
+    "fn_12_2A674",
+    "fn_12_2A6FC"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/sfd/sfd_mpv.c",
+   "how": {
+    "donor-order": 15,
+    "interior": 3,
+    "donor-size": 13,
+    "name": 3
+   }
+  },
+  {
+   "file": "sfd_mpvf.c",
+   "text": [
+    174172,
+    175272
+   ],
+   "functions": [
+    "fn_12_2A85C",
+    "fn_12_2A9DC",
+    "fn_12_2AAD4",
+    "fn_12_2AB00",
+    "fn_12_2AB2C",
+    "fn_12_2AB40",
+    "fn_12_2AB54",
+    "fn_12_2AB68",
+    "fn_12_2ABF0",
+    "fn_12_2AC80",
+    "fn_12_2AC8C",
+    "fn_12_2AC98"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/sfd/sfd_mpvf.c",
+   "how": {
+    "donor-order": 2,
+    "interior": 1,
+    "donor-size": 9
+   }
+  },
+  {
+   "file": "sfd_pl2.c",
+   "text": [
+    175272,
+    176440
+   ],
+   "functions": [
+    "fn_12_2ACA8",
+    "fn_12_2AD10",
+    "fn_12_2AD78",
+    "fn_12_2AD88",
+    "fn_12_2ADDC",
+    "fn_12_2AF5C"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/sfd/sfd_pl2.c",
+   "how": {
+    "donor-size": 3,
+    "donor-order": 1,
+    "name": 2
+   }
+  },
+  {
+   "file": "sfd_ply.c",
+   "text": [
+    176440,
+    183692
+   ],
+   "functions": [
+    "fn_12_2B138",
+    "fn_12_2B188",
+    "fn_12_2B1E8",
+    "fn_12_2B25C",
+    "fn_12_2B2E4",
+    "fn_12_2B348",
+    "fn_12_2B358",
+    "fn_12_2B634",
+    "fn_12_2B6B0",
+    "fn_12_2B9F8",
+    "fn_12_2BA6C",
+    "fn_12_2BAE0",
+    "fn_12_2BCF4",
+    "fn_12_2BE3C",
+    "fn_12_2C0F8",
+    "fn_12_2C640",
+    "fn_12_2C9C4",
+    "fn_12_2CC24",
+    "SFD_IsSvrWait",
+    "fn_12_2CD44",
+    "fn_12_2CD6C"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/sfd/sfd_ply.c",
+   "how": {
+    "inferred": 1,
+    "donor-size": 10,
+    "donor-order": 4,
+    "interior": 1,
+    "name": 5
+   },
+   "notes": [
+    "fn_12_2B138: inferred: GX sfd_ply getter before SFD_SetSupplySj"
+   ]
+  },
+  {
+   "file": "sfd_pts.c",
+   "text": [
+    183692,
+    184328
+   ],
+   "functions": [
+    "fn_12_2CD8C",
+    "fn_12_2CDD0",
+    "fn_12_2CF20",
+    "fn_12_2CFEC"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/sfd/sfd_pts.c",
+   "how": {
+    "donor-order": 3,
+    "name": 1
+   }
+  },
+  {
+   "file": "sfd_see.c",
+   "text": [
+    184328,
+    185600
+   ],
+   "functions": [
+    "fn_12_2D008",
+    "fn_12_2D288",
+    "fn_12_2D420",
+    "fn_12_2D450",
+    "fn_12_2D470"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/sfd/sfd_see.c",
+   "how": {
+    "name": 2,
+    "donor-size": 2,
+    "inferred": 1
+   },
+   "notes": [
+    "fn_12_2D470: inferred: called from mwsfdfrm; sfd_set starts with the donor first function"
+   ]
+  },
+  {
+   "file": "sfd_set.c",
+   "text": [
+    185600,
+    187060
+   ],
+   "functions": [
+    "fn_12_2D500",
+    "fn_12_2D58C",
+    "fn_12_2D664",
+    "fn_12_2D73C",
+    "fn_12_2D74C",
+    "fn_12_2D7DC",
+    "fn_12_2D888",
+    "fn_12_2DA6C"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/sfd/sfd_set.c",
+   "how": {
+    "donor-size": 4,
+    "interior": 2,
+    "name": 2
+   }
+  },
+  {
+   "file": "sfd_tim.c",
+   "text": [
+    187060,
+    192948
+   ],
+   "functions": [
+    "fn_12_2DAB4",
+    "fn_12_2DABC",
+    "fn_12_2DBD4",
+    "fn_12_2DEB0",
+    "fn_12_2DEF0",
+    "fn_12_2DF28",
+    "SFTIM_GetTimeOneFrmVideo",
+    "fn_12_2DFF0",
+    "fn_12_2E0B0",
+    "fn_12_2E128",
+    "fn_12_2E1A0",
+    "fn_12_2E218",
+    "fn_12_2E284",
+    "fn_12_2E2DC",
+    "fn_12_2E334",
+    "fn_12_2E374",
+    "fn_12_2E41C",
+    "fn_12_2E42C",
+    "fn_12_2E44C",
+    "fn_12_2E490",
+    "fn_12_2E5E4",
+    "fn_12_2E63C",
+    "fn_12_2E6AC",
+    "fn_12_2E714",
+    "fn_12_2E7C8",
+    "fn_12_2E8C8",
+    "fn_12_2E9E4",
+    "fn_12_2E9F0",
+    "fn_12_2EA6C",
+    "fn_12_2EAC4",
+    "fn_12_2EBAC",
+    "fn_12_2ED74",
+    "fn_12_2EDAC",
+    "fn_12_2EE48",
+    "fn_12_2EE7C",
+    "fn_12_2F19C",
+    "fn_12_2F1A0"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/sfd/sfd_tim.c",
+   "how": {
+    "donor-size": 16,
+    "interior": 5,
+    "donor-order": 11,
+    "name": 5
+   }
+  },
+  {
+   "file": "sfd_trn.c",
+   "text": [
+    192948,
+    194720
+   ],
+   "functions": [
+    "fn_12_2F1B4",
+    "fn_12_2F1D0",
+    "fn_12_2F1E0",
+    "fn_12_2F1F0",
+    "fn_12_2F200",
+    "fn_12_2F210",
+    "fn_12_2F264",
+    "fn_12_2F2F4",
+    "fn_12_2F474",
+    "fn_12_2F63C",
+    "fn_12_2F730",
+    "fn_12_2F7AC"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/sfd/sfd_trn.c",
+   "how": {
+    "name": 3,
+    "donor-size": 9
+   }
+  },
+  {
+   "file": "sfd_uo.c",
+   "text": [
+    194720,
+    195412
+   ],
+   "functions": [
+    "fn_12_2F8A0",
+    "fn_12_2F8A8",
+    "fn_12_2F8D0",
+    "fn_12_2F8F8",
+    "fn_12_2F920",
+    "fn_12_2F948",
+    "fn_12_2F950",
+    "fn_12_2F958",
+    "fn_12_2F960",
+    "fn_12_2F968",
+    "fn_12_2F970",
+    "fn_12_2F9E8",
+    "fn_12_2FA80",
+    "fn_12_2FA88",
+    "fn_12_2FA90"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/sfd/sfd_uo.c",
+   "how": {
+    "donor-size": 14,
+    "name": 1
+   }
+  },
+  {
+   "file": "sfd_vom.c",
+   "text": [
+    195412,
+    195996
+   ],
+   "functions": [
+    "fn_12_2FB54",
+    "fn_12_2FB5C",
+    "fn_12_2FB84",
+    "fn_12_2FC18",
+    "fn_12_2FC40",
+    "fn_12_2FC68",
+    "fn_12_2FC70",
+    "fn_12_2FC78",
+    "fn_12_2FC80",
+    "fn_12_2FC88",
+    "fn_12_2FC90",
+    "fn_12_2FC98",
+    "fn_12_2FD8C",
+    "fn_12_2FD94"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/sfd/sfd_vom.c",
+   "how": {
+    "donor-size": 14
+   }
+  },
+  {
+   "file": "sfd_tmr.c",
+   "text": [
+    195996,
+    196192
+   ],
+   "functions": [
+    "SFTMR_AddTsum",
+    "fn_12_2FE30"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/sfd/sfd_tmr.c",
+   "how": {
+    "name": 1,
+    "donor-size": 1
+   }
+  },
+  {
+   "file": "sfd_tst.c",
+   "text": [
+    196192,
+    199672
+   ],
+   "functions": [
+    "fn_12_2FE60",
+    "fn_12_30930",
+    "fn_12_309B0",
+    "fn_12_309B8",
+    "fn_12_309C0",
+    "fn_12_309D0",
+    "fn_12_309E4",
+    "fn_12_309F8",
+    "fn_12_30A0C",
+    "fn_12_30A20",
+    "SFTST_Create"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/sfd/sfd_tst.c",
+   "how": {
+    "donor-order": 1,
+    "donor-size": 9,
+    "name": 1
+   }
+  },
+  {
+   "file": "sfh_main.c",
+   "text": [
+    199672,
+    209628
+   ],
+   "functions": [
+    "fn_12_30BF8",
+    "fn_12_30D8C",
+    "fn_12_30F20",
+    "fn_12_310A0",
+    "fn_12_31224",
+    "fn_12_313A8",
+    "fn_12_31528",
+    "fn_12_316A8",
+    "fn_12_31860",
+    "fn_12_319EC",
+    "fn_12_31B5C",
+    "fn_12_31CA4",
+    "fn_12_31DFC",
+    "fn_12_31F44",
+    "fn_12_320A0",
+    "fn_12_321E8",
+    "fn_12_32280",
+    "fn_12_32318",
+    "fn_12_323B0",
+    "fn_12_3245C",
+    "fn_12_324E4",
+    "fn_12_3256C",
+    "fn_12_325F4",
+    "fn_12_3267C",
+    "fn_12_32714",
+    "fn_12_327AC",
+    "fn_12_32834",
+    "fn_12_328CC",
+    "fn_12_32A70",
+    "fn_12_32DBC",
+    "fn_12_32EAC",
+    "fn_12_330E0",
+    "fn_12_3310C",
+    "fn_12_33178",
+    "fn_12_331A8"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/sfh/sfh_main.c",
+   "how": {
+    "donor-order": 28,
+    "donor-size": 5,
+    "name": 2
+   }
+  },
+  {
+   "file": "cmptime.c",
+   "text": [
+    209628,
+    209764
+   ],
+   "functions": [
+    "fn_12_332DC"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/uty/cmptime.c",
+   "how": {
+    "name": 1
+   }
+  },
+  {
+   "file": "memcpyd.c",
+   "text": [
+    209764,
+    209960
+   ],
+   "functions": [
+    "fn_12_33364"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/uty/memcpyd.c",
+   "how": {
+    "donor-size": 1
+   }
+  },
+  {
+   "file": "memsetd.c",
+   "text": [
+    209960,
+    210080
+   ],
+   "functions": [
+    "fn_12_33428"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/uty/memsetd.c",
+   "how": {
+    "donor-size": 1
+   }
+  },
+  {
+   "file": "muldiv.c",
+   "text": [
+    210080,
+    210340
+   ],
+   "functions": [
+    "UTY_MulDiv",
+    "fn_12_334FC"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/uty/muldiv.c",
+   "how": {
+    "name": 1,
+    "inferred": 1
+   },
+   "notes": [
+    "fn_12_334FC: inferred: rodata 0x1108/0x1110; the GX analogue of donor muldivr.o, which follows muldiv.o"
+   ]
+  },
+  {
+   "file": "uty_tmr.c",
+   "text": [
+    210340,
+    210532
+   ],
+   "functions": [
+    "fn_12_335A4",
+    "fn_12_335B8",
+    "fn_12_33604"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/uty/uty_tmr.c",
+   "how": {
+    "donor-size": 1,
+    "donor-order": 2
+   }
+  },
+  {
+   "file": "uty_ppc.c",
+   "text": [
+    210532,
+    210844
+   ],
+   "functions": [
+    "fn_12_33664",
+    "fn_12_33698",
+    "fn_12_336CC"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/sfdcore/uty/uty_ppc.c",
+   "how": {
+    "donor-size": 2,
+    "inferred": 1
+   },
+   "notes": [
+    "fn_12_336CC: inferred: calls sfh_main; mwsfdfrm starts with its donor first function"
+   ]
+  },
+  {
+   "file": "mwsfdfrm.c",
+   "text": [
+    210844,
+    213292
+   ],
+   "functions": [
+    "fn_12_3379C",
+    "fn_12_33874",
+    "fn_12_338C4",
+    "fn_12_3391C",
+    "fn_12_339B4",
+    "fn_12_33A14",
+    "fn_12_33A44",
+    "fn_12_33C78",
+    "fn_12_34084",
+    "fn_12_340D4"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/mwply/mwsfdfrm.c",
+   "how": {
+    "donor-size": 3,
+    "interior": 3,
+    "donor-order": 3,
+    "name": 1
+   }
+  },
+  {
+   "file": "mwsfdrna.c",
+   "text": [
+    213292,
+    213436
+   ],
+   "functions": [
+    "fn_12_3412C",
+    "fn_12_34150",
+    "fn_12_34174",
+    "fn_12_34198"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/mwply/mwsfdrna.c",
+   "how": {
+    "donor-size": 4
+   }
+  },
+  {
+   "file": "mwsfdrsc.c",
+   "text": [
+    213436,
+    213476
+   ],
+   "functions": [
+    "fn_12_341BC",
+    "fn_12_341C0",
+    "fn_12_341C4"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/mwply/mwsfdrsc.c",
+   "how": {
+    "name": 2,
+    "inferred": 1
+   },
+   "notes": [
+    "fn_12_341C4: inferred: 0x20 stub after mwPlySaveRsc"
+   ]
+  },
+  {
+   "file": "mwsfdsl.c",
+   "text": [
+    213476,
+    215908
+   ],
+   "functions": [
+    "fn_12_341E4",
+    "fn_12_3428C",
+    "fn_12_342B8",
+    "fn_12_342E4",
+    "fn_12_34390",
+    "fn_12_3454C",
+    "fn_12_34610",
+    "fn_12_34634",
+    "fn_12_346BC",
+    "fn_12_34798",
+    "fn_12_3496C",
+    "fn_12_349CC",
+    "fn_12_34AB0"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/mwply/mwsfdsl.c",
+   "how": {
+    "donor-size": 3,
+    "interior": 6,
+    "donor-order": 1,
+    "rodata": 3
+   },
+   "notes": [
+    "fn_12_3496C, fn_12_349CC, fn_12_34AB0: rodata: 0x12E0 is mwsfdsl .rodata (0x12E0..0x130C)"
+   ]
+  },
+  {
+   "file": "mwsfdsvm.c",
+   "text": [
+    215908,
+    216720
+   ],
+   "functions": [
+    "fn_12_34B64",
+    "MWSFSVM_Error",
+    "fn_12_34C44",
+    "fn_12_34C64",
+    "fn_12_34C84",
+    "fn_12_34CA8",
+    "fn_12_34CC8",
+    "fn_12_34CEC",
+    "fn_12_34D1C",
+    "fn_12_34D50",
+    "fn_12_34D80",
+    "fn_12_34DB4",
+    "fn_12_34DE4",
+    "fn_12_34E2C",
+    "fn_12_34E4C"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/mwply/mwsfdsvm.c",
+   "how": {
+    "name": 2,
+    "interior": 4,
+    "donor-size": 9
+   }
+  },
+  {
+   "file": "mwstm.c",
+   "text": [
+    216720,
+    217100
+   ],
+   "functions": [
+    "fn_12_34E90",
+    "fn_12_34EB0",
+    "fn_12_34EE4",
+    "fn_12_34F04",
+    "fn_12_34F64",
+    "fn_12_34F84",
+    "fn_12_34FA8",
+    "fn_12_34FD0",
+    "fn_12_34FFC",
+    "fn_12_35004"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/mwply/mwstm.c",
+   "how": {
+    "donor-size": 9,
+    "name": 1
+   }
+  },
+  {
+   "file": "mwsfdsee.c",
+   "text": [
+    217100,
+    217184
+   ],
+   "functions": [
+    "fn_12_3500C",
+    "fn_12_35010",
+    "fn_12_35014",
+    "fn_12_35018",
+    "fn_12_3503C"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/mwply/mwsfdsee.c",
+   "how": {
+    "donor-size": 3,
+    "inferred": 2
+   },
+   "notes": [
+    "fn_12_35018, fn_12_3503C: inferred: wrappers called from mwsfdfrm"
+   ]
+  },
+  {
+   "file": "mwsfdsfx.c",
+   "text": [
+    217184,
+    220724
+   ],
+   "functions": [
+    "fn_12_35060",
+    "fn_12_35084",
+    "fn_12_35108",
+    "fn_12_35138",
+    "fn_12_3515C",
+    "mwsftag_GetAinfFromSj",
+    "fn_12_3530C",
+    "fn_12_353C4",
+    "fn_12_353FC",
+    "fn_12_35418",
+    "fn_12_35484",
+    "fn_12_354BC",
+    "fn_12_35548",
+    "fn_12_3556C",
+    "fn_12_355DC",
+    "fn_12_3564C",
+    "fn_12_35670",
+    "fn_12_35694",
+    "fn_12_356E8",
+    "fn_12_3570C",
+    "fn_12_357BC",
+    "fn_12_35868",
+    "fn_12_35914",
+    "fn_12_359B0",
+    "fn_12_35A5C",
+    "fn_12_35B08",
+    "fn_12_35D74",
+    "fn_12_35D94",
+    "fn_12_35DB4",
+    "fn_12_35DBC",
+    "fn_12_35DDC",
+    "fn_12_35E04"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/mwply/mwsfdsfx.c",
+   "how": {
+    "donor-size": 18,
+    "interior": 10,
+    "name": 3,
+    "donor-order": 1
+   }
+  },
+  {
+   "file": "mwsfdcre.c",
+   "text": [
+    220724,
+    231620
+   ],
+   "functions": [
+    "fn_12_35E34",
+    "fn_12_35E84",
+    "mwSfdDestroy",
+    "fn_12_36208",
+    "fn_12_364CC",
+    "MWSFCRE_ResetSfdHn",
+    "fn_12_3763C",
+    "fn_12_38340",
+    "fn_12_3858C",
+    "fn_12_38680",
+    "fn_12_38704"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/mwply/mwsfdcre.c",
+   "how": {
+    "donor-size": 3,
+    "interior": 1,
+    "name": 2,
+    "donor-order": 3,
+    "rodata": 2
+   },
+   "notes": [
+    "fn_12_38680, fn_12_38704: rodata: 0x2184 inside mwsfdcre .rodata 0x1D88..0x221C; 0x2240 before mwsfdlib 0x2270"
+   ]
+  },
+  {
+   "file": "mwsfdlib.c",
+   "text": [
+    231620,
+    232904
+   ],
+   "functions": [
+    "fn_12_388C4",
+    "fn_12_38A0C",
+    "fn_12_38A2C",
+    "fn_12_38AD0",
+    "fn_12_38AE0",
+    "fn_12_38AF0",
+    "fn_12_38D94",
+    "fn_12_38DBC"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/mwply/mwsfdlib.c",
+   "how": {
+    "name": 5,
+    "donor-size": 2,
+    "donor-order": 1
+   }
+  },
+  {
+   "file": "mwsfdply.c",
+   "text": [
+    232904,
+    236136
+   ],
+   "functions": [
+    "fn_12_38DC8",
+    "fn_12_38E24",
+    "mwSfdPause",
+    "fn_12_3901C",
+    "fn_12_390E4",
+    "fn_12_3916C",
+    "fn_12_393F0",
+    "fn_12_39678",
+    "fn_12_39930",
+    "fn_12_399B4",
+    "fn_12_39A18"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/mwply/mwsfdply.c",
+   "how": {
+    "donor-size": 3,
+    "interior": 2,
+    "name": 2,
+    "donor-order": 4
+   }
+  },
+  {
+   "file": "mwsfdset.c",
+   "text": [
+    236136,
+    239752
+   ],
+   "functions": [
+    "fn_12_39A68",
+    "fn_12_39CA4",
+    "fn_12_39CF8",
+    "fn_12_39DA0",
+    "fn_12_39E00",
+    "fn_12_39E54",
+    "fn_12_39EA4",
+    "fn_12_39EF8",
+    "fn_12_39F48",
+    "fn_12_3A018",
+    "fn_12_3A078",
+    "fn_12_3A0F0",
+    "fn_12_3A1A4",
+    "fn_12_3A264",
+    "fn_12_3A300",
+    "fn_12_3A36C",
+    "fn_12_3A384",
+    "fn_12_3A3CC",
+    "fn_12_3A400",
+    "fn_12_3A460",
+    "fn_12_3A4CC",
+    "fn_12_3A52C",
+    "fn_12_3A598",
+    "fn_12_3A600",
+    "fn_12_3A69C",
+    "fn_12_3A784",
+    "fn_12_3A7D8",
+    "fn_12_3A82C"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/mwply/mwsfdset.c",
+   "how": {
+    "strings": 5,
+    "donor-size": 8,
+    "interior": 12,
+    "donor-order": 2,
+    "name": 1
+   },
+   "notes": [
+    "fn_12_39A68, fn_12_39CA4, fn_12_39CF8, fn_12_39DA0: strings: mwsfdset error strings 0x2718 (mwPlyGetSfdHn, the donor last mwsfdset function), 0x287C, 0x28B0, 0x28E0",
+    "fn_12_3A82C: strings: 0x2CF4 \"mwPlySetAudioSw\" inside mwsfdset .rodata 0x2718..0x2D28"
+   ]
+  },
+  {
+   "file": "mwsfdsvr.c",
+   "text": [
+    239752,
+    242012
+   ],
+   "functions": [
+    "fn_12_3A888",
+    "fn_12_3A92C",
+    "fn_12_3A960",
+    "fn_12_3A968",
+    "fn_12_3A970",
+    "fn_12_3A9A0",
+    "fn_12_3AA58",
+    "fn_12_3AB00",
+    "fn_12_3ABE0",
+    "fn_12_3AC70",
+    "fn_12_3ACD0",
+    "fn_12_3ADC4",
+    "fn_12_3AE84"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/mwply/mwsfdsvr.c",
+   "how": {
+    "name": 1,
+    "interior": 1,
+    "donor-size": 7,
+    "donor-order": 4
+   }
+  },
+  {
+   "file": "mwsfdsst.c",
+   "text": [
+    242012,
+    245488
+   ],
+   "functions": [
+    "fn_12_3B15C",
+    "fn_12_3B2EC",
+    "MWSST_Pause",
+    "MWSST_GetStat",
+    "fn_12_3B540",
+    "MWSST_StartSj",
+    "fn_12_3B65C"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/mwply/mwsfdsst.c",
+   "how": {
+    "name": 4,
+    "donor-size": 2,
+    "inferred": 1
+   },
+   "notes": [
+    "fn_12_3B65C: inferred: called from sfx_alp fn_12_34E4; the donor mwsfdsbt/mwsfx objects are absent"
+   ]
+  },
+  {
+   "file": "cftyp422_ppc.c",
+   "text": [
+    245488,
+    251696
+   ],
+   "functions": [
+    "fn_12_3BEF0",
+    "fn_12_3C17C",
+    "fn_12_3C4A8",
+    "fn_12_3C8CC",
+    "fn_12_3CB74",
+    "fn_12_3D144",
+    "fn_12_3D624"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/cft/srcgc/cftyp422_ppc.c",
+   "how": {
+    "donor-order": 3,
+    "donor-size": 2,
+    "interior": 2
+   }
+  },
+  {
+   "file": "cftfx.c",
+   "text": [
+    251696,
+    254868
+   ],
+   "functions": [
+    "fn_12_3D730",
+    "fn_12_3D734",
+    "fn_12_3D738",
+    "fn_12_3D73C",
+    "fn_12_3D740",
+    "fn_12_3D968",
+    "fn_12_3DBDC",
+    "fn_12_3DBE0",
+    "fn_12_3DCEC",
+    "fn_12_3DCF0",
+    "fn_12_3DF08",
+    "fn_12_3E09C"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/cft/srcgc/cftfx.c",
+   "how": {
+    "inferred": 4,
+    "donor-size": 2,
+    "interior": 3,
+    "donor-order": 2,
+    "name": 1
+   },
+   "notes": [
+    "fn_12_3D730, fn_12_3D734, fn_12_3D738, fn_12_3D73C: inferred: 4-byte stubs before cftfx CFT_MakeArgb8888ColAdjTbl"
+   ]
+  },
+  {
+   "file": "cftcoladj.c",
+   "text": [
+    254868,
+    257004
+   ],
+   "functions": [
+    "fn_12_3E394",
+    "fn_12_3E500",
+    "fn_12_3E688"
+   ],
+   "source": "CRI Sofdec crimw/dev/sofdec/src/cft/srcgc/cftcoladj.c",
+   "how": {
+    "donor-size": 1,
+    "name": 2
+   }
+  }
+ ]
 }
