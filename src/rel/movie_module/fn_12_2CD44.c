@@ -27,11 +27,7 @@ void fn_12_2CD6C(void) {
 extern const u32 lbl_12_rodata_C78[102];
 extern s32 fn_12_24A88(void *, s32);
 
-void fn_12_2CD8C(void) {
-    if (lbl_12_rodata_C78[73] != 0x5A5A5A5A) {
-        fn_12_24A88(0, 0xFF000201);
-    }
-}
+void fn_12_2CD8C(void);
 
 /* --- rel/movie_module/fn_12_2CDD0.c --- */
 struct fn_12_2CDD0_Arg3 { u32 unk_0; };
@@ -63,51 +59,7 @@ static inline s32 find_entry(u32 v1, u32 v2, u32 v3, u32 arg2, s32 v8, s32 v9, s
 }
 #undef v12
 
-s32 fn_12_2CDD0(void *arg0, s32 arg1, u32 arg2, struct fn_12_2CDD0_Arg3 *arg3) {
-    u32 v4;
-    s32 v11;
-    /* WARNING: compiler-diff device, not original code: one-field carrier base (v0 alias macro); plain u32 40 diff lines */
-    struct { u32 value; } base;
-#define v0 base.value
-    s32 v12;
-    u32 v13;
-    u32 v5;
-    u32 v1;
-    s32 v8;
-    s32 v9;
-    u32 v2;
-    u32 v3;
-    s32 v7;
-    u32 v14;
-    s32 v15;
-    s32 v16;
-    s32 v17;
-    u32 v18;
-    arg3->unk_0 = -1;
-    v0 = (u32)((u8 *)arg0 + arg1 * 116);
-    v1 = *(u32 *)((u8 *)v0 + 4472);
-    v2 = *(u32 *)((u8 *)v0 + 4440);
-    v3 = *(u32 *)((u8 *)v0 + 4444);
-    if (v1 == 0) return 0;
-    v5 = v2 + v3;
-    if (arg2 >= v5) arg2 -= v3;
-    v7 = *(s32 *)((u8 *)v0 + 4480);
-    if (v7 != 0) {
-        v8 = *(s32 *)((u8 *)v0 + 4488);
-        v9 = *(s32 *)((u8 *)v0 + 4476);
-        v12 = find_entry(v1, v2, v3, arg2, v8, v9, v7, v5);
-        if (v12 != -1) {
-            v16 = v8 + v12;
-            v17 = v16 - v9;
-            if (v16 < v9) v17 = v16;
-            *(s32 *)((u8 *)v0 + 4480) -= v12;
-            *(s32 *)((u8 *)v0 + 4488) = v17;
-            v18 = *(u32 *)((u8 *)v0 + 4472) + v17 * 12;
-            *(struct fn_12_2CDD0_Copy12 *)arg3 = *(struct fn_12_2CDD0_Copy12 *)v18;
-        }
-    }
-    return 0;
-}
+s32 fn_12_2CDD0(void *arg0, s32 arg1, u32 arg2, struct fn_12_2CDD0_Arg3 *arg3);
 
 /* --- rel/movie_module/fn_12_2CF20.c --- */
 typedef struct MovieCmd {
@@ -125,53 +77,7 @@ typedef struct MovieEntry {
 } MovieEntry;
 
 
-s32 fn_12_2CF20(void *movie, s32 index, MovieCmd *cmd) {
-    s32 result;
-    MovieEntry *entry;
-    s32 value;
-    s32 v4;
-    s32 tail;
-    u8 *buffer;
-    s32 next;
-    s32 cap;
-    /* WARNING: compiler-diff device, not original code: one-field carrier; plain s32 newtail 12 diff lines */
-    struct { s32 value; } newtail;
-
-    value = cmd->f_0;
-    if (value < 0) {
-        return 0;
-    }
-    entry = (MovieEntry *)((u8 *)movie + index * 0x74);
-    buffer = entry->buffer;
-    if (buffer == 0) {
-        return 0;
-    }
-    if (entry->used == entry->capacity) {
-        result = -1;
-    } else {
-        tail = entry->tail;
-        v4 = cmd->f_4;
-        {
-            MovieCmd *slot;
-            slot = (MovieCmd *)((u8 *)buffer + tail * 0xc);
-            *slot = *cmd;
-        }
-        next = tail;
-        next = next + 1;
-        cap = entry->capacity;
-        newtail.value = next - cap;
-        if (next < cap) {
-            newtail.value = next;
-        }
-        entry->used = entry->used + 1;
-        entry->tail = newtail.value;
-        result = 0;
-    }
-    if (result == -1) {
-        return fn_12_24A88(movie, 0xFF000421);
-    }
-    return 0;
-}
+s32 fn_12_2CF20(void *movie, s32 index, MovieCmd *cmd);
 
 /* --- rel/movie_module/fn_12_2CFEC.c --- */
 /* --- rel/movie_module/fn_12_2CFEC.c --- */
@@ -183,13 +89,7 @@ typedef struct MovieModuleState_u1 {
     u32 field_10;
 } MovieModuleState_u1;
 
-void fn_12_2CFEC(MovieModuleState_u1 *state) {
-    state->field_0 = 0;
-    state->field_4 = 0;
-    state->field_8 = 0;
-    state->field_c = 0;
-    state->field_10 = 0;
-}
+void fn_12_2CFEC(MovieModuleState_u1 *state);
 
 /* --- rel/movie_module/fn_12_2D008.c --- */
 typedef int SfdCallbackObject;
@@ -706,76 +606,4 @@ static inline void sfsee_UpdateByteRate(SfdHandle *handle) {
     }
 }
 
-void fn_12_2D008(SfdHandle *handle) {
-    SfdSeeSeekSource *source = sfsee_GetSource(handle);
-    SfdSeeTiming *timing;
-    int audio_ready;
-    int video_ready;
-    int system_ready;
-    int analysis_pending;
-    int byte_rate;
-    int field_08;
-    int duration;
-    if (source->prefix.analyzed != 0) {
-        return;
-    }
-    if (fn_12_2F1B4(handle, 3) != 0 && fn_12_2D73C(handle, 6) == 1) {
-        audio_ready = 1;
-        if (source->audio.active == 0) {
-            analysis_pending = 1;
-        } else {
-            analysis_pending = 0;
-        }
-    } else {
-        audio_ready = 0;
-        analysis_pending = 0;
-    }
-    if (analysis_pending != 0) {
-        return;
-    }
-    if (fn_12_2F1B4(handle, 2) != 0 && fn_12_2D73C(handle, 5) == 1) {
-        video_ready = 1;
-        if (source->video.active == 0) {
-            analysis_pending = 1;
-        } else {
-            analysis_pending = 0;
-        }
-    } else {
-        video_ready = 0;
-        analysis_pending = 0;
-    }
-    if (analysis_pending != 0) {
-        return;
-    }
-    system_ready = fn_12_2F1B4(handle, 1) != 0;
-    if (system_ready != 0) {
-        source->system.active = 1;
-        /* WARNING: compiler-diff device, not original code: volatile view of field_18 forces the reload in the else branch (retail lwz 24(r31)); plain read reuses r0, 2 diff lines */
-        if (source->prefix.field_0C != 0 && *(volatile int *)&source->prefix.field_18 > 0) { /* field metadata may be updated externally */
-            timing = &source->timing;
-            duration = source->prefix.field_40;
-            if (timing->file_size > 0 && duration > 0) {
-                byte_rate = UTY_MulDiv(timing->file_size, 1000, duration);
-            } else {
-                byte_rate = source->prefix.field_18;
-            }
-        } else if (source->prefix.field_0C != 0 && fn_12_23F34(handle) < 108) {
-            byte_rate = (source->system.byte_rate * 2048) / 2018;
-        } else {
-            byte_rate = source->system.byte_rate;
-        }
-        field_08 = source->system.field_08;
-    } else if (video_ready != 0) {
-        byte_rate = source->video.byte_rate;
-        field_08 = source->video.field_08;
-    } else if (audio_ready != 0) {
-        byte_rate = source->audio.byte_rate;
-        field_08 = source->audio.field_08;
-    } else {
-        return;
-    }
-    source->prefix.analyzed_byte_rate = byte_rate;
-    source->prefix.field_08 = field_08;
-    source->prefix.analyzed = 1;
-    sfsee_UpdateByteRate(handle);
-}
+void fn_12_2D008(SfdHandle *handle);

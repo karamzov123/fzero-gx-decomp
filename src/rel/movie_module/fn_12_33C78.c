@@ -1,5 +1,6 @@
 #include "types.h"
 
+/* --- rel/movie_module/fn_12_33C78.c --- */
 typedef struct Sig_fn_12_2B25C_MovieModule {
     char pad_960[0x960];
     int value_960;
@@ -246,3 +247,19 @@ void fn_12_33C78(struct fn_12_33C78_Self *self, struct fn_12_33C78_Out *out) {
     }
 }
 #pragma opt_propagation reset
+
+/* --- rel/movie_module/fn_12_34084.c --- */
+extern char lbl_12_rodata_1280[46];
+
+typedef struct MovieModule {
+    u8 pad[0x54];
+    void *movie;
+} MovieModule;
+
+void *fn_12_34084(MovieModule *module) {
+    if (fn_12_3A36C(module) == 0) {
+        MWSFSVM_Error(lbl_12_rodata_1280);
+        return 0;
+    }
+    return module->movie;
+}

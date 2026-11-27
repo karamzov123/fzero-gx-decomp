@@ -1,5 +1,6 @@
 #include "types.h"
 
+/* --- rel/movie_module/fn_12_24C48.c --- */
 /* SFD_Init (sfd_lib.c, CRI Sofdec) */
 
 typedef struct SfdHandle SfdHandle;
@@ -116,3 +117,18 @@ int fn_12_24C48(SfdLibraryConfig *config) {
     fn_12_24924();
     return 0;
 }
+
+/* --- rel/movie_module/fn_12_24D68.c --- */
+/* --- rel/movie_module/fn_12_24D68.c --- */
+int fn_12_24D68(int unused, int value) {
+    return value == 0x29d8;
+}
+
+/* --- rel/movie_module/fn_12_24D78.c --- */
+// fn_12_24D78: returns a constant.
+int fn_12_24D78(void);
+
+/* --- rel/movie_module/fn_12_24D80.c --- */
+extern void fn_12_24A88(int arg0, int arg1);
+
+void fn_12_24D80(int arg0);

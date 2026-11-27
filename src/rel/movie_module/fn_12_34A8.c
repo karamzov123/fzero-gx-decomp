@@ -1,6 +1,6 @@
 #include "types.h"
 
-
+/* --- rel/movie_module/fn_12_34A8.c --- */
 /* --- rel/movie_module/fn_12_34A8.c --- */
 typedef struct MovieState {
     u32 unk0;
@@ -80,3 +80,42 @@ void fn_12_354C(MovieModuleObject_u3 *module) {
         lbl_12_bss_4C0[0] -= 1;
     }
 }
+
+/* --- rel/movie_module/fn_12_3570.c --- */
+typedef struct MovieModuleObject_u1 {
+    int field_0;
+    int field_4;
+    int field_8;
+    int field_C;
+    int field_10;
+} MovieModuleObject_u1;
+
+
+static inline MovieModuleObject_u1 *find_object(void) {
+    MovieModuleObject_u1 *cur = (MovieModuleObject_u1 *)(lbl_12_bss_4C0 + 2);
+    int i;
+    for (i = 0; i < (int)lbl_12_bss_4C0[1]; i++) {
+        if (cur->field_0 == 0) {
+            return cur;
+        }
+        cur++;
+    }
+    return 0;
+}
+
+#pragma opt_dead_assignments off
+MovieModuleObject_u1 *fn_12_3570(void) {
+    int fzgx_value;
+    MovieModuleObject_u1 *obj = find_object();
+    if (obj != 0) {
+        obj->field_8 = 0;
+        fzgx_value = 0x1f;
+        obj->field_C = fzgx_value;
+        obj->field_10 = 0x64;
+        obj->field_4 = 1;
+        lbl_12_bss_4C0[0] += 1;
+        obj->field_0 = 1;
+    }
+    return obj;
+}
+#pragma opt_dead_assignments reset

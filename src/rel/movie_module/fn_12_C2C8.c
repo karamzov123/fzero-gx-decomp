@@ -1,6 +1,6 @@
-
 #include "types.h"
 
+/* --- rel/movie_module/fn_12_C2C8.c --- */
 typedef struct SJCK {
     union {
         unsigned char padding_extent[8];
@@ -14,35 +14,35 @@ typedef struct SJCK {
     } fields;
 } SJCK;
 
-typedef struct SJ SJ;
+typedef struct SJ_u0 SJ_u0;
 
-typedef struct SJInterface SJInterface;
+typedef struct SJInterface_u0 SJInterface_u0;
 
 typedef void (*SJErrorCallback)(void *object, int error);
 
-struct SJInterface {
+struct SJInterface_u0 {
     union {
         unsigned char padding_extent[48];
         struct {
             unsigned char padding_get_chunk[24];
-            void (*get_chunk)(SJ *sj, long channel, long max_size, SJCK *chunk);
+            void (*get_chunk)(SJ_u0 *sj, long channel, long max_size, SJCK *chunk);
         } view_get_chunk;
         struct {
             unsigned char padding_unget_chunk[28];
-            void (*unget_chunk)(SJ *sj, int channel, SJCK *chunk);
+            void (*unget_chunk)(SJ_u0 *sj, int channel, SJCK *chunk);
         } view_unget_chunk;
         struct {
             unsigned char padding_put_chunk[32];
-            void (*put_chunk)(SJ *sj, int channel, SJCK *chunk);
+            void (*put_chunk)(SJ_u0 *sj, int channel, SJCK *chunk);
         } view_put_chunk;
     } fields;
 };
 
-struct SJ {
+struct SJ_u0 {
     union {
         unsigned char padding_extent[4];
         struct {
-            const SJInterface *interface;
+            const SJInterface_u0 *interface;
         } view_interface;
     } fields;
 };
@@ -65,7 +65,7 @@ typedef struct DctFsriParams {
     u8 field_4C[8];
 } DctFsriParams;
 
-typedef struct MPVContext MPVContext;
+typedef struct MPVContext_u0 MPVContext_u0;
 
 typedef void (*MPVErrorCallback)(void *object, int error);
 
@@ -83,11 +83,11 @@ typedef struct MPVErrorInfo {
     } fields;
 } MPVErrorInfo;
 
-typedef struct MPVMCContext MPVMCContext;
+typedef struct MPVMCContext_u0 MPVMCContext_u0;
 
-typedef void (*MPVMCFunction)(MPVMCContext *context);
+typedef void (*MPVMCFunction)(MPVMCContext_u0 *context);
 
-struct MPVMCContext {
+struct MPVMCContext_u0 {
     union {
         unsigned char padding_extent[68];
         struct {
@@ -236,7 +236,7 @@ typedef struct MPVCodingWorkspace {
 } MPVCodingWorkspace;
 
 typedef struct MPVUserStream {
-    SJ *stream;
+    SJ_u0 *stream;
     void (*callback)(void *argument, int index);
     void *callback_argument;
 } MPVUserStream;
@@ -251,7 +251,7 @@ typedef struct MPVPictureUserBuffer {
     } fields;
 } MPVPictureUserBuffer;
 
-struct MPVContext {
+struct MPVContext_u0 {
     union {
         unsigned char padding_extent[4992];
         struct {
@@ -289,21 +289,21 @@ struct MPVContext {
     } fields;
 };
 
-int fn_12_C2C8(void *handle, SJ *stream);
+int fn_12_C2C8(void *handle, SJ_u0 *stream);
 
 void fn_800589BC(const SJCK *source, int nbyte, SJCK *first, SJCK *remainder);
 
-int fn_12_A660(MPVContext *handle, int error);
+int fn_12_A660(MPVContext_u0 *handle, int error);
 
-int fn_12_CAB4(MPVContext *handle);
+int fn_12_CAB4(MPVContext_u0 *handle);
 
 const unsigned char *fn_12_A0D8(const unsigned char *data, int length, int mask);
 
 int fn_12_A2C4(const unsigned char *data);
 
-extern int fn_12_20170(MPVContext *context, SJ *stream);
+extern int fn_12_20170(MPVContext_u0 *context, SJ_u0 *stream);
 
-static inline int MPV_MoveChunk(SJ *stream, int channel, int size) {
+static inline int MPV_MoveChunk(SJ_u0 *stream, int channel, int size) {
     SJCK chunk;
     int source_channel = channel;
     channel = channel == 0;
@@ -314,7 +314,7 @@ static inline int MPV_MoveChunk(SJ *stream, int channel, int size) {
     return chunk.fields.view_len.len;
 }
 
-static inline int mpvhdec_ReadDelimSj(SJ *stream) {
+static inline int mpvhdec_ReadDelimSj(SJ_u0 *stream) {
     SJCK chunk;
     SJCK remainder;
     const u8 *delimiter;
@@ -344,7 +344,7 @@ static inline int mpvhdec_ReadDelimSj(SJ *stream) {
     return delimiter_type;
 }
 
-static inline int mpvhdec_DetectDecoderMode(MPVContext *context, const u8 *data, int length) {
+static inline int mpvhdec_DetectDecoderMode(MPVContext_u0 *context, const u8 *data, int length) {
     const u8 *delimiter;
     int delimiter_type;
     if (context->fields.view_field_358.field_358 != 0) {
@@ -368,7 +368,7 @@ static inline int mpvhdec_DetectDecoderMode(MPVContext *context, const u8 *data,
     return context->fields.view_field_358.field_358;
 }
 
-static inline int mpvhdec_SeekPictureData(MPVContext *context, SJ *stream, int wanted_mask) {
+static inline int mpvhdec_SeekPictureData(MPVContext_u0 *context, SJ_u0 *stream, int wanted_mask) {
     int condition;
     int error;
     int delimiter_type;
@@ -404,7 +404,7 @@ static inline int mpvhdec_SeekPictureData(MPVContext *context, SJ *stream, int w
     return error;
 }
 
-static inline int MPV_GoNextDelimSj(SJ *stream) {
+static inline int MPV_GoNextDelimSj(SJ_u0 *stream) {
     SJCK chunk;
     SJCK remainder;
     const u8 *delimiter;
@@ -437,7 +437,7 @@ static inline int MPV_GoNextDelimSj(SJ *stream) {
     return delimiter_type;
 }
 
-static inline void mpvhdec_ConsumeDelim(MPVContext *context, SJ *stream) {
+static inline void mpvhdec_ConsumeDelim(MPVContext_u0 *context, SJ_u0 *stream) {
     SJCK remainder;
     s32 bits;
     u32 *p;
@@ -466,9 +466,9 @@ static inline void mpvhdec_ConsumeDelim(MPVContext *context, SJ *stream) {
     MPV_GoNextDelimSj(stream);
 }
 
-int fn_12_B3E0(MPVContext *context, const u8 *data, long length);
+int fn_12_B3E0(MPVContext_u0 *context, const u8 *data, long length);
 
-static inline void mpvhdec_ConsumeUserData(MPVContext *context, SJ *stream) {
+static inline void mpvhdec_ConsumeUserData(MPVContext_u0 *context, SJ_u0 *stream) {
     SJCK remainder;
     s32 bits;
     u32 *p;
@@ -499,14 +499,14 @@ static inline void mpvhdec_ConsumeUserData(MPVContext *context, SJ *stream) {
     MPV_GoNextDelimSj(stream);
 }
 
-int fn_12_B598(MPVContext *context, SJ *stream);
+int fn_12_B598(MPVContext_u0 *context, SJ_u0 *stream);
 
-int fn_12_B9E8(MPVContext *context, SJ *stream);
+int fn_12_B9E8(MPVContext_u0 *context, SJ_u0 *stream);
 
-int fn_12_BBC0(MPVContext *context, SJ *stream);
+int fn_12_BBC0(MPVContext_u0 *context, SJ_u0 *stream);
 
-int fn_12_C2C8(void *handle, SJ *stream) {
-    MPVContext *context = handle;
+int fn_12_C2C8(void *handle, SJ_u0 *stream) {
+    MPVContext_u0 *context = handle;
     SJCK initial_chunk;
     SJCK chunk;
     const u8 *chunk_data;
@@ -560,3 +560,51 @@ int fn_12_C2C8(void *handle, SJ *stream) {
     }
     return error;
 }
+
+/* --- rel/movie_module/fn_12_CA60.c --- */
+/* --- rel/movie_module/fn_12_CA60.c --- */
+/* --- rel/movie_module/fn_12_CA60.c --- */
+typedef struct MovieObject {
+    u8 pad_0000[0x1338];
+    u32 field_1338;
+    u32 field_133c;
+    u32 field_1340;
+} MovieObject;
+
+void fn_12_CA60(MovieObject *self, u32 *value_1338, u32 *value_1340) {
+    if (value_1338 != 0) {
+        *value_1338 = self->field_1338;
+    }
+    if (value_1340 != 0) {
+        *value_1340 = self->field_1340;
+    }
+}
+
+/* --- rel/movie_module/fn_12_CA84.c --- */
+void fn_12_CA84(MovieObject *self, u32 value_1338, u32 value_133c) {
+    self->field_1338 = value_1338;
+    self->field_133c = value_133c;
+    self->field_1340 = 0;
+}
+
+/* --- rel/movie_module/fn_12_CA98.c --- */
+/* --- rel/movie_module/fn_12_CA98.c --- */
+typedef struct MovieEntry {
+    u32 field_0;
+    u32 field_4;
+    u32 field_8;
+} MovieEntry;
+
+typedef struct MovieObject_u1 {
+    u8 pad_0000[0x1308];
+} MovieObject_u1;
+
+void fn_12_CA98(MovieObject_u1 *self, s32 index, u32 value_0, u32 value_4, u32 value_8) {
+    MovieEntry *entry = (MovieEntry *)((u8 *)self + index * 12 + 0x1308);
+    entry->field_0 = value_0;
+    entry->field_4 = value_4;
+    entry->field_8 = value_8;
+}
+
+/* --- rel/movie_module/fn_12_CAB4.c --- */
+extern u32 lbl_12_bss_5280;

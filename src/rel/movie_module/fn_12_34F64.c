@@ -48,18 +48,15 @@ int fn_12_35004(void) {
 
 /* --- rel/movie_module/fn_12_3500C.c --- */
 // fn_12_3500C: empty in retail (single blr).
-void fn_12_3500C(void) {
-}
+void fn_12_3500C(void);
 
 /* --- rel/movie_module/fn_12_35010.c --- */
 // fn_12_35010: empty in retail (single blr).
-void fn_12_35010(void) {
-}
+void fn_12_35010(void);
 
 /* --- rel/movie_module/fn_12_35014.c --- */
 // fn_12_35014: empty in retail (single blr).
-void fn_12_35014(void) {
-}
+void fn_12_35014(void);
 
 /* --- rel/movie_module/fn_12_35018.c --- */
 typedef struct MovieModule {
@@ -69,9 +66,7 @@ typedef struct MovieModule {
 
 extern void fn_12_49AC(void *);
 
-void fn_12_35018(MovieModule *self) {
-    fn_12_49AC(self->field_a8);
-}
+void fn_12_35018(MovieModule *self);
 
 /* --- rel/movie_module/fn_12_3503C.c --- */
 extern void fn_12_4980(void *);
@@ -81,9 +76,7 @@ struct Fn12_3503C_Context {
     void *field_a8;
 };
 
-void fn_12_3503C(struct Fn12_3503C_Context *self) {
-    fn_12_4980(self->field_a8);
-}
+void fn_12_3503C(struct Fn12_3503C_Context *self);
 
 /* --- rel/movie_module/fn_12_35060.c --- */
 /* --- rel/movie_module/fn_12_35060.c --- */
@@ -94,27 +87,12 @@ typedef struct MovieModule_u1 {
 
 extern void fn_12_49EC(void *);
 
-void fn_12_35060(MovieModule_u1 *self) {
-    fn_12_49EC(self->field_a8);
-}
+void fn_12_35060(MovieModule_u1 *self);
 
 /* --- rel/movie_module/fn_12_35084.c --- */
 extern void fn_12_758(void *, int *, int *, int *);
 
-void fn_12_35084(MovieModule_u1 *self, int *out_a, int *out_b, int *out_c) {
-    int value_a;
-    int value_b;
-    int value_c;
-
-    fn_12_758(self->field_a8, &value_a, &value_b, &value_c);
-    if (value_c == 1) {
-        *out_c = 1;
-    } else {
-        *out_c = 0;
-    }
-    *out_a = value_a;
-    *out_b = value_b;
-}
+void fn_12_35084(MovieModule_u1 *self, int *out_a, int *out_b, int *out_c);
 
 /* --- rel/movie_module/fn_12_35108.c --- */
 extern u32 fn_12_77C(u32, u32, u32, u32);
@@ -124,16 +102,12 @@ struct fn_12_35108_Arg0 {
     u32 unk_A8;
 };
 
-void fn_12_35108(struct fn_12_35108_Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3) {
-    fn_12_77C(arg0->unk_A8, arg1, arg2, ((u32)__cntlzw((1 - arg3)) >> 5));
-}
+void fn_12_35108(struct fn_12_35108_Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3);
 
 /* --- rel/movie_module/fn_12_35138.c --- */
 extern void fn_12_7A0(void *arg);
 
-void fn_12_35138(MovieModule_u1 *self) {
-    fn_12_7A0(self->field_a8);
-}
+void fn_12_35138(MovieModule_u1 *self);
 
 /* --- rel/movie_module/fn_12_3515C.c --- */
 /* --- rel/movie_module/fn_12_3515C.c --- */
@@ -144,9 +118,7 @@ typedef struct MovieModule_u2 {
 
 extern void fn_12_7C4(void *movie);
 
-void fn_12_3515C(MovieModule_u2 *module) {
-    fn_12_7C4(module->movie);
-}
+void fn_12_3515C(MovieModule_u2 *module);
 
 /* --- rel/movie_module/mwsftag_GetAinfFromSj.c --- */
 typedef struct SJCK {
@@ -659,47 +631,4 @@ extern const char lbl_12_rodata_17C0[8];
 
 extern const char lbl_12_rodata_17C8[8];
 
-void mwsftag_GetAinfFromSj(MwsPlayer *player) {
-    SJCK source;
-    SJCK result;
-    SJCK consumed;
-    SJ *sj = player->additional_info_sj;
-    int num_data;
-    int stopped;
-    num_data = sj->interface->get_num_data(sj, 1);
-    if (num_data == 0) {
-        player->tag_data = 0;
-        player->tag_size = 0;
-        player->tag_state = 1;
-        return;
-    }
-    source.data = player->additional_info_buffer;
-    source.len = num_data;
-    if (SJ_SearchTag(&source, lbl_12_rodata_17C0, lbl_12_rodata_17C8, &result) == 0) {
-        player->tag_data = 0;
-        player->tag_size = 0;
-        player->tag_state = 1;
-        return;
-    }
-    if (player->additional_info_copy != 0) {
-        memcpy(player->additional_info_copy, result.data, result.len);
-        player->tag_data = player->additional_info_copy;
-        player->tag_size = result.len;
-        player->tag_state = 1;
-        sj->interface->get_chunk(sj, 1, 0x7FFFFFFF, &consumed);
-        sj->interface->put_chunk(sj, 0, &consumed);
-        sj->interface->reset(sj);
-        return;
-    }
-    player->tag_data = result.data;
-    player->tag_size = result.len;
-    player->tag_state = 1;
-    if (player->playback_state == 2) {
-        stopped = 1;
-    } else {
-        stopped = 0;
-    }
-    if (stopped != 1 && player->additional_info_sj != 0) {
-        fn_12_2FA90(player->sfd, 2, 0, 0);
-    }
-}
+void mwsftag_GetAinfFromSj(MwsPlayer *player);

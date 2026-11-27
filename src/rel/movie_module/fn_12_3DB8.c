@@ -246,9 +246,7 @@ struct fn_12_4980_Arg0 {
     u32 unk_58;
 };
 
-void fn_12_4980(struct fn_12_4980_Arg0 *arg0) {
-    fn_12_59C(arg0->unk_58, *(u32 *)((u8 *)arg0 + 92));
-}
+void fn_12_4980(struct fn_12_4980_Arg0 *arg0);
 
 /* --- rel/movie_module/fn_12_49AC.c --- */
 extern u32 fn_12_5EC(u32, u32);
@@ -258,9 +256,7 @@ struct fn_12_49AC_Arg0 {
     u32 unk_58;
 };
 
-void fn_12_49AC(struct fn_12_49AC_Arg0 *arg0) {
-    fn_12_5EC(arg0->unk_58, *(u32 *)((u8 *)arg0 + 92));
-}
+void fn_12_49AC(struct fn_12_49AC_Arg0 *arg0);
 
 /* --- rel/movie_module/fn_12_49D8.c --- */
 typedef struct MovieState {
@@ -268,9 +264,7 @@ typedef struct MovieState {
     s32 value;
 } MovieState;
 
-int fn_12_49D8(MovieState *state) {
-    return state->value != 0;
-}
+int fn_12_49D8(MovieState *state);
 
 /* --- rel/movie_module/fn_12_49EC.c --- */
 typedef struct Fn1249EC {
@@ -279,54 +273,17 @@ typedef struct Fn1249EC {
     u32 field_5c;
 } Fn1249EC;
 
-void fn_12_49EC(Fn1249EC *self, u32 value_58, u32 value_5c) {
-    self->field_58 = value_58;
-    self->field_5c = value_5c;
-}
+void fn_12_49EC(Fn1249EC *self, u32 value_58, u32 value_5c);
 
 /* --- rel/movie_module/fn_12_49F8.c --- */
 extern void fn_12_63C(void);
 
-void fn_12_49F8(void) {
-    fn_12_63C();
-}
+void fn_12_49F8(void);
 
 /* --- rel/movie_module/fn_12_4A18.c --- */
 extern void fn_12_65C(void);
 
-void fn_12_4A18(void) {
-    fn_12_65C();
-}
+void fn_12_4A18(void);
 
 /* --- rel/movie_module/fn_12_4A38.c --- */
-void fn_12_4A38(f64 *arg0, f64 *arg1, f64 (*arg2)[8]) {
-    f64 tmp[64];
-    s32 i;
-    s32 j;
-    s32 k;
-    f64 s;
-
-    {
-    s32 fzgx_loop_i_142;
-for (fzgx_loop_i_142 = 0; fzgx_loop_i_142 < 8; fzgx_loop_i_142++) {
-        for (j = 0; j < 8; j++) {
-            s = 0.0;
-            for (k = 0; k < 8; k++) {
-                s += arg2[k][j] * arg0[fzgx_loop_i_142 * 8 + k];
-            }
-            tmp[fzgx_loop_i_142 * 8 + j] = s;
-        }
-    }
-    i = fzgx_loop_i_142;
-}
-
-    for (i = 0; i < 8; i++) {
-        for (j = 0; j < 8; j++) {
-            s = 0.0;
-            for (k = 0; k < 8; k++) {
-                s += arg2[k][j] * tmp[i + k * 8];
-            }
-            arg1[j * 8 + i] = s;
-        }
-    }
-}
+void fn_12_4A38(f64 *arg0, f64 *arg1, f64 (*arg2)[8]);

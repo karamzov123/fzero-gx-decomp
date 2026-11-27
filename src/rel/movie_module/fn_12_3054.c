@@ -11,40 +11,22 @@ void fn_12_3054(void) {
 
 /* --- rel/movie_module/fn_12_3074.c --- */
 // fn_12_3074: returns a constant.
-int fn_12_3074(void) {
-    return 17;
-}
+int fn_12_3074(void);
 
 /* --- rel/movie_module/fn_12_307C.c --- */
 extern u32 lbl_12_bss_C;
 
-u32 fn_12_307C(void) {
-    return lbl_12_bss_C;
-}
+u32 fn_12_307C(void);
 
 /* --- rel/movie_module/fn_12_308C.c --- */
 extern u32 lbl_12_bss_10[300];
 
-u32 fn_12_308C(void) {
-    return lbl_12_bss_10[5];
-}
+u32 fn_12_308C(void);
 
 /* --- rel/movie_module/fn_12_309C.c --- */
 typedef void (*Fn12Callback)(u32, u32);
 
-void fn_12_309C(u32 a, u32 b, u32 c) {
-    Fn12Callback callback;
-    u32 count;
-    u32 value;
-
-    callback = (Fn12Callback)lbl_12_bss_10[2];
-    count = lbl_12_bss_10[4];
-    value = lbl_12_bss_10[3];
-    lbl_12_bss_10[4] = count + 1;
-    if (callback != 0) {
-        callback(value, c);
-    }
-}
+void fn_12_309C(u32 a, u32 b, u32 c);
 
 /* --- rel/movie_module/fn_12_30E8.c --- */
 extern void fn_12_48A0(void *arg);
@@ -58,17 +40,7 @@ typedef struct MovieModule {
     void *field_2c;
 } MovieModule;
 
-void fn_12_30E8(MovieModule *movie) {
-    if (movie != 0) {
-        void *arg0 = movie->field_20;
-        void *arg1 = movie->field_2c;
-
-        movie->field_00 = 0;
-        fn_12_48A0(arg0);
-        fn_12_354C(arg1);
-        lbl_12_bss_10[0]--;
-    }
-}
+void fn_12_30E8(MovieModule *movie);
 
 /* --- rel/movie_module/fn_12_3148.c --- */
 /* --- rel/movie_module/fn_12_3148.c --- */
@@ -125,56 +97,10 @@ static inline MovieModule_u1 *find_slot(void) {
  }
  return 0;
 }
-MovieModule_u1 *fn_12_3148(u32 arg0, s32 arg1) {
- u8 *p_lbl_12_rodata_448 = lbl_12_rodata_448;
- MovieModule_u1 *v1 = find_slot();
- void *v2;
- if (v1 == 0) return v1;
- switch (arg1 >= 0x301f) {
- default:
- report(p_lbl_12_rodata_448 + 0x34);
- return 0;
- case 1:
- break;
- }
- memset(v1, 0, 0x90);
- v1->field_04 = 0;
- v1->field_08 = 0;
- v1->field_0c = 0;
- v1->field_24 = 1;
- v1->field_28 = 0;
- v1->field_34 = 0;
- v1->field_38 = (arg0 + 31) & ~31;
- v1->field_3c = v1->field_38 + 0x400;
- v1->field_40 = v1->field_3c + 0x400;
- v1->field_44 = v1->field_40 + 0x400;
- v1->field_50 = arg0;
- v1->field_54 = arg1;
- v1->field_60 = -1;
- v1->field_00 = 1;
- v2 = fn_12_48C4();
- if (v2 == 0) {
- report(p_lbl_12_rodata_448 + 0x60);
- destroy(v1);
- return 0;
- }
- v1->field_20 = v2;
- v2 = fn_12_3570(v2);
- if (v2 == 0) {
- report(p_lbl_12_rodata_448 + 0x80);
- destroy(v1);
- return 0;
- }
- v1->field_2c = v2;
- lbl_12_bss_10[0]++;
- return v1;
-}
+MovieModule_u1 *fn_12_3148(u32 arg0, s32 arg1);
 
 /* --- rel/movie_module/fn_12_33BC.c --- */
-void fn_12_33BC(u32 a, u32 b) {
-    lbl_12_bss_10[2] = a;
-    lbl_12_bss_10[3] = b;
-}
+void fn_12_33BC(u32 a, u32 b);
 
 /* --- rel/movie_module/fn_12_33D0.c --- */
 extern s32 lbl_12_bss_8;
@@ -182,11 +108,4 @@ extern void fn_12_4934(void);
 extern void fn_12_35EC(void);
 extern void fn_12_49F8(void);
 
-void fn_12_33D0(void) {
-    if (lbl_12_bss_8 > 0) {
-        fn_12_4934();
-        fn_12_35EC();
-        fn_12_49F8();
-        lbl_12_bss_8--;
-    }
-}
+void fn_12_33D0(void);

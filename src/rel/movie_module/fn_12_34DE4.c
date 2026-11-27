@@ -43,32 +43,21 @@ void fn_12_34E4C(void) {
 /* --- rel/movie_module/fn_12_34E90.c --- */
 extern void fn_8004AEE4(void);
 
-void fn_12_34E90(void) {
-    fn_8004AEE4();
-}
+void fn_12_34E90(void);
 
 /* --- rel/movie_module/fn_12_34EB0.c --- */
 extern void fn_8004AD84(void);
 extern void fn_8004B0EC(void *);
 
-void fn_12_34EB0(void *arg) {
-    fn_8004AD84();
-    fn_8004B0EC(arg);
-}
+void fn_12_34EB0(void *arg);
 
 /* --- rel/movie_module/fn_12_34EE4.c --- */
 extern void fn_8004ADF4(void);
 
-void fn_12_34EE4(void) {
-    fn_8004ADF4();
-}
+void fn_12_34EE4(void);
 
 /* --- rel/movie_module/fn_12_34F04.c --- */
 extern u32 fn_8004AC04(u32, u32);
 extern u32 fn_8004B180(u32, u32, u32, u32, u32);
 
-void fn_12_34F04(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
-    fn_8004B0EC((void *)arg0);
-    fn_8004B180(arg0, arg1, arg2, arg3, arg4);
-    fn_8004AC04(arg0, arg4);
-}
+void fn_12_34F04(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4);

@@ -74,12 +74,4 @@ typedef struct MovieModule_u1 {
     s32 field_1a4;
 } MovieModule_u1;
 
-void fn_12_8AEC(MovieModule_u1 *module) {
-    s32 value = 4;
-
-    if (module->field_1a4 == 0) {
-        value = -1;
-    }
-    module->field_154 = value;
-    module->field_120 = value;
-}
+void fn_12_8AEC(MovieModule_u1 *module);

@@ -29,12 +29,7 @@ static inline int dctFsriScanIndex(int index) {
     return result;
 }
 
-void DCT_FsriInitScanTbl(const signed char source[64], signed char destination[64]) {
-    int index;
-    for (index = 0; index < 64; index++) {
-        destination[index] = (signed char)dctFsriScanIndex(source[index]);
-    }
-}
+void DCT_FsriInitScanTbl(const signed char source[64], signed char destination[64]);
 
 /* --- rel/movie_module/fn_12_4F18.c --- */
 typedef struct MovieModule {
@@ -44,6 +39,4 @@ typedef struct MovieModule {
 
 extern void fn_12_4F3C(MovieModule *module, void *arg);
 
-void fn_12_4F18(MovieModule *module) {
-    fn_12_4F3C(module, module->field_28);
-}
+void fn_12_4F18(MovieModule *module);

@@ -1,18 +1,18 @@
-
 #include "types.h"
 
+/* --- rel/movie_module/fn_12_22954.c --- */
 typedef struct SJCK {
     unsigned char *data;
     long len;
 } SJCK;
 
-typedef struct SJ SJ;
+typedef struct SJ_u0 SJ_u0;
 
-typedef struct SJInterface SJInterface;
+typedef struct SJInterface_u0 SJInterface_u0;
 
 typedef void (*SJErrorCallback)(void *object, int error);
 
-struct SJInterface {
+struct SJInterface_u0 {
     union {
         unsigned char padding_extent[48];
         struct {
@@ -21,8 +21,8 @@ struct SJInterface {
     } fields;
 };
 
-struct SJ {
-    const SJInterface *interface;
+struct SJ_u0 {
+    const SJInterface_u0 *interface;
 };
 
 typedef void *SfdCallbackObject;
@@ -31,11 +31,11 @@ typedef int SfdConditionValue;
 
 typedef int SfdTransportValue;
 
-typedef struct SfdHandle SfdHandle;
+typedef struct SfdHandle_u0 SfdHandle_u0;
 
-typedef int (*SfdUserIsSkipFn)(SfdHandle *handle, int picture_type, int value, int scale);
+typedef int (*SfdUserIsSkipFn)(SfdHandle_u0 *handle, int picture_type, int value, int scale);
 
-typedef int (*SfdTimeSourceFn)(SfdHandle *handle, int *value, int *scale);
+typedef int (*SfdTimeSourceFn)(SfdHandle_u0 *handle, int *value, int *scale);
 
 typedef struct SfdPlaybackSettings {
     int values_00[5];
@@ -258,13 +258,13 @@ typedef struct SfdTimerSummary {
     int field_1C;
 } SfdTimerSummary;
 
-typedef struct SfdTransportInterface SfdTransportInterface;
+typedef struct SfdTransportInterface_u0 SfdTransportInterface_u0;
 
-typedef struct SfdTransportSetup SfdTransportSetup;
+typedef struct SfdTransportSetup_u0 SfdTransportSetup_u0;
 
-typedef struct SfdVideoFrameState SfdVideoFrameState;
+typedef struct SfdVideoFrameState_u0 SfdVideoFrameState_u0;
 
-typedef void (*SfdBufferHandleCallback)(SfdHandle *handle, int stream_index);
+typedef void (*SfdBufferHandleCallback)(SfdHandle_u0 *handle, int stream_index);
 
 typedef void (*SfdBufferObjectCallback)(SfdCallbackObject object, int stream_index);
 
@@ -272,7 +272,7 @@ typedef struct SfdBufferChannel {
     union {
         unsigned char padding_extent[16];
         struct {
-            SJ *stream_joint;
+            SJ_u0 *stream_joint;
         } view_stream_joint;
         struct {
             unsigned char padding_handle_callback[4];
@@ -311,7 +311,7 @@ typedef struct SfdBufferSupply {
         } view_kind;
         struct {
             unsigned char padding_stream_joint[4];
-            SJ *stream_joint;
+            SJ_u0 *stream_joint;
         } view_stream_joint;
         struct {
             unsigned char padding_buffer[8];
@@ -381,7 +381,7 @@ typedef struct SfdBufferVideoWork {
         } view_reserved_0C;
         struct {
             unsigned char padding_video_frames[16];
-            SfdVideoFrameState *video_frames;
+            SfdVideoFrameState_u0 *video_frames;
         } view_video_frames;
     } fields;
 } SfdBufferVideoWork;
@@ -425,15 +425,15 @@ typedef union SfdBufferWork {
     } fields;
 } SfdBufferWork;
 
-typedef int (*SfdTransportLifecycleFn)(SfdHandle *handle);
+typedef int (*SfdTransportLifecycleFn)(SfdHandle_u0 *handle);
 
-typedef int (*SfdTransportPauseFn)(SfdHandle *handle, int state);
+typedef int (*SfdTransportPauseFn)(SfdHandle_u0 *handle, int state);
 
-typedef int (*SfdTransportTransferFn)(SfdHandle *handle, SfdTransportValue parameter, int value);
+typedef int (*SfdTransportTransferFn)(SfdHandle_u0 *handle, SfdTransportValue parameter, int value);
 
-typedef int (*SfdTransportBufferFn)(SfdHandle *handle, void *buffer);
+typedef int (*SfdTransportBufferFn)(SfdHandle_u0 *handle, void *buffer);
 
-struct SfdTransportInterface {
+struct SfdTransportInterface_u0 {
     SfdTransportLifecycleFn init;
     SfdTransportLifecycleFn finish;
     SfdTransportLifecycleFn exec_server;
@@ -499,7 +499,7 @@ typedef struct SfdVideoFrameInfo {
     unsigned char reserved_7B[5];
 } SfdVideoFrameInfo;
 
-struct SfdVideoFrameState {
+struct SfdVideoFrameState_u0 {
     union {
         unsigned char padding_extent[92];
         struct {
@@ -561,23 +561,23 @@ typedef struct SfdUserOutputWork {
     } fields;
 } SfdUserOutputWork;
 
-struct SfdTransportSetup {
-    const SfdTransportInterface *entries[9];
+struct SfdTransportSetup_u0 {
+    const SfdTransportInterface_u0 *entries[9];
 };
 
-typedef struct SfdAudioOutputCallbacks SfdAudioOutputCallbacks;
+typedef struct SfdAudioOutputCallbacks_u0 SfdAudioOutputCallbacks_u0;
 
-typedef int (*SfdAudioSetPanFn)(SfdHandle *, int, int, SfdAudioOutputCallbacks *);
+typedef int (*SfdAudioSetPanFn)(SfdHandle_u0 *, int, int, SfdAudioOutputCallbacks_u0 *);
 
-typedef int (*SfdAudioGetPanFn)(SfdHandle *, int, SfdAudioOutputCallbacks *);
+typedef int (*SfdAudioGetPanFn)(SfdHandle_u0 *, int, SfdAudioOutputCallbacks_u0 *);
 
-typedef int (*SfdAudioSetVolumeFn)(SfdHandle *, int, SfdAudioOutputCallbacks *);
+typedef int (*SfdAudioSetVolumeFn)(SfdHandle_u0 *, int, SfdAudioOutputCallbacks_u0 *);
 
-typedef int (*SfdAudioGetVolumeFn)(SfdHandle *, SfdAudioOutputCallbacks *);
+typedef int (*SfdAudioGetVolumeFn)(SfdHandle_u0 *, SfdAudioOutputCallbacks_u0 *);
 
-typedef void (*SfdAudioSetSpeedFn)(SfdHandle *, int);
+typedef void (*SfdAudioSetSpeedFn)(SfdHandle_u0 *, int);
 
-struct SfdAudioOutputCallbacks {
+struct SfdAudioOutputCallbacks_u0 {
     void *output_context;
     SfdAudioSetPanFn set_pan;
     SfdAudioGetPanFn get_pan;
@@ -587,21 +587,21 @@ struct SfdAudioOutputCallbacks {
     int reserved_18;
 };
 
-struct SfdHandle {
+struct SfdHandle_u0 {
     union {
         unsigned char padding_extent[13720];
         struct {
             unsigned char padding_video_frames[5344];
-            SfdVideoFrameState video_frames[16];
+            SfdVideoFrameState_u0 video_frames[16];
         } view_video_frames;
     } fields;
 };
 
-int fn_12_22954(SfdHandle *handle, SfdBufferState *buffers, SfdBufferCreateConfig *create);
+int fn_12_22954(SfdHandle_u0 *handle, SfdBufferState *buffers, SfdBufferCreateConfig *create);
 
-SJ *fn_80058498(void *buffer, int buffer_size, int extra_size);
+SJ_u0 *fn_80058498(void *buffer, int buffer_size, int extra_size);
 
-int fn_12_24A88(SfdHandle *handle, int error);
+int fn_12_24A88(SfdHandle_u0 *handle, int error);
 
 void fn_12_24970(int *token);
 
@@ -623,7 +623,7 @@ static inline void sfbuf_SetSupply(SfdBufferState *buffer, SfdBufferRingWork *ri
     fn_12_24950(&token);
 }
 
-static inline SJ *sfbuf_CreateStreamJoint(SfdBufferSupply *supply, unsigned int address,
+static inline SJ_u0 *sfbuf_CreateStreamJoint(SfdBufferSupply *supply, unsigned int address,
                                           int buffer_size, int extra_size) {
     if (buffer_size <= 0) {
         return 0;
@@ -664,7 +664,7 @@ static inline int sfbuf_InitRing(SfdBufferState *buffer, unsigned int *address, 
     return 0;
 }
 
-static inline void sfbuf_InitVideo(SfdHandle *handle, SfdBufferState *buffer, unsigned int *address,
+static inline void sfbuf_InitVideo(SfdHandle_u0 *handle, SfdBufferState *buffer, unsigned int *address,
                                    int *size) {
     long index;
     int active;
@@ -716,7 +716,7 @@ static inline void sfbuf_InitAudio(SfdBufferState *buffer, unsigned int *address
         .reserved_tail[2] = 0;
 }
 
-int fn_12_22954(SfdHandle *handle, SfdBufferState *buffers, SfdBufferCreateConfig *create) {
+int fn_12_22954(SfdHandle_u0 *handle, SfdBufferState *buffers, SfdBufferCreateConfig *create) {
     unsigned int addresses[9];
     int remainder;
     int result0;
@@ -771,3 +771,97 @@ int fn_12_22954(SfdHandle *handle, SfdBufferState *buffers, SfdBufferCreateConfi
     }
     return 0;
 }
+
+/* --- rel/movie_module/fn_12_22FB4.c --- */
+/* --- rel/movie_module/fn_12_22FB4.c --- */
+/* --- rel/movie_module/fn_12_22FB4.c --- */
+// fn_12_22FB4: empty in retail (single blr).
+void fn_12_22FB4(void) {
+}
+
+/* --- rel/movie_module/fn_12_22FB8.c --- */
+// fn_12_22FB8: empty in retail (single blr).
+void fn_12_22FB8(void) {
+}
+
+/* --- rel/movie_module/fn_12_22FBC.c --- */
+typedef struct MovieState {
+    u8 pad_0[0x1a8];
+    s32 value_1a8;
+    u8 pad_1ac[4];
+    s32 count_1b0;
+    s32 index_1b4;
+    s32 entries_1b8[1];
+} MovieState;
+
+typedef struct MovieModule {
+    u8 pad_cc0[0xcc0];
+    MovieState state;
+} MovieModule;
+
+
+s32 fn_12_22FBC(MovieModule *module, s32 *out_entry, s32 *out_value);
+
+/* --- rel/movie_module/fn_12_23078.c --- */
+typedef struct MovieState_u1 {
+    u8 unk_000[0x1a8];
+    int pending;
+    u8 unk_1ac[4];
+    s32 head;
+    s32 tail;
+    void *entries[0x20];
+} MovieState_u1;
+
+typedef struct MovieModule_u1 {
+    u8 unk_000[0xcc0];
+    MovieState_u1 state;
+} MovieModule_u1;
+
+int fn_12_23078(MovieModule_u1 *module, void *entry, int value);
+
+/* --- rel/movie_module/fn_12_23120.c --- */
+/* --- rel/movie_module/fn_12_23120.c --- */
+
+typedef struct MovieModuleState {
+    u8 pad_000[0x120];
+    int field_120;
+    int field_124;
+    int field_128[32];
+} MovieModuleState;
+
+void fn_12_23120(void *arg0, int arg1);
+
+/* --- rel/movie_module/fn_12_231A0.c --- */
+extern u32 fn_12_2D73C(u32, u32);
+
+s32 fn_12_231A0(u32 arg0);
+
+/* --- rel/movie_module/fn_12_231F8.c --- */
+s32 fn_12_231F8(u32 arg0);
+
+/* --- rel/movie_module/fn_12_23250.c --- */
+u32 fn_12_23250(u32 arg0);
+
+/* --- rel/movie_module/fn_12_23280.c --- */
+extern int fn_12_24990(void);
+extern void fn_12_2D7DC(void *arg0, int arg1, int arg2);
+
+int fn_12_23280(void *arg0);
+
+/* --- rel/movie_module/fn_12_232DC.c --- */
+extern u8 *fn_12_A0D8(u8 *data, int size, int mode);
+extern u8 lbl_12_rodata_AB8[36];
+extern u8 lbl_12_rodata_BD8[56];
+
+typedef struct MovieInfo {
+    u8 unk_000[8];
+    u8 *field_008;
+    u8 unk_00c[8];
+    u32 field_014;
+    u32 field_018;
+    s32 field_01c;
+    u32 field_020;
+    u32 field_024;
+} MovieInfo;
+
+int fn_12_232DC(u8 *data, int size, MovieInfo *info);

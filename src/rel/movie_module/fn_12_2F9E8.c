@@ -85,6 +85,4 @@ int fn_12_2FA90(MovieModule_u1 *module, int index, void *arg1, void *arg2) {
 
 /* --- rel/movie_module/fn_12_2FB54.c --- */
 // fn_12_2FB54: returns a constant.
-int fn_12_2FB54(void) {
-    return 0;
-}
+int fn_12_2FB54(void);

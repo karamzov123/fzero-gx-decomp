@@ -1,5 +1,6 @@
 #include "types.h"
 
+/* --- rel/movie_module/fn_12_35B08.c --- */
 static const char lbl_12_rodata_15D0[424] = "E211054: MWSFD_CnvFrmLowHalfARGB8888: handle is invalid.\000\000\000\000E211055: MWSFD_CnvFrmLow"
     "HalfARGB8888: getfrm is failed.\000E211052: MWSFD_CnvFrmLowHalfARGB8888: handle is invalid.\000"
     "\000\000\000E211053: MWSFD_CnvFrmLowHalfARGB8888: getfrm is failed.\000E202285: MWSFD_MakeTblZ32"
@@ -187,3 +188,84 @@ void fn_12_35B08(u32 input0, u32 arg1, u32 input2) {
 }
 
 #pragma opt_propagation reset
+
+/* --- rel/movie_module/fn_12_35D74.c --- */
+/* --- rel/movie_module/fn_12_35D74.c --- */
+/* --- rel/movie_module/fn_12_35D74.c --- */
+extern void fn_12_30E8(void);
+
+void fn_12_35D74(void) {
+    fn_12_30E8();
+}
+
+/* --- rel/movie_module/fn_12_35D94.c --- */
+extern void fn_12_3148(void);
+
+void fn_12_35D94(void) {
+    fn_12_3148();
+}
+
+/* --- rel/movie_module/fn_12_35DB4.c --- */
+// fn_12_35DB4: returns a constant.
+int fn_12_35DB4(void) {
+    return 12319;
+}
+
+/* --- rel/movie_module/fn_12_35DBC.c --- */
+extern void fn_12_33D0(void);
+
+void fn_12_35DBC(void) {
+    fn_12_33D0();
+}
+
+/* --- rel/movie_module/fn_12_35DDC.c --- */
+
+void fn_12_35DDC(void* arg0, void* arg1) {
+    MWSFSVM_Error(arg1);
+}
+
+/* --- rel/movie_module/fn_12_35E04.c --- */
+/* --- rel/movie_module/fn_12_35E04.c --- */
+extern u32 fn_12_33BC(u32, u32);
+extern u32 fn_12_341C(void);
+
+u32 fn_12_35E04(void) {
+    fn_12_341C();
+    return fn_12_33BC((u32)fn_12_35DDC, 0);
+}
+
+/* --- rel/movie_module/fn_12_35E34.c --- */
+extern void* fn_12_38DBC(void*);
+
+void* fn_12_35E34(void* arg0, void* arg1, void* arg2);
+
+/* --- rel/movie_module/fn_12_35E84.c --- */
+typedef struct Sig_fn_12_23E0C_MovieState {
+    u8 unk_00;
+    u8 unk_01;
+    u8 pad_02[0x06];
+    void *unk_08;
+    void *unk_0c;
+    s32 unk_10;
+    s32 unk_14;
+    s32 unk_18;
+} Sig_fn_12_23E0C_MovieState;
+
+typedef struct OutBlock {
+    s32 f0;
+    s32 f1;
+    s32 f2;
+    s32 f3;
+    s32 f4;
+    s32 f5;
+    s32 f6;
+    s32 f7;
+} OutBlock;
+
+extern char lbl_12_rodata_1E18[40];
+extern char lbl_12_rodata_1E40[41];
+extern void * memset(void *, int, u32);
+extern void fn_12_23E0C(void *, void *, Sig_fn_12_23E0C_MovieState *);
+extern void fn_12_336CC(const void *, u32, void *);
+
+void fn_12_35E84(u32 arg0, s32 arg1, void *arg2);

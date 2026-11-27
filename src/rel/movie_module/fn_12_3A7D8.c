@@ -198,12 +198,4 @@ static inline void mwsfd_SleepLoop(MwsPlayer *player) {
     }
 }
 
-void fn_12_3A888(MwsPlayer *player) {
-    fn_12_341C0();
-    mwsfd_SetSleepBdr(player, 1);
-    fn_12_34B64();
-    mwsfd_ClrSleepBdr(player);
-    fn_12_341BC();
-    if (player->in_mwply_server == 1)
-        mwsfd_SleepLoop(player);
-}
+void fn_12_3A888(MwsPlayer *player);

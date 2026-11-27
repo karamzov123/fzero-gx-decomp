@@ -1,5 +1,6 @@
 #include "types.h"
 
+/* --- rel/movie_module/fn_12_10F3C.c --- */
 /* MPVVLC_Init (mpv_vlc.c, CRI Sofdec MPEG video VLC tables). Every object of the
  * TU is defined here under its retail name so the code reaches it off the section
  * bases like retail; names follow mpv_vlc.c in the comments. */
@@ -221,4 +222,14 @@ void fn_12_10F3C(u8 *vlc, void *ixa) {
         lbl_12_bss_6928 = (s16 *)p;
         fn_12_33364((unsigned int *)p, (unsigned int *)lbl_12_bss_6330, sizeof(lbl_12_bss_6330) / 4);
     }
+}
+
+/* --- rel/movie_module/fn_12_11168.c --- */
+#pragma opt_propagation off
+s32 fn_12_11168(void) {
+    s32 second = 0x5b0;
+{
+    s32 first = 0x5b0;
+    return first < second;
+}
 }

@@ -332,49 +332,7 @@ static inline int mwsst_IsValid(const MwsStHandle_u2 *handle) {
     return 1;
 }
 
-void fn_12_3B15C(MwsStHandle_u2 *handle) {
-    void (* fzgx_live_)(SJ *sj);
-    void (* fzgx_live)(MwsStHandle_u2 *handle);
-    MwsStHandle_u2 *sound;
-    SJ *stream;
-    if (mwsst_IsValid(handle) != 1) {
-        return;
-    }
-    sound = handle->backend;
-    stream = handle->stream;
-    if (sound == 0) {
-        return;
-    }
-
-    if (mwsst_IsValid(sound) == 1) {
-        void *backend = sound->backend;
-        if (lbl_12_data_E90.interface != 0 && lbl_12_data_E90.interface->stop != 0) {
-            lbl_12_data_E90.interface->stop(backend);
-        }
-    }
-    handle->active = 0;
-    {
-        MwsStManagerInterface *iface;
-        iface = lbl_12_data_E90.interface;
-        if (sound != 0 && iface != 0 && iface->destroy != 0) {
-            fzgx_live = iface->destroy;
-            fzgx_live(sound);
-        }
-    }
-    fzgx_live_ = stream->interface->destroy;
-    fzgx_live_(stream);
-    handle->backend = 0;
-    {
-        MwsStManager *manager = &lbl_12_data_E90;
-        MwsStManagerInterface *interface = manager->interface;
-        if (interface != 0 && manager->active_count != 0) {
-            manager->active_count--;
-            if (manager->active_count == 0 && interface->finish != 0) {
-                interface->finish();
-            }
-        }
-    }
-}
+void fn_12_3B15C(MwsStHandle_u2 *handle);
 
 /* --- rel/movie_module/fn_12_3B2EC.c --- */
 
@@ -395,33 +353,4 @@ extern int fn_12_26734(SfdHandle *handle, int element_id, SJ *stream, int channe
 
 
 
-void fn_12_3B2EC(MwsStPlayerPrefix *wrapper) {
-    MwsStHandle_u2 *sound = &wrapper->sound;
-    SfdHandle *player = wrapper->player;
-    MwsStHandle_u2 *backend = sound->backend;
-    SJ *stream = sound->stream;
-    int element_id = sound->element_id;
-    int valid;
-
-    if (lbl_12_data_E90.interface == 0) {
-        valid = 0;
-    } else if (sound->active != 1) {
-        valid = 0;
-    } else if (backend == 0) {
-        valid = 0;
-    } else {
-        valid = 1;
-    }
-
-    if (valid != 1) {
-        return;
-    }
-    if (backend != 0 && mwsst_IsValid(backend) == 1) {
-        void *playback = backend->backend;
-        if (lbl_12_data_E90.interface != 0 && lbl_12_data_E90.interface->stop != 0) {
-            lbl_12_data_E90.interface->stop(playback);
-        }
-    }
-    stream->interface->reset(stream);
-    fn_12_26734(player, element_id + 0xC0, stream, 0, 0);
-}
+void fn_12_3B2EC(MwsStPlayerPrefix *wrapper);

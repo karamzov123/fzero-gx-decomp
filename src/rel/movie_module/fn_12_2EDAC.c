@@ -406,9 +406,7 @@ typedef struct MovieModuleState_u3 {
     MovieEntry entries[1];
 } MovieModuleState_u3;
 
-int fn_12_2F1B4(MovieModuleState_u3 *state, int index) {
-    return state->entries[index].field_0 != 0;
-}
+int fn_12_2F1B4(MovieModuleState_u3 *state, int index);
 
 /* --- rel/movie_module/fn_12_2F1D0.c --- */
 struct fn_12_2F1D0_E68_u32 { u32 unk_0; u8 pad_4[0x40]; };
@@ -417,9 +415,7 @@ struct fn_12_2F1D0_Arg0 {
     struct fn_12_2F1D0_E68_u32 unk_1AA4[1];
 };
 
-u32 fn_12_2F1D0(struct fn_12_2F1D0_Arg0 *arg0, u32 arg1) {
-    return arg0->unk_1AA4[arg1].unk_0;
-}
+u32 fn_12_2F1D0(struct fn_12_2F1D0_Arg0 *arg0, u32 arg1);
 
 /* --- rel/movie_module/fn_12_2F1E0.c --- */
 struct MovieSlot {
@@ -432,9 +428,7 @@ struct Movie {
     struct MovieSlot slots[1];
 };
 
-void fn_12_2F1E0(struct Movie *movie, int index, int value) {
-    movie->slots[index].value = value;
-}
+void fn_12_2F1E0(struct Movie *movie, int index, int value);
 
 /* --- rel/movie_module/fn_12_2F1F0.c --- */
 struct fn_12_2F1F0_E68_u32 { u32 unk_0; u8 pad_4[0x40]; };
@@ -443,9 +437,7 @@ struct fn_12_2F1F0_Arg0 {
     struct fn_12_2F1F0_E68_u32 unk_1AA0[1];
 };
 
-u32 fn_12_2F1F0(struct fn_12_2F1F0_Arg0 *arg0, u32 arg1) {
-    return arg0->unk_1AA0[arg1].unk_0;
-}
+u32 fn_12_2F1F0(struct fn_12_2F1F0_Arg0 *arg0, u32 arg1);
 
 /* --- rel/movie_module/fn_12_2F200.c --- */
 /* --- rel/movie_module/fn_12_2F200.c --- */
@@ -459,9 +451,7 @@ struct Movie_u4 {
     struct MovieItem items[1];
 };
 
-void fn_12_2F200(struct Movie_u4 *movie, int index, int value) {
-    movie->items[index].value = value;
-}
+void fn_12_2F200(struct Movie_u4 *movie, int index, int value);
 
 /* --- rel/movie_module/fn_12_2F210.c --- */
 typedef u32 (*fn_12_2F210_Fn0)(u32, u32, u32, u32);
@@ -477,15 +467,7 @@ struct fn_12_2F210_Arg0 {
     struct fn_12_2F210_arg0_1A90_E68 unk_1A90[1];
 };
 
-u32 fn_12_2F210(struct fn_12_2F210_Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4) {
-    fn_12_2F210_Fn0 *callbacks;
-
-    callbacks = arg0->unk_1A90[arg1].unk_1C;
-    if (callbacks == 0) {
-        return 0;
-    }
-    return callbacks[arg2]((u32)arg0, arg3, arg4, 0);
-}
+u32 fn_12_2F210(struct fn_12_2F210_Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4);
 
 /* --- rel/movie_module/fn_12_2F264.c --- */
 struct Movie_u5;
@@ -504,23 +486,7 @@ struct Movie_u5 {
     struct MovieItem_u5 items[1];
 };
 
-int fn_12_2F264(struct Movie_u5 *movie, int index) {
-    int i;
-    int result;
-    struct MovieItem_u5 *item;
-
-    result = 0;
-    item = movie->items;
-    for (i = 0; i < 9; i++, item++) {
-        if (item->handlers != 0) {
-            result = item->handlers[index](movie, 0, 0, 0);
-            if (result != 0) {
-                break;
-            }
-        }
-    }
-    return result;
-}
+int fn_12_2F264(struct Movie_u5 *movie, int index);
 
 /* --- rel/movie_module/fn_12_2F2F4.c --- */
 extern void fn_12_2D7DC(void *, int, int);
@@ -587,57 +553,4 @@ struct Movie_u6 {
     int field1CD0;
 };
 
-void fn_12_2F2F4(struct Movie_u6 *movie, struct MovieItem_u6 *item) {
-    movie->field1190 = 1;
-    movie->field1AF4 = 0;
-    if (item->field8 != 0) {
-        movie->field1AF8 = 1;
-        movie->field1200 = 1;
-        movie->field1204 = 2;
-        movie->field1B38 = 1;
-        movie->field1B3C = 3;
-        movie->field12E8 = 2;
-        if (item->field10 != 0) {
-            movie->field12EC = 4;
-            movie->field1BC0 = 3;
-            movie->field1BC4 = 5;
-            movie->field13D0 = 4;
-            movie->field13D4 = 6;
-            movie->field1C48 = 5;
-        } else {
-            movie->field12EC = 6;
-            movie->field1C48 = 3;
-        }
-    } else {
-        fn_12_2D7DC(movie, 5, 0);
-        movie->fieldB44 = 0;
-    }
-    if (item->fieldC != 0) {
-        movie->field1AFC = 2;
-        movie->field1274 = 1;
-        movie->field1278 = 3;
-        movie->field1B7C = 2;
-        movie->field1B80 = 4;
-        movie->field135C = 3;
-        if (item->field14 != 0) {
-            movie->field1360 = 5;
-            movie->field1C04 = 4;
-            movie->field1C08 = 6;
-            movie->field1444 = 5;
-            movie->field1448 = 7;
-            movie->field1C8C = 6;
-        } else {
-            movie->field1360 = 7;
-            movie->field1C8C = 4;
-        }
-    } else {
-        fn_12_2D7DC(movie, 6, 0);
-        movie->fieldB48 = 0;
-    }
-    if (item->field20 != 0) {
-        movie->field1B00 = 7;
-        movie->field14B8 = 1;
-        movie->field14BC = 8;
-        movie->field1CD0 = 7;
-    }
-}
+void fn_12_2F2F4(struct Movie_u6 *movie, struct MovieItem_u6 *item);

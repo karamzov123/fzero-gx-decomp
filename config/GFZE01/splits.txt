@@ -777,7 +777,7 @@ dol/adx/sj_mem.c:
 	.text       start:0x80057774 end:0x80057D88 align:4
 
 dol/axrna_end_trans.c:
-	.text       start:0x8005ADBC end:0x8005B0C4 align:4
+	.text       start:0x8005ADBC end:0x8005B464 align:4
 
 dol/runtime/rand.c:
 	.text       start:0x80082908 end:0x80082928 align:4
@@ -911,17 +911,11 @@ dol/TRKTargetContinue.c:
 dol/adx/adx_bau.c:
 	.text       start:0x80043FA4 end:0x80044E7C align:4
 
-dol/AXRNA_SetPlaySw.c:
-	.text       start:0x8005B0C4 end:0x8005B264 align:4
-
 dol/adx/svm.c:
 	.text       start:0x80058A40 end:0x80059BAC
 
 dol/AXRNA_Init.c:
 	.text       start:0x8005BDD4 end:0x8005BE68 align:4
-
-dol/AXRNA_SetTransSw.c:
-	.text       start:0x8005B264 end:0x8005B464 align:4
 
 dol/AXRNA_Create.c:
 	.text       start:0x8005B534 end:0x8005BC20 align:4

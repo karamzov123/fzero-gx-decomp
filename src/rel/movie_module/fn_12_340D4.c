@@ -27,9 +27,7 @@ typedef struct MovieModule_u1 {
     void *field_40;
 } MovieModule_u1;
 
-void fn_12_3412C(MovieModule_u1 *self) {
-    fn_12_21AE4(self->field_40);
-}
+void fn_12_3412C(MovieModule_u1 *self);
 
 /* --- rel/movie_module/fn_12_34150.c --- */
 typedef struct MovieModule_u2 {
@@ -39,6 +37,4 @@ typedef struct MovieModule_u2 {
 
 extern void fn_12_21B70(void *movie);
 
-void fn_12_34150(MovieModule_u2 *module) {
-    fn_12_21B70(module->movie);
-}
+void fn_12_34150(MovieModule_u2 *module);

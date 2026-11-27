@@ -107,6 +107,4 @@ struct MovieState {
     u32 value;
 };
 
-u32 fn_12_24E94(MovieModule *module) {
-    return module->state->value;
-}
+u32 fn_12_24E94(MovieModule *module);
