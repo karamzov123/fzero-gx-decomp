@@ -598,6 +598,12 @@ eight canvas blocks use the shared prologue. Both USA objects are byte-identical
 to their pre-change builds, and Japan/PAL coverage is unchanged. A single
 object still changes four instruction words in `fn_3_14778` and was not kept.
 
+Four `movie_module/sfd_buf.c` blocks (`fn_12_21D40`, `fn_12_224FC`,
+`fn_12_22FB4`, and `fn_12_22FB8`) now include the shared prologue. The three
+affected compile units are byte-identical to their baseline objects in every
+region. The whole-file probe still stops at conflicting `fn_12_2F210`
+declarations; the compile-unit count is unchanged.
+
 `tools/consolidate/rel_own_data.py` transfers whole adjacent import units into a specified
 one-unit REL TU. It checks contiguity and matching regional coverage, carries over the existing
 typed definitions in retail order, and verifies the moved symbols against fresh compiled and

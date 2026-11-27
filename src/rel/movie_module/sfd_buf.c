@@ -80,7 +80,7 @@ u32 fn_12_21D30(struct fn_12_21D30_Arg0 *arg0, u32 arg1) {
 }
 /* fzgx:end fn_12_21D30 */
 
-/* fzgx:begin fn_12_21D40 noprologue */
+/* fzgx:begin fn_12_21D40 */
 
 /* --- rel/movie_module/fn_12_21D40.c --- */
 void fn_12_21D40(void *base, int index, int value) {
@@ -1534,7 +1534,7 @@ int fn_12_22390(u8 *module, int index, u32 *out) {
 }
 /* fzgx:end fn_12_22390 */
 
-/* fzgx:begin fn_12_224FC noprologue */
+/* fzgx:begin fn_12_224FC */
 
 /* --- rel/movie_module/fn_12_224FC.c --- */
 s32 fn_12_224FC(u8 *arg0, int arg1, u32 *arg2) {
@@ -2681,7 +2681,7 @@ int fn_12_22954(SfdHandle_u0 *handle, SfdBufferState *buffers, SfdBufferCreateCo
 }
 /* fzgx:end fn_12_22954 */
 
-/* fzgx:begin fn_12_22FB4 noprologue */
+/* fzgx:begin fn_12_22FB4 */
 
 /* --- rel/movie_module/fn_12_22FB4.c --- */
 /* --- rel/movie_module/fn_12_22FB4.c --- */
@@ -2691,7 +2691,7 @@ void fn_12_22FB4(void) {
 }
 /* fzgx:end fn_12_22FB4 */
 
-/* fzgx:begin fn_12_22FB8 noprologue */
+/* fzgx:begin fn_12_22FB8 */
 
 /* --- rel/movie_module/fn_12_22FB8.c --- */
 // fn_12_22FB8: empty in retail (single blr).
