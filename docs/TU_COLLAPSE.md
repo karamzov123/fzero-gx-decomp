@@ -503,6 +503,11 @@ The first measured collapse after this change is Sofdec `mpv_err.c`: four functi
 shared declarations retain the TU's private inline helper instead of making it an extern.
 All three regions retain source coverage for the four functions.
 
+For `mwsfdfrm.c`, the split-first candidate did not recombine: the loader's standalone error
+call declares a different variadic ABI. Reconcile the original grouped units instead when
+their combined objects verify: four units stay four while isolated blocks fall from ten to
+two. The unit containing that call keeps its original source and compiler profile.
+
 `tools/consolidate/rel_own_data.py` transfers whole adjacent import units into a specified
 one-unit REL TU. It checks contiguity and matching regional coverage, carries over the existing
 typed definitions in retail order, and verifies the moved symbols against fresh compiled and
