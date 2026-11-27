@@ -30,8 +30,9 @@ byte-exactly; that milestone is not completion. The owner
 gives standing authorization to commit and publish every verified progress batch without asking
 again, through the approved `tools/fleet_integrator.py` publisher and its unchanged gates. First
 consolidate already-merged approved GitHub main changes with accepted local work. Preserve dirty
-user checkouts, do not merge open PRs without authorization, and independently read back the exact
-published SHA. See AGENTS.md and PROJECT_MEMORY.md for the durable delivery contract.
+user checkouts and independently read back the exact published SHA. Any agent may pull and merge open PRs unless the owner says otherwise (owner, 2026-11-27): merge each PR
+as a `--no-ff` commit, pass the three-region build, `dtk shasum` and lint, then publish through the
+publisher. See AGENTS.md and PROJECT_MEMORY.md for the durable delivery contract.
 
 Two metrics, and the difference between them matters:
 
@@ -98,8 +99,8 @@ Do not directly harvest, cherry-pick or manually copy further work from **nkhoit
 (the owner's "nkoit"), including cached candidates, tools, data and repair recipes,
 or indirect copies through another fork. Do not fetch its refs for direct imports.
 The owner will still use this contributor's work **through pull requests**; that
-workflow and maintaining already-accepted work remain allowed. This does not grant
-agents merge or publishing authorization. Keep existing landed work and attribution;
+workflow and maintaining already-accepted work remain allowed, and agents may merge its PRs
+under the general PR rule above (owner, 2026-11-27). Keep existing landed work and attribution;
 no rollback was requested. Independent **deltawave784** contributions remain allowed
 under the normal gates. The direct-import restriction is permanent unless the owner
 explicitly changes it. See `PROJECT_MEMORY.md` and `docs/SOURCE_IMPORT_POLICY.md`.

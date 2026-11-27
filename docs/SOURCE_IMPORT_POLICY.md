@@ -8,7 +8,7 @@ The owner calls the contributor "nkoit"; the GitHub account and existing local r
 
 Agents must not directly harvest, cherry-pick or manually copy further work from this contributor. This includes code, tooling, data, partial reconstructions, repair recipes and cached harvest bodies. It applies to its forks/branches and to indirect copies through another fork. Do not fetch its refs for direct matching/import work.
 
-The owner will still use this contributor's work through pull requests. That PR workflow, and maintaining code already accepted through it, remain allowed. This policy does not itself authorize an agent to merge, push or publish a PR; normal owner authorization and verification requirements still apply.
+The owner will still use this contributor's work through pull requests. That PR workflow, and maintaining code already accepted through it, remain allowed. Since 2026-11-27 any agent may pull and merge open PRs, this contributor's included, unless the owner says otherwise; the normal verification gates and the approved publisher still apply.
 
 Already-landed source, attribution and provenance remain. No rollback or deletion of historical work was requested. Do not rewrite old attribution or count old imports again.
 

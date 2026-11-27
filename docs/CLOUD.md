@@ -16,7 +16,7 @@ The permanent policy in [SOURCE_IMPORT_POLICY.md](SOURCE_IMPORT_POLICY.md) overr
 historical fork guidance here: no direct harvesting, cherry-picking or copying from
 nkhoit (the owner's "nkoit"), including cached or indirectly copied candidates.
 Do not fetch its refs for direct imports. The owner will still use that contributor's
-work through pull requests; this does not authorize agents to merge or publish PRs.
+work through pull requests, which agents may merge through the normal gates (owner, 2026-11-27).
 Already-landed code and attribution stay. Independent deltawave784 contributions
 remain permitted with the normal oracle, lint, provenance and 16-target hash gates.
 

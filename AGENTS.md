@@ -23,9 +23,11 @@ into the approved GitHub main before continuing, preserving both upstream and
 local accepted work. The active completion target is the USA version, GFZE01.
 Publication must still use the approved publisher above, with its clean pinned
 main, full 16-target hash/lint gates, fast-forward-only push and exact remote
-readback. Do not weaken guards, change tool approval configuration, merge open
-PRs without authorization, or treat nonmatching experiments as publishable source
-progress. Preserve dirty user checkouts through isolated integration/publication.
+readback. Do not weaken guards, change tool approval configuration, or treat nonmatching
+experiments as publishable source progress. Any agent may pull and merge open PRs unless the owner says otherwise (owner, 2026-11-27). Merge each
+PR as a `--no-ff` commit (`Merge PR #N: title`) in an isolated worktree, verify it with all
+three region builds, `dtk shasum -c` and `fzgx lint`, fast-forward `main`, and publish with
+the approved publisher. Preserve dirty user checkouts through isolated integration/publication.
 Completion is governed by docs/ASM_POLICY.md: natural C where the original was C,
 evidenced original assembly where appropriate, and no compiler-diff devices.
 
@@ -48,8 +50,8 @@ partials, or repair recipes from nkhoit (called "nkoit" by the owner), including
 cached candidates and indirect copies through another fork. Do not fetch its refs
 for direct matching/import work. The owner will continue using this contributor's
 work through pull requests; this restriction does not block that PR workflow or
-maintaining work already accepted through it. It does not authorize agents to merge
-or publish PRs. Keep existing landed code and historical attribution; no rollback
+maintaining work already accepted through it. Agents may merge its PRs under the general PR
+rule above (owner, 2026-11-27). Keep existing landed code and historical attribution; no rollback
 was requested. Independent deltawave784 contributions remain permitted under the
 normal source, MWCC, lint, provenance and 16-target hash gates. The direct-import
 restriction has no automatic expiry; only an explicit owner instruction may change

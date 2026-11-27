@@ -7,7 +7,7 @@ FZGX_MAX_CHECKS / FZGX_MAX_STALE budgets for your own CLI calls when useful;
 keep them consistent across that investigation. Do not impose a one-check or
 one-idea limit. Preserve other people's work and claims. No inline assembly,
 dummy work/padding, forced registers, hardcoded addresses, or weakened verification.
-Do not spawn workers or push/merge without authorization.
+Do not spawn workers or push without authorization. Open PRs may be pulled and merged unless the owner says otherwise (normal gates, approved publisher).
 
 Start from the best usable C and its compiler profile, not a placeholder. Try several
 materially different approaches when an idea fails. Use deterministic tools, batching,
