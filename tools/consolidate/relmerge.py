@@ -110,6 +110,8 @@ def main():
             break
     if bad:
         # the best set's failing functions: if their units are at the edges, --keep them
+        if any(not isinstance(b, tuple) for b in best):
+            sys.exit(1)   # the merged text does not compile: no unit to keep aside
         fails = {b[0] for b in best}
         order = [b.name for b in tf.blocks if b.name in own]
         unit_of = {s: u['source'] for u in us for s in u['symbols']}
